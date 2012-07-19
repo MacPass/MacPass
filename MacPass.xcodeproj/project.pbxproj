@@ -1,0 +1,297 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		4C77E36715B84A240093A587 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4C77E36615B84A240093A587 /* Cocoa.framework */; };
+		4C77E37115B84A240093A587 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 4C77E36F15B84A240093A587 /* InfoPlist.strings */; };
+		4C77E37315B84A240093A587 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C77E37215B84A240093A587 /* main.m */; };
+		4C77E37715B84A240093A587 /* Credits.rtf in Resources */ = {isa = PBXBuildFile; fileRef = 4C77E37515B84A240093A587 /* Credits.rtf */; };
+		4C77E37A15B84A240093A587 /* MPAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C77E37915B84A240093A587 /* MPAppDelegate.m */; };
+		4C77E37D15B84A240093A587 /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4C77E37B15B84A240093A587 /* MainMenu.xib */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		4C77E36215B84A240093A587 /* MacPass.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MacPass.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		4C77E36615B84A240093A587 /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
+		4C77E36915B84A240093A587 /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = System/Library/Frameworks/AppKit.framework; sourceTree = SDKROOT; };
+		4C77E36A15B84A240093A587 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
+		4C77E36B15B84A240093A587 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		4C77E36E15B84A240093A587 /* MacPass-Info.plist */ = {isa = PBXFileReference; path = "MacPass-Info.plist"; sourceTree = "<group>"; };
+		4C77E37015B84A240093A587 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		4C77E37215B84A240093A587 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		4C77E37415B84A240093A587 /* MacPass-Prefix.pch */ = {isa = PBXFileReference; path = "MacPass-Prefix.pch"; sourceTree = "<group>"; };
+		4C77E37615B84A240093A587 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.rtf; name = en; path = en.lproj/Credits.rtf; sourceTree = "<group>"; };
+		4C77E37815B84A240093A587 /* MPAppDelegate.h */ = {isa = PBXFileReference; path = MPAppDelegate.h; sourceTree = "<group>"; };
+		4C77E37915B84A240093A587 /* MPAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MPAppDelegate.m; sourceTree = "<group>"; };
+		4C77E37C15B84A240093A587 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/MainMenu.xib; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		4C77E35F15B84A240093A587 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				4C77E36715B84A240093A587 /* Cocoa.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		4C77E35715B84A240093A587 = {
+			isa = PBXGroup;
+			children = (
+				4C77E36C15B84A240093A587 /* MacPass */,
+				4C77E36515B84A240093A587 /* Frameworks */,
+				4C77E36315B84A240093A587 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		4C77E36315B84A240093A587 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				4C77E36215B84A240093A587 /* MacPass.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		4C77E36515B84A240093A587 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				4C77E36615B84A240093A587 /* Cocoa.framework */,
+				4C77E36815B84A240093A587 /* Other Frameworks */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		4C77E36815B84A240093A587 /* Other Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				4C77E36915B84A240093A587 /* AppKit.framework */,
+				4C77E36A15B84A240093A587 /* CoreData.framework */,
+				4C77E36B15B84A240093A587 /* Foundation.framework */,
+			);
+			name = "Other Frameworks";
+			sourceTree = "<group>";
+		};
+		4C77E36C15B84A240093A587 /* MacPass */ = {
+			isa = PBXGroup;
+			children = (
+				4C77E37815B84A240093A587 /* MPAppDelegate.h */,
+				4C77E37915B84A240093A587 /* MPAppDelegate.m */,
+				4C77E37B15B84A240093A587 /* MainMenu.xib */,
+				4C77E36D15B84A240093A587 /* Supporting Files */,
+			);
+			path = MacPass;
+			sourceTree = "<group>";
+		};
+		4C77E36D15B84A240093A587 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				4C77E36E15B84A240093A587 /* MacPass-Info.plist */,
+				4C77E36F15B84A240093A587 /* InfoPlist.strings */,
+				4C77E37215B84A240093A587 /* main.m */,
+				4C77E37415B84A240093A587 /* MacPass-Prefix.pch */,
+				4C77E37515B84A240093A587 /* Credits.rtf */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		4C77E36115B84A240093A587 /* MacPass */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 4C77E38015B84A240093A587 /* Build configuration list for PBXNativeTarget "MacPass" */;
+			buildPhases = (
+				4C77E35E15B84A240093A587 /* Sources */,
+				4C77E35F15B84A240093A587 /* Frameworks */,
+				4C77E36015B84A240093A587 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = MacPass;
+			productName = MacPass;
+			productReference = 4C77E36215B84A240093A587 /* MacPass.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		4C77E35915B84A240093A587 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				CLASSPREFIX = MP;
+				LastUpgradeCheck = 0430;
+				ORGANIZATIONNAME = "HicknHack Software GmbH";
+			};
+			buildConfigurationList = 4C77E35C15B84A240093A587 /* Build configuration list for PBXProject "MacPass" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = 4C77E35715B84A240093A587;
+			productRefGroup = 4C77E36315B84A240093A587 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				4C77E36115B84A240093A587 /* MacPass */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		4C77E36015B84A240093A587 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				4C77E37115B84A240093A587 /* InfoPlist.strings in Resources */,
+				4C77E37715B84A240093A587 /* Credits.rtf in Resources */,
+				4C77E37D15B84A240093A587 /* MainMenu.xib in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		4C77E35E15B84A240093A587 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				4C77E37315B84A240093A587 /* main.m in Sources */,
+				4C77E37A15B84A240093A587 /* MPAppDelegate.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		4C77E36F15B84A240093A587 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				4C77E37015B84A240093A587 /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+		4C77E37515B84A240093A587 /* Credits.rtf */ = {
+			isa = PBXVariantGroup;
+			children = (
+				4C77E37615B84A240093A587 /* en */,
+			);
+			name = Credits.rtf;
+			sourceTree = "<group>";
+		};
+		4C77E37B15B84A240093A587 /* MainMenu.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				4C77E37C15B84A240093A587 /* en */,
+			);
+			name = MainMenu.xib;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		4C77E37E15B84A240093A587 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
+				CLANG_ENABLE_OBJC_ARC = YES;
+				COPY_PHASE_STRIP = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.7;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = macosx;
+			};
+			name = Debug;
+		};
+		4C77E37F15B84A240093A587 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
+				CLANG_ENABLE_OBJC_ARC = YES;
+				COPY_PHASE_STRIP = YES;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.7;
+				SDKROOT = macosx;
+			};
+			name = Release;
+		};
+		4C77E38115B84A240093A587 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "MacPass/MacPass-Prefix.pch";
+				INFOPLIST_FILE = "MacPass/MacPass-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Debug;
+		};
+		4C77E38215B84A240093A587 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "MacPass/MacPass-Prefix.pch";
+				INFOPLIST_FILE = "MacPass/MacPass-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		4C77E35C15B84A240093A587 /* Build configuration list for PBXProject "MacPass" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				4C77E37E15B84A240093A587 /* Debug */,
+				4C77E37F15B84A240093A587 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		4C77E38015B84A240093A587 /* Build configuration list for PBXNativeTarget "MacPass" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				4C77E38115B84A240093A587 /* Debug */,
+				4C77E38215B84A240093A587 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 4C77E35915B84A240093A587 /* Project object */;
+}
