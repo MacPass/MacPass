@@ -8,8 +8,16 @@
 
 #import <Cocoa/Cocoa.h>
 
+APPKIT_EXTERN NSString *const kOutlineViewIdentifier;
+
+@class MPDatabaseDocument;
+
 @interface MPAppDelegate : NSObject <NSApplicationDelegate>
 
 @property (assign) IBOutlet NSWindow *window;
+@property (assign) IBOutlet NSImageView *outlineImage;
+@property (assign) IBOutlet NSTextField *outlineText;
+
+@property (readonly, retain) MPDatabaseDocument *database;
 
 @end

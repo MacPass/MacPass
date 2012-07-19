@@ -7,28 +7,173 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		4C06398F15B980640004DE27 /* OutlineView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4C06398E15B980640004DE27 /* OutlineView.xib */; };
+		4C37A84015B8B474005EF8EE /* MPOutlineDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C37A83F15B8B474005EF8EE /* MPOutlineDataSource.m */; };
 		4C77E36715B84A240093A587 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4C77E36615B84A240093A587 /* Cocoa.framework */; };
 		4C77E37115B84A240093A587 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 4C77E36F15B84A240093A587 /* InfoPlist.strings */; };
 		4C77E37315B84A240093A587 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C77E37215B84A240093A587 /* main.m */; };
 		4C77E37715B84A240093A587 /* Credits.rtf in Resources */ = {isa = PBXBuildFile; fileRef = 4C77E37515B84A240093A587 /* Credits.rtf */; };
 		4C77E37A15B84A240093A587 /* MPAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C77E37915B84A240093A587 /* MPAppDelegate.m */; };
 		4C77E37D15B84A240093A587 /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4C77E37B15B84A240093A587 /* MainMenu.xib */; };
+		4CAD742E15B8860800104512 /* AesInputStream.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CAD73E615B8860800104512 /* AesInputStream.m */; };
+		4CAD742F15B8860800104512 /* AesOutputStream.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CAD73E815B8860800104512 /* AesOutputStream.m */; };
+		4CAD743015B8860800104512 /* Arc4RandomStream.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CAD73EA15B8860800104512 /* Arc4RandomStream.m */; };
+		4CAD743115B8860800104512 /* Base64.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CAD73EC15B8860800104512 /* Base64.m */; };
+		4CAD743215B8860800104512 /* DataInputStream.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CAD73EE15B8860800104512 /* DataInputStream.m */; };
+		4CAD743315B8860800104512 /* DataOutputStream.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CAD73F015B8860800104512 /* DataOutputStream.m */; };
+		4CAD743415B8860800104512 /* FileInputStream.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CAD73F215B8860800104512 /* FileInputStream.m */; };
+		4CAD743515B8860800104512 /* FileOutputStream.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CAD73F415B8860800104512 /* FileOutputStream.m */; };
+		4CAD743615B8860800104512 /* GZipInputStream.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CAD73F615B8860800104512 /* GZipInputStream.m */; };
+		4CAD743715B8860800104512 /* GZipOutputStream.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CAD73F815B8860800104512 /* GZipOutputStream.m */; };
+		4CAD743815B8860800104512 /* HashedInputStream.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CAD73FA15B8860800104512 /* HashedInputStream.m */; };
+		4CAD743915B8860800104512 /* HashedOutputStream.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CAD73FC15B8860800104512 /* HashedOutputStream.m */; };
+		4CAD743A15B8860800104512 /* InputStream.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CAD73FE15B8860800104512 /* InputStream.m */; };
+		4CAD743B15B8860800104512 /* Kdb.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CAD740015B8860800104512 /* Kdb.m */; };
+		4CAD743C15B8860800104512 /* Kdb3Date.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CAD740215B8860800104512 /* Kdb3Date.m */; };
+		4CAD743D15B8860800104512 /* Kdb3Node.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CAD740415B8860800104512 /* Kdb3Node.m */; };
+		4CAD743E15B8860800104512 /* Kdb3Parser.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CAD740615B8860800104512 /* Kdb3Parser.m */; };
+		4CAD743F15B8860800104512 /* Kdb3Persist.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CAD740815B8860800104512 /* Kdb3Persist.m */; };
+		4CAD744015B8860800104512 /* Kdb3Reader.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CAD740A15B8860800104512 /* Kdb3Reader.m */; };
+		4CAD744115B8860800104512 /* Kdb3Writer.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CAD740C15B8860800104512 /* Kdb3Writer.m */; };
+		4CAD744215B8860800104512 /* Kdb4Node.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CAD740E15B8860800104512 /* Kdb4Node.m */; };
+		4CAD744315B8860800104512 /* Kdb4Parser.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CAD741015B8860800104512 /* Kdb4Parser.m */; };
+		4CAD744415B8860800104512 /* Kdb4Persist.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CAD741215B8860800104512 /* Kdb4Persist.m */; };
+		4CAD744515B8860800104512 /* Kdb4Reader.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CAD741415B8860800104512 /* Kdb4Reader.m */; };
+		4CAD744615B8860800104512 /* Kdb4Writer.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CAD741615B8860800104512 /* Kdb4Writer.m */; };
+		4CAD744715B8860800104512 /* KdbPassword.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CAD741915B8860800104512 /* KdbPassword.m */; };
+		4CAD744815B8860800104512 /* KdbReaderFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CAD741C15B8860800104512 /* KdbReaderFactory.m */; };
+		4CAD744915B8860800104512 /* KdbWriterFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CAD741F15B8860800104512 /* KdbWriterFactory.m */; };
+		4CAD744A15B8860800104512 /* OutputStream.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CAD742115B8860800104512 /* OutputStream.m */; };
+		4CAD744B15B8860800104512 /* RandomStream.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CAD742315B8860800104512 /* RandomStream.m */; };
+		4CAD744D15B8860800104512 /* Salsa20RandomStream.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CAD742615B8860800104512 /* Salsa20RandomStream.m */; };
+		4CAD744E15B8860800104512 /* Sha256OutputStream.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CAD742815B8860800104512 /* Sha256OutputStream.m */; };
+		4CAD744F15B8860800104512 /* Utils.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CAD742A15B8860800104512 /* Utils.m */; };
+		4CAD745015B8860800104512 /* UUID.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CAD742C15B8860800104512 /* UUID.m */; };
+		4CAD747915B887FD00104512 /* .gitignore in Resources */ = {isa = PBXBuildFile; fileRef = 4CAD745215B887FD00104512 /* .gitignore */; };
+		4CAD747A15B887FD00104512 /* .hgignore in Resources */ = {isa = PBXBuildFile; fileRef = 4CAD745315B887FD00104512 /* .hgignore */; };
+		4CAD747B15B887FD00104512 /* DDXMLElementAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CAD745715B887FD00104512 /* DDXMLElementAdditions.m */; settings = {COMPILER_FLAGS = "-fobjc-arc"; }; };
+		4CAD747C15B887FD00104512 /* NSString+DDXML.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CAD745A15B887FD00104512 /* NSString+DDXML.m */; settings = {COMPILER_FLAGS = "-fobjc-arc"; }; };
+		4CAD747D15B887FD00104512 /* DDXMLDocument.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CAD745D15B887FD00104512 /* DDXMLDocument.m */; settings = {COMPILER_FLAGS = "-fobjc-arc"; }; };
+		4CAD747E15B887FD00104512 /* DDXMLElement.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CAD745F15B887FD00104512 /* DDXMLElement.m */; settings = {COMPILER_FLAGS = "-fobjc-arc"; }; };
+		4CAD747F15B887FD00104512 /* DDXMLNode.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CAD746115B887FD00104512 /* DDXMLNode.m */; settings = {COMPILER_FLAGS = "-fobjc-arc"; }; };
+		4CAD748015B887FD00104512 /* LICENSE.txt in Resources */ = {isa = PBXBuildFile; fileRef = 4CAD746415B887FD00104512 /* LICENSE.txt */; };
+		4CAD748115B887FD00104512 /* README.markdown in Resources */ = {isa = PBXBuildFile; fileRef = 4CAD746515B887FD00104512 /* README.markdown */; };
+		4CAD748C15B889B700104512 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4CAD748B15B889B700104512 /* Security.framework */; };
+		4CAD748E15B88AC100104512 /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 4CAD748D15B88AC100104512 /* libz.dylib */; };
+		4CBA981815BA0DB600721965 /* MPDatabaseDocument.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CBA981715BA0DB600721965 /* MPDatabaseDocument.m */; };
+		4CC6259115BA1C99002F5B11 /* MPOutlineViewDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CC6259015BA1C99002F5B11 /* MPOutlineViewDelegate.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		4C06398E15B980640004DE27 /* OutlineView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = OutlineView.xib; sourceTree = "<group>"; };
+		4C37A83E15B8B474005EF8EE /* MPOutlineDataSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MPOutlineDataSource.h; sourceTree = "<group>"; };
+		4C37A83F15B8B474005EF8EE /* MPOutlineDataSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MPOutlineDataSource.m; sourceTree = "<group>"; };
 		4C77E36215B84A240093A587 /* MacPass.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MacPass.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4C77E36615B84A240093A587 /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
 		4C77E36915B84A240093A587 /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = System/Library/Frameworks/AppKit.framework; sourceTree = SDKROOT; };
 		4C77E36A15B84A240093A587 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
 		4C77E36B15B84A240093A587 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
-		4C77E36E15B84A240093A587 /* MacPass-Info.plist */ = {isa = PBXFileReference; path = "MacPass-Info.plist"; sourceTree = "<group>"; };
+		4C77E36E15B84A240093A587 /* MacPass-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "MacPass-Info.plist"; sourceTree = "<group>"; };
 		4C77E37015B84A240093A587 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		4C77E37215B84A240093A587 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
-		4C77E37415B84A240093A587 /* MacPass-Prefix.pch */ = {isa = PBXFileReference; path = "MacPass-Prefix.pch"; sourceTree = "<group>"; };
+		4C77E37415B84A240093A587 /* MacPass-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "MacPass-Prefix.pch"; sourceTree = "<group>"; };
 		4C77E37615B84A240093A587 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.rtf; name = en; path = en.lproj/Credits.rtf; sourceTree = "<group>"; };
-		4C77E37815B84A240093A587 /* MPAppDelegate.h */ = {isa = PBXFileReference; path = MPAppDelegate.h; sourceTree = "<group>"; };
+		4C77E37815B84A240093A587 /* MPAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MPAppDelegate.h; sourceTree = "<group>"; };
 		4C77E37915B84A240093A587 /* MPAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MPAppDelegate.m; sourceTree = "<group>"; };
 		4C77E37C15B84A240093A587 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/MainMenu.xib; sourceTree = "<group>"; };
+		4CAD73E515B8860800104512 /* AesInputStream.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AesInputStream.h; sourceTree = "<group>"; };
+		4CAD73E615B8860800104512 /* AesInputStream.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AesInputStream.m; sourceTree = "<group>"; };
+		4CAD73E715B8860800104512 /* AesOutputStream.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AesOutputStream.h; sourceTree = "<group>"; };
+		4CAD73E815B8860800104512 /* AesOutputStream.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AesOutputStream.m; sourceTree = "<group>"; };
+		4CAD73E915B8860800104512 /* Arc4RandomStream.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Arc4RandomStream.h; sourceTree = "<group>"; };
+		4CAD73EA15B8860800104512 /* Arc4RandomStream.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Arc4RandomStream.m; sourceTree = "<group>"; };
+		4CAD73EB15B8860800104512 /* Base64.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Base64.h; sourceTree = "<group>"; };
+		4CAD73EC15B8860800104512 /* Base64.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Base64.m; sourceTree = "<group>"; };
+		4CAD73ED15B8860800104512 /* DataInputStream.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DataInputStream.h; sourceTree = "<group>"; };
+		4CAD73EE15B8860800104512 /* DataInputStream.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DataInputStream.m; sourceTree = "<group>"; };
+		4CAD73EF15B8860800104512 /* DataOutputStream.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DataOutputStream.h; sourceTree = "<group>"; };
+		4CAD73F015B8860800104512 /* DataOutputStream.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DataOutputStream.m; sourceTree = "<group>"; };
+		4CAD73F115B8860800104512 /* FileInputStream.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FileInputStream.h; sourceTree = "<group>"; };
+		4CAD73F215B8860800104512 /* FileInputStream.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FileInputStream.m; sourceTree = "<group>"; };
+		4CAD73F315B8860800104512 /* FileOutputStream.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FileOutputStream.h; sourceTree = "<group>"; };
+		4CAD73F415B8860800104512 /* FileOutputStream.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FileOutputStream.m; sourceTree = "<group>"; };
+		4CAD73F515B8860800104512 /* GZipInputStream.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GZipInputStream.h; sourceTree = "<group>"; };
+		4CAD73F615B8860800104512 /* GZipInputStream.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GZipInputStream.m; sourceTree = "<group>"; };
+		4CAD73F715B8860800104512 /* GZipOutputStream.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GZipOutputStream.h; sourceTree = "<group>"; };
+		4CAD73F815B8860800104512 /* GZipOutputStream.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GZipOutputStream.m; sourceTree = "<group>"; };
+		4CAD73F915B8860800104512 /* HashedInputStream.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HashedInputStream.h; sourceTree = "<group>"; };
+		4CAD73FA15B8860800104512 /* HashedInputStream.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HashedInputStream.m; sourceTree = "<group>"; };
+		4CAD73FB15B8860800104512 /* HashedOutputStream.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HashedOutputStream.h; sourceTree = "<group>"; };
+		4CAD73FC15B8860800104512 /* HashedOutputStream.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HashedOutputStream.m; sourceTree = "<group>"; };
+		4CAD73FD15B8860800104512 /* InputStream.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InputStream.h; sourceTree = "<group>"; };
+		4CAD73FE15B8860800104512 /* InputStream.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InputStream.m; sourceTree = "<group>"; };
+		4CAD73FF15B8860800104512 /* Kdb.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Kdb.h; sourceTree = "<group>"; };
+		4CAD740015B8860800104512 /* Kdb.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Kdb.m; sourceTree = "<group>"; };
+		4CAD740115B8860800104512 /* Kdb3Date.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Kdb3Date.h; sourceTree = "<group>"; };
+		4CAD740215B8860800104512 /* Kdb3Date.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Kdb3Date.m; sourceTree = "<group>"; };
+		4CAD740315B8860800104512 /* Kdb3Node.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Kdb3Node.h; sourceTree = "<group>"; };
+		4CAD740415B8860800104512 /* Kdb3Node.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Kdb3Node.m; sourceTree = "<group>"; };
+		4CAD740515B8860800104512 /* Kdb3Parser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Kdb3Parser.h; sourceTree = "<group>"; };
+		4CAD740615B8860800104512 /* Kdb3Parser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Kdb3Parser.m; sourceTree = "<group>"; };
+		4CAD740715B8860800104512 /* Kdb3Persist.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Kdb3Persist.h; sourceTree = "<group>"; };
+		4CAD740815B8860800104512 /* Kdb3Persist.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Kdb3Persist.m; sourceTree = "<group>"; };
+		4CAD740915B8860800104512 /* Kdb3Reader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Kdb3Reader.h; sourceTree = "<group>"; };
+		4CAD740A15B8860800104512 /* Kdb3Reader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Kdb3Reader.m; sourceTree = "<group>"; };
+		4CAD740B15B8860800104512 /* Kdb3Writer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Kdb3Writer.h; sourceTree = "<group>"; };
+		4CAD740C15B8860800104512 /* Kdb3Writer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Kdb3Writer.m; sourceTree = "<group>"; };
+		4CAD740D15B8860800104512 /* Kdb4Node.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Kdb4Node.h; sourceTree = "<group>"; };
+		4CAD740E15B8860800104512 /* Kdb4Node.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Kdb4Node.m; sourceTree = "<group>"; };
+		4CAD740F15B8860800104512 /* Kdb4Parser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Kdb4Parser.h; sourceTree = "<group>"; };
+		4CAD741015B8860800104512 /* Kdb4Parser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Kdb4Parser.m; sourceTree = "<group>"; };
+		4CAD741115B8860800104512 /* Kdb4Persist.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Kdb4Persist.h; sourceTree = "<group>"; };
+		4CAD741215B8860800104512 /* Kdb4Persist.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Kdb4Persist.m; sourceTree = "<group>"; };
+		4CAD741315B8860800104512 /* Kdb4Reader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Kdb4Reader.h; sourceTree = "<group>"; };
+		4CAD741415B8860800104512 /* Kdb4Reader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Kdb4Reader.m; sourceTree = "<group>"; };
+		4CAD741515B8860800104512 /* Kdb4Writer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Kdb4Writer.h; sourceTree = "<group>"; };
+		4CAD741615B8860800104512 /* Kdb4Writer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Kdb4Writer.m; sourceTree = "<group>"; };
+		4CAD741715B8860800104512 /* KdbLib.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KdbLib.h; sourceTree = "<group>"; };
+		4CAD741815B8860800104512 /* KdbPassword.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KdbPassword.h; sourceTree = "<group>"; };
+		4CAD741915B8860800104512 /* KdbPassword.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KdbPassword.m; sourceTree = "<group>"; };
+		4CAD741A15B8860800104512 /* KdbReader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KdbReader.h; sourceTree = "<group>"; };
+		4CAD741B15B8860800104512 /* KdbReaderFactory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KdbReaderFactory.h; sourceTree = "<group>"; };
+		4CAD741C15B8860800104512 /* KdbReaderFactory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KdbReaderFactory.m; sourceTree = "<group>"; };
+		4CAD741D15B8860800104512 /* KdbWriter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KdbWriter.h; sourceTree = "<group>"; };
+		4CAD741E15B8860800104512 /* KdbWriterFactory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KdbWriterFactory.h; sourceTree = "<group>"; };
+		4CAD741F15B8860800104512 /* KdbWriterFactory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KdbWriterFactory.m; sourceTree = "<group>"; };
+		4CAD742015B8860800104512 /* OutputStream.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OutputStream.h; sourceTree = "<group>"; };
+		4CAD742115B8860800104512 /* OutputStream.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OutputStream.m; sourceTree = "<group>"; };
+		4CAD742215B8860800104512 /* RandomStream.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RandomStream.h; sourceTree = "<group>"; };
+		4CAD742315B8860800104512 /* RandomStream.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RandomStream.m; sourceTree = "<group>"; };
+		4CAD742515B8860800104512 /* Salsa20RandomStream.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Salsa20RandomStream.h; sourceTree = "<group>"; };
+		4CAD742615B8860800104512 /* Salsa20RandomStream.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Salsa20RandomStream.m; sourceTree = "<group>"; };
+		4CAD742715B8860800104512 /* Sha256OutputStream.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Sha256OutputStream.h; sourceTree = "<group>"; };
+		4CAD742815B8860800104512 /* Sha256OutputStream.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Sha256OutputStream.m; sourceTree = "<group>"; };
+		4CAD742915B8860800104512 /* Utils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Utils.h; sourceTree = "<group>"; };
+		4CAD742A15B8860800104512 /* Utils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Utils.m; sourceTree = "<group>"; };
+		4CAD742B15B8860800104512 /* UUID.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UUID.h; sourceTree = "<group>"; };
+		4CAD742C15B8860800104512 /* UUID.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UUID.m; sourceTree = "<group>"; };
+		4CAD745215B887FD00104512 /* .gitignore */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = .gitignore; sourceTree = "<group>"; };
+		4CAD745315B887FD00104512 /* .hgignore */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = .hgignore; sourceTree = "<group>"; };
+		4CAD745615B887FD00104512 /* DDXMLElementAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DDXMLElementAdditions.h; sourceTree = "<group>"; };
+		4CAD745715B887FD00104512 /* DDXMLElementAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DDXMLElementAdditions.m; sourceTree = "<group>"; };
+		4CAD745915B887FD00104512 /* NSString+DDXML.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+DDXML.h"; sourceTree = "<group>"; };
+		4CAD745A15B887FD00104512 /* NSString+DDXML.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+DDXML.m"; sourceTree = "<group>"; };
+		4CAD745B15B887FD00104512 /* DDXML.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DDXML.h; sourceTree = "<group>"; };
+		4CAD745C15B887FD00104512 /* DDXMLDocument.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DDXMLDocument.h; sourceTree = "<group>"; };
+		4CAD745D15B887FD00104512 /* DDXMLDocument.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DDXMLDocument.m; sourceTree = "<group>"; };
+		4CAD745E15B887FD00104512 /* DDXMLElement.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DDXMLElement.h; sourceTree = "<group>"; };
+		4CAD745F15B887FD00104512 /* DDXMLElement.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DDXMLElement.m; sourceTree = "<group>"; };
+		4CAD746015B887FD00104512 /* DDXMLNode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DDXMLNode.h; sourceTree = "<group>"; };
+		4CAD746115B887FD00104512 /* DDXMLNode.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DDXMLNode.m; sourceTree = "<group>"; };
+		4CAD746315B887FD00104512 /* DDXMLPrivate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DDXMLPrivate.h; sourceTree = "<group>"; };
+		4CAD746415B887FD00104512 /* LICENSE.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = LICENSE.txt; sourceTree = "<group>"; };
+		4CAD746515B887FD00104512 /* README.markdown */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = README.markdown; sourceTree = "<group>"; };
+		4CAD748B15B889B700104512 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
+		4CAD748D15B88AC100104512 /* libz.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.dylib; path = usr/lib/libz.dylib; sourceTree = SDKROOT; };
+		4CBA981615BA0DB600721965 /* MPDatabaseDocument.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MPDatabaseDocument.h; sourceTree = "<group>"; };
+		4CBA981715BA0DB600721965 /* MPDatabaseDocument.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MPDatabaseDocument.m; sourceTree = "<group>"; };
+		4CC6258F15BA1C99002F5B11 /* MPOutlineViewDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MPOutlineViewDelegate.h; sourceTree = "<group>"; };
+		4CC6259015BA1C99002F5B11 /* MPOutlineViewDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MPOutlineViewDelegate.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -36,6 +181,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4CAD748E15B88AC100104512 /* libz.dylib in Frameworks */,
+				4CAD748C15B889B700104512 /* Security.framework in Frameworks */,
 				4C77E36715B84A240093A587 /* Cocoa.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -43,9 +190,42 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		4C06398C15B980480004DE27 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				4C77E37B15B84A240093A587 /* MainMenu.xib */,
+				4C06398E15B980640004DE27 /* OutlineView.xib */,
+			);
+			name = Views;
+			sourceTree = "<group>";
+		};
+		4C37A84115B8B47D005EF8EE /* Delegates */ = {
+			isa = PBXGroup;
+			children = (
+				4C77E37815B84A240093A587 /* MPAppDelegate.h */,
+				4C77E37915B84A240093A587 /* MPAppDelegate.m */,
+				4CC6258F15BA1C99002F5B11 /* MPOutlineViewDelegate.h */,
+				4CC6259015BA1C99002F5B11 /* MPOutlineViewDelegate.m */,
+			);
+			name = Delegates;
+			sourceTree = "<group>";
+		};
+		4C37A84215B8B495005EF8EE /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				4C37A83E15B8B474005EF8EE /* MPOutlineDataSource.h */,
+				4C37A83F15B8B474005EF8EE /* MPOutlineDataSource.m */,
+				4CBA981615BA0DB600721965 /* MPDatabaseDocument.h */,
+				4CBA981715BA0DB600721965 /* MPDatabaseDocument.m */,
+			);
+			name = Model;
+			sourceTree = "<group>";
+		};
 		4C77E35715B84A240093A587 = {
 			isa = PBXGroup;
 			children = (
+				4CAD745115B887FD00104512 /* KissXML */,
+				4CAD73E315B8860800104512 /* KeePassLib */,
 				4C77E36C15B84A240093A587 /* MacPass */,
 				4C77E36515B84A240093A587 /* Frameworks */,
 				4C77E36315B84A240093A587 /* Products */,
@@ -63,6 +243,8 @@
 		4C77E36515B84A240093A587 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				4CAD748D15B88AC100104512 /* libz.dylib */,
+				4CAD748B15B889B700104512 /* Security.framework */,
 				4C77E36615B84A240093A587 /* Cocoa.framework */,
 				4C77E36815B84A240093A587 /* Other Frameworks */,
 			);
@@ -82,9 +264,9 @@
 		4C77E36C15B84A240093A587 /* MacPass */ = {
 			isa = PBXGroup;
 			children = (
-				4C77E37815B84A240093A587 /* MPAppDelegate.h */,
-				4C77E37915B84A240093A587 /* MPAppDelegate.m */,
-				4C77E37B15B84A240093A587 /* MainMenu.xib */,
+				4C06398C15B980480004DE27 /* Views */,
+				4C37A84215B8B495005EF8EE /* Model */,
+				4C37A84115B8B47D005EF8EE /* Delegates */,
 				4C77E36D15B84A240093A587 /* Supporting Files */,
 			);
 			path = MacPass;
@@ -100,6 +282,139 @@
 				4C77E37515B84A240093A587 /* Credits.rtf */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		4CAD73E315B8860800104512 /* KeePassLib */ = {
+			isa = PBXGroup;
+			children = (
+				4CAD73E515B8860800104512 /* AesInputStream.h */,
+				4CAD73E615B8860800104512 /* AesInputStream.m */,
+				4CAD73E715B8860800104512 /* AesOutputStream.h */,
+				4CAD73E815B8860800104512 /* AesOutputStream.m */,
+				4CAD73E915B8860800104512 /* Arc4RandomStream.h */,
+				4CAD73EA15B8860800104512 /* Arc4RandomStream.m */,
+				4CAD73EB15B8860800104512 /* Base64.h */,
+				4CAD73EC15B8860800104512 /* Base64.m */,
+				4CAD73ED15B8860800104512 /* DataInputStream.h */,
+				4CAD73EE15B8860800104512 /* DataInputStream.m */,
+				4CAD73EF15B8860800104512 /* DataOutputStream.h */,
+				4CAD73F015B8860800104512 /* DataOutputStream.m */,
+				4CAD73F115B8860800104512 /* FileInputStream.h */,
+				4CAD73F215B8860800104512 /* FileInputStream.m */,
+				4CAD73F315B8860800104512 /* FileOutputStream.h */,
+				4CAD73F415B8860800104512 /* FileOutputStream.m */,
+				4CAD73F515B8860800104512 /* GZipInputStream.h */,
+				4CAD73F615B8860800104512 /* GZipInputStream.m */,
+				4CAD73F715B8860800104512 /* GZipOutputStream.h */,
+				4CAD73F815B8860800104512 /* GZipOutputStream.m */,
+				4CAD73F915B8860800104512 /* HashedInputStream.h */,
+				4CAD73FA15B8860800104512 /* HashedInputStream.m */,
+				4CAD73FB15B8860800104512 /* HashedOutputStream.h */,
+				4CAD73FC15B8860800104512 /* HashedOutputStream.m */,
+				4CAD73FD15B8860800104512 /* InputStream.h */,
+				4CAD73FE15B8860800104512 /* InputStream.m */,
+				4CAD73FF15B8860800104512 /* Kdb.h */,
+				4CAD740015B8860800104512 /* Kdb.m */,
+				4CAD740115B8860800104512 /* Kdb3Date.h */,
+				4CAD740215B8860800104512 /* Kdb3Date.m */,
+				4CAD740315B8860800104512 /* Kdb3Node.h */,
+				4CAD740415B8860800104512 /* Kdb3Node.m */,
+				4CAD740515B8860800104512 /* Kdb3Parser.h */,
+				4CAD740615B8860800104512 /* Kdb3Parser.m */,
+				4CAD740715B8860800104512 /* Kdb3Persist.h */,
+				4CAD740815B8860800104512 /* Kdb3Persist.m */,
+				4CAD740915B8860800104512 /* Kdb3Reader.h */,
+				4CAD740A15B8860800104512 /* Kdb3Reader.m */,
+				4CAD740B15B8860800104512 /* Kdb3Writer.h */,
+				4CAD740C15B8860800104512 /* Kdb3Writer.m */,
+				4CAD740D15B8860800104512 /* Kdb4Node.h */,
+				4CAD740E15B8860800104512 /* Kdb4Node.m */,
+				4CAD740F15B8860800104512 /* Kdb4Parser.h */,
+				4CAD741015B8860800104512 /* Kdb4Parser.m */,
+				4CAD741115B8860800104512 /* Kdb4Persist.h */,
+				4CAD741215B8860800104512 /* Kdb4Persist.m */,
+				4CAD741315B8860800104512 /* Kdb4Reader.h */,
+				4CAD741415B8860800104512 /* Kdb4Reader.m */,
+				4CAD741515B8860800104512 /* Kdb4Writer.h */,
+				4CAD741615B8860800104512 /* Kdb4Writer.m */,
+				4CAD741715B8860800104512 /* KdbLib.h */,
+				4CAD741815B8860800104512 /* KdbPassword.h */,
+				4CAD741915B8860800104512 /* KdbPassword.m */,
+				4CAD741A15B8860800104512 /* KdbReader.h */,
+				4CAD741B15B8860800104512 /* KdbReaderFactory.h */,
+				4CAD741C15B8860800104512 /* KdbReaderFactory.m */,
+				4CAD741D15B8860800104512 /* KdbWriter.h */,
+				4CAD741E15B8860800104512 /* KdbWriterFactory.h */,
+				4CAD741F15B8860800104512 /* KdbWriterFactory.m */,
+				4CAD742015B8860800104512 /* OutputStream.h */,
+				4CAD742115B8860800104512 /* OutputStream.m */,
+				4CAD742215B8860800104512 /* RandomStream.h */,
+				4CAD742315B8860800104512 /* RandomStream.m */,
+				4CAD742515B8860800104512 /* Salsa20RandomStream.h */,
+				4CAD742615B8860800104512 /* Salsa20RandomStream.m */,
+				4CAD742715B8860800104512 /* Sha256OutputStream.h */,
+				4CAD742815B8860800104512 /* Sha256OutputStream.m */,
+				4CAD742915B8860800104512 /* Utils.h */,
+				4CAD742A15B8860800104512 /* Utils.m */,
+				4CAD742B15B8860800104512 /* UUID.h */,
+				4CAD742C15B8860800104512 /* UUID.m */,
+			);
+			path = KeePassLib;
+			sourceTree = "<group>";
+		};
+		4CAD745115B887FD00104512 /* KissXML */ = {
+			isa = PBXGroup;
+			children = (
+				4CAD745215B887FD00104512 /* .gitignore */,
+				4CAD745315B887FD00104512 /* .hgignore */,
+				4CAD745415B887FD00104512 /* KissXML */,
+				4CAD746415B887FD00104512 /* LICENSE.txt */,
+				4CAD746515B887FD00104512 /* README.markdown */,
+			);
+			path = KissXML;
+			sourceTree = "<group>";
+		};
+		4CAD745415B887FD00104512 /* KissXML */ = {
+			isa = PBXGroup;
+			children = (
+				4CAD745515B887FD00104512 /* Additions */,
+				4CAD745815B887FD00104512 /* Categories */,
+				4CAD745B15B887FD00104512 /* DDXML.h */,
+				4CAD745C15B887FD00104512 /* DDXMLDocument.h */,
+				4CAD745D15B887FD00104512 /* DDXMLDocument.m */,
+				4CAD745E15B887FD00104512 /* DDXMLElement.h */,
+				4CAD745F15B887FD00104512 /* DDXMLElement.m */,
+				4CAD746015B887FD00104512 /* DDXMLNode.h */,
+				4CAD746115B887FD00104512 /* DDXMLNode.m */,
+				4CAD746215B887FD00104512 /* Private */,
+			);
+			path = KissXML;
+			sourceTree = "<group>";
+		};
+		4CAD745515B887FD00104512 /* Additions */ = {
+			isa = PBXGroup;
+			children = (
+				4CAD745615B887FD00104512 /* DDXMLElementAdditions.h */,
+				4CAD745715B887FD00104512 /* DDXMLElementAdditions.m */,
+			);
+			path = Additions;
+			sourceTree = "<group>";
+		};
+		4CAD745815B887FD00104512 /* Categories */ = {
+			isa = PBXGroup;
+			children = (
+				4CAD745915B887FD00104512 /* NSString+DDXML.h */,
+				4CAD745A15B887FD00104512 /* NSString+DDXML.m */,
+			);
+			path = Categories;
+			sourceTree = "<group>";
+		};
+		4CAD746215B887FD00104512 /* Private */ = {
+			isa = PBXGroup;
+			children = (
+				4CAD746315B887FD00104512 /* DDXMLPrivate.h */,
+			);
+			path = Private;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -138,6 +453,7 @@
 			hasScannedForEncodings = 0;
 			knownRegions = (
 				en,
+				English,
 			);
 			mainGroup = 4C77E35715B84A240093A587;
 			productRefGroup = 4C77E36315B84A240093A587 /* Products */;
@@ -157,6 +473,11 @@
 				4C77E37115B84A240093A587 /* InfoPlist.strings in Resources */,
 				4C77E37715B84A240093A587 /* Credits.rtf in Resources */,
 				4C77E37D15B84A240093A587 /* MainMenu.xib in Resources */,
+				4CAD747915B887FD00104512 /* .gitignore in Resources */,
+				4CAD747A15B887FD00104512 /* .hgignore in Resources */,
+				4CAD748015B887FD00104512 /* LICENSE.txt in Resources */,
+				4CAD748115B887FD00104512 /* README.markdown in Resources */,
+				4C06398F15B980640004DE27 /* OutlineView.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -169,6 +490,48 @@
 			files = (
 				4C77E37315B84A240093A587 /* main.m in Sources */,
 				4C77E37A15B84A240093A587 /* MPAppDelegate.m in Sources */,
+				4CAD742E15B8860800104512 /* AesInputStream.m in Sources */,
+				4CAD742F15B8860800104512 /* AesOutputStream.m in Sources */,
+				4CAD743015B8860800104512 /* Arc4RandomStream.m in Sources */,
+				4CAD743115B8860800104512 /* Base64.m in Sources */,
+				4CAD743215B8860800104512 /* DataInputStream.m in Sources */,
+				4CAD743315B8860800104512 /* DataOutputStream.m in Sources */,
+				4CAD743415B8860800104512 /* FileInputStream.m in Sources */,
+				4CAD743515B8860800104512 /* FileOutputStream.m in Sources */,
+				4CAD743615B8860800104512 /* GZipInputStream.m in Sources */,
+				4CAD743715B8860800104512 /* GZipOutputStream.m in Sources */,
+				4CAD743815B8860800104512 /* HashedInputStream.m in Sources */,
+				4CAD743915B8860800104512 /* HashedOutputStream.m in Sources */,
+				4CAD743A15B8860800104512 /* InputStream.m in Sources */,
+				4CAD743B15B8860800104512 /* Kdb.m in Sources */,
+				4CAD743C15B8860800104512 /* Kdb3Date.m in Sources */,
+				4CAD743D15B8860800104512 /* Kdb3Node.m in Sources */,
+				4CAD743E15B8860800104512 /* Kdb3Parser.m in Sources */,
+				4CAD743F15B8860800104512 /* Kdb3Persist.m in Sources */,
+				4CAD744015B8860800104512 /* Kdb3Reader.m in Sources */,
+				4CAD744115B8860800104512 /* Kdb3Writer.m in Sources */,
+				4CAD744215B8860800104512 /* Kdb4Node.m in Sources */,
+				4CAD744315B8860800104512 /* Kdb4Parser.m in Sources */,
+				4CAD744415B8860800104512 /* Kdb4Persist.m in Sources */,
+				4CAD744515B8860800104512 /* Kdb4Reader.m in Sources */,
+				4CAD744615B8860800104512 /* Kdb4Writer.m in Sources */,
+				4CAD744715B8860800104512 /* KdbPassword.m in Sources */,
+				4CAD744815B8860800104512 /* KdbReaderFactory.m in Sources */,
+				4CAD744915B8860800104512 /* KdbWriterFactory.m in Sources */,
+				4CAD744A15B8860800104512 /* OutputStream.m in Sources */,
+				4CAD744B15B8860800104512 /* RandomStream.m in Sources */,
+				4CAD744D15B8860800104512 /* Salsa20RandomStream.m in Sources */,
+				4CAD744E15B8860800104512 /* Sha256OutputStream.m in Sources */,
+				4CAD744F15B8860800104512 /* Utils.m in Sources */,
+				4CAD745015B8860800104512 /* UUID.m in Sources */,
+				4CAD747B15B887FD00104512 /* DDXMLElementAdditions.m in Sources */,
+				4CAD747C15B887FD00104512 /* NSString+DDXML.m in Sources */,
+				4CAD747D15B887FD00104512 /* DDXMLDocument.m in Sources */,
+				4CAD747E15B887FD00104512 /* DDXMLElement.m in Sources */,
+				4CAD747F15B887FD00104512 /* DDXMLNode.m in Sources */,
+				4C37A84015B8B474005EF8EE /* MPOutlineDataSource.m in Sources */,
+				4CBA981815BA0DB600721965 /* MPDatabaseDocument.m in Sources */,
+				4CC6259115BA1C99002F5B11 /* MPOutlineViewDelegate.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -207,7 +570,7 @@
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
-				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_ARC = NO;
 				COPY_PHASE_STRIP = NO;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_DYNAMIC_NO_PIC = NO;
@@ -223,8 +586,10 @@
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
+				HEADER_SEARCH_PATHS = "/usr/include/libxml2/**";
 				MACOSX_DEPLOYMENT_TARGET = 10.7;
 				ONLY_ACTIVE_ARCH = YES;
+				OTHER_LDFLAGS = "-lxml2";
 				SDKROOT = macosx;
 			};
 			name = Debug;
@@ -234,7 +599,7 @@
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
-				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_ARC = NO;
 				COPY_PHASE_STRIP = YES;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				GCC_C_LANGUAGE_STANDARD = gnu99;
@@ -244,7 +609,9 @@
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
+				HEADER_SEARCH_PATHS = "/usr/include/libxml2/**";
 				MACOSX_DEPLOYMENT_TARGET = 10.7;
+				OTHER_LDFLAGS = "-lxml2";
 				SDKROOT = macosx;
 			};
 			name = Release;
@@ -290,6 +657,7 @@
 				4C77E38215B84A240093A587 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
