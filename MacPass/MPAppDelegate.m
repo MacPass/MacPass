@@ -34,7 +34,7 @@ NSString *const kOutlineViewIdentifier = @"OutlineView";
 
 - (void)applicationDidFinishLaunching:(NSNotification *)aNotification
 {
-  _database = [[MPDatabaseDocument alloc] initWithFile:nil andPassword:@""];
+  //_database = [[MPDatabaseDocument alloc] initWithFile:NSURL password:<#(NSString *)#> keyfile:<#(NSURL *)#>
   
   _outlineDelegate = [[MPOutlineViewDelegate alloc] init];
   _datasource = [[MPOutlineDataSource alloc] init];

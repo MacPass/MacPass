@@ -11,46 +11,39 @@
 
 @interface MPDatabaseDocument ()
 @property (retain) KdbTree *tree;
-- (id)initWithFile:(NSURL *)file andKdbPassword:(KdbPassword *)password;
 @end
 
 @implementation MPDatabaseDocument
 
 @synthesize tree = _tree;
 
-- (id)initWithFile:(NSURL *)file andKeyfile:(NSURL *)keyfile {
-  KdbPassword *password = [[KdbPassword alloc] initWithKeyfile:[keyfile path]];
-  [self initWithFile:file andKdbPassword:password];
-  [password release];
-  return self;
+- (id)init {
+  return [self initWithFile:nil password:nil keyfile:nil];
 }
 
-- (id)initWithFile:(NSURL *)file andPassword:(NSString *)password {
-  KdbPassword *kdbPassword = [[KdbPassword alloc] initWithPassword:password encoding:NSUTF8StringEncoding];
-  [self initWithFile:file andKdbPassword:kdbPassword];
-  [password release];
-  return self;
-}  
-
-- (id)initWithFile:(NSURL *)file andKdbPassword:(KdbPassword *)password {
+- (id)initWithFile:(NSURL *)file password:(NSString *)password keyfile:(NSURL *)key
+{
   self = [super init];
   if (self) {
-    NSString *path = [file path];
-    BOOL isReadable = [[NSFileManager defaultManager] isReadableFileAtPath:path];
-    BOOL isDirectory = [[NSFileManager defaultManager] fileExistsAtPath:path isDirectory:&isDirectory];
-    // We may need more tests
-    if(isReadable && NO == isDirectory) {
-      @try {
-       self.tree = [KdbReaderFactory load:[file path] withPassword:password];
+    // test for supplied parameters
+    KdbPassword *kdbPassword = nil;
+    if( password != nil ) {
+      if( key != nil ) {
+        kdbPassword = [[KdbPassword alloc] initWithPassword:password encoding:NSUTF8StringEncoding keyfile:[key path]];
       }
-      @catch (NSException *exception) {
-        // Log the error but proceede
-        NSLog(@"Could not load the Database at path:%@", file);
+      else {
+        kdbPassword = [[KdbPassword alloc] initWithPassword:password encoding:NSUTF8StringEncoding];
       }
+    }
+    
+    @try {
+    _tree = [KdbReaderFactory load:[file path] withPassword:kdbPassword];
+    }
+    @catch (NSException *exception) {
+      // ignore
     }
   }
   return self;
 }
-
 
 @end

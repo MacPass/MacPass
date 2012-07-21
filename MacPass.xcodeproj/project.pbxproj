@@ -15,6 +15,7 @@
 		4C77E37715B84A240093A587 /* Credits.rtf in Resources */ = {isa = PBXBuildFile; fileRef = 4C77E37515B84A240093A587 /* Credits.rtf */; };
 		4C77E37A15B84A240093A587 /* MPAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C77E37915B84A240093A587 /* MPAppDelegate.m */; };
 		4C77E37D15B84A240093A587 /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4C77E37B15B84A240093A587 /* MainMenu.xib */; };
+		4C88763415BABA30003D2CE9 /* PasswordWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4C88763315BABA30003D2CE9 /* PasswordWindow.xib */; };
 		4CAD742E15B8860800104512 /* AesInputStream.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CAD73E615B8860800104512 /* AesInputStream.m */; };
 		4CAD742F15B8860800104512 /* AesOutputStream.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CAD73E815B8860800104512 /* AesOutputStream.m */; };
 		4CAD743015B8860800104512 /* Arc4RandomStream.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CAD73EA15B8860800104512 /* Arc4RandomStream.m */; };
@@ -81,6 +82,7 @@
 		4C77E37815B84A240093A587 /* MPAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MPAppDelegate.h; sourceTree = "<group>"; };
 		4C77E37915B84A240093A587 /* MPAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MPAppDelegate.m; sourceTree = "<group>"; };
 		4C77E37C15B84A240093A587 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/MainMenu.xib; sourceTree = "<group>"; };
+		4C88763315BABA30003D2CE9 /* PasswordWindow.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PasswordWindow.xib; sourceTree = "<group>"; };
 		4CAD73E515B8860800104512 /* AesInputStream.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AesInputStream.h; sourceTree = "<group>"; };
 		4CAD73E615B8860800104512 /* AesInputStream.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AesInputStream.m; sourceTree = "<group>"; };
 		4CAD73E715B8860800104512 /* AesOutputStream.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AesOutputStream.h; sourceTree = "<group>"; };
@@ -195,6 +197,7 @@
 			children = (
 				4C77E37B15B84A240093A587 /* MainMenu.xib */,
 				4C06398E15B980640004DE27 /* OutlineView.xib */,
+				4C88763315BABA30003D2CE9 /* PasswordWindow.xib */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -478,6 +481,7 @@
 				4CAD748015B887FD00104512 /* LICENSE.txt in Resources */,
 				4CAD748115B887FD00104512 /* README.markdown in Resources */,
 				4C06398F15B980640004DE27 /* OutlineView.xib in Resources */,
+				4C88763415BABA30003D2CE9 /* PasswordWindow.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

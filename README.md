@@ -1,13 +1,11 @@
 MacPass
 =======
 
-There a lot of iOS KeePass Tools around but a distinct lack of a good OS X Version.
-KeePass can be used as is via Mono on OS X but lacks vital Functionality.
+There a lot of iOS KeePass tools around but a distinct lack of a good OS X Version.
+KeePass can be used as is via Mono on OS X but lacks vital functionality.
 
-This is a Attemtp to make create OS X port that should at least be able to read KeePass files.
-Futher down the road there might be a complete port but. Maybe.
-
-Vital work is used in this Port.
+This is an attemtp to create amn OS X port that should at least be able to read KeePass files.
+Editing and synching capabilities might get added in the future.
 
 Licence
 -------
@@ -28,6 +26,8 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 Copyright
 ---------
+
+This Project is based upon the following work:
 
 [KissXML](https://github.com/robbiehanson/KissXML) Copyright 2012 Robbie Hanson. All rights reserver.
 

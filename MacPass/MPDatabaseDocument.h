@@ -10,7 +10,6 @@
 
 @interface MPDatabaseDocument : NSObject
 
-- (id)initWithFile:(NSURL *)file andPassword:(NSString *)password;
-- (id)initWithFile:(NSURL *)file andKeyfile:(NSURL *)keyfile;
+- (id)initWithFile:(NSURL *)file password:(NSString *)password keyfile:(NSURL *)key;
 
 @end
