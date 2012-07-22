@@ -9,6 +9,8 @@
 #import "MPDatabaseDocument.h"
 #import "KdbLib.h"
 
+NSString *const MPDidLoadDataBaseNotification = @"DidLoadDataBaseNotification";
+
 @interface MPDatabaseDocument ()
 @property (retain) KdbTree *tree;
 @end
@@ -41,6 +43,11 @@
     }
     @catch (NSException *exception) {
       // ignore
+    }
+    if( _tree != nil) {
+      // Post notification that a new document was loaded
+      NSNotificationCenter *defaultCenter = [NSNotificationCenter defaultCenter];
+      [defaultCenter postNotificationName:MPDidLoadDataBaseNotification object:self];
     }
   }
   return self;

@@ -8,6 +8,8 @@
 
 #import <Foundation/Foundation.h>
 
+APPKIT_EXTERN NSString *const MPDidLoadDataBaseNotification;
+
 @interface MPDatabaseDocument : NSObject
 
 - (id)initWithFile:(NSURL *)file password:(NSString *)password keyfile:(NSURL *)key;

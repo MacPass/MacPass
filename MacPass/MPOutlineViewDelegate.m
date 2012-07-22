@@ -11,8 +11,17 @@
 @implementation MPOutlineViewDelegate
 
 - (NSView *)outlineView:(NSOutlineView *)outlineView viewForTableColumn:(NSTableColumn *)tableColumn item:(id)item {
-  NSView *view = [outlineView makeViewWithIdentifier:@"OutlineViewCell" owner:self];
+  NSTableCellView *view = [outlineView makeViewWithIdentifier:@"OutlineCell" owner:self];
+  [view.imageView setImage:[NSImage imageNamed:NSImageNameFolder]];
+  [view.textField setStringValue:@"Test"];
   return view;
+}
+
+- (BOOL)outlineView:(NSOutlineView *)outlineView isGroupItem:(id)item {
+  if(item == nil) {
+    return YES;
+  }
+  return NO;
 }
 
 @end

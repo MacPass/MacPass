@@ -7,14 +7,15 @@
 //
 
 #import "MPOutlineDataSource.h"
+#import "MPDatabaseDocument.h"
 
 @implementation MPOutlineDataSource
 
 - (NSInteger)outlineView:(NSOutlineView *)outlineView numberOfChildrenOfItem:(id)item {
-  return 10;
+  return 1;
 }
 - (id)outlineView:(NSOutlineView *)outlineView child:(NSInteger)index ofItem:(id)item {
-  return nil;
+  return @"Super";
 }
 - (BOOL)outlineView:(NSOutlineView *)outlineView isItemExpandable:(id)item {
   return YES;

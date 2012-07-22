@@ -20,28 +20,31 @@ NSString *const kOutlineViewIdentifier = @"OutlineView";
 @property (retain) MPOutlineDataSource *datasource;
 @property (retain) MPOutlineViewDelegate *outlineDelegate;
 @property (retain) MPDatabaseDocument *database;
+- (void)updateData;
 @end
 
 @implementation MPAppDelegate
 
 @synthesize outlineView = _outlineView;
 @synthesize window = _window;
-@synthesize outlineImage = _OutlineImage;
-@synthesize outlineText = _outlineText;
 @synthesize database = _database;
 @synthesize outlineDelegate = _outlineDelegate;
 @synthesize datasource = _datasource;
 
 - (void)applicationDidFinishLaunching:(NSNotification *)aNotification
 {
-  //_database = [[MPDatabaseDocument alloc] initWithFile:NSURL password:<#(NSString *)#> keyfile:<#(NSURL *)#>
-  
   _outlineDelegate = [[MPOutlineViewDelegate alloc] init];
   _datasource = [[MPOutlineDataSource alloc] init];
+  [[_outlineView outlineTableColumn] setIdentifier:kColumnIdentifier];
   [_outlineView setDelegate:_outlineDelegate];
   [_outlineView setDataSource:_datasource];
-  // show open dialog?
-  // show main window?
+  
+  // register for sucessfull document loads
+  [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(updateData) name:MPDidLoadDataBaseNotification object:_database];
+}
+
+- (void)updateData {
+  [_outlineView reloadData];
 }
 
 @end
