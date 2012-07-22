@@ -13,5 +13,6 @@ APPKIT_EXTERN NSString *const MPDidLoadDataBaseNotification;
 @interface MPDatabaseDocument : NSObject
 
 - (id)initWithFile:(NSURL *)file password:(NSString *)password keyfile:(NSURL *)key;
+- (void)openFile:(NSURL *)file password:(NSString *)password keyfile:(NSURL *)key;
 
 @end

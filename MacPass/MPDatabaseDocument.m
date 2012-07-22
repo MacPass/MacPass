@@ -20,37 +20,42 @@ NSString *const MPDidLoadDataBaseNotification = @"DidLoadDataBaseNotification";
 @synthesize tree = _tree;
 
 - (id)init {
-  return [self initWithFile:nil password:nil keyfile:nil];
+  // no appropriate init method
+  return nil;
 }
 
 - (id)initWithFile:(NSURL *)file password:(NSString *)password keyfile:(NSURL *)key
 {
   self = [super init];
   if (self) {
-    // test for supplied parameters
-    KdbPassword *kdbPassword = nil;
-    if( password != nil ) {
-      if( key != nil ) {
-        kdbPassword = [[KdbPassword alloc] initWithPassword:password encoding:NSUTF8StringEncoding keyfile:[key path]];
-      }
-      else {
-        kdbPassword = [[KdbPassword alloc] initWithPassword:password encoding:NSUTF8StringEncoding];
-      }
-    }
-    
-    @try {
-    _tree = [KdbReaderFactory load:[file path] withPassword:kdbPassword];
-    }
-    @catch (NSException *exception) {
-      // ignore
-    }
-    if( _tree != nil) {
-      // Post notification that a new document was loaded
-      NSNotificationCenter *defaultCenter = [NSNotificationCenter defaultCenter];
-      [defaultCenter postNotificationName:MPDidLoadDataBaseNotification object:self];
-    }
+    [self openFile:file password:password keyfile:key];
   }
   return self;
+}
+
+- (void)openFile:(NSURL *)file password:(NSString *)password keyfile:(NSURL *)key {
+  // Try to load the file
+  KdbPassword *kdbPassword = nil;
+  if( password != nil ) {
+    if( key != nil ) {
+      kdbPassword = [[KdbPassword alloc] initWithPassword:password encoding:NSUTF8StringEncoding keyfile:[key path]];
+    }
+    else {
+      kdbPassword = [[KdbPassword alloc] initWithPassword:password encoding:NSUTF8StringEncoding];
+    }
+  }
+  
+  @try {
+    _tree = [KdbReaderFactory load:[file path] withPassword:kdbPassword];
+  }
+  @catch (NSException *exception) {
+    // ignore
+  }
+  if( _tree != nil) {
+    // Post notification that a new document was loaded
+    NSNotificationCenter *defaultCenter = [NSNotificationCenter defaultCenter];
+    [defaultCenter postNotificationName:MPDidLoadDataBaseNotification object:self];
+  }
 }
 
 @end

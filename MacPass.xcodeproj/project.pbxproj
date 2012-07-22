@@ -15,6 +15,10 @@
 		4C77E37A15B84A240093A587 /* MPAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C77E37915B84A240093A587 /* MPAppDelegate.m */; };
 		4C77E37D15B84A240093A587 /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4C77E37B15B84A240093A587 /* MainMenu.xib */; };
 		4C88763415BABA30003D2CE9 /* PasswordWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4C88763315BABA30003D2CE9 /* PasswordWindow.xib */; };
+		4CA0B2ED15BCADAC00654E32 /* SettingsWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4CA0B2EC15BCADAC00654E32 /* SettingsWindow.xib */; };
+		4CA0B2F015BCADC800654E32 /* GeneralSettings.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4CA0B2EF15BCADC800654E32 /* GeneralSettings.xib */; };
+		4CA0B2F915BCAF6700654E32 /* MPGeneralSettingsController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CA0B2F815BCAF6700654E32 /* MPGeneralSettingsController.m */; };
+		4CA0B2FC15BCAF8600654E32 /* MPSettingsController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CA0B2FB15BCAF8600654E32 /* MPSettingsController.m */; };
 		4CAD742E15B8860800104512 /* AesInputStream.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CAD73E615B8860800104512 /* AesInputStream.m */; };
 		4CAD742F15B8860800104512 /* AesOutputStream.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CAD73E815B8860800104512 /* AesOutputStream.m */; };
 		4CAD743015B8860800104512 /* Arc4RandomStream.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CAD73EA15B8860800104512 /* Arc4RandomStream.m */; };
@@ -81,6 +85,13 @@
 		4C77E37915B84A240093A587 /* MPAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MPAppDelegate.m; sourceTree = "<group>"; };
 		4C77E37C15B84A240093A587 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/MainMenu.xib; sourceTree = "<group>"; };
 		4C88763315BABA30003D2CE9 /* PasswordWindow.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PasswordWindow.xib; sourceTree = "<group>"; };
+		4CA0B2EC15BCADAC00654E32 /* SettingsWindow.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SettingsWindow.xib; sourceTree = "<group>"; };
+		4CA0B2EF15BCADC800654E32 /* GeneralSettings.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GeneralSettings.xib; sourceTree = "<group>"; };
+		4CA0B2F715BCAF6700654E32 /* MPGeneralSettingsController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MPGeneralSettingsController.h; sourceTree = "<group>"; };
+		4CA0B2F815BCAF6700654E32 /* MPGeneralSettingsController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MPGeneralSettingsController.m; sourceTree = "<group>"; };
+		4CA0B2FA15BCAF8600654E32 /* MPSettingsController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MPSettingsController.h; sourceTree = "<group>"; };
+		4CA0B2FB15BCAF8600654E32 /* MPSettingsController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MPSettingsController.m; sourceTree = "<group>"; };
+		4CA0B30D15BCB6FD00654E32 /* MPSettingsTabProtocoll.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MPSettingsTabProtocoll.h; sourceTree = "<group>"; };
 		4CAD73E515B8860800104512 /* AesInputStream.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AesInputStream.h; sourceTree = "<group>"; };
 		4CAD73E615B8860800104512 /* AesInputStream.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AesInputStream.m; sourceTree = "<group>"; };
 		4CAD73E715B8860800104512 /* AesOutputStream.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AesOutputStream.h; sourceTree = "<group>"; };
@@ -195,6 +206,8 @@
 			children = (
 				4C77E37B15B84A240093A587 /* MainMenu.xib */,
 				4C88763315BABA30003D2CE9 /* PasswordWindow.xib */,
+				4CA0B2EC15BCADAC00654E32 /* SettingsWindow.xib */,
+				4CA0B2EF15BCADC800654E32 /* GeneralSettings.xib */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -264,6 +277,9 @@
 		4C77E36C15B84A240093A587 /* MacPass */ = {
 			isa = PBXGroup;
 			children = (
+				4CA0B30F15BCB85D00654E32 /* General */,
+				4CA0B30E15BCB70200654E32 /* Protocolls */,
+				4CA0B2F115BCAEE600654E32 /* Controller */,
 				4C06398C15B980480004DE27 /* Views */,
 				4C37A84215B8B495005EF8EE /* Model */,
 				4C37A84115B8B47D005EF8EE /* Delegates */,
@@ -282,6 +298,32 @@
 				4C77E37515B84A240093A587 /* Credits.rtf */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		4CA0B2F115BCAEE600654E32 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				4CA0B2F715BCAF6700654E32 /* MPGeneralSettingsController.h */,
+				4CA0B2F815BCAF6700654E32 /* MPGeneralSettingsController.m */,
+				4CA0B2FA15BCAF8600654E32 /* MPSettingsController.h */,
+				4CA0B2FB15BCAF8600654E32 /* MPSettingsController.m */,
+			);
+			name = Controller;
+			sourceTree = "<group>";
+		};
+		4CA0B30E15BCB70200654E32 /* Protocolls */ = {
+			isa = PBXGroup;
+			children = (
+				4CA0B30D15BCB6FD00654E32 /* MPSettingsTabProtocoll.h */,
+			);
+			name = Protocolls;
+			sourceTree = "<group>";
+		};
+		4CA0B30F15BCB85D00654E32 /* General */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = General;
 			sourceTree = "<group>";
 		};
 		4CAD73E315B8860800104512 /* KeePassLib */ = {
@@ -478,6 +520,8 @@
 				4CAD748015B887FD00104512 /* LICENSE.txt in Resources */,
 				4CAD748115B887FD00104512 /* README.markdown in Resources */,
 				4C88763415BABA30003D2CE9 /* PasswordWindow.xib in Resources */,
+				4CA0B2ED15BCADAC00654E32 /* SettingsWindow.xib in Resources */,
+				4CA0B2F015BCADC800654E32 /* GeneralSettings.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -532,6 +576,8 @@
 				4C37A84015B8B474005EF8EE /* MPOutlineDataSource.m in Sources */,
 				4CBA981815BA0DB600721965 /* MPDatabaseDocument.m in Sources */,
 				4CC6259115BA1C99002F5B11 /* MPOutlineViewDelegate.m in Sources */,
+				4CA0B2F915BCAF6700654E32 /* MPGeneralSettingsController.m in Sources */,
+				4CA0B2FC15BCAF8600654E32 /* MPSettingsController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
