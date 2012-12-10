@@ -8,14 +8,9 @@
 
 #import <Cocoa/Cocoa.h>
 
-APPKIT_EXTERN NSString *const kOutlineViewIdentifier;
-
 @class MPDatabaseDocument;
 
 @interface MPAppDelegate : NSObject <NSApplicationDelegate>
 
-@property (assign) IBOutlet NSWindow *window;
-
-@property (readonly, retain) MPDatabaseDocument *database;
 
 @end

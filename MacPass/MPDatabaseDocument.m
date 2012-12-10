@@ -17,8 +17,6 @@ NSString *const MPDidLoadDataBaseNotification = @"DidLoadDataBaseNotification";
 
 @implementation MPDatabaseDocument
 
-@synthesize tree = _tree;
-
 - (id)init {
   // no appropriate init method
   return nil;

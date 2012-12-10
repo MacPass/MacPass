@@ -16,7 +16,6 @@ NSString *const MPGeneralSetingsIdentifier = @"GeneralSettingsTab";
 @end
 
 @implementation MPGeneralSettingsController
-@synthesize encodingPopup = _encodingPopup;
 
 + (NSString *)identifier {
   return MPGeneralSetingsIdentifier;

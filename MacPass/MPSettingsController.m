@@ -16,7 +16,6 @@ NSString const* kMPPasswordEnvodingSettingsKey = @"PasswordEncoding";
 @end
 
 @implementation MPSettingsController
-@synthesize generalController = _generalController;
 
 -(id)init {
   self = [super initWithWindowNibName:@"SettingsWindow"];
