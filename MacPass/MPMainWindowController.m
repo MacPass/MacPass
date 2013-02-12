@@ -10,53 +10,51 @@
 #import "MPOutlineDataSource.h"
 #import "MPOutlineViewDelegate.h"
 #import "MPDatabaseDocument.h"
+#import "MPMainWindowDelegate.h"
 
 NSString *const kColumnIdentifier = @"OutlineColumn";
 NSString *const kOutlineViewIdentifier = @"OutlineView";
 
 
 @interface MPMainWindowController ()
+
 @property (assign) IBOutlet NSOutlineView *outlineView;
 @property (retain) MPOutlineDataSource *datasource;
 @property (retain) MPOutlineViewDelegate *outlineDelegate;
+@property (retain) MPMainWindowDelegate *windowDelegate;
 @property (retain) MPDatabaseDocument *database;
+
 - (void)updateData;
+
 @end
 
 @implementation MPMainWindowController
 
 
 -(id)init {
-  return [super initWithWindowNibName:@"MainWindow" owner:self];
+  self = [super initWithWindowNibName:@"MainWindow" owner:self];
+  if( self ) {
+    _windowDelegate = [[MPMainWindowDelegate alloc] init];
+    _outlineDelegate = [[MPOutlineViewDelegate alloc] init];
+    _datasource = [[MPOutlineDataSource alloc] init];
+  }
+  return self;
 }
 
 - (void)windowDidLoad
 {
   [super windowDidLoad];
+  /*
+   Setup Connections for Outline View
+   */
   
-  _outlineDelegate = [[MPOutlineViewDelegate alloc] init];
-  _datasource = [[MPOutlineDataSource alloc] init];
+  [self.window setDelegate:self.windowDelegate];
   [[_outlineView outlineTableColumn] setIdentifier:kColumnIdentifier];
   [_outlineView setDelegate:_outlineDelegate];
-  [_outlineView setDataSource:_datasource];  
-  // register for sucessfull document loads
-  [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(updateData) name:MPDidLoadDataBaseNotification object:_database];
 }
 
 - (void)updateData {
   [_outlineView reloadData];
-}
-
-- (void)newDocument:(id)sender {
-  NSLog(@"New");
-}
-
-- (void)performClose:(id)sender {
-  NSLog(@"Close");
-}
-
-- (void)openDocument:(id)sender {
-  NSLog(@"OpenDocument");
 }
 
 @end

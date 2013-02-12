@@ -9,10 +9,11 @@
 #import <Foundation/Foundation.h>
 
 APPKIT_EXTERN NSString *const MPDidLoadDataBaseNotification;
+APPKIT_EXTERN NSString *const MPDataBaseDocumentDocumentKey;
 
 @interface MPDatabaseDocument : NSObject
 
 - (id)initWithFile:(NSURL *)file password:(NSString *)password keyfile:(NSURL *)key;
-- (void)openFile:(NSURL *)file password:(NSString *)password keyfile:(NSURL *)key;
+- (BOOL) openFile:(NSURL *)file password:(NSString *)password keyfile:(NSURL *)key;
 
 @end

@@ -43,6 +43,7 @@
 		4C669BA016760ED100DD0774 /* Salsa20RandomStream.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C669B7716760ED100DD0774 /* Salsa20RandomStream.m */; };
 		4C669BA116760ED100DD0774 /* Utils.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C669B7916760ED100DD0774 /* Utils.m */; };
 		4C669BA216760ED100DD0774 /* UUID.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C669B7B16760ED100DD0774 /* UUID.m */; };
+		4C6B0E8C16C9B99B00A9ED23 /* PasswordView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4C6B0E8B16C9B99B00A9ED23 /* PasswordView.xib */; };
 		4C77E36715B84A240093A587 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4C77E36615B84A240093A587 /* Cocoa.framework */; };
 		4C77E37115B84A240093A587 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 4C77E36F15B84A240093A587 /* InfoPlist.strings */; };
 		4C77E37315B84A240093A587 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C77E37215B84A240093A587 /* main.m */; };
@@ -50,7 +51,7 @@
 		4C77E37A15B84A240093A587 /* MPAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C77E37915B84A240093A587 /* MPAppDelegate.m */; };
 		4C77E37D15B84A240093A587 /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4C77E37B15B84A240093A587 /* MainMenu.xib */; };
 		4C83814215BF4677001AE468 /* MPMainWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C83814115BF4677001AE468 /* MPMainWindowController.m */; };
-		4C88763415BABA30003D2CE9 /* PasswordWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4C88763315BABA30003D2CE9 /* PasswordWindow.xib */; };
+		4C90D9B416CA4B18003081E7 /* MPMainWindowDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C90D9B316CA4B18003081E7 /* MPMainWindowDelegate.m */; };
 		4CA0B2ED15BCADAC00654E32 /* SettingsWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4CA0B2EC15BCADAC00654E32 /* SettingsWindow.xib */; };
 		4CA0B2F015BCADC800654E32 /* GeneralSettings.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4CA0B2EF15BCADC800654E32 /* GeneralSettings.xib */; };
 		4CA0B2F915BCAF6700654E32 /* MPGeneralSettingsController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CA0B2F815BCAF6700654E32 /* MPGeneralSettingsController.m */; };
@@ -143,6 +144,7 @@
 		4C669B7916760ED100DD0774 /* Utils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Utils.m; sourceTree = "<group>"; };
 		4C669B7A16760ED100DD0774 /* UUID.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UUID.h; sourceTree = "<group>"; };
 		4C669B7B16760ED100DD0774 /* UUID.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UUID.m; sourceTree = "<group>"; };
+		4C6B0E8B16C9B99B00A9ED23 /* PasswordView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PasswordView.xib; sourceTree = "<group>"; };
 		4C77E36215B84A240093A587 /* MacPass.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MacPass.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4C77E36615B84A240093A587 /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
 		4C77E36915B84A240093A587 /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = System/Library/Frameworks/AppKit.framework; sourceTree = SDKROOT; };
@@ -158,7 +160,8 @@
 		4C77E37C15B84A240093A587 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/MainMenu.xib; sourceTree = "<group>"; };
 		4C83814015BF4677001AE468 /* MPMainWindowController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MPMainWindowController.h; sourceTree = "<group>"; };
 		4C83814115BF4677001AE468 /* MPMainWindowController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MPMainWindowController.m; sourceTree = "<group>"; };
-		4C88763315BABA30003D2CE9 /* PasswordWindow.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PasswordWindow.xib; sourceTree = "<group>"; };
+		4C90D9B216CA4B18003081E7 /* MPMainWindowDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MPMainWindowDelegate.h; sourceTree = "<group>"; };
+		4C90D9B316CA4B18003081E7 /* MPMainWindowDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MPMainWindowDelegate.m; sourceTree = "<group>"; };
 		4CA0B2EC15BCADAC00654E32 /* SettingsWindow.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SettingsWindow.xib; sourceTree = "<group>"; };
 		4CA0B2EF15BCADC800654E32 /* GeneralSettings.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GeneralSettings.xib; sourceTree = "<group>"; };
 		4CA0B2F715BCAF6700654E32 /* MPGeneralSettingsController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MPGeneralSettingsController.h; sourceTree = "<group>"; };
@@ -205,10 +208,10 @@
 			isa = PBXGroup;
 			children = (
 				4C77E37B15B84A240093A587 /* MainMenu.xib */,
-				4C88763315BABA30003D2CE9 /* PasswordWindow.xib */,
 				4CA0B2EC15BCADAC00654E32 /* SettingsWindow.xib */,
 				4CA0B2EF15BCADC800654E32 /* GeneralSettings.xib */,
 				4CD884B615BD47080042BBF8 /* MainWindow.xib */,
+				4C6B0E8B16C9B99B00A9ED23 /* PasswordView.xib */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -220,6 +223,8 @@
 				4C77E37915B84A240093A587 /* MPAppDelegate.m */,
 				4CC6258F15BA1C99002F5B11 /* MPOutlineViewDelegate.h */,
 				4CC6259015BA1C99002F5B11 /* MPOutlineViewDelegate.m */,
+				4C90D9B216CA4B18003081E7 /* MPMainWindowDelegate.h */,
+				4C90D9B316CA4B18003081E7 /* MPMainWindowDelegate.m */,
 			);
 			name = Delegates;
 			sourceTree = "<group>";
@@ -503,7 +508,7 @@
 			isa = PBXProject;
 			attributes = {
 				CLASSPREFIX = MP;
-				LastUpgradeCheck = 0440;
+				LastUpgradeCheck = 0460;
 				ORGANIZATIONNAME = "HicknHack Software GmbH";
 			};
 			buildConfigurationList = 4C77E35C15B84A240093A587 /* Build configuration list for PBXProject "MacPass" */;
@@ -513,6 +518,7 @@
 			knownRegions = (
 				en,
 				English,
+				de,
 			);
 			mainGroup = 4C77E35715B84A240093A587;
 			productRefGroup = 4C77E36315B84A240093A587 /* Products */;
@@ -532,10 +538,10 @@
 				4C77E37115B84A240093A587 /* InfoPlist.strings in Resources */,
 				4C77E37715B84A240093A587 /* Credits.rtf in Resources */,
 				4C77E37D15B84A240093A587 /* MainMenu.xib in Resources */,
-				4C88763415BABA30003D2CE9 /* PasswordWindow.xib in Resources */,
 				4CA0B2ED15BCADAC00654E32 /* SettingsWindow.xib in Resources */,
 				4CA0B2F015BCADC800654E32 /* GeneralSettings.xib in Resources */,
 				4CD884B715BD47080042BBF8 /* MainWindow.xib in Resources */,
+				4C6B0E8C16C9B99B00A9ED23 /* PasswordView.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -594,6 +600,7 @@
 				4C669BA016760ED100DD0774 /* Salsa20RandomStream.m in Sources */,
 				4C669BA116760ED100DD0774 /* Utils.m in Sources */,
 				4C669BA216760ED100DD0774 /* UUID.m in Sources */,
+				4C90D9B416CA4B18003081E7 /* MPMainWindowDelegate.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -633,6 +640,10 @@
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
 				CLANG_ENABLE_OBJC_ARC = NO;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				COPY_PHASE_STRIP = NO;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_DYNAMIC_NO_PIC = NO;
@@ -652,7 +663,7 @@
 				MACOSX_DEPLOYMENT_TARGET = 10.7;
 				ONLY_ACTIVE_ARCH = YES;
 				OTHER_LDFLAGS = "-lxml2";
-				SDKROOT = macosx10.7;
+				SDKROOT = macosx;
 			};
 			name = Debug;
 		};
@@ -662,6 +673,10 @@
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
 				CLANG_ENABLE_OBJC_ARC = NO;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				COPY_PHASE_STRIP = YES;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				GCC_C_LANGUAGE_STANDARD = gnu99;
@@ -674,7 +689,7 @@
 				HEADER_SEARCH_PATHS = "/usr/include/libxml2/**";
 				MACOSX_DEPLOYMENT_TARGET = 10.7;
 				OTHER_LDFLAGS = "-lxml2";
-				SDKROOT = macosx10.7;
+				SDKROOT = macosx;
 			};
 			name = Release;
 		};

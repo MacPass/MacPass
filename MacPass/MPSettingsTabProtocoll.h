@@ -12,5 +12,6 @@
 
 @required
 + (NSString *)identifier;
++ (NSImage *)image;
 
 @end

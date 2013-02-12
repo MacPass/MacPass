@@ -26,34 +26,53 @@ NSString *const MPDidLoadDataBaseNotification = @"DidLoadDataBaseNotification";
 {
   self = [super init];
   if (self) {
-    [self openFile:file password:password keyfile:key];
+    BOOL sucess = [self openFile:file password:password keyfile:key];
+    // Check if load was successfull and return nil of not
+    if( NO == sucess ) {
+      [self release];
+      return nil;
+    }
   }
   return self;
 }
 
-- (void)openFile:(NSURL *)file password:(NSString *)password keyfile:(NSURL *)key {
+- (BOOL) openFile:(NSURL *)file password:(NSString *)password keyfile:(NSURL *)key{
   // Try to load the file
-  KdbPassword *kdbPassword = nil;
-  if( password != nil ) {
-    if( key != nil ) {
-      kdbPassword = [[KdbPassword alloc] initWithPassword:password encoding:NSUTF8StringEncoding keyfile:[key path]];
-    }
-    else {
-      kdbPassword = [[KdbPassword alloc] initWithPassword:password encoding:NSUTF8StringEncoding];
-    }
+  KdbPassword *dbPassword = nil;
+  const BOOL hasPassword = (password != nil);
+  const BOOL hasKeyfile = (key != nil);
+  
+  // Create the password for the given parameters
+  if( hasPassword && hasKeyfile) {
+    dbPassword = [[KdbPassword alloc] initWithPassword:password encoding:NSUTF8StringEncoding keyfile:[key path]];
+  }
+  else if( hasPassword ) {
+    dbPassword = [[KdbPassword alloc] initWithPassword:password encoding:NSUTF8StringEncoding];
+  }
+  else if( hasKeyfile ) {
+    dbPassword = [[KdbPassword alloc] initWithKeyfile:[key path]];
+  }
+  else {
+    NSLog(@"Error: No password or keyfile given!");
+    return NO;
   }
   
   @try {
-    _tree = [KdbReaderFactory load:[file path] withPassword:kdbPassword];
+    self.tree = [KdbReaderFactory load:[file path] withPassword:dbPassword];
   }
   @catch (NSException *exception) {
-    // ignore
+    NSLog(@"%@", [exception description]);
   }
-  if( _tree != nil) {
-    // Post notification that a new document was loaded
-    NSNotificationCenter *defaultCenter = [NSNotificationCenter defaultCenter];
-    [defaultCenter postNotificationName:MPDidLoadDataBaseNotification object:self];
+  // Cleanup
+  if( dbPassword != nil ) {
+    [dbPassword release];
   }
+  
+  if( self.tree != nil) {
+    return YES;
+  }
+  return NO;
+  
 }
 
 @end
