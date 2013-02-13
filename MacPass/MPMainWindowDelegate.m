@@ -10,16 +10,5 @@
 
 @implementation MPMainWindowDelegate
 
-- (void)newDocument:(id)sender {
-  NSLog(@"New");
-}
-
-- (void)performClose:(id)sender {
-  NSLog(@"Close");
-}
-
-- (void)openDocument:(id)sender {
-  NSLog(@"New Document");
-}
 
 @end

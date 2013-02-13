@@ -9,7 +9,6 @@
 #import "MPMainWindowController.h"
 #import "MPOutlineDataSource.h"
 #import "MPOutlineViewDelegate.h"
-#import "MPDatabaseDocument.h"
 #import "MPMainWindowDelegate.h"
 
 NSString *const kColumnIdentifier = @"OutlineColumn";
@@ -22,7 +21,6 @@ NSString *const kOutlineViewIdentifier = @"OutlineView";
 @property (retain) MPOutlineDataSource *datasource;
 @property (retain) MPOutlineViewDelegate *outlineDelegate;
 @property (retain) MPMainWindowDelegate *windowDelegate;
-@property (retain) MPDatabaseDocument *database;
 
 - (void)updateData;
 

@@ -10,10 +10,13 @@
 
 #import "MPMainWindowController.h"
 #import "MPSettingsController.h"
+#import "MPDatabaseController.h"
 
 @interface MPAppDelegate ()
+
 @property (retain) MPSettingsController *settingsController;
 @property (retain) MPMainWindowController *mainWindowController;
+
 - (IBAction)showPreferences:(id)sender;
 @end
 
@@ -25,12 +28,25 @@
   [_mainWindowController showWindow:[_mainWindowController window]];
 }
 
-#pragma mark IBActions
+#pragma mark Menu Actions
 - (void)showPreferences:(id)sender {
   if(_settingsController == nil) {
     _settingsController = [[MPSettingsController alloc] init];
   }
   [_settingsController showWindow:_settingsController.window];
 }
+
+- (void)newDocument:(id)sender {
+  [[MPDatabaseController defaultController] createDatabase];
+}
+
+- (void)performClose:(id)sender {
+  NSLog(@"Close");
+}
+
+- (void)openDocument:(id)sender {
+  [[MPDatabaseController defaultController] openDatabase];
+}
+
 
 @end

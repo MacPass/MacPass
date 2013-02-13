@@ -44,6 +44,7 @@
 		4C669BA116760ED100DD0774 /* Utils.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C669B7916760ED100DD0774 /* Utils.m */; };
 		4C669BA216760ED100DD0774 /* UUID.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C669B7B16760ED100DD0774 /* UUID.m */; };
 		4C6B0E8C16C9B99B00A9ED23 /* PasswordView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4C6B0E8B16C9B99B00A9ED23 /* PasswordView.xib */; };
+		4C75CE3C16CB128700F61A4D /* MPDatabaseController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C75CE3B16CB128700F61A4D /* MPDatabaseController.m */; };
 		4C77E36715B84A240093A587 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4C77E36615B84A240093A587 /* Cocoa.framework */; };
 		4C77E37115B84A240093A587 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 4C77E36F15B84A240093A587 /* InfoPlist.strings */; };
 		4C77E37315B84A240093A587 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C77E37215B84A240093A587 /* main.m */; };
@@ -145,6 +146,8 @@
 		4C669B7A16760ED100DD0774 /* UUID.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UUID.h; sourceTree = "<group>"; };
 		4C669B7B16760ED100DD0774 /* UUID.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UUID.m; sourceTree = "<group>"; };
 		4C6B0E8B16C9B99B00A9ED23 /* PasswordView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PasswordView.xib; sourceTree = "<group>"; };
+		4C75CE3A16CB128700F61A4D /* MPDatabaseController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MPDatabaseController.h; sourceTree = "<group>"; };
+		4C75CE3B16CB128700F61A4D /* MPDatabaseController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MPDatabaseController.m; sourceTree = "<group>"; };
 		4C77E36215B84A240093A587 /* MacPass.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MacPass.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4C77E36615B84A240093A587 /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
 		4C77E36915B84A240093A587 /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = System/Library/Frameworks/AppKit.framework; sourceTree = SDKROOT; };
@@ -411,6 +414,8 @@
 				4CA0B2FB15BCAF8600654E32 /* MPSettingsController.m */,
 				4C83814015BF4677001AE468 /* MPMainWindowController.h */,
 				4C83814115BF4677001AE468 /* MPMainWindowController.m */,
+				4C75CE3A16CB128700F61A4D /* MPDatabaseController.h */,
+				4C75CE3B16CB128700F61A4D /* MPDatabaseController.m */,
 			);
 			name = Controller;
 			sourceTree = "<group>";
@@ -601,6 +606,7 @@
 				4C669BA116760ED100DD0774 /* Utils.m in Sources */,
 				4C669BA216760ED100DD0774 /* UUID.m in Sources */,
 				4C90D9B416CA4B18003081E7 /* MPMainWindowDelegate.m in Sources */,
+				4C75CE3C16CB128700F61A4D /* MPDatabaseController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

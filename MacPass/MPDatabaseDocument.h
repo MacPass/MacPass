@@ -11,9 +11,22 @@
 APPKIT_EXTERN NSString *const MPDidLoadDataBaseNotification;
 APPKIT_EXTERN NSString *const MPDataBaseDocumentDocumentKey;
 
+@class KdbPassword;
+
 @interface MPDatabaseDocument : NSObject
 
+@property (retain, readonly) NSURL *file;
+@property (retain, readonly) KdbPassword *password;
++ (id)documentWithFile:(NSURL *)file password:(NSString *)password keyfile:(NSURL *)key;
+
 - (id)initWithFile:(NSURL *)file password:(NSString *)password keyfile:(NSURL *)key;
-- (BOOL) openFile:(NSURL *)file password:(NSString *)password keyfile:(NSURL *)key;
+/*
+ Saves the current database to the filesystem
+ Tries to use the stored password and file path
+ 
+ If self.file and self.password aren't valid, the save does not get executed
+ */
+- (BOOL)save;
+- (BOOL)saveAsFile:(NSURL *)file withPassword:(NSString *)password keyfile:(NSURL *)key;
 
 @end
