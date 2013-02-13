@@ -8,17 +8,29 @@
 
 #import "MPOutlineDataSource.h"
 #import "MPDatabaseDocument.h"
+#import "KdbLib.h"
 
 @implementation MPOutlineDataSource
 
 - (NSInteger)outlineView:(NSOutlineView *)outlineView numberOfChildrenOfItem:(id)item {
-  return 1;
+  
+  if( [item isKindOfClass:[KdbGroup class]]) {
+    KdbGroup *group = item;
+    return  [[group groups] count];
+  }
+  return 0;
 }
 - (id)outlineView:(NSOutlineView *)outlineView child:(NSInteger)index ofItem:(id)item {
-  return @"Super";
+  if( [item isKindOfClass:[KdbGroup class]]) {
+    KdbGroup *group = item;
+    if( [[group groups] count] > index ) {
+      return [group groups][index];
+    }
+  }
+  return nil;
 }
 - (BOOL)outlineView:(NSOutlineView *)outlineView isItemExpandable:(id)item {
-  return YES;
+  return [item isKindOfClass:[KdbGroup class]];
 }
 
 @end

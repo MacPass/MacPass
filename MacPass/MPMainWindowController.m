@@ -10,6 +10,10 @@
 #import "MPOutlineDataSource.h"
 #import "MPOutlineViewDelegate.h"
 #import "MPMainWindowDelegate.h"
+#import "MPDatabaseController.h"
+
+NSString *const MPMainWindowControllerPasswordKey = @"MPMainWindowControllerPasswordKey";
+NSString *const MPMainWindowControllerKeyfileKey = @"MPMainWindowControllerKeyfileKey";
 
 NSString *const kColumnIdentifier = @"OutlineColumn";
 NSString *const kOutlineViewIdentifier = @"OutlineView";
@@ -18,10 +22,17 @@ NSString *const kOutlineViewIdentifier = @"OutlineView";
 @interface MPMainWindowController ()
 
 @property (assign) IBOutlet NSOutlineView *outlineView;
+@property (retain) IBOutlet NSView *passwordView;
+
+@property (assign) IBOutlet NSTextField *passwordTextField;
+@property (assign) IBOutlet NSPathControl *keyPathControl;
+@property (assign) IBOutlet NSView *contentView;
+
 @property (retain) MPOutlineDataSource *datasource;
 @property (retain) MPOutlineViewDelegate *outlineDelegate;
 @property (retain) MPMainWindowDelegate *windowDelegate;
 
+- (IBAction)usePassword:(id)sender;
 - (void)updateData;
 
 @end
@@ -32,9 +43,9 @@ NSString *const kOutlineViewIdentifier = @"OutlineView";
 -(id)init {
   self = [super initWithWindowNibName:@"MainWindow" owner:self];
   if( self ) {
-    _windowDelegate = [[MPMainWindowDelegate alloc] init];
-    _outlineDelegate = [[MPOutlineViewDelegate alloc] init];
-    _datasource = [[MPOutlineDataSource alloc] init];
+    self.windowDelegate = [[[MPMainWindowDelegate alloc] init] autorelease];
+    self.outlineDelegate = [[[MPOutlineViewDelegate alloc] init] autorelease];
+    self.datasource = [[[MPOutlineDataSource alloc] init] autorelease];
   }
   return self;
 }
@@ -47,12 +58,23 @@ NSString *const kOutlineViewIdentifier = @"OutlineView";
    */
   
   [self.window setDelegate:self.windowDelegate];
-  [[_outlineView outlineTableColumn] setIdentifier:kColumnIdentifier];
-  [_outlineView setDelegate:_outlineDelegate];
+  [[self.outlineView outlineTableColumn] setIdentifier:kColumnIdentifier];
+  [self.outlineView setDelegate:self.outlineDelegate];
 }
 
 - (void)updateData {
   [_outlineView reloadData];
+}
+
+- (void)presentPasswordInput {
+  NSArray *topLevelObjects;
+  [[NSBundle mainBundle] loadNibNamed:@"PasswordView" owner:self topLevelObjects:&topLevelObjects];
+  [self.contentView addSubview:self.passwordView];
+}
+
+- (void)usePassword:(id)sender {
+  [[MPDatabaseController defaultController] openDatabase:nil password:nil keyfile:nil];
+  [self updateData];
 }
 
 @end

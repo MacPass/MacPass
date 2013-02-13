@@ -24,20 +24,19 @@
 
 - (void)applicationDidFinishLaunching:(NSNotification *)aNotification
 {
-  _mainWindowController = [[MPMainWindowController alloc] init];
-  [_mainWindowController showWindow:[_mainWindowController window]];
+  self.mainWindowController = [[[MPMainWindowController alloc] init] autorelease];
+  [self.mainWindowController showWindow:[self.mainWindowController window]];
 }
 
 #pragma mark Menu Actions
 - (void)showPreferences:(id)sender {
-  if(_settingsController == nil) {
-    _settingsController = [[MPSettingsController alloc] init];
+  if(self.settingsController == nil) {
+    self.settingsController = [[[MPSettingsController alloc] init] autorelease];
   }
-  [_settingsController showWindow:_settingsController.window];
+  [self.settingsController showWindow:_settingsController.window];
 }
 
 - (void)newDocument:(id)sender {
-  [[MPDatabaseController defaultController] createDatabase];
 }
 
 - (void)performClose:(id)sender {
@@ -45,7 +44,19 @@
 }
 
 - (void)openDocument:(id)sender {
-  [[MPDatabaseController defaultController] openDatabase];
+  NSOpenPanel *openPanel = [NSOpenPanel openPanel];
+  [openPanel setCanChooseDirectories:NO];
+  [openPanel setCanChooseFiles:YES];
+  [openPanel setCanCreateDirectories:NO];
+  [openPanel setAllowsMultipleSelection:NO];
+  [openPanel beginSheetModalForWindow:[self.mainWindowController window] completionHandler:^(NSInteger result){
+    if(result == NSFileHandlingPanelOKButton) {
+      NSURL *file = [[openPanel URLs] lastObject];
+      if(file) {
+        [self.mainWindowController presentPasswordInput];
+      }
+    }
+  }];
 }
 
 
