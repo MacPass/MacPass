@@ -10,7 +10,6 @@
 
 @class MPDatabaseDocument;
 
-
 typedef enum{
   MPDatabaseVersion1,
   MPDatabaseVersion2

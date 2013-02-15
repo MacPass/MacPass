@@ -81,6 +81,11 @@ NSString *const MPDidLoadDataBaseNotification = @"DidLoadDataBaseNotification";
   return self;
 }
 
+- (KdbGroup *)root {
+  return [self.tree root];
+}
+
+
 - (BOOL)save {
   NSError *fileError;
   if( self.password && [self.file checkResourceIsReachableAndReturnError:&fileError] ) {

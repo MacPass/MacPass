@@ -53,7 +53,7 @@
     if(result == NSFileHandlingPanelOKButton) {
       NSURL *file = [[openPanel URLs] lastObject];
       if(file) {
-        [self.mainWindowController presentPasswordInput];
+        [self.mainWindowController presentPasswordInput:(NSURL *)file];
       }
     }
   }];

@@ -17,6 +17,6 @@ APPKIT_EXTERN NSString *const MPMainWindowControllerKeyfileKey;
 
 @property (readonly, retain) MPDatabaseDocument *database;
 
-- (void)presentPasswordInput;
+- (void)presentPasswordInput:(NSURL *)file;
 
 @end

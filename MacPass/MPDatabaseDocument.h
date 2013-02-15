@@ -12,9 +12,11 @@ APPKIT_EXTERN NSString *const MPDidLoadDataBaseNotification;
 APPKIT_EXTERN NSString *const MPDataBaseDocumentDocumentKey;
 
 @class KdbPassword;
+@class KdbGroup;
 
 @interface MPDatabaseDocument : NSObject
 
+@property (retain, readonly) KdbGroup *root;
 @property (retain, readonly) NSURL *file;
 @property (retain, readonly) KdbPassword *password;
 + (id)documentWithFile:(NSURL *)file password:(NSString *)password keyfile:(NSURL *)key;

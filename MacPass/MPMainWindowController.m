@@ -28,6 +28,7 @@ NSString *const kOutlineViewIdentifier = @"OutlineView";
 @property (assign) IBOutlet NSPathControl *keyPathControl;
 @property (assign) IBOutlet NSView *contentView;
 
+@property (retain) NSURL *openFile;
 @property (retain) MPOutlineDataSource *datasource;
 @property (retain) MPOutlineViewDelegate *outlineDelegate;
 @property (retain) MPMainWindowDelegate *windowDelegate;
@@ -60,20 +61,24 @@ NSString *const kOutlineViewIdentifier = @"OutlineView";
   [self.window setDelegate:self.windowDelegate];
   [[self.outlineView outlineTableColumn] setIdentifier:kColumnIdentifier];
   [self.outlineView setDelegate:self.outlineDelegate];
+  [self.outlineView setDataSource:self.datasource];
 }
 
 - (void)updateData {
-  [_outlineView reloadData];
+  [self.outlineView reloadData];
 }
 
-- (void)presentPasswordInput {
+- (void)presentPasswordInput:(NSURL *)file {
   NSArray *topLevelObjects;
+  self.openFile = file;
   [[NSBundle mainBundle] loadNibNamed:@"PasswordView" owner:self topLevelObjects:&topLevelObjects];
   [self.contentView addSubview:self.passwordView];
 }
 
 - (void)usePassword:(id)sender {
-  [[MPDatabaseController defaultController] openDatabase:nil password:nil keyfile:nil];
+  NSString *password = [self.passwordTextField stringValue];
+  
+  [[MPDatabaseController defaultController] openDatabase:self.openFile password:password keyfile:nil];
   [self updateData];
 }
 

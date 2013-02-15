@@ -7,13 +7,17 @@
 //
 
 #import "MPOutlineViewDelegate.h"
+#import "KdbLib.h"
 
 @implementation MPOutlineViewDelegate
 
 - (NSView *)outlineView:(NSOutlineView *)outlineView viewForTableColumn:(NSTableColumn *)tableColumn item:(id)item {
   NSTableCellView *view = [outlineView makeViewWithIdentifier:@"DataCell" owner:self];
   [view.imageView setImage:[NSImage imageNamed:NSImageNameFolder]];
-  [view.textField setStringValue:@"Test"];
+  if([item isKindOfClass:[KdbGroup class]]) {
+    KdbGroup *group = item;
+    [view.textField setStringValue:[group name]];
+  }
   return view;
 }
 
