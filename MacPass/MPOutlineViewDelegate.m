@@ -12,12 +12,18 @@
 @implementation MPOutlineViewDelegate
 
 - (NSView *)outlineView:(NSOutlineView *)outlineView viewForTableColumn:(NSTableColumn *)tableColumn item:(id)item {
-  NSTableCellView *view = [outlineView makeViewWithIdentifier:@"DataCell" owner:self];
-  [view.imageView setImage:[NSImage imageNamed:NSImageNameFolder]];
-  if([item isKindOfClass:[KdbGroup class]]) {
-    KdbGroup *group = item;
+  KdbGroup *group = item;
+  NSTableCellView *view;
+  if(![group parent]) {
+    view = [outlineView makeViewWithIdentifier:@"HeaderCell" owner:self];
     [view.textField setStringValue:[group name]];
   }
+  else {
+    view = [outlineView makeViewWithIdentifier:@"DataCell" owner:self];
+    [view.imageView setImage:[NSImage imageNamed:NSImageNameFolder]];
+    [view.textField setStringValue:[group name]];
+  }
+  
   return view;
 }
 
@@ -26,6 +32,11 @@
     return YES;
   }
   return NO;
+}
+
+- (BOOL)outlineView:(NSOutlineView *)outlineView shouldSelectItem:(id)item {
+  KdbGroup *group = item;
+  return (nil != [group parent]);
 }
 
 @end

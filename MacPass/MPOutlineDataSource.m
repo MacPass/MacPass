@@ -15,8 +15,7 @@
 
 - (NSInteger)outlineView:(NSOutlineView *)outlineView numberOfChildrenOfItem:(id)item {
   if(!item) {
-    MPDatabaseController *dbController = [MPDatabaseController defaultController];
-    return [[dbController.database.root groups] count];
+    return 1;
   }
   if( [item isKindOfClass:[KdbGroup class]]) {
     KdbGroup *group = item;
@@ -39,9 +38,15 @@
 }
 - (BOOL)outlineView:(NSOutlineView *)outlineView isItemExpandable:(id)item {
   if(!item) {
-    return true;
+    MPDatabaseController *dbController = [MPDatabaseController defaultController];
+    return ([[dbController.database.root groups] count] > 0);
   }
-  return [item isKindOfClass:[KdbGroup class]];
+  if([item isKindOfClass:[KdbGroup class]])
+  {
+    KdbGroup *group = item;
+    return ([[group groups] count] > 0);
+  }
+  return NO;
 }
 
 @end

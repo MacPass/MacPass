@@ -11,6 +11,7 @@
 #import "MPOutlineViewDelegate.h"
 #import "MPMainWindowDelegate.h"
 #import "MPDatabaseController.h"
+#import "MPDatabaseDocument.h"
 
 NSString *const MPMainWindowControllerPasswordKey = @"MPMainWindowControllerPasswordKey";
 NSString *const MPMainWindowControllerKeyfileKey = @"MPMainWindowControllerKeyfileKey";
@@ -27,6 +28,7 @@ NSString *const kOutlineViewIdentifier = @"OutlineView";
 @property (assign) IBOutlet NSTextField *passwordTextField;
 @property (assign) IBOutlet NSPathControl *keyPathControl;
 @property (assign) IBOutlet NSView *contentView;
+@property (retain) IBOutlet NSView *welcomeView;
 
 @property (retain) NSURL *openFile;
 @property (retain) MPOutlineDataSource *datasource;
@@ -40,13 +42,15 @@ NSString *const kOutlineViewIdentifier = @"OutlineView";
 
 @implementation MPMainWindowController
 
-
 -(id)init {
   self = [super initWithWindowNibName:@"MainWindow" owner:self];
   if( self ) {
+    NSArray *topLevelObjects;
     self.windowDelegate = [[[MPMainWindowDelegate alloc] init] autorelease];
     self.outlineDelegate = [[[MPOutlineViewDelegate alloc] init] autorelease];
     self.datasource = [[[MPOutlineDataSource alloc] init] autorelease];
+    [[NSBundle mainBundle] loadNibNamed:@"WelcomeView" owner:self topLevelObjects:&topLevelObjects];
+    [self.welcomeView setAutoresizingMask:NSViewWidthSizable | NSViewHeightSizable];
   }
   return self;
 }
@@ -57,22 +61,38 @@ NSString *const kOutlineViewIdentifier = @"OutlineView";
   /*
    Setup Connections for Outline View
    */
-  
+
   [self.window setDelegate:self.windowDelegate];
   [[self.outlineView outlineTableColumn] setIdentifier:kColumnIdentifier];
   [self.outlineView setDelegate:self.outlineDelegate];
   [self.outlineView setDataSource:self.datasource];
+
+  
+  /*
+   Add Welcome Screen
+   */
+  NSSize frameSize = [self.contentView frame].size;
+  [self.contentView setFrame:NSMakeRect(0,0, frameSize.width, frameSize.height)];
+  [self.contentView addSubview:self.welcomeView];
+  
 }
 
 - (void)updateData {
   [self.outlineView reloadData];
+  MPDatabaseController *dbContoller = [MPDatabaseController defaultController];
+  [self.outlineView expandItem:dbContoller.database.root expandChildren:NO];
 }
 
 - (void)presentPasswordInput:(NSURL *)file {
   NSArray *topLevelObjects;
   self.openFile = file;
   [[NSBundle mainBundle] loadNibNamed:@"PasswordView" owner:self topLevelObjects:&topLevelObjects];
+  [self.passwordView setAutoresizingMask:NSViewWidthSizable | NSViewHeightSizable];
+  NSSize frameSize = [self.contentView frame].size;
+  [self.passwordView setFrame:NSMakeRect(0,0, frameSize.width, frameSize.height)];
+  [self.contentView setAutoresizesSubviews:YES];
   [self.contentView addSubview:self.passwordView];
+  
 }
 
 - (void)usePassword:(id)sender {

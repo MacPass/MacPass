@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		4C25D58516CF0F8800F6806C /* WelcomeView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4C25D58416CF0F8800F6806C /* WelcomeView.xib */; };
+		4C25D58716CF0FAA00F6806C /* EntryView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4C25D58616CF0FAA00F6806C /* EntryView.xib */; };
 		4C37A84015B8B474005EF8EE /* MPOutlineDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C37A83F15B8B474005EF8EE /* MPOutlineDataSource.m */; };
 		4C669B7F16760ED100DD0774 /* AesInputStream.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C669B3116760ED100DD0774 /* AesInputStream.m */; };
 		4C669B8016760ED100DD0774 /* AesOutputStream.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C669B3316760ED100DD0774 /* AesOutputStream.m */; };
@@ -70,6 +72,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		4C25D58416CF0F8800F6806C /* WelcomeView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = WelcomeView.xib; sourceTree = "<group>"; };
+		4C25D58616CF0FAA00F6806C /* EntryView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = EntryView.xib; sourceTree = "<group>"; };
 		4C37A83E15B8B474005EF8EE /* MPOutlineDataSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MPOutlineDataSource.h; sourceTree = "<group>"; };
 		4C37A83F15B8B474005EF8EE /* MPOutlineDataSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MPOutlineDataSource.m; sourceTree = "<group>"; };
 		4C669B3016760ED100DD0774 /* AesInputStream.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AesInputStream.h; sourceTree = "<group>"; };
@@ -215,6 +219,8 @@
 				4CA0B2EF15BCADC800654E32 /* GeneralSettings.xib */,
 				4CD884B615BD47080042BBF8 /* MainWindow.xib */,
 				4C6B0E8B16C9B99B00A9ED23 /* PasswordView.xib */,
+				4C25D58416CF0F8800F6806C /* WelcomeView.xib */,
+				4C25D58616CF0FAA00F6806C /* EntryView.xib */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -547,6 +553,8 @@
 				4CA0B2F015BCADC800654E32 /* GeneralSettings.xib in Resources */,
 				4CD884B715BD47080042BBF8 /* MainWindow.xib in Resources */,
 				4C6B0E8C16C9B99B00A9ED23 /* PasswordView.xib in Resources */,
+				4C25D58516CF0F8800F6806C /* WelcomeView.xib in Resources */,
+				4C25D58716CF0FAA00F6806C /* EntryView.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
