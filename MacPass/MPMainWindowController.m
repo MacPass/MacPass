@@ -23,10 +23,7 @@ NSString *const kOutlineViewIdentifier = @"OutlineView";
 @interface MPMainWindowController ()
 
 @property (assign) IBOutlet NSOutlineView *outlineView;
-@property (retain) IBOutlet NSView *passwordView;
 
-@property (assign) IBOutlet NSTextField *passwordTextField;
-@property (assign) IBOutlet NSPathControl *keyPathControl;
 @property (assign) IBOutlet NSView *contentView;
 @property (retain) IBOutlet NSView *welcomeView;
 
@@ -35,7 +32,6 @@ NSString *const kOutlineViewIdentifier = @"OutlineView";
 @property (retain) MPOutlineViewDelegate *outlineDelegate;
 @property (retain) MPMainWindowDelegate *windowDelegate;
 
-- (IBAction)usePassword:(id)sender;
 - (void)updateData;
 
 @end
@@ -93,13 +89,6 @@ NSString *const kOutlineViewIdentifier = @"OutlineView";
   [self.contentView setAutoresizesSubviews:YES];
   [self.contentView replaceSubview:self.welcomeView with:self.passwordView];
   [self.window makeFirstResponder:self.passwordView];
-}
-
-- (void)usePassword:(id)sender {
-  NSString *password = [self.passwordTextField stringValue];
-  
-  [[MPDatabaseController defaultController] openDatabase:self.openFile password:password keyfile:nil];
-  [self updateData];
 }
 
 @end
