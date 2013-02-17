@@ -12,9 +12,11 @@
 NSString *const MPDidLoadDataBaseNotification = @"DidLoadDataBaseNotification";
 
 @interface MPDatabaseDocument ()
+
 @property (retain) KdbTree *tree;
 @property (retain) NSURL *file;
 @property (retain) KdbPassword *password;
+
 @end
 
 @implementation MPDatabaseDocument
@@ -90,7 +92,7 @@ NSString *const MPDidLoadDataBaseNotification = @"DidLoadDataBaseNotification";
   NSError *fileError;
   if( self.password && [self.file checkResourceIsReachableAndReturnError:&fileError] ) {
     @try {
-    [KdbWriterFactory persist:self.tree file:[self.file path] withPassword:self.password];
+      [KdbWriterFactory persist:self.tree file:[self.file path] withPassword:self.password];
     }
     @catch (NSException *exception) {
       NSLog(@"%@", [exception description]);

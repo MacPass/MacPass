@@ -231,7 +231,7 @@
 															<bytes key="NSWhite">MC41AA</bytes>
 														</object>
 													</object>
-													<double key="NSRowHeight">20</double>
+													<double key="NSRowHeight">24</double>
 													<int key="NSTvFlags">-767524864</int>
 													<reference key="NSDelegate"/>
 													<reference key="NSDataSource"/>
@@ -323,7 +323,7 @@
 					<reference key="NSWindow"/>
 					<reference key="NSNextKeyView" ref="777456971"/>
 				</object>
-				<string key="NSScreenRect">{{0, 0}, {1680, 1028}}</string>
+				<string key="NSScreenRect">{{0, 0}, {1920, 1058}}</string>
 				<string key="NSMaxSize">{10000000000000, 10000000000000}</string>
 				<bool key="NSAutorecalculatesContentBorderThicknessMinY">NO</bool>
 				<double key="NSContentBorderThicknessMinY">32</double>
@@ -1133,7 +1133,6 @@
 				<string key="419.IBPluginDependency">com.apple.InterfaceBuilder.CocoaPlugin</string>
 				<string key="420.IBPluginDependency">com.apple.InterfaceBuilder.CocoaPlugin</string>
 				<string key="421.IBPluginDependency">com.apple.InterfaceBuilder.CocoaPlugin</string>
-				<boolean value="YES" key="421.ibExternalAutomaticallyCalculatesRowSizeFromViewHeight"/>
 				<string key="422.IBPluginDependency">com.apple.InterfaceBuilder.CocoaPlugin</string>
 				<string key="423.IBPluginDependency">com.apple.InterfaceBuilder.CocoaPlugin</string>
 				<string key="424.IBPluginDependency">com.apple.InterfaceBuilder.CocoaPlugin</string>
@@ -1212,6 +1211,7 @@
 						<string key="outlineView">NSOutlineView</string>
 						<string key="passwordTextField">NSTextField</string>
 						<string key="passwordView">NSView</string>
+						<string key="welcomeView">NSView</string>
 					</dictionary>
 					<dictionary class="NSMutableDictionary" key="toOneOutletInfosByName">
 						<object class="IBToOneOutletInfo" key="contentView">
@@ -1232,6 +1232,10 @@
 						</object>
 						<object class="IBToOneOutletInfo" key="passwordView">
 							<string key="name">passwordView</string>
+							<string key="candidateClassName">NSView</string>
+						</object>
+						<object class="IBToOneOutletInfo" key="welcomeView">
+							<string key="name">welcomeView</string>
 							<string key="candidateClassName">NSView</string>
 						</object>
 					</dictionary>

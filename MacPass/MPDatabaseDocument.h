@@ -19,8 +19,8 @@ APPKIT_EXTERN NSString *const MPDataBaseDocumentDocumentKey;
 @property (retain, readonly) KdbGroup *root;
 @property (retain, readonly) NSURL *file;
 @property (retain, readonly) KdbPassword *password;
-+ (id)documentWithFile:(NSURL *)file password:(NSString *)password keyfile:(NSURL *)key;
 
++ (id)documentWithFile:(NSURL *)file password:(NSString *)password keyfile:(NSURL *)key;
 - (id)initWithFile:(NSURL *)file password:(NSString *)password keyfile:(NSURL *)key;
 /*
  Saves the current database to the filesystem

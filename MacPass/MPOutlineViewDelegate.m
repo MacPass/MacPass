@@ -7,6 +7,7 @@
 //
 
 #import "MPOutlineViewDelegate.h"
+#import "MPIconHelper.h"
 #import "KdbLib.h"
 
 @implementation MPOutlineViewDelegate
@@ -20,7 +21,10 @@
   }
   else {
     view = [outlineView makeViewWithIdentifier:@"DataCell" owner:self];
-    [view.imageView setImage:[NSImage imageNamed:NSImageNameFolder]];
+    NSDictionary *availableIcons = [MPIconHelper availableIcons];
+    NSInteger randomIndex = rand() % [availableIcons count];
+    NSImage *icon = [MPIconHelper icon:(MPIconType)randomIndex];
+    [view.imageView setImage:icon];
     [view.textField setStringValue:[group name]];
   }
   
