@@ -91,8 +91,8 @@ NSString *const kOutlineViewIdentifier = @"OutlineView";
   NSSize frameSize = [self.contentView frame].size;
   [self.passwordView setFrame:NSMakeRect(0,0, frameSize.width, frameSize.height)];
   [self.contentView setAutoresizesSubviews:YES];
-  [self.contentView addSubview:self.passwordView];
-  
+  [self.contentView replaceSubview:self.welcomeView with:self.passwordView];
+  [self.window makeFirstResponder:self.passwordView];
 }
 
 - (void)usePassword:(id)sender {

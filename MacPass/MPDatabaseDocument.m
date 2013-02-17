@@ -83,6 +83,14 @@ NSString *const MPDidLoadDataBaseNotification = @"DidLoadDataBaseNotification";
   return self;
 }
 
+- (void)dealloc
+{
+  self.tree = nil;
+  self.file = nil;
+  self.password = nil;
+  [super dealloc];
+}
+
 - (KdbGroup *)root {
   return [self.tree root];
 }

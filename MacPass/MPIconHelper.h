@@ -14,7 +14,12 @@ typedef enum {
   MPIconWarning,
   MPIconServer,
   MPIconKlipper,
-  MPIconLanguages
+  MPIconLanguages,
+  MPIconNotepad,
+  MPIconSocket,
+  MPIconIdentity,
+  MPIconContact,
+  MPIconCamera
 } MPIconType;
 
 @interface MPIconHelper : NSObject

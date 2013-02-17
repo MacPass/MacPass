@@ -76,6 +76,11 @@
 		4CAD748E15B88AC100104512 /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 4CAD748D15B88AC100104512 /* libz.dylib */; };
 		4CBA981815BA0DB600721965 /* MPDatabaseDocument.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CBA981715BA0DB600721965 /* MPDatabaseDocument.m */; };
 		4CC6259115BA1C99002F5B11 /* MPOutlineViewDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CC6259015BA1C99002F5B11 /* MPOutlineViewDelegate.m */; };
+		4CD78ABC16D155FF00768A1D /* 07_NotepadTemplate.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 4CD78AB716D155FF00768A1D /* 07_NotepadTemplate.pdf */; };
+		4CD78ABD16D155FF00768A1D /* 08_SocketTemplate.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 4CD78AB816D155FF00768A1D /* 08_SocketTemplate.pdf */; };
+		4CD78ABE16D155FF00768A1D /* 09_IdentityTemplate.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 4CD78AB916D155FF00768A1D /* 09_IdentityTemplate.pdf */; };
+		4CD78ABF16D155FF00768A1D /* 10_ContactTemplate.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 4CD78ABA16D155FF00768A1D /* 10_ContactTemplate.pdf */; };
+		4CD78AC016D155FF00768A1D /* 11_CameraTemplate.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 4CD78ABB16D155FF00768A1D /* 11_CameraTemplate.pdf */; };
 		4CD884B715BD47080042BBF8 /* MainWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4CD884B615BD47080042BBF8 /* MainWindow.xib */; };
 /* End PBXBuildFile section */
 
@@ -212,6 +217,11 @@
 		4CBA981715BA0DB600721965 /* MPDatabaseDocument.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MPDatabaseDocument.m; sourceTree = "<group>"; };
 		4CC6258F15BA1C99002F5B11 /* MPOutlineViewDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MPOutlineViewDelegate.h; sourceTree = "<group>"; };
 		4CC6259015BA1C99002F5B11 /* MPOutlineViewDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MPOutlineViewDelegate.m; sourceTree = "<group>"; };
+		4CD78AB716D155FF00768A1D /* 07_NotepadTemplate.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = 07_NotepadTemplate.pdf; sourceTree = "<group>"; };
+		4CD78AB816D155FF00768A1D /* 08_SocketTemplate.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = 08_SocketTemplate.pdf; sourceTree = "<group>"; };
+		4CD78AB916D155FF00768A1D /* 09_IdentityTemplate.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = 09_IdentityTemplate.pdf; sourceTree = "<group>"; };
+		4CD78ABA16D155FF00768A1D /* 10_ContactTemplate.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = 10_ContactTemplate.pdf; sourceTree = "<group>"; };
+		4CD78ABB16D155FF00768A1D /* 11_CameraTemplate.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = 11_CameraTemplate.pdf; sourceTree = "<group>"; };
 		4CD884B615BD47080042BBF8 /* MainWindow.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MainWindow.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -285,6 +295,11 @@
 				4C2E381A16D11FF900037A9D /* 03_ServerTemplate.pdf */,
 				4C2E381B16D11FF900037A9D /* 04_KlipperTemplate.pdf */,
 				4C2E381C16D11FF900037A9D /* 05_LanguagesTemplate.pdf */,
+				4CD78AB716D155FF00768A1D /* 07_NotepadTemplate.pdf */,
+				4CD78AB816D155FF00768A1D /* 08_SocketTemplate.pdf */,
+				4CD78AB916D155FF00768A1D /* 09_IdentityTemplate.pdf */,
+				4CD78ABA16D155FF00768A1D /* 10_ContactTemplate.pdf */,
+				4CD78ABB16D155FF00768A1D /* 11_CameraTemplate.pdf */,
 			);
 			path = Icons;
 			sourceTree = "<group>";
@@ -605,6 +620,11 @@
 				4C2E381D16D11FF900037A9D /* 03_ServerTemplate.pdf in Resources */,
 				4C2E381E16D11FF900037A9D /* 04_KlipperTemplate.pdf in Resources */,
 				4C2E381F16D11FF900037A9D /* 05_LanguagesTemplate.pdf in Resources */,
+				4CD78ABC16D155FF00768A1D /* 07_NotepadTemplate.pdf in Resources */,
+				4CD78ABD16D155FF00768A1D /* 08_SocketTemplate.pdf in Resources */,
+				4CD78ABE16D155FF00768A1D /* 09_IdentityTemplate.pdf in Resources */,
+				4CD78ABF16D155FF00768A1D /* 10_ContactTemplate.pdf in Resources */,
+				4CD78AC016D155FF00768A1D /* 11_CameraTemplate.pdf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

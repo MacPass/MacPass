@@ -23,8 +23,13 @@
                                 @(MPIconPackageNetwork): @"01_PackageNetworkTemplate",
                                 @(MPIconPassword): @"00_PasswordTemplate",
                                 @(MPIconServer): @"03_ServerTemplate",
-                                @(MPIconWarning): @"02_MessageBoxWarningTemplate" };
-  
+                                @(MPIconWarning): @"02_MessageBoxWarningTemplate",
+                                @(MPIconCamera): @"11_CameraTemplate",
+                                @(MPIconContact): @"10_ContactTemplate",
+                                @(MPIconIdentity): @"09_IdentityTemplate",
+                                @(MPIconNotepad): @"07_NotepadTemplate",
+                                @(MPIconSocket): @"08_SocketTemplate"
+                                };
   return imageNames;
 }
 
