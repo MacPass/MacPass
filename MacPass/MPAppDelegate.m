@@ -47,5 +47,8 @@
   [self.mainWindowController openDocument];
 }
 
+- (void)toolbarItemPressed:(id)sender {
+  NSLog(@"Pressed %@", sender);
+}
 
 @end

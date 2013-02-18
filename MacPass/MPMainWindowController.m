@@ -13,6 +13,7 @@
 #import "MPDatabaseDocument.h"
 #import "MPPasswordInputController.h"
 #import "MPEntryViewController.h"
+#import "MPToolbarDelegate.h"
 
 NSString *const MPMainWindowControllerPasswordKey = @"MPMainWindowControllerPasswordKey";
 NSString *const MPMainWindowControllerKeyfileKey = @"MPMainWindowControllerKeyfileKey";
@@ -24,6 +25,7 @@ NSString *const kOutlineViewIdentifier = @"OutlineView";
 @interface MPMainWindowController ()
 
 @property (assign) IBOutlet NSOutlineView *outlineView;
+@property (assign) IBOutlet NSToolbar *toolbar;
 
 @property (assign) IBOutlet NSView *contentView;
 @property (retain) IBOutlet NSView *welcomeView;
@@ -33,6 +35,7 @@ NSString *const kOutlineViewIdentifier = @"OutlineView";
 
 @property (retain) MPPasswordInputController *passwordInputController;
 @property (retain) MPEntryViewController *entryViewController;
+@property (retain) MPToolbarDelegate *toolbarDelegate;
 
 - (void)updateData;
 - (void)didOpenDocument:(NSNotification *)notification;
@@ -47,6 +50,7 @@ NSString *const kOutlineViewIdentifier = @"OutlineView";
     NSArray *topLevelObjects;
     self.outlineDelegate = [[[MPOutlineViewDelegate alloc] init] autorelease];
     self.datasource = [[[MPOutlineDataSource alloc] init] autorelease];
+    self.toolbarDelegate = [[[MPToolbarDelegate alloc] init] autorelease];
     [[NSBundle mainBundle] loadNibNamed:@"WelcomeView" owner:self topLevelObjects:&topLevelObjects];
     [self.welcomeView setAutoresizingMask:NSViewWidthSizable | NSViewHeightSizable];
     
@@ -71,6 +75,8 @@ NSString *const kOutlineViewIdentifier = @"OutlineView";
   [self.outlineView setDelegate:self.outlineDelegate];
   [self.outlineView setDataSource:self.datasource];
 
+  [self.toolbar setDelegate:self.toolbarDelegate];
+  
   [self setContentViewController:nil];
 }
 
