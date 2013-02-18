@@ -63,7 +63,6 @@
 		4C77E37A15B84A240093A587 /* MPAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C77E37915B84A240093A587 /* MPAppDelegate.m */; };
 		4C77E37D15B84A240093A587 /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4C77E37B15B84A240093A587 /* MainMenu.xib */; };
 		4C83814215BF4677001AE468 /* MPMainWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C83814115BF4677001AE468 /* MPMainWindowController.m */; };
-		4C90D9B416CA4B18003081E7 /* MPMainWindowDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C90D9B316CA4B18003081E7 /* MPMainWindowDelegate.m */; };
 		4CA0B2ED15BCADAC00654E32 /* SettingsWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4CA0B2EC15BCADAC00654E32 /* SettingsWindow.xib */; };
 		4CA0B2F015BCADC800654E32 /* GeneralSettings.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4CA0B2EF15BCADC800654E32 /* GeneralSettings.xib */; };
 		4CA0B2F915BCAF6700654E32 /* MPGeneralSettingsController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CA0B2F815BCAF6700654E32 /* MPGeneralSettingsController.m */; };
@@ -83,6 +82,7 @@
 		4CD78ABF16D155FF00768A1D /* 10_ContactTemplate.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 4CD78ABA16D155FF00768A1D /* 10_ContactTemplate.pdf */; };
 		4CD78AC016D155FF00768A1D /* 11_CameraTemplate.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 4CD78ABB16D155FF00768A1D /* 11_CameraTemplate.pdf */; };
 		4CD884B715BD47080042BBF8 /* MainWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4CD884B615BD47080042BBF8 /* MainWindow.xib */; };
+		4CDF01A316D1B76700D0AC08 /* MPEntryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CDF01A216D1B76700D0AC08 /* MPEntryViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -102,7 +102,6 @@
 		4C586FA116D07F6A00E7DB57 /* 02_MessageBoxWarningTemplate.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = 02_MessageBoxWarningTemplate.pdf; sourceTree = "<group>"; };
 		4C65FAE616D16DDB006E0577 /* MPPasswordInputController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MPPasswordInputController.h; sourceTree = "<group>"; };
 		4C65FAE716D16DDB006E0577 /* MPPasswordInputController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MPPasswordInputController.m; sourceTree = "<group>"; };
-		4C65FAEB16D16FB5006E0577 /* MPViewControllerProtocol.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MPViewControllerProtocol.h; sourceTree = "<group>"; };
 		4C669B3016760ED100DD0774 /* AesInputStream.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AesInputStream.h; sourceTree = "<group>"; };
 		4C669B3116760ED100DD0774 /* AesInputStream.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AesInputStream.m; sourceTree = "<group>"; };
 		4C669B3216760ED100DD0774 /* AesOutputStream.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AesOutputStream.h; sourceTree = "<group>"; };
@@ -194,8 +193,6 @@
 		4C77E37C15B84A240093A587 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/MainMenu.xib; sourceTree = "<group>"; };
 		4C83814015BF4677001AE468 /* MPMainWindowController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MPMainWindowController.h; sourceTree = "<group>"; };
 		4C83814115BF4677001AE468 /* MPMainWindowController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MPMainWindowController.m; sourceTree = "<group>"; };
-		4C90D9B216CA4B18003081E7 /* MPMainWindowDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MPMainWindowDelegate.h; sourceTree = "<group>"; };
-		4C90D9B316CA4B18003081E7 /* MPMainWindowDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MPMainWindowDelegate.m; sourceTree = "<group>"; };
 		4CA0B2EC15BCADAC00654E32 /* SettingsWindow.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SettingsWindow.xib; sourceTree = "<group>"; };
 		4CA0B2EF15BCADC800654E32 /* GeneralSettings.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GeneralSettings.xib; sourceTree = "<group>"; };
 		4CA0B2F715BCAF6700654E32 /* MPGeneralSettingsController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MPGeneralSettingsController.h; sourceTree = "<group>"; };
@@ -227,6 +224,8 @@
 		4CD78ABA16D155FF00768A1D /* 10_ContactTemplate.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = 10_ContactTemplate.pdf; sourceTree = "<group>"; };
 		4CD78ABB16D155FF00768A1D /* 11_CameraTemplate.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = 11_CameraTemplate.pdf; sourceTree = "<group>"; };
 		4CD884B615BD47080042BBF8 /* MainWindow.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MainWindow.xib; sourceTree = "<group>"; };
+		4CDF01A116D1B76700D0AC08 /* MPEntryViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MPEntryViewController.h; sourceTree = "<group>"; };
+		4CDF01A216D1B76700D0AC08 /* MPEntryViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MPEntryViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -273,8 +272,6 @@
 				4C77E37915B84A240093A587 /* MPAppDelegate.m */,
 				4CC6258F15BA1C99002F5B11 /* MPOutlineViewDelegate.h */,
 				4CC6259015BA1C99002F5B11 /* MPOutlineViewDelegate.m */,
-				4C90D9B216CA4B18003081E7 /* MPMainWindowDelegate.h */,
-				4C90D9B316CA4B18003081E7 /* MPMainWindowDelegate.m */,
 			);
 			name = Delegates;
 			sourceTree = "<group>";
@@ -487,6 +484,8 @@
 				4C2E382516D1470200037A9D /* MPViewController.m */,
 				4C65FAE616D16DDB006E0577 /* MPPasswordInputController.h */,
 				4C65FAE716D16DDB006E0577 /* MPPasswordInputController.m */,
+				4CDF01A116D1B76700D0AC08 /* MPEntryViewController.h */,
+				4CDF01A216D1B76700D0AC08 /* MPEntryViewController.m */,
 			);
 			name = Controller;
 			sourceTree = "<group>";
@@ -495,7 +494,6 @@
 			isa = PBXGroup;
 			children = (
 				4CA0B30D15BCB6FD00654E32 /* MPSettingsTabProtocoll.h */,
-				4C65FAEB16D16FB5006E0577 /* MPViewControllerProtocol.h */,
 			);
 			name = Protocolls;
 			sourceTree = "<group>";
@@ -690,11 +688,11 @@
 				4C669BA016760ED100DD0774 /* Salsa20RandomStream.m in Sources */,
 				4C669BA116760ED100DD0774 /* Utils.m in Sources */,
 				4C669BA216760ED100DD0774 /* UUID.m in Sources */,
-				4C90D9B416CA4B18003081E7 /* MPMainWindowDelegate.m in Sources */,
 				4C75CE3C16CB128700F61A4D /* MPDatabaseController.m in Sources */,
 				4C2E382316D1421B00037A9D /* MPIconHelper.m in Sources */,
 				4C2E382616D1470200037A9D /* MPViewController.m in Sources */,
 				4C65FAE916D16DDB006E0577 /* MPPasswordInputController.m in Sources */,
+				4CDF01A316D1B76700D0AC08 /* MPEntryViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

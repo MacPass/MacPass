@@ -11,5 +11,6 @@
 @interface MPViewController : NSViewController
 
 - (void)didLoadView;
+- (NSResponder *)reconmendedFirstResponder;
 
 @end

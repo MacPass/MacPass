@@ -9,6 +9,10 @@
 #import "MPDatabaseController.h"
 #import "MPDatabaseDocument.h"
 
+NSString *const MPDatabaseControllerDidLoadDatabaseNotification = @"MPDatabaseControllerDidLoadDatabaseNotification";
+NSString *const MPDatabaseControllerDidCloseDatabaseNotification = @"MPDatabaseControllerDidCloseDatabaseNotification";
+NSString *const MPDatabaseControllerDatabaseKey = @"MPDatabaseControllerDatabaseKey";
+
 @interface MPDatabaseController ()
 
 @property (retain) MPDatabaseDocument *database;
@@ -37,13 +41,29 @@
 }
 
 - (MPDatabaseDocument *)createDatabase:(MPDatabaseVersion)version password:(NSString *)password keyfile:(NSURL *)key {
-  
   return self.database;
 }
 
 - (MPDatabaseDocument *)openDatabase:(NSURL *)file password:(NSString *)password keyfile:(NSURL *)key {
   self.database = [MPDatabaseDocument documentWithFile:file password:password keyfile:key];
   return self.database;
+}
+
+- (void)setDatabase:(MPDatabaseDocument *)database {
+  if(_database != database) {
+    if(_database) {
+      NSDictionary *userInfo = @{ MPDatabaseControllerDatabaseKey: _database };
+      [[NSNotificationCenter defaultCenter] postNotificationName:MPDatabaseControllerDidCloseDatabaseNotification
+                                                          object:self
+                                                        userInfo:userInfo];
+    }
+    [_database release];
+    _database = [database retain];
+    NSDictionary *userInfo = @{ MPDatabaseControllerDatabaseKey: _database };
+    [[NSNotificationCenter defaultCenter] postNotificationName:MPDatabaseControllerDidLoadDatabaseNotification
+                                                        object:self
+                                                      userInfo:userInfo];
+  }
 }
 
 @end

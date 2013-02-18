@@ -9,9 +9,10 @@
 #import "MPMainWindowController.h"
 #import "MPOutlineDataSource.h"
 #import "MPOutlineViewDelegate.h"
-#import "MPMainWindowDelegate.h"
 #import "MPDatabaseController.h"
 #import "MPDatabaseDocument.h"
+#import "MPPasswordInputController.h"
+#import "MPEntryViewController.h"
 
 NSString *const MPMainWindowControllerPasswordKey = @"MPMainWindowControllerPasswordKey";
 NSString *const MPMainWindowControllerKeyfileKey = @"MPMainWindowControllerKeyfileKey";
@@ -27,12 +28,14 @@ NSString *const kOutlineViewIdentifier = @"OutlineView";
 @property (assign) IBOutlet NSView *contentView;
 @property (retain) IBOutlet NSView *welcomeView;
 
-@property (retain) NSURL *openFile;
 @property (retain) MPOutlineDataSource *datasource;
 @property (retain) MPOutlineViewDelegate *outlineDelegate;
-@property (retain) MPMainWindowDelegate *windowDelegate;
+
+@property (retain) MPPasswordInputController *passwordInputController;
+@property (retain) MPEntryViewController *entryViewController;
 
 - (void)updateData;
+- (void)didOpenDocument:(NSNotification *)notification;
 
 @end
 
@@ -42,35 +45,69 @@ NSString *const kOutlineViewIdentifier = @"OutlineView";
   self = [super initWithWindowNibName:@"MainWindow" owner:self];
   if( self ) {
     NSArray *topLevelObjects;
-    self.windowDelegate = [[[MPMainWindowDelegate alloc] init] autorelease];
     self.outlineDelegate = [[[MPOutlineViewDelegate alloc] init] autorelease];
     self.datasource = [[[MPOutlineDataSource alloc] init] autorelease];
     [[NSBundle mainBundle] loadNibNamed:@"WelcomeView" owner:self topLevelObjects:&topLevelObjects];
     [self.welcomeView setAutoresizingMask:NSViewWidthSizable | NSViewHeightSizable];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(didOpenDocument:)
+                                                 name:MPDatabaseControllerDidLoadDatabaseNotification
+                                               object:nil];
   }
   return self;
+}
+
+- (void)dealloc {
+  [[NSNotificationCenter defaultCenter] removeObserver:self];
+  [super dealloc];
 }
 
 - (void)windowDidLoad
 {
   [super windowDidLoad];
-  /*
-   Setup Connections for Outline View
-   */
 
-  [self.window setDelegate:self.windowDelegate];
   [[self.outlineView outlineTableColumn] setIdentifier:kColumnIdentifier];
   [self.outlineView setDelegate:self.outlineDelegate];
   [self.outlineView setDataSource:self.datasource];
 
+  [self setContentViewController:nil];
+}
+
+- (void)setContentViewController:(MPViewController *)viewController {
+  NSView *newContentView = self.welcomeView;
+  if(viewController && viewController.view) {
+    newContentView = viewController.view;
+  }
+  /*
+   Set correct size and resizing for view
+   */
+  [newContentView setAutoresizingMask:NSViewWidthSizable | NSViewHeightSizable];
+  NSSize frameSize = [self.contentView frame].size;
+  [newContentView setFrame:NSMakeRect(0,0, frameSize.width, frameSize.height)];
   
   /*
-   Add Welcome Screen
+   Add or replace subview
    */
-  NSSize frameSize = [self.contentView frame].size;
-  [self.contentView setFrame:NSMakeRect(0,0, frameSize.width, frameSize.height)];
-  [self.contentView addSubview:self.welcomeView];
-  
+  NSArray *subViews = [self.contentView subviews];
+  BOOL hasSubViews = ([subViews count] > 0);
+  if(hasSubViews) {
+    NSView *subView = subViews[0];
+    assert(subView);
+    [self.contentView replaceSubview:subView with:newContentView];
+  }
+  else {
+    [self.contentView addSubview:newContentView];
+  }
+  /*
+   Set focus AFTER having added the view
+   */
+  [self.window makeFirstResponder:[viewController reconmendedFirstResponder]];
+}
+
+- (void)didOpenDocument:(NSNotification *)notification {
+  [self updateData];
+  [self showEntries];
 }
 
 - (void)updateData {
@@ -79,16 +116,31 @@ NSString *const kOutlineViewIdentifier = @"OutlineView";
   [self.outlineView expandItem:dbContoller.database.root expandChildren:NO];
 }
 
-- (void)presentPasswordInput:(NSURL *)file {
-  NSArray *topLevelObjects;
-  self.openFile = file;
-  [[NSBundle mainBundle] loadNibNamed:@"PasswordView" owner:self topLevelObjects:&topLevelObjects];
-  [self.passwordView setAutoresizingMask:NSViewWidthSizable | NSViewHeightSizable];
-  NSSize frameSize = [self.contentView frame].size;
-  [self.passwordView setFrame:NSMakeRect(0,0, frameSize.width, frameSize.height)];
-  [self.contentView setAutoresizesSubviews:YES];
-  [self.contentView replaceSubview:self.welcomeView with:self.passwordView];
-  [self.window makeFirstResponder:self.passwordView];
+- (void)openDocument {
+  
+  if(!self.passwordInputController) {
+    self.passwordInputController = [[[MPPasswordInputController alloc] init] autorelease];
+  }
+  
+  NSOpenPanel *openPanel = [NSOpenPanel openPanel];
+  [openPanel setCanChooseDirectories:NO];
+  [openPanel setCanChooseFiles:YES];
+  [openPanel setCanCreateDirectories:NO];
+  [openPanel setAllowsMultipleSelection:NO];
+  [openPanel beginSheetModalForWindow:self.window completionHandler:^(NSInteger result){
+    if(result == NSFileHandlingPanelOKButton) {
+      NSURL *file = [[openPanel URLs] lastObject];
+      self.passwordInputController.fileURL = file;
+      [self setContentViewController:self.passwordInputController];
+    }
+  }];
+}
+
+- (void)showEntries {
+  if(!self.entryViewController) {
+    self.entryViewController = [[[MPEntryViewController alloc] init] autorelease];
+  }
+  [self setContentViewController:self.entryViewController];
 }
 
 @end

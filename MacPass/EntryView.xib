@@ -34,7 +34,7 @@
 		</object>
 		<array class="NSMutableArray" key="IBDocument.RootObjects" id="1000">
 			<object class="NSCustomObject" id="1001">
-				<string key="NSClassName">NSObject</string>
+				<string key="NSClassName">MPEntryViewController</string>
 			</object>
 			<object class="NSCustomObject" id="1003">
 				<string key="NSClassName">FirstResponder</string>
@@ -68,7 +68,7 @@
 														<string key="NSFrameSize">{351, 544}</string>
 														<reference key="NSSuperview" ref="538218614"/>
 														<reference key="NSWindow"/>
-														<reference key="NSNextKeyView" ref="371078858"/>
+														<reference key="NSNextKeyView" ref="604836755"/>
 														<string key="NSReuseIdentifierKey">_NS:13</string>
 														<bool key="NSEnabled">YES</bool>
 														<bool key="NSAllowsLogicalLayoutDirection">NO</bool>
@@ -232,6 +232,7 @@
 												<string key="NSFrame">{{1, 119}, {223, 15}}</string>
 												<reference key="NSSuperview" ref="836307073"/>
 												<reference key="NSWindow"/>
+												<reference key="NSNextKeyView" ref="661617748"/>
 												<string key="NSReuseIdentifierKey">_NS:60</string>
 												<bool key="NSAllowsLogicalLayoutDirection">NO</bool>
 												<int key="NSsFlags">1</int>
@@ -258,7 +259,7 @@
 										<string key="NSFrameSize">{353, 562}</string>
 										<reference key="NSSuperview" ref="1017866760"/>
 										<reference key="NSWindow"/>
-										<reference key="NSNextKeyView" ref="538218614"/>
+										<reference key="NSNextKeyView" ref="371078858"/>
 										<string key="NSReuseIdentifierKey">_NS:9</string>
 										<int key="NSsFlags">133682</int>
 										<reference key="NSVScroller" ref="604836755"/>
@@ -274,6 +275,7 @@
 								<string key="NSFrameSize">{353, 563}</string>
 								<reference key="NSSuperview" ref="817972379"/>
 								<reference key="NSWindow"/>
+								<reference key="NSNextKeyView" ref="836307073"/>
 								<string key="NSReuseIdentifierKey">_NS:11</string>
 								<string key="NSClassName">NSView</string>
 							</object>
@@ -287,6 +289,7 @@
 										<string key="NSFrame">{{13, 10}, {323, 539}}</string>
 										<reference key="NSSuperview" ref="661617748"/>
 										<reference key="NSWindow"/>
+										<reference key="NSNextKeyView" ref="835935918"/>
 										<string key="NSReuseIdentifierKey">_NS:9</string>
 										<array class="NSMutableArray" key="NSTabViewItems">
 											<object class="NSTabViewItem" id="962181595">
@@ -297,7 +300,7 @@
 													<string key="NSFrame">{{10, 33}, {303, 493}}</string>
 													<reference key="NSSuperview" ref="590827347"/>
 													<reference key="NSWindow"/>
-													<reference key="NSNextKeyView" ref="590827347"/>
+													<reference key="NSNextKeyView"/>
 													<string key="NSReuseIdentifierKey">_NS:11</string>
 												</object>
 												<string key="NSLabel">Tab</string>
@@ -335,6 +338,7 @@
 								<string key="NSFrame">{{354, 0}, {349, 563}}</string>
 								<reference key="NSSuperview" ref="817972379"/>
 								<reference key="NSWindow"/>
+								<reference key="NSNextKeyView" ref="590827347"/>
 								<string key="NSReuseIdentifierKey">_NS:13</string>
 								<string key="NSClassName">NSView</string>
 							</object>
@@ -342,6 +346,7 @@
 						<string key="NSFrameSize">{703, 563}</string>
 						<reference key="NSSuperview" ref="1005"/>
 						<reference key="NSWindow"/>
+						<reference key="NSNextKeyView" ref="1017866760"/>
 						<string key="NSReuseIdentifierKey">_NS:9</string>
 						<bool key="NSIsVertical">YES</bool>
 						<int key="NSDividerStyle">2</int>
@@ -350,12 +355,21 @@
 				<string key="NSFrameSize">{703, 563}</string>
 				<reference key="NSSuperview"/>
 				<reference key="NSWindow"/>
-				<reference key="NSNextKeyView"/>
+				<reference key="NSNextKeyView" ref="817972379"/>
 				<string key="NSClassName">NSView</string>
 			</object>
 		</array>
 		<object class="IBObjectContainer" key="IBDocument.Objects">
-			<array class="NSMutableArray" key="connectionRecords"/>
+			<array class="NSMutableArray" key="connectionRecords">
+				<object class="IBConnectionRecord">
+					<object class="IBOutletConnection" key="connection">
+						<string key="label">view</string>
+						<reference key="source" ref="1001"/>
+						<reference key="destination" ref="1005"/>
+					</object>
+					<int key="connectionID">42</int>
+				</object>
+			</array>
 			<object class="IBMutableOrderedSet" key="objectRecords">
 				<array key="orderedObjects">
 					<object class="IBObjectRecord">
@@ -825,10 +839,26 @@
 			<nil key="activeLocalization"/>
 			<dictionary class="NSMutableDictionary" key="localizations"/>
 			<nil key="sourceID"/>
-			<int key="maxID">41</int>
+			<int key="maxID">42</int>
 		</object>
 		<object class="IBClassDescriber" key="IBDocument.Classes">
 			<array class="NSMutableArray" key="referencedPartialClassDescriptions">
+				<object class="IBPartialClassDescription">
+					<string key="className">MPEntryViewController</string>
+					<string key="superclassName">MPViewController</string>
+					<object class="IBClassDescriptionSource" key="sourceIdentifier">
+						<string key="majorKey">IBProjectSource</string>
+						<string key="minorKey">./Classes/MPEntryViewController.h</string>
+					</object>
+				</object>
+				<object class="IBPartialClassDescription">
+					<string key="className">MPViewController</string>
+					<string key="superclassName">NSViewController</string>
+					<object class="IBClassDescriptionSource" key="sourceIdentifier">
+						<string key="majorKey">IBProjectSource</string>
+						<string key="minorKey">./Classes/MPViewController.h</string>
+					</object>
+				</object>
 				<object class="IBPartialClassDescription">
 					<string key="className">NSLayoutConstraint</string>
 					<string key="superclassName">NSObject</string>

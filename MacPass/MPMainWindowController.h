@@ -12,11 +12,16 @@ APPKIT_EXTERN NSString *const MPMainWindowControllerPasswordKey;
 APPKIT_EXTERN NSString *const MPMainWindowControllerKeyfileKey;
 
 @class MPDatabaseDocument;
+@class MPViewController;
 
 @interface MPMainWindowController : NSWindowController
 
-@property (readonly, retain) MPDatabaseDocument *database;
-
-- (void)presentPasswordInput:(NSURL *)file;
+- (void)openDocument;
+- (void)showEntries;
+/*
+ Sets the content View controller
+ @param viewController - use nil to reset to welcome screen
+ */
+- (void)setContentViewController:(MPViewController *)viewController;
 
 @end

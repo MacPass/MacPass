@@ -44,19 +44,7 @@
 }
 
 - (void)openDocument:(id)sender {
-  NSOpenPanel *openPanel = [NSOpenPanel openPanel];
-  [openPanel setCanChooseDirectories:NO];
-  [openPanel setCanChooseFiles:YES];
-  [openPanel setCanCreateDirectories:NO];
-  [openPanel setAllowsMultipleSelection:NO];
-  [openPanel beginSheetModalForWindow:[self.mainWindowController window] completionHandler:^(NSInteger result){
-    if(result == NSFileHandlingPanelOKButton) {
-      NSURL *file = [[openPanel URLs] lastObject];
-      if(file) {
-        [self.mainWindowController presentPasswordInput:(NSURL *)file];
-      }
-    }
-  }];
+  [self.mainWindowController openDocument];
 }
 
 

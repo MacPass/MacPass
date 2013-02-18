@@ -7,8 +7,9 @@
 //
 
 #import "MPViewController.h"
-#import "MPViewControllerProtocol.h"
 
-@interface MPPasswordInputController : MPViewController <MPViewControllerProtocol>
+@interface MPPasswordInputController : MPViewController
+
+@property (retain) NSURL *fileURL;
 
 @end

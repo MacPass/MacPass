@@ -19,4 +19,8 @@
   // override
 }
 
+- (NSResponder *)reconmendedFirstResponder {
+  return nil;
+}
+
 @end

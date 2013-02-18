@@ -8,17 +8,28 @@
 
 #import <Foundation/Foundation.h>
 
-@class MPDatabaseDocument;
+/*
+ Notification is posted, when a database is loaded
+ The userInfo dictionary contains the following keys
+ MPDatabaseControllerDatabaseKey
+ */
+APPKIT_EXTERN NSString *const MPDatabaseControllerDidLoadDatabaseNotification;
+APPKIT_EXTERN NSString *const MPDatabaseControllerDidCloseDatabaseNotification;
+/*
+ Database loaded or closed
+ */
+APPKIT_EXTERN NSString *const MPDatabaseControllerDatabaseKey;
 
 typedef enum{
   MPDatabaseVersion1,
   MPDatabaseVersion2
 } MPDatabaseVersion;
 
+@class MPDatabaseDocument;
 
 @interface MPDatabaseController : NSObject
 
-@property (retain, readonly) MPDatabaseDocument *database;
+@property (retain, readonly, nonatomic) MPDatabaseDocument *database;
 
 + (MPDatabaseController *)defaultController;
 
