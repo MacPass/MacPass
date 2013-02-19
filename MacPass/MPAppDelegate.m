@@ -36,17 +36,6 @@
   [self.settingsController showWindow:_settingsController.window];
 }
 
-- (void)newDocument:(id)sender {
-}
-
-- (void)performClose:(id)sender {
-  NSLog(@"Close");
-}
-
-- (void)openDocument:(id)sender {
-  [self.mainWindowController openDocument];
-}
-
 - (void)toolbarItemPressed:(id)sender {
   NSLog(@"Pressed %@", sender);
 }

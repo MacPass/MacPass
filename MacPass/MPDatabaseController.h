@@ -20,10 +20,6 @@ APPKIT_EXTERN NSString *const MPDatabaseControllerDidCloseDatabaseNotification;
  */
 APPKIT_EXTERN NSString *const MPDatabaseControllerDatabaseKey;
 
-typedef enum{
-  MPDatabaseVersion1,
-  MPDatabaseVersion2
-} MPDatabaseVersion;
 
 @class MPDatabaseDocument;
 
@@ -33,7 +29,7 @@ typedef enum{
 
 + (MPDatabaseController *)defaultController;
 
-- (MPDatabaseDocument *)createDatabase:(MPDatabaseVersion )version password:(NSString *)password keyfile:(NSURL *)key;
+//- (MPDatabaseDocument *)createDatabase:(MPDatabaseVersion )version password:(NSString *)password keyfile:(NSURL *)key;
 - (MPDatabaseDocument *)openDatabase:(NSURL *)file password:(NSString *)password keyfile:(NSURL *)key;
 
 @end

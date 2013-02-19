@@ -11,6 +11,11 @@
 APPKIT_EXTERN NSString *const MPDidLoadDataBaseNotification;
 APPKIT_EXTERN NSString *const MPDataBaseDocumentDocumentKey;
 
+typedef enum {
+  MPDatabaseVersion3,
+  MPDatabaseVersion4
+} MPDatabaseVersion;
+
 @class KdbPassword;
 @class KdbGroup;
 
@@ -18,10 +23,13 @@ APPKIT_EXTERN NSString *const MPDataBaseDocumentDocumentKey;
 
 @property (retain, readonly) KdbGroup *root;
 @property (retain, readonly) NSURL *file;
-@property (retain, readonly) KdbPassword *password;
+@property (nonatomic,retain) NSString *password;
+@property (nonatomic, retain) NSURL *key;
+@property (assign, readonly) MPDatabaseVersion version;
 
 + (id)documentWithFile:(NSURL *)file password:(NSString *)password keyfile:(NSURL *)key;
 - (id)initWithFile:(NSURL *)file password:(NSString *)password keyfile:(NSURL *)key;
+- (id)initWithNewDatabase:(MPDatabaseVersion)version;
 /*
  Saves the current database to the filesystem
  Tries to use the stored password and file path

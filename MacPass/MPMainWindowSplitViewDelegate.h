@@ -8,6 +8,10 @@
 
 #import <Foundation/Foundation.h>
 
+extern const CGFloat MPMainWindowSplitViewDelegateMinimumOutlineWidth;
+extern const CGFloat MPMainWindowSplitViewDelegateMaximumOutlineWidth;
+extern const CGFloat MPMainWindowSplitViewDelegateMinimumContentWidth;
+
 @interface MPMainWindowSplitViewDelegate : NSObject <NSSplitViewDelegate>
 
 

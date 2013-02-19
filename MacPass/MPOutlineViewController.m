@@ -23,6 +23,7 @@
 
 - (void)didOpenDocument:(NSNotification *)notification;
 - (void)setupMenu;
+- (void)addEntry:(id)sender;
 
 @end
 
@@ -69,11 +70,19 @@
 
 - (void)setupMenu {
   NSMenu *menu = [[NSMenu allocWithZone:[NSMenu menuZone]] init];
-  [menu addItemWithTitle:@"Add Group" action:NULL keyEquivalent:@""];
+  [menu addItemWithTitle:@"Add Group" action:@selector(addEntry:) keyEquivalent:@""];
   [menu addItem: [NSMenuItem separatorItem]];
   [menu addItemWithTitle:@"Delete" action:NULL keyEquivalent:@""];
+  for(NSMenuItem *item in [menu itemArray]) {
+    [item setTarget:self];
+  }
+  
   self.menu = menu;
   [menu release];
+}
+
+- (void)addEntry:(id)sender {
+  NSLog(@"Add Entry");
 }
 
 @end

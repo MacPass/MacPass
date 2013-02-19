@@ -12,6 +12,12 @@
 
 - (void)loadView {
   [super loadView];
+
+  /* Insert ourselfs in the responder chain */
+  NSResponder *nextResponder = [[self view] nextResponder];
+  [[self view] setNextResponder:self];
+  [self setNextResponder:nextResponder];
+  
   [self didLoadView];
 }
 

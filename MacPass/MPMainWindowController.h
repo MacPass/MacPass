@@ -12,7 +12,6 @@
 
 @interface MPMainWindowController : NSWindowController
 
-- (void)openDocument;
 - (void)showEntries;
 /*
  Sets the content View controller

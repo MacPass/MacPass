@@ -12,21 +12,24 @@
 #import "MPEntryViewController.h"
 #import "MPToolbarDelegate.h"
 #import "MPOutlineViewController.h"
+#import "MPMainWindowSplitViewDelegate.h"
 
 @interface MPMainWindowController ()
 
-@property (assign) IBOutlet NSToolbar *toolbar;
+
 @property (assign) IBOutlet NSView *outlineView;
 @property (assign) IBOutlet NSSplitView *splitView;
 @property (assign) IBOutlet NSView *contentView;
 
 @property (retain) IBOutlet NSView *welcomeView;
+@property (retain) NSToolbar *toolbar;
 
 @property (retain) MPPasswordInputController *passwordInputController;
 @property (retain) MPEntryViewController *entryViewController;
 @property (retain) MPOutlineViewController *outlineViewController;
 
 @property (retain) MPToolbarDelegate *toolbarDelegate;
+@property (retain) MPMainWindowSplitViewDelegate *splitViewDelegate;
 
 @end
 
@@ -35,8 +38,9 @@
 -(id)init {
   self = [super initWithWindowNibName:@"MainWindow" owner:self];
   if( self ) {
-    self.toolbarDelegate = [[[MPToolbarDelegate alloc] init] autorelease];
-    self.outlineViewController = [[[MPOutlineViewController alloc] init] autorelease];
+    _toolbarDelegate = [[MPToolbarDelegate alloc] init];
+    _outlineViewController = [[MPOutlineViewController alloc] init];
+    _splitViewDelegate = [[MPMainWindowSplitViewDelegate alloc] init];
     
     [[NSBundle mainBundle] loadNibNamed:@"WelcomeView" owner:self topLevelObjects:NULL];
     [self.welcomeView setAutoresizingMask:NSViewWidthSizable | NSViewHeightSizable];
@@ -57,15 +61,23 @@
 - (void)windowDidLoad
 {
   [super windowDidLoad];
+  const CGFloat minimumWindowWidth = MPMainWindowSplitViewDelegateMinimumContentWidth + MPMainWindowSplitViewDelegateMinimumOutlineWidth + [self.splitView dividerThickness];
+  [self.window setMinSize:NSMakeSize( minimumWindowWidth, 400)];
+  
+  _toolbar = [[NSToolbar alloc] initWithIdentifier:@"MainWindowToolbar"];
+  [self.toolbar setAllowsUserCustomization:YES];
   [self.toolbar setDelegate:self.toolbarDelegate];
+  [self.window setToolbar:self.toolbar];
+  
+  [self.splitView setDelegate:self.splitViewDelegate];
   
   NSRect frame = [self.outlineView frame];
-  frame.size.height -= 1;
-  frame.origin.y = 10;
+//  frame.size.height -= 1;
+//  frame.origin.y = 10;
   [self.outlineViewController.view setFrame:frame];
   [self.outlineViewController.view setAutoresizingMask:NSViewWidthSizable | NSViewHeightSizable];
-  [self.splitView replaceSubview:self.outlineView with:self.outlineViewController.view];
-  
+  [self.splitView replaceSubview:self.outlineView with:[self.outlineViewController view]];
+  [self.splitView adjustSubviews];
   [self setContentViewController:nil];
 }
 
@@ -94,18 +106,16 @@
   else {
     [self.contentView addSubview:newContentView];
   }
+  [self.splitView adjustSubviews];
   /*
    Set focus AFTER having added the view
    */
   [self.window makeFirstResponder:[viewController reconmendedFirstResponder]];
 }
 
-- (void)didOpenDocument:(NSNotification *)notification {
-  [self showEntries];
-}
+#pragma mark Actions
 
-
-- (void)openDocument {
+- (void)openDocument:(id)sender {
   
   if(!self.passwordInputController) {
     self.passwordInputController = [[[MPPasswordInputController alloc] init] autorelease];
@@ -125,9 +135,15 @@
   }];
 }
 
+#pragma mark Notifications
+
+- (void)didOpenDocument:(NSNotification *)notification {
+  [self showEntries];
+}
+
 - (void)showEntries {
   if(!self.entryViewController) {
-    self.entryViewController = [[[MPEntryViewController alloc] init] autorelease];
+    _entryViewController = [[MPEntryViewController alloc] init];
   }
   [self setContentViewController:self.entryViewController];
 }

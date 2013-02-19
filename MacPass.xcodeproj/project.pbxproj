@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		4C25D58516CF0F8800F6806C /* WelcomeView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4C25D58416CF0F8800F6806C /* WelcomeView.xib */; };
 		4C25D58716CF0FAA00F6806C /* EntryView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4C25D58616CF0FAA00F6806C /* EntryView.xib */; };
+		4C2C4C2C16D3BE3700D49295 /* KdbGroup+MPAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C2C4C2B16D3BE3700D49295 /* KdbGroup+MPAdditions.m */; };
 		4C2E381D16D11FF900037A9D /* 03_ServerTemplate.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 4C2E381A16D11FF900037A9D /* 03_ServerTemplate.pdf */; };
 		4C2E381E16D11FF900037A9D /* 04_KlipperTemplate.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 4C2E381B16D11FF900037A9D /* 04_KlipperTemplate.pdf */; };
 		4C2E381F16D11FF900037A9D /* 05_LanguagesTemplate.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 4C2E381C16D11FF900037A9D /* 05_LanguagesTemplate.pdf */; };
@@ -62,7 +63,6 @@
 		4C77E36715B84A240093A587 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4C77E36615B84A240093A587 /* Cocoa.framework */; };
 		4C77E37115B84A240093A587 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 4C77E36F15B84A240093A587 /* InfoPlist.strings */; };
 		4C77E37315B84A240093A587 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C77E37215B84A240093A587 /* main.m */; };
-		4C77E37715B84A240093A587 /* Credits.rtf in Resources */ = {isa = PBXBuildFile; fileRef = 4C77E37515B84A240093A587 /* Credits.rtf */; };
 		4C77E37A15B84A240093A587 /* MPAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C77E37915B84A240093A587 /* MPAppDelegate.m */; };
 		4C77E37D15B84A240093A587 /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4C77E37B15B84A240093A587 /* MainMenu.xib */; };
 		4C83814215BF4677001AE468 /* MPMainWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C83814115BF4677001AE468 /* MPMainWindowController.m */; };
@@ -78,6 +78,7 @@
 		4CAD747F15B887FD00104512 /* DDXMLNode.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CAD746115B887FD00104512 /* DDXMLNode.m */; settings = {COMPILER_FLAGS = "-fobjc-arc"; }; };
 		4CAD748C15B889B700104512 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4CAD748B15B889B700104512 /* Security.framework */; };
 		4CAD748E15B88AC100104512 /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 4CAD748D15B88AC100104512 /* libz.dylib */; };
+		4CB9339916D3A0DD00A13B5D /* Credits.rtf in Resources */ = {isa = PBXBuildFile; fileRef = 4CB9339716D3A0DD00A13B5D /* Credits.rtf */; };
 		4CBA981815BA0DB600721965 /* MPDatabaseDocument.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CBA981715BA0DB600721965 /* MPDatabaseDocument.m */; };
 		4CC6259115BA1C99002F5B11 /* MPOutlineViewDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CC6259015BA1C99002F5B11 /* MPOutlineViewDelegate.m */; };
 		4CD78ABC16D155FF00768A1D /* 07_NotepadTemplate.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 4CD78AB716D155FF00768A1D /* 07_NotepadTemplate.pdf */; };
@@ -92,6 +93,8 @@
 /* Begin PBXFileReference section */
 		4C25D58416CF0F8800F6806C /* WelcomeView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = WelcomeView.xib; sourceTree = "<group>"; };
 		4C25D58616CF0FAA00F6806C /* EntryView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = EntryView.xib; sourceTree = "<group>"; };
+		4C2C4C2A16D3BE3700D49295 /* KdbGroup+MPAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "KdbGroup+MPAdditions.h"; sourceTree = "<group>"; };
+		4C2C4C2B16D3BE3700D49295 /* KdbGroup+MPAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "KdbGroup+MPAdditions.m"; sourceTree = "<group>"; };
 		4C2E381A16D11FF900037A9D /* 03_ServerTemplate.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = 03_ServerTemplate.pdf; sourceTree = "<group>"; };
 		4C2E381B16D11FF900037A9D /* 04_KlipperTemplate.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = 04_KlipperTemplate.pdf; sourceTree = "<group>"; };
 		4C2E381C16D11FF900037A9D /* 05_LanguagesTemplate.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = 05_LanguagesTemplate.pdf; sourceTree = "<group>"; };
@@ -196,7 +199,6 @@
 		4C77E37015B84A240093A587 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		4C77E37215B84A240093A587 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		4C77E37415B84A240093A587 /* MacPass-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "MacPass-Prefix.pch"; sourceTree = "<group>"; };
-		4C77E37615B84A240093A587 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.rtf; name = en; path = en.lproj/Credits.rtf; sourceTree = "<group>"; };
 		4C77E37815B84A240093A587 /* MPAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MPAppDelegate.h; sourceTree = "<group>"; };
 		4C77E37915B84A240093A587 /* MPAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MPAppDelegate.m; sourceTree = "<group>"; };
 		4C77E37C15B84A240093A587 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/MainMenu.xib; sourceTree = "<group>"; };
@@ -225,6 +227,7 @@
 		4CAD746315B887FD00104512 /* DDXMLPrivate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DDXMLPrivate.h; sourceTree = "<group>"; };
 		4CAD748B15B889B700104512 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
 		4CAD748D15B88AC100104512 /* libz.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.dylib; path = usr/lib/libz.dylib; sourceTree = SDKROOT; };
+		4CB9339816D3A0DD00A13B5D /* en */ = {isa = PBXFileReference; lastKnownFileType = text.rtf; name = en; path = en.lproj/Credits.rtf; sourceTree = "<group>"; };
 		4CBA981615BA0DB600721965 /* MPDatabaseDocument.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MPDatabaseDocument.h; sourceTree = "<group>"; };
 		4CBA981715BA0DB600721965 /* MPDatabaseDocument.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MPDatabaseDocument.m; sourceTree = "<group>"; };
 		4CC6258F15BA1C99002F5B11 /* MPOutlineViewDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MPOutlineViewDelegate.h; sourceTree = "<group>"; };
@@ -266,6 +269,15 @@
 				4C61EA0416D2FFE200AC519E /* OutlineView.xib */,
 			);
 			name = Views;
+			sourceTree = "<group>";
+		};
+		4C2C4C2516D3BCEA00D49295 /* KeePassLibAdditions */ = {
+			isa = PBXGroup;
+			children = (
+				4C2C4C2A16D3BE3700D49295 /* KdbGroup+MPAdditions.h */,
+				4C2C4C2B16D3BE3700D49295 /* KdbGroup+MPAdditions.m */,
+			);
+			name = KeePassLibAdditions;
 			sourceTree = "<group>";
 		};
 		4C2E382016D141F700037A9D /* Helper */ = {
@@ -460,6 +472,7 @@
 		4C77E36C15B84A240093A587 /* MacPass */ = {
 			isa = PBXGroup;
 			children = (
+				4C2C4C2516D3BCEA00D49295 /* KeePassLibAdditions */,
 				4C2E382016D141F700037A9D /* Helper */,
 				4C586F9C16D07ABD00E7DB57 /* Icons */,
 				4CA0B30F15BCB85D00654E32 /* General */,
@@ -476,11 +489,11 @@
 		4C77E36D15B84A240093A587 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				4CB9339716D3A0DD00A13B5D /* Credits.rtf */,
 				4C77E36E15B84A240093A587 /* MacPass-Info.plist */,
 				4C77E36F15B84A240093A587 /* InfoPlist.strings */,
 				4C77E37215B84A240093A587 /* main.m */,
 				4C77E37415B84A240093A587 /* MacPass-Prefix.pch */,
-				4C77E37515B84A240093A587 /* Credits.rtf */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -583,6 +596,7 @@
 			buildPhases = (
 				4C77E35E15B84A240093A587 /* Sources */,
 				4C77E35F15B84A240093A587 /* Frameworks */,
+				4CB9339616D3A04100A13B5D /* ShellScript */,
 				4C77E36015B84A240093A587 /* Resources */,
 			);
 			buildRules = (
@@ -629,7 +643,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				4C77E37115B84A240093A587 /* InfoPlist.strings in Resources */,
-				4C77E37715B84A240093A587 /* Credits.rtf in Resources */,
 				4C77E37D15B84A240093A587 /* MainMenu.xib in Resources */,
 				4CA0B2ED15BCADAC00654E32 /* SettingsWindow.xib in Resources */,
 				4CA0B2F015BCADC800654E32 /* GeneralSettings.xib in Resources */,
@@ -649,10 +662,27 @@
 				4CD78ABF16D155FF00768A1D /* 10_ContactTemplate.pdf in Resources */,
 				4CD78AC016D155FF00768A1D /* 11_CameraTemplate.pdf in Resources */,
 				4C61EA0516D2FFE200AC519E /* OutlineView.xib in Resources */,
+				4CB9339916D3A0DD00A13B5D /* Credits.rtf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		4CB9339616D3A04100A13B5D /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "#!/bin/bash\nbuildNumber=$(/usr/libexec/PlistBuddy -c \"Print CFBundleVersion\" \"$INFOPLIST_FILE\")\nbuildNumber=$((0x$buildNumber))\nbuildNumber=$(($buildNumber + 1))\nbuildNumber=$(printf \"%X\" $buildNumber)\n/usr/libexec/PlistBuddy -c \"Set :CFBundleVersion $buildNumber\" \"$INFOPLIST_FILE\"";
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		4C77E35E15B84A240093A587 /* Sources */ = {
@@ -715,6 +745,7 @@
 				4C3BD51516D276F800389F1F /* MPToolbarDelegate.m in Sources */,
 				4CAC6F7816D2B54800D79D5E /* MPMainWindowSplitViewDelegate.m in Sources */,
 				4C61EA0316D2FD0800AC519E /* MPOutlineViewController.m in Sources */,
+				4C2C4C2C16D3BE3700D49295 /* KdbGroup+MPAdditions.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -729,20 +760,20 @@
 			name = InfoPlist.strings;
 			sourceTree = "<group>";
 		};
-		4C77E37515B84A240093A587 /* Credits.rtf */ = {
-			isa = PBXVariantGroup;
-			children = (
-				4C77E37615B84A240093A587 /* en */,
-			);
-			name = Credits.rtf;
-			sourceTree = "<group>";
-		};
 		4C77E37B15B84A240093A587 /* MainMenu.xib */ = {
 			isa = PBXVariantGroup;
 			children = (
 				4C77E37C15B84A240093A587 /* en */,
 			);
 			name = MainMenu.xib;
+			sourceTree = "<group>";
+		};
+		4CB9339716D3A0DD00A13B5D /* Credits.rtf */ = {
+			isa = PBXVariantGroup;
+			children = (
+				4CB9339816D3A0DD00A13B5D /* en */,
+			);
+			name = Credits.rtf;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */

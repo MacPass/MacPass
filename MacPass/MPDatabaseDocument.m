@@ -8,6 +8,8 @@
 
 #import "MPDatabaseDocument.h"
 #import "KdbLib.h"
+#import "Kdb4Node.h"
+#import "Kdb3Node.h"
 
 NSString *const MPDidLoadDataBaseNotification = @"DidLoadDataBaseNotification";
 
@@ -15,7 +17,8 @@ NSString *const MPDidLoadDataBaseNotification = @"DidLoadDataBaseNotification";
 
 @property (retain) KdbTree *tree;
 @property (retain) NSURL *file;
-@property (retain) KdbPassword *password;
+@property (nonatomic, readonly) KdbPassword *passwordHash;
+@property (assign) MPDatabaseVersion version;
 
 @end
 
@@ -29,6 +32,27 @@ NSString *const MPDidLoadDataBaseNotification = @"DidLoadDataBaseNotification";
   // create empty document
   return [self initWithFile:nil password:nil keyfile:nil];
 }
+
+- (id)initWithNewDatabaseVersion:(MPDatabaseVersion)version {
+  self = [super init];
+  if(self) {
+    switch(version) {
+      case MPDatabaseVersion3:
+        self.tree = [[[Kdb3Tree alloc] init] autorelease];
+        break;
+      case MPDatabaseVersion4:
+        self.tree = [[[Kdb4Tree alloc] init] autorelease];
+        break;
+      default:
+        [self release];
+        return nil;
+    }
+    KdbGroup *newGroup = [self.tree createGroup:self.tree.root];
+    newGroup.name = @"Default";
+  }
+  return self;
+}
+
 /*
  Designated initalizeder
  */
@@ -39,49 +63,28 @@ NSString *const MPDidLoadDataBaseNotification = @"DidLoadDataBaseNotification";
     /*
      Create an empty file
      */
-    if(!file) {
-      self.tree = [[[KdbTree alloc] init] autorelease];
-      self.tree.root = [[[KdbGroup alloc] init] autorelease];
-      [self.tree.root setName:NSLocalizedString(@"INITIAL_GROUP", @"")];
+    self.file = file;
+    self.key = key;
+    self.password = password;
+    @try {
+      self.tree = [KdbReaderFactory load:[self.file path] withPassword:self.passwordHash];
     }
-    /*
-     Try to load a given file
-     */
-    else {
-      self.file = file;
-      const BOOL hasPassword = (password != nil);
-      const BOOL hasKeyfile = (key != nil);
-      
-      // Create the password for the given parameters
-      if( hasPassword && hasKeyfile) {
-        self.password = [[[KdbPassword alloc] initWithPassword:password encoding:NSUTF8StringEncoding keyfile:[key path]] autorelease];
-      }
-      else if( hasPassword ) {
-        self.password = [[[KdbPassword alloc] initWithPassword:password encoding:NSUTF8StringEncoding] autorelease];
-      }
-      else if( hasKeyfile ) {
-        self.password = [[[KdbPassword alloc] initWithKeyfile:[key path]] autorelease];
-      }
-      else {
-        NSLog(@"Error: No password or keyfile given!");
-      }
-      
-      @try {
-        self.tree = [KdbReaderFactory load:[self.file path] withPassword:self.password];
-      }
-      @catch (NSException *exception) {
-        NSLog(@"%@", [exception description]);
-      }
-      
+    @catch (NSException *exception) {
+      NSLog(@"%@", [exception description]);
+      [self release];
+      return self;
     }
-  }
-  // Test if something went wrong and nil out if so
-  if( self.tree == nil) {
-    [self release];
-    self = nil;
+    
+    if([self.tree isKindOfClass:[Kdb4Tree class]]) {
+      self.version = MPDatabaseVersion4;
+    }
+    else if( [self.tree isKindOfClass:[Kdb3Tree class]]) {
+      self.version = MPDatabaseVersion3;
+    }
   }
   return self;
 }
+
 
 - (void)dealloc
 {
@@ -98,9 +101,9 @@ NSString *const MPDidLoadDataBaseNotification = @"DidLoadDataBaseNotification";
 
 - (BOOL)save {
   NSError *fileError;
-  if( self.password && [self.file checkResourceIsReachableAndReturnError:&fileError] ) {
+  if( [self.file checkResourceIsReachableAndReturnError:&fileError] ) {
     @try {
-      [KdbWriterFactory persist:self.tree file:[self.file path] withPassword:self.password];
+      [KdbWriterFactory persist:self.tree file:[self.file path] withPassword:self.passwordHash];
     }
     @catch (NSException *exception) {
       NSLog(@"%@", [exception description]);
@@ -113,4 +116,24 @@ NSString *const MPDidLoadDataBaseNotification = @"DidLoadDataBaseNotification";
 - (BOOL)saveAsFile:(NSURL *)file withPassword:(NSString *)password keyfile:(NSURL *)key {
   return NO;
 }
+
+- (KdbPassword *)passwordHash {
+  
+  // Create the password for the given parameters
+  if( self.password && self.key) {
+    return [[[KdbPassword alloc] initWithPassword:self.password encoding:NSUTF8StringEncoding keyfile:[self.key path]] autorelease];
+  }
+  
+  if( self.password ) {
+    return [[[KdbPassword alloc] initWithPassword:self.password encoding:NSUTF8StringEncoding] autorelease];
+  }
+  
+  if( self.key ) {
+    return [[[KdbPassword alloc] initWithKeyfile:[self.key path]] autorelease];
+  }
+  
+  NSLog(@"Error: No password or keyfile given!");
+  return nil;
+}
+
 @end
