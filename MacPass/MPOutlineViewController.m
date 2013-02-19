@@ -56,7 +56,6 @@
 }
 
 - (void)didLoadView {
-  //[[self.outlineView outlineTableColumn] setIdentifier:kColumnIdentifier];
   [self.outlineView setDataSource:self.datasource];
   [self.outlineView setDelegate:self.outlineDelegate];
   [self.outlineView setMenu:self.menu];
@@ -65,7 +64,9 @@
 - (void)didOpenDocument:(NSNotification *)notification {
   [self.outlineView reloadData];
   MPDatabaseController *dbContoller = [MPDatabaseController defaultController];
-  [self.outlineView expandItem:dbContoller.database.root expandChildren:NO];
+  if(dbContoller.database) {
+    [self.outlineView expandItem:dbContoller.database.root expandChildren:NO];
+  }
 }
 
 - (void)setupMenu {

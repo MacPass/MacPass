@@ -10,8 +10,16 @@
 #import "MPIconHelper.h"
 #import "KdbLib.h"
 
+NSString *const MPOutlineViewDidChangeGroupSelection = @"MPOutlineViewDidChangeGroupSelection";
+
 NSString *const _MPOutlineViewDataViewIdentifier = @"DataCell";
 NSString *const _MPOutlinveViewHeaderViewIdentifier = @"HeaderCell";
+
+@interface MPOutlineViewDelegate ()
+
+@property (assign) KdbGroup *selectedGroup;
+
+@end
 
 @implementation MPOutlineViewDelegate
 
@@ -45,6 +53,14 @@ NSString *const _MPOutlinveViewHeaderViewIdentifier = @"HeaderCell";
 - (BOOL)outlineView:(NSOutlineView *)outlineView shouldSelectItem:(id)item {
   KdbGroup *group = item;
   return (nil != [group parent]);
+}
+
+- (void)outlineViewSelectionDidChange:(NSNotification *)notification {
+  NSOutlineView *outlineView = [notification object];
+  KdbGroup *selectedGroup = [outlineView itemAtRow:[outlineView selectedRow]];
+  self.selectedGroup = selectedGroup;
+  NSLog(@"Selected: %@", self.selectedGroup);
+  [[NSNotificationCenter defaultCenter] postNotificationName:MPOutlineViewDidChangeGroupSelection object:self userInfo:nil];
 }
 
 @end

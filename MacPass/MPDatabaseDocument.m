@@ -72,7 +72,7 @@ NSString *const MPDidLoadDataBaseNotification = @"DidLoadDataBaseNotification";
     @catch (NSException *exception) {
       NSLog(@"%@", [exception description]);
       [self release];
-      return self;
+      return nil;
     }
     
     if([self.tree isKindOfClass:[Kdb4Tree class]]) {

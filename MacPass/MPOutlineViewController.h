@@ -10,4 +10,6 @@
 
 @interface MPOutlineViewController : MPViewController
 
+@property (retain, readonly) NSMenu *menu;
+
 @end

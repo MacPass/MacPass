@@ -8,6 +8,13 @@
 
 #import "MPViewController.h"
 
+@class KdbGroup;
+@class MPOutlineViewDelegate;
+
 @interface MPEntryViewController : MPViewController
+
+@property (nonatomic, assign) id<NSOutlineViewDelegate> outlineViewDelegate;
+@property (assign) KdbGroup *activeGroup;
+@property (readonly, retain) NSArrayController *entryArrayController;
 
 @end

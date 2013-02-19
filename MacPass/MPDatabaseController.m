@@ -58,11 +58,13 @@ NSString *const MPDatabaseControllerDatabaseKey = @"MPDatabaseControllerDatabase
                                                         userInfo:userInfo];
     }
     [_database release];
-    _database = [database retain];
-    NSDictionary *userInfo = @{ MPDatabaseControllerDatabaseKey: _database };
-    [[NSNotificationCenter defaultCenter] postNotificationName:MPDatabaseControllerDidLoadDatabaseNotification
-                                                        object:self
-                                                      userInfo:userInfo];
+    if(database) {
+      _database = [database retain];
+      NSDictionary *userInfo = @{ MPDatabaseControllerDatabaseKey: _database };
+      [[NSNotificationCenter defaultCenter] postNotificationName:MPDatabaseControllerDidLoadDatabaseNotification
+                                                          object:self
+                                                        userInfo:userInfo];
+    }
   }
 }
 

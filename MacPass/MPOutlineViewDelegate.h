@@ -8,6 +8,12 @@
 
 #import <Foundation/Foundation.h>
 
+APPKIT_EXTERN NSString *const MPOutlineViewDidChangeGroupSelection;
+
+@class KdbGroup;
+
 @interface MPOutlineViewDelegate : NSObject <NSOutlineViewDelegate>
+
+@property (assign, readonly) KdbGroup *selectedGroup;
 
 @end
