@@ -7,38 +7,26 @@
 //
 
 #import "MPMainWindowController.h"
-#import "MPOutlineDataSource.h"
-#import "MPOutlineViewDelegate.h"
 #import "MPDatabaseController.h"
-#import "MPDatabaseDocument.h"
 #import "MPPasswordInputController.h"
 #import "MPEntryViewController.h"
 #import "MPToolbarDelegate.h"
-
-NSString *const MPMainWindowControllerPasswordKey = @"MPMainWindowControllerPasswordKey";
-NSString *const MPMainWindowControllerKeyfileKey = @"MPMainWindowControllerKeyfileKey";
-
-NSString *const kColumnIdentifier = @"OutlineColumn";
-NSString *const kOutlineViewIdentifier = @"OutlineView";
-
+#import "MPOutlineViewController.h"
 
 @interface MPMainWindowController ()
 
-@property (assign) IBOutlet NSOutlineView *outlineView;
 @property (assign) IBOutlet NSToolbar *toolbar;
-
+@property (assign) IBOutlet NSView *outlineView;
+@property (assign) IBOutlet NSSplitView *splitView;
 @property (assign) IBOutlet NSView *contentView;
-@property (retain) IBOutlet NSView *welcomeView;
 
-@property (retain) MPOutlineDataSource *datasource;
-@property (retain) MPOutlineViewDelegate *outlineDelegate;
+@property (retain) IBOutlet NSView *welcomeView;
 
 @property (retain) MPPasswordInputController *passwordInputController;
 @property (retain) MPEntryViewController *entryViewController;
-@property (retain) MPToolbarDelegate *toolbarDelegate;
+@property (retain) MPOutlineViewController *outlineViewController;
 
-- (void)updateData;
-- (void)didOpenDocument:(NSNotification *)notification;
+@property (retain) MPToolbarDelegate *toolbarDelegate;
 
 @end
 
@@ -47,11 +35,10 @@ NSString *const kOutlineViewIdentifier = @"OutlineView";
 -(id)init {
   self = [super initWithWindowNibName:@"MainWindow" owner:self];
   if( self ) {
-    NSArray *topLevelObjects;
-    self.outlineDelegate = [[[MPOutlineViewDelegate alloc] init] autorelease];
-    self.datasource = [[[MPOutlineDataSource alloc] init] autorelease];
     self.toolbarDelegate = [[[MPToolbarDelegate alloc] init] autorelease];
-    [[NSBundle mainBundle] loadNibNamed:@"WelcomeView" owner:self topLevelObjects:&topLevelObjects];
+    self.outlineViewController = [[[MPOutlineViewController alloc] init] autorelease];
+    
+    [[NSBundle mainBundle] loadNibNamed:@"WelcomeView" owner:self topLevelObjects:NULL];
     [self.welcomeView setAutoresizingMask:NSViewWidthSizable | NSViewHeightSizable];
     
     [[NSNotificationCenter defaultCenter] addObserver:self
@@ -70,12 +57,14 @@ NSString *const kOutlineViewIdentifier = @"OutlineView";
 - (void)windowDidLoad
 {
   [super windowDidLoad];
-
-  [[self.outlineView outlineTableColumn] setIdentifier:kColumnIdentifier];
-  [self.outlineView setDelegate:self.outlineDelegate];
-  [self.outlineView setDataSource:self.datasource];
-
   [self.toolbar setDelegate:self.toolbarDelegate];
+  
+  NSRect frame = [self.outlineView frame];
+  frame.size.height -= 1;
+  frame.origin.y = 10;
+  [self.outlineViewController.view setFrame:frame];
+  [self.outlineViewController.view setAutoresizingMask:NSViewWidthSizable | NSViewHeightSizable];
+  [self.splitView replaceSubview:self.outlineView with:self.outlineViewController.view];
   
   [self setContentViewController:nil];
 }
@@ -112,15 +101,9 @@ NSString *const kOutlineViewIdentifier = @"OutlineView";
 }
 
 - (void)didOpenDocument:(NSNotification *)notification {
-  [self updateData];
   [self showEntries];
 }
 
-- (void)updateData {
-  [self.outlineView reloadData];
-  MPDatabaseController *dbContoller = [MPDatabaseController defaultController];
-  [self.outlineView expandItem:dbContoller.database.root expandChildren:NO];
-}
 
 - (void)openDocument {
   

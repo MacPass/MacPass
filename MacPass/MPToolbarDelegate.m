@@ -7,6 +7,7 @@
 //
 
 #import "MPToolbarDelegate.h"
+#import "MPIconHelper.h"
 
 NSString *const MPToolbarItemAddGroup = @"AddGroup";
 NSString *const MPToolbarItemAddEntry = @"AddEntry";
@@ -63,11 +64,10 @@ NSString *const MPToolbarItemDelete =@"Delete";
 }
 
 - (NSDictionary *)createToolbarImages{
-  
-  NSDictionary *imageDict = @{ MPToolbarItemAddEntry: [NSImage imageNamed:NSImageNameAddTemplate],
-                               MPToolbarItemAddGroup: [NSImage imageNamed:NSImageNameAddTemplate],
-                               MPToolbarItemDelete: [NSImage imageNamed:NSImageNameRemoveTemplate],
-                               MPToolbarItemEdit: [NSImage imageNamed:NSImageNameRefreshTemplate]
+  NSDictionary *imageDict = @{ MPToolbarItemAddEntry: [MPIconHelper icon:MPIconCamera],
+                               MPToolbarItemAddGroup: [MPIconHelper icon:MPIconPassword],
+                               MPToolbarItemDelete: [MPIconHelper icon:MPIconServer],
+                               MPToolbarItemEdit: [MPIconHelper icon:MPIconNotepad]
                                };
   return imageDict;
 }

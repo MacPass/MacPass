@@ -10,22 +10,26 @@
 #import "MPIconHelper.h"
 #import "KdbLib.h"
 
+NSString *const _MPOutlineViewDataViewIdentifier = @"DataCell";
+NSString *const _MPOutlinveViewHeaderViewIdentifier = @"HeaderCell";
+
 @implementation MPOutlineViewDelegate
 
 - (NSView *)outlineView:(NSOutlineView *)outlineView viewForTableColumn:(NSTableColumn *)tableColumn item:(id)item {
   KdbGroup *group = item;
   NSTableCellView *view;
   if(![group parent]) {
-    view = [outlineView makeViewWithIdentifier:@"HeaderCell" owner:self];
+    view = [outlineView makeViewWithIdentifier:_MPOutlinveViewHeaderViewIdentifier owner:self];
     [view.textField setStringValue:[group name]];
   }
   else {
-    view = [outlineView makeViewWithIdentifier:@"DataCell" owner:self];
+    view = [outlineView makeViewWithIdentifier:_MPOutlineViewDataViewIdentifier owner:self];
     NSDictionary *availableIcons = [MPIconHelper availableIcons];
     NSInteger randomIndex = rand() % [availableIcons count];
     NSImage *icon = [MPIconHelper icon:(MPIconType)randomIndex];
     [view.imageView setImage:icon];
     [view.textField setStringValue:[group name]];
+
   }
   
   return view;

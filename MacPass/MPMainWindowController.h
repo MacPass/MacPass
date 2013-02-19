@@ -8,10 +8,6 @@
 
 #import <Cocoa/Cocoa.h>
 
-APPKIT_EXTERN NSString *const MPMainWindowControllerPasswordKey;
-APPKIT_EXTERN NSString *const MPMainWindowControllerKeyfileKey;
-
-@class MPDatabaseDocument;
 @class MPViewController;
 
 @interface MPMainWindowController : NSWindowController
