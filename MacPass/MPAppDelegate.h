@@ -12,5 +12,6 @@
 
 @interface MPAppDelegate : NSObject <NSApplicationDelegate>
 
+- (IBAction) showMainWindow:(id)sender;
 
 @end

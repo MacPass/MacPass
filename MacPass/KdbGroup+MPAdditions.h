@@ -10,9 +10,8 @@
 
 @interface KdbGroup (MPAdditions)
 
-+ (KdbGroup *)group;
-+ (KdbGroup *)groupWithName:(NSString *)name;
+- (NSArray *)childGroups;
 
-+ (void)refreshModificationTime;
+- (NSArray *)childEntries;
 
 @end

@@ -29,6 +29,11 @@
 }
 
 #pragma mark Menu Actions
+
+- (void)showMainWindow:(id)sender {
+  [self.mainWindowController showMainWindow:sender];
+}
+
 - (void)showPreferences:(id)sender {
   if(self.settingsController == nil) {
     self.settingsController = [[[MPSettingsController alloc] init] autorelease];

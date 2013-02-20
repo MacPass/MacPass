@@ -9,7 +9,6 @@
 #import "MPMainWindowSplitViewDelegate.h"
 
 const CGFloat MPMainWindowSplitViewDelegateMinimumOutlineWidth = 150.0;
-const CGFloat MPMainWindowSplitViewDelegateMaximumOutlineWidth = 400.0;
 const CGFloat MPMainWindowSplitViewDelegateMinimumContentWidth = 400.0;
 
 @interface MPMainWindowSplitViewDelegate ()
@@ -29,6 +28,10 @@ const CGFloat MPMainWindowSplitViewDelegateMinimumContentWidth = 400.0;
   return [splitView subviews][1];
 }
 
+- (BOOL)splitView:(NSSplitView *)splitView canCollapseSubview:(NSView *)subview {
+  return (subview == [self leftView:splitView]);
+}
+
 - (CGFloat)splitView:(NSSplitView *)splitView constrainMinCoordinate:(CGFloat)proposedMinimumPosition ofSubviewAt:(NSInteger)dividerIndex {
   return (proposedMinimumPosition < MPMainWindowSplitViewDelegateMinimumOutlineWidth) ? MPMainWindowSplitViewDelegateMinimumOutlineWidth : proposedMinimumPosition;
 }
@@ -45,18 +48,12 @@ const CGFloat MPMainWindowSplitViewDelegateMinimumContentWidth = 400.0;
   NSView *leftView = [self leftView:splitView];
   NSView *rightView = [self rightView:splitView];
   
-  CGFloat leftRelativeWidth = [leftView frame].size.width / oldSize.width;
-  CGFloat newLeftWidth = floor(newSize.width * leftRelativeWidth);
-  
-  if( newLeftWidth < MPMainWindowSplitViewDelegateMinimumOutlineWidth && newSize.width > MPMainWindowSplitViewDelegateMinimumOutlineWidth ) {
-    newLeftWidth = MPMainWindowSplitViewDelegateMinimumOutlineWidth;
+  CGFloat leftWidth = [leftView isHidden] ? 0.0 : [leftView frame].size.width;
+  NSRect newRightFrame = NSMakeRect(leftWidth + dividierThickness, 0, newSize.width - leftWidth - dividierThickness, newSize.height);
+  NSRect newLeftFrame = NSMakeRect(0, 0, leftWidth, newSize.height);
+  if(NO == [leftView isHidden]) {
+    [leftView setFrame:newLeftFrame];
   }
-  if( newLeftWidth > MPMainWindowSplitViewDelegateMaximumOutlineWidth ) {
-    newLeftWidth = MPMainWindowSplitViewDelegateMaximumOutlineWidth;
-  }
-  NSRect newLeftFrame = NSMakeRect(0, 0, newLeftWidth, newSize.height);
-  NSRect newRightFrame = NSMakeRect(newLeftWidth + dividierThickness, 0, newSize.width - newLeftWidth - dividierThickness, newSize.height);
-  [leftView setFrame:newLeftFrame];
   [rightView setFrame:newRightFrame];
 };
 

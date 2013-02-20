@@ -8,6 +8,10 @@
 
 #import <Foundation/Foundation.h>
 
+@class MPMainWindowController;
+
 @interface MPToolbarDelegate : NSObject <NSToolbarDelegate>
+
+@property (assign) NSToolbarItem *searchItem;
 
 @end

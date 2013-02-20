@@ -8,12 +8,14 @@
 
 #import "MPToolbarDelegate.h"
 #import "MPIconHelper.h"
+#import "MPMainWindowController.h"
 
 NSString *const MPToolbarItemAddGroup = @"AddGroup";
 NSString *const MPToolbarItemAddEntry = @"AddEntry";
 NSString *const MPToolbarItemEdit = @"Edit";
 NSString *const MPToolbarItemDelete =@"Delete";
 NSString *const MPToolbarItemAction = @"Action";
+NSString *const MPToolbarItemSearch = @"Search";
 
 @interface MPToolbarDelegate()
 
@@ -30,7 +32,7 @@ NSString *const MPToolbarItemAction = @"Action";
 {
   self = [super init];
   if (self) {
-    self.toolbarIdentifiers = @[ MPToolbarItemAddEntry, MPToolbarItemDelete, MPToolbarItemEdit, MPToolbarItemAddGroup, MPToolbarItemAction ];
+    self.toolbarIdentifiers = @[ MPToolbarItemAddEntry, MPToolbarItemDelete, MPToolbarItemEdit, MPToolbarItemAddGroup, MPToolbarItemAction, NSToolbarFlexibleSpaceItemIdentifier, MPToolbarItemSearch ];
     self.toolbarItems = [NSMutableDictionary dictionaryWithCapacity:[self.toolbarItems count]];
     self.toolbarImages = [self createToolbarImages];
   }
@@ -40,9 +42,23 @@ NSString *const MPToolbarItemAction = @"Action";
 - (NSToolbarItem *)toolbar:(NSToolbar *)toolbar itemForItemIdentifier:(NSString *)itemIdentifier willBeInsertedIntoToolbar:(BOOL)flag {
   NSToolbarItem *item = self.toolbarItems[ itemIdentifier ];
   if( !item ) {
+    
     item = [[NSToolbarItem alloc] initWithItemIdentifier:itemIdentifier];
-    NSButton *button;
-    if([itemIdentifier isEqualToString:MPToolbarItemAction]) {
+    [item setAction:@selector(toolbarItemPressed:)];
+    self.toolbarItems[itemIdentifier] = item;
+    NSString *label = NSLocalizedString(itemIdentifier, @"");
+    [item setLabel:label];
+    [item release];
+
+    if([itemIdentifier isEqualToString:MPToolbarItemSearch]) {
+      NSSearchField *searchfield = [[NSSearchField alloc] initWithFrame:NSMakeRect(0, 0, 70, 32)];
+      [item setView:searchfield];
+      [searchfield setAction:@selector(updateFilter:)];
+      [[searchfield cell] setSendsSearchStringImmediately:YES];
+      [searchfield release];
+      self.searchItem = item;
+    }
+    else if([itemIdentifier isEqualToString:MPToolbarItemAction]) {
       NSPopUpButton *popupButton = [[NSPopUpButton alloc] initWithFrame:NSMakeRect(0, 0, 50, 32) pullsDown:YES];
       [[popupButton cell] setBezelStyle:NSTexturedRoundedBezelStyle];
       [[popupButton cell] setImageScaling:NSImageScaleProportionallyDown];
@@ -51,9 +67,9 @@ NSString *const MPToolbarItemAction = @"Action";
        Built menu
        */
       NSMenu *menu = [NSMenu allocWithZone:[NSMenu menuZone]];
-      NSMenuItem *item = [[NSMenuItem allocWithZone:[NSMenu menuZone]] initWithTitle:@"" action:NULL keyEquivalent:@""];
-      [item setImage:self.toolbarImages[itemIdentifier]];
-      [menu addItem:item];
+      NSMenuItem *menuItem = [[NSMenuItem allocWithZone:[NSMenu menuZone]] initWithTitle:@"" action:NULL keyEquivalent:@""];
+      [menuItem setImage:self.toolbarImages[itemIdentifier]];
+      [menu addItem:menuItem];
       [menu addItemWithTitle:@"Foo" action:NULL keyEquivalent:@""];
       [menu addItemWithTitle:@"Bar" action:NULL keyEquivalent:@""];
       [popupButton setMenu:menu];
@@ -61,12 +77,15 @@ NSString *const MPToolbarItemAction = @"Action";
       /*
        Cleanup
        */
-      [item release];
+      [menuItem release];
       [menu release];
-      button = popupButton;
+      [popupButton sizeToFit];
+      
+      [item setView:popupButton];
+      [popupButton release];
     }
     else {
-      button = [[NSButton alloc] initWithFrame:NSMakeRect(0, 0, 32, 32)];
+      NSButton *button = [[NSButton alloc] initWithFrame:NSMakeRect(0, 0, 32, 32)];
       [[button cell] setBezelStyle:NSTexturedRoundedBezelStyle];
       [[button cell] setImageScaling:NSImageScaleProportionallyDown];
       [button setTitle:@""];
@@ -74,20 +93,11 @@ NSString *const MPToolbarItemAction = @"Action";
       NSImage *image = self.toolbarImages[itemIdentifier];
       [button setImage:image];
       [button setImagePosition:NSImageOnly];
+      [button sizeToFit];
+      
+      [item setView:button];
+      [button release];
     }
-    [button sizeToFit];
-    
-    NSString *label = NSLocalizedString(itemIdentifier, @"");
-    [item setLabel:label];
-    
-    [item setView:button];
-    
-    [item setAction:@selector(toolbarItemPressed:)];
-    
-    self.toolbarItems[itemIdentifier] = item;
-    [item release];
-    [button release];
-
     return item;
   }
   

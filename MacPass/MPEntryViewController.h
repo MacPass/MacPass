@@ -16,5 +16,6 @@
 @property (nonatomic, assign) id<NSOutlineViewDelegate> outlineViewDelegate;
 @property (assign) KdbGroup *activeGroup;
 @property (readonly, retain) NSArrayController *entryArrayController;
+@property (nonatomic, retain) NSString *filter;
 
 @end

@@ -38,7 +38,7 @@
 -(id)init {
   self = [super initWithWindowNibName:@"MainWindow" owner:self];
   if( self ) {
-    _toolbarDelegate = [[MPToolbarDelegate alloc] init];
+    _toolbarDelegate = [[MPToolbarDelegate alloc] init];    
     _outlineViewController = [[MPOutlineViewController alloc] init];
     _splitViewDelegate = [[MPMainWindowSplitViewDelegate alloc] init];
     
@@ -115,6 +115,14 @@
 
 #pragma mark Actions
 
+- (void)performFindPanelAction:(id)sender {
+  [self.window makeFirstResponder:[self.toolbarDelegate.searchItem view]];
+}
+
+- (void)showMainWindow:(id)sender {
+  [self showWindow:self.window];
+}
+
 - (void)openDocument:(id)sender {
   
   if(!self.passwordInputController) {
@@ -133,6 +141,11 @@
       [self setContentViewController:self.passwordInputController];
     }
   }];
+}
+
+- (void)updateFilter:(id)sender {
+  NSSearchField *searchField = sender;
+  self.entryViewController.filter = [searchField stringValue];
 }
 
 #pragma mark Notifications

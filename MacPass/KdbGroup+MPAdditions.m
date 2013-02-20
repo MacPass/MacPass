@@ -10,15 +10,21 @@
 
 @implementation KdbGroup (MPAdditions)
 
-+ (KdbGroup *)group {
-  KdbGroup *group = [[KdbGroup alloc] init];
-  [group setName:@"Default"];
-  return [group autorelease];
+- (NSArray *)childGroups {
+  NSMutableArray *childGroups = [NSMutableArray arrayWithCapacity:[self.groups count]];
+  for(KdbGroup *childGroup in self.groups) {
+    [childGroups addObjectsFromArray:[childGroup childGroups]];
+  }
+  return childGroups;
 }
 
-+ (KdbGroup *)groupWithName:(NSString *)name {
-  KdbGroup *group = [KdbGroup group];
-  [group setName:name];
-  return group;
+- (NSArray *)childEntries {
+  NSMutableArray *childEntries = [NSMutableArray arrayWithCapacity:[self.groups count] + [self.entries count]];
+  [childEntries addObjectsFromArray:self.entries];
+  for( KdbGroup *childGroup in self.groups) {
+    [childEntries addObjectsFromArray:[childGroup childEntries]];
+  }
+  return childEntries;
 }
+
 @end

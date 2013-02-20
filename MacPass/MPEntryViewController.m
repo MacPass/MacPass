@@ -8,6 +8,9 @@
 
 #import "MPEntryViewController.h"
 #import "MPOutlineViewDelegate.h"
+#import "MPDatabaseController.h"
+#import "MPDatabaseDocument.h"
+#import "KdbGroup+MPAdditions.h"
 
 NSString *const _MPUserNameColumnIdentifier = @"MPUserNameColumnIdentifier";
 NSString *const _MPTitleColumnIdentifier = @"MPTitleColumnIdentifier";
@@ -16,8 +19,12 @@ NSString *const _MPPasswordColumnIdentifier = @"MPPasswordColumnIdentifier";
 @interface MPEntryViewController ()
 
 @property (retain) NSArrayController *entryArrayController;
+@property (retain) NSArray *filteredEntries;
 @property (assign) IBOutlet NSTableView *entryTable;
 
+
+- (BOOL)hasActiveFilter;
+- (void)updateFilter;
 - (void)didChangeGroupSelectionInOutlineView:(NSNotification *)notification;
 
 @end
@@ -59,6 +66,12 @@ NSString *const _MPPasswordColumnIdentifier = @"MPPasswordColumnIdentifier";
 }
 
 - (void)didChangeGroupSelectionInOutlineView:(NSNotification *)notification {
+  /*
+   If we have an active search, do not mess with the content
+   */
+  if([self hasActiveFilter]) {
+    return;
+  }
   MPOutlineViewDelegate *delegate = [notification object];
   KdbGroup *group = delegate.selectedGroup;
   if(group) {
@@ -68,5 +81,36 @@ NSString *const _MPPasswordColumnIdentifier = @"MPPasswordColumnIdentifier";
     [self.entryArrayController setContent:nil];
   }
 }
+
+- (BOOL)hasActiveFilter {
+  return ([self.filter length] > 0);
+}
+
+- (void)setFilter:(NSString *)filter {
+  if(_filter != filter) {
+    [_filter release];
+    _filter = [filter retain];
+    [self updateFilter];
+  }
+}
+
+- (void)updateFilter {
+  MPDatabaseDocument *openDatabase = [MPDatabaseController defaultController].database;
+  if(openDatabase) {
+    if([self.filter isEqualToString:@"*"]) {
+      self.filteredEntries = [openDatabase.root childEntries];
+    }
+    else {
+      NSPredicate *filterPredicate = [NSPredicate predicateWithFormat:@"SELF.title CONTAINS[cd] %@", self.filter];
+      self.filteredEntries = [[openDatabase.root childEntries] filteredArrayUsingPredicate:filterPredicate];
+    }
+    [self.entryArrayController setContent:self.filteredEntries];
+  }
+  else {
+    [self.entryArrayController setContent:nil];
+    self.filteredEntries = nil;
+  }
+}
+
 
 @end
