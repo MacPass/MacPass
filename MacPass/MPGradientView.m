@@ -20,7 +20,6 @@
 
 @implementation MPGradientView
 
-
 - (id)initWithFrame:(NSRect)frameRect {
   NSColor *activeTop = [NSColor colorWithCalibratedWhite:0.85 alpha:1];
   NSColor *activeBottom = [NSColor colorWithCalibratedWhite:0.7 alpha:1];
@@ -40,12 +39,17 @@
   return self;
 }
 
+#pragma mark Drawing
 
 - (void)drawRect:(NSRect)dirtyRect {
+  /*
+   We draw a Gradient, so make sure we always redraw the full view
+   */
   NSGradient *gradient = self.isRenderedActive ? self.activeGradient : self.inactiveGradient;
-  [gradient drawInRect:dirtyRect angle:90];
+  [gradient drawInRect:self.bounds angle:90];
 }
 
+#pragma mark State Refresh
 - (void)_registerWindow:(NSWindow *)newWindow {
   if([self window]) {
     [[NSNotificationCenter defaultCenter] removeObserver:self name:NSWindowDidBecomeKeyNotification object:[self window]];
@@ -55,7 +59,6 @@
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(refreshActiveState) name:NSWindowDidBecomeKeyNotification object:newWindow];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(refreshActiveState) name:NSWindowDidResignKeyNotification object:newWindow];
   }
-  
 }
 
 - (void)viewWillMoveToWindow:(NSWindow *)newWindow {
@@ -67,6 +70,7 @@
   self.isRenderedActive = [[self window] isKeyWindow];
 }
 
+# pragma mark Custom Properties
 - (void)setIsRenderedActive:(BOOL)isRenderedActive {
   if(_isRenderedActive != isRenderedActive) {
     _isRenderedActive = isRenderedActive;

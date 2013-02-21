@@ -260,8 +260,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				4C8FECC816D57E3200BF26CF /* QuartzCore.framework in Frameworks */,
 				4CAD748E15B88AC100104512 /* libz.dylib in Frameworks */,
+				4C8FECC816D57E3200BF26CF /* QuartzCore.framework in Frameworks */,
 				4CAD748C15B889B700104512 /* Security.framework in Frameworks */,
 				4C77E36715B84A240093A587 /* Cocoa.framework in Frameworks */,
 			);
@@ -273,15 +273,15 @@
 		4C06398C15B980480004DE27 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				4C25D58616CF0FAA00F6806C /* EntryView.xib */,
 				4CF5D49516D5B6E900CB78BD /* EntryEditView.xib */,
-				4C77E37B15B84A240093A587 /* MainMenu.xib */,
-				4CA0B2EC15BCADAC00654E32 /* SettingsWindow.xib */,
 				4CA0B2EF15BCADC800654E32 /* GeneralSettings.xib */,
+				4C77E37B15B84A240093A587 /* MainMenu.xib */,
 				4CD884B615BD47080042BBF8 /* MainWindow.xib */,
+				4C61EA0416D2FFE200AC519E /* OutlineView.xib */,
+				4CA0B2EC15BCADAC00654E32 /* SettingsWindow.xib */,
 				4C6B0E8B16C9B99B00A9ED23 /* PasswordInputView.xib */,
 				4C25D58416CF0F8800F6806C /* WelcomeView.xib */,
-				4C25D58616CF0FAA00F6806C /* EntryView.xib */,
-				4C61EA0416D2FFE200AC519E /* OutlineView.xib */,
 				4C69A73816D589DF00EC1B1A /* MPGradientView.h */,
 				4C69A73916D589DF00EC1B1A /* MPGradientView.m */,
 			);
@@ -871,7 +871,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "MacPass/MacPass-Prefix.pch";
 				INFOPLIST_FILE = "MacPass/MacPass-Info.plist";
-				MACOSX_DEPLOYMENT_TARGET = 10.8;
+				MACOSX_DEPLOYMENT_TARGET = 10.7;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
 			};
@@ -884,7 +884,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "MacPass/MacPass-Prefix.pch";
 				INFOPLIST_FILE = "MacPass/MacPass-Info.plist";
-				MACOSX_DEPLOYMENT_TARGET = 10.8;
+				MACOSX_DEPLOYMENT_TARGET = 10.7;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
 			};

@@ -16,12 +16,12 @@
 
 @interface MPMainWindowController ()
 
-
 @property (assign) IBOutlet NSView *outlineView;
 @property (assign) IBOutlet NSSplitView *splitView;
 @property (assign) IBOutlet NSView *contentView;
 
 @property (retain) IBOutlet NSView *welcomeView;
+@property (assign) IBOutlet NSTextField *welcomeText;
 @property (retain) NSToolbar *toolbar;
 
 @property (retain) MPPasswordInputController *passwordInputController;
@@ -30,6 +30,9 @@
 
 @property (retain) MPToolbarDelegate *toolbarDelegate;
 @property (retain) MPMainWindowSplitViewDelegate *splitViewDelegate;
+
+- (void)collapseOutlineView;
+- (void)expandOutlineView;
 
 @end
 
@@ -58,9 +61,14 @@
   [super dealloc];
 }
 
+#pragma mark View Handling
+
 - (void)windowDidLoad
 {
   [super windowDidLoad];
+  
+  [[self.welcomeText cell] setBackgroundStyle:NSBackgroundStyleRaised];
+  
   const CGFloat minimumWindowWidth = MPMainWindowSplitViewDelegateMinimumContentWidth + MPMainWindowSplitViewDelegateMinimumOutlineWidth + [self.splitView dividerThickness];
   [self.window setMinSize:NSMakeSize( minimumWindowWidth, 400)];
   
@@ -72,13 +80,13 @@
   [self.splitView setDelegate:self.splitViewDelegate];
   
   NSRect frame = [self.outlineView frame];
-//  frame.size.height -= 1;
-//  frame.origin.y = 10;
   [self.outlineViewController.view setFrame:frame];
   [self.outlineViewController.view setAutoresizingMask:NSViewWidthSizable | NSViewHeightSizable];
   [self.splitView replaceSubview:self.outlineView with:[self.outlineViewController view]];
   [self.splitView adjustSubviews];
+  
   [self setContentViewController:nil];
+  [self collapseOutlineView];
 }
 
 - (void)setContentViewController:(MPViewController *)viewController {
@@ -113,6 +121,21 @@
   [self.window makeFirstResponder:[viewController reconmendedFirstResponder]];
 }
 
+- (void)collapseOutlineView {
+  NSView *outlineView = [self.splitView subviews][0];
+  if(![outlineView isHidden]) {
+    [self.splitView setPosition:0 ofDividerAtIndex:0];
+  }
+}
+
+- (void)expandOutlineView {
+  NSView *outlineView = [self.splitView subviews][0];
+  if([outlineView isHidden]) {
+    [self.splitView setPosition:MPMainWindowSplitViewDelegateMinimumOutlineWidth ofDividerAtIndex:0];
+
+  }
+}
+
 #pragma mark Actions
 
 - (void)performFindPanelAction:(id)sender {
@@ -124,7 +147,7 @@
 }
 
 - (void)openDocument:(id)sender {
-  
+ 
   if(!self.passwordInputController) {
     self.passwordInputController = [[[MPPasswordInputController alloc] init] autorelease];
   }
@@ -134,6 +157,7 @@
   [openPanel setCanChooseFiles:YES];
   [openPanel setCanCreateDirectories:NO];
   [openPanel setAllowsMultipleSelection:NO];
+  [openPanel setAllowedFileTypes:@[ @"kdbx", @"kdb"]];
   [openPanel beginSheetModalForWindow:self.window completionHandler:^(NSInteger result){
     if(result == NSFileHandlingPanelOKButton) {
       NSURL *file = [[openPanel URLs] lastObject];
@@ -155,10 +179,13 @@
 }
 
 - (void)showEntries {
+  [self expandOutlineView];
   if(!self.entryViewController) {
     _entryViewController = [[MPEntryViewController alloc] init];
   }
   [self setContentViewController:self.entryViewController];
 }
 
+- (IBAction)changedFileType:(id)sender {
+}
 @end

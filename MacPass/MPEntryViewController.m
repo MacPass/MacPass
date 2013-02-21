@@ -13,6 +13,10 @@
 #import "MPIconHelper.h"
 #import "KdbGroup+MPAdditions.h"
 
+#import <QuartzCore/QuartzCore.h>
+
+#define STATUS_BAR_ANIMATION_TIME 0.2
+
 NSString *const MPEntryTableUserNameColumnIdentifier = @"MPUserNameColumnIdentifier";
 NSString *const MPEntryTableTitleColumnIdentifier = @"MPTitleColumnIdentifier";
 NSString *const MPEntryTablePasswordColumnIdentifier = @"MPPasswordColumnIdentifier";
@@ -28,11 +32,17 @@ NSString *const _MPTAbleSecurCellView = @"PasswordCell";
 @property (retain) NSArray *filteredEntries;
 @property (assign) IBOutlet NSTableView *entryTable;
 @property (assign) IBOutlet NSView *statusBar;
+@property (assign) IBOutlet NSTextField *searchLabelTextField;
+@property (assign) BOOL isStatusBarVisible;
+@property (retain) IBOutlet NSLayoutConstraint *statusBarToTop;
+@property (retain) IBOutlet NSLayoutConstraint *tableToTop;
 
 
-- (BOOL)hasActiveFilter;
+- (BOOL)hasFilter;
 - (void)updateFilter;
 - (void)didChangeGroupSelectionInOutlineView:(NSNotification *)notification;
+- (void)showStatusBarAnimated:(BOOL)animate;
+- (void)hideStatusBarAnimated:(BOOL)animate;
 
 @end
 
@@ -46,6 +56,7 @@ NSString *const _MPTAbleSecurCellView = @"PasswordCell";
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil {
   self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
   if(self) {
+    _isStatusBarVisible = YES;
     _entryArrayController = [[NSArrayController alloc] init];
     [[NSNotificationCenter defaultCenter] addObserver:self
                                              selector:@selector(didChangeGroupSelectionInOutlineView:)
@@ -57,8 +68,11 @@ NSString *const _MPTAbleSecurCellView = @"PasswordCell";
 
 - (void)didLoadView {
   
+  [self.view setWantsLayer:YES];
+  [self hideStatusBarAnimated:NO];
+  [[self.searchLabelTextField cell] setBackgroundStyle:NSBackgroundStyleRaised];
   [self.entryTable setDelegate:self];
-
+  
   NSTableColumn *parentColumn = [self.entryTable tableColumns][0];
   NSTableColumn *titleColumn = [self.entryTable tableColumns][1];
   NSTableColumn *userNameColumn = [self.entryTable tableColumns][2];
@@ -83,7 +97,7 @@ NSString *const _MPTAbleSecurCellView = @"PasswordCell";
 
 - (NSView *)tableView:(NSTableView *)tableView viewForTableColumn:(NSTableColumn *)tableColumn row:(NSInteger)row {
   KdbEntry *entry = [self.entryArrayController arrangedObjects][row];
-
+  
   const BOOL isTitleColumn = [[tableColumn identifier] isEqualToString:MPEntryTableTitleColumnIdentifier];
   const BOOL isGroupColumn = [[tableColumn identifier] isEqualToString:MPEntryTableParentColumnIdentifier];
   const BOOL isPasswordColum = [[tableColumn identifier] isEqualToString:MPEntryTablePasswordColumnIdentifier];
@@ -103,7 +117,7 @@ NSString *const _MPTAbleSecurCellView = @"PasswordCell";
   }
   
   if( isPasswordColum ) {
-      view = [tableView makeViewWithIdentifier:_MPTAbleSecurCellView owner:self];
+    view = [tableView makeViewWithIdentifier:_MPTAbleSecurCellView owner:self];
     [[view textField] setStringValue:entry.password];
     return view;
   }
@@ -119,15 +133,9 @@ NSString *const _MPTAbleSecurCellView = @"PasswordCell";
 
 #pragma mark Notifications
 - (void)didChangeGroupSelectionInOutlineView:(NSNotification *)notification {
-  /*
-   If we have an active search, do not mess with the content
-   */
-  if([self hasActiveFilter]) {
-    return;
-  }
-  else {
-    [[self.entryTable tableColumnWithIdentifier:MPEntryTableParentColumnIdentifier] setHidden:YES];
-  }
+  
+  self.filter = @""; // will update the reast automatically
+  
   MPOutlineViewDelegate *delegate = [notification object];
   KdbGroup *group = delegate.selectedGroup;
   if(group) {
@@ -140,7 +148,7 @@ NSString *const _MPTAbleSecurCellView = @"PasswordCell";
 
 #pragma mark Filtering
 
-- (BOOL)hasActiveFilter {
+- (BOOL)hasFilter {
   return ([self.filter length] > 0);
 }
 
@@ -154,21 +162,16 @@ NSString *const _MPTAbleSecurCellView = @"PasswordCell";
 
 - (void)updateFilter {
   MPDatabaseDocument *openDatabase = [MPDatabaseController defaultController].database;
-  if(openDatabase) {
+  if(openDatabase && [self hasFilter]) {
+    [self showStatusBarAnimated:YES];
     
-    /*
-     Search in the background
-     */
     dispatch_queue_t backgroundQueue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
     dispatch_async(backgroundQueue, ^{
-      if([self.filter length] == 0) {
-        self.filteredEntries = [openDatabase.root childEntries];
-      }
-      else {
-        NSPredicate *filterPredicate = [NSPredicate predicateWithFormat:@"SELF.title CONTAINS[cd] %@", self.filter];
-        self.filteredEntries = [[openDatabase.root childEntries] filteredArrayUsingPredicate:filterPredicate];
-      }
-      dispatch_async(dispatch_get_main_queue(), ^{
+      
+      NSPredicate *filterPredicate = [NSPredicate predicateWithFormat:@"SELF.title CONTAINS[cd] %@", self.filter];
+      self.filteredEntries = [[openDatabase.root childEntries] filteredArrayUsingPredicate:filterPredicate];
+      
+      dispatch_sync(dispatch_get_main_queue(), ^{
         [self.entryArrayController setContent:self.filteredEntries];
         [[self.entryTable tableColumnWithIdentifier:MPEntryTableParentColumnIdentifier] setHidden:NO];
       });
@@ -177,6 +180,53 @@ NSString *const _MPTAbleSecurCellView = @"PasswordCell";
   else {
     [self.entryArrayController setContent:nil];
     self.filteredEntries = nil;
+    [[self.entryTable tableColumnWithIdentifier:MPEntryTableParentColumnIdentifier] setHidden:YES];
+    [self hideStatusBarAnimated:YES];
+  }
+}
+
+#pragma mark Animation
+
+- (void)showStatusBarAnimated:(BOOL)animate {
+  
+  if(self.isStatusBarVisible) {
+    return; // nothign to to
+  }
+  self.isStatusBarVisible = YES;
+  self.statusBarToTop.constant = 0;
+  self.tableToTop.constant = [self.statusBar frame].size.height;
+    
+  if(animate) {
+    [NSAnimationContext runAnimationGroup:^(NSAnimationContext* context) {
+      context.duration = STATUS_BAR_ANIMATION_TIME;
+      context.allowsImplicitAnimation = YES;
+      [self.view layoutSubtreeIfNeeded];
+    } completionHandler:nil] ;
+  }
+  else {
+    [self.view layoutSubtreeIfNeeded];
+  }
+}
+
+- (void)hideStatusBarAnimated:(BOOL)animate {
+  
+  if(!self.isStatusBarVisible) {
+    return; // nothing to do;
+  }
+  
+  self.isStatusBarVisible = NO;
+  self.statusBarToTop.constant = -[self.statusBar frame].size.height;
+  self.tableToTop.constant = -1;
+  
+  if(animate) {
+    [NSAnimationContext runAnimationGroup:^(NSAnimationContext* context) {
+      context.duration = STATUS_BAR_ANIMATION_TIME;
+      context.allowsImplicitAnimation = YES;
+      [self.view layoutSubtreeIfNeeded];
+    } completionHandler:nil] ;
+  }
+  else {
+    [self.view layoutSubtreeIfNeeded];
   }
 }
 

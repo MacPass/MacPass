@@ -60,7 +60,6 @@
 						<string key="NSFrame">{{13, 10}, {482, 597}}</string>
 						<reference key="NSSuperview" ref="1005"/>
 						<reference key="NSWindow"/>
-						<reference key="NSNextKeyView" ref="709543686"/>
 						<string key="NSReuseIdentifierKey">_NS:9</string>
 						<array class="NSMutableArray" key="NSTabViewItems">
 							<object class="NSTabViewItem" id="66471917">
@@ -678,7 +677,6 @@ AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA</b
 											<string key="NSFrame">{{382, 10}, {69, 32}}</string>
 											<reference key="NSSuperview" ref="709543686"/>
 											<reference key="NSWindow"/>
-											<reference key="NSNextKeyView"/>
 											<string key="NSReuseIdentifierKey">_NS:9</string>
 											<bool key="NSEnabled">YES</bool>
 											<object class="NSButtonCell" key="NSCell" id="1017592733">
@@ -740,7 +738,6 @@ AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA</b
 									<int key="NSvFlags">256</int>
 									<array class="NSMutableArray" key="NSSubviews"/>
 									<string key="NSFrame">{{10, 33}, {462, 551}}</string>
-									<reference key="NSNextKeyView"/>
 									<string key="NSReuseIdentifierKey">_NS:28</string>
 								</object>
 								<string key="NSLabel">Advanced</string>
@@ -765,7 +762,7 @@ AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA</b
 				<string key="NSClassName">NSView</string>
 			</object>
 			<object class="NSImageView" id="491721175">
-				<reference key="NSNextResponder"/>
+				<nil key="NSNextResponder"/>
 				<int key="NSvFlags">268</int>
 				<set class="NSMutableSet" key="NSDragTypes">
 					<string>Apple PDF pasteboard type</string>
@@ -776,7 +773,6 @@ AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA</b
 					<string>NeXT TIFF v4.0 pasteboard type</string>
 				</set>
 				<string key="NSFrameSize">{54, 54}</string>
-				<reference key="NSSuperview"/>
 				<string key="NSReuseIdentifierKey">_NS:9</string>
 				<bool key="NSEnabled">YES</bool>
 				<object class="NSImageCell" key="NSCell" id="26384283">
