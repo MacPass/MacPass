@@ -10,7 +10,6 @@
 
 @implementation MPIconHelper
 
-# pragma mark Icon accessors
 + (NSImage *)icon:(MPIconType)type {
   NSDictionary *icons = [MPIconHelper availableIcons];
   NSString *imageName = icons[@(type)];
@@ -31,6 +30,17 @@
                                 @(MPIconSocket): @"08_SocketTemplate"
                                 };
   return imageNames;
+}
+
++ (NSImage *)randomIcon {
+  static dispatch_once_t onceToken;
+  dispatch_once(&onceToken, ^{
+    srandom([[NSDate date] timeIntervalSince1970]);
+  });
+  
+  NSArray *types = [[MPIconHelper availableIcons] allKeys];
+  NSUInteger randomIndex = random() % [types count];
+  return [MPIconHelper icon:(MPIconType)randomIndex];
 }
 
 @end

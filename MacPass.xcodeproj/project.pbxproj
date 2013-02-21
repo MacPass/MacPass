@@ -58,6 +58,7 @@
 		4C669BA016760ED100DD0774 /* Salsa20RandomStream.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C669B7716760ED100DD0774 /* Salsa20RandomStream.m */; };
 		4C669BA116760ED100DD0774 /* Utils.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C669B7916760ED100DD0774 /* Utils.m */; };
 		4C669BA216760ED100DD0774 /* UUID.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C669B7B16760ED100DD0774 /* UUID.m */; };
+		4C69A73A16D589DF00EC1B1A /* MPGradientView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C69A73916D589DF00EC1B1A /* MPGradientView.m */; };
 		4C6B0E8C16C9B99B00A9ED23 /* PasswordInputView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4C6B0E8B16C9B99B00A9ED23 /* PasswordInputView.xib */; };
 		4C75CE3C16CB128700F61A4D /* MPDatabaseController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C75CE3B16CB128700F61A4D /* MPDatabaseController.m */; };
 		4C77E36715B84A240093A587 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4C77E36615B84A240093A587 /* Cocoa.framework */; };
@@ -66,6 +67,7 @@
 		4C77E37A15B84A240093A587 /* MPAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C77E37915B84A240093A587 /* MPAppDelegate.m */; };
 		4C77E37D15B84A240093A587 /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4C77E37B15B84A240093A587 /* MainMenu.xib */; };
 		4C83814215BF4677001AE468 /* MPMainWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C83814115BF4677001AE468 /* MPMainWindowController.m */; };
+		4C8FECC816D57E3200BF26CF /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4C8FECC716D57E3200BF26CF /* QuartzCore.framework */; };
 		4CA0B2ED15BCADAC00654E32 /* SettingsWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4CA0B2EC15BCADAC00654E32 /* SettingsWindow.xib */; };
 		4CA0B2F015BCADC800654E32 /* GeneralSettings.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4CA0B2EF15BCADC800654E32 /* GeneralSettings.xib */; };
 		4CA0B2F915BCAF6700654E32 /* MPGeneralSettingsController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CA0B2F815BCAF6700654E32 /* MPGeneralSettingsController.m */; };
@@ -89,6 +91,8 @@
 		4CD78AC016D155FF00768A1D /* 11_CameraTemplate.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 4CD78ABB16D155FF00768A1D /* 11_CameraTemplate.pdf */; };
 		4CD884B715BD47080042BBF8 /* MainWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4CD884B615BD47080042BBF8 /* MainWindow.xib */; };
 		4CDF01A316D1B76700D0AC08 /* MPEntryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CDF01A216D1B76700D0AC08 /* MPEntryViewController.m */; };
+		4CF5D49616D5B6E900CB78BD /* MPEntryEditController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CF5D49416D5B6E900CB78BD /* MPEntryEditController.m */; };
+		4CF5D49716D5B6E900CB78BD /* EntryEditView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4CF5D49516D5B6E900CB78BD /* EntryEditView.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -188,6 +192,8 @@
 		4C669B7916760ED100DD0774 /* Utils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Utils.m; sourceTree = "<group>"; };
 		4C669B7A16760ED100DD0774 /* UUID.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UUID.h; sourceTree = "<group>"; };
 		4C669B7B16760ED100DD0774 /* UUID.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UUID.m; sourceTree = "<group>"; };
+		4C69A73816D589DF00EC1B1A /* MPGradientView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MPGradientView.h; sourceTree = "<group>"; };
+		4C69A73916D589DF00EC1B1A /* MPGradientView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MPGradientView.m; sourceTree = "<group>"; };
 		4C6B0E8B16C9B99B00A9ED23 /* PasswordInputView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PasswordInputView.xib; sourceTree = "<group>"; };
 		4C75CE3A16CB128700F61A4D /* MPDatabaseController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MPDatabaseController.h; sourceTree = "<group>"; };
 		4C75CE3B16CB128700F61A4D /* MPDatabaseController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MPDatabaseController.m; sourceTree = "<group>"; };
@@ -205,6 +211,7 @@
 		4C77E37C15B84A240093A587 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/MainMenu.xib; sourceTree = "<group>"; };
 		4C83814015BF4677001AE468 /* MPMainWindowController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MPMainWindowController.h; sourceTree = "<group>"; };
 		4C83814115BF4677001AE468 /* MPMainWindowController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MPMainWindowController.m; sourceTree = "<group>"; };
+		4C8FECC716D57E3200BF26CF /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		4CA0B2EC15BCADAC00654E32 /* SettingsWindow.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SettingsWindow.xib; sourceTree = "<group>"; };
 		4CA0B2EF15BCADC800654E32 /* GeneralSettings.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GeneralSettings.xib; sourceTree = "<group>"; };
 		4CA0B2F715BCAF6700654E32 /* MPGeneralSettingsController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MPGeneralSettingsController.h; sourceTree = "<group>"; };
@@ -243,6 +250,9 @@
 		4CD884B615BD47080042BBF8 /* MainWindow.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MainWindow.xib; sourceTree = "<group>"; };
 		4CDF01A116D1B76700D0AC08 /* MPEntryViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MPEntryViewController.h; sourceTree = "<group>"; };
 		4CDF01A216D1B76700D0AC08 /* MPEntryViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MPEntryViewController.m; sourceTree = "<group>"; };
+		4CF5D49316D5B6E900CB78BD /* MPEntryEditController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MPEntryEditController.h; sourceTree = "<group>"; };
+		4CF5D49416D5B6E900CB78BD /* MPEntryEditController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MPEntryEditController.m; sourceTree = "<group>"; };
+		4CF5D49516D5B6E900CB78BD /* EntryEditView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = EntryEditView.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -250,6 +260,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4C8FECC816D57E3200BF26CF /* QuartzCore.framework in Frameworks */,
 				4CAD748E15B88AC100104512 /* libz.dylib in Frameworks */,
 				4CAD748C15B889B700104512 /* Security.framework in Frameworks */,
 				4C77E36715B84A240093A587 /* Cocoa.framework in Frameworks */,
@@ -262,6 +273,7 @@
 		4C06398C15B980480004DE27 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				4CF5D49516D5B6E900CB78BD /* EntryEditView.xib */,
 				4C77E37B15B84A240093A587 /* MainMenu.xib */,
 				4CA0B2EC15BCADAC00654E32 /* SettingsWindow.xib */,
 				4CA0B2EF15BCADC800654E32 /* GeneralSettings.xib */,
@@ -270,6 +282,8 @@
 				4C25D58416CF0F8800F6806C /* WelcomeView.xib */,
 				4C25D58616CF0FAA00F6806C /* EntryView.xib */,
 				4C61EA0416D2FFE200AC519E /* OutlineView.xib */,
+				4C69A73816D589DF00EC1B1A /* MPGradientView.h */,
+				4C69A73916D589DF00EC1B1A /* MPGradientView.m */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -457,6 +471,7 @@
 			isa = PBXGroup;
 			children = (
 				4CAD748D15B88AC100104512 /* libz.dylib */,
+				4C8FECC716D57E3200BF26CF /* QuartzCore.framework */,
 				4CAD748B15B889B700104512 /* Security.framework */,
 				4C77E36615B84A240093A587 /* Cocoa.framework */,
 				4C77E36815B84A240093A587 /* Other Frameworks */,
@@ -522,6 +537,8 @@
 				4CDF01A216D1B76700D0AC08 /* MPEntryViewController.m */,
 				4C61EA0116D2FD0800AC519E /* MPOutlineViewController.h */,
 				4C61EA0216D2FD0800AC519E /* MPOutlineViewController.m */,
+				4CF5D49316D5B6E900CB78BD /* MPEntryEditController.h */,
+				4CF5D49416D5B6E900CB78BD /* MPEntryEditController.m */,
 			);
 			name = Controller;
 			sourceTree = "<group>";
@@ -668,6 +685,7 @@
 				4CD78AC016D155FF00768A1D /* 11_CameraTemplate.pdf in Resources */,
 				4C61EA0516D2FFE200AC519E /* OutlineView.xib in Resources */,
 				4CB9339916D3A0DD00A13B5D /* Credits.rtf in Resources */,
+				4CF5D49716D5B6E900CB78BD /* EntryEditView.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -752,6 +770,8 @@
 				4C61EA0316D2FD0800AC519E /* MPOutlineViewController.m in Sources */,
 				4C2C4C2C16D3BE3700D49295 /* KdbGroup+MPAdditions.m in Sources */,
 				4CC1AEBE16D4467C006D2AAB /* KdbTree+MPAdditions.m in Sources */,
+				4C69A73A16D589DF00EC1B1A /* MPGradientView.m in Sources */,
+				4CF5D49616D5B6E900CB78BD /* MPEntryEditController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

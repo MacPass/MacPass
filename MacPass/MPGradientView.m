@@ -8,21 +8,70 @@
 
 #import "MPGradientView.h"
 
+@interface MPGradientView ()
+
+@property (assign, nonatomic) BOOL isRenderedActive;
+@property (retain) NSGradient *activeGradient;
+@property (retain) NSGradient *inactiveGradient;
+
+- (void)refreshActiveState;
+
+@end
+
 @implementation MPGradientView
 
-- (id)initWithFrame:(NSRect)frame
-{
-    self = [super initWithFrame:frame];
-    if (self) {
-        // Initialization code here.
-    }
-    
-    return self;
+
+- (id)initWithFrame:(NSRect)frameRect {
+  NSColor *activeTop = [NSColor colorWithCalibratedWhite:0.85 alpha:1];
+  NSColor *activeBottom = [NSColor colorWithCalibratedWhite:0.7 alpha:1];
+  NSColor *inactiveTop = [NSColor colorWithCalibratedWhite:0.9 alpha:1];
+  NSColor *inactiveBottom = [NSColor colorWithCalibratedWhite:0.85 alpha:1];
+  NSGradient *activeGradient = [[[NSGradient alloc] initWithColors:@[ activeBottom, activeTop ]] autorelease];
+  NSGradient *inactiveGradient = [[[NSGradient alloc] initWithColors:@[ inactiveBottom, inactiveTop ]] autorelease];
+  return [self initWithFrame:frameRect activeGradient:activeGradient inactiveGradient:inactiveGradient];
 }
 
-- (void)drawRect:(NSRect)dirtyRect
-{
-    // Drawing code here.
+- (id)initWithFrame:(NSRect)frame activeGradient:(NSGradient *)activeGradient inactiveGradient:(NSGradient *)inactiveGradient {
+  self = [super initWithFrame:frame];
+  if(self) {
+    _activeGradient = [activeGradient retain];
+    _inactiveGradient = [inactiveGradient retain];
+  }
+  return self;
+}
+
+
+- (void)drawRect:(NSRect)dirtyRect {
+  NSGradient *gradient = self.isRenderedActive ? self.activeGradient : self.inactiveGradient;
+  [gradient drawInRect:dirtyRect angle:90];
+}
+
+- (void)_registerWindow:(NSWindow *)newWindow {
+  if([self window]) {
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:NSWindowDidBecomeKeyNotification object:[self window]];
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:NSWindowDidResignKeyNotification object:[self window]];
+  }
+  if(newWindow) {
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(refreshActiveState) name:NSWindowDidBecomeKeyNotification object:newWindow];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(refreshActiveState) name:NSWindowDidResignKeyNotification object:newWindow];
+  }
+  
+}
+
+- (void)viewWillMoveToWindow:(NSWindow *)newWindow {
+  [self _registerWindow:newWindow];
+  [super viewWillMoveToWindow:newWindow];
+}
+
+- (void)refreshActiveState {
+  self.isRenderedActive = [[self window] isKeyWindow];
+}
+
+- (void)setIsRenderedActive:(BOOL)isRenderedActive {
+  if(_isRenderedActive != isRenderedActive) {
+    _isRenderedActive = isRenderedActive;
+    [self setNeedsDisplay:YES];
+  }
 }
 
 @end

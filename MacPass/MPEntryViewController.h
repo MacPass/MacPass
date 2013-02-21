@@ -8,12 +8,17 @@
 
 #import "MPViewController.h"
 
+APPKIT_EXTERN NSString *const MPEntryTableUserNameColumnIdentifier;
+APPKIT_EXTERN NSString *const MPEntryTableTitleColumnIdentifier;
+APPKIT_EXTERN NSString *const MPEntryTablePasswordColumnIdentifier;
+APPKIT_EXTERN NSString *const MPEntryTableParentColumnIdentifier;
+
+
 @class KdbGroup;
 @class MPOutlineViewDelegate;
 
-@interface MPEntryViewController : MPViewController
+@interface MPEntryViewController : MPViewController <NSTableViewDelegate>
 
-@property (nonatomic, assign) id<NSOutlineViewDelegate> outlineViewDelegate;
 @property (assign) KdbGroup *activeGroup;
 @property (readonly, retain) NSArrayController *entryArrayController;
 @property (nonatomic, retain) NSString *filter;

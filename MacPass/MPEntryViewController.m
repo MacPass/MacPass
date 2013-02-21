@@ -10,17 +10,24 @@
 #import "MPOutlineViewDelegate.h"
 #import "MPDatabaseController.h"
 #import "MPDatabaseDocument.h"
+#import "MPIconHelper.h"
 #import "KdbGroup+MPAdditions.h"
 
-NSString *const _MPUserNameColumnIdentifier = @"MPUserNameColumnIdentifier";
-NSString *const _MPTitleColumnIdentifier = @"MPTitleColumnIdentifier";
-NSString *const _MPPasswordColumnIdentifier = @"MPPasswordColumnIdentifier";
+NSString *const MPEntryTableUserNameColumnIdentifier = @"MPUserNameColumnIdentifier";
+NSString *const MPEntryTableTitleColumnIdentifier = @"MPTitleColumnIdentifier";
+NSString *const MPEntryTablePasswordColumnIdentifier = @"MPPasswordColumnIdentifier";
+NSString *const MPEntryTableParentColumnIdentifier = @"MPParentColumnIdentifier";
+
+NSString *const _MPTableImageCellView = @"ImageCell";
+NSString *const _MPTableStringCellView = @"StringCell";
+NSString *const _MPTAbleSecurCellView = @"PasswordCell";
 
 @interface MPEntryViewController ()
 
 @property (retain) NSArrayController *entryArrayController;
 @property (retain) NSArray *filteredEntries;
 @property (assign) IBOutlet NSTableView *entryTable;
+@property (assign) IBOutlet NSView *statusBar;
 
 
 - (BOOL)hasActiveFilter;
@@ -30,6 +37,7 @@ NSString *const _MPPasswordColumnIdentifier = @"MPPasswordColumnIdentifier";
 @end
 
 @implementation MPEntryViewController
+
 
 - (id)init {
   return [[MPEntryViewController alloc] initWithNibName:@"EntryView" bundle:nil];
@@ -48,29 +56,77 @@ NSString *const _MPPasswordColumnIdentifier = @"MPPasswordColumnIdentifier";
 }
 
 - (void)didLoadView {
-  NSTableColumn *nameColumn = [self.entryTable tableColumns][0];
-  NSTableColumn *userNameColumn = [self.entryTable tableColumns][1];
-  NSTableColumn *passwordColumn = [self.entryTable tableColumns][2];
   
-  [nameColumn setIdentifier:_MPTitleColumnIdentifier];
-  [userNameColumn setIdentifier:_MPUserNameColumnIdentifier];
-  [passwordColumn setIdentifier:_MPPasswordColumnIdentifier];
+  [self.entryTable setDelegate:self];
+
+  NSTableColumn *parentColumn = [self.entryTable tableColumns][0];
+  NSTableColumn *titleColumn = [self.entryTable tableColumns][1];
+  NSTableColumn *userNameColumn = [self.entryTable tableColumns][2];
+  NSTableColumn *passwordColumn = [self.entryTable tableColumns][3];
   
-  [[nameColumn headerCell] setStringValue:@"Title"];
+  [parentColumn setIdentifier:MPEntryTableParentColumnIdentifier];
+  [titleColumn setIdentifier:MPEntryTableTitleColumnIdentifier];
+  [userNameColumn setIdentifier:MPEntryTableUserNameColumnIdentifier];
+  [passwordColumn setIdentifier:MPEntryTablePasswordColumnIdentifier];
+  
+  [[parentColumn headerCell] setStringValue:@"Group"];
+  [[titleColumn headerCell] setStringValue:@"Title"];
   [[userNameColumn headerCell] setStringValue:@"Username"];
   [[passwordColumn headerCell] setStringValue:@"Password"];
   
-  [nameColumn bind:NSValueBinding toObject:self.entryArrayController withKeyPath:@"arrangedObjects.title" options:nil];
-  [userNameColumn bind:NSValueBinding toObject:self.entryArrayController withKeyPath:@"arrangedObjects.username" options:nil];
-  [passwordColumn bind:NSValueBinding toObject:self.entryArrayController withKeyPath:@"arrangedObjects.password" options:nil];
+  [self.entryTable bind:NSContentBinding toObject:self.entryArrayController withKeyPath:@"arrangedObjects" options:nil];
+  
+  [parentColumn setHidden:YES];
 }
 
+#pragma mark NSTableViewDelgate
+
+- (NSView *)tableView:(NSTableView *)tableView viewForTableColumn:(NSTableColumn *)tableColumn row:(NSInteger)row {
+  KdbEntry *entry = [self.entryArrayController arrangedObjects][row];
+
+  const BOOL isTitleColumn = [[tableColumn identifier] isEqualToString:MPEntryTableTitleColumnIdentifier];
+  const BOOL isGroupColumn = [[tableColumn identifier] isEqualToString:MPEntryTableParentColumnIdentifier];
+  const BOOL isPasswordColum = [[tableColumn identifier] isEqualToString:MPEntryTablePasswordColumnIdentifier];
+  const BOOL isUsernameColumn = [[tableColumn identifier] isEqualToString:MPEntryTableUserNameColumnIdentifier];
+  
+  NSTableCellView *view = nil;
+  if(isTitleColumn || isGroupColumn) {
+    view = [tableView makeViewWithIdentifier:_MPTableImageCellView owner:self];
+    [[view imageView] setImage:[MPIconHelper randomIcon]];
+    if( isTitleColumn ) {
+      [[view textField] setStringValue:entry.title];
+    }
+    else {
+      [[view textField] setStringValue:entry.parent.name];
+    }
+    return view;
+  }
+  
+  if( isPasswordColum ) {
+      view = [tableView makeViewWithIdentifier:_MPTAbleSecurCellView owner:self];
+    [[view textField] setStringValue:entry.password];
+    return view;
+  }
+  
+  if( isUsernameColumn ) {
+    view = [tableView makeViewWithIdentifier:_MPTableStringCellView owner:self];
+    [[view textField] setStringValue:entry.username];
+    return view;
+  }
+  
+  return view;
+}
+
+#pragma mark Notifications
 - (void)didChangeGroupSelectionInOutlineView:(NSNotification *)notification {
   /*
    If we have an active search, do not mess with the content
    */
   if([self hasActiveFilter]) {
     return;
+  }
+  else {
+    [[self.entryTable tableColumnWithIdentifier:MPEntryTableParentColumnIdentifier] setHidden:YES];
   }
   MPOutlineViewDelegate *delegate = [notification object];
   KdbGroup *group = delegate.selectedGroup;
@@ -81,6 +137,8 @@ NSString *const _MPPasswordColumnIdentifier = @"MPPasswordColumnIdentifier";
     [self.entryArrayController setContent:nil];
   }
 }
+
+#pragma mark Filtering
 
 - (BOOL)hasActiveFilter {
   return ([self.filter length] > 0);
@@ -97,14 +155,24 @@ NSString *const _MPPasswordColumnIdentifier = @"MPPasswordColumnIdentifier";
 - (void)updateFilter {
   MPDatabaseDocument *openDatabase = [MPDatabaseController defaultController].database;
   if(openDatabase) {
-    if([self.filter isEqualToString:@"*"]) {
-      self.filteredEntries = [openDatabase.root childEntries];
-    }
-    else {
-      NSPredicate *filterPredicate = [NSPredicate predicateWithFormat:@"SELF.title CONTAINS[cd] %@", self.filter];
-      self.filteredEntries = [[openDatabase.root childEntries] filteredArrayUsingPredicate:filterPredicate];
-    }
-    [self.entryArrayController setContent:self.filteredEntries];
+    
+    /*
+     Search in the background
+     */
+    dispatch_queue_t backgroundQueue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
+    dispatch_async(backgroundQueue, ^{
+      if([self.filter length] == 0) {
+        self.filteredEntries = [openDatabase.root childEntries];
+      }
+      else {
+        NSPredicate *filterPredicate = [NSPredicate predicateWithFormat:@"SELF.title CONTAINS[cd] %@", self.filter];
+        self.filteredEntries = [[openDatabase.root childEntries] filteredArrayUsingPredicate:filterPredicate];
+      }
+      dispatch_async(dispatch_get_main_queue(), ^{
+        [self.entryArrayController setContent:self.filteredEntries];
+        [[self.entryTable tableColumnWithIdentifier:MPEntryTableParentColumnIdentifier] setHidden:NO];
+      });
+    });
   }
   else {
     [self.entryArrayController setContent:nil];

@@ -10,4 +10,6 @@
 
 @interface MPGradientView : NSView
 
+- (id)initWithFrame:(NSRect)frame activeGradient:(NSGradient *)activeGradient inactiveGradient:(NSGradient *)inactiveGradient;
+
 @end

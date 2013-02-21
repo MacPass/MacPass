@@ -24,10 +24,20 @@ typedef enum {
 
 @interface MPIconHelper : NSObject
 
+/*
+ @param type  Icon identifier typ MPIconTyp
+ @returns Icon for given identifier
+ */
 + (NSImage *)icon:(MPIconType)type;
 /*
  Available Icons, Use the MPDatabaseIconType to access a individual icon;
+ @returns all availble Icons
  */
 + (NSDictionary *)availableIcons;
+
+/*
+ @returns a random Icon image
+ */
++ (NSImage *)randomIcon;
 
 @end
