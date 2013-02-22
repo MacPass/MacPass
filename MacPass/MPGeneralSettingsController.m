@@ -35,11 +35,6 @@ NSString *const MPGeneralSetingsIdentifier = @"GeneralSettingsTab";
     return self;
 }
 
-- (void)loadView {
-  [super loadView];
-  [self didLoadView];
-}
-
 - (void)didLoadView {
   // setup connections
   NSMenu *encodingMenu = [[NSMenu allocWithZone:[NSMenu menuZone]] init];
@@ -57,6 +52,8 @@ NSString *const MPGeneralSetingsIdentifier = @"GeneralSettingsTab";
 
   [_encodingPopup setMenu:encodingMenu];
   [encodingMenu release];
+
+  
 }
 
 @end

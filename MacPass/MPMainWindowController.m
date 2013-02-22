@@ -114,6 +114,7 @@
   else {
     [self.contentView addSubview:newContentView];
   }
+  [self.contentView setNeedsDisplay:YES];
   [self.splitView adjustSubviews];
   /*
    Set focus AFTER having added the view
@@ -132,7 +133,6 @@
   NSView *outlineView = [self.splitView subviews][0];
   if([outlineView isHidden]) {
     [self.splitView setPosition:MPMainWindowSplitViewDelegateMinimumOutlineWidth ofDividerAtIndex:0];
-
   }
 }
 
@@ -170,6 +170,10 @@
 - (void)updateFilter:(id)sender {
   NSSearchField *searchField = sender;
   self.entryViewController.filter = [searchField stringValue];
+}
+
+- (void)cancelFilter:(id)sender {
+  NSLog(@"Whooo");
 }
 
 #pragma mark Notifications

@@ -70,7 +70,16 @@
 									<string key="NSFrame">{{257, 0}, {470, 630}}</string>
 									<reference key="NSSuperview" ref="947682332"/>
 									<reference key="NSWindow"/>
-									<reference key="NSNextKeyView"/>
+									<bool key="NSViewIsLayerTreeHost">YES</bool>
+									<object class="NSDictionary" key="NSViewAnimations">
+										<string key="NS.key.0">subviews</string>
+										<object class="CATransition" key="NS.object.0">
+											<string key="type">fade</string>
+											<array key="__CACodingContents">
+												<string>type</string>
+											</array>
+										</object>
+									</object>
 									<string key="NSReuseIdentifierKey">_NS:13</string>
 									<string key="NSClassName">NSView</string>
 								</object>
@@ -89,7 +98,7 @@
 					<reference key="NSWindow"/>
 					<reference key="NSNextKeyView" ref="947682332"/>
 				</object>
-				<string key="NSScreenRect">{{0, 0}, {2560, 1418}}</string>
+				<string key="NSScreenRect">{{0, 0}, {1680, 1028}}</string>
 				<string key="NSMinSize">{400, 422}</string>
 				<string key="NSMaxSize">{10000000000000, 10000000000000}</string>
 				<bool key="NSWindowIsRestorable">YES</bool>
@@ -223,6 +232,7 @@
 						<string key="contentView">NSView</string>
 						<string key="outlineView">NSView</string>
 						<string key="splitView">NSSplitView</string>
+						<string key="welcomeText">NSTextField</string>
 						<string key="welcomeView">NSView</string>
 					</dictionary>
 					<dictionary class="NSMutableDictionary" key="toOneOutletInfosByName">
@@ -237,6 +247,10 @@
 						<object class="IBToOneOutletInfo" key="splitView">
 							<string key="name">splitView</string>
 							<string key="candidateClassName">NSSplitView</string>
+						</object>
+						<object class="IBToOneOutletInfo" key="welcomeText">
+							<string key="name">welcomeText</string>
+							<string key="candidateClassName">NSTextField</string>
 						</object>
 						<object class="IBToOneOutletInfo" key="welcomeView">
 							<string key="name">welcomeView</string>

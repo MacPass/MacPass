@@ -8,7 +8,9 @@
 
 #import <Cocoa/Cocoa.h>
 #import "MPSettingsTabProtocoll.h"
+#import "MPViewController.h"
 
-@interface MPGeneralSettingsController : NSViewController <MPSettingsTabProtocoll>
+@interface MPGeneralSettingsController : MPViewController <MPSettingsTabProtocoll>
+@property (assign) IBOutlet NSProgressIndicator *spinner;
 
 @end

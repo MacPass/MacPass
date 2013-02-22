@@ -54,7 +54,7 @@ NSString *const MPToolbarItemSearch = @"Search";
       NSSearchField *searchfield = [[NSSearchField alloc] initWithFrame:NSMakeRect(0, 0, 70, 32)];
       [item setView:searchfield];
       [searchfield setAction:@selector(updateFilter:)];
-      [[searchfield cell] setSendsSearchStringImmediately:YES];
+      [[searchfield cell] setSendsSearchStringImmediately:NO];
       [searchfield release];
       self.searchItem = item;
     }
