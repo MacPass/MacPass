@@ -40,6 +40,11 @@ NSString *const MPDatabaseControllerDatabaseKey = @"MPDatabaseControllerDatabase
   return self;
 }
 
+- (void)dealloc {
+  self.database = nil;
+  [super dealloc];
+}
+
 - (MPDatabaseDocument *)createDatabase:(MPDatabaseVersion)version password:(NSString *)password keyfile:(NSURL *)key {
   return self.database;
 }

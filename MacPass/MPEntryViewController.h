@@ -24,4 +24,7 @@ APPKIT_EXTERN NSString *const MPEntryTableURLColumnIdentifier;
 @property (readonly, retain) NSArrayController *entryArrayController;
 @property (nonatomic, retain) NSString *filter;
 
+/* Clear the Search filter*/
+- (void)clearFilter;
+
 @end

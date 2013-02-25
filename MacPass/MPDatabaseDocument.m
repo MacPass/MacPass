@@ -91,6 +91,7 @@ NSString *const MPDidLoadDataBaseNotification = @"DidLoadDataBaseNotification";
   self.tree = nil;
   self.file = nil;
   self.password = nil;
+  self.key = nil;
   [super dealloc];
 }
 

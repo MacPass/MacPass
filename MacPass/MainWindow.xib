@@ -37,7 +37,7 @@
 			<object class="NSWindowTemplate" id="1005">
 				<int key="NSWindowStyleMask">15</int>
 				<int key="NSWindowBacking">2</int>
-				<string key="NSWindowRect">{{196, 240}, {727, 630}}</string>
+				<string key="NSWindowRect">{{196, 240}, {727, 449}}</string>
 				<int key="NSWTFlags">544735232</int>
 				<string key="NSWindowTitle">Window</string>
 				<string key="NSWindowClass">NSWindow</string>
@@ -56,7 +56,7 @@
 									<reference key="NSNextResponder" ref="947682332"/>
 									<int key="NSvFlags">268</int>
 									<array class="NSMutableArray" key="NSSubviews"/>
-									<string key="NSFrameSize">{256, 630}</string>
+									<string key="NSFrameSize">{256, 449}</string>
 									<reference key="NSSuperview" ref="947682332"/>
 									<reference key="NSWindow"/>
 									<reference key="NSNextKeyView" ref="938782220"/>
@@ -67,24 +67,14 @@
 									<reference key="NSNextResponder" ref="947682332"/>
 									<int key="NSvFlags">256</int>
 									<array class="NSMutableArray" key="NSSubviews"/>
-									<string key="NSFrame">{{257, 0}, {470, 630}}</string>
+									<string key="NSFrame">{{257, 0}, {470, 449}}</string>
 									<reference key="NSSuperview" ref="947682332"/>
 									<reference key="NSWindow"/>
-									<bool key="NSViewIsLayerTreeHost">YES</bool>
-									<object class="NSDictionary" key="NSViewAnimations">
-										<string key="NS.key.0">subviews</string>
-										<object class="CATransition" key="NS.object.0">
-											<string key="type">fade</string>
-											<array key="__CACodingContents">
-												<string>type</string>
-											</array>
-										</object>
-									</object>
 									<string key="NSReuseIdentifierKey">_NS:13</string>
 									<string key="NSClassName">NSView</string>
 								</object>
 							</array>
-							<string key="NSFrameSize">{727, 630}</string>
+							<string key="NSFrameSize">{727, 449}</string>
 							<reference key="NSSuperview" ref="1006"/>
 							<reference key="NSWindow"/>
 							<reference key="NSNextKeyView" ref="425088172"/>
@@ -93,12 +83,12 @@
 							<int key="NSDividerStyle">2</int>
 						</object>
 					</array>
-					<string key="NSFrameSize">{727, 630}</string>
+					<string key="NSFrameSize">{727, 449}</string>
 					<reference key="NSSuperview"/>
 					<reference key="NSWindow"/>
 					<reference key="NSNextKeyView" ref="947682332"/>
 				</object>
-				<string key="NSScreenRect">{{0, 0}, {1680, 1028}}</string>
+				<string key="NSScreenRect">{{0, 0}, {1920, 1058}}</string>
 				<string key="NSMinSize">{400, 422}</string>
 				<string key="NSMaxSize">{10000000000000, 10000000000000}</string>
 				<bool key="NSWindowIsRestorable">YES</bool>

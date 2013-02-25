@@ -25,6 +25,11 @@
   return [[MPPasswordInputController alloc] initWithNibName:@"PasswordInputView" bundle:nil];
 }
 
+- (void)dealloc {
+  self.fileURL = nil;
+  [super dealloc];
+}
+
 - (NSResponder *)reconmendedFirstResponder {
   return self.passwordTextField;
 }

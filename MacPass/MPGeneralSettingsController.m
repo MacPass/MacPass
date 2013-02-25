@@ -29,8 +29,7 @@ NSString *const MPGeneralSetingsIdentifier = @"GeneralSettingsTab";
   return [self initWithNibName:@"GeneralSettings" bundle:[NSBundle mainBundle]];
 }
 
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
-{
+- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     return self;
 }
@@ -39,7 +38,7 @@ NSString *const MPGeneralSetingsIdentifier = @"GeneralSettingsTab";
   // setup connections
   NSMenu *encodingMenu = [[NSMenu allocWithZone:[NSMenu menuZone]] init];
   NSMenuItem *item;
-
+  
   item = [[NSMenuItem allocWithZone:[NSMenu menuZone]] initWithTitle:@"UTF8 Encoding" action:NULL keyEquivalent:@""];
   [item setRepresentedObject:[NSNumber numberWithInt:NSUTF8StringEncoding]];
   [encodingMenu addItem:item];

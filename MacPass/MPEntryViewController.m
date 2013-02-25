@@ -42,13 +42,11 @@ NSString *const _toggleSearchUsernameButton = @"SearchUsername";
 
 @property (retain) NSArrayController *entryArrayController;
 @property (retain) NSArray *filteredEntries;
+@property (retain) IBOutlet NSView *filterBar;
 @property (assign) IBOutlet NSTableView *entryTable;
-@property (assign) IBOutlet NSView *statusBar;
 @property (assign) IBOutlet NSTextField *searchLabelTextField;
 @property (assign) BOOL isStatusBarVisible;
-@property (retain) IBOutlet NSLayoutConstraint *statusBarToTop;
 @property (retain) IBOutlet NSLayoutConstraint *tableToTop;
-@property (assign) IBOutlet NSProgressIndicator *progressIndicator;
 
 @property (assign) IBOutlet NSButton *searchTitleButton;
 @property (assign) IBOutlet NSButton *searchUsernameButton;
@@ -65,8 +63,9 @@ NSString *const _toggleSearchUsernameButton = @"SearchUsername";
 
 - (BOOL)hasFilter;
 - (void)updateFilter;
+- (void)setupFilterBar;
 - (void)didChangeGroupSelectionInOutlineView:(NSNotification *)notification;
-- (void)showStatusBarAnimated:(BOOL)animate;
+- (void)showFilterBarAnimated:(BOOL)animate;
 - (void)hideStatusBarAnimated:(BOOL)animate;
 
 @end
@@ -96,14 +95,19 @@ NSString *const _toggleSearchUsernameButton = @"SearchUsername";
   return self;
 }
 
+- (void)dealloc {
+  self.entryArrayController = nil;
+  self.filteredEntries = nil;
+  self.filterBar = nil;
+  self.tableToTop = nil;
+  self.filterButtonToMode = nil;
+  [super dealloc];
+}
+
 - (void)didLoadView {
   [self.view setWantsLayer:YES];
   [self hideStatusBarAnimated:NO];
   [[self.searchLabelTextField cell] setBackgroundStyle:NSBackgroundStyleRaised];
-  
-  [self.searchURLButton setIdentifier:_toggleSearchURLButton];
-  [self.searchUsernameButton setIdentifier:_toggleSearchUsernameButton];
-  [self.searchTitleButton setIdentifier:_toggleSearchTitleButton];
   
   [self.entryTable setDelegate:self];
   
@@ -172,8 +176,10 @@ NSString *const _toggleSearchUsernameButton = @"SearchUsername";
 #pragma mark Notifications
 - (void)didChangeGroupSelectionInOutlineView:(NSNotification *)notification {
   
-  self.filter = @""; // will update the reast automatically
-  
+  if([self hasFilter]) {
+    return;
+  }
+  [self clearFilter];
   MPOutlineViewDelegate *delegate = [notification object];
   KdbGroup *group = delegate.selectedGroup;
   if(group) {
@@ -198,11 +204,16 @@ NSString *const _toggleSearchUsernameButton = @"SearchUsername";
   }
 }
 
+- (void)clearFilter {
+  self.filter = nil;
+  [[self.entryTable tableColumnWithIdentifier:MPEntryTableParentColumnIdentifier] setHidden:YES];
+  [self hideStatusBarAnimated:YES];
+}
+
 - (void)updateFilter {
   MPDatabaseDocument *openDatabase = [MPDatabaseController defaultController].database;
-  if(openDatabase && [self hasFilter]) {
-    [self showStatusBarAnimated:YES];
-    
+  if(openDatabase) {
+    [self showFilterBarAnimated:YES];
     
     dispatch_queue_t backgroundQueue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
     dispatch_async(backgroundQueue, ^{
@@ -229,26 +240,47 @@ NSString *const _toggleSearchUsernameButton = @"SearchUsername";
   else {
     [self.entryArrayController setContent:nil];
     self.filteredEntries = nil;
-    [[self.entryTable tableColumnWithIdentifier:MPEntryTableParentColumnIdentifier] setHidden:YES];
-    [self hideStatusBarAnimated:YES];
+  }
+}
+
+- (void)setupFilterBar {
+  if(!self.filterBar) {
+    [[NSBundle mainBundle] loadNibNamed:@"FilterBar" owner:self topLevelObjects:nil];
+    [self.filterBar setAutoresizingMask:NSViewWidthSizable|NSViewMinYMargin];
+    [self.searchURLButton setIdentifier:_toggleSearchURLButton];
+    [self.searchUsernameButton setIdentifier:_toggleSearchUsernameButton];
+    [self.searchTitleButton setIdentifier:_toggleSearchTitleButton];
   }
 }
 
 #pragma mark Animation
 
-- (void)showStatusBarAnimated:(BOOL)animate {
+- (void)showFilterBarAnimated:(BOOL)animate {
+  
+  animate = NO;
+  
+  if(!self.filterBar) {
+    [self setupFilterBar];
+  }
+  /*
+   Make sure the buttons are set correctyl every time
+   */
+  [self.searchTitleButton setState:[self shouldFilterTitles] ? NSOnState : NSOffState];
+  [self.searchURLButton setState:[self shouldFilterURLs] ? NSOnState : NSOffState ];
+  [self.searchUsernameButton setState:[self shouldFilterUsernames] ? NSOnState : NSOffState];
   
   if(self.isStatusBarVisible) {
     return; // nothign to to
   }
   
-  [self.searchTitleButton setState:[self shouldFilterTitles] ? NSOnState : NSOffState];
-  [self.searchURLButton setState:[self shouldFilterURLs] ? NSOnState : NSOffState ];
-  [self.searchUsernameButton setState:[self shouldFilterUsernames] ? NSOnState : NSOffState];
-  
   self.isStatusBarVisible = YES;
-  self.statusBarToTop.constant = 0;
-  self.tableToTop.constant = [self.statusBar frame].size.height;
+  self.tableToTop.constant = [self.filterBar frame].size.height;
+  
+  [self.view addSubview:self.filterBar];
+  NSRect filterFrame = [self.filterBar frame];
+  filterFrame.origin.y = [self.view frame].size.height - filterFrame.size.height;
+  filterFrame.size.width = [self.view frame].size.width;
+  [self.filterBar setFrame:filterFrame];
   
   if(animate) {
     [NSAnimationContext runAnimationGroup:^(NSAnimationContext* context) {
@@ -264,13 +296,15 @@ NSString *const _toggleSearchUsernameButton = @"SearchUsername";
 
 - (void)hideStatusBarAnimated:(BOOL)animate {
   
+  animate = NO;
+ 
   if(!self.isStatusBarVisible) {
     return; // nothing to do;
   }
   
   self.isStatusBarVisible = NO;
-  self.statusBarToTop.constant = -[self.statusBar frame].size.height;
   self.tableToTop.constant = -1;
+  [self.filterBar removeFromSuperview];
   
   if(animate) {
     [NSAnimationContext runAnimationGroup:^(NSAnimationContext* context) {
@@ -302,10 +336,14 @@ NSString *const _toggleSearchUsernameButton = @"SearchUsername";
     default:
       break;
   }
+
 }
 
 - (void)setFilterMode:(MPFilterModeType)newFilterMode {
   if(_filterMode != newFilterMode) {
+    if(newFilterMode == MPFilterNone) {
+      newFilterMode = MPFilterTitles;
+    }
     _filterMode = newFilterMode;
     [self updateFilter];
   }

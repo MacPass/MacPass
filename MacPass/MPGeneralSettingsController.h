@@ -11,6 +11,6 @@
 #import "MPViewController.h"
 
 @interface MPGeneralSettingsController : MPViewController <MPSettingsTabProtocoll>
-@property (assign) IBOutlet NSProgressIndicator *spinner;
+@property (assign) IBOutlet NSImageView *imageView;
 
 @end

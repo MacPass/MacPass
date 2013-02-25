@@ -21,7 +21,7 @@ typedef enum {
 
 @interface MPDatabaseDocument : NSObject
 
-@property (retain, readonly) KdbGroup *root;
+@property (assign, readonly) KdbGroup *root;
 @property (retain, readonly) NSURL *file;
 @property (nonatomic,retain) NSString *password;
 @property (nonatomic, retain) NSURL *key;

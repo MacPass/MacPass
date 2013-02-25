@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		4C16854416D704980027ECBC /* MPPathBar.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C16854316D704980027ECBC /* MPPathBar.m */; };
 		4C25D58516CF0F8800F6806C /* WelcomeView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4C25D58416CF0F8800F6806C /* WelcomeView.xib */; };
 		4C25D58716CF0FAA00F6806C /* EntryView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4C25D58616CF0FAA00F6806C /* EntryView.xib */; };
 		4C2C4C2C16D3BE3700D49295 /* KdbGroup+MPAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C2C4C2B16D3BE3700D49295 /* KdbGroup+MPAdditions.m */; };
@@ -17,6 +18,7 @@
 		4C2E382616D1470200037A9D /* MPViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C2E382516D1470200037A9D /* MPViewController.m */; };
 		4C37A84015B8B474005EF8EE /* MPOutlineDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C37A83F15B8B474005EF8EE /* MPOutlineDataSource.m */; };
 		4C3BD51516D276F800389F1F /* MPToolbarDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C3BD51416D276F800389F1F /* MPToolbarDelegate.m */; };
+		4C3FFD9E16DAF60600DF9186 /* FilterBar.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4C3FFD9D16DAF60600DF9186 /* FilterBar.xib */; };
 		4C586F9E16D07ABD00E7DB57 /* 00_PasswordTemplate.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 4C586F9D16D07ABD00E7DB57 /* 00_PasswordTemplate.pdf */; };
 		4C586FA016D07D7200E7DB57 /* 01_PackageNetworkTemplate.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 4C586F9F16D07D7200E7DB57 /* 01_PackageNetworkTemplate.pdf */; };
 		4C586FA216D07F6A00E7DB57 /* 02_MessageBoxWarningTemplate.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 4C586FA116D07F6A00E7DB57 /* 02_MessageBoxWarningTemplate.pdf */; };
@@ -60,6 +62,7 @@
 		4C669BA216760ED100DD0774 /* UUID.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C669B7B16760ED100DD0774 /* UUID.m */; };
 		4C69A73A16D589DF00EC1B1A /* MPGradientView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C69A73916D589DF00EC1B1A /* MPGradientView.m */; };
 		4C6B0E8C16C9B99B00A9ED23 /* PasswordInputView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4C6B0E8B16C9B99B00A9ED23 /* PasswordInputView.xib */; };
+		4C6DA0F916D81B8A0011224B /* MPPathBarItemView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C6DA0F816D81B8A0011224B /* MPPathBarItemView.m */; };
 		4C75CE3C16CB128700F61A4D /* MPDatabaseController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C75CE3B16CB128700F61A4D /* MPDatabaseController.m */; };
 		4C77E36715B84A240093A587 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4C77E36615B84A240093A587 /* Cocoa.framework */; };
 		4C77E37115B84A240093A587 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 4C77E36F15B84A240093A587 /* InfoPlist.strings */; };
@@ -96,6 +99,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		4C16854216D704980027ECBC /* MPPathBar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MPPathBar.h; sourceTree = "<group>"; };
+		4C16854316D704980027ECBC /* MPPathBar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MPPathBar.m; sourceTree = "<group>"; };
 		4C25D58416CF0F8800F6806C /* WelcomeView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = WelcomeView.xib; sourceTree = "<group>"; };
 		4C25D58616CF0FAA00F6806C /* EntryView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = EntryView.xib; sourceTree = "<group>"; };
 		4C2C4C2A16D3BE3700D49295 /* KdbGroup+MPAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "KdbGroup+MPAdditions.h"; sourceTree = "<group>"; };
@@ -111,6 +116,7 @@
 		4C37A83F15B8B474005EF8EE /* MPOutlineDataSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MPOutlineDataSource.m; sourceTree = "<group>"; };
 		4C3BD51316D276F800389F1F /* MPToolbarDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MPToolbarDelegate.h; sourceTree = "<group>"; };
 		4C3BD51416D276F800389F1F /* MPToolbarDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MPToolbarDelegate.m; sourceTree = "<group>"; };
+		4C3FFD9D16DAF60600DF9186 /* FilterBar.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FilterBar.xib; sourceTree = "<group>"; };
 		4C586F9D16D07ABD00E7DB57 /* 00_PasswordTemplate.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = 00_PasswordTemplate.pdf; sourceTree = "<group>"; };
 		4C586F9F16D07D7200E7DB57 /* 01_PackageNetworkTemplate.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = 01_PackageNetworkTemplate.pdf; sourceTree = "<group>"; };
 		4C586FA116D07F6A00E7DB57 /* 02_MessageBoxWarningTemplate.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = 02_MessageBoxWarningTemplate.pdf; sourceTree = "<group>"; };
@@ -195,6 +201,8 @@
 		4C69A73816D589DF00EC1B1A /* MPGradientView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MPGradientView.h; sourceTree = "<group>"; };
 		4C69A73916D589DF00EC1B1A /* MPGradientView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MPGradientView.m; sourceTree = "<group>"; };
 		4C6B0E8B16C9B99B00A9ED23 /* PasswordInputView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PasswordInputView.xib; sourceTree = "<group>"; };
+		4C6DA0F716D81B8A0011224B /* MPPathBarItemView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MPPathBarItemView.h; sourceTree = "<group>"; };
+		4C6DA0F816D81B8A0011224B /* MPPathBarItemView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MPPathBarItemView.m; sourceTree = "<group>"; };
 		4C75CE3A16CB128700F61A4D /* MPDatabaseController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MPDatabaseController.h; sourceTree = "<group>"; };
 		4C75CE3B16CB128700F61A4D /* MPDatabaseController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MPDatabaseController.m; sourceTree = "<group>"; };
 		4C77E36215B84A240093A587 /* MacPass.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MacPass.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -282,8 +290,13 @@
 				4CA0B2EC15BCADAC00654E32 /* SettingsWindow.xib */,
 				4C6B0E8B16C9B99B00A9ED23 /* PasswordInputView.xib */,
 				4C25D58416CF0F8800F6806C /* WelcomeView.xib */,
+				4C3FFD9D16DAF60600DF9186 /* FilterBar.xib */,
 				4C69A73816D589DF00EC1B1A /* MPGradientView.h */,
 				4C69A73916D589DF00EC1B1A /* MPGradientView.m */,
+				4C16854216D704980027ECBC /* MPPathBar.h */,
+				4C16854316D704980027ECBC /* MPPathBar.m */,
+				4C6DA0F716D81B8A0011224B /* MPPathBarItemView.h */,
+				4C6DA0F816D81B8A0011224B /* MPPathBarItemView.m */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -686,6 +699,7 @@
 				4C61EA0516D2FFE200AC519E /* OutlineView.xib in Resources */,
 				4CB9339916D3A0DD00A13B5D /* Credits.rtf in Resources */,
 				4CF5D49716D5B6E900CB78BD /* EntryEditView.xib in Resources */,
+				4C3FFD9E16DAF60600DF9186 /* FilterBar.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -772,6 +786,8 @@
 				4CC1AEBE16D4467C006D2AAB /* KdbTree+MPAdditions.m in Sources */,
 				4C69A73A16D589DF00EC1B1A /* MPGradientView.m in Sources */,
 				4CF5D49616D5B6E900CB78BD /* MPEntryEditController.m in Sources */,
+				4C16854416D704980027ECBC /* MPPathBar.m in Sources */,
+				4C6DA0F916D81B8A0011224B /* MPPathBarItemView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

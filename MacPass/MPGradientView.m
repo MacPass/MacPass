@@ -39,6 +39,12 @@
   return self;
 }
 
+- (void)dealloc {
+  self.activeGradient = nil;
+  self.inactiveGradient = nil;
+  [super dealloc];
+}
+
 #pragma mark Drawing
 
 - (void)drawRect:(NSRect)dirtyRect {
@@ -47,6 +53,10 @@
    */
   NSGradient *gradient = self.isRenderedActive ? self.activeGradient : self.inactiveGradient;
   [gradient drawInRect:self.bounds angle:90];
+}
+
+- (BOOL)isOpaque {
+  return YES;
 }
 
 #pragma mark State Refresh

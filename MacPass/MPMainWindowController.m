@@ -58,6 +58,16 @@
 
 - (void)dealloc {
   [[NSNotificationCenter defaultCenter] removeObserver:self];
+  self.welcomeView = nil;
+  self.welcomeText = nil;
+  self.toolbar = nil;
+  
+  self.passwordInputController = nil;
+  self.entryViewController = nil;
+  self.outlineViewController = nil;
+  
+  self.toolbarDelegate = nil;
+  self.splitViewDelegate = nil;
   [super dealloc];
 }
 
@@ -172,8 +182,10 @@
   self.entryViewController.filter = [searchField stringValue];
 }
 
-- (void)cancelFilter:(id)sender {
-  NSLog(@"Whooo");
+- (void)clearFilter:(id)sender {
+  NSSearchField *searchField = sender;
+  [searchField setStringValue:@""];
+  [self.entryViewController clearFilter];
 }
 
 #pragma mark Notifications

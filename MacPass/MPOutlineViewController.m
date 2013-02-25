@@ -52,6 +52,9 @@
 - (void)dealloc
 {
   [[NSNotificationCenter defaultCenter] removeObserver:self];
+  self.datasource = nil;
+  self.outlineDelegate = nil;
+  self.menu = nil;
   [super dealloc];
 }
 

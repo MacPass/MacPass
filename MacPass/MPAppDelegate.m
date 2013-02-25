@@ -28,6 +28,11 @@
   [self.mainWindowController showWindow:[self.mainWindowController window]];
 }
 
+- (void)dealloc {
+  self.settingsController = nil;
+  self.mainWindowController = nil;
+}
+
 #pragma mark Menu Actions
 
 - (void)showMainWindow:(id)sender {

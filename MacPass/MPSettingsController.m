@@ -22,6 +22,11 @@ NSString const* kMPPasswordEnvodingSettingsKey = @"PasswordEncoding";
   return self;
 }
 
+- (void)dealloc {
+  self.generalController = nil;
+  [super dealloc];
+}
+
 - (void)windowDidLoad {
   _generalController = [[MPGeneralSettingsController alloc] init];
   [_generalController loadView];
