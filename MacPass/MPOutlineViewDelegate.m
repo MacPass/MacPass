@@ -32,9 +32,7 @@ NSString *const _MPOutlinveViewHeaderViewIdentifier = @"HeaderCell";
   }
   else {
     view = [outlineView makeViewWithIdentifier:_MPOutlineViewDataViewIdentifier owner:self];
-    NSDictionary *availableIcons = [MPIconHelper availableIcons];
-    NSInteger randomIndex = rand() % [availableIcons count];
-    NSImage *icon = [MPIconHelper icon:(MPIconType)randomIndex];
+    NSImage *icon = [MPIconHelper icon:(MPIconType)[group image]];
     [view.imageView setImage:icon];
     [view.textField setStringValue:[group name]];
 

@@ -73,8 +73,8 @@
   }
 }
 
-- (void)deselectAll {
-  [self.outlineView deselectAll:self];
+- (void)clearSelection {
+  [self.outlineView deselectAll:nil];
 }
 
 - (void)setupMenu {

@@ -11,6 +11,7 @@
 @interface MPOutlineViewController : MPViewController
 
 @property (retain, readonly) NSMenu *menu;
-- (void)deselectAll;
+
+- (void)clearSelection;
 
 @end

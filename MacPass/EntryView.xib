@@ -102,7 +102,7 @@
 														<int key="NSColorSpace">6</int>
 														<string key="NSCatalogName">System</string>
 														<string key="NSColorName">headerColor</string>
-														<object class="NSColor" key="NSColor" id="266602521">
+														<object class="NSColor" key="NSColor">
 															<int key="NSColorSpace">3</int>
 															<bytes key="NSWhite">MQA</bytes>
 														</object>
@@ -258,7 +258,20 @@
 										</array>
 										<double key="NSIntercellSpacingWidth">3</double>
 										<double key="NSIntercellSpacingHeight">2</double>
-										<reference key="NSBackgroundColor" ref="266602521"/>
+										<object class="NSColor" key="NSBackgroundColor">
+											<int key="NSColorSpace">6</int>
+											<string key="NSCatalogName">System</string>
+											<string key="NSColorName">_sourceListBackgroundColor</string>
+											<object class="NSColor" key="NSColor">
+												<int key="NSColorSpace">6</int>
+												<string key="NSCatalogName">System</string>
+												<string key="NSColorName">alternateSelectedControlColor</string>
+												<object class="NSColor" key="NSColor">
+													<int key="NSColorSpace">1</int>
+													<bytes key="NSRGB">MCAwIDEAA</bytes>
+												</object>
+											</object>
+										</object>
 										<object class="NSColor" key="NSGridColor">
 											<int key="NSColorSpace">6</int>
 											<string key="NSCatalogName">System</string>
@@ -1547,6 +1560,7 @@
 						<string key="filterTitleButton">NSButton</string>
 						<string key="filterURLButton">NSButton</string>
 						<string key="filterUsernameButton">NSButton</string>
+						<string key="pathBar">NSView</string>
 						<string key="tableToBottom">NSLayoutConstraint</string>
 						<string key="tableToTop">NSLayoutConstraint</string>
 					</dictionary>
@@ -1578,6 +1592,10 @@
 						<object class="IBToOneOutletInfo" key="filterUsernameButton">
 							<string key="name">filterUsernameButton</string>
 							<string key="candidateClassName">NSButton</string>
+						</object>
+						<object class="IBToOneOutletInfo" key="pathBar">
+							<string key="name">pathBar</string>
+							<string key="candidateClassName">NSView</string>
 						</object>
 						<object class="IBToOneOutletInfo" key="tableToBottom">
 							<string key="name">tableToBottom</string>

@@ -12,6 +12,9 @@
 
 + (NSImage *)icon:(MPIconType)type {
   NSDictionary *icons = [MPIconHelper availableIcons];
+  if(type >= [icons count]) {
+    return [NSImage imageNamed:NSImageNameActionTemplate];
+  }
   NSString *imageName = icons[@(type)];
   return [[NSBundle mainBundle] imageForResource:imageName];
 }

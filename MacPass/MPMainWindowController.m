@@ -192,6 +192,10 @@
   [self.entryViewController clearFilter];
 }
 
+- (void)clearOutlineSelection:(id)sender {
+  [self.outlineViewController clearSelection];
+}
+
 - (NSSearchField *)locateToolbarSearchField {
   for(NSToolbarItem *toolbarItem in [[self.window toolbar] items]) {
     NSView *view = [toolbarItem view];

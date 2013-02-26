@@ -11,6 +11,7 @@
 #import "MPDatabaseController.h"
 #import "MPDatabaseDocument.h"
 #import "MPIconHelper.h"
+#import "MPMainWindowController.h"
 #import "KdbGroup+MPAdditions.h"
 
 #import <QuartzCore/QuartzCore.h>
@@ -151,12 +152,13 @@ NSString *const _toggleFilterUsernameButton = @"SearchUsername";
   NSTableCellView *view = nil;
   if(isTitleColumn || isGroupColumn) {
     view = [tableView makeViewWithIdentifier:_MPTableImageCellView owner:self];
-    [[view imageView] setImage:[MPIconHelper randomIcon]];
     if( isTitleColumn ) {
       [[view textField] setStringValue:entry.title];
+      [[view imageView] setImage:[MPIconHelper icon:(MPIconType)entry.image]];
     }
     else {
       [[view textField] setStringValue:entry.parent.name];
+      [[view imageView] setImage:[MPIconHelper icon:(MPIconType)entry.parent.image]];
     }
   }
   else if( isPasswordColum ) {
@@ -205,6 +207,10 @@ NSString *const _toggleFilterUsernameButton = @"SearchUsername";
     _filter = [filter retain];
     [self updateFilter];
   }
+}
+
+- (void)deselectAll:(id)sender {
+  [self.entryTable deselectAll:self];
 }
 
 - (void)clearFilter {
@@ -287,6 +293,7 @@ NSString *const _toggleFilterUsernameButton = @"SearchUsername";
     return; // nothign to to
   }
   
+  [((MPMainWindowController *)[[self.view window] windowController]) clearOutlineSelection:nil];
   self.isStatusBarVisible = YES;
   self.tableToTop.constant = [self.filterBar frame].size.height;
   

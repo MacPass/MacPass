@@ -85,9 +85,7 @@ NSString *const MPToolbarItemSearch = @"Search";
        Cleanup
        */
       [menuItem release];
-      [menu release];
-      
-      
+      [menu release];      
       [item setView:popupButton];
       [popupButton release];
     }
@@ -101,6 +99,10 @@ NSString *const MPToolbarItemSearch = @"Search";
       [button setImage:image];
       [button setImagePosition:NSImageOnly];
       [button sizeToFit];
+      if([itemIdentifier isEqualToString:MPToolbarItemDelete]) {
+        [button setTarget:nil];
+        [button setAction:@selector(clearOutlineSelection:)];
+      }
       
       NSRect fittingRect = [button frame];
       fittingRect.size.width = MAX( (CGFloat)32.0,fittingRect.size.width);
