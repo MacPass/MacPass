@@ -2,12 +2,19 @@ MacPass
 =======
 
 There a lot of iOS KeePass tools around but a distinct lack of a good OS X Version.
-KeePass can be used as is via Mono on OS X but lacks vital functionality.
+KeePass can be used via Mono on OS X but lacks vital functionality and feels sluggish.
 
-This is an attemtp to create amn OS X port that should at least be able to read KeePass files.
-Editing and synching capabilities might get added in the future.
+This is an attempt to create an OS X port that should at least be able to read KeePass files.
 
-Licence
+Alternatives
+------------
+
+Currently there is an alpha Version available of [KeePassX](http://www.keepassx.org).
+It's Qt based KeePass manager, than can handle KeePass 1 and 2 containers rather nicely.
+Compared to running KeePass with Mono it very fast and remarkably stable for an alpha relaese.
+Feel free to give it a try.
+
+License
 -------
   
 This program is free software: you can redistribute it and/or modify
