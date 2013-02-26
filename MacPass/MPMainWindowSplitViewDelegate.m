@@ -13,23 +13,23 @@ const CGFloat MPMainWindowSplitViewDelegateMinimumContentWidth = 400.0;
 
 @interface MPMainWindowSplitViewDelegate ()
 
-- (NSView *)leftView:(NSSplitView *)splitView;
-- (NSView *)rightView:(NSSplitView *)splitView;
+- (NSView *)_leftView:(NSSplitView *)splitView;
+- (NSView *)_rightView:(NSSplitView *)splitView;
 
 @end
 
 @implementation MPMainWindowSplitViewDelegate
 
-- (NSView *)leftView:(NSSplitView *)splitView {
+- (NSView *)_leftView:(NSSplitView *)splitView {
   return [splitView subviews][0];
 }
 
-- (NSView *)rightView:(NSSplitView *)splitView {
+- (NSView *)_rightView:(NSSplitView *)splitView {
   return [splitView subviews][1];
 }
 
 - (BOOL)splitView:(NSSplitView *)splitView canCollapseSubview:(NSView *)subview {
-  return (subview == [self leftView:splitView]);
+  return (subview == [self _leftView:splitView]);
 }
 
 - (CGFloat)splitView:(NSSplitView *)splitView constrainMinCoordinate:(CGFloat)proposedMinimumPosition ofSubviewAt:(NSInteger)dividerIndex {
@@ -45,8 +45,8 @@ const CGFloat MPMainWindowSplitViewDelegateMinimumContentWidth = 400.0;
   NSSize newSize = [splitView frame].size;
   const CGFloat dividierThickness = [splitView dividerThickness];
   
-  NSView *leftView = [self leftView:splitView];
-  NSView *rightView = [self rightView:splitView];
+  NSView *leftView = [self _leftView:splitView];
+  NSView *rightView = [self _rightView:splitView];
   
   CGFloat leftWidth = [leftView isHidden] ? 0.0 : [leftView frame].size.width;
   NSRect newRightFrame = NSMakeRect(leftWidth + dividierThickness, 0, newSize.width - leftWidth - dividierThickness, newSize.height);

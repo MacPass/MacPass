@@ -17,10 +17,4 @@
 - (void)performFindPanelAction:(id)sender;
 - (void)clearOutlineSelection:(id)sender;
 
-/*
- Sets the content View controller
- @param viewController - use nil to reset to welcome screen
- */
-- (void)setContentViewController:(MPViewController *)viewController;
-
 @end

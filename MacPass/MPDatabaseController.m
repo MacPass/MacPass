@@ -31,6 +31,10 @@ NSString *const MPDatabaseControllerDatabaseKey = @"MPDatabaseControllerDatabase
   return sharedInstance;
 }
 
++ (BOOL)hasOpenDatabase {
+  return (nil != [MPDatabaseController defaultController].database);
+}
+
 - (id)init
 {
   self = [super init];

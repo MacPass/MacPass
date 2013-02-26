@@ -13,6 +13,7 @@
 #import "MPToolbarDelegate.h"
 #import "MPOutlineViewController.h"
 #import "MPMainWindowSplitViewDelegate.h"
+#import "MPEntryEditController.h"
 
 @interface MPMainWindowController ()
 
@@ -26,13 +27,15 @@
 
 @property (retain) MPPasswordInputController *passwordInputController;
 @property (retain) MPEntryViewController *entryViewController;
+@property (retain) MPEntryEditController *entryEditController;
 @property (retain) MPOutlineViewController *outlineViewController;
 
 @property (retain) MPToolbarDelegate *toolbarDelegate;
 @property (retain) MPMainWindowSplitViewDelegate *splitViewDelegate;
 
-- (void)collapseOutlineView;
-- (void)expandOutlineView;
+- (void)_collapseOutlineView;
+- (void)_expandOutlineView;
+- (void)_setContentViewController:(MPViewController *)viewController;
 
 @end
 
@@ -64,6 +67,7 @@
   
   self.passwordInputController = nil;
   self.entryViewController = nil;
+  self.entryEditController = nil;
   self.outlineViewController = nil;
   
   self.toolbarDelegate = nil;
@@ -95,11 +99,11 @@
   [self.splitView replaceSubview:self.outlineView with:[self.outlineViewController view]];
   [self.splitView adjustSubviews];
   
-  [self setContentViewController:nil];
-  [self collapseOutlineView];
+  [self _setContentViewController:nil];
+  [self _collapseOutlineView];
 }
 
-- (void)setContentViewController:(MPViewController *)viewController {
+- (void)_setContentViewController:(MPViewController *)viewController {
   NSView *newContentView = self.welcomeView;
   if(viewController && viewController.view) {
     newContentView = viewController.view;
@@ -132,14 +136,14 @@
   [self.window makeFirstResponder:[viewController reconmendedFirstResponder]];
 }
 
-- (void)collapseOutlineView {
+- (void)_collapseOutlineView {
   NSView *outlineView = [self.splitView subviews][0];
   if(![outlineView isHidden]) {
     [self.splitView setPosition:0 ofDividerAtIndex:0];
   }
 }
 
-- (void)expandOutlineView {
+- (void)_expandOutlineView {
   NSView *outlineView = [self.splitView subviews][0];
   if([outlineView isHidden]) {
     [self.splitView setPosition:MPMainWindowSplitViewDelegateMinimumOutlineWidth ofDividerAtIndex:0];
@@ -172,7 +176,7 @@
     if(result == NSFileHandlingPanelOKButton) {
       NSURL *file = [[openPanel URLs] lastObject];
       self.passwordInputController.fileURL = file;
-      [self setContentViewController:self.passwordInputController];
+      [self _setContentViewController:self.passwordInputController];
     }
   }];
 }
@@ -196,6 +200,22 @@
   [self.outlineViewController clearSelection];
 }
 
+- (void)showEditForm:(id)sender {
+  if( ![MPDatabaseController hasOpenDatabase] ) {
+    return; // No database open - nothing to do;
+  }
+  
+  if(!self.entryEditController) {
+    self.entryEditController = [[[MPEntryEditController alloc] init] autorelease];
+  }
+  //find active selection
+  self.entryEditController.selectedItem = nil;
+  [self _setContentViewController:self.entryEditController];
+}
+
+
+#pragma mark Helper
+
 - (NSSearchField *)locateToolbarSearchField {
   for(NSToolbarItem *toolbarItem in [[self.window toolbar] items]) {
     NSView *view = [toolbarItem view];
@@ -213,11 +233,11 @@
 }
 
 - (void)showEntries {
-  [self expandOutlineView];
+  [self _expandOutlineView];
   if(!self.entryViewController) {
     _entryViewController = [[MPEntryViewController alloc] init];
   }
-  [self setContentViewController:self.entryViewController];
+  [self _setContentViewController:self.entryViewController];
 }
 
 - (IBAction)changedFileType:(id)sender {

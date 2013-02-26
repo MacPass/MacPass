@@ -7,7 +7,12 @@
 //
 
 #import "MPViewController.h"
+@class KdbNode;
 
 @interface MPEntryEditController : MPViewController
+
+@property (retain) id selectedItem;
+
+- (IBAction)save:(id)sender;
 
 @end

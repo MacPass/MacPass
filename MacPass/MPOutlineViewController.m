@@ -21,9 +21,9 @@
 @property (retain) NSMenu *menu;
 
 
-- (void)didOpenDocument:(NSNotification *)notification;
-- (void)setupMenu;
-- (void)addEntry:(id)sender;
+- (void)_didOpenDocument:(NSNotification *)notification;
+- (void)_setupMenu;
+- (void)_addEntry:(id)sender;
 
 @end
 
@@ -40,10 +40,10 @@
     self.datasource = [[[MPOutlineDataSource alloc] init] autorelease];
     
     [[NSNotificationCenter defaultCenter] addObserver:self
-                                             selector:@selector(didOpenDocument:)
+                                             selector:@selector(_didOpenDocument:)
                                                  name:MPDatabaseControllerDidLoadDatabaseNotification
                                                object:nil];
-    [self setupMenu];
+    [self _setupMenu];
   }
   
   return self;
@@ -65,7 +65,7 @@
   [self.outlineView setAllowsEmptySelection:YES];
 }
 
-- (void)didOpenDocument:(NSNotification *)notification {
+- (void)_didOpenDocument:(NSNotification *)notification {
   [self.outlineView reloadData];
   MPDatabaseController *dbContoller = [MPDatabaseController defaultController];
   if(dbContoller.database) {
@@ -77,7 +77,7 @@
   [self.outlineView deselectAll:nil];
 }
 
-- (void)setupMenu {
+- (void)_setupMenu {
   NSMenu *menu = [[NSMenu allocWithZone:[NSMenu menuZone]] init];
   [menu addItemWithTitle:@"Add Group" action:@selector(addEntry:) keyEquivalent:@""];
   [menu addItem: [NSMenuItem separatorItem]];
@@ -90,7 +90,7 @@
   [menu release];
 }
 
-- (void)addEntry:(id)sender {
+- (void)_addEntry:(id)sender {
   NSLog(@"Add Entry");
 }
 

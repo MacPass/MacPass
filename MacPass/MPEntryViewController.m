@@ -59,19 +59,19 @@ NSString *const _toggleFilterUsernameButton = @"SearchUsername";
 @property (assign, nonatomic) MPFilterModeType filterMode;
 @property (retain, nonatomic) NSDictionary *filterButtonToMode;
 
-- (IBAction)toggleFilterSpace:(id)sender;
+- (IBAction)_toggleFilterSpace:(id)sender;
 
-- (BOOL)shouldFilterURLs;
-- (BOOL)shouldFilterTitles;
-- (BOOL)shouldFilterUsernames;
+- (BOOL)_shouldFilterURLs;
+- (BOOL)_shouldFilterTitles;
+- (BOOL)_shouldFilterUsernames;
 
 - (BOOL)hasFilter;
 - (void)updateFilter;
 - (void)setupFilterBar;
 - (void)setupPathBar;
-- (void)didChangeGroupSelectionInOutlineView:(NSNotification *)notification;
-- (void)showFilterBarAnimated:(BOOL)animate;
-- (void)hideStatusBarAnimated:(BOOL)animate;
+- (void)_didChangeGroupSelectionInOutlineView:(NSNotification *)notification;
+- (void)_showFilterBarAnimated:(BOOL)animate;
+- (void)_hideStatusBarAnimated:(BOOL)animate;
 
 @end
 
@@ -93,7 +93,7 @@ NSString *const _toggleFilterUsernameButton = @"SearchUsername";
                            } retain];
     _entryArrayController = [[NSArrayController alloc] init];
     [[NSNotificationCenter defaultCenter] addObserver:self
-                                             selector:@selector(didChangeGroupSelectionInOutlineView:)
+                                             selector:@selector(_didChangeGroupSelectionInOutlineView:)
                                                  name:MPOutlineViewDidChangeGroupSelection
                                                object:nil];
   }
@@ -111,7 +111,7 @@ NSString *const _toggleFilterUsernameButton = @"SearchUsername";
 
 - (void)didLoadView {
   [self.view setWantsLayer:YES];
-  [self hideStatusBarAnimated:NO];
+  [self _hideStatusBarAnimated:NO];
   
   [self.entryTable setDelegate:self];
   
@@ -179,7 +179,7 @@ NSString *const _toggleFilterUsernameButton = @"SearchUsername";
 }
 
 #pragma mark Notifications
-- (void)didChangeGroupSelectionInOutlineView:(NSNotification *)notification {
+- (void)_didChangeGroupSelectionInOutlineView:(NSNotification *)notification {
   
   if([self hasFilter]) {
     return;
@@ -216,25 +216,25 @@ NSString *const _toggleFilterUsernameButton = @"SearchUsername";
 - (void)clearFilter {
   self.filter = nil;
   [[self.entryTable tableColumnWithIdentifier:MPEntryTableParentColumnIdentifier] setHidden:YES];
-  [self hideStatusBarAnimated:YES];
+  [self _hideStatusBarAnimated:YES];
 }
 
 - (void)updateFilter {
   MPDatabaseDocument *openDatabase = [MPDatabaseController defaultController].database;
   if(openDatabase) {
-    [self showFilterBarAnimated:YES];
+    [self _showFilterBarAnimated:YES];
     
     dispatch_queue_t backgroundQueue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
     dispatch_async(backgroundQueue, ^{
       
       NSMutableArray *prediactes = [NSMutableArray arrayWithCapacity:3];
-      if( [self shouldFilterTitles] ) {
+      if( [self _shouldFilterTitles] ) {
         [prediactes addObject:[NSPredicate predicateWithFormat:@"SELF.title CONTAINS[cd] %@", self.filter]];
       }
-      if( [self shouldFilterUsernames] ) {
+      if( [self _shouldFilterUsernames] ) {
         [prediactes addObject:[NSPredicate predicateWithFormat:@"SELF.username CONTAINS[cd] %@", self.filter]];
       }
-      if( [self shouldFilterURLs] ) {
+      if( [self _shouldFilterURLs] ) {
         [prediactes addObject:[NSPredicate predicateWithFormat:@"SELF.url CONTAINS[cd] %@", self.filter]];
       }
       NSPredicate *fullFilter = [NSCompoundPredicate orPredicateWithSubpredicates:prediactes];
@@ -275,7 +275,7 @@ NSString *const _toggleFilterUsernameButton = @"SearchUsername";
 
 #pragma mark Animation
 
-- (void)showFilterBarAnimated:(BOOL)animate {
+- (void)_showFilterBarAnimated:(BOOL)animate {
   
   animate = NO;
   
@@ -285,9 +285,9 @@ NSString *const _toggleFilterUsernameButton = @"SearchUsername";
   /*
    Make sure the buttons are set correctyl every time
    */
-  [self.filterTitleButton setState:[self shouldFilterTitles] ? NSOnState : NSOffState];
-  [self.filterURLButton setState:[self shouldFilterURLs] ? NSOnState : NSOffState ];
-  [self.filterUsernameButton setState:[self shouldFilterUsernames] ? NSOnState : NSOffState];
+  [self.filterTitleButton setState:[self _shouldFilterTitles] ? NSOnState : NSOffState];
+  [self.filterURLButton setState:[self _shouldFilterURLs] ? NSOnState : NSOffState ];
+  [self.filterUsernameButton setState:[self _shouldFilterUsernames] ? NSOnState : NSOffState];
   
   if(self.isStatusBarVisible) {
     return; // nothign to to
@@ -315,7 +315,7 @@ NSString *const _toggleFilterUsernameButton = @"SearchUsername";
   }
 }
 
-- (void)hideStatusBarAnimated:(BOOL)animate {
+- (void)_hideStatusBarAnimated:(BOOL)animate {
   
   
   animate = NO;
@@ -342,7 +342,7 @@ NSString *const _toggleFilterUsernameButton = @"SearchUsername";
 
 #pragma mark Actions
 
-- (void)toggleFilterSpace:(id)sender {
+- (void)_toggleFilterSpace:(id)sender {
   NSButton *button = sender;
   NSNumber *value = self.filterButtonToMode[[button identifier]];
   MPFilterModeType toggledMode = (MPFilterModeType)[value intValue];
@@ -371,15 +371,15 @@ NSString *const _toggleFilterUsernameButton = @"SearchUsername";
   }
 }
 
-- (BOOL)shouldFilterTitles {
+- (BOOL)_shouldFilterTitles {
   return ( MPFilterNone != (self.filterMode & MPFilterTitles));
 }
 
-- (BOOL)shouldFilterURLs {
+- (BOOL)_shouldFilterURLs {
   return ( MPFilterNone != (self.filterMode & MPFilterUrls));
 }
 
-- (BOOL)shouldFilterUsernames {
+- (BOOL)_shouldFilterUsernames {
   return ( MPFilterNone != (self.filterMode & MPFilterUsernames));
 }
 

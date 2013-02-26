@@ -14,7 +14,7 @@
 @property (retain) NSGradient *activeGradient;
 @property (retain) NSGradient *inactiveGradient;
 
-- (void)refreshActiveState;
+- (void)_refreshActiveState;
 
 @end
 
@@ -66,8 +66,8 @@
     [[NSNotificationCenter defaultCenter] removeObserver:self name:NSWindowDidResignKeyNotification object:[self window]];
   }
   if(newWindow) {
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(refreshActiveState) name:NSWindowDidBecomeKeyNotification object:newWindow];
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(refreshActiveState) name:NSWindowDidResignKeyNotification object:newWindow];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(_refreshActiveState) name:NSWindowDidBecomeKeyNotification object:newWindow];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(_refreshActiveState) name:NSWindowDidResignKeyNotification object:newWindow];
   }
 }
 
@@ -76,7 +76,7 @@
   [super viewWillMoveToWindow:newWindow];
 }
 
-- (void)refreshActiveState {
+- (void)_refreshActiveState {
   self.isRenderedActive = [[self window] isKeyWindow];
 }
 

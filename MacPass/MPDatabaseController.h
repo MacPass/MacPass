@@ -28,6 +28,7 @@ APPKIT_EXTERN NSString *const MPDatabaseControllerDatabaseKey;
 @property (retain, readonly, nonatomic) MPDatabaseDocument *database;
 
 + (MPDatabaseController *)defaultController;
++ (BOOL)hasOpenDatabase;
 
 //- (MPDatabaseDocument *)createDatabase:(MPDatabaseVersion )version password:(NSString *)password keyfile:(NSURL *)key;
 - (MPDatabaseDocument *)openDatabase:(NSURL *)file password:(NSString *)password keyfile:(NSURL *)key;

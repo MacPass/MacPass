@@ -10,6 +10,7 @@
 #import "MPIconHelper.h"
 #import "MPMainWindowController.h"
 #import "MPPathBar.h"
+#import "MPToolbarButton.h"
 
 NSString *const MPToolbarItemAddGroup = @"AddGroup";
 NSString *const MPToolbarItemAddEntry = @"AddEntry";
@@ -20,6 +21,7 @@ NSString *const MPToolbarItemSearch = @"Search";
 
 @interface MPToolbarDelegate()
 
+@property (retain) NSMutableDictionary *toolbarItems;
 @property (retain) NSArray *toolbarIdentifiers;
 @property (retain) NSDictionary *toolbarImages;
 
@@ -34,6 +36,7 @@ NSString *const MPToolbarItemSearch = @"Search";
   if (self) {
     self.toolbarIdentifiers = @[ MPToolbarItemAddEntry, MPToolbarItemDelete, MPToolbarItemEdit, MPToolbarItemAddGroup, MPToolbarItemAction, NSToolbarFlexibleSpaceItemIdentifier, MPToolbarItemSearch ];
     self.toolbarImages = [self createToolbarImages];
+    self.toolbarItems = [[NSMutableDictionary alloc] initWithCapacity:[self.toolbarIdentifiers count]];
   }
   return self;
 }
@@ -42,11 +45,14 @@ NSString *const MPToolbarItemSearch = @"Search";
 {
   self.toolbarIdentifiers = nil;
   self.toolbarImages = nil;
+  self.toolbarItems = nil;
   [super dealloc];
 }
 
-- (NSToolbarItem *)toolbar:(NSToolbar *)toolbar itemForItemIdentifier:(NSString *)itemIdentifier willBeInsertedIntoToolbar:(BOOL)flag {  
-    NSToolbarItem *item = [[NSToolbarItem alloc] initWithItemIdentifier:itemIdentifier];
+- (NSToolbarItem *)toolbar:(NSToolbar *)toolbar itemForItemIdentifier:(NSString *)itemIdentifier willBeInsertedIntoToolbar:(BOOL)flag {
+  NSToolbarItem *item = self.toolbarItems[itemIdentifier];
+  if(!item) {    
+    item = [[NSToolbarItem alloc] initWithItemIdentifier:itemIdentifier];
     [item setAction:@selector(toolbarItemPressed:)];
     NSString *label = NSLocalizedString(itemIdentifier, @"");
     [item setLabel:label];
@@ -85,23 +91,24 @@ NSString *const MPToolbarItemSearch = @"Search";
        Cleanup
        */
       [menuItem release];
-      [menu release];      
+      [menu release];
       [item setView:popupButton];
       [popupButton release];
     }
     else {
-      NSButton *button = [[NSButton alloc] initWithFrame:NSMakeRect(0, 0, 32, 32)];
+      NSButton *button = [[MPToolbarButton alloc] initWithFrame:NSMakeRect(0, 0, 32, 32)];
       [[button cell] setBezelStyle:NSTexturedRoundedBezelStyle];
       [[button cell] setImageScaling:NSImageScaleProportionallyDown];
       [button setTitle:itemIdentifier];
       [button setButtonType:NSMomentaryPushInButton];
       NSImage *image = self.toolbarImages[itemIdentifier];
+      [image setSize:NSMakeSize(16, 16)];
       [button setImage:image];
       [button setImagePosition:NSImageOnly];
       [button sizeToFit];
-      if([itemIdentifier isEqualToString:MPToolbarItemDelete]) {
+      if([itemIdentifier isEqualToString:MPToolbarItemEdit]) {
         [button setTarget:nil];
-        [button setAction:@selector(clearOutlineSelection:)];
+        [button setAction:@selector(showEditForm:)];
       }
       
       NSRect fittingRect = [button frame];
@@ -110,7 +117,10 @@ NSString *const MPToolbarItemSearch = @"Search";
       [item setView:button];
       [button release];
     }
-    return [item autorelease];
+    self.toolbarItems[itemIdentifier] = item;
+    [item release];
+  }
+  return item;
 }
 
 - (NSArray *)toolbarDefaultItemIdentifiers:(NSToolbar*)toolbar {

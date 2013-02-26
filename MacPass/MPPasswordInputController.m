@@ -13,9 +13,9 @@
 
 @property (assign) IBOutlet NSSecureTextField *passwordTextField;
 
-- (IBAction)selectKeyFile:(id)sender;
-- (IBAction)open:(id)sender;
-- (void)showError;
+- (IBAction)_selectKeyFile:(id)sender;
+- (IBAction)_open:(id)sender;
+- (void)_showError;
 
 @end
 
@@ -34,22 +34,22 @@
   return self.passwordTextField;
 }
 
-- (IBAction)selectKeyFile:(id)sender {
+- (IBAction)_selectKeyFile:(id)sender {
 
 }
 
-- (IBAction)open:(id)sender {
+- (IBAction)_open:(id)sender {
   NSString *password = [self.passwordTextField stringValue];
   [self.passwordTextField setStringValue:@""];
   MPDatabaseDocument *document = [[MPDatabaseController defaultController] openDatabase:self.fileURL
                                                                                password:password
                                                                                 keyfile:nil];
   if(!document) {
-    [self showError];
+    [self _showError];
   }
 }
 
-- (void)showError {
+- (void)_showError {
   NSLog(@"Something went wrong");
 }
 @end
