@@ -8,6 +8,8 @@
 
 #import "MPPathBarItemView.h"
 
+#define IMAGE_TO_TEXT_MARGIN 5.0
+
 @interface MPPathBarItemView ()
 
 @property (retain) NSImageView *imageView;
@@ -28,7 +30,7 @@
     [[_imageView cell] setDrawsBackground:NO];
     [_imageView setImage:[NSImage imageNamed:NSImageNameActionTemplate ]];
     
-    _textField = [[NSTextField alloc] initWithFrame:NSMakeRect([_imageView frame].size.width + 5, 0, 20, 24)];
+    _textField = [[NSTextField alloc] initWithFrame:NSMakeRect(0, 0, 20, 24)];
     [_textField setBordered:NO];
     [_textField setFont:[NSFont systemFontOfSize:13]];
     [_textField setDrawsBackground:NO];
@@ -36,29 +38,13 @@
     [_textField setSelectable:NO];
     [[_textField cell] setBackgroundStyle:NSBackgroundStyleRaised];
     [_textField setStringValue:@"Boo"];
-    [_textField sizeToFit];
+    
+    
     [self addSubview:_textField];
     [self addSubview:_imageView];
     
-//    NSDictionary *viewDictionary = NSDictionaryOfVariableBindings(_imageView, _textField);
-//    [self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-[_imageView(24)]-|"
-//                                                                 options:0
-//                                                                 metrics:nil
-//                                                                   views:viewDictionary]];
-//    [self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-[_imageView(24)]-|"
-//                                                                 options:0
-//                                                                 metrics:nil
-//                                                                   views:viewDictionary]];
-//    [self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-[_imageView]-|"
-//                                                                options:0
-//                                                                metrics:nil
-//                                                                  views:viewDictionary]];
-//
-//    [self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-[_textField]-|"
-//                                                                 options:0
-//                                                                 metrics:nil
-//                                                                   views:viewDictionary]];
     
+    [self sizeToFit];
     
     [self needsLayout];
   }
@@ -84,17 +70,36 @@
 }
 
 - (void)sizeToFit {
+  
+  const BOOL isAutoResize = [self autoresizesSubviews];/* Disable autoresizing */
+  [self setAutoresizesSubviews:NO];
+  NSRect superFrame = [self frame];
+  /*
+   Let our subviews calculate their sizes
+   */
   [self.textField sizeToFit];
-  [self.imageView sizeToFit];
+  //[self.imageView sizeToFit];
   NSRect textFrame = [self.textField frame];
   NSRect imageFrame = [self.imageView frame];
-
-  // nudge the textframe
-  textFrame.origin.x = imageFrame.size.width;
-  [self.textField setFrame:textFrame];
+  /*
+   Determine our size
+   */
+  CGFloat height = MAX(textFrame.size.height, imageFrame.size.height);
+  CGFloat width = textFrame.size.width + IMAGE_TO_TEXT_MARGIN + imageFrame.size.width;
   
-  NSRect frame = NSMakeRect(0, 0,textFrame.size.width + imageFrame.size.width, textFrame.size.height);
-  [self setFrame:frame];
+  [self setFrame:NSMakeRect(superFrame.origin.x, superFrame.origin.y, width, height)];
+
+  imageFrame.origin.x = 0;
+  imageFrame.origin.y = 0;
+  imageFrame.size.height = height;
+  textFrame.origin.x = imageFrame.size.width + IMAGE_TO_TEXT_MARGIN;
+  textFrame.origin.y = 0;
+  textFrame.size.height = height;
+  
+  [self.textField setFrame:textFrame];
+  [self.imageView setFrame:imageFrame];
+  /* Reset the autoresizing */
+  [self setAutoresizesSubviews:isAutoResize];
 }
 
 @end

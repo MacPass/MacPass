@@ -31,6 +31,7 @@
 - (void)dealloc {
   self.settingsController = nil;
   self.mainWindowController = nil;
+  [super dealloc];
 }
 
 #pragma mark Menu Actions

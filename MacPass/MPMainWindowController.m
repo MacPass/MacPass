@@ -180,12 +180,26 @@
 - (void)updateFilter:(id)sender {
   NSSearchField *searchField = sender;
   self.entryViewController.filter = [searchField stringValue];
+  [((NSOutlineView *)self.outlineViewController.view) deselectAll:self];
 }
 
 - (void)clearFilter:(id)sender {
   NSSearchField *searchField = sender;
+  if(![sender isKindOfClass:[NSSearchField class]]) {
+    searchField = [self locateToolbarSearchField];
+  }
   [searchField setStringValue:@""];
   [self.entryViewController clearFilter];
+}
+
+- (NSSearchField *)locateToolbarSearchField {
+  for(NSToolbarItem *toolbarItem in [[self.window toolbar] items]) {
+    NSView *view = [toolbarItem view];
+    if([view isKindOfClass:[NSSearchField class]]) {
+      return (NSSearchField *)view;
+    }
+  }
+  return nil;
 }
 
 #pragma mark Notifications

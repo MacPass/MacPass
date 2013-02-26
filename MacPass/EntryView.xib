@@ -351,7 +351,6 @@
 				<string key="NSFrameSize">{624, 363}</string>
 				<reference key="NSSuperview"/>
 				<reference key="NSWindow"/>
-				<reference key="NSNextKeyView"/>
 				<string key="NSReuseIdentifierKey">_NS:9</string>
 				<string key="NSClassName">NSView</string>
 			</object>
@@ -404,6 +403,29 @@
 						</object>
 					</object>
 					<int key="connectionID">671</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBOutletConnection" key="connection">
+						<string key="label">tableToBottom</string>
+						<reference key="source" ref="1001"/>
+						<object class="IBNSLayoutConstraint" key="destination" id="986749424">
+							<reference key="firstItem" ref="613995671"/>
+							<int key="firstAttribute">4</int>
+							<int key="relation">0</int>
+							<reference key="secondItem" ref="997686550"/>
+							<int key="secondAttribute">4</int>
+							<float key="multiplier">1</float>
+							<object class="IBLayoutConstant" key="constant">
+								<double key="value">0.0</double>
+							</object>
+							<float key="priority">1000</float>
+							<reference key="containingView" ref="997686550"/>
+							<int key="scoringType">9</int>
+							<float key="scoringTypeFloat">40</float>
+							<int key="contentType">3</int>
+						</object>
+					</object>
+					<int key="connectionID">672</int>
 				</object>
 				<object class="IBConnectionRecord">
 					<object class="IBOutletConnection" key="connection">
@@ -656,22 +678,7 @@
 						<reference key="object" ref="997686550"/>
 						<array class="NSMutableArray" key="children">
 							<reference ref="858505477"/>
-							<object class="IBNSLayoutConstraint" id="986749424">
-								<reference key="firstItem" ref="613995671"/>
-								<int key="firstAttribute">4</int>
-								<int key="relation">0</int>
-								<reference key="secondItem" ref="997686550"/>
-								<int key="secondAttribute">4</int>
-								<float key="multiplier">1</float>
-								<object class="IBLayoutConstant" key="constant">
-									<double key="value">0.0</double>
-								</object>
-								<float key="priority">1000</float>
-								<reference key="containingView" ref="997686550"/>
-								<int key="scoringType">8</int>
-								<float key="scoringTypeFloat">29</float>
-								<int key="contentType">3</int>
-							</object>
+							<reference ref="986749424"/>
 							<object class="IBNSLayoutConstraint" id="945226060">
 								<reference key="firstItem" ref="613995671"/>
 								<int key="firstAttribute">6</int>
@@ -1514,7 +1521,7 @@
 			<nil key="activeLocalization"/>
 			<dictionary class="NSMutableDictionary" key="localizations"/>
 			<nil key="sourceID"/>
-			<int key="maxID">671</int>
+			<int key="maxID">672</int>
 		</object>
 		<object class="IBClassDescriber" key="IBDocument.Classes">
 			<array class="NSMutableArray" key="referencedPartialClassDescriptions">
@@ -1535,10 +1542,12 @@
 					<dictionary class="NSMutableDictionary" key="outlets">
 						<string key="entryTable">NSTableView</string>
 						<string key="filterBar">NSView</string>
-						<string key="searchLabelTextField">NSTextField</string>
-						<string key="searchTitleButton">NSButton</string>
-						<string key="searchURLButton">NSButton</string>
-						<string key="searchUsernameButton">NSButton</string>
+						<string key="filterDoneButton">NSButton</string>
+						<string key="filterLabelTextField">NSTextField</string>
+						<string key="filterTitleButton">NSButton</string>
+						<string key="filterURLButton">NSButton</string>
+						<string key="filterUsernameButton">NSButton</string>
+						<string key="tableToBottom">NSLayoutConstraint</string>
 						<string key="tableToTop">NSLayoutConstraint</string>
 					</dictionary>
 					<dictionary class="NSMutableDictionary" key="toOneOutletInfosByName">
@@ -1550,21 +1559,29 @@
 							<string key="name">filterBar</string>
 							<string key="candidateClassName">NSView</string>
 						</object>
-						<object class="IBToOneOutletInfo" key="searchLabelTextField">
-							<string key="name">searchLabelTextField</string>
+						<object class="IBToOneOutletInfo" key="filterDoneButton">
+							<string key="name">filterDoneButton</string>
+							<string key="candidateClassName">NSButton</string>
+						</object>
+						<object class="IBToOneOutletInfo" key="filterLabelTextField">
+							<string key="name">filterLabelTextField</string>
 							<string key="candidateClassName">NSTextField</string>
 						</object>
-						<object class="IBToOneOutletInfo" key="searchTitleButton">
-							<string key="name">searchTitleButton</string>
+						<object class="IBToOneOutletInfo" key="filterTitleButton">
+							<string key="name">filterTitleButton</string>
 							<string key="candidateClassName">NSButton</string>
 						</object>
-						<object class="IBToOneOutletInfo" key="searchURLButton">
-							<string key="name">searchURLButton</string>
+						<object class="IBToOneOutletInfo" key="filterURLButton">
+							<string key="name">filterURLButton</string>
 							<string key="candidateClassName">NSButton</string>
 						</object>
-						<object class="IBToOneOutletInfo" key="searchUsernameButton">
-							<string key="name">searchUsernameButton</string>
+						<object class="IBToOneOutletInfo" key="filterUsernameButton">
+							<string key="name">filterUsernameButton</string>
 							<string key="candidateClassName">NSButton</string>
+						</object>
+						<object class="IBToOneOutletInfo" key="tableToBottom">
+							<string key="name">tableToBottom</string>
+							<string key="candidateClassName">NSLayoutConstraint</string>
 						</object>
 						<object class="IBToOneOutletInfo" key="tableToTop">
 							<string key="name">tableToTop</string>

@@ -52,7 +52,6 @@ NSString *const MPGeneralSetingsIdentifier = @"GeneralSettingsTab";
   [_encodingPopup setMenu:encodingMenu];
   [encodingMenu release];
 
-  
 }
 
 @end

@@ -81,7 +81,7 @@
     itemView = self.itemViews[index];
   }
   if(!itemView) {
-    itemView = [[MPPathBarItemView alloc] initWithFrame:NSMakeRect(0, 0, 50, 24)];
+    itemView = [[[MPPathBarItemView alloc] initWithFrame:NSMakeRect(0, 0, 50, 24)] autorelease];
   }
   itemView.text = [NSString stringWithFormat:@"Button %ld", (unsigned long)index ];
   itemView.image = [NSImage imageNamed:NSImageNameActionTemplate];

@@ -62,6 +62,7 @@
   [self.outlineView setDataSource:self.datasource];
   [self.outlineView setDelegate:self.outlineDelegate];
   [self.outlineView setMenu:self.menu];
+  [self.outlineView setAllowsEmptySelection:YES];
 }
 
 - (void)didOpenDocument:(NSNotification *)notification {
@@ -70,6 +71,10 @@
   if(dbContoller.database) {
     [self.outlineView expandItem:dbContoller.database.root expandChildren:NO];
   }
+}
+
+- (void)deselectAll {
+  [self.outlineView deselectAll:self];
 }
 
 - (void)setupMenu {

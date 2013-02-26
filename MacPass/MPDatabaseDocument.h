@@ -8,8 +8,8 @@
 
 #import <Foundation/Foundation.h>
 
-APPKIT_EXTERN NSString *const MPDidLoadDataBaseNotification;
-APPKIT_EXTERN NSString *const MPDataBaseDocumentDocumentKey;
+APPKIT_EXTERN NSString *const MPDidLoadDatabaseNotification;
+APPKIT_EXTERN NSString *const MPDatabaseDocumentDocumentKey;
 
 typedef enum {
   MPDatabaseVersion3,
@@ -28,6 +28,7 @@ typedef enum {
 @property (assign, readonly) MPDatabaseVersion version;
 
 + (id)documentWithFile:(NSURL *)file password:(NSString *)password keyfile:(NSURL *)key;
++ (id)documentWithNewDatabase:(MPDatabaseVersion)version;
 - (id)initWithFile:(NSURL *)file password:(NSString *)password keyfile:(NSURL *)key;
 - (id)initWithNewDatabase:(MPDatabaseVersion)version;
 /*

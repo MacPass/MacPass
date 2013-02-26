@@ -11,7 +11,7 @@
 #import "Kdb4Node.h"
 #import "Kdb3Node.h"
 
-NSString *const MPDidLoadDataBaseNotification = @"DidLoadDataBaseNotification";
+NSString *const MPDidLoadDatabaseNotification = @"DidLoadDataBaseNotification";
 
 @interface MPDatabaseDocument ()
 
@@ -28,12 +28,19 @@ NSString *const MPDidLoadDataBaseNotification = @"DidLoadDataBaseNotification";
   return [[[MPDatabaseDocument alloc] initWithFile:file password:password keyfile:key] autorelease];
 }
 
++ (id)documentWithNewDatabase:(MPDatabaseVersion)version {
+  return  [[[MPDatabaseDocument alloc] initWithNewDatabase:version] autorelease];
+}
+
 - (id)init {
   // create empty document
   return [self initWithFile:nil password:nil keyfile:nil];
 }
 
-- (id)initWithNewDatabaseVersion:(MPDatabaseVersion)version {
+/*
+ Initalizer for creating
+ */
+- (id)initWithNewDatabase:(MPDatabaseVersion)version {
   self = [super init];
   if(self) {
     switch(version) {
@@ -54,7 +61,7 @@ NSString *const MPDidLoadDataBaseNotification = @"DidLoadDataBaseNotification";
 }
 
 /*
- Designated initalizeder
+ Designated initalizer for loading
  */
 - (id)initWithFile:(NSURL *)file password:(NSString *)password keyfile:(NSURL *)key
 {

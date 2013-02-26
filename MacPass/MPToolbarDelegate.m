@@ -9,6 +9,7 @@
 #import "MPToolbarDelegate.h"
 #import "MPIconHelper.h"
 #import "MPMainWindowController.h"
+#import "MPPathBar.h"
 
 NSString *const MPToolbarItemAddGroup = @"AddGroup";
 NSString *const MPToolbarItemAddEntry = @"AddEntry";
@@ -19,7 +20,6 @@ NSString *const MPToolbarItemSearch = @"Search";
 
 @interface MPToolbarDelegate()
 
-@property (retain) NSMutableDictionary *toolbarItems;
 @property (retain) NSArray *toolbarIdentifiers;
 @property (retain) NSDictionary *toolbarImages;
 
@@ -33,7 +33,6 @@ NSString *const MPToolbarItemSearch = @"Search";
   self = [super init];
   if (self) {
     self.toolbarIdentifiers = @[ MPToolbarItemAddEntry, MPToolbarItemDelete, MPToolbarItemEdit, MPToolbarItemAddGroup, MPToolbarItemAction, NSToolbarFlexibleSpaceItemIdentifier, MPToolbarItemSearch ];
-    self.toolbarItems = [NSMutableDictionary dictionaryWithCapacity:[self.toolbarItems count]];
     self.toolbarImages = [self createToolbarImages];
   }
   return self;
@@ -41,29 +40,22 @@ NSString *const MPToolbarItemSearch = @"Search";
 
 - (void)dealloc
 {
-  self.toolbarItems = nil;
   self.toolbarIdentifiers = nil;
   self.toolbarImages = nil;
   [super dealloc];
 }
 
-- (NSToolbarItem *)toolbar:(NSToolbar *)toolbar itemForItemIdentifier:(NSString *)itemIdentifier willBeInsertedIntoToolbar:(BOOL)flag {
-  NSToolbarItem *item = self.toolbarItems[ itemIdentifier ];
-  if( !item ) {
-    
-    item = [[NSToolbarItem alloc] initWithItemIdentifier:itemIdentifier];
+- (NSToolbarItem *)toolbar:(NSToolbar *)toolbar itemForItemIdentifier:(NSString *)itemIdentifier willBeInsertedIntoToolbar:(BOOL)flag {  
+    NSToolbarItem *item = [[NSToolbarItem alloc] initWithItemIdentifier:itemIdentifier];
     [item setAction:@selector(toolbarItemPressed:)];
-    self.toolbarItems[itemIdentifier] = item;
     NSString *label = NSLocalizedString(itemIdentifier, @"");
     [item setLabel:label];
-    [item release];
     
     if([itemIdentifier isEqualToString:MPToolbarItemSearch]) {
       NSSearchField *searchfield = [[NSSearchField alloc] initWithFrame:NSMakeRect(0, 0, 70, 32)];
       [item setView:searchfield];
       [searchfield setAction:@selector(updateFilter:)];
       [[searchfield cell] setSendsSearchStringImmediately:NO];
-      [[searchfield cell] addObserver:self forKeyPath:@"controlSize" options:0 context:NULL];
       [[[searchfield cell] cancelButtonCell] setTarget:nil];
       [[[searchfield cell] cancelButtonCell] setAction:@selector(clearFilter:)];
       [searchfield release];
@@ -71,7 +63,6 @@ NSString *const MPToolbarItemSearch = @"Search";
     }
     else if([itemIdentifier isEqualToString:MPToolbarItemAction]) {
       NSPopUpButton *popupButton = [[NSPopUpButton alloc] initWithFrame:NSMakeRect(0, 0, 50, 32) pullsDown:YES];
-      [[popupButton cell] addObserver:self forKeyPath:@"controlSize" options:0 context:NULL];
       [[popupButton cell] setBezelStyle:NSTexturedRoundedBezelStyle];
       [[popupButton cell] setImageScaling:NSImageScaleProportionallyDown];
       [popupButton setTitle:@""];
@@ -117,10 +108,7 @@ NSString *const MPToolbarItemSearch = @"Search";
       [item setView:button];
       [button release];
     }
-    return item;
-  }
-  
-  return item;
+    return [item autorelease];
 }
 
 - (NSArray *)toolbarDefaultItemIdentifiers:(NSToolbar*)toolbar {
@@ -140,10 +128,6 @@ NSString *const MPToolbarItemSearch = @"Search";
                                MPToolbarItemAction: [NSImage imageNamed:NSImageNameActionTemplate]
                                };
   return imageDict;
-}
-
-- (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context {
-  NSLog(@"Path:%@: Objecte:%@", keyPath, object);
 }
 
 
