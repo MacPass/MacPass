@@ -12,6 +12,7 @@
 #import "MPDatabaseDocument.h"
 #import "MPIconHelper.h"
 #import "MPMainWindowController.h"
+#import "MPPasteBoardController.h"
 #import "KdbGroup+MPAdditions.h"
 
 #import <QuartzCore/QuartzCore.h>
@@ -24,6 +25,13 @@ typedef enum {
   MPFilterUsernames = 4,
   MPFilterTitles = 8,
 } MPFilterModeType;
+
+typedef enum {
+  MPCopyUsername,
+  MPCopyPassword,
+  MPCopyURL,
+  MPCopyWholeEntry,
+} MPCopyContentTypeTag;
 
 NSString *const MPEntryTableUserNameColumnIdentifier = @"MPUserNameColumnIdentifier";
 NSString *const MPEntryTableTitleColumnIdentifier = @"MPTitleColumnIdentifier";
@@ -69,9 +77,12 @@ NSString *const _toggleFilterUsernameButton = @"SearchUsername";
 - (void)updateFilter;
 - (void)setupFilterBar;
 - (void)setupPathBar;
+- (void)_setupEntryMenu;
 - (void)_didChangeGroupSelectionInOutlineView:(NSNotification *)notification;
 - (void)_showFilterBarAnimated:(BOOL)animate;
 - (void)_hideStatusBarAnimated:(BOOL)animate;
+
+- (void)_copyEntryData:(id)sender;
 
 @end
 
@@ -114,6 +125,7 @@ NSString *const _toggleFilterUsernameButton = @"SearchUsername";
   [self _hideStatusBarAnimated:NO];
   
   [self.entryTable setDelegate:self];
+  [self _setupEntryMenu];
   
   NSTableColumn *parentColumn = [self.entryTable tableColumns][0];
   NSTableColumn *titleColumn = [self.entryTable tableColumns][1];
@@ -340,7 +352,64 @@ NSString *const _toggleFilterUsernameButton = @"SearchUsername";
   }
 }
 
+#pragma mark EntryMenu
+
+- (void)_setupEntryMenu {
+  NSMenu *menu = [[NSMenu allocWithZone:[NSMenu menuZone]] init];
+  NSMenuItem *copyUserItem = [[NSMenuItem allocWithZone:[NSMenu menuZone]] initWithTitle:@"Copy Username"
+                                                                                  action:@selector(_copyEntryData:)
+                                                                           keyEquivalent:@"C"];
+  [copyUserItem setTag:MPCopyUsername];
+  [copyUserItem setTarget:self];
+  NSMenuItem *copyPasswordItem = [[NSMenuItem allocWithZone:[NSMenu menuZone]] initWithTitle:@"Copy Password"
+                                                                                      action:@selector(_copyEntryData:)
+                                                                               keyEquivalent:@"c"];
+  [copyPasswordItem setTag:MPCopyPassword];
+  [copyPasswordItem setTarget:self];
+
+  [menu addItem:copyUserItem];
+  [menu addItem:copyPasswordItem];
+  [copyUserItem release];
+  [copyPasswordItem release];
+  
+  [self.entryTable setMenu:menu];
+  [menu release];
+}
+
 #pragma mark Actions
+
+- (void)_copyEntryData:(id)sender {
+
+  NSInteger selectedRow = [self.entryTable selectedRow];
+  if(selectedRow > [[self.entryArrayController arrangedObjects] count]) {
+    return;
+  }
+  KdbEntry *selectedEntry = [self.entryArrayController arrangedObjects][selectedRow];
+  
+  if([sender respondsToSelector:@selector(tag)]) {
+    MPCopyContentTypeTag contentTag = (MPCopyContentTypeTag)[sender tag];
+    SEL contentTypeSelector = @selector(description);
+    switch (contentTag) {
+      case MPCopyPassword:
+        contentTypeSelector = @selector(password);
+        break;
+        
+      case MPCopyUsername:
+        contentTypeSelector = @selector(username);
+        break;
+        
+      case MPCopyURL:
+        contentTypeSelector = @selector(URL);
+        break;
+        
+      case MPCopyWholeEntry:
+      default:
+        break;
+    }
+    [[MPPasteBoardController defaultController] copyObjects:@[ [selectedEntry performSelector:contentTypeSelector] ]];
+  }
+
+}
 
 - (void)_toggleFilterSpace:(id)sender {
   NSButton *button = sender;

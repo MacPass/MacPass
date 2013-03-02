@@ -50,6 +50,8 @@
 }
 
 - (void)_showError {
+#ifdef DEBUG
   NSLog(@"Something went wrong");
+#endif
 }
 @end
