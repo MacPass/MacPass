@@ -50,7 +50,7 @@
 
 - (void)_updateNotifications {
   if(self.clearPasteboardOnShutdown) {
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(clearContents) name:NSApplicationWillTerminateNotification object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(_clearPasteboardContents) name:NSApplicationWillTerminateNotification object:nil];
   }
   else {
     [[NSNotificationCenter defaultCenter] removeObserver:self];

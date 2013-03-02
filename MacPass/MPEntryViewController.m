@@ -379,12 +379,11 @@ NSString *const _toggleFilterUsernameButton = @"SearchUsername";
 #pragma mark Actions
 
 - (void)_copyEntryData:(id)sender {
-
-  NSInteger selectedRow = [self.entryTable selectedRow];
-  if(selectedRow > [[self.entryArrayController arrangedObjects] count]) {
+  NSInteger clickedRow = [self.entryTable clickedRow];
+  if(clickedRow > [[self.entryArrayController arrangedObjects] count]) {
     return;
   }
-  KdbEntry *selectedEntry = [self.entryArrayController arrangedObjects][selectedRow];
+  KdbEntry *selectedEntry = [self.entryArrayController arrangedObjects][clickedRow];
   
   if([sender respondsToSelector:@selector(tag)]) {
     MPCopyContentTypeTag contentTag = (MPCopyContentTypeTag)[sender tag];
