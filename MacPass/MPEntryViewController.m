@@ -13,6 +13,7 @@
 #import "MPIconHelper.h"
 #import "MPMainWindowController.h"
 #import "MPPasteBoardController.h"
+#import "MPOverlayWindowController.h"
 #import "KdbGroup+MPAdditions.h"
 
 #import <QuartzCore/QuartzCore.h>
@@ -83,6 +84,7 @@ NSString *const _toggleFilterUsernameButton = @"SearchUsername";
 - (void)_hideStatusBarAnimated:(BOOL)animate;
 
 - (void)_copyEntryData:(id)sender;
+- (void)_quickCopyEntryData:(id)sender;
 
 @end
 
@@ -125,6 +127,8 @@ NSString *const _toggleFilterUsernameButton = @"SearchUsername";
   [self _hideStatusBarAnimated:NO];
   
   [self.entryTable setDelegate:self];
+  [self.entryTable setDoubleAction:@selector(_quickCopyEntryData:)];
+  [self.entryTable setTarget:self];
   [self _setupEntryMenu];
   
   NSTableColumn *parentColumn = [self.entryTable tableColumns][0];
@@ -378,9 +382,34 @@ NSString *const _toggleFilterUsernameButton = @"SearchUsername";
 
 #pragma mark Actions
 
+- (void)_quickCopyEntryData:(id)sender {
+  NSInteger clickedRow = [self.entryTable clickedRow];
+  if(clickedRow < 0 || clickedRow > [[self.entryArrayController arrangedObjects] count]) {
+    return;
+  }
+  KdbEntry *selectedEntry = [self.entryArrayController arrangedObjects][clickedRow];
+  NSTableColumn *column = [self.entryTable tableColumns][[self.entryTable clickedColumn]];
+  NSString *identifier = [column identifier];
+  NSImage *image = nil;
+  NSString *lable = nil;
+  if([identifier isEqualToString:MPEntryTablePasswordColumnIdentifier]) {
+    [[MPPasteBoardController defaultController] copyObjects:@[ selectedEntry.password ]];
+    image = [[NSBundle mainBundle] imageForResource:@"00_PasswordTemplate"];
+    lable = @"Password copied!";
+  }
+  else if([identifier isEqualToString:MPEntryTableUserNameColumnIdentifier]) {
+    [[MPPasteBoardController defaultController] copyObjects:@[ selectedEntry.username ]];
+    image = [[NSBundle mainBundle] imageForResource:@"09_IdentityTemplate"];
+    lable = @"Username copied!";
+  }
+  if(image || lable) {
+    [[MPOverlayWindowController sharedController] displayOverlayImage:image label:lable atView:self.view];
+  }
+}
+
 - (void)_copyEntryData:(id)sender {
   NSInteger clickedRow = [self.entryTable clickedRow];
-  if(clickedRow > [[self.entryArrayController arrangedObjects] count]) {
+  if(clickedRow < 0 || clickedRow > [[self.entryArrayController arrangedObjects] count]) {
     return;
   }
   KdbEntry *selectedEntry = [self.entryArrayController arrangedObjects][clickedRow];

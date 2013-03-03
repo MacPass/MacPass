@@ -74,7 +74,7 @@
   [[NSPasteboard generalPasteboard] clearContents];
   [[NSPasteboard generalPasteboard] writeObjects:objects];
   self.isEmpty = NO;
-  [self performSelector:@selector(clearContents) withObject:nil afterDelay:self.clearTimeout];
+  [self performSelector:@selector(_clearPasteboardContents) withObject:nil afterDelay:self.clearTimeout];
 }
 
 - (void)_clearPasteboardContents {

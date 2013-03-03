@@ -20,6 +20,7 @@
 		4C3BD51516D276F800389F1F /* MPToolbarDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C3BD51416D276F800389F1F /* MPToolbarDelegate.m */; };
 		4C3FFD9E16DAF60600DF9186 /* FilterBar.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4C3FFD9D16DAF60600DF9186 /* FilterBar.xib */; };
 		4C431BCD16E2A82800700A81 /* MPPasteBoardController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C431BCC16E2A82700700A81 /* MPPasteBoardController.m */; };
+		4C431BCF16E2BAB000700A81 /* OverlayWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4C431BCE16E2BAB000700A81 /* OverlayWindow.xib */; };
 		4C4E1DC716DC6536007B9B47 /* PathBar.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4C4E1DC616DC6536007B9B47 /* PathBar.xib */; };
 		4C586F9E16D07ABD00E7DB57 /* 00_PasswordTemplate.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 4C586F9D16D07ABD00E7DB57 /* 00_PasswordTemplate.pdf */; };
 		4C586FA016D07D7200E7DB57 /* 01_PackageNetworkTemplate.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 4C586F9F16D07D7200E7DB57 /* 01_PackageNetworkTemplate.pdf */; };
@@ -101,6 +102,8 @@
 		4CDB556416E29A7C00635918 /* MPPathControl.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CDB556316E29A7C00635918 /* MPPathControl.m */; };
 		4CDF01A316D1B76700D0AC08 /* MPEntryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CDF01A216D1B76700D0AC08 /* MPEntryViewController.m */; };
 		4CE06D7D16DEF3FE00840E3A /* MPButtonBar.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CE06D7C16DEF3FE00840E3A /* MPButtonBar.m */; };
+		4CE8246F16E2E93400573141 /* MPOverlayWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CE8246E16E2E93400573141 /* MPOverlayWindowController.m */; };
+		4CE8247516E2F2B900573141 /* MPOverlayView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CE8247416E2F2B900573141 /* MPOverlayView.m */; };
 		4CF5D49616D5B6E900CB78BD /* MPEntryEditController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CF5D49416D5B6E900CB78BD /* MPEntryEditController.m */; };
 		4CF5D49716D5B6E900CB78BD /* EntryEditView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4CF5D49516D5B6E900CB78BD /* EntryEditView.xib */; };
 /* End PBXBuildFile section */
@@ -126,6 +129,7 @@
 		4C3FFD9D16DAF60600DF9186 /* FilterBar.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FilterBar.xib; sourceTree = "<group>"; };
 		4C431BCB16E2A82700700A81 /* MPPasteBoardController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MPPasteBoardController.h; sourceTree = "<group>"; };
 		4C431BCC16E2A82700700A81 /* MPPasteBoardController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MPPasteBoardController.m; sourceTree = "<group>"; };
+		4C431BCE16E2BAB000700A81 /* OverlayWindow.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = OverlayWindow.xib; sourceTree = "<group>"; };
 		4C4E1DC616DC6536007B9B47 /* PathBar.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PathBar.xib; sourceTree = "<group>"; };
 		4C586F9D16D07ABD00E7DB57 /* 00_PasswordTemplate.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = 00_PasswordTemplate.pdf; sourceTree = "<group>"; };
 		4C586F9F16D07D7200E7DB57 /* 01_PackageNetworkTemplate.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = 01_PackageNetworkTemplate.pdf; sourceTree = "<group>"; };
@@ -278,6 +282,10 @@
 		4CDF01A216D1B76700D0AC08 /* MPEntryViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MPEntryViewController.m; sourceTree = "<group>"; };
 		4CE06D7B16DEF3FE00840E3A /* MPButtonBar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MPButtonBar.h; sourceTree = "<group>"; };
 		4CE06D7C16DEF3FE00840E3A /* MPButtonBar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MPButtonBar.m; sourceTree = "<group>"; };
+		4CE8246D16E2E93400573141 /* MPOverlayWindowController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MPOverlayWindowController.h; sourceTree = "<group>"; };
+		4CE8246E16E2E93400573141 /* MPOverlayWindowController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MPOverlayWindowController.m; sourceTree = "<group>"; };
+		4CE8247316E2F2B900573141 /* MPOverlayView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MPOverlayView.h; sourceTree = "<group>"; };
+		4CE8247416E2F2B900573141 /* MPOverlayView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MPOverlayView.m; sourceTree = "<group>"; };
 		4CF5D49316D5B6E900CB78BD /* MPEntryEditController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MPEntryEditController.h; sourceTree = "<group>"; };
 		4CF5D49416D5B6E900CB78BD /* MPEntryEditController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MPEntryEditController.m; sourceTree = "<group>"; };
 		4CF5D49516D5B6E900CB78BD /* EntryEditView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = EntryEditView.xib; sourceTree = "<group>"; };
@@ -305,7 +313,6 @@
 				4CF5D49516D5B6E900CB78BD /* EntryEditView.xib */,
 				4CA0B2EF15BCADC800654E32 /* GeneralSettings.xib */,
 				4C77E37B15B84A240093A587 /* MainMenu.xib */,
-				4CD884B615BD47080042BBF8 /* MainWindow.xib */,
 				4C61EA0416D2FFE200AC519E /* OutlineView.xib */,
 				4CA0B2EC15BCADAC00654E32 /* SettingsWindow.xib */,
 				4C6B0E8B16C9B99B00A9ED23 /* PasswordInputView.xib */,
@@ -314,6 +321,8 @@
 				4C4E1DC616DC6536007B9B47 /* PathBar.xib */,
 				4C69A73816D589DF00EC1B1A /* MPGradientView.h */,
 				4C69A73916D589DF00EC1B1A /* MPGradientView.m */,
+				4CE8247316E2F2B900573141 /* MPOverlayView.h */,
+				4CE8247416E2F2B900573141 /* MPOverlayView.m */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -529,7 +538,10 @@
 				4C586F9C16D07ABD00E7DB57 /* Icons */,
 				4CA0B30F15BCB85D00654E32 /* General */,
 				4CA0B30E15BCB70200654E32 /* Protocolls */,
-				4CA0B2F115BCAEE600654E32 /* Controller */,
+				4CE8247116E2E98200573141 /* Data Controller */,
+				4CE8247016E2E96500573141 /* Window Controller */,
+				4CA0B2F115BCAEE600654E32 /* View Controller */,
+				4CE8247216E2E99F00573141 /* Windows */,
 				4C06398C15B980480004DE27 /* Views */,
 				4CDB556616E29A8A00635918 /* Controls */,
 				4C37A84215B8B495005EF8EE /* Model */,
@@ -551,17 +563,11 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
-		4CA0B2F115BCAEE600654E32 /* Controller */ = {
+		4CA0B2F115BCAEE600654E32 /* View Controller */ = {
 			isa = PBXGroup;
 			children = (
 				4CA0B2F715BCAF6700654E32 /* MPGeneralSettingsController.h */,
 				4CA0B2F815BCAF6700654E32 /* MPGeneralSettingsController.m */,
-				4CA0B2FA15BCAF8600654E32 /* MPSettingsController.h */,
-				4CA0B2FB15BCAF8600654E32 /* MPSettingsController.m */,
-				4C83814015BF4677001AE468 /* MPMainWindowController.h */,
-				4C83814115BF4677001AE468 /* MPMainWindowController.m */,
-				4C75CE3A16CB128700F61A4D /* MPDatabaseController.h */,
-				4C75CE3B16CB128700F61A4D /* MPDatabaseController.m */,
 				4C2E382416D1470200037A9D /* MPViewController.h */,
 				4C2E382516D1470200037A9D /* MPViewController.m */,
 				4C65FAE616D16DDB006E0577 /* MPPasswordInputController.h */,
@@ -572,10 +578,8 @@
 				4C61EA0216D2FD0800AC519E /* MPOutlineViewController.m */,
 				4CF5D49316D5B6E900CB78BD /* MPEntryEditController.h */,
 				4CF5D49416D5B6E900CB78BD /* MPEntryEditController.m */,
-				4C431BCB16E2A82700700A81 /* MPPasteBoardController.h */,
-				4C431BCC16E2A82700700A81 /* MPPasteBoardController.m */,
 			);
-			name = Controller;
+			name = "View Controller";
 			sourceTree = "<group>";
 		};
 		4CA0B30E15BCB70200654E32 /* Protocolls */ = {
@@ -663,6 +667,39 @@
 			name = Controls;
 			sourceTree = "<group>";
 		};
+		4CE8247016E2E96500573141 /* Window Controller */ = {
+			isa = PBXGroup;
+			children = (
+				4CA0B2FA15BCAF8600654E32 /* MPSettingsController.h */,
+				4CA0B2FB15BCAF8600654E32 /* MPSettingsController.m */,
+				4C83814015BF4677001AE468 /* MPMainWindowController.h */,
+				4C83814115BF4677001AE468 /* MPMainWindowController.m */,
+				4CE8246D16E2E93400573141 /* MPOverlayWindowController.h */,
+				4CE8246E16E2E93400573141 /* MPOverlayWindowController.m */,
+			);
+			name = "Window Controller";
+			sourceTree = "<group>";
+		};
+		4CE8247116E2E98200573141 /* Data Controller */ = {
+			isa = PBXGroup;
+			children = (
+				4C75CE3A16CB128700F61A4D /* MPDatabaseController.h */,
+				4C75CE3B16CB128700F61A4D /* MPDatabaseController.m */,
+				4C431BCB16E2A82700700A81 /* MPPasteBoardController.h */,
+				4C431BCC16E2A82700700A81 /* MPPasteBoardController.m */,
+			);
+			name = "Data Controller";
+			sourceTree = "<group>";
+		};
+		4CE8247216E2E99F00573141 /* Windows */ = {
+			isa = PBXGroup;
+			children = (
+				4CD884B615BD47080042BBF8 /* MainWindow.xib */,
+				4C431BCE16E2BAB000700A81 /* OverlayWindow.xib */,
+			);
+			name = Windows;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -742,6 +779,7 @@
 				4CF5D49716D5B6E900CB78BD /* EntryEditView.xib in Resources */,
 				4C3FFD9E16DAF60600DF9186 /* FilterBar.xib in Resources */,
 				4C4E1DC716DC6536007B9B47 /* PathBar.xib in Resources */,
+				4C431BCF16E2BAB000700A81 /* OverlayWindow.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -836,6 +874,8 @@
 				4C587F2E16E0257B0003718D /* MPButtonBarButton.m in Sources */,
 				4CDB556416E29A7C00635918 /* MPPathControl.m in Sources */,
 				4C431BCD16E2A82800700A81 /* MPPasteBoardController.m in Sources */,
+				4CE8246F16E2E93400573141 /* MPOverlayWindowController.m in Sources */,
+				4CE8247516E2F2B900573141 /* MPOverlayView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
