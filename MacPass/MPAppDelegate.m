@@ -29,9 +29,13 @@
 }
 
 - (void)dealloc {
-  self.settingsController = nil;
-  self.mainWindowController = nil;
+  [_settingsController release];
+  [_mainWindowController release];
   [super dealloc];
+}
+
+- (NSString *)applicationName {
+  return [[NSBundle mainBundle] infoDictionary][@"CFBundleName"];
 }
 
 #pragma mark Menu Actions

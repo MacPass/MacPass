@@ -14,4 +14,6 @@
 
 - (IBAction) showMainWindow:(id)sender;
 
+- (NSString *)applicationName;
+
 @end

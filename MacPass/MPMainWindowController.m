@@ -8,11 +8,13 @@
 
 #import "MPMainWindowController.h"
 #import "MPDatabaseController.h"
+#import "MPDatabaseDocument.h"
 #import "MPPasswordInputController.h"
 #import "MPEntryViewController.h"
 #import "MPToolbarDelegate.h"
 #import "MPOutlineViewController.h"
 #import "MPMainWindowSplitViewDelegate.h"
+#import "MPAppDelegate.h"
 #import "MPEntryEditController.h"
 
 @interface MPMainWindowController ()
@@ -36,6 +38,7 @@
 - (void)_collapseOutlineView;
 - (void)_expandOutlineView;
 - (void)_setContentViewController:(MPViewController *)viewController;
+- (void)_updateWindowTitle;
 
 @end
 
@@ -80,6 +83,7 @@
 - (void)windowDidLoad
 {
   [super windowDidLoad];
+  [self _updateWindowTitle];
   
   [[self.welcomeText cell] setBackgroundStyle:NSBackgroundStyleRaised];
   
@@ -150,6 +154,17 @@
   }
 }
 
+- (void)_updateWindowTitle {
+  if([MPDatabaseController defaultController].database) {
+    NSString *appName = [(MPAppDelegate *)[NSApp delegate] applicationName];
+    NSString *openFile = [[MPDatabaseController defaultController].database.file lastPathComponent];
+    [self.window setTitle:[NSString stringWithFormat:@"%@ - %@", appName, openFile]];
+  }
+  else {
+    [self.window setTitle:[(MPAppDelegate *)[NSApp delegate] applicationName]];
+  }
+}
+
 #pragma mark Actions
 
 - (void)performFindPanelAction:(id)sender {
@@ -176,6 +191,7 @@
     if(result == NSFileHandlingPanelOKButton) {
       NSURL *file = [[openPanel URLs] lastObject];
       self.passwordInputController.fileURL = file;
+      [self _collapseOutlineView];
       [self _setContentViewController:self.passwordInputController];
     }
   }];
@@ -229,6 +245,7 @@
 #pragma mark Notifications
 
 - (void)didOpenDocument:(NSNotification *)notification {
+  [self _updateWindowTitle];
   [self showEntries];
 }
 
