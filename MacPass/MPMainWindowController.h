@@ -16,5 +16,8 @@
 - (void)showMainWindow:(id)sender;
 - (void)performFindPanelAction:(id)sender;
 - (void)clearOutlineSelection:(id)sender;
-
+/*
+ Clears the Search filter
+ */
+- (void)clearFilter:(id)sender;
 @end

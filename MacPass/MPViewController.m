@@ -12,12 +12,7 @@
 
 - (void)loadView {
   [super loadView];
-
-  /* Insert ourselfs in the responder chain */
-  NSResponder *nextResponder = [[self view] nextResponder];
-  [[self view] setNextResponder:self];
-  [self setNextResponder:nextResponder];
-  
+  [self updateResponderChain];
   [self didLoadView];
 }
 
@@ -27,6 +22,14 @@
 
 - (NSResponder *)reconmendedFirstResponder {
   return nil;
+}
+
+- (void)updateResponderChain {
+  if(self.view) {
+    NSResponder *nextResponder = [[self view] nextResponder];
+    [[self view] setNextResponder:self];
+    [self setNextResponder:nextResponder];
+  }
 }
 
 @end

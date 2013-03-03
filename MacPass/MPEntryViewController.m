@@ -196,11 +196,9 @@ NSString *const _toggleFilterUsernameButton = @"SearchUsername";
 
 #pragma mark Notifications
 - (void)_didChangeGroupSelectionInOutlineView:(NSNotification *)notification {
-  
   if([self hasFilter]) {
-    return;
+    [(MPMainWindowController *)[[self.view window] windowController] clearFilter:nil];
   }
-  [self clearFilter];
   MPOutlineViewDelegate *delegate = [notification object];
   KdbGroup *group = delegate.selectedGroup;
   if(group) {

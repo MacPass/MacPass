@@ -65,6 +65,12 @@
   [self.outlineView setAllowsEmptySelection:YES];
 }
 
+- (void)mouseUp:(NSEvent *)theEvent {
+  NSLog(@"Mouse Up!");
+  [super mouseUp:theEvent];
+}
+
+
 - (void)_didOpenDocument:(NSNotification *)notification {
   [self.outlineView reloadData];
   MPDatabaseController *dbContoller = [MPDatabaseController defaultController];
@@ -79,7 +85,7 @@
 
 - (void)_setupMenu {
   NSMenu *menu = [[NSMenu allocWithZone:[NSMenu menuZone]] init];
-  [menu addItemWithTitle:@"Add Group" action:@selector(addEntry:) keyEquivalent:@""];
+  [menu addItemWithTitle:@"Add Group" action:@selector(_addEntry:) keyEquivalent:@""];
   [menu addItem: [NSMenuItem separatorItem]];
   [menu addItemWithTitle:@"Delete" action:NULL keyEquivalent:@""];
   for(NSMenuItem *item in [menu itemArray]) {

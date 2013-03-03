@@ -101,6 +101,7 @@
   [self.outlineViewController.view setFrame:frame];
   [self.outlineViewController.view setAutoresizingMask:NSViewWidthSizable | NSViewHeightSizable];
   [self.splitView replaceSubview:self.outlineView with:[self.outlineViewController view]];
+  [self.outlineViewController updateResponderChain];
   [self.splitView adjustSubviews];
   
   [self _setContentViewController:nil];
@@ -132,6 +133,7 @@
   else {
     [self.contentView addSubview:newContentView];
   }
+  [viewController updateResponderChain];
   [self.contentView setNeedsDisplay:YES];
   [self.splitView adjustSubviews];
   /*
