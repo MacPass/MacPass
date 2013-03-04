@@ -12,6 +12,7 @@
 
 - (void)didLoadView;
 - (NSResponder *)reconmendedFirstResponder;
+
 - (void)updateResponderChain;
 
 @end

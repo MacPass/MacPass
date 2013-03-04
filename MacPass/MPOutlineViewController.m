@@ -11,6 +11,7 @@
 #import "MPOutlineDataSource.h"
 #import "MPDatabaseController.h"
 #import "MPDatabaseDocument.h"
+#import "MPAppDelegate.h"
 
 @interface MPOutlineViewController ()
 
@@ -22,8 +23,7 @@
 
 
 - (void)_didOpenDocument:(NSNotification *)notification;
-- (void)_setupMenu;
-- (void)_addEntry:(id)sender;
+- (NSMenu *)_contextMenu;
 
 @end
 
@@ -43,7 +43,6 @@
                                              selector:@selector(_didOpenDocument:)
                                                  name:MPDatabaseControllerDidLoadDatabaseNotification
                                                object:nil];
-    [self _setupMenu];
   }
   
   return self;
@@ -61,7 +60,7 @@
 - (void)didLoadView {
   [self.outlineView setDataSource:self.datasource];
   [self.outlineView setDelegate:self.outlineDelegate];
-  [self.outlineView setMenu:self.menu];
+  [self.outlineView setMenu:[self _contextMenu]];
   [self.outlineView setAllowsEmptySelection:YES];
 }
 
@@ -83,21 +82,23 @@
   [self.outlineView deselectAll:nil];
 }
 
-- (void)_setupMenu {
-  NSMenu *menu = [[NSMenu allocWithZone:[NSMenu menuZone]] init];
-  [menu addItemWithTitle:@"Add Group" action:@selector(_addEntry:) keyEquivalent:@""];
-  [menu addItem: [NSMenuItem separatorItem]];
-  [menu addItemWithTitle:@"Delete" action:NULL keyEquivalent:@""];
-  for(NSMenuItem *item in [menu itemArray]) {
-    [item setTarget:self];
+- (NSMenu *)_contextMenu {
+  NSMenu *menu = [[NSMenu alloc] init];
+  NSArray *items = [(MPAppDelegate *)[NSApp delegate] contextMenuItemsWithItems:MPContextMenuMinimal];
+  for(NSMenuItem *item in items) {
+    [menu addItem:item];
   }
-  
-  self.menu = menu;
-  [menu release];
+  return [menu autorelease];
 }
 
-- (void)_addEntry:(id)sender {
-  NSLog(@"Add Entry");
+- (void)createGroup:(id)sender {
+  NSLog(@"%@: Create Group", [self class]);
 }
+
+- (void)deleteEntry:(id)sender {
+  NSLog(@"%@: Delete Entry", [self class]);
+}
+
+
 
 @end

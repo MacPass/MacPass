@@ -10,8 +10,8 @@
 
 @interface MPOutlineViewController : MPViewController
 
-@property (retain, readonly) NSMenu *menu;
-
 - (void)clearSelection;
 
+- (void)createGroup:(id)sender;
+- (void)deleteEntry:(id)sender;
 @end

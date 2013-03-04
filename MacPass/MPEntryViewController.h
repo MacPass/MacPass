@@ -14,6 +14,13 @@ APPKIT_EXTERN NSString *const MPEntryTablePasswordColumnIdentifier;
 APPKIT_EXTERN NSString *const MPEntryTableParentColumnIdentifier;
 APPKIT_EXTERN NSString *const MPEntryTableURLColumnIdentifier;
 
+/* Tags to determine what to copy */
+typedef enum {
+  MPCopyUsername,
+  MPCopyPassword,
+  MPCopyURL,
+  MPCopyWholeEntry,
+} MPCopyContentTypeTag;
 
 @class KdbGroup;
 @class MPOutlineViewDelegate;
@@ -26,5 +33,11 @@ APPKIT_EXTERN NSString *const MPEntryTableURLColumnIdentifier;
 
 /* Clear the Search filter*/
 - (void)clearFilter;
+
+- (void)copyUsername:(id)sender;
+- (void)copyPassword:(id)sender;
+//- (void)copyURL:(id)sender;
+//- (void)createEntry:(id)sender;
+//- (void)deleteEntry:(id)sender;
 
 @end

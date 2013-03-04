@@ -7,6 +7,7 @@
 //
 
 #import "MPEntryViewController.h"
+#import "MPAppDelegate.h"
 #import "MPOutlineViewDelegate.h"
 #import "MPDatabaseController.h"
 #import "MPDatabaseDocument.h"
@@ -27,12 +28,6 @@ typedef enum {
   MPFilterTitles = 8,
 } MPFilterModeType;
 
-typedef enum {
-  MPCopyUsername,
-  MPCopyPassword,
-  MPCopyURL,
-  MPCopyWholeEntry,
-} MPCopyContentTypeTag;
 
 NSString *const MPEntryTableUserNameColumnIdentifier = @"MPUserNameColumnIdentifier";
 NSString *const MPEntryTableTitleColumnIdentifier = @"MPTitleColumnIdentifier";
@@ -83,8 +78,8 @@ NSString *const _toggleFilterUsernameButton = @"SearchUsername";
 - (void)_showFilterBarAnimated:(BOOL)animate;
 - (void)_hideStatusBarAnimated:(BOOL)animate;
 
-- (void)_copyEntryData:(id)sender;
 - (void)_quickCopyEntryData:(id)sender;
+- (KdbEntry *)_selectedEntry;
 
 @end
 
@@ -333,7 +328,7 @@ NSString *const _toggleFilterUsernameButton = @"SearchUsername";
   
   
   animate = NO;
- 
+  
   if(!self.isStatusBarVisible) {
     return; // nothing to do;
   }
@@ -357,84 +352,65 @@ NSString *const _toggleFilterUsernameButton = @"SearchUsername";
 #pragma mark EntryMenu
 
 - (void)_setupEntryMenu {
-  NSMenu *menu = [[NSMenu allocWithZone:[NSMenu menuZone]] init];
-  NSMenuItem *copyUserItem = [[NSMenuItem allocWithZone:[NSMenu menuZone]] initWithTitle:@"Copy Username"
-                                                                                  action:@selector(_copyEntryData:)
-                                                                           keyEquivalent:@"C"];
-  [copyUserItem setTag:MPCopyUsername];
-  [copyUserItem setTarget:self];
-  NSMenuItem *copyPasswordItem = [[NSMenuItem allocWithZone:[NSMenu menuZone]] initWithTitle:@"Copy Password"
-                                                                                      action:@selector(_copyEntryData:)
-                                                                               keyEquivalent:@"c"];
-  [copyPasswordItem setTag:MPCopyPassword];
-  [copyPasswordItem setTarget:self];
-
-  [menu addItem:copyUserItem];
-  [menu addItem:copyPasswordItem];
-  [copyUserItem release];
-  [copyPasswordItem release];
   
+  NSMenu *menu = [[NSMenu alloc] init];
+  NSArray *items = [(MPAppDelegate *)[NSApp delegate] contextMenuItemsWithItems:MPContextMenuFull];
+  for(NSMenuItem *item in items) {
+    [menu addItem:item];
+  }
   [self.entryTable setMenu:menu];
   [menu release];
+}
+
+#pragma makr Action Helper
+
+- (KdbEntry *)_selectedEntry {
+  NSInteger activeRow = [self.entryTable clickedRow];
+  /* Fallback to selection e.g. for toolbar actions */
+  if(activeRow < 0 ) {
+    activeRow = [self.entryTable selectedRow];
+  }
+  if(activeRow >= 0 && activeRow <= [[self.entryArrayController arrangedObjects] count]) {
+    return [self.entryArrayController arrangedObjects][activeRow];
+  }
+  return nil;
 }
 
 #pragma mark Actions
 
 - (void)_quickCopyEntryData:(id)sender {
-  NSInteger clickedRow = [self.entryTable clickedRow];
-  if(clickedRow < 0 || clickedRow > [[self.entryArrayController arrangedObjects] count]) {
-    return;
-  }
-  KdbEntry *selectedEntry = [self.entryArrayController arrangedObjects][clickedRow];
   NSTableColumn *column = [self.entryTable tableColumns][[self.entryTable clickedColumn]];
   NSString *identifier = [column identifier];
-  NSImage *image = nil;
-  NSString *lable = nil;
   if([identifier isEqualToString:MPEntryTablePasswordColumnIdentifier]) {
-    [[MPPasteBoardController defaultController] copyObjects:@[ selectedEntry.password ]];
-    image = [[NSBundle mainBundle] imageForResource:@"00_PasswordTemplate"];
-    lable = @"Password copied!";
+    [self copyPassword:nil];
   }
   else if([identifier isEqualToString:MPEntryTableUserNameColumnIdentifier]) {
-    [[MPPasteBoardController defaultController] copyObjects:@[ selectedEntry.username ]];
-    image = [[NSBundle mainBundle] imageForResource:@"09_IdentityTemplate"];
-    lable = @"Username copied!";
-  }
-  if(image || lable) {
-    [[MPOverlayWindowController sharedController] displayOverlayImage:image label:lable atView:self.view];
+    [self copyUsername:nil];
   }
 }
 
-- (void)_copyEntryData:(id)sender {
-  NSInteger clickedRow = [self.entryTable clickedRow];
-  if(clickedRow < 0 || clickedRow > [[self.entryArrayController arrangedObjects] count]) {
-    return;
-  }
-  KdbEntry *selectedEntry = [self.entryArrayController arrangedObjects][clickedRow];
-  
-  if([sender respondsToSelector:@selector(tag)]) {
-    MPCopyContentTypeTag contentTag = (MPCopyContentTypeTag)[sender tag];
-    SEL contentTypeSelector = @selector(description);
-    switch (contentTag) {
-      case MPCopyPassword:
-        contentTypeSelector = @selector(password);
-        break;
-        
-      case MPCopyUsername:
-        contentTypeSelector = @selector(username);
-        break;
-        
-      case MPCopyURL:
-        contentTypeSelector = @selector(URL);
-        break;
-        
-      case MPCopyWholeEntry:
-      default:
-        break;
-    }
-    [[MPPasteBoardController defaultController] copyObjects:@[ [selectedEntry performSelector:contentTypeSelector] ]];
-  }
+- (void)copyPassword:(id)sender {
+  KdbEntry *selectedEntry = [self _selectedEntry];
+  if(!selectedEntry) {
+    return; // nothing found to work with;
+  }  
+  [[MPPasteBoardController defaultController] copyObjects:@[ selectedEntry.password ]];
+  NSImage *image = [[NSBundle mainBundle] imageForResource:@"00_PasswordTemplate"];
+  NSString *lable = @"Password copied!";
+  [[MPOverlayWindowController sharedController] displayOverlayImage:image label:lable atView:self.view];
+}
 
+- (void)copyUsername:(id)sender {
+  KdbEntry *selectedEntry = [self _selectedEntry];
+  if(!selectedEntry) {
+    return; // No entry to work with;
+  }
+  [[MPPasteBoardController defaultController] copyObjects:@[ selectedEntry.username ] ];
+  
+  [[MPPasteBoardController defaultController] copyObjects:@[ selectedEntry.username ]];
+  NSImage *image = [[NSBundle mainBundle] imageForResource:@"09_IdentityTemplate"];
+  NSString *lable = @"Username copied!";
+    [[MPOverlayWindowController sharedController] displayOverlayImage:image label:lable atView:self.view];
 }
 
 - (void)_toggleFilterSpace:(id)sender {
@@ -453,7 +429,6 @@ NSString *const _toggleFilterUsernameButton = @"SearchUsername";
     default:
       break;
   }
-
 }
 
 - (void)setFilterMode:(MPFilterModeType)newFilterMode {

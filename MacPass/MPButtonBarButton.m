@@ -34,6 +34,7 @@
     [borderGradient drawInRect:drawingRect relativeCenterPosition:NSMakePoint(-1.0, 0)];
     drawingRect.origin.x = [self bounds].size.width - 5;
     [borderGradient drawInRect:drawingRect relativeCenterPosition:NSMakePoint(1.0, 0)];
+    [borderGradient release];
   }
   [super drawRect:dirtyRect];
 }

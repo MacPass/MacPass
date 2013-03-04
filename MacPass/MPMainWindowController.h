@@ -20,4 +20,5 @@
  Clears the Search filter
  */
 - (void)clearFilter:(id)sender;
+
 @end

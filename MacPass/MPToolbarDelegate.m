@@ -8,8 +8,7 @@
 
 #import "MPToolbarDelegate.h"
 #import "MPIconHelper.h"
-#import "MPMainWindowController.h"
-#import "MPPathBar.h"
+#import "MPAppDelegate.h"
 #import "MPToolbarButton.h"
 
 NSString *const MPToolbarItemAddGroup = @"AddGroup";
@@ -30,13 +29,12 @@ NSString *const MPToolbarItemSearch = @"Search";
 @implementation MPToolbarDelegate
 
 
-- (id)init
-{
+- (id)init {
   self = [super init];
   if (self) {
-    self.toolbarIdentifiers = @[ MPToolbarItemAddEntry, MPToolbarItemDelete, MPToolbarItemEdit, MPToolbarItemAddGroup, MPToolbarItemAction, NSToolbarFlexibleSpaceItemIdentifier, MPToolbarItemSearch ];
-    self.toolbarImages = [self createToolbarImages];
-    self.toolbarItems = [[NSMutableDictionary alloc] initWithCapacity:[self.toolbarIdentifiers count]];
+    _toolbarIdentifiers = [@[ MPToolbarItemAddEntry, MPToolbarItemDelete, MPToolbarItemEdit, MPToolbarItemAddGroup, MPToolbarItemAction, NSToolbarFlexibleSpaceItemIdentifier, MPToolbarItemSearch ] retain];
+    _toolbarImages = [[self createToolbarImages] retain];
+    _toolbarItems = [[NSMutableDictionary alloc] initWithCapacity:[self.toolbarIdentifiers count]];
   }
   return self;
 }
@@ -53,7 +51,6 @@ NSString *const MPToolbarItemSearch = @"Search";
   NSToolbarItem *item = self.toolbarItems[itemIdentifier];
   if(!item) {    
     item = [[NSToolbarItem alloc] initWithItemIdentifier:itemIdentifier];
-    [item setAction:@selector(toolbarItemPressed:)];
     NSString *label = NSLocalizedString(itemIdentifier, @"");
     [item setLabel:label];
     
@@ -73,25 +70,25 @@ NSString *const MPToolbarItemSearch = @"Search";
       [[popupButton cell] setImageScaling:NSImageScaleProportionallyDown];
       [popupButton setTitle:@""];
       [popupButton sizeToFit];
-      /*
-       Built menu
-       */
-      NSMenu *menu = [NSMenu allocWithZone:[NSMenu menuZone]];
-      NSMenuItem *menuItem = [[NSMenuItem allocWithZone:[NSMenu menuZone]] initWithTitle:@"" action:NULL keyEquivalent:@""];
-      [menuItem setImage:self.toolbarImages[itemIdentifier]];
-      [menu addItem:menuItem];
-      [menu addItemWithTitle:@"Foo" action:NULL keyEquivalent:@""];
-      [menu addItemWithTitle:@"Bar" action:NULL keyEquivalent:@""];
+
       NSRect newFrame = [popupButton frame];
       newFrame.size.width += 20;
       
+      
+      
+      NSMenu *menu = [[NSMenu allocWithZone:[NSMenu menuZone]] init];
+      NSMenuItem *actionImageItem = [[NSMenuItem allocWithZone:[NSMenu menuZone]] initWithTitle:@"" action:NULL keyEquivalent:@""];
+      [actionImageItem setImage:self.toolbarImages[MPToolbarItemAction]];
+      [menu addItem:actionImageItem];
+      [actionImageItem release];
+      NSArray *menuItems = [(MPAppDelegate *)[NSApp delegate] contextMenuItemsWithItems:MPContextMenuFull];
+      for(NSMenuItem *item in menuItems) {
+        [menu addItem:item];
+      }
       [popupButton setFrame:newFrame];
       [popupButton setMenu:menu];
-      /*
-       Cleanup
-       */
-      [menuItem release];
       [menu release];
+      
       [item setView:popupButton];
       [popupButton release];
     }
@@ -141,6 +138,5 @@ NSString *const MPToolbarItemSearch = @"Search";
                                };
   return imageDict;
 }
-
 
 @end

@@ -19,6 +19,7 @@
 
 @interface MPMainWindowController ()
 
+
 @property (assign) IBOutlet NSView *outlineView;
 @property (assign) IBOutlet NSSplitView *splitView;
 @property (assign) IBOutlet NSView *contentView;
@@ -84,7 +85,7 @@
 {
   [super windowDidLoad];
   [self _updateWindowTitle];
-  
+    
   [[self.welcomeText cell] setBackgroundStyle:NSBackgroundStyleRaised];
   
   const CGFloat minimumWindowWidth = MPMainWindowSplitViewDelegateMinimumContentWidth + MPMainWindowSplitViewDelegateMinimumOutlineWidth + [self.splitView dividerThickness];

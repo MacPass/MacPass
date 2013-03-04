@@ -22,8 +22,7 @@
 
 @implementation MPAppDelegate
 
-- (void)applicationDidFinishLaunching:(NSNotification *)aNotification
-{
+- (void)applicationDidFinishLaunching:(NSNotification *)aNotification {
   self.mainWindowController = [[[MPMainWindowController alloc] init] autorelease];
   [self.mainWindowController showWindow:[self.mainWindowController window]];
 }
@@ -51,8 +50,40 @@
   [self.settingsController showWindow:_settingsController.window];
 }
 
-- (void)toolbarItemPressed:(id)sender {
-  NSLog(@"Pressed %@", sender);
+- (NSArray *)contextMenuItemsWithItems:(MPContextMenuItemsFlags)flags {
+  BOOL insertCreate = (0 != (flags & MPContextMenuCreate));
+  BOOL insertDelete = (0 != (flags & MPContextMenuDelete));
+  BOOL insertCopy = (0 != (flags & MPContextMenuCopy));
+  
+  NSMutableArray *items = [NSMutableArray arrayWithCapacity:7];
+  if(insertCreate) {
+    NSMenuItem *newGroup = [[NSMenuItem alloc] initWithTitle:@"New Group" action:@selector(createGroup:) keyEquivalent:@"G"];
+    NSMenuItem *newEntry = [[NSMenuItem alloc] initWithTitle:@"New Entry" action:@selector(createEntry:) keyEquivalent:@"E"];
+    [items addObjectsFromArray:@[ newGroup, newEntry ]];
+    [newEntry release];
+    [newGroup release];
+  }
+  if(insertDelete) {
+    if([items count] > 0) {
+      [items addObject:[NSMenuItem separatorItem]];
+    }
+    NSMenuItem *delete = [[NSMenuItem alloc] initWithTitle:@"Delete" action:@selector(deleteEntry:) keyEquivalent:@""];
+    [items addObject:delete];
+    [delete release];
+  }
+  if(insertCopy) {
+    if([items count] > 0) {
+      [items addObject:[NSMenuItem separatorItem]];
+    }
+    NSMenuItem *copyUsername = [[NSMenuItem alloc] initWithTitle:@"Copy Username" action:@selector(copyUsername:) keyEquivalent:@"C"];
+    NSMenuItem *copyPassword = [[NSMenuItem alloc] initWithTitle:@"Copy Password" action:@selector(copyPassword:) keyEquivalent:@"c"];
+    NSMenuItem *openURL = [[NSMenuItem alloc] initWithTitle:@"Open URL" action:@selector(openURL:) keyEquivalent:@"U"];
+    [items addObjectsFromArray:@[ copyUsername, copyPassword, openURL]];
+    [copyPassword release];
+    [copyUsername release];
+    [openURL release];
+  }
+  return items;
 }
 
 @end
