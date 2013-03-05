@@ -9,8 +9,18 @@
 #import <Cocoa/Cocoa.h>
 
 @class MPViewController;
+@class MPEntryViewController;
+@class MPInspectorTabViewController;
+@class MPPasswordInputController;
+@class MPOutlineViewController;
 
 @interface MPMainWindowController : NSWindowController
+
+@property (readonly, retain) MPPasswordInputController *passwordInputController;
+@property (readonly, retain) MPEntryViewController *entryViewController;
+@property (readonly, retain) MPOutlineViewController *outlineViewController;
+@property (readonly, retain) MPInspectorTabViewController *inspectorTabViewController;
+
 
 - (void)showEntries;
 - (void)showMainWindow:(id)sender;

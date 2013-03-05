@@ -10,7 +10,7 @@
 #import "MPIconHelper.h"
 #import "KdbLib.h"
 
-NSString *const MPOutlineViewDidChangeGroupSelection = @"MPOutlineViewDidChangeGroupSelection";
+NSString *const MPOutlineViewDidChangeGroupSelection = @"com.macpass.MPOutlineViewDidChangeGroupSelection";
 
 NSString *const _MPOutlineViewDataViewIdentifier = @"DataCell";
 NSString *const _MPOutlinveViewHeaderViewIdentifier = @"HeaderCell";

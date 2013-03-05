@@ -60,6 +60,8 @@ NSString *const _toggleFilterUsernameButton = @"SearchUsername";
 @property (assign) IBOutlet NSButton *filterURLButton;
 @property (assign) IBOutlet NSTextField *filterLabelTextField;
 
+@property (assign) KdbEntry *selectedEntry;
+
 @property (assign, nonatomic) MPFilterModeType filterMode;
 @property (retain, nonatomic) NSDictionary *filterButtonToMode;
 
@@ -74,7 +76,9 @@ NSString *const _toggleFilterUsernameButton = @"SearchUsername";
 - (void)setupFilterBar;
 - (void)setupPathBar;
 - (void)_setupEntryMenu;
+/* Notification handling */
 - (void)_didChangeGroupSelectionInOutlineView:(NSNotification *)notification;
+- (void)_didChangeEntrySelection:(NSNotification *)notification;
 - (void)_showFilterBarAnimated:(BOOL)animate;
 - (void)_hideStatusBarAnimated:(BOOL)animate;
 
@@ -100,10 +104,12 @@ NSString *const _toggleFilterUsernameButton = @"SearchUsername";
                            _toggleFilterURLButton : @(MPFilterUrls)
                            } retain];
     _entryArrayController = [[NSArrayController alloc] init];
+    _selectedEntry = nil;
     [[NSNotificationCenter defaultCenter] addObserver:self
                                              selector:@selector(_didChangeGroupSelectionInOutlineView:)
                                                  name:MPOutlineViewDidChangeGroupSelection
                                                object:nil];
+    
   }
   return self;
 }
@@ -145,7 +151,7 @@ NSString *const _toggleFilterUsernameButton = @"SearchUsername";
   [[urlColumn headerCell] setStringValue:@"URL"];
   
   [self.entryTable bind:NSContentBinding toObject:self.entryArrayController withKeyPath:@"arrangedObjects" options:nil];
-  
+  [self.selectedEntry bind:NSValueBinding toObject:self.entryArrayController withKeyPath:NSSelectedObjectBinding options:nil];
   [parentColumn setHidden:YES];
 }
 
@@ -203,6 +209,7 @@ NSString *const _toggleFilterUsernameButton = @"SearchUsername";
     [self.entryArrayController setContent:nil];
   }
 }
+
 
 #pragma mark Filtering
 
@@ -393,7 +400,7 @@ NSString *const _toggleFilterUsernameButton = @"SearchUsername";
   KdbEntry *selectedEntry = [self _selectedEntry];
   if(!selectedEntry) {
     return; // nothing found to work with;
-  }  
+  }
   [[MPPasteBoardController defaultController] copyObjects:@[ selectedEntry.password ]];
   NSImage *image = [[NSBundle mainBundle] imageForResource:@"00_PasswordTemplate"];
   NSString *lable = @"Password copied!";
@@ -410,7 +417,7 @@ NSString *const _toggleFilterUsernameButton = @"SearchUsername";
   [[MPPasteBoardController defaultController] copyObjects:@[ selectedEntry.username ]];
   NSImage *image = [[NSBundle mainBundle] imageForResource:@"09_IdentityTemplate"];
   NSString *lable = @"Username copied!";
-    [[MPOverlayWindowController sharedController] displayOverlayImage:image label:lable atView:self.view];
+  [[MPOverlayWindowController sharedController] displayOverlayImage:image label:lable atView:self.view];
 }
 
 - (void)deleteEntry:(id)sender {

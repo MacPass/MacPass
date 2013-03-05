@@ -10,6 +10,9 @@
 
 @interface MPInspectorTabViewController ()
 
+@property (assign) IBOutlet NSImageView *itemImageView;
+@property (assign) IBOutlet NSTextField *itemNameTextfield;
+
 @end
 
 @implementation MPInspectorTabViewController

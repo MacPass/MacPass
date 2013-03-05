@@ -18,6 +18,11 @@ typedef enum {
   MPSplitViewInspectorViewIndex,
 } MPSplitViewSubViewIndex;
 
+typedef enum {
+  MPSplitViewOutlineDividerIndex,
+  MPSplitViewInspectorDividerIndex,
+} MPSplitViewDividerIndex;
+
 @interface MPMainWindowSplitViewDelegate : NSObject <NSSplitViewDelegate>
 
 

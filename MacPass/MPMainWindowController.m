@@ -42,7 +42,6 @@ static CGFloat _inspectorSplitterPosition;
 /* View show/hide */
 - (void)_collapseOutlineView;
 - (void)_expandOutlineView;
-- (void)_toggleInspector;
 
 - (void)_setContentViewController:(MPViewController *)viewController;
 - (void)_updateWindowTitle;
@@ -193,13 +192,13 @@ static CGFloat _inspectorSplitterPosition;
   const BOOL collapsed = [self.splitView isSubviewCollapsed:inspectorView];
   if(collapsed) {
     CGFloat splitterPosition = MAX(MPMainWindowSplitViewDelegateMinimumInspectorWidth, _inspectorSplitterPosition);
-    [self.splitView setPosition:splitterPosition ofDividerAtIndex:1];
+    [self.splitView setPosition:splitterPosition ofDividerAtIndex:MPSplitViewInspectorDividerIndex];
   }
   else {
     _inspectorSplitterPosition = [inspectorView frame].origin.x;
     CGFloat splitterPosition = [inspectorView frame].origin.x * [inspectorView frame].size.width;
     [[NSAnimationContext currentContext] setDuration:2];
-    [[self.splitView animator] setPosition:splitterPosition ofDividerAtIndex:1];
+    [[self.splitView animator] setPosition:splitterPosition ofDividerAtIndex:MPSplitViewInspectorDividerIndex];
   }
   [inspectorView setHidden:!collapsed];
 }

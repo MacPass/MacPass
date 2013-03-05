@@ -13,7 +13,6 @@ const CGFloat MPMainWindowSplitViewDelegateMinimumContentWidth = 400.0;
 const CGFloat MPMainWindowSplitViewDelegateMinimumInspectorWidth = 200.0;
 
 
-
 @interface MPMainWindowSplitViewDelegate ()
 
 - (NSView *)_subViewOfType:(MPSplitViewSubViewIndex)subViewType splitView:(NSSplitView *)splitView;
@@ -32,13 +31,17 @@ const CGFloat MPMainWindowSplitViewDelegateMinimumInspectorWidth = 200.0;
 
 - (CGFloat)splitView:(NSSplitView *)splitView constrainMinCoordinate:(CGFloat)proposedMinimumPosition ofSubviewAt:(NSInteger)dividerIndex {
   return proposedMinimumPosition;
-  //return (proposedMinimumPosition < MPMainWindowSplitViewDelegateMinimumOutlineWidth) ? MPMainWindowSplitViewDelegateMinimumOutlineWidth : proposedMinimumPosition;
+  
+  // Update to take inspector into account
+  return (proposedMinimumPosition < MPMainWindowSplitViewDelegateMinimumOutlineWidth) ? MPMainWindowSplitViewDelegateMinimumOutlineWidth : proposedMinimumPosition;
 }
 
 - (CGFloat)splitView:(NSSplitView *)splitView constrainMaxCoordinate:(CGFloat)proposedMaximumPosition ofSubviewAt:(NSInteger)dividerIndex {
   return proposedMaximumPosition;
-  //  CGFloat availableWidth = [splitView frame].size.width - [splitView dividerThickness];
-  //  return (availableWidth - MPMainWindowSplitViewDelegateMinimumOutlineWidth);
+  
+  // Update to take inpspector into account
+  CGFloat availableWidth = [splitView frame].size.width - [splitView dividerThickness];
+  return (availableWidth - MPMainWindowSplitViewDelegateMinimumOutlineWidth);
 }
 
 - (void)splitView:(NSSplitView *)splitView resizeSubviewsWithOldSize:(NSSize)oldSize {
@@ -51,11 +54,21 @@ const CGFloat MPMainWindowSplitViewDelegateMinimumInspectorWidth = 200.0;
   
   CGFloat outlineWidth = [outlineView isHidden] ? 0.0 : [outlineView frame].size.width;
   CGFloat inspectorWidth = [inspectorView isHidden] ? 0.0 : [inspectorView frame].size.width;
-  CGFloat contentWidth = newSize.width - outlineWidth - inspectorWidth - 2 * dividierThickness;
-  NSRect newContentFrame = NSMakeRect(outlineWidth + dividierThickness, 0, contentWidth, newSize.height);
+  
+  CGFloat dividerThicknessCorrection = 0;
+  if(outlineWidth > 0.0) {
+    dividerThicknessCorrection += dividierThickness;
+  }
+  if(inspectorWidth > 0.0 ) {
+    dividerThicknessCorrection += dividierThickness;
+  }
+  
+  CGFloat contentWidth = newSize.width - outlineWidth - inspectorWidth - dividerThicknessCorrection;
+  CGFloat contentOriginX = [outlineView isHidden] ? outlineWidth : outlineWidth + dividierThickness;
+  NSRect newContentFrame = NSMakeRect(contentOriginX, 0, contentWidth, newSize.height);
   NSRect newOutlineFrame = NSMakeRect(0, 0, outlineWidth, newSize.height);
   NSRect newInpectorFrame = NSMakeRect(newContentFrame.origin.x + contentWidth + dividierThickness, 0, inspectorWidth, newSize.height);
-
+  
   if(NO == [outlineView isHidden]) {
     [outlineView setFrame:newOutlineFrame];
   }
@@ -64,5 +77,29 @@ const CGFloat MPMainWindowSplitViewDelegateMinimumInspectorWidth = 200.0;
   }
   [contentView setFrame:newContentFrame];
 };
+
+- (BOOL)splitView:(NSSplitView *)splitView shouldHideDividerAtIndex:(NSInteger)dividerIndex {
+  NSView *outlineView = [self _subViewOfType:MPSplitViewOutlineViewIndex splitView:splitView];
+  NSView *inspectorView = [self _subViewOfType:MPSplitViewInspectorViewIndex splitView:splitView];
+
+  BOOL shouldHide = NO;
+  switch (dividerIndex) {
+    case MPSplitViewInspectorDividerIndex:
+      shouldHide = [inspectorView isHidden];
+      break;
+      
+    case MPSplitViewOutlineDividerIndex:
+      shouldHide =  [outlineView isHidden];
+      break;
+      
+    default: {
+      NSException *exception = [NSException exceptionWithName:NSInternalInconsistencyException reason:@"Divider Index out of range!" userInfo:nil];
+      @throw exception;
+    }
+  }
+  NSArray *splitterNames = @[ @"Outline", @"Inspector" ];
+  NSLog(@"Should Hide %@: %@", splitterNames[dividerIndex], shouldHide ? @"Yes" : @"No" );
+  return shouldHide;
+}
 
 @end

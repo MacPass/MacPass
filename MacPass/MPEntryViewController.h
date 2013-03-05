@@ -23,13 +23,18 @@ typedef enum {
 } MPCopyContentTypeTag;
 
 @class KdbGroup;
+@class KdbEntry;
 @class MPOutlineViewDelegate;
 
 @interface MPEntryViewController : MPViewController <NSTableViewDelegate>
 
+
 @property (assign) KdbGroup *activeGroup;
+@property (readonly, assign) KdbEntry *selectedEntry;
+
 @property (readonly, retain) NSArrayController *entryArrayController;
 @property (nonatomic, retain) NSString *filter;
+
 
 /* Clear the Search filter*/
 - (void)clearFilter;

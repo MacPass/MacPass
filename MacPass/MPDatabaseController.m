@@ -9,9 +9,9 @@
 #import "MPDatabaseController.h"
 #import "MPDatabaseDocument.h"
 
-NSString *const MPDatabaseControllerDidLoadDatabaseNotification = @"MPDatabaseControllerDidLoadDatabaseNotification";
-NSString *const MPDatabaseControllerDidCloseDatabaseNotification = @"MPDatabaseControllerDidCloseDatabaseNotification";
-NSString *const MPDatabaseControllerDatabaseKey = @"MPDatabaseControllerDatabaseKey";
+NSString *const MPDatabaseControllerDidLoadDatabaseNotification = @"com.macpass.MPDatabaseControllerDidLoadDatabaseNotification";
+NSString *const MPDatabaseControllerDidCloseDatabaseNotification = @"com.macpass.MPDatabaseControllerDidCloseDatabaseNotification";
+NSString *const MPDatabaseControllerDatabaseKey = @"com.macpass.MPDatabaseControllerDatabaseKey";
 
 @interface MPDatabaseController ()
 
@@ -67,8 +67,8 @@ NSString *const MPDatabaseControllerDatabaseKey = @"MPDatabaseControllerDatabase
                                                         userInfo:userInfo];
     }
     [_database release];
+    _database = [database retain];
     if(database) {
-      _database = [database retain];
       NSDictionary *userInfo = @{ MPDatabaseControllerDatabaseKey: _database };
       [[NSNotificationCenter defaultCenter] postNotificationName:MPDatabaseControllerDidLoadDatabaseNotification
                                                           object:self
