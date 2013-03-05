@@ -8,9 +8,15 @@
 
 #import <Foundation/Foundation.h>
 
-extern const CGFloat MPMainWindowSplitViewDelegateMinimumOutlineWidth;
-extern const CGFloat MPMainWindowSplitViewDelegateMaximumOutlineWidth;
-extern const CGFloat MPMainWindowSplitViewDelegateMinimumContentWidth;
+APPKIT_EXTERN const CGFloat MPMainWindowSplitViewDelegateMinimumOutlineWidth;
+APPKIT_EXTERN const CGFloat MPMainWindowSplitViewDelegateMinimumContentWidth;
+APPKIT_EXTERN const CGFloat MPMainWindowSplitViewDelegateMinimumInspectorWidth;
+
+typedef enum {
+  MPSplitViewOutlineViewIndex,
+  MPSplitViewContentViewIndex,
+  MPSplitViewInspectorViewIndex,
+} MPSplitViewSubViewIndex;
 
 @interface MPMainWindowSplitViewDelegate : NSObject <NSSplitViewDelegate>
 

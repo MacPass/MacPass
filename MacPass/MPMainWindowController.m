@@ -14,15 +14,18 @@
 #import "MPToolbarDelegate.h"
 #import "MPOutlineViewController.h"
 #import "MPMainWindowSplitViewDelegate.h"
+#import "MPInspectorTabViewController.h"
 #import "MPAppDelegate.h"
-#import "MPEntryEditController.h"
+
+static CGFloat _outlineSplitterPosition;
+static CGFloat _inspectorSplitterPosition;
 
 @interface MPMainWindowController ()
-
 
 @property (assign) IBOutlet NSView *outlineView;
 @property (assign) IBOutlet NSSplitView *splitView;
 @property (assign) IBOutlet NSView *contentView;
+@property (assign) IBOutlet NSView *inspectorView;
 
 @property (retain) IBOutlet NSView *welcomeView;
 @property (assign) IBOutlet NSTextField *welcomeText;
@@ -30,14 +33,17 @@
 
 @property (retain) MPPasswordInputController *passwordInputController;
 @property (retain) MPEntryViewController *entryViewController;
-@property (retain) MPEntryEditController *entryEditController;
 @property (retain) MPOutlineViewController *outlineViewController;
+@property (retain) MPInspectorTabViewController *inspectorTabViewController;
 
 @property (retain) MPToolbarDelegate *toolbarDelegate;
 @property (retain) MPMainWindowSplitViewDelegate *splitViewDelegate;
 
+/* View show/hide */
 - (void)_collapseOutlineView;
 - (void)_expandOutlineView;
+- (void)_toggleInspector;
+
 - (void)_setContentViewController:(MPViewController *)viewController;
 - (void)_updateWindowTitle;
 
@@ -50,6 +56,7 @@
   if( self ) {
     _toolbarDelegate = [[MPToolbarDelegate alloc] init];    
     _outlineViewController = [[MPOutlineViewController alloc] init];
+    _inspectorTabViewController = [[MPInspectorTabViewController alloc] init];
     _splitViewDelegate = [[MPMainWindowSplitViewDelegate alloc] init];
     
     [[NSBundle mainBundle] loadNibNamed:@"WelcomeView" owner:self topLevelObjects:NULL];
@@ -65,17 +72,17 @@
 
 - (void)dealloc {
   [[NSNotificationCenter defaultCenter] removeObserver:self];
-  self.welcomeView = nil;
-  self.welcomeText = nil;
-  self.toolbar = nil;
+  [_welcomeView release];
+  [_welcomeText release];
+  [_toolbar release];
   
-  self.passwordInputController = nil;
-  self.entryViewController = nil;
-  self.entryEditController = nil;
-  self.outlineViewController = nil;
+  [_passwordInputController release];
+  [_entryViewController release];
+  [_outlineViewController release];
+  [_inspectorTabViewController release];
   
-  self.toolbarDelegate = nil;
-  self.splitViewDelegate = nil;
+  [_toolbarDelegate release];
+  [_splitViewDelegate release];
   [super dealloc];
 }
 
@@ -98,11 +105,20 @@
   
   [self.splitView setDelegate:self.splitViewDelegate];
   
-  NSRect frame = [self.outlineView frame];
-  [self.outlineViewController.view setFrame:frame];
+  /* Add outlineview */
+  const NSRect outlineFrame = [self.outlineView frame];
+  [self.outlineViewController.view setFrame:outlineFrame];
   [self.outlineViewController.view setAutoresizingMask:NSViewWidthSizable | NSViewHeightSizable];
   [self.splitView replaceSubview:self.outlineView with:[self.outlineViewController view]];
   [self.outlineViewController updateResponderChain];
+  
+  /* Add inspector view */
+  const NSRect inspectorFrame = [self.inspectorView frame];
+  [self.inspectorTabViewController.view setFrame:inspectorFrame];
+  [self.inspectorTabViewController.view setAutoresizesSubviews:NSViewWidthSizable | NSViewHeightSizable ];
+  [self.splitView replaceSubview:self.inspectorView with:[self.inspectorTabViewController view]];
+  [self.inspectorTabViewController updateResponderChain];
+
   [self.splitView adjustSubviews];
   
   [self _setContentViewController:nil];
@@ -144,16 +160,18 @@
 }
 
 - (void)_collapseOutlineView {
-  NSView *outlineView = [self.splitView subviews][0];
-  if(![outlineView isHidden]) {
-    [self.splitView setPosition:0 ofDividerAtIndex:0];
+  NSView *outlineView = [self.splitView subviews][MPSplitViewOutlineViewIndex];
+  if([outlineView isHidden]) {
+    _outlineSplitterPosition = [outlineView frame].size.width;
+    [self.splitView setPosition:0 ofDividerAtIndex:MPSplitViewOutlineViewIndex];
   }
 }
 
 - (void)_expandOutlineView {
-  NSView *outlineView = [self.splitView subviews][0];
-  if([outlineView isHidden]) {
-    [self.splitView setPosition:MPMainWindowSplitViewDelegateMinimumOutlineWidth ofDividerAtIndex:0];
+  NSView *outlineView = [self.splitView subviews][MPSplitViewOutlineViewIndex];
+  if(![outlineView isHidden]) {
+    CGFloat splitterPosition = MAX( MPMainWindowSplitViewDelegateMinimumOutlineWidth, _outlineSplitterPosition );
+    [self.splitView setPosition:splitterPosition ofDividerAtIndex:MPSplitViewOutlineViewIndex];
   }
 }
 
@@ -169,6 +187,22 @@
 }
 
 #pragma mark Actions
+
+- (void)toggleInspector:(id)sender {
+  NSView *inspectorView = [self.splitView subviews][MPSplitViewInspectorViewIndex];
+  const BOOL collapsed = [self.splitView isSubviewCollapsed:inspectorView];
+  if(collapsed) {
+    CGFloat splitterPosition = MAX(MPMainWindowSplitViewDelegateMinimumInspectorWidth, _inspectorSplitterPosition);
+    [self.splitView setPosition:splitterPosition ofDividerAtIndex:1];
+  }
+  else {
+    _inspectorSplitterPosition = [inspectorView frame].origin.x;
+    CGFloat splitterPosition = [inspectorView frame].origin.x * [inspectorView frame].size.width;
+    [[NSAnimationContext currentContext] setDuration:2];
+    [[self.splitView animator] setPosition:splitterPosition ofDividerAtIndex:1];
+  }
+  [inspectorView setHidden:!collapsed];
+}
 
 - (void)performFindPanelAction:(id)sender {
   [self.window makeFirstResponder:[self.toolbarDelegate.searchItem view]];
@@ -220,16 +254,6 @@
 }
 
 - (void)showEditForm:(id)sender {
-  if( ![MPDatabaseController hasOpenDatabase] ) {
-    return; // No database open - nothing to do;
-  }
-  
-  if(!self.entryEditController) {
-    self.entryEditController = [[[MPEntryEditController alloc] init] autorelease];
-  }
-  //find active selection
-  self.entryEditController.selectedItem = nil;
-  [self _setContentViewController:self.entryEditController];
 }
 
 

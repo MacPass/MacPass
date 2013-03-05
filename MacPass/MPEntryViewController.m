@@ -413,6 +413,15 @@ NSString *const _toggleFilterUsernameButton = @"SearchUsername";
     [[MPOverlayWindowController sharedController] displayOverlayImage:image label:lable atView:self.view];
 }
 
+- (void)deleteEntry:(id)sender {
+  KdbEntry *selectedEntry = [self _selectedEntry];
+  if(!selectedEntry) {
+    return; // no entry selected
+  }
+  //[[selectedEntry parent] removeEntry:selectedEntry];
+  [self.entryArrayController removeObject:selectedEntry];
+}
+
 - (void)_toggleFilterSpace:(id)sender {
   NSButton *button = sender;
   NSNumber *value = self.filterButtonToMode[[button identifier]];

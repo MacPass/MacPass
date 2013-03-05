@@ -20,5 +20,6 @@
  Clears the Search filter
  */
 - (void)clearFilter:(id)sender;
+- (void)toggleInspector:(id)sender;
 
 @end

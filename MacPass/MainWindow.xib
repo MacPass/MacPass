@@ -2,7 +2,7 @@
 <archive type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="8.00">
 	<data>
 		<int key="IBDocument.SystemTarget">1080</int>
-		<string key="IBDocument.SystemVersion">12C60</string>
+		<string key="IBDocument.SystemVersion">12C3103</string>
 		<string key="IBDocument.InterfaceBuilderVersion">3084</string>
 		<string key="IBDocument.AppKitVersion">1187.34</string>
 		<string key="IBDocument.HIToolboxVersion">625.00</string>
@@ -56,7 +56,7 @@
 									<reference key="NSNextResponder" ref="947682332"/>
 									<int key="NSvFlags">268</int>
 									<array class="NSMutableArray" key="NSSubviews"/>
-									<string key="NSFrameSize">{256, 449}</string>
+									<string key="NSFrameSize">{209, 449}</string>
 									<reference key="NSSuperview" ref="947682332"/>
 									<reference key="NSWindow"/>
 									<reference key="NSNextKeyView" ref="938782220"/>
@@ -67,11 +67,20 @@
 									<reference key="NSNextResponder" ref="947682332"/>
 									<int key="NSvFlags">256</int>
 									<array class="NSMutableArray" key="NSSubviews"/>
-									<string key="NSFrame">{{257, 0}, {470, 449}}</string>
+									<string key="NSFrame">{{210, 0}, {383, 449}}</string>
 									<reference key="NSSuperview" ref="947682332"/>
 									<reference key="NSWindow"/>
-									<reference key="NSNextKeyView"/>
+									<reference key="NSNextKeyView" ref="350501330"/>
 									<string key="NSReuseIdentifierKey">_NS:13</string>
+									<string key="NSClassName">NSView</string>
+								</object>
+								<object class="NSCustomView" id="350501330">
+									<reference key="NSNextResponder" ref="947682332"/>
+									<int key="NSvFlags">268</int>
+									<string key="NSFrame">{{594, 0}, {133, 449}}</string>
+									<reference key="NSSuperview" ref="947682332"/>
+									<reference key="NSWindow"/>
+									<string key="NSReuseIdentifierKey">_NS:9</string>
 									<string key="NSClassName">NSView</string>
 								</object>
 							</array>
@@ -89,7 +98,7 @@
 					<reference key="NSWindow"/>
 					<reference key="NSNextKeyView" ref="947682332"/>
 				</object>
-				<string key="NSScreenRect">{{0, 0}, {2560, 1418}}</string>
+				<string key="NSScreenRect">{{0, 0}, {1680, 1028}}</string>
 				<string key="NSMinSize">{400, 422}</string>
 				<string key="NSMaxSize">{10000000000000, 10000000000000}</string>
 				<bool key="NSWindowIsRestorable">YES</bool>
@@ -128,6 +137,14 @@
 						<reference key="destination" ref="425088172"/>
 					</object>
 					<int key="connectionID">634</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBOutletConnection" key="connection">
+						<string key="label">inspectorView</string>
+						<reference key="source" ref="1001"/>
+						<reference key="destination" ref="350501330"/>
+					</object>
+					<int key="connectionID">676</int>
 				</object>
 			</array>
 			<object class="IBMutableOrderedSet" key="objectRecords">
@@ -178,6 +195,7 @@
 						<array class="NSMutableArray" key="children">
 							<reference ref="938782220"/>
 							<reference ref="425088172"/>
+							<reference ref="350501330"/>
 						</array>
 						<reference key="parent" ref="1006"/>
 					</object>
@@ -190,6 +208,11 @@
 					<object class="IBObjectRecord">
 						<int key="objectID">628</int>
 						<reference key="object" ref="425088172"/>
+						<reference key="parent" ref="947682332"/>
+					</object>
+					<object class="IBObjectRecord">
+						<int key="objectID">675</int>
+						<reference key="object" ref="350501330"/>
 						<reference key="parent" ref="947682332"/>
 					</object>
 				</array>
@@ -207,12 +230,13 @@
 				<string key="603.IBPluginDependency">com.apple.InterfaceBuilder.CocoaPlugin</string>
 				<string key="605.IBPluginDependency">com.apple.InterfaceBuilder.CocoaPlugin</string>
 				<string key="628.IBPluginDependency">com.apple.InterfaceBuilder.CocoaPlugin</string>
+				<string key="675.IBPluginDependency">com.apple.InterfaceBuilder.CocoaPlugin</string>
 			</dictionary>
 			<dictionary class="NSMutableDictionary" key="unlocalizedProperties"/>
 			<nil key="activeLocalization"/>
 			<dictionary class="NSMutableDictionary" key="localizations"/>
 			<nil key="sourceID"/>
-			<int key="maxID">674</int>
+			<int key="maxID">676</int>
 		</object>
 		<object class="IBClassDescriber" key="IBDocument.Classes">
 			<array class="NSMutableArray" key="referencedPartialClassDescriptions">
@@ -221,6 +245,7 @@
 					<string key="superclassName">NSWindowController</string>
 					<dictionary class="NSMutableDictionary" key="outlets">
 						<string key="contentView">NSView</string>
+						<string key="inspectorView">NSView</string>
 						<string key="outlineView">NSView</string>
 						<string key="splitView">NSSplitView</string>
 						<string key="welcomeText">NSTextField</string>
@@ -229,6 +254,10 @@
 					<dictionary class="NSMutableDictionary" key="toOneOutletInfosByName">
 						<object class="IBToOneOutletInfo" key="contentView">
 							<string key="name">contentView</string>
+							<string key="candidateClassName">NSView</string>
+						</object>
+						<object class="IBToOneOutletInfo" key="inspectorView">
+							<string key="name">inspectorView</string>
 							<string key="candidateClassName">NSView</string>
 						</object>
 						<object class="IBToOneOutletInfo" key="outlineView">

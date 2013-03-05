@@ -17,6 +17,7 @@ NSString *const MPToolbarItemEdit = @"Edit";
 NSString *const MPToolbarItemDelete =@"Delete";
 NSString *const MPToolbarItemAction = @"Action";
 NSString *const MPToolbarItemSearch = @"Search";
+NSString *const MPToolbarItemInspector = @"Inspector";
 
 @interface MPToolbarDelegate()
 
@@ -32,7 +33,7 @@ NSString *const MPToolbarItemSearch = @"Search";
 - (id)init {
   self = [super init];
   if (self) {
-    _toolbarIdentifiers = [@[ MPToolbarItemAddEntry, MPToolbarItemDelete, MPToolbarItemEdit, MPToolbarItemAddGroup, MPToolbarItemAction, NSToolbarFlexibleSpaceItemIdentifier, MPToolbarItemSearch ] retain];
+    _toolbarIdentifiers = [@[ MPToolbarItemAddEntry, MPToolbarItemDelete, MPToolbarItemEdit, MPToolbarItemAddGroup, MPToolbarItemAction, NSToolbarFlexibleSpaceItemIdentifier, NSToolbarSpaceItemIdentifier, MPToolbarItemInspector, MPToolbarItemSearch ] retain];
     _toolbarImages = [[self createToolbarImages] retain];
     _toolbarItems = [[NSMutableDictionary alloc] initWithCapacity:[self.toolbarIdentifiers count]];
   }
@@ -107,6 +108,9 @@ NSString *const MPToolbarItemSearch = @"Search";
         [button setTarget:nil];
         [button setAction:@selector(showEditForm:)];
       }
+      else if( [itemIdentifier isEqualToString:MPToolbarItemInspector]) {
+        [button setAction:@selector(toggleInspector:)];
+      }
       
       NSRect fittingRect = [button frame];
       fittingRect.size.width = MAX( (CGFloat)32.0,fittingRect.size.width);
@@ -134,7 +138,8 @@ NSString *const MPToolbarItemSearch = @"Search";
                                MPToolbarItemAddGroup: [MPIconHelper icon:MPIconPassword],
                                MPToolbarItemDelete: [NSImage imageNamed:NSImageNameRemoveTemplate],
                                MPToolbarItemEdit: [MPIconHelper icon:MPIconNotepad],
-                               MPToolbarItemAction: [NSImage imageNamed:NSImageNameActionTemplate]
+                               MPToolbarItemAction: [NSImage imageNamed:NSImageNameActionTemplate],
+                               MPToolbarItemInspector: [NSImage imageNamed:NSImageNameInfo],
                                };
   return imageDict;
 }

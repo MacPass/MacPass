@@ -38,6 +38,6 @@ typedef enum {
 - (void)copyPassword:(id)sender;
 //- (void)copyURL:(id)sender;
 //- (void)createEntry:(id)sender;
-//- (void)deleteEntry:(id)sender;
+- (void)deleteEntry:(id)sender;
 
 @end
