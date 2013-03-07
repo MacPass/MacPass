@@ -125,23 +125,8 @@ NSString *const MPDidLoadDatabaseNotification = @"DidLoadDataBaseNotification";
   return NO;
 }
 
-- (KdbPassword *)passwordHash {
-  
-  // Create the password for the given parameters
-  if( self.password && self.key) {
-    return [[[KdbPassword alloc] initWithPassword:self.password encoding:NSUTF8StringEncoding keyfile:[self.key path]] autorelease];
-  }
-  
-  if( self.password ) {
-    return [[[KdbPassword alloc] initWithPassword:self.password encoding:NSUTF8StringEncoding] autorelease];
-  }
-  
-  if( self.key ) {
-    return [[[KdbPassword alloc] initWithKeyfile:[self.key path]] autorelease];
-  }
-  
-  NSLog(@"Error: No password or keyfile given!");
-  return nil;
+- (KdbPassword *)passwordHash {  
+  return [[KdbPassword alloc] initWithPassword:self.password passwordEncoding:NSUTF8StringEncoding keyFile:[self.key path]];
 }
 
 @end
