@@ -14,6 +14,10 @@ It's Qt based KeePass manager, than can handle KeePass 1 and 2 containers rather
 Compared to running KeePass with Mono it very fast and remarkably stable for an alpha relaese.
 Feel free to give it a try.
 
+What does it look like?
+-----------------------
+![image](https://raw.github.com/mstarke/MacPass/master/Assets/MacPass.png)
+
 License
 -------
   
