@@ -14,6 +14,8 @@ APPKIT_EXTERN NSString *const MPEntryTablePasswordColumnIdentifier;
 APPKIT_EXTERN NSString *const MPEntryTableParentColumnIdentifier;
 APPKIT_EXTERN NSString *const MPEntryTableURLColumnIdentifier;
 
+APPKIT_EXTERN NSString *const MPDidChangeSelectedEntryNotification;
+
 /* Tags to determine what to copy */
 typedef enum {
   MPCopyUsername,
@@ -30,7 +32,7 @@ typedef enum {
 
 
 @property (assign) KdbGroup *activeGroup;
-@property (readonly, assign) KdbEntry *selectedEntry;
+@property (readonly, assign, nonatomic) KdbEntry *selectedEntry;
 
 @property (readonly, retain) NSArrayController *entryArrayController;
 @property (nonatomic, retain) NSString *filter;

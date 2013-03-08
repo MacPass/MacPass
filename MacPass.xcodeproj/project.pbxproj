@@ -106,6 +106,7 @@
 		4CE06D7D16DEF3FE00840E3A /* MPButtonBar.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CE06D7C16DEF3FE00840E3A /* MPButtonBar.m */; };
 		4CE8246F16E2E93400573141 /* MPOverlayWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CE8246E16E2E93400573141 /* MPOverlayWindowController.m */; };
 		4CE8247516E2F2B900573141 /* MPOverlayView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CE8247416E2F2B900573141 /* MPOverlayView.m */; };
+		4CFC53BF16E94729007396BE /* MPShadowBox.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CFC53BE16E94729007396BE /* MPShadowBox.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -289,6 +290,8 @@
 		4CE8246E16E2E93400573141 /* MPOverlayWindowController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MPOverlayWindowController.m; sourceTree = "<group>"; };
 		4CE8247316E2F2B900573141 /* MPOverlayView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MPOverlayView.h; sourceTree = "<group>"; };
 		4CE8247416E2F2B900573141 /* MPOverlayView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MPOverlayView.m; sourceTree = "<group>"; };
+		4CFC53BD16E94729007396BE /* MPShadowBox.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MPShadowBox.h; sourceTree = "<group>"; };
+		4CFC53BE16E94729007396BE /* MPShadowBox.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MPShadowBox.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -323,6 +326,8 @@
 				4C69A73916D589DF00EC1B1A /* MPGradientView.m */,
 				4CE8247316E2F2B900573141 /* MPOverlayView.h */,
 				4CE8247416E2F2B900573141 /* MPOverlayView.m */,
+				4CFC53BD16E94729007396BE /* MPShadowBox.h */,
+				4CFC53BE16E94729007396BE /* MPShadowBox.m */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -876,6 +881,7 @@
 				4CE8246F16E2E93400573141 /* MPOverlayWindowController.m in Sources */,
 				4CE8247516E2F2B900573141 /* MPOverlayView.m in Sources */,
 				4C77547516E55FE800970E02 /* MPInspectorTabViewController.m in Sources */,
+				4CFC53BF16E94729007396BE /* MPShadowBox.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

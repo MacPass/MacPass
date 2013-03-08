@@ -97,8 +97,6 @@ const CGFloat MPMainWindowSplitViewDelegateMinimumInspectorWidth = 200.0;
       @throw exception;
     }
   }
-  NSArray *splitterNames = @[ @"Outline", @"Inspector" ];
-  NSLog(@"Should Hide %@: %@", splitterNames[dividerIndex], shouldHide ? @"Yes" : @"No" );
   return shouldHide;
 }
 

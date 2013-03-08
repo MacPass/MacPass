@@ -17,7 +17,7 @@
 #import "MPOverlayWindowController.h"
 #import "KdbGroup+MPAdditions.h"
 
-#import <QuartzCore/QuartzCore.h>
+NSString *const MPDidChangeSelectedEntryNotification = @"com.macpass.MPDidChangeSelectedEntryNotification";
 
 #define STATUS_BAR_ANIMATION_TIME 0.2
 
@@ -27,7 +27,6 @@ typedef enum {
   MPFilterUsernames = 4,
   MPFilterTitles = 8,
 } MPFilterModeType;
-
 
 NSString *const MPEntryTableUserNameColumnIdentifier = @"MPUserNameColumnIdentifier";
 NSString *const MPEntryTableTitleColumnIdentifier = @"MPTitleColumnIdentifier";
@@ -62,6 +61,7 @@ NSString *const _toggleFilterUsernameButton = @"SearchUsername";
 
 @property (assign) KdbEntry *selectedEntry;
 
+
 @property (assign, nonatomic) MPFilterModeType filterMode;
 @property (retain, nonatomic) NSDictionary *filterButtonToMode;
 
@@ -78,12 +78,11 @@ NSString *const _toggleFilterUsernameButton = @"SearchUsername";
 - (void)_setupEntryMenu;
 /* Notification handling */
 - (void)_didChangeGroupSelectionInOutlineView:(NSNotification *)notification;
-- (void)_didChangeEntrySelection:(NSNotification *)notification;
 - (void)_showFilterBarAnimated:(BOOL)animate;
 - (void)_hideStatusBarAnimated:(BOOL)animate;
 
 - (void)_quickCopyEntryData:(id)sender;
-- (KdbEntry *)_selectedEntry;
+- (KdbEntry *)_clickedOrSelectedEntry;
 
 @end
 
@@ -151,10 +150,8 @@ NSString *const _toggleFilterUsernameButton = @"SearchUsername";
   [[urlColumn headerCell] setStringValue:@"URL"];
   
   [self.entryTable bind:NSContentBinding toObject:self.entryArrayController withKeyPath:@"arrangedObjects" options:nil];
-  [self.selectedEntry bind:NSValueBinding toObject:self.entryArrayController withKeyPath:NSSelectedObjectBinding options:nil];
   [parentColumn setHidden:YES];
 }
-
 #pragma mark NSTableViewDelgate
 
 - (NSView *)tableView:(NSTableView *)tableView viewForTableColumn:(NSTableColumn *)tableColumn row:(NSInteger)row {
@@ -195,6 +192,17 @@ NSString *const _toggleFilterUsernameButton = @"SearchUsername";
   return view;
 }
 
+- (void)tableViewSelectionDidChange:(NSNotification *)notification {
+  if([self.entryTable selectedRow] < 0) {
+    self.selectedEntry = nil;
+  }
+  else {
+    self.selectedEntry = [self.entryArrayController arrangedObjects][[self.entryTable selectedRow]];
+  }
+  [[NSNotificationCenter defaultCenter] postNotificationName:MPDidChangeSelectedEntryNotification object:self userInfo:nil];
+  
+}
+
 #pragma mark Notifications
 - (void)_didChangeGroupSelectionInOutlineView:(NSNotification *)notification {
   if([self hasFilter]) {
@@ -203,7 +211,8 @@ NSString *const _toggleFilterUsernameButton = @"SearchUsername";
   MPOutlineViewDelegate *delegate = [notification object];
   KdbGroup *group = delegate.selectedGroup;
   if(group) {
-    [self.entryArrayController bind:NSContentArrayBinding toObject:group withKeyPath:@"entries" options:nil];
+    [self.entryArrayController setContent:nil];
+    [self.entryArrayController addObjects:group.entries];
   }
   else {
     [self.entryArrayController setContent:nil];
@@ -371,7 +380,7 @@ NSString *const _toggleFilterUsernameButton = @"SearchUsername";
 
 #pragma makr Action Helper
 
-- (KdbEntry *)_selectedEntry {
+- (KdbEntry *)_clickedOrSelectedEntry {
   NSInteger activeRow = [self.entryTable clickedRow];
   /* Fallback to selection e.g. for toolbar actions */
   if(activeRow < 0 ) {
@@ -397,7 +406,7 @@ NSString *const _toggleFilterUsernameButton = @"SearchUsername";
 }
 
 - (void)copyPassword:(id)sender {
-  KdbEntry *selectedEntry = [self _selectedEntry];
+  KdbEntry *selectedEntry = [self _clickedOrSelectedEntry];
   if(!selectedEntry) {
     return; // nothing found to work with;
   }
@@ -408,7 +417,7 @@ NSString *const _toggleFilterUsernameButton = @"SearchUsername";
 }
 
 - (void)copyUsername:(id)sender {
-  KdbEntry *selectedEntry = [self _selectedEntry];
+  KdbEntry *selectedEntry = [self _clickedOrSelectedEntry];
   if(!selectedEntry) {
     return; // No entry to work with;
   }
@@ -421,7 +430,7 @@ NSString *const _toggleFilterUsernameButton = @"SearchUsername";
 }
 
 - (void)deleteEntry:(id)sender {
-  KdbEntry *selectedEntry = [self _selectedEntry];
+  KdbEntry *selectedEntry = [self _clickedOrSelectedEntry];
   if(!selectedEntry) {
     return; // no entry selected
   }
