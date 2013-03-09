@@ -17,8 +17,9 @@
 #import "MPInspectorTabViewController.h"
 #import "MPAppDelegate.h"
 
+#define MIN_WINDOW_WIDTH MPMainWindowSplitViewDelegateMinimumContentWidth + MPMainWindowSplitViewDelegateMinimumOutlineWidth + [self.splitView dividerThickness]
+
 static CGFloat _outlineSplitterPosition;
-static CGFloat _inspectorSplitterPosition;
 
 @interface MPMainWindowController ()
 
@@ -45,6 +46,10 @@ static CGFloat _inspectorSplitterPosition;
 
 - (void)_setContentViewController:(MPViewController *)viewController;
 - (void)_updateWindowTitle;
+
+/* window reszing and content checks */
+- (BOOL)_windowsIsLargeEnoughForInspectorView;
+- (void)_resizeWindowForInspectorView;
 
 @end
 
@@ -94,8 +99,7 @@ static CGFloat _inspectorSplitterPosition;
     
   [[self.welcomeText cell] setBackgroundStyle:NSBackgroundStyleRaised];
   
-  const CGFloat minimumWindowWidth = MPMainWindowSplitViewDelegateMinimumContentWidth + MPMainWindowSplitViewDelegateMinimumOutlineWidth + [self.splitView dividerThickness];
-  [self.window setMinSize:NSMakeSize( minimumWindowWidth, 400)];
+  [self.window setMinSize:NSMakeSize( MIN_WINDOW_WIDTH, 400)];
   
   _toolbar = [[NSToolbar alloc] initWithIdentifier:@"MainWindowToolbar"];
   [self.toolbar setAllowsUserCustomization:YES];
@@ -191,16 +195,45 @@ static CGFloat _inspectorSplitterPosition;
   NSView *inspectorView = [self.splitView subviews][MPSplitViewInspectorViewIndex];
   const BOOL collapsed = [self.splitView isSubviewCollapsed:inspectorView];
   if(collapsed) {
-    CGFloat splitterPosition = MAX(MPMainWindowSplitViewDelegateMinimumInspectorWidth, _inspectorSplitterPosition);
+    if( NO == [self _windowsIsLargeEnoughForInspectorView]) {
+      [self _resizeWindowForInspectorView];
+    }
+    CGFloat splitterPosition = [self.splitView frame].size.width - MPMainWindowSplitViewDelegateMinimumInspectorWidth;
     [self.splitView setPosition:splitterPosition ofDividerAtIndex:MPSplitViewInspectorDividerIndex];
   }
   else {
-    _inspectorSplitterPosition = [inspectorView frame].origin.x;
-    CGFloat splitterPosition = [inspectorView frame].origin.x * [inspectorView frame].size.width;
-    [[NSAnimationContext currentContext] setDuration:2];
-    [[self.splitView animator] setPosition:splitterPosition ofDividerAtIndex:MPSplitViewInspectorDividerIndex];
+    CGFloat splitterPosition = [self.splitView frame].size.width;
+    [self.splitView setPosition:splitterPosition ofDividerAtIndex:MPSplitViewInspectorDividerIndex];
   }
   [inspectorView setHidden:!collapsed];
+}
+
+- (void)toggleOutlineView:(id)sender {
+  
+}
+
+- (BOOL)validateMenuItem:(NSMenuItem *)menuItem {
+  SEL menuAction = [menuItem action];
+  if(menuAction == @selector(toggleOutlineView:)) {
+    NSView *outlineView = [self.splitView subviews][MPSplitViewOutlineViewIndex];
+    BOOL outlineIsHidden = [self.splitView isSubviewCollapsed:outlineView];
+    if(outlineIsHidden) {
+      [menuItem setTitle:@"Show Outline View"];
+    }
+    [menuItem setTitle:@"Hide Outline View"];
+    return YES;
+  }
+
+  if( menuAction == @selector(toggleInspector:) ) {
+    NSView *inspectorView = [self.splitView subviews][MPSplitViewInspectorViewIndex];
+    BOOL inspectorIsHidden = [self.splitView isSubviewCollapsed:inspectorView];
+    if(inspectorIsHidden) {
+      [menuItem setTitle:@"Show Inspecotr"];
+    }
+    [menuItem setTitle:@"Hide Inspector"];
+    return YES;
+  }
+  return YES;
 }
 
 - (void)performFindPanelAction:(id)sender {
@@ -266,6 +299,24 @@ static CGFloat _inspectorSplitterPosition;
     }
   }
   return nil;
+}
+
+- (BOOL)_windowsIsLargeEnoughForInspectorView {
+  return ( MPMainWindowSplitViewDelegateMinimumInspectorWidth
+          < ([self.splitView frame].size.width
+              - MPMainWindowSplitViewDelegateMinimumContentWidth
+              - MPMainWindowSplitViewDelegateMinimumOutlineWidth
+              - 2 * [self.splitView dividerThickness]) );
+}
+
+- (void)_resizeWindowForInspectorView {
+  NSRect frame = [self.window frame];
+  NSView *outlinView = [self.splitView subviews][MPSplitViewOutlineViewIndex];
+  NSView *contentView = [self.splitView subviews][MPSplitViewContentViewIndex];
+
+  CGFloat outlineWidth = [self.splitView isSubviewCollapsed:outlinView] ? 0 : [outlinView frame].size.width;
+  frame.size.width = outlineWidth + [contentView frame].size.width + MPMainWindowSplitViewDelegateMinimumInspectorWidth;
+  [self.window setFrame:frame display:YES animate:YES];
 }
 
 #pragma mark Notifications
