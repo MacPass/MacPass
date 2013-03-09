@@ -10,20 +10,25 @@
 #import "MPIconHelper.h"
 #import "MPAppDelegate.h"
 #import "MPToolbarButton.h"
+#import "MPToolbarItem.h"
+#import "MPActionHelper.h"
 
-NSString *const MPToolbarItemAddGroup = @"AddGroup";
-NSString *const MPToolbarItemAddEntry = @"AddEntry";
-NSString *const MPToolbarItemEdit = @"Edit";
-NSString *const MPToolbarItemDelete =@"Delete";
-NSString *const MPToolbarItemAction = @"Action";
-NSString *const MPToolbarItemSearch = @"Search";
-NSString *const MPToolbarItemInspector = @"Inspector";
+NSString *const MPToolbarItemAddGroup = @"TOOLBAR_ADD_GROUP";
+NSString *const MPToolbarItemAddEntry = @"TOOLBAR_ADD_ENTRY";
+NSString *const MPToolbarItemEdit = @"TOOLBAR_EDIT";
+NSString *const MPToolbarItemDelete =@"TOOLBAR_DELETE";
+NSString *const MPToolbarItemAction = @"TOOLBAR_ACTION";
+NSString *const MPToolbarItemSearch = @"TOOLBAR_SEARCH";
+NSString *const MPToolbarItemInspector = @"TOOLBAR_INSPECTOR";
 
 @interface MPToolbarDelegate()
 
 @property (retain) NSMutableDictionary *toolbarItems;
 @property (retain) NSArray *toolbarIdentifiers;
 @property (retain) NSDictionary *toolbarImages;
+
+- (NSString *)_localizedLabelForToolbarItemIdentifier:(NSString *)identifier;
+- (SEL)_actionForToolbarItemIdentifier:(NSString *)identifier;
 
 @end
 
@@ -33,7 +38,7 @@ NSString *const MPToolbarItemInspector = @"Inspector";
 - (id)init {
   self = [super init];
   if (self) {
-    _toolbarIdentifiers = [@[ MPToolbarItemAddEntry, MPToolbarItemDelete, MPToolbarItemEdit, MPToolbarItemAddGroup, MPToolbarItemAction, NSToolbarFlexibleSpaceItemIdentifier, NSToolbarSpaceItemIdentifier, MPToolbarItemInspector, MPToolbarItemSearch ] retain];
+    _toolbarIdentifiers = [@[ MPToolbarItemAddEntry, MPToolbarItemDelete, MPToolbarItemAddGroup, MPToolbarItemAction, NSToolbarFlexibleSpaceItemIdentifier, NSToolbarSpaceItemIdentifier, MPToolbarItemInspector, MPToolbarItemSearch ] retain];
     _toolbarImages = [[self createToolbarImages] retain];
     _toolbarItems = [[NSMutableDictionary alloc] initWithCapacity:[self.toolbarIdentifiers count]];
   }
@@ -50,9 +55,9 @@ NSString *const MPToolbarItemInspector = @"Inspector";
 
 - (NSToolbarItem *)toolbar:(NSToolbar *)toolbar itemForItemIdentifier:(NSString *)itemIdentifier willBeInsertedIntoToolbar:(BOOL)flag {
   NSToolbarItem *item = self.toolbarItems[itemIdentifier];
-  if(!item) {    
-    item = [[NSToolbarItem alloc] initWithItemIdentifier:itemIdentifier];
-    NSString *label = NSLocalizedString(itemIdentifier, @"");
+  if(!item) {
+    item = [[MPToolbarItem alloc] initWithItemIdentifier:itemIdentifier];
+    NSString *label = [self _localizedLabelForToolbarItemIdentifier:itemIdentifier];
     [item setLabel:label];
     
     if([itemIdentifier isEqualToString:MPToolbarItemSearch]) {
@@ -71,7 +76,7 @@ NSString *const MPToolbarItemInspector = @"Inspector";
       [[popupButton cell] setImageScaling:NSImageScaleProportionallyDown];
       [popupButton setTitle:@""];
       [popupButton sizeToFit];
-
+      
       NSRect newFrame = [popupButton frame];
       newFrame.size.width += 20;
       
@@ -104,13 +109,7 @@ NSString *const MPToolbarItemInspector = @"Inspector";
       [button setImage:image];
       [button setImagePosition:NSImageOnly];
       [button sizeToFit];
-      if([itemIdentifier isEqualToString:MPToolbarItemEdit]) {
-        [button setTarget:nil];
-        [button setAction:@selector(showEditForm:)];
-      }
-      else if( [itemIdentifier isEqualToString:MPToolbarItemInspector]) {
-        [button setAction:@selector(toggleInspector:)];
-      }
+      [button setAction:[self _actionForToolbarItemIdentifier:itemIdentifier]];
       
       NSRect fittingRect = [button frame];
       fittingRect.size.width = MAX( (CGFloat)32.0,fittingRect.size.width);
@@ -137,11 +136,35 @@ NSString *const MPToolbarItemInspector = @"Inspector";
   NSDictionary *imageDict = @{ MPToolbarItemAddEntry: [MPIconHelper icon:MPIconPassword],
                                MPToolbarItemAddGroup: [MPIconHelper icon:MPIconPassword],
                                MPToolbarItemDelete: [NSImage imageNamed:NSImageNameRemoveTemplate],
-                               MPToolbarItemEdit: [MPIconHelper icon:MPIconNotepad],
                                MPToolbarItemAction: [NSImage imageNamed:NSImageNameActionTemplate],
                                MPToolbarItemInspector: [NSImage imageNamed:NSImageNameInfo],
                                };
   return imageDict;
+}
+
+- (NSString *)_localizedLabelForToolbarItemIdentifier:(NSString *)identifier {
+  NSDictionary *labelDict = @{
+                              MPToolbarItemAction: NSLocalizedString(@"ACTION", @""),
+                              MPToolbarItemAddEntry: NSLocalizedString(@"ADD_ENTRY", @""),
+                              MPToolbarItemAddGroup: NSLocalizedString(@"ADD_GROUP", @""),
+                              MPToolbarItemDelete: NSLocalizedString(@"DELETE", @""),
+                              MPToolbarItemEdit: NSLocalizedString(@"EDIT", @""),
+                              MPToolbarItemInspector: NSLocalizedString(@"TOGGLE_INSPECTOR", @""),
+                              MPToolbarItemSearch: NSLocalizedString(@"SEARCH", @"")
+                              };
+  return labelDict[identifier];
+}
+
+- (SEL)_actionForToolbarItemIdentifier:(NSString *)identifier {
+  NSDictionary *actionDict = @{
+                               MPToolbarItemAddEntry: @(MPActionAddEntry),
+                               MPToolbarItemAddGroup: @(MPActionAddGroup),
+                               MPToolbarItemDelete: @(MPActionDelete),
+                               MPToolbarItemEdit: @(MPActionEdit),
+                               MPToolbarItemInspector: @(MPActionToggleInspector)
+                               };
+  MPActionType actionType = (MPActionType)[actionDict[identifier] integerValue];
+  return [MPActionHelper actionOfType:actionType];
 }
 
 @end

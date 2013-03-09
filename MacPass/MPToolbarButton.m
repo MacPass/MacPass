@@ -10,6 +10,14 @@
 
 @implementation MPToolbarButton
 
+- (id)initWithFrame:(NSRect)frameRect {
+  self = [super initWithFrame:frameRect];
+  if(self) {
+    [self setFocusRingType:NSFocusRingTypeNone];
+  }
+  return self;
+}
+
 - (void)setControlSize:(NSControlSize)controlSize {
   [[self cell] setControlSize:controlSize];
   switch (controlSize) {

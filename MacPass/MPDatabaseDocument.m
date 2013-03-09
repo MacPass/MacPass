@@ -126,7 +126,7 @@ NSString *const MPDidLoadDatabaseNotification = @"DidLoadDataBaseNotification";
 }
 
 - (KdbPassword *)passwordHash {  
-  return [[KdbPassword alloc] initWithPassword:self.password passwordEncoding:NSUTF8StringEncoding keyFile:[self.key path]];
+  return [[[KdbPassword alloc] initWithPassword:self.password passwordEncoding:NSUTF8StringEncoding keyFile:[self.key path]] autorelease];
 }
 
 @end

@@ -43,8 +43,8 @@ typedef enum {
 
 - (void)copyUsername:(id)sender;
 - (void)copyPassword:(id)sender;
-//- (void)copyURL:(id)sender;
-//- (void)createEntry:(id)sender;
+- (void)copyURL:(id)sender;
+- (void)openURL:(id)sender;
 - (void)deleteEntry:(id)sender;
 
 @end

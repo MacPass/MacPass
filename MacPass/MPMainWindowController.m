@@ -217,23 +217,24 @@ static CGFloat _outlineSplitterPosition;
   if(menuAction == @selector(toggleOutlineView:)) {
     NSView *outlineView = [self.splitView subviews][MPSplitViewOutlineViewIndex];
     BOOL outlineIsHidden = [self.splitView isSubviewCollapsed:outlineView];
-    if(outlineIsHidden) {
-      [menuItem setTitle:@"Show Outline View"];
-    }
-    [menuItem setTitle:@"Hide Outline View"];
+    NSString *title = outlineIsHidden ? NSLocalizedString(@"SHOW_OUTLINE_VIEW", @"") : NSLocalizedString(@"HIDE_OUTLINE_VIEW", @"Hide the Outline View");
+  
+    [menuItem setTitle:title];
     return YES;
   }
-
   if( menuAction == @selector(toggleInspector:) ) {
     NSView *inspectorView = [self.splitView subviews][MPSplitViewInspectorViewIndex];
     BOOL inspectorIsHidden = [self.splitView isSubviewCollapsed:inspectorView];
-    if(inspectorIsHidden) {
-      [menuItem setTitle:@"Show Inspecotr"];
-    }
-    [menuItem setTitle:@"Hide Inspector"];
+    NSString *title = inspectorIsHidden ? NSLocalizedString(@"SHOW_INSPECTOR", @"Show the Inspector") : NSLocalizedString(@"HIDE_INSPECTOR", @"Hide the Inspector");
+    
+    [menuItem setTitle:title];
     return YES;
   }
   return YES;
+}
+
+- (BOOL)validateToolbarItem:(NSToolbarItem *)theItem {
+  return [self.toolbarDelegate validateToolbarItem:theItem];
 }
 
 - (void)performFindPanelAction:(id)sender {

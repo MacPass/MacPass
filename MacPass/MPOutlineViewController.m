@@ -71,6 +71,7 @@
 
 
 - (void)_didOpenDocument:(NSNotification *)notification {
+  [self.outlineView deselectAll:nil];
   [self.outlineView reloadData];
   MPDatabaseController *dbContoller = [MPDatabaseController defaultController];
   if(dbContoller.database) {
