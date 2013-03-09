@@ -31,5 +31,6 @@
  */
 - (void)clearFilter:(id)sender;
 - (void)toggleInspector:(id)sender;
+- (void)toggleOutlineView:(id)sender;
 
 @end

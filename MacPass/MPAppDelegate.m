@@ -16,6 +16,10 @@
 
 @property (retain) MPSettingsController *settingsController;
 @property (retain) MPMainWindowController *mainWindowController;
+@property (assign) IBOutlet NSMenuItem *toggleOutlineViewMenuItem;
+@property (assign) IBOutlet NSMenuItem *toggleInspectorViewMenuItem;
+
+- (void)_setupMenues;
 
 - (IBAction)showPreferences:(id)sender;
 @end
@@ -25,6 +29,8 @@
 - (void)applicationDidFinishLaunching:(NSNotification *)aNotification {
   self.mainWindowController = [[[MPMainWindowController alloc] init] autorelease];
   [self.mainWindowController showWindow:[self.mainWindowController window]];
+  [self _setupMenues];
+  
 }
 
 - (void)dealloc {
@@ -35,6 +41,13 @@
 
 - (NSString *)applicationName {
   return [[NSBundle mainBundle] infoDictionary][@"CFBundleName"];
+}
+
+#pragma mark Setup
+
+- (void)_setupMenues {
+  [self.toggleInspectorViewMenuItem setAction:@selector(toggleInspector:)];
+  [self.toggleOutlineViewMenuItem setAction:@selector(toggleOutlineView:)];
 }
 
 #pragma mark Menu Actions

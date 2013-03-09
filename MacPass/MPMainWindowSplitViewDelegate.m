@@ -9,8 +9,8 @@
 #import "MPMainWindowSplitViewDelegate.h"
 
 const CGFloat MPMainWindowSplitViewDelegateMinimumOutlineWidth = 150.0;
-const CGFloat MPMainWindowSplitViewDelegateMinimumContentWidth = 400.0;
-const CGFloat MPMainWindowSplitViewDelegateMinimumInspectorWidth = 200.0;
+const CGFloat MPMainWindowSplitViewDelegateMinimumContentWidth = 250.0;
+const CGFloat MPMainWindowSplitViewDelegateMinimumInspectorWidth = 250.0;
 
 
 @interface MPMainWindowSplitViewDelegate ()
@@ -26,22 +26,51 @@ const CGFloat MPMainWindowSplitViewDelegateMinimumInspectorWidth = 200.0;
 }
 
 - (BOOL)splitView:(NSSplitView *)splitView canCollapseSubview:(NSView *)subview {
-  return (subview != [self _subViewOfType:MPSplitViewContentViewIndex splitView:splitView]);
+  return (subview == [self _subViewOfType:MPSplitViewInspectorViewIndex splitView:splitView]);
 }
 
 - (CGFloat)splitView:(NSSplitView *)splitView constrainMinCoordinate:(CGFloat)proposedMinimumPosition ofSubviewAt:(NSInteger)dividerIndex {
-  return proposedMinimumPosition;
-  
-  // Update to take inspector into account
-  return (proposedMinimumPosition < MPMainWindowSplitViewDelegateMinimumOutlineWidth) ? MPMainWindowSplitViewDelegateMinimumOutlineWidth : proposedMinimumPosition;
+  switch (dividerIndex) {
+    case MPSplitViewOutlineDividerIndex:
+      return (proposedMinimumPosition < MPMainWindowSplitViewDelegateMinimumOutlineWidth) ? MPMainWindowSplitViewDelegateMinimumOutlineWidth : proposedMinimumPosition;
+      break;
+      
+    case MPSplitViewInspectorDividerIndex: {
+      return [self splitView:splitView constrainSplitPosition:proposedMinimumPosition ofSubviewAt:dividerIndex];
+    }
+      
+    default:
+      return proposedMinimumPosition;
+      break;
+  }
+}
+
+- (CGFloat)splitView:(NSSplitView *)splitView constrainSplitPosition:(CGFloat)proposedPosition ofSubviewAt:(NSInteger)dividerIndex {
+  if(dividerIndex == MPSplitViewInspectorDividerIndex) {
+    return [splitView frame].size.width - MPMainWindowSplitViewDelegateMinimumInspectorWidth;
+  }
+  return proposedPosition;
 }
 
 - (CGFloat)splitView:(NSSplitView *)splitView constrainMaxCoordinate:(CGFloat)proposedMaximumPosition ofSubviewAt:(NSInteger)dividerIndex {
-  return proposedMaximumPosition;
   
   // Update to take inpspector into account
-  CGFloat availableWidth = [splitView frame].size.width - [splitView dividerThickness];
-  return (availableWidth - MPMainWindowSplitViewDelegateMinimumOutlineWidth);
+  NSView *outlineView = [self _subViewOfType:MPSplitViewOutlineViewIndex splitView:splitView];
+  NSView *inspectorView = [self _subViewOfType:MPSplitViewInspectorViewIndex splitView:splitView];
+  NSUInteger outlineMultiplicator = [splitView isSubviewCollapsed:outlineView] ? 0 : 1;
+  NSUInteger inpsectorMulitplicator = [splitView isSubviewCollapsed:inspectorView] ? 0 : 1;
+  NSUInteger dividerMultiplicator = inpsectorMulitplicator + outlineMultiplicator;
+  CGFloat availableWidth = [splitView frame].size.width - (dividerMultiplicator * [splitView dividerThickness]);
+  switch (dividerIndex) {
+    case MPSplitViewOutlineDividerIndex:
+      return availableWidth - (outlineMultiplicator * [outlineView frame].size.width ) - MPMainWindowSplitViewDelegateMinimumContentWidth;
+      
+    case MPSplitViewInspectorDividerIndex:
+      return availableWidth - MPMainWindowSplitViewDelegateMinimumInspectorWidth;
+      
+    default:
+      return proposedMaximumPosition;
+  }
 }
 
 - (void)splitView:(NSSplitView *)splitView resizeSubviewsWithOldSize:(NSSize)oldSize {
