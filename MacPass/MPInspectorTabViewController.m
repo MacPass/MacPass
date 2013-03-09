@@ -8,6 +8,8 @@
 
 #import "MPInspectorTabViewController.h"
 #import "MPEntryViewController.h"
+#import "MPOutlineViewDelegate.h"
+#import "MPDatabaseController.h"
 #import "MPShadowBox.h"
 #import "MPIconHelper.h"
 #import "KdbLib.h"
@@ -42,6 +44,11 @@
     return self;
 }
 
+- (void)dealloc {
+  [[NSNotificationCenter defaultCenter] removeObserver:self];
+  [super dealloc];
+}
+
 - (void)didLoadView {
   
   for( NSTabViewItem *item in  [self.tabView tabViewItems]){
@@ -55,6 +62,7 @@
                                            selector:@selector(_didChangeSelectedEntry:)
                                                name:MPDidChangeSelectedEntryNotification
                                              object:nil];
+  
   [self _clearContent];
 }
 
@@ -94,7 +102,6 @@
 - (void)setSelectedEntry:(KdbEntry *)selectedEntry {
   if(_selectedEntry != selectedEntry) {
     _selectedEntry = selectedEntry;
-    if(_selectedEntry) {}
     [self _updateContent];
   }
 }

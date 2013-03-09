@@ -28,6 +28,12 @@ typedef enum {
   MPFilterTitles = 8,
 } MPFilterModeType;
 
+typedef enum {
+  MPOverlayInfoPassword,
+  MPOverlayInfoUsername,
+  MPOverlayInfoURL,
+} MPOVerlayInfoType;
+
 NSString *const MPEntryTableUserNameColumnIdentifier = @"MPUserNameColumnIdentifier";
 NSString *const MPEntryTableTitleColumnIdentifier = @"MPTitleColumnIdentifier";
 NSString *const MPEntryTablePasswordColumnIdentifier = @"MPPasswordColumnIdentifier";
@@ -81,7 +87,8 @@ NSString *const _toggleFilterUsernameButton = @"SearchUsername";
 - (void)_showFilterBarAnimated:(BOOL)animate;
 - (void)_hideStatusBarAnimated:(BOOL)animate;
 
-- (void)_quickCopyEntryData:(id)sender;
+- (void)_columnDoubleClick:(id)sender;
+- (void)_copyToPasteboard:(NSString *)data overlayInfo:(MPOVerlayInfoType)overlayInfoType;
 - (KdbEntry *)_clickedOrSelectedEntry;
 
 @end
@@ -127,7 +134,7 @@ NSString *const _toggleFilterUsernameButton = @"SearchUsername";
   [self _hideStatusBarAnimated:NO];
   
   [self.entryTable setDelegate:self];
-  [self.entryTable setDoubleAction:@selector(_quickCopyEntryData:)];
+  [self.entryTable setDoubleAction:@selector(_columnDoubleClick:)];
   [self.entryTable setTarget:self];
   [self _setupEntryMenu];
   
@@ -210,6 +217,7 @@ NSString *const _toggleFilterUsernameButton = @"SearchUsername";
   }
   MPOutlineViewDelegate *delegate = [notification object];
   KdbGroup *group = delegate.selectedGroup;
+  [self.entryTable deselectAll:nil];
   if(group) {
     [self.entryArrayController setContent:nil];
     [self.entryArrayController addObjects:group.entries];
@@ -235,7 +243,7 @@ NSString *const _toggleFilterUsernameButton = @"SearchUsername";
 }
 
 - (void)deselectAll:(id)sender {
-  [self.entryTable deselectAll:self];
+  [self.entryTable deselectAll:nil];
 }
 
 - (void)clearFilter {
@@ -298,7 +306,7 @@ NSString *const _toggleFilterUsernameButton = @"SearchUsername";
   }
 }
 
-#pragma mark Animation
+#pragma mark UI Feedback
 
 - (void)_showFilterBarAnimated:(BOOL)animate {
   
@@ -365,6 +373,29 @@ NSString *const _toggleFilterUsernameButton = @"SearchUsername";
   }
 }
 
+- (void)_copyToPasteboard:(NSString *)data overlayInfo:(MPOVerlayInfoType)overlayInfoType {
+  [[MPPasteBoardController defaultController] copyObjects:@[ data ]];
+  NSImage *infoImage = nil;
+  NSString *infoText = nil;
+  switch (overlayInfoType) {
+    case MPOverlayInfoPassword:
+      infoImage = [[NSBundle mainBundle] imageForResource:@"00_PasswordTemplate"];
+      infoText = NSLocalizedString(@"COPIED_PASSWORD", @"Password was copied to the pasteboard");
+      break;
+      
+    case MPOverlayInfoURL:
+      infoImage = [[NSBundle mainBundle] imageForResource:@"01_PackageNetworkTemplate"];
+      infoText = NSLocalizedString(@"COPIED_URL", @"URL was copied to the pasteboard");
+      break;
+      
+    case MPOverlayInfoUsername:
+      infoImage = [[NSBundle mainBundle] imageForResource:@"09_IdentityTemplate"];
+      infoText = NSLocalizedString(@"COPIED_USERNAME", @"Username was copied to the pasteboard");
+      break;
+  }
+  [[MPOverlayWindowController sharedController] displayOverlayImage:infoImage label:infoText atView:self.view];
+}
+
 #pragma mark EntryMenu
 
 - (void)_setupEntryMenu {
@@ -394,48 +425,40 @@ NSString *const _toggleFilterUsernameButton = @"SearchUsername";
 
 #pragma mark Actions
 
-- (void)_quickCopyEntryData:(id)sender {
-  NSTableColumn *column = [self.entryTable tableColumns][[self.entryTable clickedColumn]];
-  NSString *identifier = [column identifier];
-  if([identifier isEqualToString:MPEntryTablePasswordColumnIdentifier]) {
-    [self copyPassword:nil];
-  }
-  else if([identifier isEqualToString:MPEntryTableUserNameColumnIdentifier]) {
-    [self copyUsername:nil];
-  }
-}
-
 - (void)copyPassword:(id)sender {
   KdbEntry *selectedEntry = [self _clickedOrSelectedEntry];
-  if(!selectedEntry) {
-    return; // nothing found to work with;
+  if(selectedEntry) {
+    [self _copyToPasteboard:selectedEntry.password overlayInfo:MPOverlayInfoPassword];
   }
-  [[MPPasteBoardController defaultController] copyObjects:@[ selectedEntry.password ]];
-  NSImage *image = [[NSBundle mainBundle] imageForResource:@"00_PasswordTemplate"];
-  NSString *lable = @"Password copied!";
-  [[MPOverlayWindowController sharedController] displayOverlayImage:image label:lable atView:self.view];
 }
 
 - (void)copyUsername:(id)sender {
   KdbEntry *selectedEntry = [self _clickedOrSelectedEntry];
-  if(!selectedEntry) {
-    return; // No entry to work with;
+  if(selectedEntry) {
+    [self _copyToPasteboard:selectedEntry.username overlayInfo:MPOverlayInfoUsername];
   }
-  [[MPPasteBoardController defaultController] copyObjects:@[ selectedEntry.username ] ];
-  
-  [[MPPasteBoardController defaultController] copyObjects:@[ selectedEntry.username ]];
-  NSImage *image = [[NSBundle mainBundle] imageForResource:@"09_IdentityTemplate"];
-  NSString *lable = @"Username copied!";
-  [[MPOverlayWindowController sharedController] displayOverlayImage:image label:lable atView:self.view];
+}
+
+- (void)copyURL:(id)sender {
+  KdbEntry *selectedEntry = [self _clickedOrSelectedEntry];
+  if(selectedEntry) {
+    [self _copyToPasteboard:selectedEntry.url overlayInfo:MPOverlayInfoURL];
+  }
+}
+
+- (void)openURL:(id)sender {
+  KdbEntry *selectedEntry = [self _clickedOrSelectedEntry];
+  if(selectedEntry && [selectedEntry.url length] > 0) {
+    NSURL *webURL = [NSURL URLWithString:selectedEntry.url];
+    [[NSWorkspace sharedWorkspace] openURL:webURL];
+  }
 }
 
 - (void)deleteEntry:(id)sender {
   KdbEntry *selectedEntry = [self _clickedOrSelectedEntry];
-  if(!selectedEntry) {
-    return; // no entry selected
+  if(selectedEntry) {
+    [self.entryArrayController removeObject:selectedEntry];
   }
-  //[[selectedEntry parent] removeEntry:selectedEntry];
-  [self.entryArrayController removeObject:selectedEntry];
 }
 
 - (void)_toggleFilterSpace:(id)sender {
@@ -453,6 +476,20 @@ NSString *const _toggleFilterUsernameButton = @"SearchUsername";
       
     default:
       break;
+  }
+}
+
+- (void)_columnDoubleClick:(id)sender {
+  NSTableColumn *column = [self.entryTable tableColumns][[self.entryTable clickedColumn]];
+  NSString *identifier = [column identifier];
+  if([identifier isEqualToString:MPEntryTablePasswordColumnIdentifier]) {
+    [self copyPassword:nil];
+  }
+  else if([identifier isEqualToString:MPEntryTableUserNameColumnIdentifier]) {
+    [self copyUsername:nil];
+  }
+  else if([identifier isEqualToString:MPEntryTableURLColumnIdentifier]) {
+    [self copyURL:nil];
   }
 }
 
