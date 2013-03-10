@@ -19,8 +19,6 @@
 
 #define MIN_WINDOW_WIDTH MPMainWindowSplitViewDelegateMinimumContentWidth + MPMainWindowSplitViewDelegateMinimumOutlineWidth + [self.splitView dividerThickness]
 
-static CGFloat _outlineSplitterPosition;
-
 @interface MPMainWindowController ()
 
 @property (assign) IBOutlet NSView *outlineView;
@@ -39,10 +37,6 @@ static CGFloat _outlineSplitterPosition;
 
 @property (retain) MPToolbarDelegate *toolbarDelegate;
 @property (retain) MPMainWindowSplitViewDelegate *splitViewDelegate;
-
-/* View show/hide */
-- (void)_collapseOutlineView;
-- (void)_expandOutlineView;
 
 - (void)_setContentViewController:(MPViewController *)viewController;
 - (void)_updateWindowTitle;
@@ -123,9 +117,9 @@ static CGFloat _outlineSplitterPosition;
   [self.inspectorTabViewController updateResponderChain];
 
   [self.splitView adjustSubviews];
+  [self toggleInspector:nil];
   
   [self _setContentViewController:nil];
-  [self _collapseOutlineView];
 }
 
 - (void)_setContentViewController:(MPViewController *)viewController {
@@ -162,22 +156,6 @@ static CGFloat _outlineSplitterPosition;
   [self.window makeFirstResponder:[viewController reconmendedFirstResponder]];
 }
 
-- (void)_collapseOutlineView {
-  NSView *outlineView = [self.splitView subviews][MPSplitViewOutlineViewIndex];
-  if([outlineView isHidden]) {
-    _outlineSplitterPosition = [outlineView frame].size.width;
-    [self.splitView setPosition:0 ofDividerAtIndex:MPSplitViewOutlineViewIndex];
-  }
-}
-
-- (void)_expandOutlineView {
-  NSView *outlineView = [self.splitView subviews][MPSplitViewOutlineViewIndex];
-  if(![outlineView isHidden]) {
-    CGFloat splitterPosition = MAX( MPMainWindowSplitViewDelegateMinimumOutlineWidth, _outlineSplitterPosition );
-    [self.splitView setPosition:splitterPosition ofDividerAtIndex:MPSplitViewOutlineViewIndex];
-  }
-}
-
 - (void)_updateWindowTitle {
   if([MPDatabaseController defaultController].database) {
     NSString *appName = [(MPAppDelegate *)[NSApp delegate] applicationName];
@@ -206,6 +184,10 @@ static CGFloat _outlineSplitterPosition;
     [self.splitView setPosition:splitterPosition ofDividerAtIndex:MPSplitViewInspectorDividerIndex];
   }
   [inspectorView setHidden:!collapsed];
+}
+
+- (void)performFindPanelAction:(id)sender {
+  [self.entryViewController showFilter:sender];
 }
 
 - (void)toggleOutlineView:(id)sender {
@@ -237,10 +219,6 @@ static CGFloat _outlineSplitterPosition;
   return [self.toolbarDelegate validateToolbarItem:theItem];
 }
 
-- (void)performFindPanelAction:(id)sender {
-  [self.window makeFirstResponder:[self.toolbarDelegate.searchItem view]];
-}
-
 - (void)showMainWindow:(id)sender {
   [self showWindow:self.window];
 }
@@ -261,27 +239,10 @@ static CGFloat _outlineSplitterPosition;
     if(result == NSFileHandlingPanelOKButton) {
       NSURL *file = [[openPanel URLs] lastObject];
       self.passwordInputController.fileURL = file;
-      [self _collapseOutlineView];
       [self _setContentViewController:self.passwordInputController];
     }
   }];
 }
-
-- (void)updateFilter:(id)sender {
-  NSSearchField *searchField = sender;
-  self.entryViewController.filter = [searchField stringValue];
-  [((NSOutlineView *)self.outlineViewController.view) deselectAll:self];
-}
-
-- (void)clearFilter:(id)sender {
-  NSSearchField *searchField = sender;
-  if(![sender isKindOfClass:[NSSearchField class]]) {
-    searchField = [self locateToolbarSearchField];
-  }
-  [searchField setStringValue:@""];
-  [self.entryViewController clearFilter];
-}
-
 - (void)clearOutlineSelection:(id)sender {
   [self.outlineViewController clearSelection];
 }
@@ -328,7 +289,6 @@ static CGFloat _outlineSplitterPosition;
 }
 
 - (void)showEntries {
-  [self _expandOutlineView];
   if(!self.entryViewController) {
     _entryViewController = [[MPEntryViewController alloc] init];
   }

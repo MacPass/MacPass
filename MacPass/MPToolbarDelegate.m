@@ -18,7 +18,6 @@ NSString *const MPToolbarItemAddEntry = @"TOOLBAR_ADD_ENTRY";
 NSString *const MPToolbarItemEdit = @"TOOLBAR_EDIT";
 NSString *const MPToolbarItemDelete =@"TOOLBAR_DELETE";
 NSString *const MPToolbarItemAction = @"TOOLBAR_ACTION";
-NSString *const MPToolbarItemSearch = @"TOOLBAR_SEARCH";
 NSString *const MPToolbarItemInspector = @"TOOLBAR_INSPECTOR";
 
 @interface MPToolbarDelegate()
@@ -38,7 +37,7 @@ NSString *const MPToolbarItemInspector = @"TOOLBAR_INSPECTOR";
 - (id)init {
   self = [super init];
   if (self) {
-    _toolbarIdentifiers = [@[ MPToolbarItemAddEntry, MPToolbarItemDelete, MPToolbarItemAddGroup, MPToolbarItemAction, NSToolbarFlexibleSpaceItemIdentifier, NSToolbarSpaceItemIdentifier, MPToolbarItemInspector, MPToolbarItemSearch ] retain];
+    _toolbarIdentifiers = [@[ MPToolbarItemAddEntry, MPToolbarItemDelete, MPToolbarItemAddGroup, MPToolbarItemAction, NSToolbarFlexibleSpaceItemIdentifier, NSToolbarSpaceItemIdentifier, MPToolbarItemInspector ] retain];
     _toolbarImages = [[self createToolbarImages] retain];
     _toolbarItems = [[NSMutableDictionary alloc] initWithCapacity:[self.toolbarIdentifiers count]];
   }
@@ -60,17 +59,7 @@ NSString *const MPToolbarItemInspector = @"TOOLBAR_INSPECTOR";
     NSString *label = [self _localizedLabelForToolbarItemIdentifier:itemIdentifier];
     [item setLabel:label];
     
-    if([itemIdentifier isEqualToString:MPToolbarItemSearch]) {
-      NSSearchField *searchfield = [[NSSearchField alloc] initWithFrame:NSMakeRect(0, 0, 70, 32)];
-      [item setView:searchfield];
-      [searchfield setAction:@selector(updateFilter:)];
-      [[searchfield cell] setSendsSearchStringImmediately:NO];
-      [[[searchfield cell] cancelButtonCell] setTarget:nil];
-      [[[searchfield cell] cancelButtonCell] setAction:@selector(clearFilter:)];
-      [searchfield release];
-      self.searchItem = item;
-    }
-    else if([itemIdentifier isEqualToString:MPToolbarItemAction]) {
+    if([itemIdentifier isEqualToString:MPToolbarItemAction]) {
       NSPopUpButton *popupButton = [[NSPopUpButton alloc] initWithFrame:NSMakeRect(0, 0, 50, 32) pullsDown:YES];
       [[popupButton cell] setBezelStyle:NSTexturedRoundedBezelStyle];
       [[popupButton cell] setImageScaling:NSImageScaleProportionallyDown];
@@ -149,8 +138,7 @@ NSString *const MPToolbarItemInspector = @"TOOLBAR_INSPECTOR";
                               MPToolbarItemAddGroup: NSLocalizedString(@"ADD_GROUP", @""),
                               MPToolbarItemDelete: NSLocalizedString(@"DELETE", @""),
                               MPToolbarItemEdit: NSLocalizedString(@"EDIT", @""),
-                              MPToolbarItemInspector: NSLocalizedString(@"TOGGLE_INSPECTOR", @""),
-                              MPToolbarItemSearch: NSLocalizedString(@"SEARCH", @"")
+                              MPToolbarItemInspector: NSLocalizedString(@"TOGGLE_INSPECTOR", @"")
                               };
   return labelDict[identifier];
 }

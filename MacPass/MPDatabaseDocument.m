@@ -129,4 +129,18 @@ NSString *const MPDidLoadDatabaseNotification = @"DidLoadDataBaseNotification";
   return [[[KdbPassword alloc] initWithPassword:self.password passwordEncoding:NSUTF8StringEncoding keyFile:[self.key path]] autorelease];
 }
 
+- (KdbEntry *)createEntry:(KdbGroup *)parent {
+  KdbEntry *newEntry = [self.tree createEntry:parent];
+  newEntry.title = NSLocalizedString(@"DEFAULT_ENTRY_TITLE", @"Title for a newly created entry");
+  [parent addEntry:newEntry];
+  return newEntry;
+}
+
+- (KdbGroup *)createGroup:(KdbGroup *)parent {
+  KdbGroup *newGroup = [self.tree createGroup:parent];
+  newGroup.name = NSLocalizedString(@"DEFAULT_GROUP_NAME", @"Title for a newly created group");
+  [parent addGroup:newGroup];
+  return newGroup;
+}
+
 @end

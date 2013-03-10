@@ -18,6 +18,7 @@ typedef enum {
 
 @class KdbPassword;
 @class KdbGroup;
+@class KdbEntry;
 
 @interface MPDatabaseDocument : NSObject
 
@@ -39,5 +40,9 @@ typedef enum {
  */
 - (BOOL)save;
 - (BOOL)saveAsFile:(NSURL *)file withPassword:(NSString *)password keyfile:(NSURL *)key;
+
+- (KdbGroup *)createGroup:(KdbGroup *)parent;
+- (KdbEntry *)createEntry:(KdbGroup *)parent;
+
 
 @end
