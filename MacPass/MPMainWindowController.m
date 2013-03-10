@@ -17,8 +17,6 @@
 #import "MPInspectorTabViewController.h"
 #import "MPAppDelegate.h"
 
-#define MIN_WINDOW_WIDTH MPMainWindowSplitViewDelegateMinimumContentWidth + MPMainWindowSplitViewDelegateMinimumOutlineWidth + [self.splitView dividerThickness]
-
 @interface MPMainWindowController ()
 
 @property (assign) IBOutlet NSView *outlineView;
@@ -92,8 +90,8 @@
   [self _updateWindowTitle];
     
   [[self.welcomeText cell] setBackgroundStyle:NSBackgroundStyleRaised];
-  
-  [self.window setMinSize:NSMakeSize( MIN_WINDOW_WIDTH, 400)];
+  CGFloat minWidht = MPMainWindowSplitViewDelegateMinimumContentWidth + MPMainWindowSplitViewDelegateMinimumOutlineWidth + [self.splitView dividerThickness];
+  [self.window setMinSize:NSMakeSize( minWidht, 400)];
   
   _toolbar = [[NSToolbar alloc] initWithIdentifier:@"MainWindowToolbar"];
   [self.toolbar setAllowsUserCustomization:YES];

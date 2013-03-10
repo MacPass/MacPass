@@ -8,14 +8,19 @@
 
 #import "MPPasswordInputController.h"
 #import "MPDatabaseController.h"
+#import "MPKeyfilePathControlDelegate.h"
 
 @interface MPPasswordInputController ()
 
 @property (assign) IBOutlet NSSecureTextField *passwordTextField;
+@property (assign) IBOutlet NSPathControl *keyPathControl;
+@property (retain) MPKeyfilePathControlDelegate *pathControlDelegate;
+@property (assign) IBOutlet NSImageView *errorImageView;
+@property (assign) IBOutlet NSTextField *errorInfoTextField;
 
-- (IBAction)_selectKeyFile:(id)sender;
 - (IBAction)_open:(id)sender;
 - (void)_showError;
+- (void)_reset;
 
 @end
 
@@ -26,32 +31,43 @@
 }
 
 - (void)dealloc {
-  self.fileURL = nil;
+  [_fileURL release];
+  [_pathControlDelegate release];
   [super dealloc];
+}
+
+- (void)didLoadView {
+  [self.keyPathControl setDelegate:self.pathControlDelegate];
+  [self.errorImageView setImage:[NSImage imageNamed:NSImageNameCaution]];
+  [self _reset];
 }
 
 - (NSResponder *)reconmendedFirstResponder {
   return self.passwordTextField;
 }
 
-- (IBAction)_selectKeyFile:(id)sender {
-
-}
 
 - (IBAction)_open:(id)sender {
   NSString *password = [self.passwordTextField stringValue];
-  [self.passwordTextField setStringValue:@""];
+  NSURL *keyfile = [self.keyPathControl URL];
+  [self _reset];
   MPDatabaseDocument *document = [[MPDatabaseController defaultController] openDatabase:self.fileURL
                                                                                password:password
-                                                                                keyfile:nil];
+                                                                                keyfile:keyfile];
   if(!document) {
     [self _showError];
   }
 }
 
+- (void)_reset {
+  [self.passwordTextField setStringValue:@""];
+  [self.keyPathControl setURL:nil];
+  [self.errorInfoTextField setHidden:YES];
+  [self.errorImageView setHidden:YES];
+}
+
 - (void)_showError {
-#ifdef DEBUG
-  NSLog(@"Something went wrong");
-#endif
+  [self.errorImageView setHidden:NO];
+  [self.errorInfoTextField setHidden:NO];
 }
 @end

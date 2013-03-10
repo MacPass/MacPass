@@ -9,7 +9,7 @@
 #import "MPMainWindowSplitViewDelegate.h"
 
 const CGFloat MPMainWindowSplitViewDelegateMinimumOutlineWidth = 150.0;
-const CGFloat MPMainWindowSplitViewDelegateMinimumContentWidth = 250.0;
+const CGFloat MPMainWindowSplitViewDelegateMinimumContentWidth = 350.0;
 const CGFloat MPMainWindowSplitViewDelegateMinimumInspectorWidth = 250.0;
 
 
