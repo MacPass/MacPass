@@ -12,6 +12,7 @@
 #import "MPDatabaseController.h"
 #import "MPDatabaseDocument.h"
 #import "MPAppDelegate.h"
+#import "KdbLib.h"
 
 @interface MPOutlineViewController ()
 
@@ -24,6 +25,7 @@
 
 - (void)_didOpenDocument:(NSNotification *)notification;
 - (NSMenu *)_contextMenu;
+- (KdbGroup *)_clickedOrSelectedGroup;
 
 @end
 
@@ -64,12 +66,6 @@
   [self.outlineView setAllowsEmptySelection:YES];
 }
 
-- (void)mouseUp:(NSEvent *)theEvent {
-  NSLog(@"Mouse Up!");
-  [super mouseUp:theEvent];
-}
-
-
 - (void)_didOpenDocument:(NSNotification *)notification {
   [self.outlineView deselectAll:nil];
   [self.outlineView reloadData];
@@ -93,13 +89,35 @@
 }
 
 - (void)createGroup:(id)sender {
-  NSLog(@"%@: Create Group", [self class]);
+  KdbGroup *group = [self _clickedOrSelectedGroup];
+  if(group) {
+    [[MPDatabaseController defaultController].database createGroup:group];
+    [self.outlineView reloadData];
+  }
+}
+
+- (void)createEntry:(id)sender {
+  KdbGroup *group = [self _clickedOrSelectedGroup];
+  if(group) {
+    [[MPDatabaseController defaultController].database createEntry:group];
+  }
 }
 
 - (void)deleteEntry:(id)sender {
-  NSLog(@"%@: Delete Entry", [self class]);
+  KdbGroup *group = [self _clickedOrSelectedGroup];
+  if(group) {
+    [group.parent removeGroup:group];
+    [self.outlineView reloadData];
+  }
 }
 
+- (KdbGroup *)_clickedOrSelectedGroup {
+  NSInteger row = [self.outlineView clickedRow];
+  if( row < 0 ) {
+    row = [self.outlineView selectedRow];
+  }
+  return [self.outlineView itemAtRow:row];
+}
 
 
 @end

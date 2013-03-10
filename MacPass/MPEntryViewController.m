@@ -53,7 +53,6 @@ NSString *const _toggleFilterUsernameButton = @"SearchUsername";
 @property (retain) NSArrayController *entryArrayController;
 @property (retain) NSArray *filteredEntries;
 @property (retain) IBOutlet NSView *filterBar;
-@property (retain) IBOutlet NSView *pathBar;
 @property (assign) IBOutlet NSTableView *entryTable;
 @property (assign) BOOL isStatusBarVisible;
 @property (assign) IBOutlet NSLayoutConstraint *tableToTop;
@@ -64,6 +63,7 @@ NSString *const _toggleFilterUsernameButton = @"SearchUsername";
 @property (assign) IBOutlet NSButton *filterUsernameButton;
 @property (assign) IBOutlet NSButton *filterURLButton;
 @property (assign) IBOutlet NSTextField *filterLabelTextField;
+@property (assign) IBOutlet NSSearchField *filterSearchField;
 
 @property (assign) KdbEntry *selectedEntry;
 
@@ -80,7 +80,6 @@ NSString *const _toggleFilterUsernameButton = @"SearchUsername";
 - (BOOL)hasFilter;
 - (void)updateFilter;
 - (void)setupFilterBar;
-- (void)setupPathBar;
 - (void)_setupEntryMenu;
 /* Notification handling */
 - (void)_didChangeGroupSelectionInOutlineView:(NSNotification *)notification;
@@ -213,7 +212,7 @@ NSString *const _toggleFilterUsernameButton = @"SearchUsername";
 #pragma mark Notifications
 - (void)_didChangeGroupSelectionInOutlineView:(NSNotification *)notification {
   if([self hasFilter]) {
-    [(MPMainWindowController *)[[self.view window] windowController] clearFilter:nil];
+    [self.filterSearchField setStringValue:@""];
   }
   MPOutlineViewDelegate *delegate = [notification object];
   KdbGroup *group = delegate.selectedGroup;
@@ -229,6 +228,10 @@ NSString *const _toggleFilterUsernameButton = @"SearchUsername";
 
 
 #pragma mark Filtering
+
+- (void)showFilter:(id)sender {
+  [self _showFilterBarAnimated:NO];
+}
 
 - (BOOL)hasFilter {
   return ([self.filter length] > 0);
@@ -246,7 +249,7 @@ NSString *const _toggleFilterUsernameButton = @"SearchUsername";
   [self.entryTable deselectAll:nil];
 }
 
-- (void)clearFilter {
+- (void)clearFilter:(id)sender {
   self.filter = nil;
   [[self.entryTable tableColumnWithIdentifier:MPEntryTableParentColumnIdentifier] setHidden:YES];
   [self _hideStatusBarAnimated:YES];
@@ -295,14 +298,10 @@ NSString *const _toggleFilterUsernameButton = @"SearchUsername";
     [[self.filterLabelTextField cell] setBackgroundStyle:NSBackgroundStyleRaised];
     [self.filterDoneButton setAction:@selector(clearFilter:)];
     [self.filterDoneButton setTarget:nil];
-  }
-}
-
-- (void)setupPathBar {
-  if(!self.pathBar) {
-    [[NSBundle mainBundle] loadNibNamed:@"PathBar" owner:self topLevelObjects:nil];
-    [self.pathBar setAutoresizingMask:NSViewWidthSizable|NSViewMaxYMargin];
     
+    [self.filterSearchField setAction:@selector(updateFilter:)];
+    [[self.filterSearchField cell] setSendsSearchStringImmediately:NO];
+  
   }
 }
 

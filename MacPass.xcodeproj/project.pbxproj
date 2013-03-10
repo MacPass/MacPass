@@ -20,7 +20,6 @@
 		4C3FFD9E16DAF60600DF9186 /* FilterBar.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4C3FFD9D16DAF60600DF9186 /* FilterBar.xib */; };
 		4C431BCD16E2A82800700A81 /* MPPasteBoardController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C431BCC16E2A82700700A81 /* MPPasteBoardController.m */; };
 		4C431BCF16E2BAB000700A81 /* OverlayWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4C431BCE16E2BAB000700A81 /* OverlayWindow.xib */; };
-		4C4E1DC716DC6536007B9B47 /* PathBar.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4C4E1DC616DC6536007B9B47 /* PathBar.xib */; };
 		4C586F9E16D07ABD00E7DB57 /* 00_PasswordTemplate.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 4C586F9D16D07ABD00E7DB57 /* 00_PasswordTemplate.pdf */; };
 		4C586FA016D07D7200E7DB57 /* 01_PackageNetworkTemplate.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 4C586F9F16D07D7200E7DB57 /* 01_PackageNetworkTemplate.pdf */; };
 		4C586FA216D07F6A00E7DB57 /* 02_MessageBoxWarningTemplate.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 4C586FA116D07F6A00E7DB57 /* 02_MessageBoxWarningTemplate.pdf */; };
@@ -127,7 +126,6 @@
 		4C431BCB16E2A82700700A81 /* MPPasteBoardController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MPPasteBoardController.h; sourceTree = "<group>"; };
 		4C431BCC16E2A82700700A81 /* MPPasteBoardController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MPPasteBoardController.m; sourceTree = "<group>"; };
 		4C431BCE16E2BAB000700A81 /* OverlayWindow.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = OverlayWindow.xib; sourceTree = "<group>"; };
-		4C4E1DC616DC6536007B9B47 /* PathBar.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PathBar.xib; sourceTree = "<group>"; };
 		4C586F9D16D07ABD00E7DB57 /* 00_PasswordTemplate.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = 00_PasswordTemplate.pdf; sourceTree = "<group>"; };
 		4C586F9F16D07D7200E7DB57 /* 01_PackageNetworkTemplate.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = 01_PackageNetworkTemplate.pdf; sourceTree = "<group>"; };
 		4C586FA116D07F6A00E7DB57 /* 02_MessageBoxWarningTemplate.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = 02_MessageBoxWarningTemplate.pdf; sourceTree = "<group>"; };
@@ -313,7 +311,6 @@
 				4C6B0E8B16C9B99B00A9ED23 /* PasswordInputView.xib */,
 				4C25D58416CF0F8800F6806C /* WelcomeView.xib */,
 				4C3FFD9D16DAF60600DF9186 /* FilterBar.xib */,
-				4C4E1DC616DC6536007B9B47 /* PathBar.xib */,
 				4C77547616E55FFC00970E02 /* InspectorTabView.xib */,
 				4C69A73816D589DF00EC1B1A /* MPGradientView.h */,
 				4C69A73916D589DF00EC1B1A /* MPGradientView.m */,
@@ -770,7 +767,6 @@
 				4C61EA0516D2FFE200AC519E /* OutlineView.xib in Resources */,
 				4CB9339916D3A0DD00A13B5D /* Credits.rtf in Resources */,
 				4C3FFD9E16DAF60600DF9186 /* FilterBar.xib in Resources */,
-				4C4E1DC716DC6536007B9B47 /* PathBar.xib in Resources */,
 				4C431BCF16E2BAB000700A81 /* OverlayWindow.xib in Resources */,
 				4C77547716E55FFC00970E02 /* InspectorTabView.xib in Resources */,
 				4C888C9016EB6C91003D34A1 /* Localizable.strings in Resources */,

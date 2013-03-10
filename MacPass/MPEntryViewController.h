@@ -39,12 +39,16 @@ typedef enum {
 
 
 /* Clear the Search filter*/
-- (void)clearFilter;
+- (void)showFilter:(id)sender;
+- (void)clearFilter:(id)sender;
 
+/* Copy/Paste */
 - (void)copyUsername:(id)sender;
 - (void)copyPassword:(id)sender;
 - (void)copyURL:(id)sender;
 - (void)openURL:(id)sender;
+
+/* Entry Handling*/
 - (void)deleteEntry:(id)sender;
 
 @end
