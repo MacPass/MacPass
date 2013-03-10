@@ -483,7 +483,6 @@
 									<int key="NSvFlags">256</int>
 									<array class="NSMutableArray" key="NSSubviews"/>
 									<string key="NSFrameSize">{280, 482}</string>
-									<reference key="NSNextKeyView"/>
 									<string key="NSReuseIdentifierKey">_NS:28</string>
 								</object>
 								<string key="NSLabel">Notes</string>
@@ -1909,6 +1908,7 @@
 					<reference ref="844708820"/>
 				</array>
 				<string key="57.IBPluginDependency">com.apple.InterfaceBuilder.CocoaPlugin</string>
+				<string key="62.CustomClassName">MPPopupImageView</string>
 				<array class="NSMutableArray" key="62.IBNSViewMetadataConstraints">
 					<reference ref="158181239"/>
 					<reference ref="12312109"/>
@@ -1955,6 +1955,14 @@
 					<object class="IBClassDescriptionSource" key="sourceIdentifier">
 						<string key="majorKey">IBProjectSource</string>
 						<string key="minorKey">./Classes/MPInspectorTabViewController.h</string>
+					</object>
+				</object>
+				<object class="IBPartialClassDescription">
+					<string key="className">MPPopupImageView</string>
+					<string key="superclassName">NSImageView</string>
+					<object class="IBClassDescriptionSource" key="sourceIdentifier">
+						<string key="majorKey">IBProjectSource</string>
+						<string key="minorKey">./Classes/MPPopupImageView.h</string>
 					</object>
 				</object>
 				<object class="IBPartialClassDescription">

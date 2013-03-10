@@ -102,6 +102,9 @@
 		4CD78AC016D155FF00768A1D /* 11_CameraTemplate.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 4CD78ABB16D155FF00768A1D /* 11_CameraTemplate.pdf */; };
 		4CD884B715BD47080042BBF8 /* MainWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4CD884B615BD47080042BBF8 /* MainWindow.xib */; };
 		4CDF01A316D1B76700D0AC08 /* MPEntryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CDF01A216D1B76700D0AC08 /* MPEntryViewController.m */; };
+		4CE39ABF16ECE34A000FE29D /* MPIconSelectViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CE39ABE16ECE34A000FE29D /* MPIconSelectViewController.m */; };
+		4CE39AC116ECE359000FE29D /* IconSelection.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4CE39AC016ECE359000FE29D /* IconSelection.xib */; };
+		4CE39AC416ECE4F7000FE29D /* MPPopupImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CE39AC316ECE4F7000FE29D /* MPPopupImageView.m */; };
 		4CE8246F16E2E93400573141 /* MPOverlayWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CE8246E16E2E93400573141 /* MPOverlayWindowController.m */; };
 		4CE8247516E2F2B900573141 /* MPOverlayView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CE8247416E2F2B900573141 /* MPOverlayView.m */; };
 		4CFC53BF16E94729007396BE /* MPShadowBox.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CFC53BE16E94729007396BE /* MPShadowBox.m */; };
@@ -280,6 +283,11 @@
 		4CD884B615BD47080042BBF8 /* MainWindow.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MainWindow.xib; sourceTree = "<group>"; };
 		4CDF01A116D1B76700D0AC08 /* MPEntryViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MPEntryViewController.h; sourceTree = "<group>"; };
 		4CDF01A216D1B76700D0AC08 /* MPEntryViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MPEntryViewController.m; sourceTree = "<group>"; };
+		4CE39ABD16ECE34A000FE29D /* MPIconSelectViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MPIconSelectViewController.h; sourceTree = "<group>"; };
+		4CE39ABE16ECE34A000FE29D /* MPIconSelectViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MPIconSelectViewController.m; sourceTree = "<group>"; };
+		4CE39AC016ECE359000FE29D /* IconSelection.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = IconSelection.xib; sourceTree = "<group>"; };
+		4CE39AC216ECE4F7000FE29D /* MPPopupImageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MPPopupImageView.h; sourceTree = "<group>"; };
+		4CE39AC316ECE4F7000FE29D /* MPPopupImageView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MPPopupImageView.m; sourceTree = "<group>"; };
 		4CE8246D16E2E93400573141 /* MPOverlayWindowController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MPOverlayWindowController.h; sourceTree = "<group>"; };
 		4CE8246E16E2E93400573141 /* MPOverlayWindowController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MPOverlayWindowController.m; sourceTree = "<group>"; };
 		4CE8247316E2F2B900573141 /* MPOverlayView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MPOverlayView.h; sourceTree = "<group>"; };
@@ -315,12 +323,15 @@
 				4C25D58416CF0F8800F6806C /* WelcomeView.xib */,
 				4C3FFD9D16DAF60600DF9186 /* FilterBar.xib */,
 				4C77547616E55FFC00970E02 /* InspectorTabView.xib */,
+				4CE39AC016ECE359000FE29D /* IconSelection.xib */,
 				4C69A73816D589DF00EC1B1A /* MPGradientView.h */,
 				4C69A73916D589DF00EC1B1A /* MPGradientView.m */,
 				4CE8247316E2F2B900573141 /* MPOverlayView.h */,
 				4CE8247416E2F2B900573141 /* MPOverlayView.m */,
 				4CFC53BD16E94729007396BE /* MPShadowBox.h */,
 				4CFC53BE16E94729007396BE /* MPShadowBox.m */,
+				4CE39AC216ECE4F7000FE29D /* MPPopupImageView.h */,
+				4CE39AC316ECE4F7000FE29D /* MPPopupImageView.m */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -579,6 +590,8 @@
 				4C61EA0216D2FD0800AC519E /* MPOutlineViewController.m */,
 				4C77547316E55FE800970E02 /* MPInspectorTabViewController.h */,
 				4C77547416E55FE800970E02 /* MPInspectorTabViewController.m */,
+				4CE39ABD16ECE34A000FE29D /* MPIconSelectViewController.h */,
+				4CE39ABE16ECE34A000FE29D /* MPIconSelectViewController.m */,
 			);
 			name = "View Controller";
 			sourceTree = "<group>";
@@ -775,6 +788,7 @@
 				4C431BCF16E2BAB000700A81 /* OverlayWindow.xib in Resources */,
 				4C77547716E55FFC00970E02 /* InspectorTabView.xib in Resources */,
 				4C888C9016EB6C91003D34A1 /* Localizable.strings in Resources */,
+				4CE39AC116ECE359000FE29D /* IconSelection.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -870,6 +884,8 @@
 				4C888C9316EB6F5E003D34A1 /* MPToolbarItem.m in Sources */,
 				4C888C9716EB754B003D34A1 /* MPActionHelper.m in Sources */,
 				4C811C8316ECD06E00C4BAC6 /* MPKeyfilePathControlDelegate.m in Sources */,
+				4CE39ABF16ECE34A000FE29D /* MPIconSelectViewController.m in Sources */,
+				4CE39AC416ECE4F7000FE29D /* MPPopupImageView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
