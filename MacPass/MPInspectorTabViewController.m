@@ -12,11 +12,12 @@
 #import "MPDatabaseController.h"
 #import "MPShadowBox.h"
 #import "MPIconHelper.h"
+#import "MPPopupImageView.h"
 #import "KdbLib.h"
 
 @interface MPInspectorTabViewController ()
 
-@property (assign) IBOutlet NSImageView *itemImageView;
+@property (assign) IBOutlet MPPopupImageView *itemImageView;
 @property (assign) IBOutlet NSTextField *itemNameTextfield;
 @property (assign) IBOutlet NSTabView *tabView;
 @property (assign) IBOutlet NSSegmentedControl *tabControl;

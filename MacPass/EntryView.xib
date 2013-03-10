@@ -2,7 +2,7 @@
 <archive type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="8.00">
 	<data>
 		<int key="IBDocument.SystemTarget">1080</int>
-		<string key="IBDocument.SystemVersion">12C60</string>
+		<string key="IBDocument.SystemVersion">12C3103</string>
 		<string key="IBDocument.InterfaceBuilderVersion">3084</string>
 		<string key="IBDocument.AppKitVersion">1187.34</string>
 		<string key="IBDocument.HIToolboxVersion">625.00</string>
@@ -1534,7 +1534,7 @@
 			<nil key="activeLocalization"/>
 			<dictionary class="NSMutableDictionary" key="localizations"/>
 			<nil key="sourceID"/>
-			<int key="maxID">672</int>
+			<int key="maxID">675</int>
 		</object>
 		<object class="IBClassDescriber" key="IBDocument.Classes">
 			<array class="NSMutableArray" key="referencedPartialClassDescriptions">
@@ -1542,13 +1542,13 @@
 					<string key="className">MPEntryViewController</string>
 					<string key="superclassName">MPViewController</string>
 					<object class="NSMutableDictionary" key="actions">
-						<string key="NS.key.0">toggleFilterSpace:</string>
+						<string key="NS.key.0">_toggleFilterSpace:</string>
 						<string key="NS.object.0">id</string>
 					</object>
 					<object class="NSMutableDictionary" key="actionInfosByName">
-						<string key="NS.key.0">toggleFilterSpace:</string>
+						<string key="NS.key.0">_toggleFilterSpace:</string>
 						<object class="IBActionInfo" key="NS.object.0">
-							<string key="name">toggleFilterSpace:</string>
+							<string key="name">_toggleFilterSpace:</string>
 							<string key="candidateClassName">id</string>
 						</object>
 					</object>
@@ -1557,10 +1557,10 @@
 						<string key="filterBar">NSView</string>
 						<string key="filterDoneButton">NSButton</string>
 						<string key="filterLabelTextField">NSTextField</string>
+						<string key="filterSearchField">NSSearchField</string>
 						<string key="filterTitleButton">NSButton</string>
 						<string key="filterURLButton">NSButton</string>
 						<string key="filterUsernameButton">NSButton</string>
-						<string key="pathBar">NSView</string>
 						<string key="tableToBottom">NSLayoutConstraint</string>
 						<string key="tableToTop">NSLayoutConstraint</string>
 					</dictionary>
@@ -1581,6 +1581,10 @@
 							<string key="name">filterLabelTextField</string>
 							<string key="candidateClassName">NSTextField</string>
 						</object>
+						<object class="IBToOneOutletInfo" key="filterSearchField">
+							<string key="name">filterSearchField</string>
+							<string key="candidateClassName">NSSearchField</string>
+						</object>
 						<object class="IBToOneOutletInfo" key="filterTitleButton">
 							<string key="name">filterTitleButton</string>
 							<string key="candidateClassName">NSButton</string>
@@ -1592,10 +1596,6 @@
 						<object class="IBToOneOutletInfo" key="filterUsernameButton">
 							<string key="name">filterUsernameButton</string>
 							<string key="candidateClassName">NSButton</string>
-						</object>
-						<object class="IBToOneOutletInfo" key="pathBar">
-							<string key="name">pathBar</string>
-							<string key="candidateClassName">NSView</string>
 						</object>
 						<object class="IBToOneOutletInfo" key="tableToBottom">
 							<string key="name">tableToBottom</string>
