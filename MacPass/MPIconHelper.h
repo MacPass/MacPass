@@ -33,7 +33,9 @@ typedef enum {
  Available Icons, Use the MPDatabaseIconType to access a individual icon;
  @returns all availble Icons
  */
-+ (NSDictionary *)availableIcons;
++ (NSDictionary *)availableIconNames;
+
++ (NSArray *)availableIcons;
 
 /*
  @returns a random Icon image
