@@ -9,5 +9,6 @@
 #import "MPViewController.h"
 
 @interface MPIconSelectViewController : MPViewController <NSCollectionViewDelegate>
+@property (assign) IBOutlet NSCollectionView *iconCollectionView;
 
 @end

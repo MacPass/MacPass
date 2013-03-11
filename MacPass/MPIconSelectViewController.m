@@ -7,6 +7,7 @@
 //
 
 #import "MPIconSelectViewController.h"
+#import "MPIconHelper.h"
 
 @interface MPIconSelectViewController ()
 
@@ -23,10 +24,13 @@
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
-
+      
     }
-    
     return self;
+}
+
+- (void)didLoadView {
+  [self.iconCollectionView setContent:[MPIconHelper availableIcons]];
 }
 
 @end

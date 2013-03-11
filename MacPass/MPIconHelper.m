@@ -11,7 +11,7 @@
 @implementation MPIconHelper
 
 + (NSImage *)icon:(MPIconType)type {
-  NSDictionary *icons = [MPIconHelper availableIcons];
+  NSDictionary *icons = [MPIconHelper availableIconNames];
   if(type >= [icons count]) {
     return [NSImage imageNamed:NSImageNameActionTemplate];
   }
@@ -19,7 +19,17 @@
   return [[NSBundle mainBundle] imageForResource:imageName];
 }
 
-+ (NSDictionary *)availableIcons {
++ (NSArray *)availableIcons {
+  NSDictionary *imageNames = [MPIconHelper availableIconNames];
+  NSMutableArray *icons = [[NSMutableArray alloc] initWithCapacity:[imageNames count]];
+  for(NSNumber *iconNumber in [imageNames allKeys]) {
+    MPIconType iconType = (MPIconType)[iconNumber integerValue];
+    [icons addObject:[MPIconHelper icon:iconType]];
+  }
+  return icons;
+}
+
++ (NSDictionary *)availableIconNames {
   NSDictionary *imageNames = @{ @(MPIconKlipper): @"04_KlipperTemplate",
                                 @(MPIconLanguages): @"05_LanguagesTemplate",
                                 @(MPIconPackageNetwork): @"01_PackageNetworkTemplate",
@@ -41,7 +51,7 @@
     srandom([[NSDate date] timeIntervalSince1970]);
   });
   
-  NSArray *types = [[MPIconHelper availableIcons] allKeys];
+  NSArray *types = [[MPIconHelper availableIconNames] allKeys];
   NSUInteger randomIndex = random() % [types count];
   return [MPIconHelper icon:(MPIconType)randomIndex];
 }
