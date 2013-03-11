@@ -8,6 +8,6 @@
 
 #import "MPViewController.h"
 
-@interface MPIconSelectViewController : MPViewController
+@interface MPIconSelectViewController : MPViewController <NSCollectionViewDelegate>
 
 @end

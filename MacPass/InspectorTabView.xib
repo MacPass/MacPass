@@ -61,7 +61,7 @@
 						<bool key="NSEnabled">YES</bool>
 						<object class="NSSegmentedCell" key="NSCell" id="572388392">
 							<int key="NSCellFlags">67108864</int>
-							<int key="NSCellFlags2">0</int>
+							<int key="NSCellFlags2">32768</int>
 							<object class="NSFont" key="NSSupport">
 								<string key="NSName">LucidaGrande</string>
 								<double key="NSSize">12</double>
@@ -147,7 +147,7 @@
 						<bool key="NSEnabled">YES</bool>
 						<object class="NSImageCell" key="NSCell" id="81329947">
 							<int key="NSCellFlags">134217728</int>
-							<int key="NSCellFlags2">33554432</int>
+							<int key="NSCellFlags2">0</int>
 							<object class="NSCustomResource" key="NSContents">
 								<string key="NSClassName">NSImage</string>
 								<string key="NSResourceName">NSApplicationIcon</string>
@@ -167,7 +167,6 @@
 						<string key="NSFrame">{{0, -2}, {280, 482}}</string>
 						<reference key="NSSuperview" ref="1005"/>
 						<reference key="NSWindow"/>
-						<reference key="NSNextKeyView" ref="936537698"/>
 						<string key="NSReuseIdentifierKey">_NS:9</string>
 						<array class="NSMutableArray" key="NSTabViewItems">
 							<object class="NSTabViewItem" id="745022448">
@@ -399,7 +398,6 @@
 											<string key="NSFrame">{{86, 285}, {135, 22}}</string>
 											<reference key="NSSuperview" ref="936537698"/>
 											<reference key="NSWindow"/>
-											<reference key="NSNextKeyView"/>
 											<string key="NSReuseIdentifierKey">_NS:9</string>
 											<bool key="NSEnabled">YES</bool>
 											<object class="NSSecureTextFieldCell" key="NSCell" id="552426058">
@@ -1929,7 +1927,7 @@
 					<string key="className">MPInspectorTabViewController</string>
 					<string key="superclassName">MPViewController</string>
 					<dictionary class="NSMutableDictionary" key="outlets">
-						<string key="itemImageView">NSImageView</string>
+						<string key="itemImageView">MPPopupImageView</string>
 						<string key="itemNameTextfield">NSTextField</string>
 						<string key="tabControl">NSSegmentedControl</string>
 						<string key="tabView">NSTabView</string>
@@ -1937,7 +1935,7 @@
 					<dictionary class="NSMutableDictionary" key="toOneOutletInfosByName">
 						<object class="IBToOneOutletInfo" key="itemImageView">
 							<string key="name">itemImageView</string>
-							<string key="candidateClassName">NSImageView</string>
+							<string key="candidateClassName">MPPopupImageView</string>
 						</object>
 						<object class="IBToOneOutletInfo" key="itemNameTextfield">
 							<string key="name">itemNameTextfield</string>

@@ -8,15 +8,15 @@
 
 #import "MPPopupImageView.h"
 
+#define MPTRIANGLE_HEIGHT 8
+#define MPTRIANGLE_WIDTH 10
+#define MPTRIANGLE_OFFSET 2
+
 @interface MPPopupImageView ()
 
 @property (assign) BOOL showOverlay;
-@property (retain) NSString *overlayText;
-@property (retain) NSDictionary *fontAttributes;
-@property (assign) NSSize textSize;
 
 - (void)_setupView;
-- (NSRect)_centeredFontRectangle;
 
 @end
 
@@ -41,20 +41,32 @@
 - (void)drawRect:(NSRect)dirtyRect
 {
   [super drawRect:dirtyRect];
-  if(self.showOverlay) {
+  if(self.showOverlay && [self isEnabled]) {
     [[NSGraphicsContext currentContext] saveGraphicsState];
-    NSRect rect = NSInsetRect([self bounds], 2, 14);
-    rect.origin.x = 2;
-    rect.origin.y = 14;
-    [[NSColor greenColor] set];
+
+
+    [[NSColor colorWithCalibratedWhite:0 alpha:0.2] set];
+    [[NSBezierPath bezierPathWithRoundedRect:[self bounds] xRadius:4 yRadius:4] fill];
+    
     NSShadow *shadow = [[NSShadow alloc] init];
     [shadow setShadowBlurRadius:2];
     [shadow setShadowOffset:NSMakeSize(0, -1)];
     [shadow setShadowColor:[NSColor colorWithCalibratedWhite:0 alpha:0.5]];
     [shadow set];
+
+    NSBezierPath *triangle = [NSBezierPath bezierPath];
+    NSPoint left = NSMakePoint([self bounds].size.width - MPTRIANGLE_OFFSET - MPTRIANGLE_WIDTH, MPTRIANGLE_OFFSET + MPTRIANGLE_HEIGHT);
+    NSPoint right = NSMakePoint(left.x + MPTRIANGLE_WIDTH, left.y);
+    NSPoint bottom = NSMakePoint(left.x + 0.5 * MPTRIANGLE_WIDTH, MPTRIANGLE_OFFSET);
+  
+    [triangle moveToPoint:left];
+    [triangle lineToPoint:right];
+    [triangle lineToPoint:bottom];
+    [triangle closePath];
+    
     [[NSColor whiteColor] set];
-    NSRectFill([self _centeredFontRectangle]);
-    [self.overlayText drawInRect:[self _centeredFontRectangle] withAttributes:self.fontAttributes];
+    [triangle fill];
+    
     [shadow release];
     [[NSGraphicsContext currentContext] restoreGraphicsState];
   }
@@ -73,24 +85,11 @@
   [super mouseExited:theEvent];
 }
 
-- (NSRect)_centeredFontRectangle {
-  CGFloat leftMargin = floor( 0.5 * [self bounds].size.width - self.textSize.width );
-  CGFloat bottomMargin = floor( 0.5 * [self bounds].size.height - self.textSize.height);
-  return NSMakeRect(leftMargin, bottomMargin, self.textSize.width, self.textSize.height);
+- (void)mouseDown:(NSEvent *)theEvent {
+  [self sendAction:[self action] to:[self target]];
 }
 
 - (void)_setupView {
-  /* Setup font for drawing an precalulate some things */
-  _overlayText = [NSLocalizedString(@"CHANGE_IMAGE", @"Overlay text for popup image") retain];
-  NSMutableParagraphStyle *paragraphStyle = [[NSParagraphStyle defaultParagraphStyle] mutableCopy];
-  paragraphStyle.alignment = NSCenterTextAlignment;
-  _fontAttributes = [@{
-                                   NSFontAttributeName :[NSFont boldSystemFontOfSize:11],
-                                   NSForegroundColorAttributeName : [NSColor whiteColor],
-                                   } retain];
-  [paragraphStyle release];
-  _textSize = [self.overlayText sizeWithAttributes:_fontAttributes];
-  
   /* Add tracking area for mouse events */
   NSTrackingArea *trackingArea = [[NSTrackingArea alloc] initWithRect:[self bounds]
                                                               options:(NSTrackingMouseEnteredAndExited | NSTrackingActiveInKeyWindow)

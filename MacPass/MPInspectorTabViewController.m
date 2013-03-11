@@ -13,6 +13,7 @@
 #import "MPShadowBox.h"
 #import "MPIconHelper.h"
 #import "MPPopupImageView.h"
+#import "MPIconSelectViewController.h"
 #import "KdbLib.h"
 
 @interface MPInspectorTabViewController ()
@@ -28,6 +29,7 @@
 - (void)_updateContent;
 - (void)_clearContent;
 - (void)_setInputEnabled:(BOOL)enabled;
+- (void)_showImagePopup:(id)sender;
 
 @end
 
@@ -58,6 +60,7 @@
   [[self.itemImageView cell] setBackgroundStyle:NSBackgroundStyleRaised];
   [self.tabControl bind:NSSelectedIndexBinding toObject:self withKeyPath:@"selectedTabIndex" options:nil];
   [self.tabView bind:NSSelectedIndexBinding toObject:self withKeyPath:@"selectedTabIndex" options:nil];
+  [self.itemImageView setTarget:self];
 
   [[NSNotificationCenter defaultCenter] addObserver:self
                                            selector:@selector(_didChangeSelectedEntry:)
@@ -85,9 +88,21 @@
 }
 
 - (void)_setInputEnabled:(BOOL)enabled {
+
+  [self.itemImageView setAction: enabled ? @selector(_showImagePopup:) : NULL ];
   [self.itemImageView setEnabled:enabled];
   [self.itemNameTextfield setTextColor: enabled ? [NSColor controlTextColor] : [NSColor disabledControlTextColor] ];
   [self.itemNameTextfield setEnabled:enabled];
+}
+
+#pragma mark Actions
+
+- (void)_showImagePopup:(id)sender {
+  NSPopover *popover = [[NSPopover alloc] init];
+  popover.behavior = NSPopoverBehaviorTransient;
+  popover.contentViewController = [[[MPIconSelectViewController alloc] init] autorelease];
+  [popover showRelativeToRect:NSZeroRect ofView:self.itemImageView preferredEdge:NSMinYEdge];
+  [popover release];
 }
 
 #pragma mark Notificiations
