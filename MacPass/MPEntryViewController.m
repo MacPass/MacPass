@@ -216,7 +216,7 @@ NSString *const _toggleFilterUsernameButton = @"SearchUsername";
   }
   MPOutlineViewDelegate *delegate = [notification object];
   KdbGroup *group = delegate.selectedGroup;
-  [self.entryTable deselectAll:nil];
+  //[self.entryTable deselectAll:nil];
   if(group) {
     [self.entryArrayController setContent:nil];
     [self.entryArrayController addObjects:group.entries];
