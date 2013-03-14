@@ -26,7 +26,7 @@
     MPIconType iconType = (MPIconType)[iconNumber integerValue];
     [icons addObject:[MPIconHelper icon:iconType]];
   }
-  return icons;
+  return [icons autorelease];
 }
 
 + (NSDictionary *)availableIconNames {
