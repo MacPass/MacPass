@@ -52,6 +52,8 @@
 
 - (void)dealloc {
   [[NSNotificationCenter defaultCenter] removeObserver:self];
+  [_selectedGroup release];
+  [_selectedEntry release];
   [super dealloc];
 }
 
@@ -109,6 +111,10 @@
   [self.itemImageView setImage:[MPIconHelper icon:(MPIconType)self.selectedGroup.image ]];
   [self.titleOrNameLabel setStringValue:NSLocalizedString(@"NAME",@"")];
   [self.titleTextField setStringValue:self.selectedGroup.name];
+  [self.passwordTextField setStringValue:@""];
+  [self.usernameTextField setStringValue:@""];
+  [self.URLTextField setStringValue:@""];
+
   [self _setInputEnabled:YES];
 }
 
@@ -189,5 +195,33 @@
 
 
 - (IBAction)togglePasswordDisplay:(id)sender {
+  NSTextFieldCell *cell = nil;
+  NSFont *font = [[self.passwordTextField font] retain];
+  if([sender respondsToSelector:@selector(state)]) {
+    switch([sender state]) {
+      case NSOnState:
+        cell = [[NSTextFieldCell alloc] init];
+        break;
+      case NSOffState:
+        cell = [[NSSecureTextFieldCell alloc] init];
+        break;
+      case NSMixedState:
+        break;
+    }
+  }
+  if(cell) {
+    [cell setBezelStyle:NSTextFieldSquareBezel];
+    [cell setBordered:YES];
+    [cell setBezeled:YES];
+    [cell setDrawsBackground:YES];
+    [cell setFont:font];
+    [cell setEditable:YES];
+    [self.passwordTextField setCell:cell];
+    [self.passwordTextField setNeedsDisplay:YES];
+    //[self.passwordTextField setStringValue:[self.passwordTextField stringValue]];
+    [cell release];
+  }
+  [font release];
 }
+
 @end
