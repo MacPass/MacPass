@@ -22,6 +22,7 @@
 @property (assign, nonatomic) KdbEntry *selectedEntry;
 @property (assign, nonatomic) KdbGroup *selectedGroup;
 @property (assign) BOOL showsEntry;
+@property (retain) NSPopover *iconPopup;
 
 - (void)_didChangeSelectedEntry:(NSNotification *)notification;
 - (void)_didChangeSelectedGroup:(NSNotification *)notification;
@@ -54,6 +55,7 @@
   [[NSNotificationCenter defaultCenter] removeObserver:self];
   [_selectedGroup release];
   [_selectedEntry release];
+  [_iconPopup release];
   [super dealloc];
 }
 
@@ -153,12 +155,17 @@
 #pragma mark Actions
 
 - (void)_showImagePopup:(id)sender {
-  NSPopover *popover = [[NSPopover alloc] init];
-  popover.behavior = NSPopoverBehaviorTransient;
-  popover.contentViewController = [[[MPIconSelectViewController alloc] init] autorelease];
-  [popover showRelativeToRect:NSZeroRect ofView:self.itemImageView preferredEdge:NSMinYEdge];
-  [popover release];
+  _iconPopup = [[NSPopover alloc] init];
+  self.iconPopup.behavior = NSPopoverBehaviorTransient;
+  self.iconPopup.contentViewController = [[[MPIconSelectViewController alloc] init] autorelease];
+  [self.iconPopup showRelativeToRect:NSZeroRect ofView:self.itemImageView preferredEdge:NSMinYEdge];
+  self.iconPopup = nil;
 }
+
+- (void)hideImagePopup:(id)sender {
+  [self.iconPopup close];
+}
+
 
 #pragma mark Notificiations
 

@@ -9,6 +9,8 @@
 #import "MPViewController.h"
 
 @interface MPIconSelectViewController : MPViewController <NSCollectionViewDelegate>
+
 @property (assign) IBOutlet NSCollectionView *iconCollectionView;
+- (IBAction)useDefault:(id)sender;
 
 @end

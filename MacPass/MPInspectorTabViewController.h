@@ -27,5 +27,6 @@
 @property (assign) IBOutlet NSButton *togglePasswordDisplayButton;
 
 - (IBAction)togglePasswordDisplay:(id)sender;
+- (void)hideImagePopup:(id)sender;
 
 @end
