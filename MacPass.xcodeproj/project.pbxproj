@@ -84,6 +84,8 @@
 		4CA0B2F915BCAF6700654E32 /* MPGeneralSettingsController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CA0B2F815BCAF6700654E32 /* MPGeneralSettingsController.m */; };
 		4CA0B2FC15BCAF8600654E32 /* MPSettingsController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CA0B2FB15BCAF8600654E32 /* MPSettingsController.m */; };
 		4CAC6F7816D2B54800D79D5E /* MPMainWindowSplitViewDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CAC6F7716D2B54800D79D5E /* MPMainWindowSplitViewDelegate.m */; };
+		4CACB72C16F7C9B600D47C9E /* KdbEntry+Copying.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CACB72B16F7C9B600D47C9E /* KdbEntry+Copying.m */; };
+		4CACB72F16F7CA5100D47C9E /* Kdb4Entry+Copying.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CACB72E16F7CA5100D47C9E /* Kdb4Entry+Copying.m */; };
 		4CAD747B15B887FD00104512 /* DDXMLElementAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CAD745715B887FD00104512 /* DDXMLElementAdditions.m */; settings = {COMPILER_FLAGS = "-fobjc-arc"; }; };
 		4CAD747C15B887FD00104512 /* NSString+DDXML.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CAD745A15B887FD00104512 /* NSString+DDXML.m */; settings = {COMPILER_FLAGS = "-fobjc-arc"; }; };
 		4CAD747D15B887FD00104512 /* DDXMLDocument.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CAD745D15B887FD00104512 /* DDXMLDocument.m */; settings = {COMPILER_FLAGS = "-fobjc-arc"; }; };
@@ -254,6 +256,10 @@
 		4CA0B30D15BCB6FD00654E32 /* MPSettingsTabProtocoll.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MPSettingsTabProtocoll.h; sourceTree = "<group>"; };
 		4CAC6F7616D2B54800D79D5E /* MPMainWindowSplitViewDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MPMainWindowSplitViewDelegate.h; sourceTree = "<group>"; };
 		4CAC6F7716D2B54800D79D5E /* MPMainWindowSplitViewDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MPMainWindowSplitViewDelegate.m; sourceTree = "<group>"; };
+		4CACB72A16F7C9B600D47C9E /* KdbEntry+Copying.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "KdbEntry+Copying.h"; sourceTree = "<group>"; };
+		4CACB72B16F7C9B600D47C9E /* KdbEntry+Copying.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "KdbEntry+Copying.m"; sourceTree = "<group>"; };
+		4CACB72D16F7CA5100D47C9E /* Kdb4Entry+Copying.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Kdb4Entry+Copying.h"; sourceTree = "<group>"; };
+		4CACB72E16F7CA5100D47C9E /* Kdb4Entry+Copying.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "Kdb4Entry+Copying.m"; sourceTree = "<group>"; };
 		4CAD745615B887FD00104512 /* DDXMLElementAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DDXMLElementAdditions.h; sourceTree = "<group>"; };
 		4CAD745715B887FD00104512 /* DDXMLElementAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DDXMLElementAdditions.m; sourceTree = "<group>"; };
 		4CAD745915B887FD00104512 /* NSString+DDXML.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+DDXML.h"; sourceTree = "<group>"; };
@@ -343,6 +349,10 @@
 				4C2C4C2B16D3BE3700D49295 /* KdbGroup+MPAdditions.m */,
 				4CC1AEBC16D4467C006D2AAB /* KdbTree+MPAdditions.h */,
 				4CC1AEBD16D4467C006D2AAB /* KdbTree+MPAdditions.m */,
+				4CACB72A16F7C9B600D47C9E /* KdbEntry+Copying.h */,
+				4CACB72B16F7C9B600D47C9E /* KdbEntry+Copying.m */,
+				4CACB72D16F7CA5100D47C9E /* Kdb4Entry+Copying.h */,
+				4CACB72E16F7CA5100D47C9E /* Kdb4Entry+Copying.m */,
 			);
 			name = KeePassLibAdditions;
 			sourceTree = "<group>";
@@ -886,6 +896,8 @@
 				4C811C8316ECD06E00C4BAC6 /* MPKeyfilePathControlDelegate.m in Sources */,
 				4CE39ABF16ECE34A000FE29D /* MPIconSelectViewController.m in Sources */,
 				4CE39AC416ECE4F7000FE29D /* MPPopupImageView.m in Sources */,
+				4CACB72C16F7C9B600D47C9E /* KdbEntry+Copying.m in Sources */,
+				4CACB72F16F7CA5100D47C9E /* Kdb4Entry+Copying.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
