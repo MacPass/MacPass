@@ -18,8 +18,13 @@
 		4C37A84015B8B474005EF8EE /* MPOutlineDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C37A83F15B8B474005EF8EE /* MPOutlineDataSource.m */; };
 		4C3BD51516D276F800389F1F /* MPToolbarDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C3BD51416D276F800389F1F /* MPToolbarDelegate.m */; };
 		4C3FFD9E16DAF60600DF9186 /* FilterBar.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4C3FFD9D16DAF60600DF9186 /* FilterBar.xib */; };
+		4C40AC5C170782730073D1C3 /* MPAbstractSettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C40AC5B170782730073D1C3 /* MPAbstractSettingsViewController.m */; };
+		4C40AC5F170876D90073D1C3 /* Defaults.plist in Resources */ = {isa = PBXBuildFile; fileRef = 4C40AC5E170876D90073D1C3 /* Defaults.plist */; };
 		4C431BCD16E2A82800700A81 /* MPPasteBoardController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C431BCC16E2A82700700A81 /* MPPasteBoardController.m */; };
 		4C431BCF16E2BAB000700A81 /* OverlayWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4C431BCE16E2BAB000700A81 /* OverlayWindow.xib */; };
+		4C46B88517063A070046109A /* NSString+MPPasswordCreation.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C46B88417063A070046109A /* NSString+MPPasswordCreation.m */; };
+		4C46B88817063A170046109A /* NSString+MPPasswordAnalysis.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C46B88717063A170046109A /* NSString+MPPasswordAnalysis.m */; };
+		4C46B88B1706D16E0046109A /* NSData+MPRandomBytes.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C46B88A1706D16E0046109A /* NSData+MPRandomBytes.m */; };
 		4C586F9E16D07ABD00E7DB57 /* 00_PasswordTemplate.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 4C586F9D16D07ABD00E7DB57 /* 00_PasswordTemplate.pdf */; };
 		4C586FA016D07D7200E7DB57 /* 01_PackageNetworkTemplate.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 4C586F9F16D07D7200E7DB57 /* 01_PackageNetworkTemplate.pdf */; };
 		4C586FA216D07F6A00E7DB57 /* 02_MessageBoxWarningTemplate.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 4C586FA116D07F6A00E7DB57 /* 02_MessageBoxWarningTemplate.pdf */; };
@@ -94,6 +99,7 @@
 		4CAD748C15B889B700104512 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4CAD748B15B889B700104512 /* Security.framework */; };
 		4CAD748E15B88AC100104512 /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 4CAD748D15B88AC100104512 /* libz.dylib */; };
 		4CB9339916D3A0DD00A13B5D /* Credits.rtf in Resources */ = {isa = PBXBuildFile; fileRef = 4CB9339716D3A0DD00A13B5D /* Credits.rtf */; };
+		4CBA2ABA17074C07006D8139 /* MPSettingsKeys.m in Resources */ = {isa = PBXBuildFile; fileRef = 4CBA2AB917074C07006D8139 /* MPSettingsKeys.m */; };
 		4CBA981815BA0DB600721965 /* MPDatabaseDocument.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CBA981715BA0DB600721965 /* MPDatabaseDocument.m */; };
 		4CC1AEBE16D4467C006D2AAB /* KdbTree+MPAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CC1AEBD16D4467C006D2AAB /* KdbTree+MPAdditions.m */; };
 		4CC6259115BA1C99002F5B11 /* MPOutlineViewDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CC6259015BA1C99002F5B11 /* MPOutlineViewDelegate.m */; };
@@ -129,9 +135,18 @@
 		4C3BD51316D276F800389F1F /* MPToolbarDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MPToolbarDelegate.h; sourceTree = "<group>"; };
 		4C3BD51416D276F800389F1F /* MPToolbarDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MPToolbarDelegate.m; sourceTree = "<group>"; };
 		4C3FFD9D16DAF60600DF9186 /* FilterBar.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FilterBar.xib; sourceTree = "<group>"; };
+		4C40AC581707819A0073D1C3 /* MPAbstractSettingsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MPAbstractSettingsViewController.h; sourceTree = "<group>"; };
+		4C40AC5B170782730073D1C3 /* MPAbstractSettingsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MPAbstractSettingsViewController.m; sourceTree = "<group>"; };
+		4C40AC5E170876D90073D1C3 /* Defaults.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Defaults.plist; sourceTree = "<group>"; };
 		4C431BCB16E2A82700700A81 /* MPPasteBoardController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MPPasteBoardController.h; sourceTree = "<group>"; };
 		4C431BCC16E2A82700700A81 /* MPPasteBoardController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MPPasteBoardController.m; sourceTree = "<group>"; };
 		4C431BCE16E2BAB000700A81 /* OverlayWindow.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = OverlayWindow.xib; sourceTree = "<group>"; };
+		4C46B88317063A070046109A /* NSString+MPPasswordCreation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+MPPasswordCreation.h"; sourceTree = "<group>"; };
+		4C46B88417063A070046109A /* NSString+MPPasswordCreation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+MPPasswordCreation.m"; sourceTree = "<group>"; };
+		4C46B88617063A170046109A /* NSString+MPPasswordAnalysis.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+MPPasswordAnalysis.h"; sourceTree = "<group>"; };
+		4C46B88717063A170046109A /* NSString+MPPasswordAnalysis.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+MPPasswordAnalysis.m"; sourceTree = "<group>"; };
+		4C46B8891706D16E0046109A /* NSData+MPRandomBytes.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSData+MPRandomBytes.h"; sourceTree = "<group>"; };
+		4C46B88A1706D16E0046109A /* NSData+MPRandomBytes.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSData+MPRandomBytes.m"; sourceTree = "<group>"; };
 		4C586F9D16D07ABD00E7DB57 /* 00_PasswordTemplate.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = 00_PasswordTemplate.pdf; sourceTree = "<group>"; };
 		4C586F9F16D07D7200E7DB57 /* 01_PackageNetworkTemplate.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = 01_PackageNetworkTemplate.pdf; sourceTree = "<group>"; };
 		4C586FA116D07F6A00E7DB57 /* 02_MessageBoxWarningTemplate.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = 02_MessageBoxWarningTemplate.pdf; sourceTree = "<group>"; };
@@ -253,7 +268,7 @@
 		4CA0B2F815BCAF6700654E32 /* MPGeneralSettingsController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MPGeneralSettingsController.m; sourceTree = "<group>"; };
 		4CA0B2FA15BCAF8600654E32 /* MPSettingsController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MPSettingsController.h; sourceTree = "<group>"; };
 		4CA0B2FB15BCAF8600654E32 /* MPSettingsController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MPSettingsController.m; sourceTree = "<group>"; };
-		4CA0B30D15BCB6FD00654E32 /* MPSettingsTabProtocoll.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MPSettingsTabProtocoll.h; sourceTree = "<group>"; };
+		4CA0B30D15BCB6FD00654E32 /* MPSettingsTab.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MPSettingsTab.h; sourceTree = "<group>"; };
 		4CAC6F7616D2B54800D79D5E /* MPMainWindowSplitViewDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MPMainWindowSplitViewDelegate.h; sourceTree = "<group>"; };
 		4CAC6F7716D2B54800D79D5E /* MPMainWindowSplitViewDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MPMainWindowSplitViewDelegate.m; sourceTree = "<group>"; };
 		4CACB72A16F7C9B600D47C9E /* KdbEntry+Copying.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "KdbEntry+Copying.h"; sourceTree = "<group>"; };
@@ -275,6 +290,8 @@
 		4CAD748B15B889B700104512 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
 		4CAD748D15B88AC100104512 /* libz.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.dylib; path = usr/lib/libz.dylib; sourceTree = SDKROOT; };
 		4CB9339816D3A0DD00A13B5D /* en */ = {isa = PBXFileReference; lastKnownFileType = text.rtf; name = en; path = en.lproj/Credits.rtf; sourceTree = "<group>"; };
+		4CBA2AB617074B59006D8139 /* MPSettingsKeys.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MPSettingsKeys.h; sourceTree = "<group>"; };
+		4CBA2AB917074C07006D8139 /* MPSettingsKeys.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MPSettingsKeys.m; sourceTree = "<group>"; };
 		4CBA981615BA0DB600721965 /* MPDatabaseDocument.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MPDatabaseDocument.h; sourceTree = "<group>"; };
 		4CBA981715BA0DB600721965 /* MPDatabaseDocument.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MPDatabaseDocument.m; sourceTree = "<group>"; };
 		4CC1AEBC16D4467C006D2AAB /* KdbTree+MPAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "KdbTree+MPAdditions.h"; sourceTree = "<group>"; };
@@ -364,6 +381,8 @@
 				4C2E382216D1421B00037A9D /* MPIconHelper.m */,
 				4C920E2816DCDFA00083839B /* MPLoggerProxy.h */,
 				4C920E2916DCDFA00083839B /* MPLoggerProxy.m */,
+				4CBA2AB617074B59006D8139 /* MPSettingsKeys.h */,
+				4CBA2AB917074C07006D8139 /* MPSettingsKeys.m */,
 			);
 			name = Helper;
 			sourceTree = "<group>";
@@ -394,6 +413,19 @@
 				4CBA981715BA0DB600721965 /* MPDatabaseDocument.m */,
 			);
 			name = Model;
+			sourceTree = "<group>";
+		};
+		4C46B8821706397A0046109A /* Security Additions */ = {
+			isa = PBXGroup;
+			children = (
+				4C46B8891706D16E0046109A /* NSData+MPRandomBytes.h */,
+				4C46B88A1706D16E0046109A /* NSData+MPRandomBytes.m */,
+				4C46B88317063A070046109A /* NSString+MPPasswordCreation.h */,
+				4C46B88417063A070046109A /* NSString+MPPasswordCreation.m */,
+				4C46B88617063A170046109A /* NSString+MPPasswordAnalysis.h */,
+				4C46B88717063A170046109A /* NSString+MPPasswordAnalysis.m */,
+			);
+			name = "Security Additions";
 			sourceTree = "<group>";
 		};
 		4C586F9C16D07ABD00E7DB57 /* Icons */ = {
@@ -554,6 +586,7 @@
 		4C77E36C15B84A240093A587 /* MacPass */ = {
 			isa = PBXGroup;
 			children = (
+				4C46B8821706397A0046109A /* Security Additions */,
 				4C2C4C2516D3BCEA00D49295 /* KeePassLibAdditions */,
 				4C2E382016D141F700037A9D /* Helper */,
 				4C586F9C16D07ABD00E7DB57 /* Icons */,
@@ -581,6 +614,7 @@
 				4C77E36F15B84A240093A587 /* InfoPlist.strings */,
 				4C77E37215B84A240093A587 /* main.m */,
 				4C77E37415B84A240093A587 /* MacPass-Prefix.pch */,
+				4C40AC5E170876D90073D1C3 /* Defaults.plist */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -602,6 +636,8 @@
 				4C77547416E55FE800970E02 /* MPInspectorTabViewController.m */,
 				4CE39ABD16ECE34A000FE29D /* MPIconSelectViewController.h */,
 				4CE39ABE16ECE34A000FE29D /* MPIconSelectViewController.m */,
+				4C40AC581707819A0073D1C3 /* MPAbstractSettingsViewController.h */,
+				4C40AC5B170782730073D1C3 /* MPAbstractSettingsViewController.m */,
 			);
 			name = "View Controller";
 			sourceTree = "<group>";
@@ -609,7 +645,7 @@
 		4CA0B30E15BCB70200654E32 /* Protocolls */ = {
 			isa = PBXGroup;
 			children = (
-				4CA0B30D15BCB6FD00654E32 /* MPSettingsTabProtocoll.h */,
+				4CA0B30D15BCB6FD00654E32 /* MPSettingsTab.h */,
 			);
 			name = Protocolls;
 			sourceTree = "<group>";
@@ -799,6 +835,8 @@
 				4C77547716E55FFC00970E02 /* InspectorTabView.xib in Resources */,
 				4C888C9016EB6C91003D34A1 /* Localizable.strings in Resources */,
 				4CE39AC116ECE359000FE29D /* IconSelection.xib in Resources */,
+				4CBA2ABA17074C07006D8139 /* MPSettingsKeys.m in Resources */,
+				4C40AC5F170876D90073D1C3 /* Defaults.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -898,6 +936,10 @@
 				4CE39AC416ECE4F7000FE29D /* MPPopupImageView.m in Sources */,
 				4CACB72C16F7C9B600D47C9E /* KdbEntry+Copying.m in Sources */,
 				4CACB72F16F7CA5100D47C9E /* Kdb4Entry+Copying.m in Sources */,
+				4C46B88517063A070046109A /* NSString+MPPasswordCreation.m in Sources */,
+				4C46B88817063A170046109A /* NSString+MPPasswordAnalysis.m in Sources */,
+				4C46B88B1706D16E0046109A /* NSData+MPRandomBytes.m in Sources */,
+				4C40AC5C170782730073D1C3 /* MPAbstractSettingsViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

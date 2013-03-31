@@ -21,10 +21,6 @@ NSString *const MPGeneralSetingsIdentifier = @"GeneralSettingsTab";
   return MPGeneralSetingsIdentifier;
 }
 
-+ (NSImage *)image {
-  return [NSImage imageNamed:NSImageNamePreferencesGeneral];
-}
-
 - (id)init {
   return [self initWithNibName:@"GeneralSettings" bundle:[NSBundle mainBundle]];
 }
@@ -32,6 +28,14 @@ NSString *const MPGeneralSetingsIdentifier = @"GeneralSettingsTab";
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     return self;
+}
+
+- (NSImage *)image {
+  return [NSImage imageNamed:NSImageNamePreferencesGeneral];
+}
+
+- (NSString *)label {
+  return NSLocalizedString(@"GENERAL_SETTINGS", @"General Settings Label");
 }
 
 - (void)didLoadView {
