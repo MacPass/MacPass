@@ -7,10 +7,9 @@
 //
 
 #import <Cocoa/Cocoa.h>
-#import "MPSettingsTabProtocoll.h"
-#import "MPViewController.h"
+#import "MPAbstractSettingsViewController.h"
 
-@interface MPGeneralSettingsController : MPViewController <MPSettingsTabProtocoll>
+@interface MPGeneralSettingsController : MPAbstractSettingsViewController <MPSettingsTab>
 @property (assign) IBOutlet NSImageView *imageView;
 
 @end

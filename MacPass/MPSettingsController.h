@@ -8,7 +8,11 @@
 
 #import <Cocoa/Cocoa.h>
 
-APPKIT_EXTERN NSString const* kMPPasswordEnvodingSettingsKey;
+@protocol MPSettingsTab;
 
-@interface MPSettingsController : NSWindowController
+@interface MPSettingsController : NSWindowController <NSToolbarDelegate>
+
+- (void)showSettings;
+- (void)showSettingsTabWithIdentifier:(NSString *)identifier;
+
 @end

@@ -12,18 +12,27 @@
 #import "MPSettingsController.h"
 #import "MPDatabaseController.h"
 #import "MPActionHelper.h"
+#import "NSString+MPPasswordCreation.h"
 
 @interface MPAppDelegate ()
 
-@property (retain) MPSettingsController *settingsController;
-@property (retain) MPMainWindowController *mainWindowController;
+@property (retain, nonatomic) MPSettingsController *settingsController;
+@property (retain, nonatomic) MPMainWindowController *mainWindowController;
 
 - (IBAction)showPreferences:(id)sender;
+
 @end
 
 @implementation MPAppDelegate
 
++ (void)initialize {
+  NSURL *defaultURL = [[NSBundle mainBundle] URLForResource:@"Defaults" withExtension:@"plst"];
+  NSDictionary *defaultsDictionary = [NSDictionary dictionaryWithContentsOfURL:defaultURL];
+  [[NSUserDefaults standardUserDefaults] registerDefaults:defaultsDictionary];
+}
+
 - (void)applicationDidFinishLaunching:(NSNotification *)aNotification {
+  //NSString *string = [NSString passwordFromString:@"BOJA" length:10];
   self.mainWindowController = [[[MPMainWindowController alloc] init] autorelease];
   [self.mainWindowController showWindow:[self.mainWindowController window]];
   
@@ -49,7 +58,7 @@
   if(self.settingsController == nil) {
     self.settingsController = [[[MPSettingsController alloc] init] autorelease];
   }
-  [self.settingsController showWindow:_settingsController.window];
+  [self.settingsController showSettings];
 }
 
 - (NSArray *)contextMenuItemsWithItems:(MPContextMenuItemsFlags)flags {
@@ -116,5 +125,7 @@
   }
   return items;
 }
+
+
 
 @end

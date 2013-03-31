@@ -8,10 +8,17 @@
 
 #import <Foundation/Foundation.h>
 
-@protocol MPSettingsTabProtocoll <NSObject>
+/*
+ Protrocoll to be implemented by ViewControllers that can be added to
+ the settings windows. Tabs are orded as the controllers are included.
+ */
+@protocol MPSettingsTab <NSObject>
 
 @required
 + (NSString *)identifier;
-+ (NSImage *)image;
+
+@optional
+- (NSString *)label;
+- (NSImage *)image;
 
 @end
