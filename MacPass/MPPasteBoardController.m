@@ -7,12 +7,14 @@
 //
 
 #import "MPPasteBoardController.h"
+#import "MPSettingsHelper.h"
 
 @interface MPPasteBoardController ()
 
 @property (assign) BOOL isEmpty;
 
 - (void)_clearPasteboardContents;
+- (void)_setupBindings;
 - (void)_updateNotifications;
 
 @end
@@ -32,9 +34,7 @@
   self = [super init];
   if (self) {
     _isEmpty = YES;
-    /* User preferences and bindings */
-    _clearTimeout = 30;
-    _clearPasteboardOnShutdown = YES;
+    [self _setupBindings];
     [self _updateNotifications];
   }
   return self;
@@ -84,4 +84,13 @@
   }
   self.isEmpty = YES;
 }
+
+- (void)_setupBindings {
+  NSUserDefaultsController *userDefaultsController = [NSUserDefaultsController sharedUserDefaultsController];
+  NSString *clearOnShutdownKeyPath = [NSString stringWithFormat:@"values.%@", kMPSettingsKeyClearPasteboardOnQuit];
+  NSString *clearTimoutKeyPath = [NSString stringWithFormat:@"value.%@", kMPSettingsKeyPasteboardClearTimeout];
+  [self bind:@"clearPasteboardOnShutdown" toObject:userDefaultsController withKeyPath:clearOnShutdownKeyPath options:nil];
+  [self bind:@"clearTimeout" toObject:userDefaultsController withKeyPath:clearTimoutKeyPath options:nil];
+}
+
 @end

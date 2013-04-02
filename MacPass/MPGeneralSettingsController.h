@@ -11,5 +11,7 @@
 
 @interface MPGeneralSettingsController : MPAbstractSettingsViewController <MPSettingsTab>
 @property (assign) IBOutlet NSImageView *imageView;
+@property (assign) IBOutlet NSButton *clearPasteboardOnQuitCheckButton;
+@property (assign) IBOutlet NSPopUpButton *clearPasteboardTimeoutPopup;
 
 @end

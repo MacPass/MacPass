@@ -12,6 +12,7 @@
 #import "MPSettingsController.h"
 #import "MPDatabaseController.h"
 #import "MPActionHelper.h"
+#import "MPSettingsHelper.h"
 #import "NSString+MPPasswordCreation.h"
 
 @interface MPAppDelegate ()
@@ -26,13 +27,10 @@
 @implementation MPAppDelegate
 
 + (void)initialize {
-  NSURL *defaultURL = [[NSBundle mainBundle] URLForResource:@"Defaults" withExtension:@"plst"];
-  NSDictionary *defaultsDictionary = [NSDictionary dictionaryWithContentsOfURL:defaultURL];
-  [[NSUserDefaults standardUserDefaults] registerDefaults:defaultsDictionary];
+  [MPSettingsHelper setupDefaults];
 }
 
 - (void)applicationDidFinishLaunching:(NSNotification *)aNotification {
-  //NSString *string = [NSString passwordFromString:@"BOJA" length:10];
   self.mainWindowController = [[[MPMainWindowController alloc] init] autorelease];
   [self.mainWindowController showWindow:[self.mainWindowController window]];
   

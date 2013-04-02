@@ -7,12 +7,14 @@
 //
 
 #import "MPGeneralSettingsController.h"
+#import "MPSettingsHelper.h"
 
 NSString *const MPGeneralSetingsIdentifier = @"GeneralSettingsTab";
 
 @interface MPGeneralSettingsController ()
-@property (assign) IBOutlet NSPopUpButton *encodingPopup;
+
 - (void)didLoadView;
+
 @end
 
 @implementation MPGeneralSettingsController
@@ -39,21 +41,11 @@ NSString *const MPGeneralSetingsIdentifier = @"GeneralSettingsTab";
 }
 
 - (void)didLoadView {
-  // setup connections
-  NSMenu *encodingMenu = [[NSMenu allocWithZone:[NSMenu menuZone]] init];
-  NSMenuItem *item;
+  NSUserDefaultsController *defaultsController = [NSUserDefaultsController sharedUserDefaultsController];
+  NSString *clearPasteboardKeyPath = [NSString stringWithFormat:@"values.%@", kMPSettingsKeyClearPasteboardOnQuit];
+  NSString *clearPasteboardTimeOutKeyPath = [NSString stringWithFormat:@"values.%@", kMPSettingsKeyPasteboardClearTimeout];
+  [self.clearPasteboardOnQuitCheckButton bind:NSValueBinding toObject:defaultsController withKeyPath:clearPasteboardKeyPath options:nil];
+  [self.clearPasteboardTimeoutPopup bind:NSSelectedTagBinding toObject:defaultsController withKeyPath:clearPasteboardTimeOutKeyPath options:nil];
   
-  item = [[NSMenuItem allocWithZone:[NSMenu menuZone]] initWithTitle:@"UTF8 Encoding" action:NULL keyEquivalent:@""];
-  [item setRepresentedObject:[NSNumber numberWithInt:NSUTF8StringEncoding]];
-  [encodingMenu addItem:item];
-  [item release];
-
-  item = [[NSMenuItem allocWithZone:[NSMenu menuZone]] initWithTitle:@"ASCII Encoding" action:NULL keyEquivalent:@""];
-  [item setRepresentedObject:[NSNumber numberWithInt:NSASCIIStringEncoding]];
-  [encodingMenu addItem:item];
-  [item release];
-
-  [_encodingPopup setMenu:encodingMenu];
-  [encodingMenu release];
 }
 @end

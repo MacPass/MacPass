@@ -9,6 +9,44 @@
 #import "NSString+MPPasswordCreation.h"
 #import "NSData+MPRandomBytes.h"
 
+NSString *const kMPLowercaseLetterCharacters = @"abcdefghijklmnopqrstuvw";
+NSString *const kMPNumberCharacters = @"1234567890";
+NSString *const kMPSymbolCharacters = @"!$%&\\|/<>(){}[]=?*'+#-_.:,;";
+
+
+static NSUInteger randomInteger(NSUInteger minimum, NSUInteger maximum) {
+  NSInteger delta = maximum - minimum;
+  if( delta == 0) {
+    return maximum;
+  }
+  if( delta < 0 ) {
+    maximum = minimum;
+    minimum -= delta;
+    delta = -delta;
+  }
+  NSUInteger randomByteSize = floor(log2(delta));
+  NSData *randomData = [NSData dataWithRandomBytes:randomByteSize];
+  NSNumber *number = [NSNumber numberWithUnsignedChar:(unsigned char)[randomData bytes]];
+  NSUInteger randomNumber = [number integerValue];
+  return minimum + (randomNumber % delta);
+}
+
+static NSString *allowedCharactersString(MPPasswordCharacterFlags flags) {
+  NSMutableString *characterString = [NSMutableString stringWithCapacity:30];
+  if( 0 != (flags & MPPasswordCharactersLowerCase) ) {
+    [characterString appendString:kMPLowercaseLetterCharacters];
+  }
+  if( 0 != (flags & MPPasswordCharactersUpperCase) ) {
+    [characterString appendString:[kMPLowercaseLetterCharacters uppercaseString]];
+  }
+  if(0 != (flags & MPPasswordCharactersNumbers) ) {
+    [characterString appendString:kMPNumberCharacters];
+  }
+  if(0 != (flags & MPPasswordCharactersSymbols) ){
+    [characterString appendString:kMPSymbolCharacters];
+  }
+  return characterString;
+}
 
 @implementation NSString (MPPasswordCreationTools)
 
@@ -27,21 +65,15 @@
 + (NSString *)passwordFromString:(NSString *)source length:(NSUInteger)length {
   NSMutableString *password = [[NSMutableString alloc] initWithCapacity:length];
   while([password length] < length) {
-    NSData *randomData = [NSData dataWithRandomBytes:2];
-    NSNumber *number = [NSNumber numberWithUnsignedChar:(unsigned char)[randomData bytes]];
-    NSLog(@"Random number:%@", number);
-    [password appendString:@"U"];
+    [password appendString:[source randomCharacter]];
   }
   return [password autorelease];
 }
 
 + (NSString *)passwordWithCharactersets:(MPPasswordCharacterFlags)allowedCharacters length:(NSUInteger)length {
-  NSDictionary *characterSet = [self _createPasswordSet:allowedCharacters];
   NSMutableString *password = [NSMutableString stringWithCapacity:length];
+  NSString *characters = allowedCharactersString(allowedCharacters);
   while([password length] < length) {
-    // decide what charactersupset to use
-    // gather random character of selected set
-    NSString *characters = characterSet[@(MPPasswordCharactersLowerCase)];
     [password appendString:[characters randomCharacter]];
   }
   return password;
@@ -52,14 +84,11 @@
 }
 
 - (NSString *)randomCharacter {
-  NSUInteger randomByteSize = floor(log2([self length]));
-  NSData *randomData = [NSData dataWithRandomBytes:randomByteSize];
-  NSNumber *number = [NSNumber numberWithUnsignedChar:(unsigned char)[randomData bytes]];
-  NSUInteger randomIndex = [number integerValue];
-  if(randomIndex > 0 || randomIndex >= [self length]) {
+  NSUInteger randomIndex = randomInteger(0, [self length] - 1);
+  if(randomIndex >= [self length]) {
     return nil;
   }
-  return [self substringFromIndex:[number integerValue]];
+  return [self substringWithRange:NSMakeRange(randomIndex, 1)];
 }
 
 @end

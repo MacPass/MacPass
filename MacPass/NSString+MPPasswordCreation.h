@@ -15,6 +15,11 @@ typedef enum {
   MPPasswordCharactersSymbols   = (1<<3)  // NSCharacterSet symbolCharacterSet
 } MPPasswordCharacterFlags;
 
+/*
+ Generates a random integer in between (inkluding) minimum and maxium
+ */
+static NSUInteger randomInteger(NSUInteger minimum, NSUInteger maximum);
+
 @interface NSString (MPPasswordCreation)
 
 /*
