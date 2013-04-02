@@ -147,7 +147,6 @@
   [self.usernameTextField setEnabled:enabled];
   [self.URLTextField setEnabled:enabled];
   
-  [self.togglePasswordDisplayButton setEnabled:enabled];
   [self.openURLButton setEnabled:enabled];
   
 }

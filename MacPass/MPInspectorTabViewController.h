@@ -24,7 +24,7 @@
 @property (assign) IBOutlet NSTextField *titleOrNameLabel;
 
 @property (assign) IBOutlet NSButton *openURLButton;
-@property (assign) IBOutlet NSButton *togglePasswordDisplayButton;
+@property (assign) IBOutlet NSButton *showPasswordCreator;
 
 - (IBAction)togglePasswordDisplay:(id)sender;
 - (void)hideImagePopup:(id)sender;
