@@ -16,6 +16,7 @@
 #import "MPMainWindowSplitViewDelegate.h"
 #import "MPInspectorTabViewController.h"
 #import "MPAppDelegate.h"
+#import "MPCreationViewController.h"
 
 @interface MPMainWindowController ()
 
@@ -32,6 +33,7 @@
 @property (retain) MPEntryViewController *entryViewController;
 @property (retain) MPOutlineViewController *outlineViewController;
 @property (retain) MPInspectorTabViewController *inspectorTabViewController;
+@property (retain) MPCreationViewController *creationViewController;
 
 @property (retain) MPToolbarDelegate *toolbarDelegate;
 @property (retain) MPMainWindowSplitViewDelegate *splitViewDelegate;
@@ -54,6 +56,7 @@
     _outlineViewController = [[MPOutlineViewController alloc] init];
     _inspectorTabViewController = [[MPInspectorTabViewController alloc] init];
     _splitViewDelegate = [[MPMainWindowSplitViewDelegate alloc] init];
+    _creationViewController = [[MPCreationViewController alloc] init];
     
     [[NSBundle mainBundle] loadNibNamed:@"WelcomeView" owner:self topLevelObjects:NULL];
     [self.welcomeView setAutoresizingMask:NSViewWidthSizable | NSViewHeightSizable];
@@ -76,6 +79,7 @@
   [_entryViewController release];
   [_outlineViewController release];
   [_inspectorTabViewController release];
+  [_creationViewController release];
   
   [_toolbarDelegate release];
   [_splitViewDelegate release];
@@ -248,6 +252,31 @@
 - (void)showEditForm:(id)sender {
 }
 
+- (void)newDocument:(id)sender {
+  if (!self.creationViewController) {
+    self.creationViewController = [[[MPCreationViewController alloc] init] autorelease];
+  }
+  
+  NSSavePanel *savePanel = [NSSavePanel savePanel];
+  [savePanel setAllowedFileTypes:@[@"kdbx", @"kdb"]];
+  [savePanel beginSheetModalForWindow:self.window completionHandler:^(NSInteger result) {
+    if (result == NSFileHandlingPanelOKButton) {
+      NSURL *file = [savePanel URL];
+      NSLog(@"Will create file at: %@", file);
+      self.creationViewController.fileURL = file;
+      [self _setContentViewController:self.creationViewController];
+    }
+  }];
+}
+
+- (void)saveDocument:(id)sender
+{
+  NSLog(@"Attempting to save document");
+  if ([[MPDatabaseController defaultController].database save])
+    NSLog(@"Save successful");
+  else
+    NSLog(@"Save failed");
+}
 
 #pragma mark Helper
 
