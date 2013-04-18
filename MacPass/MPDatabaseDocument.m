@@ -19,6 +19,7 @@ NSString *const MPDidLoadDatabaseNotification = @"DidLoadDataBaseNotification";
 @property (retain) NSURL *file;
 @property (nonatomic, readonly) KdbPassword *passwordHash;
 @property (assign) MPDatabaseVersion version;
+@property (readonly)BOOL isNewFile;
 
 @end
 
@@ -32,9 +33,40 @@ NSString *const MPDidLoadDatabaseNotification = @"DidLoadDataBaseNotification";
   return  [[[MPDatabaseDocument alloc] initWithNewDatabase:version] autorelease];
 }
 
++ (id)newDocumentAtURL:(NSURL *)url databaseVersion:(MPDatabaseVersion)dbversion password:(NSString *)password keyfile:(NSURL *)key
+{
+  return [[[MPDatabaseDocument alloc] initNewDocumentAtURL:url databaseVersion:dbversion password:password keyfile:key] autorelease];
+}
+
 - (id)init {
   // create empty document
   return [self initWithFile:nil password:nil keyfile:nil];
+}
+
+
+- (id)initNewDocumentAtURL:(NSURL *)url databaseVersion:(MPDatabaseVersion)dbversion password:(NSString *)password keyfile:(NSURL *)key
+{
+  self = [super init];
+  if(self) {
+    self.file = url;
+    self.key = key;
+    self.password = password;
+    _isNewFile = YES;
+    switch(dbversion) {
+      case MPDatabaseVersion3:
+        self.tree = [[[Kdb3Tree alloc] init] autorelease];
+        break;
+      case MPDatabaseVersion4:
+        self.tree = [[[Kdb4Tree alloc] init] autorelease];
+        break;
+      default:
+        [self release];
+        return nil;
+    }
+    KdbGroup *newGroup = [self.tree createGroup:self.tree.root];
+    newGroup.name = @"Default";
+  }
+  return self;
 }
 
 /*
@@ -109,7 +141,7 @@ NSString *const MPDidLoadDatabaseNotification = @"DidLoadDataBaseNotification";
 
 - (BOOL)save {
   NSError *fileError;
-  if( [self.file checkResourceIsReachableAndReturnError:&fileError] ) {
+  if(self.isNewFile || [self.file checkResourceIsReachableAndReturnError:&fileError] ) {
     @try {
       [KdbWriterFactory persist:self.tree file:[self.file path] withPassword:self.passwordHash];
     }
@@ -118,6 +150,11 @@ NSString *const MPDidLoadDatabaseNotification = @"DidLoadDataBaseNotification";
       return NO;
     }
     return YES;
+  }
+  else
+  {
+    NSLog(@"File Error: %@", fileError);
+    return NO;
   }
 }
 

@@ -26,8 +26,10 @@ APPKIT_EXTERN NSString *const MPDatabaseDocumentDocumentKey;
 
 + (id)documentWithFile:(NSURL *)file password:(NSString *)password keyfile:(NSURL *)key;
 + (id)documentWithNewDatabase:(MPDatabaseVersion)version;
++ (id)newDocumentAtURL:(NSURL *)url databaseVersion:(MPDatabaseVersion)dbversion password:(NSString *)password keyfile:(NSURL *)key;
 - (id)initWithFile:(NSURL *)file password:(NSString *)password keyfile:(NSURL *)key;
 - (id)initWithNewDatabase:(MPDatabaseVersion)version;
+- (id)initNewDocumentAtURL:(NSURL *)url databaseVersion:(MPDatabaseVersion)dbversion password:(NSString *)password keyfile:(NSURL *)key;
 /*
  Saves the current database to the filesystem
  Tries to use the stored password and file path
