@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		4C1DDCDD1711ECEB00C98DA3 /* PasswordCreatorWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4C1DDCDC1711ECEB00C98DA3 /* PasswordCreatorWindow.xib */; };
 		4C25D58516CF0F8800F6806C /* WelcomeView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4C25D58416CF0F8800F6806C /* WelcomeView.xib */; };
 		4C25D58716CF0FAA00F6806C /* EntryView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4C25D58616CF0FAA00F6806C /* EntryView.xib */; };
 		4C2C4C2C16D3BE3700D49295 /* KdbGroup+MPAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C2C4C2B16D3BE3700D49295 /* KdbGroup+MPAdditions.m */; };
@@ -120,6 +121,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		4C1DDCDC1711ECEB00C98DA3 /* PasswordCreatorWindow.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PasswordCreatorWindow.xib; sourceTree = "<group>"; };
 		4C25D58416CF0F8800F6806C /* WelcomeView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = WelcomeView.xib; sourceTree = "<group>"; };
 		4C25D58616CF0FAA00F6806C /* EntryView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = EntryView.xib; sourceTree = "<group>"; };
 		4C2C4C2A16D3BE3700D49295 /* KdbGroup+MPAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "KdbGroup+MPAdditions.h"; sourceTree = "<group>"; };
@@ -755,6 +757,7 @@
 			children = (
 				4CD884B615BD47080042BBF8 /* MainWindow.xib */,
 				4C431BCE16E2BAB000700A81 /* OverlayWindow.xib */,
+				4C1DDCDC1711ECEB00C98DA3 /* PasswordCreatorWindow.xib */,
 			);
 			name = Windows;
 			sourceTree = "<group>";
@@ -841,6 +844,7 @@
 				4C888C9016EB6C91003D34A1 /* Localizable.strings in Resources */,
 				4CE39AC116ECE359000FE29D /* IconSelection.xib in Resources */,
 				4C5A11FF1708DE8800223D8A /* PasswordCreatorView.xib in Resources */,
+				4C1DDCDD1711ECEB00C98DA3 /* PasswordCreatorWindow.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

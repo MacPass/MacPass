@@ -20,7 +20,10 @@ typedef enum {
 
 @interface MPAppDelegate : NSObject <NSApplicationDelegate>
 
-- (IBAction) showMainWindow:(id)sender;
+@property (retain) IBOutlet NSWindow *passwordCreatorWindow;
+
+- (IBAction)showMainWindow:(id)sender;
+- (IBAction)showPasswordCreator:(id)sender;
 
 - (NSString *)applicationName;
 

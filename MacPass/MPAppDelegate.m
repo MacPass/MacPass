@@ -11,6 +11,7 @@
 #import "MPMainWindowController.h"
 #import "MPSettingsController.h"
 #import "MPDatabaseController.h"
+#import "MPPasswordCreatorViewController.h"
 #import "MPActionHelper.h"
 #import "MPSettingsHelper.h"
 #import "NSString+MPPasswordCreation.h"
@@ -19,6 +20,7 @@
 
 @property (retain, nonatomic) MPSettingsController *settingsController;
 @property (retain, nonatomic) MPMainWindowController *mainWindowController;
+@property (retain, nonatomic) MPPasswordCreatorViewController *passwordCreatorController;
 
 - (IBAction)showPreferences:(id)sender;
 
@@ -39,6 +41,7 @@
 - (void)dealloc {
   [_settingsController release];
   [_mainWindowController release];
+  [_passwordCreatorController release];
   [super dealloc];
 }
 
@@ -57,6 +60,17 @@
     self.settingsController = [[[MPSettingsController alloc] init] autorelease];
   }
   [self.settingsController showSettings];
+}
+
+- (void)showPasswordCreator:(id)sender {
+  if(!self.passwordCreatorWindow) {
+    [[NSBundle mainBundle] loadNibNamed:@"PasswordCreatorWindow"owner:self topLevelObjects:nil];
+  }
+  if(!self.passwordCreatorController) {
+    self.passwordCreatorController = [[MPPasswordCreatorViewController alloc] init];
+  }
+  [self.passwordCreatorWindow setContentView:[self.passwordCreatorController view]];
+  [self.passwordCreatorWindow makeKeyAndOrderFront:self.passwordCreatorWindow];
 }
 
 - (NSArray *)contextMenuItemsWithItems:(MPContextMenuItemsFlags)flags {
