@@ -117,6 +117,8 @@
 		4CE8246F16E2E93400573141 /* MPOverlayWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CE8246E16E2E93400573141 /* MPOverlayWindowController.m */; };
 		4CE8247516E2F2B900573141 /* MPOverlayView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CE8247416E2F2B900573141 /* MPOverlayView.m */; };
 		4CFC53BF16E94729007396BE /* MPShadowBox.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CFC53BE16E94729007396BE /* MPShadowBox.m */; };
+		6E71971217203FB700E4C5FC /* MPCreationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E71971017203FB600E4C5FC /* MPCreationViewController.m */; };
+		6E71971317203FB700E4C5FC /* CreationView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6E71971117203FB600E4C5FC /* CreationView.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -320,6 +322,10 @@
 		4CE8247416E2F2B900573141 /* MPOverlayView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MPOverlayView.m; sourceTree = "<group>"; };
 		4CFC53BD16E94729007396BE /* MPShadowBox.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MPShadowBox.h; sourceTree = "<group>"; };
 		4CFC53BE16E94729007396BE /* MPShadowBox.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MPShadowBox.m; sourceTree = "<group>"; };
+		6E71970F17203FB600E4C5FC /* MPCreationViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MPCreationViewController.h; sourceTree = "<group>"; };
+		6E71971017203FB600E4C5FC /* MPCreationViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MPCreationViewController.m; sourceTree = "<group>"; };
+		6E71971117203FB600E4C5FC /* CreationView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CreationView.xib; sourceTree = "<group>"; };
+		6E719715172058BA00E4C5FC /* MPDatabaseVersion.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MPDatabaseVersion.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -340,6 +346,7 @@
 		4C06398C15B980480004DE27 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				6E71971117203FB600E4C5FC /* CreationView.xib */,
 				4C25D58616CF0FAA00F6806C /* EntryView.xib */,
 				4CA0B2EF15BCADC800654E32 /* GeneralSettings.xib */,
 				4C77E37B15B84A240093A587 /* MainMenu.xib */,
@@ -415,6 +422,7 @@
 				4C37A83F15B8B474005EF8EE /* MPOutlineDataSource.m */,
 				4CBA981615BA0DB600721965 /* MPDatabaseDocument.h */,
 				4CBA981715BA0DB600721965 /* MPDatabaseDocument.m */,
+				6E719715172058BA00E4C5FC /* MPDatabaseVersion.h */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -643,6 +651,8 @@
 				4C40AC5B170782730073D1C3 /* MPAbstractSettingsViewController.m */,
 				4C5A11FB1708DE8700223D8A /* MPPasswordCreatorViewController.h */,
 				4C5A11FC1708DE8700223D8A /* MPPasswordCreatorViewController.m */,
+				6E71970F17203FB600E4C5FC /* MPCreationViewController.h */,
+				6E71971017203FB600E4C5FC /* MPCreationViewController.m */,
 			);
 			name = "View Controller";
 			sourceTree = "<group>";
@@ -841,6 +851,7 @@
 				4C888C9016EB6C91003D34A1 /* Localizable.strings in Resources */,
 				4CE39AC116ECE359000FE29D /* IconSelection.xib in Resources */,
 				4C5A11FF1708DE8800223D8A /* PasswordCreatorView.xib in Resources */,
+				6E71971317203FB700E4C5FC /* CreationView.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -946,6 +957,7 @@
 				4C46B88B1706D16E0046109A /* NSData+MPRandomBytes.m in Sources */,
 				4C40AC5C170782730073D1C3 /* MPAbstractSettingsViewController.m in Sources */,
 				4C5A11FE1708DE8700223D8A /* MPPasswordCreatorViewController.m in Sources */,
+				6E71971217203FB700E4C5FC /* MPCreationViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
