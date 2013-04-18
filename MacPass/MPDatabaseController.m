@@ -53,6 +53,11 @@ NSString *const MPDatabaseControllerDatabaseKey = @"com.macpass.MPDatabaseContro
   return self.database;
 }
 
+- (MPDatabaseDocument *)newDatabaseAtURL:(NSURL *)url databaseVersion:(MPDatabaseVersion)version password:(NSString *)password keyfile:(NSURL *)key {
+  self.database = [MPDatabaseDocument newDocumentAtURL:url databaseVersion:version password:password keyfile:key];
+  return self.database;
+}
+
 - (MPDatabaseDocument *)openDatabase:(NSURL *)file password:(NSString *)password keyfile:(NSURL *)key {
   self.database = [MPDatabaseDocument documentWithFile:file password:password keyfile:key];
   return self.database;
