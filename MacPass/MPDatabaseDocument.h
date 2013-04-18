@@ -11,11 +11,6 @@
 APPKIT_EXTERN NSString *const MPDidLoadDatabaseNotification;
 APPKIT_EXTERN NSString *const MPDatabaseDocumentDocumentKey;
 
-typedef enum {
-  MPDatabaseVersion3,
-  MPDatabaseVersion4
-} MPDatabaseVersion;
-
 @class KdbPassword;
 @class KdbGroup;
 @class KdbEntry;
