@@ -7,6 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "MPDatabaseVersion.h"
 
 APPKIT_EXTERN NSString *const MPDidLoadDatabaseNotification;
 APPKIT_EXTERN NSString *const MPDatabaseDocumentDocumentKey;
