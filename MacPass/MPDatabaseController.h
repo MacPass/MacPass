@@ -7,6 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "MPDatabaseVersion.h"
 
 /*
  Notification is posted, when a database is loaded
