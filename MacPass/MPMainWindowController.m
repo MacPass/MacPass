@@ -222,7 +222,8 @@
 }
 
 - (void)showMainWindow:(id)sender {
-  [self showWindow:self.window];
+  [[self window] makeKeyAndOrderFront:sender];
+  //[self showWindow:self.window];
 }
 
 - (void)openDocument:(id)sender {

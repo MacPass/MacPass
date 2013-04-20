@@ -55,6 +55,16 @@
   [self.mainWindowController showMainWindow:sender];
 }
 
+- (void)newDocument:(id)sender {
+  [self.mainWindowController showMainWindow:sender];
+  [self.mainWindowController newDocument:sender];
+}
+
+- (void)openDocument:(id)sender {
+  [self.mainWindowController showMainWindow:sender];
+  [self.mainWindowController openDocument:sender];
+}
+
 - (void)showPreferences:(id)sender {
   if(self.settingsController == nil) {
     self.settingsController = [[[MPSettingsController alloc] init] autorelease];

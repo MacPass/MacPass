@@ -24,6 +24,10 @@
 @property (readonly, retain) MPCreationViewController *creationViewController;
 
 
+/* Document handling */
+- (void)newDocument:(id)sender;
+- (void)openDocument:(id)sender;
+
 - (void)showEntries;
 - (void)showMainWindow:(id)sender;
 - (void)performFindPanelAction:(id)sender;

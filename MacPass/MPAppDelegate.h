@@ -33,4 +33,7 @@ typedef enum {
  */
 - (NSArray *)contextMenuItemsWithItems:(MPContextMenuItemsFlags)flags;
 
+- (void)openDocument:(id)sender;
+- (void)newDocument:(id)sender;
+
 @end
