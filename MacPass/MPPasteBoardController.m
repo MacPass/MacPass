@@ -88,7 +88,7 @@
 - (void)_setupBindings {
   NSUserDefaultsController *userDefaultsController = [NSUserDefaultsController sharedUserDefaultsController];
   NSString *clearOnShutdownKeyPath = [NSString stringWithFormat:@"values.%@", kMPSettingsKeyClearPasteboardOnQuit];
-  NSString *clearTimoutKeyPath = [NSString stringWithFormat:@"value.%@", kMPSettingsKeyPasteboardClearTimeout];
+  NSString *clearTimoutKeyPath = [NSString stringWithFormat:@"values.%@", kMPSettingsKeyPasteboardClearTimeout];
   [self bind:@"clearPasteboardOnShutdown" toObject:userDefaultsController withKeyPath:clearOnShutdownKeyPath options:nil];
   [self bind:@"clearTimeout" toObject:userDefaultsController withKeyPath:clearTimoutKeyPath options:nil];
 }
