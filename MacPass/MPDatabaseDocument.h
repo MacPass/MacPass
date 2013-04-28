@@ -25,7 +25,7 @@ APPKIT_EXTERN NSString *const MPDatabaseDocumentDocumentKey;
 @property (assign, readonly) MPDatabaseVersion version;
 
 + (id)documentWithFile:(NSURL *)file password:(NSString *)password keyfile:(NSURL *)key;
-+ (id)documentWithNewDatabase:(MPDatabaseVersion)version;
++ (id)newDocument:(MPDatabaseVersion)version;
 + (id)newDocumentAtURL:(NSURL *)url databaseVersion:(MPDatabaseVersion)dbversion password:(NSString *)password keyfile:(NSURL *)key;
 - (id)initWithFile:(NSURL *)file password:(NSString *)password keyfile:(NSURL *)key;
 - (id)initWithNewDatabase:(MPDatabaseVersion)version;

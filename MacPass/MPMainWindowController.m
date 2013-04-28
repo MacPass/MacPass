@@ -11,12 +11,12 @@
 #import "MPDatabaseDocument.h"
 #import "MPPasswordInputController.h"
 #import "MPEntryViewController.h"
+#import "MPPasswordEditViewController.h"
 #import "MPToolbarDelegate.h"
 #import "MPOutlineViewController.h"
 #import "MPMainWindowSplitViewDelegate.h"
 #import "MPInspectorTabViewController.h"
 #import "MPAppDelegate.h"
-#import "MPCreationViewController.h"
 
 @interface MPMainWindowController ()
 
@@ -30,10 +30,10 @@
 @property (retain) NSToolbar *toolbar;
 
 @property (retain) MPPasswordInputController *passwordInputController;
+@property (retain) MPPasswordEditViewController *passwordEditController;
 @property (retain) MPEntryViewController *entryViewController;
 @property (retain) MPOutlineViewController *outlineViewController;
 @property (retain) MPInspectorTabViewController *inspectorTabViewController;
-@property (retain) MPCreationViewController *creationViewController;
 
 @property (retain) MPToolbarDelegate *toolbarDelegate;
 @property (retain) MPMainWindowSplitViewDelegate *splitViewDelegate;
@@ -52,11 +52,11 @@
 -(id)init {
   self = [super initWithWindowNibName:@"MainWindow" owner:self];
   if( self ) {
-    _toolbarDelegate = [[MPToolbarDelegate alloc] init];    
+    _toolbarDelegate = [[MPToolbarDelegate alloc] init];
     _outlineViewController = [[MPOutlineViewController alloc] init];
     _inspectorTabViewController = [[MPInspectorTabViewController alloc] init];
     _splitViewDelegate = [[MPMainWindowSplitViewDelegate alloc] init];
-    _creationViewController = [[MPCreationViewController alloc] init];
+    _passwordEditController = [[MPPasswordEditViewController alloc] init];
     
     [[NSBundle mainBundle] loadNibNamed:@"WelcomeView" owner:self topLevelObjects:NULL];
     [self.welcomeView setAutoresizingMask:NSViewWidthSizable | NSViewHeightSizable];
@@ -92,7 +92,7 @@
 {
   [super windowDidLoad];
   [self _updateWindowTitle];
-    
+  
   [[self.welcomeText cell] setBackgroundStyle:NSBackgroundStyleRaised];
   CGFloat minWidht = MPMainWindowSplitViewDelegateMinimumContentWidth + MPMainWindowSplitViewDelegateMinimumOutlineWidth + [self.splitView dividerThickness];
   [self.window setMinSize:NSMakeSize( minWidht, 400)];
@@ -117,7 +117,7 @@
   [self.inspectorTabViewController.view setAutoresizesSubviews:NSViewWidthSizable | NSViewHeightSizable ];
   [self.splitView replaceSubview:self.inspectorView with:[self.inspectorTabViewController view]];
   [self.inspectorTabViewController updateResponderChain];
-
+  
   [self.splitView adjustSubviews];
   [self toggleInspector:nil];
   
@@ -202,7 +202,7 @@
     NSView *outlineView = [self.splitView subviews][MPSplitViewOutlineViewIndex];
     BOOL outlineIsHidden = [self.splitView isSubviewCollapsed:outlineView];
     NSString *title = outlineIsHidden ? NSLocalizedString(@"SHOW_OUTLINE_VIEW", @"") : NSLocalizedString(@"HIDE_OUTLINE_VIEW", @"Hide the Outline View");
-  
+    
     [menuItem setTitle:title];
     return YES;
   }
@@ -227,7 +227,7 @@
 }
 
 - (void)openDocument:(id)sender {
- 
+  
   if(!self.passwordInputController) {
     self.passwordInputController = [[[MPPasswordInputController alloc] init] autorelease];
   }
@@ -250,24 +250,28 @@
   [self.outlineViewController clearSelection];
 }
 
-- (void)showEditForm:(id)sender {
+- (void)editPassword:(id)sender {
+  if(!self.passwordEditController) {
+    _passwordEditController = [[MPPasswordEditViewController alloc] init];
+  }
+  [self _setContentViewController:self.passwordEditController];
 }
 
 - (void)newDocument:(id)sender {
-  if (!self.creationViewController) {
-    self.creationViewController = [[[MPCreationViewController alloc] init] autorelease];
-  }
-  
-  NSSavePanel *savePanel = [NSSavePanel savePanel];
-  [savePanel setAllowedFileTypes:@[@"kdbx", @"kdb"]];
-  [savePanel beginSheetModalForWindow:self.window completionHandler:^(NSInteger result) {
-    if (result == NSFileHandlingPanelOKButton) {
-      NSURL *file = [savePanel URL];
-      NSLog(@"Will create file at: %@", file);
-      self.creationViewController.fileURL = file;
-      [self _setContentViewController:self.creationViewController];
-    }
-  }];
+  //  if (!self.creationViewController) {
+  //    self.creationViewController = [[[MPCreationViewController alloc] init] autorelease];
+  //  }
+  //
+  //  NSSavePanel *savePanel = [NSSavePanel savePanel];
+  //  [savePanel setAllowedFileTypes:@[@"kdbx", @"kdb"]];
+  //  [savePanel beginSheetModalForWindow:self.window completionHandler:^(NSInteger result) {
+  //    if (result == NSFileHandlingPanelOKButton) {
+  //      NSURL *file = [savePanel URL];
+  //      NSLog(@"Will create file at: %@", file);
+  //      self.creationViewController.fileURL = file;
+  //      [self _setContentViewController:self.creationViewController];
+  //    }
+  //  }];
 }
 
 - (void)saveDocument:(id)sender
@@ -294,16 +298,16 @@
 - (BOOL)_windowsIsLargeEnoughForInspectorView {
   return ( MPMainWindowSplitViewDelegateMinimumInspectorWidth
           < ([self.splitView frame].size.width
-              - MPMainWindowSplitViewDelegateMinimumContentWidth
-              - MPMainWindowSplitViewDelegateMinimumOutlineWidth
-              - 2 * [self.splitView dividerThickness]) );
+             - MPMainWindowSplitViewDelegateMinimumContentWidth
+             - MPMainWindowSplitViewDelegateMinimumOutlineWidth
+             - 2 * [self.splitView dividerThickness]) );
 }
 
 - (void)_resizeWindowForInspectorView {
   NSRect frame = [self.window frame];
   NSView *outlinView = [self.splitView subviews][MPSplitViewOutlineViewIndex];
   NSView *contentView = [self.splitView subviews][MPSplitViewContentViewIndex];
-
+  
   CGFloat outlineWidth = [self.splitView isSubviewCollapsed:outlinView] ? 0 : [outlinView frame].size.width;
   frame.size.width = outlineWidth + [contentView frame].size.width + MPMainWindowSplitViewDelegateMinimumInspectorWidth;
   [self.window setFrame:frame display:YES animate:YES];

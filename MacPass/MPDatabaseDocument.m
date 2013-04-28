@@ -29,12 +29,11 @@ NSString *const MPDidLoadDatabaseNotification = @"DidLoadDataBaseNotification";
   return [[[MPDatabaseDocument alloc] initWithFile:file password:password keyfile:key] autorelease];
 }
 
-+ (id)documentWithNewDatabase:(MPDatabaseVersion)version {
++ (id)newDocument:(MPDatabaseVersion)version {
   return  [[[MPDatabaseDocument alloc] initWithNewDatabase:version] autorelease];
 }
 
-+ (id)newDocumentAtURL:(NSURL *)url databaseVersion:(MPDatabaseVersion)dbversion password:(NSString *)password keyfile:(NSURL *)key
-{
++ (id)newDocumentAtURL:(NSURL *)url databaseVersion:(MPDatabaseVersion)dbversion password:(NSString *)password keyfile:(NSURL *)key {
   return [[[MPDatabaseDocument alloc] initNewDocumentAtURL:url databaseVersion:dbversion password:password keyfile:key] autorelease];
 }
 
@@ -46,25 +45,11 @@ NSString *const MPDidLoadDatabaseNotification = @"DidLoadDataBaseNotification";
 
 - (id)initNewDocumentAtURL:(NSURL *)url databaseVersion:(MPDatabaseVersion)dbversion password:(NSString *)password keyfile:(NSURL *)key
 {
-  self = [super init];
+  self = [self initWithNewDatabase:dbversion];
   if(self) {
     self.file = url;
-    self.key = key;
     self.password = password;
-    _isNewFile = YES;
-    switch(dbversion) {
-      case MPDatabaseVersion3:
-        self.tree = [[[Kdb3Tree alloc] init] autorelease];
-        break;
-      case MPDatabaseVersion4:
-        self.tree = [[[Kdb4Tree alloc] init] autorelease];
-        break;
-      default:
-        [self release];
-        return nil;
-    }
-    KdbGroup *newGroup = [self.tree createGroup:self.tree.root];
-    newGroup.name = @"Default";
+    self.key = key;
   }
   return self;
 }
@@ -151,18 +136,21 @@ NSString *const MPDidLoadDatabaseNotification = @"DidLoadDataBaseNotification";
     }
     return YES;
   }
-  else
-  {
+  else {
     NSLog(@"File Error: %@", fileError);
     return NO;
   }
 }
 
 - (BOOL)saveAsFile:(NSURL *)file withPassword:(NSString *)password keyfile:(NSURL *)key {
-  return NO;
+  self.file = file;
+  self.password = password;
+  self.key = key;
+  return [self save];
 }
 
-- (KdbPassword *)passwordHash {  
+- (KdbPassword *)passwordHash {
+  // TODO: Use defaults to determine Encoding?
   return [[[KdbPassword alloc] initWithPassword:self.password passwordEncoding:NSUTF8StringEncoding keyFile:[self.key path]] autorelease];
 }
 

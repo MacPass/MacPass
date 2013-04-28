@@ -11,17 +11,21 @@
 @class MPViewController;
 @class MPEntryViewController;
 @class MPInspectorTabViewController;
+@class MPPasswordEditViewController;
 @class MPPasswordInputController;
 @class MPOutlineViewController;
 @class MPCreationViewController;
 
+
 @interface MPMainWindowController : NSWindowController
 
 @property (readonly, retain) MPPasswordInputController *passwordInputController;
+@property (readonly, retain) MPPasswordEditViewController *passwordEditController;
 @property (readonly, retain) MPEntryViewController *entryViewController;
 @property (readonly, retain) MPOutlineViewController *outlineViewController;
 @property (readonly, retain) MPInspectorTabViewController *inspectorTabViewController;
 @property (readonly, retain) MPCreationViewController *creationViewController;
+
 
 
 /* Document handling */
@@ -32,6 +36,7 @@
 - (void)showMainWindow:(id)sender;
 - (void)performFindPanelAction:(id)sender;
 - (void)clearOutlineSelection:(id)sender;
+- (IBAction)editPassword:(id)sender;
 /*
  Clears the Search filter
  */
