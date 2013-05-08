@@ -109,7 +109,6 @@ NSString *const MPDidLoadDatabaseNotification = @"DidLoadDataBaseNotification";
   return self;
 }
 
-
 - (void)dealloc
 {
   self.tree = nil;

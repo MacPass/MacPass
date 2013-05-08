@@ -117,6 +117,7 @@
 		4CE39ABF16ECE34A000FE29D /* MPIconSelectViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CE39ABE16ECE34A000FE29D /* MPIconSelectViewController.m */; };
 		4CE39AC116ECE359000FE29D /* IconSelection.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4CE39AC016ECE359000FE29D /* IconSelection.xib */; };
 		4CE39AC416ECE4F7000FE29D /* MPPopupImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CE39AC316ECE4F7000FE29D /* MPPopupImageView.m */; };
+		4CE5B54B173AFBA700207B39 /* MPDocument.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CE5B549173AFBA700207B39 /* MPDocument.m */; };
 		4CE8246F16E2E93400573141 /* MPOverlayWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CE8246E16E2E93400573141 /* MPOverlayWindowController.m */; };
 		4CE8247516E2F2B900573141 /* MPOverlayView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CE8247416E2F2B900573141 /* MPOverlayView.m */; };
 		4CFC53BF16E94729007396BE /* MPShadowBox.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CFC53BE16E94729007396BE /* MPShadowBox.m */; };
@@ -321,6 +322,8 @@
 		4CE39AC016ECE359000FE29D /* IconSelection.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = IconSelection.xib; sourceTree = "<group>"; };
 		4CE39AC216ECE4F7000FE29D /* MPPopupImageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MPPopupImageView.h; sourceTree = "<group>"; };
 		4CE39AC316ECE4F7000FE29D /* MPPopupImageView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MPPopupImageView.m; sourceTree = "<group>"; };
+		4CE5B548173AFBA700207B39 /* MPDocument.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MPDocument.h; sourceTree = "<group>"; };
+		4CE5B549173AFBA700207B39 /* MPDocument.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MPDocument.m; sourceTree = "<group>"; };
 		4CE8246D16E2E93400573141 /* MPOverlayWindowController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MPOverlayWindowController.h; sourceTree = "<group>"; };
 		4CE8246E16E2E93400573141 /* MPOverlayWindowController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MPOverlayWindowController.m; sourceTree = "<group>"; };
 		4CE8247316E2F2B900573141 /* MPOverlayView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MPOverlayView.h; sourceTree = "<group>"; };
@@ -425,6 +428,8 @@
 				4CBA981615BA0DB600721965 /* MPDatabaseDocument.h */,
 				4CBA981715BA0DB600721965 /* MPDatabaseDocument.m */,
 				6E719715172058BA00E4C5FC /* MPDatabaseVersion.h */,
+				4CE5B548173AFBA700207B39 /* MPDocument.h */,
+				4CE5B549173AFBA700207B39 /* MPDocument.m */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -962,6 +967,7 @@
 				4C40AC5C170782730073D1C3 /* MPAbstractSettingsViewController.m in Sources */,
 				4C5A11FE1708DE8700223D8A /* MPPasswordCreatorViewController.m in Sources */,
 				4C7E832A172DE2F2002493D8 /* MPPasswordEditViewController.m in Sources */,
+				4CE5B54B173AFBA700207B39 /* MPDocument.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
