@@ -9,6 +9,7 @@
 #import "MPEntryViewController.h"
 #import "MPAppDelegate.h"
 #import "MPOutlineViewDelegate.h"
+#import "MPOutlineViewController.h"
 #import "MPDocument.h"
 #import "MPIconHelper.h"
 #import "MPDocumentWindowController.h"
@@ -108,12 +109,7 @@ NSString *const _toggleFilterUsernameButton = @"SearchUsername";
                            _toggleFilterURLButton : @(MPFilterUrls)
                            } retain];
     _entryArrayController = [[NSArrayController alloc] init];
-    _selectedEntry = nil;
-    [[NSNotificationCenter defaultCenter] addObserver:self
-                                             selector:@selector(_didChangeGroupSelectionInOutlineView:)
-                                                 name:MPOutlineViewDidChangeGroupSelection
-                                               object:nil];
-    
+    _selectedEntry = nil;    
   }
   return self;
 }
@@ -130,6 +126,13 @@ NSString *const _toggleFilterUsernameButton = @"SearchUsername";
 - (void)didLoadView {
   [self.view setWantsLayer:YES];
   [self _hideStatusBarAnimated:NO];
+  
+  MPDocumentWindowController *windowController = [self windowController];
+  [[NSNotificationCenter defaultCenter] addObserver:self
+                                           selector:@selector(_didChangeGroupSelectionInOutlineView:)
+                                               name:MPOutlineViewDidChangeGroupSelection
+                                             object:windowController.outlineViewController.outlineDelegate];
+  
   
   [self.entryTable setDelegate:self];
   [self.entryTable setDoubleAction:@selector(_columnDoubleClick:)];

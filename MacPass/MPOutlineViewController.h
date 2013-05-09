@@ -8,7 +8,11 @@
 
 #import "MPViewController.h"
 
+@class MPOutlineViewDelegate;
+
 @interface MPOutlineViewController : MPViewController
+
+@property (retain, readonly) MPOutlineViewDelegate *outlineDelegate;
 
 - (void)clearSelection;
 - (void)showOutline;
