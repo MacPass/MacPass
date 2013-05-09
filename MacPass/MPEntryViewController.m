@@ -12,7 +12,7 @@
 #import "MPDatabaseController.h"
 #import "MPDatabaseDocument.h"
 #import "MPIconHelper.h"
-#import "MPMainWindowController.h"
+#import "MPDocumentWindowController.h"
 #import "MPPasteBoardController.h"
 #import "MPOverlayWindowController.h"
 #import "KdbGroup+MPAdditions.h"
@@ -325,7 +325,7 @@ NSString *const _toggleFilterUsernameButton = @"SearchUsername";
     return; // nothign to to
   }
   
-  [((MPMainWindowController *)[[self.view window] windowController]) clearOutlineSelection:nil];
+  [((MPDocumentWindowController *)[[self.view window] windowController]) clearOutlineSelection:nil];
   self.isStatusBarVisible = YES;
   self.tableToTop.constant = [self.filterBar frame].size.height;
   

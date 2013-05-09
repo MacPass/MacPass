@@ -22,7 +22,6 @@ typedef enum {
 
 @property (retain) IBOutlet NSWindow *passwordCreatorWindow;
 
-- (IBAction)showMainWindow:(id)sender;
 - (IBAction)showPasswordCreator:(id)sender;
 
 - (NSString *)applicationName;
@@ -32,8 +31,5 @@ typedef enum {
  Automatically sets up actions, so you need to take care of the responder chain
  */
 - (NSArray *)contextMenuItemsWithItems:(MPContextMenuItemsFlags)flags;
-
-- (void)openDocument:(id)sender;
-- (void)newDocument:(id)sender;
 
 @end

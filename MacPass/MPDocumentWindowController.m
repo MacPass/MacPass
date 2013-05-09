@@ -6,7 +6,7 @@
 //  Copyright (c) 2012 HicknHack Software GmbH. All rights reserved.
 //
 
-#import "MPMainWindowController.h"
+#import "MPDocumentWindowController.h"
 #import "MPDatabaseController.h"
 #import "MPDatabaseDocument.h"
 #import "MPPasswordInputController.h"
@@ -18,7 +18,7 @@
 #import "MPInspectorTabViewController.h"
 #import "MPAppDelegate.h"
 
-@interface MPMainWindowController ()
+@interface MPDocumentWindowController ()
 
 @property (assign) IBOutlet NSView *outlineView;
 @property (assign) IBOutlet NSSplitView *splitView;
@@ -47,7 +47,7 @@
 
 @end
 
-@implementation MPMainWindowController
+@implementation MPDocumentWindowController
 
 -(id)init {
   self = [super initWithWindowNibName:@"MainWindow" owner:self];
@@ -226,26 +226,6 @@
   //[self showWindow:self.window];
 }
 
-- (void)openDocument:(id)sender {
-  
-  if(!self.passwordInputController) {
-    self.passwordInputController = [[[MPPasswordInputController alloc] init] autorelease];
-  }
-  
-  NSOpenPanel *openPanel = [NSOpenPanel openPanel];
-  [openPanel setCanChooseDirectories:NO];
-  [openPanel setCanChooseFiles:YES];
-  [openPanel setCanCreateDirectories:NO];
-  [openPanel setAllowsMultipleSelection:NO];
-  [openPanel setAllowedFileTypes:@[ @"kdbx", @"kdb"]];
-  [openPanel beginSheetModalForWindow:self.window completionHandler:^(NSInteger result){
-    if(result == NSFileHandlingPanelOKButton) {
-      NSURL *file = [[openPanel URLs] lastObject];
-      self.passwordInputController.fileURL = file;
-      [self _setContentViewController:self.passwordInputController];
-    }
-  }];
-}
 - (void)clearOutlineSelection:(id)sender {
   [self.outlineViewController clearSelection];
 }
@@ -255,32 +235,6 @@
     _passwordEditController = [[MPPasswordEditViewController alloc] init];
   }
   [self _setContentViewController:self.passwordEditController];
-}
-
-- (void)newDocument:(id)sender {
-  //  if (!self.creationViewController) {
-  //    self.creationViewController = [[[MPCreationViewController alloc] init] autorelease];
-  //  }
-  //
-  //  NSSavePanel *savePanel = [NSSavePanel savePanel];
-  //  [savePanel setAllowedFileTypes:@[@"kdbx", @"kdb"]];
-  //  [savePanel beginSheetModalForWindow:self.window completionHandler:^(NSInteger result) {
-  //    if (result == NSFileHandlingPanelOKButton) {
-  //      NSURL *file = [savePanel URL];
-  //      NSLog(@"Will create file at: %@", file);
-  //      self.creationViewController.fileURL = file;
-  //      [self _setContentViewController:self.creationViewController];
-  //    }
-  //  }];
-}
-
-- (void)saveDocument:(id)sender
-{
-  NSLog(@"Attempting to save document");
-  if ([[MPDatabaseController defaultController].database save])
-    NSLog(@"Save successful");
-  else
-    NSLog(@"Save failed");
 }
 
 #pragma mark Helper

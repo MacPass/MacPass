@@ -8,7 +8,7 @@
 
 #import <Foundation/Foundation.h>
 
-@class MPMainWindowController;
+@class MPDocumentWindowController;
 
 @interface MPToolbarDelegate : NSObject <NSToolbarDelegate>
 

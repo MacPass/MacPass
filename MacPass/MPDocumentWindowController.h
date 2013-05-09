@@ -17,7 +17,7 @@
 @class MPCreationViewController;
 
 
-@interface MPMainWindowController : NSWindowController
+@interface MPDocumentWindowController : NSWindowController
 
 @property (readonly, retain) MPPasswordInputController *passwordInputController;
 @property (readonly, retain) MPPasswordEditViewController *passwordEditController;
@@ -26,11 +26,6 @@
 @property (readonly, retain) MPInspectorTabViewController *inspectorTabViewController;
 @property (readonly, retain) MPCreationViewController *creationViewController;
 
-
-
-/* Document handling */
-- (void)newDocument:(id)sender;
-- (void)openDocument:(id)sender;
 
 - (void)showEntries;
 - (void)showMainWindow:(id)sender;

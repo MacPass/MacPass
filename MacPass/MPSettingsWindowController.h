@@ -10,7 +10,7 @@
 
 @protocol MPSettingsTab;
 
-@interface MPSettingsController : NSWindowController <NSToolbarDelegate>
+@interface MPSettingsWindowController : NSWindowController <NSToolbarDelegate>
 
 - (void)showSettings;
 - (void)showSettingsTabWithIdentifier:(NSString *)identifier;

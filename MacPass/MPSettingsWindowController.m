@@ -6,10 +6,10 @@
 //  Copyright (c) 2012 HicknHack Software GmbH. All rights reserved.
 //
 
-#import "MPSettingsController.h"
+#import "MPSettingsWindowController.h"
 #import "MPGeneralSettingsController.h"
 
-@interface MPSettingsController ()
+@interface MPSettingsWindowController ()
 
 @property (retain, nonatomic) NSToolbar *toolbar;
 @property (retain, nonatomic) NSMutableDictionary *settingsController;
@@ -21,7 +21,7 @@
 
 @end
 
-@implementation MPSettingsController
+@implementation MPSettingsWindowController
 
 -(id)init {
   self = [super initWithWindowNibName:@"SettingsWindow"];

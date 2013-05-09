@@ -7,6 +7,7 @@
 //
 
 #import "MPDocument.h"
+#import "MPDocumentWindowController.h"
 #import "KdbLib.h"
 #import "Kdb3Node.h"
 #import "Kdb4Node.h"
@@ -51,14 +52,9 @@
 }
 
 - (void) makeWindowControllers {
-}
-
-- (NSString *)windowNibName
-{
-  // Override returning the nib file name of the document
-  // If you need to use a subclass of NSWindowController or if your document supports multiple NSWindowControllers, you should remove this method and override -makeWindowControllers instead.
-  return @"MainWindow";
-  //return @"MPDocument";
+  
+  MPDocumentWindowController *windowController = [[MPDocumentWindowController alloc] init];
+  [self addWindowController:windowController];  
 }
 
 - (void)windowControllerDidLoadNib:(NSWindowController *)aController
@@ -85,6 +81,29 @@
 - (BOOL)readFromURL:(NSURL *)url ofType:(NSString *)typeName error:(NSError **)outError {
   self.file = url;
   return YES;
+  // tell The window controller to display decrypt view
+//  - (void)openDocument:(id)sender {
+//    
+//    if(!self.passwordInputController) {
+//      self.passwordInputController = [[[MPPasswordInputController alloc] init] autorelease];
+//    }
+//    
+//    NSOpenPanel *openPanel = [NSOpenPanel openPanel];
+//    [openPanel setCanChooseDirectories:NO];
+//    [openPanel setCanChooseFiles:YES];
+//    [openPanel setCanCreateDirectories:NO];
+//    [openPanel setAllowsMultipleSelection:NO];
+//    [openPanel setAllowedFileTypes:@[ @"kdbx", @"kdb"]];
+//    [openPanel beginSheetModalForWindow:self.window completionHandler:^(NSInteger result){
+//      if(result == NSFileHandlingPanelOKButton) {
+//        NSURL *file = [[openPanel URLs] lastObject];
+//        self.passwordInputController.fileURL = file;
+//        [self _setContentViewController:self.passwordInputController];
+//      }
+//    }];
+//  }
+//  
+  
 }
 
 - (BOOL)decryptWithPassword:(NSString *)password keyFileURL:(NSURL *)keyFileURL {

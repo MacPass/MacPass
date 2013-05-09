@@ -8,7 +8,7 @@
 
 #import "MPPasswordEditViewController.h"
 #import "MPKeyfilePathControlDelegate.h"
-#import "MPMainWindowController.h"
+#import "MPDocumentWindowController.h"
 #import "MPDatabaseController.h"
 #import "MPDatabaseDocument.h"
 
@@ -54,13 +54,13 @@
   database.key = [self.keyfilePathControl URL];
   database.password = [self.passwordTextField stringValue];
   [database save];
-  MPMainWindowController *mainWindowController = (MPMainWindowController *)[[[self view] window] windowController];
+  MPDocumentWindowController *mainWindowController = (MPDocumentWindowController *)[[[self view] window] windowController];
   [mainWindowController showEntries];
   // save automatically?
 }
 
 - (IBAction)_cancel:(id)sender {
-  MPMainWindowController *mainWindowController = (MPMainWindowController *)[[[self view] window] windowController];
+  MPDocumentWindowController *mainWindowController = (MPDocumentWindowController *)[[[self view] window] windowController];
   [mainWindowController showEntries];
 }
 @end

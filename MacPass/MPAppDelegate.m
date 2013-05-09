@@ -8,8 +8,8 @@
 
 #import "MPAppDelegate.h"
 
-#import "MPMainWindowController.h"
-#import "MPSettingsController.h"
+#import "MPDocumentWindowController.h"
+#import "MPSettingsWindowController.h"
 #import "MPDatabaseController.h"
 #import "MPPasswordCreatorViewController.h"
 #import "MPActionHelper.h"
@@ -18,8 +18,7 @@
 
 @interface MPAppDelegate ()
 
-@property (retain, nonatomic) MPSettingsController *settingsController;
-@property (retain, nonatomic) MPMainWindowController *mainWindowController;
+@property (retain, nonatomic) MPSettingsWindowController *settingsController;
 @property (retain, nonatomic) MPPasswordCreatorViewController *passwordCreatorController;
 
 - (IBAction)showPreferences:(id)sender;
@@ -33,14 +32,11 @@
 }
 
 - (void)applicationDidFinishLaunching:(NSNotification *)aNotification {
-  self.mainWindowController = [[[MPMainWindowController alloc] init] autorelease];
-  [self.mainWindowController showWindow:[self.mainWindowController window]];
   
 }
 
 - (void)dealloc {
   [_settingsController release];
-  [_mainWindowController release];
   [_passwordCreatorController release];
   [super dealloc];
 }
@@ -50,24 +46,9 @@
 }
 
 #pragma mark Menu Actions
-
-- (void)showMainWindow:(id)sender {
-  [self.mainWindowController showMainWindow:sender];
-}
-
-- (void)newDocument:(id)sender {
-  [self.mainWindowController showMainWindow:sender];
-  [self.mainWindowController newDocument:sender];
-}
-
-- (void)openDocument:(id)sender {
-  [self.mainWindowController showMainWindow:sender];
-  [self.mainWindowController openDocument:sender];
-}
-
 - (void)showPreferences:(id)sender {
   if(self.settingsController == nil) {
-    self.settingsController = [[[MPSettingsController alloc] init] autorelease];
+    self.settingsController = [[[MPSettingsWindowController alloc] init] autorelease];
   }
   [self.settingsController showSettings];
 }
