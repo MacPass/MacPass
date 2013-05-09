@@ -10,6 +10,4 @@
 
 @interface MPPasswordInputController : MPViewController
 
-@property (retain) NSURL *fileURL;
-
 @end

@@ -221,9 +221,12 @@
   return [self.toolbarDelegate validateToolbarItem:theItem];
 }
 
-- (void)showMainWindow:(id)sender {
-  [[self window] makeKeyAndOrderFront:sender];
-  //[self showWindow:self.window];
+
+- (void)showPasswordInput {
+    if(!self.passwordInputController) {
+      self.passwordInputController = [[[MPPasswordInputController alloc] init] autorelease];
+    }
+    [self _setContentViewController:self.passwordInputController];
 }
 
 - (void)clearOutlineSelection:(id)sender {
@@ -268,12 +271,6 @@
 }
 
 #pragma mark Notifications
-
-- (void)didOpenDocument:(NSNotification *)notification {
-  [self _updateWindowTitle];
-  [self showEntries];
-}
-
 - (void)showEntries {
   if(!self.entryViewController) {
     _entryViewController = [[MPEntryViewController alloc] init];
@@ -281,6 +278,4 @@
   [self _setContentViewController:self.entryViewController];
 }
 
-- (IBAction)changedFileType:(id)sender {
-}
 @end

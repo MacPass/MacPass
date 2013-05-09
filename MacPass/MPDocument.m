@@ -14,7 +14,10 @@
 #import "KdbPassword.h"
 #import "MPDatabaseVersion.h"
 
-@interface MPDocument ()
+@interface MPDocument () {
+@private
+  BOOL _isDecrypted;
+}
 
 @property (retain) KdbTree *tree;
 @property (retain) NSURL *file;
@@ -34,6 +37,7 @@
 - (id)initWithVersion:(MPDatabaseVersion)version {
   self = [super init];
   if(self) {
+    _isDecrypted = NO;
     switch(version) {
       case MPDatabaseVersion3:
         self.tree = [[[Kdb3Tree alloc] init] autorelease];
@@ -81,29 +85,10 @@
 - (BOOL)readFromURL:(NSURL *)url ofType:(NSString *)typeName error:(NSError **)outError {
   self.file = url;
   return YES;
-  // tell The window controller to display decrypt view
-//  - (void)openDocument:(id)sender {
-//    
-//    if(!self.passwordInputController) {
-//      self.passwordInputController = [[[MPPasswordInputController alloc] init] autorelease];
-//    }
-//    
-//    NSOpenPanel *openPanel = [NSOpenPanel openPanel];
-//    [openPanel setCanChooseDirectories:NO];
-//    [openPanel setCanChooseFiles:YES];
-//    [openPanel setCanCreateDirectories:NO];
-//    [openPanel setAllowsMultipleSelection:NO];
-//    [openPanel setAllowedFileTypes:@[ @"kdbx", @"kdb"]];
-//    [openPanel beginSheetModalForWindow:self.window completionHandler:^(NSInteger result){
-//      if(result == NSFileHandlingPanelOKButton) {
-//        NSURL *file = [[openPanel URLs] lastObject];
-//        self.passwordInputController.fileURL = file;
-//        [self _setContentViewController:self.passwordInputController];
-//      }
-//    }];
-//  }
-//  
-  
+}
+
+- (BOOL)isEntireFileLoaded {
+  return _isDecrypted;
 }
 
 - (BOOL)decryptWithPassword:(NSString *)password keyFileURL:(NSURL *)keyFileURL {
@@ -123,6 +108,8 @@
   else if( [self.tree isKindOfClass:[Kdb3Tree class]]) {
     self.version = MPDatabaseVersion3;
   }
+  _isDecrypted = YES;
+  return YES;
 }
 
 - (KdbPassword *)passwordHash {

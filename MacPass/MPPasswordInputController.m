@@ -7,7 +7,7 @@
 //
 
 #import "MPPasswordInputController.h"
-#import "MPDatabaseController.h"
+#import "MPDocument.h"
 #import "MPKeyfilePathControlDelegate.h"
 
 @interface MPPasswordInputController ()
@@ -18,7 +18,7 @@
 @property (assign) IBOutlet NSImageView *errorImageView;
 @property (assign) IBOutlet NSTextField *errorInfoTextField;
 
-- (IBAction)_open:(id)sender;
+- (IBAction)_decrypt:(id)sender;
 - (void)_showError;
 - (void)_reset;
 
@@ -31,7 +31,6 @@
 }
 
 - (void)dealloc {
-  [_fileURL release];
   [_pathControlDelegate release];
   [super dealloc];
 }
@@ -46,17 +45,16 @@
   return self.passwordTextField;
 }
 
-
-- (IBAction)_open:(id)sender {
-  NSString *password = [self.passwordTextField stringValue];
-  NSURL *keyfile = [self.keyPathControl URL];
-  [self _reset];
-  MPDatabaseDocument *document = [[MPDatabaseController defaultController] openDatabase:self.fileURL
-                                                                               password:password
-                                                                                keyfile:keyfile];
-  if(!document) {
-    [self _showError];
+- (IBAction)_decrypt:(id)sender {
+  MPDocument *document = [[NSDocumentController sharedDocumentController] currentDocument];
+  if(document) {
+    BOOL isOk = [document decryptWithPassword:[self.passwordTextField stringValue] keyFileURL:[self.keyPathControl URL]];
+    if( isOk) {
+      [self _showError];
+    }
   }
+  [self _reset];
+  // show entries
 }
 
 - (void)_reset {

@@ -9,8 +9,7 @@
 #import "MPPasswordEditViewController.h"
 #import "MPKeyfilePathControlDelegate.h"
 #import "MPDocumentWindowController.h"
-#import "MPDatabaseController.h"
-#import "MPDatabaseDocument.h"
+#import "MPDocument.h"
 
 @interface MPPasswordEditViewController ()
 @property (assign) IBOutlet NSSecureTextField *passwordTextField;
@@ -50,13 +49,13 @@
 }
 
 - (IBAction)_change:(id)sender {
-  MPDatabaseDocument *database = [MPDatabaseController defaultController].database;
-  database.key = [self.keyfilePathControl URL];
-  database.password = [self.passwordTextField stringValue];
-  [database save];
+  MPDocument *document = [[NSDocumentController sharedDocumentController] documentForWindow:[[self view] window]];
+  if(document) {
+    document.key = [self.keyfilePathControl URL];
+    document.password = [self.passwordTextField stringValue];
+  }
   MPDocumentWindowController *mainWindowController = (MPDocumentWindowController *)[[[self view] window] windowController];
   [mainWindowController showEntries];
-  // save automatically?
 }
 
 - (IBAction)_cancel:(id)sender {

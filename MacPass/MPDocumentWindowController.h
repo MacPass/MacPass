@@ -28,7 +28,7 @@
 
 
 - (void)showEntries;
-- (void)showMainWindow:(id)sender;
+- (void)showPasswordInput;
 - (void)performFindPanelAction:(id)sender;
 - (void)clearOutlineSelection:(id)sender;
 - (IBAction)editPassword:(id)sender;
