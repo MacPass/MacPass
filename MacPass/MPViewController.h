@@ -12,6 +12,8 @@
 
 - (void)didLoadView;
 - (NSResponder *)reconmendedFirstResponder;
+/* Returns the associated window controller */
+- (id)windowController;
 
 - (void)updateResponderChain;
 

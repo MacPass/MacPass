@@ -7,8 +7,7 @@
 //
 
 #import "MPOutlineDataSource.h"
-#import "MPDatabaseController.h"
-#import "MPDatabaseDocument.h"
+#import "MPDocument.h"
 #import "KdbLib.h"
 
 @implementation MPOutlineDataSource
@@ -25,8 +24,8 @@
 }
 - (id)outlineView:(NSOutlineView *)outlineView child:(NSInteger)index ofItem:(id)item {
   if(!item) {
-    MPDatabaseController *dbController = [MPDatabaseController defaultController];
-    return dbController.database.root;
+    MPDocument *document = [[[outlineView window] windowController] document];
+    return document.root;
   }
   if( [item isKindOfClass:[KdbGroup class]]) {
     KdbGroup *group = item;
@@ -38,8 +37,8 @@
 }
 - (BOOL)outlineView:(NSOutlineView *)outlineView isItemExpandable:(id)item {
   if(!item) {
-    MPDatabaseController *dbController = [MPDatabaseController defaultController];
-    return ([[dbController.database.root groups] count] > 0);
+    MPDocument *document = [[[outlineView window] windowController] document];
+    return ([[document.root groups] count] > 0);
   }
   if([item isKindOfClass:[KdbGroup class]])
   {

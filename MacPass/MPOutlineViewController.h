@@ -11,8 +11,11 @@
 @interface MPOutlineViewController : MPViewController
 
 - (void)clearSelection;
+- (void)showOutline;
+
 
 - (void)createGroup:(id)sender;
 - (void)createEntry:(id)sender;
 - (void)deleteEntry:(id)sender;
+
 @end

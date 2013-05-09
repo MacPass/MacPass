@@ -9,8 +9,7 @@
 #import "MPOutlineViewController.h"
 #import "MPOutlineViewDelegate.h"
 #import "MPOutlineDataSource.h"
-#import "MPDatabaseController.h"
-#import "MPDatabaseDocument.h"
+#import "MPDocument.h"
 #import "MPAppDelegate.h"
 #import "KdbLib.h"
 
@@ -23,7 +22,6 @@
 @property (retain) NSMenu *menu;
 
 
-- (void)_didOpenDocument:(NSNotification *)notification;
 - (NSMenu *)_contextMenu;
 - (KdbGroup *)_clickedOrSelectedGroup;
 
@@ -40,11 +38,6 @@
   if (self) {
     self.outlineDelegate = [[[MPOutlineViewDelegate alloc] init] autorelease];
     self.datasource = [[[MPOutlineDataSource alloc] init] autorelease];
-    
-    [[NSNotificationCenter defaultCenter] addObserver:self
-                                             selector:@selector(_didOpenDocument:)
-                                                 name:MPDatabaseControllerDidLoadDatabaseNotification
-                                               object:nil];
   }
   
   return self;
@@ -66,13 +59,10 @@
   [self.outlineView setAllowsEmptySelection:YES];
 }
 
-- (void)_didOpenDocument:(NSNotification *)notification {
-  [self.outlineView deselectAll:nil];
+- (void)showOutline {
   [self.outlineView reloadData];
-  MPDatabaseController *dbContoller = [MPDatabaseController defaultController];
-  if(dbContoller.database) {
-    [self.outlineView expandItem:dbContoller.database.root expandChildren:NO];
-  }
+  MPDocument *document = [[NSDocumentController sharedDocumentController] currentDocument];
+  [self.outlineView expandItem:document.root expandChildren:NO];
 }
 
 - (void)clearSelection {
@@ -91,7 +81,8 @@
 - (void)createGroup:(id)sender {
   KdbGroup *group = [self _clickedOrSelectedGroup];
   if(group) {
-    [[MPDatabaseController defaultController].database createGroup:group];
+    MPDocument *document = [[NSDocumentController sharedDocumentController] currentDocument];
+    [document createGroup:group];
     [self.outlineView reloadData];
   }
 }
@@ -99,7 +90,8 @@
 - (void)createEntry:(id)sender {
   KdbGroup *group = [self _clickedOrSelectedGroup];
   if(group) {
-    [[MPDatabaseController defaultController].database createEntry:group];
+    MPDocument *document = [[NSDocumentController sharedDocumentController] currentDocument];
+    [document createEntry:group];
   }
 }
 

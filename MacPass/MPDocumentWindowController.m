@@ -7,8 +7,7 @@
 //
 
 #import "MPDocumentWindowController.h"
-#import "MPDatabaseController.h"
-#import "MPDatabaseDocument.h"
+#import "MPDocument.h"
 #import "MPPasswordInputController.h"
 #import "MPEntryViewController.h"
 #import "MPPasswordEditViewController.h"
@@ -18,7 +17,10 @@
 #import "MPInspectorTabViewController.h"
 #import "MPAppDelegate.h"
 
-@interface MPDocumentWindowController ()
+@interface MPDocumentWindowController () {
+  @private
+  BOOL _needsDecryption;
+}
 
 @property (assign) IBOutlet NSView *outlineView;
 @property (assign) IBOutlet NSSplitView *splitView;
@@ -39,7 +41,6 @@
 @property (retain) MPMainWindowSplitViewDelegate *splitViewDelegate;
 
 - (void)_setContentViewController:(MPViewController *)viewController;
-- (void)_updateWindowTitle;
 
 /* window reszing and content checks */
 - (BOOL)_windowsIsLargeEnoughForInspectorView;
@@ -52,6 +53,7 @@
 -(id)init {
   self = [super initWithWindowNibName:@"MainWindow" owner:self];
   if( self ) {
+    _needsDecryption = NO;
     _toolbarDelegate = [[MPToolbarDelegate alloc] init];
     _outlineViewController = [[MPOutlineViewController alloc] init];
     _inspectorTabViewController = [[MPInspectorTabViewController alloc] init];
@@ -60,11 +62,6 @@
     
     [[NSBundle mainBundle] loadNibNamed:@"WelcomeView" owner:self topLevelObjects:NULL];
     [self.welcomeView setAutoresizingMask:NSViewWidthSizable | NSViewHeightSizable];
-    
-    [[NSNotificationCenter defaultCenter] addObserver:self
-                                             selector:@selector(didOpenDocument:)
-                                                 name:MPDatabaseControllerDidLoadDatabaseNotification
-                                               object:nil];
   }
   return self;
 }
@@ -91,7 +88,6 @@
 - (void)windowDidLoad
 {
   [super windowDidLoad];
-  [self _updateWindowTitle];
   
   [[self.welcomeText cell] setBackgroundStyle:NSBackgroundStyleRaised];
   CGFloat minWidht = MPMainWindowSplitViewDelegateMinimumContentWidth + MPMainWindowSplitViewDelegateMinimumOutlineWidth + [self.splitView dividerThickness];
@@ -122,6 +118,10 @@
   [self toggleInspector:nil];
   
   [self _setContentViewController:nil];
+  MPDocument *document = [self document];
+  if(!document.isDecrypted) {
+      [self showPasswordInput];
+  }
 }
 
 - (void)_setContentViewController:(MPViewController *)viewController {
@@ -156,17 +156,6 @@
    Set focus AFTER having added the view
    */
   [self.window makeFirstResponder:[viewController reconmendedFirstResponder]];
-}
-
-- (void)_updateWindowTitle {
-  if([MPDatabaseController defaultController].database) {
-    NSString *appName = [(MPAppDelegate *)[NSApp delegate] applicationName];
-    NSString *openFile = [[MPDatabaseController defaultController].database.file lastPathComponent];
-    [self.window setTitle:[NSString stringWithFormat:@"%@ - %@", appName, openFile]];
-  }
-  else {
-    [self.window setTitle:[(MPAppDelegate *)[NSApp delegate] applicationName]];
-  }
 }
 
 #pragma mark Actions
@@ -276,6 +265,7 @@
     _entryViewController = [[MPEntryViewController alloc] init];
   }
   [self _setContentViewController:self.entryViewController];
+  [self.outlineViewController showOutline];
 }
 
 @end

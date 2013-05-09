@@ -10,6 +10,7 @@
 #import "MPDatabaseVersion.h"
 
 @class KdbGroup;
+@class KdbEntry;
 
 @interface MPDocument : NSDocument
 
@@ -18,8 +19,12 @@
 @property (nonatomic,retain) NSString *password;
 @property (nonatomic, retain) NSURL *key;
 @property (assign, readonly) MPDatabaseVersion version;
+@property (assign, readonly) BOOL isDecrypted;
 
 - (id)initWithVersion:(MPDatabaseVersion)version;
 - (BOOL)decryptWithPassword:(NSString *)password keyFileURL:(NSURL *)keyFileURL;
+
+- (KdbGroup *)createGroup:(KdbGroup *)parent;
+- (KdbEntry *)createEntry:(KdbGroup *)parent;
 
 @end

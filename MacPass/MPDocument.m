@@ -14,15 +14,13 @@
 #import "KdbPassword.h"
 #import "MPDatabaseVersion.h"
 
-@interface MPDocument () {
-@private
-  BOOL _isDecrypted;
-}
+@interface MPDocument ()
 
 @property (retain) KdbTree *tree;
 @property (retain) NSURL *file;
 @property (nonatomic, readonly) KdbPassword *passwordHash;
 @property (assign) MPDatabaseVersion version;
+@property (assign) BOOL isDecrypted;
 
 @end
 
@@ -37,7 +35,7 @@
 - (id)initWithVersion:(MPDatabaseVersion)version {
   self = [super init];
   if(self) {
-    _isDecrypted = NO;
+    _isDecrypted = YES;
     switch(version) {
       case MPDatabaseVersion3:
         self.tree = [[[Kdb3Tree alloc] init] autorelease];
@@ -56,15 +54,13 @@
 }
 
 - (void) makeWindowControllers {
-  
   MPDocumentWindowController *windowController = [[MPDocumentWindowController alloc] init];
-  [self addWindowController:windowController];  
+  [self addWindowController:windowController];
 }
 
 - (void)windowControllerDidLoadNib:(NSWindowController *)aController
 {
   [super windowControllerDidLoadNib:aController];
-  // Add any code here that needs to be executed once the windowController has loaded the document's window.
 }
 
 - (BOOL)writeToURL:(NSURL *)url ofType:(NSString *)typeName error:(NSError **)outError {
@@ -84,6 +80,7 @@
 
 - (BOOL)readFromURL:(NSURL *)url ofType:(NSString *)typeName error:(NSError **)outError {
   self.file = url;
+  self.isDecrypted = NO;
   return YES;
 }
 
@@ -120,6 +117,24 @@
 + (BOOL)autosavesInPlace
 {
   return NO;
+}
+
+- (KdbGroup *)root {
+  return [self.tree root];
+}
+
+- (KdbEntry *)createEntry:(KdbGroup *)parent {
+  KdbEntry *newEntry = [self.tree createEntry:parent];
+  newEntry.title = NSLocalizedString(@"DEFAULT_ENTRY_TITLE", @"Title for a newly created entry");
+  [parent addEntry:newEntry];
+  return newEntry;
+}
+
+- (KdbGroup *)createGroup:(KdbGroup *)parent {
+  KdbGroup *newGroup = [self.tree createGroup:parent];
+  newGroup.name = NSLocalizedString(@"DEFAULT_GROUP_NAME", @"Title for a newly created group");
+  [parent addGroup:newGroup];
+  return newGroup;
 }
 
 @end

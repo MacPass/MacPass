@@ -7,6 +7,7 @@
 //
 
 #import "MPPasswordInputController.h"
+#import "MPDocumentWindowController.h"
 #import "MPDocument.h"
 #import "MPKeyfilePathControlDelegate.h"
 
@@ -46,15 +47,16 @@
 }
 
 - (IBAction)_decrypt:(id)sender {
-  MPDocument *document = [[NSDocumentController sharedDocumentController] currentDocument];
+  MPDocumentWindowController *windowController = (MPDocumentWindowController *)[[[self view] window] windowController];
+  MPDocument *document = [windowController document];
   if(document) {
     BOOL isOk = [document decryptWithPassword:[self.passwordTextField stringValue] keyFileURL:[self.keyPathControl URL]];
-    if( isOk) {
+    if(!isOk) {
       [self _showError];
     }
   }
   [self _reset];
-  // show entries
+  [windowController showEntries];
 }
 
 - (void)_reset {

@@ -71,7 +71,6 @@
 		4C669BA216760ED100DD0774 /* UUID.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C669B7B16760ED100DD0774 /* UUID.m */; };
 		4C69A73A16D589DF00EC1B1A /* MPGradientView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C69A73916D589DF00EC1B1A /* MPGradientView.m */; };
 		4C6B0E8C16C9B99B00A9ED23 /* PasswordInputView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4C6B0E8B16C9B99B00A9ED23 /* PasswordInputView.xib */; };
-		4C75CE3C16CB128700F61A4D /* MPDatabaseController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C75CE3B16CB128700F61A4D /* MPDatabaseController.m */; };
 		4C77547516E55FE800970E02 /* MPInspectorTabViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C77547416E55FE800970E02 /* MPInspectorTabViewController.m */; };
 		4C77547716E55FFC00970E02 /* InspectorTabView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4C77547616E55FFC00970E02 /* InspectorTabView.xib */; };
 		4C77E36715B84A240093A587 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4C77E36615B84A240093A587 /* Cocoa.framework */; };
@@ -103,7 +102,6 @@
 		4CAD748E15B88AC100104512 /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 4CAD748D15B88AC100104512 /* libz.dylib */; };
 		4CB9339916D3A0DD00A13B5D /* Credits.rtf in Resources */ = {isa = PBXBuildFile; fileRef = 4CB9339716D3A0DD00A13B5D /* Credits.rtf */; };
 		4CBA2ABA17074C07006D8139 /* MPSettingsHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CBA2AB917074C07006D8139 /* MPSettingsHelper.m */; };
-		4CBA981815BA0DB600721965 /* MPDatabaseDocument.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CBA981715BA0DB600721965 /* MPDatabaseDocument.m */; };
 		4CBFA240172B385D006090DF /* PasswordEditView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4CBFA23F172B385D006090DF /* PasswordEditView.xib */; };
 		4CC1AEBE16D4467C006D2AAB /* KdbTree+MPAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CC1AEBD16D4467C006D2AAB /* KdbTree+MPAdditions.m */; };
 		4CC6259115BA1C99002F5B11 /* MPOutlineViewDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CC6259015BA1C99002F5B11 /* MPOutlineViewDelegate.m */; };
@@ -241,8 +239,6 @@
 		4C69A73816D589DF00EC1B1A /* MPGradientView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MPGradientView.h; sourceTree = "<group>"; };
 		4C69A73916D589DF00EC1B1A /* MPGradientView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MPGradientView.m; sourceTree = "<group>"; };
 		4C6B0E8B16C9B99B00A9ED23 /* PasswordInputView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PasswordInputView.xib; sourceTree = "<group>"; };
-		4C75CE3A16CB128700F61A4D /* MPDatabaseController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MPDatabaseController.h; sourceTree = "<group>"; };
-		4C75CE3B16CB128700F61A4D /* MPDatabaseController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MPDatabaseController.m; sourceTree = "<group>"; };
 		4C77547316E55FE800970E02 /* MPInspectorTabViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MPInspectorTabViewController.h; sourceTree = "<group>"; };
 		4C77547416E55FE800970E02 /* MPInspectorTabViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MPInspectorTabViewController.m; sourceTree = "<group>"; };
 		4C77547616E55FFC00970E02 /* InspectorTabView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = InspectorTabView.xib; sourceTree = "<group>"; };
@@ -302,8 +298,6 @@
 		4CB9339816D3A0DD00A13B5D /* en */ = {isa = PBXFileReference; lastKnownFileType = text.rtf; name = en; path = en.lproj/Credits.rtf; sourceTree = "<group>"; };
 		4CBA2AB617074B59006D8139 /* MPSettingsHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MPSettingsHelper.h; sourceTree = "<group>"; };
 		4CBA2AB917074C07006D8139 /* MPSettingsHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MPSettingsHelper.m; sourceTree = "<group>"; };
-		4CBA981615BA0DB600721965 /* MPDatabaseDocument.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MPDatabaseDocument.h; sourceTree = "<group>"; };
-		4CBA981715BA0DB600721965 /* MPDatabaseDocument.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MPDatabaseDocument.m; sourceTree = "<group>"; };
 		4CBFA23F172B385D006090DF /* PasswordEditView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PasswordEditView.xib; sourceTree = "<group>"; };
 		4CC1AEBC16D4467C006D2AAB /* KdbTree+MPAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "KdbTree+MPAdditions.h"; sourceTree = "<group>"; };
 		4CC1AEBD16D4467C006D2AAB /* KdbTree+MPAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "KdbTree+MPAdditions.m"; sourceTree = "<group>"; };
@@ -425,8 +419,6 @@
 			children = (
 				4C37A83E15B8B474005EF8EE /* MPOutlineDataSource.h */,
 				4C37A83F15B8B474005EF8EE /* MPOutlineDataSource.m */,
-				4CBA981615BA0DB600721965 /* MPDatabaseDocument.h */,
-				4CBA981715BA0DB600721965 /* MPDatabaseDocument.m */,
 				6E719715172058BA00E4C5FC /* MPDatabaseVersion.h */,
 				4CE5B548173AFBA700207B39 /* MPDocument.h */,
 				4CE5B549173AFBA700207B39 /* MPDocument.m */,
@@ -759,8 +751,6 @@
 		4CE8247116E2E98200573141 /* Data Controller */ = {
 			isa = PBXGroup;
 			children = (
-				4C75CE3A16CB128700F61A4D /* MPDatabaseController.h */,
-				4C75CE3B16CB128700F61A4D /* MPDatabaseController.m */,
 				4C431BCB16E2A82700700A81 /* MPPasteBoardController.h */,
 				4C431BCC16E2A82700700A81 /* MPPasteBoardController.m */,
 			);
@@ -896,7 +886,6 @@
 				4CAD747E15B887FD00104512 /* DDXMLElement.m in Sources */,
 				4CAD747F15B887FD00104512 /* DDXMLNode.m in Sources */,
 				4C37A84015B8B474005EF8EE /* MPOutlineDataSource.m in Sources */,
-				4CBA981815BA0DB600721965 /* MPDatabaseDocument.m in Sources */,
 				4CC6259115BA1C99002F5B11 /* MPOutlineViewDelegate.m in Sources */,
 				4CA0B2F915BCAF6700654E32 /* MPGeneralSettingsController.m in Sources */,
 				4CA0B2FC15BCAF8600654E32 /* MPSettingsWindowController.m in Sources */,
@@ -936,7 +925,6 @@
 				4C669BA016760ED100DD0774 /* Salsa20RandomStream.m in Sources */,
 				4C669BA116760ED100DD0774 /* Utils.m in Sources */,
 				4C669BA216760ED100DD0774 /* UUID.m in Sources */,
-				4C75CE3C16CB128700F61A4D /* MPDatabaseController.m in Sources */,
 				4C2E382316D1421B00037A9D /* MPIconHelper.m in Sources */,
 				4C2E382616D1470200037A9D /* MPViewController.m in Sources */,
 				4C65FAE916D16DDB006E0577 /* MPPasswordInputController.m in Sources */,

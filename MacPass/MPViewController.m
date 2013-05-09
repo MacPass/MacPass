@@ -20,6 +20,10 @@
   // override
 }
 
+- (id)windowController {
+  return [[[self view] window] windowController];
+}
+
 - (NSResponder *)reconmendedFirstResponder {
   return nil;
 }

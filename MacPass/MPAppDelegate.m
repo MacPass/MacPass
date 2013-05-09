@@ -10,7 +10,6 @@
 
 #import "MPDocumentWindowController.h"
 #import "MPSettingsWindowController.h"
-#import "MPDatabaseController.h"
 #import "MPPasswordCreatorViewController.h"
 #import "MPActionHelper.h"
 #import "MPSettingsHelper.h"

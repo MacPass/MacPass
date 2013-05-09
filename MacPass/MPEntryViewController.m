@@ -9,8 +9,7 @@
 #import "MPEntryViewController.h"
 #import "MPAppDelegate.h"
 #import "MPOutlineViewDelegate.h"
-#import "MPDatabaseController.h"
-#import "MPDatabaseDocument.h"
+#import "MPDocument.h"
 #import "MPIconHelper.h"
 #import "MPDocumentWindowController.h"
 #import "MPPasteBoardController.h"
@@ -256,36 +255,31 @@ NSString *const _toggleFilterUsernameButton = @"SearchUsername";
 }
 
 - (void)updateFilter {
-  MPDatabaseDocument *openDatabase = [MPDatabaseController defaultController].database;
-  if(openDatabase) {
-    [self _showFilterBarAnimated:YES];
+  [self _showFilterBarAnimated:YES];
+  
+  dispatch_queue_t backgroundQueue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
+  dispatch_async(backgroundQueue, ^{
     
-    dispatch_queue_t backgroundQueue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
-    dispatch_async(backgroundQueue, ^{
-      
-      NSMutableArray *prediactes = [NSMutableArray arrayWithCapacity:3];
-      if( [self _shouldFilterTitles] ) {
-        [prediactes addObject:[NSPredicate predicateWithFormat:@"SELF.title CONTAINS[cd] %@", self.filter]];
-      }
-      if( [self _shouldFilterUsernames] ) {
-        [prediactes addObject:[NSPredicate predicateWithFormat:@"SELF.username CONTAINS[cd] %@", self.filter]];
-      }
-      if( [self _shouldFilterURLs] ) {
-        [prediactes addObject:[NSPredicate predicateWithFormat:@"SELF.url CONTAINS[cd] %@", self.filter]];
-      }
-      NSPredicate *fullFilter = [NSCompoundPredicate orPredicateWithSubpredicates:prediactes];
-      self.filteredEntries = [[openDatabase.root childEntries] filteredArrayUsingPredicate:fullFilter];
-      
-      dispatch_sync(dispatch_get_main_queue(), ^{
-        [self.entryArrayController setContent:self.filteredEntries];
-        [[self.entryTable tableColumnWithIdentifier:MPEntryTableParentColumnIdentifier] setHidden:NO];
-      });
+    NSMutableArray *prediactes = [NSMutableArray arrayWithCapacity:3];
+    if( [self _shouldFilterTitles] ) {
+      [prediactes addObject:[NSPredicate predicateWithFormat:@"SELF.title CONTAINS[cd] %@", self.filter]];
+    }
+    if( [self _shouldFilterUsernames] ) {
+      [prediactes addObject:[NSPredicate predicateWithFormat:@"SELF.username CONTAINS[cd] %@", self.filter]];
+    }
+    if( [self _shouldFilterURLs] ) {
+      [prediactes addObject:[NSPredicate predicateWithFormat:@"SELF.url CONTAINS[cd] %@", self.filter]];
+    }
+    NSPredicate *fullFilter = [NSCompoundPredicate orPredicateWithSubpredicates:prediactes];
+    MPDocument *document = [[self windowController] document];
+    self.filteredEntries = [[document.root childEntries] filteredArrayUsingPredicate:fullFilter];
+    
+    dispatch_sync(dispatch_get_main_queue(), ^{
+      [self.entryArrayController setContent:self.filteredEntries];
+      [[self.entryTable tableColumnWithIdentifier:MPEntryTableParentColumnIdentifier] setHidden:NO];
     });
-  }
-  else {
-    [self.entryArrayController setContent:nil];
-    self.filteredEntries = nil;
-  }
+  });
+  
 }
 
 - (void)setupFilterBar {
@@ -301,7 +295,7 @@ NSString *const _toggleFilterUsernameButton = @"SearchUsername";
     
     [self.filterSearchField setAction:@selector(updateFilter:)];
     [[self.filterSearchField cell] setSendsSearchStringImmediately:NO];
-  
+    
   }
 }
 

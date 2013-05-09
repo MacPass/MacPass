@@ -9,7 +9,6 @@
 #import "MPInspectorTabViewController.h"
 #import "MPEntryViewController.h"
 #import "MPOutlineViewDelegate.h"
-#import "MPDatabaseController.h"
 #import "MPShadowBox.h"
 #import "MPIconHelper.h"
 #import "MPPopupImageView.h"
