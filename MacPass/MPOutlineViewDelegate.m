@@ -57,9 +57,6 @@ NSString *const _MPOutlinveViewHeaderViewIdentifier = @"HeaderCell";
   NSOutlineView *outlineView = [notification object];
   KdbGroup *selectedGroup = [outlineView itemAtRow:[outlineView selectedRow]];
   self.selectedGroup = selectedGroup;
-#ifdef DEBUG
-  NSLog(@"Selected: %@", self.selectedGroup);
-#endif
   [[NSNotificationCenter defaultCenter] postNotificationName:MPOutlineViewDidChangeGroupSelection object:self userInfo:nil];
 }
 

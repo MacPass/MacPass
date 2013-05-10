@@ -21,6 +21,7 @@
 @property (nonatomic, readonly) KdbPassword *passwordHash;
 @property (assign) MPDatabaseVersion version;
 @property (assign) BOOL isDecrypted;
+@property (assign) BOOL isDirty;
 
 @end
 
@@ -49,6 +50,7 @@
     }
     KdbGroup *newGroup = [self.tree createGroup:self.tree.root];
     newGroup.name = @"Default";
+    self.tree.root = newGroup;
   }
   return self;
 }
@@ -126,6 +128,8 @@
 - (KdbEntry *)createEntry:(KdbGroup *)parent {
   KdbEntry *newEntry = [self.tree createEntry:parent];
   newEntry.title = NSLocalizedString(@"DEFAULT_ENTRY_TITLE", @"Title for a newly created entry");
+  [[[self undoManager] prepareWithInvocationTarget:self] deleteEntry:newEntry];
+  [[self undoManager] setActionName:NSLocalizedString(@"ADD_ENTRY_UNDO", @"Create Entry Undo")];
   [parent addEntry:newEntry];
   return newEntry;
 }
@@ -133,8 +137,26 @@
 - (KdbGroup *)createGroup:(KdbGroup *)parent {
   KdbGroup *newGroup = [self.tree createGroup:parent];
   newGroup.name = NSLocalizedString(@"DEFAULT_GROUP_NAME", @"Title for a newly created group");
+  
+  [[[self undoManager] prepareWithInvocationTarget:self] deleteGroup:newGroup];
+  [[self undoManager] setActionName:NSLocalizedString(@"ADD_GROUP_UNDO", @"Create Group Undo")];
   [parent addGroup:newGroup];
+	  
   return newGroup;
+}
+
+- (void)deleteEntry:(KdbEntry *)entry {
+  if(entry.parent) {
+    [entry.parent removeEntry:entry];
+    self.isDirty = YES;
+  }
+}
+
+- (void)deleteGroup:(KdbGroup *)group {
+  if(group.parent) {
+    [group.parent removeGroup:group];
+    self.isDirty = YES;
+  }
 }
 
 @end

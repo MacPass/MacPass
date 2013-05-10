@@ -454,6 +454,7 @@ NSString *const _toggleFilterUsernameButton = @"SearchUsername";
   KdbEntry *selectedEntry = [self _clickedOrSelectedEntry];
   if(selectedEntry) {
     [self.entryArrayController removeObject:selectedEntry];
+    [selectedEntry.parent removeEntry:selectedEntry];
   }
 }
 

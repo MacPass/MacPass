@@ -80,18 +80,23 @@
 
 - (void)createGroup:(id)sender {
   KdbGroup *group = [self _clickedOrSelectedGroup];
-  if(group) {
-    MPDocument *document = [[NSDocumentController sharedDocumentController] currentDocument];
-    [document createGroup:group];
-    [self.outlineView reloadData];
+  MPDocument *document = [[NSDocumentController sharedDocumentController] currentDocument];
+  if(!group) {
+    group = document.root;
   }
+  [document createGroup:group];
+  [self.outlineView reloadData];
 }
 
 - (void)createEntry:(id)sender {
   KdbGroup *group = [self _clickedOrSelectedGroup];
+  if(!group.parent) {
+    return; // Entries are not allowed in root group
+  }
   if(group) {
     MPDocument *document = [[NSDocumentController sharedDocumentController] currentDocument];
     [document createEntry:group];
+    // Notify the the entry view about changes
   }
 }
 

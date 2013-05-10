@@ -26,5 +26,7 @@
 
 - (KdbGroup *)createGroup:(KdbGroup *)parent;
 - (KdbEntry *)createEntry:(KdbGroup *)parent;
+- (void)deleteEntry:(KdbEntry *)entry;
+- (void)deleteGroup:(KdbGroup *)group;
 
 @end
