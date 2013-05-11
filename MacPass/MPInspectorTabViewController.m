@@ -14,6 +14,7 @@
 #import "MPPopupImageView.h"
 #import "MPIconSelectViewController.h"
 #import "KdbLib.h"
+#import "KdbEntry+Undo.h"
 
 @interface MPInspectorTabViewController ()
 
@@ -52,8 +53,6 @@
 
 - (void)dealloc {
   [[NSNotificationCenter defaultCenter] removeObserver:self];
-  [_selectedGroup release];
-  [_selectedEntry release];
   [_iconPopup release];
   [super dealloc];
 }
@@ -99,7 +98,8 @@
   [self.itemNameTextfield setStringValue:self.selectedEntry.title];
   [self.itemImageView setImage:[MPIconHelper icon:(MPIconType)self.selectedEntry.image ]];
   [self.passwordTextField setStringValue:self.selectedEntry.password];
-  [self.usernameTextField setStringValue:self.selectedEntry.username];
+  [self.usernameTextField bind:NSValueBinding toObject:self.selectedEntry withKeyPath:@"usernameUndoable" options:nil];
+  //[self.usernameTextField setStringValue:self.selectedEntry.username];
   [self.titleOrNameLabel setStringValue:NSLocalizedString(@"TITLE",@"")];
   [self.titleTextField setStringValue:self.selectedEntry.title];
   [self.URLTextField setStringValue:self.selectedEntry.url];

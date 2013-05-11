@@ -33,8 +33,6 @@ APPKIT_EXTERN NSString *const MPDocumentGroupKey;
 - (id)initWithVersion:(MPDatabaseVersion)version;
 - (BOOL)decryptWithPassword:(NSString *)password keyFileURL:(NSURL *)keyFileURL;
 
-
-
 - (KdbGroup *)createGroup:(KdbGroup *)parent;
 - (KdbEntry *)createEntry:(KdbGroup *)parent;
 

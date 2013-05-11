@@ -91,8 +91,6 @@
 		4CA0B2F915BCAF6700654E32 /* MPGeneralSettingsController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CA0B2F815BCAF6700654E32 /* MPGeneralSettingsController.m */; };
 		4CA0B2FC15BCAF8600654E32 /* MPSettingsWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CA0B2FB15BCAF8600654E32 /* MPSettingsWindowController.m */; };
 		4CAC6F7816D2B54800D79D5E /* MPMainWindowSplitViewDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CAC6F7716D2B54800D79D5E /* MPMainWindowSplitViewDelegate.m */; };
-		4CACB72C16F7C9B600D47C9E /* KdbEntry+Copying.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CACB72B16F7C9B600D47C9E /* KdbEntry+Copying.m */; };
-		4CACB72F16F7CA5100D47C9E /* Kdb4Entry+Copying.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CACB72E16F7CA5100D47C9E /* Kdb4Entry+Copying.m */; };
 		4CAD747B15B887FD00104512 /* DDXMLElementAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CAD745715B887FD00104512 /* DDXMLElementAdditions.m */; settings = {COMPILER_FLAGS = "-fobjc-arc"; }; };
 		4CAD747C15B887FD00104512 /* NSString+DDXML.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CAD745A15B887FD00104512 /* NSString+DDXML.m */; settings = {COMPILER_FLAGS = "-fobjc-arc"; }; };
 		4CAD747D15B887FD00104512 /* DDXMLDocument.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CAD745D15B887FD00104512 /* DDXMLDocument.m */; settings = {COMPILER_FLAGS = "-fobjc-arc"; }; };
@@ -105,6 +103,7 @@
 		4CBFA240172B385D006090DF /* PasswordEditView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4CBFA23F172B385D006090DF /* PasswordEditView.xib */; };
 		4CC1AEBE16D4467C006D2AAB /* KdbTree+MPAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CC1AEBD16D4467C006D2AAB /* KdbTree+MPAdditions.m */; };
 		4CC6259115BA1C99002F5B11 /* MPOutlineViewDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CC6259015BA1C99002F5B11 /* MPOutlineViewDelegate.m */; };
+		4CCF9754173EFBA500460BD2 /* KdbEntry+Undo.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CCF9753173EFBA500460BD2 /* KdbEntry+Undo.m */; };
 		4CD78ABC16D155FF00768A1D /* 07_NotepadTemplate.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 4CD78AB716D155FF00768A1D /* 07_NotepadTemplate.pdf */; };
 		4CD78ABD16D155FF00768A1D /* 08_SocketTemplate.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 4CD78AB816D155FF00768A1D /* 08_SocketTemplate.pdf */; };
 		4CD78ABE16D155FF00768A1D /* 09_IdentityTemplate.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 4CD78AB916D155FF00768A1D /* 09_IdentityTemplate.pdf */; };
@@ -277,10 +276,6 @@
 		4CA0B30D15BCB6FD00654E32 /* MPSettingsTab.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MPSettingsTab.h; sourceTree = "<group>"; };
 		4CAC6F7616D2B54800D79D5E /* MPMainWindowSplitViewDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MPMainWindowSplitViewDelegate.h; sourceTree = "<group>"; };
 		4CAC6F7716D2B54800D79D5E /* MPMainWindowSplitViewDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MPMainWindowSplitViewDelegate.m; sourceTree = "<group>"; };
-		4CACB72A16F7C9B600D47C9E /* KdbEntry+Copying.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "KdbEntry+Copying.h"; sourceTree = "<group>"; };
-		4CACB72B16F7C9B600D47C9E /* KdbEntry+Copying.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "KdbEntry+Copying.m"; sourceTree = "<group>"; };
-		4CACB72D16F7CA5100D47C9E /* Kdb4Entry+Copying.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Kdb4Entry+Copying.h"; sourceTree = "<group>"; };
-		4CACB72E16F7CA5100D47C9E /* Kdb4Entry+Copying.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "Kdb4Entry+Copying.m"; sourceTree = "<group>"; };
 		4CAD745615B887FD00104512 /* DDXMLElementAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DDXMLElementAdditions.h; sourceTree = "<group>"; };
 		4CAD745715B887FD00104512 /* DDXMLElementAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DDXMLElementAdditions.m; sourceTree = "<group>"; };
 		4CAD745915B887FD00104512 /* NSString+DDXML.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+DDXML.h"; sourceTree = "<group>"; };
@@ -303,6 +298,8 @@
 		4CC1AEBD16D4467C006D2AAB /* KdbTree+MPAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "KdbTree+MPAdditions.m"; sourceTree = "<group>"; };
 		4CC6258F15BA1C99002F5B11 /* MPOutlineViewDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MPOutlineViewDelegate.h; sourceTree = "<group>"; };
 		4CC6259015BA1C99002F5B11 /* MPOutlineViewDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MPOutlineViewDelegate.m; sourceTree = "<group>"; };
+		4CCF9752173EFBA500460BD2 /* KdbEntry+Undo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "KdbEntry+Undo.h"; sourceTree = "<group>"; };
+		4CCF9753173EFBA500460BD2 /* KdbEntry+Undo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "KdbEntry+Undo.m"; sourceTree = "<group>"; };
 		4CD78AB716D155FF00768A1D /* 07_NotepadTemplate.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = 07_NotepadTemplate.pdf; sourceTree = "<group>"; };
 		4CD78AB816D155FF00768A1D /* 08_SocketTemplate.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = 08_SocketTemplate.pdf; sourceTree = "<group>"; };
 		4CD78AB916D155FF00768A1D /* 09_IdentityTemplate.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = 09_IdentityTemplate.pdf; sourceTree = "<group>"; };
@@ -376,10 +373,8 @@
 				4C2C4C2B16D3BE3700D49295 /* KdbGroup+MPAdditions.m */,
 				4CC1AEBC16D4467C006D2AAB /* KdbTree+MPAdditions.h */,
 				4CC1AEBD16D4467C006D2AAB /* KdbTree+MPAdditions.m */,
-				4CACB72A16F7C9B600D47C9E /* KdbEntry+Copying.h */,
-				4CACB72B16F7C9B600D47C9E /* KdbEntry+Copying.m */,
-				4CACB72D16F7CA5100D47C9E /* Kdb4Entry+Copying.h */,
-				4CACB72E16F7CA5100D47C9E /* Kdb4Entry+Copying.m */,
+				4CCF9752173EFBA500460BD2 /* KdbEntry+Undo.h */,
+				4CCF9753173EFBA500460BD2 /* KdbEntry+Undo.m */,
 			);
 			name = KeePassLibAdditions;
 			sourceTree = "<group>";
@@ -947,8 +942,6 @@
 				4C811C8316ECD06E00C4BAC6 /* MPKeyfilePathControlDelegate.m in Sources */,
 				4CE39ABF16ECE34A000FE29D /* MPIconSelectViewController.m in Sources */,
 				4CE39AC416ECE4F7000FE29D /* MPPopupImageView.m in Sources */,
-				4CACB72C16F7C9B600D47C9E /* KdbEntry+Copying.m in Sources */,
-				4CACB72F16F7CA5100D47C9E /* Kdb4Entry+Copying.m in Sources */,
 				4C46B88517063A070046109A /* NSString+MPPasswordCreation.m in Sources */,
 				4C46B88817063A170046109A /* NSString+MPPasswordAnalysis.m in Sources */,
 				4C46B88B1706D16E0046109A /* NSData+MPRandomBytes.m in Sources */,
@@ -956,6 +949,7 @@
 				4C5A11FE1708DE8700223D8A /* MPPasswordCreatorViewController.m in Sources */,
 				4C7E832A172DE2F2002493D8 /* MPPasswordEditViewController.m in Sources */,
 				4CE5B54B173AFBA700207B39 /* MPDocument.m in Sources */,
+				4CCF9754173EFBA500460BD2 /* KdbEntry+Undo.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

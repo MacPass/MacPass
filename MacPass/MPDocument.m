@@ -149,7 +149,7 @@ NSString *const MPDocumentGroupKey = @"MPDocumentGroupKey";
   newGroup.name = NSLocalizedString(@"DEFAULT_GROUP_NAME", @"Title for a newly created group");
   
   [[self undoManager] registerUndoWithTarget:self selector:@selector(deleteGroup:) object:newGroup];
-  [[self undoManager] setActionName:NSLocalizedString(@"ADD_GROUP_UNDO", @"Create Group Undo")];
+  [[self undoManager] setActionName:NSLocalizedString(@"UNDO_ADD_GROUP", @"Create Group Undo")];
   [parent addGroup:newGroup];
   NSDictionary *userInfo = @{ MPDocumentGroupKey:newGroup };
   [[NSNotificationCenter defaultCenter] postNotificationName:MPDocumentDidAddGroupNotification object:self userInfo:userInfo];
@@ -176,7 +176,7 @@ NSString *const MPDocumentGroupKey = @"MPDocumentGroupKey";
 - (void)deleteGroup:(KdbGroup *)group {
   if(group.parent) {
     [[self undoManager] registerUndoWithTarget:self selector:@selector(addGroup:) object:@[group.parent, group]];
-    [[self undoManager] setActionName:NSLocalizedString(@"DELETE_GROUP_UNDO", @"Create Group Undo")];
+    [[self undoManager] setActionName:NSLocalizedString(@"UNDO_DELETE_GROUP", @"Create Group Undo")];
     [group.parent removeGroup:group];
     NSDictionary *userInfo = @{ MPDocumentEntryKey:group };
     [[NSNotificationCenter defaultCenter] postNotificationName:MPDocumentDidDelteGroupNotification object:self userInfo:userInfo];
@@ -184,5 +184,6 @@ NSString *const MPDocumentGroupKey = @"MPDocumentGroupKey";
     self.isDirty = YES;
   }
 }
+
 
 @end

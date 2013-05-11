@@ -69,7 +69,6 @@
 - (void)dealloc {
   [[NSNotificationCenter defaultCenter] removeObserver:self];
   [_welcomeView release];
-  [_welcomeText release];
   [_toolbar release];
   
   [_passwordInputController release];
