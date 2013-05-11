@@ -22,6 +22,7 @@
 @property (retain) NSMenu *menu;
 
 
+- (void)_didUpdateData:(NSNotification *)notification;
 - (NSMenu *)_contextMenu;
 - (KdbGroup *)_clickedOrSelectedGroup;
 
@@ -38,6 +39,18 @@
   if (self) {
     self.outlineDelegate = [[[MPOutlineViewDelegate alloc] init] autorelease];
     self.datasource = [[[MPOutlineDataSource alloc] init] autorelease];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(_didUpdateData:)
+                                                 name:MPDocumentDidAddGroupNotification
+                                               object:[[self windowController] document]];
+    
+
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(_didUpdateData:)
+                                                 name:MPDocumentDidDelteGroupNotification
+                                               object:[[self windowController] document]];
+    
   }
   
   return self;
@@ -114,6 +127,10 @@
     row = [self.outlineView selectedRow];
   }
   return [self.outlineView itemAtRow:row];
+}
+
+- (void)_didUpdateData:(NSNotification *)notification {
+  [self.outlineView reloadData];
 }
 
 

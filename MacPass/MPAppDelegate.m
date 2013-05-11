@@ -57,7 +57,7 @@
     [[NSBundle mainBundle] loadNibNamed:@"PasswordCreatorWindow"owner:self topLevelObjects:nil];
   }
   if(!self.passwordCreatorController) {
-    self.passwordCreatorController = [[MPPasswordCreatorViewController alloc] init];
+    self.passwordCreatorController = [[[MPPasswordCreatorViewController alloc] init] autorelease];
   }
   [self.passwordCreatorWindow setContentView:[self.passwordCreatorController view]];
   [self.passwordCreatorWindow makeKeyAndOrderFront:self.passwordCreatorWindow];

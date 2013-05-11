@@ -36,7 +36,7 @@
 }
 
 - (void)dealloc {
-  [self.pathControlDelegate release];
+  [_pathControlDelegate release];
   [super dealloc];
 }
 

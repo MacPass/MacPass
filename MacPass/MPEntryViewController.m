@@ -151,6 +151,14 @@ NSString *const _toggleFilterUsernameButton = @"SearchUsername";
   [passwordColumn setIdentifier:MPEntryTablePasswordColumnIdentifier];
   [urlColumn setIdentifier:MPEntryTableURLColumnIdentifier];
   
+	NSSortDescriptor *titleColumSortDescriptor = [NSSortDescriptor sortDescriptorWithKey:@"title" ascending:YES selector:@selector(compare:)];
+  NSSortDescriptor *userNameSortDescriptor = [NSSortDescriptor sortDescriptorWithKey:@"username" ascending:YES selector:@selector(compare:)];
+  NSSortDescriptor *urlSortDescriptor = [NSSortDescriptor sortDescriptorWithKey:@"url" ascending:YES selector:@selector(compare:)];
+  
+  [titleColumn setSortDescriptorPrototype:titleColumSortDescriptor];
+  [userNameColumn setSortDescriptorPrototype:userNameSortDescriptor];
+  [urlColumn setSortDescriptorPrototype:urlSortDescriptor];
+  
   [[parentColumn headerCell] setStringValue:@"Group"];
   [[titleColumn headerCell] setStringValue:@"Title"];
   [[userNameColumn headerCell] setStringValue:@"Username"];
@@ -158,6 +166,8 @@ NSString *const _toggleFilterUsernameButton = @"SearchUsername";
   [[urlColumn headerCell] setStringValue:@"URL"];
   
   [self.entryTable bind:NSContentBinding toObject:self.entryArrayController withKeyPath:@"arrangedObjects" options:nil];
+  [self.entryTable bind:NSSortDescriptorsBinding toObject:self.entryArrayController withKeyPath:@"sortDescriptors" options:nil];
+
   [parentColumn setHidden:YES];
 }
 #pragma mark NSTableViewDelgate

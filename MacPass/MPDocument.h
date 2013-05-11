@@ -9,6 +9,15 @@
 #import <Cocoa/Cocoa.h>
 #import "MPDatabaseVersion.h"
 
+
+APPKIT_EXTERN NSString *const MPDocumentDidAddGroupNotification;
+APPKIT_EXTERN NSString *const MPDocumentDidDelteGroupNotification;
+APPKIT_EXTERN NSString *const MPDocumentDidAddEntryNotification;
+APPKIT_EXTERN NSString *const MPDocumentDidDeleteEntryNotification;
+
+APPKIT_EXTERN NSString *const MPDocumentEntryKey;
+APPKIT_EXTERN NSString *const MPDocumentGroupKey;
+
 @class KdbGroup;
 @class KdbEntry;
 
@@ -24,8 +33,12 @@
 - (id)initWithVersion:(MPDatabaseVersion)version;
 - (BOOL)decryptWithPassword:(NSString *)password keyFileURL:(NSURL *)keyFileURL;
 
+
+
 - (KdbGroup *)createGroup:(KdbGroup *)parent;
 - (KdbEntry *)createEntry:(KdbGroup *)parent;
+
+- (void)addGroup:(NSArray *)groupAndParent;
 - (void)deleteEntry:(KdbEntry *)entry;
 - (void)deleteGroup:(KdbGroup *)group;
 

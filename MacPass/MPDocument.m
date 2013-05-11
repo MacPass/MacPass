@@ -14,6 +14,15 @@
 #import "KdbPassword.h"
 #import "MPDatabaseVersion.h"
 
+NSString *const MPDocumentDidAddGroupNotification = @"MPDocumentDidAddGroupNotification";
+NSString *const MPDocumentDidDelteGroupNotification = @"MPDocumentDidDelteGroupNotification";
+NSString *const MPDocumentDidAddEntryNotification = @"MPDocumentDidAddEntryNotification";
+NSString *const MPDocumentDidDeleteEntryNotification = @"MPDocumentDidDeleteEntryNotification";
+
+NSString *const MPDocumentEntryKey = @"MPDocumentEntryKey";
+NSString *const MPDocumentGroupKey = @"MPDocumentGroupKey";
+
+
 @interface MPDocument ()
 
 @property (retain) KdbTree *tree;
@@ -58,6 +67,7 @@
 - (void) makeWindowControllers {
   MPDocumentWindowController *windowController = [[MPDocumentWindowController alloc] init];
   [self addWindowController:windowController];
+  [windowController release];
 }
 
 - (void)windowControllerDidLoadNib:(NSWindowController *)aController
@@ -128,7 +138,7 @@
 - (KdbEntry *)createEntry:(KdbGroup *)parent {
   KdbEntry *newEntry = [self.tree createEntry:parent];
   newEntry.title = NSLocalizedString(@"DEFAULT_ENTRY_TITLE", @"Title for a newly created entry");
-  [[[self undoManager] prepareWithInvocationTarget:self] deleteEntry:newEntry];
+  [[self undoManager] registerUndoWithTarget:self selector:@selector(deleteEntry:) object:newEntry];
   [[self undoManager] setActionName:NSLocalizedString(@"ADD_ENTRY_UNDO", @"Create Entry Undo")];
   [parent addEntry:newEntry];
   return newEntry;
@@ -138,11 +148,22 @@
   KdbGroup *newGroup = [self.tree createGroup:parent];
   newGroup.name = NSLocalizedString(@"DEFAULT_GROUP_NAME", @"Title for a newly created group");
   
-  [[[self undoManager] prepareWithInvocationTarget:self] deleteGroup:newGroup];
+  [[self undoManager] registerUndoWithTarget:self selector:@selector(deleteGroup:) object:newGroup];
   [[self undoManager] setActionName:NSLocalizedString(@"ADD_GROUP_UNDO", @"Create Group Undo")];
   [parent addGroup:newGroup];
+  NSDictionary *userInfo = @{ MPDocumentGroupKey:newGroup };
+  [[NSNotificationCenter defaultCenter] postNotificationName:MPDocumentDidAddGroupNotification object:self userInfo:userInfo];
+  self.isDirty = YES;
 	  
   return newGroup;
+}
+
+- (void)addGroup:(NSArray *)groupAndParent{
+  KdbGroup *parent = groupAndParent[0];
+  KdbGroup *group = groupAndParent[1];
+  NSDictionary *userInfo = @{ MPDocumentGroupKey:group };
+  [[NSNotificationCenter defaultCenter] postNotificationName:MPDocumentDidAddGroupNotification object:self userInfo:userInfo];
+  [parent addGroup:group];
 }
 
 - (void)deleteEntry:(KdbEntry *)entry {
@@ -154,7 +175,12 @@
 
 - (void)deleteGroup:(KdbGroup *)group {
   if(group.parent) {
+    [[self undoManager] registerUndoWithTarget:self selector:@selector(addGroup:) object:@[group.parent, group]];
+    [[self undoManager] setActionName:NSLocalizedString(@"DELETE_GROUP_UNDO", @"Create Group Undo")];
     [group.parent removeGroup:group];
+    NSDictionary *userInfo = @{ MPDocumentEntryKey:group };
+    [[NSNotificationCenter defaultCenter] postNotificationName:MPDocumentDidDelteGroupNotification object:self userInfo:userInfo];
+    
     self.isDirty = YES;
   }
 }
