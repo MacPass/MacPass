@@ -139,7 +139,7 @@ NSString *const MPDocumentGroupKey = @"MPDocumentGroupKey";
   KdbEntry *newEntry = [self.tree createEntry:parent];
   newEntry.title = NSLocalizedString(@"DEFAULT_ENTRY_TITLE", @"Title for a newly created entry");
   [[self undoManager] registerUndoWithTarget:self selector:@selector(deleteEntry:) object:newEntry];
-  [[self undoManager] setActionName:NSLocalizedString(@"ADD_ENTRY_UNDO", @"Create Entry Undo")];
+  [[self undoManager] setActionName:NSLocalizedString(@"UNDO_ADD_ENTRY", @"Create Entry Undo")];
   [parent addEntry:newEntry];
   return newEntry;
 }
