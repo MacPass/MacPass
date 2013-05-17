@@ -88,7 +88,7 @@
                                                         toItem:nil
                                                      attribute:NSLayoutAttributeNotAnAttribute
                                                     multiplier:1
-                                                      constant:300];
+                                                      constant:200];
   self.hideConstraint = [NSLayoutConstraint constraintWithItem:[self view] attribute:NSLayoutAttributeWidth
                                                      relatedBy:NSLayoutRelationEqual
                                                         toItem:nil

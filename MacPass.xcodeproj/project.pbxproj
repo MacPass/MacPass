@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		4C1DDCDD1711ECEB00C98DA3 /* PasswordCreatorWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4C1DDCDC1711ECEB00C98DA3 /* PasswordCreatorWindow.xib */; };
+		4C22040D1746ED160054C916 /* KdbGroup+Undo.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C22040C1746ED160054C916 /* KdbGroup+Undo.m */; };
 		4C25D58516CF0F8800F6806C /* WelcomeView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4C25D58416CF0F8800F6806C /* WelcomeView.xib */; };
 		4C25D58716CF0FAA00F6806C /* EntryView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4C25D58616CF0FAA00F6806C /* EntryView.xib */; };
 		4C2C4C2C16D3BE3700D49295 /* KdbGroup+MPAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C2C4C2B16D3BE3700D49295 /* KdbGroup+MPAdditions.m */; };
@@ -121,6 +122,8 @@
 
 /* Begin PBXFileReference section */
 		4C1DDCDC1711ECEB00C98DA3 /* PasswordCreatorWindow.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PasswordCreatorWindow.xib; sourceTree = "<group>"; };
+		4C22040B1746ED160054C916 /* KdbGroup+Undo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "KdbGroup+Undo.h"; sourceTree = "<group>"; };
+		4C22040C1746ED160054C916 /* KdbGroup+Undo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "KdbGroup+Undo.m"; sourceTree = "<group>"; };
 		4C25D58416CF0F8800F6806C /* WelcomeView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = WelcomeView.xib; sourceTree = "<group>"; };
 		4C25D58616CF0FAA00F6806C /* EntryView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = EntryView.xib; sourceTree = "<group>"; };
 		4C2C4C2A16D3BE3700D49295 /* KdbGroup+MPAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "KdbGroup+MPAdditions.h"; sourceTree = "<group>"; };
@@ -372,6 +375,8 @@
 				4CC1AEBD16D4467C006D2AAB /* KdbTree+MPAdditions.m */,
 				4CCF9752173EFBA500460BD2 /* KdbEntry+Undo.h */,
 				4CCF9753173EFBA500460BD2 /* KdbEntry+Undo.m */,
+				4C22040B1746ED160054C916 /* KdbGroup+Undo.h */,
+				4C22040C1746ED160054C916 /* KdbGroup+Undo.m */,
 			);
 			name = KeePassLibAdditions;
 			sourceTree = "<group>";
@@ -944,6 +949,7 @@
 				4C7E832A172DE2F2002493D8 /* MPPasswordEditViewController.m in Sources */,
 				4CE5B54B173AFBA700207B39 /* MPDocument.m in Sources */,
 				4CCF9754173EFBA500460BD2 /* KdbEntry+Undo.m in Sources */,
+				4C22040D1746ED160054C916 /* KdbGroup+Undo.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

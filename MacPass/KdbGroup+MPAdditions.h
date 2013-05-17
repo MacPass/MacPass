@@ -14,4 +14,6 @@
 
 - (NSArray *)childEntries;
 
+- (void)moveEntry:(KdbEntry *)entry toIndex:(NSUInteger)index;
+
 @end

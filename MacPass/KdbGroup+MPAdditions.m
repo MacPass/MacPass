@@ -27,4 +27,16 @@
   return childEntries;
 }
 
+- (void)moveEntry:(KdbEntry *)entry toIndex:(NSUInteger)index {
+  if([entries count] > index) {
+    return;
+  }
+  NSUInteger oldIndex = [entries indexOfObject:entry];
+  if(oldIndex == NSNotFound) {
+    return;
+  }
+  [entries exchangeObjectAtIndex:oldIndex withObjectAtIndex:index];
+}
+
+
 @end
