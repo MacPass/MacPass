@@ -110,7 +110,7 @@
   NSLayoutConstraint *remove = [self isVisible] ? self.showConstraint : self.hideConstraint;
   [[self view] removeConstraint:remove];
   [[self view] addConstraint:add];
-  [[self view] layout];
+  [[[self view] window] layoutIfNeeded];
 }
 
 - (void)_updateContent {
