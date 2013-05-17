@@ -41,10 +41,8 @@
 @property (retain) MPMainWindowSplitViewDelegate *splitViewDelegate;
 
 - (void)_setContentViewController:(MPViewController *)viewController;
+- (void)_setOutlineVisible:(BOOL)isVisible;
 
-/* window reszing and content checks */
-- (BOOL)_windowsIsLargeEnoughForInspectorView;
-- (void)_resizeWindowForInspectorView;
 
 @end
 
@@ -57,18 +55,13 @@
     _toolbarDelegate = [[MPToolbarDelegate alloc] init];
     _outlineViewController = [[MPOutlineViewController alloc] init];
     _inspectorTabViewController = [[MPInspectorTabViewController alloc] init];
-    _splitViewDelegate = [[MPMainWindowSplitViewDelegate alloc] init];
     _passwordEditController = [[MPPasswordEditViewController alloc] init];
-    
-    [[NSBundle mainBundle] loadNibNamed:@"WelcomeView" owner:self topLevelObjects:NULL];
-    [self.welcomeView setAutoresizingMask:NSViewWidthSizable | NSViewHeightSizable];
   }
   return self;
 }
 
 - (void)dealloc {
   [[NSNotificationCenter defaultCenter] removeObserver:self];
-  [_welcomeView release];
   [_toolbar release];
   
   [_passwordInputController release];
@@ -87,10 +80,6 @@
 - (void)windowDidLoad
 {
   [super windowDidLoad];
-  
-  [[self.welcomeText cell] setBackgroundStyle:NSBackgroundStyleRaised];
-  CGFloat minWidht = MPMainWindowSplitViewDelegateMinimumContentWidth + MPMainWindowSplitViewDelegateMinimumOutlineWidth + [self.splitView dividerThickness];
-  [self.window setMinSize:NSMakeSize( minWidht, 400)];
   
   _toolbar = [[NSToolbar alloc] initWithIdentifier:@"MainWindowToolbar"];
   [self.toolbar setAllowsUserCustomization:YES];
@@ -113,13 +102,13 @@
   [self.splitView replaceSubview:self.inspectorView with:[self.inspectorTabViewController view]];
   [self.inspectorTabViewController updateResponderChain];
   
-  [self.splitView adjustSubviews];
-  [self toggleInspector:nil];
-  
-  [self _setContentViewController:nil];
+  [self _setOutlineVisible:NO];
   MPDocument *document = [self document];
   if(!document.isDecrypted) {
       [self showPasswordInput];
+  }
+  else {
+    [self editPassword:nil];
   }
 }
 
@@ -157,36 +146,31 @@
   [self.window makeFirstResponder:[viewController reconmendedFirstResponder]];
 }
 
+- (void)_setOutlineVisible:(BOOL)isVisible {
+  self.outlineViewController.isVisible = isVisible;
+}
+
 #pragma mark Actions
 
 - (void)toggleInspector:(id)sender {
-  NSView *inspectorView = [self.splitView subviews][MPSplitViewInspectorViewIndex];
-  const BOOL collapsed = [self.splitView isSubviewCollapsed:inspectorView];
-  if(collapsed) {
-    if( NO == [self _windowsIsLargeEnoughForInspectorView]) {
-      [self _resizeWindowForInspectorView];
-    }
-    CGFloat splitterPosition = [self.splitView frame].size.width - MPMainWindowSplitViewDelegateMinimumInspectorWidth;
-    [self.splitView setPosition:splitterPosition ofDividerAtIndex:MPSplitViewInspectorDividerIndex];
+  if(self.inspectorTabViewController) {
+    [self.inspectorTabViewController toggleVisible];
   }
-  else {
-    CGFloat splitterPosition = [self.splitView frame].size.width;
-    [self.splitView setPosition:splitterPosition ofDividerAtIndex:MPSplitViewInspectorDividerIndex];
-  }
-  [inspectorView setHidden:!collapsed];
 }
 
 - (void)performFindPanelAction:(id)sender {
   [self.entryViewController showFilter:sender];
 }
 
+
+
 - (void)toggleOutlineView:(id)sender {
-  
+  [self _setOutlineVisible:!self.outlineViewController.isVisible];
 }
 
 - (BOOL)validateMenuItem:(NSMenuItem *)menuItem {
   SEL menuAction = [menuItem action];
-  if(menuAction == @selector(toggleOutlineView:)) {
+  if(menuAction == @selector(main:)) {
     NSView *outlineView = [self.splitView subviews][MPSplitViewOutlineViewIndex];
     BOOL outlineIsHidden = [self.splitView isSubviewCollapsed:outlineView];
     NSString *title = outlineIsHidden ? NSLocalizedString(@"SHOW_OUTLINE_VIEW", @"") : NSLocalizedString(@"HIDE_OUTLINE_VIEW", @"Hide the Outline View");
@@ -240,24 +224,6 @@
   return nil;
 }
 
-- (BOOL)_windowsIsLargeEnoughForInspectorView {
-  return ( MPMainWindowSplitViewDelegateMinimumInspectorWidth
-          < ([self.splitView frame].size.width
-             - MPMainWindowSplitViewDelegateMinimumContentWidth
-             - MPMainWindowSplitViewDelegateMinimumOutlineWidth
-             - 2 * [self.splitView dividerThickness]) );
-}
-
-- (void)_resizeWindowForInspectorView {
-  NSRect frame = [self.window frame];
-  NSView *outlinView = [self.splitView subviews][MPSplitViewOutlineViewIndex];
-  NSView *contentView = [self.splitView subviews][MPSplitViewContentViewIndex];
-  
-  CGFloat outlineWidth = [self.splitView isSubviewCollapsed:outlinView] ? 0 : [outlinView frame].size.width;
-  frame.size.width = outlineWidth + [contentView frame].size.width + MPMainWindowSplitViewDelegateMinimumInspectorWidth;
-  [self.window setFrame:frame display:YES animate:YES];
-}
-
 #pragma mark Notifications
 - (void)showEntries {
   if(!self.entryViewController) {
@@ -265,6 +231,7 @@
   }
   [self _setContentViewController:self.entryViewController];
   [self.outlineViewController showOutline];
+  [self _setOutlineVisible:YES];
 }
 
 @end

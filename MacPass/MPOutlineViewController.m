@@ -20,6 +20,8 @@
 @property (retain) MPOutlineDataSource *datasource;
 @property (retain) MPOutlineViewDelegate *outlineDelegate;
 @property (retain) NSMenu *menu;
+@property (retain) NSLayoutConstraint *showConstraint;
+@property (retain) NSLayoutConstraint *hideConstraint;
 
 
 - (void)_didUpdateData:(NSNotification *)notification;
@@ -37,6 +39,7 @@
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil {
   self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
   if (self) {
+    _isVisible = YES;
     self.outlineDelegate = [[[MPOutlineViewDelegate alloc] init] autorelease];
     self.datasource = [[[MPOutlineDataSource alloc] init] autorelease];
     
@@ -45,7 +48,7 @@
                                                  name:MPDocumentDidAddGroupNotification
                                                object:[[self windowController] document]];
     
-
+    
     [[NSNotificationCenter defaultCenter] addObserver:self
                                              selector:@selector(_didUpdateData:)
                                                  name:MPDocumentDidDelteGroupNotification
@@ -70,6 +73,24 @@
   [self.outlineView setDelegate:self.outlineDelegate];
   [self.outlineView setMenu:[self _contextMenu]];
   [self.outlineView setAllowsEmptySelection:YES];
+  
+  self.showConstraint = [NSLayoutConstraint constraintWithItem:[self view]
+                                                     attribute:NSLayoutAttributeWidth
+                                                     relatedBy:NSLayoutRelationGreaterThanOrEqual
+                                                        toItem:nil
+                                                     attribute:NSLayoutAttributeNotAnAttribute
+                                                    multiplier:1
+                                                      constant:200];
+  
+  self.hideConstraint = [NSLayoutConstraint constraintWithItem:[self view]
+                                                     attribute:NSLayoutAttributeWidth
+                                                     relatedBy:NSLayoutRelationEqual
+                                                        toItem:nil
+                                                     attribute:NSLayoutAttributeNotAnAttribute
+                                                    multiplier:1
+                                                      constant:0];
+  [[self view] addConstraint:self.showConstraint];
+  
 }
 
 - (void)showOutline {
@@ -81,6 +102,16 @@
 - (void)clearSelection {
   [self.outlineView deselectAll:nil];
 }
+
+- (void)setIsVisible:(BOOL)isVisible {
+  if(_isVisible == isVisible) {
+    return; // nichts zu tun
+  }
+  [[self view] removeConstraint:(isVisible ? self.hideConstraint : self.showConstraint)];
+  [[self view] addConstraint:(isVisible ? self.showConstraint : self.hideConstraint)];
+  _isVisible = isVisible;
+}
+
 
 - (NSMenu *)_contextMenu {
   NSMenu *menu = [[NSMenu alloc] init];

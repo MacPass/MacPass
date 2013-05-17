@@ -36,6 +36,5 @@
  Clears the Search filter
  */
 - (void)toggleInspector:(id)sender;
-- (void)toggleOutlineView:(id)sender;
 
 @end

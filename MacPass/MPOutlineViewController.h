@@ -13,6 +13,7 @@
 @interface MPOutlineViewController : MPViewController
 
 @property (retain, readonly) MPOutlineViewDelegate *outlineDelegate;
+@property (assign, nonatomic) BOOL isVisible;
 
 - (void)clearSelection;
 - (void)showOutline;

@@ -16,13 +16,17 @@
 #import "KdbLib.h"
 #import "KdbEntry+Undo.h"
 
-@interface MPInspectorTabViewController ()
+@interface MPInspectorTabViewController () {
+  BOOL _visible;
+}
 
 @property (assign) NSUInteger selectedTabIndex;
 @property (assign, nonatomic) KdbEntry *selectedEntry;
 @property (assign, nonatomic) KdbGroup *selectedGroup;
 @property (assign) BOOL showsEntry;
 @property (retain) NSPopover *iconPopup;
+@property (retain) NSLayoutConstraint *showConstraint;
+@property (retain) NSLayoutConstraint *hideConstraint;
 
 - (void)_didChangeSelectedEntry:(NSNotification *)notification;
 - (void)_didChangeSelectedGroup:(NSNotification *)notification;
@@ -79,7 +83,31 @@
                                                name:MPOutlineViewDidChangeGroupSelection
                                              object:nil];
   
+  self.showConstraint = [NSLayoutConstraint constraintWithItem:[self view] attribute:NSLayoutAttributeWidth
+                                                     relatedBy:NSLayoutRelationGreaterThanOrEqual
+                                                        toItem:nil
+                                                     attribute:NSLayoutAttributeNotAnAttribute
+                                                    multiplier:1
+                                                      constant:300];
+  self.hideConstraint = [NSLayoutConstraint constraintWithItem:[self view] attribute:NSLayoutAttributeWidth
+                                                     relatedBy:NSLayoutRelationEqual
+                                                        toItem:nil
+                                                     attribute:NSLayoutAttributeNotAnAttribute
+                                                    multiplier:1
+                                                      constant:0];
+  
+  [self.view addConstraint:self.showConstraint];
+  
   [self _clearContent];
+}
+
+- (void)toggleVisible {
+  const BOOL isVisible = [[self view] frame].size.width > 0;
+  NSLayoutConstraint *add = isVisible ? self.hideConstraint : self.showConstraint;
+  NSLayoutConstraint *remove = isVisible ? self.showConstraint : self.hideConstraint;
+  [[self view] removeConstraint:remove];
+  [[self view] addConstraint:add];
+  [[self view] layout];
 }
 
 - (void)_updateContent {

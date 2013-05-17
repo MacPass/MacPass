@@ -169,6 +169,16 @@ NSString *const _toggleFilterUsernameButton = @"SearchUsername";
   [self.entryTable bind:NSSortDescriptorsBinding toObject:self.entryArrayController withKeyPath:@"sortDescriptors" options:nil];
 
   [parentColumn setHidden:YES];
+  
+  
+  NSLayoutConstraint *widthConstraint = [NSLayoutConstraint constraintWithItem:[self view]
+                                                                     attribute:NSLayoutAttributeWidth
+                                                                     relatedBy:NSLayoutRelationGreaterThanOrEqual
+                                                                        toItem:nil
+                                                                     attribute:NSLayoutAttributeNotAnAttribute
+                                                                    multiplier:1
+                                                                      constant:300];
+  [[self view] addConstraint:widthConstraint];
 }
 #pragma mark NSTableViewDelgate
 
