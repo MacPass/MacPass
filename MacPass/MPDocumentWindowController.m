@@ -13,7 +13,6 @@
 #import "MPPasswordEditViewController.h"
 #import "MPToolbarDelegate.h"
 #import "MPOutlineViewController.h"
-#import "MPMainWindowSplitViewDelegate.h"
 #import "MPInspectorTabViewController.h"
 #import "MPAppDelegate.h"
 
@@ -38,7 +37,6 @@
 @property (retain) MPInspectorTabViewController *inspectorTabViewController;
 
 @property (retain) MPToolbarDelegate *toolbarDelegate;
-@property (retain) MPMainWindowSplitViewDelegate *splitViewDelegate;
 
 - (void)_setContentViewController:(MPViewController *)viewController;
 - (void)_setOutlineVisible:(BOOL)isVisible;
@@ -71,7 +69,6 @@
   [_creationViewController release];
   
   [_toolbarDelegate release];
-  [_splitViewDelegate release];
   [super dealloc];
 }
 
@@ -85,8 +82,6 @@
   [self.toolbar setAllowsUserCustomization:YES];
   [self.toolbar setDelegate:self.toolbarDelegate];
   [self.window setToolbar:self.toolbar];
-  
-  [self.splitView setDelegate:self.splitViewDelegate];
   
   /* Add outlineview */
   const NSRect outlineFrame = [self.outlineView frame];
@@ -171,17 +166,13 @@
 - (BOOL)validateMenuItem:(NSMenuItem *)menuItem {
   SEL menuAction = [menuItem action];
   if(menuAction == @selector(main:)) {
-    NSView *outlineView = [self.splitView subviews][MPSplitViewOutlineViewIndex];
-    BOOL outlineIsHidden = [self.splitView isSubviewCollapsed:outlineView];
-    NSString *title = outlineIsHidden ? NSLocalizedString(@"SHOW_OUTLINE_VIEW", @"") : NSLocalizedString(@"HIDE_OUTLINE_VIEW", @"Hide the Outline View");
+    NSString *title = self.outlineViewController.isVisible ? NSLocalizedString(@"SHOW_OUTLINE_VIEW", @"") : NSLocalizedString(@"HIDE_OUTLINE_VIEW", @"Hide the Outline View");
     
     [menuItem setTitle:title];
     return YES;
   }
   if( menuAction == @selector(toggleInspector:) ) {
-    NSView *inspectorView = [self.splitView subviews][MPSplitViewInspectorViewIndex];
-    BOOL inspectorIsHidden = [self.splitView isSubviewCollapsed:inspectorView];
-    NSString *title = inspectorIsHidden ? NSLocalizedString(@"SHOW_INSPECTOR", @"Show the Inspector") : NSLocalizedString(@"HIDE_INSPECTOR", @"Hide the Inspector");
+    NSString *title = [self.inspectorTabViewController isVisible] ? NSLocalizedString(@"SHOW_INSPECTOR", @"Show the Inspector") : NSLocalizedString(@"HIDE_INSPECTOR", @"Hide the Inspector");
     
     [menuItem setTitle:title];
     return YES;

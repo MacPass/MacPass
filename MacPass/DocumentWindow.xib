@@ -80,6 +80,7 @@
 									<string key="NSFrame">{{527, 0}, {200, 449}}</string>
 									<reference key="NSSuperview" ref="947682332"/>
 									<reference key="NSWindow"/>
+									<reference key="NSNextKeyView"/>
 									<string key="NSReuseIdentifierKey">_NS:9</string>
 									<string key="NSClassName">NSView</string>
 								</object>
@@ -91,6 +92,17 @@
 							<string key="NSReuseIdentifierKey">_NS:9</string>
 							<bool key="NSIsVertical">YES</bool>
 							<int key="NSDividerStyle">2</int>
+							<object class="NSMutableDictionary" key="NSHoldingPriorities">
+								<bool key="EncodedWithXMLCoder">YES</bool>
+								<array key="dict.sortedKeys">
+									<integer value="0"/>
+									<integer value="2"/>
+								</array>
+								<array key="dict.values">
+									<real value="248"/>
+									<real value="249"/>
+								</array>
+							</object>
 						</object>
 					</array>
 					<string key="NSFrameSize">{727, 449}</string>

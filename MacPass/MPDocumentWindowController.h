@@ -26,7 +26,6 @@
 @property (readonly, retain) MPInspectorTabViewController *inspectorTabViewController;
 @property (readonly, retain) MPCreationViewController *creationViewController;
 
-
 - (void)showEntries;
 - (void)showPasswordInput;
 - (void)performFindPanelAction:(id)sender;

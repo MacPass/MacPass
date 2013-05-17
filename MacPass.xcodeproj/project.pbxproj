@@ -90,7 +90,6 @@
 		4CA0B2F015BCADC800654E32 /* GeneralSettings.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4CA0B2EF15BCADC800654E32 /* GeneralSettings.xib */; };
 		4CA0B2F915BCAF6700654E32 /* MPGeneralSettingsController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CA0B2F815BCAF6700654E32 /* MPGeneralSettingsController.m */; };
 		4CA0B2FC15BCAF8600654E32 /* MPSettingsWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CA0B2FB15BCAF8600654E32 /* MPSettingsWindowController.m */; };
-		4CAC6F7816D2B54800D79D5E /* MPMainWindowSplitViewDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CAC6F7716D2B54800D79D5E /* MPMainWindowSplitViewDelegate.m */; };
 		4CAD747B15B887FD00104512 /* DDXMLElementAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CAD745715B887FD00104512 /* DDXMLElementAdditions.m */; settings = {COMPILER_FLAGS = "-fobjc-arc"; }; };
 		4CAD747C15B887FD00104512 /* NSString+DDXML.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CAD745A15B887FD00104512 /* NSString+DDXML.m */; settings = {COMPILER_FLAGS = "-fobjc-arc"; }; };
 		4CAD747D15B887FD00104512 /* DDXMLDocument.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CAD745D15B887FD00104512 /* DDXMLDocument.m */; settings = {COMPILER_FLAGS = "-fobjc-arc"; }; };
@@ -274,8 +273,6 @@
 		4CA0B2FA15BCAF8600654E32 /* MPSettingsWindowController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MPSettingsWindowController.h; sourceTree = "<group>"; };
 		4CA0B2FB15BCAF8600654E32 /* MPSettingsWindowController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MPSettingsWindowController.m; sourceTree = "<group>"; };
 		4CA0B30D15BCB6FD00654E32 /* MPSettingsTab.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MPSettingsTab.h; sourceTree = "<group>"; };
-		4CAC6F7616D2B54800D79D5E /* MPMainWindowSplitViewDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MPMainWindowSplitViewDelegate.h; sourceTree = "<group>"; };
-		4CAC6F7716D2B54800D79D5E /* MPMainWindowSplitViewDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MPMainWindowSplitViewDelegate.m; sourceTree = "<group>"; };
 		4CAD745615B887FD00104512 /* DDXMLElementAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DDXMLElementAdditions.h; sourceTree = "<group>"; };
 		4CAD745715B887FD00104512 /* DDXMLElementAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DDXMLElementAdditions.m; sourceTree = "<group>"; };
 		4CAD745915B887FD00104512 /* NSString+DDXML.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+DDXML.h"; sourceTree = "<group>"; };
@@ -401,8 +398,6 @@
 				4CC6259015BA1C99002F5B11 /* MPOutlineViewDelegate.m */,
 				4C3BD51316D276F800389F1F /* MPToolbarDelegate.h */,
 				4C3BD51416D276F800389F1F /* MPToolbarDelegate.m */,
-				4CAC6F7616D2B54800D79D5E /* MPMainWindowSplitViewDelegate.h */,
-				4CAC6F7716D2B54800D79D5E /* MPMainWindowSplitViewDelegate.m */,
 				4C811C8116ECD06E00C4BAC6 /* MPKeyfilePathControlDelegate.h */,
 				4C811C8216ECD06E00C4BAC6 /* MPKeyfilePathControlDelegate.m */,
 			);
@@ -925,7 +920,6 @@
 				4C65FAE916D16DDB006E0577 /* MPPasswordInputController.m in Sources */,
 				4CDF01A316D1B76700D0AC08 /* MPEntryViewController.m in Sources */,
 				4C3BD51516D276F800389F1F /* MPToolbarDelegate.m in Sources */,
-				4CAC6F7816D2B54800D79D5E /* MPMainWindowSplitViewDelegate.m in Sources */,
 				4C61EA0316D2FD0800AC519E /* MPOutlineViewController.m in Sources */,
 				4C2C4C2C16D3BE3700D49295 /* KdbGroup+MPAdditions.m in Sources */,
 				4CC1AEBE16D4467C006D2AAB /* KdbTree+MPAdditions.m in Sources */,

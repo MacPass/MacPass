@@ -101,10 +101,13 @@
   [self _clearContent];
 }
 
+- (BOOL)isVisible {
+  return [[self view] frame].size.width > 0;
+}
+
 - (void)toggleVisible {
-  const BOOL isVisible = [[self view] frame].size.width > 0;
-  NSLayoutConstraint *add = isVisible ? self.hideConstraint : self.showConstraint;
-  NSLayoutConstraint *remove = isVisible ? self.showConstraint : self.hideConstraint;
+  NSLayoutConstraint *add = [self isVisible] ? self.hideConstraint : self.showConstraint;
+  NSLayoutConstraint *remove = [self isVisible] ? self.showConstraint : self.hideConstraint;
   [[self view] removeConstraint:remove];
   [[self view] addConstraint:add];
   [[self view] layout];
