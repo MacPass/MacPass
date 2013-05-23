@@ -16,6 +16,7 @@
 #import "MPPasteBoardController.h"
 #import "MPOverlayWindowController.h"
 #import "KdbGroup+MPAdditions.h"
+#import "KdbEntry+Undo.h"
 
 NSString *const MPDidChangeSelectedEntryNotification = @"com.macpass.MPDidChangeSelectedEntryNotification";
 
@@ -472,12 +473,12 @@ NSString *const _toggleFilterUsernameButton = @"SearchUsername";
   }
 }
 
+- (void)createEntry:(id)sender {
+  // TODO:
+}
+
 - (void)deleteEntry:(id)sender {
-  KdbEntry *selectedEntry = [self _clickedOrSelectedEntry];
-  if(selectedEntry) {
-    [self.entryArrayController removeObject:selectedEntry];
-    [selectedEntry.parent removeEntry:selectedEntry];
-  }
+  // TODO:
 }
 
 - (void)_toggleFilterSpace:(id)sender {

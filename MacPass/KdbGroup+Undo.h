@@ -10,4 +10,9 @@
 
 @interface KdbGroup (Undo)
 
++ (NSUndoManager *)undoManager;
+
+- (void)removeEntryUndoable:(KdbEntry *)entry;
+- (void)addEntryUndoable:(KdbEntry *)entry;
+
 @end

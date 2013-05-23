@@ -6,13 +6,20 @@ KeePass can be used via Mono on OS X but lacks vital functionality and feels slu
 
 This is an attempt to create an OS X port that should at least be able to read KeePass files.
 
+Status
+------
+
+The Project is in heavy development and it's likely to take some time till it reaches a usable state.
+Beware that I'm going to shift things around so stuff is going to break. A lot.
+
+
 Alternatives
 ------------
 
 Currently there is an alpha Version available of [KeePassX](http://www.keepassx.org).
 It's Qt based KeePass manager, than can handle KeePass 1 and 2 containers rather nicely.
 Compared to running KeePass with Mono it very fast and remarkably stable for an alpha relaese.
-Feel free to give it a try.
+Feel free to give it a try. The biggest draw-back is it's inablity to create passwords via a wizzard.
 
 What does it look like?
 -----------------------

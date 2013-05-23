@@ -83,17 +83,19 @@
   [self.toolbar setDelegate:self.toolbarDelegate];
   [self.window setToolbar:self.toolbar];
   
+  [self.splitView setTranslatesAutoresizingMaskIntoConstraints:NO];
+  
   /* Add outlineview */
-  const NSRect outlineFrame = [self.outlineView frame];
-  [self.outlineViewController.view setFrame:outlineFrame];
-  [self.outlineViewController.view setAutoresizingMask:NSViewWidthSizable | NSViewHeightSizable];
+  //const NSRect outlineFrame = [self.outlineView frame];
+  //[self.outlineViewController.view setFrame:outlineFrame];
+  //[self.outlineViewController.view setAutoresizingMask:NSViewWidthSizable | NSViewHeightSizable];
   [self.splitView replaceSubview:self.outlineView with:[self.outlineViewController view]];
   [self.outlineViewController updateResponderChain];
   
   /* Add inspector view */
-  const NSRect inspectorFrame = [self.inspectorView frame];
-  [self.inspectorTabViewController.view setFrame:inspectorFrame];
-  [self.inspectorTabViewController.view setAutoresizesSubviews:NSViewWidthSizable | NSViewHeightSizable ];
+  //const NSRect inspectorFrame = [self.inspectorView frame];
+  //[self.inspectorTabViewController.view setFrame:inspectorFrame];
+  //[self.inspectorTabViewController.view setAutoresizesSubviews:NSViewWidthSizable | NSViewHeightSizable ];
   [self.splitView replaceSubview:self.inspectorView with:[self.inspectorTabViewController view]];
   [self.inspectorTabViewController updateResponderChain];
   

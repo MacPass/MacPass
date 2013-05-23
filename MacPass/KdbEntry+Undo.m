@@ -11,6 +11,10 @@
 
 @implementation KdbEntry (Undo)
 
++ (NSUndoManager *)undoManager {
+  return [[[NSDocumentController sharedDocumentController] currentDocument] undoManager];
+}
+
 - (NSString *)titleUndoable {
   return [self title];
 }
@@ -33,37 +37,32 @@
 
 
 - (void)setTitleUndoable:(NSString *)title {
-  NSDocument *document = [[NSDocumentController sharedDocumentController] currentDocument];
-  [[document undoManager] registerUndoWithTarget:self selector:@selector(setTitleUndoable:) object:self.title];
-  [[document undoManager] setActionName:NSLocalizedString(@"UNDO_SET_TITLE", "Undo set title")];
+  [[KdbEntry undoManager] registerUndoWithTarget:self selector:@selector(setTitleUndoable:) object:self.title];
+  [[KdbEntry undoManager] setActionName:NSLocalizedString(@"UNDO_SET_TITLE", "Undo set title")];
   [self setTitle:title];
 }
 
 - (void)setUsernameUndoable:(NSString *)username {
-  NSDocument *document = [[NSDocumentController sharedDocumentController] currentDocument];
-  [[document undoManager] registerUndoWithTarget:self selector:@selector(setUsernameUndoable:) object:self.username];
-  [[document undoManager] setActionName:NSLocalizedString(@"UNDO_SET_USERNAME", "Undo set username")];
+  [[KdbEntry undoManager] registerUndoWithTarget:self selector:@selector(setUsernameUndoable:) object:self.username];
+  [[KdbEntry undoManager] setActionName:NSLocalizedString(@"UNDO_SET_USERNAME", "Undo set username")];
   [self setUsername:username];
 }
 
 - (void)setPasswordUndoable:(NSString *)password {
-  NSDocument *document = [[NSDocumentController sharedDocumentController] currentDocument];
-  [[document undoManager] registerUndoWithTarget:self selector:@selector(setTitleUndoable:) object:self.password];
-  [[document undoManager] setActionName:NSLocalizedString(@"UNDO_SET_PASSWORT", "Undo set password")];
+  [[KdbEntry undoManager] registerUndoWithTarget:self selector:@selector(setTitleUndoable:) object:self.password];
+  [[KdbEntry undoManager] setActionName:NSLocalizedString(@"UNDO_SET_PASSWORT", "Undo set password")];
   [self setPassword:password];
 }
 
 - (void)setUrlUndoable:(NSString *)url {
-  NSDocument *document = [[NSDocumentController sharedDocumentController] currentDocument];
-  [[document undoManager] registerUndoWithTarget:self selector:@selector(setTitleUndoable:) object:self.url];
-  [[document undoManager] setActionName:NSLocalizedString(@"UNDO_SET_URL", "Undo set URL")];
+  [[KdbEntry undoManager] registerUndoWithTarget:self selector:@selector(setTitleUndoable:) object:self.url];
+  [[KdbEntry undoManager] setActionName:NSLocalizedString(@"UNDO_SET_URL", "Undo set URL")];
   [self setUrl:url];
 }
 
 - (void)setNotesUndoable:(NSString *)notes {
-  NSDocument *document = [[NSDocumentController sharedDocumentController] currentDocument];
-  [[document undoManager] registerUndoWithTarget:self selector:@selector(setTitleUndoable:) object:self.notes];
-  [[document undoManager] setActionName:NSLocalizedString(@"UNDO_SET_NOTES", "Undo set notes")];
+  [[KdbEntry undoManager] registerUndoWithTarget:self selector:@selector(setTitleUndoable:) object:self.notes];
+  [[KdbEntry undoManager] setActionName:NSLocalizedString(@"UNDO_SET_NOTES", "Undo set notes")];
   [self setNotes:notes];
 }
 
@@ -73,9 +72,8 @@
   }
   NSUInteger iIndex = [index unsignedIntegerValue];
   NSNumber *oldIndex = @([self.parent.entries indexOfObject:self]);
-  NSDocument *document = [[NSDocumentController sharedDocumentController] currentDocument];
-  [[document undoManager] registerUndoWithTarget:self selector:@selector(moveToIndexUndoable:) object:oldIndex];
-  [[document undoManager] setActionName:NSLocalizedString(@"UNDO_SET_POSITION", "Undo set entry position")];
+  [[KdbEntry undoManager] registerUndoWithTarget:self selector:@selector(moveToIndexUndoable:) object:oldIndex];
+  [[KdbEntry undoManager] setActionName:NSLocalizedString(@"UNDO_SET_POSITION", "Undo set entry position")];
 
   [self.parent moveEntry:self toIndex:iIndex];
 }
@@ -87,9 +85,8 @@
   if(!self.parent || !newGroup) {
     return;
   }
-  NSDocument *document = [[NSDocumentController sharedDocumentController] currentDocument];
-  [[document undoManager] registerUndoWithTarget:self selector:@selector(moveToGroupUndoable:) object:self.parent];
-  [[document undoManager] setActionName:NSLocalizedString(@"UNDO_MOVE_ENTRY", "Undo move entry to group")];
+  [[KdbEntry undoManager] registerUndoWithTarget:self selector:@selector(moveToGroupUndoable:) object:self.parent];
+  [[KdbEntry undoManager] setActionName:NSLocalizedString(@"UNDO_MOVE_ENTRY", "Undo move entry to group")];
   [self.parent moveEntry:self toGroup:newGroup];
 }
 @end

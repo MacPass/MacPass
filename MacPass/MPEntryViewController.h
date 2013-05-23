@@ -49,6 +49,7 @@ typedef enum {
 - (void)openURL:(id)sender;
 
 /* Entry Handling*/
+- (void)createEntry:(id)sender;
 - (void)deleteEntry:(id)sender;
 
 @end

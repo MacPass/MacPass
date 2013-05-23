@@ -10,6 +10,8 @@
 
 @interface KdbEntry (Undo)
 
++ (NSUndoManager *)undoManager;
+
 - (NSString *)titleUndoable;
 - (NSString *)usernameUndoable;
 - (NSString *)passwordUndoable;
