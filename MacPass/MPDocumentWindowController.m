@@ -15,6 +15,7 @@
 #import "MPOutlineViewController.h"
 #import "MPInspectorTabViewController.h"
 #import "MPAppDelegate.h"
+#import "DMSplitView.h"
 
 @interface MPDocumentWindowController () {
   @private
@@ -47,7 +48,7 @@
 @implementation MPDocumentWindowController
 
 -(id)init {
-  self = [super initWithWindowNibName:@"MainWindow" owner:self];
+  self = [super initWithWindowNibName:@"DocumentWindow" owner:self];
   if( self ) {
     _needsDecryption = NO;
     _toolbarDelegate = [[MPToolbarDelegate alloc] init];
@@ -86,17 +87,16 @@
   [self.splitView setTranslatesAutoresizingMaskIntoConstraints:NO];
   
   /* Add outlineview */
-  //const NSRect outlineFrame = [self.outlineView frame];
-  //[self.outlineViewController.view setFrame:outlineFrame];
-  //[self.outlineViewController.view setAutoresizingMask:NSViewWidthSizable | NSViewHeightSizable];
+  const NSRect outlineFrame = [self.outlineView frame];
+  [self.outlineViewController.view setFrame:outlineFrame];
+  [self.outlineViewController.view setAutoresizingMask:NSViewWidthSizable | NSViewHeightSizable];
   [self.splitView replaceSubview:self.outlineView with:[self.outlineViewController view]];
   [self.outlineViewController updateResponderChain];
   
   /* Add inspector view */
-  //const NSRect inspectorFrame = [self.inspectorView frame];
-  //[self.inspectorTabViewController.view setFrame:inspectorFrame];
-  //[self.inspectorTabViewController.view setAutoresizesSubviews:NSViewWidthSizable | NSViewHeightSizable ];
-  [self.splitView replaceSubview:self.inspectorView with:[self.inspectorTabViewController view]];
+  const NSRect inspectorFrame = [self.inspectorView frame];
+  [self.inspectorTabViewController.view setFrame:inspectorFrame];
+  //[self.splitView replaceSubview:self.inspectorView with:[self.inspectorTabViewController view]];
   [self.inspectorTabViewController updateResponderChain];
   
   [self _setOutlineVisible:NO];
@@ -150,19 +150,17 @@
 #pragma mark Actions
 
 - (void)toggleInspector:(id)sender {
-  if(self.inspectorTabViewController) {
-    [self.inspectorTabViewController toggleVisible];
-  }
+  //if(self.inspectorTabViewController) {
+  //  [self.inspectorTabViewController toggleVisible];
+  //}
 }
 
 - (void)performFindPanelAction:(id)sender {
   [self.entryViewController showFilter:sender];
 }
 
-
-
 - (void)toggleOutlineView:(id)sender {
-  [self _setOutlineVisible:!self.outlineViewController.isVisible];
+ 
 }
 
 - (BOOL)validateMenuItem:(NSMenuItem *)menuItem {

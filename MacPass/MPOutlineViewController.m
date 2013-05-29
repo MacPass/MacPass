@@ -20,8 +20,8 @@
 @property (retain) MPOutlineDataSource *datasource;
 @property (retain) MPOutlineViewDelegate *outlineDelegate;
 @property (retain) NSMenu *menu;
-@property (retain) NSLayoutConstraint *showConstraint;
-@property (retain) NSLayoutConstraint *hideConstraint;
+@property (retain) NSArray *showConstraints;
+@property (retain) NSArray *hideConstraints;
 
 
 - (void)_didUpdateData:(NSNotification *)notification;
@@ -74,22 +74,17 @@
   [self.outlineView setMenu:[self _contextMenu]];
   [self.outlineView setAllowsEmptySelection:YES];
   
-  self.showConstraint = [NSLayoutConstraint constraintWithItem:[self view]
-                                                     attribute:NSLayoutAttributeWidth
-                                                     relatedBy:NSLayoutRelationGreaterThanOrEqual
-                                                        toItem:nil
-                                                     attribute:NSLayoutAttributeNotAnAttribute
-                                                    multiplier:1
-                                                      constant:200];
-  
-  self.hideConstraint = [NSLayoutConstraint constraintWithItem:[self view]
-                                                     attribute:NSLayoutAttributeWidth
-                                                     relatedBy:NSLayoutRelationEqual
-                                                        toItem:nil
-                                                     attribute:NSLayoutAttributeNotAnAttribute
-                                                    multiplier:1
-                                                      constant:0];
-  [[self view] addConstraint:self.showConstraint];
+  NSView *myView = [self view];
+  self.showConstraints = [NSLayoutConstraint constraintsWithVisualFormat:@"H:[myView(>=100,<=250)]"
+                                                                 options:0
+                                                                 metrics:nil
+                                                                   views:NSDictionaryOfVariableBindings(myView)];
+
+  self.hideConstraints = [NSLayoutConstraint constraintsWithVisualFormat:@"H:[myView(==0)]"
+                                                                 options:0
+                                                                 metrics:nil
+                                                                   views:NSDictionaryOfVariableBindings(myView)];
+  [[self view] addConstraints:_showConstraints];
   
 }
 
@@ -107,8 +102,8 @@
   if(_isVisible == isVisible) {
     return; // nichts zu tun
   }
-  [[self view] removeConstraint:(isVisible ? self.hideConstraint : self.showConstraint)];
-  [[self view] addConstraint:(isVisible ? self.showConstraint : self.hideConstraint)];
+  [[self view] removeConstraints:(isVisible ? self.hideConstraints : self.showConstraints)];
+  [[self view] addConstraints:(isVisible ? self.showConstraints : self.hideConstraints)];
   _isVisible = isVisible;
 }
 

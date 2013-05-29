@@ -19,6 +19,7 @@
 		4C2E382616D1470200037A9D /* MPViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C2E382516D1470200037A9D /* MPViewController.m */; };
 		4C37A84015B8B474005EF8EE /* MPOutlineDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C37A83F15B8B474005EF8EE /* MPOutlineDataSource.m */; };
 		4C3BD51516D276F800389F1F /* MPToolbarDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C3BD51416D276F800389F1F /* MPToolbarDelegate.m */; };
+		4C3CD2A8175570C9005F911C /* DMSplitView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C3CD2A7175570C9005F911C /* DMSplitView.m */; };
 		4C3FFD9E16DAF60600DF9186 /* FilterBar.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4C3FFD9D16DAF60600DF9186 /* FilterBar.xib */; };
 		4C40AC5C170782730073D1C3 /* MPAbstractSettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C40AC5B170782730073D1C3 /* MPAbstractSettingsViewController.m */; };
 		4C431BCD16E2A82800700A81 /* MPPasteBoardController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C431BCC16E2A82700700A81 /* MPPasteBoardController.m */; };
@@ -139,6 +140,8 @@
 		4C37A83F15B8B474005EF8EE /* MPOutlineDataSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MPOutlineDataSource.m; sourceTree = "<group>"; };
 		4C3BD51316D276F800389F1F /* MPToolbarDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MPToolbarDelegate.h; sourceTree = "<group>"; };
 		4C3BD51416D276F800389F1F /* MPToolbarDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MPToolbarDelegate.m; sourceTree = "<group>"; };
+		4C3CD2A6175570C9005F911C /* DMSplitView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DMSplitView.h; sourceTree = "<group>"; };
+		4C3CD2A7175570C9005F911C /* DMSplitView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DMSplitView.m; sourceTree = "<group>"; };
 		4C3FFD9D16DAF60600DF9186 /* FilterBar.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FilterBar.xib; sourceTree = "<group>"; };
 		4C40AC581707819A0073D1C3 /* MPAbstractSettingsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MPAbstractSettingsViewController.h; sourceTree = "<group>"; };
 		4C40AC5B170782730073D1C3 /* MPAbstractSettingsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MPAbstractSettingsViewController.m; sourceTree = "<group>"; };
@@ -421,6 +424,16 @@
 			name = Model;
 			sourceTree = "<group>";
 		};
+		4C3CD2A5175570C9005F911C /* DMSplitView */ = {
+			isa = PBXGroup;
+			children = (
+				4C3CD2A6175570C9005F911C /* DMSplitView.h */,
+				4C3CD2A7175570C9005F911C /* DMSplitView.m */,
+			);
+			name = DMSplitView;
+			path = DMSplitView/DMSplitView;
+			sourceTree = "<group>";
+		};
 		4C46B8821706397A0046109A /* Security Additions */ = {
 			isa = PBXGroup;
 			children = (
@@ -551,8 +564,9 @@
 		4C77E35715B84A240093A587 = {
 			isa = PBXGroup;
 			children = (
+				4C3CD2A5175570C9005F911C /* DMSplitView */,
 				4C669B2D16760ED100DD0774 /* MiniKeePassLib */,
-				4CAD745115B887FD00104512 /* KissXML */,
+				4CAD745415B887FD00104512 /* KissXML */,
 				4C77E36C15B84A240093A587 /* MacPass */,
 				4C77E36515B84A240093A587 /* Frameworks */,
 				4C77E36315B84A240093A587 /* Products */,
@@ -668,14 +682,6 @@
 			name = General;
 			sourceTree = "<group>";
 		};
-		4CAD745115B887FD00104512 /* KissXML */ = {
-			isa = PBXGroup;
-			children = (
-				4CAD745415B887FD00104512 /* KissXML */,
-			);
-			path = KissXML;
-			sourceTree = "<group>";
-		};
 		4CAD745415B887FD00104512 /* KissXML */ = {
 			isa = PBXGroup;
 			children = (
@@ -690,7 +696,8 @@
 				4CAD746115B887FD00104512 /* DDXMLNode.m */,
 				4CAD746215B887FD00104512 /* Private */,
 			);
-			path = KissXML;
+			name = KissXML;
+			path = KissXML/KissXML;
 			sourceTree = "<group>";
 		};
 		4CAD745515B887FD00104512 /* Additions */ = {
@@ -950,6 +957,7 @@
 				4CE5B54B173AFBA700207B39 /* MPDocument.m in Sources */,
 				4CCF9754173EFBA500460BD2 /* KdbEntry+Undo.m in Sources */,
 				4C22040D1746ED160054C916 /* KdbGroup+Undo.m in Sources */,
+				4C3CD2A8175570C9005F911C /* DMSplitView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
