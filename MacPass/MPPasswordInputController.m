@@ -46,6 +46,10 @@
   return self.passwordTextField;
 }
 
+- (void)requestPassword {
+  [self _reset];
+}
+
 - (IBAction)_decrypt:(id)sender {
   MPDocumentWindowController *windowController = (MPDocumentWindowController *)[[[self view] window] windowController];
   MPDocument *document = [windowController document];
@@ -54,9 +58,10 @@
     if(!isOk) {
       [self _showError];
     }
+    else {
+      [windowController showEntries];
+    }
   }
-  [self _reset];
-  [windowController showEntries];
 }
 
 - (void)_reset {

@@ -10,4 +10,6 @@
 
 @interface MPPasswordInputController : MPViewController
 
+- (void)requestPassword;
+
 @end

@@ -18,7 +18,7 @@
 #import "DMSplitView.h"
 
 @interface MPDocumentWindowController () {
-  @private
+@private
   BOOL _needsDecryption;
 }
 
@@ -102,7 +102,7 @@
   [self _setOutlineVisible:NO];
   MPDocument *document = [self document];
   if(!document.isDecrypted) {
-      [self showPasswordInput];
+    [self showPasswordInput];
   }
   else {
     [self editPassword:nil];
@@ -160,7 +160,7 @@
 }
 
 - (void)toggleOutlineView:(id)sender {
- 
+  
 }
 
 - (BOOL)validateMenuItem:(NSMenuItem *)menuItem {
@@ -186,10 +186,11 @@
 
 
 - (void)showPasswordInput {
-    if(!self.passwordInputController) {
-      self.passwordInputController = [[[MPPasswordInputController alloc] init] autorelease];
-    }
-    [self _setContentViewController:self.passwordInputController];
+  if(!self.passwordInputController) {
+    self.passwordInputController = [[[MPPasswordInputController alloc] init] autorelease];
+  }
+  [self _setContentViewController:self.passwordInputController];
+  [self.passwordInputController requestPassword];
 }
 
 - (void)clearOutlineSelection:(id)sender {
