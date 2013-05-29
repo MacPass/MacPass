@@ -96,7 +96,7 @@
   /* Add inspector view */
   const NSRect inspectorFrame = [self.inspectorView frame];
   [self.inspectorTabViewController.view setFrame:inspectorFrame];
-  //[self.splitView replaceSubview:self.inspectorView with:[self.inspectorTabViewController view]];
+  [self.splitView replaceSubview:self.inspectorView with:[self.inspectorTabViewController view]];
   [self.inspectorTabViewController updateResponderChain];
   
   [self _setOutlineVisible:NO];
