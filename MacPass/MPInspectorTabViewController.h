@@ -14,8 +14,6 @@
 
 @property (assign) IBOutlet MPPopupImageView *itemImageView;
 @property (assign) IBOutlet NSTextField *itemNameTextfield;
-@property (assign) IBOutlet NSTabView *tabView;
-@property (assign) IBOutlet NSSegmentedControl *tabControl;
 
 @property (assign) IBOutlet NSTextField *titleTextField;
 @property (assign) IBOutlet NSTextField *usernameTextField;

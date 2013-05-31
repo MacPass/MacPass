@@ -20,7 +20,6 @@
   BOOL _visible;
 }
 
-@property (assign) NSUInteger selectedTabIndex;
 @property (assign, nonatomic) KdbEntry *selectedEntry;
 @property (assign, nonatomic) KdbGroup *selectedGroup;
 @property (assign) BOOL showsEntry;
@@ -63,12 +62,7 @@
 
 - (void)didLoadView {
   
-  for( NSTabViewItem *item in  [self.tabView tabViewItems]){
-    ((MPShadowBox *)[item view]).shadowDisplay = MPShadowTop;
-  }
   [[self.itemImageView cell] setBackgroundStyle:NSBackgroundStyleRaised];
-  [self.tabControl bind:NSSelectedIndexBinding toObject:self withKeyPath:@"selectedTabIndex" options:nil];
-  [self.tabView bind:NSSelectedIndexBinding toObject:self withKeyPath:@"selectedTabIndex" options:nil];
   [self.itemImageView setTarget:self];
   
   /* Register for Entry selection */

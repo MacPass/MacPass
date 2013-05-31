@@ -20,6 +20,7 @@
 		4C37A84015B8B474005EF8EE /* MPOutlineDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C37A83F15B8B474005EF8EE /* MPOutlineDataSource.m */; };
 		4C3BD51516D276F800389F1F /* MPToolbarDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C3BD51416D276F800389F1F /* MPToolbarDelegate.m */; };
 		4C3CD2A8175570C9005F911C /* DMSplitView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C3CD2A7175570C9005F911C /* DMSplitView.m */; };
+		4C3D4C0817594CA40038DAAC /* MPSeparator.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C3D4C0717594CA40038DAAC /* MPSeparator.m */; };
 		4C3FFD9E16DAF60600DF9186 /* FilterBar.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4C3FFD9D16DAF60600DF9186 /* FilterBar.xib */; };
 		4C40AC5C170782730073D1C3 /* MPAbstractSettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C40AC5B170782730073D1C3 /* MPAbstractSettingsViewController.m */; };
 		4C431BCD16E2A82800700A81 /* MPPasteBoardController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C431BCC16E2A82700700A81 /* MPPasteBoardController.m */; };
@@ -142,6 +143,8 @@
 		4C3BD51416D276F800389F1F /* MPToolbarDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MPToolbarDelegate.m; sourceTree = "<group>"; };
 		4C3CD2A6175570C9005F911C /* DMSplitView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DMSplitView.h; sourceTree = "<group>"; };
 		4C3CD2A7175570C9005F911C /* DMSplitView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DMSplitView.m; sourceTree = "<group>"; };
+		4C3D4C0617594CA40038DAAC /* MPSeparator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MPSeparator.h; sourceTree = "<group>"; };
+		4C3D4C0717594CA40038DAAC /* MPSeparator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MPSeparator.m; sourceTree = "<group>"; };
 		4C3FFD9D16DAF60600DF9186 /* FilterBar.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FilterBar.xib; sourceTree = "<group>"; };
 		4C40AC581707819A0073D1C3 /* MPAbstractSettingsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MPAbstractSettingsViewController.h; sourceTree = "<group>"; };
 		4C40AC5B170782730073D1C3 /* MPAbstractSettingsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MPAbstractSettingsViewController.m; sourceTree = "<group>"; };
@@ -365,6 +368,8 @@
 				4CFC53BE16E94729007396BE /* MPShadowBox.m */,
 				4CE39AC216ECE4F7000FE29D /* MPPopupImageView.h */,
 				4CE39AC316ECE4F7000FE29D /* MPPopupImageView.m */,
+				4C3D4C0617594CA40038DAAC /* MPSeparator.h */,
+				4C3D4C0717594CA40038DAAC /* MPSeparator.m */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -958,6 +963,7 @@
 				4CCF9754173EFBA500460BD2 /* KdbEntry+Undo.m in Sources */,
 				4C22040D1746ED160054C916 /* KdbGroup+Undo.m in Sources */,
 				4C3CD2A8175570C9005F911C /* DMSplitView.m in Sources */,
+				4C3D4C0817594CA40038DAAC /* MPSeparator.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
