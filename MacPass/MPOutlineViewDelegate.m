@@ -28,13 +28,13 @@ NSString *const _MPOutlinveViewHeaderViewIdentifier = @"HeaderCell";
   NSTableCellView *view;
   if(![group parent]) {
     view = [outlineView makeViewWithIdentifier:_MPOutlinveViewHeaderViewIdentifier owner:self];
-    [view.textField setStringValue:[group name]];
+    [view.textField bind:NSValueBinding toObject:group withKeyPath:@"name" options:nil];
   }
   else {
     view = [outlineView makeViewWithIdentifier:_MPOutlineViewDataViewIdentifier owner:self];
     NSImage *icon = [MPIconHelper icon:(MPIconType)[group image]];
     [view.imageView setImage:icon];
-    [view.textField setStringValue:[group name]];
+    [view.textField bind:NSValueBinding toObject:group withKeyPath:@"name" options:nil];
 
   }
   

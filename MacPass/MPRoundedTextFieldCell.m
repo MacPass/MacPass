@@ -8,12 +8,20 @@
 
 #import "MPRoundedTextFieldCell.h"
 
-#define CORNER_RADIUS 5.0
+#define CORNER_RADIUS 10.0
 
 @implementation MPRoundedTextFieldCell
 
 - (void)drawWithFrame:(NSRect)cellFrame inView:(NSView *)controlView {
-  [super drawWithFrame:cellFrame inView:controlView];
+  NSBezierPath *path = [NSBezierPath bezierPathWithRoundedRect:cellFrame xRadius:CORNER_RADIUS yRadius:CORNER_RADIUS];
+  [[NSColor clearColor] set];
+  NSRectFill(cellFrame);
+  [[NSColor blackColor] setStroke];
+  [[NSColor whiteColor] setFill];
+  [path fill];
+  [path stroke];
+  
+  //[super drawWithFrame:cellFrame inView:controlView];
 }
 
 @end

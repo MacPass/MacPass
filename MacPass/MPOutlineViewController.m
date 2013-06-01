@@ -73,6 +73,7 @@
   [self.outlineView setDelegate:self.outlineDelegate];
   [self.outlineView setMenu:[self _contextMenu]];
   [self.outlineView setAllowsEmptySelection:YES];
+  [self.outlineView setFloatsGroupRows:NO];
   
   NSView *myView = [self view];
   self.showConstraints = [NSLayoutConstraint constraintsWithVisualFormat:@"H:[myView(>=100,<=250)]"
