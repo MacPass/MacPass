@@ -13,7 +13,7 @@
 #import "MPPasswordEditViewController.h"
 #import "MPToolbarDelegate.h"
 #import "MPOutlineViewController.h"
-#import "MPInspectorTabViewController.h"
+#import "MPInspectorViewController.h"
 #import "MPAppDelegate.h"
 #import "DMSplitView.h"
 
@@ -35,7 +35,7 @@
 @property (retain) MPPasswordEditViewController *passwordEditController;
 @property (retain) MPEntryViewController *entryViewController;
 @property (retain) MPOutlineViewController *outlineViewController;
-@property (retain) MPInspectorTabViewController *inspectorTabViewController;
+@property (retain) MPInspectorViewController *inspectorTabViewController;
 
 @property (retain) MPToolbarDelegate *toolbarDelegate;
 
@@ -53,7 +53,7 @@
     _needsDecryption = NO;
     _toolbarDelegate = [[MPToolbarDelegate alloc] init];
     _outlineViewController = [[MPOutlineViewController alloc] init];
-    _inspectorTabViewController = [[MPInspectorTabViewController alloc] init];
+    _inspectorTabViewController = [[MPInspectorViewController alloc] init];
     _passwordEditController = [[MPPasswordEditViewController alloc] init];
   }
   return self;

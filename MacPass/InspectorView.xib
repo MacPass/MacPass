@@ -33,7 +33,7 @@
 		</object>
 		<array class="NSMutableArray" key="IBDocument.RootObjects" id="1000">
 			<object class="NSCustomObject" id="1001">
-				<string key="NSClassName">MPInspectorTabViewController</string>
+				<string key="NSClassName">MPInspectorViewController</string>
 			</object>
 			<object class="NSCustomObject" id="1003">
 				<string key="NSClassName">FirstResponder</string>
@@ -42,7 +42,7 @@
 				<string key="NSClassName">NSApplication</string>
 			</object>
 			<object class="NSView" id="87082330">
-				<reference key="NSNextResponder"/>
+				<nil key="NSNextResponder"/>
 				<int key="NSvFlags">256</int>
 				<array class="NSMutableArray" key="NSSubviews">
 					<object class="NSTextField" id="524369596">
@@ -50,7 +50,6 @@
 						<int key="NSvFlags">268</int>
 						<string key="NSFrame">{{40, 416}, {41, 17}}</string>
 						<reference key="NSSuperview" ref="87082330"/>
-						<reference key="NSWindow"/>
 						<reference key="NSNextKeyView" ref="290763686"/>
 						<string key="NSReuseIdentifierKey">_NS:1535</string>
 						<bool key="NSEnabled">YES</bool>
@@ -91,7 +90,6 @@
 						<int key="NSvFlags">268</int>
 						<string key="NSFrame">{{86, 416}, {120, 22}}</string>
 						<reference key="NSSuperview" ref="87082330"/>
-						<reference key="NSWindow"/>
 						<reference key="NSNextKeyView" ref="582897606"/>
 						<string key="NSReuseIdentifierKey">_NS:9</string>
 						<bool key="NSEnabled">YES</bool>
@@ -126,7 +124,6 @@
 						<int key="NSvFlags">268</int>
 						<string key="NSFrame">{{14, 386}, {67, 17}}</string>
 						<reference key="NSSuperview" ref="87082330"/>
-						<reference key="NSWindow"/>
 						<reference key="NSNextKeyView" ref="38182485"/>
 						<string key="NSReuseIdentifierKey">_NS:1535</string>
 						<bool key="NSEnabled">YES</bool>
@@ -147,7 +144,6 @@
 						<int key="NSvFlags">268</int>
 						<string key="NSFrame">{{86, 291}, {80, 22}}</string>
 						<reference key="NSSuperview" ref="87082330"/>
-						<reference key="NSWindow"/>
 						<reference key="NSNextKeyView" ref="782711985"/>
 						<string key="NSReuseIdentifierKey">_NS:9</string>
 						<bool key="NSEnabled">YES</bool>
@@ -172,7 +168,6 @@
 						<int key="NSvFlags">268</int>
 						<string key="NSFrame">{{86, 384}, {120, 22}}</string>
 						<reference key="NSSuperview" ref="87082330"/>
-						<reference key="NSWindow"/>
 						<reference key="NSNextKeyView" ref="738135925"/>
 						<string key="NSReuseIdentifierKey">_NS:9</string>
 						<bool key="NSEnabled">YES</bool>
@@ -194,7 +189,6 @@
 						<int key="NSvFlags">268</int>
 						<string key="NSFrame">{{86, 352}, {80, 22}}</string>
 						<reference key="NSSuperview" ref="87082330"/>
-						<reference key="NSWindow"/>
 						<reference key="NSNextKeyView" ref="1040222427"/>
 						<string key="NSReuseIdentifierKey">_NS:9</string>
 						<bool key="NSEnabled">YES</bool>
@@ -216,7 +210,6 @@
 						<int key="NSvFlags">268</int>
 						<string key="NSFrame">{{52, 354}, {29, 17}}</string>
 						<reference key="NSSuperview" ref="87082330"/>
-						<reference key="NSWindow"/>
 						<reference key="NSNextKeyView" ref="681190446"/>
 						<string key="NSReuseIdentifierKey">_NS:1535</string>
 						<bool key="NSEnabled">YES</bool>
@@ -237,7 +230,6 @@
 						<int key="NSvFlags">268</int>
 						<string key="NSFrame">{{174, 352}, {32, 25}}</string>
 						<reference key="NSSuperview" ref="87082330"/>
-						<reference key="NSWindow"/>
 						<reference key="NSNextKeyView" ref="333573736"/>
 						<string key="NSReuseIdentifierKey">_NS:22</string>
 						<bool key="NSEnabled">YES</bool>
@@ -266,7 +258,6 @@
 						<int key="NSvFlags">268</int>
 						<string key="NSFrame">{{17, 293}, {64, 17}}</string>
 						<reference key="NSSuperview" ref="87082330"/>
-						<reference key="NSWindow"/>
 						<reference key="NSNextKeyView" ref="568887030"/>
 						<string key="NSReuseIdentifierKey">_NS:1535</string>
 						<bool key="NSEnabled">YES</bool>
@@ -287,7 +278,6 @@
 						<int key="NSvFlags">268</int>
 						<string key="NSFrame">{{174, 289}, {32, 25}}</string>
 						<reference key="NSSuperview" ref="87082330"/>
-						<reference key="NSWindow"/>
 						<string key="NSReuseIdentifierKey">_NS:22</string>
 						<bool key="NSEnabled">YES</bool>
 						<object class="NSButtonCell" key="NSCell" id="353877023">
@@ -323,7 +313,6 @@
 						</set>
 						<string key="NSFrame">{{20, 467}, {48, 48}}</string>
 						<reference key="NSSuperview" ref="87082330"/>
-						<reference key="NSWindow"/>
 						<reference key="NSNextKeyView" ref="787130496"/>
 						<string key="NSReuseIdentifierKey">_NS:9</string>
 						<bool key="NSEnabled">YES</bool>
@@ -348,7 +337,6 @@
 						<int key="NSvFlags">268</int>
 						<string key="NSFrame">{{73, 483}, {136, 17}}</string>
 						<reference key="NSSuperview" ref="87082330"/>
-						<reference key="NSWindow"/>
 						<reference key="NSNextKeyView" ref="152677463"/>
 						<string key="NSReuseIdentifierKey">_NS:1535</string>
 						<string key="NSAntiCompressionPriority">{200, 750}</string>
@@ -370,15 +358,12 @@
 						<int key="NSvFlags">268</int>
 						<string key="NSFrame">{{20, 457}, {186, 2}}</string>
 						<reference key="NSSuperview" ref="87082330"/>
-						<reference key="NSWindow"/>
 						<reference key="NSNextKeyView" ref="524369596"/>
 						<string key="NSReuseIdentifierKey">_NS:9</string>
 						<string key="NSClassName">MPSeparator</string>
 					</object>
 				</array>
 				<string key="NSFrameSize">{226, 535}</string>
-				<reference key="NSSuperview"/>
-				<reference key="NSWindow"/>
 				<reference key="NSNextKeyView" ref="1013751338"/>
 				<string key="NSReuseIdentifierKey">_NS:11</string>
 			</object>
@@ -1615,74 +1600,6 @@
 		<object class="IBClassDescriber" key="IBDocument.Classes">
 			<array class="NSMutableArray" key="referencedPartialClassDescriptions">
 				<object class="IBPartialClassDescription">
-					<string key="className">MPInspectorTabViewController</string>
-					<string key="superclassName">MPViewController</string>
-					<object class="NSMutableDictionary" key="actions">
-						<string key="NS.key.0">togglePasswordDisplay:</string>
-						<string key="NS.object.0">id</string>
-					</object>
-					<object class="NSMutableDictionary" key="actionInfosByName">
-						<string key="NS.key.0">togglePasswordDisplay:</string>
-						<object class="IBActionInfo" key="NS.object.0">
-							<string key="name">togglePasswordDisplay:</string>
-							<string key="candidateClassName">id</string>
-						</object>
-					</object>
-					<dictionary class="NSMutableDictionary" key="outlets">
-						<string key="URLTextField">NSTextField</string>
-						<string key="itemImageView">MPPopupImageView</string>
-						<string key="itemNameTextfield">NSTextField</string>
-						<string key="openURLButton">NSButton</string>
-						<string key="passwordTextField">NSSecureTextField</string>
-						<string key="showPasswordCreator">NSButton</string>
-						<string key="titleOrNameLabel">NSTextField</string>
-						<string key="titleTextField">NSTextField</string>
-						<string key="usernameTextField">NSTextField</string>
-					</dictionary>
-					<dictionary class="NSMutableDictionary" key="toOneOutletInfosByName">
-						<object class="IBToOneOutletInfo" key="URLTextField">
-							<string key="name">URLTextField</string>
-							<string key="candidateClassName">NSTextField</string>
-						</object>
-						<object class="IBToOneOutletInfo" key="itemImageView">
-							<string key="name">itemImageView</string>
-							<string key="candidateClassName">MPPopupImageView</string>
-						</object>
-						<object class="IBToOneOutletInfo" key="itemNameTextfield">
-							<string key="name">itemNameTextfield</string>
-							<string key="candidateClassName">NSTextField</string>
-						</object>
-						<object class="IBToOneOutletInfo" key="openURLButton">
-							<string key="name">openURLButton</string>
-							<string key="candidateClassName">NSButton</string>
-						</object>
-						<object class="IBToOneOutletInfo" key="passwordTextField">
-							<string key="name">passwordTextField</string>
-							<string key="candidateClassName">NSSecureTextField</string>
-						</object>
-						<object class="IBToOneOutletInfo" key="showPasswordCreator">
-							<string key="name">showPasswordCreator</string>
-							<string key="candidateClassName">NSButton</string>
-						</object>
-						<object class="IBToOneOutletInfo" key="titleOrNameLabel">
-							<string key="name">titleOrNameLabel</string>
-							<string key="candidateClassName">NSTextField</string>
-						</object>
-						<object class="IBToOneOutletInfo" key="titleTextField">
-							<string key="name">titleTextField</string>
-							<string key="candidateClassName">NSTextField</string>
-						</object>
-						<object class="IBToOneOutletInfo" key="usernameTextField">
-							<string key="name">usernameTextField</string>
-							<string key="candidateClassName">NSTextField</string>
-						</object>
-					</dictionary>
-					<object class="IBClassDescriptionSource" key="sourceIdentifier">
-						<string key="majorKey">IBProjectSource</string>
-						<string key="minorKey">./Classes/MPInspectorTabViewController.h</string>
-					</object>
-				</object>
-				<object class="IBPartialClassDescription">
 					<string key="className">MPPopupImageView</string>
 					<string key="superclassName">NSImageView</string>
 					<object class="IBClassDescriptionSource" key="sourceIdentifier">
@@ -1696,14 +1613,6 @@
 					<object class="IBClassDescriptionSource" key="sourceIdentifier">
 						<string key="majorKey">IBProjectSource</string>
 						<string key="minorKey">./Classes/MPSeparator.h</string>
-					</object>
-				</object>
-				<object class="IBPartialClassDescription">
-					<string key="className">MPViewController</string>
-					<string key="superclassName">NSViewController</string>
-					<object class="IBClassDescriptionSource" key="sourceIdentifier">
-						<string key="majorKey">IBProjectSource</string>
-						<string key="minorKey">./Classes/MPViewController.h</string>
 					</object>
 				</object>
 				<object class="IBPartialClassDescription">

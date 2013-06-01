@@ -10,7 +10,7 @@
 
 @class  MPPopupImageView;
 
-@interface MPInspectorTabViewController : MPViewController
+@interface MPInspectorViewController : MPViewController
 
 @property (assign) IBOutlet MPPopupImageView *itemImageView;
 @property (assign) IBOutlet NSTextField *itemNameTextfield;

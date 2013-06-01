@@ -8,9 +8,14 @@
 
 #import "Kdb.h"
 
+APPKIT_EXTERN NSString *const MPGroupNameUndoableKey;
+
 @interface KdbGroup (Undo)
 
 + (NSUndoManager *)undoManager;
+
+- (NSString *)nameUndoable;
+- (void)setNameUndoable:(NSString *)newName;
 
 - (void)removeEntryUndoable:(KdbEntry *)entry;
 - (void)addEntryUndoable:(KdbEntry *)entry;

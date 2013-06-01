@@ -6,7 +6,7 @@
 //  Copyright (c) 2013 HicknHack Software GmbH. All rights reserved.
 //
 
-#import "MPInspectorTabViewController.h"
+#import "MPInspectorViewController.h"
 #import "MPEntryViewController.h"
 #import "MPOutlineViewDelegate.h"
 #import "MPShadowBox.h"
@@ -15,8 +15,9 @@
 #import "MPIconSelectViewController.h"
 #import "KdbLib.h"
 #import "KdbEntry+Undo.h"
+#import "KdbGroup+Undo.h"
 
-@interface MPInspectorTabViewController () {
+@interface MPInspectorViewController () {
   BOOL _visible;
 }
 
@@ -38,10 +39,10 @@
 
 @end
 
-@implementation MPInspectorTabViewController
+@implementation MPInspectorViewController
 
 - (id)init {
-  return [[MPInspectorTabViewController alloc] initWithNibName:@"InspectorTabView" bundle:nil];
+  return [[MPInspectorViewController alloc] initWithNibName:@"InspectorView" bundle:nil];
 }
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil {
@@ -120,33 +121,46 @@
 }
 
 - (void)_showEntry {
-  [self.itemNameTextfield setStringValue:self.selectedEntry.title];
+  [self.itemNameTextfield bind:NSValueBinding toObject:self.selectedEntry withKeyPath:MPEntryTitleUndoableKey options:nil];
   [self.itemImageView setImage:[MPIconHelper icon:(MPIconType)self.selectedEntry.image ]];
-  [self.passwordTextField setStringValue:self.selectedEntry.password];
-  [self.usernameTextField bind:NSValueBinding toObject:self.selectedEntry withKeyPath:@"usernameUndoable" options:nil];
-  //[self.usernameTextField setStringValue:self.selectedEntry.username];
+  [self.passwordTextField bind:NSValueBinding toObject:self.selectedEntry withKeyPath:MPEntryPasswordUndoableKey options:nil];
+  [self.usernameTextField bind:NSValueBinding toObject:self.selectedEntry withKeyPath:MPEntryUsernameUndoableKey options:nil];
   [self.titleOrNameLabel setStringValue:NSLocalizedString(@"TITLE",@"")];
-  [self.titleTextField setStringValue:self.selectedEntry.title];
-  [self.URLTextField setStringValue:self.selectedEntry.url];
+  [self.titleTextField bind:NSValueBinding toObject:self.selectedEntry withKeyPath:MPEntryTitleUndoableKey options:nil];
+  [self.URLTextField bind:NSValueBinding toObject:self.selectedEntry withKeyPath:MPEntryUrlUndoableKey options:nil];
   
   [self _setInputEnabled:YES];
 }
 
 - (void)_showGroup {
-  [self.itemNameTextfield setStringValue:self.selectedGroup.name];
+  [self.itemNameTextfield bind:NSValueBinding toObject:self.selectedGroup withKeyPath:MPGroupNameUndoableKey options:nil];
   [self.itemImageView setImage:[MPIconHelper icon:(MPIconType)self.selectedGroup.image ]];
   [self.titleOrNameLabel setStringValue:NSLocalizedString(@"NAME",@"")];
-  [self.titleTextField setStringValue:self.selectedGroup.name];
+  [self.titleTextField bind:NSValueBinding toObject:self.selectedGroup withKeyPath:MPGroupNameUndoableKey options:nil];
+  
+  // Clear other bindins
+  [self.passwordTextField unbind:NSValueBinding];
+  [self.usernameTextField unbind:NSValueBinding];
+  [self.URLTextField unbind:NSValueBinding];
+  
+  // Reset Fields
   [self.passwordTextField setStringValue:@""];
   [self.usernameTextField setStringValue:@""];
   [self.URLTextField setStringValue:@""];
-
+  
   [self _setInputEnabled:YES];
 }
 
 - (void)_clearContent {
   
   [self _setInputEnabled:NO];
+  
+  [self.itemNameTextfield unbind:NSValueBinding];
+  [self.passwordTextField unbind:NSValueBinding];
+  [self.usernameTextField unbind:NSValueBinding];
+  [self.titleTextField unbind:NSValueBinding];
+  [self.URLTextField unbind:NSValueBinding];
+  
   [self.itemNameTextfield setStringValue:NSLocalizedString(@"INSPECTOR_NO_SELECTION", @"No item selected in inspector")];
   [self.itemImageView setImage:[NSImage imageNamed:NSImageNameActionTemplate]];
   

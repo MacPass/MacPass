@@ -10,7 +10,7 @@
 
 @class MPViewController;
 @class MPEntryViewController;
-@class MPInspectorTabViewController;
+@class MPInspectorViewController;
 @class MPPasswordEditViewController;
 @class MPPasswordInputController;
 @class MPOutlineViewController;
@@ -23,7 +23,7 @@
 @property (readonly, retain) MPPasswordEditViewController *passwordEditController;
 @property (readonly, retain) MPEntryViewController *entryViewController;
 @property (readonly, retain) MPOutlineViewController *outlineViewController;
-@property (readonly, retain) MPInspectorTabViewController *inspectorTabViewController;
+@property (readonly, retain) MPInspectorViewController *inspectorTabViewController;
 @property (readonly, retain) MPCreationViewController *creationViewController;
 
 - (void)showEntries;

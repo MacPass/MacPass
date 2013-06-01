@@ -9,6 +9,12 @@
 #import "KdbEntry+Undo.h"
 #import "KdbGroup+MPAdditions.h"
 
+NSString *const MPEntryTitleUndoableKey = @"titleUndoable";
+NSString *const MPEntryUsernameUndoableKey = @"usernameUndoable";
+NSString *const MPEntryPasswordUndoableKey = @"passwordUndoable";
+NSString *const MPEntryUrlUndoableKey = @"urlUndoable";
+NSString *const MPEntryNotesUndoableKey = @"notesUndoable";
+
 @implementation KdbEntry (Undo)
 
 + (NSUndoManager *)undoManager {
@@ -49,19 +55,19 @@
 }
 
 - (void)setPasswordUndoable:(NSString *)password {
-  [[KdbEntry undoManager] registerUndoWithTarget:self selector:@selector(setTitleUndoable:) object:self.password];
+  [[KdbEntry undoManager] registerUndoWithTarget:self selector:@selector(setPasswordUndoable:) object:self.password];
   [[KdbEntry undoManager] setActionName:NSLocalizedString(@"UNDO_SET_PASSWORT", "Undo set password")];
   [self setPassword:password];
 }
 
 - (void)setUrlUndoable:(NSString *)url {
-  [[KdbEntry undoManager] registerUndoWithTarget:self selector:@selector(setTitleUndoable:) object:self.url];
+  [[KdbEntry undoManager] registerUndoWithTarget:self selector:@selector(setUrlUndoable:) object:self.url];
   [[KdbEntry undoManager] setActionName:NSLocalizedString(@"UNDO_SET_URL", "Undo set URL")];
   [self setUrl:url];
 }
 
 - (void)setNotesUndoable:(NSString *)notes {
-  [[KdbEntry undoManager] registerUndoWithTarget:self selector:@selector(setTitleUndoable:) object:self.notes];
+  [[KdbEntry undoManager] registerUndoWithTarget:self selector:@selector(setNotesUndoable:) object:self.notes];
   [[KdbEntry undoManager] setActionName:NSLocalizedString(@"UNDO_SET_NOTES", "Undo set notes")];
   [self setNotes:notes];
 }

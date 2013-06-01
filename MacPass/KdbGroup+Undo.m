@@ -8,10 +8,22 @@
 
 #import "KdbGroup+Undo.h"
 
+NSString *const MPGroupNameUndoableKey = @"nameUndoable";
+
 @implementation KdbGroup (Undo)
 
 + (NSUndoManager *)undoManager {
   return [[[NSDocumentController sharedDocumentController] currentDocument] undoManager];
+}
+
+- (NSString *)nameUndoable {
+  return [self name];
+}
+
+- (void)setNameUndoable:(NSString *)newName {
+  [[KdbGroup undoManager] registerUndoWithTarget:self selector:@selector(setNameUndoable:) object:self.name];
+  [[KdbGroup undoManager] setActionName:NSLocalizedString(@"UNDO_SET_NAME", "Undo set name")];
+  self.name = newName;
 }
 
 - (void)removeEntryUndoable:(KdbEntry *)entry {

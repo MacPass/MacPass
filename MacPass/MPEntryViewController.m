@@ -198,7 +198,8 @@ NSString *const _toggleFilterUsernameButton = @"SearchUsername";
   if(isTitleColumn || isGroupColumn) {
     view = [tableView makeViewWithIdentifier:_MPTableImageCellView owner:self];
     if( isTitleColumn ) {
-      [[view textField] setStringValue:entry.title];
+      [[view textField] bind:NSValueBinding toObject:entry withKeyPath:@"title" options:nil];
+      //[[view textField] setStringValue:entry.title];
       [[view imageView] setImage:[MPIconHelper icon:(MPIconType)entry.image]];
     }
     else {
@@ -208,15 +209,18 @@ NSString *const _toggleFilterUsernameButton = @"SearchUsername";
   }
   else if( isPasswordColum ) {
     view = [tableView makeViewWithIdentifier:_MPTAbleSecurCellView owner:self];
+    [[view textField] bind:NSValueBinding toObject:entry withKeyPath:@"password" options:nil];
     [[view textField] setStringValue:entry.password];
   }
   else if( isUsernameColumn || isURLColumn ) {
     view = [tableView makeViewWithIdentifier:_MPTableStringCellView owner:self];
     if(isURLColumn) {
-      [[view textField] setStringValue:entry.url];
+      [[view textField] bind:NSValueBinding toObject:entry withKeyPath:@"url" options:nil];
+      //[[view textField] setStringValue:entry.url];
     }
     else {
-      [[view textField] setStringValue:entry.username];
+      [[view textField] bind:NSValueBinding toObject:entry withKeyPath:@"username" options:nil];
+      //[[view textField] setStringValue:entry.username];
     }
   }
   
