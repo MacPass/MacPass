@@ -100,6 +100,8 @@
 		4CAD747F15B887FD00104512 /* DDXMLNode.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CAD746115B887FD00104512 /* DDXMLNode.m */; settings = {COMPILER_FLAGS = "-fobjc-arc"; }; };
 		4CAD748C15B889B700104512 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4CAD748B15B889B700104512 /* Security.framework */; };
 		4CAD748E15B88AC100104512 /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 4CAD748D15B88AC100104512 /* libz.dylib */; };
+		4CB25D54175A206000D1369D /* MPRoundedTextFieldCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CB25D53175A206000D1369D /* MPRoundedTextFieldCell.m */; };
+		4CB25D57175A208300D1369D /* MPTextField.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CB25D56175A208300D1369D /* MPTextField.m */; };
 		4CB9339916D3A0DD00A13B5D /* Credits.rtf in Resources */ = {isa = PBXBuildFile; fileRef = 4CB9339716D3A0DD00A13B5D /* Credits.rtf */; };
 		4CBA2ABA17074C07006D8139 /* MPSettingsHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CBA2AB917074C07006D8139 /* MPSettingsHelper.m */; };
 		4CBFA240172B385D006090DF /* PasswordEditView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4CBFA23F172B385D006090DF /* PasswordEditView.xib */; };
@@ -296,6 +298,10 @@
 		4CAD746315B887FD00104512 /* DDXMLPrivate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DDXMLPrivate.h; sourceTree = "<group>"; };
 		4CAD748B15B889B700104512 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
 		4CAD748D15B88AC100104512 /* libz.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.dylib; path = usr/lib/libz.dylib; sourceTree = SDKROOT; };
+		4CB25D52175A206000D1369D /* MPRoundedTextFieldCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MPRoundedTextFieldCell.h; sourceTree = "<group>"; };
+		4CB25D53175A206000D1369D /* MPRoundedTextFieldCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MPRoundedTextFieldCell.m; sourceTree = "<group>"; };
+		4CB25D55175A208300D1369D /* MPTextField.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MPTextField.h; sourceTree = "<group>"; };
+		4CB25D56175A208300D1369D /* MPTextField.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MPTextField.m; sourceTree = "<group>"; };
 		4CB9339816D3A0DD00A13B5D /* en */ = {isa = PBXFileReference; lastKnownFileType = text.rtf; name = en; path = en.lproj/Credits.rtf; sourceTree = "<group>"; };
 		4CBA2AB617074B59006D8139 /* MPSettingsHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MPSettingsHelper.h; sourceTree = "<group>"; };
 		4CBA2AB917074C07006D8139 /* MPSettingsHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MPSettingsHelper.m; sourceTree = "<group>"; };
@@ -370,6 +376,10 @@
 				4CE39AC316ECE4F7000FE29D /* MPPopupImageView.m */,
 				4C3D4C0617594CA40038DAAC /* MPSeparator.h */,
 				4C3D4C0717594CA40038DAAC /* MPSeparator.m */,
+				4CB25D52175A206000D1369D /* MPRoundedTextFieldCell.h */,
+				4CB25D53175A206000D1369D /* MPRoundedTextFieldCell.m */,
+				4CB25D55175A208300D1369D /* MPTextField.h */,
+				4CB25D56175A208300D1369D /* MPTextField.m */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -964,6 +974,8 @@
 				4C22040D1746ED160054C916 /* KdbGroup+Undo.m in Sources */,
 				4C3CD2A8175570C9005F911C /* DMSplitView.m in Sources */,
 				4C3D4C0817594CA40038DAAC /* MPSeparator.m in Sources */,
+				4CB25D54175A206000D1369D /* MPRoundedTextFieldCell.m in Sources */,
+				4CB25D57175A208300D1369D /* MPTextField.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

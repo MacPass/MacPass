@@ -65,7 +65,6 @@
   
   [[self.itemImageView cell] setBackgroundStyle:NSBackgroundStyleRaised];
   [self.itemImageView setTarget:self];
-  
   /* Register for Entry selection */
   [[NSNotificationCenter defaultCenter] addObserver:self
                                            selector:@selector(_didChangeSelectedEntry:)

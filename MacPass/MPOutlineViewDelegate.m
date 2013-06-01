@@ -42,7 +42,8 @@ NSString *const _MPOutlinveViewHeaderViewIdentifier = @"HeaderCell";
 }
 
 - (BOOL)outlineView:(NSOutlineView *)outlineView isGroupItem:(id)item {
-  if(item == nil) {
+  KdbGroup *group = item;
+  if(!group.parent) {
     return YES;
   }
   return NO;
