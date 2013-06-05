@@ -12,7 +12,7 @@ NSString *const MPGroupNameUndoableKey = @"nameUndoable";
 
 @implementation KdbGroup (Undo)
 
-+ (NSUndoManager *)undoManager {
+- (NSUndoManager *)undoManager {
   return [[[NSDocumentController sharedDocumentController] currentDocument] undoManager];
 }
 
@@ -21,21 +21,32 @@ NSString *const MPGroupNameUndoableKey = @"nameUndoable";
 }
 
 - (void)setNameUndoable:(NSString *)newName {
-  [[KdbGroup undoManager] registerUndoWithTarget:self selector:@selector(setNameUndoable:) object:self.name];
-  [[KdbGroup undoManager] setActionName:NSLocalizedString(@"UNDO_SET_NAME", "Undo set name")];
+  [[self undoManager] registerUndoWithTarget:self selector:@selector(setNameUndoable:) object:self.name];
+  [[self undoManager] setActionName:NSLocalizedString(@"UNDO_SET_NAME", "Undo set name")];
   self.name = newName;
 }
 
-- (void)removeEntryUndoable:(KdbEntry *)entry {
-  [[KdbGroup undoManager] registerUndoWithTarget:self selector:@selector(addEntryUndoable:) object:entry];
-  [[KdbGroup undoManager] setActionName:NSLocalizedString(@"UNDO_DELETE_ENTRY", "Undo deleting of entry")];
-  [self removeEntry:entry];
-}
-
 - (void)addEntryUndoable:(KdbEntry *)entry {
-  [[KdbGroup undoManager] registerUndoWithTarget:self selector:@selector(removeEntryUndoable:) object:entry];
-  [[KdbGroup undoManager] setActionName:NSLocalizedString(@"UNDO_ADD_ENTRY", "Undo adding of entry")];
+  [[self undoManager] registerUndoWithTarget:self selector:@selector(removeEntryUndoable:) object:entry];
+  [[self undoManager] setActionName:NSLocalizedString(@"UNDO_ADD_ENTRY", "Undo adding of entry")];
   [self addEntry:entry];
 }
 
+- (void)addGroupUndoable:(KdbGroup *)group {
+  [[self undoManager] registerUndoWithTarget:self selector:@selector(removeGroupUndoable:) object:group];
+  [[self undoManager] setActionName:NSLocalizedString(@"UNDO_ADD_GROUP", @"Create Group Undo")];
+  [self addGroup:group];
+}
+
+- (void)removeEntryUndoable:(KdbEntry *)entry {
+  [[self undoManager] registerUndoWithTarget:self selector:@selector(addEntryUndoable:) object:entry];
+  [[self undoManager] setActionName:NSLocalizedString(@"UNDO_DELETE_ENTRY", "Undo deleting of entry")];
+  [self removeEntry:entry];
+}
+
+- (void)removeGroupUndoable:(KdbGroup *)group {
+  [[self undoManager] registerUndoWithTarget:self selector:@selector(addGroupUndoable:) object:group];
+  [[self undoManager] setActionName:NSLocalizedString(@"UNDO_DELETE_GROUP", @"Create Group Undo")];
+  [group.parent removeGroup:group];
+}
 @end

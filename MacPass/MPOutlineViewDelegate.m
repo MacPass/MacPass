@@ -8,6 +8,7 @@
 
 #import "MPOutlineViewDelegate.h"
 #import "MPIconHelper.h"
+#import "MPUppercaseStringValueTransformer.h"
 #import "KdbLib.h"
 
 NSString *const MPOutlineViewDidChangeGroupSelection = @"com.macpass.MPOutlineViewDidChangeGroupSelection";
@@ -27,8 +28,9 @@ NSString *const _MPOutlinveViewHeaderViewIdentifier = @"HeaderCell";
   KdbGroup *group = item;
   NSTableCellView *view;
   if(![group parent]) {
+    NSDictionary *options = @{ NSValueTransformerBindingOption : [NSValueTransformer valueTransformerForName:MPUppsercaseStringValueTransformerName] };
     view = [outlineView makeViewWithIdentifier:_MPOutlinveViewHeaderViewIdentifier owner:self];
-    [view.textField bind:NSValueBinding toObject:group withKeyPath:@"name" options:nil];
+    [view.textField bind:NSValueBinding toObject:group withKeyPath:@"name" options:options];
   }
   else {
     view = [outlineView makeViewWithIdentifier:_MPOutlineViewDataViewIdentifier owner:self];

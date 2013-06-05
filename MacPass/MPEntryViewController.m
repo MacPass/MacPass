@@ -16,6 +16,7 @@
 #import "MPPasteBoardController.h"
 #import "MPOverlayWindowController.h"
 #import "KdbGroup+MPAdditions.h"
+#import "KdbGroup+Undo.h"
 #import "KdbEntry+Undo.h"
 
 NSString *const MPDidChangeSelectedEntryNotification = @"com.macpass.MPDidChangeSelectedEntryNotification";
@@ -136,6 +137,7 @@ NSString *const _toggleFilterUsernameButton = @"SearchUsername";
                                                name:MPOutlineViewDidChangeGroupSelection
                                              object:windowController.outlineViewController.outlineDelegate];
   
+  //[[NSNotificationCenter defaultCenter] addObserver:self.entryTable selector:@selector(reloadData) name:MPDocumentDidAddEntryNotification object:nil];
   
   [self.entryTable setDelegate:self];
   [self.entryTable setDoubleAction:@selector(_columnDoubleClick:)];
@@ -244,14 +246,13 @@ NSString *const _toggleFilterUsernameButton = @"SearchUsername";
     [self.filterSearchField setStringValue:@""];
   }
   MPOutlineViewDelegate *delegate = [notification object];
-  KdbGroup *group = delegate.selectedGroup;
-  //[self.entryTable deselectAll:nil];
-  if(group) {
-    [self.entryArrayController setContent:nil];
-    [self.entryArrayController addObjects:group.entries];
+  self.activeGroup = delegate.selectedGroup;
+  
+  if(_activeGroup) {
+    [self.entryArrayController bind:NSContentArrayBinding toObject:_activeGroup withKeyPath:@"entries" options:nil];
   }
   else {
-    [self.entryArrayController setContent:nil];
+    [self.entryArrayController unbind:NSContentArrayBinding];
   }
 }
 
@@ -478,7 +479,11 @@ NSString *const _toggleFilterUsernameButton = @"SearchUsername";
 }
 
 - (void)createEntry:(id)sender {
-  // TODO:
+  if(!_activeGroup) {
+    return; // Entries are not allowed in root group
+  }
+  MPDocument *document = [[NSDocumentController sharedDocumentController] currentDocument];
+  [document createEntry:_activeGroup];
 }
 
 - (void)deleteEntry:(id)sender {

@@ -14,6 +14,7 @@
 #import "MPActionHelper.h"
 #import "MPSettingsHelper.h"
 #import "NSString+MPPasswordCreation.h"
+#import "MPUppercaseStringValueTransformer.h"
 
 @interface MPAppDelegate ()
 
@@ -28,6 +29,7 @@
 
 + (void)initialize {
   [MPSettingsHelper setupDefaults];
+  [MPUppercaseStringValueTransformer registerTransformer];
 }
 
 - (void)applicationDidFinishLaunching:(NSNotification *)aNotification {

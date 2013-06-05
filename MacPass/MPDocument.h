@@ -11,9 +11,9 @@
 
 
 APPKIT_EXTERN NSString *const MPDocumentDidAddGroupNotification;
-APPKIT_EXTERN NSString *const MPDocumentDidDelteGroupNotification;
+APPKIT_EXTERN NSString *const MPDocumentWillDelteGroupNotification;
 APPKIT_EXTERN NSString *const MPDocumentDidAddEntryNotification;
-APPKIT_EXTERN NSString *const MPDocumentDidDeleteEntryNotification;
+APPKIT_EXTERN NSString *const MPDocumentWillDeleteEntryNotification;
 
 APPKIT_EXTERN NSString *const MPDocumentEntryKey;
 APPKIT_EXTERN NSString *const MPDocumentGroupKey;
@@ -36,7 +36,6 @@ APPKIT_EXTERN NSString *const MPDocumentGroupKey;
 - (KdbGroup *)createGroup:(KdbGroup *)parent;
 - (KdbEntry *)createEntry:(KdbGroup *)parent;
 
-- (void)addGroup:(NSArray *)groupAndParent;
 - (void)deleteEntry:(KdbEntry *)entry;
 - (void)deleteGroup:(KdbGroup *)group;
 

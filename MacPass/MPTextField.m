@@ -7,33 +7,19 @@
 //
 
 #import "MPTextField.h"
-#import "MPRoundedTextFieldCell.h"
+#import "HNHRoundedTextFieldCell.h"
 
 @implementation MPTextField
 
 + (Class)cellClass {
-  return [MPRoundedTextFieldCell class];
+  return [HNHRoundedTextFieldCell class];
 }
 
-- (id)initWithCoder:(NSCoder *)aDecoder {
-  self = [super initWithCoder:aDecoder];
-  if(self) {
-    MPRoundedTextFieldCell *newCell = [[MPRoundedTextFieldCell alloc] init];
-    NSTextFieldCell *cell = [self cell];
-    [newCell setBackgroundStyle:[cell backgroundStyle]];
-    [newCell setBezeled:[cell isBezeled]];
-    [newCell setBordered:[cell isBordered]];
-    [newCell setBackgroundColor:[cell backgroundColor]];
-    [newCell setTextColor:[cell textColor]];
-    [newCell setDrawsBackground:[cell drawsBackground]];
-    [newCell setAction:[cell action]];
-    [newCell setTarget:[cell target]];
-    [newCell setEditable:[cell isEditable]];
-    [newCell setEnabled:[cell isEnabled]];
-    [self setCell:newCell];
-    [newCell release];
+- (void)awakeFromNib {
+  [[self class] setCellClass:[HNHRoundedTextFieldCell class]];
+  if([[super class] instanceMethodForSelector:@selector(awakeFromNib)]) {
+    [super awakeFromNib];
   }
-  return self;
 }
 
 @end

@@ -20,7 +20,6 @@ static NSUInteger randomInteger(NSUInteger minimum, NSUInteger maximum) {
     return maximum;
   }
   if( delta < 0 ) {
-    maximum = minimum;
     minimum -= delta;
     delta = -delta;
   }

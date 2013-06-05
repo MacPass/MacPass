@@ -12,12 +12,15 @@ APPKIT_EXTERN NSString *const MPGroupNameUndoableKey;
 
 @interface KdbGroup (Undo)
 
-+ (NSUndoManager *)undoManager;
+- (NSUndoManager *)undoManager;
 
 - (NSString *)nameUndoable;
 - (void)setNameUndoable:(NSString *)newName;
 
-- (void)removeEntryUndoable:(KdbEntry *)entry;
+
 - (void)addEntryUndoable:(KdbEntry *)entry;
+- (void)addGroupUndoable:(KdbGroup *)group;
+- (void)removeGroupUndoable:(KdbGroup *)group;
+- (void)removeEntryUndoable:(KdbEntry *)entry;
 
 @end

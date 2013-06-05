@@ -51,7 +51,7 @@
     
     [[NSNotificationCenter defaultCenter] addObserver:self
                                              selector:@selector(_didUpdateData:)
-                                                 name:MPDocumentDidDelteGroupNotification
+                                                 name:MPDocumentWillDelteGroupNotification
                                                object:[[self windowController] document]];
     
   }
