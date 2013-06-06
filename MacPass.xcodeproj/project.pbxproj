@@ -73,7 +73,7 @@
 		4C669BA016760ED100DD0774 /* Salsa20RandomStream.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C669B7716760ED100DD0774 /* Salsa20RandomStream.m */; };
 		4C669BA116760ED100DD0774 /* Utils.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C669B7916760ED100DD0774 /* Utils.m */; };
 		4C669BA216760ED100DD0774 /* UUID.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C669B7B16760ED100DD0774 /* UUID.m */; };
-		4C69A73A16D589DF00EC1B1A /* MPGradientView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C69A73916D589DF00EC1B1A /* MPGradientView.m */; };
+		4C69A73A16D589DF00EC1B1A /* HNHGradientView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C69A73916D589DF00EC1B1A /* HNHGradientView.m */; };
 		4C6B0E8C16C9B99B00A9ED23 /* PasswordInputView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4C6B0E8B16C9B99B00A9ED23 /* PasswordInputView.xib */; };
 		4C77547516E55FE800970E02 /* MPInspectorViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C77547416E55FE800970E02 /* MPInspectorViewController.m */; };
 		4C77547716E55FFC00970E02 /* InspectorView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4C77547616E55FFC00970E02 /* InspectorView.xib */; };
@@ -250,8 +250,8 @@
 		4C669B7916760ED100DD0774 /* Utils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Utils.m; sourceTree = "<group>"; };
 		4C669B7A16760ED100DD0774 /* UUID.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UUID.h; sourceTree = "<group>"; };
 		4C669B7B16760ED100DD0774 /* UUID.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UUID.m; sourceTree = "<group>"; };
-		4C69A73816D589DF00EC1B1A /* MPGradientView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MPGradientView.h; sourceTree = "<group>"; };
-		4C69A73916D589DF00EC1B1A /* MPGradientView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MPGradientView.m; sourceTree = "<group>"; };
+		4C69A73816D589DF00EC1B1A /* HNHGradientView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HNHGradientView.h; sourceTree = "<group>"; };
+		4C69A73916D589DF00EC1B1A /* HNHGradientView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HNHGradientView.m; sourceTree = "<group>"; };
 		4C6B0E8B16C9B99B00A9ED23 /* PasswordInputView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PasswordInputView.xib; sourceTree = "<group>"; };
 		4C77547316E55FE800970E02 /* MPInspectorViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MPInspectorViewController.h; sourceTree = "<group>"; };
 		4C77547416E55FE800970E02 /* MPInspectorViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MPInspectorViewController.m; sourceTree = "<group>"; };
@@ -372,8 +372,6 @@
 				4C3FFD9D16DAF60600DF9186 /* FilterBar.xib */,
 				4C77547616E55FFC00970E02 /* InspectorView.xib */,
 				4CE39AC016ECE359000FE29D /* IconSelection.xib */,
-				4C69A73816D589DF00EC1B1A /* MPGradientView.h */,
-				4C69A73916D589DF00EC1B1A /* MPGradientView.m */,
 				4CE8247316E2F2B900573141 /* MPOverlayView.h */,
 				4CE8247416E2F2B900573141 /* MPOverlayView.m */,
 				4CFC53BD16E94729007396BE /* MPShadowBox.h */,
@@ -752,6 +750,8 @@
 				4CC3AAB9175F4983003EF01B /* HNHRoundedTextFieldCell.m */,
 				4C3D4C0617594CA40038DAAC /* HNHSeparator.h */,
 				4C3D4C0717594CA40038DAAC /* HNHSeparator.m */,
+				4C69A73816D589DF00EC1B1A /* HNHGradientView.h */,
+				4C69A73916D589DF00EC1B1A /* HNHGradientView.m */,
 				4CC3AABA175F4983003EF01B /* LICENSE.MIT */,
 				4CC3AABB175F4983003EF01B /* README.md */,
 			);
@@ -970,7 +970,7 @@
 				4C61EA0316D2FD0800AC519E /* MPOutlineViewController.m in Sources */,
 				4C2C4C2C16D3BE3700D49295 /* KdbGroup+MPAdditions.m in Sources */,
 				4CC1AEBE16D4467C006D2AAB /* KdbTree+MPAdditions.m in Sources */,
-				4C69A73A16D589DF00EC1B1A /* MPGradientView.m in Sources */,
+				4C69A73A16D589DF00EC1B1A /* HNHGradientView.m in Sources */,
 				4C920E2A16DCDFA00083839B /* MPLoggerProxy.m in Sources */,
 				4C65C79C16DD283900E32CFF /* MPToolbarButton.m in Sources */,
 				4C431BCD16E2A82800700A81 /* MPPasteBoardController.m in Sources */,
