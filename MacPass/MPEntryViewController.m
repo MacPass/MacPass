@@ -141,6 +141,7 @@ NSString *const _toggleFilterUsernameButton = @"SearchUsername";
   [self.entryTable setDelegate:self];
   [self.entryTable setDoubleAction:@selector(_columnDoubleClick:)];
   [self.entryTable setTarget:self];
+  [self.entryTable setFloatsGroupRows:NO];
   [self _setupEntryMenu];
   
   NSTableColumn *parentColumn = [self.entryTable tableColumns][0];
@@ -215,6 +216,9 @@ NSString *const _toggleFilterUsernameButton = @"SearchUsername";
   }
   
   return view;
+}
+- (void)tableView:(NSTableView *)tableView didAddRowView:(NSTableRowView *)rowView forRow:(NSInteger)row {
+  NSLog(@"didAddRowViewForRow: %ld color:%@ isFloating:%i", (long)row, rowView.backgroundColor, rowView.isFloating);
 }
 
 - (void)tableViewSelectionDidChange:(NSNotification *)notification {
@@ -469,12 +473,14 @@ NSString *const _toggleFilterUsernameButton = @"SearchUsername";
   if(!_activeGroup) {
     return; // Entries are not allowed in root group
   }
+
   MPDocument *document = [[NSDocumentController sharedDocumentController] currentDocument];
   [document createEntry:_activeGroup];
 }
 
 - (void)deleteEntry:(id)sender {
-  // TODO:
+  KdbEntry *entry =[self _clickedOrSelectedEntry];
+  [entry.parent removeEntryUndoable:entry];
 }
 
 - (void)_toggleFilterSpace:(id)sender {

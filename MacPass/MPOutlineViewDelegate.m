@@ -25,7 +25,9 @@ NSString *const _MPOutlinveViewHeaderViewIdentifier = @"HeaderCell";
 @implementation MPOutlineViewDelegate
 
 - (NSView *)outlineView:(NSOutlineView *)outlineView viewForTableColumn:(NSTableColumn *)tableColumn item:(id)item {
-  KdbGroup *group = item;
+  NSTreeNode *treeNode = item;
+  KdbGroup *group = [treeNode representedObject];
+  //KdbGroup *group = item;
   NSTableCellView *view;
   if(![group parent]) {
     NSDictionary *options = @{ NSValueTransformerBindingOption : [NSValueTransformer valueTransformerForName:MPUppsercaseStringValueTransformerName] };
@@ -44,7 +46,9 @@ NSString *const _MPOutlinveViewHeaderViewIdentifier = @"HeaderCell";
 }
 
 - (BOOL)outlineView:(NSOutlineView *)outlineView isGroupItem:(id)item {
-  KdbGroup *group = item;
+  NSTreeNode *treeNode = item;
+  KdbGroup *group = [treeNode representedObject];
+  //KdbGroup *group = item;
   if(!group.parent) {
     return YES;
   }
@@ -52,13 +56,17 @@ NSString *const _MPOutlinveViewHeaderViewIdentifier = @"HeaderCell";
 }
 
 - (BOOL)outlineView:(NSOutlineView *)outlineView shouldSelectItem:(id)item {
-  KdbGroup *group = item;
+  NSTreeNode *treeNode = item;
+  KdbGroup *group = [treeNode representedObject];
+  //KdbGroup *group = item;
   return (nil != [group parent]);
 }
 
 - (void)outlineViewSelectionDidChange:(NSNotification *)notification {
   NSOutlineView *outlineView = [notification object];
-  KdbGroup *selectedGroup = [outlineView itemAtRow:[outlineView selectedRow]];
+  //KdbGroup *selectedGroup = [outlineView itemAtRow:[outlineView selectedRow]];
+  NSTreeNode *treeNode = [outlineView itemAtRow:[outlineView selectedRow]];
+  KdbGroup *selectedGroup = [treeNode representedObject];
   self.selectedGroup = selectedGroup;
   [[NSNotificationCenter defaultCenter] postNotificationName:MPOutlineViewDidChangeGroupSelection object:self userInfo:nil];
 }

@@ -17,6 +17,7 @@
 
 @property (assign) IBOutlet NSOutlineView *outlineView;
 
+@property (retain) NSTreeController *treeController;
 @property (retain) MPOutlineDataSource *datasource;
 @property (retain) MPOutlineViewDelegate *outlineDelegate;
 @property (retain) NSMenu *menu;
@@ -40,9 +41,10 @@
   self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
   if (self) {
     _isVisible = YES;
+    _treeController = [[NSTreeController alloc] init];
     self.outlineDelegate = [[[MPOutlineViewDelegate alloc] init] autorelease];
     self.datasource = [[[MPOutlineDataSource alloc] init] autorelease];
-    
+
     [[NSNotificationCenter defaultCenter] addObserver:self
                                              selector:@selector(_didUpdateData:)
                                                  name:MPDocumentDidAddGroupNotification
@@ -69,7 +71,7 @@
 }
 
 - (void)didLoadView {
-  [self.outlineView setDataSource:self.datasource];
+  //[self.outlineView setDataSource:self.datasource];
   [self.outlineView setDelegate:self.outlineDelegate];
   [self.outlineView setMenu:[self _contextMenu]];
   [self.outlineView setAllowsEmptySelection:YES];
@@ -90,8 +92,13 @@
 }
 
 - (void)showOutline {
-  [self.outlineView reloadData];
   MPDocument *document = [[NSDocumentController sharedDocumentController] currentDocument];
+  [_treeController setChildrenKeyPath:@"groups"];
+  [_treeController bind:NSContentBinding toObject:document withKeyPath:@"root" options:nil];
+  [_outlineView bind:NSContentBinding toObject:_treeController withKeyPath:@"arrangedObjects" options:nil];
+  
+  [self.outlineView reloadData];
+  //MPDocument *document = [[NSDocumentController sharedDocumentController] currentDocument];
   [self.outlineView expandItem:document.root expandChildren:NO];
 }
 
@@ -153,7 +160,7 @@
   if( row < 0 ) {
     row = [self.outlineView selectedRow];
   }
-  return [self.outlineView itemAtRow:row];
+  return [[self.outlineView itemAtRow:row] representedObject];
 }
 
 - (void)_didUpdateData:(NSNotification *)notification {
