@@ -90,6 +90,7 @@
 		4C888C9716EB754B003D34A1 /* MPActionHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C888C9616EB754B003D34A1 /* MPActionHelper.m */; };
 		4C8FECC816D57E3200BF26CF /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4C8FECC716D57E3200BF26CF /* QuartzCore.framework */; };
 		4C920E2A16DCDFA00083839B /* MPLoggerProxy.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C920E2916DCDFA00083839B /* MPLoggerProxy.m */; };
+		4C9D6AA917615199001C660C /* HNHRoundedSecureTextFieldCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C9D6AA817615199001C660C /* HNHRoundedSecureTextFieldCell.m */; };
 		4CA0B2ED15BCADAC00654E32 /* SettingsWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4CA0B2EC15BCADAC00654E32 /* SettingsWindow.xib */; };
 		4CA0B2F015BCADC800654E32 /* GeneralSettings.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4CA0B2EF15BCADC800654E32 /* GeneralSettings.xib */; };
 		4CA0B2F915BCAF6700654E32 /* MPGeneralSettingsController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CA0B2F815BCAF6700654E32 /* MPGeneralSettingsController.m */; };
@@ -282,6 +283,8 @@
 		4C8FECC716D57E3200BF26CF /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		4C920E2816DCDFA00083839B /* MPLoggerProxy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MPLoggerProxy.h; sourceTree = "<group>"; };
 		4C920E2916DCDFA00083839B /* MPLoggerProxy.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MPLoggerProxy.m; sourceTree = "<group>"; };
+		4C9D6AA717615199001C660C /* HNHRoundedSecureTextFieldCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HNHRoundedSecureTextFieldCell.h; sourceTree = "<group>"; };
+		4C9D6AA817615199001C660C /* HNHRoundedSecureTextFieldCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HNHRoundedSecureTextFieldCell.m; sourceTree = "<group>"; };
 		4CA0B2EC15BCADAC00654E32 /* SettingsWindow.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SettingsWindow.xib; sourceTree = "<group>"; };
 		4CA0B2EF15BCADC800654E32 /* GeneralSettings.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GeneralSettings.xib; sourceTree = "<group>"; };
 		4CA0B2F715BCAF6700654E32 /* MPGeneralSettingsController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MPGeneralSettingsController.h; sourceTree = "<group>"; };
@@ -748,6 +751,8 @@
 				4CC3AAB7175F4983003EF01B /* .gitignore */,
 				4CC3AAB8175F4983003EF01B /* HNHRoundedTextFieldCell.h */,
 				4CC3AAB9175F4983003EF01B /* HNHRoundedTextFieldCell.m */,
+				4C9D6AA717615199001C660C /* HNHRoundedSecureTextFieldCell.h */,
+				4C9D6AA817615199001C660C /* HNHRoundedSecureTextFieldCell.m */,
 				4C3D4C0617594CA40038DAAC /* HNHSeparator.h */,
 				4C3D4C0717594CA40038DAAC /* HNHSeparator.m */,
 				4C69A73816D589DF00EC1B1A /* HNHGradientView.h */,
@@ -996,6 +1001,7 @@
 				4C3D4C0817594CA40038DAAC /* HNHSeparator.m in Sources */,
 				4C5BF67B175C01F300D53DF7 /* MPUppercaseStringValueTransformer.m in Sources */,
 				4CC3AABD175F4983003EF01B /* HNHRoundedTextFieldCell.m in Sources */,
+				4C9D6AA917615199001C660C /* HNHRoundedSecureTextFieldCell.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
