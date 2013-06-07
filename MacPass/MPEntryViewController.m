@@ -56,7 +56,6 @@ NSString *const _toggleFilterUsernameButton = @"SearchUsername";
 @property (retain) NSArray *filteredEntries;
 @property (retain) IBOutlet NSView *filterBar;
 @property (assign) IBOutlet NSTableView *entryTable;
-@property (assign) BOOL isStatusBarVisible;
 @property (assign) IBOutlet NSLayoutConstraint *tableToTop;
 @property (assign) IBOutlet NSLayoutConstraint *tableToBottom;
 @property (assign) IBOutlet NSButton *filterDoneButton;
@@ -86,7 +85,7 @@ NSString *const _toggleFilterUsernameButton = @"SearchUsername";
 /* Notification handling */
 - (void)_didChangeGroupSelectionInOutlineView:(NSNotification *)notification;
 - (void)_showFilterBarAnimated:(BOOL)animate;
-- (void)_hideStatusBarAnimated:(BOOL)animate;
+- (void)_hideFilterBarAnimated:(BOOL)animate;
 
 - (void)_columnDoubleClick:(id)sender;
 - (void)_copyToPasteboard:(NSString *)data overlayInfo:(MPOVerlayInfoType)overlayInfoType;
@@ -104,7 +103,7 @@ NSString *const _toggleFilterUsernameButton = @"SearchUsername";
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil {
   self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
   if(self) {
-    _isStatusBarVisible = YES;
+    _isFilterBarVisible = NO;
     _filterMode = MPFilterTitles;
     _filterButtonToMode = [@{ _toggleFilterUsernameButton : @(MPFilterUsernames),
                            _toggleFilterTitleButton : @(MPFilterTitles),
@@ -129,7 +128,7 @@ NSString *const _toggleFilterUsernameButton = @"SearchUsername";
 
 - (void)didLoadView {
   [self.view setWantsLayer:YES];
-  [self _hideStatusBarAnimated:NO];
+  [self _hideFilterBarAnimated:NO];
   
   MPDocumentWindowController *windowController = [self windowController];
   [[NSNotificationCenter defaultCenter] addObserver:self
@@ -174,16 +173,6 @@ NSString *const _toggleFilterUsernameButton = @"SearchUsername";
   [self.entryTable bind:NSSortDescriptorsBinding toObject:self.entryArrayController withKeyPath:@"sortDescriptors" options:nil];
 
   [parentColumn setHidden:YES];
-  
-  
-  NSLayoutConstraint *widthConstraint = [NSLayoutConstraint constraintWithItem:[self view]
-                                                                     attribute:NSLayoutAttributeWidth
-                                                                     relatedBy:NSLayoutRelationGreaterThanOrEqual
-                                                                        toItem:nil
-                                                                     attribute:NSLayoutAttributeNotAnAttribute
-                                                                    multiplier:1
-                                                                      constant:300];
-  [[self view] addConstraint:widthConstraint];
 }
 #pragma mark NSTableViewDelgate
 
@@ -200,28 +189,27 @@ NSString *const _toggleFilterUsernameButton = @"SearchUsername";
   if(isTitleColumn || isGroupColumn) {
     view = [tableView makeViewWithIdentifier:_MPTableImageCellView owner:self];
     if( isTitleColumn ) {
-      [[view textField] bind:NSValueBinding toObject:entry withKeyPath:@"title" options:nil];
-      //[[view textField] setStringValue:entry.title];
+      [[view textField] bind:NSValueBinding toObject:entry withKeyPath:MPEntryTitleUndoableKey options:nil];
       [[view imageView] setImage:[MPIconHelper icon:(MPIconType)entry.image]];
     }
     else {
-      [[view textField] setStringValue:entry.parent.name];
+      assert(entry.parent);
+      [[view textField] bind:NSValueBinding toObject:entry.parent withKeyPath:MPGroupNameUndoableKey options:nil];
       [[view imageView] setImage:[MPIconHelper icon:(MPIconType)entry.parent.image]];
     }
   }
   else if( isPasswordColum ) {
     view = [tableView makeViewWithIdentifier:_MPTAbleSecurCellView owner:self];
-    [[view textField] bind:NSValueBinding toObject:entry withKeyPath:@"password" options:nil];
-    [[view textField] setStringValue:entry.password];
+    [[view textField] bind:NSValueBinding toObject:entry withKeyPath:MPEntryPasswordUndoableKey options:nil];
   }
   else if( isUsernameColumn || isURLColumn ) {
     view = [tableView makeViewWithIdentifier:_MPTableStringCellView owner:self];
     if(isURLColumn) {
-      [[view textField] bind:NSValueBinding toObject:entry withKeyPath:@"url" options:nil];
+      [[view textField] bind:NSValueBinding toObject:entry withKeyPath:MPEntryUrlUndoableKey options:nil];
       //[[view textField] setStringValue:entry.url];
     }
     else {
-      [[view textField] bind:NSValueBinding toObject:entry withKeyPath:@"username" options:nil];
+      [[view textField] bind:NSValueBinding toObject:entry withKeyPath:MPEntryUsernameUndoableKey options:nil];
       //[[view textField] setStringValue:entry.username];
     }
   }
@@ -282,7 +270,7 @@ NSString *const _toggleFilterUsernameButton = @"SearchUsername";
 - (void)clearFilter:(id)sender {
   self.filter = nil;
   [[self.entryTable tableColumnWithIdentifier:MPEntryTableParentColumnIdentifier] setHidden:YES];
-  [self _hideStatusBarAnimated:YES];
+  [self _hideFilterBarAnimated:YES];
 }
 
 - (void)updateFilter {
@@ -346,12 +334,12 @@ NSString *const _toggleFilterUsernameButton = @"SearchUsername";
   [self.filterURLButton setState:[self _shouldFilterURLs] ? NSOnState : NSOffState ];
   [self.filterUsernameButton setState:[self _shouldFilterUsernames] ? NSOnState : NSOffState];
   
-  if(self.isStatusBarVisible) {
+  if(_isFilterBarVisible) {
     return; // nothign to to
   }
   
   [((MPDocumentWindowController *)[[self.view window] windowController]) clearOutlineSelection:nil];
-  self.isStatusBarVisible = YES;
+  _isFilterBarVisible = YES;
   self.tableToTop.constant = [self.filterBar frame].size.height;
   
   [self.view addSubview:self.filterBar];
@@ -372,18 +360,17 @@ NSString *const _toggleFilterUsernameButton = @"SearchUsername";
   }
 }
 
-- (void)_hideStatusBarAnimated:(BOOL)animate {
-  
+- (void)_hideFilterBarAnimated:(BOOL)animate {
   
   animate = NO;
   
-  if(!self.isStatusBarVisible) {
+  if(!_isFilterBarVisible) {
     return; // nothing to do;
   }
   
-  self.isStatusBarVisible = NO;
+  _isFilterBarVisible = NO;
   self.tableToTop.constant = -1;
-  [self.filterBar removeFromSuperviewWithoutNeedingDisplay];
+  [self.filterBar removeFromSuperview];
   
   if(animate) {
     [NSAnimationContext runAnimationGroup:^(NSAnimationContext* context) {
