@@ -217,9 +217,6 @@ NSString *const _toggleFilterUsernameButton = @"SearchUsername";
   
   return view;
 }
-- (void)tableView:(NSTableView *)tableView didAddRowView:(NSTableRowView *)rowView forRow:(NSInteger)row {
-  NSLog(@"didAddRowViewForRow: %ld color:%@ isFloating:%i", (long)row, rowView.backgroundColor, rowView.isFloating);
-}
 
 - (void)tableViewSelectionDidChange:(NSNotification *)notification {
   if([self.entryTable selectedRow] < 0) {
