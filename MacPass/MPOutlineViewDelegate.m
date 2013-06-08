@@ -9,6 +9,7 @@
 #import "MPOutlineViewDelegate.h"
 #import "MPIconHelper.h"
 #import "MPUppercaseStringValueTransformer.h"
+#import "HNHBadgedTextFieldCell.h"
 #import "KdbLib.h"
 
 NSString *const MPOutlineViewDidChangeGroupSelection = @"com.macpass.MPOutlineViewDidChangeGroupSelection";
@@ -39,7 +40,7 @@ NSString *const _MPOutlinveViewHeaderViewIdentifier = @"HeaderCell";
     NSImage *icon = [MPIconHelper icon:(MPIconType)[group image]];
     [view.imageView setImage:icon];
     [view.textField bind:NSValueBinding toObject:group withKeyPath:@"name" options:nil];
-
+    [view.textField bind:@"count" toObject:group withKeyPath:@"entries.@count" options:nil];
   }
   
   return view;
@@ -72,8 +73,9 @@ NSString *const _MPOutlinveViewHeaderViewIdentifier = @"HeaderCell";
 }
 
 - (BOOL)outlineView:(NSOutlineView *)outlineView shouldShowOutlineCellForItem:(id)item {
-  KdbGroup *group = [item representedObject];
-  return (nil != group.parent);
+  return YES;
+//  KdbGroup *group = [item representedObject];
+//  return (nil != group.parent);
 }
 
 @end
