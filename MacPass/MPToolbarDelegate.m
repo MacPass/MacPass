@@ -56,8 +56,8 @@ NSString *const MPToolbarItemInspector = @"TOOLBAR_INSPECTOR";
   NSToolbarItem *item = self.toolbarItems[itemIdentifier];
   if(!item) {
     item = [[MPToolbarItem alloc] initWithItemIdentifier:itemIdentifier];
-    NSString *label = [self _localizedLabelForToolbarItemIdentifier:itemIdentifier];
-    [item setLabel:label];
+    NSString *itemLabel = [self _localizedLabelForToolbarItemIdentifier:itemIdentifier];
+    [item setLabel:itemLabel];
     
     if([itemIdentifier isEqualToString:MPToolbarItemAction]) {
       NSPopUpButton *popupButton = [[NSPopUpButton alloc] initWithFrame:NSMakeRect(0, 0, 50, 32) pullsDown:YES];
@@ -68,9 +68,7 @@ NSString *const MPToolbarItemInspector = @"TOOLBAR_INSPECTOR";
       
       NSRect newFrame = [popupButton frame];
       newFrame.size.width += 20;
-      
-      
-      
+           
       NSMenu *menu = [[NSMenu allocWithZone:[NSMenu menuZone]] init];
       NSMenuItem *actionImageItem = [[NSMenuItem allocWithZone:[NSMenu menuZone]] initWithTitle:@"" action:NULL keyEquivalent:@""];
       [actionImageItem setImage:self.toolbarImages[MPToolbarItemAction]];
@@ -80,12 +78,17 @@ NSString *const MPToolbarItemInspector = @"TOOLBAR_INSPECTOR";
       for(NSMenuItem *item in menuItems) {
         [menu addItem:item];
       }
+      NSMenuItem *menuRepresentation = [[NSMenuItem alloc] initWithTitle:itemLabel
+                                                                  action:[self _actionForToolbarItemIdentifier:itemIdentifier]
+                                                           keyEquivalent:@""];
+      [menuRepresentation setSubmenu:menu];
+      
       [popupButton setFrame:newFrame];
       [popupButton setMenu:menu];
-      [menu release];
-      
+      [item setMenuFormRepresentation:menuRepresentation];
       [item setView:popupButton];
       [popupButton release];
+      [menu release];
     }
     else {
       NSButton *button = [[MPToolbarButton alloc] initWithFrame:NSMakeRect(0, 0, 32, 32)];
@@ -104,6 +107,10 @@ NSString *const MPToolbarItemInspector = @"TOOLBAR_INSPECTOR";
       fittingRect.size.width = MAX( (CGFloat)32.0,fittingRect.size.width);
       [button setFrame:fittingRect];
       [item setView:button];
+      NSMenuItem *menuRepresentation = [[NSMenuItem alloc] initWithTitle:itemLabel
+                                                                  action:[self _actionForToolbarItemIdentifier:itemIdentifier]
+                                                           keyEquivalent:@""];
+      [item setMenuFormRepresentation:menuRepresentation];
       [button release];
     }
     self.toolbarItems[itemIdentifier] = item;
