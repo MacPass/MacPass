@@ -42,7 +42,7 @@
 				<string key="NSClassName">NSApplication</string>
 			</object>
 			<object class="NSCustomView" id="595437442">
-				<nil key="NSNextResponder"/>
+				<reference key="NSNextResponder"/>
 				<int key="NSvFlags">268</int>
 				<array class="NSMutableArray" key="NSSubviews">
 					<object class="NSScrollView" id="628894392">
@@ -59,6 +59,7 @@
 										<array class="NSMutableArray" key="NSSubviews"/>
 										<string key="NSFrameSize">{177, 299}</string>
 										<reference key="NSSuperview" ref="100228705"/>
+										<reference key="NSWindow"/>
 										<reference key="NSNextKeyView" ref="352201595"/>
 										<string key="NSReuseIdentifierKey">_NS:13</string>
 										<bool key="NSEnabled">YES</bool>
@@ -173,6 +174,7 @@
 								</array>
 								<string key="NSFrameSize">{177, 299}</string>
 								<reference key="NSSuperview" ref="628894392"/>
+								<reference key="NSWindow"/>
 								<reference key="NSNextKeyView" ref="920491699"/>
 								<string key="NSReuseIdentifierKey">_NS:11</string>
 								<reference key="NSDocView" ref="920491699"/>
@@ -184,6 +186,7 @@
 								<int key="NSvFlags">-2147483392</int>
 								<string key="NSFrame">{{224, 17}, {15, 102}}</string>
 								<reference key="NSSuperview" ref="628894392"/>
+								<reference key="NSWindow"/>
 								<reference key="NSNextKeyView" ref="578225175"/>
 								<string key="NSReuseIdentifierKey">_NS:15</string>
 								<bool key="NSAllowsLogicalLayoutDirection">NO</bool>
@@ -196,6 +199,7 @@
 								<int key="NSvFlags">-2147483392</int>
 								<string key="NSFrame">{{1, 119}, {238, 15}}</string>
 								<reference key="NSSuperview" ref="628894392"/>
+								<reference key="NSWindow"/>
 								<string key="NSReuseIdentifierKey">_NS:60</string>
 								<bool key="NSAllowsLogicalLayoutDirection">NO</bool>
 								<int key="NSsFlags">1</int>
@@ -206,6 +210,7 @@
 						</array>
 						<string key="NSFrameSize">{177, 299}</string>
 						<reference key="NSSuperview" ref="595437442"/>
+						<reference key="NSWindow"/>
 						<reference key="NSNextKeyView" ref="100228705"/>
 						<string key="NSReuseIdentifierKey">_NS:9</string>
 						<int key="NSsFlags">133680</int>
@@ -219,6 +224,8 @@
 					</object>
 				</array>
 				<string key="NSFrameSize">{177, 299}</string>
+				<reference key="NSSuperview"/>
+				<reference key="NSWindow"/>
 				<reference key="NSNextKeyView" ref="628894392"/>
 				<string key="NSReuseIdentifierKey">_NS:9</string>
 				<string key="NSClassName">NSView</string>
@@ -806,6 +813,8 @@
 					<reference ref="751516117"/>
 					<reference ref="20875447"/>
 				</array>
+				<boolean value="NO" key="196.IBNSViewMetadataLastInspectedTranslatesAutoresizingMaskIntoConstraints"/>
+				<boolean value="NO" key="196.IBNSViewMetadataTranslatesAutoresizingMaskIntoConstraints"/>
 				<string key="196.IBPluginDependency">com.apple.InterfaceBuilder.CocoaPlugin</string>
 				<boolean value="NO" key="227.IBNSViewMetadataTranslatesAutoresizingMaskIntoConstraints"/>
 				<string key="227.IBPluginDependency">com.apple.InterfaceBuilder.CocoaPlugin</string>
@@ -874,6 +883,14 @@
 		</object>
 		<object class="IBClassDescriber" key="IBDocument.Classes">
 			<array class="NSMutableArray" key="referencedPartialClassDescriptions">
+				<object class="IBPartialClassDescription">
+					<string key="className">HNHBadgedTextField</string>
+					<string key="superclassName">NSTextField</string>
+					<object class="IBClassDescriptionSource" key="sourceIdentifier">
+						<string key="majorKey">IBProjectSource</string>
+						<string key="minorKey">./Classes/HNHBadgedTextField.h</string>
+					</object>
+				</object>
 				<object class="IBPartialClassDescription">
 					<string key="className">HNHBadgedTextFieldCell</string>
 					<string key="superclassName">NSTextFieldCell</string>

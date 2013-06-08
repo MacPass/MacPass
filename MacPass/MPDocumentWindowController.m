@@ -15,20 +15,15 @@
 #import "MPOutlineViewController.h"
 #import "MPInspectorViewController.h"
 #import "MPAppDelegate.h"
-#import "DMSplitView.h"
+#import "MPActionHelper.h"
 
 @interface MPDocumentWindowController () {
 @private
   BOOL _needsDecryption;
 }
 
-@property (assign) IBOutlet NSView *outlineView;
-@property (assign) IBOutlet NSSplitView *splitView;
-@property (assign) IBOutlet NSView *contentView;
-@property (assign) IBOutlet NSView *inspectorView;
+@property (retain) IBOutlet NSSplitView *splitView;
 
-@property (retain) IBOutlet NSView *welcomeView;
-@property (assign) IBOutlet NSTextField *welcomeText;
 @property (retain) NSToolbar *toolbar;
 
 @property (retain) MPPasswordInputController *passwordInputController;
@@ -40,8 +35,6 @@
 @property (retain) MPToolbarDelegate *toolbarDelegate;
 
 - (void)_setContentViewController:(MPViewController *)viewController;
-- (void)_setOutlineVisible:(BOOL)isVisible;
-
 
 @end
 
@@ -55,6 +48,7 @@
     _outlineViewController = [[MPOutlineViewController alloc] init];
     _inspectorTabViewController = [[MPInspectorViewController alloc] init];
     _passwordEditController = [[MPPasswordEditViewController alloc] init];
+    _entryViewController = [[MPEntryViewController alloc] init];
   }
   return self;
 }
@@ -70,6 +64,7 @@
   [_creationViewController release];
   
   [_toolbarDelegate release];
+  [_splitView release];
   [super dealloc];
 }
 
@@ -78,7 +73,6 @@
 - (void)windowDidLoad
 {
   [super windowDidLoad];
-  
   _toolbar = [[NSToolbar alloc] initWithIdentifier:@"MainWindowToolbar"];
   [self.toolbar setAllowsUserCustomization:YES];
   [self.toolbar setDelegate:self.toolbarDelegate];
@@ -86,104 +80,71 @@
   
   [self.splitView setTranslatesAutoresizingMaskIntoConstraints:NO];
   
-  /* Add outlineview */
-  const NSRect outlineFrame = [self.outlineView frame];
-  [self.outlineViewController.view setFrame:outlineFrame];
-  [self.outlineViewController.view setAutoresizingMask:NSViewWidthSizable | NSViewHeightSizable];
-  [self.splitView replaceSubview:self.outlineView with:[self.outlineViewController view]];
-  [self.outlineViewController updateResponderChain];
+  NSView *outlineView = [_outlineViewController view];
+  NSView *inspectorView = [_inspectorTabViewController view];
+  NSView *entryView = [_entryViewController view];
+  [self.splitView addSubview:outlineView];
+  [self.splitView addSubview:entryView];
+  [self.splitView addSubview:inspectorView];
   
-  /* Add inspector view */
-  const NSRect inspectorFrame = [self.inspectorView frame];
-  [self.inspectorTabViewController.view setFrame:inspectorFrame];
-  [self.splitView replaceSubview:self.inspectorView with:[self.inspectorTabViewController view]];
-  [self.inspectorTabViewController updateResponderChain];
-  
-  [self _setOutlineVisible:NO];
+  //TODO: Fix setup on start
   MPDocument *document = [self document];
   if(!document.isDecrypted) {
     [self showPasswordInput];
   }
   else {
-    [self editPassword:nil];
+    [self showEntries];
   }
 }
 
 - (void)_setContentViewController:(MPViewController *)viewController {
-  NSView *newContentView = self.welcomeView;
+  
+  NSView *newContentView = nil;
   if(viewController && viewController.view) {
     newContentView = viewController.view;
   }
-  /*
-   Set correct size and resizing for view
-   */
-  [newContentView setAutoresizingMask:NSViewWidthSizable | NSViewHeightSizable];
-  NSSize frameSize = [self.contentView frame].size;
-  [newContentView setFrame:NSMakeRect(0,0, frameSize.width, frameSize.height)];
+  NSView *contentView = [[self window] contentView];
+  NSView *oldSubView = nil;
+  if([[contentView subviews] count] == 1) {
+    oldSubView = [contentView subviews][0];
+  }
+  if(oldSubView == newContentView) {
+    return; // View is already present
+  }
+  [oldSubView removeFromSuperviewWithoutNeedingDisplay];
+  [contentView addSubview:newContentView];
+  [contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|[newContentView]|"
+                                                                      options:0
+                                                                      metrics:nil
+                                                                        views:NSDictionaryOfVariableBindings(newContentView)]];
+
+  [contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|[newContentView]|"
+                                                                      options:0
+                                                                      metrics:nil
+                                                                        views:NSDictionaryOfVariableBindings(newContentView)]];
   
-  /*
-   Add or replace subview
-   */
-  NSArray *subViews = [self.contentView subviews];
-  BOOL hasSubViews = ([subViews count] > 0);
-  if(hasSubViews) {
-    NSView *subView = subViews[0];
-    assert(subView);
-    [self.contentView replaceSubview:subView with:newContentView];
-  }
-  else {
-    [self.contentView addSubview:newContentView];
-  }
+  [contentView layout];
   [viewController updateResponderChain];
-  [self.contentView setNeedsDisplay:YES];
-  [self.splitView adjustSubviews];
-  /*
-   Set focus AFTER having added the view
-   */
   [self.window makeFirstResponder:[viewController reconmendedFirstResponder]];
 }
 
-- (void)_setOutlineVisible:(BOOL)isVisible {
-  self.outlineViewController.isVisible = isVisible;
-}
-
 #pragma mark Actions
-
-- (void)toggleInspector:(id)sender {
-  //if(self.inspectorTabViewController) {
-  //  [self.inspectorTabViewController toggleVisible];
-  //}
-}
-
 - (void)performFindPanelAction:(id)sender {
   [self.entryViewController showFilter:sender];
 }
 
-- (void)toggleOutlineView:(id)sender {
-  
-}
-
 - (BOOL)validateMenuItem:(NSMenuItem *)menuItem {
-  SEL menuAction = [menuItem action];
-  if(menuAction == @selector(main:)) {
-    NSString *title = self.outlineViewController.isVisible ? NSLocalizedString(@"SHOW_OUTLINE_VIEW", @"") : NSLocalizedString(@"HIDE_OUTLINE_VIEW", @"Hide the Outline View");
-    
-    [menuItem setTitle:title];
-    return YES;
-  }
-  if( menuAction == @selector(toggleInspector:) ) {
-    NSString *title = [self.inspectorTabViewController isVisible] ? NSLocalizedString(@"SHOW_INSPECTOR", @"Show the Inspector") : NSLocalizedString(@"HIDE_INSPECTOR", @"Hide the Inspector");
-    
-    [menuItem setTitle:title];
-    return YES;
-  }
   return YES;
 }
 
 - (BOOL)validateToolbarItem:(NSToolbarItem *)theItem {
+  SEL itemAction = [theItem action];
+  if( itemAction == [MPActionHelper actionOfType:MPActionLock]) {
+    return (nil == [[_passwordInputController view] superview]);
+  }
+  return YES;
   return [self.toolbarDelegate validateToolbarItem:theItem];
 }
-
 
 - (void)showPasswordInput {
   if(!self.passwordInputController) {
@@ -204,8 +165,57 @@
   [self _setContentViewController:self.passwordEditController];
 }
 
-#pragma mark Helper
+- (void)lock:(id)sender {
+  [self showPasswordInput];
+}
 
+- (void)showEntries {
+  NSView *contentView = [[self window] contentView];
+  if(_splitView == contentView) {
+    return; // We are displaying the entries already
+  }
+  if([[contentView subviews] count] == 1) {
+    [[contentView subviews][0] removeFromSuperviewWithoutNeedingDisplay];
+  }
+  [contentView addSubview:_splitView];
+  [_splitView adjustSubviews];
+  NSView *outlineView = [_outlineViewController view];
+  NSView *inspectorView = [_inspectorTabViewController view];
+  NSView *entryView = [_entryViewController view];
+  
+  NSDictionary *views = NSDictionaryOfVariableBindings(outlineView, inspectorView, entryView, _splitView);
+  [self.splitView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|[outlineView(>=150,<=250)]-1-[entryView(>=250)]-1-[inspectorView(>=200)]|"
+                                                                         options:0
+                                                                         metrics:nil
+                                                                           views:views]];
+  [self.splitView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|[outlineView]|"
+                                                                         options:0
+                                                                         metrics:nil
+                                                                           views:views]];
+  [self.splitView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|[entryView(>=300)]|"
+                                                                         options:0
+                                                                         metrics:nil
+                                                                           views:views]];
+  [self.splitView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|[inspectorView]|"
+                                                                         options:0
+                                                                         metrics:nil
+                                                                           views:views]];
+  [contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|[_splitView]|"
+                                                                      options:0
+                                                                      metrics:nil
+                                                                        views:views]];
+  [contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|[_splitView]|"
+                                                                      options:0
+                                                                      metrics:nil
+                                                                        views:views]];
+  [contentView layout];
+  [_entryViewController updateResponderChain];
+  [_inspectorTabViewController updateResponderChain];
+  [_outlineViewController updateResponderChain];
+  [_outlineViewController showOutline];
+}
+
+#pragma mark Helper
 - (NSSearchField *)locateToolbarSearchField {
   for(NSToolbarItem *toolbarItem in [[self.window toolbar] items]) {
     NSView *view = [toolbarItem view];
@@ -216,14 +226,5 @@
   return nil;
 }
 
-#pragma mark Notifications
-- (void)showEntries {
-  if(!self.entryViewController) {
-    _entryViewController = [[MPEntryViewController alloc] init];
-  }
-  [self _setContentViewController:self.entryViewController];
-  [self.outlineViewController showOutline];
-  [self _setOutlineVisible:YES];
-}
 
 @end

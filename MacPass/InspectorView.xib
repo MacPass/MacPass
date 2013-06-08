@@ -239,7 +239,6 @@
 						<string key="NSFrame">{{212, 286}, {32, 25}}</string>
 						<reference key="NSSuperview" ref="87082330"/>
 						<reference key="NSWindow"/>
-						<reference key="NSNextKeyView"/>
 						<string key="NSReuseIdentifierKey">_NS:22</string>
 						<bool key="NSEnabled">YES</bool>
 						<object class="NSButtonCell" key="NSCell" id="353877023">
@@ -1391,6 +1390,8 @@
 					<reference ref="246479646"/>
 					<reference ref="7482984"/>
 				</array>
+				<boolean value="NO" key="455.IBNSViewMetadataLastInspectedTranslatesAutoresizingMaskIntoConstraints"/>
+				<boolean value="NO" key="455.IBNSViewMetadataTranslatesAutoresizingMaskIntoConstraints"/>
 				<string key="455.IBPluginDependency">com.apple.InterfaceBuilder.CocoaPlugin</string>
 				<array key="457.IBNSViewMetadataConstraints">
 					<reference ref="749563412"/>

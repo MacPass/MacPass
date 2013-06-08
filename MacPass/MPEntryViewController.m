@@ -136,8 +136,6 @@ NSString *const _toggleFilterUsernameButton = @"SearchUsername";
                                                name:MPOutlineViewDidChangeGroupSelection
                                              object:windowController.outlineViewController.outlineDelegate];
   
-  //[[NSNotificationCenter defaultCenter] addObserver:self.entryTable selector:@selector(reloadData) name:MPDocumentDidAddEntryNotification object:nil];
-  
   [self.entryTable setDelegate:self];
   [self.entryTable setDoubleAction:@selector(_columnDoubleClick:)];
   [self.entryTable setTarget:self];
@@ -305,7 +303,6 @@ NSString *const _toggleFilterUsernameButton = @"SearchUsername";
 - (void)setupFilterBar {
   if(!self.filterBar) {
     [[NSBundle mainBundle] loadNibNamed:@"FilterBar" owner:self topLevelObjects:nil];
-    [self.filterBar setAutoresizingMask:NSViewWidthSizable|NSViewMinYMargin];
     [self.filterURLButton setIdentifier:_toggleFilterURLButton];
     [self.filterUsernameButton setIdentifier:_toggleFilterUsernameButton];
     [self.filterTitleButton setIdentifier:_toggleFilterTitleButton];

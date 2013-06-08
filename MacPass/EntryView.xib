@@ -320,7 +320,6 @@
 								<string key="NSFrame">{{0, 310}, {480, 16}}</string>
 								<reference key="NSSuperview" ref="613995671"/>
 								<reference key="NSWindow"/>
-								<reference key="NSNextKeyView"/>
 								<string key="NSReuseIdentifierKey">_NS:60</string>
 								<bool key="NSAllowsLogicalLayoutDirection">NO</bool>
 								<int key="NSsFlags">1</int>
@@ -449,7 +448,7 @@
 								<object class="NSTextField" id="306813103">
 									<reference key="NSNextResponder" ref="788738248"/>
 									<int key="NSvFlags">266</int>
-									<string key="NSFrameSize">{104.5, 17}</string>
+									<string key="NSFrameSize">{105, 17}</string>
 									<reference key="NSSuperview" ref="788738248"/>
 									<reference key="NSNextKeyView" ref="804102913"/>
 									<string key="NSAntiCompressionPriority">{250, 750}</string>
@@ -471,7 +470,7 @@
 									<bool key="NSAllowsLogicalLayoutDirection">NO</bool>
 								</object>
 							</array>
-							<string key="NSFrame">{{1, 1}, {104.5, 17}}</string>
+							<string key="NSFrame">{{1, 1}, {105, 17}}</string>
 							<reference key="NSNextKeyView" ref="306813103"/>
 						</object>
 						<reference key="destination" ref="306813103"/>
@@ -540,7 +539,7 @@
 									<bool key="NSAllowsLogicalLayoutDirection">NO</bool>
 								</object>
 							</array>
-							<string key="NSFrame">{{108.5, 1}, {144, 17}}</string>
+							<string key="NSFrame">{{109, 1}, {144, 17}}</string>
 							<reference key="NSNextKeyView" ref="591921532"/>
 							<string key="NSReuseIdentifierKey">_NS:9</string>
 						</object>
@@ -583,7 +582,7 @@
 									<bool key="NSAllowsLogicalLayoutDirection">NO</bool>
 								</object>
 							</array>
-							<string key="NSFrame">{{377, 1}, {113, 17}}</string>
+							<string key="NSFrame">{{378, 1}, {113, 17}}</string>
 							<reference key="NSNextKeyView" ref="441850286"/>
 						</object>
 						<reference key="destination" ref="441850286"/>
@@ -600,7 +599,7 @@
 								<object class="NSTextField" id="1042596093">
 									<reference key="NSNextResponder" ref="878614701"/>
 									<int key="NSvFlags">266</int>
-									<string key="NSFrameSize">{118.5, 17}</string>
+									<string key="NSFrameSize">{119, 17}</string>
 									<reference key="NSSuperview" ref="878614701"/>
 									<reference key="NSNextKeyView" ref="542633869"/>
 									<string key="NSAntiCompressionPriority">{250, 750}</string>
@@ -617,7 +616,7 @@
 									<bool key="NSAllowsLogicalLayoutDirection">NO</bool>
 								</object>
 							</array>
-							<string key="NSFrame">{{255.5, 1}, {118.5, 17}}</string>
+							<string key="NSFrame">{{256, 1}, {119, 17}}</string>
 							<reference key="NSNextKeyView" ref="1042596093"/>
 						</object>
 						<reference key="destination" ref="1042596093"/>
@@ -651,7 +650,7 @@
 									<bool key="NSAllowsLogicalLayoutDirection">NO</bool>
 								</object>
 							</array>
-							<string key="NSFrame">{{493, 1}, {292, 17}}</string>
+							<string key="NSFrame">{{494, 1}, {292, 17}}</string>
 							<reference key="NSNextKeyView" ref="488604658"/>
 						</object>
 						<reference key="destination" ref="488604658"/>
@@ -1439,7 +1438,8 @@
 					<reference ref="986749424"/>
 					<reference ref="858505477"/>
 				</array>
-				<boolean value="YES" key="336.IBNSViewMetadataLastInspectedTranslatesAutoresizingMaskIntoConstraints"/>
+				<boolean value="NO" key="336.IBNSViewMetadataLastInspectedTranslatesAutoresizingMaskIntoConstraints"/>
+				<boolean value="NO" key="336.IBNSViewMetadataTranslatesAutoresizingMaskIntoConstraints"/>
 				<string key="336.IBPluginDependency">com.apple.InterfaceBuilder.CocoaPlugin</string>
 				<string key="346.IBPluginDependency">com.apple.InterfaceBuilder.CocoaPlugin</string>
 				<string key="348.IBPluginDependency">com.apple.InterfaceBuilder.CocoaPlugin</string>

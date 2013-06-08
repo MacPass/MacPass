@@ -15,16 +15,17 @@
   static dispatch_once_t onceToken;
   dispatch_once(&onceToken, ^{
     actionDict = [@{
-                   @(MPActionAddEntry) : @"createEntry:",
-                   @(MPActionAddGroup) : @"createGroup:",
-                   @(MPActionCopyPassword) : @"copyPassword:",
-                   @(MPActionCopyURL) : @"copyURL:",
-                   @(MPActionCopyUsername) : @"copyUsername:",
-                   @(MPActionDelete) : @"deleteEntry:",
-                   @(MPActionEdit) : @"editEntry:",
-                   @(MPActionOpenURL) : @"openURL:",
-                   @(MPActionToggleInspector) : @"toggleInspector:"
-                   } retain];
+                  @(MPActionAddEntry) : @"createEntry:",
+                  @(MPActionAddGroup) : @"createGroup:",
+                  @(MPActionCopyPassword) : @"copyPassword:",
+                  @(MPActionCopyURL) : @"copyURL:",
+                  @(MPActionCopyUsername) : @"copyUsername:",
+                  @(MPActionDelete) : @"deleteEntry:",
+                  @(MPActionEdit) : @"editEntry:",
+                  @(MPActionOpenURL) : @"openURL:",
+                  @(MPActionToggleInspector) : @"toggleInspector:",
+                  @(MPActionLock) : @"lock:"
+                  } retain];
   });
   return NSSelectorFromString(actionDict[@(type)]);
 }

@@ -17,8 +17,8 @@
 
 - (void)removeObjectFromEntriesAtIndex:(NSUInteger)index {
   KdbEntry *entry = [entries objectAtIndex:index];
-  entry.parent = nil;
   [entries removeObjectAtIndex:index];
+  entry.parent = nil;
 }
 
 - (NSUInteger)countOfEntries {
@@ -44,8 +44,8 @@
 
 - (void)removeObjectFromGroupsAtIndex:(NSUInteger)index {
   KdbGroup *group = [groups objectAtIndex:index];
-  group.parent = nil;
   [groups removeObjectAtIndex:index];
+  group.parent = nil;
 }
 
 @end

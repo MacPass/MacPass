@@ -31,9 +31,6 @@
 - (void)performFindPanelAction:(id)sender;
 - (void)clearOutlineSelection:(id)sender;
 - (IBAction)editPassword:(id)sender;
-/*
- Clears the Search filter
- */
-- (void)toggleInspector:(id)sender;
+- (void)lock:(id)sender;
 
 @end

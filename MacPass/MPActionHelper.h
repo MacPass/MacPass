@@ -18,6 +18,7 @@ typedef enum {
   MPActionCopyURL, // copy url to pasteboard
   MPActionOpenURL, // open url in default browser
   MPActionToggleInspector,
+  MPActionLock, // show the lock screen
 }
 MPActionType;
 

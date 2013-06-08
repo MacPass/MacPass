@@ -29,8 +29,7 @@
 }
 
 - (void)updateResponderChain {
-  if(self.view) {
-    NSLog(@"Updated responder chain");
+  if(self.view && [self.view nextResponder] != self) {
     NSResponder *nextResponder = [[self view] nextResponder];
     [[self view] setNextResponder:self];
     [self setNextResponder:nextResponder];

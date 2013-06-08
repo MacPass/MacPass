@@ -13,7 +13,9 @@
 #import "MPAppDelegate.h"
 #import "KdbLib.h"
 
-@interface MPOutlineViewController ()
+@interface MPOutlineViewController () {
+  BOOL _bindingEstablished;
+}
 
 @property (assign) IBOutlet NSOutlineView *outlineView;
 
@@ -21,8 +23,6 @@
 @property (retain) MPOutlineDataSource *datasource;
 @property (retain) MPOutlineViewDelegate *outlineDelegate;
 @property (retain) NSMenu *menu;
-@property (retain) NSArray *showConstraints;
-@property (retain) NSArray *hideConstraints;
 
 
 - (void)_didUpdateData:(NSNotification *)notification;
@@ -40,8 +40,8 @@
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil {
   self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
   if (self) {
-    _isVisible = YES;
     _treeController = [[NSTreeController alloc] init];
+    _bindingEstablished = NO;
     self.outlineDelegate = [[[MPOutlineViewDelegate alloc] init] autorelease];
     self.datasource = [[[MPOutlineDataSource alloc] init] autorelease];
 
@@ -77,27 +77,16 @@
   [self.outlineView setAllowsEmptySelection:YES];
   [self.outlineView setFloatsGroupRows:NO];
   [self.outlineView setDraggingSourceOperationMask:NSDragOperationEvery forLocal:YES];
-  
-  
-  NSView *myView = [self view];
-  self.showConstraints = [NSLayoutConstraint constraintsWithVisualFormat:@"H:[myView(>=100,<=250)]"
-                                                                 options:0
-                                                                 metrics:nil
-                                                                   views:NSDictionaryOfVariableBindings(myView)];
-
-  self.hideConstraints = [NSLayoutConstraint constraintsWithVisualFormat:@"H:[myView(==0)]"
-                                                                 options:0
-                                                                 metrics:nil
-                                                                   views:NSDictionaryOfVariableBindings(myView)];
-  [[self view] addConstraints:_showConstraints];
-  
 }
 
 - (void)showOutline {
-  MPDocument *document = [[NSDocumentController sharedDocumentController] currentDocument];
-  [_treeController setChildrenKeyPath:@"groups"];
-  [_treeController bind:NSContentBinding toObject:document withKeyPath:@"root" options:nil];
-  [_outlineView bind:NSContentBinding toObject:_treeController withKeyPath:@"arrangedObjects" options:nil];
+  if(!_bindingEstablished) {
+    MPDocument *document = [[self windowController] document];
+    [_treeController setChildrenKeyPath:@"groups"];
+    [_treeController bind:NSContentBinding toObject:document withKeyPath:@"root" options:nil];
+    [_outlineView bind:NSContentBinding toObject:_treeController withKeyPath:@"arrangedObjects" options:nil];
+    _bindingEstablished = YES;
+  }
   NSTreeNode *node = [_outlineView itemAtRow:0];
   [_outlineView expandItem:node expandChildren:NO];
 }
@@ -105,16 +94,6 @@
 - (void)clearSelection {
   [self.outlineView deselectAll:nil];
 }
-
-- (void)setIsVisible:(BOOL)isVisible {
-  if(_isVisible == isVisible) {
-    return; // nichts zu tun
-  }
-  [[self view] removeConstraints:(isVisible ? self.hideConstraints : self.showConstraints)];
-  [[self view] addConstraints:(isVisible ? self.showConstraints : self.hideConstraints)];
-  _isVisible = isVisible;
-}
-
 
 - (NSMenu *)_contextMenu {
   NSMenu *menu = [[NSMenu alloc] init];

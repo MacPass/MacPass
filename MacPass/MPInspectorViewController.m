@@ -76,35 +76,11 @@
                                            selector:@selector(_didChangeSelectedGroup:)
                                                name:MPOutlineViewDidChangeGroupSelection
                                              object:nil];
-  
-  self.showConstraint = [NSLayoutConstraint constraintWithItem:[self view] attribute:NSLayoutAttributeWidth
-                                                     relatedBy:NSLayoutRelationGreaterThanOrEqual
-                                                        toItem:nil
-                                                     attribute:NSLayoutAttributeNotAnAttribute
-                                                    multiplier:1
-                                                      constant:200];
-  self.hideConstraint = [NSLayoutConstraint constraintWithItem:[self view] attribute:NSLayoutAttributeWidth
-                                                     relatedBy:NSLayoutRelationEqual
-                                                        toItem:nil
-                                                     attribute:NSLayoutAttributeNotAnAttribute
-                                                    multiplier:1
-                                                      constant:0];
-  
-  [self.view addConstraint:self.showConstraint];
-  
   [self _clearContent];
 }
 
 - (BOOL)isVisible {
   return [[self view] frame].size.width > 0;
-}
-
-- (void)toggleVisible {
-  NSLayoutConstraint *add = [self isVisible] ? self.hideConstraint : self.showConstraint;
-  NSLayoutConstraint *remove = [self isVisible] ? self.showConstraint : self.hideConstraint;
-  [[self view] removeConstraint:remove];
-  [[self view] addConstraint:add];
-  [[[self view] window] layoutIfNeeded];
 }
 
 - (void)_updateContent {

@@ -13,6 +13,7 @@
 #import "MPToolbarItem.h"
 #import "MPActionHelper.h"
 
+NSString *const MPToolbarItemLock = @"TOOLBAR_LOCK";
 NSString *const MPToolbarItemAddGroup = @"TOOLBAR_ADD_GROUP";
 NSString *const MPToolbarItemAddEntry = @"TOOLBAR_ADD_ENTRY";
 NSString *const MPToolbarItemEdit = @"TOOLBAR_EDIT";
@@ -37,7 +38,7 @@ NSString *const MPToolbarItemInspector = @"TOOLBAR_INSPECTOR";
 - (id)init {
   self = [super init];
   if (self) {
-    _toolbarIdentifiers = [@[ MPToolbarItemAddEntry, MPToolbarItemDelete, MPToolbarItemAddGroup, MPToolbarItemAction, NSToolbarFlexibleSpaceItemIdentifier, NSToolbarSpaceItemIdentifier, MPToolbarItemInspector ] retain];
+    _toolbarIdentifiers = [@[ MPToolbarItemAddEntry, MPToolbarItemDelete, MPToolbarItemAddGroup, MPToolbarItemAction, NSToolbarFlexibleSpaceItemIdentifier, MPToolbarItemLock ] retain];
     _toolbarImages = [[self createToolbarImages] retain];
     _toolbarItems = [[NSMutableDictionary alloc] initWithCapacity:[self.toolbarIdentifiers count]];
   }
@@ -68,7 +69,7 @@ NSString *const MPToolbarItemInspector = @"TOOLBAR_INSPECTOR";
       
       NSRect newFrame = [popupButton frame];
       newFrame.size.width += 20;
-           
+      
       NSMenu *menu = [[NSMenu allocWithZone:[NSMenu menuZone]] init];
       NSMenuItem *actionImageItem = [[NSMenuItem allocWithZone:[NSMenu menuZone]] initWithTitle:@"" action:NULL keyEquivalent:@""];
       [actionImageItem setImage:self.toolbarImages[MPToolbarItemAction]];
@@ -129,7 +130,8 @@ NSString *const MPToolbarItemInspector = @"TOOLBAR_INSPECTOR";
 }
 
 - (NSDictionary *)createToolbarImages{
-  NSDictionary *imageDict = @{ MPToolbarItemAddEntry: [MPIconHelper icon:MPIconPassword],
+  NSDictionary *imageDict = @{ MPToolbarItemLock: [NSImage imageNamed:NSImageNameLockUnlockedTemplate],
+                               MPToolbarItemAddEntry: [MPIconHelper icon:MPIconPassword],
                                MPToolbarItemAddGroup: [MPIconHelper icon:MPIconPassword],
                                MPToolbarItemDelete: [NSImage imageNamed:NSImageNameRemoveTemplate],
                                MPToolbarItemAction: [NSImage imageNamed:NSImageNameActionTemplate],
@@ -139,25 +141,25 @@ NSString *const MPToolbarItemInspector = @"TOOLBAR_INSPECTOR";
 }
 
 - (NSString *)_localizedLabelForToolbarItemIdentifier:(NSString *)identifier {
-  NSDictionary *labelDict = @{
-                              MPToolbarItemAction: NSLocalizedString(@"ACTION", @""),
-                              MPToolbarItemAddEntry: NSLocalizedString(@"ADD_ENTRY", @""),
-                              MPToolbarItemAddGroup: NSLocalizedString(@"ADD_GROUP", @""),
-                              MPToolbarItemDelete: NSLocalizedString(@"DELETE", @""),
-                              MPToolbarItemEdit: NSLocalizedString(@"EDIT", @""),
-                              MPToolbarItemInspector: NSLocalizedString(@"TOGGLE_INSPECTOR", @"")
-                              };
+  NSDictionary *labelDict = @{ MPToolbarItemLock: NSLocalizedString(@"LOCK", @""),
+                               MPToolbarItemAction: NSLocalizedString(@"ACTION", @""),
+                               MPToolbarItemAddEntry: NSLocalizedString(@"ADD_ENTRY", @""),
+                               MPToolbarItemAddGroup: NSLocalizedString(@"ADD_GROUP", @""),
+                               MPToolbarItemDelete: NSLocalizedString(@"DELETE", @""),
+                               MPToolbarItemEdit: NSLocalizedString(@"EDIT", @""),
+                               MPToolbarItemInspector: NSLocalizedString(@"TOGGLE_INSPECTOR", @"")
+                               };
   return labelDict[identifier];
 }
 
 - (SEL)_actionForToolbarItemIdentifier:(NSString *)identifier {
-  NSDictionary *actionDict = @{
-                               MPToolbarItemAddEntry: @(MPActionAddEntry),
-                               MPToolbarItemAddGroup: @(MPActionAddGroup),
-                               MPToolbarItemDelete: @(MPActionDelete),
-                               MPToolbarItemEdit: @(MPActionEdit),
-                               MPToolbarItemInspector: @(MPActionToggleInspector)
-                               };
+  NSDictionary *actionDict = @{ MPToolbarItemLock: @(MPActionLock),
+                                MPToolbarItemAddEntry: @(MPActionAddEntry),
+                                MPToolbarItemAddGroup: @(MPActionAddGroup),
+                                MPToolbarItemDelete: @(MPActionDelete),
+                                MPToolbarItemEdit: @(MPActionEdit),
+                                MPToolbarItemInspector: @(MPActionToggleInspector)
+                                };
   MPActionType actionType = (MPActionType)[actionDict[identifier] integerValue];
   return [MPActionHelper actionOfType:actionType];
 }

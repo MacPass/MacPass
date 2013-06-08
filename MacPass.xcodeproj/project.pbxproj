@@ -9,7 +9,6 @@
 /* Begin PBXBuildFile section */
 		4C1DDCDD1711ECEB00C98DA3 /* PasswordCreatorWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4C1DDCDC1711ECEB00C98DA3 /* PasswordCreatorWindow.xib */; };
 		4C22040D1746ED160054C916 /* KdbGroup+Undo.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C22040C1746ED160054C916 /* KdbGroup+Undo.m */; };
-		4C25D58516CF0F8800F6806C /* WelcomeView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4C25D58416CF0F8800F6806C /* WelcomeView.xib */; };
 		4C25D58716CF0FAA00F6806C /* EntryView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4C25D58616CF0FAA00F6806C /* EntryView.xib */; };
 		4C2C4C2C16D3BE3700D49295 /* KdbGroup+MPAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C2C4C2B16D3BE3700D49295 /* KdbGroup+MPAdditions.m */; };
 		4C2E381D16D11FF900037A9D /* 03_ServerTemplate.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 4C2E381A16D11FF900037A9D /* 03_ServerTemplate.pdf */; };
@@ -133,7 +132,6 @@
 		4C1DDCDC1711ECEB00C98DA3 /* PasswordCreatorWindow.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PasswordCreatorWindow.xib; sourceTree = "<group>"; };
 		4C22040B1746ED160054C916 /* KdbGroup+Undo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "KdbGroup+Undo.h"; sourceTree = "<group>"; };
 		4C22040C1746ED160054C916 /* KdbGroup+Undo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "KdbGroup+Undo.m"; sourceTree = "<group>"; };
-		4C25D58416CF0F8800F6806C /* WelcomeView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = WelcomeView.xib; sourceTree = "<group>"; };
 		4C25D58616CF0FAA00F6806C /* EntryView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = EntryView.xib; sourceTree = "<group>"; };
 		4C2C4C2A16D3BE3700D49295 /* KdbGroup+MPAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "KdbGroup+MPAdditions.h"; sourceTree = "<group>"; };
 		4C2C4C2B16D3BE3700D49295 /* KdbGroup+MPAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "KdbGroup+MPAdditions.m"; sourceTree = "<group>"; };
@@ -377,7 +375,6 @@
 				4CBFA23F172B385D006090DF /* PasswordEditView.xib */,
 				4C6B0E8B16C9B99B00A9ED23 /* PasswordInputView.xib */,
 				4C5A11FD1708DE8700223D8A /* PasswordCreatorView.xib */,
-				4C25D58416CF0F8800F6806C /* WelcomeView.xib */,
 				4C3FFD9D16DAF60600DF9186 /* FilterBar.xib */,
 				4C77547616E55FFC00970E02 /* InspectorView.xib */,
 				4CE39AC016ECE359000FE29D /* IconSelection.xib */,
@@ -878,7 +875,6 @@
 				4CA0B2F015BCADC800654E32 /* GeneralSettings.xib in Resources */,
 				4CD884B715BD47080042BBF8 /* DocumentWindow.xib in Resources */,
 				4C6B0E8C16C9B99B00A9ED23 /* PasswordInputView.xib in Resources */,
-				4C25D58516CF0F8800F6806C /* WelcomeView.xib in Resources */,
 				4C25D58716CF0FAA00F6806C /* EntryView.xib in Resources */,
 				4C586F9E16D07ABD00E7DB57 /* 00_PasswordTemplate.pdf in Resources */,
 				4C586FA016D07D7200E7DB57 /* 01_PackageNetworkTemplate.pdf in Resources */,
