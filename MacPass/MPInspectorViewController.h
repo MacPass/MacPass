@@ -18,7 +18,7 @@
 @property (assign) IBOutlet NSTextField *titleTextField;
 @property (assign) IBOutlet NSTextField *usernameTextField;
 @property (assign) IBOutlet NSTextField *URLTextField;
-@property (assign) IBOutlet NSSecureTextField *passwordTextField;
+@property (assign) IBOutlet NSTextField *passwordTextField;
 @property (assign) IBOutlet NSTextField *titleOrNameLabel;
 
 @property (assign) IBOutlet NSButton *openURLButton;
