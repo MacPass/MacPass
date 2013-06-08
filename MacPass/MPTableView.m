@@ -11,7 +11,12 @@
 @implementation MPTableView
 
 - (void)drawBackgroundInClipRect:(NSRect)clipRect {
+  /*
+   We need to clear the outer areas
+   as calling super will not do that for us
+   */
+  [[NSColor whiteColor] set];
+  NSRectFill(clipRect);
   [super drawBackgroundInClipRect:clipRect];
 }
-
 @end
