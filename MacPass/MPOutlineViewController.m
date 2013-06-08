@@ -133,6 +133,10 @@
   }
   BOOL isFistGroup = [document.root.groups count] == 0;
   [document createGroup:group];
+  /*
+   TODO: Find out if a lower hierachy node was the first child
+   and auto-expand that item too
+   */
   if(isFistGroup) {
     NSTreeNode *node = [_outlineView itemAtRow:0];
     [_outlineView expandItem:node expandChildren:NO];
