@@ -27,6 +27,8 @@ What does it look like?
 
 License
 -------
+MacPass KeePass compatible client for OS X
+Copyright (c) 2012-2013  Michael Starke, HicknHack Software GmbH
   
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -47,8 +49,10 @@ Copyright
 
 This Project is based upon the following work:
 
-[KissXML](https://github.com/robbiehanson/KissXML) Copyright 2012 Robbie Hanson. All rights reserver.
+[KissXML](https://github.com/robbiehanson/KissXML) Copyright 2012 Robbie Hanson. All rights reserved.
 
 [MiniKeePass](https://github.com/MiniKeePass/MiniKeePass) Copyright 2011 Jason Rush and John Flanagan. All rights reserved.
 
 [KeePass Database Library](https://github.com/mpowrie/KeePassLib) Copyright 2010 Qiang Yu. All rights reserved.
+
+[PXSourceList](https://github.com/Perspx/PXSourceList) Copyright 2011, Alex Rozanski. All rights reserved.
