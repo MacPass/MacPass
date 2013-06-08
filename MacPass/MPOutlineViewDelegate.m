@@ -71,4 +71,9 @@ NSString *const _MPOutlinveViewHeaderViewIdentifier = @"HeaderCell";
   [[NSNotificationCenter defaultCenter] postNotificationName:MPOutlineViewDidChangeGroupSelection object:self userInfo:nil];
 }
 
+- (BOOL)outlineView:(NSOutlineView *)outlineView shouldShowOutlineCellForItem:(id)item {
+  KdbGroup *group = [item representedObject];
+  return (nil != group.parent);
+}
+
 @end

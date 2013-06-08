@@ -76,6 +76,8 @@
   [self.outlineView setMenu:[self _contextMenu]];
   [self.outlineView setAllowsEmptySelection:YES];
   [self.outlineView setFloatsGroupRows:NO];
+  [self.outlineView setDraggingSourceOperationMask:NSDragOperationEvery forLocal:YES];
+  
   
   NSView *myView = [self view];
   self.showConstraints = [NSLayoutConstraint constraintsWithVisualFormat:@"H:[myView(>=100,<=250)]"
@@ -96,10 +98,8 @@
   [_treeController setChildrenKeyPath:@"groups"];
   [_treeController bind:NSContentBinding toObject:document withKeyPath:@"root" options:nil];
   [_outlineView bind:NSContentBinding toObject:_treeController withKeyPath:@"arrangedObjects" options:nil];
-  
-  [self.outlineView reloadData];
-  //MPDocument *document = [[NSDocumentController sharedDocumentController] currentDocument];
-  [self.outlineView expandItem:document.root expandChildren:NO];
+  NSTreeNode *node = [_outlineView itemAtRow:0];
+  [_outlineView expandItem:node expandChildren:NO];
 }
 
 - (void)clearSelection {
@@ -131,8 +131,12 @@
   if(!group) {
     group = document.root;
   }
+  BOOL isFistGroup = [document.root.groups count] == 0;
   [document createGroup:group];
-  [self.outlineView reloadData];
+  if(isFistGroup) {
+    NSTreeNode *node = [_outlineView itemAtRow:0];
+    [_outlineView expandItem:node expandChildren:NO];
+  }
 }
 
 - (void)createEntry:(id)sender {
