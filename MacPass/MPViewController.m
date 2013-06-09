@@ -24,8 +24,11 @@
   return [[[self view] window] windowController];
 }
 
-- (NSResponder *)reconmendedFirstResponder {
-  return nil;
+#pragma mark Responder Chain
+
+- (BOOL)becomeFirstResponder {
+  NSLog(@"%@: about to become firt responder.", [self class]);
+  return YES;
 }
 
 - (void)updateResponderChain {

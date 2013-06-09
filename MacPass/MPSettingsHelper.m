@@ -28,7 +28,7 @@ NSString *const kMPSettingsKeyOpenEmptyDatabaseOnLaunch = @"OpenEmptyDatabaseOnL
   return @{
            kMPSettingsKeyPasteboardClearTimeout: @10,
            kMPSettingsKeyClearPasteboardOnQuit: @YES,
-           kMPSettingsKeyOpenEmptyDatabaseOnLaunch: @NO,
+           kMPSettingsKeyOpenEmptyDatabaseOnLaunch: @YES,
            };
 }
 

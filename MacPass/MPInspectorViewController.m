@@ -15,7 +15,7 @@
 #import "MPIconSelectViewController.h"
 #import "KdbLib.h"
 #import "KdbGroup+Undo.h"
-#import "KdbKeyPaths.h"
+#import "KdbEntry+Undo.h"
 
 @interface MPInspectorViewController () {
   BOOL _visible;
@@ -27,15 +27,6 @@
 @property (retain) NSPopover *iconPopup;
 @property (retain) NSLayoutConstraint *showConstraint;
 @property (retain) NSLayoutConstraint *hideConstraint;
-
-- (void)_didChangeSelectedEntry:(NSNotification *)notification;
-- (void)_didChangeSelectedGroup:(NSNotification *)notification;
-- (void)_updateContent;
-- (void)_showGroup;
-- (void)_showEntry;
-- (void)_clearContent;
-- (void)_setInputEnabled:(BOOL)enabled;
-- (void)_showImagePopup:(id)sender;
 
 @end
 
@@ -96,13 +87,13 @@
 }
 
 - (void)_showEntry {
-  [self.itemNameTextfield bind:NSValueBinding toObject:self.selectedEntry withKeyPath:MPEntryKeyForTitle options:nil];
+  [self.itemNameTextfield bind:NSValueBinding toObject:self.selectedEntry withKeyPath:MPEntryTitleUndoableKey options:nil];
   [self.itemImageView setImage:[MPIconHelper icon:(MPIconType)self.selectedEntry.image ]];
-  [self.passwordTextField bind:NSValueBinding toObject:self.selectedEntry withKeyPath:MPEntryKeyForPassword options:nil];
-  [self.usernameTextField bind:NSValueBinding toObject:self.selectedEntry withKeyPath:MPEntryKeyForUsername options:nil];
+  [self.passwordTextField bind:NSValueBinding toObject:self.selectedEntry withKeyPath:MPEntryPasswordUndoableKey options:nil];
+  [self.usernameTextField bind:NSValueBinding toObject:self.selectedEntry withKeyPath:MPEntryUsernameUndoableKey options:nil];
   [self.titleOrNameLabel setStringValue:NSLocalizedString(@"TITLE",@"")];
-  [self.titleTextField bind:NSValueBinding toObject:self.selectedEntry withKeyPath:MPEntryKeyForTitle options:nil];
-  [self.URLTextField bind:NSValueBinding toObject:self.selectedEntry withKeyPath:MPEntryKeyForUrl options:nil];
+  [self.titleTextField bind:NSValueBinding toObject:self.selectedEntry withKeyPath:MPEntryTitleUndoableKey options:nil];
+  [self.URLTextField bind:NSValueBinding toObject:self.selectedEntry withKeyPath:MPEntryUrlUndoableKey options:nil];
   
   [self _setInputEnabled:YES];
 }

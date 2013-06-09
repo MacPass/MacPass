@@ -7,7 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		4C01C23C1764D1AA0016D5D0 /* KdbKeyPaths.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C01C23B1764D1460016D5D0 /* KdbKeyPaths.m */; };
+		4C01C23F1764D2980016D5D0 /* KdbEntry+Undo.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C01C23E1764D2980016D5D0 /* KdbEntry+Undo.m */; };
+		4C01C2421764D8980016D5D0 /* MPContextMenuHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C01C2411764D8980016D5D0 /* MPContextMenuHelper.m */; };
 		4C1DDCDD1711ECEB00C98DA3 /* PasswordCreatorWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4C1DDCDC1711ECEB00C98DA3 /* PasswordCreatorWindow.xib */; };
 		4C22040D1746ED160054C916 /* KdbGroup+Undo.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C22040C1746ED160054C916 /* KdbGroup+Undo.m */; };
 		4C25D58716CF0FAA00F6806C /* EntryView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4C25D58616CF0FAA00F6806C /* EntryView.xib */; };
@@ -129,8 +130,10 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		4C01C23A1764CDA20016D5D0 /* KdbKeyPaths.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KdbKeyPaths.h; sourceTree = "<group>"; };
-		4C01C23B1764D1460016D5D0 /* KdbKeyPaths.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = KdbKeyPaths.m; sourceTree = "<group>"; };
+		4C01C23D1764D2980016D5D0 /* KdbEntry+Undo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "KdbEntry+Undo.h"; sourceTree = "<group>"; };
+		4C01C23E1764D2980016D5D0 /* KdbEntry+Undo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "KdbEntry+Undo.m"; sourceTree = "<group>"; };
+		4C01C2401764D8980016D5D0 /* MPContextMenuHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MPContextMenuHelper.h; sourceTree = "<group>"; };
+		4C01C2411764D8980016D5D0 /* MPContextMenuHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MPContextMenuHelper.m; sourceTree = "<group>"; };
 		4C1DDCDC1711ECEB00C98DA3 /* PasswordCreatorWindow.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PasswordCreatorWindow.xib; sourceTree = "<group>"; };
 		4C22040B1746ED160054C916 /* KdbGroup+Undo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "KdbGroup+Undo.h"; sourceTree = "<group>"; };
 		4C22040C1746ED160054C916 /* KdbGroup+Undo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "KdbGroup+Undo.m"; sourceTree = "<group>"; };
@@ -405,6 +408,8 @@
 		4C2C4C2516D3BCEA00D49295 /* KeePassLibAdditions */ = {
 			isa = PBXGroup;
 			children = (
+				4C01C23D1764D2980016D5D0 /* KdbEntry+Undo.h */,
+				4C01C23E1764D2980016D5D0 /* KdbEntry+Undo.m */,
 				4C2C4C2A16D3BE3700D49295 /* KdbGroup+MPAdditions.h */,
 				4C2C4C2B16D3BE3700D49295 /* KdbGroup+MPAdditions.m */,
 				4CC1AEBC16D4467C006D2AAB /* KdbTree+MPAdditions.h */,
@@ -413,8 +418,6 @@
 				4C22040C1746ED160054C916 /* KdbGroup+Undo.m */,
 				4C4A101017629DA900BBF2CA /* KdbGroup+KVOAdditions.h */,
 				4C4A101117629DA900BBF2CA /* KdbGroup+KVOAdditions.m */,
-				4C01C23A1764CDA20016D5D0 /* KdbKeyPaths.h */,
-				4C01C23B1764D1460016D5D0 /* KdbKeyPaths.m */,
 			);
 			name = KeePassLibAdditions;
 			sourceTree = "<group>";
@@ -430,6 +433,8 @@
 				4CBA2AB917074C07006D8139 /* MPSettingsHelper.m */,
 				4C5BF679175C01F300D53DF7 /* MPUppercaseStringValueTransformer.h */,
 				4C5BF67A175C01F300D53DF7 /* MPUppercaseStringValueTransformer.m */,
+				4C01C2401764D8980016D5D0 /* MPContextMenuHelper.h */,
+				4C01C2411764D8980016D5D0 /* MPContextMenuHelper.m */,
 			);
 			name = Helper;
 			sourceTree = "<group>";
@@ -937,7 +942,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				4C01C23C1764D1AA0016D5D0 /* KdbKeyPaths.m in Sources */,
 				4C77E37315B84A240093A587 /* main.m in Sources */,
 				4CBA2ABA17074C07006D8139 /* MPSettingsHelper.m in Sources */,
 				4C77E37A15B84A240093A587 /* MPAppDelegate.m in Sources */,
@@ -1024,6 +1028,8 @@
 				4C4A101217629DA900BBF2CA /* KdbGroup+KVOAdditions.m in Sources */,
 				4CAF62FC1763604000CD7084 /* HNHBadgedTextFieldCell.m in Sources */,
 				4C58BD4F176370B100B8178C /* HNHBadgedTextField.m in Sources */,
+				4C01C23F1764D2980016D5D0 /* KdbEntry+Undo.m in Sources */,
+				4C01C2421764D8980016D5D0 /* MPContextMenuHelper.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

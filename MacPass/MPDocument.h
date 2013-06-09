@@ -33,12 +33,13 @@ APPKIT_EXTERN NSString *const MPDocumentGroupKey;
 - (id)initWithVersion:(MPDatabaseVersion)version;
 - (BOOL)decryptWithPassword:(NSString *)password keyFileURL:(NSURL *)keyFileURL;
 
+/* Undoable Intiialization of elements */
 - (KdbGroup *)createGroup:(KdbGroup *)parent;
 - (KdbEntry *)createEntry:(KdbGroup *)parent;
 
-- (void)deleteEntry:(KdbEntry *)entry;
-- (void)deleteGroup:(KdbGroup *)group;
-
+/*
+ Undoable movement of object
+*/
 - (void)moveGroup:(KdbGroup *)group toGroup:(KdbGroup *)target index:(NSInteger)index;
 - (BOOL)group:(KdbGroup *)group isMoveableToGroup:(KdbGroup *)target;
 

@@ -12,6 +12,8 @@
 #import "MPDocument.h"
 #import "MPAppDelegate.h"
 #import "KdbLib.h"
+#import "KdbGroup+Undo.h"
+#import "MPContextMenuHelper.h"
 
 
 @interface MPOutlineViewController () {
@@ -24,11 +26,6 @@
 @property (retain) MPOutlineDataSource *datasource;
 @property (retain) MPOutlineViewDelegate *outlineDelegate;
 @property (retain) NSMenu *menu;
-
-
-- (void)_didUpdateData:(NSNotification *)notification;
-- (NSMenu *)_contextMenu;
-- (KdbGroup *)_clickedOrSelectedGroup;
 
 @end
 
@@ -45,17 +42,6 @@
     _bindingEstablished = NO;
     _outlineDelegate = [[MPOutlineViewDelegate alloc] init];
     _datasource = [[MPOutlineDataSource alloc] init];
-
-    [[NSNotificationCenter defaultCenter] addObserver:self
-                                             selector:@selector(_didUpdateData:)
-                                                 name:MPDocumentDidAddGroupNotification
-                                               object:[[self windowController] document]];
-    
-    
-    [[NSNotificationCenter defaultCenter] addObserver:self
-                                             selector:@selector(_didUpdateData:)
-                                                 name:MPDocumentWillDelteGroupNotification
-                                               object:[[self windowController] document]];
     
   }
   
@@ -99,7 +85,7 @@
 
 - (NSMenu *)_contextMenu {
   NSMenu *menu = [[NSMenu alloc] init];
-  NSArray *items = [(MPAppDelegate *)[NSApp delegate] contextMenuItemsWithItems:MPContextMenuMinimal];
+  NSArray *items = [MPContextMenuHelper contextMenuItemsWithItems:MPContextMenuMinimal];
   for(NSMenuItem *item in items) {
     [menu addItem:item];
   }
@@ -132,15 +118,13 @@
   if(group) {
     MPDocument *document = [[self windowController] document];
     [document createEntry:group];
-    // Notify the the entry view about changes
   }
 }
 
 - (void)deleteEntry:(id)sender {
   KdbGroup *group = [self _clickedOrSelectedGroup];
-  if(group) {
-    MPDocument *document = [[self windowController] document];
-    [document deleteGroup:group];
+  if(group && group.parent) {
+    [group.parent removeGroupUndoable:group];    
   }
 }
 
@@ -151,10 +135,5 @@
   }
   return [[self.outlineView itemAtRow:row] representedObject];
 }
-
-- (void)_didUpdateData:(NSNotification *)notification {
-  [self.outlineView reloadData];
-}
-
 
 @end

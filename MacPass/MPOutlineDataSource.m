@@ -54,12 +54,12 @@ NSString *const MPPasteBoardType = @"com.hicknhack.macpass.pasteboard";
     accepted &= index != NSOutlineViewDropOnItemIndex;
     accepted &= index != [_draggedItem.parent.groups indexOfObject:_draggedItem];
   }
-  info.animatesToDestination = YES;
   MPDocument *document = [[[outlineView window] windowController] document];
   accepted = [document group:_draggedItem isMoveableToGroup:target];
   if( accepted ) {
     [document moveGroup:_draggedItem toGroup:target index:index];
   }
+  info.animatesToDestination = !accepted;
   return accepted;
 }
 @end

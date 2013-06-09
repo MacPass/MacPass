@@ -155,22 +155,6 @@ NSString *const MPDocumentGroupKey = @"MPDocumentGroupKey";
   return newGroup;
 }
 
-- (void)deleteEntry:(KdbEntry *)entry {
-  if(entry.parent) {
-    NSDictionary *userInfo = @{ MPDocumentEntryKey : entry };
-    [[NSNotificationCenter defaultCenter] postNotificationName:MPDocumentWillDeleteEntryNotification object:self userInfo:userInfo];
-    [entry.parent removeEntryUndoable:entry];
-  }
-}
-
-- (void)deleteGroup:(KdbGroup *)group {
-  if(group.parent) {
-    NSDictionary *userInfo = @{ MPDocumentEntryKey : group };
-    [[NSNotificationCenter defaultCenter] postNotificationName:MPDocumentWillDelteGroupNotification object:self userInfo:userInfo];
-    [group.parent removeGroupUndoable:group];
-  }
-}
-
 - (void)moveGroup:(KdbGroup *)group toGroup:(KdbGroup *)target index:(NSInteger)index {
   NSInteger oldIndex = [group.parent.groups indexOfObject:group];
   if(group.parent == target && oldIndex == index) {
@@ -178,13 +162,11 @@ NSString *const MPDocumentGroupKey = @"MPDocumentGroupKey";
   }
   [[[self undoManager] prepareWithInvocationTarget:self] moveGroup:group toGroup:group.parent index:oldIndex];
   [[self undoManager] setActionName:@"MOVE_GROUP"];
-  [group retain]; // Might get freed in the process
   [group.parent removeObjectFromGroupsAtIndex:oldIndex];
   if(index < 0 || index > [target.groups count] ) {
     index = [target.groups count];
   }
   [target insertObject:group inGroupsAtIndex:index];
-  [group release];
 }
 
 - (BOOL)group:(KdbGroup *)group isMoveableToGroup:(KdbGroup *)target {

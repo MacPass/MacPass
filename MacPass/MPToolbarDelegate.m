@@ -12,6 +12,7 @@
 #import "MPToolbarButton.h"
 #import "MPToolbarItem.h"
 #import "MPActionHelper.h"
+#import "MPContextMenuHelper.h"
 
 NSString *const MPToolbarItemLock = @"TOOLBAR_LOCK";
 NSString *const MPToolbarItemAddGroup = @"TOOLBAR_ADD_GROUP";
@@ -75,7 +76,7 @@ NSString *const MPToolbarItemInspector = @"TOOLBAR_INSPECTOR";
       [actionImageItem setImage:self.toolbarImages[MPToolbarItemAction]];
       [menu addItem:actionImageItem];
       [actionImageItem release];
-      NSArray *menuItems = [(MPAppDelegate *)[NSApp delegate] contextMenuItemsWithItems:MPContextMenuFull];
+      NSArray *menuItems = [MPContextMenuHelper contextMenuItemsWithItems:MPContextMenuFull];
       for(NSMenuItem *item in menuItems) {
         [menu addItem:item];
       }

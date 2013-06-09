@@ -18,6 +18,7 @@
 #import "KdbGroup+MPAdditions.h"
 #import "KdbGroup+Undo.h"
 #import "KdbEntry+Undo.h"
+#import "MPContextMenuHelper.h"
 
 NSString *const MPDidChangeSelectedEntryNotification = @"com.macpass.MPDidChangeSelectedEntryNotification";
 
@@ -70,27 +71,6 @@ NSString *const _toggleFilterUsernameButton = @"SearchUsername";
 
 @property (assign, nonatomic) MPFilterModeType filterMode;
 @property (retain, nonatomic) NSDictionary *filterButtonToMode;
-
-- (IBAction)_toggleFilterSpace:(id)sender;
-
-- (BOOL)_shouldFilterURLs;
-- (BOOL)_shouldFilterTitles;
-- (BOOL)_shouldFilterUsernames;
-
-- (BOOL)hasFilter;
-- (BOOL)_showsFilterBar;
-- (void)updateFilter;
-- (void)updateFilterText:(id)sender;
-- (void)setupFilterBar;
-- (void)_setupEntryMenu;
-/* Notification handling */
-- (void)_didChangeGroupSelectionInOutlineView:(NSNotification *)notification;
-- (void)_showFilterBarAnimated:(BOOL)animate;
-- (void)_hideFilterBarAnimated:(BOOL)animate;
-
-- (void)_columnDoubleClick:(id)sender;
-- (void)_copyToPasteboard:(NSString *)data overlayInfo:(MPOVerlayInfoType)overlayInfoType;
-- (KdbEntry *)_clickedOrSelectedEntry;
 
 @end
 
@@ -422,7 +402,7 @@ NSString *const _toggleFilterUsernameButton = @"SearchUsername";
 - (void)_setupEntryMenu {
   
   NSMenu *menu = [[NSMenu alloc] init];
-  NSArray *items = [(MPAppDelegate *)[NSApp delegate] contextMenuItemsWithItems:MPContextMenuFull];
+  NSArray *items = [MPContextMenuHelper contextMenuItemsWithItems:MPContextMenuFull];
   for(NSMenuItem *item in items) {
     [menu addItem:item];
   }

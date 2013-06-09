@@ -40,7 +40,7 @@
 
 - (void)drawRect:(NSRect)dirtyRect
 {
-  [super drawRect:dirtyRect];
+  
   if(self.showOverlay && [self isEnabled]) {
     [[NSGraphicsContext currentContext] saveGraphicsState];
 
@@ -70,6 +70,7 @@
     [shadow release];
     [[NSGraphicsContext currentContext] restoreGraphicsState];
   }
+  [super drawRect:dirtyRect];
   /* Draw Overlay */
 }
 
