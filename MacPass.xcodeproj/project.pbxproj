@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		4C01C23F1764D2980016D5D0 /* KdbEntry+Undo.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C01C23E1764D2980016D5D0 /* KdbEntry+Undo.m */; };
 		4C01C2421764D8980016D5D0 /* MPContextMenuHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C01C2411764D8980016D5D0 /* MPContextMenuHelper.m */; };
+		4C01C245176500C40016D5D0 /* HNHLevelIndicatorCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C01C244176500C40016D5D0 /* HNHLevelIndicatorCell.m */; };
 		4C1DDCDD1711ECEB00C98DA3 /* PasswordCreatorWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4C1DDCDC1711ECEB00C98DA3 /* PasswordCreatorWindow.xib */; };
 		4C22040D1746ED160054C916 /* KdbGroup+Undo.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C22040C1746ED160054C916 /* KdbGroup+Undo.m */; };
 		4C25D58716CF0FAA00F6806C /* EntryView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4C25D58616CF0FAA00F6806C /* EntryView.xib */; };
@@ -134,6 +135,8 @@
 		4C01C23E1764D2980016D5D0 /* KdbEntry+Undo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "KdbEntry+Undo.m"; sourceTree = "<group>"; };
 		4C01C2401764D8980016D5D0 /* MPContextMenuHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MPContextMenuHelper.h; sourceTree = "<group>"; };
 		4C01C2411764D8980016D5D0 /* MPContextMenuHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MPContextMenuHelper.m; sourceTree = "<group>"; };
+		4C01C243176500C40016D5D0 /* HNHLevelIndicatorCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HNHLevelIndicatorCell.h; sourceTree = "<group>"; };
+		4C01C244176500C40016D5D0 /* HNHLevelIndicatorCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HNHLevelIndicatorCell.m; sourceTree = "<group>"; };
 		4C1DDCDC1711ECEB00C98DA3 /* PasswordCreatorWindow.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PasswordCreatorWindow.xib; sourceTree = "<group>"; };
 		4C22040B1746ED160054C916 /* KdbGroup+Undo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "KdbGroup+Undo.h"; sourceTree = "<group>"; };
 		4C22040C1746ED160054C916 /* KdbGroup+Undo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "KdbGroup+Undo.m"; sourceTree = "<group>"; };
@@ -784,6 +787,8 @@
 				4C3D4C0717594CA40038DAAC /* HNHSeparator.m */,
 				4C69A73816D589DF00EC1B1A /* HNHGradientView.h */,
 				4C69A73916D589DF00EC1B1A /* HNHGradientView.m */,
+				4C01C243176500C40016D5D0 /* HNHLevelIndicatorCell.h */,
+				4C01C244176500C40016D5D0 /* HNHLevelIndicatorCell.m */,
 			);
 			path = HNHUi;
 			sourceTree = "<group>";
@@ -1030,6 +1035,7 @@
 				4C58BD4F176370B100B8178C /* HNHBadgedTextField.m in Sources */,
 				4C01C23F1764D2980016D5D0 /* KdbEntry+Undo.m in Sources */,
 				4C01C2421764D8980016D5D0 /* MPContextMenuHelper.m in Sources */,
+				4C01C245176500C40016D5D0 /* HNHLevelIndicatorCell.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
