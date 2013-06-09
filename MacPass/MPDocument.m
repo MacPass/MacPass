@@ -14,6 +14,7 @@
 #import "KdbPassword.h"
 #import "MPDatabaseVersion.h"
 #import "KdbGroup+Undo.h"
+#import "KdbGroup+KVOAdditions.h"
 #import "KdbEntry+Undo.h"
 
 NSString *const MPDocumentDidAddGroupNotification = @"MPDocumentDidAddGroupNotification";
@@ -170,5 +171,35 @@ NSString *const MPDocumentGroupKey = @"MPDocumentGroupKey";
   }
 }
 
+- (void)moveGroup:(KdbGroup *)group toGroup:(KdbGroup *)target index:(NSInteger)index {
+  NSInteger oldIndex = [group.parent.groups indexOfObject:group];
+  if(group.parent == target && oldIndex == index) {
+    return; // No changes
+  }
+  [[[self undoManager] prepareWithInvocationTarget:self] moveGroup:group toGroup:group.parent index:oldIndex];
+  [[self undoManager] setActionName:@"MOVE_GROUP"];
+  [group retain]; // Might get freed in the process
+  [group.parent removeObjectFromGroupsAtIndex:oldIndex];
+  if(index < 0 || index > [target.groups count] ) {
+    index = [target.groups count];
+  }
+  [target insertObject:group inGroupsAtIndex:index];
+  [group release];
+}
 
+- (BOOL)group:(KdbGroup *)group isMoveableToGroup:(KdbGroup *)target {
+  if(target == nil) {
+    return NO;
+  }
+  BOOL isMovable = YES;
+  KdbGroup *ancestor = target.parent;
+  while(ancestor.parent) {
+    if(ancestor == group) {
+      isMovable = NO;
+      break;
+    }
+    ancestor = ancestor.parent;
+  }
+  return isMovable;
+}
 @end

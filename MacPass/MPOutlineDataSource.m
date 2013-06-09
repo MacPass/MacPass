@@ -29,14 +29,18 @@ NSString *const MPPasteBoardType = @"com.hicknhack.macpass.pasteboard";
 
 - (NSDragOperation)outlineView:(NSOutlineView *)outlineView validateDrop:(id<NSDraggingInfo>)info proposedItem:(id)item proposedChildIndex:(NSInteger)index {
   if(_draggedItem) {
+    info.animatesToDestination = YES;
     KdbGroup *target = [item representedObject];
     if( target == nil) {
       return NSDragOperationNone; // Draggin over root
     }
-    BOOL validParent = ( _draggedItem.parent == target && index != NSOutlineViewDropOnItemIndex);
-    if(validParent || _draggedItem.parent != target) {
+    BOOL validTarget = YES;
+    if( _draggedItem.parent == target ) {
+      validTarget &= index != NSOutlineViewDropOnItemIndex;
+      validTarget &= index != [_draggedItem.parent.groups indexOfObject:_draggedItem];
+    }
+    if( validTarget ) {
       return NSDragOperationMove;
-      info.animatesToDestination = YES;
     }
   }
   return NSDragOperationNone;
@@ -45,9 +49,17 @@ NSString *const MPPasteBoardType = @"com.hicknhack.macpass.pasteboard";
 - (BOOL)outlineView:(NSOutlineView *)outlineView acceptDrop:(id<NSDraggingInfo>)info item:(id)item childIndex:(NSInteger)index {
   NSLog(@"Drag %@ to: %@ index: %ld", _draggedItem, [item representedObject], index);
   KdbGroup *target = [item representedObject];
-  BOOL accepted = (target != _draggedItem.parent);
+  BOOL accepted = YES;
+  if( _draggedItem.parent == target ) {
+    accepted &= index != NSOutlineViewDropOnItemIndex;
+    accepted &= index != [_draggedItem.parent.groups indexOfObject:_draggedItem];
+  }
   info.animatesToDestination = YES;
-  [_draggedItem moveToGroupUndoable:target];
+  MPDocument *document = [[[outlineView window] windowController] document];
+  accepted = [document group:_draggedItem isMoveableToGroup:target];
+  if( accepted ) {
+    [document moveGroup:_draggedItem toGroup:target index:index];
+  }
   return accepted;
 }
 @end
