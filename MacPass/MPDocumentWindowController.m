@@ -83,9 +83,12 @@
   NSView *outlineView = [_outlineViewController view];
   NSView *inspectorView = [_inspectorTabViewController view];
   NSView *entryView = [_entryViewController view];
-  [self.splitView addSubview:outlineView];
-  [self.splitView addSubview:entryView];
-  [self.splitView addSubview:inspectorView];
+  [_splitView addSubview:outlineView];
+  [_splitView addSubview:entryView];
+  [_splitView addSubview:inspectorView];
+  
+  [_splitView setHoldingPriority:NSLayoutPriorityDefaultLow+2 forSubviewAtIndex:0];
+  [_splitView setHoldingPriority:NSLayoutPriorityDefaultLow+1 forSubviewAtIndex:2];
   
   //TODO: Fix setup on start
   MPDocument *document = [self document];
