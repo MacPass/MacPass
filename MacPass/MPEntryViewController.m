@@ -15,10 +15,12 @@
 #import "MPDocumentWindowController.h"
 #import "MPPasteBoardController.h"
 #import "MPOverlayWindowController.h"
-#import "KdbGroup+MPAdditions.h"
+#import "KdbGroup+MPTreeTools.h"
 #import "KdbGroup+Undo.h"
 #import "KdbEntry+Undo.h"
 #import "MPContextMenuHelper.h"
+#import "MPConstants.h"
+#import "MPEntryTableDataSource.h"
 
 NSString *const MPDidChangeSelectedEntryNotification = @"com.macpass.MPDidChangeSelectedEntryNotification";
 
@@ -68,6 +70,7 @@ NSString *const _toggleFilterUsernameButton = @"SearchUsername";
 
 @property (assign) KdbEntry *selectedEntry;
 
+@property (nonatomic, retain) MPEntryTableDataSource *dataSource;
 
 @property (assign, nonatomic) MPFilterModeType filterMode;
 @property (retain, nonatomic) NSDictionary *filterButtonToMode;
@@ -90,6 +93,8 @@ NSString *const _toggleFilterUsernameButton = @"SearchUsername";
                            _toggleFilterURLButton : @(MPFilterUrls)
                            } retain];
     _entryArrayController = [[NSArrayController alloc] init];
+    _dataSource = [[MPEntryTableDataSource alloc] init];
+    _dataSource.viewController = self;
     _selectedEntry = nil;    
   }
   return self;
@@ -103,6 +108,7 @@ NSString *const _toggleFilterUsernameButton = @"SearchUsername";
   self.filterBar = nil;
   self.tableToTop = nil;
   self.filterButtonToMode = nil;
+  self.dataSource = nil;
   [super dealloc];
 }
 
@@ -120,6 +126,7 @@ NSString *const _toggleFilterUsernameButton = @"SearchUsername";
   [self.entryTable setDoubleAction:@selector(_columnDoubleClick:)];
   [self.entryTable setTarget:self];
   [self.entryTable setFloatsGroupRows:NO];
+  [self.entryTable registerForDraggedTypes:@[MPPasteBoardType]];
   [self _setupEntryMenu];
   
   NSTableColumn *parentColumn = [self.entryTable tableColumns][0];
@@ -150,6 +157,7 @@ NSString *const _toggleFilterUsernameButton = @"SearchUsername";
   
   [self.entryTable bind:NSContentBinding toObject:self.entryArrayController withKeyPath:@"arrangedObjects" options:nil];
   [self.entryTable bind:NSSortDescriptorsBinding toObject:self.entryArrayController withKeyPath:@"sortDescriptors" options:nil];
+  [self.entryTable setDataSource:_dataSource];
 
   [parentColumn setHidden:YES];
 }
@@ -197,7 +205,7 @@ NSString *const _toggleFilterUsernameButton = @"SearchUsername";
 }
 
 - (void)tableViewSelectionDidChange:(NSNotification *)notification {
-  if([self.entryTable selectedRow] < 0) {
+  if([self.entryTable selectedRow] < 0 || [[_entryTable selectedRowIndexes] count] > 1) {
     self.selectedEntry = nil;
   }
   else {

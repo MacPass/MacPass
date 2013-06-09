@@ -34,8 +34,6 @@
 
 @property (retain) MPToolbarDelegate *toolbarDelegate;
 
-- (void)_setContentViewController:(MPViewController *)viewController;
-
 @end
 
 @implementation MPDocumentWindowController
@@ -69,7 +67,6 @@
 }
 
 #pragma mark View Handling
-
 - (void)windowDidLoad
 {
   [super windowDidLoad];
@@ -90,7 +87,8 @@
   [_splitView setHoldingPriority:NSLayoutPriorityDefaultLow+2 forSubviewAtIndex:0];
   [_splitView setHoldingPriority:NSLayoutPriorityDefaultLow+1 forSubviewAtIndex:2];
   
-  //TODO: Fix setup on start
+  [_splitView setDelegate:self];
+  
   MPDocument *document = [self document];
   if(!document.isDecrypted) {
     [self showPasswordInput];
@@ -98,6 +96,10 @@
   else {
     [self showEntries];
   }
+}
+
+- (BOOL)splitView:(NSSplitView *)splitView shouldHideDividerAtIndex:(NSInteger)dividerIndex {
+  return NO;
 }
 
 - (void)_setContentViewController:(MPViewController *)viewController {
@@ -170,6 +172,10 @@
 
 - (void)lock:(id)sender {
   [self showPasswordInput];
+}
+
+- (void)toggleInspector:(id)sender {
+
 }
 
 - (void)showEntries {

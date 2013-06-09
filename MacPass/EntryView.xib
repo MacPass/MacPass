@@ -1502,17 +1502,6 @@
 				<object class="IBPartialClassDescription">
 					<string key="className">MPEntryViewController</string>
 					<string key="superclassName">MPViewController</string>
-					<object class="NSMutableDictionary" key="actions">
-						<string key="NS.key.0">_toggleFilterSpace:</string>
-						<string key="NS.object.0">id</string>
-					</object>
-					<object class="NSMutableDictionary" key="actionInfosByName">
-						<string key="NS.key.0">_toggleFilterSpace:</string>
-						<object class="IBActionInfo" key="NS.object.0">
-							<string key="name">_toggleFilterSpace:</string>
-							<string key="candidateClassName">id</string>
-						</object>
-					</object>
 					<dictionary class="NSMutableDictionary" key="outlets">
 						<string key="entryTable">NSTableView</string>
 						<string key="filterBar">NSView</string>
@@ -1522,7 +1511,6 @@
 						<string key="filterTitleButton">NSButton</string>
 						<string key="filterURLButton">NSButton</string>
 						<string key="filterUsernameButton">NSButton</string>
-						<string key="tableToBottom">NSLayoutConstraint</string>
 						<string key="tableToTop">NSLayoutConstraint</string>
 					</dictionary>
 					<dictionary class="NSMutableDictionary" key="toOneOutletInfosByName">
@@ -1557,10 +1545,6 @@
 						<object class="IBToOneOutletInfo" key="filterUsernameButton">
 							<string key="name">filterUsernameButton</string>
 							<string key="candidateClassName">NSButton</string>
-						</object>
-						<object class="IBToOneOutletInfo" key="tableToBottom">
-							<string key="name">tableToBottom</string>
-							<string key="candidateClassName">NSLayoutConstraint</string>
 						</object>
 						<object class="IBToOneOutletInfo" key="tableToTop">
 							<string key="name">tableToTop</string>

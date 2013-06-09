@@ -13,7 +13,7 @@
 		4C1DDCDD1711ECEB00C98DA3 /* PasswordCreatorWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4C1DDCDC1711ECEB00C98DA3 /* PasswordCreatorWindow.xib */; };
 		4C22040D1746ED160054C916 /* KdbGroup+Undo.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C22040C1746ED160054C916 /* KdbGroup+Undo.m */; };
 		4C25D58716CF0FAA00F6806C /* EntryView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4C25D58616CF0FAA00F6806C /* EntryView.xib */; };
-		4C2C4C2C16D3BE3700D49295 /* KdbGroup+MPAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C2C4C2B16D3BE3700D49295 /* KdbGroup+MPAdditions.m */; };
+		4C2C4C2C16D3BE3700D49295 /* KdbGroup+MPTreeTools.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C2C4C2B16D3BE3700D49295 /* KdbGroup+MPTreeTools.m */; };
 		4C2E381D16D11FF900037A9D /* 03_ServerTemplate.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 4C2E381A16D11FF900037A9D /* 03_ServerTemplate.pdf */; };
 		4C2E381E16D11FF900037A9D /* 04_KlipperTemplate.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 4C2E381B16D11FF900037A9D /* 04_KlipperTemplate.pdf */; };
 		4C2E381F16D11FF900037A9D /* 05_LanguagesTemplate.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 4C2E381C16D11FF900037A9D /* 05_LanguagesTemplate.pdf */; };
@@ -32,6 +32,9 @@
 		4C46B88B1706D16E0046109A /* NSData+MPRandomBytes.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C46B88A1706D16E0046109A /* NSData+MPRandomBytes.m */; };
 		4C4A100F176286FD00BBF2CA /* MPTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C4A100E176286FD00BBF2CA /* MPTableView.m */; };
 		4C4A101217629DA900BBF2CA /* KdbGroup+KVOAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C4A101117629DA900BBF2CA /* KdbGroup+KVOAdditions.m */; };
+		4C569D9E17652B0600595B62 /* MPConstants.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C569D9D17652B0600595B62 /* MPConstants.m */; };
+		4C569DA117652BFE00595B62 /* MPEntryTableDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C569DA017652BFE00595B62 /* MPEntryTableDataSource.m */; };
+		4C569DA417653F3500595B62 /* KdbEntry+MPTreeTools.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C569DA317653F3500595B62 /* KdbEntry+MPTreeTools.m */; };
 		4C586F9E16D07ABD00E7DB57 /* 00_PasswordTemplate.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 4C586F9D16D07ABD00E7DB57 /* 00_PasswordTemplate.pdf */; };
 		4C586FA016D07D7200E7DB57 /* 01_PackageNetworkTemplate.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 4C586F9F16D07D7200E7DB57 /* 01_PackageNetworkTemplate.pdf */; };
 		4C586FA216D07F6A00E7DB57 /* 02_MessageBoxWarningTemplate.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 4C586FA116D07F6A00E7DB57 /* 02_MessageBoxWarningTemplate.pdf */; };
@@ -141,8 +144,8 @@
 		4C22040B1746ED160054C916 /* KdbGroup+Undo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "KdbGroup+Undo.h"; sourceTree = "<group>"; };
 		4C22040C1746ED160054C916 /* KdbGroup+Undo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "KdbGroup+Undo.m"; sourceTree = "<group>"; };
 		4C25D58616CF0FAA00F6806C /* EntryView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = EntryView.xib; sourceTree = "<group>"; };
-		4C2C4C2A16D3BE3700D49295 /* KdbGroup+MPAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "KdbGroup+MPAdditions.h"; sourceTree = "<group>"; };
-		4C2C4C2B16D3BE3700D49295 /* KdbGroup+MPAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "KdbGroup+MPAdditions.m"; sourceTree = "<group>"; };
+		4C2C4C2A16D3BE3700D49295 /* KdbGroup+MPTreeTools.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "KdbGroup+MPTreeTools.h"; sourceTree = "<group>"; };
+		4C2C4C2B16D3BE3700D49295 /* KdbGroup+MPTreeTools.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "KdbGroup+MPTreeTools.m"; sourceTree = "<group>"; };
 		4C2E381A16D11FF900037A9D /* 03_ServerTemplate.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = 03_ServerTemplate.pdf; sourceTree = "<group>"; };
 		4C2E381B16D11FF900037A9D /* 04_KlipperTemplate.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = 04_KlipperTemplate.pdf; sourceTree = "<group>"; };
 		4C2E381C16D11FF900037A9D /* 05_LanguagesTemplate.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = 05_LanguagesTemplate.pdf; sourceTree = "<group>"; };
@@ -174,6 +177,12 @@
 		4C4A100E176286FD00BBF2CA /* MPTableView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MPTableView.m; sourceTree = "<group>"; };
 		4C4A101017629DA900BBF2CA /* KdbGroup+KVOAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "KdbGroup+KVOAdditions.h"; sourceTree = "<group>"; };
 		4C4A101117629DA900BBF2CA /* KdbGroup+KVOAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "KdbGroup+KVOAdditions.m"; sourceTree = "<group>"; };
+		4C569D9C17652AC800595B62 /* MPConstants.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MPConstants.h; sourceTree = "<group>"; };
+		4C569D9D17652B0600595B62 /* MPConstants.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MPConstants.m; sourceTree = "<group>"; };
+		4C569D9F17652BFE00595B62 /* MPEntryTableDataSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MPEntryTableDataSource.h; sourceTree = "<group>"; };
+		4C569DA017652BFE00595B62 /* MPEntryTableDataSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MPEntryTableDataSource.m; sourceTree = "<group>"; };
+		4C569DA217653F3500595B62 /* KdbEntry+MPTreeTools.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "KdbEntry+MPTreeTools.h"; sourceTree = "<group>"; };
+		4C569DA317653F3500595B62 /* KdbEntry+MPTreeTools.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "KdbEntry+MPTreeTools.m"; sourceTree = "<group>"; };
 		4C586F9D16D07ABD00E7DB57 /* 00_PasswordTemplate.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = 00_PasswordTemplate.pdf; sourceTree = "<group>"; };
 		4C586F9F16D07D7200E7DB57 /* 01_PackageNetworkTemplate.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = 01_PackageNetworkTemplate.pdf; sourceTree = "<group>"; };
 		4C586FA116D07F6A00E7DB57 /* 02_MessageBoxWarningTemplate.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = 02_MessageBoxWarningTemplate.pdf; sourceTree = "<group>"; };
@@ -411,12 +420,14 @@
 		4C2C4C2516D3BCEA00D49295 /* KeePassLibAdditions */ = {
 			isa = PBXGroup;
 			children = (
-				4C01C23D1764D2980016D5D0 /* KdbEntry+Undo.h */,
-				4C01C23E1764D2980016D5D0 /* KdbEntry+Undo.m */,
-				4C2C4C2A16D3BE3700D49295 /* KdbGroup+MPAdditions.h */,
-				4C2C4C2B16D3BE3700D49295 /* KdbGroup+MPAdditions.m */,
+				4C569DA217653F3500595B62 /* KdbEntry+MPTreeTools.h */,
+				4C569DA317653F3500595B62 /* KdbEntry+MPTreeTools.m */,
+				4C2C4C2A16D3BE3700D49295 /* KdbGroup+MPTreeTools.h */,
+				4C2C4C2B16D3BE3700D49295 /* KdbGroup+MPTreeTools.m */,
 				4CC1AEBC16D4467C006D2AAB /* KdbTree+MPAdditions.h */,
 				4CC1AEBD16D4467C006D2AAB /* KdbTree+MPAdditions.m */,
+				4C01C23D1764D2980016D5D0 /* KdbEntry+Undo.h */,
+				4C01C23E1764D2980016D5D0 /* KdbEntry+Undo.m */,
 				4C22040B1746ED160054C916 /* KdbGroup+Undo.h */,
 				4C22040C1746ED160054C916 /* KdbGroup+Undo.m */,
 				4C4A101017629DA900BBF2CA /* KdbGroup+KVOAdditions.h */,
@@ -438,6 +449,8 @@
 				4C5BF67A175C01F300D53DF7 /* MPUppercaseStringValueTransformer.m */,
 				4C01C2401764D8980016D5D0 /* MPContextMenuHelper.h */,
 				4C01C2411764D8980016D5D0 /* MPContextMenuHelper.m */,
+				4C569D9C17652AC800595B62 /* MPConstants.h */,
+				4C569D9D17652B0600595B62 /* MPConstants.m */,
 			);
 			name = Helper;
 			sourceTree = "<group>";
@@ -462,6 +475,8 @@
 			children = (
 				4C37A83E15B8B474005EF8EE /* MPOutlineDataSource.h */,
 				4C37A83F15B8B474005EF8EE /* MPOutlineDataSource.m */,
+				4C569D9F17652BFE00595B62 /* MPEntryTableDataSource.h */,
+				4C569DA017652BFE00595B62 /* MPEntryTableDataSource.m */,
 				6E719715172058BA00E4C5FC /* MPDatabaseVersion.h */,
 				4CE5B548173AFBA700207B39 /* MPDocument.h */,
 				4CE5B549173AFBA700207B39 /* MPDocument.m */,
@@ -1001,7 +1016,7 @@
 				4CDF01A316D1B76700D0AC08 /* MPEntryViewController.m in Sources */,
 				4C3BD51516D276F800389F1F /* MPToolbarDelegate.m in Sources */,
 				4C61EA0316D2FD0800AC519E /* MPOutlineViewController.m in Sources */,
-				4C2C4C2C16D3BE3700D49295 /* KdbGroup+MPAdditions.m in Sources */,
+				4C2C4C2C16D3BE3700D49295 /* KdbGroup+MPTreeTools.m in Sources */,
 				4CC1AEBE16D4467C006D2AAB /* KdbTree+MPAdditions.m in Sources */,
 				4C69A73A16D589DF00EC1B1A /* HNHGradientView.m in Sources */,
 				4C920E2A16DCDFA00083839B /* MPLoggerProxy.m in Sources */,
@@ -1036,6 +1051,9 @@
 				4C01C23F1764D2980016D5D0 /* KdbEntry+Undo.m in Sources */,
 				4C01C2421764D8980016D5D0 /* MPContextMenuHelper.m in Sources */,
 				4C01C245176500C40016D5D0 /* HNHLevelIndicatorCell.m in Sources */,
+				4C569D9E17652B0600595B62 /* MPConstants.m in Sources */,
+				4C569DA117652BFE00595B62 /* MPEntryTableDataSource.m in Sources */,
+				4C569DA417653F3500595B62 /* KdbEntry+MPTreeTools.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -184,4 +184,19 @@ NSString *const MPDocumentGroupKey = @"MPDocumentGroupKey";
   }
   return isMovable;
 }
+
+- (void)moveEntry:(KdbEntry *)entry toGroup:(KdbGroup *)target index:(NSInteger)index {
+  NSInteger oldIndex = [entry.parent.entries indexOfObject:entry];
+  if(entry.parent == target && oldIndex == index) {
+    return; // No changes
+  }
+  [[[self undoManager] prepareWithInvocationTarget:self] moveEntry:entry toGroup:entry.parent index:oldIndex];
+  [[self undoManager] setActionName:@"MOVE_ENTRY"];
+  [entry.parent removeObjectFromEntriesAtIndex:oldIndex];
+  if(index < 0 || index > [target.groups count] ) {
+    index = [target.groups count];
+  }
+  [target insertObject:entry inEntriesAtIndex:index];
+}
+
 @end

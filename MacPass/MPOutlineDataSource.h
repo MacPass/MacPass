@@ -8,8 +8,6 @@
 
 #import <Foundation/Foundation.h>
 
-APPKIT_EXTERN NSString *const MPPasteBoardType;
-
 @class KdbGroup;
 
 @interface MPOutlineDataSource : NSObject <NSOutlineViewDataSource> {

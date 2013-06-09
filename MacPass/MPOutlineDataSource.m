@@ -10,8 +10,10 @@
 #import "MPDocument.h"
 #import "KdbLib.h"
 #import "KdbGroup+Undo.h"
-
-NSString *const MPPasteBoardType = @"com.hicknhack.macpass.pasteboard";
+#import "KdbGroup+MPTreeTools.h"
+#import "KdbEntry+MPTreeTools.h"
+#import "MPConstants.h"
+#import "UUID.h"
 
 @implementation MPOutlineDataSource
 
@@ -43,23 +45,48 @@ NSString *const MPPasteBoardType = @"com.hicknhack.macpass.pasteboard";
       return NSDragOperationMove;
     }
   }
+  NSPasteboard *pasteBoard = [info draggingPasteboard];
+  NSArray *items = [pasteBoard pasteboardItems];
+  if([items count] > 0) {
+    if( index != NSOutlineViewDropOnItemIndex ) {
+      [outlineView setDropItem:item dropChildIndex:NSOutlineViewDropOnItemIndex];
+    }
+    return NSDragOperationMove;
+  }
   return NSDragOperationNone;
 }
 
 - (BOOL)outlineView:(NSOutlineView *)outlineView acceptDrop:(id<NSDraggingInfo>)info item:(id)item childIndex:(NSInteger)index {
-  NSLog(@"Drag %@ to: %@ index: %ld", _draggedItem, [item representedObject], index);
   KdbGroup *target = [item representedObject];
-  BOOL accepted = YES;
-  if( _draggedItem.parent == target ) {
-    accepted &= index != NSOutlineViewDropOnItemIndex;
-    accepted &= index != [_draggedItem.parent.groups indexOfObject:_draggedItem];
+  if(_draggedItem) {
+    BOOL accepted = YES;
+    if( _draggedItem.parent == target ) {
+      accepted &= index != NSOutlineViewDropOnItemIndex;
+      accepted &= index != [_draggedItem.parent.groups indexOfObject:_draggedItem];
+    }
+    MPDocument *document = [[[outlineView window] windowController] document];
+    accepted = [document group:_draggedItem isMoveableToGroup:target];
+    if( accepted ) {
+      [document moveGroup:_draggedItem toGroup:target index:index];
+    }
+    info.animatesToDestination = !accepted;
+    return accepted;
   }
-  MPDocument *document = [[[outlineView window] windowController] document];
-  accepted = [document group:_draggedItem isMoveableToGroup:target];
-  if( accepted ) {
-    [document moveGroup:_draggedItem toGroup:target index:index];
+  NSPasteboard *pasteBoard = [info draggingPasteboard];
+  NSArray *items = [pasteBoard pasteboardItems];
+  if([items count] > 0) {
+    NSPasteboardItem *item = items[0];
+    UUID *uuid = [[UUID alloc] initWithString:[item stringForType:MPPasteBoardType]];
+    MPDocument *document = [[[outlineView window] windowController] document];
+    KdbGroup *rootGroup = [document root];
+    KdbEntry *draggedEntry = [rootGroup entryForUUID:uuid];
+    if(draggedEntry) {
+      if(draggedEntry.parent != target && index == NSOutlineViewDropOnItemIndex) {
+        [document moveEntry:draggedEntry toGroup:target index:index];
+        return YES;
+      }
+    }
   }
-  info.animatesToDestination = !accepted;
-  return accepted;
+  return NO;
 }
 @end

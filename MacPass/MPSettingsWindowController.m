@@ -15,10 +15,6 @@
 @property (retain, nonatomic) NSMutableDictionary *settingsController;
 @property (retain, nonatomic) NSMutableDictionary *toolbarItems;
 
-- (void)_addSettingsTab:(id<MPSettingsTab>)tabController;
-- (void)_setupDefaultSettingsTabs;
-- (void)_showSettingsTab:(id)sender;
-
 @end
 
 @implementation MPSettingsWindowController

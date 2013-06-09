@@ -7,7 +7,7 @@
 //
 
 #import "KdbEntry+Undo.h"
-#import "KdbGroup+MPAdditions.h"
+#import "KdbGroup+MPTreeTools.h"
 
 NSString *const MPEntryTitleUndoableKey = @"titleUndoable";
 NSString *const MPEntryUsernameUndoableKey = @"usernameUndoable";

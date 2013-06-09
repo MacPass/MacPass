@@ -20,8 +20,6 @@
 @property (assign) IBOutlet NSTextField *errorInfoTextField;
 
 - (IBAction)_decrypt:(id)sender;
-- (void)_showError;
-- (void)_reset;
 
 @end
 

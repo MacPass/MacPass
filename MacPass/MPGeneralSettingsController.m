@@ -11,12 +11,6 @@
 
 NSString *const MPGeneralSetingsIdentifier = @"GeneralSettingsTab";
 
-@interface MPGeneralSettingsController ()
-
-- (void)didLoadView;
-
-@end
-
 @implementation MPGeneralSettingsController
 
 + (NSString *)identifier {

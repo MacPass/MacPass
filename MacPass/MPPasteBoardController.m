@@ -13,10 +13,6 @@
 
 @property (assign) BOOL isEmpty;
 
-- (void)_clearPasteboardContents;
-- (void)_setupBindings;
-- (void)_updateNotifications;
-
 @end
 
 @implementation MPPasteBoardController

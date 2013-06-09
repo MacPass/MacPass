@@ -1,14 +1,16 @@
 //
-//  KdbGroup+MPAdditions.m
+//  KdbGroup+MPTreeTools.m
 //  MacPass
 //
 //  Created by michael starke on 19.02.13.
 //  Copyright (c) 2013 HicknHack Software GmbH. All rights reserved.
 //
 
-#import "KdbGroup+MPAdditions.h"
+#import "KdbGroup+MPTreeTools.h"
+#import "Kdb4Node.h"
+#import "Kdb3Node.h"
 
-@implementation KdbGroup (MPAdditions)
+@implementation KdbGroup (MPTreeTools)
 
 - (NSArray *)childGroups {
   NSMutableArray *childGroups = [NSMutableArray arrayWithCapacity:[self.groups count]];
@@ -27,15 +29,11 @@
   return childEntries;
 }
 
-- (void)moveEntry:(KdbEntry *)entry toIndex:(NSUInteger)index {
-  if([entries count] > index) {
-    return;
-  }
-  NSUInteger oldIndex = [entries indexOfObject:entry];
-  if(oldIndex == NSNotFound) {
-    return;
-  }
-  [entries exchangeObjectAtIndex:oldIndex withObjectAtIndex:index];
+- (KdbEntry *)entryForUUID:(UUID *)uuid {
+  NSArray *childEntries = [self childEntries];
+  NSArray *filterdEntries = [childEntries filteredArrayUsingPredicate:[NSPredicate predicateWithBlock:^BOOL(id evaluatedObject, NSDictionary *bindings) {
+    return [uuid isEqual:(UUID *)[evaluatedObject uuid]];
+  }]];
+  return [filterdEntries lastObject];
 }
-
 @end

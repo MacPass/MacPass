@@ -7,7 +7,7 @@
 //
 
 #import "KdbTree+MPAdditions.h"
-#import "KdbGroup+MPAdditions.h"
+#import "KdbGroup+MPTreeTools.h"
 
 @implementation KdbTree (MPAdditions)
 

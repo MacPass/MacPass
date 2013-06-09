@@ -17,7 +17,10 @@
 @class MPCreationViewController;
 
 
-@interface MPDocumentWindowController : NSWindowController
+@interface MPDocumentWindowController : NSWindowController <NSSplitViewDelegate> {
+@private
+  NSArray *_inspectorContraints;
+}
 
 @property (readonly, retain) MPPasswordInputController *passwordInputController;
 @property (readonly, retain) MPPasswordEditViewController *passwordEditController;
@@ -33,5 +36,7 @@
 - (void)clearOutlineSelection:(id)sender;
 - (IBAction)editPassword:(id)sender;
 - (void)lock:(id)sender;
+
+- (void)toggleInspector:(id)sender;
 
 @end

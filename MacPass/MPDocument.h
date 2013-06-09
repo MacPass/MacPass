@@ -43,4 +43,6 @@ APPKIT_EXTERN NSString *const MPDocumentGroupKey;
 - (void)moveGroup:(KdbGroup *)group toGroup:(KdbGroup *)target index:(NSInteger)index;
 - (BOOL)group:(KdbGroup *)group isMoveableToGroup:(KdbGroup *)target;
 
+- (void)moveEntry:(KdbEntry *)entry toGroup:(KdbGroup *)target index:(NSInteger)index;
+
 @end

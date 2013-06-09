@@ -12,12 +12,6 @@ NSString *const kMPSettingsKeyPasteboardClearTimeout = @"ClipboardClearTimeout";
 NSString *const kMPSettingsKeyClearPasteboardOnQuit  = @"ClearClipboardOnQuit";
 NSString *const kMPSettingsKeyOpenEmptyDatabaseOnLaunch = @"OpenEmptyDatabaseOnLaunch";
 
-@interface MPSettingsHelper ()
-
-+ (NSDictionary *)_standardDefaults;
-
-@end
-
 @implementation MPSettingsHelper
 
 + (void)setupDefaults {
