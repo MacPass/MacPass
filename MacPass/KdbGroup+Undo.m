@@ -58,4 +58,17 @@ NSString *const MPGroupNameUndoableKey = @"nameUndoable";
   [[self undoManager] setActionName:NSLocalizedString(@"UNDO_DELETE_GROUP", @"Create Group Undo")];
   [group.parent removeObjectFromGroupsAtIndex:index];
 }
+
+- (void)moveToGroupUndoable:(KdbGroup *)group {
+  NSInteger index = [self.parent.groups indexOfObject:self];
+  if(NSNotFound == index) {
+    return; // No object found
+  }
+  [[self undoManager] registerUndoWithTarget:self selector:@selector(moveToGroupUndoable:) object:self.parent];
+  [[self undoManager] setActionName:NSLocalizedString(@"UNDO_MOVE_GROUP", @"Move Group Undo")];
+  [self.parent removeObjectFromGroupsAtIndex:index];
+  [group insertObject:self inGroupsAtIndex:[group.groups count]];
+}
+
+
 @end

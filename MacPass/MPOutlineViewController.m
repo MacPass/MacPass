@@ -13,6 +13,7 @@
 #import "MPAppDelegate.h"
 #import "KdbLib.h"
 
+
 @interface MPOutlineViewController () {
   BOOL _bindingEstablished;
 }
@@ -42,8 +43,8 @@
   if (self) {
     _treeController = [[NSTreeController alloc] init];
     _bindingEstablished = NO;
-    self.outlineDelegate = [[[MPOutlineViewDelegate alloc] init] autorelease];
-    self.datasource = [[[MPOutlineDataSource alloc] init] autorelease];
+    _outlineDelegate = [[MPOutlineViewDelegate alloc] init];
+    _datasource = [[MPOutlineDataSource alloc] init];
 
     [[NSNotificationCenter defaultCenter] addObserver:self
                                              selector:@selector(_didUpdateData:)
@@ -71,11 +72,11 @@
 }
 
 - (void)didLoadView {
-  //[self.outlineView setDataSource:self.datasource];
   [self.outlineView setDelegate:self.outlineDelegate];
   [self.outlineView setMenu:[self _contextMenu]];
   [self.outlineView setAllowsEmptySelection:YES];
   [self.outlineView setFloatsGroupRows:NO];
+  [_outlineView registerForDraggedTypes:@[ MPPasteBoardType ]];
   [self.outlineView setDraggingSourceOperationMask:NSDragOperationEvery forLocal:YES];
 }
 
@@ -85,6 +86,7 @@
     [_treeController setChildrenKeyPath:@"groups"];
     [_treeController bind:NSContentBinding toObject:document withKeyPath:@"root" options:nil];
     [_outlineView bind:NSContentBinding toObject:_treeController withKeyPath:@"arrangedObjects" options:nil];
+    [_outlineView setDataSource:self.datasource];
     _bindingEstablished = YES;
   }
   NSTreeNode *node = [_outlineView itemAtRow:0];

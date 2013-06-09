@@ -8,7 +8,11 @@
 
 #import <Foundation/Foundation.h>
 
-@interface MPOutlineDataSource : NSObject <NSOutlineViewDataSource>
+APPKIT_EXTERN NSString *const MPPasteBoardType;
 
+@class KdbGroup;
 
+@interface MPOutlineDataSource : NSObject <NSOutlineViewDataSource> {
+  KdbGroup *_draggedItem;
+}
 @end
