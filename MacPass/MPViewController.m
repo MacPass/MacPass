@@ -25,6 +25,9 @@
 }
 
 #pragma mark Responder Chain
+- (NSResponder *)reconmendedFirstResponder {
+  return nil; // override
+}
 
 - (BOOL)becomeFirstResponder {
   NSLog(@"%@: about to become firt responder.", [self class]);
