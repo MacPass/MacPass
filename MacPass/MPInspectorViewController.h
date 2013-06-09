@@ -25,7 +25,6 @@
 @property (assign) IBOutlet NSButton *showPasswordCreator;
 
 - (BOOL)isVisible;
-- (IBAction)togglePasswordDisplay:(id)sender;
 - (void)hideImagePopup:(id)sender;
 
 @end

@@ -32,8 +32,8 @@
   [MPUppercaseStringValueTransformer registerTransformer];
 }
 
-- (void)applicationDidFinishLaunching:(NSNotification *)aNotification {
-  
+- (BOOL)applicationShouldOpenUntitledFile:(NSApplication *)sender {
+  return [[NSUserDefaults standardUserDefaults] boolForKey:kMPSettingsKeyOpenEmptyDatabaseOnLaunch];
 }
 
 - (void)dealloc {

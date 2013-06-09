@@ -14,8 +14,8 @@
 #import "MPPopupImageView.h"
 #import "MPIconSelectViewController.h"
 #import "KdbLib.h"
-#import "KdbEntry+Undo.h"
 #import "KdbGroup+Undo.h"
+#import "KdbKeyPaths.h"
 
 @interface MPInspectorViewController () {
   BOOL _visible;
@@ -96,13 +96,13 @@
 }
 
 - (void)_showEntry {
-  [self.itemNameTextfield bind:NSValueBinding toObject:self.selectedEntry withKeyPath:MPEntryTitleUndoableKey options:nil];
+  [self.itemNameTextfield bind:NSValueBinding toObject:self.selectedEntry withKeyPath:MPEntryKeyForTitle options:nil];
   [self.itemImageView setImage:[MPIconHelper icon:(MPIconType)self.selectedEntry.image ]];
-  [self.passwordTextField bind:NSValueBinding toObject:self.selectedEntry withKeyPath:MPEntryPasswordUndoableKey options:nil];
-  [self.usernameTextField bind:NSValueBinding toObject:self.selectedEntry withKeyPath:MPEntryUsernameUndoableKey options:nil];
+  [self.passwordTextField bind:NSValueBinding toObject:self.selectedEntry withKeyPath:MPEntryKeyForPassword options:nil];
+  [self.usernameTextField bind:NSValueBinding toObject:self.selectedEntry withKeyPath:MPEntryKeyForUsername options:nil];
   [self.titleOrNameLabel setStringValue:NSLocalizedString(@"TITLE",@"")];
-  [self.titleTextField bind:NSValueBinding toObject:self.selectedEntry withKeyPath:MPEntryTitleUndoableKey options:nil];
-  [self.URLTextField bind:NSValueBinding toObject:self.selectedEntry withKeyPath:MPEntryUrlUndoableKey options:nil];
+  [self.titleTextField bind:NSValueBinding toObject:self.selectedEntry withKeyPath:MPEntryKeyForTitle options:nil];
+  [self.URLTextField bind:NSValueBinding toObject:self.selectedEntry withKeyPath:MPEntryKeyForUrl options:nil];
   
   [self _setInputEnabled:YES];
 }
@@ -210,37 +210,6 @@
     self.showsEntry = NO;
     [self _updateContent];
   }
-}
-
-
-- (IBAction)togglePasswordDisplay:(id)sender {
-  NSTextFieldCell *cell = nil;
-  NSFont *font = [[self.passwordTextField font] retain];
-  if([sender respondsToSelector:@selector(state)]) {
-    switch([sender state]) {
-      case NSOnState:
-        cell = [[NSTextFieldCell alloc] init];
-        break;
-      case NSOffState:
-        cell = [[NSSecureTextFieldCell alloc] init];
-        break;
-      case NSMixedState:
-        break;
-    }
-  }
-  if(cell) {
-    [cell setBezelStyle:NSTextFieldSquareBezel];
-    [cell setBordered:YES];
-    [cell setBezeled:YES];
-    [cell setDrawsBackground:YES];
-    [cell setFont:font];
-    [cell setEditable:YES];
-    [self.passwordTextField setCell:cell];
-    [self.passwordTextField setNeedsDisplay:YES];
-    //[self.passwordTextField setStringValue:[self.passwordTextField stringValue]];
-    [cell release];
-  }
-  [font release];
 }
 
 @end
