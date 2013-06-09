@@ -14,9 +14,12 @@
 - (void)validate {
   if(![self.view menu]) {
     id target = [NSApp targetForAction:[self action] to:nil from:self];
-    BOOL isValid = [[[[NSApplication sharedApplication] keyWindow] windowController] validateToolbarItem:self];
-    [self setEnabled:( isValid && (nil != target) )];
-    
+    id windowController = [[self.view window] windowController];
+    BOOL isValid = (nil != target);
+    if( [windowController respondsToSelector:@selector(validateToolbarItem:)]) {
+      isValid &= [windowController validateToolbarItem:self];
+    }
+    [self setEnabled:isValid];
   }
 }
 @end
