@@ -28,11 +28,7 @@ typedef enum {
 @class KdbEntry;
 @class MPOutlineViewDelegate;
 
-@interface MPEntryViewController : MPViewController <NSTableViewDelegate> {
-@private
-  BOOL _isFilterBarVisible;
-}
-
+@interface MPEntryViewController : MPViewController <NSTableViewDelegate>
 
 @property (assign) KdbGroup *activeGroup;
 @property (readonly, assign, nonatomic) KdbEntry *selectedEntry;

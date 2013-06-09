@@ -56,8 +56,7 @@ NSString *const _toggleFilterUsernameButton = @"SearchUsername";
 @property (retain) NSArray *filteredEntries;
 @property (retain) IBOutlet NSView *filterBar;
 @property (assign) IBOutlet NSTableView *entryTable;
-@property (assign) IBOutlet NSLayoutConstraint *tableToTop;
-@property (assign) IBOutlet NSLayoutConstraint *tableToBottom;
+@property (retain) IBOutlet NSLayoutConstraint *tableToTop;
 @property (assign) IBOutlet NSButton *filterDoneButton;
 
 @property (assign) IBOutlet NSButton *filterTitleButton;
@@ -79,7 +78,9 @@ NSString *const _toggleFilterUsernameButton = @"SearchUsername";
 - (BOOL)_shouldFilterUsernames;
 
 - (BOOL)hasFilter;
+- (BOOL)_showsFilterBar;
 - (void)updateFilter;
+- (void)updateFilterText:(id)sender;
 - (void)setupFilterBar;
 - (void)_setupEntryMenu;
 /* Notification handling */
@@ -103,7 +104,6 @@ NSString *const _toggleFilterUsernameButton = @"SearchUsername";
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil {
   self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
   if(self) {
-    _isFilterBarVisible = NO;
     _filterMode = MPFilterTitles;
     _filterButtonToMode = [@{ _toggleFilterUsernameButton : @(MPFilterUsernames),
                            _toggleFilterTitleButton : @(MPFilterTitles),
@@ -229,8 +229,9 @@ NSString *const _toggleFilterUsernameButton = @"SearchUsername";
 
 #pragma mark Notifications
 - (void)_didChangeGroupSelectionInOutlineView:(NSNotification *)notification {
-  if([self hasFilter]) {
-    [self.filterSearchField setStringValue:@""];
+  if([self _showsFilterBar]) {
+    //[self.filterSearchField setStringValue:@""];
+    [self clearFilter:nil];
   }
   MPOutlineViewDelegate *delegate = [notification object];
   self.activeGroup = delegate.selectedGroup;
@@ -274,6 +275,9 @@ NSString *const _toggleFilterUsernameButton = @"SearchUsername";
 
 - (void)updateFilter {
   [self _showFilterBarAnimated:YES];
+  if(![self hasFilter]) {
+    return;
+  }
   
   dispatch_queue_t backgroundQueue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
   dispatch_async(backgroundQueue, ^{
@@ -293,11 +297,16 @@ NSString *const _toggleFilterUsernameButton = @"SearchUsername";
     self.filteredEntries = [[document.root childEntries] filteredArrayUsingPredicate:fullFilter];
     
     dispatch_sync(dispatch_get_main_queue(), ^{
+      [self.entryArrayController unbind:NSContentArrayBinding];
       [self.entryArrayController setContent:self.filteredEntries];
       [[self.entryTable tableColumnWithIdentifier:MPEntryTableParentColumnIdentifier] setHidden:NO];
     });
   });
   
+}
+
+- (void)updateFilterText:(id)sender {
+  self.filter = [self.filterSearchField stringValue];
 }
 
 - (void)setupFilterBar {
@@ -310,10 +319,13 @@ NSString *const _toggleFilterUsernameButton = @"SearchUsername";
     [self.filterDoneButton setAction:@selector(clearFilter:)];
     [self.filterDoneButton setTarget:nil];
     
-    [self.filterSearchField setAction:@selector(updateFilter:)];
+    [self.filterSearchField setAction:@selector(updateFilterText:)];
     [[self.filterSearchField cell] setSendsSearchStringImmediately:NO];
-    
   }
+}
+
+- (BOOL)_showsFilterBar {
+  return ( nil != [self.filterBar superview]);
 }
 
 #pragma mark UI Feedback
@@ -332,19 +344,20 @@ NSString *const _toggleFilterUsernameButton = @"SearchUsername";
   [self.filterURLButton setState:[self _shouldFilterURLs] ? NSOnState : NSOffState ];
   [self.filterUsernameButton setState:[self _shouldFilterUsernames] ? NSOnState : NSOffState];
   
-  if(_isFilterBarVisible) {
-    return; // nothign to to
+  if([self _showsFilterBar]) {
+    return; // nothing to to
   }
   
-  [((MPDocumentWindowController *)[[self.view window] windowController]) clearOutlineSelection:nil];
-  _isFilterBarVisible = YES;
-  self.tableToTop.constant = [self.filterBar frame].size.height;
+  [[[self.view window] windowController] clearOutlineSelection:nil];
   
+  NSView *scrollView = [_entryTable enclosingScrollView];
+  NSDictionary *views = NSDictionaryOfVariableBindings(scrollView, _filterBar);
+  [self.view layout];
+  [self.view removeConstraint:self.tableToTop];
   [self.view addSubview:self.filterBar];
-  NSRect filterFrame = [self.filterBar frame];
-  filterFrame.origin.y = [self.view frame].size.height - filterFrame.size.height;
-  filterFrame.size.width = [self.view frame].size.width;
-  [self.filterBar setFrame:filterFrame];
+  [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|[_filterBar]|" options:0 metrics:nil views:views]];
+  [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|[_filterBar(==30)]-0-[scrollView]" options:0 metrics:nil views:views]];
+
   
   if(animate) {
     [NSAnimationContext runAnimationGroup:^(NSAnimationContext* context) {
@@ -362,13 +375,12 @@ NSString *const _toggleFilterUsernameButton = @"SearchUsername";
   
   animate = NO;
   
-  if(!_isFilterBarVisible) {
+  if(![self _showsFilterBar]) {
     return; // nothing to do;
   }
   
-  _isFilterBarVisible = NO;
-  self.tableToTop.constant = -1;
   [self.filterBar removeFromSuperview];
+  [self.view addConstraint:self.tableToTop];
   
   if(animate) {
     [NSAnimationContext runAnimationGroup:^(NSAnimationContext* context) {
