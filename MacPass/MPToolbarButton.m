@@ -20,18 +20,20 @@
 
 - (void)setControlSize:(NSControlSize)controlSize {
   [[self cell] setControlSize:controlSize];
+  NSImageRep *rep = [[self image] bestRepresentationForRect:NSMakeRect(0, 0, 100, 100) context:nil hints:nil];
+  CGFloat scale = rep.size.width / rep.size.height;
   switch (controlSize) {
     case NSRegularControlSize:
-      [[self image] setSize:NSMakeSize(16, 16)];
+      [[self image] setSize:NSMakeSize(16 * scale, 16)];
       break;
-    
+      
     case NSSmallControlSize:
-      [[self image] setSize:NSMakeSize(14, 14)];
+      [[self image] setSize:NSMakeSize(14 * scale, 14)];
       break;
-    
+      
     case NSMiniControlSize:
-      [[self image] setSize:NSMakeSize(8, 8)];
-    
+      [[self image] setSize:NSMakeSize(8 * scale, 8)];
+      
     default:
       break;
   }
