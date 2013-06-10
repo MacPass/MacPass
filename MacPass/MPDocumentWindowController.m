@@ -74,7 +74,7 @@
   [self.toolbar setAllowsUserCustomization:YES];
   [self.toolbar setDelegate:self.toolbarDelegate];
   [self.window setToolbar:self.toolbar];
-  
+    
   [self.splitView setTranslatesAutoresizingMaskIntoConstraints:NO];
   
   NSView *outlineView = [_outlineViewController view];
@@ -123,9 +123,10 @@
                                                                       metrics:nil
                                                                         views:NSDictionaryOfVariableBindings(newContentView)]];
 
-  [contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|[newContentView]|"
+  NSNumber *border = @([[self window] contentBorderThicknessForEdge:NSMinYEdge]);
+  [contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|[newContentView]-border-|"
                                                                       options:0
-                                                                      metrics:nil
+                                                                      metrics:NSDictionaryOfVariableBindings(border)
                                                                         views:NSDictionaryOfVariableBindings(newContentView)]];
   
   [contentView layout];
@@ -209,14 +210,16 @@
                                                                          options:0
                                                                          metrics:nil
                                                                            views:views]];
-  [contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|[_splitView]|"
+  NSNumber *border = @([[self window] contentBorderThicknessForEdge:NSMinYEdge]);
+  [contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|[_splitView]-border-|"
                                                                       options:0
-                                                                      metrics:nil
+                                                                      metrics:NSDictionaryOfVariableBindings(border)
                                                                         views:views]];
   [contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|[_splitView]|"
                                                                       options:0
                                                                       metrics:nil
                                                                         views:views]];
+  
   [contentView layout];
   [_entryViewController updateResponderChain];
   [_inspectorTabViewController updateResponderChain];

@@ -31,7 +31,4 @@ APPKIT_EXTERN NSString *const MPEntryNotesUndoableKey;
 - (void)setUrlUndoable:(NSString *)url;
 - (void)setNotesUndoable:(NSString *)notes;
 
-- (void)moveToIndexUndoable:(NSNumber *)index;
-- (void)moveToGroupUndoable:(KdbGroup *)newGroup;
-
 @end

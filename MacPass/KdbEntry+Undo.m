@@ -72,27 +72,4 @@ NSString *const MPEntryNotesUndoableKey = @"notesUndoable";
   [self setNotes:notes];
 }
 
-- (void)moveToIndexUndoable:(NSNumber *)index {
-  if(!self.parent) {
-    return;
-  }
-  NSUInteger iIndex = [index unsignedIntegerValue];
-  NSNumber *oldIndex = @([self.parent.entries indexOfObject:self]);
-  [[KdbEntry undoManager] registerUndoWithTarget:self selector:@selector(moveToIndexUndoable:) object:oldIndex];
-  [[KdbEntry undoManager] setActionName:NSLocalizedString(@"UNDO_SET_POSITION", "Undo set entry position")];
-
-  [self.parent moveEntry:self toIndex:iIndex];
-}
-
-- (void)moveToGroupUndoable:(KdbGroup *)newGroup {
-  if(self.parent == newGroup) {
-    return;
-  }
-  if(!self.parent || !newGroup) {
-    return;
-  }
-  [[KdbEntry undoManager] registerUndoWithTarget:self selector:@selector(moveToGroupUndoable:) object:self.parent];
-  [[KdbEntry undoManager] setActionName:NSLocalizedString(@"UNDO_MOVE_ENTRY", "Undo move entry to group")];
-  [self.parent moveEntry:self toGroup:newGroup];
-}
 @end
