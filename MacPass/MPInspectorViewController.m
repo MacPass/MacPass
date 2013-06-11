@@ -23,7 +23,8 @@
 
 @property (assign, nonatomic) KdbEntry *selectedEntry;
 @property (assign, nonatomic) KdbGroup *selectedGroup;
-@property (assign) BOOL showsEntry;
+
+@property (assign, nonatomic) BOOL showsEntry;
 @property (retain) NSPopover *iconPopup;
 @property (retain) NSLayoutConstraint *showConstraint;
 @property (retain) NSLayoutConstraint *hideConstraint;
@@ -68,10 +69,6 @@
                                                name:MPOutlineViewDidChangeGroupSelection
                                              object:nil];
   [self _clearContent];
-}
-
-- (BOOL)isVisible {
-  return [[self view] frame].size.width > 0;
 }
 
 - (void)_updateContent {
@@ -151,8 +148,6 @@
   [self.usernameTextField setEnabled:enabled];
   [self.URLTextField setEnabled:enabled];
   
-  [self.openURLButton setEnabled:enabled];
-  
 }
 
 #pragma mark Actions
@@ -202,5 +197,4 @@
     [self _updateContent];
   }
 }
-
 @end

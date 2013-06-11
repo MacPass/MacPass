@@ -8,7 +8,9 @@
 
 #import "MPViewController.h"
 
-@class  MPPopupImageView;
+@class MPPopupImageView;
+@class KdbEntry;
+@class KdbGroup;
 
 @interface MPInspectorViewController : MPViewController
 
@@ -21,10 +23,6 @@
 @property (assign) IBOutlet NSTextField *passwordTextField;
 @property (assign) IBOutlet NSTextField *titleOrNameLabel;
 
-@property (assign) IBOutlet NSButton *openURLButton;
-@property (assign) IBOutlet NSButton *showPasswordCreator;
-
-- (BOOL)isVisible;
 - (void)hideImagePopup:(id)sender;
 
 @end

@@ -15,7 +15,6 @@
 
 @property (retain, readonly) MPOutlineViewDelegate *outlineDelegate;
 
-
 - (void)clearSelection;
 - (void)showOutline;
 

@@ -92,6 +92,7 @@
 		4C77E37315B84A240093A587 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C77E37215B84A240093A587 /* main.m */; };
 		4C77E37A15B84A240093A587 /* MPAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C77E37915B84A240093A587 /* MPAppDelegate.m */; };
 		4C77E37D15B84A240093A587 /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4C77E37B15B84A240093A587 /* MainMenu.xib */; };
+		4C79DF2A176685870083708F /* HNHRoundedTextField.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C79DF29176685870083708F /* HNHRoundedTextField.m */; };
 		4C7E832A172DE2F2002493D8 /* MPPasswordEditViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C7E8329172DE2F2002493D8 /* MPPasswordEditViewController.m */; };
 		4C811C8316ECD06E00C4BAC6 /* MPKeyfilePathControlDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C811C8216ECD06E00C4BAC6 /* MPKeyfilePathControlDelegate.m */; };
 		4C83814215BF4677001AE468 /* MPDocumentWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C83814115BF4677001AE468 /* MPDocumentWindowController.m */; };
@@ -306,6 +307,9 @@
 		4C77E37415B84A240093A587 /* MacPass-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "MacPass-Prefix.pch"; sourceTree = "<group>"; };
 		4C77E37815B84A240093A587 /* MPAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MPAppDelegate.h; sourceTree = "<group>"; };
 		4C77E37915B84A240093A587 /* MPAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MPAppDelegate.m; sourceTree = "<group>"; };
+		4C79DF28176685870083708F /* HNHRoundedTextField.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HNHRoundedTextField.h; sourceTree = "<group>"; };
+		4C79DF29176685870083708F /* HNHRoundedTextField.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HNHRoundedTextField.m; sourceTree = "<group>"; };
+		4C79DF2F1766941D0083708F /* MPResponderQuery.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MPResponderQuery.h; sourceTree = "<group>"; };
 		4C7E8328172DE2F2002493D8 /* MPPasswordEditViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MPPasswordEditViewController.h; sourceTree = "<group>"; };
 		4C7E8329172DE2F2002493D8 /* MPPasswordEditViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MPPasswordEditViewController.m; sourceTree = "<group>"; };
 		4C811C8116ECD06E00C4BAC6 /* MPKeyfilePathControlDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MPKeyfilePathControlDelegate.h; sourceTree = "<group>"; };
@@ -730,6 +734,7 @@
 			isa = PBXGroup;
 			children = (
 				4CA0B30D15BCB6FD00654E32 /* MPSettingsTab.h */,
+				4C79DF2F1766941D0083708F /* MPResponderQuery.h */,
 			);
 			name = Protocolls;
 			sourceTree = "<group>";
@@ -792,6 +797,8 @@
 			children = (
 				4CC3AAB8175F4983003EF01B /* HNHRoundedTextFieldCell.h */,
 				4CC3AAB9175F4983003EF01B /* HNHRoundedTextFieldCell.m */,
+				4C79DF28176685870083708F /* HNHRoundedTextField.h */,
+				4C79DF29176685870083708F /* HNHRoundedTextField.m */,
 				4C9D6AA717615199001C660C /* HNHRoundedSecureTextFieldCell.h */,
 				4C9D6AA817615199001C660C /* HNHRoundedSecureTextFieldCell.m */,
 				4C58BD4D176370B100B8178C /* HNHBadgedTextField.h */,
@@ -1054,6 +1061,7 @@
 				4C569D9E17652B0600595B62 /* MPConstants.m in Sources */,
 				4C569DA117652BFE00595B62 /* MPEntryTableDataSource.m in Sources */,
 				4C569DA417653F3500595B62 /* KdbEntry+MPTreeTools.m in Sources */,
+				4C79DF2A176685870083708F /* HNHRoundedTextField.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

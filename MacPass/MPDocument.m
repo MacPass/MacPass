@@ -28,6 +28,7 @@ NSString *const MPDocumentGroupKey = @"MPDocumentGroupKey";
 
 @interface MPDocument ()
 
+@property (assign, nonatomic) BOOL isProtected;
 @property (retain) KdbTree *tree;
 @property (retain) NSURL *file;
 @property (nonatomic, readonly) KdbPassword *passwordHash;
@@ -48,6 +49,7 @@ NSString *const MPDocumentGroupKey = @"MPDocumentGroupKey";
   self = [super init];
   if(self) {
     _isDecrypted = YES;
+    _isProtected = NO;
     switch(version) {
       case MPDatabaseVersion3:
         self.tree = [[[Kdb3Tree alloc] init] autorelease];
@@ -121,6 +123,22 @@ NSString *const MPDocumentGroupKey = @"MPDocumentGroupKey";
   }
   _isDecrypted = YES;
   return YES;
+}
+
+- (void)setPassword:(NSString *)password {
+  if(![_password isEqualToString:password]) {
+    [_password release];
+    _password = [password retain];
+    self.isProtected = ([_password length] > 0);
+  }
+}
+
+- (void)setKey:(NSURL *)key {
+  if(![[_key absoluteString] isEqualToString:[key absoluteString]]) {
+    [_key release];
+    _key = [key retain];
+    self.isProtected = (_key != nil);
+  }
 }
 
 - (KdbPassword *)passwordHash {

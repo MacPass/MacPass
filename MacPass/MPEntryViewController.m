@@ -229,6 +229,7 @@ NSString *const _toggleFilterUsernameButton = @"SearchUsername";
   }
   else {
     [self.entryArrayController unbind:NSContentArrayBinding];
+    [self.entryArrayController setContent:nil];
   }
 }
 
@@ -236,7 +237,7 @@ NSString *const _toggleFilterUsernameButton = @"SearchUsername";
 #pragma mark Filtering
 
 - (void)showFilter:(id)sender {
-  [self _showFilterBarAnimated:NO];
+  //[self _showFilterBarAnimated:NO];
 }
 
 - (BOOL)hasFilter {

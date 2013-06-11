@@ -13,13 +13,14 @@
 #import "MPPasswordEditViewController.h"
 #import "MPToolbarDelegate.h"
 #import "MPOutlineViewController.h"
+#import "MPOutlineViewDelegate.h"
 #import "MPInspectorViewController.h"
 #import "MPAppDelegate.h"
 #import "MPActionHelper.h"
 
 @interface MPDocumentWindowController () {
 @private
-  BOOL _needsDecryption;
+  id _firstResponder;
 }
 
 @property (retain) IBOutlet NSSplitView *splitView;
@@ -34,6 +35,7 @@
 
 @property (retain) MPToolbarDelegate *toolbarDelegate;
 
+
 @end
 
 @implementation MPDocumentWindowController
@@ -41,7 +43,7 @@
 -(id)init {
   self = [super initWithWindowNibName:@"DocumentWindow" owner:self];
   if( self ) {
-    _needsDecryption = NO;
+    _firstResponder = nil;
     _toolbarDelegate = [[MPToolbarDelegate alloc] init];
     _outlineViewController = [[MPOutlineViewController alloc] init];
     _inspectorTabViewController = [[MPInspectorViewController alloc] init];
@@ -74,7 +76,7 @@
   [self.toolbar setAllowsUserCustomization:YES];
   [self.toolbar setDelegate:self.toolbarDelegate];
   [self.window setToolbar:self.toolbar];
-    
+  
   [self.splitView setTranslatesAutoresizingMaskIntoConstraints:NO];
   
   NSView *outlineView = [_outlineViewController view];
@@ -87,7 +89,7 @@
   [_splitView setHoldingPriority:NSLayoutPriorityDefaultLow+2 forSubviewAtIndex:0];
   [_splitView setHoldingPriority:NSLayoutPriorityDefaultLow+1 forSubviewAtIndex:2];
   
-  [_splitView setDelegate:self];
+  [[self window] setDelegate:self];
   
   MPDocument *document = [self document];
   if(!document.isDecrypted) {
@@ -96,10 +98,6 @@
   else {
     [self showEntries];
   }
-}
-
-- (BOOL)splitView:(NSSplitView *)splitView shouldHideDividerAtIndex:(NSInteger)dividerIndex {
-  return NO;
 }
 
 - (void)_setContentViewController:(MPViewController *)viewController {
@@ -122,7 +120,7 @@
                                                                       options:0
                                                                       metrics:nil
                                                                         views:NSDictionaryOfVariableBindings(newContentView)]];
-
+  
   NSNumber *border = @([[self window] contentBorderThicknessForEdge:NSMinYEdge]);
   [contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|[newContentView]-border-|"
                                                                       options:0
@@ -146,10 +144,15 @@
 - (BOOL)validateToolbarItem:(NSToolbarItem *)theItem {
   SEL itemAction = [theItem action];
   if( itemAction == [MPActionHelper actionOfType:MPActionLock]) {
-    return (nil == [[_passwordInputController view] superview]);
+    MPDocument *document = [self document];
+    BOOL showsNoLockScreen = (nil == [[_passwordInputController view] superview]);
+    return showsNoLockScreen && document.isProtected;
   }
+  if(itemAction == [MPActionHelper actionOfType:MPActionAddEntry]) {
+    return (nil != _entryViewController.activeGroup);
+  }
+  
   return YES;
-  return [self.toolbarDelegate validateToolbarItem:theItem];
 }
 
 - (void)showPasswordInput {
@@ -175,8 +178,12 @@
   [self showPasswordInput];
 }
 
-- (void)toggleInspector:(id)sender {
+- (void)createGroup:(id)sender {
+  NSLog(@"WindowControllerCreateGroup");
+}
 
+- (void)toggleInspector:(id)sender {
+  
 }
 
 - (void)showEntries {
@@ -225,6 +232,23 @@
   [_inspectorTabViewController updateResponderChain];
   [_outlineViewController updateResponderChain];
   [_outlineViewController showOutline];
+}
+
+#pragma mark NSWindowDelegate
+
+- (void)windowDidUpdate:(NSNotification *)notification {
+  if(_firstResponder != [[self window] firstResponder]) {
+    _firstResponder = [[self window] firstResponder];
+    if(![_firstResponder isKindOfClass:[NSView class]]) {
+      return; // wrong responder
+    }
+    if( [_firstResponder isDescendantOf:[_entryViewController view]] ) {
+      //[_inspectorTabViewController showEntry];
+    }
+    else if([_firstResponder isDescendantOf:[_outlineViewController view]]) {
+      //[_inspectorTabViewController showGroup];
+    }
+  }
 }
 
 #pragma mark Helper

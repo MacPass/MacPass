@@ -20,7 +20,6 @@
 @interface MPOutlineViewController () {
   BOOL _bindingEstablished;
 }
-
 @property (assign) IBOutlet NSOutlineView *outlineView;
 
 @property (retain) NSTreeController *treeController;

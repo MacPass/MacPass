@@ -17,7 +17,7 @@
 @class MPCreationViewController;
 
 
-@interface MPDocumentWindowController : NSWindowController <NSSplitViewDelegate> {
+@interface MPDocumentWindowController : NSWindowController <NSWindowDelegate> {
 @private
   NSArray *_inspectorContraints;
 }
@@ -37,6 +37,7 @@
 - (IBAction)editPassword:(id)sender;
 - (void)lock:(id)sender;
 
+- (void)createGroup:(id)sender;
 - (void)toggleInspector:(id)sender;
 
 @end
