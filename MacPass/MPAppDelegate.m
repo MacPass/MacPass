@@ -57,8 +57,21 @@
   }
   if(!self.passwordCreatorController) {
     self.passwordCreatorController = [[[MPPasswordCreatorViewController alloc] init] autorelease];
+    NSView *creatorView = [_passwordCreatorController view];
+    //NSView *contentView = [_passwordCreatorWindow contentView];
+    [self.passwordCreatorWindow setContentView:creatorView];
+    //[contentView addSubview:creatorView];
+//    [[_passwordCreatorWindow contentView] addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|[creatorView]|"
+//                                                                                                 options:0
+//                                                                                                 metrics:nil
+//                                                                                                   views:NSDictionaryOfVariableBindings(creatorView)]];
+//    [[_passwordCreatorWindow contentView] addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|[creatorView]|"
+//                                                                                                 options:0
+//                                                                                                 metrics:nil
+//                                                                                                   views:NSDictionaryOfVariableBindings(creatorView)]];
+//    [contentView layoutSubtreeIfNeeded];
   }
-  [self.passwordCreatorWindow setContentView:[self.passwordCreatorController view]];
+  
   [self.passwordCreatorWindow makeKeyAndOrderFront:self.passwordCreatorWindow];
 }
 

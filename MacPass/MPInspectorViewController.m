@@ -9,6 +9,7 @@
 #import "MPInspectorViewController.h"
 #import "MPEntryViewController.h"
 #import "MPOutlineViewDelegate.h"
+#import "MPPasswordCreatorViewController.h"
 #import "MPShadowBox.h"
 #import "MPIconHelper.h"
 #import "MPPopupImageView.h"
@@ -25,7 +26,7 @@
 @property (assign, nonatomic) KdbGroup *selectedGroup;
 
 @property (assign, nonatomic) BOOL showsEntry;
-@property (retain) NSPopover *iconPopup;
+@property (retain) NSPopover *activePopover;
 @property (retain) NSLayoutConstraint *showConstraint;
 @property (retain) NSLayoutConstraint *hideConstraint;
 
@@ -49,7 +50,7 @@
 
 - (void)dealloc {
   [[NSNotificationCenter defaultCenter] removeObserver:self];
-  [_iconPopup release];
+  [_activePopover release];
   [super dealloc];
 }
 
@@ -153,20 +154,26 @@
 #pragma mark Actions
 
 - (void)_showImagePopup:(id)sender {
-  _iconPopup = [[NSPopover alloc] init];
-  self.iconPopup.behavior = NSPopoverBehaviorTransient;
-  self.iconPopup.contentViewController = [[[MPIconSelectViewController alloc] init] autorelease];
-  [self.iconPopup showRelativeToRect:NSZeroRect ofView:self.itemImageView preferredEdge:NSMinYEdge];
-  self.iconPopup = nil;
+  [self _showPopopver:[[[MPIconSelectViewController alloc] init] autorelease]  atView:self.itemImageView onEdge:NSMinYEdge];
 }
 
-- (void)hideImagePopup:(id)sender {
-  [self.iconPopup close];
+- (void)closeActivePopup:(id)sender {
+  [_activePopover close];
 }
 
+- (IBAction)_popUpPasswordGenerator:(id)sender {
+  [self _showPopopver:[[[MPPasswordCreatorViewController alloc] init] autorelease] atView:self.passwordTextField onEdge:NSMinYEdge];
+}
+
+- (void)_showPopopver:(NSViewController *)viewController atView:(NSView *)view onEdge:(NSRectEdge)edge {
+  _activePopover = [[NSPopover alloc] init];
+  _activePopover.behavior = NSPopoverBehaviorTransient;
+  _activePopover.contentViewController = viewController;
+  [_activePopover showRelativeToRect:NSZeroRect ofView:view preferredEdge:edge];
+  _activePopover = nil;
+}
 
 #pragma mark Notificiations
-
 - (void)_didChangeSelectedEntry:(NSNotification *)notification {
   MPEntryViewController *entryViewController = [notification object];
   if(entryViewController) {

@@ -30,6 +30,7 @@
 		4C46B88517063A070046109A /* NSString+MPPasswordCreation.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C46B88417063A070046109A /* NSString+MPPasswordCreation.m */; };
 		4C46B88817063A170046109A /* NSString+MPPasswordAnalysis.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C46B88717063A170046109A /* NSString+MPPasswordAnalysis.m */; };
 		4C46B88B1706D16E0046109A /* NSData+MPRandomBytes.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C46B88A1706D16E0046109A /* NSData+MPRandomBytes.m */; };
+		4C46E09E17673A0A00DA62E8 /* HNHShadowBox.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C46E09D17673A0A00DA62E8 /* HNHShadowBox.m */; };
 		4C4A100F176286FD00BBF2CA /* MPTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C4A100E176286FD00BBF2CA /* MPTableView.m */; };
 		4C4A101217629DA900BBF2CA /* KdbGroup+KVOAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C4A101117629DA900BBF2CA /* KdbGroup+KVOAdditions.m */; };
 		4C569D9E17652B0600595B62 /* MPConstants.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C569D9D17652B0600595B62 /* MPConstants.m */; };
@@ -174,6 +175,8 @@
 		4C46B88717063A170046109A /* NSString+MPPasswordAnalysis.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+MPPasswordAnalysis.m"; sourceTree = "<group>"; };
 		4C46B8891706D16E0046109A /* NSData+MPRandomBytes.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSData+MPRandomBytes.h"; sourceTree = "<group>"; };
 		4C46B88A1706D16E0046109A /* NSData+MPRandomBytes.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSData+MPRandomBytes.m"; sourceTree = "<group>"; };
+		4C46E09C17673A0A00DA62E8 /* HNHShadowBox.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HNHShadowBox.h; sourceTree = "<group>"; };
+		4C46E09D17673A0A00DA62E8 /* HNHShadowBox.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HNHShadowBox.m; sourceTree = "<group>"; };
 		4C4A100D176286FD00BBF2CA /* MPTableView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MPTableView.h; sourceTree = "<group>"; };
 		4C4A100E176286FD00BBF2CA /* MPTableView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MPTableView.m; sourceTree = "<group>"; };
 		4C4A101017629DA900BBF2CA /* KdbGroup+KVOAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "KdbGroup+KVOAdditions.h"; sourceTree = "<group>"; };
@@ -795,6 +798,8 @@
 		4CC3AAB6175F4983003EF01B /* HNHUi */ = {
 			isa = PBXGroup;
 			children = (
+				4C46E09C17673A0A00DA62E8 /* HNHShadowBox.h */,
+				4C46E09D17673A0A00DA62E8 /* HNHShadowBox.m */,
 				4CC3AAB8175F4983003EF01B /* HNHRoundedTextFieldCell.h */,
 				4CC3AAB9175F4983003EF01B /* HNHRoundedTextFieldCell.m */,
 				4C79DF28176685870083708F /* HNHRoundedTextField.h */,
@@ -1062,6 +1067,7 @@
 				4C569DA117652BFE00595B62 /* MPEntryTableDataSource.m in Sources */,
 				4C569DA417653F3500595B62 /* KdbEntry+MPTreeTools.m in Sources */,
 				4C79DF2A176685870083708F /* HNHRoundedTextField.m in Sources */,
+				4C46E09E17673A0A00DA62E8 /* HNHShadowBox.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

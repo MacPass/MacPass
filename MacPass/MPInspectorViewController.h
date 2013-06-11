@@ -23,6 +23,6 @@
 @property (assign) IBOutlet NSTextField *passwordTextField;
 @property (assign) IBOutlet NSTextField *titleOrNameLabel;
 
-- (void)hideImagePopup:(id)sender;
+- (void)closeActivePopup:(id)sender;
 
 @end

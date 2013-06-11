@@ -10,4 +10,6 @@
 
 @interface MPPasswordCreatorViewController : MPViewController
 
+@property (retain) NSString *password;
+
 @end
