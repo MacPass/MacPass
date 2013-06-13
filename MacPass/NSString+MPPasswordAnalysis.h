@@ -8,13 +8,13 @@
 
 #import <Foundation/Foundation.h>
 
-typedef enum {
+typedef NS_ENUM(NSUInteger, MPPasswordStrength) {
   MPPasswordWeak,
   MPPasswordOK,
   MPPasswordGood,
   MPPasswordStrong,
   MPPasswordExcelent,
-} MPPasswordStrength;
+};
 
 @interface NSString (MPPasswordAnalysis)
 

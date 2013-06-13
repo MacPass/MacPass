@@ -11,6 +11,7 @@
 @class MPPopupImageView;
 @class KdbEntry;
 @class KdbGroup;
+@class HNHGradientView;
 
 @interface MPInspectorViewController : MPViewController
 
@@ -22,6 +23,7 @@
 @property (assign) IBOutlet NSTextField *URLTextField;
 @property (assign) IBOutlet NSTextField *passwordTextField;
 @property (assign) IBOutlet NSTextField *titleOrNameLabel;
+@property (assign) IBOutlet HNHGradientView *bottomBar;
 
 - (void)closeActivePopup:(id)sender;
 

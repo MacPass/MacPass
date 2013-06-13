@@ -8,7 +8,7 @@
 
 #import <Foundation/Foundation.h>
 
-typedef enum {
+typedef NS_ENUM(NSUInteger, MPActionType) {
   MPActionAddEntry, // Add an new entry
   MPActionAddGroup, // Add a new group
   MPActionEdit, // Edit entry or group
@@ -19,8 +19,7 @@ typedef enum {
   MPActionOpenURL, // open url in default browser
   MPActionToggleInspector,
   MPActionLock, // show the lock screen
-}
-MPActionType;
+};
 
 @interface MPActionHelper : NSObject
 

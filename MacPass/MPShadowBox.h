@@ -8,11 +8,11 @@
 
 #import <Cocoa/Cocoa.h>
 
-typedef enum {
-  MPShadowTop = 1 << 0,
-  MPShadowBottom = 1 << 1,
-  MPShadowTopAndBottom = MPShadowTop | MPShadowBottom
-} MPShadowDisplay;
+typedef NS_OPTIONS(NSUInteger, MPShadowDisplay) {
+  MPShadowTop           = (1<<0),
+  MPShadowBottom        = (1<<1),
+  MPShadowTopAndBottom  = MPShadowTop | MPShadowBottom
+};
 
 @interface MPShadowBox : NSView
 

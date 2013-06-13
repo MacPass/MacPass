@@ -8,13 +8,13 @@
 
 #import <Foundation/Foundation.h>
 
-typedef enum {
+typedef NS_OPTIONS(NSUInteger, MPPasswordCharacterFlags) {
   MPPasswordCharactersUpperCase = (1<<0), // NSCharacterset lowerCaseCharacterSet
   MPPasswordCharactersLowerCase = (1<<1), // NSCharacterSet upperCaseCharacterSet
   MPPasswordCharactersNumbers   = (1<<2), // NSCharacterSet numberCharacterSet
   MPPasswordCharactersSymbols   = (1<<3),   // NSCharacterSet symbolCharacterSet
   MPPasswordCharactersAll = MPPasswordCharactersUpperCase | MPPasswordCharactersLowerCase | MPPasswordCharactersNumbers | MPPasswordCharactersSymbols
-} MPPasswordCharacterFlags;
+};
 
 /*
  Generates a random integer in between (inkluding) minimum and maxium

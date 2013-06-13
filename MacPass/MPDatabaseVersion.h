@@ -9,9 +9,9 @@
 #ifndef MacPass_MPDatabaseVersion_h
 #define MacPass_MPDatabaseVersion_h
 
-typedef enum {
+typedef NS_ENUM(NSUInteger, MPDatabaseVersion) {
   MPDatabaseVersion3,
   MPDatabaseVersion4
-} MPDatabaseVersion;
+};
 
 #endif

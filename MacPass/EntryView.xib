@@ -58,7 +58,6 @@
 								<string key="NSFrame">{{7, 5}, {32, 19}}</string>
 								<reference key="NSSuperview" ref="163272962"/>
 								<reference key="NSWindow"/>
-								<reference key="NSNextKeyView"/>
 								<string key="NSReuseIdentifierKey">_NS:9</string>
 								<bool key="NSEnabled">YES</bool>
 								<object class="NSButtonCell" key="NSCell" id="160641004">
@@ -108,7 +107,7 @@
 										<string key="NSFrameSize">{684, 548}</string>
 										<reference key="NSSuperview" ref="262664416"/>
 										<reference key="NSWindow"/>
-										<reference key="NSNextKeyView" ref="788738248"/>
+										<reference key="NSNextKeyView" ref="736877784"/>
 										<string key="NSReuseIdentifierKey">_NS:13</string>
 										<bool key="NSEnabled">YES</bool>
 										<bool key="NSAllowsLogicalLayoutDirection">NO</bool>
@@ -393,7 +392,7 @@
 						<string key="NSFrame">{{0, 30}, {684, 565}}</string>
 						<reference key="NSSuperview" ref="997686550"/>
 						<reference key="NSWindow"/>
-						<reference key="NSNextKeyView" ref="736877784"/>
+						<reference key="NSNextKeyView" ref="262664416"/>
 						<string key="NSReuseIdentifierKey">_NS:9</string>
 						<int key="NSsFlags">133680</int>
 						<reference key="NSVScroller" ref="1037276411"/>
@@ -454,6 +453,14 @@
 						</object>
 					</object>
 					<int key="connectionID">686</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBOutletConnection" key="connection">
+						<string key="label">bottomBar</string>
+						<reference key="source" ref="1001"/>
+						<reference key="destination" ref="163272962"/>
+					</object>
+					<int key="connectionID">744</int>
 				</object>
 				<object class="IBConnectionRecord">
 					<object class="IBOutletConnection" key="connection">
@@ -1735,7 +1742,7 @@
 			<nil key="activeLocalization"/>
 			<dictionary class="NSMutableDictionary" key="localizations"/>
 			<nil key="sourceID"/>
-			<int key="maxID">743</int>
+			<int key="maxID">744</int>
 		</object>
 		<object class="IBClassDescriber" key="IBDocument.Classes">
 			<array class="NSMutableArray" key="referencedPartialClassDescriptions">
@@ -1751,6 +1758,7 @@
 					<string key="className">MPEntryViewController</string>
 					<string key="superclassName">MPViewController</string>
 					<dictionary class="NSMutableDictionary" key="outlets">
+						<string key="bottomBar">HNHGradientView</string>
 						<string key="entryTable">NSTableView</string>
 						<string key="filterBar">NSView</string>
 						<string key="filterDoneButton">NSButton</string>
@@ -1762,6 +1770,10 @@
 						<string key="tableToTop">NSLayoutConstraint</string>
 					</dictionary>
 					<dictionary class="NSMutableDictionary" key="toOneOutletInfosByName">
+						<object class="IBToOneOutletInfo" key="bottomBar">
+							<string key="name">bottomBar</string>
+							<string key="candidateClassName">HNHGradientView</string>
+						</object>
 						<object class="IBToOneOutletInfo" key="entryTable">
 							<string key="name">entryTable</string>
 							<string key="candidateClassName">NSTableView</string>

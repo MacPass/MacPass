@@ -15,6 +15,7 @@
 #import "KdbGroup+Undo.h"
 #import "MPContextMenuHelper.h"
 #import "MPConstants.h"
+#import "HNHGradientView.h"
 
 
 @interface MPOutlineViewController () {
@@ -64,6 +65,7 @@
   [self.outlineView setFloatsGroupRows:NO];
   [_outlineView registerForDraggedTypes:@[ MPPasteBoardType ]];
   [self.outlineView setDraggingSourceOperationMask:NSDragOperationEvery forLocal:YES];
+  [_bottomBar setBorderType:HNHBorderTop];
 }
 
 - (void)showOutline {

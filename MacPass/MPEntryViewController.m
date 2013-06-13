@@ -21,23 +21,25 @@
 #import "MPContextMenuHelper.h"
 #import "MPConstants.h"
 #import "MPEntryTableDataSource.h"
+#import "HNHTableHeaderCell.h"
+#import "HNHGradientView.h"
 
 NSString *const MPDidChangeSelectedEntryNotification = @"com.macpass.MPDidChangeSelectedEntryNotification";
 
 #define STATUS_BAR_ANIMATION_TIME 0.2
 
-typedef enum {
-  MPFilterNone = 0,
-  MPFilterUrls = 2,
-  MPFilterUsernames = 4,
-  MPFilterTitles = 8,
-} MPFilterModeType;
+typedef NS_OPTIONS(NSUInteger, MPFilterModeType) {
+  MPFilterNone      = 0,
+  MPFilterUrls      = (1<<0),
+  MPFilterUsernames = (1<<1),
+  MPFilterTitles    = (1<<2),
+};
 
-typedef enum {
+typedef NS_ENUM(NSUInteger,MPOVerlayInfoType) {
   MPOverlayInfoPassword,
   MPOverlayInfoUsername,
   MPOverlayInfoURL,
-} MPOVerlayInfoType;
+};
 
 NSString *const MPEntryTableUserNameColumnIdentifier = @"MPUserNameColumnIdentifier";
 NSString *const MPEntryTableTitleColumnIdentifier = @"MPTitleColumnIdentifier";
@@ -67,6 +69,7 @@ NSString *const _toggleFilterUsernameButton = @"SearchUsername";
 @property (assign) IBOutlet NSButton *filterURLButton;
 @property (assign) IBOutlet NSTextField *filterLabelTextField;
 @property (assign) IBOutlet NSSearchField *filterSearchField;
+@property (assign) IBOutlet HNHGradientView *bottomBar;
 
 @property (assign) KdbEntry *selectedEntry;
 
@@ -115,6 +118,7 @@ NSString *const _toggleFilterUsernameButton = @"SearchUsername";
 - (void)didLoadView {
   [self.view setWantsLayer:YES];
   [self _hideFilterBarAnimated:NO];
+  [_bottomBar setBorderType:HNHBorderTop];
   
   MPDocumentWindowController *windowController = [self windowController];
   [[NSNotificationCenter defaultCenter] addObserver:self
@@ -128,12 +132,17 @@ NSString *const _toggleFilterUsernameButton = @"SearchUsername";
   [self.entryTable setFloatsGroupRows:NO];
   [self.entryTable registerForDraggedTypes:@[MPPasteBoardType]];
   [self _setupEntryMenu];
-  
+    
   NSTableColumn *parentColumn = [self.entryTable tableColumns][0];
   NSTableColumn *titleColumn = [self.entryTable tableColumns][1];
   NSTableColumn *userNameColumn = [self.entryTable tableColumns][2];
   NSTableColumn *passwordColumn = [self.entryTable tableColumns][3];
   NSTableColumn *urlColumn = [self.entryTable tableColumns][4];
+  
+  for(NSTableColumn *column in [self.entryTable tableColumns]) {
+    [column setHeaderCell:[[HNHTableHeaderCell alloc] init]];
+  }
+  
   
   [parentColumn setIdentifier:MPEntryTableParentColumnIdentifier];
   [titleColumn setIdentifier:MPEntryTableTitleColumnIdentifier];
@@ -237,7 +246,7 @@ NSString *const _toggleFilterUsernameButton = @"SearchUsername";
 #pragma mark Filtering
 
 - (void)showFilter:(id)sender {
-  //[self _showFilterBarAnimated:NO];
+  [self _showFilterBarAnimated:NO];
 }
 
 - (BOOL)hasFilter {

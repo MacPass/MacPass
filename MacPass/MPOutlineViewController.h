@@ -10,10 +10,12 @@
 
 @class MPOutlineViewDelegate;
 @class KdbGroup;
+@class HNHGradientView;
 
 @interface MPOutlineViewController : MPViewController
 
 @property (retain, readonly) MPOutlineViewDelegate *outlineDelegate;
+@property (assign) IBOutlet HNHGradientView *bottomBar;
 
 - (void)clearSelection;
 - (void)showOutline;

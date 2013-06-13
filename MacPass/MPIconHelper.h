@@ -8,7 +8,7 @@
 
 #import <Foundation/Foundation.h>
 
-typedef enum {
+typedef NS_ENUM(NSUInteger, MPIconType) {
   MPIconPassword,
   MPIconPackageNetwork,
   MPIconWarning,
@@ -20,7 +20,7 @@ typedef enum {
   MPIconIdentity,
   MPIconContact,
   MPIconCamera
-} MPIconType;
+};
 
 @interface MPIconHelper : NSObject
 

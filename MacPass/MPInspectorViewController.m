@@ -17,6 +17,7 @@
 #import "KdbLib.h"
 #import "KdbGroup+Undo.h"
 #import "KdbEntry+Undo.h"
+#import "HNHGradientView.h"
 
 @interface MPInspectorViewController () {
   BOOL _visible;
@@ -58,6 +59,7 @@
   
   [[self.itemImageView cell] setBackgroundStyle:NSBackgroundStyleRaised];
   [self.itemImageView setTarget:self];
+  [_bottomBar setBorderType:HNHBorderTop];
   /* Register for Entry selection */
   [[NSNotificationCenter defaultCenter] addObserver:self
                                            selector:@selector(_didChangeSelectedEntry:)
