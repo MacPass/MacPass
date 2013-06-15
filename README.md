@@ -42,6 +42,7 @@ Feel free to give it a try. The biggest draw-back is it's inablity to create pas
 ##What does it look like?
 
 ![image](https://raw.github.com/mstarke/MacPass/master/Assets/MacPass.png)
+![image](https://raw.github.com/mstarke/MacPass/master/Assets/PasswordGenerator.png)
 
 ##License
 
