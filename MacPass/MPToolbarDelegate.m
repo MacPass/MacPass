@@ -39,7 +39,7 @@ NSString *const MPToolbarItemInspector = @"TOOLBAR_INSPECTOR";
 - (id)init {
   self = [super init];
   if (self) {
-    _toolbarIdentifiers = [@[ MPToolbarItemAddEntry, MPToolbarItemDelete, MPToolbarItemAddGroup, MPToolbarItemAction, NSToolbarFlexibleSpaceItemIdentifier, MPToolbarItemLock ] retain];
+    _toolbarIdentifiers = [@[ MPToolbarItemAddEntry, MPToolbarItemDelete, MPToolbarItemAddGroup, MPToolbarItemAction, NSToolbarFlexibleSpaceItemIdentifier, MPToolbarItemLock, MPToolbarItemInspector ] retain];
     _toolbarImages = [[self createToolbarImages] retain];
     _toolbarItems = [[NSMutableDictionary alloc] initWithCapacity:[self.toolbarIdentifiers count]];
   }
@@ -104,7 +104,7 @@ NSString *const MPToolbarItemInspector = @"TOOLBAR_INSPECTOR";
       [button setImagePosition:NSImageOnly];
       [button sizeToFit];
       [button setAction:[self _actionForToolbarItemIdentifier:itemIdentifier]];
-      
+           
       NSRect fittingRect = [button frame];
       fittingRect.size.width = MAX( (CGFloat)32.0,fittingRect.size.width);
       [button setFrame:fittingRect];
@@ -148,7 +148,7 @@ NSString *const MPToolbarItemInspector = @"TOOLBAR_INSPECTOR";
                                MPToolbarItemAddGroup: NSLocalizedString(@"ADD_GROUP", @""),
                                MPToolbarItemDelete: NSLocalizedString(@"DELETE", @""),
                                MPToolbarItemEdit: NSLocalizedString(@"EDIT", @""),
-                               MPToolbarItemInspector: NSLocalizedString(@"TOGGLE_INSPECTOR", @"")
+                               MPToolbarItemInspector: NSLocalizedString(@"INSPECTOR", @"")
                                };
   return labelDict[identifier];
 }

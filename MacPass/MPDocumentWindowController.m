@@ -183,7 +183,13 @@
 }
 
 - (void)toggleInspector:(id)sender {
-  
+  NSView *inspectorView = [_inspectorTabViewController view];
+  if([inspectorView superview]) {
+    [inspectorView removeFromSuperview];
+  }
+  else {
+    [_splitView addSubview:inspectorView];
+  }
 }
 
 - (void)showEntries {
