@@ -132,11 +132,7 @@ NSString *const _toggleFilterUsernameButton = @"SearchUsername";
   NSTableColumn *userNameColumn = [self.entryTable tableColumns][2];
   NSTableColumn *passwordColumn = [self.entryTable tableColumns][3];
   NSTableColumn *urlColumn = [self.entryTable tableColumns][4];
-  
-  for(NSTableColumn *column in [self.entryTable tableColumns]) {
-    [column setHeaderCell:[[HNHTableHeaderCell alloc] init]];
-  }
-  
+    
   
   [parentColumn setIdentifier:MPEntryTableParentColumnIdentifier];
   [titleColumn setIdentifier:MPEntryTableTitleColumnIdentifier];

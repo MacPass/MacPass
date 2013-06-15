@@ -80,6 +80,7 @@
     MPDocument *document = [[[outlineView window] windowController] document];
     KdbGroup *rootGroup = [document root];
     KdbEntry *draggedEntry = [rootGroup entryForUUID:uuid];
+    [uuid release];
     if(draggedEntry) {
       if(draggedEntry.parent != target && index == NSOutlineViewDropOnItemIndex) {
         [document moveEntry:draggedEntry toGroup:target index:index];

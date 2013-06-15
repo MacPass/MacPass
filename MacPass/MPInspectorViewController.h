@@ -14,7 +14,7 @@
 @class HNHGradientView;
 @class MPDocumentWindowController;
 
-@interface MPInspectorViewController : MPViewController
+@interface MPInspectorViewController : MPViewController <NSTableViewDelegate>
 
 @property (assign) IBOutlet MPPopupImageView *itemImageView;
 @property (assign) IBOutlet NSTextField *itemNameTextfield;
@@ -24,7 +24,10 @@
 @property (assign) IBOutlet NSTextField *URLTextField;
 @property (assign) IBOutlet NSTextField *passwordTextField;
 @property (assign) IBOutlet NSTextField *titleOrNameLabel;
+@property (assign) IBOutlet NSTextField *notesTextField;
 @property (assign) IBOutlet HNHGradientView *bottomBar;
+@property (assign) IBOutlet NSTextField *infoTextField;
+@property (assign) IBOutlet NSTableView *attachmentTableView;
 
 - (void)closeActivePopup:(id)sender;
 /* Seperate call to ensure alle registered objects are in place */

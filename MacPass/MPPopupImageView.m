@@ -44,28 +44,37 @@
   if(self.showOverlay && [self isEnabled]) {
     [[NSGraphicsContext currentContext] saveGraphicsState];
 
-
-    [[NSColor colorWithCalibratedWhite:0 alpha:0.2] set];
-    [[NSBezierPath bezierPathWithRoundedRect:[self bounds] xRadius:4 yRadius:4] fill];
+    NSBezierPath *path = [NSBezierPath bezierPathWithRoundedRect:[self bounds] xRadius:4 yRadius:4];
     
     NSShadow *shadow = [[NSShadow alloc] init];
-    [shadow setShadowBlurRadius:2];
-    [shadow setShadowOffset:NSMakeSize(0, -1)];
-    [shadow setShadowColor:[NSColor colorWithCalibratedWhite:0 alpha:0.5]];
+    [shadow setShadowBlurRadius:6];
+    [shadow setShadowOffset:NSMakeSize(0, 0)];
+    [shadow setShadowColor:[NSColor colorWithCalibratedWhite:0.2 alpha:1]];
     [shadow set];
 
-    NSBezierPath *triangle = [NSBezierPath bezierPath];
-    NSPoint left = NSMakePoint([self bounds].size.width - MPTRIANGLE_OFFSET - MPTRIANGLE_WIDTH, MPTRIANGLE_OFFSET + MPTRIANGLE_HEIGHT);
-    NSPoint right = NSMakePoint(left.x + MPTRIANGLE_WIDTH, left.y);
-    NSPoint bottom = NSMakePoint(left.x + 0.5 * MPTRIANGLE_WIDTH, MPTRIANGLE_OFFSET);
-  
-    [triangle moveToPoint:left];
-    [triangle lineToPoint:right];
-    [triangle lineToPoint:bottom];
-    [triangle closePath];
-    
-    [[NSColor whiteColor] set];
-    [triangle fill];
+    [path addClip];
+    [[NSColor colorWithCalibratedWhite:1 alpha:0.2] setFill];
+    [path fill];
+    NSBezierPath *strokePath = [NSBezierPath bezierPathWithRoundedRect:NSInsetRect([self bounds], -3, -3) xRadius:4 yRadius:4];
+    [strokePath setLineWidth:6];
+    [strokePath stroke];
+//    [shadow setShadowBlurRadius:2];
+//    [shadow setShadowColor:[NSColor colorWithCalibratedWhite:0 alpha:0.5]];
+//    [shadow setShadowOffset:NSMakeSize(0, -1)];
+//    [shadow set];
+//    
+//    NSBezierPath *triangle = [NSBezierPath bezierPath];
+//    NSPoint left = NSMakePoint([self bounds].size.width - MPTRIANGLE_OFFSET - MPTRIANGLE_WIDTH, MPTRIANGLE_OFFSET + MPTRIANGLE_HEIGHT);
+//    NSPoint right = NSMakePoint(left.x + MPTRIANGLE_WIDTH, left.y);
+//    NSPoint bottom = NSMakePoint(left.x + 0.5 * MPTRIANGLE_WIDTH, MPTRIANGLE_OFFSET);
+//  
+//    [triangle moveToPoint:left];
+//    [triangle lineToPoint:right];
+//    [triangle lineToPoint:bottom];
+//    [triangle closePath];
+//    
+//    [[NSColor whiteColor] set];
+//    [triangle fill];
     
     [shadow release];
     [[NSGraphicsContext currentContext] restoreGraphicsState];
