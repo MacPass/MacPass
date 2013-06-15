@@ -12,7 +12,7 @@ Beware that I'm going to shift things around so stuff is going to break. A lot.
 
 ## Status
 
-Take a look at the [Wiki](https://github.com/mstarke/MacPass/wiki/MacPass)
+Take a look at the [Wiki](https://github.com/mstarke/MacPass/wiki/Status)
 
 ##Alternatives
 
