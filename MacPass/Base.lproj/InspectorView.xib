@@ -332,7 +332,6 @@
 						<string key="NSFrameSize">{265, 30}</string>
 						<reference key="NSSuperview" ref="87082330"/>
 						<reference key="NSWindow"/>
-						<reference key="NSNextKeyView"/>
 						<string key="NSReuseIdentifierKey">_NS:9</string>
 						<string key="NSClassName">HNHGradientView</string>
 					</object>
@@ -455,6 +454,14 @@
 						<reference key="destination" ref="816254670"/>
 					</object>
 					<int key="connectionID">711</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBOutletConnection" key="connection">
+						<string key="label">generatePasswordButton</string>
+						<reference key="source" ref="1001"/>
+						<reference key="destination" ref="945692232"/>
+					</object>
+					<int key="connectionID">733</int>
 				</object>
 			</array>
 			<object class="IBMutableOrderedSet" key="objectRecords">
@@ -1647,7 +1654,7 @@
 			<nil key="activeLocalization"/>
 			<dictionary class="NSMutableDictionary" key="localizations"/>
 			<nil key="sourceID"/>
-			<int key="maxID">732</int>
+			<int key="maxID">733</int>
 		</object>
 		<object class="IBClassDescriber" key="IBDocument.Classes">
 			<array class="NSMutableArray" key="referencedPartialClassDescriptions">
@@ -1694,9 +1701,21 @@
 				<object class="IBPartialClassDescription">
 					<string key="className">MPInspectorViewController</string>
 					<string key="superclassName">MPViewController</string>
+					<object class="NSMutableDictionary" key="actions">
+						<string key="NS.key.0">_popUpPasswordGenerator:</string>
+						<string key="NS.object.0">id</string>
+					</object>
+					<object class="NSMutableDictionary" key="actionInfosByName">
+						<string key="NS.key.0">_popUpPasswordGenerator:</string>
+						<object class="IBActionInfo" key="NS.object.0">
+							<string key="name">_popUpPasswordGenerator:</string>
+							<string key="candidateClassName">id</string>
+						</object>
+					</object>
 					<dictionary class="NSMutableDictionary" key="outlets">
 						<string key="URLTextField">NSTextField</string>
 						<string key="bottomBar">HNHGradientView</string>
+						<string key="generatePasswordButton">NSButton</string>
 						<string key="itemImageView">MPPopupImageView</string>
 						<string key="itemNameTextfield">NSTextField</string>
 						<string key="passwordTextField">NSTextField</string>
@@ -1712,6 +1731,10 @@
 						<object class="IBToOneOutletInfo" key="bottomBar">
 							<string key="name">bottomBar</string>
 							<string key="candidateClassName">HNHGradientView</string>
+						</object>
+						<object class="IBToOneOutletInfo" key="generatePasswordButton">
+							<string key="name">generatePasswordButton</string>
+							<string key="candidateClassName">NSButton</string>
 						</object>
 						<object class="IBToOneOutletInfo" key="itemImageView">
 							<string key="name">itemImageView</string>

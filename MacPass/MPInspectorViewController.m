@@ -28,8 +28,7 @@
 
 @property (assign, nonatomic) BOOL showsEntry;
 @property (retain) NSPopover *activePopover;
-@property (retain) NSLayoutConstraint *showConstraint;
-@property (retain) NSLayoutConstraint *hideConstraint;
+@property (assign) IBOutlet NSButton *generatePasswordButton;
 
 @end
 
@@ -150,6 +149,7 @@
   [self.passwordTextField setEnabled:enabled];
   [self.usernameTextField setEnabled:enabled];
   [self.URLTextField setEnabled:enabled];
+  [self.generatePasswordButton setEnabled:enabled];
   
 }
 
