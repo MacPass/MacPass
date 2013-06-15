@@ -10,27 +10,9 @@ This is an attempt to create an OS X port that should at least be able to read K
 The Project is in heavy development and it's likely to take some time till it reaches a usable state.
 Beware that I'm going to shift things around so stuff is going to break. A lot.
 
-##Status
+## Status
 
-A rough overview, of what works (or at least I think does)
-
-###Data handling
-
-* Open/Save Kdbx and Kdb Databases.
-* Undo/Redo on all supported Edit operations
-* Groups
- * Add/Remove/Move
- * Edit Name
-* Entries
- * Add/Remove/Move
- * Edit Title, Username, Password, URL
-* Clear pasteboard on quit/after timeout
-* Search for Username/Title/Url
-
-###UI
-
-* Drag'n'Drop of groups in outline
-* Double click to quick copy entry values (Username,Password,URL)
+Take a look at the [Wiki](https://github.com/mstarke/MacPass/wiki/Status)
 
 ##Alternatives
 
