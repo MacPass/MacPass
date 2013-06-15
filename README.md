@@ -10,7 +10,15 @@ This is an attempt to create an OS X port that should at least be able to read K
 The Project is in heavy development and it's likely to take some time till it reaches a usable state.
 Beware that I'm going to shift things around so stuff is going to break. A lot.
 
-## Status
+##Dowload
+
+I'm trying to upload new some builds along the way for all who just want to take a quick look.
+As stated in the Disclaimer, this software cannot be considered safe for work in it's current development status.
+Use it with caution!
+
+[Download MacPass at Dropbox](https://www.dropbox.com/sh/yqgfwi7f8mnd747/NCQlJmg0f0)
+
+##Status
 
 Take a look at the [Wiki](https://github.com/mstarke/MacPass/wiki/Status)
 
