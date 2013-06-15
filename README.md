@@ -14,11 +14,6 @@ Beware that I'm going to shift things around so stuff is going to break. A lot.
 
 Take a look at the [Wiki](https://github.com/mstarke/MacPass/wiki/MacPass)
 
-###UI
-
-* Drag'n'Drop of groups in outline
-* Double click to quick copy entry values (Username,Password,URL)
-
 ##Alternatives
 
 Currently there is an alpha Version available of [KeePassX](http://www.keepassx.org).
