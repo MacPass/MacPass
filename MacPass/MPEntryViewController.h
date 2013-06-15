@@ -27,6 +27,7 @@ typedef enum {
 @class KdbGroup;
 @class KdbEntry;
 @class MPOutlineViewDelegate;
+@class MPDocumentWindowController;
 
 @interface MPEntryViewController : MPViewController <NSTableViewDelegate>
 
@@ -36,6 +37,9 @@ typedef enum {
 @property (readonly, retain) NSArrayController *entryArrayController;
 @property (nonatomic, retain) NSString *filter;
 
+
+/* Call this after alle viewcontroller are loaded */
+- (void)setupNotifications:(MPDocumentWindowController *)windowController;
 
 /* Clear the Search filter*/
 - (void)showFilter:(id)sender;

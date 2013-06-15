@@ -134,9 +134,9 @@ NSString *const MPToolbarItemInspector = @"TOOLBAR_INSPECTOR";
   NSDictionary *imageDict = @{ MPToolbarItemLock: [NSImage imageNamed:NSImageNameLockUnlockedTemplate],
                                MPToolbarItemAddEntry: [MPIconHelper icon:MPIconPassword],
                                MPToolbarItemAddGroup: [MPIconHelper icon:MPIconPassword],
-                               MPToolbarItemDelete: [NSImage imageNamed:NSImageNameRemoveTemplate],
+                               MPToolbarItemDelete: [MPIconHelper icon:MPIconTrash],
                                MPToolbarItemAction: [NSImage imageNamed:NSImageNameActionTemplate],
-                               MPToolbarItemInspector: [NSImage imageNamed:NSImageNameInfo],
+                               MPToolbarItemInspector: [MPIconHelper icon:MPIconInfo],
                                };
   return imageDict;
 }

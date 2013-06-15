@@ -17,16 +17,13 @@
 @class MPCreationViewController;
 
 
-@interface MPDocumentWindowController : NSWindowController <NSWindowDelegate> {
-@private
-  NSArray *_inspectorContraints;
-}
+@interface MPDocumentWindowController : NSWindowController <NSWindowDelegate>
 
 @property (readonly, retain) MPPasswordInputController *passwordInputController;
 @property (readonly, retain) MPPasswordEditViewController *passwordEditController;
 @property (readonly, retain) MPEntryViewController *entryViewController;
 @property (readonly, retain) MPOutlineViewController *outlineViewController;
-@property (readonly, retain) MPInspectorViewController *inspectorTabViewController;
+@property (readonly, retain) MPInspectorViewController *inspectorViewController;
 @property (readonly, retain) MPCreationViewController *creationViewController;
 
 

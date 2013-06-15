@@ -12,6 +12,7 @@
 @class KdbEntry;
 @class KdbGroup;
 @class HNHGradientView;
+@class MPDocumentWindowController;
 
 @interface MPInspectorViewController : MPViewController
 
@@ -26,5 +27,7 @@
 @property (assign) IBOutlet HNHGradientView *bottomBar;
 
 - (void)closeActivePopup:(id)sender;
+/* Seperate call to ensure alle registered objects are in place */
+- (void)setupNotifications:(MPDocumentWindowController *)windowController;
 
 @end

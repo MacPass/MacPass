@@ -43,7 +43,6 @@
     _bindingEstablished = NO;
     _outlineDelegate = [[MPOutlineViewDelegate alloc] init];
     _datasource = [[MPOutlineDataSource alloc] init];
-    
   }
   
   return self;
@@ -51,7 +50,6 @@
 
 - (void)dealloc
 {
-  [[NSNotificationCenter defaultCenter] removeObserver:self];
   self.datasource = nil;
   self.outlineDelegate = nil;
   self.menu = nil;

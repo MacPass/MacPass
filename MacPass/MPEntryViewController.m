@@ -120,12 +120,6 @@ NSString *const _toggleFilterUsernameButton = @"SearchUsername";
   [self _hideFilterBarAnimated:NO];
   [_bottomBar setBorderType:HNHBorderTop];
   
-  MPDocumentWindowController *windowController = [self windowController];
-  [[NSNotificationCenter defaultCenter] addObserver:self
-                                           selector:@selector(_didChangeGroupSelectionInOutlineView:)
-                                               name:MPOutlineViewDidChangeGroupSelection
-                                             object:windowController.outlineViewController.outlineDelegate];
-  
   [self.entryTable setDelegate:self];
   [self.entryTable setDoubleAction:@selector(_columnDoubleClick:)];
   [self.entryTable setTarget:self];
@@ -170,6 +164,14 @@ NSString *const _toggleFilterUsernameButton = @"SearchUsername";
 
   [parentColumn setHidden:YES];
 }
+
+- (void)setupNotifications:(MPDocumentWindowController *)windowController {
+  [[NSNotificationCenter defaultCenter] addObserver:self
+                                           selector:@selector(_didChangeGroupSelectionInOutlineView:)
+                                               name:MPOutlineViewDidChangeGroupSelection
+                                             object:windowController.outlineViewController.outlineDelegate];
+}
+
 #pragma mark NSTableViewDelgate
 
 - (NSView *)tableView:(NSTableView *)tableView viewForTableColumn:(NSTableColumn *)tableColumn row:(NSInteger)row {

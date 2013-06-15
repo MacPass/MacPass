@@ -31,7 +31,7 @@
 @property (retain) MPPasswordEditViewController *passwordEditController;
 @property (retain) MPEntryViewController *entryViewController;
 @property (retain) MPOutlineViewController *outlineViewController;
-@property (retain) MPInspectorViewController *inspectorTabViewController;
+@property (retain) MPInspectorViewController *inspectorViewController;
 
 @property (retain) MPToolbarDelegate *toolbarDelegate;
 
@@ -46,21 +46,20 @@
     _firstResponder = nil;
     _toolbarDelegate = [[MPToolbarDelegate alloc] init];
     _outlineViewController = [[MPOutlineViewController alloc] init];
-    _inspectorTabViewController = [[MPInspectorViewController alloc] init];
     _passwordEditController = [[MPPasswordEditViewController alloc] init];
     _entryViewController = [[MPEntryViewController alloc] init];
+    _inspectorViewController = [[MPInspectorViewController alloc] init];
   }
   return self;
 }
 
 - (void)dealloc {
-  [[NSNotificationCenter defaultCenter] removeObserver:self];
   [_toolbar release];
   
   [_passwordInputController release];
   [_entryViewController release];
   [_outlineViewController release];
-  [_inspectorTabViewController release];
+  [_inspectorViewController release];
   [_creationViewController release];
   
   [_toolbarDelegate release];
@@ -71,6 +70,9 @@
 #pragma mark View Handling
 - (void)windowDidLoad
 {
+  [_entryViewController setupNotifications:self];
+  [_inspectorViewController setupNotifications:self];
+  
   [super windowDidLoad];
   _toolbar = [[NSToolbar alloc] initWithIdentifier:@"MainWindowToolbar"];
   [self.toolbar setAllowsUserCustomization:YES];
@@ -80,7 +82,7 @@
   [self.splitView setTranslatesAutoresizingMaskIntoConstraints:NO];
   
   NSView *outlineView = [_outlineViewController view];
-  NSView *inspectorView = [_inspectorTabViewController view];
+  NSView *inspectorView = [_inspectorViewController view];
   NSView *entryView = [_entryViewController view];
   [_splitView addSubview:outlineView];
   [_splitView addSubview:entryView];
@@ -151,6 +153,12 @@
   if(itemAction == [MPActionHelper actionOfType:MPActionAddEntry]) {
     return (nil != _entryViewController.activeGroup);
   }
+  if(itemAction == [MPActionHelper actionOfType:MPActionDelete]) {
+    return (_entryViewController.activeGroup || _entryViewController.selectedEntry);
+  }
+  if(itemAction == [MPActionHelper actionOfType:MPActionToggleInspector]) {
+    return (nil != [_splitView superview]);
+  }
   
   return YES;
 }
@@ -179,11 +187,11 @@
 }
 
 - (void)createGroup:(id)sender {
-  NSLog(@"WindowControllerCreateGroup");
+  [_outlineViewController createGroup:nil];
 }
 
 - (void)toggleInspector:(id)sender {
-  NSView *inspectorView = [_inspectorTabViewController view];
+  NSView *inspectorView = [_inspectorViewController view];
   if([inspectorView superview]) {
     [inspectorView removeFromSuperview];
   }
@@ -203,7 +211,7 @@
   [contentView addSubview:_splitView];
   [_splitView adjustSubviews];
   NSView *outlineView = [_outlineViewController view];
-  NSView *inspectorView = [_inspectorTabViewController view];
+  NSView *inspectorView = [_inspectorViewController view];
   NSView *entryView = [_entryViewController view];
   
   NSDictionary *views = NSDictionaryOfVariableBindings(outlineView, inspectorView, entryView, _splitView);
@@ -235,7 +243,7 @@
   
   [contentView layout];
   [_entryViewController updateResponderChain];
-  [_inspectorTabViewController updateResponderChain];
+  [_inspectorViewController updateResponderChain];
   [_outlineViewController updateResponderChain];
   [_outlineViewController showOutline];
 }

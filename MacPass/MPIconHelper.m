@@ -40,7 +40,9 @@
                                 @(MPIconContact): @"10_ContactTemplate",
                                 @(MPIconIdentity): @"09_IdentityTemplate",
                                 @(MPIconNotepad): @"07_NotepadTemplate",
-                                @(MPIconSocket): @"08_SocketTemplate"
+                                @(MPIconSocket): @"08_SocketTemplate",
+                                @(MPIconTrash): @"43_TrashTemplate",
+                                @(MPIconInfo): @"99_InfoTemplate"
                                 };
   return imageNames;
 }

@@ -14,6 +14,9 @@
 #import "MPIconHelper.h"
 #import "MPPopupImageView.h"
 #import "MPIconSelectViewController.h"
+#import "MPDocumentWindowController.h"
+#import "MPOutlineViewController.h"
+#import "MPOutlineViewDelegate.h"
 #import "KdbLib.h"
 #import "KdbGroup+Undo.h"
 #import "KdbEntry+Undo.h"
@@ -59,18 +62,21 @@
   [[self.itemImageView cell] setBackgroundStyle:NSBackgroundStyleRaised];
   [self.itemImageView setTarget:self];
   [_bottomBar setBorderType:HNHBorderTop];
+  [self _clearContent];
+}
+
+- (void)setupNotifications:(MPDocumentWindowController *)windowController {
   /* Register for Entry selection */
   [[NSNotificationCenter defaultCenter] addObserver:self
                                            selector:@selector(_didChangeSelectedEntry:)
                                                name:MPDidChangeSelectedEntryNotification
-                                             object:nil];
+                                             object:windowController.entryViewController];
   
   /* Register for Group selection */
   [[NSNotificationCenter defaultCenter] addObserver:self
                                            selector:@selector(_didChangeSelectedGroup:)
                                                name:MPOutlineViewDidChangeGroupSelection
-                                             object:nil];
-  [self _clearContent];
+                                             object:windowController.outlineViewController.outlineDelegate];
 }
 
 - (void)_updateContent {

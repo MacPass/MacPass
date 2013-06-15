@@ -20,6 +20,7 @@
 - (void)clearSelection;
 - (void)showOutline;
 
+- (void)setupNotifications;
 
 - (void)createGroup:(id)sender;
 - (void)createEntry:(id)sender;

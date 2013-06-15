@@ -54,12 +54,12 @@
     document.key = [self.keyfilePathControl URL];
     document.password = [self.passwordTextField stringValue];
   }
-  MPDocumentWindowController *mainWindowController = (MPDocumentWindowController *)[[[self view] window] windowController];
+  id mainWindowController = [[[self view] window] windowController];
   [mainWindowController showEntries];
 }
 
 - (IBAction)_cancel:(id)sender {
-  MPDocumentWindowController *mainWindowController = (MPDocumentWindowController *)[[[self view] window] windowController];
+  id mainWindowController = [[[self view] window] windowController];
   [mainWindowController showEntries];
 }
 @end

@@ -88,6 +88,8 @@
 		4C7615631764C08C0015A1A6 /* PasswordEditView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4C7615651764C08C0015A1A6 /* PasswordEditView.xib */; };
 		4C7615681764C0C40015A1A6 /* PasswordInputView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4C76156A1764C0C40015A1A6 /* PasswordInputView.xib */; };
 		4C76156D1764C0E20015A1A6 /* InspectorView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4C76156F1764C0E20015A1A6 /* InspectorView.xib */; };
+		4C7714AA176C998F00549F2A /* 43_TrashTemplate.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 4C7714A9176C998F00549F2A /* 43_TrashTemplate.pdf */; };
+		4C7714AC176C9D4600549F2A /* 99_InfoTemplate.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 4C7714AB176C9D4600549F2A /* 99_InfoTemplate.pdf */; };
 		4C77547516E55FE800970E02 /* MPInspectorViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C77547416E55FE800970E02 /* MPInspectorViewController.m */; };
 		4C77E36715B84A240093A587 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4C77E36615B84A240093A587 /* Cocoa.framework */; };
 		4C77E37115B84A240093A587 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 4C77E36F15B84A240093A587 /* InfoPlist.strings */; };
@@ -300,6 +302,8 @@
 		4C76157B1764C5450015A1A6 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/MainMenu.strings; sourceTree = "<group>"; };
 		4C76157C1764C8B40015A1A6 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InspectorView.strings; sourceTree = "<group>"; };
 		4C76157D1764C8B90015A1A6 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/InspectorView.strings; sourceTree = "<group>"; };
+		4C7714A9176C998F00549F2A /* 43_TrashTemplate.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = 43_TrashTemplate.pdf; sourceTree = "<group>"; };
+		4C7714AB176C9D4600549F2A /* 99_InfoTemplate.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = 99_InfoTemplate.pdf; sourceTree = "<group>"; };
 		4C77547316E55FE800970E02 /* MPInspectorViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MPInspectorViewController.h; sourceTree = "<group>"; };
 		4C77547416E55FE800970E02 /* MPInspectorViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MPInspectorViewController.m; sourceTree = "<group>"; };
 		4C77E36215B84A240093A587 /* MacPass.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MacPass.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -531,6 +535,8 @@
 				4CD78AB916D155FF00768A1D /* 09_IdentityTemplate.pdf */,
 				4CD78ABA16D155FF00768A1D /* 10_ContactTemplate.pdf */,
 				4CD78ABB16D155FF00768A1D /* 11_CameraTemplate.pdf */,
+				4C7714A9176C998F00549F2A /* 43_TrashTemplate.pdf */,
+				4C7714AB176C9D4600549F2A /* 99_InfoTemplate.pdf */,
 			);
 			path = Icons;
 			sourceTree = "<group>";
@@ -953,6 +959,8 @@
 				4C5A11FF1708DE8800223D8A /* PasswordCreatorView.xib in Resources */,
 				4C1DDCDD1711ECEB00C98DA3 /* PasswordCreatorWindow.xib in Resources */,
 				4C7615631764C08C0015A1A6 /* PasswordEditView.xib in Resources */,
+				4C7714AA176C998F00549F2A /* 43_TrashTemplate.pdf in Resources */,
+				4C7714AC176C9D4600549F2A /* 99_InfoTemplate.pdf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -970,7 +978,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "#!/bin/bash\nbuildNumber=$(/usr/libexec/PlistBuddy -c \"Print CFBundleVersion\" \"$INFOPLIST_FILE\")\nbuildNumber=$((0x$buildNumber))\nbuildNumber=$(($buildNumber + 1))\nbuildNumber=$(printf \"%X\" $buildNumber)\n/usr/libexec/PlistBuddy -c \"Set :CFBundleVersion $buildNumber\" \"$INFOPLIST_FILE\"";
+			shellScript = "#!/bin/bash\nbuildNumber=$(/usr/libexec/PlistBuddy -c \"Print CFBundleVersion\" \"$INFOPLIST_FILE\")\n#buildNumber=$((0x$buildNumber))\nbuildNumber=$(($buildNumber + 1))\nbuildNumber=$(printf \"%d\" $buildNumber)\n/usr/libexec/PlistBuddy -c \"Set :CFBundleVersion $buildNumber\" \"$INFOPLIST_FILE\"";
 		};
 /* End PBXShellScriptBuildPhase section */
 

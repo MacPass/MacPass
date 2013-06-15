@@ -19,7 +19,9 @@ typedef NS_ENUM(NSUInteger, MPIconType) {
   MPIconSocket,
   MPIconIdentity,
   MPIconContact,
-  MPIconCamera
+  MPIconCamera,
+  MPIconTrash,
+  MPIconInfo
 };
 
 @interface MPIconHelper : NSObject
