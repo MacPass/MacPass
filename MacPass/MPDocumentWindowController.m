@@ -193,6 +193,7 @@
 - (void)toggleInspector:(id)sender {
   NSView *inspectorView = [_inspectorViewController view];
   if([inspectorView superview]) {
+    //[inspectorView animator]
     [inspectorView removeFromSuperview];
   }
   else {

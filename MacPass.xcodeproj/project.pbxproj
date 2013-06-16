@@ -10,6 +10,8 @@
 		4C01C23F1764D2980016D5D0 /* KdbEntry+Undo.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C01C23E1764D2980016D5D0 /* KdbEntry+Undo.m */; };
 		4C01C2421764D8980016D5D0 /* MPContextMenuHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C01C2411764D8980016D5D0 /* MPContextMenuHelper.m */; };
 		4C01C245176500C40016D5D0 /* HNHLevelIndicatorCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C01C244176500C40016D5D0 /* HNHLevelIndicatorCell.m */; };
+		4C099930176D4C5C00C885CB /* MPTableCellView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C09992F176D4C5C00C885CB /* MPTableCellView.m */; };
+		4C099933176D4EA600C885CB /* HNHScrollView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C099932176D4EA600C885CB /* HNHScrollView.m */; };
 		4C1DDCDD1711ECEB00C98DA3 /* PasswordCreatorWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4C1DDCDC1711ECEB00C98DA3 /* PasswordCreatorWindow.xib */; };
 		4C22040D1746ED160054C916 /* KdbGroup+Undo.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C22040C1746ED160054C916 /* KdbGroup+Undo.m */; };
 		4C25D58716CF0FAA00F6806C /* EntryView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4C25D58616CF0FAA00F6806C /* EntryView.xib */; };
@@ -145,6 +147,10 @@
 		4C01C2411764D8980016D5D0 /* MPContextMenuHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MPContextMenuHelper.m; sourceTree = "<group>"; };
 		4C01C243176500C40016D5D0 /* HNHLevelIndicatorCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HNHLevelIndicatorCell.h; sourceTree = "<group>"; };
 		4C01C244176500C40016D5D0 /* HNHLevelIndicatorCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HNHLevelIndicatorCell.m; sourceTree = "<group>"; };
+		4C09992E176D4C5C00C885CB /* MPTableCellView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MPTableCellView.h; sourceTree = "<group>"; };
+		4C09992F176D4C5C00C885CB /* MPTableCellView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MPTableCellView.m; sourceTree = "<group>"; };
+		4C099931176D4EA600C885CB /* HNHScrollView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HNHScrollView.h; sourceTree = "<group>"; };
+		4C099932176D4EA600C885CB /* HNHScrollView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HNHScrollView.m; sourceTree = "<group>"; };
 		4C1DDCDC1711ECEB00C98DA3 /* PasswordCreatorWindow.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PasswordCreatorWindow.xib; sourceTree = "<group>"; };
 		4C22040B1746ED160054C916 /* KdbGroup+Undo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "KdbGroup+Undo.h"; sourceTree = "<group>"; };
 		4C22040C1746ED160054C916 /* KdbGroup+Undo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "KdbGroup+Undo.m"; sourceTree = "<group>"; };
@@ -427,6 +433,8 @@
 				4CE39AC316ECE4F7000FE29D /* MPPopupImageView.m */,
 				4C4A100D176286FD00BBF2CA /* MPTableView.h */,
 				4C4A100E176286FD00BBF2CA /* MPTableView.m */,
+				4C09992E176D4C5C00C885CB /* MPTableCellView.h */,
+				4C09992F176D4C5C00C885CB /* MPTableCellView.m */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -827,6 +835,8 @@
 				4C01C244176500C40016D5D0 /* HNHLevelIndicatorCell.m */,
 				4C37A6711769393300AD0A40 /* HNHTableHeaderCell.h */,
 				4C37A6721769393300AD0A40 /* HNHTableHeaderCell.m */,
+				4C099931176D4EA600C885CB /* HNHScrollView.h */,
+				4C099932176D4EA600C885CB /* HNHScrollView.m */,
 			);
 			path = HNHUi;
 			sourceTree = "<group>";
@@ -1082,6 +1092,8 @@
 				4C79DF2A176685870083708F /* HNHRoundedTextField.m in Sources */,
 				4C46E09E17673A0A00DA62E8 /* HNHShadowBox.m in Sources */,
 				4C37A6731769393300AD0A40 /* HNHTableHeaderCell.m in Sources */,
+				4C099930176D4C5C00C885CB /* MPTableCellView.m in Sources */,
+				4C099933176D4EA600C885CB /* HNHScrollView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

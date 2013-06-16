@@ -504,6 +504,9 @@ NSString *const _toggleFilterUsernameButton = @"SearchUsername";
 }
 
 - (void)_columnDoubleClick:(id)sender {
+  if(0 == [[self.entryArrayController arrangedObjects] count]) {
+    return; // No data available
+  }
   NSTableColumn *column = [self.entryTable tableColumns][[self.entryTable clickedColumn]];
   NSString *identifier = [column identifier];
   if([identifier isEqualToString:MPEntryTablePasswordColumnIdentifier]) {
