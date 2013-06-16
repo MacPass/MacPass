@@ -64,3 +64,5 @@ This Project is based upon the following work:
 [KeePass Database Library](https://github.com/mpowrie/KeePassLib) Copyright 2010 Qiang Yu. All rights reserved.
 
 [PXSourceList](https://github.com/Perspx/PXSourceList) Copyright 2011, Alex Rozanski. All rights reserved.
+
+[CocoaHTTPServer](https://github.com/robbiehanson/CocoaHTTPServer )Copyright 2011, Deusty, LLC. All rights reserved.

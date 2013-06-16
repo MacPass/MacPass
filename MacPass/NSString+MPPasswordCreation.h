@@ -16,11 +16,6 @@ typedef NS_OPTIONS(NSUInteger, MPPasswordCharacterFlags) {
   MPPasswordCharactersAll = MPPasswordCharactersUpperCase | MPPasswordCharactersLowerCase | MPPasswordCharactersNumbers | MPPasswordCharactersSymbols
 };
 
-/*
- Generates a random integer in between (inkluding) minimum and maxium
- */
-static NSUInteger randomInteger(NSUInteger minimum, NSUInteger maximum);
-
 @interface NSString (MPPasswordCreation)
 
 /*

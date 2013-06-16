@@ -15,7 +15,7 @@
 @protocol MPSettingsTab <NSObject>
 
 @required
-+ (NSString *)identifier;
+- (NSString *)identifier;
 
 @optional
 - (NSString *)label;

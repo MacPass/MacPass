@@ -277,9 +277,11 @@
   NSTableCellView *tableCellView = [tableView makeViewWithIdentifier:[tableColumn identifier] owner:tableView];
   BinaryRef *binaryRef = [self.attachmentController arrangedObjects][row];
   [tableCellView.textField bind:NSValueBinding toObject:binaryRef withKeyPath:@"key" options:nil];
-  [[tableCellView.textField cell] setBackgroundStyle:NSBackgroundStyleRaised];
-  [[tableCellView.imageView cell] setBackgroundStyle:NSBackgroundStyleLight];
   return tableCellView;
+}
+
+- (void)tableView:(NSTableView *)tableView didAddRowView:(NSTableRowView *)rowView forRow:(NSInteger)row {
+  NSLog(@"didAddRowView");
 }
 
 @end

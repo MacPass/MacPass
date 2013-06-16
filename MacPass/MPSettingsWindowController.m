@@ -8,6 +8,7 @@
 
 #import "MPSettingsWindowController.h"
 #import "MPGeneralSettingsController.h"
+#import "MPServerSettingsController.h"
 
 @interface MPSettingsWindowController ()
 
@@ -46,7 +47,7 @@
 - (void)showSettings {
   if([self.settingsController count] > 0) {
     id<MPSettingsTab> tab = [self.settingsController allValues][0];
-    NSString *identifier = [[tab class] identifier];
+    NSString *identifier = [tab identifier];
     [self showSettingsTabWithIdentifier:identifier];
   }
 }
@@ -60,13 +61,30 @@
     NSLog(@"Warning. Unknow settingscontroller for identifier: %@. Did you miss to add the controller?", identifier);
     return;
   }
-  NSViewController *tabViewController = (NSViewController *)tab;
   [self.toolbar setSelectedItemIdentifier:identifier];
-  NSRect newRect = [[self window] frameRectForContentRect:[tabViewController.view frame]];
-  newRect.origin = [[self window] frame].origin;
-  newRect.origin.y += [[self window] frame].size.height - newRect.size.height;
-  [[self window] setFrame:newRect display:YES animate:YES];
-  [[self window] setContentView:tabViewController.view];
+  if([tab respondsToSelector:@selector(label)]) {
+    [[self window] setTitle:[tab label]];
+  }
+  else {
+    [[self window] setTitle:[tab identifier]];
+  }
+  NSView *tabView = [(NSViewController *)tab view];
+  NSView *contentView = [[self window] contentView];
+  if( [[contentView subviews] count] == 1) {
+    [[contentView subviews][0] removeFromSuperview];
+  }
+  [contentView addSubview:tabView];
+  [contentView layout];
+  [contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-0-[tabView]-0-|"
+                                                                      options:0
+                                                                      metrics:nil
+                                                                        views:NSDictionaryOfVariableBindings(tabView)]];
+  [contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-0-[tabView]-0-|"
+                                                                      options:0
+                                                                      metrics:nil
+                                                                        views:NSDictionaryOfVariableBindings(tabView)]];
+  
+  [contentView layoutSubtreeIfNeeded];
   [[self window] makeKeyAndOrderFront:[self window]];
 }
 
@@ -83,7 +101,7 @@
                                                              userInfo:nil];
     @throw controllerException;
   }
-  NSString *identifier = [[tabController class] identifier];
+  NSString *identifier = [tabController identifier];
   if(nil != self.settingsController[identifier]) {
     NSLog(@"Warning: Settingscontroller with identifer %@ already present!", identifier);
   }
@@ -94,15 +112,19 @@
 
 - (void)_setupDefaultSettingsTabs {
   MPGeneralSettingsController *generalSettingsController = [[MPGeneralSettingsController alloc] init];
+  MPServerSettingsController *serverSettingsController = [[MPServerSettingsController alloc] init];
   
   [self _addSettingsTab:generalSettingsController];
+  [self _addSettingsTab:serverSettingsController];
   
-  [generalSettingsController release];
+  for(id controller in _settingsController) {
+    [controller release];
+  }
 }
 
 - (void)_showSettingsTab:(id)sender {
-  if([sender respondsToSelector:@selector(identifier)]) {
-    NSString *identfier = [sender identifier];
+  if([sender respondsToSelector:@selector(itemIdentifier)]) {
+    NSString *identfier = [sender itemIdentifier];
     [self showSettingsTabWithIdentifier:identfier];
   }
 }

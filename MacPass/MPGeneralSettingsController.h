@@ -7,9 +7,9 @@
 //
 
 #import <Cocoa/Cocoa.h>
-#import "MPAbstractSettingsViewController.h"
+#import "MPSettingsTab.h"
 
-@interface MPGeneralSettingsController : MPAbstractSettingsViewController <MPSettingsTab>
+@interface MPGeneralSettingsController : NSViewController <MPSettingsTab>
 @property (assign) IBOutlet NSImageView *imageView;
 @property (assign) IBOutlet NSButton *clearPasteboardOnQuitCheckButton;
 @property (assign) IBOutlet NSPopUpButton *clearPasteboardTimeoutPopup;

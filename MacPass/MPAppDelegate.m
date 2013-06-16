@@ -12,8 +12,12 @@
 #import "MPPasswordCreatorViewController.h"
 #import "MPSettingsHelper.h"
 #import "MPUppercaseStringValueTransformer.h"
+#import "MPServerDaemon.h"
 
-@interface MPAppDelegate ()
+@interface MPAppDelegate () {
+@private
+  MPServerDaemon *serverDaemon;
+}
 
 @property (retain, nonatomic) MPSettingsWindowController *settingsController;
 @property (retain, nonatomic) MPPasswordCreatorViewController *passwordCreatorController;
@@ -33,9 +37,15 @@
   return [[NSUserDefaults standardUserDefaults] boolForKey:kMPSettingsKeyOpenEmptyDatabaseOnLaunch];
 }
 
+- (void)applicationDidFinishLaunching:(NSNotification *)notification {
+  serverDaemon = [[MPServerDaemon alloc] init];
+}
+
+
 - (void)dealloc {
   [_settingsController release];
   [_passwordCreatorController release];
+  [serverDaemon release];
   [super dealloc];
 }
 

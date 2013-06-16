@@ -8,21 +8,22 @@
 
 #import "MPGeneralSettingsController.h"
 #import "MPSettingsHelper.h"
+#import "MPIconHelper.h"
 
 NSString *const MPGeneralSetingsIdentifier = @"GeneralSettingsTab";
 
 @implementation MPGeneralSettingsController
 
-+ (NSString *)identifier {
-  return MPGeneralSetingsIdentifier;
-}
-
 - (id)init {
   return [self initWithNibName:@"GeneralSettings" bundle:[NSBundle mainBundle]];
 }
 
+- (NSString *)identifier {
+  return MPGeneralSetingsIdentifier;
+}
+
 - (NSImage *)image {
-  return [NSImage imageNamed:NSImageNamePreferencesGeneral];
+  return [MPIconHelper icon:MPIconWarning];
 }
 
 - (NSString *)label {

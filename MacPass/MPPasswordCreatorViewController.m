@@ -67,7 +67,7 @@
   [self _resetCharacters];
 }
 
-- (IBAction)_generatePassword:(id)sender {
+- (IBAction)_generatePassword:(id)sender { 
   if(_useCustomString) {
     if([[_customCharactersTextField stringValue] length] > 0) {
       self.password = [[_customCharactersTextField stringValue] passwordWithLength:_passwordLength];

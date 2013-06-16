@@ -219,7 +219,6 @@ NSString *const _toggleFilterUsernameButton = @"SearchUsername";
     self.selectedEntry = [self.entryArrayController arrangedObjects][[self.entryTable selectedRow]];
   }
   [[NSNotificationCenter defaultCenter] postNotificationName:MPDidChangeSelectedEntryNotification object:self userInfo:nil];
-  
 }
 
 #pragma mark Notifications

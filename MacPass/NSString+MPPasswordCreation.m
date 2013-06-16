@@ -13,35 +13,18 @@ NSString *const kMPLowercaseLetterCharacters = @"abcdefghijklmnopqrstuvw";
 NSString *const kMPNumberCharacters = @"1234567890";
 NSString *const kMPSymbolCharacters = @"!$%&\\|/<>(){}[]=?*'+#-_.:,;";
 
-
-static NSUInteger randomInteger(NSUInteger minimum, NSUInteger maximum) {
-  NSInteger delta = maximum - minimum;
-  if( delta == 0) {
-    return maximum;
-  }
-  if( delta < 0 ) {
-    minimum -= delta;
-    delta = -delta;
-  }
-  NSUInteger randomByteSize = floor(log2(delta));
-  NSData *randomData = [NSData dataWithRandomBytes:randomByteSize];
-  NSNumber *number = [NSNumber numberWithUnsignedChar:(unsigned char)[randomData bytes]];
-  NSUInteger randomNumber = [number integerValue];
-  return minimum + (randomNumber % delta);
-}
-
 static NSString *allowedCharactersString(MPPasswordCharacterFlags flags) {
   NSMutableString *characterString = [NSMutableString stringWithCapacity:30];
-  if( 0 != (flags & MPPasswordCharactersLowerCase) ) {
+  if(flags & MPPasswordCharactersLowerCase) {
     [characterString appendString:kMPLowercaseLetterCharacters];
   }
-  if( 0 != (flags & MPPasswordCharactersUpperCase) ) {
+  if(flags & MPPasswordCharactersUpperCase) {
     [characterString appendString:[kMPLowercaseLetterCharacters uppercaseString]];
   }
-  if(0 != (flags & MPPasswordCharactersNumbers) ) {
+  if(flags & MPPasswordCharactersNumbers) {
     [characterString appendString:kMPNumberCharacters];
   }
-  if(0 != (flags & MPPasswordCharactersSymbols) ){
+  if(flags & MPPasswordCharactersSymbols){
     [characterString appendString:kMPSymbolCharacters];
   }
   return characterString;
@@ -83,11 +66,10 @@ static NSString *allowedCharactersString(MPPasswordCharacterFlags flags) {
 }
 
 - (NSString *)randomCharacter {
-  NSUInteger randomIndex = randomInteger(0, [self length] - 1);
-  if(randomIndex >= [self length]) {
-    return nil;
-  }
-  return [self substringWithRange:NSMakeRange(randomIndex, 1)];
+  NSData *data = [NSData dataWithRandomBytes:sizeof(unsigned long)];
+  NSUInteger randomIndex;
+  [data getBytes:&randomIndex length:[data length]];
+  return [self substringWithRange:NSMakeRange(randomIndex % [self length], 1)];
 }
 
 @end
