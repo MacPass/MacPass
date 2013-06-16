@@ -28,6 +28,7 @@
 @property (assign) IBOutlet HNHGradientView *bottomBar;
 @property (assign) IBOutlet NSTextField *infoTextField;
 @property (assign) IBOutlet NSTableView *attachmentTableView;
+@property (assign) IBOutlet NSView *scrollContentView;
 
 - (void)closeActivePopup:(id)sender;
 /* Seperate call to ensure alle registered objects are in place */

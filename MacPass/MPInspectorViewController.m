@@ -64,6 +64,7 @@
 }
 
 - (void)didLoadView {
+  [self.scrollContentView setAutoresizingMask:NSViewWidthSizable];
   [[self.itemImageView cell] setBackgroundStyle:NSBackgroundStyleRaised];
   [self.itemImageView setTarget:self];
   [_bottomBar setBorderType:HNHBorderTop];

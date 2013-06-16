@@ -21,11 +21,6 @@ NSString *const MPGeneralSetingsIdentifier = @"GeneralSettingsTab";
   return [self initWithNibName:@"GeneralSettings" bundle:[NSBundle mainBundle]];
 }
 
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil {
-    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
-    return self;
-}
-
 - (NSImage *)image {
   return [NSImage imageNamed:NSImageNamePreferencesGeneral];
 }
