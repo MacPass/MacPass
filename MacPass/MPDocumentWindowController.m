@@ -215,6 +215,15 @@
   NSView *inspectorView = [_inspectorViewController view];
   NSView *entryView = [_entryViewController view];
   
+  /*
+   The current easy way to prevent layout hickups is to add the inspect
+   Add all neded contraints an then remove it again, if it was hidden
+  */
+  BOOL removeInspector = NO;
+  if(![inspectorView superview]) {
+    [_splitView addSubview:inspectorView];
+    removeInspector = YES;
+  }
   NSDictionary *views = NSDictionaryOfVariableBindings(outlineView, inspectorView, entryView, _splitView);
   [self.splitView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|[outlineView(>=150,<=250)]-1-[entryView(>=300)]-1-[inspectorView(>=200)]|"
                                                                          options:0
@@ -232,6 +241,7 @@
                                                                          options:0
                                                                          metrics:nil
                                                                            views:views]];
+  
   NSNumber *border = @([[self window] contentBorderThicknessForEdge:NSMinYEdge]);
   [contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|[_splitView]-border-|"
                                                                       options:0
@@ -241,7 +251,10 @@
                                                                       options:0
                                                                       metrics:nil
                                                                         views:views]];
-  
+  /* Restore the State the inspector view was in before the view change */
+  if(removeInspector) {
+    [inspectorView removeFromSuperview];
+  }
   [contentView layout];
   [_entryViewController updateResponderChain];
   [_inspectorViewController updateResponderChain];
