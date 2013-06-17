@@ -8,7 +8,7 @@
 
 #import "MPUppercaseStringValueTransformer.h"
 
-NSString *const MPUppsercaseStringValueTransformerName = @"StringToUppercaseStringTransformer";
+NSString *const MPUppsercaseStringValueTransformerName = @"com.hicknhack.macpass.StringToUppercaseStringTransformer";
 
 @implementation MPUppercaseStringValueTransformer
 

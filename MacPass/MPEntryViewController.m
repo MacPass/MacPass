@@ -15,14 +15,18 @@
 #import "MPDocumentWindowController.h"
 #import "MPPasteBoardController.h"
 #import "MPOverlayWindowController.h"
-#import "KdbGroup+MPTreeTools.h"
-#import "KdbGroup+Undo.h"
-#import "KdbEntry+Undo.h"
+
 #import "MPContextMenuHelper.h"
 #import "MPConstants.h"
 #import "MPEntryTableDataSource.h"
+#import "MPStringLengthValueTransformer.h"
+
 #import "HNHTableHeaderCell.h"
 #import "HNHGradientView.h"
+
+#import "KdbGroup+MPTreeTools.h"
+#import "KdbGroup+Undo.h"
+#import "KdbEntry+Undo.h"
 
 NSString *const MPDidChangeSelectedEntryNotification = @"com.macpass.MPDidChangeSelectedEntryNotification";
 
@@ -194,7 +198,8 @@ NSString *const _toggleFilterUsernameButton = @"SearchUsername";
   }
   else if( isPasswordColum ) {
     view = [tableView makeViewWithIdentifier:_MPTAbleSecurCellView owner:self];
-    [[view textField] bind:NSValueBinding toObject:entry withKeyPath:MPEntryPasswordUndoableKey options:nil];
+    NSDictionary *options = @{ NSValueTransformerBindingOption : [NSValueTransformer valueTransformerForName:MPStringLengthValueTransformerName] };
+    [[view textField] bind:NSValueBinding toObject:entry withKeyPath:MPEntryPasswordUndoableKey options:options];
   }
   else if( isUsernameColumn || isURLColumn ) {
     view = [tableView makeViewWithIdentifier:_MPTableStringCellView owner:self];
