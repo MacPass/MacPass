@@ -25,7 +25,6 @@ APPKIT_EXTERN NSString *const MPDocumentGroupKey;
 
 @property (assign, readonly) BOOL isProtected;
 @property (assign, readonly) KdbGroup *root;
-@property (nonatomic, retain, readonly) NSURL *file;
 @property (nonatomic,retain) NSString *password;
 @property (nonatomic, retain) NSURL *key;
 @property (assign, readonly) MPDatabaseVersion version;

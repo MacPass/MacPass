@@ -30,7 +30,6 @@ NSString *const MPDocumentGroupKey = @"MPDocumentGroupKey";
 
 @property (assign, nonatomic) BOOL isProtected;
 @property (retain) KdbTree *tree;
-@property (retain) NSURL *file;
 @property (nonatomic, readonly) KdbPassword *passwordHash;
 @property (assign) MPDatabaseVersion version;
 @property (assign) BOOL isDecrypted;
@@ -80,10 +79,8 @@ NSString *const MPDocumentGroupKey = @"MPDocumentGroupKey";
 }
 
 - (BOOL)writeToURL:(NSURL *)url ofType:(NSString *)typeName error:(NSError **)outError {
-  self.file = url;
-  
   @try {
-    [KdbWriterFactory persist:self.tree file:[self.file path] withPassword:self.passwordHash];
+    [KdbWriterFactory persist:self.tree file:[url path] withPassword:self.passwordHash];
   }
   @catch (NSException *exception) {
     NSLog(@"%@", [exception description]);
@@ -95,7 +92,6 @@ NSString *const MPDocumentGroupKey = @"MPDocumentGroupKey";
 }
 
 - (BOOL)readFromURL:(NSURL *)url ofType:(NSString *)typeName error:(NSError **)outError {
-  self.file = url;
   self.isDecrypted = NO;
   return YES;
 }
@@ -105,10 +101,9 @@ NSString *const MPDocumentGroupKey = @"MPDocumentGroupKey";
 }
 
 - (BOOL)decryptWithPassword:(NSString *)password keyFileURL:(NSURL *)keyFileURL {
-  self.key = keyFileURL;
   self.password = password;
   @try {
-    self.tree = [KdbReaderFactory load:[self.file path] withPassword:self.passwordHash];
+    self.tree = [KdbReaderFactory load:[[self fileURL] path] withPassword:self.passwordHash];
   }
   @catch (NSException *exception) {
     NSLog(@"%@", [exception description]);
