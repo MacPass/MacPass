@@ -117,9 +117,8 @@
   [self _addSettingsTab:generalSettingsController];
   [self _addSettingsTab:serverSettingsController];
   
-  for(id controller in _settingsController) {
-    [controller release];
-  }
+  [generalSettingsController release];
+  [serverSettingsController release];
 }
 
 - (void)_showSettingsTab:(id)sender {
