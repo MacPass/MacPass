@@ -22,4 +22,6 @@ FOUNDATION_EXPORT NSString *const MPRequestTypeGeneratePassword;
 
 + (id<MPServerRequestHandler>)requestHandler:(NSString *)identifier;
 
++ (BOOL)validKeyProposal;
+
 @end

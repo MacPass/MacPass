@@ -134,6 +134,7 @@
 		4CA0B2ED15BCADAC00654E32 /* SettingsWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4CA0B2EC15BCADAC00654E32 /* SettingsWindow.xib */; };
 		4CA0B2F915BCAF6700654E32 /* MPGeneralSettingsController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CA0B2F815BCAF6700654E32 /* MPGeneralSettingsController.m */; };
 		4CA0B2FC15BCAF8600654E32 /* MPSettingsWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CA0B2FB15BCAF8600654E32 /* MPSettingsWindowController.m */; };
+		4CA0E3A7176FAF99004D18CB /* MPDocumentQueryService.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CA0E3A6176FAF99004D18CB /* MPDocumentQueryService.m */; };
 		4CA2335A176DBFE100F0B6AC /* MPLockDaemon.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CA23359176DBFE100F0B6AC /* MPLockDaemon.m */; };
 		4CAD747B15B887FD00104512 /* DDXMLElementAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CAD745715B887FD00104512 /* DDXMLElementAdditions.m */; settings = {COMPILER_FLAGS = "-fobjc-arc"; }; };
 		4CAD747C15B887FD00104512 /* NSString+DDXML.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CAD745A15B887FD00104512 /* NSString+DDXML.m */; settings = {COMPILER_FLAGS = "-fobjc-arc"; }; };
@@ -147,7 +148,7 @@
 		4CBA2ABA17074C07006D8139 /* MPSettingsHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CBA2AB917074C07006D8139 /* MPSettingsHelper.m */; };
 		4CC1AEBE16D4467C006D2AAB /* KdbTree+MPAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CC1AEBD16D4467C006D2AAB /* KdbTree+MPAdditions.m */; };
 		4CC299FF176F99E50050C939 /* MPRequestHandlerService.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CC299FE176F99E50050C939 /* MPRequestHandlerService.m */; };
-		4CC29A02176F9D140050C939 /* MPTestAssociateRequestHanlder.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CC29A01176F9D140050C939 /* MPTestAssociateRequestHanlder.m */; };
+		4CC29A02176F9D140050C939 /* MPTestAssociateRequestHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CC29A01176F9D140050C939 /* MPTestAssociateRequestHandler.m */; };
 		4CC3AABD175F4983003EF01B /* HNHRoundedTextFieldCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CC3AAB9175F4983003EF01B /* HNHRoundedTextFieldCell.m */; };
 		4CC6259115BA1C99002F5B11 /* MPOutlineViewDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CC6259015BA1C99002F5B11 /* MPOutlineViewDelegate.m */; };
 		4CD78ABC16D155FF00768A1D /* 07_NotepadTemplate.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 4CD78AB716D155FF00768A1D /* 07_NotepadTemplate.pdf */; };
@@ -428,6 +429,8 @@
 		4CA0B2FA15BCAF8600654E32 /* MPSettingsWindowController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MPSettingsWindowController.h; sourceTree = "<group>"; };
 		4CA0B2FB15BCAF8600654E32 /* MPSettingsWindowController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MPSettingsWindowController.m; sourceTree = "<group>"; };
 		4CA0B30D15BCB6FD00654E32 /* MPSettingsTab.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MPSettingsTab.h; sourceTree = "<group>"; };
+		4CA0E3A5176FAF99004D18CB /* MPDocumentQueryService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MPDocumentQueryService.h; sourceTree = "<group>"; };
+		4CA0E3A6176FAF99004D18CB /* MPDocumentQueryService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MPDocumentQueryService.m; sourceTree = "<group>"; };
 		4CA23357176DB8F000F0B6AC /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/GeneralSettings.strings; sourceTree = "<group>"; };
 		4CA23358176DBFE100F0B6AC /* MPLockDaemon.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MPLockDaemon.h; sourceTree = "<group>"; };
 		4CA23359176DBFE100F0B6AC /* MPLockDaemon.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MPLockDaemon.m; sourceTree = "<group>"; };
@@ -454,8 +457,8 @@
 		4CC1AEBD16D4467C006D2AAB /* KdbTree+MPAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "KdbTree+MPAdditions.m"; sourceTree = "<group>"; };
 		4CC299FD176F99E50050C939 /* MPRequestHandlerService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MPRequestHandlerService.h; sourceTree = "<group>"; };
 		4CC299FE176F99E50050C939 /* MPRequestHandlerService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MPRequestHandlerService.m; sourceTree = "<group>"; };
-		4CC29A00176F9D140050C939 /* MPTestAssociateRequestHanlder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MPTestAssociateRequestHanlder.h; sourceTree = "<group>"; };
-		4CC29A01176F9D140050C939 /* MPTestAssociateRequestHanlder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MPTestAssociateRequestHanlder.m; sourceTree = "<group>"; };
+		4CC29A00176F9D140050C939 /* MPTestAssociateRequestHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MPTestAssociateRequestHandler.h; sourceTree = "<group>"; };
+		4CC29A01176F9D140050C939 /* MPTestAssociateRequestHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MPTestAssociateRequestHandler.m; sourceTree = "<group>"; };
 		4CC3AAB8175F4983003EF01B /* HNHRoundedTextFieldCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HNHRoundedTextFieldCell.h; sourceTree = "<group>"; };
 		4CC3AAB9175F4983003EF01B /* HNHRoundedTextFieldCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HNHRoundedTextFieldCell.m; sourceTree = "<group>"; };
 		4CC6258F15BA1C99002F5B11 /* MPOutlineViewDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MPOutlineViewDelegate.h; sourceTree = "<group>"; };
@@ -659,7 +662,7 @@
 			path = Extensions;
 			sourceTree = "<group>";
 		};
-		4C245C11176E22150086100E /* Server */ = {
+		4C245C11176E22150086100E /* KeepassHttp */ = {
 			isa = PBXGroup;
 			children = (
 				4CF78055176E5CFD0032EE71 /* MPConnection.h */,
@@ -668,12 +671,14 @@
 				4CF7805C176E71170032EE71 /* MPServerDaemon.m */,
 				4CF6C716176F5234007A811D /* MPAssociateRequestHandler.h */,
 				4CF6C717176F5234007A811D /* MPAssociateRequestHandler.m */,
-				4CC29A00176F9D140050C939 /* MPTestAssociateRequestHanlder.h */,
-				4CC29A01176F9D140050C939 /* MPTestAssociateRequestHanlder.m */,
+				4CC29A00176F9D140050C939 /* MPTestAssociateRequestHandler.h */,
+				4CC29A01176F9D140050C939 /* MPTestAssociateRequestHandler.m */,
 				4CC299FD176F99E50050C939 /* MPRequestHandlerService.h */,
 				4CC299FE176F99E50050C939 /* MPRequestHandlerService.m */,
+				4CA0E3A5176FAF99004D18CB /* MPDocumentQueryService.h */,
+				4CA0E3A6176FAF99004D18CB /* MPDocumentQueryService.m */,
 			);
-			name = Server;
+			name = KeepassHttp;
 			sourceTree = "<group>";
 		};
 		4C2C4C2516D3BCEA00D49295 /* KeePassLibAdditions */ = {
@@ -922,7 +927,7 @@
 		4C77E36C15B84A240093A587 /* MacPass */ = {
 			isa = PBXGroup;
 			children = (
-				4C245C11176E22150086100E /* Server */,
+				4C245C11176E22150086100E /* KeepassHttp */,
 				4C46B8821706397A0046109A /* Security Additions */,
 				4C2C4C2516D3BCEA00D49295 /* KeePassLibAdditions */,
 				4C2E382016D141F700037A9D /* Helper */,
@@ -1382,7 +1387,8 @@
 				4CF6C711176F4533007A811D /* MPStringLengthValueTransformer.m in Sources */,
 				4CF6C718176F5234007A811D /* MPAssociateRequestHandler.m in Sources */,
 				4CC299FF176F99E50050C939 /* MPRequestHandlerService.m in Sources */,
-				4CC29A02176F9D140050C939 /* MPTestAssociateRequestHanlder.m in Sources */,
+				4CC29A02176F9D140050C939 /* MPTestAssociateRequestHandler.m in Sources */,
+				4CA0E3A7176FAF99004D18CB /* MPDocumentQueryService.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

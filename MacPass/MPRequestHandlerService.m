@@ -9,7 +9,7 @@
 #import "MPRequestHandlerService.h"
 #import "MPServerRequestHandler.h"
 #import "MPAssociateRequestHandler.h"
-#import "MPTestAssociateRequestHanlder.h"
+#import "MPTestAssociateRequestHandler.h"
 
 //NSString *const MPRequestTypeAssociate        = @"associate";
 //NSString *const MPRequestTypeTestAssociate    = @"test-associate";
@@ -36,13 +36,18 @@ NSString *const MPRequestTypeGeneratePassword = @"generate-password";
 
 + (NSDictionary *)_setupHandlerDictionary {
   MPAssociateRequestHandler *associateHandler = [[MPAssociateRequestHandler alloc] init];
-  MPTestAssociateRequestHanlder *testAssociateHandler = [[MPTestAssociateRequestHanlder alloc] init];
+  MPTestAssociateRequestHandler *testAssociateHandler = [[MPTestAssociateRequestHandler alloc] init];
   NSDictionary *handlerDict = @{
                                 [associateHandler identifier] : associateHandler,
                                 [testAssociateHandler identifier] : testAssociateHandler
                                 };
   [associateHandler release];
+  [testAssociateHandler release];
   return handlerDict;
+}
+
++ (BOOL)validKeyProposal {
+  return NO;
 }
 
 @end

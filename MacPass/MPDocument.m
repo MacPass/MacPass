@@ -15,6 +15,7 @@
 #import "MPDatabaseVersion.h"
 #import "KdbGroup+Undo.h"
 #import "KdbGroup+KVOAdditions.h"
+#import "KdbGroup+MPTreeTools.h"
 #import "KdbEntry+Undo.h"
 
 NSString *const MPDocumentDidAddGroupNotification = @"MPDocumentDidAddGroupNotification";
@@ -43,7 +44,7 @@ NSString *const MPDocumentGroupKey = @"MPDocumentGroupKey";
 {
   return [self initWithVersion:MPDatabaseVersion4];
 }
-
+#pragma mark NSDocument essentials
 - (id)initWithVersion:(MPDatabaseVersion)version {
   self = [super init];
   if(self) {
@@ -67,7 +68,7 @@ NSString *const MPDocumentGroupKey = @"MPDocumentGroupKey";
   return self;
 }
 
-- (void) makeWindowControllers {
+- (void)makeWindowControllers {
   MPDocumentWindowController *windowController = [[MPDocumentWindowController alloc] init];
   [self addWindowController:windowController];
   [windowController release];
@@ -100,6 +101,7 @@ NSString *const MPDocumentGroupKey = @"MPDocumentGroupKey";
   return _isDecrypted;
 }
 
+#pragma mark Protection
 - (BOOL)decryptWithPassword:(NSString *)password keyFileURL:(NSURL *)keyFileURL {
   self.password = password;
   @try {
@@ -146,10 +148,17 @@ NSString *const MPDocumentGroupKey = @"MPDocumentGroupKey";
   return NO;
 }
 
+#pragma mark Data Accesors
 - (KdbGroup *)root {
   return [self.tree root];
 }
 
+- (KdbEntry *)findEntry:(UUID *)uuid {
+  return [self.root entryForUUID:uuid];
+}
+
+
+#pragma mark Data manipulation
 - (KdbEntry *)createEntry:(KdbGroup *)parent {
   KdbEntry *newEntry = [self.tree createEntry:parent];
   newEntry.title = NSLocalizedString(@"DEFAULT_ENTRY_TITLE", @"Title for a newly created entry");

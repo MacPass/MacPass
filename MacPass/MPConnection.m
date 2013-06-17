@@ -32,7 +32,7 @@ NSString *const MPRequestTypeKey = @"RequestType";
   // See also: expectsRequestBodyFromMethod:atPath:
   
   if([method isEqualToString:@"POST"]) {
-    return YES;
+    return (requestContentLength < 500);
   }
   return [super supportsMethod:method atPath:path];
 }
@@ -55,6 +55,9 @@ NSString *const MPRequestTypeKey = @"RequestType";
 }
 
 - (void)processBodyData:(NSData *)postDataChunk {
+  /*
+   Store the data in the message body
+   */
   [request appendData:postDataChunk];
 }
 

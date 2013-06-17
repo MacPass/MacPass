@@ -20,6 +20,7 @@ APPKIT_EXTERN NSString *const MPDocumentGroupKey;
 
 @class KdbGroup;
 @class KdbEntry;
+@class UUID;
 
 @interface MPDocument : NSDocument
 
@@ -32,6 +33,9 @@ APPKIT_EXTERN NSString *const MPDocumentGroupKey;
 
 - (id)initWithVersion:(MPDatabaseVersion)version;
 - (BOOL)decryptWithPassword:(NSString *)password keyFileURL:(NSURL *)keyFileURL;
+
+/* Lookup */
+- (KdbEntry *)findEntry:(UUID *)uuid;
 
 /* Undoable Intiialization of elements */
 - (KdbGroup *)createGroup:(KdbGroup *)parent;
