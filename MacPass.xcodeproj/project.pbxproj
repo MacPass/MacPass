@@ -146,6 +146,8 @@
 		4CB9339916D3A0DD00A13B5D /* Credits.rtf in Resources */ = {isa = PBXBuildFile; fileRef = 4CB9339716D3A0DD00A13B5D /* Credits.rtf */; };
 		4CBA2ABA17074C07006D8139 /* MPSettingsHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CBA2AB917074C07006D8139 /* MPSettingsHelper.m */; };
 		4CC1AEBE16D4467C006D2AAB /* KdbTree+MPAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CC1AEBD16D4467C006D2AAB /* KdbTree+MPAdditions.m */; };
+		4CC299FF176F99E50050C939 /* MPRequestHandlerService.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CC299FE176F99E50050C939 /* MPRequestHandlerService.m */; };
+		4CC29A02176F9D140050C939 /* MPTestAssociateRequestHanlder.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CC29A01176F9D140050C939 /* MPTestAssociateRequestHanlder.m */; };
 		4CC3AABD175F4983003EF01B /* HNHRoundedTextFieldCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CC3AAB9175F4983003EF01B /* HNHRoundedTextFieldCell.m */; };
 		4CC6259115BA1C99002F5B11 /* MPOutlineViewDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CC6259015BA1C99002F5B11 /* MPOutlineViewDelegate.m */; };
 		4CD78ABC16D155FF00768A1D /* 07_NotepadTemplate.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 4CD78AB716D155FF00768A1D /* 07_NotepadTemplate.pdf */; };
@@ -450,6 +452,10 @@
 		4CBA2AB917074C07006D8139 /* MPSettingsHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MPSettingsHelper.m; sourceTree = "<group>"; };
 		4CC1AEBC16D4467C006D2AAB /* KdbTree+MPAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "KdbTree+MPAdditions.h"; sourceTree = "<group>"; };
 		4CC1AEBD16D4467C006D2AAB /* KdbTree+MPAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "KdbTree+MPAdditions.m"; sourceTree = "<group>"; };
+		4CC299FD176F99E50050C939 /* MPRequestHandlerService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MPRequestHandlerService.h; sourceTree = "<group>"; };
+		4CC299FE176F99E50050C939 /* MPRequestHandlerService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MPRequestHandlerService.m; sourceTree = "<group>"; };
+		4CC29A00176F9D140050C939 /* MPTestAssociateRequestHanlder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MPTestAssociateRequestHanlder.h; sourceTree = "<group>"; };
+		4CC29A01176F9D140050C939 /* MPTestAssociateRequestHanlder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MPTestAssociateRequestHanlder.m; sourceTree = "<group>"; };
 		4CC3AAB8175F4983003EF01B /* HNHRoundedTextFieldCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HNHRoundedTextFieldCell.h; sourceTree = "<group>"; };
 		4CC3AAB9175F4983003EF01B /* HNHRoundedTextFieldCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HNHRoundedTextFieldCell.m; sourceTree = "<group>"; };
 		4CC6258F15BA1C99002F5B11 /* MPOutlineViewDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MPOutlineViewDelegate.h; sourceTree = "<group>"; };
@@ -662,6 +668,10 @@
 				4CF7805C176E71170032EE71 /* MPServerDaemon.m */,
 				4CF6C716176F5234007A811D /* MPAssociateRequestHandler.h */,
 				4CF6C717176F5234007A811D /* MPAssociateRequestHandler.m */,
+				4CC29A00176F9D140050C939 /* MPTestAssociateRequestHanlder.h */,
+				4CC29A01176F9D140050C939 /* MPTestAssociateRequestHanlder.m */,
+				4CC299FD176F99E50050C939 /* MPRequestHandlerService.h */,
+				4CC299FE176F99E50050C939 /* MPRequestHandlerService.m */,
 			);
 			name = Server;
 			sourceTree = "<group>";
@@ -1371,6 +1381,8 @@
 				4CF78064176E75AD0032EE71 /* MPServerSettingsController.m in Sources */,
 				4CF6C711176F4533007A811D /* MPStringLengthValueTransformer.m in Sources */,
 				4CF6C718176F5234007A811D /* MPAssociateRequestHandler.m in Sources */,
+				4CC299FF176F99E50050C939 /* MPRequestHandlerService.m in Sources */,
+				4CC29A02176F9D140050C939 /* MPTestAssociateRequestHanlder.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

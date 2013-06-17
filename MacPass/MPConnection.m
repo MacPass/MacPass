@@ -8,23 +8,13 @@
 
 #import "MPConnection.h"
 #import "HTTPMessage.h"
+#import "MPRequestHandlerService.h"
+#import "MPServerRequestHandler.h"
 
-NSString *const MPRequestTypeAssociate        = @"associate";
-NSString *const MPRequestTypeTestAssociate    = @"test-associate";
-NSString *const MPRequestTypeGetLogins        = @"get-logins";
-NSString *const MPRequestTypeGetLoginsCount   = @"get-logins-count";
-NSString *const MPRequestTypeGetAllLogins     = @"get-all-logins";
-NSString *const MPRequestTypeSetLogin         = @"set-login";
-NSString *const MPRequestTypeGeneratePassword = @"generate-password";
 
 NSString *const MPRequestTypeKey = @"RequestType";
 
 @implementation MPConnection
-
-+ (NSArray *)requestHander {
-  
-
-}
 
 - (BOOL)supportsMethod:(NSString *)method atPath:(NSString *)path
 {
@@ -52,7 +42,7 @@ NSString *const MPRequestTypeKey = @"RequestType";
   NSError *error = nil;
   id obj = [NSJSONSerialization JSONObjectWithData:[request body] options:0 error:&error];
   if(error) {
-    NSLog(@"Error while parsing request:%@", [error localizedDescription]);
+    NSLog(@"Error while parsing JSON request data:%@", [error localizedDescription]);
   }
   if([obj isKindOfClass:[NSDictionary class]]) {
     NSDictionary *requestDict = obj;
@@ -74,13 +64,7 @@ NSString *const MPRequestTypeKey = @"RequestType";
   if(!requestType) {
     NSLog(@"Malformed Request. Missing request type");
   }
-  NSLog(@"%@", requestType);
-  if([requestType isEqualToString:MPRequestTypeAssociate]) {
-    return;
-  }
-  if([requestType isEqualToString:MPRequestTypeGeneratePassword]) {
-    return;
-  }
+  id<MPServerRequestHandler> handler = [MPRequestHandlerService requestHandler:requestType];
+  [handler respondTo:aRequest];
 }
-
 @end

@@ -1,5 +1,5 @@
 //
-//  MPServerRequestHandler.h
+//  MPTestAssociateRequestHanlder.h
 //  MacPass
 //
 //  Created by Michael Starke on 17.06.13.
@@ -7,11 +7,8 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "MPServerRequestHandler.h"
 
-@protocol MPServerRequestHandler <NSObject>
-
-@required
-- (NSString *)identifier;
-- (void)respondTo:(NSDictionary *)data;
+@interface MPTestAssociateRequestHanlder : NSObject <MPServerRequestHandler>
 
 @end

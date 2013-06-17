@@ -1,21 +1,21 @@
 //
-//  MPAssociateRequestHandler.m
+//  MPTestAssociateRequestHanlder.m
 //  MacPass
 //
 //  Created by Michael Starke on 17.06.13.
 //  Copyright (c) 2013 HicknHack Software GmbH. All rights reserved.
 //
 
-#import "MPAssociateRequestHandler.h"
+#import "MPTestAssociateRequestHanlder.h"
 
-@implementation MPAssociateRequestHandler
+@implementation MPTestAssociateRequestHanlder
 
 - (NSString *)identifier {
-  return @"associate";
+  return @"test-associate";
 }
 
 - (void)respondTo:(NSDictionary *)data {
-  // todo;
+  
 }
 
 @end
