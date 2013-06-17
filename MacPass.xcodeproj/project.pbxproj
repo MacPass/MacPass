@@ -161,6 +161,8 @@
 		4CE5B54B173AFBA700207B39 /* MPDocument.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CE5B549173AFBA700207B39 /* MPDocument.m */; };
 		4CE8246F16E2E93400573141 /* MPOverlayWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CE8246E16E2E93400573141 /* MPOverlayWindowController.m */; };
 		4CE8247516E2F2B900573141 /* MPOverlayView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CE8247416E2F2B900573141 /* MPOverlayView.m */; };
+		4CF6C711176F4533007A811D /* MPStringLengthValueTransformer.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CF6C710176F4533007A811D /* MPStringLengthValueTransformer.m */; };
+		4CF6C718176F5234007A811D /* MPAssociateRequestHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CF6C717176F5234007A811D /* MPAssociateRequestHandler.m */; };
 		4CF78057176E5CFD0032EE71 /* MPConnection.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CF78056176E5CFD0032EE71 /* MPConnection.m */; };
 		4CF7805A176E6D5F0032EE71 /* HNHTableRowView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CF78059176E6D5F0032EE71 /* HNHTableRowView.m */; };
 		4CF7805D176E71170032EE71 /* MPServerDaemon.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CF7805C176E71170032EE71 /* MPServerDaemon.m */; };
@@ -471,6 +473,11 @@
 		4CE8246E16E2E93400573141 /* MPOverlayWindowController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MPOverlayWindowController.m; sourceTree = "<group>"; };
 		4CE8247316E2F2B900573141 /* MPOverlayView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MPOverlayView.h; sourceTree = "<group>"; };
 		4CE8247416E2F2B900573141 /* MPOverlayView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MPOverlayView.m; sourceTree = "<group>"; };
+		4CF6C70F176F4533007A811D /* MPStringLengthValueTransformer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MPStringLengthValueTransformer.h; sourceTree = "<group>"; };
+		4CF6C710176F4533007A811D /* MPStringLengthValueTransformer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MPStringLengthValueTransformer.m; sourceTree = "<group>"; };
+		4CF6C715176F5183007A811D /* MPServerRequestHandler.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MPServerRequestHandler.h; sourceTree = "<group>"; };
+		4CF6C716176F5234007A811D /* MPAssociateRequestHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MPAssociateRequestHandler.h; sourceTree = "<group>"; };
+		4CF6C717176F5234007A811D /* MPAssociateRequestHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MPAssociateRequestHandler.m; sourceTree = "<group>"; };
 		4CF78055176E5CFD0032EE71 /* MPConnection.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MPConnection.h; sourceTree = "<group>"; };
 		4CF78056176E5CFD0032EE71 /* MPConnection.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MPConnection.m; sourceTree = "<group>"; };
 		4CF78058176E6D5F0032EE71 /* HNHTableRowView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HNHTableRowView.h; sourceTree = "<group>"; };
@@ -653,6 +660,8 @@
 				4CF78056176E5CFD0032EE71 /* MPConnection.m */,
 				4CF7805B176E71170032EE71 /* MPServerDaemon.h */,
 				4CF7805C176E71170032EE71 /* MPServerDaemon.m */,
+				4CF6C716176F5234007A811D /* MPAssociateRequestHandler.h */,
+				4CF6C717176F5234007A811D /* MPAssociateRequestHandler.m */,
 			);
 			name = Server;
 			sourceTree = "<group>";
@@ -687,6 +696,8 @@
 				4CBA2AB917074C07006D8139 /* MPSettingsHelper.m */,
 				4C5BF679175C01F300D53DF7 /* MPUppercaseStringValueTransformer.h */,
 				4C5BF67A175C01F300D53DF7 /* MPUppercaseStringValueTransformer.m */,
+				4CF6C70F176F4533007A811D /* MPStringLengthValueTransformer.h */,
+				4CF6C710176F4533007A811D /* MPStringLengthValueTransformer.m */,
 				4C01C2401764D8980016D5D0 /* MPContextMenuHelper.h */,
 				4C01C2411764D8980016D5D0 /* MPContextMenuHelper.m */,
 				4C569D9C17652AC800595B62 /* MPConstants.h */,
@@ -964,6 +975,7 @@
 		4CA0B30E15BCB70200654E32 /* Protocolls */ = {
 			isa = PBXGroup;
 			children = (
+				4CF6C715176F5183007A811D /* MPServerRequestHandler.h */,
 				4CA0B30D15BCB6FD00654E32 /* MPSettingsTab.h */,
 				4C79DF2F1766941D0083708F /* MPResponderQuery.h */,
 			);
@@ -1357,6 +1369,8 @@
 				4CF7805A176E6D5F0032EE71 /* HNHTableRowView.m in Sources */,
 				4CF7805D176E71170032EE71 /* MPServerDaemon.m in Sources */,
 				4CF78064176E75AD0032EE71 /* MPServerSettingsController.m in Sources */,
+				4CF6C711176F4533007A811D /* MPStringLengthValueTransformer.m in Sources */,
+				4CF6C718176F5234007A811D /* MPAssociateRequestHandler.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

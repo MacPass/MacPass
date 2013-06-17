@@ -10,4 +10,8 @@
 
 @protocol MPServerRequestHandler <NSObject>
 
+@required
++ (NSString *)identifyer;
+- (void)respondTo:(NSDictionary *)data;
+
 @end

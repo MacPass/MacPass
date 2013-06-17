@@ -10,4 +10,12 @@
 
 @implementation MPAssociateRequestHandler
 
++ (NSString *)identifyer {
+  return @"associate";
+}
+
+- (void)respondTo:(NSDictionary *)data {
+  // todo;
+}
+
 @end

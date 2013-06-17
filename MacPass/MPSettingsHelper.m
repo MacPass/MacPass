@@ -12,7 +12,9 @@ NSString *const kMPSettingsKeyPasteboardClearTimeout = @"ClipboardClearTimeout";
 NSString *const kMPSettingsKeyClearPasteboardOnQuit  = @"ClearClipboardOnQuit";
 NSString *const kMPSettingsKeyOpenEmptyDatabaseOnLaunch = @"OpenEmptyDatabaseOnLaunch";
 NSString *const kMPSettingsKeyHttpPort =@"HttpPort";
-NSString *const kMPSettingsKeyEnableHttpServer = @"kMPSettingsKeyEnableHttpServer";
+NSString *const kMPSettingsKeyEnableHttpServer = @"EnableHttpServer";
+NSString *const kMPSettingsKeyShowMenuItem = @"ShowMenuItem";
+
 
 @implementation MPSettingsHelper
 
@@ -26,7 +28,8 @@ NSString *const kMPSettingsKeyEnableHttpServer = @"kMPSettingsKeyEnableHttpServe
            kMPSettingsKeyClearPasteboardOnQuit: @YES,
            kMPSettingsKeyOpenEmptyDatabaseOnLaunch: @YES,
            kMPSettingsKeyHttpPort: @19455,
-           kMPSettingsKeyEnableHttpServer: @NO
+           kMPSettingsKeyEnableHttpServer: @NO,
+           kMPSettingsKeyShowMenuItem: @YES,
            };
 }
 

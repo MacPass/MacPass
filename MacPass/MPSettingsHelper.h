@@ -14,6 +14,7 @@ APPKIT_EXTERN NSString *const kMPSettingsKeyPasswordEncoding;
 APPKIT_EXTERN NSString *const kMPSettingsKeyOpenEmptyDatabaseOnLaunch;
 APPKIT_EXTERN NSString *const kMPSettingsKeyHttpPort;
 APPKIT_EXTERN NSString *const kMPSettingsKeyEnableHttpServer;
+APPKIT_EXTERN NSString *const kMPSettingsKeyShowMenuItem;
 
 typedef NS_ENUM(NSUInteger, MPPasswordEncoding) {
   MPPasswordEncodingUTF8,

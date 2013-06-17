@@ -12,6 +12,7 @@
 #import "MPPasswordCreatorViewController.h"
 #import "MPSettingsHelper.h"
 #import "MPUppercaseStringValueTransformer.h"
+#import "MPStringLengthValueTransformer.h"
 #import "MPServerDaemon.h"
 
 @interface MPAppDelegate () {
@@ -31,6 +32,7 @@
 + (void)initialize {
   [MPSettingsHelper setupDefaults];
   [MPUppercaseStringValueTransformer registerTransformer];
+  [MPStringLengthValueTransformer registerTransformer];
 }
 
 - (BOOL)applicationShouldOpenUntitledFile:(NSApplication *)sender {
