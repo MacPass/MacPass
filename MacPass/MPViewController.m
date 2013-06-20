@@ -29,11 +29,6 @@
   return nil; // override
 }
 
-- (BOOL)becomeFirstResponder {
-  NSLog(@"%@: about to become firt responder.", [self class]);
-  return YES;
-}
-
 - (void)updateResponderChain {
   if(self.view && [self.view nextResponder] != self) {
     NSResponder *nextResponder = [[self view] nextResponder];

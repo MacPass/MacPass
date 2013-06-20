@@ -9,12 +9,16 @@
 #import "MPOutlineViewController.h"
 #import "MPOutlineViewDelegate.h"
 #import "MPOutlineDataSource.h"
+
 #import "MPDocument.h"
 #import "MPAppDelegate.h"
-#import "KdbLib.h"
-#import "KdbGroup+Undo.h"
 #import "MPContextMenuHelper.h"
 #import "MPConstants.h"
+#import "MPActionHelper.h"
+
+#import "KdbLib.h"
+#import "KdbGroup+Undo.h"
+
 #import "HNHGradientView.h"
 
 
@@ -22,6 +26,7 @@
   BOOL _bindingEstablished;
 }
 @property (assign) IBOutlet NSOutlineView *outlineView;
+@property (assign) IBOutlet NSButton *addGroupButton;
 
 @property (retain) NSTreeController *treeController;
 @property (retain) MPOutlineDataSource *datasource;
@@ -50,20 +55,22 @@
 
 - (void)dealloc
 {
-  self.datasource = nil;
-  self.outlineDelegate = nil;
-  self.menu = nil;
+  [_datasource release];
+  [_outlineDelegate release];
+  [_menu release];
+
   [super dealloc];
 }
 
 - (void)didLoadView {
-  [self.outlineView setDelegate:self.outlineDelegate];
-  [self.outlineView setMenu:[self _contextMenu]];
-  [self.outlineView setAllowsEmptySelection:YES];
-  [self.outlineView setFloatsGroupRows:NO];
+  [_outlineView setDelegate:_outlineDelegate];
+  [_outlineView setMenu:[self _contextMenu]];
+  [_outlineView setAllowsEmptySelection:YES];
+  [_outlineView setFloatsGroupRows:NO];
   [_outlineView registerForDraggedTypes:@[ MPPasteBoardType ]];
-  [self.outlineView setDraggingSourceOperationMask:NSDragOperationEvery forLocal:YES];
+  [_outlineView setDraggingSourceOperationMask:NSDragOperationEvery forLocal:YES];
   [_bottomBar setBorderType:HNHBorderTop];
+  [_addGroupButton setAction:[MPActionHelper actionOfType:MPActionAddGroup]];
 }
 
 - (void)showOutline {
@@ -77,10 +84,6 @@
   }
   NSTreeNode *node = [_outlineView itemAtRow:0];
   [_outlineView expandItem:node expandChildren:NO];
-}
-
-- (void)clearSelection {
-  [self.outlineView deselectAll:nil];
 }
 
 - (NSMenu *)_contextMenu {

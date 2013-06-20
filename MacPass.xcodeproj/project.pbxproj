@@ -122,7 +122,7 @@
 		4C77E37D15B84A240093A587 /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4C77E37B15B84A240093A587 /* MainMenu.xib */; };
 		4C79DF2A176685870083708F /* HNHRoundedTextField.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C79DF29176685870083708F /* HNHRoundedTextField.m */; };
 		4C7E832A172DE2F2002493D8 /* MPPasswordEditViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C7E8329172DE2F2002493D8 /* MPPasswordEditViewController.m */; };
-		4C80BB6F176DE06F00E5E248 /* HNHFlippedView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C80BB6E176DE06F00E5E248 /* HNHFlippedView.m */; };
+		4C80BB6F176DE06F00E5E248 /* HNHScrollDocumentViewAdapter.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C80BB6E176DE06F00E5E248 /* HNHScrollDocumentViewAdapter.m */; };
 		4C811C8316ECD06E00C4BAC6 /* MPKeyfilePathControlDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C811C8216ECD06E00C4BAC6 /* MPKeyfilePathControlDelegate.m */; };
 		4C83814215BF4677001AE468 /* MPDocumentWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C83814115BF4677001AE468 /* MPDocumentWindowController.m */; };
 		4C888C9016EB6C91003D34A1 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 4C888C8E16EB6C91003D34A1 /* Localizable.strings */; };
@@ -407,8 +407,8 @@
 		4C79DF2F1766941D0083708F /* MPResponderQuery.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MPResponderQuery.h; sourceTree = "<group>"; };
 		4C7E8328172DE2F2002493D8 /* MPPasswordEditViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MPPasswordEditViewController.h; sourceTree = "<group>"; };
 		4C7E8329172DE2F2002493D8 /* MPPasswordEditViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MPPasswordEditViewController.m; sourceTree = "<group>"; };
-		4C80BB6D176DE06F00E5E248 /* HNHFlippedView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HNHFlippedView.h; sourceTree = "<group>"; };
-		4C80BB6E176DE06F00E5E248 /* HNHFlippedView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HNHFlippedView.m; sourceTree = "<group>"; };
+		4C80BB6D176DE06F00E5E248 /* HNHScrollDocumentViewAdapter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HNHScrollDocumentViewAdapter.h; sourceTree = "<group>"; };
+		4C80BB6E176DE06F00E5E248 /* HNHScrollDocumentViewAdapter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HNHScrollDocumentViewAdapter.m; sourceTree = "<group>"; };
 		4C811C8116ECD06E00C4BAC6 /* MPKeyfilePathControlDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MPKeyfilePathControlDelegate.h; sourceTree = "<group>"; };
 		4C811C8216ECD06E00C4BAC6 /* MPKeyfilePathControlDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MPKeyfilePathControlDelegate.m; sourceTree = "<group>"; };
 		4C83814015BF4677001AE468 /* MPDocumentWindowController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MPDocumentWindowController.h; sourceTree = "<group>"; };
@@ -453,6 +453,7 @@
 		4CB9339816D3A0DD00A13B5D /* en */ = {isa = PBXFileReference; lastKnownFileType = text.rtf; name = en; path = en.lproj/Credits.rtf; sourceTree = "<group>"; };
 		4CBA2AB617074B59006D8139 /* MPSettingsHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MPSettingsHelper.h; sourceTree = "<group>"; };
 		4CBA2AB917074C07006D8139 /* MPSettingsHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MPSettingsHelper.m; sourceTree = "<group>"; };
+		4CC0B8DA1773729F00311E8C /* MPFirstResonderNotification.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MPFirstResonderNotification.h; sourceTree = "<group>"; };
 		4CC1AEBC16D4467C006D2AAB /* KdbTree+MPAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "KdbTree+MPAdditions.h"; sourceTree = "<group>"; };
 		4CC1AEBD16D4467C006D2AAB /* KdbTree+MPAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "KdbTree+MPAdditions.m"; sourceTree = "<group>"; };
 		4CC299FD176F99E50050C939 /* MPRequestHandlerService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MPRequestHandlerService.h; sourceTree = "<group>"; };
@@ -993,6 +994,7 @@
 				4CF6C715176F5183007A811D /* MPServerRequestHandler.h */,
 				4CA0B30D15BCB6FD00654E32 /* MPSettingsTab.h */,
 				4C79DF2F1766941D0083708F /* MPResponderQuery.h */,
+				4CC0B8DA1773729F00311E8C /* MPFirstResonderNotification.h */,
 			);
 			name = Protocolls;
 			sourceTree = "<group>";
@@ -1075,8 +1077,8 @@
 				4C37A6721769393300AD0A40 /* HNHTableHeaderCell.m */,
 				4C099931176D4EA600C885CB /* HNHScrollView.h */,
 				4C099932176D4EA600C885CB /* HNHScrollView.m */,
-				4C80BB6D176DE06F00E5E248 /* HNHFlippedView.h */,
-				4C80BB6E176DE06F00E5E248 /* HNHFlippedView.m */,
+				4C80BB6D176DE06F00E5E248 /* HNHScrollDocumentViewAdapter.h */,
+				4C80BB6E176DE06F00E5E248 /* HNHScrollDocumentViewAdapter.m */,
 				4CF78058176E6D5F0032EE71 /* HNHTableRowView.h */,
 				4CF78059176E6D5F0032EE71 /* HNHTableRowView.m */,
 			);
@@ -1354,7 +1356,7 @@
 				4C37A6731769393300AD0A40 /* HNHTableHeaderCell.m in Sources */,
 				4C099933176D4EA600C885CB /* HNHScrollView.m in Sources */,
 				4CA2335A176DBFE100F0B6AC /* MPLockDaemon.m in Sources */,
-				4C80BB6F176DE06F00E5E248 /* HNHFlippedView.m in Sources */,
+				4C80BB6F176DE06F00E5E248 /* HNHScrollDocumentViewAdapter.m in Sources */,
 				4C245B76176E1E3D0086100E /* DDData.m in Sources */,
 				4C245B77176E1E3D0086100E /* DDNumber.m in Sources */,
 				4C245B78176E1E3D0086100E /* DDRange.m in Sources */,

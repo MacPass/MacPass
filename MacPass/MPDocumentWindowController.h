@@ -16,6 +16,10 @@
 @class MPOutlineViewController;
 @class MPCreationViewController;
 
+@class KdbGroup;
+@class KdbEntry;
+
+APPKIT_EXTERN NSString *const MPCurrentItemChangedNotification;
 
 @interface MPDocumentWindowController : NSWindowController <NSWindowDelegate>
 
@@ -26,11 +30,13 @@
 @property (readonly, retain) MPInspectorViewController *inspectorViewController;
 @property (readonly, retain) MPCreationViewController *creationViewController;
 
+/* Holds the current item. That is either a KdbGroup or a KdbEntry */
+@property (readonly, assign) id currentItem;
+
 
 - (void)showEntries;
 - (void)showPasswordInput;
 - (void)performFindPanelAction:(id)sender;
-- (void)clearOutlineSelection:(id)sender;
 - (IBAction)editPassword:(id)sender;
 - (void)lock:(id)sender;
 

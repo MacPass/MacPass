@@ -24,11 +24,14 @@
 @property (assign) IBOutlet NSTextField *URLTextField;
 @property (assign) IBOutlet NSTextField *passwordTextField;
 @property (assign) IBOutlet NSTextField *titleOrNameLabel;
-@property (assign) IBOutlet NSTextField *notesTextField;
 @property (assign) IBOutlet HNHGradientView *bottomBar;
 @property (assign) IBOutlet NSTextField *infoTextField;
 @property (assign) IBOutlet NSTableView *attachmentTableView;
 @property (assign) IBOutlet NSView *scrollContentView;
+@property (assign) IBOutlet NSSegmentedControl *notesOrAttachmentControl;
+@property (retain) IBOutlet NSScrollView *attachmenScrollView;
+@property (assign) IBOutlet NSScrollView *notesScrollView;
+@property (assign) IBOutlet NSTextView *notesTextView;
 
 - (void)closeActivePopup:(id)sender;
 /* Seperate call to ensure alle registered objects are in place */

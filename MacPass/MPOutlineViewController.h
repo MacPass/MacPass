@@ -14,10 +14,10 @@
 
 @interface MPOutlineViewController : MPViewController
 
+@property (readonly, assign) NSOutlineView *outlineView;
 @property (retain, readonly) MPOutlineViewDelegate *outlineDelegate;
 @property (assign) IBOutlet HNHGradientView *bottomBar;
 
-- (void)clearSelection;
 - (void)showOutline;
 
 - (void)createGroup:(id)sender;

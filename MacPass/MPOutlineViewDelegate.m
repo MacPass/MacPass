@@ -59,8 +59,9 @@ NSString *const _MPOutlinveViewHeaderViewIdentifier = @"HeaderCell";
 - (BOOL)outlineView:(NSOutlineView *)outlineView shouldSelectItem:(id)item {
   NSTreeNode *treeNode = item;
   KdbGroup *group = [treeNode representedObject];
+  return YES;
   //KdbGroup *group = item;
-  return (nil != [group parent]);
+  //return (nil != [group parent]);
 }
 
 - (void)outlineViewSelectionDidChange:(NSNotification *)notification {

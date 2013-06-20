@@ -14,7 +14,8 @@ NSString *const kMPSettingsKeyOpenEmptyDatabaseOnLaunch = @"OpenEmptyDatabaseOnL
 NSString *const kMPSettingsKeyHttpPort =@"HttpPort";
 NSString *const kMPSettingsKeyEnableHttpServer = @"EnableHttpServer";
 NSString *const kMPSettingsKeyShowMenuItem = @"ShowMenuItem";
-
+NSString *const kMPSettingsKeyLockOnSleep = @"LockOnSleep";
+NSString *const kMPSEttingsKeyIdleLockTimeOut = @"IdleLockTimeOut";
 
 @implementation MPSettingsHelper
 
@@ -24,12 +25,14 @@ NSString *const kMPSettingsKeyShowMenuItem = @"ShowMenuItem";
 
 + (NSDictionary *)_standardDefaults {
   return @{
-           kMPSettingsKeyPasteboardClearTimeout: @10,
+           kMPSettingsKeyPasteboardClearTimeout: @30, // 30 seconds
            kMPSettingsKeyClearPasteboardOnQuit: @YES,
            kMPSettingsKeyOpenEmptyDatabaseOnLaunch: @YES,
            kMPSettingsKeyHttpPort: @19455,
            kMPSettingsKeyEnableHttpServer: @NO,
            kMPSettingsKeyShowMenuItem: @YES,
+           kMPSettingsKeyLockOnSleep: @YES,
+           kMPSEttingsKeyIdleLockTimeOut: @300 // 5 minutes
            };
 }
 

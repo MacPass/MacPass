@@ -17,6 +17,7 @@
 #import "MPOverlayWindowController.h"
 
 #import "MPContextMenuHelper.h"
+#import "MPActionHelper.h"
 #import "MPConstants.h"
 #import "MPEntryTableDataSource.h"
 #import "MPStringLengthValueTransformer.h"
@@ -74,6 +75,7 @@ NSString *const _toggleFilterUsernameButton = @"SearchUsername";
 @property (assign) IBOutlet NSTextField *filterLabelTextField;
 @property (assign) IBOutlet NSSearchField *filterSearchField;
 @property (assign) IBOutlet HNHGradientView *bottomBar;
+@property (assign) IBOutlet NSButton *addEntryButton;
 
 @property (assign) KdbEntry *selectedEntry;
 
@@ -102,7 +104,7 @@ NSString *const _toggleFilterUsernameButton = @"SearchUsername";
     _entryArrayController = [[NSArrayController alloc] init];
     _dataSource = [[MPEntryTableDataSource alloc] init];
     _dataSource.viewController = self;
-    _selectedEntry = nil;    
+    _selectedEntry = nil;
   }
   return self;
 }
@@ -123,6 +125,7 @@ NSString *const _toggleFilterUsernameButton = @"SearchUsername";
   [self.view setWantsLayer:YES];
   [self _hideFilterBarAnimated:NO];
   [_bottomBar setBorderType:HNHBorderTop];
+  [self.addEntryButton setAction:[MPActionHelper actionOfType:MPActionAddEntry]];
   
   [self.entryTable setDelegate:self];
   [self.entryTable setDoubleAction:@selector(_columnDoubleClick:)];
@@ -130,13 +133,13 @@ NSString *const _toggleFilterUsernameButton = @"SearchUsername";
   [self.entryTable setFloatsGroupRows:NO];
   [self.entryTable registerForDraggedTypes:@[MPPasteBoardType]];
   [self _setupEntryMenu];
-    
+  
   NSTableColumn *parentColumn = [self.entryTable tableColumns][0];
   NSTableColumn *titleColumn = [self.entryTable tableColumns][1];
   NSTableColumn *userNameColumn = [self.entryTable tableColumns][2];
   NSTableColumn *passwordColumn = [self.entryTable tableColumns][3];
   NSTableColumn *urlColumn = [self.entryTable tableColumns][4];
-    
+  
   
   [parentColumn setIdentifier:MPEntryTableParentColumnIdentifier];
   [titleColumn setIdentifier:MPEntryTableTitleColumnIdentifier];
@@ -161,15 +164,15 @@ NSString *const _toggleFilterUsernameButton = @"SearchUsername";
   [self.entryTable bind:NSContentBinding toObject:self.entryArrayController withKeyPath:@"arrangedObjects" options:nil];
   [self.entryTable bind:NSSortDescriptorsBinding toObject:self.entryArrayController withKeyPath:@"sortDescriptors" options:nil];
   [self.entryTable setDataSource:_dataSource];
-
+  
   [parentColumn setHidden:YES];
 }
 
 - (void)setupNotifications:(MPDocumentWindowController *)windowController {
   [[NSNotificationCenter defaultCenter] addObserver:self
-                                           selector:@selector(_didChangeGroupSelectionInOutlineView:)
-                                               name:MPOutlineViewDidChangeGroupSelection
-                                             object:windowController.outlineViewController.outlineDelegate];
+                                           selector:@selector(_didChangeCurrentItem:)
+                                               name:MPCurrentItemChangedNotification
+                                             object:windowController];
 }
 
 #pragma mark NSTableViewDelgate
@@ -227,20 +230,27 @@ NSString *const _toggleFilterUsernameButton = @"SearchUsername";
 }
 
 #pragma mark Notifications
-- (void)_didChangeGroupSelectionInOutlineView:(NSNotification *)notification {
+- (void)_didChangeCurrentItem:(NSNotification *)notification {
   if([self _showsFilterBar]) {
     //[self.filterSearchField setStringValue:@""];
     [self clearFilter:nil];
   }
-  MPOutlineViewDelegate *delegate = [notification object];
-  self.activeGroup = delegate.selectedGroup;
-  
-  if(_activeGroup) {
-    [self.entryArrayController bind:NSContentArrayBinding toObject:_activeGroup withKeyPath:@"entries" options:nil];
-  }
-  else {
-    [self.entryArrayController unbind:NSContentArrayBinding];
-    [self.entryArrayController setContent:nil];
+  MPDocumentWindowController *sender = [notification object];
+  if([sender.currentItem isKindOfClass:[KdbGroup class]]) {
+    KdbGroup *item = sender.currentItem;
+    if(item) {
+      if([[self.entryArrayController content] count] > 0) {
+        KdbEntry *entry = [[self.entryArrayController content] lastObject];
+        if(entry.parent == item) {
+          return; // we are showing the correct object right now.
+        }
+      }
+      [self.entryArrayController bind:NSContentArrayBinding toObject:item withKeyPath:@"entries" options:nil];
+    }
+    else {
+      [self.entryArrayController unbind:NSContentArrayBinding];
+      [self.entryArrayController setContent:nil];
+    }
   }
 }
 
@@ -261,10 +271,6 @@ NSString *const _toggleFilterUsernameButton = @"SearchUsername";
     _filter = [filter retain];
     [self updateFilter];
   }
-}
-
-- (void)deselectAll:(id)sender {
-  [self.entryTable deselectAll:nil];
 }
 
 - (void)clearFilter:(id)sender {
@@ -347,9 +353,7 @@ NSString *const _toggleFilterUsernameButton = @"SearchUsername";
   if([self _showsFilterBar]) {
     return; // nothing to to
   }
-  
-  [[[self.view window] windowController] clearOutlineSelection:nil];
-  
+    
   NSView *scrollView = [_entryTable enclosingScrollView];
   NSDictionary *views = NSDictionaryOfVariableBindings(scrollView, _filterBar);
   [self.view layout];
@@ -357,7 +361,7 @@ NSString *const _toggleFilterUsernameButton = @"SearchUsername";
   [self.view addSubview:self.filterBar];
   [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|[_filterBar]|" options:0 metrics:nil views:views]];
   [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|[_filterBar(==30)]-0-[scrollView]" options:0 metrics:nil views:views]];
-
+  
   
   if(animate) {
     [NSAnimationContext runAnimationGroup:^(NSAnimationContext* context) {
@@ -473,15 +477,6 @@ NSString *const _toggleFilterUsernameButton = @"SearchUsername";
     NSURL *webURL = [NSURL URLWithString:selectedEntry.url];
     [[NSWorkspace sharedWorkspace] openURL:webURL];
   }
-}
-
-- (void)createEntry:(id)sender {
-  if(!_activeGroup) {
-    return; // Entries are not allowed in root group
-  }
-
-  MPDocument *document = [[NSDocumentController sharedDocumentController] currentDocument];
-  [document createEntry:_activeGroup];
 }
 
 - (void)deleteEntry:(id)sender {

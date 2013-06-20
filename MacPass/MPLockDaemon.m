@@ -7,8 +7,16 @@
 //
 
 #import "MPLockDaemon.h"
+#import "MPSettingsHelper.h"
 
 NSString *const MPShouldLockDatabaseNotification = @"com.hicknhack.macpass.MPShouldLockDatabaseNotification";
+
+@interface MPLockDaemon ()
+
+@property (nonatomic,assign) BOOL lockOnSleep;
+@property (nonatomic,assign) NSUInteger idleLockTime;
+
+@end
 
 @implementation MPLockDaemon
 
@@ -24,8 +32,11 @@ NSString *const MPShouldLockDatabaseNotification = @"com.hicknhack.macpass.MPSho
 - (id)init {
   self = [super init];
   if (self) {
-    NSNotificationCenter *notificationCenter = [[NSWorkspace sharedWorkspace] notificationCenter];
-    [notificationCenter addObserver:self selector:@selector(_willSleepNotification:) name:NSWorkspaceWillSleepNotification object:nil];
+    NSString *lockOnSleepKey = [NSString stringWithFormat:@"values.%@", kMPSettingsKeyLockOnSleep];
+    NSString *idleTimeOutKey = [NSString stringWithFormat:@"values.%@", kMPSEttingsKeyIdleLockTimeOut];
+    NSUserDefaultsController *defaultsController = [NSUserDefaultsController sharedUserDefaultsController];
+    [self bind:@"lockOnSleep" toObject:defaultsController withKeyPath:lockOnSleepKey options:nil];
+    [self bind:@"idleLockTime" toObject:defaultsController withKeyPath:idleTimeOutKey options:nil];
   }
   return self;
 }
@@ -36,6 +47,30 @@ NSString *const MPShouldLockDatabaseNotification = @"com.hicknhack.macpass.MPSho
   [super dealloc];
 }
 
+- (void)setLockOnSleep:(BOOL)lockOnSleep {
+  if(_lockOnSleep != lockOnSleep) {
+    _lockOnSleep = lockOnSleep;
+    NSNotificationCenter *notificationCenter = [[NSWorkspace sharedWorkspace] notificationCenter];
+    if(_lockOnSleep) {
+      [notificationCenter addObserver:self selector:@selector(_willSleepNotification:) name:NSWorkspaceWillSleepNotification object:nil];
+    }
+    else {
+      [notificationCenter removeObserver:self];
+    }
+  }
+}
+
+- (void)setIdleLockTime:(NSUInteger)idleLockTime {
+  if(_idleLockTime != idleLockTime) {
+    _idleLockTime = idleLockTime;
+    if(_idleLockTime == 0) {
+      // disable
+    }
+    else {
+      // update timer
+    }
+  }
+}
 
 - (void)_willSleepNotification:(NSNotification *)notification {
   [[NSNotificationCenter defaultCenter] postNotificationName:MPShouldLockDatabaseNotification object:self];

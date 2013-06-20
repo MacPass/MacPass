@@ -14,10 +14,12 @@
 #import "MPUppercaseStringValueTransformer.h"
 #import "MPStringLengthValueTransformer.h"
 #import "MPServerDaemon.h"
+#import "MPLockDaemon.h"
 
 @interface MPAppDelegate () {
 @private
   MPServerDaemon *serverDaemon;
+  MPLockDaemon *lockDaemon;
 }
 
 @property (retain, nonatomic) MPSettingsWindowController *settingsController;
@@ -41,6 +43,7 @@
 
 - (void)applicationDidFinishLaunching:(NSNotification *)notification {
   serverDaemon = [[MPServerDaemon alloc] init];
+  lockDaemon = [[MPLockDaemon alloc] init];
 }
 
 
@@ -48,6 +51,7 @@
   [_settingsController release];
   [_passwordCreatorController release];
   [serverDaemon release];
+  [lockDaemon release];
   [super dealloc];
 }
 

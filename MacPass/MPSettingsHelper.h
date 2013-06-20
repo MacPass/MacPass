@@ -8,13 +8,23 @@
 
 #import <Cocoa/Cocoa.h>
 
+/* Clipboard */
 APPKIT_EXTERN NSString *const kMPSettingsKeyPasteboardClearTimeout;
 APPKIT_EXTERN NSString *const kMPSettingsKeyClearPasteboardOnQuit;
+
+/* Behaviour */
 APPKIT_EXTERN NSString *const kMPSettingsKeyPasswordEncoding;
 APPKIT_EXTERN NSString *const kMPSettingsKeyOpenEmptyDatabaseOnLaunch;
+
+/* Server Settings */
 APPKIT_EXTERN NSString *const kMPSettingsKeyHttpPort;
 APPKIT_EXTERN NSString *const kMPSettingsKeyEnableHttpServer;
 APPKIT_EXTERN NSString *const kMPSettingsKeyShowMenuItem;
+
+/* Autolock */
+APPKIT_EXTERN NSString *const kMPSettingsKeyLockOnSleep;
+APPKIT_EXTERN NSString *const kMPSEttingsKeyIdleLockTimeOut;
+
 
 typedef NS_ENUM(NSUInteger, MPPasswordEncoding) {
   MPPasswordEncodingUTF8,

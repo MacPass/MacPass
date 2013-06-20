@@ -18,6 +18,8 @@
 #import "MPAppDelegate.h"
 #import "MPActionHelper.h"
 
+NSString *const MPCurrentItemChangedNotification = @"com.hicknhack.macpass.MPCurrentItemChangedNotification";
+
 @interface MPDocumentWindowController () {
 @private
   id _firstResponder;
@@ -26,6 +28,7 @@
 @property (retain) IBOutlet NSSplitView *splitView;
 
 @property (retain) NSToolbar *toolbar;
+@property (assign) id currentItem;
 
 @property (retain) MPPasswordInputController *passwordInputController;
 @property (retain) MPPasswordEditViewController *passwordEditController;
@@ -49,6 +52,11 @@
     _passwordEditController = [[MPPasswordEditViewController alloc] init];
     _entryViewController = [[MPEntryViewController alloc] init];
     _inspectorViewController = [[MPInspectorViewController alloc] init];
+    _currentItem = nil;
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(_updateCurrentItem:) name:MPOutlineViewDidChangeGroupSelection object:_outlineViewController.outlineDelegate];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(_updateCurrentItem:) name:MPDidChangeSelectedEntryNotification object:_entryViewController];
+
   }
   return self;
 }
@@ -134,6 +142,21 @@
   [self.window makeFirstResponder:[viewController reconmendedFirstResponder]];
 }
 
+#pragma mark Resonder handling
+- (void)_updateCurrentItem:(NSNotification *)notification {
+  id sender = [notification object];
+  if( sender == _outlineViewController.outlineView || sender == _outlineViewController.outlineDelegate ) {
+    self.currentItem = _outlineViewController.outlineDelegate.selectedGroup;
+  }
+  else if( sender == _entryViewController.entryTable || sender == _entryViewController) {
+    self.currentItem = _entryViewController.selectedEntry;
+  }
+  else {
+    return; // no notification!
+  }
+  [[NSNotificationCenter defaultCenter] postNotificationName:MPCurrentItemChangedNotification object:self];
+}
+
 #pragma mark Actions
 - (void)performFindPanelAction:(id)sender {
   [self.entryViewController showFilter:sender];
@@ -151,10 +174,10 @@
     return showsNoLockScreen && document.isProtected;
   }
   if(itemAction == [MPActionHelper actionOfType:MPActionAddEntry]) {
-    return (nil != _entryViewController.activeGroup);
+    return (nil != _outlineViewController.outlineDelegate.selectedGroup);
   }
   if(itemAction == [MPActionHelper actionOfType:MPActionDelete]) {
-    return (_entryViewController.activeGroup || _entryViewController.selectedEntry);
+    return (nil != _currentItem);
   }
   if(itemAction == [MPActionHelper actionOfType:MPActionToggleInspector]) {
     return (nil != [_splitView superview]);
@@ -171,10 +194,6 @@
   [self.passwordInputController requestPassword];
 }
 
-- (void)clearOutlineSelection:(id)sender {
-  [self.outlineViewController clearSelection];
-}
-
 - (void)editPassword:(id)sender {
   if(!self.passwordEditController) {
     _passwordEditController = [[MPPasswordEditViewController alloc] init];
@@ -188,6 +207,10 @@
 
 - (void)createGroup:(id)sender {
   [_outlineViewController createGroup:nil];
+}
+
+- (void)createEntry:(id)sender {
+  [_outlineViewController createEntry:nil];
 }
 
 - (void)toggleInspector:(id)sender {
@@ -263,21 +286,17 @@
 }
 
 #pragma mark NSWindowDelegate
-
 - (void)windowDidUpdate:(NSNotification *)notification {
-  if(_firstResponder != [[self window] firstResponder]) {
-    _firstResponder = [[self window] firstResponder];
-    if(![_firstResponder isKindOfClass:[NSView class]]) {
-      return; // wrong responder
-    }
-    if( [_firstResponder isDescendantOf:[_entryViewController view]] ) {
-      //[_inspectorTabViewController showEntry];
-    }
-    else if([_firstResponder isDescendantOf:[_outlineViewController view]]) {
-      //[_inspectorTabViewController showGroup];
-    }
+  id firstResonder = [[self window] firstResponder];
+  if(_firstResponder == firstResonder) {
+    return;
+  }
+  _firstResponder = firstResonder;
+  if([_firstResponder isKindOfClass:[NSView class]]) {
+    [self _updateCurrentItem:[NSNotification notificationWithName:@"dummy" object:_firstResponder ]];
   }
 }
+
 
 #pragma mark Helper
 - (NSSearchField *)locateToolbarSearchField {

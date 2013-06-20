@@ -10,4 +10,7 @@
 
 @protocol MPFirstResonderNotification <NSObject>
 
+@required
+- (BOOL)becomeFirstResponder;
+
 @end

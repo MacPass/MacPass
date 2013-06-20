@@ -31,9 +31,9 @@ typedef enum {
 
 @interface MPEntryViewController : MPViewController <NSTableViewDelegate>
 
-@property (assign) KdbGroup *activeGroup;
 @property (readonly, assign, nonatomic) KdbEntry *selectedEntry;
 
+@property (assign,readonly) NSTableView *entryTable;
 @property (readonly, retain) NSArrayController *entryArrayController;
 @property (nonatomic, retain) NSString *filter;
 
@@ -52,7 +52,6 @@ typedef enum {
 - (void)openURL:(id)sender;
 
 /* Entry Handling*/
-- (void)createEntry:(id)sender;
 - (void)deleteEntry:(id)sender;
 
 @end
