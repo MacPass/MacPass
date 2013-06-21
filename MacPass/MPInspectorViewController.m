@@ -259,23 +259,37 @@ enum {
   [[self view] layout];
 }
 
+#pragma mark Popovers
 - (void)_showImagePopup:(id)sender {
   [self _showPopopver:[[[MPIconSelectViewController alloc] init] autorelease]  atView:self.itemImageView onEdge:NSMinYEdge];
 }
 
-- (void)closeActivePopup:(id)sender {
-  [_activePopover close];
-}
-
 - (IBAction)_popUpPasswordGenerator:(id)sender {
+  [self.generatePasswordButton setEnabled:NO];
   [self _showPopopver:[[[MPPasswordCreatorViewController alloc] init] autorelease] atView:self.passwordTextField onEdge:NSMinYEdge];
 }
 
 - (void)_showPopopver:(NSViewController *)viewController atView:(NSView *)view onEdge:(NSRectEdge)edge {
+  if(_activePopover.contentViewController == viewController) {
+    return; // Do nothing, we already did show the controller
+  }
+  [_activePopover close];
+  NSAssert(_activePopover == nil, @"Popover hast to be niled out");
   _activePopover = [[NSPopover alloc] init];
+  _activePopover.delegate = self;
   _activePopover.behavior = NSPopoverBehaviorTransient;
   _activePopover.contentViewController = viewController;
   [_activePopover showRelativeToRect:NSZeroRect ofView:view preferredEdge:edge];
+}
+
+- (void)popoverDidClose:(NSNotification *)notification {
+  /* We do not enable the button all the time, but it's wokring find this way */
+  [self.generatePasswordButton setEnabled:YES];
+  id controller = _activePopover.contentViewController;
+  if([controller respondsToSelector:@selector(password)]) {
+    [self.selectedEntry setPasswordUndoable:[controller password]];
+  }
+  [_activePopover release];
   _activePopover = nil;
 }
 
@@ -297,23 +311,6 @@ enum {
   }
   [self _updateContent];
 }
-
-#pragma mark Properties
-//- (void)setSelectedEntry:(KdbEntry *)selectedEntry {
-//  if(_selectedEntry != selectedEntry) {
-//    _selectedEntry = selectedEntry;
-//    self.showsEntry = YES;
-//    [self _updateContent];
-//  }
-//}
-//
-//- (void)setSelectedGroup:(KdbGroup *)selectedGroup {
-//  if(_selectedGroup != selectedGroup) {
-//    _selectedGroup = selectedGroup;
-//    self.showsEntry = NO;
-//    [self _updateContent];
-//  }
-//}
 
 #pragma mark NSTableViewDelegate
 - (NSView *)tableView:(NSTableView *)tableView viewForTableColumn:(NSTableColumn *)tableColumn row:(NSInteger)row {

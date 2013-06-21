@@ -14,7 +14,7 @@
 @class HNHGradientView;
 @class MPDocumentWindowController;
 
-@interface MPInspectorViewController : MPViewController <NSTableViewDelegate>
+@interface MPInspectorViewController : MPViewController <NSTableViewDelegate, NSPopoverDelegate>
 
 @property (assign) IBOutlet MPPopupImageView *itemImageView;
 @property (assign) IBOutlet NSTextField *itemNameTextfield;

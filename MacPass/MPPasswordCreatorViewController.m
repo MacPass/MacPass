@@ -7,6 +7,7 @@
 //
 
 #import "MPPasswordCreatorViewController.h"
+#import "MPPasteBoardController.h"
 #import "NSString+MPPasswordCreation.h"
 
 #define MIN_PASSWORD_LENGTH 1
@@ -16,6 +17,8 @@
 @interface MPPasswordCreatorViewController () {
   MPPasswordCharacterFlags _characterFlags;
 }
+@property (retain) NSString *password;
+
 @property (assign) IBOutlet NSTextField *passwordTextField;
 @property (assign) IBOutlet NSTextField *passwordLengthTextField;
 @property (assign) IBOutlet NSTextField *customCharactersTextField;
@@ -65,6 +68,7 @@
   [_symbolsButton setTag:MPPasswordCharactersSymbols];
   
   [self _resetCharacters];
+  [self _generatePassword:nil];
 }
 
 - (IBAction)_generatePassword:(id)sender { 
@@ -85,6 +89,11 @@
 }
 
 - (IBAction)_usePassword:(id)sender {
+  if([self.addPasswordToPasteboardButton state] == NSOnState) {
+    [[MPPasteBoardController defaultController] copyObjects:@[_password]];
+  }
+  id target = [NSApp targetForAction:@selector(performClose:)];
+  [target performClose:nil];
 }
 
 - (void)setUseCustomString:(BOOL)useCustomString {
@@ -125,6 +134,5 @@
   [_lowerCaseButton setState:userLowercase ? NSOnState : NSOffState];
   [_numbersButton setState:useNumbers ? NSOnState : NSOffState];
   [_symbolsButton setState:useSymbols ? NSOnState : NSOffState];
-  
 }
 @end
