@@ -14,7 +14,7 @@
   NSDate *currentTime = [NSDate date];
   
   Kdb4Tree *tree = [[Kdb4Tree alloc] init];
-  tree.generator = @"MiniKeePass";
+  tree.generator = @"MacPass";
   tree.databaseName = @"";
   tree.databaseNameChanged = currentTime;
   tree.databaseDescription = @"";
