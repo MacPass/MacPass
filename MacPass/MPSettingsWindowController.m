@@ -10,11 +10,14 @@
 #import "MPGeneralSettingsController.h"
 #import "MPServerSettingsController.h"
 
-@interface MPSettingsWindowController ()
+@interface MPSettingsWindowController () {
+  NSString *lastIdentifier;
+}
 
 @property (retain, nonatomic) NSToolbar *toolbar;
 @property (retain, nonatomic) NSMutableDictionary *settingsController;
 @property (retain, nonatomic) NSMutableDictionary *toolbarItems;
+@property (retain) NSArray *defaultToolbarItems;
 
 @end
 
@@ -28,6 +31,7 @@
     [self.toolbar setDisplayMode:NSToolbarDisplayModeIconAndLabel];
     _settingsController = [[NSMutableDictionary alloc] initWithCapacity:5];
     _toolbarItems = [[NSMutableDictionary alloc] initWithCapacity:5];
+    lastIdentifier = nil;
     
     [self _setupDefaultSettingsTabs];
     
@@ -45,10 +49,8 @@
 }
 
 - (void)showSettings {
-  if([self.settingsController count] > 0) {
-    id<MPSettingsTab> tab = [self.settingsController allValues][0];
-    NSString *identifier = [tab identifier];
-    [self showSettingsTabWithIdentifier:identifier];
+  if([self.defaultToolbarItems count] > 0) {
+    [self showSettingsTabWithIdentifier:self.defaultToolbarItems[0]];
   }
 }
 
@@ -116,9 +118,12 @@
   
   [self _addSettingsTab:generalSettingsController];
   [self _addSettingsTab:serverSettingsController];
+
+  self.defaultToolbarItems = @[ [generalSettingsController identifier], [serverSettingsController identifier] ];
   
   [generalSettingsController release];
   [serverSettingsController release];
+
 }
 
 - (void)_showSettingsTab:(id)sender {
@@ -135,7 +140,7 @@
 }
 
 - (NSArray *)toolbarDefaultItemIdentifiers:(NSToolbar *)toolbar {
-  return [self.settingsController allKeys];
+  return self.defaultToolbarItems;
 }
 
 - (NSArray *)toolbarSelectableItemIdentifiers:(NSToolbar *)toolbar {

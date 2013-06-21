@@ -15,7 +15,7 @@ NSString *const kMPSettingsKeyHttpPort =@"HttpPort";
 NSString *const kMPSettingsKeyEnableHttpServer = @"EnableHttpServer";
 NSString *const kMPSettingsKeyShowMenuItem = @"ShowMenuItem";
 NSString *const kMPSettingsKeyLockOnSleep = @"LockOnSleep";
-NSString *const kMPSEttingsKeyIdleLockTimeOut = @"IdleLockTimeOut";
+NSString *const kMPSettingsKeyIdleLockTimeOut = @"IdleLockTimeOut";
 
 @implementation MPSettingsHelper
 
@@ -32,7 +32,7 @@ NSString *const kMPSEttingsKeyIdleLockTimeOut = @"IdleLockTimeOut";
            kMPSettingsKeyEnableHttpServer: @NO,
            kMPSettingsKeyShowMenuItem: @YES,
            kMPSettingsKeyLockOnSleep: @YES,
-           kMPSEttingsKeyIdleLockTimeOut: @300 // 5 minutes
+           kMPSettingsKeyIdleLockTimeOut: @0 // 5 minutes
            };
 }
 

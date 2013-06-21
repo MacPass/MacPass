@@ -55,6 +55,9 @@
 
 - (void)setClearTimeout:(NSTimeInterval)clearTimeout {
   if(_clearTimeout != clearTimeout) {
+    if(clearTimeout > 0) {
+      [self _clearPasteboardContents];
+    }
     _clearTimeout = clearTimeout;
   }
 }

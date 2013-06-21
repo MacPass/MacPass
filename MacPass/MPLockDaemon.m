@@ -8,10 +8,13 @@
 
 #import "MPLockDaemon.h"
 #import "MPSettingsHelper.h"
+#import "MPAppDelegate.h"
 
 NSString *const MPShouldLockDatabaseNotification = @"com.hicknhack.macpass.MPShouldLockDatabaseNotification";
 
-@interface MPLockDaemon ()
+@interface MPLockDaemon () {
+  NSTimer *idleTimer;
+}
 
 @property (nonatomic,assign) BOOL lockOnSleep;
 @property (nonatomic,assign) NSUInteger idleLockTime;
@@ -33,7 +36,7 @@ NSString *const MPShouldLockDatabaseNotification = @"com.hicknhack.macpass.MPSho
   self = [super init];
   if (self) {
     NSString *lockOnSleepKey = [NSString stringWithFormat:@"values.%@", kMPSettingsKeyLockOnSleep];
-    NSString *idleTimeOutKey = [NSString stringWithFormat:@"values.%@", kMPSEttingsKeyIdleLockTimeOut];
+    NSString *idleTimeOutKey = [NSString stringWithFormat:@"values.%@", kMPSettingsKeyIdleLockTimeOut];
     NSUserDefaultsController *defaultsController = [NSUserDefaultsController sharedUserDefaultsController];
     [self bind:@"lockOnSleep" toObject:defaultsController withKeyPath:lockOnSleepKey options:nil];
     [self bind:@"idleLockTime" toObject:defaultsController withKeyPath:idleTimeOutKey options:nil];
@@ -73,7 +76,7 @@ NSString *const MPShouldLockDatabaseNotification = @"com.hicknhack.macpass.MPSho
 }
 
 - (void)_willSleepNotification:(NSNotification *)notification {
-  [[NSNotificationCenter defaultCenter] postNotificationName:MPShouldLockDatabaseNotification object:self];
+  [[NSApp delegate] lockAllDocuments];
 }
 
 @end

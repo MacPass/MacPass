@@ -125,6 +125,8 @@
 		4C80BB6F176DE06F00E5E248 /* HNHScrollDocumentViewAdapter.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C80BB6E176DE06F00E5E248 /* HNHScrollDocumentViewAdapter.m */; };
 		4C811C8316ECD06E00C4BAC6 /* MPKeyfilePathControlDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C811C8216ECD06E00C4BAC6 /* MPKeyfilePathControlDelegate.m */; };
 		4C83814215BF4677001AE468 /* MPDocumentWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C83814115BF4677001AE468 /* MPDocumentWindowController.m */; };
+		4C83F4AA1774B155006C5FC0 /* Kdb3Tree+NewTree.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C83F4A91774B155006C5FC0 /* Kdb3Tree+NewTree.m */; };
+		4C83F4AD1774B25F006C5FC0 /* Kdb4Tree+NewTree.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C83F4AC1774B25F006C5FC0 /* Kdb4Tree+NewTree.m */; };
 		4C888C9016EB6C91003D34A1 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 4C888C8E16EB6C91003D34A1 /* Localizable.strings */; };
 		4C888C9316EB6F5E003D34A1 /* MPToolbarItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C888C9216EB6F5E003D34A1 /* MPToolbarItem.m */; };
 		4C888C9716EB754B003D34A1 /* MPActionHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C888C9616EB754B003D34A1 /* MPActionHelper.m */; };
@@ -413,6 +415,10 @@
 		4C811C8216ECD06E00C4BAC6 /* MPKeyfilePathControlDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MPKeyfilePathControlDelegate.m; sourceTree = "<group>"; };
 		4C83814015BF4677001AE468 /* MPDocumentWindowController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MPDocumentWindowController.h; sourceTree = "<group>"; };
 		4C83814115BF4677001AE468 /* MPDocumentWindowController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MPDocumentWindowController.m; sourceTree = "<group>"; };
+		4C83F4A81774B155006C5FC0 /* Kdb3Tree+NewTree.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Kdb3Tree+NewTree.h"; sourceTree = "<group>"; };
+		4C83F4A91774B155006C5FC0 /* Kdb3Tree+NewTree.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "Kdb3Tree+NewTree.m"; sourceTree = "<group>"; };
+		4C83F4AB1774B25F006C5FC0 /* Kdb4Tree+NewTree.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Kdb4Tree+NewTree.h"; sourceTree = "<group>"; };
+		4C83F4AC1774B25F006C5FC0 /* Kdb4Tree+NewTree.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "Kdb4Tree+NewTree.m"; sourceTree = "<group>"; };
 		4C888C8F16EB6C91003D34A1 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		4C888C9116EB6F5E003D34A1 /* MPToolbarItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MPToolbarItem.h; sourceTree = "<group>"; };
 		4C888C9216EB6F5E003D34A1 /* MPToolbarItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MPToolbarItem.m; sourceTree = "<group>"; };
@@ -682,7 +688,7 @@
 			name = KeepassHttp;
 			sourceTree = "<group>";
 		};
-		4C2C4C2516D3BCEA00D49295 /* KeePassLibAdditions */ = {
+		4C2C4C2516D3BCEA00D49295 /* KeePassLib Categories */ = {
 			isa = PBXGroup;
 			children = (
 				4C569DA217653F3500595B62 /* KdbEntry+MPTreeTools.h */,
@@ -697,8 +703,12 @@
 				4C22040C1746ED160054C916 /* KdbGroup+Undo.m */,
 				4C4A101017629DA900BBF2CA /* KdbGroup+KVOAdditions.h */,
 				4C4A101117629DA900BBF2CA /* KdbGroup+KVOAdditions.m */,
+				4C83F4A81774B155006C5FC0 /* Kdb3Tree+NewTree.h */,
+				4C83F4A91774B155006C5FC0 /* Kdb3Tree+NewTree.m */,
+				4C83F4AB1774B25F006C5FC0 /* Kdb4Tree+NewTree.h */,
+				4C83F4AC1774B25F006C5FC0 /* Kdb4Tree+NewTree.m */,
 			);
-			name = KeePassLibAdditions;
+			name = "KeePassLib Categories";
 			sourceTree = "<group>";
 		};
 		4C2E382016D141F700037A9D /* Helper */ = {
@@ -930,7 +940,7 @@
 			children = (
 				4C245C11176E22150086100E /* KeepassHttp */,
 				4C46B8821706397A0046109A /* Security Additions */,
-				4C2C4C2516D3BCEA00D49295 /* KeePassLibAdditions */,
+				4C2C4C2516D3BCEA00D49295 /* KeePassLib Categories */,
 				4C2E382016D141F700037A9D /* Helper */,
 				4C586F9C16D07ABD00E7DB57 /* Icons */,
 				4CA0B30F15BCB85D00654E32 /* General */,
@@ -1391,6 +1401,8 @@
 				4CC299FF176F99E50050C939 /* MPRequestHandlerService.m in Sources */,
 				4CC29A02176F9D140050C939 /* MPTestAssociateRequestHandler.m in Sources */,
 				4CA0E3A7176FAF99004D18CB /* MPDocumentQueryService.m in Sources */,
+				4C83F4AA1774B155006C5FC0 /* Kdb3Tree+NewTree.m in Sources */,
+				4C83F4AD1774B25F006C5FC0 /* Kdb4Tree+NewTree.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -15,5 +15,6 @@
 - (IBAction)showPasswordCreator:(id)sender;
 
 - (NSString *)applicationName;
+- (void)lockAllDocuments;
 
 @end

@@ -15,6 +15,7 @@
 #import "MPStringLengthValueTransformer.h"
 #import "MPServerDaemon.h"
 #import "MPLockDaemon.h"
+#import "MPDocumentWindowController.h"
 
 @interface MPAppDelegate () {
 @private
@@ -45,7 +46,6 @@
   serverDaemon = [[MPServerDaemon alloc] init];
   lockDaemon = [[MPLockDaemon alloc] init];
 }
-
 
 - (void)dealloc {
   [_settingsController release];
@@ -89,6 +89,15 @@
   }
   
   [self.passwordCreatorWindow makeKeyAndOrderFront:self.passwordCreatorWindow];
+}
+
+- (void)lockAllDocuments {
+  for(NSDocument *document in [[NSDocumentController sharedDocumentController] documents]) {
+    NSArray *windowControllers = [document windowControllers];
+    if([windowControllers count] > 0) {
+      [windowControllers[0] lock:nil];
+    }
+  }
 }
 
 @end

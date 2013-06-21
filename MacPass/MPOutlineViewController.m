@@ -58,7 +58,7 @@
   [_datasource release];
   [_outlineDelegate release];
   [_menu release];
-
+  
   [super dealloc];
 }
 
@@ -84,6 +84,26 @@
   }
   NSTreeNode *node = [_outlineView itemAtRow:0];
   [_outlineView expandItem:node expandChildren:NO];
+}
+
+- (void)setupNotifications:(MPDocumentWindowController *)windowController {
+  [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(_didCreateGroup:) name:MPDocumentDidAddGroupNotification object:[windowController document]];
+}
+
+- (void)_didCreateGroup:(NSNotification *)notification {
+  NSInteger selectedRow = [_outlineView selectedRow];
+  NSIndexSet *indexSet;
+  if( selectedRow == -1) {
+    MPDocument *document = [[self windowController] document];
+    indexSet = [NSIndexSet indexSetWithIndex:[document.root.groups count]];
+    //TODO: Find out why selection is not set (treeUpdate?)
+  }
+  else {
+    id item = [_outlineView itemAtRow:selectedRow];
+    [_outlineView expandItem:item];
+    indexSet = [NSIndexSet indexSetWithIndex:selectedRow + 1];
+  }
+  [_outlineView selectRowIndexes:indexSet byExtendingSelection:NO];
 }
 
 - (NSMenu *)_contextMenu {
@@ -127,7 +147,7 @@
 - (void)deleteEntry:(id)sender {
   KdbGroup *group = [self _clickedOrSelectedGroup];
   if(group && group.parent) {
-    [group.parent removeGroupUndoable:group];    
+    [group.parent removeGroupUndoable:group];
   }
 }
 

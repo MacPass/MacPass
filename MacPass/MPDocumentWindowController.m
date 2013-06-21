@@ -80,6 +80,7 @@ NSString *const MPCurrentItemChangedNotification = @"com.hicknhack.macpass.MPCur
 {
   [_entryViewController setupNotifications:self];
   [_inspectorViewController setupNotifications:self];
+  [_outlineViewController setupNotifications:self];
   
   [super windowDidLoad];
   _toolbar = [[NSToolbar alloc] initWithIdentifier:@"MainWindowToolbar"];
@@ -202,6 +203,7 @@ NSString *const MPCurrentItemChangedNotification = @"com.hicknhack.macpass.MPCur
 }
 
 - (void)lock:(id)sender {
+  // Test if document is lockable
   [self showPasswordInput];
 }
 

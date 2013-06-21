@@ -23,7 +23,7 @@ APPKIT_EXTERN NSString *const kMPSettingsKeyShowMenuItem;
 
 /* Autolock */
 APPKIT_EXTERN NSString *const kMPSettingsKeyLockOnSleep;
-APPKIT_EXTERN NSString *const kMPSEttingsKeyIdleLockTimeOut;
+APPKIT_EXTERN NSString *const kMPSettingsKeyIdleLockTimeOut;
 
 
 typedef NS_ENUM(NSUInteger, MPPasswordEncoding) {

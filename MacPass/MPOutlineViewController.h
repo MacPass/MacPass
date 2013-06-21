@@ -11,6 +11,7 @@
 @class MPOutlineViewDelegate;
 @class KdbGroup;
 @class HNHGradientView;
+@class MPDocumentWindowController;
 
 @interface MPOutlineViewController : MPViewController
 
@@ -19,6 +20,7 @@
 @property (assign) IBOutlet HNHGradientView *bottomBar;
 
 - (void)showOutline;
+- (void)setupNotifications:(MPDocumentWindowController *)windowController;
 
 - (void)createGroup:(id)sender;
 - (void)createEntry:(id)sender;
