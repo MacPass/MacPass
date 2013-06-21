@@ -17,19 +17,18 @@
 #import "MPDocumentWindowController.h"
 #import "MPOutlineViewController.h"
 #import "MPOutlineViewDelegate.h"
-#import "MPAttachmentViewController.h"
-#import "MPNotesViewController.h"
 
 #import "KdbLib.h"
 #import "Kdb4Node.h"
+#import "Kdb3Node.h"
 #import "KdbGroup+Undo.h"
 #import "KdbEntry+Undo.h"
 
 #import "HNHGradientView.h"
 
 enum {
-  MPNotesTab,
-  MPAttachmentTab
+  MPGeneralTab,
+  MPAdvancedTab
 };
 
 @interface MPInspectorViewController () {
@@ -41,8 +40,13 @@ enum {
 
 @property (retain) NSPopover *activePopover;
 @property (assign) IBOutlet NSButton *generatePasswordButton;
+
 @property (nonatomic, assign) NSDate *modificationDate;
 @property (nonatomic, assign) NSDate *creationDate;
+
+@property (assign) NSUInteger activeTab;
+@property (assign) IBOutlet NSTabView *tabView;
+@property (retain) NSArrayController *attachmentsController;
 
 @end
 
@@ -57,6 +61,8 @@ enum {
   if (self) {
     _selectedEntry = nil;
     _selectedGroup = nil;
+    _attachmentsController = [[NSArrayController alloc] init];
+    _activeTab = MPGeneralTab;
   }
   return self;
 }
@@ -72,11 +78,15 @@ enum {
   [[self.itemImageView cell] setBackgroundStyle:NSBackgroundStyleRaised];
   [self.itemImageView setTarget:self];
   [_bottomBar setBorderType:HNHBorderTop];
- 
-  [_notesOrAttachmentControl setAction:@selector(_toggleInfoTab:)];
-  [_notesOrAttachmentControl setTarget:self];
-  [[_notesOrAttachmentControl cell] setTag:MPAttachmentTab forSegment:MPAttachmentTab];
-  [[_notesOrAttachmentControl cell] setTag:MPNotesTab forSegment:MPNotesTab];
+  
+  //[[_infoTabControl cell] setTag:MPAdvancedTab forSegment:MPAdvancedTab];
+  //[[_infoTabControl cell] setTag:MPGeneralTab forSegment:MPGeneralTab];
+  
+  [_infoTabControl bind:NSSelectedIndexBinding toObject:self withKeyPath:@"activeTab" options:nil];
+  [_tabView bind:NSSelectedIndexBinding  toObject:self withKeyPath:@"activeTab" options:nil];
+  
+  [_attachmentTableView bind:NSContentBinding toObject:self.attachmentsController withKeyPath:@"arrangedObjects" options:nil];
+  [_attachmentTableView setDelegate:self];
   
   [self _clearContent];
 }
@@ -121,6 +131,25 @@ enum {
   else {
     [self _clearContent];
   }
+  [self _updateAttachments];
+}
+
+- (void)_updateAttachments {
+  if(self.selectedEntry) {
+    if([self.selectedEntry isKindOfClass:[Kdb4Entry class]]) {
+      [self.attachmentsController bind:NSContentArrayBinding toObject:self.selectedEntry withKeyPath:@"binaries" options:nil];
+    }
+    else {
+      /* Use binarydes and binary form Kdb3Entry */
+    }
+  }
+  else if([self.attachmentsController content] != nil){
+    
+    [self.attachmentsController unbind:NSContentArrayBinding];
+    [self.attachmentsController setContent:nil];
+    
+  }
+  
 }
 
 - (void)_showEntry {
@@ -135,12 +164,13 @@ enum {
   [self.titleOrNameLabel setStringValue:NSLocalizedString(@"TITLE",@"")];
   [self.titleTextField bind:NSValueBinding toObject:self.selectedEntry withKeyPath:MPEntryTitleUndoableKey options:nil];
   [self.URLTextField bind:NSValueBinding toObject:self.selectedEntry withKeyPath:MPEntryUrlUndoableKey options:nil];
-  //[self.notesTextView bind:NSValueBinding toObject:self.selectedEntry withKeyPath:MPEntryNotesUndoableKey options:nil];
+  [self.notesTextView bind:NSValueBinding toObject:self.selectedEntry withKeyPath:MPEntryNotesUndoableKey options:nil];
   
   [self _setInputEnabled:YES];
 }
 
 - (void)_showGroup {
+  
   [self bind:@"modificationDate" toObject:self.selectedGroup withKeyPath:@"lastModificationTime" options:nil];
   [self bind:@"creationDate" toObject:self.selectedGroup withKeyPath:@"creationTime" options:nil];
   
@@ -160,8 +190,8 @@ enum {
   [self.URLTextField setStringValue:@""];
   
   // Reste toggle
-  [self.notesOrAttachmentControl setSelected:NO forSegment:MPNotesTab];
-  [self.notesOrAttachmentControl setSelected:NO forSegment:MPAttachmentTab];
+  [self.infoTabControl setSelected:YES forSegment:MPGeneralTab];
+  [self.infoTabControl setSelected:NO forSegment:MPAdvancedTab];
   
   [self _setInputEnabled:YES];
 }
@@ -175,6 +205,7 @@ enum {
   [self.usernameTextField unbind:NSValueBinding];
   [self.titleTextField unbind:NSValueBinding];
   [self.URLTextField unbind:NSValueBinding];
+  [self.notesTextView unbind:NSValueBinding];
   
   [self.itemNameTextfield setStringValue:NSLocalizedString(@"INSPECTOR_NO_SELECTION", @"No item selected in inspector")];
   [self.itemImageView setImage:[NSImage imageNamed:NSImageNameActionTemplate]];
@@ -184,6 +215,7 @@ enum {
   [self.usernameTextField setStringValue:@""];
   [self.titleTextField setStringValue:@""];
   [self.URLTextField setStringValue:@""];
+  [self.notesTextView setString:@""];
   
 }
 
@@ -200,45 +232,11 @@ enum {
   [self.usernameTextField setEnabled:enabled];
   [self.URLTextField setEnabled:enabled];
   [self.generatePasswordButton setEnabled:enabled];
-  [self.notesOrAttachmentControl setEnabled:enabled forSegment:MPNotesTab];
-  [self.notesOrAttachmentControl setEnabled:enabled forSegment:MPAttachmentTab];
-}
-
-#pragma mark Actions
-
-- (void)_toggleInfoTab:(id)sender {
-  NSUInteger selectedSegment = [sender selectedSegment];
-  NSUInteger tab = [[sender cell] tagForSegment:selectedSegment];
-  switch (tab) {
-    case MPNotesTab:
-      [self _showNotesPopover];
-      break;
-    case MPAttachmentTab:
-      [self _showAttachmentPopover];
-      break;
-      
-    default:
-      break;
-  }
+  //[self.infoTabControl setEnabled:enabled forSegment:MPGeneralTab];
+  //[self.infoTabControl setEnabled:enabled forSegment:MPAdvancedTab];
 }
 
 #pragma mark Popovers
-- (void)_showNotesPopover {
-  [self.notesOrAttachmentControl setEnabled:NO forSegment:MPNotesTab];
-  MPNotesViewController *notesController = [[MPNotesViewController alloc] init];
-  // setup entry
-  [self _showPopopver:notesController atView:self.notesOrAttachmentControl onEdge:NSMinYEdge];
-  [notesController release];
-}
-
-- (void)_showAttachmentPopover {
-  [self.notesOrAttachmentControl setEnabled:NO forSegment:MPAttachmentTab];
-  MPAttachmentViewController *attachmentController = [[MPAttachmentViewController alloc] init];
-  // setup entry
-  [self _showPopopver:attachmentController atView:self.notesOrAttachmentControl onEdge:NSMinYEdge];
-  [attachmentController release];
-}
-
 - (void)_showImagePopup:(id)sender {
   [self _showPopopver:[[[MPIconSelectViewController alloc] init] autorelease]  atView:self.itemImageView onEdge:NSMinYEdge];
 }
@@ -264,11 +262,9 @@ enum {
 - (void)popoverDidClose:(NSNotification *)notification {
   /* We do not enable the button all the time, but it's wokring find this way */
   [self.generatePasswordButton setEnabled:YES];
-  [self.notesOrAttachmentControl setEnabled:YES forSegment:MPNotesTab];
-  [self.notesOrAttachmentControl setEnabled:YES forSegment:MPAttachmentTab];
   id controller = _activePopover.contentViewController;
-  if([controller respondsToSelector:@selector(password)]) {
-    [self.selectedEntry setPasswordUndoable:[controller password]];
+  if([controller respondsToSelector:@selector(generatedPassword)]) {
+    [self.selectedEntry setPasswordUndoable:[controller generatedPassword]];
   }
   [_activePopover release];
   _activePopover = nil;
@@ -291,6 +287,16 @@ enum {
     self.selectedEntry = sender.currentItem;
   }
   [self _updateContent];
+}
+
+- (NSView *)tableView:(NSTableView *)tableView viewForTableColumn:(NSTableColumn *)tableColumn row:(NSInteger)row {
+  NSTableCellView *view = [tableView makeViewWithIdentifier:[tableColumn identifier] owner:tableView];
+  if([self.selectedEntry isKindOfClass:[Kdb4Entry class]]) {
+    Kdb4Entry *entry = (Kdb4Entry *)self.selectedEntry;
+    BinaryRef *binaryRef = entry.binaries[row];
+    [[view textField] bind:NSValueBinding toObject:binaryRef withKeyPath:@"key" options:nil];
+  }
+  return view;
 }
 
 @end

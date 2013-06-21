@@ -222,7 +222,12 @@ NSString *const MPCurrentItemChangedNotification = @"com.hicknhack.macpass.MPCur
     [inspectorView removeFromSuperview];
   }
   else {
+    // Remove contraint on view removal.
     [_splitView addSubview:inspectorView];
+    [_splitView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"[inspectorView(>=300)]"
+                                                                       options:0
+                                                                       metrics:nil
+                                                                         views:NSDictionaryOfVariableBindings(inspectorView)]];
   }
 }
 
@@ -250,7 +255,7 @@ NSString *const MPCurrentItemChangedNotification = @"com.hicknhack.macpass.MPCur
     removeInspector = YES;
   }
   NSDictionary *views = NSDictionaryOfVariableBindings(outlineView, inspectorView, entryView, _splitView);
-  [self.splitView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|[outlineView(>=150,<=250)]-1-[entryView(>=300)]-1-[inspectorView(>=200)]|"
+  [self.splitView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|[outlineView(>=150,<=250)]-1-[entryView(>=350)]-1-[inspectorView(>=300)]|"
                                                                          options:0
                                                                          metrics:nil
                                                                            views:views]];
@@ -310,6 +315,5 @@ NSString *const MPCurrentItemChangedNotification = @"com.hicknhack.macpass.MPCur
   }
   return nil;
 }
-
 
 @end

@@ -18,6 +18,7 @@
   MPPasswordCharacterFlags _characterFlags;
 }
 @property (retain) NSString *password;
+@property (retain) NSString *generatedPassword;
 
 @property (assign) IBOutlet NSTextField *passwordTextField;
 @property (assign) IBOutlet NSTextField *passwordLengthTextField;
@@ -36,6 +37,7 @@
 - (IBAction)_generatePassword:(id)sender;
 - (IBAction)_toggleCharacters:(id)sender;
 - (IBAction)_usePassword:(id)sender;
+- (IBAction)_cancel:(id)sender;
 
 @end
 
@@ -89,11 +91,18 @@
 }
 
 - (IBAction)_usePassword:(id)sender {
+  self.generatedPassword = _password;
   if([self.addPasswordToPasteboardButton state] == NSOnState) {
     [[MPPasteBoardController defaultController] copyObjects:@[_password]];
   }
   id target = [NSApp targetForAction:@selector(performClose:)];
   [target performClose:nil];
+}
+
+- (IBAction)_cancel:(id)sender {
+  id target = [NSApp targetForAction:@selector(performClose:)];
+  [target performClose:nil];
+  
 }
 
 - (void)setUseCustomString:(BOOL)useCustomString {

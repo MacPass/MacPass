@@ -152,10 +152,6 @@
 		4CC299FF176F99E50050C939 /* MPRequestHandlerService.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CC299FE176F99E50050C939 /* MPRequestHandlerService.m */; };
 		4CC29A02176F9D140050C939 /* MPTestAssociateRequestHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CC29A01176F9D140050C939 /* MPTestAssociateRequestHandler.m */; };
 		4CC3AABD175F4983003EF01B /* HNHRoundedTextFieldCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CC3AAB9175F4983003EF01B /* HNHRoundedTextFieldCell.m */; };
-		4CC3CE011774D6EE00AD2296 /* MPAttachmentViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CC3CE001774D6EE00AD2296 /* MPAttachmentViewController.m */; };
-		4CC3CE041774D70200AD2296 /* MPNotesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CC3CE031774D70200AD2296 /* MPNotesViewController.m */; };
-		4CC3CE061774D73800AD2296 /* AttachmentView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4CC3CE051774D73800AD2296 /* AttachmentView.xib */; };
-		4CC3CE081774D74700AD2296 /* NotesView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4CC3CE071774D74700AD2296 /* NotesView.xib */; };
 		4CC6259115BA1C99002F5B11 /* MPOutlineViewDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CC6259015BA1C99002F5B11 /* MPOutlineViewDelegate.m */; };
 		4CD78ABC16D155FF00768A1D /* 07_NotepadTemplate.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 4CD78AB716D155FF00768A1D /* 07_NotepadTemplate.pdf */; };
 		4CD78ABD16D155FF00768A1D /* 08_SocketTemplate.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 4CD78AB816D155FF00768A1D /* 08_SocketTemplate.pdf */; };
@@ -472,12 +468,6 @@
 		4CC29A01176F9D140050C939 /* MPTestAssociateRequestHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MPTestAssociateRequestHandler.m; sourceTree = "<group>"; };
 		4CC3AAB8175F4983003EF01B /* HNHRoundedTextFieldCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HNHRoundedTextFieldCell.h; sourceTree = "<group>"; };
 		4CC3AAB9175F4983003EF01B /* HNHRoundedTextFieldCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HNHRoundedTextFieldCell.m; sourceTree = "<group>"; };
-		4CC3CDFF1774D6ED00AD2296 /* MPAttachmentViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MPAttachmentViewController.h; sourceTree = "<group>"; };
-		4CC3CE001774D6EE00AD2296 /* MPAttachmentViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MPAttachmentViewController.m; sourceTree = "<group>"; };
-		4CC3CE021774D70200AD2296 /* MPNotesViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MPNotesViewController.h; sourceTree = "<group>"; };
-		4CC3CE031774D70200AD2296 /* MPNotesViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MPNotesViewController.m; sourceTree = "<group>"; };
-		4CC3CE051774D73800AD2296 /* AttachmentView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AttachmentView.xib; sourceTree = "<group>"; };
-		4CC3CE071774D74700AD2296 /* NotesView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = NotesView.xib; sourceTree = "<group>"; };
 		4CC6258F15BA1C99002F5B11 /* MPOutlineViewDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MPOutlineViewDelegate.h; sourceTree = "<group>"; };
 		4CC6259015BA1C99002F5B11 /* MPOutlineViewDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MPOutlineViewDelegate.m; sourceTree = "<group>"; };
 		4CD78AB716D155FF00768A1D /* 07_NotepadTemplate.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = 07_NotepadTemplate.pdf; sourceTree = "<group>"; };
@@ -544,8 +534,6 @@
 				4C3FFD9D16DAF60600DF9186 /* FilterBar.xib */,
 				4C76156F1764C0E20015A1A6 /* InspectorView.xib */,
 				4CE39AC016ECE359000FE29D /* IconSelection.xib */,
-				4CC3CE051774D73800AD2296 /* AttachmentView.xib */,
-				4CC3CE071774D74700AD2296 /* NotesView.xib */,
 				4CE8247316E2F2B900573141 /* MPOverlayView.h */,
 				4CE8247416E2F2B900573141 /* MPOverlayView.m */,
 				4CFC53BD16E94729007396BE /* MPShadowBox.h */,
@@ -1006,10 +994,6 @@
 				4C77547416E55FE800970E02 /* MPInspectorViewController.m */,
 				4CE39ABD16ECE34A000FE29D /* MPIconSelectViewController.h */,
 				4CE39ABE16ECE34A000FE29D /* MPIconSelectViewController.m */,
-				4CC3CDFF1774D6ED00AD2296 /* MPAttachmentViewController.h */,
-				4CC3CE001774D6EE00AD2296 /* MPAttachmentViewController.m */,
-				4CC3CE021774D70200AD2296 /* MPNotesViewController.h */,
-				4CC3CE031774D70200AD2296 /* MPNotesViewController.m */,
 			);
 			name = "View Controller";
 			sourceTree = "<group>";
@@ -1261,8 +1245,6 @@
 				4C7714AA176C998F00549F2A /* 43_TrashTemplate.pdf in Resources */,
 				4C7714AC176C9D4600549F2A /* 99_InfoTemplate.pdf in Resources */,
 				4CF7805F176E75110032EE71 /* ServerSettings.xib in Resources */,
-				4CC3CE061774D73800AD2296 /* AttachmentView.xib in Resources */,
-				4CC3CE081774D74700AD2296 /* NotesView.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1421,8 +1403,6 @@
 				4CA0E3A7176FAF99004D18CB /* MPDocumentQueryService.m in Sources */,
 				4C83F4AA1774B155006C5FC0 /* Kdb3Tree+NewTree.m in Sources */,
 				4C83F4AD1774B25F006C5FC0 /* Kdb4Tree+NewTree.m in Sources */,
-				4CC3CE011774D6EE00AD2296 /* MPAttachmentViewController.m in Sources */,
-				4CC3CE041774D70200AD2296 /* MPNotesViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -14,7 +14,7 @@
 @class HNHGradientView;
 @class MPDocumentWindowController;
 
-@interface MPInspectorViewController : MPViewController <NSPopoverDelegate>
+@interface MPInspectorViewController : MPViewController <NSPopoverDelegate, NSTableViewDelegate>
 
 @property (assign) IBOutlet MPPopupImageView *itemImageView;
 @property (assign) IBOutlet NSTextField *itemNameTextfield;
@@ -27,7 +27,9 @@
 @property (assign) IBOutlet HNHGradientView *bottomBar;
 @property (assign) IBOutlet NSTextField *infoTextField;
 @property (assign) IBOutlet NSView *scrollContentView;
-@property (assign) IBOutlet NSSegmentedControl *notesOrAttachmentControl;
+@property (assign) IBOutlet NSSegmentedControl *infoTabControl;
+@property (assign) IBOutlet NSTableView *attachmentTableView;
+@property (assign) IBOutlet NSTextView *notesTextView;
 
 
 /* Seperate call to ensure alle registered objects are in place */
