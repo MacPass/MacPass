@@ -12,8 +12,8 @@ Beware that I'm going to shift things around so stuff is going to break. A lot.
 
 ##Dowload
 
-I'm trying to upload new some builds along the way for all who just want to take a quick look.
-As stated in the Disclaimer, this software cannot be considered safe for work in it's current development status.
+I'm trying to upload new builds along the way for all of you that just want to take a quick look.
+As stated in the disclaimer, this software cannot be considered safe for work in it's current development status.
 Use it with caution!
 
 [Download MacPass at Dropbox](https://www.dropbox.com/sh/yqgfwi7f8mnd747/NCQlJmg0f0)
