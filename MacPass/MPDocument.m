@@ -17,6 +17,8 @@
 #import "KdbGroup+KVOAdditions.h"
 #import "KdbGroup+MPTreeTools.h"
 #import "KdbEntry+Undo.h"
+#import "Kdb3Tree+NewTree.h"
+#import "Kdb4Tree+NewTree.h"
 
 NSString *const MPDocumentDidAddGroupNotification = @"MPDocumentDidAddGroupNotification";
 NSString *const MPDocumentWillDelteGroupNotification = @"MPDocumentDidDelteGroupNotification";
@@ -52,18 +54,15 @@ NSString *const MPDocumentGroupKey = @"MPDocumentGroupKey";
     _isProtected = NO;
     switch(version) {
       case MPDatabaseVersion3:
-        self.tree = [[[Kdb3Tree alloc] init] autorelease];
+        _tree = [Kdb3Tree newTemplateTree];
         break;
       case MPDatabaseVersion4:
-        self.tree = [[[Kdb4Tree alloc] init] autorelease];
+        _tree = [Kdb4Tree newTemplateTree];
         break;
       default:
         [self release];
         return nil;
     }
-    KdbGroup *newGroup = [self.tree createGroup:self.tree.root];
-    newGroup.name = @"Default";
-    self.tree.root = newGroup;
   }
   return self;
 }
