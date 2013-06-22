@@ -18,6 +18,11 @@ Use it with caution!
 
 [Download MacPass at Dropbox](https://www.dropbox.com/sh/yqgfwi7f8mnd747/NCQlJmg0f0) (build 932 06/22/2013)
 
+##Requirement
+
+MacPass needs OS X 10.8 as a minimum OS version since it takes advantage of some of the enhancements in Autolayout in 10.8.
+It might be possible to target 10.7 but with the upcomming 10.9 release, I think 10.8 is a feasable minimum.
+
 ##Status
 
 Take a look at the [Wiki](https://github.com/mstarke/MacPass/wiki/Status)
