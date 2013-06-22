@@ -265,7 +265,11 @@ enum {
   [self.generatePasswordButton setEnabled:YES];
   id controller = _activePopover.contentViewController;
   if([controller respondsToSelector:@selector(generatedPassword)]) {
-    [self.selectedEntry setPasswordUndoable:[controller generatedPassword]];
+    NSString *password = [controller generatedPassword];
+    /* We should only use the password if there is actally one */
+    if([password length] > 0) {
+      [self.selectedEntry setPasswordUndoable:[controller generatedPassword]];
+    }
   }
   [_activePopover release];
   _activePopover = nil;
