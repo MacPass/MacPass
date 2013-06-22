@@ -20,11 +20,13 @@ APPKIT_EXTERN NSString *const MPDocumentGroupKey;
 
 @class KdbGroup;
 @class KdbEntry;
+@class KdbTree;
 @class UUID;
 
 @interface MPDocument : NSDocument
 
 @property (assign, readonly) BOOL isProtected;
+@property (retain, readonly) KdbTree *tree;
 @property (assign, readonly) KdbGroup *root;
 @property (nonatomic,retain) NSString *password;
 @property (nonatomic, retain) NSURL *key;
