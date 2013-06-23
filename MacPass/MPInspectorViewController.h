@@ -25,8 +25,8 @@
 @property (assign) IBOutlet NSTextField *passwordTextField;
 @property (assign) IBOutlet NSTextField *titleOrNameLabel;
 @property (assign) IBOutlet HNHGradientView *bottomBar;
-@property (assign) IBOutlet NSTextField *infoTextField;
-@property (assign) IBOutlet NSView *scrollContentView;
+@property (assign) IBOutlet NSTextField *createdTextField;
+@property (assign) IBOutlet NSTextField *modifiedTextField;
 @property (assign) IBOutlet NSSegmentedControl *infoTabControl;
 @property (assign) IBOutlet NSTableView *attachmentTableView;
 @property (assign) IBOutlet NSTextView *notesTextView;

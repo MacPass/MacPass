@@ -75,13 +75,10 @@ enum {
 }
 
 - (void)didLoadView {
-  [self.scrollContentView setAutoresizingMask:NSViewWidthSizable];
+  //[self.scrollContentView setAutoresizingMask:NSViewWidthSizable];
   [[self.itemImageView cell] setBackgroundStyle:NSBackgroundStyleRaised];
   [self.itemImageView setTarget:self];
   [_bottomBar setBorderType:HNHBorderTop];
-  
-  //[[_infoTabControl cell] setTag:MPAdvancedTab forSegment:MPAdvancedTab];
-  //[[_infoTabControl cell] setTag:MPGeneralTab forSegment:MPGeneralTab];
   
   [_infoTabControl bind:NSSelectedIndexBinding toObject:self withKeyPath:@"activeTab" options:nil];
   [_tabView bind:NSSelectedIndexBinding  toObject:self withKeyPath:@"activeTab" options:nil];
@@ -100,33 +97,22 @@ enum {
                                              object:windowController];
 }
 
-- (void)_updateInfoString {
-  NSDate *modificationDate;
-  NSDate *creationDate;  
-  if(self.selectedEntry) {
-    modificationDate = self.selectedEntry.lastModificationTime;
-    creationDate = self.selectedEntry.creationTime;
-  }
-  else {
-    modificationDate = self.selectedGroup.lastModificationTime;
-    creationDate = self.selectedGroup.creationTime;
-  }
+- (void)setModificationDate:(NSDate *)modificationDate {
   NSString *modificationString = [NSDateFormatter localizedStringFromDate:modificationDate
                                                                 dateStyle:NSDateFormatterShortStyle
                                                                 timeStyle:NSDateFormatterShortStyle];
-  NSString *creationString = [NSDateFormatter localizedStringFromDate:modificationDate
-                                                            dateStyle:NSDateFormatterShortStyle
-                                                            timeStyle:NSDateFormatterShortStyle];
-  
-  [self.infoTextField setStringValue:[NSString stringWithFormat:@"created: %@ modified: %@", creationString, modificationString]];
-}
+  NSString *modifedAtTemplate = NSLocalizedString(@"MODIFED_AT_%@", @"Modifed at template string. %@ is replaced by locaized date and time");
+  [self.modifiedTextField setStringValue:[NSString stringWithFormat:modifedAtTemplate, modificationString]];
 
-- (void)setModificationDate:(NSDate *)modificationDate {
-  [self _updateInfoString];
 }
 
 - (void)setCreationDate:(NSDate *)creationDate {
-  [self _updateInfoString];
+  NSString *creationString = [NSDateFormatter localizedStringFromDate:creationDate
+                                                            dateStyle:NSDateFormatterShortStyle
+                                                            timeStyle:NSDateFormatterShortStyle];
+  
+  NSString *createdAtTemplate = NSLocalizedString(@"CREATED_AT_%@", @"Created at template string. %@ is replaced by locaized date and time");
+  [self.createdTextField setStringValue:[NSString stringWithFormat:createdAtTemplate, creationString]];
 }
 
 - (void)_updateContent {
@@ -223,6 +209,9 @@ enum {
   [self.titleTextField setStringValue:@""];
   [self.URLTextField setStringValue:@""];
   [self.notesTextView setString:@""];
+  
+  [self.createdTextField setStringValue:@""];
+  [self.modifiedTextField setStringValue:@""];
   
 }
 

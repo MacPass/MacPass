@@ -61,7 +61,7 @@
 - (void)setShadowDisplay:(MPShadowDisplay)shadowDisplay {
   if(_shadowDisplay != shadowDisplay) {
     _shadowDisplay = shadowDisplay;
-    [self needsDisplay];
+    [self setNeedsDisplay:YES];
   }
 }
 

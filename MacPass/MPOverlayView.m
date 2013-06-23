@@ -18,7 +18,6 @@
   NSBezierPath *path = [NSBezierPath bezierPathWithRoundedRect:[self bounds] xRadius:10 yRadius:10];
   [backgroundColor set];
   [path fill];
-  
   [[NSGraphicsContext currentContext] restoreGraphicsState];
 }
 
