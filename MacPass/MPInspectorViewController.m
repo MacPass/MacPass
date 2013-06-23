@@ -45,7 +45,7 @@ enum {
 @property (nonatomic, assign) NSDate *modificationDate;
 @property (nonatomic, assign) NSDate *creationDate;
 
-@property (assign) NSUInteger activeTab;
+@property (nonatomic, assign) NSUInteger activeTab;
 @property (assign) IBOutlet NSTabView *tabView;
 @property (retain) NSArrayController *attachmentsController;
 
@@ -102,7 +102,7 @@ enum {
 
 - (void)_updateInfoString {
   NSDate *modificationDate;
-  NSDate *creationDate;
+  NSDate *creationDate;  
   if(self.selectedEntry) {
     modificationDate = self.selectedEntry.lastModificationTime;
     creationDate = self.selectedEntry.creationTime;
@@ -111,7 +111,14 @@ enum {
     modificationDate = self.selectedGroup.lastModificationTime;
     creationDate = self.selectedGroup.creationTime;
   }
-  [self.infoTextField setStringValue:[NSString stringWithFormat:@"created: %@ modified: %@", creationDate, modificationDate]];
+  NSString *modificationString = [NSDateFormatter localizedStringFromDate:modificationDate
+                                                                dateStyle:NSDateFormatterShortStyle
+                                                                timeStyle:NSDateFormatterShortStyle];
+  NSString *creationString = [NSDateFormatter localizedStringFromDate:modificationDate
+                                                            dateStyle:NSDateFormatterShortStyle
+                                                            timeStyle:NSDateFormatterShortStyle];
+  
+  [self.infoTextField setStringValue:[NSString stringWithFormat:@"created: %@ modified: %@", creationString, modificationString]];
 }
 
 - (void)setModificationDate:(NSDate *)modificationDate {
@@ -190,9 +197,8 @@ enum {
   [self.usernameTextField setStringValue:@""];
   [self.URLTextField setStringValue:@""];
   
-  // Reste toggle
-  [self.infoTabControl setSelected:YES forSegment:MPGeneralTab];
-  [self.infoTabControl setSelected:NO forSegment:MPAdvancedTab];
+  // Reste toggle. Do not call setter on control or the bindings wont update
+  self.activeTab = MPGeneralTab;
   
   [self _setInputEnabled:YES];
 }
@@ -264,6 +270,7 @@ enum {
   /* We do not enable the button all the time, but it's wokring find this way */
   [self.generatePasswordButton setEnabled:YES];
   id controller = _activePopover.contentViewController;
+  /* Check for password wizzard */
   if([controller respondsToSelector:@selector(generatedPassword)]) {
     NSString *password = [controller generatedPassword];
     /* We should only use the password if there is actally one */
@@ -271,6 +278,8 @@ enum {
       [self.selectedEntry setPasswordUndoable:[controller generatedPassword]];
     }
   }
+  /* TODO: Check for Icon wizzard */
+  
   [_activePopover release];
   _activePopover = nil;
 }
@@ -294,6 +303,8 @@ enum {
   [self _updateContent];
 }
 
+
+#pragma mark NSTableViewDelegate
 - (NSView *)tableView:(NSTableView *)tableView viewForTableColumn:(NSTableColumn *)tableColumn row:(NSInteger)row {
   NSTableCellView *view = [tableView makeViewWithIdentifier:[tableColumn identifier] owner:tableView];
   if([self.selectedEntry isKindOfClass:[Kdb4Entry class]]) {

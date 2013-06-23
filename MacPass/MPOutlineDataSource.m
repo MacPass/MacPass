@@ -32,9 +32,14 @@
 - (NSDragOperation)outlineView:(NSOutlineView *)outlineView validateDrop:(id<NSDraggingInfo>)info proposedItem:(id)item proposedChildIndex:(NSInteger)index {
   if(_draggedItem) {
     info.animatesToDestination = YES;
+    NSDragOperation oprationMask = NSDragOperationMove;
+    if([info draggingSourceOperationMask] == NSDragOperationCopy) {
+      oprationMask = NSDragOperationCopy;
+    }
+    
     KdbGroup *target = [item representedObject];
     if( target == nil) {
-      return NSDragOperationNone; // Draggin over root
+      return oprationMask; // Draggin over root
     }
     BOOL validTarget = YES;
     if( _draggedItem.parent == target ) {
@@ -42,7 +47,7 @@
       validTarget &= index != [_draggedItem.parent.groups indexOfObject:_draggedItem];
     }
     if( validTarget ) {
-      return NSDragOperationMove;
+      return oprationMask;
     }
   }
   NSPasteboard *pasteBoard = [info draggingPasteboard];

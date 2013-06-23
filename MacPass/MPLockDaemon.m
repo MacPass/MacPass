@@ -13,7 +13,7 @@
 NSString *const MPShouldLockDatabaseNotification = @"com.hicknhack.macpass.MPShouldLockDatabaseNotification";
 
 @interface MPLockDaemon () {
-  NSTimer *idleTimer;
+  NSTimer *idleCheckTimer;
 }
 
 @property (nonatomic,assign) BOOL lockOnSleep;
@@ -46,7 +46,13 @@ NSString *const MPShouldLockDatabaseNotification = @"com.hicknhack.macpass.MPSho
 
 - (void)dealloc
 {
+  /* Notifications */
   [[[NSWorkspace sharedWorkspace] notificationCenter] removeObserver:self];
+  
+  /* Timer */
+  [idleCheckTimer invalidate];
+  [idleCheckTimer release];
+  
   [super dealloc];
 }
 
@@ -67,16 +73,28 @@ NSString *const MPShouldLockDatabaseNotification = @"com.hicknhack.macpass.MPSho
   if(_idleLockTime != idleLockTime) {
     _idleLockTime = idleLockTime;
     if(_idleLockTime == 0) {
-      // disable
+      [idleCheckTimer invalidate];
+      [idleCheckTimer release];
+      idleCheckTimer = nil;
     }
     else {
-      // update timer
+      [idleCheckTimer invalidate];
+      [idleCheckTimer release];
+      idleCheckTimer = [[NSTimer timerWithTimeInterval:15 target:self selector:@selector(_checkIdleTime:) userInfo:nil repeats:YES] retain];
+      [[NSRunLoop mainRunLoop] addTimer:idleCheckTimer forMode:NSDefaultRunLoopMode];
     }
   }
 }
 
 - (void)_willSleepNotification:(NSNotification *)notification {
   [[NSApp delegate] lockAllDocuments];
+}
+
+- (void)_checkIdleTime:(NSTimer *)timer {
+  CFTimeInterval interval = CGEventSourceSecondsSinceLastEventType(kCGEventSourceStateCombinedSessionState,kCGAnyInputEventType);
+  if(interval >= _idleLockTime) {
+    [[NSApp delegate] lockAllDocuments];
+  }
 }
 
 @end
