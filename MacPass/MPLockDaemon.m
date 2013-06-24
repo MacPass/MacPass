@@ -78,9 +78,13 @@ NSString *const MPShouldLockDatabaseNotification = @"com.hicknhack.macpass.MPSho
       idleCheckTimer = nil;
     }
     else {
-      [idleCheckTimer invalidate];
-      [idleCheckTimer release];
-      idleCheckTimer = [[NSTimer timerWithTimeInterval:15 target:self selector:@selector(_checkIdleTime:) userInfo:nil repeats:YES] retain];
+      if( idleCheckTimer ) {
+        NSAssert([idleCheckTimer isValid], @"Timer needs to be valid");
+        [idleCheckTimer setFireDate:[NSDate dateWithTimeIntervalSinceNow:_idleLockTime ]];
+        return; // Done
+      }
+      /* Create new timer and schedule it with runloop */
+      idleCheckTimer = [[NSTimer timerWithTimeInterval:_idleLockTime target:self selector:@selector(_checkIdleTime:) userInfo:nil repeats:YES] retain];
       [[NSRunLoop mainRunLoop] addTimer:idleCheckTimer forMode:NSDefaultRunLoopMode];
     }
   }
@@ -94,6 +98,11 @@ NSString *const MPShouldLockDatabaseNotification = @"com.hicknhack.macpass.MPSho
   CFTimeInterval interval = CGEventSourceSecondsSinceLastEventType(kCGEventSourceStateCombinedSessionState,kCGAnyInputEventType);
   if(interval >= _idleLockTime) {
     [[NSApp delegate] lockAllDocuments];
+    /* Reset the timer to full intervall */
+    [idleCheckTimer setFireDate:[NSDate dateWithTimeIntervalSinceNow:_idleLockTime]];
+  }
+  else {
+    [idleCheckTimer setFireDate:[NSDate dateWithTimeIntervalSinceNow:(_idleLockTime - interval) ]];
   }
 }
 

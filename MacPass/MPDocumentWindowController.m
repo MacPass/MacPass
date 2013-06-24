@@ -172,7 +172,7 @@ NSString *const MPCurrentItemChangedNotification = @"com.hicknhack.macpass.MPCur
   if( itemAction == [MPActionHelper actionOfType:MPActionLock]) {
     MPDocument *document = [self document];
     BOOL showsNoLockScreen = (nil == [[_passwordInputController view] superview]);
-    return showsNoLockScreen && document.isProtected;
+    return showsNoLockScreen && document.isSecured;
   }
   if(itemAction == [MPActionHelper actionOfType:MPActionAddEntry]) {
     return (nil != _outlineViewController.outlineDelegate.selectedGroup);
@@ -203,7 +203,14 @@ NSString *const MPCurrentItemChangedNotification = @"com.hicknhack.macpass.MPCur
 }
 
 - (void)lock:(id)sender {
-  // Test if document is lockable
+  MPDocument *document = [self document];
+  if(!document.isSecured) {
+    return; // Document needs a password/keyfile to be lockable
+  }
+  if(document.isLocked) {
+    return; // Document already locked
+  }
+  document.locked = YES;
   [self showPasswordInput];
 }
 
@@ -286,6 +293,10 @@ NSString *const MPCurrentItemChangedNotification = @"com.hicknhack.macpass.MPCur
     [inspectorView removeFromSuperview];
   }
   [contentView layout];
+  
+  MPDocument *document = [self document];
+  document.locked = NO;
+  
   [_entryViewController updateResponderChain];
   [_inspectorViewController updateResponderChain];
   [_outlineViewController updateResponderChain];
