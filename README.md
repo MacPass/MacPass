@@ -16,7 +16,7 @@ I'm trying to upload new builds along the way for all of you that just want to t
 As stated in the disclaimer, this software cannot be considered safe for work in it's current development status.
 Use it with caution!
 
-[Download MacPass at Dropbox](https://www.dropbox.com/sh/yqgfwi7f8mnd747/NCQlJmg0f0) (build 932 06/22/2013)
+[Download MacPass at Dropbox](https://www.dropbox.com/sh/yqgfwi7f8mnd747/NCQlJmg0f0) (build 1007 06/24/2013)
 
 ##Requirement
 
