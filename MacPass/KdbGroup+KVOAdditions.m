@@ -12,39 +12,39 @@
 
 - (void)insertObject:(KdbEntry *)entry inEntriesAtIndex:(NSUInteger)index {
   entry.parent = self;
-  [entries insertObject:entry atIndex:index];
+  [_entries insertObject:entry atIndex:index];
 }
 
 - (void)removeObjectFromEntriesAtIndex:(NSUInteger)index {
-  KdbEntry *entry = [entries objectAtIndex:index];
-  [entries removeObjectAtIndex:index];
+  KdbEntry *entry = [_entries objectAtIndex:index];
+  [_entries removeObjectAtIndex:index];
   entry.parent = nil;
 }
 
 - (NSUInteger)countOfEntries {
-  return [entries count];
+  return [self.entries count];
 }
 
 - (KdbEntry *)objectInEntriesAtIndex:(NSUInteger)index {
-  return entries[index];
+  return self.entries[index];
 }
 
 - (KdbGroup *)objectInGroupsAtIndex:(NSUInteger)index {
-  return groups[index];
+  return self.groups[index];
 }
 
 - (NSUInteger)countOfGroups {
-  return [groups count];
+  return [self.groups count];
 }
 
 - (void)insertObject:(KdbGroup *)group inGroupsAtIndex:(NSUInteger)index {
   group.parent = self;
-  [groups insertObject:group atIndex:index];
+  [_groups insertObject:group atIndex:index];
 }
 
 - (void)removeObjectFromGroupsAtIndex:(NSUInteger)index {
-  KdbGroup *group = [groups objectAtIndex:index];
-  [groups removeObjectAtIndex:index];
+  KdbGroup *group = [self.groups objectAtIndex:index];
+  [_groups removeObjectAtIndex:index];
   group.parent = nil;
 }
 

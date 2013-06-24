@@ -39,6 +39,10 @@
 		4C245BF0176E1E3D0086100E /* ContextFilterLogFormatter.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C245B70176E1E3D0086100E /* ContextFilterLogFormatter.m */; settings = {COMPILER_FLAGS = "-fobjc-arc"; }; };
 		4C245BF1176E1E3D0086100E /* DispatchQueueLogFormatter.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C245B72176E1E3D0086100E /* DispatchQueueLogFormatter.m */; settings = {COMPILER_FLAGS = "-fobjc-arc"; }; };
 		4C25D58716CF0FAA00F6806C /* EntryView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4C25D58616CF0FAA00F6806C /* EntryView.xib */; };
+		4C2724CE1778EFB100FD8456 /* NSData+Random.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C2724CD1778EFB100FD8456 /* NSData+Random.m */; };
+		4C2724D11778EFE300FD8456 /* NSString+Empty.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C2724D01778EFE300FD8456 /* NSString+Empty.m */; };
+		4C2724D41778FA0700FD8456 /* NSDate+Packed.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C2724D31778FA0700FD8456 /* NSDate+Packed.m */; };
+		4C2724D71778FF1A00FD8456 /* NSUUID+KeePassLib.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C2724D61778FF1A00FD8456 /* NSUUID+KeePassLib.m */; };
 		4C2C4C2C16D3BE3700D49295 /* KdbGroup+MPTreeTools.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C2C4C2B16D3BE3700D49295 /* KdbGroup+MPTreeTools.m */; };
 		4C2E381D16D11FF900037A9D /* 03_ServerTemplate.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 4C2E381A16D11FF900037A9D /* 03_ServerTemplate.pdf */; };
 		4C2E381E16D11FF900037A9D /* 04_KlipperTemplate.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 4C2E381B16D11FF900037A9D /* 04_KlipperTemplate.pdf */; };
@@ -90,7 +94,6 @@
 		4C669B8F16760ED100DD0774 /* DDXMLDocument+MKPAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C669B5216760ED100DD0774 /* DDXMLDocument+MKPAdditions.m */; };
 		4C669B9016760ED100DD0774 /* DDXMLElement+MKPAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C669B5416760ED100DD0774 /* DDXMLElement+MKPAdditions.m */; };
 		4C669B9116760ED100DD0774 /* Kdb.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C669B5616760ED100DD0774 /* Kdb.m */; };
-		4C669B9216760ED100DD0774 /* Kdb3Date.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C669B5816760ED100DD0774 /* Kdb3Date.m */; };
 		4C669B9316760ED100DD0774 /* Kdb3Node.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C669B5A16760ED100DD0774 /* Kdb3Node.m */; };
 		4C669B9416760ED100DD0774 /* Kdb3Reader.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C669B5C16760ED100DD0774 /* Kdb3Reader.m */; };
 		4C669B9516760ED100DD0774 /* Kdb3Utils.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C669B5E16760ED100DD0774 /* Kdb3Utils.m */; };
@@ -105,7 +108,6 @@
 		4C669B9E16760ED100DD0774 /* KdbWriterFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C669B7316760ED100DD0774 /* KdbWriterFactory.m */; };
 		4C669B9F16760ED100DD0774 /* RandomStream.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C669B7516760ED100DD0774 /* RandomStream.m */; };
 		4C669BA016760ED100DD0774 /* Salsa20RandomStream.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C669B7716760ED100DD0774 /* Salsa20RandomStream.m */; };
-		4C669BA116760ED100DD0774 /* Utils.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C669B7916760ED100DD0774 /* Utils.m */; };
 		4C669BA216760ED100DD0774 /* UUID.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C669B7B16760ED100DD0774 /* UUID.m */; };
 		4C69A73A16D589DF00EC1B1A /* HNHGradientView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C69A73916D589DF00EC1B1A /* HNHGradientView.m */; };
 		4C76155C1764C04C0015A1A6 /* GeneralSettings.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4C76155E1764C04C0015A1A6 /* GeneralSettings.xib */; };
@@ -241,6 +243,14 @@
 		4C245B71176E1E3D0086100E /* DispatchQueueLogFormatter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DispatchQueueLogFormatter.h; sourceTree = "<group>"; };
 		4C245B72176E1E3D0086100E /* DispatchQueueLogFormatter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DispatchQueueLogFormatter.m; sourceTree = "<group>"; };
 		4C25D58616CF0FAA00F6806C /* EntryView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = EntryView.xib; sourceTree = "<group>"; };
+		4C2724CC1778EFB100FD8456 /* NSData+Random.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSData+Random.h"; sourceTree = "<group>"; };
+		4C2724CD1778EFB100FD8456 /* NSData+Random.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSData+Random.m"; sourceTree = "<group>"; };
+		4C2724CF1778EFE300FD8456 /* NSString+Empty.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+Empty.h"; sourceTree = "<group>"; };
+		4C2724D01778EFE300FD8456 /* NSString+Empty.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+Empty.m"; sourceTree = "<group>"; };
+		4C2724D21778FA0700FD8456 /* NSDate+Packed.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDate+Packed.h"; sourceTree = "<group>"; };
+		4C2724D31778FA0700FD8456 /* NSDate+Packed.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDate+Packed.m"; sourceTree = "<group>"; };
+		4C2724D51778FF1A00FD8456 /* NSUUID+KeePassLib.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSUUID+KeePassLib.h"; sourceTree = "<group>"; };
+		4C2724D61778FF1A00FD8456 /* NSUUID+KeePassLib.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSUUID+KeePassLib.m"; sourceTree = "<group>"; };
 		4C2C4C2A16D3BE3700D49295 /* KdbGroup+MPTreeTools.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "KdbGroup+MPTreeTools.h"; sourceTree = "<group>"; };
 		4C2C4C2B16D3BE3700D49295 /* KdbGroup+MPTreeTools.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "KdbGroup+MPTreeTools.m"; sourceTree = "<group>"; };
 		4C2E381A16D11FF900037A9D /* 03_ServerTemplate.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = 03_ServerTemplate.pdf; sourceTree = "<group>"; };
@@ -333,8 +343,6 @@
 		4C669B5416760ED100DD0774 /* DDXMLElement+MKPAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "DDXMLElement+MKPAdditions.m"; sourceTree = "<group>"; };
 		4C669B5516760ED100DD0774 /* Kdb.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Kdb.h; sourceTree = "<group>"; };
 		4C669B5616760ED100DD0774 /* Kdb.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Kdb.m; sourceTree = "<group>"; };
-		4C669B5716760ED100DD0774 /* Kdb3Date.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Kdb3Date.h; sourceTree = "<group>"; };
-		4C669B5816760ED100DD0774 /* Kdb3Date.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Kdb3Date.m; sourceTree = "<group>"; };
 		4C669B5916760ED100DD0774 /* Kdb3Node.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Kdb3Node.h; sourceTree = "<group>"; };
 		4C669B5A16760ED100DD0774 /* Kdb3Node.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Kdb3Node.m; sourceTree = "<group>"; };
 		4C669B5B16760ED100DD0774 /* Kdb3Reader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Kdb3Reader.h; sourceTree = "<group>"; };
@@ -366,8 +374,6 @@
 		4C669B7516760ED100DD0774 /* RandomStream.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RandomStream.m; sourceTree = "<group>"; };
 		4C669B7616760ED100DD0774 /* Salsa20RandomStream.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Salsa20RandomStream.h; sourceTree = "<group>"; };
 		4C669B7716760ED100DD0774 /* Salsa20RandomStream.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Salsa20RandomStream.m; sourceTree = "<group>"; };
-		4C669B7816760ED100DD0774 /* Utils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Utils.h; sourceTree = "<group>"; };
-		4C669B7916760ED100DD0774 /* Utils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Utils.m; sourceTree = "<group>"; };
 		4C669B7A16760ED100DD0774 /* UUID.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UUID.h; sourceTree = "<group>"; };
 		4C669B7B16760ED100DD0774 /* UUID.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UUID.m; sourceTree = "<group>"; };
 		4C69A73816D589DF00EC1B1A /* HNHGradientView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HNHGradientView.h; sourceTree = "<group>"; };
@@ -688,6 +694,21 @@
 			name = KeepassHttp;
 			sourceTree = "<group>";
 		};
+		4C2724CB1778EF8E00FD8456 /* Categories */ = {
+			isa = PBXGroup;
+			children = (
+				4C2724CC1778EFB100FD8456 /* NSData+Random.h */,
+				4C2724CD1778EFB100FD8456 /* NSData+Random.m */,
+				4C2724CF1778EFE300FD8456 /* NSString+Empty.h */,
+				4C2724D01778EFE300FD8456 /* NSString+Empty.m */,
+				4C2724D21778FA0700FD8456 /* NSDate+Packed.h */,
+				4C2724D31778FA0700FD8456 /* NSDate+Packed.m */,
+				4C2724D51778FF1A00FD8456 /* NSUUID+KeePassLib.h */,
+				4C2724D61778FF1A00FD8456 /* NSUUID+KeePassLib.m */,
+			);
+			name = Categories;
+			sourceTree = "<group>";
+		};
 		4C2C4C2516D3BCEA00D49295 /* KeePassLib Categories */ = {
 			isa = PBXGroup;
 			children = (
@@ -843,6 +864,7 @@
 		4C669B4C16760ED100DD0774 /* KeePassLib */ = {
 			isa = PBXGroup;
 			children = (
+				4C2724CB1778EF8E00FD8456 /* Categories */,
 				4C669B4F16760ED100DD0774 /* Base64.h */,
 				4C669B5016760ED100DD0774 /* Base64.m */,
 				4C669B5116760ED100DD0774 /* DDXMLDocument+MKPAdditions.h */,
@@ -851,8 +873,6 @@
 				4C669B5416760ED100DD0774 /* DDXMLElement+MKPAdditions.m */,
 				4C669B5516760ED100DD0774 /* Kdb.h */,
 				4C669B5616760ED100DD0774 /* Kdb.m */,
-				4C669B5716760ED100DD0774 /* Kdb3Date.h */,
-				4C669B5816760ED100DD0774 /* Kdb3Date.m */,
 				4C669B5916760ED100DD0774 /* Kdb3Node.h */,
 				4C669B5A16760ED100DD0774 /* Kdb3Node.m */,
 				4C669B5B16760ED100DD0774 /* Kdb3Reader.h */,
@@ -884,8 +904,6 @@
 				4C669B7516760ED100DD0774 /* RandomStream.m */,
 				4C669B7616760ED100DD0774 /* Salsa20RandomStream.h */,
 				4C669B7716760ED100DD0774 /* Salsa20RandomStream.m */,
-				4C669B7816760ED100DD0774 /* Utils.h */,
-				4C669B7916760ED100DD0774 /* Utils.m */,
 				4C669B7A16760ED100DD0774 /* UUID.h */,
 				4C669B7B16760ED100DD0774 /* UUID.m */,
 			);
@@ -1302,7 +1320,6 @@
 				4C669B8F16760ED100DD0774 /* DDXMLDocument+MKPAdditions.m in Sources */,
 				4C669B9016760ED100DD0774 /* DDXMLElement+MKPAdditions.m in Sources */,
 				4C669B9116760ED100DD0774 /* Kdb.m in Sources */,
-				4C669B9216760ED100DD0774 /* Kdb3Date.m in Sources */,
 				4C669B9316760ED100DD0774 /* Kdb3Node.m in Sources */,
 				4C669B9416760ED100DD0774 /* Kdb3Reader.m in Sources */,
 				4C669B9516760ED100DD0774 /* Kdb3Utils.m in Sources */,
@@ -1317,7 +1334,6 @@
 				4C669B9E16760ED100DD0774 /* KdbWriterFactory.m in Sources */,
 				4C669B9F16760ED100DD0774 /* RandomStream.m in Sources */,
 				4C669BA016760ED100DD0774 /* Salsa20RandomStream.m in Sources */,
-				4C669BA116760ED100DD0774 /* Utils.m in Sources */,
 				4C669BA216760ED100DD0774 /* UUID.m in Sources */,
 				4C2E382316D1421B00037A9D /* MPIconHelper.m in Sources */,
 				4C2E382616D1470200037A9D /* MPViewController.m in Sources */,
@@ -1403,6 +1419,10 @@
 				4CA0E3A7176FAF99004D18CB /* MPDocumentQueryService.m in Sources */,
 				4C83F4AA1774B155006C5FC0 /* Kdb3Tree+NewTree.m in Sources */,
 				4C83F4AD1774B25F006C5FC0 /* Kdb4Tree+NewTree.m in Sources */,
+				4C2724CE1778EFB100FD8456 /* NSData+Random.m in Sources */,
+				4C2724D11778EFE300FD8456 /* NSString+Empty.m in Sources */,
+				4C2724D41778FA0700FD8456 /* NSDate+Packed.m in Sources */,
+				4C2724D71778FF1A00FD8456 /* NSUUID+KeePassLib.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
