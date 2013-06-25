@@ -14,9 +14,14 @@ Beware that I'm going to shift things around so stuff is going to break. A lot.
 
 I'm trying to upload new builds along the way for all of you that just want to take a quick look.
 As stated in the disclaimer, this software cannot be considered safe for work in it's current development status.
-Use it with caution!
+Use it with caution! Since I did start refactoring the KeePassLib there is even more potential broken code!
 
-[Download MacPass at Dropbox](https://www.dropbox.com/sh/yqgfwi7f8mnd747/NCQlJmg0f0) (build 1007 06/24/2013)
+[Download MacPass at Dropbox](https://www.dropbox.com/sh/yqgfwi7f8mnd747/NCQlJmg0f0) (build 1164 06/26/2013)
+
+##Help
+
+I'm in constant need of a full set of Databases with all possible keyfile/password and format combinations.
+If you are able to provide databases with keyfiles (Hashed, Binary, XML) I would love to hear from you!
 
 ##Requirement
 
