@@ -300,14 +300,8 @@ enum {
     Kdb4Entry *entry = (Kdb4Entry *)self.selectedEntry;
     BinaryRef *binaryRef = entry.binaries[row];
     [[view textField] bind:NSValueBinding toObject:binaryRef withKeyPath:@"key" options:nil];
-    MPDocument *document = [[self windowController] document];
-    Kdb4Tree *tree = (Kdb4Tree *)document.tree;
-    NSPredicate *filterPredicate = [NSPredicate predicateWithBlock:^BOOL(id evaluatedObject, NSDictionary *bindings) {
-      Binary *binaryFile = evaluatedObject;
-      return (binaryFile.binaryId == binaryRef.ref);
-    }];
-    NSArray *filteredBinary = [tree.binaries filteredArrayUsingPredicate:filterPredicate];
-    Binary *attachedFile = [filteredBinary lastObject];
+//    MPDocument *document = [[self windowController] document];
+//    [document binaryForRef:binaryRef];
   }
   return view;
 }

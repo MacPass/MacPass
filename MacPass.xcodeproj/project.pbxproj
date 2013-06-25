@@ -90,7 +90,6 @@
 		4C669B8A16760ED100DD0774 /* InputStream.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C669B4716760ED100DD0774 /* InputStream.m */; };
 		4C669B8B16760ED100DD0774 /* OutputStream.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C669B4916760ED100DD0774 /* OutputStream.m */; };
 		4C669B8C16760ED100DD0774 /* Sha256OutputStream.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C669B4B16760ED100DD0774 /* Sha256OutputStream.m */; };
-		4C669B8F16760ED100DD0774 /* DDXMLDocument+MKPAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C669B5216760ED100DD0774 /* DDXMLDocument+MKPAdditions.m */; };
 		4C669B9016760ED100DD0774 /* DDXMLElement+MKPAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C669B5416760ED100DD0774 /* DDXMLElement+MKPAdditions.m */; };
 		4C669B9116760ED100DD0774 /* Kdb.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C669B5616760ED100DD0774 /* Kdb.m */; };
 		4C669B9316760ED100DD0774 /* Kdb3Node.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C669B5A16760ED100DD0774 /* Kdb3Node.m */; };
@@ -334,8 +333,6 @@
 		4C669B4916760ED100DD0774 /* OutputStream.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OutputStream.m; sourceTree = "<group>"; };
 		4C669B4A16760ED100DD0774 /* Sha256OutputStream.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Sha256OutputStream.h; sourceTree = "<group>"; };
 		4C669B4B16760ED100DD0774 /* Sha256OutputStream.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Sha256OutputStream.m; sourceTree = "<group>"; };
-		4C669B5116760ED100DD0774 /* DDXMLDocument+MKPAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "DDXMLDocument+MKPAdditions.h"; sourceTree = "<group>"; };
-		4C669B5216760ED100DD0774 /* DDXMLDocument+MKPAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "DDXMLDocument+MKPAdditions.m"; sourceTree = "<group>"; };
 		4C669B5316760ED100DD0774 /* DDXMLElement+MKPAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "DDXMLElement+MKPAdditions.h"; sourceTree = "<group>"; };
 		4C669B5416760ED100DD0774 /* DDXMLElement+MKPAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "DDXMLElement+MKPAdditions.m"; sourceTree = "<group>"; };
 		4C669B5516760ED100DD0774 /* Kdb.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Kdb.h; sourceTree = "<group>"; };
@@ -694,6 +691,8 @@
 		4C2724CB1778EF8E00FD8456 /* Categories */ = {
 			isa = PBXGroup;
 			children = (
+				4C669B5316760ED100DD0774 /* DDXMLElement+MKPAdditions.h */,
+				4C669B5416760ED100DD0774 /* DDXMLElement+MKPAdditions.m */,
 				4C2724CC1778EFB100FD8456 /* NSData+Random.h */,
 				4C2724CD1778EFB100FD8456 /* NSData+Random.m */,
 				4C2724CF1778EFE300FD8456 /* NSString+Empty.h */,
@@ -862,10 +861,6 @@
 			isa = PBXGroup;
 			children = (
 				4C2724CB1778EF8E00FD8456 /* Categories */,
-				4C669B5116760ED100DD0774 /* DDXMLDocument+MKPAdditions.h */,
-				4C669B5216760ED100DD0774 /* DDXMLDocument+MKPAdditions.m */,
-				4C669B5316760ED100DD0774 /* DDXMLElement+MKPAdditions.h */,
-				4C669B5416760ED100DD0774 /* DDXMLElement+MKPAdditions.m */,
 				4C669B5516760ED100DD0774 /* Kdb.h */,
 				4C669B5616760ED100DD0774 /* Kdb.m */,
 				4C669B5916760ED100DD0774 /* Kdb3Node.h */,
@@ -1311,7 +1306,6 @@
 				4C669B8A16760ED100DD0774 /* InputStream.m in Sources */,
 				4C669B8B16760ED100DD0774 /* OutputStream.m in Sources */,
 				4C669B8C16760ED100DD0774 /* Sha256OutputStream.m in Sources */,
-				4C669B8F16760ED100DD0774 /* DDXMLDocument+MKPAdditions.m in Sources */,
 				4C669B9016760ED100DD0774 /* DDXMLElement+MKPAdditions.m in Sources */,
 				4C669B9116760ED100DD0774 /* Kdb.m in Sources */,
 				4C669B9316760ED100DD0774 /* Kdb3Node.m in Sources */,

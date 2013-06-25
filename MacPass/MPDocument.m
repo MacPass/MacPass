@@ -158,6 +158,19 @@ NSString *const MPDocumentGroupKey = @"MPDocumentGroupKey";
   return [self.root entryForUUID:uuid];
 }
 
+- (Binary *)binaryForRef:(BinaryRef *)binaryRef {
+  if(self.version != MPDatabaseVersion4) {
+    return nil;
+  }
+  NSPredicate *filterPredicate = [NSPredicate predicateWithBlock:^BOOL(id evaluatedObject, NSDictionary *bindings) {
+    Binary *binaryFile = evaluatedObject;
+    return (binaryFile.binaryId == binaryRef.ref);
+  }];
+  Kdb4Tree *tree = (Kdb4Tree *)self.tree;
+  NSArray *filteredBinary = [tree.binaries filteredArrayUsingPredicate:filterPredicate];
+  return [filteredBinary lastObject];
+}
+
 
 #pragma mark Data manipulation
 - (KdbEntry *)createEntry:(KdbGroup *)parent {

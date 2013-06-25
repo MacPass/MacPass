@@ -22,6 +22,8 @@ APPKIT_EXTERN NSString *const MPDocumentGroupKey;
 @class KdbEntry;
 @class KdbTree;
 @class UUID;
+@class Binary;
+@class BinaryRef;
 
 @interface MPDocument : NSDocument
 
@@ -37,13 +39,21 @@ APPKIT_EXTERN NSString *const MPDocumentGroupKey;
 @property (nonatomic, retain) NSURL *key;
 @property (assign, readonly) MPDatabaseVersion version;
 
-
 - (id)initWithVersion:(MPDatabaseVersion)version;
 - (BOOL)decryptWithPassword:(NSString *)password keyFileURL:(NSURL *)keyFileURL;
 
-/* Lookup */
+#pragma mark Data Lookup
+/*
+ Returns the entry for the given UUID, nil if none was found
+ */
 - (KdbEntry *)findEntry:(UUID *)uuid;
+/*
+ Return the Binary for the given BinaryRef. nil if none was found
+ */
+- (Binary *)binaryForRef:(BinaryRef *)binaryRef;
 
+
+#pragma mark Data Manipulation
 /* Undoable Intiialization of elements */
 - (KdbGroup *)createGroup:(KdbGroup *)parent;
 - (KdbEntry *)createEntry:(KdbGroup *)parent;
