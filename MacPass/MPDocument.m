@@ -80,16 +80,13 @@ NSString *const MPDocumentGroupKey = @"MPDocumentGroupKey";
 }
 
 - (BOOL)writeToURL:(NSURL *)url ofType:(NSString *)typeName error:(NSError **)outError {
-  @try {
-    [KdbWriterFactory persist:self.tree file:[url path] withPassword:self.passwordHash];
-  }
-  @catch (NSException *exception) {
-    NSLog(@"%@", [exception description]);
+  NSError *error = nil;
+  [KdbWriterFactory persist:self.tree fileURL:url withPassword:self.passwordHash error:&error];
+  if(error) {
+    NSLog(@"%@", [error localizedDescription]);
     return NO;
   }
-  
   return YES;
-  
 }
 
 - (BOOL)readFromURL:(NSURL *)url ofType:(NSString *)typeName error:(NSError **)outError {
@@ -109,7 +106,6 @@ NSString *const MPDocumentGroupKey = @"MPDocumentGroupKey";
     self.tree = [KdbReaderFactory load:[[self fileURL] path] withPassword:self.passwordHash];
   }
   @catch (NSException *exception) {
-    NSLog(@"%@", [exception description]);
     return NO;
   }
   
