@@ -8,7 +8,6 @@
 
 #import "MPEntryViewController.h"
 #import "MPAppDelegate.h"
-#import "MPOutlineViewDelegate.h"
 #import "MPOutlineViewController.h"
 #import "MPDocument.h"
 #import "MPIconHelper.h"
@@ -236,21 +235,26 @@ NSString *const _toggleFilterUsernameButton = @"SearchUsername";
     [self clearFilter:nil];
   }
   MPDocumentWindowController *sender = [notification object];
-  if([sender.currentItem isKindOfClass:[KdbGroup class]]) {
-    KdbGroup *item = sender.currentItem;
-    if(item) {
-      if([[self.entryArrayController content] count] > 0) {
-        KdbEntry *entry = [[self.entryArrayController content] lastObject];
-        if(entry.parent == item) {
-          return; // we are showing the correct object right now.
-        }
+  id item = sender.currentItem;
+  /*
+   Filter? If no group is selected, we shouldn display a list of entries
+   */
+  if(!sender.currentGroup) {
+    [self.entryArrayController unbind:NSContentArrayBinding];
+    [self.entryArrayController setContent:nil];
+    return;
+  }
+  /*
+   If a grup is the current item, see if we already show that group
+   */
+  if(item == sender.currentGroup) {
+    if([[self.entryArrayController content] count] > 0) {
+      KdbEntry *entry = [[self.entryArrayController content] lastObject];
+      if(entry.parent == item) {
+        return; // we are showing the correct object right now.
       }
-      [self.entryArrayController bind:NSContentArrayBinding toObject:item withKeyPath:@"entries" options:nil];
     }
-    else {
-      [self.entryArrayController unbind:NSContentArrayBinding];
-      [self.entryArrayController setContent:nil];
-    }
+    [self.entryArrayController bind:NSContentArrayBinding toObject:item withKeyPath:@"entries" options:nil];
   }
 }
 
@@ -353,7 +357,7 @@ NSString *const _toggleFilterUsernameButton = @"SearchUsername";
   if([self _showsFilterBar]) {
     return; // nothing to to
   }
-    
+  
   NSView *scrollView = [_entryTable enclosingScrollView];
   NSDictionary *views = NSDictionaryOfVariableBindings(scrollView, _filterBar);
   [self.view layout];
@@ -479,9 +483,10 @@ NSString *const _toggleFilterUsernameButton = @"SearchUsername";
   }
 }
 
-- (void)deleteEntry:(id)sender {
+- (void)deleteNode:(id)sender {
   KdbEntry *entry =[self _clickedOrSelectedEntry];
-  [entry.parent removeEntryUndoable:entry];
+  MPDocument *document = [[self windowController] document];
+  [document group:entry.parent removeEntry:entry];
 }
 
 - (void)_toggleFilterSpace:(id)sender {

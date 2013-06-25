@@ -7,30 +7,34 @@
 //
 
 #import "MPOutlineViewController.h"
-#import "MPOutlineViewDelegate.h"
 #import "MPOutlineDataSource.h"
-
 #import "MPDocument.h"
 #import "MPAppDelegate.h"
 #import "MPContextMenuHelper.h"
 #import "MPConstants.h"
 #import "MPActionHelper.h"
+#import "MPIconHelper.h"
+#import "MPUppercaseStringValueTransformer.h"
 
 #import "KdbLib.h"
 #import "KdbGroup+Undo.h"
 
 #import "HNHGradientView.h"
 
+NSString *const MPOutlineViewDidChangeGroupSelection = @"com.macpass.MPOutlineViewDidChangeGroupSelection";
+
+NSString *const _MPOutlineViewDataViewIdentifier = @"DataCell";
+NSString *const _MPOutlinveViewHeaderViewIdentifier = @"HeaderCell";
 
 @interface MPOutlineViewController () {
   BOOL _bindingEstablished;
 }
 @property (assign) IBOutlet NSOutlineView *outlineView;
 @property (assign) IBOutlet NSButton *addGroupButton;
+@property (assign) KdbGroup *selectedGroup;
 
 @property (retain) NSTreeController *treeController;
 @property (retain) MPOutlineDataSource *datasource;
-@property (retain) MPOutlineViewDelegate *outlineDelegate;
 @property (retain) NSMenu *menu;
 
 @end
@@ -46,24 +50,14 @@
   if (self) {
     _treeController = [[NSTreeController alloc] init];
     _bindingEstablished = NO;
-    _outlineDelegate = [[MPOutlineViewDelegate alloc] init];
     _datasource = [[MPOutlineDataSource alloc] init];
   }
   
   return self;
 }
 
-- (void)dealloc
-{
-  [_datasource release];
-  [_outlineDelegate release];
-  [_menu release];
-  
-  [super dealloc];
-}
-
 - (void)didLoadView {
-  [_outlineView setDelegate:_outlineDelegate];
+  [_outlineView setDelegate:self];
   [_outlineView setMenu:[self _contextMenu]];
   [_outlineView setAllowsEmptySelection:YES];
   [_outlineView setFloatsGroupRows:NO];
@@ -86,8 +80,14 @@
   [_outlineView expandItem:node expandChildren:NO];
 }
 
+#pragma makr Notifications
 - (void)setupNotifications:(MPDocumentWindowController *)windowController {
   [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(_didCreateGroup:) name:MPDocumentDidAddGroupNotification object:[windowController document]];
+}
+
+- (void)clearSelection {
+  [_outlineView deselectAll:nil];
+  [self outlineViewSelectionDidChange:nil];
 }
 
 - (void)_didCreateGroup:(NSNotification *)notification {
@@ -106,14 +106,8 @@
   [_outlineView selectRowIndexes:indexSet byExtendingSelection:NO];
 }
 
-- (NSMenu *)_contextMenu {
-  NSMenu *menu = [[NSMenu alloc] init];
-  NSArray *items = [MPContextMenuHelper contextMenuItemsWithItems:MPContextMenuMinimal];
-  for(NSMenuItem *item in items) {
-    [menu addItem:item];
-  }
-  return [menu autorelease];
-}
+#pragma mark -
+#pragma mark Actions
 
 - (void)createGroup:(id)sender {
   KdbGroup *group = [self _clickedOrSelectedGroup];
@@ -144,12 +138,67 @@
   }
 }
 
-- (void)deleteEntry:(id)sender {
+- (void)deleteNode:(id)sender {
   KdbGroup *group = [self _clickedOrSelectedGroup];
   if(group && group.parent) {
-    [group.parent removeGroupUndoable:group];
+    [[[self windowController] document] group:group.parent removeGroup:group];
   }
 }
+
+#pragma mark NSOutlineViewDelegate
+- (NSView *)outlineView:(NSOutlineView *)outlineView viewForTableColumn:(NSTableColumn *)tableColumn item:(id)item {
+  NSTreeNode *treeNode = item;
+  KdbGroup *group = [treeNode representedObject];
+  //KdbGroup *group = item;
+  NSTableCellView *view;
+  if(![group parent]) {
+    NSDictionary *options = @{ NSValueTransformerBindingOption : [NSValueTransformer valueTransformerForName:MPUppsercaseStringValueTransformerName] };
+    view = [outlineView makeViewWithIdentifier:_MPOutlinveViewHeaderViewIdentifier owner:self];
+    [view.textField bind:NSValueBinding toObject:group withKeyPath:@"name" options:options];
+  }
+  else {
+    view = [outlineView makeViewWithIdentifier:_MPOutlineViewDataViewIdentifier owner:self];
+    NSImage *icon = [MPIconHelper icon:(MPIconType)[group image]];
+    [view.imageView setImage:icon];
+    [view.textField bind:NSValueBinding toObject:group withKeyPath:@"name" options:nil];
+    [view.textField bind:@"count" toObject:group withKeyPath:@"entries.@count" options:nil];
+  }
+  
+  return view;
+}
+
+- (BOOL)outlineView:(NSOutlineView *)outlineView isGroupItem:(id)item {
+  NSTreeNode *treeNode = item;
+  KdbGroup *group = [treeNode representedObject];
+  //KdbGroup *group = item;
+  if(!group.parent) {
+    return YES;
+  }
+  return NO;
+}
+
+- (BOOL)outlineView:(NSOutlineView *)outlineView shouldSelectItem:(id)item {
+  NSTreeNode *treeNode = item;
+  KdbGroup *group = [treeNode representedObject];
+  //KdbGroup *group = item;
+  return (nil != [group parent]);
+}
+
+- (void)outlineViewSelectionDidChange:(NSNotification *)notification {
+  NSTreeNode *treeNode = [_outlineView itemAtRow:[_outlineView selectedRow]];
+  KdbGroup *selectedGroup = [treeNode representedObject];
+  self.selectedGroup = selectedGroup;
+  [[NSNotificationCenter defaultCenter] postNotificationName:MPOutlineViewDidChangeGroupSelection object:self userInfo:nil];
+}
+
+- (BOOL)outlineView:(NSOutlineView *)outlineView shouldShowOutlineCellForItem:(id)item {
+  return YES;
+  //  KdbGroup *group = [item representedObject];
+  //  return (nil != group.parent);
+}
+
+#pragma mark -
+#pragma mark Private
 
 - (KdbGroup *)_clickedOrSelectedGroup {
   NSInteger row = [self.outlineView clickedRow];
@@ -157,6 +206,15 @@
     row = [self.outlineView selectedRow];
   }
   return [[self.outlineView itemAtRow:row] representedObject];
+}
+
+- (NSMenu *)_contextMenu {
+  NSMenu *menu = [[NSMenu alloc] init];
+  NSArray *items = [MPContextMenuHelper contextMenuItemsWithItems:MPContextMenuMinimal];
+  for(NSMenuItem *item in items) {
+    [menu addItem:item];
+  }
+  return [menu autorelease];
 }
 
 @end

@@ -20,7 +20,7 @@
                   @(MPActionCopyPassword) : @"copyPassword:",
                   @(MPActionCopyURL) : @"copyURL:",
                   @(MPActionCopyUsername) : @"copyUsername:",
-                  @(MPActionDelete) : @"deleteEntry:",
+                  @(MPActionDelete) : @"deleteNode:",
                   @(MPActionEdit) : @"editEntry:",
                   @(MPActionOpenURL) : @"openURL:",
                   @(MPActionToggleInspector) : @"toggleInspector:",

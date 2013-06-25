@@ -17,11 +17,4 @@ APPKIT_EXTERN NSString *const MPGroupNameUndoableKey;
 - (NSString *)nameUndoable;
 - (void)setNameUndoable:(NSString *)newName;
 
-- (void)addEntryUndoable:(KdbEntry *)entry;
-- (void)addGroupUndoable:(KdbGroup *)group;
-- (void)removeGroupUndoable:(KdbGroup *)group;
-- (void)removeEntryUndoable:(KdbEntry *)entry;
-
-- (void)moveToGroupUndoable:(KdbGroup *)group;
-
 @end

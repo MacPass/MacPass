@@ -8,22 +8,25 @@
 
 #import "MPViewController.h"
 
+APPKIT_EXTERN NSString *const MPOutlineViewDidChangeGroupSelection;
+
 @class MPOutlineViewDelegate;
 @class KdbGroup;
 @class HNHGradientView;
 @class MPDocumentWindowController;
 
-@interface MPOutlineViewController : MPViewController
+@interface MPOutlineViewController : MPViewController <NSOutlineViewDelegate>
 
 @property (readonly, assign) NSOutlineView *outlineView;
-@property (retain, readonly) MPOutlineViewDelegate *outlineDelegate;
 @property (assign) IBOutlet HNHGradientView *bottomBar;
+@property (assign, readonly) KdbGroup *selectedGroup;
 
+- (void)clearSelection;
 - (void)showOutline;
 - (void)setupNotifications:(MPDocumentWindowController *)windowController;
 
 - (void)createGroup:(id)sender;
 - (void)createEntry:(id)sender;
-- (void)deleteEntry:(id)sender;
+- (void)deleteNode:(id)sender;
 
 @end

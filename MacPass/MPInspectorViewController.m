@@ -8,7 +8,6 @@
 
 #import "MPInspectorViewController.h"
 #import "MPEntryViewController.h"
-#import "MPOutlineViewDelegate.h"
 #import "MPPasswordCreatorViewController.h"
 #import "MPShadowBox.h"
 #import "MPIconHelper.h"
@@ -16,7 +15,6 @@
 #import "MPIconSelectViewController.h"
 #import "MPDocumentWindowController.h"
 #import "MPOutlineViewController.h"
-#import "MPOutlineViewDelegate.h"
 #import "MPDocument.h"
 
 #import "KdbLib.h"

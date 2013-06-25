@@ -20,19 +20,21 @@
 #import "Kdb3Tree+NewTree.h"
 #import "Kdb4Tree+NewTree.h"
 
-NSString *const MPDocumentDidAddGroupNotification = @"MPDocumentDidAddGroupNotification";
-NSString *const MPDocumentWillDelteGroupNotification = @"MPDocumentDidDelteGroupNotification";
-NSString *const MPDocumentDidAddEntryNotification = @"MPDocumentDidAddEntryNotification";
-NSString *const MPDocumentWillDeleteEntryNotification = @"MPDocumentDidDeleteEntryNotification";
+NSString *const MPDocumentDidAddGroupNotification     = @"com.hicknhack.macpass.MPDocumentDidAddGroupNotification";
+NSString *const MPDocumentWillDelteGroupNotification  = @"com.hicknhack.macpass.MPDocumentDidDelteGroupNotification";
+NSString *const MPDocumentDidAddEntryNotification     = @"com.hicknhack.macpass.MPDocumentDidAddEntryNotification";
+NSString *const MPDocumentWillDeleteEntryNotification = @"com.hicknhack.macpass.MPDocumentDidDeleteEntryNotification";
+NSString *const MPDocumentDidRevertNotifiation        = @"com.hicknhack.macpass.MPDocumentDidRevertNotifiation";
 
-NSString *const MPDocumentEntryKey = @"MPDocumentEntryKey";
-NSString *const MPDocumentGroupKey = @"MPDocumentGroupKey";
+NSString *const MPDocumentEntryKey                    = @"MPDocumentEntryKey";
+NSString *const MPDocumentGroupKey                    = @"MPDocumentGroupKey";
 
 
 @interface MPDocument ()
 
 @property (assign, nonatomic) BOOL secured;
 @property (retain) KdbTree *tree;
+@property (assign, nonatomic) KdbGroup *root;
 @property (nonatomic, readonly) KdbPassword *passwordHash;
 @property (assign) MPDatabaseVersion version;
 @property (assign) BOOL decrypted;
@@ -94,6 +96,15 @@ NSString *const MPDocumentGroupKey = @"MPDocumentGroupKey";
   return YES;
 }
 
+- (BOOL)revertToContentsOfURL:(NSURL *)absoluteURL ofType:(NSString *)typeName error:(NSError **)outError {
+  [self _resetTree];
+  if([self readFromURL:absoluteURL ofType:typeName error:outError]) {
+    [[NSNotificationCenter defaultCenter] postNotificationName:MPDocumentDidRevertNotifiation object:self];
+    return YES;
+  }
+  return NO;
+}
+
 - (BOOL)isEntireFileLoaded {
   return _decrypted;
 }
@@ -115,6 +126,8 @@ NSString *const MPDocumentGroupKey = @"MPDocumentGroupKey";
   else if( [self.tree isKindOfClass:[Kdb3Tree class]]) {
     self.version = MPDatabaseVersion3;
   }
+  /* reset the root to inform KVO listeners */
+  self.root = self.tree.root;
   _decrypted = YES;
   return YES;
 }
@@ -147,7 +160,13 @@ NSString *const MPDocumentGroupKey = @"MPDocumentGroupKey";
 
 #pragma mark Data Accesors
 - (KdbGroup *)root {
-  return [self.tree root];
+  return self.tree.root;
+}
+
+- (void)setRoot:(KdbGroup *)root {
+  if(self.root != root) {
+    self.tree.root = root;
+  }
 }
 
 - (KdbEntry *)findEntry:(UUID *)uuid {
@@ -172,7 +191,7 @@ NSString *const MPDocumentGroupKey = @"MPDocumentGroupKey";
 - (KdbEntry *)createEntry:(KdbGroup *)parent {
   KdbEntry *newEntry = [self.tree createEntry:parent];
   newEntry.title = NSLocalizedString(@"DEFAULT_ENTRY_TITLE", @"Title for a newly created entry");
-  [parent addEntryUndoable:newEntry];
+  [self group:parent addEntry:newEntry];
   NSDictionary *userInfo = @{ MPDocumentEntryKey : newEntry };
   [[NSNotificationCenter defaultCenter] postNotificationName:MPDocumentDidAddEntryNotification object:self userInfo:userInfo];
   return newEntry;
@@ -181,7 +200,7 @@ NSString *const MPDocumentGroupKey = @"MPDocumentGroupKey";
 - (KdbGroup *)createGroup:(KdbGroup *)parent {
   KdbGroup *newGroup = [self.tree createGroup:parent];
   newGroup.name = NSLocalizedString(@"DEFAULT_GROUP_NAME", @"Title for a newly created group");
-  [parent addGroupUndoable:newGroup];
+  [self group:parent addGroup:newGroup];
   NSDictionary *userInfo = @{ MPDocumentGroupKey : newGroup };
   [[NSNotificationCenter defaultCenter] postNotificationName:MPDocumentDidAddGroupNotification object:self userInfo:userInfo];
   return newGroup;
@@ -229,6 +248,45 @@ NSString *const MPDocumentGroupKey = @"MPDocumentGroupKey";
     index = [target.groups count];
   }
   [target insertObject:entry inEntriesAtIndex:index];
+}
+
+- (void)group:(KdbGroup *)group addEntry:(KdbEntry *)entry {
+  [[[self undoManager] prepareWithInvocationTarget:self] group:group removeEntry:entry];
+  [[self undoManager] setActionName:NSLocalizedString(@"UNDO_ADD_ENTRY", "Undo adding of entry")];
+  [group insertObject:entry inEntriesAtIndex:[group.entries count]];
+}
+
+- (void)group:(KdbGroup *)group addGroup:(KdbGroup *)aGroup {
+  [[[self undoManager] prepareWithInvocationTarget:self] group:group removeGroup:aGroup];
+  [[self undoManager] setActionName:NSLocalizedString(@"UNDO_ADD_GROUP", @"Create Group Undo")];
+  [group insertObject:aGroup inGroupsAtIndex:[group.groups count]];
+}
+
+- (void)group:(KdbGroup *)group removeEntry:(KdbEntry *)entry {
+  NSInteger index = [group.entries indexOfObject:entry];
+  if(NSNotFound == index) {
+    return; // No object found;
+  }
+  [[[self undoManager] prepareWithInvocationTarget:self] group:group addEntry:entry];
+  [[self undoManager] setActionName:NSLocalizedString(@"UNDO_DELETE_ENTRY", "Undo deleting of entry")];
+  [group removeObjectFromEntriesAtIndex:index];
+}
+
+- (void)group:(KdbGroup *)group removeGroup:(KdbGroup *)aGroup {
+  NSInteger index = [group.groups indexOfObject:aGroup];
+  if(NSNotFound == index) {
+    return; // No object found
+  }
+  [[[self undoManager] prepareWithInvocationTarget:self] group:group addGroup:aGroup];
+  [[self undoManager] setActionName:NSLocalizedString(@"UNDO_DELETE_GROUP", @"Create Group Undo")];
+  [group removeObjectFromGroupsAtIndex:index];
+}
+
+#pragma mark Private 
+- (void)_resetTree {
+  // Reset both values to inform any KVO listener
+  self.root = nil;
+  self.tree = nil;
 }
 
 @end

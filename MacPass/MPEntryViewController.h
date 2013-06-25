@@ -52,6 +52,6 @@ typedef enum {
 - (void)openURL:(id)sender;
 
 /* Entry Handling*/
-- (void)deleteEntry:(id)sender;
+- (void)deleteNode:(id)sender;
 
 @end

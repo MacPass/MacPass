@@ -13,7 +13,6 @@
 #import "MPPasswordEditViewController.h"
 #import "MPToolbarDelegate.h"
 #import "MPOutlineViewController.h"
-#import "MPOutlineViewDelegate.h"
 #import "MPInspectorViewController.h"
 #import "MPAppDelegate.h"
 #import "MPActionHelper.h"
@@ -29,6 +28,8 @@ NSString *const MPCurrentItemChangedNotification = @"com.hicknhack.macpass.MPCur
 
 @property (retain) NSToolbar *toolbar;
 @property (assign) id currentItem;
+@property (assign) KdbGroup *currentGroup;
+@property (assign) KdbEntry *currentEntry;
 
 @property (retain) MPPasswordInputController *passwordInputController;
 @property (retain) MPPasswordEditViewController *passwordEditController;
@@ -54,14 +55,15 @@ NSString *const MPCurrentItemChangedNotification = @"com.hicknhack.macpass.MPCur
     _inspectorViewController = [[MPInspectorViewController alloc] init];
     _currentItem = nil;
     
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(_updateCurrentItem:) name:MPOutlineViewDidChangeGroupSelection object:_outlineViewController.outlineDelegate];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(_updateCurrentItem:) name:MPOutlineViewDidChangeGroupSelection object:_outlineViewController];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(_updateCurrentItem:) name:MPDidChangeSelectedEntryNotification object:_entryViewController];
-
   }
   return self;
 }
 
 - (void)dealloc {
+  [[NSNotificationCenter defaultCenter] removeObserver:self];
+
   [_toolbar release];
   
   [_passwordInputController release];
@@ -76,8 +78,10 @@ NSString *const MPCurrentItemChangedNotification = @"com.hicknhack.macpass.MPCur
 }
 
 #pragma mark View Handling
-- (void)windowDidLoad
-{
+- (void)windowDidLoad {
+
+  [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(_didRevertDocument:) name:MPDocumentDidRevertNotifiation object:[self document]];
+  
   [_entryViewController setupNotifications:self];
   [_inspectorViewController setupNotifications:self];
   [_outlineViewController setupNotifications:self];
@@ -143,11 +147,15 @@ NSString *const MPCurrentItemChangedNotification = @"com.hicknhack.macpass.MPCur
   [self.window makeFirstResponder:[viewController reconmendedFirstResponder]];
 }
 
-#pragma mark Resonder handling
+#pragma mark Notification handling
 - (void)_updateCurrentItem:(NSNotification *)notification {
   id sender = [notification object];
-  if( sender == _outlineViewController.outlineView || sender == _outlineViewController.outlineDelegate ) {
-    self.currentItem = _outlineViewController.outlineDelegate.selectedGroup;
+
+  self.currentGroup = _outlineViewController.selectedGroup;
+  self.currentEntry = _entryViewController.selectedEntry;
+  
+  if( sender == _outlineViewController.outlineView || sender == _outlineViewController ) {
+    self.currentItem = _outlineViewController.selectedGroup;
   }
   else if( sender == _entryViewController.entryTable || sender == _entryViewController) {
     self.currentItem = _entryViewController.selectedEntry;
@@ -156,6 +164,11 @@ NSString *const MPCurrentItemChangedNotification = @"com.hicknhack.macpass.MPCur
     return; // no notification!
   }
   [[NSNotificationCenter defaultCenter] postNotificationName:MPCurrentItemChangedNotification object:self];
+}
+
+- (void)_didRevertDocument:(NSNotification *)notification {
+  [self.outlineViewController clearSelection];
+  [self showPasswordInput];
 }
 
 #pragma mark Actions
@@ -175,7 +188,7 @@ NSString *const MPCurrentItemChangedNotification = @"com.hicknhack.macpass.MPCur
     return showsNoLockScreen && document.isSecured;
   }
   if(itemAction == [MPActionHelper actionOfType:MPActionAddEntry]) {
-    return (nil != _outlineViewController.outlineDelegate.selectedGroup);
+    return (nil != _outlineViewController.selectedGroup);
   }
   if(itemAction == [MPActionHelper actionOfType:MPActionDelete]) {
     return (nil != _currentItem);

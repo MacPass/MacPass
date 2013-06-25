@@ -32,7 +32,8 @@ APPKIT_EXTERN NSString *const MPCurrentItemChangedNotification;
 
 /* Holds the current item. That is either a KdbGroup or a KdbEntry */
 @property (readonly, assign) id currentItem;
-
+@property (readonly, assign) KdbGroup *currentGroup;
+@property (readonly, assign) KdbEntry *currentEntry;
 
 - (void)showEntries;
 - (void)showPasswordInput;
