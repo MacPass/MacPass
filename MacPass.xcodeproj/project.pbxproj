@@ -59,7 +59,6 @@
 		4C431BCF16E2BAB000700A81 /* OverlayWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4C431BCE16E2BAB000700A81 /* OverlayWindow.xib */; };
 		4C46B88517063A070046109A /* NSString+MPPasswordCreation.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C46B88417063A070046109A /* NSString+MPPasswordCreation.m */; };
 		4C46B88817063A170046109A /* NSString+MPPasswordAnalysis.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C46B88717063A170046109A /* NSString+MPPasswordAnalysis.m */; };
-		4C46B88B1706D16E0046109A /* NSData+MPRandomBytes.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C46B88A1706D16E0046109A /* NSData+MPRandomBytes.m */; };
 		4C46E09E17673A0A00DA62E8 /* HNHShadowBox.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C46E09D17673A0A00DA62E8 /* HNHShadowBox.m */; };
 		4C4A100F176286FD00BBF2CA /* MPTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C4A100E176286FD00BBF2CA /* MPTableView.m */; };
 		4C4A101217629DA900BBF2CA /* KdbGroup+KVOAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C4A101117629DA900BBF2CA /* KdbGroup+KVOAdditions.m */; };
@@ -278,8 +277,6 @@
 		4C46B88417063A070046109A /* NSString+MPPasswordCreation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+MPPasswordCreation.m"; sourceTree = "<group>"; };
 		4C46B88617063A170046109A /* NSString+MPPasswordAnalysis.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+MPPasswordAnalysis.h"; sourceTree = "<group>"; };
 		4C46B88717063A170046109A /* NSString+MPPasswordAnalysis.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+MPPasswordAnalysis.m"; sourceTree = "<group>"; };
-		4C46B8891706D16E0046109A /* NSData+MPRandomBytes.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSData+MPRandomBytes.h"; sourceTree = "<group>"; };
-		4C46B88A1706D16E0046109A /* NSData+MPRandomBytes.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSData+MPRandomBytes.m"; sourceTree = "<group>"; };
 		4C46E09C17673A0A00DA62E8 /* HNHShadowBox.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HNHShadowBox.h; sourceTree = "<group>"; };
 		4C46E09D17673A0A00DA62E8 /* HNHShadowBox.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HNHShadowBox.m; sourceTree = "<group>"; };
 		4C4A100D176286FD00BBF2CA /* MPTableView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MPTableView.h; sourceTree = "<group>"; };
@@ -789,8 +786,6 @@
 		4C46B8821706397A0046109A /* Security Additions */ = {
 			isa = PBXGroup;
 			children = (
-				4C46B8891706D16E0046109A /* NSData+MPRandomBytes.h */,
-				4C46B88A1706D16E0046109A /* NSData+MPRandomBytes.m */,
 				4C46B88317063A070046109A /* NSString+MPPasswordCreation.h */,
 				4C46B88417063A070046109A /* NSString+MPPasswordCreation.m */,
 				4C46B88617063A170046109A /* NSString+MPPasswordAnalysis.h */,
@@ -1357,7 +1352,6 @@
 				4CE39AC416ECE4F7000FE29D /* MPPopupImageView.m in Sources */,
 				4C46B88517063A070046109A /* NSString+MPPasswordCreation.m in Sources */,
 				4C46B88817063A170046109A /* NSString+MPPasswordAnalysis.m in Sources */,
-				4C46B88B1706D16E0046109A /* NSData+MPRandomBytes.m in Sources */,
 				4C5A11FE1708DE8700223D8A /* MPPasswordCreatorViewController.m in Sources */,
 				4C7E832A172DE2F2002493D8 /* MPPasswordEditViewController.m in Sources */,
 				4CE5B54B173AFBA700207B39 /* MPDocument.m in Sources */,
