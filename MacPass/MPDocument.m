@@ -103,7 +103,8 @@ NSString *const MPDocumentGroupKey = @"MPDocumentGroupKey";
 
 #pragma mark Protection
 - (BOOL)decryptWithPassword:(NSString *)password keyFileURL:(NSURL *)keyFileURL {
-  self.password = password;
+  self.key = keyFileURL;
+  self.password = [password length] > 0 ? password : nil;
   @try {
     self.tree = [KdbReaderFactory load:[[self fileURL] path] withPassword:self.passwordHash];
   }
@@ -139,8 +140,8 @@ NSString *const MPDocumentGroupKey = @"MPDocumentGroupKey";
 }
 
 - (KdbPassword *)passwordHash {
-  // TODO: Use defaults to determine Encoding?
-  return [[[KdbPassword alloc] initWithPassword:self.password passwordEncoding:NSUTF8StringEncoding keyFile:[self.key path]] autorelease];
+  
+  return [[[KdbPassword alloc] initWithPassword:self.password passwordEncoding:NSUTF8StringEncoding keyFileURL:self.key] autorelease];
 }
 
 + (BOOL)autosavesInPlace

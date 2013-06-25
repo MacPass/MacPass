@@ -52,7 +52,13 @@
   MPDocument *document = [[NSDocumentController sharedDocumentController] documentForWindow:[[self view] window]];
   if(document) {
     document.key = [self.keyfilePathControl URL];
-    document.password = [self.passwordTextField stringValue];
+    NSString *password = [self.passwordTextField stringValue];
+    if([password length] > 0) {
+      document.password = password;
+    }
+    else {
+      document.password = nil;
+    }
   }
   id mainWindowController = [[[self view] window] windowController];
   [mainWindowController showEntries];
