@@ -154,6 +154,8 @@
 		4CC299FF176F99E50050C939 /* MPRequestHandlerService.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CC299FE176F99E50050C939 /* MPRequestHandlerService.m */; };
 		4CC29A02176F9D140050C939 /* MPTestAssociateRequestHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CC29A01176F9D140050C939 /* MPTestAssociateRequestHandler.m */; };
 		4CC3AABD175F4983003EF01B /* HNHRoundedTextFieldCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CC3AAB9175F4983003EF01B /* HNHRoundedTextFieldCell.m */; };
+		4CD5D702177A5EE400100649 /* DocumentSettingsWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4CD5D701177A5EE400100649 /* DocumentSettingsWindow.xib */; };
+		4CD5D705177A5F3300100649 /* MPDocumentSettingsWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CD5D704177A5F3300100649 /* MPDocumentSettingsWindowController.m */; };
 		4CD78ABC16D155FF00768A1D /* 07_NotepadTemplate.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 4CD78AB716D155FF00768A1D /* 07_NotepadTemplate.pdf */; };
 		4CD78ABD16D155FF00768A1D /* 08_SocketTemplate.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 4CD78AB816D155FF00768A1D /* 08_SocketTemplate.pdf */; };
 		4CD78ABE16D155FF00768A1D /* 09_IdentityTemplate.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 4CD78AB916D155FF00768A1D /* 09_IdentityTemplate.pdf */; };
@@ -473,6 +475,9 @@
 		4CC29A01176F9D140050C939 /* MPTestAssociateRequestHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MPTestAssociateRequestHandler.m; sourceTree = "<group>"; };
 		4CC3AAB8175F4983003EF01B /* HNHRoundedTextFieldCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HNHRoundedTextFieldCell.h; sourceTree = "<group>"; };
 		4CC3AAB9175F4983003EF01B /* HNHRoundedTextFieldCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HNHRoundedTextFieldCell.m; sourceTree = "<group>"; };
+		4CD5D701177A5EE400100649 /* DocumentSettingsWindow.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DocumentSettingsWindow.xib; sourceTree = "<group>"; };
+		4CD5D703177A5F3300100649 /* MPDocumentSettingsWindowController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MPDocumentSettingsWindowController.h; sourceTree = "<group>"; };
+		4CD5D704177A5F3300100649 /* MPDocumentSettingsWindowController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MPDocumentSettingsWindowController.m; sourceTree = "<group>"; };
 		4CD78AB716D155FF00768A1D /* 07_NotepadTemplate.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = 07_NotepadTemplate.pdf; sourceTree = "<group>"; };
 		4CD78AB816D155FF00768A1D /* 08_SocketTemplate.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = 08_SocketTemplate.pdf; sourceTree = "<group>"; };
 		4CD78AB916D155FF00768A1D /* 09_IdentityTemplate.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = 09_IdentityTemplate.pdf; sourceTree = "<group>"; };
@@ -1127,6 +1132,8 @@
 				4C83814115BF4677001AE468 /* MPDocumentWindowController.m */,
 				4CE8246D16E2E93400573141 /* MPOverlayWindowController.h */,
 				4CE8246E16E2E93400573141 /* MPOverlayWindowController.m */,
+				4CD5D703177A5F3300100649 /* MPDocumentSettingsWindowController.h */,
+				4CD5D704177A5F3300100649 /* MPDocumentSettingsWindowController.m */,
 			);
 			name = "Window Controller";
 			sourceTree = "<group>";
@@ -1147,6 +1154,7 @@
 				4CD884B615BD47080042BBF8 /* DocumentWindow.xib */,
 				4C431BCE16E2BAB000700A81 /* OverlayWindow.xib */,
 				4C1DDCDC1711ECEB00C98DA3 /* PasswordCreatorWindow.xib */,
+				4CD5D701177A5EE400100649 /* DocumentSettingsWindow.xib */,
 			);
 			name = Windows;
 			sourceTree = "<group>";
@@ -1258,6 +1266,7 @@
 				4C7714AC176C9D4600549F2A /* 99_InfoTemplate.pdf in Resources */,
 				4CF7805F176E75110032EE71 /* ServerSettings.xib in Resources */,
 				4C7F35681779DFFB00C57890 /* Errors.strings in Resources */,
+				4CD5D702177A5EE400100649 /* DocumentSettingsWindow.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1416,6 +1425,7 @@
 				4C2724D71778FF1A00FD8456 /* NSUUID+KeePassLib.m in Sources */,
 				4C2724DA17790E7C00FD8456 /* NSMutableData+Base64.m in Sources */,
 				4C2A6134177A1D5F00C9826C /* KPLErrorCodes.m in Sources */,
+				4CD5D705177A5F3300100649 /* MPDocumentSettingsWindowController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
