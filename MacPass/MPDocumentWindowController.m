@@ -181,11 +181,13 @@ NSString *const MPCurrentItemChangedNotification = @"com.hicknhack.macpass.MPCur
 }
 
 - (BOOL)validateToolbarItem:(NSToolbarItem *)theItem {
+  MPDocument *document = [self document];
+  if(document.isLocked) {
+    return NO;
+  }
   SEL itemAction = [theItem action];
   if( itemAction == [MPActionHelper actionOfType:MPActionLock]) {
-    MPDocument *document = [self document];
-    BOOL showsNoLockScreen = (nil == [[_passwordInputController view] superview]);
-    return showsNoLockScreen && document.isSecured;
+    return document.isSecured;
   }
   if(itemAction == [MPActionHelper actionOfType:MPActionAddEntry]) {
     return (nil != _outlineViewController.selectedGroup);
