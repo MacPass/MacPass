@@ -42,9 +42,8 @@ Feel free to give it a try. The biggest draw-back is it's inablity to create pas
 ##What does it look like?
 
 ![image](https://raw.github.com/mstarke/MacPass/master/Assets/Screenshots/MacPass.png)
-![image](https://raw.github.com/mstarke/MacPass/master/Assets/Screenshots/PasswordGenerator.png)
-![image](https://raw.github.com/mstarke/MacPass/master/Assets/Screenshots/Locked.png)
-![image](https://raw.github.com/mstarke/MacPass/master/Assets/Screenshots/Settings.png)
+
+More Screenshots in the [Wiki](https://github.com/mstarke/MacPass/wiki/Screenshots)
 
 ##License
 
