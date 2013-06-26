@@ -28,7 +28,9 @@
 
 enum {
   MPGeneralTab,
-  MPAdvancedTab
+  MPNotesTab,
+  MPAttachmentsTab,
+  MPCustomFieldsTab
 };
 
 @interface MPInspectorViewController () {
@@ -103,7 +105,7 @@ enum {
                                                                 timeStyle:NSDateFormatterShortStyle];
   NSString *modifedAtTemplate = NSLocalizedString(@"MODIFED_AT_%@", @"Modifed at template string. %@ is replaced by locaized date and time");
   [self.modifiedTextField setStringValue:[NSString stringWithFormat:modifedAtTemplate, modificationString]];
-
+  
 }
 
 - (void)setCreationDate:(NSDate *)creationDate {
@@ -184,8 +186,7 @@ enum {
   [self.URLTextField setStringValue:@""];
   
   // Reste toggle. Do not call setter on control or the bindings wont update
-  self.activeTab = MPGeneralTab;
-  
+  self.activeTab = MPGeneralTab;  
   [self _setInputEnabled:YES];
 }
 
@@ -222,14 +223,18 @@ enum {
   [self.itemNameTextfield setTextColor: enabled ? [NSColor controlTextColor] : [NSColor disabledControlTextColor] ];
   [self.itemNameTextfield setEnabled:enabled];
   [self.titleTextField setEnabled:enabled];
+  [self.infoTabControl setEnabled:enabled forSegment:MPGeneralTab];
+  
   
   enabled &= (self.selectedEntry != nil);
   [self.passwordTextField setEnabled:enabled];
   [self.usernameTextField setEnabled:enabled];
   [self.URLTextField setEnabled:enabled];
   [self.generatePasswordButton setEnabled:enabled];
-  //[self.infoTabControl setEnabled:enabled forSegment:MPGeneralTab];
-  //[self.infoTabControl setEnabled:enabled forSegment:MPAdvancedTab];
+
+  [self.infoTabControl setEnabled:enabled forSegment:MPAttachmentsTab];
+  [self.infoTabControl setEnabled:enabled forSegment:MPNotesTab];
+  [self.infoTabControl setEnabled:enabled forSegment:MPCustomFieldsTab];
 }
 
 #pragma mark Popovers
