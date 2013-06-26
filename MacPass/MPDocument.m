@@ -123,6 +123,7 @@ NSString *const MPDocumentGroupKey                    = @"MPDocumentGroupKey";
   else {
     [[NSFileManager defaultManager] createFileAtPath:[_lockFileURL path] contents:nil attributes:nil];
     _didLockFile = YES;
+    self.readOnly = NO;
   }
   self.decrypted = NO;
   return YES;
@@ -144,11 +145,6 @@ NSString *const MPDocumentGroupKey                    = @"MPDocumentGroupKey";
 - (void)close {
   [self _cleanupLock];
   [super close];
-}
-
-- (BOOL)validateUserInterfaceItem:(id<NSValidatedUserInterfaceItem>)anItem {
-  NSLog(@"Validating %@", anItem);
-  return YES;
 }
 
 #pragma mark Protection

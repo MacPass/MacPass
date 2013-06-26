@@ -124,6 +124,7 @@ NSString *const _toggleFilterUsernameButton = @"SearchUsername";
 - (void)didLoadView {
   [self.view setWantsLayer:YES];
   [self _hideFilterBarAnimated:NO];
+  
   [_bottomBar setBorderType:HNHBorderTop];
   [self.addEntryButton setAction:[MPActionHelper actionOfType:MPActionAddEntry]];
   

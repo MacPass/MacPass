@@ -181,9 +181,8 @@ NSString *const MPCurrentItemChangedNotification = @"com.hicknhack.macpass.MPCur
 }
 
 - (BOOL)validateToolbarItem:(NSToolbarItem *)theItem {
-  NSLog(@"Validate ToolbarItem: %@", theItem);
   MPDocument *document = [self document];
-  if(document.isLocked) {
+  if(document.isLocked || document.isReadOnly) {
     return NO;
   }
   SEL itemAction = [theItem action];
