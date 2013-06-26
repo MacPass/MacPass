@@ -9,14 +9,15 @@
 #import "MPOutlineViewController.h"
 #import "MPOutlineDataSource.h"
 #import "MPDocument.h"
-#import "MPAppDelegate.h"
 #import "MPContextMenuHelper.h"
 #import "MPConstants.h"
 #import "MPActionHelper.h"
 #import "MPIconHelper.h"
 #import "MPUppercaseStringValueTransformer.h"
+#import "MPRootAdapter.h"
 
 #import "KdbLib.h"
+#import "Kdb4Node.h"
 #import "KdbGroup+Undo.h"
 
 #import "HNHGradientView.h"
@@ -78,7 +79,7 @@ NSString *const _MPOutlinveViewHeaderViewIdentifier = @"HeaderCell";
   if(!_bindingEstablished) {
     MPDocument *document = [[self windowController] document];
     [_treeController setChildrenKeyPath:@"groups"];
-    [_treeController bind:NSContentBinding toObject:document withKeyPath:@"root" options:nil];
+    [_treeController bind:NSContentBinding toObject:document withKeyPath:@"rootAdapter" options:nil];
     [_outlineView bind:NSContentBinding toObject:_treeController withKeyPath:@"arrangedObjects" options:nil];
     [_outlineView setDataSource:self.datasource];
     _bindingEstablished = YES;
@@ -154,16 +155,14 @@ NSString *const _MPOutlinveViewHeaderViewIdentifier = @"HeaderCell";
 
 #pragma mark NSOutlineViewDelegate
 - (NSView *)outlineView:(NSOutlineView *)outlineView viewForTableColumn:(NSTableColumn *)tableColumn item:(id)item {
-  NSTreeNode *treeNode = item;
-  KdbGroup *group = [treeNode representedObject];
-  //KdbGroup *group = item;
   NSTableCellView *view;
-  if(![group parent]) {
-    NSDictionary *options = @{ NSValueTransformerBindingOption : [NSValueTransformer valueTransformerForName:MPUppsercaseStringValueTransformerName] };
+  if( [self _itemIsRootNodeAdapter:item] ) {
+    //NSDictionary *options = @{ NSValueTransformerBindingOption : [NSValueTransformer valueTransformerForName:MPUppsercaseStringValueTransformerName] };
     view = [outlineView makeViewWithIdentifier:_MPOutlinveViewHeaderViewIdentifier owner:self];
-    [view.textField bind:NSValueBinding toObject:group withKeyPath:@"name" options:options];
+    [view.textField setStringValue:NSLocalizedString(@"GROUPS", @"")];
   }
   else {
+    KdbGroup *group = [item representedObject];
     view = [outlineView makeViewWithIdentifier:_MPOutlineViewDataViewIdentifier owner:self];
     NSImage *icon = [MPIconHelper icon:(MPIconType)[group image]];
     [view.imageView setImage:icon];
@@ -175,20 +174,11 @@ NSString *const _MPOutlinveViewHeaderViewIdentifier = @"HeaderCell";
 }
 
 - (BOOL)outlineView:(NSOutlineView *)outlineView isGroupItem:(id)item {
-  NSTreeNode *treeNode = item;
-  KdbGroup *group = [treeNode representedObject];
-  //KdbGroup *group = item;
-  if(!group.parent) {
-    return YES;
-  }
-  return NO;
+  return [self _itemIsRootNodeAdapter:item];
 }
 
 - (BOOL)outlineView:(NSOutlineView *)outlineView shouldSelectItem:(id)item {
-  NSTreeNode *treeNode = item;
-  KdbGroup *group = [treeNode representedObject];
-  //KdbGroup *group = item;
-  return (nil != [group parent]);
+  return ![self _itemIsRootNodeAdapter:item];
 }
 
 - (void)outlineViewSelectionDidChange:(NSNotification *)notification {
@@ -199,9 +189,7 @@ NSString *const _MPOutlinveViewHeaderViewIdentifier = @"HeaderCell";
 }
 
 - (BOOL)outlineView:(NSOutlineView *)outlineView shouldShowOutlineCellForItem:(id)item {
-  return YES;
-  //  KdbGroup *group = [item representedObject];
-  //  return (nil != group.parent);
+  return ![self _itemIsRootNodeAdapter:item];
 }
 
 #pragma mark -
@@ -222,6 +210,11 @@ NSString *const _MPOutlinveViewHeaderViewIdentifier = @"HeaderCell";
     [menu addItem:item];
   }
   return [menu autorelease];
+}
+
+- (BOOL)_itemIsRootNodeAdapter:(id)item {
+  id node = [item representedObject];
+  return [node isKindOfClass:[MPRootAdapter class]];
 }
 
 @end

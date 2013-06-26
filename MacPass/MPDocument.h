@@ -25,6 +25,7 @@ APPKIT_EXTERN NSString *const MPDocumentGroupKey;
 @class UUID;
 @class Binary;
 @class BinaryRef;
+@class MPRootAdapter;
 
 @interface MPDocument : NSDocument
 
@@ -34,11 +35,13 @@ APPKIT_EXTERN NSString *const MPDocumentGroupKey;
 @property (assign, getter = isLocked) BOOL locked;
 /* true, if document is loaded and decrypted (tree is loaded) */
 @property (assign, readonly, getter = isDecrypted) BOOL decrypted;
-@property (retain, readonly) KdbTree *tree;
+@property (retain, readonly, nonatomic) KdbTree *tree;
 @property (assign, readonly, nonatomic) KdbGroup *root;
+@property (readonly, retain) MPRootAdapter *rootAdapter;
 @property (nonatomic, retain) NSString *password;
 @property (nonatomic, retain) NSURL *key;
 @property (assign, readonly) MPDatabaseVersion version;
+@property (assign, readonly, getter = isReadOnly) BOOL readOnly;
 
 - (id)initWithVersion:(MPDatabaseVersion)version;
 - (BOOL)decryptWithPassword:(NSString *)password keyFileURL:(NSURL *)keyFileURL;

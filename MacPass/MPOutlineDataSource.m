@@ -8,11 +8,15 @@
 
 #import "MPOutlineDataSource.h"
 #import "MPDocument.h"
+#import "MPConstants.h"
+#import "MPRootAdapter.h"
+
 #import "KdbLib.h"
 #import "KdbGroup+Undo.h"
 #import "KdbGroup+MPTreeTools.h"
 #import "KdbEntry+MPTreeTools.h"
-#import "MPConstants.h"
+
+
 #import "UUID.h"
 
 @implementation MPOutlineDataSource
@@ -37,12 +41,16 @@
       oprationMask = NSDragOperationCopy;
     }
     
-    KdbGroup *target = [item representedObject];
-    if( target == nil) {
-      return oprationMask; // Draggin over root
+    id targetItem = [item representedObject];
+    if(targetItem == nil) {
+      return NSDragOperationNone; // no Target
     }
+    if([targetItem isKindOfClass:[MPRootAdapter class]]) {
+      return NSDragOperationNone; // Drag over group header
+    }
+    KdbGroup *targetGroup = targetItem;
     BOOL validTarget = YES;
-    if( _draggedItem.parent == target ) {
+    if( _draggedItem.parent == targetGroup ) {
       validTarget &= index != NSOutlineViewDropOnItemIndex;
       validTarget &= index != [_draggedItem.parent.groups indexOfObject:_draggedItem];
     }

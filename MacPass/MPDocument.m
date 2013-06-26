@@ -12,7 +12,10 @@
 #import "Kdb3Node.h"
 #import "Kdb4Node.h"
 #import "KdbPassword.h"
+
 #import "MPDatabaseVersion.h"
+#import "MPRootAdapter.h"
+
 #import "KdbGroup+Undo.h"
 #import "KdbGroup+KVOAdditions.h"
 #import "KdbGroup+MPTreeTools.h"
@@ -30,14 +33,22 @@ NSString *const MPDocumentEntryKey                    = @"MPDocumentEntryKey";
 NSString *const MPDocumentGroupKey                    = @"MPDocumentGroupKey";
 
 
-@interface MPDocument ()
+@interface MPDocument () {
+@private
+  BOOL _didLockFile;
+}
 
-@property (assign, nonatomic) BOOL secured;
-@property (retain) KdbTree *tree;
+
+@property (retain, nonatomic) KdbTree *tree;
 @property (assign, nonatomic) KdbGroup *root;
 @property (nonatomic, readonly) KdbPassword *passwordHash;
 @property (assign) MPDatabaseVersion version;
+
+@property (assign, nonatomic) BOOL secured;
 @property (assign) BOOL decrypted;
+@property (assign) BOOL readOnly;
+
+@property (retain) NSURL *lockFileURL;
 
 @end
 
@@ -52,15 +63,18 @@ NSString *const MPDocumentGroupKey                    = @"MPDocumentGroupKey";
 - (id)initWithVersion:(MPDatabaseVersion)version {
   self = [super init];
   if(self) {
+    _didLockFile = NO;
     _decrypted = YES;
     _secured = NO;
     _locked = NO;
+    _readOnly = NO;
+    _rootAdapter = [[MPRootAdapter alloc] init];
     switch(version) {
       case MPDatabaseVersion3:
-        _tree = [Kdb3Tree newTemplateTree];
+        self.tree = [Kdb3Tree templateTree];
         break;
       case MPDatabaseVersion4:
-        _tree = [Kdb4Tree newTemplateTree];
+        self.tree = [Kdb4Tree templateTree];
         break;
       default:
         [self release];
@@ -71,9 +85,12 @@ NSString *const MPDocumentGroupKey                    = @"MPDocumentGroupKey";
 }
 
 - (void)dealloc {
+  [self _cleanupLock];
   [_tree release];
   [_password release];
   [_key release];
+  [_lockFileURL release];
+  [_rootAdapter release];
   [super dealloc];
 }
 
@@ -99,12 +116,20 @@ NSString *const MPDocumentGroupKey                    = @"MPDocumentGroupKey";
 }
 
 - (BOOL)readFromURL:(NSURL *)url ofType:(NSString *)typeName error:(NSError **)outError {
+  self.lockFileURL = [url URLByAppendingPathExtension:@"lock"];
+  if([[NSFileManager defaultManager] fileExistsAtPath:[_lockFileURL path]]) {
+    self.readOnly = YES;
+  }
+  else {
+    [[NSFileManager defaultManager] createFileAtPath:[_lockFileURL path] contents:nil attributes:nil];
+    _didLockFile = YES;
+  }
   self.decrypted = NO;
   return YES;
 }
 
 - (BOOL)revertToContentsOfURL:(NSURL *)absoluteURL ofType:(NSString *)typeName error:(NSError **)outError {
-  [self _resetTree];
+  self.tree = nil;
   if([self readFromURL:absoluteURL ofType:typeName error:outError]) {
     [[NSNotificationCenter defaultCenter] postNotificationName:MPDocumentDidRevertNotifiation object:self];
     return YES;
@@ -116,7 +141,18 @@ NSString *const MPDocumentGroupKey                    = @"MPDocumentGroupKey";
   return _decrypted;
 }
 
+- (void)close {
+  [self _cleanupLock];
+  [super close];
+}
+
+- (BOOL)validateUserInterfaceItem:(id<NSValidatedUserInterfaceItem>)anItem {
+  NSLog(@"Validating %@", anItem);
+  return YES;
+}
+
 #pragma mark Protection
+
 - (BOOL)decryptWithPassword:(NSString *)password keyFileURL:(NSURL *)keyFileURL {
   self.key = keyFileURL;
   self.password = [password length] > 0 ? password : nil;
@@ -133,9 +169,7 @@ NSString *const MPDocumentGroupKey                    = @"MPDocumentGroupKey";
   else if( [self.tree isKindOfClass:[Kdb3Tree class]]) {
     self.version = MPDatabaseVersion3;
   }
-  /* reset the root to inform KVO listeners */
-  self.root = self.tree.root;
-  _decrypted = YES;
+  self.decrypted = YES;
   return YES;
 }
 
@@ -166,14 +200,16 @@ NSString *const MPDocumentGroupKey                    = @"MPDocumentGroupKey";
 }
 
 #pragma mark Data Accesors
-- (KdbGroup *)root {
-  return self.tree.root;
+- (void)setTree:(KdbTree *)tree {
+  if(_tree != tree) {
+    [_tree release];
+    _tree = [tree retain];
+    self.rootAdapter.tree = _tree;
+  }
 }
 
-- (void)setRoot:(KdbGroup *)root {
-  if(self.root != root) {
-    self.tree.root = root;
-  }
+- (KdbGroup *)root {
+  return self.tree.root;
 }
 
 - (KdbEntry *)findEntry:(UUID *)uuid {
@@ -232,6 +268,7 @@ NSString *const MPDocumentGroupKey                    = @"MPDocumentGroupKey";
     return NO;
   }
   BOOL isMovable = YES;
+  
   KdbGroup *ancestor = target.parent;
   while(ancestor.parent) {
     if(ancestor == group) {
@@ -290,10 +327,11 @@ NSString *const MPDocumentGroupKey                    = @"MPDocumentGroupKey";
 }
 
 #pragma mark Private 
-- (void)_resetTree {
-  // Reset both values to inform any KVO listener
-  self.root = nil;
-  self.tree = nil;
+- (void)_cleanupLock {
+  if(_didLockFile) {
+    [[NSFileManager defaultManager] removeItemAtURL:_lockFileURL error:nil];
+    _didLockFile = NO;
+  }
 }
 
 @end

@@ -10,7 +10,7 @@
 
 @implementation Kdb4Tree (NewTree)
 
-+ (Kdb4Tree *)newTemplateTree {
++ (Kdb4Tree *)templateTree {
   NSDate *currentTime = [NSDate date];
   
   Kdb4Tree *tree = [[Kdb4Tree alloc] init];
@@ -71,7 +71,7 @@
   group.image = 37;
   [parentGroup addGroup:group];
   
-  return tree;
+  return [tree autorelease];
 }
 
 @end

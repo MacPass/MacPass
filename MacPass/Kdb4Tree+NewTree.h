@@ -10,6 +10,6 @@
 
 @interface Kdb4Tree (NewTree)
 
-+(Kdb4Tree *)newTemplateTree;
++(Kdb4Tree *)templateTree;
 
 @end

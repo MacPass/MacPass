@@ -10,7 +10,7 @@
 
 @implementation Kdb3Tree (NewTree)
 
-+ (Kdb3Tree *)newTemplateTree {
++ (Kdb3Tree *)templateTree {
   Kdb3Tree *tree = [[Kdb3Tree alloc] init];
   
   Kdb3Group *rootGroup = [[Kdb3Group alloc] init];
@@ -49,7 +49,7 @@
   
   [rootGroup release];
 
-  return tree;
+  return [tree autorelease];
 }
 
 @end

@@ -176,10 +176,12 @@ NSString *const MPCurrentItemChangedNotification = @"com.hicknhack.macpass.MPCur
 }
 
 - (BOOL)validateMenuItem:(NSMenuItem *)menuItem {
-  return YES;
+  MPDocument *document = [self document];
+  return !( document.isLocked || document.isReadOnly );
 }
 
 - (BOOL)validateToolbarItem:(NSToolbarItem *)theItem {
+  NSLog(@"Validate ToolbarItem: %@", theItem);
   MPDocument *document = [self document];
   if(document.isLocked) {
     return NO;

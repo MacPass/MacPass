@@ -1221,11 +1221,6 @@
 						<reference key="parent" ref="222890410"/>
 					</object>
 					<object class="IBObjectRecord">
-						<int key="objectID">537</int>
-						<reference key="object" ref="19198291"/>
-						<reference key="parent" ref="1005"/>
-					</object>
-					<object class="IBObjectRecord">
 						<int key="objectID">630</int>
 						<reference key="object" ref="1066302408"/>
 						<array class="NSMutableArray" key="children">
@@ -1254,11 +1249,6 @@
 						<reference key="parent" ref="60918609"/>
 					</object>
 					<object class="IBObjectRecord">
-						<int key="objectID">721</int>
-						<reference key="object" ref="528706521"/>
-						<reference key="parent" ref="1005"/>
-					</object>
-					<object class="IBObjectRecord">
 						<int key="objectID">759</int>
 						<reference key="object" ref="376978074"/>
 						<reference key="parent" ref="60918609"/>
@@ -1267,11 +1257,6 @@
 						<int key="objectID">773</int>
 						<reference key="object" ref="871797750"/>
 						<reference key="parent" ref="326334884"/>
-					</object>
-					<object class="IBObjectRecord">
-						<int key="objectID">788</int>
-						<reference key="object" ref="772519144"/>
-						<reference key="parent" ref="60918609"/>
 					</object>
 					<object class="IBObjectRecord">
 						<int key="objectID">784</int>
@@ -1296,16 +1281,6 @@
 					<object class="IBObjectRecord">
 						<int key="objectID">798</int>
 						<reference key="object" ref="1063893674"/>
-						<reference key="parent" ref="1005"/>
-					</object>
-					<object class="IBObjectRecord">
-						<int key="objectID">799</int>
-						<reference key="object" ref="250630005"/>
-						<reference key="parent" ref="1005"/>
-					</object>
-					<object class="IBObjectRecord">
-						<int key="objectID">800</int>
-						<reference key="object" ref="213536579"/>
 						<reference key="parent" ref="1005"/>
 					</object>
 					<object class="IBObjectRecord">
@@ -1349,6 +1324,31 @@
 					<object class="IBObjectRecord">
 						<int key="objectID">808</int>
 						<reference key="object" ref="287888619"/>
+						<reference key="parent" ref="60918609"/>
+					</object>
+					<object class="IBObjectRecord">
+						<int key="objectID">537</int>
+						<reference key="object" ref="19198291"/>
+						<reference key="parent" ref="1005"/>
+					</object>
+					<object class="IBObjectRecord">
+						<int key="objectID">721</int>
+						<reference key="object" ref="528706521"/>
+						<reference key="parent" ref="1005"/>
+					</object>
+					<object class="IBObjectRecord">
+						<int key="objectID">800</int>
+						<reference key="object" ref="213536579"/>
+						<reference key="parent" ref="1005"/>
+					</object>
+					<object class="IBObjectRecord">
+						<int key="objectID">799</int>
+						<reference key="object" ref="250630005"/>
+						<reference key="parent" ref="1005"/>
+					</object>
+					<object class="IBObjectRecord">
+						<int key="objectID">788</int>
+						<reference key="object" ref="772519144"/>
 						<reference key="parent" ref="60918609"/>
 					</object>
 				</array>
@@ -1471,18 +1471,17 @@
 			<nil key="activeLocalization"/>
 			<dictionary class="NSMutableDictionary" key="localizations"/>
 			<nil key="sourceID"/>
-			<int key="maxID">810</int>
+			<int key="maxID">814</int>
 		</object>
 		<object class="IBClassDescriber" key="IBDocument.Classes">
 			<array class="NSMutableArray" key="referencedPartialClassDescriptions">
 				<object class="IBPartialClassDescription">
 					<string key="className">MPGeneralSettingsController</string>
-					<string key="superclassName">NSViewController</string>
+					<string key="superclassName">MPViewController</string>
 					<dictionary class="NSMutableDictionary" key="outlets">
 						<string key="clearPasteboardOnQuitCheckButton">NSButton</string>
 						<string key="clearPasteboardTimeoutPopup">NSPopUpButton</string>
 						<string key="idleTimeOutPopup">NSPopUpButton</string>
-						<string key="imageView">NSImageView</string>
 						<string key="lockOnSleepCheckButton">NSButton</string>
 					</dictionary>
 					<dictionary class="NSMutableDictionary" key="toOneOutletInfosByName">
@@ -1498,10 +1497,6 @@
 							<string key="name">idleTimeOutPopup</string>
 							<string key="candidateClassName">NSPopUpButton</string>
 						</object>
-						<object class="IBToOneOutletInfo" key="imageView">
-							<string key="name">imageView</string>
-							<string key="candidateClassName">NSImageView</string>
-						</object>
 						<object class="IBToOneOutletInfo" key="lockOnSleepCheckButton">
 							<string key="name">lockOnSleepCheckButton</string>
 							<string key="candidateClassName">NSButton</string>
@@ -1510,6 +1505,14 @@
 					<object class="IBClassDescriptionSource" key="sourceIdentifier">
 						<string key="majorKey">IBProjectSource</string>
 						<string key="minorKey">./Classes/MPGeneralSettingsController.h</string>
+					</object>
+				</object>
+				<object class="IBPartialClassDescription">
+					<string key="className">MPViewController</string>
+					<string key="superclassName">NSViewController</string>
+					<object class="IBClassDescriptionSource" key="sourceIdentifier">
+						<string key="majorKey">IBProjectSource</string>
+						<string key="minorKey">./Classes/MPViewController.h</string>
 					</object>
 				</object>
 				<object class="IBPartialClassDescription">

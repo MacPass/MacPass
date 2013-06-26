@@ -22,6 +22,7 @@
 #import "Kdb3Node.h"
 #import "KdbGroup+Undo.h"
 #import "KdbEntry+Undo.h"
+#import "NSMutableData+Base64.h"
 
 #import "HNHGradientView.h"
 
@@ -299,8 +300,9 @@ enum {
     Kdb4Entry *entry = (Kdb4Entry *)self.selectedEntry;
     BinaryRef *binaryRef = entry.binaries[row];
     [[view textField] bind:NSValueBinding toObject:binaryRef withKeyPath:@"key" options:nil];
-//    MPDocument *document = [[self windowController] document];
-//    [document binaryForRef:binaryRef];
+    MPDocument *document = [[self windowController] document];
+    Binary *binary = [document binaryForRef:binaryRef];
+    NSLog(@"%@", binary.data);
   }
   return view;
 }
