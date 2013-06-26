@@ -36,7 +36,7 @@ APPKIT_EXTERN NSString *const MPDocumentGroupKey;
 @property (assign, readonly, getter = isDecrypted) BOOL decrypted;
 @property (retain, readonly) KdbTree *tree;
 @property (assign, readonly, nonatomic) KdbGroup *root;
-@property (nonatomic,retain) NSString *password;
+@property (nonatomic, retain) NSString *password;
 @property (nonatomic, retain) NSURL *key;
 @property (assign, readonly) MPDatabaseVersion version;
 

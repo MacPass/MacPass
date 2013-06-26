@@ -70,6 +70,13 @@ NSString *const MPDocumentGroupKey                    = @"MPDocumentGroupKey";
   return self;
 }
 
+- (void)dealloc {
+  [_tree release];
+  [_password release];
+  [_key release];
+  [super dealloc];
+}
+
 - (void)makeWindowControllers {
   MPDocumentWindowController *windowController = [[MPDocumentWindowController alloc] init];
   [self addWindowController:windowController];

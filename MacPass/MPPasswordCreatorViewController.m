@@ -54,6 +54,12 @@
   return self;
 }
 
+- (void)dealloc {
+  [_generatedPassword release];
+  [_password release];
+  [super dealloc];
+}
+
 - (void)didLoadView {
   [self.passwordLengthSlider setMinValue:MIN_PASSWORD_LENGTH];
   [self.passwordLengthSlider setMaxValue:MAX_PASSWORD_LENGTH];

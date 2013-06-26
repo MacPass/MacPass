@@ -56,6 +56,13 @@ NSString *const _MPOutlinveViewHeaderViewIdentifier = @"HeaderCell";
   return self;
 }
 
+- (void)dealloc {
+  [_treeController release];
+  [_datasource release];
+  [_menu release];
+  [super dealloc];
+}
+
 - (void)didLoadView {
   [_outlineView setDelegate:self];
   [_outlineView setMenu:[self _contextMenu]];

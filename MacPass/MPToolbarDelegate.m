@@ -48,9 +48,9 @@ NSString *const MPToolbarItemInspector = @"TOOLBAR_INSPECTOR";
 
 - (void)dealloc
 {
-  self.toolbarIdentifiers = nil;
-  self.toolbarImages = nil;
-  self.toolbarItems = nil;
+  [_toolbarItems release];
+  [_toolbarIdentifiers release];
+  [_toolbarImages release];
   [super dealloc];
 }
 
@@ -88,6 +88,7 @@ NSString *const MPToolbarItemInspector = @"TOOLBAR_INSPECTOR";
       [popupButton setFrame:newFrame];
       [popupButton setMenu:menu];
       [item setMenuFormRepresentation:menuRepresentation];
+      [menuRepresentation release];
       [item setView:popupButton];
       [popupButton release];
       [menu release];
@@ -113,6 +114,7 @@ NSString *const MPToolbarItemInspector = @"TOOLBAR_INSPECTOR";
                                                                   action:[self _actionForToolbarItemIdentifier:itemIdentifier]
                                                            keyEquivalent:@""];
       [item setMenuFormRepresentation:menuRepresentation];
+      [menuRepresentation release];
       [button release];
     }
     self.toolbarItems[itemIdentifier] = item;

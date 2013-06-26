@@ -69,6 +69,7 @@ enum {
 - (void)dealloc {
   [[NSNotificationCenter defaultCenter] removeObserver:self];
   [_activePopover release];
+  [_attachmentsController release];
   [super dealloc];
 }
 

@@ -14,7 +14,6 @@
 @class MPPasswordEditViewController;
 @class MPPasswordInputController;
 @class MPOutlineViewController;
-@class MPCreationViewController;
 
 @class KdbGroup;
 @class KdbEntry;
@@ -28,7 +27,7 @@ APPKIT_EXTERN NSString *const MPCurrentItemChangedNotification;
 @property (readonly, retain) MPEntryViewController *entryViewController;
 @property (readonly, retain) MPOutlineViewController *outlineViewController;
 @property (readonly, retain) MPInspectorViewController *inspectorViewController;
-@property (readonly, retain) MPCreationViewController *creationViewController;
+
 
 /* Holds the current item. That is either a KdbGroup or a KdbEntry */
 @property (readonly, assign) id currentItem;

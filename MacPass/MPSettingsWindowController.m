@@ -45,6 +45,7 @@
   [_settingsController release];
   [_toolbar release];
   [_toolbarItems release];
+  [_defaultToolbarItems release];
   [super dealloc];
 }
 

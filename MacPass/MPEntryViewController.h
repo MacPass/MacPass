@@ -17,12 +17,12 @@ APPKIT_EXTERN NSString *const MPEntryTableURLColumnIdentifier;
 APPKIT_EXTERN NSString *const MPDidChangeSelectedEntryNotification;
 
 /* Tags to determine what to copy */
-typedef enum {
+typedef NS_ENUM( NSUInteger, MPCopyContentTypeTag) {
   MPCopyUsername,
   MPCopyPassword,
   MPCopyURL,
   MPCopyWholeEntry,
-} MPCopyContentTypeTag;
+};
 
 @class KdbGroup;
 @class KdbEntry;

@@ -111,12 +111,13 @@ NSString *const _toggleFilterUsernameButton = @"SearchUsername";
 - (void)dealloc {
   [[NSNotificationCenter defaultCenter] removeObserver:self];
   
-  self.entryArrayController = nil;
-  self.filteredEntries = nil;
-  self.filterBar = nil;
-  self.tableToTop = nil;
-  self.filterButtonToMode = nil;
-  self.dataSource = nil;
+  [_entryArrayController release];
+  [_filteredEntries release];
+  [_filter release];
+  [_filterBar release];
+  [_tableToTop release];
+  [_dataSource release];
+  [_filterButtonToMode release];
   [super dealloc];
 }
 

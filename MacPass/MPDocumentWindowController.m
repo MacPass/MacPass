@@ -39,7 +39,6 @@ NSString *const MPCurrentItemChangedNotification = @"com.hicknhack.macpass.MPCur
 
 @property (retain) MPToolbarDelegate *toolbarDelegate;
 
-
 @end
 
 @implementation MPDocumentWindowController
@@ -67,10 +66,10 @@ NSString *const MPCurrentItemChangedNotification = @"com.hicknhack.macpass.MPCur
   [_toolbar release];
   
   [_passwordInputController release];
+  [_passwordEditController release];
   [_entryViewController release];
   [_outlineViewController release];
   [_inspectorViewController release];
-  [_creationViewController release];
   
   [_toolbarDelegate release];
   [_splitView release];

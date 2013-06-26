@@ -50,6 +50,7 @@
 - (void)dealloc {
   [_settingsController release];
   [_passwordCreatorController release];
+  [_passwordCreatorWindow release];
   [serverDaemon release];
   [lockDaemon release];
   [super dealloc];
