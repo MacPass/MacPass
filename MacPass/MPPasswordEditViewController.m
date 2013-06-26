@@ -49,7 +49,7 @@
 }
 
 - (IBAction)_change:(id)sender {
-  MPDocument *document = [[NSDocumentController sharedDocumentController] documentForWindow:[[self view] window]];
+  MPDocument *document = [[self windowController] document];
   if(document) {
     document.key = [self.keyfilePathControl URL];
     NSString *password = [self.passwordTextField stringValue];

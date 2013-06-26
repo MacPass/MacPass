@@ -16,6 +16,7 @@
 #import "MPInspectorViewController.h"
 #import "MPAppDelegate.h"
 #import "MPActionHelper.h"
+#import "MPDocumentSettingsWindowController.h"
 
 NSString *const MPCurrentItemChangedNotification = @"com.hicknhack.macpass.MPCurrentItemChangedNotification";
 
@@ -36,6 +37,7 @@ NSString *const MPCurrentItemChangedNotification = @"com.hicknhack.macpass.MPCur
 @property (retain) MPEntryViewController *entryViewController;
 @property (retain) MPOutlineViewController *outlineViewController;
 @property (retain) MPInspectorViewController *inspectorViewController;
+@property (retain) MPDocumentSettingsWindowController *documentSettingsWindowController;
 
 @property (retain) MPToolbarDelegate *toolbarDelegate;
 
@@ -215,6 +217,13 @@ NSString *const MPCurrentItemChangedNotification = @"com.hicknhack.macpass.MPCur
     _passwordEditController = [[MPPasswordEditViewController alloc] init];
   }
   [self _setContentViewController:self.passwordEditController];
+}
+
+- (void)documentSettings:(id)sender {
+  if(!self.documentSettingsWindowController) {
+    _documentSettingsWindowController = [[MPDocumentSettingsWindowController alloc] init];
+  }
+  [[NSApplication sharedApplication] beginSheet:[_documentSettingsWindowController window] modalForWindow:[self window] modalDelegate:nil didEndSelector:NULL contextInfo:NULL];
 }
 
 - (void)lock:(id)sender {

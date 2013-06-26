@@ -59,8 +59,9 @@
     return self;
 }
 
-- (void)windowDidLoad {
-    [super windowDidLoad];
+- (void)saveChanges:(id)sender {
+  [NSApp endSheet:[self window]];
+  [[self window] orderOut:nil];
 }
 
 @end

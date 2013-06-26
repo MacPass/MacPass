@@ -10,4 +10,6 @@
 
 @interface MPDocumentSettingsWindowController : NSWindowController
 
+- (IBAction)saveChanges:(id)sender;
+
 @end

@@ -34,10 +34,12 @@ APPKIT_EXTERN NSString *const MPCurrentItemChangedNotification;
 @property (readonly, assign) KdbGroup *currentGroup;
 @property (readonly, assign) KdbEntry *currentEntry;
 
+
 - (void)showEntries;
 - (void)showPasswordInput;
 - (void)performFindPanelAction:(id)sender;
 - (IBAction)editPassword:(id)sender;
+- (IBAction)documentSettings:(id)sender;
 - (void)lock:(id)sender;
 
 - (void)createGroup:(id)sender;
