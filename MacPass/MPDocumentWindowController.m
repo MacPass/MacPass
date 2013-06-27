@@ -17,6 +17,7 @@
 #import "MPAppDelegate.h"
 #import "MPActionHelper.h"
 #import "MPDocumentSettingsWindowController.h"
+#import "MPConstants.h"
 
 NSString *const MPCurrentItemChangedNotification = @"com.hicknhack.macpass.MPCurrentItemChangedNotification";
 
@@ -64,7 +65,7 @@ NSString *const MPCurrentItemChangedNotification = @"com.hicknhack.macpass.MPCur
 
 - (void)dealloc {
   [[NSNotificationCenter defaultCenter] removeObserver:self];
-
+  
   [_toolbar release];
   
   [_passwordInputController release];
@@ -80,7 +81,7 @@ NSString *const MPCurrentItemChangedNotification = @"com.hicknhack.macpass.MPCur
 
 #pragma mark View Handling
 - (void)windowDidLoad {
-
+  
   [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(_didRevertDocument:) name:MPDocumentDidRevertNotifiation object:[self document]];
   
   [_entryViewController setupNotifications:self];
@@ -151,7 +152,7 @@ NSString *const MPCurrentItemChangedNotification = @"com.hicknhack.macpass.MPCur
 #pragma mark Notification handling
 - (void)_updateCurrentItem:(NSNotification *)notification {
   id sender = [notification object];
-
+  
   self.currentGroup = _outlineViewController.selectedGroup;
   self.currentEntry = _entryViewController.selectedEntry;
   
@@ -219,9 +220,9 @@ NSString *const MPCurrentItemChangedNotification = @"com.hicknhack.macpass.MPCur
   [self _setContentViewController:self.passwordEditController];
 }
 
-- (void)documentSettings:(id)sender {
+- (void)showDocumentSettings:(id)sender {
   if(!self.documentSettingsWindowController) {
-    _documentSettingsWindowController = [[MPDocumentSettingsWindowController alloc] init];
+    _documentSettingsWindowController = [[MPDocumentSettingsWindowController alloc] initWithDocument:[self document]];
   }
   [[NSApplication sharedApplication] beginSheet:[_documentSettingsWindowController window] modalForWindow:[self window] modalDelegate:nil didEndSelector:NULL contextInfo:NULL];
 }
@@ -279,7 +280,7 @@ NSString *const MPCurrentItemChangedNotification = @"com.hicknhack.macpass.MPCur
   /*
    The current easy way to prevent layout hickups is to add the inspect
    Add all neded contraints an then remove it again, if it was hidden
-  */
+   */
   BOOL removeInspector = NO;
   if(![inspectorView superview]) {
     [_splitView addSubview:inspectorView];

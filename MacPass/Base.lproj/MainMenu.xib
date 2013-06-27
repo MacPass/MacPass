@@ -788,11 +788,11 @@
 				</object>
 				<object class="IBConnectionRecord">
 					<object class="IBActionConnection" key="connection">
-						<string key="label">documentSettings:</string>
+						<string key="label">showDocumentSettings:</string>
 						<reference key="source" ref="1014"/>
 						<reference key="destination" ref="544639599"/>
 					</object>
-					<int key="connectionID">1232</int>
+					<int key="connectionID">1233</int>
 				</object>
 				<object class="IBConnectionRecord">
 					<object class="IBActionConnection" key="connection">
@@ -1298,7 +1298,7 @@
 			<nil key="activeLocalization"/>
 			<dictionary class="NSMutableDictionary" key="localizations"/>
 			<nil key="sourceID"/>
-			<int key="maxID">1232</int>
+			<int key="maxID">1233</int>
 		</object>
 		<object class="IBClassDescriber" key="IBDocument.Classes">
 			<array class="NSMutableArray" key="referencedPartialClassDescriptions">
@@ -1357,16 +1357,16 @@
 					<string key="className">MPDocumentWindowController</string>
 					<string key="superclassName">NSWindowController</string>
 					<dictionary class="NSMutableDictionary" key="actions">
-						<string key="documentSettings:">id</string>
 						<string key="editPassword:">id</string>
+						<string key="showDocumentSettings:">id</string>
 					</dictionary>
 					<dictionary class="NSMutableDictionary" key="actionInfosByName">
-						<object class="IBActionInfo" key="documentSettings:">
-							<string key="name">documentSettings:</string>
-							<string key="candidateClassName">id</string>
-						</object>
 						<object class="IBActionInfo" key="editPassword:">
 							<string key="name">editPassword:</string>
+							<string key="candidateClassName">id</string>
+						</object>
+						<object class="IBActionInfo" key="showDocumentSettings:">
+							<string key="name">showDocumentSettings:</string>
 							<string key="candidateClassName">id</string>
 						</object>
 					</dictionary>

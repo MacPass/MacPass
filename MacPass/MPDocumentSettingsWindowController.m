@@ -7,56 +7,47 @@
 //
 
 #import "MPDocumentSettingsWindowController.h"
+#import "MPDocument.h"
+#import "MPDatabaseVersion.h"
+#import "Kdb4Node.h"
 
-@interface MPDocumentSettingsWindowController ()
+@interface MPDocumentSettingsWindowController () {
+  MPDocument *_document;
+}
 
 @end
 
 @implementation MPDocumentSettingsWindowController
 
 - (id)init {
-  return [self initWithWindowNibName:@"DocumentSettingsWindow"];
+  return [self initWithDocument:nil];
 }
 
-- (id)initWithWindow:(NSWindow *)window {
-    self = [super initWithWindow:window];
-    if (self) {
-//      @property(nonatomic, copy) NSString *databaseName;
-//      @property(nonatomic, retain) NSDate *databaseNameChanged;
-//      @property(nonatomic, copy) NSString *databaseDescription;
-//      @property(nonatomic, retain) NSDate *databaseDescriptionChanged;
-//      @property(nonatomic, copy) NSString *defaultUserName;
-//      @property(nonatomic, retain) NSDate *defaultUserNameChanged;
-//
-//      @property(nonatomic, assign) NSInteger maintenanceHistoryDays;
-//      
-//      @property(nonatomic, copy) NSString *color;
-//      
-//      @property(nonatomic, retain) NSDate *masterKeyChanged;
-//      @property(nonatomic, assign) NSInteger masterKeyChangeRec;
-//      @property(nonatomic, assign) NSInteger masterKeyChangeForce;
-//      
-//      @property(nonatomic, assign) BOOL protectTitle;
-//      @property(nonatomic, assign) BOOL protectUserName;
-//      @property(nonatomic, assign) BOOL protectPassword;
-//      @property(nonatomic, assign) BOOL protectUrl;
-//      @property(nonatomic, assign) BOOL protectNotes;
-//      
-//      @property(nonatomic, readonly) NSMutableArray *customIcons;
-//      @property(nonatomic, assign) BOOL recycleBinEnabled;
-//      @property(nonatomic, retain) UUID *recycleBinUuid;
-//      @property(nonatomic, retain) NSDate *recycleBinChanged;
-//      @property(nonatomic, retain) UUID *entryTemplatesGroup;
-//      @property(nonatomic, retain) NSDate *entryTemplatesGroupChanged;
-//      @property(nonatomic, assign) NSInteger historyMaxItems;
-//      @property(nonatomic, assign) NSInteger historyMaxSize;
-//      @property(nonatomic, retain) UUID *lastSelectedGroup;
-//      @property(nonatomic, retain) UUID *lastTopVisibleGroup;
-//      @property(nonatomic, readonly) NSMutableArray *binaries;
-//      @property(nonatomic, readonly) NSMutableArray *customData;
-    }
+- (id)initWithDocument:(MPDocument *)document {
+  self = [super initWithWindowNibName:@"DocumentSettingsWindow"];
+  if(self) {
+    _document = document;
+  }
+  return self;
+}
+
+- (void)windowDidLoad {
+  [super windowDidLoad];
+  NSAssert(_document != nil, @"Document needs to be present");
+  if( _document.version == MPDatabaseVersion4 ) {
+    Kdb4Tree *tree = (Kdb4Tree *)_document.tree;
+    [self.databaseNameTextField bind:NSValueBinding toObject:tree withKeyPath:@"databaseName" options:nil];
+    [self.databaseDescriptionTextView bind:NSValueBinding toObject:tree withKeyPath:@"databaseDescription" options:nil];
     
-    return self;
+    [self.protectNotesCheckButton bind:NSValueBinding toObject:tree withKeyPath:@"protectNotes" options:nil];
+    [self.protectPasswortCheckButton bind:NSValueBinding toObject:tree withKeyPath:@"protectPassword" options:nil];
+    [self.protectTitleCheckButton bind:NSValueBinding toObject:tree withKeyPath:@"protectTitle" options:nil];
+    [self.protectURLCheckButton bind:NSValueBinding toObject:tree withKeyPath:@"protectUrl" options:nil];
+    [self.protectUserNameCheckButton bind:NSValueBinding toObject:tree withKeyPath:@"protectUserName" options:nil];
+  }
+  else {
+    // Switch to KdbV3 View
+  }
 }
 
 - (void)saveChanges:(id)sender {

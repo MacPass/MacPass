@@ -8,4 +8,5 @@
 
 #import "MPConstants.h"
 
-NSString *const MPPasteBoardType = @"com.hicknhack.macpass.pasteboard";
+NSString *const MPPasteBoardType  = @"com.hicknhack.macpass.pasteboard";
+NSString *const MPErrorDomain     = @"com.hicknhack.macpass.error";

@@ -45,6 +45,7 @@
 }
 
 - (void)requestPassword {
+  // show Warnign if read-only mode!
   [self _reset];
 }
 
