@@ -1,76 +1,134 @@
 <!DOCTYPE html>
 <html>
+
   <head>
-    <meta charset='utf-8'>
-    <meta http-equiv="X-UA-Compatible" content="chrome=1">
-    <link href='https://fonts.googleapis.com/css?family=Chivo:900' rel='stylesheet' type='text/css'>
-    <link rel="stylesheet" type="text/css" href="stylesheets/stylesheet.css" media="screen" />
-    <link rel="stylesheet" type="text/css" href="stylesheets/pygment_trac.css" media="screen" />
-    <link rel="stylesheet" type="text/css" href="stylesheets/print.css" media="print" />
-    <!--[if lt IE 9]>
-    <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
-    <![endif]-->
-    <title>MacPass by mstarke</title>
+    <meta charset='utf-8' />
+    <meta http-equiv="X-UA-Compatible" content="chrome=1" />
+    <meta name="description" content="MacPass : A KeePass client for OS X" />
+
+    <link rel="stylesheet" type="text/css" media="screen" href="stylesheets/stylesheet.css">
+
+    <title>MacPass</title>
   </head>
 
   <body>
-    <div id="container">
-      <div class="inner">
 
-        <header>
-          <h1>MacPass</h1>
-          <h2>A KeePass client for OS X</h2>
+    <!-- HEADER -->
+    <div id="header_wrap" class="outer">
+        <header class="inner">
+          <a id="forkme_banner" href="https://github.com/mstarke/MacPass">View on GitHub</a>
+
+          <h1 id="project_title">MacPass</h1>
+          <h2 id="project_tagline">A KeePass client for OS X</h2>
+
+            <section id="downloads">
+              <a class="zip_download_link" href="https://github.com/mstarke/MacPass/zipball/master">Download this project as a .zip file</a>
+              <a class="tar_download_link" href="https://github.com/mstarke/MacPass/tarball/master">Download this project as a tar.gz file</a>
+            </section>
         </header>
-
-        <section id="downloads" class="clearfix">
-          <a href="https://github.com/mstarke/MacPass/zipball/master" id="download-zip" class="button"><span>Download .zip</span></a>
-          <a href="https://github.com/mstarke/MacPass/tarball/master" id="download-tar-gz" class="button"><span>Download .tar.gz</span></a>
-          <a href="https://github.com/mstarke/MacPass" id="view-on-github" class="button"><span>View on GitHub</span></a>
-        </section>
-
-        <hr>
-
-        <section id="main_content">
-          <h3>
-<a name="welcome-to-github-pages" class="anchor" href="#welcome-to-github-pages"><span class="octicon octicon-link"></span></a>Welcome to GitHub Pages.</h3>
-
-<p>This automatic page generator is the easiest way to create beautiful pages for all of your projects. Author your page content here using GitHub Flavored Markdown, select a template crafted by a designer, and publish. After your page is generated, you can check out the new branch:</p>
-
-<pre><code>$ cd your_repo_root/repo_name
-$ git fetch origin
-$ git checkout gh-pages
-</code></pre>
-
-<p>If you're using the GitHub for Mac, simply sync your repository and you'll see the new branch.</p>
-
-<h3>
-<a name="designer-templates" class="anchor" href="#designer-templates"><span class="octicon octicon-link"></span></a>Designer Templates</h3>
-
-<p>We've crafted some handsome templates for you to use. Go ahead and continue to layouts to browse through them. You can easily go back to edit your page before publishing. After publishing your page, you can revisit the page generator and switch to another theme. Your Page content will be preserved if it remained markdown format.</p>
-
-<h3>
-<a name="rather-drive-stick" class="anchor" href="#rather-drive-stick"><span class="octicon octicon-link"></span></a>Rather Drive Stick?</h3>
-
-<p>If you prefer to not use the automatic generator, push a branch named <code>gh-pages</code> to your repository to create a page manually. In addition to supporting regular HTML content, GitHub Pages support Jekyll, a simple, blog aware static site generator written by our own Tom Preston-Werner. Jekyll makes it easy to create site-wide headers and footers without having to copy them across every page. It also offers intelligent blog support and other advanced templating features.</p>
-
-<h3>
-<a name="authors-and-contributors" class="anchor" href="#authors-and-contributors"><span class="octicon octicon-link"></span></a>Authors and Contributors</h3>
-
-<p>You can <a href="https://github.com/blog/821" class="user-mention">@mention</a> a GitHub username to generate a link to their profile. The resulting <code>&lt;a&gt;</code> element will link to the contributor's GitHub Profile. For example: In 2007, Chris Wanstrath (<a href="https://github.com/defunkt" class="user-mention">@defunkt</a>), PJ Hyett (<a href="https://github.com/pjhyett" class="user-mention">@pjhyett</a>), and Tom Preston-Werner (<a href="https://github.com/mojombo" class="user-mention">@mojombo</a>) founded GitHub.</p>
-
-<h3>
-<a name="support-or-contact" class="anchor" href="#support-or-contact"><span class="octicon octicon-link"></span></a>Support or Contact</h3>
-
-<p>Having trouble with Pages? Check out the documentation at <a href="http://help.github.com/pages">http://help.github.com/pages</a> or contact <a href="mailto:support@github.com">support@github.com</a> and we’ll help you sort it out.</p>
-        </section>
-
-        <footer>
-          MacPass is maintained by <a href="https://github.com/mstarke">mstarke</a><br>
-          This page was generated by <a href="http://pages.github.com">GitHub Pages</a>. Tactile theme by <a href="https://twitter.com/jasonlong">Jason Long</a>.
-        </footer>
-
-        
-      </div>
     </div>
+
+    <!-- MAIN CONTENT -->
+    <div id="main_content_wrap" class="outer">
+      <section id="main_content" class="inner">
+        <p>There a lot of iOS KeePass tools around but a distinct lack of a good OS X Version.
+KeePass can be used via Mono on OS X but lacks vital functionality and feels sluggish.</p>
+
+<p>This is an attempt to create an OS X port that should at least be able to read KeePass files.</p>
+
+<h2>
+<a name="disclaimer" class="anchor" href="#disclaimer"><span class="octicon octicon-link"></span></a>Disclaimer</h2>
+
+<p>The Project is in heavy development and it's likely to take some time till it reaches a usable state.
+Beware that I'm going to shift things around so stuff is going to break. A lot.</p>
+
+<h2>
+<a name="dowload" class="anchor" href="#dowload"><span class="octicon octicon-link"></span></a>Dowload</h2>
+
+<p>I'm trying to upload new builds along the way for all of you that just want to take a quick look.
+As stated in the disclaimer, this software cannot be considered safe for work in it's current development status.
+Use it with caution! Since I did start refactoring the KeePassLib there is even more potential broken code!</p>
+
+<p><a href="https://www.dropbox.com/sh/yqgfwi7f8mnd747/NCQlJmg0f0">Download MacPass at Dropbox</a> (build 1164 06/26/2013)</p>
+
+<h2>
+<a name="help" class="anchor" href="#help"><span class="octicon octicon-link"></span></a>Help</h2>
+
+<p>I'm in constant need of a full set of Databases with all possible keyfile/password and format combinations.
+If you are able to provide databases with keyfiles (Hashed, Binary, XML) I would love to hear from you!</p>
+
+<h2>
+<a name="requirement" class="anchor" href="#requirement"><span class="octicon octicon-link"></span></a>Requirement</h2>
+
+<p>MacPass needs OS X 10.8 as a minimum OS version since it takes advantage of some of the enhancements in Autolayout in 10.8.
+It might be possible to target 10.7 but with the upcomming 10.9 release, I think 10.8 is a feasable minimum.</p>
+
+<h2>
+<a name="status" class="anchor" href="#status"><span class="octicon octicon-link"></span></a>Status</h2>
+
+<p>Take a look at the <a href="https://github.com/mstarke/MacPass/wiki/Status">Wiki</a></p>
+
+<h2>
+<a name="alternatives" class="anchor" href="#alternatives"><span class="octicon octicon-link"></span></a>Alternatives</h2>
+
+<p>Currently there is an alpha Version available of <a href="http://www.keepassx.org">KeePassX</a>.
+It's Qt based KeePass manager, than can handle KeePass 1 and 2 containers rather nicely.
+Compared to running KeePass with Mono it very fast and remarkably stable for an alpha relaese.
+Feel free to give it a try. The biggest draw-back is it's inablity to create passwords via a wizzard.</p>
+
+<h2>
+<a name="what-does-it-look-like" class="anchor" href="#what-does-it-look-like"><span class="octicon octicon-link"></span></a>What does it look like?</h2>
+
+<p><img src="https://raw.github.com/mstarke/MacPass/master/Assets/Screenshots/MacPass.png" alt="image"></p>
+
+<p>More Screenshots in the <a href="https://github.com/mstarke/MacPass/wiki/Screenshots">Wiki</a></p>
+
+<h2>
+<a name="license" class="anchor" href="#license"><span class="octicon octicon-link"></span></a>License</h2>
+
+<p>MacPass KeePass compatible client for OS X
+Copyright (c) 2012-2013  Michael Starke, HicknHack Software GmbH</p>
+
+<p>This program is free software: you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.</p>
+
+<p>This program is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of</p>
+
+<p>MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU General Public License for more details.</p>
+
+<p>You should have received a copy of the GNU General Public License
+along with this program.  If not, see <a href="http://www.gnu.org/licenses/">http://www.gnu.org/licenses/</a>.</p>
+
+<h2>
+<a name="copyright" class="anchor" href="#copyright"><span class="octicon octicon-link"></span></a>Copyright</h2>
+
+<p>This Project is based upon the following work:</p>
+
+<p><a href="https://github.com/robbiehanson/KissXML">KissXML</a> Copyright 2012 Robbie Hanson. All rights reserved.</p>
+
+<p><a href="https://github.com/MiniKeePass/MiniKeePass">MiniKeePass</a> Copyright 2011 Jason Rush and John Flanagan. All rights reserved.</p>
+
+<p><a href="https://github.com/mpowrie/KeePassLib">KeePass Database Library</a> Copyright 2010 Qiang Yu. All rights reserved.</p>
+
+<p><a href="https://github.com/Perspx/PXSourceList">PXSourceList</a> Copyright 2011, Alex Rozanski. All rights reserved.</p>
+
+<p><a href="https://github.com/robbiehanson/CocoaHTTPServer">CocoaHTTPServer</a> Copyright 2011, Deusty, LLC. All rights reserved.</p>
+      </section>
+    </div>
+
+    <!-- FOOTER  -->
+    <div id="footer_wrap" class="outer">
+      <footer class="inner">
+        <p class="copyright">MacPass maintained by <a href="https://github.com/mstarke">mstarke</a></p>
+        <p>Published with <a href="http://pages.github.com">GitHub Pages</a></p>
+      </footer>
+    </div>
+
+    
+
   </body>
 </html>
