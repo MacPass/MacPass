@@ -16,6 +16,7 @@
 #import "MPDocumentWindowController.h"
 #import "MPOutlineViewController.h"
 #import "MPDocument.h"
+#import "MPCustomFieldView.h"
 
 #import "KdbLib.h"
 #import "Kdb4Node.h"
@@ -49,6 +50,10 @@ enum {
 @property (nonatomic, assign) NSUInteger activeTab;
 @property (assign) IBOutlet NSTabView *tabView;
 @property (retain) NSArrayController *attachmentsController;
+@property (retain) NSMutableArray *customFieldViews;
+
+- (IBAction)addCustomField:(id)sender;
+- (IBAction)removeCustomField:(id)sender;
 
 @end
 
@@ -65,6 +70,7 @@ enum {
     _selectedGroup = nil;
     _attachmentsController = [[NSArrayController alloc] init];
     _activeTab = MPGeneralTab;
+    _customFieldViews = [[NSMutableArray alloc] initWithCapacity:5];
   }
   return self;
 }
@@ -73,6 +79,7 @@ enum {
   [[NSNotificationCenter defaultCenter] removeObserver:self];
   [_activePopover release];
   [_attachmentsController release];
+  [_customFieldViews release];
   [super dealloc];
 }
 
@@ -186,7 +193,7 @@ enum {
   [self.URLTextField setStringValue:@""];
   
   // Reste toggle. Do not call setter on control or the bindings wont update
-  self.activeTab = MPGeneralTab;  
+  self.activeTab = MPGeneralTab;
   [self _setInputEnabled:YES];
 }
 
@@ -231,7 +238,7 @@ enum {
   [self.usernameTextField setEnabled:enabled];
   [self.URLTextField setEnabled:enabled];
   [self.generatePasswordButton setEnabled:enabled];
-
+  
   [self.infoTabControl setEnabled:enabled forSegment:MPAttachmentsTab];
   [self.infoTabControl setEnabled:enabled forSegment:MPNotesTab];
   [self.infoTabControl setEnabled:enabled forSegment:MPCustomFieldsTab];
@@ -278,6 +285,72 @@ enum {
   _activePopover = nil;
 }
 
+#pragma mark Actions
+- (IBAction)addCustomField:(id)sender {
+  NSArray *topLevelObjects;
+  BOOL success = [[NSBundle mainBundle] loadNibNamed:@"CustomFieldView" owner:self topLevelObjects:&topLevelObjects];
+  if(success) {
+    id object = [topLevelObjects lastObject];
+    MPCustomFieldView *fieldView;
+    if(![object isKindOfClass:[MPCustomFieldView class]]) {
+      fieldView = topLevelObjects[0];
+    }
+    else {
+      fieldView = object;
+    }
+    [fieldView.deleteButton setTarget:self];
+    NSTabViewItem *tabViewItem = [self.tabView tabViewItemAtIndex:MPCustomFieldsTab];
+    
+    NSView *predecessorView = [self.customFieldViews lastObject];
+    if(!predecessorView) {
+      predecessorView = _customFieldsTextField;
+    }
+    
+    [[tabViewItem view] addSubview:fieldView];
+    [self.customFieldViews addObject:fieldView];
+    
+    NSDictionary *views = NSDictionaryOfVariableBindings(fieldView, predecessorView);
+    [[tabViewItem view] addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-20-[fieldView]-20-|"
+                                                                               options:0
+                                                                               metrics:nil
+                                                                                 views:views]];
+    [[tabViewItem view] addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:[predecessorView]-10-[fieldView]"
+                                                                               options:0
+                                                                               metrics:nil
+                                                                                 views:views]];
+    [[tabViewItem view] layoutSubtreeIfNeeded];
+  }
+}
+- (IBAction)removeCustomField:(id)sender {
+  NSControl *button = sender;
+  NSView *fieldView = [button superview];
+  
+  if([self.customFieldViews containsObject:fieldView]) {
+    [fieldView removeFromSuperview];
+    NSUInteger index = [self.customFieldViews indexOfObject:fieldView];
+    NSView *newPredecessorView = nil;
+    NSView *newSuccesorView = nil;
+    if(index == 0) {
+      newPredecessorView = _customFieldsTextField;
+    }
+    else {
+      NSAssert(index > 0, @"");
+      newPredecessorView = [self.customFieldViews objectAtIndex:index - 1];
+    }
+    NSTabViewItem *tabViewItem = [self.tabView tabViewItemAtIndex:MPCustomFieldsTab];
+    if(index < [self.customFieldViews count] - 1) {
+      newSuccesorView = [self.customFieldViews objectAtIndex:index + 1];
+      NSDictionary *views = NSDictionaryOfVariableBindings(newPredecessorView, newSuccesorView);
+      [[tabViewItem view] addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:[newPredecessorView]-10-[newSuccesorView]"
+                                                                                 options:0
+                                                                                 metrics:nil
+                                                                                   views:views]];
+    }
+    [self.customFieldViews removeObject:fieldView];
+    [[tabViewItem view] layoutSubtreeIfNeeded];
+  }
+}
+
 #pragma mark Notificiations
 - (void)_didChangeCurrentItem:(NSNotification *)notification {
   MPDocumentWindowController *sender = [notification object];
@@ -311,5 +384,4 @@ enum {
   }
   return view;
 }
-
 @end

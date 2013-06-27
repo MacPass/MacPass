@@ -30,6 +30,7 @@
 @property (assign) IBOutlet NSSegmentedControl *infoTabControl;
 @property (assign) IBOutlet NSTableView *attachmentTableView;
 @property (assign) IBOutlet NSTextView *notesTextView;
+@property (assign) IBOutlet NSTextField *customFieldsTextField;
 
 
 /* Seperate call to ensure alle registered objects are in place */
