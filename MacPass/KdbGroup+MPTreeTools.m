@@ -34,6 +34,18 @@
   NSArray *filterdEntries = [childEntries filteredArrayUsingPredicate:[NSPredicate predicateWithBlock:^BOOL(id evaluatedObject, NSDictionary *bindings) {
     return [uuid isEqual:(UUID *)[evaluatedObject uuid]];
   }]];
+  NSAssert([filterdEntries count] <= 1, @"UUID hast to be unique");
   return [filterdEntries lastObject];
 }
+
+- (KdbGroup *)groupForUUID:(UUID *)uuid {
+  NSArray *childGroups = [self childGroups];
+  NSPredicate *predicate = [NSPredicate predicateWithBlock:^BOOL(id evaluatedObject, NSDictionary *bindings) {
+    return [uuid isEqual:(UUID *)[evaluatedObject uuid]];
+  }];
+  NSArray *filteredGroups = [childGroups filteredArrayUsingPredicate:predicate];
+  NSAssert([filteredGroups count] <= 1, @"UUID hast to be unique");
+  return  [filteredGroups lastObject];
+}
+
 @end

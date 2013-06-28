@@ -85,7 +85,7 @@ NSString *const _MPOutlinveViewHeaderViewIdentifier = @"HeaderCell";
     _bindingEstablished = YES;
   }
   NSTreeNode *node = [_outlineView itemAtRow:0];
-  [_outlineView expandItem:node expandChildren:NO];
+  [_outlineView expandItem:node expandChildren:YES];
 }
 
 #pragma makr Notifications

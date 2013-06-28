@@ -50,6 +50,8 @@ NSString *const MPDocumentGroupKey                    = @"MPDocumentGroupKey";
 @property (assign) BOOL readOnly;
 
 @property (retain) NSURL *lockFileURL;
+@property (readonly, assign, nonatomic) KdbGroup *recyleBin;
+@property (readonly) BOOL useRecylceBin;
 
 @end
 
@@ -213,6 +215,10 @@ NSString *const MPDocumentGroupKey                    = @"MPDocumentGroupKey";
   return [self.root entryForUUID:uuid];
 }
 
+- (KdbGroup *)findGroup:(UUID *)uuid {
+  return [self.root groupForUUID:uuid];
+}
+
 - (Binary *)binaryForRef:(BinaryRef *)binaryRef {
   if(self.version != MPDatabaseVersion4) {
     return nil;
@@ -248,6 +254,20 @@ NSString *const MPDocumentGroupKey                    = @"MPDocumentGroupKey";
     default:
       return nil;
   }
+}
+
+- (BOOL)useRecylceBin {
+  if(self.treeV4) {
+    return self.treeV4.recycleBinEnabled;
+  }
+  return NO;
+}
+
+- (KdbGroup *)recyleBin {
+  if(self.useRecylceBin) {
+    return [self findGroup:self.treeV4.recycleBinUuid];
+  }
+  return nil;
 }
 
 #pragma mark Data manipulation
@@ -296,7 +316,12 @@ NSString *const MPDocumentGroupKey                    = @"MPDocumentGroupKey";
     return; // No changes
   }
   [[[self undoManager] prepareWithInvocationTarget:self] moveGroup:group toGroup:group.parent index:oldIndex];
-  [[self undoManager] setActionName:@"MOVE_GROUP"];
+  if(self.recyleBin == target) {
+    [[self undoManager] setActionName:@"DELETE_GROUP"];
+  }
+  else {
+    [[self undoManager] setActionName:@"MOVE_GROUP"];
+  }
   [group.parent removeObjectFromGroupsAtIndex:oldIndex];
   if(index < 0 || index > [target.groups count] ) {
     index = [target.groups count];
@@ -362,6 +387,17 @@ NSString *const MPDocumentGroupKey                    = @"MPDocumentGroupKey";
   if(NSNotFound == index) {
     return; // No object found
   }
+  /*
+   Cleaning the recyclebin is not undoable
+   So we do this in a separate action
+   */
+  if(self.useRecylceBin) {
+    if(!self.recyleBin) {
+      [self _createRecylceBin];
+    }
+    [self moveGroup:group toGroup:self.recyleBin index:[self.recyleBin.groups count]];
+    return; // Done!
+  }
   [[[self undoManager] prepareWithInvocationTarget:self] group:group addGroup:aGroup atIndex:index];
   [[self undoManager] setActionName:NSLocalizedString(@"UNDO_DELETE_GROUP", @"Delete Group Undo")];
   [group removeObjectFromGroupsAtIndex:index];
@@ -389,6 +425,17 @@ NSString *const MPDocumentGroupKey                    = @"MPDocumentGroupKey";
   if(_didLockFile) {
     [[NSFileManager defaultManager] removeItemAtURL:_lockFileURL error:nil];
     _didLockFile = NO;
+  }
+}
+
+- (void)_createRecylceBin {
+  if(self.version == MPDatabaseVersion3) {
+    // create backup?
+  }
+  else if(self.version == MPDatabaseVersion4) {
+    
+  }
+  else {
   }
 }
 

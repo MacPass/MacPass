@@ -55,6 +55,7 @@ APPKIT_EXTERN NSString *const MPDocumentGroupKey;
  Returns the entry for the given UUID, nil if none was found
  */
 - (KdbEntry *)findEntry:(UUID *)uuid;
+- (KdbGroup *)findGroup:(UUID *)uuid;
 /*
  Return the Binary for the given BinaryRef. nil if none was found
  */
