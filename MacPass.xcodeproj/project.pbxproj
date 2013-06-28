@@ -51,6 +51,8 @@
 		4C2E381F16D11FF900037A9D /* 05_LanguagesTemplate.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 4C2E381C16D11FF900037A9D /* 05_LanguagesTemplate.pdf */; };
 		4C2E382316D1421B00037A9D /* MPIconHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C2E382216D1421B00037A9D /* MPIconHelper.m */; };
 		4C2E382616D1470200037A9D /* MPViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C2E382516D1470200037A9D /* MPViewController.m */; };
+		4C36E5B1177CD38C00152132 /* Kdb4Tree+Undo.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C36E5B0177CD38C00152132 /* Kdb4Tree+Undo.m */; };
+		4C36E5B4177CD4FB00152132 /* Kdb4Tree+KVOAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C36E5B3177CD4FB00152132 /* Kdb4Tree+KVOAdditions.m */; };
 		4C37A6731769393300AD0A40 /* HNHTableHeaderCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C37A6721769393300AD0A40 /* HNHTableHeaderCell.m */; };
 		4C37A84015B8B474005EF8EE /* MPOutlineDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C37A83F15B8B474005EF8EE /* MPOutlineDataSource.m */; };
 		4C3BD51516D276F800389F1F /* MPToolbarDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C3BD51416D276F800389F1F /* MPToolbarDelegate.m */; };
@@ -63,6 +65,8 @@
 		4C46E09E17673A0A00DA62E8 /* HNHShadowBox.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C46E09D17673A0A00DA62E8 /* HNHShadowBox.m */; };
 		4C4A100F176286FD00BBF2CA /* MPTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C4A100E176286FD00BBF2CA /* MPTableView.m */; };
 		4C4A101217629DA900BBF2CA /* KdbGroup+KVOAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C4A101117629DA900BBF2CA /* KdbGroup+KVOAdditions.m */; };
+		4C4FCE15177CFE6B00BBF7AE /* MPCustomFieldTableCellView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C4FCE14177CFE6B00BBF7AE /* MPCustomFieldTableCellView.m */; };
+		4C4FCE18177D03D700BBF7AE /* Kdb4Entry+KVOAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C4FCE17177D03D700BBF7AE /* Kdb4Entry+KVOAdditions.m */; };
 		4C569D9E17652B0600595B62 /* MPConstants.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C569D9D17652B0600595B62 /* MPConstants.m */; };
 		4C569DA117652BFE00595B62 /* MPEntryTableDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C569DA017652BFE00595B62 /* MPEntryTableDataSource.m */; };
 		4C569DA417653F3500595B62 /* KdbEntry+MPTreeTools.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C569DA317653F3500595B62 /* KdbEntry+MPTreeTools.m */; };
@@ -268,6 +272,10 @@
 		4C2E382216D1421B00037A9D /* MPIconHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MPIconHelper.m; sourceTree = "<group>"; };
 		4C2E382416D1470200037A9D /* MPViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MPViewController.h; sourceTree = "<group>"; };
 		4C2E382516D1470200037A9D /* MPViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MPViewController.m; sourceTree = "<group>"; };
+		4C36E5AF177CD38C00152132 /* Kdb4Tree+Undo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Kdb4Tree+Undo.h"; sourceTree = "<group>"; };
+		4C36E5B0177CD38C00152132 /* Kdb4Tree+Undo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "Kdb4Tree+Undo.m"; sourceTree = "<group>"; };
+		4C36E5B2177CD4FB00152132 /* Kdb4Tree+KVOAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Kdb4Tree+KVOAdditions.h"; sourceTree = "<group>"; };
+		4C36E5B3177CD4FB00152132 /* Kdb4Tree+KVOAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "Kdb4Tree+KVOAdditions.m"; sourceTree = "<group>"; };
 		4C37A6711769393300AD0A40 /* HNHTableHeaderCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HNHTableHeaderCell.h; sourceTree = "<group>"; };
 		4C37A6721769393300AD0A40 /* HNHTableHeaderCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HNHTableHeaderCell.m; sourceTree = "<group>"; };
 		4C37A83E15B8B474005EF8EE /* MPOutlineDataSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MPOutlineDataSource.h; sourceTree = "<group>"; };
@@ -290,6 +298,10 @@
 		4C4A100E176286FD00BBF2CA /* MPTableView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MPTableView.m; sourceTree = "<group>"; };
 		4C4A101017629DA900BBF2CA /* KdbGroup+KVOAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "KdbGroup+KVOAdditions.h"; sourceTree = "<group>"; };
 		4C4A101117629DA900BBF2CA /* KdbGroup+KVOAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "KdbGroup+KVOAdditions.m"; sourceTree = "<group>"; };
+		4C4FCE13177CFE6B00BBF7AE /* MPCustomFieldTableCellView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MPCustomFieldTableCellView.h; sourceTree = "<group>"; };
+		4C4FCE14177CFE6B00BBF7AE /* MPCustomFieldTableCellView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MPCustomFieldTableCellView.m; sourceTree = "<group>"; };
+		4C4FCE16177D03D700BBF7AE /* Kdb4Entry+KVOAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Kdb4Entry+KVOAdditions.h"; sourceTree = "<group>"; };
+		4C4FCE17177D03D700BBF7AE /* Kdb4Entry+KVOAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "Kdb4Entry+KVOAdditions.m"; sourceTree = "<group>"; };
 		4C569D9C17652AC800595B62 /* MPConstants.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MPConstants.h; sourceTree = "<group>"; };
 		4C569D9D17652B0600595B62 /* MPConstants.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MPConstants.m; sourceTree = "<group>"; };
 		4C569D9F17652BFE00595B62 /* MPEntryTableDataSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MPEntryTableDataSource.h; sourceTree = "<group>"; };
@@ -561,6 +573,8 @@
 				4CE39AC316ECE4F7000FE29D /* MPPopupImageView.m */,
 				4C4A100D176286FD00BBF2CA /* MPTableView.h */,
 				4C4A100E176286FD00BBF2CA /* MPTableView.m */,
+				4C4FCE13177CFE6B00BBF7AE /* MPCustomFieldTableCellView.h */,
+				4C4FCE14177CFE6B00BBF7AE /* MPCustomFieldTableCellView.m */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -739,8 +753,14 @@
 				4C01C23E1764D2980016D5D0 /* KdbEntry+Undo.m */,
 				4C22040B1746ED160054C916 /* KdbGroup+Undo.h */,
 				4C22040C1746ED160054C916 /* KdbGroup+Undo.m */,
+				4C36E5AF177CD38C00152132 /* Kdb4Tree+Undo.h */,
+				4C36E5B0177CD38C00152132 /* Kdb4Tree+Undo.m */,
 				4C4A101017629DA900BBF2CA /* KdbGroup+KVOAdditions.h */,
 				4C4A101117629DA900BBF2CA /* KdbGroup+KVOAdditions.m */,
+				4C36E5B2177CD4FB00152132 /* Kdb4Tree+KVOAdditions.h */,
+				4C36E5B3177CD4FB00152132 /* Kdb4Tree+KVOAdditions.m */,
+				4C4FCE16177D03D700BBF7AE /* Kdb4Entry+KVOAdditions.h */,
+				4C4FCE17177D03D700BBF7AE /* Kdb4Entry+KVOAdditions.m */,
 				4C83F4A81774B155006C5FC0 /* Kdb3Tree+NewTree.h */,
 				4C83F4A91774B155006C5FC0 /* Kdb3Tree+NewTree.m */,
 				4C83F4AB1774B25F006C5FC0 /* Kdb4Tree+NewTree.h */,
@@ -1442,6 +1462,10 @@
 				4CD5D705177A5F3300100649 /* MPDocumentSettingsWindowController.m in Sources */,
 				4C5EC302177B700D00DA955B /* MPRootAdapter.m in Sources */,
 				4C74DD07177BD1640034A9DB /* MPCustomFieldView.m in Sources */,
+				4C36E5B1177CD38C00152132 /* Kdb4Tree+Undo.m in Sources */,
+				4C36E5B4177CD4FB00152132 /* Kdb4Tree+KVOAdditions.m in Sources */,
+				4C4FCE15177CFE6B00BBF7AE /* MPCustomFieldTableCellView.m in Sources */,
+				4C4FCE18177D03D700BBF7AE /* Kdb4Entry+KVOAdditions.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

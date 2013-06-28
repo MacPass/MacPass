@@ -17,12 +17,15 @@
 #import "MPOutlineViewController.h"
 #import "MPDocument.h"
 #import "MPCustomFieldView.h"
+#import "MPDatabaseVersion.h"
+#import "MPCustomFieldTableCellView.h"
 
 #import "KdbLib.h"
 #import "Kdb4Node.h"
 #import "Kdb3Node.h"
 #import "KdbGroup+Undo.h"
 #import "KdbEntry+Undo.h"
+#import "Kdb4Entry+KVOAdditions.h"
 #import "NSMutableData+Base64.h"
 
 #import "HNHGradientView.h"
@@ -50,7 +53,7 @@ enum {
 @property (nonatomic, assign) NSUInteger activeTab;
 @property (assign) IBOutlet NSTabView *tabView;
 @property (retain) NSArrayController *attachmentsController;
-@property (retain) NSMutableArray *customFieldViews;
+@property (retain) NSArrayController *customFieldsController;
 
 - (IBAction)addCustomField:(id)sender;
 - (IBAction)removeCustomField:(id)sender;
@@ -69,8 +72,8 @@ enum {
     _selectedEntry = nil;
     _selectedGroup = nil;
     _attachmentsController = [[NSArrayController alloc] init];
+    _customFieldsController = [[NSArrayController alloc] init];
     _activeTab = MPGeneralTab;
-    _customFieldViews = [[NSMutableArray alloc] initWithCapacity:5];
   }
   return self;
 }
@@ -79,7 +82,7 @@ enum {
   [[NSNotificationCenter defaultCenter] removeObserver:self];
   [_activePopover release];
   [_attachmentsController release];
-  [_customFieldViews release];
+  [_customFieldsController release];
   [super dealloc];
 }
 
@@ -94,6 +97,8 @@ enum {
   
   [_attachmentTableView bind:NSContentBinding toObject:self.attachmentsController withKeyPath:@"arrangedObjects" options:nil];
   [_attachmentTableView setDelegate:self];
+  [_customFieldsTableView bind:NSContentBinding toObject:self.customFieldsController withKeyPath:@"arrangedObjects" options:nil];
+  [_customFieldsTableView setDelegate:self];
   
   [self _clearContent];
 }
@@ -135,6 +140,7 @@ enum {
     [self _clearContent];
   }
   [self _updateAttachments];
+  [self _updateCustomFields];
 }
 
 - (void)_updateAttachments {
@@ -143,16 +149,24 @@ enum {
       [self.attachmentsController bind:NSContentArrayBinding toObject:self.selectedEntry withKeyPath:@"binaries" options:nil];
     }
     else {
-      /* Use binarydes and binary form Kdb3Entry */
+      /* Use binary from Kdb3Entry */
     }
   }
   else if([self.attachmentsController content] != nil){
-    
     [self.attachmentsController unbind:NSContentArrayBinding];
     [self.attachmentsController setContent:nil];
     
   }
-  
+}
+
+- (void)_updateCustomFields {
+  if(self.selectedEntry && [self.selectedEntry isKindOfClass:[Kdb4Entry class]]) {
+    [self.customFieldsController bind:NSContentArrayBinding toObject:self.selectedEntry withKeyPath:@"stringFields" options:nil];
+  }
+  else if([self.customFieldsController content] != nil){
+    [self.customFieldsController unbind:NSContentArrayBinding];
+    [self.customFieldsController setContent:nil];
+  }
 }
 
 - (void)_showEntry {
@@ -239,8 +253,10 @@ enum {
   [self.URLTextField setEnabled:enabled];
   [self.generatePasswordButton setEnabled:enabled];
   
-  [self.infoTabControl setEnabled:enabled forSegment:MPAttachmentsTab];
   [self.infoTabControl setEnabled:enabled forSegment:MPNotesTab];
+  [self.infoTabControl setEnabled:enabled forSegment:MPAttachmentsTab];
+
+  enabled &= [self.selectedEntry isKindOfClass:[Kdb4Entry class]];
   [self.infoTabControl setEnabled:enabled forSegment:MPCustomFieldsTab];
 }
 
@@ -287,68 +303,14 @@ enum {
 
 #pragma mark Actions
 - (IBAction)addCustomField:(id)sender {
-  NSArray *topLevelObjects;
-  BOOL success = [[NSBundle mainBundle] loadNibNamed:@"CustomFieldView" owner:self topLevelObjects:&topLevelObjects];
-  if(success) {
-    id object = [topLevelObjects lastObject];
-    MPCustomFieldView *fieldView;
-    if(![object isKindOfClass:[MPCustomFieldView class]]) {
-      fieldView = topLevelObjects[0];
-    }
-    else {
-      fieldView = object;
-    }
-    [fieldView.deleteButton setTarget:self];
-    NSTabViewItem *tabViewItem = [self.tabView tabViewItemAtIndex:MPCustomFieldsTab];
-    
-    NSView *predecessorView = [self.customFieldViews lastObject];
-    if(!predecessorView) {
-      predecessorView = _customFieldsTextField;
-    }
-    
-    [[tabViewItem view] addSubview:fieldView];
-    [self.customFieldViews addObject:fieldView];
-    
-    NSDictionary *views = NSDictionaryOfVariableBindings(fieldView, predecessorView);
-    [[tabViewItem view] addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-20-[fieldView]-20-|"
-                                                                               options:0
-                                                                               metrics:nil
-                                                                                 views:views]];
-    [[tabViewItem view] addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:[predecessorView]-10-[fieldView]"
-                                                                               options:0
-                                                                               metrics:nil
-                                                                                 views:views]];
-    [[tabViewItem view] layoutSubtreeIfNeeded];
-  }
+  Kdb4Entry *entry = (Kdb4Entry *)self.selectedEntry;
+  StringField *stringField = [StringField stringFieldWithKey:@"Key" andValue:@"Value"];
+  [entry insertObject:stringField inStringFieldsAtIndex:[entry.stringFields count]];
 }
 - (IBAction)removeCustomField:(id)sender {
-  NSControl *button = sender;
-  NSView *fieldView = [button superview];
-  
-  if([self.customFieldViews containsObject:fieldView]) {
-    [fieldView removeFromSuperview];
-    NSUInteger index = [self.customFieldViews indexOfObject:fieldView];
-    NSView *newPredecessorView = nil;
-    NSView *newSuccesorView = nil;
-    if(index == 0) {
-      newPredecessorView = _customFieldsTextField;
-    }
-    else {
-      NSAssert(index > 0, @"");
-      newPredecessorView = [self.customFieldViews objectAtIndex:index - 1];
-    }
-    NSTabViewItem *tabViewItem = [self.tabView tabViewItemAtIndex:MPCustomFieldsTab];
-    if(index < [self.customFieldViews count] - 1) {
-      newSuccesorView = [self.customFieldViews objectAtIndex:index + 1];
-      NSDictionary *views = NSDictionaryOfVariableBindings(newPredecessorView, newSuccesorView);
-      [[tabViewItem view] addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:[newPredecessorView]-10-[newSuccesorView]"
-                                                                                 options:0
-                                                                                 metrics:nil
-                                                                                   views:views]];
-    }
-    [self.customFieldViews removeObject:fieldView];
-    [[tabViewItem view] layoutSubtreeIfNeeded];
-  }
+  NSButton *button = sender;
+  Kdb4Entry *entry = (Kdb4Entry *)self.selectedEntry;
+  [entry removeObjectFromStringFieldsAtIndex:[button tag]];
 }
 
 #pragma mark Notificiations
@@ -373,7 +335,14 @@ enum {
 
 #pragma mark NSTableViewDelegate
 - (NSView *)tableView:(NSTableView *)tableView viewForTableColumn:(NSTableColumn *)tableColumn row:(NSInteger)row {
-  NSTableCellView *view = [tableView makeViewWithIdentifier:[tableColumn identifier] owner:tableView];
+  if(tableView == self.attachmentTableView) {
+    return [self _viewForAttachmentTableColumn:tableColumn row:row];
+  }
+  return [self _viewForCustomFieldTableColumn:tableColumn row:row];
+}
+
+- (NSView *)_viewForAttachmentTableColumn:(NSTableColumn *)tableColumn row:(NSInteger)row {
+  NSTableCellView *view = [_attachmentTableView makeViewWithIdentifier:[tableColumn identifier] owner:_attachmentTableView];
   if([self.selectedEntry isKindOfClass:[Kdb4Entry class]]) {
     Kdb4Entry *entry = (Kdb4Entry *)self.selectedEntry;
     BinaryRef *binaryRef = entry.binaries[row];
@@ -384,4 +353,19 @@ enum {
   }
   return view;
 }
+- (NSView *)_viewForCustomFieldTableColumn:(NSTableColumn *)tableColumn row:(NSInteger)row {
+  MPCustomFieldTableCellView *view = [_customFieldsTableView makeViewWithIdentifier:[tableColumn identifier] owner:_customFieldsTableView];
+  if([self.selectedEntry isKindOfClass:[Kdb4Entry class]]) {
+    Kdb4Entry *entry = (Kdb4Entry *)self.selectedEntry;
+    StringField *stringField = entry.stringFields[row];
+    [view.labelTextField bind:NSValueBinding toObject:stringField withKeyPath:@"key" options:nil];
+    [view.valueTextField bind:NSValueBinding toObject:stringField withKeyPath:@"value" options:nil];
+    [view.removeButton setTarget:self];
+    [view.removeButton setAction:@selector(removeCustomField:)];
+    [view.removeButton setTag:row];
+  }
+  return view;
+}
+
+
 @end

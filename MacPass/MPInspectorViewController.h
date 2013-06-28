@@ -29,6 +29,7 @@
 @property (assign) IBOutlet NSTextField *modifiedTextField;
 @property (assign) IBOutlet NSSegmentedControl *infoTabControl;
 @property (assign) IBOutlet NSTableView *attachmentTableView;
+@property (assign) IBOutlet NSTableView *customFieldsTableView;
 @property (assign) IBOutlet NSTextView *notesTextView;
 @property (assign) IBOutlet NSTextField *customFieldsTextField;
 

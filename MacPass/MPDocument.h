@@ -22,6 +22,8 @@ APPKIT_EXTERN NSString *const MPDocumentGroupKey;
 @class KdbGroup;
 @class KdbEntry;
 @class KdbTree;
+@class Kdb4Tree;
+@class Kdb3Tree;
 @class UUID;
 @class Binary;
 @class BinaryRef;
@@ -56,6 +58,8 @@ APPKIT_EXTERN NSString *const MPDocumentGroupKey;
  */
 - (Binary *)binaryForRef:(BinaryRef *)binaryRef;
 
+- (Kdb4Tree *)treeV4;
+- (Kdb3Tree *)treeV3;
 
 #pragma mark Data Manipulation
 /* Undoable Intiialization of elements */

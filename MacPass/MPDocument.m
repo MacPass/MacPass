@@ -225,11 +225,37 @@ NSString *const MPDocumentGroupKey                    = @"MPDocumentGroupKey";
   return [filteredBinary lastObject];
 }
 
+- (Kdb3Tree *)treeV3 {
+  switch (_version) {
+    case MPDatabaseVersion3:
+      NSAssert([self.tree isKindOfClass:[Kdb3Tree class]], @"Tree has to be Version3");
+      return (Kdb3Tree *)self.tree;
+    case MPDatabaseVersion4:
+      return nil;
+    default:
+      return nil;
+  }
+}
+
+- (Kdb4Tree *)treeV4 {
+  switch (_version) {
+    case MPDatabaseVersion3:
+      return nil;
+    case MPDatabaseVersion4:
+      NSAssert([self.tree isKindOfClass:[Kdb4Tree class]], @"Tree has to be Version4");
+      return (Kdb4Tree *)self.tree;
+    default:
+      return nil;
+  }
+}
 
 #pragma mark Data manipulation
 - (KdbEntry *)createEntry:(KdbGroup *)parent {
   KdbEntry *newEntry = [self.tree createEntry:parent];
   newEntry.title = NSLocalizedString(@"DEFAULT_ENTRY_TITLE", @"Title for a newly created entry");
+  if(self.treeV4 && ([self.treeV4.defaultUserName length] > 0)) {
+    newEntry.title = self.treeV4.defaultUserName;
+  }
   [self group:parent addEntry:newEntry];
   NSDictionary *userInfo = @{ MPDocumentEntryKey : newEntry };
   [[NSNotificationCenter defaultCenter] postNotificationName:MPDocumentDidAddEntryNotification object:self userInfo:userInfo];
@@ -322,7 +348,7 @@ NSString *const MPDocumentGroupKey                    = @"MPDocumentGroupKey";
   [group removeObjectFromGroupsAtIndex:index];
 }
 
-#pragma mark Private 
+#pragma mark Private
 - (void)_cleanupLock {
   if(_didLockFile) {
     [[NSFileManager defaultManager] removeItemAtURL:_lockFileURL error:nil];
