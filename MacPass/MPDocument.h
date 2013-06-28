@@ -24,9 +24,11 @@ APPKIT_EXTERN NSString *const MPDocumentGroupKey;
 @class KdbTree;
 @class Kdb4Tree;
 @class Kdb3Tree;
+@class Kdb4Entry;
 @class UUID;
 @class Binary;
 @class BinaryRef;
+@class StringField;
 @class MPRootAdapter;
 
 @interface MPDocument : NSDocument
@@ -65,6 +67,7 @@ APPKIT_EXTERN NSString *const MPDocumentGroupKey;
 /* Undoable Intiialization of elements */
 - (KdbGroup *)createGroup:(KdbGroup *)parent;
 - (KdbEntry *)createEntry:(KdbGroup *)parent;
+- (StringField *)createStringField:(KdbEntry *)entry;
 
 /*
  All non-setter undoable actions
@@ -74,12 +77,12 @@ APPKIT_EXTERN NSString *const MPDocumentGroupKey;
 - (BOOL)group:(KdbGroup *)group isMoveableToGroup:(KdbGroup *)target;
 - (void)moveEntry:(KdbEntry *)entry toGroup:(KdbGroup *)target index:(NSInteger)index;
 
-- (void)group:(KdbGroup *)group addEntry:(KdbEntry *)entry;
-- (void)group:(KdbGroup *)group addGroup:(KdbGroup *)aGroup;
+- (void)group:(KdbGroup *)group addEntry:(KdbEntry *)entry atIndex:(NSUInteger)index;
+- (void)group:(KdbGroup *)group addGroup:(KdbGroup *)aGroup atIndex:(NSUInteger)index;
 - (void)group:(KdbGroup *)group removeEntry:(KdbEntry *)entry;
 - (void)group:(KdbGroup *)group removeGroup:(KdbGroup *)aGroup;
 
-
-
+- (void)entry:(Kdb4Entry *)entry addStringField:(StringField *)field atIndex:(NSUInteger)index;
+- (void)entry:(Kdb4Entry *)entry removeStringField:(StringField *)field;
 
 @end

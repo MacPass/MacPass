@@ -303,14 +303,14 @@ enum {
 
 #pragma mark Actions
 - (IBAction)addCustomField:(id)sender {
-  Kdb4Entry *entry = (Kdb4Entry *)self.selectedEntry;
-  StringField *stringField = [StringField stringFieldWithKey:@"Key" andValue:@"Value"];
-  [entry insertObject:stringField inStringFieldsAtIndex:[entry.stringFields count]];
+  MPDocument *document = [[self windowController] document];
+  [document createStringField:self.selectedEntry];
 }
 - (IBAction)removeCustomField:(id)sender {
-  NSButton *button = sender;
+  MPDocument *document = [[self windowController] document];
+  NSUInteger index = [sender tag];
   Kdb4Entry *entry = (Kdb4Entry *)self.selectedEntry;
-  [entry removeObjectFromStringFieldsAtIndex:[button tag]];
+  [document entry:entry removeStringField:[entry.stringFields objectAtIndex:index]];
 }
 
 #pragma mark Notificiations
