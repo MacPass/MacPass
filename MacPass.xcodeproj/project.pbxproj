@@ -56,6 +56,7 @@
 		4C37A84015B8B474005EF8EE /* MPOutlineDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C37A83F15B8B474005EF8EE /* MPOutlineDataSource.m */; };
 		4C3BD51516D276F800389F1F /* MPToolbarDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C3BD51416D276F800389F1F /* MPToolbarDelegate.m */; };
 		4C3D4C0817594CA40038DAAC /* HNHSeparator.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C3D4C0717594CA40038DAAC /* HNHSeparator.m */; };
+		4C3E1CC0177DEFB3003BD9BD /* StringField+Undo.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C3E1CBF177DEFB3003BD9BD /* StringField+Undo.m */; };
 		4C3FFD9E16DAF60600DF9186 /* FilterBar.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4C3FFD9D16DAF60600DF9186 /* FilterBar.xib */; };
 		4C431BCD16E2A82800700A81 /* MPPasteBoardController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C431BCC16E2A82700700A81 /* MPPasteBoardController.m */; };
 		4C431BCF16E2BAB000700A81 /* OverlayWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4C431BCE16E2BAB000700A81 /* OverlayWindow.xib */; };
@@ -281,6 +282,8 @@
 		4C3BD51416D276F800389F1F /* MPToolbarDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MPToolbarDelegate.m; sourceTree = "<group>"; };
 		4C3D4C0617594CA40038DAAC /* HNHSeparator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HNHSeparator.h; sourceTree = "<group>"; };
 		4C3D4C0717594CA40038DAAC /* HNHSeparator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HNHSeparator.m; sourceTree = "<group>"; };
+		4C3E1CBE177DEFB3003BD9BD /* StringField+Undo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "StringField+Undo.h"; sourceTree = "<group>"; };
+		4C3E1CBF177DEFB3003BD9BD /* StringField+Undo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "StringField+Undo.m"; sourceTree = "<group>"; };
 		4C3FFD9D16DAF60600DF9186 /* FilterBar.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FilterBar.xib; sourceTree = "<group>"; };
 		4C431BCB16E2A82700700A81 /* MPPasteBoardController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MPPasteBoardController.h; sourceTree = "<group>"; };
 		4C431BCC16E2A82700700A81 /* MPPasteBoardController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MPPasteBoardController.m; sourceTree = "<group>"; };
@@ -752,6 +755,8 @@
 				4C22040C1746ED160054C916 /* KdbGroup+Undo.m */,
 				4C36E5AF177CD38C00152132 /* Kdb4Tree+Undo.h */,
 				4C36E5B0177CD38C00152132 /* Kdb4Tree+Undo.m */,
+				4C3E1CBE177DEFB3003BD9BD /* StringField+Undo.h */,
+				4C3E1CBF177DEFB3003BD9BD /* StringField+Undo.m */,
 				4C4A101017629DA900BBF2CA /* KdbGroup+KVOAdditions.h */,
 				4C4A101117629DA900BBF2CA /* KdbGroup+KVOAdditions.m */,
 				4C36E5B2177CD4FB00152132 /* Kdb4Tree+KVOAdditions.h */,
@@ -1462,6 +1467,7 @@
 				4C4FCE15177CFE6B00BBF7AE /* MPCustomFieldTableCellView.m in Sources */,
 				4C4FCE18177D03D700BBF7AE /* Kdb4Entry+KVOAdditions.m in Sources */,
 				4C52A244177D7B9F0000D88F /* HNHScrollView.m in Sources */,
+				4C3E1CC0177DEFB3003BD9BD /* StringField+Undo.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -252,6 +252,9 @@ NSString *const MPDocumentGroupKey                    = @"MPDocumentGroupKey";
 
 #pragma mark Data manipulation
 - (KdbEntry *)createEntry:(KdbGroup *)parent {
+  if(!parent) {
+    return nil; // No parent
+  }
   KdbEntry *newEntry = [self.tree createEntry:parent];
   newEntry.title = NSLocalizedString(@"DEFAULT_ENTRY_TITLE", @"Title for a newly created entry");
   if(self.treeV4 && ([self.treeV4.defaultUserName length] > 0)) {
@@ -264,6 +267,9 @@ NSString *const MPDocumentGroupKey                    = @"MPDocumentGroupKey";
 }
 
 - (KdbGroup *)createGroup:(KdbGroup *)parent {
+  if(!parent) {
+    return nil; // no parent!
+  }
   KdbGroup *newGroup = [self.tree createGroup:parent];
   newGroup.name = NSLocalizedString(@"DEFAULT_GROUP_NAME", @"Title for a newly created group");
   [self group:parent addGroup:newGroup atIndex:[parent.groups count]];

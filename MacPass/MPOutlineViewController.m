@@ -111,7 +111,6 @@ NSString *const _MPOutlinveViewHeaderViewIdentifier = @"HeaderCell";
     [_outlineView expandItem:item];
     indexSet = [NSIndexSet indexSetWithIndex:selectedRow + 1];
   }
-  [_outlineView selectRowIndexes:indexSet byExtendingSelection:NO];
 }
 
 #pragma mark -
@@ -123,23 +122,11 @@ NSString *const _MPOutlinveViewHeaderViewIdentifier = @"HeaderCell";
   if(!group) {
     group = document.root;
   }
-  BOOL isFistGroup = [document.root.groups count] == 0;
   [document createGroup:group];
-  /*
-   TODO: Find out if a lower hierachy node was the first child
-   and auto-expand that item too
-   */
-  if(isFistGroup) {
-    NSTreeNode *node = [_outlineView itemAtRow:0];
-    [_outlineView expandItem:node expandChildren:NO];
-  }
 }
 
 - (void)createEntry:(id)sender {
   KdbGroup *group = [self _clickedOrSelectedGroup];
-  if(!group.parent) {
-    return; // Entries are not allowed in root group
-  }
   if(group) {
     MPDocument *document = [[self windowController] document];
     [document createEntry:group];

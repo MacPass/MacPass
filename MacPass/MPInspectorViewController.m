@@ -25,6 +25,7 @@
 #import "Kdb3Node.h"
 #import "KdbGroup+Undo.h"
 #import "KdbEntry+Undo.h"
+#import "StringField+Undo.h"
 #import "Kdb4Entry+KVOAdditions.h"
 #import "NSMutableData+Base64.h"
 
@@ -97,6 +98,8 @@ enum {
   
   [_attachmentTableView bind:NSContentBinding toObject:self.attachmentsController withKeyPath:@"arrangedObjects" options:nil];
   [_attachmentTableView setDelegate:self];
+  /* Set background to clearcolor so we can draw in the scrollview */
+  [_customFieldsTableView setBackgroundColor:[NSColor clearColor]];
   [_customFieldsTableView bind:NSContentBinding toObject:self.customFieldsController withKeyPath:@"arrangedObjects" options:nil];
   [_customFieldsTableView setDelegate:self];
   
@@ -358,8 +361,8 @@ enum {
   if([self.selectedEntry isKindOfClass:[Kdb4Entry class]]) {
     Kdb4Entry *entry = (Kdb4Entry *)self.selectedEntry;
     StringField *stringField = entry.stringFields[row];
-    [view.labelTextField bind:NSValueBinding toObject:stringField withKeyPath:@"key" options:nil];
-    [view.valueTextField bind:NSValueBinding toObject:stringField withKeyPath:@"value" options:nil];
+    [view.labelTextField bind:NSValueBinding toObject:stringField withKeyPath:MPStringFieldKeyUndoableKey options:nil];
+    [view.valueTextField bind:NSValueBinding toObject:stringField withKeyPath:MPStringFieldValueUndoableKey options:nil];
     [view.removeButton setTarget:self];
     [view.removeButton setAction:@selector(removeCustomField:)];
     [view.removeButton setTag:row];

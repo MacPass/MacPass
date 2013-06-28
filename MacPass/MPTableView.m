@@ -15,7 +15,7 @@
    We need to clear the outer areas
    as calling super will not do that for us
    */
-  [[NSColor whiteColor] set];
+  [[self backgroundColor] set];
   NSRectFill(clipRect);
   [super drawBackgroundInClipRect:clipRect];
 }
