@@ -35,16 +35,12 @@
 - (void)windowDidLoad {
   [super windowDidLoad];
   NSAssert(_document != nil, @"Document needs to be present");
-  if( _document.version == MPDatabaseVersion4 ) {
-    Kdb4Tree *tree = (Kdb4Tree *)_document.tree;
-    [self.databaseNameTextField bind:NSValueBinding toObject:tree withKeyPath:MPTree4DatabaseNameUndoableKey options:nil];
-    [self.databaseDescriptionTextView bind:NSValueBinding toObject:tree withKeyPath:MPTree4DatabaseDescriptionUndoableKey options:nil];
-    
-    [self.protectNotesCheckButton bind:NSValueBinding toObject:tree withKeyPath:MPTree4ProtectNotesUndoableKey options:nil];
-    [self.protectPasswortCheckButton bind:NSValueBinding toObject:tree withKeyPath:MPTree4ProtectPasswordUndoableKey options:nil];
-    [self.protectTitleCheckButton bind:NSValueBinding toObject:tree withKeyPath:MPTree4ProtectTitleUndoableKey options:nil];
-    [self.protectURLCheckButton bind:NSValueBinding toObject:tree withKeyPath:MPTree4ProtectUrlUndoableKey options:nil];
-    [self.protectUserNameCheckButton bind:NSValueBinding toObject:tree withKeyPath:MPTree4ProtectUsernameUndoableKey options:nil];
+  Kdb4Tree *tree = _document.treeV4;
+  if( tree ) {
+    [self _setupDatabase:tree];
+    [self _setupProtectionTab:tree];
+    [self _setupHistoryTab:tree];
+    [self _setupPasswordTab:tree];
   }
   else {
     // Switch to KdbV3 View
@@ -54,6 +50,27 @@
 - (void)saveChanges:(id)sender {
   [NSApp endSheet:[self window]];
   [[self window] orderOut:nil];
+}
+
+- (void)_setupDatabase:(Kdb4Tree *)tree {
+  [self.databaseNameTextField bind:NSValueBinding toObject:tree withKeyPath:MPTree4DatabaseNameUndoableKey options:nil];
+  [self.databaseDescriptionTextView bind:NSValueBinding toObject:tree withKeyPath:MPTree4DatabaseDescriptionUndoableKey options:nil];
+}
+
+- (void)_setupProtectionTab:(Kdb4Tree *)tree {
+  [self.protectNotesCheckButton bind:NSValueBinding toObject:tree withKeyPath:MPTree4ProtectNotesUndoableKey options:nil];
+  [self.protectPasswortCheckButton bind:NSValueBinding toObject:tree withKeyPath:MPTree4ProtectPasswordUndoableKey options:nil];
+  [self.protectTitleCheckButton bind:NSValueBinding toObject:tree withKeyPath:MPTree4ProtectTitleUndoableKey options:nil];
+  [self.protectURLCheckButton bind:NSValueBinding toObject:tree withKeyPath:MPTree4ProtectUrlUndoableKey options:nil];
+  [self.protectUserNameCheckButton bind:NSValueBinding toObject:tree withKeyPath:MPTree4ProtectUsernameUndoableKey options:nil];
+}
+
+- (void)_setupHistoryTab:(Kdb4Tree *)tree {
+  
+}
+
+- (void)_setupPasswordTab:(Kdb4Tree *)tree {
+  
 }
 
 @end
