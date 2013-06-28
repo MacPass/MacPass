@@ -10,7 +10,6 @@
 		4C01C23F1764D2980016D5D0 /* KdbEntry+Undo.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C01C23E1764D2980016D5D0 /* KdbEntry+Undo.m */; };
 		4C01C2421764D8980016D5D0 /* MPContextMenuHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C01C2411764D8980016D5D0 /* MPContextMenuHelper.m */; };
 		4C01C245176500C40016D5D0 /* HNHLevelIndicatorCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C01C244176500C40016D5D0 /* HNHLevelIndicatorCell.m */; };
-		4C099933176D4EA600C885CB /* HNHScrollView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C099932176D4EA600C885CB /* HNHScrollView.m */; };
 		4C1DDCDD1711ECEB00C98DA3 /* PasswordCreatorWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4C1DDCDC1711ECEB00C98DA3 /* PasswordCreatorWindow.xib */; };
 		4C22040D1746ED160054C916 /* KdbGroup+Undo.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C22040C1746ED160054C916 /* KdbGroup+Undo.m */; };
 		4C245B76176E1E3D0086100E /* DDData.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C245A6A176E1E3C0086100E /* DDData.m */; settings = {COMPILER_FLAGS = "-fobjc-arc"; }; };
@@ -67,6 +66,7 @@
 		4C4A101217629DA900BBF2CA /* KdbGroup+KVOAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C4A101117629DA900BBF2CA /* KdbGroup+KVOAdditions.m */; };
 		4C4FCE15177CFE6B00BBF7AE /* MPCustomFieldTableCellView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C4FCE14177CFE6B00BBF7AE /* MPCustomFieldTableCellView.m */; };
 		4C4FCE18177D03D700BBF7AE /* Kdb4Entry+KVOAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C4FCE17177D03D700BBF7AE /* Kdb4Entry+KVOAdditions.m */; };
+		4C52A244177D7B9F0000D88F /* HNHScrollView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C52A243177D7B9F0000D88F /* HNHScrollView.m */; };
 		4C569D9E17652B0600595B62 /* MPConstants.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C569D9D17652B0600595B62 /* MPConstants.m */; };
 		4C569DA117652BFE00595B62 /* MPEntryTableDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C569DA017652BFE00595B62 /* MPEntryTableDataSource.m */; };
 		4C569DA417653F3500595B62 /* KdbEntry+MPTreeTools.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C569DA317653F3500595B62 /* KdbEntry+MPTreeTools.m */; };
@@ -192,8 +192,6 @@
 		4C01C2411764D8980016D5D0 /* MPContextMenuHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MPContextMenuHelper.m; sourceTree = "<group>"; };
 		4C01C243176500C40016D5D0 /* HNHLevelIndicatorCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HNHLevelIndicatorCell.h; sourceTree = "<group>"; };
 		4C01C244176500C40016D5D0 /* HNHLevelIndicatorCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HNHLevelIndicatorCell.m; sourceTree = "<group>"; };
-		4C099931176D4EA600C885CB /* HNHScrollView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HNHScrollView.h; sourceTree = "<group>"; };
-		4C099932176D4EA600C885CB /* HNHScrollView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HNHScrollView.m; sourceTree = "<group>"; };
 		4C1DDCDC1711ECEB00C98DA3 /* PasswordCreatorWindow.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PasswordCreatorWindow.xib; sourceTree = "<group>"; };
 		4C22040B1746ED160054C916 /* KdbGroup+Undo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "KdbGroup+Undo.h"; sourceTree = "<group>"; };
 		4C22040C1746ED160054C916 /* KdbGroup+Undo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "KdbGroup+Undo.m"; sourceTree = "<group>"; };
@@ -301,6 +299,8 @@
 		4C4FCE14177CFE6B00BBF7AE /* MPCustomFieldTableCellView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MPCustomFieldTableCellView.m; sourceTree = "<group>"; };
 		4C4FCE16177D03D700BBF7AE /* Kdb4Entry+KVOAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Kdb4Entry+KVOAdditions.h"; sourceTree = "<group>"; };
 		4C4FCE17177D03D700BBF7AE /* Kdb4Entry+KVOAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "Kdb4Entry+KVOAdditions.m"; sourceTree = "<group>"; };
+		4C52A242177D7B9F0000D88F /* HNHScrollView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HNHScrollView.h; sourceTree = "<group>"; };
+		4C52A243177D7B9F0000D88F /* HNHScrollView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HNHScrollView.m; sourceTree = "<group>"; };
 		4C569D9C17652AC800595B62 /* MPConstants.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MPConstants.h; sourceTree = "<group>"; };
 		4C569D9D17652B0600595B62 /* MPConstants.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MPConstants.m; sourceTree = "<group>"; };
 		4C569D9F17652BFE00595B62 /* MPEntryTableDataSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MPEntryTableDataSource.h; sourceTree = "<group>"; };
@@ -1132,12 +1132,12 @@
 				4C01C244176500C40016D5D0 /* HNHLevelIndicatorCell.m */,
 				4C37A6711769393300AD0A40 /* HNHTableHeaderCell.h */,
 				4C37A6721769393300AD0A40 /* HNHTableHeaderCell.m */,
-				4C099931176D4EA600C885CB /* HNHScrollView.h */,
-				4C099932176D4EA600C885CB /* HNHScrollView.m */,
 				4C80BB6D176DE06F00E5E248 /* HNHScrollDocumentViewAdapter.h */,
 				4C80BB6E176DE06F00E5E248 /* HNHScrollDocumentViewAdapter.m */,
 				4CF78058176E6D5F0032EE71 /* HNHTableRowView.h */,
 				4CF78059176E6D5F0032EE71 /* HNHTableRowView.m */,
+				4C52A242177D7B9F0000D88F /* HNHScrollView.h */,
+				4C52A243177D7B9F0000D88F /* HNHScrollView.m */,
 			);
 			path = HNHUi;
 			sourceTree = "<group>";
@@ -1410,7 +1410,6 @@
 				4C79DF2A176685870083708F /* HNHRoundedTextField.m in Sources */,
 				4C46E09E17673A0A00DA62E8 /* HNHShadowBox.m in Sources */,
 				4C37A6731769393300AD0A40 /* HNHTableHeaderCell.m in Sources */,
-				4C099933176D4EA600C885CB /* HNHScrollView.m in Sources */,
 				4CA2335A176DBFE100F0B6AC /* MPLockDaemon.m in Sources */,
 				4C80BB6F176DE06F00E5E248 /* HNHScrollDocumentViewAdapter.m in Sources */,
 				4C245B76176E1E3D0086100E /* DDData.m in Sources */,
@@ -1462,6 +1461,7 @@
 				4C36E5B4177CD4FB00152132 /* Kdb4Tree+KVOAdditions.m in Sources */,
 				4C4FCE15177CFE6B00BBF7AE /* MPCustomFieldTableCellView.m in Sources */,
 				4C4FCE18177D03D700BBF7AE /* Kdb4Entry+KVOAdditions.m in Sources */,
+				4C52A244177D7B9F0000D88F /* HNHScrollView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
