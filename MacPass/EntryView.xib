@@ -57,7 +57,7 @@
 								<int key="NSvFlags">268</int>
 								<string key="NSFrame">{{7, 5}, {32, 19}}</string>
 								<reference key="NSSuperview" ref="163272962"/>
-								<reference key="NSWindow"/>
+								<reference key="NSNextKeyView"/>
 								<string key="NSReuseIdentifierKey">_NS:9</string>
 								<bool key="NSEnabled">YES</bool>
 								<object class="NSButtonCell" key="NSCell" id="160641004">
@@ -87,7 +87,6 @@
 						</array>
 						<string key="NSFrameSize">{684, 30}</string>
 						<reference key="NSSuperview" ref="997686550"/>
-						<reference key="NSWindow"/>
 						<reference key="NSNextKeyView" ref="276578969"/>
 						<string key="NSReuseIdentifierKey">_NS:9</string>
 						<string key="NSClassName">HNHGradientView</string>
@@ -106,8 +105,7 @@
 										<array class="NSMutableArray" key="NSSubviews"/>
 										<string key="NSFrameSize">{684, 548}</string>
 										<reference key="NSSuperview" ref="262664416"/>
-										<reference key="NSWindow"/>
-										<reference key="NSNextKeyView" ref="736877784"/>
+										<reference key="NSNextKeyView" ref="788738248"/>
 										<string key="NSReuseIdentifierKey">_NS:13</string>
 										<bool key="NSEnabled">YES</bool>
 										<bool key="NSAllowsLogicalLayoutDirection">NO</bool>
@@ -117,7 +115,6 @@
 											<int key="NSvFlags">256</int>
 											<string key="NSFrameSize">{684, 17}</string>
 											<reference key="NSSuperview" ref="736877784"/>
-											<reference key="NSWindow"/>
 											<reference key="NSNextKeyView" ref="262664416"/>
 											<reference key="NSTableView" ref="528076956"/>
 										</object>
@@ -330,7 +327,6 @@
 								</array>
 								<string key="NSFrame">{{0, 17}, {684, 548}}</string>
 								<reference key="NSSuperview" ref="613995671"/>
-								<reference key="NSWindow"/>
 								<reference key="NSNextKeyView" ref="528076956"/>
 								<string key="NSReuseIdentifierKey">_NS:11</string>
 								<reference key="NSDocView" ref="528076956"/>
@@ -342,7 +338,6 @@
 								<int key="NSvFlags">-2147483392</int>
 								<string key="NSFrame">{{224, 17}, {15, 102}}</string>
 								<reference key="NSSuperview" ref="613995671"/>
-								<reference key="NSWindow"/>
 								<reference key="NSNextKeyView" ref="802411427"/>
 								<string key="NSReuseIdentifierKey">_NS:58</string>
 								<bool key="NSAllowsLogicalLayoutDirection">NO</bool>
@@ -355,7 +350,6 @@
 								<int key="NSvFlags">-2147483392</int>
 								<string key="NSFrame">{{0, 310}, {480, 16}}</string>
 								<reference key="NSSuperview" ref="613995671"/>
-								<reference key="NSWindow"/>
 								<reference key="NSNextKeyView" ref="163272962"/>
 								<string key="NSReuseIdentifierKey">_NS:60</string>
 								<bool key="NSAllowsLogicalLayoutDirection">NO</bool>
@@ -372,7 +366,6 @@
 								</array>
 								<string key="NSFrameSize">{684, 17}</string>
 								<reference key="NSSuperview" ref="613995671"/>
-								<reference key="NSWindow"/>
 								<reference key="NSNextKeyView" ref="253618752"/>
 								<reference key="NSDocView" ref="253618752"/>
 								<reference key="NSBGColor" ref="136901388"/>
@@ -381,8 +374,7 @@
 						</array>
 						<string key="NSFrame">{{0, 30}, {684, 565}}</string>
 						<reference key="NSSuperview" ref="997686550"/>
-						<reference key="NSWindow"/>
-						<reference key="NSNextKeyView" ref="262664416"/>
+						<reference key="NSNextKeyView" ref="736877784"/>
 						<string key="NSReuseIdentifierKey">_NS:9</string>
 						<int key="NSsFlags">133680</int>
 						<reference key="NSVScroller" ref="1037276411"/>
@@ -397,7 +389,6 @@
 				</array>
 				<string key="NSFrameSize">{684, 594}</string>
 				<reference key="NSSuperview"/>
-				<reference key="NSWindow"/>
 				<reference key="NSNextKeyView" ref="613995671"/>
 				<string key="NSReuseIdentifierKey">_NS:9</string>
 				<string key="NSClassName">NSView</string>
@@ -1574,7 +1565,7 @@
 						<reference key="parent" ref="276578969"/>
 					</object>
 					<object class="IBObjectRecord">
-						<int key="objectID">774</int>
+						<int key="objectID">790</int>
 						<reference key="object" ref="244975730"/>
 						<reference key="parent" ref="163272962"/>
 					</object>
@@ -1734,117 +1725,15 @@
 				<string key="733.IBPluginDependency">com.apple.InterfaceBuilder.CocoaPlugin</string>
 				<string key="741.IBPluginDependency">com.apple.InterfaceBuilder.CocoaPlugin</string>
 				<string key="743.IBPluginDependency">com.apple.InterfaceBuilder.CocoaPlugin</string>
-				<string key="774.IBPluginDependency">com.apple.InterfaceBuilder.CocoaPlugin</string>
+				<string key="790.IBPluginDependency">com.apple.InterfaceBuilder.CocoaPlugin</string>
 			</dictionary>
 			<dictionary class="NSMutableDictionary" key="unlocalizedProperties"/>
 			<nil key="activeLocalization"/>
 			<dictionary class="NSMutableDictionary" key="localizations"/>
 			<nil key="sourceID"/>
-			<int key="maxID">778</int>
+			<int key="maxID">801</int>
 		</object>
-		<object class="IBClassDescriber" key="IBDocument.Classes">
-			<array class="NSMutableArray" key="referencedPartialClassDescriptions">
-				<object class="IBPartialClassDescription">
-					<string key="className">HNHGradientView</string>
-					<string key="superclassName">NSView</string>
-					<object class="IBClassDescriptionSource" key="sourceIdentifier">
-						<string key="majorKey">IBProjectSource</string>
-						<string key="minorKey">./Classes/HNHGradientView.h</string>
-					</object>
-				</object>
-				<object class="IBPartialClassDescription">
-					<string key="className">MPEntryViewController</string>
-					<string key="superclassName">MPViewController</string>
-					<dictionary class="NSMutableDictionary" key="outlets">
-						<string key="addEntryButton">NSButton</string>
-						<string key="bottomBar">HNHGradientView</string>
-						<string key="entryTable">NSTableView</string>
-						<string key="filterBar">NSView</string>
-						<string key="filterDoneButton">NSButton</string>
-						<string key="filterLabelTextField">NSTextField</string>
-						<string key="filterSearchField">NSSearchField</string>
-						<string key="filterTitleButton">NSButton</string>
-						<string key="filterURLButton">NSButton</string>
-						<string key="filterUsernameButton">NSButton</string>
-						<string key="tableToTop">NSLayoutConstraint</string>
-					</dictionary>
-					<dictionary class="NSMutableDictionary" key="toOneOutletInfosByName">
-						<object class="IBToOneOutletInfo" key="addEntryButton">
-							<string key="name">addEntryButton</string>
-							<string key="candidateClassName">NSButton</string>
-						</object>
-						<object class="IBToOneOutletInfo" key="bottomBar">
-							<string key="name">bottomBar</string>
-							<string key="candidateClassName">HNHGradientView</string>
-						</object>
-						<object class="IBToOneOutletInfo" key="entryTable">
-							<string key="name">entryTable</string>
-							<string key="candidateClassName">NSTableView</string>
-						</object>
-						<object class="IBToOneOutletInfo" key="filterBar">
-							<string key="name">filterBar</string>
-							<string key="candidateClassName">NSView</string>
-						</object>
-						<object class="IBToOneOutletInfo" key="filterDoneButton">
-							<string key="name">filterDoneButton</string>
-							<string key="candidateClassName">NSButton</string>
-						</object>
-						<object class="IBToOneOutletInfo" key="filterLabelTextField">
-							<string key="name">filterLabelTextField</string>
-							<string key="candidateClassName">NSTextField</string>
-						</object>
-						<object class="IBToOneOutletInfo" key="filterSearchField">
-							<string key="name">filterSearchField</string>
-							<string key="candidateClassName">NSSearchField</string>
-						</object>
-						<object class="IBToOneOutletInfo" key="filterTitleButton">
-							<string key="name">filterTitleButton</string>
-							<string key="candidateClassName">NSButton</string>
-						</object>
-						<object class="IBToOneOutletInfo" key="filterURLButton">
-							<string key="name">filterURLButton</string>
-							<string key="candidateClassName">NSButton</string>
-						</object>
-						<object class="IBToOneOutletInfo" key="filterUsernameButton">
-							<string key="name">filterUsernameButton</string>
-							<string key="candidateClassName">NSButton</string>
-						</object>
-						<object class="IBToOneOutletInfo" key="tableToTop">
-							<string key="name">tableToTop</string>
-							<string key="candidateClassName">NSLayoutConstraint</string>
-						</object>
-					</dictionary>
-					<object class="IBClassDescriptionSource" key="sourceIdentifier">
-						<string key="majorKey">IBProjectSource</string>
-						<string key="minorKey">./Classes/MPEntryViewController.h</string>
-					</object>
-				</object>
-				<object class="IBPartialClassDescription">
-					<string key="className">MPTableView</string>
-					<string key="superclassName">NSTableView</string>
-					<object class="IBClassDescriptionSource" key="sourceIdentifier">
-						<string key="majorKey">IBProjectSource</string>
-						<string key="minorKey">./Classes/MPTableView.h</string>
-					</object>
-				</object>
-				<object class="IBPartialClassDescription">
-					<string key="className">MPViewController</string>
-					<string key="superclassName">NSViewController</string>
-					<object class="IBClassDescriptionSource" key="sourceIdentifier">
-						<string key="majorKey">IBProjectSource</string>
-						<string key="minorKey">./Classes/MPViewController.h</string>
-					</object>
-				</object>
-				<object class="IBPartialClassDescription">
-					<string key="className">NSLayoutConstraint</string>
-					<string key="superclassName">NSObject</string>
-					<object class="IBClassDescriptionSource" key="sourceIdentifier">
-						<string key="majorKey">IBProjectSource</string>
-						<string key="minorKey">./Classes/NSLayoutConstraint.h</string>
-					</object>
-				</object>
-			</array>
-		</object>
+		<object class="IBClassDescriber" key="IBDocument.Classes"/>
 		<int key="IBDocument.localizationMode">0</int>
 		<string key="IBDocument.TargetRuntimeIdentifier">IBCocoaFramework</string>
 		<bool key="IBDocument.PluginDeclaredDependenciesTrackSystemTargetVersion">YES</bool>

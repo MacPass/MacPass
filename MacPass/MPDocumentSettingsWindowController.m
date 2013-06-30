@@ -8,9 +8,9 @@
 
 #import "MPDocumentSettingsWindowController.h"
 #import "MPDocument.h"
+#import "MPDocumentWindowController.h"
 #import "MPDatabaseVersion.h"
 #import "Kdb4Node.h"
-#import "Kdb4Tree+Undo.h"
 
 @interface MPDocumentSettingsWindowController () {
   MPDocument *_document;
@@ -47,22 +47,22 @@
   }
 }
 
-- (void)saveChanges:(id)sender {
+- (IBAction)close:(id)sender {
   [NSApp endSheet:[self window]];
   [[self window] orderOut:nil];
 }
 
 - (void)_setupDatabase:(Kdb4Tree *)tree {
-  [self.databaseNameTextField bind:NSValueBinding toObject:tree withKeyPath:MPTree4DatabaseNameUndoableKey options:nil];
-  [self.databaseDescriptionTextView bind:NSValueBinding toObject:tree withKeyPath:MPTree4DatabaseDescriptionUndoableKey options:nil];
+  [self.databaseNameTextField bind:NSValueBinding toObject:tree withKeyPath:@"databaseName" options:nil];
+  [self.databaseDescriptionTextView bind:NSValueBinding toObject:tree withKeyPath:@"databaseDescription" options:nil];
 }
 
 - (void)_setupProtectionTab:(Kdb4Tree *)tree {
-  [self.protectNotesCheckButton bind:NSValueBinding toObject:tree withKeyPath:MPTree4ProtectNotesUndoableKey options:nil];
-  [self.protectPasswortCheckButton bind:NSValueBinding toObject:tree withKeyPath:MPTree4ProtectPasswordUndoableKey options:nil];
-  [self.protectTitleCheckButton bind:NSValueBinding toObject:tree withKeyPath:MPTree4ProtectTitleUndoableKey options:nil];
-  [self.protectURLCheckButton bind:NSValueBinding toObject:tree withKeyPath:MPTree4ProtectUrlUndoableKey options:nil];
-  [self.protectUserNameCheckButton bind:NSValueBinding toObject:tree withKeyPath:MPTree4ProtectUsernameUndoableKey options:nil];
+  [self.protectNotesCheckButton bind:NSValueBinding toObject:tree withKeyPath:@"protectNotes" options:nil];
+  [self.protectPasswortCheckButton bind:NSValueBinding toObject:tree withKeyPath:@"protectPassword" options:nil];
+  [self.protectTitleCheckButton bind:NSValueBinding toObject:tree withKeyPath:@"protectTitle" options:nil];
+  [self.protectURLCheckButton bind:NSValueBinding toObject:tree withKeyPath:@"protectUrl" options:nil];
+  [self.protectUserNameCheckButton bind:NSValueBinding toObject:tree withKeyPath:@"protectUserName" options:nil];
 }
 
 - (void)_setupHistoryTab:(Kdb4Tree *)tree {

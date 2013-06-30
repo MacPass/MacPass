@@ -40,6 +40,7 @@ APPKIT_EXTERN NSString *const MPCurrentItemChangedNotification;
 - (void)performFindPanelAction:(id)sender;
 - (IBAction)editPassword:(id)sender;
 - (IBAction)showDocumentSettings:(id)sender;
+
 - (void)lock:(id)sender;
 
 - (void)createGroup:(id)sender;

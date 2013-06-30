@@ -72,7 +72,8 @@ NSString *const MPDocumentGroupKey                    = @"MPDocumentGroupKey";
     _locked = NO;
     _readOnly = NO;
     _rootAdapter = [[MPRootAdapter alloc] init];
-    switch(version) {
+    _version = version;
+    switch(_version) {
       case MPDatabaseVersion3:
         self.tree = [Kdb3Tree templateTree];
         break;

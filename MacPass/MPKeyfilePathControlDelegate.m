@@ -11,7 +11,6 @@
 @implementation MPKeyfilePathControlDelegate
 
 - (NSDragOperation)pathControl:(NSPathControl *)pathControl validateDrop:(id<NSDraggingInfo>)info {
-  NSLog(@"%@", [info draggingPasteboard]);
   return NSDragOperationNone;
 }
 
