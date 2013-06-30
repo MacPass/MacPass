@@ -8,14 +8,15 @@
 
 #import "MPDocument.h"
 #import "MPDocumentWindowController.h"
+
+#import "MPDatabaseVersion.h"
+#import "MPRootAdapter.h"
+#import "MPIconHelper.h"
+
 #import "KdbLib.h"
 #import "Kdb3Node.h"
 #import "Kdb4Node.h"
 #import "KdbPassword.h"
-
-#import "MPDatabaseVersion.h"
-#import "MPRootAdapter.h"
-
 #import "KdbGroup+Undo.h"
 #import "KdbGroup+KVOAdditions.h"
 #import "Kdb4Entry+KVOAdditions.h"
@@ -265,8 +266,12 @@ NSString *const MPDocumentGroupKey                    = @"MPDocumentGroupKey";
 }
 
 - (KdbGroup *)recyleBin {
+  static KdbGroup *_recycleBin;
   if(self.useRecylceBin) {
-    return [self findGroup:self.treeV4.recycleBinUuid];
+    if(!_recycleBin) {
+      _recycleBin = [self findGroup:self.treeV4.recycleBinUuid];
+    }
+    return _recycleBin;
   }
   return nil;
 }
@@ -318,7 +323,7 @@ NSString *const MPDocumentGroupKey                    = @"MPDocumentGroupKey";
   }
   [[[self undoManager] prepareWithInvocationTarget:self] moveGroup:group toGroup:group.parent index:oldIndex];
   if(self.recyleBin == target) {
-    [[self undoManager] setActionName:@"DELETE_GROUP"];
+    [[self undoManager] setActionName:@"UNDO_DELETE_GROUP"];
   }
   else {
     [[self undoManager] setActionName:@"MOVE_GROUP"];
@@ -353,7 +358,12 @@ NSString *const MPDocumentGroupKey                    = @"MPDocumentGroupKey";
     return; // No changes
   }
   [[[self undoManager] prepareWithInvocationTarget:self] moveEntry:entry toGroup:entry.parent index:oldIndex];
-  [[self undoManager] setActionName:@"MOVE_ENTRY"];
+  if(self.recyleBin == target || self.recyleBin == entry.parent) {
+    [[self undoManager] setActionName:@"UNDO_DELETE_ENTRY"];
+  }
+  else {
+    [[self undoManager] setActionName:@"MOVE_ENTRY"];
+  }
   [entry.parent removeObjectFromEntriesAtIndex:oldIndex];
   if(index < 0 || index > [target.groups count] ) {
     index = [target.groups count];
@@ -378,6 +388,13 @@ NSString *const MPDocumentGroupKey                    = @"MPDocumentGroupKey";
   if(NSNotFound == index) {
     return; // No object found;
   }
+  if(self.useRecylceBin) {
+    if(!self.recyleBin) {
+      [self _createRecylceBin];
+    }
+    [self moveEntry:entry toGroup:self.recyleBin index:[self.recyleBin.entries count]];
+    return;
+  }
   [[[self undoManager] prepareWithInvocationTarget:self] group:group addEntry:entry atIndex:index];
   [[self undoManager] setActionName:NSLocalizedString(@"UNDO_DELETE_ENTRY", "Undo deleting of entry")];
   [group removeObjectFromEntriesAtIndex:index];
@@ -396,7 +413,7 @@ NSString *const MPDocumentGroupKey                    = @"MPDocumentGroupKey";
     if(!self.recyleBin) {
       [self _createRecylceBin];
     }
-    [self moveGroup:group toGroup:self.recyleBin index:[self.recyleBin.groups count]];
+    [self moveGroup:aGroup toGroup:self.recyleBin index:[self.recyleBin.groups count]];
     return; // Done!
   }
   [[[self undoManager] prepareWithInvocationTarget:self] group:group addGroup:aGroup atIndex:index];
@@ -430,13 +447,18 @@ NSString *const MPDocumentGroupKey                    = @"MPDocumentGroupKey";
 }
 
 - (void)_createRecylceBin {
+  /* Maybe push the stuff to the Tree? */
   if(self.version == MPDatabaseVersion3) {
-    // create backup?
   }
   else if(self.version == MPDatabaseVersion4) {
-    
+    KdbGroup *recycleBin = [self.tree createGroup:self.tree.root];
+    recycleBin.name = NSLocalizedString(@"RECYLEBIN", @"Name for the recycle bin group");
+    recycleBin.image = MPIconTrash;
+    [self.tree.root insertObject:recycleBin inGroupsAtIndex:[self.tree.root.groups count]];
+    self.treeV4.recycleBinUuid = ((Kdb4Group *)recycleBin).uuid;
   }
   else {
+    NSAssert(NO, @"Database with unknown version: %ld", _version);
   }
 }
 

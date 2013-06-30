@@ -14,6 +14,7 @@
 
 - (NSArray *)childGroups {
   NSMutableArray *childGroups = [NSMutableArray arrayWithCapacity:[self.groups count]];
+  [childGroups addObjectsFromArray:self.groups];
   for(KdbGroup *childGroup in self.groups) {
     [childGroups addObjectsFromArray:[childGroup childGroups]];
   }

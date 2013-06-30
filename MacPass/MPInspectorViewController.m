@@ -95,7 +95,9 @@ enum {
   
   [_infoTabControl bind:NSSelectedIndexBinding toObject:self withKeyPath:@"activeTab" options:nil];
   [_tabView bind:NSSelectedIndexBinding  toObject:self withKeyPath:@"activeTab" options:nil];
-  
+
+    /* Set background to clearcolor so we can draw in the scrollview */
+  [_attachmentTableView setBackgroundColor:[NSColor clearColor]];
   [_attachmentTableView bind:NSContentBinding toObject:self.attachmentsController withKeyPath:@"arrangedObjects" options:nil];
   [_attachmentTableView setDelegate:self];
   /* Set background to clearcolor so we can draw in the scrollview */
@@ -337,6 +339,7 @@ enum {
 
 
 #pragma mark NSTableViewDelegate
+/* TODO: Divide this into single delegates */
 - (NSView *)tableView:(NSTableView *)tableView viewForTableColumn:(NSTableColumn *)tableColumn row:(NSInteger)row {
   if(tableView == self.attachmentTableView) {
     return [self _viewForAttachmentTableColumn:tableColumn row:row];
@@ -350,14 +353,16 @@ enum {
     Kdb4Entry *entry = (Kdb4Entry *)self.selectedEntry;
     BinaryRef *binaryRef = entry.binaries[row];
     [[view textField] bind:NSValueBinding toObject:binaryRef withKeyPath:@"key" options:nil];
-    MPDocument *document = [[self windowController] document];
-    Binary *binary = [document binaryForRef:binaryRef];
-    NSLog(@"%@", binary.data);
+    [[view imageView] setImage:[[NSWorkspace sharedWorkspace] iconForFileType:[binaryRef.key pathExtension]]];
+    //MPDocument *document = [[self windowController] document];
+    //Binary *binary = [document binaryForRef:binaryRef];
+    //NSLog(@"%@", binary.data);
   }
   return view;
 }
 - (NSView *)_viewForCustomFieldTableColumn:(NSTableColumn *)tableColumn row:(NSInteger)row {
   MPCustomFieldTableCellView *view = [_customFieldsTableView makeViewWithIdentifier:[tableColumn identifier] owner:_customFieldsTableView];
+  [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(_customFieldFrameChanged:) name:NSViewFrameDidChangeNotification object:view];
   if([self.selectedEntry isKindOfClass:[Kdb4Entry class]]) {
     Kdb4Entry *entry = (Kdb4Entry *)self.selectedEntry;
     StringField *stringField = entry.stringFields[row];
@@ -370,5 +375,9 @@ enum {
   return view;
 }
 
+- (void)_customFieldFrameChanged:(NSNotification *)notification {
+  NSView *sender = [notification object];
+  NSLog(@"didChangeFrameFor: %@ to: %@", sender, NSStringFromRect([sender frame]));
+}
 
 @end
