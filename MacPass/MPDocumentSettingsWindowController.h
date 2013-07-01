@@ -18,6 +18,7 @@
 /* General Tab */
 @property (assign) IBOutlet NSTextField *databaseNameTextField;
 @property (assign) IBOutlet NSTextView *databaseDescriptionTextView;
+
 /* Protection */
 @property (assign) IBOutlet NSTextField *passwordTextField;
 @property (assign) IBOutlet NSPathControl *keyfilePathControl;
@@ -31,12 +32,11 @@
 
 
 /* Advanced Tab*/
-@property (assign) IBOutlet NSButton *useRecycleBinCheckButton;
+@property (assign) IBOutlet NSButton *enableRecycleBinCheckButton;
 @property (assign) IBOutlet NSButton *emptyRecycleBinOnQuitCheckButton;
 @property (assign) IBOutlet NSPopUpButton *selectRecycleBinGroupPopUpButton;
 
-
-
 - (id)initWithDocument:(MPDocument *)document;
+- (void)update;
 
 @end

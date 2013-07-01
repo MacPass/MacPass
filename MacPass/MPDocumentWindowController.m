@@ -224,6 +224,7 @@ NSString *const MPCurrentItemChangedNotification = @"com.hicknhack.macpass.MPCur
   if(!self.documentSettingsWindowController) {
     _documentSettingsWindowController = [[MPDocumentSettingsWindowController alloc] initWithDocument:[self document]];
   }
+  [_documentSettingsWindowController update];
   [[NSApplication sharedApplication] beginSheet:[_documentSettingsWindowController window] modalForWindow:[self window] modalDelegate:nil didEndSelector:NULL contextInfo:NULL];
 }
 

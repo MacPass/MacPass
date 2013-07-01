@@ -14,5 +14,7 @@
 
 @property (readonly, retain) NSArray *groups;
 @property (nonatomic, retain) KdbTree *tree;
+/* Subs to support interface */
+@property (readonly, nonatomic) NSArray *entries;
 
 @end

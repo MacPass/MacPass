@@ -8,13 +8,15 @@
 
 #import <Cocoa/Cocoa.h>
 
-typedef enum {
-  MPContextMenuCreate = 1<<0,
-  MPContextMenuDelete = 1<<1,
-  MPContextMenuCopy = 1<<2,
-  MPContextMenuMinimal = MPContextMenuCreate | MPContextMenuDelete,
-  MPContextMenuFull = MPContextMenuMinimal | MPContextMenuCopy,
-} MPContextMenuItemsFlags;
+typedef NS_OPTIONS(NSUInteger, MPContextMenuItemsFlags) {
+  MPContextMenuCreate   = 1 << 0,
+  MPContextMenuDelete   = 1 << 1,
+  MPContextMenuCopy     = 1 << 2,
+  MPContextMenuTrash    = 1 << 3,
+  MPContextMenuMinimal  = MPContextMenuCreate | MPContextMenuDelete,
+  MPContextMenuFull     = MPContextMenuMinimal | MPContextMenuCopy,
+  MPContextMenuExtended = MPContextMenuFull | MPContextMenuTrash
+};
 
 @interface MPContextMenuHelper : NSTableCellView
 

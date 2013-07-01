@@ -19,6 +19,7 @@ typedef NS_ENUM(NSUInteger, MPActionType) {
   MPActionOpenURL, // open url in default browser
   MPActionToggleInspector,
   MPActionLock, // show the lock screen
+  MPActionEmptyTrash // empties the trashcan, if there is one
 };
 
 @interface MPActionHelper : NSObject

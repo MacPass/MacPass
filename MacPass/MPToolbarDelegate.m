@@ -76,7 +76,7 @@ NSString *const MPToolbarItemInspector = @"TOOLBAR_INSPECTOR";
       [actionImageItem setImage:self.toolbarImages[MPToolbarItemAction]];
       [menu addItem:actionImageItem];
       [actionImageItem release];
-      NSArray *menuItems = [MPContextMenuHelper contextMenuItemsWithItems:MPContextMenuFull];
+      NSArray *menuItems = [MPContextMenuHelper contextMenuItemsWithItems:MPContextMenuExtended];
       for(NSMenuItem *item in menuItems) {
         [menu addItem:item];
       }

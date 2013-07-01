@@ -15,8 +15,9 @@
   BOOL insertCreate = (0 != (flags & MPContextMenuCreate));
   BOOL insertDelete = (0 != (flags & MPContextMenuDelete));
   BOOL insertCopy = (0 != (flags & MPContextMenuCopy));
+  BOOL insertTrash = (0 != (flags & MPContextMenuTrash));
   
-  NSMutableArray *items = [NSMutableArray arrayWithCapacity:7];
+  NSMutableArray *items = [NSMutableArray arrayWithCapacity:10];
   if(insertCreate) {
     
     NSMenuItem *newGroup = [[NSMenuItem alloc] initWithTitle:NSLocalizedString(@"ADD_GROUP", @"")
@@ -30,20 +31,30 @@
     [newEntry release];
     [newGroup release];
   }
-  if(insertDelete) {
-    if([items count] > 0) {
-      [items addObject:[NSMenuItem separatorItem]];
+  if(insertDelete || insertTrash) {
+    [self _beginSection:items];
+    if(insertDelete) {
+      NSMenuItem *delete = [[NSMenuItem alloc] initWithTitle:NSLocalizedString(@"DELETE", @"")
+                                                      action:[MPActionHelper actionOfType:MPActionDelete]
+                                               keyEquivalent:@""];
+      [items addObject:delete];
+      [delete release];
+
     }
-    NSMenuItem *delete = [[NSMenuItem alloc] initWithTitle:NSLocalizedString(@"DELETE", @"")
-                                                    action:[MPActionHelper actionOfType:MPActionDelete]
-                                             keyEquivalent:@""];
-    [items addObject:delete];
-    [delete release];
+    if(insertTrash) {
+      NSMenuItem *emptyTrash = [[NSMenuItem alloc] initWithTitle:NSLocalizedString(@"EMPTY_TRASH", @"")
+                                                      action:[MPActionHelper actionOfType:MPActionEmptyTrash]
+                                               keyEquivalent:@""];
+      [emptyTrash setKeyEquivalentModifierMask:(NSShiftKeyMask | NSCommandKeyMask)];
+      unichar backSpace = NSBackspaceCharacter;
+      [emptyTrash setKeyEquivalent:[NSString stringWithCharacters:&backSpace length:1]];
+      [items addObject:emptyTrash];
+      [emptyTrash release];
+
+    }
   }
   if(insertCopy) {
-    if([items count] > 0) {
-      [items addObject:[NSMenuItem separatorItem]];
-    }
+    [self _beginSection:items];
     NSMenuItem *copyUsername = [[NSMenuItem alloc] initWithTitle:NSLocalizedString(@"COPY_USERNAME", @"")
                                                           action:[MPActionHelper actionOfType:MPActionCopyUsername]
                                                    keyEquivalent:@"C"];
@@ -74,8 +85,14 @@
     [copyPassword release];
     [copyUsername release];
   }
+  
   return items;
 }
 
++ (void)_beginSection:(NSMutableArray *)items {
+  if([items count] > 0) {
+    [items addObject:[NSMenuItem separatorItem]];
+  }
+}
 
 @end

@@ -162,6 +162,8 @@
 		4CC299FF176F99E50050C939 /* MPRequestHandlerService.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CC299FE176F99E50050C939 /* MPRequestHandlerService.m */; };
 		4CC29A02176F9D140050C939 /* MPTestAssociateRequestHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CC29A01176F9D140050C939 /* MPTestAssociateRequestHandler.m */; };
 		4CC3AABD175F4983003EF01B /* HNHRoundedTextFieldCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CC3AAB9175F4983003EF01B /* HNHRoundedTextFieldCell.m */; };
+		4CC672791781D0C0006DEDCF /* KdbGroup+MPAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CC672781781D0C0006DEDCF /* KdbGroup+MPAdditions.m */; };
+		4CC6727C1781D0D2006DEDCF /* KdbEntry+MPAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CC6727B1781D0D2006DEDCF /* KdbEntry+MPAdditions.m */; };
 		4CC7EA1B17807E7E0089D4F3 /* HNHRoundendTextFieldCellHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CC7EA1A17807E7E0089D4F3 /* HNHRoundendTextFieldCellHelper.m */; };
 		4CD5D702177A5EE400100649 /* DocumentSettingsWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4CD5D701177A5EE400100649 /* DocumentSettingsWindow.xib */; };
 		4CD5D705177A5F3300100649 /* MPDocumentSettingsWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CD5D704177A5F3300100649 /* MPDocumentSettingsWindowController.m */; };
@@ -500,6 +502,10 @@
 		4CC29A01176F9D140050C939 /* MPTestAssociateRequestHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MPTestAssociateRequestHandler.m; sourceTree = "<group>"; };
 		4CC3AAB8175F4983003EF01B /* HNHRoundedTextFieldCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HNHRoundedTextFieldCell.h; sourceTree = "<group>"; };
 		4CC3AAB9175F4983003EF01B /* HNHRoundedTextFieldCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HNHRoundedTextFieldCell.m; sourceTree = "<group>"; };
+		4CC672771781D0C0006DEDCF /* KdbGroup+MPAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "KdbGroup+MPAdditions.h"; sourceTree = "<group>"; };
+		4CC672781781D0C0006DEDCF /* KdbGroup+MPAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "KdbGroup+MPAdditions.m"; sourceTree = "<group>"; };
+		4CC6727A1781D0D2006DEDCF /* KdbEntry+MPAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "KdbEntry+MPAdditions.h"; sourceTree = "<group>"; };
+		4CC6727B1781D0D2006DEDCF /* KdbEntry+MPAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "KdbEntry+MPAdditions.m"; sourceTree = "<group>"; };
 		4CC7EA1917807E7E0089D4F3 /* HNHRoundendTextFieldCellHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HNHRoundendTextFieldCellHelper.h; sourceTree = "<group>"; };
 		4CC7EA1A17807E7E0089D4F3 /* HNHRoundendTextFieldCellHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HNHRoundendTextFieldCellHelper.m; sourceTree = "<group>"; };
 		4CD5D701177A5EE400100649 /* DocumentSettingsWindow.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DocumentSettingsWindow.xib; sourceTree = "<group>"; };
@@ -755,6 +761,10 @@
 				4C2C4C2B16D3BE3700D49295 /* KdbGroup+MPTreeTools.m */,
 				4CC1AEBC16D4467C006D2AAB /* KdbTree+MPAdditions.h */,
 				4CC1AEBD16D4467C006D2AAB /* KdbTree+MPAdditions.m */,
+				4CC672771781D0C0006DEDCF /* KdbGroup+MPAdditions.h */,
+				4CC672781781D0C0006DEDCF /* KdbGroup+MPAdditions.m */,
+				4CC6727A1781D0D2006DEDCF /* KdbEntry+MPAdditions.h */,
+				4CC6727B1781D0D2006DEDCF /* KdbEntry+MPAdditions.m */,
 				4C01C23D1764D2980016D5D0 /* KdbEntry+Undo.h */,
 				4C01C23E1764D2980016D5D0 /* KdbEntry+Undo.m */,
 				4C22040B1746ED160054C916 /* KdbGroup+Undo.h */,
@@ -1480,6 +1490,8 @@
 				4C0D9B37177F84D700D0857C /* HNHSecureTextView.m in Sources */,
 				4C0D9B3A177F867100D0857C /* HNHSecureLayoutManager.m in Sources */,
 				4CC7EA1B17807E7E0089D4F3 /* HNHRoundendTextFieldCellHelper.m in Sources */,
+				4CC672791781D0C0006DEDCF /* KdbGroup+MPAdditions.m in Sources */,
+				4CC6727C1781D0D2006DEDCF /* KdbEntry+MPAdditions.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

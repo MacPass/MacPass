@@ -24,7 +24,8 @@
                   @(MPActionEdit) : @"editEntry:",
                   @(MPActionOpenURL) : @"openURL:",
                   @(MPActionToggleInspector) : @"toggleInspector:",
-                  @(MPActionLock) : @"lock:"
+                  @(MPActionLock) : @"lock:",
+                  @(MPActionEmptyTrash) : @"emptyTrash:"
                   } retain];
   });
   return NSSelectorFromString(actionDict[@(type)]);

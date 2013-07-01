@@ -44,6 +44,7 @@ APPKIT_EXTERN NSString *const MPDocumentGroupKey;
 @property (readonly, retain) MPRootAdapter *rootAdapter;
 @property (nonatomic, retain) NSString *password;
 @property (nonatomic, retain) NSURL *key;
+
 @property (assign, readonly) MPDatabaseVersion version;
 @property (assign, readonly, getter = isReadOnly) BOOL readOnly;
 
@@ -69,7 +70,6 @@ APPKIT_EXTERN NSString *const MPDocumentGroupKey;
 - (KdbGroup *)createGroup:(KdbGroup *)parent;
 - (KdbEntry *)createEntry:(KdbGroup *)parent;
 - (StringField *)createStringField:(KdbEntry *)entry;
-
 /*
  All non-setter undoable actions
 */
@@ -85,5 +85,7 @@ APPKIT_EXTERN NSString *const MPDocumentGroupKey;
 
 - (void)entry:(Kdb4Entry *)entry addStringField:(StringField *)field atIndex:(NSUInteger)index;
 - (void)entry:(Kdb4Entry *)entry removeStringField:(StringField *)field;
+
+- (void)emptyTrash:(id)sender;
 
 @end

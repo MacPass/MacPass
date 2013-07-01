@@ -30,4 +30,7 @@
   }
 }
 
+- (NSArray *)entries {
+  return nil;
+}
 @end

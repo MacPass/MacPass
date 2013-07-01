@@ -12,6 +12,7 @@
 #import "MPDatabaseVersion.h"
 #import "MPRootAdapter.h"
 #import "MPIconHelper.h"
+#import "MPActionHelper.h"
 
 #import "KdbLib.h"
 #import "Kdb3Node.h"
@@ -21,6 +22,7 @@
 #import "KdbGroup+KVOAdditions.h"
 #import "Kdb4Entry+KVOAdditions.h"
 #import "KdbGroup+MPTreeTools.h"
+#import "KdbGroup+MPAdditions.h"
 #import "KdbEntry+Undo.h"
 #import "Kdb3Tree+NewTree.h"
 #import "Kdb4Tree+NewTree.h"
@@ -51,8 +53,9 @@ NSString *const MPDocumentGroupKey                    = @"MPDocumentGroupKey";
 @property (assign) BOOL readOnly;
 
 @property (retain) NSURL *lockFileURL;
-@property (readonly, assign, nonatomic) KdbGroup *recyleBin;
-@property (readonly) BOOL useRecylceBin;
+
+@property (readonly) BOOL useTrash;
+@property (readonly) KdbGroup *trash;
 
 @end
 
@@ -258,20 +261,21 @@ NSString *const MPDocumentGroupKey                    = @"MPDocumentGroupKey";
   }
 }
 
-- (BOOL)useRecylceBin {
+- (BOOL)useTrash {
   if(self.treeV4) {
     return self.treeV4.recycleBinEnabled;
   }
   return NO;
 }
 
-- (KdbGroup *)recyleBin {
-  static KdbGroup *_recycleBin;
-  if(self.useRecylceBin) {
-    if(!_recycleBin) {
-      _recycleBin = [self findGroup:self.treeV4.recycleBinUuid];
+- (KdbGroup *)trash {
+  static KdbGroup *_trash = nil;
+  if(self.useTrash) {
+    BOOL trashValid = [((Kdb4Group *)_trash).uuid isEqual:self.treeV4.recycleBinUuid];
+    if(!trashValid) {
+      _trash = [self findGroup:self.treeV4.recycleBinUuid];
     }
-    return _recycleBin;
+    return _trash;
   }
   return nil;
 }
@@ -322,7 +326,7 @@ NSString *const MPDocumentGroupKey                    = @"MPDocumentGroupKey";
     return; // No changes
   }
   [[[self undoManager] prepareWithInvocationTarget:self] moveGroup:group toGroup:group.parent index:oldIndex];
-  if(self.recyleBin == target) {
+  if(self.trash == target) {
     [[self undoManager] setActionName:@"UNDO_DELETE_GROUP"];
   }
   else {
@@ -358,7 +362,7 @@ NSString *const MPDocumentGroupKey                    = @"MPDocumentGroupKey";
     return; // No changes
   }
   [[[self undoManager] prepareWithInvocationTarget:self] moveEntry:entry toGroup:entry.parent index:oldIndex];
-  if(self.recyleBin == target || self.recyleBin == entry.parent) {
+  if(self.trash == target || self.trash == entry.parent) {
     [[self undoManager] setActionName:@"UNDO_DELETE_ENTRY"];
   }
   else {
@@ -388,11 +392,11 @@ NSString *const MPDocumentGroupKey                    = @"MPDocumentGroupKey";
   if(NSNotFound == index) {
     return; // No object found;
   }
-  if(self.useRecylceBin) {
-    if(!self.recyleBin) {
-      [self _createRecylceBin];
+  if(self.useTrash) {
+    if(!self.trash) {
+      [self _createTrashGroup];
     }
-    [self moveEntry:entry toGroup:self.recyleBin index:[self.recyleBin.entries count]];
+    [self moveEntry:entry toGroup:self.trash index:[self.trash.entries count]];
     return;
   }
   [[[self undoManager] prepareWithInvocationTarget:self] group:group addEntry:entry atIndex:index];
@@ -405,15 +409,19 @@ NSString *const MPDocumentGroupKey                    = @"MPDocumentGroupKey";
   if(NSNotFound == index) {
     return; // No object found
   }
+  if(self.trash == aGroup) {
+    return;
+    // delete Trash?
+  }
   /*
    Cleaning the recyclebin is not undoable
    So we do this in a separate action
    */
-  if(self.useRecylceBin) {
-    if(!self.recyleBin) {
-      [self _createRecylceBin];
+  if(self.useTrash) {
+    if(!self.trash) {
+      [self _createTrashGroup];
     }
-    [self moveGroup:aGroup toGroup:self.recyleBin index:[self.recyleBin.groups count]];
+    [self moveGroup:aGroup toGroup:self.trash index:[self.trash.groups count]];
     return; // Done!
   }
   [[[self undoManager] prepareWithInvocationTarget:self] group:group addGroup:aGroup atIndex:index];
@@ -437,6 +445,20 @@ NSString *const MPDocumentGroupKey                    = @"MPDocumentGroupKey";
   [entry removeObjectFromStringFieldsAtIndex:index];
 }
 
+#pragma mark Actions
+
+- (void)emptyTrash:(id)sender {
+  [self.trash clear];
+}
+
+- (BOOL)validateMenuItem:(NSMenuItem *)menuItem {
+  if([menuItem action] == [MPActionHelper actionOfType:MPActionEmptyTrash]) {
+    BOOL hasGroups = [self.trash.groups count] > 0;
+    BOOL hasEntries = [self.trash.entries count] > 0;
+    return (hasEntries || hasGroups);
+  }
+  return YES;
+}
 
 #pragma mark Private
 - (void)_cleanupLock {
@@ -446,19 +468,22 @@ NSString *const MPDocumentGroupKey                    = @"MPDocumentGroupKey";
   }
 }
 
-- (void)_createRecylceBin {
+- (KdbGroup *)_createTrashGroup {
   /* Maybe push the stuff to the Tree? */
   if(self.version == MPDatabaseVersion3) {
+    return nil;
   }
   else if(self.version == MPDatabaseVersion4) {
-    KdbGroup *recycleBin = [self.tree createGroup:self.tree.root];
-    recycleBin.name = NSLocalizedString(@"RECYLEBIN", @"Name for the recycle bin group");
-    recycleBin.image = MPIconTrash;
-    [self.tree.root insertObject:recycleBin inGroupsAtIndex:[self.tree.root.groups count]];
-    self.treeV4.recycleBinUuid = ((Kdb4Group *)recycleBin).uuid;
+    KdbGroup *trash = [self.tree createGroup:self.tree.root];
+    trash.name = NSLocalizedString(@"RECYLEBIN", @"Name for the recycle bin group");
+    trash.image = MPIconTrash;
+    [self.tree.root insertObject:trash inGroupsAtIndex:[self.tree.root.groups count]];
+    self.treeV4.recycleBinUuid = ((Kdb4Group *)trash).uuid;
+    return trash;
   }
   else {
     NSAssert(NO, @"Database with unknown version: %ld", _version);
+    return nil;
   }
 }
 
