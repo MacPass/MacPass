@@ -13,7 +13,7 @@
 
 @interface MPPasswordInputController ()
 
-@property (assign) IBOutlet NSSecureTextField *passwordTextField;
+@property (assign) IBOutlet NSTextField *passwordTextField;
 @property (assign) IBOutlet NSPathControl *keyPathControl;
 @property (retain) MPKeyfilePathControlDelegate *pathControlDelegate;
 @property (assign) IBOutlet NSImageView *errorImageView;
