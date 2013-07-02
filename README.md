@@ -18,6 +18,10 @@ Use it with caution! Since I did start refactoring the KeePassLib there is even 
 
 [Download MacPass at Dropbox](https://www.dropbox.com/sh/yqgfwi7f8mnd747/NCQlJmg0f0) (build 1419 06/28/2013)
 
+##Known Issues
+
+* Undo/Redo get's messed up when the Trash (=RecylcleBin in KeePass terms) is enabled/used
+
 ##Help
 
 I'm in constant need of a full set of Databases with all possible keyfile/password and format combinations.
