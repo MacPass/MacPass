@@ -93,9 +93,9 @@
 
 - (void)_didSelectTrashFolder:(id)sender {
   NSMenuItem *menuItem = sender;
-  if([menuItem representedObject]) {
-
-  }
+  /* if we do not get a group, use nil to reset the trash */
+  KdbGroup *group = [menuItem representedObject];
+  [_document useGroupAsTrash:group];
 }
 
 - (void)_updateTrashFolders:(Kdb4Tree *)tree {
@@ -120,12 +120,12 @@
     [menu addItem:groupItem];
     [groupItem release];
   }
-  if(!foundTrash) {
-    NSMenuItem *selectItem = [[NSMenuItem alloc] initWithTitle:NSLocalizedString(@"SELECT_RECYCLEBIN", @"Menu item if no reycleBin is selected") action:NULL keyEquivalent:@""];
-    [selectItem setEnabled:NO];
-    [menu insertItem:selectItem atIndex:0];
-    [selectItem release];
-  }
+  NSMenuItem *selectItem = [[NSMenuItem alloc] initWithTitle:NSLocalizedString(@"SELECT_RECYCLEBIN", @"Menu item if no reycleBin is selected") action:NULL keyEquivalent:@""];
+  [selectItem setAction:@selector(_didSelectTrashFolder:)];
+  [selectItem setTarget:self];
+  [menu insertItem:selectItem atIndex:0];
+  [selectItem release];
+  
   return [menu autorelease];
 }
 @end

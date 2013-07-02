@@ -280,6 +280,15 @@ NSString *const MPDocumentGroupKey                    = @"MPDocumentGroupKey";
   return nil;
 }
 
+- (void)useGroupAsTrash:(KdbGroup *)group {
+  if(self.useTrash) {
+    Kdb4Group *groupv4 = (Kdb4Group *)group;
+    if(![self.treeV4.recycleBinUuid isEqual:groupv4.uuid]) {
+      self.treeV4.recycleBinUuid = groupv4.uuid;
+    }
+  }
+}
+
 #pragma mark Data manipulation
 - (KdbEntry *)createEntry:(KdbGroup *)parent {
   if(!parent) {
@@ -314,7 +323,9 @@ NSString *const MPDocumentGroupKey                    = @"MPDocumentGroupKey";
     return nil;
   }
   Kdb4Entry *entryV4 = (Kdb4Entry *)entry;
-  StringField *newStringField = [StringField stringFieldWithKey:@"Title" andValue:@"Value"];
+  NSString *title = NSLocalizedString(@"DEFAULT_CUSTOM_FIELD_TITLE", @"Default Titel for new Custom-Fields");
+  NSString *value = NSLocalizedString(@"DEFAULT_CUSTOM_FIELD_VALUE", @"Default Value for new Custom-Fields");
+  StringField *newStringField = [StringField stringFieldWithKey:title andValue:value];
   [self entry:entryV4 addStringField:newStringField atIndex:[entryV4.stringFields count]];
   return newStringField;
 }
@@ -448,6 +459,7 @@ NSString *const MPDocumentGroupKey                    = @"MPDocumentGroupKey";
 #pragma mark Actions
 
 - (void)emptyTrash:(id)sender {
+  [[self undoManager] setActionIsDiscardable:YES];
   [self.trash clear];
 }
 
@@ -475,7 +487,7 @@ NSString *const MPDocumentGroupKey                    = @"MPDocumentGroupKey";
   }
   else if(self.version == MPDatabaseVersion4) {
     KdbGroup *trash = [self.tree createGroup:self.tree.root];
-    trash.name = NSLocalizedString(@"RECYLEBIN", @"Name for the recycle bin group");
+    trash.name = NSLocalizedString(@"TRASH_GROUP", @"Name for the trash group");
     trash.image = MPIconTrash;
     [self.tree.root insertObject:trash inGroupsAtIndex:[self.tree.root.groups count]];
     self.treeV4.recycleBinUuid = ((Kdb4Group *)trash).uuid;

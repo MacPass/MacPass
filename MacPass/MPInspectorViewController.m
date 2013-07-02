@@ -376,8 +376,8 @@ enum {
 }
 
 - (void)_customFieldFrameChanged:(NSNotification *)notification {
-  NSView *sender = [notification object];
-  NSLog(@"didChangeFrameFor: %@ to: %@", sender, NSStringFromRect([sender frame]));
+  // NSView *sender = [notification object];
+  // NSLog(@"didChangeFrameFor: %@ to: %@", sender, NSStringFromRect([sender frame]));
 }
 
 @end

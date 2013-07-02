@@ -65,11 +65,15 @@ APPKIT_EXTERN NSString *const MPDocumentGroupKey;
 - (Kdb4Tree *)treeV4;
 - (Kdb3Tree *)treeV3;
 
-#pragma mark Data Manipulation
+- (void)useGroupAsTrash:(KdbGroup *)group;
+
+
+#pragma mark Undo Data Manipulation
 /* Undoable Intiialization of elements */
 - (KdbGroup *)createGroup:(KdbGroup *)parent;
 - (KdbEntry *)createEntry:(KdbGroup *)parent;
 - (StringField *)createStringField:(KdbEntry *)entry;
+
 /*
  All non-setter undoable actions
 */
