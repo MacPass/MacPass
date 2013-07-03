@@ -21,6 +21,7 @@ Use it with caution! Since I did start refactoring the KeePassLib there is even 
 ##Known Issues
 
 * Undo/Redo get's messed up when the Trash (=RecylcleBin in KeePass terms) is enabled/used
+* Drag and Drop in Outline/Entry View broken
 
 ##Help
 
