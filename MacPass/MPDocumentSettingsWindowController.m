@@ -105,7 +105,7 @@
 
 - (NSMenu *)_buildTreeMenu:(Kdb4Tree *)tree {
   NSMenu *menu = [[NSMenu alloc] init];
-  BOOL foundTrash = NO;
+
   for(Kdb4Group *group in tree.root.groups) {
     NSMenuItem *groupItem = [[NSMenuItem alloc] init];
     [groupItem setImage:group.icon];
@@ -114,7 +114,6 @@
     [groupItem setTarget:self];
     [groupItem setRepresentedObject:group];
     if([group.uuid isEqual:tree.recycleBinUuid]) {
-      foundTrash = YES;
       [groupItem setState:NSOnState];
     }
     [menu addItem:groupItem];
