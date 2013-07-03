@@ -350,7 +350,9 @@ enum {
 - (void)tableViewSelectionDidChange:(NSNotification *)notification {
   if([notification object] == self.attachmentTableView) {
     NSIndexSet *allColumns = [NSIndexSet indexSetWithIndexesInRange:NSMakeRange(0, [[self.attachmentTableView tableColumns] count])];
-    [self.attachmentTableView reloadDataForRowIndexes:[self.attachmentTableView selectedRowIndexes] columnIndexes:allColumns];
+    Kdb4Entry *entryv4 = (Kdb4Entry *)self.selectedEntry;
+    NSIndexSet *indexSet = [NSIndexSet indexSetWithIndexesInRange:NSMakeRange(0, [entryv4.binaries count] )];
+    [self.attachmentTableView reloadDataForRowIndexes:indexSet columnIndexes:allColumns];
   }
 }
 
