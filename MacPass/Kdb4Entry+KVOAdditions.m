@@ -15,7 +15,7 @@
 }
 
 - (StringField *)objectInStringFieldsAtIndex:(NSUInteger)index {
-  return [self.stringFields objectAtIndex:index];
+  return (self.stringFields)[index];
 }
 
 - (void)insertObject:(StringField *)stringfield inStringFieldsAtIndex:(NSUInteger)anIndex {

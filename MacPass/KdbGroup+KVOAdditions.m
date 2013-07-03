@@ -16,7 +16,7 @@
 }
 
 - (void)removeObjectFromEntriesAtIndex:(NSUInteger)index {
-  KdbEntry *entry = [_entries objectAtIndex:index];
+  KdbEntry *entry = _entries[index];
   [_entries removeObjectAtIndex:index];
   entry.parent = nil;
 }
@@ -43,7 +43,7 @@
 }
 
 - (void)removeObjectFromGroupsAtIndex:(NSUInteger)index {
-  KdbGroup *group = [self.groups objectAtIndex:index];
+  KdbGroup *group = (self.groups)[index];
   [_groups removeObjectAtIndex:index];
   group.parent = nil;
 }

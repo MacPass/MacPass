@@ -315,7 +315,7 @@ enum {
   MPDocument *document = [[self windowController] document];
   NSUInteger index = [sender tag];
   Kdb4Entry *entry = (Kdb4Entry *)self.selectedEntry;
-  [document entry:entry removeStringField:[entry.stringFields objectAtIndex:index]];
+  [document entry:entry removeStringField:(entry.stringFields)[index]];
 }
 
 #pragma mark Notificiations
@@ -347,16 +347,24 @@ enum {
   return [self _viewForCustomFieldTableColumn:tableColumn row:row];
 }
 
+- (void)tableViewSelectionDidChange:(NSNotification *)notification {
+  if([notification object] == self.attachmentTableView) {
+    NSIndexSet *allColumns = [NSIndexSet indexSetWithIndexesInRange:NSMakeRange(0, [[self.attachmentTableView tableColumns] count])];
+    [self.attachmentTableView reloadDataForRowIndexes:[self.attachmentTableView selectedRowIndexes] columnIndexes:allColumns];
+  }
+}
+
 - (NSView *)_viewForAttachmentTableColumn:(NSTableColumn *)tableColumn row:(NSInteger)row {
-  NSTableCellView *view = [_attachmentTableView makeViewWithIdentifier:[tableColumn identifier] owner:_attachmentTableView];
+  /* Decide what view to use */
+  NSIndexSet *selectedIndexes = [self.attachmentTableView selectedRowIndexes];
+  NSString *viewIdentifyer = [selectedIndexes containsIndex:row] ? @"SelectedCell" : @"NormalCell";
+  NSTableCellView *view = [_attachmentTableView makeViewWithIdentifier:viewIdentifyer owner:_attachmentTableView];
+  /* Bind view */
   if([self.selectedEntry isKindOfClass:[Kdb4Entry class]]) {
     Kdb4Entry *entry = (Kdb4Entry *)self.selectedEntry;
     BinaryRef *binaryRef = entry.binaries[row];
     [[view textField] bind:NSValueBinding toObject:binaryRef withKeyPath:@"key" options:nil];
     [[view imageView] setImage:[[NSWorkspace sharedWorkspace] iconForFileType:[binaryRef.key pathExtension]]];
-    //MPDocument *document = [[self windowController] document];
-    //Binary *binary = [document binaryForRef:binaryRef];
-    //NSLog(@"%@", binary.data);
   }
   return view;
 }

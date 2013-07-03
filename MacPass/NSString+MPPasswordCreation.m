@@ -33,7 +33,7 @@ static NSString *allowedCharactersString(MPPasswordCharacterFlags flags) {
 @implementation NSString (MPPasswordCreationTools)
 
 + (NSDictionary *)_createPasswordSet:(MPPasswordCharacterFlags)flags {
-  return [NSDictionary dictionary];
+  return @{};
 }
 
 - (NSDictionary *)_createPasswordSet:(MPPasswordCharacterFlags)flags {

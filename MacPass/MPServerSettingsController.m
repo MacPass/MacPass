@@ -37,6 +37,7 @@
   NSUserDefaultsController *defaultsController = [NSUserDefaultsController sharedUserDefaultsController];
   NSString *serverKeyPath = [NSString stringWithFormat:@"values.%@", kMPSettingsKeyEnableHttpServer];
   [self.enableServerCheckbutton bind:NSValueBinding toObject:defaultsController withKeyPath:serverKeyPath options:nil];
+  [self.enableServerCheckbutton setEnabled:NO];
 }
 
 @end

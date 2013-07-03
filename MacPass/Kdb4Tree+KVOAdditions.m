@@ -19,11 +19,11 @@
 }
 
 - (Binary *)objectInBinariesAtIndex:(NSUInteger)index {
-  return [self.binaries objectAtIndex:index];
+  return (self.binaries)[index];
 }
 
 - (CustomIcon *)objectInCustomIconsAtIndex:(NSUInteger)index {
-  return [self.customIcons objectAtIndex:index];
+  return (self.customIcons)[index];
 }
 
 @end
