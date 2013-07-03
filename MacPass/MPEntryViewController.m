@@ -396,7 +396,9 @@ NSString *const _toggleFilterUsernameButton = @"SearchUsername";
 }
 
 - (void)_copyToPasteboard:(NSString *)data overlayInfo:(MPOVerlayInfoType)overlayInfoType {
-  [[MPPasteBoardController defaultController] copyObjects:@[ data ]];
+  if(data) {
+    [[MPPasteBoardController defaultController] copyObjects:@[ data ]];
+  }
   NSImage *infoImage = nil;
   NSString *infoText = nil;
   switch (overlayInfoType) {
