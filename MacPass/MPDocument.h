@@ -39,11 +39,11 @@ APPKIT_EXTERN NSString *const MPDocumentGroupKey;
 @property (assign, getter = isLocked) BOOL locked;
 /* true, if document is loaded and decrypted (tree is loaded) */
 @property (assign, readonly, getter = isDecrypted) BOOL decrypted;
-@property (retain, readonly, nonatomic) KdbTree *tree;
-@property (assign, readonly, nonatomic) KdbGroup *root;
-@property (readonly, retain) MPRootAdapter *rootAdapter;
-@property (nonatomic, retain) NSString *password;
-@property (nonatomic, retain) NSURL *key;
+@property (strong, readonly, nonatomic) KdbTree *tree;
+@property (weak, readonly, nonatomic) KdbGroup *root;
+@property (readonly, strong) MPRootAdapter *rootAdapter;
+@property (nonatomic, strong) NSString *password;
+@property (nonatomic, strong) NSURL *key;
 
 @property (assign, readonly) MPDatabaseVersion version;
 @property (assign, readonly, getter = isReadOnly) BOOL readOnly;

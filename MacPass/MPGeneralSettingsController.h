@@ -12,9 +12,9 @@
 
 @interface MPGeneralSettingsController : MPViewController <MPSettingsTab>
 
-@property (assign) IBOutlet NSButton *clearPasteboardOnQuitCheckButton;
-@property (assign) IBOutlet NSPopUpButton *clearPasteboardTimeoutPopup;
-@property (assign) IBOutlet NSPopUpButton *idleTimeOutPopup;
-@property (assign) IBOutlet NSButton *lockOnSleepCheckButton;
+@property (weak) IBOutlet NSButton *clearPasteboardOnQuitCheckButton;
+@property (weak) IBOutlet NSPopUpButton *clearPasteboardTimeoutPopup;
+@property (weak) IBOutlet NSPopUpButton *idleTimeOutPopup;
+@property (weak) IBOutlet NSButton *lockOnSleepCheckButton;
 
 @end

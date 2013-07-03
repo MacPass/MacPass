@@ -10,8 +10,8 @@
 
 @interface MPCustomFieldTableCellView : NSTableCellView
 
-@property (assign) IBOutlet NSTextField *labelTextField;
-@property (assign) IBOutlet NSTextField *valueTextField;
-@property (assign) IBOutlet NSButton *removeButton;
+@property (weak) IBOutlet NSTextField *labelTextField;
+@property (weak) IBOutlet NSTextField *valueTextField;
+@property (weak) IBOutlet NSButton *removeButton;
 
 @end

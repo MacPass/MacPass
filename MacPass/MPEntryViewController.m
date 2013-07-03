@@ -61,27 +61,27 @@ NSString *const _toggleFilterUsernameButton = @"SearchUsername";
 
 @interface MPEntryViewController ()
 
-@property (retain) NSArrayController *entryArrayController;
-@property (retain) NSArray *filteredEntries;
-@property (retain) IBOutlet NSView *filterBar;
-@property (assign) IBOutlet NSTableView *entryTable;
-@property (retain) IBOutlet NSLayoutConstraint *tableToTop;
-@property (assign) IBOutlet NSButton *filterDoneButton;
+@property (strong) NSArrayController *entryArrayController;
+@property (strong) NSArray *filteredEntries;
+@property (strong) IBOutlet NSView *filterBar;
+@property (weak) IBOutlet NSTableView *entryTable;
+@property (strong) IBOutlet NSLayoutConstraint *tableToTop;
+@property (weak) IBOutlet NSButton *filterDoneButton;
 
-@property (assign) IBOutlet NSButton *filterTitleButton;
-@property (assign) IBOutlet NSButton *filterUsernameButton;
-@property (assign) IBOutlet NSButton *filterURLButton;
-@property (assign) IBOutlet NSTextField *filterLabelTextField;
-@property (assign) IBOutlet NSSearchField *filterSearchField;
-@property (assign) IBOutlet HNHGradientView *bottomBar;
-@property (assign) IBOutlet NSButton *addEntryButton;
+@property (weak) IBOutlet NSButton *filterTitleButton;
+@property (weak) IBOutlet NSButton *filterUsernameButton;
+@property (weak) IBOutlet NSButton *filterURLButton;
+@property (weak) IBOutlet NSTextField *filterLabelTextField;
+@property (weak) IBOutlet NSSearchField *filterSearchField;
+@property (weak) IBOutlet HNHGradientView *bottomBar;
+@property (weak) IBOutlet NSButton *addEntryButton;
 
-@property (assign) KdbEntry *selectedEntry;
+@property (weak) KdbEntry *selectedEntry;
 
-@property (nonatomic, retain) MPEntryTableDataSource *dataSource;
+@property (nonatomic, strong) MPEntryTableDataSource *dataSource;
 
 @property (assign, nonatomic) MPFilterModeType filterMode;
-@property (retain, nonatomic) NSDictionary *filterButtonToMode;
+@property (strong, nonatomic) NSDictionary *filterButtonToMode;
 
 @end
 
@@ -96,10 +96,10 @@ NSString *const _toggleFilterUsernameButton = @"SearchUsername";
   self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
   if(self) {
     _filterMode = MPFilterTitles;
-    _filterButtonToMode = [@{ _toggleFilterUsernameButton : @(MPFilterUsernames),
+    _filterButtonToMode = @{ _toggleFilterUsernameButton : @(MPFilterUsernames),
                            _toggleFilterTitleButton : @(MPFilterTitles),
                            _toggleFilterURLButton : @(MPFilterUrls)
-                           } retain];
+                           };
     _entryArrayController = [[NSArrayController alloc] init];
     _dataSource = [[MPEntryTableDataSource alloc] init];
     _dataSource.viewController = self;
@@ -111,14 +111,6 @@ NSString *const _toggleFilterUsernameButton = @"SearchUsername";
 - (void)dealloc {
   [[NSNotificationCenter defaultCenter] removeObserver:self];
   
-  [_entryArrayController release];
-  [_filteredEntries release];
-  [_filter release];
-  [_filterBar release];
-  [_tableToTop release];
-  [_dataSource release];
-  [_filterButtonToMode release];
-  [super dealloc];
 }
 
 - (void)didLoadView {
@@ -273,8 +265,7 @@ NSString *const _toggleFilterUsernameButton = @"SearchUsername";
 
 - (void)setFilter:(NSString *)filter {
   if(_filter != filter) {
-    [_filter release];
-    _filter = [filter retain];
+    _filter = filter;
     [self updateFilter];
   }
 }
@@ -437,7 +428,6 @@ NSString *const _toggleFilterUsernameButton = @"SearchUsername";
     [menu addItem:item];
   }
   [self.entryTable setMenu:menu];
-  [menu release];
 }
 
 #pragma makr Action Helper

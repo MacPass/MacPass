@@ -24,7 +24,6 @@ NSString *const MPUppsercaseStringValueTransformerName = @"com.hicknhack.macpass
   MPUppercaseStringValueTransformer *transformer = [[MPUppercaseStringValueTransformer alloc] init];
   [NSValueTransformer setValueTransformer:transformer
                                   forName:MPUppsercaseStringValueTransformerName];
-  [transformer release];
 }
 
 - (id)transformedValue:(id)value {

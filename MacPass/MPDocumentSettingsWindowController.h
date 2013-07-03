@@ -13,28 +13,28 @@
 @interface MPDocumentSettingsWindowController : NSWindowController
 
 
-@property (assign) IBOutlet NSTabView *sectionTabView;
+@property (weak) IBOutlet NSTabView *sectionTabView;
 
 /* General Tab */
-@property (assign) IBOutlet NSTextField *databaseNameTextField;
-@property (assign) IBOutlet NSTextView *databaseDescriptionTextView;
+@property (weak) IBOutlet NSTextField *databaseNameTextField;
+@property (unsafe_unretained) IBOutlet NSTextView *databaseDescriptionTextView;
 
 /* Protection */
-@property (assign) IBOutlet NSTextField *passwordTextField;
-@property (assign) IBOutlet NSPathControl *keyfilePathControl;
+@property (weak) IBOutlet NSTextField *passwordTextField;
+@property (weak) IBOutlet NSPathControl *keyfilePathControl;
 
 /* Display Tab */
-@property (assign) IBOutlet NSButton *protectTitleCheckButton;
-@property (assign) IBOutlet NSButton *protectUserNameCheckButton;
-@property (assign) IBOutlet NSButton *protectPasswortCheckButton;
-@property (assign) IBOutlet NSButton *protectURLCheckButton;
-@property (assign) IBOutlet NSButton *protectNotesCheckButton;
+@property (weak) IBOutlet NSButton *protectTitleCheckButton;
+@property (weak) IBOutlet NSButton *protectUserNameCheckButton;
+@property (weak) IBOutlet NSButton *protectPasswortCheckButton;
+@property (weak) IBOutlet NSButton *protectURLCheckButton;
+@property (weak) IBOutlet NSButton *protectNotesCheckButton;
 
 
 /* Advanced Tab*/
-@property (assign) IBOutlet NSButton *enableRecycleBinCheckButton;
-@property (assign) IBOutlet NSButton *emptyRecycleBinOnQuitCheckButton;
-@property (assign) IBOutlet NSPopUpButton *selectRecycleBinGroupPopUpButton;
+@property (weak) IBOutlet NSButton *enableRecycleBinCheckButton;
+@property (weak) IBOutlet NSButton *emptyRecycleBinOnQuitCheckButton;
+@property (weak) IBOutlet NSPopUpButton *selectRecycleBinGroupPopUpButton;
 
 - (id)initWithDocument:(MPDocument *)document;
 - (void)update;

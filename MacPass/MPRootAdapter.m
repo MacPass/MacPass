@@ -11,21 +11,16 @@
 
 @interface MPRootAdapter ()
 
-@property (retain) NSArray *groups;
+@property (strong) NSArray *groups;
 
 @end
 
 @implementation MPRootAdapter
 
-- (void)dealloc {
-  [_groups release];
-  [super dealloc];
-}
 
 - (void)setTree:(KdbTree *)tree {
   if(_tree != tree) {
-    [_tree release];
-    _tree = [tree retain];
+    _tree = tree;
     self.groups = @[_tree.root];
   }
 }

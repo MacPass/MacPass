@@ -49,7 +49,7 @@ static NSString *allowedCharactersString(MPPasswordCharacterFlags flags) {
   while([password length] < length) {
     [password appendString:[source randomCharacter]];
   }
-  return [password autorelease];
+  return password;
 }
 
 + (NSString *)passwordWithCharactersets:(MPPasswordCharacterFlags)allowedCharacters length:(NSUInteger)length {

@@ -9,6 +9,7 @@
 #import "MPOutlineViewController.h"
 #import "MPOutlineDataSource.h"
 #import "MPDocument.h"
+#import "MPDocumentWindowController.h"
 #import "MPContextMenuHelper.h"
 #import "MPConstants.h"
 #import "MPActionHelper.h"
@@ -30,13 +31,13 @@ NSString *const _MPOutlinveViewHeaderViewIdentifier = @"HeaderCell";
 @interface MPOutlineViewController () {
   BOOL _bindingEstablished;
 }
-@property (assign) IBOutlet NSOutlineView *outlineView;
-@property (assign) IBOutlet NSButton *addGroupButton;
-@property (assign) KdbGroup *selectedGroup;
+@property (weak) IBOutlet NSOutlineView *outlineView;
+@property (weak) IBOutlet NSButton *addGroupButton;
+@property (weak) KdbGroup *selectedGroup;
 
-@property (retain) NSTreeController *treeController;
-@property (retain) MPOutlineDataSource *datasource;
-@property (retain) NSMenu *menu;
+@property (strong) NSTreeController *treeController;
+@property (strong) MPOutlineDataSource *datasource;
+@property (strong) NSMenu *menu;
 
 @end
 
@@ -57,12 +58,6 @@ NSString *const _MPOutlinveViewHeaderViewIdentifier = @"HeaderCell";
   return self;
 }
 
-- (void)dealloc {
-  [_treeController release];
-  [_datasource release];
-  [_menu release];
-  [super dealloc];
-}
 
 - (void)didLoadView {
   [_outlineView setDelegate:self];
@@ -196,7 +191,7 @@ NSString *const _MPOutlinveViewHeaderViewIdentifier = @"HeaderCell";
   for(NSMenuItem *item in items) {
     [menu addItem:item];
   }
-  return [menu autorelease];
+  return menu;
 }
 
 - (BOOL)_itemIsRootNodeAdapter:(id)item {

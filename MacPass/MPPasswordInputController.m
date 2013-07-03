@@ -13,11 +13,11 @@
 
 @interface MPPasswordInputController ()
 
-@property (assign) IBOutlet NSTextField *passwordTextField;
-@property (assign) IBOutlet NSPathControl *keyPathControl;
-@property (retain) MPKeyfilePathControlDelegate *pathControlDelegate;
-@property (assign) IBOutlet NSImageView *errorImageView;
-@property (assign) IBOutlet NSTextField *errorInfoTextField;
+@property (weak) IBOutlet NSTextField *passwordTextField;
+@property (weak) IBOutlet NSPathControl *keyPathControl;
+@property (strong) MPKeyfilePathControlDelegate *pathControlDelegate;
+@property (weak) IBOutlet NSImageView *errorImageView;
+@property (weak) IBOutlet NSTextField *errorInfoTextField;
 
 - (IBAction)_decrypt:(id)sender;
 
@@ -29,10 +29,6 @@
   return [[MPPasswordInputController alloc] initWithNibName:@"PasswordInputView" bundle:nil];
 }
 
-- (void)dealloc {
-  [_pathControlDelegate release];
-  [super dealloc];
-}
 
 - (void)didLoadView {
   [self.keyPathControl setDelegate:self.pathControlDelegate];

@@ -41,7 +41,6 @@
   if(_clearPasteboardOnShutdown) {
     [[NSNotificationCenter defaultCenter] removeObserver:self];
   }
-  [super dealloc];
 }
 
 - (void)_updateNotifications {

@@ -12,9 +12,9 @@
 #import "MPDocument.h"
 
 @interface MPPasswordEditViewController ()
-@property (assign) IBOutlet NSSecureTextField *passwordTextField;
-@property (assign) IBOutlet NSPathControl *keyfilePathControl;
-@property (retain) MPKeyfilePathControlDelegate *pathControlDelegate;
+@property (weak) IBOutlet NSSecureTextField *passwordTextField;
+@property (weak) IBOutlet NSPathControl *keyfilePathControl;
+@property (strong) MPKeyfilePathControlDelegate *pathControlDelegate;
 
 - (IBAction)_change:(id)sender;
 - (IBAction)_cancel:(id)sender;
@@ -35,10 +35,6 @@
   return self;
 }
 
-- (void)dealloc {
-  [_pathControlDelegate release];
-  [super dealloc];
-}
 
 - (NSResponder *)reconmendedFirstResponder {
   return self.passwordTextField;

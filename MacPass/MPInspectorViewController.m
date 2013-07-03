@@ -42,19 +42,19 @@ enum {
   BOOL _visible;
 }
 
-@property (assign, nonatomic) KdbEntry *selectedEntry;
-@property (assign, nonatomic) KdbGroup *selectedGroup;
+@property (weak, nonatomic) KdbEntry *selectedEntry;
+@property (weak, nonatomic) KdbGroup *selectedGroup;
 
-@property (retain) NSPopover *activePopover;
-@property (assign) IBOutlet NSButton *generatePasswordButton;
+@property (strong) NSPopover *activePopover;
+@property (weak) IBOutlet NSButton *generatePasswordButton;
 
-@property (nonatomic, assign) NSDate *modificationDate;
-@property (nonatomic, assign) NSDate *creationDate;
+@property (nonatomic, weak) NSDate *modificationDate;
+@property (nonatomic, weak) NSDate *creationDate;
 
 @property (nonatomic, assign) NSUInteger activeTab;
-@property (assign) IBOutlet NSTabView *tabView;
-@property (retain) NSArrayController *attachmentsController;
-@property (retain) NSArrayController *customFieldsController;
+@property (weak) IBOutlet NSTabView *tabView;
+@property (strong) NSArrayController *attachmentsController;
+@property (strong) NSArrayController *customFieldsController;
 
 - (IBAction)addCustomField:(id)sender;
 - (IBAction)removeCustomField:(id)sender;
@@ -81,10 +81,6 @@ enum {
 
 - (void)dealloc {
   [[NSNotificationCenter defaultCenter] removeObserver:self];
-  [_activePopover release];
-  [_attachmentsController release];
-  [_customFieldsController release];
-  [super dealloc];
 }
 
 - (void)didLoadView {
@@ -267,12 +263,12 @@ enum {
 
 #pragma mark Popovers
 - (void)_showImagePopup:(id)sender {
-  [self _showPopopver:[[[MPIconSelectViewController alloc] init] autorelease]  atView:self.itemImageView onEdge:NSMinYEdge];
+  [self _showPopopver:[[MPIconSelectViewController alloc] init]  atView:self.itemImageView onEdge:NSMinYEdge];
 }
 
 - (IBAction)_popUpPasswordGenerator:(id)sender {
   [self.generatePasswordButton setEnabled:NO];
-  [self _showPopopver:[[[MPPasswordCreatorViewController alloc] init] autorelease] atView:self.passwordTextField onEdge:NSMinYEdge];
+  [self _showPopopver:[[MPPasswordCreatorViewController alloc] init] atView:self.passwordTextField onEdge:NSMinYEdge];
 }
 
 - (void)_showPopopver:(NSViewController *)viewController atView:(NSView *)view onEdge:(NSRectEdge)edge {
@@ -302,7 +298,6 @@ enum {
   }
   /* TODO: Check for Icon wizzard */
   
-  [_activePopover release];
   _activePopover = nil;
 }
 

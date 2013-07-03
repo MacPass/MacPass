@@ -41,11 +41,6 @@
   return self;
 }
 
-- (void)dealloc
-{
-  [rootUuid release];
-  [super dealloc];
-}
 
 - (KdbEntry *)configurationEntry {
   /*

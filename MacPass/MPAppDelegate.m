@@ -23,8 +23,8 @@
   MPLockDaemon *lockDaemon;
 }
 
-@property (retain, nonatomic) MPSettingsWindowController *settingsController;
-@property (retain, nonatomic) MPPasswordCreatorViewController *passwordCreatorController;
+@property (strong, nonatomic) MPSettingsWindowController *settingsController;
+@property (strong, nonatomic) MPPasswordCreatorViewController *passwordCreatorController;
 
 - (IBAction)showPreferences:(id)sender;
 
@@ -47,14 +47,6 @@
   lockDaemon = [[MPLockDaemon alloc] init];
 }
 
-- (void)dealloc {
-  [_settingsController release];
-  [_passwordCreatorController release];
-  [_passwordCreatorWindow release];
-  [serverDaemon release];
-  [lockDaemon release];
-  [super dealloc];
-}
 
 - (NSString *)applicationName {
   return [[NSBundle mainBundle] infoDictionary][@"CFBundleName"];
@@ -63,7 +55,7 @@
 #pragma mark Menu Actions
 - (void)showPreferences:(id)sender {
   if(self.settingsController == nil) {
-    self.settingsController = [[[MPSettingsWindowController alloc] init] autorelease];
+    self.settingsController = [[MPSettingsWindowController alloc] init];
   }
   [self.settingsController showSettings];
 }
@@ -73,7 +65,7 @@
     [[NSBundle mainBundle] loadNibNamed:@"PasswordCreatorWindow"owner:self topLevelObjects:nil];
   }
   if(!self.passwordCreatorController) {
-    self.passwordCreatorController = [[[MPPasswordCreatorViewController alloc] init] autorelease];
+    self.passwordCreatorController = [[MPPasswordCreatorViewController alloc] init];
     NSView *creatorView = [_passwordCreatorController view];
     //NSView *contentView = [_passwordCreatorWindow contentView];
     [self.passwordCreatorWindow setContentView:creatorView];

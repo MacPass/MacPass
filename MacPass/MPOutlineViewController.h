@@ -17,9 +17,9 @@ APPKIT_EXTERN NSString *const MPOutlineViewDidChangeGroupSelection;
 
 @interface MPOutlineViewController : MPViewController <NSOutlineViewDelegate>
 
-@property (readonly, assign) NSOutlineView *outlineView;
-@property (assign) IBOutlet HNHGradientView *bottomBar;
-@property (assign, readonly) KdbGroup *selectedGroup;
+@property (readonly, weak) NSOutlineView *outlineView;
+@property (weak) IBOutlet HNHGradientView *bottomBar;
+@property (weak, readonly) KdbGroup *selectedGroup;
 
 - (void)clearSelection;
 - (void)showOutline;

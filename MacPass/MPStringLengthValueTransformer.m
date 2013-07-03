@@ -25,7 +25,6 @@ NSString *const MPStringLengthValueTransformerName = @"com.hicknhack.macpass.MPM
   MPStringLengthValueTransformer *transformer = [[MPStringLengthValueTransformer alloc] init];
   [NSValueTransformer setValueTransformer:transformer
                                   forName:MPStringLengthValueTransformerName];
-  [transformer release];
 }
 
 - (id)transformedValue:(id)value {

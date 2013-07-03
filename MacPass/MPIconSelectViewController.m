@@ -36,10 +36,5 @@
 }
 
 - (IBAction)useDefault:(id)sender {
-  SEL hidePopup = @selector(hideImagePopup:);
-  id target = [[NSApplication sharedApplication] targetForAction:hidePopup to:nil from:self];
-  if( target ) {
-    [target performSelector:hidePopup withObject:self];
-  }
 }
 @end

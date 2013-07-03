@@ -117,14 +117,12 @@
       [groupItem setState:NSOnState];
     }
     [menu addItem:groupItem];
-    [groupItem release];
   }
   NSMenuItem *selectItem = [[NSMenuItem alloc] initWithTitle:NSLocalizedString(@"SELECT_RECYCLEBIN", @"Menu item if no reycleBin is selected") action:NULL keyEquivalent:@""];
   [selectItem setAction:@selector(_didSelectTrashFolder:)];
   [selectItem setTarget:self];
   [menu insertItem:selectItem atIndex:0];
-  [selectItem release];
   
-  return [menu autorelease];
+  return menu;
 }
 @end

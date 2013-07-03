@@ -9,7 +9,7 @@
 #import <Foundation/Foundation.h>
 
 @interface MPLoggerProxy : NSObject
-@property (retain) id original;
+@property (strong) id original;
 
 - (id)initWithOriginal:(id) value;
 

@@ -12,8 +12,8 @@
 @interface MPOverlayWindowController ()
 
 @property (assign) BOOL isAnimating;
-@property (assign) IBOutlet NSImageView *imageView;
-@property (assign) IBOutlet NSTextField *textField;
+@property (weak) IBOutlet NSImageView *imageView;
+@property (weak) IBOutlet NSTextField *textField;
 
 @end
 

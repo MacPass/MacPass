@@ -47,9 +47,8 @@
   group.image = 37;
   [parentGroup addGroup:group];
   
-  [rootGroup release];
 
-  return [tree autorelease];
+  return tree;
 }
 
 @end

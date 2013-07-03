@@ -10,7 +10,7 @@
 
 @interface MPAppDelegate : NSObject <NSApplicationDelegate>
 
-@property (retain) IBOutlet NSWindow *passwordCreatorWindow;
+@property (strong) IBOutlet NSWindow *passwordCreatorWindow;
 
 - (IBAction)showPasswordCreator:(id)sender;
 

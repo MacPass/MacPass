@@ -14,7 +14,7 @@
   static NSDictionary *actionDict;
   static dispatch_once_t onceToken;
   dispatch_once(&onceToken, ^{
-    actionDict = [@{
+    actionDict = @{
                   @(MPActionAddEntry) : @"createEntry:",
                   @(MPActionAddGroup) : @"createGroup:",
                   @(MPActionCopyPassword) : @"copyPassword:",
@@ -26,7 +26,7 @@
                   @(MPActionToggleInspector) : @"toggleInspector:",
                   @(MPActionLock) : @"lock:",
                   @(MPActionEmptyTrash) : @"emptyTrash:"
-                  } retain];
+                  };
   });
   return NSSelectorFromString(actionDict[@(type)]);
 }

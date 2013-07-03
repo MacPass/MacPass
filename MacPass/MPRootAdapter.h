@@ -12,9 +12,9 @@
 
 @interface MPRootAdapter : NSObject
 
-@property (readonly, retain) NSArray *groups;
-@property (nonatomic, retain) KdbTree *tree;
+@property (readonly, strong) NSArray *groups;
+@property (nonatomic, strong) KdbTree *tree;
 /* Subs to support interface */
-@property (readonly, nonatomic) NSArray *entries;
+@property (weak, readonly, nonatomic) NSArray *entries;
 
 @end

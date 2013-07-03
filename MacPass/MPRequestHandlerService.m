@@ -29,7 +29,7 @@ NSString *const MPRequestTypeGeneratePassword = @"generate-password";
   static NSDictionary *requestHandler;
   static dispatch_once_t onceToken;
   dispatch_once(&onceToken, ^{
-    requestHandler = [[self _setupHandlerDictionary] retain];
+    requestHandler = [self _setupHandlerDictionary];
   });
   return requestHandler;
 }
@@ -41,8 +41,6 @@ NSString *const MPRequestTypeGeneratePassword = @"generate-password";
                                 [associateHandler identifier] : associateHandler,
                                 [testAssociateHandler identifier] : testAssociateHandler
                                 };
-  [associateHandler release];
-  [testAssociateHandler release];
   return handlerDict;
 }
 

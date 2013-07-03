@@ -12,6 +12,6 @@
 
 @interface MPToolbarDelegate : NSObject <NSToolbarDelegate>
 
-@property (assign) NSToolbarItem *searchItem;
+@property (weak) NSToolbarItem *searchItem;
 
 @end

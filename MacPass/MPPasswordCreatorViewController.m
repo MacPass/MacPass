@@ -17,19 +17,19 @@
 @interface MPPasswordCreatorViewController () {
   MPPasswordCharacterFlags _characterFlags;
 }
-@property (retain) NSString *password;
-@property (retain) NSString *generatedPassword;
+@property (strong) NSString *password;
+@property (strong) NSString *generatedPassword;
 
-@property (assign) IBOutlet NSTextField *passwordTextField;
-@property (assign) IBOutlet NSTextField *passwordLengthTextField;
-@property (assign) IBOutlet NSTextField *customCharactersTextField;
-@property (assign) IBOutlet NSSlider *passwordLengthSlider;
-@property (assign) IBOutlet NSButton *addPasswordToPasteboardButton;
-@property (assign) IBOutlet NSButton *upperCaseButton;
-@property (assign) IBOutlet NSButton *lowerCaseButton;
-@property (assign) IBOutlet NSButton *numbersButton;
-@property (assign) IBOutlet NSButton *symbolsButton;
-@property (assign) IBOutlet NSButton *customButton;
+@property (weak) IBOutlet NSTextField *passwordTextField;
+@property (weak) IBOutlet NSTextField *passwordLengthTextField;
+@property (weak) IBOutlet NSTextField *customCharactersTextField;
+@property (weak) IBOutlet NSSlider *passwordLengthSlider;
+@property (weak) IBOutlet NSButton *addPasswordToPasteboardButton;
+@property (weak) IBOutlet NSButton *upperCaseButton;
+@property (weak) IBOutlet NSButton *lowerCaseButton;
+@property (weak) IBOutlet NSButton *numbersButton;
+@property (weak) IBOutlet NSButton *symbolsButton;
+@property (weak) IBOutlet NSButton *customButton;
 
 @property (assign, nonatomic) BOOL useCustomString;
 @property (assign, nonatomic) NSUInteger passwordLength;
@@ -54,11 +54,6 @@
   return self;
 }
 
-- (void)dealloc {
-  [_generatedPassword release];
-  [_password release];
-  [super dealloc];
-}
 
 - (void)didLoadView {
   [self.passwordLengthSlider setMinValue:MIN_PASSWORD_LENGTH];

@@ -10,7 +10,7 @@
 
 @interface MPIconSelectViewController : MPViewController <NSCollectionViewDelegate>
 
-@property (assign) IBOutlet NSCollectionView *iconCollectionView;
+@property (weak) IBOutlet NSCollectionView *iconCollectionView;
 - (IBAction)useDefault:(id)sender;
 
 @end

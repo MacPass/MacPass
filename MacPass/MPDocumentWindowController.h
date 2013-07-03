@@ -22,17 +22,17 @@ APPKIT_EXTERN NSString *const MPCurrentItemChangedNotification;
 
 @interface MPDocumentWindowController : NSWindowController <NSWindowDelegate>
 
-@property (readonly, retain) MPPasswordInputController *passwordInputController;
-@property (readonly, retain) MPPasswordEditViewController *passwordEditController;
-@property (readonly, retain) MPEntryViewController *entryViewController;
-@property (readonly, retain) MPOutlineViewController *outlineViewController;
-@property (readonly, retain) MPInspectorViewController *inspectorViewController;
+@property (readonly, strong) MPPasswordInputController *passwordInputController;
+@property (readonly, strong) MPPasswordEditViewController *passwordEditController;
+@property (readonly, strong) MPEntryViewController *entryViewController;
+@property (readonly, strong) MPOutlineViewController *outlineViewController;
+@property (readonly, strong) MPInspectorViewController *inspectorViewController;
 
 
 /* Holds the current item. That is either a KdbGroup or a KdbEntry */
-@property (readonly, assign) id currentItem;
-@property (readonly, assign) KdbGroup *currentGroup;
-@property (readonly, assign) KdbEntry *currentEntry;
+@property (readonly, unsafe_unretained) id currentItem;
+@property (readonly, unsafe_unretained) KdbGroup *currentGroup;
+@property (readonly, unsafe_unretained) KdbEntry *currentEntry;
 
 
 - (void)showEntries;

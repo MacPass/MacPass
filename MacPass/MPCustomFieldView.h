@@ -10,8 +10,8 @@
 
 @interface MPCustomFieldView : NSView
 
-@property (assign) IBOutlet NSTextField *labelTextField;
-@property (assign) IBOutlet NSTextField *valueTextField;
-@property (assign) IBOutlet NSButton *deleteButton;
+@property (weak) IBOutlet NSTextField *labelTextField;
+@property (weak) IBOutlet NSTextField *valueTextField;
+@property (weak) IBOutlet NSButton *deleteButton;
 
 @end

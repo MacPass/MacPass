@@ -24,9 +24,9 @@ NSString *const MPToolbarItemInspector = @"TOOLBAR_INSPECTOR";
 
 @interface MPToolbarDelegate()
 
-@property (retain) NSMutableDictionary *toolbarItems;
-@property (retain) NSArray *toolbarIdentifiers;
-@property (retain) NSDictionary *toolbarImages;
+@property (strong) NSMutableDictionary *toolbarItems;
+@property (strong) NSArray *toolbarIdentifiers;
+@property (strong) NSDictionary *toolbarImages;
 
 - (NSString *)_localizedLabelForToolbarItemIdentifier:(NSString *)identifier;
 - (SEL)_actionForToolbarItemIdentifier:(NSString *)identifier;
@@ -39,20 +39,13 @@ NSString *const MPToolbarItemInspector = @"TOOLBAR_INSPECTOR";
 - (id)init {
   self = [super init];
   if (self) {
-    _toolbarIdentifiers = [@[ MPToolbarItemAddEntry, MPToolbarItemDelete, MPToolbarItemAddGroup, MPToolbarItemAction, NSToolbarFlexibleSpaceItemIdentifier, MPToolbarItemLock, MPToolbarItemInspector ] retain];
-    _toolbarImages = [[self createToolbarImages] retain];
+    _toolbarIdentifiers = @[ MPToolbarItemAddEntry, MPToolbarItemDelete, MPToolbarItemAddGroup, MPToolbarItemAction, NSToolbarFlexibleSpaceItemIdentifier, MPToolbarItemLock, MPToolbarItemInspector ];
+    _toolbarImages = [self createToolbarImages];
     _toolbarItems = [[NSMutableDictionary alloc] initWithCapacity:[self.toolbarIdentifiers count]];
   }
   return self;
 }
 
-- (void)dealloc
-{
-  [_toolbarItems release];
-  [_toolbarIdentifiers release];
-  [_toolbarImages release];
-  [super dealloc];
-}
 
 - (NSToolbarItem *)toolbar:(NSToolbar *)toolbar itemForItemIdentifier:(NSString *)itemIdentifier willBeInsertedIntoToolbar:(BOOL)flag {
   NSToolbarItem *item = self.toolbarItems[itemIdentifier];
@@ -75,7 +68,6 @@ NSString *const MPToolbarItemInspector = @"TOOLBAR_INSPECTOR";
       NSMenuItem *actionImageItem = [[NSMenuItem allocWithZone:[NSMenu menuZone]] initWithTitle:@"" action:NULL keyEquivalent:@""];
       [actionImageItem setImage:self.toolbarImages[MPToolbarItemAction]];
       [menu addItem:actionImageItem];
-      [actionImageItem release];
       NSArray *menuItems = [MPContextMenuHelper contextMenuItemsWithItems:MPContextMenuExtended];
       for(NSMenuItem *item in menuItems) {
         [menu addItem:item];
@@ -88,10 +80,7 @@ NSString *const MPToolbarItemInspector = @"TOOLBAR_INSPECTOR";
       [popupButton setFrame:newFrame];
       [popupButton setMenu:menu];
       [item setMenuFormRepresentation:menuRepresentation];
-      [menuRepresentation release];
       [item setView:popupButton];
-      [popupButton release];
-      [menu release];
     }
     else {
       NSButton *button = [[MPToolbarButton alloc] initWithFrame:NSMakeRect(0, 0, 32, 32)];
@@ -114,11 +103,8 @@ NSString *const MPToolbarItemInspector = @"TOOLBAR_INSPECTOR";
                                                                   action:[self _actionForToolbarItemIdentifier:itemIdentifier]
                                                            keyEquivalent:@""];
       [item setMenuFormRepresentation:menuRepresentation];
-      [menuRepresentation release];
-      [button release];
     }
     self.toolbarItems[itemIdentifier] = item;
-    [item release];
   }
   return item;
 }

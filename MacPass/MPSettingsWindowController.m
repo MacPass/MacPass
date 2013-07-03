@@ -14,10 +14,10 @@
   NSString *lastIdentifier;
 }
 
-@property (retain, nonatomic) NSToolbar *toolbar;
-@property (retain, nonatomic) NSMutableDictionary *settingsController;
-@property (retain, nonatomic) NSMutableDictionary *toolbarItems;
-@property (retain) NSArray *defaultToolbarItems;
+@property (strong, nonatomic) NSToolbar *toolbar;
+@property (strong, nonatomic) NSMutableDictionary *settingsController;
+@property (strong, nonatomic) NSMutableDictionary *toolbarItems;
+@property (strong) NSArray *defaultToolbarItems;
 
 @end
 
@@ -41,13 +41,6 @@
   return self;
 }
 
-- (void)dealloc {
-  [_settingsController release];
-  [_toolbar release];
-  [_toolbarItems release];
-  [_defaultToolbarItems release];
-  [super dealloc];
-}
 
 - (void)showSettings {
   if([self.defaultToolbarItems count] > 0) {
@@ -122,8 +115,6 @@
 
   self.defaultToolbarItems = @[ [generalSettingsController identifier], [serverSettingsController identifier] ];
   
-  [generalSettingsController release];
-  [serverSettingsController release];
 
 }
 

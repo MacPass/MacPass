@@ -43,19 +43,19 @@ NSString *const MPDocumentGroupKey                    = @"MPDocumentGroupKey";
 }
 
 
-@property (retain, nonatomic) KdbTree *tree;
-@property (assign, nonatomic) KdbGroup *root;
-@property (nonatomic, readonly) KdbPassword *passwordHash;
+@property (strong, nonatomic) KdbTree *tree;
+@property (weak, nonatomic) KdbGroup *root;
+@property (weak, nonatomic, readonly) KdbPassword *passwordHash;
 @property (assign) MPDatabaseVersion version;
 
 @property (assign, nonatomic) BOOL secured;
 @property (assign) BOOL decrypted;
 @property (assign) BOOL readOnly;
 
-@property (retain) NSURL *lockFileURL;
+@property (strong) NSURL *lockFileURL;
 
 @property (readonly) BOOL useTrash;
-@property (readonly) KdbGroup *trash;
+@property (weak, readonly) KdbGroup *trash;
 
 @end
 
@@ -85,7 +85,7 @@ NSString *const MPDocumentGroupKey                    = @"MPDocumentGroupKey";
         self.tree = [Kdb4Tree templateTree];
         break;
       default:
-        [self release];
+        self = nil;
         return nil;
     }
   }
@@ -94,18 +94,11 @@ NSString *const MPDocumentGroupKey                    = @"MPDocumentGroupKey";
 
 - (void)dealloc {
   [self _cleanupLock];
-  [_tree release];
-  [_password release];
-  [_key release];
-  [_lockFileURL release];
-  [_rootAdapter release];
-  [super dealloc];
 }
 
 - (void)makeWindowControllers {
   MPDocumentWindowController *windowController = [[MPDocumentWindowController alloc] init];
   [self addWindowController:windowController];
-  [windowController release];
 }
 
 - (void)windowControllerDidLoadNib:(NSWindowController *)aController
@@ -179,23 +172,21 @@ NSString *const MPDocumentGroupKey                    = @"MPDocumentGroupKey";
 
 - (void)setPassword:(NSString *)password {
   if(![_password isEqualToString:password]) {
-    [_password release];
-    _password = [password retain];
+    _password = password;
     _secured |= ([_password length] > 0);
   }
 }
 
 - (void)setKey:(NSURL *)key {
   if(![[_key absoluteString] isEqualToString:[key absoluteString]]) {
-    [_key release];
-    _key = [key retain];
+    _key = key;
     _secured |= (_key != nil);
   }
 }
 
 - (KdbPassword *)passwordHash {
   
-  return [[[KdbPassword alloc] initWithPassword:self.password passwordEncoding:NSUTF8StringEncoding keyFileURL:self.key] autorelease];
+  return [[KdbPassword alloc] initWithPassword:self.password passwordEncoding:NSUTF8StringEncoding keyFileURL:self.key];
 }
 
 + (BOOL)autosavesInPlace
@@ -206,8 +197,7 @@ NSString *const MPDocumentGroupKey                    = @"MPDocumentGroupKey";
 #pragma mark Data Accesors
 - (void)setTree:(KdbTree *)tree {
   if(_tree != tree) {
-    [_tree release];
-    _tree = [tree retain];
+    _tree = tree;
     self.rootAdapter.tree = _tree;
   }
 }

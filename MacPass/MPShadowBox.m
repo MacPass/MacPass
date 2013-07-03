@@ -35,7 +35,6 @@
   NSColor *bottomColor = [NSColor colorWithCalibratedWhite:0.85 alpha:1];
   NSGradient *gradient = [[NSGradient alloc] initWithColors:@[topColor, bottomColor ]];
   [gradient drawInRect:dirtyRect angle:-90];
-  [gradient release];
   
   NSShadow *dropShadow = [[NSShadow alloc] init];
   [dropShadow setShadowColor:[NSColor colorWithCalibratedWhite:0 alpha:0.5]];
@@ -54,7 +53,6 @@
     [[NSBezierPath bezierPathWithOvalInRect:bottomElipsis] fill];
   }
   
-  [dropShadow release];
   [[NSGraphicsContext currentContext] restoreGraphicsState];
 }
 

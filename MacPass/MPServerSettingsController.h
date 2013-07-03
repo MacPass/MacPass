@@ -11,6 +11,6 @@
 
 @interface MPServerSettingsController : MPViewController <MPSettingsTab>
 
-@property (assign) IBOutlet NSButton *enableServerCheckbutton;
+@property (weak) IBOutlet NSButton *enableServerCheckbutton;
 
 @end

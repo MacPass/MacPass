@@ -28,8 +28,6 @@
                                                keyEquivalent:@"E"];
     
     [items addObjectsFromArray:@[ newGroup, newEntry ]];
-    [newEntry release];
-    [newGroup release];
   }
   if(insertDelete || insertTrash) {
     [self _beginSection:items];
@@ -38,7 +36,6 @@
                                                       action:[MPActionHelper actionOfType:MPActionDelete]
                                                keyEquivalent:@""];
       [items addObject:delete];
-      [delete release];
 
     }
     if(insertTrash) {
@@ -49,7 +46,6 @@
       unichar backSpace = NSBackspaceCharacter;
       [emptyTrash setKeyEquivalent:[NSString stringWithCharacters:&backSpace length:1]];
       [items addObject:emptyTrash];
-      [emptyTrash release];
 
     }
   }
@@ -67,7 +63,6 @@
                                                      action:0
                                               keyEquivalent:@""];
     [urlItem setSubmenu:urlMenu];
-    [urlMenu release];
     
     NSMenuItem *copyURL = [[NSMenuItem alloc] initWithTitle:NSLocalizedString(@"COPY_URL", @"")
                                                      action:[MPActionHelper actionOfType:MPActionCopyURL]
@@ -77,13 +72,8 @@
                                               keyEquivalent:@"U"];
     [urlMenu addItem:copyURL];
     [urlMenu addItem:openURL];
-    [openURL release];
-    [copyURL release];
     
     [items addObjectsFromArray:@[ copyUsername, copyPassword, urlItem]];
-    [urlItem release];
-    [copyPassword release];
-    [copyUsername release];
   }
   
   return items;

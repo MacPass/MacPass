@@ -11,6 +11,6 @@
 @class MPEntryViewController;
 @interface MPEntryTableDataSource : NSObject <NSTableViewDataSource>
 
-@property (assign, nonatomic) MPEntryViewController *viewController;
+@property (weak, nonatomic) MPEntryViewController *viewController;
 
 @end

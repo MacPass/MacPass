@@ -38,12 +38,6 @@
   return self;
 }
 
-- (void)dealloc
-{
-  [statusItem release];
-  [server release];
-  [super dealloc];
-}
 
 - (void)setIsEnabled:(BOOL)enabled {
   if(_isEnabled == enabled) {
@@ -62,7 +56,6 @@
   }
   else {
     /* Do not let the resource linger around */
-    [server release];
     server = nil;
   }
   [self _updateStatusItem];
@@ -78,7 +71,7 @@
 
 - (void)_updateStatusItem {
   if(_isEnabled && _showStatusItem) {
-    statusItem = [[[NSStatusBar systemStatusBar] statusItemWithLength:NSVariableStatusItemLength] retain];
+    statusItem = [[NSStatusBar systemStatusBar] statusItemWithLength:NSVariableStatusItemLength];
     [statusItem setImage:[MPIconHelper icon:MPIconServer ]];
   }
   else if(statusItem) {

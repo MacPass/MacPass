@@ -23,11 +23,10 @@
 
 
 - (BOOL)outlineView:(NSOutlineView *)outlineView writeItems:(NSArray *)items toPasteboard:(NSPasteboard *)pasteboard {
-  [_draggedItem release];
   _draggedItem = nil;
   [pasteboard setString:@"Weee" forType:MPPasteBoardType];
   if([items count] == 1) {
-    _draggedItem = [[[items lastObject] representedObject] retain];
+    _draggedItem = [[items lastObject] representedObject];
     return (nil != _draggedItem.parent);
   }
   return YES;
@@ -93,7 +92,6 @@
     MPDocument *document = [[[outlineView window] windowController] document];
     KdbGroup *rootGroup = [document root];
     KdbEntry *draggedEntry = [rootGroup entryForUUID:uuid];
-    [uuid release];
     if(draggedEntry) {
       if(draggedEntry.parent != target && index == NSOutlineViewDropOnItemIndex) {
         [document moveEntry:draggedEntry toGroup:target index:index];

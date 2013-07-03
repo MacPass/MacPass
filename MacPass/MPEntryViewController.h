@@ -31,11 +31,11 @@ typedef NS_ENUM( NSUInteger, MPCopyContentTypeTag) {
 
 @interface MPEntryViewController : MPViewController <NSTableViewDelegate>
 
-@property (readonly, assign, nonatomic) KdbEntry *selectedEntry;
+@property (readonly, weak, nonatomic) KdbEntry *selectedEntry;
 
-@property (assign,readonly) NSTableView *entryTable;
-@property (readonly, retain) NSArrayController *entryArrayController;
-@property (nonatomic, retain) NSString *filter;
+@property (weak,readonly) NSTableView *entryTable;
+@property (readonly, strong) NSArrayController *entryArrayController;
+@property (nonatomic, strong) NSString *filter;
 
 
 /* Call this after alle viewcontroller are loaded */

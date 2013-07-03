@@ -51,9 +51,7 @@ NSString *const MPShouldLockDatabaseNotification = @"com.hicknhack.macpass.MPSho
   
   /* Timer */
   [idleCheckTimer invalidate];
-  [idleCheckTimer release];
   
-  [super dealloc];
 }
 
 - (void)setLockOnSleep:(BOOL)lockOnSleep {
@@ -74,7 +72,6 @@ NSString *const MPShouldLockDatabaseNotification = @"com.hicknhack.macpass.MPSho
     _idleLockTime = idleLockTime;
     if(_idleLockTime == 0) {
       [idleCheckTimer invalidate];
-      [idleCheckTimer release];
       idleCheckTimer = nil;
     }
     else {
@@ -84,7 +81,7 @@ NSString *const MPShouldLockDatabaseNotification = @"com.hicknhack.macpass.MPSho
         return; // Done
       }
       /* Create new timer and schedule it with runloop */
-      idleCheckTimer = [[NSTimer timerWithTimeInterval:_idleLockTime target:self selector:@selector(_checkIdleTime:) userInfo:nil repeats:YES] retain];
+      idleCheckTimer = [NSTimer timerWithTimeInterval:_idleLockTime target:self selector:@selector(_checkIdleTime:) userInfo:nil repeats:YES];
       [[NSRunLoop mainRunLoop] addTimer:idleCheckTimer forMode:NSDefaultRunLoopMode];
     }
   }

@@ -76,7 +76,6 @@
 //    [[NSColor whiteColor] set];
 //    [triangle fill];
     
-    [shadow release];
     [[NSGraphicsContext currentContext] restoreGraphicsState];
   }
   [super drawRect:dirtyRect];
@@ -106,7 +105,6 @@
                                                                 owner:self
                                                              userInfo:nil];
   [self addTrackingArea:trackingArea];
-  [trackingArea release];
 }
 
 @end

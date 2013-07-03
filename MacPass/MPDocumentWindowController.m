@@ -26,21 +26,21 @@ NSString *const MPCurrentItemChangedNotification = @"com.hicknhack.macpass.MPCur
   id _firstResponder;
 }
 
-@property (retain) IBOutlet NSSplitView *splitView;
+@property (strong) IBOutlet NSSplitView *splitView;
 
-@property (retain) NSToolbar *toolbar;
-@property (assign) id currentItem;
-@property (assign) KdbGroup *currentGroup;
-@property (assign) KdbEntry *currentEntry;
+@property (strong) NSToolbar *toolbar;
+@property (unsafe_unretained) id currentItem;
+@property (unsafe_unretained) KdbGroup *currentGroup;
+@property (unsafe_unretained) KdbEntry *currentEntry;
 
-@property (retain) MPPasswordInputController *passwordInputController;
-@property (retain) MPPasswordEditViewController *passwordEditController;
-@property (retain) MPEntryViewController *entryViewController;
-@property (retain) MPOutlineViewController *outlineViewController;
-@property (retain) MPInspectorViewController *inspectorViewController;
-@property (retain) MPDocumentSettingsWindowController *documentSettingsWindowController;
+@property (strong) MPPasswordInputController *passwordInputController;
+@property (strong) MPPasswordEditViewController *passwordEditController;
+@property (strong) MPEntryViewController *entryViewController;
+@property (strong) MPOutlineViewController *outlineViewController;
+@property (strong) MPInspectorViewController *inspectorViewController;
+@property (strong) MPDocumentSettingsWindowController *documentSettingsWindowController;
 
-@property (retain) MPToolbarDelegate *toolbarDelegate;
+@property (strong) MPToolbarDelegate *toolbarDelegate;
 
 @end
 
@@ -66,17 +66,8 @@ NSString *const MPCurrentItemChangedNotification = @"com.hicknhack.macpass.MPCur
 - (void)dealloc {
   [[NSNotificationCenter defaultCenter] removeObserver:self];
   
-  [_toolbar release];
   
-  [_passwordInputController release];
-  [_passwordEditController release];
-  [_entryViewController release];
-  [_outlineViewController release];
-  [_inspectorViewController release];
   
-  [_toolbarDelegate release];
-  [_splitView release];
-  [super dealloc];
 }
 
 #pragma mark View Handling
@@ -207,7 +198,7 @@ NSString *const MPCurrentItemChangedNotification = @"com.hicknhack.macpass.MPCur
 
 - (void)showPasswordInput {
   if(!self.passwordInputController) {
-    self.passwordInputController = [[[MPPasswordInputController alloc] init] autorelease];
+    self.passwordInputController = [[MPPasswordInputController alloc] init];
   }
   [self _setContentViewController:self.passwordInputController];
   [self.passwordInputController requestPassword];

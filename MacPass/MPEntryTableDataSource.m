@@ -32,7 +32,6 @@
   NSPasteboardItem *pBoardItem = [[NSPasteboardItem alloc] init];
   [pBoardItem setString:[uuid description] forType:MPPasteBoardType];
   [pboard writeObjects:@[pBoardItem]];
-  [pBoardItem release];
   
   return YES;
 }

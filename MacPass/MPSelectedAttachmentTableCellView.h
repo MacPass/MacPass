@@ -11,6 +11,6 @@
 /* Simple View with an additional Button to add an Action to selected rows */
 @interface MPSelectedAttachmentTableCellView : NSTableCellView
 
-@property (nonatomic, assign) IBOutlet NSButton *saveButton;
+@property (nonatomic, weak) IBOutlet NSButton *saveButton;
 
 @end
