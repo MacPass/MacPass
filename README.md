@@ -16,7 +16,9 @@ I'm trying to upload new builds along the way for all of you that just want to t
 As stated in the disclaimer, this software cannot be considered safe for work in it's current development status.
 Use it with caution! Since I did start refactoring the KeePassLib there is even more potential broken code!
 
-[Download MacPass at Dropbox](https://www.dropbox.com/sh/yqgfwi7f8mnd747/NCQlJmg0f0) (build 1419 06/28/2013)
+[Older Version of MacPass at Dropbox](https://www.dropbox.com/sh/yqgfwi7f8mnd747/NCQlJmg0f0) (build 1882 07/04/2013)
+
+All [new Release](https://github.com/mstarke/MacPass/releases) are server from Github.
 
 ##Known Issues
 
