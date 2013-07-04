@@ -74,4 +74,50 @@
   return tree;
 }
 
++ (Kdb4Tree *)demoTree {
+  NSDate *currentTime = [NSDate date];
+  
+  Kdb4Tree *tree = [[Kdb4Tree alloc] init];
+  tree.generator = @"MacPass";
+  tree.databaseName = @"Icon Demonstation";
+  tree.databaseNameChanged = currentTime;
+  tree.databaseDescription = @"This database just has all default icons as groups in the tree";
+  tree.databaseDescriptionChanged = currentTime;
+  tree.defaultUserName = @"";
+  tree.defaultUserNameChanged = currentTime;
+  tree.maintenanceHistoryDays = 365;
+  tree.color = @"";
+  tree.masterKeyChanged = currentTime;
+  tree.masterKeyChangeRec = -1;
+  tree.masterKeyChangeForce = -1;
+  tree.protectTitle = NO;
+  tree.protectUserName = NO;
+  tree.protectPassword = YES;
+  tree.protectUrl = NO;
+  tree.protectNotes = NO;
+  tree.recycleBinEnabled = YES;
+  tree.recycleBinUuid = [UUID nullUuid];
+  tree.recycleBinChanged = currentTime;
+  tree.entryTemplatesGroup = [UUID nullUuid];
+  tree.entryTemplatesGroupChanged = currentTime;
+  tree.historyMaxItems = 10;
+  tree.historyMaxSize = 6 * 1024 * 1024; // 6 MB
+  tree.lastSelectedGroup = [UUID nullUuid];
+  tree.lastTopVisibleGroup = [UUID nullUuid];
+  
+  KdbGroup *parentGroup = [tree createGroup:nil];
+  parentGroup.name = @"General";
+  parentGroup.image = 48;
+  tree.root = parentGroup;
+  
+  for(NSUInteger iImageIndex = 0; iImageIndex < 69; iImageIndex++) {
+    KdbGroup *group = [tree createGroup:parentGroup];
+    group.name = [NSString stringWithFormat:@"Group %ld", iImageIndex];
+    group.image = iImageIndex;
+    [parentGroup addGroup:group];
+  }
+  
+  return tree;
+}
+
 @end

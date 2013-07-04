@@ -83,6 +83,7 @@ NSString *const MPDocumentGroupKey                    = @"MPDocumentGroupKey";
         break;
       case MPDatabaseVersion4:
         self.tree = [Kdb4Tree templateTree];
+        //self.tree = [Kdb4Tree demoTree];
         break;
       default:
         self = nil;
@@ -117,6 +118,7 @@ NSString *const MPDocumentGroupKey                    = @"MPDocumentGroupKey";
 }
 
 - (BOOL)readFromURL:(NSURL *)url ofType:(NSString *)typeName error:(NSError **)outError {
+  /* FIXME: Logfile handling
   self.lockFileURL = [url URLByAppendingPathExtension:@"lock"];
   if([[NSFileManager defaultManager] fileExistsAtPath:[_lockFileURL path]]) {
     self.readOnly = YES;
@@ -126,6 +128,7 @@ NSString *const MPDocumentGroupKey                    = @"MPDocumentGroupKey";
     _didLockFile = YES;
     self.readOnly = NO;
   }
+   */
   self.decrypted = NO;
   return YES;
 }
@@ -301,6 +304,7 @@ NSString *const MPDocumentGroupKey                    = @"MPDocumentGroupKey";
   }
   KdbGroup *newGroup = [self.tree createGroup:parent];
   newGroup.name = NSLocalizedString(@"DEFAULT_GROUP_NAME", @"Title for a newly created group");
+  newGroup.image = MPIconFolder;
   [self group:parent addGroup:newGroup atIndex:[parent.groups count]];
   NSDictionary *userInfo = @{ MPDocumentGroupKey : newGroup };
   [[NSNotificationCenter defaultCenter] postNotificationName:MPDocumentDidAddGroupNotification object:self userInfo:userInfo];

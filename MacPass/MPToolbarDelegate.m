@@ -121,7 +121,7 @@ NSString *const MPToolbarItemInspector = @"TOOLBAR_INSPECTOR";
 - (NSDictionary *)createToolbarImages{
   NSDictionary *imageDict = @{ MPToolbarItemLock: [NSImage imageNamed:NSImageNameLockUnlockedTemplate],
                                MPToolbarItemAddEntry: [MPIconHelper icon:MPIconPassword],
-                               MPToolbarItemAddGroup: [MPIconHelper icon:MPIconPassword],
+                               MPToolbarItemAddGroup: [MPIconHelper icon:MPIconAddFolder],
                                MPToolbarItemDelete: [MPIconHelper icon:MPIconTrash],
                                MPToolbarItemAction: [NSImage imageNamed:NSImageNameActionTemplate],
                                MPToolbarItemInspector: [MPIconHelper icon:MPIconInfo],

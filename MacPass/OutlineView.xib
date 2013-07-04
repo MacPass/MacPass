@@ -57,6 +57,7 @@
 								<string key="NSFrame">{{7, 5}, {32, 19}}</string>
 								<reference key="NSSuperview" ref="789399035"/>
 								<reference key="NSWindow"/>
+								<reference key="NSNextKeyView"/>
 								<string key="NSReuseIdentifierKey">_NS:9</string>
 								<bool key="NSEnabled">YES</bool>
 								<object class="NSButtonCell" key="NSCell" id="573415016">
@@ -156,7 +157,7 @@
 														<int key="NSfFlags">1044</int>
 													</object>
 													<reference key="NSControlView" ref="920491699"/>
-													<object class="NSColor" key="NSBackgroundColor" id="501306061">
+													<object class="NSColor" key="NSBackgroundColor">
 														<int key="NSColorSpace">6</int>
 														<string key="NSCatalogName">System</string>
 														<string key="NSColorName">controlBackgroundColor</string>
@@ -224,7 +225,6 @@
 								<reference key="NSNextKeyView" ref="920491699"/>
 								<string key="NSReuseIdentifierKey">_NS:11</string>
 								<reference key="NSDocView" ref="920491699"/>
-								<reference key="NSBGColor" ref="501306061"/>
 								<int key="NScvFlags">4</int>
 							</object>
 							<object class="NSScroller" id="1009004098">
@@ -370,6 +370,7 @@
 								<object class="NSImageView" id="273100869">
 									<reference key="NSNextResponder" ref="980203382"/>
 									<int key="NSvFlags">268</int>
+									<array class="NSMutableArray" key="NSSubviews"/>
 									<set class="NSMutableSet" key="NSDragTypes">
 										<string>Apple PDF pasteboard type</string>
 										<string>Apple PICT pasteboard type</string>
@@ -392,7 +393,7 @@
 										</object>
 										<string key="NSCellIdentifier">_NS:71</string>
 										<int key="NSAlign">0</int>
-										<int key="NSScale">0</int>
+										<int key="NSScale">2</int>
 										<int key="NSStyle">0</int>
 										<bool key="NSAnimates">NO</bool>
 									</object>

@@ -20,8 +20,12 @@ typedef NS_ENUM(NSUInteger, MPIconType) {
   MPIconIdentity,
   MPIconContact,
   MPIconCamera,
-  MPIconTrash,
-  MPIconInfo
+  MPIconRemote,
+  MPIconTrash = 43,
+  MPIconFolder = 48,
+  /* Custom Icons not used in Database */
+  MPIconInfo = 1000,
+  MPIconAddFolder
 };
 
 @interface MPIconHelper : NSObject

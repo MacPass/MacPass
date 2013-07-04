@@ -10,13 +10,17 @@
 
 @implementation MPIconHelper
 
+static NSDictionary *icons;
+
 + (NSImage *)icon:(MPIconType)type {
-  NSDictionary *icons = [MPIconHelper availableIconNames];
-  if(type >= [icons count]) {
-    return [NSImage imageNamed:NSImageNameActionTemplate];
+  if(!icons) {
+    icons =   [MPIconHelper availableIconNames];
   }
-  NSString *imageName = icons[@(type)];
-  return [[NSBundle mainBundle] imageForResource:imageName];
+  if([[icons allKeys] containsObject:@(type)]) {
+    NSString *imageName = icons[@(type)];
+    return [[NSBundle mainBundle] imageForResource:imageName];
+  }
+  return [NSImage imageNamed:NSImageNameActionTemplate];
 }
 
 + (NSArray *)availableIcons {
@@ -30,20 +34,26 @@
 }
 
 + (NSDictionary *)availableIconNames {
-  NSDictionary *imageNames = @{ @(MPIconKlipper): @"04_KlipperTemplate",
-                                @(MPIconLanguages): @"05_LanguagesTemplate",
-                                @(MPIconPackageNetwork): @"01_PackageNetworkTemplate",
-                                @(MPIconPassword): @"00_PasswordTemplate",
-                                @(MPIconServer): @"03_ServerTemplate",
-                                @(MPIconWarning): @"02_MessageBoxWarningTemplate",
-                                @(MPIconCamera): @"11_CameraTemplate",
-                                @(MPIconContact): @"10_ContactTemplate",
-                                @(MPIconIdentity): @"09_IdentityTemplate",
-                                @(MPIconNotepad): @"07_NotepadTemplate",
-                                @(MPIconSocket): @"08_SocketTemplate",
-                                @(MPIconTrash): @"43_TrashTemplate",
-                                @(MPIconInfo): @"99_InfoTemplate"
-                                };
+  NSDictionary *imageNames = @{
+                               @(MPIconPassword): @"00_PasswordTemplate",
+                               @(MPIconPackageNetwork): @"01_PackageNetworkTemplate",
+                               @(MPIconWarning): @"02_MessageBoxWarningTemplate",
+                               @(MPIconServer): @"03_ServerTemplate",
+                               @(MPIconKlipper): @"04_KlipperTemplate",
+                               @(MPIconLanguages): @"05_LanguagesTemplate",
+                               
+                               @(MPIconNotepad): @"07_NotepadTemplate",
+                               @(MPIconSocket): @"08_SocketTemplate",
+                               @(MPIconIdentity): @"09_IdentityTemplate",
+                               @(MPIconContact): @"10_ContactTemplate",
+                               @(MPIconCamera): @"11_CameraTemplate",
+                               @(MPIconRemote): @"12_RemoteTemplate",
+
+                               @(MPIconTrash): @"43_TrashTemplate",
+                               @(MPIconFolder): @"48_FolderTemplate",
+                               @(MPIconInfo): @"99_InfoTemplate",
+                               @(MPIconAddFolder): @"99_AddFolderTemplate"
+                               };
   return imageNames;
 }
 

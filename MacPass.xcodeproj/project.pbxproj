@@ -117,6 +117,10 @@
 		4C669BA016760ED100DD0774 /* Salsa20RandomStream.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C669B7716760ED100DD0774 /* Salsa20RandomStream.m */; };
 		4C669BA216760ED100DD0774 /* UUID.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C669B7B16760ED100DD0774 /* UUID.m */; };
 		4C69A73A16D589DF00EC1B1A /* HNHGradientView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C69A73916D589DF00EC1B1A /* HNHGradientView.m */; };
+		4C6D1D25178579570014C5A5 /* 48_FolderTemplate.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 4C6D1D24178579570014C5A5 /* 48_FolderTemplate.pdf */; };
+		4C6D1D27178586CA0014C5A5 /* 99_AddFolderTemplate.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 4C6D1D26178586CA0014C5A5 /* 99_AddFolderTemplate.pdf */; };
+		4C6D1D2B17858A250014C5A5 /* MacPass.icns in Resources */ = {isa = PBXBuildFile; fileRef = 4C6D1D2A17858A250014C5A5 /* MacPass.icns */; };
+		4C701CBC178618A000581B88 /* 12_RemoteTemplate.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 4C701CBB178618A000581B88 /* 12_RemoteTemplate.pdf */; };
 		4C74DD07177BD1640034A9DB /* MPCustomFieldView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C74DD06177BD1640034A9DB /* MPCustomFieldView.m */; };
 		4C76155C1764C04C0015A1A6 /* GeneralSettings.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4C76155E1764C04C0015A1A6 /* GeneralSettings.xib */; };
 		4C7615631764C08C0015A1A6 /* PasswordEditView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4C7615651764C08C0015A1A6 /* PasswordEditView.xib */; };
@@ -407,6 +411,10 @@
 		4C669B7B16760ED100DD0774 /* UUID.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UUID.m; sourceTree = "<group>"; };
 		4C69A73816D589DF00EC1B1A /* HNHGradientView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HNHGradientView.h; sourceTree = "<group>"; };
 		4C69A73916D589DF00EC1B1A /* HNHGradientView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HNHGradientView.m; sourceTree = "<group>"; };
+		4C6D1D24178579570014C5A5 /* 48_FolderTemplate.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = 48_FolderTemplate.pdf; sourceTree = "<group>"; };
+		4C6D1D26178586CA0014C5A5 /* 99_AddFolderTemplate.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = 99_AddFolderTemplate.pdf; sourceTree = "<group>"; };
+		4C6D1D2A17858A250014C5A5 /* MacPass.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; name = MacPass.icns; path = "../Assets/App icon/MacPass.icns"; sourceTree = "<group>"; };
+		4C701CBB178618A000581B88 /* 12_RemoteTemplate.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = 12_RemoteTemplate.pdf; sourceTree = "<group>"; };
 		4C74DD05177BD1640034A9DB /* MPCustomFieldView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MPCustomFieldView.h; sourceTree = "<group>"; };
 		4C74DD06177BD1640034A9DB /* MPCustomFieldView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MPCustomFieldView.m; sourceTree = "<group>"; };
 		4C76155F1764C0590015A1A6 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/GeneralSettings.xib; sourceTree = "<group>"; };
@@ -867,8 +875,11 @@
 				4CD78AB916D155FF00768A1D /* 09_IdentityTemplate.pdf */,
 				4CD78ABA16D155FF00768A1D /* 10_ContactTemplate.pdf */,
 				4CD78ABB16D155FF00768A1D /* 11_CameraTemplate.pdf */,
+				4C701CBB178618A000581B88 /* 12_RemoteTemplate.pdf */,
 				4C7714A9176C998F00549F2A /* 43_TrashTemplate.pdf */,
+				4C6D1D24178579570014C5A5 /* 48_FolderTemplate.pdf */,
 				4C7714AB176C9D4600549F2A /* 99_InfoTemplate.pdf */,
+				4C6D1D26178586CA0014C5A5 /* 99_AddFolderTemplate.pdf */,
 			);
 			path = Icons;
 			sourceTree = "<group>";
@@ -1031,6 +1042,7 @@
 		4C77E36D15B84A240093A587 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				4C6D1D2A17858A250014C5A5 /* MacPass.icns */,
 				4C888C8E16EB6C91003D34A1 /* Localizable.strings */,
 				4CB9339716D3A0DD00A13B5D /* Credits.rtf */,
 				4C77E36E15B84A240093A587 /* MacPass-Info.plist */,
@@ -1327,6 +1339,10 @@
 				4CF7805F176E75110032EE71 /* ServerSettings.xib in Resources */,
 				4C7F35681779DFFB00C57890 /* Errors.strings in Resources */,
 				4CD5D702177A5EE400100649 /* DocumentSettingsWindow.xib in Resources */,
+				4C6D1D25178579570014C5A5 /* 48_FolderTemplate.pdf in Resources */,
+				4C6D1D27178586CA0014C5A5 /* 99_AddFolderTemplate.pdf in Resources */,
+				4C6D1D2B17858A250014C5A5 /* MacPass.icns in Resources */,
+				4C701CBC178618A000581B88 /* 12_RemoteTemplate.pdf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
