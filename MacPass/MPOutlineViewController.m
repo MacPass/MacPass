@@ -141,7 +141,13 @@ NSString *const _MPOutlinveViewHeaderViewIdentifier = @"HeaderCell";
   if( [self _itemIsRootNodeAdapter:item] ) {
     //NSDictionary *options = @{ NSValueTransformerBindingOption : [NSValueTransformer valueTransformerForName:MPUppsercaseStringValueTransformerName] };
     view = [outlineView makeViewWithIdentifier:_MPOutlinveViewHeaderViewIdentifier owner:self];
-    [view.textField setStringValue:NSLocalizedString(@"GROUPS", @"")];
+    MPRootAdapter *rootNode = [item representedObject];
+    if([rootNode.tree respondsToSelector:@selector(databaseName)]) {
+      [view.textField bind:NSValueBinding toObject:rootNode.tree withKeyPath:@"databaseName" options:nil];
+    }
+    else {
+      [view.textField setStringValue:NSLocalizedString(@"GROUPS", @"")];
+    }
   }
   else {
     KdbGroup *group = [item representedObject];
