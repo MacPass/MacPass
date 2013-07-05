@@ -154,7 +154,7 @@ NSString *const _MPOutlinveViewHeaderViewIdentifier = @"HeaderCell";
     view = [outlineView makeViewWithIdentifier:_MPOutlineViewDataViewIdentifier owner:self];
     NSImage *icon = [MPIconHelper icon:(MPIconType)[group image]];
     [view.imageView setImage:icon];
-    [view.textField bind:NSValueBinding toObject:group withKeyPath:@"name" options:nil];
+    [view.textField bind:NSValueBinding toObject:group withKeyPath:MPGroupNameUndoableKey options:nil];
     [view.textField bind:@"count" toObject:group withKeyPath:@"entries.@count" options:nil];
   }
   

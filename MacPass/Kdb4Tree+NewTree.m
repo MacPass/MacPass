@@ -15,7 +15,7 @@
   
   Kdb4Tree *tree = [[Kdb4Tree alloc] init];
   tree.generator = @"MacPass";
-  tree.databaseName = @"";
+  tree.databaseName = NSLocalizedString(@"NEW_DATABASE", "Name for a newly created Database");
   tree.databaseNameChanged = currentTime;
   tree.databaseDescription = @"";
   tree.databaseDescriptionChanged = currentTime;

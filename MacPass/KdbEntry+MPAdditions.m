@@ -7,6 +7,8 @@
 //
 
 #import "KdbEntry+MPAdditions.h"
+#import "Kdb3Node.h"
+#import "Kdb4Node.h"
 
 #import "MPIconHelper.h"
 
