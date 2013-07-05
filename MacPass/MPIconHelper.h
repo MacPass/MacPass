@@ -25,7 +25,8 @@ typedef NS_ENUM(NSUInteger, MPIconType) {
   MPIconFolder = 48,
   /* Custom Icons not used in Database */
   MPIconInfo = 1000,
-  MPIconAddFolder
+  MPIconAddFolder,
+  MPIconHardDisk,
 };
 
 @interface MPIconHelper : NSObject

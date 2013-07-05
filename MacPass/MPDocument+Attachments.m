@@ -80,6 +80,31 @@
   }
 }
 
+- (void)saveAttachmentFromEntry:(KdbEntry *)anEntry toLocation:(NSURL *)location {
+  if([anEntry isKindOfClass:[Kdb3Entry class]]) {
+    Kdb3Entry *entry = (Kdb3Entry *)anEntry;
+    NSError *error = nil;
+    if(! [entry.binary writeToURL:location options:NSDataWritingWithoutOverwriting error:&error] ) {
+      [NSApp presentError:error];
+    }
+  }
+  return; //
+}
+
+- (void)removeAttachment:(BinaryRef *)reference fromEntry:(KdbEntry *)anEntry {
+  if(self.version != MPDatabaseVersion4) {
+    return; // Wrong Database version;
+  }
+  Binary *binary = [self findBinary:reference];
+  Kdb4Entry *entry = (Kdb4Entry *)anEntry;
+  NSUInteger index = [entry.binaries indexOfObject:reference];
+  if(index == NSNotFound) {
+    return; // No Reference for this entry found
+  }
+  [entry removeObjectFromBinariesAtIndex:index];
+  [self.treeV4.binaries removeObject:binary];
+}
+
 - (Binary *)findBinary:(BinaryRef *)reference {
   if(self.version != MPDatabaseVersion4) {
     return nil;
@@ -108,17 +133,6 @@
       [NSApp presentError:error];
     }
   }
-}
-
-- (void)saveAttachmentFromEntry:(KdbEntry *)anEntry toLocation:(NSURL *)location {
-  if([anEntry isKindOfClass:[Kdb3Entry class]]) {
-    Kdb3Entry *entry = (Kdb3Entry *)anEntry;
-    NSError *error = nil;
-    if(! [entry.binary writeToURL:location options:NSDataWritingWithoutOverwriting error:&error] ) {
-      [NSApp presentError:error];
-    }
-  }
-  return; //
 }
 
 - (NSUInteger)nextBinaryId {

@@ -12,5 +12,6 @@
 @interface MPSelectedAttachmentTableCellView : NSTableCellView
 
 @property (nonatomic, weak) IBOutlet NSButton *saveButton;
+@property (nonatomic, weak) IBOutlet NSButton *removeButton;
 
 @end

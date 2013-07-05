@@ -61,6 +61,7 @@ enum {
 - (IBAction)removeCustomField:(id)sender;
 - (IBAction)saveAttachment:(id)sender;
 - (IBAction)addAttachment:(id)sender;
+- (IBAction)removeAttachment:(id)sender;
 
 @end
 
@@ -348,6 +349,18 @@ enum {
   }];
 }
 
+- (IBAction)removeAttachment:(id)sender {
+  MPDocument *document = [[self windowController] document];
+  if(document.version == MPDatabaseVersion3) {
+    // Uhhhh :D
+  }
+  if(document.version == MPDatabaseVersion4) {
+    Kdb4Entry *entry = (Kdb4Entry *)self.selectedEntry;
+    BinaryRef *reference = entry.binaries[[sender tag]];
+    [document removeAttachment:reference fromEntry:self.selectedEntry];
+  }
+}
+
 #pragma mark Notificiations
 - (void)_didChangeCurrentItem:(NSNotification *)notification {
   MPDocumentWindowController *sender = [notification object];
@@ -395,6 +408,9 @@ enum {
     [cellView.saveButton setTag:row];
     [cellView.saveButton setAction:@selector(saveAttachment:)];
     [cellView.saveButton setTarget:self];
+    [cellView.removeButton setTag:row];
+    [cellView.removeButton setAction:@selector(removeAttachment:)];
+    [cellView.removeButton setTarget:self];
     view = cellView;
   }
   else {
