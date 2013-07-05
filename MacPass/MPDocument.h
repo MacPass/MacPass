@@ -57,10 +57,6 @@ APPKIT_EXTERN NSString *const MPDocumentGroupKey;
  */
 - (KdbEntry *)findEntry:(UUID *)uuid;
 - (KdbGroup *)findGroup:(UUID *)uuid;
-/*
- Return the Binary for the given BinaryRef. nil if none was found
- */
-- (Binary *)binaryForRef:(BinaryRef *)binaryRef;
 
 - (Kdb4Tree *)treeV4;
 - (Kdb3Tree *)treeV3;
@@ -91,5 +87,15 @@ APPKIT_EXTERN NSString *const MPDocumentGroupKey;
 - (void)entry:(Kdb4Entry *)entry removeStringField:(StringField *)field;
 
 - (void)emptyTrash:(id)sender;
+
+@end
+
+@interface MPDocument (Attachments)
+
+- (void)addAttachment:(NSURL *)location toEntry:(KdbEntry *)anEntry;
+- (void)saveAttachmentFromEntry:(KdbEntry *)anEntry toLocation:(NSURL *)location;
+- (void)saveAttachment:(BinaryRef *)reference toLocation:(NSURL *)location;
+- (NSUInteger)nextBinaryId;
+- (Binary *)findBinary:(BinaryRef *)reference;
 
 @end

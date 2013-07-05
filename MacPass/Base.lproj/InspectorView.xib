@@ -137,7 +137,6 @@
 						<string key="NSFrameSize">{293, 30}</string>
 						<reference key="NSSuperview" ref="87082330"/>
 						<reference key="NSWindow"/>
-						<reference key="NSNextKeyView"/>
 						<string key="NSReuseIdentifierKey">_NS:9</string>
 						<string key="NSClassName">HNHGradientView</string>
 					</object>
@@ -634,7 +633,6 @@
 													<int key="NSvFlags">256</int>
 													<string key="NSFrame">{{236, 1}, {16, 332}}</string>
 													<reference key="NSSuperview" ref="850153963"/>
-													<reference key="NSNextKeyView" ref="894571713"/>
 													<string key="NSReuseIdentifierKey">_NS:83</string>
 													<bool key="NSAllowsLogicalLayoutDirection">NO</bool>
 													<reference key="NSTarget" ref="850153963"/>
@@ -1270,6 +1268,14 @@
 					<int key="connectionID">2068</int>
 				</object>
 				<object class="IBConnectionRecord">
+					<object class="IBActionConnection" key="connection">
+						<string key="label">addAttachment:</string>
+						<reference key="source" ref="1001"/>
+						<reference key="destination" ref="394980328"/>
+					</object>
+					<int key="connectionID">2244</int>
+				</object>
+				<object class="IBConnectionRecord">
 					<object class="IBOutletConnection" key="connection">
 						<string key="label">imageView</string>
 						<object class="NSTableCellView" key="source" id="998331805">
@@ -1545,6 +1551,14 @@
 						<reference key="destination" ref="388876279"/>
 					</object>
 					<int key="connectionID">2215</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBOutletConnection" key="connection">
+						<string key="label">saveButton</string>
+						<reference key="source" ref="421971283"/>
+						<reference key="destination" ref="121170874"/>
+					</object>
+					<int key="connectionID">2243</int>
 				</object>
 			</array>
 			<object class="IBMutableOrderedSet" key="objectRecords">
@@ -4934,7 +4948,7 @@
 			<nil key="activeLocalization"/>
 			<dictionary class="NSMutableDictionary" key="localizations"/>
 			<nil key="sourceID"/>
-			<int key="maxID">2241</int>
+			<int key="maxID">2244</int>
 		</object>
 		<object class="IBClassDescriber" key="IBDocument.Classes">
 			<array class="NSMutableArray" key="referencedPartialClassDescriptions">
@@ -5017,16 +5031,31 @@
 					<string key="className">MPInspectorViewController</string>
 					<string key="superclassName">MPViewController</string>
 					<dictionary class="NSMutableDictionary" key="actions">
+						<string key="_popUpPasswordGenerator:">id</string>
+						<string key="addAttachment:">id</string>
 						<string key="addCustomField:">id</string>
 						<string key="removeCustomField:">id</string>
+						<string key="saveAttachment:">id</string>
 					</dictionary>
 					<dictionary class="NSMutableDictionary" key="actionInfosByName">
+						<object class="IBActionInfo" key="_popUpPasswordGenerator:">
+							<string key="name">_popUpPasswordGenerator:</string>
+							<string key="candidateClassName">id</string>
+						</object>
+						<object class="IBActionInfo" key="addAttachment:">
+							<string key="name">addAttachment:</string>
+							<string key="candidateClassName">id</string>
+						</object>
 						<object class="IBActionInfo" key="addCustomField:">
 							<string key="name">addCustomField:</string>
 							<string key="candidateClassName">id</string>
 						</object>
 						<object class="IBActionInfo" key="removeCustomField:">
 							<string key="name">removeCustomField:</string>
+							<string key="candidateClassName">id</string>
+						</object>
+						<object class="IBActionInfo" key="saveAttachment:">
+							<string key="name">saveAttachment:</string>
 							<string key="candidateClassName">id</string>
 						</object>
 					</dictionary>

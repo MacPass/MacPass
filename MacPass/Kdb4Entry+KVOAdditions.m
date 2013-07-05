@@ -10,6 +10,7 @@
 
 @implementation Kdb4Entry (KVOAdditions)
 
+/* Entries */
 - (NSUInteger)countOfStringFields {
   return [self.stringFields count];
 }
@@ -24,6 +25,23 @@
 
 - (void)removeObjectFromStringFieldsAtIndex:(NSUInteger)anIndex {
   [self.stringFields removeObjectAtIndex:anIndex];
+}
+
+/* Binaries */
+- (NSUInteger)countOfBinaries {
+  return [self.binaries count];
+}
+
+- (BinaryRef *)objectInBinariesAtIndex:(NSUInteger)index {
+  return (self.binaries)[index];
+}
+
+- (void)insertObject:(BinaryRef *)binary inBinariesAtIndex:(NSUInteger)index {
+  [self.binaries insertObject:binary atIndex:index];
+}
+
+- (void)removeObjectFromBinariesAtIndex:(NSUInteger)index {
+  [self.binaries removeObjectAtIndex:index];
 }
 
 @end

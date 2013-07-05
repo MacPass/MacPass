@@ -19,6 +19,7 @@
 #import "MPCustomFieldView.h"
 #import "MPDatabaseVersion.h"
 #import "MPCustomFieldTableCellView.h"
+#import "MPSelectedAttachmentTableCellView.h"
 
 #import "KdbLib.h"
 #import "Kdb4Node.h"
@@ -58,6 +59,8 @@ enum {
 
 - (IBAction)addCustomField:(id)sender;
 - (IBAction)removeCustomField:(id)sender;
+- (IBAction)saveAttachment:(id)sender;
+- (IBAction)addAttachment:(id)sender;
 
 @end
 
@@ -91,8 +94,8 @@ enum {
   
   [_infoTabControl bind:NSSelectedIndexBinding toObject:self withKeyPath:@"activeTab" options:nil];
   [_tabView bind:NSSelectedIndexBinding  toObject:self withKeyPath:@"activeTab" options:nil];
-
-    /* Set background to clearcolor so we can draw in the scrollview */
+  
+  /* Set background to clearcolor so we can draw in the scrollview */
   [_attachmentTableView setBackgroundColor:[NSColor clearColor]];
   [_attachmentTableView bind:NSContentBinding toObject:self.attachmentsController withKeyPath:@"arrangedObjects" options:nil];
   [_attachmentTableView setDelegate:self];
@@ -256,7 +259,7 @@ enum {
   
   [self.infoTabControl setEnabled:enabled forSegment:MPNotesTab];
   [self.infoTabControl setEnabled:enabled forSegment:MPAttachmentsTab];
-
+  
   enabled &= [self.selectedEntry isKindOfClass:[Kdb4Entry class]];
   [self.infoTabControl setEnabled:enabled forSegment:MPCustomFieldsTab];
 }
@@ -313,6 +316,38 @@ enum {
   [document entry:entry removeStringField:(entry.stringFields)[index]];
 }
 
+- (IBAction)saveAttachment:(id)sender {
+  Kdb4Entry *entry = (Kdb4Entry *)self.selectedEntry;
+  BinaryRef *reference = entry.binaries[[sender tag]];
+  
+  
+  NSSavePanel *savePanel = [NSSavePanel savePanel];
+  [savePanel setCanCreateDirectories:YES];
+  [savePanel setNameFieldStringValue:reference.key];
+  
+  [savePanel beginSheetModalForWindow:[[self windowController] window] completionHandler:^(NSInteger result) {
+    if(result == NSFileHandlingPanelOKButton) {
+      MPDocument *document = [[self windowController] document];
+      [document saveAttachment:reference toLocation:[savePanel URL]];
+    }
+  }];
+}
+
+- (IBAction)addAttachment:(id)sender {
+  NSOpenPanel *openPanel = [NSOpenPanel openPanel];
+  [openPanel setCanChooseDirectories:NO];
+  [openPanel setCanChooseFiles:YES];
+  [openPanel setAllowsMultipleSelection:YES];
+  [openPanel beginSheetModalForWindow:[[self windowController] window] completionHandler:^(NSInteger result) {
+    if(result == NSFileHandlingPanelOKButton) {
+      MPDocument *document = [[self windowController] document];
+      for (NSURL *attachmentURL in [openPanel URLs]) {
+        [document addAttachment:attachmentURL toEntry:self.selectedEntry];
+      }
+    }
+  }];
+}
+
 #pragma mark Notificiations
 - (void)_didChangeCurrentItem:(NSNotification *)notification {
   MPDocumentWindowController *sender = [notification object];
@@ -354,8 +389,17 @@ enum {
 - (NSView *)_viewForAttachmentTableColumn:(NSTableColumn *)tableColumn row:(NSInteger)row {
   /* Decide what view to use */
   NSIndexSet *selectedIndexes = [self.attachmentTableView selectedRowIndexes];
-  NSString *viewIdentifyer = [selectedIndexes containsIndex:row] ? @"SelectedCell" : @"NormalCell";
-  NSTableCellView *view = [_attachmentTableView makeViewWithIdentifier:viewIdentifyer owner:_attachmentTableView];
+  NSTableCellView *view;
+  if([selectedIndexes containsIndex:row]) {
+    MPSelectedAttachmentTableCellView *cellView  = [_attachmentTableView makeViewWithIdentifier:@"SelectedCell" owner:_attachmentTableView];
+    [cellView.saveButton setTag:row];
+    [cellView.saveButton setAction:@selector(saveAttachment:)];
+    [cellView.saveButton setTarget:self];
+    view = cellView;
+  }
+  else {
+    view = [_attachmentTableView makeViewWithIdentifier:@"NormalCell" owner:_attachmentTableView];
+  }
   /* Bind view */
   if([self.selectedEntry isKindOfClass:[Kdb4Entry class]]) {
     Kdb4Entry *entry = (Kdb4Entry *)self.selectedEntry;

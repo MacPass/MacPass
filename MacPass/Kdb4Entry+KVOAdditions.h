@@ -15,5 +15,9 @@
 - (void)removeObjectFromStringFieldsAtIndex:(NSUInteger)anIndex;
 - (void)insertObject:(StringField *)stringfield inStringFieldsAtIndex:(NSUInteger)anIndex;
 
+- (NSUInteger)countOfBinaries;
+- (BinaryRef *)objectInBinariesAtIndex:(NSUInteger)index;
+- (void)removeObjectFromBinariesAtIndex:(NSUInteger)index;
+- (void)insertObject:(BinaryRef *)binary inBinariesAtIndex:(NSUInteger)index;
 
 @end
