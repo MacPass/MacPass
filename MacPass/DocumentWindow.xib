@@ -36,7 +36,7 @@
 			<object class="NSWindowTemplate" id="1005">
 				<int key="NSWindowStyleMask">15</int>
 				<int key="NSWindowBacking">2</int>
-				<string key="NSWindowRect">{{196, 240}, {560, 490}}</string>
+				<string key="NSWindowRect">{{196, 240}, {700, 500}}</string>
 				<int key="NSWTFlags">1618477056</int>
 				<string key="NSWindowTitle">Window</string>
 				<string key="NSWindowClass">NSWindow</string>
@@ -46,20 +46,21 @@
 					<reference key="NSNextResponder"/>
 					<int key="NSvFlags">256</int>
 					<array class="NSMutableArray" key="NSSubviews"/>
-					<string key="NSFrameSize">{560, 490}</string>
+					<string key="NSFrameSize">{700, 500}</string>
 					<reference key="NSSuperview"/>
 					<reference key="NSWindow"/>
-					<reference key="NSNextKeyView"/>
 				</object>
 				<string key="NSScreenRect">{{0, 0}, {1920, 1058}}</string>
 				<string key="NSMaxSize">{10000000000000, 10000000000000}</string>
 				<bool key="NSWindowIsRestorable">YES</bool>
 			</object>
 			<object class="NSSplitView" id="903506498">
-				<nil key="NSNextResponder"/>
+				<reference key="NSNextResponder"/>
 				<int key="NSvFlags">268</int>
 				<array class="NSMutableArray" key="NSSubviews"/>
 				<string key="NSFrameSize">{560, 194}</string>
+				<reference key="NSSuperview"/>
+				<reference key="NSWindow"/>
 				<string key="NSReuseIdentifierKey">_NS:9</string>
 				<bool key="NSIsVertical">YES</bool>
 				<int key="NSDividerStyle">2</int>
@@ -158,15 +159,15 @@
 					<string key="superclassName">NSWindowController</string>
 					<dictionary class="NSMutableDictionary" key="actions">
 						<string key="editPassword:">id</string>
-						<string key="showDocumentSettings:">id</string>
+						<string key="showDatabaseSettings:">id</string>
 					</dictionary>
 					<dictionary class="NSMutableDictionary" key="actionInfosByName">
 						<object class="IBActionInfo" key="editPassword:">
 							<string key="name">editPassword:</string>
 							<string key="candidateClassName">id</string>
 						</object>
-						<object class="IBActionInfo" key="showDocumentSettings:">
-							<string key="name">showDocumentSettings:</string>
+						<object class="IBActionInfo" key="showDatabaseSettings:">
+							<string key="name">showDatabaseSettings:</string>
 							<string key="candidateClassName">id</string>
 						</object>
 					</dictionary>

@@ -31,6 +31,7 @@
 #import "NSMutableData+Base64.h"
 
 #import "HNHGradientView.h"
+#import "HNHTableRowView.h"
 
 enum {
   MPGeneralTab,
@@ -436,6 +437,15 @@ enum {
     [view.removeButton setTarget:self];
     [view.removeButton setAction:@selector(removeCustomField:)];
     [view.removeButton setTag:row];
+  }
+  return view;
+}
+
+- (NSTableRowView *)tableView:(NSTableView *)tableView rowViewForRow:(NSInteger)row {
+  HNHTableRowView *view = nil;
+  if(tableView == self.attachmentTableView) {
+    view = [[HNHTableRowView alloc] init];
+    view.selectionCornerRadius = 7;
   }
   return view;
 }

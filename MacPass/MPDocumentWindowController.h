@@ -11,7 +11,6 @@
 @class MPViewController;
 @class MPEntryViewController;
 @class MPInspectorViewController;
-@class MPPasswordEditViewController;
 @class MPPasswordInputController;
 @class MPOutlineViewController;
 
@@ -23,7 +22,6 @@ APPKIT_EXTERN NSString *const MPCurrentItemChangedNotification;
 @interface MPDocumentWindowController : NSWindowController <NSWindowDelegate>
 
 @property (readonly, strong) MPPasswordInputController *passwordInputController;
-@property (readonly, strong) MPPasswordEditViewController *passwordEditController;
 @property (readonly, strong) MPEntryViewController *entryViewController;
 @property (readonly, strong) MPOutlineViewController *outlineViewController;
 @property (readonly, strong) MPInspectorViewController *inspectorViewController;
@@ -39,7 +37,7 @@ APPKIT_EXTERN NSString *const MPCurrentItemChangedNotification;
 - (void)showPasswordInput;
 - (void)performFindPanelAction:(id)sender;
 - (IBAction)editPassword:(id)sender;
-- (IBAction)showDocumentSettings:(id)sender;
+- (IBAction)showDatabaseSettings:(id)sender;
 
 - (void)lock:(id)sender;
 

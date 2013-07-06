@@ -10,13 +10,12 @@
 #import "MPDocument.h"
 #import "MPPasswordInputController.h"
 #import "MPEntryViewController.h"
-#import "MPPasswordEditViewController.h"
 #import "MPToolbarDelegate.h"
 #import "MPOutlineViewController.h"
 #import "MPInspectorViewController.h"
 #import "MPAppDelegate.h"
 #import "MPActionHelper.h"
-#import "MPDocumentSettingsWindowController.h"
+#import "MPDatabaseSettingsWindowController.h"
 #import "MPConstants.h"
 
 NSString *const MPCurrentItemChangedNotification = @"com.hicknhack.macpass.MPCurrentItemChangedNotification";
@@ -34,11 +33,10 @@ NSString *const MPCurrentItemChangedNotification = @"com.hicknhack.macpass.MPCur
 @property (unsafe_unretained) KdbEntry *currentEntry;
 
 @property (strong) MPPasswordInputController *passwordInputController;
-@property (strong) MPPasswordEditViewController *passwordEditController;
 @property (strong) MPEntryViewController *entryViewController;
 @property (strong) MPOutlineViewController *outlineViewController;
 @property (strong) MPInspectorViewController *inspectorViewController;
-@property (strong) MPDocumentSettingsWindowController *documentSettingsWindowController;
+@property (strong) MPDatabaseSettingsWindowController *documentSettingsWindowController;
 
 @property (strong) MPToolbarDelegate *toolbarDelegate;
 
@@ -52,7 +50,6 @@ NSString *const MPCurrentItemChangedNotification = @"com.hicknhack.macpass.MPCur
     _firstResponder = nil;
     _toolbarDelegate = [[MPToolbarDelegate alloc] init];
     _outlineViewController = [[MPOutlineViewController alloc] init];
-    _passwordEditController = [[MPPasswordEditViewController alloc] init];
     _entryViewController = [[MPEntryViewController alloc] init];
     _inspectorViewController = [[MPInspectorViewController alloc] init];
     _currentItem = nil;
@@ -205,18 +202,11 @@ NSString *const MPCurrentItemChangedNotification = @"com.hicknhack.macpass.MPCur
 }
 
 - (void)editPassword:(id)sender {
-  if(!self.passwordEditController) {
-    _passwordEditController = [[MPPasswordEditViewController alloc] init];
-  }
-  [self _setContentViewController:self.passwordEditController];
+  [self _showDatabaseSetting:MPDatabaseSettingsTabPassword];
 }
 
-- (void)showDocumentSettings:(id)sender {
-  if(!self.documentSettingsWindowController) {
-    _documentSettingsWindowController = [[MPDocumentSettingsWindowController alloc] initWithDocument:[self document]];
-  }
-  [_documentSettingsWindowController update];
-  [[NSApplication sharedApplication] beginSheet:[_documentSettingsWindowController window] modalForWindow:[self window] modalDelegate:nil didEndSelector:NULL contextInfo:NULL];
+- (void)showDatabaseSettings:(id)sender {
+  [self _showDatabaseSetting:MPDatabaseSettingsTabGeneral];
 }
 
 - (void)lock:(id)sender {
@@ -335,6 +325,16 @@ NSString *const MPCurrentItemChangedNotification = @"com.hicknhack.macpass.MPCur
 
 
 #pragma mark Helper
+
+- (void)_showDatabaseSetting:(MPDatabaseSettingsTab)tab {
+    if(!self.documentSettingsWindowController) {
+      _documentSettingsWindowController = [[MPDatabaseSettingsWindowController alloc] initWithDocument:[self document]];
+    }
+    [self.documentSettingsWindowController update];
+  [self.documentSettingsWindowController showSettingsTab:tab];
+    [[NSApplication sharedApplication] beginSheet:[self.documentSettingsWindowController window] modalForWindow:[self window] modalDelegate:nil didEndSelector:NULL contextInfo:NULL];
+}
+
 - (NSSearchField *)locateToolbarSearchField {
   for(NSToolbarItem *toolbarItem in [[self.window toolbar] items]) {
     NSView *view = [toolbarItem view];

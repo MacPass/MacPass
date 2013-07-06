@@ -34,11 +34,10 @@
   }
   if( [anEntry isKindOfClass:[Kdb4Entry class]]) {
     Kdb4Entry *entry = (Kdb4Entry *)anEntry;
-    NSStringEncoding encoding;
-    NSString *fileContents = [NSString stringWithContentsOfURL:location usedEncoding:&encoding error:&error];
-    if(!fileContents) {
+    NSData *fileData = [NSData dataWithContentsOfURL:location options:NSDataReadingMappedIfSafe error:&error];
+    if(!fileData) {
       [NSApp presentError:error];
-      fileContents = nil;
+      fileData = nil;
       error = nil;
       return; // failed
     }
@@ -51,7 +50,6 @@
     binary.binaryId = nextId;
     binary.compressed = (self.treeV4.compressionAlgorithm != KPLCompressionNone);
     NSData *encodedData;
-    NSData *fileData = [fileContents dataUsingEncoding:encoding];
     if(binary.compressed) {
       switch(self.treeV4.compressionAlgorithm) {
         case KPLCompressionGzip: {

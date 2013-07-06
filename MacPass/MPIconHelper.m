@@ -53,7 +53,8 @@ static NSDictionary *icons;
                                @(MPIconFolder): @"48_FolderTemplate",
                                @(MPIconInfo): @"99_InfoTemplate",
                                @(MPIconAddFolder): @"99_AddFolderTemplate",
-                               @(MPIconHardDisk): @"99_HarddiskTemplate"
+                               @(MPIconHardDisk): @"99_HarddiskTemplate",
+                               @(MPIconSaveToDisk): @"99_SaveToDiskTemplate"
                                };
   return imageNames;
 }

@@ -159,13 +159,14 @@ NSString *const _toggleFilterUsernameButton = @"SearchUsername";
   [self.entryTable setDataSource:_dataSource];
   
   [parentColumn setHidden:YES];
+  
 }
 
 - (void)setupNotifications:(MPDocumentWindowController *)windowController {
   [[NSNotificationCenter defaultCenter] addObserver:self
                                            selector:@selector(_didChangeCurrentItem:)
                                                name:MPCurrentItemChangedNotification
-                                             object:windowController];
+                                             object:windowController];  
 }
 
 #pragma mark NSTableViewDelgate

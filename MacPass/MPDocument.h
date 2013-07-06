@@ -42,7 +42,7 @@ APPKIT_EXTERN NSString *const MPDocumentGroupKey;
 @property (strong, readonly, nonatomic) KdbTree *tree;
 @property (weak, readonly, nonatomic) KdbGroup *root;
 @property (readonly, strong) MPRootAdapter *rootAdapter;
-@property (nonatomic, strong) NSString *password;
+@property (nonatomic, copy) NSString *password;
 @property (nonatomic, strong) NSURL *key;
 
 @property (assign, readonly) MPDatabaseVersion version;

@@ -56,6 +56,8 @@ NSString *const MPDocumentGroupKey                    = @"MPDocumentGroupKey";
 
 @property (readonly) BOOL useTrash;
 @property (weak, readonly) KdbGroup *trash;
+@property (strong) IBOutlet NSView *warningView;
+@property (weak) IBOutlet NSImageView *warningViewImage;
 
 @end
 
@@ -175,15 +177,15 @@ NSString *const MPDocumentGroupKey                    = @"MPDocumentGroupKey";
 
 - (void)setPassword:(NSString *)password {
   if(![_password isEqualToString:password]) {
-    _password = password;
-    _secured |= ([_password length] > 0);
+    _password = [password copy];
+    [self _updateIsSecured];
   }
 }
 
 - (void)setKey:(NSURL *)key {
   if(![[_key absoluteString] isEqualToString:[key absoluteString]]) {
     _key = key;
-    _secured |= (_key != nil);
+    [self _updateIsSecured];
   }
 }
 
@@ -195,6 +197,19 @@ NSString *const MPDocumentGroupKey                    = @"MPDocumentGroupKey";
 + (BOOL)autosavesInPlace
 {
   return NO;
+}
+
+- (BOOL)prepareSavePanel:(NSSavePanel *)savePanel {
+  if(self.isSecured) {
+    [savePanel setAccessoryView:nil];
+    return YES;
+  }
+  if(!self.warningView) {
+    [[NSBundle mainBundle] loadNibNamed:@"UnprotectedWarningView" owner:self topLevelObjects:nil];
+    [self.warningViewImage setImage:[NSImage imageNamed:NSImageNameCaution]];
+  }
+  [savePanel setAccessoryView:self.warningView];
+  return YES;
 }
 
 #pragma mark Data Accesors
@@ -454,6 +469,12 @@ NSString *const MPDocumentGroupKey                    = @"MPDocumentGroupKey";
 }
 
 #pragma mark Private
+- (void)_updateIsSecured {
+  BOOL securePassword = ([self.password length] > 0);
+  BOOL secureKey = (nil != self.key);
+  self.secured = (secureKey || securePassword);
+}
+
 - (void)_cleanupLock {
   if(_didLockFile) {
     [[NSFileManager defaultManager] removeItemAtURL:_lockFileURL error:nil];
