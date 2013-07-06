@@ -93,7 +93,10 @@
   /* Update all stuff that might have changed */
   Kdb4Tree *tree = _document.treeV4;
   if(tree) {
-    [self _updateTrashFolders:tree];
+    [self _setupDatabase:tree];
+    [self _setupProtectionTab:tree];
+    [self _setupAdvancedTab:tree];
+    [self _setupPasswordTab:tree];
   }
 }
 
