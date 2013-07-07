@@ -44,7 +44,10 @@
   // show Warnign if read-only mode!
   [self _reset];
 }
+#pragma mark NSTextViewDelegate
 
+#pragma mark -
+#pragma mark Private
 - (IBAction)_decrypt:(id)sender {
   id windowController = [[[self view] window] windowController];
   MPDocument *document = [windowController document];
@@ -69,7 +72,6 @@
     }
   }
 }
-
 - (void)_reset {
   [self.passwordTextField setStringValue:@""];
   [self.keyPathControl setURL:nil];

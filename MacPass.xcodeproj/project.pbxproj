@@ -10,8 +10,6 @@
 		4C01C23F1764D2980016D5D0 /* KdbEntry+Undo.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C01C23E1764D2980016D5D0 /* KdbEntry+Undo.m */; };
 		4C01C2421764D8980016D5D0 /* MPContextMenuHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C01C2411764D8980016D5D0 /* MPContextMenuHelper.m */; };
 		4C01C245176500C40016D5D0 /* HNHLevelIndicatorCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C01C244176500C40016D5D0 /* HNHLevelIndicatorCell.m */; };
-		4C0D9B37177F84D700D0857C /* HNHSecureTextView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C0D9B36177F84D700D0857C /* HNHSecureTextView.m */; };
-		4C0D9B3A177F867100D0857C /* HNHSecureLayoutManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C0D9B39177F867100D0857C /* HNHSecureLayoutManager.m */; };
 		4C16BA6217879A3C002B42BD /* MPPasswordStringFormatter.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C16BA6117879A3C002B42BD /* MPPasswordStringFormatter.m */; };
 		4C1DDCDD1711ECEB00C98DA3 /* PasswordCreatorWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4C1DDCDC1711ECEB00C98DA3 /* PasswordCreatorWindow.xib */; };
 		4C22040D1746ED160054C916 /* KdbGroup+Undo.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C22040C1746ED160054C916 /* KdbGroup+Undo.m */; };
@@ -178,6 +176,7 @@
 		4CC7EA1B17807E7E0089D4F3 /* HNHRoundendTextFieldCellHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CC7EA1A17807E7E0089D4F3 /* HNHRoundendTextFieldCellHelper.m */; };
 		4CD5D702177A5EE400100649 /* DatabaseSettingsWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4CD5D701177A5EE400100649 /* DatabaseSettingsWindow.xib */; };
 		4CD5D705177A5F3300100649 /* MPDatabaseSettingsWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CD5D704177A5F3300100649 /* MPDatabaseSettingsWindowController.m */; };
+		4CD6C5AE1789FDE6000891F6 /* HNHRoundedSecureTextField.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CD6C5AD1789FDE6000891F6 /* HNHRoundedSecureTextField.m */; };
 		4CD78ABC16D155FF00768A1D /* 07_NotepadTemplate.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 4CD78AB716D155FF00768A1D /* 07_NotepadTemplate.pdf */; };
 		4CD78ABD16D155FF00768A1D /* 08_SocketTemplate.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 4CD78AB816D155FF00768A1D /* 08_SocketTemplate.pdf */; };
 		4CD78ABE16D155FF00768A1D /* 09_IdentityTemplate.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 4CD78AB916D155FF00768A1D /* 09_IdentityTemplate.pdf */; };
@@ -210,10 +209,6 @@
 		4C01C2411764D8980016D5D0 /* MPContextMenuHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MPContextMenuHelper.m; sourceTree = "<group>"; };
 		4C01C243176500C40016D5D0 /* HNHLevelIndicatorCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HNHLevelIndicatorCell.h; sourceTree = "<group>"; };
 		4C01C244176500C40016D5D0 /* HNHLevelIndicatorCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HNHLevelIndicatorCell.m; sourceTree = "<group>"; };
-		4C0D9B35177F84D700D0857C /* HNHSecureTextView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HNHSecureTextView.h; sourceTree = "<group>"; };
-		4C0D9B36177F84D700D0857C /* HNHSecureTextView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HNHSecureTextView.m; sourceTree = "<group>"; };
-		4C0D9B38177F867100D0857C /* HNHSecureLayoutManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HNHSecureLayoutManager.h; sourceTree = "<group>"; };
-		4C0D9B39177F867100D0857C /* HNHSecureLayoutManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HNHSecureLayoutManager.m; sourceTree = "<group>"; };
 		4C16BA6017879A3C002B42BD /* MPPasswordStringFormatter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MPPasswordStringFormatter.h; sourceTree = "<group>"; };
 		4C16BA6117879A3C002B42BD /* MPPasswordStringFormatter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MPPasswordStringFormatter.m; sourceTree = "<group>"; };
 		4C1DDCDC1711ECEB00C98DA3 /* PasswordCreatorWindow.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PasswordCreatorWindow.xib; sourceTree = "<group>"; };
@@ -531,6 +526,8 @@
 		4CD5D701177A5EE400100649 /* DatabaseSettingsWindow.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DatabaseSettingsWindow.xib; sourceTree = "<group>"; };
 		4CD5D703177A5F3300100649 /* MPDatabaseSettingsWindowController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MPDatabaseSettingsWindowController.h; sourceTree = "<group>"; };
 		4CD5D704177A5F3300100649 /* MPDatabaseSettingsWindowController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MPDatabaseSettingsWindowController.m; sourceTree = "<group>"; };
+		4CD6C5AC1789FDE6000891F6 /* HNHRoundedSecureTextField.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HNHRoundedSecureTextField.h; sourceTree = "<group>"; };
+		4CD6C5AD1789FDE6000891F6 /* HNHRoundedSecureTextField.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HNHRoundedSecureTextField.m; sourceTree = "<group>"; };
 		4CD78AB716D155FF00768A1D /* 07_NotepadTemplate.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = 07_NotepadTemplate.pdf; sourceTree = "<group>"; };
 		4CD78AB816D155FF00768A1D /* 08_SocketTemplate.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = 08_SocketTemplate.pdf; sourceTree = "<group>"; };
 		4CD78AB916D155FF00768A1D /* 09_IdentityTemplate.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = 09_IdentityTemplate.pdf; sourceTree = "<group>"; };
@@ -1172,10 +1169,12 @@
 				4C46E09D17673A0A00DA62E8 /* HNHShadowBox.m */,
 				4CC7EA1917807E7E0089D4F3 /* HNHRoundendTextFieldCellHelper.h */,
 				4CC7EA1A17807E7E0089D4F3 /* HNHRoundendTextFieldCellHelper.m */,
-				4CC3AAB8175F4983003EF01B /* HNHRoundedTextFieldCell.h */,
-				4CC3AAB9175F4983003EF01B /* HNHRoundedTextFieldCell.m */,
 				4C79DF28176685870083708F /* HNHRoundedTextField.h */,
 				4C79DF29176685870083708F /* HNHRoundedTextField.m */,
+				4CD6C5AC1789FDE6000891F6 /* HNHRoundedSecureTextField.h */,
+				4CD6C5AD1789FDE6000891F6 /* HNHRoundedSecureTextField.m */,
+				4CC3AAB8175F4983003EF01B /* HNHRoundedTextFieldCell.h */,
+				4CC3AAB9175F4983003EF01B /* HNHRoundedTextFieldCell.m */,
 				4C9D6AA717615199001C660C /* HNHRoundedSecureTextFieldCell.h */,
 				4C9D6AA817615199001C660C /* HNHRoundedSecureTextFieldCell.m */,
 				4C58BD4D176370B100B8178C /* HNHBadgedTextField.h */,
@@ -1196,10 +1195,6 @@
 				4CF78059176E6D5F0032EE71 /* HNHTableRowView.m */,
 				4C52A242177D7B9F0000D88F /* HNHScrollView.h */,
 				4C52A243177D7B9F0000D88F /* HNHScrollView.m */,
-				4C0D9B35177F84D700D0857C /* HNHSecureTextView.h */,
-				4C0D9B36177F84D700D0857C /* HNHSecureTextView.m */,
-				4C0D9B38177F867100D0857C /* HNHSecureLayoutManager.h */,
-				4C0D9B39177F867100D0857C /* HNHSecureLayoutManager.m */,
 			);
 			path = HNHUi;
 			sourceTree = "<group>";
@@ -1532,8 +1527,6 @@
 				4C4FCE18177D03D700BBF7AE /* Kdb4Entry+KVOAdditions.m in Sources */,
 				4C52A244177D7B9F0000D88F /* HNHScrollView.m in Sources */,
 				4C3E1CC0177DEFB3003BD9BD /* StringField+Undo.m in Sources */,
-				4C0D9B37177F84D700D0857C /* HNHSecureTextView.m in Sources */,
-				4C0D9B3A177F867100D0857C /* HNHSecureLayoutManager.m in Sources */,
 				4CC7EA1B17807E7E0089D4F3 /* HNHRoundendTextFieldCellHelper.m in Sources */,
 				4CC672791781D0C0006DEDCF /* KdbGroup+MPAdditions.m in Sources */,
 				4CC6727C1781D0D2006DEDCF /* KdbEntry+MPAdditions.m in Sources */,
@@ -1541,6 +1534,7 @@
 				4CF1F0CA1786B37900CD920E /* NSData+Gzip.m in Sources */,
 				4C3666411787327E00B249F1 /* MPDocument+Attachments.m in Sources */,
 				4C16BA6217879A3C002B42BD /* MPPasswordStringFormatter.m in Sources */,
+				4CD6C5AE1789FDE6000891F6 /* HNHRoundedSecureTextField.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
