@@ -41,20 +41,28 @@ static NSDictionary *icons;
                                @(MPIconServer): @"03_ServerTemplate",
                                @(MPIconKlipper): @"04_KlipperTemplate",
                                @(MPIconLanguages): @"05_LanguagesTemplate",
-                               
+                               @(MPIconBlockDevice): @"06_BlockDeviceTemplate",
                                @(MPIconNotepad): @"07_NotepadTemplate",
                                @(MPIconSocket): @"08_SocketTemplate",
                                @(MPIconIdentity): @"09_IdentityTemplate",
                                @(MPIconContact): @"10_ContactTemplate",
                                @(MPIconCamera): @"11_CameraTemplate",
                                @(MPIconRemote): @"12_RemoteTemplate",
+                               @(MPIconKeys): @"13_KeysTemplate",
 
+                               @(MPIconDisplay): @"18_DisplayTemplate",
+                               
+                               @(MPIconFileSave): @"26_FileSaveTemplate",
+                               
                                @(MPIconTrash): @"43_TrashTemplate",
+                              
                                @(MPIconFolder): @"48_FolderTemplate",
+                               
+                               @(MPIconPhone): @"68_PhoneTemplate",
+                               
                                @(MPIconInfo): @"99_InfoTemplate",
                                @(MPIconAddFolder): @"99_AddFolderTemplate",
-                               @(MPIconHardDisk): @"99_HarddiskTemplate",
-                               @(MPIconSaveToDisk): @"99_SaveToDiskTemplate"
+                               @(MPIconHardDisk): @"99_HarddiskTemplate"
                                };
   return imageNames;
 }

@@ -135,6 +135,7 @@
 						<string key="NSFrameSize">{293, 30}</string>
 						<reference key="NSSuperview" ref="87082330"/>
 						<reference key="NSWindow"/>
+						<reference key="NSNextKeyView"/>
 						<string key="NSReuseIdentifierKey">_NS:9</string>
 						<string key="NSClassName">HNHGradientView</string>
 					</object>
@@ -832,7 +833,7 @@
 													<string key="NSFrame">{{1, 147}, {52, 16}}</string>
 													<reference key="NSSuperview" ref="994354248"/>
 													<reference key="NSWindow"/>
-													<reference key="NSNextKeyView" ref="894571713"/>
+													<reference key="NSNextKeyView"/>
 													<string key="NSReuseIdentifierKey">_NS:60</string>
 													<bool key="NSAllowsLogicalLayoutDirection">NO</bool>
 													<int key="NSsFlags">1</int>
@@ -1511,7 +1512,7 @@
 										<int key="NSButtonFlags2">164</int>
 										<object class="NSCustomResource" key="NSNormalImage">
 											<string key="NSClassName">NSImage</string>
-											<string key="NSResourceName">99_SaveToDiskTemplate</string>
+											<string key="NSResourceName">26_FileSaveTemplate</string>
 										</object>
 										<string key="NSAlternateContents"/>
 										<string key="NSKeyEquivalent"/>
@@ -4931,7 +4932,6 @@
 					<string key="className">MPInspectorViewController</string>
 					<string key="superclassName">MPViewController</string>
 					<dictionary class="NSMutableDictionary" key="actions">
-						<string key="_popUpPasswordGenerator:">id</string>
 						<string key="addAttachment:">id</string>
 						<string key="addCustomField:">id</string>
 						<string key="removeAttachment:">id</string>
@@ -4939,10 +4939,6 @@
 						<string key="saveAttachment:">id</string>
 					</dictionary>
 					<dictionary class="NSMutableDictionary" key="actionInfosByName">
-						<object class="IBActionInfo" key="_popUpPasswordGenerator:">
-							<string key="name">_popUpPasswordGenerator:</string>
-							<string key="candidateClassName">id</string>
-						</object>
 						<object class="IBActionInfo" key="addAttachment:">
 							<string key="name">addAttachment:</string>
 							<string key="candidateClassName">id</string>
@@ -5114,7 +5110,7 @@
 			<string key="00_PasswordTemplate">{128, 128}</string>
 			<string key="04_KlipperTemplate">{128, 128}</string>
 			<string key="07_NotepadTemplate">{128, 128}</string>
-			<string key="99_SaveToDiskTemplate">{128, 128}</string>
+			<string key="26_FileSaveTemplate">{128, 128}</string>
 			<string key="NSActionTemplate">{15, 15}</string>
 			<string key="NSAddTemplate">{8, 8}</string>
 			<string key="NSApplicationIcon">{128, 128}</string>

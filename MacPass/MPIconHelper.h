@@ -15,19 +15,23 @@ typedef NS_ENUM(NSUInteger, MPIconType) {
   MPIconServer,
   MPIconKlipper,
   MPIconLanguages,
+  MPIconBlockDevice,
   MPIconNotepad,
   MPIconSocket,
   MPIconIdentity,
   MPIconContact,
   MPIconCamera,
   MPIconRemote,
+  MPIconKeys,
+  MPIconDisplay = 18,
+  MPIconFileSave = 26,
   MPIconTrash = 43,
   MPIconFolder = 48,
+  MPIconPhone = 68,
   /* Custom Icons not used in Database */
   MPIconInfo = 1000,
   MPIconAddFolder,
   MPIconHardDisk,
-  MPIconSaveToDisk,
 };
 
 @interface MPIconHelper : NSObject

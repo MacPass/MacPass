@@ -73,6 +73,10 @@
 		4C4FCE15177CFE6B00BBF7AE /* MPCustomFieldTableCellView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C4FCE14177CFE6B00BBF7AE /* MPCustomFieldTableCellView.m */; };
 		4C4FCE18177D03D700BBF7AE /* Kdb4Entry+KVOAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C4FCE17177D03D700BBF7AE /* Kdb4Entry+KVOAdditions.m */; };
 		4C52A244177D7B9F0000D88F /* HNHScrollView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C52A243177D7B9F0000D88F /* HNHScrollView.m */; };
+		4C52A88E1788628B00868229 /* 06_BlockDeviceTemplate.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 4C52A88B1788628B00868229 /* 06_BlockDeviceTemplate.pdf */; };
+		4C52A88F1788628B00868229 /* 13_KeysTemplate.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 4C52A88C1788628B00868229 /* 13_KeysTemplate.pdf */; };
+		4C52A8901788628B00868229 /* 18_DisplayTemplate.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 4C52A88D1788628B00868229 /* 18_DisplayTemplate.pdf */; };
+		4C52A892178863B000868229 /* 68_PhoneTemplate.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 4C52A891178863B000868229 /* 68_PhoneTemplate.pdf */; };
 		4C569D9E17652B0600595B62 /* MPConstants.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C569D9D17652B0600595B62 /* MPConstants.m */; };
 		4C569DA117652BFE00595B62 /* MPEntryTableDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C569DA017652BFE00595B62 /* MPEntryTableDataSource.m */; };
 		4C569DA417653F3500595B62 /* KdbEntry+MPTreeTools.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C569DA317653F3500595B62 /* KdbEntry+MPTreeTools.m */; };
@@ -188,7 +192,7 @@
 		4CE8246F16E2E93400573141 /* MPOverlayWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CE8246E16E2E93400573141 /* MPOverlayWindowController.m */; };
 		4CE8247516E2F2B900573141 /* MPOverlayView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CE8247416E2F2B900573141 /* MPOverlayView.m */; };
 		4CF1F0CA1786B37900CD920E /* NSData+Gzip.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CF1F0C81786B37900CD920E /* NSData+Gzip.m */; };
-		4CF29BF417879D0000851B60 /* 99_SaveToDiskTemplate.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 4CF29BF317879D0000851B60 /* 99_SaveToDiskTemplate.pdf */; };
+		4CF29BF417879D0000851B60 /* 26_FileSaveTemplate.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 4CF29BF317879D0000851B60 /* 26_FileSaveTemplate.pdf */; };
 		4CF6C711176F4533007A811D /* MPStringLengthValueTransformer.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CF6C710176F4533007A811D /* MPStringLengthValueTransformer.m */; };
 		4CF6C718176F5234007A811D /* MPAssociateRequestHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CF6C717176F5234007A811D /* MPAssociateRequestHandler.m */; };
 		4CF78057176E5CFD0032EE71 /* MPConnection.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CF78056176E5CFD0032EE71 /* MPConnection.m */; };
@@ -324,6 +328,10 @@
 		4C4FCE17177D03D700BBF7AE /* Kdb4Entry+KVOAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "Kdb4Entry+KVOAdditions.m"; sourceTree = "<group>"; };
 		4C52A242177D7B9F0000D88F /* HNHScrollView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HNHScrollView.h; sourceTree = "<group>"; };
 		4C52A243177D7B9F0000D88F /* HNHScrollView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HNHScrollView.m; sourceTree = "<group>"; };
+		4C52A88B1788628B00868229 /* 06_BlockDeviceTemplate.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = 06_BlockDeviceTemplate.pdf; sourceTree = "<group>"; };
+		4C52A88C1788628B00868229 /* 13_KeysTemplate.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = 13_KeysTemplate.pdf; sourceTree = "<group>"; };
+		4C52A88D1788628B00868229 /* 18_DisplayTemplate.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = 18_DisplayTemplate.pdf; sourceTree = "<group>"; };
+		4C52A891178863B000868229 /* 68_PhoneTemplate.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = 68_PhoneTemplate.pdf; sourceTree = "<group>"; };
 		4C569D9C17652AC800595B62 /* MPConstants.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MPConstants.h; sourceTree = "<group>"; };
 		4C569D9D17652B0600595B62 /* MPConstants.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MPConstants.m; sourceTree = "<group>"; };
 		4C569D9F17652BFE00595B62 /* MPEntryTableDataSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MPEntryTableDataSource.h; sourceTree = "<group>"; };
@@ -544,7 +552,7 @@
 		4CE8247416E2F2B900573141 /* MPOverlayView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MPOverlayView.m; sourceTree = "<group>"; };
 		4CF1F0C81786B37900CD920E /* NSData+Gzip.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSData+Gzip.m"; sourceTree = "<group>"; };
 		4CF1F0C91786B37900CD920E /* NSData+Gzip.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSData+Gzip.h"; sourceTree = "<group>"; };
-		4CF29BF317879D0000851B60 /* 99_SaveToDiskTemplate.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = 99_SaveToDiskTemplate.pdf; sourceTree = "<group>"; };
+		4CF29BF317879D0000851B60 /* 26_FileSaveTemplate.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = 26_FileSaveTemplate.pdf; sourceTree = "<group>"; };
 		4CF6C70F176F4533007A811D /* MPStringLengthValueTransformer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MPStringLengthValueTransformer.h; sourceTree = "<group>"; };
 		4CF6C710176F4533007A811D /* MPStringLengthValueTransformer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MPStringLengthValueTransformer.m; sourceTree = "<group>"; };
 		4CF6C715176F5183007A811D /* MPServerRequestHandler.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MPServerRequestHandler.h; sourceTree = "<group>"; };
@@ -890,18 +898,22 @@
 				4C2E381A16D11FF900037A9D /* 03_ServerTemplate.pdf */,
 				4C2E381B16D11FF900037A9D /* 04_KlipperTemplate.pdf */,
 				4C2E381C16D11FF900037A9D /* 05_LanguagesTemplate.pdf */,
+				4C52A88B1788628B00868229 /* 06_BlockDeviceTemplate.pdf */,
 				4CD78AB716D155FF00768A1D /* 07_NotepadTemplate.pdf */,
 				4CD78AB816D155FF00768A1D /* 08_SocketTemplate.pdf */,
 				4CD78AB916D155FF00768A1D /* 09_IdentityTemplate.pdf */,
 				4CD78ABA16D155FF00768A1D /* 10_ContactTemplate.pdf */,
 				4CD78ABB16D155FF00768A1D /* 11_CameraTemplate.pdf */,
 				4C701CBB178618A000581B88 /* 12_RemoteTemplate.pdf */,
+				4C52A88C1788628B00868229 /* 13_KeysTemplate.pdf */,
+				4C52A88D1788628B00868229 /* 18_DisplayTemplate.pdf */,
+				4CF29BF317879D0000851B60 /* 26_FileSaveTemplate.pdf */,
 				4C7714A9176C998F00549F2A /* 43_TrashTemplate.pdf */,
 				4C6D1D24178579570014C5A5 /* 48_FolderTemplate.pdf */,
+				4C52A891178863B000868229 /* 68_PhoneTemplate.pdf */,
 				4C6D1D26178586CA0014C5A5 /* 99_AddFolderTemplate.pdf */,
 				4C366642178748F500B249F1 /* 99_HarddiskTemplate.pdf */,
 				4C7714AB176C9D4600549F2A /* 99_InfoTemplate.pdf */,
-				4CF29BF317879D0000851B60 /* 99_SaveToDiskTemplate.pdf */,
 			);
 			path = Icons;
 			sourceTree = "<group>";
@@ -1351,7 +1363,11 @@
 				4C701CBC178618A000581B88 /* 12_RemoteTemplate.pdf in Resources */,
 				4C366643178748F500B249F1 /* 99_HarddiskTemplate.pdf in Resources */,
 				4C2C8B341787500E009649F3 /* UnprotectedWarningView.xib in Resources */,
-				4CF29BF417879D0000851B60 /* 99_SaveToDiskTemplate.pdf in Resources */,
+				4CF29BF417879D0000851B60 /* 26_FileSaveTemplate.pdf in Resources */,
+				4C52A88E1788628B00868229 /* 06_BlockDeviceTemplate.pdf in Resources */,
+				4C52A88F1788628B00868229 /* 13_KeysTemplate.pdf in Resources */,
+				4C52A8901788628B00868229 /* 18_DisplayTemplate.pdf in Resources */,
+				4C52A892178863B000868229 /* 68_PhoneTemplate.pdf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
