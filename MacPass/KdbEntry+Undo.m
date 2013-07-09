@@ -17,6 +17,13 @@ NSString *const MPEntryPasswordUndoableKey = @"passwordUndoable";
 NSString *const MPEntryUrlUndoableKey = @"urlUndoable";
 NSString *const MPEntryNotesUndoableKey = @"notesUndoable";
 
+#ifndef MPSetActionName
+#define MPSetActionName(key, comment) \
+if(![[self undoManager] isUndoing]) {\
+  [[self undoManager] setActionName:[[NSBundle mainBundle] localizedStringForKey:(key) value:@"" table:nil]];\
+}
+#endif
+
 @implementation KdbEntry (Undo)
 
 - (NSUndoManager *)undoManager {
@@ -43,38 +50,37 @@ NSString *const MPEntryNotesUndoableKey = @"notesUndoable";
   return [self notes];
 }
 
-
 - (void)setTitleUndoable:(NSString *)title {
   [[self undoManager] registerUndoWithTarget:self selector:@selector(setTitleUndoable:) object:self.title];
-  [[self undoManager] setActionName:NSLocalizedString(@"UNDO_SET_TITLE", "Undo set title")];
+  MPSetActionName(@"SET_TITLE", "Set Title");
   [self setLastModificationTime:[NSDate date]];
   [self setTitle:title];
 }
 
 - (void)setUsernameUndoable:(NSString *)username {
   [[self undoManager] registerUndoWithTarget:self selector:@selector(setUsernameUndoable:) object:self.username];
-  [[self undoManager] setActionName:NSLocalizedString(@"UNDO_SET_USERNAME", "Undo set username")];
+  MPSetActionName(@"SET_USERNAME", "Undo set username");
   [self setLastModificationTime:[NSDate date]];
   [self setUsername:username];
 }
 
 - (void)setPasswordUndoable:(NSString *)password {
   [[self undoManager] registerUndoWithTarget:self selector:@selector(setPasswordUndoable:) object:self.password];
-  [[self undoManager] setActionName:NSLocalizedString(@"UNDO_SET_PASSWORT", "Undo set password")];
+  MPSetActionName(@"SET_PASSWORT", "Undo set password");
   [self setLastModificationTime:[NSDate date]];
   [self setPassword:password];
 }
 
 - (void)setUrlUndoable:(NSString *)url {
   [[self undoManager] registerUndoWithTarget:self selector:@selector(setUrlUndoable:) object:self.url];
-  [[self undoManager] setActionName:NSLocalizedString(@"UNDO_SET_URL", "Undo set URL")];
+  MPSetActionName(@"SET_URL", "Undo set URL");
   [self setLastModificationTime:[NSDate date]];
   [self setUrl:url];
 }
 
 - (void)setNotesUndoable:(NSString *)notes {
   [[self undoManager] registerUndoWithTarget:self selector:@selector(setNotesUndoable:) object:self.notes];
-  [[self undoManager] setActionName:NSLocalizedString(@"UNDO_SET_NOTES", "Undo set notes")];
+  MPSetActionName(@"SET_NOTES", "Set Notes");
   [self setLastModificationTime:[NSDate date]];
   [self setNotes:notes];
 }
@@ -88,7 +94,8 @@ NSString *const MPEntryNotesUndoableKey = @"notesUndoable";
     return; // We're not in our parents entries list
   }
   [[[self undoManager] prepareWithInvocationTarget:self.parent] addEntryUndoable:self atIndex:oldIndex];
-  [[self undoManager] setActionName:@"Delete Entry"];
+  MPSetActionName(@"DELETE_ENTRY", "Delete Entry");
+  [[NSNotificationCenter defaultCenter] postNotificationName:@"" object:self userInfo:nil];
   [self.parent removeObjectFromEntriesAtIndex:oldIndex];
 }
 
@@ -101,7 +108,7 @@ NSString *const MPEntryNotesUndoableKey = @"notesUndoable";
     return; // Not found in entries of parent!
   }
   [[[self undoManager] prepareWithInvocationTarget:self] moveToGroupUndoable:self.parent atIndex:oldIndex];
-  [[self undoManager] setActionName:@"Move Entry"];
+  MPSetActionName(@"MOVE_ENTRY", "Move Entry")
   [self.parent removeObjectFromEntriesAtIndex:oldIndex];
   [group insertObject:self inEntriesAtIndex:index];
 }
@@ -114,7 +121,7 @@ NSString *const MPEntryNotesUndoableKey = @"notesUndoable";
     return; // Not found in entries of parent!
   }
   [[[self undoManager] prepareWithInvocationTarget:self] restoreFromTrashUndoable:self.parent atIndex:oldIndex];
-  [[self undoManager] setActionName:@"Trash Entry"];
+  MPSetActionName(@"MOVE_ENTRY_TO_TRASH", "Move Entryo to Trash")
   [self.parent removeObjectFromEntriesAtIndex:oldIndex];
   [trash insertObject:self inEntriesAtIndex:index];
 }
@@ -128,7 +135,7 @@ NSString *const MPEntryNotesUndoableKey = @"notesUndoable";
     return; // Not found in entries of parent!
   }
   [[[self undoManager] prepareWithInvocationTarget:self] moveToTrashUndoable:self.parent atIndex:oldIndex];
-  [[self undoManager] setActionName:@"Restore Entry"];
+  MPSetActionName(@"RESTORE_ENTRY", "Restore Entry from Trash")
   [self.parent removeObjectFromEntriesAtIndex:oldIndex];
   [group insertObject:self inEntriesAtIndex:index];
 
