@@ -32,6 +32,7 @@
 
 #import "HNHGradientView.h"
 #import "HNHTableRowView.h"
+#import "HNHRoundedSecureTextField.h"
 
 enum {
   MPGeneralTab,
@@ -52,6 +53,8 @@ enum {
 
 @property (nonatomic, weak) NSDate *modificationDate;
 @property (nonatomic, weak) NSDate *creationDate;
+
+@property (nonatomic, assign) BOOL showPassword;
 
 @property (nonatomic, assign) NSUInteger activeTab;
 @property (weak) IBOutlet NSTabView *tabView;
@@ -75,6 +78,7 @@ enum {
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil {
   self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
   if (self) {
+    _showPassword = NO;
     _selectedEntry = nil;
     _selectedGroup = nil;
     _attachmentsController = [[NSArrayController alloc] init];
@@ -105,6 +109,9 @@ enum {
   [_customFieldsTableView setBackgroundColor:[NSColor clearColor]];
   [_customFieldsTableView bind:NSContentBinding toObject:self.customFieldsController withKeyPath:@"arrangedObjects" options:nil];
   [_customFieldsTableView setDelegate:self];
+  
+  [self.passwordTextField bind:@"showPassword" toObject:self withKeyPath:@"showPassword" options:nil];
+  [self.togglePassword bind:NSValueBinding toObject:self withKeyPath:@"showPassword" options:nil];
   
   [self _clearContent];
 }
@@ -255,6 +262,7 @@ enum {
   
   enabled &= (self.selectedEntry != nil);
   [self.passwordTextField setEnabled:enabled];
+  [self.togglePassword setEnabled:enabled];
   [self.usernameTextField setEnabled:enabled];
   [self.URLTextField setEnabled:enabled];
   [self.generatePasswordButton setEnabled:enabled];

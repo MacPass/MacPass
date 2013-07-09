@@ -12,6 +12,7 @@
 @class KdbEntry;
 @class KdbGroup;
 @class HNHGradientView;
+@class HNHRoundedSecureTextField;
 @class MPDocumentWindowController;
 
 @interface MPInspectorViewController : MPViewController <NSPopoverDelegate, NSTableViewDelegate>
@@ -22,7 +23,7 @@
 @property (weak) IBOutlet NSTextField *titleTextField;
 @property (weak) IBOutlet NSTextField *usernameTextField;
 @property (weak) IBOutlet NSTextField *URLTextField;
-@property (weak) IBOutlet NSTextField *passwordTextField;
+@property (weak) IBOutlet HNHRoundedSecureTextField *passwordTextField;
 @property (weak) IBOutlet NSTextField *titleOrNameLabel;
 @property (weak) IBOutlet HNHGradientView *bottomBar;
 @property (weak) IBOutlet NSTextField *createdTextField;
@@ -32,6 +33,7 @@
 @property (weak) IBOutlet NSTableView *customFieldsTableView;
 @property (unsafe_unretained) IBOutlet NSTextView *notesTextView;
 @property (weak) IBOutlet NSTextField *customFieldsTextField;
+@property (weak) IBOutlet NSButton *togglePassword;
 
 
 /* Seperate call to ensure alle registered objects are in place */
