@@ -124,7 +124,7 @@ NSString *const _toggleFilterUsernameButton = @"SearchUsername";
   [self.entryTable setDoubleAction:@selector(_columnDoubleClick:)];
   [self.entryTable setTarget:self];
   [self.entryTable setFloatsGroupRows:NO];
-  [self.entryTable registerForDraggedTypes:@[MPPasteBoardType]];
+  //[self.entryTable registerForDraggedTypes:@[MPPasteBoardType]];
   [self _setupEntryMenu];
   
   NSTableColumn *parentColumn = [self.entryTable tableColumns][0];

@@ -64,7 +64,7 @@ NSString *const _MPOutlinveViewHeaderViewIdentifier = @"HeaderCell";
   [_outlineView setMenu:[self _contextMenu]];
   [_outlineView setAllowsEmptySelection:YES];
   [_outlineView setFloatsGroupRows:NO];
-  [_outlineView registerForDraggedTypes:@[ MPPasteBoardType ]];
+  //[_outlineView registerForDraggedTypes:@[ MPPasteBoardType ]];
   [_outlineView setDraggingSourceOperationMask:NSDragOperationEvery forLocal:YES];
   [_bottomBar setBorderType:HNHBorderTop];
   [_addGroupButton setAction:[MPActionHelper actionOfType:MPActionAddGroup]];

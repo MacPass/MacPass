@@ -408,8 +408,14 @@ NSString *const MPDocumentGroupKey                    = @"MPDocumentGroupKey";
 #pragma mark Actions
 
 - (void)emptyTrash:(id)sender {
+  for(KdbEntry *entry in [self.trash childEntries]) {
+    [[self undoManager] removeAllActionsWithTarget:entry];
+  }
+  for(KdbGroup *group in [self.trash childGroups]) {
+    [[self undoManager] removeAllActionsWithTarget:group];
+  }
+  
   [self.trash clear];
-  // TODO: Notify that entries should be deslected
 }
 
 - (BOOL)validateMenuItem:(NSMenuItem *)menuItem {

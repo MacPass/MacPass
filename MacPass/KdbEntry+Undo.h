@@ -32,6 +32,5 @@ APPKIT_EXTERN NSString *const MPEntryNotesUndoableKey;
 - (void)deleteUndoable;
 - (void)moveToGroupUndoable:(KdbGroup *)group atIndex:(NSUInteger)index;
 - (void)moveToTrashUndoable:(KdbGroup *)trash atIndex:(NSUInteger)index;
-- (void)restoreFromTrashUndoable:(KdbGroup *)group atIndex:(NSUInteger)index;
 
 @end

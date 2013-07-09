@@ -24,13 +24,12 @@
 }
 
 - (void)clear {
-  for(KdbGroup *group in self.groups) {
-    [group clear];
-    NSUInteger index = [self.groups indexOfObject:group];
+  NSUInteger groupCount = [_groups count];
+  for(NSInteger index = (groupCount - 1); index > -1; index--) {
     [self removeObjectFromGroupsAtIndex:index];
   }
-  for(KdbEntry *entry in self.entries) {
-    NSUInteger index = [self.entries indexOfObject:entry];
+  NSUInteger entryCount = [_entries count];
+  for(NSInteger index = (entryCount - 1); index > -1; index--) {
     [self removeObjectFromEntriesAtIndex:index];
   }
 }
