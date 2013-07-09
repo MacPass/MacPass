@@ -323,7 +323,7 @@ enum {
   MPDocument *document = [[self windowController] document];
   NSUInteger index = [sender tag];
   Kdb4Entry *entry = (Kdb4Entry *)self.selectedEntry;
-  [document entry:entry removeStringField:(entry.stringFields)[index]];
+  [document removeStringField:(entry.stringFields)[index] formEntry:entry];
 }
 
 - (IBAction)saveAttachment:(id)sender {

@@ -7,6 +7,8 @@
 //
 
 #import "KdbEntry+Undo.h"
+#import "KdbGroup+Undo.h"
+#import "KdbGroup+KVOAdditions.h"
 #import "KdbGroup+MPTreeTools.h"
 
 NSString *const MPEntryTitleUndoableKey = @"titleUndoable";
@@ -17,7 +19,7 @@ NSString *const MPEntryNotesUndoableKey = @"notesUndoable";
 
 @implementation KdbEntry (Undo)
 
-+ (NSUndoManager *)undoManager {
+- (NSUndoManager *)undoManager {
   return [[[NSDocumentController sharedDocumentController] currentDocument] undoManager];
 }
 
@@ -43,38 +45,93 @@ NSString *const MPEntryNotesUndoableKey = @"notesUndoable";
 
 
 - (void)setTitleUndoable:(NSString *)title {
-  [[KdbEntry undoManager] registerUndoWithTarget:self selector:@selector(setTitleUndoable:) object:self.title];
-  [[KdbEntry undoManager] setActionName:NSLocalizedString(@"UNDO_SET_TITLE", "Undo set title")];
+  [[self undoManager] registerUndoWithTarget:self selector:@selector(setTitleUndoable:) object:self.title];
+  [[self undoManager] setActionName:NSLocalizedString(@"UNDO_SET_TITLE", "Undo set title")];
   [self setLastModificationTime:[NSDate date]];
   [self setTitle:title];
 }
 
 - (void)setUsernameUndoable:(NSString *)username {
-  [[KdbEntry undoManager] registerUndoWithTarget:self selector:@selector(setUsernameUndoable:) object:self.username];
-  [[KdbEntry undoManager] setActionName:NSLocalizedString(@"UNDO_SET_USERNAME", "Undo set username")];
+  [[self undoManager] registerUndoWithTarget:self selector:@selector(setUsernameUndoable:) object:self.username];
+  [[self undoManager] setActionName:NSLocalizedString(@"UNDO_SET_USERNAME", "Undo set username")];
   [self setLastModificationTime:[NSDate date]];
   [self setUsername:username];
 }
 
 - (void)setPasswordUndoable:(NSString *)password {
-  [[KdbEntry undoManager] registerUndoWithTarget:self selector:@selector(setPasswordUndoable:) object:self.password];
-  [[KdbEntry undoManager] setActionName:NSLocalizedString(@"UNDO_SET_PASSWORT", "Undo set password")];
+  [[self undoManager] registerUndoWithTarget:self selector:@selector(setPasswordUndoable:) object:self.password];
+  [[self undoManager] setActionName:NSLocalizedString(@"UNDO_SET_PASSWORT", "Undo set password")];
   [self setLastModificationTime:[NSDate date]];
   [self setPassword:password];
 }
 
 - (void)setUrlUndoable:(NSString *)url {
-  [[KdbEntry undoManager] registerUndoWithTarget:self selector:@selector(setUrlUndoable:) object:self.url];
-  [[KdbEntry undoManager] setActionName:NSLocalizedString(@"UNDO_SET_URL", "Undo set URL")];
+  [[self undoManager] registerUndoWithTarget:self selector:@selector(setUrlUndoable:) object:self.url];
+  [[self undoManager] setActionName:NSLocalizedString(@"UNDO_SET_URL", "Undo set URL")];
   [self setLastModificationTime:[NSDate date]];
   [self setUrl:url];
 }
 
 - (void)setNotesUndoable:(NSString *)notes {
-  [[KdbEntry undoManager] registerUndoWithTarget:self selector:@selector(setNotesUndoable:) object:self.notes];
-  [[KdbEntry undoManager] setActionName:NSLocalizedString(@"UNDO_SET_NOTES", "Undo set notes")];
+  [[self undoManager] registerUndoWithTarget:self selector:@selector(setNotesUndoable:) object:self.notes];
+  [[self undoManager] setActionName:NSLocalizedString(@"UNDO_SET_NOTES", "Undo set notes")];
   [self setLastModificationTime:[NSDate date]];
   [self setNotes:notes];
+}
+
+- (void)deleteUndoable {
+  if(!self.parent) {
+    return; // No parent to be removed from
+  }
+  NSUInteger oldIndex = [self.parent.entries indexOfObject:self];
+  if(oldIndex == NSNotFound) {
+    return; // We're not in our parents entries list
+  }
+  [[[self undoManager] prepareWithInvocationTarget:self.parent] addEntryUndoable:self atIndex:oldIndex];
+  [[self undoManager] setActionName:@"Delete Entry"];
+  [self.parent removeObjectFromEntriesAtIndex:oldIndex];
+}
+
+- (void)moveToGroupUndoable:(KdbGroup *)group atIndex:(NSUInteger)index {
+  if(!group || !self.parent) {
+    return; // Nothing to be moved about
+  }
+  NSUInteger oldIndex = [self.parent.entries indexOfObject:self];
+  if(oldIndex == NSNotFound) {
+    return; // Not found in entries of parent!
+  }
+  [[[self undoManager] prepareWithInvocationTarget:self] moveToGroupUndoable:self.parent atIndex:oldIndex];
+  [[self undoManager] setActionName:@"Move Entry"];
+  [self.parent removeObjectFromEntriesAtIndex:oldIndex];
+  [group insertObject:self inEntriesAtIndex:index];
+}
+- (void)moveToTrashUndoable:(KdbGroup *)trash atIndex:(NSUInteger)index {
+  if(!trash || !self.parent) {
+    return; // Nothing to be moved about
+  }
+  NSUInteger oldIndex = [self.parent.entries indexOfObject:self];
+  if(oldIndex == NSNotFound) {
+    return; // Not found in entries of parent!
+  }
+  [[[self undoManager] prepareWithInvocationTarget:self] restoreFromTrashUndoable:self.parent atIndex:oldIndex];
+  [[self undoManager] setActionName:@"Trash Entry"];
+  [self.parent removeObjectFromEntriesAtIndex:oldIndex];
+  [trash insertObject:self inEntriesAtIndex:index];
+}
+
+- (void)restoreFromTrashUndoable:(KdbGroup *)group atIndex:(NSUInteger)index {
+  if(!group || !self.parent) {
+    return; // Nothing to be moved about
+  }
+  NSUInteger oldIndex = [self.parent.entries indexOfObject:self];
+  if(oldIndex == NSNotFound) {
+    return; // Not found in entries of parent!
+  }
+  [[[self undoManager] prepareWithInvocationTarget:self] moveToTrashUndoable:self.parent atIndex:oldIndex];
+  [[self undoManager] setActionName:@"Restore Entry"];
+  [self.parent removeObjectFromEntriesAtIndex:oldIndex];
+  [group insertObject:self inEntriesAtIndex:index];
+
 }
 
 @end

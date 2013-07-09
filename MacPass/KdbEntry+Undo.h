@@ -17,8 +17,6 @@ APPKIT_EXTERN NSString *const MPEntryNotesUndoableKey;
 
 @interface KdbEntry (Undo)
 
-+ (NSUndoManager *)undoManager;
-
 - (NSString *)titleUndoable;
 - (NSString *)usernameUndoable;
 - (NSString *)passwordUndoable;
@@ -30,5 +28,10 @@ APPKIT_EXTERN NSString *const MPEntryNotesUndoableKey;
 - (void)setPasswordUndoable:(NSString *)password;
 - (void)setUrlUndoable:(NSString *)url;
 - (void)setNotesUndoable:(NSString *)notes;
+
+- (void)deleteUndoable;
+- (void)moveToGroupUndoable:(KdbGroup *)group atIndex:(NSUInteger)index;
+- (void)moveToTrashUndoable:(KdbGroup *)trash atIndex:(NSUInteger)index;
+- (void)restoreFromTrashUndoable:(KdbGroup *)group atIndex:(NSUInteger)index;
 
 @end

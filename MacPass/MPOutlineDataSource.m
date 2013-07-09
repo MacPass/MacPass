@@ -13,6 +13,7 @@
 
 #import "KdbLib.h"
 #import "KdbGroup+Undo.h"
+#import "KdbEntry+Undo.h"
 #import "KdbGroup+MPTreeTools.h"
 #import "KdbEntry+MPTreeTools.h"
 
@@ -79,7 +80,7 @@
     MPDocument *document = [[[outlineView window] windowController] document];
     accepted = [document group:_draggedItem isMoveableToGroup:target];
     if( accepted ) {
-      [document moveGroup:_draggedItem toGroup:target index:index];
+      [_draggedItem moveToGroupUndoable:target atIndex:index];
     }
     info.animatesToDestination = !accepted;
     return accepted;
@@ -94,7 +95,7 @@
     KdbEntry *draggedEntry = [rootGroup entryForUUID:uuid];
     if(draggedEntry) {
       if(draggedEntry.parent != target && index == NSOutlineViewDropOnItemIndex) {
-        [document moveEntry:draggedEntry toGroup:target index:index];
+        [draggedEntry moveToGroupUndoable:target atIndex:index];
         return YES;
       }
     }

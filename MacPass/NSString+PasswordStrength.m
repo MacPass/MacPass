@@ -6,12 +6,12 @@
 //  Copyright (c) 2013 HicknHack Software GmbH. All rights reserved.
 //
 
-#import "NSString+MPPasswordAnalysis.h"
+#import "NSString+PasswordStrength.h"
 
-@implementation NSString (MPPasswordAnalysis)
+@implementation NSString (PasswordStrenght)
 
-- (MPPasswordStrength)passwordStrenght {
-  return MPPasswordOK;
+- (NSUInteger)passwordStrenght {
+  return 0;
 }
 
 @end

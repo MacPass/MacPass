@@ -73,18 +73,14 @@ APPKIT_EXTERN NSString *const MPDocumentGroupKey;
 /*
  All non-setter undoable actions
 */
-
-- (void)moveGroup:(KdbGroup *)group toGroup:(KdbGroup *)target index:(NSInteger)index;
 - (BOOL)group:(KdbGroup *)group isMoveableToGroup:(KdbGroup *)target;
-- (void)moveEntry:(KdbEntry *)entry toGroup:(KdbGroup *)target index:(NSInteger)index;
 
-- (void)group:(KdbGroup *)group addEntry:(KdbEntry *)entry atIndex:(NSUInteger)index;
-- (void)group:(KdbGroup *)group addGroup:(KdbGroup *)aGroup atIndex:(NSUInteger)index;
-- (void)group:(KdbGroup *)group removeEntry:(KdbEntry *)entry;
-- (void)group:(KdbGroup *)group removeGroup:(KdbGroup *)aGroup;
+/* TODO in UNDO auslagen */
+- (void)addStringField:(StringField *)field toEntry:(Kdb4Entry *)entry atIndex:(NSUInteger)index;
+- (void)removeStringField:(StringField *)field formEntry:(Kdb4Entry *)entry;
 
-- (void)entry:(Kdb4Entry *)entry addStringField:(StringField *)field atIndex:(NSUInteger)index;
-- (void)entry:(Kdb4Entry *)entry removeStringField:(StringField *)field;
+- (void)deleteGroup:(KdbGroup *)group;
+- (void)deleteEntry:(KdbEntry *)entry;
 
 - (void)emptyTrash:(id)sender;
 

@@ -121,18 +121,12 @@ NSString *const _MPOutlinveViewHeaderViewIdentifier = @"HeaderCell";
 }
 
 - (void)createEntry:(id)sender {
-  KdbGroup *group = [self _clickedOrSelectedGroup];
-  if(group) {
-    MPDocument *document = [[self windowController] document];
-    [document createEntry:group];
-  }
+  MPDocument *document = [[self windowController] document];
+  [document createEntry:[self _clickedOrSelectedGroup]];
 }
 
 - (void)deleteNode:(id)sender {
-  KdbGroup *group = [self _clickedOrSelectedGroup];
-  if(group && group.parent) {
-    [[[self windowController] document] group:group.parent removeGroup:group];
-  }
+  [[[self windowController] document] deleteGroup:[self _clickedOrSelectedGroup]];
 }
 
 #pragma mark NSOutlineViewDelegate

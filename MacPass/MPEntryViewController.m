@@ -481,7 +481,7 @@ NSString *const _toggleFilterUsernameButton = @"SearchUsername";
 - (void)deleteNode:(id)sender {
   KdbEntry *entry =[self _clickedOrSelectedEntry];
   MPDocument *document = [[self windowController] document];
-  [document group:entry.parent removeEntry:entry];
+  [document deleteEntry:entry];
 }
 
 - (void)_toggleFilterSpace:(id)sender {

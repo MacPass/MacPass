@@ -121,15 +121,15 @@ NSString *const MPDocumentGroupKey                    = @"MPDocumentGroupKey";
 
 - (BOOL)readFromURL:(NSURL *)url ofType:(NSString *)typeName error:(NSError **)outError {
   /* FIXME: Logfile handling
-  self.lockFileURL = [url URLByAppendingPathExtension:@"lock"];
-  if([[NSFileManager defaultManager] fileExistsAtPath:[_lockFileURL path]]) {
-    self.readOnly = YES;
-  }
-  else {
-    [[NSFileManager defaultManager] createFileAtPath:[_lockFileURL path] contents:nil attributes:nil];
-    _didLockFile = YES;
-    self.readOnly = NO;
-  }
+   self.lockFileURL = [url URLByAppendingPathExtension:@"lock"];
+   if([[NSFileManager defaultManager] fileExistsAtPath:[_lockFileURL path]]) {
+   self.readOnly = YES;
+   }
+   else {
+   [[NSFileManager defaultManager] createFileAtPath:[_lockFileURL path] contents:nil attributes:nil];
+   _didLockFile = YES;
+   self.readOnly = NO;
+   }
    */
   self.decrypted = NO;
   return YES;
@@ -294,7 +294,7 @@ NSString *const MPDocumentGroupKey                    = @"MPDocumentGroupKey";
   if(self.treeV4 && ([self.treeV4.defaultUserName length] > 0)) {
     newEntry.title = self.treeV4.defaultUserName;
   }
-  [self group:parent addEntry:newEntry atIndex:[parent.entries count]];
+  [parent addEntryUndoable:newEntry atIndex:[parent.entries count]];
   NSDictionary *userInfo = @{ MPDocumentEntryKey : newEntry };
   [[NSNotificationCenter defaultCenter] postNotificationName:MPDocumentDidAddEntryNotification object:self userInfo:userInfo];
   return newEntry;
@@ -307,7 +307,7 @@ NSString *const MPDocumentGroupKey                    = @"MPDocumentGroupKey";
   KdbGroup *newGroup = [self.tree createGroup:parent];
   newGroup.name = NSLocalizedString(@"DEFAULT_GROUP_NAME", @"Title for a newly created group");
   newGroup.image = MPIconFolder;
-  [self group:parent addGroup:newGroup atIndex:[parent.groups count]];
+  [parent addGroupUndoable:newGroup atIndex:[parent.groups count]];
   NSDictionary *userInfo = @{ MPDocumentGroupKey : newGroup };
   [[NSNotificationCenter defaultCenter] postNotificationName:MPDocumentDidAddGroupNotification object:self userInfo:userInfo];
   return newGroup;
@@ -322,7 +322,7 @@ NSString *const MPDocumentGroupKey                    = @"MPDocumentGroupKey";
   NSString *title = NSLocalizedString(@"DEFAULT_CUSTOM_FIELD_TITLE", @"Default Titel for new Custom-Fields");
   NSString *value = NSLocalizedString(@"DEFAULT_CUSTOM_FIELD_VALUE", @"Default Value for new Custom-Fields");
   StringField *newStringField = [StringField stringFieldWithKey:title andValue:value];
-  [self entry:entryV4 addStringField:newStringField atIndex:[entryV4.stringFields count]];
+  [self addStringField:newStringField toEntry:entryV4 atIndex:[entryV4.stringFields count]];
   return newStringField;
 }
 
@@ -363,91 +363,44 @@ NSString *const MPDocumentGroupKey                    = @"MPDocumentGroupKey";
   return isMovable;
 }
 
-- (void)moveEntry:(KdbEntry *)entry toGroup:(KdbGroup *)target index:(NSInteger)index {
-  NSInteger oldIndex = [entry.parent.entries indexOfObject:entry];
-  if(entry.parent == target && oldIndex == index) {
-    return; // No changes
-  }
-  [[[self undoManager] prepareWithInvocationTarget:self] moveEntry:entry toGroup:entry.parent index:oldIndex];
-  if(self.trash == target || self.trash == entry.parent) {
-    [[self undoManager] setActionName:@"UNDO_DELETE_ENTRY"];
+- (void)deleteEntry:(KdbEntry *)entry {
+  if(self.useTrash) {
+    if(!self.trash) {
+      [self _createTrashGroup];
+    }
+    [entry moveToTrashUndoable:self.trash atIndex:[self.trash.entries count]];
   }
   else {
-    [[self undoManager] setActionName:@"MOVE_ENTRY"];
+    [entry deleteUndoable];
   }
-  [entry.parent removeObjectFromEntriesAtIndex:oldIndex];
-  if(index < 0 || index > [target.groups count] ) {
-    index = [target.groups count];
-  }
-  [target insertObject:entry inEntriesAtIndex:index];
 }
 
-- (void)group:(KdbGroup *)group addEntry:(KdbEntry *)entry atIndex:(NSUInteger)index {
-  [[[self undoManager] prepareWithInvocationTarget:self] group:group removeEntry:entry];
-  [[self undoManager] setActionName:NSLocalizedString(@"UNDO_ADD_ENTRY", "Undo adding of entry")];
-  [group insertObject:entry inEntriesAtIndex:index];
-}
-
-- (void)group:(KdbGroup *)group addGroup:(KdbGroup *)aGroup atIndex:(NSUInteger)index {
-  [[[self undoManager] prepareWithInvocationTarget:self] group:group removeGroup:aGroup];
-  [[self undoManager] setActionName:NSLocalizedString(@"UNDO_ADD_GROUP", @"Create Group Undo")];
-  [group insertObject:aGroup inGroupsAtIndex:index];
-}
-
-- (void)group:(KdbGroup *)group removeEntry:(KdbEntry *)entry {
-  NSInteger index = [group.entries indexOfObject:entry];
-  if(NSNotFound == index) {
-    return; // No object found;
-  }
+- (void)deleteGroup:(KdbGroup *)group {
   if(self.useTrash) {
     if(!self.trash) {
       [self _createTrashGroup];
     }
-    [self moveEntry:entry toGroup:self.trash index:[self.trash.entries count]];
-    return;
+    [group moveToTrashUndoable:self.trash atIndex:[self.trash.groups count]];
   }
-  [[[self undoManager] prepareWithInvocationTarget:self] group:group addEntry:entry atIndex:index];
-  [[self undoManager] setActionName:NSLocalizedString(@"UNDO_DELETE_ENTRY", "Undo deleting of entry")];
-  [group removeObjectFromEntriesAtIndex:index];
+  else {
+    [group deleteUndoable];
+  }
 }
 
-- (void)group:(KdbGroup *)group removeGroup:(KdbGroup *)aGroup {
-  NSInteger index = [group.groups indexOfObject:aGroup];
-  if(NSNotFound == index) {
-    return; // No object found
-  }
-  if(self.trash == aGroup) {
-    return;
-    // delete Trash?
-  }
-  /*
-   Cleaning the recyclebin is not undoable
-   So we do this in a separate action
-   */
-  if(self.useTrash) {
-    if(!self.trash) {
-      [self _createTrashGroup];
-    }
-    [self moveGroup:aGroup toGroup:self.trash index:[self.trash.groups count]];
-    return; // Done!
-  }
-  [[[self undoManager] prepareWithInvocationTarget:self] group:group addGroup:aGroup atIndex:index];
-  [[self undoManager] setActionName:NSLocalizedString(@"UNDO_DELETE_GROUP", @"Delete Group Undo")];
-  [group removeObjectFromGroupsAtIndex:index];
-}
+#pragma mark CustomFields
 
-- (void)entry:(Kdb4Entry *)entry addStringField:(StringField *)field atIndex:(NSUInteger)index {
-  [[[self undoManager] prepareWithInvocationTarget:self] entry:entry removeStringField:field];
+- (void)addStringField:(StringField *)field toEntry:(Kdb4Entry *)entry atIndex:(NSUInteger)index {
+  [[[self undoManager] prepareWithInvocationTarget:self] removeStringField:field formEntry:entry];
   [[self undoManager] setActionName:NSLocalizedString(@"UNDO_ADD_STRING_FIELD", @"Add Stringfield Undo")];
   [entry insertObject:field inStringFieldsAtIndex:index];
 }
 
-- (void)entry:(Kdb4Entry *)entry removeStringField:(StringField *)field {
+- (void)removeStringField:(StringField *)field formEntry:(Kdb4Entry *)entry {
   NSInteger index = [entry.stringFields indexOfObject:field];
   if(NSNotFound == index) {
     return; // Nothing found to be removed
   }
-  [[[self undoManager] prepareWithInvocationTarget:self] entry:entry addStringField:field atIndex:index];
+  [[[self undoManager] prepareWithInvocationTarget:self] addStringField:field toEntry:entry atIndex:index];
   [[self undoManager] setActionName:NSLocalizedString(@"UNDO_DELETE_STRING_FIELD", @"Delte Stringfield undo")];
   [entry removeObjectFromStringFieldsAtIndex:index];
 }
@@ -455,8 +408,8 @@ NSString *const MPDocumentGroupKey                    = @"MPDocumentGroupKey";
 #pragma mark Actions
 
 - (void)emptyTrash:(id)sender {
-  [[self undoManager] setActionIsDiscardable:YES];
   [self.trash clear];
+  // TODO: Notify that entries should be deslected
 }
 
 - (BOOL)validateMenuItem:(NSMenuItem *)menuItem {
