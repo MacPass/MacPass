@@ -16,9 +16,9 @@ typedef NS_ENUM(NSUInteger, MPDatabaseSettingsTab) {
 };
 
 @class MPDocument;
+@class HNHRoundedSecureTextField;
 
 @interface MPDatabaseSettingsWindowController : NSWindowController
-
 
 @property (weak) IBOutlet NSTabView *sectionTabView;
 
@@ -27,8 +27,9 @@ typedef NS_ENUM(NSUInteger, MPDatabaseSettingsTab) {
 @property (unsafe_unretained) IBOutlet NSTextView *databaseDescriptionTextView;
 
 /* Protection */
-@property (weak) IBOutlet NSTextField *passwordTextField;
+@property (weak) IBOutlet HNHRoundedSecureTextField *passwordTextField;
 @property (weak) IBOutlet NSPathControl *keyfilePathControl;
+@property (weak) IBOutlet NSButton *togglePasswordButton;
 
 - (IBAction)clearKey:(id)sender;
 - (IBAction)generateKey:(id)sender;

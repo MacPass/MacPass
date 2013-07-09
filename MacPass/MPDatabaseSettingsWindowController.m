@@ -12,6 +12,8 @@
 #import "MPDatabaseVersion.h"
 #import "MPIconHelper.h"
 
+#import "HNHRoundedSecureTextField.h"
+
 #import "Kdb.h"
 #import "Kdb4Node.h"
 #import "KdbGroup+MPAdditions.h"
@@ -21,6 +23,7 @@
 }
 
 @property (nonatomic,assign) BOOL trashEnabled;
+@property (nonatomic,assign) BOOL showPassword;
 
 @end
 
@@ -34,6 +37,7 @@
   self = [super initWithWindowNibName:@"DatabaseSettingsWindow"];
   if(self) {
     _document = document;
+    _showPassword = NO;
   }
   return self;
 }
@@ -101,6 +105,7 @@
 }
 
 - (void)showSettingsTab:(MPDatabaseSettingsTab)tab {
+  self.showPassword = NO;
   [self.sectionTabView selectTabViewItemAtIndex:tab];
 }
 
@@ -136,6 +141,9 @@
 - (void)_setupPasswordTab:(Kdb4Tree *)tree {
   [self.passwordTextField setStringValue:_document.password ? _document.password : @""];
   [self.keyfilePathControl setURL:_document.key];
+  
+  [self.passwordTextField bind:@"showPassword" toObject:self withKeyPath:@"showPassword" options:nil];
+  [self.togglePasswordButton bind:NSValueBinding toObject:self withKeyPath:@"showPassword" options:nil];
 }
 
 - (void)_updateTrashFolders:(Kdb4Tree *)tree {

@@ -11,15 +11,20 @@
 #import "MPDocument.h"
 #import "MPKeyfilePathControlDelegate.h"
 
+#import "HNHRoundedSecureTextField.h"
+
 @interface MPPasswordInputController ()
 
-@property (weak) IBOutlet NSTextField *passwordTextField;
+@property (weak) IBOutlet HNHRoundedSecureTextField *passwordTextField;
 @property (weak) IBOutlet NSPathControl *keyPathControl;
 @property (strong) MPKeyfilePathControlDelegate *pathControlDelegate;
 @property (weak) IBOutlet NSImageView *errorImageView;
 @property (weak) IBOutlet NSTextField *errorInfoTextField;
+@property (weak) IBOutlet NSButton *togglePasswordButton;
+@property (assign) BOOL showPassword;
 
 - (IBAction)_decrypt:(id)sender;
+- (IBAction)_clearKey:(id)sender;
 
 @end
 
@@ -33,6 +38,8 @@
 - (void)didLoadView {
   [self.keyPathControl setDelegate:self.pathControlDelegate];
   [self.errorImageView setImage:[NSImage imageNamed:NSImageNameCaution]];
+  [self.passwordTextField bind:@"showPassword" toObject:self withKeyPath:@"showPassword" options:nil];
+  [self.togglePasswordButton bind:NSValueBinding toObject:self withKeyPath:@"showPassword" options:nil];
   [self _reset];
 }
 
@@ -72,7 +79,13 @@
     }
   }
 }
+
+- (IBAction)_clearKey:(id)sender {
+  [self.keyPathControl setURL:nil];
+}
+
 - (void)_reset {
+  self.showPassword = NO;
   [self.passwordTextField setStringValue:@""];
   [self.keyPathControl setURL:nil];
   [self.errorInfoTextField setHidden:YES];
