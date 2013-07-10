@@ -12,7 +12,7 @@
 @implementation MPDatabaseCreation
 
 - (void)testCreateDatabaseVersion1 {
-
+  STFail(@"Not implemented");
 }
 
 - (void)testCreateDatabaseVersion2 {
@@ -20,6 +20,7 @@
   STAssertNotNil(document, @"Document should be created");
   STAssertTrue(document.version == MPDatabaseVersion4, @"Database should be Version2");
   STAssertNotNil(document.treeV4, @"Database Tree needs to be Kdb4Tree");
+  STFail(@"Not implemented");
 }
 
 @end

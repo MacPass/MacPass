@@ -40,7 +40,7 @@
 }
 
 - (void)testLoadDatabaseVerions2 {
-  //STFail(@"Not implemented");
+  STFail(@"Not implemented");
 }
 
 @end
