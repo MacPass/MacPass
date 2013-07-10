@@ -15,7 +15,7 @@
   
   Kdb4Tree *tree = [[Kdb4Tree alloc] init];
   tree.generator = @"MacPass";
-  tree.databaseName = NSLocalizedString(@"NEW_DATABASE", "Name for a newly created Database");
+  tree.databaseName = NSLocalizedString(@"DATABASE", "");
   tree.databaseNameChanged = currentTime;
   tree.databaseDescription = @"";
   tree.databaseDescriptionChanged = currentTime;
@@ -42,32 +42,32 @@
   tree.lastTopVisibleGroup = [UUID nullUuid];
   
   KdbGroup *parentGroup = [tree createGroup:nil];
-  parentGroup.name = @"General";
+  parentGroup.name = NSLocalizedString(@"GENERAL", "General");
   parentGroup.image = 48;
   tree.root = parentGroup;
   
   KdbGroup *group = [tree createGroup:parentGroup];
-  group.name = @"Windows";
+  group.name = NSLocalizedString(@"WINDOWS", "Windows");
   group.image = 38;
   [parentGroup addGroup:group];
   
   group = [tree createGroup:parentGroup];
-  group.name = @"Network";
+  group.name = NSLocalizedString(@"NETWORK", "Network");
   group.image = 3;
   [parentGroup addGroup:group];
   
   group = [tree createGroup:parentGroup];
-  group.name = @"Internet";
+  group.name = NSLocalizedString(@"INTERNET", "Internet");
   group.image = 1;
   [parentGroup addGroup:group];
   
   group = [tree createGroup:parentGroup];
-  group.name = @"eMail";
+  group.name = NSLocalizedString(@"EMAIL", "EMail");
   group.image = 19;
   [parentGroup addGroup:group];
   
   group = [tree createGroup:parentGroup];
-  group.name = @"Homebanking";
+  group.name = NSLocalizedString(@"HOMEBANKING", "Homebanking");
   group.image = 37;
   [parentGroup addGroup:group];
   

@@ -408,14 +408,23 @@ NSString *const MPDocumentGroupKey                    = @"MPDocumentGroupKey";
 #pragma mark Actions
 
 - (void)emptyTrash:(id)sender {
-  for(KdbEntry *entry in [self.trash childEntries]) {
-    [[self undoManager] removeAllActionsWithTarget:entry];
-  }
-  for(KdbGroup *group in [self.trash childGroups]) {
-    [[self undoManager] removeAllActionsWithTarget:group];
-  }
+  NSAlert *alert = [[NSAlert alloc] init];
+  [alert setAlertStyle:NSWarningAlertStyle];
+  [alert setMessageText:NSLocalizedString(@"WARNING_ON_EMPTY_TRASH_TITLE", "")];
+  [alert setInformativeText:NSLocalizedString(@"WARNING_ON_EMPTY_TRASH_DESCRIPTION", "Informative Text displayed when clearing the Trash")];
+  [alert addButtonWithTitle:NSLocalizedString(@"EMPTY_TRASH", "Empty Trash")];
+  [alert addButtonWithTitle:NSLocalizedString(@"CANCEL", "Cancel")];
   
-  [self.trash clear];
+  [[alert buttons][1] setKeyEquivalent:[NSString stringWithFormat:@"%c", 0x1b]];
+  
+  NSWindow *window = [[self windowControllers][0] window];
+  [alert beginSheetModalForWindow:window modalDelegate:self didEndSelector:@selector(alertDidEnd:returnCode:contextInfo:) contextInfo:NULL];
+}
+
+- (void) alertDidEnd:(NSAlert *)alert returnCode:(NSInteger)returnCode contextInfo:(void *)contextInfo {
+  if(returnCode == NSAlertFirstButtonReturn) {
+    [self _emptyTrash];
+  }
 }
 
 - (BOOL)validateMenuItem:(NSMenuItem *)menuItem {
@@ -448,7 +457,7 @@ NSString *const MPDocumentGroupKey                    = @"MPDocumentGroupKey";
   }
   else if(self.version == MPDatabaseVersion4) {
     KdbGroup *trash = [self.tree createGroup:self.tree.root];
-    trash.name = NSLocalizedString(@"TRASH_GROUP", @"Name for the trash group");
+    trash.name = NSLocalizedString(@"TRASH", @"Name for the trash group");
     trash.image = MPIconTrash;
     [self.tree.root insertObject:trash inGroupsAtIndex:[self.tree.root.groups count]];
     self.treeV4.recycleBinUuid = ((Kdb4Group *)trash).uuid;
@@ -458,6 +467,16 @@ NSString *const MPDocumentGroupKey                    = @"MPDocumentGroupKey";
     NSAssert(NO, @"Database with unknown version: %ld", _version);
     return nil;
   }
+}
+
+- (void)_emptyTrash {
+  for(KdbEntry *entry in [self.trash childEntries]) {
+    [[self undoManager] removeAllActionsWithTarget:entry];
+  }
+  for(KdbGroup *group in [self.trash childGroups]) {
+    [[self undoManager] removeAllActionsWithTarget:group];
+  }
+  [self.trash clear];
 }
 
 @end

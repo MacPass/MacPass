@@ -10,6 +10,7 @@
 		4C01C23F1764D2980016D5D0 /* KdbEntry+Undo.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C01C23E1764D2980016D5D0 /* KdbEntry+Undo.m */; };
 		4C01C2421764D8980016D5D0 /* MPContextMenuHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C01C2411764D8980016D5D0 /* MPContextMenuHelper.m */; };
 		4C01C245176500C40016D5D0 /* HNHLevelIndicatorCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C01C244176500C40016D5D0 /* HNHLevelIndicatorCell.m */; };
+		4C10412C178CDD44001B5239 /* NSDate+Humanized.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C10412B178CDD44001B5239 /* NSDate+Humanized.m */; };
 		4C16BA6217879A3C002B42BD /* MPPasswordStringFormatter.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C16BA6117879A3C002B42BD /* MPPasswordStringFormatter.m */; };
 		4C1DDCDD1711ECEB00C98DA3 /* PasswordCreatorWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4C1DDCDC1711ECEB00C98DA3 /* PasswordCreatorWindow.xib */; };
 		4C22040D1746ED160054C916 /* KdbGroup+Undo.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C22040C1746ED160054C916 /* KdbGroup+Undo.m */; };
@@ -209,6 +210,8 @@
 		4C01C2411764D8980016D5D0 /* MPContextMenuHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MPContextMenuHelper.m; sourceTree = "<group>"; };
 		4C01C243176500C40016D5D0 /* HNHLevelIndicatorCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HNHLevelIndicatorCell.h; sourceTree = "<group>"; };
 		4C01C244176500C40016D5D0 /* HNHLevelIndicatorCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HNHLevelIndicatorCell.m; sourceTree = "<group>"; };
+		4C10412A178CDD44001B5239 /* NSDate+Humanized.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDate+Humanized.h"; sourceTree = "<group>"; };
+		4C10412B178CDD44001B5239 /* NSDate+Humanized.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDate+Humanized.m"; sourceTree = "<group>"; };
 		4C16BA6017879A3C002B42BD /* MPPasswordStringFormatter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MPPasswordStringFormatter.h; sourceTree = "<group>"; };
 		4C16BA6117879A3C002B42BD /* MPPasswordStringFormatter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MPPasswordStringFormatter.m; sourceTree = "<group>"; };
 		4C1DDCDC1711ECEB00C98DA3 /* PasswordCreatorWindow.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PasswordCreatorWindow.xib; sourceTree = "<group>"; };
@@ -612,6 +615,15 @@
 				4C5FE9AD17843CE20001D5A8 /* MPSelectedAttachmentTableCellView.m */,
 			);
 			name = Views;
+			sourceTree = "<group>";
+		};
+		4C104129178CDD26001B5239 /* Categories */ = {
+			isa = PBXGroup;
+			children = (
+				4C10412A178CDD44001B5239 /* NSDate+Humanized.h */,
+				4C10412B178CDD44001B5239 /* NSDate+Humanized.m */,
+			);
+			name = Categories;
 			sourceTree = "<group>";
 		};
 		4C16BA5F1787997E002B42BD /* ValueTransformer */ = {
@@ -1050,6 +1062,7 @@
 		4C77E36C15B84A240093A587 /* MacPass */ = {
 			isa = PBXGroup;
 			children = (
+				4C104129178CDD26001B5239 /* Categories */,
 				4C245C11176E22150086100E /* KeepassHttp */,
 				4C46B8821706397A0046109A /* Security Additions */,
 				4C2C4C2516D3BCEA00D49295 /* KeePassLib Categories */,
@@ -1535,6 +1548,7 @@
 				4C3666411787327E00B249F1 /* MPDocument+Attachments.m in Sources */,
 				4C16BA6217879A3C002B42BD /* MPPasswordStringFormatter.m in Sources */,
 				4CD6C5AE1789FDE6000891F6 /* HNHRoundedSecureTextField.m in Sources */,
+				4C10412C178CDD44001B5239 /* NSDate+Humanized.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

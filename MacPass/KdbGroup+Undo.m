@@ -10,13 +10,6 @@
 #import "KdbGroup+KVOAdditions.h"
 #import "KdbEntry+Undo.h"
 
-#ifndef MPSetActionName
-#define MPSetActionName(key, comment) \
-if(![[self undoManager] isUndoing]) {\
-[[self undoManager] setActionName:[[NSBundle mainBundle] localizedStringForKey:(key) value:@"" table:nil]];\
-}
-#endif
-
 NSString *const MPGroupNameUndoableKey = @"nameUndoable";
 
 @implementation KdbGroup (Undo)
@@ -31,7 +24,11 @@ NSString *const MPGroupNameUndoableKey = @"nameUndoable";
 
 - (void)setNameUndoable:(NSString *)newName {
   [[self undoManager] registerUndoWithTarget:self selector:@selector(setNameUndoable:) object:self.name];
-  MPSetActionName(@"SET_NAME", "Set Name")
+  
+  if(![[self undoManager] isUndoing]) {
+    [[self undoManager] setActionName:NSLocalizedString(@"SET_NAME", "Set Name")];
+  }
+  
   self.name = newName;
 }
 
@@ -44,19 +41,26 @@ NSString *const MPGroupNameUndoableKey = @"nameUndoable";
     return; // Inconsistent data
   }
   [[[self undoManager] prepareWithInvocationTarget:self.parent] addGroupUndoable:self atIndex:oldIndex];
-  MPSetActionName(@"DELETE_GROUP", "Delete Group")
-  [self.parent removeObjectFromGroupsAtIndex:[self.parent.groups indexOfObject:self]];
+
+  if(![[self undoManager] isUndoing]) {
+    [[self undoManager] setActionName:NSLocalizedString(@"DELETE_GROUP", "Delete Group")];
+  }
+
+  [self.parent removeObjectFromGroupsAtIndex:oldIndex];
 }
 
 - (void)addGroupUndoable:(KdbGroup *)group atIndex:(NSUInteger)index {
   if(!group) {
     return;
   }
-  if(index < [group.groups count]) {
-    return; // Wrong index!
-  }
+  
   [[[self undoManager] prepareWithInvocationTarget:group] deleteUndoable];
-  MPSetActionName(@"ADD_GROUP", "Add Group")
+  
+  if(![[self undoManager] isUndoing]) {
+    [[self undoManager] setActionName:NSLocalizedString(@"ADD_GROUP", "Add Group")];
+  }
+  
+  index = MIN(index, [group.groups count]);
   [self insertObject:group inGroupsAtIndex:index];
 }
 
@@ -64,53 +68,40 @@ NSString *const MPGroupNameUndoableKey = @"nameUndoable";
   if(!entry) {
     return;
   }
-  if(index > [self.entries count]) {
-    return; // Wrong index!
-  }
+  index = MIN(index, [self.entries count]);
   [[[self undoManager] prepareWithInvocationTarget:entry] deleteUndoable];
-  MPSetActionName(@"ADD_ENTRY", "Add Entry")
+  
+  if(![[self undoManager] isUndoing]) {
+    [[self undoManager] setActionName:NSLocalizedString(@"ADD_ENTRY", "Add Entry")];
+  }
+  
   [self insertObject:entry inEntriesAtIndex:index];
 }
 
 - (void)moveToGroupUndoable:(KdbGroup *)group atIndex:(NSUInteger)index {
-  if(!self.parent || !group) {
-    return; // No target or origin
-  }
-  NSUInteger oldIndex = [self.parent.groups indexOfObject:self];
-  if(index == NSNotFound) {
-    return; // We aren't in our parents groups list.
-  }
-  [[[self undoManager] prepareWithInvocationTarget:self] moveToGroupUndoable:self.parent atIndex:oldIndex];
-  MPSetActionName(@"MOVE_GROUP", "Move Group")
-  [self.parent removeObjectFromGroupsAtIndex:oldIndex];
-  [group insertObject:self inGroupsAtIndex:index];
+  [self _moveToGroup:group atIndex:index actionName:NSLocalizedString(@"MOVE_GROUP", "Move Group" )];
 }
 
 - (void)moveToTrashUndoable:(KdbGroup *)trash atIndex:(NSUInteger)index {
-  if(!self.parent || !trash) {
-    return; // No target or origin
-  }
-  NSUInteger oldIndex = [self.parent.groups indexOfObject:self];
-  if(index == NSNotFound) {
-    return; // We aren't in our parents groups list.
-  }
-  [[[self undoManager] prepareWithInvocationTarget:self] restoreFromTrashUndoable:self.parent atIndex:oldIndex];
-  MPSetActionName(@"MOVE_TO_TRASH", @"Move to Trash")
-  [self.parent removeObjectFromGroupsAtIndex:oldIndex];
-  [trash insertObject:self inGroupsAtIndex:index];
+  [self _moveToGroup:trash atIndex:index actionName:NSLocalizedString(@"TRASH_GROUP", "Move Group to Trash")];
 }
 
-- (void)restoreFromTrashUndoable:(KdbGroup *)group atIndex:(NSUInteger)index {
+- (void)_moveToGroup:(KdbGroup *)group atIndex:(NSUInteger)index actionName:(NSString *)actionName {
   if(!self.parent || !group) {
     return; // No target or origin
   }
   NSUInteger oldIndex = [self.parent.groups indexOfObject:self];
-  if(index == NSNotFound) {
+  if(oldIndex == NSNotFound) {
     return; // We aren't in our parents groups list.
   }
-  [[[self undoManager] prepareWithInvocationTarget:self] moveToTrashUndoable:self.parent atIndex:oldIndex];
-  MPSetActionName(@"RESTORE_GROUP", "Restore from Trash")
+  [[[self undoManager] prepareWithInvocationTarget:self] moveToGroupUndoable:self.parent atIndex:oldIndex];
+  
+  if(![[self undoManager] isUndoing]) {
+    [[self undoManager] setActionName:actionName];
+  }
+  
   [self.parent removeObjectFromGroupsAtIndex:oldIndex];
+  index = MIN(index, [group.groups count]);
   [group insertObject:self inGroupsAtIndex:index];
 }
 

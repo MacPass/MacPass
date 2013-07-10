@@ -39,6 +39,8 @@ NSString *const _MPOutlinveViewHeaderViewIdentifier = @"HeaderCell";
 @property (strong) MPOutlineDataSource *datasource;
 @property (strong) NSMenu *menu;
 
+@property (copy, nonatomic) NSString *databaseNameWrapper;
+
 @end
 
 @implementation MPOutlineViewController
@@ -53,6 +55,7 @@ NSString *const _MPOutlinveViewHeaderViewIdentifier = @"HeaderCell";
     _treeController = [[NSTreeController alloc] init];
     _bindingEstablished = NO;
     _datasource = [[MPOutlineDataSource alloc] init];
+    _databaseNameWrapper = NSLocalizedString(@"NEW_DATABASE", "Name for a newly created Database");
   }
   
   return self;
@@ -76,6 +79,9 @@ NSString *const _MPOutlinveViewHeaderViewIdentifier = @"HeaderCell";
     [_treeController setChildrenKeyPath:@"groups"];
     [_treeController bind:NSContentBinding toObject:document withKeyPath:@"rootAdapter" options:nil];
     [_outlineView bind:NSContentBinding toObject:_treeController withKeyPath:@"arrangedObjects" options:nil];
+    if([document.tree respondsToSelector:@selector(databaseName)]) {
+      [self bind:@"databaseNameWrapper" toObject:document.tree withKeyPath:@"databaseName" options:nil];
+    }
     [_outlineView setDataSource:self.datasource];
     _bindingEstablished = YES;
   }
@@ -83,7 +89,7 @@ NSString *const _MPOutlinveViewHeaderViewIdentifier = @"HeaderCell";
   [_outlineView expandItem:node expandChildren:YES];
 }
 
-#pragma makr Notifications
+#pragma mark Notifications
 - (void)setupNotifications:(MPDocumentWindowController *)windowController {
   [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(_didCreateGroup:) name:MPDocumentDidAddGroupNotification object:[windowController document]];
 }
@@ -105,6 +111,17 @@ NSString *const _MPOutlinveViewHeaderViewIdentifier = @"HeaderCell";
     id item = [_outlineView itemAtRow:selectedRow];
     [_outlineView expandItem:item];
     indexSet = [NSIndexSet indexSetWithIndex:selectedRow + 1];
+  }
+}
+
+- (void)setDatabaseNameWrapper:(NSString *)databaseNameWrapper {
+  if(![_databaseNameWrapper isEqualToString:databaseNameWrapper]) {
+    if([databaseNameWrapper length] == 0) {
+      _databaseNameWrapper = NSLocalizedString(@"DATABASE", "Default name database");
+    }
+    else {
+      _databaseNameWrapper= [databaseNameWrapper copy];
+    }
   }
 }
 
@@ -135,13 +152,7 @@ NSString *const _MPOutlinveViewHeaderViewIdentifier = @"HeaderCell";
   if( [self _itemIsRootNodeAdapter:item] ) {
     //NSDictionary *options = @{ NSValueTransformerBindingOption : [NSValueTransformer valueTransformerForName:MPUppsercaseStringValueTransformerName] };
     view = [outlineView makeViewWithIdentifier:_MPOutlinveViewHeaderViewIdentifier owner:self];
-    MPRootAdapter *rootNode = [item representedObject];
-    if([rootNode.tree respondsToSelector:@selector(databaseName)]) {
-      [view.textField bind:NSValueBinding toObject:rootNode.tree withKeyPath:@"databaseName" options:nil];
-    }
-    else {
-      [view.textField setStringValue:NSLocalizedString(@"GROUPS", @"")];
-    }
+    [view.textField bind:NSValueBinding toObject:self  withKeyPath:@"databaseNameWrapper" options:nil];
   }
   else {
     KdbGroup *group = [item representedObject];

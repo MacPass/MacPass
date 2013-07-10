@@ -21,6 +21,8 @@
 #import "MPCustomFieldTableCellView.h"
 #import "MPSelectedAttachmentTableCellView.h"
 
+#import "NSDate+Humanized.h"
+
 #import "KdbLib.h"
 #import "Kdb4Node.h"
 #import "Kdb3Node.h"
@@ -128,6 +130,9 @@ enum {
   NSString *modificationString = [NSDateFormatter localizedStringFromDate:modificationDate
                                                                 dateStyle:NSDateFormatterShortStyle
                                                                 timeStyle:NSDateFormatterShortStyle];
+  
+  modificationString = [modificationDate humanized];
+  
   NSString *modifedAtTemplate = NSLocalizedString(@"MODIFED_AT_%@", @"Modifed at template string. %@ is replaced by locaized date and time");
   [self.modifiedTextField setStringValue:[NSString stringWithFormat:modifedAtTemplate, modificationString]];
   
@@ -137,6 +142,7 @@ enum {
   NSString *creationString = [NSDateFormatter localizedStringFromDate:creationDate
                                                             dateStyle:NSDateFormatterShortStyle
                                                             timeStyle:NSDateFormatterShortStyle];
+  creationString = [creationDate humanized];
   
   NSString *createdAtTemplate = NSLocalizedString(@"CREATED_AT_%@", @"Created at template string. %@ is replaced by locaized date and time");
   [self.createdTextField setStringValue:[NSString stringWithFormat:createdAtTemplate, creationString]];

@@ -122,7 +122,7 @@ if(![[self undoManager] isUndoing]) {\
     [[self undoManager] setActionName:NSLocalizedString(@"DELETE_ENTRY", "Set Title")];
   }
   
-  [[NSNotificationCenter defaultCenter] postNotificationName:@"" object:self userInfo:nil];
+  //[[NSNotificationCenter defaultCenter] postNotificationName:@"" object:self userInfo:nil];
   [self.parent removeObjectFromEntriesAtIndex:oldIndex];
 }
 
@@ -131,7 +131,7 @@ if(![[self undoManager] isUndoing]) {\
 }
 
 - (void)moveToTrashUndoable:(KdbGroup *)trash atIndex:(NSUInteger)index {
-  [self _moveToGroup:trash atIndex:index actionName:NSLocalizedString(@"MOVE_ENTRY_TO_TRASH", "Move Entryo to Trash")];
+  [self _moveToGroup:trash atIndex:index actionName:NSLocalizedString(@"TRASH_ENTRY", "Move Entry to Trash")];
 }
 
 - (void)_moveToGroup:(KdbGroup *)group atIndex:(NSUInteger)index actionName:(NSString *)name {
@@ -149,6 +149,8 @@ if(![[self undoManager] isUndoing]) {\
   }
   
   [self.parent removeObjectFromEntriesAtIndex:oldIndex];
+  // Old indices might be wrong, correct them if necessary
+  index = MIN(index, [group.entries count]);
   [group insertObject:self inEntriesAtIndex:index];
 }
 
