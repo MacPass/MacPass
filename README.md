@@ -13,11 +13,11 @@ The Project is in heavy development. Beware that I'm going to shift things aroun
 Since github now provides a release feature, I'm trying to upload binaries on all the tags I create along the way.
 Use it with caution, it's unfinished. Really!
 
-All releases can be found at [Github](https://github.com/mstarke/MacPass/releases) are server from Github.
+All releases can be found at [Github](https://github.com/mstarke/MacPass/releases).
 
 ##Known Major Issues
 
-* Databas V1 handling is dodgy. (e.g. ttachments)
+* Databas V1 handling is dodgy. (e.g. attachments)
 
 ##System Requirement
 
