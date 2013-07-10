@@ -12,6 +12,7 @@
 		4C01C245176500C40016D5D0 /* HNHLevelIndicatorCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C01C244176500C40016D5D0 /* HNHLevelIndicatorCell.m */; };
 		4C10412C178CDD44001B5239 /* NSDate+Humanized.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C10412B178CDD44001B5239 /* NSDate+Humanized.m */; };
 		4C16BA6217879A3C002B42BD /* MPPasswordStringFormatter.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C16BA6117879A3C002B42BD /* MPPasswordStringFormatter.m */; };
+		4C18F9AB178E122500890BCE /* Test_Password_1234.kdb in Resources */ = {isa = PBXBuildFile; fileRef = 4C18F9AA178E122500890BCE /* Test_Password_1234.kdb */; };
 		4C1DDCDD1711ECEB00C98DA3 /* PasswordCreatorWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4C1DDCDC1711ECEB00C98DA3 /* PasswordCreatorWindow.xib */; };
 		4C22040D1746ED160054C916 /* KdbGroup+Undo.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C22040C1746ED160054C916 /* KdbGroup+Undo.m */; };
 		4C245B76176E1E3D0086100E /* DDData.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C245A6A176E1E3C0086100E /* DDData.m */; };
@@ -64,6 +65,11 @@
 		4C3FFD9E16DAF60600DF9186 /* FilterBar.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4C3FFD9D16DAF60600DF9186 /* FilterBar.xib */; };
 		4C431BCD16E2A82800700A81 /* MPPasteBoardController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C431BCC16E2A82700700A81 /* MPPasteBoardController.m */; };
 		4C431BCF16E2BAB000700A81 /* OverlayWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4C431BCE16E2BAB000700A81 /* OverlayWindow.xib */; };
+		4C45FB1C178E09ED0010007D /* SenTestingKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4C45FB1B178E09ED0010007D /* SenTestingKit.framework */; };
+		4C45FB1D178E09ED0010007D /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4C77E36615B84A240093A587 /* Cocoa.framework */; };
+		4C45FB23178E09ED0010007D /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 4C45FB21178E09ED0010007D /* InfoPlist.strings */; };
+		4C45FB2D178E0BCB0010007D /* MPDatabaseLoadingTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C45FB2C178E0BCB0010007D /* MPDatabaseLoadingTest.m */; };
+		4C45FB30178E0CE20010007D /* MPDatabaseCreation.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C45FB2F178E0CE20010007D /* MPDatabaseCreation.m */; };
 		4C46B88517063A070046109A /* NSString+MPPasswordCreation.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C46B88417063A070046109A /* NSString+MPPasswordCreation.m */; };
 		4C46B88817063A170046109A /* NSString+PasswordStrength.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C46B88717063A170046109A /* NSString+PasswordStrength.m */; };
 		4C46E09E17673A0A00DA62E8 /* HNHShadowBox.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C46E09D17673A0A00DA62E8 /* HNHShadowBox.m */; };
@@ -214,6 +220,7 @@
 		4C10412B178CDD44001B5239 /* NSDate+Humanized.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDate+Humanized.m"; sourceTree = "<group>"; };
 		4C16BA6017879A3C002B42BD /* MPPasswordStringFormatter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MPPasswordStringFormatter.h; sourceTree = "<group>"; };
 		4C16BA6117879A3C002B42BD /* MPPasswordStringFormatter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MPPasswordStringFormatter.m; sourceTree = "<group>"; };
+		4C18F9AA178E122500890BCE /* Test_Password_1234.kdb */ = {isa = PBXFileReference; lastKnownFileType = file; name = Test_Password_1234.kdb; path = Databases/Test_Password_1234.kdb; sourceTree = "<group>"; };
 		4C1DDCDC1711ECEB00C98DA3 /* PasswordCreatorWindow.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PasswordCreatorWindow.xib; sourceTree = "<group>"; };
 		4C22040B1746ED160054C916 /* KdbGroup+Undo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "KdbGroup+Undo.h"; sourceTree = "<group>"; };
 		4C22040C1746ED160054C916 /* KdbGroup+Undo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "KdbGroup+Undo.m"; sourceTree = "<group>"; };
@@ -310,6 +317,15 @@
 		4C431BCB16E2A82700700A81 /* MPPasteBoardController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MPPasteBoardController.h; sourceTree = "<group>"; };
 		4C431BCC16E2A82700700A81 /* MPPasteBoardController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MPPasteBoardController.m; sourceTree = "<group>"; };
 		4C431BCE16E2BAB000700A81 /* OverlayWindow.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = OverlayWindow.xib; sourceTree = "<group>"; };
+		4C45FB1A178E09ED0010007D /* MacPassTests.octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MacPassTests.octest; sourceTree = BUILT_PRODUCTS_DIR; };
+		4C45FB1B178E09ED0010007D /* SenTestingKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SenTestingKit.framework; path = Library/Frameworks/SenTestingKit.framework; sourceTree = DEVELOPER_DIR; };
+		4C45FB20178E09ED0010007D /* MacPassTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "MacPassTests-Info.plist"; sourceTree = "<group>"; };
+		4C45FB22178E09ED0010007D /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		4C45FB27178E09ED0010007D /* MacPassTests-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "MacPassTests-Prefix.pch"; sourceTree = "<group>"; };
+		4C45FB2B178E0BCB0010007D /* MPDatabaseLoadingTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MPDatabaseLoadingTest.h; sourceTree = "<group>"; };
+		4C45FB2C178E0BCB0010007D /* MPDatabaseLoadingTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MPDatabaseLoadingTest.m; sourceTree = "<group>"; };
+		4C45FB2E178E0CE20010007D /* MPDatabaseCreation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MPDatabaseCreation.h; sourceTree = "<group>"; };
+		4C45FB2F178E0CE20010007D /* MPDatabaseCreation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MPDatabaseCreation.m; sourceTree = "<group>"; };
 		4C46B88317063A070046109A /* NSString+MPPasswordCreation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+MPPasswordCreation.h"; sourceTree = "<group>"; };
 		4C46B88417063A070046109A /* NSString+MPPasswordCreation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+MPPasswordCreation.m"; sourceTree = "<group>"; };
 		4C46B88617063A170046109A /* NSString+PasswordStrength.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+PasswordStrength.h"; sourceTree = "<group>"; };
@@ -573,6 +589,15 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		4C45FB16178E09ED0010007D /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				4C45FB1C178E09ED0010007D /* SenTestingKit.framework in Frameworks */,
+				4C45FB1D178E09ED0010007D /* Cocoa.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		4C77E35F15B84A240093A587 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -635,6 +660,14 @@
 				4CF6C710176F4533007A811D /* MPStringLengthValueTransformer.m */,
 			);
 			name = ValueTransformer;
+			sourceTree = "<group>";
+		};
+		4C18F9AC178E123200890BCE /* Databases */ = {
+			isa = PBXGroup;
+			children = (
+				4C18F9AA178E122500890BCE /* Test_Password_1234.kdb */,
+			);
+			name = Databases;
 			sourceTree = "<group>";
 		};
 		4C245A64176E1E3C0086100E /* CocoaHTTPServer */ = {
@@ -887,6 +920,29 @@
 			name = Model;
 			sourceTree = "<group>";
 		};
+		4C45FB1E178E09ED0010007D /* MacPassTests */ = {
+			isa = PBXGroup;
+			children = (
+				4C18F9AC178E123200890BCE /* Databases */,
+				4C45FB2B178E0BCB0010007D /* MPDatabaseLoadingTest.h */,
+				4C45FB2C178E0BCB0010007D /* MPDatabaseLoadingTest.m */,
+				4C45FB2E178E0CE20010007D /* MPDatabaseCreation.h */,
+				4C45FB2F178E0CE20010007D /* MPDatabaseCreation.m */,
+				4C45FB1F178E09ED0010007D /* Supporting Files */,
+			);
+			path = MacPassTests;
+			sourceTree = "<group>";
+		};
+		4C45FB1F178E09ED0010007D /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				4C45FB20178E09ED0010007D /* MacPassTests-Info.plist */,
+				4C45FB21178E09ED0010007D /* InfoPlist.strings */,
+				4C45FB27178E09ED0010007D /* MacPassTests-Prefix.pch */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
 		4C46B8821706397A0046109A /* Security Additions */ = {
 			isa = PBXGroup;
 			children = (
@@ -1024,6 +1080,7 @@
 				4C669B2D16760ED100DD0774 /* MiniKeePassLib */,
 				4CAD745415B887FD00104512 /* KissXML */,
 				4C77E36C15B84A240093A587 /* MacPass */,
+				4C45FB1E178E09ED0010007D /* MacPassTests */,
 				4C77E36515B84A240093A587 /* Frameworks */,
 				4C77E36315B84A240093A587 /* Products */,
 			);
@@ -1033,6 +1090,7 @@
 			isa = PBXGroup;
 			children = (
 				4C77E36215B84A240093A587 /* MacPass.app */,
+				4C45FB1A178E09ED0010007D /* MacPassTests.octest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -1044,6 +1102,7 @@
 				4C8FECC716D57E3200BF26CF /* QuartzCore.framework */,
 				4CAD748B15B889B700104512 /* Security.framework */,
 				4C77E36615B84A240093A587 /* Cocoa.framework */,
+				4C45FB1B178E09ED0010007D /* SenTestingKit.framework */,
 				4C77E36815B84A240093A587 /* Other Frameworks */,
 			);
 			name = Frameworks;
@@ -1280,6 +1339,24 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
+		4C45FB19178E09ED0010007D /* MacPassTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 4C45FB2A178E09ED0010007D /* Build configuration list for PBXNativeTarget "MacPassTests" */;
+			buildPhases = (
+				4C45FB15178E09ED0010007D /* Sources */,
+				4C45FB16178E09ED0010007D /* Frameworks */,
+				4C45FB17178E09ED0010007D /* Resources */,
+				4C45FB18178E09ED0010007D /* ShellScript */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = MacPassTests;
+			productName = MacPassTests;
+			productReference = 4C45FB1A178E09ED0010007D /* MacPassTests.octest */;
+			productType = "com.apple.product-type.bundle";
+		};
 		4C77E36115B84A240093A587 /* MacPass */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 4C77E38015B84A240093A587 /* Build configuration list for PBXNativeTarget "MacPass" */;
@@ -1324,11 +1401,21 @@
 			projectRoot = "";
 			targets = (
 				4C77E36115B84A240093A587 /* MacPass */,
+				4C45FB19178E09ED0010007D /* MacPassTests */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
+		4C45FB17178E09ED0010007D /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				4C45FB23178E09ED0010007D /* InfoPlist.strings in Resources */,
+				4C18F9AB178E122500890BCE /* Test_Password_1234.kdb in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		4C77E36015B84A240093A587 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -1382,6 +1469,19 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
+		4C45FB18178E09ED0010007D /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "# Run the unit tests in this test bundle.\n\"${SYSTEM_DEVELOPER_DIR}/Tools/RunUnitTests\"\n";
+		};
 		4CB9339616D3A04100A13B5D /* ShellScript */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -1398,6 +1498,15 @@
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		4C45FB15178E09ED0010007D /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				4C45FB2D178E0BCB0010007D /* MPDatabaseLoadingTest.m in Sources */,
+				4C45FB30178E0CE20010007D /* MPDatabaseCreation.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		4C77E35E15B84A240093A587 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -1555,6 +1664,14 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXVariantGroup section */
+		4C45FB21178E09ED0010007D /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				4C45FB22178E09ED0010007D /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
 		4C76155E1764C04C0015A1A6 /* GeneralSettings.xib */ = {
 			isa = PBXVariantGroup;
 			children = (
@@ -1633,6 +1750,44 @@
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
+		4C45FB28178E09ED0010007D /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/MacPass.app/Contents/MacOS/MacPass";
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				COMBINE_HIDPI_IMAGES = YES;
+				FRAMEWORK_SEARCH_PATHS = "\"$(DEVELOPER_LIBRARY_DIR)/Frameworks\"";
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "MacPassTests/MacPassTests-Prefix.pch";
+				INFOPLIST_FILE = "MacPassTests/MacPassTests-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUNDLE_LOADER)";
+				WRAPPER_EXTENSION = octest;
+			};
+			name = Debug;
+		};
+		4C45FB29178E09ED0010007D /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/MacPass.app/Contents/MacOS/MacPass";
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				COMBINE_HIDPI_IMAGES = YES;
+				FRAMEWORK_SEARCH_PATHS = "\"$(DEVELOPER_LIBRARY_DIR)/Frameworks\"";
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "MacPassTests/MacPassTests-Prefix.pch";
+				INFOPLIST_FILE = "MacPassTests/MacPassTests-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUNDLE_LOADER)";
+				WRAPPER_EXTENSION = octest;
+			};
+			name = Release;
+		};
 		4C77E37E15B84A240093A587 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -1723,6 +1878,15 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		4C45FB2A178E09ED0010007D /* Build configuration list for PBXNativeTarget "MacPassTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				4C45FB28178E09ED0010007D /* Debug */,
+				4C45FB29178E09ED0010007D /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		4C77E35C15B84A240093A587 /* Build configuration list for PBXProject "MacPass" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
