@@ -10,8 +10,8 @@ The Project is in heavy development. Beware that I'm going to shift things aroun
 
 ##Dowload
 
-Since github now provieds a release feature, I'm trying to upload binaries on all the tags I create along the way.
-Use it with caution, it's unfinished finished.
+Since github now provides a release feature, I'm trying to upload binaries on all the tags I create along the way.
+Use it with caution, it's unfinished. Really!
 
 All releases can be found at [Github](https://github.com/mstarke/MacPass/releases) are server from Github.
 
