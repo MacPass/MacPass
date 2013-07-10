@@ -3,54 +3,47 @@
 There a lot of iOS KeePass tools around but a distinct lack of a good OS X Version.
 KeePass can be used via Mono on OS X but lacks vital functionality and feels sluggish.
 
-This is an attempt to create an OS X port that should at least be able to read KeePass files.
+MacPass is an attempt to create an OS X port of KeePass.
 
 ##Disclaimer
-
-The Project is in heavy development and it's likely to take some time till it reaches a usable state.
-Beware that I'm going to shift things around so stuff is going to break. A lot.
+The Project is in heavy development. Beware that I'm going to shift things around so stuff is going to break. A lot.
 
 ##Dowload
 
-I'm trying to upload new builds along the way for all of you that just want to take a quick look.
-As stated in the disclaimer, this software cannot be considered safe for work in it's current development status.
-Use it with caution! Since I did start refactoring the KeePassLib there is even more potential broken code!
+Since github now provieds a release feature, I'm trying to upload binaries on all the tags I create along the way.
+Use it with caution, it's unfinished finished.
 
-[Older Version of MacPass at Dropbox](https://www.dropbox.com/sh/yqgfwi7f8mnd747/NCQlJmg0f0) (build 1882 07/04/2013)
+All releases can be found at [Github](https://github.com/mstarke/MacPass/releases) are server from Github.
 
-All [new Release](https://github.com/mstarke/MacPass/releases) are server from Github.
+##Known Major Issues
 
-##Known Issues
+* Databas V1 handling is dodgy. (e.g. ttachments)
 
-* Undo/Redo get's messed up when the Trash (=RecylcleBin in KeePass terms) is enabled/used
-* Drag and Drop in Outline/Entry View broken
+##System Requirement
 
-##Help
-
-I'm in constant need of a full set of Databases with all possible keyfile/password and format combinations.
-If you are able to provide databases with keyfiles (Hashed, Binary, XML) I would love to hear from you!
-
-##Requirement
-
-MacPass needs OS X 10.8 as a minimum OS version since it takes advantage of some of the enhancements in Autolayout in 10.8.
-It might be possible to target 10.7 but with the upcomming 10.9 release, I think 10.8 is a feasable minimum.
+The Minimum OS X Version for MacPass currently is 10.8 Mountain Lion.
+With 10.9 Mavericks around the corner, I'm a bit hesitant to support 10.7 Lion.
 
 ##Status
 
-Take a look at the [Wiki](https://github.com/mstarke/MacPass/wiki/Status)
-
-##Alternatives
-
-Currently there is an alpha Version available of [KeePassX](http://www.keepassx.org).
-It's Qt based KeePass manager, than can handle KeePass 1 and 2 containers rather nicely.
-Compared to running KeePass with Mono it very fast and remarkably stable for an alpha relaese.
-Feel free to give it a try. The biggest draw-back is it's inablity to create passwords via a wizzard.
+The Status can be found on the dedicated [Wiki page](https://github.com/mstarke/MacPass/wiki/Status).
 
 ##What does it look like?
 
 ![image](https://raw.github.com/mstarke/MacPass/master/Assets/Screenshots/MacPass.png)
 
 More Screenshots in the [Wiki](https://github.com/mstarke/MacPass/wiki/Screenshots)
+
+##Alternatives
+
+[KeePassX](http://www.keepassx.org) is a Qt based KeePass port, than can read Databases Version 1 and 2 and write Version 2 containers rather nicely.
+It's in active development, open source. Sadly there's only an older alpha binary release. It fully supports all database features.
+
+[KyPass Companion](http://www.kyuran.be/logiciels/kypass4mac/) is a native Cocoa port and offers KeePassHttp compatiblity.
+Should be able to read and write version 1 and 2 database. Is closed source and in early development. Beta releases have an expiry date. Not all database features are fully supported.
+
+[S3crets](http://s3crets.com/en/help/) native Cocoa Port with a different approach to displaying the database fully inside a tree.
+Is able to read and write version 1 and 2 databases. Not all database features are fully supported.
 
 ##License
 
