@@ -13,6 +13,8 @@
 		4C10412C178CDD44001B5239 /* NSDate+Humanized.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C10412B178CDD44001B5239 /* NSDate+Humanized.m */; };
 		4C16BA6217879A3C002B42BD /* MPPasswordStringFormatter.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C16BA6117879A3C002B42BD /* MPPasswordStringFormatter.m */; };
 		4C18F9AB178E122500890BCE /* Test_Password_1234.kdb in Resources */ = {isa = PBXBuildFile; fileRef = 4C18F9AA178E122500890BCE /* Test_Password_1234.kdb */; };
+		4C19E500178E26EF002F2CD0 /* Test_Password_1234.kdbx in Resources */ = {isa = PBXBuildFile; fileRef = 4C19E4FF178E26EF002F2CD0 /* Test_Password_1234.kdbx */; };
+		4C19E503178E2871002F2CD0 /* MPDatabasePasswordAndKeyfile.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C19E502178E2871002F2CD0 /* MPDatabasePasswordAndKeyfile.m */; };
 		4C1DDCDD1711ECEB00C98DA3 /* PasswordCreatorWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4C1DDCDC1711ECEB00C98DA3 /* PasswordCreatorWindow.xib */; };
 		4C22040D1746ED160054C916 /* KdbGroup+Undo.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C22040C1746ED160054C916 /* KdbGroup+Undo.m */; };
 		4C245B76176E1E3D0086100E /* DDData.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C245A6A176E1E3C0086100E /* DDData.m */; };
@@ -68,7 +70,7 @@
 		4C45FB1C178E09ED0010007D /* SenTestingKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4C45FB1B178E09ED0010007D /* SenTestingKit.framework */; };
 		4C45FB1D178E09ED0010007D /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4C77E36615B84A240093A587 /* Cocoa.framework */; };
 		4C45FB23178E09ED0010007D /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 4C45FB21178E09ED0010007D /* InfoPlist.strings */; };
-		4C45FB2D178E0BCB0010007D /* MPDatabaseLoadingTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C45FB2C178E0BCB0010007D /* MPDatabaseLoadingTest.m */; };
+		4C45FB2D178E0BCB0010007D /* MPDatabaseLoading.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C45FB2C178E0BCB0010007D /* MPDatabaseLoading.m */; };
 		4C45FB30178E0CE20010007D /* MPDatabaseCreation.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C45FB2F178E0CE20010007D /* MPDatabaseCreation.m */; };
 		4C46B88517063A070046109A /* NSString+MPPasswordCreation.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C46B88417063A070046109A /* NSString+MPPasswordCreation.m */; };
 		4C46B88817063A170046109A /* NSString+PasswordStrength.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C46B88717063A170046109A /* NSString+PasswordStrength.m */; };
@@ -221,6 +223,9 @@
 		4C16BA6017879A3C002B42BD /* MPPasswordStringFormatter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MPPasswordStringFormatter.h; sourceTree = "<group>"; };
 		4C16BA6117879A3C002B42BD /* MPPasswordStringFormatter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MPPasswordStringFormatter.m; sourceTree = "<group>"; };
 		4C18F9AA178E122500890BCE /* Test_Password_1234.kdb */ = {isa = PBXFileReference; lastKnownFileType = file; name = Test_Password_1234.kdb; path = Databases/Test_Password_1234.kdb; sourceTree = "<group>"; };
+		4C19E4FF178E26EF002F2CD0 /* Test_Password_1234.kdbx */ = {isa = PBXFileReference; lastKnownFileType = file; name = Test_Password_1234.kdbx; path = Databases/Test_Password_1234.kdbx; sourceTree = "<group>"; };
+		4C19E501178E2871002F2CD0 /* MPDatabasePasswordAndKeyfile.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MPDatabasePasswordAndKeyfile.h; sourceTree = "<group>"; };
+		4C19E502178E2871002F2CD0 /* MPDatabasePasswordAndKeyfile.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MPDatabasePasswordAndKeyfile.m; sourceTree = "<group>"; };
 		4C1DDCDC1711ECEB00C98DA3 /* PasswordCreatorWindow.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PasswordCreatorWindow.xib; sourceTree = "<group>"; };
 		4C22040B1746ED160054C916 /* KdbGroup+Undo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "KdbGroup+Undo.h"; sourceTree = "<group>"; };
 		4C22040C1746ED160054C916 /* KdbGroup+Undo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "KdbGroup+Undo.m"; sourceTree = "<group>"; };
@@ -322,8 +327,8 @@
 		4C45FB20178E09ED0010007D /* MacPassTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "MacPassTests-Info.plist"; sourceTree = "<group>"; };
 		4C45FB22178E09ED0010007D /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		4C45FB27178E09ED0010007D /* MacPassTests-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "MacPassTests-Prefix.pch"; sourceTree = "<group>"; };
-		4C45FB2B178E0BCB0010007D /* MPDatabaseLoadingTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MPDatabaseLoadingTest.h; sourceTree = "<group>"; };
-		4C45FB2C178E0BCB0010007D /* MPDatabaseLoadingTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MPDatabaseLoadingTest.m; sourceTree = "<group>"; };
+		4C45FB2B178E0BCB0010007D /* MPDatabaseLoading.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MPDatabaseLoading.h; sourceTree = "<group>"; };
+		4C45FB2C178E0BCB0010007D /* MPDatabaseLoading.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MPDatabaseLoading.m; sourceTree = "<group>"; };
 		4C45FB2E178E0CE20010007D /* MPDatabaseCreation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MPDatabaseCreation.h; sourceTree = "<group>"; };
 		4C45FB2F178E0CE20010007D /* MPDatabaseCreation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MPDatabaseCreation.m; sourceTree = "<group>"; };
 		4C46B88317063A070046109A /* NSString+MPPasswordCreation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+MPPasswordCreation.h"; sourceTree = "<group>"; };
@@ -665,6 +670,7 @@
 		4C18F9AC178E123200890BCE /* Databases */ = {
 			isa = PBXGroup;
 			children = (
+				4C19E4FF178E26EF002F2CD0 /* Test_Password_1234.kdbx */,
 				4C18F9AA178E122500890BCE /* Test_Password_1234.kdb */,
 			);
 			name = Databases;
@@ -924,10 +930,12 @@
 			isa = PBXGroup;
 			children = (
 				4C18F9AC178E123200890BCE /* Databases */,
-				4C45FB2B178E0BCB0010007D /* MPDatabaseLoadingTest.h */,
-				4C45FB2C178E0BCB0010007D /* MPDatabaseLoadingTest.m */,
+				4C45FB2B178E0BCB0010007D /* MPDatabaseLoading.h */,
+				4C45FB2C178E0BCB0010007D /* MPDatabaseLoading.m */,
 				4C45FB2E178E0CE20010007D /* MPDatabaseCreation.h */,
 				4C45FB2F178E0CE20010007D /* MPDatabaseCreation.m */,
+				4C19E501178E2871002F2CD0 /* MPDatabasePasswordAndKeyfile.h */,
+				4C19E502178E2871002F2CD0 /* MPDatabasePasswordAndKeyfile.m */,
 				4C45FB1F178E09ED0010007D /* Supporting Files */,
 			);
 			path = MacPassTests;
@@ -1413,6 +1421,7 @@
 			files = (
 				4C45FB23178E09ED0010007D /* InfoPlist.strings in Resources */,
 				4C18F9AB178E122500890BCE /* Test_Password_1234.kdb in Resources */,
+				4C19E500178E26EF002F2CD0 /* Test_Password_1234.kdbx in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1502,8 +1511,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				4C45FB2D178E0BCB0010007D /* MPDatabaseLoadingTest.m in Sources */,
+				4C45FB2D178E0BCB0010007D /* MPDatabaseLoading.m in Sources */,
 				4C45FB30178E0CE20010007D /* MPDatabaseCreation.m in Sources */,
+				4C19E503178E2871002F2CD0 /* MPDatabasePasswordAndKeyfile.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

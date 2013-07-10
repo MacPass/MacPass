@@ -8,6 +8,6 @@
 
 #import <SenTestingKit/SenTestingKit.h>
 
-@interface MPDatabaseLoadingTest : SenTestCase
+@interface MPDatabaseLoading : SenTestCase
 
 @end
