@@ -45,6 +45,10 @@ Should be able to read and write version 1 and 2 database. Is closed source and 
 [S3crets](http://s3crets.com/en/help/) native Cocoa Port with a different approach to displaying the database fully inside a tree.
 Is able to read and write version 1 and 2 databases. Not all database features are fully supported.
 
+## Help
+
+You might get help in the IRC channel [#macpass](irc://irc.freenode.org/macpass) on [irc.freenode.org](irc://irc.freenode.org)
+
 ##License
 
 MacPass KeePass compatible client for OS X
