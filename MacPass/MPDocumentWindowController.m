@@ -97,7 +97,7 @@ NSString *const MPCurrentItemChangedNotification = @"com.hicknhack.macpass.MPCur
   [[self window] setDelegate:self];
   
   MPDocument *document = [self document];
-  if(!document.isDecrypted) {
+  if(!document.decrypted) {
     [self showPasswordInput];
   }
   else {
@@ -178,7 +178,7 @@ NSString *const MPCurrentItemChangedNotification = @"com.hicknhack.macpass.MPCur
   }
   SEL itemAction = [theItem action];
   if( itemAction == [MPActionHelper actionOfType:MPActionLock]) {
-    return document.isSecured;
+    return document.hasPasswordOrKey;
   }
   if(itemAction == [MPActionHelper actionOfType:MPActionAddEntry]) {
     return (nil != _outlineViewController.selectedGroup);
@@ -211,7 +211,7 @@ NSString *const MPCurrentItemChangedNotification = @"com.hicknhack.macpass.MPCur
 
 - (void)lock:(id)sender {
   MPDocument *document = [self document];
-  if(!document.isSecured) {
+  if(!document.hasPasswordOrKey) {
     return; // Document needs a password/keyfile to be lockable
   }
   if(document.isLocked) {

@@ -61,6 +61,7 @@
 		4C36E5B4177CD4FB00152132 /* Kdb4Tree+KVOAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C36E5B3177CD4FB00152132 /* Kdb4Tree+KVOAdditions.m */; };
 		4C37A6731769393300AD0A40 /* HNHTableHeaderCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C37A6721769393300AD0A40 /* HNHTableHeaderCell.m */; };
 		4C37A84015B8B474005EF8EE /* MPOutlineDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C37A83F15B8B474005EF8EE /* MPOutlineDataSource.m */; };
+		4C39B3F5178FEFAE0027DC7C /* KPKNode.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C39B3F4178FEFAE0027DC7C /* KPKNode.m */; };
 		4C3BD51516D276F800389F1F /* MPToolbarDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C3BD51416D276F800389F1F /* MPToolbarDelegate.m */; };
 		4C3D4C0817594CA40038DAAC /* HNHSeparator.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C3D4C0717594CA40038DAAC /* HNHSeparator.m */; };
 		4C3E1CC0177DEFB3003BD9BD /* StringField+Undo.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C3E1CBF177DEFB3003BD9BD /* StringField+Undo.m */; };
@@ -91,6 +92,7 @@
 		4C586FA016D07D7200E7DB57 /* 01_PackageNetworkTemplate.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 4C586F9F16D07D7200E7DB57 /* 01_PackageNetworkTemplate.pdf */; };
 		4C586FA216D07F6A00E7DB57 /* 02_MessageBoxWarningTemplate.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 4C586FA116D07F6A00E7DB57 /* 02_MessageBoxWarningTemplate.pdf */; };
 		4C58BD4F176370B100B8178C /* HNHBadgedTextField.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C58BD4E176370B100B8178C /* HNHBadgedTextField.m */; };
+		4C591B57178F897A0080B16B /* KPKAttachment.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C591B56178F897A0080B16B /* KPKAttachment.m */; };
 		4C5A11FE1708DE8700223D8A /* MPPasswordCreatorViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C5A11FC1708DE8700223D8A /* MPPasswordCreatorViewController.m */; };
 		4C5A11FF1708DE8800223D8A /* PasswordCreatorView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4C5A11FD1708DE8700223D8A /* PasswordCreatorView.xib */; };
 		4C5BF67B175C01F300D53DF7 /* MPUppercaseStringValueTransformer.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C5BF67A175C01F300D53DF7 /* MPUppercaseStringValueTransformer.m */; };
@@ -136,6 +138,9 @@
 		4C6D1D27178586CA0014C5A5 /* 99_AddFolderTemplate.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 4C6D1D26178586CA0014C5A5 /* 99_AddFolderTemplate.pdf */; };
 		4C6D1D2B17858A250014C5A5 /* MacPass.icns in Resources */ = {isa = PBXBuildFile; fileRef = 4C6D1D2A17858A250014C5A5 /* MacPass.icns */; };
 		4C701CBC178618A000581B88 /* 12_RemoteTemplate.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 4C701CBB178618A000581B88 /* 12_RemoteTemplate.pdf */; };
+		4C70D0FA1790886300652EE9 /* KPKFormat.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C70D0F91790886300652EE9 /* KPKFormat.m */; };
+		4C70D0FD1790924700652EE9 /* KPKParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C70D0FC1790924700652EE9 /* KPKParser.m */; };
+		4C70D100179092F200652EE9 /* KPKPassword.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C70D0FF179092F200652EE9 /* KPKPassword.m */; };
 		4C74DD07177BD1640034A9DB /* MPCustomFieldView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C74DD06177BD1640034A9DB /* MPCustomFieldView.m */; };
 		4C76155C1764C04C0015A1A6 /* GeneralSettings.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4C76155E1764C04C0015A1A6 /* GeneralSettings.xib */; };
 		4C7615681764C0C40015A1A6 /* PasswordInputView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4C76156A1764C0C40015A1A6 /* PasswordInputView.xib */; };
@@ -158,6 +163,7 @@
 		4C888C9016EB6C91003D34A1 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 4C888C8E16EB6C91003D34A1 /* Localizable.strings */; };
 		4C888C9316EB6F5E003D34A1 /* MPToolbarItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C888C9216EB6F5E003D34A1 /* MPToolbarItem.m */; };
 		4C888C9716EB754B003D34A1 /* MPActionHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C888C9616EB754B003D34A1 /* MPActionHelper.m */; };
+		4C8A173D1790AA41008B5C17 /* NSData+Keyfile.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C8A173C1790AA41008B5C17 /* NSData+Keyfile.m */; };
 		4C8FECC816D57E3200BF26CF /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4C8FECC716D57E3200BF26CF /* QuartzCore.framework */; };
 		4C920E2A16DCDFA00083839B /* MPLoggerProxy.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C920E2916DCDFA00083839B /* MPLoggerProxy.m */; };
 		4C9D6AA917615199001C660C /* HNHRoundedSecureTextFieldCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C9D6AA817615199001C660C /* HNHRoundedSecureTextFieldCell.m */; };
@@ -183,6 +189,10 @@
 		4CC672791781D0C0006DEDCF /* KdbGroup+MPAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CC672781781D0C0006DEDCF /* KdbGroup+MPAdditions.m */; };
 		4CC6727C1781D0D2006DEDCF /* KdbEntry+MPAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CC6727B1781D0D2006DEDCF /* KdbEntry+MPAdditions.m */; };
 		4CC7EA1B17807E7E0089D4F3 /* HNHRoundendTextFieldCellHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CC7EA1A17807E7E0089D4F3 /* HNHRoundendTextFieldCellHelper.m */; };
+		4CCE0BDD17902E87007E4EEC /* KPKEntry+Attachments.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CCE0BDC17902E87007E4EEC /* KPKEntry+Attachments.m */; };
+		4CD3ABBA178F71B50073F5C5 /* KPKTree.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CD3ABB4178F71B50073F5C5 /* KPKTree.m */; };
+		4CD3ABBF178F72610073F5C5 /* KPKEntry.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CD3ABBE178F72610073F5C5 /* KPKEntry.m */; };
+		4CD3ABC2178F72720073F5C5 /* KPKGroup.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CD3ABC1178F72720073F5C5 /* KPKGroup.m */; };
 		4CD5D702177A5EE400100649 /* DatabaseSettingsWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4CD5D701177A5EE400100649 /* DatabaseSettingsWindow.xib */; };
 		4CD5D705177A5F3300100649 /* MPDatabaseSettingsWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CD5D704177A5F3300100649 /* MPDatabaseSettingsWindowController.m */; };
 		4CD6C5AE1789FDE6000891F6 /* HNHRoundedSecureTextField.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CD6C5AD1789FDE6000891F6 /* HNHRoundedSecureTextField.m */; };
@@ -312,6 +322,8 @@
 		4C37A6721769393300AD0A40 /* HNHTableHeaderCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HNHTableHeaderCell.m; sourceTree = "<group>"; };
 		4C37A83E15B8B474005EF8EE /* MPOutlineDataSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MPOutlineDataSource.h; sourceTree = "<group>"; };
 		4C37A83F15B8B474005EF8EE /* MPOutlineDataSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MPOutlineDataSource.m; sourceTree = "<group>"; };
+		4C39B3F3178FEFAE0027DC7C /* KPKNode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KPKNode.h; sourceTree = "<group>"; };
+		4C39B3F4178FEFAE0027DC7C /* KPKNode.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KPKNode.m; sourceTree = "<group>"; };
 		4C3BD51316D276F800389F1F /* MPToolbarDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MPToolbarDelegate.h; sourceTree = "<group>"; };
 		4C3BD51416D276F800389F1F /* MPToolbarDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MPToolbarDelegate.m; sourceTree = "<group>"; };
 		4C3D4C0617594CA40038DAAC /* HNHSeparator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HNHSeparator.h; sourceTree = "<group>"; };
@@ -362,6 +374,8 @@
 		4C586FA116D07F6A00E7DB57 /* 02_MessageBoxWarningTemplate.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = 02_MessageBoxWarningTemplate.pdf; sourceTree = "<group>"; };
 		4C58BD4D176370B100B8178C /* HNHBadgedTextField.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HNHBadgedTextField.h; sourceTree = "<group>"; };
 		4C58BD4E176370B100B8178C /* HNHBadgedTextField.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HNHBadgedTextField.m; sourceTree = "<group>"; };
+		4C591B55178F897A0080B16B /* KPKAttachment.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KPKAttachment.h; sourceTree = "<group>"; };
+		4C591B56178F897A0080B16B /* KPKAttachment.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KPKAttachment.m; sourceTree = "<group>"; };
 		4C5A11FB1708DE8700223D8A /* MPPasswordCreatorViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MPPasswordCreatorViewController.h; sourceTree = "<group>"; };
 		4C5A11FC1708DE8700223D8A /* MPPasswordCreatorViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MPPasswordCreatorViewController.m; sourceTree = "<group>"; };
 		4C5A11FD1708DE8700223D8A /* PasswordCreatorView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PasswordCreatorView.xib; sourceTree = "<group>"; };
@@ -451,6 +465,12 @@
 		4C6D1D26178586CA0014C5A5 /* 99_AddFolderTemplate.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = 99_AddFolderTemplate.pdf; sourceTree = "<group>"; };
 		4C6D1D2A17858A250014C5A5 /* MacPass.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; name = MacPass.icns; path = "../Assets/App icon/MacPass.icns"; sourceTree = "<group>"; };
 		4C701CBB178618A000581B88 /* 12_RemoteTemplate.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = 12_RemoteTemplate.pdf; sourceTree = "<group>"; };
+		4C70D0F61790876900652EE9 /* KPKFormat.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KPKFormat.h; sourceTree = "<group>"; };
+		4C70D0F91790886300652EE9 /* KPKFormat.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KPKFormat.m; sourceTree = "<group>"; };
+		4C70D0FB1790924700652EE9 /* KPKParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KPKParser.h; sourceTree = "<group>"; };
+		4C70D0FC1790924700652EE9 /* KPKParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KPKParser.m; sourceTree = "<group>"; };
+		4C70D0FE179092F200652EE9 /* KPKPassword.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KPKPassword.h; sourceTree = "<group>"; };
+		4C70D0FF179092F200652EE9 /* KPKPassword.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KPKPassword.m; sourceTree = "<group>"; };
 		4C74DD05177BD1640034A9DB /* MPCustomFieldView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MPCustomFieldView.h; sourceTree = "<group>"; };
 		4C74DD06177BD1640034A9DB /* MPCustomFieldView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MPCustomFieldView.m; sourceTree = "<group>"; };
 		4C76155F1764C0590015A1A6 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/GeneralSettings.xib; sourceTree = "<group>"; };
@@ -497,6 +517,8 @@
 		4C888C9216EB6F5E003D34A1 /* MPToolbarItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MPToolbarItem.m; sourceTree = "<group>"; };
 		4C888C9516EB754B003D34A1 /* MPActionHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MPActionHelper.h; sourceTree = "<group>"; };
 		4C888C9616EB754B003D34A1 /* MPActionHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MPActionHelper.m; sourceTree = "<group>"; };
+		4C8A173B1790AA41008B5C17 /* NSData+Keyfile.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSData+Keyfile.h"; sourceTree = "<group>"; };
+		4C8A173C1790AA41008B5C17 /* NSData+Keyfile.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSData+Keyfile.m"; sourceTree = "<group>"; };
 		4C8FECC716D57E3200BF26CF /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		4C920E2816DCDFA00083839B /* MPLoggerProxy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MPLoggerProxy.h; sourceTree = "<group>"; };
 		4C920E2916DCDFA00083839B /* MPLoggerProxy.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MPLoggerProxy.m; sourceTree = "<group>"; };
@@ -547,6 +569,15 @@
 		4CC6727B1781D0D2006DEDCF /* KdbEntry+MPAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "KdbEntry+MPAdditions.m"; sourceTree = "<group>"; };
 		4CC7EA1917807E7E0089D4F3 /* HNHRoundendTextFieldCellHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HNHRoundendTextFieldCellHelper.h; sourceTree = "<group>"; };
 		4CC7EA1A17807E7E0089D4F3 /* HNHRoundendTextFieldCellHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HNHRoundendTextFieldCellHelper.m; sourceTree = "<group>"; };
+		4CCE0BDB17902E87007E4EEC /* KPKEntry+Attachments.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "KPKEntry+Attachments.h"; sourceTree = "<group>"; };
+		4CCE0BDC17902E87007E4EEC /* KPKEntry+Attachments.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "KPKEntry+Attachments.m"; sourceTree = "<group>"; };
+		4CD3ABB2178F71B50073F5C5 /* KPKDatabaseVersion.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KPKDatabaseVersion.h; sourceTree = "<group>"; };
+		4CD3ABB3178F71B50073F5C5 /* KPKTree.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KPKTree.h; sourceTree = "<group>"; };
+		4CD3ABB4178F71B50073F5C5 /* KPKTree.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KPKTree.m; sourceTree = "<group>"; };
+		4CD3ABBD178F72610073F5C5 /* KPKEntry.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KPKEntry.h; sourceTree = "<group>"; };
+		4CD3ABBE178F72610073F5C5 /* KPKEntry.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KPKEntry.m; sourceTree = "<group>"; };
+		4CD3ABC0178F72720073F5C5 /* KPKGroup.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KPKGroup.h; sourceTree = "<group>"; };
+		4CD3ABC1178F72720073F5C5 /* KPKGroup.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KPKGroup.m; sourceTree = "<group>"; };
 		4CD5D701177A5EE400100649 /* DatabaseSettingsWindow.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DatabaseSettingsWindow.xib; sourceTree = "<group>"; };
 		4CD5D703177A5F3300100649 /* MPDatabaseSettingsWindowController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MPDatabaseSettingsWindowController.h; sourceTree = "<group>"; };
 		4CD5D704177A5F3300100649 /* MPDatabaseSettingsWindowController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MPDatabaseSettingsWindowController.m; sourceTree = "<group>"; };
@@ -1085,6 +1116,7 @@
 			children = (
 				4C245A64176E1E3C0086100E /* CocoaHTTPServer */,
 				4CC3AAB6175F4983003EF01B /* HNHUi */,
+				4CD3ABAD178F71B50073F5C5 /* KeePassKit */,
 				4C669B2D16760ED100DD0774 /* MiniKeePassLib */,
 				4CAD745415B887FD00104512 /* KissXML */,
 				4C77E36C15B84A240093A587 /* MacPass */,
@@ -1277,6 +1309,58 @@
 				4C52A243177D7B9F0000D88F /* HNHScrollView.m */,
 			);
 			path = HNHUi;
+			sourceTree = "<group>";
+		};
+		4CD3ABAD178F71B50073F5C5 /* KeePassKit */ = {
+			isa = PBXGroup;
+			children = (
+				4CD3ABAF178F71B50073F5C5 /* Categories */,
+				4CD3ABB1178F71B50073F5C5 /* Core */,
+				4CD3ABB5178F71B50073F5C5 /* IO */,
+			);
+			path = KeePassKit;
+			sourceTree = "<group>";
+		};
+		4CD3ABAF178F71B50073F5C5 /* Categories */ = {
+			isa = PBXGroup;
+			children = (
+				4C8A173B1790AA41008B5C17 /* NSData+Keyfile.h */,
+				4C8A173C1790AA41008B5C17 /* NSData+Keyfile.m */,
+			);
+			path = Categories;
+			sourceTree = "<group>";
+		};
+		4CD3ABB1178F71B50073F5C5 /* Core */ = {
+			isa = PBXGroup;
+			children = (
+				4C70D0FE179092F200652EE9 /* KPKPassword.h */,
+				4C70D0FF179092F200652EE9 /* KPKPassword.m */,
+				4C70D0FB1790924700652EE9 /* KPKParser.h */,
+				4C70D0FC1790924700652EE9 /* KPKParser.m */,
+				4C70D0F61790876900652EE9 /* KPKFormat.h */,
+				4C70D0F91790886300652EE9 /* KPKFormat.m */,
+				4CD3ABB2178F71B50073F5C5 /* KPKDatabaseVersion.h */,
+				4CD3ABB3178F71B50073F5C5 /* KPKTree.h */,
+				4CD3ABB4178F71B50073F5C5 /* KPKTree.m */,
+				4CD3ABBD178F72610073F5C5 /* KPKEntry.h */,
+				4CCE0BDB17902E87007E4EEC /* KPKEntry+Attachments.h */,
+				4CCE0BDC17902E87007E4EEC /* KPKEntry+Attachments.m */,
+				4CD3ABBE178F72610073F5C5 /* KPKEntry.m */,
+				4CD3ABC0178F72720073F5C5 /* KPKGroup.h */,
+				4CD3ABC1178F72720073F5C5 /* KPKGroup.m */,
+				4C591B55178F897A0080B16B /* KPKAttachment.h */,
+				4C591B56178F897A0080B16B /* KPKAttachment.m */,
+				4C39B3F3178FEFAE0027DC7C /* KPKNode.h */,
+				4C39B3F4178FEFAE0027DC7C /* KPKNode.m */,
+			);
+			path = Core;
+			sourceTree = "<group>";
+		};
+		4CD3ABB5178F71B50073F5C5 /* IO */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = IO;
 			sourceTree = "<group>";
 		};
 		4CDB556616E29A8A00635918 /* Controls */ = {
@@ -1668,6 +1752,16 @@
 				4C16BA6217879A3C002B42BD /* MPPasswordStringFormatter.m in Sources */,
 				4CD6C5AE1789FDE6000891F6 /* HNHRoundedSecureTextField.m in Sources */,
 				4C10412C178CDD44001B5239 /* NSDate+Humanized.m in Sources */,
+				4CD3ABBA178F71B50073F5C5 /* KPKTree.m in Sources */,
+				4CD3ABBF178F72610073F5C5 /* KPKEntry.m in Sources */,
+				4CD3ABC2178F72720073F5C5 /* KPKGroup.m in Sources */,
+				4C591B57178F897A0080B16B /* KPKAttachment.m in Sources */,
+				4C39B3F5178FEFAE0027DC7C /* KPKNode.m in Sources */,
+				4CCE0BDD17902E87007E4EEC /* KPKEntry+Attachments.m in Sources */,
+				4C70D0FA1790886300652EE9 /* KPKFormat.m in Sources */,
+				4C70D0FD1790924700652EE9 /* KPKParser.m in Sources */,
+				4C70D100179092F200652EE9 /* KPKPassword.m in Sources */,
+				4C8A173D1790AA41008B5C17 /* NSData+Keyfile.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

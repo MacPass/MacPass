@@ -17,8 +17,8 @@
   STAssertTrue(document.version == MPDatabaseVersion3, @"Database should be Version1");
   STAssertNotNil(document.treeV3, @"Database Tree needs to be Kdb3Tree");
   STAssertNil(document.treeV4,  @"Database Tree cannot be Kdb4Tree");
-  STAssertTrue(document.isDecrypted, @"Document has to be decrypted new database is created");
-  STAssertFalse(document.isSecured, @"Document has no Password/Keyfile and thus is not secured");
+  STAssertTrue(document.decrypted, @"Document has to be decrypted new database is created");
+  STAssertFalse(document.hasPasswordOrKey, @"Document has no Password/Keyfile and thus is not secured");
 }
 
 - (void)testCreateDatabaseVersion2 {
@@ -27,8 +27,8 @@
   STAssertTrue(document.version == MPDatabaseVersion4, @"Database should be Version2");
   STAssertNotNil(document.treeV4, @"Database Tree needs to be Kdb4Tree");
   STAssertNil(document.treeV3, @"Database Tree cannot be Kdb3Tree");
-  STAssertTrue(document.isDecrypted, @"Document has to be decrypted new database is created");
-  STAssertFalse(document.isSecured, @"Document has no Password/Keyfile and thus is not secured");
+  STAssertTrue(document.decrypted, @"Document has to be decrypted new database is created");
+  STAssertFalse(document.hasPasswordOrKey, @"Document has no Password/Keyfile and thus is not secured");
 }
 
 @end

@@ -40,6 +40,7 @@ NSString *const MPDocumentGroupKey                    = @"MPDocumentGroupKey";
 @interface MPDocument () {
 @private
   BOOL _didLockFile;
+  NSData *_fileData;
 }
 
 
@@ -48,7 +49,7 @@ NSString *const MPDocumentGroupKey                    = @"MPDocumentGroupKey";
 @property (weak, nonatomic, readonly) KdbPassword *passwordHash;
 @property (assign) MPDatabaseVersion version;
 
-@property (assign, nonatomic) BOOL secured;
+@property (assign, nonatomic) BOOL hasPasswordOrKey;
 @property (assign) BOOL decrypted;
 @property (assign) BOOL readOnly;
 
@@ -72,9 +73,10 @@ NSString *const MPDocumentGroupKey                    = @"MPDocumentGroupKey";
 - (id)initWithVersion:(MPDatabaseVersion)version {
   self = [super init];
   if(self) {
+    _fileData = nil;
     _didLockFile = NO;
     _decrypted = YES;
-    _secured = NO;
+    _hasPasswordOrKey = NO;
     _locked = NO;
     _readOnly = NO;
     _rootAdapter = [[MPRootAdapter alloc] init];
@@ -131,6 +133,11 @@ NSString *const MPDocumentGroupKey                    = @"MPDocumentGroupKey";
    self.readOnly = NO;
    }
    */
+  /*
+   Delete our old Tree, and just grab the data
+   */
+  self.tree = nil;
+  _fileData = [NSData dataWithContentsOfURL:url options:NSDataReadingUncached error:outError];
   self.decrypted = NO;
   return YES;
 }
@@ -153,9 +160,9 @@ NSString *const MPDocumentGroupKey                    = @"MPDocumentGroupKey";
   [super close];
 }
 
-#pragma mark Protection
+#pragma mark Lock/Unlock/Decrypt
 
-- (BOOL)decryptWithPassword:(NSString *)password keyFileURL:(NSURL *)keyFileURL {
+- (BOOL)unlockWithPassword:(NSString *)password keyFileURL:(NSURL *)keyFileURL {
   self.key = keyFileURL;
   self.password = [password length] > 0 ? password : nil;
   @try {
@@ -174,6 +181,15 @@ NSString *const MPDocumentGroupKey                    = @"MPDocumentGroupKey";
   self.decrypted = YES;
   return YES;
 }
+
+- (void)lockDatabase:(id)sender {
+  // Persist Tree into data
+  self.tree = nil;
+  self.locked = YES;
+}
+
+
+#pragma mark Custom Setter
 
 - (void)setPassword:(NSString *)password {
   if(![_password isEqualToString:password]) {
@@ -200,7 +216,7 @@ NSString *const MPDocumentGroupKey                    = @"MPDocumentGroupKey";
 }
 
 - (BOOL)prepareSavePanel:(NSSavePanel *)savePanel {
-  if(self.isSecured) {
+  if(self.hasPasswordOrKey) {
     [savePanel setAccessoryView:nil];
     return YES;
   }
@@ -440,7 +456,7 @@ NSString *const MPDocumentGroupKey                    = @"MPDocumentGroupKey";
 - (void)_updateIsSecured {
   BOOL securePassword = ([self.password length] > 0);
   BOOL secureKey = (nil != self.key);
-  self.secured = (secureKey || securePassword);
+  self.hasPasswordOrKey = (secureKey || securePassword);
 }
 
 - (void)_cleanupLock {

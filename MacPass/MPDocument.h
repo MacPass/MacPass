@@ -34,14 +34,15 @@ APPKIT_EXTERN NSString *const MPDocumentGroupKey;
 @interface MPDocument : NSDocument
 
 /* true, if password and/or keyfile are set */
-@property (assign, readonly, getter = isSecured) BOOL secured;
+@property (assign, readonly) BOOL hasPasswordOrKey;
 /* true, if lock screen is present (no phyiscal locking) */
-@property (assign, getter = isLocked) BOOL locked;
-/* true, if document is loaded and decrypted (tree is loaded) */
-@property (assign, readonly, getter = isDecrypted) BOOL decrypted;
+@property (assign, nonatomic) BOOL locked;
+@property (assign, readonly) BOOL decrypted;
+
 @property (strong, readonly, nonatomic) KdbTree *tree;
 @property (weak, readonly, nonatomic) KdbGroup *root;
 @property (readonly, strong) MPRootAdapter *rootAdapter;
+
 @property (nonatomic, copy) NSString *password;
 @property (nonatomic, strong) NSURL *key;
 
@@ -49,7 +50,10 @@ APPKIT_EXTERN NSString *const MPDocumentGroupKey;
 @property (assign, readonly, getter = isReadOnly) BOOL readOnly;
 
 - (id)initWithVersion:(MPDatabaseVersion)version;
-- (BOOL)decryptWithPassword:(NSString *)password keyFileURL:(NSURL *)keyFileURL;
+
+#pragma mark Lock/Decrypt
+- (void)lockDatabase:(id)sender;
+- (BOOL)unlockWithPassword:(NSString *)password keyFileURL:(NSURL *)keyFileURL;
 
 #pragma mark Data Lookup
 /*

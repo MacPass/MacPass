@@ -21,7 +21,12 @@
 - (void)setTree:(KdbTree *)tree {
   if(_tree != tree) {
     _tree = tree;
-    self.groups = @[_tree.root];
+    if(_tree) {
+      self.groups = @[_tree.root];
+    }
+    else {
+      self.groups = nil;
+    }
   }
 }
 
