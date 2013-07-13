@@ -65,6 +65,8 @@
 		4C3BD51516D276F800389F1F /* MPToolbarDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C3BD51416D276F800389F1F /* MPToolbarDelegate.m */; };
 		4C3D4C0817594CA40038DAAC /* HNHSeparator.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C3D4C0717594CA40038DAAC /* HNHSeparator.m */; };
 		4C3E1CC0177DEFB3003BD9BD /* StringField+Undo.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C3E1CBF177DEFB3003BD9BD /* StringField+Undo.m */; };
+		4C3F28541791EDFD00703281 /* KPKErrors.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C3F28531791EDFD00703281 /* KPKErrors.m */; };
+		4C3F28581791F04F00703281 /* LocalizableErrors.strings in Resources */ = {isa = PBXBuildFile; fileRef = 4C3F28571791F04F00703281 /* LocalizableErrors.strings */; };
 		4C3FFD9E16DAF60600DF9186 /* FilterBar.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4C3FFD9D16DAF60600DF9186 /* FilterBar.xib */; };
 		4C431BCD16E2A82800700A81 /* MPPasteBoardController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C431BCC16E2A82700700A81 /* MPPasteBoardController.m */; };
 		4C431BCF16E2BAB000700A81 /* OverlayWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4C431BCE16E2BAB000700A81 /* OverlayWindow.xib */; };
@@ -330,6 +332,9 @@
 		4C3D4C0717594CA40038DAAC /* HNHSeparator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HNHSeparator.m; sourceTree = "<group>"; };
 		4C3E1CBE177DEFB3003BD9BD /* StringField+Undo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "StringField+Undo.h"; sourceTree = "<group>"; };
 		4C3E1CBF177DEFB3003BD9BD /* StringField+Undo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "StringField+Undo.m"; sourceTree = "<group>"; };
+		4C3F28521791EDE800703281 /* KPKErrors.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KPKErrors.h; sourceTree = "<group>"; };
+		4C3F28531791EDFD00703281 /* KPKErrors.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KPKErrors.m; sourceTree = "<group>"; };
+		4C3F28571791F04F00703281 /* LocalizableErrors.strings */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.strings; name = LocalizableErrors.strings; path = Resources/LocalizableErrors.strings; sourceTree = "<group>"; };
 		4C3FFD9D16DAF60600DF9186 /* FilterBar.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FilterBar.xib; sourceTree = "<group>"; };
 		4C431BCB16E2A82700700A81 /* MPPasteBoardController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MPPasteBoardController.h; sourceTree = "<group>"; };
 		4C431BCC16E2A82700700A81 /* MPPasteBoardController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MPPasteBoardController.m; sourceTree = "<group>"; };
@@ -957,6 +962,14 @@
 			name = Model;
 			sourceTree = "<group>";
 		};
+		4C3F28591791F05400703281 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				4C3F28571791F04F00703281 /* LocalizableErrors.strings */,
+			);
+			name = Resources;
+			sourceTree = "<group>";
+		};
 		4C45FB1E178E09ED0010007D /* MacPassTests */ = {
 			isa = PBXGroup;
 			children = (
@@ -1314,6 +1327,7 @@
 		4CD3ABAD178F71B50073F5C5 /* KeePassKit */ = {
 			isa = PBXGroup;
 			children = (
+				4C3F28591791F05400703281 /* Resources */,
 				4CD3ABAF178F71B50073F5C5 /* Categories */,
 				4CD3ABB1178F71B50073F5C5 /* Core */,
 				4CD3ABB5178F71B50073F5C5 /* IO */,
@@ -1352,6 +1366,8 @@
 				4C591B56178F897A0080B16B /* KPKAttachment.m */,
 				4C39B3F3178FEFAE0027DC7C /* KPKNode.h */,
 				4C39B3F4178FEFAE0027DC7C /* KPKNode.m */,
+				4C3F28521791EDE800703281 /* KPKErrors.h */,
+				4C3F28531791EDFD00703281 /* KPKErrors.m */,
 			);
 			path = Core;
 			sourceTree = "<group>";
@@ -1556,6 +1572,7 @@
 				4C52A88F1788628B00868229 /* 13_KeysTemplate.pdf in Resources */,
 				4C52A8901788628B00868229 /* 18_DisplayTemplate.pdf in Resources */,
 				4C52A892178863B000868229 /* 68_PhoneTemplate.pdf in Resources */,
+				4C3F28581791F04F00703281 /* LocalizableErrors.strings in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1762,6 +1779,7 @@
 				4C70D0FD1790924700652EE9 /* KPKParser.m in Sources */,
 				4C70D100179092F200652EE9 /* KPKPassword.m in Sources */,
 				4C8A173D1790AA41008B5C17 /* NSData+Keyfile.m in Sources */,
+				4C3F28541791EDFD00703281 /* KPKErrors.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
