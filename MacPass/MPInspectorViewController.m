@@ -68,6 +68,8 @@ enum {
 - (IBAction)saveAttachment:(id)sender;
 - (IBAction)addAttachment:(id)sender;
 - (IBAction)removeAttachment:(id)sender;
+- (IBAction)edit:(id)sender;
+- (IBAction)finishEdit:(id)sender;
 
 @end
 
@@ -374,6 +376,21 @@ enum {
     BinaryRef *reference = entry.binaries[[sender tag]];
     [document removeAttachment:reference fromEntry:self.selectedEntry];
   }
+}
+
+- (IBAction)edit:(id)sender {
+  [self.titleTextField setEditable:YES];
+  [self.usernameTextField setEditable:YES];
+  [[[[self windowController] document] undoManager] beginUndoGrouping];
+}
+
+- (IBAction)finishEdit:(id)sender {
+  NSUndoManager *undoManger =   [[[self windowController] document] undoManager];
+  [undoManger setActionName:@"Edit"];
+  [undoManger endUndoGrouping];
+  [self.titleTextField setEditable:NO];
+  [self.usernameTextField setEditable:NO];
+
 }
 
 #pragma mark Notificiations
