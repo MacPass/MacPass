@@ -157,6 +157,7 @@
 		4C77E37D15B84A240093A587 /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4C77E37B15B84A240093A587 /* MainMenu.xib */; };
 		4C79DF2A176685870083708F /* HNHRoundedTextField.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C79DF29176685870083708F /* HNHRoundedTextField.m */; };
 		4C7F35681779DFFB00C57890 /* Errors.strings in Resources */ = {isa = PBXBuildFile; fileRef = 4C7F356A1779DFFB00C57890 /* Errors.strings */; };
+		4C801AFC179310E2002821E3 /* NSString+Hexdata.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C801AFB179310E2002821E3 /* NSString+Hexdata.m */; };
 		4C80BB6F176DE06F00E5E248 /* HNHScrollDocumentViewAdapter.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C80BB6E176DE06F00E5E248 /* HNHScrollDocumentViewAdapter.m */; };
 		4C811C8316ECD06E00C4BAC6 /* MPKeyfilePathControlDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C811C8216ECD06E00C4BAC6 /* MPKeyfilePathControlDelegate.m */; };
 		4C83814215BF4677001AE468 /* MPDocumentWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C83814115BF4677001AE468 /* MPDocumentWindowController.m */; };
@@ -506,6 +507,8 @@
 		4C79DF29176685870083708F /* HNHRoundedTextField.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HNHRoundedTextField.m; sourceTree = "<group>"; };
 		4C7F35691779DFFB00C57890 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Errors.strings; sourceTree = "<group>"; };
 		4C7F356B1779DFFF00C57890 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/Errors.strings; sourceTree = "<group>"; };
+		4C801AFA179310E2002821E3 /* NSString+Hexdata.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+Hexdata.h"; sourceTree = "<group>"; };
+		4C801AFB179310E2002821E3 /* NSString+Hexdata.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+Hexdata.m"; sourceTree = "<group>"; };
 		4C80BB6D176DE06F00E5E248 /* HNHScrollDocumentViewAdapter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HNHScrollDocumentViewAdapter.h; sourceTree = "<group>"; };
 		4C80BB6E176DE06F00E5E248 /* HNHScrollDocumentViewAdapter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HNHScrollDocumentViewAdapter.m; sourceTree = "<group>"; };
 		4C811C8116ECD06E00C4BAC6 /* MPKeyfilePathControlDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MPKeyfilePathControlDelegate.h; sourceTree = "<group>"; };
@@ -868,6 +871,8 @@
 				4C2724D61778FF1A00FD8456 /* NSUUID+KeePassLib.m */,
 				4C2724D817790E7C00FD8456 /* NSMutableData+Base64.h */,
 				4C2724D917790E7C00FD8456 /* NSMutableData+Base64.m */,
+				4C801AFA179310E2002821E3 /* NSString+Hexdata.h */,
+				4C801AFB179310E2002821E3 /* NSString+Hexdata.m */,
 			);
 			name = Categories;
 			sourceTree = "<group>";
@@ -1760,6 +1765,7 @@
 				4C8A173D1790AA41008B5C17 /* NSData+Keyfile.m in Sources */,
 				4C3F28541791EDFD00703281 /* KPKErrors.m in Sources */,
 				4C4436771792BE810099E220 /* KPKFormat.m in Sources */,
+				4C801AFC179310E2002821E3 /* NSString+Hexdata.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
