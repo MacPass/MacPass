@@ -1471,7 +1471,6 @@
 			buildPhases = (
 				4C77E35E15B84A240093A587 /* Sources */,
 				4C77E35F15B84A240093A587 /* Frameworks */,
-				4CB9339616D3A04100A13B5D /* ShellScript */,
 				4C77E36015B84A240093A587 /* Resources */,
 			);
 			buildRules = (
@@ -1591,19 +1590,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "# Run the unit tests in this test bundle.\n\"${SYSTEM_DEVELOPER_DIR}/Tools/RunUnitTests\"\n";
-		};
-		4CB9339616D3A04100A13B5D /* ShellScript */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "#!/bin/bash\nbuildNumber=$(/usr/libexec/PlistBuddy -c \"Print CFBundleVersion\" \"$INFOPLIST_FILE\")\n#buildNumber=$((0x$buildNumber))\nbuildNumber=$(($buildNumber + 1))\nbuildNumber=$(printf \"%d\" $buildNumber)\n/usr/libexec/PlistBuddy -c \"Set :CFBundleVersion $buildNumber\" \"$INFOPLIST_FILE\"";
 		};
 /* End PBXShellScriptBuildPhase section */
 
