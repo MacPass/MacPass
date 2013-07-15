@@ -17,6 +17,7 @@
 #import "KdbLib.h"
 #import "Kdb3Node.h"
 #import "Kdb4Node.h"
+#import "Kdb4Persist.h"
 #import "KdbPassword.h"
 #import "KdbGroup+Undo.h"
 #import "KdbGroup+KVOAdditions.h"
@@ -26,6 +27,8 @@
 #import "KdbEntry+Undo.h"
 #import "Kdb3Tree+NewTree.h"
 #import "Kdb4Tree+NewTree.h"
+
+#import "DataOutputStream.h"
 
 NSString *const MPDocumentDidAddGroupNotification     = @"com.hicknhack.macpass.MPDocumentDidAddGroupNotification";
 NSString *const MPDocumentWillDelteGroupNotification  = @"com.hicknhack.macpass.MPDocumentDidDelteGroupNotification";
@@ -158,6 +161,13 @@ NSString *const MPDocumentGroupKey                    = @"MPDocumentGroupKey";
 - (void)close {
   [self _cleanupLock];
   [super close];
+}
+
+- (void)writeXMLToURL:(NSURL *)url {
+  DataOutputStream *outputStream = [[DataOutputStream alloc] init];
+  Kdb4Persist *persist = [[Kdb4Persist alloc] initWithTree:self.treeV4 outputStream:outputStream randomStream:nil];
+  [persist persist];
+  [outputStream.data writeToURL:url atomically:YES];
 }
 
 #pragma mark Lock/Unlock/Decrypt

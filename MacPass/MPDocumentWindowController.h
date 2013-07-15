@@ -38,6 +38,7 @@ APPKIT_EXTERN NSString *const MPCurrentItemChangedNotification;
 - (void)performFindPanelAction:(id)sender;
 - (IBAction)editPassword:(id)sender;
 - (IBAction)showDatabaseSettings:(id)sender;
+- (IBAction)exportDatabase:(id)sender;
 
 - (void)lock:(id)sender;
 

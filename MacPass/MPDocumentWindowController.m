@@ -162,13 +162,27 @@ NSString *const MPCurrentItemChangedNotification = @"com.hicknhack.macpass.MPCur
 }
 
 #pragma mark Actions
+- (void)exportDatabase:(id)sender {
+  NSSavePanel *savePanel = [NSSavePanel savePanel];
+  [savePanel setAllowsOtherFileTypes:YES];
+  [savePanel beginSheetModalForWindow:self.window completionHandler:^(NSInteger result) {
+    if(result == NSFileHandlingPanelOKButton) {
+      [[self document] writeXMLToURL:savePanel.URL];
+    }
+  }];
+}
 - (void)performFindPanelAction:(id)sender {
   [self.entryViewController showFilter:sender];
 }
 
 - (BOOL)validateMenuItem:(NSMenuItem *)menuItem {
+  BOOL enabled = YES;
   MPDocument *document = [self document];
-  return !( document.isLocked || document.isReadOnly );
+  if([menuItem action] == @selector(exportDatabase:)) {
+    enabled = (nil != document.treeV4);
+  }
+  enabled &= !( document.isLocked || document.isReadOnly );
+  return enabled;
 }
 
 - (BOOL)validateToolbarItem:(NSToolbarItem *)theItem {

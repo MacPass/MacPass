@@ -67,6 +67,8 @@ APPKIT_EXTERN NSString *const MPDocumentGroupKey;
 
 - (void)useGroupAsTrash:(KdbGroup *)group;
 
+#pragma mark Export
+- (void)writeXMLToURL:(NSURL *)url;
 
 #pragma mark Undo Data Manipulation
 /* Undoable Intiialization of elements */
