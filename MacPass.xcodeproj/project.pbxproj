@@ -213,6 +213,7 @@
 		4CE8247516E2F2B900573141 /* MPOverlayView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CE8247416E2F2B900573141 /* MPOverlayView.m */; };
 		4CF1F0CA1786B37900CD920E /* NSData+Gzip.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CF1F0C81786B37900CD920E /* NSData+Gzip.m */; };
 		4CF29BF417879D0000851B60 /* 26_FileSaveTemplate.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 4CF29BF317879D0000851B60 /* 26_FileSaveTemplate.pdf */; };
+		4CF62B86179385D700B660B6 /* KPKAttribute.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CF62B85179385D700B660B6 /* KPKAttribute.m */; };
 		4CF6C711176F4533007A811D /* MPStringLengthValueTransformer.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CF6C710176F4533007A811D /* MPStringLengthValueTransformer.m */; };
 		4CF6C718176F5234007A811D /* MPAssociateRequestHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CF6C717176F5234007A811D /* MPAssociateRequestHandler.m */; };
 		4CF78057176E5CFD0032EE71 /* MPConnection.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CF78056176E5CFD0032EE71 /* MPConnection.m */; };
@@ -610,6 +611,8 @@
 		4CF1F0C81786B37900CD920E /* NSData+Gzip.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSData+Gzip.m"; sourceTree = "<group>"; };
 		4CF1F0C91786B37900CD920E /* NSData+Gzip.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSData+Gzip.h"; sourceTree = "<group>"; };
 		4CF29BF317879D0000851B60 /* 26_FileSaveTemplate.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = 26_FileSaveTemplate.pdf; sourceTree = "<group>"; };
+		4CF62B84179385D700B660B6 /* KPKAttribute.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KPKAttribute.h; sourceTree = "<group>"; };
+		4CF62B85179385D700B660B6 /* KPKAttribute.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KPKAttribute.m; sourceTree = "<group>"; };
 		4CF6C70F176F4533007A811D /* MPStringLengthValueTransformer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MPStringLengthValueTransformer.h; sourceTree = "<group>"; };
 		4CF6C710176F4533007A811D /* MPStringLengthValueTransformer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MPStringLengthValueTransformer.m; sourceTree = "<group>"; };
 		4CF6C715176F5183007A811D /* MPServerRequestHandler.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MPServerRequestHandler.h; sourceTree = "<group>"; };
@@ -1368,6 +1371,8 @@
 				4C39B3F4178FEFAE0027DC7C /* KPKNode.m */,
 				4C3F28521791EDE800703281 /* KPKErrors.h */,
 				4C3F28531791EDFD00703281 /* KPKErrors.m */,
+				4CF62B84179385D700B660B6 /* KPKAttribute.h */,
+				4CF62B85179385D700B660B6 /* KPKAttribute.m */,
 			);
 			path = Core;
 			sourceTree = "<group>";
@@ -1766,6 +1771,7 @@
 				4C3F28541791EDFD00703281 /* KPKErrors.m in Sources */,
 				4C4436771792BE810099E220 /* KPKFormat.m in Sources */,
 				4C801AFC179310E2002821E3 /* NSString+Hexdata.m in Sources */,
+				4CF62B86179385D700B660B6 /* KPKAttribute.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
