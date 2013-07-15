@@ -30,6 +30,8 @@
 
 #import "DataOutputStream.h"
 
+#import "DDXMLNode.h"
+
 NSString *const MPDocumentDidAddGroupNotification     = @"com.hicknhack.macpass.MPDocumentDidAddGroupNotification";
 NSString *const MPDocumentWillDelteGroupNotification  = @"com.hicknhack.macpass.MPDocumentDidDelteGroupNotification";
 NSString *const MPDocumentDidAddEntryNotification     = @"com.hicknhack.macpass.MPDocumentDidAddEntryNotification";
@@ -166,7 +168,7 @@ NSString *const MPDocumentGroupKey                    = @"MPDocumentGroupKey";
 - (void)writeXMLToURL:(NSURL *)url {
   DataOutputStream *outputStream = [[DataOutputStream alloc] init];
   Kdb4Persist *persist = [[Kdb4Persist alloc] initWithTree:self.treeV4 outputStream:outputStream randomStream:nil];
-  [persist persist];
+  [persist persistWithOptions:DDXMLNodeCompactEmptyElement|DDXMLNodePrettyPrint];
   [outputStream.data writeToURL:url atomically:YES];
 }
 
