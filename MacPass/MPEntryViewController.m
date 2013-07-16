@@ -20,10 +20,12 @@
 #import "MPConstants.h"
 #import "MPEntryTableDataSource.h"
 #import "MPStringLengthValueTransformer.h"
+#import "MPEntryMenuDelegate.h"
 
 #import "HNHTableHeaderCell.h"
 #import "HNHGradientView.h"
 
+#import "Kdb4Node.h"
 #import "KdbGroup+MPTreeTools.h"
 #import "KdbGroup+Undo.h"
 #import "KdbEntry+Undo.h"
@@ -43,6 +45,7 @@ typedef NS_ENUM(NSUInteger,MPOVerlayInfoType) {
   MPOverlayInfoPassword,
   MPOverlayInfoUsername,
   MPOverlayInfoURL,
+  MPOverlayInfoCustom
 };
 
 NSString *const MPEntryTableUserNameColumnIdentifier = @"MPUserNameColumnIdentifier";
@@ -59,7 +62,9 @@ NSString *const _toggleFilterURLButton = @"SearchURL";
 NSString *const _toggleFilterTitleButton = @"SearchTitle";
 NSString *const _toggleFilterUsernameButton = @"SearchUsername";
 
-@interface MPEntryViewController ()
+@interface MPEntryViewController () {
+  MPEntryMenuDelegate *_menuDelegate;
+}
 
 @property (strong) NSArrayController *entryArrayController;
 @property (strong) NSArray *filteredEntries;
@@ -103,6 +108,9 @@ NSString *const _toggleFilterUsernameButton = @"SearchUsername";
     _entryArrayController = [[NSArrayController alloc] init];
     _dataSource = [[MPEntryTableDataSource alloc] init];
     _dataSource.viewController = self;
+    _menuDelegate = [[MPEntryMenuDelegate alloc] init];
+    _menuDelegate.viewController = self;
+    
     _selectedEntry = nil;
   }
   return self;
@@ -396,7 +404,7 @@ NSString *const _toggleFilterUsernameButton = @"SearchUsername";
   }
 }
 
-- (void)_copyToPasteboard:(NSString *)data overlayInfo:(MPOVerlayInfoType)overlayInfoType {
+- (void)_copyToPasteboard:(NSString *)data overlayInfo:(MPOVerlayInfoType)overlayInfoType name:(NSString *)name{
   if(data) {
     [[MPPasteBoardController defaultController] copyObjects:@[ data ]];
   }
@@ -417,6 +425,11 @@ NSString *const _toggleFilterUsernameButton = @"SearchUsername";
       infoImage = [[NSBundle mainBundle] imageForResource:@"09_IdentityTemplate"];
       infoText = NSLocalizedString(@"COPIED_USERNAME", @"Username was copied to the pasteboard");
       break;
+  
+    case MPOverlayInfoCustom:
+      infoImage = [[NSBundle mainBundle] imageForResource:@"00_PasswordTemplate"];
+      infoText = [NSString stringWithFormat:NSLocalizedString(@"COPIED_FIELD_%@", "Field nam that was copied to the pasteboard"), name];
+      break;
   }
   [[MPOverlayWindowController sharedController] displayOverlayImage:infoImage label:infoText atView:self.view];
 }
@@ -430,7 +443,9 @@ NSString *const _toggleFilterUsernameButton = @"SearchUsername";
   for(NSMenuItem *item in items) {
     [menu addItem:item];
   }
+  [menu setDelegate:_menuDelegate];
   [self.entryTable setMenu:menu];
+  
 }
 
 #pragma makr Action Helper
@@ -452,21 +467,32 @@ NSString *const _toggleFilterUsernameButton = @"SearchUsername";
 - (void)copyPassword:(id)sender {
   KdbEntry *selectedEntry = [self _clickedOrSelectedEntry];
   if(selectedEntry) {
-    [self _copyToPasteboard:selectedEntry.password overlayInfo:MPOverlayInfoPassword];
+    [self _copyToPasteboard:selectedEntry.password overlayInfo:MPOverlayInfoPassword name:nil];
   }
 }
 
 - (void)copyUsername:(id)sender {
   KdbEntry *selectedEntry = [self _clickedOrSelectedEntry];
   if(selectedEntry) {
-    [self _copyToPasteboard:selectedEntry.username overlayInfo:MPOverlayInfoUsername];
+    [self _copyToPasteboard:selectedEntry.username overlayInfo:MPOverlayInfoUsername name:nil];
+  }
+}
+
+- (void)copyCustomField:(id)sender {
+  KdbEntry *selectedEntry = [self _clickedOrSelectedEntry];
+  if(selectedEntry && [selectedEntry isKindOfClass:[Kdb4Entry class]]) {
+    Kdb4Entry *entry = (Kdb4Entry *)selectedEntry;
+    NSUInteger index = [sender tag];
+    NSAssert((index >= 0)  && (index < [entry.stringFields count]), @"Index for custom field needs to be valid");
+    StringField *field = entry.stringFields[index];
+    [self _copyToPasteboard:field.value overlayInfo:MPOverlayInfoCustom name:field.key];
   }
 }
 
 - (void)copyURL:(id)sender {
   KdbEntry *selectedEntry = [self _clickedOrSelectedEntry];
   if(selectedEntry) {
-    [self _copyToPasteboard:selectedEntry.url overlayInfo:MPOverlayInfoURL];
+    [self _copyToPasteboard:selectedEntry.url overlayInfo:MPOverlayInfoURL name:nil];
   }
 }
 

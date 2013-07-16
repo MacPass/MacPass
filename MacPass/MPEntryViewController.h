@@ -48,8 +48,10 @@ typedef NS_ENUM( NSUInteger, MPCopyContentTypeTag) {
 /* Copy/Paste */
 - (void)copyUsername:(id)sender;
 - (void)copyPassword:(id)sender;
+- (void)copyCustomField:(id)sender;
 - (void)copyURL:(id)sender;
 - (void)openURL:(id)sender;
+
 
 /* Entry Handling*/
 - (void)deleteNode:(id)sender;

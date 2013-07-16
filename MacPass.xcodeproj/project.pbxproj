@@ -207,6 +207,7 @@
 		4CD884B715BD47080042BBF8 /* DocumentWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4CD884B615BD47080042BBF8 /* DocumentWindow.xib */; };
 		4CDB5C421794AA4F0017667E /* KPKTree+Serializing.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CDB5C411794AA4F0017667E /* KPKTree+Serializing.m */; };
 		4CDF01A316D1B76700D0AC08 /* MPEntryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CDF01A216D1B76700D0AC08 /* MPEntryViewController.m */; };
+		4CE298EB1795FC2A00DF7BDB /* MPEntryMenuDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CE298EA1795FC2A00DF7BDB /* MPEntryMenuDelegate.m */; };
 		4CE39ABF16ECE34A000FE29D /* MPIconSelectViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CE39ABE16ECE34A000FE29D /* MPIconSelectViewController.m */; };
 		4CE39AC116ECE359000FE29D /* IconSelection.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4CE39AC016ECE359000FE29D /* IconSelection.xib */; };
 		4CE39AC416ECE4F7000FE29D /* MPPopupImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CE39AC316ECE4F7000FE29D /* MPPopupImageView.m */; };
@@ -603,6 +604,8 @@
 		4CDB5C411794AA4F0017667E /* KPKTree+Serializing.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "KPKTree+Serializing.m"; path = "../Core/KPKTree+Serializing.m"; sourceTree = "<group>"; };
 		4CDF01A116D1B76700D0AC08 /* MPEntryViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MPEntryViewController.h; sourceTree = "<group>"; };
 		4CDF01A216D1B76700D0AC08 /* MPEntryViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MPEntryViewController.m; sourceTree = "<group>"; };
+		4CE298E91795FC2A00DF7BDB /* MPEntryMenuDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MPEntryMenuDelegate.h; sourceTree = "<group>"; };
+		4CE298EA1795FC2A00DF7BDB /* MPEntryMenuDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MPEntryMenuDelegate.m; sourceTree = "<group>"; };
 		4CE39ABD16ECE34A000FE29D /* MPIconSelectViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MPIconSelectViewController.h; sourceTree = "<group>"; };
 		4CE39ABE16ECE34A000FE29D /* MPIconSelectViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MPIconSelectViewController.m; sourceTree = "<group>"; };
 		4CE39AC016ECE359000FE29D /* IconSelection.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = IconSelection.xib; sourceTree = "<group>"; };
@@ -950,6 +953,8 @@
 				4C3BD51416D276F800389F1F /* MPToolbarDelegate.m */,
 				4C811C8116ECD06E00C4BAC6 /* MPKeyfilePathControlDelegate.h */,
 				4C811C8216ECD06E00C4BAC6 /* MPKeyfilePathControlDelegate.m */,
+				4CE298E91795FC2A00DF7BDB /* MPEntryMenuDelegate.h */,
+				4CE298EA1795FC2A00DF7BDB /* MPEntryMenuDelegate.m */,
 			);
 			name = Delegates;
 			sourceTree = "<group>";
@@ -1784,6 +1789,7 @@
 				4CF62B86179385D700B660B6 /* KPKAttribute.m in Sources */,
 				4CDB5C421794AA4F0017667E /* KPKTree+Serializing.m in Sources */,
 				4C5AA591179549A1008ECAD7 /* KPKXmlTreeWriter.m in Sources */,
+				4CE298EB1795FC2A00DF7BDB /* MPEntryMenuDelegate.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
