@@ -46,7 +46,7 @@
 		4C2724CE1778EFB100FD8456 /* NSData+Random.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C2724CD1778EFB100FD8456 /* NSData+Random.m */; };
 		4C2724D11778EFE300FD8456 /* NSString+Empty.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C2724D01778EFE300FD8456 /* NSString+Empty.m */; };
 		4C2724D41778FA0700FD8456 /* NSDate+Packed.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C2724D31778FA0700FD8456 /* NSDate+Packed.m */; };
-		4C2724D71778FF1A00FD8456 /* NSUUID+KeePassLib.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C2724D61778FF1A00FD8456 /* NSUUID+KeePassLib.m */; };
+		4C2724D71778FF1A00FD8456 /* NSUUID+KeePassKit.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C2724D61778FF1A00FD8456 /* NSUUID+KeePassKit.m */; };
 		4C2724DA17790E7C00FD8456 /* NSMutableData+Base64.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C2724D917790E7C00FD8456 /* NSMutableData+Base64.m */; };
 		4C2A6134177A1D5F00C9826C /* KPLErrorCodes.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C2A6133177A1D5F00C9826C /* KPLErrorCodes.m */; };
 		4C2C4C2C16D3BE3700D49295 /* KdbGroup+MPTreeTools.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C2C4C2B16D3BE3700D49295 /* KdbGroup+MPTreeTools.m */; };
@@ -303,8 +303,8 @@
 		4C2724D01778EFE300FD8456 /* NSString+Empty.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+Empty.m"; sourceTree = "<group>"; };
 		4C2724D21778FA0700FD8456 /* NSDate+Packed.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDate+Packed.h"; sourceTree = "<group>"; };
 		4C2724D31778FA0700FD8456 /* NSDate+Packed.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDate+Packed.m"; sourceTree = "<group>"; };
-		4C2724D51778FF1A00FD8456 /* NSUUID+KeePassLib.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSUUID+KeePassLib.h"; sourceTree = "<group>"; };
-		4C2724D61778FF1A00FD8456 /* NSUUID+KeePassLib.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSUUID+KeePassLib.m"; sourceTree = "<group>"; };
+		4C2724D51778FF1A00FD8456 /* NSUUID+KeePassKit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSUUID+KeePassKit.h"; sourceTree = "<group>"; };
+		4C2724D61778FF1A00FD8456 /* NSUUID+KeePassKit.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSUUID+KeePassKit.m"; sourceTree = "<group>"; };
 		4C2724D817790E7C00FD8456 /* NSMutableData+Base64.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSMutableData+Base64.h"; sourceTree = "<group>"; };
 		4C2724D917790E7C00FD8456 /* NSMutableData+Base64.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSMutableData+Base64.m"; sourceTree = "<group>"; };
 		4C2A6132177A181300C9826C /* KPLErrorCodes.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KPLErrorCodes.h; sourceTree = "<group>"; };
@@ -876,8 +876,6 @@
 				4C2724D31778FA0700FD8456 /* NSDate+Packed.m */,
 				4CF1F0C81786B37900CD920E /* NSData+Gzip.m */,
 				4CF1F0C91786B37900CD920E /* NSData+Gzip.h */,
-				4C2724D51778FF1A00FD8456 /* NSUUID+KeePassLib.h */,
-				4C2724D61778FF1A00FD8456 /* NSUUID+KeePassLib.m */,
 				4C2724D817790E7C00FD8456 /* NSMutableData+Base64.h */,
 				4C2724D917790E7C00FD8456 /* NSMutableData+Base64.m */,
 				4C801AFA179310E2002821E3 /* NSString+Hexdata.h */,
@@ -1349,6 +1347,8 @@
 		4CD3ABAF178F71B50073F5C5 /* Categories */ = {
 			isa = PBXGroup;
 			children = (
+				4C2724D51778FF1A00FD8456 /* NSUUID+KeePassKit.h */,
+				4C2724D61778FF1A00FD8456 /* NSUUID+KeePassKit.m */,
 				4C8A173B1790AA41008B5C17 /* NSData+Keyfile.h */,
 				4C8A173C1790AA41008B5C17 /* NSData+Keyfile.m */,
 				4CDB5C401794AA4F0017667E /* KPKTree+Serializing.h */,
@@ -1750,7 +1750,7 @@
 				4C2724CE1778EFB100FD8456 /* NSData+Random.m in Sources */,
 				4C2724D11778EFE300FD8456 /* NSString+Empty.m in Sources */,
 				4C2724D41778FA0700FD8456 /* NSDate+Packed.m in Sources */,
-				4C2724D71778FF1A00FD8456 /* NSUUID+KeePassLib.m in Sources */,
+				4C2724D71778FF1A00FD8456 /* NSUUID+KeePassKit.m in Sources */,
 				4C2724DA17790E7C00FD8456 /* NSMutableData+Base64.m in Sources */,
 				4C2A6134177A1D5F00C9826C /* KPLErrorCodes.m in Sources */,
 				4CD5D705177A5F3300100649 /* MPDatabaseSettingsWindowController.m in Sources */,
