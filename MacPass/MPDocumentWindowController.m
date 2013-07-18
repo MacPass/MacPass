@@ -176,18 +176,25 @@ NSString *const MPCurrentItemChangedNotification = @"com.hicknhack.macpass.MPCur
 }
 
 - (BOOL)validateMenuItem:(NSMenuItem *)menuItem {
-  BOOL enabled = YES;
   MPDocument *document = [self document];
-  if([menuItem action] == @selector(exportDatabase:)) {
+  SEL itemAction = [menuItem action];
+  if(itemAction == @selector(showDatabaseSettings:)
+     || itemAction == @selector(editPassword:)) {
+    return document.decrypted && !document.isLocked;
+  }
+  
+  BOOL enabled = YES;
+  if(itemAction == @selector(exportDatabase:)) {
     enabled = (nil != document.treeV4);
   }
-  enabled &= !( document.isLocked || document.isReadOnly );
+  
+  enabled &= !( !document.decrypted || document.isLocked || document.isReadOnly );
   return enabled;
 }
 
 - (BOOL)validateToolbarItem:(NSToolbarItem *)theItem {
   MPDocument *document = [self document];
-  if(document.isLocked || document.isReadOnly) {
+  if(!document.decrypted || document.isLocked || document.isReadOnly) {
     return NO;
   }
   SEL itemAction = [theItem action];

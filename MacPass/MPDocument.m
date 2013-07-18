@@ -263,7 +263,7 @@ NSString *const MPDocumentGroupKey                    = @"MPDocumentGroupKey";
 - (Kdb3Tree *)treeV3 {
   switch (_version) {
     case MPDatabaseVersion3:
-      NSAssert([self.tree isKindOfClass:[Kdb3Tree class]], @"Tree has to be Version3");
+      NSAssert(self.tree == nil || [self.tree isKindOfClass:[Kdb3Tree class]], @"Tree has to be Version3");
       return (Kdb3Tree *)self.tree;
     case MPDatabaseVersion4:
       return nil;
@@ -277,7 +277,7 @@ NSString *const MPDocumentGroupKey                    = @"MPDocumentGroupKey";
     case MPDatabaseVersion3:
       return nil;
     case MPDatabaseVersion4:
-      NSAssert([self.tree isKindOfClass:[Kdb4Tree class]], @"Tree has to be Version4");
+      NSAssert(self.tree == nil || [self.tree isKindOfClass:[Kdb4Tree class]], @"Tree has to be Version4");
       return (Kdb4Tree *)self.tree;
     default:
       return nil;
@@ -454,13 +454,13 @@ NSString *const MPDocumentGroupKey                    = @"MPDocumentGroupKey";
   }
 }
 
-- (BOOL)validateMenuItem:(NSMenuItem *)menuItem {
-  if([menuItem action] == [MPActionHelper actionOfType:MPActionEmptyTrash]) {
+- (BOOL)validateUserInterfaceItem:(id<NSValidatedUserInterfaceItem>)anItem {
+  if([anItem action] == [MPActionHelper actionOfType:MPActionEmptyTrash]) {
     BOOL hasGroups = [self.trash.groups count] > 0;
     BOOL hasEntries = [self.trash.entries count] > 0;
     return (hasEntries || hasGroups);
   }
-  return YES;
+  return [super validateUserInterfaceItem:anItem];
 }
 
 #pragma mark Private

@@ -38,17 +38,29 @@
   [MPStringLengthValueTransformer registerTransformer];
 }
 
+- (void)dealloc {
+  [[NSNotificationCenter defaultCenter] removeObserver:self];
+}
+
 - (BOOL)applicationShouldOpenUntitledFile:(NSApplication *)sender {
   return [[NSUserDefaults standardUserDefaults] boolForKey:kMPSettingsKeyOpenEmptyDatabaseOnLaunch];
+}
+
+
+- (void)applicationWillFinishLaunching:(NSNotification *)notification {
+  BOOL reopen = [[NSUserDefaults standardUserDefaults] boolForKey:kMPSettingsKeyReopenLastDatabaseOnLaunch];
+  if(reopen) {
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(_applicationDidFinishRestoringWindows:)
+                                                 name:NSApplicationDidFinishRestoringWindowsNotification
+                                               object:nil];
+
+  }
 }
 
 - (void)applicationDidFinishLaunching:(NSNotification *)notification {
   serverDaemon = [[MPServerDaemon alloc] init];
   lockDaemon = [[MPLockDaemon alloc] init];
-  NSUInteger openDocs = [[[NSDocumentController sharedDocumentController] documents] count];
-  if(openDocs == 0) {
-    NSLog(@"Do something!");
-  }
 }
 
 - (NSString *)applicationName {
@@ -93,6 +105,18 @@
     if([windowControllers count] > 0) {
       [windowControllers[0] lock:nil];
     }
+  }
+}
+
+- (void)_applicationDidFinishRestoringWindows:(NSNotification *)notification {
+  NSDocumentController *documentController = [NSDocumentController sharedDocumentController];
+  NSArray *documents = [documentController documents];
+  NSArray *recentDocuments = [documentController recentDocumentURLs];
+  if([documents count] == 0 && [recentDocuments count] > 0) {
+    NSURL *url = recentDocuments[0];
+    [documentController openDocumentWithContentsOfURL:url display:YES completionHandler:^(NSDocument *document, BOOL documentWasAlreadyOpen, NSError *error) {
+      // do nothing
+    }];
   }
 }
 

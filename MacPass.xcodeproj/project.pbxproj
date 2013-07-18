@@ -494,7 +494,6 @@
 		4C76156B1764C0C80015A1A6 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/PasswordInputView.xib; sourceTree = "<group>"; };
 		4C76156C1764C0CC0015A1A6 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/PasswordInputView.strings; sourceTree = "<group>"; };
 		4C7615701764C0E80015A1A6 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/InspectorView.xib; sourceTree = "<group>"; };
-		4C7615721764C4A40015A1A6 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/GeneralSettings.strings; sourceTree = "<group>"; };
 		4C7615751764C4A40015A1A6 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/PasswordInputView.strings; sourceTree = "<group>"; };
 		4C7615771764C4A40015A1A6 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/Localizable.strings; sourceTree = "<group>"; };
 		4C7615781764C4A50015A1A6 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.rtf; name = de; path = de.lproj/Credits.rtf; sourceTree = "<group>"; };
@@ -550,7 +549,6 @@
 		4CA0B30D15BCB6FD00654E32 /* MPSettingsTab.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MPSettingsTab.h; sourceTree = "<group>"; };
 		4CA0E3A5176FAF99004D18CB /* MPDocumentQueryService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MPDocumentQueryService.h; sourceTree = "<group>"; };
 		4CA0E3A6176FAF99004D18CB /* MPDocumentQueryService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MPDocumentQueryService.m; sourceTree = "<group>"; };
-		4CA23357176DB8F000F0B6AC /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/GeneralSettings.strings; sourceTree = "<group>"; };
 		4CA23358176DBFE100F0B6AC /* MPLockDaemon.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MPLockDaemon.h; sourceTree = "<group>"; };
 		4CA23359176DBFE100F0B6AC /* MPLockDaemon.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MPLockDaemon.m; sourceTree = "<group>"; };
 		4CAAFDD51787AED60013FCF9 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/MainMenu.strings; sourceTree = "<group>"; };
@@ -591,6 +589,8 @@
 		4CC6727B1781D0D2006DEDCF /* KdbEntry+MPAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "KdbEntry+MPAdditions.m"; sourceTree = "<group>"; };
 		4CC7EA1917807E7E0089D4F3 /* HNHRoundendTextFieldCellHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HNHRoundendTextFieldCellHelper.h; sourceTree = "<group>"; };
 		4CC7EA1A17807E7E0089D4F3 /* HNHRoundendTextFieldCellHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HNHRoundendTextFieldCellHelper.m; sourceTree = "<group>"; };
+		4CCA7EEC1797866F00B0B55E /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/GeneralSettings.strings; sourceTree = "<group>"; };
+		4CCA7EEE1797867200B0B55E /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/GeneralSettings.strings; sourceTree = "<group>"; };
 		4CD3ABB2178F71B50073F5C5 /* KPKVersion.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KPKVersion.h; sourceTree = "<group>"; };
 		4CD3ABB3178F71B50073F5C5 /* KPKTree.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KPKTree.h; sourceTree = "<group>"; };
 		4CD3ABB4178F71B50073F5C5 /* KPKTree.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KPKTree.m; sourceTree = "<group>"; };
@@ -1826,8 +1826,8 @@
 			isa = PBXVariantGroup;
 			children = (
 				4C76155F1764C0590015A1A6 /* Base */,
-				4C7615721764C4A40015A1A6 /* de */,
-				4CA23357176DB8F000F0B6AC /* en */,
+				4CCA7EEC1797866F00B0B55E /* de */,
+				4CCA7EEE1797867200B0B55E /* en */,
 			);
 			name = GeneralSettings.xib;
 			sourceTree = "<group>";

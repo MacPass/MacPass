@@ -11,6 +11,7 @@
 NSString *const kMPSettingsKeyPasteboardClearTimeout = @"ClipboardClearTimeout";
 NSString *const kMPSettingsKeyClearPasteboardOnQuit  = @"ClearClipboardOnQuit";
 NSString *const kMPSettingsKeyOpenEmptyDatabaseOnLaunch = @"OpenEmptyDatabaseOnLaunch";
+NSString *const kMPSettingsKeyReopenLastDatabaseOnLaunch = @"ReopenLastDatabaseOnLaunch";
 NSString *const kMPSettingsKeyHttpPort =@"HttpPort";
 NSString *const kMPSettingsKeyEnableHttpServer = @"EnableHttpServer";
 NSString *const kMPSettingsKeyShowMenuItem = @"ShowMenuItem";
@@ -28,6 +29,7 @@ NSString *const kMPSettingsKeyIdleLockTimeOut = @"IdleLockTimeOut";
            kMPSettingsKeyPasteboardClearTimeout: @30, // 30 seconds
            kMPSettingsKeyClearPasteboardOnQuit: @YES,
            kMPSettingsKeyOpenEmptyDatabaseOnLaunch: @NO,
+           kMPSettingsKeyReopenLastDatabaseOnLaunch: @YES,
            kMPSettingsKeyHttpPort: @19455,
            kMPSettingsKeyEnableHttpServer: @NO,
            kMPSettingsKeyShowMenuItem: @YES,
