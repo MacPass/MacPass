@@ -17,6 +17,7 @@
 #import "MPActionHelper.h"
 #import "MPDatabaseSettingsWindowController.h"
 #import "MPConstants.h"
+#import "MPSettingsHelper.h"
 
 NSString *const MPCurrentItemChangedNotification = @"com.hicknhack.macpass.MPCurrentItemChangedNotification";
 
@@ -93,6 +94,11 @@ NSString *const MPCurrentItemChangedNotification = @"com.hicknhack.macpass.MPCur
   
   [_splitView setHoldingPriority:NSLayoutPriorityDefaultLow+2 forSubviewAtIndex:0];
   [_splitView setHoldingPriority:NSLayoutPriorityDefaultLow+1 forSubviewAtIndex:2];
+  
+  BOOL showInspector = [[NSUserDefaults standardUserDefaults] boolForKey:kMPSettingsKeyShowInspector];
+  if(!showInspector) {
+    [inspectorView removeFromSuperview];
+  }
   
   [[self window] setDelegate:self];
   
@@ -254,18 +260,21 @@ NSString *const MPCurrentItemChangedNotification = @"com.hicknhack.macpass.MPCur
 
 - (void)toggleInspector:(id)sender {
   NSView *inspectorView = [_inspectorViewController view];
+  BOOL inspectorVisible = NO;
   if([inspectorView superview]) {
     //[inspectorView animator]
     [inspectorView removeFromSuperview];
   }
   else {
     // Remove contraint on view removal.
+    inspectorVisible = YES;
     [_splitView addSubview:inspectorView];
     [_splitView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"[inspectorView(>=200)]"
                                                                        options:0
                                                                        metrics:nil
                                                                          views:NSDictionaryOfVariableBindings(inspectorView)]];
   }
+  [[NSUserDefaults standardUserDefaults] setBool:inspectorVisible forKey:kMPSettingsKeyShowInspector];
 }
 
 - (void)showEntries {

@@ -27,6 +27,9 @@ APPKIT_EXTERN NSString *const kMPSettingsKeyLockOnSleep;
 APPKIT_EXTERN NSString *const kMPSettingsKeyIdleLockTimeOut;
 
 
+/* Autosaving states */
+APPKIT_EXTERN NSString *const kMPSettingsKeyShowInspector;
+
 typedef NS_ENUM(NSUInteger, MPPasswordEncoding) {
   MPPasswordEncodingUTF8,
   MPPasswordEncodingASCII,

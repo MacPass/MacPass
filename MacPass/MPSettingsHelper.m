@@ -17,6 +17,7 @@ NSString *const kMPSettingsKeyEnableHttpServer = @"EnableHttpServer";
 NSString *const kMPSettingsKeyShowMenuItem = @"ShowMenuItem";
 NSString *const kMPSettingsKeyLockOnSleep = @"LockOnSleep";
 NSString *const kMPSettingsKeyIdleLockTimeOut = @"IdleLockTimeOut";
+NSString *const kMPSettingsKeyShowInspector = @"ShowInspector";
 
 @implementation MPSettingsHelper
 
@@ -26,6 +27,7 @@ NSString *const kMPSettingsKeyIdleLockTimeOut = @"IdleLockTimeOut";
 
 + (NSDictionary *)_standardDefaults {
   return @{
+           kMPSettingsKeyShowInspector: @YES, // Show the Inspector by default
            kMPSettingsKeyPasteboardClearTimeout: @30, // 30 seconds
            kMPSettingsKeyClearPasteboardOnQuit: @YES,
            kMPSettingsKeyOpenEmptyDatabaseOnLaunch: @NO,
