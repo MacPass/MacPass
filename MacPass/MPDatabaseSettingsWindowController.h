@@ -18,9 +18,11 @@ typedef NS_ENUM(NSUInteger, MPDatabaseSettingsTab) {
 @class MPDocument;
 @class HNHRoundedSecureTextField;
 
-@interface MPDatabaseSettingsWindowController : NSWindowController
+@interface MPDatabaseSettingsWindowController : NSWindowController <NSTextFieldDelegate>
 
 @property (weak) IBOutlet NSTabView *sectionTabView;
+@property (weak) IBOutlet NSButton *saveButton;
+@property (weak) IBOutlet NSButton *cancelButton;
 
 /* General Tab */
 @property (weak) IBOutlet NSTextField *databaseNameTextField;
@@ -28,8 +30,11 @@ typedef NS_ENUM(NSUInteger, MPDatabaseSettingsTab) {
 
 /* Protection */
 @property (weak) IBOutlet HNHRoundedSecureTextField *passwordTextField;
+@property (weak) IBOutlet HNHRoundedSecureTextField *passwordRepeatTextField;
 @property (weak) IBOutlet NSPathControl *keyfilePathControl;
 @property (weak) IBOutlet NSButton *togglePasswordButton;
+@property (weak) IBOutlet NSTextField *errorTextField;
+
 
 - (IBAction)clearKey:(id)sender;
 - (IBAction)generateKey:(id)sender;

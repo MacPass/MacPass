@@ -63,9 +63,6 @@ NSString *const MPCurrentItemChangedNotification = @"com.hicknhack.macpass.MPCur
 
 - (void)dealloc {
   [[NSNotificationCenter defaultCenter] removeObserver:self];
-  
-  
-  
 }
 
 #pragma mark View Handling
@@ -343,6 +340,7 @@ NSString *const MPCurrentItemChangedNotification = @"com.hicknhack.macpass.MPCur
   [_outlineViewController showOutline];
 }
 
+
 #pragma mark NSWindowDelegate
 - (void)windowDidUpdate:(NSNotification *)notification {
   id firstResonder = [[self window] firstResponder];
@@ -351,10 +349,16 @@ NSString *const MPCurrentItemChangedNotification = @"com.hicknhack.macpass.MPCur
   }
   _firstResponder = firstResonder;
   if([_firstResponder isKindOfClass:[NSView class]]) {
-    [self _updateCurrentItem:[NSNotification notificationWithName:@"dummy" object:_firstResponder ]];
+    //self _updateCurrentItem:[NSNotification notificationWithName:@"dummy" object:_firstResponder ]];
   }
 }
 
+- (void)windowDidBecomeKey:(NSNotification *)notification {
+  MPDocument *document = [self document];
+  if(!document.hasPasswordOrKey && document.decrypted) {
+    [self performSelector:@selector(editPassword:) withObject:nil afterDelay:0.5];
+  }
+}
 
 #pragma mark Helper
 

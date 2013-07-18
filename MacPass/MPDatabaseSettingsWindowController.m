@@ -14,6 +14,8 @@
 
 #import "HNHRoundedSecureTextField.h"
 
+#import "NSString+Empty.h"
+
 #import "Kdb.h"
 #import "Kdb4Node.h"
 #import "KdbGroup+MPAdditions.h"
@@ -24,6 +26,8 @@
 
 @property (nonatomic,assign) BOOL trashEnabled;
 @property (nonatomic,assign) BOOL showPassword;
+@property (nonatomic,assign) BOOL hasValidPasswordOrKey;
+@property (nonatomic,weak) NSURL *keyURL;
 
 @end
 
@@ -38,6 +42,7 @@
   if(self) {
     _document = document;
     _showPassword = NO;
+    _hasValidPasswordOrKey = NO;
   }
   return self;
 }
@@ -46,6 +51,9 @@
   [super windowDidLoad];
   
   NSAssert(_document != nil, @"Document needs to be present");
+  
+  [self.saveButton bind:NSEnabledBinding toObject:self withKeyPath:@"hasValidPasswordOrKey" options:nil];
+  [self.cancelButton bind:NSEnabledBinding toObject:self withKeyPath:@"hasValidPasswordOrKey" options:nil];
   
   Kdb4Tree *tree = _document.treeV4;
   if( tree ) {
@@ -64,7 +72,7 @@
   /* Protection */
   _document.password = [self.passwordTextField stringValue];
   _document.key = [self.keyfilePathControl URL];
-
+  
   /* General */
   _document.treeV4.databaseDescription = [self.databaseDescriptionTextView string];
   _document.treeV4.databaseName = [self.databaseNameTextField stringValue];
@@ -72,7 +80,7 @@
   /* Display */
   
   /* Advanced */
- _document.treeV4.recycleBinEnabled = self.trashEnabled;
+  _document.treeV4.recycleBinEnabled = self.trashEnabled;
   NSMenuItem *menuItem = [self.selectRecycleBinGroupPopUpButton selectedItem];
   KdbGroup *group = [menuItem representedObject];
   [_document useGroupAsTrash:group];
@@ -109,15 +117,68 @@
   [self.sectionTabView selectTabViewItemAtIndex:tab];
 }
 
+- (void)setShowPassword:(BOOL)showPassword {
+  if(_showPassword != showPassword) {
+    _showPassword = showPassword;
+    
+    [self.passwordRepeatTextField setStringValue:@""];
+    [self _verifyPasswordAndKey];
+  }
+}
+
+- (void)setKeyURL:(NSURL *)keyURL {
+  _keyURL = keyURL;
+  [self _verifyPasswordAndKey];
+}
+
 #pragma mark Actions
 - (IBAction)clearKey:(id)sender {
-  [self.keyfilePathControl setURL:nil];
+  self.keyURL = nil;
 }
 
 - (IBAction)generateKey:(id)sender {
 }
 
+#pragma makr NSTextFieldDelegate
+- (void)controlTextDidChange:(NSNotification *)obj {
+  [self _verifyPasswordAndKey];
+}
+
 #pragma mark Private Helper
+- (void)_verifyPasswordAndKey {
+  NSString *password = [self.passwordTextField stringValue];
+  NSString *repeat = [self.passwordRepeatTextField stringValue];
+  BOOL hasKey = (self.keyURL != nil);
+  BOOL keyOk = YES;
+  if(hasKey) {
+    keyOk = [self.keyURL checkResourceIsReachableAndReturnError:nil];
+  }
+  BOOL hasPassword = ![password isEmpty];
+  BOOL passwordOk = YES;
+  if(hasPassword ) {
+    passwordOk = [password isEqualToString:repeat] || self.showPassword;
+  }
+  BOOL hasPasswordOrKey = (hasKey || hasPassword);
+  keyOk = hasKey ? keyOk : YES;
+  passwordOk = hasPassword ? passwordOk : YES;
+  self.hasValidPasswordOrKey = hasPasswordOrKey && passwordOk && keyOk;
+  
+  if(!hasPasswordOrKey) {
+    [self.errorTextField setStringValue:NSLocalizedString(@"ERROR_NO_PASSWORD_OR_KEYFILE", "Missing Key or Password")];
+    return; // alldone
+  }
+  if(!passwordOk && !keyOk ) {
+    [self.errorTextField setStringValue:NSLocalizedString(@"ERROR_PASSWORD_MISSMATCH_INVALID_KEYFILE", "Passwords do not match, keyfile is invalid")];
+  }
+  else if(!passwordOk) {
+    [self.errorTextField setStringValue:NSLocalizedString(@"ERROR_PASSWORD_MISSMATCH", "Passwords do not match")];
+  }
+  else {
+    [self.errorTextField setStringValue:NSLocalizedString(@"ERROR_INVALID_KEYFILE", "Keyfile not valid")];
+  }
+  
+}
+
 - (void)_setupDatabase:(Kdb4Tree *)tree {
   [self.databaseNameTextField setStringValue:tree.databaseName];
   [self.databaseDescriptionTextView setString:tree.databaseDescription];
@@ -140,10 +201,21 @@
 
 - (void)_setupPasswordTab:(Kdb4Tree *)tree {
   [self.passwordTextField setStringValue:_document.password ? _document.password : @""];
-  [self.keyfilePathControl setURL:_document.key];
+  [self.passwordRepeatTextField setStringValue:[self.passwordRepeatTextField stringValue]];
+  self.keyURL = _document.key;
   
+  NSDictionary *negateOption = @{ NSValueTransformerNameBindingOption : NSNegateBooleanTransformerName };
   [self.passwordTextField bind:@"showPassword" toObject:self withKeyPath:@"showPassword" options:nil];
   [self.togglePasswordButton bind:NSValueBinding toObject:self withKeyPath:@"showPassword" options:nil];
+  [self.passwordRepeatTextField bind:NSEnabledBinding toObject:self withKeyPath:@"showPassword" options:negateOption];
+  [self.errorTextField bind:NSHiddenBinding toObject:self withKeyPath:@"hasValidPasswordOrKey" options:nil];
+  [self.keyfilePathControl bind:NSValueBinding toObject:self withKeyPath:@"keyURL" options:nil];
+  
+  [self.passwordRepeatTextField setDelegate:self];
+  [self.passwordTextField setDelegate:self];
+  
+  /* Manually initate the first check */
+  [self _verifyPasswordAndKey];
 }
 
 - (void)_updateTrashFolders:(Kdb4Tree *)tree {
@@ -154,7 +226,7 @@
 - (NSMenu *)_buildTreeMenu:(Kdb4Tree *)tree {
   NSMenu *menu = [[NSMenu alloc] init];
   [menu setAutoenablesItems:NO];
-
+  
   for(Kdb4Group *group in tree.root.groups) {
     NSMenuItem *groupItem = [[NSMenuItem alloc] init];
     [groupItem setImage:group.icon];
