@@ -20,7 +20,7 @@
     return nil;
   }
   Kdb4Entry *entry = (Kdb4Entry *)self.viewController.selectedEntry;
-  MPCustomFieldTableCellView *view = [tableView makeViewWithIdentifier:@"NormalCell" owner:tableView];
+  MPCustomFieldTableCellView *view = [tableView makeViewWithIdentifier:@"SelectedCell" owner:tableView];
   [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(_customFieldFrameChanged:) name:NSViewFrameDidChangeNotification object:view];
   if([self.viewController.selectedEntry isKindOfClass:[Kdb4Entry class]]) {
     StringField *stringField = entry.stringFields[row];
