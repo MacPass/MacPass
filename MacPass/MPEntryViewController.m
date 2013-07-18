@@ -148,6 +148,9 @@ NSString *const _toggleFilterUsernameButton = @"SearchUsername";
   [passwordColumn setIdentifier:MPEntryTablePasswordColumnIdentifier];
   [urlColumn setIdentifier:MPEntryTableURLColumnIdentifier];
   
+  [self.entryTable setAutosaveName:@"EntryTable"];
+  [self.entryTable setAutosaveTableColumns:YES];
+  
 	NSSortDescriptor *titleColumSortDescriptor = [NSSortDescriptor sortDescriptorWithKey:@"title" ascending:YES selector:@selector(compare:)];
   NSSortDescriptor *userNameSortDescriptor = [NSSortDescriptor sortDescriptorWithKey:@"username" ascending:YES selector:@selector(compare:)];
   NSSortDescriptor *urlSortDescriptor = [NSSortDescriptor sortDescriptorWithKey:@"url" ascending:YES selector:@selector(compare:)];

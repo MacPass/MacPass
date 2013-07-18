@@ -354,7 +354,6 @@ NSString *const MPDocumentGroupKey                    = @"MPDocumentGroupKey";
   return newStringField;
 }
 
-
 - (void)moveGroup:(KdbGroup *)group toGroup:(KdbGroup *)target index:(NSInteger)index {
   NSInteger oldIndex = [group.parent.groups indexOfObject:group];
   if(group.parent == target && oldIndex == index) {

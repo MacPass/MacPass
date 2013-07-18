@@ -15,7 +15,7 @@
 @class HNHRoundedSecureTextField;
 @class MPDocumentWindowController;
 
-@interface MPInspectorViewController : MPViewController <NSPopoverDelegate, NSTableViewDelegate>
+@interface MPInspectorViewController : MPViewController <NSPopoverDelegate>
 
 @property (weak) IBOutlet MPPopupImageView *itemImageView;
 @property (weak) IBOutlet NSTextField *itemNameTextfield;
@@ -35,6 +35,9 @@
 @property (weak) IBOutlet NSTextField *customFieldsTextField;
 @property (weak) IBOutlet NSButton *togglePassword;
 
+
+@property (weak, nonatomic, readonly) KdbEntry *selectedEntry;
+@property (weak, nonatomic, readonly) KdbGroup *selectedGroup;
 
 /* Seperate call to ensure alle registered objects are in place */
 - (void)setupNotifications:(MPDocumentWindowController *)windowController;

@@ -45,8 +45,11 @@
 - (void)applicationDidFinishLaunching:(NSNotification *)notification {
   serverDaemon = [[MPServerDaemon alloc] init];
   lockDaemon = [[MPLockDaemon alloc] init];
+  NSUInteger openDocs = [[[NSDocumentController sharedDocumentController] documents] count];
+  if(openDocs == 0) {
+    NSLog(@"Do something!");
+  }
 }
-
 
 - (NSString *)applicationName {
   return [[NSBundle mainBundle] infoDictionary][@"CFBundleName"];

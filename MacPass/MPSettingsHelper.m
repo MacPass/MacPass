@@ -27,7 +27,7 @@ NSString *const kMPSettingsKeyIdleLockTimeOut = @"IdleLockTimeOut";
   return @{
            kMPSettingsKeyPasteboardClearTimeout: @30, // 30 seconds
            kMPSettingsKeyClearPasteboardOnQuit: @YES,
-           kMPSettingsKeyOpenEmptyDatabaseOnLaunch: @YES,
+           kMPSettingsKeyOpenEmptyDatabaseOnLaunch: @NO,
            kMPSettingsKeyHttpPort: @19455,
            kMPSettingsKeyEnableHttpServer: @NO,
            kMPSettingsKeyShowMenuItem: @YES,

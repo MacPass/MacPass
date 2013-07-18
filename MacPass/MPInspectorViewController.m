@@ -20,6 +20,8 @@
 #import "MPDatabaseVersion.h"
 #import "MPCustomFieldTableCellView.h"
 #import "MPSelectedAttachmentTableCellView.h"
+#import "MPAttachmentTableViewDelegate.h"
+#import "MPCustomFieldTableViewDelegate.h"
 
 #import "NSDate+Humanized.h"
 
@@ -45,6 +47,10 @@ enum {
 
 @interface MPInspectorViewController () {
   BOOL _visible;
+  NSArrayController *_attachmentsController;
+  NSArrayController *_customFieldsController;
+  MPAttachmentTableViewDelegate *_attachmentTableDelegate;
+  MPCustomFieldTableViewDelegate *_customFieldTableDelegate;
 }
 
 @property (weak, nonatomic) KdbEntry *selectedEntry;
@@ -60,8 +66,6 @@ enum {
 
 @property (nonatomic, assign) NSUInteger activeTab;
 @property (weak) IBOutlet NSTabView *tabView;
-@property (strong) NSArrayController *attachmentsController;
-@property (strong) NSArrayController *customFieldsController;
 
 - (IBAction)addCustomField:(id)sender;
 - (IBAction)removeCustomField:(id)sender;
@@ -87,6 +91,10 @@ enum {
     _selectedGroup = nil;
     _attachmentsController = [[NSArrayController alloc] init];
     _customFieldsController = [[NSArrayController alloc] init];
+    _attachmentTableDelegate = [[MPAttachmentTableViewDelegate alloc] init];
+    _attachmentTableDelegate.viewController = self;
+    _customFieldTableDelegate = [[MPCustomFieldTableViewDelegate alloc] init];
+    _customFieldTableDelegate.viewController = self;
     _activeTab = MPGeneralTab;
   }
   return self;
@@ -107,12 +115,12 @@ enum {
   
   /* Set background to clearcolor so we can draw in the scrollview */
   [_attachmentTableView setBackgroundColor:[NSColor clearColor]];
-  [_attachmentTableView bind:NSContentBinding toObject:self.attachmentsController withKeyPath:@"arrangedObjects" options:nil];
-  [_attachmentTableView setDelegate:self];
+  [_attachmentTableView bind:NSContentBinding toObject:_attachmentsController withKeyPath:@"arrangedObjects" options:nil];
+  [_attachmentTableView setDelegate:_attachmentTableDelegate];
   /* Set background to clearcolor so we can draw in the scrollview */
   [_customFieldsTableView setBackgroundColor:[NSColor clearColor]];
-  [_customFieldsTableView bind:NSContentBinding toObject:self.customFieldsController withKeyPath:@"arrangedObjects" options:nil];
-  [_customFieldsTableView setDelegate:self];
+  [_customFieldsTableView bind:NSContentBinding toObject:_customFieldsController withKeyPath:@"arrangedObjects" options:nil];
+  [_customFieldsTableView setDelegate:_customFieldTableDelegate];
   
   [self.passwordTextField bind:@"showPassword" toObject:self withKeyPath:@"showPassword" options:nil];
   [self.togglePassword bind:NSValueBinding toObject:self withKeyPath:@"showPassword" options:nil];
@@ -167,26 +175,26 @@ enum {
 - (void)_updateAttachments {
   if(self.selectedEntry) {
     if([self.selectedEntry isKindOfClass:[Kdb4Entry class]]) {
-      [self.attachmentsController bind:NSContentArrayBinding toObject:self.selectedEntry withKeyPath:@"binaries" options:nil];
+      [_attachmentsController bind:NSContentArrayBinding toObject:self.selectedEntry withKeyPath:@"binaries" options:nil];
     }
     else {
       /* Use binary from Kdb3Entry */
     }
   }
-  else if([self.attachmentsController content] != nil){
-    [self.attachmentsController unbind:NSContentArrayBinding];
-    [self.attachmentsController setContent:nil];
+  else if([_attachmentsController content] != nil){
+    [_attachmentsController unbind:NSContentArrayBinding];
+    [_attachmentsController setContent:nil];
     
   }
 }
 
 - (void)_updateCustomFields {
   if(self.selectedEntry && [self.selectedEntry isKindOfClass:[Kdb4Entry class]]) {
-    [self.customFieldsController bind:NSContentArrayBinding toObject:self.selectedEntry withKeyPath:@"stringFields" options:nil];
+    [_customFieldsController bind:NSContentArrayBinding toObject:self.selectedEntry withKeyPath:@"stringFields" options:nil];
   }
-  else if([self.customFieldsController content] != nil){
-    [self.customFieldsController unbind:NSContentArrayBinding];
-    [self.customFieldsController setContent:nil];
+  else if([_customFieldsController content] != nil){
+    [_customFieldsController unbind:NSContentArrayBinding];
+    [_customFieldsController setContent:nil];
   }
 }
 
@@ -410,80 +418,6 @@ enum {
     self.selectedEntry = sender.currentItem;
   }
   [self _updateContent];
-}
-
-
-#pragma mark NSTableViewDelegate
-/* TODO: Divide this into single delegates */
-- (NSView *)tableView:(NSTableView *)tableView viewForTableColumn:(NSTableColumn *)tableColumn row:(NSInteger)row {
-  if(tableView == self.attachmentTableView) {
-    return [self _viewForAttachmentTableColumn:tableColumn row:row];
-  }
-  return [self _viewForCustomFieldTableColumn:tableColumn row:row];
-}
-
-- (void)tableViewSelectionDidChange:(NSNotification *)notification {
-  if([notification object] == self.attachmentTableView) {
-    NSIndexSet *allColumns = [NSIndexSet indexSetWithIndexesInRange:NSMakeRange(0, [[self.attachmentTableView tableColumns] count])];
-    Kdb4Entry *entryv4 = (Kdb4Entry *)self.selectedEntry;
-    NSIndexSet *indexSet = [NSIndexSet indexSetWithIndexesInRange:NSMakeRange(0, [entryv4.binaries count] )];
-    [self.attachmentTableView reloadDataForRowIndexes:indexSet columnIndexes:allColumns];
-  }
-}
-
-- (NSView *)_viewForAttachmentTableColumn:(NSTableColumn *)tableColumn row:(NSInteger)row {
-  /* Decide what view to use */
-  NSIndexSet *selectedIndexes = [self.attachmentTableView selectedRowIndexes];
-  NSTableCellView *view;
-  if([selectedIndexes containsIndex:row]) {
-    MPSelectedAttachmentTableCellView *cellView  = [_attachmentTableView makeViewWithIdentifier:@"SelectedCell" owner:_attachmentTableView];
-    [cellView.saveButton setTag:row];
-    [cellView.saveButton setAction:@selector(saveAttachment:)];
-    [cellView.saveButton setTarget:self];
-    [cellView.removeButton setTag:row];
-    [cellView.removeButton setAction:@selector(removeAttachment:)];
-    [cellView.removeButton setTarget:self];
-    view = cellView;
-  }
-  else {
-    view = [_attachmentTableView makeViewWithIdentifier:@"NormalCell" owner:_attachmentTableView];
-  }
-  /* Bind view */
-  if([self.selectedEntry isKindOfClass:[Kdb4Entry class]]) {
-    Kdb4Entry *entry = (Kdb4Entry *)self.selectedEntry;
-    BinaryRef *binaryRef = entry.binaries[row];
-    [[view textField] bind:NSValueBinding toObject:binaryRef withKeyPath:@"key" options:nil];
-    [[view imageView] setImage:[[NSWorkspace sharedWorkspace] iconForFileType:[binaryRef.key pathExtension]]];
-  }
-  return view;
-}
-- (NSView *)_viewForCustomFieldTableColumn:(NSTableColumn *)tableColumn row:(NSInteger)row {
-  MPCustomFieldTableCellView *view = [_customFieldsTableView makeViewWithIdentifier:[tableColumn identifier] owner:_customFieldsTableView];
-  [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(_customFieldFrameChanged:) name:NSViewFrameDidChangeNotification object:view];
-  if([self.selectedEntry isKindOfClass:[Kdb4Entry class]]) {
-    Kdb4Entry *entry = (Kdb4Entry *)self.selectedEntry;
-    StringField *stringField = entry.stringFields[row];
-    [view.labelTextField bind:NSValueBinding toObject:stringField withKeyPath:MPStringFieldKeyUndoableKey options:nil];
-    [view.valueTextField bind:NSValueBinding toObject:stringField withKeyPath:MPStringFieldValueUndoableKey options:nil];
-    [view.removeButton setTarget:self];
-    [view.removeButton setAction:@selector(removeCustomField:)];
-    [view.removeButton setTag:row];
-  }
-  return view;
-}
-
-- (NSTableRowView *)tableView:(NSTableView *)tableView rowViewForRow:(NSInteger)row {
-  HNHTableRowView *view = nil;
-  if(tableView == self.attachmentTableView) {
-    view = [[HNHTableRowView alloc] init];
-    view.selectionCornerRadius = 7;
-  }
-  return view;
-}
-
-- (void)_customFieldFrameChanged:(NSNotification *)notification {
-  // NSView *sender = [notification object];
-  // NSLog(@"didChangeFrameFor: %@ to: %@", sender, NSStringFromRect([sender frame]));
 }
 
 @end

@@ -19,7 +19,7 @@
 
 APPKIT_EXTERN NSString *const MPCurrentItemChangedNotification;
 
-@interface MPDocumentWindowController : NSWindowController <NSWindowDelegate>
+@interface MPDocumentWindowController : NSWindowController <NSWindowDelegate, NSUserInterfaceValidations>
 
 @property (readonly, strong) MPPasswordInputController *passwordInputController;
 @property (readonly, strong) MPEntryViewController *entryViewController;
