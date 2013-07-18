@@ -103,6 +103,8 @@ NSString *const MPCurrentItemChangedNotification = @"com.hicknhack.macpass.MPCur
   else {
     [self showEntries];
   }
+  
+  [_splitView setAutosaveName:@"SplitView"];
 }
 
 - (void)_setContentViewController:(MPViewController *)viewController {
@@ -275,7 +277,7 @@ NSString *const MPCurrentItemChangedNotification = @"com.hicknhack.macpass.MPCur
     [[contentView subviews][0] removeFromSuperviewWithoutNeedingDisplay];
   }
   [contentView addSubview:_splitView];
-  [_splitView adjustSubviews];
+  //[_splitView adjustSubviews];
   NSView *outlineView = [_outlineViewController view];
   NSView *inspectorView = [_inspectorViewController view];
   NSView *entryView = [_entryViewController view];
@@ -321,7 +323,7 @@ NSString *const MPCurrentItemChangedNotification = @"com.hicknhack.macpass.MPCur
   if(removeInspector) {
     [inspectorView removeFromSuperview];
   }
-  [contentView layout];
+  [contentView layoutSubtreeIfNeeded];
   
   MPDocument *document = [self document];
   document.locked = NO;

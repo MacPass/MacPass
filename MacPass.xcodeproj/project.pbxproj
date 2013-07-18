@@ -138,6 +138,8 @@
 		4C669B9F16760ED100DD0774 /* RandomStream.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C669B7516760ED100DD0774 /* RandomStream.m */; };
 		4C669BA016760ED100DD0774 /* Salsa20RandomStream.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C669B7716760ED100DD0774 /* Salsa20RandomStream.m */; };
 		4C669BA216760ED100DD0774 /* UUID.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C669B7B16760ED100DD0774 /* UUID.m */; };
+		4C67D33017981A2B00A7BDFC /* HNHTokenField.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C67D32F17981A2B00A7BDFC /* HNHTokenField.m */; };
+		4C67D33317981ABA00A7BDFC /* HNHTokenFieldCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C67D33217981ABA00A7BDFC /* HNHTokenFieldCell.m */; };
 		4C69A73A16D589DF00EC1B1A /* HNHGradientView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C69A73916D589DF00EC1B1A /* HNHGradientView.m */; };
 		4C6D1D25178579570014C5A5 /* 48_FolderTemplate.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 4C6D1D24178579570014C5A5 /* 48_FolderTemplate.pdf */; };
 		4C6D1D27178586CA0014C5A5 /* 99_AddFolderTemplate.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 4C6D1D26178586CA0014C5A5 /* 99_AddFolderTemplate.pdf */; };
@@ -477,6 +479,10 @@
 		4C669B7716760ED100DD0774 /* Salsa20RandomStream.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Salsa20RandomStream.m; sourceTree = "<group>"; };
 		4C669B7A16760ED100DD0774 /* UUID.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UUID.h; sourceTree = "<group>"; };
 		4C669B7B16760ED100DD0774 /* UUID.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UUID.m; sourceTree = "<group>"; };
+		4C67D32E17981A2B00A7BDFC /* HNHTokenField.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HNHTokenField.h; sourceTree = "<group>"; };
+		4C67D32F17981A2B00A7BDFC /* HNHTokenField.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HNHTokenField.m; sourceTree = "<group>"; };
+		4C67D33117981ABA00A7BDFC /* HNHTokenFieldCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HNHTokenFieldCell.h; sourceTree = "<group>"; };
+		4C67D33217981ABA00A7BDFC /* HNHTokenFieldCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HNHTokenFieldCell.m; sourceTree = "<group>"; };
 		4C69A73816D589DF00EC1B1A /* HNHGradientView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HNHGradientView.h; sourceTree = "<group>"; };
 		4C69A73916D589DF00EC1B1A /* HNHGradientView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HNHGradientView.m; sourceTree = "<group>"; };
 		4C6D1D24178579570014C5A5 /* 48_FolderTemplate.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = 48_FolderTemplate.pdf; sourceTree = "<group>"; };
@@ -1329,6 +1335,10 @@
 				4CC3AAB9175F4983003EF01B /* HNHRoundedTextFieldCell.m */,
 				4C9D6AA717615199001C660C /* HNHRoundedSecureTextFieldCell.h */,
 				4C9D6AA817615199001C660C /* HNHRoundedSecureTextFieldCell.m */,
+				4C67D32E17981A2B00A7BDFC /* HNHTokenField.h */,
+				4C67D32F17981A2B00A7BDFC /* HNHTokenField.m */,
+				4C67D33117981ABA00A7BDFC /* HNHTokenFieldCell.h */,
+				4C67D33217981ABA00A7BDFC /* HNHTokenFieldCell.m */,
 				4C58BD4D176370B100B8178C /* HNHBadgedTextField.h */,
 				4C58BD4E176370B100B8178C /* HNHBadgedTextField.m */,
 				4CAF62FA1763604000CD7084 /* HNHBadgedTextFieldCell.h */,
@@ -1808,6 +1818,8 @@
 				4C055E74179620BF00BD2BAB /* NSString+CommandString.m in Sources */,
 				4CC0D2CE17974A47000B4BDA /* MPCustomFieldTableViewDelegate.m in Sources */,
 				4CC0D2D117974A5A000B4BDA /* MPAttachmentTableViewDelegate.m in Sources */,
+				4C67D33017981A2B00A7BDFC /* HNHTokenField.m in Sources */,
+				4C67D33317981ABA00A7BDFC /* HNHTokenFieldCell.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
