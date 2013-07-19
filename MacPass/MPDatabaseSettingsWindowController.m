@@ -201,7 +201,7 @@
 
 - (void)_setupPasswordTab:(Kdb4Tree *)tree {
   [self.passwordTextField setStringValue:_document.password ? _document.password : @""];
-  [self.passwordRepeatTextField setStringValue:[self.passwordRepeatTextField stringValue]];
+  [self.passwordRepeatTextField setStringValue:[self.passwordTextField stringValue]];
   self.keyURL = _document.key;
   
   NSDictionary *negateOption = @{ NSValueTransformerNameBindingOption : NSNegateBooleanTransformerName };
