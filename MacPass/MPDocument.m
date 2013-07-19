@@ -316,6 +316,13 @@ NSString *const MPDocumentGroupKey                    = @"MPDocumentGroupKey";
   }
 }
 
+- (void)useGroupAsTemplate:(KdbGroup *)group {
+  Kdb4Group *groupv4 = (Kdb4Group *)group;
+  if([self.treeV4.entryTemplatesGroup isEqual:groupv4.uuid]) {
+    self.treeV4.entryTemplatesGroup = groupv4.uuid;
+  }
+}
+
 #pragma mark Data manipulation
 - (KdbEntry *)createEntry:(KdbGroup *)parent {
   if(!parent) {

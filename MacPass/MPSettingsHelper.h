@@ -26,9 +26,15 @@ APPKIT_EXTERN NSString *const kMPSettingsKeyShowMenuItem;
 APPKIT_EXTERN NSString *const kMPSettingsKeyLockOnSleep;
 APPKIT_EXTERN NSString *const kMPSettingsKeyIdleLockTimeOut;
 
-
 /* Autosaving states */
 APPKIT_EXTERN NSString *const kMPSettingsKeyShowInspector;
+
+/* Kdb Hide/Show settings */
+APPKIT_EXTERN NSString *const kMPSettingsKeyLegacyHideTitle;
+APPKIT_EXTERN NSString *const kMPSettingsKeyLegacyHideUsername;
+APPKIT_EXTERN NSString *const kMPSettingsKeyLegacyHidePassword;
+APPKIT_EXTERN NSString *const kMPSettingsKeyLegacyHideNotes;
+APPKIT_EXTERN NSString *const kMPSettingsKeyLegacyHideURL;
 
 typedef NS_ENUM(NSUInteger, MPPasswordEncoding) {
   MPPasswordEncodingUTF8,

@@ -19,6 +19,13 @@ NSString *const kMPSettingsKeyLockOnSleep = @"LockOnSleep";
 NSString *const kMPSettingsKeyIdleLockTimeOut = @"IdleLockTimeOut";
 NSString *const kMPSettingsKeyShowInspector = @"ShowInspector";
 
+NSString *const kMPSettingsKeyLegacyHideTitle = @"LegacyHideTitle";
+NSString *const kMPSettingsKeyLegacyHideUsername = @"LegacyHideUsername ";
+NSString *const kMPSettingsKeyLegacyHidePassword = @"LegacyHidePassword";
+NSString *const kMPSettingsKeyLegacyHideNotes = @"LegacyHideNotes";
+NSString *const kMPSettingsKeyLegacyHideURL = @"LegacyHideURL";
+
+
 @implementation MPSettingsHelper
 
 + (void)setupDefaults {
@@ -36,7 +43,12 @@ NSString *const kMPSettingsKeyShowInspector = @"ShowInspector";
            kMPSettingsKeyEnableHttpServer: @NO,
            kMPSettingsKeyShowMenuItem: @YES,
            kMPSettingsKeyLockOnSleep: @YES,
-           kMPSettingsKeyIdleLockTimeOut: @0 // 5 minutes
+           kMPSettingsKeyIdleLockTimeOut: @0, // 5 minutes
+           kMPSettingsKeyLegacyHideNotes: @NO,
+           kMPSettingsKeyLegacyHidePassword: @YES,
+           kMPSettingsKeyLegacyHideTitle: @NO,
+           kMPSettingsKeyLegacyHideURL: @NO,
+           kMPSettingsKeyLegacyHideUsername: @NO
            };
 }
 

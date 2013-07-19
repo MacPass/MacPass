@@ -12,13 +12,15 @@ typedef NS_ENUM(NSUInteger, MPDatabaseSettingsTab) {
   MPDatabaseSettingsTabGeneral,
   MPDatabaseSettingsTabPassword,
   MPDatabaseSettingsTabDisplay,
-  MPDatabaseSettingsTabAdvanced
+  MPDatabaseSettingsTabAdvanced,
+  MPDatabaseSettingsTemplatesTab,
 };
 
 @class MPDocument;
+@class HNHRoundendTextField;
 @class HNHRoundedSecureTextField;
 
-@interface MPDatabaseSettingsWindowController : NSWindowController <NSTextFieldDelegate>
+@interface MPDatabaseSettingsWindowController : NSWindowController <NSTextFieldDelegate, NSTabViewDelegate>
 
 @property (weak) IBOutlet NSTabView *sectionTabView;
 @property (weak) IBOutlet NSButton *saveButton;
@@ -50,6 +52,12 @@ typedef NS_ENUM(NSUInteger, MPDatabaseSettingsTab) {
 @property (weak) IBOutlet NSButton *enableRecycleBinCheckButton;
 @property (weak) IBOutlet NSButton *emptyRecycleBinOnQuitCheckButton;
 @property (weak) IBOutlet NSPopUpButton *selectRecycleBinGroupPopUpButton;
+
+
+/* Templates Tab */
+@property (weak) IBOutlet HNHRoundendTextField *defaultUsernameTextField;
+@property (weak) IBOutlet NSPopUpButton *templateGroupPopUpButton;
+
 
 - (id)initWithDocument:(MPDocument *)document;
 

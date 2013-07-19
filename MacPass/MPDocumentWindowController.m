@@ -363,12 +363,12 @@ NSString *const MPCurrentItemChangedNotification = @"com.hicknhack.macpass.MPCur
 #pragma mark Helper
 
 - (void)_showDatabaseSetting:(MPDatabaseSettingsTab)tab {
-    if(!self.documentSettingsWindowController) {
-      _documentSettingsWindowController = [[MPDatabaseSettingsWindowController alloc] initWithDocument:[self document]];
-    }
-    [self.documentSettingsWindowController update];
+  if(!self.documentSettingsWindowController) {
+    _documentSettingsWindowController = [[MPDatabaseSettingsWindowController alloc] initWithDocument:[self document]];
+  }
+  [self.documentSettingsWindowController update];
   [self.documentSettingsWindowController showSettingsTab:tab];
-    [[NSApplication sharedApplication] beginSheet:[self.documentSettingsWindowController window] modalForWindow:[self window] modalDelegate:nil didEndSelector:NULL contextInfo:NULL];
+  [[NSApplication sharedApplication] beginSheet:[self.documentSettingsWindowController window] modalForWindow:[self window] modalDelegate:nil didEndSelector:NULL contextInfo:NULL];
 }
 
 - (NSSearchField *)locateToolbarSearchField {

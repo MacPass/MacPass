@@ -66,6 +66,7 @@ APPKIT_EXTERN NSString *const MPDocumentGroupKey;
 - (Kdb3Tree *)treeV3;
 
 - (void)useGroupAsTrash:(KdbGroup *)group;
+- (void)useGroupAsTemplate:(KdbGroup *)group;
 
 #pragma mark Export
 - (void)writeXMLToURL:(NSURL *)url;

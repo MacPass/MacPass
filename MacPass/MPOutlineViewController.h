@@ -19,7 +19,7 @@ APPKIT_EXTERN NSString *const MPOutlineViewDidChangeGroupSelection;
 
 @property (readonly, weak) NSOutlineView *outlineView;
 @property (weak) IBOutlet HNHGradientView *bottomBar;
-@property (weak, readonly) KdbGroup *selectedGroup;
+@property (weak, readonly, nonatomic) KdbGroup *selectedGroup;
 
 - (void)clearSelection;
 - (void)showOutline;

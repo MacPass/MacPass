@@ -11,7 +11,9 @@
 #import "MPDocumentWindowController.h"
 #import "MPDatabaseVersion.h"
 #import "MPIconHelper.h"
+#import "MPSettingsHelper.h"
 
+#import "HNHRoundedTextField.h"
 #import "HNHRoundedSecureTextField.h"
 
 #import "NSString+Empty.h"
@@ -22,6 +24,7 @@
 
 @interface MPDatabaseSettingsWindowController () {
   MPDocument *_document;
+  NSString *_missingFeature;
 }
 
 @property (nonatomic,assign) BOOL trashEnabled;
@@ -43,6 +46,7 @@
     _document = document;
     _showPassword = NO;
     _hasValidPasswordOrKey = NO;
+    _missingFeature = NSLocalizedString(@"KDBX_ONLX_FEATURE", "Feature only available in kdbx databases");
   }
   return self;
 }
@@ -55,16 +59,10 @@
   [self.saveButton bind:NSEnabledBinding toObject:self withKeyPath:@"hasValidPasswordOrKey" options:nil];
   [self.cancelButton bind:NSEnabledBinding toObject:self withKeyPath:@"hasValidPasswordOrKey" options:nil];
   
-  Kdb4Tree *tree = _document.treeV4;
-  if( tree ) {
-    [self _setupDatabase:tree];
-    [self _setupProtectionTab:tree];
-    [self _setupAdvancedTab:tree];
-    [self _setupPasswordTab:tree];
-  }
-  else {
-    // Switch to KdbV3 View
-  }
+  [self.sectionTabView setDelegate:self];
+  
+  
+  [self update];
 }
 
 - (IBAction)save:(id)sender {
@@ -81,15 +79,37 @@
   
   /* Advanced */
   _document.treeV4.recycleBinEnabled = self.trashEnabled;
-  NSMenuItem *menuItem = [self.selectRecycleBinGroupPopUpButton selectedItem];
-  KdbGroup *group = [menuItem representedObject];
-  [_document useGroupAsTrash:group];
+  NSMenuItem *trashMenuItem = [self.selectRecycleBinGroupPopUpButton selectedItem];
+  KdbGroup *trashGroup = [trashMenuItem representedObject];
+  [_document useGroupAsTrash:trashGroup];
   
-  _document.treeV4.protectNotes = [self.protectNotesCheckButton state] == NSOnState;
-  _document.treeV4.protectPassword = [self.protectPasswortCheckButton state] == NSOnState;
-  _document.treeV4.protectTitle = [self.protectTitleCheckButton state] == NSOnState;
-  _document.treeV4.protectUrl = [self.protectURLCheckButton state] == NSOnState;
-  _document.treeV4.protectUserName = [self.protectUserNameCheckButton state] == NSOnState;
+  NSMenuItem *templateMenuItem = [self.templateGroupPopUpButton selectedItem];
+  KdbGroup *templateGroup = [templateMenuItem representedObject];
+  [_document useGroupAsTemplate:templateGroup];
+  
+  BOOL protectNotes = [self.protectNotesCheckButton state] == NSOnState;
+  BOOL protectPassword = [self.protectPasswortCheckButton state] == NSOnState;
+  BOOL protectTitle = [self.protectTitleCheckButton state] == NSOnState;
+  BOOL protectURL = [self.protectURLCheckButton state] == NSOnState;
+  BOOL protectUsername = [self.protectUserNameCheckButton state] == NSOnState;
+  
+  if(_document.version == MPDatabaseVersion4) {
+    _document.treeV4.protectNotes = protectNotes;
+    _document.treeV4.protectPassword = protectPassword;
+    _document.treeV4.protectTitle = protectTitle;
+    _document.treeV4.protectUrl = protectURL;
+    _document.treeV4.protectUserName = protectUsername;
+    
+  }
+  else {
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    [defaults setBool:protectNotes forKey:kMPSettingsKeyLegacyHideNotes];
+    [defaults setBool:protectPassword forKey:kMPSettingsKeyLegacyHidePassword];
+    [defaults setBool:protectTitle forKey:kMPSettingsKeyLegacyHideTitle];
+    [defaults setBool:protectURL forKey:kMPSettingsKeyLegacyHideURL];
+    [defaults setBool:protectUsername forKey:kMPSettingsKeyLegacyHideUsername];
+    [defaults synchronize];
+  }
   
   /* Close to finish */
   [self close:nil];
@@ -104,16 +124,27 @@
 - (void)update {
   /* Update all stuff that might have changed */
   Kdb4Tree *tree = _document.treeV4;
-  if(tree) {
-    [self _setupDatabase:tree];
-    [self _setupProtectionTab:tree];
-    [self _setupAdvancedTab:tree];
-    [self _setupPasswordTab:tree];
-  }
+  [self _setupPasswordTab:tree];
+  [self _setupDatabase:tree];
+  [self _setupProtectionTab:tree];
+  [self _setupAdvancedTab:tree];
+  [self _setupTemplatesTab:tree];
 }
 
 - (void)showSettingsTab:(MPDatabaseSettingsTab)tab {
+  /*
+   We need to make sure the window is loaded
+   so we just call the the getter and led teh loading commence
+   */
+  if(![self window]) {
+    return;
+  }
   self.showPassword = NO;
+  NSTabViewItem *tabViewItem = [self.sectionTabView tabViewItemAtIndex:tab];
+  BOOL canSelectTab = [self tabView:self.sectionTabView shouldSelectTabViewItem:tabViewItem];
+  if(!canSelectTab) {
+    [self.sectionTabView selectTabViewItemAtIndex:MPDatabaseSettingsTabPassword];
+  }
   [self.sectionTabView selectTabViewItemAtIndex:tab];
 }
 
@@ -139,9 +170,27 @@
 - (IBAction)generateKey:(id)sender {
 }
 
-#pragma makr NSTextFieldDelegate
+#pragma mark NSTextFieldDelegate
 - (void)controlTextDidChange:(NSNotification *)obj {
   [self _verifyPasswordAndKey];
+}
+
+#pragma mark NSTableViewDelegate
+- (BOOL)tabView:(NSTabView *)tabView shouldSelectTabViewItem:(NSTabViewItem *)tabViewItem {
+  NSUInteger index = [tabView indexOfTabViewItem:tabViewItem];
+  switch ((MPDatabaseSettingsTab)index) {
+    case MPDatabaseSettingsTabPassword:
+    case MPDatabaseSettingsTabDisplay:
+      return YES;
+      
+    case MPDatabaseSettingsTabAdvanced:
+    case MPDatabaseSettingsTabGeneral:
+    case MPDatabaseSettingsTemplatesTab:
+      return (_document.version == MPDatabaseVersion4);
+      
+    default:
+      return NO;
+  }
 }
 
 #pragma mark Private Helper
@@ -180,23 +229,48 @@
 }
 
 - (void)_setupDatabase:(Kdb4Tree *)tree {
-  [self.databaseNameTextField setStringValue:tree.databaseName];
-  [self.databaseDescriptionTextView setString:tree.databaseDescription];
+  BOOL isKdbx = (nil != tree);
+  [self.databaseDescriptionTextView setEditable:isKdbx];
+  [self.databaseNameTextField setEnabled:isKdbx];
+  if(isKdbx) {
+    [self.databaseNameTextField setStringValue:tree.databaseName];
+    [self.databaseDescriptionTextView setString:tree.databaseDescription];
+  }
+  else {
+    [self.databaseNameTextField setStringValue:_missingFeature];
+    [self.databaseDescriptionTextView setString:_missingFeature];
+  }
 }
 
 - (void)_setupProtectionTab:(Kdb4Tree *)tree {
-  [self.protectNotesCheckButton setState:tree.protectNotes ? NSOnState : NSOffState ];
-  [self.protectNotesCheckButton setState:tree.protectPassword ? NSOnState : NSOffState];
-  [self.protectTitleCheckButton setState:tree.protectTitle ? NSOnState : NSOffState];
-  [self.protectURLCheckButton setState:tree.protectUrl ? NSOnState : NSOffState];
-  [self.protectUserNameCheckButton setState:tree.protectUserName ? NSOnState : NSOffState];
+  BOOL isKdbX = (nil != tree);
+  
+  NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+  
+  BOOL protectNotes = isKdbX ? tree.protectNotes : [defaults boolForKey:kMPSettingsKeyLegacyHideNotes];
+  BOOL protectPassword = isKdbX ? tree.protectPassword : [defaults boolForKey:kMPSettingsKeyLegacyHidePassword];
+  BOOL protectTitle = isKdbX ? tree.protectTitle : [defaults boolForKey:kMPSettingsKeyLegacyHideTitle];
+  BOOL protectUrl = isKdbX ? tree.protectUrl : [defaults boolForKey:kMPSettingsKeyLegacyHideURL];
+  BOOL protectUsername = isKdbX ? tree.protectUserName : [defaults boolForKey:kMPSettingsKeyLegacyHideUsername];
+  
+  [self.protectNotesCheckButton setState:protectNotes ? NSOnState : NSOffState ];
+  [self.protectPasswortCheckButton setState:protectPassword ? NSOnState : NSOffState];
+  [self.protectTitleCheckButton setState:protectTitle ? NSOnState : NSOffState];
+  [self.protectURLCheckButton setState:protectUrl ? NSOnState : NSOffState];
+  [self.protectUserNameCheckButton setState:protectUsername ? NSOnState : NSOffState];
 }
 
 - (void)_setupAdvancedTab:(Kdb4Tree *)tree {
-  self.trashEnabled = tree.recycleBinEnabled;
+  BOOL isKdbX = (nil != tree);
+  
+  self.trashEnabled = isKdbX ? tree.recycleBinEnabled : NO;
+  
   [self.enableRecycleBinCheckButton bind:NSValueBinding toObject:self withKeyPath:@"trashEnabled" options:nil];
+  [self.enableRecycleBinCheckButton setEnabled:isKdbX];
   [self.selectRecycleBinGroupPopUpButton bind:NSEnabledBinding toObject:self withKeyPath:@"trashEnabled" options:nil];
-  [self _updateTrashFolders:tree];
+  if(isKdbX) {
+    [self _updateTrashFolders:tree];
+  }
 }
 
 - (void)_setupPasswordTab:(Kdb4Tree *)tree {
@@ -218,10 +292,39 @@
   [self _verifyPasswordAndKey];
 }
 
+- (void)_setupTemplatesTab:(Kdb4Tree *)tree {
+  
+}
+
 - (void)_updateTrashFolders:(Kdb4Tree *)tree {
   NSMenu *menu = [self _buildTreeMenu:tree];
   [self.selectRecycleBinGroupPopUpButton setMenu:menu];
 }
+
+- (void)_updateTemplateGroup:(Kdb4Tree *)tree {
+  //
+}
+
+- (NSMenu *)_buildTrashTreeMenu:(Kdb4Tree *)tree {
+  NSMenu *menu = [self _buildTreeMenu:tree];
+  
+  NSMenuItem *selectItem = [[NSMenuItem alloc] initWithTitle:NSLocalizedString(@"SELECT_RECYCLEBIN", @"Menu item if no reycleBin is selected") action:NULL keyEquivalent:@""];
+  [selectItem setEnabled:YES];
+  [menu insertItem:selectItem atIndex:0];
+  
+  return menu;
+}
+
+- (NSMenu *)_buildTemplateTreeMenu:(Kdb4Tree *)tree {
+  NSMenu *menu = [self _buildTreeMenu:tree];
+  
+  NSMenuItem *selectItem = [[NSMenuItem alloc] initWithTitle:NSLocalizedString(@"SELECT_RECYCLEBIN", @"Menu item if no reycleBin is selected") action:NULL keyEquivalent:@""];
+  [selectItem setEnabled:YES];
+  [menu insertItem:selectItem atIndex:0];
+  
+  return menu;
+}
+
 
 - (NSMenu *)_buildTreeMenu:(Kdb4Tree *)tree {
   NSMenu *menu = [[NSMenu alloc] init];
@@ -238,10 +341,7 @@
     }
     [menu addItem:groupItem];
   }
-  NSMenuItem *selectItem = [[NSMenuItem alloc] initWithTitle:NSLocalizedString(@"SELECT_RECYCLEBIN", @"Menu item if no reycleBin is selected") action:NULL keyEquivalent:@""];
-  [selectItem setEnabled:YES];
-  [menu insertItem:selectItem atIndex:0];
-  
   return menu;
 }
+
 @end

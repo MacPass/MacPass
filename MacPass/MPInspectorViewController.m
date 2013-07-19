@@ -59,8 +59,8 @@ enum {
 @property (strong) NSPopover *activePopover;
 @property (weak) IBOutlet NSButton *generatePasswordButton;
 
-@property (nonatomic, weak) NSDate *modificationDate;
-@property (nonatomic, weak) NSDate *creationDate;
+@property (nonatomic, strong) NSDate *modificationDate;
+@property (nonatomic, strong) NSDate *creationDate;
 
 @property (nonatomic, assign) BOOL showPassword;
 
@@ -137,25 +137,32 @@ enum {
 }
 
 - (void)setModificationDate:(NSDate *)modificationDate {
-  NSString *modificationString = [NSDateFormatter localizedStringFromDate:modificationDate
-                                                                dateStyle:NSDateFormatterShortStyle
-                                                                timeStyle:NSDateFormatterShortStyle];
-  
-  modificationString = [modificationDate humanized];
-  
-  NSString *modifedAtTemplate = NSLocalizedString(@"MODIFED_AT_%@", @"Modifed at template string. %@ is replaced by locaized date and time");
-  [self.modifiedTextField setStringValue:[NSString stringWithFormat:modifedAtTemplate, modificationString]];
-  
+  _modificationDate = modificationDate;
+  [self _updateDateStrings];
 }
 
 - (void)setCreationDate:(NSDate *)creationDate {
-  NSString *creationString = [NSDateFormatter localizedStringFromDate:creationDate
-                                                            dateStyle:NSDateFormatterShortStyle
-                                                            timeStyle:NSDateFormatterShortStyle];
-  creationString = [creationDate humanized];
+  _creationDate = creationDate;
+  [self _updateDateStrings];
+}
+
+- (void)_updateDateStrings {
   
+  if(!self.creationDate || !self.modificationDate ) {
+    [self.modifiedTextField setStringValue:@""];
+    [self.createdTextField setStringValue:@""];
+    return; // No dates, just clear
+  }
+  
+  NSString *creationString = [self.creationDate humanized];
+  NSString *modificationString = [self.modificationDate humanized];
+
+  NSString *modifedAtTemplate = NSLocalizedString(@"MODIFED_AT_%@", @"Modifed at template string. %@ is replaced by locaized date and time");
   NSString *createdAtTemplate = NSLocalizedString(@"CREATED_AT_%@", @"Created at template string. %@ is replaced by locaized date and time");
+
+  [self.modifiedTextField setStringValue:[NSString stringWithFormat:modifedAtTemplate, modificationString]];
   [self.createdTextField setStringValue:[NSString stringWithFormat:createdAtTemplate, creationString]];
+  
 }
 
 - (void)_updateContent {

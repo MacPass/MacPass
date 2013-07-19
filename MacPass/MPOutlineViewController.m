@@ -33,7 +33,7 @@ NSString *const _MPOutlinveViewHeaderViewIdentifier = @"HeaderCell";
 }
 @property (weak) IBOutlet NSOutlineView *outlineView;
 @property (weak) IBOutlet NSButton *addGroupButton;
-@property (weak) KdbGroup *selectedGroup;
+@property (nonatomic, weak) KdbGroup *selectedGroup;
 
 @property (strong) NSTreeController *treeController;
 @property (strong) MPOutlineDataSource *datasource;
@@ -89,6 +89,29 @@ NSString *const _MPOutlinveViewHeaderViewIdentifier = @"HeaderCell";
   [_outlineView expandItem:node expandChildren:YES];
 }
 
+#pragma mark Custom Setter/Getter
+- (void)setDatabaseNameWrapper:(NSString *)databaseNameWrapper {
+  if(![_databaseNameWrapper isEqualToString:databaseNameWrapper]) {
+    if([databaseNameWrapper length] == 0) {
+      _databaseNameWrapper = NSLocalizedString(@"DATABASE", "Default name database");
+    }
+    else {
+      _databaseNameWrapper= [databaseNameWrapper copy];
+    }
+  }
+}
+
+//- (void)setSelectedGroup:(KdbGroup *)selectedGroup {
+//  if(_selectedGroup != selectedGroup) {
+//    _selectedGroup = selectedGroup;
+//    if([selectedGroup isKindOfClass:[Kdb4Group class]]) {
+//      MPDocument *document = [[self windowController] document];
+//      document.treeV4.lastSelectedGroup = ((Kdb4Group *)selectedGroup).uuid;
+//    }
+//  }
+//}
+
+
 #pragma mark Notifications
 - (void)setupNotifications:(MPDocumentWindowController *)windowController {
   [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(_didCreateGroup:) name:MPDocumentDidAddGroupNotification object:[windowController document]];
@@ -111,17 +134,6 @@ NSString *const _MPOutlinveViewHeaderViewIdentifier = @"HeaderCell";
     id item = [_outlineView itemAtRow:selectedRow];
     [_outlineView expandItem:item];
     indexSet = [NSIndexSet indexSetWithIndex:selectedRow + 1];
-  }
-}
-
-- (void)setDatabaseNameWrapper:(NSString *)databaseNameWrapper {
-  if(![_databaseNameWrapper isEqualToString:databaseNameWrapper]) {
-    if([databaseNameWrapper length] == 0) {
-      _databaseNameWrapper = NSLocalizedString(@"DATABASE", "Default name database");
-    }
-    else {
-      _databaseNameWrapper= [databaseNameWrapper copy];
-    }
   }
 }
 
