@@ -349,7 +349,7 @@ NSString *const MPCurrentItemChangedNotification = @"com.hicknhack.macpass.MPCur
   }
   _firstResponder = firstResonder;
   if([_firstResponder isKindOfClass:[NSView class]]) {
-    //self _updateCurrentItem:[NSNotification notificationWithName:@"dummy" object:_firstResponder ]];
+    [self _updateCurrentItem:[NSNotification notificationWithName:@"dummy" object:_firstResponder ]];
   }
 }
 
