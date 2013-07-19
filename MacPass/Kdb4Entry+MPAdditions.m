@@ -14,7 +14,12 @@
   /*
    FIXME: Introduce some cachin behaviour. We iterate over after every single edit
    */
-  NSMutableSet *keys = [[NSMutableSet alloc] initWithCapacity:[self.stringFields count]];
+  NSArray *defaultKeys = @[ FIELD_TITLE,
+                            FIELD_USER_NAME,
+                            FIELD_PASSWORD,
+                            FIELD_URL,
+                            FIELD_NOTES ];
+  NSMutableSet *keys = [[NSMutableSet alloc] initWithArray:defaultKeys];
   for(StringField *field in self.stringFields) {
     [keys addObject:field.key];
   }
