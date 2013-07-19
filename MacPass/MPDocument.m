@@ -19,14 +19,18 @@
 #import "Kdb4Node.h"
 #import "Kdb4Persist.h"
 #import "KdbPassword.h"
-#import "KdbGroup+Undo.h"
+
 #import "KdbGroup+KVOAdditions.h"
 #import "Kdb4Entry+KVOAdditions.h"
-#import "KdbGroup+MPTreeTools.h"
-#import "KdbGroup+MPAdditions.h"
+
 #import "KdbEntry+Undo.h"
+#import "KdbGroup+Undo.h"
+
 #import "Kdb3Tree+NewTree.h"
 #import "Kdb4Tree+NewTree.h"
+#import "Kdb4Entry+MPAdditions.h"
+#import "KdbGroup+MPTreeTools.h"
+#import "KdbGroup+MPAdditions.h"
 
 #import "DataOutputStream.h"
 
@@ -349,6 +353,7 @@ NSString *const MPDocumentGroupKey                    = @"MPDocumentGroupKey";
   Kdb4Entry *entryV4 = (Kdb4Entry *)entry;
   NSString *title = NSLocalizedString(@"DEFAULT_CUSTOM_FIELD_TITLE", @"Default Titel for new Custom-Fields");
   NSString *value = NSLocalizedString(@"DEFAULT_CUSTOM_FIELD_VALUE", @"Default Value for new Custom-Fields");
+  title = [entryV4 uniqueKeyForProposal:title];
   StringField *newStringField = [StringField stringFieldWithKey:title andValue:value];
   [self addStringField:newStringField toEntry:entryV4 atIndex:[entryV4.stringFields count]];
   return newStringField;
@@ -419,6 +424,7 @@ NSString *const MPDocumentGroupKey                    = @"MPDocumentGroupKey";
 - (void)addStringField:(StringField *)field toEntry:(Kdb4Entry *)entry atIndex:(NSUInteger)index {
   [[[self undoManager] prepareWithInvocationTarget:self] removeStringField:field formEntry:entry];
   [[self undoManager] setActionName:NSLocalizedString(@"UNDO_ADD_STRING_FIELD", @"Add Stringfield Undo")];
+  field.entry = entry;
   [entry insertObject:field inStringFieldsAtIndex:index];
 }
 
@@ -429,6 +435,7 @@ NSString *const MPDocumentGroupKey                    = @"MPDocumentGroupKey";
   }
   [[[self undoManager] prepareWithInvocationTarget:self] addStringField:field toEntry:entry atIndex:index];
   [[self undoManager] setActionName:NSLocalizedString(@"UNDO_DELETE_STRING_FIELD", @"Delte Stringfield undo")];
+  field.entry = nil;
   [entry removeObjectFromStringFieldsAtIndex:index];
 }
 

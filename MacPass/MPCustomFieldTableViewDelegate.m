@@ -24,7 +24,8 @@
   [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(_customFieldFrameChanged:) name:NSViewFrameDidChangeNotification object:view];
   if([self.viewController.selectedEntry isKindOfClass:[Kdb4Entry class]]) {
     StringField *stringField = entry.stringFields[row];
-    [view.labelTextField bind:NSValueBinding toObject:stringField withKeyPath:MPStringFieldKeyUndoableKey options:nil];
+    NSDictionary *validateOptions = @{ NSValidatesImmediatelyBindingOption: @YES };
+    [view.labelTextField bind:NSValueBinding toObject:stringField withKeyPath:MPStringFieldKeyUndoableKey options:validateOptions];
     [view.valueTextField bind:NSValueBinding toObject:stringField withKeyPath:MPStringFieldValueUndoableKey options:nil];
     [view.removeButton setTarget:self.viewController];
     [view.removeButton setAction:@selector(removeCustomField:)];

@@ -72,6 +72,8 @@
 		4C431BCD16E2A82800700A81 /* MPPasteBoardController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C431BCC16E2A82700700A81 /* MPPasteBoardController.m */; };
 		4C431BCF16E2BAB000700A81 /* OverlayWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4C431BCE16E2BAB000700A81 /* OverlayWindow.xib */; };
 		4C4436771792BE810099E220 /* KPKFormat.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C4436761792BE810099E220 /* KPKFormat.m */; };
+		4C4510091798C53700219998 /* StringField+Validation.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C4510081798C53700219998 /* StringField+Validation.m */; };
+		4C45100C1798C65C00219998 /* Kdb4Entry+MPAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C45100B1798C65C00219998 /* Kdb4Entry+MPAdditions.m */; };
 		4C45FB1C178E09ED0010007D /* SenTestingKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4C45FB1B178E09ED0010007D /* SenTestingKit.framework */; };
 		4C45FB1D178E09ED0010007D /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4C77E36615B84A240093A587 /* Cocoa.framework */; };
 		4C45FB23178E09ED0010007D /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 4C45FB21178E09ED0010007D /* InfoPlist.strings */; };
@@ -352,6 +354,10 @@
 		4C431BCE16E2BAB000700A81 /* OverlayWindow.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = OverlayWindow.xib; sourceTree = "<group>"; };
 		4C4436751792BE810099E220 /* KPKFormat.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KPKFormat.h; sourceTree = "<group>"; };
 		4C4436761792BE810099E220 /* KPKFormat.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KPKFormat.m; sourceTree = "<group>"; };
+		4C4510071798C53700219998 /* StringField+Validation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "StringField+Validation.h"; sourceTree = "<group>"; };
+		4C4510081798C53700219998 /* StringField+Validation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "StringField+Validation.m"; sourceTree = "<group>"; };
+		4C45100A1798C65C00219998 /* Kdb4Entry+MPAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Kdb4Entry+MPAdditions.h"; sourceTree = "<group>"; };
+		4C45100B1798C65C00219998 /* Kdb4Entry+MPAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "Kdb4Entry+MPAdditions.m"; sourceTree = "<group>"; };
 		4C45FB1A178E09ED0010007D /* MacPassTests.octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MacPassTests.octest; sourceTree = BUILT_PRODUCTS_DIR; };
 		4C45FB1B178E09ED0010007D /* SenTestingKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SenTestingKit.framework; path = Library/Frameworks/SenTestingKit.framework; sourceTree = DEVELOPER_DIR; };
 		4C45FB20178E09ED0010007D /* MacPassTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "MacPassTests-Info.plist"; sourceTree = "<group>"; };
@@ -931,6 +937,10 @@
 				4C83F4A91774B155006C5FC0 /* Kdb3Tree+NewTree.m */,
 				4C83F4AB1774B25F006C5FC0 /* Kdb4Tree+NewTree.h */,
 				4C83F4AC1774B25F006C5FC0 /* Kdb4Tree+NewTree.m */,
+				4C4510071798C53700219998 /* StringField+Validation.h */,
+				4C4510081798C53700219998 /* StringField+Validation.m */,
+				4C45100A1798C65C00219998 /* Kdb4Entry+MPAdditions.h */,
+				4C45100B1798C65C00219998 /* Kdb4Entry+MPAdditions.m */,
 			);
 			name = "KeePassLib Categories";
 			sourceTree = "<group>";
@@ -1820,6 +1830,8 @@
 				4CC0D2D117974A5A000B4BDA /* MPAttachmentTableViewDelegate.m in Sources */,
 				4C67D33017981A2B00A7BDFC /* HNHTokenField.m in Sources */,
 				4C67D33317981ABA00A7BDFC /* HNHTokenFieldCell.m in Sources */,
+				4C4510091798C53700219998 /* StringField+Validation.m in Sources */,
+				4C45100C1798C65C00219998 /* Kdb4Entry+MPAdditions.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
