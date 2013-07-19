@@ -14,16 +14,16 @@
   return (self.binary != nil ? 1 : 0);
 }
 - (id)objectInBinariesAtIndex:(NSUInteger)index {
-  if(self.binary) {
-    return @"Dummy";
-  }
-  return nil;
+  return self.binary;
 }
 - (void)removeObjectFromBinariesAtIndex:(NSUInteger)index {
-  return; // Stubb
+  if(self.binary ) {
+    self.binary = nil;
+    self.binaryDesc = nil;
+  }
 }
 - (void)insertObject:(id)binary inBinariesAtIndex:(NSUInteger)index {
-  return; //Stubb
+  return;//
 }
 
 

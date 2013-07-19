@@ -384,9 +384,9 @@ enum {
 - (IBAction)removeAttachment:(id)sender {
   MPDocument *document = [[self windowController] document];
   if(document.version == MPDatabaseVersion3) {
-    // Handle entry
+    [document removeAttachmentFromEntry:self.selectedEntry];
   }
-  if(document.version == MPDatabaseVersion4) {
+  else if(document.version == MPDatabaseVersion4) {
     Kdb4Entry *entry = (Kdb4Entry *)self.selectedEntry;
     BinaryRef *reference = entry.binaries[[sender tag]];
     [document removeAttachment:reference fromEntry:self.selectedEntry];

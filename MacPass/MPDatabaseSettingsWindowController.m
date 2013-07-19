@@ -202,7 +202,7 @@
   if(hasKey) {
     keyOk = [self.keyURL checkResourceIsReachableAndReturnError:nil];
   }
-  BOOL hasPassword = ![password isEmpty];
+  BOOL hasPassword = ![NSString isEmptyString:password];
   BOOL passwordOk = YES;
   if(hasPassword ) {
     passwordOk = [password isEqualToString:repeat] || self.showPassword;

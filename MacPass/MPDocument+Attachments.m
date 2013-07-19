@@ -105,6 +105,14 @@
   [self.treeV4.binaries removeObject:binary];
 }
 
+- (void)removeAttachmentFromEntry:(KdbEntry *)anEntry {
+  if(self.version != MPDatabaseVersion3) {
+    return;
+  }
+  Kdb3Entry *entry = (Kdb3Entry *)anEntry;
+  [entry removeObjectFromBinariesAtIndex:0];
+}
+
 - (Binary *)findBinary:(BinaryRef *)reference {
   if(self.version != MPDatabaseVersion4) {
     return nil;

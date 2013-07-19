@@ -99,6 +99,7 @@ APPKIT_EXTERN NSString *const MPDocumentGroupKey;
 - (void)saveAttachmentFromEntry:(KdbEntry *)anEntry toLocation:(NSURL *)location;
 - (void)saveAttachment:(BinaryRef *)reference toLocation:(NSURL *)location;
 - (void)removeAttachment:(BinaryRef *)reference fromEntry:(KdbEntry *)anEntry;
+- (void)removeAttachmentFromEntry:(KdbEntry *)anEntry;
 - (NSUInteger)nextBinaryId;
 - (Binary *)findBinary:(BinaryRef *)reference;
 
