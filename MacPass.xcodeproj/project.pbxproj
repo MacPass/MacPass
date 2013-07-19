@@ -232,6 +232,7 @@
 		4CF7805F176E75110032EE71 /* ServerSettings.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4CF7805E176E75110032EE71 /* ServerSettings.xib */; };
 		4CF78064176E75AD0032EE71 /* MPServerSettingsController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CF78063176E75AD0032EE71 /* MPServerSettingsController.m */; };
 		4CFC53BF16E94729007396BE /* MPShadowBox.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CFC53BE16E94729007396BE /* MPShadowBox.m */; };
+		4CFEB36E1799D9CF00AF1868 /* Kdb3Entry+KVOAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CFEB36D1799D9CF00AF1868 /* Kdb3Entry+KVOAdditions.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -659,6 +660,8 @@
 		4CF78063176E75AD0032EE71 /* MPServerSettingsController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MPServerSettingsController.m; sourceTree = "<group>"; };
 		4CFC53BD16E94729007396BE /* MPShadowBox.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MPShadowBox.h; sourceTree = "<group>"; };
 		4CFC53BE16E94729007396BE /* MPShadowBox.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MPShadowBox.m; sourceTree = "<group>"; };
+		4CFEB36C1799D9CF00AF1868 /* Kdb3Entry+KVOAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Kdb3Entry+KVOAdditions.h"; sourceTree = "<group>"; };
+		4CFEB36D1799D9CF00AF1868 /* Kdb3Entry+KVOAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "Kdb3Entry+KVOAdditions.m"; sourceTree = "<group>"; };
 		6E719715172058BA00E4C5FC /* MPDatabaseVersion.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MPDatabaseVersion.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -933,6 +936,8 @@
 				4C36E5B3177CD4FB00152132 /* Kdb4Tree+KVOAdditions.m */,
 				4C4FCE16177D03D700BBF7AE /* Kdb4Entry+KVOAdditions.h */,
 				4C4FCE17177D03D700BBF7AE /* Kdb4Entry+KVOAdditions.m */,
+				4CFEB36C1799D9CF00AF1868 /* Kdb3Entry+KVOAdditions.h */,
+				4CFEB36D1799D9CF00AF1868 /* Kdb3Entry+KVOAdditions.m */,
 				4C83F4A81774B155006C5FC0 /* Kdb3Tree+NewTree.h */,
 				4C83F4A91774B155006C5FC0 /* Kdb3Tree+NewTree.m */,
 				4C83F4AB1774B25F006C5FC0 /* Kdb4Tree+NewTree.h */,
@@ -1832,6 +1837,7 @@
 				4C67D33317981ABA00A7BDFC /* HNHTokenFieldCell.m in Sources */,
 				4C4510091798C53700219998 /* StringField+Validation.m in Sources */,
 				4C45100C1798C65C00219998 /* Kdb4Entry+MPAdditions.m in Sources */,
+				4CFEB36E1799D9CF00AF1868 /* Kdb3Entry+KVOAdditions.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

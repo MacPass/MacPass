@@ -12,6 +12,7 @@
 #import "NSData+Gzip.h"
 
 #import "Kdb3Node.h"
+#import "Kdb3Entry+KVOAdditions.h"
 #import "Kdb4Node.h"
 #import "Kdb4Entry+KVOAdditions.h"
 
@@ -31,6 +32,7 @@
     }
     entry.binary = binaryData;
     entry.binaryDesc = fileName;
+    [entry insertObject:@"" inBinariesAtIndex:1];
   }
   if( [anEntry isKindOfClass:[Kdb4Entry class]]) {
     Kdb4Entry *entry = (Kdb4Entry *)anEntry;

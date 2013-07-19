@@ -185,7 +185,7 @@ enum {
       [_attachmentsController bind:NSContentArrayBinding toObject:self.selectedEntry withKeyPath:@"binaries" options:nil];
     }
     else {
-      /* Use binary from Kdb3Entry */
+      [_attachmentsController bind:NSContentArrayBinding toObject:self.selectedEntry withKeyPath:@"binaries" options:nil];
     }
   }
   else if([_attachmentsController content] != nil){
@@ -384,7 +384,7 @@ enum {
 - (IBAction)removeAttachment:(id)sender {
   MPDocument *document = [[self windowController] document];
   if(document.version == MPDatabaseVersion3) {
-    // Uhhhh :D
+    // Handle entry
   }
   if(document.version == MPDatabaseVersion4) {
     Kdb4Entry *entry = (Kdb4Entry *)self.selectedEntry;

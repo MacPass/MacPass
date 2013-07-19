@@ -12,6 +12,7 @@
 #import "MPSelectedAttachmentTableCellView.h"
 
 #import "Kdb4Node.h"
+#import "Kdb3Node.h"
 
 #import "HNHTableRowView.h"
 
@@ -20,9 +21,16 @@
 - (void)tableViewSelectionDidChange:(NSNotification *)notification {
   NSTableView *tableView = [notification object];
   NSIndexSet *allColumns = [NSIndexSet indexSetWithIndexesInRange:NSMakeRange(0, [[tableView tableColumns] count])];
-  Kdb4Entry *entryv4 = (Kdb4Entry *)self.viewController.selectedEntry;
-  NSIndexSet *indexSet = [NSIndexSet indexSetWithIndexesInRange:NSMakeRange(0, [entryv4.binaries count] )];
-  [tableView reloadDataForRowIndexes:indexSet columnIndexes:allColumns];
+  if([self.viewController.selectedEntry isKindOfClass:[Kdb4Entry class]]) {
+    Kdb4Entry *entryv4 = (Kdb4Entry *)self.viewController.selectedEntry;
+    NSIndexSet *indexSet = [NSIndexSet indexSetWithIndexesInRange:NSMakeRange(0, [entryv4.binaries count] )];
+    [tableView reloadDataForRowIndexes:indexSet columnIndexes:allColumns];
+  }
+  if([self.viewController.selectedEntry isKindOfClass:[Kdb3Entry class]]) {
+    Kdb3Entry *entryv3 = (Kdb3Entry *)self.viewController.selectedEntry;
+    NSIndexSet *indexSet = [NSIndexSet indexSetWithIndexesInRange:NSMakeRange(0, (entryv3.binary ? 1 : 0 ))];
+    [tableView reloadDataForRowIndexes:indexSet columnIndexes:allColumns];
+  }
 }
 
 - (NSView *)tableView:(NSTableView *)tableView viewForTableColumn:(NSTableColumn *)tableColumn row:(NSInteger)row {
@@ -50,7 +58,9 @@
     [[view imageView] setImage:[[NSWorkspace sharedWorkspace] iconForFileType:[binaryRef.key pathExtension]]];
   }
   else {
-    // Create view to support only one binary!
+    Kdb3Entry *entry= (Kdb3Entry *)self.viewController.selectedEntry;
+    [[view textField] bind:NSValueBinding toObject:entry withKeyPath:@"binaryDesc" options:nil];
+    [[view imageView] setImage:[[NSWorkspace sharedWorkspace] iconForFileType:[entry.binaryDesc pathExtension]]];
   }
   return view;
 }
