@@ -42,6 +42,7 @@ APPKIT_EXTERN NSString *const MPDocumentGroupKey;
 @property (strong, readonly, nonatomic) KdbTree *tree;
 @property (weak, readonly, nonatomic) KdbGroup *root;
 @property (readonly, strong) MPRootAdapter *rootAdapter;
+@property (weak, readonly) KdbGroup *trash;
 
 @property (nonatomic, copy) NSString *password;
 @property (nonatomic, strong) NSURL *key;
@@ -67,6 +68,8 @@ APPKIT_EXTERN NSString *const MPDocumentGroupKey;
 
 - (void)useGroupAsTrash:(KdbGroup *)group;
 - (void)useGroupAsTemplate:(KdbGroup *)group;
+
+- (BOOL)isItemTrashed:(id)item;
 
 #pragma mark Export
 - (void)writeXMLToURL:(NSURL *)url;

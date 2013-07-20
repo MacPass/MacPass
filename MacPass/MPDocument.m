@@ -65,7 +65,6 @@ NSString *const MPDocumentGroupKey                    = @"MPDocumentGroupKey";
 @property (strong) NSURL *lockFileURL;
 
 @property (readonly) BOOL useTrash;
-@property (weak, readonly) KdbGroup *trash;
 @property (strong) IBOutlet NSView *warningView;
 @property (weak) IBOutlet NSImageView *warningViewImage;
 
@@ -307,6 +306,26 @@ NSString *const MPDocumentGroupKey                    = @"MPDocumentGroupKey";
   return nil;
 }
 
+- (BOOL)isItemTrashed:(id)item {
+  BOOL validItem = [item isKindOfClass:[KdbEntry class]] || [item isKindOfClass:[KdbGroup class]];
+  if(!item) {
+    return NO;
+  }
+  if(item == self.trash) {
+    return NO; // No need to look further as this is the trashcan
+  }
+  if(validItem) {
+    BOOL isTrashed = NO;
+    id parent = [item parent];
+    while( parent && !isTrashed ) {
+      isTrashed = (parent == self.trash);
+      parent = [parent parent];
+    }
+    return isTrashed;
+  }
+  return NO;
+}
+
 - (void)useGroupAsTrash:(KdbGroup *)group {
   if(self.useTrash) {
     Kdb4Group *groupv4 = (Kdb4Group *)group;
@@ -449,6 +468,9 @@ NSString *const MPDocumentGroupKey                    = @"MPDocumentGroupKey";
 #pragma mark Actions
 
 - (void)emptyTrash:(id)sender {
+  if(self.version != MPDatabaseVersion4) {
+    return; // We have no trash on those file types
+  }
   NSAlert *alert = [[NSAlert alloc] init];
   [alert setAlertStyle:NSWarningAlertStyle];
   [alert setMessageText:NSLocalizedString(@"WARNING_ON_EMPTY_TRASH_TITLE", "")];
@@ -474,6 +496,7 @@ NSString *const MPDocumentGroupKey                    = @"MPDocumentGroupKey";
     BOOL hasEntries = [self.trash.entries count] > 0;
     return (hasEntries || hasGroups);
   }
+  
   return [super validateUserInterfaceItem:anItem];
 }
 
@@ -517,7 +540,24 @@ NSString *const MPDocumentGroupKey                    = @"MPDocumentGroupKey";
   for(KdbGroup *group in [self.trash childGroups]) {
     [[self undoManager] removeAllActionsWithTarget:group];
   }
+  [self _cleanTrashedBinaries];
   [self.trash clear];
+}
+
+- (void)_cleanTrashedBinaries {
+  NSMutableSet *clearKeys = [[NSMutableSet alloc] initWithCapacity:20];
+  NSMutableArray *clearBinaries = [[NSMutableArray alloc] initWithCapacity:[self.treeV4.binaries count]];
+  for(Kdb4Entry *entry in [self.trash childEntries]) {
+    for(BinaryRef *binaryRef in entry.binaries) {
+      [clearKeys addObject:@(binaryRef.ref)];
+    }
+  }
+  for(Binary *binary in self.treeV4.binaries) {
+    if([clearKeys containsObject:@(binary.binaryId)]) {
+      [clearBinaries addObject:binary];
+    }
+  }
+  [self.treeV4.binaries removeObjectsInArray:clearBinaries];
 }
 
 @end

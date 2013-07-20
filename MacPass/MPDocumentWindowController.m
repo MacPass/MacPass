@@ -192,6 +192,9 @@ NSString *const MPCurrentItemChangedNotification = @"com.hicknhack.macpass.MPCur
   if(itemAction == @selector(exportDatabase:)) {
     enabled = (nil != document.treeV4);
   }
+  if(itemAction == [MPActionHelper actionOfType:MPActionDelete]) {
+    enabled &= (nil != _currentItem) && (_currentItem != document.trash);
+  }
   
   enabled &= !( !document.decrypted || document.isLocked || document.isReadOnly );
   return enabled;
@@ -202,20 +205,55 @@ NSString *const MPCurrentItemChangedNotification = @"com.hicknhack.macpass.MPCur
   if(!document.decrypted || document.isLocked || document.isReadOnly) {
     return NO;
   }
-  SEL itemAction = [theItem action];
-  if( itemAction == [MPActionHelper actionOfType:MPActionLock]) {
-    return document.hasPasswordOrKey;
+  MPActionType actionType = [MPActionHelper typeForAction:[theItem action]];
+  switch (actionType) {
+    case MPActionAddGroup:
+    case MPActionAddEntry:
+        return (nil != _outlineViewController.selectedGroup);
+    case MPActionDelete: {
+      BOOL valid = (nil != _currentItem);
+      valid &= (_currentItem != document.trash);
+      valid &= ![document isItemTrashed:_currentItem];
+      return valid;
+    }
+    case MPActionLock:
+      return document.hasPasswordOrKey;
+    
+    case MPActionToggleInspector:
+      return (nil != [_splitView superview]);
+
+    default:
+      return YES;
   }
-  if(itemAction == [MPActionHelper actionOfType:MPActionAddEntry]) {
-    return (nil != _outlineViewController.selectedGroup);
+  return YES;
+}
+
+- (BOOL)validateAction:(SEL)action forItem:(id)item {
+  MPDocument *document = [self document];
+  if(!document.decrypted || document.isLocked || document.isReadOnly) {
+    return NO;
   }
-  if(itemAction == [MPActionHelper actionOfType:MPActionDelete]) {
-    return (nil != _currentItem);
+  MPActionType actionType = [MPActionHelper typeForAction:action];
+  switch (actionType) {
+    case MPActionAddGroup:
+    case MPActionAddEntry:
+      // test if Group is in trash
+      return (nil != _outlineViewController.selectedGroup);
+    case MPActionDelete: {
+      BOOL valid = (nil != _currentItem);
+      valid &= (_currentItem != document.trash);
+      valid &= ![document isItemTrashed:_currentItem];
+      return valid;
+    }
+    case MPActionLock:
+      return document.hasPasswordOrKey;
+      
+    case MPActionToggleInspector:
+      return (nil != [_splitView superview]);
+      
+    default:
+      return YES;
   }
-  if(itemAction == [MPActionHelper actionOfType:MPActionToggleInspector]) {
-    return (nil != [_splitView superview]);
-  }
-  
   return YES;
 }
 
@@ -235,7 +273,7 @@ NSString *const MPCurrentItemChangedNotification = @"com.hicknhack.macpass.MPCur
   [self _showDatabaseSetting:MPDatabaseSettingsTabGeneral];
 }
 
-- (void)lock:(id)sender {
+- (IBAction)lock:(id)sender {
   MPDocument *document = [self document];
   if(!document.hasPasswordOrKey) {
     return; // Document needs a password/keyfile to be lockable

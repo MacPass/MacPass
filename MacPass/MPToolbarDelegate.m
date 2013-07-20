@@ -17,7 +17,6 @@
 NSString *const MPToolbarItemLock = @"TOOLBAR_LOCK";
 NSString *const MPToolbarItemAddGroup = @"TOOLBAR_ADD_GROUP";
 NSString *const MPToolbarItemAddEntry = @"TOOLBAR_ADD_ENTRY";
-NSString *const MPToolbarItemEdit = @"TOOLBAR_EDIT";
 NSString *const MPToolbarItemDelete =@"TOOLBAR_DELETE";
 NSString *const MPToolbarItemAction = @"TOOLBAR_ACTION";
 NSString *const MPToolbarItemInspector = @"TOOLBAR_INSPECTOR";
@@ -135,7 +134,6 @@ NSString *const MPToolbarItemInspector = @"TOOLBAR_INSPECTOR";
                                MPToolbarItemAddEntry: NSLocalizedString(@"ADD_ENTRY", @""),
                                MPToolbarItemAddGroup: NSLocalizedString(@"ADD_GROUP", @""),
                                MPToolbarItemDelete: NSLocalizedString(@"DELETE", @""),
-                               MPToolbarItemEdit: NSLocalizedString(@"EDIT", @""),
                                MPToolbarItemInspector: NSLocalizedString(@"INSPECTOR", @"")
                                };
   return labelDict[identifier];
@@ -146,7 +144,6 @@ NSString *const MPToolbarItemInspector = @"TOOLBAR_INSPECTOR";
                                 MPToolbarItemAddEntry: @(MPActionAddEntry),
                                 MPToolbarItemAddGroup: @(MPActionAddGroup),
                                 MPToolbarItemDelete: @(MPActionDelete),
-                                MPToolbarItemEdit: @(MPActionEdit),
                                 MPToolbarItemInspector: @(MPActionToggleInspector)
                                 };
   MPActionType actionType = (MPActionType)[actionDict[identifier] integerValue];

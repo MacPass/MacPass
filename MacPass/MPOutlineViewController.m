@@ -137,6 +137,29 @@ NSString *const _MPOutlinveViewHeaderViewIdentifier = @"HeaderCell";
   }
 }
 
+#pragma mark Validation
+
+- (BOOL)validateMenuItem:(NSMenuItem *)menuItem {
+  MPActionType actionType = [MPActionHelper typeForAction:[menuItem action]];
+  switch(actionType) {
+    case MPActionAddEntry:
+    case MPActionAddGroup:
+    case MPActionDelete: {
+      MPDocument *document = [[self windowController] document];
+      id selected = [self _clickedOrSelectedGroup];
+      if(!selected) {
+        return NO;
+      }
+      if(selected == document.trash) {
+        return NO;
+      }
+      return ![document isItemTrashed:selected];
+    }
+    default:
+      return YES; // We are only validated for three targets
+  }
+}
+
 #pragma mark -
 #pragma mark Actions
 

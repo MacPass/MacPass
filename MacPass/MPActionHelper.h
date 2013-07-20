@@ -9,9 +9,9 @@
 #import <Foundation/Foundation.h>
 
 typedef NS_ENUM(NSUInteger, MPActionType) {
+  MPUnkownAction, // Netural element to be used for returns
   MPActionAddEntry, // Add an new entry
   MPActionAddGroup, // Add a new group
-  MPActionEdit, // Edit entry or group
   MPActionDelete, // Delete entry or group
   MPActionCopyUsername, // copy username to pasteboard
   MPActionCopyPassword, // copy password to pasteboard
@@ -25,5 +25,6 @@ typedef NS_ENUM(NSUInteger, MPActionType) {
 @interface MPActionHelper : NSObject
 
 + (SEL)actionOfType:(MPActionType)type;
++ (MPActionType)typeForAction:(SEL)action;
 
 @end

@@ -32,6 +32,12 @@ APPKIT_EXTERN NSString *const MPCurrentItemChangedNotification;
 @property (readonly, unsafe_unretained) KdbGroup *currentGroup;
 @property (readonly, unsafe_unretained) KdbEntry *currentEntry;
 
+/**
+ @param action The action that should be validatet
+ @param item The item that the action affects. Pass nil to fall back for default item
+ @returns YES if the action is valid, NO otherwise
+ */
+- (BOOL)validateAction:(SEL)action forItem:(id)item;
 
 - (void)showEntries;
 - (void)showPasswordInput;
@@ -40,7 +46,7 @@ APPKIT_EXTERN NSString *const MPCurrentItemChangedNotification;
 - (IBAction)showDatabaseSettings:(id)sender;
 - (IBAction)exportDatabase:(id)sender;
 
-- (void)lock:(id)sender;
+- (IBAction)lock:(id)sender;
 
 - (void)createGroup:(id)sender;
 - (void)toggleInspector:(id)sender;

@@ -513,6 +513,11 @@ NSString *const _toggleFilterUsernameButton = @"SearchUsername";
   [document deleteEntry:entry];
 }
 
+#pragma mark Validation
+- (BOOL)validateMenuItem:(NSMenuItem *)menuItem {
+  return YES;
+}
+
 - (void)_toggleFilterSpace:(id)sender {
   NSButton *button = sender;
   NSNumber *value = self.filterButtonToMode[[button identifier]];
