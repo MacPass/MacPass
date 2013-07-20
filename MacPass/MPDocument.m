@@ -350,6 +350,9 @@ NSString *const MPDocumentGroupKey                    = @"MPDocumentGroupKey";
   if(parent == self.trash) {
     return nil; // no new Groups in trash
   }
+  if([self isItemTrashed:parent]) {
+    return nil;
+  }
   KdbEntry *newEntry = [self.tree createEntry:parent];
   newEntry.title = NSLocalizedString(@"DEFAULT_ENTRY_TITLE", @"Title for a newly created entry");
   if(self.treeV4 && ([self.treeV4.defaultUserName length] > 0)) {
@@ -367,6 +370,9 @@ NSString *const MPDocumentGroupKey                    = @"MPDocumentGroupKey";
   }
   if(parent == self.trash) {
     return nil; // no new Groups in trash
+  }
+  if([self isItemTrashed:parent]) {
+    return nil;
   }
   KdbGroup *newGroup = [self.tree createGroup:parent];
   newGroup.name = NSLocalizedString(@"DEFAULT_GROUP_NAME", @"Title for a newly created group");
@@ -396,6 +402,9 @@ NSString *const MPDocumentGroupKey                    = @"MPDocumentGroupKey";
     if(!self.trash) {
       [self _createTrashGroup];
     }
+    if([self isItemTrashed:entry]) {
+      return; // Entry is already trashed
+    }
     [entry moveToTrashUndoable:self.trash atIndex:[self.trash.entries count]];
   }
   else {
@@ -407,6 +416,9 @@ NSString *const MPDocumentGroupKey                    = @"MPDocumentGroupKey";
   if(self.useTrash) {
     if(!self.trash) {
       [self _createTrashGroup];
+    }
+    if( (group == self.trash) || [self isItemTrashed:group] ) {
+      return; //Groups already trashed cannot be deleted
     }
     [group moveToTrashUndoable:self.trash atIndex:[self.trash.groups count]];
   }

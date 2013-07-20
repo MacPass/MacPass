@@ -297,7 +297,7 @@
 }
 
 - (void)_updateTrashFolders:(Kdb4Tree *)tree {
-  NSMenu *menu = [self _buildTreeMenu:tree];
+  NSMenu *menu = [self _buildTrashTreeMenu:tree];
   [self.selectRecycleBinGroupPopUpButton setMenu:menu];
 }
 
@@ -308,7 +308,9 @@
 - (NSMenu *)_buildTrashTreeMenu:(Kdb4Tree *)tree {
   NSMenu *menu = [self _buildTreeMenu:tree];
   
-  NSMenuItem *selectItem = [[NSMenuItem alloc] initWithTitle:NSLocalizedString(@"SELECT_RECYCLEBIN", @"Menu item if no reycleBin is selected") action:NULL keyEquivalent:@""];
+  NSMenuItem *selectItem = [[NSMenuItem alloc] initWithTitle:NSLocalizedString(@"AUTOCREATE_TRASH_FOLDER", @"Menu item for automatic trash creation")
+                                                      action:NULL
+                                               keyEquivalent:@""];
   [selectItem setEnabled:YES];
   [menu insertItem:selectItem atIndex:0];
   
@@ -318,7 +320,9 @@
 - (NSMenu *)_buildTemplateTreeMenu:(Kdb4Tree *)tree {
   NSMenu *menu = [self _buildTreeMenu:tree];
   
-  NSMenuItem *selectItem = [[NSMenuItem alloc] initWithTitle:NSLocalizedString(@"SELECT_RECYCLEBIN", @"Menu item if no reycleBin is selected") action:NULL keyEquivalent:@""];
+  NSMenuItem *selectItem = [[NSMenuItem alloc] initWithTitle:NSLocalizedString(@"NO_TEMPLATE_GROUP", @"Menu item to reset the template groups")
+                                                      action:NULL
+                                               keyEquivalent:@""];
   [selectItem setEnabled:YES];
   [menu insertItem:selectItem atIndex:0];
   
