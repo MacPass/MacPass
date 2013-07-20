@@ -184,6 +184,7 @@
 		4CA0B2FC15BCAF8600654E32 /* MPSettingsWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CA0B2FB15BCAF8600654E32 /* MPSettingsWindowController.m */; };
 		4CA0E3A7176FAF99004D18CB /* MPDocumentQueryService.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CA0E3A6176FAF99004D18CB /* MPDocumentQueryService.m */; };
 		4CA2335A176DBFE100F0B6AC /* MPLockDaemon.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CA23359176DBFE100F0B6AC /* MPLockDaemon.m */; };
+		4CA7C36C179A98140099C34B /* NSString+Base64.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CA7C36B179A98140099C34B /* NSString+Base64.m */; };
 		4CAD747B15B887FD00104512 /* DDXMLElementAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CAD745715B887FD00104512 /* DDXMLElementAdditions.m */; };
 		4CAD747C15B887FD00104512 /* NSString+DDXML.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CAD745A15B887FD00104512 /* NSString+DDXML.m */; };
 		4CAD747D15B887FD00104512 /* DDXMLDocument.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CAD745D15B887FD00104512 /* DDXMLDocument.m */; };
@@ -572,6 +573,8 @@
 		4CA0E3A6176FAF99004D18CB /* MPDocumentQueryService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MPDocumentQueryService.m; sourceTree = "<group>"; };
 		4CA23358176DBFE100F0B6AC /* MPLockDaemon.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MPLockDaemon.h; sourceTree = "<group>"; };
 		4CA23359176DBFE100F0B6AC /* MPLockDaemon.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MPLockDaemon.m; sourceTree = "<group>"; };
+		4CA7C36A179A98140099C34B /* NSString+Base64.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+Base64.h"; sourceTree = "<group>"; };
+		4CA7C36B179A98140099C34B /* NSString+Base64.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+Base64.m"; sourceTree = "<group>"; };
 		4CAAFDD51787AED60013FCF9 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/MainMenu.strings; sourceTree = "<group>"; };
 		4CAD745615B887FD00104512 /* DDXMLElementAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DDXMLElementAdditions.h; sourceTree = "<group>"; };
 		4CAD745715B887FD00104512 /* DDXMLElementAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DDXMLElementAdditions.m; sourceTree = "<group>"; };
@@ -915,6 +918,8 @@
 				4C2724D917790E7C00FD8456 /* NSMutableData+Base64.m */,
 				4C801AFA179310E2002821E3 /* NSString+Hexdata.h */,
 				4C801AFB179310E2002821E3 /* NSString+Hexdata.m */,
+				4CA7C36A179A98140099C34B /* NSString+Base64.h */,
+				4CA7C36B179A98140099C34B /* NSString+Base64.m */,
 			);
 			name = Categories;
 			sourceTree = "<group>";
@@ -1862,6 +1867,7 @@
 				4C45100C1798C65C00219998 /* Kdb4Entry+MPAdditions.m in Sources */,
 				4CFEB36E1799D9CF00AF1868 /* Kdb3Entry+KVOAdditions.m in Sources */,
 				4C305F36179A0BD70082334F /* KPKIcon.m in Sources */,
+				4CA7C36C179A98140099C34B /* NSString+Base64.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

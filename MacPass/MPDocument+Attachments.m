@@ -70,7 +70,7 @@
     else {
       encodedData = fileData;
     }
-    binary.data = [[NSString alloc] initWithData:encodedData encoding:NSASCIIStringEncoding];
+    binary.data = [[NSString alloc] initWithData:encodedData encoding:NSUTF8StringEncoding];
     
     [self.treeV4.binaries addObject:binary];
     BinaryRef *ref = [[BinaryRef alloc] init];
@@ -130,11 +130,11 @@
   NSData *rawData = nil;
   if(binary) {
     if(binary.compressed) {
-      rawData = [NSMutableData mutableDataWithBase64DecodedData:[binary.data dataUsingEncoding:NSASCIIStringEncoding]];
+      rawData = [NSMutableData mutableDataWithBase64DecodedData:[binary.data dataUsingEncoding:NSUTF8StringEncoding]];
       rawData = [rawData gzipInflate];
     }
     else {
-      rawData = [NSMutableData mutableDataWithBase64DecodedData:[binary.data dataUsingEncoding:NSASCIIStringEncoding]];
+      rawData = [NSMutableData mutableDataWithBase64DecodedData:[binary.data dataUsingEncoding:NSUTF8StringEncoding]];
     }
     NSError *error = nil;
     if( ![rawData writeToURL:location options:0 error:&error] ) {
