@@ -83,7 +83,6 @@ APPKIT_EXTERN NSString *const MPDocumentGroupKey;
 /*
  All non-setter undoable actions
 */
-- (BOOL)group:(KdbGroup *)group isMoveableToGroup:(KdbGroup *)target;
 
 /* TODO in UNDO auslagen */
 - (void)addStringField:(StringField *)field toEntry:(Kdb4Entry *)entry atIndex:(NSUInteger)index;

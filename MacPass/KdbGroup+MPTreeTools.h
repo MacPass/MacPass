@@ -20,4 +20,6 @@
 /* Returns the group with the UUID */
 - (KdbGroup *)groupForUUID:(UUID *)uuid;
 
+- (BOOL)isAnchestorOfGroup:(KdbGroup *)group;
+
 @end

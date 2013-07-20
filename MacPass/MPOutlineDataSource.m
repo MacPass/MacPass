@@ -77,8 +77,7 @@
       accepted &= index != NSOutlineViewDropOnItemIndex;
       accepted &= index != [_draggedItem.parent.groups indexOfObject:_draggedItem];
     }
-    MPDocument *document = [[[outlineView window] windowController] document];
-    accepted = [document group:_draggedItem isMoveableToGroup:target];
+    accepted = ![_draggedItem isAnchestorOfGroup:target];
     if( accepted ) {
       [_draggedItem moveToGroupUndoable:target atIndex:index];
     }

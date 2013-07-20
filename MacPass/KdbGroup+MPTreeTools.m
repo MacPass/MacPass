@@ -49,4 +49,18 @@
   return  [filteredGroups lastObject];
 }
 
+- (BOOL)isAnchestorOfGroup:(KdbGroup *)group {
+  if(group == nil) {
+    return NO;
+  }
+  KdbGroup *ancestor = self.parent;
+  while(ancestor.parent) {
+    if(group == self) {
+      return YES;
+    }
+    ancestor = ancestor.parent;
+  }
+  return NO;
+}
+
 @end

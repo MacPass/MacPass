@@ -347,6 +347,9 @@ NSString *const MPDocumentGroupKey                    = @"MPDocumentGroupKey";
   if(!parent) {
     return nil; // No parent
   }
+  if(parent == self.trash) {
+    return nil; // no new Groups in trash
+  }
   KdbEntry *newEntry = [self.tree createEntry:parent];
   newEntry.title = NSLocalizedString(@"DEFAULT_ENTRY_TITLE", @"Title for a newly created entry");
   if(self.treeV4 && ([self.treeV4.defaultUserName length] > 0)) {
@@ -361,6 +364,9 @@ NSString *const MPDocumentGroupKey                    = @"MPDocumentGroupKey";
 - (KdbGroup *)createGroup:(KdbGroup *)parent {
   if(!parent) {
     return nil; // no parent!
+  }
+  if(parent == self.trash) {
+    return nil; // no new Groups in trash
   }
   KdbGroup *newGroup = [self.tree createGroup:parent];
   newGroup.name = NSLocalizedString(@"DEFAULT_GROUP_NAME", @"Title for a newly created group");
@@ -383,42 +389,6 @@ NSString *const MPDocumentGroupKey                    = @"MPDocumentGroupKey";
   StringField *newStringField = [StringField stringFieldWithKey:title andValue:value];
   [self addStringField:newStringField toEntry:entryV4 atIndex:[entryV4.stringFields count]];
   return newStringField;
-}
-
-- (void)moveGroup:(KdbGroup *)group toGroup:(KdbGroup *)target index:(NSInteger)index {
-  NSInteger oldIndex = [group.parent.groups indexOfObject:group];
-  if(group.parent == target && oldIndex == index) {
-    return; // No changes
-  }
-  [[[self undoManager] prepareWithInvocationTarget:self] moveGroup:group toGroup:group.parent index:oldIndex];
-  if(self.trash == target) {
-    [[self undoManager] setActionName:@"UNDO_DELETE_GROUP"];
-  }
-  else {
-    [[self undoManager] setActionName:@"MOVE_GROUP"];
-  }
-  [group.parent removeObjectFromGroupsAtIndex:oldIndex];
-  if(index < 0 || index > [target.groups count] ) {
-    index = [target.groups count];
-  }
-  [target insertObject:group inGroupsAtIndex:index];
-}
-
-- (BOOL)group:(KdbGroup *)group isMoveableToGroup:(KdbGroup *)target {
-  if(target == nil) {
-    return NO;
-  }
-  BOOL isMovable = YES;
-  
-  KdbGroup *ancestor = target.parent;
-  while(ancestor.parent) {
-    if(ancestor == group) {
-      isMovable = NO;
-      break;
-    }
-    ancestor = ancestor.parent;
-  }
-  return isMovable;
 }
 
 - (void)deleteEntry:(KdbEntry *)entry {
