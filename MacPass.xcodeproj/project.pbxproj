@@ -57,6 +57,9 @@
 		4C2E381F16D11FF900037A9D /* 05_LanguagesTemplate.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 4C2E381C16D11FF900037A9D /* 05_LanguagesTemplate.pdf */; };
 		4C2E382316D1421B00037A9D /* MPIconHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C2E382216D1421B00037A9D /* MPIconHelper.m */; };
 		4C2E382616D1470200037A9D /* MPViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C2E382516D1470200037A9D /* MPViewController.m */; };
+		4C305F36179A0BD70082334F /* KPKIcon.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C305F35179A0BD70082334F /* KPKIcon.m */; };
+		4C305F3C179A19F90082334F /* KPKIconLoading.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C305F3B179A19F90082334F /* KPKIconLoading.m */; };
+		4C305F3E179A1A760082334F /* image.png in Resources */ = {isa = PBXBuildFile; fileRef = 4C305F3D179A1A760082334F /* image.png */; };
 		4C3666411787327E00B249F1 /* MPDocument+Attachments.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C3666401787327E00B249F1 /* MPDocument+Attachments.m */; };
 		4C366643178748F500B249F1 /* 99_HarddiskTemplate.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 4C366642178748F500B249F1 /* 99_HarddiskTemplate.pdf */; };
 		4C36E5B4177CD4FB00152132 /* Kdb4Tree+KVOAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C36E5B3177CD4FB00152132 /* Kdb4Tree+KVOAdditions.m */; };
@@ -330,6 +333,11 @@
 		4C2E382216D1421B00037A9D /* MPIconHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MPIconHelper.m; sourceTree = "<group>"; };
 		4C2E382416D1470200037A9D /* MPViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MPViewController.h; sourceTree = "<group>"; };
 		4C2E382516D1470200037A9D /* MPViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MPViewController.m; sourceTree = "<group>"; };
+		4C305F34179A0BD70082334F /* KPKIcon.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KPKIcon.h; sourceTree = "<group>"; };
+		4C305F35179A0BD70082334F /* KPKIcon.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KPKIcon.m; sourceTree = "<group>"; };
+		4C305F3A179A19F90082334F /* KPKIconLoading.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KPKIconLoading.h; sourceTree = "<group>"; };
+		4C305F3B179A19F90082334F /* KPKIconLoading.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KPKIconLoading.m; sourceTree = "<group>"; };
+		4C305F3D179A1A760082334F /* image.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = image.png; path = Images/image.png; sourceTree = "<group>"; };
 		4C3666401787327E00B249F1 /* MPDocument+Attachments.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "MPDocument+Attachments.m"; sourceTree = "<group>"; };
 		4C366642178748F500B249F1 /* 99_HarddiskTemplate.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = 99_HarddiskTemplate.pdf; sourceTree = "<group>"; };
 		4C36E5B2177CD4FB00152132 /* Kdb4Tree+KVOAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Kdb4Tree+KVOAdditions.h"; sourceTree = "<group>"; };
@@ -974,6 +982,14 @@
 			name = Helper;
 			sourceTree = "<group>";
 		};
+		4C305F3F179A1A790082334F /* Images */ = {
+			isa = PBXGroup;
+			children = (
+				4C305F3D179A1A760082334F /* image.png */,
+			);
+			name = Images;
+			sourceTree = "<group>";
+		};
 		4C37A84115B8B47D005EF8EE /* Delegates */ = {
 			isa = PBXGroup;
 			children = (
@@ -1021,6 +1037,7 @@
 		4C45FB1E178E09ED0010007D /* MacPassTests */ = {
 			isa = PBXGroup;
 			children = (
+				4C305F3F179A1A790082334F /* Images */,
 				4C18F9AC178E123200890BCE /* Databases */,
 				4C45FB2B178E0BCB0010007D /* MPDatabaseLoading.h */,
 				4C45FB2C178E0BCB0010007D /* MPDatabaseLoading.m */,
@@ -1029,6 +1046,8 @@
 				4C19E501178E2871002F2CD0 /* MPDatabasePasswordAndKeyfile.h */,
 				4C19E502178E2871002F2CD0 /* MPDatabasePasswordAndKeyfile.m */,
 				4C45FB1F178E09ED0010007D /* Supporting Files */,
+				4C305F3A179A19F90082334F /* KPKIconLoading.h */,
+				4C305F3B179A19F90082334F /* KPKIconLoading.m */,
 			);
 			path = MacPassTests;
 			sourceTree = "<group>";
@@ -1428,6 +1447,8 @@
 				4CF62B85179385D700B660B6 /* KPKAttribute.m */,
 				4C5AA58F179549A1008ECAD7 /* KPKXmlTreeWriter.h */,
 				4C5AA590179549A1008ECAD7 /* KPKXmlTreeWriter.m */,
+				4C305F34179A0BD70082334F /* KPKIcon.h */,
+				4C305F35179A0BD70082334F /* KPKIcon.m */,
 			);
 			path = Core;
 			sourceTree = "<group>";
@@ -1581,6 +1602,7 @@
 				4C45FB23178E09ED0010007D /* InfoPlist.strings in Resources */,
 				4C18F9AB178E122500890BCE /* Test_Password_1234.kdb in Resources */,
 				4C19E500178E26EF002F2CD0 /* Test_Password_1234.kdbx in Resources */,
+				4C305F3E179A1A760082334F /* image.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1661,6 +1683,7 @@
 				4C45FB2D178E0BCB0010007D /* MPDatabaseLoading.m in Sources */,
 				4C45FB30178E0CE20010007D /* MPDatabaseCreation.m in Sources */,
 				4C19E503178E2871002F2CD0 /* MPDatabasePasswordAndKeyfile.m in Sources */,
+				4C305F3C179A19F90082334F /* KPKIconLoading.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1838,6 +1861,7 @@
 				4C4510091798C53700219998 /* StringField+Validation.m in Sources */,
 				4C45100C1798C65C00219998 /* Kdb4Entry+MPAdditions.m in Sources */,
 				4CFEB36E1799D9CF00AF1868 /* Kdb3Entry+KVOAdditions.m in Sources */,
+				4C305F36179A0BD70082334F /* KPKIcon.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
