@@ -112,11 +112,21 @@
   NSDocumentController *documentController = [NSDocumentController sharedDocumentController];
   NSArray *documents = [documentController documents];
   NSArray *recentDocuments = [documentController recentDocumentURLs];
-  if([documents count] == 0 && [recentDocuments count] > 0) {
-    NSURL *url = recentDocuments[0];
-    [documentController openDocumentWithContentsOfURL:url display:YES completionHandler:^(NSDocument *document, BOOL documentWasAlreadyOpen, NSError *error) {
-      // do nothing
-    }];
+  if([documents count] > 0 ) {
+    return; // There's already a document restored
+  }
+  NSURL *documentUrl;
+  if([recentDocuments count] > 0) {
+    documentUrl = recentDocuments[0];
+  }
+  else {
+    NSString *lastPath = [[NSUserDefaults standardUserDefaults] stringForKey:kMPSettingsKeyLastDatabasePath];
+    documentUrl = [NSURL URLWithString:lastPath];
+  }
+  if([documentUrl isFileURL]) {
+    [documentController openDocumentWithContentsOfURL:documentUrl display:YES
+                                    completionHandler:^(NSDocument *document, BOOL documentWasAlreadyOpen, NSError *error) {}];
+
   }
 }
 

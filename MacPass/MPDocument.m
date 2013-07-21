@@ -13,6 +13,7 @@
 #import "MPRootAdapter.h"
 #import "MPIconHelper.h"
 #import "MPActionHelper.h"
+#import "MPSettingsHelper.h"
 
 #import "KdbLib.h"
 #import "Kdb3Node.h"
@@ -165,6 +166,13 @@ NSString *const MPDocumentGroupKey                    = @"MPDocumentGroupKey";
 
 - (void)close {
   [self _cleanupLock];
+  /*
+   We store the last url. Restored windows are automatically handeld.
+   If closeAllDocuments is set, all docs get this messgae
+   */
+  if([[self fileURL] isFileURL]) {
+    [[NSUserDefaults standardUserDefaults] setObject:[self.fileURL absoluteString] forKey:kMPSettingsKeyLastDatabasePath];
+  }
   [super close];
 }
 

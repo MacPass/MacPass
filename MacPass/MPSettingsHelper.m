@@ -25,6 +25,7 @@ NSString *const kMPSettingsKeyLegacyHidePassword = @"LegacyHidePassword";
 NSString *const kMPSettingsKeyLegacyHideNotes = @"LegacyHideNotes";
 NSString *const kMPSettingsKeyLegacyHideURL = @"LegacyHideURL";
 
+NSString *const kMPSettingsKeyLastDatabasePath = @"MPLastDatabasePath";
 
 @implementation MPSettingsHelper
 
