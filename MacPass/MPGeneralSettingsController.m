@@ -33,7 +33,7 @@ NSString *const MPGeneralSetingsIdentifier = @"GeneralSettingsTab";
 - (void)didLoadView {
   NSUserDefaultsController *defaultsController = [NSUserDefaultsController sharedUserDefaultsController];
   NSString *reopenLastFilePath = [NSString stringWithFormat:@"values.%@", kMPSettingsKeyReopenLastDatabaseOnLaunch];
-  NSString *createUntitledOnActivatePaht = [NSString stringWithFormat:@"values.%@", kMPSettingsKeyOpenEmptyDatabaseOnLaunch];
+  //NSString *createUntitledOnActivatePaht = [NSString stringWithFormat:@"values.%@", kMPSettingsKeyOpenEmptyDatabaseOnLaunch];
   NSString *clearPasteboardKeyPath = [NSString stringWithFormat:@"values.%@", kMPSettingsKeyClearPasteboardOnQuit];
   NSString *clearPasteboardTimeOutKeyPath = [NSString stringWithFormat:@"values.%@", kMPSettingsKeyPasteboardClearTimeout];
   NSString *idleTimeOutKeyPath = [NSString stringWithFormat:@"values.%@", kMPSettingsKeyIdleLockTimeOut];
@@ -43,6 +43,7 @@ NSString *const MPGeneralSetingsIdentifier = @"GeneralSettingsTab";
   [self.lockOnSleepCheckButton bind:NSValueBinding toObject:defaultsController withKeyPath:lockOnSleepKeyPath options:nil];
   [self.idleTimeOutPopup bind:NSSelectedTagBinding toObject:defaultsController withKeyPath:idleTimeOutKeyPath options:nil];
   [self.reopenLastDatabase bind:NSValueBinding toObject:defaultsController withKeyPath:reopenLastFilePath options:nil];
-  [self.createUntitledOnActivation bind:NSValueBinding toObject:defaultsController withKeyPath:createUntitledOnActivatePaht options:nil];
+  [self.createUntitledOnActivation setState:NSOffState];
+  //[self.createUntitledOnActivation bind:NSValueBinding toObject:defaultsController withKeyPath:createUntitledOnActivatePaht options:nil];
 }
 @end
