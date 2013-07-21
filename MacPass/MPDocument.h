@@ -19,6 +19,8 @@ APPKIT_EXTERN NSString *const MPDocumentDidRevertNotifiation;
 APPKIT_EXTERN NSString *const MPDocumentEntryKey;
 APPKIT_EXTERN NSString *const MPDocumentGroupKey;
 
+APPKIT_EXTERN NSString *const MPDocumentRequestPasswordSaveNotification;
+
 @class KdbGroup;
 @class KdbEntry;
 @class KdbTree;
@@ -49,6 +51,7 @@ APPKIT_EXTERN NSString *const MPDocumentGroupKey;
 
 @property (assign, readonly) MPDatabaseVersion version;
 @property (assign, readonly, getter = isReadOnly) BOOL readOnly;
+
 
 - (id)initWithVersion:(MPDatabaseVersion)version;
 
@@ -98,8 +101,10 @@ APPKIT_EXTERN NSString *const MPDocumentGroupKey;
 @interface MPDocument (Attachments)
 
 - (void)addAttachment:(NSURL *)location toEntry:(KdbEntry *)anEntry;
-- (void)saveAttachmentFromEntry:(KdbEntry *)anEntry toLocation:(NSURL *)location;
-- (void)saveAttachment:(BinaryRef *)reference toLocation:(NSURL *)location;
+/**
+ item can be either a BinaryRef or an Kdb3Entry.
+ */
+- (void)saveAttachmentForItem:(id)item toLocation:(NSURL *)location;
 - (void)removeAttachment:(BinaryRef *)reference fromEntry:(KdbEntry *)anEntry;
 - (void)removeAttachmentFromEntry:(KdbEntry *)anEntry;
 - (NSUInteger)nextBinaryId;

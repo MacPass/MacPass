@@ -350,18 +350,26 @@ enum {
 }
 
 - (IBAction)saveAttachment:(id)sender {
-  Kdb4Entry *entry = (Kdb4Entry *)self.selectedEntry;
-  BinaryRef *reference = entry.binaries[[sender tag]];
-  
+  BOOL isVersion4 = [self.selectedEntry isKindOfClass:[Kdb4Entry class]];
+  id item = self.selectedEntry;
+  NSString *fileName = nil;
+  if(isVersion4) {
+    Kdb4Entry *entry= (Kdb4Entry *)self.selectedEntry;
+    item = entry.binaries[[sender tag]];
+    fileName = ((BinaryRef *)item).key;
+  }
+  else {
+    fileName = ((Kdb3Entry *)item).binaryDesc;
+  }
   
   NSSavePanel *savePanel = [NSSavePanel savePanel];
   [savePanel setCanCreateDirectories:YES];
-  [savePanel setNameFieldStringValue:reference.key];
+  [savePanel setNameFieldStringValue:fileName];
   
   [savePanel beginSheetModalForWindow:[[self windowController] window] completionHandler:^(NSInteger result) {
     if(result == NSFileHandlingPanelOKButton) {
       MPDocument *document = [[self windowController] document];
-      [document saveAttachment:reference toLocation:[savePanel URL]];
+      [document saveAttachmentForItem:item toLocation:[savePanel URL]];
     }
   }];
 }

@@ -24,6 +24,7 @@ NSString *const MPCurrentItemChangedNotification = @"com.hicknhack.macpass.MPCur
 @interface MPDocumentWindowController () {
 @private
   id _firstResponder;
+  BOOL _requestPassword; // We did open a new document, request teh password
 }
 
 @property (strong) IBOutlet NSSplitView *splitView;
@@ -54,6 +55,7 @@ NSString *const MPCurrentItemChangedNotification = @"com.hicknhack.macpass.MPCur
     _entryViewController = [[MPEntryViewController alloc] init];
     _inspectorViewController = [[MPInspectorViewController alloc] init];
     _currentItem = nil;
+    _requestPassword = NO;
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(_updateCurrentItem:) name:MPOutlineViewDidChangeGroupSelection object:_outlineViewController];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(_updateCurrentItem:) name:MPDidChangeSelectedEntryNotification object:_entryViewController];
@@ -69,6 +71,7 @@ NSString *const MPCurrentItemChangedNotification = @"com.hicknhack.macpass.MPCur
 - (void)windowDidLoad {
   
   [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(_didRevertDocument:) name:MPDocumentDidRevertNotifiation object:[self document]];
+  [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(editPassword:) name:MPDocumentRequestPasswordSaveNotification object:[self document]];
   
   [_entryViewController setupNotifications:self];
   [_inspectorViewController setupNotifications:self];
@@ -209,7 +212,7 @@ NSString *const MPCurrentItemChangedNotification = @"com.hicknhack.macpass.MPCur
   switch (actionType) {
     case MPActionAddGroup:
     case MPActionAddEntry:
-        return (nil != _outlineViewController.selectedGroup);
+      return (nil != _outlineViewController.selectedGroup);
     case MPActionDelete: {
       BOOL valid = (nil != _currentItem);
       valid &= (_currentItem != document.trash);
@@ -218,10 +221,10 @@ NSString *const MPCurrentItemChangedNotification = @"com.hicknhack.macpass.MPCur
     }
     case MPActionLock:
       return document.hasPasswordOrKey;
-    
+      
     case MPActionToggleInspector:
       return (nil != [_splitView superview]);
-
+      
     default:
       return YES;
   }
@@ -391,12 +394,16 @@ NSString *const MPCurrentItemChangedNotification = @"com.hicknhack.macpass.MPCur
   }
 }
 
-- (void)windowDidBecomeKey:(NSNotification *)notification {
-  MPDocument *document = [self document];
-  if(!document.hasPasswordOrKey && document.decrypted) {
-    [self performSelector:@selector(editPassword:) withObject:nil afterDelay:0.5];
-  }
-}
+//- (void)windowDidBecomeKey:(NSNotification *)notification {
+//  if(!_requestPassword) {
+//    return; // Nothing to do;
+//  }
+//  MPDocument *document = [self document];
+//  if(!document.hasPasswordOrKey && document.decrypted) {
+//    _requestPassword = NO;
+//    [self performSelector:@selector(editPassword:) withObject:nil afterDelay:0.5];
+//  }
+//}
 
 #pragma mark Helper
 
@@ -406,7 +413,12 @@ NSString *const MPCurrentItemChangedNotification = @"com.hicknhack.macpass.MPCur
   }
   [self.documentSettingsWindowController update];
   [self.documentSettingsWindowController showSettingsTab:tab];
-  [[NSApplication sharedApplication] beginSheet:[self.documentSettingsWindowController window] modalForWindow:[self window] modalDelegate:nil didEndSelector:NULL contextInfo:NULL];
+  [[NSApplication sharedApplication] beginSheet:[self.documentSettingsWindowController window]
+                                 modalForWindow:[self window]
+                                  modalDelegate:nil
+                                 didEndSelector:NULL
+                                    contextInfo:NULL];
+  
 }
 
 - (NSSearchField *)locateToolbarSearchField {

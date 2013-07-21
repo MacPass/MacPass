@@ -57,8 +57,7 @@
   NSAssert(_document != nil, @"Document needs to be present");
   
   [self.saveButton bind:NSEnabledBinding toObject:self withKeyPath:@"hasValidPasswordOrKey" options:nil];
-  [self.cancelButton bind:NSEnabledBinding toObject:self withKeyPath:@"hasValidPasswordOrKey" options:nil];
-  
+    
   [self.sectionTabView setDelegate:self];
   
   
@@ -294,6 +293,32 @@
 
 - (void)_setupTemplatesTab:(Kdb4Tree *)tree {
   
+}
+
+- (void)_updateFirstResponder {
+  NSTabViewItem *selected = [self.sectionTabView selectedTabViewItem];
+  MPDatabaseSettingsTab tab = [[self.sectionTabView tabViewItems] indexOfObject:selected];
+  
+  switch(tab) {
+    case MPDatabaseSettingsTabAdvanced:
+      [[self window] makeFirstResponder:self.databaseNameTextField];
+      break;
+      
+    case MPDatabaseSettingsTabDisplay:
+      [[self window] makeFirstResponder:self.protectTitleCheckButton];
+      break;
+      
+    case MPDatabaseSettingsTabGeneral:
+      [[self window] makeFirstResponder:self.databaseNameTextField];
+      break;
+      
+    case MPDatabaseSettingsTabPassword:
+      [[self window] makeFirstResponder:self.passwordTextField];
+      break;
+      
+    case MPDatabaseSettingsTemplatesTab:
+      break;
+  }
 }
 
 - (void)_updateTrashFolders:(Kdb4Tree *)tree {

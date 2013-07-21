@@ -37,14 +37,16 @@
 
 #import "DDXMLNode.h"
 
-NSString *const MPDocumentDidAddGroupNotification     = @"com.hicknhack.macpass.MPDocumentDidAddGroupNotification";
-NSString *const MPDocumentWillDelteGroupNotification  = @"com.hicknhack.macpass.MPDocumentDidDelteGroupNotification";
-NSString *const MPDocumentDidAddEntryNotification     = @"com.hicknhack.macpass.MPDocumentDidAddEntryNotification";
-NSString *const MPDocumentWillDeleteEntryNotification = @"com.hicknhack.macpass.MPDocumentDidDeleteEntryNotification";
-NSString *const MPDocumentDidRevertNotifiation        = @"com.hicknhack.macpass.MPDocumentDidRevertNotifiation";
+NSString *const MPDocumentDidAddGroupNotification         = @"com.hicknhack.macpass.MPDocumentDidAddGroupNotification";
+NSString *const MPDocumentWillDelteGroupNotification      = @"com.hicknhack.macpass.MPDocumentDidDelteGroupNotification";
+NSString *const MPDocumentDidAddEntryNotification         = @"com.hicknhack.macpass.MPDocumentDidAddEntryNotification";
+NSString *const MPDocumentWillDeleteEntryNotification     = @"com.hicknhack.macpass.MPDocumentDidDeleteEntryNotification";
+NSString *const MPDocumentDidRevertNotifiation            = @"com.hicknhack.macpass.MPDocumentDidRevertNotifiation";
+NSString *const MPDocumentRequestPasswordSaveNotification = @"com.hicknhack.macpass.MPDocumentRequestPasswordSaveNotification";
 
-NSString *const MPDocumentEntryKey                    = @"MPDocumentEntryKey";
-NSString *const MPDocumentGroupKey                    = @"MPDocumentGroupKey";
+
+NSString *const MPDocumentEntryKey                        = @"MPDocumentEntryKey";
+NSString *const MPDocumentGroupKey                        = @"MPDocumentGroupKey";
 
 
 @interface MPDocument () {
@@ -238,17 +240,21 @@ NSString *const MPDocumentGroupKey                    = @"MPDocumentGroupKey";
   return NO;
 }
 
+- (void)saveDocument:(id)sender {
+  if(self.hasPasswordOrKey) {
+    [super saveDocument:sender];
+  }
+  else {
+    [[NSNotificationCenter defaultCenter] postNotificationName:MPDocumentRequestPasswordSaveNotification object:self userInfo:nil];
+  }
+}
+
 - (BOOL)prepareSavePanel:(NSSavePanel *)savePanel {
   if(self.hasPasswordOrKey) {
     [savePanel setAccessoryView:nil];
     return YES;
   }
-  if(!self.warningView) {
-    [[NSBundle mainBundle] loadNibNamed:@"UnprotectedWarningView" owner:self topLevelObjects:nil];
-    [self.warningViewImage setImage:[NSImage imageNamed:NSImageNameCaution]];
-  }
-  [savePanel setAccessoryView:self.warningView];
-  return YES;
+  return NO;
 }
 
 #pragma mark Data Accesors

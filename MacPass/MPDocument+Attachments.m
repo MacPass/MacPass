@@ -80,17 +80,6 @@
   }
 }
 
-- (void)saveAttachmentFromEntry:(KdbEntry *)anEntry toLocation:(NSURL *)location {
-  if([anEntry isKindOfClass:[Kdb3Entry class]]) {
-    Kdb3Entry *entry = (Kdb3Entry *)anEntry;
-    NSError *error = nil;
-    if(! [entry.binary writeToURL:location options:NSDataWritingWithoutOverwriting error:&error] ) {
-      [NSApp presentError:error];
-    }
-  }
-  return; //
-}
-
 - (void)removeAttachment:(BinaryRef *)reference fromEntry:(KdbEntry *)anEntry {
   if(self.version != MPDatabaseVersion4) {
     return; // Wrong Database version;
@@ -125,21 +114,34 @@
   return [filteredBinary lastObject];
 }
 
-- (void)saveAttachment:(BinaryRef *)reference toLocation:(NSURL *)location {
-  Binary *binary = [self findBinary:reference];
-  NSData *rawData = nil;
-  if(binary) {
-    if(binary.compressed) {
-      rawData = [NSMutableData mutableDataWithBase64DecodedData:[binary.data dataUsingEncoding:NSUTF8StringEncoding]];
-      rawData = [rawData gzipInflate];
-    }
-    else {
-      rawData = [NSMutableData mutableDataWithBase64DecodedData:[binary.data dataUsingEncoding:NSUTF8StringEncoding]];
-    }
+- (void)saveAttachmentForItem:(id)item toLocation:(NSURL *)location {
+  if([item isKindOfClass:[Kdb3Entry class]]) {
+    Kdb3Entry *entry = (Kdb3Entry *)item;
     NSError *error = nil;
-    if( ![rawData writeToURL:location options:0 error:&error] ) {
+    if(! [entry.binary writeToURL:location options:NSDataWritingAtomic error:&error] ) {
       [NSApp presentError:error];
     }
+  }
+  else if([item isKindOfClass:[BinaryRef class]]) {
+    Binary *binary = [self findBinary:item];
+    NSData *rawData = nil;
+    if(binary) {
+      if(binary.compressed) {
+        rawData = [NSMutableData mutableDataWithBase64DecodedData:[binary.data dataUsingEncoding:NSUTF8StringEncoding]];
+        rawData = [rawData gzipInflate];
+      }
+      else {
+        rawData = [NSMutableData mutableDataWithBase64DecodedData:[binary.data dataUsingEncoding:NSUTF8StringEncoding]];
+      }
+      NSError *error = nil;
+      if( ![rawData writeToURL:location options:NSDataWritingAtomic error:&error] ) {
+        [NSApp presentError:error];
+      }
+    }
+  }
+  else {
+    NSAssert(NO, @"Item is neither BinaryRef nor Kdb3Entry");
+    return;
   }
 }
 
