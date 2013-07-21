@@ -19,6 +19,8 @@
 		4C1842B5179B28D400E2F5BC /* KPKBinaryTreeWriter.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C1842B4179B28D400E2F5BC /* KPKBinaryTreeWriter.m */; };
 		4C1842B8179B348600E2F5BC /* KPKTreeLoadingTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C1842B7179B348600E2F5BC /* KPKTreeLoadingTest.m */; };
 		4C1842BC179B434C00E2F5BC /* KPKChipherInformation.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C1842BB179B434C00E2F5BC /* KPKChipherInformation.m */; };
+		4C1842C0179B5BFD00E2F5BC /* NSData+CommonCrypto.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C1842BF179B5BFD00E2F5BC /* NSData+CommonCrypto.m */; };
+		4C1842C3179B69E700E2F5BC /* NSData+HashedData.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C1842C2179B69E700E2F5BC /* NSData+HashedData.m */; };
 		4C18F9AB178E122500890BCE /* Test_Password_1234.kdb in Resources */ = {isa = PBXBuildFile; fileRef = 4C18F9AA178E122500890BCE /* Test_Password_1234.kdb */; };
 		4C19E500178E26EF002F2CD0 /* Test_Password_1234.kdbx in Resources */ = {isa = PBXBuildFile; fileRef = 4C19E4FF178E26EF002F2CD0 /* Test_Password_1234.kdbx */; };
 		4C19E503178E2871002F2CD0 /* MPDatabasePasswordAndKeyfile.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C19E502178E2871002F2CD0 /* MPDatabasePasswordAndKeyfile.m */; };
@@ -271,6 +273,10 @@
 		4C1842B9179B3A1700E2F5BC /* KPKHeaderFields.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KPKHeaderFields.h; sourceTree = "<group>"; };
 		4C1842BA179B434C00E2F5BC /* KPKChipherInformation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KPKChipherInformation.h; sourceTree = "<group>"; };
 		4C1842BB179B434C00E2F5BC /* KPKChipherInformation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KPKChipherInformation.m; sourceTree = "<group>"; };
+		4C1842BE179B5BFD00E2F5BC /* NSData+CommonCrypto.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSData+CommonCrypto.h"; sourceTree = "<group>"; };
+		4C1842BF179B5BFD00E2F5BC /* NSData+CommonCrypto.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSData+CommonCrypto.m"; sourceTree = "<group>"; };
+		4C1842C1179B69E600E2F5BC /* NSData+HashedData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSData+HashedData.h"; sourceTree = "<group>"; };
+		4C1842C2179B69E700E2F5BC /* NSData+HashedData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSData+HashedData.m"; sourceTree = "<group>"; };
 		4C18F9AA178E122500890BCE /* Test_Password_1234.kdb */ = {isa = PBXFileReference; lastKnownFileType = file; name = Test_Password_1234.kdb; path = Databases/Test_Password_1234.kdb; sourceTree = "<group>"; };
 		4C19E4FF178E26EF002F2CD0 /* Test_Password_1234.kdbx */ = {isa = PBXFileReference; lastKnownFileType = file; name = Test_Password_1234.kdbx; path = Databases/Test_Password_1234.kdbx; sourceTree = "<group>"; };
 		4C19E501178E2871002F2CD0 /* MPDatabasePasswordAndKeyfile.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MPDatabasePasswordAndKeyfile.h; sourceTree = "<group>"; };
@@ -1435,12 +1441,16 @@
 		4CD3ABAF178F71B50073F5C5 /* Categories */ = {
 			isa = PBXGroup;
 			children = (
+				4C1842BE179B5BFD00E2F5BC /* NSData+CommonCrypto.h */,
+				4C1842BF179B5BFD00E2F5BC /* NSData+CommonCrypto.m */,
 				4C2724D51778FF1A00FD8456 /* NSUUID+KeePassKit.h */,
 				4C2724D61778FF1A00FD8456 /* NSUUID+KeePassKit.m */,
 				4C8A173B1790AA41008B5C17 /* NSData+Keyfile.h */,
 				4C8A173C1790AA41008B5C17 /* NSData+Keyfile.m */,
 				4C055E72179620BF00BD2BAB /* NSString+CommandString.h */,
 				4C055E73179620BF00BD2BAB /* NSString+CommandString.m */,
+				4C1842C1179B69E600E2F5BC /* NSData+HashedData.h */,
+				4C1842C2179B69E700E2F5BC /* NSData+HashedData.m */,
 			);
 			path = Categories;
 			sourceTree = "<group>";
@@ -1906,6 +1916,8 @@
 				4C1842B2179B28C400E2F5BC /* KPKBinaryTreeReader.m in Sources */,
 				4C1842B5179B28D400E2F5BC /* KPKBinaryTreeWriter.m in Sources */,
 				4C1842BC179B434C00E2F5BC /* KPKChipherInformation.m in Sources */,
+				4C1842C0179B5BFD00E2F5BC /* NSData+CommonCrypto.m in Sources */,
+				4C1842C3179B69E700E2F5BC /* NSData+HashedData.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
