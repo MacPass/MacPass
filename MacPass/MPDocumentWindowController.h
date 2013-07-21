@@ -7,6 +7,7 @@
 //
 
 #import <Cocoa/Cocoa.h>
+#import "MPDatabaseSettingsDelegate.h"
 
 @class MPViewController;
 @class MPEntryViewController;
@@ -19,7 +20,7 @@
 
 APPKIT_EXTERN NSString *const MPCurrentItemChangedNotification;
 
-@interface MPDocumentWindowController : NSWindowController <NSWindowDelegate>
+@interface MPDocumentWindowController : NSWindowController <NSWindowDelegate, MPDatabaseSettingsDelegate>
 
 @property (readonly, strong) MPPasswordInputController *passwordInputController;
 @property (readonly, strong) MPEntryViewController *entryViewController;

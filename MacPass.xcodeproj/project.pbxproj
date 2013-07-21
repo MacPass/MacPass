@@ -670,6 +670,7 @@
 		4CD884B615BD47080042BBF8 /* DocumentWindow.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DocumentWindow.xib; sourceTree = "<group>"; };
 		4CDB5C401794AA4F0017667E /* KPKTree+Serializing.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "KPKTree+Serializing.h"; sourceTree = "<group>"; };
 		4CDB5C411794AA4F0017667E /* KPKTree+Serializing.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "KPKTree+Serializing.m"; sourceTree = "<group>"; };
+		4CDE28D0179C8E010036C771 /* MPDatabaseSettingsDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MPDatabaseSettingsDelegate.h; sourceTree = "<group>"; };
 		4CDF01A116D1B76700D0AC08 /* MPEntryViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MPEntryViewController.h; sourceTree = "<group>"; };
 		4CDF01A216D1B76700D0AC08 /* MPEntryViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MPEntryViewController.m; sourceTree = "<group>"; };
 		4CE298E91795FC2A00DF7BDB /* MPEntryMenuDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MPEntryMenuDelegate.h; sourceTree = "<group>"; };
@@ -1352,6 +1353,7 @@
 			children = (
 				4CF6C715176F5183007A811D /* MPServerRequestHandler.h */,
 				4CA0B30D15BCB6FD00654E32 /* MPSettingsTab.h */,
+				4CDE28D0179C8E010036C771 /* MPDatabaseSettingsDelegate.h */,
 			);
 			name = Protocolls;
 			sourceTree = "<group>";

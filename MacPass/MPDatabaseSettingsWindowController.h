@@ -7,6 +7,7 @@
 //
 
 #import <Cocoa/Cocoa.h>
+#import "MPDatabaseSettingsDelegate.h"
 
 typedef NS_ENUM(NSUInteger, MPDatabaseSettingsTab) {
   MPDatabaseSettingsTabGeneral,
@@ -21,6 +22,8 @@ typedef NS_ENUM(NSUInteger, MPDatabaseSettingsTab) {
 @class HNHRoundedSecureTextField;
 
 @interface MPDatabaseSettingsWindowController : NSWindowController <NSTextFieldDelegate, NSTabViewDelegate>
+
+@property (nonatomic,weak) id<MPDatabaseSettingsDelegate> delegate;
 
 @property (weak) IBOutlet NSTabView *sectionTabView;
 @property (weak) IBOutlet NSButton *saveButton;
@@ -65,4 +68,7 @@ typedef NS_ENUM(NSUInteger, MPDatabaseSettingsTab) {
 
 - (void)update;
 
+
 @end
+
+

@@ -24,7 +24,7 @@ NSString *const MPCurrentItemChangedNotification = @"com.hicknhack.macpass.MPCur
 @interface MPDocumentWindowController () {
 @private
   id _firstResponder;
-  BOOL _requestPassword; // We did open a new document, request teh password
+  BOOL _saveAfterPasswordEdit; // Flag to indicat that the document needs to be saved after password edit did finish
 }
 
 @property (strong) IBOutlet NSSplitView *splitView;
@@ -55,7 +55,7 @@ NSString *const MPCurrentItemChangedNotification = @"com.hicknhack.macpass.MPCur
     _entryViewController = [[MPEntryViewController alloc] init];
     _inspectorViewController = [[MPInspectorViewController alloc] init];
     _currentItem = nil;
-    _requestPassword = NO;
+    _saveAfterPasswordEdit = NO;
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(_updateCurrentItem:) name:MPOutlineViewDidChangeGroupSelection object:_outlineViewController];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(_updateCurrentItem:) name:MPDidChangeSelectedEntryNotification object:_entryViewController];
@@ -71,7 +71,7 @@ NSString *const MPCurrentItemChangedNotification = @"com.hicknhack.macpass.MPCur
 - (void)windowDidLoad {
   
   [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(_didRevertDocument:) name:MPDocumentDidRevertNotifiation object:[self document]];
-  [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(editPassword:) name:MPDocumentRequestPasswordSaveNotification object:[self document]];
+  [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(_setPasswordAndSave) name:MPDocumentRequestPasswordSaveNotification object:[self document]];
   
   [_entryViewController setupNotifications:self];
   [_inspectorViewController setupNotifications:self];
@@ -269,11 +269,11 @@ NSString *const MPCurrentItemChangedNotification = @"com.hicknhack.macpass.MPCur
 }
 
 - (void)editPassword:(id)sender {
-  [self _showDatabaseSetting:MPDatabaseSettingsTabPassword];
+  [self _showDatabaseSetting:MPDatabaseSettingsTabPassword saveDocument:NO];
 }
 
 - (void)showDatabaseSettings:(id)sender {
-  [self _showDatabaseSetting:MPDatabaseSettingsTabGeneral];
+  [self _showDatabaseSetting:MPDatabaseSettingsTabGeneral saveDocument:NO];
 }
 
 - (IBAction)lock:(id)sender {
@@ -405,11 +405,29 @@ NSString *const MPCurrentItemChangedNotification = @"com.hicknhack.macpass.MPCur
 //  }
 //}
 
+#pragma mark MPDatabaseSettingsDelegate
+- (void)didCancelDatabaseSettings {
+  _saveAfterPasswordEdit = NO; // Just Reset the flag
+}
+
+- (void)didSaveDatabaseSettings {
+  if (_saveAfterPasswordEdit) {
+    _saveAfterPasswordEdit = NO;
+  }
+  [[self document] saveDocument:nil];
+}
+
 #pragma mark Helper
 
-- (void)_showDatabaseSetting:(MPDatabaseSettingsTab)tab {
+- (void)_setPasswordAndSave {
+  _saveAfterPasswordEdit = YES;
+  [self editPassword:nil];
+}
+
+- (void)_showDatabaseSetting:(MPDatabaseSettingsTab)tab saveDocument:(BOOL)save{
   if(!self.documentSettingsWindowController) {
     _documentSettingsWindowController = [[MPDatabaseSettingsWindowController alloc] initWithDocument:[self document]];
+    [_documentSettingsWindowController setDelegate:self];
   }
   [self.documentSettingsWindowController update];
   [self.documentSettingsWindowController showSettingsTab:tab];

@@ -64,6 +64,17 @@
   [self update];
 }
 
+- (void)setDelegate:(id<MPDatabaseSettingsDelegate>)delegate {
+  if(_delegate != delegate) {
+    if([delegate conformsToProtocol:@protocol(MPDatabaseSettingsDelegate)]) {
+      _delegate = delegate;
+    }
+    else{
+      NSAssert(NO, @"Delegate needs to conform to MPDatabaseSettingsDelegate protocoll");
+    }
+  }
+}
+
 - (IBAction)save:(id)sender {
   
   /* Protection */
@@ -109,14 +120,26 @@
     [defaults setBool:protectUsername forKey:kMPSettingsKeyLegacyHideUsername];
     [defaults synchronize];
   }
-  
-  /* Close to finish */
-  [self close:nil];
+  [self closeDidSave:YES];
 }
 
-- (IBAction)close:(id)sender {
+- (IBAction)cancel:(id)sender {
+  [self closeDidSave:NO];
+}
+- (void)closeDidSave:(BOOL)didSave {
+  /* Remove the window first */
   [NSApp endSheet:[self window]];
   [[self window] orderOut:nil];
+  
+  /* Then notify the delegate */
+  if(self.delegate) {
+    if(didSave && [self.delegate respondsToSelector:@selector(didSaveDatabaseSettings)]) {
+      [self.delegate didSaveDatabaseSettings];
+    }
+    else if(!didSave && [self.delegate respondsToSelector:@selector(didCancelDatabaseSettings)]) {
+      [self.delegate didCancelDatabaseSettings];
+    }
+  }
 }
 
 

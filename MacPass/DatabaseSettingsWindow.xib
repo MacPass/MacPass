@@ -71,7 +71,6 @@
 							<string key="NSFrame">{{473, 13}, {59, 32}}</string>
 							<reference key="NSSuperview" ref="1006"/>
 							<reference key="NSWindow"/>
-							<reference key="NSNextKeyView"/>
 							<string key="NSReuseIdentifierKey">_NS:9</string>
 							<bool key="NSEnabled">YES</bool>
 							<object class="NSButtonCell" key="NSCell" id="800358251">
@@ -100,7 +99,6 @@
 							<string key="NSFrame">{{13, 41}, {520, 246}}</string>
 							<reference key="NSSuperview" ref="1006"/>
 							<reference key="NSWindow"/>
-							<reference key="NSNextKeyView" ref="777708215"/>
 							<string key="NSReuseIdentifierKey">_NS:9</string>
 							<array class="NSMutableArray" key="NSTabViewItems">
 								<object class="NSTabViewItem" id="993610707">
@@ -212,7 +210,7 @@
 																<int key="NSvFlags">2322</int>
 																<string key="NSFrameSize">{278, 121}</string>
 																<reference key="NSSuperview" ref="401924003"/>
-																<reference key="NSNextKeyView" ref="670917793"/>
+																<reference key="NSNextKeyView" ref="580592620"/>
 																<string key="NSReuseIdentifierKey">_NS:13</string>
 																<object class="NSTextContainer" key="NSTextContainer" id="411354001">
 																	<object class="NSLayoutManager" key="NSLayoutManager">
@@ -328,7 +326,7 @@
 												</array>
 												<string key="NSFrame">{{136, 17}, {280, 123}}</string>
 												<reference key="NSSuperview" ref="161117556"/>
-												<reference key="NSNextKeyView" ref="580592620"/>
+												<reference key="NSNextKeyView" ref="401924003"/>
 												<string key="NSReuseIdentifierKey">_NS:9</string>
 												<int key="NSsFlags">133138</int>
 												<reference key="NSVScroller" ref="670917793"/>
@@ -1193,7 +1191,7 @@
 					<reference key="NSWindow"/>
 					<reference key="NSNextKeyView" ref="86072074"/>
 				</object>
-				<string key="NSScreenRect">{{0, 0}, {2560, 1418}}</string>
+				<string key="NSScreenRect">{{0, 0}, {1920, 1058}}</string>
 				<string key="NSMaxSize">{10000000000000, 10000000000000}</string>
 				<bool key="NSWindowIsRestorable">YES</bool>
 			</object>
@@ -1314,14 +1312,6 @@
 				</object>
 				<object class="IBConnectionRecord">
 					<object class="IBActionConnection" key="connection">
-						<string key="label">close:</string>
-						<reference key="source" ref="1001"/>
-						<reference key="destination" ref="115846238"/>
-					</object>
-					<int key="connectionID">961</int>
-				</object>
-				<object class="IBConnectionRecord">
-					<object class="IBActionConnection" key="connection">
 						<string key="label">save:</string>
 						<reference key="source" ref="1001"/>
 						<reference key="destination" ref="321202844"/>
@@ -1399,6 +1389,14 @@
 						<reference key="destination" ref="849532305"/>
 					</object>
 					<int key="connectionID">1262</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBActionConnection" key="connection">
+						<string key="label">cancel:</string>
+						<reference key="source" ref="1001"/>
+						<reference key="destination" ref="115846238"/>
+					</object>
+					<int key="connectionID">1264</int>
 				</object>
 			</array>
 			<object class="IBMutableOrderedSet" key="objectRecords">
@@ -4259,7 +4257,7 @@
 			<nil key="activeLocalization"/>
 			<dictionary class="NSMutableDictionary" key="localizations"/>
 			<nil key="sourceID"/>
-			<int key="maxID">1262</int>
+			<int key="maxID">1264</int>
 		</object>
 		<object class="IBClassDescriber" key="IBDocument.Classes">
 			<array class="NSMutableArray" key="referencedPartialClassDescriptions">
@@ -4294,18 +4292,18 @@
 					<string key="className">MPDatabaseSettingsWindowController</string>
 					<string key="superclassName">NSWindowController</string>
 					<dictionary class="NSMutableDictionary" key="actions">
+						<string key="cancel:">id</string>
 						<string key="clearKey:">id</string>
-						<string key="close:">id</string>
 						<string key="generateKey:">id</string>
 						<string key="save:">id</string>
 					</dictionary>
 					<dictionary class="NSMutableDictionary" key="actionInfosByName">
-						<object class="IBActionInfo" key="clearKey:">
-							<string key="name">clearKey:</string>
+						<object class="IBActionInfo" key="cancel:">
+							<string key="name">cancel:</string>
 							<string key="candidateClassName">id</string>
 						</object>
-						<object class="IBActionInfo" key="close:">
-							<string key="name">close:</string>
+						<object class="IBActionInfo" key="clearKey:">
+							<string key="name">clearKey:</string>
 							<string key="candidateClassName">id</string>
 						</object>
 						<object class="IBActionInfo" key="generateKey:">
@@ -4321,7 +4319,7 @@
 						<string key="cancelButton">NSButton</string>
 						<string key="databaseDescriptionTextView">NSTextView</string>
 						<string key="databaseNameTextField">NSTextField</string>
-						<string key="defaultUsernameTextField">HNHRoundedTextField</string>
+						<string key="defaultUsernameTextField">HNHRoundendTextField</string>
 						<string key="emptyRecycleBinOnQuitCheckButton">NSButton</string>
 						<string key="enableRecycleBinCheckButton">NSButton</string>
 						<string key="errorTextField">NSTextField</string>
@@ -4354,7 +4352,7 @@
 						</object>
 						<object class="IBToOneOutletInfo" key="defaultUsernameTextField">
 							<string key="name">defaultUsernameTextField</string>
-							<string key="candidateClassName">HNHRoundedTextField</string>
+							<string key="candidateClassName">HNHRoundendTextField</string>
 						</object>
 						<object class="IBToOneOutletInfo" key="emptyRecycleBinOnQuitCheckButton">
 							<string key="name">emptyRecycleBinOnQuitCheckButton</string>
