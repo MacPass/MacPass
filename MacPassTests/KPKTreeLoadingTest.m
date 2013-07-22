@@ -7,7 +7,7 @@
 //
 
 #import "KPKTreeLoadingTest.h"
-#import "KPKTreeLoader.h"
+#import "KPKTreeCryptor.h"
 #import "KPKPassword.h"
 
 @implementation KPKTreeLoadingTest
@@ -25,9 +25,9 @@
 }
 
 - (void)testLoading {
-  KPKTreeLoader *loader = [[KPKTreeLoader alloc] initWithData:_data password:_password];
-  KPKTree *tree = [loader loadTree:NULL];
-  STAssertNil(tree, @"Loading should broken");
+  KPKTreeCryptor *cryptor = [KPKTreeCryptor treeCryptorWithData:_data password:_password];
+  KPKTree *tree = [cryptor decryptTree:NULL];
+  STAssertNotNil(tree, @"Loading should result in a tree object");
 }
 
 @end
