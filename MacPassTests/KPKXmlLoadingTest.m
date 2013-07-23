@@ -1,16 +1,16 @@
 //
-//  KPKTreeLoadingTest.m
+//  KPKXmlLoadingTest.m
 //  MacPass
 //
-//  Created by Michael Starke on 20.07.13.
+//  Created by Michael Starke on 23.07.13.
 //  Copyright (c) 2013 HicknHack Software GmbH. All rights reserved.
 //
 
-#import "KPKTreeLoadingTest.h"
+#import "KPKXmlLoadingTest.h"
 #import "KPKTreeCryptor.h"
 #import "KPKPassword.h"
 
-@implementation KPKTreeLoadingTest
+@implementation KPKXmlLoadingTest
 
 - (void)setUp {
   NSBundle *myBundle = [NSBundle bundleForClass:[self class]];

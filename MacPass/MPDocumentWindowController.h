@@ -18,20 +18,12 @@
 @class KdbGroup;
 @class KdbEntry;
 
-APPKIT_EXTERN NSString *const MPCurrentItemChangedNotification;
-
-@interface MPDocumentWindowController : NSWindowController <NSWindowDelegate, MPDatabaseSettingsDelegate>
+@interface MPDocumentWindowController : NSWindowController <MPDatabaseSettingsDelegate>
 
 @property (readonly, strong) MPPasswordInputController *passwordInputController;
 @property (readonly, strong) MPEntryViewController *entryViewController;
 @property (readonly, strong) MPOutlineViewController *outlineViewController;
 @property (readonly, strong) MPInspectorViewController *inspectorViewController;
-
-
-/* Holds the current item. That is either a KdbGroup or a KdbEntry */
-@property (readonly, unsafe_unretained) id currentItem;
-@property (readonly, unsafe_unretained) KdbGroup *currentGroup;
-@property (readonly, unsafe_unretained) KdbEntry *currentEntry;
 
 /**
  @param action The action that should be validatet

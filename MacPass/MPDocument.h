@@ -11,15 +11,19 @@
 
 
 APPKIT_EXTERN NSString *const MPDocumentDidAddGroupNotification;
-APPKIT_EXTERN NSString *const MPDocumentWillDelteGroupNotification;
 APPKIT_EXTERN NSString *const MPDocumentDidAddEntryNotification;
-APPKIT_EXTERN NSString *const MPDocumentWillDeleteEntryNotification;
 APPKIT_EXTERN NSString *const MPDocumentDidRevertNotifiation;
 
 APPKIT_EXTERN NSString *const MPDocumentEntryKey;
 APPKIT_EXTERN NSString *const MPDocumentGroupKey;
 
 APPKIT_EXTERN NSString *const MPDocumentRequestPasswordSaveNotification;
+
+/*
+ APPKIT_EXTERN NSString *const MPDocumentDidChangeCurrentItemNotification;
+APPKIT_EXTERN NSString *const MPDocumentDidChangeCurrentGroupNotication;
+APPKIT_EXTERN NSString *const MPDocumnetDidChangeCurrentEntryNotification;
+*/
 
 @class KdbGroup;
 @class KdbEntry;
@@ -51,6 +55,14 @@ APPKIT_EXTERN NSString *const MPDocumentRequestPasswordSaveNotification;
 
 @property (assign, readonly) MPDatabaseVersion version;
 @property (assign, readonly, getter = isReadOnly) BOOL readOnly;
+
+
+/*
+ State (active group/entry)
+ */
+@property (nonatomic, weak) KdbEntry *selectedEntry;
+@property (nonatomic, weak) KdbGroup *selectedGroup;
+@property (nonatomic, weak) id selectedItem;
 
 
 - (id)initWithVersion:(MPDatabaseVersion)version;
@@ -94,7 +106,7 @@ APPKIT_EXTERN NSString *const MPDocumentRequestPasswordSaveNotification;
 - (void)deleteGroup:(KdbGroup *)group;
 - (void)deleteEntry:(KdbEntry *)entry;
 
-- (void)emptyTrash:(id)sender;
+- (IBAction)emptyTrash:(id)sender;
 
 @end
 

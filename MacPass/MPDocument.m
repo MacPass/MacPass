@@ -14,6 +14,7 @@
 #import "MPIconHelper.h"
 #import "MPActionHelper.h"
 #import "MPSettingsHelper.h"
+#import "MPNotifications.h"
 
 #import "KdbLib.h"
 #import "Kdb3Node.h"
@@ -38,9 +39,7 @@
 #import "DDXMLNode.h"
 
 NSString *const MPDocumentDidAddGroupNotification         = @"com.hicknhack.macpass.MPDocumentDidAddGroupNotification";
-NSString *const MPDocumentWillDelteGroupNotification      = @"com.hicknhack.macpass.MPDocumentDidDelteGroupNotification";
 NSString *const MPDocumentDidAddEntryNotification         = @"com.hicknhack.macpass.MPDocumentDidAddEntryNotification";
-NSString *const MPDocumentWillDeleteEntryNotification     = @"com.hicknhack.macpass.MPDocumentDidDeleteEntryNotification";
 NSString *const MPDocumentDidRevertNotifiation            = @"com.hicknhack.macpass.MPDocumentDidRevertNotifiation";
 NSString *const MPDocumentRequestPasswordSaveNotification = @"com.hicknhack.macpass.MPDocumentRequestPasswordSaveNotification";
 
@@ -257,6 +256,27 @@ NSString *const MPDocumentGroupKey                        = @"MPDocumentGroupKey
   return NO;
 }
 
+- (void)setSelectedGroup:(KdbGroup *)selectedGroup {
+  if(_selectedGroup != selectedGroup) {
+    _selectedGroup = selectedGroup;
+  }
+  self.selectedItem = _selectedGroup;
+}
+
+- (void)setSelectedEntry:(KdbEntry *)selectedEntry {
+  if(_selectedEntry != selectedEntry) {
+    _selectedEntry = selectedEntry;
+  }
+  self.selectedItem = selectedEntry;
+}
+
+- (void)setSelectedItem:(id)selectedItem {
+  if(_selectedItem != selectedItem) {
+    _selectedItem = selectedItem;
+    [[NSNotificationCenter defaultCenter] postNotificationName:MPCurrentItemChangedNotification object:self];
+  }
+}
+
 #pragma mark Data Accesors
 - (void)setTree:(KdbTree *)tree {
   if(_tree != tree) {
@@ -424,6 +444,7 @@ NSString *const MPDocumentGroupKey                        = @"MPDocumentGroupKey
   else {
     [entry deleteUndoable];
   }
+  self.selectedEntry = nil;
 }
 
 - (void)deleteGroup:(KdbGroup *)group {

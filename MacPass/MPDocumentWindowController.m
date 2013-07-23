@@ -19,8 +19,6 @@
 #import "MPConstants.h"
 #import "MPSettingsHelper.h"
 
-NSString *const MPCurrentItemChangedNotification = @"com.hicknhack.macpass.MPCurrentItemChangedNotification";
-
 @interface MPDocumentWindowController () {
 @private
   id _firstResponder;
@@ -30,9 +28,6 @@ NSString *const MPCurrentItemChangedNotification = @"com.hicknhack.macpass.MPCur
 @property (strong) IBOutlet NSSplitView *splitView;
 
 @property (strong) NSToolbar *toolbar;
-@property (unsafe_unretained) id currentItem;
-@property (unsafe_unretained) KdbGroup *currentGroup;
-@property (unsafe_unretained) KdbEntry *currentEntry;
 
 @property (strong) MPPasswordInputController *passwordInputController;
 @property (strong) MPEntryViewController *entryViewController;
@@ -54,11 +49,7 @@ NSString *const MPCurrentItemChangedNotification = @"com.hicknhack.macpass.MPCur
     _outlineViewController = [[MPOutlineViewController alloc] init];
     _entryViewController = [[MPEntryViewController alloc] init];
     _inspectorViewController = [[MPInspectorViewController alloc] init];
-    _currentItem = nil;
     _saveAfterPasswordEdit = NO;
-    
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(_updateCurrentItem:) name:MPOutlineViewDidChangeGroupSelection object:_outlineViewController];
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(_updateCurrentItem:) name:MPDidChangeSelectedEntryNotification object:_entryViewController];
   }
   return self;
 }
@@ -99,8 +90,6 @@ NSString *const MPCurrentItemChangedNotification = @"com.hicknhack.macpass.MPCur
   if(!showInspector) {
     [inspectorView removeFromSuperview];
   }
-  
-  [[self window] setDelegate:self];
   
   MPDocument *document = [self document];
   if(!document.decrypted) {
@@ -145,25 +134,6 @@ NSString *const MPCurrentItemChangedNotification = @"com.hicknhack.macpass.MPCur
   [self.window makeFirstResponder:[viewController reconmendedFirstResponder]];
 }
 
-#pragma mark Notification handling
-- (void)_updateCurrentItem:(NSNotification *)notification {
-  id sender = [notification object];
-  
-  self.currentGroup = _outlineViewController.selectedGroup;
-  self.currentEntry = _entryViewController.selectedEntry;
-  
-  if( sender == _outlineViewController.outlineView || sender == _outlineViewController ) {
-    self.currentItem = _outlineViewController.selectedGroup;
-  }
-  else if( sender == _entryViewController.entryTable || sender == _entryViewController) {
-    self.currentItem = _entryViewController.selectedEntry;
-  }
-  else {
-    return; // no notification!
-  }
-  [[NSNotificationCenter defaultCenter] postNotificationName:MPCurrentItemChangedNotification object:self];
-}
-
 - (void)_didRevertDocument:(NSNotification *)notification {
   [self.outlineViewController clearSelection];
   [self showPasswordInput];
@@ -196,7 +166,7 @@ NSString *const MPCurrentItemChangedNotification = @"com.hicknhack.macpass.MPCur
     enabled = (nil != document.treeV4);
   }
   if(itemAction == [MPActionHelper actionOfType:MPActionDelete]) {
-    enabled &= (nil != _currentItem) && (_currentItem != document.trash);
+    enabled &= (nil != document.selectedItem) && (document.selectedItem != document.trash);
   }
   
   enabled &= !( !document.decrypted || document.isLocked || document.isReadOnly );
@@ -212,11 +182,11 @@ NSString *const MPCurrentItemChangedNotification = @"com.hicknhack.macpass.MPCur
   switch (actionType) {
     case MPActionAddGroup:
     case MPActionAddEntry:
-      return (nil != _outlineViewController.selectedGroup);
+      return (nil != document.selectedGroup);
     case MPActionDelete: {
-      BOOL valid = (nil != _currentItem);
-      valid &= (_currentItem != document.trash);
-      valid &= ![document isItemTrashed:_currentItem];
+      BOOL valid = (nil != document.selectedItem);
+      valid &= (document.selectedItem != document.trash);
+      valid &= ![document isItemTrashed:document.selectedItem];
       return valid;
     }
     case MPActionLock:
@@ -241,11 +211,11 @@ NSString *const MPCurrentItemChangedNotification = @"com.hicknhack.macpass.MPCur
     case MPActionAddGroup:
     case MPActionAddEntry:
       // test if Group is in trash
-      return (nil != _outlineViewController.selectedGroup);
+      return (nil != document.selectedGroup);
     case MPActionDelete: {
-      BOOL valid = (nil != _currentItem);
-      valid &= (_currentItem != document.trash);
-      valid &= ![document isItemTrashed:_currentItem];
+      BOOL valid = (nil != document.selectedItem);
+      valid &= (document.selectedItem != document.trash);
+      valid &= ![document isItemTrashed:document.selectedItem];
       return valid;
     }
     case MPActionLock:
@@ -380,30 +350,6 @@ NSString *const MPCurrentItemChangedNotification = @"com.hicknhack.macpass.MPCur
   [_outlineViewController updateResponderChain];
   [_outlineViewController showOutline];
 }
-
-
-#pragma mark NSWindowDelegate
-- (void)windowDidUpdate:(NSNotification *)notification {
-  id firstResonder = [[self window] firstResponder];
-  if(_firstResponder == firstResonder) {
-    return;
-  }
-  _firstResponder = firstResonder;
-  if([_firstResponder isKindOfClass:[NSView class]]) {
-    [self _updateCurrentItem:[NSNotification notificationWithName:@"dummy" object:_firstResponder ]];
-  }
-}
-
-//- (void)windowDidBecomeKey:(NSNotification *)notification {
-//  if(!_requestPassword) {
-//    return; // Nothing to do;
-//  }
-//  MPDocument *document = [self document];
-//  if(!document.hasPasswordOrKey && document.decrypted) {
-//    _requestPassword = NO;
-//    [self performSelector:@selector(editPassword:) withObject:nil afterDelay:0.5];
-//  }
-//}
 
 #pragma mark MPDatabaseSettingsDelegate
 - (void)didCancelDatabaseSettings {

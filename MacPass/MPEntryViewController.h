@@ -14,8 +14,6 @@ APPKIT_EXTERN NSString *const MPEntryTablePasswordColumnIdentifier;
 APPKIT_EXTERN NSString *const MPEntryTableParentColumnIdentifier;
 APPKIT_EXTERN NSString *const MPEntryTableURLColumnIdentifier;
 
-APPKIT_EXTERN NSString *const MPDidChangeSelectedEntryNotification;
-
 /* Tags to determine what to copy */
 typedef NS_ENUM( NSUInteger, MPCopyContentTypeTag) {
   MPCopyUsername,

@@ -30,7 +30,7 @@
 #import "KdbGroup+Undo.h"
 #import "KdbEntry+Undo.h"
 
-NSString *const MPDidChangeSelectedEntryNotification = @"com.macpass.MPDidChangeSelectedEntryNotification";
+#import "MPNotifications.h"
 
 #define STATUS_BAR_ANIMATION_TIME 0.2
 
@@ -69,6 +69,7 @@ NSString *const _toggleFilterUsernameButton = @"SearchUsername";
 @property (strong) NSArrayController *entryArrayController;
 @property (strong) NSArray *filteredEntries;
 @property (strong) IBOutlet NSView *filterBar;
+@property (strong) IBOutlet HNHGradientView *trashBar;
 @property (weak) IBOutlet NSTableView *entryTable;
 @property (strong) IBOutlet NSLayoutConstraint *tableToTop;
 @property (weak) IBOutlet NSButton *filterDoneButton;
@@ -80,6 +81,8 @@ NSString *const _toggleFilterUsernameButton = @"SearchUsername";
 @property (weak) IBOutlet NSSearchField *filterSearchField;
 @property (weak) IBOutlet HNHGradientView *bottomBar;
 @property (weak) IBOutlet NSButton *addEntryButton;
+@property (weak) IBOutlet NSTextField *entryCountTextField;
+
 
 @property (weak) KdbEntry *selectedEntry;
 
@@ -102,9 +105,9 @@ NSString *const _toggleFilterUsernameButton = @"SearchUsername";
   if(self) {
     _filterMode = MPFilterTitles;
     _filterButtonToMode = @{ _toggleFilterUsernameButton : @(MPFilterUsernames),
-                           _toggleFilterTitleButton : @(MPFilterTitles),
-                           _toggleFilterURLButton : @(MPFilterUrls)
-                           };
+                             _toggleFilterTitleButton : @(MPFilterTitles),
+                             _toggleFilterURLButton : @(MPFilterUrls)
+                             };
     _entryArrayController = [[NSArrayController alloc] init];
     _dataSource = [[MPEntryTableDataSource alloc] init];
     _dataSource.viewController = self;
@@ -133,6 +136,11 @@ NSString *const _toggleFilterUsernameButton = @"SearchUsername";
   [self.entryTable setTarget:self];
   [self.entryTable setFloatsGroupRows:NO];
   //[self.entryTable registerForDraggedTypes:@[MPPasteBoardType]];
+  [[NSNotificationCenter defaultCenter] addObserver:self
+                                           selector:@selector(_didBecomFirstResponder:)
+                                               name:MPDidBecomeFirstResonderNotification
+                                             object:_entryTable];
+  
   [self _setupEntryMenu];
   
   NSTableColumn *parentColumn = [self.entryTable tableColumns][0];
@@ -174,10 +182,11 @@ NSString *const _toggleFilterUsernameButton = @"SearchUsername";
 }
 
 - (void)setupNotifications:(MPDocumentWindowController *)windowController {
+  MPDocument *document = [windowController document];
   [[NSNotificationCenter defaultCenter] addObserver:self
                                            selector:@selector(_didChangeCurrentItem:)
                                                name:MPCurrentItemChangedNotification
-                                             object:windowController];  
+                                             object:document];
 }
 
 #pragma mark NSTableViewDelgate
@@ -225,27 +234,20 @@ NSString *const _toggleFilterUsernameButton = @"SearchUsername";
 }
 
 - (void)tableViewSelectionDidChange:(NSNotification *)notification {
+  MPDocument *document = [[self windowController] document];
   if([self.entryTable selectedRow] < 0 || [[_entryTable selectedRowIndexes] count] > 1) {
-    self.selectedEntry = nil;
+    document.selectedEntry = nil;
   }
   else {
-    self.selectedEntry = [self.entryArrayController arrangedObjects][[self.entryTable selectedRow]];
+    document.selectedEntry = [self.entryArrayController arrangedObjects][[self.entryTable selectedRow]];
   }
-  [[NSNotificationCenter defaultCenter] postNotificationName:MPDidChangeSelectedEntryNotification object:self userInfo:nil];
 }
 
 #pragma mark Notifications
 - (void)_didChangeCurrentItem:(NSNotification *)notification {
-  if([self _showsFilterBar]) {
-    //[self.filterSearchField setStringValue:@""];
-    [self clearFilter:nil];
-  }
-  MPDocumentWindowController *sender = [notification object];
-  id item = sender.currentItem;
-  /*
-   Filter? If no group is selected, we shouldn display a list of entries
-   */
-  if(!sender.currentGroup) {
+  MPDocument *document = [notification object];
+  
+  if(!document.selectedGroup) {
     [self.entryArrayController unbind:NSContentArrayBinding];
     [self.entryArrayController setContent:nil];
     return;
@@ -253,15 +255,29 @@ NSString *const _toggleFilterUsernameButton = @"SearchUsername";
   /*
    If a grup is the current item, see if we already show that group
    */
-  if(item == sender.currentGroup) {
+  if(document.selectedItem == document.selectedGroup) {
+    /*
+     If we reselct the group, or just another group
+     we clear the filter and bind to the new selected group
+     */
+    if([self _showsFilterBar] && ![document.selectedItem isKindOfClass:[KdbEntry class]]) {
+      [self clearFilter:nil];
+      [self.entryArrayController bind:NSContentArrayBinding toObject:document.selectedGroup withKeyPath:@"entries" options:nil];
+      return;
+    }
     if([[self.entryArrayController content] count] > 0) {
       KdbEntry *entry = [[self.entryArrayController content] lastObject];
-      if(entry.parent == item) {
+      if(entry.parent == document.selectedGroup) {
         return; // we are showing the correct object right now.
       }
     }
-    [self.entryArrayController bind:NSContentArrayBinding toObject:item withKeyPath:@"entries" options:nil];
+    [self.entryArrayController bind:NSContentArrayBinding toObject:document.selectedGroup withKeyPath:@"entries" options:nil];
   }
+}
+
+- (void)_didBecomFirstResponder:(NSNotification *)notification {
+  MPDocument *document = [[self windowController] document];
+  document.selectedItem = document.selectedEntry;
 }
 
 
@@ -284,8 +300,11 @@ NSString *const _toggleFilterUsernameButton = @"SearchUsername";
 
 - (void)clearFilter:(id)sender {
   self.filter = nil;
+  [self.filterSearchField setStringValue:@""];
   [[self.entryTable tableColumnWithIdentifier:MPEntryTableParentColumnIdentifier] setHidden:YES];
   [self _hideFilterBarAnimated:YES];
+  MPDocument *document = [[self windowController] document];
+  document.selectedGroup = document.selectedGroup;
 }
 
 - (void)updateFilter {
@@ -312,6 +331,7 @@ NSString *const _toggleFilterUsernameButton = @"SearchUsername";
     self.filteredEntries = [[document.root childEntries] filteredArrayUsingPredicate:fullFilter];
     
     dispatch_sync(dispatch_get_main_queue(), ^{
+      document.selectedEntry = nil;
       [self.entryArrayController unbind:NSContentArrayBinding];
       [self.entryArrayController setContent:self.filteredEntries];
       [[self.entryTable tableColumnWithIdentifier:MPEntryTableParentColumnIdentifier] setHidden:NO];
@@ -382,6 +402,7 @@ NSString *const _toggleFilterUsernameButton = @"SearchUsername";
   else {
     [self.view layoutSubtreeIfNeeded];
   }
+  [[[self windowController] window] makeFirstResponder:self.filterSearchField];
 }
 
 - (void)_hideFilterBarAnimated:(BOOL)animate {
@@ -428,13 +449,63 @@ NSString *const _toggleFilterUsernameButton = @"SearchUsername";
       infoImage = [[NSBundle mainBundle] imageForResource:@"09_IdentityTemplate"];
       infoText = NSLocalizedString(@"COPIED_USERNAME", @"Username was copied to the pasteboard");
       break;
-  
+      
     case MPOverlayInfoCustom:
       infoImage = [[NSBundle mainBundle] imageForResource:@"00_PasswordTemplate"];
       infoText = [NSString stringWithFormat:NSLocalizedString(@"COPIED_FIELD_%@", "Field nam that was copied to the pasteboard"), name];
       break;
   }
   [[MPOverlayWindowController sharedController] displayOverlayImage:infoImage label:infoText atView:self.view];
+}
+
+- (void)_showTrashBar {
+  if([self hasFilter]) {
+    [self clearFilter:nil];
+  }
+  if(!self.trashBar) {
+    [self _setupTrashBar];
+  }
+  NSView *scrollView = [_entryTable enclosingScrollView];
+  NSDictionary *views = NSDictionaryOfVariableBindings(scrollView, _trashBar);
+  [[self view] layout];
+  [[self view] removeConstraint:self.tableToTop];
+  [[self view] addSubview:self.trashBar];
+  [[self view] addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|[_trashBar]|" options:0 metrics:nil views:views]];
+  [[self view] addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|[_trashBar(==30)]-0-[scrollView]" options:0 metrics:nil views:views]];
+  
+  [NSAnimationContext runAnimationGroup:^(NSAnimationContext* context) {
+    context.duration = STATUS_BAR_ANIMATION_TIME;
+    context.allowsImplicitAnimation = YES;
+    [[self view] layoutSubtreeIfNeeded];
+  } completionHandler:nil] ;
+  
+  
+  //[[self view] layoutSubtreeIfNeeded];
+  
+}
+
+- (void)_hideTrashBar {
+  if(![self.trashBar superview]) {
+    return; // Trahsbar is not visible
+  }
+  
+  [self.trashBar removeFromSuperview];
+  [[self view] addConstraint:self.tableToTop];
+  [[self view] layoutSubtreeIfNeeded];
+}
+
+- (void)_setupTrashBar {
+  /* Load the bundle */
+  [[NSBundle mainBundle] loadNibNamed:@"TrashBar" owner:self topLevelObjects:nil];
+  NSArray *activeColors = @[
+                            [NSColor colorWithCalibratedWhite:0.2 alpha:1],
+                            [NSColor colorWithCalibratedWhite:0.4 alpha:1]
+                            ];
+  NSArray *inactiveColors = @[ [NSColor colorWithCalibratedWhite:0.3 alpha:1],
+                               [NSColor colorWithCalibratedWhite:0.6 alpha:1]
+                               ];
+  self.trashBar.activeGradient = [[NSGradient alloc] initWithColors:activeColors];
+  self.trashBar.inactiveGradient = [[NSGradient alloc] initWithColors:inactiveColors];
 }
 
 #pragma mark EntryMenu

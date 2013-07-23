@@ -16,6 +16,7 @@
 #import "MPIconHelper.h"
 #import "MPUppercaseStringValueTransformer.h"
 #import "MPRootAdapter.h"
+#import "MPNotifications.h"
 
 #import "KdbLib.h"
 #import "Kdb4Node.h"
@@ -33,7 +34,6 @@ NSString *const _MPOutlinveViewHeaderViewIdentifier = @"HeaderCell";
 }
 @property (weak) IBOutlet NSOutlineView *outlineView;
 @property (weak) IBOutlet NSButton *addGroupButton;
-@property (nonatomic, weak) KdbGroup *selectedGroup;
 
 @property (strong) NSTreeController *treeController;
 @property (strong) MPOutlineDataSource *datasource;
@@ -71,6 +71,11 @@ NSString *const _MPOutlinveViewHeaderViewIdentifier = @"HeaderCell";
   [_outlineView setDraggingSourceOperationMask:NSDragOperationEvery forLocal:YES];
   [_bottomBar setBorderType:HNHBorderTop];
   [_addGroupButton setAction:[MPActionHelper actionOfType:MPActionAddGroup]];
+  
+  [[NSNotificationCenter defaultCenter] addObserver:self
+                                           selector:@selector(_didBecomeFirstResponder:)
+                                               name:MPDidBecomeFirstResonderNotification
+                                             object:_outlineView];
 }
 
 - (void)showOutline {
@@ -101,17 +106,6 @@ NSString *const _MPOutlinveViewHeaderViewIdentifier = @"HeaderCell";
   }
 }
 
-//- (void)setSelectedGroup:(KdbGroup *)selectedGroup {
-//  if(_selectedGroup != selectedGroup) {
-//    _selectedGroup = selectedGroup;
-//    if([selectedGroup isKindOfClass:[Kdb4Group class]]) {
-//      MPDocument *document = [[self windowController] document];
-//      document.treeV4.lastSelectedGroup = ((Kdb4Group *)selectedGroup).uuid;
-//    }
-//  }
-//}
-
-
 #pragma mark Notifications
 - (void)setupNotifications:(MPDocumentWindowController *)windowController {
   [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(_didCreateGroup:) name:MPDocumentDidAddGroupNotification object:[windowController document]];
@@ -128,13 +122,20 @@ NSString *const _MPOutlinveViewHeaderViewIdentifier = @"HeaderCell";
   if( selectedRow == -1) {
     MPDocument *document = [[self windowController] document];
     indexSet = [NSIndexSet indexSetWithIndex:[document.root.groups count]];
-    //TODO: Find out why selection is not set (treeUpdate?)
   }
   else {
     id item = [_outlineView itemAtRow:selectedRow];
     [_outlineView expandItem:item];
     indexSet = [NSIndexSet indexSetWithIndex:selectedRow + 1];
   }
+}
+
+- (void)_didBecomeFirstResponder:(NSNotification *)notification {
+  if( [notification object] != _outlineView ) {
+    return; // Nothing we need to worry about
+  }
+  MPDocument *document = [[self windowController] document];
+  document.selectedItem = document.selectedGroup;
 }
 
 #pragma mark Validation
@@ -212,8 +213,8 @@ NSString *const _MPOutlinveViewHeaderViewIdentifier = @"HeaderCell";
 - (void)outlineViewSelectionDidChange:(NSNotification *)notification {
   NSTreeNode *treeNode = [_outlineView itemAtRow:[_outlineView selectedRow]];
   KdbGroup *selectedGroup = [treeNode representedObject];
-  self.selectedGroup = selectedGroup;
-  [[NSNotificationCenter defaultCenter] postNotificationName:MPOutlineViewDidChangeGroupSelection object:self userInfo:nil];
+  MPDocument *document = [[self windowController] document];
+  document.selectedGroup = selectedGroup;
 }
 
 - (BOOL)outlineView:(NSOutlineView *)outlineView shouldShowOutlineCellForItem:(id)item {

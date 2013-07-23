@@ -22,6 +22,7 @@
 #import "MPSelectedAttachmentTableCellView.h"
 #import "MPAttachmentTableViewDelegate.h"
 #import "MPCustomFieldTableViewDelegate.h"
+#import "MPNotifications.h"
 
 #import "NSDate+Humanized.h"
 
@@ -129,11 +130,11 @@ enum {
 }
 
 - (void)setupNotifications:(MPDocumentWindowController *)windowController {
-  /* Register for Entry selection */
+  MPDocument *document = [windowController document];
   [[NSNotificationCenter defaultCenter] addObserver:self
                                            selector:@selector(_didChangeCurrentItem:)
                                                name:MPCurrentItemChangedNotification
-                                             object:windowController];
+                                             object:document];
 }
 
 - (void)setModificationDate:(NSDate *)modificationDate {
@@ -418,19 +419,24 @@ enum {
 
 #pragma mark Notificiations
 - (void)_didChangeCurrentItem:(NSNotification *)notification {
-  MPDocumentWindowController *sender = [notification object];
-  id item = sender.currentItem;
-  if(!item) {
+  /**
+   Remove double handling.
+   Just call for documents properties when neede
+   */
+  MPDocument *document = [[self windowController] document];
+  if(!document.selectedItem) {
     self.selectedGroup = nil;
     self.selectedEntry = nil;
   }
-  if([item isKindOfClass:[KdbGroup class]]) {
+  BOOL isGroup = document.selectedItem == document.selectedGroup;
+  BOOL isEntry = document.selectedItem == document.selectedEntry;
+  if(isGroup) {
     self.selectedEntry = nil;
-    self.selectedGroup = sender.currentItem;
+    self.selectedGroup = document.selectedItem;
   }
-  else if([item isKindOfClass:[KdbEntry class]]) {
+  else if(isEntry) {
     self.selectedGroup = nil;
-    self.selectedEntry = sender.currentItem;
+    self.selectedEntry = document.selectedItem;
   }
   [self _updateContent];
 }

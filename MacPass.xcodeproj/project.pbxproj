@@ -15,9 +15,9 @@
 		4C16BA6217879A3C002B42BD /* MPPasswordStringFormatter.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C16BA6117879A3C002B42BD /* MPPasswordStringFormatter.m */; };
 		4C1842AB179B027800E2F5BC /* KPKDeletedNode.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C1842AA179B027800E2F5BC /* KPKDeletedNode.m */; };
 		4C1842AF179B211C00E2F5BC /* KPKXmlTreeReader.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C1842AE179B211C00E2F5BC /* KPKXmlTreeReader.m */; };
-		4C1842B2179B28C400E2F5BC /* KPKBinaryTreeReader.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C1842B1179B28C400E2F5BC /* KPKBinaryTreeReader.m */; };
-		4C1842B5179B28D400E2F5BC /* KPKBinaryTreeWriter.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C1842B4179B28D400E2F5BC /* KPKBinaryTreeWriter.m */; };
-		4C1842B8179B348600E2F5BC /* KPKTreeLoadingTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C1842B7179B348600E2F5BC /* KPKTreeLoadingTest.m */; };
+		4C1842B2179B28C400E2F5BC /* KPKLegacyTreeReader.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C1842B1179B28C400E2F5BC /* KPKLegacyTreeReader.m */; };
+		4C1842B5179B28D400E2F5BC /* KPKLegacyTreeWriter.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C1842B4179B28D400E2F5BC /* KPKLegacyTreeWriter.m */; };
+		4C1842B8179B348600E2F5BC /* KPKLegacyLoadingTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C1842B7179B348600E2F5BC /* KPKLegacyLoadingTest.m */; };
 		4C1842BC179B434C00E2F5BC /* KPKXmlHeaderReader.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C1842BB179B434C00E2F5BC /* KPKXmlHeaderReader.m */; };
 		4C1842C0179B5BFD00E2F5BC /* NSData+CommonCrypto.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C1842BF179B5BFD00E2F5BC /* NSData+CommonCrypto.m */; };
 		4C1842C3179B69E700E2F5BC /* NSData+HashedData.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C1842C2179B69E700E2F5BC /* NSData+HashedData.m */; };
@@ -25,6 +25,7 @@
 		4C1842CA179C616700E2F5BC /* KPKTreeCryptor.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C1842C9179C616700E2F5BC /* KPKTreeCryptor.m */; };
 		4C1842D0179C64DD00E2F5BC /* KPKLegacyTreeCryptor.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C1842CF179C64DD00E2F5BC /* KPKLegacyTreeCryptor.m */; };
 		4C1842D3179C64F000E2F5BC /* KPKXmlTreeCryptor.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C1842D2179C64EF00E2F5BC /* KPKXmlTreeCryptor.m */; };
+		4C18816C179E06920045C5B7 /* TrashBar.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4C18816B179E06920045C5B7 /* TrashBar.xib */; };
 		4C18F9AB178E122500890BCE /* Test_Password_1234.kdb in Resources */ = {isa = PBXBuildFile; fileRef = 4C18F9AA178E122500890BCE /* Test_Password_1234.kdb */; };
 		4C19E500178E26EF002F2CD0 /* Test_Password_1234.kdbx in Resources */ = {isa = PBXBuildFile; fileRef = 4C19E4FF178E26EF002F2CD0 /* Test_Password_1234.kdbx */; };
 		4C19E503178E2871002F2CD0 /* MPDatabasePasswordAndKeyfile.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C19E502178E2871002F2CD0 /* MPDatabasePasswordAndKeyfile.m */; };
@@ -214,6 +215,8 @@
 		4CC672791781D0C0006DEDCF /* KdbGroup+MPAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CC672781781D0C0006DEDCF /* KdbGroup+MPAdditions.m */; };
 		4CC6727C1781D0D2006DEDCF /* KdbEntry+MPAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CC6727B1781D0D2006DEDCF /* KdbEntry+MPAdditions.m */; };
 		4CC7EA1B17807E7E0089D4F3 /* HNHRoundendTextFieldCellHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CC7EA1A17807E7E0089D4F3 /* HNHRoundendTextFieldCellHelper.m */; };
+		4CCEDE2A179F203B008402BE /* MPOutlineView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CCEDE29179F203B008402BE /* MPOutlineView.m */; };
+		4CCEDE2E179F213B008402BE /* MPNotifications.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CCEDE2D179F213B008402BE /* MPNotifications.m */; };
 		4CD3ABBA178F71B50073F5C5 /* KPKTree.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CD3ABB4178F71B50073F5C5 /* KPKTree.m */; };
 		4CD3ABBF178F72610073F5C5 /* KPKEntry.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CD3ABBE178F72610073F5C5 /* KPKEntry.m */; };
 		4CD3ABC2178F72720073F5C5 /* KPKGroup.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CD3ABC1178F72720073F5C5 /* KPKGroup.m */; };
@@ -246,6 +249,9 @@
 		4CF7805F176E75110032EE71 /* ServerSettings.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4CF7805E176E75110032EE71 /* ServerSettings.xib */; };
 		4CF78064176E75AD0032EE71 /* MPServerSettingsController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CF78063176E75AD0032EE71 /* MPServerSettingsController.m */; };
 		4CFC53BF16E94729007396BE /* MPShadowBox.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CFC53BE16E94729007396BE /* MPShadowBox.m */; };
+		4CFC873B179DEDF3000DFC03 /* KPKMetaData.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CFC873A179DEDF3000DFC03 /* KPKMetaData.m */; };
+		4CFC873E179DF200000DFC03 /* KPKTimeInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CFC873D179DF200000DFC03 /* KPKTimeInfo.m */; };
+		4CFC8743179DFD3E000DFC03 /* KPKXmlLoadingTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CFC8742179DFD3E000DFC03 /* KPKXmlLoadingTest.m */; };
 		4CFEB36E1799D9CF00AF1868 /* Kdb3Entry+KVOAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CFEB36D1799D9CF00AF1868 /* Kdb3Entry+KVOAdditions.m */; };
 /* End PBXBuildFile section */
 
@@ -266,12 +272,12 @@
 		4C1842AA179B027800E2F5BC /* KPKDeletedNode.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KPKDeletedNode.m; sourceTree = "<group>"; };
 		4C1842AD179B211C00E2F5BC /* KPKXmlTreeReader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KPKXmlTreeReader.h; sourceTree = "<group>"; };
 		4C1842AE179B211C00E2F5BC /* KPKXmlTreeReader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KPKXmlTreeReader.m; sourceTree = "<group>"; };
-		4C1842B0179B28C400E2F5BC /* KPKBinaryTreeReader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KPKBinaryTreeReader.h; sourceTree = "<group>"; };
-		4C1842B1179B28C400E2F5BC /* KPKBinaryTreeReader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KPKBinaryTreeReader.m; sourceTree = "<group>"; };
-		4C1842B3179B28D400E2F5BC /* KPKBinaryTreeWriter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KPKBinaryTreeWriter.h; sourceTree = "<group>"; };
-		4C1842B4179B28D400E2F5BC /* KPKBinaryTreeWriter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KPKBinaryTreeWriter.m; sourceTree = "<group>"; };
-		4C1842B6179B348600E2F5BC /* KPKTreeLoadingTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KPKTreeLoadingTest.h; sourceTree = "<group>"; };
-		4C1842B7179B348600E2F5BC /* KPKTreeLoadingTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KPKTreeLoadingTest.m; sourceTree = "<group>"; };
+		4C1842B0179B28C400E2F5BC /* KPKLegacyTreeReader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KPKLegacyTreeReader.h; sourceTree = "<group>"; };
+		4C1842B1179B28C400E2F5BC /* KPKLegacyTreeReader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KPKLegacyTreeReader.m; sourceTree = "<group>"; };
+		4C1842B3179B28D400E2F5BC /* KPKLegacyTreeWriter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KPKLegacyTreeWriter.h; sourceTree = "<group>"; };
+		4C1842B4179B28D400E2F5BC /* KPKLegacyTreeWriter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KPKLegacyTreeWriter.m; sourceTree = "<group>"; };
+		4C1842B6179B348600E2F5BC /* KPKLegacyLoadingTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KPKLegacyLoadingTest.h; sourceTree = "<group>"; };
+		4C1842B7179B348600E2F5BC /* KPKLegacyLoadingTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KPKLegacyLoadingTest.m; sourceTree = "<group>"; };
 		4C1842B9179B3A1700E2F5BC /* KPKHeaderFields.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = KPKHeaderFields.h; path = Format/KPKHeaderFields.h; sourceTree = "<group>"; };
 		4C1842BA179B434C00E2F5BC /* KPKXmlHeaderReader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KPKXmlHeaderReader.h; sourceTree = "<group>"; };
 		4C1842BB179B434C00E2F5BC /* KPKXmlHeaderReader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KPKXmlHeaderReader.m; sourceTree = "<group>"; };
@@ -290,6 +296,7 @@
 		4C1842D2179C64EF00E2F5BC /* KPKXmlTreeCryptor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KPKXmlTreeCryptor.m; sourceTree = "<group>"; };
 		4C1842D4179C6DE400E2F5BC /* KPKHeaderReading.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KPKHeaderReading.h; sourceTree = "<group>"; };
 		4C1842D5179C6F1800E2F5BC /* KPKHeaderWriting.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KPKHeaderWriting.h; sourceTree = "<group>"; };
+		4C18816B179E06920045C5B7 /* TrashBar.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TrashBar.xib; sourceTree = "<group>"; };
 		4C18F9AA178E122500890BCE /* Test_Password_1234.kdb */ = {isa = PBXFileReference; lastKnownFileType = file; name = Test_Password_1234.kdb; path = Databases/Test_Password_1234.kdb; sourceTree = "<group>"; };
 		4C19E4FF178E26EF002F2CD0 /* Test_Password_1234.kdbx */ = {isa = PBXFileReference; lastKnownFileType = file; name = Test_Password_1234.kdbx; path = Databases/Test_Password_1234.kdbx; sourceTree = "<group>"; };
 		4C19E501178E2871002F2CD0 /* MPDatabasePasswordAndKeyfile.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MPDatabasePasswordAndKeyfile.h; sourceTree = "<group>"; };
@@ -650,6 +657,10 @@
 		4CC7EA1A17807E7E0089D4F3 /* HNHRoundendTextFieldCellHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HNHRoundendTextFieldCellHelper.m; sourceTree = "<group>"; };
 		4CCA7EEC1797866F00B0B55E /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/GeneralSettings.strings; sourceTree = "<group>"; };
 		4CCA7EEE1797867200B0B55E /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/GeneralSettings.strings; sourceTree = "<group>"; };
+		4CCEDE28179F203B008402BE /* MPOutlineView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MPOutlineView.h; sourceTree = "<group>"; };
+		4CCEDE29179F203B008402BE /* MPOutlineView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MPOutlineView.m; sourceTree = "<group>"; };
+		4CCEDE2C179F2122008402BE /* MPNotifications.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MPNotifications.h; sourceTree = "<group>"; };
+		4CCEDE2D179F213B008402BE /* MPNotifications.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MPNotifications.m; sourceTree = "<group>"; };
 		4CD3ABB2178F71B50073F5C5 /* KPKVersion.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = KPKVersion.h; path = Format/KPKVersion.h; sourceTree = "<group>"; };
 		4CD3ABB3178F71B50073F5C5 /* KPKTree.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KPKTree.h; sourceTree = "<group>"; };
 		4CD3ABB4178F71B50073F5C5 /* KPKTree.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KPKTree.m; sourceTree = "<group>"; };
@@ -707,6 +718,14 @@
 		4CF78063176E75AD0032EE71 /* MPServerSettingsController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MPServerSettingsController.m; sourceTree = "<group>"; };
 		4CFC53BD16E94729007396BE /* MPShadowBox.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MPShadowBox.h; sourceTree = "<group>"; };
 		4CFC53BE16E94729007396BE /* MPShadowBox.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MPShadowBox.m; sourceTree = "<group>"; };
+		4CFC8739179DEDF3000DFC03 /* KPKMetaData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KPKMetaData.h; sourceTree = "<group>"; };
+		4CFC873A179DEDF3000DFC03 /* KPKMetaData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KPKMetaData.m; sourceTree = "<group>"; };
+		4CFC873C179DF200000DFC03 /* KPKTimeInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KPKTimeInfo.h; sourceTree = "<group>"; };
+		4CFC873D179DF200000DFC03 /* KPKTimeInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KPKTimeInfo.m; sourceTree = "<group>"; };
+		4CFC873F179DF295000DFC03 /* KPKTimerecording.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KPKTimerecording.h; sourceTree = "<group>"; };
+		4CFC8740179DF7A3000DFC03 /* KPKUndoing.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KPKUndoing.h; sourceTree = "<group>"; };
+		4CFC8741179DFD3E000DFC03 /* KPKXmlLoadingTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KPKXmlLoadingTest.h; sourceTree = "<group>"; };
+		4CFC8742179DFD3E000DFC03 /* KPKXmlLoadingTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KPKXmlLoadingTest.m; sourceTree = "<group>"; };
 		4CFEB36C1799D9CF00AF1868 /* Kdb3Entry+KVOAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Kdb3Entry+KVOAdditions.h"; sourceTree = "<group>"; };
 		4CFEB36D1799D9CF00AF1868 /* Kdb3Entry+KVOAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "Kdb3Entry+KVOAdditions.m"; sourceTree = "<group>"; };
 		6E719715172058BA00E4C5FC /* MPDatabaseVersion.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MPDatabaseVersion.h; sourceTree = "<group>"; };
@@ -745,6 +764,7 @@
 				4C61EA0416D2FFE200AC519E /* OutlineView.xib */,
 				4CF78061176E752E0032EE71 /* PasswordInputs */,
 				4C3FFD9D16DAF60600DF9186 /* FilterBar.xib */,
+				4C18816B179E06920045C5B7 /* TrashBar.xib */,
 				4C76156F1764C0E20015A1A6 /* InspectorView.xib */,
 				4CE39AC016ECE359000FE29D /* IconSelection.xib */,
 				4C2C8B331787500E009649F3 /* UnprotectedWarningView.xib */,
@@ -762,6 +782,8 @@
 				4C4FCE14177CFE6B00BBF7AE /* MPCustomFieldTableCellView.m */,
 				4C5FE9AC17843CE20001D5A8 /* MPSelectedAttachmentTableCellView.h */,
 				4C5FE9AD17843CE20001D5A8 /* MPSelectedAttachmentTableCellView.m */,
+				4CCEDE28179F203B008402BE /* MPOutlineView.h */,
+				4CCEDE29179F203B008402BE /* MPOutlineView.m */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -1031,6 +1053,8 @@
 				4CA23359176DBFE100F0B6AC /* MPLockDaemon.m */,
 				4C16BA6017879A3C002B42BD /* MPPasswordStringFormatter.h */,
 				4C16BA6117879A3C002B42BD /* MPPasswordStringFormatter.m */,
+				4CCEDE2C179F2122008402BE /* MPNotifications.h */,
+				4CCEDE2D179F213B008402BE /* MPNotifications.m */,
 			);
 			name = Helper;
 			sourceTree = "<group>";
@@ -1093,8 +1117,10 @@
 				4C45FB1F178E09ED0010007D /* Supporting Files */,
 				4C305F3A179A19F90082334F /* KPKIconLoading.h */,
 				4C305F3B179A19F90082334F /* KPKIconLoading.m */,
-				4C1842B6179B348600E2F5BC /* KPKTreeLoadingTest.h */,
-				4C1842B7179B348600E2F5BC /* KPKTreeLoadingTest.m */,
+				4C1842B6179B348600E2F5BC /* KPKLegacyLoadingTest.h */,
+				4C1842B7179B348600E2F5BC /* KPKLegacyLoadingTest.m */,
+				4CFC8741179DFD3E000DFC03 /* KPKXmlLoadingTest.h */,
+				4CFC8742179DFD3E000DFC03 /* KPKXmlLoadingTest.m */,
 			);
 			path = MacPassTests;
 			sourceTree = "<group>";
@@ -1494,6 +1520,12 @@
 				4C305F35179A0BD70082334F /* KPKIcon.m */,
 				4C1842A9179B027700E2F5BC /* KPKDeletedNode.h */,
 				4C1842AA179B027800E2F5BC /* KPKDeletedNode.m */,
+				4CFC8739179DEDF3000DFC03 /* KPKMetaData.h */,
+				4CFC873A179DEDF3000DFC03 /* KPKMetaData.m */,
+				4CFC873C179DF200000DFC03 /* KPKTimeInfo.h */,
+				4CFC873D179DF200000DFC03 /* KPKTimeInfo.m */,
+				4CFC873F179DF295000DFC03 /* KPKTimerecording.h */,
+				4CFC8740179DF7A3000DFC03 /* KPKUndoing.h */,
 			);
 			path = Core;
 			sourceTree = "<group>";
@@ -1503,24 +1535,24 @@
 			children = (
 				4CDB5C401794AA4F0017667E /* KPKTree+Serializing.h */,
 				4CDB5C411794AA4F0017667E /* KPKTree+Serializing.m */,
+				4C1842C8179C616600E2F5BC /* KPKTreeCryptor.h */,
+				4C1842C9179C616700E2F5BC /* KPKTreeCryptor.m */,
+				4C1842BA179B434C00E2F5BC /* KPKXmlHeaderReader.h */,
+				4C1842BB179B434C00E2F5BC /* KPKXmlHeaderReader.m */,
+				4C1842D1179C64EF00E2F5BC /* KPKXmlTreeCryptor.h */,
+				4C1842D2179C64EF00E2F5BC /* KPKXmlTreeCryptor.m */,
 				4C5AA58F179549A1008ECAD7 /* KPKXmlTreeWriter.h */,
 				4C5AA590179549A1008ECAD7 /* KPKXmlTreeWriter.m */,
 				4C1842AD179B211C00E2F5BC /* KPKXmlTreeReader.h */,
 				4C1842AE179B211C00E2F5BC /* KPKXmlTreeReader.m */,
-				4C1842B0179B28C400E2F5BC /* KPKBinaryTreeReader.h */,
-				4C1842B1179B28C400E2F5BC /* KPKBinaryTreeReader.m */,
-				4C1842B3179B28D400E2F5BC /* KPKBinaryTreeWriter.h */,
-				4C1842B4179B28D400E2F5BC /* KPKBinaryTreeWriter.m */,
-				4C1842BA179B434C00E2F5BC /* KPKXmlHeaderReader.h */,
-				4C1842BB179B434C00E2F5BC /* KPKXmlHeaderReader.m */,
+				4C1842B0179B28C400E2F5BC /* KPKLegacyTreeReader.h */,
+				4C1842B1179B28C400E2F5BC /* KPKLegacyTreeReader.m */,
+				4C1842B3179B28D400E2F5BC /* KPKLegacyTreeWriter.h */,
+				4C1842B4179B28D400E2F5BC /* KPKLegacyTreeWriter.m */,
 				4C1842C4179BF51F00E2F5BC /* KPKLegacyHeaderReader.h */,
 				4C1842C5179BF52000E2F5BC /* KPKLegacyHeaderReader.m */,
-				4C1842C8179C616600E2F5BC /* KPKTreeCryptor.h */,
-				4C1842C9179C616700E2F5BC /* KPKTreeCryptor.m */,
 				4C1842CE179C64DC00E2F5BC /* KPKLegacyTreeCryptor.h */,
 				4C1842CF179C64DD00E2F5BC /* KPKLegacyTreeCryptor.m */,
-				4C1842D1179C64EF00E2F5BC /* KPKXmlTreeCryptor.h */,
-				4C1842D2179C64EF00E2F5BC /* KPKXmlTreeCryptor.m */,
 				4C1842D4179C6DE400E2F5BC /* KPKHeaderReading.h */,
 				4C1842D5179C6F1800E2F5BC /* KPKHeaderWriting.h */,
 			);
@@ -1720,6 +1752,7 @@
 				4C52A88F1788628B00868229 /* 13_KeysTemplate.pdf in Resources */,
 				4C52A8901788628B00868229 /* 18_DisplayTemplate.pdf in Resources */,
 				4C52A892178863B000868229 /* 68_PhoneTemplate.pdf in Resources */,
+				4C18816C179E06920045C5B7 /* TrashBar.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1750,7 +1783,8 @@
 				4C45FB30178E0CE20010007D /* MPDatabaseCreation.m in Sources */,
 				4C19E503178E2871002F2CD0 /* MPDatabasePasswordAndKeyfile.m in Sources */,
 				4C305F3C179A19F90082334F /* KPKIconLoading.m in Sources */,
-				4C1842B8179B348600E2F5BC /* KPKTreeLoadingTest.m in Sources */,
+				4C1842B8179B348600E2F5BC /* KPKLegacyLoadingTest.m in Sources */,
+				4CFC8743179DFD3E000DFC03 /* KPKXmlLoadingTest.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1931,8 +1965,8 @@
 				4CA7C36C179A98140099C34B /* NSString+Base64.m in Sources */,
 				4C1842AB179B027800E2F5BC /* KPKDeletedNode.m in Sources */,
 				4C1842AF179B211C00E2F5BC /* KPKXmlTreeReader.m in Sources */,
-				4C1842B2179B28C400E2F5BC /* KPKBinaryTreeReader.m in Sources */,
-				4C1842B5179B28D400E2F5BC /* KPKBinaryTreeWriter.m in Sources */,
+				4C1842B2179B28C400E2F5BC /* KPKLegacyTreeReader.m in Sources */,
+				4C1842B5179B28D400E2F5BC /* KPKLegacyTreeWriter.m in Sources */,
 				4C1842BC179B434C00E2F5BC /* KPKXmlHeaderReader.m in Sources */,
 				4C1842C0179B5BFD00E2F5BC /* NSData+CommonCrypto.m in Sources */,
 				4C1842C3179B69E700E2F5BC /* NSData+HashedData.m in Sources */,
@@ -1940,6 +1974,10 @@
 				4C1842CA179C616700E2F5BC /* KPKTreeCryptor.m in Sources */,
 				4C1842D0179C64DD00E2F5BC /* KPKLegacyTreeCryptor.m in Sources */,
 				4C1842D3179C64F000E2F5BC /* KPKXmlTreeCryptor.m in Sources */,
+				4CFC873B179DEDF3000DFC03 /* KPKMetaData.m in Sources */,
+				4CFC873E179DF200000DFC03 /* KPKTimeInfo.m in Sources */,
+				4CCEDE2A179F203B008402BE /* MPOutlineView.m in Sources */,
+				4CCEDE2E179F213B008402BE /* MPNotifications.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
