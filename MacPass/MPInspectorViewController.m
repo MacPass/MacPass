@@ -36,12 +36,12 @@
 #import "NSMutableData+Base64.h"
 
 #import "HNHGradientView.h"
+#import "HNHScrollView.h"
 #import "HNHTableRowView.h"
 #import "HNHRoundedSecureTextField.h"
 
 enum {
   MPGeneralTab,
-  MPNotesTab,
   MPAttachmentsTab,
   MPCustomFieldsTab
 };
@@ -67,6 +67,7 @@ enum {
 
 @property (nonatomic, assign) NSUInteger activeTab;
 @property (weak) IBOutlet NSTabView *tabView;
+@property (strong) IBOutlet NSView *generalView;
 
 - (IBAction)addCustomField:(id)sender;
 - (IBAction)removeCustomField:(id)sender;
@@ -106,6 +107,38 @@ enum {
 }
 
 - (void)didLoadView {
+
+  HNHScrollView *scrollView = [[HNHScrollView alloc] init];
+  scrollView.actAsFlipped = NO;
+  [scrollView setHasVerticalScroller:YES];
+  [scrollView setDrawsBackground:NO];
+  [scrollView setTranslatesAutoresizingMaskIntoConstraints:NO];
+  NSView *clipView = [scrollView contentView];
+  
+  NSView *tabView = [[self.tabView tabViewItemAtIndex:MPGeneralTab] view];
+  /*
+   DO NEVER SET setTranslatesAutoresizingMaskIntoConstraints on NSTabViewItem's view
+   [tabView setTranslatesAutoresizingMaskIntoConstraints:NO];
+   */
+  [scrollView setDocumentView:self.generalView];
+  [tabView addSubview:scrollView];
+  
+  NSDictionary *views = NSDictionaryOfVariableBindings(_generalView, scrollView);
+  [[scrollView superview] addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|[scrollView]|"
+                                                                      options:0
+                                                                      metrics:nil
+                                                                        views:views ]];
+  [[scrollView superview] addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-3-[scrollView]-50-|"
+                                                                      options:0
+                                                                      metrics:nil
+                                                                        views:views]];
+  [clipView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|[_generalView]|"
+                                                                      options:0
+                                                                      metrics:nil
+                                                                        views:views]];
+  [[self view] layoutSubtreeIfNeeded];
+  
+  
   //[self.scrollContentView setAutoresizingMask:NSViewWidthSizable];
   [[self.itemImageView cell] setBackgroundStyle:NSBackgroundStyleRaised];
   [self.itemImageView setTarget:self];
@@ -291,7 +324,6 @@ enum {
   [self.URLTextField setEnabled:enabled];
   [self.generatePasswordButton setEnabled:enabled];
   
-  [self.infoTabControl setEnabled:enabled forSegment:MPNotesTab];
   [self.infoTabControl setEnabled:enabled forSegment:MPAttachmentsTab];
   
   enabled &= [self.selectedEntry isKindOfClass:[Kdb4Entry class]];
