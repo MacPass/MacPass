@@ -410,10 +410,14 @@ enum {
 
 - (IBAction)finishEdit:(id)sender {
   NSUndoManager *undoManger =   [[[self windowController] document] undoManager];
-  [undoManger setActionName:@"Edit"];
+  if([undoManger canUndo]) {
+    [undoManger setActionName:@"Edit"];
+  }
   [undoManger endUndoGrouping];
   [self.titleTextField setEditable:NO];
+  [self.titleTextField setSelectable:YES];
   [self.usernameTextField setEditable:NO];
+  [self.usernameTextField setSelectable:YES];
 
 }
 

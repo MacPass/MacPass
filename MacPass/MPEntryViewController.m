@@ -254,7 +254,7 @@ NSString *const _toggleFilterUsernameButton = @"SearchUsername";
   }
   /*
    If a grup is the current item, see if we already show that group
-   */
+   */ 
   if(document.selectedItem == document.selectedGroup) {
     /*
      If we reselct the group, or just another group

@@ -217,6 +217,7 @@
 		4CC7EA1B17807E7E0089D4F3 /* HNHRoundendTextFieldCellHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CC7EA1A17807E7E0089D4F3 /* HNHRoundendTextFieldCellHelper.m */; };
 		4CCEDE2A179F203B008402BE /* MPOutlineView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CCEDE29179F203B008402BE /* MPOutlineView.m */; };
 		4CCEDE2E179F213B008402BE /* MPNotifications.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CCEDE2D179F213B008402BE /* MPNotifications.m */; };
+		4CCEDE32179F5B6C008402BE /* KPKDataStreamer.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CCEDE31179F5B6C008402BE /* KPKDataStreamer.m */; };
 		4CD3ABBA178F71B50073F5C5 /* KPKTree.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CD3ABB4178F71B50073F5C5 /* KPKTree.m */; };
 		4CD3ABBF178F72610073F5C5 /* KPKEntry.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CD3ABBE178F72610073F5C5 /* KPKEntry.m */; };
 		4CD3ABC2178F72720073F5C5 /* KPKGroup.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CD3ABC1178F72720073F5C5 /* KPKGroup.m */; };
@@ -661,6 +662,9 @@
 		4CCEDE29179F203B008402BE /* MPOutlineView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MPOutlineView.m; sourceTree = "<group>"; };
 		4CCEDE2C179F2122008402BE /* MPNotifications.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MPNotifications.h; sourceTree = "<group>"; };
 		4CCEDE2D179F213B008402BE /* MPNotifications.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MPNotifications.m; sourceTree = "<group>"; };
+		4CCEDE2F179F550D008402BE /* KPKTreeReading.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KPKTreeReading.h; sourceTree = "<group>"; };
+		4CCEDE30179F5B6C008402BE /* KPKDataStreamer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KPKDataStreamer.h; sourceTree = "<group>"; };
+		4CCEDE31179F5B6C008402BE /* KPKDataStreamer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KPKDataStreamer.m; sourceTree = "<group>"; };
 		4CD3ABB2178F71B50073F5C5 /* KPKVersion.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = KPKVersion.h; path = Format/KPKVersion.h; sourceTree = "<group>"; };
 		4CD3ABB3178F71B50073F5C5 /* KPKTree.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KPKTree.h; sourceTree = "<group>"; };
 		4CD3ABB4178F71B50073F5C5 /* KPKTree.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KPKTree.m; sourceTree = "<group>"; };
@@ -1555,6 +1559,9 @@
 				4C1842CF179C64DD00E2F5BC /* KPKLegacyTreeCryptor.m */,
 				4C1842D4179C6DE400E2F5BC /* KPKHeaderReading.h */,
 				4C1842D5179C6F1800E2F5BC /* KPKHeaderWriting.h */,
+				4CCEDE2F179F550D008402BE /* KPKTreeReading.h */,
+				4CCEDE30179F5B6C008402BE /* KPKDataStreamer.h */,
+				4CCEDE31179F5B6C008402BE /* KPKDataStreamer.m */,
 			);
 			path = IO;
 			sourceTree = "<group>";
@@ -1978,6 +1985,7 @@
 				4CFC873E179DF200000DFC03 /* KPKTimeInfo.m in Sources */,
 				4CCEDE2A179F203B008402BE /* MPOutlineView.m in Sources */,
 				4CCEDE2E179F213B008402BE /* MPNotifications.m in Sources */,
+				4CCEDE32179F5B6C008402BE /* KPKDataStreamer.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
