@@ -18,7 +18,7 @@ typedef NS_ENUM(NSUInteger, MPDatabaseSettingsTab) {
 };
 
 @class MPDocument;
-@class HNHRoundendTextField;
+@class HNHRoundedTextField;
 @class HNHRoundedSecureTextField;
 
 @interface MPDatabaseSettingsWindowController : NSWindowController <NSTextFieldDelegate, NSTabViewDelegate>
@@ -58,7 +58,7 @@ typedef NS_ENUM(NSUInteger, MPDatabaseSettingsTab) {
 
 
 /* Templates Tab */
-@property (weak) IBOutlet HNHRoundendTextField *defaultUsernameTextField;
+@property (weak) IBOutlet HNHRoundedTextField *defaultUsernameTextField;
 @property (weak) IBOutlet NSPopUpButton *templateGroupPopUpButton;
 
 

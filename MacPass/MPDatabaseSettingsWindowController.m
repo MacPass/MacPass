@@ -46,7 +46,7 @@
     _document = document;
     _showPassword = NO;
     _hasValidPasswordOrKey = NO;
-    _missingFeature = NSLocalizedString(@"KDBX_ONLX_FEATURE", "Feature only available in kdbx databases");
+    _missingFeature = NSLocalizedString(@"KDBX_ONLY_FEATURE", "Feature only available in kdbx databases");
   }
   return self;
 }
@@ -156,7 +156,7 @@
 - (void)showSettingsTab:(MPDatabaseSettingsTab)tab {
   /*
    We need to make sure the window is loaded
-   so we just call the the getter and led teh loading commence
+   so we just call the the getter and led the loading commence
    */
   if(![self window]) {
     return;
@@ -315,7 +315,14 @@
 }
 
 - (void)_setupTemplatesTab:(Kdb4Tree *)tree {
-  
+  if(tree) {
+    [self.defaultUsernameTextField setStringValue:tree.defaultUserName];
+    [self.defaultUsernameTextField setEditable:YES];
+  }
+  else {
+    [self.defaultUsernameTextField setStringValue:_missingFeature];
+    [self.defaultUsernameTextField setEditable:NO];
+  }
 }
 
 - (void)_updateFirstResponder {

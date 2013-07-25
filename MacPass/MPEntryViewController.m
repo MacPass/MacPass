@@ -32,7 +32,7 @@
 
 #import "MPNotifications.h"
 
-#define STATUS_BAR_ANIMATION_TIME 0.2
+#define STATUS_BAR_ANIMATION_TIME 0.15
 
 typedef NS_OPTIONS(NSUInteger, MPFilterModeType) {
   MPFilterNone      = 0,
@@ -71,7 +71,8 @@ NSString *const _toggleFilterUsernameButton = @"SearchUsername";
 @property (strong) IBOutlet NSView *filterBar;
 @property (strong) IBOutlet HNHGradientView *trashBar;
 @property (weak) IBOutlet NSTableView *entryTable;
-@property (strong) IBOutlet NSLayoutConstraint *tableToTop;
+@property (strong) IBOutlet NSLayoutConstraint *tableToTopConstraint;
+@property (strong) NSLayoutConstraint *filterbarTopConstraint;
 @property (weak) IBOutlet NSButton *filterDoneButton;
 
 @property (weak) IBOutlet NSButton *filterTitleButton;
@@ -126,7 +127,7 @@ NSString *const _toggleFilterUsernameButton = @"SearchUsername";
 
 - (void)didLoadView {
   [self.view setWantsLayer:YES];
-  [self _hideFilterBarAnimated:NO];
+  [self _hideFilterBarAnimated];
   
   [_bottomBar setBorderType:HNHBorderTop];
   [self.addEntryButton setAction:[MPActionHelper actionOfType:MPActionAddEntry]];
@@ -254,7 +255,7 @@ NSString *const _toggleFilterUsernameButton = @"SearchUsername";
   }
   /*
    If a grup is the current item, see if we already show that group
-   */ 
+   */
   if(document.selectedItem == document.selectedGroup) {
     /*
      If we reselct the group, or just another group
@@ -284,7 +285,7 @@ NSString *const _toggleFilterUsernameButton = @"SearchUsername";
 #pragma mark Filtering
 
 - (void)showFilter:(id)sender {
-  [self _showFilterBarAnimated:NO];
+  [self _showFilterBarAnimated];
 }
 
 - (BOOL)hasFilter {
@@ -302,13 +303,13 @@ NSString *const _toggleFilterUsernameButton = @"SearchUsername";
   self.filter = nil;
   [self.filterSearchField setStringValue:@""];
   [[self.entryTable tableColumnWithIdentifier:MPEntryTableParentColumnIdentifier] setHidden:YES];
-  [self _hideFilterBarAnimated:YES];
+  [self _hideFilterBarAnimated];
   MPDocument *document = [[self windowController] document];
   document.selectedGroup = document.selectedGroup;
 }
 
 - (void)updateFilter {
-  [self _showFilterBarAnimated:YES];
+  [self _showFilterBarAnimated];
   if(![self hasFilter]) {
     return;
   }
@@ -365,9 +366,7 @@ NSString *const _toggleFilterUsernameButton = @"SearchUsername";
 
 #pragma mark UI Feedback
 
-- (void)_showFilterBarAnimated:(BOOL)animate {
-  
-  animate = NO;
+- (void)_showFilterBarAnimated {
   
   if(!self.filterBar) {
     [self setupFilterBar];
@@ -386,47 +385,48 @@ NSString *const _toggleFilterUsernameButton = @"SearchUsername";
   NSView *scrollView = [_entryTable enclosingScrollView];
   NSDictionary *views = NSDictionaryOfVariableBindings(scrollView, _filterBar);
   [self.view layout];
-  [self.view removeConstraint:self.tableToTop];
+  
   [self.view addSubview:self.filterBar];
   [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|[_filterBar]|" options:0 metrics:nil views:views]];
-  [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|[_filterBar(==30)]-0-[scrollView]" options:0 metrics:nil views:views]];
+  [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:[_filterBar(==30)]-0-[scrollView]" options:0 metrics:nil views:views]];
+  [[self view] layoutSubtreeIfNeeded];
   
+  [self.view removeConstraint:self.tableToTopConstraint];
+  self.filterbarTopConstraint = [NSLayoutConstraint constraintWithItem:self.filterBar
+                                                             attribute:NSLayoutAttributeTop
+                                                             relatedBy:NSLayoutRelationEqual
+                                                                toItem:[self view]
+                                                             attribute:NSLayoutAttributeTop
+                                                            multiplier:1
+                                                              constant:0];
+  [[self view] addConstraint:self.filterbarTopConstraint];
   
-  if(animate) {
-    [NSAnimationContext runAnimationGroup:^(NSAnimationContext* context) {
-      context.duration = STATUS_BAR_ANIMATION_TIME;
-      context.allowsImplicitAnimation = YES;
-      [self.view layoutSubtreeIfNeeded];
-    } completionHandler:nil] ;
-  }
-  else {
+  [NSAnimationContext runAnimationGroup:^(NSAnimationContext* context) {
+    context.duration = STATUS_BAR_ANIMATION_TIME;
+    context.allowsImplicitAnimation = YES;
     [self.view layoutSubtreeIfNeeded];
-  }
+  } completionHandler:nil] ;
   [[[self windowController] window] makeFirstResponder:self.filterSearchField];
 }
 
-- (void)_hideFilterBarAnimated:(BOOL)animate {
-  
-  animate = NO;
+- (void)_hideFilterBarAnimated {
   
   if(![self _showsFilterBar]) {
     return; // nothing to do;
   }
   
-  [self.filterBar removeFromSuperview];
-  [self.view addConstraint:self.tableToTop];
+  [[self view] removeConstraint:self.filterbarTopConstraint];
+  [self.view addConstraint:self.tableToTopConstraint];
   
-  if(animate) {
-    [NSAnimationContext runAnimationGroup:^(NSAnimationContext* context) {
-      context.duration = STATUS_BAR_ANIMATION_TIME;
-      context.allowsImplicitAnimation = YES;
-      [self.view layoutSubtreeIfNeeded];
-    } completionHandler:nil] ;
-  }
-  else {
+  [NSAnimationContext runAnimationGroup:^(NSAnimationContext* context) {
+    context.duration = STATUS_BAR_ANIMATION_TIME;
+    context.allowsImplicitAnimation = YES;
     [self.view layoutSubtreeIfNeeded];
-  }
+  } completionHandler:^{
+    [self.filterBar removeFromSuperview];
+  }] ;
 }
+
 
 - (void)_copyToPasteboard:(NSString *)data overlayInfo:(MPOVerlayInfoType)overlayInfoType name:(NSString *)name{
   if(data) {
@@ -468,7 +468,7 @@ NSString *const _toggleFilterUsernameButton = @"SearchUsername";
   NSView *scrollView = [_entryTable enclosingScrollView];
   NSDictionary *views = NSDictionaryOfVariableBindings(scrollView, _trashBar);
   [[self view] layout];
-  [[self view] removeConstraint:self.tableToTop];
+  [[self view] removeConstraint:self.tableToTopConstraint];
   [[self view] addSubview:self.trashBar];
   [[self view] addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|[_trashBar]|" options:0 metrics:nil views:views]];
   [[self view] addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|[_trashBar(==30)]-0-[scrollView]" options:0 metrics:nil views:views]];
@@ -490,7 +490,7 @@ NSString *const _toggleFilterUsernameButton = @"SearchUsername";
   }
   
   [self.trashBar removeFromSuperview];
-  [[self view] addConstraint:self.tableToTop];
+  [[self view] addConstraint:self.tableToTopConstraint];
   [[self view] layoutSubtreeIfNeeded];
 }
 
