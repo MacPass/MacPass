@@ -18,6 +18,7 @@
 #import "MPDatabaseSettingsWindowController.h"
 #import "MPConstants.h"
 #import "MPSettingsHelper.h"
+#import "MPDocumentWindowDelegate.h"
 
 @interface MPDocumentWindowController () {
 @private
@@ -34,6 +35,7 @@
 @property (strong) MPOutlineViewController *outlineViewController;
 @property (strong) MPInspectorViewController *inspectorViewController;
 @property (strong) MPDatabaseSettingsWindowController *documentSettingsWindowController;
+@property (strong) MPDocumentWindowDelegate *documentWindowDelegate;
 
 @property (strong) MPToolbarDelegate *toolbarDelegate;
 
@@ -49,6 +51,7 @@
     _outlineViewController = [[MPOutlineViewController alloc] init];
     _entryViewController = [[MPEntryViewController alloc] init];
     _inspectorViewController = [[MPInspectorViewController alloc] init];
+    _documentWindowDelegate = [[MPDocumentWindowDelegate alloc] init];
     _saveAfterPasswordEdit = NO;
   }
   return self;
@@ -60,6 +63,15 @@
 
 #pragma mark View Handling
 - (void)windowDidLoad {
+  [super windowDidLoad];
+  
+  /* Drag and Drop of URLS is working, but the current
+    und/Redo system cannot guarantee that the undomanager is found
+   when no window is active, thus this needs to be addresed when switching to KeePassKit
+   
+  [[self window] setDelegate:self.documentWindowDelegate];
+  [[self window] registerForDraggedTypes:@[NSURLPboardType]];
+  */
   
   [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(_didRevertDocument:) name:MPDocumentDidRevertNotifiation object:[self document]];
   [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(_setPasswordAndSave) name:MPDocumentRequestPasswordSaveNotification object:[self document]];
@@ -68,7 +80,8 @@
   [_inspectorViewController setupNotifications:self];
   [_outlineViewController setupNotifications:self];
   
-  [super windowDidLoad];
+  
+  
   _toolbar = [[NSToolbar alloc] initWithIdentifier:@"MainWindowToolbar"];
   [self.toolbar setAllowsUserCustomization:YES];
   [self.toolbar setDelegate:self.toolbarDelegate];

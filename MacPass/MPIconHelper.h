@@ -32,6 +32,7 @@ typedef NS_ENUM(NSUInteger, MPIconType) {
   MPIconInfo = 1000,
   MPIconAddFolder,
   MPIconHardDisk,
+  MPIconCreated,
 };
 
 @interface MPIconHelper : NSObject
