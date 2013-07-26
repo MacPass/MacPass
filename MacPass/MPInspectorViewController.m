@@ -107,7 +107,9 @@ enum {
 }
 
 - (void)didLoadView {
-
+  
+  /* ScrollView setup for the General Tab */
+  
   HNHScrollView *scrollView = [[HNHScrollView alloc] init];
   scrollView.actAsFlipped = NO;
   [scrollView setHasVerticalScroller:YES];
@@ -125,24 +127,29 @@ enum {
   
   NSDictionary *views = NSDictionaryOfVariableBindings(_generalView, scrollView);
   [[scrollView superview] addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|[scrollView]|"
-                                                                      options:0
-                                                                      metrics:nil
-                                                                        views:views ]];
+                                                                                 options:0
+                                                                                 metrics:nil
+                                                                                   views:views ]];
   [[scrollView superview] addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-3-[scrollView]-50-|"
-                                                                      options:0
-                                                                      metrics:nil
-                                                                        views:views]];
+                                                                                 options:0
+                                                                                 metrics:nil
+                                                                                   views:views]];
   [clipView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|[_generalView]|"
-                                                                      options:0
-                                                                      metrics:nil
-                                                                        views:views]];
+                                                                   options:0
+                                                                   metrics:nil
+                                                                     views:views]];
   [[self view] layoutSubtreeIfNeeded];
   
   
-  //[self.scrollContentView setAutoresizingMask:NSViewWidthSizable];
+  /* Setup ImageView Background styles */
   [[self.itemImageView cell] setBackgroundStyle:NSBackgroundStyleRaised];
   [self.itemImageView setTarget:self];
+  [[self.createdImageView cell] setBackgroundStyle:NSBackgroundStyleRaised];
+  [[self.modifiedImageView cell] setBackgroundStyle:NSBackgroundStyleRaised];
   [_bottomBar setBorderType:HNHBorderTop];
+  
+  
+  
   
   [_infoTabControl bind:NSSelectedIndexBinding toObject:self withKeyPath:@"activeTab" options:nil];
   [_tabView bind:NSSelectedIndexBinding  toObject:self withKeyPath:@"activeTab" options:nil];
@@ -190,10 +197,10 @@ enum {
   
   NSString *creationString = [self.creationDate humanized];
   NSString *modificationString = [self.modificationDate humanized];
-
+  
   NSString *modifedAtTemplate = NSLocalizedString(@"MODIFED_AT_%@", @"Modifed at template string. %@ is replaced by locaized date and time");
   NSString *createdAtTemplate = NSLocalizedString(@"CREATED_AT_%@", @"Created at template string. %@ is replaced by locaized date and time");
-
+  
   [self.modifiedTextField setStringValue:[NSString stringWithFormat:modifedAtTemplate, modificationString]];
   [self.createdTextField setStringValue:[NSString stringWithFormat:createdAtTemplate, creationString]];
   
@@ -450,7 +457,7 @@ enum {
   [self.titleTextField setSelectable:YES];
   [self.usernameTextField setEditable:NO];
   [self.usernameTextField setSelectable:YES];
-
+  
 }
 
 #pragma mark Notificiations

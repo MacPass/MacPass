@@ -34,6 +34,8 @@
 @property (unsafe_unretained) IBOutlet NSTextView *notesTextView;
 @property (weak) IBOutlet NSTextField *customFieldsTextField;
 @property (weak) IBOutlet NSButton *togglePassword;
+@property (weak) IBOutlet NSImageView *modifiedImageView;
+@property (weak) IBOutlet NSImageView *createdImageView;
 
 
 @property (weak, nonatomic, readonly) KdbEntry *selectedEntry;

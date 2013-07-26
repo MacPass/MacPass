@@ -14,6 +14,10 @@
   self = [super initWithFrame:frameRect];
   if(self) {
     [self setFocusRingType:NSFocusRingTypeNone];
+    [[self cell] setBezelStyle:NSTexturedRoundedBezelStyle];
+    [[self cell] setImageScaling:NSImageScaleProportionallyDown];
+    [self setButtonType:NSMomentaryPushInButton];
+    [self setImagePosition:NSImageOnly];
   }
   return self;
 }

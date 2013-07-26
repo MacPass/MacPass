@@ -96,7 +96,6 @@
 		4C45FB2D178E0BCB0010007D /* MPDatabaseLoading.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C45FB2C178E0BCB0010007D /* MPDatabaseLoading.m */; };
 		4C45FB30178E0CE20010007D /* MPDatabaseCreation.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C45FB2F178E0CE20010007D /* MPDatabaseCreation.m */; };
 		4C46B88517063A070046109A /* NSString+MPPasswordCreation.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C46B88417063A070046109A /* NSString+MPPasswordCreation.m */; };
-		4C46B88817063A170046109A /* NSString+PasswordStrength.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C46B88717063A170046109A /* NSString+PasswordStrength.m */; };
 		4C46E09E17673A0A00DA62E8 /* HNHShadowBox.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C46E09D17673A0A00DA62E8 /* HNHShadowBox.m */; };
 		4C4A100F176286FD00BBF2CA /* MPTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C4A100E176286FD00BBF2CA /* MPTableView.m */; };
 		4C4A101217629DA900BBF2CA /* KdbGroup+KVOAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C4A101117629DA900BBF2CA /* KdbGroup+KVOAdditions.m */; };
@@ -123,6 +122,7 @@
 		4C5FE9AE17843CE20001D5A8 /* MPSelectedAttachmentTableCellView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C5FE9AD17843CE20001D5A8 /* MPSelectedAttachmentTableCellView.m */; };
 		4C61EA0316D2FD0800AC519E /* MPOutlineViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C61EA0216D2FD0800AC519E /* MPOutlineViewController.m */; };
 		4C61EA0516D2FFE200AC519E /* OutlineView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4C61EA0416D2FFE200AC519E /* OutlineView.xib */; };
+		4C63B8FB17A3154D0091BD72 /* MPContextToolbarButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C63B8FA17A3154D0091BD72 /* MPContextToolbarButton.m */; };
 		4C65C79C16DD283900E32CFF /* MPToolbarButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C65C79B16DD283900E32CFF /* MPToolbarButton.m */; };
 		4C65FAE916D16DDB006E0577 /* MPPasswordInputController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C65FAE716D16DDB006E0577 /* MPPasswordInputController.m */; };
 		4C669B7F16760ED100DD0774 /* AesInputStream.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C669B3116760ED100DD0774 /* AesInputStream.m */; };
@@ -189,7 +189,6 @@
 		4C888C9716EB754B003D34A1 /* MPActionHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C888C9616EB754B003D34A1 /* MPActionHelper.m */; };
 		4C8A173D1790AA41008B5C17 /* NSData+Keyfile.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C8A173C1790AA41008B5C17 /* NSData+Keyfile.m */; };
 		4C8FECC816D57E3200BF26CF /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4C8FECC716D57E3200BF26CF /* QuartzCore.framework */; };
-		4C920E2A16DCDFA00083839B /* MPLoggerProxy.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C920E2916DCDFA00083839B /* MPLoggerProxy.m */; };
 		4C96D15417A12E4F00D931FA /* 99_CreatedTemplate.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 4C96D15317A12E4F00D931FA /* 99_CreatedTemplate.pdf */; };
 		4C9D6AA917615199001C660C /* HNHRoundedSecureTextFieldCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C9D6AA817615199001C660C /* HNHRoundedSecureTextFieldCell.m */; };
 		4CA0B2ED15BCADAC00654E32 /* SettingsWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4CA0B2EC15BCADAC00654E32 /* SettingsWindow.xib */; };
@@ -428,8 +427,6 @@
 		4C45FB2F178E0CE20010007D /* MPDatabaseCreation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MPDatabaseCreation.m; sourceTree = "<group>"; };
 		4C46B88317063A070046109A /* NSString+MPPasswordCreation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+MPPasswordCreation.h"; sourceTree = "<group>"; };
 		4C46B88417063A070046109A /* NSString+MPPasswordCreation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+MPPasswordCreation.m"; sourceTree = "<group>"; };
-		4C46B88617063A170046109A /* NSString+PasswordStrength.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+PasswordStrength.h"; sourceTree = "<group>"; };
-		4C46B88717063A170046109A /* NSString+PasswordStrength.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+PasswordStrength.m"; sourceTree = "<group>"; };
 		4C46E09C17673A0A00DA62E8 /* HNHShadowBox.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HNHShadowBox.h; sourceTree = "<group>"; };
 		4C46E09D17673A0A00DA62E8 /* HNHShadowBox.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HNHShadowBox.m; sourceTree = "<group>"; };
 		4C4A100D176286FD00BBF2CA /* MPTableView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MPTableView.h; sourceTree = "<group>"; };
@@ -475,6 +472,8 @@
 		4C61EA0116D2FD0800AC519E /* MPOutlineViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MPOutlineViewController.h; sourceTree = "<group>"; };
 		4C61EA0216D2FD0800AC519E /* MPOutlineViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MPOutlineViewController.m; sourceTree = "<group>"; };
 		4C61EA0416D2FFE200AC519E /* OutlineView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = OutlineView.xib; sourceTree = "<group>"; };
+		4C63B8F917A3154D0091BD72 /* MPContextToolbarButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MPContextToolbarButton.h; sourceTree = "<group>"; };
+		4C63B8FA17A3154D0091BD72 /* MPContextToolbarButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MPContextToolbarButton.m; sourceTree = "<group>"; };
 		4C65C79A16DD283900E32CFF /* MPToolbarButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MPToolbarButton.h; sourceTree = "<group>"; };
 		4C65C79B16DD283900E32CFF /* MPToolbarButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MPToolbarButton.m; sourceTree = "<group>"; };
 		4C65FAE616D16DDB006E0577 /* MPPasswordInputController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MPPasswordInputController.h; sourceTree = "<group>"; };
@@ -606,8 +605,6 @@
 		4C8A173B1790AA41008B5C17 /* NSData+Keyfile.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSData+Keyfile.h"; sourceTree = "<group>"; };
 		4C8A173C1790AA41008B5C17 /* NSData+Keyfile.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSData+Keyfile.m"; sourceTree = "<group>"; };
 		4C8FECC716D57E3200BF26CF /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
-		4C920E2816DCDFA00083839B /* MPLoggerProxy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MPLoggerProxy.h; sourceTree = "<group>"; };
-		4C920E2916DCDFA00083839B /* MPLoggerProxy.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MPLoggerProxy.m; sourceTree = "<group>"; };
 		4C96D15317A12E4F00D931FA /* 99_CreatedTemplate.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = 99_CreatedTemplate.pdf; sourceTree = "<group>"; };
 		4C9D6AA717615199001C660C /* HNHRoundedSecureTextFieldCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HNHRoundedSecureTextFieldCell.h; sourceTree = "<group>"; };
 		4C9D6AA817615199001C660C /* HNHRoundedSecureTextFieldCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HNHRoundedSecureTextFieldCell.m; sourceTree = "<group>"; };
@@ -800,21 +797,12 @@
 		4C104129178CDD26001B5239 /* Categories */ = {
 			isa = PBXGroup;
 			children = (
+				4C46B88317063A070046109A /* NSString+MPPasswordCreation.h */,
+				4C46B88417063A070046109A /* NSString+MPPasswordCreation.m */,
 				4C10412A178CDD44001B5239 /* NSDate+Humanized.h */,
 				4C10412B178CDD44001B5239 /* NSDate+Humanized.m */,
 			);
 			name = Categories;
-			sourceTree = "<group>";
-		};
-		4C16BA5F1787997E002B42BD /* ValueTransformer */ = {
-			isa = PBXGroup;
-			children = (
-				4C5BF679175C01F300D53DF7 /* MPUppercaseStringValueTransformer.h */,
-				4C5BF67A175C01F300D53DF7 /* MPUppercaseStringValueTransformer.m */,
-				4CF6C70F176F4533007A811D /* MPStringLengthValueTransformer.h */,
-				4CF6C710176F4533007A811D /* MPStringLengthValueTransformer.m */,
-			);
-			name = ValueTransformer;
 			sourceTree = "<group>";
 		};
 		4C1842D6179C716100E2F5BC /* Format */ = {
@@ -836,6 +824,17 @@
 				4C18F9AA178E122500890BCE /* Test_Password_1234.kdb */,
 			);
 			name = Databases;
+			sourceTree = "<group>";
+		};
+		4C217D8E17A32BCF00609FAA /* Common */ = {
+			isa = PBXGroup;
+			children = (
+				4C569D9C17652AC800595B62 /* MPConstants.h */,
+				4C569D9D17652B0600595B62 /* MPConstants.m */,
+				4CCEDE2C179F2122008402BE /* MPNotifications.h */,
+				4CCEDE2D179F213B008402BE /* MPNotifications.m */,
+			);
+			name = Common;
 			sourceTree = "<group>";
 		};
 		4C245A64176E1E3C0086100E /* CocoaHTTPServer */ = {
@@ -1045,25 +1044,22 @@
 		4C2E382016D141F700037A9D /* Helper */ = {
 			isa = PBXGroup;
 			children = (
-				4C16BA5F1787997E002B42BD /* ValueTransformer */,
+				4C5BF679175C01F300D53DF7 /* MPUppercaseStringValueTransformer.h */,
+				4C5BF67A175C01F300D53DF7 /* MPUppercaseStringValueTransformer.m */,
+				4CF6C70F176F4533007A811D /* MPStringLengthValueTransformer.h */,
+				4CF6C710176F4533007A811D /* MPStringLengthValueTransformer.m */,
 				4C888C9516EB754B003D34A1 /* MPActionHelper.h */,
 				4C888C9616EB754B003D34A1 /* MPActionHelper.m */,
 				4C2E382116D1421B00037A9D /* MPIconHelper.h */,
 				4C2E382216D1421B00037A9D /* MPIconHelper.m */,
-				4C920E2816DCDFA00083839B /* MPLoggerProxy.h */,
-				4C920E2916DCDFA00083839B /* MPLoggerProxy.m */,
 				4CBA2AB617074B59006D8139 /* MPSettingsHelper.h */,
 				4CBA2AB917074C07006D8139 /* MPSettingsHelper.m */,
 				4C01C2401764D8980016D5D0 /* MPContextMenuHelper.h */,
 				4C01C2411764D8980016D5D0 /* MPContextMenuHelper.m */,
-				4C569D9C17652AC800595B62 /* MPConstants.h */,
-				4C569D9D17652B0600595B62 /* MPConstants.m */,
 				4CA23358176DBFE100F0B6AC /* MPLockDaemon.h */,
 				4CA23359176DBFE100F0B6AC /* MPLockDaemon.m */,
 				4C16BA6017879A3C002B42BD /* MPPasswordStringFormatter.h */,
 				4C16BA6117879A3C002B42BD /* MPPasswordStringFormatter.m */,
-				4CCEDE2C179F2122008402BE /* MPNotifications.h */,
-				4CCEDE2D179F213B008402BE /* MPNotifications.m */,
 			);
 			name = Helper;
 			sourceTree = "<group>";
@@ -1144,17 +1140,6 @@
 				4C45FB27178E09ED0010007D /* MacPassTests-Prefix.pch */,
 			);
 			name = "Supporting Files";
-			sourceTree = "<group>";
-		};
-		4C46B8821706397A0046109A /* Security Additions */ = {
-			isa = PBXGroup;
-			children = (
-				4C46B88317063A070046109A /* NSString+MPPasswordCreation.h */,
-				4C46B88417063A070046109A /* NSString+MPPasswordCreation.m */,
-				4C46B88617063A170046109A /* NSString+PasswordStrength.h */,
-				4C46B88717063A170046109A /* NSString+PasswordStrength.m */,
-			);
-			name = "Security Additions";
 			sourceTree = "<group>";
 		};
 		4C586F9C16D07ABD00E7DB57 /* Icons */ = {
@@ -1326,9 +1311,9 @@
 		4C77E36C15B84A240093A587 /* MacPass */ = {
 			isa = PBXGroup;
 			children = (
+				4C217D8E17A32BCF00609FAA /* Common */,
 				4C104129178CDD26001B5239 /* Categories */,
 				4C245C11176E22150086100E /* KeepassHttp */,
-				4C46B8821706397A0046109A /* Security Additions */,
 				4C2C4C2516D3BCEA00D49295 /* KeePassLib Categories */,
 				4C2E382016D141F700037A9D /* Helper */,
 				4C586F9C16D07ABD00E7DB57 /* Icons */,
@@ -1581,6 +1566,8 @@
 				4C65C79B16DD283900E32CFF /* MPToolbarButton.m */,
 				4C888C9116EB6F5E003D34A1 /* MPToolbarItem.h */,
 				4C888C9216EB6F5E003D34A1 /* MPToolbarItem.m */,
+				4C63B8F917A3154D0091BD72 /* MPContextToolbarButton.h */,
+				4C63B8FA17A3154D0091BD72 /* MPContextToolbarButton.m */,
 			);
 			name = Controls;
 			sourceTree = "<group>";
@@ -1860,7 +1847,6 @@
 				4C2C4C2C16D3BE3700D49295 /* KdbGroup+MPTreeTools.m in Sources */,
 				4CC1AEBE16D4467C006D2AAB /* KdbTree+MPAdditions.m in Sources */,
 				4C69A73A16D589DF00EC1B1A /* HNHGradientView.m in Sources */,
-				4C920E2A16DCDFA00083839B /* MPLoggerProxy.m in Sources */,
 				4C65C79C16DD283900E32CFF /* MPToolbarButton.m in Sources */,
 				4C431BCD16E2A82800700A81 /* MPPasteBoardController.m in Sources */,
 				4CE8246F16E2E93400573141 /* MPOverlayWindowController.m in Sources */,
@@ -1873,7 +1859,6 @@
 				4CE39ABF16ECE34A000FE29D /* MPIconSelectViewController.m in Sources */,
 				4CE39AC416ECE4F7000FE29D /* MPPopupImageView.m in Sources */,
 				4C46B88517063A070046109A /* NSString+MPPasswordCreation.m in Sources */,
-				4C46B88817063A170046109A /* NSString+PasswordStrength.m in Sources */,
 				4C5A11FE1708DE8700223D8A /* MPPasswordCreatorViewController.m in Sources */,
 				4CE5B54B173AFBA700207B39 /* MPDocument.m in Sources */,
 				4C22040D1746ED160054C916 /* KdbGroup+Undo.m in Sources */,
@@ -1996,6 +1981,7 @@
 				4CCEDE2E179F213B008402BE /* MPNotifications.m in Sources */,
 				4CCEDE32179F5B6C008402BE /* KPKDataStreamer.m in Sources */,
 				4C17D8E517A1C780006C8C1E /* MPDocumentWindowDelegate.m in Sources */,
+				4C63B8FB17A3154D0091BD72 /* MPContextToolbarButton.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

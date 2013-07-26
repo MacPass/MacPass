@@ -13,6 +13,7 @@
 #import "MPToolbarItem.h"
 #import "MPActionHelper.h"
 #import "MPContextMenuHelper.h"
+#import "MPContextToolbarButton.h"
 
 NSString *const MPToolbarItemLock = @"TOOLBAR_LOCK";
 NSString *const MPToolbarItemAddGroup = @"TOOLBAR_ADD_GROUP";
@@ -81,16 +82,35 @@ NSString *const MPToolbarItemInspector = @"TOOLBAR_INSPECTOR";
       [item setMenuFormRepresentation:menuRepresentation];
       [item setView:popupButton];
     }
-    else {
-      NSButton *button = [[MPToolbarButton alloc] initWithFrame:NSMakeRect(0, 0, 32, 32)];
-      [[button cell] setBezelStyle:NSTexturedRoundedBezelStyle];
-      [[button cell] setImageScaling:NSImageScaleProportionallyDown];
-      [button setTitle:itemIdentifier];
-      [button setButtonType:NSMomentaryPushInButton];
+    else if( [itemIdentifier isEqualToString:MPToolbarItemAddEntry]) {
+      MPContextToolbarButton *button = [[MPContextToolbarButton alloc] initWithFrame:NSMakeRect(0, 0, 32, 32)];
       NSImage *image = self.toolbarImages[itemIdentifier];
       [image setSize:NSMakeSize(16, 16)];
       [button setImage:image];
-      [button setImagePosition:NSImageOnly];
+      [button sizeToFit];
+      [button setAction:[self _actionForToolbarItemIdentifier:itemIdentifier]];
+      
+      NSMenu *menu = [[NSMenu allocWithZone:[NSMenu menuZone]] init];
+      [menu addItemWithTitle:@"Test" action:NULL keyEquivalent:@""];
+      [menu addItemWithTitle:@"More" action:NULL keyEquivalent:@""];
+      [button setMenu:menu];
+      
+      
+      NSRect fittingRect = [button frame];
+      fittingRect.size.width = MAX( (CGFloat)32.0,fittingRect.size.width);
+      [button setFrame:fittingRect];
+      [item setView:button];
+      NSMenuItem *menuRepresentation = [[NSMenuItem alloc] initWithTitle:itemLabel
+                                                                  action:[self _actionForToolbarItemIdentifier:itemIdentifier]
+                                                           keyEquivalent:@""];
+      [item setMenuFormRepresentation:menuRepresentation];
+      
+    }
+    else {
+      NSButton *button = [[MPToolbarButton alloc] initWithFrame:NSMakeRect(0, 0, 32, 32)];
+      NSImage *image = self.toolbarImages[itemIdentifier];
+      [image setSize:NSMakeSize(16, 16)];
+      [button setImage:image];
       [button sizeToFit];
       [button setAction:[self _actionForToolbarItemIdentifier:itemIdentifier]];
            
