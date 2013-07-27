@@ -12,6 +12,8 @@
 #import <Foundation/Foundation.h>
 
 FOUNDATION_EXPORT NSString *const MPPasteBoardType;
+FOUNDATION_EXPORT NSString *const MPEntryUTI;
+FOUNDATION_EXPORT NSString *const MPGroupUTI;
 FOUNDATION_EXPORT NSString *const MPErrorDomain;
 
 #endif

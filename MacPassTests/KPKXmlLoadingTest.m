@@ -10,6 +10,10 @@
 #import "KPKTreeCryptor.h"
 #import "KPKPassword.h"
 
+#import "KPKTree.h"
+#import "KPKEntry.h"
+#import "KPKGroup.h"
+
 @implementation KPKXmlLoadingTest
 
 - (void)setUp {
@@ -28,6 +32,21 @@
   KPKTreeCryptor *cryptor = [KPKTreeCryptor treeCryptorWithData:_data password:_password];
   KPKTree *tree = [cryptor decryptTree:NULL];
   STAssertNotNil(tree, @"Loading should result in a tree object");
+
+  STAssertTrue([tree.root.groups count] == 0, @"Tree contains just root group");
+  STAssertTrue([tree.root.entries count] == 1, @"Tree has only one entry");
+
+  KPKEntry *entry = [tree.root.entries lastObject];
+  NSMutableData *data = [[NSMutableData alloc] init];
+  NSKeyedArchiver *archiver = [[NSKeyedArchiver alloc] initForWritingWithMutableData:data];
+  [entry encodeWithCoder:archiver];
+  [archiver finishEncoding];
+  
+  NSKeyedUnarchiver *unarchiver = [[NSKeyedUnarchiver alloc] initForReadingWithData:data];
+  KPKEntry *newEntry = [[KPKEntry alloc] initWithCoder:unarchiver];
+  [unarchiver finishDecoding];
+  
+  STAssertTrue([entry.title isEqualToString:newEntry.title], @"Entries must have same attributes");
 }
 
 @end

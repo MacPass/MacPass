@@ -100,6 +100,7 @@ NSString *const MPToolbarItemInspector = @"TOOLBAR_INSPECTOR";
       fittingRect.size.width = MAX( (CGFloat)32.0,fittingRect.size.width);
       [button setFrame:fittingRect];
       [item setView:button];
+      /* Create the Contextual Menu button */
       NSMenuItem *menuRepresentation = [[NSMenuItem alloc] initWithTitle:itemLabel
                                                                   action:[self _actionForToolbarItemIdentifier:itemIdentifier]
                                                            keyEquivalent:@""];
