@@ -11,9 +11,11 @@
 @implementation Kdb4Entry (MPAdditions)
 
 - (NSString *)uniqueKeyForProposal:(NSString *)key {
-  /*
-   FIXME: Introduce some cachin behaviour. We iterate over after every single edit
-   */
+
+  if(key == nil) {
+    key = NSLocalizedString(@"DEFAULT_CUSTOM_FIELD_TITLE", @"Default Titel for new Custom-Fields");
+  }
+  
   NSArray *defaultKeys = @[ FIELD_TITLE,
                             FIELD_USER_NAME,
                             FIELD_PASSWORD,
