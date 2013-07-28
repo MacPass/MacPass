@@ -21,6 +21,7 @@
 @private
   MPServerDaemon *serverDaemon;
   MPLockDaemon *lockDaemon;
+  BOOL _restoredWindows;
 }
 
 @property (strong, nonatomic) MPSettingsWindowController *settingsController;
@@ -49,6 +50,7 @@
 
 - (void)applicationWillFinishLaunching:(NSNotification *)notification {
   BOOL reopen = [[NSUserDefaults standardUserDefaults] boolForKey:kMPSettingsKeyReopenLastDatabaseOnLaunch];
+  _restoredWindows = NO;
   if(reopen) {
     [[NSNotificationCenter defaultCenter] addObserver:self
                                              selector:@selector(_applicationDidFinishRestoringWindows:)
@@ -61,6 +63,30 @@
 - (void)applicationDidFinishLaunching:(NSNotification *)notification {
   serverDaemon = [[MPServerDaemon alloc] init];
   lockDaemon = [[MPLockDaemon alloc] init];
+
+  BOOL reopen = [[NSUserDefaults standardUserDefaults] boolForKey:kMPSettingsKeyReopenLastDatabaseOnLaunch];
+  if(reopen && !_restoredWindows) {
+    NSDocumentController *documentController = [NSDocumentController sharedDocumentController];
+    NSArray *documents = [documentController documents];
+    if([documents count] > 0) {
+      return; // There's a document open
+    }
+    
+    NSArray *recentDocuments = [documentController recentDocumentURLs];
+    NSURL *documentUrl;
+    if([recentDocuments count] > 0) {
+      documentUrl = recentDocuments[0];
+    }
+    else {
+      NSString *lastPath = [[NSUserDefaults standardUserDefaults] stringForKey:kMPSettingsKeyLastDatabasePath];
+      documentUrl = [NSURL URLWithString:lastPath];
+    }
+    if([documentUrl isFileURL]) {
+      [documentController openDocumentWithContentsOfURL:documentUrl display:YES
+                                      completionHandler:^(NSDocument *document, BOOL documentWasAlreadyOpen, NSError *error) {}];
+      
+    }
+  }
 }
 
 - (NSString *)applicationName {
@@ -111,23 +137,7 @@
 - (void)_applicationDidFinishRestoringWindows:(NSNotification *)notification {
   NSDocumentController *documentController = [NSDocumentController sharedDocumentController];
   NSArray *documents = [documentController documents];
-  NSArray *recentDocuments = [documentController recentDocumentURLs];
-  if([documents count] > 0 ) {
-    return; // There's already a document restored
-  }
-  NSURL *documentUrl;
-  if([recentDocuments count] > 0) {
-    documentUrl = recentDocuments[0];
-  }
-  else {
-    NSString *lastPath = [[NSUserDefaults standardUserDefaults] stringForKey:kMPSettingsKeyLastDatabasePath];
-    documentUrl = [NSURL URLWithString:lastPath];
-  }
-  if([documentUrl isFileURL]) {
-    [documentController openDocumentWithContentsOfURL:documentUrl display:YES
-                                    completionHandler:^(NSDocument *document, BOOL documentWasAlreadyOpen, NSError *error) {}];
-
-  }
+  _restoredWindows = [documents count] > 0;
 }
 
 @end

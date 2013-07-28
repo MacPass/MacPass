@@ -9,16 +9,24 @@
 #import "MPPasswordCreatorViewController.h"
 #import "MPPasteBoardController.h"
 #import "NSString+MPPasswordCreation.h"
+#import "MPUniqueCharactersFormatter.h"
+
+typedef NS_ENUM(NSUInteger, MPPasswordRating) {
+  MPPasswordTerrible,
+  MPPasswordWeak,
+  MPPasswordOk,
+  MPPasswordGood,
+  MPPasswordStrong
+};
 
 #define MIN_PASSWORD_LENGTH 1
 #define MAX_PASSWORD_LENGTH 64
 
-
 @interface MPPasswordCreatorViewController () {
   MPPasswordCharacterFlags _characterFlags;
 }
-@property (strong) NSString *password;
-@property (strong) NSString *generatedPassword;
+@property (nonatomic, copy) NSString *password;
+@property (copy) NSString *generatedPassword;
 
 @property (weak) IBOutlet NSTextField *passwordTextField;
 @property (weak) IBOutlet NSTextField *passwordLengthTextField;
@@ -30,9 +38,12 @@
 @property (weak) IBOutlet NSButton *numbersButton;
 @property (weak) IBOutlet NSButton *symbolsButton;
 @property (weak) IBOutlet NSButton *customButton;
+@property (weak) IBOutlet NSTextField *entropyTextField;
+@property (weak) IBOutlet NSLevelIndicator *entropyIndicator;
 
 @property (assign, nonatomic) BOOL useCustomString;
 @property (assign, nonatomic) NSUInteger passwordLength;
+@property (assign, nonatomic) CGFloat entropy;
 
 - (IBAction)_generatePassword:(id)sender;
 - (IBAction)_toggleCharacters:(id)sender;
@@ -50,6 +61,7 @@
     _passwordLength = 12;
     _characterFlags = MPPasswordCharactersAll;
     _useCustomString = NO;
+    _entropy = 0.0;
   }
   return self;
 }
@@ -60,10 +72,17 @@
   [self.passwordLengthSlider setMaxValue:MAX_PASSWORD_LENGTH];
   [self.passwordLengthSlider setContinuous:YES];
   /* Value Transformer */
+  
+  id formatter = [[MPUniqueCharactersFormatter alloc] init];
+  [self. customCharactersTextField setFormatter:formatter];
+  
   [self.passwordLengthSlider bind:NSValueBinding toObject:self withKeyPath:@"passwordLength" options:nil];
   [self.passwordLengthTextField bind:NSValueBinding toObject:self withKeyPath:@"passwordLength" options:nil];
   [self.passwordTextField bind:NSValueBinding toObject:self withKeyPath:@"password" options:nil];
   
+  [self.entropyIndicator bind:NSValueBinding toObject:self withKeyPath:@"entropy" options:nil];
+  [self.entropyTextField bind:NSValueBinding toObject:self withKeyPath:@"entropy" options:nil];
+    
   [_customButton bind:NSValueBinding toObject:self withKeyPath:@"useCustomString" options:nil];
   [_numbersButton setTag:MPPasswordCharactersNumbers];
   [_upperCaseButton setTag:MPPasswordCharactersUpperCase];
@@ -89,6 +108,7 @@
   _characterFlags ^= [sender tag];
   self.useCustomString = NO;
   [self _resetCharacters];
+  [self _generatePassword:nil];
 }
 
 - (IBAction)_usePassword:(id)sender {
@@ -104,6 +124,14 @@
   id target = [NSApp targetForAction:@selector(performClose:)];
   [target performClose:nil];
   
+}
+
+- (void)setPassword:(NSString *)password {
+  if(![_password isEqualToString:password]) {
+    _password = [password copy];
+    NSString *customString = _useCustomString ? [_customCharactersTextField stringValue] : nil;
+    self.entropy = [password entropyWhithPossibleCharacterSet:_characterFlags orCustomCharacters:customString];
+  }
 }
 
 - (void)setUseCustomString:(BOOL)useCustomString {

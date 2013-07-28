@@ -8,5 +8,5 @@
 
 #import "MPNotifications.h"
 
-NSString *const MPDidBecomeFirstResonderNotification = @"com.hicknhack.macpass.MPDidBecomeFirstResonderNotification";
+NSString *const MPDidActivateViewNotification = @"com.hicknhack.macpass.MPDidBecomeFirstResonderNotification";
 NSString *const MPCurrentItemChangedNotification = @"com.hicknhack.macpass.MPCurrentItemChangedNotification";

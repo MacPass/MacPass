@@ -7,7 +7,7 @@
 //
 
 #import "MPCustomFieldTableViewDelegate.h"
-#import "MPInspectorViewController.h"
+#import "MPDocument.h"
 #import "MPCustomFieldTableCellView.h"
 
 #import "Kdb4Node.h"
@@ -16,13 +16,14 @@
 @implementation MPCustomFieldTableViewDelegate
 
 - (NSView *)tableView:(NSTableView *)tableView viewForTableColumn:(NSTableColumn *)tableColumn row:(NSInteger)row {
-  if(![self.viewController.selectedEntry isKindOfClass:[Kdb4Entry class]]) {
+  MPDocument *document = [[[tableView window] windowController] document];
+  if(![document.selectedEntry isKindOfClass:[Kdb4Entry class]]) {
     return nil;
   }
-  Kdb4Entry *entry = (Kdb4Entry *)self.viewController.selectedEntry;
+  Kdb4Entry *entry = (Kdb4Entry *)document.selectedEntry;
   MPCustomFieldTableCellView *view = [tableView makeViewWithIdentifier:@"SelectedCell" owner:tableView];
   [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(_customFieldFrameChanged:) name:NSViewFrameDidChangeNotification object:view];
-  if([self.viewController.selectedEntry isKindOfClass:[Kdb4Entry class]]) {
+  if([document.selectedEntry isKindOfClass:[Kdb4Entry class]]) {
     StringField *stringField = entry.stringFields[row];
     NSDictionary *validateOptions = @{ NSValidatesImmediatelyBindingOption: @YES };
     [view.labelTextField bind:NSValueBinding toObject:stringField withKeyPath:MPStringFieldKeyUndoableKey options:validateOptions];

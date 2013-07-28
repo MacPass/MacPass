@@ -12,6 +12,6 @@
 
 @interface MPCustomFieldTableViewDelegate : NSObject <NSTableViewDelegate>
 
-@property (nonatomic, weak) MPInspectorViewController *viewController;
+@property (weak, nonatomic) id viewController;
 
 @end

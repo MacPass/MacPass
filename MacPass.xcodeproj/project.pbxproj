@@ -99,6 +99,13 @@
 		4C46E09E17673A0A00DA62E8 /* HNHShadowBox.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C46E09D17673A0A00DA62E8 /* HNHShadowBox.m */; };
 		4C4A100F176286FD00BBF2CA /* MPTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C4A100E176286FD00BBF2CA /* MPTableView.m */; };
 		4C4A101217629DA900BBF2CA /* KdbGroup+KVOAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C4A101117629DA900BBF2CA /* KdbGroup+KVOAdditions.m */; };
+		4C4B7EE917A45EC6000234C7 /* MPDatePickingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C4B7EE717A45EC5000234C7 /* MPDatePickingViewController.m */; };
+		4C4B7EEA17A45EC6000234C7 /* DatePickingView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4C4B7EE817A45EC5000234C7 /* DatePickingView.xib */; };
+		4C4B7EEE17A467E1000234C7 /* MPGroupInspectorViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C4B7EEC17A467E1000234C7 /* MPGroupInspectorViewController.m */; };
+		4C4B7EEF17A467E1000234C7 /* GroupInspectorView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4C4B7EED17A467E1000234C7 /* GroupInspectorView.xib */; };
+		4C4B7EF317A467FC000234C7 /* MPEntryInspectorViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C4B7EF117A467FC000234C7 /* MPEntryInspectorViewController.m */; };
+		4C4B7EF417A467FC000234C7 /* EntryInspectorView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4C4B7EF217A467FC000234C7 /* EntryInspectorView.xib */; };
+		4C4B7EF817A4B335000234C7 /* MPUniqueCharactersFormatter.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C4B7EF717A4B335000234C7 /* MPUniqueCharactersFormatter.m */; };
 		4C4FCE15177CFE6B00BBF7AE /* MPCustomFieldTableCellView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C4FCE14177CFE6B00BBF7AE /* MPCustomFieldTableCellView.m */; };
 		4C4FCE18177D03D700BBF7AE /* Kdb4Entry+KVOAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C4FCE17177D03D700BBF7AE /* Kdb4Entry+KVOAdditions.m */; };
 		4C52A244177D7B9F0000D88F /* HNHScrollView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C52A243177D7B9F0000D88F /* HNHScrollView.m */; };
@@ -214,7 +221,7 @@
 		4CC3AABD175F4983003EF01B /* HNHRoundedTextFieldCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CC3AAB9175F4983003EF01B /* HNHRoundedTextFieldCell.m */; };
 		4CC672791781D0C0006DEDCF /* KdbGroup+MPAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CC672781781D0C0006DEDCF /* KdbGroup+MPAdditions.m */; };
 		4CC6727C1781D0D2006DEDCF /* KdbEntry+MPAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CC6727B1781D0D2006DEDCF /* KdbEntry+MPAdditions.m */; };
-		4CC7EA1B17807E7E0089D4F3 /* HNHRoundendTextFieldCellHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CC7EA1A17807E7E0089D4F3 /* HNHRoundendTextFieldCellHelper.m */; };
+		4CC7EA1B17807E7E0089D4F3 /* HNHRoundedTextFieldCellHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CC7EA1A17807E7E0089D4F3 /* HNHRoundedTextFieldCellHelper.m */; };
 		4CCEDE2A179F203B008402BE /* MPOutlineView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CCEDE29179F203B008402BE /* MPOutlineView.m */; };
 		4CCEDE2E179F213B008402BE /* MPNotifications.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CCEDE2D179F213B008402BE /* MPNotifications.m */; };
 		4CCEDE32179F5B6C008402BE /* KPKDataStreamer.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CCEDE31179F5B6C008402BE /* KPKDataStreamer.m */; };
@@ -432,6 +439,17 @@
 		4C4A100E176286FD00BBF2CA /* MPTableView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MPTableView.m; sourceTree = "<group>"; };
 		4C4A101017629DA900BBF2CA /* KdbGroup+KVOAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "KdbGroup+KVOAdditions.h"; sourceTree = "<group>"; };
 		4C4A101117629DA900BBF2CA /* KdbGroup+KVOAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "KdbGroup+KVOAdditions.m"; sourceTree = "<group>"; };
+		4C4B7EE617A45EC5000234C7 /* MPDatePickingViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MPDatePickingViewController.h; sourceTree = "<group>"; };
+		4C4B7EE717A45EC5000234C7 /* MPDatePickingViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MPDatePickingViewController.m; sourceTree = "<group>"; };
+		4C4B7EE817A45EC5000234C7 /* DatePickingView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DatePickingView.xib; sourceTree = "<group>"; };
+		4C4B7EEB17A467E1000234C7 /* MPGroupInspectorViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MPGroupInspectorViewController.h; sourceTree = "<group>"; };
+		4C4B7EEC17A467E1000234C7 /* MPGroupInspectorViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MPGroupInspectorViewController.m; sourceTree = "<group>"; };
+		4C4B7EED17A467E1000234C7 /* GroupInspectorView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GroupInspectorView.xib; sourceTree = "<group>"; };
+		4C4B7EF017A467FC000234C7 /* MPEntryInspectorViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MPEntryInspectorViewController.h; sourceTree = "<group>"; };
+		4C4B7EF117A467FC000234C7 /* MPEntryInspectorViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MPEntryInspectorViewController.m; sourceTree = "<group>"; };
+		4C4B7EF217A467FC000234C7 /* EntryInspectorView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = EntryInspectorView.xib; sourceTree = "<group>"; };
+		4C4B7EF617A4B335000234C7 /* MPUniqueCharactersFormatter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MPUniqueCharactersFormatter.h; sourceTree = "<group>"; };
+		4C4B7EF717A4B335000234C7 /* MPUniqueCharactersFormatter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MPUniqueCharactersFormatter.m; sourceTree = "<group>"; };
 		4C4FCE13177CFE6B00BBF7AE /* MPCustomFieldTableCellView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MPCustomFieldTableCellView.h; sourceTree = "<group>"; };
 		4C4FCE14177CFE6B00BBF7AE /* MPCustomFieldTableCellView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MPCustomFieldTableCellView.m; sourceTree = "<group>"; };
 		4C4FCE16177D03D700BBF7AE /* Kdb4Entry+KVOAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Kdb4Entry+KVOAdditions.h"; sourceTree = "<group>"; };
@@ -653,8 +671,8 @@
 		4CC672781781D0C0006DEDCF /* KdbGroup+MPAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "KdbGroup+MPAdditions.m"; sourceTree = "<group>"; };
 		4CC6727A1781D0D2006DEDCF /* KdbEntry+MPAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "KdbEntry+MPAdditions.h"; sourceTree = "<group>"; };
 		4CC6727B1781D0D2006DEDCF /* KdbEntry+MPAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "KdbEntry+MPAdditions.m"; sourceTree = "<group>"; };
-		4CC7EA1917807E7E0089D4F3 /* HNHRoundendTextFieldCellHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HNHRoundendTextFieldCellHelper.h; sourceTree = "<group>"; };
-		4CC7EA1A17807E7E0089D4F3 /* HNHRoundendTextFieldCellHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HNHRoundendTextFieldCellHelper.m; sourceTree = "<group>"; };
+		4CC7EA1917807E7E0089D4F3 /* HNHRoundedTextFieldCellHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HNHRoundedTextFieldCellHelper.h; sourceTree = "<group>"; };
+		4CC7EA1A17807E7E0089D4F3 /* HNHRoundedTextFieldCellHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HNHRoundedTextFieldCellHelper.m; sourceTree = "<group>"; };
 		4CCA7EEC1797866F00B0B55E /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/GeneralSettings.strings; sourceTree = "<group>"; };
 		4CCA7EEE1797867200B0B55E /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/GeneralSettings.strings; sourceTree = "<group>"; };
 		4CCEDE28179F203B008402BE /* MPOutlineView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MPOutlineView.h; sourceTree = "<group>"; };
@@ -768,9 +786,10 @@
 				4CF78061176E752E0032EE71 /* PasswordInputs */,
 				4C3FFD9D16DAF60600DF9186 /* FilterBar.xib */,
 				4C18816B179E06920045C5B7 /* TrashBar.xib */,
-				4C76156F1764C0E20015A1A6 /* InspectorView.xib */,
+				4C4B7EF517A46815000234C7 /* Inspector */,
 				4CE39AC016ECE359000FE29D /* IconSelection.xib */,
 				4C2C8B331787500E009649F3 /* UnprotectedWarningView.xib */,
+				4C4B7EE817A45EC5000234C7 /* DatePickingView.xib */,
 				4C74DD05177BD1640034A9DB /* MPCustomFieldView.h */,
 				4C74DD06177BD1640034A9DB /* MPCustomFieldView.m */,
 				4CE8247316E2F2B900573141 /* MPOverlayView.h */,
@@ -1055,6 +1074,8 @@
 				4CA23359176DBFE100F0B6AC /* MPLockDaemon.m */,
 				4C16BA6017879A3C002B42BD /* MPPasswordStringFormatter.h */,
 				4C16BA6117879A3C002B42BD /* MPPasswordStringFormatter.m */,
+				4C4B7EF617A4B335000234C7 /* MPUniqueCharactersFormatter.h */,
+				4C4B7EF717A4B335000234C7 /* MPUniqueCharactersFormatter.m */,
 			);
 			name = Helper;
 			sourceTree = "<group>";
@@ -1135,6 +1156,16 @@
 				4C45FB27178E09ED0010007D /* MacPassTests-Prefix.pch */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		4C4B7EF517A46815000234C7 /* Inspector */ = {
+			isa = PBXGroup;
+			children = (
+				4C76156F1764C0E20015A1A6 /* InspectorView.xib */,
+				4C4B7EED17A467E1000234C7 /* GroupInspectorView.xib */,
+				4C4B7EF217A467FC000234C7 /* EntryInspectorView.xib */,
+			);
+			name = Inspector;
 			sourceTree = "<group>";
 		};
 		4C586F9C16D07ABD00E7DB57 /* Icons */ = {
@@ -1358,10 +1389,16 @@
 				4CDF01A216D1B76700D0AC08 /* MPEntryViewController.m */,
 				4C61EA0116D2FD0800AC519E /* MPOutlineViewController.h */,
 				4C61EA0216D2FD0800AC519E /* MPOutlineViewController.m */,
-				4C77547316E55FE800970E02 /* MPInspectorViewController.h */,
-				4C77547416E55FE800970E02 /* MPInspectorViewController.m */,
 				4CE39ABD16ECE34A000FE29D /* MPIconSelectViewController.h */,
 				4CE39ABE16ECE34A000FE29D /* MPIconSelectViewController.m */,
+				4C4B7EE617A45EC5000234C7 /* MPDatePickingViewController.h */,
+				4C4B7EE717A45EC5000234C7 /* MPDatePickingViewController.m */,
+				4C77547316E55FE800970E02 /* MPInspectorViewController.h */,
+				4C77547416E55FE800970E02 /* MPInspectorViewController.m */,
+				4C4B7EEB17A467E1000234C7 /* MPGroupInspectorViewController.h */,
+				4C4B7EEC17A467E1000234C7 /* MPGroupInspectorViewController.m */,
+				4C4B7EF017A467FC000234C7 /* MPEntryInspectorViewController.h */,
+				4C4B7EF117A467FC000234C7 /* MPEntryInspectorViewController.m */,
 			);
 			name = "View Controller";
 			sourceTree = "<group>";
@@ -1425,8 +1462,8 @@
 			children = (
 				4C46E09C17673A0A00DA62E8 /* HNHShadowBox.h */,
 				4C46E09D17673A0A00DA62E8 /* HNHShadowBox.m */,
-				4CC7EA1917807E7E0089D4F3 /* HNHRoundendTextFieldCellHelper.h */,
-				4CC7EA1A17807E7E0089D4F3 /* HNHRoundendTextFieldCellHelper.m */,
+				4CC7EA1917807E7E0089D4F3 /* HNHRoundedTextFieldCellHelper.h */,
+				4CC7EA1A17807E7E0089D4F3 /* HNHRoundedTextFieldCellHelper.m */,
 				4C79DF28176685870083708F /* HNHRoundedTextField.h */,
 				4C79DF29176685870083708F /* HNHRoundedTextField.m */,
 				4CD6C5AC1789FDE6000891F6 /* HNHRoundedSecureTextField.h */,
@@ -1751,6 +1788,9 @@
 				4C52A892178863B000868229 /* 68_PhoneTemplate.pdf in Resources */,
 				4C18816C179E06920045C5B7 /* TrashBar.xib in Resources */,
 				4C96D15417A12E4F00D931FA /* 99_CreatedTemplate.pdf in Resources */,
+				4C4B7EEA17A45EC6000234C7 /* DatePickingView.xib in Resources */,
+				4C4B7EEF17A467E1000234C7 /* GroupInspectorView.xib in Resources */,
+				4C4B7EF417A467FC000234C7 /* EntryInspectorView.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1926,7 +1966,7 @@
 				4C4FCE18177D03D700BBF7AE /* Kdb4Entry+KVOAdditions.m in Sources */,
 				4C52A244177D7B9F0000D88F /* HNHScrollView.m in Sources */,
 				4C3E1CC0177DEFB3003BD9BD /* StringField+Undo.m in Sources */,
-				4CC7EA1B17807E7E0089D4F3 /* HNHRoundendTextFieldCellHelper.m in Sources */,
+				4CC7EA1B17807E7E0089D4F3 /* HNHRoundedTextFieldCellHelper.m in Sources */,
 				4CC672791781D0C0006DEDCF /* KdbGroup+MPAdditions.m in Sources */,
 				4CC6727C1781D0D2006DEDCF /* KdbEntry+MPAdditions.m in Sources */,
 				4C5FE9AE17843CE20001D5A8 /* MPSelectedAttachmentTableCellView.m in Sources */,
@@ -1976,6 +2016,10 @@
 				4CCEDE32179F5B6C008402BE /* KPKDataStreamer.m in Sources */,
 				4C17D8E517A1C780006C8C1E /* MPDocumentWindowDelegate.m in Sources */,
 				4C63B8FB17A3154D0091BD72 /* MPContextToolbarButton.m in Sources */,
+				4C4B7EE917A45EC6000234C7 /* MPDatePickingViewController.m in Sources */,
+				4C4B7EEE17A467E1000234C7 /* MPGroupInspectorViewController.m in Sources */,
+				4C4B7EF317A467FC000234C7 /* MPEntryInspectorViewController.m in Sources */,
+				4C4B7EF817A4B335000234C7 /* MPUniqueCharactersFormatter.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

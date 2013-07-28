@@ -74,7 +74,7 @@ NSString *const _MPOutlinveViewHeaderViewIdentifier = @"HeaderCell";
   
   [[NSNotificationCenter defaultCenter] addObserver:self
                                            selector:@selector(_didBecomeFirstResponder:)
-                                               name:MPDidBecomeFirstResonderNotification
+                                               name:MPDidActivateViewNotification
                                              object:_outlineView];
 }
 

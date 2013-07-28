@@ -10,4 +10,26 @@
 
 @implementation MPUniqueCharactersFormatter
 
+- (NSString *)stringForObjectValue:(id)obj {
+  if([obj isKindOfClass:[NSString class]]) {
+    return obj;
+  }
+  return nil;
+}
+
+- (BOOL)getObjectValue:(out id *)obj forString:(NSString *)string errorDescription:(out NSString **)error {
+  *obj = string;
+  return YES;
+}
+
+- (BOOL)isPartialStringValid:(NSString **)partialStringPtr
+       proposedSelectedRange:(NSRangePointer)proposedSelRangePtr
+              originalString:(NSString *)origString
+       originalSelectedRange:(NSRange)origSelRange
+            errorDescription:(NSString **)error {
+  return YES;
+}
+
+
+
 @end

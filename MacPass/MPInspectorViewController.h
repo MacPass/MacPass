@@ -8,40 +8,21 @@
 
 #import "MPViewController.h"
 
-@class MPPopupImageView;
-@class KdbEntry;
-@class KdbGroup;
 @class HNHGradientView;
-@class HNHRoundedSecureTextField;
-@class MPDocumentWindowController;
+@class MPPopupImageView;
 
-@interface MPInspectorViewController : MPViewController <NSPopoverDelegate>
+@interface MPInspectorViewController : MPViewController
 
-@property (weak) IBOutlet MPPopupImageView *itemImageView;
-@property (weak) IBOutlet NSTextField *itemNameTextfield;
-
-@property (weak) IBOutlet NSTextField *titleTextField;
-@property (weak) IBOutlet NSTextField *usernameTextField;
-@property (weak) IBOutlet NSTextField *URLTextField;
-@property (weak) IBOutlet HNHRoundedSecureTextField *passwordTextField;
-@property (weak) IBOutlet NSTextField *titleOrNameLabel;
 @property (weak) IBOutlet HNHGradientView *bottomBar;
 @property (weak) IBOutlet NSTextField *createdTextField;
 @property (weak) IBOutlet NSTextField *modifiedTextField;
-@property (weak) IBOutlet NSSegmentedControl *infoTabControl;
-@property (weak) IBOutlet NSTableView *attachmentTableView;
-@property (weak) IBOutlet NSTableView *customFieldsTableView;
-@property (unsafe_unretained) IBOutlet NSTextView *notesTextView;
-@property (weak) IBOutlet NSTextField *customFieldsTextField;
-@property (weak) IBOutlet NSButton *togglePassword;
 @property (weak) IBOutlet NSImageView *modifiedImageView;
 @property (weak) IBOutlet NSImageView *createdImageView;
-
-
-@property (weak, nonatomic, readonly) KdbEntry *selectedEntry;
-@property (weak, nonatomic, readonly) KdbGroup *selectedGroup;
+@property (weak) IBOutlet NSTextField *noSelectionInfo;
+@property (weak) IBOutlet MPPopupImageView *itemImageView;
+@property (weak) IBOutlet NSTextField *itemNameTextField;
 
 /* Seperate call to ensure alle registered objects are in place */
-- (void)setupNotifications:(MPDocumentWindowController *)windowController;
+- (void)setupNotifications:(NSWindowController *)windowController;
 
 @end

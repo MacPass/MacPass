@@ -18,29 +18,33 @@ typedef NS_OPTIONS(NSUInteger, MPPasswordCharacterFlags) {
 
 @interface NSString (MPPasswordCreation)
 
-/*
- Generates a new password with the allowed charaters an the requests lenght
+/**
  @param array with allowed NSChractersSets for creation
  @param lenght lenght of the password to create
+ @returns a new password with the allowed charaters an the requests lenght
  */
 + (NSString *)passwordWithCharactersets:(MPPasswordCharacterFlags)allowedCharacters length:(NSUInteger)theLength;
-/*
- Generates a new password with the given length and allowed characters
+/**
  @param Source string of allowed characters
  @param lenght Lenght of the password to create
- @return Password
+ @return a new password with the given length and allowed characters
  */
 + (NSString *)passwordFromString:(NSString *)source length:(NSUInteger)length;
 
-/*
- Creates a password containing only the characters in the string
- @param Lenght of the password
+/**
+ @param Length of the password
+ @returns a password containing only the characters in the string
  */
 - (NSString *)passwordWithLength:(NSUInteger)length;
 
-/*
- Returns a random Character from the String
+/**
+ @returns a random Character from the String
  */
 - (NSString *)randomCharacter;
+/**
+ @param allowedCharacters Characters that where allowed for the cration of the password
+ @returns entrpy in bits taking into account, the creation was purely random. Do not use this to estimate user generated passswords
+ */
+- (CGFloat)entropyWhithPossibleCharacterSet:(MPPasswordCharacterFlags)allowedCharacters orCustomCharacters:(NSString *)customCharacters;
 
 @end

@@ -139,7 +139,7 @@ NSString *const _toggleFilterUsernameButton = @"SearchUsername";
   //[self.entryTable registerForDraggedTypes:@[MPPasteBoardType]];
   [[NSNotificationCenter defaultCenter] addObserver:self
                                            selector:@selector(_didBecomFirstResponder:)
-                                               name:MPDidBecomeFirstResonderNotification
+                                               name:MPDidActivateViewNotification
                                              object:_entryTable];
   
   [self _setupEntryMenu];
@@ -278,7 +278,13 @@ NSString *const _toggleFilterUsernameButton = @"SearchUsername";
 
 - (void)_didBecomFirstResponder:(NSNotification *)notification {
   MPDocument *document = [[self windowController] document];
-  document.selectedItem = document.selectedEntry;
+  if(document.selectedEntry.parent == document.selectedGroup
+     || [self _showsFilterBar]) {
+    document.selectedItem = document.selectedEntry;
+  }
+  else {
+    document.selectedEntry = nil;
+  }
 }
 
 
@@ -309,27 +315,32 @@ NSString *const _toggleFilterUsernameButton = @"SearchUsername";
 }
 
 - (void)updateFilter {
-  [self _showFilterBarAnimated];
+  //[self _showFilterBarAnimated];
   if(![self hasFilter]) {
     return;
   }
   
   dispatch_queue_t backgroundQueue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
   dispatch_async(backgroundQueue, ^{
-    
-    NSMutableArray *prediactes = [NSMutableArray arrayWithCapacity:3];
-    if( [self _shouldFilterTitles] ) {
-      [prediactes addObject:[NSPredicate predicateWithFormat:@"SELF.title CONTAINS[cd] %@", self.filter]];
-    }
-    if( [self _shouldFilterUsernames] ) {
-      [prediactes addObject:[NSPredicate predicateWithFormat:@"SELF.username CONTAINS[cd] %@", self.filter]];
-    }
-    if( [self _shouldFilterURLs] ) {
-      [prediactes addObject:[NSPredicate predicateWithFormat:@"SELF.url CONTAINS[cd] %@", self.filter]];
-    }
-    NSPredicate *fullFilter = [NSCompoundPredicate orPredicateWithSubpredicates:prediactes];
     MPDocument *document = [[self windowController] document];
-    self.filteredEntries = [[document.root childEntries] filteredArrayUsingPredicate:fullFilter];
+    if([self hasFilter]) {
+      NSMutableArray *prediactes = [NSMutableArray arrayWithCapacity:3];
+      if( [self _shouldFilterTitles] ) {
+        [prediactes addObject:[NSPredicate predicateWithFormat:@"SELF.title CONTAINS[cd] %@", self.filter]];
+      }
+      if( [self _shouldFilterUsernames] ) {
+        [prediactes addObject:[NSPredicate predicateWithFormat:@"SELF.username CONTAINS[cd] %@", self.filter]];
+      }
+      if( [self _shouldFilterURLs] ) {
+        [prediactes addObject:[NSPredicate predicateWithFormat:@"SELF.url CONTAINS[cd] %@", self.filter]];
+      }
+      NSPredicate *fullFilter = [NSCompoundPredicate orPredicateWithSubpredicates:prediactes];
+      self.filteredEntries = [[document.root childEntries] filteredArrayUsingPredicate:fullFilter];
+    }
+    
+    else {
+      self.filteredEntries = [document.root childEntries];
+    }
     
     dispatch_sync(dispatch_get_main_queue(), ^{
       document.selectedEntry = nil;
@@ -384,14 +395,14 @@ NSString *const _toggleFilterUsernameButton = @"SearchUsername";
   
   NSView *scrollView = [_entryTable enclosingScrollView];
   NSDictionary *views = NSDictionaryOfVariableBindings(scrollView, _filterBar);
-  [self.view layout];
   
-  [self.view addSubview:self.filterBar];
-  [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|[_filterBar]|" options:0 metrics:nil views:views]];
-  [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:[_filterBar(==30)]-0-[scrollView]" options:0 metrics:nil views:views]];
+  [[self view] addSubview:self.filterBar];
+  
+  [[self view] addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|[_filterBar]|" options:0 metrics:nil views:views]];
+  [[self view] addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:[_filterBar(==30)]-0-[scrollView]" options:0 metrics:nil views:views]];
   [[self view] layoutSubtreeIfNeeded];
   
-  [self.view removeConstraint:self.tableToTopConstraint];
+  [[self view] removeConstraint:self.tableToTopConstraint];
   self.filterbarTopConstraint = [NSLayoutConstraint constraintWithItem:self.filterBar
                                                              attribute:NSLayoutAttributeTop
                                                              relatedBy:NSLayoutRelationEqual

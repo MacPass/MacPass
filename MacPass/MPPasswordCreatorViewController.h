@@ -10,6 +10,6 @@
 
 @interface MPPasswordCreatorViewController : MPViewController
 
-@property (strong, readonly) NSString *generatedPassword;
+@property (copy, readonly) NSString *generatedPassword;
 
 @end

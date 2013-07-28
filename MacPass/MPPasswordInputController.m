@@ -21,6 +21,7 @@
 @property (weak) IBOutlet NSImageView *errorImageView;
 @property (weak) IBOutlet NSTextField *errorInfoTextField;
 @property (weak) IBOutlet NSButton *togglePasswordButton;
+
 @property (assign) BOOL showPassword;
 
 - (IBAction)_decrypt:(id)sender;
@@ -97,4 +98,5 @@
   [self.errorImageView setHidden:NO];
   [self.errorInfoTextField setHidden:NO];
 }
+
 @end

@@ -7,7 +7,14 @@
 //
 
 #import "MPViewController.h"
+@class MPDocument;
 
 @interface MPGroupInspectorViewController : MPViewController
+
+@property (strong) IBOutlet NSView *contentView;
+@property (weak) IBOutlet NSTextField *titleTextField;
+@property (unsafe_unretained) IBOutlet NSTextView *notesTextView;
+
+- (void)setupBindings:(MPDocument *)document;
 
 @end

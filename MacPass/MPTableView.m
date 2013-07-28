@@ -9,12 +9,26 @@
 #import "MPTableView.h"
 #import "MPNotifications.h"
 
+@interface MPTableView () {
+  BOOL _didBecomeFirstResponder;
+}
+
+@end
+
 @implementation MPTableView
 
+- (void)mouseDown:(NSEvent *)theEvent {
+  [super mouseDown:theEvent];
+  if(_didBecomeFirstResponder) {
+    [[NSNotificationCenter defaultCenter] postNotificationName:MPDidActivateViewNotification
+                                                        object:self
+                                                      userInfo:nil];
+  }
+  _didBecomeFirstResponder = NO;
+}
+
 - (BOOL)becomeFirstResponder {
-  [[NSNotificationCenter defaultCenter] postNotificationName:MPDidBecomeFirstResonderNotification
-                                                      object:self
-                                                    userInfo:nil];
+  _didBecomeFirstResponder = YES;
   return YES;
 }
 

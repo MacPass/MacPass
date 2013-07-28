@@ -8,10 +8,8 @@
 
 #import <Foundation/Foundation.h>
 
-@class MPInspectorViewController;
-
 @interface MPAttachmentTableViewDelegate : NSObject <NSTableViewDelegate>
 
-@property (nonatomic, weak) MPInspectorViewController *viewController;
+@property (nonatomic, weak) id viewController;
 
 @end

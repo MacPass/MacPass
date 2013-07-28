@@ -77,7 +77,7 @@ if(![[self undoManager] isUndoing]) {\
   MPSetActionName(@"SET_PASSWORT", "Undo set password");
   
   if(![[self undoManager] isUndoing]) {
-    [[self undoManager] setActionName:NSLocalizedString(@"SET_TITLE", "Set Title")];
+    [[self undoManager] setActionName:NSLocalizedString(@"SET_PASSWORD", "Set Password")];
   }
   
   [self setLastModificationTime:[NSDate date]];
