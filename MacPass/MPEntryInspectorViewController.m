@@ -196,10 +196,6 @@ typedef NS_ENUM(NSUInteger, MPEntryTab) {
 #pragma mark -
 #pragma mark Popovers
 
-//- (void)_showImagePopup:(id)sender {
-//  [self _showPopopver:[[MPIconSelectViewController alloc] init]  atView:self.itemImageView onEdge:NSMinYEdge];
-//}
-//
 - (IBAction)_popUpPasswordGenerator:(id)sender {
   [self.generatePasswordButton setEnabled:NO];
   [self _showPopopver:[[MPPasswordCreatorViewController alloc] init] atView:self.passwordTextField onEdge:NSMinYEdge];

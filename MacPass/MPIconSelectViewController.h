@@ -11,6 +11,8 @@
 @interface MPIconSelectViewController : MPViewController <NSCollectionViewDelegate>
 
 @property (weak) IBOutlet NSCollectionView *iconCollectionView;
+@property (weak) IBOutlet NSButton *imageButton;
+
 - (IBAction)useDefault:(id)sender;
 
 @end

@@ -12,6 +12,7 @@
 #import "MPGroupInspectorViewController.h"
 #import "MPDocument.h"
 #import "MPNotifications.h"
+#import "MPIconSelectViewController.h"
 
 #import "NSDate+Humanized.h"
 
@@ -31,6 +32,7 @@ typedef NS_ENUM(NSUInteger, MPContentTab) {
 @interface MPInspectorViewController () {
   MPEntryInspectorViewController *_entryViewController;
   MPGroupInspectorViewController *_groupViewController;
+  NSPopover *_popover;
 }
 
 @property (nonatomic, strong) NSDate *modificationDate;
@@ -129,6 +131,23 @@ typedef NS_ENUM(NSUInteger, MPContentTab) {
   [self.createdTextField setStringValue:[NSString stringWithFormat:createdAtTemplate, creationString]];
   
 }
+
+#pragma mark -
+#pragma mark Popup
+- (IBAction)showImagePopup:(id)sender {
+  
+  NSAssert(_popover == nil, @"Popover hast to be niled out");
+  _popover = [[NSPopover alloc] init];
+  _popover.delegate = self;
+  _popover.behavior = NSPopoverBehaviorTransient;
+  _popover.contentViewController = [[MPIconSelectViewController alloc] init];
+  [_popover showRelativeToRect:NSZeroRect ofView:self.itemImageView preferredEdge:NSMinYEdge];
+}
+
+- (void)popoverDidClose:(NSNotification *)notification {
+  _popover = nil;
+}
+
 
 #pragma mark -
 #pragma mark Item Binding

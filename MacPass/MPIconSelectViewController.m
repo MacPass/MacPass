@@ -10,7 +10,6 @@
 #import "MPIconHelper.h"
 
 @interface MPIconSelectViewController ()
-
 @end
 
 @implementation MPIconSelectViewController
@@ -20,19 +19,20 @@
   return [self initWithNibName:@"IconSelection" bundle:nil];
 }
 
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
-{
+- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
-      
     }
     return self;
 }
 
 - (void)didLoadView {
+  //[[self.imageButton cell] setBackgroundStyle:NSBackgroundStyleLowered];
+  [self.iconCollectionView setBackgroundColors:@[[NSColor clearColor]]];
   [self.iconCollectionView setSelectable:YES];
   [self.iconCollectionView setAllowsMultipleSelection:NO];
   [self.iconCollectionView setContent:[MPIconHelper availableIcons]];
+  
 }
 
 - (IBAction)useDefault:(id)sender {
