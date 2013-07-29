@@ -84,18 +84,12 @@ NSString *const MPToolbarItemInspector = @"TOOLBAR_INSPECTOR";
     }
     else if( [itemIdentifier isEqualToString:MPToolbarItemAddEntry]) {
       MPContextToolbarButton *button = [[MPContextToolbarButton alloc] initWithFrame:NSMakeRect(0, 0, 32, 32)];
+      [button setAction:[self _actionForToolbarItemIdentifier:itemIdentifier]];
       NSImage *image = self.toolbarImages[itemIdentifier];
       [image setSize:NSMakeSize(16, 16)];
       [button setImage:image];
       [button sizeToFit];
-      [button setAction:[self _actionForToolbarItemIdentifier:itemIdentifier]];
-      
-      NSMenu *menu = [[NSMenu allocWithZone:[NSMenu menuZone]] init];
-      [menu addItemWithTitle:@"Test" action:NULL keyEquivalent:@""];
-      [menu addItemWithTitle:@"More" action:NULL keyEquivalent:@""];
-      [button setMenu:menu];
-      
-      
+
       NSRect fittingRect = [button frame];
       fittingRect.size.width = MAX( (CGFloat)32.0,fittingRect.size.width);
       [button setFrame:fittingRect];

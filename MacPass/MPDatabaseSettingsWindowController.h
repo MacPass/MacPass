@@ -14,7 +14,7 @@ typedef NS_ENUM(NSUInteger, MPDatabaseSettingsTab) {
   MPDatabaseSettingsTabPassword,
   MPDatabaseSettingsTabDisplay,
   MPDatabaseSettingsTabAdvanced,
-  MPDatabaseSettingsTemplatesTab,
+  MPDatabaseSettingsTabTemplates,
 };
 
 @class MPDocument;

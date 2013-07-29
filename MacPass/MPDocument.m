@@ -51,6 +51,10 @@ NSString *const MPDocumentRequestPasswordSaveNotification = @"com.hicknhack.macp
 NSString *const MPDocumentEntryKey                        = @"MPDocumentEntryKey";
 NSString *const MPDocumentGroupKey                        = @"MPDocumentGroupKey";
 
+typedef NS_ENUM(NSUInteger, MPAlertType) {
+  MPAlertTypeEmptryTrash,
+  MPAlertTypeDeleteTrashed
+};
 
 @interface MPDocument () {
 @private
@@ -349,6 +353,15 @@ NSString *const MPDocumentGroupKey                        = @"MPDocumentGroupKey
   return nil;
 }
 
+- (KdbGroup *)templates {
+  static KdbGroup *_templates = nil;
+  BOOL templateValid = [((Kdb4Group *)_templates).uuid isEqual:self.treeV4.entryTemplatesGroup];
+  if(!templateValid) {
+    _templates = [self findGroup:self.treeV4.entryTemplatesGroup];
+  }
+  return _templates;
+}
+
 - (BOOL)isItemTrashed:(id)item {
   BOOL validItem = [item isKindOfClass:[KdbEntry class]] || [item isKindOfClass:[KdbGroup class]];
   if(!item) {
@@ -510,7 +523,7 @@ NSString *const MPDocumentGroupKey                        = @"MPDocumentGroupKey
   [alert beginSheetModalForWindow:window modalDelegate:self didEndSelector:@selector(alertDidEnd:returnCode:contextInfo:) contextInfo:NULL];
 }
 
-- (void) alertDidEnd:(NSAlert *)alert returnCode:(NSInteger)returnCode contextInfo:(void *)contextInfo {
+- (void)alertDidEnd:(NSAlert *)alert returnCode:(NSInteger)returnCode contextInfo:(void *)contextInfo {
   if(returnCode == NSAlertFirstButtonReturn) {
     [self _emptyTrash];
   }

@@ -17,6 +17,7 @@
 #import "MPUppercaseStringValueTransformer.h"
 #import "MPRootAdapter.h"
 #import "MPNotifications.h"
+#import "MPOutlineMenuDelegate.h"
 
 #import "KdbLib.h"
 #import "Kdb4Node.h"
@@ -31,6 +32,8 @@ NSString *const _MPOutlinveViewHeaderViewIdentifier = @"HeaderCell";
 
 @interface MPOutlineViewController () {
   BOOL _bindingEstablished;
+  MPOutlineMenuDelegate *_menuDelegate;
+  
 }
 @property (weak) IBOutlet NSOutlineView *outlineView;
 @property (weak) IBOutlet NSButton *addGroupButton;
@@ -56,6 +59,8 @@ NSString *const _MPOutlinveViewHeaderViewIdentifier = @"HeaderCell";
     _bindingEstablished = NO;
     _datasource = [[MPOutlineDataSource alloc] init];
     _databaseNameWrapper = NSLocalizedString(@"NEW_DATABASE", "Name for a newly created Database");
+    _menuDelegate = [[MPOutlineMenuDelegate alloc] init];
+    _menuDelegate.viewController = self;
   }
   
   return self;
@@ -136,6 +141,16 @@ NSString *const _MPOutlinveViewHeaderViewIdentifier = @"HeaderCell";
   }
   MPDocument *document = [[self windowController] document];
   document.selectedItem = document.selectedGroup;
+}
+
+- (id)itemUnderMouse {
+  NSPoint mouseLocation = [[self.outlineView window] mouseLocationOutsideOfEventStream];
+  NSPoint localPoint = [self.outlineView convertPoint:mouseLocation fromView:[[self.outlineView window] contentView]];
+  NSInteger row = [self.outlineView rowAtPoint:localPoint];
+  if(row == -1) {
+    return nil; // No row was hit
+  }
+  return [[self.outlineView itemAtRow:row] representedObject];
 }
 
 #pragma mark Validation
@@ -234,10 +249,7 @@ NSString *const _MPOutlinveViewHeaderViewIdentifier = @"HeaderCell";
 
 - (NSMenu *)_contextMenu {
   NSMenu *menu = [[NSMenu alloc] init];
-  NSArray *items = [MPContextMenuHelper contextMenuItemsWithItems:MPContextMenuMinimal];
-  for(NSMenuItem *item in items) {
-    [menu addItem:item];
-  }
+  [menu setDelegate:_menuDelegate];
   return menu;
 }
 

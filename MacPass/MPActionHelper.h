@@ -9,7 +9,7 @@
 #import <Foundation/Foundation.h>
 
 typedef NS_ENUM(NSUInteger, MPActionType) {
-  MPUnkownAction, // Netural element to be used for returns
+  MPUnkownAction, // Neutral element to be used for returns
   MPActionAddEntry, // Add an new entry
   MPActionAddGroup, // Add a new group
   MPActionDelete, // Delete entry or group
@@ -19,12 +19,24 @@ typedef NS_ENUM(NSUInteger, MPActionType) {
   MPActionOpenURL, // open url in default browser
   MPActionToggleInspector,
   MPActionLock, // show the lock screen
-  MPActionEmptyTrash // empties the trashcan, if there is one
+  MPActionEmptyTrash, // empties the trashcan, if there is one
+  MPActionDatabaseSettings // Show the settings for the database
 };
-
+/**
+ *	Helper to retrieve commonly used actions
+ */
 @interface MPActionHelper : NSObject
-
+/**
+ *	Call this to retrieve a selector for a common used action
+ *	@param	type	The action type as MPActionType
+ *	@return	selector for this action type
+ */
 + (SEL)actionOfType:(MPActionType)type;
+/**
+ *	Helper to retrieve the MPActionType for a given selection
+ *	@param	action	Selector to find the type for
+ *	@return	MPActionTpype for action, if no match was found MPUnknownAction is returned
+ */
 + (MPActionType)typeForAction:(SEL)action;
 
 @end

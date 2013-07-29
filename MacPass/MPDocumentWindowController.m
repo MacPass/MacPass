@@ -252,11 +252,19 @@
 }
 
 - (void)editPassword:(id)sender {
-  [self _showDatabaseSetting:MPDatabaseSettingsTabPassword saveDocument:NO];
+  [self _showDatabaseSetting:MPDatabaseSettingsTabPassword];
 }
 
 - (void)showDatabaseSettings:(id)sender {
-  [self _showDatabaseSetting:MPDatabaseSettingsTabGeneral saveDocument:NO];
+  [self _showDatabaseSetting:MPDatabaseSettingsTabGeneral];
+}
+
+- (void)editTemplateGroup:(id)sender {
+  [self _showDatabaseSetting:MPDatabaseSettingsTabTemplates];
+}
+
+- (void)editTrashGroup:(id)sender {
+  [self _showDatabaseSetting:MPDatabaseSettingsTabAdvanced];
 }
 
 - (IBAction)lock:(id)sender {
@@ -383,7 +391,7 @@
   [self editPassword:nil];
 }
 
-- (void)_showDatabaseSetting:(MPDatabaseSettingsTab)tab saveDocument:(BOOL)save{
+- (void)_showDatabaseSetting:(MPDatabaseSettingsTab)tab {
   if(!self.documentSettingsWindowController) {
     _documentSettingsWindowController = [[MPDatabaseSettingsWindowController alloc] initWithDocument:[self document]];
     [_documentSettingsWindowController setDelegate:self];

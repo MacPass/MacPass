@@ -10,9 +10,13 @@
 #import "KdbGroup+KVOAdditions.h"
 #import "MPIconHelper.h"
 
+#import "Kdb4Node.h"
+
 @implementation KdbGroup (MPAdditions)
 
 - (NSImage *)icon {
+  if([self respondsToSelector:@selector(customIconUuid)]) {
+  }
   return [MPIconHelper icon:(MPIconType)self.image];
 }
 

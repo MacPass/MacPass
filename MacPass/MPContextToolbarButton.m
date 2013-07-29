@@ -14,8 +14,8 @@
   self = [super initWithFrame:frame];
   if (self) {
     [self setFocusRingType:NSFocusRingTypeNone];
-    [self setSegmentCount:1];
-    //[[self cell] setWidth:15 forSegment:1];
+    [self setSegmentCount:2];
+    [[self cell] setWidth:15 forSegment:1];
     [[self cell] setTrackingMode:NSSegmentSwitchTrackingMomentary];
     [self setSegmentStyle:NSSegmentStyleTexturedSquare];
   }
@@ -32,7 +32,7 @@
 }
 
 - (void)setSegmentCount:(NSInteger)count {
-  if(count == 1) {
+  if(count == 2) {
     [super setSegmentCount:count];
   }
 }
@@ -40,7 +40,5 @@
 - (void)setImage:(NSImage *)image {
   [self setImage:image forSegment:0];
 }
-
-
 
 @end

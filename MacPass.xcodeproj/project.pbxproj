@@ -126,6 +126,7 @@
 		4C5AA591179549A1008ECAD7 /* KPKXmlTreeWriter.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C5AA590179549A1008ECAD7 /* KPKXmlTreeWriter.m */; };
 		4C5BF67B175C01F300D53DF7 /* MPUppercaseStringValueTransformer.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C5BF67A175C01F300D53DF7 /* MPUppercaseStringValueTransformer.m */; };
 		4C5EC302177B700D00DA955B /* MPRootAdapter.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C5EC301177B700D00DA955B /* MPRootAdapter.m */; };
+		4C5FA86D17A5F26800C781C9 /* KPKDataStreamWriter.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C5FA86C17A5F26800C781C9 /* KPKDataStreamWriter.m */; };
 		4C5FE9AE17843CE20001D5A8 /* MPSelectedAttachmentTableCellView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C5FE9AD17843CE20001D5A8 /* MPSelectedAttachmentTableCellView.m */; };
 		4C61EA0316D2FD0800AC519E /* MPOutlineViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C61EA0216D2FD0800AC519E /* MPOutlineViewController.m */; };
 		4C61EA0516D2FFE200AC519E /* OutlineView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4C61EA0416D2FFE200AC519E /* OutlineView.xib */; };
@@ -195,6 +196,7 @@
 		4C888C9316EB6F5E003D34A1 /* MPToolbarItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C888C9216EB6F5E003D34A1 /* MPToolbarItem.m */; };
 		4C888C9716EB754B003D34A1 /* MPActionHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C888C9616EB754B003D34A1 /* MPActionHelper.m */; };
 		4C8A173D1790AA41008B5C17 /* NSData+Keyfile.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C8A173C1790AA41008B5C17 /* NSData+Keyfile.m */; };
+		4C8B36AB17A6ED4B005E1FF1 /* MPOutlineMenuDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C8B36AA17A6ED4B005E1FF1 /* MPOutlineMenuDelegate.m */; };
 		4C8FECC816D57E3200BF26CF /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4C8FECC716D57E3200BF26CF /* QuartzCore.framework */; };
 		4C96D15417A12E4F00D931FA /* 99_CreatedTemplate.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 4C96D15317A12E4F00D931FA /* 99_CreatedTemplate.pdf */; };
 		4C9D6AA917615199001C660C /* HNHRoundedSecureTextFieldCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C9D6AA817615199001C660C /* HNHRoundedSecureTextFieldCell.m */; };
@@ -224,7 +226,7 @@
 		4CC7EA1B17807E7E0089D4F3 /* HNHRoundedTextFieldCellHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CC7EA1A17807E7E0089D4F3 /* HNHRoundedTextFieldCellHelper.m */; };
 		4CCEDE2A179F203B008402BE /* MPOutlineView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CCEDE29179F203B008402BE /* MPOutlineView.m */; };
 		4CCEDE2E179F213B008402BE /* MPNotifications.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CCEDE2D179F213B008402BE /* MPNotifications.m */; };
-		4CCEDE32179F5B6C008402BE /* KPKDataStreamer.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CCEDE31179F5B6C008402BE /* KPKDataStreamer.m */; };
+		4CCEDE32179F5B6C008402BE /* KPKDataStreamReader.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CCEDE31179F5B6C008402BE /* KPKDataStreamReader.m */; };
 		4CD3ABBA178F71B50073F5C5 /* KPKTree.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CD3ABB4178F71B50073F5C5 /* KPKTree.m */; };
 		4CD3ABBF178F72610073F5C5 /* KPKEntry.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CD3ABBE178F72610073F5C5 /* KPKEntry.m */; };
 		4CD3ABC2178F72720073F5C5 /* KPKGroup.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CD3ABC1178F72720073F5C5 /* KPKGroup.m */; };
@@ -484,6 +486,8 @@
 		4C5BF67A175C01F300D53DF7 /* MPUppercaseStringValueTransformer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MPUppercaseStringValueTransformer.m; sourceTree = "<group>"; };
 		4C5EC300177B700D00DA955B /* MPRootAdapter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MPRootAdapter.h; sourceTree = "<group>"; };
 		4C5EC301177B700D00DA955B /* MPRootAdapter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MPRootAdapter.m; sourceTree = "<group>"; };
+		4C5FA86B17A5F26800C781C9 /* KPKDataStreamWriter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KPKDataStreamWriter.h; sourceTree = "<group>"; };
+		4C5FA86C17A5F26800C781C9 /* KPKDataStreamWriter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KPKDataStreamWriter.m; sourceTree = "<group>"; };
 		4C5FE9AC17843CE20001D5A8 /* MPSelectedAttachmentTableCellView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MPSelectedAttachmentTableCellView.h; sourceTree = "<group>"; };
 		4C5FE9AD17843CE20001D5A8 /* MPSelectedAttachmentTableCellView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MPSelectedAttachmentTableCellView.m; sourceTree = "<group>"; };
 		4C61EA0116D2FD0800AC519E /* MPOutlineViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MPOutlineViewController.h; sourceTree = "<group>"; };
@@ -621,6 +625,8 @@
 		4C888C9616EB754B003D34A1 /* MPActionHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MPActionHelper.m; sourceTree = "<group>"; };
 		4C8A173B1790AA41008B5C17 /* NSData+Keyfile.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSData+Keyfile.h"; sourceTree = "<group>"; };
 		4C8A173C1790AA41008B5C17 /* NSData+Keyfile.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSData+Keyfile.m"; sourceTree = "<group>"; };
+		4C8B36A917A6ED4B005E1FF1 /* MPOutlineMenuDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MPOutlineMenuDelegate.h; sourceTree = "<group>"; };
+		4C8B36AA17A6ED4B005E1FF1 /* MPOutlineMenuDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MPOutlineMenuDelegate.m; sourceTree = "<group>"; };
 		4C8FECC716D57E3200BF26CF /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		4C96D15317A12E4F00D931FA /* 99_CreatedTemplate.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = 99_CreatedTemplate.pdf; sourceTree = "<group>"; };
 		4C9D6AA717615199001C660C /* HNHRoundedSecureTextFieldCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HNHRoundedSecureTextFieldCell.h; sourceTree = "<group>"; };
@@ -680,8 +686,8 @@
 		4CCEDE2C179F2122008402BE /* MPNotifications.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MPNotifications.h; sourceTree = "<group>"; };
 		4CCEDE2D179F213B008402BE /* MPNotifications.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MPNotifications.m; sourceTree = "<group>"; };
 		4CCEDE2F179F550D008402BE /* KPKTreeReading.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KPKTreeReading.h; sourceTree = "<group>"; };
-		4CCEDE30179F5B6C008402BE /* KPKDataStreamer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KPKDataStreamer.h; sourceTree = "<group>"; };
-		4CCEDE31179F5B6C008402BE /* KPKDataStreamer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KPKDataStreamer.m; sourceTree = "<group>"; };
+		4CCEDE30179F5B6C008402BE /* KPKDataStreamReader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KPKDataStreamReader.h; sourceTree = "<group>"; };
+		4CCEDE31179F5B6C008402BE /* KPKDataStreamReader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KPKDataStreamReader.m; sourceTree = "<group>"; };
 		4CD3ABB2178F71B50073F5C5 /* KPKVersion.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = KPKVersion.h; path = Format/KPKVersion.h; sourceTree = "<group>"; };
 		4CD3ABB3178F71B50073F5C5 /* KPKTree.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KPKTree.h; sourceTree = "<group>"; };
 		4CD3ABB4178F71B50073F5C5 /* KPKTree.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KPKTree.m; sourceTree = "<group>"; };
@@ -1105,6 +1111,8 @@
 				4CC0D2D017974A5A000B4BDA /* MPAttachmentTableViewDelegate.m */,
 				4C17D8E317A1C780006C8C1E /* MPDocumentWindowDelegate.h */,
 				4C17D8E417A1C780006C8C1E /* MPDocumentWindowDelegate.m */,
+				4C8B36A917A6ED4B005E1FF1 /* MPOutlineMenuDelegate.h */,
+				4C8B36AA17A6ED4B005E1FF1 /* MPOutlineMenuDelegate.m */,
 			);
 			name = Delegates;
 			sourceTree = "<group>";
@@ -1585,8 +1593,10 @@
 				4C1842D4179C6DE400E2F5BC /* KPKHeaderReading.h */,
 				4C1842D5179C6F1800E2F5BC /* KPKHeaderWriting.h */,
 				4CCEDE2F179F550D008402BE /* KPKTreeReading.h */,
-				4CCEDE30179F5B6C008402BE /* KPKDataStreamer.h */,
-				4CCEDE31179F5B6C008402BE /* KPKDataStreamer.m */,
+				4CCEDE30179F5B6C008402BE /* KPKDataStreamReader.h */,
+				4CCEDE31179F5B6C008402BE /* KPKDataStreamReader.m */,
+				4C5FA86B17A5F26800C781C9 /* KPKDataStreamWriter.h */,
+				4C5FA86C17A5F26800C781C9 /* KPKDataStreamWriter.m */,
 			);
 			path = IO;
 			sourceTree = "<group>";
@@ -2013,13 +2023,15 @@
 				4CFC873E179DF200000DFC03 /* KPKTimeInfo.m in Sources */,
 				4CCEDE2A179F203B008402BE /* MPOutlineView.m in Sources */,
 				4CCEDE2E179F213B008402BE /* MPNotifications.m in Sources */,
-				4CCEDE32179F5B6C008402BE /* KPKDataStreamer.m in Sources */,
+				4CCEDE32179F5B6C008402BE /* KPKDataStreamReader.m in Sources */,
 				4C17D8E517A1C780006C8C1E /* MPDocumentWindowDelegate.m in Sources */,
 				4C63B8FB17A3154D0091BD72 /* MPContextToolbarButton.m in Sources */,
 				4C4B7EE917A45EC6000234C7 /* MPDatePickingViewController.m in Sources */,
 				4C4B7EEE17A467E1000234C7 /* MPGroupInspectorViewController.m in Sources */,
 				4C4B7EF317A467FC000234C7 /* MPEntryInspectorViewController.m in Sources */,
 				4C4B7EF817A4B335000234C7 /* MPUniqueCharactersFormatter.m in Sources */,
+				4C5FA86D17A5F26800C781C9 /* KPKDataStreamWriter.m in Sources */,
+				4C8B36AB17A6ED4B005E1FF1 /* MPOutlineMenuDelegate.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

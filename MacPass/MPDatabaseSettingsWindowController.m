@@ -207,7 +207,7 @@
       
     case MPDatabaseSettingsTabAdvanced:
     case MPDatabaseSettingsTabGeneral:
-    case MPDatabaseSettingsTemplatesTab:
+    case MPDatabaseSettingsTabTemplates:
       return (_document.version == MPDatabaseVersion4);
       
     default:
@@ -346,7 +346,7 @@
       [[self window] makeFirstResponder:self.passwordTextField];
       break;
       
-    case MPDatabaseSettingsTemplatesTab:
+    case MPDatabaseSettingsTabTemplates:
       break;
   }
 }

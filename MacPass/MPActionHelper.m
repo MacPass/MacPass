@@ -24,7 +24,8 @@
                    @(MPActionOpenURL) : @"openURL:",
                    @(MPActionToggleInspector) : @"toggleInspector:",
                    @(MPActionLock) : @"lock:",
-                   @(MPActionEmptyTrash) : @"emptyTrash:"
+                   @(MPActionEmptyTrash) : @"emptyTrash:",
+                   @(MPActionDatabaseSettings) : @"showDatabaseSettings:"
                    };
   });
   return actionDict;

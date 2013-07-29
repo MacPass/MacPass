@@ -23,10 +23,13 @@ static NSDictionary *icons;
   return [NSImage imageNamed:NSImageNameActionTemplate];
 }
 
-+ (NSArray *)availableIcons {
++ (NSArray *)databaseIcons {
   NSDictionary *imageNames = [MPIconHelper availableIconNames];
   NSMutableArray *icons = [[NSMutableArray alloc] initWithCapacity:[imageNames count]];
   for(NSNumber *iconNumber in [imageNames allKeys]) {
+    if([iconNumber integerValue] > MPCustomIconTypeBegin) {
+      continue; // Skip all non-db Keys
+    }
     MPIconType iconType = (MPIconType)[iconNumber integerValue];
     [icons addObject:[MPIconHelper icon:iconType]];
   }
@@ -67,16 +70,4 @@ static NSDictionary *icons;
                                };
   return imageNames;
 }
-
-+ (NSImage *)randomIcon {
-  static dispatch_once_t onceToken;
-  dispatch_once(&onceToken, ^{
-    srandom([[NSDate date] timeIntervalSince1970]);
-  });
-  
-  NSArray *types = [[MPIconHelper availableIconNames] allKeys];
-  NSUInteger randomIndex = random() % [types count];
-  return [MPIconHelper icon:(MPIconType)randomIndex];
-}
-
 @end

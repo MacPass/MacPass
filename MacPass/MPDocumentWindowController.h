@@ -35,8 +35,12 @@
 - (void)showEntries;
 - (void)showPasswordInput;
 - (void)performFindPanelAction:(id)sender;
+
 - (IBAction)editPassword:(id)sender;
 - (IBAction)showDatabaseSettings:(id)sender;
+- (IBAction)editTemplateGroup:(id)sender;
+- (IBAction)editTrashGroup:(id)sender;
+
 - (IBAction)exportDatabase:(id)sender;
 
 - (IBAction)lock:(id)sender;

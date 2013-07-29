@@ -17,9 +17,17 @@
 - (NSArray *)childEntries;
 /* Returns the entry with the UUID */
 - (KdbEntry *)entryForUUID:(UUID *)uuid;
-/* Returns the group with the UUID */
+/**
+ *	Searches through all subgroups and loactes the Group with the given UUID
+ *	@param	uuid	UUID of the searched group
+ *	@return	group with matching UUID, otherwise nil
+ */
 - (KdbGroup *)groupForUUID:(UUID *)uuid;
-
+/**
+ *	Determines, if the reciever is an anchestor of the given group
+ *	@param	group	The group to test for anchestry
+ *	@return	YES, if the receiver is an anchestor of group
+ */
 - (BOOL)isAnchestorOfGroup:(KdbGroup *)group;
 
 @end

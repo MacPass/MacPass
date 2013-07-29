@@ -416,8 +416,10 @@ NSString *const _toggleFilterUsernameButton = @"SearchUsername";
     context.duration = STATUS_BAR_ANIMATION_TIME;
     context.allowsImplicitAnimation = YES;
     [self.view layoutSubtreeIfNeeded];
-  } completionHandler:nil] ;
-  [[[self windowController] window] makeFirstResponder:self.filterSearchField];
+  } completionHandler:^{
+    [[[self windowController] window] makeFirstResponder:self.filterSearchField];
+  }];
+  
 }
 
 - (void)_hideFilterBarAnimated {

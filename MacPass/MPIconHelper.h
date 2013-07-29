@@ -7,7 +7,11 @@
 //
 
 #import <Foundation/Foundation.h>
-
+/**
+ *	Available IconTypes
+ *  Every Icon after MPCustomIconTypeBegin
+ *  is not suitable for usage as KDB Icon
+ */
 typedef NS_ENUM(NSUInteger, MPIconType) {
   MPIconPassword,
   MPIconPackageNetwork,
@@ -29,30 +33,37 @@ typedef NS_ENUM(NSUInteger, MPIconType) {
   MPIconFolder = 48,
   MPIconPhone = 68,
   /* Custom Icons not used in Database */
-  MPIconInfo = 1000,
+  MPCustomIconTypeBegin = 1000,
+  MPIconInfo,
   MPIconAddFolder,
   MPIconHardDisk,
   MPIconCreated,
 };
 
+/**
+ *	Helper class to retrieve Icons for Keys. KDB sortes Icons as an Integer
+ *  The Helper maps those numbers to icons.
+ *  It can furthermore be used to retrieve other Icons, that are non-Database Icons
+ */
 @interface MPIconHelper : NSObject
 
-/*
- @param type  Icon identifier typ MPIconTyp
- @returns Icon for given identifier
+/**
+ *	Returns the Icon Image for a given type
+ *	@param	type	Icontype
+ *	@return	Image for the IconType
  */
 + (NSImage *)icon:(MPIconType)type;
-/*
- Available Icons, Use the MPDatabaseIconType to access a individual icon;
- @returns all availble Icons
+
+/**
+ *	Available Icon names (all)
+ *	@return	Dictioary with MPIconType keys and NSString values containing their names
  */
 + (NSDictionary *)availableIconNames;
 
-+ (NSArray *)availableIcons;
-
-/*
- @returns a random Icon image
+/**
+ *	List of all availabel DatabaseIcons as Images. Sorted by IconIndex
+ *	@return	Array of Icons as NSImage objects
  */
-+ (NSImage *)randomIcon;
++ (NSArray *)databaseIcons;
 
 @end

@@ -49,6 +49,7 @@ APPKIT_EXTERN NSString *const MPDocumnetDidChangeCurrentEntryNotification;
 @property (weak, readonly, nonatomic) KdbGroup *root;
 @property (readonly, strong) MPRootAdapter *rootAdapter;
 @property (weak, readonly) KdbGroup *trash;
+@property (weak, readonly) KdbGroup *templates;
 
 @property (nonatomic, copy) NSString *password;
 @property (nonatomic, strong) NSURL *key;

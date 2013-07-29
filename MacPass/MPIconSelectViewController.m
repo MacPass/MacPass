@@ -31,7 +31,7 @@
   [self.iconCollectionView setBackgroundColors:@[[NSColor clearColor]]];
   [self.iconCollectionView setSelectable:YES];
   [self.iconCollectionView setAllowsMultipleSelection:NO];
-  [self.iconCollectionView setContent:[MPIconHelper availableIcons]];
+  [self.iconCollectionView setContent:[MPIconHelper databaseIcons]];
   
 }
 

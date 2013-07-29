@@ -66,9 +66,9 @@
 
 - (void)_updateBindings {
   if(self.group) {
-    [self.titleTextField bind:NSValueBinding toObject:self.group withKeyPath:@"name" options:nil];
+    [self.titleTextField bind:NSValueBinding toObject:self.group withKeyPath:@"nameUndoable" options:nil];
     if([self.group respondsToSelector:@selector(notes:)]) {
-      [self.notesTextView bind:NSValueBinding toObject:self.group withKeyPath:@"notes" options:nil];
+      [self.notesTextView bind:NSValueBinding toObject:self.group withKeyPath:@"notesUndoable" options:nil];
     }
     else {
       [self.notesTextView unbind:NSValueBinding];
