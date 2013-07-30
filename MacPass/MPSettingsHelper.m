@@ -10,6 +10,7 @@
 
 NSString *const kMPSettingsKeyPasteboardClearTimeout = @"ClipboardClearTimeout";
 NSString *const kMPSettingsKeyClearPasteboardOnQuit  = @"ClearClipboardOnQuit";
+NSString *const kMPSettingsKeyDoubleClickURLToLaunch  = @"DoubleClickURLToLaunch";
 NSString *const kMPSettingsKeyOpenEmptyDatabaseOnLaunch = @"OpenEmptyDatabaseOnLaunch";
 NSString *const kMPSettingsKeyReopenLastDatabaseOnLaunch = @"ReopenLastDatabaseOnLaunch";
 NSString *const kMPSettingsKeyHttpPort =@"HttpPort";
@@ -38,6 +39,7 @@ NSString *const kMPSettingsKeyLastDatabasePath = @"MPLastDatabasePath";
            kMPSettingsKeyShowInspector: @YES, // Show the Inspector by default
            kMPSettingsKeyPasteboardClearTimeout: @30, // 30 seconds
            kMPSettingsKeyClearPasteboardOnQuit: @YES,
+           kMPSettingsKeyDoubleClickURLToLaunch: @NO,
            kMPSettingsKeyOpenEmptyDatabaseOnLaunch: @NO,
            kMPSettingsKeyReopenLastDatabaseOnLaunch: @YES,
            kMPSettingsKeyHttpPort: @19455,
