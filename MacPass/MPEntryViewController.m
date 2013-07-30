@@ -17,6 +17,7 @@
 
 #import "MPContextMenuHelper.h"
 #import "MPActionHelper.h"
+#import "MPSettingsHelper.h"
 #import "MPConstants.h"
 #import "MPEntryTableDataSource.h"
 #import "MPStringLengthValueTransformer.h"
@@ -633,7 +634,10 @@ NSString *const _toggleFilterUsernameButton = @"SearchUsername";
     [self copyUsername:nil];
   }
   else if([identifier isEqualToString:MPEntryTableURLColumnIdentifier]) {
-    [self copyURL:nil];
+    if([[NSUserDefaults standardUserDefaults] boolForKey:kMPSettingsKeyDoubleClickURLToLaunch])
+      [self openURL:nil];
+    else
+      [self copyURL:nil];
   }
 }
 
