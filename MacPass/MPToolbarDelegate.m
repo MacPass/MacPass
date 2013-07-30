@@ -89,6 +89,11 @@ NSString *const MPToolbarItemInspector = @"TOOLBAR_INSPECTOR";
       [image setSize:NSMakeSize(16, 16)];
       [button setImage:image];
       [button sizeToFit];
+      
+      NSMenu *menu = [NSMenu allocWithZone:[NSMenu menuZone]];
+      [menu addItemWithTitle:@"Test" action:NULL keyEquivalent:@""];
+      [[button cell] setMenu:menu forSegment:1];
+      
 
       NSRect fittingRect = [button frame];
       fittingRect.size.width = MAX( (CGFloat)32.0,fittingRect.size.width);

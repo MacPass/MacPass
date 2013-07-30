@@ -197,6 +197,7 @@
 		4C888C9716EB754B003D34A1 /* MPActionHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C888C9616EB754B003D34A1 /* MPActionHelper.m */; };
 		4C8A173D1790AA41008B5C17 /* NSData+Keyfile.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C8A173C1790AA41008B5C17 /* NSData+Keyfile.m */; };
 		4C8B36AB17A6ED4B005E1FF1 /* MPOutlineMenuDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C8B36AA17A6ED4B005E1FF1 /* MPOutlineMenuDelegate.m */; };
+		4C8B36AE17A734A1005E1FF1 /* HNHContextButtonSegmentedCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C8B36AD17A734A1005E1FF1 /* HNHContextButtonSegmentedCell.m */; };
 		4C8FECC816D57E3200BF26CF /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4C8FECC716D57E3200BF26CF /* QuartzCore.framework */; };
 		4C96D15417A12E4F00D931FA /* 99_CreatedTemplate.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 4C96D15317A12E4F00D931FA /* 99_CreatedTemplate.pdf */; };
 		4C9D6AA917615199001C660C /* HNHRoundedSecureTextFieldCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C9D6AA817615199001C660C /* HNHRoundedSecureTextFieldCell.m */; };
@@ -627,6 +628,8 @@
 		4C8A173C1790AA41008B5C17 /* NSData+Keyfile.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSData+Keyfile.m"; sourceTree = "<group>"; };
 		4C8B36A917A6ED4B005E1FF1 /* MPOutlineMenuDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MPOutlineMenuDelegate.h; sourceTree = "<group>"; };
 		4C8B36AA17A6ED4B005E1FF1 /* MPOutlineMenuDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MPOutlineMenuDelegate.m; sourceTree = "<group>"; };
+		4C8B36AC17A734A1005E1FF1 /* HNHContextButtonSegmentedCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HNHContextButtonSegmentedCell.h; sourceTree = "<group>"; };
+		4C8B36AD17A734A1005E1FF1 /* HNHContextButtonSegmentedCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HNHContextButtonSegmentedCell.m; sourceTree = "<group>"; };
 		4C8FECC716D57E3200BF26CF /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		4C96D15317A12E4F00D931FA /* 99_CreatedTemplate.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = 99_CreatedTemplate.pdf; sourceTree = "<group>"; };
 		4C9D6AA717615199001C660C /* HNHRoundedSecureTextFieldCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HNHRoundedSecureTextFieldCell.h; sourceTree = "<group>"; };
@@ -1502,6 +1505,8 @@
 				4CF78059176E6D5F0032EE71 /* HNHTableRowView.m */,
 				4C52A242177D7B9F0000D88F /* HNHScrollView.h */,
 				4C52A243177D7B9F0000D88F /* HNHScrollView.m */,
+				4C8B36AC17A734A1005E1FF1 /* HNHContextButtonSegmentedCell.h */,
+				4C8B36AD17A734A1005E1FF1 /* HNHContextButtonSegmentedCell.m */,
 			);
 			path = HNHUi;
 			sourceTree = "<group>";
@@ -2032,6 +2037,7 @@
 				4C4B7EF817A4B335000234C7 /* MPUniqueCharactersFormatter.m in Sources */,
 				4C5FA86D17A5F26800C781C9 /* KPKDataStreamWriter.m in Sources */,
 				4C8B36AB17A6ED4B005E1FF1 /* MPOutlineMenuDelegate.m in Sources */,
+				4C8B36AE17A734A1005E1FF1 /* HNHContextButtonSegmentedCell.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

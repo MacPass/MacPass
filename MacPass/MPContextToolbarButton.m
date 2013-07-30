@@ -8,6 +8,8 @@
 
 #import "MPContextToolbarButton.h"
 
+#import "HNHContextButtonSegmentedCell.h"
+
 @implementation MPContextToolbarButton
 
 - (id)initWithFrame:(NSRect)frame {
@@ -15,11 +17,22 @@
   if (self) {
     [self setFocusRingType:NSFocusRingTypeNone];
     [self setSegmentCount:2];
+    [[self cell] setTag:-1 forSegment:0];
+    [[self cell] setTag:-1 forSegment:1];
     [[self cell] setWidth:15 forSegment:1];
     [[self cell] setTrackingMode:NSSegmentSwitchTrackingMomentary];
     [self setSegmentStyle:NSSegmentStyleTexturedSquare];
+    
+    NSMutableData *data = [[NSMutableData alloc] init];
+    NSKeyedArchiver *archiver = [[NSKeyedArchiver alloc] initForWritingWithMutableData:data];
+    [[self cell] encodeWithCoder:archiver];
+    [archiver finishEncoding];
+    
+    NSKeyedUnarchiver *unarchiver = [[NSKeyedUnarchiver alloc] initForReadingWithData:data];
+    HNHContextButtonSegmentedCell *cell = [[HNHContextButtonSegmentedCell alloc] initWithCoder:unarchiver];
+    [unarchiver finishDecoding];
+    [self setCell:cell];
   }
-  
   return self;
 }
 /*
