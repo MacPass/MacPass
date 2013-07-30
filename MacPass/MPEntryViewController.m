@@ -21,7 +21,7 @@
 #import "MPConstants.h"
 #import "MPEntryTableDataSource.h"
 #import "MPStringLengthValueTransformer.h"
-#import "MPEntryMenuDelegate.h"
+#import "MPEntryContextMenuDelegate.h"
 
 #import "HNHTableHeaderCell.h"
 #import "HNHGradientView.h"
@@ -64,7 +64,7 @@ NSString *const _toggleFilterTitleButton = @"SearchTitle";
 NSString *const _toggleFilterUsernameButton = @"SearchUsername";
 
 @interface MPEntryViewController () {
-  MPEntryMenuDelegate *_menuDelegate;
+  MPEntryContextMenuDelegate *_menuDelegate;
 }
 
 @property (strong) NSArrayController *entryArrayController;
@@ -113,7 +113,7 @@ NSString *const _toggleFilterUsernameButton = @"SearchUsername";
     _entryArrayController = [[NSArrayController alloc] init];
     _dataSource = [[MPEntryTableDataSource alloc] init];
     _dataSource.viewController = self;
-    _menuDelegate = [[MPEntryMenuDelegate alloc] init];
+    _menuDelegate = [[MPEntryContextMenuDelegate alloc] init];
     _menuDelegate.viewController = self;
     
     _selectedEntry = nil;
@@ -624,6 +624,10 @@ NSString *const _toggleFilterUsernameButton = @"SearchUsername";
 - (void)_columnDoubleClick:(id)sender {
   if(0 == [[self.entryArrayController arrangedObjects] count]) {
     return; // No data available
+  }
+  NSInteger columnIndex = [self.entryTable clickedColumn];
+  if(columnIndex < 0 || columnIndex >= [[self.entryTable tableColumns] count]) {
+    return; // No Colum to use
   }
   NSTableColumn *column = [self.entryTable tableColumns][[self.entryTable clickedColumn]];
   NSString *identifier = [column identifier];

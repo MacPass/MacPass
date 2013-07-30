@@ -23,7 +23,7 @@ NSString *const MPGeneralSetingsIdentifier = @"GeneralSettingsTab";
 }
 
 - (NSImage *)image {
-  return [MPIconHelper icon:MPIconWarning];
+  return [NSImage imageNamed:NSImageNamePreferencesGeneral];
 }
 
 - (NSString *)label {

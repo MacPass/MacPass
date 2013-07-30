@@ -9,7 +9,7 @@
 #import <Foundation/Foundation.h>
 @class MPEntryViewController;
 
-@interface MPEntryMenuDelegate : NSObject <NSMenuDelegate>
+@interface MPEntryContextMenuDelegate : NSObject <NSMenuDelegate>
 
 @property (weak) MPEntryViewController *viewController;
 

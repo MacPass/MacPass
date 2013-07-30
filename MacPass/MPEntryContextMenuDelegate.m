@@ -6,7 +6,7 @@
 //  Copyright (c) 2013 HicknHack Software GmbH. All rights reserved.
 //
 
-#import "MPEntryMenuDelegate.h"
+#import "MPEntryContextMenuDelegate.h"
 #import "MPEntryViewController.h"
 
 #import "Kdb4Node.h"
@@ -14,7 +14,7 @@
 static NSUInteger const kMPCustomFieldMenuItem = 1000;
 static NSUInteger const kMPAttachmentsMenuItem = 2000;
 
-@implementation MPEntryMenuDelegate
+@implementation MPEntryContextMenuDelegate
 
 - (void)menuNeedsUpdate:(NSMenu *)menu {
   NSMenuItem *fieldsMenu = [menu itemWithTag:kMPCustomFieldMenuItem];

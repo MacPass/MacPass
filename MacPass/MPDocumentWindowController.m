@@ -20,6 +20,8 @@
 #import "MPSettingsHelper.h"
 #import "MPDocumentWindowDelegate.h"
 
+#import "MPContextToolbarButton.h"
+
 @interface MPDocumentWindowController () {
 @private
   id _firstResponder;

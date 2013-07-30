@@ -108,7 +108,7 @@ APPKIT_EXTERN NSString *const MPDocumnetDidChangeCurrentEntryNotification;
 - (void)deleteEntry:(KdbEntry *)entry;
 
 - (IBAction)emptyTrash:(id)sender;
-
+- (IBAction)createEntryFromTemplate:(id)sender;
 @end
 
 @interface MPDocument (Attachments)

@@ -392,8 +392,11 @@ typedef NS_ENUM(NSUInteger, MPAlertType) {
 }
 
 - (void)useGroupAsTemplate:(KdbGroup *)group {
+  if(self.version != MPDatabaseVersion4) {
+    return; // wrong database version
+  }
   Kdb4Group *groupv4 = (Kdb4Group *)group;
-  if([self.treeV4.entryTemplatesGroup isEqual:groupv4.uuid]) {
+  if(![self.treeV4.entryTemplatesGroup isEqual:groupv4.uuid]) {
     self.treeV4.entryTemplatesGroup = groupv4.uuid;
   }
 }
@@ -527,6 +530,15 @@ typedef NS_ENUM(NSUInteger, MPAlertType) {
   if(returnCode == NSAlertFirstButtonReturn) {
     [self _emptyTrash];
   }
+}
+
+- (void)createEntryFromTemplate:(id)sender {
+  NSMenuItem *item = sender;
+  KdbEntry *entry = [item representedObject];
+  if(entry) {
+    // Create Entry from template;
+  }
+  return;
 }
 
 - (BOOL)validateUserInterfaceItem:(id<NSValidatedUserInterfaceItem>)anItem {

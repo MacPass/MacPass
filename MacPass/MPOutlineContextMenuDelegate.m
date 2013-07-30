@@ -6,7 +6,7 @@
 //  Copyright (c) 2013 HicknHack Software GmbH. All rights reserved.
 //
 
-#import "MPOutlineMenuDelegate.h"
+#import "MPOutlineContextMenuDelegate.h"
 #import "MPOutlineViewController.h"
 
 #import "MPRootAdapter.h"
@@ -23,7 +23,7 @@ NSString *const _MPOutlineMenuTrashItem = @"TrashItem";
 NSString *const _MPOutlineMenuRoot = @"Root";
 NSString *const _MPOutlineMenuTemplate = @"Template";
 
-@implementation MPOutlineMenuDelegate
+@implementation MPOutlineContextMenuDelegate
 
 - (void)menuNeedsUpdate:(NSMenu *)menu {
   /*
@@ -46,6 +46,9 @@ NSString *const _MPOutlineMenuTemplate = @"Template";
     MPDocument *document = [[NSDocumentController sharedDocumentController] currentDocument];
     if(group && document.trash == group) {
       [self _updateTrashMenu:menu];
+    }
+    else if( group && document.templates == group) {
+      [self _updateTemplateMenu:menu];
     }
     else if([document isItemTrashed:group]) {
       [self _updateTrashItemMenu:menu];
@@ -98,6 +101,21 @@ NSString *const _MPOutlineMenuTemplate = @"Template";
            keyEquivalent:@""];
   
   [menu setTitle:_MPOutlineMenuTrashItem];
+}
+
+- (void)_updateTemplateMenu:(NSMenu *)menu {
+  if([[menu title] isEqualToString:_MPOutlineMenuTemplate]) {
+    return; // nothing to do, all fine
+  }
+  [menu removeAllItems];
+  [menu addItemWithTitle:NSLocalizedString(@"EDIT_TEMPLATE_GROUP", "")
+                  action:[MPActionHelper actionOfType:MPActionEditTemplateGroup]
+           keyEquivalent:@""];
+  [menu addItem:[NSMenuItem separatorItem]];
+  for(NSMenuItem *item in [MPContextMenuHelper contextMenuItemsWithItems:MPContextMenuMinimal]) {
+    [menu addItem:item];
+  }
+  [menu setTitle:_MPOutlineMenuTemplate];
 }
 
 

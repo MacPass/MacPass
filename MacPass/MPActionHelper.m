@@ -25,7 +25,8 @@
                    @(MPActionToggleInspector) : @"toggleInspector:",
                    @(MPActionLock) : @"lock:",
                    @(MPActionEmptyTrash) : @"emptyTrash:",
-                   @(MPActionDatabaseSettings) : @"showDatabaseSettings:"
+                   @(MPActionDatabaseSettings) : @"showDatabaseSettings:",
+                   @(MPActionEditTemplateGroup) : @"editTemplateGroup:"
                    };
   });
   return actionDict;

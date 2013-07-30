@@ -12,13 +12,24 @@
 #import "MPUniqueCharactersFormatter.h"
 
 typedef NS_ENUM(NSUInteger, MPPasswordRating) {
-  MPPasswordTerrible,
-  MPPasswordWeak,
-  MPPasswordOk,
-  MPPasswordGood,
-  MPPasswordStrong
+  MPPasswordTerrible = 10,
+  MPPasswordWeak = 20,
+  MPPasswordOk = 30,
+  MPPasswordGood = 50,
+  MPPasswordStrong = 60
 };
 
+
+/*
+ 
+ 0 - 20 Terrible
+ 21 - 31 Weak
+ 32 - 55 Good
+ 56 - 85 Excellent
+ 85 - Fantastic
+ 
+ Skale 0-90
+ */
 #define MIN_PASSWORD_LENGTH 1
 #define MAX_PASSWORD_LENGTH 64
 

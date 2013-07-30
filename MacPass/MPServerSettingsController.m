@@ -21,7 +21,7 @@
 }
 
 - (NSImage *)image {
-  return [MPIconHelper icon:MPIconServer];
+  return [NSImage imageNamed:NSImageNameNetwork];
 }
 
 - (NSString *)label {

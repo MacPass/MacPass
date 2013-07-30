@@ -318,6 +318,7 @@
   if(tree) {
     [self.defaultUsernameTextField setStringValue:tree.defaultUserName];
     [self.defaultUsernameTextField setEditable:YES];
+    [self _updateTemplateGroup:tree];
   }
   else {
     [self.defaultUsernameTextField setStringValue:_missingFeature];
@@ -357,11 +358,12 @@
 }
 
 - (void)_updateTemplateGroup:(Kdb4Tree *)tree {
-  //
+  NSMenu *menu = [self _buildTemplateTreeMenu:tree];
+  [self.templateGroupPopUpButton setMenu:menu];
 }
 
 - (NSMenu *)_buildTrashTreeMenu:(Kdb4Tree *)tree {
-  NSMenu *menu = [self _buildTreeMenu:tree];
+  NSMenu *menu = [self _buildTreeMenu:tree preselect:tree.recycleBinUuid];
   
   NSMenuItem *selectItem = [[NSMenuItem alloc] initWithTitle:NSLocalizedString(@"AUTOCREATE_TRASH_FOLDER", @"Menu item for automatic trash creation")
                                                       action:NULL
@@ -373,7 +375,7 @@
 }
 
 - (NSMenu *)_buildTemplateTreeMenu:(Kdb4Tree *)tree {
-  NSMenu *menu = [self _buildTreeMenu:tree];
+  NSMenu *menu = [self _buildTreeMenu:tree preselect:tree.entryTemplatesGroup];
   
   NSMenuItem *selectItem = [[NSMenuItem alloc] initWithTitle:NSLocalizedString(@"NO_TEMPLATE_GROUP", @"Menu item to reset the template groups")
                                                       action:NULL
@@ -385,9 +387,14 @@
 }
 
 
-- (NSMenu *)_buildTreeMenu:(Kdb4Tree *)tree {
+- (NSMenu *)_buildTreeMenu:(Kdb4Tree *)tree preselect:(UUID *)uuid {
   NSMenu *menu = [[NSMenu alloc] init];
   [menu setAutoenablesItems:NO];
+  
+
+  /*
+   Trash and Templates can be nested, so wee need to adhere to this :(
+   */
   
   for(Kdb4Group *group in tree.root.groups) {
     NSMenuItem *groupItem = [[NSMenuItem alloc] init];
@@ -395,7 +402,7 @@
     [groupItem setTitle:group.name];
     [groupItem setRepresentedObject:group];
     [groupItem setEnabled:YES];
-    if([group.uuid isEqual:tree.recycleBinUuid]) {
+    if(uuid && [group.uuid isEqual:uuid]) {
       [groupItem setState:NSOnState];
     }
     [menu addItem:groupItem];

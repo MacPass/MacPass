@@ -17,7 +17,7 @@
 #import "MPUppercaseStringValueTransformer.h"
 #import "MPRootAdapter.h"
 #import "MPNotifications.h"
-#import "MPOutlineMenuDelegate.h"
+#import "MPOutlineContextMenuDelegate.h"
 
 #import "KdbLib.h"
 #import "Kdb4Node.h"
@@ -32,7 +32,7 @@ NSString *const _MPOutlinveViewHeaderViewIdentifier = @"HeaderCell";
 
 @interface MPOutlineViewController () {
   BOOL _bindingEstablished;
-  MPOutlineMenuDelegate *_menuDelegate;
+  MPOutlineContextMenuDelegate *_menuDelegate;
   
 }
 @property (weak) IBOutlet NSOutlineView *outlineView;
@@ -59,7 +59,7 @@ NSString *const _MPOutlinveViewHeaderViewIdentifier = @"HeaderCell";
     _bindingEstablished = NO;
     _datasource = [[MPOutlineDataSource alloc] init];
     _databaseNameWrapper = NSLocalizedString(@"NEW_DATABASE", "Name for a newly created Database");
-    _menuDelegate = [[MPOutlineMenuDelegate alloc] init];
+    _menuDelegate = [[MPOutlineContextMenuDelegate alloc] init];
     _menuDelegate.viewController = self;
   }
   

@@ -14,6 +14,7 @@
 #import "MPActionHelper.h"
 #import "MPContextMenuHelper.h"
 #import "MPContextToolbarButton.h"
+#import "MPAddEntryContextMenuDelegate.h"
 
 NSString *const MPToolbarItemLock = @"TOOLBAR_LOCK";
 NSString *const MPToolbarItemAddGroup = @"TOOLBAR_ADD_GROUP";
@@ -22,7 +23,9 @@ NSString *const MPToolbarItemDelete =@"TOOLBAR_DELETE";
 NSString *const MPToolbarItemAction = @"TOOLBAR_ACTION";
 NSString *const MPToolbarItemInspector = @"TOOLBAR_INSPECTOR";
 
-@interface MPToolbarDelegate()
+@interface MPToolbarDelegate() {
+  MPAddEntryContextMenuDelegate *_entryMenuDelegate;
+}
 
 @property (strong) NSMutableDictionary *toolbarItems;
 @property (strong) NSArray *toolbarIdentifiers;
@@ -42,6 +45,7 @@ NSString *const MPToolbarItemInspector = @"TOOLBAR_INSPECTOR";
     _toolbarIdentifiers = @[ MPToolbarItemAddEntry, MPToolbarItemDelete, MPToolbarItemAddGroup, MPToolbarItemAction, NSToolbarFlexibleSpaceItemIdentifier, MPToolbarItemLock, MPToolbarItemInspector ];
     _toolbarImages = [self createToolbarImages];
     _toolbarItems = [[NSMutableDictionary alloc] initWithCapacity:[self.toolbarIdentifiers count]];
+    _entryMenuDelegate = [[MPAddEntryContextMenuDelegate alloc] init];
   }
   return self;
 }
@@ -91,8 +95,9 @@ NSString *const MPToolbarItemInspector = @"TOOLBAR_INSPECTOR";
       [button sizeToFit];
       
       NSMenu *menu = [NSMenu allocWithZone:[NSMenu menuZone]];
-      [menu addItemWithTitle:@"Test" action:NULL keyEquivalent:@""];
-      [[button cell] setMenu:menu forSegment:1];
+      [menu addItemWithTitle:@"Dummy" action:NULL keyEquivalent:@""];
+      [menu setDelegate:_entryMenuDelegate];
+      [[button cell] setMenu:menu forSegment:0];
       
 
       NSRect fittingRect = [button frame];
@@ -113,7 +118,7 @@ NSString *const MPToolbarItemInspector = @"TOOLBAR_INSPECTOR";
       [button setImage:image];
       [button sizeToFit];
       [button setAction:[self _actionForToolbarItemIdentifier:itemIdentifier]];
-           
+      
       NSRect fittingRect = [button frame];
       fittingRect.size.width = MAX( (CGFloat)32.0,fittingRect.size.width);
       [button setFrame:fittingRect];

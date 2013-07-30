@@ -10,7 +10,7 @@
 
 @class MPOutlineViewController;
 
-@interface MPOutlineMenuDelegate : NSObject <NSMenuDelegate>
+@interface MPOutlineContextMenuDelegate : NSObject <NSMenuDelegate>
 
 @property (weak) MPOutlineViewController *viewController;
 
