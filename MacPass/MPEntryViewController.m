@@ -21,6 +21,7 @@
 #import "MPConstants.h"
 #import "MPEntryTableDataSource.h"
 #import "MPStringLengthValueTransformer.h"
+#import "MPStripLineBreaksTransformer.h"
 #import "MPEntryContextMenuDelegate.h"
 
 #import "HNHTableHeaderCell.h"
@@ -54,6 +55,8 @@ NSString *const MPEntryTableTitleColumnIdentifier = @"MPTitleColumnIdentifier";
 NSString *const MPEntryTablePasswordColumnIdentifier = @"MPPasswordColumnIdentifier";
 NSString *const MPEntryTableParentColumnIdentifier = @"MPParentColumnIdentifier";
 NSString *const MPEntryTableURLColumnIdentifier = @"MPEntryTableURLColumnIdentifier";
+NSString *const MPEntryTableNotesColumnIdentifier = @"MPEntryTableNotesColumnIdentifier";
+NSString *const MPEntryTableAttachmentColumnIdentifier = @"MPEntryTableAttachmentColumnIdentifier";
 
 NSString *const _MPTableImageCellView = @"ImageCell";
 NSString *const _MPTableStringCellView = @"StringCell";
@@ -113,9 +116,7 @@ NSString *const _toggleFilterUsernameButton = @"SearchUsername";
     _entryArrayController = [[NSArrayController alloc] init];
     _dataSource = [[MPEntryTableDataSource alloc] init];
     _dataSource.viewController = self;
-    _menuDelegate = [[MPEntryContextMenuDelegate alloc] init];
-    _menuDelegate.viewController = self;
-    
+    _menuDelegate = [[MPEntryContextMenuDelegate alloc] init];    
     _selectedEntry = nil;
   }
   return self;
@@ -127,7 +128,7 @@ NSString *const _toggleFilterUsernameButton = @"SearchUsername";
 }
 
 - (void)didLoadView {
-  [self.view setWantsLayer:YES];
+  [[self view] setWantsLayer:YES];
   [self _hideFilterBarAnimated];
   
   [_bottomBar setBorderType:HNHBorderTop];
@@ -150,7 +151,10 @@ NSString *const _toggleFilterUsernameButton = @"SearchUsername";
   NSTableColumn *userNameColumn = [self.entryTable tableColumns][2];
   NSTableColumn *passwordColumn = [self.entryTable tableColumns][3];
   NSTableColumn *urlColumn = [self.entryTable tableColumns][4];
-  
+  NSTableColumn *attachmentsColumn = [[NSTableColumn alloc] initWithIdentifier:MPEntryTableAttachmentColumnIdentifier];
+  NSTableColumn *notesColumn = [[NSTableColumn alloc] initWithIdentifier:MPEntryTableNotesColumnIdentifier];
+  [self.entryTable addTableColumn:notesColumn];
+  [self.entryTable addTableColumn:attachmentsColumn];
   
   [parentColumn setIdentifier:MPEntryTableParentColumnIdentifier];
   [titleColumn setIdentifier:MPEntryTableTitleColumnIdentifier];
@@ -169,16 +173,19 @@ NSString *const _toggleFilterUsernameButton = @"SearchUsername";
   [userNameColumn setSortDescriptorPrototype:userNameSortDescriptor];
   [urlColumn setSortDescriptorPrototype:urlSortDescriptor];
   
-  [[parentColumn headerCell] setStringValue:@"Group"];
-  [[titleColumn headerCell] setStringValue:@"Title"];
-  [[userNameColumn headerCell] setStringValue:@"Username"];
-  [[passwordColumn headerCell] setStringValue:@"Password"];
-  [[urlColumn headerCell] setStringValue:@"URL"];
+  [[parentColumn headerCell] setStringValue:NSLocalizedString(@"GROUP", "")];
+  [[titleColumn headerCell] setStringValue:NSLocalizedString(@"TITLE", "")];
+  [[userNameColumn headerCell] setStringValue:NSLocalizedString(@"USERNAME", "")];
+  [[passwordColumn headerCell] setStringValue:NSLocalizedString(@"PASSWORD", "")];
+  [[urlColumn headerCell] setStringValue:NSLocalizedString(@"URL", "")];
+  [[notesColumn headerCell] setStringValue:NSLocalizedString(@"NOTES", "")];
+  [[attachmentsColumn headerCell] setStringValue:NSLocalizedString(@"ATTACHMENTS", "")];
   
   [self.entryTable bind:NSContentBinding toObject:self.entryArrayController withKeyPath:@"arrangedObjects" options:nil];
   [self.entryTable bind:NSSortDescriptorsBinding toObject:self.entryArrayController withKeyPath:@"sortDescriptors" options:nil];
   [self.entryTable setDataSource:_dataSource];
   
+  [self _setupHeaderMenu];
   [parentColumn setHidden:YES];
   
 }
@@ -195,18 +202,19 @@ NSString *const _toggleFilterUsernameButton = @"SearchUsername";
 
 - (NSView *)tableView:(NSTableView *)tableView viewForTableColumn:(NSTableColumn *)tableColumn row:(NSInteger)row {
   KdbEntry *entry = [self.entryArrayController arrangedObjects][row];
-  
-  const BOOL isTitleColumn = [[tableColumn identifier] isEqualToString:MPEntryTableTitleColumnIdentifier];
-  const BOOL isGroupColumn = [[tableColumn identifier] isEqualToString:MPEntryTableParentColumnIdentifier];
-  const BOOL isPasswordColum = [[tableColumn identifier] isEqualToString:MPEntryTablePasswordColumnIdentifier];
-  const BOOL isUsernameColumn = [[tableColumn identifier] isEqualToString:MPEntryTableUserNameColumnIdentifier];
-  const BOOL isURLColumn = [[tableColumn identifier] isEqualToString:MPEntryTableURLColumnIdentifier];
+  BOOL isTitleColumn = [[tableColumn identifier] isEqualToString:MPEntryTableTitleColumnIdentifier];
+  BOOL isGroupColumn = [[tableColumn identifier] isEqualToString:MPEntryTableParentColumnIdentifier];
+  BOOL isPasswordColum = [[tableColumn identifier] isEqualToString:MPEntryTablePasswordColumnIdentifier];
+  BOOL isUsernameColumn = [[tableColumn identifier] isEqualToString:MPEntryTableUserNameColumnIdentifier];
+  BOOL isURLColumn = [[tableColumn identifier] isEqualToString:MPEntryTableURLColumnIdentifier];
+  BOOL isAttachmentColumn = [[tableColumn identifier] isEqualToString:MPEntryTableAttachmentColumnIdentifier];
+  BOOL isNotesColumn = [[tableColumn identifier] isEqualToString:MPEntryTableNotesColumnIdentifier];
   
   NSTableCellView *view = nil;
   if(isTitleColumn || isGroupColumn) {
     view = [tableView makeViewWithIdentifier:_MPTableImageCellView owner:self];
     if( isTitleColumn ) {
-      [[view textField] bind:NSValueBinding toObject:entry withKeyPath:MPEntryTitleUndoableKey options:nil];
+      [[view textField] bind:NSValueBinding toObject:entry withKeyPath:@"titleUndoable" options:nil];
       [[view imageView] setImage:[MPIconHelper icon:(MPIconType)entry.image]];
     }
     else {
@@ -218,17 +226,23 @@ NSString *const _toggleFilterUsernameButton = @"SearchUsername";
   else if( isPasswordColum ) {
     view = [tableView makeViewWithIdentifier:_MPTAbleSecurCellView owner:self];
     NSDictionary *options = @{ NSValueTransformerBindingOption : [NSValueTransformer valueTransformerForName:MPStringLengthValueTransformerName] };
-    [[view textField] bind:NSValueBinding toObject:entry withKeyPath:MPEntryPasswordUndoableKey options:options];
+    [[view textField] bind:NSValueBinding toObject:entry withKeyPath:@"passwordUndoable" options:options];
   }
-  else if( isUsernameColumn || isURLColumn ) {
+  else  {
     view = [tableView makeViewWithIdentifier:_MPTableStringCellView owner:self];
     if(isURLColumn) {
-      [[view textField] bind:NSValueBinding toObject:entry withKeyPath:MPEntryUrlUndoableKey options:nil];
-      //[[view textField] setStringValue:entry.url];
+      [[view textField] bind:NSValueBinding toObject:entry withKeyPath:@"urlUndoable" options:nil];
     }
-    else {
-      [[view textField] bind:NSValueBinding toObject:entry withKeyPath:MPEntryUsernameUndoableKey options:nil];
-      //[[view textField] setStringValue:entry.username];
+    else if( isUsernameColumn) {
+      [[view textField] bind:NSValueBinding toObject:entry withKeyPath:@"usernameUndoable" options:nil];
+    }
+    else if( isNotesColumn ) {
+      NSDictionary *options = @{ NSValueTransformerNameBindingOption : MPStripLineBreaksTransformerName };
+      [[view textField] bind:NSValueBinding toObject:entry withKeyPath:@"notesUndoable" options:options];
+    }
+    else if( isAttachmentColumn ) {
+      [[view textField] setStringValue:@""];
+      //[[view textField] bind:NSValueBinding toObject:entry withKeyPath:@"countOfBinaries" options:nil];
     }
   }
   
@@ -412,7 +426,6 @@ NSString *const _toggleFilterUsernameButton = @"SearchUsername";
                                                             multiplier:1
                                                               constant:0];
   [[self view] addConstraint:self.filterbarTopConstraint];
-  
   [NSAnimationContext runAnimationGroup:^(NSAnimationContext* context) {
     context.duration = STATUS_BAR_ANIMATION_TIME;
     context.allowsImplicitAnimation = YES;
@@ -424,7 +437,6 @@ NSString *const _toggleFilterUsernameButton = @"SearchUsername";
 }
 
 - (void)_hideFilterBarAnimated {
-  
   if(![self _showsFilterBar]) {
     return; // nothing to do;
   }
@@ -522,7 +534,7 @@ NSString *const _toggleFilterUsernameButton = @"SearchUsername";
   self.trashBar.inactiveGradient = [[NSGradient alloc] initWithColors:inactiveColors];
 }
 
-#pragma mark EntryMenu
+#pragma mark ContextMenu
 
 - (void)_setupEntryMenu {
   
@@ -533,8 +545,35 @@ NSString *const _toggleFilterUsernameButton = @"SearchUsername";
   }
   [menu setDelegate:_menuDelegate];
   [self.entryTable setMenu:menu];
-  
 }
+
+- (void)_setupHeaderMenu {
+  NSMenu *headerMenu = [[NSMenu allocWithZone:[NSMenu menuZone]] init];
+  
+  [headerMenu addItemWithTitle:NSLocalizedString(@"TITLE", "") action:NULL keyEquivalent:@""];
+  [headerMenu addItemWithTitle:NSLocalizedString(@"USERNAME", "") action:NULL keyEquivalent:@""];
+  [headerMenu addItemWithTitle:NSLocalizedString(@"PASSWORD", "") action:NULL keyEquivalent:@""];
+  [headerMenu addItemWithTitle:NSLocalizedString(@"URL", "") action:NULL keyEquivalent:@""];
+  [headerMenu addItemWithTitle:NSLocalizedString(@"NOTES", "") action:NULL keyEquivalent:@""];
+  [headerMenu addItemWithTitle:NSLocalizedString(@"ATTACHMENTS", "") action:NULL keyEquivalent:@""];
+  
+  NSArray *identifier = @[ MPEntryTableTitleColumnIdentifier,
+                           MPEntryTableUserNameColumnIdentifier,
+                           MPEntryTablePasswordColumnIdentifier,
+                           MPEntryTableURLColumnIdentifier,
+                           MPEntryTableNotesColumnIdentifier,
+                           MPEntryTableAttachmentColumnIdentifier ];
+  
+  NSDictionary *options = @{ NSValueTransformerNameBindingOption : NSNegateBooleanTransformerName };
+  for(NSMenuItem *item in [headerMenu itemArray]) {
+    NSUInteger index = [headerMenu indexOfItem:item];
+    NSTableColumn *column= [self.entryTable tableColumnWithIdentifier:identifier[index]];
+    [item bind:NSValueBinding toObject:column withKeyPath:@"hidden" options:options];
+  }
+  
+  [[self.entryTable headerView] setMenu:headerMenu];
+}
+
 
 #pragma makr Action Helper
 
@@ -598,6 +637,10 @@ NSString *const _toggleFilterUsernameButton = @"SearchUsername";
   [document deleteEntry:entry];
 }
 
+//- (void)toggleHeader:(id)sender {
+//  //
+//}
+
 #pragma mark Validation
 - (BOOL)validateMenuItem:(NSMenuItem *)menuItem {
   return YES;
@@ -643,6 +686,7 @@ NSString *const _toggleFilterUsernameButton = @"SearchUsername";
     else
       [self copyURL:nil];
   }
+  // TODO: Add more actions for new columns
 }
 
 - (void)setFilterMode:(MPFilterModeType)newFilterMode {

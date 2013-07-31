@@ -45,9 +45,10 @@
 					<object class="NSButton" id="317760263">
 						<reference key="NSNextResponder" ref="1005"/>
 						<int key="NSvFlags">268</int>
-						<string key="NSFrame">{{182, 18}, {118, 25}}</string>
+						<string key="NSFrame">{{262, 18}, {118, 25}}</string>
 						<reference key="NSSuperview" ref="1005"/>
 						<reference key="NSWindow"/>
+						<reference key="NSNextKeyView"/>
 						<string key="NSReuseIdentifierKey">_NS:22</string>
 						<bool key="NSEnabled">YES</bool>
 						<object class="NSButtonCell" key="NSCell" id="619274271">
@@ -81,7 +82,7 @@
 									<object class="NSCollectionView" id="697027275">
 										<reference key="NSNextResponder" ref="785205210"/>
 										<int key="NSvFlags">4370</int>
-										<string key="NSFrameSize">{300, 250}</string>
+										<string key="NSFrameSize">{380, 280}</string>
 										<reference key="NSSuperview" ref="785205210"/>
 										<reference key="NSWindow"/>
 										<reference key="NSNextKeyView" ref="319187659"/>
@@ -105,7 +106,7 @@
 										<int key="NSDraggingSourceMaskForNonLocal">0</int>
 									</object>
 								</array>
-								<string key="NSFrameSize">{300, 250}</string>
+								<string key="NSFrameSize">{380, 280}</string>
 								<reference key="NSSuperview" ref="170990502"/>
 								<reference key="NSWindow"/>
 								<reference key="NSNextKeyView" ref="697027275"/>
@@ -151,7 +152,7 @@
 								<double key="NSPercent">0.63157892227172852</double>
 							</object>
 						</array>
-						<string key="NSFrame">{{10, 50}, {300, 250}}</string>
+						<string key="NSFrame">{{10, 50}, {380, 280}}</string>
 						<reference key="NSSuperview" ref="1005"/>
 						<reference key="NSWindow"/>
 						<reference key="NSNextKeyView" ref="785205210"/>
@@ -165,7 +166,7 @@
 						<double key="NSMagnification">1</double>
 					</object>
 				</array>
-				<string key="NSFrameSize">{320, 310}</string>
+				<string key="NSFrameSize">{400, 340}</string>
 				<reference key="NSSuperview"/>
 				<reference key="NSWindow"/>
 				<reference key="NSNextKeyView" ref="170990502"/>
@@ -179,9 +180,10 @@
 					<object class="NSButton" id="612603831">
 						<reference key="NSNextResponder" ref="340719917"/>
 						<int key="NSvFlags">268</int>
-						<string key="NSFrame">{{9, 9}, {32, 32}}</string>
+						<string key="NSFrame">{{4, 4}, {32, 32}}</string>
 						<reference key="NSSuperview" ref="340719917"/>
 						<reference key="NSWindow"/>
+						<reference key="NSNextKeyView"/>
 						<string key="NSReuseIdentifierKey">_NS:9</string>
 						<bool key="NSEnabled">YES</bool>
 						<object class="NSButtonCell" key="NSCell" id="344314901">
@@ -205,7 +207,7 @@
 						<bool key="NSAllowsLogicalLayoutDirection">NO</bool>
 					</object>
 				</array>
-				<string key="NSFrameSize">{50, 50}</string>
+				<string key="NSFrameSize">{40, 40}</string>
 				<reference key="NSSuperview"/>
 				<reference key="NSWindow"/>
 				<reference key="NSNextKeyView" ref="612603831"/>
@@ -562,22 +564,22 @@
 						<reference key="parent" ref="1005"/>
 					</object>
 					<object class="IBObjectRecord">
-						<int key="objectID">148</int>
+						<int key="objectID">161</int>
 						<reference key="object" ref="1006496299"/>
 						<reference key="parent" ref="612603831"/>
 					</object>
 					<object class="IBObjectRecord">
-						<int key="objectID">149</int>
+						<int key="objectID">162</int>
 						<reference key="object" ref="1004322278"/>
 						<reference key="parent" ref="612603831"/>
 					</object>
 					<object class="IBObjectRecord">
-						<int key="objectID">150</int>
+						<int key="objectID">168</int>
 						<reference key="object" ref="926242244"/>
 						<reference key="parent" ref="340719917"/>
 					</object>
 					<object class="IBObjectRecord">
-						<int key="objectID">151</int>
+						<int key="objectID">169</int>
 						<reference key="object" ref="528411379"/>
 						<reference key="parent" ref="340719917"/>
 					</object>
@@ -617,10 +619,10 @@
 				<boolean value="NO" key="114.IBNSViewMetadataTranslatesAutoresizingMaskIntoConstraints"/>
 				<string key="114.IBPluginDependency">com.apple.InterfaceBuilder.CocoaPlugin</string>
 				<string key="115.IBPluginDependency">com.apple.InterfaceBuilder.CocoaPlugin</string>
-				<string key="148.IBPluginDependency">com.apple.InterfaceBuilder.CocoaPlugin</string>
-				<string key="149.IBPluginDependency">com.apple.InterfaceBuilder.CocoaPlugin</string>
-				<string key="150.IBPluginDependency">com.apple.InterfaceBuilder.CocoaPlugin</string>
-				<string key="151.IBPluginDependency">com.apple.InterfaceBuilder.CocoaPlugin</string>
+				<string key="161.IBPluginDependency">com.apple.InterfaceBuilder.CocoaPlugin</string>
+				<string key="162.IBPluginDependency">com.apple.InterfaceBuilder.CocoaPlugin</string>
+				<string key="168.IBPluginDependency">com.apple.InterfaceBuilder.CocoaPlugin</string>
+				<string key="169.IBPluginDependency">com.apple.InterfaceBuilder.CocoaPlugin</string>
 				<string key="57.CustomClassName">HNHScrollView</string>
 				<boolean value="NO" key="57.IBNSViewMetadataTranslatesAutoresizingMaskIntoConstraints"/>
 				<string key="57.IBPluginDependency">com.apple.InterfaceBuilder.CocoaPlugin</string>
@@ -635,7 +637,7 @@
 			<nil key="activeLocalization"/>
 			<dictionary class="NSMutableDictionary" key="localizations"/>
 			<nil key="sourceID"/>
-			<int key="maxID">151</int>
+			<int key="maxID">169</int>
 		</object>
 		<object class="IBClassDescriber" key="IBDocument.Classes">
 			<array class="NSMutableArray" key="referencedPartialClassDescriptions">
@@ -686,6 +688,27 @@
 					<object class="IBClassDescriptionSource" key="sourceIdentifier">
 						<string key="majorKey">IBProjectSource</string>
 						<string key="minorKey">./Classes/MPViewController.h</string>
+					</object>
+				</object>
+				<object class="IBPartialClassDescription">
+					<string key="className">NSCollectionViewItem</string>
+					<dictionary class="NSMutableDictionary" key="outlets">
+						<string key="imageView">NSImageView</string>
+						<string key="textField">NSTextField</string>
+					</dictionary>
+					<dictionary class="NSMutableDictionary" key="toOneOutletInfosByName">
+						<object class="IBToOneOutletInfo" key="imageView">
+							<string key="name">imageView</string>
+							<string key="candidateClassName">NSImageView</string>
+						</object>
+						<object class="IBToOneOutletInfo" key="textField">
+							<string key="name">textField</string>
+							<string key="candidateClassName">NSTextField</string>
+						</object>
+					</dictionary>
+					<object class="IBClassDescriptionSource" key="sourceIdentifier">
+						<string key="majorKey">IBProjectSource</string>
+						<string key="minorKey">./Classes/NSCollectionViewItem.h</string>
 					</object>
 				</object>
 				<object class="IBPartialClassDescription">

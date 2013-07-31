@@ -99,6 +99,7 @@ typedef NS_ENUM(NSUInteger, MPAlertType) {
     _readOnly = NO;
     _rootAdapter = [[MPRootAdapter alloc] init];
     _version = version;
+    [[self undoManager] setLevelsOfUndo:10];
     switch(_version) {
       case MPDatabaseVersion3:
         self.tree = [Kdb3Tree templateTree];
@@ -195,10 +196,10 @@ typedef NS_ENUM(NSUInteger, MPAlertType) {
 #pragma mark Lock/Unlock/Decrypt
 
 - (BOOL)unlockWithPassword:(NSString *)password keyFileURL:(NSURL *)keyFileURL {
-//  KPKPassword *pwd = [[KPKPassword alloc] initWithPassword:password key:nil];
-//  
-//  KPKTreeCryptor *cryptor = [KPKTreeCryptor treeCryptorWithData:_fileData password:pwd];
-//  KPKTree *tree = [cryptor decryptTree:NULL];
+  //  KPKPassword *pwd = [[KPKPassword alloc] initWithPassword:password key:nil];
+  //
+  //  KPKTreeCryptor *cryptor = [KPKTreeCryptor treeCryptorWithData:_fileData password:pwd];
+  //  KPKTree *tree = [cryptor decryptTree:NULL];
   
   self.key = keyFileURL;
   self.password = [password length] > 0 ? password : nil;

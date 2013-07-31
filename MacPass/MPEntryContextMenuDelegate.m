@@ -7,7 +7,7 @@
 //
 
 #import "MPEntryContextMenuDelegate.h"
-#import "MPEntryViewController.h"
+#import "MPDocument.h"
 
 #import "Kdb4Node.h"
 
@@ -30,9 +30,9 @@ static NSUInteger const kMPAttachmentsMenuItem = 2000;
   if([lastItem isSeparatorItem]) {
     [menu removeItem:lastItem];
   }
-  
-  if([self.viewController.selectedEntry isKindOfClass:[Kdb4Entry class]]) {
-    Kdb4Entry *entry = (Kdb4Entry *)self.viewController.selectedEntry;
+  MPDocument *document = [[NSDocumentController sharedDocumentController] currentDocument];
+  if([document.selectedEntry isKindOfClass:[Kdb4Entry class]]) {
+    Kdb4Entry *entry = (Kdb4Entry *)document.selectedEntry;
     if([entry.stringFields count] > 0) {
       [menu addItem:[NSMenuItem separatorItem]];
       NSMenuItem *customFieldsItem = [[NSMenuItem alloc] init];

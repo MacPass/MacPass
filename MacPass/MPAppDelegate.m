@@ -13,6 +13,7 @@
 #import "MPSettingsHelper.h"
 #import "MPUppercaseStringValueTransformer.h"
 #import "MPStringLengthValueTransformer.h"
+#import "MPStripLineBreaksTransformer.h"
 #import "MPServerDaemon.h"
 #import "MPLockDaemon.h"
 #import "MPDocumentWindowController.h"
@@ -37,6 +38,7 @@
   [MPSettingsHelper setupDefaults];
   [MPUppercaseStringValueTransformer registerTransformer];
   [MPStringLengthValueTransformer registerTransformer];
+  [MPStripLineBreaksTransformer registerTransformer];
 }
 
 - (void)dealloc {

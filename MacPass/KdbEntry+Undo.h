@@ -8,13 +8,6 @@
 
 #import "Kdb.h"
 
-APPKIT_EXTERN NSString *const MPEntryTitleUndoableKey;
-APPKIT_EXTERN NSString *const MPEntryUsernameUndoableKey;
-APPKIT_EXTERN NSString *const MPEntryPasswordUndoableKey;
-APPKIT_EXTERN NSString *const MPEntryUrlUndoableKey;
-APPKIT_EXTERN NSString *const MPEntryNotesUndoableKey;
-
-
 @interface KdbEntry (Undo)
 
 - (NSString *)titleUndoable;

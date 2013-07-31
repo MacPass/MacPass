@@ -11,12 +11,6 @@
 #import "KdbGroup+KVOAdditions.h"
 #import "KdbGroup+MPTreeTools.h"
 
-NSString *const MPEntryTitleUndoableKey = @"titleUndoable";
-NSString *const MPEntryUsernameUndoableKey = @"usernameUndoable";
-NSString *const MPEntryPasswordUndoableKey = @"passwordUndoable";
-NSString *const MPEntryUrlUndoableKey = @"urlUndoable";
-NSString *const MPEntryNotesUndoableKey = @"notesUndoable";
-
 #ifndef MPSetActionName
 #define MPSetActionName(key, comment) \
 if(![[self undoManager] isUndoing]) {\

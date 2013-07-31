@@ -168,6 +168,7 @@
 		4C67D33017981A2B00A7BDFC /* HNHTokenField.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C67D32F17981A2B00A7BDFC /* HNHTokenField.m */; };
 		4C67D33317981ABA00A7BDFC /* HNHTokenFieldCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C67D33217981ABA00A7BDFC /* HNHTokenFieldCell.m */; };
 		4C69A73A16D589DF00EC1B1A /* HNHGradientView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C69A73916D589DF00EC1B1A /* HNHGradientView.m */; };
+		4C6BEA3117A88E6C00CF69A8 /* MPStripLineBreaksTransformer.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C6BEA3017A88E6C00CF69A8 /* MPStripLineBreaksTransformer.m */; };
 		4C6D1D25178579570014C5A5 /* 48_FolderTemplate.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 4C6D1D24178579570014C5A5 /* 48_FolderTemplate.pdf */; };
 		4C6D1D27178586CA0014C5A5 /* 99_AddFolderTemplate.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 4C6D1D26178586CA0014C5A5 /* 99_AddFolderTemplate.pdf */; };
 		4C6D1D2B17858A250014C5A5 /* MacPass.icns in Resources */ = {isa = PBXBuildFile; fileRef = 4C6D1D2A17858A250014C5A5 /* MacPass.icns */; };
@@ -577,6 +578,8 @@
 		4C67D33217981ABA00A7BDFC /* HNHTokenFieldCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HNHTokenFieldCell.m; sourceTree = "<group>"; };
 		4C69A73816D589DF00EC1B1A /* HNHGradientView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HNHGradientView.h; sourceTree = "<group>"; };
 		4C69A73916D589DF00EC1B1A /* HNHGradientView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HNHGradientView.m; sourceTree = "<group>"; };
+		4C6BEA2F17A88E6C00CF69A8 /* MPStripLineBreaksTransformer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MPStripLineBreaksTransformer.h; sourceTree = "<group>"; };
+		4C6BEA3017A88E6C00CF69A8 /* MPStripLineBreaksTransformer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MPStripLineBreaksTransformer.m; sourceTree = "<group>"; };
 		4C6D1D24178579570014C5A5 /* 48_FolderTemplate.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = 48_FolderTemplate.pdf; sourceTree = "<group>"; };
 		4C6D1D26178586CA0014C5A5 /* 99_AddFolderTemplate.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = 99_AddFolderTemplate.pdf; sourceTree = "<group>"; };
 		4C6D1D2A17858A250014C5A5 /* MacPass.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; name = MacPass.icns; path = "../Assets/App icon/MacPass.icns"; sourceTree = "<group>"; };
@@ -1082,6 +1085,8 @@
 				4C5BF67A175C01F300D53DF7 /* MPUppercaseStringValueTransformer.m */,
 				4CF6C70F176F4533007A811D /* MPStringLengthValueTransformer.h */,
 				4CF6C710176F4533007A811D /* MPStringLengthValueTransformer.m */,
+				4C6BEA2F17A88E6C00CF69A8 /* MPStripLineBreaksTransformer.h */,
+				4C6BEA3017A88E6C00CF69A8 /* MPStripLineBreaksTransformer.m */,
 				4C888C9516EB754B003D34A1 /* MPActionHelper.h */,
 				4C888C9616EB754B003D34A1 /* MPActionHelper.m */,
 				4C2E382116D1421B00037A9D /* MPIconHelper.h */,
@@ -2060,6 +2065,7 @@
 				4CD7223B17A7CB0700F5A1E1 /* MPWorkflowSettingsController.m in Sources */,
 				4C2671AD17A7D8FC00F3A645 /* HNHColorWell.m in Sources */,
 				4CA08DA017A831B200A6544B /* MPAddEntryContextMenuDelegate.m in Sources */,
+				4C6BEA3117A88E6C00CF69A8 /* MPStripLineBreaksTransformer.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

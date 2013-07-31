@@ -24,7 +24,7 @@
   
   NSArray *classArray = [NSArray arrayWithObject:[NSURL class]];
   NSArray *arrayOfURLs = [draggingPasteBoard readObjectsForClasses:classArray options:nil];
-  BOOL ok;
+  BOOL ok = NO;
   for(NSURL *url in arrayOfURLs) {
     if([url isFileURL] || [url isFileReferenceURL]) {
       continue;

@@ -45,7 +45,7 @@
 				<string key="NSClassName">NSApplication</string>
 			</object>
 			<object class="NSCustomView" id="997686550">
-				<nil key="NSNextResponder"/>
+				<reference key="NSNextResponder"/>
 				<int key="NSvFlags">268</int>
 				<array class="NSMutableArray" key="NSSubviews">
 					<object class="NSCustomView" id="163272962">
@@ -55,8 +55,10 @@
 							<object class="NSButton" id="276578969">
 								<reference key="NSNextResponder" ref="163272962"/>
 								<int key="NSvFlags">268</int>
+								<array class="NSMutableArray" key="NSSubviews"/>
 								<string key="NSFrame">{{7, 5}, {32, 19}}</string>
 								<reference key="NSSuperview" ref="163272962"/>
+								<reference key="NSWindow"/>
 								<string key="NSReuseIdentifierKey">_NS:9</string>
 								<bool key="NSEnabled">YES</bool>
 								<object class="NSButtonCell" key="NSCell" id="160641004">
@@ -86,6 +88,7 @@
 						</array>
 						<string key="NSFrameSize">{694, 30}</string>
 						<reference key="NSSuperview" ref="997686550"/>
+						<reference key="NSWindow"/>
 						<reference key="NSNextKeyView" ref="276578969"/>
 						<string key="NSReuseIdentifierKey">_NS:9</string>
 						<string key="NSClassName">HNHGradientView</string>
@@ -104,6 +107,7 @@
 										<array class="NSMutableArray" key="NSSubviews"/>
 										<string key="NSFrameSize">{694, 548}</string>
 										<reference key="NSSuperview" ref="262664416"/>
+										<reference key="NSWindow"/>
 										<reference key="NSNextKeyView" ref="736877784"/>
 										<string key="NSReuseIdentifierKey">_NS:13</string>
 										<bool key="NSEnabled">YES</bool>
@@ -114,6 +118,7 @@
 											<int key="NSvFlags">256</int>
 											<string key="NSFrameSize">{694, 17}</string>
 											<reference key="NSSuperview" ref="736877784"/>
+											<reference key="NSWindow"/>
 											<reference key="NSNextKeyView" ref="262664416"/>
 											<reference key="NSTableView" ref="528076956"/>
 										</object>
@@ -143,7 +148,7 @@
 														<int key="NSColorSpace">6</int>
 														<string key="NSCatalogName">System</string>
 														<string key="NSColorName">headerColor</string>
-														<object class="NSColor" key="NSColor">
+														<object class="NSColor" key="NSColor" id="926091365">
 															<int key="NSColorSpace">3</int>
 															<bytes key="NSWhite">MQA</bytes>
 														</object>
@@ -299,10 +304,7 @@
 										</array>
 										<double key="NSIntercellSpacingWidth">3</double>
 										<double key="NSIntercellSpacingHeight">2</double>
-										<object class="NSColor" key="NSBackgroundColor">
-											<int key="NSColorSpace">1</int>
-											<bytes key="NSRGB">MSAxIDEAA</bytes>
-										</object>
+										<reference key="NSBackgroundColor" ref="926091365"/>
 										<object class="NSColor" key="NSGridColor">
 											<int key="NSColorSpace">6</int>
 											<string key="NSCatalogName">System</string>
@@ -326,17 +328,19 @@
 								</array>
 								<string key="NSFrame">{{0, 17}, {694, 548}}</string>
 								<reference key="NSSuperview" ref="613995671"/>
+								<reference key="NSWindow"/>
 								<reference key="NSNextKeyView" ref="528076956"/>
 								<string key="NSReuseIdentifierKey">_NS:11</string>
 								<reference key="NSDocView" ref="528076956"/>
 								<reference key="NSBGColor" ref="136901388"/>
-								<int key="NScvFlags">6</int>
+								<int key="NScvFlags">4</int>
 							</object>
 							<object class="NSScroller" id="1037276411">
 								<reference key="NSNextResponder" ref="613995671"/>
 								<int key="NSvFlags">-2147483392</int>
 								<string key="NSFrame">{{224, 17}, {15, 102}}</string>
 								<reference key="NSSuperview" ref="613995671"/>
+								<reference key="NSWindow"/>
 								<reference key="NSNextKeyView" ref="802411427"/>
 								<string key="NSReuseIdentifierKey">_NS:58</string>
 								<bool key="NSAllowsLogicalLayoutDirection">NO</bool>
@@ -349,6 +353,7 @@
 								<int key="NSvFlags">-2147483392</int>
 								<string key="NSFrame">{{0, 310}, {480, 16}}</string>
 								<reference key="NSSuperview" ref="613995671"/>
+								<reference key="NSWindow"/>
 								<reference key="NSNextKeyView" ref="163272962"/>
 								<string key="NSReuseIdentifierKey">_NS:60</string>
 								<bool key="NSAllowsLogicalLayoutDirection">NO</bool>
@@ -365,6 +370,7 @@
 								</array>
 								<string key="NSFrameSize">{694, 17}</string>
 								<reference key="NSSuperview" ref="613995671"/>
+								<reference key="NSWindow"/>
 								<reference key="NSNextKeyView" ref="253618752"/>
 								<reference key="NSDocView" ref="253618752"/>
 								<reference key="NSBGColor" ref="136901388"/>
@@ -373,6 +379,7 @@
 						</array>
 						<string key="NSFrame">{{0, 30}, {694, 565}}</string>
 						<reference key="NSSuperview" ref="997686550"/>
+						<reference key="NSWindow"/>
 						<reference key="NSNextKeyView" ref="262664416"/>
 						<string key="NSReuseIdentifierKey">_NS:9</string>
 						<int key="NSsFlags">133680</int>
@@ -387,6 +394,8 @@
 					</object>
 				</array>
 				<string key="NSFrameSize">{694, 594}</string>
+				<reference key="NSSuperview"/>
+				<reference key="NSWindow"/>
 				<reference key="NSNextKeyView" ref="613995671"/>
 				<string key="NSReuseIdentifierKey">_NS:9</string>
 				<string key="NSClassName">NSView</string>
@@ -1729,7 +1738,7 @@
 			<nil key="activeLocalization"/>
 			<dictionary class="NSMutableDictionary" key="localizations"/>
 			<nil key="sourceID"/>
-			<int key="maxID">844</int>
+			<int key="maxID">867</int>
 		</object>
 		<object class="IBClassDescriber" key="IBDocument.Classes">
 			<array class="NSMutableArray" key="referencedPartialClassDescriptions">
@@ -1756,7 +1765,7 @@
 						<string key="filterTitleButton">NSButton</string>
 						<string key="filterURLButton">NSButton</string>
 						<string key="filterUsernameButton">NSButton</string>
-						<string key="tableToTop">NSLayoutConstraint</string>
+						<string key="tableToTopConstraint">NSLayoutConstraint</string>
 						<string key="trashBar">HNHGradientView</string>
 					</dictionary>
 					<dictionary class="NSMutableDictionary" key="toOneOutletInfosByName">
@@ -1804,8 +1813,8 @@
 							<string key="name">filterUsernameButton</string>
 							<string key="candidateClassName">NSButton</string>
 						</object>
-						<object class="IBToOneOutletInfo" key="tableToTop">
-							<string key="name">tableToTop</string>
+						<object class="IBToOneOutletInfo" key="tableToTopConstraint">
+							<string key="name">tableToTopConstraint</string>
 							<string key="candidateClassName">NSLayoutConstraint</string>
 						</object>
 						<object class="IBToOneOutletInfo" key="trashBar">
