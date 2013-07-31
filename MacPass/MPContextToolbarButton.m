@@ -8,8 +8,6 @@
 
 #import "MPContextToolbarButton.h"
 
-#import "HNHContextButtonSegmentedCell.h"
-
 @implementation MPContextToolbarButton
 
 - (id)initWithFrame:(NSRect)frame {

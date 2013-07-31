@@ -8,11 +8,13 @@
 
 #import "MPGroupInspectorViewController.h"
 #import "MPDocument.h"
+#import "MPPasteBoardController.h"
 
 #import "Kdb.h"
 #import "Kdb4Node.h"
 
 #import "HNHScrollView.h"
+#import "HNHRoundedTextField.h"
 
 @interface MPGroupInspectorViewController ()
 
@@ -51,6 +53,12 @@
                                                                    metrics:nil
                                                                      views:views]];
   [[self view] layoutSubtreeIfNeeded];
+  
+  copyAction copyBlock = ^void(NSTextField *textField) {
+    [[MPPasteBoardController defaultController] copyObjects:@[ textField.stringValue ]];
+  };
+  
+  self.titleTextField.copyActionBlock = copyBlock;
 }
 
 - (void)setupBindings:(MPDocument *)document {

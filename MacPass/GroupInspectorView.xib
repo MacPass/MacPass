@@ -54,7 +54,6 @@
 						<string key="NSFrame">{{18, 99}, {222, 26}}</string>
 						<reference key="NSSuperview" ref="154788810"/>
 						<reference key="NSWindow"/>
-						<reference key="NSNextKeyView"/>
 						<string key="NSReuseIdentifierKey">_NS:9</string>
 						<string key="NSAntiCompressionPriority">{249, 750}</string>
 						<bool key="NSEnabled">YES</bool>
@@ -336,7 +335,7 @@
 										<string key="NSFrameSize">{215, 257}</string>
 										<reference key="NSSuperview" ref="600246267"/>
 										<reference key="NSWindow"/>
-										<reference key="NSNextKeyView" ref="707535614"/>
+										<reference key="NSNextKeyView" ref="747041324"/>
 										<string key="NSReuseIdentifierKey">_NS:13</string>
 										<object class="NSTextContainer" key="NSTextContainer" id="192398905">
 											<object class="NSLayoutManager" key="NSLayoutManager">
@@ -462,7 +461,7 @@
 						<string key="NSFrame">{{20, 190}, {217, 259}}</string>
 						<reference key="NSSuperview" ref="154788810"/>
 						<reference key="NSWindow"/>
-						<reference key="NSNextKeyView" ref="600246267"/>
+						<reference key="NSNextKeyView" ref="707535614"/>
 						<string key="NSReuseIdentifierKey">_NS:9</string>
 						<string key="NSAntiCompressionPriority">{750, 750}</string>
 						<int key="NSsFlags">133138</int>
@@ -549,7 +548,7 @@
 								<string key="NSFrameSize">{255, 421}</string>
 								<reference key="NSSuperview" ref="83897318"/>
 								<reference key="NSWindow"/>
-								<reference key="NSNextKeyView" ref="296338600"/>
+								<reference key="NSNextKeyView" ref="227728764"/>
 								<string key="NSReuseIdentifierKey">_NS:13</string>
 							</object>
 						</array>
@@ -593,7 +592,7 @@
 				<string key="NSFrameSize">{255, 421}</string>
 				<reference key="NSSuperview"/>
 				<reference key="NSWindow"/>
-				<reference key="NSNextKeyView" ref="83897318"/>
+				<reference key="NSNextKeyView" ref="296338600"/>
 				<string key="NSReuseIdentifierKey">_NS:9</string>
 				<int key="NSsFlags">133152</int>
 				<reference key="NSVScroller" ref="296338600"/>
@@ -1361,6 +1360,7 @@
 				<string key="226.IBPluginDependency">com.apple.InterfaceBuilder.CocoaPlugin</string>
 				<boolean value="NO" key="229.IBNSViewMetadataTranslatesAutoresizingMaskIntoConstraints"/>
 				<string key="229.IBPluginDependency">com.apple.InterfaceBuilder.CocoaPlugin</string>
+				<string key="23.CustomClassName">HNHRoundedTextField</string>
 				<boolean value="NO" key="23.IBNSViewMetadataTranslatesAutoresizingMaskIntoConstraints"/>
 				<string key="23.IBPluginDependency">com.apple.InterfaceBuilder.CocoaPlugin</string>
 				<string key="230.IBPluginDependency">com.apple.InterfaceBuilder.CocoaPlugin</string>
@@ -1383,7 +1383,6 @@
 				<string key="250.IBPluginDependency">com.apple.InterfaceBuilder.CocoaPlugin</string>
 				<string key="255.IBPluginDependency">com.apple.InterfaceBuilder.CocoaPlugin</string>
 				<string key="256.IBPluginDependency">com.apple.InterfaceBuilder.CocoaPlugin</string>
-				<string key="26.CustomClassName">HNHRoundedTextFieldCell</string>
 				<string key="26.IBPluginDependency">com.apple.InterfaceBuilder.CocoaPlugin</string>
 				<string key="263.IBPluginDependency">com.apple.InterfaceBuilder.CocoaPlugin</string>
 				<string key="27.IBPluginDependency">com.apple.InterfaceBuilder.CocoaPlugin</string>
@@ -1449,11 +1448,11 @@
 		<object class="IBClassDescriber" key="IBDocument.Classes">
 			<array class="NSMutableArray" key="referencedPartialClassDescriptions">
 				<object class="IBPartialClassDescription">
-					<string key="className">HNHRoundedTextFieldCell</string>
-					<string key="superclassName">NSTextFieldCell</string>
+					<string key="className">HNHRoundedTextField</string>
+					<string key="superclassName">NSTextField</string>
 					<object class="IBClassDescriptionSource" key="sourceIdentifier">
 						<string key="majorKey">IBProjectSource</string>
-						<string key="minorKey">./Classes/HNHRoundedTextFieldCell.h</string>
+						<string key="minorKey">./Classes/HNHRoundedTextField.h</string>
 					</object>
 				</object>
 				<object class="IBPartialClassDescription">
@@ -1478,7 +1477,7 @@
 					<dictionary class="NSMutableDictionary" key="outlets">
 						<string key="contentView">NSView</string>
 						<string key="notesTextView">NSTextView</string>
-						<string key="titleTextField">NSTextField</string>
+						<string key="titleTextField">HNHRoundedTextField</string>
 					</dictionary>
 					<dictionary class="NSMutableDictionary" key="toOneOutletInfosByName">
 						<object class="IBToOneOutletInfo" key="contentView">
@@ -1491,7 +1490,7 @@
 						</object>
 						<object class="IBToOneOutletInfo" key="titleTextField">
 							<string key="name">titleTextField</string>
-							<string key="candidateClassName">NSTextField</string>
+							<string key="candidateClassName">HNHRoundedTextField</string>
 						</object>
 					</dictionary>
 					<object class="IBClassDescriptionSource" key="sourceIdentifier">

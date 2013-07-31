@@ -187,6 +187,9 @@
 		4C77E37A15B84A240093A587 /* MPAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C77E37915B84A240093A587 /* MPAppDelegate.m */; };
 		4C77E37D15B84A240093A587 /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4C77E37B15B84A240093A587 /* MainMenu.xib */; };
 		4C79DF2A176685870083708F /* HNHRoundedTextField.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C79DF29176685870083708F /* HNHRoundedTextField.m */; };
+		4C79E80317A9187400AC6CD2 /* KPKXmlHeaderWriter.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C79E80217A9187400AC6CD2 /* KPKXmlHeaderWriter.m */; };
+		4C79E80617A9400500AC6CD2 /* KPKTestNSCoding.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C79E80517A9400500AC6CD2 /* KPKTestNSCoding.m */; };
+		4C79E80917A9485600AC6CD2 /* KPKTestNSCopying.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C79E80817A9485600AC6CD2 /* KPKTestNSCopying.m */; };
 		4C7F35681779DFFB00C57890 /* Errors.strings in Resources */ = {isa = PBXBuildFile; fileRef = 4C7F356A1779DFFB00C57890 /* Errors.strings */; };
 		4C801AFC179310E2002821E3 /* NSString+Hexdata.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C801AFB179310E2002821E3 /* NSString+Hexdata.m */; };
 		4C80BB6F176DE06F00E5E248 /* HNHScrollDocumentViewAdapter.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C80BB6E176DE06F00E5E248 /* HNHScrollDocumentViewAdapter.m */; };
@@ -199,7 +202,6 @@
 		4C888C9716EB754B003D34A1 /* MPActionHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C888C9616EB754B003D34A1 /* MPActionHelper.m */; };
 		4C8A173D1790AA41008B5C17 /* NSData+Keyfile.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C8A173C1790AA41008B5C17 /* NSData+Keyfile.m */; };
 		4C8B36AB17A6ED4B005E1FF1 /* MPOutlineContextMenuDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C8B36AA17A6ED4B005E1FF1 /* MPOutlineContextMenuDelegate.m */; };
-		4C8B36AE17A734A1005E1FF1 /* HNHContextButtonSegmentedCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C8B36AD17A734A1005E1FF1 /* HNHContextButtonSegmentedCell.m */; };
 		4C8FECC816D57E3200BF26CF /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4C8FECC716D57E3200BF26CF /* QuartzCore.framework */; };
 		4C96D15417A12E4F00D931FA /* 99_CreatedTemplate.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 4C96D15317A12E4F00D931FA /* 99_CreatedTemplate.pdf */; };
 		4C9D6AA917615199001C660C /* HNHRoundedSecureTextFieldCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C9D6AA817615199001C660C /* HNHRoundedSecureTextFieldCell.m */; };
@@ -614,6 +616,12 @@
 		4C77E37915B84A240093A587 /* MPAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MPAppDelegate.m; sourceTree = "<group>"; };
 		4C79DF28176685870083708F /* HNHRoundedTextField.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HNHRoundedTextField.h; sourceTree = "<group>"; };
 		4C79DF29176685870083708F /* HNHRoundedTextField.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HNHRoundedTextField.m; sourceTree = "<group>"; };
+		4C79E80117A9187400AC6CD2 /* KPKXmlHeaderWriter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KPKXmlHeaderWriter.h; sourceTree = "<group>"; };
+		4C79E80217A9187400AC6CD2 /* KPKXmlHeaderWriter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KPKXmlHeaderWriter.m; sourceTree = "<group>"; };
+		4C79E80417A9400500AC6CD2 /* KPKTestNSCoding.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KPKTestNSCoding.h; sourceTree = "<group>"; };
+		4C79E80517A9400500AC6CD2 /* KPKTestNSCoding.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KPKTestNSCoding.m; sourceTree = "<group>"; };
+		4C79E80717A9485600AC6CD2 /* KPKTestNSCopying.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KPKTestNSCopying.h; sourceTree = "<group>"; };
+		4C79E80817A9485600AC6CD2 /* KPKTestNSCopying.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KPKTestNSCopying.m; sourceTree = "<group>"; };
 		4C7F35691779DFFB00C57890 /* en */ = {isa = PBXFileReference; fileEncoding = 10; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Errors.strings; sourceTree = "<group>"; };
 		4C7F356B1779DFFF00C57890 /* de */ = {isa = PBXFileReference; fileEncoding = 10; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/Errors.strings; sourceTree = "<group>"; };
 		4C801AFA179310E2002821E3 /* NSString+Hexdata.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+Hexdata.h"; sourceTree = "<group>"; };
@@ -637,8 +645,6 @@
 		4C8A173C1790AA41008B5C17 /* NSData+Keyfile.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSData+Keyfile.m"; sourceTree = "<group>"; };
 		4C8B36A917A6ED4B005E1FF1 /* MPOutlineContextMenuDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MPOutlineContextMenuDelegate.h; sourceTree = "<group>"; };
 		4C8B36AA17A6ED4B005E1FF1 /* MPOutlineContextMenuDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MPOutlineContextMenuDelegate.m; sourceTree = "<group>"; };
-		4C8B36AC17A734A1005E1FF1 /* HNHContextButtonSegmentedCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HNHContextButtonSegmentedCell.h; sourceTree = "<group>"; };
-		4C8B36AD17A734A1005E1FF1 /* HNHContextButtonSegmentedCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HNHContextButtonSegmentedCell.m; sourceTree = "<group>"; };
 		4C8FECC716D57E3200BF26CF /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		4C96D15317A12E4F00D931FA /* 99_CreatedTemplate.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = 99_CreatedTemplate.pdf; sourceTree = "<group>"; };
 		4C9D6AA717615199001C660C /* HNHRoundedSecureTextFieldCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HNHRoundedSecureTextFieldCell.h; sourceTree = "<group>"; };
@@ -1173,6 +1179,10 @@
 				4C1842B7179B348600E2F5BC /* KPKLegacyLoadingTest.m */,
 				4CFC8741179DFD3E000DFC03 /* KPKXmlLoadingTest.h */,
 				4CFC8742179DFD3E000DFC03 /* KPKXmlLoadingTest.m */,
+				4C79E80417A9400500AC6CD2 /* KPKTestNSCoding.h */,
+				4C79E80517A9400500AC6CD2 /* KPKTestNSCoding.m */,
+				4C79E80717A9485600AC6CD2 /* KPKTestNSCopying.h */,
+				4C79E80817A9485600AC6CD2 /* KPKTestNSCopying.m */,
 			);
 			path = MacPassTests;
 			sourceTree = "<group>";
@@ -1525,8 +1535,6 @@
 				4CF78059176E6D5F0032EE71 /* HNHTableRowView.m */,
 				4C52A242177D7B9F0000D88F /* HNHScrollView.h */,
 				4C52A243177D7B9F0000D88F /* HNHScrollView.m */,
-				4C8B36AC17A734A1005E1FF1 /* HNHContextButtonSegmentedCell.h */,
-				4C8B36AD17A734A1005E1FF1 /* HNHContextButtonSegmentedCell.m */,
 				4C2671AB17A7D8FC00F3A645 /* HNHColorWell.h */,
 				4C2671AC17A7D8FC00F3A645 /* HNHColorWell.m */,
 			);
@@ -1603,6 +1611,8 @@
 				4C1842C9179C616700E2F5BC /* KPKTreeCryptor.m */,
 				4C1842BA179B434C00E2F5BC /* KPKXmlHeaderReader.h */,
 				4C1842BB179B434C00E2F5BC /* KPKXmlHeaderReader.m */,
+				4C79E80117A9187400AC6CD2 /* KPKXmlHeaderWriter.h */,
+				4C79E80217A9187400AC6CD2 /* KPKXmlHeaderWriter.m */,
 				4C1842D1179C64EF00E2F5BC /* KPKXmlTreeCryptor.h */,
 				4C1842D2179C64EF00E2F5BC /* KPKXmlTreeCryptor.m */,
 				4C5AA58F179549A1008ECAD7 /* KPKXmlTreeWriter.h */,
@@ -1862,6 +1872,8 @@
 				4C305F3C179A19F90082334F /* KPKIconLoading.m in Sources */,
 				4C1842B8179B348600E2F5BC /* KPKLegacyLoadingTest.m in Sources */,
 				4CFC8743179DFD3E000DFC03 /* KPKXmlLoadingTest.m in Sources */,
+				4C79E80617A9400500AC6CD2 /* KPKTestNSCoding.m in Sources */,
+				4C79E80917A9485600AC6CD2 /* KPKTestNSCopying.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2061,11 +2073,11 @@
 				4C4B7EF817A4B335000234C7 /* MPUniqueCharactersFormatter.m in Sources */,
 				4C5FA86D17A5F26800C781C9 /* KPKDataStreamWriter.m in Sources */,
 				4C8B36AB17A6ED4B005E1FF1 /* MPOutlineContextMenuDelegate.m in Sources */,
-				4C8B36AE17A734A1005E1FF1 /* HNHContextButtonSegmentedCell.m in Sources */,
 				4CD7223B17A7CB0700F5A1E1 /* MPWorkflowSettingsController.m in Sources */,
 				4C2671AD17A7D8FC00F3A645 /* HNHColorWell.m in Sources */,
 				4CA08DA017A831B200A6544B /* MPAddEntryContextMenuDelegate.m in Sources */,
 				4C6BEA3117A88E6C00CF69A8 /* MPStripLineBreaksTransformer.m in Sources */,
+				4C79E80317A9187400AC6CD2 /* KPKXmlHeaderWriter.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
