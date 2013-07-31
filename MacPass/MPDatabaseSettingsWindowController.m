@@ -109,6 +109,7 @@
     _document.treeV4.protectTitle = protectTitle;
     _document.treeV4.protectUrl = protectURL;
     _document.treeV4.protectUserName = protectUsername;
+    _document.treeV4.defaultUserName = [self.defaultUsernameTextField stringValue];
     
   }
   else {
