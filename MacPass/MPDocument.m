@@ -356,6 +356,9 @@ typedef NS_ENUM(NSUInteger, MPAlertType) {
 
 - (KdbGroup *)templates {
   static KdbGroup *_templates = nil;
+  if(self.version == MPDatabaseVersion3) {
+    return nil;
+  }
   BOOL templateValid = [((Kdb4Group *)_templates).uuid isEqual:self.treeV4.entryTemplatesGroup];
   if(!templateValid) {
     _templates = [self findGroup:self.treeV4.entryTemplatesGroup];
@@ -364,6 +367,9 @@ typedef NS_ENUM(NSUInteger, MPAlertType) {
 }
 
 - (BOOL)isItemTrashed:(id)item {
+  if(self.version == MPDatabaseVersion3) {
+    return NO;
+  }
   BOOL validItem = [item isKindOfClass:[KdbEntry class]] || [item isKindOfClass:[KdbGroup class]];
   if(!item) {
     return NO;
