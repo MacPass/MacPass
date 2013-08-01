@@ -28,10 +28,6 @@
 }
 
 - (void)testEntryCoding {
-  /*
-   1. Deep Copy
-   2. Copy without History
-   */
   KPKEntry *entry = [[KPKEntry alloc] init];
   
   entry.title = @"Title";

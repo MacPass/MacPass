@@ -46,10 +46,7 @@ if(![[self undoManager] isUndoing]) {\
 
 - (void)setTitleUndoable:(NSString *)title {
   [[self undoManager] registerUndoWithTarget:self selector:@selector(setTitleUndoable:) object:self.title];
-  
-  if(![[self undoManager] isUndoing]) {
-    [[self undoManager] setActionName:NSLocalizedString(@"SET_TITLE", "Set Title")];
-  }
+  MPSetActionName(@"SET_TITLE", "");
   
   [self setLastModificationTime:[NSDate date]];
   [self setTitle:title];
@@ -57,11 +54,8 @@ if(![[self undoManager] isUndoing]) {\
 
 - (void)setUsernameUndoable:(NSString *)username {
   [[self undoManager] registerUndoWithTarget:self selector:@selector(setUsernameUndoable:) object:self.username];
-  
-  if(![[self undoManager] isUndoing]) {
-    [[self undoManager] setActionName:NSLocalizedString(@"SET_USERNAME", "Undo set username")];
-  }
-  
+  MPSetActionName(@"SET_USERNAME", "");
+ 
   [self setLastModificationTime:[NSDate date]];
   [self setUsername:username];
 }
@@ -69,10 +63,6 @@ if(![[self undoManager] isUndoing]) {\
 - (void)setPasswordUndoable:(NSString *)password {
   [[self undoManager] registerUndoWithTarget:self selector:@selector(setPasswordUndoable:) object:self.password];
   MPSetActionName(@"SET_PASSWORT", "Undo set password");
-  
-  if(![[self undoManager] isUndoing]) {
-    [[self undoManager] setActionName:NSLocalizedString(@"SET_PASSWORD", "Set Password")];
-  }
   
   [self setLastModificationTime:[NSDate date]];
   [self setPassword:password];
@@ -82,10 +72,6 @@ if(![[self undoManager] isUndoing]) {\
   [[self undoManager] registerUndoWithTarget:self selector:@selector(setUrlUndoable:) object:self.url];
   MPSetActionName(@"SET_URL", "Undo set URL");
   
-  if(![[self undoManager] isUndoing]) {
-    [[self undoManager] setActionName:NSLocalizedString(@"SET_TITLE", "Set Title")];
-  }
-  
   [self setLastModificationTime:[NSDate date]];
   [self setUrl:url];
 }
@@ -93,10 +79,6 @@ if(![[self undoManager] isUndoing]) {\
 - (void)setNotesUndoable:(NSString *)notes {
   [[self undoManager] registerUndoWithTarget:self selector:@selector(setNotesUndoable:) object:self.notes];
   MPSetActionName(@"SET_NOTES", "Set Notes");
-  
-  if(![[self undoManager] isUndoing]) {
-    [[self undoManager] setActionName:NSLocalizedString(@"SET_TITLE", "Set Title")];
-  }
   
   [self setLastModificationTime:[NSDate date]];
   [self setNotes:notes];
@@ -112,9 +94,7 @@ if(![[self undoManager] isUndoing]) {\
   }
   [[[self undoManager] prepareWithInvocationTarget:self.parent] addEntryUndoable:self atIndex:oldIndex];
   
-  if(![[self undoManager] isUndoing]) {
-    [[self undoManager] setActionName:NSLocalizedString(@"DELETE_ENTRY", "Set Title")];
-  }
+  MPSetActionName(@"DELETE_ENTRY", "");
   
   //[[NSNotificationCenter defaultCenter] postNotificationName:@"" object:self userInfo:nil];
   [self.parent removeObjectFromEntriesAtIndex:oldIndex];
@@ -138,9 +118,7 @@ if(![[self undoManager] isUndoing]) {\
   }
   [[[self undoManager] prepareWithInvocationTarget:self] _moveToGroup:self.parent atIndex:oldIndex actionName:name];
   
-  if(![[self undoManager] isUndoing]) {
-    [[self undoManager] setActionName:name];
-  }
+  MPSetActionName(name, "");
   
   [self.parent removeObjectFromEntriesAtIndex:oldIndex];
   // Old indices might be wrong, correct them if necessary

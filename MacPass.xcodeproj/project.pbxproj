@@ -266,6 +266,7 @@
 		4CF7805D176E71170032EE71 /* MPServerDaemon.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CF7805C176E71170032EE71 /* MPServerDaemon.m */; };
 		4CF7805F176E75110032EE71 /* ServerSettings.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4CF7805E176E75110032EE71 /* ServerSettings.xib */; };
 		4CF78064176E75AD0032EE71 /* MPServerSettingsController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CF78063176E75AD0032EE71 /* MPServerSettingsController.m */; };
+		4CFB5E9F17AAD20200D9B10C /* Kdb4Group+Undo.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CFB5E9E17AAD20200D9B10C /* Kdb4Group+Undo.m */; };
 		4CFC53BF16E94729007396BE /* MPShadowBox.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CFC53BE16E94729007396BE /* MPShadowBox.m */; };
 		4CFC873B179DEDF3000DFC03 /* KPKMetaData.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CFC873A179DEDF3000DFC03 /* KPKMetaData.m */; };
 		4CFC873E179DF200000DFC03 /* KPKTimeInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CFC873D179DF200000DFC03 /* KPKTimeInfo.m */; };
@@ -766,6 +767,8 @@
 		4CF7805E176E75110032EE71 /* ServerSettings.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ServerSettings.xib; sourceTree = "<group>"; };
 		4CF78062176E75AD0032EE71 /* MPServerSettingsController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MPServerSettingsController.h; sourceTree = "<group>"; };
 		4CF78063176E75AD0032EE71 /* MPServerSettingsController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MPServerSettingsController.m; sourceTree = "<group>"; };
+		4CFB5E9D17AAD20200D9B10C /* Kdb4Group+Undo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Kdb4Group+Undo.h"; sourceTree = "<group>"; };
+		4CFB5E9E17AAD20200D9B10C /* Kdb4Group+Undo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "Kdb4Group+Undo.m"; sourceTree = "<group>"; };
 		4CFC53BD16E94729007396BE /* MPShadowBox.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MPShadowBox.h; sourceTree = "<group>"; };
 		4CFC53BE16E94729007396BE /* MPShadowBox.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MPShadowBox.m; sourceTree = "<group>"; };
 		4CFC8739179DEDF3000DFC03 /* KPKMetaData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KPKMetaData.h; sourceTree = "<group>"; };
@@ -1080,6 +1083,8 @@
 				4C4510081798C53700219998 /* StringField+Validation.m */,
 				4C45100A1798C65C00219998 /* Kdb4Entry+MPAdditions.h */,
 				4C45100B1798C65C00219998 /* Kdb4Entry+MPAdditions.m */,
+				4CFB5E9D17AAD20200D9B10C /* Kdb4Group+Undo.h */,
+				4CFB5E9E17AAD20200D9B10C /* Kdb4Group+Undo.m */,
 			);
 			name = "KeePassLib Categories";
 			sourceTree = "<group>";
@@ -2078,6 +2083,7 @@
 				4CA08DA017A831B200A6544B /* MPAddEntryContextMenuDelegate.m in Sources */,
 				4C6BEA3117A88E6C00CF69A8 /* MPStripLineBreaksTransformer.m in Sources */,
 				4C79E80317A9187400AC6CD2 /* KPKXmlHeaderWriter.m in Sources */,
+				4CFB5E9F17AAD20200D9B10C /* Kdb4Group+Undo.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

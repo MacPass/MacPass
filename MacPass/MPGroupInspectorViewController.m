@@ -12,6 +12,7 @@
 
 #import "Kdb.h"
 #import "Kdb4Node.h"
+#import "Kdb4Group+Undo.h"
 
 #import "HNHScrollView.h"
 #import "HNHRoundedTextField.h"
@@ -75,7 +76,7 @@
 - (void)_updateBindings {
   if(self.group) {
     [self.titleTextField bind:NSValueBinding toObject:self.group withKeyPath:@"nameUndoable" options:nil];
-    if([self.group respondsToSelector:@selector(notes:)]) {
+    if([self.group isKindOfClass:[Kdb4Group class]]) {
       [self.notesTextView bind:NSValueBinding toObject:self.group withKeyPath:@"notesUndoable" options:nil];
     }
     else {
