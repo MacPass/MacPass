@@ -10,6 +10,7 @@
 #import "MPAttachmentTableViewDelegate.h"
 #import "MPCustomFieldTableViewDelegate.h"
 #import "MPPasswordCreatorViewController.h"
+#import "MPAttachmentTableDataSource.h"
 
 #import "MPDocument.h"
 #import "MPIconHelper.h"
@@ -34,6 +35,8 @@ typedef NS_ENUM(NSUInteger, MPEntryTab) {
   NSArrayController *_customFieldsController;
   MPAttachmentTableViewDelegate *_attachmentTableDelegate;
   MPCustomFieldTableViewDelegate *_customFieldTableDelegate;
+  MPAttachmentTableDataSource *_attachmentDataSource;
+  
 }
 
 @property (nonatomic, assign) BOOL showPassword;
@@ -58,6 +61,7 @@ typedef NS_ENUM(NSUInteger, MPEntryTab) {
       _customFieldsController = [[NSArrayController alloc] init];
       _attachmentTableDelegate = [[MPAttachmentTableViewDelegate alloc] init];
       _customFieldTableDelegate = [[MPCustomFieldTableViewDelegate alloc] init];
+      _attachmentDataSource = [[MPAttachmentTableDataSource alloc] init];
       _attachmentTableDelegate.viewController = self;
       _customFieldTableDelegate.viewController = self;
       _activeTab = MPEntryTabGeneral;
@@ -107,10 +111,13 @@ typedef NS_ENUM(NSUInteger, MPEntryTab) {
   [_attachmentTableView setBackgroundColor:[NSColor clearColor]];
   [_attachmentTableView bind:NSContentBinding toObject:_attachmentsController withKeyPath:@"arrangedObjects" options:nil];
   [_attachmentTableView setDelegate:_attachmentTableDelegate];
+  [_attachmentTableView setDataSource:_attachmentDataSource];
+  [_attachmentTableView registerForDraggedTypes:@[NSFilenamesPboardType]];
   /* Set background to clearcolor so we can draw in the scrollview */
   [_customFieldsTableView setBackgroundColor:[NSColor clearColor]];
   [_customFieldsTableView bind:NSContentBinding toObject:_customFieldsController withKeyPath:@"arrangedObjects" options:nil];
   [_customFieldsTableView setDelegate:_customFieldTableDelegate];
+
   
   [self.passwordTextField bind:@"showPassword" toObject:self withKeyPath:@"showPassword" options:nil];
   [self.togglePassword bind:NSValueBinding toObject:self withKeyPath:@"showPassword" options:nil];

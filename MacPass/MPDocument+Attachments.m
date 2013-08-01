@@ -20,6 +20,10 @@
 
 - (void)addAttachment:(NSURL *)location toEntry:(KdbEntry *)anEntry {
   NSError *error = nil;
+  NSDictionary *resourceKeys = [location resourceValuesForKeys:@[NSURLIsDirectoryKey] error:&error];
+  if([resourceKeys[ NSURLIsDirectoryKey ] boolValue] == YES ) {
+    return; // We do not add whol directories
+  }
   NSString *fileName = [location lastPathComponent];
   if([anEntry isKindOfClass:[Kdb3Entry class]]) {
     Kdb3Entry *entry = (Kdb3Entry *)anEntry;
