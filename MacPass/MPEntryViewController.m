@@ -138,7 +138,7 @@ NSString *const _toggleFilterUsernameButton = @"SearchUsername";
   [self.entryTable setDoubleAction:@selector(_columnDoubleClick:)];
   [self.entryTable setTarget:self];
   [self.entryTable setFloatsGroupRows:NO];
-  //[self.entryTable registerForDraggedTypes:@[MPPasteBoardType]];
+  [self.entryTable registerForDraggedTypes:@[MPEntryUTI]];
   [[NSNotificationCenter defaultCenter] addObserver:self
                                            selector:@selector(_didBecomFirstResponder:)
                                                name:MPDidActivateViewNotification

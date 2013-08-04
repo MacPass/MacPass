@@ -8,9 +8,6 @@
 
 #import <Foundation/Foundation.h>
 
-@class KdbGroup;
+@interface MPOutlineDataSource : NSObject <NSOutlineViewDataSource>
 
-@interface MPOutlineDataSource : NSObject <NSOutlineViewDataSource> {
-  KdbGroup *_draggedItem;
-}
 @end

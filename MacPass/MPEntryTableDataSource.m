@@ -8,7 +8,10 @@
 
 #import "MPEntryTableDataSource.h"
 #import "MPEntryViewController.h"
-#import "UUID.h"
+
+#import "Kdb.h"
+#import "UUID+Pasterboard.h"
+
 #import "MPConstants.h"
 
 @interface MPEntryTableDataSource ()
@@ -23,19 +26,13 @@
     return NO; // No valid drag
   }
   
-  id entry = [self.viewController.entryArrayController arrangedObjects][[rowIndexes firstIndex]];
-  
-  if(![entry respondsToSelector:@selector(uuid)]) {
-    return NO; // Invalid item for dragging
+  id item = [self.viewController.entryArrayController arrangedObjects][[rowIndexes firstIndex]];
+  if(![item isKindOfClass:[KdbEntry class]]) {
+    return NO;
   }
-  UUID *uuid = (UUID *)[entry uuid];
-  NSPasteboardItem *pBoardItem = [[NSPasteboardItem alloc] init];
-  [pBoardItem setString:[uuid description] forType:MPPasteBoardType];
-  [pboard writeObjects:@[pBoardItem]];
-  
+  KdbEntry *entry = (KdbEntry *)item;
+  [pboard writeObjects:@[entry.uuid]];
   return YES;
 }
-
-//TODO: Validation and adding
 
 @end

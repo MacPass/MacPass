@@ -17,25 +17,30 @@
 #import "KdbGroup+MPTreeTools.h"
 #import "KdbEntry+MPTreeTools.h"
 
-
 #import "UUID.h"
+#import "UUID+Pasterboard.h"
+
+@interface MPOutlineDataSource ()
+
+@property (weak) KdbGroup *draggedGroup;
+
+@end
+
 
 @implementation MPOutlineDataSource
 
-
 - (BOOL)outlineView:(NSOutlineView *)outlineView writeItems:(NSArray *)items toPasteboard:(NSPasteboard *)pasteboard {
-  _draggedItem = nil;
-  [pasteboard setString:@"Weee" forType:MPPasteBoardType];
+  self.draggedGroup = nil;
   if([items count] == 1) {
-    _draggedItem = [[items lastObject] representedObject];
-    return (nil != _draggedItem.parent);
+    [pasteboard setString:self.draggedGroup.name forType:MPGroupUTI];
+    self.draggedGroup = [[items lastObject] representedObject];
+    return (nil != self.draggedGroup.parent);
   }
-  return YES;
+  return NO;
 }
 
 - (NSDragOperation)outlineView:(NSOutlineView *)outlineView validateDrop:(id<NSDraggingInfo>)info proposedItem:(id)item proposedChildIndex:(NSInteger)index {
-  if(_draggedItem) {
-    info.animatesToDestination = YES;
+  /*  info.animatesToDestination = YES;
     NSDragOperation oprationMask = NSDragOperationMove;
     if([info draggingSourceOperationMask] == NSDragOperationCopy) {
       oprationMask = NSDragOperationCopy;
@@ -50,9 +55,9 @@
     }
     KdbGroup *targetGroup = targetItem;
     BOOL validTarget = YES;
-    if( _draggedItem.parent == targetGroup ) {
+    if( self.draggedGroup.parent == targetGroup ) {
       validTarget &= index != NSOutlineViewDropOnItemIndex;
-      validTarget &= index != [_draggedItem.parent.groups indexOfObject:_draggedItem];
+      validTarget &= index != [self.draggedGroup.parent.groups indexOfObject:self.draggedGroup];
     }
     if( validTarget ) {
       return oprationMask;
@@ -65,23 +70,27 @@
       [outlineView setDropItem:item dropChildIndex:NSOutlineViewDropOnItemIndex];
     }
     return NSDragOperationMove;
-  }
+  }*/
+  self.draggedGroup = nil;
   return NSDragOperationNone;
 }
 
 - (BOOL)outlineView:(NSOutlineView *)outlineView acceptDrop:(id<NSDraggingInfo>)info item:(id)item childIndex:(NSInteger)index {
-  KdbGroup *target = [item representedObject];
-  if(_draggedItem) {
+  self.draggedGroup = nil;
+  /*
+   KdbGroup *target = [item representedObject];
+  if(self.draggedGroup) {
     BOOL accepted = YES;
-    if( _draggedItem.parent == target ) {
+    if( self.draggedGroup.parent == target ) {
       accepted &= index != NSOutlineViewDropOnItemIndex;
-      accepted &= index != [_draggedItem.parent.groups indexOfObject:_draggedItem];
+      accepted &= index != [self.draggedGroup.parent.groups indexOfObject:self.draggedGroup];
     }
-    accepted = ![_draggedItem isAnchestorOfGroup:target];
+    accepted = ![self.draggedGroup isAnchestorOfGroup:target];
     if( accepted ) {
-      [_draggedItem moveToGroupUndoable:target atIndex:index];
+      [self.draggedGroup moveToGroupUndoable:target atIndex:index];
     }
     info.animatesToDestination = !accepted;
+    self.draggedGroup = nil;
     return accepted;
   }
   NSPasteboard *pasteBoard = [info draggingPasteboard];
@@ -99,6 +108,7 @@
       }
     }
   }
+  */
   return NO;
 }
 @end
