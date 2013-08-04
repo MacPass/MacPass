@@ -7,10 +7,9 @@
 //
 
 #import "KPKXmlLoadingTest.h"
-#import "KPKTreeCryptor.h"
 #import "KPKPassword.h"
 
-#import "KPKTree.h"
+#import "KPKTree+Serializing.h"
 #import "KPKEntry.h"
 #import "KPKGroup.h"
 
@@ -29,12 +28,12 @@
 }
 
 - (void)testLoading {
-  KPKTreeCryptor *cryptor = [KPKTreeCryptor treeCryptorWithData:_data password:_password];
-  KPKTree *tree = [cryptor decryptTree:NULL];
-  //STAssertNotNil(tree, @"Loading should result in a tree object");
+  NSError *error;
+  KPKTree *tree = [[KPKTree alloc] initWithData:_data password:_password error:&error];
+  STAssertNotNil(tree, @"Loading should result in a tree object");
 
-  //STAssertTrue([tree.root.groups count] == 0, @"Tree contains just root group");
-  //STAssertTrue([tree.root.entries count] == 1, @"Tree has only one entry");
+  STAssertTrue([tree.root.groups count] == 0, @"Tree contains just root group");
+  STAssertTrue([tree.root.entries count] == 1, @"Tree has only one entry");
 
   KPKEntry *entry = [tree.root.entries lastObject];
   NSMutableData *data = [[NSMutableData alloc] init];

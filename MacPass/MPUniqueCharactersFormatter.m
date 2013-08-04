@@ -27,9 +27,16 @@
               originalString:(NSString *)origString
        originalSelectedRange:(NSRange)origSelRange
             errorDescription:(NSString **)error {
-  return YES;
+  NSInteger newLenght = [*partialStringPtr length];
+  NSInteger oldLenght = [origString length];
+  if( oldLenght == 0 || (newLenght < oldLenght)) {
+    return YES;
+  }
+  
+  NSCharacterSet *newCharacterSet = [NSCharacterSet characterSetWithCharactersInString:*partialStringPtr];
+  NSCharacterSet *oldCharacterSet = [NSCharacterSet characterSetWithCharactersInString:origString];
+
+  return ![oldCharacterSet isSupersetOfSet:newCharacterSet];
 }
-
-
 
 @end

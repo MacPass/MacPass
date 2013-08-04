@@ -38,10 +38,6 @@
 
 #import "DDXMLNode.h"
 
-#import "KPKPassword.h"
-#import "KPKTreeCryptor.h"
-#import "KPKTree.h"
-
 NSString *const MPDocumentDidAddGroupNotification         = @"com.hicknhack.macpass.MPDocumentDidAddGroupNotification";
 NSString *const MPDocumentDidAddEntryNotification         = @"com.hicknhack.macpass.MPDocumentDidAddEntryNotification";
 NSString *const MPDocumentDidRevertNotifiation            = @"com.hicknhack.macpass.MPDocumentDidRevertNotifiation";
@@ -196,11 +192,7 @@ typedef NS_ENUM(NSUInteger, MPAlertType) {
 #pragma mark Lock/Unlock/Decrypt
 
 - (BOOL)unlockWithPassword:(NSString *)password keyFileURL:(NSURL *)keyFileURL {
-  //  KPKPassword *pwd = [[KPKPassword alloc] initWithPassword:password key:nil];
-  //
-  //  KPKTreeCryptor *cryptor = [KPKTreeCryptor treeCryptorWithData:_fileData password:pwd];
-  //  KPKTree *tree = [cryptor decryptTree:NULL];
-  
+
   self.key = keyFileURL;
   self.password = [password length] > 0 ? password : nil;
   @try {

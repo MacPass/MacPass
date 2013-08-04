@@ -7,8 +7,9 @@
 //
 
 #import "KPKLegacyLoadingTest.h"
-#import "KPKTreeCryptor.h"
+#import "KPKTree+Serializing.h"
 #import "KPKPassword.h"
+#import "KPKErrors.h"
 
 @implementation KPKLegacyLoadingTest
 
@@ -24,10 +25,19 @@
   _password = nil;
 }
 
-- (void)testLoading {
-  KPKTreeCryptor *cryptor = [KPKTreeCryptor treeCryptorWithData:_data password:_password];
-  KPKTree *tree = [cryptor decryptTree:NULL];
+- (void)testValidFile {
+  KPKTree *tree = [[KPKTree alloc] initWithData:_data password:_password error:NULL];
   STAssertNotNil(tree, @"Loading should result in a tree object");
+}
+
+- (void)testInvalidFile {
+  NSError *error;
+  uint8 bytes[] = {0x00,0x11,0x22,0x33,0x44};
+  NSData *data = [NSData dataWithBytes:bytes length:5];
+  KPKTree *tree = [[KPKTree alloc] initWithData:data password:nil error:&error];
+  STAssertNil(tree, @"Tree should be nil with invalid data");
+  STAssertNotNil(error, @"Error object should have been created");
+  STAssertTrue(KPKErrorUnknownFileFormat == [error code], @"Error should be Unknown file format");
 }
 
 @end

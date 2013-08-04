@@ -8,7 +8,7 @@
 
 #import "MPViewController.h"
 
-@interface MPPasswordCreatorViewController : MPViewController
+@interface MPPasswordCreatorViewController : MPViewController <NSTextFieldDelegate>
 
 @property (copy, readonly) NSString *generatedPassword;
 

@@ -73,12 +73,11 @@ static NSString *allowedCharactersString(MPPasswordCharacterFlags flags) {
 }
 
 - (CGFloat)entropyWhithPossibleCharacterSet:(MPPasswordCharacterFlags)allowedCharacters orCustomCharacters:(NSString *)customCharacters {
-  if(nil != customCharacters) {
-    return 0; // We need a sophisticated parser here!
+  CGFloat alphabetCount = [customCharacters length];
+  if(nil == customCharacters) {
+    NSString *stringSet = allowedCharactersString(allowedCharacters);
+    alphabetCount = [stringSet length];
   }
-
-  NSString *stringSet = allowedCharactersString(allowedCharacters);
-  CGFloat alphabetCount = [stringSet length];
   CGFloat passwordLegnth = [self length];
   return passwordLegnth * ( log10(alphabetCount) / log10(2) );
 }

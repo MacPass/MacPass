@@ -52,9 +52,10 @@ typedef NS_ENUM(NSUInteger, MPPasswordRating) {
 @property (weak) IBOutlet NSTextField *entropyTextField;
 @property (weak) IBOutlet NSLevelIndicator *entropyIndicator;
 
-@property (assign, nonatomic) BOOL useCustomString;
-@property (assign, nonatomic) NSUInteger passwordLength;
-@property (assign, nonatomic) CGFloat entropy;
+@property (nonatomic, copy) NSString *customString;
+@property (nonatomic, assign) BOOL useCustomString;
+@property (nonatomic, assign) NSUInteger passwordLength;
+@property (nonatomic, assign) CGFloat entropy;
 
 - (IBAction)_generatePassword:(id)sender;
 - (IBAction)_toggleCharacters:(id)sender;
@@ -72,6 +73,7 @@ typedef NS_ENUM(NSUInteger, MPPasswordRating) {
     _passwordLength = 12;
     _characterFlags = MPPasswordCharactersAll;
     _useCustomString = NO;
+    _customString = @"";
     _entropy = 0.0;
   }
   return self;
@@ -93,8 +95,10 @@ typedef NS_ENUM(NSUInteger, MPPasswordRating) {
   
   [self.entropyIndicator bind:NSValueBinding toObject:self withKeyPath:@"entropy" options:nil];
   [self.entropyTextField bind:NSValueBinding toObject:self withKeyPath:@"entropy" options:nil];
-    
+
+  [self.customCharactersTextField setDelegate:self];
   [_customButton bind:NSValueBinding toObject:self withKeyPath:@"useCustomString" options:nil];
+
   [_numbersButton setTag:MPPasswordCharactersNumbers];
   [_upperCaseButton setTag:MPPasswordCharactersUpperCase];
   [_lowerCaseButton setTag:MPPasswordCharactersLowerCase];
@@ -103,6 +107,9 @@ typedef NS_ENUM(NSUInteger, MPPasswordRating) {
   [self _resetCharacters];
   [self _generatePassword:nil];
 }
+
+#pragma mark -
+#pragma mark Actions
 
 - (IBAction)_generatePassword:(id)sender { 
   if(_useCustomString) {
@@ -137,6 +144,9 @@ typedef NS_ENUM(NSUInteger, MPPasswordRating) {
   
 }
 
+#pragma mark -
+#pragma mark Custom Setter
+
 - (void)setPassword:(NSString *)password {
   if(![_password isEqualToString:password]) {
     _password = [password copy];
@@ -158,6 +168,18 @@ typedef NS_ENUM(NSUInteger, MPPasswordRating) {
     [self _generatePassword:nil];
   }
 }
+
+#pragma mark -
+#pragma mark NSTextFieldDelegate
+
+- (void)controlTextDidChange:(NSNotification *)obj {
+  if([obj object] == self.customCharactersTextField) {
+    [self _generatePassword:nil];
+  }
+}
+
+#pragma mark -
+#pragma mark Helper
 
 - (void)_resetCharacters {
   if(_useCustomString) {
