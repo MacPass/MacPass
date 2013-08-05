@@ -7,37 +7,48 @@
 //
 
 #import "KPKLegacyLoadingTest.h"
+
 #import "KPKTree+Serializing.h"
 #import "KPKPassword.h"
+#import "KPKMetaData.h"
+#import "KPKIcon.h"
+
 #import "KPKErrors.h"
 
 @implementation KPKLegacyLoadingTest
 
-- (void)setUp {
-  NSBundle *myBundle = [NSBundle bundleForClass:[self class]];
-  NSURL *url = [myBundle URLForResource:@"Test_Password_1234" withExtension:@"kdb"];
-  _data = [NSData dataWithContentsOfURL:url];
-  _password = [[KPKPassword alloc] initWithPassword:@"1234" key:nil];
-}
-
-- (void)tearDown {
-  _data = nil;
-  _password = nil;
-}
-
 - (void)testValidFile {
-  KPKTree *tree = [[KPKTree alloc] initWithData:_data password:_password error:NULL];
+  KPKPassword *password = [[KPKPassword alloc] initWithPassword:@"1234" key:nil];
+  NSData *data = [self _loadTestDataBase:@"Test_Password_1234" extension:@"kdb"];
+  KPKTree *tree = [[KPKTree alloc] initWithData:data password:password error:NULL];
   STAssertNotNil(tree, @"Loading should result in a tree object");
 }
 
 - (void)testInvalidFile {
   NSError *error;
-  uint8 bytes[] = {0x00,0x11,0x22,0x33,0x44};
+  uint8_t bytes[] = {0x00,0x11,0x22,0x33,0x44};
   NSData *data = [NSData dataWithBytes:bytes length:5];
   KPKTree *tree = [[KPKTree alloc] initWithData:data password:nil error:&error];
   STAssertNil(tree, @"Tree should be nil with invalid data");
   STAssertNotNil(error, @"Error object should have been created");
   STAssertTrue(KPKErrorUnknownFileFormat == [error code], @"Error should be Unknown file format");
+}
+
+
+- (void)testMetaParsing {
+  NSData *data = [self _loadTestDataBase:@"KDB1_KeePassX_test" extension:@"kdb"];
+  KPKPassword *password = [[KPKPassword alloc] initWithPassword:@"test" key:nil];
+  KPKTree *tree = [[KPKTree alloc] initWithData:data password:password error:NULL];
+  STAssertNotNil(tree, @"Tree shoudl be loaded" );
+  
+  KPKIcon *icon = [tree.metaData.customIcons lastObject];
+  STAssertNotNil(icon, @"Should load one Icon");
+}
+
+- (NSData *)_loadTestDataBase:(NSString *)name extension:(NSString *)extension {
+  NSBundle *myBundle = [NSBundle bundleForClass:[self class]];
+  NSURL *url = [myBundle URLForResource:name withExtension:extension];
+  return [NSData dataWithContentsOfURL:url];
 }
 
 @end

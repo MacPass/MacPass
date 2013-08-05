@@ -35,7 +35,7 @@
   entry.username = @"Username";
   entry.password = @"Password";
   
-  uint8 bytes[] = { 0xFF, 0x00, 0xFF, 0x00, 0xFF };
+  uint8_t bytes[] = { 0xFF, 0x00, 0xFF, 0x00, 0xFF };
   NSData *data = [[NSData alloc] initWithBytes:bytes length:5];
   
   KPKBinary *binary = [[KPKBinary alloc] init];

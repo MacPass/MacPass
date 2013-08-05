@@ -129,6 +129,11 @@
 		4C5FE9AE17843CE20001D5A8 /* MPSelectedAttachmentTableCellView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C5FE9AD17843CE20001D5A8 /* MPSelectedAttachmentTableCellView.m */; };
 		4C61EA0316D2FD0800AC519E /* MPOutlineViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C61EA0216D2FD0800AC519E /* MPOutlineViewController.m */; };
 		4C61EA0516D2FFE200AC519E /* OutlineView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4C61EA0416D2FFE200AC519E /* OutlineView.xib */; };
+		4C6366AC17AF1E0100AAF17D /* NSColor+KeePassKit.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C6366AB17AF1E0100AAF17D /* NSColor+KeePassKit.m */; };
+		4C6366AF17AF207600AAF17D /* KPKTestHexColor.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C6366AE17AF207600AAF17D /* KPKTestHexColor.m */; };
+		4C6366B317AFB52500AAF17D /* CustomIcon_Password_1234.kdbx in Resources */ = {isa = PBXBuildFile; fileRef = 4C6366B017AFB52500AAF17D /* CustomIcon_Password_1234.kdbx */; };
+		4C6366B417AFB52500AAF17D /* CustomIcon_Password_1234.xml in Resources */ = {isa = PBXBuildFile; fileRef = 4C6366B117AFB52500AAF17D /* CustomIcon_Password_1234.xml */; };
+		4C6366B517AFB52500AAF17D /* KDB1_KeePassX_test.kdb in Resources */ = {isa = PBXBuildFile; fileRef = 4C6366B217AFB52500AAF17D /* KDB1_KeePassX_test.kdb */; };
 		4C63B8FB17A3154D0091BD72 /* MPContextToolbarButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C63B8FA17A3154D0091BD72 /* MPContextToolbarButton.m */; };
 		4C65C79C16DD283900E32CFF /* MPToolbarButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C65C79B16DD283900E32CFF /* MPToolbarButton.m */; };
 		4C65FAE916D16DDB006E0577 /* MPPasswordInputController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C65FAE716D16DDB006E0577 /* MPPasswordInputController.m */; };
@@ -504,6 +509,13 @@
 		4C61EA0116D2FD0800AC519E /* MPOutlineViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MPOutlineViewController.h; sourceTree = "<group>"; };
 		4C61EA0216D2FD0800AC519E /* MPOutlineViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MPOutlineViewController.m; sourceTree = "<group>"; };
 		4C61EA0416D2FFE200AC519E /* OutlineView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = OutlineView.xib; sourceTree = "<group>"; };
+		4C6366AA17AF1E0100AAF17D /* NSColor+KeePassKit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSColor+KeePassKit.h"; sourceTree = "<group>"; };
+		4C6366AB17AF1E0100AAF17D /* NSColor+KeePassKit.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSColor+KeePassKit.m"; sourceTree = "<group>"; };
+		4C6366AD17AF207600AAF17D /* KPKTestHexColor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KPKTestHexColor.h; sourceTree = "<group>"; };
+		4C6366AE17AF207600AAF17D /* KPKTestHexColor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KPKTestHexColor.m; sourceTree = "<group>"; };
+		4C6366B017AFB52500AAF17D /* CustomIcon_Password_1234.kdbx */ = {isa = PBXFileReference; lastKnownFileType = file; name = CustomIcon_Password_1234.kdbx; path = Databases/CustomIcon_Password_1234.kdbx; sourceTree = "<group>"; };
+		4C6366B117AFB52500AAF17D /* CustomIcon_Password_1234.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; name = CustomIcon_Password_1234.xml; path = Databases/CustomIcon_Password_1234.xml; sourceTree = "<group>"; };
+		4C6366B217AFB52500AAF17D /* KDB1_KeePassX_test.kdb */ = {isa = PBXFileReference; lastKnownFileType = file; name = KDB1_KeePassX_test.kdb; path = Databases/KDB1_KeePassX_test.kdb; sourceTree = "<group>"; };
 		4C63B8F917A3154D0091BD72 /* MPContextToolbarButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MPContextToolbarButton.h; sourceTree = "<group>"; };
 		4C63B8FA17A3154D0091BD72 /* MPContextToolbarButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MPContextToolbarButton.m; sourceTree = "<group>"; };
 		4C65C79A16DD283900E32CFF /* MPToolbarButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MPToolbarButton.h; sourceTree = "<group>"; };
@@ -876,6 +888,9 @@
 		4C18F9AC178E123200890BCE /* Databases */ = {
 			isa = PBXGroup;
 			children = (
+				4C6366B017AFB52500AAF17D /* CustomIcon_Password_1234.kdbx */,
+				4C6366B117AFB52500AAF17D /* CustomIcon_Password_1234.xml */,
+				4C6366B217AFB52500AAF17D /* KDB1_KeePassX_test.kdb */,
 				4C19E4FF178E26EF002F2CD0 /* Test_Password_1234.kdbx */,
 				4C18F9AA178E122500890BCE /* Test_Password_1234.kdb */,
 			);
@@ -1202,6 +1217,8 @@
 				4CECB31617AC326D00EAFB0F /* KPKLegacyWritingTest.m */,
 				4CAC614117AD319200023F9E /* KPKTestXmlParsing.h */,
 				4CAC614217AD319200023F9E /* KPKTestXmlParsing.m */,
+				4C6366AD17AF207600AAF17D /* KPKTestHexColor.h */,
+				4C6366AE17AF207600AAF17D /* KPKTestHexColor.m */,
 			);
 			path = MacPassTests;
 			sourceTree = "<group>";
@@ -1584,6 +1601,8 @@
 				4C055E73179620BF00BD2BAB /* NSString+CommandString.m */,
 				4C1842C1179B69E600E2F5BC /* NSData+HashedData.h */,
 				4C1842C2179B69E700E2F5BC /* NSData+HashedData.m */,
+				4C6366AA17AF1E0100AAF17D /* NSColor+KeePassKit.h */,
+				4C6366AB17AF1E0100AAF17D /* NSColor+KeePassKit.m */,
 			);
 			path = Categories;
 			sourceTree = "<group>";
@@ -1803,6 +1822,9 @@
 				4C18F9AB178E122500890BCE /* Test_Password_1234.kdb in Resources */,
 				4C19E500178E26EF002F2CD0 /* Test_Password_1234.kdbx in Resources */,
 				4C305F3E179A1A760082334F /* image.png in Resources */,
+				4C6366B317AFB52500AAF17D /* CustomIcon_Password_1234.kdbx in Resources */,
+				4C6366B417AFB52500AAF17D /* CustomIcon_Password_1234.xml in Resources */,
+				4C6366B517AFB52500AAF17D /* KDB1_KeePassX_test.kdb in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1895,6 +1917,7 @@
 				4C79E80917A9485600AC6CD2 /* KPKTestNSCopying.m in Sources */,
 				4CECB31717AC326D00EAFB0F /* KPKLegacyWritingTest.m in Sources */,
 				4CAC614317AD319200023F9E /* KPKTestXmlParsing.m in Sources */,
+				4C6366AF17AF207600AAF17D /* KPKTestHexColor.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2100,6 +2123,7 @@
 				4CFB5E9F17AAD20200D9B10C /* Kdb4Group+Undo.m in Sources */,
 				4CE3E62617AB0D2D00D9E4B4 /* MPAttachmentTableDataSource.m in Sources */,
 				4CF4FEE017AEA4A400712774 /* UUID+Pasterboard.m in Sources */,
+				4C6366AC17AF1E0100AAF17D /* NSColor+KeePassKit.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
