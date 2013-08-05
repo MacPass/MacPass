@@ -17,7 +17,8 @@ All releases can be found at [Github](https://github.com/mstarke/MacPass/release
 
 ##Known Major Issues
 
-* Databas V1 handling is dodgy. (e.g. attachments)
+* KDBX History is not supported
+* KDBX DeletedObjects are stripped on save. This will break synchronisation features!
 
 ##System Requirement
 
