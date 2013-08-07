@@ -11,6 +11,7 @@
 		4C01C2421764D8980016D5D0 /* MPContextMenuHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C01C2411764D8980016D5D0 /* MPContextMenuHelper.m */; };
 		4C01C245176500C40016D5D0 /* HNHLevelIndicatorCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C01C244176500C40016D5D0 /* HNHLevelIndicatorCell.m */; };
 		4C055E74179620BF00BD2BAB /* NSString+CommandString.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C055E73179620BF00BD2BAB /* NSString+CommandString.m */; };
+		4C08C3AE17B3022400BBBC95 /* KPKLegacyHeaderWriter.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C08C3AD17B3022400BBBC95 /* KPKLegacyHeaderWriter.m */; };
 		4C10412C178CDD44001B5239 /* NSDate+Humanized.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C10412B178CDD44001B5239 /* NSDate+Humanized.m */; };
 		4C17D8E517A1C780006C8C1E /* MPDocumentWindowDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C17D8E417A1C780006C8C1E /* MPDocumentWindowDelegate.m */; };
 		4C1842AB179B027800E2F5BC /* KPKDeletedNode.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C1842AA179B027800E2F5BC /* KPKDeletedNode.m */; };
@@ -290,6 +291,9 @@
 		4C01C244176500C40016D5D0 /* HNHLevelIndicatorCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HNHLevelIndicatorCell.m; sourceTree = "<group>"; };
 		4C055E72179620BF00BD2BAB /* NSString+CommandString.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+CommandString.h"; sourceTree = "<group>"; };
 		4C055E73179620BF00BD2BAB /* NSString+CommandString.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+CommandString.m"; sourceTree = "<group>"; };
+		4C08C3AC17B3022400BBBC95 /* KPKLegacyHeaderWriter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KPKLegacyHeaderWriter.h; sourceTree = "<group>"; };
+		4C08C3AD17B3022400BBBC95 /* KPKLegacyHeaderWriter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KPKLegacyHeaderWriter.m; sourceTree = "<group>"; };
+		4C08C3AF17B3036500BBBC95 /* KPKLegacyFormat.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = KPKLegacyFormat.h; path = Format/KPKLegacyFormat.h; sourceTree = "<group>"; };
 		4C10412A178CDD44001B5239 /* NSDate+Humanized.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDate+Humanized.h"; sourceTree = "<group>"; };
 		4C10412B178CDD44001B5239 /* NSDate+Humanized.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDate+Humanized.m"; sourceTree = "<group>"; };
 		4C13904C17ADD1A300A62934 /* KPKTreeCrypting.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KPKTreeCrypting.h; sourceTree = "<group>"; };
@@ -306,7 +310,7 @@
 		4C1842B4179B28D400E2F5BC /* KPKLegacyTreeWriter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KPKLegacyTreeWriter.m; sourceTree = "<group>"; };
 		4C1842B6179B348600E2F5BC /* KPKLegacyLoadingTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KPKLegacyLoadingTest.h; sourceTree = "<group>"; };
 		4C1842B7179B348600E2F5BC /* KPKLegacyLoadingTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KPKLegacyLoadingTest.m; sourceTree = "<group>"; };
-		4C1842B9179B3A1700E2F5BC /* KPKHeaderFields.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = KPKHeaderFields.h; path = Format/KPKHeaderFields.h; sourceTree = "<group>"; };
+		4C1842B9179B3A1700E2F5BC /* KPKXmlFormat.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = KPKXmlFormat.h; path = Format/KPKXmlFormat.h; sourceTree = "<group>"; };
 		4C1842BA179B434C00E2F5BC /* KPKXmlHeaderReader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KPKXmlHeaderReader.h; sourceTree = "<group>"; };
 		4C1842BB179B434C00E2F5BC /* KPKXmlHeaderReader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KPKXmlHeaderReader.m; sourceTree = "<group>"; };
 		4C1842BE179B5BFD00E2F5BC /* NSData+CommonCrypto.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSData+CommonCrypto.h"; sourceTree = "<group>"; };
@@ -315,7 +319,6 @@
 		4C1842C2179B69E700E2F5BC /* NSData+HashedData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSData+HashedData.m"; sourceTree = "<group>"; };
 		4C1842C4179BF51F00E2F5BC /* KPKLegacyHeaderReader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KPKLegacyHeaderReader.h; sourceTree = "<group>"; };
 		4C1842C5179BF52000E2F5BC /* KPKLegacyHeaderReader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KPKLegacyHeaderReader.m; sourceTree = "<group>"; };
-		4C1842C7179BF6A100E2F5BC /* KPKLegacyHeader.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = KPKLegacyHeader.h; path = Format/KPKLegacyHeader.h; sourceTree = "<group>"; };
 		4C1842CE179C64DC00E2F5BC /* KPKLegacyTreeCryptor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KPKLegacyTreeCryptor.h; sourceTree = "<group>"; };
 		4C1842CF179C64DD00E2F5BC /* KPKLegacyTreeCryptor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KPKLegacyTreeCryptor.m; sourceTree = "<group>"; };
 		4C1842D1179C64EF00E2F5BC /* KPKXmlTreeCryptor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KPKXmlTreeCryptor.h; sourceTree = "<group>"; };
@@ -879,8 +882,8 @@
 				4C4436751792BE810099E220 /* KPKFormat.h */,
 				4C4436761792BE810099E220 /* KPKFormat.m */,
 				4CD3ABB2178F71B50073F5C5 /* KPKVersion.h */,
-				4C1842C7179BF6A100E2F5BC /* KPKLegacyHeader.h */,
-				4C1842B9179B3A1700E2F5BC /* KPKHeaderFields.h */,
+				4C1842B9179B3A1700E2F5BC /* KPKXmlFormat.h */,
+				4C08C3AF17B3036500BBBC95 /* KPKLegacyFormat.h */,
 			);
 			name = Format;
 			sourceTree = "<group>";
@@ -1661,6 +1664,8 @@
 				4C1842B4179B28D400E2F5BC /* KPKLegacyTreeWriter.m */,
 				4C1842C4179BF51F00E2F5BC /* KPKLegacyHeaderReader.h */,
 				4C1842C5179BF52000E2F5BC /* KPKLegacyHeaderReader.m */,
+				4C08C3AC17B3022400BBBC95 /* KPKLegacyHeaderWriter.h */,
+				4C08C3AD17B3022400BBBC95 /* KPKLegacyHeaderWriter.m */,
 				4C1842CE179C64DC00E2F5BC /* KPKLegacyTreeCryptor.h */,
 				4C1842CF179C64DD00E2F5BC /* KPKLegacyTreeCryptor.m */,
 				4C13904C17ADD1A300A62934 /* KPKTreeCrypting.h */,
@@ -2124,6 +2129,7 @@
 				4CE3E62617AB0D2D00D9E4B4 /* MPAttachmentTableDataSource.m in Sources */,
 				4CF4FEE017AEA4A400712774 /* UUID+Pasterboard.m in Sources */,
 				4C6366AC17AF1E0100AAF17D /* NSColor+KeePassKit.m in Sources */,
+				4C08C3AE17B3022400BBBC95 /* KPKLegacyHeaderWriter.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
