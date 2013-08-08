@@ -29,7 +29,7 @@
 - (void)testWriting {
   NSError *error = nil;
   KPKTree *tree = [[KPKTree alloc] initWithData:_data password:_password error:&error];
-  NSData *data = [tree encryptWithPassword:_password forVersion:KPKVersion1 error:&error];
+  NSData *data = [tree encryptWithPassword:_password forVersion:KPKLegacyVersion error:&error];
 }
 
 

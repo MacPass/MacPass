@@ -35,13 +35,14 @@
 }
 
 - (void)testColorRefReading {
-  uint32_t colorBytes = 0x000000ff;
-  uint32_t swappedData = colorBytes;//CFSwapInt32(colorBytes);
+  uint32_t colorBytes = 0x000000FF;
+  uint32_t swappedData = colorBytes;
   NSData *colorData = [NSData dataWithBytesNoCopy:&swappedData length:sizeof(uint32_t) freeWhenDone:NO];
   NSColor *color = [NSColor colorWithData:colorData];
-  STAssertEquals([color redComponent], 1.0, @"Red 100%");
-  STAssertEquals([color blueComponent], 0.0, @"Blue 0%");
+  STAssertEquals([color redComponent], 0.0, @"Red 100%");
   STAssertEquals([color greenComponent], 0.0, @"Green 0%");
+  STAssertEquals([color blueComponent], 1.0, @"Blue 100%");
+
 }
 
 @end

@@ -34,18 +34,6 @@
 
   STAssertTrue([tree.root.groups count] == 0, @"Tree contains just root group");
   STAssertTrue([tree.root.entries count] == 1, @"Tree has only one entry");
-
-  KPKEntry *entry = [tree.root.entries lastObject];
-  NSMutableData *data = [[NSMutableData alloc] init];
-  NSKeyedArchiver *archiver = [[NSKeyedArchiver alloc] initForWritingWithMutableData:data];
-  [entry encodeWithCoder:archiver];
-  [archiver finishEncoding];
-  
-  NSKeyedUnarchiver *unarchiver = [[NSKeyedUnarchiver alloc] initForReadingWithData:data];
-  KPKEntry *newEntry = [[KPKEntry alloc] initWithCoder:unarchiver];
-  [unarchiver finishDecoding];
-  
-  STAssertTrue([entry.title isEqualToString:newEntry.title], @"Entries must have same attributes");
 }
 
 @end

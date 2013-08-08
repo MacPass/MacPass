@@ -41,7 +41,7 @@
   KPKTree *tree = [reader tree:&error];
   STAssertNil(tree, @"No Tree form emptry data");
   STAssertNotNil(error, @"Error Object should be provided");
-  STAssertTrue([error code] == KPKErrorXMLRootElementMissing, @"Error Code should be KeePassFile root missing");
+  STAssertTrue([error code] == KPKErrorXMLMetaElementMissing, @"Error Code should be KeePassFile root missing");
 }
 
 @end
