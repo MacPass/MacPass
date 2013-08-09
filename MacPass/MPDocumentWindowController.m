@@ -85,6 +85,7 @@
   
   
   _toolbar = [[NSToolbar alloc] initWithIdentifier:@"MainWindowToolbar"];
+  [_toolbar setAutosavesConfiguration:YES];
   [self.toolbar setAllowsUserCustomization:YES];
   [self.toolbar setDelegate:self.toolbarDelegate];
   [self.window setToolbar:self.toolbar];
