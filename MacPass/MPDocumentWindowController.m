@@ -383,8 +383,8 @@
 - (void)didSaveDatabaseSettings {
   if (_saveAfterPasswordEdit) {
     _saveAfterPasswordEdit = NO;
+    [[self document] saveDocument:nil];
   }
-  [[self document] saveDocument:nil];
 }
 
 #pragma mark Helper
