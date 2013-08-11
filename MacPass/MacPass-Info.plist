@@ -12,9 +12,13 @@
 				<string>kdbx</string>
 			</array>
 			<key>CFBundleTypeName</key>
-			<string>KeePass2 Database </string>
+			<string></string>
 			<key>CFBundleTypeRole</key>
 			<string>Editor</string>
+			<key>LSItemContentTypes</key>
+			<array>
+				<string>com.hicknhack.macpass.kdbx</string>
+			</array>
 			<key>NSDocumentClass</key>
 			<string>MPDocument</string>
 		</dict>
@@ -24,9 +28,13 @@
 				<string>kdb</string>
 			</array>
 			<key>CFBundleTypeName</key>
-			<string>KeePass Database</string>
+			<string></string>
 			<key>CFBundleTypeRole</key>
 			<string>Editor</string>
+			<key>LSItemContentTypes</key>
+			<array>
+				<string>com.hicknhack.macpass.kdb</string>
+			</array>
 			<key>NSDocumentClass</key>
 			<string>MPDocument</string>
 		</dict>
@@ -59,5 +67,42 @@
 	<string>NSApplication</string>
 	<key>NSSupportsAutomaticGraphicsSwitching</key>
 	<true/>
+	<key>UTExportedTypeDeclarations</key>
+	<array>
+		<dict>
+			<key>UTTypeConformsTo</key>
+			<array>
+				<string>public.data</string>
+			</array>
+			<key>UTTypeDescription</key>
+			<string>Keepass 2 Database</string>
+			<key>UTTypeIdentifier</key>
+			<string>com.hicknhack.macpass.kdbx</string>
+			<key>UTTypeTagSpecification</key>
+			<dict>
+				<key>public.filename-extension</key>
+				<array>
+					<string>kdbx</string>
+				</array>
+			</dict>
+		</dict>
+		<dict>
+			<key>UTTypeConformsTo</key>
+			<array>
+				<string>public.data</string>
+			</array>
+			<key>UTTypeDescription</key>
+			<string>Keepass Database</string>
+			<key>UTTypeIdentifier</key>
+			<string>com.hicknhack.macpass.kdb</string>
+			<key>UTTypeTagSpecification</key>
+			<dict>
+				<key>public.filename-extension</key>
+				<array>
+					<string>kdb</string>
+				</array>
+			</dict>
+		</dict>
+	</array>
 </dict>
 </plist>

@@ -16,6 +16,7 @@
 #import "MPAppDelegate.h"
 #import "MPActionHelper.h"
 #import "MPDatabaseSettingsWindowController.h"
+#import "MPPasswordEditWindowController.h"
 #import "MPConstants.h"
 #import "MPSettingsHelper.h"
 #import "MPDocumentWindowDelegate.h"
@@ -25,7 +26,6 @@
 @interface MPDocumentWindowController () {
 @private
   id _firstResponder;
-  BOOL _saveAfterPasswordEdit; // Flag to indicat that the document needs to be saved after password edit did finish
 }
 
 @property (strong) IBOutlet NSSplitView *splitView;
@@ -38,6 +38,7 @@
 @property (strong) MPInspectorViewController *inspectorViewController;
 @property (strong) MPDatabaseSettingsWindowController *documentSettingsWindowController;
 @property (strong) MPDocumentWindowDelegate *documentWindowDelegate;
+@property (strong) MPPasswordEditWindowController *passwordEditWindowController;
 
 @property (strong) MPToolbarDelegate *toolbarDelegate;
 
@@ -54,7 +55,6 @@
     _entryViewController = [[MPEntryViewController alloc] init];
     _inspectorViewController = [[MPInspectorViewController alloc] init];
     _documentWindowDelegate = [[MPDocumentWindowDelegate alloc] init];
-    _saveAfterPasswordEdit = NO;
   }
   return self;
 }
@@ -76,7 +76,6 @@
   */
   
   [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(_didRevertDocument:) name:MPDocumentDidRevertNotifiation object:[self document]];
-  [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(_setPasswordAndSave) name:MPDocumentRequestPasswordSaveNotification object:[self document]];
   
   [_entryViewController setupNotifications:self];
   [_inspectorViewController setupNotifications:self];
@@ -156,6 +155,13 @@
 }
 
 #pragma mark Actions
+- (void)saveDocument:(id)sender {
+  MPDocument *document = [self document];
+  if(!document.hasPasswordOrKey) {
+    // warning if no password ist set!
+  }
+  [[self document] saveDocument:sender];
+}
 - (void)exportDatabase:(id)sender {
   NSSavePanel *savePanel = [NSSavePanel savePanel];
   [savePanel setAllowsOtherFileTypes:YES];
@@ -255,7 +261,10 @@
 }
 
 - (void)editPassword:(id)sender {
-  [self _showDatabaseSetting:MPDatabaseSettingsTabPassword];
+  if(!self.passwordEditWindowController) {
+    self.passwordEditWindowController = [[MPPasswordEditWindowController alloc] initWithDocument:[self document]];
+  }
+  [NSApp beginSheet:[self.passwordEditWindowController window] modalForWindow:[self window] modalDelegate:nil didEndSelector:NULL contextInfo:NULL];
 }
 
 - (void)showDatabaseSettings:(id)sender {
@@ -375,31 +384,11 @@
   [_outlineViewController showOutline];
 }
 
-#pragma mark MPDatabaseSettingsDelegate
-- (void)didCancelDatabaseSettings {
-  _saveAfterPasswordEdit = NO; // Just Reset the flag
-}
-
-- (void)didSaveDatabaseSettings {
-  if (_saveAfterPasswordEdit) {
-    _saveAfterPasswordEdit = NO;
-    [[self document] saveDocument:nil];
-  }
-}
-
 #pragma mark Helper
-
-- (void)_setPasswordAndSave {
-  _saveAfterPasswordEdit = YES;
-  [self editPassword:nil];
-}
-
 - (void)_showDatabaseSetting:(MPDatabaseSettingsTab)tab {
   if(!self.documentSettingsWindowController) {
     _documentSettingsWindowController = [[MPDatabaseSettingsWindowController alloc] initWithDocument:[self document]];
-    [_documentSettingsWindowController setDelegate:self];
   }
-  [self.documentSettingsWindowController update];
   [self.documentSettingsWindowController showSettingsTab:tab];
   [[NSApplication sharedApplication] beginSheet:[self.documentSettingsWindowController window]
                                  modalForWindow:[self window]

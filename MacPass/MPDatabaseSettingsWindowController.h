@@ -7,11 +7,10 @@
 //
 
 #import <Cocoa/Cocoa.h>
-#import "MPDatabaseSettingsDelegate.h"
+#import "MPSheetWindowController.h"
 
 typedef NS_ENUM(NSUInteger, MPDatabaseSettingsTab) {
   MPDatabaseSettingsTabGeneral,
-  MPDatabaseSettingsTabPassword,
   MPDatabaseSettingsTabDisplay,
   MPDatabaseSettingsTabAdvanced,
   MPDatabaseSettingsTabTemplates,
@@ -19,30 +18,14 @@ typedef NS_ENUM(NSUInteger, MPDatabaseSettingsTab) {
 
 @class MPDocument;
 @class HNHRoundedTextField;
-@class HNHRoundedSecureTextField;
 
-@interface MPDatabaseSettingsWindowController : NSWindowController <NSTextFieldDelegate, NSTabViewDelegate>
-
-@property (nonatomic,weak) id<MPDatabaseSettingsDelegate> delegate;
+@interface MPDatabaseSettingsWindowController : MPSheetWindowController <NSTextFieldDelegate, NSTabViewDelegate>
 
 @property (weak) IBOutlet NSTabView *sectionTabView;
-@property (weak) IBOutlet NSButton *saveButton;
-@property (weak) IBOutlet NSButton *cancelButton;
 
 /* General Tab */
 @property (weak) IBOutlet NSTextField *databaseNameTextField;
 @property (unsafe_unretained) IBOutlet NSTextView *databaseDescriptionTextView;
-
-/* Protection */
-@property (weak) IBOutlet HNHRoundedSecureTextField *passwordTextField;
-@property (weak) IBOutlet HNHRoundedSecureTextField *passwordRepeatTextField;
-@property (weak) IBOutlet NSPathControl *keyfilePathControl;
-@property (weak) IBOutlet NSButton *togglePasswordButton;
-@property (weak) IBOutlet NSTextField *errorTextField;
-
-
-- (IBAction)clearKey:(id)sender;
-- (IBAction)generateKey:(id)sender;
 
 /* Display Tab */
 @property (weak) IBOutlet NSButton *protectTitleCheckButton;
@@ -65,9 +48,6 @@ typedef NS_ENUM(NSUInteger, MPDatabaseSettingsTab) {
 - (id)initWithDocument:(MPDocument *)document;
 
 - (void)showSettingsTab:(MPDatabaseSettingsTab)tab;
-
-- (void)update;
-
 
 @end
 

@@ -8,13 +8,13 @@
 
 #import "MPDocument.h"
 #import "MPDocumentWindowController.h"
-
 #import "MPDatabaseVersion.h"
 #import "MPRootAdapter.h"
 #import "MPIconHelper.h"
 #import "MPActionHelper.h"
 #import "MPSettingsHelper.h"
 #import "MPNotifications.h"
+#import "MPSavePanelAccessoryViewController.h"
 
 #import "KdbLib.h"
 #import "Kdb3Node.h"
@@ -35,14 +35,13 @@
 #import "KdbGroup+MPAdditions.h"
 
 #import "DataOutputStream.h"
-
 #import "DDXMLNode.h"
 
-NSString *const MPDocumentDidAddGroupNotification         = @"com.hicknhack.macpass.MPDocumentDidAddGroupNotification";
-NSString *const MPDocumentDidAddEntryNotification         = @"com.hicknhack.macpass.MPDocumentDidAddEntryNotification";
-NSString *const MPDocumentDidRevertNotifiation            = @"com.hicknhack.macpass.MPDocumentDidRevertNotifiation";
-NSString *const MPDocumentRequestPasswordSaveNotification = @"com.hicknhack.macpass.MPDocumentRequestPasswordSaveNotification";
+#import "KPKTree+Serializing.h"
+#import "KPKPassword.h"
 
+NSString *const MPDocumentDidAddGroupNotification         = @"com.hicknhack.macpass.MPDocumentDidAddGroupNotification";
+NSString *const MPDocumentDidRevertNotifiation            = @"com.hicknhack.macpass.MPDocumentDidRevertNotifiation";
 
 NSString *const MPDocumentEntryKey                        = @"MPDocumentEntryKey";
 NSString *const MPDocumentGroupKey                        = @"MPDocumentGroupKey";
@@ -58,6 +57,7 @@ typedef NS_ENUM(NSUInteger, MPAlertType) {
   NSData *_fileData;
 }
 
+@property (strong, nonatomic) MPSavePanelAccessoryViewController *savePanelViewController;
 
 @property (strong, nonatomic) KdbTree *tree;
 @property (weak, nonatomic) KdbGroup *root;
@@ -79,8 +79,11 @@ typedef NS_ENUM(NSUInteger, MPAlertType) {
 
 @implementation MPDocument
 
-- (id)init
-{
++ (BOOL)autosavesInPlace {
+  return NO;
+}
+
+- (id)init {
   return [self initWithVersion:MPDatabaseVersion4];
 }
 #pragma mark NSDocument essentials
@@ -127,6 +130,9 @@ typedef NS_ENUM(NSUInteger, MPAlertType) {
 }
 
 - (BOOL)writeToURL:(NSURL *)url ofType:(NSString *)typeName error:(NSError **)outError {
+  /*
+   Move this to data:ofType: method with KeePassKit
+   */
   NSError *error = nil;
   [KdbWriterFactory persist:self.tree fileURL:url withPassword:self.passwordHash error:&error];
   if(error) {
@@ -137,7 +143,7 @@ typedef NS_ENUM(NSUInteger, MPAlertType) {
 }
 
 - (BOOL)readFromURL:(NSURL *)url ofType:(NSString *)typeName error:(NSError **)outError {
-  /* FIXME: Logfile handling
+  /* FIXME: Lockfile handling
    self.lockFileURL = [url URLByAppendingPathExtension:@"lock"];
    if([[NSFileManager defaultManager] fileExistsAtPath:[_lockFileURL path]]) {
    self.readOnly = YES;
@@ -182,6 +188,26 @@ typedef NS_ENUM(NSUInteger, MPAlertType) {
   [super close];
 }
 
+- (BOOL)shouldRunSavePanelWithAccessoryView {
+  return NO;
+}
+
+- (BOOL)prepareSavePanel:(NSSavePanel *)savePanel {
+  /*
+   
+   Save as different format doesn work with out KeePassKit
+   hence disabled for now
+   
+  if(!self.savePanelViewController) {
+    self.savePanelViewController = [[MPSavePanelAccessoryViewController alloc] init];
+  }
+  self.savePanelViewController.savePanel = savePanel;
+  self.savePanelViewController.document = self;
+  [savePanel setAccessoryView:[self.savePanelViewController view]];
+   */
+  return YES;
+}
+
 - (void)writeXMLToURL:(NSURL *)url {
   DataOutputStream *outputStream = [[DataOutputStream alloc] init];
   Kdb4Persist *persist = [[Kdb4Persist alloc] initWithTree:self.treeV4 outputStream:outputStream randomStream:nil];
@@ -192,7 +218,11 @@ typedef NS_ENUM(NSUInteger, MPAlertType) {
 #pragma mark Lock/Unlock/Decrypt
 
 - (BOOL)unlockWithPassword:(NSString *)password keyFileURL:(NSURL *)keyFileURL {
-
+  /*
+  KPKPassword *passwordData = [[KPKPassword alloc] initWithPassword:password key:keyFileURL];
+  KPKTree *tree = [[KPKTree alloc] initWithData:_fileData password:passwordData error:NULL];
+  */
+  
   self.key = keyFileURL;
   self.password = [password length] > 0 ? password : nil;
   @try {
@@ -218,9 +248,7 @@ typedef NS_ENUM(NSUInteger, MPAlertType) {
   self.locked = YES;
 }
 
-
 #pragma mark Custom Setter
-
 - (void)setPassword:(NSString *)password {
   if(![_password isEqualToString:password]) {
     _password = [password copy];
@@ -236,30 +264,7 @@ typedef NS_ENUM(NSUInteger, MPAlertType) {
 }
 
 - (KdbPassword *)passwordHash {
-  
   return [[KdbPassword alloc] initWithPassword:self.password passwordEncoding:NSUTF8StringEncoding keyFileURL:self.key];
-}
-
-+ (BOOL)autosavesInPlace
-{
-  return NO;
-}
-
-- (void)saveDocument:(id)sender {
-  if(self.hasPasswordOrKey) {
-    [super saveDocument:sender];
-  }
-  else {
-    [[NSNotificationCenter defaultCenter] postNotificationName:MPDocumentRequestPasswordSaveNotification object:self userInfo:nil];
-  }
-}
-
-- (BOOL)prepareSavePanel:(NSSavePanel *)savePanel {
-  if(self.hasPasswordOrKey) {
-    [savePanel setAccessoryView:nil];
-    return YES;
-  }
-  return NO;
 }
 
 - (void)setSelectedGroup:(KdbGroup *)selectedGroup {
@@ -417,8 +422,6 @@ typedef NS_ENUM(NSUInteger, MPAlertType) {
     newEntry.title = self.treeV4.defaultUserName;
   }
   [parent addEntryUndoable:newEntry atIndex:[parent.entries count]];
-  NSDictionary *userInfo = @{ MPDocumentEntryKey : newEntry };
-  [[NSNotificationCenter defaultCenter] postNotificationName:MPDocumentDidAddEntryNotification object:self userInfo:userInfo];
   return newEntry;
 }
 
@@ -442,7 +445,6 @@ typedef NS_ENUM(NSUInteger, MPAlertType) {
 }
 
 - (StringField *)createStringField:(KdbEntry *)entry {
-  // TODO: Localize!
   if(![entry isKindOfClass:[Kdb4Entry class]]) {
     return nil;
   }
@@ -487,7 +489,6 @@ typedef NS_ENUM(NSUInteger, MPAlertType) {
 }
 
 #pragma mark CustomFields
-
 - (void)addStringField:(StringField *)field toEntry:(Kdb4Entry *)entry atIndex:(NSUInteger)index {
   [[[self undoManager] prepareWithInvocationTarget:self] removeStringField:field formEntry:entry];
   [[self undoManager] setActionName:NSLocalizedString(@"UNDO_ADD_STRING_FIELD", @"Add Stringfield Undo")];

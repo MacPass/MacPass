@@ -7,7 +7,6 @@
 //
 
 #import <Cocoa/Cocoa.h>
-#import "MPDatabaseSettingsDelegate.h"
 
 @class MPViewController;
 @class MPEntryViewController;
@@ -18,7 +17,7 @@
 @class KdbGroup;
 @class KdbEntry;
 
-@interface MPDocumentWindowController : NSWindowController <MPDatabaseSettingsDelegate>
+@interface MPDocumentWindowController : NSWindowController
 
 @property (readonly, strong) MPPasswordInputController *passwordInputController;
 @property (readonly, strong) MPEntryViewController *entryViewController;
@@ -35,6 +34,8 @@
 - (void)showEntries;
 - (void)showPasswordInput;
 - (void)performFindPanelAction:(id)sender;
+
+- (IBAction)saveDocument:(id)sender;
 
 - (IBAction)editPassword:(id)sender;
 - (IBAction)showDatabaseSettings:(id)sender;

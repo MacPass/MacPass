@@ -11,7 +11,12 @@
 		4C01C2421764D8980016D5D0 /* MPContextMenuHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C01C2411764D8980016D5D0 /* MPContextMenuHelper.m */; };
 		4C01C245176500C40016D5D0 /* HNHLevelIndicatorCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C01C244176500C40016D5D0 /* HNHLevelIndicatorCell.m */; };
 		4C055E74179620BF00BD2BAB /* NSString+CommandString.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C055E73179620BF00BD2BAB /* NSString+CommandString.m */; };
+		4C0728BA17B5B7A4005A7DD9 /* PasswordEditWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4C0728B917B5B7A4005A7DD9 /* PasswordEditWindow.xib */; };
+		4C0728BD17B5B7F7005A7DD9 /* MPPasswordEditWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C0728BC17B5B7F7005A7DD9 /* MPPasswordEditWindowController.m */; };
+		4C0728BF17B68ED0005A7DD9 /* SavePanelAccessoryView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4C0728BE17B68ED0005A7DD9 /* SavePanelAccessoryView.xib */; };
 		4C08C3AE17B3022400BBBC95 /* KPKLegacyHeaderWriter.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C08C3AD17B3022400BBBC95 /* KPKLegacyHeaderWriter.m */; };
+		4C0F647817B6B65E00D9522A /* MPSheetWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C0F647717B6B65E00D9522A /* MPSheetWindowController.m */; };
+		4C0F647B17B6BC9C00D9522A /* MPSavePanelAccessoryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C0F647A17B6BC9C00D9522A /* MPSavePanelAccessoryViewController.m */; };
 		4C10412C178CDD44001B5239 /* NSDate+Humanized.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C10412B178CDD44001B5239 /* NSDate+Humanized.m */; };
 		4C17D8E517A1C780006C8C1E /* MPDocumentWindowDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C17D8E417A1C780006C8C1E /* MPDocumentWindowDelegate.m */; };
 		4C1842AB179B027800E2F5BC /* KPKDeletedNode.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C1842AA179B027800E2F5BC /* KPKDeletedNode.m */; };
@@ -292,9 +297,17 @@
 		4C01C244176500C40016D5D0 /* HNHLevelIndicatorCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HNHLevelIndicatorCell.m; sourceTree = "<group>"; };
 		4C055E72179620BF00BD2BAB /* NSString+CommandString.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+CommandString.h"; sourceTree = "<group>"; };
 		4C055E73179620BF00BD2BAB /* NSString+CommandString.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+CommandString.m"; sourceTree = "<group>"; };
+		4C0728B917B5B7A4005A7DD9 /* PasswordEditWindow.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PasswordEditWindow.xib; sourceTree = "<group>"; };
+		4C0728BB17B5B7F7005A7DD9 /* MPPasswordEditWindowController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MPPasswordEditWindowController.h; sourceTree = "<group>"; };
+		4C0728BC17B5B7F7005A7DD9 /* MPPasswordEditWindowController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MPPasswordEditWindowController.m; sourceTree = "<group>"; };
+		4C0728BE17B68ED0005A7DD9 /* SavePanelAccessoryView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SavePanelAccessoryView.xib; sourceTree = "<group>"; };
 		4C08C3AC17B3022400BBBC95 /* KPKLegacyHeaderWriter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KPKLegacyHeaderWriter.h; sourceTree = "<group>"; };
 		4C08C3AD17B3022400BBBC95 /* KPKLegacyHeaderWriter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KPKLegacyHeaderWriter.m; sourceTree = "<group>"; };
 		4C08C3AF17B3036500BBBC95 /* KPKLegacyFormat.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = KPKLegacyFormat.h; path = Format/KPKLegacyFormat.h; sourceTree = "<group>"; };
+		4C0F647617B6B65E00D9522A /* MPSheetWindowController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MPSheetWindowController.h; sourceTree = "<group>"; };
+		4C0F647717B6B65E00D9522A /* MPSheetWindowController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MPSheetWindowController.m; sourceTree = "<group>"; };
+		4C0F647917B6BC9C00D9522A /* MPSavePanelAccessoryViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MPSavePanelAccessoryViewController.h; sourceTree = "<group>"; };
+		4C0F647A17B6BC9C00D9522A /* MPSavePanelAccessoryViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MPSavePanelAccessoryViewController.m; sourceTree = "<group>"; };
 		4C10412A178CDD44001B5239 /* NSDate+Humanized.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDate+Humanized.h"; sourceTree = "<group>"; };
 		4C10412B178CDD44001B5239 /* NSDate+Humanized.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDate+Humanized.m"; sourceTree = "<group>"; };
 		4C13904C17ADD1A300A62934 /* KPKTreeCrypting.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KPKTreeCrypting.h; sourceTree = "<group>"; };
@@ -750,7 +763,6 @@
 		4CD884B615BD47080042BBF8 /* DocumentWindow.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DocumentWindow.xib; sourceTree = "<group>"; };
 		4CDB5C401794AA4F0017667E /* KPKTree+Serializing.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "KPKTree+Serializing.h"; sourceTree = "<group>"; };
 		4CDB5C411794AA4F0017667E /* KPKTree+Serializing.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = "KPKTree+Serializing.m"; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
-		4CDE28D0179C8E010036C771 /* MPDatabaseSettingsDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MPDatabaseSettingsDelegate.h; sourceTree = "<group>"; };
 		4CDF01A116D1B76700D0AC08 /* MPEntryViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MPEntryViewController.h; sourceTree = "<group>"; };
 		4CDF01A216D1B76700D0AC08 /* MPEntryViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MPEntryViewController.m; sourceTree = "<group>"; };
 		4CE298E91795FC2A00DF7BDB /* MPEntryContextMenuDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MPEntryContextMenuDelegate.h; sourceTree = "<group>"; };
@@ -848,6 +860,7 @@
 				4CE39AC016ECE359000FE29D /* IconSelection.xib */,
 				4C2C8B331787500E009649F3 /* UnprotectedWarningView.xib */,
 				4C4B7EE817A45EC5000234C7 /* DatePickingView.xib */,
+				4C0728BE17B68ED0005A7DD9 /* SavePanelAccessoryView.xib */,
 				4C74DD05177BD1640034A9DB /* MPCustomFieldView.h */,
 				4C74DD06177BD1640034A9DB /* MPCustomFieldView.m */,
 				4CE8247316E2F2B900573141 /* MPOverlayView.h */,
@@ -1458,14 +1471,14 @@
 		4CA0B2F115BCAEE600654E32 /* View Controller */ = {
 			isa = PBXGroup;
 			children = (
+				4C2E382416D1470200037A9D /* MPViewController.h */,
+				4C2E382516D1470200037A9D /* MPViewController.m */,
 				4CA0B2F715BCAF6700654E32 /* MPGeneralSettingsController.h */,
 				4CA0B2F815BCAF6700654E32 /* MPGeneralSettingsController.m */,
 				4CF78062176E75AD0032EE71 /* MPServerSettingsController.h */,
 				4CF78063176E75AD0032EE71 /* MPServerSettingsController.m */,
 				4CD7223917A7CB0700F5A1E1 /* MPWorkflowSettingsController.h */,
 				4CD7223A17A7CB0700F5A1E1 /* MPWorkflowSettingsController.m */,
-				4C2E382416D1470200037A9D /* MPViewController.h */,
-				4C2E382516D1470200037A9D /* MPViewController.m */,
 				4C65FAE616D16DDB006E0577 /* MPPasswordInputController.h */,
 				4C65FAE716D16DDB006E0577 /* MPPasswordInputController.m */,
 				4C5A11FB1708DE8700223D8A /* MPPasswordCreatorViewController.h */,
@@ -1484,6 +1497,8 @@
 				4C4B7EEC17A467E1000234C7 /* MPGroupInspectorViewController.m */,
 				4C4B7EF017A467FC000234C7 /* MPEntryInspectorViewController.h */,
 				4C4B7EF117A467FC000234C7 /* MPEntryInspectorViewController.m */,
+				4C0F647917B6BC9C00D9522A /* MPSavePanelAccessoryViewController.h */,
+				4C0F647A17B6BC9C00D9522A /* MPSavePanelAccessoryViewController.m */,
 			);
 			name = "View Controller";
 			sourceTree = "<group>";
@@ -1493,7 +1508,6 @@
 			children = (
 				4CF6C715176F5183007A811D /* MPServerRequestHandler.h */,
 				4CA0B30D15BCB6FD00654E32 /* MPSettingsTab.h */,
-				4CDE28D0179C8E010036C771 /* MPDatabaseSettingsDelegate.h */,
 			);
 			name = Protocolls;
 			sourceTree = "<group>";
@@ -1702,6 +1716,8 @@
 		4CE8247016E2E96500573141 /* Window Controller */ = {
 			isa = PBXGroup;
 			children = (
+				4C0F647617B6B65E00D9522A /* MPSheetWindowController.h */,
+				4C0F647717B6B65E00D9522A /* MPSheetWindowController.m */,
 				4CA0B2FA15BCAF8600654E32 /* MPSettingsWindowController.h */,
 				4CA0B2FB15BCAF8600654E32 /* MPSettingsWindowController.m */,
 				4C83814015BF4677001AE468 /* MPDocumentWindowController.h */,
@@ -1710,6 +1726,8 @@
 				4CE8246E16E2E93400573141 /* MPOverlayWindowController.m */,
 				4CD5D703177A5F3300100649 /* MPDatabaseSettingsWindowController.h */,
 				4CD5D704177A5F3300100649 /* MPDatabaseSettingsWindowController.m */,
+				4C0728BB17B5B7F7005A7DD9 /* MPPasswordEditWindowController.h */,
+				4C0728BC17B5B7F7005A7DD9 /* MPPasswordEditWindowController.m */,
 			);
 			name = "Window Controller";
 			sourceTree = "<group>";
@@ -1731,6 +1749,7 @@
 				4C431BCE16E2BAB000700A81 /* OverlayWindow.xib */,
 				4C1DDCDC1711ECEB00C98DA3 /* PasswordCreatorWindow.xib */,
 				4CD5D701177A5EE400100649 /* DatabaseSettingsWindow.xib */,
+				4C0728B917B5B7A4005A7DD9 /* PasswordEditWindow.xib */,
 			);
 			name = Windows;
 			sourceTree = "<group>";
@@ -1891,6 +1910,8 @@
 				4C4B7EEF17A467E1000234C7 /* GroupInspectorView.xib in Resources */,
 				4C4B7EF417A467FC000234C7 /* EntryInspectorView.xib in Resources */,
 				4CD7223817A7C9EA00F5A1E1 /* WorkflowSettings.xib in Resources */,
+				4C0728BA17B5B7A4005A7DD9 /* PasswordEditWindow.xib in Resources */,
+				4C0728BF17B68ED0005A7DD9 /* SavePanelAccessoryView.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2136,6 +2157,9 @@
 				4CF4FEE017AEA4A400712774 /* UUID+Pasterboard.m in Sources */,
 				4C6366AC17AF1E0100AAF17D /* NSColor+KeePassKit.m in Sources */,
 				4C08C3AE17B3022400BBBC95 /* KPKLegacyHeaderWriter.m in Sources */,
+				4C0728BD17B5B7F7005A7DD9 /* MPPasswordEditWindowController.m in Sources */,
+				4C0F647817B6B65E00D9522A /* MPSheetWindowController.m in Sources */,
+				4C0F647B17B6BC9C00D9522A /* MPSavePanelAccessoryViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -11,13 +11,10 @@
 
 
 APPKIT_EXTERN NSString *const MPDocumentDidAddGroupNotification;
-APPKIT_EXTERN NSString *const MPDocumentDidAddEntryNotification;
 APPKIT_EXTERN NSString *const MPDocumentDidRevertNotifiation;
 
 APPKIT_EXTERN NSString *const MPDocumentEntryKey;
 APPKIT_EXTERN NSString *const MPDocumentGroupKey;
-
-APPKIT_EXTERN NSString *const MPDocumentRequestPasswordSaveNotification;
 
 /*
  APPKIT_EXTERN NSString *const MPDocumentDidChangeCurrentItemNotification;
@@ -95,10 +92,6 @@ APPKIT_EXTERN NSString *const MPDocumnetDidChangeCurrentEntryNotification;
 - (KdbGroup *)createGroup:(KdbGroup *)parent;
 - (KdbEntry *)createEntry:(KdbGroup *)parent;
 - (StringField *)createStringField:(KdbEntry *)entry;
-
-/*
- All non-setter undoable actions
-*/
 
 /* TODO in UNDO auslagen */
 - (void)addStringField:(StringField *)field toEntry:(Kdb4Entry *)entry atIndex:(NSUInteger)index;
