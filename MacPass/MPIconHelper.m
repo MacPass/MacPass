@@ -52,8 +52,13 @@ static NSDictionary *icons;
                                @(MPIconCamera): @"11_CameraTemplate",
                                @(MPIconRemote): @"12_RemoteTemplate",
                                @(MPIconKeys): @"13_KeysTemplate",
-
+                              
+                               @(MPIconScanner): @"15_ScannerTemplate",
+                               @(MPIconBrowser): @"16_BrowserTemplate",
+                               @(MPIconCDRom): @"17_CDRomTemplate",
                                @(MPIconDisplay): @"18_DisplayTemplate",
+                               @(MPIconEmail): @"19_EmailTemplate",
+                               @(MPIconMisc): @"20_MiscTemplate",
                                
                                @(MPIconFileSave): @"26_FileSaveTemplate",
                                
@@ -66,7 +71,9 @@ static NSDictionary *icons;
                                @(MPIconInfo): @"99_InfoTemplate",
                                @(MPIconAddFolder): @"99_AddFolderTemplate",
                                @(MPIconHardDisk): @"99_HarddiskTemplate",
-                               @(MPIconCreated): @"99_CreatedTemplate"
+                               @(MPIconCreated): @"99_CreatedTemplate",
+                               @(MPIconAddEntry): @"addEntryTemplate",
+                               @(MPIconContextTriangle): @"contextTriangleTemplate"
                                };
   return imageNames;
 }

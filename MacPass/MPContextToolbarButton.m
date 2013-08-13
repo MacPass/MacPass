@@ -9,6 +9,13 @@
 #import "MPContextToolbarButton.h"
 #import "MPSegmentedContextCell.h"
 
+@interface MPContextToolbarButton () {
+  @private
+  NSMenu *_contextMenu;
+}
+
+@end
+
 @implementation MPContextToolbarButton
 
 - (id)initWithFrame:(NSRect)frame {
@@ -35,6 +42,12 @@
   return self;
 }
 
+- (void)setContextMenu:(NSMenu *)menu {
+  if(_contextMenu != menu) {
+    _contextMenu = menu;
+  }
+}
+
 /*
  Block the segment setter to prevent accidential settings
  */
@@ -55,11 +68,10 @@
 }
 
 - (void)showContextMenu:(id)sender {
-  NSMenu *menu = [self menuForSegment:0];
   NSPoint point = [self frame].origin;
   point.x = [[self cell] widthForSegment:0];
   point.y = NSHeight([self frame]) + 3;
-  [menu popUpMenuPositioningItem:nil atLocation:point inView:self];
+  [_contextMenu popUpMenuPositioningItem:nil atLocation:point inView:self];
 }
 
 @end

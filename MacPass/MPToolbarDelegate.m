@@ -97,7 +97,7 @@ NSString *const MPToolbarItemInspector = @"TOOLBAR_INSPECTOR";
       NSMenu *menu = [NSMenu allocWithZone:[NSMenu menuZone]];
       [menu addItemWithTitle:@"Dummy" action:NULL keyEquivalent:@""];
       [menu setDelegate:_entryMenuDelegate];
-      [[button cell] setMenu:menu forSegment:0];
+      [button setContextMenu:menu];
       
 
       NSRect fittingRect = [button frame];

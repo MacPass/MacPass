@@ -11,5 +11,6 @@
 @interface MPContextToolbarButton : NSSegmentedControl
 
 - (void)setImage:(NSImage *)image;
+- (void)setContextMenu:(NSMenu *)menu;
 
 @end

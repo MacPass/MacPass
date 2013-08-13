@@ -27,7 +27,12 @@ typedef NS_ENUM(NSUInteger, MPIconType) {
   MPIconCamera,
   MPIconRemote,
   MPIconKeys,
-  MPIconDisplay = 18,
+  MPIconScanner = 15,
+  MPIconBrowser,
+  MPIconCDRom,
+  MPIconDisplay,
+  MPIconEmail,
+  MPIconMisc,
   MPIconFileSave = 26,
   MPIconTrash = 43,
   MPIconFolder = 48,
@@ -38,6 +43,8 @@ typedef NS_ENUM(NSUInteger, MPIconType) {
   MPIconAddFolder,
   MPIconHardDisk,
   MPIconCreated,
+  MPIconAddEntry,
+  MPIconContextTriangle,
 };
 
 /**

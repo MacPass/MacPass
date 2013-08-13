@@ -200,6 +200,12 @@
 		4C79E80317A9187400AC6CD2 /* KPKXmlHeaderWriter.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C79E80217A9187400AC6CD2 /* KPKXmlHeaderWriter.m */; };
 		4C79E80617A9400500AC6CD2 /* KPKTestNSCoding.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C79E80517A9400500AC6CD2 /* KPKTestNSCoding.m */; };
 		4C79E80917A9485600AC6CD2 /* KPKTestNSCopying.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C79E80817A9485600AC6CD2 /* KPKTestNSCopying.m */; };
+		4C7ABA4817BAEC6700FF5799 /* 15_ScannerTemplate.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 4C7ABA4317BAEC6700FF5799 /* 15_ScannerTemplate.pdf */; };
+		4C7ABA4917BAEC6700FF5799 /* 16_BrowserTemplate.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 4C7ABA4417BAEC6700FF5799 /* 16_BrowserTemplate.pdf */; };
+		4C7ABA4A17BAEC6700FF5799 /* 17_CDRomTemplate.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 4C7ABA4517BAEC6700FF5799 /* 17_CDRomTemplate.pdf */; };
+		4C7ABA4B17BAEC6700FF5799 /* 19_EmailTemplate.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 4C7ABA4617BAEC6700FF5799 /* 19_EmailTemplate.pdf */; };
+		4C7ABA4C17BAEC6700FF5799 /* 20_MiscTemplate.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 4C7ABA4717BAEC6700FF5799 /* 20_MiscTemplate.pdf */; };
+		4C7ABA4E17BAEC7000FF5799 /* addEntryTemplate.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 4C7ABA4D17BAEC7000FF5799 /* addEntryTemplate.pdf */; };
 		4C7F35681779DFFB00C57890 /* Errors.strings in Resources */ = {isa = PBXBuildFile; fileRef = 4C7F356A1779DFFB00C57890 /* Errors.strings */; };
 		4C801AFC179310E2002821E3 /* NSString+Hexdata.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C801AFB179310E2002821E3 /* NSString+Hexdata.m */; };
 		4C80BB6F176DE06F00E5E248 /* HNHScrollDocumentViewAdapter.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C80BB6E176DE06F00E5E248 /* HNHScrollDocumentViewAdapter.m */; };
@@ -658,6 +664,12 @@
 		4C79E80517A9400500AC6CD2 /* KPKTestNSCoding.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KPKTestNSCoding.m; sourceTree = "<group>"; };
 		4C79E80717A9485600AC6CD2 /* KPKTestNSCopying.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KPKTestNSCopying.h; sourceTree = "<group>"; };
 		4C79E80817A9485600AC6CD2 /* KPKTestNSCopying.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KPKTestNSCopying.m; sourceTree = "<group>"; };
+		4C7ABA4317BAEC6700FF5799 /* 15_ScannerTemplate.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = 15_ScannerTemplate.pdf; sourceTree = "<group>"; };
+		4C7ABA4417BAEC6700FF5799 /* 16_BrowserTemplate.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = 16_BrowserTemplate.pdf; sourceTree = "<group>"; };
+		4C7ABA4517BAEC6700FF5799 /* 17_CDRomTemplate.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = 17_CDRomTemplate.pdf; sourceTree = "<group>"; };
+		4C7ABA4617BAEC6700FF5799 /* 19_EmailTemplate.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = 19_EmailTemplate.pdf; sourceTree = "<group>"; };
+		4C7ABA4717BAEC6700FF5799 /* 20_MiscTemplate.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = 20_MiscTemplate.pdf; sourceTree = "<group>"; };
+		4C7ABA4D17BAEC7000FF5799 /* addEntryTemplate.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; name = addEntryTemplate.pdf; path = Icons/addEntryTemplate.pdf; sourceTree = "<group>"; };
 		4C7F35691779DFFB00C57890 /* en */ = {isa = PBXFileReference; fileEncoding = 10; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Errors.strings; sourceTree = "<group>"; };
 		4C7F356B1779DFFF00C57890 /* de */ = {isa = PBXFileReference; fileEncoding = 10; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/Errors.strings; sourceTree = "<group>"; };
 		4C801AFA179310E2002821E3 /* NSString+Hexdata.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+Hexdata.h"; sourceTree = "<group>"; };
@@ -1294,7 +1306,12 @@
 				4CD78ABB16D155FF00768A1D /* 11_CameraTemplate.pdf */,
 				4C701CBB178618A000581B88 /* 12_RemoteTemplate.pdf */,
 				4C52A88C1788628B00868229 /* 13_KeysTemplate.pdf */,
+				4C7ABA4317BAEC6700FF5799 /* 15_ScannerTemplate.pdf */,
+				4C7ABA4417BAEC6700FF5799 /* 16_BrowserTemplate.pdf */,
+				4C7ABA4517BAEC6700FF5799 /* 17_CDRomTemplate.pdf */,
 				4C52A88D1788628B00868229 /* 18_DisplayTemplate.pdf */,
+				4C7ABA4617BAEC6700FF5799 /* 19_EmailTemplate.pdf */,
+				4C7ABA4717BAEC6700FF5799 /* 20_MiscTemplate.pdf */,
 				4CF29BF317879D0000851B60 /* 26_FileSaveTemplate.pdf */,
 				4C7714A9176C998F00549F2A /* 43_TrashTemplate.pdf */,
 				4C6D1D24178579570014C5A5 /* 48_FolderTemplate.pdf */,
@@ -1770,6 +1787,7 @@
 		4CE88B9317BA64DB0042E078 /* Icons */ = {
 			isa = PBXGroup;
 			children = (
+				4C7ABA4D17BAEC7000FF5799 /* addEntryTemplate.pdf */,
 				4CE88B9617BA651C0042E078 /* contextTriangleTemplate.pdf */,
 				4C6D1D26178586CA0014C5A5 /* 99_AddFolderTemplate.pdf */,
 				4C96D15317A12E4F00D931FA /* 99_CreatedTemplate.pdf */,
@@ -1947,6 +1965,12 @@
 				4C0728BA17B5B7A4005A7DD9 /* PasswordEditWindow.xib in Resources */,
 				4C0728BF17B68ED0005A7DD9 /* SavePanelAccessoryView.xib in Resources */,
 				4CE88B9717BA651C0042E078 /* contextTriangleTemplate.pdf in Resources */,
+				4C7ABA4817BAEC6700FF5799 /* 15_ScannerTemplate.pdf in Resources */,
+				4C7ABA4917BAEC6700FF5799 /* 16_BrowserTemplate.pdf in Resources */,
+				4C7ABA4A17BAEC6700FF5799 /* 17_CDRomTemplate.pdf in Resources */,
+				4C7ABA4B17BAEC6700FF5799 /* 19_EmailTemplate.pdf in Resources */,
+				4C7ABA4C17BAEC6700FF5799 /* 20_MiscTemplate.pdf in Resources */,
+				4C7ABA4E17BAEC7000FF5799 /* addEntryTemplate.pdf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
