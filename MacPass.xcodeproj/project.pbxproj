@@ -121,6 +121,7 @@
 		4C569D9E17652B0600595B62 /* MPConstants.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C569D9D17652B0600595B62 /* MPConstants.m */; };
 		4C569DA117652BFE00595B62 /* MPEntryTableDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C569DA017652BFE00595B62 /* MPEntryTableDataSource.m */; };
 		4C569DA417653F3500595B62 /* KdbEntry+MPTreeTools.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C569DA317653F3500595B62 /* KdbEntry+MPTreeTools.m */; };
+		4C57AE1417BA422B00CA4F34 /* MPSegmentedContextCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C57AE1317BA422B00CA4F34 /* MPSegmentedContextCell.m */; };
 		4C586F9E16D07ABD00E7DB57 /* 00_PasswordTemplate.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 4C586F9D16D07ABD00E7DB57 /* 00_PasswordTemplate.pdf */; };
 		4C586FA016D07D7200E7DB57 /* 01_PackageNetworkTemplate.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 4C586F9F16D07D7200E7DB57 /* 01_PackageNetworkTemplate.pdf */; };
 		4C586FA216D07F6A00E7DB57 /* 02_MessageBoxWarningTemplate.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 4C586FA116D07F6A00E7DB57 /* 02_MessageBoxWarningTemplate.pdf */; };
@@ -268,6 +269,9 @@
 		4CE76DAD17B3AD010043B82B /* KPKHashedDataTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CE76DAC17B3AD010043B82B /* KPKHashedDataTest.m */; };
 		4CE8246F16E2E93400573141 /* MPOverlayWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CE8246E16E2E93400573141 /* MPOverlayWindowController.m */; };
 		4CE8247516E2F2B900573141 /* MPOverlayView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CE8247416E2F2B900573141 /* MPOverlayView.m */; };
+		4CE88B9717BA651C0042E078 /* contextTriangleTemplate.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 4CE88B9617BA651C0042E078 /* contextTriangleTemplate.pdf */; };
+		4CEAF85717BA9B1D001307A6 /* Keepass2Key.xml in Resources */ = {isa = PBXBuildFile; fileRef = 4CEAF85617BA9B1D001307A6 /* Keepass2Key.xml */; };
+		4CEAF85B17BA9B44001307A6 /* KPKTestKeyfileParsing.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CEAF85A17BA9B44001307A6 /* KPKTestKeyfileParsing.m */; };
 		4CECB31717AC326D00EAFB0F /* KPKLegacyWritingTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CECB31617AC326D00EAFB0F /* KPKLegacyWritingTest.m */; };
 		4CF1F0CA1786B37900CD920E /* NSData+Gzip.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CF1F0C81786B37900CD920E /* NSData+Gzip.m */; };
 		4CF29BF417879D0000851B60 /* 26_FileSaveTemplate.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 4CF29BF317879D0000851B60 /* 26_FileSaveTemplate.pdf */; };
@@ -430,7 +434,7 @@
 		4C305F3B179A19F90082334F /* KPKIconLoading.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KPKIconLoading.m; sourceTree = "<group>"; };
 		4C305F3D179A1A760082334F /* image.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = image.png; path = Images/image.png; sourceTree = "<group>"; };
 		4C3666401787327E00B249F1 /* MPDocument+Attachments.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "MPDocument+Attachments.m"; sourceTree = "<group>"; };
-		4C366642178748F500B249F1 /* 99_HarddiskTemplate.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = 99_HarddiskTemplate.pdf; sourceTree = "<group>"; };
+		4C366642178748F500B249F1 /* 99_HarddiskTemplate.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; name = 99_HarddiskTemplate.pdf; path = Icons/99_HarddiskTemplate.pdf; sourceTree = "<group>"; };
 		4C36E5B2177CD4FB00152132 /* Kdb4Tree+KVOAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Kdb4Tree+KVOAdditions.h"; sourceTree = "<group>"; };
 		4C36E5B3177CD4FB00152132 /* Kdb4Tree+KVOAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "Kdb4Tree+KVOAdditions.m"; sourceTree = "<group>"; };
 		4C37A6711769393300AD0A40 /* HNHTableHeaderCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HNHTableHeaderCell.h; sourceTree = "<group>"; };
@@ -501,6 +505,8 @@
 		4C569DA017652BFE00595B62 /* MPEntryTableDataSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MPEntryTableDataSource.m; sourceTree = "<group>"; };
 		4C569DA217653F3500595B62 /* KdbEntry+MPTreeTools.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "KdbEntry+MPTreeTools.h"; sourceTree = "<group>"; };
 		4C569DA317653F3500595B62 /* KdbEntry+MPTreeTools.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "KdbEntry+MPTreeTools.m"; sourceTree = "<group>"; };
+		4C57AE1217BA422B00CA4F34 /* MPSegmentedContextCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MPSegmentedContextCell.h; sourceTree = "<group>"; };
+		4C57AE1317BA422B00CA4F34 /* MPSegmentedContextCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MPSegmentedContextCell.m; sourceTree = "<group>"; };
 		4C586F9D16D07ABD00E7DB57 /* 00_PasswordTemplate.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = 00_PasswordTemplate.pdf; sourceTree = "<group>"; };
 		4C586F9F16D07D7200E7DB57 /* 01_PackageNetworkTemplate.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = 01_PackageNetworkTemplate.pdf; sourceTree = "<group>"; };
 		4C586FA116D07F6A00E7DB57 /* 02_MessageBoxWarningTemplate.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = 02_MessageBoxWarningTemplate.pdf; sourceTree = "<group>"; };
@@ -613,7 +619,7 @@
 		4C6BEA2F17A88E6C00CF69A8 /* MPStripLineBreaksTransformer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MPStripLineBreaksTransformer.h; sourceTree = "<group>"; };
 		4C6BEA3017A88E6C00CF69A8 /* MPStripLineBreaksTransformer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MPStripLineBreaksTransformer.m; sourceTree = "<group>"; };
 		4C6D1D24178579570014C5A5 /* 48_FolderTemplate.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = 48_FolderTemplate.pdf; sourceTree = "<group>"; };
-		4C6D1D26178586CA0014C5A5 /* 99_AddFolderTemplate.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = 99_AddFolderTemplate.pdf; sourceTree = "<group>"; };
+		4C6D1D26178586CA0014C5A5 /* 99_AddFolderTemplate.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; name = 99_AddFolderTemplate.pdf; path = Icons/99_AddFolderTemplate.pdf; sourceTree = "<group>"; };
 		4C6D1D2A17858A250014C5A5 /* MacPass.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; name = MacPass.icns; path = "../Assets/App icon/MacPass.icns"; sourceTree = "<group>"; };
 		4C701CBB178618A000581B88 /* 12_RemoteTemplate.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = 12_RemoteTemplate.pdf; sourceTree = "<group>"; };
 		4C70D0FE179092F200652EE9 /* KPKPassword.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KPKPassword.h; sourceTree = "<group>"; };
@@ -630,7 +636,7 @@
 		4C7615781764C4A50015A1A6 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.rtf; name = de; path = de.lproj/Credits.rtf; sourceTree = "<group>"; };
 		4C7615791764C4A50015A1A6 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		4C7714A9176C998F00549F2A /* 43_TrashTemplate.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = 43_TrashTemplate.pdf; sourceTree = "<group>"; };
-		4C7714AB176C9D4600549F2A /* 99_InfoTemplate.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = 99_InfoTemplate.pdf; sourceTree = "<group>"; };
+		4C7714AB176C9D4600549F2A /* 99_InfoTemplate.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; name = 99_InfoTemplate.pdf; path = Icons/99_InfoTemplate.pdf; sourceTree = "<group>"; };
 		4C77547316E55FE800970E02 /* MPInspectorViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MPInspectorViewController.h; sourceTree = "<group>"; };
 		4C77547416E55FE800970E02 /* MPInspectorViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MPInspectorViewController.m; sourceTree = "<group>"; };
 		4C77E36215B84A240093A587 /* MacPass.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MacPass.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -676,7 +682,7 @@
 		4C8B36A917A6ED4B005E1FF1 /* MPOutlineContextMenuDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MPOutlineContextMenuDelegate.h; sourceTree = "<group>"; };
 		4C8B36AA17A6ED4B005E1FF1 /* MPOutlineContextMenuDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MPOutlineContextMenuDelegate.m; sourceTree = "<group>"; };
 		4C8FECC716D57E3200BF26CF /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
-		4C96D15317A12E4F00D931FA /* 99_CreatedTemplate.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = 99_CreatedTemplate.pdf; sourceTree = "<group>"; };
+		4C96D15317A12E4F00D931FA /* 99_CreatedTemplate.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; name = 99_CreatedTemplate.pdf; path = Icons/99_CreatedTemplate.pdf; sourceTree = "<group>"; };
 		4C9D6AA717615199001C660C /* HNHRoundedSecureTextFieldCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HNHRoundedSecureTextFieldCell.h; sourceTree = "<group>"; };
 		4C9D6AA817615199001C660C /* HNHRoundedSecureTextFieldCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HNHRoundedSecureTextFieldCell.m; sourceTree = "<group>"; };
 		4CA08D9E17A831B200A6544B /* MPAddEntryContextMenuDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MPAddEntryContextMenuDelegate.h; sourceTree = "<group>"; };
@@ -782,6 +788,10 @@
 		4CE8246E16E2E93400573141 /* MPOverlayWindowController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MPOverlayWindowController.m; sourceTree = "<group>"; };
 		4CE8247316E2F2B900573141 /* MPOverlayView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MPOverlayView.h; sourceTree = "<group>"; };
 		4CE8247416E2F2B900573141 /* MPOverlayView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MPOverlayView.m; sourceTree = "<group>"; };
+		4CE88B9617BA651C0042E078 /* contextTriangleTemplate.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; name = contextTriangleTemplate.pdf; path = Icons/contextTriangleTemplate.pdf; sourceTree = "<group>"; };
+		4CEAF85617BA9B1D001307A6 /* Keepass2Key.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; name = Keepass2Key.xml; path = Keyfiles/Keepass2Key.xml; sourceTree = "<group>"; };
+		4CEAF85917BA9B44001307A6 /* KPKTestKeyfileParsing.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KPKTestKeyfileParsing.h; sourceTree = "<group>"; };
+		4CEAF85A17BA9B44001307A6 /* KPKTestKeyfileParsing.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KPKTestKeyfileParsing.m; sourceTree = "<group>"; };
 		4CECB31517AC326D00EAFB0F /* KPKLegacyWritingTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KPKLegacyWritingTest.h; sourceTree = "<group>"; };
 		4CECB31617AC326D00EAFB0F /* KPKLegacyWritingTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KPKLegacyWritingTest.m; sourceTree = "<group>"; };
 		4CF1F0C81786B37900CD920E /* NSData+Gzip.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSData+Gzip.m"; sourceTree = "<group>"; };
@@ -1213,6 +1223,7 @@
 		4C45FB1E178E09ED0010007D /* MacPassTests */ = {
 			isa = PBXGroup;
 			children = (
+				4CEAF85817BA9B25001307A6 /* Keyfiles */,
 				4C305F3F179A1A790082334F /* Images */,
 				4C18F9AC178E123200890BCE /* Databases */,
 				4C45FB2B178E0BCB0010007D /* MPDatabaseLoading.h */,
@@ -1240,6 +1251,8 @@
 				4C6366AE17AF207600AAF17D /* KPKTestHexColor.m */,
 				4CE76DAB17B3AD010043B82B /* KPKHashedDataTest.h */,
 				4CE76DAC17B3AD010043B82B /* KPKHashedDataTest.m */,
+				4CEAF85917BA9B44001307A6 /* KPKTestKeyfileParsing.h */,
+				4CEAF85A17BA9B44001307A6 /* KPKTestKeyfileParsing.m */,
 			);
 			path = MacPassTests;
 			sourceTree = "<group>";
@@ -1264,7 +1277,7 @@
 			name = Inspector;
 			sourceTree = "<group>";
 		};
-		4C586F9C16D07ABD00E7DB57 /* Icons */ = {
+		4C586F9C16D07ABD00E7DB57 /* Database Icons */ = {
 			isa = PBXGroup;
 			children = (
 				4C586F9D16D07ABD00E7DB57 /* 00_PasswordTemplate.pdf */,
@@ -1286,11 +1299,8 @@
 				4C7714A9176C998F00549F2A /* 43_TrashTemplate.pdf */,
 				4C6D1D24178579570014C5A5 /* 48_FolderTemplate.pdf */,
 				4C52A891178863B000868229 /* 68_PhoneTemplate.pdf */,
-				4C6D1D26178586CA0014C5A5 /* 99_AddFolderTemplate.pdf */,
-				4C96D15317A12E4F00D931FA /* 99_CreatedTemplate.pdf */,
-				4C366642178748F500B249F1 /* 99_HarddiskTemplate.pdf */,
-				4C7714AB176C9D4600549F2A /* 99_InfoTemplate.pdf */,
 			);
+			name = "Database Icons";
 			path = Icons;
 			sourceTree = "<group>";
 		};
@@ -1438,7 +1448,8 @@
 				4C245C11176E22150086100E /* KeepassHttp */,
 				4C2C4C2516D3BCEA00D49295 /* KeePassLib Categories */,
 				4C2E382016D141F700037A9D /* Helper */,
-				4C586F9C16D07ABD00E7DB57 /* Icons */,
+				4CE88B9317BA64DB0042E078 /* Icons */,
+				4C586F9C16D07ABD00E7DB57 /* Database Icons */,
 				4CA0B30E15BCB70200654E32 /* Protocolls */,
 				4CE8247116E2E98200573141 /* Data Controller */,
 				4CE8247016E2E96500573141 /* Window Controller */,
@@ -1709,6 +1720,8 @@
 				4C888C9216EB6F5E003D34A1 /* MPToolbarItem.m */,
 				4C63B8F917A3154D0091BD72 /* MPContextToolbarButton.h */,
 				4C63B8FA17A3154D0091BD72 /* MPContextToolbarButton.m */,
+				4C57AE1217BA422B00CA4F34 /* MPSegmentedContextCell.h */,
+				4C57AE1317BA422B00CA4F34 /* MPSegmentedContextCell.m */,
 			);
 			name = Controls;
 			sourceTree = "<group>";
@@ -1752,6 +1765,26 @@
 				4C0728B917B5B7A4005A7DD9 /* PasswordEditWindow.xib */,
 			);
 			name = Windows;
+			sourceTree = "<group>";
+		};
+		4CE88B9317BA64DB0042E078 /* Icons */ = {
+			isa = PBXGroup;
+			children = (
+				4CE88B9617BA651C0042E078 /* contextTriangleTemplate.pdf */,
+				4C6D1D26178586CA0014C5A5 /* 99_AddFolderTemplate.pdf */,
+				4C96D15317A12E4F00D931FA /* 99_CreatedTemplate.pdf */,
+				4C366642178748F500B249F1 /* 99_HarddiskTemplate.pdf */,
+				4C7714AB176C9D4600549F2A /* 99_InfoTemplate.pdf */,
+			);
+			name = Icons;
+			sourceTree = "<group>";
+		};
+		4CEAF85817BA9B25001307A6 /* Keyfiles */ = {
+			isa = PBXGroup;
+			children = (
+				4CEAF85617BA9B1D001307A6 /* Keepass2Key.xml */,
+			);
+			name = Keyfiles;
 			sourceTree = "<group>";
 		};
 		4CF78060176E75180032EE71 /* Settings */ = {
@@ -1854,6 +1887,7 @@
 				4C6366B317AFB52500AAF17D /* CustomIcon_Password_1234.kdbx in Resources */,
 				4C6366B417AFB52500AAF17D /* CustomIcon_Password_1234.xml in Resources */,
 				4C6366B517AFB52500AAF17D /* KDB1_KeePassX_test.kdb in Resources */,
+				4CEAF85717BA9B1D001307A6 /* Keepass2Key.xml in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1912,6 +1946,7 @@
 				4CD7223817A7C9EA00F5A1E1 /* WorkflowSettings.xib in Resources */,
 				4C0728BA17B5B7A4005A7DD9 /* PasswordEditWindow.xib in Resources */,
 				4C0728BF17B68ED0005A7DD9 /* SavePanelAccessoryView.xib in Resources */,
+				4CE88B9717BA651C0042E078 /* contextTriangleTemplate.pdf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1950,6 +1985,7 @@
 				4CAC614317AD319200023F9E /* KPKTestXmlParsing.m in Sources */,
 				4C6366AF17AF207600AAF17D /* KPKTestHexColor.m in Sources */,
 				4CE76DAD17B3AD010043B82B /* KPKHashedDataTest.m in Sources */,
+				4CEAF85B17BA9B44001307A6 /* KPKTestKeyfileParsing.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2160,6 +2196,7 @@
 				4C0728BD17B5B7F7005A7DD9 /* MPPasswordEditWindowController.m in Sources */,
 				4C0F647817B6B65E00D9522A /* MPSheetWindowController.m in Sources */,
 				4C0F647B17B6BC9C00D9522A /* MPSavePanelAccessoryViewController.m in Sources */,
+				4C57AE1417BA422B00CA4F34 /* MPSegmentedContextCell.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

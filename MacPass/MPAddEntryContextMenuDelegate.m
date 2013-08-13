@@ -29,6 +29,7 @@
   }
   [menu removeAllItems];
   [menu addItemWithTitle:NSLocalizedString(@"EDIT_TEMPLATE_GROUP", "") action:[MPActionHelper actionOfType:MPActionEditTemplateGroup] keyEquivalent:@""];
+
   [menu addItem:[NSMenuItem separatorItem]];
   for(KdbEntry *entry in [document.templates childEntries]) {
     NSString *templateMask = NSLocalizedString(@"NEW_ENTRY_WITH_TEMPLATE_%@", "");
@@ -37,6 +38,10 @@
                                                                              keyEquivalent:@""];
     [templateItem setRepresentedObject:entry];
     [menu addItem:templateItem];
+  }
+  /* If there are no entries, add a note as disabled menu item */
+  if([[menu itemArray] count] == 2) {
+    [menu addItemWithTitle:NSLocalizedString(@"NO_TEMPLATES", "") action:NULL keyEquivalent:@""];
   }
 }
 

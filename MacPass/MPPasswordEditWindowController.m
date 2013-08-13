@@ -11,6 +11,7 @@
 
 #import "HNHRoundedSecureTextField.h"
 #import "NSString+Empty.h"
+#import "NSData+Keyfile.h"
 
 @interface MPPasswordEditWindowController () {
   MPDocument * __unsafe_unretained _document;
@@ -92,6 +93,23 @@
 }
 
 - (IBAction)generateKey:(id)sender {
+  NSData *data = [NSData generateKeyfiledataForVersion:(KPKVersion)(_document.version + 1)];
+  if(data) {
+    NSSavePanel *savePanel = [NSSavePanel savePanel];
+    [savePanel setAllowedFileTypes:@[@"key", @"xml"]];
+    [savePanel setCanCreateDirectories:YES];
+    [savePanel setTitle:NSLocalizedString(@"SAVE_KEYFILE", "")];
+    [savePanel beginWithCompletionHandler:^(NSInteger result) {
+      if(result == NSFileHandlingPanelOKButton) {
+        NSURL *keyURL = [savePanel URL];
+        NSError *error;
+        BOOL saveOk = [data writeToURL:keyURL options:NSDataWritingAtomic error:&error];
+        if(saveOk) {
+          self.keyURL = keyURL;
+        }
+      }
+    }];
+  }
 }
 
 #pragma mark NSTextFieldDelegate
