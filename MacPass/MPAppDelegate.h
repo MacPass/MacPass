@@ -11,8 +11,11 @@
 @interface MPAppDelegate : NSObject <NSApplicationDelegate>
 
 @property (strong) IBOutlet NSWindow *passwordCreatorWindow;
+@property (strong) IBOutlet NSWindow *welcomeWindow;
 
 - (IBAction)showPasswordCreator:(id)sender;
+- (IBAction)createNewDatabase:(id)sender;
+- (IBAction)openDatabase:(id)sender;
 
 - (NSString *)applicationName;
 - (void)lockAllDocuments;

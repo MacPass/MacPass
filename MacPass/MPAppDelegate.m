@@ -88,6 +88,11 @@
                                       completionHandler:^(NSDocument *document, BOOL documentWasAlreadyOpen, NSError *error) {}];
       
     }
+    else {
+      NSArray *topLevelObject;
+      [[NSBundle mainBundle] loadNibNamed:@"WelcomeWindow" owner:self topLevelObjects:&topLevelObject];
+      [self.welcomeWindow orderFront:self];
+    }
   }
 }
 
@@ -95,7 +100,8 @@
   return [[NSBundle mainBundle] infoDictionary][@"CFBundleName"];
 }
 
-#pragma mark Menu Actions
+#pragma mark -
+#pragma mark Actions
 - (void)showPreferences:(id)sender {
   if(self.settingsController == nil) {
     self.settingsController = [[MPSettingsWindowController alloc] init];
@@ -110,21 +116,20 @@
   if(!self.passwordCreatorController) {
     self.passwordCreatorController = [[MPPasswordCreatorViewController alloc] init];
     NSView *creatorView = [_passwordCreatorController view];
-    //NSView *contentView = [_passwordCreatorWindow contentView];
     [self.passwordCreatorWindow setContentView:creatorView];
-    //[contentView addSubview:creatorView];
-//    [[_passwordCreatorWindow contentView] addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|[creatorView]|"
-//                                                                                                 options:0
-//                                                                                                 metrics:nil
-//                                                                                                   views:NSDictionaryOfVariableBindings(creatorView)]];
-//    [[_passwordCreatorWindow contentView] addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|[creatorView]|"
-//                                                                                                 options:0
-//                                                                                                 metrics:nil
-//                                                                                                   views:NSDictionaryOfVariableBindings(creatorView)]];
-//    [contentView layoutSubtreeIfNeeded];
   }
   
   [self.passwordCreatorWindow makeKeyAndOrderFront:self.passwordCreatorWindow];
+}
+
+- (void)createNewDatabase:(id)sender {
+  [self.welcomeWindow orderOut:sender];
+  [[NSDocumentController sharedDocumentController] newDocument:sender];
+}
+
+- (void)openDatabase:(id)sender {
+  [self.welcomeWindow orderOut:sender];
+  [[NSDocumentController sharedDocumentController] openDocument:sender];
 }
 
 - (void)lockAllDocuments {
