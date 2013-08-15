@@ -185,6 +185,7 @@
 		4C6D1D25178579570014C5A5 /* 48_FolderTemplate.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 4C6D1D24178579570014C5A5 /* 48_FolderTemplate.pdf */; };
 		4C6D1D27178586CA0014C5A5 /* 99_AddFolderTemplate.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 4C6D1D26178586CA0014C5A5 /* 99_AddFolderTemplate.pdf */; };
 		4C6D1D2B17858A250014C5A5 /* MacPass.icns in Resources */ = {isa = PBXBuildFile; fileRef = 4C6D1D2A17858A250014C5A5 /* MacPass.icns */; };
+		4C6FDD2117BC4F4C004AEEC8 /* KPKTextPlaceholder.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C6FDD2017BC4F4C004AEEC8 /* KPKTextPlaceholder.m */; };
 		4C701CBC178618A000581B88 /* 12_RemoteTemplate.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 4C701CBB178618A000581B88 /* 12_RemoteTemplate.pdf */; };
 		4C70D100179092F200652EE9 /* KPKPassword.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C70D0FF179092F200652EE9 /* KPKPassword.m */; };
 		4C74DD07177BD1640034A9DB /* MPCustomFieldView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C74DD06177BD1640034A9DB /* MPCustomFieldView.m */; };
@@ -635,6 +636,8 @@
 		4C6D1D24178579570014C5A5 /* 48_FolderTemplate.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = 48_FolderTemplate.pdf; sourceTree = "<group>"; };
 		4C6D1D26178586CA0014C5A5 /* 99_AddFolderTemplate.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; name = 99_AddFolderTemplate.pdf; path = Icons/99_AddFolderTemplate.pdf; sourceTree = "<group>"; };
 		4C6D1D2A17858A250014C5A5 /* MacPass.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; name = MacPass.icns; path = "../Assets/App icon/MacPass.icns"; sourceTree = "<group>"; };
+		4C6FDD1F17BC4F4C004AEEC8 /* KPKTextPlaceholder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KPKTextPlaceholder.h; sourceTree = "<group>"; };
+		4C6FDD2017BC4F4C004AEEC8 /* KPKTextPlaceholder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KPKTextPlaceholder.m; sourceTree = "<group>"; };
 		4C701CBB178618A000581B88 /* 12_RemoteTemplate.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = 12_RemoteTemplate.pdf; sourceTree = "<group>"; };
 		4C70D0FE179092F200652EE9 /* KPKPassword.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KPKPassword.h; sourceTree = "<group>"; };
 		4C70D0FF179092F200652EE9 /* KPKPassword.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = KPKPassword.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
@@ -1273,6 +1276,8 @@
 				4CE76DAC17B3AD010043B82B /* KPKHashedDataTest.m */,
 				4CEAF85917BA9B44001307A6 /* KPKTestKeyfileParsing.h */,
 				4CEAF85A17BA9B44001307A6 /* KPKTestKeyfileParsing.m */,
+				4C6FDD1F17BC4F4C004AEEC8 /* KPKTextPlaceholder.h */,
+				4C6FDD2017BC4F4C004AEEC8 /* KPKTextPlaceholder.m */,
 			);
 			path = MacPassTests;
 			sourceTree = "<group>";
@@ -2024,6 +2029,7 @@
 				4C6366AF17AF207600AAF17D /* KPKTestHexColor.m in Sources */,
 				4CE76DAD17B3AD010043B82B /* KPKHashedDataTest.m in Sources */,
 				4CEAF85B17BA9B44001307A6 /* KPKTestKeyfileParsing.m in Sources */,
+				4C6FDD2117BC4F4C004AEEC8 /* KPKTextPlaceholder.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
