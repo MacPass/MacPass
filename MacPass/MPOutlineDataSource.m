@@ -51,7 +51,7 @@
    }
    */
   id targetItem = [item representedObject];
-  if(targetItem == nil) {
+  if(targetItem == nil || [targetItem isKindOfClass:[MPRootAdapter class]]) {
     return NSDragOperationNone; // no Target
   }
   
@@ -72,66 +72,58 @@
     if([uuids count] != 1) {
       return NSDragOperationNone; // NO entry readable
     }
+    self.draggedGroup = nil;
     self.draggedEntry = [document findEntry:[uuids lastObject]];
   }
   else {
     return NSDragOperationNone; // unkonw type
   }
   
-  if(self.draggedGroup && [targetItem isKindOfClass:[MPRootAdapter class]]) {
-    return NSDragOperationNone; // Drag over group header
-  }
-  
   KdbGroup *targetGroup = targetItem;
   BOOL validTarget = YES;
   if(self.draggedGroup) {
-    NSLog(@"draggin Group %@", self.draggedGroup.name);
+    if( self.draggedGroup == targetGroup ) {
+      return NSDragOperationNone; // Groups cannot be moved inside themselves
+    }
     if( self.draggedGroup.parent == targetGroup ) {
       validTarget &= index != NSOutlineViewDropOnItemIndex;
       validTarget &= index != [self.draggedGroup.parent.groups indexOfObject:self.draggedGroup];
     }
+    BOOL isAnchesor = [self.draggedGroup isAnchestorOfGroup:targetGroup];
+    NSLog(@"DraggedGroup:%@ isAnchestor:%d ofTargetGroup:%@", self.draggedGroup.name, isAnchesor, targetGroup.name);
+    validTarget &= !isAnchesor;
   }
   else if(self.draggedEntry) {
-    NSLog(@"draggin Entry %@", self.draggedEntry.title);
     validTarget = self.draggedEntry.parent != targetGroup;
+    [outlineView setDropItem:item dropChildIndex:NSOutlineViewDropOnItemIndex];
   }
   return validTarget ? oprationMask : NSDragOperationNone;
 }
 
 - (BOOL)outlineView:(NSOutlineView *)outlineView acceptDrop:(id<NSDraggingInfo>)info item:(id)item childIndex:(NSInteger)index {
-  self.draggedGroup = nil;
-  /*
-   KdbGroup *target = [item representedObject];
-   if(self.draggedGroup) {
-   BOOL accepted = YES;
-   if( self.draggedGroup.parent == target ) {
-   accepted &= index != NSOutlineViewDropOnItemIndex;
-   accepted &= index != [self.draggedGroup.parent.groups indexOfObject:self.draggedGroup];
-   }
-   accepted = ![self.draggedGroup isAnchestorOfGroup:target];
-   if( accepted ) {
-   [self.draggedGroup moveToGroupUndoable:target atIndex:index];
-   }
-   info.animatesToDestination = !accepted;
-   self.draggedGroup = nil;
-   return accepted;
-   }
-   NSPasteboard *pasteBoard = [info draggingPasteboard];
-   NSArray *items = [pasteBoard pasteboardItems];
-   if([items count] > 0) {
-   NSPasteboardItem *item = items[0];
-   UUID *uuid = [[UUID alloc] initWithString:[item stringForType:MPPasteBoardType]];
-   MPDocument *document = [[[outlineView window] windowController] document];
-   KdbGroup *rootGroup = [document root];
-   KdbEntry *draggedEntry = [rootGroup entryForUUID:uuid];
-   if(draggedEntry) {
-   if(draggedEntry.parent != target && index == NSOutlineViewDropOnItemIndex) {
-   [draggedEntry moveToGroupUndoable:target atIndex:index];
-   return YES;
-   }
-   }
-   }
-   */
+  info.animatesToDestination = YES;
+  NSPasteboard *pasteBoard = [info draggingPasteboard];
+  NSArray *types = [pasteBoard types];
+  if([types count] > 1 || [types count] == 0) {
+    return NO; // We cannot work with more than one type
+  }
+  
+  id targetItem = [item representedObject];
+  if(![targetItem isKindOfClass:[KdbGroup class]]) {
+    return NO; // Wrong
+  }
+  
+  KdbGroup *targetGroup = (KdbGroup *)targetItem;
+  
+  NSString *draggedType = [types lastObject];
+  if([draggedType isEqualToString:MPGroupUTI]) {
+    [self.draggedGroup moveToGroupUndoable:targetGroup atIndex:index];
+    return YES;
+  }
+  else if([draggedType isEqualToString:MPUUIDUTI]) {
+    [self.draggedEntry moveToGroupUndoable:targetGroup atIndex:index];
+    return YES;
+  }
   return NO;
 }
 @end

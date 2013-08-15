@@ -90,6 +90,11 @@ NSString *const MPGroupNameUndoableKey = @"nameUndoable";
   if(!self.parent || !group) {
     return; // No target or origin
   }
+  if(self.parent == group) {
+    // Correct the index to accomodate the removal
+    index--;
+  }
+  
   NSUInteger oldIndex = [self.parent.groups indexOfObject:self];
   if(oldIndex == NSNotFound) {
     return; // We aren't in our parents groups list.
@@ -102,6 +107,7 @@ NSString *const MPGroupNameUndoableKey = @"nameUndoable";
   
   [self.parent removeObjectFromGroupsAtIndex:oldIndex];
   index = MIN(index, [group.groups count]);
+  index = MAX(index, 0 );
   [group insertObject:self inGroupsAtIndex:index];
 }
 

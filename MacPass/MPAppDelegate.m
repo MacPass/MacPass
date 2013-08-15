@@ -16,12 +16,14 @@
 #import "MPStripLineBreaksTransformer.h"
 #import "MPServerDaemon.h"
 #import "MPLockDaemon.h"
+#import "MPAutotypeDaemon.h"
 #import "MPDocumentWindowController.h"
 
 @interface MPAppDelegate () {
 @private
   MPServerDaemon *serverDaemon;
   MPLockDaemon *lockDaemon;
+  MPAutotypeDaemon *autotypeDaemon;
   BOOL _restoredWindows;
 }
 
@@ -65,6 +67,7 @@
 - (void)applicationDidFinishLaunching:(NSNotification *)notification { 
   serverDaemon = [[MPServerDaemon alloc] init];
   lockDaemon = [[MPLockDaemon alloc] init];
+  //autotypeDaemon = [[MPAutotypeDaemon alloc] init];
 
   BOOL reopen = [[NSUserDefaults standardUserDefaults] boolForKey:kMPSettingsKeyReopenLastDatabaseOnLaunch];
   if(reopen && !_restoredWindows) {

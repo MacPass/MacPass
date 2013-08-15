@@ -6,11 +6,11 @@
 //  Copyright (c) 2013 HicknHack Software GmbH. All rights reserved.
 //
 
-#import "KPKTextPlaceholder.h"
+#import "KPKTestPlaceholder.h"
 #import "KPKEntry.h"
 #import "KPKAttribute.h"
 
-#import "NSString+CommandString.h"
+#import "NSString+Placeholder.h"
 
 @implementation KPKTextPlaceholder
 
@@ -25,7 +25,8 @@
   [entry addCustomAttribute:attribute];
   
   NSString *placeholder = @"{USERNAME}{PASSWORD}{NOTHING}{URL}{S:extended}";
-  NSString *evaluated = [placeholder evaluatePlaceholderWithEntry:entry];
+  BOOL replaced;
+  NSString *evaluated = [placeholder evaluatePlaceholderWithEntry:entry didReplace:&replaced];
   NSString *evaluatedGoal = [NSString stringWithFormat:@"%@%@{NOTHING}%@%@", entry.username, entry.password, entry.url, attribute.value];
   STAssertTrue([evaluated isEqualToString:evaluatedGoal], @"Evaluated string must match");
 }

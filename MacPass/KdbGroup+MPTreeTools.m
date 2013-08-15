@@ -53,9 +53,9 @@
   if(group == nil) {
     return NO;
   }
-  KdbGroup *ancestor = self.parent;
-  while(ancestor.parent) {
-    if(group == self) {
+  KdbGroup *ancestor = group.parent;
+  while(ancestor) {
+    if(ancestor == self) {
       return YES;
     }
     ancestor = ancestor.parent;
