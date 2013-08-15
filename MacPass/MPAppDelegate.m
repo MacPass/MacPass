@@ -25,6 +25,7 @@
   MPLockDaemon *lockDaemon;
   MPAutotypeDaemon *autotypeDaemon;
   BOOL _restoredWindows;
+  BOOL _shouldOpenFile;
 }
 
 @property (strong, nonatomic) MPSettingsWindowController *settingsController;
@@ -55,6 +56,7 @@
 - (void)applicationWillFinishLaunching:(NSNotification *)notification {
   BOOL reopen = [[NSUserDefaults standardUserDefaults] boolForKey:kMPSettingsKeyReopenLastDatabaseOnLaunch];
   _restoredWindows = NO;
+  _shouldOpenFile = NO;
   if(reopen) {
     [[NSNotificationCenter defaultCenter] addObserver:self
                                              selector:@selector(_applicationDidFinishRestoringWindows:)
@@ -64,13 +66,20 @@
   }
 }
 
+- (BOOL)application:(NSApplication *)sender openFile:(NSString *)filename {
+  _shouldOpenFile = YES;
+  NSURL *fileURL = [NSURL fileURLWithPath:filename];
+  [[NSDocumentController sharedDocumentController] openDocumentWithContentsOfURL:fileURL display:YES completionHandler:nil];
+  return YES;
+}
+
 - (void)applicationDidFinishLaunching:(NSNotification *)notification { 
   serverDaemon = [[MPServerDaemon alloc] init];
   lockDaemon = [[MPLockDaemon alloc] init];
   //autotypeDaemon = [[MPAutotypeDaemon alloc] init];
 
   BOOL reopen = [[NSUserDefaults standardUserDefaults] boolForKey:kMPSettingsKeyReopenLastDatabaseOnLaunch];
-  if(reopen && !_restoredWindows) {
+  if(reopen && !_restoredWindows && !_shouldOpenFile) {
     NSDocumentController *documentController = [NSDocumentController sharedDocumentController];
     NSArray *documents = [documentController documents];
     if([documents count] > 0) {
