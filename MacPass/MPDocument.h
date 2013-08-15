@@ -111,6 +111,8 @@ APPKIT_EXTERN NSString *const MPDocumnetDidChangeCurrentEntryNotification;
  item can be either a BinaryRef or an Kdb3Entry.
  */
 - (void)saveAttachmentForItem:(id)item toLocation:(NSURL *)location;
+- (NSData *)attachmentDataForItem:(id)item;
+- (NSString *)attachmenFileNameForItem:(id)item;
 - (void)removeAttachment:(BinaryRef *)reference fromEntry:(KdbEntry *)anEntry;
 - (void)removeAttachmentFromEntry:(KdbEntry *)anEntry;
 - (NSUInteger)nextBinaryId;

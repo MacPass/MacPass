@@ -119,12 +119,20 @@
 }
 
 - (void)saveAttachmentForItem:(id)item toLocation:(NSURL *)location {
+  NSData *fileData = [self attachmentDataForItem:item];
+  if(!fileData) {
+    return; // No data to save;
+  }
+  NSError *error = nil;
+  if( ![fileData writeToURL:location options:NSDataWritingAtomic error:&error] ) {
+   [NSApp presentError:error];
+  }
+}
+
+- (NSData *)attachmentDataForItem:(id)item {
   if([item isKindOfClass:[Kdb3Entry class]]) {
     Kdb3Entry *entry = (Kdb3Entry *)item;
-    NSError *error = nil;
-    if(! [entry.binary writeToURL:location options:NSDataWritingAtomic error:&error] ) {
-      [NSApp presentError:error];
-    }
+    return entry.binary;
   }
   else if([item isKindOfClass:[BinaryRef class]]) {
     Binary *binary = [self findBinary:item];
@@ -137,16 +145,21 @@
       else {
         rawData = [NSMutableData mutableDataWithBase64DecodedData:[binary.data dataUsingEncoding:NSUTF8StringEncoding]];
       }
-      NSError *error = nil;
-      if( ![rawData writeToURL:location options:NSDataWritingAtomic error:&error] ) {
-        [NSApp presentError:error];
-      }
+      return rawData;
     }
   }
-  else {
-    NSAssert(NO, @"Item is neither BinaryRef nor Kdb3Entry");
-    return;
+  return nil;
+}
+
+- (NSString *)attachmenFileNameForItem:(id)item {
+  if([item isKindOfClass:[Kdb3Entry class]]) {
+    Kdb3Entry *entry = (Kdb3Entry *)item;
+    return entry.binaryDesc;
   }
+  else if([item isKindOfClass:[BinaryRef class]]) {
+    return ((BinaryRef *)item).key;
+  }
+  return nil;
 }
 
 - (NSUInteger)nextBinaryId {
