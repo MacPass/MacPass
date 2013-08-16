@@ -36,4 +36,15 @@
   STAssertTrue([tree.root.entries count] == 1, @"Tree has only one entry");
 }
 
+- (void)testAutotypeLoading {
+  NSBundle *myBundle = [NSBundle bundleForClass:[self class]];
+  NSURL *url = [myBundle URLForResource:@"Autotype_test" withExtension:@"kdbx"];
+  KPKPassword *password = [[KPKPassword alloc] initWithPassword:@"text" key:nil];
+  NSError *error;
+  KPKTree *tree = [[KPKTree alloc] initWithContentsOfUrl:url password:password error:&error];
+  STAssertNotNil(tree, @"Tree shoud be loaded");
+  KPKEntry *entry = tree.root.entries[0];
+  STAssertNotNil(entry, @"Entry should be there");
+}
+
 @end

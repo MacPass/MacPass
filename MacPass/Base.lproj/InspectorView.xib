@@ -107,7 +107,7 @@
 						<object class="NSImageCell" key="NSCell" id="152819686">
 							<int key="NSCellFlags">134217728</int>
 							<int key="NSCellFlags2">33554432</int>
-							<object class="NSCustomResource" key="NSContents" id="1066877891">
+							<object class="NSCustomResource" key="NSContents">
 								<string key="NSClassName">NSImage</string>
 								<string key="NSResourceName">NSActionTemplate</string>
 							</object>
@@ -127,7 +127,7 @@
 							<object class="NSButton" id="830540359">
 								<reference key="NSNextResponder" ref="381395509"/>
 								<int key="NSvFlags">268</int>
-								<string key="NSFrame">{{20, 2}, {238, 25}}</string>
+								<string key="NSFrame">{{20, 2}, {59, 25}}</string>
 								<reference key="NSSuperview" ref="381395509"/>
 								<reference key="NSWindow"/>
 								<reference key="NSNextKeyView"/>
@@ -142,7 +142,10 @@
 									<reference key="NSControlView" ref="830540359"/>
 									<int key="NSButtonFlags">918306816</int>
 									<int key="NSButtonFlags2">163</int>
-									<reference key="NSNormalImage" ref="1066877891"/>
+									<object class="NSCustomResource" key="NSNormalImage">
+										<string key="NSClassName">NSImage</string>
+										<string key="NSResourceName">07_NotepadTemplate</string>
+									</object>
 									<string key="NSAlternateContents"/>
 									<string key="NSKeyEquivalent"/>
 									<int key="NSPeriodicDelay">400</int>
@@ -598,22 +601,6 @@
 						<int key="objectID">2930</int>
 						<reference key="object" ref="381395509"/>
 						<array class="NSMutableArray" key="children">
-							<object class="IBNSLayoutConstraint" id="46370971">
-								<reference key="firstItem" ref="381395509"/>
-								<int key="firstAttribute">6</int>
-								<int key="relation">0</int>
-								<reference key="secondItem" ref="830540359"/>
-								<int key="secondAttribute">6</int>
-								<float key="multiplier">1</float>
-								<object class="IBNSLayoutSymbolicConstant" key="constant">
-									<double key="value">20</double>
-								</object>
-								<float key="priority">1000</float>
-								<reference key="containingView" ref="381395509"/>
-								<int key="scoringType">8</int>
-								<float key="scoringTypeFloat">29</float>
-								<int key="contentType">3</int>
-							</object>
 							<object class="IBNSLayoutConstraint" id="696932551">
 								<reference key="firstItem" ref="830540359"/>
 								<int key="firstAttribute">10</int>
@@ -883,11 +870,6 @@
 						<reference key="object" ref="696932551"/>
 						<reference key="parent" ref="381395509"/>
 					</object>
-					<object class="IBObjectRecord">
-						<int key="objectID">3115</int>
-						<reference key="object" ref="46370971"/>
-						<reference key="parent" ref="381395509"/>
-					</object>
 				</array>
 			</object>
 			<dictionary class="NSMutableDictionary" key="flattenedProperties">
@@ -925,11 +907,10 @@
 				<string key="2899.IBPluginDependency">com.apple.InterfaceBuilder.CocoaPlugin</string>
 				<string key="2925.IBPluginDependency">com.apple.InterfaceBuilder.CocoaPlugin</string>
 				<string key="2929.IBPluginDependency">com.apple.InterfaceBuilder.CocoaPlugin</string>
-				<array key="2930.IBNSViewMetadataConstraints">
+				<array class="NSMutableArray" key="2930.IBNSViewMetadataConstraints">
 					<reference ref="574545128"/>
 					<reference ref="618180937"/>
 					<reference ref="696932551"/>
-					<reference ref="46370971"/>
 				</array>
 				<boolean value="NO" key="2930.IBNSViewMetadataTranslatesAutoresizingMaskIntoConstraints"/>
 				<string key="2930.IBPluginDependency">com.apple.InterfaceBuilder.CocoaPlugin</string>
@@ -973,7 +954,6 @@
 				<string key="3110.IBPluginDependency">com.apple.InterfaceBuilder.CocoaPlugin</string>
 				<string key="3111.IBPluginDependency">com.apple.InterfaceBuilder.CocoaPlugin</string>
 				<string key="3112.IBPluginDependency">com.apple.InterfaceBuilder.CocoaPlugin</string>
-				<string key="3115.IBPluginDependency">com.apple.InterfaceBuilder.CocoaPlugin</string>
 			</dictionary>
 			<dictionary class="NSMutableDictionary" key="unlocalizedProperties"/>
 			<nil key="activeLocalization"/>
@@ -1079,10 +1059,10 @@
 		<string key="IBDocument.TargetRuntimeIdentifier">IBCocoaFramework</string>
 		<bool key="IBDocument.PluginDeclaredDependenciesTrackSystemTargetVersion">YES</bool>
 		<int key="IBDocument.defaultPropertyAccessControl">3</int>
-		<object class="NSMutableDictionary" key="IBDocument.LastKnownImageSizes">
-			<string key="NS.key.0">NSActionTemplate</string>
-			<string key="NS.object.0">{15, 15}</string>
-		</object>
+		<dictionary class="NSMutableDictionary" key="IBDocument.LastKnownImageSizes">
+			<string key="07_NotepadTemplate">{128, 128}</string>
+			<string key="NSActionTemplate">{15, 15}</string>
+		</dictionary>
 		<bool key="IBDocument.UseAutolayout">YES</bool>
 	</data>
 </archive>

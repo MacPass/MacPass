@@ -118,6 +118,7 @@
 		4C52A88F1788628B00868229 /* 13_KeysTemplate.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 4C52A88C1788628B00868229 /* 13_KeysTemplate.pdf */; };
 		4C52A8901788628B00868229 /* 18_DisplayTemplate.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 4C52A88D1788628B00868229 /* 18_DisplayTemplate.pdf */; };
 		4C52A892178863B000868229 /* 68_PhoneTemplate.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 4C52A891178863B000868229 /* 68_PhoneTemplate.pdf */; };
+		4C5426F317BEEA8700A4424C /* Autotype_test.kdbx in Resources */ = {isa = PBXBuildFile; fileRef = 4C5426F217BEEA8700A4424C /* Autotype_test.kdbx */; };
 		4C569D9E17652B0600595B62 /* MPConstants.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C569D9D17652B0600595B62 /* MPConstants.m */; };
 		4C569DA117652BFE00595B62 /* MPEntryTableDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C569DA017652BFE00595B62 /* MPEntryTableDataSource.m */; };
 		4C569DA417653F3500595B62 /* KdbEntry+MPTreeTools.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C569DA317653F3500595B62 /* KdbEntry+MPTreeTools.m */; };
@@ -511,6 +512,7 @@
 		4C52A88C1788628B00868229 /* 13_KeysTemplate.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = 13_KeysTemplate.pdf; sourceTree = "<group>"; };
 		4C52A88D1788628B00868229 /* 18_DisplayTemplate.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = 18_DisplayTemplate.pdf; sourceTree = "<group>"; };
 		4C52A891178863B000868229 /* 68_PhoneTemplate.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = 68_PhoneTemplate.pdf; sourceTree = "<group>"; };
+		4C5426F217BEEA8700A4424C /* Autotype_test.kdbx */ = {isa = PBXFileReference; lastKnownFileType = file; name = Autotype_test.kdbx; path = Databases/Autotype_test.kdbx; sourceTree = "<group>"; };
 		4C569D9C17652AC800595B62 /* MPConstants.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MPConstants.h; sourceTree = "<group>"; };
 		4C569D9D17652B0600595B62 /* MPConstants.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MPConstants.m; sourceTree = "<group>"; };
 		4C569D9F17652BFE00595B62 /* MPEntryTableDataSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MPEntryTableDataSource.h; sourceTree = "<group>"; };
@@ -946,6 +948,7 @@
 		4C18F9AC178E123200890BCE /* Databases */ = {
 			isa = PBXGroup;
 			children = (
+				4C5426F217BEEA8700A4424C /* Autotype_test.kdbx */,
 				4C6366B017AFB52500AAF17D /* CustomIcon_Password_1234.kdbx */,
 				4C6366B117AFB52500AAF17D /* CustomIcon_Password_1234.xml */,
 				4C6366B217AFB52500AAF17D /* KDB1_KeePassX_test.kdb */,
@@ -1934,6 +1937,7 @@
 				4C6366B417AFB52500AAF17D /* CustomIcon_Password_1234.xml in Resources */,
 				4C6366B517AFB52500AAF17D /* KDB1_KeePassX_test.kdb in Resources */,
 				4CEAF85717BA9B1D001307A6 /* Keepass2Key.xml in Resources */,
+				4C5426F317BEEA8700A4424C /* Autotype_test.kdbx in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
