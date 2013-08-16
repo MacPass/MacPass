@@ -48,6 +48,14 @@
   [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
 
+- (BOOL)applicationShouldHandleReopen:(NSApplication *)sender hasVisibleWindows:(BOOL)flag {
+  if(!flag) {
+    [self _loadWelcomeWindow];
+    [self.welcomeWindow orderFront:self];
+  }
+  return YES;
+}
+
 - (BOOL)applicationShouldOpenUntitledFile:(NSApplication *)sender {
   return [[NSUserDefaults standardUserDefaults] boolForKey:kMPSettingsKeyOpenEmptyDatabaseOnLaunch];
 }
@@ -101,8 +109,7 @@
       
     }
     else {
-      NSArray *topLevelObject;
-      [[NSBundle mainBundle] loadNibNamed:@"WelcomeWindow" owner:self topLevelObjects:&topLevelObject];
+      [self _loadWelcomeWindow];
       [self.welcomeWindow orderFront:self];
     }
   }
@@ -157,6 +164,14 @@
   NSDocumentController *documentController = [NSDocumentController sharedDocumentController];
   NSArray *documents = [documentController documents];
   _restoredWindows = [documents count] > 0;
+}
+
+- (void)_loadWelcomeWindow {
+  if(!_welcomeWindow) {
+    NSArray *topLevelObject;
+    [[NSBundle mainBundle] loadNibNamed:@"WelcomeWindow" owner:self topLevelObjects:&topLevelObject];
+    //CFRelease((__bridge CFTypeRef)_welcomeWindow);
+  }
 }
 
 @end

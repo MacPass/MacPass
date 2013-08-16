@@ -90,7 +90,6 @@
       validTarget &= index != [self.draggedGroup.parent.groups indexOfObject:self.draggedGroup];
     }
     BOOL isAnchesor = [self.draggedGroup isAnchestorOfGroup:targetGroup];
-    NSLog(@"DraggedGroup:%@ isAnchestor:%d ofTargetGroup:%@", self.draggedGroup.name, isAnchesor, targetGroup.name);
     validTarget &= !isAnchesor;
   }
   else if(self.draggedEntry) {

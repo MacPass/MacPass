@@ -7,6 +7,8 @@
 //
 
 #import "KdbEntry+Undo.h"
+
+#import "Kdb4Node.h"
 #import "KdbGroup+Undo.h"
 #import "KdbGroup+KVOAdditions.h"
 #import "KdbGroup+MPTreeTools.h"
@@ -48,7 +50,7 @@ if(![[self undoManager] isUndoing]) {\
   [[self undoManager] registerUndoWithTarget:self selector:@selector(setTitleUndoable:) object:self.title];
   MPSetActionName(@"SET_TITLE", "");
   
-  [self setLastModificationTime:[NSDate date]];
+  [self _touchModifcationDate];
   [self setTitle:title];
 }
 
@@ -56,7 +58,7 @@ if(![[self undoManager] isUndoing]) {\
   [[self undoManager] registerUndoWithTarget:self selector:@selector(setUsernameUndoable:) object:self.username];
   MPSetActionName(@"SET_USERNAME", "");
  
-  [self setLastModificationTime:[NSDate date]];
+  [self _touchModifcationDate];
   [self setUsername:username];
 }
 
@@ -64,7 +66,7 @@ if(![[self undoManager] isUndoing]) {\
   [[self undoManager] registerUndoWithTarget:self selector:@selector(setPasswordUndoable:) object:self.password];
   MPSetActionName(@"SET_PASSWORT", "Undo set password");
   
-  [self setLastModificationTime:[NSDate date]];
+  [self _touchModifcationDate];
   [self setPassword:password];
 }
 
@@ -72,7 +74,7 @@ if(![[self undoManager] isUndoing]) {\
   [[self undoManager] registerUndoWithTarget:self selector:@selector(setUrlUndoable:) object:self.url];
   MPSetActionName(@"SET_URL", "Undo set URL");
   
-  [self setLastModificationTime:[NSDate date]];
+  [self _touchModifcationDate];
   [self setUrl:url];
 }
 
@@ -80,7 +82,7 @@ if(![[self undoManager] isUndoing]) {\
   [[self undoManager] registerUndoWithTarget:self selector:@selector(setNotesUndoable:) object:self.notes];
   MPSetActionName(@"SET_NOTES", "Set Notes");
   
-  [self setLastModificationTime:[NSDate date]];
+  [self _touchModifcationDate];
   [self setNotes:notes];
 }
 
@@ -124,8 +126,14 @@ if(![[self undoManager] isUndoing]) {\
   // Old indices might be wrong, correct them if necessary
   index = MIN(index, [group.entries count]);
   [group insertObject:self inEntriesAtIndex:index];
+  if([self respondsToSelector:@selector(setLocationChanged:)]) {
+    id entry = self;
+    [entry setLocationChanged:[NSDate date]];
+  }
 }
 
-
+- (void)_touchModifcationDate {
+  self.lastModificationTime = [NSDate date];
+}
 
 @end

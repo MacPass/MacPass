@@ -57,6 +57,7 @@ NSString *const MPEntryTableParentColumnIdentifier = @"MPParentColumnIdentifier"
 NSString *const MPEntryTableURLColumnIdentifier = @"MPEntryTableURLColumnIdentifier";
 NSString *const MPEntryTableNotesColumnIdentifier = @"MPEntryTableNotesColumnIdentifier";
 NSString *const MPEntryTableAttachmentColumnIdentifier = @"MPEntryTableAttachmentColumnIdentifier";
+NSString *const MPEntryTableModfiedColumnIdentifier = @"MPEntryTableModfiedColumnIdentifier";
 
 NSString *const _MPTableImageCellView = @"ImageCell";
 NSString *const _MPTableStringCellView = @"StringCell";
@@ -153,8 +154,10 @@ NSString *const _toggleFilterUsernameButton = @"SearchUsername";
   NSTableColumn *urlColumn = [self.entryTable tableColumns][4];
   NSTableColumn *attachmentsColumn = [[NSTableColumn alloc] initWithIdentifier:MPEntryTableAttachmentColumnIdentifier];
   NSTableColumn *notesColumn = [[NSTableColumn alloc] initWithIdentifier:MPEntryTableNotesColumnIdentifier];
+  NSTableColumn *modifiedColumn = [[NSTableColumn alloc] initWithIdentifier:MPEntryTableModfiedColumnIdentifier];
   [self.entryTable addTableColumn:notesColumn];
   [self.entryTable addTableColumn:attachmentsColumn];
+  [self.entryTable addTableColumn:modifiedColumn];
   
   [parentColumn setIdentifier:MPEntryTableParentColumnIdentifier];
   [titleColumn setIdentifier:MPEntryTableTitleColumnIdentifier];
@@ -168,10 +171,14 @@ NSString *const _toggleFilterUsernameButton = @"SearchUsername";
 	NSSortDescriptor *titleColumSortDescriptor = [NSSortDescriptor sortDescriptorWithKey:@"title" ascending:YES selector:@selector(compare:)];
   NSSortDescriptor *userNameSortDescriptor = [NSSortDescriptor sortDescriptorWithKey:@"username" ascending:YES selector:@selector(compare:)];
   NSSortDescriptor *urlSortDescriptor = [NSSortDescriptor sortDescriptorWithKey:@"url" ascending:YES selector:@selector(compare:)];
+  NSSortDescriptor *groupnameSortDescriptor = [NSSortDescriptor sortDescriptorWithKey:@"parent.name" ascending:YES selector:@selector(compare:)];
+  NSSortDescriptor *dateSortDescriptor = [NSSortDescriptor sortDescriptorWithKey:@"lastModificationTime" ascending:YES selector:@selector(compare:)];
   
   [titleColumn setSortDescriptorPrototype:titleColumSortDescriptor];
   [userNameColumn setSortDescriptorPrototype:userNameSortDescriptor];
   [urlColumn setSortDescriptorPrototype:urlSortDescriptor];
+  [parentColumn setSortDescriptorPrototype:groupnameSortDescriptor];
+  [modifiedColumn setSortDescriptorPrototype:dateSortDescriptor];
   
   [[parentColumn headerCell] setStringValue:NSLocalizedString(@"GROUP", "")];
   [[titleColumn headerCell] setStringValue:NSLocalizedString(@"TITLE", "")];
@@ -180,6 +187,7 @@ NSString *const _toggleFilterUsernameButton = @"SearchUsername";
   [[urlColumn headerCell] setStringValue:NSLocalizedString(@"URL", "")];
   [[notesColumn headerCell] setStringValue:NSLocalizedString(@"NOTES", "")];
   [[attachmentsColumn headerCell] setStringValue:NSLocalizedString(@"ATTACHMENTS", "")];
+  [[modifiedColumn headerCell] setStringValue:NSLocalizedString(@"MODIFIED", "")];
   
   [self.entryTable bind:NSContentBinding toObject:self.entryArrayController withKeyPath:@"arrangedObjects" options:nil];
   [self.entryTable bind:NSSortDescriptorsBinding toObject:self.entryArrayController withKeyPath:@"sortDescriptors" options:nil];
@@ -209,6 +217,7 @@ NSString *const _toggleFilterUsernameButton = @"SearchUsername";
   BOOL isURLColumn = [[tableColumn identifier] isEqualToString:MPEntryTableURLColumnIdentifier];
   BOOL isAttachmentColumn = [[tableColumn identifier] isEqualToString:MPEntryTableAttachmentColumnIdentifier];
   BOOL isNotesColumn = [[tableColumn identifier] isEqualToString:MPEntryTableNotesColumnIdentifier];
+  BOOL isModifedColumn = [[tableColumn identifier] isEqualToString:MPEntryTableModfiedColumnIdentifier];
   
   NSTableCellView *view = nil;
   if(isTitleColumn || isGroupColumn) {
@@ -243,6 +252,13 @@ NSString *const _toggleFilterUsernameButton = @"SearchUsername";
     else if( isAttachmentColumn ) {
       [[view textField] setStringValue:@""];
       //[[view textField] bind:NSValueBinding toObject:entry withKeyPath:@"countOfBinaries" options:nil];
+    }
+    else if( isModifedColumn ) {
+      NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
+      [formatter setDateStyle:NSDateFormatterMediumStyle];
+      [formatter setTimeStyle:NSDateFormatterMediumStyle];
+      [[view textField] setFormatter:formatter];
+      [[view textField] bind:NSValueBinding toObject:entry withKeyPath:@"lastModificationTime" options:nil];
     }
   }
   
@@ -556,13 +572,15 @@ NSString *const _toggleFilterUsernameButton = @"SearchUsername";
   [headerMenu addItemWithTitle:NSLocalizedString(@"URL", "") action:NULL keyEquivalent:@""];
   [headerMenu addItemWithTitle:NSLocalizedString(@"NOTES", "") action:NULL keyEquivalent:@""];
   [headerMenu addItemWithTitle:NSLocalizedString(@"ATTACHMENTS", "") action:NULL keyEquivalent:@""];
+  [headerMenu addItemWithTitle:NSLocalizedString(@"MODIFIED", "") action:NULL keyEquivalent:@""];
   
   NSArray *identifier = @[ MPEntryTableTitleColumnIdentifier,
                            MPEntryTableUserNameColumnIdentifier,
                            MPEntryTablePasswordColumnIdentifier,
                            MPEntryTableURLColumnIdentifier,
                            MPEntryTableNotesColumnIdentifier,
-                           MPEntryTableAttachmentColumnIdentifier ];
+                           MPEntryTableAttachmentColumnIdentifier,
+                           MPEntryTableModfiedColumnIdentifier ];
   
   NSDictionary *options = @{ NSValueTransformerNameBindingOption : NSNegateBooleanTransformerName };
   for(NSMenuItem *item in [headerMenu itemArray]) {
