@@ -6,13 +6,13 @@
 //  Copyright (c) 2013 HicknHack Software GmbH. All rights reserved.
 //
 
-#import "KPKLegacyWritingTest.h"
+#import "KPKTestLegacyWriting.h"
 
 
 #import "KPKPassword.h"
 #import "KPKTree+Serializing.h"
 
-@implementation KPKLegacyWritingTest
+@implementation KPKTestLegacyWriting
 
 - (void)setUp {
   NSBundle *myBundle = [NSBundle bundleForClass:[self class]];

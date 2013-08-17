@@ -9,7 +9,7 @@
 #import <SenTestingKit/SenTestingKit.h>
 @class KPKPassword;
 
-@interface KPKXmlLoadingTest : SenTestCase {
+@interface KPKTestXmlLoading : SenTestCase {
 @private
   NSData *_data;
   KPKPassword *_password;

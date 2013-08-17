@@ -8,6 +8,6 @@
 
 #import <SenTestingKit/SenTestingKit.h>
 
-@interface KPKLegacyLoadingTest : SenTestCase
+@interface KPKTestLegacyLoading : SenTestCase
 
 @end

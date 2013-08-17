@@ -6,7 +6,7 @@
 //  Copyright (c) 2013 HicknHack Software GmbH. All rights reserved.
 //
 
-#import "KPKLegacyLoadingTest.h"
+#import "KPKTestLegacyLoading.h"
 
 #import "KPKTree+Serializing.h"
 #import "KPKPassword.h"
@@ -15,7 +15,7 @@
 
 #import "KPKErrors.h"
 
-@implementation KPKLegacyLoadingTest
+@implementation KPKTestLegacyLoading
 
 - (void)testValidFile {
   KPKPassword *password = [[KPKPassword alloc] initWithPassword:@"1234" key:nil];

@@ -6,14 +6,14 @@
 //  Copyright (c) 2013 HicknHack Software GmbH. All rights reserved.
 //
 
-#import "KPKXmlLoadingTest.h"
+#import "KPKTestXmlLoading.h"
 #import "KPKPassword.h"
 
 #import "KPKTree+Serializing.h"
 #import "KPKEntry.h"
 #import "KPKGroup.h"
 
-@implementation KPKXmlLoadingTest
+@implementation KPKTestXmlLoading
 
 - (void)setUp {
   NSBundle *myBundle = [NSBundle bundleForClass:[self class]];
@@ -39,7 +39,7 @@
 - (void)testAutotypeLoading {
   NSBundle *myBundle = [NSBundle bundleForClass:[self class]];
   NSURL *url = [myBundle URLForResource:@"Autotype_test" withExtension:@"kdbx"];
-  KPKPassword *password = [[KPKPassword alloc] initWithPassword:@"text" key:nil];
+  KPKPassword *password = [[KPKPassword alloc] initWithPassword:@"test" key:nil];
   NSError *error;
   KPKTree *tree = [[KPKTree alloc] initWithContentsOfUrl:url password:password error:&error];
   STAssertNotNil(tree, @"Tree shoud be loaded");

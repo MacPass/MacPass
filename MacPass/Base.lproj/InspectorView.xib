@@ -126,11 +126,10 @@
 						<array class="NSMutableArray" key="NSSubviews">
 							<object class="NSButton" id="830540359">
 								<reference key="NSNextResponder" ref="381395509"/>
-								<int key="NSvFlags">268</int>
-								<string key="NSFrame">{{20, 2}, {59, 25}}</string>
+								<int key="NSvFlags">-2147483380</int>
+								<string key="NSFrame">{{20, 2}, {172, 25}}</string>
 								<reference key="NSSuperview" ref="381395509"/>
 								<reference key="NSWindow"/>
-								<reference key="NSNextKeyView"/>
 								<string key="NSReuseIdentifierKey">_NS:22</string>
 								<bool key="NSEnabled">YES</bool>
 								<object class="NSButtonCell" key="NSCell" id="348505851">
@@ -167,7 +166,6 @@
 						<string key="NSFrame">{{0, 30}, {278, 369}}</string>
 						<reference key="NSSuperview" ref="233312071"/>
 						<reference key="NSWindow"/>
-						<reference key="NSNextKeyView" ref="906788312"/>
 						<string key="NSReuseIdentifierKey">_NS:9</string>
 						<array class="NSMutableArray" key="NSTabViewItems">
 							<object class="NSTabViewItem" id="367063082">
@@ -178,7 +176,6 @@
 									<string key="NSFrameSize">{278, 369}</string>
 									<reference key="NSSuperview" ref="45251842"/>
 									<reference key="NSWindow"/>
-									<reference key="NSNextKeyView"/>
 									<string key="NSReuseIdentifierKey">_NS:28</string>
 								</object>
 								<string key="NSLabel">Entry</string>
@@ -959,7 +956,7 @@
 			<nil key="activeLocalization"/>
 			<dictionary class="NSMutableDictionary" key="localizations"/>
 			<nil key="sourceID"/>
-			<int key="maxID">3115</int>
+			<int key="maxID">3116</int>
 		</object>
 		<object class="IBClassDescriber" key="IBDocument.Classes">
 			<array class="NSMutableArray" key="referencedPartialClassDescriptions">

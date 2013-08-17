@@ -195,7 +195,7 @@ typedef NS_ENUM(NSUInteger, MPAlertType) {
 - (BOOL)prepareSavePanel:(NSSavePanel *)savePanel {
   /*
    
-   Save as different format doesn work with out KeePassKit
+   Save as different format doesn work without KeePassKit
    hence disabled for now
    
   if(!self.savePanelViewController) {
