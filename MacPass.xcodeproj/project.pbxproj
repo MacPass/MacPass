@@ -183,6 +183,7 @@
 		4C68456F17BC2A0700FCDBFC /* WelcomeWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4C68456E17BC2A0700FCDBFC /* WelcomeWindow.xib */; };
 		4C69A73A16D589DF00EC1B1A /* HNHGradientView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C69A73916D589DF00EC1B1A /* HNHGradientView.m */; };
 		4C6BEA3117A88E6C00CF69A8 /* MPStripLineBreaksTransformer.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C6BEA3017A88E6C00CF69A8 /* MPStripLineBreaksTransformer.m */; };
+		4C6C72C417C01E4200768849 /* NSMutableData+KeePassKit.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C6C72C317C01E4200768849 /* NSMutableData+KeePassKit.m */; };
 		4C6D1D25178579570014C5A5 /* 48_FolderTemplate.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 4C6D1D24178579570014C5A5 /* 48_FolderTemplate.pdf */; };
 		4C6D1D27178586CA0014C5A5 /* 99_AddFolderTemplate.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 4C6D1D26178586CA0014C5A5 /* 99_AddFolderTemplate.pdf */; };
 		4C6D1D2B17858A250014C5A5 /* MacPass.icns in Resources */ = {isa = PBXBuildFile; fileRef = 4C6D1D2A17858A250014C5A5 /* MacPass.icns */; };
@@ -637,6 +638,8 @@
 		4C69A73916D589DF00EC1B1A /* HNHGradientView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HNHGradientView.m; sourceTree = "<group>"; };
 		4C6BEA2F17A88E6C00CF69A8 /* MPStripLineBreaksTransformer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MPStripLineBreaksTransformer.h; sourceTree = "<group>"; };
 		4C6BEA3017A88E6C00CF69A8 /* MPStripLineBreaksTransformer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MPStripLineBreaksTransformer.m; sourceTree = "<group>"; };
+		4C6C72C217C01E4200768849 /* NSMutableData+KeePassKit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSMutableData+KeePassKit.h"; sourceTree = "<group>"; };
+		4C6C72C317C01E4200768849 /* NSMutableData+KeePassKit.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSMutableData+KeePassKit.m"; sourceTree = "<group>"; };
 		4C6D1D24178579570014C5A5 /* 48_FolderTemplate.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = 48_FolderTemplate.pdf; sourceTree = "<group>"; };
 		4C6D1D26178586CA0014C5A5 /* 99_AddFolderTemplate.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; name = 99_AddFolderTemplate.pdf; path = Icons/99_AddFolderTemplate.pdf; sourceTree = "<group>"; };
 		4C6D1D2A17858A250014C5A5 /* MacPass.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; name = MacPass.icns; path = "../Assets/App icon/MacPass.icns"; sourceTree = "<group>"; };
@@ -1679,6 +1682,8 @@
 				4C6366AB17AF1E0100AAF17D /* NSColor+KeePassKit.m */,
 				4CA2E2D917BCDA8300714076 /* NSString+Placeholder.h */,
 				4CA2E2DA17BCDA8300714076 /* NSString+Placeholder.m */,
+				4C6C72C217C01E4200768849 /* NSMutableData+KeePassKit.h */,
+				4C6C72C317C01E4200768849 /* NSMutableData+KeePassKit.m */,
 			);
 			path = Categories;
 			sourceTree = "<group>";
@@ -2259,6 +2264,7 @@
 				4C68456D17BC227B00FCDBFC /* KPKWindowAssociation.m in Sources */,
 				4CA2E2DB17BCDA8300714076 /* NSString+Placeholder.m in Sources */,
 				4CA2E2DE17BCDEAE00714076 /* MPAutotypeDaemon.m in Sources */,
+				4C6C72C417C01E4200768849 /* NSMutableData+KeePassKit.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
