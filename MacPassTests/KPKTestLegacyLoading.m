@@ -25,7 +25,7 @@
 }
 
 - (void)testWrongPassword {
-  KPKPassword *password = [[KPKPassword alloc] initWithPassword:@"4321" key:nil];
+  KPKPassword *password = [[KPKPassword alloc] initWithPassword:@"wrongPassword" key:nil];
   NSData *data = [self _loadTestDataBase:@"KeePass1_native_test" extension:@"kdb"];
   NSError *error;
   KPKTree *tree = [[KPKTree alloc] initWithData:data password:password error:&error];
