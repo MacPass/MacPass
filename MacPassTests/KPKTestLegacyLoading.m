@@ -24,6 +24,16 @@
   STAssertNotNil(tree, @"Loading should result in a tree object");
 }
 
+- (void)testWrongPassword {
+  KPKPassword *password = [[KPKPassword alloc] initWithPassword:@"4321" key:nil];
+  NSData *data = [self _loadTestDataBase:@"KeePass1_native_test" extension:@"kdb"];
+  NSError *error;
+  KPKTree *tree = [[KPKTree alloc] initWithData:data password:password error:&error];
+  STAssertNil(tree, @"Wrong password should yield nil tree");
+  STAssertNotNil(error, @"Wrong password should yield error");
+  //STAssertTrue([error code] == KPKErrorPasswordAndOrKeyfileWrong, @"Error code should be wrong password and/or keyfile");
+}
+
 - (void)testInvalidFile {
   NSError *error;
   uint8_t bytes[] = {0x00,0x11,0x22,0x33,0x44};
