@@ -9,9 +9,6 @@
 #import <SenTestingKit/SenTestingKit.h>
 @class KPKPassword;
 
-@interface KPKTestLegacyWriting : SenTestCase {
-  NSData *_data;
-  KPKPassword *_password;
-}
+@interface KPKTestLegacyWriting : SenTestCase
 
 @end

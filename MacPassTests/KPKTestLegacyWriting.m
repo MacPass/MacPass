@@ -8,28 +8,34 @@
 
 #import "KPKTestLegacyWriting.h"
 
-
 #import "KPKPassword.h"
 #import "KPKTree+Serializing.h"
 
 @implementation KPKTestLegacyWriting
 
-- (void)setUp {
-  NSBundle *myBundle = [NSBundle bundleForClass:[self class]];
-  NSURL *url = [myBundle URLForResource:@"Test_Password_1234" withExtension:@"kdb"];
-  _data = [NSData dataWithContentsOfURL:url];
-  _password = [[KPKPassword alloc] initWithPassword:@"1234" key:nil];
-}
-
-- (void)tearDown {
-  _data = nil;
-  _password = nil;
-}
-
 - (void)testWriting {
-  NSError *error = nil;
-  KPKTree *tree = [[KPKTree alloc] initWithData:_data password:_password error:&error];
-  NSData *data = [tree encryptWithPassword:_password forVersion:KPKLegacyVersion error:&error];
+  NSError __autoreleasing *error = nil;
+  NSURL *dbUrl = [self _urlForFile:@"CustomIcon_Password_1234" extension:@"kdbx"];
+  KPKPassword *password = [[KPKPassword alloc] initWithPassword:@"1234" key:nil];
+  KPKTree *tree = [[KPKTree alloc] initWithContentsOfUrl:dbUrl password:password error:&error];
+  STAssertNotNil(tree, @"Tree should be created");
+  error = nil;
+  NSData *data = [tree encryptWithPassword:password forVersion:KPKLegacyVersion error:&error];
+  STAssertNotNil(data, @"Serialized Data shoudl be created");
+  NSString *tempFile = [NSTemporaryDirectory() stringByAppendingString:@"CustomIcon_Password_1234.kdb"];
+  NSLog(@"Saved to %@", tempFile);
+  [data writeToFile:tempFile atomically:YES];
+  KPKTree *loadTree = [[KPKTree alloc] initWithData:data password:password error:&error];
+  STAssertNotNil(loadTree, @"Tree should be loadable from kdb file data");
+}
+
+- (NSData *)_dataForFile:(NSString *)name extension:(NSString *)extension {
+  NSURL *url = [self _urlForFile:name extension:extension];
+  return [NSData dataWithContentsOfURL:url];
+}
+
+- (NSURL *)_urlForFile:(NSString *)file extension:(NSString *)extension {
+  return [[NSBundle bundleForClass:[self class]] URLForResource:file withExtension:extension];
 }
 
 

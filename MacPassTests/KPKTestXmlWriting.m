@@ -28,7 +28,6 @@
   NSURL *url = [NSURL fileURLWithPath:tempFile];
   KPKTree *reloadedTree = [[KPKTree alloc] initWithContentsOfUrl:url password:password error:&error];
   STAssertNotNil(reloadedTree, @"Reloaded tree should not be nil");
-  re
 }
 
 - (NSData *)_loadTestDataBase:(NSString *)name extension:(NSString *)extension {
