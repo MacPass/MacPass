@@ -19,7 +19,16 @@
   KPKTree *tree = [[KPKTree alloc] initWithData:data password:password error:&error];
   error = nil;
   NSData *saveData = [tree encryptWithPassword:password forVersion:KPKXmlVersion error:&error];
-  //[saveData writeToFile:@"CustomIcon_Password_1234_save.kdbx" atomically:YES];
+  STAssertNotNil(saveData, @"Serialization should yield data");
+  NSString *tempFile = [NSTemporaryDirectory() stringByAppendingString:@"CustomIcon_Password_1234_save.kdbx"];
+  NSLog(@"Saved file to %@", tempFile);
+  [saveData writeToFile:tempFile atomically:YES];
+  
+  error = nil;
+  NSURL *url = [NSURL fileURLWithPath:tempFile];
+  KPKTree *reloadedTree = [[KPKTree alloc] initWithContentsOfUrl:url password:password error:&error];
+  STAssertNotNil(reloadedTree, @"Reloaded tree should not be nil");
+  re
 }
 
 - (NSData *)_loadTestDataBase:(NSString *)name extension:(NSString *)extension {

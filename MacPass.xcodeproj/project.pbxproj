@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		4C0104BB17C37BFC00173EF3 /* KPKLegacyHeaderUtility.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C0104BA17C37BFC00173EF3 /* KPKLegacyHeaderUtility.m */; };
+		4C0104BE17C37DA400173EF3 /* KPKXmlUtilities.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C0104BD17C37DA400173EF3 /* KPKXmlUtilities.m */; };
 		4C01C23F1764D2980016D5D0 /* KdbEntry+Undo.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C01C23E1764D2980016D5D0 /* KdbEntry+Undo.m */; };
 		4C01C2421764D8980016D5D0 /* MPContextMenuHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C01C2411764D8980016D5D0 /* MPContextMenuHelper.m */; };
 		4C01C245176500C40016D5D0 /* HNHLevelIndicatorCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C01C244176500C40016D5D0 /* HNHLevelIndicatorCell.m */; };
@@ -286,7 +288,6 @@
 		4CE8246F16E2E93400573141 /* MPOverlayWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CE8246E16E2E93400573141 /* MPOverlayWindowController.m */; };
 		4CE8247516E2F2B900573141 /* MPOverlayView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CE8247416E2F2B900573141 /* MPOverlayView.m */; };
 		4CE88B9717BA651C0042E078 /* contextTriangleTemplate.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 4CE88B9617BA651C0042E078 /* contextTriangleTemplate.pdf */; };
-		4CE88C4117C16A6500BFD195 /* KPKLegacyHeaderUtility.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CE88C4017C16A6500BFD195 /* KPKLegacyHeaderUtility.m */; };
 		4CEAF85717BA9B1D001307A6 /* Keepass2Key.xml in Resources */ = {isa = PBXBuildFile; fileRef = 4CEAF85617BA9B1D001307A6 /* Keepass2Key.xml */; };
 		4CEAF85B17BA9B44001307A6 /* KPKTestKeyfileParsing.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CEAF85A17BA9B44001307A6 /* KPKTestKeyfileParsing.m */; };
 		4CECB31717AC326D00EAFB0F /* KPKTestLegacyWriting.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CECB31617AC326D00EAFB0F /* KPKTestLegacyWriting.m */; };
@@ -310,6 +311,11 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		4C0104B917C37BFC00173EF3 /* KPKLegacyHeaderUtility.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KPKLegacyHeaderUtility.h; sourceTree = "<group>"; };
+		4C0104BA17C37BFC00173EF3 /* KPKLegacyHeaderUtility.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KPKLegacyHeaderUtility.m; sourceTree = "<group>"; };
+		4C0104BC17C37C2B00173EF3 /* KPKXmlUtilities.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KPKXmlUtilities.h; sourceTree = "<group>"; };
+		4C0104BD17C37DA400173EF3 /* KPKXmlUtilities.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KPKXmlUtilities.m; sourceTree = "<group>"; };
+		4C0104BF17C37DFC00173EF3 /* KPKTypes.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KPKTypes.h; sourceTree = "<group>"; };
 		4C01C23D1764D2980016D5D0 /* KdbEntry+Undo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "KdbEntry+Undo.h"; sourceTree = "<group>"; };
 		4C01C23E1764D2980016D5D0 /* KdbEntry+Undo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "KdbEntry+Undo.m"; sourceTree = "<group>"; };
 		4C01C2401764D8980016D5D0 /* MPContextMenuHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MPContextMenuHelper.h; sourceTree = "<group>"; };
@@ -831,8 +837,6 @@
 		4CE88B9617BA651C0042E078 /* contextTriangleTemplate.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; name = contextTriangleTemplate.pdf; path = Icons/contextTriangleTemplate.pdf; sourceTree = "<group>"; };
 		4CE88C2417C163FE00BFD195 /* CoreFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreFoundation.framework; path = System/Library/Frameworks/CoreFoundation.framework; sourceTree = SDKROOT; };
 		4CE88C3317C1647400BFD195 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
-		4CE88C3F17C16A6500BFD195 /* KPKLegacyHeaderUtility.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KPKLegacyHeaderUtility.h; sourceTree = "<group>"; };
-		4CE88C4017C16A6500BFD195 /* KPKLegacyHeaderUtility.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KPKLegacyHeaderUtility.m; sourceTree = "<group>"; };
 		4CEAF85617BA9B1D001307A6 /* Keepass2Key.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; name = Keepass2Key.xml; path = Keyfiles/Keepass2Key.xml; sourceTree = "<group>"; };
 		4CEAF85917BA9B44001307A6 /* KPKTestKeyfileParsing.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KPKTestKeyfileParsing.h; sourceTree = "<group>"; };
 		4CEAF85A17BA9B44001307A6 /* KPKTestKeyfileParsing.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KPKTestKeyfileParsing.m; sourceTree = "<group>"; };
@@ -900,6 +904,18 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		4C0104B817C37BFC00173EF3 /* Utilites */ = {
+			isa = PBXGroup;
+			children = (
+				4C0104B917C37BFC00173EF3 /* KPKLegacyHeaderUtility.h */,
+				4C0104BA17C37BFC00173EF3 /* KPKLegacyHeaderUtility.m */,
+				4C0104BC17C37C2B00173EF3 /* KPKXmlUtilities.h */,
+				4C0104BD17C37DA400173EF3 /* KPKXmlUtilities.m */,
+				4C0104BF17C37DFC00173EF3 /* KPKTypes.h */,
+			);
+			path = Utilites;
+			sourceTree = "<group>";
+		};
 		4C06398C15B980480004DE27 /* Views */ = {
 			isa = PBXGroup;
 			children = (
@@ -954,8 +970,6 @@
 				4CD3ABB2178F71B50073F5C5 /* KPKVersion.h */,
 				4C1842B9179B3A1700E2F5BC /* KPKXmlFormat.h */,
 				4C08C3AF17B3036500BBBC95 /* KPKLegacyFormat.h */,
-				4CE88C3F17C16A6500BFD195 /* KPKLegacyHeaderUtility.h */,
-				4CE88C4017C16A6500BFD195 /* KPKLegacyHeaderUtility.m */,
 			);
 			name = Format;
 			sourceTree = "<group>";
@@ -1674,6 +1688,7 @@
 		4CD3ABAD178F71B50073F5C5 /* KeePassKit */ = {
 			isa = PBXGroup;
 			children = (
+				4C0104B817C37BFC00173EF3 /* Utilites */,
 				4C1842D6179C716100E2F5BC /* Format */,
 				4CD3ABAF178F71B50073F5C5 /* Categories */,
 				4CD3ABB1178F71B50073F5C5 /* Core */,
@@ -2284,7 +2299,8 @@
 				4CA2E2DB17BCDA8300714076 /* NSString+Placeholder.m in Sources */,
 				4CA2E2DE17BCDEAE00714076 /* MPAutotypeDaemon.m in Sources */,
 				4C6C72C417C01E4200768849 /* NSMutableData+KeePassKit.m in Sources */,
-				4CE88C4117C16A6500BFD195 /* KPKLegacyHeaderUtility.m in Sources */,
+				4C0104BB17C37BFC00173EF3 /* KPKLegacyHeaderUtility.m in Sources */,
+				4C0104BE17C37DA400173EF3 /* KPKXmlUtilities.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
