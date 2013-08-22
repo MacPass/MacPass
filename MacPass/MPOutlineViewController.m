@@ -83,6 +83,8 @@ NSString *const _MPOutlinveViewHeaderViewIdentifier = @"HeaderCell";
                                              object:_outlineView];
 }
 
+#pragma makr Outline handling
+
 - (void)showOutline {
   if(!_bindingEstablished) {
     MPDocument *document = [[self windowController] document];
@@ -96,7 +98,25 @@ NSString *const _MPOutlinveViewHeaderViewIdentifier = @"HeaderCell";
     _bindingEstablished = YES;
   }
   NSTreeNode *node = [_outlineView itemAtRow:0];
-  [_outlineView expandItem:node expandChildren:YES];
+  [self _expandItems:node];
+}
+
+- (void)_expandItems:(NSTreeNode *)node {
+  id nodeItem = [node representedObject];
+  if([nodeItem isKindOfClass:[MPRootAdapter class]]) {
+    [self.outlineView expandItem:node expandChildren:NO];
+  }
+  else if([nodeItem respondsToSelector:@selector(isExpanded)]) {
+    if([nodeItem isExpanded]) {
+      [self.outlineView expandItem:node];
+    }
+    else {
+      [self.outlineView collapseItem:node];
+    }
+  }
+  for(NSTreeNode *child in [node childNodes]) {
+    [self _expandItems:child];
+  }
 }
 
 #pragma mark Custom Setter/Getter
@@ -234,6 +254,27 @@ NSString *const _MPOutlinveViewHeaderViewIdentifier = @"HeaderCell";
 
 - (BOOL)outlineView:(NSOutlineView *)outlineView shouldShowOutlineCellForItem:(id)item {
   return ![self _itemIsRootNodeAdapter:item];
+}
+
+- (void)outlineViewItemDidExpand:(NSNotification *)notification {
+  NSDictionary *userInfo = [notification userInfo];
+  id item = userInfo[@"NSObject"];
+  id representedObject = [item representedObject];
+  NSLog(@"expanded:%@",representedObject);
+  if([representedObject isKindOfClass:[Kdb4Group class]]) {
+    Kdb4Group *group = (Kdb4Group *)representedObject;
+    group.isExpanded = YES;
+  }
+}
+- (void)outlineViewItemDidCollapse:(NSNotification *)notification {
+  NSDictionary *userInfo = [notification userInfo];
+  id item = userInfo[@"NSObject"];
+  id representedObject = [item representedObject];
+  NSLog(@"collapsed:%@",representedObject);
+  if([representedObject isKindOfClass:[Kdb4Group class]]) {
+    Kdb4Group *group = (Kdb4Group *)representedObject;
+    group.isExpanded = NO;
+  }
 }
 
 #pragma mark -
