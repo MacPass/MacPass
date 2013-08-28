@@ -12,7 +12,7 @@
 		4C01C23F1764D2980016D5D0 /* KdbEntry+Undo.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C01C23E1764D2980016D5D0 /* KdbEntry+Undo.m */; };
 		4C01C2421764D8980016D5D0 /* MPContextMenuHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C01C2411764D8980016D5D0 /* MPContextMenuHelper.m */; };
 		4C01C245176500C40016D5D0 /* HNHLevelIndicatorCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C01C244176500C40016D5D0 /* HNHLevelIndicatorCell.m */; };
-		4C055E74179620BF00BD2BAB /* NSString+CommandString.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C055E73179620BF00BD2BAB /* NSString+CommandString.m */; };
+		4C055E74179620BF00BD2BAB /* NSString+Reference.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C055E73179620BF00BD2BAB /* NSString+Reference.m */; };
 		4C0728BA17B5B7A4005A7DD9 /* PasswordEditWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4C0728B917B5B7A4005A7DD9 /* PasswordEditWindow.xib */; };
 		4C0728BD17B5B7F7005A7DD9 /* MPPasswordEditWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C0728BC17B5B7F7005A7DD9 /* MPPasswordEditWindowController.m */; };
 		4C0728BF17B68ED0005A7DD9 /* SavePanelAccessoryView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4C0728BE17B68ED0005A7DD9 /* SavePanelAccessoryView.xib */; };
@@ -322,8 +322,8 @@
 		4C01C2411764D8980016D5D0 /* MPContextMenuHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MPContextMenuHelper.m; sourceTree = "<group>"; };
 		4C01C243176500C40016D5D0 /* HNHLevelIndicatorCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HNHLevelIndicatorCell.h; sourceTree = "<group>"; };
 		4C01C244176500C40016D5D0 /* HNHLevelIndicatorCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HNHLevelIndicatorCell.m; sourceTree = "<group>"; };
-		4C055E72179620BF00BD2BAB /* NSString+CommandString.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+CommandString.h"; sourceTree = "<group>"; };
-		4C055E73179620BF00BD2BAB /* NSString+CommandString.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+CommandString.m"; sourceTree = "<group>"; };
+		4C055E72179620BF00BD2BAB /* NSString+Reference.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+Reference.h"; sourceTree = "<group>"; };
+		4C055E73179620BF00BD2BAB /* NSString+Reference.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+Reference.m"; sourceTree = "<group>"; };
 		4C0728B917B5B7A4005A7DD9 /* PasswordEditWindow.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PasswordEditWindow.xib; sourceTree = "<group>"; };
 		4C0728BB17B5B7F7005A7DD9 /* MPPasswordEditWindowController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MPPasswordEditWindowController.h; sourceTree = "<group>"; };
 		4C0728BC17B5B7F7005A7DD9 /* MPPasswordEditWindowController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MPPasswordEditWindowController.m; sourceTree = "<group>"; };
@@ -1706,14 +1706,14 @@
 				4C2724D61778FF1A00FD8456 /* NSUUID+KeePassKit.m */,
 				4C8A173B1790AA41008B5C17 /* NSData+Keyfile.h */,
 				4C8A173C1790AA41008B5C17 /* NSData+Keyfile.m */,
-				4C055E72179620BF00BD2BAB /* NSString+CommandString.h */,
-				4C055E73179620BF00BD2BAB /* NSString+CommandString.m */,
+				4C055E72179620BF00BD2BAB /* NSString+Reference.h */,
+				4C055E73179620BF00BD2BAB /* NSString+Reference.m */,
+				4CA2E2D917BCDA8300714076 /* NSString+Placeholder.h */,
+				4CA2E2DA17BCDA8300714076 /* NSString+Placeholder.m */,
 				4C1842C1179B69E600E2F5BC /* NSData+HashedData.h */,
 				4C1842C2179B69E700E2F5BC /* NSData+HashedData.m */,
 				4C6366AA17AF1E0100AAF17D /* NSColor+KeePassKit.h */,
 				4C6366AB17AF1E0100AAF17D /* NSColor+KeePassKit.m */,
-				4CA2E2D917BCDA8300714076 /* NSString+Placeholder.h */,
-				4CA2E2DA17BCDA8300714076 /* NSString+Placeholder.m */,
 				4C6C72C217C01E4200768849 /* NSMutableData+KeePassKit.h */,
 				4C6C72C317C01E4200768849 /* NSMutableData+KeePassKit.m */,
 			);
@@ -2248,7 +2248,7 @@
 				4CDB5C421794AA4F0017667E /* KPKTree+Serializing.m in Sources */,
 				4C5AA591179549A1008ECAD7 /* KPKXmlTreeWriter.m in Sources */,
 				4CE298EB1795FC2A00DF7BDB /* MPEntryContextMenuDelegate.m in Sources */,
-				4C055E74179620BF00BD2BAB /* NSString+CommandString.m in Sources */,
+				4C055E74179620BF00BD2BAB /* NSString+Reference.m in Sources */,
 				4CC0D2CE17974A47000B4BDA /* MPCustomFieldTableViewDelegate.m in Sources */,
 				4CC0D2D117974A5A000B4BDA /* MPAttachmentTableViewDelegate.m in Sources */,
 				4C67D33017981A2B00A7BDFC /* HNHTokenField.m in Sources */,
