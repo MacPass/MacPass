@@ -9,13 +9,13 @@
 #import "MPOutlineContextMenuDelegate.h"
 #import "MPOutlineViewController.h"
 
-#import "MPRootAdapter.h"
 #import "MPDocument.h"
 
 #import "MPActionHelper.h"
 #import "MPContextMenuHelper.h"
 
-#import "Kdb.h"
+#import "KPKGroup.h"
+#import "KPKTree.h"
 
 NSString *const _MPOutlineMenuDefault = @"Default";
 NSString *const _MPOutlineMenuTrash = @"Trash";
@@ -37,13 +37,16 @@ NSString *const _MPOutlineMenuTemplate = @"Template";
    */
   
   id item = [self.viewController itemUnderMouse];
-  if( [item isKindOfClass:[MPRootAdapter class]]) {
+  if( [item isKindOfClass:[KPKTree class]]) {
     [self _updateRootMenu:menu];
   }
   
-  if( [item isKindOfClass:[KdbGroup class]]) {
-    KdbGroup *group = (KdbGroup *)item;
+  if( [item isKindOfClass:[KPKGroup class]]) {
+    KPKGroup *group = (KPKGroup *)item;
     MPDocument *document = [[NSDocumentController sharedDocumentController] currentDocument];
+    if(group && document.root == group ) {
+
+    }
     if(group && document.trash == group) {
       [self _updateTrashMenu:menu];
     }

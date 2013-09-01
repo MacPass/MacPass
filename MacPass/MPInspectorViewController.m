@@ -16,9 +16,6 @@
 
 #import "NSDate+Humanized.h"
 
-#import "KdbLib.h"
-#import "Kdb4Node.h"
-#import "Kdb3Node.h"
 
 #import "HNHGradientView.h"
 #import "MPPopupImageView.h"
@@ -162,7 +159,7 @@ typedef NS_ENUM(NSUInteger, MPContentTab) {
     return;
   }
 
-  [self.itemImageView bind:NSValueBinding toObject:item withKeyPath:@"icon" options:nil];
+  [self.itemImageView bind:NSValueBinding toObject:item withKeyPath:@"iconImage" options:nil];
   
   if([item respondsToSelector:@selector(title)]) {
     [self.itemNameTextField bind:NSValueBinding toObject:item withKeyPath:@"title" options:nil];

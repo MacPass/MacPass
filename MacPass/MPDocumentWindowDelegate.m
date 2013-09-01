@@ -8,8 +8,8 @@
 
 #import "MPDocumentWindowDelegate.h"
 #import "MPDocument.h"
-#import "Kdb.h"
-#import "KdbEntry+Undo.h"
+
+#import "KPKEntry.h"
 
 @implementation MPDocumentWindowDelegate
 
@@ -55,9 +55,9 @@
   BOOL ok = NO;
   if(document.selectedGroup) {
     [[document undoManager] beginUndoGrouping];
-    KdbEntry *entry = [document createEntry:document.selectedGroup];
+    KPKEntry *entry = [document createEntry:document.selectedGroup];
     ok = (nil != entry);
-    entry.urlUndoable = [url absoluteString];
+    entry.url = [url absoluteString];
     [[document undoManager] endUndoGrouping];
     [[document undoManager] setActionName:NSLocalizedString(@"IMPORT_URL", @"Imports a dragged URL for a new entry")];
   }

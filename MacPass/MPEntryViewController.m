@@ -24,13 +24,14 @@
 #import "MPStripLineBreaksTransformer.h"
 #import "MPEntryContextMenuDelegate.h"
 
+#import "KPKUTIs.h"
+#import "KPKGroup.h"
+#import "KPKEntry.h"
+#import "KPKNode+IconImage.h"
+#import "KPKAttribute.h"
+
 #import "HNHTableHeaderCell.h"
 #import "HNHGradientView.h"
-
-#import "Kdb4Node.h"
-#import "KdbGroup+MPTreeTools.h"
-#import "KdbGroup+Undo.h"
-#import "KdbEntry+Undo.h"
 
 #import "MPNotifications.h"
 
@@ -90,7 +91,7 @@ NSString *const _toggleFilterUsernameButton = @"SearchUsername";
 @property (weak) IBOutlet NSTextField *entryCountTextField;
 
 
-@property (weak) KdbEntry *selectedEntry;
+@property (weak) KPKEntry *selectedEntry;
 
 @property (nonatomic, strong) MPEntryTableDataSource *dataSource;
 
@@ -139,7 +140,7 @@ NSString *const _toggleFilterUsernameButton = @"SearchUsername";
   [self.entryTable setDoubleAction:@selector(_columnDoubleClick:)];
   [self.entryTable setTarget:self];
   [self.entryTable setFloatsGroupRows:NO];
-  [self.entryTable registerForDraggedTypes:@[MPEntryUTI]];
+  [self.entryTable registerForDraggedTypes:@[KPKEntryUTI]];
   [[NSNotificationCenter defaultCenter] addObserver:self
                                            selector:@selector(_didBecomFirstResponder:)
                                                name:MPDidActivateViewNotification
@@ -209,7 +210,7 @@ NSString *const _toggleFilterUsernameButton = @"SearchUsername";
 #pragma mark NSTableViewDelgate
 
 - (NSView *)tableView:(NSTableView *)tableView viewForTableColumn:(NSTableColumn *)tableColumn row:(NSInteger)row {
-  KdbEntry *entry = [self.entryArrayController arrangedObjects][row];
+  KPKEntry *entry = [self.entryArrayController arrangedObjects][row];
   BOOL isTitleColumn = [[tableColumn identifier] isEqualToString:MPEntryTableTitleColumnIdentifier];
   BOOL isGroupColumn = [[tableColumn identifier] isEqualToString:MPEntryTableParentColumnIdentifier];
   BOOL isPasswordColum = [[tableColumn identifier] isEqualToString:MPEntryTablePasswordColumnIdentifier];
@@ -223,31 +224,31 @@ NSString *const _toggleFilterUsernameButton = @"SearchUsername";
   if(isTitleColumn || isGroupColumn) {
     view = [tableView makeViewWithIdentifier:_MPTableImageCellView owner:self];
     if( isTitleColumn ) {
-      [[view textField] bind:NSValueBinding toObject:entry withKeyPath:@"titleUndoable" options:nil];
-      [[view imageView] setImage:[MPIconHelper icon:(MPIconType)entry.image]];
+      [[view textField] bind:NSValueBinding toObject:entry withKeyPath:@"title" options:nil];
+      [[view imageView] setImage:entry.iconImage];
     }
     else {
       assert(entry.parent);
-      [[view textField] bind:NSValueBinding toObject:entry.parent withKeyPath:MPGroupNameUndoableKey options:nil];
-      [[view imageView] setImage:[MPIconHelper icon:(MPIconType)entry.parent.image]];
+      [[view textField] bind:NSValueBinding toObject:entry.parent withKeyPath:entry.parent.name options:nil];
+      [[view imageView] setImage:entry.iconImage];
     }
   }
   else if( isPasswordColum ) {
     view = [tableView makeViewWithIdentifier:_MPTAbleSecurCellView owner:self];
     NSDictionary *options = @{ NSValueTransformerBindingOption : [NSValueTransformer valueTransformerForName:MPStringLengthValueTransformerName] };
-    [[view textField] bind:NSValueBinding toObject:entry withKeyPath:@"passwordUndoable" options:options];
+    [[view textField] bind:NSValueBinding toObject:entry withKeyPath:@"password" options:options];
   }
   else  {
     view = [tableView makeViewWithIdentifier:_MPTableStringCellView owner:self];
     if(isURLColumn) {
-      [[view textField] bind:NSValueBinding toObject:entry withKeyPath:@"urlUndoable" options:nil];
+      [[view textField] bind:NSValueBinding toObject:entry withKeyPath:@"url" options:nil];
     }
     else if( isUsernameColumn) {
-      [[view textField] bind:NSValueBinding toObject:entry withKeyPath:@"usernameUndoable" options:nil];
+      [[view textField] bind:NSValueBinding toObject:entry withKeyPath:@"username" options:nil];
     }
     else if( isNotesColumn ) {
       NSDictionary *options = @{ NSValueTransformerNameBindingOption : MPStripLineBreaksTransformerName };
-      [[view textField] bind:NSValueBinding toObject:entry withKeyPath:@"notesUndoable" options:options];
+      [[view textField] bind:NSValueBinding toObject:entry withKeyPath:@"notes" options:options];
     }
     else if( isAttachmentColumn ) {
       [[view textField] setStringValue:@""];
@@ -258,7 +259,7 @@ NSString *const _toggleFilterUsernameButton = @"SearchUsername";
       [formatter setDateStyle:NSDateFormatterMediumStyle];
       [formatter setTimeStyle:NSDateFormatterMediumStyle];
       [[view textField] setFormatter:formatter];
-      [[view textField] bind:NSValueBinding toObject:entry withKeyPath:@"lastModificationTime" options:nil];
+      [[view textField] bind:NSValueBinding toObject:entry.timeInfo withKeyPath:@"lastModificationTime" options:nil];
     }
   }
   
@@ -292,13 +293,13 @@ NSString *const _toggleFilterUsernameButton = @"SearchUsername";
      If we reselct the group, or just another group
      we clear the filter and bind to the new selected group
      */
-    if([self _showsFilterBar] && ![document.selectedItem isKindOfClass:[KdbEntry class]]) {
+    if([self _showsFilterBar] && ![document.selectedItem isKindOfClass:[KPKEntry class]]) {
       [self clearFilter:nil];
       [self.entryArrayController bind:NSContentArrayBinding toObject:document.selectedGroup withKeyPath:@"entries" options:nil];
       return;
     }
     if([[self.entryArrayController content] count] > 0) {
-      KdbEntry *entry = [[self.entryArrayController content] lastObject];
+      KPKEntry *entry = [[self.entryArrayController content] lastObject];
       if(entry.parent == document.selectedGroup) {
         return; // we are showing the correct object right now.
       }
@@ -593,9 +594,9 @@ NSString *const _toggleFilterUsernameButton = @"SearchUsername";
 }
 
 
-#pragma makr Action Helper
+#pragma mark Action Helper
 
-- (KdbEntry *)_clickedOrSelectedEntry {
+- (KPKEntry *)_clickedOrSelectedEntry {
   NSInteger activeRow = [self.entryTable clickedRow];
   /* Fallback to selection e.g. for toolbar actions */
   if(activeRow < 0 ) {
@@ -610,39 +611,38 @@ NSString *const _toggleFilterUsernameButton = @"SearchUsername";
 #pragma mark Actions
 
 - (void)copyPassword:(id)sender {
-  KdbEntry *selectedEntry = [self _clickedOrSelectedEntry];
+  KPKEntry *selectedEntry = [self _clickedOrSelectedEntry];
   if(selectedEntry) {
     [self _copyToPasteboard:selectedEntry.password overlayInfo:MPOverlayInfoPassword name:nil];
   }
 }
 
 - (void)copyUsername:(id)sender {
-  KdbEntry *selectedEntry = [self _clickedOrSelectedEntry];
+  KPKEntry *selectedEntry = [self _clickedOrSelectedEntry];
   if(selectedEntry) {
     [self _copyToPasteboard:selectedEntry.username overlayInfo:MPOverlayInfoUsername name:nil];
   }
 }
 
-- (void)copyCustomField:(id)sender {
-  KdbEntry *selectedEntry = [self _clickedOrSelectedEntry];
-  if(selectedEntry && [selectedEntry isKindOfClass:[Kdb4Entry class]]) {
-    Kdb4Entry *entry = (Kdb4Entry *)selectedEntry;
+- (void)copyCustomAttribute:(id)sender {
+  KPKEntry *selectedEntry = [self _clickedOrSelectedEntry];
+  if(selectedEntry && [selectedEntry isKindOfClass:[KPKEntry class]]) {
     NSUInteger index = [sender tag];
-    NSAssert((index >= 0)  && (index < [entry.stringFields count]), @"Index for custom field needs to be valid");
-    StringField *field = entry.stringFields[index];
-    [self _copyToPasteboard:field.value overlayInfo:MPOverlayInfoCustom name:field.key];
+    NSAssert((index >= 0)  && (index < [selectedEntry.customAttributes count]), @"Index for custom field needs to be valid");
+    KPKAttribute *attribute = selectedEntry.customAttributes[index];
+    [self _copyToPasteboard:attribute.value overlayInfo:MPOverlayInfoCustom name:attribute.key];
   }
 }
 
 - (void)copyURL:(id)sender {
-  KdbEntry *selectedEntry = [self _clickedOrSelectedEntry];
+  KPKEntry *selectedEntry = [self _clickedOrSelectedEntry];
   if(selectedEntry) {
     [self _copyToPasteboard:selectedEntry.url overlayInfo:MPOverlayInfoURL name:nil];
   }
 }
 
 - (void)openURL:(id)sender {
-  KdbEntry *selectedEntry = [self _clickedOrSelectedEntry];
+  KPKEntry *selectedEntry = [self _clickedOrSelectedEntry];
   if(selectedEntry && [selectedEntry.url length] > 0) {
     NSURL *webURL = [NSURL URLWithString:selectedEntry.url];
     [[NSWorkspace sharedWorkspace] openURL:webURL];
@@ -650,7 +650,7 @@ NSString *const _toggleFilterUsernameButton = @"SearchUsername";
 }
 
 - (void)deleteNode:(id)sender {
-  KdbEntry *entry =[self _clickedOrSelectedEntry];
+  KPKEntry *entry =[self _clickedOrSelectedEntry];
   MPDocument *document = [[self windowController] document];
   [document deleteEntry:entry];
 }

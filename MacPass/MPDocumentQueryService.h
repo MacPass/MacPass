@@ -8,13 +8,13 @@
 
 #import <Foundation/Foundation.h>
 
-@class KdbEntry;
+@class KPKEntry;
 
 @interface MPDocumentQueryService : NSObject
 
 + (MPDocumentQueryService *)defaultService;
 
-- (KdbEntry *)configurationEntry;
-- (KdbEntry *)createConfigurationEntry;
+- (KPKEntry *)configurationEntry;
+- (KPKEntry *)createConfigurationEntry;
 
 @end

@@ -10,16 +10,14 @@
 #import "MPDocument.h"
 #import "MPPasteBoardController.h"
 
-#import "Kdb.h"
-#import "Kdb4Node.h"
-#import "Kdb4Group+Undo.h"
+#import "KPKGroup.h"
 
 #import "HNHScrollView.h"
 #import "HNHRoundedTextField.h"
 
 @interface MPGroupInspectorViewController ()
 
-@property (nonatomic, weak) KdbGroup *group;
+@property (nonatomic, weak) KPKGroup *group;
 
 @end
 
@@ -66,7 +64,7 @@
   [self bind:@"group" toObject:document withKeyPath:@"selectedGroup" options:nil];
 }
 
-- (void)setGroup:(KdbGroup *)group {
+- (void)setGroup:(KPKGroup *)group {
   if(_group != group) {
     _group = group;
     [self _updateBindings];
@@ -75,14 +73,8 @@
 
 - (void)_updateBindings {
   if(self.group) {
-    [self.titleTextField bind:NSValueBinding toObject:self.group withKeyPath:@"nameUndoable" options:nil];
-    if([self.group isKindOfClass:[Kdb4Group class]]) {
-      [self.notesTextView bind:NSValueBinding toObject:self.group withKeyPath:@"notesUndoable" options:nil];
-    }
-    else {
-      [self.notesTextView unbind:NSValueBinding];
-      [self.notesTextView setString:@""];
-    }
+    [self.titleTextField bind:NSValueBinding toObject:self.group withKeyPath:@"name" options:nil];
+    [self.notesTextView bind:NSValueBinding toObject:self.group withKeyPath:@"notes" options:nil];
   }
   else {
     [self.titleTextField unbind:NSValueBinding];

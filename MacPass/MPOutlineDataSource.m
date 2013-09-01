@@ -9,21 +9,17 @@
 #import "MPOutlineDataSource.h"
 #import "MPDocument.h"
 #import "MPConstants.h"
-#import "MPRootAdapter.h"
 
-#import "KdbLib.h"
-#import "KdbGroup+Undo.h"
-#import "KdbEntry+Undo.h"
-#import "KdbGroup+MPTreeTools.h"
-#import "KdbEntry+MPTreeTools.h"
+#import "KPKGroup.h"
+#import "KPKEntry.h"
+#import "KPKUTIs.h"
 
-#import "UUID.h"
-#import "UUID+Pasterboard.h"
+#import "NSUUID+KeePassKit.h"
 
 @interface MPOutlineDataSource ()
 
-@property (weak) KdbGroup *draggedGroup;
-@property (weak) KdbEntry *draggedEntry;
+@property (weak) KPKGroup *draggedGroup;
+@property (weak) KPKEntry *draggedEntry;
 
 @end
 
@@ -33,8 +29,12 @@
 - (BOOL)outlineView:(NSOutlineView *)outlineView writeItems:(NSArray *)items toPasteboard:(NSPasteboard *)pasteboard {
   self.draggedGroup = nil;
   if([items count] == 1) {
-    [pasteboard setString:self.draggedGroup.name forType:MPGroupUTI];
-    self.draggedGroup = [[items lastObject] representedObject];
+    id item = [[items lastObject] representedObject];
+    if(![item isKindOfClass:[KPKGroup class]]) {
+      return NO;
+    }
+    [pasteboard setString:self.draggedGroup.name forType:KPKGroupUTI];
+    self.draggedGroup = item;
     return (nil != self.draggedGroup.parent);
   }
   return NO;
@@ -50,25 +50,25 @@
    oprationMask = NSDragOperationCopy;
    }
    */
-  id targetItem = [item representedObject];
-  if(targetItem == nil || [targetItem isKindOfClass:[MPRootAdapter class]]) {
-    return NSDragOperationNone; // no Target
-  }
   
   NSPasteboard *pasteBoard = [info draggingPasteboard];
   NSArray *types = [pasteBoard types];
   if([types count] > 1 || [types count] == 0) {
     return NSDragOperationNone; // We cannot work with more than one type
   }
-  
+
+  id targetItem = [item representedObject];
+  if( ![targetItem isKindOfClass:[KPKGroup class]] && ![targetItem isKindOfClass:[KPKEntry class]]) {
+    return NSDragOperationNone; // Block all unknown types
+  }
   MPDocument *document = [[[outlineView window] windowController] document];
   NSString *draggedType = [types lastObject];
-  if([draggedType isEqualToString:MPGroupUTI]) {
+  if([draggedType isEqualToString:KPKGroupUTI]) {
     // dragging group
     self.draggedEntry = nil;
   }
-  else if([draggedType isEqualToString:MPUUIDUTI]) {
-    NSArray *uuids = [pasteBoard readObjectsForClasses:@[[UUID class]] options:nil];
+  else if([draggedType isEqualToString:KPKUUIDUTI]) {
+    NSArray *uuids = [pasteBoard readObjectsForClasses:@[[NSUUID class]] options:nil];
     if([uuids count] != 1) {
       return NSDragOperationNone; // NO entry readable
     }
@@ -79,7 +79,7 @@
     return NSDragOperationNone; // unkonw type
   }
   
-  KdbGroup *targetGroup = targetItem;
+  KPKGroup *targetGroup = targetItem;
   BOOL validTarget = YES;
   if(self.draggedGroup) {
     if( self.draggedGroup == targetGroup ) {
@@ -108,19 +108,19 @@
   }
   
   id targetItem = [item representedObject];
-  if(![targetItem isKindOfClass:[KdbGroup class]]) {
+  if(![targetItem isKindOfClass:[KPKGroup class]]) {
     return NO; // Wrong
   }
   
-  KdbGroup *targetGroup = (KdbGroup *)targetItem;
+  KPKGroup *targetGroup = (KPKGroup *)targetItem;
   
   NSString *draggedType = [types lastObject];
-  if([draggedType isEqualToString:MPGroupUTI]) {
-    [self.draggedGroup moveToGroupUndoable:targetGroup atIndex:index];
+  if([draggedType isEqualToString:KPKGroupUTI]) {
+    [self.draggedGroup moveToGroup:targetGroup atIndex:index];
     return YES;
   }
-  else if([draggedType isEqualToString:MPUUIDUTI]) {
-    [self.draggedEntry moveToGroupUndoable:targetGroup atIndex:index];
+  else if([draggedType isEqualToString:KPKUUIDUTI]) {
+    [self.draggedEntry moveToGroup:targetGroup atIndex:index];
     return YES;
   }
   return NO;

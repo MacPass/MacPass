@@ -11,8 +11,8 @@
 #import "MPDocument.h"
 #import "MPSelectedAttachmentTableCellView.h"
 
-#import "Kdb4Node.h"
-#import "Kdb3Node.h"
+#import "KPKEntry.h"
+#import "KPKBinary.h"
 
 #import "HNHTableRowView.h"
 
@@ -22,16 +22,8 @@
   NSTableView *tableView = [notification object];
   MPDocument *document = [[[tableView window] windowController] document];
   NSIndexSet *allColumns = [NSIndexSet indexSetWithIndexesInRange:NSMakeRange(0, [[tableView tableColumns] count])];
-  if([document.selectedEntry isKindOfClass:[Kdb4Entry class]]) {
-    Kdb4Entry *entryv4 = (Kdb4Entry *)document.selectedEntry;
-    NSIndexSet *indexSet = [NSIndexSet indexSetWithIndexesInRange:NSMakeRange(0, [entryv4.binaries count] )];
-    [tableView reloadDataForRowIndexes:indexSet columnIndexes:allColumns];
-  }
-  if([document.selectedEntry isKindOfClass:[Kdb3Entry class]]) {
-    Kdb3Entry *entryv3 = (Kdb3Entry *)document.selectedEntry;
-    NSIndexSet *indexSet = [NSIndexSet indexSetWithIndexesInRange:NSMakeRange(0, (entryv3.binary ? 1 : 0 ))];
-    [tableView reloadDataForRowIndexes:indexSet columnIndexes:allColumns];
-  }
+  NSIndexSet *indexSet = [NSIndexSet indexSetWithIndexesInRange:NSMakeRange(0, [document.selectedEntry.binaries count] )];
+  [tableView reloadDataForRowIndexes:indexSet columnIndexes:allColumns];
 }
 
 - (NSView *)tableView:(NSTableView *)tableView viewForTableColumn:(NSTableColumn *)tableColumn row:(NSInteger)row {
@@ -54,17 +46,11 @@
     view = [tableView makeViewWithIdentifier:@"NormalCell" owner:tableView];
   }
   /* Bind view */
-  if([document.selectedEntry isKindOfClass:[Kdb4Entry class]]) {
-    Kdb4Entry *entry = (Kdb4Entry *)document.selectedEntry;
-    BinaryRef *binaryRef = entry.binaries[row];
-    [[view textField] bind:NSValueBinding toObject:binaryRef withKeyPath:@"key" options:nil];
-    [[view imageView] setImage:[[NSWorkspace sharedWorkspace] iconForFileType:[binaryRef.key pathExtension]]];
-  }
-  else {
-    Kdb3Entry *entry= (Kdb3Entry *)document.selectedEntry;
-    [[view textField] bind:NSValueBinding toObject:entry withKeyPath:@"binaryDesc" options:nil];
-    [[view imageView] setImage:[[NSWorkspace sharedWorkspace] iconForFileType:[entry.binaryDesc pathExtension]]];
-  }
+  KPKEntry *entry = document.selectedEntry;
+  NSAssert([entry.binaries count] > row, @"Indes needs to be valid for binaries");
+  KPKBinary *binary = entry.binaries[row];
+  [[view textField] bind:NSValueBinding toObject:binary withKeyPath:@"name" options:nil];
+  [[view imageView] setImage:[[NSWorkspace sharedWorkspace] iconForFileType:[binary.name pathExtension]]];
   return view;
 }
 

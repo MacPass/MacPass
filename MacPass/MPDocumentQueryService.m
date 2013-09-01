@@ -8,11 +8,12 @@
 
 #import "MPDocumentQueryService.h"
 #import "MPDocument.h"
-#import "UUID.h"
+
+#import "NSUUID+KeePassKit.h"
 
 @interface MPDocumentQueryService () {
 @private
-  UUID *rootUuid;
+  NSUUID *rootUuid;
 }
 
 @end
@@ -36,20 +37,20 @@
       0x9f, 0x36, 0x89, 0x7d, 0x62, 0x3e, 0xcb, 0x31
     };
     NSData *data = [NSData dataWithBytes:uuidBytes length:16];
-    rootUuid = [[UUID alloc] initWithData:data];
+    rootUuid = [[NSUUID alloc] initWithData:data];
   }
   return self;
 }
 
 
-- (KdbEntry *)configurationEntry {
+- (KPKEntry *)configurationEntry {
   /*
    We are looking in all document,
    but only store the key in one.
    */
   NSArray *documents = [[NSDocumentController sharedDocumentController] documents];
   for(MPDocument *document in documents) {
-    KdbEntry *entry = [document findEntry:rootUuid];
+    KPKEntry *entry = [document findEntry:rootUuid];
     if(entry) {
       return entry;
     }
@@ -57,7 +58,7 @@
   return nil;
 }
 
-- (KdbEntry *)createConfigurationEntry {
+- (KPKEntry *)createConfigurationEntry {
   return nil;
 }
 

@@ -8,7 +8,6 @@
 
 #import "MPViewController.h"
 
-@class KdbEntry;
 @class HNHRoundedSecureTextField;
 @class MPDocument;
 

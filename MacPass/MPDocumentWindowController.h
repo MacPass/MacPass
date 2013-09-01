@@ -14,9 +14,6 @@
 @class MPPasswordInputController;
 @class MPOutlineViewController;
 
-@class KdbGroup;
-@class KdbEntry;
-
 @interface MPDocumentWindowController : NSWindowController
 
 @property (readonly, strong) MPPasswordInputController *passwordInputController;

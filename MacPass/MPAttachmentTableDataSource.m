@@ -9,9 +9,6 @@
 #import "MPAttachmentTableDataSource.h"
 #import "MPDocument.h"
 
-#import "Kdb3Entry+KVOAdditions.h"
-#import "Kdb4Entry+KVOAdditions.h"
-
 @implementation MPAttachmentTableDataSource
 
 - (NSDragOperation)tableView:(NSTableView *)tableView

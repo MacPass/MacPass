@@ -11,7 +11,8 @@
 #import "MPDocumentWindowController.h"
 #import "MPActionHelper.h"
 
-#import "KdbGroup+MPTreeTools.h"
+#import "KPKEntry.h"
+#import "KPKGroup.h"
 
 #define EDIT_TEMPLATES_ITEM_TAG 10;
 
@@ -31,7 +32,7 @@
   [menu addItemWithTitle:NSLocalizedString(@"EDIT_TEMPLATE_GROUP", "") action:[MPActionHelper actionOfType:MPActionEditTemplateGroup] keyEquivalent:@""];
 
   [menu addItem:[NSMenuItem separatorItem]];
-  for(KdbEntry *entry in [document.templates childEntries]) {
+  for(KPKEntry *entry in [document.templates childEntries]) {
     NSString *templateMask = NSLocalizedString(@"NEW_ENTRY_WITH_TEMPLATE_%@", "");
     NSMenuItem *templateItem = [[NSMenuItem allocWithZone:[NSMenu menuZone]] initWithTitle:[NSString stringWithFormat:templateMask, entry.title]
                                                                                     action:@selector(createEntryFromTemplate:)

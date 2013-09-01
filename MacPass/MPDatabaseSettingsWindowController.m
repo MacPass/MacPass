@@ -13,14 +13,16 @@
 #import "MPIconHelper.h"
 #import "MPSettingsHelper.h"
 
+#import "KPKGroup.h"
+#import "KPKTree.h"
+#import "KPKMetaData.h"
+#import "KPKNode+IconImage.h"
+
 #import "HNHRoundedTextField.h"
 #import "HNHRoundedSecureTextField.h"
 
 #import "NSString+Empty.h"
 
-#import "Kdb.h"
-#import "Kdb4Node.h"
-#import "KdbGroup+MPAdditions.h"
 
 @interface MPDatabaseSettingsWindowController () {
   MPDocument *_document;
@@ -56,19 +58,20 @@
 
 - (IBAction)save:(id)sender {
   /* General */
-  _document.treeV4.databaseDescription = [self.databaseDescriptionTextView string];
-  _document.treeV4.databaseName = [self.databaseNameTextField stringValue];
+  KPKMetaData *metaData = _document.tree.metaData;
+  metaData.databaseDescription = [self.databaseDescriptionTextView string];
+  metaData.databaseName = [self.databaseNameTextField stringValue];
   
   /* Display */
   
   /* Advanced */
-  _document.treeV4.recycleBinEnabled = self.trashEnabled;
+  metaData.recycleBinEnabled = self.trashEnabled;
   NSMenuItem *trashMenuItem = [self.selectRecycleBinGroupPopUpButton selectedItem];
-  KdbGroup *trashGroup = [trashMenuItem representedObject];
+  KPKGroup *trashGroup = [trashMenuItem representedObject];
   [_document useGroupAsTrash:trashGroup];
   
   NSMenuItem *templateMenuItem = [self.templateGroupPopUpButton selectedItem];
-  KdbGroup *templateGroup = [templateMenuItem representedObject];
+  KPKGroup *templateGroup = [templateMenuItem representedObject];
   [_document useGroupAsTemplate:templateGroup];
   
   BOOL protectNotes = [self.protectNotesCheckButton state] == NSOnState;
@@ -77,24 +80,22 @@
   BOOL protectURL = [self.protectURLCheckButton state] == NSOnState;
   BOOL protectUsername = [self.protectUserNameCheckButton state] == NSOnState;
   
-  if(_document.version == MPDatabaseVersion4) {
-    _document.treeV4.protectNotes = protectNotes;
-    _document.treeV4.protectPassword = protectPassword;
-    _document.treeV4.protectTitle = protectTitle;
-    _document.treeV4.protectUrl = protectURL;
-    _document.treeV4.protectUserName = protectUsername;
-    _document.treeV4.defaultUserName = [self.defaultUsernameTextField stringValue];
+  metaData.protectNotes = protectNotes;
+  metaData.protectPassword = protectPassword;
+  metaData.protectTitle = protectTitle;
+  metaData.protectUrl = protectURL;
+  metaData.protectUserName = protectUsername;
+  metaData.defaultUserName = [self.defaultUsernameTextField stringValue];
     
-  }
-  else {
-    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+  /*
+   NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
     [defaults setBool:protectNotes forKey:kMPSettingsKeyLegacyHideNotes];
     [defaults setBool:protectPassword forKey:kMPSettingsKeyLegacyHidePassword];
     [defaults setBool:protectTitle forKey:kMPSettingsKeyLegacyHideTitle];
     [defaults setBool:protectURL forKey:kMPSettingsKeyLegacyHideURL];
     [defaults setBool:protectUsername forKey:kMPSettingsKeyLegacyHideUsername];
     [defaults synchronize];
-  }
+   */
   [self close:nil];
 }
 
@@ -108,11 +109,11 @@
     return;
   }
   /* Update all stuff that might have changed */
-  Kdb4Tree *tree = _document.treeV4;
-  [self _setupDatabase:tree];
-  [self _setupProtectionTab:tree];
-  [self _setupAdvancedTab:tree];
-  [self _setupTemplatesTab:tree];
+  KPKMetaData *metaData = _document.tree.metaData;
+  [self _setupDatabase:metaData];
+  [self _setupProtectionTab:metaData];
+  [self _setupAdvancedTab:_document.tree];
+  [self _setupTemplatesTab:_document.tree];
   self.isDirty = NO;
 }
 
@@ -142,7 +143,8 @@
     case MPDatabaseSettingsTabAdvanced:
     case MPDatabaseSettingsTabGeneral:
     case MPDatabaseSettingsTabTemplates:
-      return (_document.version == MPDatabaseVersion4);
+      return YES;
+      //return (_document.version == MPDatabaseVersion4);
       
     default:
       return NO;
@@ -150,61 +152,29 @@
 }
 
 #pragma mark Private Helper
-- (void)_setupDatabase:(Kdb4Tree *)tree {
-  BOOL isKdbx = (nil != tree);
-  [self.databaseDescriptionTextView setEditable:isKdbx];
-  [self.databaseNameTextField setEnabled:isKdbx];
-  if(isKdbx) {
-    [self.databaseNameTextField setStringValue:tree.databaseName];
-    [self.databaseDescriptionTextView setString:tree.databaseDescription];
-  }
-  else {
-    [self.databaseNameTextField setStringValue:_missingFeature];
-    [self.databaseDescriptionTextView setString:_missingFeature];
-  }
+- (void)_setupDatabase:(KPKMetaData *)metaData {
+  [self.databaseNameTextField setStringValue:metaData.databaseName];
+  [self.databaseDescriptionTextView setString:metaData.databaseDescription];
 }
 
-- (void)_setupProtectionTab:(Kdb4Tree *)tree {
-  BOOL isKdbX = (nil != tree);
-  
-  NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-  
-  BOOL protectNotes = isKdbX ? tree.protectNotes : [defaults boolForKey:kMPSettingsKeyLegacyHideNotes];
-  BOOL protectPassword = isKdbX ? tree.protectPassword : [defaults boolForKey:kMPSettingsKeyLegacyHidePassword];
-  BOOL protectTitle = isKdbX ? tree.protectTitle : [defaults boolForKey:kMPSettingsKeyLegacyHideTitle];
-  BOOL protectUrl = isKdbX ? tree.protectUrl : [defaults boolForKey:kMPSettingsKeyLegacyHideURL];
-  BOOL protectUsername = isKdbX ? tree.protectUserName : [defaults boolForKey:kMPSettingsKeyLegacyHideUsername];
-  
-  [self.protectNotesCheckButton setState:protectNotes ? NSOnState : NSOffState ];
-  [self.protectPasswortCheckButton setState:protectPassword ? NSOnState : NSOffState];
-  [self.protectTitleCheckButton setState:protectTitle ? NSOnState : NSOffState];
-  [self.protectURLCheckButton setState:protectUrl ? NSOnState : NSOffState];
-  [self.protectUserNameCheckButton setState:protectUsername ? NSOnState : NSOffState];
+- (void)_setupProtectionTab:(KPKMetaData *)metaData {
+  [self.protectNotesCheckButton setState:metaData.protectNotes ? NSOnState : NSOffState ];
+  [self.protectPasswortCheckButton setState:metaData.protectPassword ? NSOnState : NSOffState];
+  [self.protectTitleCheckButton setState:metaData.protectTitle ? NSOnState : NSOffState];
+  [self.protectURLCheckButton setState:metaData.protectUrl ? NSOnState : NSOffState];
+  [self.protectUserNameCheckButton setState:metaData.protectUserName ? NSOnState : NSOffState];
 }
 
-- (void)_setupAdvancedTab:(Kdb4Tree *)tree {
-  BOOL isKdbX = (nil != tree);
-  
-  self.trashEnabled = isKdbX ? tree.recycleBinEnabled : NO;
-  
+- (void)_setupAdvancedTab:(KPKTree *)tree {
   [self.enableRecycleBinCheckButton bind:NSValueBinding toObject:self withKeyPath:@"trashEnabled" options:nil];
-  [self.enableRecycleBinCheckButton setEnabled:isKdbX];
   [self.selectRecycleBinGroupPopUpButton bind:NSEnabledBinding toObject:self withKeyPath:@"trashEnabled" options:nil];
-  if(isKdbX) {
-    [self _updateTrashFolders:tree];
-  }
+  [self _updateTrashFolders:tree];
 }
 
-- (void)_setupTemplatesTab:(Kdb4Tree *)tree {
-  if(tree) {
-    [self.defaultUsernameTextField setStringValue:tree.defaultUserName];
-    [self.defaultUsernameTextField setEditable:YES];
-    [self _updateTemplateGroup:tree];
-  }
-  else {
-    [self.defaultUsernameTextField setStringValue:_missingFeature];
-    [self.defaultUsernameTextField setEditable:NO];
-  }
+- (void)_setupTemplatesTab:(KPKTree *)tree {
+  [self.defaultUsernameTextField setStringValue:tree.metaData.defaultUserName];
+  [self.defaultUsernameTextField setEditable:YES];
+  [self _updateTemplateGroup:tree];
 }
 
 - (void)_updateFirstResponder {
@@ -229,18 +199,18 @@
   }
 }
 
-- (void)_updateTrashFolders:(Kdb4Tree *)tree {
+- (void)_updateTrashFolders:(KPKTree *)tree {
   NSMenu *menu = [self _buildTrashTreeMenu:tree];
   [self.selectRecycleBinGroupPopUpButton setMenu:menu];
 }
 
-- (void)_updateTemplateGroup:(Kdb4Tree *)tree {
+- (void)_updateTemplateGroup:(KPKTree *)tree {
   NSMenu *menu = [self _buildTemplateTreeMenu:tree];
   [self.templateGroupPopUpButton setMenu:menu];
 }
 
-- (NSMenu *)_buildTrashTreeMenu:(Kdb4Tree *)tree {
-  NSMenu *menu = [self _buildTreeMenu:tree preselect:tree.recycleBinUuid];
+- (NSMenu *)_buildTrashTreeMenu:(KPKTree *)tree {
+  NSMenu *menu = [self _buildTreeMenu:tree preselect:tree.metaData.recycleBinUuid];
   
   NSMenuItem *selectItem = [[NSMenuItem alloc] initWithTitle:NSLocalizedString(@"AUTOCREATE_TRASH_FOLDER", @"Menu item for automatic trash creation")
                                                       action:NULL
@@ -251,8 +221,8 @@
   return menu;
 }
 
-- (NSMenu *)_buildTemplateTreeMenu:(Kdb4Tree *)tree {
-  NSMenu *menu = [self _buildTreeMenu:tree preselect:tree.entryTemplatesGroup];
+- (NSMenu *)_buildTemplateTreeMenu:(KPKTree *)tree {
+  NSMenu *menu = [self _buildTreeMenu:tree preselect:tree.metaData.entryTemplatesGroup];
   
   NSMenuItem *selectItem = [[NSMenuItem alloc] initWithTitle:NSLocalizedString(@"NO_TEMPLATE_GROUP", @"Menu item to reset the template groups")
                                                       action:NULL
@@ -264,18 +234,16 @@
 }
 
 
-- (NSMenu *)_buildTreeMenu:(Kdb4Tree *)tree preselect:(UUID *)uuid {
+- (NSMenu *)_buildTreeMenu:(KPKTree *)tree preselect:(NSUUID *)uuid {
   NSMenu *menu = [[NSMenu alloc] init];
   [menu setAutoenablesItems:NO];
-  
-
   /*
    Trash and Templates can be nested, so wee need to adhere to this :(
    */
   
-  for(Kdb4Group *group in tree.root.groups) {
+  for(KPKGroup *group in tree.root.groups) {
     NSMenuItem *groupItem = [[NSMenuItem alloc] init];
-    [groupItem setImage:group.icon];
+    [groupItem setImage:group.iconImage];
     [groupItem setTitle:group.name];
     [groupItem setRepresentedObject:group];
     [groupItem setEnabled:YES];

@@ -184,9 +184,6 @@
   }
   
   BOOL enabled = YES;
-  if(itemAction == @selector(exportDatabase:)) {
-    enabled = (nil != document.treeV4);
-  }
   if(itemAction == [MPActionHelper actionOfType:MPActionDelete]) {
     enabled &= (nil != document.selectedItem) && (document.selectedItem != document.trash);
   }

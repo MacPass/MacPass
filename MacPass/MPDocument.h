@@ -22,17 +22,11 @@ APPKIT_EXTERN NSString *const MPDocumentDidChangeCurrentGroupNotication;
 APPKIT_EXTERN NSString *const MPDocumnetDidChangeCurrentEntryNotification;
 */
 
-@class KdbGroup;
-@class KdbEntry;
-@class KdbTree;
-@class Kdb4Tree;
-@class Kdb3Tree;
-@class Kdb4Entry;
-@class UUID;
-@class Binary;
-@class BinaryRef;
-@class StringField;
-@class MPRootAdapter;
+@class KPKGroup;
+@class KPKEntry;
+@class KPKTree;
+@class KPKBinary;
+@class KPKAttribute;
 
 @interface MPDocument : NSDocument
 
@@ -42,24 +36,22 @@ APPKIT_EXTERN NSString *const MPDocumnetDidChangeCurrentEntryNotification;
 @property (assign, nonatomic) BOOL locked;
 @property (assign, readonly) BOOL decrypted;
 
-@property (strong, readonly, nonatomic) KdbTree *tree;
-@property (weak, readonly, nonatomic) KdbGroup *root;
-@property (readonly, strong) MPRootAdapter *rootAdapter;
-@property (weak, readonly) KdbGroup *trash;
-@property (weak, readonly) KdbGroup *templates;
+@property (strong, readonly, nonatomic) KPKTree *tree;
+@property (weak, readonly, nonatomic) KPKGroup *root;
+@property (weak, readonly) KPKGroup *trash;
+@property (weak, readonly) KPKGroup *templates;
 
 @property (nonatomic, copy) NSString *password;
 @property (nonatomic, strong) NSURL *key;
 
-@property (assign, readonly) MPDatabaseVersion version;
 @property (assign, readonly, getter = isReadOnly) BOOL readOnly;
 
 
 /*
  State (active group/entry)
  */
-@property (nonatomic, weak) KdbEntry *selectedEntry;
-@property (nonatomic, weak) KdbGroup *selectedGroup;
+@property (nonatomic, weak) KPKEntry *selectedEntry;
+@property (nonatomic, weak) KPKGroup *selectedGroup;
 @property (nonatomic, weak) id selectedItem;
 
 
@@ -73,14 +65,11 @@ APPKIT_EXTERN NSString *const MPDocumnetDidChangeCurrentEntryNotification;
 /*
  Returns the entry for the given UUID, nil if none was found
  */
-- (KdbEntry *)findEntry:(UUID *)uuid;
-- (KdbGroup *)findGroup:(UUID *)uuid;
+- (KPKEntry *)findEntry:(NSUUID *)uuid;
+- (KPKGroup *)findGroup:(NSUUID *)uuid;
 
-- (Kdb4Tree *)treeV4;
-- (Kdb3Tree *)treeV3;
-
-- (void)useGroupAsTrash:(KdbGroup *)group;
-- (void)useGroupAsTemplate:(KdbGroup *)group;
+- (void)useGroupAsTrash:(KPKGroup *)group;
+- (void)useGroupAsTemplate:(KPKGroup *)group;
 
 - (BOOL)isItemTrashed:(id)item;
 
@@ -89,16 +78,12 @@ APPKIT_EXTERN NSString *const MPDocumnetDidChangeCurrentEntryNotification;
 
 #pragma mark Undo Data Manipulation
 /* Undoable Intiialization of elements */
-- (KdbGroup *)createGroup:(KdbGroup *)parent;
-- (KdbEntry *)createEntry:(KdbGroup *)parent;
-- (StringField *)createStringField:(KdbEntry *)entry;
+- (KPKGroup *)createGroup:(KPKGroup *)parent;
+- (KPKEntry *)createEntry:(KPKGroup *)parent;
+- (KPKAttribute *)createCustomAttribute:(KPKEntry *)entry;
 
-/* TODO in UNDO auslagen */
-- (void)addStringField:(StringField *)field toEntry:(Kdb4Entry *)entry atIndex:(NSUInteger)index;
-- (void)removeStringField:(StringField *)field formEntry:(Kdb4Entry *)entry;
-
-- (void)deleteGroup:(KdbGroup *)group;
-- (void)deleteEntry:(KdbEntry *)entry;
+- (void)deleteGroup:(KPKGroup *)group;
+- (void)deleteEntry:(KPKEntry *)entry;
 
 - (IBAction)emptyTrash:(id)sender;
 - (IBAction)createEntryFromTemplate:(id)sender;
@@ -106,16 +91,6 @@ APPKIT_EXTERN NSString *const MPDocumnetDidChangeCurrentEntryNotification;
 
 @interface MPDocument (Attachments)
 
-- (void)addAttachment:(NSURL *)location toEntry:(KdbEntry *)anEntry;
-/**
- item can be either a BinaryRef or an Kdb3Entry.
- */
-- (void)saveAttachmentForItem:(id)item toLocation:(NSURL *)location;
-- (NSData *)attachmentDataForItem:(id)item;
-- (NSString *)attachmenFileNameForItem:(id)item;
-- (void)removeAttachment:(BinaryRef *)reference fromEntry:(KdbEntry *)anEntry;
-- (void)removeAttachmentFromEntry:(KdbEntry *)anEntry;
-- (NSUInteger)nextBinaryId;
-- (Binary *)findBinary:(BinaryRef *)reference;
+- (void)addAttachment:(NSURL *)location toEntry:(KPKEntry *)anEntry;
 
 @end

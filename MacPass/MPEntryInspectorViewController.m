@@ -15,10 +15,8 @@
 #import "MPDocument.h"
 #import "MPIconHelper.h"
 
-#import "Kdb.h"
-#import "Kdb3Node.h"
-#import "Kdb4Node.h"
-#import "KdbEntry+Undo.h"
+#import "KPKEntry.h"
+#import "KPKBinary.h"
 
 #import "HNHScrollView.h"
 #import "HNHRoundedSecureTextField.h"
@@ -43,7 +41,7 @@ typedef NS_ENUM(NSUInteger, MPEntryTab) {
 @property (nonatomic, assign) MPEntryTab activeTab;
 @property (strong) NSPopover *activePopover;
 
-@property (nonatomic, weak) KdbEntry *entry;
+@property (nonatomic, weak) KPKEntry *entry;
 
 @end
 
@@ -54,23 +52,23 @@ typedef NS_ENUM(NSUInteger, MPEntryTab) {
 }
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil {
-    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
-    if (self) {
-      _showPassword = NO;
-      _attachmentsController = [[NSArrayController alloc] init];
-      _customFieldsController = [[NSArrayController alloc] init];
-      _attachmentTableDelegate = [[MPAttachmentTableViewDelegate alloc] init];
-      _customFieldTableDelegate = [[MPCustomFieldTableViewDelegate alloc] init];
-      _attachmentDataSource = [[MPAttachmentTableDataSource alloc] init];
-      _attachmentTableDelegate.viewController = self;
-      _customFieldTableDelegate.viewController = self;
-      _activeTab = MPEntryTabGeneral;
-    }
-    return self;
+  self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
+  if (self) {
+    _showPassword = NO;
+    _attachmentsController = [[NSArrayController alloc] init];
+    _customFieldsController = [[NSArrayController alloc] init];
+    _attachmentTableDelegate = [[MPAttachmentTableViewDelegate alloc] init];
+    _customFieldTableDelegate = [[MPCustomFieldTableViewDelegate alloc] init];
+    _attachmentDataSource = [[MPAttachmentTableDataSource alloc] init];
+    _attachmentTableDelegate.viewController = self;
+    _customFieldTableDelegate.viewController = self;
+    _activeTab = MPEntryTabGeneral;
+  }
+  return self;
 }
 
 - (void)didLoadView {
-
+  
   /* ScrollView setup for the General Tab */
   
   HNHScrollView *scrollView = [[HNHScrollView alloc] init];
@@ -117,7 +115,7 @@ typedef NS_ENUM(NSUInteger, MPEntryTab) {
   [_customFieldsTableView setBackgroundColor:[NSColor clearColor]];
   [_customFieldsTableView bind:NSContentBinding toObject:_customFieldsController withKeyPath:@"arrangedObjects" options:nil];
   [_customFieldsTableView setDelegate:_customFieldTableDelegate];
-
+  
   
   [self.passwordTextField bind:@"showPassword" toObject:self withKeyPath:@"showPassword" options:nil];
   [self.togglePassword bind:NSValueBinding toObject:self withKeyPath:@"showPassword" options:nil];
@@ -127,7 +125,7 @@ typedef NS_ENUM(NSUInteger, MPEntryTab) {
   [self bind:@"entry" toObject:document withKeyPath:@"selectedEntry" options:nil];
 }
 
-- (void)setEntry:(KdbEntry *)entry {
+- (void)setEntry:(KPKEntry *)entry {
   if(_entry != entry) {
     _entry = entry;
     [self _updateContent];
@@ -139,36 +137,23 @@ typedef NS_ENUM(NSUInteger, MPEntryTab) {
 
 - (IBAction)addCustomField:(id)sender {
   MPDocument *document = [[self windowController] document];
-  [document createStringField:self.entry];
+  [document createCustomAttribute:self.entry];
 }
 - (IBAction)removeCustomField:(id)sender {
-  MPDocument *document = [[self windowController] document];
   NSUInteger index = [sender tag];
-  Kdb4Entry *entry = (Kdb4Entry *)self.entry;
-  [document removeStringField:(entry.stringFields)[index] formEntry:entry];
+  KPKAttribute *attribute = self.entry.customAttributes[index];
+  [self.entry removeCustomAttribute:attribute];
 }
 
 - (IBAction)saveAttachment:(id)sender {
-  BOOL isVersion4 = [self.entry isKindOfClass:[Kdb4Entry class]];
-  id item = self.entry;
-  NSString *fileName = nil;
-  if(isVersion4) {
-    Kdb4Entry *entry= (Kdb4Entry *)self.entry;
-    item = entry.binaries[[sender tag]];
-    fileName = ((BinaryRef *)item).key;
-  }
-  else {
-    fileName = ((Kdb3Entry *)item).binaryDesc;
-  }
-  
+  KPKBinary *binary = self.entry.binaries[[sender tag]];
   NSSavePanel *savePanel = [NSSavePanel savePanel];
   [savePanel setCanCreateDirectories:YES];
-  [savePanel setNameFieldStringValue:fileName];
+  [savePanel setNameFieldStringValue:binary.name];
   
   [savePanel beginSheetModalForWindow:[[self windowController] window] completionHandler:^(NSInteger result) {
     if(result == NSFileHandlingPanelOKButton) {
-      MPDocument *document = [[self windowController] document];
-      [document saveAttachmentForItem:item toLocation:[savePanel URL]];
+      [binary saveToLocation:[savePanel URL]];
     }
   }];
 }
@@ -180,24 +165,17 @@ typedef NS_ENUM(NSUInteger, MPEntryTab) {
   [openPanel setAllowsMultipleSelection:YES];
   [openPanel beginSheetModalForWindow:[[self windowController] window] completionHandler:^(NSInteger result) {
     if(result == NSFileHandlingPanelOKButton) {
-      MPDocument *document = [[self windowController] document];
       for (NSURL *attachmentURL in [openPanel URLs]) {
-        [document addAttachment:attachmentURL toEntry:self.entry];
+        KPKBinary *binary = [[KPKBinary alloc] initWithContentsOfURL:attachmentURL];
+        [self.entry addBinary:binary];
       }
     }
   }];
 }
 
 - (IBAction)removeAttachment:(id)sender {
-  MPDocument *document = [[self windowController] document];
-  if(document.version == MPDatabaseVersion3) {
-    [document removeAttachmentFromEntry:self.entry];
-  }
-  else if(document.version == MPDatabaseVersion4) {
-    Kdb4Entry *entry = (Kdb4Entry *)self.entry;
-    BinaryRef *reference = entry.binaries[[sender tag]];
-    [document removeAttachment:reference fromEntry:self.entry];
-  }
+  KPKBinary *binary = self.entry.binaries[[sender tag]];
+  [self.entry removeBinary:binary];
 }
 
 #pragma mark -
@@ -230,7 +208,7 @@ typedef NS_ENUM(NSUInteger, MPEntryTab) {
     NSString *password = [controller generatedPassword];
     /* We should only use the password if there is actally one */
     if([password length] > 0) {
-      self.entry.passwordUndoable = [controller generatedPassword];
+      self.entry.password = [controller generatedPassword];
     }
   }
   /* TODO: Check for Icon wizzard */
@@ -249,15 +227,12 @@ typedef NS_ENUM(NSUInteger, MPEntryTab) {
 - (void)_bindEntry {
   
   if(self.entry) {
-    [self.titleTextField bind:NSValueBinding toObject:self.entry withKeyPath:@"titleUndoable" options:nil];
+    [self.titleTextField bind:NSValueBinding toObject:self.entry withKeyPath:@"title" options:nil];
     //[self.itemImageView setImage:[MPIconHelper icon:(MPIconType)self.entry.image ]];
-    [self.passwordTextField bind:NSValueBinding toObject:self.entry withKeyPath:@"passwordUndoable" options:nil];
-    [self.usernameTextField bind:NSValueBinding toObject:self.entry withKeyPath:@"usernameUndoable" options:nil];
-    [self.URLTextField bind:NSValueBinding toObject:self.entry withKeyPath:@"urlUndoable" options:nil];
-    [self.notesTextView bind:NSValueBinding toObject:self.entry withKeyPath:@"notesUndoable" options:nil];
-    
-    BOOL isKdbx = [self.entry isKindOfClass:[Kdb4Entry class]];
-    [self.infoTabControl setEnabled:isKdbx forSegment:MPEntryTabCustomFields];
+    [self.passwordTextField bind:NSValueBinding toObject:self.entry withKeyPath:@"password" options:nil];
+    [self.usernameTextField bind:NSValueBinding toObject:self.entry withKeyPath:@"username" options:nil];
+    [self.URLTextField bind:NSValueBinding toObject:self.entry withKeyPath:@"url" options:nil];
+    [self.notesTextView bind:NSValueBinding toObject:self.entry withKeyPath:@"notes" options:nil];
   }
   else {
     [self.titleTextField unbind:NSValueBinding];
@@ -279,13 +254,7 @@ typedef NS_ENUM(NSUInteger, MPEntryTab) {
 }
 
 - (void)_bindCustomFields {
-  if(self.entry && [self.entry isKindOfClass:[Kdb4Entry class]]) {
-    [_customFieldsController bind:NSContentArrayBinding toObject:self.entry withKeyPath:@"stringFields" options:nil];
-  }
-  else if([_customFieldsController content] != nil){
-    [_customFieldsController unbind:NSContentArrayBinding];
-    [_customFieldsController setContent:nil];
-  }
+  [_customFieldsController bind:NSContentArrayBinding toObject:self.entry withKeyPath:@"customAttributes" options:nil];
 }
 
 @end

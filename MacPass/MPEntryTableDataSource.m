@@ -9,10 +9,8 @@
 #import "MPEntryTableDataSource.h"
 #import "MPEntryViewController.h"
 
-#import "Kdb.h"
-#import "UUID+Pasterboard.h"
-
-#import "MPConstants.h"
+#import "KPKEntry.h"
+#import "NSUUID+KeePassKit.h"
 
 @interface MPEntryTableDataSource ()
 
@@ -27,10 +25,10 @@
   }
   
   id item = [self.viewController.entryArrayController arrangedObjects][[rowIndexes firstIndex]];
-  if(![item isKindOfClass:[KdbEntry class]]) {
+  if(![item isKindOfClass:[KPKEntry class]]) {
     return NO;
   }
-  KdbEntry *entry = (KdbEntry *)item;
+  KPKEntry *entry = (KPKEntry *)item;
   [pboard writeObjects:@[entry.uuid]];
   return YES;
 }

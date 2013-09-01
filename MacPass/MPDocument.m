@@ -9,36 +9,21 @@
 #import "MPDocument.h"
 #import "MPDocumentWindowController.h"
 #import "MPDatabaseVersion.h"
-#import "MPRootAdapter.h"
 #import "MPIconHelper.h"
 #import "MPActionHelper.h"
 #import "MPSettingsHelper.h"
 #import "MPNotifications.h"
 #import "MPSavePanelAccessoryViewController.h"
 
-#import "KdbLib.h"
-#import "Kdb3Node.h"
-#import "Kdb4Node.h"
-#import "Kdb4Persist.h"
-#import "KdbPassword.h"
-
-#import "KdbGroup+KVOAdditions.h"
-#import "Kdb4Entry+KVOAdditions.h"
-
-#import "KdbEntry+Undo.h"
-#import "KdbGroup+Undo.h"
-
-#import "Kdb3Tree+NewTree.h"
-#import "Kdb4Tree+NewTree.h"
-#import "Kdb4Entry+MPAdditions.h"
-#import "KdbGroup+MPTreeTools.h"
-#import "KdbGroup+MPAdditions.h"
-
-#import "DataOutputStream.h"
 #import "DDXMLNode.h"
 
+#import "KPKEntry.h"
+#import "KPKGroup.h"
+#import "KPKTree.h"
 #import "KPKTree+Serializing.h"
 #import "KPKPassword.h"
+#import "KPKMetaData.h"
+#import "KPKAttribute.h"
 
 NSString *const MPDocumentDidAddGroupNotification         = @"com.hicknhack.macpass.MPDocumentDidAddGroupNotification";
 NSString *const MPDocumentDidRevertNotifiation            = @"com.hicknhack.macpass.MPDocumentDidRevertNotifiation";
@@ -54,15 +39,13 @@ typedef NS_ENUM(NSUInteger, MPAlertType) {
 @interface MPDocument () {
 @private
   BOOL _didLockFile;
-  NSData *_fileData;
+  NSData *_encryptedData;
 }
 
 @property (strong, nonatomic) MPSavePanelAccessoryViewController *savePanelViewController;
 
-@property (strong, nonatomic) KdbTree *tree;
-@property (weak, nonatomic) KdbGroup *root;
-@property (weak, nonatomic, readonly) KdbPassword *passwordHash;
-@property (assign) MPDatabaseVersion version;
+@property (strong, nonatomic) KPKTree *tree;
+@property (weak, nonatomic) KPKGroup *root;
 
 @property (assign, nonatomic) BOOL hasPasswordOrKey;
 @property (assign) BOOL decrypted;
@@ -90,27 +73,13 @@ typedef NS_ENUM(NSUInteger, MPAlertType) {
 - (id)initWithVersion:(MPDatabaseVersion)version {
   self = [super init];
   if(self) {
-    _fileData = nil;
+    _encryptedData = nil;
     _didLockFile = NO;
     _decrypted = YES;
     _hasPasswordOrKey = NO;
     _locked = NO;
     _readOnly = NO;
-    _rootAdapter = [[MPRootAdapter alloc] init];
-    _version = version;
-    [[self undoManager] setLevelsOfUndo:10];
-    switch(_version) {
-      case MPDatabaseVersion3:
-        self.tree = [Kdb3Tree templateTree];
-        break;
-      case MPDatabaseVersion4:
-        self.tree = [Kdb4Tree templateTree];
-        //self.tree = [Kdb4Tree demoTree];
-        break;
-      default:
-        self = nil;
-        return nil;
-    }
+    self.tree = [KPKTree templateTree];
   }
   return self;
 }
@@ -133,10 +102,10 @@ typedef NS_ENUM(NSUInteger, MPAlertType) {
   /*
    Move this to data:ofType: method with KeePassKit
    */
-  NSError *error = nil;
-  [KdbWriterFactory persist:self.tree fileURL:url withPassword:self.passwordHash error:&error];
-  if(error) {
-    NSLog(@"%@", [error localizedDescription]);
+  KPKPassword *password = nil;
+  NSData *treeData = [self.tree encryptWithPassword:password forVersion:KPKXmlVersion error:outError];
+  if([treeData writeToURL:url options:NSDataWritingAtomic error:outError]) {
+    NSLog(@"%@", [*outError localizedDescription]);
     return NO;
   }
   return YES;
@@ -158,7 +127,7 @@ typedef NS_ENUM(NSUInteger, MPAlertType) {
    Delete our old Tree, and just grab the data
    */
   self.tree = nil;
-  _fileData = [NSData dataWithContentsOfURL:url options:NSDataReadingUncached error:outError];
+  _encryptedData = [NSData dataWithContentsOfURL:url options:NSDataReadingUncached error:outError];
   self.decrypted = NO;
   return YES;
 }
@@ -193,57 +162,42 @@ typedef NS_ENUM(NSUInteger, MPAlertType) {
 }
 
 - (BOOL)prepareSavePanel:(NSSavePanel *)savePanel {
-  /*
-   
-   Save as different format doesn work without KeePassKit
-   hence disabled for now
-   
   if(!self.savePanelViewController) {
     self.savePanelViewController = [[MPSavePanelAccessoryViewController alloc] init];
   }
   self.savePanelViewController.savePanel = savePanel;
   self.savePanelViewController.document = self;
   [savePanel setAccessoryView:[self.savePanelViewController view]];
-   */
   return YES;
 }
 
 - (void)writeXMLToURL:(NSURL *)url {
-  DataOutputStream *outputStream = [[DataOutputStream alloc] init];
-  Kdb4Persist *persist = [[Kdb4Persist alloc] initWithTree:self.treeV4 outputStream:outputStream randomStream:nil];
-  [persist persistWithOptions:DDXMLNodeCompactEmptyElement|DDXMLNodePrettyPrint];
-  [outputStream.data writeToURL:url atomically:YES];
+  NSData *xmlData = [self.tree xmlData];
+  [xmlData writeToURL:url atomically:YES];
 }
 
 #pragma mark Lock/Unlock/Decrypt
 
 - (BOOL)unlockWithPassword:(NSString *)password keyFileURL:(NSURL *)keyFileURL {
-  /*
   KPKPassword *passwordData = [[KPKPassword alloc] initWithPassword:password key:keyFileURL];
-  KPKTree *tree = [[KPKTree alloc] initWithData:_fileData password:passwordData error:NULL];
-  */
   
   self.key = keyFileURL;
   self.password = [password length] > 0 ? password : nil;
-  @try {
-    self.tree = [KdbReaderFactory load:[[self fileURL] path] withPassword:self.passwordHash];
+  NSError *error;
+  self.tree = [[KPKTree alloc] initWithData:_encryptedData password:passwordData error:&error];
+  if(self.tree) {
+    self.decrypted = YES;
+    return YES;
   }
-  @catch (NSException *exception) {
-    return NO;
-  }
-  
-  if([self.tree isKindOfClass:[Kdb4Tree class]]) {
-    self.version = MPDatabaseVersion4;
-  }
-  else if( [self.tree isKindOfClass:[Kdb3Tree class]]) {
-    self.version = MPDatabaseVersion3;
-  }
-  self.decrypted = YES;
-  return YES;
+  self.decrypted = NO;
+  return NO;
 }
 
 - (void)lockDatabase:(id)sender {
-  // Persist Tree into data
+  KPKPassword *password = [[KPKPassword alloc] initWithPassword:self.password key:self.key];
+  NSError *error;
+  /* Locking needs to be lossless hence just use the XML format */
+  _encryptedData = [self.tree encryptWithPassword:password forVersion:KPKXmlVersion error:&error];
   self.tree = nil;
   self.locked = YES;
 }
@@ -263,18 +217,14 @@ typedef NS_ENUM(NSUInteger, MPAlertType) {
   }
 }
 
-- (KdbPassword *)passwordHash {
-  return [[KdbPassword alloc] initWithPassword:self.password passwordEncoding:NSUTF8StringEncoding keyFileURL:self.key];
-}
-
-- (void)setSelectedGroup:(KdbGroup *)selectedGroup {
+- (void)setSelectedGroup:(KPKGroup *)selectedGroup {
   if(_selectedGroup != selectedGroup) {
     _selectedGroup = selectedGroup;
   }
   self.selectedItem = _selectedGroup;
 }
 
-- (void)setSelectedEntry:(KdbEntry *)selectedEntry {
+- (void)setSelectedEntry:(KPKEntry *)selectedEntry {
   if(_selectedEntry != selectedEntry) {
     _selectedEntry = selectedEntry;
   }
@@ -289,85 +239,52 @@ typedef NS_ENUM(NSUInteger, MPAlertType) {
 }
 
 #pragma mark Data Accesors
-- (void)setTree:(KdbTree *)tree {
+- (void)setTree:(KPKTree *)tree {
   if(_tree != tree) {
     _tree = tree;
-    self.rootAdapter.tree = _tree;
+    _tree.undoManager = [self undoManager];
   }
 }
 
-- (KdbGroup *)root {
+- (KPKGroup *)root {
   return self.tree.root;
 }
 
-- (KdbEntry *)findEntry:(UUID *)uuid {
+- (KPKEntry *)findEntry:(NSUUID *)uuid {
   return [self.root entryForUUID:uuid];
 }
 
-- (KdbGroup *)findGroup:(UUID *)uuid {
+- (KPKGroup *)findGroup:(NSUUID *)uuid {
   return [self.root groupForUUID:uuid];
 }
 
-- (Kdb3Tree *)treeV3 {
-  switch (_version) {
-    case MPDatabaseVersion3:
-      NSAssert(self.tree == nil || [self.tree isKindOfClass:[Kdb3Tree class]], @"Tree has to be Version3");
-      return (Kdb3Tree *)self.tree;
-    case MPDatabaseVersion4:
-      return nil;
-    default:
-      return nil;
-  }
-}
-
-- (Kdb4Tree *)treeV4 {
-  switch (_version) {
-    case MPDatabaseVersion3:
-      return nil;
-    case MPDatabaseVersion4:
-      NSAssert(self.tree == nil || [self.tree isKindOfClass:[Kdb4Tree class]], @"Tree has to be Version4");
-      return (Kdb4Tree *)self.tree;
-    default:
-      return nil;
-  }
-}
-
 - (BOOL)useTrash {
-  if(self.treeV4) {
-    return self.treeV4.recycleBinEnabled;
-  }
-  return NO;
+  return self.tree.metaData.recycleBinEnabled;
 }
 
-- (KdbGroup *)trash {
-  static KdbGroup *_trash = nil;
+- (KPKGroup *)trash {
+  static KPKGroup *_trash = nil;
   if(self.useTrash) {
-    BOOL trashValid = [((Kdb4Group *)_trash).uuid isEqual:self.treeV4.recycleBinUuid];
+    BOOL trashValid = [_trash.uuid isEqual:self.tree.metaData.recycleBinUuid];
     if(!trashValid) {
-      _trash = [self findGroup:self.treeV4.recycleBinUuid];
+      _trash = [self findGroup:self.tree.metaData.recycleBinUuid];
     }
     return _trash;
   }
   return nil;
 }
 
-- (KdbGroup *)templates {
-  static KdbGroup *_templates = nil;
-  if(self.version == MPDatabaseVersion3) {
-    return nil;
-  }
-  BOOL templateValid = [((Kdb4Group *)_templates).uuid isEqual:self.treeV4.entryTemplatesGroup];
+- (KPKGroup *)templates {
+  static KPKGroup *_templates = nil;
+  BOOL templateValid = [_templates.uuid isEqual:self.tree.metaData.entryTemplatesGroup];
   if(!templateValid) {
-    _templates = [self findGroup:self.treeV4.entryTemplatesGroup];
+    _templates = [self findGroup:self.tree.metaData.entryTemplatesGroup];
   }
   return _templates;
 }
 
 - (BOOL)isItemTrashed:(id)item {
-  if(self.version == MPDatabaseVersion3) {
-    return NO;
-  }
-  BOOL validItem = [item isKindOfClass:[KdbEntry class]] || [item isKindOfClass:[KdbGroup class]];
+  BOOL validItem = [item isKindOfClass:[KPKEntry class]] || [item isKindOfClass:[KPKGroup class]];
   if(!item) {
     return NO;
   }
@@ -386,27 +303,22 @@ typedef NS_ENUM(NSUInteger, MPAlertType) {
   return NO;
 }
 
-- (void)useGroupAsTrash:(KdbGroup *)group {
+- (void)useGroupAsTrash:(KPKGroup *)group {
   if(self.useTrash) {
-    Kdb4Group *groupv4 = (Kdb4Group *)group;
-    if(![self.treeV4.recycleBinUuid isEqual:groupv4.uuid]) {
-      self.treeV4.recycleBinUuid = groupv4.uuid;
+    if(![self.tree.metaData.recycleBinUuid isEqual:group.uuid]) {
+      self.tree.metaData.recycleBinUuid = group.uuid;
     }
   }
 }
 
-- (void)useGroupAsTemplate:(KdbGroup *)group {
-  if(self.version != MPDatabaseVersion4) {
-    return; // wrong database version
-  }
-  Kdb4Group *groupv4 = (Kdb4Group *)group;
-  if(![self.treeV4.entryTemplatesGroup isEqual:groupv4.uuid]) {
-    self.treeV4.entryTemplatesGroup = groupv4.uuid;
+- (void)useGroupAsTemplate:(KPKGroup *)group {
+  if(![self.tree.metaData.entryTemplatesGroup isEqual:group.uuid]) {
+    self.tree.metaData.entryTemplatesGroup = group.uuid;
   }
 }
 
 #pragma mark Data manipulation
-- (KdbEntry *)createEntry:(KdbGroup *)parent {
+- (KPKEntry *)createEntry:(KPKGroup *)parent {
   if(!parent) {
     return nil; // No parent
   }
@@ -416,16 +328,16 @@ typedef NS_ENUM(NSUInteger, MPAlertType) {
   if([self isItemTrashed:parent]) {
     return nil;
   }
-  KdbEntry *newEntry = [self.tree createEntry:parent];
+  KPKEntry *newEntry = [self.tree createEntry:parent];
   newEntry.title = NSLocalizedString(@"DEFAULT_ENTRY_TITLE", @"Title for a newly created entry");
-  if(self.treeV4 && ([self.treeV4.defaultUserName length] > 0)) {
-    newEntry.title = self.treeV4.defaultUserName;
+  if([self.tree.metaData.defaultUserName length] > 0) {
+    newEntry.title = self.tree.metaData.defaultUserName;
   }
-  [parent addEntryUndoable:newEntry atIndex:[parent.entries count]];
+  [parent addEntry:newEntry];
   return newEntry;
 }
 
-- (KdbGroup *)createGroup:(KdbGroup *)parent {
+- (KPKGroup *)createGroup:(KPKGroup *)parent {
   if(!parent) {
     return nil; // no parent!
   }
@@ -435,29 +347,25 @@ typedef NS_ENUM(NSUInteger, MPAlertType) {
   if([self isItemTrashed:parent]) {
     return nil;
   }
-  KdbGroup *newGroup = [self.tree createGroup:parent];
+  KPKGroup *newGroup = [self.tree createGroup:parent];
   newGroup.name = NSLocalizedString(@"DEFAULT_GROUP_NAME", @"Title for a newly created group");
-  newGroup.image = MPIconFolder;
-  [parent addGroupUndoable:newGroup atIndex:[parent.groups count]];
+  newGroup.icon = MPIconFolder;
+  [parent addGroup:newGroup];
   NSDictionary *userInfo = @{ MPDocumentGroupKey : newGroup };
   [[NSNotificationCenter defaultCenter] postNotificationName:MPDocumentDidAddGroupNotification object:self userInfo:userInfo];
   return newGroup;
 }
 
-- (StringField *)createStringField:(KdbEntry *)entry {
-  if(![entry isKindOfClass:[Kdb4Entry class]]) {
-    return nil;
-  }
-  Kdb4Entry *entryV4 = (Kdb4Entry *)entry;
+- (KPKAttribute *)createCustomAttribute:(KPKEntry *)entry {
   NSString *title = NSLocalizedString(@"DEFAULT_CUSTOM_FIELD_TITLE", @"Default Titel for new Custom-Fields");
   NSString *value = NSLocalizedString(@"DEFAULT_CUSTOM_FIELD_VALUE", @"Default Value for new Custom-Fields");
-  title = [entryV4 uniqueKeyForProposal:title];
-  StringField *newStringField = [StringField stringFieldWithKey:title andValue:value];
-  [self addStringField:newStringField toEntry:entryV4 atIndex:[entryV4.stringFields count]];
-  return newStringField;
+  title = [entry proposedKeyForAttributeKey:title];
+  KPKAttribute *newAttribute = [[KPKAttribute alloc] initWithKey:title value:value];
+  [entry addCustomAttribute:newAttribute];
+  return newAttribute;
 }
 
-- (void)deleteEntry:(KdbEntry *)entry {
+- (void)deleteEntry:(KPKEntry *)entry {
   if(self.useTrash) {
     if(!self.trash) {
       [self _createTrashGroup];
@@ -465,15 +373,17 @@ typedef NS_ENUM(NSUInteger, MPAlertType) {
     if([self isItemTrashed:entry]) {
       return; // Entry is already trashed
     }
-    [entry moveToTrashUndoable:self.trash atIndex:[self.trash.entries count]];
+    [entry moveToGroup:self.trash atIndex:[self.trash.entries count]];
+    [[self undoManager] setActionName:NSLocalizedString(@"TRASH_ENTRY", "Move Entry to Trash")];
   }
   else {
-    [entry deleteUndoable];
+    [entry remove];
+    [[self undoManager] setActionName:NSLocalizedString(@"DELETE_ENTRY", "")];
   }
   self.selectedEntry = nil;
 }
 
-- (void)deleteGroup:(KdbGroup *)group {
+- (void)deleteGroup:(KPKGroup *)group {
   if(self.useTrash) {
     if(!self.trash) {
       [self _createTrashGroup];
@@ -481,38 +391,18 @@ typedef NS_ENUM(NSUInteger, MPAlertType) {
     if( (group == self.trash) || [self isItemTrashed:group] ) {
       return; //Groups already trashed cannot be deleted
     }
-    [group moveToTrashUndoable:self.trash atIndex:[self.trash.groups count]];
+    [group moveToGroup:self.trash atIndex:[self.trash.groups count]];
+    [[self undoManager] setActionName:NSLocalizedString(@"TRASH_GROUP", "Move Group to Trash")];
   }
   else {
-    [group deleteUndoable];
+    [group remove];
+    [[self undoManager] setActionName:NSLocalizedString(@"DELETE_GROUP", "Delete Group")];
   }
-}
-
-#pragma mark CustomFields
-- (void)addStringField:(StringField *)field toEntry:(Kdb4Entry *)entry atIndex:(NSUInteger)index {
-  [[[self undoManager] prepareWithInvocationTarget:self] removeStringField:field formEntry:entry];
-  [[self undoManager] setActionName:NSLocalizedString(@"UNDO_ADD_STRING_FIELD", @"Add Stringfield Undo")];
-  field.entry = entry;
-  [entry insertObject:field inStringFieldsAtIndex:index];
-}
-
-- (void)removeStringField:(StringField *)field formEntry:(Kdb4Entry *)entry {
-  NSInteger index = [entry.stringFields indexOfObject:field];
-  if(NSNotFound == index) {
-    return; // Nothing found to be removed
-  }
-  [[[self undoManager] prepareWithInvocationTarget:self] addStringField:field toEntry:entry atIndex:index];
-  [[self undoManager] setActionName:NSLocalizedString(@"UNDO_DELETE_STRING_FIELD", @"Delte Stringfield undo")];
-  field.entry = nil;
-  [entry removeObjectFromStringFieldsAtIndex:index];
 }
 
 #pragma mark Actions
 
 - (void)emptyTrash:(id)sender {
-  if(self.version != MPDatabaseVersion4) {
-    return; // We have no trash on those file types
-  }
   NSAlert *alert = [[NSAlert alloc] init];
   [alert setAlertStyle:NSWarningAlertStyle];
   [alert setMessageText:NSLocalizedString(@"WARNING_ON_EMPTY_TRASH_TITLE", "")];
@@ -534,7 +424,7 @@ typedef NS_ENUM(NSUInteger, MPAlertType) {
 
 - (void)createEntryFromTemplate:(id)sender {
   NSMenuItem *item = sender;
-  KdbEntry *entry = [item representedObject];
+  KPKEntry *entry = [item representedObject];
   if(entry) {
     // Create Entry from template;
   }
@@ -565,50 +455,32 @@ typedef NS_ENUM(NSUInteger, MPAlertType) {
   }
 }
 
-- (KdbGroup *)_createTrashGroup {
+- (KPKGroup *)_createTrashGroup {
   /* Maybe push the stuff to the Tree? */
-  if(self.version == MPDatabaseVersion3) {
-    return nil;
+  KPKGroup *trash = [self.tree createGroup:self.tree.root];
+  trash.name = NSLocalizedString(@"TRASH", @"Name for the trash group");
+  trash.icon = MPIconTrash;
+  BOOL registrationEnable = [[self undoManager] isUndoRegistrationEnabled];
+  if(registrationEnable) {
+    [[self undoManager] disableUndoRegistration];
   }
-  else if(self.version == MPDatabaseVersion4) {
-    KdbGroup *trash = [self.tree createGroup:self.tree.root];
-    trash.name = NSLocalizedString(@"TRASH", @"Name for the trash group");
-    trash.image = MPIconTrash;
-    [self.tree.root insertObject:trash inGroupsAtIndex:[self.tree.root.groups count]];
-    self.treeV4.recycleBinUuid = ((Kdb4Group *)trash).uuid;
-    return trash;
+  [self.tree.root addGroup:trash];
+  if(registrationEnable) {
+    [[self undoManager] enableUndoRegistration];
   }
-  else {
-    NSAssert(NO, @"Database with unknown version: %ld", _version);
-    return nil;
-  }
+  
+  self.tree.metaData.recycleBinUuid = trash.uuid;
+  return trash;
 }
 
 - (void)_emptyTrash {
-  for(KdbEntry *entry in [self.trash childEntries]) {
+  for(KPKEntry *entry in [self.trash childEntries]) {
     [[self undoManager] removeAllActionsWithTarget:entry];
   }
-  for(KdbGroup *group in [self.trash childGroups]) {
+  for(KPKGroup *group in [self.trash childGroups]) {
     [[self undoManager] removeAllActionsWithTarget:group];
   }
-  [self _cleanTrashedBinaries];
   [self.trash clear];
-}
-
-- (void)_cleanTrashedBinaries {
-  NSMutableSet *clearKeys = [[NSMutableSet alloc] initWithCapacity:20];
-  NSMutableArray *clearBinaries = [[NSMutableArray alloc] initWithCapacity:[self.treeV4.binaries count]];
-  for(Kdb4Entry *entry in [self.trash childEntries]) {
-    for(BinaryRef *binaryRef in entry.binaries) {
-      [clearKeys addObject:@(binaryRef.ref)];
-    }
-  }
-  for(Binary *binary in self.treeV4.binaries) {
-    if([clearKeys containsObject:@(binary.binaryId)]) {
-      [clearBinaries addObject:binary];
-    }
-  }
-  [self.treeV4.binaries removeObjectsInArray:clearBinaries];
 }
 
 @end

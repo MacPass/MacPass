@@ -9,7 +9,8 @@
 #import "MPEntryContextMenuDelegate.h"
 #import "MPDocument.h"
 
-#import "Kdb4Node.h"
+#import "KPKEntry.h"
+#import "KPKAttribute.h"
 
 static NSUInteger const kMPCustomFieldMenuItem = 1000;
 static NSUInteger const kMPAttachmentsMenuItem = 2000;
@@ -25,29 +26,28 @@ static NSUInteger const kMPAttachmentsMenuItem = 2000;
   if(attachmentsMenu) {
     [menu removeItem:attachmentsMenu];
   }
-
+  
   NSMenuItem *lastItem = [[menu itemArray] lastObject];
   if([lastItem isSeparatorItem]) {
     [menu removeItem:lastItem];
   }
   MPDocument *document = [[NSDocumentController sharedDocumentController] currentDocument];
-  if([document.selectedEntry isKindOfClass:[Kdb4Entry class]]) {
-    Kdb4Entry *entry = (Kdb4Entry *)document.selectedEntry;
-    if([entry.stringFields count] > 0) {
-      [menu addItem:[NSMenuItem separatorItem]];
-      NSMenuItem *customFieldsItem = [[NSMenuItem alloc] init];
-      NSMenu *submenu = [[NSMenu alloc] initWithTitle:@"Fields"];
-      [customFieldsItem setTitle:NSLocalizedString(@"COPY_CUSTOM_FIELDS", "Submenu to Copy custom fields")];
-      [customFieldsItem setTag:kMPCustomFieldMenuItem];
-      for (StringField *field in entry.stringFields) {
-        NSString *title = [NSString stringWithFormat:NSLocalizedString(@"COPY_FIELD_%@", "Mask for title to copy field value"), field.key];
-        NSMenuItem *item = [[NSMenuItem alloc] initWithTitle:title action:@selector(copyCustomField:) keyEquivalent:@""];
-        [item setTag:[entry.stringFields indexOfObject:field]];
-        [submenu addItem:item];
-      }
-      [customFieldsItem setSubmenu:submenu];
-      [menu addItem:customFieldsItem];
+  
+  KPKEntry *entry = document.selectedEntry;
+  if([entry.customAttributes count] > 0) {
+    [menu addItem:[NSMenuItem separatorItem]];
+    NSMenuItem *attributeItem = [[NSMenuItem alloc] init];
+    NSMenu *submenu = [[NSMenu alloc] initWithTitle:@"Fields"];
+    [attributeItem setTitle:NSLocalizedString(@"COPY_CUSTOM_FIELDS", "Submenu to Copy custom fields")];
+    [attributeItem setTag:kMPCustomFieldMenuItem];
+    for (KPKAttribute *attribute in entry.customAttributes) {
+      NSString *title = [NSString stringWithFormat:NSLocalizedString(@"COPY_FIELD_%@", "Mask for title to copy field value"), attribute.key];
+      NSMenuItem *item = [[NSMenuItem alloc] initWithTitle:title action:@selector(copyCustomAttribute:) keyEquivalent:@""];
+      [item setTag:[entry.customAttributes indexOfObject:attribute]];
+      [submenu addItem:item];
     }
+    [attributeItem setSubmenu:submenu];
+    [menu addItem:attributeItem];
   }
 }
 

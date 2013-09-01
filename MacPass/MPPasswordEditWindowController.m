@@ -13,6 +13,8 @@
 #import "NSString+Empty.h"
 #import "NSData+Keyfile.h"
 
+#import "KPKTree.h"
+
 @interface MPPasswordEditWindowController () {
   MPDocument * __unsafe_unretained _document;
 }
@@ -93,7 +95,7 @@
 }
 
 - (IBAction)generateKey:(id)sender {
-  NSData *data = [NSData generateKeyfiledataForVersion:(KPKVersion)(_document.version + 1)];
+  NSData *data = [NSData generateKeyfiledataForVersion:_document.tree.minimumVersion];
   if(data) {
     NSSavePanel *savePanel = [NSSavePanel savePanel];
     [savePanel setAllowedFileTypes:@[@"key", @"xml"]];

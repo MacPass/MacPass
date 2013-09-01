@@ -22,14 +22,13 @@ typedef NS_ENUM( NSUInteger, MPCopyContentTypeTag) {
   MPCopyWholeEntry,
 };
 
-@class KdbGroup;
-@class KdbEntry;
+@class KPKEntry;
 @class MPOutlineViewDelegate;
 @class MPDocumentWindowController;
 
 @interface MPEntryViewController : MPViewController <NSTableViewDelegate>
 
-@property (readonly, weak, nonatomic) KdbEntry *selectedEntry;
+@property (readonly, weak, nonatomic) KPKEntry *selectedEntry;
 
 @property (weak,readonly) NSTableView *entryTable;
 @property (readonly, strong) NSArrayController *entryArrayController;
@@ -46,7 +45,7 @@ typedef NS_ENUM( NSUInteger, MPCopyContentTypeTag) {
 /* Copy/Paste */
 - (void)copyUsername:(id)sender;
 - (void)copyPassword:(id)sender;
-- (void)copyCustomField:(id)sender;
+- (void)copyCustomAttribute:(id)sender;
 - (void)copyURL:(id)sender;
 - (void)openURL:(id)sender;
 
