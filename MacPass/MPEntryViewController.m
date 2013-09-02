@@ -209,6 +209,12 @@ NSString *const _toggleFilterUsernameButton = @"SearchUsername";
 
 #pragma mark NSTableViewDelgate
 
+- (void)tableView:(NSTableView *)tableView didAddRowView:(NSTableRowView *)rowView forRow:(NSInteger)row {
+  /*
+  bind bakground color to entry color
+  */
+}
+
 - (NSView *)tableView:(NSTableView *)tableView viewForTableColumn:(NSTableColumn *)tableColumn row:(NSInteger)row {
   KPKEntry *entry = [self.entryArrayController arrangedObjects][row];
   BOOL isTitleColumn = [[tableColumn identifier] isEqualToString:MPEntryTableTitleColumnIdentifier];

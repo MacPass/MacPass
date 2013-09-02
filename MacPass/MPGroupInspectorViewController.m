@@ -75,10 +75,17 @@
   if(self.group) {
     [self.titleTextField bind:NSValueBinding toObject:self.group withKeyPath:@"name" options:nil];
     [self.notesTextView bind:NSValueBinding toObject:self.group withKeyPath:@"notes" options:nil];
+    [self.expiresCheckButton bind:NSValueBinding toObject:self.group.timeInfo withKeyPath:@"expires" options:nil];
+    [self.autotypePopupButton bind:NSSelectedTagBinding toObject:self.group withKeyPath:@"isAutoTypeEnabled" options:nil];
+    [self.searchPopupButton bind:NSSelectedTagBinding toObject:self.group withKeyPath:@"isSearchEnabled" options:nil];
   }
   else {
     [self.titleTextField unbind:NSValueBinding];
     [self.notesTextView unbind:NSValueBinding];
+    
+    [self.expiresCheckButton unbind:NSValueBinding];
+    [self.autotypePopupButton unbind:NSSelectedTagBinding];
+    [self.searchPopupButton unbind:NSSelectedTagBinding];
   }
 }
 

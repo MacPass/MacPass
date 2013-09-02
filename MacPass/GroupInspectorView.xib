@@ -116,6 +116,7 @@
 						<string key="NSFrame">{{18, 61}, {222, 26}}</string>
 						<reference key="NSSuperview" ref="154788810"/>
 						<reference key="NSWindow"/>
+						<reference key="NSNextKeyView"/>
 						<string key="NSReuseIdentifierKey">_NS:9</string>
 						<string key="NSAntiCompressionPriority">{249, 750}</string>
 						<bool key="NSEnabled">YES</bool>
@@ -151,6 +152,7 @@
 									<string key="NSResourceName">NSMenuMixedState</string>
 								</object>
 								<string key="NSAction">_popUpItemAction:</string>
+								<int key="NSTag">-1</int>
 								<reference key="NSTarget" ref="84492558"/>
 							</object>
 							<bool key="NSMenuItemRespectAlignment">YES</bool>
@@ -178,6 +180,7 @@
 										<reference key="NSOnImage" ref="125551098"/>
 										<reference key="NSMixedImage" ref="1068191052"/>
 										<string key="NSAction">_popUpItemAction:</string>
+										<int key="NSTag">1</int>
 										<reference key="NSTarget" ref="84492558"/>
 									</object>
 								</array>
@@ -222,6 +225,7 @@
 								<reference key="NSOnImage" ref="125551098"/>
 								<reference key="NSMixedImage" ref="1068191052"/>
 								<string key="NSAction">_popUpItemAction:</string>
+								<int key="NSTag">-1</int>
 								<reference key="NSTarget" ref="115077500"/>
 							</object>
 							<bool key="NSMenuItemRespectAlignment">YES</bool>
@@ -249,6 +253,7 @@
 										<reference key="NSOnImage" ref="125551098"/>
 										<reference key="NSMixedImage" ref="1068191052"/>
 										<string key="NSAction">_popUpItemAction:</string>
+										<int key="NSTag">1</int>
 										<reference key="NSTarget" ref="115077500"/>
 									</object>
 								</array>
@@ -377,7 +382,7 @@
 										<string key="NSFrameSize">{215, 257}</string>
 										<reference key="NSSuperview" ref="600246267"/>
 										<reference key="NSWindow"/>
-										<reference key="NSNextKeyView" ref="707535614"/>
+										<reference key="NSNextKeyView" ref="747041324"/>
 										<string key="NSReuseIdentifierKey">_NS:13</string>
 										<object class="NSTextContainer" key="NSTextContainer" id="192398905">
 											<object class="NSLayoutManager" key="NSLayoutManager">
@@ -503,7 +508,7 @@
 						<string key="NSFrame">{{20, 190}, {217, 259}}</string>
 						<reference key="NSSuperview" ref="154788810"/>
 						<reference key="NSWindow"/>
-						<reference key="NSNextKeyView" ref="600246267"/>
+						<reference key="NSNextKeyView" ref="707535614"/>
 						<string key="NSReuseIdentifierKey">_NS:9</string>
 						<string key="NSAntiCompressionPriority">{750, 750}</string>
 						<int key="NSsFlags">133138</int>
@@ -591,7 +596,7 @@
 								<string key="NSFrameSize">{255, 421}</string>
 								<reference key="NSSuperview" ref="83897318"/>
 								<reference key="NSWindow"/>
-								<reference key="NSNextKeyView" ref="296338600"/>
+								<reference key="NSNextKeyView" ref="227728764"/>
 								<string key="NSReuseIdentifierKey">_NS:13</string>
 							</object>
 						</array>
@@ -624,6 +629,7 @@
 						<string key="NSFrame">{{0, 405}, {255, 16}}</string>
 						<reference key="NSSuperview" ref="279099458"/>
 						<reference key="NSWindow"/>
+						<reference key="NSNextKeyView"/>
 						<string key="NSReuseIdentifierKey">_NS:26</string>
 						<bool key="NSAllowsLogicalLayoutDirection">NO</bool>
 						<int key="NSsFlags">1</int>
@@ -635,7 +641,7 @@
 				<string key="NSFrameSize">{255, 421}</string>
 				<reference key="NSSuperview"/>
 				<reference key="NSWindow"/>
-				<reference key="NSNextKeyView" ref="83897318"/>
+				<reference key="NSNextKeyView" ref="296338600"/>
 				<string key="NSReuseIdentifierKey">_NS:9</string>
 				<int key="NSsFlags">133152</int>
 				<reference key="NSVScroller" ref="296338600"/>
@@ -679,6 +685,30 @@
 						<reference key="destination" ref="154788810"/>
 					</object>
 					<int key="connectionID">46</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBOutletConnection" key="connection">
+						<string key="label">expiresCheckButton</string>
+						<reference key="source" ref="1001"/>
+						<reference key="destination" ref="921420190"/>
+					</object>
+					<int key="connectionID">283</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBOutletConnection" key="connection">
+						<string key="label">searchPopupButton</string>
+						<reference key="source" ref="1001"/>
+						<reference key="destination" ref="959847502"/>
+					</object>
+					<int key="connectionID">284</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBOutletConnection" key="connection">
+						<string key="label">autotypePopupButton</string>
+						<reference key="source" ref="1001"/>
+						<reference key="destination" ref="854687919"/>
+					</object>
+					<int key="connectionID">285</int>
 				</object>
 			</array>
 			<object class="IBMutableOrderedSet" key="objectRecords">
@@ -1612,7 +1642,7 @@
 			<nil key="activeLocalization"/>
 			<dictionary class="NSMutableDictionary" key="localizations"/>
 			<nil key="sourceID"/>
-			<int key="maxID">282</int>
+			<int key="maxID">285</int>
 		</object>
 		<object class="IBClassDescriber" key="IBDocument.Classes">
 			<array class="NSMutableArray" key="referencedPartialClassDescriptions">
@@ -1644,18 +1674,33 @@
 					<string key="className">MPGroupInspectorViewController</string>
 					<string key="superclassName">MPViewController</string>
 					<dictionary class="NSMutableDictionary" key="outlets">
+						<string key="autotypePopupButton">NSPopUpButton</string>
 						<string key="contentView">NSView</string>
+						<string key="expiresCheckButton">NSButton</string>
 						<string key="notesTextView">NSTextView</string>
+						<string key="searchPopupButton">NSPopUpButton</string>
 						<string key="titleTextField">HNHRoundedTextField</string>
 					</dictionary>
 					<dictionary class="NSMutableDictionary" key="toOneOutletInfosByName">
+						<object class="IBToOneOutletInfo" key="autotypePopupButton">
+							<string key="name">autotypePopupButton</string>
+							<string key="candidateClassName">NSPopUpButton</string>
+						</object>
 						<object class="IBToOneOutletInfo" key="contentView">
 							<string key="name">contentView</string>
 							<string key="candidateClassName">NSView</string>
 						</object>
+						<object class="IBToOneOutletInfo" key="expiresCheckButton">
+							<string key="name">expiresCheckButton</string>
+							<string key="candidateClassName">NSButton</string>
+						</object>
 						<object class="IBToOneOutletInfo" key="notesTextView">
 							<string key="name">notesTextView</string>
 							<string key="candidateClassName">NSTextView</string>
+						</object>
+						<object class="IBToOneOutletInfo" key="searchPopupButton">
+							<string key="name">searchPopupButton</string>
+							<string key="candidateClassName">NSPopUpButton</string>
 						</object>
 						<object class="IBToOneOutletInfo" key="titleTextField">
 							<string key="name">titleTextField</string>

@@ -16,6 +16,11 @@
 @property (weak) IBOutlet HNHRoundedTextField *titleTextField;
 @property (unsafe_unretained) IBOutlet NSTextView *notesTextView;
 
+@property (weak) IBOutlet NSButton *expiresCheckButton;
+
+@property (weak) IBOutlet NSPopUpButton *searchPopupButton;
+@property (weak) IBOutlet NSPopUpButton *autotypePopupButton;
+
 - (void)setupBindings:(MPDocument *)document;
 
 @end

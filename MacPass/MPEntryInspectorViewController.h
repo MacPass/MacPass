@@ -31,6 +31,9 @@
 @property (weak) IBOutlet NSTabView *tabView;
 @property (strong) IBOutlet NSView *generalView;
 
+@property (weak) IBOutlet NSButton *expiresCheckButton;
+@property (weak) IBOutlet NSTokenField *tagsTokenField;
+
 - (void)setupBindings:(MPDocument *)document;
 
 @end
