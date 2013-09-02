@@ -8,12 +8,13 @@
 
 #import "MPSavePanelAccessoryViewController.h"
 #import "MPDocument.h"
+#import "MPConstants.h"
 
 #import "KPKUTIs.h"
 #import "KPKTree.h"
 
 @interface MPSavePanelAccessoryViewController ()
-
+@property (readwrite, assign) KPKVersion selectedVersion;
 @end
 
 @implementation MPSavePanelAccessoryViewController
@@ -45,7 +46,13 @@
 
 - (IBAction)setFileType:(id)sender {
   NSString *uti = [[self.fileTypePopupButton selectedItem] representedObject];
-  BOOL showInfoText = (self.document.tree.minimumVersion == KPKLegacyVersion && [uti isEqualToString:@"com.hicknhack.macpass.kdb"]);
+  if([uti isEqualToString:MPLegacyDocumentUTI]) {
+    self.selectedVersion = KPKLegacyVersion;
+  }
+  else if([uti isEqualToString:MPLegacyDocumentUTI]) {
+    self.selectedVersion = KPKXmlVersion;
+  }
+  BOOL showInfoText = (self.document.tree.minimumVersion == KPKLegacyVersion && [uti isEqualToString:MPLegacyDocumentUTI]);
   [self.infoTextField setHidden:!showInfoText];
   [self.savePanel setAllowedFileTypes:@[uti]];
 }

@@ -22,6 +22,7 @@
 #import "MPDocumentWindowDelegate.h"
 
 #import "MPContextToolbarButton.h"
+#import "KPKTree.h"
 
 @interface MPDocumentWindowController () {
 @private
@@ -68,12 +69,12 @@
   [super windowDidLoad];
   
   /* Drag and Drop of URLS is working, but the current
-    und/Redo system cannot guarantee that the undomanager is found
+   und/Redo system cannot guarantee that the undomanager is found
    when no window is active, thus this needs to be addresed when switching to KeePassKit
    
-  [[self window] setDelegate:self.documentWindowDelegate];
-  [[self window] registerForDraggedTypes:@[NSURLPboardType]];
-  */
+   [[self window] setDelegate:self.documentWindowDelegate];
+   [[self window] registerForDraggedTypes:@[NSURLPboardType]];
+   */
   
   [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(_didRevertDocument:) name:MPDocumentDidRevertNotifiation object:[self document]];
   
@@ -107,7 +108,7 @@
   }
   
   MPDocument *document = [self document];
-  if(!document.decrypted) {
+  if(document.encrypted) {
     [self showPasswordInput];
   }
   else {
@@ -157,6 +158,23 @@
 #pragma mark Actions
 - (void)saveDocument:(id)sender {
   MPDocument *document = [self document];
+  NSString *fileType = [document fileType];
+  /* we did open as legacy */
+  if([fileType isEqualToString:MPLegacyDocumentUTI]) {
+    if(document.tree.minimumVersion != KPKLegacyVersion) {
+      NSAlert *alert = [[NSAlert alloc] init];
+      [alert setAlertStyle:NSWarningAlertStyle];
+      [alert setMessageText:NSLocalizedString(@"WARNING_ON_LOSSY_SAVE", "")];
+      [alert setInformativeText:NSLocalizedString(@"WARNING_ON_LOSSY_SAVE_DESCRIPTION", "Informative Text displayed when saving woudl yield data loss")];
+      [alert addButtonWithTitle:NSLocalizedString(@"SAVE", "Save lossy")];
+      [alert addButtonWithTitle:NSLocalizedString(@"CANCEL", "Cancel")];
+      
+      [[alert buttons][1] setKeyEquivalent:[NSString stringWithFormat:@"%c", 0x1b]];
+           
+      [alert beginSheetModalForWindow:[self window] modalDelegate:nil didEndSelector:NULL contextInfo:NULL];
+      return;
+    }
+  }
   if(!document.hasPasswordOrKey) {
     // warning if no password ist set!
   }
@@ -180,7 +198,7 @@
   SEL itemAction = [menuItem action];
   if(itemAction == @selector(showDatabaseSettings:)
      || itemAction == @selector(editPassword:)) {
-    return document.decrypted && !document.isLocked;
+    return !document.encrypted;
   }
   
   BOOL enabled = YES;
@@ -188,13 +206,13 @@
     enabled &= (nil != document.selectedItem) && (document.selectedItem != document.trash);
   }
   
-  enabled &= !( !document.decrypted || document.isLocked || document.isReadOnly );
+  enabled &= !( !document.encrypted || document.isReadOnly );
   return enabled;
 }
 
 - (BOOL)validateToolbarItem:(NSToolbarItem *)theItem {
   MPDocument *document = [self document];
-  if(!document.decrypted || document.isLocked || document.isReadOnly) {
+  if(document.encrypted || document.isReadOnly) {
     return NO;
   }
   MPActionType actionType = [MPActionHelper typeForAction:[theItem action]];
@@ -222,7 +240,7 @@
 
 - (BOOL)validateAction:(SEL)action forItem:(id)item {
   MPDocument *document = [self document];
-  if(!document.decrypted || document.isLocked || document.isReadOnly) {
+  if(document.encrypted || document.isReadOnly) {
     return NO;
   }
   MPActionType actionType = [MPActionHelper typeForAction:action];
@@ -281,11 +299,11 @@
   if(!document.hasPasswordOrKey) {
     return; // Document needs a password/keyfile to be lockable
   }
-  if(document.isLocked) {
+  if(document.encrypted) {
     return; // Document already locked
   }
-  document.locked = YES;
   [self showPasswordInput];
+  [document lockDatabase:sender];
 }
 
 - (void)createGroup:(id)sender {
@@ -371,9 +389,6 @@
     [inspectorView removeFromSuperview];
   }
   [contentView layoutSubtreeIfNeeded];
-  
-  MPDocument *document = [self document];
-  document.locked = NO;
   
   [_entryViewController updateResponderChain];
   [_inspectorViewController updateResponderChain];

@@ -60,19 +60,8 @@
   id windowController = [[[self view] window] windowController];
   MPDocument *document = [windowController document];
   if(document) {
-    BOOL isOk = NO;
-    if(document.decrypted) {
-      // TODO: Fix unlocking to actually test
-      BOOL noPassword = !document.password && [[self.passwordTextField stringValue] length] == 0;
-      BOOL passwordOk = [document.password isEqualToString:[self.passwordTextField stringValue]];
-      BOOL noKey = document.key == [self.keyPathControl URL];
-      BOOL keyOk = [document.key isEqualTo:[self.keyPathControl URL]];
-      isOk = (noPassword || passwordOk) && (noKey || keyOk);
-    }
-    else {
-      isOk = [document unlockWithPassword:[self.passwordTextField stringValue] keyFileURL:[self.keyPathControl URL]];
-    }
-    if(!isOk) {
+    if(![document unlockWithPassword:[self.passwordTextField stringValue]
+                          keyFileURL:[self.keyPathControl URL]]) {
       [self _showError];
     }
     else {

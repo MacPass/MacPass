@@ -13,6 +13,7 @@
 #import "MPActionHelper.h"
 #import "MPSettingsHelper.h"
 #import "MPNotifications.h"
+#import "MPConstants.h"
 #import "MPSavePanelAccessoryViewController.h"
 
 #import "DDXMLNode.h"
@@ -48,7 +49,6 @@ typedef NS_ENUM(NSUInteger, MPAlertType) {
 @property (weak, nonatomic) KPKGroup *root;
 
 @property (assign, nonatomic) BOOL hasPasswordOrKey;
-@property (assign) BOOL decrypted;
 @property (assign) BOOL readOnly;
 
 @property (strong) NSURL *lockFileURL;
@@ -62,23 +62,28 @@ typedef NS_ENUM(NSUInteger, MPAlertType) {
 
 @implementation MPDocument
 
++ (KPKVersion)versionForFileType:(NSString *)fileType {
+  if( NSOrderedSame == [fileType compare:MPLegacyDocumentUTI options:NSCaseInsensitiveSearch]) {
+    return KPKLegacyVersion;
+  }
+  if( NSOrderedSame == [fileType compare:MPXMLDocumentUTI options:NSCaseInsensitiveSearch]) {
+    return KPKXmlVersion;
+  }
+  return KPKUnknownVersion;
+}
+
 + (BOOL)autosavesInPlace {
   return NO;
 }
 
 - (id)init {
-  return [self initWithVersion:MPDatabaseVersion4];
-}
-#pragma mark NSDocument essentials
-- (id)initWithVersion:(MPDatabaseVersion)version {
   self = [super init];
   if(self) {
     _encryptedData = nil;
     _didLockFile = NO;
-    _decrypted = YES;
     _hasPasswordOrKey = NO;
-    _locked = NO;
     _readOnly = NO;
+    [self setFileType:MPXMLDocumentUTI];
     self.tree = [KPKTree templateTree];
   }
   return self;
@@ -99,11 +104,15 @@ typedef NS_ENUM(NSUInteger, MPAlertType) {
 }
 
 - (BOOL)writeToURL:(NSURL *)url ofType:(NSString *)typeName error:(NSError **)outError {
-  /*
-   Move this to data:ofType: method with KeePassKit
-   */
-  KPKPassword *password = nil;
-  NSData *treeData = [self.tree encryptWithPassword:password forVersion:KPKXmlVersion error:outError];
+  KPKPassword *password = [[KPKPassword alloc] initWithPassword:self.password key:self.key];
+  KPKVersion version = [[self class] versionForFileType:(NSString *)typeName];
+  if(version == KPKUnknownVersion) {
+    if(outError != NULL) {
+      *outError = [NSError errorWithDomain:MPErrorDomain code:0 userInfo:nil];
+    }
+    return NO;
+  }
+  NSData *treeData = [self.tree encryptWithPassword:password forVersion:version error:outError];
   if([treeData writeToURL:url options:NSDataWritingAtomic error:outError]) {
     NSLog(@"%@", [*outError localizedDescription]);
     return NO;
@@ -128,7 +137,6 @@ typedef NS_ENUM(NSUInteger, MPAlertType) {
    */
   self.tree = nil;
   _encryptedData = [NSData dataWithContentsOfURL:url options:NSDataReadingUncached error:outError];
-  self.decrypted = NO;
   return YES;
 }
 
@@ -142,7 +150,7 @@ typedef NS_ENUM(NSUInteger, MPAlertType) {
 }
 
 - (BOOL)isEntireFileLoaded {
-  return _decrypted;
+  return YES;
 }
 
 - (void)close {
@@ -183,14 +191,11 @@ typedef NS_ENUM(NSUInteger, MPAlertType) {
   
   self.key = keyFileURL;
   self.password = [password length] > 0 ? password : nil;
+  
   NSError *error;
   self.tree = [[KPKTree alloc] initWithData:_encryptedData password:passwordData error:&error];
-  if(self.tree) {
-    self.decrypted = YES;
-    return YES;
-  }
-  self.decrypted = NO;
-  return NO;
+
+  return (self.tree != nil);
 }
 
 - (void)lockDatabase:(id)sender {
@@ -199,10 +204,18 @@ typedef NS_ENUM(NSUInteger, MPAlertType) {
   /* Locking needs to be lossless hence just use the XML format */
   _encryptedData = [self.tree encryptWithPassword:password forVersion:KPKXmlVersion error:&error];
   self.tree = nil;
-  self.locked = YES;
 }
 
-#pragma mark Custom Setter
+#pragma mark Properties
+
+- (BOOL)encrypted {
+  return (self.tree == nil);
+}
+
+- (KPKGroup *)root {
+  return self.tree.root;
+}
+
 - (void)setPassword:(NSString *)password {
   if(![_password isEqualToString:password]) {
     _password = [password copy];
@@ -237,8 +250,6 @@ typedef NS_ENUM(NSUInteger, MPAlertType) {
     [[NSNotificationCenter defaultCenter] postNotificationName:MPCurrentItemChangedNotification object:self];
   }
 }
-
-#pragma mark Data Accesors
 - (void)setTree:(KPKTree *)tree {
   if(_tree != tree) {
     _tree = tree;
@@ -246,9 +257,7 @@ typedef NS_ENUM(NSUInteger, MPAlertType) {
   }
 }
 
-- (KPKGroup *)root {
-  return self.tree.root;
-}
+#pragma mark Data Accesors
 
 - (KPKEntry *)findEntry:(NSUUID *)uuid {
   return [self.root entryForUUID:uuid];

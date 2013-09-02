@@ -7,12 +7,15 @@
 //
 
 #import "MPViewController.h"
+#import "KPKVersion.h"
+
 @class MPDocument;
 
 @interface MPSavePanelAccessoryViewController : MPViewController
 
 @property (nonatomic, assign) NSSavePanel *savePanel;
 @property (nonatomic, assign) MPDocument *document;
+@property (nonatomic, assign, readonly) KPKVersion selectedVersion;
 
 @property (nonatomic, weak) IBOutlet NSPopUpButton *fileTypePopupButton;
 @property (nonatomic, weak) IBOutlet NSTextField *infoTextField;

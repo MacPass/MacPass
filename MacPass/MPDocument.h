@@ -7,8 +7,7 @@
 //
 
 #import <Cocoa/Cocoa.h>
-#import "MPDatabaseVersion.h"
-
+#import "KPKVersion.h"
 
 APPKIT_EXTERN NSString *const MPDocumentDidAddGroupNotification;
 APPKIT_EXTERN NSString *const MPDocumentDidRevertNotifiation;
@@ -32,9 +31,7 @@ APPKIT_EXTERN NSString *const MPDocumnetDidChangeCurrentEntryNotification;
 
 /* true, if password and/or keyfile are set */
 @property (assign, readonly) BOOL hasPasswordOrKey;
-/* true, if lock screen is present (no phyiscal locking) */
-@property (assign, nonatomic) BOOL locked;
-@property (assign, readonly) BOOL decrypted;
+@property (nonatomic, readonly, assign) BOOL encrypted;
 
 @property (strong, readonly, nonatomic) KPKTree *tree;
 @property (weak, readonly, nonatomic) KPKGroup *root;
@@ -55,7 +52,7 @@ APPKIT_EXTERN NSString *const MPDocumnetDidChangeCurrentEntryNotification;
 @property (nonatomic, weak) id selectedItem;
 
 
-- (id)initWithVersion:(MPDatabaseVersion)version;
++ (KPKVersion)versionForFileType:(NSString *)fileType;
 
 #pragma mark Lock/Decrypt
 - (void)lockDatabase:(id)sender;

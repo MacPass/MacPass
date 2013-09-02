@@ -16,7 +16,7 @@
 - (NSDragOperation)draggingEntered:(id<NSDraggingInfo>)sender {
   
   MPDocument *document = [[[sender draggingDestinationWindow] windowController] document];
-  if(document.isLocked || !document.decrypted) {
+  if(document.encrypted) {
     return NSDragOperationNone;
   }
   
