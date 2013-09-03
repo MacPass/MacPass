@@ -228,11 +228,11 @@ typedef NS_ENUM(NSUInteger, MPEntryTab) {
   
   if(self.entry) {
     [self.titleTextField bind:NSValueBinding toObject:self.entry withKeyPath:@"title" options:nil];
-    //[self.itemImageView setImage:[MPIconHelper icon:(MPIconType)self.entry.image ]];
     [self.passwordTextField bind:NSValueBinding toObject:self.entry withKeyPath:@"password" options:nil];
     [self.usernameTextField bind:NSValueBinding toObject:self.entry withKeyPath:@"username" options:nil];
     [self.URLTextField bind:NSValueBinding toObject:self.entry withKeyPath:@"url" options:nil];
     [self.notesTextView bind:NSValueBinding toObject:self.entry withKeyPath:@"notes" options:nil];
+    [self.expiresCheckButton bind:NSValueBinding toObject:self.entry.timeInfo withKeyPath:@"expires" options:nil];
   }
   else {
     [self.titleTextField unbind:NSValueBinding];
@@ -240,6 +240,7 @@ typedef NS_ENUM(NSUInteger, MPEntryTab) {
     [self.usernameTextField unbind:NSValueBinding];
     [self.URLTextField unbind:NSValueBinding];
     [self.notesTextView unbind:NSValueBinding];
+    [self.expiresCheckButton unbind:NSValueBinding];
   }
 }
 
