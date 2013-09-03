@@ -68,13 +68,9 @@
 - (void)windowDidLoad {
   [super windowDidLoad];
   
-  /* Drag and Drop of URLS is working, but the current
-   und/Redo system cannot guarantee that the undomanager is found
-   when no window is active, thus this needs to be addresed when switching to KeePassKit
-   
-   [[self window] setDelegate:self.documentWindowDelegate];
-   [[self window] registerForDraggedTypes:@[NSURLPboardType]];
-   */
+  [[self window] setDelegate:self.documentWindowDelegate];
+  [[self window] registerForDraggedTypes:@[NSURLPboardType]];
+  
   
   [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(_didRevertDocument:) name:MPDocumentDidRevertNotifiation object:[self document]];
   
@@ -170,13 +166,13 @@
       [alert addButtonWithTitle:NSLocalizedString(@"CANCEL", "Cancel")];
       
       [[alert buttons][1] setKeyEquivalent:[NSString stringWithFormat:@"%c", 0x1b]];
-           
+      
       [alert beginSheetModalForWindow:[self window] modalDelegate:nil didEndSelector:NULL contextInfo:NULL];
       return;
     }
   }
   if(!document.hasPasswordOrKey) {
-    // warning if no password ist set!
+    NSLog(@"No Password and/or kefile set");// warning if no password ist set!
   }
   [[self document] saveDocument:sender];
 }
@@ -206,7 +202,7 @@
     enabled &= (nil != document.selectedItem) && (document.selectedItem != document.trash);
   }
   
-  enabled &= !( !document.encrypted || document.isReadOnly );
+  enabled &= !( document.encrypted || document.isReadOnly );
   return enabled;
 }
 
