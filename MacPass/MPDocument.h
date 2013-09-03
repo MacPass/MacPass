@@ -42,7 +42,7 @@ APPKIT_EXTERN NSString *const MPDocumnetDidChangeCurrentEntryNotification;
 @property (nonatomic, strong) NSURL *key;
 
 @property (assign, readonly, getter = isReadOnly) BOOL readOnly;
-
+@property (nonatomic, readonly, assign) KPKVersion versionForFileType;
 
 /*
  State (active group/entry)

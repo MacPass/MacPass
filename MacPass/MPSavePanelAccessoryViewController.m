@@ -52,8 +52,7 @@
   else if([uti isEqualToString:MPLegacyDocumentUTI]) {
     self.selectedVersion = KPKXmlVersion;
   }
-  BOOL showInfoText = (self.document.tree.minimumVersion == KPKLegacyVersion && [uti isEqualToString:MPLegacyDocumentUTI]);
-  [self.infoTextField setHidden:!showInfoText];
+  [self _updateNote];
   [self.savePanel setAllowedFileTypes:@[uti]];
 }
 
@@ -65,7 +64,7 @@
 }
 
 - (void)_updateView {
-  switch(self.document.tree.minimumVersion) {
+  switch(self.document.versionForFileType) {
     case KPKLegacyVersion:
       [self.fileTypePopupButton selectItemAtIndex:1];
       break;
@@ -76,6 +75,13 @@
       NSAssert(NO, @"Minimum Version should always be valid");
       break;
   }
+  [self _updateNote];
+}
+
+- (void)_updateNote {
+  NSString *uti = [[self.fileTypePopupButton selectedItem] representedObject];
+  BOOL showInfoText = (self.document.tree.minimumVersion == KPKXmlVersion && [uti isEqualToString:MPLegacyDocumentUTI]);
+  [self.infoTextField setHidden:!showInfoText];
 }
 
 @end

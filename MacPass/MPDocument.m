@@ -83,7 +83,6 @@ typedef NS_ENUM(NSUInteger, MPAlertType) {
     _didLockFile = NO;
     _hasPasswordOrKey = NO;
     _readOnly = NO;
-    [self setFileType:MPXMLDocumentUTI];
     self.tree = [KPKTree templateTree];
   }
   return self;
@@ -113,7 +112,7 @@ typedef NS_ENUM(NSUInteger, MPAlertType) {
     return NO;
   }
   NSData *treeData = [self.tree encryptWithPassword:password forVersion:version error:outError];
-  if([treeData writeToURL:url options:NSDataWritingAtomic error:outError]) {
+  if(![treeData writeToURL:url options:0 error:outError]) {
     NSLog(@"%@", [*outError localizedDescription]);
     return NO;
   }
@@ -207,6 +206,10 @@ typedef NS_ENUM(NSUInteger, MPAlertType) {
 }
 
 #pragma mark Properties
+
+- (KPKVersion)versionForFileType {
+  return [[self class] versionForFileType:[self fileType]];
+}
 
 - (BOOL)encrypted {
   return (self.tree == nil);
