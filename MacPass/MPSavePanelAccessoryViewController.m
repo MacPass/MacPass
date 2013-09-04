@@ -37,7 +37,6 @@
     NSMenuItem *item = [[menu itemArray] lastObject];
     [item setTarget:self];
     [item setRepresentedObject:uti];
-    
   }
   [self.fileTypePopupButton setMenu:menu];
   [self.infoTextField setHidden:YES];
@@ -49,7 +48,7 @@
   if([uti isEqualToString:MPLegacyDocumentUTI]) {
     self.selectedVersion = KPKLegacyVersion;
   }
-  else if([uti isEqualToString:MPLegacyDocumentUTI]) {
+  else if([uti isEqualToString:MPXMLDocumentUTI]) {
     self.selectedVersion = KPKXmlVersion;
   }
   [self _updateNote];
