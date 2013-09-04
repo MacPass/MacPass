@@ -12,6 +12,7 @@
 #import "MPKeyfilePathControlDelegate.h"
 
 #import "HNHRoundedSecureTextField.h"
+#import "NSError+Messages.h"
 
 @interface MPPasswordInputController ()
 
@@ -60,9 +61,11 @@
   id windowController = [[[self view] window] windowController];
   MPDocument *document = [windowController document];
   if(document) {
+    NSError *error = nil;
     if(![document unlockWithPassword:[self.passwordTextField stringValue]
-                          keyFileURL:[self.keyPathControl URL]]) {
-      [self _showError];
+                          keyFileURL:[self.keyPathControl URL]
+                               error:&error]) {
+      [self _showError:error];
     }
     else {
       [windowController showEntries];
@@ -83,7 +86,11 @@
   
 }
 
-- (void)_showError {
+- (void)_showError:(NSError *)error {
+  if(error) {
+    NSString *errorMessage = [error descriptionForErrorCode];
+    [self.errorInfoTextField setStringValue:errorMessage];
+  }
   [self.errorImageView setHidden:NO];
   [self.errorInfoTextField setHidden:NO];
 }
