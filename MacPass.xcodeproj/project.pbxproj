@@ -176,7 +176,6 @@
 		4C7ABA4B17BAEC6700FF5799 /* 19_EmailTemplate.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 4C7ABA4617BAEC6700FF5799 /* 19_EmailTemplate.pdf */; };
 		4C7ABA4C17BAEC6700FF5799 /* 20_MiscTemplate.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 4C7ABA4717BAEC6700FF5799 /* 20_MiscTemplate.pdf */; };
 		4C7ABA4E17BAEC7000FF5799 /* addEntryTemplate.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 4C7ABA4D17BAEC7000FF5799 /* addEntryTemplate.pdf */; };
-		4C7F35681779DFFB00C57890 /* Errors.strings in Resources */ = {isa = PBXBuildFile; fileRef = 4C7F356A1779DFFB00C57890 /* Errors.strings */; };
 		4C80BB6F176DE06F00E5E248 /* HNHScrollDocumentViewAdapter.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C80BB6E176DE06F00E5E248 /* HNHScrollDocumentViewAdapter.m */; };
 		4C811C8316ECD06E00C4BAC6 /* MPKeyfilePathControlDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C811C8216ECD06E00C4BAC6 /* MPKeyfilePathControlDelegate.m */; };
 		4C83814215BF4677001AE468 /* MPDocumentWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C83814115BF4677001AE468 /* MPDocumentWindowController.m */; };
@@ -475,7 +474,6 @@
 		4C5CD34017D158DE000B7F38 /* fr */ = {isa = PBXFileReference; fileEncoding = 10; lastKnownFileType = text.plist.strings; name = fr; path = fr.lproj/Localizable.strings; sourceTree = "<group>"; };
 		4C5CD34117D158DE000B7F38 /* fr */ = {isa = PBXFileReference; lastKnownFileType = text.rtf; name = fr; path = fr.lproj/Credits.rtf; sourceTree = "<group>"; };
 		4C5CD34217D158DE000B7F38 /* fr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fr; path = fr.lproj/InfoPlist.strings; sourceTree = "<group>"; };
-		4C5CD34317D158DE000B7F38 /* fr */ = {isa = PBXFileReference; fileEncoding = 10; lastKnownFileType = text.plist.strings; name = fr; path = fr.lproj/Errors.strings; sourceTree = "<group>"; };
 		4C5CD34417D158DE000B7F38 /* fr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fr; path = fr.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		4C5CD34517D158F5000B7F38 /* fr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fr; path = fr.lproj/GeneralSettings.strings; sourceTree = "<group>"; };
 		4C5CD34617D15912000B7F38 /* fr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fr; path = fr.lproj/MainMenu.strings; sourceTree = "<group>"; };
@@ -582,8 +580,6 @@
 		4C7ABA4617BAEC6700FF5799 /* 19_EmailTemplate.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = 19_EmailTemplate.pdf; sourceTree = "<group>"; };
 		4C7ABA4717BAEC6700FF5799 /* 20_MiscTemplate.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = 20_MiscTemplate.pdf; sourceTree = "<group>"; };
 		4C7ABA4D17BAEC7000FF5799 /* addEntryTemplate.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; name = addEntryTemplate.pdf; path = Icons/addEntryTemplate.pdf; sourceTree = "<group>"; };
-		4C7F35691779DFFB00C57890 /* en */ = {isa = PBXFileReference; fileEncoding = 10; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Errors.strings; sourceTree = "<group>"; };
-		4C7F356B1779DFFF00C57890 /* de */ = {isa = PBXFileReference; fileEncoding = 10; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/Errors.strings; sourceTree = "<group>"; };
 		4C80BB6D176DE06F00E5E248 /* HNHScrollDocumentViewAdapter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HNHScrollDocumentViewAdapter.h; sourceTree = "<group>"; };
 		4C80BB6E176DE06F00E5E248 /* HNHScrollDocumentViewAdapter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HNHScrollDocumentViewAdapter.m; sourceTree = "<group>"; };
 		4C811C8116ECD06E00C4BAC6 /* MPKeyfilePathControlDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MPKeyfilePathControlDelegate.h; sourceTree = "<group>"; };
@@ -1268,7 +1264,6 @@
 				4C77E36F15B84A240093A587 /* InfoPlist.strings */,
 				4C77E37215B84A240093A587 /* main.m */,
 				4C77E37415B84A240093A587 /* MacPass-Prefix.pch */,
-				4C7F356A1779DFFB00C57890 /* Errors.strings */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -1750,7 +1745,6 @@
 				4C7714AA176C998F00549F2A /* 43_TrashTemplate.pdf in Resources */,
 				4C7714AC176C9D4600549F2A /* 99_InfoTemplate.pdf in Resources */,
 				4CF7805F176E75110032EE71 /* ServerSettings.xib in Resources */,
-				4C7F35681779DFFB00C57890 /* Errors.strings in Resources */,
 				4CD5D702177A5EE400100649 /* DatabaseSettingsWindow.xib in Resources */,
 				4C6D1D25178579570014C5A5 /* 48_FolderTemplate.pdf in Resources */,
 				4C6D1D27178586CA0014C5A5 /* 99_AddFolderTemplate.pdf in Resources */,
@@ -2059,16 +2053,6 @@
 				4C5CD34617D15912000B7F38 /* fr */,
 			);
 			name = MainMenu.xib;
-			sourceTree = "<group>";
-		};
-		4C7F356A1779DFFB00C57890 /* Errors.strings */ = {
-			isa = PBXVariantGroup;
-			children = (
-				4C7F35691779DFFB00C57890 /* en */,
-				4C7F356B1779DFFF00C57890 /* de */,
-				4C5CD34317D158DE000B7F38 /* fr */,
-			);
-			name = Errors.strings;
 			sourceTree = "<group>";
 		};
 		4C888C8E16EB6C91003D34A1 /* Localizable.strings */ = {
