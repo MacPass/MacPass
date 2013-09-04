@@ -249,6 +249,7 @@
 		4CEAF85717BA9B1D001307A6 /* Keepass2Key.xml in Resources */ = {isa = PBXBuildFile; fileRef = 4CEAF85617BA9B1D001307A6 /* Keepass2Key.xml */; };
 		4CEAF85B17BA9B44001307A6 /* KPKTestKeyfileParsing.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CEAF85A17BA9B44001307A6 /* KPKTestKeyfileParsing.m */; };
 		4CECB31717AC326D00EAFB0F /* KPKTestLegacyWriting.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CECB31617AC326D00EAFB0F /* KPKTestLegacyWriting.m */; };
+		4CEED1C617D7BD0E007180F1 /* NSError+Messages.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CEED1C517D7BD0E007180F1 /* NSError+Messages.m */; };
 		4CF29BF417879D0000851B60 /* 26_FileSaveTemplate.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 4CF29BF317879D0000851B60 /* 26_FileSaveTemplate.pdf */; };
 		4CF62B86179385D700B660B6 /* KPKAttribute.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CF62B85179385D700B660B6 /* KPKAttribute.m */; };
 		4CF6C711176F4533007A811D /* MPStringLengthValueTransformer.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CF6C710176F4533007A811D /* MPStringLengthValueTransformer.m */; };
@@ -718,6 +719,8 @@
 		4CEAF85A17BA9B44001307A6 /* KPKTestKeyfileParsing.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KPKTestKeyfileParsing.m; sourceTree = "<group>"; };
 		4CECB31517AC326D00EAFB0F /* KPKTestLegacyWriting.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KPKTestLegacyWriting.h; sourceTree = "<group>"; };
 		4CECB31617AC326D00EAFB0F /* KPKTestLegacyWriting.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KPKTestLegacyWriting.m; sourceTree = "<group>"; };
+		4CEED1C417D7BD0E007180F1 /* NSError+Messages.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSError+Messages.h"; sourceTree = "<group>"; };
+		4CEED1C517D7BD0E007180F1 /* NSError+Messages.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSError+Messages.m"; sourceTree = "<group>"; };
 		4CF29BF317879D0000851B60 /* 26_FileSaveTemplate.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = 26_FileSaveTemplate.pdf; sourceTree = "<group>"; };
 		4CF62B84179385D700B660B6 /* KPKAttribute.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KPKAttribute.h; sourceTree = "<group>"; };
 		4CF62B85179385D700B660B6 /* KPKAttribute.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KPKAttribute.m; sourceTree = "<group>"; };
@@ -829,6 +832,8 @@
 				4C10412B178CDD44001B5239 /* NSDate+Humanized.m */,
 				4CC6DB7817D23719002C6091 /* KPKNode+IconImage.h */,
 				4CC6DB7917D23719002C6091 /* KPKNode+IconImage.m */,
+				4CEED1C417D7BD0E007180F1 /* NSError+Messages.h */,
+				4CEED1C517D7BD0E007180F1 /* NSError+Messages.m */,
 			);
 			name = Categories;
 			sourceTree = "<group>";
@@ -1987,6 +1992,7 @@
 				4C5CD36317D15DCA000B7F38 /* KPKSalsa20RandomStream.m in Sources */,
 				4CC6DB7A17D23719002C6091 /* KPKNode+IconImage.m in Sources */,
 				4CC6DB7D17D23DCE002C6091 /* KPKUTIs.m in Sources */,
+				4CEED1C617D7BD0E007180F1 /* NSError+Messages.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
