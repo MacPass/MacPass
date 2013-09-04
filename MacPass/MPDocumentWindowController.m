@@ -24,6 +24,10 @@
 #import "MPContextToolbarButton.h"
 #import "KPKTree.h"
 
+typedef NS_ENUM(NSUInteger, MPAlertContext) {
+  MPAlertLossySaveWarning,
+};
+
 @interface MPDocumentWindowController () {
 @private
   id _firstResponder;
@@ -165,11 +169,12 @@
       [alert setAlertStyle:NSWarningAlertStyle];
       [alert setMessageText:NSLocalizedString(@"WARNING_ON_LOSSY_SAVE", "")];
       [alert setInformativeText:NSLocalizedString(@"WARNING_ON_LOSSY_SAVE_DESCRIPTION", "Informative Text displayed when saving woudl yield data loss")];
-      [alert addButtonWithTitle:NSLocalizedString(@"SAVE", "Save lossy")];
+      [alert addButtonWithTitle:NSLocalizedString(@"SAVE_LOSSY", "Save lossy")];
+      [alert addButtonWithTitle:NSLocalizedString(@"CHANGE_FORMAT", "")];
       [alert addButtonWithTitle:NSLocalizedString(@"CANCEL", "Cancel")];
       
-      [[alert buttons][1] setKeyEquivalent:[NSString stringWithFormat:@"%c", 0x1b]];
-      [alert beginSheetModalForWindow:[self window] modalDelegate:nil didEndSelector:NULL contextInfo:NULL];
+      //[[alert buttons][2] setKeyEquivalent:[NSString stringWithFormat:@"%c", 0x1b]];
+      [alert beginSheetModalForWindow:[self window] modalDelegate:self didEndSelector:@selector(_dataLossOnSaveAlertDidEnd:returnCode:contextInfo:) contextInfo:NULL];
       return;
     }
   }
@@ -410,6 +415,27 @@
   }
 }
 
+#pragma mark Alert Delegate
+- (void)_dataLossOnSaveAlertDidEnd:(NSAlert *)alert returnCode:(NSInteger)returnCode contextInfo:(void *)contextInfo {
+  
+  switch(returnCode) {
+    case NSAlertFirstButtonReturn:
+      /* Save lossy */
+      [[self document] saveDocument:nil];
+      return;
+
+    case NSAlertSecondButtonReturn:
+      /* Change Format */
+      //[[self document] setFileType:[MPDocument fileTypeForVersion:KPKXmlVersion]];
+      [[alert window] orderOut:nil];
+      [[self document] saveDocumentAs:nil];
+      return;
+      
+    case NSAlertThirdButtonReturn:
+    default:
+      return; // Cancel or unknown
+  }
+}
 
 #pragma mark Helper
 - (void)_showDatabaseSetting:(MPDatabaseSettingsTab)tab {
