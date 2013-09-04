@@ -15,12 +15,12 @@
 
 #import "KPKTree.h"
 
-@interface MPPasswordEditWindowController () {
-  MPDocument * __unsafe_unretained _document;
-}
-@property (nonatomic,assign) BOOL showPassword;
-@property (nonatomic,assign) BOOL hasValidPasswordOrKey;
-@property (nonatomic,weak) NSURL *keyURL;
+@interface MPPasswordEditWindowController ()
+
+@property (nonatomic, weak) MPDocument *currentDocument;
+@property (nonatomic, assign) BOOL showPassword;
+@property (nonatomic, assign) BOOL hasValidPasswordOrKey;
+@property (nonatomic, weak) NSURL *keyURL;
 
 @end
 
@@ -32,7 +32,7 @@
     _allowsEmptyPasswordOrKey = YES;
     _showPassword = NO;
     _hasValidPasswordOrKey = NO;
-    _document = document;
+    _currentDocument = document;
   }
   return self;
 }
@@ -47,9 +47,9 @@
     return;
   }
   self.showPassword = NO;
-  [self.passwordTextField setStringValue:_document.password ? _document.password : @""];
+  [self.passwordTextField setStringValue:_currentDocument.password ? _currentDocument.password : @""];
   [self.passwordRepeatTextField setStringValue:[self.passwordTextField stringValue]];
-  self.keyURL = _document.key;
+  self.keyURL = _currentDocument.key;
   
   NSDictionary *negateOption = @{ NSValueTransformerNameBindingOption : NSNegateBooleanTransformerName };
   [self.passwordTextField bind:@"showPassword" toObject:self withKeyPath:@"showPassword" options:nil];
@@ -82,8 +82,8 @@
 
 #pragma mark Actions
 - (IBAction)save:(id)sender {
-  _document.password = [self.passwordTextField stringValue];
-  _document.key = [self.keyfilePathControl URL];
+  _currentDocument.password = [self.passwordTextField stringValue];
+  _currentDocument.key = [self.keyfilePathControl URL];
   [self dismissSheet:NSRunStoppedResponse];
   if(self.delegate && [self.delegate respondsToSelector:@selector(didFinishPasswordEditing:)]) {
     [self.delegate didFinishPasswordEditing:YES];
@@ -102,7 +102,7 @@
 }
 
 - (IBAction)generateKey:(id)sender {
-  NSData *data = [NSData generateKeyfiledataForVersion:_document.tree.minimumVersion];
+  NSData *data = [NSData generateKeyfiledataForVersion:_currentDocument.tree.minimumVersion];
   if(data) {
     NSSavePanel *savePanel = [NSSavePanel savePanel];
     [savePanel setAllowedFileTypes:@[@"key", @"xml"]];

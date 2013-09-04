@@ -413,6 +413,7 @@ typedef NS_ENUM(NSUInteger, MPAlertContext) {
   if(changedPasswordOrKey && _saveAfterPasswordChange) {
     [self saveDocument:nil];
   }
+  _saveAfterPasswordChange = NO;
 }
 
 #pragma mark Alert Delegate

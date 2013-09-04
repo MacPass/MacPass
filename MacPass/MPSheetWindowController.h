@@ -12,7 +12,7 @@
 #import <Cocoa/Cocoa.h>
 /**
  *	Generic Windowcontroller to be used for sheets
- *  Subclasses are ablte to initalize their views within updateView
+ *  Subclasses are able to initalize their views within updateView
  *  and thus are able to reset themself befor being displayed as sheets
  */
 @interface MPSheetWindowController : NSWindowController
