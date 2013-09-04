@@ -41,7 +41,7 @@
   }
   [self.fileTypePopupButton setMenu:menu];
   [self.infoTextField setHidden:YES];
-  [self _updateView];
+  [self updateView];
 }
 
 - (IBAction)setFileType:(id)sender {
@@ -59,11 +59,11 @@
 - (void)setDocument:(MPDocument *)document {
   if(_document != document) {
     _document = document;
-    [self _updateView];
+    [self updateView];
   }
 }
 
-- (void)_updateView {
+- (void)updateView {
   switch(self.document.versionForFileType) {
     case KPKLegacyVersion:
       [self.fileTypePopupButton selectItemAtIndex:1];

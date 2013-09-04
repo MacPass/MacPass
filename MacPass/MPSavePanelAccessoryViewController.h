@@ -19,5 +19,9 @@
 
 @property (nonatomic, weak) IBOutlet NSPopUpButton *fileTypePopupButton;
 @property (nonatomic, weak) IBOutlet NSTextField *infoTextField;
+/**
+ *	Updates the view to current state
+ */
+- (void)updateView;
 
 @end

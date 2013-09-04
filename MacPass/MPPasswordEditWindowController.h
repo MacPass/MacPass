@@ -11,6 +11,17 @@
 @class MPDocument;
 @class HNHRoundedSecureTextField;
 
+@protocol MPPasswordEditWindowDelegate <NSObject>
+
+@optional
+/**
+ *	Get's called on dismissing the password editor.
+ *	@param	changedPasswordOrKey	YES if the password and/or key was saved (not necessairly changed!);
+ */
+- (void)didFinishPasswordEditing:(BOOL)changedPasswordOrKey;
+
+@end
+
 @interface MPPasswordEditWindowController : MPSheetWindowController <NSTextFieldDelegate>
 
 @property (weak) IBOutlet HNHRoundedSecureTextField *passwordTextField;
@@ -19,6 +30,9 @@
 @property (weak) IBOutlet NSButton *togglePasswordButton;
 @property (weak) IBOutlet NSTextField *errorTextField;
 @property (weak) IBOutlet NSButton *changePasswordButton;
+@property (nonatomic,assign) BOOL allowsEmptyPasswordOrKey;
+
+@property (weak) id<MPPasswordEditWindowDelegate> delegate;
 
 /**
  *	Dedicated initializer for the Windowcontroller

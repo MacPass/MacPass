@@ -7,6 +7,7 @@
 //
 
 #import <Cocoa/Cocoa.h>
+#import "MPPasswordEditWindowController.h"
 
 @class MPViewController;
 @class MPEntryViewController;
@@ -14,7 +15,7 @@
 @class MPPasswordInputController;
 @class MPOutlineViewController;
 
-@interface MPDocumentWindowController : NSWindowController
+@interface MPDocumentWindowController : NSWindowController <MPPasswordEditWindowDelegate>
 
 @property (readonly, strong) MPPasswordInputController *passwordInputController;
 @property (readonly, strong) MPEntryViewController *entryViewController;
@@ -45,5 +46,8 @@
 
 - (void)createGroup:(id)sender;
 - (void)toggleInspector:(id)sender;
+
+#pragma mark MPPasswordEditWindowDelegater
+- (void)didFinishPasswordEditing:(BOOL)changedPasswordOrKey;
 
 @end

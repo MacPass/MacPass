@@ -72,6 +72,19 @@ typedef NS_ENUM(NSUInteger, MPAlertType) {
   return KPKUnknownVersion;
 }
 
++ (NSString *)fileTypeForVersion:(KPKVersion)version {
+  switch(version) {
+    case KPKLegacyVersion:
+      return MPLegacyDocumentUTI;
+    
+    case KPKXmlVersion:
+      return MPXMLDocumentUTI;
+
+    default:
+      return @"Unknown";
+  }
+}
+
 + (BOOL)autosavesInPlace {
   return NO;
 }
@@ -103,8 +116,12 @@ typedef NS_ENUM(NSUInteger, MPAlertType) {
 }
 
 - (BOOL)writeToURL:(NSURL *)url ofType:(NSString *)typeName error:(NSError **)outError {
+  if(!self.hasPasswordOrKey) {
+    return NO; // No password or key. No save possible
+  }
   KPKPassword *password = [[KPKPassword alloc] initWithPassword:self.password key:self.key];
-  KPKVersion version = [[self class] versionForFileType:(NSString *)typeName];
+  NSString *fileType = [self fileTypeFromLastRunSavePanel];
+  KPKVersion version = [[self class] versionForFileType:fileType];
   if(version == KPKUnknownVersion) {
     if(outError != NULL) {
       *outError = [NSError errorWithDomain:MPErrorDomain code:0 userInfo:nil];
@@ -174,8 +191,18 @@ typedef NS_ENUM(NSUInteger, MPAlertType) {
   }
   self.savePanelViewController.savePanel = savePanel;
   self.savePanelViewController.document = self;
+  
   [savePanel setAccessoryView:[self.savePanelViewController view]];
+  [self.savePanelViewController updateView];
+
   return YES;
+}
+
+- (NSString *)fileTypeFromLastRunSavePanel {
+  if(self.savePanelViewController) {
+    return [[self class] fileTypeForVersion:self.savePanelViewController.selectedVersion];
+  }
+  return [self fileType];
 }
 
 - (void)writeXMLToURL:(NSURL *)url {

@@ -29,6 +29,7 @@
 - (id)initWithDocument:(MPDocument *)document {
   self = [super initWithWindowNibName:@"PasswordEditWindow"];
   if(self){
+    _allowsEmptyPasswordOrKey = YES;
     _showPassword = NO;
     _hasValidPasswordOrKey = NO;
     _document = document;
@@ -84,10 +85,16 @@
   _document.password = [self.passwordTextField stringValue];
   _document.key = [self.keyfilePathControl URL];
   [self dismissSheet:NSRunStoppedResponse];
+  if(self.delegate && [self.delegate respondsToSelector:@selector(didFinishPasswordEditing:)]) {
+    [self.delegate didFinishPasswordEditing:YES];
+  }
 }
 
 - (IBAction)cancel:(id)sender {
   [self dismissSheet:NSRunAbortedResponse];
+  if(self.delegate && [self.delegate respondsToSelector:@selector(didFinishPasswordEditing:)]) {
+    [self.delegate didFinishPasswordEditing:NO];
+  }
 }
 
 - (IBAction)clearKey:(id)sender {
@@ -138,7 +145,7 @@
   BOOL hasPasswordOrKey = (hasKey || hasPassword);
   keyOk = hasKey ? keyOk : YES;
   passwordOk = hasPassword ? passwordOk : YES;
-  self.hasValidPasswordOrKey = passwordOk && keyOk;
+  self.hasValidPasswordOrKey = (hasPasswordOrKey || self.allowsEmptyPasswordOrKey ) && passwordOk && keyOk;
   
   if(!hasPasswordOrKey) {
     [self.errorTextField setTextColor:[NSColor controlTextColor]];

@@ -53,6 +53,7 @@ APPKIT_EXTERN NSString *const MPDocumnetDidChangeCurrentEntryNotification;
 
 
 + (KPKVersion)versionForFileType:(NSString *)fileType;
++ (NSString *)fileTypeForVersion:(KPKVersion)version;
 
 #pragma mark Lock/Decrypt
 - (void)lockDatabase:(id)sender;

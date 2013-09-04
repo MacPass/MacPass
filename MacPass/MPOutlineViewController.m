@@ -260,7 +260,6 @@ NSString *const _MPOutlinveViewHeaderViewIdentifier = @"HeaderCell";
   id item = userInfo[@"NSObject"];
   id representedObject = [item representedObject];
   if([representedObject isKindOfClass:[KPKGroup class]]) {
-    NSLog(@"expanded:%@",representedObject);
     KPKGroup *group = (KPKGroup *)representedObject;
     group.isExpanded = YES;
   }
@@ -270,7 +269,6 @@ NSString *const _MPOutlinveViewHeaderViewIdentifier = @"HeaderCell";
   id item = userInfo[@"NSObject"];
   id representedObject = [item representedObject];
   if([representedObject isKindOfClass:[KPKGroup class]]) {
-    NSLog(@"collapsed:%@",representedObject);
     KPKGroup *group = (KPKGroup *)representedObject;
     group.isExpanded = NO;
   }
