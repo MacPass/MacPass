@@ -57,7 +57,7 @@ APPKIT_EXTERN NSString *const MPDocumnetDidChangeCurrentEntryNotification;
 
 #pragma mark Lock/Decrypt
 - (void)lockDatabase:(id)sender;
-- (BOOL)unlockWithPassword:(NSString *)password keyFileURL:(NSURL *)keyFileURL;
+- (BOOL)unlockWithPassword:(NSString *)password keyFileURL:(NSURL *)keyFileURL error:(NSError *__autoreleasing*)error;
 
 #pragma mark Data Lookup
 /*

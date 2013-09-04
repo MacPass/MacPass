@@ -212,14 +212,13 @@ typedef NS_ENUM(NSUInteger, MPAlertType) {
 
 #pragma mark Lock/Unlock/Decrypt
 
-- (BOOL)unlockWithPassword:(NSString *)password keyFileURL:(NSURL *)keyFileURL {
+- (BOOL)unlockWithPassword:(NSString *)password keyFileURL:(NSURL *)keyFileURL error:(NSError *__autoreleasing*)error{
   KPKPassword *passwordData = [[KPKPassword alloc] initWithPassword:password key:keyFileURL];
   
   self.key = keyFileURL;
   self.password = [password length] > 0 ? password : nil;
   
-  NSError *error;
-  self.tree = [[KPKTree alloc] initWithData:_encryptedData password:passwordData error:&error];
+  self.tree = [[KPKTree alloc] initWithData:_encryptedData password:passwordData error:error];
 
   return (self.tree != nil);
 }
