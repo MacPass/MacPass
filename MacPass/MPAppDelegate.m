@@ -16,14 +16,12 @@
 #import "MPStripLineBreaksTransformer.h"
 #import "MPServerDaemon.h"
 #import "MPLockDaemon.h"
-#import "MPAutotypeDaemon.h"
 #import "MPDocumentWindowController.h"
 
 @interface MPAppDelegate () {
 @private
   MPServerDaemon *serverDaemon;
   MPLockDaemon *lockDaemon;
-  MPAutotypeDaemon *autotypeDaemon;
   BOOL _restoredWindows;
   BOOL _shouldOpenFile;
 }

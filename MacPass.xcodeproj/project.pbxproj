@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		4C00E33817D8FA3500F37192 /* DDHotKeyCenter.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C00E33717D8FA3500F37192 /* DDHotKeyCenter.m */; };
+		4C00E33B17D8FAC100F37192 /* Carbon.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4C00E33A17D8FAC100F37192 /* Carbon.framework */; };
 		4C0104BB17C37BFC00173EF3 /* KPKLegacyHeaderUtility.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C0104BA17C37BFC00173EF3 /* KPKLegacyHeaderUtility.m */; };
 		4C0104BE17C37DA400173EF3 /* KPKXmlUtilities.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C0104BD17C37DA400173EF3 /* KPKXmlUtilities.m */; };
 		4C01C2421764D8980016D5D0 /* MPContextMenuHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C01C2411764D8980016D5D0 /* MPContextMenuHelper.m */; };
@@ -194,7 +196,6 @@
 		4CA0E3A7176FAF99004D18CB /* MPDocumentQueryService.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CA0E3A6176FAF99004D18CB /* MPDocumentQueryService.m */; };
 		4CA2335A176DBFE100F0B6AC /* MPLockDaemon.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CA23359176DBFE100F0B6AC /* MPLockDaemon.m */; };
 		4CA2E2DB17BCDA8300714076 /* NSString+Placeholder.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CA2E2DA17BCDA8300714076 /* NSString+Placeholder.m */; };
-		4CA2E2DE17BCDEAE00714076 /* MPAutotypeDaemon.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CA2E2DD17BCDEAE00714076 /* MPAutotypeDaemon.m */; };
 		4CAC614317AD319200023F9E /* KPKTestXmlParsing.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CAC614217AD319200023F9E /* KPKTestXmlParsing.m */; };
 		4CAD747B15B887FD00104512 /* DDXMLElementAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CAD745715B887FD00104512 /* DDXMLElementAdditions.m */; };
 		4CAD747C15B887FD00104512 /* NSString+DDXML.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CAD745A15B887FD00104512 /* NSString+DDXML.m */; };
@@ -265,6 +266,9 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		4C00E33617D8FA3500F37192 /* DDHotKeyCenter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DDHotKeyCenter.h; path = DDHotKey/DDHotKeyCenter.h; sourceTree = "<group>"; };
+		4C00E33717D8FA3500F37192 /* DDHotKeyCenter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DDHotKeyCenter.m; path = DDHotKey/DDHotKeyCenter.m; sourceTree = "<group>"; };
+		4C00E33A17D8FAC100F37192 /* Carbon.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Carbon.framework; path = System/Library/Frameworks/Carbon.framework; sourceTree = SDKROOT; };
 		4C0104B917C37BFC00173EF3 /* KPKLegacyHeaderUtility.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KPKLegacyHeaderUtility.h; sourceTree = "<group>"; };
 		4C0104BA17C37BFC00173EF3 /* KPKLegacyHeaderUtility.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KPKLegacyHeaderUtility.m; sourceTree = "<group>"; };
 		4C0104BC17C37C2B00173EF3 /* KPKXmlUtilities.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KPKXmlUtilities.h; sourceTree = "<group>"; };
@@ -613,8 +617,6 @@
 		4CA23359176DBFE100F0B6AC /* MPLockDaemon.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MPLockDaemon.m; sourceTree = "<group>"; };
 		4CA2E2D917BCDA8300714076 /* NSString+Placeholder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+Placeholder.h"; sourceTree = "<group>"; };
 		4CA2E2DA17BCDA8300714076 /* NSString+Placeholder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+Placeholder.m"; sourceTree = "<group>"; };
-		4CA2E2DC17BCDEAE00714076 /* MPAutotypeDaemon.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MPAutotypeDaemon.h; sourceTree = "<group>"; };
-		4CA2E2DD17BCDEAE00714076 /* MPAutotypeDaemon.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MPAutotypeDaemon.m; sourceTree = "<group>"; };
 		4CAAFDD51787AED60013FCF9 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/MainMenu.strings; sourceTree = "<group>"; };
 		4CAC614117AD319200023F9E /* KPKTestXmlParsing.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KPKTestXmlParsing.h; sourceTree = "<group>"; };
 		4CAC614217AD319200023F9E /* KPKTestXmlParsing.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KPKTestXmlParsing.m; sourceTree = "<group>"; };
@@ -760,6 +762,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4C00E33B17D8FAC100F37192 /* Carbon.framework in Frameworks */,
 				4CAD748E15B88AC100104512 /* libz.dylib in Frameworks */,
 				4C8FECC816D57E3200BF26CF /* QuartzCore.framework in Frameworks */,
 				4CAD748C15B889B700104512 /* Security.framework in Frameworks */,
@@ -770,6 +773,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		4C00E33917D8FA3B00F37192 /* DDHotKey */ = {
+			isa = PBXGroup;
+			children = (
+				4C00E33617D8FA3500F37192 /* DDHotKeyCenter.h */,
+				4C00E33717D8FA3500F37192 /* DDHotKeyCenter.m */,
+			);
+			name = DDHotKey;
+			sourceTree = "<group>";
+		};
 		4C0104B817C37BFC00173EF3 /* Utilites */ = {
 			isa = PBXGroup;
 			children = (
@@ -1016,8 +1028,6 @@
 		4C2E382016D141F700037A9D /* Helper */ = {
 			isa = PBXGroup;
 			children = (
-				4CA2E2DC17BCDEAE00714076 /* MPAutotypeDaemon.h */,
-				4CA2E2DD17BCDEAE00714076 /* MPAutotypeDaemon.m */,
 				4C5BF679175C01F300D53DF7 /* MPUppercaseStringValueTransformer.h */,
 				4C5BF67A175C01F300D53DF7 /* MPUppercaseStringValueTransformer.m */,
 				4CF6C70F176F4533007A811D /* MPStringLengthValueTransformer.h */,
@@ -1186,6 +1196,7 @@
 		4C77E35715B84A240093A587 = {
 			isa = PBXGroup;
 			children = (
+				4C00E33917D8FA3B00F37192 /* DDHotKey */,
 				4C245A64176E1E3C0086100E /* CocoaHTTPServer */,
 				4CC3AAB6175F4983003EF01B /* HNHUi */,
 				4CD3ABAD178F71B50073F5C5 /* KeePassKit */,
@@ -1210,6 +1221,7 @@
 			isa = PBXGroup;
 			children = (
 				4CAD748D15B88AC100104512 /* libz.dylib */,
+				4C00E33A17D8FAC100F37192 /* Carbon.framework */,
 				4C8FECC716D57E3200BF26CF /* QuartzCore.framework */,
 				4CAD748B15B889B700104512 /* Security.framework */,
 				4C77E36615B84A240093A587 /* Cocoa.framework */,
@@ -1971,7 +1983,6 @@
 				4C68456A17BC21DD00FCDBFC /* KPKAutotype.m in Sources */,
 				4C68456D17BC227B00FCDBFC /* KPKWindowAssociation.m in Sources */,
 				4CA2E2DB17BCDA8300714076 /* NSString+Placeholder.m in Sources */,
-				4CA2E2DE17BCDEAE00714076 /* MPAutotypeDaemon.m in Sources */,
 				4C6C72C417C01E4200768849 /* NSMutableData+KeePassKit.m in Sources */,
 				4C0104BB17C37BFC00173EF3 /* KPKLegacyHeaderUtility.m in Sources */,
 				4C0104BE17C37DA400173EF3 /* KPKXmlUtilities.m in Sources */,
@@ -1987,6 +1998,7 @@
 				4CC6DB7A17D23719002C6091 /* KPKNode+IconImage.m in Sources */,
 				4CC6DB7D17D23DCE002C6091 /* KPKUTIs.m in Sources */,
 				4CEED1C617D7BD0E007180F1 /* NSError+Messages.m in Sources */,
+				4C00E33817D8FA3500F37192 /* DDHotKeyCenter.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
