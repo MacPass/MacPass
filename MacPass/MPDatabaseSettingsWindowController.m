@@ -100,8 +100,7 @@
 }
 
 - (IBAction)close:(id)sender {
-  [NSApp endSheet:[self window]];
-  [[self window] orderOut:nil];
+  [self dismissSheet:0];
 }
 
 - (void)updateView {
@@ -237,22 +236,26 @@
 - (NSMenu *)_buildTreeMenu:(KPKTree *)tree preselect:(NSUUID *)uuid {
   NSMenu *menu = [[NSMenu alloc] init];
   [menu setAutoenablesItems:NO];
-  /*
-   Trash and Templates can be nested, so wee need to adhere to this :(
-   */
-  
   for(KPKGroup *group in tree.root.groups) {
-    NSMenuItem *groupItem = [[NSMenuItem alloc] init];
-    [groupItem setImage:group.iconImage];
-    [groupItem setTitle:group.name];
-    [groupItem setRepresentedObject:group];
-    [groupItem setEnabled:YES];
-    if(uuid && [group.uuid isEqual:uuid]) {
-      [groupItem setState:NSOnState];
-    }
-    [menu addItem:groupItem];
+    [self _insertMenuItemsForGroup:group atLevel:0 inMenu:menu preselect:uuid];
   }
   return menu;
+}
+
+- (void)_insertMenuItemsForGroup:(KPKGroup *)group atLevel:(NSUInteger)level inMenu:(NSMenu *)menu preselect:(NSUUID *)uuid{
+  NSMenuItem *groupItem = [[NSMenuItem alloc] init];
+  [groupItem setImage:group.iconImage];
+  [groupItem setTitle:group.name];
+  [groupItem setRepresentedObject:group];
+  [groupItem setEnabled:YES];
+  if(uuid && [group.uuid isEqual:uuid]) {
+    [groupItem setState:NSOnState];
+  }
+  [groupItem setIndentationLevel:level];
+  [menu addItem:groupItem];
+  for(KPKGroup *childGroup in group.groups) {
+    [self _insertMenuItemsForGroup:childGroup atLevel:level + 1 inMenu:menu preselect:uuid];
+  }
 }
 
 @end

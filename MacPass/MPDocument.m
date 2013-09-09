@@ -76,10 +76,10 @@ typedef NS_ENUM(NSUInteger, MPAlertType) {
   switch(version) {
     case KPKLegacyVersion:
       return MPLegacyDocumentUTI;
-    
+      
     case KPKXmlVersion:
       return MPXMLDocumentUTI;
-
+      
     default:
       return @"Unknown";
   }
@@ -194,7 +194,7 @@ typedef NS_ENUM(NSUInteger, MPAlertType) {
   
   [savePanel setAccessoryView:[self.savePanelViewController view]];
   [self.savePanelViewController updateView];
-
+  
   return YES;
 }
 
@@ -219,7 +219,7 @@ typedef NS_ENUM(NSUInteger, MPAlertType) {
   self.password = [password length] > 0 ? password : nil;
   
   self.tree = [[KPKTree alloc] initWithData:_encryptedData password:passwordData error:error];
-
+  
   return (self.tree != nil);
 }
 
@@ -405,11 +405,11 @@ typedef NS_ENUM(NSUInteger, MPAlertType) {
 
 - (void)deleteEntry:(KPKEntry *)entry {
   if(self.useTrash) {
-    if(!self.trash) {
-      [self _createTrashGroup];
-    }
     if([self isItemTrashed:entry]) {
       return; // Entry is already trashed
+    }
+    if(!self.trash) {
+      [self _createTrashGroup];
     }
     [entry moveToGroup:self.trash atIndex:[self.trash.entries count]];
     [[self undoManager] setActionName:NSLocalizedString(@"TRASH_ENTRY", "Move Entry to Trash")];
@@ -496,17 +496,14 @@ typedef NS_ENUM(NSUInteger, MPAlertType) {
 - (KPKGroup *)_createTrashGroup {
   /* Maybe push the stuff to the Tree? */
   KPKGroup *trash = [self.tree createGroup:self.tree.root];
+  BOOL wasEnabled = [self.undoManager isUndoRegistrationEnabled];
+  [self.undoManager disableUndoRegistration];
   trash.name = NSLocalizedString(@"TRASH", @"Name for the trash group");
   trash.icon = MPIconTrash;
-  BOOL registrationEnable = [[self undoManager] isUndoRegistrationEnabled];
-  if(registrationEnable) {
-    [[self undoManager] disableUndoRegistration];
-  }
   [self.tree.root addGroup:trash];
-  if(registrationEnable) {
-    [[self undoManager] enableUndoRegistration];
+  if(wasEnabled) {
+    [self.undoManager enableUndoRegistration];
   }
-  
   self.tree.metaData.recycleBinUuid = trash.uuid;
   return trash;
 }

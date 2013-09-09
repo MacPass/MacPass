@@ -42,6 +42,7 @@ typedef NS_OPTIONS(NSUInteger, MPFilterModeType) {
   MPFilterUrls      = (1<<0),
   MPFilterUsernames = (1<<1),
   MPFilterTitles    = (1<<2),
+  MPFilterPasswords = (1<<3),
 };
 
 typedef NS_ENUM(NSUInteger,MPOVerlayInfoType) {
@@ -64,10 +65,6 @@ NSString *const _MPTableImageCellView = @"ImageCell";
 NSString *const _MPTableStringCellView = @"StringCell";
 NSString *const _MPTAbleSecurCellView = @"PasswordCell";
 
-NSString *const _toggleFilterURLButton = @"SearchURL";
-NSString *const _toggleFilterTitleButton = @"SearchTitle";
-NSString *const _toggleFilterUsernameButton = @"SearchUsername";
-
 @interface MPEntryViewController () {
   MPEntryContextMenuDelegate *_menuDelegate;
 }
@@ -84,6 +81,7 @@ NSString *const _toggleFilterUsernameButton = @"SearchUsername";
 @property (weak) IBOutlet NSButton *filterTitleButton;
 @property (weak) IBOutlet NSButton *filterUsernameButton;
 @property (weak) IBOutlet NSButton *filterURLButton;
+@property (weak) IBOutlet NSButton *filterPasswordButton;
 @property (weak) IBOutlet NSTextField *filterLabelTextField;
 @property (weak) IBOutlet NSSearchField *filterSearchField;
 @property (weak) IBOutlet HNHGradientView *bottomBar;
@@ -96,7 +94,6 @@ NSString *const _toggleFilterUsernameButton = @"SearchUsername";
 @property (nonatomic, strong) MPEntryTableDataSource *dataSource;
 
 @property (assign, nonatomic) MPFilterModeType filterMode;
-@property (strong, nonatomic) NSDictionary *filterButtonToMode;
 
 @end
 
@@ -111,10 +108,6 @@ NSString *const _toggleFilterUsernameButton = @"SearchUsername";
   self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
   if(self) {
     _filterMode = MPFilterTitles;
-    _filterButtonToMode = @{ _toggleFilterUsernameButton : @(MPFilterUsernames),
-                             _toggleFilterTitleButton : @(MPFilterTitles),
-                             _toggleFilterURLButton : @(MPFilterUrls)
-                             };
     _entryArrayController = [[NSArrayController alloc] init];
     _dataSource = [[MPEntryTableDataSource alloc] init];
     _dataSource.viewController = self;
@@ -235,7 +228,7 @@ NSString *const _toggleFilterUsernameButton = @"SearchUsername";
     }
     else {
       assert(entry.parent);
-      [[view textField] bind:NSValueBinding toObject:entry.parent withKeyPath:entry.parent.name options:nil];
+      [[view textField] bind:NSValueBinding toObject:entry.parent withKeyPath:@"parent.name" options:nil];
       [[view imageView] setImage:entry.iconImage];
     }
   }
@@ -353,7 +346,7 @@ NSString *const _toggleFilterUsernameButton = @"SearchUsername";
 }
 
 - (void)updateFilter {
-  //[self _showFilterBarAnimated];
+  [self _showFilterBarAnimated];
   if(![self hasFilter]) {
     return;
   }
@@ -362,15 +355,18 @@ NSString *const _toggleFilterUsernameButton = @"SearchUsername";
   dispatch_async(backgroundQueue, ^{
     MPDocument *document = [[self windowController] document];
     if([self hasFilter]) {
-      NSMutableArray *prediactes = [NSMutableArray arrayWithCapacity:3];
-      if( [self _shouldFilterTitles] ) {
+      NSMutableArray *prediactes = [NSMutableArray arrayWithCapacity:4];
+      if([self _shouldFilterTitles]) {
         [prediactes addObject:[NSPredicate predicateWithFormat:@"SELF.title CONTAINS[cd] %@", self.filter]];
       }
-      if( [self _shouldFilterUsernames] ) {
+      if([self _shouldFilterUsernames]) {
         [prediactes addObject:[NSPredicate predicateWithFormat:@"SELF.username CONTAINS[cd] %@", self.filter]];
       }
-      if( [self _shouldFilterURLs] ) {
+      if([self _shouldFilterURLs]) {
         [prediactes addObject:[NSPredicate predicateWithFormat:@"SELF.url CONTAINS[cd] %@", self.filter]];
+      }
+      if([self _shouldFilterPasswords]) {
+        [prediactes addObject:[NSPredicate predicateWithFormat:@"SELF.password CONTAINS[cd] %@", self.filter]];
       }
       NSPredicate *fullFilter = [NSCompoundPredicate orPredicateWithSubpredicates:prediactes];
       self.filteredEntries = [[document.root childEntries] filteredArrayUsingPredicate:fullFilter];
@@ -397,9 +393,10 @@ NSString *const _toggleFilterUsernameButton = @"SearchUsername";
 - (void)setupFilterBar {
   if(!self.filterBar) {
     [[NSBundle mainBundle] loadNibNamed:@"FilterBar" owner:self topLevelObjects:nil];
-    [self.filterURLButton setIdentifier:_toggleFilterURLButton];
-    [self.filterUsernameButton setIdentifier:_toggleFilterUsernameButton];
-    [self.filterTitleButton setIdentifier:_toggleFilterTitleButton];
+    [self.filterURLButton setTag:MPFilterUrls];
+    [self.filterUsernameButton setTag:MPFilterUsernames];
+    [self.filterTitleButton setTag:MPFilterTitles];
+    [self.filterPasswordButton setTag:MPFilterPasswords];
     [[self.filterLabelTextField cell] setBackgroundStyle:NSBackgroundStyleRaised];
     [self.filterDoneButton setAction:@selector(clearFilter:)];
     [self.filterDoneButton setTarget:nil];
@@ -426,6 +423,7 @@ NSString *const _toggleFilterUsernameButton = @"SearchUsername";
   [self.filterTitleButton setState:[self _shouldFilterTitles] ? NSOnState : NSOffState];
   [self.filterURLButton setState:[self _shouldFilterURLs] ? NSOnState : NSOffState ];
   [self.filterUsernameButton setState:[self _shouldFilterUsernames] ? NSOnState : NSOffState];
+  [self.filterPasswordButton setState:[self _shouldFilterPasswords] ? NSOnState : NSOffState];
   
   if([self _showsFilterBar]) {
     return; // nothing to to
@@ -670,10 +668,12 @@ NSString *const _toggleFilterUsernameButton = @"SearchUsername";
   return YES;
 }
 
-- (void)_toggleFilterSpace:(id)sender {
+- (IBAction)_toggleFilterSpace:(id)sender {
+  if(![sender isKindOfClass:[NSButton class]]) {
+    return; // Wrong sender
+  }
   NSButton *button = sender;
-  NSNumber *value = self.filterButtonToMode[[button identifier]];
-  MPFilterModeType toggledMode = (MPFilterModeType)[value intValue];
+  MPFilterModeType toggledMode = [button tag];
   switch ([button state]) {
     case NSOnState:
       self.filterMode |= toggledMode;
@@ -724,15 +724,19 @@ NSString *const _toggleFilterUsernameButton = @"SearchUsername";
 }
 
 - (BOOL)_shouldFilterTitles {
-  return ( MPFilterNone != (self.filterMode & MPFilterTitles));
+  return (MPFilterNone != (self.filterMode & MPFilterTitles));
 }
 
 - (BOOL)_shouldFilterURLs {
-  return ( MPFilterNone != (self.filterMode & MPFilterUrls));
+  return (MPFilterNone != (self.filterMode & MPFilterUrls));
 }
 
 - (BOOL)_shouldFilterUsernames {
-  return ( MPFilterNone != (self.filterMode & MPFilterUsernames));
+  return (MPFilterNone != (self.filterMode & MPFilterUsernames));
+}
+
+- (BOOL)_shouldFilterPasswords {
+  return (MPFilterNone != (self.filterMode & MPFilterPasswords));
 }
 
 @end

@@ -117,10 +117,12 @@
   NSString *draggedType = [types lastObject];
   if([draggedType isEqualToString:KPKGroupUTI]) {
     [self.draggedGroup moveToGroup:targetGroup atIndex:index];
+    [self.draggedGroup.undoManager setActionName:NSLocalizedString(@"MOVE_GROUP", "")];
     return YES;
   }
   else if([draggedType isEqualToString:KPKUUIDUTI]) {
     [self.draggedEntry moveToGroup:targetGroup atIndex:index];
+    [self.draggedEntry.undoManager setActionName:NSLocalizedString(@"MOVE_ENTRY", "")];
     return YES;
   }
   return NO;
