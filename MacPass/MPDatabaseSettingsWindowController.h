@@ -11,9 +11,8 @@
 
 typedef NS_ENUM(NSUInteger, MPDatabaseSettingsTab) {
   MPDatabaseSettingsTabGeneral,
-  MPDatabaseSettingsTabDisplay,
-  MPDatabaseSettingsTabAdvanced,
-  MPDatabaseSettingsTabTemplates,
+  MPDatabaseSettingsTabSecurity,
+  MPDatabaseSettingsTabAdvanced
 };
 
 @class MPDocument;
@@ -27,21 +26,20 @@ typedef NS_ENUM(NSUInteger, MPDatabaseSettingsTab) {
 @property (weak) IBOutlet NSTextField *databaseNameTextField;
 @property (unsafe_unretained) IBOutlet NSTextView *databaseDescriptionTextView;
 
-/* Display Tab */
+/* Security Tab */
 @property (weak) IBOutlet NSButton *protectTitleCheckButton;
 @property (weak) IBOutlet NSButton *protectUserNameCheckButton;
 @property (weak) IBOutlet NSButton *protectPasswortCheckButton;
 @property (weak) IBOutlet NSButton *protectURLCheckButton;
 @property (weak) IBOutlet NSButton *protectNotesCheckButton;
+@property (weak) IBOutlet NSTextField *encryptionRoundsTextField;
+@property (weak) IBOutlet NSButton *benchmarkButton;
 
 /* Advanced Tab*/
 @property (weak) IBOutlet NSButton *enableRecycleBinCheckButton;
 @property (weak) IBOutlet NSButton *emptyRecycleBinOnQuitCheckButton;
 @property (weak) IBOutlet NSPopUpButton *selectRecycleBinGroupPopUpButton;
-
-
-/* Templates Tab */
-@property (weak) IBOutlet HNHRoundedTextField *defaultUsernameTextField;
+@property (weak) IBOutlet NSTextField *defaultUsernameTextField;
 @property (weak) IBOutlet NSPopUpButton *templateGroupPopUpButton;
 
 

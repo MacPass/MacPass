@@ -12,11 +12,13 @@
 #import "MPDatabaseVersion.h"
 #import "MPIconHelper.h"
 #import "MPSettingsHelper.h"
+#import "MPNumericalInputFormatter.h"
 
 #import "KPKGroup.h"
 #import "KPKTree.h"
 #import "KPKMetaData.h"
 #import "KPKNode+IconImage.h"
+#import "KPKPassword.h"
 
 #import "HNHRoundedTextField.h"
 #import "HNHRoundedSecureTextField.h"
@@ -54,7 +56,10 @@
   NSAssert(_document != nil, @"Document needs to be present");
     
   [self.sectionTabView setDelegate:self];
+  [self.encryptionRoundsTextField setFormatter:[[MPNumericalInputFormatter alloc] init]];
 }
+
+#pragma mark Actions
 
 - (IBAction)save:(id)sender {
   /* General */
@@ -86,7 +91,7 @@
   metaData.protectUrl = protectURL;
   metaData.protectUserName = protectUsername;
   metaData.defaultUserName = [self.defaultUsernameTextField stringValue];
-    
+  
   /*
    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
     [defaults setBool:protectNotes forKey:kMPSettingsKeyLegacyHideNotes];
@@ -103,6 +108,14 @@
   [self dismissSheet:0];
 }
 
+- (IBAction)benchmarkRounds:(id)sender {
+  [self.benchmarkButton setEnabled:NO];
+  [KPKPassword benchmarkTransformationRounds:1 completionHandler:^(NSUInteger rounds) {
+    [self.encryptionRoundsTextField setIntegerValue:rounds];
+    [self.benchmarkButton setEnabled:YES];
+  }];
+}
+
 - (void)updateView {
   if(!self.isDirty) {
     return;
@@ -112,7 +125,6 @@
   [self _setupDatabase:metaData];
   [self _setupProtectionTab:metaData];
   [self _setupAdvancedTab:_document.tree];
-  [self _setupTemplatesTab:_document.tree];
   self.isDirty = NO;
 }
 
@@ -124,11 +136,6 @@
   if(![self window]) {
     return;
   }
-  NSTabViewItem *tabViewItem = [self.sectionTabView tabViewItemAtIndex:tab];
-  BOOL canSelectTab = [self tabView:self.sectionTabView shouldSelectTabViewItem:tabViewItem];
-  if(!canSelectTab) {
-    [self.sectionTabView selectTabViewItemAtIndex:MPDatabaseSettingsTabTemplates];
-  }
   [self.sectionTabView selectTabViewItemAtIndex:tab];
 }
 
@@ -136,14 +143,10 @@
 - (BOOL)tabView:(NSTabView *)tabView shouldSelectTabViewItem:(NSTabViewItem *)tabViewItem {
   NSUInteger index = [tabView indexOfTabViewItem:tabViewItem];
   switch ((MPDatabaseSettingsTab)index) {
-    case MPDatabaseSettingsTabDisplay:
-      return YES;
-      
+    case MPDatabaseSettingsTabSecurity:
     case MPDatabaseSettingsTabAdvanced:
     case MPDatabaseSettingsTabGeneral:
-    case MPDatabaseSettingsTabTemplates:
       return YES;
-      //return (_document.version == MPDatabaseVersion4);
       
     default:
       return NO;
@@ -162,15 +165,15 @@
   [self.protectTitleCheckButton setState:metaData.protectTitle ? NSOnState : NSOffState];
   [self.protectURLCheckButton setState:metaData.protectUrl ? NSOnState : NSOffState];
   [self.protectUserNameCheckButton setState:metaData.protectUserName ? NSOnState : NSOffState];
+  [self.encryptionRoundsTextField setIntegerValue:metaData.rounds];
+  [self.benchmarkButton setEnabled:YES];
 }
 
 - (void)_setupAdvancedTab:(KPKTree *)tree {
   [self.enableRecycleBinCheckButton bind:NSValueBinding toObject:self withKeyPath:@"trashEnabled" options:nil];
   [self.selectRecycleBinGroupPopUpButton bind:NSEnabledBinding toObject:self withKeyPath:@"trashEnabled" options:nil];
   [self _updateTrashFolders:tree];
-}
-
-- (void)_setupTemplatesTab:(KPKTree *)tree {
+  
   [self.defaultUsernameTextField setStringValue:tree.metaData.defaultUserName];
   [self.defaultUsernameTextField setEditable:YES];
   [self _updateTemplateGroup:tree];
@@ -182,18 +185,15 @@
   
   switch(tab) {
     case MPDatabaseSettingsTabAdvanced:
-      [[self window] makeFirstResponder:self.databaseNameTextField];
+      [[self window] makeFirstResponder:self.defaultUsernameTextField];
       break;
       
-    case MPDatabaseSettingsTabDisplay:
+    case MPDatabaseSettingsTabSecurity:
       [[self window] makeFirstResponder:self.protectTitleCheckButton];
       break;
       
     case MPDatabaseSettingsTabGeneral:
       [[self window] makeFirstResponder:self.databaseNameTextField];
-      break;
-      
-    case MPDatabaseSettingsTabTemplates:
       break;
   }
 }

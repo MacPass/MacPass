@@ -299,7 +299,7 @@ typedef NS_ENUM(NSUInteger, MPAlertContext) {
 }
 
 - (void)editTemplateGroup:(id)sender {
-  [self _showDatabaseSetting:MPDatabaseSettingsTabTemplates];
+  [self _showDatabaseSetting:MPDatabaseSettingsTabAdvanced];
 }
 
 - (void)editTrashGroup:(id)sender {
