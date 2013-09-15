@@ -73,7 +73,7 @@ NSString *const _MPOutlinveViewHeaderViewIdentifier = @"HeaderCell";
   [_outlineView setMenu:[self _contextMenu]];
   [_outlineView setAllowsEmptySelection:YES];
   [_outlineView setFloatsGroupRows:NO];
-  [_outlineView registerForDraggedTypes:@[ KPKGroupUTI, KPKUUIDUTI ]];
+  [_outlineView registerForDraggedTypes:@[ KPKGroupUTI, KPKEntryUTI ]];
   [_outlineView setDraggingSourceOperationMask:NSDragOperationEvery forLocal:YES];
   [_bottomBar setBorderType:HNHBorderTop];
   [_addGroupButton setAction:[MPActionHelper actionOfType:MPActionAddGroup]];

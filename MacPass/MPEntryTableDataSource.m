@@ -28,8 +28,8 @@
   if(![item isKindOfClass:[KPKEntry class]]) {
     return NO;
   }
-  KPKEntry *entry = (KPKEntry *)item;
-  [pboard writeObjects:@[entry.uuid]];
+  KPKEntry *draggedEntry = (KPKEntry *)item;
+  [pboard writeObjects:@[draggedEntry]];
   return YES;
 }
 
