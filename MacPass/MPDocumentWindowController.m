@@ -183,12 +183,10 @@ typedef NS_ENUM(NSUInteger, MPAlertContext) {
     [self editPassword:sender];
     return;
   }
-  else {
-    /* All set and good ready to save */
-    [[self document] saveDocument:sender];
-  }
-  
+  /* All set and good ready to save */
+  [[self document] saveDocument:sender];
 }
+
 - (void)exportDatabase:(id)sender {
   NSSavePanel *savePanel = [NSSavePanel savePanel];
   [savePanel setAllowsOtherFileTypes:YES];
