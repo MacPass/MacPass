@@ -23,12 +23,11 @@
 
 @end
 
-
 @implementation MPOutlineDataSource
 
 - (BOOL)outlineView:(NSOutlineView *)outlineView writeItems:(NSArray *)items toPasteboard:(NSPasteboard *)pasteboard {
   if([items count] == 1) {
-    id item = [[items lastObject] representedObject];
+    self.localDraggedGroup = nil;  id item = [[items lastObject] representedObject];
     if(![item isKindOfClass:[KPKGroup class]]) {
       return NO;
     }
@@ -90,6 +89,7 @@
       validTarget &= !isAnchesor;
     }
     else {
+      /* Copy can always work in this case */
       operationMask = NSDragOperationCopy;
     }
   }
@@ -129,12 +129,8 @@
   KPKGroup *targetGroup = (KPKGroup *)targetItem;
   if(draggedGroup) {
     if(copyItem || (nil == self.localDraggedGroup) ) {
-      /*
-       Scenarios:
-       a) Local copy
-       b) Drag from other document
-       */
-      return NO;
+      [targetGroup addGroup:draggedGroup atIndex:index];
+      return YES;
     }
     else if(self.localDraggedGroup) {
       /* Simple move */
@@ -147,12 +143,8 @@
   }
   else if(draggedEntry) {
     if(copyItem || (nil == self.localDraggedEntry)) {
-      /*
-       Scenarios:
-       a) Local copy
-       b) Drag from other document
-       */
-      return NO;
+      [targetGroup addEntry:draggedEntry atIndex:index];
+      return YES;
     }
     else if(self.localDraggedEntry) {
       [self.localDraggedEntry moveToGroup:targetGroup atIndex:index];
