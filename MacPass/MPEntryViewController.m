@@ -278,10 +278,9 @@ NSString *const _MPTAbleSecurCellView = @"PasswordCell";
 #pragma mark Notifications
 - (void)_didChangeCurrentItem:(NSNotification *)notification {
   MPDocument *document = [notification object];
-  
+
   if(!document.selectedGroup) {
-    [self.entryArrayController unbind:NSContentArrayBinding];
-    [self.entryArrayController setContent:nil];
+    /* No group, this only can happen in filtering, just return */
     return;
   }
   /*
@@ -289,7 +288,7 @@ NSString *const _MPTAbleSecurCellView = @"PasswordCell";
    */
   if(document.selectedItem == document.selectedGroup) {
     /*
-     If we reselct the group, or just another group
+     If we reselect the group, or just another group
      we clear the filter and bind to the new selected group
      */
     if([self _showsFilterBar] && ![document.selectedItem isKindOfClass:[KPKEntry class]]) {
