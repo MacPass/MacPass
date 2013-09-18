@@ -7,6 +7,7 @@
 //
 
 #import "MPEntryContextMenuDelegate.h"
+#import "MPEntryViewController.h"
 #import "MPDocument.h"
 
 #import "KPKEntry.h"

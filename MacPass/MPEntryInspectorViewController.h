@@ -36,4 +36,13 @@
 
 - (void)setupBindings:(MPDocument *)document;
 
+- (IBAction)saveAttachment:(id)sender;
+- (IBAction)addAttachment:(id)sender;
+- (IBAction)removeAttachment:(id)sender;
+
+- (IBAction)addCustomField:(id)sender;
+- (IBAction)removeCustomField:(id)sender;
+
+
+
 @end

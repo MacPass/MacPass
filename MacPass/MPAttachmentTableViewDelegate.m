@@ -9,6 +9,7 @@
 #import "MPAttachmentTableViewDelegate.h"
 
 #import "MPDocument.h"
+#import "MPEntryInspectorViewController.h"
 #import "MPSelectedAttachmentTableCellView.h"
 
 #import "KPKEntry.h"

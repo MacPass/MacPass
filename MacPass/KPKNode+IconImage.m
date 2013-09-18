@@ -15,9 +15,6 @@
 @implementation KPKNode (IconImage)
 
 - (NSImage *)iconImage {
-  if([self respondsToSelector:@selector(customIconUuid)]) {
-    // find the custom icon
-  }
   if(self.customIcon) {
     return self.customIcon.image;
   }

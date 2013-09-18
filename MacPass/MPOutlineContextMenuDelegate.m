@@ -8,6 +8,7 @@
 
 #import "MPOutlineContextMenuDelegate.h"
 #import "MPOutlineViewController.h"
+#import "MPDocumentWindowController.h"
 
 #import "MPDocument.h"
 

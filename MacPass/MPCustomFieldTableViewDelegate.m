@@ -9,6 +9,7 @@
 #import "MPCustomFieldTableViewDelegate.h"
 #import "MPDocument.h"
 #import "MPCustomFieldTableCellView.h"
+#import "MPEntryInspectorViewController.h"
 
 #import "KPKEntry.h"
 #import "KPKAttribute.h"
