@@ -34,7 +34,6 @@
   if(numberOfDirectories == [arrayOfURLs count]) {
     return NSDragOperationNone;
   }
-  row = [tableView numberOfRows];
   return NSDragOperationCopy;
 }
 

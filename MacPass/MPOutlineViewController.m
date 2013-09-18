@@ -132,26 +132,12 @@ NSString *const _MPOutlinveViewHeaderViewIdentifier = @"HeaderCell";
 
 #pragma mark Notifications
 - (void)setupNotifications:(MPDocumentWindowController *)windowController {
-  [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(_didCreateGroup:) name:MPDocumentDidAddGroupNotification object:[windowController document]];
+  // Nothing to do anymore
 }
 
 - (void)clearSelection {
   [_outlineView deselectAll:nil];
   [self outlineViewSelectionDidChange:nil];
-}
-
-- (void)_didCreateGroup:(NSNotification *)notification {
-  NSInteger selectedRow = [_outlineView selectedRow];
-  NSIndexSet *indexSet;
-  if( selectedRow == -1) {
-    MPDocument *document = [[self windowController] document];
-    indexSet = [NSIndexSet indexSetWithIndex:[document.root.groups count]];
-  }
-  else {
-    id item = [_outlineView itemAtRow:selectedRow];
-    [_outlineView expandItem:item];
-    indexSet = [NSIndexSet indexSetWithIndex:selectedRow + 1];
-  }
 }
 
 - (void)_didBecomeFirstResponder:(NSNotification *)notification {
