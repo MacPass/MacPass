@@ -11,8 +11,7 @@
 @class MPDocument;
 
 @interface MPDatabasePasswordAndKeyfile : SenTestCase {
-  MPDocument *_databaseV3;
-  MPDocument *_databaseV4;
+  MPDocument *_database;
 }
 
 @end

@@ -42,7 +42,7 @@
 				<string key="NSClassName">NSApplication</string>
 			</object>
 			<object class="NSCustomView" id="233312071">
-				<nil key="NSNextResponder"/>
+				<reference key="NSNextResponder"/>
 				<int key="NSvFlags">268</int>
 				<array class="NSMutableArray" key="NSSubviews">
 					<object class="NSTextField" id="990836775">
@@ -50,6 +50,7 @@
 						<int key="NSvFlags">268</int>
 						<string key="NSFrame">{{57, 409}, {204, 17}}</string>
 						<reference key="NSSuperview" ref="233312071"/>
+						<reference key="NSWindow"/>
 						<reference key="NSNextKeyView" ref="45251842"/>
 						<string key="NSReuseIdentifierKey">_NS:1535</string>
 						<string key="NSAntiCompressionPriority">{249, 750}</string>
@@ -99,13 +100,14 @@
 						</set>
 						<string key="NSFrame">{{20, 401}, {32, 32}}</string>
 						<reference key="NSSuperview" ref="233312071"/>
+						<reference key="NSWindow"/>
 						<reference key="NSNextKeyView" ref="990836775"/>
 						<string key="NSReuseIdentifierKey">_NS:9</string>
 						<bool key="NSEnabled">YES</bool>
 						<object class="NSImageCell" key="NSCell" id="152819686">
 							<int key="NSCellFlags">134217728</int>
 							<int key="NSCellFlags2">33554432</int>
-							<object class="NSCustomResource" key="NSContents">
+							<object class="NSCustomResource" key="NSContents" id="202092680">
 								<string key="NSClassName">NSImage</string>
 								<string key="NSResourceName">NSActionTemplate</string>
 							</object>
@@ -127,17 +129,20 @@
 								<int key="NSvFlags">268</int>
 								<string key="NSFrame">{{20, 2}, {42, 25}}</string>
 								<reference key="NSSuperview" ref="381395509"/>
+								<reference key="NSWindow"/>
+								<reference key="NSNextKeyView"/>
 								<string key="NSReuseIdentifierKey">_NS:22</string>
 								<bool key="NSEnabled">YES</bool>
 								<object class="NSButtonCell" key="NSCell" id="348505851">
 									<int key="NSCellFlags">-2080374784</int>
 									<int key="NSCellFlags2">134217728</int>
-									<string key="NSContents">Edit</string>
+									<string key="NSContents"/>
 									<reference key="NSSupport" ref="240853158"/>
 									<string key="NSCellIdentifier">_NS:22</string>
 									<reference key="NSControlView" ref="830540359"/>
 									<int key="NSButtonFlags">-2034483200</int>
 									<int key="NSButtonFlags2">163</int>
+									<reference key="NSNormalImage" ref="202092680"/>
 									<string key="NSAlternateContents"/>
 									<string key="NSKeyEquivalent"/>
 									<int key="NSPeriodicDelay">400</int>
@@ -148,6 +153,7 @@
 						</array>
 						<string key="NSFrameSize">{278, 30}</string>
 						<reference key="NSSuperview" ref="233312071"/>
+						<reference key="NSWindow"/>
 						<reference key="NSNextKeyView" ref="830540359"/>
 						<string key="NSReuseIdentifierKey">_NS:9</string>
 						<string key="NSClassName">HNHGradientView</string>
@@ -157,6 +163,8 @@
 						<int key="NSvFlags">268</int>
 						<string key="NSFrame">{{0, 30}, {278, 369}}</string>
 						<reference key="NSSuperview" ref="233312071"/>
+						<reference key="NSWindow"/>
+						<reference key="NSNextKeyView" ref="906788312"/>
 						<string key="NSReuseIdentifierKey">_NS:9</string>
 						<array class="NSMutableArray" key="NSTabViewItems">
 							<object class="NSTabViewItem" id="367063082">
@@ -166,7 +174,8 @@
 									<int key="NSvFlags">274</int>
 									<string key="NSFrameSize">{278, 369}</string>
 									<reference key="NSSuperview" ref="45251842"/>
-									<reference key="NSNextKeyView" ref="381395509"/>
+									<reference key="NSWindow"/>
+									<reference key="NSNextKeyView"/>
 									<string key="NSReuseIdentifierKey">_NS:28</string>
 								</object>
 								<string key="NSLabel">Entry</string>
@@ -243,6 +252,8 @@
 					</object>
 				</array>
 				<string key="NSFrameSize">{278, 443}</string>
+				<reference key="NSSuperview"/>
+				<reference key="NSWindow"/>
 				<reference key="NSNextKeyView" ref="621131831"/>
 				<string key="NSReuseIdentifierKey">_NS:9</string>
 				<string key="NSClassName">NSView</string>
@@ -966,7 +977,100 @@
 			<nil key="sourceID"/>
 			<int key="maxID">3117</int>
 		</object>
-		<object class="IBClassDescriber" key="IBDocument.Classes"/>
+		<object class="IBClassDescriber" key="IBDocument.Classes">
+			<array class="NSMutableArray" key="referencedPartialClassDescriptions">
+				<object class="IBPartialClassDescription">
+					<string key="className">HNHGradientView</string>
+					<string key="superclassName">NSView</string>
+					<object class="IBClassDescriptionSource" key="sourceIdentifier">
+						<string key="majorKey">IBProjectSource</string>
+						<string key="minorKey">./Classes/HNHGradientView.h</string>
+					</object>
+				</object>
+				<object class="IBPartialClassDescription">
+					<string key="className">MPInspectorViewController</string>
+					<string key="superclassName">MPViewController</string>
+					<object class="NSMutableDictionary" key="actions">
+						<string key="NS.key.0">showImagePopup:</string>
+						<string key="NS.object.0">id</string>
+					</object>
+					<object class="NSMutableDictionary" key="actionInfosByName">
+						<string key="NS.key.0">showImagePopup:</string>
+						<object class="IBActionInfo" key="NS.object.0">
+							<string key="name">showImagePopup:</string>
+							<string key="candidateClassName">id</string>
+						</object>
+					</object>
+					<dictionary class="NSMutableDictionary" key="outlets">
+						<string key="bottomBar">HNHGradientView</string>
+						<string key="createdTextField">NSTextField</string>
+						<string key="itemImageView">MPPopupImageView</string>
+						<string key="itemNameTextField">NSTextField</string>
+						<string key="modifiedTextField">NSTextField</string>
+						<string key="noSelectionInfo">NSTextField</string>
+						<string key="tabView">NSTabView</string>
+					</dictionary>
+					<dictionary class="NSMutableDictionary" key="toOneOutletInfosByName">
+						<object class="IBToOneOutletInfo" key="bottomBar">
+							<string key="name">bottomBar</string>
+							<string key="candidateClassName">HNHGradientView</string>
+						</object>
+						<object class="IBToOneOutletInfo" key="createdTextField">
+							<string key="name">createdTextField</string>
+							<string key="candidateClassName">NSTextField</string>
+						</object>
+						<object class="IBToOneOutletInfo" key="itemImageView">
+							<string key="name">itemImageView</string>
+							<string key="candidateClassName">MPPopupImageView</string>
+						</object>
+						<object class="IBToOneOutletInfo" key="itemNameTextField">
+							<string key="name">itemNameTextField</string>
+							<string key="candidateClassName">NSTextField</string>
+						</object>
+						<object class="IBToOneOutletInfo" key="modifiedTextField">
+							<string key="name">modifiedTextField</string>
+							<string key="candidateClassName">NSTextField</string>
+						</object>
+						<object class="IBToOneOutletInfo" key="noSelectionInfo">
+							<string key="name">noSelectionInfo</string>
+							<string key="candidateClassName">NSTextField</string>
+						</object>
+						<object class="IBToOneOutletInfo" key="tabView">
+							<string key="name">tabView</string>
+							<string key="candidateClassName">NSTabView</string>
+						</object>
+					</dictionary>
+					<object class="IBClassDescriptionSource" key="sourceIdentifier">
+						<string key="majorKey">IBProjectSource</string>
+						<string key="minorKey">./Classes/MPInspectorViewController.h</string>
+					</object>
+				</object>
+				<object class="IBPartialClassDescription">
+					<string key="className">MPPopupImageView</string>
+					<string key="superclassName">NSImageView</string>
+					<object class="IBClassDescriptionSource" key="sourceIdentifier">
+						<string key="majorKey">IBProjectSource</string>
+						<string key="minorKey">./Classes/MPPopupImageView.h</string>
+					</object>
+				</object>
+				<object class="IBPartialClassDescription">
+					<string key="className">MPViewController</string>
+					<string key="superclassName">NSViewController</string>
+					<object class="IBClassDescriptionSource" key="sourceIdentifier">
+						<string key="majorKey">IBProjectSource</string>
+						<string key="minorKey">./Classes/MPViewController.h</string>
+					</object>
+				</object>
+				<object class="IBPartialClassDescription">
+					<string key="className">NSLayoutConstraint</string>
+					<string key="superclassName">NSObject</string>
+					<object class="IBClassDescriptionSource" key="sourceIdentifier">
+						<string key="majorKey">IBProjectSource</string>
+						<string key="minorKey">./Classes/NSLayoutConstraint.h</string>
+					</object>
+				</object>
+			</array>
+		</object>
 		<int key="IBDocument.localizationMode">0</int>
 		<string key="IBDocument.TargetRuntimeIdentifier">IBCocoaFramework</string>
 		<bool key="IBDocument.previouslyAttemptedUpgradeToXcode5">YES</bool>

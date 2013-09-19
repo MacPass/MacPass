@@ -13,34 +13,32 @@
 @implementation MPDatabasePasswordAndKeyfile
 
 - (void)setUp {
-  _databaseV3 = [[MPDocument alloc] initWithVersion:MPDatabaseVersion3];
-  _databaseV4 = [[MPDocument alloc] initWithVersion:MPDatabaseVersion4];
+  _database = [[MPDocument alloc] init];
 }
 
 - (void)tearDown {
-  _databaseV3 = nil;
-  _databaseV4 = nil;
+  _database = nil;
 }
 
 - (void)testSetPassword {
-  STAssertTrue([_databaseV3.password length] == 0, @"Password should not be set");
-  STAssertNil(_databaseV3.key, @"Keyfile should not be set");
-  STAssertFalse(_databaseV3.hasPasswordOrKey, @"Database without password is not secure");
-  _databaseV3.password = @"test";
-  STAssertTrue([_databaseV3.password isEqualToString:@"test"], @"Password should be set");
-  STAssertTrue(_databaseV3.hasPasswordOrKey, @"Database with password is secured");
-  _databaseV3.password = nil;
-  STAssertFalse(_databaseV3.hasPasswordOrKey, @"Database with removed password is not secure anymore");
+  STAssertTrue([_database.password length] == 0, @"Password should not be set");
+  STAssertNil(_database.key, @"Keyfile should not be set");
+  STAssertFalse(_database.hasPasswordOrKey, @"Database without password is not secure");
+  _database.password = @"test";
+  STAssertTrue([_database.password isEqualToString:@"test"], @"Password should be set");
+  STAssertTrue(_database.hasPasswordOrKey, @"Database with password is secured");
+  _database.password = nil;
+  STAssertFalse(_database.hasPasswordOrKey, @"Database with removed password is not secure anymore");
 }
 
 - (void)testSetKeyfile {
-  STAssertTrue([_databaseV3.password length] == 0, @"Password should not be set");
-  STAssertNil(_databaseV3.key, @"Keyfile should not be set");
-  STAssertFalse(_databaseV3.hasPasswordOrKey, @"Database without keyfile is not secure");
-  _databaseV3.key = [NSURL URLWithString:@"noKeyFile"];
-  STAssertTrue(_databaseV3.hasPasswordOrKey, @"Database with keyfile is secured");
-  _databaseV3.key = nil;
-  STAssertFalse(_databaseV3.hasPasswordOrKey, @"Database with removed keyfile is not secure anymore");
+  STAssertTrue([_database.password length] == 0, @"Password should not be set");
+  STAssertNil(_database.key, @"Keyfile should not be set");
+  STAssertFalse(_database.hasPasswordOrKey, @"Database without keyfile is not secure");
+  _database.key = [NSURL URLWithString:@"noKeyFile"];
+  STAssertTrue(_database.hasPasswordOrKey, @"Database with keyfile is secured");
+  _database.key = nil;
+  STAssertFalse(_database.hasPasswordOrKey, @"Database with removed keyfile is not secure anymore");
 }
 
 

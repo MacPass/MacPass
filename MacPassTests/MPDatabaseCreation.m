@@ -8,26 +8,15 @@
 
 #import "MPDatabaseCreation.h"
 #import "MPDocument.h"
+#import "KPKTree.h"
 
 @implementation MPDatabaseCreation
 
-- (void)testCreateDatabaseVersion1 {
-  MPDocument *document = [[MPDocument alloc] initWithVersion:MPDatabaseVersion3];
+- (void)testCreateNewDatabase {
+  MPDocument *document = [[MPDocument alloc] init];
   STAssertNotNil(document, @"Document should be created");
-  STAssertTrue(document.version == MPDatabaseVersion3, @"Database should be Version1");
-  STAssertNotNil(document.treeV3, @"Database Tree needs to be Kdb3Tree");
-  STAssertNil(document.treeV4,  @"Database Tree cannot be Kdb4Tree");
-  STAssertTrue(document.decrypted, @"Document has to be decrypted new database is created");
-  STAssertFalse(document.hasPasswordOrKey, @"Document has no Password/Keyfile and thus is not secured");
-}
-
-- (void)testCreateDatabaseVersion2 {
-  MPDocument *document = [[MPDocument alloc] initWithVersion:MPDatabaseVersion4];
-  STAssertNotNil(document, @"Document should be created");
-  STAssertTrue(document.version == MPDatabaseVersion4, @"Database should be Version2");
-  STAssertNotNil(document.treeV4, @"Database Tree needs to be Kdb4Tree");
-  STAssertNil(document.treeV3, @"Database Tree cannot be Kdb3Tree");
-  STAssertTrue(document.decrypted, @"Document has to be decrypted new database is created");
+  STAssertTrue(document.tree.minimumVersion == KPKLegacyVersion, @"Tree should be Legacy Version in defautl case");
+  STAssertFalse(document.encrypted, @"Document cannot be encrypted at creation");
   STAssertFalse(document.hasPasswordOrKey, @"Document has no Password/Keyfile and thus is not secured");
 }
 
