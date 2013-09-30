@@ -190,6 +190,8 @@ typedef NS_ENUM(NSUInteger, MPAlertContext) {
 - (void)exportDatabase:(id)sender {
   NSSavePanel *savePanel = [NSSavePanel savePanel];
   [savePanel setAllowsOtherFileTypes:YES];
+  [savePanel setAllowedFileTypes:@[(id)kUTTypeXML]];
+  [savePanel setCanSelectHiddenExtension:YES];
   [savePanel beginSheetModalForWindow:self.window completionHandler:^(NSInteger result) {
     if(result == NSFileHandlingPanelOKButton) {
       [[self document] writeXMLToURL:savePanel.URL];

@@ -131,7 +131,9 @@
     if(copyItem || (nil == self.localDraggedGroup) ) {
       /* Add Copy to title */
       NSString *copyTemplate = NSLocalizedString(@"%@_COPY", "");
+      /* If we copy, we need to update the uuid */
       draggedGroup.name = [NSString stringWithFormat:copyTemplate, draggedGroup.name];
+      draggedGroup.uuid = [NSUUID UUID];
       [targetGroup addGroup:draggedGroup atIndex:index];
       [targetGroup.undoManager setActionName:NSLocalizedString(@"COPY_GROUP", "")];
       return YES;
@@ -147,8 +149,10 @@
   }
   else if(draggedEntry) {
     if(copyItem || (nil == self.localDraggedEntry)) {
+      /* if we copy, we need to update the uuid */
       NSString *copyTemplate = NSLocalizedString(@"%@_COPY", "");
       draggedEntry.title = [NSString stringWithFormat:copyTemplate, draggedEntry.title];
+      draggedEntry.uuid = [NSUUID UUID];
       [targetGroup addEntry:draggedEntry atIndex:index];
       [targetGroup.undoManager setActionName:NSLocalizedString(@"COPY_ENTRY", "")];
       return YES;
