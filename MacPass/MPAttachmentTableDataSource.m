@@ -11,11 +11,7 @@
 
 @implementation MPAttachmentTableDataSource
 
-- (NSDragOperation)tableView:(NSTableView *)tableView
-                validateDrop:(id<NSDraggingInfo>)info
-                 proposedRow:(NSInteger)row
-       proposedDropOperation:(NSTableViewDropOperation)dropOperation {
-  
+- (NSDragOperation)tableView:(NSTableView *)tableView validateDrop:(id<NSDraggingInfo>)info proposedRow:(NSInteger)row proposedDropOperation:(NSTableViewDropOperation)dropOperation {
   NSPasteboard *draggingPasteBoard = [info draggingPasteboard];
   NSArray *classArray = [NSArray arrayWithObject:[NSURL class]];
   NSArray *arrayOfURLs = [draggingPasteBoard readObjectsForClasses:classArray options:nil];
@@ -37,11 +33,7 @@
   return NSDragOperationCopy;
 }
 
-- (BOOL)tableView:(NSTableView *)tableView
-       acceptDrop:(id<NSDraggingInfo>)info
-              row:(NSInteger)row
-    dropOperation:(NSTableViewDropOperation)dropOperation {
-  
+- (BOOL)tableView:(NSTableView *)tableView acceptDrop:(id<NSDraggingInfo>)info row:(NSInteger)row dropOperation:(NSTableViewDropOperation)dropOperation {
   MPDocument *document = [[[tableView window] windowController] document];
   id entry = document.selectedEntry;
   
@@ -54,8 +46,10 @@
   }
   return YES;
 }
-/*
 - (BOOL)tableView:(NSTableView *)tableView writeRowsWithIndexes:(NSIndexSet *)rowIndexes toPasteboard:(NSPasteboard *)pboard {
+  return NO;
+  
+  /*
   NSString *extension;
   
   if([rowIndexes count] != 1) {
@@ -77,42 +71,7 @@
   
   [pboard setPropertyList:@[uti] forType:(NSString *)kPasteboardTypeFilePromiseContent];
   [pboard setPropertyList:@[uti] forType:(NSString *)kPasteboardTypeFileURLPromise ];
-  return YES;
+  return YES;*/
 }
-- (NSArray *)tableView:(NSTableView *)tableView namesOfPromisedFilesDroppedAtDestination:(NSURL *)dropDestination forDraggedRowsWithIndexes:(NSIndexSet *)indexSet {
-  if([indexSet count] != 1) {
-    return nil; // We only work with one file at a time
-  }
-  
-  if(![dropDestination isFileURL]) {
-    return nil;
-  }
-  
-  NSUInteger row = [indexSet lastIndex];
-  NSData *fileData;
-  NSString *filename;
-  
-  MPDocument *document = [[[tableView window] windowController] document];
-  id entry = document.selectedEntry;
-
-  if([entry isKindOfClass:[Kdb3Entry class]]) {
-    Kdb3Entry *entryV3 = (Kdb3Entry *)entry;
-    filename = entryV3.binaryDesc;
-    fileData = entryV3.binary;
-  }
-  else if([entry isKindOfClass:[Kdb4Entry class]]) {
-    Kdb4Entry *entryV4 = (Kdb4Entry *)entry;
-    BinaryRef *binaryRef = entryV4.binaries[row];
-    filename = binaryRef.key;
-    fileData = [document attachmentDataForItem:binaryRef];
-  }
-  dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_BACKGROUND, 0), ^{
-    NSURL *writeURL = [dropDestination URLByAppendingPathComponent:filename];
-      // Create unique filename if already present
-    [fileData writeToURL:writeURL atomically:YES];
-  });
-  return @[filename];
-}
- */
 
 @end

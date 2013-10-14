@@ -166,7 +166,7 @@ NSString *const _MPTAbleSecurCellView = @"PasswordCell";
   NSSortDescriptor *userNameSortDescriptor = [NSSortDescriptor sortDescriptorWithKey:@"username" ascending:YES selector:@selector(compare:)];
   NSSortDescriptor *urlSortDescriptor = [NSSortDescriptor sortDescriptorWithKey:@"url" ascending:YES selector:@selector(compare:)];
   NSSortDescriptor *groupnameSortDescriptor = [NSSortDescriptor sortDescriptorWithKey:@"parent.name" ascending:YES selector:@selector(compare:)];
-  NSSortDescriptor *dateSortDescriptor = [NSSortDescriptor sortDescriptorWithKey:@"lastModificationTime" ascending:YES selector:@selector(compare:)];
+  NSSortDescriptor *dateSortDescriptor = [NSSortDescriptor sortDescriptorWithKey:@"timeInfo.lastModificationTime" ascending:YES selector:@selector(compare:)];
   
   [titleColumn setSortDescriptorPrototype:titleColumSortDescriptor];
   [userNameColumn setSortDescriptorPrototype:userNameSortDescriptor];

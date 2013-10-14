@@ -14,6 +14,7 @@
 #import "MPSettingsHelper.h"
 #import "MPNumericalInputFormatter.h"
 
+#import "KPKXmlFormat.h"
 #import "KPKGroup.h"
 #import "KPKTree.h"
 #import "KPKMetaData.h"
@@ -66,9 +67,19 @@
   KPKMetaData *metaData = _document.tree.metaData;
   metaData.databaseDescription = [self.databaseDescriptionTextView string];
   metaData.databaseName = [self.databaseNameTextField stringValue];
-  
-  /* Display */
-  
+
+  NSInteger compressionIndex = [self.databaseCompressionPopupButton indexOfSelectedItem];
+  if(compressionIndex >= KPKCompressionNone && compressionIndex < KPKCompressionCount) {
+    metaData.compressionAlgorithm = compressionIndex;
+  }
+  NSColor *databaseColor = [self.databaseColorColorWell color];
+  if([databaseColor isEqual:[NSColor clearColor]]) {
+    metaData.color = nil;
+  }
+  else {
+    metaData.color = databaseColor;
+  }
+    
   /* Advanced */
   metaData.recycleBinEnabled = self.trashEnabled;
   NSMenuItem *trashMenuItem = [self.selectRecycleBinGroupPopUpButton selectedItem];
@@ -122,7 +133,7 @@
   }
   /* Update all stuff that might have changed */
   KPKMetaData *metaData = _document.tree.metaData;
-  [self _setupDatabase:metaData];
+  [self _setupDatabaseTab:metaData];
   [self _setupProtectionTab:metaData];
   [self _setupAdvancedTab:_document.tree];
   self.isDirty = NO;
@@ -154,9 +165,12 @@
 }
 
 #pragma mark Private Helper
-- (void)_setupDatabase:(KPKMetaData *)metaData {
+- (void)_setupDatabaseTab:(KPKMetaData *)metaData {
   [self.databaseNameTextField setStringValue:metaData.databaseName];
   [self.databaseDescriptionTextView setString:metaData.databaseDescription];
+  [self.databaseCompressionPopupButton selectItemAtIndex:metaData.compressionAlgorithm];
+  NSColor *databaseColor = metaData.color ? metaData.color : [NSColor clearColor];
+  [self.databaseColorColorWell setColor:databaseColor];
 }
 
 - (void)_setupProtectionTab:(KPKMetaData *)metaData {
