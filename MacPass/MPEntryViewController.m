@@ -149,6 +149,9 @@ NSString *const _MPTAbleSecurCellView = @"PasswordCell";
   NSTableColumn *attachmentsColumn = [[NSTableColumn alloc] initWithIdentifier:MPEntryTableAttachmentColumnIdentifier];
   NSTableColumn *notesColumn = [[NSTableColumn alloc] initWithIdentifier:MPEntryTableNotesColumnIdentifier];
   NSTableColumn *modifiedColumn = [[NSTableColumn alloc] initWithIdentifier:MPEntryTableModfiedColumnIdentifier];
+  [notesColumn setMinWidth:40.0];
+  [attachmentsColumn setMinWidth:40.0];
+  [modifiedColumn setMinWidth:40.0];
   [self.entryTable addTableColumn:notesColumn];
   [self.entryTable addTableColumn:attachmentsColumn];
   [self.entryTable addTableColumn:modifiedColumn];
@@ -232,7 +235,7 @@ NSString *const _MPTAbleSecurCellView = @"PasswordCell";
       [[view imageView] setImage:entry.iconImage];
     }
   }
-  else if( isPasswordColum ) {
+  else if(isPasswordColum) {
     view = [tableView makeViewWithIdentifier:_MPTAbleSecurCellView owner:self];
     NSDictionary *options = @{ NSValueTransformerBindingOption : [NSValueTransformer valueTransformerForName:MPStringLengthValueTransformerName] };
     [[view textField] bind:NSValueBinding toObject:entry withKeyPath:@"password" options:options];
@@ -242,18 +245,17 @@ NSString *const _MPTAbleSecurCellView = @"PasswordCell";
     if(isURLColumn) {
       [[view textField] bind:NSValueBinding toObject:entry withKeyPath:@"url" options:nil];
     }
-    else if( isUsernameColumn) {
+    else if(isUsernameColumn) {
       [[view textField] bind:NSValueBinding toObject:entry withKeyPath:@"username" options:nil];
     }
-    else if( isNotesColumn ) {
+    else if(isNotesColumn) {
       NSDictionary *options = @{ NSValueTransformerNameBindingOption : MPStripLineBreaksTransformerName };
       [[view textField] bind:NSValueBinding toObject:entry withKeyPath:@"notes" options:options];
     }
-    else if( isAttachmentColumn ) {
-      [[view textField] setStringValue:@""];
-      //[[view textField] bind:NSValueBinding toObject:entry withKeyPath:@"countOfBinaries" options:nil];
+    else if(isAttachmentColumn) {
+      [[view textField] bind:NSValueBinding toObject:entry withKeyPath:@"binaries.@count" options:nil];
     }
-    else if( isModifedColumn ) {
+    else if(isModifedColumn) {
       NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
       [formatter setDateStyle:NSDateFormatterMediumStyle];
       [formatter setTimeStyle:NSDateFormatterMediumStyle];
