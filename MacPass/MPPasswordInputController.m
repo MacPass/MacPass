@@ -67,9 +67,6 @@
                                error:&error]) {
       [self _showError:error];
     }
-    else {
-      [windowController showEntries];
-    }
   }
 }
 

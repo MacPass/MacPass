@@ -12,6 +12,9 @@
 APPKIT_EXTERN NSString *const MPDocumentDidAddGroupNotification;
 APPKIT_EXTERN NSString *const MPDocumentDidRevertNotifiation;
 
+APPKIT_EXTERN NSString *const MPDocumentDidLockDatabaseNotification;
+APPKIT_EXTERN NSString *const MPDocumentDidUnlockDatabaseNotification;
+
 APPKIT_EXTERN NSString *const MPDocumentEntryKey;
 APPKIT_EXTERN NSString *const MPDocumentGroupKey;
 

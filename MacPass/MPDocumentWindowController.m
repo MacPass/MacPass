@@ -79,6 +79,7 @@ typedef NS_ENUM(NSUInteger, MPAlertContext) {
   
   
   [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(_didRevertDocument:) name:MPDocumentDidRevertNotifiation object:[self document]];
+  [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(showEntries) name:MPDocumentDidUnlockDatabaseNotification object:[self document]];
   
   [_entryViewController setupNotifications:self];
   [_inspectorViewController setupNotifications:self];

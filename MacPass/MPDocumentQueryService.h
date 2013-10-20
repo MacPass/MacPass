@@ -9,11 +9,14 @@
 #import <Foundation/Foundation.h>
 
 @class KPKEntry;
-
+@class MPDocument;
 /**
  *  Service to querey  for entries
  */
 @interface MPDocumentQueryService : NSObject
+
+@property (readonly, weak) MPDocument *queryDocument;
+@property (readonly, weak) KPKEntry *configEntry;
 
 + (MPDocumentQueryService *)sharedService;
 

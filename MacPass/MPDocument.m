@@ -29,6 +29,9 @@
 NSString *const MPDocumentDidAddGroupNotification         = @"com.hicknhack.macpass.MPDocumentDidAddGroupNotification";
 NSString *const MPDocumentDidRevertNotifiation            = @"com.hicknhack.macpass.MPDocumentDidRevertNotifiation";
 
+NSString *const MPDocumentDidLockDatabaseNotification     = @"com.hicknhack.macpass.MPDocumentDidLockDatabaseNotification";
+NSString *const MPDocumentDidUnlockDatabaseNotification   = @"com.hicknhack.macpass.MPDocumentDidUnlockDatabaseNotification";
+
 NSString *const MPDocumentEntryKey                        = @"MPDocumentEntryKey";
 NSString *const MPDocumentGroupKey                        = @"MPDocumentGroupKey";
 
@@ -220,7 +223,11 @@ typedef NS_ENUM(NSUInteger, MPAlertType) {
   
   self.tree = [[KPKTree alloc] initWithData:_encryptedData password:passwordData error:error];
   
-  return (self.tree != nil);
+  BOOL isUnlocked = (nil != self.tree);
+  if(isUnlocked) {
+    [[NSNotificationCenter defaultCenter] postNotificationName:MPDocumentDidUnlockDatabaseNotification object:self];
+  }
+  return isUnlocked;
 }
 
 - (void)lockDatabase:(id)sender {
