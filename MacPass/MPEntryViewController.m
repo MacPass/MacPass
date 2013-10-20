@@ -231,7 +231,7 @@ NSString *const _MPTAbleSecurCellView = @"PasswordCell";
     }
     else {
       assert(entry.parent);
-      [[view textField] bind:NSValueBinding toObject:entry.parent withKeyPath:@"parent.name" options:nil];
+      [[view textField] bind:NSValueBinding toObject:entry.parent withKeyPath:@"name" options:nil];
       [[view imageView] setImage:entry.iconImage];
     }
   }
