@@ -8,19 +8,21 @@
 
 #import <Foundation/Foundation.h>
 
-@protocol MPServerRequestHandler;
+@protocol MPServerRequestHandling;
 
-//FOUNDATION_EXPORT NSString *const MPRequestTypeAssociate;
-//FOUNDATION_EXPORT NSString *const MPRequestTypeTestAssociate;
 FOUNDATION_EXPORT NSString *const MPRequestTypeGetLogins;
 FOUNDATION_EXPORT NSString *const MPRequestTypeGetLoginsCount;
 FOUNDATION_EXPORT NSString *const MPRequestTypeGetAllLogins;
 FOUNDATION_EXPORT NSString *const MPRequestTypeSetLogin;
 FOUNDATION_EXPORT NSString *const MPRequestTypeGeneratePassword;
 
+/**
+ *  Servive class to be called for getting specific request handler for indifidual reuqest
+ *  The service is identified by a string
+ */
 @interface MPRequestHandlerService : NSObject
 
-+ (id<MPServerRequestHandler>)requestHandler:(NSString *)identifier;
++ (id<MPServerRequestHandling>)requestHandler:(NSString *)identifier;
 
 + (BOOL)validKeyProposal;
 

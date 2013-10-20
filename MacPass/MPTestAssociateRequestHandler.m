@@ -16,11 +16,14 @@
 }
 
 - (void)respondTo:(NSDictionary *)data {
-  MPDocumentQueryService *service = [MPDocumentQueryService defaultService];
+  MPDocumentQueryService *service = [MPDocumentQueryService sharedService];
   if(![service configurationEntry]) {
     return; //Nothing to do
   }
-  //TestRequestedData
+  /*
+   Test request data
+   store entry db as main db?
+   */
 }
 
 @end

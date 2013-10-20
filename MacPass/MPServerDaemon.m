@@ -11,7 +11,7 @@
 #import "HTTPServer.h"
 #import "MPIconHelper.h"
 #import "MPConnection.h"
-#import "MPServerRequestHandler.h"
+#import "MPServerRequestHandling.h"
 
 @interface MPServerDaemon () {
 @private

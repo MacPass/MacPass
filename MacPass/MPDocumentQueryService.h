@@ -10,9 +10,12 @@
 
 @class KPKEntry;
 
+/**
+ *  Service to querey  for entries
+ */
 @interface MPDocumentQueryService : NSObject
 
-+ (MPDocumentQueryService *)defaultService;
++ (MPDocumentQueryService *)sharedService;
 
 - (KPKEntry *)configurationEntry;
 - (KPKEntry *)createConfigurationEntry;

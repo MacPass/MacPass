@@ -7,8 +7,8 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "MPServerRequestHandler.h"
+#import "MPServerRequestHandling.h"
 
-@interface MPTestAssociateRequestHandler : NSObject <MPServerRequestHandler>
+@interface MPTestAssociateRequestHandler : NSObject <MPServerRequestHandling>
 
 @end

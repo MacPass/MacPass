@@ -9,7 +9,7 @@
 #import "MPConnection.h"
 #import "HTTPMessage.h"
 #import "MPRequestHandlerService.h"
-#import "MPServerRequestHandler.h"
+#import "MPServerRequestHandling.h"
 
 
 NSString *const MPRequestTypeKey = @"RequestType";
@@ -67,7 +67,7 @@ NSString *const MPRequestTypeKey = @"RequestType";
   if(!requestType) {
     NSLog(@"Malformed Request. Missing request type");
   }
-  id<MPServerRequestHandler> handler = [MPRequestHandlerService requestHandler:requestType];
+  id<MPServerRequestHandling> handler = [MPRequestHandlerService requestHandler:requestType];
   [handler respondTo:aRequest];
 }
 @end

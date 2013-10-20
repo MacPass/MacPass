@@ -7,12 +7,10 @@
 //
 
 #import "MPRequestHandlerService.h"
-#import "MPServerRequestHandler.h"
+#import "MPServerRequestHandling.h"
 #import "MPAssociateRequestHandler.h"
 #import "MPTestAssociateRequestHandler.h"
 
-//NSString *const MPRequestTypeAssociate        = @"associate";
-//NSString *const MPRequestTypeTestAssociate    = @"test-associate";
 NSString *const MPRequestTypeGetLogins        = @"get-logins";
 NSString *const MPRequestTypeGetLoginsCount   = @"get-logins-count";
 NSString *const MPRequestTypeGetAllLogins     = @"get-all-logins";
@@ -21,11 +19,11 @@ NSString *const MPRequestTypeGeneratePassword = @"generate-password";
 
 @implementation MPRequestHandlerService
 
-+ (id<MPServerRequestHandler>)requestHandler:(NSString *)identifier {
-  return [self requestHander][identifier];
++ (id<MPServerRequestHandling>)requestHandler:(NSString *)identifier {
+  return [self requestHandler][identifier];
 }
 
-+ (NSDictionary *)requestHander {
++ (NSDictionary *)requestHandler {
   static NSDictionary *requestHandler;
   static dispatch_once_t onceToken;
   dispatch_once(&onceToken, ^{

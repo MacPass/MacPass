@@ -727,7 +727,7 @@
 		4CF62B85179385D700B660B6 /* KPKAttribute.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KPKAttribute.m; sourceTree = "<group>"; };
 		4CF6C70F176F4533007A811D /* MPStringLengthValueTransformer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MPStringLengthValueTransformer.h; sourceTree = "<group>"; };
 		4CF6C710176F4533007A811D /* MPStringLengthValueTransformer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MPStringLengthValueTransformer.m; sourceTree = "<group>"; };
-		4CF6C715176F5183007A811D /* MPServerRequestHandler.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MPServerRequestHandler.h; sourceTree = "<group>"; };
+		4CF6C715176F5183007A811D /* MPServerRequestHandling.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MPServerRequestHandling.h; sourceTree = "<group>"; };
 		4CF6C716176F5234007A811D /* MPAssociateRequestHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MPAssociateRequestHandler.h; sourceTree = "<group>"; };
 		4CF6C717176F5234007A811D /* MPAssociateRequestHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MPAssociateRequestHandler.m; sourceTree = "<group>"; };
 		4CF78055176E5CFD0032EE71 /* MPConnection.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MPConnection.h; sourceTree = "<group>"; };
@@ -1323,7 +1323,7 @@
 		4CA0B30E15BCB70200654E32 /* Protocolls */ = {
 			isa = PBXGroup;
 			children = (
-				4CF6C715176F5183007A811D /* MPServerRequestHandler.h */,
+				4CF6C715176F5183007A811D /* MPServerRequestHandling.h */,
 				4CA0B30D15BCB6FD00654E32 /* MPSettingsTab.h */,
 			);
 			name = Protocolls;

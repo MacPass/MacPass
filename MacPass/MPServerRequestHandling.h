@@ -8,7 +8,7 @@
 
 #import <Foundation/Foundation.h>
 
-@protocol MPServerRequestHandler <NSObject>
+@protocol MPServerRequestHandling <NSObject>
 
 @required
 - (NSString *)identifier;
