@@ -242,28 +242,36 @@ NSString *const _MPTAbleSecurCellView = @"PasswordCell";
   }
   else  {
     view = [tableView makeViewWithIdentifier:_MPTableStringCellView owner:self];
-    if(isURLColumn) {
-      [[view textField] bind:NSValueBinding toObject:entry withKeyPath:@"url" options:nil];
+    NSTextField *textField = [view textField];
+    if(!isModifedColumn && !isNotesColumn) {
+      /* clean up old formatter that might be left */
+      NSLog(@"Cleaing formatter. %@", [textField formatter]);
+      [textField setFormatter:nil];
+    }
+    if(isModifedColumn) {
+      if(![[view textField] formatter]) {
+        NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
+        [formatter setDateStyle:NSDateFormatterMediumStyle];
+        [formatter setTimeStyle:NSDateFormatterMediumStyle];
+        [textField setFormatter:formatter];
+      }
+      [textField bind:NSValueBinding toObject:entry.timeInfo withKeyPath:@"lastModificationTime" options:nil];
+      return view;
+    }
+    else if(isURLColumn) {
+      [textField bind:NSValueBinding toObject:entry withKeyPath:@"url" options:nil];
     }
     else if(isUsernameColumn) {
-      [[view textField] bind:NSValueBinding toObject:entry withKeyPath:@"username" options:nil];
+      [textField bind:NSValueBinding toObject:entry withKeyPath:@"username" options:nil];
     }
     else if(isNotesColumn) {
       NSDictionary *options = @{ NSValueTransformerNameBindingOption : MPStripLineBreaksTransformerName };
-      [[view textField] bind:NSValueBinding toObject:entry withKeyPath:@"notes" options:options];
+      [textField bind:NSValueBinding toObject:entry withKeyPath:@"notes" options:options];
     }
     else if(isAttachmentColumn) {
-      [[view textField] bind:NSValueBinding toObject:entry withKeyPath:@"binaries.@count" options:nil];
-    }
-    else if(isModifedColumn) {
-      NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
-      [formatter setDateStyle:NSDateFormatterMediumStyle];
-      [formatter setTimeStyle:NSDateFormatterMediumStyle];
-      [[view textField] setFormatter:formatter];
-      [[view textField] bind:NSValueBinding toObject:entry.timeInfo withKeyPath:@"lastModificationTime" options:nil];
+      [textField bind:NSValueBinding toObject:entry withKeyPath:@"binaries.@count" options:nil];
     }
   }
-  
   return view;
 }
 
