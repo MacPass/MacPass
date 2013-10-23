@@ -19,10 +19,12 @@
 @property (weak) IBOutlet NSTextField *noSelectionInfo;
 @property (weak) IBOutlet MPPopupImageView *itemImageView;
 @property (weak) IBOutlet NSTextField *itemNameTextField;
+@property (weak) IBOutlet NSButton *editButton;
 
 - (IBAction)showImagePopup:(id)sender;
 
 /* Seperate call to ensure alle registered objects are in place */
 - (void)setupNotifications:(NSWindowController *)windowController;
+- (void)prepareView;
 
 @end

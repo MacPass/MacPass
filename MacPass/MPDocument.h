@@ -18,12 +18,6 @@ APPKIT_EXTERN NSString *const MPDocumentDidUnlockDatabaseNotification;
 APPKIT_EXTERN NSString *const MPDocumentEntryKey;
 APPKIT_EXTERN NSString *const MPDocumentGroupKey;
 
-/*
- APPKIT_EXTERN NSString *const MPDocumentDidChangeCurrentItemNotification;
-APPKIT_EXTERN NSString *const MPDocumentDidChangeCurrentGroupNotication;
-APPKIT_EXTERN NSString *const MPDocumnetDidChangeCurrentEntryNotification;
-*/
-
 @class KPKGroup;
 @class KPKEntry;
 @class KPKTree;
@@ -32,7 +26,6 @@ APPKIT_EXTERN NSString *const MPDocumnetDidChangeCurrentEntryNotification;
 
 @interface MPDocument : NSDocument
 
-/* true, if password and/or keyfile are set */
 @property (assign, readonly) BOOL hasPasswordOrKey;
 @property (nonatomic, readonly, assign) BOOL encrypted;
 
@@ -63,21 +56,32 @@ APPKIT_EXTERN NSString *const MPDocumnetDidChangeCurrentEntryNotification;
 - (BOOL)unlockWithPassword:(NSString *)password keyFileURL:(NSURL *)keyFileURL error:(NSError *__autoreleasing*)error;
 
 #pragma mark Data Lookup
-/*
- Returns the entry for the given UUID, nil if none was found
+/**
+ *  Finds an entry with the given UUID. If none is found, nil is returned
+ *  @param uuid The UUID for the searched Entry
+ *  @return enty, matching the UUID, nil if none was found
  */
 - (KPKEntry *)findEntry:(NSUUID *)uuid;
+/**
+ *  Finds the group with the given UUID in this document. If none if found, nil is returned
+ *  @param uuid The UUID of the searched group
+ *  @return matching group, nil if none was found
+ */
 - (KPKGroup *)findGroup:(NSUUID *)uuid;
 
 - (void)useGroupAsTrash:(KPKGroup *)group;
 - (void)useGroupAsTemplate:(KPKGroup *)group;
-
+/**
+ *  Determines, whether the given item is inside the trash.
+ *  The trash group itself is not considered as trashed.
+ *  Hence when sending this message with the trash group as item, NO is returned
+ *  @param item Item to test if trashed or not
+ *  @return YES, if the item is inside the trash, NO otherwise (and if item is trash group)
+ */
 - (BOOL)isItemTrashed:(id)item;
 
-#pragma mark Export
 - (void)writeXMLToURL:(NSURL *)url;
 
-#pragma mark Undo Data Manipulation
 /* Undoable Intiialization of elements */
 - (KPKGroup *)createGroup:(KPKGroup *)parent;
 - (KPKEntry *)createEntry:(KPKGroup *)parent;

@@ -239,7 +239,6 @@ typedef NS_ENUM(NSUInteger, MPAlertType) {
 }
 
 #pragma mark Properties
-
 - (KPKVersion)versionForFileType {
   return [[self class] versionForFileType:[self fileType]];
 }

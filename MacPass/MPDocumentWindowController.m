@@ -406,6 +406,8 @@ typedef NS_ENUM(NSUInteger, MPAlertContext) {
   [_entryViewController updateResponderChain];
   [_inspectorViewController updateResponderChain];
   [_outlineViewController updateResponderChain];
+  /* Custom setup after being added to window */
+  [_inspectorViewController prepareView];
   [_outlineViewController showOutline];
 }
 

@@ -16,6 +16,8 @@
 
 #import "NSDate+Humanized.h"
 
+#import "KPKTree.h"
+#import "KPKMetaData.h"
 
 #import "HNHGradientView.h"
 #import "MPPopupImageView.h"
@@ -35,6 +37,8 @@ typedef NS_ENUM(NSUInteger, MPContentTab) {
 @property (nonatomic, strong) NSDate *modificationDate;
 @property (nonatomic, strong) NSDate *creationDate;
 
+@property (nonatomic, assign) BOOL showEditButton;
+
 @property (nonatomic, assign) NSUInteger activeTab;
 @property (weak) IBOutlet NSTabView *tabView;
 
@@ -52,12 +56,28 @@ typedef NS_ENUM(NSUInteger, MPContentTab) {
     _activeTab = MPEmptyTab;
     _entryViewController = [[MPEntryInspectorViewController alloc] init];
     _groupViewController = [[MPGroupInspectorViewController alloc] init];
+    _showEditButton = NO;
   }
   return self;
 }
 
 - (void)dealloc {
   [[NSNotificationCenter defaultCenter] removeObserver:self];
+}
+
+#pragma mark Properties
+- (void)setActiveTab:(NSUInteger)activeTab {
+  if(_activeTab != activeTab) {
+    _activeTab = activeTab;
+    self.showEditButton = [[[self windowController] document] tree].metaData.isHistoryEnabled;
+  }
+}
+
+- (void)setShowEditButton:(BOOL)showEditButton {
+  showEditButton &= (self.activeTab == MPEntryTab);
+  if(_showEditButton != showEditButton) {
+    _showEditButton = showEditButton;
+  }
 }
 
 - (void)didLoadView {
@@ -94,7 +114,6 @@ typedef NS_ENUM(NSUInteger, MPContentTab) {
                                            selector:@selector(_didChangeCurrentItem:)
                                                name:MPCurrentItemChangedNotification
                                              object:document];
-  
   [_entryViewController setupBindings:document];
   [_groupViewController setupBindings:document];
   
@@ -145,9 +164,14 @@ typedef NS_ENUM(NSUInteger, MPContentTab) {
   _popover = nil;
 }
 
-
 #pragma mark -
-#pragma mark Item Binding
+#pragma mark Bindings
+- (void)prepareView {
+  MPDocument *document = [[self windowController] document];
+  [self bind:@"showEditButton" toObject:document.tree.metaData withKeyPath:@"isHistoryEnabled" options:nil];
+  NSDictionary *bindingOptions = @{ NSValueTransformerNameBindingOption : NSNegateBooleanTransformerName };
+  [self.editButton bind:NSHiddenBinding toObject:self withKeyPath:@"showEditButton" options:bindingOptions];
+}
 
 - (void)_updateItemBindings:(id)item {
   if(!item) {
@@ -177,6 +201,7 @@ typedef NS_ENUM(NSUInteger, MPContentTab) {
 - (void)_didChangeCurrentItem:(NSNotification *)notification {
   MPDocument *document = [notification object];
   if(!document.selectedItem) {
+    /* show emty tab and hide edit button */
     self.activeTab = MPEmptyTab;
   }
   else {
@@ -191,5 +216,4 @@ typedef NS_ENUM(NSUInteger, MPContentTab) {
   }
   [self _updateItemBindings:document.selectedItem];
 }
-
 @end
