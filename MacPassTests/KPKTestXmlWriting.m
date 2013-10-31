@@ -7,7 +7,7 @@
 //
 
 #import "KPKTestXmlWriting.h"
-#import "KPKPassword.h"
+#import "KPKCompositeKey.h"
 #import "KPKTree+Serializing.h"
 
 @implementation KPKTestXmlWriting
@@ -15,7 +15,7 @@
 - (void)testXmlWriting {
   NSData *data = [self _loadTestDataBase:@"CustomIcon_Password_1234" extension:@"kdbx"];
   NSError *error;
-  KPKPassword *password = [[KPKPassword alloc] initWithPassword:@"1234" key:nil];
+  KPKCompositeKey *password = [[KPKCompositeKey alloc] initWithPassword:@"1234" key:nil];
   KPKTree *tree = [[KPKTree alloc] initWithData:data password:password error:&error];
   error = nil;
   NSData *saveData = [tree encryptWithPassword:password forVersion:KPKXmlVersion error:&error];

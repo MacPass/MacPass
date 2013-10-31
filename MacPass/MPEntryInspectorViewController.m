@@ -79,13 +79,15 @@ typedef NS_ENUM(NSUInteger, MPEntryTab) {
   [scrollView setTranslatesAutoresizingMaskIntoConstraints:NO];
   NSView *clipView = [scrollView contentView];
   
-  NSView *tabView = [[self.tabView tabViewItemAtIndex:MPEntryTabGeneral] view];
+  NSTabViewItem *tabViewItem = [self.tabView tabViewItemAtIndex:MPEntryTabGeneral];
+  NSView *tabView = [tabViewItem view];
   /*
    DO NEVER SET setTranslatesAutoresizingMaskIntoConstraints on NSTabViewItem's view
    [tabView setTranslatesAutoresizingMaskIntoConstraints:NO];
    */
   [scrollView setDocumentView:self.generalView];
   [tabView addSubview:scrollView];
+  [tabViewItem setInitialFirstResponder:scrollView];
   
   NSDictionary *views = NSDictionaryOfVariableBindings(_generalView, scrollView);
   [[scrollView superview] addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|[scrollView]|"

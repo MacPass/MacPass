@@ -14,6 +14,7 @@
 #import "NSData+Keyfile.h"
 
 #import "KPKTree.h"
+#import "KPKCompositeKey.h"
 
 @interface MPPasswordEditWindowController ()
 
@@ -47,9 +48,10 @@
     return;
   }
   self.showPassword = NO;
-  [self.passwordTextField setStringValue:_currentDocument.password ? _currentDocument.password : @""];
-  [self.passwordRepeatTextField setStringValue:[self.passwordTextField stringValue]];
-  self.keyURL = _currentDocument.key;
+  // TODO: fix initial view for password edit
+  //[self.passwordTextField setStringValue:_currentDocument.password ? _currentDocument.password : @""];
+  //[self.passwordRepeatTextField setStringValue:[self.passwordTextField stringValue]];
+  //self.keyURL = _currentDocument.key;
   
   NSDictionary *negateOption = @{ NSValueTransformerNameBindingOption : NSNegateBooleanTransformerName };
   [self.passwordTextField bind:@"showPassword" toObject:self withKeyPath:@"showPassword" options:nil];
@@ -82,8 +84,7 @@
 
 #pragma mark Actions
 - (IBAction)save:(id)sender {
-  _currentDocument.password = [self.passwordTextField stringValue];
-  _currentDocument.key = [self.keyfilePathControl URL];
+  _currentDocument.compositeKey = [[KPKCompositeKey alloc] initWithPassword:[self.passwordTextField stringValue] key:[self.keyfilePathControl URL]];
   [self dismissSheet:NSRunStoppedResponse];
   if(self.delegate && [self.delegate respondsToSelector:@selector(didFinishPasswordEditing:)]) {
     [self.delegate didFinishPasswordEditing:YES];

@@ -7,7 +7,7 @@
 //
 
 #import <SenTestingKit/SenTestingKit.h>
-@class KPKPassword;
+@class KPKCompositeKey;
 
 @interface KPKTestLegacyWriting : SenTestCase
 

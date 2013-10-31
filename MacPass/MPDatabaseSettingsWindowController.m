@@ -19,7 +19,7 @@
 #import "KPKTree.h"
 #import "KPKMetaData.h"
 #import "KPKNode+IconImage.h"
-#import "KPKPassword.h"
+#import "KPKCompositeKey.h"
 
 #import "HNHRoundedTextField.h"
 #import "HNHRoundedSecureTextField.h"
@@ -121,7 +121,7 @@
 
 - (IBAction)benchmarkRounds:(id)sender {
   [self.benchmarkButton setEnabled:NO];
-  [KPKPassword benchmarkTransformationRounds:1 completionHandler:^(NSUInteger rounds) {
+  [KPKCompositeKey benchmarkTransformationRounds:1 completionHandler:^(NSUInteger rounds) {
     [self.encryptionRoundsTextField setIntegerValue:rounds];
     [self.benchmarkButton setEnabled:YES];
   }];

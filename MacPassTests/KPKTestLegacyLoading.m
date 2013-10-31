@@ -9,7 +9,7 @@
 #import "KPKTestLegacyLoading.h"
 
 #import "KPKTree+Serializing.h"
-#import "KPKPassword.h"
+#import "KPKCompositeKey.h"
 #import "KPKMetaData.h"
 #import "KPKIcon.h"
 
@@ -18,14 +18,14 @@
 @implementation KPKTestLegacyLoading
 
 - (void)testValidFile {
-  KPKPassword *password = [[KPKPassword alloc] initWithPassword:@"1234" key:nil];
+  KPKCompositeKey *password = [[KPKCompositeKey alloc] initWithPassword:@"1234" key:nil];
   NSData *data = [self _loadTestDataBase:@"Test_Password_1234" extension:@"kdb"];
   KPKTree *tree = [[KPKTree alloc] initWithData:data password:password error:NULL];
   STAssertNotNil(tree, @"Loading should result in a tree object");
 }
 
 - (void)testWrongPassword {
-  KPKPassword *password = [[KPKPassword alloc] initWithPassword:@"wrongPassword" key:nil];
+  KPKCompositeKey *password = [[KPKCompositeKey alloc] initWithPassword:@"wrongPassword" key:nil];
   NSData *data = [self _loadTestDataBase:@"KeePass1_native_test" extension:@"kdb"];
   NSError *error;
   KPKTree *tree = [[KPKTree alloc] initWithData:data password:password error:&error];
@@ -47,7 +47,7 @@
 
 - (void)testMetaParsing {
   NSData *data = [self _loadTestDataBase:@"KDB1_KeePassX_test" extension:@"kdb"];
-  KPKPassword *password = [[KPKPassword alloc] initWithPassword:@"test" key:nil];
+  KPKCompositeKey *password = [[KPKCompositeKey alloc] initWithPassword:@"test" key:nil];
   KPKTree *tree = [[KPKTree alloc] initWithData:data password:password error:NULL];
   STAssertNotNil(tree, @"Tree shoudl be loaded" );
   

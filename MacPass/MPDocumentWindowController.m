@@ -23,6 +23,7 @@
 
 #import "MPContextToolbarButton.h"
 #import "KPKTree.h"
+#import "KPKCompositeKey.h"
 
 typedef NS_ENUM(NSUInteger, MPAlertContext) {
   MPAlertLossySaveWarning,
@@ -179,7 +180,7 @@ typedef NS_ENUM(NSUInteger, MPAlertContext) {
       return;
     }
   }
-  else if(!document.hasPasswordOrKey) {
+  else if(!document.compositeKey) {
     _saveAfterPasswordChange = YES;
     [self editPassword:sender];
     return;
@@ -237,7 +238,7 @@ typedef NS_ENUM(NSUInteger, MPAlertContext) {
       return valid;
     }
     case MPActionLock:
-      return document.hasPasswordOrKey;
+      return document.compositeKey.hasPasswordOrKeyFile;
       
     case MPActionToggleInspector:
       return (nil != [_splitView superview]);
@@ -266,7 +267,7 @@ typedef NS_ENUM(NSUInteger, MPAlertContext) {
       return valid;
     }
     case MPActionLock:
-      return document.hasPasswordOrKey;
+      return document.compositeKey.hasPasswordOrKeyFile;
       
     case MPActionToggleInspector:
       return (nil != [_splitView superview]);
@@ -309,7 +310,7 @@ typedef NS_ENUM(NSUInteger, MPAlertContext) {
 
 - (IBAction)lock:(id)sender {
   MPDocument *document = [self document];
-  if(!document.hasPasswordOrKey) {
+  if(!document.compositeKey.hasPasswordOrKeyFile) {
     return; // Document needs a password/keyfile to be lockable
   }
   if(document.encrypted) {

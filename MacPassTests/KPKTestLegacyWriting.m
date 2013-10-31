@@ -8,7 +8,7 @@
 
 #import "KPKTestLegacyWriting.h"
 
-#import "KPKPassword.h"
+#import "KPKCompositeKey.h"
 #import "KPKTree+Serializing.h"
 
 @implementation KPKTestLegacyWriting
@@ -16,7 +16,7 @@
 - (void)testWriting {
   NSError __autoreleasing *error = nil;
   NSURL *dbUrl = [self _urlForFile:@"CustomIcon_Password_1234" extension:@"kdbx"];
-  KPKPassword *password = [[KPKPassword alloc] initWithPassword:@"1234" key:nil];
+  KPKCompositeKey *password = [[KPKCompositeKey alloc] initWithPassword:@"1234" key:nil];
   KPKTree *tree = [[KPKTree alloc] initWithContentsOfUrl:dbUrl password:password error:&error];
   STAssertNotNil(tree, @"Tree should be created");
   error = nil;

@@ -22,7 +22,7 @@
 #import "KPKGroup.h"
 #import "KPKTree.h"
 #import "KPKTree+Serializing.h"
-#import "KPKPassword.h"
+#import "KPKCompositeKey.h"
 #import "KPKMetaData.h"
 #import "KPKAttribute.h"
 
@@ -51,7 +51,6 @@ typedef NS_ENUM(NSUInteger, MPAlertType) {
 @property (strong, nonatomic) KPKTree *tree;
 @property (weak, nonatomic) KPKGroup *root;
 
-@property (assign, nonatomic) BOOL hasPasswordOrKey;
 @property (assign) BOOL readOnly;
 
 @property (strong) NSURL *lockFileURL;
@@ -97,7 +96,6 @@ typedef NS_ENUM(NSUInteger, MPAlertType) {
   if(self) {
     _encryptedData = nil;
     _didLockFile = NO;
-    _hasPasswordOrKey = NO;
     _readOnly = NO;
     self.tree = [KPKTree templateTree];
   }
@@ -119,10 +117,9 @@ typedef NS_ENUM(NSUInteger, MPAlertType) {
 }
 
 - (BOOL)writeToURL:(NSURL *)url ofType:(NSString *)typeName error:(NSError **)outError {
-  if(!self.hasPasswordOrKey) {
+  if(!self.compositeKey.hasPasswordOrKeyFile) {
     return NO; // No password or key. No save possible
   }
-  KPKPassword *password = [[KPKPassword alloc] initWithPassword:self.password key:self.key];
   NSString *fileType = [self fileTypeFromLastRunSavePanel];
   KPKVersion version = [[self class] versionForFileType:fileType];
   if(version == KPKUnknownVersion) {
@@ -131,7 +128,7 @@ typedef NS_ENUM(NSUInteger, MPAlertType) {
     }
     return NO;
   }
-  NSData *treeData = [self.tree encryptWithPassword:password forVersion:version error:outError];
+  NSData *treeData = [self.tree encryptWithPassword:self.compositeKey forVersion:version error:outError];
   if(![treeData writeToURL:url options:0 error:outError]) {
     NSLog(@"%@", [*outError localizedDescription]);
     return NO;
@@ -216,25 +213,23 @@ typedef NS_ENUM(NSUInteger, MPAlertType) {
 #pragma mark Lock/Unlock/Decrypt
 
 - (BOOL)unlockWithPassword:(NSString *)password keyFileURL:(NSURL *)keyFileURL error:(NSError *__autoreleasing*)error{
-  KPKPassword *passwordData = [[KPKPassword alloc] initWithPassword:password key:keyFileURL];
-  
-  self.key = keyFileURL;
-  self.password = [password length] > 0 ? password : nil;
-  
-  self.tree = [[KPKTree alloc] initWithData:_encryptedData password:passwordData error:error];
+  self.compositeKey = [[KPKCompositeKey alloc] initWithPassword:password key:keyFileURL];
+  self.tree = [[KPKTree alloc] initWithData:_encryptedData password:self.compositeKey error:error];
   
   BOOL isUnlocked = (nil != self.tree);
   if(isUnlocked) {
     [[NSNotificationCenter defaultCenter] postNotificationName:MPDocumentDidUnlockDatabaseNotification object:self];
   }
+  else {
+    self.compositeKey = nil; // clear the key?
+  }
   return isUnlocked;
 }
 
 - (void)lockDatabase:(id)sender {
-  KPKPassword *password = [[KPKPassword alloc] initWithPassword:self.password key:self.key];
   NSError *error;
   /* Locking needs to be lossless hence just use the XML format */
-  _encryptedData = [self.tree encryptWithPassword:password forVersion:KPKXmlVersion error:&error];
+  _encryptedData = [self.tree encryptWithPassword:self.compositeKey forVersion:KPKXmlVersion error:&error];
   self.tree = nil;
 }
 
@@ -249,20 +244,6 @@ typedef NS_ENUM(NSUInteger, MPAlertType) {
 
 - (KPKGroup *)root {
   return self.tree.root;
-}
-
-- (void)setPassword:(NSString *)password {
-  if(![_password isEqualToString:password]) {
-    _password = [password copy];
-    [self _updateIsSecured];
-  }
-}
-
-- (void)setKey:(NSURL *)key {
-  if(![[_key absoluteString] isEqualToString:[key absoluteString]]) {
-    _key = key;
-    [self _updateIsSecured];
-  }
 }
 
 - (void)setSelectedGroup:(KPKGroup *)selectedGroup {
@@ -483,13 +464,6 @@ typedef NS_ENUM(NSUInteger, MPAlertType) {
   }
   
   return [super validateUserInterfaceItem:anItem];
-}
-
-#pragma mark Private
-- (void)_updateIsSecured {
-  BOOL securePassword = ([self.password length] > 0);
-  BOOL secureKey = (nil != self.key);
-  self.hasPasswordOrKey = (secureKey || securePassword);
 }
 
 - (void)_cleanupLock {

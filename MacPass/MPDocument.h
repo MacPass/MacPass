@@ -23,10 +23,10 @@ APPKIT_EXTERN NSString *const MPDocumentGroupKey;
 @class KPKTree;
 @class KPKBinary;
 @class KPKAttribute;
+@class KPKCompositeKey;
 
 @interface MPDocument : NSDocument
 
-@property (assign, readonly) BOOL hasPasswordOrKey;
 @property (nonatomic, readonly, assign) BOOL encrypted;
 
 @property (strong, readonly, nonatomic) KPKTree *tree;
@@ -34,8 +34,9 @@ APPKIT_EXTERN NSString *const MPDocumentGroupKey;
 @property (weak, readonly) KPKGroup *trash;
 @property (weak, readonly) KPKGroup *templates;
 
-@property (nonatomic, copy) NSString *password;
-@property (nonatomic, strong) NSURL *key;
+@property (nonatomic, strong) KPKCompositeKey *compositeKey;
+//@property (nonatomic, copy) NSString *password;
+//@property (nonatomic, strong) NSURL *key;
 
 @property (assign, readonly, getter = isReadOnly) BOOL readOnly;
 @property (nonatomic, readonly, assign) KPKVersion versionForFileType;

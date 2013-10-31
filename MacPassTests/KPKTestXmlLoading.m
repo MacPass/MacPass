@@ -7,7 +7,7 @@
 //
 
 #import "KPKTestXmlLoading.h"
-#import "KPKPassword.h"
+#import "KPKCompositeKey.h"
 
 #import "KPKTree+Serializing.h"
 #import "KPKEntry.h"
@@ -19,7 +19,7 @@
   NSBundle *myBundle = [NSBundle bundleForClass:[self class]];
   NSURL *url = [myBundle URLForResource:@"Test_Password_1234" withExtension:@"kdbx"];
   _data = [NSData dataWithContentsOfURL:url];
-  _password = [[KPKPassword alloc] initWithPassword:@"1234" key:nil];
+  _password = [[KPKCompositeKey alloc] initWithPassword:@"1234" key:nil];
 }
 
 - (void)tearDown {
@@ -39,7 +39,7 @@
 - (void)testAutotypeLoading {
   NSBundle *myBundle = [NSBundle bundleForClass:[self class]];
   NSURL *url = [myBundle URLForResource:@"Autotype_test" withExtension:@"kdbx"];
-  KPKPassword *password = [[KPKPassword alloc] initWithPassword:@"test" key:nil];
+  KPKCompositeKey *password = [[KPKCompositeKey alloc] initWithPassword:@"test" key:nil];
   NSError *error;
   KPKTree *tree = [[KPKTree alloc] initWithContentsOfUrl:url password:password error:&error];
   STAssertNotNil(tree, @"Tree shoud be loaded");
