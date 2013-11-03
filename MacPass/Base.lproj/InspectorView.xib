@@ -2,13 +2,13 @@
 <archive type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="8.00">
 	<data>
 		<int key="IBDocument.SystemTarget">1080</int>
-		<string key="IBDocument.SystemVersion">12F45</string>
-		<string key="IBDocument.InterfaceBuilderVersion">4510</string>
-		<string key="IBDocument.AppKitVersion">1187.40</string>
-		<string key="IBDocument.HIToolboxVersion">626.00</string>
+		<string key="IBDocument.SystemVersion">13A603</string>
+		<string key="IBDocument.InterfaceBuilderVersion">4514</string>
+		<string key="IBDocument.AppKitVersion">1265</string>
+		<string key="IBDocument.HIToolboxVersion">695.00</string>
 		<object class="NSMutableDictionary" key="IBDocument.PluginVersions">
 			<string key="NS.key.0">com.apple.InterfaceBuilder.CocoaPlugin</string>
-			<string key="NS.object.0">4510</string>
+			<string key="NS.object.0">4514</string>
 		</object>
 		<array key="IBDocument.IntegratedClassDependencies">
 			<string>IBNSLayoutConstraint</string>
@@ -48,7 +48,7 @@
 					<object class="NSTextField" id="990836775">
 						<reference key="NSNextResponder" ref="233312071"/>
 						<int key="NSvFlags">268</int>
-						<string key="NSFrame">{{57, 409}, {204, 17}}</string>
+						<string key="NSFrame">{{58, 409}, {202, 17}}</string>
 						<reference key="NSSuperview" ref="233312071"/>
 						<reference key="NSWindow"/>
 						<reference key="NSNextKeyView" ref="45251842"/>
@@ -60,7 +60,7 @@
 							<int key="NSCellFlags2">272636224</int>
 							<string key="NSContents">Label</string>
 							<object class="NSFont" key="NSSupport" id="240853158">
-								<string key="NSName">LucidaGrande</string>
+								<string key="NSName">.LucidaGrandeUI</string>
 								<double key="NSSize">13</double>
 								<int key="NSfFlags">1044</int>
 							</object>
@@ -86,6 +86,7 @@
 							</object>
 						</object>
 						<bool key="NSAllowsLogicalLayoutDirection">NO</bool>
+						<int key="NSTextFieldAlignmentRectInsetsVersion">1</int>
 					</object>
 					<object class="NSImageView" id="621131831">
 						<reference key="NSNextResponder" ref="233312071"/>
@@ -232,6 +233,7 @@
 												</object>
 											</object>
 											<bool key="NSAllowsLogicalLayoutDirection">NO</bool>
+											<int key="NSTextFieldAlignmentRectInsetsVersion">1</int>
 										</object>
 									</array>
 									<string key="NSFrameSize">{278, 369}</string>
@@ -915,6 +917,8 @@
 					<reference ref="938170426"/>
 					<reference ref="919663294"/>
 				</array>
+				<boolean value="NO" key="2894.IBNSViewMetadataLastInspectedTranslatesAutoresizingMaskIntoConstraints"/>
+				<boolean value="NO" key="2894.IBNSViewMetadataTranslatesAutoresizingMaskIntoConstraints"/>
 				<string key="2894.IBPluginDependency">com.apple.InterfaceBuilder.CocoaPlugin</string>
 				<object class="NSMutableDictionary" key="2895.IBAttributePlaceholdersKey">
 					<string key="NS.key.0">InitialTabViewItem</string>
@@ -1100,7 +1104,7 @@
 		<int key="IBDocument.defaultPropertyAccessControl">3</int>
 		<dictionary class="NSMutableDictionary" key="IBDocument.LastKnownImageSizes">
 			<string key="07_NotepadTemplate">{16, 16}</string>
-			<string key="NSActionTemplate">{15, 15}</string>
+			<string key="NSActionTemplate">{14, 14}</string>
 		</dictionary>
 		<bool key="IBDocument.UseAutolayout">YES</bool>
 	</data>

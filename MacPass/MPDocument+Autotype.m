@@ -10,4 +10,8 @@
 
 @implementation MPDocument (Autotype)
 
+- (NSArray *)findEntriesForWindowTitle:(NSString *)windowTitle {
+  return nil;
+}
+
 @end

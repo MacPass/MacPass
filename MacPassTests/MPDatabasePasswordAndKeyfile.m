@@ -9,6 +9,7 @@
 #import "MPDatabasePasswordAndKeyfile.h"
 
 #import "MPDocument.h"
+#import "KPKCompositeKey.h"
 
 @implementation MPDatabasePasswordAndKeyfile
 
@@ -21,24 +22,22 @@
 }
 
 - (void)testSetPassword {
-  STAssertTrue([_database.password length] == 0, @"Password should not be set");
-  STAssertNil(_database.key, @"Keyfile should not be set");
-  STAssertFalse(_database.hasPasswordOrKey, @"Database without password is not secure");
-  _database.password = @"test";
-  STAssertTrue([_database.password isEqualToString:@"test"], @"Password should be set");
-  STAssertTrue(_database.hasPasswordOrKey, @"Database with password is secured");
-  _database.password = nil;
-  STAssertFalse(_database.hasPasswordOrKey, @"Database with removed password is not secure anymore");
+  STAssertNil(_database.compositeKey, @"New database should not have a composite key");
+  STAssertFalse(_database.compositeKey.hasPasswordOrKeyFile, @"Database without password is not secure");
+  [_database.compositeKey setPassword:@"password" andKeyfile:nil];
+  STAssertTrue(_database.compositeKey.hasPasswordOrKeyFile, @"Database with password is secured");
+  [_database.compositeKey setPassword:nil andKeyfile:nil];
+  STAssertFalse(_database.compositeKey.hasPasswordOrKeyFile, @"Database with removed password is not secure anymore");
 }
 
-- (void)testSetKeyfile {
+- (void)testSetKeyfile {/*
   STAssertTrue([_database.password length] == 0, @"Password should not be set");
   STAssertNil(_database.key, @"Keyfile should not be set");
   STAssertFalse(_database.hasPasswordOrKey, @"Database without keyfile is not secure");
   _database.key = [NSURL URLWithString:@"noKeyFile"];
   STAssertTrue(_database.hasPasswordOrKey, @"Database with keyfile is secured");
   _database.key = nil;
-  STAssertFalse(_database.hasPasswordOrKey, @"Database with removed keyfile is not secure anymore");
+  STAssertFalse(_database.hasPasswordOrKey, @"Database with removed keyfile is not secure anymore");*/
 }
 
 

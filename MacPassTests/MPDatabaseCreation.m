@@ -9,6 +9,7 @@
 #import "MPDatabaseCreation.h"
 #import "MPDocument.h"
 #import "KPKTree.h"
+#import "KPKCompositeKey.h"
 
 @implementation MPDatabaseCreation
 
@@ -17,7 +18,7 @@
   STAssertNotNil(document, @"Document should be created");
   STAssertTrue(document.tree.minimumVersion == KPKLegacyVersion, @"Tree should be Legacy Version in defautl case");
   STAssertFalse(document.encrypted, @"Document cannot be encrypted at creation");
-  STAssertFalse(document.hasPasswordOrKey, @"Document has no Password/Keyfile and thus is not secured");
+  STAssertFalse(document.compositeKey.hasPasswordOrKeyFile, @"Document has no Password/Keyfile and thus is not secured");
 }
 
 @end

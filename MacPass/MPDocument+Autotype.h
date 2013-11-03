@@ -10,4 +10,6 @@
 
 @interface MPDocument (Autotype)
 
+- (NSArray *)findEntriesForWindowTitle:(NSString *)windowTitle;
+
 @end
