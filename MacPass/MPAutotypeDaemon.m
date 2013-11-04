@@ -110,7 +110,12 @@
     return; // no open documents, no selected entry
   }
   
-  /* Perform Autotype instead of dump pasting */
+  /* TODO:
+   Replace entry based palce holders
+   Replace global placeholders
+   Translate to paste/copy commands
+   Find correct key-codes for current keyboard layout to perform paste command
+   */
   MPPasteBoardController *controller = [MPPasteBoardController defaultController];
   if(selectedEntry.username) {
     [controller copyObjects:@[selectedEntry.username]];
