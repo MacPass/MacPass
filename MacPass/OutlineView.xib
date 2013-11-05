@@ -19,14 +19,14 @@
             <rect key="frame" x="0.0" y="0.0" width="272" height="449"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
             <subviews>
-                <scrollView borderType="none" autohidesScrollers="YES" horizontalLineScroll="20" horizontalPageScroll="10" verticalLineScroll="20" verticalPageScroll="10" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="227">
+                <scrollView borderType="none" autohidesScrollers="YES" horizontalLineScroll="24" horizontalPageScroll="10" verticalLineScroll="24" verticalPageScroll="10" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="227">
                     <rect key="frame" x="0.0" y="30" width="272" height="419"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                     <clipView key="contentView" id="WAU-Bu-ack">
                         <rect key="frame" x="0.0" y="0.0" width="272" height="419"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <outlineView verticalHuggingPriority="750" allowsExpansionToolTips="YES" columnAutoresizingStyle="lastColumnOnly" selectionHighlightStyle="sourceList" multipleSelection="NO" autosaveColumns="NO" rowHeight="20" rowSizeStyle="automatic" viewBased="YES" indentationPerLevel="16" outlineTableColumn="231" id="228" customClass="MPOutlineView">
+                            <outlineView verticalHuggingPriority="750" allowsExpansionToolTips="YES" columnAutoresizingStyle="lastColumnOnly" selectionHighlightStyle="sourceList" multipleSelection="NO" autosaveColumns="NO" rowHeight="24" rowSizeStyle="automatic" viewBased="YES" indentationPerLevel="16" outlineTableColumn="231" id="228" customClass="MPOutlineView">
                                 <rect key="frame" x="0.0" y="0.0" width="272" height="419"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <size key="intercellSpacing" width="3" height="0.0"/>
@@ -70,11 +70,11 @@
                                                 </connections>
                                             </tableCellView>
                                             <tableCellView identifier="DataCell" id="240">
-                                                <rect key="frame" x="1" y="17" width="269" height="20"/>
+                                                <rect key="frame" x="1" y="17" width="269" height="24"/>
                                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                 <subviews>
                                                     <imageView translatesAutoresizingMaskIntoConstraints="NO" id="241">
-                                                        <rect key="frame" x="3" y="2" width="17" height="17"/>
+                                                        <rect key="frame" x="3" y="4" width="17" height="17"/>
                                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                                         <constraints>
                                                             <constraint firstAttribute="width" constant="17" id="385"/>
@@ -82,7 +82,7 @@
                                                         <imageCell key="cell" refusesFirstResponder="YES" alignment="left" image="NSActionTemplate" id="242"/>
                                                     </imageView>
                                                     <textField verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="243" customClass="HNHBadgedTextField">
-                                                        <rect key="frame" x="26" y="2" width="242" height="17"/>
+                                                        <rect key="frame" x="26" y="4" width="242" height="17"/>
                                                         <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
                                                         <textFieldCell key="cell" lineBreakMode="truncatingTail" sendsActionOnEndEditing="YES" title="Table View Cell" id="244" customClass="HNHBadgedTextFieldCell">
                                                             <font key="font" metaFont="system"/>
