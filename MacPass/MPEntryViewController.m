@@ -243,7 +243,7 @@ NSString *const _MPTAbleSecurCellView = @"PasswordCell";
   else  {
     view = [tableView makeViewWithIdentifier:_MPTableStringCellView owner:self];
     NSTextField *textField = [view textField];
-    if(!isModifedColumn && !isNotesColumn) {
+    if(!isModifedColumn) {
       /* clean up old formatter that might be left */
       [textField setFormatter:nil];
     }
