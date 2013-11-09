@@ -41,6 +41,7 @@
 - (void)windowDidLoad {
   [super windowDidLoad];
   [self.togglePasswordButton bind:NSValueBinding toObject:self withKeyPath:@"showPassword" options:nil];
+  [[self window] setDefaultButtonCell:[self.changePasswordButton cell]];
 }
 
 - (void)updateView {
