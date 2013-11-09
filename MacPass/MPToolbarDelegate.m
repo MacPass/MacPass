@@ -62,6 +62,7 @@ NSString *const MPToolbarItemInspector = @"TOOLBAR_INSPECTOR";
       NSPopUpButton *popupButton = [[NSPopUpButton alloc] initWithFrame:NSMakeRect(0, 0, 50, 32) pullsDown:YES];
       [[popupButton cell] setBezelStyle:NSTexturedRoundedBezelStyle];
       [[popupButton cell] setImageScaling:NSImageScaleProportionallyDown];
+      [popupButton setFocusRingType:NSFocusRingTypeNone];
       [popupButton setTitle:@""];
       [popupButton sizeToFit];
       

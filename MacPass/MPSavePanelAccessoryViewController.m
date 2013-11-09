@@ -63,6 +63,11 @@
 }
 
 - (void)updateView {
+  /*
+   Access view at least once to make sure it is properly loaded
+   */
+  NSView *view = [self view];
+  NSAssert(view != nil, @"View has to be loaded at this point");
   switch(self.document.versionForFileType) {
     case KPKLegacyVersion:
       [self.fileTypePopupButton selectItemAtIndex:1];
@@ -74,6 +79,7 @@
       NSAssert(NO, @"Minimum Version should always be valid");
       break;
   }
+  [self setFileType:self.fileTypePopupButton];
   [self _updateNote];
 }
 
