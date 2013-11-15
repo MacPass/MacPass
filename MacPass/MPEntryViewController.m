@@ -111,7 +111,7 @@ NSString *const _MPTAbleSecurCellView = @"PasswordCell";
     _entryArrayController = [[NSArrayController alloc] init];
     _dataSource = [[MPEntryTableDataSource alloc] init];
     _dataSource.viewController = self;
-    _menuDelegate = [[MPEntryContextMenuDelegate alloc] init];    
+    _menuDelegate = [[MPEntryContextMenuDelegate alloc] init];
     _selectedEntry = nil;
   }
   return self;
@@ -207,8 +207,8 @@ NSString *const _MPTAbleSecurCellView = @"PasswordCell";
 
 - (void)tableView:(NSTableView *)tableView didAddRowView:(NSTableRowView *)rowView forRow:(NSInteger)row {
   /*
-  bind bakground color to entry color
-  */
+   bind bakground color to entry color
+   */
 }
 
 - (NSView *)tableView:(NSTableView *)tableView viewForTableColumn:(NSTableColumn *)tableColumn row:(NSInteger)row {
@@ -249,9 +249,14 @@ NSString *const _MPTAbleSecurCellView = @"PasswordCell";
     }
     if(isModifedColumn) {
       if(![[view textField] formatter]) {
-        NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
-        [formatter setDateStyle:NSDateFormatterMediumStyle];
-        [formatter setTimeStyle:NSDateFormatterMediumStyle];
+        /* Just use one formatter instance since it's expensive to create */
+        static NSDateFormatter *formatter = nil;
+        static dispatch_once_t onceToken;
+        dispatch_once(&onceToken, ^{
+          formatter = [[NSDateFormatter alloc] init];
+          [formatter setDateStyle:NSDateFormatterMediumStyle];
+          [formatter setTimeStyle:NSDateFormatterMediumStyle];
+        });
         [textField setFormatter:formatter];
       }
       [textField bind:NSValueBinding toObject:entry.timeInfo withKeyPath:@"lastModificationTime" options:nil];
@@ -287,7 +292,7 @@ NSString *const _MPTAbleSecurCellView = @"PasswordCell";
 #pragma mark Notifications
 - (void)_didChangeCurrentItem:(NSNotification *)notification {
   MPDocument *document = [notification object];
-
+  
   if(!document.selectedGroup) {
     /* No group, this only can happen in filtering, just return */
     return;
