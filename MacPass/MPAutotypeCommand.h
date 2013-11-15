@@ -10,4 +10,8 @@
 
 @interface MPAutotypeCommand : NSObject
 
+@property (copy) NSString *commandString;
+
+- (void)execute;
+
 @end

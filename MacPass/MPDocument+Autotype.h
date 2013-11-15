@@ -9,7 +9,14 @@
 #import "MPDocument.h"
 
 @interface MPDocument (Autotype)
+/*
+ Problem:
+ 
+ If matching isn't safe, we need to determine what to do:
+ Possible selections for the user are Window associations or entries
+ Hence we need to deliver both - or do something completely different?
 
+ */
 - (NSArray *)findEntriesForWindowTitle:(NSString *)windowTitle;
 
 @end

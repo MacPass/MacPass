@@ -10,4 +10,8 @@
 
 @implementation MPAutotypeCommand
 
+- (void)execute {
+  // todo;
+}
+
 @end

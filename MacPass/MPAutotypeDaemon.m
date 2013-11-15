@@ -10,6 +10,7 @@
 #import "DDHotKeyCenter.h"
 #import "MPPasteBoardController.h"
 #import "MPDocument.h"
+#import "MPDocument+Autotype.h"
 
 #import "KPKEntry.h"
 
@@ -103,6 +104,18 @@
   NSString *windowTitle = [self _frontMostWindowTitle];
   NSLog(@"Looking for entries matching window title:%@", windowTitle);
   
+  /*
+   Query the document to generate a autotype command list for the window title
+   We do not care where this came form, just get the autotype commands
+   */
+  NSArray *autotypeCandidates = [[currentDocument findEntriesForWindowTitle:windowTitle] lastObject];
+  if([autotypeCandidates count] == 0) {
+    return; // No Entries found.
+  }
+
+  /*
+   Implement!
+   */
   return;
   
   KPKEntry *selectedEntry = currentDocument.selectedEntry;

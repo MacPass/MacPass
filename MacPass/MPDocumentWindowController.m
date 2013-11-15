@@ -283,6 +283,10 @@ typedef NS_ENUM(NSUInteger, MPAlertContext) {
 - (void)showPasswordInput {
   if(!self.passwordInputController) {
     self.passwordInputController = [[MPPasswordInputController alloc] init];
+    self.passwordInputController.showLastUsedKeyFile = YES;
+  }
+  else {
+    self.passwordInputController.showLastUsedKeyFile = NO;
   }
   [self _setContentViewController:self.passwordInputController];
   [self.passwordInputController requestPassword];
