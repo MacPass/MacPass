@@ -283,6 +283,14 @@ typedef NS_ENUM(NSUInteger, MPAlertType) {
   return [self.root groupForUUID:uuid];
 }
 
+- (NSArray *)allEntries {
+  return self.tree.allEntries;
+}
+
+- (NSArray *)allGroups {
+  return self.tree.allGroups;
+}
+
 - (BOOL)useTrash {
   return self.tree.metaData.recycleBinEnabled;
 }

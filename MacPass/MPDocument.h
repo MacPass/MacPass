@@ -69,6 +69,8 @@ APPKIT_EXTERN NSString *const MPDocumentGroupKey;
  *  @return matching group, nil if none was found
  */
 - (KPKGroup *)findGroup:(NSUUID *)uuid;
+- (NSArray *)allEntries;
+- (NSArray *)allGroups;
 
 - (void)useGroupAsTrash:(KPKGroup *)group;
 - (void)useGroupAsTemplate:(KPKGroup *)group;
