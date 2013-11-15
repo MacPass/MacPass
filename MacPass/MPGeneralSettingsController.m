@@ -32,19 +32,15 @@ NSString *const MPGeneralSetingsIdentifier = @"GeneralSettingsTab";
 
 - (void)didLoadView {
   NSUserDefaultsController *defaultsController = [NSUserDefaultsController sharedUserDefaultsController];
-  NSString *reopenLastFilePath = [NSString stringWithFormat:@"values.%@", kMPSettingsKeyReopenLastDatabaseOnLaunch];
-  //NSString *createUntitledOnActivatePaht = [NSString stringWithFormat:@"values.%@", kMPSettingsKeyOpenEmptyDatabaseOnLaunch];
-  NSString *clearPasteboardKeyPath = [NSString stringWithFormat:@"values.%@", kMPSettingsKeyClearPasteboardOnQuit];
-  NSString *doubleClickURLToLaunchKeyPath = [NSString stringWithFormat:@"values.%@", kMPSettingsKeyDoubleClickURLToLaunch];
-  NSString *clearPasteboardTimeOutKeyPath = [NSString stringWithFormat:@"values.%@", kMPSettingsKeyPasteboardClearTimeout];
-  NSString *idleTimeOutKeyPath = [NSString stringWithFormat:@"values.%@", kMPSettingsKeyIdleLockTimeOut];
-  NSString *lockOnSleepKeyPath = [NSString stringWithFormat:@"values.%@", kMPSettingsKeyLockOnSleep];
-  [self.clearPasteboardOnQuitCheckButton bind:NSValueBinding toObject:defaultsController withKeyPath:clearPasteboardKeyPath options:nil];
-  [self.doubleClickURLToLaunchCheckButton bind:NSValueBinding toObject:defaultsController withKeyPath:doubleClickURLToLaunchKeyPath options:nil];
-  [self.clearPasteboardTimeoutPopup bind:NSSelectedTagBinding toObject:defaultsController withKeyPath:clearPasteboardTimeOutKeyPath options:nil];
-  [self.lockOnSleepCheckButton bind:NSValueBinding toObject:defaultsController withKeyPath:lockOnSleepKeyPath options:nil];
-  [self.idleTimeOutPopup bind:NSSelectedTagBinding toObject:defaultsController withKeyPath:idleTimeOutKeyPath options:nil];
-  [self.reopenLastDatabase bind:NSValueBinding toObject:defaultsController withKeyPath:reopenLastFilePath options:nil];
+
+  [self.clearPasteboardOnQuitCheckButton bind:NSValueBinding toObject:defaultsController withKeyPath:[MPSettingsHelper defaultControllerPathForKey:kMPSettingsKeyClearPasteboardOnQuit] options:nil];
+  [self.doubleClickURLToLaunchCheckButton bind:NSValueBinding toObject:defaultsController withKeyPath:[MPSettingsHelper defaultControllerPathForKey:kMPSettingsKeyDoubleClickURLToLaunch] options:nil];
+  [self.clearPasteboardTimeoutPopup bind:NSSelectedTagBinding toObject:defaultsController withKeyPath:[MPSettingsHelper defaultControllerPathForKey:kMPSettingsKeyPasteboardClearTimeout] options:nil];
+  [self.lockOnSleepCheckButton bind:NSValueBinding toObject:defaultsController withKeyPath:[MPSettingsHelper defaultControllerPathForKey:kMPSettingsKeyLockOnSleep] options:nil];
+  [self.idleTimeOutPopup bind:NSSelectedTagBinding toObject:defaultsController withKeyPath:[MPSettingsHelper defaultControllerPathForKey:kMPSettingsKeyIdleLockTimeOut] options:nil];
+  [self.reopenLastDatabase bind:NSValueBinding toObject:defaultsController withKeyPath:[MPSettingsHelper defaultControllerPathForKey:kMPSettingsKeyReopenLastDatabaseOnLaunch] options:nil];
+  [self.rememberKeyFileCheckButton bind:NSValueBinding toObject:defaultsController withKeyPath:[MPSettingsHelper defaultControllerPathForKey:kMPSettingsKeyRememberKeyFilesForDatabases] options:nil];
+  
   [self.createUntitledOnActivation setState:NSOffState];
   //[self.createUntitledOnActivation bind:NSValueBinding toObject:defaultsController withKeyPath:createUntitledOnActivatePaht options:nil];
 }

@@ -27,11 +27,17 @@ NSString *const kMPSettingsKeyLegacyHideNotes = @"LegacyHideNotes";
 NSString *const kMPSettingsKeyLegacyHideURL = @"LegacyHideURL";
 
 NSString *const kMPSettingsKeyLastDatabasePath = @"MPLastDatabasePath";
+NSString *const kMPSettingsKeyFilesForDatabases = @"MPKeyFilesForDatabases";
+NSString *const kMPSettingsKeyRememberKeyFilesForDatabases = @"kMPSettingsKeyRememberKeyFilesForDatabases";
 
 @implementation MPSettingsHelper
 
 + (void)setupDefaults {
   [[NSUserDefaults standardUserDefaults] registerDefaults:[self _standardDefaults]];
+}
+
++ (NSString *)defaultControllerPathForKey:(NSString *)key {
+  return [NSString stringWithFormat:@"values.%@", key];
 }
 
 + (NSDictionary *)_standardDefaults {
@@ -51,7 +57,8 @@ NSString *const kMPSettingsKeyLastDatabasePath = @"MPLastDatabasePath";
            kMPSettingsKeyLegacyHidePassword: @YES,
            kMPSettingsKeyLegacyHideTitle: @NO,
            kMPSettingsKeyLegacyHideURL: @NO,
-           kMPSettingsKeyLegacyHideUsername: @NO
+           kMPSettingsKeyLegacyHideUsername: @NO,
+           kMPSettingsKeyRememberKeyFilesForDatabases: @NO
            };
 }
 

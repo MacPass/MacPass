@@ -19,5 +19,6 @@
 @property (weak) IBOutlet NSButton *lockOnSleepCheckButton;
 @property (weak) IBOutlet NSButton *reopenLastDatabase;
 @property (weak) IBOutlet NSButton *createUntitledOnActivation;
+@property (weak) IBOutlet NSButton *rememberKeyFileCheckButton;
 
 @end

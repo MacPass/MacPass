@@ -39,6 +39,8 @@ APPKIT_EXTERN NSString *const kMPSettingsKeyLegacyHideURL;
 
 /* Document/Key Location store */
 APPKIT_EXTERN NSString *const kMPSettingsKeyLastDatabasePath;
+APPKIT_EXTERN NSString *const kMPSettingsKeyFilesForDatabases;
+APPKIT_EXTERN NSString *const kMPSettingsKeyRememberKeyFilesForDatabases;
 /*
 APPKIT_EXTERN NSString *const kMPSettingsKeyLastKeyURL;
 APPKIT_EXTERN NSString *const kMPSettingsKeyRememberLastKey;
@@ -52,5 +54,6 @@ typedef NS_ENUM(NSUInteger, MPPasswordEncoding) {
 @interface MPSettingsHelper : NSObject
 
 + (void)setupDefaults;
++ (NSString *)defaultControllerPathForKey:(NSString *)key;
 
 @end
