@@ -51,6 +51,7 @@
   else if([uti isEqualToString:MPXMLDocumentUTI]) {
     self.selectedVersion = KPKXmlVersion;
   }
+  NSAssert(uti != nil, @"UTI cannot be nil");
   [self _updateNote];
   [self.savePanel setAllowedFileTypes:@[uti]];
 }
