@@ -26,9 +26,9 @@ NSString *const kMPSettingsKeyLegacyHidePassword = @"LegacyHidePassword";
 NSString *const kMPSettingsKeyLegacyHideNotes = @"LegacyHideNotes";
 NSString *const kMPSettingsKeyLegacyHideURL = @"LegacyHideURL";
 
-NSString *const kMPSettingsKeyLastDatabasePath = @"MPLastDatabasePath";
-NSString *const kMPSettingsKeyFilesForDatabases = @"MPKeyFilesForDatabases";
-NSString *const kMPSettingsKeyRememberKeyFilesForDatabases = @"kMPSettingsKeyRememberKeyFilesForDatabases";
+NSString *const kMPSettingsKeyLastDatabasePath = @"LastDatabasePath";
+NSString *const kMPSettingsKeyRememeberdKeysForDatabases = @"RememeberdKeysForDatabases";
+NSString *const kMPSettingsKeyRememberKeyFilesForDatabases = @"RememberKeyFilesForDatabases";
 
 @implementation MPSettingsHelper
 

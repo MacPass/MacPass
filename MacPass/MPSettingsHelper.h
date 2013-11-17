@@ -39,7 +39,7 @@ APPKIT_EXTERN NSString *const kMPSettingsKeyLegacyHideURL;
 
 /* Document/Key Location store */
 APPKIT_EXTERN NSString *const kMPSettingsKeyLastDatabasePath;
-APPKIT_EXTERN NSString *const kMPSettingsKeyFilesForDatabases;
+APPKIT_EXTERN NSString *const kMPSettingsKeyRememeberdKeysForDatabases;
 APPKIT_EXTERN NSString *const kMPSettingsKeyRememberKeyFilesForDatabases;
 /*
 APPKIT_EXTERN NSString *const kMPSettingsKeyLastKeyURL;

@@ -235,6 +235,7 @@ typedef NS_ENUM(NSUInteger, MPEntryTab) {
     [self.URLTextField bind:NSValueBinding toObject:self.entry withKeyPath:@"url" options:nil];
     [self.notesTextView bind:NSValueBinding toObject:self.entry withKeyPath:@"notes" options:nil];
     [self.expiresCheckButton bind:NSValueBinding toObject:self.entry.timeInfo withKeyPath:@"expires" options:nil];
+    [self.tagsTokenField bind:NSValueBinding toObject:self.entry withKeyPath:@"tags" options:nil];
   }
   else {
     [self.titleTextField unbind:NSValueBinding];
