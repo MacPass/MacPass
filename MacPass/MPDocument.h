@@ -36,7 +36,7 @@ APPKIT_EXTERN NSString *const MPDocumentGroupKey;
 @property (weak, readonly) KPKGroup *trash;
 @property (weak, readonly) KPKGroup *templates;
 
-@property (nonatomic, strong) KPKCompositeKey *compositeKey;
+@property (nonatomic, strong, readonly) KPKCompositeKey *compositeKey;
 //@property (nonatomic, copy) NSString *password;
 //@property (nonatomic, strong) NSURL *key;
 
@@ -56,7 +56,25 @@ APPKIT_EXTERN NSString *const MPDocumentGroupKey;
 
 #pragma mark Lock/Decrypt
 - (void)lockDatabase:(id)sender;
+/**
+ *  Decrypts the databse with the given password and keyfile
+ *
+ *  @param password   The password to unlock the db with, can be nil. This is not the same as an empty stirng @""
+ *  @param keyFileURL URL for the keyfile to use, can be nil
+ *  @param error  Pointer to an NSError pointer of error reporting.
+ *
+ *  @return YES if the document was unlocked sucessfully, NO otherwise. Consult the error object for details
+ */
 - (BOOL)unlockWithPassword:(NSString *)password keyFileURL:(NSURL *)keyFileURL error:(NSError *__autoreleasing*)error;
+/**
+ *  Changes the password of the database. Some sanity checks are applied and the change is aborted if the new values arent valid
+ *
+ *  @param password   new password, can be nil
+ *  @param keyFileURL new key URL can be nil
+ *
+ *  @return YES if the password was change, NO otherwise
+ */
+- (BOOL)changePassword:(NSString *)password keyFileURL:(NSURL *)keyFileURL;
 /**
  *  Returns the suggest key URL for this document. This might be nil.
  *  If the user did disable remeberKeyFiles in the settings, this always returns nil

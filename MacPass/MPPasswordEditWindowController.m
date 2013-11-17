@@ -85,7 +85,7 @@
 
 #pragma mark Actions
 - (IBAction)save:(id)sender {
-  _currentDocument.compositeKey = [[KPKCompositeKey alloc] initWithPassword:[self.passwordTextField stringValue] key:[self.keyfilePathControl URL]];
+  [_currentDocument changePassword:[self.passwordTextField stringValue] keyFileURL:[self.keyfilePathControl URL]];
   [self dismissSheet:NSRunStoppedResponse];
   if(self.delegate && [self.delegate respondsToSelector:@selector(didFinishPasswordEditing:)]) {
     [self.delegate didFinishPasswordEditing:YES];

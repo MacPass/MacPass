@@ -52,6 +52,7 @@ typedef NS_ENUM(NSUInteger, MPAlertType) {
 
 @property (strong, nonatomic) KPKTree *tree;
 @property (weak, nonatomic) KPKGroup *root;
+@property (nonatomic, strong) KPKCompositeKey *compositeKey;
 
 @property (assign) BOOL readOnly;
 @property (strong) NSURL *lockFileURL;
@@ -244,12 +245,22 @@ typedef NS_ENUM(NSUInteger, MPAlertType) {
   return isUnlocked;
 }
 
+- (BOOL)changePassword:(NSString *)password keyFileURL:(NSURL *)keyFileURL {
+  /* sanity check? */
+  if([password length] == 0 && keyFileURL == nil) {
+    return NO;
+  }
+  [self.compositeKey setPassword:password andKeyfile:keyFileURL];
+  /* We need to store the key file once the user actually writes the database */
+  return YES;
+}
+
 - (NSURL *)suggestedKeyURL {
-   if(!self.isAllowedToStoreKeyFile) {
-     return nil;
-   }
-   NSDictionary *keysForFiles = [[NSUserDefaults standardUserDefaults] dictionaryForKey:kMPSettingsKeyRememeberdKeysForDatabases];
-   NSString *keyPath = keysForFiles[[[self fileURL] path]];
+  if(!self.isAllowedToStoreKeyFile) {
+    return nil;
+  }
+  NSDictionary *keysForFiles = [[NSUserDefaults standardUserDefaults] dictionaryForKey:kMPSettingsKeyRememeberdKeysForDatabases];
+  NSString *keyPath = keysForFiles[[[self fileURL] path]];
   if(!keyPath) {
     return nil;
   }
