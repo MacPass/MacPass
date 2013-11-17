@@ -74,7 +74,7 @@
                                 <constraints>
                                     <constraint firstAttribute="width" constant="165" id="877"/>
                                 </constraints>
-                                <popUpButtonCell key="cell" type="push" bezelStyle="rounded" alignment="left" lineBreakMode="truncatingTail" borderStyle="borderAndBezel" imageScaling="proportionallyDown" inset="2" id="420">
+                                <popUpButtonCell key="cell" type="push" title="after 1 Minute" bezelStyle="rounded" alignment="left" lineBreakMode="truncatingTail" state="on" borderStyle="borderAndBezel" tag="60" imageScaling="proportionallyDown" inset="2" selectedItem="424" id="420">
                                     <behavior key="behavior" lightByBackground="YES" lightByGray="YES"/>
                                     <font key="font" metaFont="menu"/>
                                     <menu key="menu" title="ClipboardClearInterval" id="421">
@@ -84,7 +84,7 @@
                                             </menuItem>
                                             <menuItem title="after 10 Seconds" tag="10" id="422"/>
                                             <menuItem title="after 30 Seconds" tag="30" id="423"/>
-                                            <menuItem title="after 1 Minute" tag="60" id="424"/>
+                                            <menuItem title="after 1 Minute" state="on" tag="60" id="424"/>
                                         </items>
                                     </menu>
                                 </popUpButtonCell>

@@ -9,6 +9,8 @@
 #import <Cocoa/Cocoa.h>
 #import "KPKVersion.h"
 
+APPKIT_EXTERN NSString *const MPDocumentDidChangeStoredKeyFilesSettings;
+
 APPKIT_EXTERN NSString *const MPDocumentDidAddGroupNotification;
 APPKIT_EXTERN NSString *const MPDocumentDidRevertNotifiation;
 
@@ -55,6 +57,14 @@ APPKIT_EXTERN NSString *const MPDocumentGroupKey;
 #pragma mark Lock/Decrypt
 - (void)lockDatabase:(id)sender;
 - (BOOL)unlockWithPassword:(NSString *)password keyFileURL:(NSURL *)keyFileURL error:(NSError *__autoreleasing*)error;
+/**
+ *  Returns the suggest key URL for this document. This might be nil.
+ *  If the user did disable remeberKeyFiles in the settings, this always returns nil
+ *  Otherwise the preferences are searched to locate the last know key url for this document
+ *
+ *  @return The suggested key URL if one was found and the settings are allowing suggesting key locations
+ */
+- (NSURL *)suggestedKeyURL;
 
 #pragma mark Data Lookup
 /**

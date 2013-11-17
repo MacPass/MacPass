@@ -26,6 +26,8 @@
 #import "KPKMetaData.h"
 #import "KPKAttribute.h"
 
+NSString *const MPDocumentDidChangeStoredKeyFilesSettings = @"com.hicknhack.macpass.MPDocumentDidChangeStoredKeyFilesSettings";
+
 NSString *const MPDocumentDidAddGroupNotification         = @"com.hicknhack.macpass.MPDocumentDidAddGroupNotification";
 NSString *const MPDocumentDidRevertNotifiation            = @"com.hicknhack.macpass.MPDocumentDidRevertNotifiation";
 
@@ -52,8 +54,8 @@ typedef NS_ENUM(NSUInteger, MPAlertType) {
 @property (weak, nonatomic) KPKGroup *root;
 
 @property (assign) BOOL readOnly;
-
 @property (strong) NSURL *lockFileURL;
+@property (nonatomic, assign) BOOL isAllowedToStoreKeyFile;
 
 @property (readonly) BOOL useTrash;
 @property (strong) IBOutlet NSView *warningView;
@@ -97,12 +99,18 @@ typedef NS_ENUM(NSUInteger, MPAlertType) {
     _encryptedData = nil;
     _didLockFile = NO;
     _readOnly = NO;
+    _isAllowedToStoreKeyFile = NO;
     self.tree = [KPKTree templateTree];
+    [self bind:@"isAllowedToStoreKeyFile"
+      toObject:[NSUserDefaultsController sharedUserDefaultsController]
+   withKeyPath:[MPSettingsHelper defaultControllerPathForKey:kMPSettingsKeyRememberKeyFilesForDatabases]
+       options:nil];
   }
   return self;
 }
 
 - (void)dealloc {
+  [self unbind:@"isAllowedToStoreKeyFile"];
   [self _cleanupLock];
 }
 
@@ -212,6 +220,13 @@ typedef NS_ENUM(NSUInteger, MPAlertType) {
 
 #pragma mark Lock/Unlock/Decrypt
 
+- (void)lockDatabase:(id)sender {
+  NSError *error;
+  /* Locking needs to be lossless hence just use the XML format */
+  _encryptedData = [self.tree encryptWithPassword:self.compositeKey forVersion:KPKXmlVersion error:&error];
+  self.tree = nil;
+}
+
 - (BOOL)unlockWithPassword:(NSString *)password keyFileURL:(NSURL *)keyFileURL error:(NSError *__autoreleasing*)error{
   self.compositeKey = [[KPKCompositeKey alloc] initWithPassword:password key:keyFileURL];
   self.tree = [[KPKTree alloc] initWithData:_encryptedData password:self.compositeKey error:error];
@@ -219,6 +234,9 @@ typedef NS_ENUM(NSUInteger, MPAlertType) {
   BOOL isUnlocked = (nil != self.tree);
   if(isUnlocked) {
     [[NSNotificationCenter defaultCenter] postNotificationName:MPDocumentDidUnlockDatabaseNotification object:self];
+    if([password length] > 0 && self.isAllowedToStoreKeyFile) {
+      [self _storeKeyURL:keyFileURL];
+    }
   }
   else {
     self.compositeKey = nil; // clear the key?
@@ -226,11 +244,16 @@ typedef NS_ENUM(NSUInteger, MPAlertType) {
   return isUnlocked;
 }
 
-- (void)lockDatabase:(id)sender {
-  NSError *error;
-  /* Locking needs to be lossless hence just use the XML format */
-  _encryptedData = [self.tree encryptWithPassword:self.compositeKey forVersion:KPKXmlVersion error:&error];
-  self.tree = nil;
+- (NSURL *)suggestedKeyURL {
+   if(!self.isAllowedToStoreKeyFile) {
+     return nil;
+   }
+   NSDictionary *keysForFiles = [[NSUserDefaults standardUserDefaults] dictionaryForKey:kMPSettingsKeyRememeberdKeysForDatabases];
+   NSString *keyPath = keysForFiles[[[self fileURL] path]];
+  if(!keyPath) {
+    return nil;
+  }
+  return [NSURL fileURLWithPath:keyPath];
 }
 
 #pragma mark Properties
@@ -270,6 +293,17 @@ typedef NS_ENUM(NSUInteger, MPAlertType) {
   if(_tree != tree) {
     _tree = tree;
     _tree.undoManager = [self undoManager];
+  }
+}
+
+- (void)setIsAllowedToStoreKeyFile:(BOOL)isAllowedToStoreKeyFile {
+  if(_isAllowedToStoreKeyFile != isAllowedToStoreKeyFile) {
+    _isAllowedToStoreKeyFile = isAllowedToStoreKeyFile;
+    if(!self.isAllowedToStoreKeyFile) {
+      [[NSUserDefaults standardUserDefaults] removeObjectForKey:kMPSettingsKeyRememeberdKeysForDatabases];
+    }
+    /* Inform anyone that might be interested that we can now no longer/ or can use keyfiles */
+    [[NSNotificationCenter defaultCenter] postNotificationName:MPDocumentDidChangeStoredKeyFilesSettings object:self];
   }
 }
 
@@ -472,6 +506,16 @@ typedef NS_ENUM(NSUInteger, MPAlertType) {
   }
   
   return [super validateUserInterfaceItem:anItem];
+}
+
+- (void)_storeKeyURL:(NSURL *)keyURL {
+  NSAssert(self.isAllowedToStoreKeyFile, @"We can only store if we are allowed to do so!");
+  NSMutableDictionary *keysForFiles = [[[NSUserDefaults standardUserDefaults] dictionaryForKey:kMPSettingsKeyRememeberdKeysForDatabases] mutableCopy];
+  if(nil == keysForFiles) {
+    keysForFiles = [[NSMutableDictionary alloc] initWithCapacity:1];
+  }
+  keysForFiles[[[self fileURL] path]] = [keyURL path];
+  [[NSUserDefaults standardUserDefaults] setObject:keysForFiles forKey:kMPSettingsKeyRememeberdKeysForDatabases];
 }
 
 - (void)_cleanupLock {

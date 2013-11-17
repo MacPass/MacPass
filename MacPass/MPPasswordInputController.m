@@ -24,11 +24,7 @@
 @property (weak) IBOutlet NSTextField *errorInfoTextField;
 @property (weak) IBOutlet NSButton *togglePasswordButton;
 
-@property (nonatomic, assign) BOOL shouldRememberKeyURL;
 @property (assign) BOOL showPassword;
-
-- (IBAction)_decrypt:(id)sender;
-- (IBAction)_clearKey:(id)sender;
 
 @end
 
@@ -42,13 +38,13 @@
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil {
   self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
   if(self) {
-    _showLastUsedKeyFile = NO;
-    _shouldRememberKeyURL = NO;
-    NSUserDefaultsController *defaultsController = [NSUserDefaultsController sharedUserDefaultsController];
-    [self bind:@"shouldRememberKeyURL" toObject:defaultsController withKeyPath:[MPSettingsHelper defaultControllerPathForKey:kMPSettingsKeyRememberKeyFilesForDatabases ] options:nil];
-    
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(_selectKeyURL) name:MPDocumentDidChangeStoredKeyFilesSettings object:nil];
   }
   return self;
+}
+
+- (void)dealloc {
+  [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
 
 - (void)didLoadView {
@@ -56,7 +52,6 @@
   [self.errorImageView setImage:[NSImage imageNamed:NSImageNameCaution]];
   [self.passwordTextField bind:@"showPassword" toObject:self withKeyPath:@"showPassword" options:nil];
   [self.togglePasswordButton bind:NSValueBinding toObject:self withKeyPath:@"showPassword" options:nil];
-  
   [self _reset];
 }
 
@@ -67,20 +62,6 @@
 - (void)requestPassword {
   // show Warnign if read-only mode!
   [self _reset];
-  if(self.showLastUsedKeyFile) {
-    [self _selectRecentKeyFile];
-  }
-}
-
-#pragma mark Properties
-- (void)setShouldRememberKeyURL:(BOOL)shouldSelectKeyFile {
-  if(_shouldRememberKeyURL != shouldSelectKeyFile) {
-    _shouldRememberKeyURL = shouldSelectKeyFile;
-    if(!self.shouldRememberKeyURL) {
-      /* Remove any old settings to clean them up */
-      [[NSUserDefaults standardUserDefaults] removeObjectForKey:kMPSettingsKeyRememeberdKeysForDatabases];
-    }
-  }
 }
 
 #pragma mark -
@@ -89,53 +70,29 @@
   MPDocument *document = [[self windowController] document];
   if(document) {
     NSError *error = nil;
-    NSURL *keyURL = [self.keyPathControl URL];
-    if([document unlockWithPassword:[self.passwordTextField stringValue] keyFileURL:keyURL error:&error]) {
-      [self _setUsedKeyURL:keyURL forDocument:document];
-    }
-    else {
+    if(![document unlockWithPassword:[self.passwordTextField stringValue]
+                          keyFileURL:[self.keyPathControl URL]
+                               error:&error]) {
       [self _showError:error];
     }
   }
 }
 
-- (IBAction)_clearKey:(id)sender {
-  [self.keyPathControl setURL:nil];
+- (IBAction)resetKeyFile:(id)sender {
+  [self _selectKeyURL];
 }
 
 - (void)_reset {
   self.showPassword = NO;
   [self.passwordTextField setStringValue:@""];
-  [self.keyPathControl setURL:nil];
   [self.errorInfoTextField setHidden:YES];
   [self.errorImageView setHidden:YES];
+  [self resetKeyFile:nil];
 }
 
-- (void)_selectRecentKeyFile {
-  if(!self.shouldRememberKeyURL) {
-    [self.keyPathControl setURL:nil];
-    return; // If we aren't supposed to preselect paths, clear them!
-  }
-  NSDictionary *keysForFiles = [[NSUserDefaults standardUserDefaults] dictionaryForKey:kMPSettingsKeyRememeberdKeysForDatabases];
+- (void)_selectKeyURL {
   MPDocument *document = [[self windowController] document];
-  if(document) {
-    NSString *keyPath = keysForFiles[[[document fileURL] path]];
-    NSURL *keyURL = keyPath != nil ? [NSURL fileURLWithPath:keyPath] : nil;
-    [self.keyPathControl setURL:keyURL];
-  }
-}
-
-- (void)_setUsedKeyURL:(NSURL *)keyURL forDocument:(NSDocument *)document {
-  if(!self.shouldRememberKeyURL) {
-    return;
-  }
-  NSMutableDictionary *keysForFiles = [[[NSUserDefaults standardUserDefaults] dictionaryForKey:kMPSettingsKeyRememeberdKeysForDatabases] mutableCopy];
-  if(nil == keysForFiles) {
-    keysForFiles = [[NSMutableDictionary alloc] initWithCapacity:1];
-  }
-  //NSLog(@"remembering keyfile %@ for document %@ at URL %@", keyURL, [document displayName], [document fileURL]);
-  keysForFiles[[[document fileURL] path]] = [keyURL path];
-  [[NSUserDefaults standardUserDefaults] setObject:keysForFiles forKey:kMPSettingsKeyRememeberdKeysForDatabases];
+  [self.keyPathControl setURL:document.suggestedKeyURL];
 }
 
 - (void)_showError:(NSError *)error {

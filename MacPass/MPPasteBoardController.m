@@ -9,6 +9,10 @@
 #import "MPPasteBoardController.h"
 #import "MPSettingsHelper.h"
 
+/* Notifications */
+NSString *const MPPasteBoardControllerDidCopyObjects    = @"com.hicknhack.macpass.MPPasteBoardControllerDidCopyObjects";
+NSString *const MPPasteBoardControllerDidClearClipboard = @"com.hicknhack.macpass.MPPasteBoardControllerDidCopyObjects";
+
 @interface MPPasteBoardController ()
 
 @property (assign) BOOL isEmpty;
@@ -69,16 +73,21 @@
 }
 
 - (void)copyObjects:(NSArray *)objects {
+  /* Should we save the old content ?*/
   [[NSPasteboard generalPasteboard] clearContents];
   [[NSPasteboard generalPasteboard] writeObjects:objects];
   self.isEmpty = NO;
-  [self performSelector:@selector(_clearPasteboardContents) withObject:nil afterDelay:self.clearTimeout];
+  if(self.clearTimeout != 0) {
+    [[NSNotificationCenter defaultCenter] postNotificationName:MPPasteBoardControllerDidCopyObjects object:self];
+    [self performSelector:@selector(_clearPasteboardContents) withObject:nil afterDelay:self.clearTimeout];
+  }
 }
 
 - (void)_clearPasteboardContents {
   /* Only clear stuff we might have put there */
   if(!self.isEmpty) {
     [[NSPasteboard generalPasteboard] clearContents];
+    [[NSNotificationCenter defaultCenter] postNotificationName:MPPasteBoardControllerDidClearClipboard object:self];
   }
   self.isEmpty = YES;
 }

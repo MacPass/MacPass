@@ -10,8 +10,6 @@
 
 @interface MPPasswordInputController : MPViewController
 
-@property (nonatomic, assign) BOOL showLastUsedKeyFile;
-
 - (void)requestPassword;
 
 @end
