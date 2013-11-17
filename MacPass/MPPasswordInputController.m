@@ -133,7 +133,7 @@
   if(nil == keysForFiles) {
     keysForFiles = [[NSMutableDictionary alloc] initWithCapacity:1];
   }
-  NSLog(@"remembering keyfile %@ for document %@ at URL %@", keyURL, [document displayName], [document fileURL]);
+  //NSLog(@"remembering keyfile %@ for document %@ at URL %@", keyURL, [document displayName], [document fileURL]);
   keysForFiles[[[document fileURL] path]] = [keyURL path];
   [[NSUserDefaults standardUserDefaults] setObject:keysForFiles forKey:kMPSettingsKeyRememeberdKeysForDatabases];
 }
