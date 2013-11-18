@@ -50,8 +50,14 @@
 
 - (BOOL)applicationShouldHandleReopen:(NSApplication *)sender hasVisibleWindows:(BOOL)flag {
   if(!flag) {
-    [self _loadWelcomeWindow];
-    [self.welcomeWindow orderFront:self];
+    BOOL reopen = [[NSUserDefaults standardUserDefaults] boolForKey:kMPSettingsKeyReopenLastDatabaseOnLaunch];
+    BOOL showWelcomeScreen = YES;
+    if(reopen) {
+      showWelcomeScreen = ![self _reopenLastDocument];
+    }
+    if(showWelcomeScreen) {
+      [self _showWelcomeWindow];
+    }
   }
   return YES;
 }
@@ -70,7 +76,7 @@
                                              selector:@selector(_applicationDidFinishRestoringWindows:)
                                                  name:NSApplicationDidFinishRestoringWindowsNotification
                                                object:nil];
-
+    
   }
 }
 
@@ -81,38 +87,18 @@
   return YES;
 }
 
-- (void)applicationDidFinishLaunching:(NSNotification *)notification { 
+- (void)applicationDidFinishLaunching:(NSNotification *)notification {
   serverDaemon = [[MPServerDaemon alloc] init];
   lockDaemon = [[MPLockDaemon alloc] init];
   autotypeDaemon = [[MPAutotypeDaemon alloc] init];
-  //autotypeDaemon = [[MPAutotypeDaemon alloc] init];
-
+  
   BOOL reopen = [[NSUserDefaults standardUserDefaults] boolForKey:kMPSettingsKeyReopenLastDatabaseOnLaunch];
+  BOOL showWelcomeScreen = !_shouldOpenFile;
   if(reopen && !_restoredWindows && !_shouldOpenFile) {
-    NSDocumentController *documentController = [NSDocumentController sharedDocumentController];
-    NSArray *documents = [documentController documents];
-    if([documents count] > 0) {
-      return; // There's a document open
-    }
-    
-    NSArray *recentDocuments = [documentController recentDocumentURLs];
-    NSURL *documentUrl;
-    if([recentDocuments count] > 0) {
-      documentUrl = recentDocuments[0];
-    }
-    else {
-      NSString *lastPath = [[NSUserDefaults standardUserDefaults] stringForKey:kMPSettingsKeyLastDatabasePath];
-      documentUrl = [NSURL URLWithString:lastPath];
-    }
-    if([documentUrl isFileURL]) {
-      [documentController openDocumentWithContentsOfURL:documentUrl display:YES
-                                      completionHandler:^(NSDocument *document, BOOL documentWasAlreadyOpen, NSError *error) {}];
-      
-    }
-    else {
-      [self _loadWelcomeWindow];
-      [self.welcomeWindow orderFront:self];
-    }
+    showWelcomeScreen = ![self _reopenLastDocument];
+  }
+  if(showWelcomeScreen) {
+    [self _showWelcomeWindow];
   }
 }
 
@@ -167,12 +153,41 @@
   _restoredWindows = [documents count] > 0;
 }
 
+- (void)_showWelcomeWindow {
+  [self _loadWelcomeWindow];
+  [self.welcomeWindow makeKeyAndOrderFront:nil];
+}
+
 - (void)_loadWelcomeWindow {
   if(!_welcomeWindow) {
     NSArray *topLevelObject;
     [[NSBundle mainBundle] loadNibNamed:@"WelcomeWindow" owner:self topLevelObjects:&topLevelObject];
     //CFRelease((__bridge CFTypeRef)_welcomeWindow);
   }
+}
+
+- (BOOL)_reopenLastDocument {
+  NSDocumentController *documentController = [NSDocumentController sharedDocumentController];
+  NSArray *documents = [documentController documents];
+  if([documents count] > 0) {
+    return YES; // The document is already open
+  }
+  NSArray *recentDocuments = [[NSDocumentController sharedDocumentController] recentDocumentURLs];
+  NSURL *documentUrl = nil;
+  if([recentDocuments count] > 0) {
+    documentUrl = recentDocuments[0];
+  }
+  else {
+    NSString *lastPath = [[NSUserDefaults standardUserDefaults] stringForKey:kMPSettingsKeyLastDatabasePath];
+    documentUrl =[NSURL URLWithString:lastPath];
+  }
+  BOOL isFileURL = [documentUrl isFileURL];
+  if(isFileURL) {
+    [documentController openDocumentWithContentsOfURL:documentUrl
+                                              display:YES
+                                    completionHandler:^(NSDocument *document, BOOL documentWasAlreadyOpen, NSError *error) {}];
+  }
+  return isFileURL;
 }
 
 @end
