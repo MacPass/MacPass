@@ -17,9 +17,9 @@ All releases can be found at [Github](https://github.com/mstarke/MacPass/release
 
 ##Known Major Issues
 
-* Binary releases (0.2.x - 0.3.x) contain the following issues:
+* Binary releases (0.2.x - 0.3.x):
   * KDBX DeletedObjects are stripped on save. This will break synchronisation features!
-* All Versions (including master branch) contain the follwoing issues
+* All Versions (including master branch)
   * KDBX History is not supported
   
 ##System Requirement
