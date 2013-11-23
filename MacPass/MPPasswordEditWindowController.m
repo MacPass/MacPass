@@ -56,8 +56,10 @@
   
   NSDictionary *negateOption = @{ NSValueTransformerNameBindingOption : NSNegateBooleanTransformerName };
   [self.passwordTextField bind:@"showPassword" toObject:self withKeyPath:@"showPassword" options:nil];
+  [self.passwordTextField bind:NSEnabledBinding toObject:self.hasPasswordSwitchButton withKeyPath:@"cell.state" options:nil];
   [self.togglePasswordButton bind:NSValueBinding toObject:self withKeyPath:@"showPassword" options:nil];
   [self.passwordRepeatTextField bind:NSEnabledBinding toObject:self withKeyPath:@"showPassword" options:negateOption];
+  [self.passwordRepeatTextField bind:NSEnabledBinding toObject:self.hasPasswordSwitchButton withKeyPath:@"cell.state" options:nil];
   [self.errorTextField bind:NSHiddenBinding toObject:self withKeyPath:@"hasValidPasswordOrKey" options:nil];
   [self.changePasswordButton bind:NSEnabledBinding toObject:self withKeyPath:@"hasValidPasswordOrKey" options:nil];
   [self.keyfilePathControl bind:NSValueBinding toObject:self withKeyPath:@"keyURL" options:nil];
