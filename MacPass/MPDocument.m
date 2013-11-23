@@ -509,13 +509,41 @@ typedef NS_ENUM(NSUInteger, MPAlertType) {
   return;
 }
 
+- (BOOL)validateMenuItem:(NSMenuItem *)menuItem {
+  return [self validateUserInterfaceItem:menuItem];
+}
+
+- (BOOL)validateToolbarItem:(NSToolbarItem *)theItem {
+  return [self validateUserInterfaceItem:theItem];
+}
+
 - (BOOL)validateUserInterfaceItem:(id<NSValidatedUserInterfaceItem>)anItem {
-  if([anItem action] == [MPActionHelper actionOfType:MPActionEmptyTrash]) {
-    BOOL hasGroups = [self.trash.groups count] > 0;
-    BOOL hasEntries = [self.trash.entries count] > 0;
-    return (hasEntries || hasGroups);
+  if(self.encrypted || self.isReadOnly) { return NO; }
+
+  switch([MPActionHelper typeForAction:[anItem action]]) {
+    case MPActionDelete: {
+      BOOL valid = (nil != self.selectedItem);
+      valid &= (self.selectedItem != self.trash);
+      valid &= ![self isItemTrashed:self.selectedItem];
+      return valid;
+    }
+    case MPActionEmptyTrash: {
+      BOOL hasGroups = [self.trash.groups count] > 0;
+      BOOL hasEntries = [self.trash.entries count] > 0;
+      return (hasEntries || hasGroups);
+    }
+    case MPActionDatabaseSettings:
+    case MPActionEditPassword:
+      return !self.encrypted;
+    case MPActionAddGroup:
+    case MPActionAddEntry:
+      return (nil != self.selectedGroup);
+    case MPActionLock:
+      return self.compositeKey.hasPasswordOrKeyFile;
+    default:
+      return YES;
   }
-  
+
   return [super validateUserInterfaceItem:anItem];
 }
 

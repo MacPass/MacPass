@@ -22,13 +22,6 @@
 @property (readonly, strong) MPOutlineViewController *outlineViewController;
 @property (readonly, strong) MPInspectorViewController *inspectorViewController;
 
-/**
- @param action The action that should be validatet
- @param item The item that the action affects. Pass nil to fall back for default item
- @returns YES if the action is valid, NO otherwise
- */
-- (BOOL)validateAction:(SEL)action forItem:(id)item;
-
 - (void)showEntries;
 - (void)showPasswordInput;
 - (void)performFindPanelAction:(id)sender;
