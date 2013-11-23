@@ -16,6 +16,7 @@
     id target = [NSApp targetForAction:[self action] to:nil from:self];
     BOOL isValid = (nil != target);
     id validateTarget = [NSApp targetForAction:@selector(validateToolbarItem:) to:nil from:self];
+    //NSLog(@"Validation for ToolbarItem:%@", [validateTarget class]);
     if(validateTarget) {
       isValid &= [validateTarget validateToolbarItem:self];
     }
