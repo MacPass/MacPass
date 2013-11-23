@@ -20,6 +20,7 @@ typedef NS_ENUM(NSUInteger, MPActionType) {
   MPActionToggleInspector,
   MPActionLock, // show the lock screen
   MPActionEmptyTrash, // empties the trashcan, if there is one
+  MPActionEditPassword, // change the database password
   MPActionDatabaseSettings, // Show the settings for the database
   MPActionEditTemplateGroup
 };
