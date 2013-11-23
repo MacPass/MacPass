@@ -548,7 +548,7 @@ typedef NS_ENUM(NSUInteger, MPAlertType) {
     default:
       valid = YES;
   }
-  return valid;
+  return (valid && [super validateUserInterfaceItem:anItem]);
 }
 
 - (void)_storeKeyURL:(NSURL *)keyURL {
