@@ -21,6 +21,7 @@
                    @(MPActionCopyURL) : @"copyURL:",
                    @(MPActionCopyUsername) : @"copyUsername:",
                    @(MPActionDelete) : @"deleteNode:",
+                   @(MPActionEditPassword) : @"editPassword:",
                    @(MPActionOpenURL) : @"openURL:",
                    @(MPActionToggleInspector) : @"toggleInspector:",
                    @(MPActionLock) : @"lock:",
