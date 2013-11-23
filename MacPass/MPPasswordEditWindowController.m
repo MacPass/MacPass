@@ -20,6 +20,7 @@
 
 @property (nonatomic, weak) MPDocument *currentDocument;
 @property (nonatomic, assign) BOOL showPassword;
+@property (nonatomic, assign) BOOL enablePassword;
 @property (nonatomic, assign) BOOL hasValidPasswordOrKey;
 @property (nonatomic, weak) NSURL *keyURL;
 
@@ -42,6 +43,7 @@
   [super windowDidLoad];
   [self.togglePasswordButton bind:NSValueBinding toObject:self withKeyPath:@"showPassword" options:nil];
   [[self window] setDefaultButtonCell:[self.changePasswordButton cell]];
+  self.enablePassword = _currentDocument.compositeKey.hasPassword;
 }
 
 - (void)updateView {
@@ -55,11 +57,13 @@
   //self.keyURL = _currentDocument.key;
   
   NSDictionary *negateOption = @{ NSValueTransformerNameBindingOption : NSNegateBooleanTransformerName };
+  [self.hasPasswordSwitchButton bind:NSValueBinding toObject:self withKeyPath:@"enablePassword" options:nil];
   [self.passwordTextField bind:@"showPassword" toObject:self withKeyPath:@"showPassword" options:nil];
-  [self.passwordTextField bind:NSEnabledBinding toObject:self.hasPasswordSwitchButton withKeyPath:@"cell.state" options:nil];
+  [self.passwordTextField bind:NSEnabledBinding toObject:self withKeyPath:@"enablePassword" options:nil];
   [self.togglePasswordButton bind:NSValueBinding toObject:self withKeyPath:@"showPassword" options:nil];
+  [self.togglePasswordButton bind:NSEnabledBinding toObject:self withKeyPath:@"enablePassword" options:nil];
   [self.passwordRepeatTextField bind:NSEnabledBinding toObject:self withKeyPath:@"showPassword" options:negateOption];
-  [self.passwordRepeatTextField bind:NSEnabledBinding toObject:self.hasPasswordSwitchButton withKeyPath:@"cell.state" options:nil];
+  [self.passwordRepeatTextField bind:NSEnabledBinding toObject:self withKeyPath:@"enablePassword" options:nil];
   [self.errorTextField bind:NSHiddenBinding toObject:self withKeyPath:@"hasValidPasswordOrKey" options:nil];
   [self.changePasswordButton bind:NSEnabledBinding toObject:self withKeyPath:@"hasValidPasswordOrKey" options:nil];
   [self.keyfilePathControl bind:NSValueBinding toObject:self withKeyPath:@"keyURL" options:nil];
@@ -72,6 +76,7 @@
   self.isDirty = NO;
 }
 
+#pragma mark Properties
 - (void)setShowPassword:(BOOL)showPassword {
   if(_showPassword != showPassword) {
     _showPassword = showPassword;
@@ -83,6 +88,15 @@
 - (void)setKeyURL:(NSURL *)keyURL {
   _keyURL = keyURL;
   [self _verifyPasswordAndKey];
+}
+- (void)setEnablePassword:(BOOL)enablePassword {
+  if(_enablePassword != enablePassword) {
+    _enablePassword = enablePassword;
+  }
+  NSString *passwordPlaceHolder = _enablePassword ? NSLocalizedString(@"PASSWORD_INPUT_ENTER_PASSWORD", "") : NSLocalizedString(@"PASSWORD_INPUT_NO_PASSWORD", "");
+  NSString *repeatPlaceHolder = _enablePassword ? NSLocalizedString(@"PASSWORD_INPUT_REPEAT_PASSWORD", "") : NSLocalizedString(@"PASSWORD_INPUT_NO_PASSWORD", "");
+  [[self.passwordTextField cell] setPlaceholderString:passwordPlaceHolder];
+  [[self.passwordRepeatTextField cell] setPlaceholderString:repeatPlaceHolder];
 }
 
 #pragma mark Actions

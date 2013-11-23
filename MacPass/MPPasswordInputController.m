@@ -26,7 +26,7 @@
 @property (weak) IBOutlet NSButton *enablePasswordCheckBox;
 
 @property (assign) BOOL showPassword;
-@property (assign) BOOL enablePassword;
+@property (nonatomic, assign) BOOL enablePassword;
 
 @end
 
@@ -69,6 +69,19 @@
   // show Warnign if read-only mode!
   [self _reset];
 }
+
+#pragma mark Properties
+- (void)setEnablePassword:(BOOL)enablePassword {
+  if(_enablePassword != enablePassword) {
+    _enablePassword = enablePassword;
+    if(!_enablePassword) {
+      [self.passwordTextField setStringValue:@""];
+    }
+  }
+  NSString  *placeHolderString = _enablePassword ? NSLocalizedString(@"PASSWORD_INPUT_ENTER_PASSWORD", "") : NSLocalizedString(@"PASSWORD_INPUT_NO_PASSWORD", "");
+  [[self.passwordTextField cell] setPlaceholderString:placeHolderString];
+}
+
 
 #pragma mark -
 #pragma mark Private
