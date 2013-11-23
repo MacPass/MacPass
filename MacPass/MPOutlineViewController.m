@@ -84,7 +84,7 @@ NSString *const _MPOutlinveViewHeaderViewIdentifier = @"HeaderCell";
                                              object:_outlineView];
 }
 
-#pragma makr Outline handling
+#pragma mark Outline handling
 
 - (void)showOutline {
   if(!_bindingEstablished) {

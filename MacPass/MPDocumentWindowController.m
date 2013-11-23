@@ -340,7 +340,7 @@ typedef NS_ENUM(NSUInteger, MPAlertContext) {
   [_outlineViewController showOutline];
 }
 
-#pragma makr Validation
+#pragma mark Validation
 - (BOOL)validateMenuItem:(NSMenuItem *)menuItem {
   return ([[self document] validateMenuItem:menuItem]);
 }
