@@ -520,31 +520,35 @@ typedef NS_ENUM(NSUInteger, MPAlertType) {
 - (BOOL)validateUserInterfaceItem:(id<NSValidatedUserInterfaceItem>)anItem {
   if(self.encrypted || self.isReadOnly) { return NO; }
 
+  BOOL valid = YES;
   switch([MPActionHelper typeForAction:[anItem action]]) {
+    case MPActionAddGroup:
+      valid &= (nil != self.selectedGroup);
+      // fall-through
+    case MPActionAddEntry:
+      // fall-through
     case MPActionDelete: {
-      BOOL valid = (nil != self.selectedItem);
-      valid &= (self.selectedItem != self.trash);
+      valid &= (nil != self.selectedItem);
+      valid &= (self.trash != self.selectedItem);
       valid &= ![self isItemTrashed:self.selectedItem];
-      return valid;
+      break;
     }
     case MPActionEmptyTrash: {
-      BOOL hasGroups = [self.trash.groups count] > 0;
-      BOOL hasEntries = [self.trash.entries count] > 0;
-      return (hasEntries || hasGroups);
+      valid &= [self.trash.groups count] > 0;
+      valid &= [self.trash.entries count] > 0;
+      break;
     }
     case MPActionDatabaseSettings:
     case MPActionEditPassword:
-      return !self.encrypted;
-    case MPActionAddGroup:
-    case MPActionAddEntry:
-      return (nil != self.selectedGroup);
+      valid &= !self.encrypted;
+      break;
     case MPActionLock:
-      return self.compositeKey.hasPasswordOrKeyFile;
+      valid &= self.compositeKey.hasPasswordOrKeyFile;
+      break;
     default:
-      return YES;
+      valid = YES;
   }
-
-  return [super validateUserInterfaceItem:anItem];
+  return valid;
 }
 
 - (void)_storeKeyURL:(NSURL *)keyURL {

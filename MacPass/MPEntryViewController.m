@@ -676,11 +676,6 @@ NSString *const _MPTAbleSecurCellView = @"PasswordCell";
 //  //
 //}
 
-#pragma mark Validation
-- (BOOL)validateMenuItem:(NSMenuItem *)menuItem {
-  return YES;
-}
-
 - (IBAction)_toggleFilterSpace:(id)sender {
   if(![sender isKindOfClass:[NSButton class]]) {
     return; // Wrong sender
