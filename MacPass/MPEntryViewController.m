@@ -568,6 +568,16 @@ NSString *const _MPTAbleSecurCellView = @"PasswordCell";
   self.trashBar.inactiveGradient = [[NSGradient alloc] initWithColors:inactiveColors];
 }
 
+#pragma mark Validation
+- (BOOL)validateMenuItem:(NSMenuItem *)menuItem {
+  MPDocument *document = [[self windowController] document];
+  if(![document validateMenuItem:menuItem]) {
+    return NO;
+  }
+  return YES;
+  /* TODO handle _clickedOrSlectedEnty */
+}
+
 #pragma mark ContextMenu
 
 - (void)_setupEntryMenu {

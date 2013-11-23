@@ -340,6 +340,11 @@ typedef NS_ENUM(NSUInteger, MPAlertContext) {
   [_outlineViewController showOutline];
 }
 
+#pragma makr Validation
+- (BOOL)validateMenuItem:(NSMenuItem *)menuItem {
+  return ([[self document] validateMenuItem:menuItem]);
+}
+
 #pragma mark MPPasswordEditWindowDelegate
 - (void)didFinishPasswordEditing:(BOOL)changedPasswordOrKey {
   if(changedPasswordOrKey && _saveAfterPasswordChange) {

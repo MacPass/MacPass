@@ -511,10 +511,12 @@ typedef NS_ENUM(NSUInteger, MPAlertType) {
 }
 
 - (BOOL)validateMenuItem:(NSMenuItem *)menuItem {
+  NSLog(@"Valdiate MenuItem:%@", [menuItem title]);
   return [self validateUserInterfaceItem:menuItem];
 }
 
 - (BOOL)validateToolbarItem:(NSToolbarItem *)theItem {
+    NSLog(@"Valdiate ToolbarItem:%@", [theItem label]);
   return [self validateUserInterfaceItem:theItem];
 }
 
@@ -528,17 +530,15 @@ typedef NS_ENUM(NSUInteger, MPAlertType) {
       // fall-through
     case MPActionAddEntry:
       // fall-through
-    case MPActionDelete: {
+    case MPActionDelete:
       valid &= (nil != self.selectedItem);
       valid &= (self.trash != self.selectedItem);
       valid &= ![self isItemTrashed:self.selectedItem];
       break;
-    }
-    case MPActionEmptyTrash: {
+    case MPActionEmptyTrash:
       valid &= [self.trash.groups count] > 0;
       valid &= [self.trash.entries count] > 0;
       break;
-    }
     case MPActionDatabaseSettings:
     case MPActionEditPassword:
       valid &= !self.encrypted;

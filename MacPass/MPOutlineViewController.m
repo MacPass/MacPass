@@ -237,6 +237,18 @@ NSString *const _MPOutlinveViewHeaderViewIdentifier = @"HeaderCell";
   }
 }
 
+#pragma mark Validation
+- (BOOL)validateMenuItem:(NSMenuItem *)menuItem {
+  MPDocument *document = [[self windowController] document];
+  if(![document validateUserInterfaceItem:menuItem]) {
+    return NO;
+  }
+  id selected = [self _clickedOrSelectedGroup];
+  if(!selected) { return NO; }
+  if(selected == document.trash) { return NO; }
+  return ![document isItemTrashed:selected];
+}
+
 #pragma mark -
 #pragma mark Private
 
