@@ -87,7 +87,9 @@
 
 #pragma mark Actions
 - (IBAction)save:(id)sender {
-  [_currentDocument changePassword:[self.passwordTextField stringValue] keyFileURL:[self.keyfilePathControl URL]];
+  const BOOL hasPassword = ([self.hasPasswordSwitchButton state] == NSOnState);
+  NSString *password = hasPassword ? [self.passwordTextField stringValue] : nil;
+  [_currentDocument changePassword:password keyFileURL:[self.keyfilePathControl URL]];
   [self dismissSheet:NSRunStoppedResponse];
   if(self.delegate && [self.delegate respondsToSelector:@selector(didFinishPasswordEditing:)]) {
     [self.delegate didFinishPasswordEditing:YES];

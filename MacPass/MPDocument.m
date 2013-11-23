@@ -511,12 +511,10 @@ typedef NS_ENUM(NSUInteger, MPAlertType) {
 }
 
 - (BOOL)validateMenuItem:(NSMenuItem *)menuItem {
-  NSLog(@"Valdiate MenuItem:%@", [menuItem title]);
   return [self validateUserInterfaceItem:menuItem];
 }
 
 - (BOOL)validateToolbarItem:(NSToolbarItem *)theItem {
-    NSLog(@"Valdiate ToolbarItem:%@", [theItem label]);
   return [self validateUserInterfaceItem:theItem];
 }
 
