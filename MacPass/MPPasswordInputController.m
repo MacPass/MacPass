@@ -23,8 +23,10 @@
 @property (weak) IBOutlet NSImageView *errorImageView;
 @property (weak) IBOutlet NSTextField *errorInfoTextField;
 @property (weak) IBOutlet NSButton *togglePasswordButton;
+@property (weak) IBOutlet NSButton *enablePasswordCheckBox;
 
 @property (assign) BOOL showPassword;
+@property (assign) BOOL enablePassword;
 
 @end
 
@@ -38,6 +40,7 @@
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil {
   self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
   if(self) {
+    _enablePassword = YES;
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(_selectKeyURL) name:MPDocumentDidChangeStoredKeyFilesSettings object:nil];
   }
   return self;
@@ -52,6 +55,9 @@
   [self.errorImageView setImage:[NSImage imageNamed:NSImageNameCaution]];
   [self.passwordTextField bind:@"showPassword" toObject:self withKeyPath:@"showPassword" options:nil];
   [self.togglePasswordButton bind:NSValueBinding toObject:self withKeyPath:@"showPassword" options:nil];
+  [self.enablePasswordCheckBox bind:NSValueBinding toObject:self withKeyPath:@"enablePassword" options:nil];
+  [self.togglePasswordButton bind:NSEnabledBinding toObject:self withKeyPath:@"enablePassword" options:nil];
+  [self.passwordTextField bind:NSEnabledBinding toObject:self withKeyPath:@"enablePassword" options:nil];
   [self _reset];
 }
 
@@ -70,7 +76,9 @@
   MPDocument *document = [[self windowController] document];
   if(document) {
     NSError *error = nil;
-    if(![document unlockWithPassword:[self.passwordTextField stringValue]
+    /* No password is different than an empty password */
+    NSString *password = self.enablePassword ? [self.passwordTextField stringValue] : nil;
+    if(![document unlockWithPassword:password
                           keyFileURL:[self.keyPathControl URL]
                                error:&error]) {
       [self _showError:error];
@@ -84,6 +92,7 @@
 
 - (void)_reset {
   self.showPassword = NO;
+  self.enablePassword = YES;
   [self.passwordTextField setStringValue:@""];
   [self.errorInfoTextField setHidden:YES];
   [self.errorImageView setHidden:YES];

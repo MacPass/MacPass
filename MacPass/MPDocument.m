@@ -235,7 +235,8 @@ typedef NS_ENUM(NSUInteger, MPAlertType) {
   BOOL isUnlocked = (nil != self.tree);
   if(isUnlocked) {
     [[NSNotificationCenter defaultCenter] postNotificationName:MPDocumentDidUnlockDatabaseNotification object:self];
-    if([password length] > 0 && self.isAllowedToStoreKeyFile) {
+    /* Make sure to only store */
+    if(self.compositeKey.hasPassword && self.isAllowedToStoreKeyFile) {
       [self _storeKeyURL:keyFileURL];
     }
   }
