@@ -13,6 +13,7 @@
 @property (strong) IBOutlet NSWindow *passwordCreatorWindow;
 @property (strong) IBOutlet NSWindow *welcomeWindow;
 
+- (IBAction)showPreferences:(id)sender;
 - (IBAction)showPasswordCreator:(id)sender;
 - (IBAction)createNewDatabase:(id)sender;
 - (IBAction)openDatabase:(id)sender;

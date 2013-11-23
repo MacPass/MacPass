@@ -24,14 +24,12 @@
   MPServerDaemon *serverDaemon;
   MPLockDaemon *lockDaemon;
   MPAutotypeDaemon *autotypeDaemon;
-  BOOL _restoredWindows;
-  BOOL _shouldOpenFile;
+  BOOL _restoredWindows; // YES if windows where restored at launch
+  BOOL _shouldOpenFile; // YES if app was started to open a
 }
 
 @property (strong, nonatomic) MPSettingsWindowController *settingsController;
 @property (strong, nonatomic) MPPasswordCreatorViewController *passwordCreatorController;
-
-- (IBAction)showPreferences:(id)sender;
 
 @end
 
@@ -68,16 +66,14 @@
 
 
 - (void)applicationWillFinishLaunching:(NSNotification *)notification {
-  BOOL reopen = [[NSUserDefaults standardUserDefaults] boolForKey:kMPSettingsKeyReopenLastDatabaseOnLaunch];
   _restoredWindows = NO;
   _shouldOpenFile = NO;
-  if(reopen) {
-    [[NSNotificationCenter defaultCenter] addObserver:self
-                                             selector:@selector(_applicationDidFinishRestoringWindows:)
-                                                 name:NSApplicationDidFinishRestoringWindowsNotification
-                                               object:nil];
-    
-  }
+  [[NSNotificationCenter defaultCenter] addObserver:self
+                                           selector:@selector(_applicationDidFinishRestoringWindows:)
+                                               name:NSApplicationDidFinishRestoringWindowsNotification
+                                             object:nil];
+  
+  
 }
 
 - (BOOL)application:(NSApplication *)sender openFile:(NSString *)filename {
@@ -93,7 +89,7 @@
   autotypeDaemon = [[MPAutotypeDaemon alloc] init];
   
   BOOL reopen = [[NSUserDefaults standardUserDefaults] boolForKey:kMPSettingsKeyReopenLastDatabaseOnLaunch];
-  BOOL showWelcomeScreen = !_shouldOpenFile;
+  BOOL showWelcomeScreen = !_restoredWindows && !_shouldOpenFile;
   if(reopen && !_restoredWindows && !_shouldOpenFile) {
     showWelcomeScreen = ![self _reopenLastDocument];
   }
@@ -162,7 +158,6 @@
   if(!_welcomeWindow) {
     NSArray *topLevelObject;
     [[NSBundle mainBundle] loadNibNamed:@"WelcomeWindow" owner:self topLevelObjects:&topLevelObject];
-    //CFRelease((__bridge CFTypeRef)_welcomeWindow);
   }
 }
 
