@@ -15,10 +15,17 @@
 @implementation MPDocument (Autotype)
 
 - (NSArray *)findEntriesForWindowTitle:(NSString *)windowTitle {
-  
   NSArray *autotypeEntries = [self.root autotypeableChildEntries];
+  NSMutableArray *matchingEntries = [[NSMutableArray alloc] initWithCapacity:ceil([autotypeEntries count] / 4.0)];
   for(KPKEntry *entry in autotypeEntries) {
-    //KPKAutotype *autotype = entry.autotype;
+    /* Test for title */
+    NSRange titleRange = [entry.title rangeOfString:windowTitle options:NSCaseInsensitiveSearch];
+    if(titleRange.location != NSNotFound) {
+      [matchingEntries addObject:entry];
+    }
+    /* search in Autotype entries for match */
+    else {
+    }
   }
   return nil;
 }

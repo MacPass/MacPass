@@ -240,6 +240,8 @@
 		4CD884B715BD47080042BBF8 /* DocumentWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4CD884B615BD47080042BBF8 /* DocumentWindow.xib */; };
 		4CDB5C421794AA4F0017667E /* KPKTree+Serializing.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CDB5C411794AA4F0017667E /* KPKTree+Serializing.m */; };
 		4CDF01A316D1B76700D0AC08 /* MPEntryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CDF01A216D1B76700D0AC08 /* MPEntryViewController.m */; };
+		4CE2961518429AA5005F01CE /* MPAutotypeKeyPress.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CE2961418429AA5005F01CE /* MPAutotypeKeyPress.m */; };
+		4CE296191842A166005F01CE /* MPAutotypePaste.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CE296181842A166005F01CE /* MPAutotypePaste.m */; };
 		4CE298EB1795FC2A00DF7BDB /* MPEntryContextMenuDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CE298EA1795FC2A00DF7BDB /* MPEntryContextMenuDelegate.m */; };
 		4CE39ABF16ECE34A000FE29D /* MPIconSelectViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CE39ABE16ECE34A000FE29D /* MPIconSelectViewController.m */; };
 		4CE39AC116ECE359000FE29D /* IconSelection.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4CE39AC016ECE359000FE29D /* IconSelection.xib */; };
@@ -705,6 +707,10 @@
 		4CDB5C411794AA4F0017667E /* KPKTree+Serializing.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = "KPKTree+Serializing.m"; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		4CDF01A116D1B76700D0AC08 /* MPEntryViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MPEntryViewController.h; sourceTree = "<group>"; };
 		4CDF01A216D1B76700D0AC08 /* MPEntryViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MPEntryViewController.m; sourceTree = "<group>"; };
+		4CE2961318429AA5005F01CE /* MPAutotypeKeyPress.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MPAutotypeKeyPress.h; sourceTree = "<group>"; };
+		4CE2961418429AA5005F01CE /* MPAutotypeKeyPress.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MPAutotypeKeyPress.m; sourceTree = "<group>"; };
+		4CE296171842A166005F01CE /* MPAutotypePaste.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MPAutotypePaste.h; sourceTree = "<group>"; };
+		4CE296181842A166005F01CE /* MPAutotypePaste.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MPAutotypePaste.m; sourceTree = "<group>"; };
 		4CE298E91795FC2A00DF7BDB /* MPEntryContextMenuDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MPEntryContextMenuDelegate.h; sourceTree = "<group>"; };
 		4CE298EA1795FC2A00DF7BDB /* MPEntryContextMenuDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MPEntryContextMenuDelegate.m; sourceTree = "<group>"; };
 		4CE39ABD16ECE34A000FE29D /* MPIconSelectViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MPIconSelectViewController.h; sourceTree = "<group>"; };
@@ -1305,8 +1311,12 @@
 			children = (
 				4CEE46DB181C301D006BF1E5 /* MPAutotypeDaemon.h */,
 				4CEE46DC181C301D006BF1E5 /* MPAutotypeDaemon.m */,
+				4CE2961318429AA5005F01CE /* MPAutotypeKeyPress.h */,
+				4CE2961418429AA5005F01CE /* MPAutotypeKeyPress.m */,
 				4C89F522182FB4740069C73C /* MPAutotypeCommand.h */,
 				4C89F523182FB4740069C73C /* MPAutotypeCommand.m */,
+				4CE296171842A166005F01CE /* MPAutotypePaste.h */,
+				4CE296181842A166005F01CE /* MPAutotypePaste.m */,
 			);
 			name = Autotype;
 			sourceTree = "<group>";
@@ -1913,6 +1923,7 @@
 				4CAF62FC1763604000CD7084 /* HNHBadgedTextFieldCell.m in Sources */,
 				4C58BD4F176370B100B8178C /* HNHBadgedTextField.m in Sources */,
 				4C01C2421764D8980016D5D0 /* MPContextMenuHelper.m in Sources */,
+				4CE296191842A166005F01CE /* MPAutotypePaste.m in Sources */,
 				4C01C245176500C40016D5D0 /* HNHLevelIndicatorCell.m in Sources */,
 				4C569D9E17652B0600595B62 /* MPConstants.m in Sources */,
 				4C569DA117652BFE00595B62 /* MPEntryTableDataSource.m in Sources */,
@@ -2026,6 +2037,7 @@
 				4C68456D17BC227B00FCDBFC /* KPKWindowAssociation.m in Sources */,
 				4CA2E2DB17BCDA8300714076 /* NSString+Placeholder.m in Sources */,
 				4C6C72C417C01E4200768849 /* NSMutableData+KeePassKit.m in Sources */,
+				4CE2961518429AA5005F01CE /* MPAutotypeKeyPress.m in Sources */,
 				4C0104BB17C37BFC00173EF3 /* KPKLegacyHeaderUtility.m in Sources */,
 				4C0104BE17C37DA400173EF3 /* KPKXmlUtilities.m in Sources */,
 				4C5CD35517D15DBD000B7F38 /* NSData+Gzip.m in Sources */,

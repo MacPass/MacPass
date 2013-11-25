@@ -8,9 +8,13 @@
 
 #import <Foundation/Foundation.h>
 
+@class KPKEntry;
+
 /**
  *  The autotype daemon is repsonsible for registering the globa hotkey and to perform any autotype actions
  */
 @interface MPAutotypeDaemon : NSObject
+
+- (void)exectureAutotypeForEntry:(KPKEntry *)entry withWindowTitle:(NSString *)title;
 
 @end
