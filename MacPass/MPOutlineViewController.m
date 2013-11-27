@@ -82,6 +82,11 @@ NSString *const _MPOutlinveViewHeaderViewIdentifier = @"HeaderCell";
                                            selector:@selector(_didBecomeFirstResponder:)
                                                name:MPDidActivateViewNotification
                                              object:_outlineView];
+  
+}
+
+- (NSResponder *)reconmendedFirstResponder {
+  return self.outlineView;
 }
 
 #pragma mark Outline handling

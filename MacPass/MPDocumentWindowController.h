@@ -37,8 +37,13 @@
 
 - (IBAction)lock:(id)sender;
 
-- (void)createGroup:(id)sender;
-- (void)toggleInspector:(id)sender;
+- (IBAction)createGroup:(id)sender;
+
+#pragma mark View Actions
+- (IBAction)toggleInspector:(id)sender;
+- (IBAction)focusGroups:(id)sender;
+- (IBAction)focusEntries:(id)sender;
+- (IBAction)focusInspector:(id)sender;
 
 #pragma mark MPPasswordEditWindowDelegater
 - (void)didFinishPasswordEditing:(BOOL)changedPasswordOrKey;

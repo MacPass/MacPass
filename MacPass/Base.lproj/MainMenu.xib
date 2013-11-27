@@ -205,6 +205,25 @@
                                     <action selector="toggleInspector:" target="-1" id="1199"/>
                                 </connections>
                             </menuItem>
+                            <menuItem isSeparatorItem="YES" id="Coa-ar-1wb"/>
+                            <menuItem title="Focus Groups" keyEquivalent="g" id="HxM-dV-LIH">
+                                <modifierMask key="keyEquivalentModifierMask" option="YES" command="YES"/>
+                                <connections>
+                                    <action selector="focusGroups:" target="-1" id="WDh-av-H8i"/>
+                                </connections>
+                            </menuItem>
+                            <menuItem title="Focus Entries" keyEquivalent="e" id="2VP-vB-IeX">
+                                <modifierMask key="keyEquivalentModifierMask" option="YES" command="YES"/>
+                                <connections>
+                                    <action selector="focusEntries:" target="-1" id="Vgp-9G-oI3"/>
+                                </connections>
+                            </menuItem>
+                            <menuItem title="Focus Inspector" keyEquivalent="i" id="Zje-Me-5c8">
+                                <modifierMask key="keyEquivalentModifierMask" option="YES" command="YES"/>
+                                <connections>
+                                    <action selector="focusInspector:" target="-1" id="Gug-vY-M8N"/>
+                                </connections>
+                            </menuItem>
                             <menuItem isSeparatorItem="YES" id="1179"/>
                             <menuItem title="Show Toolbar" keyEquivalent="t" id="297">
                                 <modifierMask key="keyEquivalentModifierMask" option="YES" command="YES"/>

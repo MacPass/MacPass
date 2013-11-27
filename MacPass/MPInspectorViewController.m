@@ -65,6 +65,10 @@ typedef NS_ENUM(NSUInteger, MPContentTab) {
   [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
 
+- (NSResponder *)reconmendedFirstResponder {
+  return [self view];
+}
+
 #pragma mark Properties
 - (void)setActiveTab:(NSUInteger)activeTab {
   if(_activeTab != activeTab) {

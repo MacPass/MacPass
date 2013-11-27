@@ -275,6 +275,18 @@ typedef NS_ENUM(NSUInteger, MPAlertContext) {
   [[NSUserDefaults standardUserDefaults] setBool:inspectorVisible forKey:kMPSettingsKeyShowInspector];
 }
 
+- (void)focusEntries:(id)sender {
+  [[self window] makeFirstResponder:[self.entryViewController reconmendedFirstResponder]];
+}
+
+- (void)focusGroups:(id)sender {
+  [[self window] makeFirstResponder:[self.outlineViewController reconmendedFirstResponder]];
+}
+
+- (void)focusInspector:(id)sender {
+  [[self window] makeFirstResponder:[self.inspectorViewController reconmendedFirstResponder]];
+}
+
 - (void)showEntries {
   NSView *contentView = [[self window] contentView];
   if(_splitView == contentView) {
@@ -361,7 +373,7 @@ typedef NS_ENUM(NSUInteger, MPAlertContext) {
       /* Save lossy */
       [[self document] saveDocument:nil];
       return;
-
+      
     case NSAlertSecondButtonReturn:
       /* Change Format */
       //[[self document] setFileType:[MPDocument fileTypeForVersion:KPKXmlVersion]];
@@ -374,8 +386,6 @@ typedef NS_ENUM(NSUInteger, MPAlertContext) {
       return; // Cancel or unknown
   }
 }
-
-#pragma mark Helper
 - (void)_showDatabaseSetting:(MPDatabaseSettingsTab)tab {
   if(!self.documentSettingsWindowController) {
     _documentSettingsWindowController = [[MPDatabaseSettingsWindowController alloc] initWithDocument:[self document]];

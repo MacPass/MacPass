@@ -125,7 +125,7 @@ NSString *const _MPTAbleSecurCellView = @"PasswordCell";
 - (void)didLoadView {
   [[self view] setWantsLayer:YES];
   [self _hideFilterBarAnimated];
-  
+    
   [_bottomBar setBorderType:HNHBorderTop];
   [self.addEntryButton setAction:[MPActionHelper actionOfType:MPActionAddEntry]];
   
@@ -193,6 +193,10 @@ NSString *const _MPTAbleSecurCellView = @"PasswordCell";
   [self _setupHeaderMenu];
   [parentColumn setHidden:YES];
   
+}
+
+- (NSResponder *)reconmendedFirstResponder {
+  return self.entryTable;
 }
 
 - (void)setupNotifications:(MPDocumentWindowController *)windowController {
