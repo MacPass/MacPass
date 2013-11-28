@@ -46,6 +46,9 @@ APPKIT_EXTERN NSString *const kMPSettingsKeyLastKeyURL;
 APPKIT_EXTERN NSString *const kMPSettingsKeyRememberLastKey;
 */
 
+/* Autotype */
+APPKIT_EXTERN NSString *const kMPSettingsKeySendCommandForControlKey;
+
 typedef NS_ENUM(NSUInteger, MPPasswordEncoding) {
   MPPasswordEncodingUTF8,
   MPPasswordEncodingASCII,

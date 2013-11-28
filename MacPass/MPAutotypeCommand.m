@@ -70,12 +70,80 @@
 
 + (NSArray *)commandsForCommandString:(NSString *)commands {
   NSUInteger commandIndex = 0;
+  CGEventFlags modiferKeys = 0;
   while(commandIndex <= [commands length]) {
-    NSString *nextCommand = [commands nextCommandFromIndex:0];
-    /* itearte over all comamnds */
-    /* determine singel commands, paste, etc */
-    /* create command with appropriate initalizers */
-    /* return array with ordered commands */
+    /* Modifier Keys
+     Shift  +
+     Ctrl   ^
+     Alt    %
+     Enter  ~ // No modifier!
+     */
+    NSString *currentCommans = [commands substringFromIndex:commandIndex];
+    NSCharacterSet *modifierKeySet = [NSCharacterSet characterSetWithCharactersInString:@"+^%"];
+    NSRange modifierRange = [currentCommans rangeOfCharacterFromSet:modifierKeySet options:NSCaseInsensitiveSearch range:NSMakeRange(0, 1)];
+    if(modifierRange.length != 0 && modifierRange.location == 0) {
+      /* starts with a special key */
+      if([currentCommans hasPrefix:@"+"]) {
+        modiferKeys |= kCGEventFlagMaskAlphaShift;
+      }
+      if([currentCommans hasPrefix:@"^"]) {
+        modiferKeys |= kCGEventFlagMaskControl;
+      }
+      if([currentCommans hasPrefix:@"%"]) {
+        modiferKeys = kCGEventFlagMaskAlternate;
+      }
+      /* move the index and continue */
+      commandIndex++;
+      continue;
+    }
+    if([currentCommans hasPrefix:@"{"]) {
+      NSRange closeBracket = [currentCommans rangeOfString:@"}"];
+      if(closeBracket.length == 0) {
+        NSLog(@"Syntax error in Autotype Sequence %@ at index: %ld", commands, commandIndex);
+        return nil;
+      }
+    }
+    /* Search on to another bracket or a special key */
+
+    /* Command Keys
+     Tab              {TAB}
+     Enter            {ENTER} or ~
+     Arrow Up         {UP}
+     Arrow Down       {DOWN}
+     Arrow Left       {LEFT}
+     Arrow Right      {RIGHT}
+     Insert           {INSERT} or {INS}
+     Delete           {DELETE} or {DEL}
+     Home             {HOME}
+     End              {END}
+     Page Up          {PGUP}
+     Page Down        {PGDN}
+     Backspace        {BACKSPACE}, {BS} or {BKSP}
+     Break            {BREAK}
+     Caps-Lock        {CAPSLOCK}
+     Escape           {ESC}
+     Windows Key      {WIN} (equ. to {LWIN})
+     Windows Key: left, right	{LWIN}, {RWIN}
+     Apps / Menu      {APPS}
+     Help             {HELP}
+     Numlock          {NUMLOCK}
+     Print Screen     {PRTSC}
+     Scroll Lock      {SCROLLLOCK}
+     F1 - F16         {F1} - {F16}
+     Numeric Keypad + {ADD}
+     Numeric Keypad -	{SUBTRACT}
+     Numeric Keypad *	{MULTIPLY}
+     Numeric Keypad /	{DIVIDE}
+     Numeric Keypad 0 to 9	{NUMPAD0} to {NUMPAD9}
+     +                {+}
+     ^                {^}
+     %                {%}
+     ~                {~}
+     (, )             {(}, {)}
+     [, ]             {[}, {]}
+     {, }             {{}, {}}
+     
+     */
   }
   return nil;
 }
@@ -191,6 +259,8 @@
   }
   return (CGKeyCode)virtualKeyCode;
 }
+
+
 
 - (void)execute {}
 

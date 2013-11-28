@@ -30,6 +30,8 @@ NSString *const kMPSettingsKeyLastDatabasePath = @"LastDatabasePath";
 NSString *const kMPSettingsKeyRememeberdKeysForDatabases = @"RememeberdKeysForDatabases";
 NSString *const kMPSettingsKeyRememberKeyFilesForDatabases = @"RememberKeyFilesForDatabases";
 
+NSString *const kMPSettingsKeySendCommandForControlKey = @"SendCommandKeyForControlKey";
+
 @implementation MPSettingsHelper
 
 + (void)setupDefaults {
@@ -58,7 +60,8 @@ NSString *const kMPSettingsKeyRememberKeyFilesForDatabases = @"RememberKeyFilesF
            kMPSettingsKeyLegacyHideTitle: @NO,
            kMPSettingsKeyLegacyHideURL: @NO,
            kMPSettingsKeyLegacyHideUsername: @NO,
-           kMPSettingsKeyRememberKeyFilesForDatabases: @NO
+           kMPSettingsKeyRememberKeyFilesForDatabases: @NO,
+           kMPSettingsKeySendCommandForControlKey: @YES
            };
 }
 
