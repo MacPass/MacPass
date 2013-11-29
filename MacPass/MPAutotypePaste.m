@@ -9,18 +9,26 @@
 #import "MPAutotypePaste.h"
 #import "MPPasteBoardController.h"
 
-#import <Carbon/Carbon.h>
+#import "NSString+Placeholder.h"
 
 @implementation MPAutotypePaste
 
 /**
  *  Simple copy paste action
  */
-- (void)execute {
+- (void)executeWithEntry:(KPKEntry *)entry {
   if([self.commandString length] > 0) {
     MPPasteBoardController *controller = [MPPasteBoardController defaultController];
-    [controller copyObjects:@[self.commandString]];
-    [self sendPressKey:kVK_ANSI_V modifierFlags:kCGEventFlagMaskCommand];
+    if([self.commandString isPlaceholder]) {
+      BOOL didReplace;
+      NSString *evaluatedPlaceholder = [self.commandString evaluatePlaceholderWithEntry:entry didReplace:&didReplace];
+      [controller copyObjects:@[evaluatedPlaceholder]];
+    }
+    else {
+      [controller copyObjects:@[self.commandString]];
+    }
+    /* Find the correct key code! */
+    [self sendPasteKeyCode];
   }
 }
 

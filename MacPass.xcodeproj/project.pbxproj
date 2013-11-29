@@ -221,6 +221,7 @@
 		4CC6DB7A17D23719002C6091 /* KPKNode+IconImage.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CC6DB7917D23719002C6091 /* KPKNode+IconImage.m */; };
 		4CC6DB7D17D23DCE002C6091 /* KPKUTIs.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CC6DB7C17D23DCE002C6091 /* KPKUTIs.m */; };
 		4CC7EA1B17807E7E0089D4F3 /* HNHRoundedTextFieldCellHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CC7EA1A17807E7E0089D4F3 /* HNHRoundedTextFieldCellHelper.m */; };
+		4CC87EA31847FDDA005AA18D /* MPAutotypeParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CC87EA21847FDDA005AA18D /* MPAutotypeParser.m */; };
 		4CCEDE2A179F203B008402BE /* MPOutlineView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CCEDE29179F203B008402BE /* MPOutlineView.m */; };
 		4CCEDE2E179F213B008402BE /* MPNotifications.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CCEDE2D179F213B008402BE /* MPNotifications.m */; };
 		4CCEDE32179F5B6C008402BE /* KPKDataStreamReader.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CCEDE31179F5B6C008402BE /* KPKDataStreamReader.m */; };
@@ -673,6 +674,8 @@
 		4CC6DB7C17D23DCE002C6091 /* KPKUTIs.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KPKUTIs.m; sourceTree = "<group>"; };
 		4CC7EA1917807E7E0089D4F3 /* HNHRoundedTextFieldCellHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HNHRoundedTextFieldCellHelper.h; sourceTree = "<group>"; };
 		4CC7EA1A17807E7E0089D4F3 /* HNHRoundedTextFieldCellHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HNHRoundedTextFieldCellHelper.m; sourceTree = "<group>"; };
+		4CC87EA11847FDDA005AA18D /* MPAutotypeParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MPAutotypeParser.h; sourceTree = "<group>"; };
+		4CC87EA21847FDDA005AA18D /* MPAutotypeParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MPAutotypeParser.m; sourceTree = "<group>"; };
 		4CCA7EEC1797866F00B0B55E /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/GeneralSettings.strings; sourceTree = "<group>"; };
 		4CCA7EEE1797867200B0B55E /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/GeneralSettings.strings; sourceTree = "<group>"; };
 		4CCEDE28179F203B008402BE /* MPOutlineView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MPOutlineView.h; sourceTree = "<group>"; };
@@ -1317,6 +1320,8 @@
 				4C89F523182FB4740069C73C /* MPAutotypeCommand.m */,
 				4CE296171842A166005F01CE /* MPAutotypePaste.h */,
 				4CE296181842A166005F01CE /* MPAutotypePaste.m */,
+				4CC87EA11847FDDA005AA18D /* MPAutotypeParser.h */,
+				4CC87EA21847FDDA005AA18D /* MPAutotypeParser.m */,
 			);
 			name = Autotype;
 			sourceTree = "<group>";
@@ -1901,6 +1906,7 @@
 				4C61EA0316D2FD0800AC519E /* MPOutlineViewController.m in Sources */,
 				4C69A73A16D589DF00EC1B1A /* HNHGradientView.m in Sources */,
 				4C65C79C16DD283900E32CFF /* MPToolbarButton.m in Sources */,
+				4CC87EA31847FDDA005AA18D /* MPAutotypeParser.m in Sources */,
 				4C431BCD16E2A82800700A81 /* MPPasteBoardController.m in Sources */,
 				4CE8246F16E2E93400573141 /* MPOverlayWindowController.m in Sources */,
 				4CE8247516E2F2B900573141 /* MPOverlayView.m in Sources */,

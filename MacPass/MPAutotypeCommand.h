@@ -8,6 +8,8 @@
 
 #import <Foundation/Foundation.h>
 
+@class KPKEntry;
+
 /**
  *  The Autotype command reperesent a capsualted Action that was determined by interpreting
  *  Autotype field for a given entry. This is a class cluster and schould be considered the sole
@@ -16,8 +18,6 @@
 @interface MPAutotypeCommand : NSObject
 
 @property (readonly, copy) NSString *commandString;
-
-+ (NSArray *)commandsForCommandString:(NSString *)commands;
 /**
  *  Determines the Keycode for the given keyboard layout for the supplied character
  *
@@ -38,8 +38,13 @@
 - (void)sendPressKey:(CGKeyCode)keyCode modifierFlags:(CGEventFlags)flags;
 
 /**
+ *  Convenience message to be sent for executing a simple paste command
+ */
+- (void)sendPasteKeyCode;
+
+/**
  *  Exectues the Autotype Command. This will be called by the autotype daemon.
  */
-- (void)execute;
+- (void)executeWithEntry:(KPKEntry *)entry;
 
 @end
