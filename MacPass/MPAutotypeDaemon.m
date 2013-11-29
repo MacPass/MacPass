@@ -16,6 +16,9 @@
 
 #import <Carbon/Carbon.h>
 
+NSString *const kMPWindowTitleKey = @"windowTitle";
+NSString *const kMPApplciationNameKey = @"applicationName";
+
 @implementation MPAutotypeDaemon
 
 - (id)init {
@@ -46,8 +49,10 @@
    Determine the window title of  the current front most application
    Start searching the db for the best fit (based on title, then on window associations
    */
-  NSString *windowTitle = [self _frontMostWindowTitle];
-  NSLog(@"Looking for entries matching window title:%@", windowTitle);
+  NSDictionary *frontApplicationInfoDict = [self _frontMostApplicationInfoDict];
+  NSString *windowTitle = frontApplicationInfoDict[kMPWindowTitleKey];
+  NSString *applicationName = frontApplicationInfoDict[kMPApplciationNameKey];
+  NSLog(@"Looking for entries matching window title:%@ of applciation: %@", windowTitle, applicationName);
   
   /*
    Query the document to generate a autotype command list for the window title
@@ -62,9 +67,8 @@
   if(candiates > 1) {
     // open Dialog to select from possible entries
   }
-  
-  
-  
+  /* Oder the Applciation to the front that we may have put to the background */
+  [self _orderApplicationToFront:applicationName];
   /*
    Implement!
    */
@@ -91,17 +95,28 @@
                                                           object:nil];
 }
 
-- (NSString *)_frontMostWindowTitle {
+- (NSDictionary *)_frontMostApplicationInfoDict {
   NSRunningApplication *frontApplication = [[NSWorkspace sharedWorkspace] frontmostApplication];
+  NSString *name = frontApplication.localizedName;
   
   NSArray *currentWindows = CFBridgingRelease(CGWindowListCopyWindowInfo(kCGWindowListOptionOnScreenOnly | kCGWindowListExcludeDesktopElements, kCGNullWindowID));
   for(NSDictionary *windowDict in currentWindows) {
     NSNumber *processId = windowDict[(NSString *)kCGWindowOwnerPID];
     if(processId && [processId isEqualToNumber:@(frontApplication.processIdentifier)]) {
-      return windowDict[(NSString *)kCGWindowName];
+      return @{
+               kMPWindowTitleKey:windowDict[(NSString *)kCGWindowName],
+               kMPApplciationNameKey : name
+               };
     }
   }
   return nil;
+}
+
+- (void)_orderApplicationToFront:(NSString *)applicationName {
+  NSString *appleScript = [[NSString alloc] initWithFormat:@"activate application %@", applicationName];
+  NSAppleScript *script = [[NSAppleScript alloc] initWithSource:appleScript];
+  NSDictionary *error;
+  [script executeAndReturnError:&error];
 }
 
 @end
