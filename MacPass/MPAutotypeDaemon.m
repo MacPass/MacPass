@@ -58,7 +58,7 @@ NSString *const kMPApplciationNameKey = @"applicationName";
    Query the document to generate a autotype command list for the window title
    We do not care where this came form, just get the autotype commands
    */
-  NSArray *autotypeCandidates = [[currentDocument findEntriesForWindowTitle:windowTitle] lastObject];
+  NSArray *autotypeCandidates = [[currentDocument buildContextsForWindowTitle:windowTitle] lastObject];
   NSUInteger candiates = [autotypeCandidates count];
   if(candiates == 0) {
     return; // No Entries found.

@@ -8,6 +8,12 @@
 
 #import <Foundation/Foundation.h>
 
+extern NSString *const kMPAutotypeSymbolShift;
+extern NSString *const kMPAutotypeSymbolControl;
+extern NSString *const kMPAutotypeSymbolAlt;
+extern NSString *const kMPAutotypeSymbolEnter;
+extern NSString *const kMPAutptypeCommandEnter;
+
 @class KPKEntry;
 
 /**

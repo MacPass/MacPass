@@ -8,13 +8,9 @@
 
 #import "MPAutotypeParser.h"
 
-#import "NSString+Placeholder.h"
+#import "MPAutotypeCommand.h"
 
-NSString *const kMPAutotypeKeyShift = @"+";
-NSString *const kMPAutotypeKeyControl = @"^";
-NSString *const kMPAutotypeKeyAlt = @"%";
-NSString *const kMPAutotypeKeyEnter = @"~";
-NSString *const kMPAutptypeCommandEnter = @"{ENTER}";
+#import "NSString+Placeholder.h"
 
 @implementation MPAutotypeParser
 
@@ -79,13 +75,13 @@ NSString *const kMPAutptypeCommandEnter = @"{ENTER}";
     NSRange modifierRange = [currentCommands rangeOfCharacterFromSet:modifierKeySet options:NSCaseInsensitiveSearch range:NSMakeRange(0, 1)];
     if(modifierRange.length != 0 && modifierRange.location == 0) {
       /* starts with a special key */
-      if([currentCommands hasPrefix:kMPAutotypeKeyShift]) {
+      if([currentCommands hasPrefix:kMPAutotypeSymbolShift]) {
         modiferKeys |= kCGEventFlagMaskAlphaShift;
       }
-      if([currentCommands hasPrefix:kMPAutotypeKeyControl]) {
+      if([currentCommands hasPrefix:kMPAutotypeSymbolControl]) {
         modiferKeys |= kCGEventFlagMaskControl;
       }
-      if([currentCommands hasPrefix:kMPAutotypeKeyAlt]) {
+      if([currentCommands hasPrefix:kMPAutotypeSymbolAlt]) {
         modiferKeys = kCGEventFlagMaskAlternate;
       }
       /* move the index and continue */
@@ -154,7 +150,7 @@ NSString *const kMPAutptypeCommandEnter = @"{ENTER}";
 + (NSString *)_normalizeCommands:(NSString *)commandString {
   /* Cache normalized Commands? */
   NSMutableString *mutableCommand = [commandString mutableCopy];
-  [mutableCommand replaceOccurrencesOfString:kMPAutotypeKeyEnter withString:kMPAutptypeCommandEnter options:NSCaseInsensitiveSearch range:NSMakeRange(0, [mutableCommand length])];
+  [mutableCommand replaceOccurrencesOfString:kMPAutotypeSymbolEnter withString:kMPAutptypeCommandEnter options:NSCaseInsensitiveSearch range:NSMakeRange(0, [mutableCommand length])];
   [mutableCommand replaceOccurrencesOfString:@"{{}" withString:@"{LCURL}" options:NSCaseInsensitiveSearch range:NSMakeRange(0, [mutableCommand length])];
   [mutableCommand replaceOccurrencesOfString:@"{}}" withString:@"{RCURL}" options:NSCaseInsensitiveSearch range:NSMakeRange(0, [mutableCommand length])];
   return nil;
