@@ -250,7 +250,7 @@ typedef NS_ENUM(NSUInteger, MPAlertType) {
   if(isUnlocked) {
     [[NSNotificationCenter defaultCenter] postNotificationName:MPDocumentDidUnlockDatabaseNotification object:self];
     /* Make sure to only store */
-    if(self.compositeKey.hasPassword && self.isAllowedToStoreKeyFile) {
+    if(self.compositeKey.hasKeyFile && self.compositeKey.hasPassword && self.isAllowedToStoreKeyFile) {
       [self _storeKeyURL:keyFileURL];
     }
   }
@@ -565,6 +565,9 @@ typedef NS_ENUM(NSUInteger, MPAlertType) {
 }
 
 - (void)_storeKeyURL:(NSURL *)keyURL {
+  if(nil == keyURL) {
+    return; // no URL to store in the first place
+  }
   NSAssert(self.isAllowedToStoreKeyFile, @"We can only store if we are allowed to do so!");
   NSMutableDictionary *keysForFiles = [[[NSUserDefaults standardUserDefaults] dictionaryForKey:kMPSettingsKeyRememeberdKeysForDatabases] mutableCopy];
   if(nil == keysForFiles) {
