@@ -16,7 +16,10 @@ APPKIT_EXTERN NSString *const kMPSettingsKeyClearPasteboardOnQuit;
 APPKIT_EXTERN NSString *const kMPSettingsKeyPasswordEncoding;
 APPKIT_EXTERN NSString *const kMPSettingsKeyOpenEmptyDatabaseOnLaunch;
 APPKIT_EXTERN NSString *const kMPSettingsKeyReopenLastDatabaseOnLaunch;
+
+/* URL handling */
 APPKIT_EXTERN NSString *const kMPSettingsKeyDoubleClickURLToLaunch;
+APPKIT_EXTERN NSString *const kMPSettingsKeyBrowserBundleId;
 
 /* Server Settings */
 APPKIT_EXTERN NSString *const kMPSettingsKeyHttpPort;
@@ -41,10 +44,6 @@ APPKIT_EXTERN NSString *const kMPSettingsKeyLegacyHideURL;
 APPKIT_EXTERN NSString *const kMPSettingsKeyLastDatabasePath;
 APPKIT_EXTERN NSString *const kMPSettingsKeyRememeberdKeysForDatabases;
 APPKIT_EXTERN NSString *const kMPSettingsKeyRememberKeyFilesForDatabases;
-/*
-APPKIT_EXTERN NSString *const kMPSettingsKeyLastKeyURL;
-APPKIT_EXTERN NSString *const kMPSettingsKeyRememberLastKey;
-*/
 
 /* Autotype */
 APPKIT_EXTERN NSString *const kMPSettingsKeySendCommandForControlKey;

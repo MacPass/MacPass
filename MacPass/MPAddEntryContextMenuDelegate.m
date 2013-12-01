@@ -36,7 +36,7 @@
   /*
    The Method is rather brute force
    It's possible nicer to cache the entries and just update
-   the menu entries, that actuyll need updating
+   the menu entries, that actually need updating
    */
   MPDocument *document = [[NSDocumentController sharedDocumentController] currentDocument];
   if(!document) {
@@ -51,7 +51,7 @@
     NSMenuItem *templateItem = [[NSMenuItem allocWithZone:[NSMenu menuZone]] initWithTitle:[NSString stringWithFormat:templateMask, entry.title]
                                                                                     action:@selector(createEntryFromTemplate:)
                                                                              keyEquivalent:@""];
-    [templateItem setRepresentedObject:entry];
+    [templateItem setRepresentedObject:entry.uuid];
     [menu addItem:templateItem];
   }
   /* If there are no entries, add a note as disabled menu item */

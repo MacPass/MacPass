@@ -33,11 +33,13 @@
 #import "DDXMLNode.h"
 
 #import "KPKEntry.h"
+#import "KPKEntry+TemplateCopy.h"
 #import "KPKGroup.h"
 #import "KPKTree.h"
 #import "KPKTree+Serializing.h"
 #import "KPKCompositeKey.h"
 #import "KPKMetaData.h"
+#import "KPKTimeInfo.h"
 #import "KPKAttribute.h"
 
 NSString *const MPDocumentDidChangeStoredKeyFilesSettings = @"com.hicknhack.macpass.MPDocumentDidChangeStoredKeyFilesSettings";
@@ -517,9 +519,13 @@ typedef NS_ENUM(NSUInteger, MPAlertType) {
 
 - (void)createEntryFromTemplate:(id)sender {
   NSMenuItem *item = sender;
-  KPKEntry *entry = [item representedObject];
-  if(entry) {
-    // Create Entry from template;
+  NSUUID *entryUUID = [item representedObject];
+  if(entryUUID) {
+    KPKEntry *templateEntry = [self findEntry:entryUUID];
+    if(templateEntry && self.selectedGroup) {
+      KPKEntry *copy = [templateEntry copyWithTitle:templateEntry.title];
+      [self.selectedGroup addEntry:copy];
+    }
   }
   return;
 }

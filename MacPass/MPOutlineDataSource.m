@@ -27,6 +27,9 @@
 #import "KPKGroup.h"
 #import "KPKEntry.h"
 #import "KPKUTIs.h"
+#import "KPKEntry+TemplateCopy.h"
+#import "KPKGroup+TemplateCopy.h"
+
 
 #import "NSUUID+KeePassKit.h"
 
