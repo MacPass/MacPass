@@ -15,6 +15,15 @@ Use it with caution, it's unfinished. Really!
 
 All releases can be found at [Github](https://github.com/mstarke/MacPass/releases).
 
+If you want to live dangerously and want to take a look at the master:
+
+    git clone https://github.com/mstarke/MacPass
+    cd MacPass
+    git submodule init
+    git submodule update
+
+After that you can build and run in XCode. If you run into signing issues take a look at #92
+
 ##Known Major Issues
 
 * Binary releases (0.2.x - 0.3.x):
