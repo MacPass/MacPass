@@ -12,6 +12,12 @@
 #import "KPKEntry.h"
 #import "KPKWindowAssociation.h"
 
+@interface MPAutotypeContext ()
+
+@property (nonatomic, assign) BOOL isCommand;
+
+@end
+
 @implementation MPAutotypeContext
 
 - (instancetype)initWithWindowAssociation:(KPKWindowAssociation *)association {
@@ -38,20 +44,35 @@
     }
     else {
       self.entry = entry;
-      self.commandsSequence = sequence;
-      NSRegularExpression *regexp = [[NSRegularExpression alloc] initWithPattern:@"{[a-z]+([0-9]*)}" options:NSRegularExpressionIgnoreMetacharacters error:0];
+      NSError *error;
+      NSRegularExpression *regexp = [[NSRegularExpression alloc] initWithPattern:@"\\{([a-z]+) ?([0-9]*)\\}" options:NSRegularExpressionCaseInsensitive error:&error];
       if(regexp) {
-        NSArray *matches = [regexp matchesInString:self.commandsSequence options:0 range:NSMakeRange(0, [self.commandsSequence length])];
-        if(matches) {
-        }
+        [regexp enumerateMatchesInString:sequence options:0 range:NSMakeRange(0, [sequence length]) usingBlock:^(NSTextCheckingResult *result, NSMatchingFlags flags, BOOL *stop) {
+          NSRange commandRange = [result rangeAtIndex:1];
+          NSRange valueRange = [result rangeAtIndex:2];
+          if(commandRange.location != NSNotFound && commandRange.length != 0) {
+            self.command = [sequence substringWithRange:commandRange];
+            self.isCommand = YES;
+          }
+          if(valueRange.location != NSNotFound && valueRange.length != 0) {
+            self.value = [[sequence substringWithRange:valueRange] integerValue];
+          }
+          else {
+            self.value = NSNotFound;
+          }
+        }];
       }
+      else {
+        NSLog(@"Error while trying to parse Autotype sequence: %@", [error localizedDescription]);
+      }
+      
     }
   }
   return self;
 }
 
 - (id)copyWithZone:(NSZone *)zone {
-  MPAutotypeContext *copy = [[MPAutotypeContext alloc] initWithEntry:self.entry andSequence:self.commandsSequence];
+  MPAutotypeContext *copy = [[MPAutotypeContext alloc] initWithEntry:self.entry andSequence:self.command];
   return copy;
 }
 

@@ -67,7 +67,7 @@ NSString *const kMPApplciationNameKey = @"applicationName";
   if(candiates > 1) {
     // open Dialog to select from possible entries
   }
-  /* Oder the Applciation to the front that we may have put to the background */
+  /* Just in case it's not there anymore, order the app for the window we want to autotype back to the foreground! */
   [self _orderApplicationToFront:applicationName];
   /*
    Implement!

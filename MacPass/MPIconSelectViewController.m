@@ -8,6 +8,10 @@
 
 #import "MPIconSelectViewController.h"
 #import "MPIconHelper.h"
+#import "MPDocument.h"
+
+
+NSInteger const kMPDefaultIcon = -1;
 
 @interface MPIconSelectViewController ()
 @end
@@ -32,9 +36,22 @@
   [self.iconCollectionView setSelectable:YES];
   [self.iconCollectionView setAllowsMultipleSelection:NO];
   [self.iconCollectionView setContent:[MPIconHelper databaseIcons]];
-  
 }
 
 - (IBAction)useDefault:(id)sender {
+  self.selectedIcon = kMPDefaultIcon;
+  [self.popover performClose:self];
 }
+
+- (void)reset {
+  self.selectedIcon = kMPDefaultIcon;
+}
+
+- (IBAction)_selectImage:(id)sender {
+  NSButton *button = sender;
+  NSImage *image = [button image];
+  self.selectedIcon = [[self.iconCollectionView content] indexOfObject:image];
+  [self.popover performClose:self];
+}
+
 @end

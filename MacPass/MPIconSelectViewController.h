@@ -8,11 +8,20 @@
 
 #import "MPViewController.h"
 
+extern NSInteger const kMPDefaultIcon;
+
 @interface MPIconSelectViewController : MPViewController <NSCollectionViewDelegate>
+
+/**
+ *  Is the selected Icon, kMPDefaultIcon if the default icons was selected
+ */
+@property (nonatomic, assign) NSInteger selectedIcon;
 
 @property (weak) IBOutlet NSCollectionView *iconCollectionView;
 @property (weak) IBOutlet NSButton *imageButton;
+@property (weak) NSPopover *popover;
 
+- (void)reset;
 - (IBAction)useDefault:(id)sender;
 
 @end

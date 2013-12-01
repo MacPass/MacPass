@@ -14,8 +14,9 @@
 @interface MPAutotypeContext : NSObject <NSCopying>
 
 @property (nonatomic, strong) KPKEntry *entry;
-@property (nonatomic, copy) NSString *commandsSequence;
-@property (nonatomic, assign) NSUInteger value;
+@property (nonatomic, copy) NSString *command;
+@property (nonatomic, assign, readonly) BOOL isCommand;
+@property (nonatomic, assign) NSInteger value;
 
 /**
  *  Designated initializer

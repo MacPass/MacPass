@@ -14,6 +14,10 @@
 
 @implementation KPKNode (IconImage)
 
++ (NSSet *)keyPathsForValuesAffectingIconImage {
+  return [NSSet setWithArray:@[@"customIcon", @"icon"]];
+}
+
 - (NSImage *)iconImage {
   if(self.customIcon) {
     return self.customIcon.image;

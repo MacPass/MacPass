@@ -18,6 +18,8 @@
 
 #import "KPKTree.h"
 #import "KPKMetaData.h"
+#import "KPKGroup.h"
+#import "KPKEntry.h"
 
 #import "HNHGradientView.h"
 #import "MPPopupImageView.h"
@@ -33,6 +35,8 @@ typedef NS_ENUM(NSUInteger, MPContentTab) {
   MPGroupInspectorViewController *_groupViewController;
   NSPopover *_popover;
 }
+
+@property (strong)  MPIconSelectViewController *iconSelectionViewController;
 
 @property (nonatomic, strong) NSDate *modificationDate;
 @property (nonatomic, strong) NSDate *creationDate;
@@ -160,11 +164,31 @@ typedef NS_ENUM(NSUInteger, MPContentTab) {
   _popover = [[NSPopover alloc] init];
   _popover.delegate = self;
   _popover.behavior = NSPopoverBehaviorTransient;
-  _popover.contentViewController = [[MPIconSelectViewController alloc] init];
+  if(!self.iconSelectionViewController) {
+    self.iconSelectionViewController = [[MPIconSelectViewController alloc] init];
+  }
+  [self.iconSelectionViewController reset];
+  self.iconSelectionViewController.popover = _popover;
+  _popover.contentViewController = self.iconSelectionViewController;
   [_popover showRelativeToRect:NSZeroRect ofView:self.itemImageView preferredEdge:NSMinYEdge];
 }
 
 - (void)popoverDidClose:(NSNotification *)notification {
+  MPIconSelectViewController *viewController = (MPIconSelectViewController *)_popover.contentViewController;
+  MPDocument *document = [[self windowController] document];
+  BOOL useDefault = (viewController.selectedIcon == -1);
+  switch (self.activeTab) {
+    case MPGroupTab:
+      document.selectedGroup.icon = useDefault ? MPIconFolder : viewController.selectedIcon;
+      break;
+      
+    case MPEntryTab:
+      document.selectedEntry.icon = useDefault ? MPIconPassword : viewController.selectedIcon;
+      break;
+      
+    default:
+      break;
+  }
   _popover = nil;
 }
 

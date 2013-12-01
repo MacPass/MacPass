@@ -86,6 +86,7 @@
                         <font key="font" metaFont="system"/>
                     </buttonCell>
                     <connections>
+                        <action selector="_selectImage:" target="-2" id="eFg-h5-9jy"/>
                         <binding destination="61" name="image" keyPath="representedObject" id="139"/>
                     </connections>
                 </button>

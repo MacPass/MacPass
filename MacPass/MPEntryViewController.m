@@ -125,7 +125,7 @@ NSString *const _MPTAbleSecurCellView = @"PasswordCell";
 - (void)didLoadView {
   [[self view] setWantsLayer:YES];
   [self _hideFilterBarAnimated];
-    
+  
   [_bottomBar setBorderType:HNHBorderTop];
   [self.addEntryButton setAction:[MPActionHelper actionOfType:MPActionAddEntry]];
   
@@ -192,7 +192,6 @@ NSString *const _MPTAbleSecurCellView = @"PasswordCell";
   
   [self _setupHeaderMenu];
   [parentColumn setHidden:YES];
-  
 }
 
 - (NSResponder *)reconmendedFirstResponder {
@@ -676,7 +675,13 @@ NSString *const _MPTAbleSecurCellView = @"PasswordCell";
   KPKEntry *selectedEntry = [self _clickedOrSelectedEntry];
   if(selectedEntry && [selectedEntry.url length] > 0) {
     NSURL *webURL = [NSURL URLWithString:selectedEntry.url];
+    NSString *scheme = [webURL scheme];
+    if(!scheme) {
+      webURL = [NSURL URLWithString:[NSString stringWithFormat:@"http://%@", selectedEntry.url]];
+    }
     [[NSWorkspace sharedWorkspace] openURL:webURL];
+    /* Add custom browser support */
+    //[[NSWorkspace sharedWorkspace] openURLs:@[webURL] withAppBundleIdentifier:@"org.mozilla.firefox" options:NSWorkspaceLaunchAsync additionalEventParamDescriptor:nil launchIdentifiers:NULL];
   }
 }
 
