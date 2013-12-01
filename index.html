@@ -23,15 +23,18 @@
         </header>
 
         <section id="downloads" class="clearfix">
-          <a href="https://github.com/mstarke/MacPass/releases" id="view-on-github" class="button"><span>Binaries</span></a>
+          <a href="https://github.com/mstarke/MacPass/zipball/master" id="download-zip" class="button"><span>Download .zip</span></a>
+          <a href="https://github.com/mstarke/MacPass/tarball/master" id="download-tar-gz" class="button"><span>Download .tar.gz</span></a>
           <a href="https://github.com/mstarke/MacPass" id="view-on-github" class="button"><span>View on GitHub</span></a>
-          <a href="https://github.com/mstarke/MacPass/zipball/master" id="download-zip" class="button"><span>Source .zip</span></a>
         </section>
 
         <hr>
 
         <section id="main_content">
-          <p>There a lot of iOS KeePass tools around but a distinct lack of a good OS X Version.
+          <h1>
+<a name="macpass" class="anchor" href="#macpass"><span class="octicon octicon-link"></span></a>MacPass</h1>
+
+<p>There a lot of iOS KeePass tools around but a distinct lack of a good OS X Version.
 KeePass can be used via Mono on OS X but lacks vital functionality and feels sluggish.</p>
 
 <p>MacPass is an attempt to create an OS X port of KeePass.</p>
@@ -49,12 +52,32 @@ Use it with caution, it's unfinished. Really!</p>
 
 <p>All releases can be found at <a href="https://github.com/mstarke/MacPass/releases">Github</a>.</p>
 
+<p>If you want to live dangerously and want to take a look at the master:</p>
+
+<pre><code>git clone https://github.com/mstarke/MacPass
+cd MacPass
+git submodule init
+git submodule update
+</code></pre>
+
+<p>After that you can build and run in XCode. If you run into signing issues take a look at <a href="https://github.com/mstarke/MacPass/issues/92">Issue #92</a></p>
+
 <h2>
 <a name="known-major-issues" class="anchor" href="#known-major-issues"><span class="octicon octicon-link"></span></a>Known Major Issues</h2>
 
 <ul>
-<li>KDBX History is not supported</li>
+<li>Binary releases (0.2.x - 0.3.x):
+
+<ul>
 <li>KDBX DeletedObjects are stripped on save. This will break synchronisation features!</li>
+</ul>
+</li>
+<li>All Versions (including master branch)
+
+<ul>
+<li>KDBX History is not supported</li>
+</ul>
+</li>
 </ul><h2>
 <a name="system-requirement" class="anchor" href="#system-requirement"><span class="octicon octicon-link"></span></a>System Requirement</h2>
 
