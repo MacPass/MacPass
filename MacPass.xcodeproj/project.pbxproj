@@ -191,6 +191,8 @@
 		4C8A173D1790AA41008B5C17 /* NSData+Keyfile.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C8A173C1790AA41008B5C17 /* NSData+Keyfile.m */; };
 		4C8B36AB17A6ED4B005E1FF1 /* MPOutlineContextMenuDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C8B36AA17A6ED4B005E1FF1 /* MPOutlineContextMenuDelegate.m */; };
 		4C8FECC816D57E3200BF26CF /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4C8FECC716D57E3200BF26CF /* QuartzCore.framework */; };
+		4C964D44184BE8720050B74E /* KPKEntry+TemplateCopy.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C964D43184BE8720050B74E /* KPKEntry+TemplateCopy.m */; };
+		4C964D47184BE9090050B74E /* KPKGroup+TemplateCopy.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C964D46184BE9090050B74E /* KPKGroup+TemplateCopy.m */; };
 		4C96D15417A12E4F00D931FA /* 99_CreatedTemplate.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 4C96D15317A12E4F00D931FA /* 99_CreatedTemplate.pdf */; };
 		4C9D6AA917615199001C660C /* HNHRoundedSecureTextFieldCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C9D6AA817615199001C660C /* HNHRoundedSecureTextFieldCell.m */; };
 		4CA08DA017A831B200A6544B /* MPAddEntryContextMenuDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CA08D9F17A831B200A6544B /* MPAddEntryContextMenuDelegate.m */; };
@@ -617,6 +619,10 @@
 		4C8B36A917A6ED4B005E1FF1 /* MPOutlineContextMenuDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MPOutlineContextMenuDelegate.h; sourceTree = "<group>"; };
 		4C8B36AA17A6ED4B005E1FF1 /* MPOutlineContextMenuDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MPOutlineContextMenuDelegate.m; sourceTree = "<group>"; };
 		4C8FECC716D57E3200BF26CF /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
+		4C964D42184BE8720050B74E /* KPKEntry+TemplateCopy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "KPKEntry+TemplateCopy.h"; sourceTree = "<group>"; };
+		4C964D43184BE8720050B74E /* KPKEntry+TemplateCopy.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "KPKEntry+TemplateCopy.m"; sourceTree = "<group>"; };
+		4C964D45184BE9090050B74E /* KPKGroup+TemplateCopy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "KPKGroup+TemplateCopy.h"; sourceTree = "<group>"; };
+		4C964D46184BE9090050B74E /* KPKGroup+TemplateCopy.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "KPKGroup+TemplateCopy.m"; sourceTree = "<group>"; };
 		4C96D15317A12E4F00D931FA /* 99_CreatedTemplate.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; name = 99_CreatedTemplate.pdf; path = Icons/99_CreatedTemplate.pdf; sourceTree = "<group>"; };
 		4C9D6AA717615199001C660C /* HNHRoundedSecureTextFieldCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HNHRoundedSecureTextFieldCell.h; sourceTree = "<group>"; };
 		4C9D6AA817615199001C660C /* HNHRoundedSecureTextFieldCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HNHRoundedSecureTextFieldCell.m; sourceTree = "<group>"; };
@@ -869,6 +875,10 @@
 				4CC6DB7917D23719002C6091 /* KPKNode+IconImage.m */,
 				4CEED1C417D7BD0E007180F1 /* NSError+Messages.h */,
 				4CEED1C517D7BD0E007180F1 /* NSError+Messages.m */,
+				4C964D42184BE8720050B74E /* KPKEntry+TemplateCopy.h */,
+				4C964D43184BE8720050B74E /* KPKEntry+TemplateCopy.m */,
+				4C964D45184BE9090050B74E /* KPKGroup+TemplateCopy.h */,
+				4C964D46184BE9090050B74E /* KPKGroup+TemplateCopy.m */,
 			);
 			name = Categories;
 			sourceTree = "<group>";
@@ -1919,6 +1929,7 @@
 				4C89F524182FB4740069C73C /* MPAutotypeCommand.m in Sources */,
 				4CFC53BF16E94729007396BE /* MPShadowBox.m in Sources */,
 				4C888C9316EB6F5E003D34A1 /* MPToolbarItem.m in Sources */,
+				4C964D47184BE9090050B74E /* KPKGroup+TemplateCopy.m in Sources */,
 				4C888C9716EB754B003D34A1 /* MPActionHelper.m in Sources */,
 				4C811C8316ECD06E00C4BAC6 /* MPKeyfilePathControlDelegate.m in Sources */,
 				4CE39ABF16ECE34A000FE29D /* MPIconSelectViewController.m in Sources */,
@@ -1967,6 +1978,7 @@
 				4C245BED176E1E3D0086100E /* DDFileLogger.m in Sources */,
 				4C245BEE176E1E3D0086100E /* DDLog.m in Sources */,
 				4C245BEF176E1E3D0086100E /* DDTTYLogger.m in Sources */,
+				4C964D44184BE8720050B74E /* KPKEntry+TemplateCopy.m in Sources */,
 				4C245BF0176E1E3D0086100E /* ContextFilterLogFormatter.m in Sources */,
 				4C245BF1176E1E3D0086100E /* DispatchQueueLogFormatter.m in Sources */,
 				4CF78057176E5CFD0032EE71 /* MPConnection.m in Sources */,
