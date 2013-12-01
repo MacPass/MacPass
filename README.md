@@ -22,7 +22,7 @@ If you want to live dangerously and want to take a look at the master:
     git submodule init
     git submodule update
 
-After that you can build and run in XCode. If you run into signing issues take a look at #92
+After that you can build and run in XCode. If you run into signing issues take a look at [Issue #92](https://github.com/mstarke/MacPass/issues/92)
 
 ##Known Major Issues
 
