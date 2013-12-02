@@ -84,11 +84,11 @@
   metaData.recycleBinEnabled = self.trashEnabled;
   NSMenuItem *trashMenuItem = [self.selectRecycleBinGroupPopUpButton selectedItem];
   KPKGroup *trashGroup = [trashMenuItem representedObject];
-  [_document useGroupAsTrash:trashGroup];
+  _document.trash  = trashGroup;
   
   NSMenuItem *templateMenuItem = [self.templateGroupPopUpButton selectedItem];
   KPKGroup *templateGroup = [templateMenuItem representedObject];
-  [_document useGroupAsTemplate:templateGroup];
+  _document.templates = templateGroup;
   
   BOOL protectNotes = [self.protectNotesCheckButton state] == NSOnState;
   BOOL protectPassword = [self.protectPasswortCheckButton state] == NSOnState;

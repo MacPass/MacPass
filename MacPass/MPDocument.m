@@ -308,6 +308,41 @@ typedef NS_ENUM(NSUInteger, MPAlertType) {
   return self.tree.root;
 }
 
+- (KPKGroup *)trash {
+  static KPKGroup *_trash = nil;
+  if(self.useTrash) {
+    BOOL trashValid = [_trash.uuid isEqual:self.tree.metaData.recycleBinUuid];
+    if(!trashValid) {
+      _trash = [self findGroup:self.tree.metaData.recycleBinUuid];
+    }
+    return _trash;
+  }
+  return nil;
+}
+
+- (KPKGroup *)templates {
+  static KPKGroup *_templates = nil;
+  BOOL templateValid = [_templates.uuid isEqual:self.tree.metaData.entryTemplatesGroup];
+  if(!templateValid) {
+    _templates = [self findGroup:self.tree.metaData.entryTemplatesGroup];
+  }
+  return _templates;
+}
+
+- (void)setTrash:(KPKGroup *)trash {
+  if(self.useTrash) {
+    if(![self.tree.metaData.recycleBinUuid isEqual:trash.uuid]) {
+      self.tree.metaData.recycleBinUuid = trash.uuid;
+    }
+  }
+}
+
+- (void)setTemplates:(KPKGroup *)templates {
+  if(![self.tree.metaData.entryTemplatesGroup isEqual:templates.uuid]) {
+    self.tree.metaData.entryTemplatesGroup = templates.uuid;
+  }
+}
+
 - (void)setSelectedGroup:(KPKGroup *)selectedGroup {
   if(_selectedGroup != selectedGroup) {
     _selectedGroup = selectedGroup;
@@ -368,27 +403,6 @@ typedef NS_ENUM(NSUInteger, MPAlertType) {
   return self.tree.metaData.recycleBinEnabled;
 }
 
-- (KPKGroup *)trash {
-  static KPKGroup *_trash = nil;
-  if(self.useTrash) {
-    BOOL trashValid = [_trash.uuid isEqual:self.tree.metaData.recycleBinUuid];
-    if(!trashValid) {
-      _trash = [self findGroup:self.tree.metaData.recycleBinUuid];
-    }
-    return _trash;
-  }
-  return nil;
-}
-
-- (KPKGroup *)templates {
-  static KPKGroup *_templates = nil;
-  BOOL templateValid = [_templates.uuid isEqual:self.tree.metaData.entryTemplatesGroup];
-  if(!templateValid) {
-    _templates = [self findGroup:self.tree.metaData.entryTemplatesGroup];
-  }
-  return _templates;
-}
-
 - (BOOL)isItemTrashed:(id)item {
   BOOL validItem = [item isKindOfClass:[KPKEntry class]] || [item isKindOfClass:[KPKGroup class]];
   if(!item) {
@@ -407,20 +421,6 @@ typedef NS_ENUM(NSUInteger, MPAlertType) {
     return isTrashed;
   }
   return NO;
-}
-
-- (void)useGroupAsTrash:(KPKGroup *)group {
-  if(self.useTrash) {
-    if(![self.tree.metaData.recycleBinUuid isEqual:group.uuid]) {
-      self.tree.metaData.recycleBinUuid = group.uuid;
-    }
-  }
-}
-
-- (void)useGroupAsTemplate:(KPKGroup *)group {
-  if(![self.tree.metaData.entryTemplatesGroup isEqual:group.uuid]) {
-    self.tree.metaData.entryTemplatesGroup = group.uuid;
-  }
 }
 
 #pragma mark Data manipulation

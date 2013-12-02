@@ -46,9 +46,9 @@ APPKIT_EXTERN NSString *const MPDocumentGroupKey;
 @property (nonatomic, readonly, assign) BOOL encrypted;
 
 @property (strong, readonly, nonatomic) KPKTree *tree;
-@property (weak, readonly, nonatomic) KPKGroup *root;
-@property (weak, readonly) KPKGroup *trash;
-@property (weak, readonly) KPKGroup *templates;
+@property (nonatomic, weak, readonly) KPKGroup *root;
+@property (nonatomic, weak) KPKGroup *trash;
+@property (nonatomic, weak) KPKGroup *templates;
 
 @property (nonatomic, strong, readonly) KPKCompositeKey *compositeKey;
 //@property (nonatomic, copy) NSString *password;
@@ -114,8 +114,6 @@ APPKIT_EXTERN NSString *const MPDocumentGroupKey;
 - (NSArray *)allEntries;
 - (NSArray *)allGroups;
 
-- (void)useGroupAsTrash:(KPKGroup *)group;
-- (void)useGroupAsTemplate:(KPKGroup *)group;
 /**
  *  Determines, whether the given item is inside the trash.
  *  The trash group itself is not considered as trashed.
