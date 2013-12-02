@@ -176,7 +176,7 @@ NSString *const _MPTAbleSecurCellView = @"PasswordCell";
   [urlColumn setSortDescriptorPrototype:urlSortDescriptor];
   [parentColumn setSortDescriptorPrototype:groupnameSortDescriptor];
   [modifiedColumn setSortDescriptorPrototype:dateSortDescriptor];
-  
+    
   [[parentColumn headerCell] setStringValue:NSLocalizedString(@"GROUP", "")];
   [[titleColumn headerCell] setStringValue:NSLocalizedString(@"TITLE", "")];
   [[userNameColumn headerCell] setStringValue:NSLocalizedString(@"USERNAME", "")];
@@ -189,7 +189,14 @@ NSString *const _MPTAbleSecurCellView = @"PasswordCell";
   [self.entryTable bind:NSContentBinding toObject:self.entryArrayController withKeyPath:@"arrangedObjects" options:nil];
   [self.entryTable bind:NSSortDescriptorsBinding toObject:self.entryArrayController withKeyPath:@"sortDescriptors" options:nil];
   [self.entryTable setDataSource:_dataSource];
-  
+
+  // set default sorting by title, then bind NSArrayController sorting
+  // see: http://simx.me/technonova/software_development/sort_descriptors_nstableview_bindings_a.html
+  [self.entryTable setSortDescriptors:@[ titleColumSortDescriptor ]];
+  [self.entryArrayController bind:NSSortDescriptorsBinding
+                         toObject:[NSUserDefaults standardUserDefaults]
+                      withKeyPath:@"sortDescriptors" options:@{ NSValueTransformerNameBindingOption: NSUnarchiveFromDataTransformerName }];
+
   [self _setupHeaderMenu];
   [parentColumn setHidden:YES];
   
