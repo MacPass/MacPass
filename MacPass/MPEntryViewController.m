@@ -190,12 +190,12 @@ NSString *const _MPTAbleSecurCellView = @"PasswordCell";
   [self.entryTable bind:NSSortDescriptorsBinding toObject:self.entryArrayController withKeyPath:@"sortDescriptors" options:nil];
   [self.entryTable setDataSource:_dataSource];
 
-  // set default sorting by title, then bind NSArrayController sorting
+  // bind NSArrayController sorting so that sort order gets auto-saved
   // see: http://simx.me/technonova/software_development/sort_descriptors_nstableview_bindings_a.html
-  [self.entryTable setSortDescriptors:@[ titleColumSortDescriptor ]];
   [self.entryArrayController bind:NSSortDescriptorsBinding
-                         toObject:[NSUserDefaults standardUserDefaults]
-                      withKeyPath:@"sortDescriptors" options:@{ NSValueTransformerNameBindingOption: NSUnarchiveFromDataTransformerName }];
+                         toObject:[NSUserDefaultsController sharedUserDefaultsController]
+                      withKeyPath:[MPSettingsHelper defaultControllerPathForKey:kMPSettingsKeyEntryTableSortDescriptors]
+                          options:@{ NSValueTransformerNameBindingOption: NSUnarchiveFromDataTransformerName }];
 
   [self _setupHeaderMenu];
   [parentColumn setHidden:YES];

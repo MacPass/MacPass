@@ -29,6 +29,7 @@ APPKIT_EXTERN NSString *const kMPSettingsKeyIdleLockTimeOut;
 
 /* Autosaving states */
 APPKIT_EXTERN NSString *const kMPSettingsKeyShowInspector;
+APPKIT_EXTERN NSString *const kMPSettingsKeyEntryTableSortDescriptors;
 
 /* Kdb Hide/Show settings */
 APPKIT_EXTERN NSString *const kMPSettingsKeyLegacyHideTitle;
