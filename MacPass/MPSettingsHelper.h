@@ -32,6 +32,7 @@ APPKIT_EXTERN NSString *const kMPSettingsKeyIdleLockTimeOut;
 
 /* Autosaving states */
 APPKIT_EXTERN NSString *const kMPSettingsKeyShowInspector;
+APPKIT_EXTERN NSString *const kMPSettingsKeyEntryTableSortDescriptors;
 
 /* Kdb Hide/Show settings */
 APPKIT_EXTERN NSString *const kMPSettingsKeyLegacyHideTitle;
@@ -55,7 +56,17 @@ typedef NS_ENUM(NSUInteger, MPPasswordEncoding) {
 
 @interface MPSettingsHelper : NSObject
 
+/**
+ *  Registers all the defaults for the applciaiton
+ */
 + (void)setupDefaults;
+/**
+ *  Convenience Method to create a bind path for the NSUserDefaultsController
+ *
+ *  @param key SettingsKey (see MPSettingsHelper.h for available keys)
+ *
+ *  @return NSString containing the bindpath for this property for the NSUserDefaultController
+ */
 + (NSString *)defaultControllerPathForKey:(NSString *)key;
 
 @end

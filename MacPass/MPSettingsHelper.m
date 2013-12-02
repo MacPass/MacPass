@@ -20,6 +20,7 @@ NSString *const kMPSettingsKeyShowMenuItem                  = @"ShowMenuItem";
 NSString *const kMPSettingsKeyLockOnSleep                   = @"LockOnSleep";
 NSString *const kMPSettingsKeyIdleLockTimeOut               = @"IdleLockTimeOut";
 NSString *const kMPSettingsKeyShowInspector                 = @"ShowInspector";
+NSString *const kMPSettingsKeyEntryTableSortDescriptors     = @"EntryTableSortDescriptors";
 
 NSString *const kMPSettingsKeyLegacyHideTitle               = @"LegacyHideTitle";
 NSString *const kMPSettingsKeyLegacyHideUsername            = @"LegacyHideUsername ";
