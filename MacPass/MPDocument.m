@@ -83,6 +83,10 @@ typedef NS_ENUM(NSUInteger, MPAlertType) {
 
 @implementation MPDocument
 
++ (NSSet *)keyPathsForValuesAffectingRoot {
+  return [NSSet setWithObject:@"tree"];
+}
+
 + (KPKVersion)versionForFileType:(NSString *)fileType {
   if( NSOrderedSame == [fileType compare:MPLegacyDocumentUTI options:NSCaseInsensitiveSearch]) {
     return KPKLegacyVersion;
@@ -233,6 +237,13 @@ typedef NS_ENUM(NSUInteger, MPAlertType) {
 - (void)writeXMLToURL:(NSURL *)url {
   NSData *xmlData = [self.tree xmlData];
   [xmlData writeToURL:url atomically:YES];
+}
+
+- (void)readXMLfromURL:(NSURL *)url {
+  NSError *error;
+  self.tree = [[KPKTree alloc] initWithXmlContentsOfURL:url error:&error];
+  self.compositeKey = nil;
+  _encryptedData = Nil;
 }
 
 #pragma mark Lock/Unlock/Decrypt

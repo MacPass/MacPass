@@ -94,6 +94,18 @@
                             <menuItem isSeparatorItem="YES" id="79">
                                 <modifierMask key="keyEquivalentModifierMask" command="YES"/>
                             </menuItem>
+                            <menuItem title="Import XML…" id="rW0-r1-QYL">
+                                <modifierMask key="keyEquivalentModifierMask"/>
+                                <connections>
+                                    <action selector="importFromXML:" target="-1" id="ESL-Uw-7fk"/>
+                                </connections>
+                            </menuItem>
+                            <menuItem title="Export As XML…" keyEquivalent="E" id="1259">
+                                <connections>
+                                    <action selector="exportAsXML:" target="-1" id="NCG-gr-YI5"/>
+                                </connections>
+                            </menuItem>
+                            <menuItem isSeparatorItem="YES" id="FVA-Cn-g79"/>
                             <menuItem title="Lock" keyEquivalent="L" id="1261">
                                 <modifierMask key="keyEquivalentModifierMask" control="YES"/>
                                 <connections>
@@ -113,11 +125,6 @@
                             <menuItem title="Save As…" keyEquivalent="S" id="1243">
                                 <connections>
                                     <action selector="saveDocumentAs:" target="-1" id="1255"/>
-                                </connections>
-                            </menuItem>
-                            <menuItem title="Export As XML…" keyEquivalent="E" id="1259">
-                                <connections>
-                                    <action selector="exportDatabase:" target="-1" id="1260"/>
                                 </connections>
                             </menuItem>
                             <menuItem title="Revert to Saved" id="112">

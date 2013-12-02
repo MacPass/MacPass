@@ -27,7 +27,9 @@
                    @(MPActionLock) : @"lock:",
                    @(MPActionEmptyTrash) : @"emptyTrash:",
                    @(MPActionDatabaseSettings) : @"showDatabaseSettings:",
-                   @(MPActionEditTemplateGroup) : @"editTemplateGroup:"
+                   @(MPActionEditTemplateGroup) : @"editTemplateGroup:",
+                   @(MPActionExportXML) : @"exportAsXML",
+                   @(MPActionImportXML) : @"importFromXMl",
                    };
   });
   return actionDict;

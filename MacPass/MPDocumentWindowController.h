@@ -33,7 +33,8 @@
 - (IBAction)editTemplateGroup:(id)sender;
 - (IBAction)editTrashGroup:(id)sender;
 
-- (IBAction)exportDatabase:(id)sender;
+- (IBAction)exportAsXML:(id)sender;
+- (IBAction)importFromXML:(id)sender;
 
 - (IBAction)lock:(id)sender;
 

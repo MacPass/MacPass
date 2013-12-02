@@ -22,7 +22,9 @@ typedef NS_ENUM(NSUInteger, MPActionType) {
   MPActionEmptyTrash, // empties the trashcan, if there is one
   MPActionEditPassword, // change the database password
   MPActionDatabaseSettings, // Show the settings for the database
-  MPActionEditTemplateGroup
+  MPActionEditTemplateGroup, // Edit the Template group
+  MPActionExportXML, // Exporte as XML
+  MPActionImportXML // Import form XML
 };
 /**
  *	Helper to retrieve commonly used actions

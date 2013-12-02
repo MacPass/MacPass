@@ -126,6 +126,7 @@ APPKIT_EXTERN NSString *const MPDocumentGroupKey;
 - (BOOL)isItemTrashed:(id)item;
 
 - (void)writeXMLToURL:(NSURL *)url;
+- (void)readXMLfromURL:(NSURL *)url;
 
 /* Undoable Intiialization of elements */
 - (KPKGroup *)createGroup:(KPKGroup *)parent;

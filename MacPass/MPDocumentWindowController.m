@@ -189,7 +189,7 @@ typedef NS_ENUM(NSUInteger, MPAlertContext) {
   [[self document] saveDocument:sender];
 }
 
-- (void)exportDatabase:(id)sender {
+- (void)exportAsXML:(id)sender {
   NSSavePanel *savePanel = [NSSavePanel savePanel];
   MPDocument *document = [self document];
   [savePanel setNameFieldStringValue:[document displayName]];
@@ -198,10 +198,26 @@ typedef NS_ENUM(NSUInteger, MPAlertContext) {
   [savePanel setCanSelectHiddenExtension:YES];
   [savePanel beginSheetModalForWindow:self.window completionHandler:^(NSInteger result) {
     if(result == NSFileHandlingPanelOKButton) {
-      [[self document] writeXMLToURL:savePanel.URL];
+      [document writeXMLToURL:savePanel.URL];
     }
   }];
 }
+
+- (void)importFromXML:(id)sender {
+  NSOpenPanel *openPanel = [NSOpenPanel openPanel];
+  MPDocument *document = [self document];
+  [openPanel setAllowsMultipleSelection:NO];
+  [openPanel setCanChooseDirectories:NO];
+  [openPanel setCanChooseFiles:YES];
+  [openPanel setAllowedFileTypes:@[(id)kUTTypeXML]];
+  [openPanel beginSheetModalForWindow:self.window completionHandler:^(NSInteger result) {
+    if(result == NSFileHandlingPanelOKButton) {
+      [document readXMLfromURL:openPanel.URL];
+      [self.outlineViewController showOutline];
+    }
+  }];
+}
+
 - (void)performFindPanelAction:(id)sender {
   [self.entryViewController showFilter:sender];
 }
