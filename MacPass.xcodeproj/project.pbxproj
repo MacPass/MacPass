@@ -22,6 +22,9 @@
 		4C0F647B17B6BC9C00D9522A /* MPSavePanelAccessoryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C0F647A17B6BC9C00D9522A /* MPSavePanelAccessoryViewController.m */; };
 		4C10412C178CDD44001B5239 /* NSDate+Humanized.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C10412B178CDD44001B5239 /* NSDate+Humanized.m */; };
 		4C17D8E517A1C780006C8C1E /* MPDocumentWindowDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C17D8E417A1C780006C8C1E /* MPDocumentWindowDelegate.m */; };
+		4C17F105184E630200E85625 /* 14_BatteryTemplate.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 4C17F104184E630200E85625 /* 14_BatteryTemplate.pdf */; };
+		4C17F108184E6B6C00E85625 /* 31_PrintTemplate.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 4C17F106184E6B6C00E85625 /* 31_PrintTemplate.pdf */; };
+		4C17F109184E6B6C00E85625 /* 30_TerminalTemplate.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 4C17F107184E6B6C00E85625 /* 30_TerminalTemplate.pdf */; };
 		4C1842AB179B027800E2F5BC /* KPKDeletedNode.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C1842AA179B027800E2F5BC /* KPKDeletedNode.m */; };
 		4C1842AF179B211C00E2F5BC /* KPKXmlTreeReader.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C1842AE179B211C00E2F5BC /* KPKXmlTreeReader.m */; };
 		4C1842B2179B28C400E2F5BC /* KPKLegacyTreeReader.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C1842B1179B28C400E2F5BC /* KPKLegacyTreeReader.m */; };
@@ -308,6 +311,9 @@
 		4C13904D17ADD3BE00A62934 /* KPKTreeWriting.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KPKTreeWriting.h; sourceTree = "<group>"; };
 		4C17D8E317A1C780006C8C1E /* MPDocumentWindowDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MPDocumentWindowDelegate.h; sourceTree = "<group>"; };
 		4C17D8E417A1C780006C8C1E /* MPDocumentWindowDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MPDocumentWindowDelegate.m; sourceTree = "<group>"; };
+		4C17F104184E630200E85625 /* 14_BatteryTemplate.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = 14_BatteryTemplate.pdf; sourceTree = "<group>"; };
+		4C17F106184E6B6C00E85625 /* 31_PrintTemplate.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = 31_PrintTemplate.pdf; sourceTree = "<group>"; };
+		4C17F107184E6B6C00E85625 /* 30_TerminalTemplate.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = 30_TerminalTemplate.pdf; sourceTree = "<group>"; };
 		4C1842A9179B027700E2F5BC /* KPKDeletedNode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KPKDeletedNode.h; sourceTree = "<group>"; };
 		4C1842AA179B027800E2F5BC /* KPKDeletedNode.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KPKDeletedNode.m; sourceTree = "<group>"; };
 		4C1842AD179B211C00E2F5BC /* KPKXmlTreeReader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KPKXmlTreeReader.h; sourceTree = "<group>"; };
@@ -1219,6 +1225,7 @@
 				4CD78ABB16D155FF00768A1D /* 11_CameraTemplate.pdf */,
 				4C701CBB178618A000581B88 /* 12_RemoteTemplate.pdf */,
 				4C52A88C1788628B00868229 /* 13_KeysTemplate.pdf */,
+				4C17F104184E630200E85625 /* 14_BatteryTemplate.pdf */,
 				4C7ABA4317BAEC6700FF5799 /* 15_ScannerTemplate.pdf */,
 				4C7ABA4417BAEC6700FF5799 /* 16_BrowserTemplate.pdf */,
 				4C7ABA4517BAEC6700FF5799 /* 17_CDRomTemplate.pdf */,
@@ -1226,6 +1233,8 @@
 				4C7ABA4617BAEC6700FF5799 /* 19_EmailTemplate.pdf */,
 				4C7ABA4717BAEC6700FF5799 /* 20_MiscTemplate.pdf */,
 				4CF29BF317879D0000851B60 /* 26_FileSaveTemplate.pdf */,
+				4C17F107184E6B6C00E85625 /* 30_TerminalTemplate.pdf */,
+				4C17F106184E6B6C00E85625 /* 31_PrintTemplate.pdf */,
 				4C7714A9176C998F00549F2A /* 43_TrashTemplate.pdf */,
 				4C6D1D24178579570014C5A5 /* 48_FolderTemplate.pdf */,
 				4C52A891178863B000868229 /* 68_PhoneTemplate.pdf */,
@@ -1795,11 +1804,13 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4C17F108184E6B6C00E85625 /* 31_PrintTemplate.pdf in Resources */,
 				4C77E37115B84A240093A587 /* InfoPlist.strings in Resources */,
 				4C77E37D15B84A240093A587 /* MainMenu.xib in Resources */,
 				4CA0B2ED15BCADAC00654E32 /* SettingsWindow.xib in Resources */,
 				4C76155C1764C04C0015A1A6 /* GeneralSettings.xib in Resources */,
 				4CD884B715BD47080042BBF8 /* DocumentWindow.xib in Resources */,
+				4C17F109184E6B6C00E85625 /* 30_TerminalTemplate.pdf in Resources */,
 				4C7615681764C0C40015A1A6 /* PasswordInputView.xib in Resources */,
 				4C25D58716CF0FAA00F6806C /* EntryView.xib in Resources */,
 				4C586F9E16D07ABD00E7DB57 /* 00_PasswordTemplate.pdf in Resources */,
@@ -1817,6 +1828,7 @@
 				4CB9339916D3A0DD00A13B5D /* Credits.rtf in Resources */,
 				4C3FFD9E16DAF60600DF9186 /* FilterBar.xib in Resources */,
 				4C431BCF16E2BAB000700A81 /* OverlayWindow.xib in Resources */,
+				4C17F105184E630200E85625 /* 14_BatteryTemplate.pdf in Resources */,
 				4C76156D1764C0E20015A1A6 /* InspectorView.xib in Resources */,
 				4C888C9016EB6C91003D34A1 /* Localizable.strings in Resources */,
 				4CE39AC116ECE359000FE29D /* IconSelection.xib in Resources */,
