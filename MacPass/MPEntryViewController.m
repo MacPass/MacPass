@@ -88,9 +88,6 @@ NSString *const _MPTAbleSecurCellView = @"PasswordCell";
 @property (weak) IBOutlet NSButton *addEntryButton;
 @property (weak) IBOutlet NSTextField *entryCountTextField;
 
-
-@property (weak) KPKEntry *selectedEntry;
-
 @property (nonatomic, strong) MPEntryTableDataSource *dataSource;
 
 @property (assign, nonatomic) MPFilterModeType filterMode;
@@ -112,13 +109,13 @@ NSString *const _MPTAbleSecurCellView = @"PasswordCell";
     _dataSource = [[MPEntryTableDataSource alloc] init];
     _dataSource.viewController = self;
     _menuDelegate = [[MPEntryContextMenuDelegate alloc] init];
-    _selectedEntry = nil;
   }
   return self;
 }
 
 - (void)dealloc {
   [[NSNotificationCenter defaultCenter] removeObserver:self];
+  [self unbind:@"filterMode"];
   
 }
 
@@ -176,7 +173,7 @@ NSString *const _MPTAbleSecurCellView = @"PasswordCell";
   [urlColumn setSortDescriptorPrototype:urlSortDescriptor];
   [parentColumn setSortDescriptorPrototype:groupnameSortDescriptor];
   [modifiedColumn setSortDescriptorPrototype:dateSortDescriptor];
-    
+  
   [[parentColumn headerCell] setStringValue:NSLocalizedString(@"GROUP", "")];
   [[titleColumn headerCell] setStringValue:NSLocalizedString(@"TITLE", "")];
   [[userNameColumn headerCell] setStringValue:NSLocalizedString(@"USERNAME", "")];
@@ -189,14 +186,14 @@ NSString *const _MPTAbleSecurCellView = @"PasswordCell";
   [self.entryTable bind:NSContentBinding toObject:self.entryArrayController withKeyPath:@"arrangedObjects" options:nil];
   [self.entryTable bind:NSSortDescriptorsBinding toObject:self.entryArrayController withKeyPath:@"sortDescriptors" options:nil];
   [self.entryTable setDataSource:_dataSource];
-
+  
   // bind NSArrayController sorting so that sort order gets auto-saved
   // see: http://simx.me/technonova/software_development/sort_descriptors_nstableview_bindings_a.html
   [self.entryArrayController bind:NSSortDescriptorsBinding
                          toObject:[NSUserDefaultsController sharedUserDefaultsController]
                       withKeyPath:[MPSettingsHelper defaultControllerPathForKey:kMPSettingsKeyEntryTableSortDescriptors]
                           options:@{ NSValueTransformerNameBindingOption: NSUnarchiveFromDataTransformerName }];
-
+  
   [self _setupHeaderMenu];
   [parentColumn setHidden:YES];
 }
@@ -413,8 +410,15 @@ NSString *const _MPTAbleSecurCellView = @"PasswordCell";
   self.filter = [self.filterSearchField stringValue];
 }
 
-- (void)setupFilterBar {
+- (void)_setupFilterBar {
   if(!self.filterBar) {
+    /*
+    [[NSUserDefaultsController sharedUserDefaultsController] bind:[MPSettingsHelper defaultControllerPathForKey:kMPSettingsKeyEntrySearchFilterMode]
+                                                         toObject:self
+                                                      withKeyPath:@"filterMode"
+                                                          options:nil];
+     */
+    
     [[NSBundle mainBundle] loadNibNamed:@"FilterBar" owner:self topLevelObjects:nil];
     [self.filterURLButton setTag:MPFilterUrls];
     [self.filterUsernameButton setTag:MPFilterUsernames];
@@ -438,7 +442,7 @@ NSString *const _MPTAbleSecurCellView = @"PasswordCell";
 - (void)_showFilterBarAnimated {
   
   if(!self.filterBar) {
-    [self setupFilterBar];
+    [self _setupFilterBar];
   }
   /*
    Make sure the buttons are set correctyl every time

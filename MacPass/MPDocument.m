@@ -278,7 +278,13 @@ typedef NS_ENUM(NSUInteger, MPAlertType) {
   if([password length] == 0 && keyFileURL == nil) {
     return NO;
   }
-  [self.compositeKey setPassword:password andKeyfile:keyFileURL];
+  if(!self.compositeKey) {
+    self.compositeKey = [[KPKCompositeKey alloc] initWithPassword:password key:keyFileURL];
+  }
+  else {
+    [self.compositeKey setPassword:password andKeyfile:keyFileURL];
+  }
+  self.tree.metaData.masterKeyChanged = [NSDate date];
   /* We need to store the key file once the user actually writes the database */
   return YES;
 }

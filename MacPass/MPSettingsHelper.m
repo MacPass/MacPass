@@ -34,6 +34,8 @@ NSString *const kMPSettingsKeyRememberKeyFilesForDatabases  = @"RememberKeyFiles
 
 NSString *const kMPSettingsKeySendCommandForControlKey      = @"SendCommandKeyForControlKey";
 
+NSString *const kMPSettingsKeyEntrySearchFilterMode         = @"EntrySearchFilterMode";
+
 @implementation MPSettingsHelper
 
 + (void)setupDefaults {
@@ -63,7 +65,8 @@ NSString *const kMPSettingsKeySendCommandForControlKey      = @"SendCommandKeyFo
            kMPSettingsKeyLegacyHideURL: @NO,
            kMPSettingsKeyLegacyHideUsername: @NO,
            kMPSettingsKeyRememberKeyFilesForDatabases: @NO,
-           kMPSettingsKeySendCommandForControlKey: @YES
+           kMPSettingsKeySendCommandForControlKey: @YES,
+           kMPSettingsKeyEntrySearchFilterMode: @0
            };
 }
 

@@ -28,8 +28,6 @@ typedef NS_ENUM( NSUInteger, MPCopyContentTypeTag) {
 
 @interface MPEntryViewController : MPViewController <NSTableViewDelegate>
 
-@property (readonly, weak, nonatomic) KPKEntry *selectedEntry;
-
 @property (weak,readonly) NSTableView *entryTable;
 @property (readonly, strong) NSArrayController *entryArrayController;
 @property (nonatomic, strong) NSString *filter;

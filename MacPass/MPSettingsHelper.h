@@ -49,6 +49,9 @@ APPKIT_EXTERN NSString *const kMPSettingsKeyRememberKeyFilesForDatabases;
 /* Autotype */
 APPKIT_EXTERN NSString *const kMPSettingsKeySendCommandForControlKey;
 
+/* Search */
+APPKIT_EXTERN NSString *const kMPSettingsKeyEntrySearchFilterMode;
+
 typedef NS_ENUM(NSUInteger, MPPasswordEncoding) {
   MPPasswordEncodingUTF8,
   MPPasswordEncodingASCII,
