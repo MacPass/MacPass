@@ -15,13 +15,13 @@
 @implementation KPKNode (IconImage)
 
 + (NSSet *)keyPathsForValuesAffectingIconImage {
-  return [NSSet setWithArray:@[@"customIcon", @"icon"]];
+  return [NSSet setWithArray:@[@"customIcon", @"iconId"]];
 }
 
 - (NSImage *)iconImage {
   if(self.customIcon) {
     return self.customIcon.image;
   }
-  return [MPIconHelper icon:(MPIconType)self.icon];
+  return [MPIconHelper icon:(MPIconType)self.iconId];
 }
 @end

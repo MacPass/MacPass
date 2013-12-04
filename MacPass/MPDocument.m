@@ -455,7 +455,7 @@ typedef NS_ENUM(NSUInteger, MPAlertType) {
   }
   KPKGroup *newGroup = [self.tree createGroup:parent];
   newGroup.name = NSLocalizedString(@"DEFAULT_GROUP_NAME", @"Title for a newly created group");
-  newGroup.icon = MPIconFolder;
+  newGroup.iconId = MPIconFolder;
   [parent addGroup:newGroup];
   NSDictionary *userInfo = @{ MPDocumentGroupKey : newGroup };
   [[NSNotificationCenter defaultCenter] postNotificationName:MPDocumentDidAddGroupNotification object:self userInfo:userInfo];
@@ -607,7 +607,7 @@ typedef NS_ENUM(NSUInteger, MPAlertType) {
   BOOL wasEnabled = [self.undoManager isUndoRegistrationEnabled];
   [self.undoManager disableUndoRegistration];
   trash.name = NSLocalizedString(@"TRASH", @"Name for the trash group");
-  trash.icon = MPIconTrash;
+  trash.iconId = MPIconTrash;
   [self.tree.root addGroup:trash];
   if(wasEnabled) {
     [self.undoManager enableUndoRegistration];

@@ -196,9 +196,9 @@ NSString *const _MPOutlinveViewHeaderViewIdentifier = @"HeaderCell";
     KPKGroup *group = [item representedObject];
     view = [outlineView makeViewWithIdentifier:_MPOutlineViewDataViewIdentifier owner:self];
     
-    [view.imageView setImage:group.iconImage];
-    [view.textField bind:NSValueBinding toObject:group withKeyPath:@"name" options:nil];
-    [view.textField bind:@"count" toObject:group withKeyPath:@"entries.@count" options:nil];
+    [[view imageView] bind:NSValueBinding toObject:group withKeyPath:@"iconImage" options:nil];
+    [[view textField] bind:NSValueBinding toObject:group withKeyPath:@"name" options:nil];
+    [[view textField] bind:@"count" toObject:group withKeyPath:@"entries.@count" options:nil];
   }
   
   return view;

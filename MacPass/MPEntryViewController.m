@@ -237,12 +237,12 @@ NSString *const _MPTAbleSecurCellView = @"PasswordCell";
     view = [tableView makeViewWithIdentifier:_MPTableImageCellView owner:self];
     if( isTitleColumn ) {
       [[view textField] bind:NSValueBinding toObject:entry withKeyPath:@"title" options:nil];
-      [[view imageView] setImage:entry.iconImage];
+      [[view imageView] bind:NSValueBinding toObject:entry withKeyPath:@"iconImage" options:nil];
     }
     else {
       assert(entry.parent);
       [[view textField] bind:NSValueBinding toObject:entry.parent withKeyPath:@"name" options:nil];
-      [[view imageView] setImage:entry.iconImage];
+      [[view imageView] bind:NSValueBinding toObject:entry.parent withKeyPath:@"iconImage" options:nil];
     }
   }
   else if(isPasswordColum) {

@@ -179,11 +179,11 @@ typedef NS_ENUM(NSUInteger, MPContentTab) {
   BOOL useDefault = (viewController.selectedIcon == -1);
   switch (self.activeTab) {
     case MPGroupTab:
-      document.selectedGroup.icon = useDefault ? MPIconFolder : viewController.selectedIcon;
+      document.selectedGroup.iconId = useDefault ? [KPKGroup defaultIcon] : viewController.selectedIcon;
       break;
       
     case MPEntryTab:
-      document.selectedEntry.icon = useDefault ? MPIconPassword : viewController.selectedIcon;
+      document.selectedEntry.iconId = useDefault ? [KPKEntry defaultIcon]: viewController.selectedIcon;
       break;
       
     default:
