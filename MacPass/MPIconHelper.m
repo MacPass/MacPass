@@ -10,9 +10,8 @@
 
 @implementation MPIconHelper
 
-static NSDictionary *icons;
-
 + (NSImage *)icon:(MPIconType)type {
+  static NSDictionary *icons;
   if(!icons) {
     icons = [MPIconHelper availableIconNames];
   }
