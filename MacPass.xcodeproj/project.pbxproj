@@ -234,6 +234,7 @@
 		4CD3ABBA178F71B50073F5C5 /* KPKTree.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CD3ABB4178F71B50073F5C5 /* KPKTree.m */; };
 		4CD3ABBF178F72610073F5C5 /* KPKEntry.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CD3ABBE178F72610073F5C5 /* KPKEntry.m */; };
 		4CD3ABC2178F72720073F5C5 /* KPKGroup.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CD3ABC1178F72720073F5C5 /* KPKGroup.m */; };
+		4CD4901018513C180017397F /* KPKXmlElements.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CD4900F18513C180017397F /* KPKXmlElements.m */; };
 		4CD5D702177A5EE400100649 /* DatabaseSettingsWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4CD5D701177A5EE400100649 /* DatabaseSettingsWindow.xib */; };
 		4CD5D705177A5F3300100649 /* MPDatabaseSettingsWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CD5D704177A5F3300100649 /* MPDatabaseSettingsWindowController.m */; };
 		4CD6C5AE1789FDE6000891F6 /* HNHRoundedSecureTextField.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CD6C5AD1789FDE6000891F6 /* HNHRoundedSecureTextField.m */; };
@@ -707,6 +708,8 @@
 		4CD3ABBE178F72610073F5C5 /* KPKEntry.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = KPKEntry.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		4CD3ABC0178F72720073F5C5 /* KPKGroup.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KPKGroup.h; sourceTree = "<group>"; };
 		4CD3ABC1178F72720073F5C5 /* KPKGroup.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KPKGroup.m; sourceTree = "<group>"; };
+		4CD4900E18513C180017397F /* KPKXmlElements.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KPKXmlElements.h; sourceTree = "<group>"; };
+		4CD4900F18513C180017397F /* KPKXmlElements.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KPKXmlElements.m; sourceTree = "<group>"; };
 		4CD5D701177A5EE400100649 /* DatabaseSettingsWindow.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DatabaseSettingsWindow.xib; sourceTree = "<group>"; };
 		4CD5D703177A5F3300100649 /* MPDatabaseSettingsWindowController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MPDatabaseSettingsWindowController.h; sourceTree = "<group>"; };
 		4CD5D704177A5F3300100649 /* MPDatabaseSettingsWindowController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MPDatabaseSettingsWindowController.m; sourceTree = "<group>"; };
@@ -897,6 +900,8 @@
 				4CD3ABB2178F71B50073F5C5 /* KPKVersion.h */,
 				4C1842B9179B3A1700E2F5BC /* KPKXmlFormat.h */,
 				4C08C3AF17B3036500BBBC95 /* KPKLegacyFormat.h */,
+				4CD4900E18513C180017397F /* KPKXmlElements.h */,
+				4CD4900F18513C180017397F /* KPKXmlElements.m */,
 			);
 			name = Format;
 			sourceTree = "<group>";
@@ -2020,6 +2025,7 @@
 				4C39B3F5178FEFAE0027DC7C /* KPKNode.m in Sources */,
 				4C70D100179092F200652EE9 /* KPKCompositeKey.m in Sources */,
 				4C8A173D1790AA41008B5C17 /* NSData+Keyfile.m in Sources */,
+				4CD4901018513C180017397F /* KPKXmlElements.m in Sources */,
 				4C3F28541791EDFD00703281 /* KPKErrors.m in Sources */,
 				4C4436771792BE810099E220 /* KPKFormat.m in Sources */,
 				4CF62B86179385D700B660B6 /* KPKAttribute.m in Sources */,
