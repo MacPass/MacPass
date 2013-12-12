@@ -344,7 +344,7 @@ NSString *const _MPTAbleSecurCellView = @"PasswordCell";
 #pragma mark Filtering
 
 - (void)showFilter:(id)sender {
-  if([self _showsFilterBar]) {
+  if(self.isDisplayingFilterbar) {
     [self.filterSearchField selectText:self];
   }
   
@@ -418,7 +418,7 @@ NSString *const _MPTAbleSecurCellView = @"PasswordCell";
 
 - (BOOL)control:(NSControl*)control textView:(NSTextView*)textView doCommandBySelector:(SEL)commandSelector
 {
-    if (commandSelector == @selector(insertNewline:))
+    if(commandSelector == @selector(insertNewline:))
     {
         self.filter = [self.filterSearchField stringValue];
     }
