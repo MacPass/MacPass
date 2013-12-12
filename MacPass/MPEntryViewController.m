@@ -76,7 +76,6 @@ NSString *const _MPTAbleSecurCellView = @"PasswordCell";
 @property (weak) IBOutlet NSTableView *entryTable;
 @property (strong) IBOutlet NSLayoutConstraint *tableToTopConstraint;
 @property (strong) NSLayoutConstraint *filterbarTopConstraint;
-@property (strong) NSArray *filterBarConstraints;
 @property (weak) IBOutlet NSButton *filterDoneButton;
 
 @property (weak) IBOutlet NSButton *filterTitleButton;
@@ -124,7 +123,7 @@ NSString *const _MPTAbleSecurCellView = @"PasswordCell";
 
 - (void)didLoadView {
   [[self view] setWantsLayer:YES];
-  [self _hideFilterBarAnimated];
+  [self _hideFilterBar];
   
   [_bottomBar setBorderType:HNHBorderTop];
   [self.addEntryButton setAction:[MPActionHelper actionOfType:MPActionAddEntry]];
@@ -340,15 +339,66 @@ NSString *const _MPTAbleSecurCellView = @"PasswordCell";
   }
 }
 
-
 #pragma mark Filtering
-
 - (void)showFilter:(id)sender {
   if(self.isDisplayingFilterbar) {
     [self.filterSearchField selectText:self];
   }
   
-  [self _showFilterBarAnimated];
+  BOOL didLoadFilterBar = NO;
+  if(!self.filterBar) {
+    [self _setupFilterBar];
+    didLoadFilterBar = YES;
+  }
+  /*
+   Make sure the buttons are set correctyl every time
+   */
+  [self.filterTitleButton setState:[self _shouldFilterTitles] ? NSOnState : NSOffState];
+  [self.filterURLButton setState:[self _shouldFilterURLs] ? NSOnState : NSOffState ];
+  [self.filterUsernameButton setState:[self _shouldFilterUsernames] ? NSOnState : NSOffState];
+  [self.filterPasswordButton setState:[self _shouldFilterPasswords] ? NSOnState : NSOffState];
+  
+  if(self.isDisplayingFilterbar) {
+    return; // nothing to to
+  }
+  
+  /* Install any constraints we need for the first time */
+  
+  self.isDisplayingFilterbar = YES;
+  
+  if(didLoadFilterBar) {
+    /* Add the view for the first time */
+    [[self view] addSubview:self.filterBar];
+    
+    NSView *scrollView = [_entryTable enclosingScrollView];
+    NSDictionary *views = NSDictionaryOfVariableBindings(scrollView, _filterBar);
+
+    /* Pin to the left */
+    [[self view] addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|[_filterBar]|" options:0 metrics:nil views:views]];
+    /* Pin height and to top of entry table */
+    [[self view] addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:[_filterBar(==30)]-0-[scrollView]" options:0 metrics:nil views:views]];
+    /* Create the top constraint for the filter bar where we can change the contanst instaed of removing/adding constraints all the time */
+    self.filterbarTopConstraint = [NSLayoutConstraint constraintWithItem:self.filterBar
+                                                               attribute:NSLayoutAttributeTop
+                                                               relatedBy:NSLayoutRelationEqual
+                                                                  toItem:[self view]
+                                                               attribute:NSLayoutAttributeTop
+                                                              multiplier:1
+                                                                constant:-31];
+  }
+  [[self view] removeConstraint:self.tableToTopConstraint];
+  [[self view] addConstraint:self.filterbarTopConstraint];
+  [[self view] layoutSubtreeIfNeeded];
+  self.filterbarTopConstraint.constant = 0;
+  
+  [NSAnimationContext runAnimationGroup:^(NSAnimationContext* context) {
+    context.duration = STATUS_BAR_ANIMATION_TIME;
+    context.allowsImplicitAnimation = YES;
+    [self.view layoutSubtreeIfNeeded];
+  } completionHandler:^{
+    [self.filterSearchField setEnabled:YES];
+    [[[self windowController] window] makeFirstResponder:self.filterSearchField];
+  }];
 }
 
 - (BOOL)hasFilter {
@@ -366,13 +416,13 @@ NSString *const _MPTAbleSecurCellView = @"PasswordCell";
   self.filter = nil;
   [self.filterSearchField setStringValue:@""];
   [[self.entryTable tableColumnWithIdentifier:MPEntryTableParentColumnIdentifier] setHidden:YES];
-  [self _hideFilterBarAnimated];
+  [self _hideFilterBar];
   MPDocument *document = [[self windowController] document];
   document.selectedGroup = document.selectedGroup;
 }
 
 - (void)updateFilter {
-  [self _showFilterBarAnimated];
+  [self showFilter:nil];
   if(![self hasFilter]) {
     return;
   }
@@ -450,69 +500,11 @@ NSString *const _MPTAbleSecurCellView = @"PasswordCell";
 }
 
 #pragma mark UI Feedback
-
-- (void)_showFilterBarAnimated {
-  
-  if(!self.filterBar) {
-    [self _setupFilterBar];
-  }
-  /*
-   Make sure the buttons are set correctyl every time
-   */
-  [self.filterTitleButton setState:[self _shouldFilterTitles] ? NSOnState : NSOffState];
-  [self.filterURLButton setState:[self _shouldFilterURLs] ? NSOnState : NSOffState ];
-  [self.filterUsernameButton setState:[self _shouldFilterUsernames] ? NSOnState : NSOffState];
-  [self.filterPasswordButton setState:[self _shouldFilterPasswords] ? NSOnState : NSOffState];
-  
-  if(self.isDisplayingFilterbar) {
-    return; // nothing to to
-  }
-  
-  NSView *scrollView = [_entryTable enclosingScrollView];
-  NSDictionary *views = NSDictionaryOfVariableBindings(scrollView, _filterBar);
-  [[self view] addSubview:self.filterBar];
-  
-  self.isDisplayingFilterbar = YES;
-  
-  [[self view] addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|[_filterBar]|" options:0 metrics:nil views:views]];
-  [[self view] addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:[_filterBar(==30)]" options:0 metrics:nil views:views]];
-  
-  /* clear old constraints */
-  if(self.filterBarConstraints) {
-    [[self view] removeConstraints:self.filterBarConstraints];
-  }
-  self.filterBarConstraints = [NSLayoutConstraint constraintsWithVisualFormat:@"V:|-(-31)-[_filterBar]-0-[scrollView]" options:0 metrics:nil views:views];
-  [[self view] addConstraints:self.filterBarConstraints];
-  [[self view] addConstraint:self.tableToTopConstraint];
-  [[self view] layoutSubtreeIfNeeded];
-  [[self view] removeConstraints:self.filterBarConstraints];
-  /* setup new ones */
-  self.filterBarConstraints = [NSLayoutConstraint constraintsWithVisualFormat:@"V:|-0-[_filterBar]-0-[scrollView]" options:0 metrics:nil views:views];
-  [[self view] removeConstraint:self.tableToTopConstraint];
-  [[self view] addConstraints:self.filterBarConstraints];
-  
-  [NSAnimationContext runAnimationGroup:^(NSAnimationContext* context) {
-    context.duration = STATUS_BAR_ANIMATION_TIME;
-    context.allowsImplicitAnimation = YES;
-    [self.view layoutSubtreeIfNeeded];
-  } completionHandler:^{
-    [self.filterSearchField setEnabled:YES];
-    [[[self windowController] window] makeFirstResponder:self.filterSearchField];
-  }];
-  
-}
-
-- (void)_hideFilterBarAnimated {
+- (void)_hideFilterBar {
   if(!self.isDisplayingFilterbar) {
     return; // nothing to do;
   }
-  
-  NSView *scrollView = [_entryTable enclosingScrollView];
-  NSDictionary *views = NSDictionaryOfVariableBindings(scrollView, _filterBar);
-  
-  [[self view] removeConstraints:self.filterBarConstraints];
-  self.filterBarConstraints = [NSLayoutConstraint constraintsWithVisualFormat:@"V:|-(-31)-[_filterBar]-0-[scrollView]" options:0 metrics:nil views:views];
-  [[self view] addConstraints:self.filterBarConstraints];
+  self.filterbarTopConstraint.constant = -31;
   [[self view] addConstraint:self.tableToTopConstraint];
   
   [NSAnimationContext runAnimationGroup:^(NSAnimationContext* context) {
@@ -674,7 +666,6 @@ NSString *const _MPTAbleSecurCellView = @"PasswordCell";
 }
 
 #pragma mark Actions
-
 - (void)copyPassword:(id)sender {
   KPKEntry *selectedEntry = [self _clickedOrSelectedEntry];
   if(selectedEntry) {

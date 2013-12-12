@@ -23,11 +23,8 @@
 
 - (void)testSetPassword {
   STAssertNil(_database.compositeKey, @"New database should not have a composite key");
-  STAssertFalse(_database.compositeKey.hasPasswordOrKeyFile, @"Database without password is not secure");
-  [_database.compositeKey setPassword:@"password" andKeyfile:nil];
-  STAssertTrue(_database.compositeKey.hasPasswordOrKeyFile, @"Database with password is secured");
-  [_database.compositeKey setPassword:nil andKeyfile:nil];
-  STAssertFalse(_database.compositeKey.hasPasswordOrKeyFile, @"Database with removed password is not secure anymore");
+  STAssertTrue([_database changePassword:@"password" keyFileURL:nil], @"Setting the Password should succeed");
+  STAssertFalse([_database changePassword:nil keyFileURL:nil], @"resetting the password and key to nil should not work");
 }
 
 - (void)testSetKeyfile {/*
