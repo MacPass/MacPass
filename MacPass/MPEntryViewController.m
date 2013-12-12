@@ -425,8 +425,12 @@ NSString *const _MPTAbleSecurCellView = @"PasswordCell";
     
     [self.filterSearchField setAction:@selector(updateFilterText:)];
     [[self.filterSearchField cell] setSendsSearchStringImmediately:NO];
-    [self bind:NSStringFromSelector(@selector(filterMode)) toObject:[NSUserDefaultsController sharedUserDefaultsController] withKeyPath:[MPSettingsHelper defaultControllerPathForKey:kMPSettingsKeyEntrySearchFilterMode] options:nil];
-
+    /*
+    [self bind:@"filterMode"
+      toObject:[NSUserDefaultsController sharedUserDefaultsController]
+   withKeyPath:[MPSettingsHelper defaultControllerPathForKey:kMPSettingsKeyEntrySearchFilterMode]
+       options:nil];
+     */
   }
 }
 
