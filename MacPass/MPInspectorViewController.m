@@ -175,19 +175,22 @@ typedef NS_ENUM(NSUInteger, MPContentTab) {
 
 - (void)popoverDidClose:(NSNotification *)notification {
   MPIconSelectViewController *viewController = (MPIconSelectViewController *)_popover.contentViewController;
-  MPDocument *document = [[self windowController] document];
-  BOOL useDefault = (viewController.selectedIcon == -1);
-  switch (self.activeTab) {
-    case MPGroupTab:
-      document.selectedGroup.iconId = useDefault ? [KPKGroup defaultIcon] : viewController.selectedIcon;
-      break;
-      
-    case MPEntryTab:
-      document.selectedEntry.iconId = useDefault ? [KPKEntry defaultIcon]: viewController.selectedIcon;
-      break;
-      
-    default:
-      break;
+  if(!viewController.didCancel) {
+    
+    MPDocument *document = [[self windowController] document];
+    BOOL useDefault = (viewController.selectedIcon == -1);
+    switch (self.activeTab) {
+      case MPGroupTab:
+        document.selectedGroup.iconId = useDefault ? [KPKGroup defaultIcon] : viewController.selectedIcon;
+        break;
+        
+      case MPEntryTab:
+        document.selectedEntry.iconId = useDefault ? [KPKEntry defaultIcon]: viewController.selectedIcon;
+        break;
+        
+      default:
+        break;
+    }
   }
   _popover = nil;
 }
@@ -207,10 +210,10 @@ typedef NS_ENUM(NSUInteger, MPContentTab) {
     [self.itemNameTextField setHidden:YES];
     [self.itemImageView unbind:NSValueBinding];
     [self.itemImageView setHidden:YES];
-
+    
     return;
   }
-
+  
   [self.itemImageView bind:NSValueBinding toObject:item withKeyPath:@"iconImage" options:nil];
   
   if([item respondsToSelector:@selector(title)]) {

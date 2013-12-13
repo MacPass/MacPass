@@ -26,6 +26,7 @@ NSInteger const kMPDefaultIcon = -1;
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
+      _didCancel = NO;
     }
     return self;
 }
@@ -43,7 +44,13 @@ NSInteger const kMPDefaultIcon = -1;
   [self.popover performClose:self];
 }
 
+- (IBAction)cancel:(id)sender {
+  self.didCancel = YES;
+  [self.popover performClose:self];
+}
+
 - (void)reset {
+  self.didCancel = NO;
   self.selectedIcon = kMPDefaultIcon;
 }
 
