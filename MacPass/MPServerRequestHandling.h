@@ -8,10 +8,23 @@
 
 #import <Foundation/Foundation.h>
 
+/**
+ *  Protocol for request handling of KeePassHttp request
+ */
 @protocol MPServerRequestHandling <NSObject>
 
 @required
+/**
+ *  A unique identifier for the request handler
+ *
+ *  @return NSString representing the identifier
+ */
 - (NSString *)identifier;
+/**
+ *  Formulate a response to the request passed in as Dictionary
+ *
+ *  @param data An NSDictionary containing the parsed JSON reuest
+ */
 - (void)respondTo:(NSDictionary *)data;
 
 @end

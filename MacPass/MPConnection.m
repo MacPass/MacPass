@@ -63,6 +63,7 @@ NSString *const MPRequestTypeKey = @"RequestType";
 
 
 - (void)_parseRequest:(NSDictionary *)aRequest {
+  /* TODO: generate a response */
   NSString *requestType = aRequest[MPRequestTypeKey];
   if(!requestType) {
     NSLog(@"Malformed Request. Missing request type");

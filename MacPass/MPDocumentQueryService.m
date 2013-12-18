@@ -18,7 +18,7 @@ static NSUUID *_rootUuid = nil;
 @interface MPDocumentQueryService ()
 
 @property (weak) MPDocument *queryDocument;
-@property (weak) KPKEntry *configEntry;
+@property (nonatomic, weak) KPKEntry *configurationEntry;
 
 @end
 
@@ -46,8 +46,9 @@ static NSUUID *_rootUuid = nil;
 }
 
 - (KPKEntry *)configurationEntry {
-  if(nil != _configEntry) {
-    return  _configEntry;
+  /* TODO: lazy getter or do something differen like init at first call? */
+  if(nil != _configurationEntry) {
+    return  _configurationEntry;
   }
   /* no config entry there, start looking for it */
   NSArray *documents = [[NSDocumentController sharedDocumentController] documents];
@@ -59,9 +60,9 @@ static NSUUID *_rootUuid = nil;
     }
     KPKEntry *configEntry = [document findEntry:_rootUuid];
     if(nil != configEntry) {
-      _configEntry = configEntry;
-      _queryDocument = document;
-      return _configEntry;
+      self.configurationEntry = configEntry;
+      self.queryDocument = document;
+      return _configurationEntry;
     }
   }
   return nil;
