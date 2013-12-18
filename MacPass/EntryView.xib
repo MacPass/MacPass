@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="4514" systemVersion="13A603" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="4514" systemVersion="13B42" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
     <dependencies>
         <deployment defaultVersion="1080" identifier="macosx"/>
         <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="4514"/>
@@ -48,11 +48,11 @@
                                         <tableColumnResizingMask key="resizingMask" resizeWithTable="YES" userResizable="YES"/>
                                         <prototypeCellViews>
                                             <tableCellView identifier="StringCell" id="269">
-                                                <rect key="frame" x="1" y="1" width="104.5" height="17"/>
+                                                <rect key="frame" x="1" y="1" width="105" height="17"/>
                                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                 <subviews>
                                                     <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="270">
-                                                        <rect key="frame" x="1" y="0.0" width="102.5" height="17"/>
+                                                        <rect key="frame" x="1" y="0.0" width="103" height="17"/>
                                                         <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
                                                         <textFieldCell key="cell" lineBreakMode="truncatingTail" sendsActionOnEndEditing="YES" title="Table View Cell" id="271">
                                                             <font key="font" metaFont="system"/>
@@ -86,7 +86,7 @@
                                         <tableColumnResizingMask key="resizingMask" resizeWithTable="YES" userResizable="YES"/>
                                         <prototypeCellViews>
                                             <tableCellView identifier="ImageCell" id="297">
-                                                <rect key="frame" x="108.5" y="1" width="144" height="17"/>
+                                                <rect key="frame" x="109" y="1" width="144" height="17"/>
                                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                 <subviews>
                                                     <imageView translatesAutoresizingMaskIntoConstraints="NO" id="298">
@@ -136,11 +136,11 @@
                                         <tableColumnResizingMask key="resizingMask" resizeWithTable="YES" userResizable="YES"/>
                                         <prototypeCellViews>
                                             <tableCellView identifier="PasswordCell" id="428">
-                                                <rect key="frame" x="255.5" y="1" width="118.5" height="17"/>
+                                                <rect key="frame" x="256" y="1" width="119" height="17"/>
                                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                 <subviews>
                                                     <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="429" customClass="NSSecureTextField">
-                                                        <rect key="frame" x="1" y="0.0" width="116.5" height="17"/>
+                                                        <rect key="frame" x="1" y="0.0" width="117" height="17"/>
                                                         <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
                                                         <textFieldCell key="cell" lineBreakMode="truncatingTail" sendsActionOnEndEditing="YES" title="Table View Cell" id="430">
                                                             <font key="font" metaFont="system"/>
@@ -174,7 +174,7 @@
                                         <tableColumnResizingMask key="resizingMask" resizeWithTable="YES" userResizable="YES"/>
                                         <prototypeCellViews>
                                             <tableCellView id="421">
-                                                <rect key="frame" x="377" y="1" width="113" height="17"/>
+                                                <rect key="frame" x="378" y="1" width="113" height="17"/>
                                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                 <subviews>
                                                     <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="422">
@@ -212,7 +212,7 @@
                                         <tableColumnResizingMask key="resizingMask" resizeWithTable="YES" userResizable="YES"/>
                                         <prototypeCellViews>
                                             <tableCellView id="616">
-                                                <rect key="frame" x="493" y="1" width="198" height="17"/>
+                                                <rect key="frame" x="494" y="1" width="198" height="17"/>
                                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                 <subviews>
                                                     <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="617">
@@ -269,24 +269,11 @@
                                 <font key="font" metaFont="cellTitle"/>
                             </buttonCell>
                         </button>
-                        <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="Dhg-1B-bN3">
-                            <rect key="frame" x="598" y="-2.5" width="82" height="32"/>
-                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                            <buttonCell key="cell" type="push" title="Button" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="HCI-iT-0XJ">
-                                <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
-                                <font key="font" metaFont="system"/>
-                            </buttonCell>
-                            <connections>
-                                <action selector="enterHistoryBrowser:" target="-2" id="W3S-kJ-PS1"/>
-                            </connections>
-                        </button>
                     </subviews>
                     <constraints>
                         <constraint firstAttribute="height" constant="30" id="697"/>
                         <constraint firstItem="732" firstAttribute="leading" secondItem="690" secondAttribute="leading" constant="7" id="741"/>
                         <constraint firstItem="732" firstAttribute="centerY" secondItem="690" secondAttribute="centerY" id="878"/>
-                        <constraint firstAttribute="trailing" secondItem="Dhg-1B-bN3" secondAttribute="trailing" constant="20" id="9jV-U2-Fri"/>
-                        <constraint firstAttribute="centerY" secondItem="Dhg-1B-bN3" secondAttribute="centerY" id="b7s-ji-CeA"/>
                     </constraints>
                 </customView>
             </subviews>
