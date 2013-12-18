@@ -14,6 +14,7 @@
 #import "MPDocumentWindowController.h"
 #import "MPPasteBoardController.h"
 #import "MPOverlayWindowController.h"
+#import "MPContextBarViewController.h"
 
 #import "MPContextMenuHelper.h"
 #import "MPActionHelper.h"
@@ -37,19 +38,11 @@
 
 #define STATUS_BAR_ANIMATION_TIME 0.15
 
-typedef NS_OPTIONS(NSUInteger, MPFilterModeType) {
-  MPFilterNone      = 0,
-  MPFilterUrls      = (1<<0),
-  MPFilterUsernames = (1<<1),
-  MPFilterTitles    = (1<<2),
-  MPFilterPasswords = (1<<3),
-};
-
 typedef NS_ENUM(NSUInteger,MPOVerlayInfoType) {
   MPOverlayInfoPassword,
   MPOverlayInfoUsername,
   MPOverlayInfoURL,
-  MPOverlayInfoCustom
+  MPOverlayInfoCustom,
 };
 
 NSString *const MPEntryTableUserNameColumnIdentifier = @"MPUserNameColumnIdentifier";
@@ -67,31 +60,23 @@ NSString *const _MPTAbleSecurCellView = @"PasswordCell";
 
 @interface MPEntryViewController () {
   MPEntryContextMenuDelegate *_menuDelegate;
+  BOOL _isDisplayingContextBar;
 }
 
 @property (strong) NSArrayController *entryArrayController;
+@property (strong) MPContextBarViewController *contextBarViewController;
 @property (strong) NSArray *filteredEntries;
-@property (strong) IBOutlet NSView *filterBar;
-@property (strong) IBOutlet HNHGradientView *trashBar;
-@property (weak) IBOutlet NSTableView *entryTable;
-@property (strong) IBOutlet NSLayoutConstraint *tableToTopConstraint;
-@property (strong) NSLayoutConstraint *filterbarTopConstraint;
-@property (weak) IBOutlet NSButton *filterDoneButton;
 
-@property (weak) IBOutlet NSButton *filterTitleButton;
-@property (weak) IBOutlet NSButton *filterUsernameButton;
-@property (weak) IBOutlet NSButton *filterURLButton;
-@property (weak) IBOutlet NSButton *filterPasswordButton;
-@property (weak) IBOutlet NSTextField *filterLabelTextField;
-@property (weak) IBOutlet NSSearchField *filterSearchField;
+@property (weak) IBOutlet NSTableView *entryTable;
+
+/* Constraints */
+@property (strong) IBOutlet NSLayoutConstraint *tableToTopConstraint;
+@property (strong) NSLayoutConstraint *contextBarTopConstraint;
+
 @property (weak) IBOutlet HNHGradientView *bottomBar;
 @property (weak) IBOutlet NSButton *addEntryButton;
-@property (weak) IBOutlet NSTextField *entryCountTextField;
 
 @property (nonatomic, strong) MPEntryTableDataSource *dataSource;
-
-@property (assign, nonatomic) MPFilterModeType filterMode;
-@property (assign, nonatomic) BOOL isDisplayingFilterbar;
 
 @end
 
@@ -105,12 +90,13 @@ NSString *const _MPTAbleSecurCellView = @"PasswordCell";
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil {
   self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
   if(self) {
-    _filterMode = MPFilterTitles;
-    _isDisplayingFilterbar = NO;
+    _isDisplayingContextBar = NO;
     _entryArrayController = [[NSArrayController alloc] init];
     _dataSource = [[MPEntryTableDataSource alloc] init];
     _dataSource.viewController = self;
     _menuDelegate = [[MPEntryContextMenuDelegate alloc] init];
+    _contextBarViewController = [[MPContextBarViewController alloc] init];
+    
   }
   return self;
 }
@@ -123,7 +109,6 @@ NSString *const _MPTAbleSecurCellView = @"PasswordCell";
 
 - (void)didLoadView {
   [[self view] setWantsLayer:YES];
-  [self _hideFilterBar];
   
   [_bottomBar setBorderType:HNHBorderTop];
   [self.addEntryButton setAction:[MPActionHelper actionOfType:MPActionAddEntry]];
@@ -133,11 +118,13 @@ NSString *const _MPTAbleSecurCellView = @"PasswordCell";
   [self.entryTable setTarget:self];
   [self.entryTable setFloatsGroupRows:NO];
   [self.entryTable registerForDraggedTypes:@[KPKEntryUTI]];
+  /* First responder notifications */
   [[NSNotificationCenter defaultCenter] addObserver:self
                                            selector:@selector(_didBecomFirstResponder:)
                                                name:MPDidActivateViewNotification
                                              object:_entryTable];
-  
+  /* Filter bar notifications */
+  self.contextBarViewController.delegate = self;
   [self _setupEntryMenu];
   
   NSTableColumn *parentColumn = [self.entryTable tableColumns][0];
@@ -239,7 +226,7 @@ NSString *const _MPTAbleSecurCellView = @"PasswordCell";
       [[view imageView] bind:NSValueBinding toObject:entry withKeyPath:@"iconImage" options:nil];
     }
     else {
-      assert(entry.parent);
+      NSAssert(entry.parent != nil, @"Entry needs to have a parent");
       [[view textField] bind:NSValueBinding toObject:entry.parent withKeyPath:@"name" options:nil];
       [[view imageView] bind:NSValueBinding toObject:entry.parent withKeyPath:@"iconImage" options:nil];
     }
@@ -307,19 +294,14 @@ NSString *const _MPTAbleSecurCellView = @"PasswordCell";
     return;
   }
   /*
-   If a grup is the current item, see if we already show that group
+   If a group is the current item, see if we already show that group
    */
   if(document.selectedItem == document.selectedGroup) {
-    /*
-     If we reselect the group, or just another group
-     we clear the filter and bind to the new selected group
-     */
-    if(self.isDisplayingFilterbar && ![document.selectedItem isKindOfClass:[KPKEntry class]]) {
-      [self clearFilter:nil];
-      [self.entryArrayController bind:NSContentArrayBinding toObject:document.selectedGroup withKeyPath:@"entries" options:nil];
-      return;
+    /* If we change to a group selection, we should clear the filter */
+    if(_isDisplayingContextBar) {
+      [self.contextBarViewController exitFilter];
     }
-    if([[self.entryArrayController content] count] > 0) {
+    else if([[self.entryArrayController content] count] > 0) {
       KPKEntry *entry = [[self.entryArrayController content] lastObject];
       if(entry.parent == document.selectedGroup) {
         return; // we are showing the correct object right now.
@@ -327,127 +309,35 @@ NSString *const _MPTAbleSecurCellView = @"PasswordCell";
     }
     [self.entryArrayController bind:NSContentArrayBinding toObject:document.selectedGroup withKeyPath:@"entries" options:nil];
   }
+  [self _updateContextBar];
 }
 
 - (void)_didBecomFirstResponder:(NSNotification *)notification {
   MPDocument *document = [[self windowController] document];
-  if(document.selectedEntry.parent == document.selectedGroup || self.isDisplayingFilterbar) {
+  if(document.selectedEntry.parent == document.selectedGroup || [self.contextBarViewController showsFilter]) {
     document.selectedItem = document.selectedEntry;
   }
   else {
     document.selectedEntry = nil;
   }
 }
-
-#pragma mark Filtering
-- (void)showFilter:(id)sender {
-  if(self.isDisplayingFilterbar) {
-    [self.filterSearchField selectText:self];
-  }
-  
-  BOOL didLoadFilterBar = NO;
-  if(!self.filterBar) {
-    [self _setupFilterBar];
-    didLoadFilterBar = YES;
-  }
-  /*
-   Make sure the buttons are set correctyl every time
-   */
-  [self.filterTitleButton setState:[self _shouldFilterTitles] ? NSOnState : NSOffState];
-  [self.filterURLButton setState:[self _shouldFilterURLs] ? NSOnState : NSOffState ];
-  [self.filterUsernameButton setState:[self _shouldFilterUsernames] ? NSOnState : NSOffState];
-  [self.filterPasswordButton setState:[self _shouldFilterPasswords] ? NSOnState : NSOffState];
-  
-  if(self.isDisplayingFilterbar) {
-    return; // nothing to to
-  }
-  
-  /* Install any constraints we need for the first time */
-  
-  self.isDisplayingFilterbar = YES;
-  
-  if(didLoadFilterBar) {
-    /* Add the view for the first time */
-    [[self view] addSubview:self.filterBar];
-    
-    NSView *scrollView = [_entryTable enclosingScrollView];
-    NSDictionary *views = NSDictionaryOfVariableBindings(scrollView, _filterBar);
-
-    /* Pin to the left */
-    [[self view] addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|[_filterBar]|" options:0 metrics:nil views:views]];
-    /* Pin height and to top of entry table */
-    [[self view] addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:[_filterBar(==30)]-0-[scrollView]" options:0 metrics:nil views:views]];
-    /* Create the top constraint for the filter bar where we can change the contanst instaed of removing/adding constraints all the time */
-    self.filterbarTopConstraint = [NSLayoutConstraint constraintWithItem:self.filterBar
-                                                               attribute:NSLayoutAttributeTop
-                                                               relatedBy:NSLayoutRelationEqual
-                                                                  toItem:[self view]
-                                                               attribute:NSLayoutAttributeTop
-                                                              multiplier:1
-                                                                constant:-31];
-  }
-  [[self view] removeConstraint:self.tableToTopConstraint];
-  [[self view] addConstraint:self.filterbarTopConstraint];
-  [[self view] layoutSubtreeIfNeeded];
-  self.filterbarTopConstraint.constant = 0;
-  
-  [NSAnimationContext runAnimationGroup:^(NSAnimationContext* context) {
-    context.duration = STATUS_BAR_ANIMATION_TIME;
-    context.allowsImplicitAnimation = YES;
-    [self.view layoutSubtreeIfNeeded];
-  } completionHandler:^{
-    [self.filterSearchField setEnabled:YES];
-    [[[self windowController] window] makeFirstResponder:self.filterSearchField];
-  }];
-}
-
-- (BOOL)hasFilter {
-  return ([self.filter length] > 0);
-}
-
-- (void)setFilter:(NSString *)filter {
-  if(_filter != filter) {
-    _filter = filter;
-    [self updateFilter];
-  }
-}
-
-- (void)clearFilter:(id)sender {
-  self.filter = nil;
-  [self.filterSearchField setStringValue:@""];
+#pragma mark MPContextBarDelegate
+- (void)contextBarDidExitFilter {
   [[self.entryTable tableColumnWithIdentifier:MPEntryTableParentColumnIdentifier] setHidden:YES];
-  [self _hideFilterBar];
   MPDocument *document = [[self windowController] document];
-  document.selectedGroup = document.selectedGroup;
+  document.selectedItem = document.selectedGroup;
+  [self _updateContextBar];
 }
 
-- (void)updateFilter {
-  [self showFilter:nil];
-  if(![self hasFilter]) {
-    return;
-  }
-  
+- (void)contextBarDidChangeFilter {
   dispatch_queue_t backgroundQueue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
   dispatch_async(backgroundQueue, ^{
     MPDocument *document = [[self windowController] document];
-    if([self hasFilter]) {
-      NSMutableArray *prediactes = [NSMutableArray arrayWithCapacity:4];
-      if([self _shouldFilterTitles]) {
-        [prediactes addObject:[NSPredicate predicateWithFormat:@"SELF.title CONTAINS[cd] %@", self.filter]];
-      }
-      if([self _shouldFilterUsernames]) {
-        [prediactes addObject:[NSPredicate predicateWithFormat:@"SELF.username CONTAINS[cd] %@", self.filter]];
-      }
-      if([self _shouldFilterURLs]) {
-        [prediactes addObject:[NSPredicate predicateWithFormat:@"SELF.url CONTAINS[cd] %@", self.filter]];
-      }
-      if([self _shouldFilterPasswords]) {
-        [prediactes addObject:[NSPredicate predicateWithFormat:@"SELF.password CONTAINS[cd] %@", self.filter]];
-      }
-      NSPredicate *fullFilter = [NSCompoundPredicate orPredicateWithSubpredicates:prediactes];
+    NSArray *predicates = [self.contextBarViewController filterPredicates];
+    if(predicates) {
+      NSPredicate *fullFilter = [NSCompoundPredicate orPredicateWithSubpredicates:predicates];
       self.filteredEntries = [[document.root childEntries] filteredArrayUsingPredicate:fullFilter];
     }
-    
     else {
       self.filteredEntries = [document.root childEntries];
     }
@@ -459,65 +349,90 @@ NSString *const _MPTAbleSecurCellView = @"PasswordCell";
       [[self.entryTable tableColumnWithIdentifier:MPEntryTableParentColumnIdentifier] setHidden:NO];
     });
   });
-  
 }
 
-- (void)updateFilterText:(id)sender {
-  self.filter = [self.filterSearchField stringValue];
+- (void)showFilter:(id)sender {
+  [self.contextBarViewController showFilter];
+  [self _showContextBar];
 }
 
-- (BOOL)control:(NSControl*)control textView:(NSTextView*)textView doCommandBySelector:(SEL)commandSelector
-{
-    if(commandSelector == @selector(insertNewline:))
-    {
-        self.filter = [self.filterSearchField stringValue];
+#pragma mark ContextBar
+- (void)_showTrashBar {
+  [self.contextBarViewController showTrash];
+  [self _showContextBar];
+}
+
+- (void)_updateContextBar {
+  MPDocument *document = [[self windowController] document];
+  if(![self.contextBarViewController hasFilter]) {
+    BOOL showTrash = (document.selectedGroup == document.trash || [document isItemTrashed:document.selectedItem]);
+    if(showTrash) {
+      [self _showTrashBar];
     }
-    
-    return NO;
-}
-
-
-- (void)_setupFilterBar {
-  if(!self.filterBar) {
-    [[NSBundle mainBundle] loadNibNamed:@"FilterBar" owner:self topLevelObjects:nil];
-    [self.filterURLButton setTag:MPFilterUrls];
-    [self.filterUsernameButton setTag:MPFilterUsernames];
-    [self.filterTitleButton setTag:MPFilterTitles];
-    [self.filterPasswordButton setTag:MPFilterPasswords];
-    [[self.filterLabelTextField cell] setBackgroundStyle:NSBackgroundStyleRaised];
-    [self.filterDoneButton setAction:@selector(clearFilter:)];
-    [self.filterDoneButton setTarget:nil];
-    
-    [self.filterSearchField setAction:@selector(updateFilterText:)];
-    [[self.filterSearchField cell] setSendsSearchStringImmediately:NO];
-    /*
-    [self bind:@"filterMode"
-      toObject:[NSUserDefaultsController sharedUserDefaultsController]
-   withKeyPath:[MPSettingsHelper defaultControllerPathForKey:kMPSettingsKeyEntrySearchFilterMode]
-       options:nil];
-     */
+    else {
+      [self _hideContextBar];
+    }
   }
 }
 
-#pragma mark UI Feedback
-- (void)_hideFilterBar {
-  if(!self.isDisplayingFilterbar) {
-    return; // nothing to do;
+- (void)_showContextBar {
+  if(_isDisplayingContextBar) {
+    return;
   }
-  self.filterbarTopConstraint.constant = -31;
-  [[self view] addConstraint:self.tableToTopConstraint];
+  _isDisplayingContextBar = YES;
+  if(![[self.contextBarViewController view] superview]) {
+    [[self view] addSubview:[self.contextBarViewController view]];
+    [self.contextBarViewController updateResponderChain];
+    NSView *contextBar = [self.contextBarViewController view];
+    NSView *scrollView = [_entryTable enclosingScrollView];
+    NSDictionary *views = NSDictionaryOfVariableBindings(scrollView, contextBar);
+    
+    /* Pin to the left */
+    [[self view] addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|[contextBar]|" options:0 metrics:nil views:views]];
+    /* Pin height and to top of entry table */
+    [[self view] addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:[contextBar(==30)]-0-[scrollView]" options:0 metrics:nil views:views]];
+    /* Create the top constraint for the filter bar where we can change the contanst instaed of removing/adding constraints all the time */
+    self.contextBarTopConstraint = [NSLayoutConstraint constraintWithItem:contextBar
+                                                                attribute:NSLayoutAttributeTop
+                                                                relatedBy:NSLayoutRelationEqual
+                                                                   toItem:[self view]
+                                                                attribute:NSLayoutAttributeTop
+                                                               multiplier:1
+                                                                 constant:-31];
+  }
+  /* Add the view for the first time */
+  [[self view] removeConstraint:self.tableToTopConstraint];
+  [[self view] addConstraint:self.contextBarTopConstraint];
+  [[self view] layout];
+  self.contextBarTopConstraint.constant = 0;
   
   [NSAnimationContext runAnimationGroup:^(NSAnimationContext* context) {
     context.duration = STATUS_BAR_ANIMATION_TIME;
     context.allowsImplicitAnimation = YES;
     [self.view layoutSubtreeIfNeeded];
   } completionHandler:^{
-    self.isDisplayingFilterbar = NO;
-    [self.filterSearchField setEnabled:NO];
-  }] ;
+    [self.contextBarViewController enable];
+  }];
 }
 
+- (void)_hideContextBar {
+  if(!_isDisplayingContextBar) {
+    return; // nothing to do;
+  }
+  self.contextBarTopConstraint.constant = -31;
+  [[self view] addConstraint:self.tableToTopConstraint];
+  [self.contextBarViewController disable];
+  
+  [NSAnimationContext runAnimationGroup:^(NSAnimationContext* context) {
+    context.duration = STATUS_BAR_ANIMATION_TIME;
+    context.allowsImplicitAnimation = YES;
+    [self.view layoutSubtreeIfNeeded];
+  } completionHandler:^{
+    _isDisplayingContextBar = NO;
+  }];
+}
 
+#pragma mark Copy/Paste Overlays
 - (void)_copyToPasteboard:(NSString *)data overlayInfo:(MPOVerlayInfoType)overlayInfoType name:(NSString *)name{
   if(data) {
     [[MPPasteBoardController defaultController] copyObjects:@[ data ]];
@@ -548,56 +463,6 @@ NSString *const _MPTAbleSecurCellView = @"PasswordCell";
   [[MPOverlayWindowController sharedController] displayOverlayImage:infoImage label:infoText atView:self.view];
 }
 
-- (void)_showTrashBar {
-  if([self hasFilter]) {
-    [self clearFilter:nil];
-  }
-  if(!self.trashBar) {
-    [self _setupTrashBar];
-  }
-  NSView *scrollView = [_entryTable enclosingScrollView];
-  NSDictionary *views = NSDictionaryOfVariableBindings(scrollView, _trashBar);
-  [[self view] layout];
-  [[self view] removeConstraint:self.tableToTopConstraint];
-  [[self view] addSubview:self.trashBar];
-  [[self view] addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|[_trashBar]|" options:0 metrics:nil views:views]];
-  [[self view] addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|[_trashBar(==30)]-0-[scrollView]" options:0 metrics:nil views:views]];
-  
-  [NSAnimationContext runAnimationGroup:^(NSAnimationContext* context) {
-    context.duration = STATUS_BAR_ANIMATION_TIME;
-    context.allowsImplicitAnimation = YES;
-    [[self view] layoutSubtreeIfNeeded];
-  } completionHandler:nil] ;
-  
-  
-  //[[self view] layoutSubtreeIfNeeded];
-  
-}
-
-- (void)_hideTrashBar {
-  if(![self.trashBar superview]) {
-    return; // Trahsbar is not visible
-  }
-  
-  [self.trashBar removeFromSuperview];
-  [[self view] addConstraint:self.tableToTopConstraint];
-  [[self view] layoutSubtreeIfNeeded];
-}
-
-- (void)_setupTrashBar {
-  /* Load the bundle */
-  [[NSBundle mainBundle] loadNibNamed:@"TrashBar" owner:self topLevelObjects:nil];
-  NSArray *activeColors = @[
-                            [NSColor colorWithCalibratedWhite:0.2 alpha:1],
-                            [NSColor colorWithCalibratedWhite:0.4 alpha:1]
-                            ];
-  NSArray *inactiveColors = @[ [NSColor colorWithCalibratedWhite:0.3 alpha:1],
-                               [NSColor colorWithCalibratedWhite:0.6 alpha:1]
-                               ];
-  self.trashBar.activeGradient = [[NSGradient alloc] initWithColors:activeColors];
-  self.trashBar.inactiveGradient = [[NSGradient alloc] initWithColors:inactiveColors];
-}
-
 #pragma mark Validation
 - (BOOL)validateMenuItem:(NSMenuItem *)menuItem {
   MPDocument *document = [[self windowController] document];
@@ -609,7 +474,6 @@ NSString *const _MPTAbleSecurCellView = @"PasswordCell";
 }
 
 #pragma mark ContextMenu
-
 - (void)_setupEntryMenu {
   
   NSMenu *menu = [[NSMenu alloc] init];
@@ -711,35 +575,19 @@ NSString *const _MPTAbleSecurCellView = @"PasswordCell";
   }
 }
 
-- (void)deleteNode:(id)sender {
+- (IBAction)enterHistoryBrowser:(id)sender {
+  
+}
+
+- (void)delete:(id)sender {
   KPKEntry *entry =[self _clickedOrSelectedEntry];
+  if(!entry) {
+    return;
+  }
   MPDocument *document = [[self windowController] document];
   [document deleteEntry:entry];
 }
 
-//- (void)toggleHeader:(id)sender {
-//  //
-//}
-
-- (IBAction)_toggleFilterSpace:(id)sender {
-  if(![sender isKindOfClass:[NSButton class]]) {
-    return; // Wrong sender
-  }
-  NSButton *button = sender;
-  MPFilterModeType toggledMode = [button tag];
-  switch ([button state]) {
-    case NSOnState:
-      self.filterMode |= toggledMode;
-      break;
-      
-    case NSOffState:
-      self.filterMode ^= toggledMode;
-      break;
-      
-    default:
-      break;
-  }
-}
 
 - (void)_columnDoubleClick:(id)sender {
   if(0 == [[self.entryArrayController arrangedObjects] count]) {
@@ -764,32 +612,6 @@ NSString *const _MPTAbleSecurCellView = @"PasswordCell";
       [self copyURL:nil];
   }
   // TODO: Add more actions for new columns
-}
-
-- (void)setFilterMode:(MPFilterModeType)newFilterMode {
-  if(_filterMode != newFilterMode) {
-    if(newFilterMode == MPFilterNone) {
-      newFilterMode = MPFilterTitles;
-    }
-    _filterMode = newFilterMode;
-    [self updateFilter];
-  }
-}
-
-- (BOOL)_shouldFilterTitles {
-  return (MPFilterNone != (self.filterMode & MPFilterTitles));
-}
-
-- (BOOL)_shouldFilterURLs {
-  return (MPFilterNone != (self.filterMode & MPFilterUrls));
-}
-
-- (BOOL)_shouldFilterUsernames {
-  return (MPFilterNone != (self.filterMode & MPFilterUsernames));
-}
-
-- (BOOL)_shouldFilterPasswords {
-  return (MPFilterNone != (self.filterMode & MPFilterPasswords));
 }
 
 @end

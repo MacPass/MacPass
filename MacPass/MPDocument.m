@@ -33,7 +33,6 @@
 #import "DDXMLNode.h"
 
 #import "KPKEntry.h"
-#import "KPKEntry+TemplateCopy.h"
 #import "KPKGroup.h"
 #import "KPKTree.h"
 #import "KPKTree+Serializing.h"
@@ -446,6 +445,7 @@ typedef NS_ENUM(NSUInteger, MPAlertType) {
     newEntry.title = self.tree.metaData.defaultUserName;
   }
   [parent addEntry:newEntry];
+  [parent.undoManager setActionName:NSLocalizedString(@"ADD_ENTRY", "")];
   return newEntry;
 }
 
@@ -540,8 +540,9 @@ typedef NS_ENUM(NSUInteger, MPAlertType) {
   if(entryUUID) {
     KPKEntry *templateEntry = [self findEntry:entryUUID];
     if(templateEntry && self.selectedGroup) {
-      KPKEntry *copy = [templateEntry copyWithTitle:templateEntry.title];
+      KPKEntry *copy = [templateEntry copyWithTitle:templateEntry.title options:0];
       [self.selectedGroup addEntry:copy];
+      [self.selectedGroup.undoManager setActionName:NSLocalizedString(@"ADD_TREMPLATE_ENTRY", "")];
     }
   }
   return;

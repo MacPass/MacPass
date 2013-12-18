@@ -53,7 +53,7 @@
                                                                      views:views]];
   [[self view] layoutSubtreeIfNeeded];
   
-  copyAction copyBlock = ^void(NSTextField *textField) {
+  void(^copyBlock)(NSTextField *textField) = ^void(NSTextField *textField) {
     [[MPPasteBoardController defaultController] copyObjects:@[ textField.stringValue ]];
   };
   

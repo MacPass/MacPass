@@ -25,7 +25,6 @@ APPKIT_EXTERN NSString *const MPOutlineViewDidChangeGroupSelection;
 
 - (void)createGroup:(id)sender;
 - (void)createEntry:(id)sender;
-- (void)deleteNode:(id)sender;
 /**
  *	Retrieves the current item for the current mouse location
  *	@return	Item under mouse. If the mouse isn't inside the view, nil is returned

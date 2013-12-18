@@ -27,7 +27,7 @@
 typedef NS_ENUM(NSUInteger, MPContentTab) {
   MPEntryTab,
   MPGroupTab,
-  MPEmptyTab
+  MPEmptyTab,
 };
 
 @interface MPInspectorViewController () {

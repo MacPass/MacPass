@@ -7,6 +7,7 @@
 //
 
 #import "MPViewController.h"
+#import "MPContextBarViewController.h"
 
 APPKIT_EXTERN NSString *const MPEntryTableUserNameColumnIdentifier;
 APPKIT_EXTERN NSString *const MPEntryTableTitleColumnIdentifier;
@@ -26,19 +27,16 @@ typedef NS_ENUM( NSUInteger, MPCopyContentTypeTag) {
 @class MPOutlineViewDelegate;
 @class MPDocumentWindowController;
 
-@interface MPEntryViewController : MPViewController <NSTableViewDelegate>
+@interface MPEntryViewController : MPViewController <NSTableViewDelegate, MPContextBarDelegate>
 
 @property (weak,readonly) NSTableView *entryTable;
 @property (readonly, strong) NSArrayController *entryArrayController;
-@property (nonatomic, strong) NSString *filter;
-
 
 /* Call this after alle viewcontroller are loaded */
 - (void)setupNotifications:(MPDocumentWindowController *)windowController;
 
 /* Clear the Search filter*/
 - (void)showFilter:(id)sender;
-- (void)clearFilter:(id)sender;
 
 /* Copy/Paste */
 - (void)copyUsername:(id)sender;
@@ -47,8 +45,8 @@ typedef NS_ENUM( NSUInteger, MPCopyContentTypeTag) {
 - (void)copyURL:(id)sender;
 - (void)openURL:(id)sender;
 
-
-/* Entry Handling*/
-- (void)deleteNode:(id)sender;
+/* History*/
+- (IBAction)enterHistoryBrowser:(id)sender;
+- (IBAction)exitHistoryBrowser:(id)sender;
 
 @end

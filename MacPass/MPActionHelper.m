@@ -20,7 +20,7 @@
                    @(MPActionCopyPassword) : @"copyPassword:",
                    @(MPActionCopyURL) : @"copyURL:",
                    @(MPActionCopyUsername) : @"copyUsername:",
-                   @(MPActionDelete) : @"deleteNode:",
+                   @(MPActionDelete) : @"delete:",
                    @(MPActionEditPassword) : @"editPassword:",
                    @(MPActionOpenURL) : @"openURL:",
                    @(MPActionToggleInspector) : @"toggleInspector:",
@@ -45,6 +45,7 @@
   NSArray *selectors = [[self _actionDictionary] allValues];
   NSUInteger index = [selectors indexOfObject:selectorString];
   if(index == NSNotFound) {
+    // Test for default Actions?
     return MPUnkownAction;
   }
   NSArray *keys = [[self _actionDictionary] allKeysForObject:selectorString];

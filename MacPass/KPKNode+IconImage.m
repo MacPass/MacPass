@@ -9,18 +9,23 @@
 #import "KPKNode+IconImage.h"
 
 #import "KPKIcon.h"
+#import "KPKTree.h"
+#import "KPKMetaData.h"
 
 #import "MPIconHelper.h"
 
 @implementation KPKNode (IconImage)
 
 + (NSSet *)keyPathsForValuesAffectingIconImage {
-  return [NSSet setWithArray:@[@"customIcon", @"iconId"]];
+  return [NSSet setWithArray:@[@"iconUUID", @"iconId"]];
 }
 
 - (NSImage *)iconImage {
-  if(self.customIcon) {
-    return self.customIcon.image;
+  if(self.iconUUID) {
+    KPKIcon *icon = [self.tree.metaData findIcon:self.iconUUID];
+    if(icon && icon.image) {
+      return icon.image;
+    }
   }
   return [MPIconHelper icon:(MPIconType)self.iconId];
 }

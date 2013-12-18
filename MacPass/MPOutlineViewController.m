@@ -180,7 +180,7 @@ NSString *const _MPOutlinveViewHeaderViewIdentifier = @"HeaderCell";
   [document createEntry:[self _clickedOrSelectedGroup]];
 }
 
-- (void)deleteNode:(id)sender {
+- (void)delete:(id)sender {
   [[[self windowController] document] deleteGroup:[self _clickedOrSelectedGroup]];
 }
 

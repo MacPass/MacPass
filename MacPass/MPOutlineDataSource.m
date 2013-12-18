@@ -27,9 +27,6 @@
 #import "KPKGroup.h"
 #import "KPKEntry.h"
 #import "KPKUTIs.h"
-#import "KPKEntry+TemplateCopy.h"
-#import "KPKGroup+TemplateCopy.h"
-
 
 #import "NSUUID+KeePassKit.h"
 
@@ -146,11 +143,7 @@
   KPKGroup *targetGroup = (KPKGroup *)targetItem;
   if(draggedGroup) {
     if(copyItem || (nil == self.localDraggedGroup) ) {
-      /* Add Copy to title */
-      NSString *copyTemplate = NSLocalizedString(@"%@_COPY", "");
-      /* If we copy, we need to update the uuid */
-      draggedGroup.name = [NSString stringWithFormat:copyTemplate, draggedGroup.name];
-      draggedGroup.uuid = [NSUUID UUID];
+      draggedGroup = [draggedGroup copyWithName:nil options:0];
       [targetGroup addGroup:draggedGroup atIndex:index];
       [targetGroup.undoManager setActionName:NSLocalizedString(@"COPY_GROUP", "")];
       return YES;
@@ -166,10 +159,7 @@
   }
   else if(draggedEntry) {
     if(copyItem || (nil == self.localDraggedEntry)) {
-      /* if we copy, we need to update the uuid */
-      NSString *copyTemplate = NSLocalizedString(@"%@_COPY", "");
-      draggedEntry.title = [NSString stringWithFormat:copyTemplate, draggedEntry.title];
-      draggedEntry.uuid = [NSUUID UUID];
+      draggedEntry = [draggedEntry copyWithTitle:nil options:0];
       [targetGroup addEntry:draggedEntry atIndex:index];
       [targetGroup.undoManager setActionName:NSLocalizedString(@"COPY_ENTRY", "")];
       return YES;

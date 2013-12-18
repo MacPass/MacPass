@@ -269,11 +269,24 @@
                                 <font key="font" metaFont="cellTitle"/>
                             </buttonCell>
                         </button>
+                        <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="Dhg-1B-bN3">
+                            <rect key="frame" x="598" y="-2.5" width="82" height="32"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                            <buttonCell key="cell" type="push" title="Button" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="HCI-iT-0XJ">
+                                <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                <font key="font" metaFont="system"/>
+                            </buttonCell>
+                            <connections>
+                                <action selector="enterHistoryBrowser:" target="-2" id="W3S-kJ-PS1"/>
+                            </connections>
+                        </button>
                     </subviews>
                     <constraints>
                         <constraint firstAttribute="height" constant="30" id="697"/>
                         <constraint firstItem="732" firstAttribute="leading" secondItem="690" secondAttribute="leading" constant="7" id="741"/>
                         <constraint firstItem="732" firstAttribute="centerY" secondItem="690" secondAttribute="centerY" id="878"/>
+                        <constraint firstAttribute="trailing" secondItem="Dhg-1B-bN3" secondAttribute="trailing" constant="20" id="9jV-U2-Fri"/>
+                        <constraint firstAttribute="centerY" secondItem="Dhg-1B-bN3" secondAttribute="centerY" id="b7s-ji-CeA"/>
                     </constraints>
                 </customView>
             </subviews>
