@@ -365,7 +365,7 @@ NSString *const _MPTAbleSecurCellView = @"PasswordCell";
 - (void)_updateContextBar {
   MPDocument *document = [[self windowController] document];
   if(![self.contextBarViewController hasFilter]) {
-    BOOL showTrash = (document.selectedGroup == document.trash || [document isItemTrashed:document.selectedItem]);
+    BOOL showTrash = document.useTrash && (document.selectedGroup == document.trash || [document isItemTrashed:document.selectedItem]);
     if(showTrash) {
       [self _showTrashBar];
     }

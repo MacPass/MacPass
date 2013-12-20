@@ -73,7 +73,6 @@ typedef NS_ENUM(NSUInteger, MPAlertType) {
 @property (strong) NSURL *lockFileURL;
 @property (nonatomic, assign) BOOL isAllowedToStoreKeyFile;
 
-@property (readonly) BOOL useTrash;
 @property (strong) IBOutlet NSView *warningView;
 @property (weak) IBOutlet NSImageView *warningViewImage;
 
@@ -325,6 +324,10 @@ typedef NS_ENUM(NSUInteger, MPAlertType) {
   return nil;
 }
 
+- (BOOL)useTrash {
+  return self.tree.metaData.recycleBinEnabled;
+}
+
 - (KPKGroup *)templates {
   static KPKGroup *_templates = nil;
   BOOL templateValid = [_templates.uuid isEqual:self.tree.metaData.entryTemplatesGroup];
@@ -402,10 +405,6 @@ typedef NS_ENUM(NSUInteger, MPAlertType) {
 
 - (NSArray *)allGroups {
   return self.tree.allGroups;
-}
-
-- (BOOL)useTrash {
-  return self.tree.metaData.recycleBinEnabled;
 }
 
 - (BOOL)isItemTrashed:(id)item {
@@ -540,7 +539,7 @@ typedef NS_ENUM(NSUInteger, MPAlertType) {
   if(entryUUID) {
     KPKEntry *templateEntry = [self findEntry:entryUUID];
     if(templateEntry && self.selectedGroup) {
-      KPKEntry *copy = [templateEntry copyWithTitle:templateEntry.title options:0];
+      KPKEntry *copy = [templateEntry copyWithTitle:templateEntry.title];
       [self.selectedGroup addEntry:copy];
       [self.selectedGroup.undoManager setActionName:NSLocalizedString(@"ADD_TREMPLATE_ENTRY", "")];
     }

@@ -184,6 +184,7 @@
 }
 
 - (void)_setupAdvancedTab:(KPKTree *)tree {
+  [self bind:@"trashEnabled" toObject:tree.metaData withKeyPath:@"recycleBinEnabled" options:nil];
   [self.enableRecycleBinCheckButton bind:NSValueBinding toObject:self withKeyPath:@"trashEnabled" options:nil];
   [self.selectRecycleBinGroupPopUpButton bind:NSEnabledBinding toObject:self withKeyPath:@"trashEnabled" options:nil];
   [self _updateTrashFolders:tree];

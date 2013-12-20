@@ -48,6 +48,7 @@ APPKIT_EXTERN NSString *const MPDocumentGroupKey;
 @property (strong, readonly, nonatomic) KPKTree *tree;
 @property (nonatomic, weak, readonly) KPKGroup *root;
 @property (nonatomic, weak) KPKGroup *trash;
+@property (nonatomic, readonly) BOOL useTrash;
 @property (nonatomic, weak) KPKGroup *templates;
 
 @property (nonatomic, strong, readonly) KPKCompositeKey *compositeKey;

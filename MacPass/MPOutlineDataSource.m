@@ -143,7 +143,7 @@
   KPKGroup *targetGroup = (KPKGroup *)targetItem;
   if(draggedGroup) {
     if(copyItem || (nil == self.localDraggedGroup) ) {
-      draggedGroup = [draggedGroup copyWithName:nil options:0];
+      draggedGroup = [draggedGroup copyWithName:nil];
       [targetGroup addGroup:draggedGroup atIndex:index];
       [targetGroup.undoManager setActionName:NSLocalizedString(@"COPY_GROUP", "")];
       return YES;
@@ -159,7 +159,7 @@
   }
   else if(draggedEntry) {
     if(copyItem || (nil == self.localDraggedEntry)) {
-      draggedEntry = [draggedEntry copyWithTitle:nil options:0];
+      draggedEntry = [draggedEntry copyWithTitle:nil];
       [targetGroup addEntry:draggedEntry atIndex:index];
       [targetGroup.undoManager setActionName:NSLocalizedString(@"COPY_ENTRY", "")];
       return YES;
