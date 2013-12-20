@@ -113,6 +113,7 @@
 		4C52A88F1788628B00868229 /* 13_KeysTemplate.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 4C52A88C1788628B00868229 /* 13_KeysTemplate.pdf */; };
 		4C52A8901788628B00868229 /* 18_DisplayTemplate.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 4C52A88D1788628B00868229 /* 18_DisplayTemplate.pdf */; };
 		4C52A892178863B000868229 /* 68_PhoneTemplate.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 4C52A891178863B000868229 /* 68_PhoneTemplate.pdf */; };
+		4C53A7A51864C39D000DFF0D /* KPKLocalizeable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 4C53A7A71864C39D000DFF0D /* KPKLocalizeable.strings */; };
 		4C5426F317BEEA8700A4424C /* Autotype_test.kdbx in Resources */ = {isa = PBXBuildFile; fileRef = 4C5426F217BEEA8700A4424C /* Autotype_test.kdbx */; };
 		4C569D9E17652B0600595B62 /* MPConstants.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C569D9D17652B0600595B62 /* MPConstants.m */; };
 		4C569DA117652BFE00595B62 /* MPEntryTableDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C569DA017652BFE00595B62 /* MPEntryTableDataSource.m */; };
@@ -474,6 +475,9 @@
 		4C52A88C1788628B00868229 /* 13_KeysTemplate.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = 13_KeysTemplate.pdf; sourceTree = "<group>"; };
 		4C52A88D1788628B00868229 /* 18_DisplayTemplate.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = 18_DisplayTemplate.pdf; sourceTree = "<group>"; };
 		4C52A891178863B000868229 /* 68_PhoneTemplate.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = 68_PhoneTemplate.pdf; sourceTree = "<group>"; };
+		4C53A7A81864C3A1000DFF0D /* de */ = {isa = PBXFileReference; lastKnownFileType = file; name = de; path = de.lproj/KPKLocalizeable.strings; sourceTree = "<group>"; };
+		4C53A7A91864C3A2000DFF0D /* en */ = {isa = PBXFileReference; lastKnownFileType = file; name = en; path = en.lproj/KPKLocalizeable.strings; sourceTree = "<group>"; };
+		4C53A7AA1864C3A2000DFF0D /* fr */ = {isa = PBXFileReference; lastKnownFileType = file; name = fr; path = fr.lproj/KPKLocalizeable.strings; sourceTree = "<group>"; };
 		4C5426F217BEEA8700A4424C /* Autotype_test.kdbx */ = {isa = PBXFileReference; lastKnownFileType = file; name = Autotype_test.kdbx; path = Databases/Autotype_test.kdbx; sourceTree = "<group>"; };
 		4C569D9C17652AC800595B62 /* MPConstants.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MPConstants.h; sourceTree = "<group>"; };
 		4C569D9D17652B0600595B62 /* MPConstants.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MPConstants.m; sourceTree = "<group>"; };
@@ -1325,6 +1329,7 @@
 				4C77E36F15B84A240093A587 /* InfoPlist.strings */,
 				4C77E37215B84A240093A587 /* main.m */,
 				4C77E37415B84A240093A587 /* MacPass-Prefix.pch */,
+				4C53A7A71864C39D000DFF0D /* KPKLocalizeable.strings */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -1865,6 +1870,7 @@
 				4C7ABA4B17BAEC6700FF5799 /* 19_EmailTemplate.pdf in Resources */,
 				4C7ABA4C17BAEC6700FF5799 /* 20_MiscTemplate.pdf in Resources */,
 				4C7ABA4E17BAEC7000FF5799 /* addEntryTemplate.pdf in Resources */,
+				4C53A7A51864C39D000DFF0D /* KPKLocalizeable.strings in Resources */,
 				4C68456F17BC2A0700FCDBFC /* WelcomeWindow.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -2105,6 +2111,16 @@
 				4C5CD34417D158DE000B7F38 /* fr */,
 			);
 			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+		4C53A7A71864C39D000DFF0D /* KPKLocalizeable.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				4C53A7A81864C3A1000DFF0D /* de */,
+				4C53A7A91864C3A2000DFF0D /* en */,
+				4C53A7AA1864C3A2000DFF0D /* fr */,
+			);
+			name = KPKLocalizeable.strings;
 			sourceTree = "<group>";
 		};
 		4C76155E1764C04C0015A1A6 /* GeneralSettings.xib */ = {
