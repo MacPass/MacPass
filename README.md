@@ -8,9 +8,9 @@ MacPass is an attempt to create an OS X port of KeePass.
 ##Disclaimer
 The Project is in heavy development. Beware that I'm going to shift things around so stuff is going to break. A lot.
 
-##Dowload
+##Download
 
-Since github now provides a release feature, I'm trying to upload binaries on all the tags I create along the way.
+Since Github now provides a release feature, I'm trying to upload binaries on all the tags I create along the way.
 Use it with caution, it's unfinished. Really!
 
 All releases can be found at [Github](https://github.com/mstarke/MacPass/releases).
@@ -48,14 +48,14 @@ More Screenshots in the [Wiki](https://github.com/mstarke/MacPass/wiki/Screensho
 
 ##Alternatives
 
-[KeePassX](http://www.keepassx.org) is a Qt based KeePass port, than can read Databases Version 1 and 2 and write Version 2 containers rather nicely.
+[KeePassX](http://www.keepassx.org) is a Qt based KeePass port, than can read database version 1 and 2 and write version 2 containers rather nicely.
 It's in active development, open source. Sadly there's only an older alpha binary release. It fully supports all database features.
 
 [KyPass Companion](http://www.kyuran.be/logiciels/kypass4mac/) is a native Cocoa port and offers KeePassHttp compatiblity.
-Should be able to read and write version 1 and 2 database. Is closed source and in early development. Beta releases have an expiry date. Not all database features are fully supported.
+Should be able to read and write database version 1 and 2. Is closed source and in early development. Beta releases have an expiry date. Not all database features are fully supported.
 
 [S3crets](http://s3crets.com/en/help/) native Cocoa Port with a different approach to displaying the database fully inside a tree.
-Is able to read and write version 1 and 2 databases. Not all database features are fully supported.
+It is able to read and write database version 1 and 2. Not all database features are fully supported.
 
 ## Help
 
