@@ -52,7 +52,7 @@ More Screenshots in the [Wiki](https://github.com/mstarke/MacPass/wiki/Screensho
 It's in active development, open source. Sadly there's only an older alpha binary release. It fully supports all database features.
 
 [KyPass Companion](http://www.kyuran.be/logiciels/kypass4mac/) is a native Cocoa port and offers KeePassHttp compatiblity.
-Should be able to read and write database version 1 and 2. Is closed source and in early development. Beta releases have an expiry date. Not all database features are fully supported.
+Should be able to read and write database version 1 and 2. It is closed source and in early development. Beta releases have an expiry date. Not all database features are fully supported.
 
 [S3crets](http://s3crets.com/en/help/) native Cocoa Port with a different approach to displaying the database fully inside a tree.
 It is able to read and write database version 1 and 2. Not all database features are fully supported.
