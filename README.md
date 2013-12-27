@@ -49,10 +49,10 @@ More Screenshots in the [Wiki](https://github.com/mstarke/MacPass/wiki/Screensho
 ##Alternatives
 
 [KeePassX](http://www.keepassx.org) is a Qt based KeePass port, than can read database version 1 and 2 and write version 2 containers rather nicely.
-It's in active development, open source. Alpha 5 is out and now includes the previously missing password generator. It fully supports all database features and should be stable enough for daily usage.
+It's in active development, open source. Alpha 5 is out and now includes the previously missing password generator. It fully supports all database features and should be stable enough for daily usage. It can import version 1 into a version 2 file but is unable to natively write version 1 files.
 
 [KyPass Companion](http://www.kyuran.be/logiciels/kypass4mac/) is a native Cocoa port and offers KeePassHttp compatiblity.
-Should be able to read and write database version 1 and 2. It is closed source and currently available in the Mac App Store. It's rather expensive considering the bugs and missing features. Based on the user reviews it should work. Not all version 2 features are supported. It is unable to convert between database verions.
+Should be able to read and write database version 1 and 2. It is closed source and currently available in the Mac App Store. It's rather expensive considering the bugs and missing features. Based on the user reviews it should work. Not all version 2 features are supported. It is unable to convert between database versions.
 
 [S3crets](http://s3crets.com/en/help/) native Cocoa Port with a different approach to displaying the database fully inside a tree.
 It is able to read and write database version 1 and 2. Not all database features are fully supported.
