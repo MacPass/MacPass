@@ -354,18 +354,18 @@ typedef NS_ENUM(NSUInteger, MPAlertContext) {
                                                                       options:0
                                                                       metrics:nil
                                                                         views:views]];
-  /* Restore the State the inspector view was in before the view change */
-  if(removeInspector) {
-    [inspectorView removeFromSuperview];
-  }
-  [contentView layoutSubtreeIfNeeded];
-  
   [_entryViewController updateResponderChain];
   [_inspectorViewController updateResponderChain];
   [_outlineViewController updateResponderChain];
   /* Custom setup after being added to window */
   [_inspectorViewController prepareView];
   [_outlineViewController showOutline];
+
+  /* Restore the State the inspector view was in before the view change */
+  if(removeInspector) {
+    [inspectorView removeFromSuperview];
+  }
+  [contentView layoutSubtreeIfNeeded];
 }
 
 #pragma mark Validation
