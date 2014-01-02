@@ -184,6 +184,39 @@ typedef NS_ENUM(NSUInteger, MPEntryTab) {
   [self.entry removeBinary:binary];
 }
 
+// CS: could there be a better way?
+- (void)beginEditing
+{
+  NSLog(@"beganEditing:");
+
+  _titleTextField.editable = YES;
+  _usernameTextField.editable = YES;
+  _URLTextField.editable = YES;
+  _passwordTextField.editable = YES;
+  
+  _createdTextField.editable = YES;
+  _modifiedTextField.editable = YES;
+  
+  _notesTextView.editable = YES;
+  
+}
+
+// CS: could there be a better way?
+- (void)endEditing
+{
+  NSLog(@"endEditing");
+  _titleTextField.editable = NO;
+  _usernameTextField.editable = NO;
+  _URLTextField.editable = NO;
+  _passwordTextField.editable = NO;
+  
+  _createdTextField.editable = NO;
+  _modifiedTextField.editable = NO;
+
+  _notesTextView.editable = NO;
+}
+
+
 #pragma mark -
 #pragma mark Popovers
 

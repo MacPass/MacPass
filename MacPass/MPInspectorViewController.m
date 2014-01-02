@@ -157,6 +157,28 @@ typedef NS_ENUM(NSUInteger, MPContentTab) {
 }
 
 #pragma mark -
+#pragma mark Click Edit Button
+
+// button title can be used as a status indicator
+- (IBAction)handleEditButtonClickEvent:(id)sender
+{
+  NSString *buttonTitle;
+  
+  buttonTitle = self.editButton.title;
+  
+  if ([buttonTitle isEqualToString:@"Edit"]) {
+    NSLog(@"begin editing");
+    [_entryViewController beginEditing];
+    self.editButton.title = @"Done";
+  }
+  else if ([buttonTitle isEqualToString:@"Done"]) {
+    NSLog(@"finished editing");
+    [_entryViewController endEditing];
+    self.editButton.title = @"Edit";
+  }
+}
+
+#pragma mark -
 #pragma mark Popup
 - (IBAction)showImagePopup:(id)sender {
   
@@ -246,5 +268,9 @@ typedef NS_ENUM(NSUInteger, MPContentTab) {
     }
   }
   [self _updateItemBindings:document.selectedItem];
+  
+  // disable the entry text fields whenever the entry selection changes
+  [_entryViewController endEditing];
+  self.editButton.title = @"Edit";
 }
 @end

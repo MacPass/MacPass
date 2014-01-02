@@ -2,10 +2,10 @@
 <archive type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="8.00">
 	<data>
 		<int key="IBDocument.SystemTarget">1080</int>
-		<string key="IBDocument.SystemVersion">13A603</string>
+		<string key="IBDocument.SystemVersion">13B42</string>
 		<string key="IBDocument.InterfaceBuilderVersion">4514</string>
 		<string key="IBDocument.AppKitVersion">1265</string>
-		<string key="IBDocument.HIToolboxVersion">695.00</string>
+		<string key="IBDocument.HIToolboxVersion">696.00</string>
 		<object class="NSMutableDictionary" key="IBDocument.PluginVersions">
 			<string key="NS.key.0">com.apple.InterfaceBuilder.CocoaPlugin</string>
 			<string key="NS.object.0">4514</string>
@@ -327,6 +327,14 @@
 						<reference key="destination" ref="830540359"/>
 					</object>
 					<int key="connectionID">3122</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBActionConnection" key="connection">
+						<string key="label">handleEditButtonClickEvent:</string>
+						<reference key="source" ref="1001"/>
+						<reference key="destination" ref="348505851"/>
+					</object>
+					<int key="connectionID">3125</int>
 				</object>
 			</array>
 			<object class="IBMutableOrderedSet" key="objectRecords">
@@ -988,7 +996,7 @@
 			<nil key="activeLocalization"/>
 			<dictionary class="NSMutableDictionary" key="localizations"/>
 			<nil key="sourceID"/>
-			<int key="maxID">3123</int>
+			<int key="maxID">3125</int>
 		</object>
 		<object class="IBClassDescriber" key="IBDocument.Classes">
 			<array class="NSMutableArray" key="referencedPartialClassDescriptions">
@@ -1003,17 +1011,20 @@
 				<object class="IBPartialClassDescription">
 					<string key="className">MPInspectorViewController</string>
 					<string key="superclassName">MPViewController</string>
-					<object class="NSMutableDictionary" key="actions">
-						<string key="NS.key.0">showImagePopup:</string>
-						<string key="NS.object.0">id</string>
-					</object>
-					<object class="NSMutableDictionary" key="actionInfosByName">
-						<string key="NS.key.0">showImagePopup:</string>
-						<object class="IBActionInfo" key="NS.object.0">
+					<dictionary class="NSMutableDictionary" key="actions">
+						<string key="handleEditButtonClickEvent:">id</string>
+						<string key="showImagePopup:">id</string>
+					</dictionary>
+					<dictionary class="NSMutableDictionary" key="actionInfosByName">
+						<object class="IBActionInfo" key="handleEditButtonClickEvent:">
+							<string key="name">handleEditButtonClickEvent:</string>
+							<string key="candidateClassName">id</string>
+						</object>
+						<object class="IBActionInfo" key="showImagePopup:">
 							<string key="name">showImagePopup:</string>
 							<string key="candidateClassName">id</string>
 						</object>
-					</object>
+					</dictionary>
 					<dictionary class="NSMutableDictionary" key="outlets">
 						<string key="bottomBar">HNHGradientView</string>
 						<string key="createdTextField">NSTextField</string>
