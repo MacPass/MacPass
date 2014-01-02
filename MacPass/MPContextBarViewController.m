@@ -26,6 +26,7 @@ typedef NS_ENUM(NSUInteger, MPContextTab) {
 @property (nonatomic, assign) MPContextTab activeTab;
 @property (nonatomic, assign) BOOL hasFilter;
 
+/* Filter */
 @property (weak) IBOutlet NSButton *filterDoneButton;
 @property (weak) IBOutlet NSButton *filterTitleButton;
 @property (weak) IBOutlet NSButton *filterUsernameButton;
@@ -33,8 +34,11 @@ typedef NS_ENUM(NSUInteger, MPContextTab) {
 @property (weak) IBOutlet NSButton *filterPasswordButton;
 @property (weak) IBOutlet NSTextField *filterLabelTextField;
 @property (weak) IBOutlet NSSearchField *filterSearchField;
+/* History */
 @property (weak) IBOutlet HNHGradientView *historyBar;
+/* Trash*/
 @property (weak) IBOutlet HNHGradientView *trashBar;
+@property (weak) IBOutlet NSButton *emptyTrashButton;
 
 @end
 
@@ -81,7 +85,6 @@ typedef NS_ENUM(NSUInteger, MPContextTab) {
                                ];
   self.trashBar.activeGradient = [[NSGradient alloc] initWithColors:activeColors];
   self.trashBar.inactiveGradient = [[NSGradient alloc] initWithColors:inactiveColors];
-  
   [[self view] bind:NSSelectedIndexBinding toObject:self withKeyPath:@"activeTab" options:nil];
   
 }

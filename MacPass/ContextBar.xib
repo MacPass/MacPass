@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="4514" systemVersion="13A603" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="4514" systemVersion="13B42" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
     <dependencies>
         <deployment defaultVersion="1080" identifier="macosx"/>
         <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="4514"/>
@@ -7,6 +7,7 @@
     <objects>
         <customObject id="-2" userLabel="File's Owner" customClass="MPContextBarViewController">
             <connections>
+                <outlet property="emptyTrashButton" destination="szx-Hx-OrV" id="i1Y-qB-TW3"/>
                 <outlet property="filterDoneButton" destination="61" id="o8k-20-QUA"/>
                 <outlet property="filterLabelTextField" destination="6" id="60"/>
                 <outlet property="filterPasswordButton" destination="96" id="101"/>
@@ -86,7 +87,7 @@
                                         </buttonCell>
                                     </button>
                                     <searchField verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="80">
-                                        <rect key="frame" x="418" y="6" width="100" height="19"/>
+                                        <rect key="frame" x="418" y="5" width="100" height="19"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="100" id="93"/>
@@ -150,19 +151,19 @@
                                 <rect key="frame" x="0.0" y="0.0" width="576" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <subviews>
-                                    <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="yBM-0x-EbF">
-                                        <rect key="frame" x="476" y="6" width="80" height="17"/>
+                                    <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="szx-Hx-OrV">
+                                        <rect key="frame" x="478" y="5" width="78" height="19"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                        <buttonCell key="cell" type="roundRect" title="Empty Trash" bezelStyle="roundedRect" alignment="center" controlSize="small" state="on" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="h7n-rC-pCN">
+                                        <buttonCell key="cell" type="roundTextured" title="Empty Trash" bezelStyle="texturedRounded" alignment="center" controlSize="small" state="on" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="8Ok-oe-6AB">
                                             <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                             <font key="font" metaFont="smallSystem"/>
                                         </buttonCell>
                                     </button>
                                 </subviews>
                                 <constraints>
-                                    <constraint firstAttribute="trailing" secondItem="yBM-0x-EbF" secondAttribute="trailing" constant="20" symbolic="YES" id="Pu4-mQ-gM6"/>
-                                    <constraint firstItem="yBM-0x-EbF" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="DXf-SC-gVG" secondAttribute="leading" constant="20" symbolic="YES" id="bSn-n3-rIm"/>
-                                    <constraint firstItem="yBM-0x-EbF" firstAttribute="centerY" secondItem="DXf-SC-gVG" secondAttribute="centerY" id="ekW-da-P4m"/>
+                                    <constraint firstAttribute="trailing" secondItem="szx-Hx-OrV" secondAttribute="trailing" constant="20" symbolic="YES" id="J9z-j0-T14"/>
+                                    <constraint firstItem="szx-Hx-OrV" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="DXf-SC-gVG" secondAttribute="leading" constant="20" symbolic="YES" id="s8f-1l-4Yy"/>
+                                    <constraint firstAttribute="centerY" secondItem="szx-Hx-OrV" secondAttribute="centerY" id="sG5-pc-EzQ"/>
                                 </constraints>
                             </customView>
                         </subviews>
@@ -183,16 +184,8 @@
                                 <rect key="frame" x="0.0" y="0.0" width="576" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <subviews>
-                                    <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="sPN-Q9-cPQ">
-                                        <rect key="frame" x="481" y="6" width="75" height="17"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                        <buttonCell key="cell" type="roundRect" title="Exit History" bezelStyle="roundedRect" alignment="center" controlSize="small" state="on" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="e5L-51-aBc">
-                                            <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
-                                            <font key="font" metaFont="smallSystem"/>
-                                        </buttonCell>
-                                    </button>
                                     <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="gGR-f0-dcr">
-                                        <rect key="frame" x="18" y="7" width="38" height="17"/>
+                                        <rect key="frame" x="18" y="6" width="38" height="17"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                         <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Label" id="8LU-cT-rsU">
                                             <font key="font" metaFont="system"/>
@@ -200,13 +193,22 @@
                                             <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                         </textFieldCell>
                                     </textField>
+                                    <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="pqx-su-vAh">
+                                        <rect key="frame" x="483" y="5" width="73" height="19"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                        <buttonCell key="cell" type="roundTextured" title="Exit History" bezelStyle="texturedRounded" alignment="center" controlSize="small" state="on" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="ewQ-8F-e1E">
+                                            <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                            <font key="font" metaFont="smallSystem"/>
+                                        </buttonCell>
+                                    </button>
                                 </subviews>
                                 <constraints>
-                                    <constraint firstItem="sPN-Q9-cPQ" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="gGR-f0-dcr" secondAttribute="trailing" constant="8" symbolic="YES" id="1yk-Sc-5be"/>
-                                    <constraint firstAttribute="centerY" secondItem="sPN-Q9-cPQ" secondAttribute="centerY" id="Ioh-QS-vaO"/>
+                                    <constraint firstAttribute="centerY" secondItem="pqx-su-vAh" secondAttribute="centerY" id="7T6-QP-uaM"/>
+                                    <constraint firstItem="gGR-f0-dcr" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="S8L-rB-h0h" secondAttribute="leading" constant="20" id="B13-fg-dQY"/>
                                     <constraint firstAttribute="centerY" secondItem="gGR-f0-dcr" secondAttribute="centerY" id="KMF-ev-v2h"/>
+                                    <constraint firstItem="pqx-su-vAh" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="gGR-f0-dcr" secondAttribute="trailing" constant="8" symbolic="YES" id="Wb1-xK-zZF"/>
                                     <constraint firstItem="gGR-f0-dcr" firstAttribute="leading" secondItem="S8L-rB-h0h" secondAttribute="leading" constant="20" symbolic="YES" id="gFm-N8-pwn"/>
-                                    <constraint firstAttribute="trailing" secondItem="sPN-Q9-cPQ" secondAttribute="trailing" constant="20" symbolic="YES" id="z4Y-Hr-EiA"/>
+                                    <constraint firstAttribute="trailing" secondItem="pqx-su-vAh" secondAttribute="trailing" constant="20" symbolic="YES" id="mao-02-HsJ"/>
                                 </constraints>
                             </customView>
                         </subviews>

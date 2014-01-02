@@ -491,7 +491,9 @@ typedef NS_ENUM(NSUInteger, MPAlertType) {
     [entry remove];
     [[self undoManager] setActionName:NSLocalizedString(@"DELETE_ENTRY", "")];
   }
-  self.selectedEntry = nil;
+  if(self.selectedEntry == entry) {
+    self.selectedEntry = nil;
+  }
 }
 
 - (void)deleteGroup:(KPKGroup *)group {
