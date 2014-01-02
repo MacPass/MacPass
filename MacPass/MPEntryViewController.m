@@ -469,6 +469,23 @@ NSString *const _MPTAbleSecurCellView = @"PasswordCell";
   if(![document validateMenuItem:menuItem]) {
     return NO;
   }
+  
+  // CS: don't know how to iterate through KPKEntry properties to check for blanks so just check the declared properties
+  KPKEntry *targetEntry = [self _clickedOrSelectedEntry];
+  MPActionType actionType = [MPActionHelper typeForAction:[menuItem action]];
+
+  if (([[targetEntry username] length] == 0) && (actionType == MPActionCopyUsername)) {
+    return NO;
+  }
+  
+  if (([[targetEntry password] length] == 0) && (actionType == MPActionCopyPassword)) {
+    return NO;
+  }
+
+  if (([[targetEntry url] length] == 0) && (actionType == MPActionCopyURL || actionType == MPActionOpenURL)) {
+    return NO;
+  }
+
   return YES;
   /* TODO handle _clickedOrSlectedEnty */
 }
