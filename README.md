@@ -8,9 +8,9 @@ MacPass is an attempt to create an OS X port of KeePass.
 ##Disclaimer
 The Project is in heavy development. Beware that I'm going to shift things around so stuff is going to break. A lot.
 
-##Dowload
+##Download
 
-Since github now provides a release feature, I'm trying to upload binaries on all the tags I create along the way.
+Since Github now provides a release feature, I'm trying to upload binaries on all the tags I create along the way.
 Use it with caution, it's unfinished. Really!
 
 All releases can be found at [Github](https://github.com/mstarke/MacPass/releases).
@@ -34,7 +34,7 @@ After that you can build and run in XCode. If you run into signing issues take a
 ##System Requirement
 
 The Minimum OS X Version for MacPass currently is 10.8 Mountain Lion.
-With 10.9 Mavericks around the corner, I'm a bit hesitant to support 10.7 Lion.
+Since 10.9 Mavericks is a free upgrade I have no plans to support 10.7 Lion.
 
 ##Status
 
@@ -48,14 +48,14 @@ More Screenshots in the [Wiki](https://github.com/mstarke/MacPass/wiki/Screensho
 
 ##Alternatives
 
-[KeePassX](http://www.keepassx.org) is a Qt based KeePass port, than can read Databases Version 1 and 2 and write Version 2 containers rather nicely.
-It's in active development, open source. Sadly there's only an older alpha binary release. It fully supports all database features.
+[KeePassX](http://www.keepassx.org) is a Qt based KeePass port, than can read database version 1 and 2 and write version 2 containers rather nicely.
+It's in active development, open source. Alpha 5 is out and now includes the previously missing password generator. It fully supports all database features and should be stable enough for daily usage. It can import version 1 into a version 2 file but is unable to natively write version 1 files.
 
 [KyPass Companion](http://www.kyuran.be/logiciels/kypass4mac/) is a native Cocoa port and offers KeePassHttp compatiblity.
-Should be able to read and write version 1 and 2 database. Is closed source and in early development. Beta releases have an expiry date. Not all database features are fully supported.
+Should be able to read and write database version 1 and 2. It is closed source and currently available in the Mac App Store. It's rather expensive considering the bugs and missing features. Based on the user reviews it should work. Not all version 2 features are supported. It is unable to convert between database versions.
 
 [S3crets](http://s3crets.com/en/help/) native Cocoa Port with a different approach to displaying the database fully inside a tree.
-Is able to read and write version 1 and 2 databases. Not all database features are fully supported.
+It is able to read and write database version 1 and 2. Not all database features are fully supported.
 
 ## Help
 
