@@ -44,6 +44,7 @@
 - (IBAction)addCustomField:(id)sender;
 - (IBAction)removeCustomField:(id)sender;
 
-
+- (void)beginEditing;
+- (void)endEditing;
 
 @end

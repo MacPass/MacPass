@@ -22,6 +22,7 @@
 @property (weak) IBOutlet NSButton *editButton;
 
 - (IBAction)showImagePopup:(id)sender;
+- (IBAction)handleEditButtonClickEvent:(id)sender;
 
 /* Seperate call to ensure alle registered objects are in place */
 - (void)setupNotifications:(NSWindowController *)windowController;
