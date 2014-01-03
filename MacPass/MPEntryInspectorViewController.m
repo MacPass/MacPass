@@ -184,38 +184,14 @@ typedef NS_ENUM(NSUInteger, MPEntryTab) {
   [self.entry removeBinary:binary];
 }
 
-// CS: could there be a better way?
-- (void)beginEditing
-{
-  NSLog(@"beganEditing:");
-
-  _titleTextField.editable = YES;
-  _usernameTextField.editable = YES;
-  _URLTextField.editable = YES;
-  _passwordTextField.editable = YES;
-  
-  _createdTextField.editable = YES;
-  _modifiedTextField.editable = YES;
-  
-  _notesTextView.editable = YES;
+#pragma mark Editing
+- (void)beginEditing {
+  [self _toggleEditing:YES];
   
 }
-
-// CS: could there be a better way?
-- (void)endEditing
-{
-  NSLog(@"endEditing");
-  _titleTextField.editable = NO;
-  _usernameTextField.editable = NO;
-  _URLTextField.editable = NO;
-  _passwordTextField.editable = NO;
-  
-  _createdTextField.editable = NO;
-  _modifiedTextField.editable = NO;
-
-  _notesTextView.editable = NO;
+- (void)endEditing {
+  [self _toggleEditing:NO];
 }
-
 
 #pragma mark -
 #pragma mark Popovers
@@ -307,6 +283,27 @@ typedef NS_ENUM(NSUInteger, MPEntryTab) {
     [_historyController unbind:NSContentArrayBinding];
     [_historyController setContent:nil];
   }
+}
+
+- (void)_toggleEditing:(BOOL)edit {
+  /* TODO: not fully working right now */
+  
+  [_titleTextField setEditable:edit];
+  [_titleTextField setSelectable:edit];
+  [_usernameTextField setEditable:edit];
+  [_usernameTextField setSelectable:edit];
+  [_URLTextField setEditable:edit];
+  [_URLTextField setSelectable:edit];
+  [_passwordTextField setEditable:edit];
+  [_passwordTextField setSelectable:edit];
+  
+  [_createdTextField setEditable:edit];
+  [_createdTextField setSelectable:edit];
+  [_notesTextView setEditable:edit];
+  [_notesTextView setSelectable:edit];
+  [_modifiedTextField setEditable:edit];
+  [_modifiedTextField setSelectable:edit];
+
 }
 
 @end

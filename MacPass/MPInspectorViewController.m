@@ -34,14 +34,13 @@ typedef NS_ENUM(NSUInteger, MPContentTab) {
   MPEntryInspectorViewController *_entryViewController;
   MPGroupInspectorViewController *_groupViewController;
   NSPopover *_popover;
+  BOOL _isEditing;
 }
 
 @property (strong)  MPIconSelectViewController *iconSelectionViewController;
 
 @property (nonatomic, strong) NSDate *modificationDate;
 @property (nonatomic, strong) NSDate *creationDate;
-
-@property (nonatomic, assign) BOOL showEditButton;
 
 @property (nonatomic, assign) NSUInteger activeTab;
 @property (weak) IBOutlet NSTabView *tabView;
@@ -60,7 +59,7 @@ typedef NS_ENUM(NSUInteger, MPContentTab) {
     _activeTab = MPEmptyTab;
     _entryViewController = [[MPEntryInspectorViewController alloc] init];
     _groupViewController = [[MPGroupInspectorViewController alloc] init];
-    _showEditButton = NO;
+    _isEditing = NO;
   }
   return self;
 }
@@ -77,14 +76,6 @@ typedef NS_ENUM(NSUInteger, MPContentTab) {
 - (void)setActiveTab:(NSUInteger)activeTab {
   if(_activeTab != activeTab) {
     _activeTab = activeTab;
-    self.showEditButton = [[[self windowController] document] tree].metaData.isHistoryEnabled;
-  }
-}
-
-- (void)setShowEditButton:(BOOL)showEditButton {
-  showEditButton &= (self.activeTab == MPEntryTab);
-  if(_showEditButton != showEditButton) {
-    _showEditButton = showEditButton;
   }
 }
 
@@ -158,24 +149,34 @@ typedef NS_ENUM(NSUInteger, MPContentTab) {
 
 #pragma mark -
 #pragma mark Click Edit Button
-
-// button title can be used as a status indicator
-- (IBAction)handleEditButtonClickEvent:(id)sender
-{
-  NSString *buttonTitle;
+- (void)toggleEdit:(id)sender {
+  BOOL didCancel = sender == self.cancelEditButton;
+  MPDocument *document = [[self windowController] document];
+  NSUndoManager *undoManager = [document undoManager];
   
-  buttonTitle = self.editButton.title;
-  
-  if ([buttonTitle isEqualToString:@"Edit"]) {
-    NSLog(@"begin editing");
-    [_entryViewController beginEditing];
-    self.editButton.title = @"Done";
-  }
-  else if ([buttonTitle isEqualToString:@"Done"]) {
-    NSLog(@"finished editing");
+  if(_isEditing) {
+    BOOL didChangeItem = [undoManager canUndo];
+    [undoManager endUndoGrouping];
+    [undoManager setActionName:NSLocalizedString(@"EDIT_GROUP_OR_ENTRY", "")];
+    [self.editButton setTitle:NSLocalizedString(@"EDIT_ITEM", "")];
+    [self.cancelEditButton setHidden:YES];
     [_entryViewController endEditing];
-    self.editButton.title = @"Edit";
+    
+    /*
+     We need to be carefull to only undo the things we actually changed
+     otherwise we undo older actions
+     */
+    if(didCancel && didChangeItem) {
+      [undoManager undo];
+    }
   }
+  else {
+    [undoManager beginUndoGrouping];
+    [self.editButton setTitle:NSLocalizedString(@"SAVE_CHANGES", "")];
+    [self.cancelEditButton setHidden:NO];
+    [_entryViewController beginEditing];
+  }
+  _isEditing = !_isEditing;
 }
 
 #pragma mark -
@@ -219,13 +220,6 @@ typedef NS_ENUM(NSUInteger, MPContentTab) {
 
 #pragma mark -
 #pragma mark Bindings
-- (void)prepareView {
-  MPDocument *document = [[self windowController] document];
-  [self bind:@"showEditButton" toObject:document.tree.metaData withKeyPath:@"isHistoryEnabled" options:nil];
-  NSDictionary *bindingOptions = @{ NSValueTransformerNameBindingOption : NSNegateBooleanTransformerName };
-  [self.editButton bind:NSHiddenBinding toObject:self withKeyPath:@"showEditButton" options:bindingOptions];
-}
-
 - (void)_updateItemBindings:(id)item {
   if(!item) {
     [self.itemNameTextField unbind:NSValueBinding];
@@ -269,8 +263,7 @@ typedef NS_ENUM(NSUInteger, MPContentTab) {
   }
   [self _updateItemBindings:document.selectedItem];
   
-  // disable the entry text fields whenever the entry selection changes
-  [_entryViewController endEditing];
-  self.editButton.title = @"Edit";
+  /* disable the entry text fields whenever the entry selection changes */
+  //[_entryViewController endEditing];
 }
 @end

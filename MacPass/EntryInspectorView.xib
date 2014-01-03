@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="4514" systemVersion="13A603" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="4514" systemVersion="13B42" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
     <dependencies>
         <deployment version="1070" defaultVersion="1080" identifier="macosx"/>
         <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="4514"/>
@@ -595,7 +595,7 @@
                     </textFieldCell>
                 </textField>
                 <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="59">
-                    <rect key="frame" x="20" y="448" width="212" height="19"/>
+                    <rect key="frame" x="20" y="446" width="212" height="19"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                     <buttonCell key="cell" type="roundRect" title="Generate" bezelStyle="roundedRect" alignment="center" state="on" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="64">
                         <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
@@ -607,7 +607,7 @@
                     </connections>
                 </button>
                 <secureTextField verticalHuggingPriority="750" horizontalCompressionResistancePriority="249" translatesAutoresizingMaskIntoConstraints="NO" id="60" customClass="HNHRoundedSecureTextField">
-                    <rect key="frame" x="20" y="475" width="173" height="22"/>
+                    <rect key="frame" x="20" y="473" width="173" height="24"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                     <secureTextFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" borderStyle="bezel" drawsBackground="YES" usesSingleLineMode="YES" id="63">
                         <font key="font" size="13" name="Menlo-Regular"/>
@@ -622,7 +622,7 @@
                     </connections>
                 </secureTextField>
                 <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="61">
-                    <rect key="frame" x="201" y="473" width="31" height="25"/>
+                    <rect key="frame" x="201" y="471" width="31" height="25"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                     <buttonCell key="cell" type="roundTextured" bezelStyle="texturedRounded" image="NSQuickLookTemplate" imagePosition="only" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="62">
                         <behavior key="behavior" pushIn="YES" changeContents="YES" lightByContents="YES"/>
@@ -633,20 +633,20 @@
                     </connections>
                 </button>
                 <scrollView horizontalLineScroll="10" horizontalPageScroll="10" verticalLineScroll="10" verticalPageScroll="10" hasHorizontalScroller="NO" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9">
-                    <rect key="frame" x="20" y="155" width="212" height="260"/>
+                    <rect key="frame" x="20" y="155" width="212" height="258"/>
                     <autoresizingMask key="autoresizingMask"/>
                     <clipView key="contentView" id="Qp6-9n-hxB">
-                        <rect key="frame" x="1" y="1" width="210" height="258"/>
+                        <rect key="frame" x="1" y="1" width="210" height="256"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <textView importsGraphics="NO" richText="NO" findStyle="panel" continuousSpellChecking="YES" allowsUndo="YES" verticallyResizable="YES" allowsNonContiguousLayout="YES" spellingCorrection="YES" smartInsertDelete="YES" id="73">
-                                <rect key="frame" x="0.0" y="0.0" width="210" height="258"/>
+                                <rect key="frame" x="0.0" y="0.0" width="210" height="256"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <size key="minSize" width="210" height="258"/>
+                                <size key="minSize" width="210" height="256"/>
                                 <size key="maxSize" width="463" height="10000000"/>
                                 <color key="insertionPointColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
-                                <size key="minSize" width="210" height="258"/>
+                                <size key="minSize" width="210" height="256"/>
                                 <size key="maxSize" width="463" height="10000000"/>
                             </textView>
                         </subviews>
@@ -660,7 +660,7 @@
                         <autoresizingMask key="autoresizingMask"/>
                     </scroller>
                     <scroller key="verticalScroller" verticalHuggingPriority="750" horizontal="NO" id="75">
-                        <rect key="frame" x="195" y="1" width="16" height="258"/>
+                        <rect key="frame" x="195" y="1" width="16" height="256"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </scroller>
                     <connections>
@@ -668,7 +668,7 @@
                     </connections>
                 </scrollView>
                 <textField verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="10">
-                    <rect key="frame" x="18" y="423" width="35" height="14"/>
+                    <rect key="frame" x="18" y="421" width="35" height="14"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                     <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Notes" id="72">
                         <font key="font" metaFont="smallSystem"/>
