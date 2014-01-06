@@ -313,13 +313,9 @@ typedef NS_ENUM(NSUInteger, MPAlertType) {
 }
 
 - (KPKGroup *)trash {
-  static KPKGroup *_trash = nil;
+  /* Caching is dangerous, as we might have deleted the trashcan */
   if(self.useTrash) {
-    BOOL trashValid = [_trash.uuid isEqual:self.tree.metaData.recycleBinUuid];
-    if(!trashValid) {
-      _trash = [self findGroup:self.tree.metaData.recycleBinUuid];
-    }
-    return _trash;
+    return [self findGroup:self.tree.metaData.recycleBinUuid];
   }
   return nil;
 }
@@ -329,12 +325,8 @@ typedef NS_ENUM(NSUInteger, MPAlertType) {
 }
 
 - (KPKGroup *)templates {
-  static KPKGroup *_templates = nil;
-  BOOL templateValid = [_templates.uuid isEqual:self.tree.metaData.entryTemplatesGroup];
-  if(!templateValid) {
-    _templates = [self findGroup:self.tree.metaData.entryTemplatesGroup];
-  }
-  return _templates;
+  /* Caching is dangerous as we might have deleted the group */
+  return [self findGroup:self.tree.metaData.entryTemplatesGroup];
 }
 
 - (void)setTrash:(KPKGroup *)trash {

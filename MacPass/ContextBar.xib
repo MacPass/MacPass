@@ -158,6 +158,9 @@
                                             <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                             <font key="font" metaFont="smallSystem"/>
                                         </buttonCell>
+                                        <connections>
+                                            <action selector="emptyTrash:" target="-1" id="uIZ-CN-kXB"/>
+                                        </connections>
                                     </button>
                                 </subviews>
                                 <constraints>
