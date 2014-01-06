@@ -97,3 +97,7 @@ This Project is based upon the following work:
 [KSPasswordField](https://github.com/karelia/SecurityInterface) Copyright 2012 Mike Abdullah, Karelia Software. All rights reserved.
 
 See submodules for additional Licenses
+
+##Feedback
+
+![Flattr this](http://api.flattr.com/button/flattr-badge-large.png)
