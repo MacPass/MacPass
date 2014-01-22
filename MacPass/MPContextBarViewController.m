@@ -36,6 +36,8 @@ typedef NS_ENUM(NSUInteger, MPContextTab) {
 @property (weak) IBOutlet NSSearchField *filterSearchField;
 /* History */
 @property (weak) IBOutlet HNHGradientView *historyBar;
+@property (weak) IBOutlet NSTextField *historyLabel;
+@property (weak) IBOutlet NSButton *exitHistoryButton;
 /* Trash*/
 @property (weak) IBOutlet HNHGradientView *trashBar;
 @property (weak) IBOutlet NSButton *emptyTrashButton;
@@ -86,7 +88,12 @@ typedef NS_ENUM(NSUInteger, MPContextTab) {
   self.trashBar.activeGradient = [[NSGradient alloc] initWithColors:activeColors];
   self.trashBar.inactiveGradient = [[NSGradient alloc] initWithColors:inactiveColors];
   [[self view] bind:NSSelectedIndexBinding toObject:self withKeyPath:@"activeTab" options:nil];
-  
+
+  if(self.nextKeyView) {
+    [self.exitHistoryButton setNextKeyView:self.nextKeyView];
+    [self.emptyTrashButton setNextKeyView:self.nextKeyView];
+    [self.filterDoneButton setNextKeyView:self.nextKeyView];
+  }
 }
 
 #pragma mark Properties

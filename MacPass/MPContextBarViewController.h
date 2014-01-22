@@ -32,6 +32,7 @@ typedef NS_OPTIONS(NSUInteger, MPFilterModeType) {
 @property (nonatomic, assign) MPFilterModeType filterMode;
 @property (nonatomic, readonly) BOOL hasFilter;
 @property (nonatomic, weak) id<MPContextBarDelegate> delegate;
+@property (weak) NSView *nextKeyView;
 
 - (NSString *)filterString;
 - (NSArray *)filterPredicates;

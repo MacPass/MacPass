@@ -8,6 +8,7 @@
         <customObject id="-2" userLabel="File's Owner" customClass="MPContextBarViewController">
             <connections>
                 <outlet property="emptyTrashButton" destination="szx-Hx-OrV" id="i1Y-qB-TW3"/>
+                <outlet property="exitHistoryButton" destination="pqx-su-vAh" id="JmV-vC-F48"/>
                 <outlet property="filterDoneButton" destination="61" id="o8k-20-QUA"/>
                 <outlet property="filterLabelTextField" destination="6" id="60"/>
                 <outlet property="filterPasswordButton" destination="96" id="101"/>
@@ -16,6 +17,7 @@
                 <outlet property="filterURLButton" destination="40" id="59"/>
                 <outlet property="filterUsernameButton" destination="35" id="58"/>
                 <outlet property="historyBar" destination="S8L-rB-h0h" id="6yZ-El-fVs"/>
+                <outlet property="historyLabel" destination="gGR-f0-dcr" id="slx-9D-8k8"/>
                 <outlet property="trashBar" destination="DXf-SC-gVG" id="3aZ-Xc-VDk"/>
                 <outlet property="view" destination="8MB-fC-M2Q" id="wYX-Cc-yoV"/>
             </connections>

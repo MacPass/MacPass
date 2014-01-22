@@ -96,7 +96,6 @@ NSString *const _MPTAbleSecurCellView = @"PasswordCell";
     _dataSource.viewController = self;
     _menuDelegate = [[MPEntryContextMenuDelegate alloc] init];
     _contextBarViewController = [[MPContextBarViewController alloc] init];
-    
   }
   return self;
 }
@@ -125,6 +124,7 @@ NSString *const _MPTAbleSecurCellView = @"PasswordCell";
                                              object:_entryTable];
   /* Filter bar notifications */
   self.contextBarViewController.delegate = self;
+  self.contextBarViewController.nextKeyView = self.entryTable;
   [self _setupEntryMenu];
   
   NSTableColumn *parentColumn = [self.entryTable tableColumns][0];
