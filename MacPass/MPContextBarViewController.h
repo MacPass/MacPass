@@ -7,6 +7,7 @@
 //
 
 #import "MPViewController.h"
+#import "MPEntryFilterHelper.h"
 
 @protocol MPContextBarDelegate <NSObject>
 
@@ -17,33 +18,24 @@
 - (void)contextBarShouldEmptyTrash;
 @end
 
-typedef NS_OPTIONS(NSUInteger, MPFilterModeType) {
-  MPFilterNone      = 0,
-  MPFilterUrls      = (1<<0),
-  MPFilterUsernames = (1<<1),
-  MPFilterTitles    = (1<<2),
-  MPFilterPasswords = (1<<3),
-};
-
 @class HNHGradientView;
 
 @interface MPContextBarViewController : MPViewController
 
-@property (nonatomic, assign) MPFilterModeType filterMode;
+@property (nonatomic, assign) MPFilterMode filterMode;
 @property (nonatomic, readonly) BOOL hasFilter;
 @property (nonatomic, weak) id<MPContextBarDelegate> delegate;
 @property (weak) NSView *nextKeyView;
 
 - (NSString *)filterString;
-- (NSArray *)filterPredicates;
 
 - (IBAction)toggleFilterSpace:(id)sender;
+- (IBAction)exitFilter:(id)sender;
 
 - (BOOL)showsFilter;
 - (BOOL)showsHistory;
 - (BOOL)showsTrash;
 
-- (void)exitFilter;
 - (void)showFilter;
 
 - (void)showHistory;

@@ -8,6 +8,8 @@
 
 #import "MPContextBarViewController.h"
 #import "HNHGradientView.h"
+#import "KPKEntry.h"
+#import "MPEntryFilterHelper.h"
 
 typedef NS_ENUM(NSUInteger, MPContextTab) {
   MPContextTabFilter,
@@ -27,11 +29,8 @@ typedef NS_ENUM(NSUInteger, MPContextTab) {
 @property (nonatomic, assign) BOOL hasFilter;
 
 /* Filter */
+@property (weak) IBOutlet NSPopUpButton *filterTypePopupButton;
 @property (weak) IBOutlet NSButton *filterDoneButton;
-@property (weak) IBOutlet NSButton *filterTitleButton;
-@property (weak) IBOutlet NSButton *filterUsernameButton;
-@property (weak) IBOutlet NSButton *filterURLButton;
-@property (weak) IBOutlet NSButton *filterPasswordButton;
 @property (weak) IBOutlet NSTextField *filterLabelTextField;
 @property (weak) IBOutlet NSSearchField *filterSearchField;
 /* History */
@@ -65,14 +64,10 @@ typedef NS_ENUM(NSUInteger, MPContextTab) {
 }
 
 - (void)didLoadView {
-  [self.filterURLButton setTag:MPFilterUrls];
-  [self.filterUsernameButton setTag:MPFilterUsernames];
-  [self.filterTitleButton setTag:MPFilterTitles];
-  [self.filterPasswordButton setTag:MPFilterPasswords];
+ 
   [[self.filterLabelTextField cell] setBackgroundStyle:NSBackgroundStyleRaised];
-  [self.filterDoneButton setAction:@selector(exitFilter)];
-  [self.filterDoneButton setTarget:self];
-  
+  [self.filterTypePopupButton setMenu:[self _allocFilterMenu]];
+ 
   [self.filterSearchField setAction:@selector(_didChangeFilter)];
   [[self.filterSearchField cell] setSendsSearchStringImmediately:NO];
   
@@ -97,13 +92,13 @@ typedef NS_ENUM(NSUInteger, MPContextTab) {
 }
 
 #pragma mark Properties
-- (void)setFilterMode:(MPFilterModeType)newFilterMode {
+- (void)setFilterMode:(MPFilterMode)newFilterMode {
   if(_filterMode != newFilterMode) {
     if(newFilterMode == MPFilterNone) {
       newFilterMode = MPFilterTitles;
     }
     _filterMode = newFilterMode;
-    [self _updateFilterButtons];
+    [self _updateFilterMenu];
     [self _didChangeFilter];
   }
 }
@@ -141,33 +136,13 @@ typedef NS_ENUM(NSUInteger, MPContextTab) {
   }
 }
 
-- (NSArray *)filterPredicates {
-  if(![self hasFilter]) {
-    return nil;
-  }
-  NSMutableArray *prediactes = [[NSMutableArray alloc] initWithCapacity:4];
-  if([self _shouldFilterTitles]) {
-    [prediactes addObject:[NSPredicate predicateWithFormat:@"SELF.title CONTAINS[cd] %@", [self filterString]]];
-  }
-  if([self _shouldFilterUsernames]) {
-    [prediactes addObject:[NSPredicate predicateWithFormat:@"SELF.username CONTAINS[cd] %@", [self filterString]]];
-  }
-  if([self _shouldFilterURLs]) {
-    [prediactes addObject:[NSPredicate predicateWithFormat:@"SELF.url CONTAINS[cd] %@", [self filterString]]];
-  }
-  if([self _shouldFilterPasswords]) {
-    [prediactes addObject:[NSPredicate predicateWithFormat:@"SELF.password CONTAINS[cd] %@", [self filterString]]];
-  }
-  return prediactes;
-}
-
-- (IBAction)toggleFilterSpace:(id)sender {
-  if(![sender isKindOfClass:[NSButton class]]) {
+#pragma mark Actions
+- (void)toggleFilterSpace:(id)sender {
+  if(![sender isKindOfClass:[NSMenuItem class]]) {
     return; // Wrong sender
   }
-  NSButton *button = sender;
-  MPFilterModeType toggledMode = [button tag];
-  switch ([button state]) {
+  MPFilterMode toggledMode = [sender tag];
+  switch ([sender state]) {
     case NSOnState:
       self.filterMode |= toggledMode;
       break;
@@ -181,6 +156,20 @@ typedef NS_ENUM(NSUInteger, MPContextTab) {
   }
 }
 
+- (void)exitFilter:(id)sender {
+  if(!self.hasFilter) {
+    return; // Nothing to do;
+  }
+  if(![self showsFilter]) {
+    return; // We arent displaying the filter view
+  }
+  self.hasFilter = NO;
+  [self.filterSearchField setStringValue:@""];
+  if(_delegateRespondsToDidExitFilter) {
+    [self.delegate contextBarDidExitFilter];
+  }
+}
+
 - (void)showFilter {
   self.hasFilter = YES;
   /* Select text if already visible */
@@ -188,17 +177,17 @@ typedef NS_ENUM(NSUInteger, MPContextTab) {
     [self.filterSearchField selectText:self];
   }
   self.activeTab = MPContextTabFilter;
-  [self _updateFilterButtons];
+  [self _updateFilterMenu];
 }
 
 - (void)showHistory {
-  [self exitFilter];
+  [self exitFilter:self];
   self.activeTab = MPContextTabHistory;
   [self _updateBindings];
 }
 
 - (void)showTrash {
-  [self exitFilter];
+  [self exitFilter:self];
   self.activeTab = MPContextTabTrash;
   [self _updateBindings];
 }
@@ -226,52 +215,68 @@ typedef NS_ENUM(NSUInteger, MPContextTab) {
   return NO;
 }
 
-- (void)exitFilter {
-  if(!self.hasFilter) {
-    return; // Nothing to do;
-  }
-  if(![self showsFilter]) {
-    return; // We arent displaying the filter view
-  }
-  self.hasFilter = NO;
-  [self.filterSearchField setStringValue:@""];
-  if(_delegateRespondsToDidExitFilter) {
-    [self.delegate contextBarDidExitFilter];
-  }
-}
-
 - (void)_didChangeFilter {
   if(_delegateRespondsToDidChangeFilter) {
     [self.delegate contextBarDidChangeFilter];
   }
 }
 
+#pragma mark UI Helper
 - (void)_updateBindings {
   // only the entry view has to be bound, the rest not
 }
 
-- (void)_updateFilterButtons {
-  [self.filterTitleButton setState:[self _shouldFilterTitles] ? NSOnState : NSOffState];
-  [self.filterURLButton setState:[self _shouldFilterURLs] ? NSOnState : NSOffState ];
-  [self.filterUsernameButton setState:[self _shouldFilterUsernames] ? NSOnState : NSOffState];
-  [self.filterPasswordButton setState:[self _shouldFilterPasswords] ? NSOnState : NSOffState];
+- (NSMenu *)_allocFilterMenu {
+  NSMenu *searchMenu = [[NSMenu alloc] init];
+  
+  NSArray *titles = @[NSLocalizedString(@"TITLE", ""),
+                      NSLocalizedString(@"PASSWORD", ""),
+                      NSLocalizedString(@"URL", ""),
+                      NSLocalizedString(@"USERNAME", "")
+                      ];
+  NSArray *tags = @[ @(MPFilterTitles),
+                     @(MPFilterPasswords),
+                     @(MPFilterUrls),
+                     @(MPFilterUsernames) ];
+  /* Attributes */
+  for(NSUInteger index = 0; index < [tags count]; index++) {
+    NSMenuItem *item = [[NSMenuItem alloc] initWithTitle:titles[index] action:@selector(toggleFilterSpace:) keyEquivalent:@""];
+    [item setTag:[tags[index] integerValue]];
+    [item setTarget:self];
+    [searchMenu addItem:item];
+  }
+  [searchMenu addItem:[NSMenuItem separatorItem]];
+  /* Special Search */
+  NSMenuItem *doublePasswordsItem = [[NSMenuItem alloc] initWithTitle:NSLocalizedString(@"", "") action:NULL keyEquivalent:@""];
+  [doublePasswordsItem setTag:MPFilterDoublePasswords];
+  
+  [searchMenu addItem:doublePasswordsItem];
+
+  return searchMenu;
 }
 
-- (BOOL)_shouldFilterTitles {
-  return (MPFilterNone != (self.filterMode & MPFilterTitles));
+- (void)_updateFilterMenu {
+  NSMenu *menu = [self.filterTypePopupButton menu];
+  NSArray *allItems = [menu itemArray];
+  NSArray *enabledItems = [self _filterItemsForMode:self.filterMode];
+  for(NSMenuItem *item in allItems) {
+    BOOL isEnabeld = [enabledItems containsObject:item];
+    [item setEnabled:isEnabeld];
+  }
 }
 
-- (BOOL)_shouldFilterURLs {
-  return (MPFilterNone != (self.filterMode & MPFilterUrls));
+- (NSArray *)_filterItemsForMode:(MPFilterMode)mode {
+  NSArray *options = [MPEntryFilterHelper optionsEnabledInMode:mode];
+  NSMenu *menu = [self.filterTypePopupButton menu];
+  NSMutableArray *menuItems = [[NSMutableArray alloc] initWithCapacity:[[menu itemArray] count]];
+  for(NSNumber *number in options) {
+    MPFilterMode flag = [number integerValue];
+    NSMenuItem *flagItem = [menu itemWithTag:flag];
+    if(flagItem) {
+      [menuItems addObject:flagItem];
+    }
+  }
+  return menuItems;
 }
-
-- (BOOL)_shouldFilterUsernames {
-  return (MPFilterNone != (self.filterMode & MPFilterUsernames));
-}
-
-- (BOOL)_shouldFilterPasswords {
-  return (MPFilterNone != (self.filterMode & MPFilterPasswords));
-}
-
 
 @end

@@ -15,6 +15,7 @@
 #import "MPPasteBoardController.h"
 #import "MPOverlayWindowController.h"
 #import "MPContextBarViewController.h"
+#import "MPEntryFilterHelper.h"
 
 #import "MPContextMenuHelper.h"
 #import "MPActionHelper.h"
@@ -299,7 +300,7 @@ NSString *const _MPTAbleSecurCellView = @"PasswordCell";
   if(document.selectedItem == document.selectedGroup) {
     /* If we change to a group selection, we should clear the filter */
     if(_isDisplayingContextBar) {
-      [self.contextBarViewController exitFilter];
+      [self.contextBarViewController exitFilter:self];
     }
     else if([[self.entryArrayController content] count] > 0) {
       KPKEntry *entry = [[self.entryArrayController content] lastObject];
@@ -333,14 +334,10 @@ NSString *const _MPTAbleSecurCellView = @"PasswordCell";
   dispatch_queue_t backgroundQueue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
   dispatch_async(backgroundQueue, ^{
     MPDocument *document = [[self windowController] document];
-    NSArray *predicates = [self.contextBarViewController filterPredicates];
-    if(predicates) {
-      NSPredicate *fullFilter = [NSCompoundPredicate orPredicateWithSubpredicates:predicates];
-      self.filteredEntries = [[document.root childEntries] filteredArrayUsingPredicate:fullFilter];
-    }
-    else {
-      self.filteredEntries = [document.root childEntries];
-    }
+    
+    self.filteredEntries = [MPEntryFilterHelper entriesInDocument:document
+                                                         matching:self.contextBarViewController.filterString
+                                                  usingFilterMode:self.contextBarViewController.filterMode];
     
     dispatch_sync(dispatch_get_main_queue(), ^{
       document.selectedEntry = nil;

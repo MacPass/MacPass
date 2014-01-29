@@ -11,11 +11,8 @@
                 <outlet property="exitHistoryButton" destination="pqx-su-vAh" id="JmV-vC-F48"/>
                 <outlet property="filterDoneButton" destination="61" id="o8k-20-QUA"/>
                 <outlet property="filterLabelTextField" destination="6" id="60"/>
-                <outlet property="filterPasswordButton" destination="96" id="101"/>
                 <outlet property="filterSearchField" destination="80" id="95"/>
-                <outlet property="filterTitleButton" destination="2" id="57"/>
-                <outlet property="filterURLButton" destination="40" id="59"/>
-                <outlet property="filterUsernameButton" destination="35" id="58"/>
+                <outlet property="filterTypePopupButton" destination="9ZN-yB-Aiq" id="7Af-Dn-e05"/>
                 <outlet property="historyBar" destination="S8L-rB-h0h" id="6yZ-El-fVs"/>
                 <outlet property="historyLabel" destination="gGR-f0-dcr" id="slx-9D-8k8"/>
                 <outlet property="trashBar" destination="DXf-SC-gVG" id="3aZ-Xc-VDk"/>
@@ -38,18 +35,7 @@
                                 <rect key="frame" x="0.0" y="0.0" width="576" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <subviews>
-                                    <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="2">
-                                        <rect key="frame" x="57" y="5" width="42" height="19"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                        <buttonCell key="cell" type="recessed" title="Title" bezelStyle="recessed" alignment="center" controlSize="small" state="on" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="3">
-                                            <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES" changeBackground="YES" changeGray="YES"/>
-                                            <font key="font" metaFont="systemBold" size="12"/>
-                                        </buttonCell>
-                                        <connections>
-                                            <action selector="toggleFilterSpace:" target="-2" id="5tf-b0-MfH"/>
-                                        </connections>
-                                    </button>
-                                    <textField verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="6">
+                                    <textField verticalHuggingPriority="750" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="6">
                                         <rect key="frame" x="6" y="7" width="45" height="14"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                         <textFieldCell key="cell" controlSize="small" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Search:" id="7">
@@ -58,28 +44,6 @@
                                             <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                         </textFieldCell>
                                     </textField>
-                                    <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="35">
-                                        <rect key="frame" x="107" y="6" width="77" height="17"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                        <buttonCell key="cell" type="recessed" title="Username" bezelStyle="recessed" alignment="center" controlSize="small" state="on" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="36">
-                                            <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES" changeBackground="YES" changeGray="YES"/>
-                                            <font key="font" metaFont="systemBold" size="12"/>
-                                        </buttonCell>
-                                        <connections>
-                                            <action selector="toggleFilterSpace:" target="-2" id="eVq-ir-2ZF"/>
-                                        </connections>
-                                    </button>
-                                    <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="40">
-                                        <rect key="frame" x="192" y="6" width="38" height="17"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                        <buttonCell key="cell" type="recessed" title="URL" bezelStyle="recessed" alignment="center" controlSize="small" state="on" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="41">
-                                            <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES" changeBackground="YES" changeGray="YES"/>
-                                            <font key="font" metaFont="systemBold" size="12"/>
-                                        </buttonCell>
-                                        <connections>
-                                            <action selector="toggleFilterSpace:" target="-2" id="XEz-fj-0wx"/>
-                                        </connections>
-                                    </button>
                                     <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="61">
                                         <rect key="frame" x="526" y="6" width="42" height="17"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
@@ -87,6 +51,9 @@
                                             <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                             <font key="font" metaFont="smallSystem"/>
                                         </buttonCell>
+                                        <connections>
+                                            <action selector="exitFilter:" target="-2" id="cip-Yr-YZx"/>
+                                        </connections>
                                     </button>
                                     <searchField verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="80">
                                         <rect key="frame" x="418" y="5" width="100" height="19"/>
@@ -103,36 +70,22 @@
                                             <outlet property="delegate" destination="-2" id="Y78-7K-e9c"/>
                                         </connections>
                                     </searchField>
-                                    <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="96">
-                                        <rect key="frame" x="238" y="6" width="74" height="17"/>
+                                    <popUpButton verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="9ZN-yB-Aiq">
+                                        <rect key="frame" x="57" y="6" width="70" height="17"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                        <buttonCell key="cell" type="recessed" title="Password" bezelStyle="recessed" alignment="center" controlSize="small" state="on" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="97">
-                                            <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES" changeBackground="YES" changeGray="YES"/>
-                                            <font key="font" metaFont="systemBold" size="12"/>
-                                        </buttonCell>
-                                        <connections>
-                                            <action selector="toggleFilterSpace:" target="-2" id="Dwh-vl-UhN"/>
-                                        </connections>
-                                    </button>
+                                        <popUpButtonCell key="cell" type="roundRect" bezelStyle="roundedRect" alignment="center" controlSize="small" lineBreakMode="truncatingTail" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="oir-UN-bNS">
+                                            <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                            <font key="font" metaFont="smallSystem"/>
+                                            <menu key="menu" title="OtherViews" id="el3-on-vmi"/>
+                                        </popUpButtonCell>
+                                    </popUpButton>
                                 </subviews>
                                 <constraints>
                                     <constraint firstItem="6" firstAttribute="leading" secondItem="1" secondAttribute="leading" constant="8" id="30"/>
-                                    <constraint firstItem="2" firstAttribute="leading" secondItem="6" secondAttribute="trailing" constant="8" symbolic="YES" id="32"/>
-                                    <constraint firstItem="6" firstAttribute="baseline" secondItem="2" secondAttribute="baseline" id="34"/>
-                                    <constraint firstItem="35" firstAttribute="leading" secondItem="2" secondAttribute="trailing" constant="8" symbolic="YES" id="38"/>
-                                    <constraint firstItem="40" firstAttribute="leading" secondItem="35" secondAttribute="trailing" constant="8" symbolic="YES" id="43"/>
-                                    <constraint firstAttribute="centerY" secondItem="40" secondAttribute="centerY" id="54"/>
-                                    <constraint firstAttribute="centerY" secondItem="2" secondAttribute="centerY" id="55"/>
-                                    <constraint firstAttribute="centerY" secondItem="35" secondAttribute="centerY" id="56"/>
                                     <constraint firstAttribute="trailing" secondItem="61" secondAttribute="trailing" constant="8" id="63"/>
-                                    <constraint firstItem="6" firstAttribute="bottom" secondItem="35" secondAttribute="bottom" id="66"/>
                                     <constraint firstAttribute="centerY" secondItem="61" secondAttribute="centerY" id="69"/>
-                                    <constraint firstItem="35" firstAttribute="baseline" secondItem="40" secondAttribute="baseline" id="73"/>
                                     <constraint firstItem="61" firstAttribute="leading" secondItem="80" secondAttribute="trailing" constant="8" symbolic="YES" id="83"/>
                                     <constraint firstAttribute="centerY" secondItem="80" secondAttribute="centerY" id="86"/>
-                                    <constraint firstItem="96" firstAttribute="baseline" secondItem="40" secondAttribute="baseline" id="98"/>
-                                    <constraint firstItem="96" firstAttribute="leading" secondItem="40" secondAttribute="trailing" constant="8" symbolic="YES" id="99"/>
-                                    <constraint firstItem="80" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="96" secondAttribute="trailing" constant="8" symbolic="YES" id="100"/>
                                 </constraints>
                             </customView>
                         </subviews>
@@ -143,6 +96,9 @@
                             <constraint firstItem="1" firstAttribute="top" secondItem="caQ-XO-RkM" secondAttribute="top" id="oAv-6v-o9d"/>
                         </constraints>
                     </view>
+                    <connections>
+                        <outlet property="initialFirstResponder" destination="80" id="tDw-Su-DU1"/>
+                    </connections>
                 </tabViewItem>
                 <tabViewItem label="Trash" identifier="2" id="na6-h9-r9q">
                     <view key="view" id="F6S-GS-AwI">
@@ -179,6 +135,9 @@
                             <constraint firstAttribute="trailing" secondItem="DXf-SC-gVG" secondAttribute="trailing" id="wap-ZJ-5Rw"/>
                         </constraints>
                     </view>
+                    <connections>
+                        <outlet property="initialFirstResponder" destination="szx-Hx-OrV" id="Cqa-Po-xMe"/>
+                    </connections>
                 </tabViewItem>
                 <tabViewItem label="History" identifier="3" id="z4I-cp-nhf">
                     <view key="view" id="iPb-SZ-Lfm">
@@ -224,6 +183,9 @@
                             <constraint firstItem="S8L-rB-h0h" firstAttribute="top" secondItem="iPb-SZ-Lfm" secondAttribute="top" id="mW1-xp-CdF"/>
                         </constraints>
                     </view>
+                    <connections>
+                        <outlet property="initialFirstResponder" destination="pqx-su-vAh" id="bi5-CA-b4P"/>
+                    </connections>
                 </tabViewItem>
             </tabViewItems>
         </tabView>
