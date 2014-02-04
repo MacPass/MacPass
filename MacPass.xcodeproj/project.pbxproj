@@ -277,6 +277,8 @@
 		4CF7805D176E71170032EE71 /* MPServerDaemon.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CF7805C176E71170032EE71 /* MPServerDaemon.m */; };
 		4CF7805F176E75110032EE71 /* ServerSettings.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4CF7805E176E75110032EE71 /* ServerSettings.xib */; };
 		4CF78064176E75AD0032EE71 /* MPServerSettingsController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CF78063176E75AD0032EE71 /* MPServerSettingsController.m */; };
+		4CFB18E418A17FA20097A34B /* MPUpdateSettingsController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CFB18E318A17FA20097A34B /* MPUpdateSettingsController.m */; };
+		4CFB18E618A180430097A34B /* UpdateSettings.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4CFB18E518A180430097A34B /* UpdateSettings.xib */; };
 		4CFC53BF16E94729007396BE /* MPShadowBox.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CFC53BE16E94729007396BE /* MPShadowBox.m */; };
 		4CFC873B179DEDF3000DFC03 /* KPKMetaData.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CFC873A179DEDF3000DFC03 /* KPKMetaData.m */; };
 		4CFC873E179DF200000DFC03 /* KPKTimeInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CFC873D179DF200000DFC03 /* KPKTimeInfo.m */; };
@@ -839,6 +841,9 @@
 		4CF7805E176E75110032EE71 /* ServerSettings.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ServerSettings.xib; sourceTree = "<group>"; };
 		4CF78062176E75AD0032EE71 /* MPServerSettingsController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MPServerSettingsController.h; sourceTree = "<group>"; };
 		4CF78063176E75AD0032EE71 /* MPServerSettingsController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MPServerSettingsController.m; sourceTree = "<group>"; };
+		4CFB18E218A17FA20097A34B /* MPUpdateSettingsController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MPUpdateSettingsController.h; sourceTree = "<group>"; };
+		4CFB18E318A17FA20097A34B /* MPUpdateSettingsController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MPUpdateSettingsController.m; sourceTree = "<group>"; };
+		4CFB18E518A180430097A34B /* UpdateSettings.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = UpdateSettings.xib; sourceTree = "<group>"; };
 		4CFC53BD16E94729007396BE /* MPShadowBox.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MPShadowBox.h; sourceTree = "<group>"; };
 		4CFC53BE16E94729007396BE /* MPShadowBox.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MPShadowBox.m; sourceTree = "<group>"; };
 		4CFC8739179DEDF3000DFC03 /* KPKMetaData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KPKMetaData.h; sourceTree = "<group>"; };
@@ -1439,6 +1444,8 @@
 				4CF78063176E75AD0032EE71 /* MPServerSettingsController.m */,
 				4CD7223917A7CB0700F5A1E1 /* MPWorkflowSettingsController.h */,
 				4CD7223A17A7CB0700F5A1E1 /* MPWorkflowSettingsController.m */,
+				4CFB18E218A17FA20097A34B /* MPUpdateSettingsController.h */,
+				4CFB18E318A17FA20097A34B /* MPUpdateSettingsController.m */,
 				4C65FAE616D16DDB006E0577 /* MPPasswordInputController.h */,
 				4C65FAE716D16DDB006E0577 /* MPPasswordInputController.m */,
 				4C5A11FB1708DE8700223D8A /* MPPasswordCreatorViewController.h */,
@@ -1789,6 +1796,7 @@
 				4C76155E1764C04C0015A1A6 /* GeneralSettings.xib */,
 				4CF7805E176E75110032EE71 /* ServerSettings.xib */,
 				4CD7223717A7C9EA00F5A1E1 /* WorkflowSettings.xib */,
+				4CFB18E518A180430097A34B /* UpdateSettings.xib */,
 			);
 			name = Settings;
 			sourceTree = "<group>";
@@ -1958,6 +1966,7 @@
 				4C586FA016D07D7200E7DB57 /* 01_PackageNetworkTemplate.pdf in Resources */,
 				4C586FA216D07F6A00E7DB57 /* 02_MessageBoxWarningTemplate.pdf in Resources */,
 				4C2E381D16D11FF900037A9D /* 03_ServerTemplate.pdf in Resources */,
+				4CFB18E618A180430097A34B /* UpdateSettings.xib in Resources */,
 				4C2E381E16D11FF900037A9D /* 04_KlipperTemplate.pdf in Resources */,
 				4C2E381F16D11FF900037A9D /* 05_LanguagesTemplate.pdf in Resources */,
 				4CD78ABC16D155FF00768A1D /* 07_NotepadTemplate.pdf in Resources */,
@@ -2199,6 +2208,7 @@
 				4CD2B9061849424B0051B395 /* MPAutotypeContext.m in Sources */,
 				4C1842D3179C64F000E2F5BC /* KPKXmlTreeCryptor.m in Sources */,
 				4CFC873B179DEDF3000DFC03 /* KPKMetaData.m in Sources */,
+				4CFB18E418A17FA20097A34B /* MPUpdateSettingsController.m in Sources */,
 				4CFC873E179DF200000DFC03 /* KPKTimeInfo.m in Sources */,
 				4CCEDE2A179F203B008402BE /* MPOutlineView.m in Sources */,
 				4CCEDE2E179F213B008402BE /* MPNotifications.m in Sources */,

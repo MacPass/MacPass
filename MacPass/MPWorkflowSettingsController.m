@@ -62,7 +62,7 @@ NSString *const kMPFirefoxBundleId = @"org.mozilla.firefox";
 }
 
 - (NSString *)label {
-  return NSLocalizedString(@"WORKFLOW", "");
+  return NSLocalizedString(@"WORKFLOW_SETTINGS", "");
 }
 
 #pragma mark Actions

@@ -10,6 +10,7 @@
 #import "MPGeneralSettingsController.h"
 #import "MPServerSettingsController.h"
 #import "MPWorkflowSettingsController.h"
+#import "MPUpdateSettingsController.h"
 
 @interface MPSettingsWindowController () {
   NSString *lastIdentifier;
@@ -111,14 +112,17 @@
   MPGeneralSettingsController *generalSettingsController = [[MPGeneralSettingsController alloc] init];
   MPServerSettingsController *serverSettingsController = [[MPServerSettingsController alloc] init];
   MPWorkflowSettingsController *workflowSettingsController = [[MPWorkflowSettingsController alloc] init];
+  MPUpdateSettingsController *updateSettingsController = [[MPUpdateSettingsController alloc] init];
   
   [self _addSettingsTab:generalSettingsController];
   [self _addSettingsTab:serverSettingsController];
   [self _addSettingsTab:workflowSettingsController];
+  [self _addSettingsTab:updateSettingsController];
 
   self.defaultToolbarItems = @[ [generalSettingsController identifier],
                                 [workflowSettingsController identifier],
-                                [serverSettingsController identifier] ];
+                                [serverSettingsController identifier],
+                                [updateSettingsController identifier]];
   
 
 }
