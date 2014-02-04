@@ -35,8 +35,8 @@
                                 <rect key="frame" x="0.0" y="0.0" width="576" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <subviews>
-                                    <textField verticalHuggingPriority="750" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="6">
-                                        <rect key="frame" x="6" y="7" width="45" height="14"/>
+                                    <textField verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="6">
+                                        <rect key="frame" x="6" y="8" width="45" height="14"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                         <textFieldCell key="cell" controlSize="small" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Search:" id="7">
                                             <font key="font" metaFont="smallSystemBold"/>
@@ -71,7 +71,7 @@
                                         </connections>
                                     </searchField>
                                     <popUpButton verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="9ZN-yB-Aiq">
-                                        <rect key="frame" x="57" y="6" width="70" height="17"/>
+                                        <rect key="frame" x="57" y="6" width="100" height="17"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                         <popUpButtonCell key="cell" type="roundRect" bezelStyle="roundedRect" alignment="center" controlSize="small" lineBreakMode="truncatingTail" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="oir-UN-bNS">
                                             <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
@@ -86,6 +86,7 @@
                                     <constraint firstAttribute="centerY" secondItem="61" secondAttribute="centerY" id="69"/>
                                     <constraint firstItem="61" firstAttribute="leading" secondItem="80" secondAttribute="trailing" constant="8" symbolic="YES" id="83"/>
                                     <constraint firstAttribute="centerY" secondItem="80" secondAttribute="centerY" id="86"/>
+                                    <constraint firstAttribute="centerY" secondItem="6" secondAttribute="centerY" id="OTP-Xc-T5f"/>
                                 </constraints>
                             </customView>
                         </subviews>

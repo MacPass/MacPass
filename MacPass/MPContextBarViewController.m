@@ -11,6 +11,8 @@
 #import "KPKEntry.h"
 #import "MPEntryFilterHelper.h"
 
+#import "NSButton+HNHTextColor.h"
+
 typedef NS_ENUM(NSUInteger, MPContextTab) {
   MPContextTabFilter,
   MPContextTabTrash,
@@ -84,6 +86,8 @@ typedef NS_ENUM(NSUInteger, MPContextTab) {
   self.trashBar.inactiveGradient = [[NSGradient alloc] initWithColors:inactiveColors];
   [[self view] bind:NSSelectedIndexBinding toObject:self withKeyPath:@"activeTab" options:nil];
 
+  self.emptyTrashButton.textColor = [NSColor whiteColor];
+  
   if(self.nextKeyView) {
     [self.exitHistoryButton setNextKeyView:self.nextKeyView];
     [self.emptyTrashButton setNextKeyView:self.nextKeyView];
