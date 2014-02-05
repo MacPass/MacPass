@@ -96,6 +96,8 @@ typedef NS_ENUM(NSUInteger, MPContextTab) {
     [self.emptyTrashButton setNextKeyView:self.nextKeyView];
     [self.filterDoneButton setNextKeyView:self.nextKeyView];
   }
+  
+  [self _updateFilterMenu];
 }
 
 #pragma mark Properties
@@ -149,17 +151,13 @@ typedef NS_ENUM(NSUInteger, MPContextTab) {
     return; // Wrong sender
   }
   MPFilterMode toggledMode = [sender tag];
-  switch ([sender state]) {
-    case NSOnState:
-      self.filterMode |= toggledMode;
-      break;
-      
-    case NSOffState:
-      self.filterMode ^= toggledMode;
-      break;
-      
-    default:
-      break;
+  if(toggledMode & self.filterMode) {
+    /* Disable enabled flag */
+    self.filterMode ^= toggledMode;
+  }
+  else {
+    /* Enable disabled flag */
+    self.filterMode |= toggledMode;
   }
 }
 
