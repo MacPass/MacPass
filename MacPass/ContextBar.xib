@@ -70,8 +70,8 @@
                                             <outlet property="delegate" destination="-2" id="Y78-7K-e9c"/>
                                         </connections>
                                     </searchField>
-                                    <popUpButton verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="9ZN-yB-Aiq">
-                                        <rect key="frame" x="57" y="6" width="100" height="17"/>
+                                    <popUpButton verticalHuggingPriority="750" horizontalCompressionResistancePriority="751" translatesAutoresizingMaskIntoConstraints="NO" id="9ZN-yB-Aiq">
+                                        <rect key="frame" x="57" y="6" width="24" height="17"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                         <popUpButtonCell key="cell" type="roundRect" bezelStyle="roundedRect" alignment="center" controlSize="small" lineBreakMode="truncatingTail" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="oir-UN-bNS">
                                             <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
@@ -86,7 +86,10 @@
                                     <constraint firstAttribute="centerY" secondItem="61" secondAttribute="centerY" id="69"/>
                                     <constraint firstItem="61" firstAttribute="leading" secondItem="80" secondAttribute="trailing" constant="8" symbolic="YES" id="83"/>
                                     <constraint firstAttribute="centerY" secondItem="80" secondAttribute="centerY" id="86"/>
+                                    <constraint firstAttribute="centerY" secondItem="9ZN-yB-Aiq" secondAttribute="centerY" id="4wF-MI-Az7"/>
+                                    <constraint firstItem="80" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="9ZN-yB-Aiq" secondAttribute="trailing" constant="8" symbolic="YES" id="O7v-9o-6vB"/>
                                     <constraint firstAttribute="centerY" secondItem="6" secondAttribute="centerY" id="OTP-Xc-T5f"/>
+                                    <constraint firstItem="9ZN-yB-Aiq" firstAttribute="leading" secondItem="6" secondAttribute="trailing" constant="8" symbolic="YES" id="xah-WD-k5q"/>
                                 </constraints>
                             </customView>
                         </subviews>

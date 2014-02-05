@@ -13,11 +13,14 @@
 
 #import "NSButton+HNHTextColor.h"
 
+NSUInteger const MPContextBarViewControllerActiveFilterMenuItemTag = 1000;
+
 typedef NS_ENUM(NSUInteger, MPContextTab) {
   MPContextTabFilter,
   MPContextTabTrash,
   MPContextTabHistory
 };
+
 
 @interface MPContextBarViewController () {
 @private
@@ -232,6 +235,11 @@ typedef NS_ENUM(NSUInteger, MPContextTab) {
 
 - (NSMenu *)_allocFilterMenu {
   NSMenu *searchMenu = [[NSMenu alloc] init];
+
+  NSMenuItem *activeFilterItem = [[NSMenuItem alloc] initWithTitle:NSLocalizedString(@"SEARCH_IN", "") action:NULL keyEquivalent:@""];
+  [activeFilterItem setTag:MPContextBarViewControllerActiveFilterMenuItemTag];
+  [searchMenu addItem:activeFilterItem];
+  [searchMenu addItem:[NSMenuItem separatorItem]];
   
   NSArray *titles = @[NSLocalizedString(@"TITLE", ""),
                       NSLocalizedString(@"PASSWORD", ""),
@@ -251,7 +259,7 @@ typedef NS_ENUM(NSUInteger, MPContextTab) {
   }
   [searchMenu addItem:[NSMenuItem separatorItem]];
   /* Special Search */
-  NSMenuItem *doublePasswordsItem = [[NSMenuItem alloc] initWithTitle:NSLocalizedString(@"", "") action:NULL keyEquivalent:@""];
+  NSMenuItem *doublePasswordsItem = [[NSMenuItem alloc] initWithTitle:NSLocalizedString(@"DUPLICTE_PASSWORDS", "") action:NULL keyEquivalent:@""];
   [doublePasswordsItem setTag:MPFilterDoublePasswords];
   
   [searchMenu addItem:doublePasswordsItem];
@@ -264,9 +272,21 @@ typedef NS_ENUM(NSUInteger, MPContextTab) {
   NSArray *allItems = [menu itemArray];
   NSArray *enabledItems = [self _filterItemsForMode:self.filterMode];
   for(NSMenuItem *item in allItems) {
-    BOOL isEnabeld = [enabledItems containsObject:item];
-    [item setEnabled:isEnabeld];
+    BOOL isSelected = [enabledItems containsObject:item];
+    [item setState:(isSelected ? NSOnState : NSOffState)];
   }
+  NSMenuItem *activeFilterItem = [menu itemWithTag:MPContextBarViewControllerActiveFilterMenuItemTag];
+  __block NSMutableString *activeFilterTitle;
+  [enabledItems enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
+    if(activeFilterTitle == nil) {
+      activeFilterTitle = [[NSMutableString alloc] initWithString:[obj title]];
+    }
+    else {
+      [activeFilterTitle appendFormat:@", %@", [obj title]];
+    }
+  }];
+  [activeFilterItem setTitle:activeFilterTitle];
+  [self.filterTypePopupButton selectItem:activeFilterItem];
 }
 
 - (NSArray *)_filterItemsForMode:(MPFilterMode)mode {
