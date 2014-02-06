@@ -45,7 +45,7 @@
     else {
       self.entry = entry;
       NSError *error;
-      NSRegularExpression *regexp = [[NSRegularExpression alloc] initWithPattern:@"\\{([a-z]+) ?([0-9]*)\\}" options:NSRegularExpressionCaseInsensitive error:&error];
+      NSRegularExpression *regexp = [[NSRegularExpression alloc] initWithPattern:@"\\{([a-z]+)?([0-9]*)\\}" options:NSRegularExpressionCaseInsensitive error:&error];
       if(regexp) {
         [regexp enumerateMatchesInString:sequence options:0 range:NSMakeRange(0, [sequence length]) usingBlock:^(NSTextCheckingResult *result, NSMatchingFlags flags, BOOL *stop) {
           NSRange commandRange = [result rangeAtIndex:1];

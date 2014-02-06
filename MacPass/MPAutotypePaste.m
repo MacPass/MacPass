@@ -9,7 +9,7 @@
 #import "MPAutotypePaste.h"
 #import "MPPasteBoardController.h"
 
-#import "NSString+Placeholder.h"
+#import "NSString+Commands.h"
 
 @implementation MPAutotypePaste
 

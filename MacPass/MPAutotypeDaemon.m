@@ -11,6 +11,7 @@
 #import "MPPasteBoardController.h"
 #import "MPDocument.h"
 #import "MPDocument+Autotype.h"
+#import "MPAutotypeCommand.h"
 
 #import "KPKEntry.h"
 
@@ -29,12 +30,16 @@ NSString *const kMPApplciationNameKey = @"applicationName";
      
      Use defaults to determine if global hotkey is enabled
     [self _registerHotKey];
-     */
+     */   
   }
   return self;
 }
 
-- (void)didPressHotKey {
+- (void)exectureAutotypeForEntry:(KPKEntry *)entry withWindowTitle:(NSString *)title {
+  NSAssert(NO,@"Not Implemented");
+}
+
+- (void)_didPressHotKey {
   // copy items to pasteboard
   NSArray *documents = [NSApp orderedDocuments];
   MPDocument *currentDocument = nil;
@@ -91,7 +96,7 @@ NSString *const kMPApplciationNameKey = @"applicationName";
   [[DDHotKeyCenter sharedHotKeyCenter] registerHotKeyWithKeyCode:kVK_ANSI_M
                                                    modifierFlags:(NSCommandKeyMask | NSAlternateKeyMask )
                                                           target:self
-                                                          action:@selector(didPressHotKey)
+                                                          action:@selector(_didPressHotKey)
                                                           object:nil];
 }
 

@@ -205,7 +205,6 @@
 		4CA0B2FC15BCAF8600654E32 /* MPSettingsWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CA0B2FB15BCAF8600654E32 /* MPSettingsWindowController.m */; };
 		4CA0E3A7176FAF99004D18CB /* MPDocumentQueryService.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CA0E3A6176FAF99004D18CB /* MPDocumentQueryService.m */; };
 		4CA2335A176DBFE100F0B6AC /* MPLockDaemon.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CA23359176DBFE100F0B6AC /* MPLockDaemon.m */; };
-		4CA2E2DB17BCDA8300714076 /* NSString+Placeholder.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CA2E2DA17BCDA8300714076 /* NSString+Placeholder.m */; };
 		4CAC614317AD319200023F9E /* KPKTestXmlParsing.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CAC614217AD319200023F9E /* KPKTestXmlParsing.m */; };
 		4CAD747B15B887FD00104512 /* DDXMLElementAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CAD745715B887FD00104512 /* DDXMLElementAdditions.m */; };
 		4CAD747C15B887FD00104512 /* NSString+DDXML.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CAD745A15B887FD00104512 /* NSString+DDXML.m */; };
@@ -706,8 +705,6 @@
 		4CA0E3A6176FAF99004D18CB /* MPDocumentQueryService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MPDocumentQueryService.m; sourceTree = "<group>"; };
 		4CA23358176DBFE100F0B6AC /* MPLockDaemon.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MPLockDaemon.h; sourceTree = "<group>"; };
 		4CA23359176DBFE100F0B6AC /* MPLockDaemon.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MPLockDaemon.m; sourceTree = "<group>"; };
-		4CA2E2D917BCDA8300714076 /* NSString+Placeholder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+Placeholder.h"; sourceTree = "<group>"; };
-		4CA2E2DA17BCDA8300714076 /* NSString+Placeholder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+Placeholder.m"; sourceTree = "<group>"; };
 		4CAAFDD51787AED60013FCF9 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/MainMenu.strings; sourceTree = "<group>"; };
 		4CAC614117AD319200023F9E /* KPKTestXmlParsing.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KPKTestXmlParsing.h; sourceTree = "<group>"; };
 		4CAC614217AD319200023F9E /* KPKTestXmlParsing.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KPKTestXmlParsing.m; sourceTree = "<group>"; };
@@ -1417,20 +1414,28 @@
 		4C89F525182FB4C50069C73C /* Autotype */ = {
 			isa = PBXGroup;
 			children = (
+				4C90757B18A42E7A00E598DA /* Commands */,
 				4CEE46DB181C301D006BF1E5 /* MPAutotypeDaemon.h */,
 				4CEE46DC181C301D006BF1E5 /* MPAutotypeDaemon.m */,
-				4CE2961318429AA5005F01CE /* MPAutotypeKeyPress.h */,
-				4CE2961418429AA5005F01CE /* MPAutotypeKeyPress.m */,
-				4C89F522182FB4740069C73C /* MPAutotypeCommand.h */,
-				4C89F523182FB4740069C73C /* MPAutotypeCommand.m */,
-				4CE296171842A166005F01CE /* MPAutotypePaste.h */,
-				4CE296181842A166005F01CE /* MPAutotypePaste.m */,
 				4CC87EA11847FDDA005AA18D /* MPAutotypeParser.h */,
 				4CC87EA21847FDDA005AA18D /* MPAutotypeParser.m */,
 				4CD2B9041849424B0051B395 /* MPAutotypeContext.h */,
 				4CD2B9051849424B0051B395 /* MPAutotypeContext.m */,
 			);
 			name = Autotype;
+			sourceTree = "<group>";
+		};
+		4C90757B18A42E7A00E598DA /* Commands */ = {
+			isa = PBXGroup;
+			children = (
+				4CE2961318429AA5005F01CE /* MPAutotypeKeyPress.h */,
+				4CE2961418429AA5005F01CE /* MPAutotypeKeyPress.m */,
+				4C89F522182FB4740069C73C /* MPAutotypeCommand.h */,
+				4C89F523182FB4740069C73C /* MPAutotypeCommand.m */,
+				4CE296171842A166005F01CE /* MPAutotypePaste.h */,
+				4CE296181842A166005F01CE /* MPAutotypePaste.m */,
+			);
+			name = Commands;
 			sourceTree = "<group>";
 		};
 		4CA0B2F115BCAEE600654E32 /* View Controller */ = {
@@ -1618,8 +1623,6 @@
 				4C8A173C1790AA41008B5C17 /* NSData+Keyfile.m */,
 				4C055E72179620BF00BD2BAB /* NSString+Reference.h */,
 				4C055E73179620BF00BD2BAB /* NSString+Reference.m */,
-				4CA2E2D917BCDA8300714076 /* NSString+Placeholder.h */,
-				4CA2E2DA17BCDA8300714076 /* NSString+Placeholder.m */,
 				4C1842C1179B69E600E2F5BC /* NSData+HashedData.h */,
 				4C1842C2179B69E700E2F5BC /* NSData+HashedData.m */,
 				4C6366AA17AF1E0100AAF17D /* NSColor+KeePassKit.h */,
@@ -2237,7 +2240,6 @@
 				4C57AE1417BA422B00CA4F34 /* MPSegmentedContextCell.m in Sources */,
 				4C68456A17BC21DD00FCDBFC /* KPKAutotype.m in Sources */,
 				4C68456D17BC227B00FCDBFC /* KPKWindowAssociation.m in Sources */,
-				4CA2E2DB17BCDA8300714076 /* NSString+Placeholder.m in Sources */,
 				4C6C72C417C01E4200768849 /* NSMutableData+KeePassKit.m in Sources */,
 				4CE2961518429AA5005F01CE /* MPAutotypeKeyPress.m in Sources */,
 				4C0104BB17C37BFC00173EF3 /* KPKLegacyHeaderUtility.m in Sources */,

@@ -7,10 +7,7 @@
 //
 
 #import "MPAutotypeParser.h"
-
 #import "MPAutotypeCommand.h"
-
-#import "NSString+Placeholder.h"
 
 @implementation MPAutotypeParser
 
