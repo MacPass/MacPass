@@ -14,8 +14,6 @@ extern NSString *const kMPAutotypeSymbolAlt;
 extern NSString *const kMPAutotypeSymbolEnter;
 extern NSString *const kMPAutptypeCommandEnter;
 
-extern uint16_t const kMPUnknownKeyCode;
-
 @class MPAutotypeContext;
 
 /**
@@ -26,23 +24,7 @@ extern uint16_t const kMPUnknownKeyCode;
 @interface MPAutotypeCommand : NSObject
 
 @property (readonly, strong) MPAutotypeContext *context;
-/**
- *  Retrieves the string representation with the current keyboard mapping for the keycode
- *
- *  @param keyCode The virutal keycode to be pressed
- *  @return NSString containing the current mapping for the keyCode
- */
-+ (NSString *)stringForKey:(CGKeyCode)keyCode;
 
-/**
- *  Determines the keyCode (if possible) for the charater
- *
- *  @param character NSString with a single character to be transformed
- *  @return virtual Keycode for the supplied string. If none is found, kMPUnkonwKeyCode is returned
- */
-+ (CGKeyCode)keyCodeForCharacter:(NSString *)character;
-
-- (id)initWithContext:(MPAutotypeContext *)context;
 /**
  *  Sends a KeyPress Event with the supplied modifier flags and Keycode
  *  Any existing modifiers will be disabled for this event. If the user

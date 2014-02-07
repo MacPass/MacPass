@@ -11,6 +11,12 @@
 
 #import "NSString+Commands.h"
 
+@interface MPAutotypePaste ()
+
+@property (retain) NSString *commandString;
+
+@end
+
 @implementation MPAutotypePaste
 
 /**
