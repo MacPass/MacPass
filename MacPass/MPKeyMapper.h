@@ -15,7 +15,7 @@ extern uint16_t const kMPUnknownKeyCode;
 /**
  *  Retrieves the string representation with the current keyboard mapping for the keycode
  *
- *  @param keyCode The virutal keycode to be pressed
+ *  @param keyCode The virtual keycode to be pressed
  *  @return NSString containing the current mapping for the keyCode
  */
 + (NSString *)stringForKey:(CGKeyCode)keyCode;

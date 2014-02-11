@@ -30,21 +30,22 @@
 
 @implementation MPDocument (Autotype)
 
-- (NSArray *)buildContextsForWindowTitle:(NSString *)windowTitle {
+- (NSArray *)autotypContextsForWindowTitle:(NSString *)windowTitle {
   NSArray *autotypeEntries = [self.root autotypeableChildEntries];
   NSMutableArray *contexts = [[NSMutableArray alloc] initWithCapacity:ceil([autotypeEntries count] / 4.0)];
   for(KPKEntry *entry in autotypeEntries) {
     /* Test for title */
     NSRange titleRange = [entry.title rangeOfString:windowTitle options:NSCaseInsensitiveSearch];
+    MPAutotypeContext *context;
     if(titleRange.location != NSNotFound && titleRange.length != 0) {
-      MPAutotypeContext *context = [[MPAutotypeContext alloc] initWithEntry:entry andSequence:entry.autotype.defaultSequence];
-      [contexts addObject:context];
-
+      context = [[MPAutotypeContext alloc] initWithEntry:entry andSequence:entry.autotype.defaultSequence];
     }
     /* search in Autotype entries for match */
     else {
       KPKWindowAssociation *association = [entry.autotype windowAssociationMatchingWindowTitle:windowTitle];
-      MPAutotypeContext *context = [[MPAutotypeContext alloc] initWithWindowAssociation:association];
+      context = [[MPAutotypeContext alloc] initWithWindowAssociation:association];
+    }
+    if(context) {
       [contexts addObject:context];
     }
   }

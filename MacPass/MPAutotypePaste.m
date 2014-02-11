@@ -13,29 +13,31 @@
 
 @interface MPAutotypePaste ()
 
-@property (retain) NSString *commandString;
+@property (strong) NSString *pasteData;
 
 @end
 
 @implementation MPAutotypePaste
 
-/**
- *  Simple copy paste action
- */
-- (void)executeWithEntry:(KPKEntry *)entry {
-  if([self.commandString length] > 0) {
+- (instancetype)initWithString:(NSString *)aString {
+  self = [super init];
+  if(self) {
+    self.pasteData = aString;
+  }
+  return self;
+}
+
+- (void)execute {
+  if([self.pasteData length] > 0) {
     MPPasteBoardController *controller = [MPPasteBoardController defaultController];
-    if([self.commandString isPlaceholder]) {
-      BOOL didReplace;
-      NSString *evaluatedPlaceholder = [self.commandString evaluatePlaceholderWithEntry:entry didReplace:&didReplace];
-      [controller copyObjects:@[evaluatedPlaceholder]];
-    }
-    else {
-      [controller copyObjects:@[self.commandString]];
-    }
-    /* Find the correct key code! */
+    [controller copyObjects:@[self.pasteData]];
     [self sendPasteKeyCode];
   }
+}
+
+- (BOOL)isValid {
+  /* Pasting shoudl always be valid */
+  return YES;
 }
 
 @end

@@ -8,6 +8,11 @@
 
 #import "MPAutotypeCommand.h"
 
+/**
+ *  Simple Paste action. Uses the Clipboard to copy and then paste contents in place
+ */
 @interface MPAutotypePaste : MPAutotypeCommand
+
+- (instancetype)initWithString:(NSString *)aString;
 
 @end

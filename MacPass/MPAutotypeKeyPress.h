@@ -8,7 +8,12 @@
 
 #import "MPAutotypeCommand.h"
 
-
+/**
+ *  Autotype command to press a single key. Can be used with modifer keys as well
+ */
 @interface MPAutotypeKeyPress : MPAutotypeCommand
+
+@property (assign) CGEventFlags modifierMask;
+@property (assign) CGKeyCode keyCode;
 
 @end

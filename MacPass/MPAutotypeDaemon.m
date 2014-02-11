@@ -25,12 +25,7 @@ NSString *const kMPApplciationNameKey = @"applicationName";
 - (id)init {
   self = [super init];
   if (self) {
-    /*
-     Test the system for enabled access for assistive devices. Otherwise we cannot work properly
-     
-     Use defaults to determine if global hotkey is enabled
     [self _registerHotKey];
-     */   
   }
   return self;
 }
@@ -49,7 +44,9 @@ NSString *const kMPApplciationNameKey = @"applicationName";
       break;
     }
   }
-  
+  if(currentDocument.encrypted) {
+    return; // No need to search in closed documents
+  }
   /*
    Determine the window title of  the current front most application
    Start searching the db for the best fit (based on title, then on window associations
@@ -63,7 +60,7 @@ NSString *const kMPApplciationNameKey = @"applicationName";
    Query the document to generate a autotype command list for the window title
    We do not care where this came form, just get the autotype commands
    */
-  NSArray *autotypeCandidates = [[currentDocument buildContextsForWindowTitle:windowTitle] lastObject];
+  NSArray *autotypeCandidates = [[currentDocument autotypContextsForWindowTitle:windowTitle] lastObject];
   NSUInteger candiates = [autotypeCandidates count];
   if(candiates == 0) {
     return; // No Entries found.

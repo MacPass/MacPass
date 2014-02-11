@@ -31,5 +31,4 @@
   return NSLocalizedString(@"UPDATE_SETTINGS", @"Update Settings Label");
 }
 
-
 @end

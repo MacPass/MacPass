@@ -24,6 +24,6 @@
 
 @interface MPDocument (Autotype)
 
-- (NSArray *)buildContextsForWindowTitle:(NSString *)windowTitle;
+- (NSArray *)autotypContextsForWindowTitle:(NSString *)windowTitle;
 
 @end

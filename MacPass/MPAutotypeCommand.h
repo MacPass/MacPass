@@ -45,4 +45,11 @@ extern NSString *const kMPAutptypeCommandEnter;
  */
 - (void)execute;
 
+/**
+ *  Validates the command and returns the result
+ *
+ *  @return YES if the command is valid and can be executed. NO otherwise
+ */
+- (BOOL)isValid;
+
 @end

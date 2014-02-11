@@ -118,4 +118,8 @@ NSString *const kMPAutotypeCommandF1 = @"{F1}";
 - (void)execute {
   NSAssert(NO, @"Not Implemented");
 }
+
+- (BOOL)isValid {
+  return NO; // No valid command
+}
 @end

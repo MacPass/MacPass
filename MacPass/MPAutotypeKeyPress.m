@@ -7,11 +7,25 @@
 //
 
 #import "MPAutotypeKeyPress.h"
+#import "MPKeyMapper.h"
 
 @implementation MPAutotypeKeyPress
 
 - (void)execute {
-  
+  if(![self isValid]) {
+    return; // no valid command. Stop.
+  }
+  CGKeyCode mappedKey = [self _transformKeyCode];
+  [self sendPressKey:mappedKey modifierFlags:self.modifierMask];
+}
+
+- (BOOL)isValid {
+  return ([self _transformKeyCode] != kMPUnknownKeyCode);
+}
+
+- (CGKeyCode)_transformKeyCode {
+  NSString *key = [MPKeyMapper stringForKey:self.keyCode];
+  return [MPKeyMapper keyCodeForCharacter:key];
 }
 
 @end
