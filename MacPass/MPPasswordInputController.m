@@ -7,6 +7,7 @@
 //
 
 #import "MPPasswordInputController.h"
+#import "MPAppDelegate.h"
 #import "MPDocumentWindowController.h"
 #import "MPDocument.h"
 #import "MPSettingsHelper.h"
@@ -41,7 +42,7 @@
   self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
   if(self) {
     _enablePassword = YES;
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(_selectKeyURL) name:MPDocumentDidChangeStoredKeyFilesSettings object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(_selectKeyURL) name:MPDidChangeStoredKeyFilesSettings object:nil];
   }
   return self;
 }

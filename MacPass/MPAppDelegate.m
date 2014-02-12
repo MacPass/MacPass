@@ -36,6 +36,8 @@
 #import "MPDocument.h"
 #import "KPKCompositeKey.h"
 
+NSString *const MPDidChangeStoredKeyFilesSettings = @"com.hicknhack.macpass.MPDidChangeStoredKeyFilesSettings";
+
 @interface MPAppDelegate () {
 @private
   MPServerDaemon *serverDaemon;
@@ -63,9 +65,33 @@
   [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
 
-- (void)awakeFromNib {
-  [[self.saveMenuItem menu] setDelegate:self];
+#pragma mark Properties
+- (void)setIsAllowedToStoreKeyFile:(BOOL)isAllowedToStoreKeyFile {
+  if(_isAllowedToStoreKeyFile != isAllowedToStoreKeyFile) {
+    _isAllowedToStoreKeyFile = isAllowedToStoreKeyFile;
+    /* cleanup on disable */
+    if(!self.isAllowedToStoreKeyFile) {
+      [self clearRememberdKeyFiles:nil];
+    }
+    /* Inform anyone that might be interested that we can now no longer/ or can use keyfiles */
+    [[NSNotificationCenter defaultCenter] postNotificationName:MPDidChangeStoredKeyFilesSettings object:self];
+  }
 }
+
+- (void)awakeFromNib {
+  _isAllowedToStoreKeyFile = NO;
+  /* Update the … at the save menu */
+  [[self.saveMenuItem menu] setDelegate:self];
+  
+  /* We want to inform anyone about the changes to keyFile remmebering */
+  [self bind:@"isAllowedToStoreKeyFile"
+    toObject:[NSUserDefaultsController sharedUserDefaultsController]
+ withKeyPath:[MPSettingsHelper defaultControllerPathForKey:kMPSettingsKeyRememberKeyFilesForDatabases]
+     options:nil];
+}
+
+#pragma mark -
+#pragma mark NSApplicationDelegate
 
 - (BOOL)applicationShouldHandleReopen:(NSApplication *)sender hasVisibleWindows:(BOOL)flag {
   if(!flag) {
@@ -124,6 +150,18 @@
 }
 
 #pragma mark -
+#pragma mark NSMenuDelegate
+- (void)menuNeedsUpdate:(NSMenu *)menu {
+  if([self.saveMenuItem menu] != menu) {
+    return; // wrong menu
+  }
+  MPDocument *document = [[NSDocumentController sharedDocumentController] currentDocument];
+  BOOL displayDots = (document.fileURL == nil || !document.compositeKey.hasPasswordOrKeyFile);
+  NSString *saveTitle =  displayDots ? NSLocalizedString(@"SAVE_WITH_DOTS", "") : NSLocalizedString(@"SAVE", "");
+  [self.saveMenuItem setTitle:saveTitle];
+}
+
+#pragma mark -
 #pragma mark Actions
 - (void)showPreferences:(id)sender {
   if(self.settingsController == nil) {
@@ -164,6 +202,12 @@
   }
 }
 
+- (void)clearRememberdKeyFiles:(id)sender {
+  [[NSUserDefaults standardUserDefaults] removeObjectForKey:kMPSettingsKeyRememeberdKeysForDatabases];
+}
+
+#pragma mark -
+#pragma mark Private Helper
 - (void)_applicationDidFinishRestoringWindows:(NSNotification *)notification {
   NSDocumentController *documentController = [NSDocumentController sharedDocumentController];
   NSArray *documents = [documentController documents];
@@ -206,14 +250,4 @@
   return isFileURL;
 }
 
-#pragma mark NSMenuDelegate
-- (void)menuNeedsUpdate:(NSMenu *)menu {
-  if([self.saveMenuItem menu] != menu) {
-    return; // wrong menu
-  }
-  MPDocument *document = [[NSDocumentController sharedDocumentController] currentDocument];
-  BOOL displayDots = (document.fileURL == nil || !document.compositeKey.hasPasswordOrKeyFile);
-  NSString *saveTitle =  displayDots ? NSLocalizedString(@"SAVE_WITH_DOTS", "") : NSLocalizedString(@"SAVE", "");
-  [self.saveMenuItem setTitle:saveTitle];
-}
 @end

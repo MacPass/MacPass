@@ -21,6 +21,7 @@
 //
 
 #import "MPDocument.h"
+#import "MPAppDelegate.h"
 #import "MPDocumentWindowController.h"
 #import "MPDatabaseVersion.h"
 #import "MPIconHelper.h"
@@ -41,8 +42,6 @@
 #import "KPKTimeInfo.h"
 #import "KPKAttribute.h"
 
-NSString *const MPDocumentDidChangeStoredKeyFilesSettings = @"com.hicknhack.macpass.MPDocumentDidChangeStoredKeyFilesSettings";
-
 NSString *const MPDocumentDidAddGroupNotification         = @"com.hicknhack.macpass.MPDocumentDidAddGroupNotification";
 NSString *const MPDocumentDidRevertNotifiation            = @"com.hicknhack.macpass.MPDocumentDidRevertNotifiation";
 
@@ -51,11 +50,6 @@ NSString *const MPDocumentDidUnlockDatabaseNotification   = @"com.hicknhack.macp
 
 NSString *const MPDocumentEntryKey                        = @"MPDocumentEntryKey";
 NSString *const MPDocumentGroupKey                        = @"MPDocumentGroupKey";
-
-typedef NS_ENUM(NSUInteger, MPAlertType) {
-  MPAlertTypeEmptryTrash,
-  MPAlertTypeDeleteTrashed
-};
 
 @interface MPDocument () {
 @private
@@ -71,7 +65,6 @@ typedef NS_ENUM(NSUInteger, MPAlertType) {
 
 @property (assign) BOOL readOnly;
 @property (strong) NSURL *lockFileURL;
-@property (nonatomic, assign) BOOL isAllowedToStoreKeyFile;
 
 @property (strong) IBOutlet NSView *warningView;
 @property (weak) IBOutlet NSImageView *warningViewImage;
@@ -118,12 +111,7 @@ typedef NS_ENUM(NSUInteger, MPAlertType) {
     _encryptedData = nil;
     _didLockFile = NO;
     _readOnly = NO;
-    _isAllowedToStoreKeyFile = NO;
     self.tree = [KPKTree templateTree];
-    [self bind:@"isAllowedToStoreKeyFile"
-      toObject:[NSUserDefaultsController sharedUserDefaultsController]
-   withKeyPath:[MPSettingsHelper defaultControllerPathForKey:kMPSettingsKeyRememberKeyFilesForDatabases]
-       options:nil];
   }
   return self;
 }
@@ -261,7 +249,8 @@ typedef NS_ENUM(NSUInteger, MPAlertType) {
   if(isUnlocked) {
     [[NSNotificationCenter defaultCenter] postNotificationName:MPDocumentDidUnlockDatabaseNotification object:self];
     /* Make sure to only store */
-    if(self.compositeKey.hasKeyFile && self.compositeKey.hasPassword && self.isAllowedToStoreKeyFile) {
+    MPAppDelegate *delegate = [NSApp delegate];
+    if(self.compositeKey.hasKeyFile && self.compositeKey.hasPassword && delegate.isAllowedToStoreKeyFile) {
       [self _storeKeyURL:keyFileURL];
     }
   }
@@ -288,7 +277,8 @@ typedef NS_ENUM(NSUInteger, MPAlertType) {
 }
 
 - (NSURL *)suggestedKeyURL {
-  if(!self.isAllowedToStoreKeyFile) {
+  MPAppDelegate *delegate = [NSApp delegate];
+  if(!delegate.isAllowedToStoreKeyFile) {
     return nil;
   }
   NSDictionary *keysForFiles = [[NSUserDefaults standardUserDefaults] dictionaryForKey:kMPSettingsKeyRememeberdKeysForDatabases];
@@ -367,17 +357,6 @@ typedef NS_ENUM(NSUInteger, MPAlertType) {
   if(_tree != tree) {
     _tree = tree;
     _tree.undoManager = [self undoManager];
-  }
-}
-
-- (void)setIsAllowedToStoreKeyFile:(BOOL)isAllowedToStoreKeyFile {
-  if(_isAllowedToStoreKeyFile != isAllowedToStoreKeyFile) {
-    _isAllowedToStoreKeyFile = isAllowedToStoreKeyFile;
-    if(!self.isAllowedToStoreKeyFile) {
-      [[NSUserDefaults standardUserDefaults] removeObjectForKey:kMPSettingsKeyRememeberdKeysForDatabases];
-    }
-    /* Inform anyone that might be interested that we can now no longer/ or can use keyfiles */
-    [[NSNotificationCenter defaultCenter] postNotificationName:MPDocumentDidChangeStoredKeyFilesSettings object:self];
   }
 }
 
@@ -518,18 +497,24 @@ typedef NS_ENUM(NSUInteger, MPAlertType) {
   [[alert buttons][1] setKeyEquivalent:[NSString stringWithFormat:@"%c", 0x1b]];
   
   NSWindow *window = [[self windowControllers][0] window];
-  [alert beginSheetModalForWindow:window modalDelegate:self didEndSelector:@selector(alertDidEnd:returnCode:contextInfo:) contextInfo:NULL];
+  [alert beginSheetModalForWindow:window modalDelegate:self didEndSelector:@selector(_emptyTrashAlertDidEnd:returnCode:contextInfo:) contextInfo:NULL];
 }
 
-- (void)alertDidEnd:(NSAlert *)alert returnCode:(NSInteger)returnCode contextInfo:(void *)contextInfo {
+- (void)_emptyTrashAlertDidEnd:(NSAlert *)alert returnCode:(NSInteger)returnCode contextInfo:(void *)contextInfo {
   if(returnCode == NSAlertFirstButtonReturn) {
     [self _emptyTrash];
   }
 }
 
 - (void)createEntryFromTemplate:(id)sender {
-  NSMenuItem *item = sender;
-  NSUUID *entryUUID = [item representedObject];
+  if(![sender respondsToSelector:@selector(representedObject)]) {
+    return; // sender cannot provide usefull data
+  }
+  id obj = [sender representedObject];
+  if([obj isKindOfClass:[NSUUID class]]) {
+    return; // sender cannot provide NSUUID
+  }
+  NSUUID *entryUUID = [sender representedObject];
   if(entryUUID) {
     KPKEntry *templateEntry = [self findEntry:entryUUID];
     if(templateEntry && self.selectedGroup) {
@@ -538,7 +523,6 @@ typedef NS_ENUM(NSUInteger, MPAlertType) {
       [self.selectedGroup.undoManager setActionName:NSLocalizedString(@"ADD_TREMPLATE_ENTRY", "")];
     }
   }
-  return;
 }
 
 - (BOOL)validateMenuItem:(NSMenuItem *)menuItem {
@@ -585,7 +569,8 @@ typedef NS_ENUM(NSUInteger, MPAlertType) {
   if(nil == keyURL) {
     return; // no URL to store in the first place
   }
-  NSAssert(self.isAllowedToStoreKeyFile, @"We can only store if we are allowed to do so!");
+  MPAppDelegate *delegate = [NSApp delegate];
+  NSAssert(delegate.isAllowedToStoreKeyFile, @"We can only store if we are allowed to do so!");
   NSMutableDictionary *keysForFiles = [[[NSUserDefaults standardUserDefaults] dictionaryForKey:kMPSettingsKeyRememeberdKeysForDatabases] mutableCopy];
   if(nil == keysForFiles) {
     keysForFiles = [[NSMutableDictionary alloc] initWithCapacity:1];

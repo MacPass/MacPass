@@ -23,8 +23,6 @@
 #import <Cocoa/Cocoa.h>
 #import "KPKVersion.h"
 
-APPKIT_EXTERN NSString *const MPDocumentDidChangeStoredKeyFilesSettings;
-
 APPKIT_EXTERN NSString *const MPDocumentDidAddGroupNotification;
 APPKIT_EXTERN NSString *const MPDocumentDidRevertNotifiation;
 
@@ -135,8 +133,19 @@ APPKIT_EXTERN NSString *const MPDocumentGroupKey;
 - (void)deleteGroup:(KPKGroup *)group;
 - (void)deleteEntry:(KPKEntry *)entry;
 
+#pragma mark Actions
+/**
+ *  Empties the Trash group. Removing all Groups and Entries inside. This aciton is not undoable
+ *  @param sender sender
+ */
 - (IBAction)emptyTrash:(id)sender;
+/**
+ *  Creates an Entry for a template. We assume the sender is an item, that contains a UUID as representedObject.
+ *
+ *  @param sender sender, that should respond to representedObject and return an NSUUID for the template to use
+ */
 - (IBAction)createEntryFromTemplate:(id)sender;
+
 @end
 
 @interface MPDocument (Attachments)

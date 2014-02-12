@@ -22,16 +22,25 @@
 
 #import <Cocoa/Cocoa.h>
 
+extern NSString *const MPDidChangeStoredKeyFilesSettings;
+
 @interface MPAppDelegate : NSObject <NSApplicationDelegate, NSMenuDelegate>
 
 @property (strong) IBOutlet NSWindow *passwordCreatorWindow;
 @property (strong) IBOutlet NSWindow *welcomeWindow;
 @property (weak) IBOutlet NSMenuItem *saveMenuItem;
+@property (nonatomic, assign) BOOL isAllowedToStoreKeyFile;
 
 - (IBAction)showPreferences:(id)sender;
 - (IBAction)showPasswordCreator:(id)sender;
 - (IBAction)createNewDatabase:(id)sender;
 - (IBAction)openDatabase:(id)sender;
+/**
+ *  Clears the stored key files for any documents.
+ *  @param sender sender of this action
+ */
+- (IBAction)clearRememberdKeyFiles:(id)sender;
+
 
 - (NSString *)applicationName;
 - (void)lockAllDocuments;
