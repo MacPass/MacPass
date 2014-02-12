@@ -33,6 +33,9 @@
 #import "MPAutotypeDaemon.h"
 #import "MPDocumentWindowController.h"
 
+#import "MPDocument.h"
+#import "KPKCompositeKey.h"
+
 @interface MPAppDelegate () {
 @private
   MPServerDaemon *serverDaemon;
@@ -58,6 +61,10 @@
 
 - (void)dealloc {
   [[NSNotificationCenter defaultCenter] removeObserver:self];
+}
+
+- (void)awakeFromNib {
+  [[self.saveMenuItem menu] setDelegate:self];
 }
 
 - (BOOL)applicationShouldHandleReopen:(NSApplication *)sender hasVisibleWindows:(BOOL)flag {
@@ -199,4 +206,14 @@
   return isFileURL;
 }
 
+#pragma mark NSMenuDelegate
+- (void)menuNeedsUpdate:(NSMenu *)menu {
+  if([self.saveMenuItem menu] != menu) {
+    return; // wrong menu
+  }
+  MPDocument *document = [[NSDocumentController sharedDocumentController] currentDocument];
+  BOOL displayDots = (document.fileURL == nil || !document.compositeKey.hasPasswordOrKeyFile);
+  NSString *saveTitle =  displayDots ? NSLocalizedString(@"SAVE_WITH_DOTS", "") : NSLocalizedString(@"SAVE", "");
+  [self.saveMenuItem setTitle:saveTitle];
+}
 @end

@@ -297,7 +297,11 @@
                 </menuItem>
             </items>
         </menu>
-        <customObject id="494" customClass="MPAppDelegate"/>
+        <customObject id="494" customClass="MPAppDelegate">
+            <connections>
+                <outlet property="saveMenuItem" destination="75" id="dsN-Im-4eZ"/>
+            </connections>
+        </customObject>
         <customObject id="420" customClass="NSFontManager"/>
         <customObject id="EpI-0u-HQc" customClass="SUUpdater"/>
     </objects>

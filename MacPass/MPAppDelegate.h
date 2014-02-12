@@ -22,10 +22,11 @@
 
 #import <Cocoa/Cocoa.h>
 
-@interface MPAppDelegate : NSObject <NSApplicationDelegate>
+@interface MPAppDelegate : NSObject <NSApplicationDelegate, NSMenuDelegate>
 
 @property (strong) IBOutlet NSWindow *passwordCreatorWindow;
 @property (strong) IBOutlet NSWindow *welcomeWindow;
+@property (weak) IBOutlet NSMenuItem *saveMenuItem;
 
 - (IBAction)showPreferences:(id)sender;
 - (IBAction)showPasswordCreator:(id)sender;
