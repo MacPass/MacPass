@@ -25,14 +25,13 @@ typedef NS_ENUM(NSUInteger, MPEntryTab) {
   MPEntryTabGeneral,
   MPEntryTabFiles,
   MPEntryTabCustomFields,
-  MPEntryTabHistory
+  MPEntryTabAutotype
 };
 
 @interface MPEntryInspectorViewController () {
 @private
   NSArrayController *_attachmentsController;
   NSArrayController *_customFieldsController;
-  NSArrayController *_historyController;
   MPAttachmentTableViewDelegate *_attachmentTableDelegate;
   MPCustomFieldTableViewDelegate *_customFieldTableDelegate;
   MPAttachmentTableDataSource *_attachmentDataSource;
@@ -59,7 +58,6 @@ typedef NS_ENUM(NSUInteger, MPEntryTab) {
     _showPassword = NO;
     _attachmentsController = [[NSArrayController alloc] init];
     _customFieldsController = [[NSArrayController alloc] init];
-    _historyController = [[NSArrayController alloc] init];
     _attachmentTableDelegate = [[MPAttachmentTableViewDelegate alloc] init];
     _customFieldTableDelegate = [[MPCustomFieldTableViewDelegate alloc] init];
     _attachmentDataSource = [[MPAttachmentTableDataSource alloc] init];
@@ -120,8 +118,6 @@ typedef NS_ENUM(NSUInteger, MPEntryTab) {
   [_customFieldsTableView setBackgroundColor:[NSColor clearColor]];
   [_customFieldsTableView bind:NSContentBinding toObject:_customFieldsController withKeyPath:@"arrangedObjects" options:nil];
   [_customFieldsTableView setDelegate:_customFieldTableDelegate];
-  
-  [_historyTableView bind:NSContentBinding toObject:_historyController withKeyPath:@"arrangedObjects" options:nil];
   
   [self.passwordTextField bind:@"showPassword" toObject:self withKeyPath:@"showPassword" options:nil];
   [self.togglePassword bind:NSValueBinding toObject:self withKeyPath:@"showPassword" options:nil];
@@ -237,7 +233,6 @@ typedef NS_ENUM(NSUInteger, MPEntryTab) {
   [self _bindEntry];
   [self _bindAttachments];
   [self _bindCustomFields];
-  [self _bindHistory];
 }
 
 - (void)_bindEntry {
@@ -273,16 +268,6 @@ typedef NS_ENUM(NSUInteger, MPEntryTab) {
 
 - (void)_bindCustomFields {
   [_customFieldsController bind:NSContentArrayBinding toObject:self.entry withKeyPath:@"customAttributes" options:nil];
-}
-
-- (void)_bindHistory {
-  if(self.entry) {
-    [_historyController bind:NSContentArrayBinding toObject:self.entry withKeyPath:@"history" options:nil];
-  }
-  else if([_historyController content] != nil) {
-    [_historyController unbind:NSContentArrayBinding];
-    [_historyController setContent:nil];
-  }
 }
 
 - (void)_toggleEditing:(BOOL)edit {

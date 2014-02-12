@@ -117,7 +117,6 @@ NSString *const MPDocumentGroupKey                        = @"MPDocumentGroupKey
 }
 
 - (void)dealloc {
-  [self unbind:@"isAllowedToStoreKeyFile"];
   [self _cleanupLock];
 }
 

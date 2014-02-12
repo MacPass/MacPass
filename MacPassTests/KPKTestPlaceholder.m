@@ -10,7 +10,7 @@
 #import "KPKEntry.h"
 #import "KPKAttribute.h"
 
-#import "NSString+Placeholder.h"
+#import "NSString+Commands.h"
 
 @implementation KPKTextPlaceholder
 

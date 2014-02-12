@@ -62,6 +62,7 @@ NSString *const MPDidChangeStoredKeyFilesSettings = @"com.hicknhack.macpass.MPDi
 }
 
 - (void)dealloc {
+  [self unbind:@"isAllowedToStoreKeyFile"];
   [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
 
