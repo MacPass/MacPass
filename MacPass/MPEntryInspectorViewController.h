@@ -24,12 +24,14 @@
 @property (weak) IBOutlet NSSegmentedControl *infoTabControl;
 @property (weak) IBOutlet NSTableView *attachmentTableView;
 @property (weak) IBOutlet NSTableView *customFieldsTableView;
+@property (weak) IBOutlet NSTableView *windowAssociationsTableView;
 @property (unsafe_unretained) IBOutlet NSTextView *notesTextView;
 @property (weak) IBOutlet NSButton *generatePasswordButton;
 @property (weak) IBOutlet NSButton *togglePassword;
 
 @property (weak) IBOutlet NSTabView *tabView;
 @property (strong) IBOutlet NSView *generalView;
+@property (strong) IBOutlet NSView *autotypView;
 
 @property (weak) IBOutlet NSButton *expiresCheckButton;
 @property (weak) IBOutlet NSTokenField *tagsTokenField;

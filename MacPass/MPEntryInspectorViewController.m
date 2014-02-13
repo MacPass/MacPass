@@ -70,54 +70,24 @@ typedef NS_ENUM(NSUInteger, MPEntryTab) {
 
 - (void)didLoadView {
   
-  /* ScrollView setup for the General Tab */
+  [self _addScrollViewWithView:self.generalView atTab:MPEntryTabGeneral];
+  [self _addScrollViewWithView:self.autotypView atTab:MPEntryTabAutotype];
   
-  HNHScrollView *scrollView = [[HNHScrollView alloc] init];
-  scrollView.actAsFlipped = NO;
-  scrollView.showBottomShadow = NO;
-  [scrollView setHasVerticalScroller:YES];
-  [scrollView setDrawsBackground:NO];
-  [scrollView setTranslatesAutoresizingMaskIntoConstraints:NO];
-  NSView *clipView = [scrollView contentView];
-  
-  NSTabViewItem *tabViewItem = [self.tabView tabViewItemAtIndex:MPEntryTabGeneral];
-  NSView *tabView = [tabViewItem view];
-  /*
-   DO NEVER SET setTranslatesAutoresizingMaskIntoConstraints on NSTabViewItem's view
-   [tabView setTranslatesAutoresizingMaskIntoConstraints:NO];
-   */
-  [scrollView setDocumentView:self.generalView];
-  [tabView addSubview:scrollView];
-  [tabViewItem setInitialFirstResponder:scrollView];
-  
-  NSDictionary *views = NSDictionaryOfVariableBindings(_generalView, scrollView);
-  [[scrollView superview] addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|[scrollView]|"
-                                                                                 options:0
-                                                                                 metrics:nil
-                                                                                   views:views ]];
-  [[scrollView superview] addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|[scrollView]|"
-                                                                                 options:0
-                                                                                 metrics:nil
-                                                                                   views:views]];
-  [clipView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|[_generalView]|"
-                                                                   options:0
-                                                                   metrics:nil
-                                                                     views:views]];
-  [[self view] layoutSubtreeIfNeeded];
-  
-  [_infoTabControl bind:NSSelectedIndexBinding toObject:self withKeyPath:@"activeTab" options:nil];
-  [_tabView bind:NSSelectedIndexBinding toObject:self withKeyPath:@"activeTab" options:nil];
+  [self.infoTabControl bind:NSSelectedIndexBinding toObject:self withKeyPath:@"activeTab" options:nil];
+  [self.tabView bind:NSSelectedIndexBinding toObject:self withKeyPath:@"activeTab" options:nil];
   
   /* Set background to clearcolor so we can draw in the scrollview */
-  [_attachmentTableView setBackgroundColor:[NSColor clearColor]];
-  [_attachmentTableView bind:NSContentBinding toObject:_attachmentsController withKeyPath:@"arrangedObjects" options:nil];
-  [_attachmentTableView setDelegate:_attachmentTableDelegate];
-  [_attachmentTableView setDataSource:_attachmentDataSource];
-  [_attachmentTableView registerForDraggedTypes:@[NSFilenamesPboardType]];
+  [self.attachmentTableView setBackgroundColor:[NSColor clearColor]];
+  [self.attachmentTableView bind:NSContentBinding toObject:_attachmentsController withKeyPath:@"arrangedObjects" options:nil];
+  [self.attachmentTableView setDelegate:_attachmentTableDelegate];
+  [self.attachmentTableView setDataSource:_attachmentDataSource];
+  [self.attachmentTableView registerForDraggedTypes:@[NSFilenamesPboardType]];
   /* Set background to clearcolor so we can draw in the scrollview */
-  [_customFieldsTableView setBackgroundColor:[NSColor clearColor]];
-  [_customFieldsTableView bind:NSContentBinding toObject:_customFieldsController withKeyPath:@"arrangedObjects" options:nil];
-  [_customFieldsTableView setDelegate:_customFieldTableDelegate];
+  [self.customFieldsTableView setBackgroundColor:[NSColor clearColor]];
+  [self.customFieldsTableView bind:NSContentBinding toObject:_customFieldsController withKeyPath:@"arrangedObjects" options:nil];
+  [self.customFieldsTableView setDelegate:_customFieldTableDelegate];
+  
+  [self.windowAssociationsTableView setBackgroundColor:[NSColor clearColor]];
   
   [self.passwordTextField bind:@"showPassword" toObject:self withKeyPath:@"showPassword" options:nil];
   [self.togglePassword bind:NSValueBinding toObject:self withKeyPath:@"showPassword" options:nil];
@@ -225,6 +195,45 @@ typedef NS_ENUM(NSUInteger, MPEntryTab) {
   /* TODO: Check for Icon wizzard */
   
   _activePopover = nil;
+}
+
+#pragma mark -
+#pragma mark UI Setup
+- (void)_addScrollViewWithView:(NSView *)view atTab:(MPEntryTab)tab {
+  /* ScrollView setup for the General Tab */
+  
+  HNHScrollView *scrollView = [[HNHScrollView alloc] init];
+  scrollView.actAsFlipped = NO;
+  scrollView.showBottomShadow = NO;
+  [scrollView setHasVerticalScroller:YES];
+  [scrollView setDrawsBackground:NO];
+  [scrollView setTranslatesAutoresizingMaskIntoConstraints:NO];
+  NSView *clipView = [scrollView contentView];
+  
+  NSTabViewItem *tabViewItem = [self.tabView tabViewItemAtIndex:tab];
+  NSView *tabView = [tabViewItem view];
+  /*
+   DO NEVER SET setTranslatesAutoresizingMaskIntoConstraints on NSTabViewItem's view
+   [tabView setTranslatesAutoresizingMaskIntoConstraints:NO];
+   */
+  [scrollView setDocumentView:view];
+  [tabView addSubview:scrollView];
+  [tabViewItem setInitialFirstResponder:scrollView];
+  
+  NSDictionary *views = NSDictionaryOfVariableBindings(view, scrollView);
+  [[scrollView superview] addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|[scrollView]|"
+                                                                                 options:0
+                                                                                 metrics:nil
+                                                                                   views:views ]];
+  [[scrollView superview] addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|[scrollView]|"
+                                                                                 options:0
+                                                                                 metrics:nil
+                                                                                   views:views]];
+  [clipView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|[view]|"
+                                                                   options:0
+                                                                   metrics:nil
+                                                                     views:views]];
+  [[self view] layoutSubtreeIfNeeded];
 }
 
 #pragma mark -
