@@ -24,7 +24,6 @@
 @property (weak) IBOutlet NSSegmentedControl *infoTabControl;
 @property (weak) IBOutlet NSTableView *attachmentTableView;
 @property (weak) IBOutlet NSTableView *customFieldsTableView;
-@property (weak) IBOutlet NSTableView *windowAssociationsTableView;
 @property (unsafe_unretained) IBOutlet NSTextView *notesTextView;
 @property (weak) IBOutlet NSButton *generatePasswordButton;
 @property (weak) IBOutlet NSButton *togglePassword;
@@ -35,6 +34,17 @@
 
 @property (weak) IBOutlet NSButton *expiresCheckButton;
 @property (weak) IBOutlet NSTokenField *tagsTokenField;
+
+/* Autotype */
+@property (weak) IBOutlet NSButton *enableAutotypeCheckButton;
+@property (weak) IBOutlet NSTableView *windowAssociationsTableView;
+@property (weak) IBOutlet NSTextField *customEntrySequenceTextField;
+@property (weak) IBOutlet NSComboBox *windowTitleComboBox;
+
+@property (weak) IBOutlet NSButton *removeAssociationButton;
+@property (weak) IBOutlet NSButton *addAssociationButton;
+
+@property (weak) IBOutlet NSTextField *associationSequenceTextField;
 
 - (void)setupBindings:(MPDocument *)document;
 

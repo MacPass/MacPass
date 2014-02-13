@@ -204,6 +204,7 @@
 		4CA0B2FC15BCAF8600654E32 /* MPSettingsWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CA0B2FB15BCAF8600654E32 /* MPSettingsWindowController.m */; };
 		4CA0E3A7176FAF99004D18CB /* MPDocumentQueryService.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CA0E3A6176FAF99004D18CB /* MPDocumentQueryService.m */; };
 		4CA2335A176DBFE100F0B6AC /* MPLockDaemon.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CA23359176DBFE100F0B6AC /* MPLockDaemon.m */; };
+		4CA334CA18AD60D1008A3322 /* MPWindowAssociationsTableViewDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CA334C918AD60D1008A3322 /* MPWindowAssociationsTableViewDelegate.m */; };
 		4CA3530B18A53CB800839B0F /* MPKeyMapper.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CA3530A18A53CB800839B0F /* MPKeyMapper.m */; };
 		4CA3531218A5577300839B0F /* dsa_sparkle_pub.pem in Resources */ = {isa = PBXBuildFile; fileRef = 4CA3531118A5577300839B0F /* dsa_sparkle_pub.pem */; };
 		4CAC614317AD319200023F9E /* KPKTestXmlParsing.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CAC614217AD319200023F9E /* KPKTestXmlParsing.m */; };
@@ -704,6 +705,8 @@
 		4CA0E3A6176FAF99004D18CB /* MPDocumentQueryService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MPDocumentQueryService.m; sourceTree = "<group>"; };
 		4CA23358176DBFE100F0B6AC /* MPLockDaemon.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MPLockDaemon.h; sourceTree = "<group>"; };
 		4CA23359176DBFE100F0B6AC /* MPLockDaemon.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MPLockDaemon.m; sourceTree = "<group>"; };
+		4CA334C818AD60D1008A3322 /* MPWindowAssociationsTableViewDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MPWindowAssociationsTableViewDelegate.h; sourceTree = "<group>"; };
+		4CA334C918AD60D1008A3322 /* MPWindowAssociationsTableViewDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MPWindowAssociationsTableViewDelegate.m; sourceTree = "<group>"; };
 		4CA3530918A53CB800839B0F /* MPKeyMapper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MPKeyMapper.h; sourceTree = "<group>"; };
 		4CA3530A18A53CB800839B0F /* MPKeyMapper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MPKeyMapper.m; sourceTree = "<group>"; };
 		4CA3531118A5577300839B0F /* dsa_sparkle_pub.pem */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = dsa_sparkle_pub.pem; sourceTree = "<group>"; };
@@ -1195,6 +1198,8 @@
 				4C17D8E417A1C780006C8C1E /* MPDocumentWindowDelegate.m */,
 				4C8B36A917A6ED4B005E1FF1 /* MPOutlineContextMenuDelegate.h */,
 				4C8B36AA17A6ED4B005E1FF1 /* MPOutlineContextMenuDelegate.m */,
+				4CA334C818AD60D1008A3322 /* MPWindowAssociationsTableViewDelegate.h */,
+				4CA334C918AD60D1008A3322 /* MPWindowAssociationsTableViewDelegate.m */,
 			);
 			name = Delegates;
 			sourceTree = "<group>";
@@ -2125,6 +2130,7 @@
 				4C9D6AA917615199001C660C /* HNHRoundedSecureTextFieldCell.m in Sources */,
 				4C4A100F176286FD00BBF2CA /* MPTableView.m in Sources */,
 				4CAF62FC1763604000CD7084 /* HNHBadgedTextFieldCell.m in Sources */,
+				4CA334CA18AD60D1008A3322 /* MPWindowAssociationsTableViewDelegate.m in Sources */,
 				4C58BD4F176370B100B8178C /* HNHBadgedTextField.m in Sources */,
 				4C01C2421764D8980016D5D0 /* MPContextMenuHelper.m in Sources */,
 				4CE296191842A166005F01CE /* MPAutotypePaste.m in Sources */,

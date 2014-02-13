@@ -11,12 +11,15 @@
 #import "MPCustomFieldTableViewDelegate.h"
 #import "MPPasswordCreatorViewController.h"
 #import "MPAttachmentTableDataSource.h"
+#import "MPWindowAssociationsTableViewDelegate.h"
 
 #import "MPDocument.h"
 #import "MPIconHelper.h"
 
 #import "KPKEntry.h"
 #import "KPKBinary.h"
+#import "KPKAutotype.h"
+#import "KPKWindowAssociation.h"
 
 #import "HNHScrollView.h"
 #import "HNHRoundedSecureTextField.h"
@@ -32,10 +35,11 @@ typedef NS_ENUM(NSUInteger, MPEntryTab) {
 @private
   NSArrayController *_attachmentsController;
   NSArrayController *_customFieldsController;
+  NSArrayController *_windowAssociationsController;
   MPAttachmentTableViewDelegate *_attachmentTableDelegate;
   MPCustomFieldTableViewDelegate *_customFieldTableDelegate;
   MPAttachmentTableDataSource *_attachmentDataSource;
-  
+  MPWindowAssociationsTableViewDelegate *_windowAssociationsTableDelegate;
 }
 
 @property (nonatomic, assign) BOOL showPassword;
@@ -58,9 +62,11 @@ typedef NS_ENUM(NSUInteger, MPEntryTab) {
     _showPassword = NO;
     _attachmentsController = [[NSArrayController alloc] init];
     _customFieldsController = [[NSArrayController alloc] init];
+    _windowAssociationsController = [[NSArrayController alloc] init];
     _attachmentTableDelegate = [[MPAttachmentTableViewDelegate alloc] init];
     _customFieldTableDelegate = [[MPCustomFieldTableViewDelegate alloc] init];
     _attachmentDataSource = [[MPAttachmentTableDataSource alloc] init];
+    _windowAssociationsTableDelegate = [[MPWindowAssociationsTableViewDelegate alloc] init];
     _attachmentTableDelegate.viewController = self;
     _customFieldTableDelegate.viewController = self;
     _activeTab = MPEntryTabGeneral;
@@ -88,6 +94,8 @@ typedef NS_ENUM(NSUInteger, MPEntryTab) {
   [self.customFieldsTableView setDelegate:_customFieldTableDelegate];
   
   [self.windowAssociationsTableView setBackgroundColor:[NSColor clearColor]];
+  [self.windowAssociationsTableView setDelegate:_windowAssociationsTableDelegate];
+  [self.windowAssociationsTableView bind:NSContentBinding toObject:_windowAssociationsController withKeyPath:@"arrangedObjects" options:nil];
   
   [self.passwordTextField bind:@"showPassword" toObject:self withKeyPath:@"showPassword" options:nil];
   [self.togglePassword bind:NSValueBinding toObject:self withKeyPath:@"showPassword" options:nil];
@@ -242,6 +250,7 @@ typedef NS_ENUM(NSUInteger, MPEntryTab) {
   [self _bindEntry];
   [self _bindAttachments];
   [self _bindCustomFields];
+  [self _bindAutotype];
 }
 
 - (void)_bindEntry {
@@ -277,6 +286,13 @@ typedef NS_ENUM(NSUInteger, MPEntryTab) {
 
 - (void)_bindCustomFields {
   [_customFieldsController bind:NSContentArrayBinding toObject:self.entry withKeyPath:@"customAttributes" options:nil];
+}
+
+- (void)_bindAutotype {
+  [self.enableAutotypeCheckButton bind:NSValueBinding toObject:self.entry.autotype withKeyPath:@"isEnabled" options:nil];
+  [self.customEntrySequenceTextField bind:NSEnabledBinding toObject:self.entry.autotype withKeyPath:@"isEnabled" options:nil];
+  [self.customEntrySequenceTextField bind:NSValueBinding toObject:self.entry.autotype withKeyPath:@"defaultSequence" options:nil];
+  [_windowAssociationsController bind:NSContentArrayBinding toObject:self.entry.autotype withKeyPath:@"associations" options:nil];
 }
 
 - (void)_toggleEditing:(BOOL)edit {
