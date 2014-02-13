@@ -10,6 +10,9 @@
 #import "MPSettingsTab.h"
 
 @interface MPWorkflowSettingsController : MPViewController <MPSettingsTab>
+
 @property (weak) IBOutlet NSPopUpButton *browserPopup;
+
+- (IBAction)showCustomBrowserSelection:(id)sender;
 
 @end

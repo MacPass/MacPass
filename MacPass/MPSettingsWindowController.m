@@ -59,6 +59,9 @@
     NSLog(@"Warning. Unknow settingscontroller for identifier: %@. Did you miss to add the controller?", identifier);
     return;
   }
+  if([tab respondsToSelector:@selector(willSelectTab)]) {
+    [tab willSelectTab];
+  }
   [self.toolbar setSelectedItemIdentifier:identifier];
   if([tab respondsToSelector:@selector(label)]) {
     [[self window] setTitle:[tab label]];
@@ -83,6 +86,9 @@
                                                                         views:NSDictionaryOfVariableBindings(tabView)]];
   
   [contentView layoutSubtreeIfNeeded];
+  if([tab respondsToSelector:@selector(didSelectTab)]) {
+    [tab didSelectTab];
+  }
   [[self window] makeKeyAndOrderFront:[self window]];
 }
 
