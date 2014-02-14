@@ -115,17 +115,17 @@ typedef NS_ENUM(NSUInteger, MPEntryTab) {
 #pragma mark -
 #pragma mark Actions
 
-- (IBAction)addCustomField:(id)sender {
+- (void)addCustomField:(id)sender {
   MPDocument *document = [[self windowController] document];
   [document createCustomAttribute:self.entry];
 }
-- (IBAction)removeCustomField:(id)sender {
+- (void)removeCustomField:(id)sender {
   NSUInteger index = [sender tag];
   KPKAttribute *attribute = self.entry.customAttributes[index];
   [self.entry removeCustomAttribute:attribute];
 }
 
-- (IBAction)saveAttachment:(id)sender {
+- (void)saveAttachment:(id)sender {
   KPKBinary *binary = self.entry.binaries[[sender tag]];
   NSSavePanel *savePanel = [NSSavePanel savePanel];
   [savePanel setCanCreateDirectories:YES];
@@ -138,7 +138,7 @@ typedef NS_ENUM(NSUInteger, MPEntryTab) {
   }];
 }
 
-- (IBAction)addAttachment:(id)sender {
+- (void)addAttachment:(id)sender {
   NSOpenPanel *openPanel = [NSOpenPanel openPanel];
   [openPanel setCanChooseDirectories:NO];
   [openPanel setCanChooseFiles:YES];
@@ -153,9 +153,18 @@ typedef NS_ENUM(NSUInteger, MPEntryTab) {
   }];
 }
 
-- (IBAction)removeAttachment:(id)sender {
+- (void)removeAttachment:(id)sender {
   KPKBinary *binary = self.entry.binaries[[sender tag]];
   [self.entry removeBinary:binary];
+}
+
+- (void)addWindowAssociation:(id)sender {
+}
+
+- (void)removeWindowAssociation:(id)sender {
+  NSInteger row = [self.windowAssociationsTableView selectedRow];
+  if(row > - 1 && row < [self.entry.autotype.associations count]) {
+  }
 }
 
 #pragma mark Editing
@@ -285,14 +294,31 @@ typedef NS_ENUM(NSUInteger, MPEntryTab) {
 }
 
 - (void)_bindCustomFields {
-  [_customFieldsController bind:NSContentArrayBinding toObject:self.entry withKeyPath:@"customAttributes" options:nil];
+  if(self.entry) {
+    [_customFieldsController bind:NSContentArrayBinding toObject:self.entry withKeyPath:@"customAttributes" options:nil];
+  }
+  else if ([_customFieldsController content] != nil ) {
+    [_customFieldsController unbind:NSContentArrayBinding];
+    [_customFieldsController setContent:nil];
+  }
 }
 
 - (void)_bindAutotype {
-  [self.enableAutotypeCheckButton bind:NSValueBinding toObject:self.entry.autotype withKeyPath:@"isEnabled" options:nil];
-  [self.customEntrySequenceTextField bind:NSEnabledBinding toObject:self.entry.autotype withKeyPath:@"isEnabled" options:nil];
-  [self.customEntrySequenceTextField bind:NSValueBinding toObject:self.entry.autotype withKeyPath:@"defaultSequence" options:nil];
-  [_windowAssociationsController bind:NSContentArrayBinding toObject:self.entry.autotype withKeyPath:@"associations" options:nil];
+  if(self.entry) {
+    [self.enableAutotypeCheckButton bind:NSValueBinding toObject:self.entry.autotype withKeyPath:@"isEnabled" options:nil];
+    [self.customEntrySequenceTextField bind:NSEnabledBinding toObject:self.entry.autotype withKeyPath:@"isEnabled" options:nil];
+    [self.customEntrySequenceTextField bind:NSValueBinding toObject:self.entry.autotype withKeyPath:@"defaultSequence" options:nil];
+    [_windowAssociationsController bind:NSContentArrayBinding toObject:self.entry.autotype withKeyPath:@"associations" options:nil];
+  }
+  else {
+    [self.enableAutotypeCheckButton unbind:NSValueBinding];
+    [self.customEntrySequenceTextField unbind:NSEnabledBinding];
+    [self.customEntrySequenceTextField unbind:NSValueBinding];
+    if([_windowAssociationsController content] != nil) {
+      [_windowAssociationsController unbind:NSContentArrayBinding];
+      [_windowAssociationsController setContent:nil];
+    }
+  }
 }
 
 - (void)_toggleEditing:(BOOL)edit {
@@ -313,7 +339,7 @@ typedef NS_ENUM(NSUInteger, MPEntryTab) {
   [_notesTextView setSelectable:edit];
   [_modifiedTextField setEditable:edit];
   [_modifiedTextField setSelectable:edit];
-
+  
 }
 
 @end

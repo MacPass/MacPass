@@ -35,7 +35,6 @@ NSString *const kMPApplciationNameKey = @"applicationName";
 }
 
 - (void)_didPressHotKey {
-  // copy items to pasteboard
   NSArray *documents = [NSApp orderedDocuments];
   MPDocument *currentDocument = nil;
   for(MPDocument *openDocument in documents) {

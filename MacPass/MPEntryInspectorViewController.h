@@ -55,6 +55,9 @@
 - (IBAction)addCustomField:(id)sender;
 - (IBAction)removeCustomField:(id)sender;
 
+- (IBAction)addWindowAssociation:(id)sender;
+- (IBAction)removeWindowAssociation:(id)sender;
+
 - (void)beginEditing;
 - (void)endEditing;
 
