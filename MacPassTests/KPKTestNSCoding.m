@@ -10,11 +10,12 @@
 #import "KPKEntry.h"
 #import "KPKBinary.h"
 #import "KPKAttribute.h"
+#import "KPKXmlElements.h"
 
 @implementation KPKTestNSCoding
 
 - (void)testAttributeCoding {
-  KPKAttribute *attribute = [[KPKAttribute alloc] initWithKey:@"Key" value:@"Value" isProtected:YES];
+  KPKAttribute *attribute = [[KPKAttribute alloc] initWithKey:kKPKXmlKey value:@"Value" isProtected:YES];
   NSData *data =  [self encode:attribute];
   KPKAttribute *copy = [self decode:data ofClass:[KPKAttribute class]];
   
