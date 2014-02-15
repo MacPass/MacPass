@@ -6,11 +6,14 @@
 //  Copyright (c) 2013 HicknHack Software GmbH. All rights reserved.
 //
 
-#import "MPDatabaseLoading.h"
+#import <XCTest/XCTest.h>
 
 #import "MPDocument.h"
-
 #import "KPKTree.h"
+
+@interface MPDatabaseLoading : XCTestCase
+
+@end
 
 @implementation MPDatabaseLoading
 
@@ -20,12 +23,12 @@
   NSURL *url = [myBundle URLForResource:@"Test_Password_1234" withExtension:@"kdb"];
   NSError *error = nil;
   MPDocument *document = [[MPDocument alloc] initWithContentsOfURL:url ofType:@"kdb" error:&error];
-  STAssertNil(error, @"No Error should occur on loading");
-  STAssertNotNil(document, @"Document cannot be nil");
-  STAssertTrue(document.encrypted, @"Loaded but unencrypted should be not decrypted");
-  STAssertTrue([document unlockWithPassword:@"1234" keyFileURL:nil error:&error], @"Should decrypt with password");
-  STAssertNil(error, @"No Error should occur on unlocking with correct password");
-  STAssertTrue((document.tree.minimumVersion = KPKLegacyVersion), @"Minimal Version should not increase with KDB File loaded");
+  XCTAssertNil(error, @"No Error should occur on loading");
+  XCTAssertNotNil(document, @"Document cannot be nil");
+  XCTAssertTrue(document.encrypted, @"Loaded but unencrypted should be not decrypted");
+  XCTAssertTrue([document unlockWithPassword:@"1234" keyFileURL:nil error:&error], @"Should decrypt with password");
+  XCTAssertNil(error, @"No Error should occur on unlocking with correct password");
+  XCTAssertTrue((document.tree.minimumVersion = KPKLegacyVersion), @"Minimal Version should not increase with KDB File loaded");
   //STAssertTrue([document.fileType isEqualToString:[MPDocument fileTypeForVersion:KPKLegacyVersion]], @"File type needs to match opened file");
 }
 
@@ -34,11 +37,11 @@
   NSURL *url = [myBundle URLForResource:@"Test_Password_1234" withExtension:@"kdb"];
   NSError *error = nil;
   MPDocument *document = [[MPDocument alloc] initWithContentsOfURL:url ofType:@"kdb" error:&error];
-  STAssertNil(error, @"No Error should occur on loading");
-  STAssertNotNil(document, @"Document should not be nil");
-  STAssertTrue(document.encrypted, @"Loaded but unencrypted should be not decrypted");
-  STAssertFalse([document unlockWithPassword:@"123" keyFileURL:nil error:&error], @"Decryption should fail");
-  STAssertNotNil(error, @"Error should occur on unlocking with correct password");
+  XCTAssertNil(error, @"No Error should occur on loading");
+  XCTAssertNotNil(document, @"Document should not be nil");
+  XCTAssertTrue(document.encrypted, @"Loaded but unencrypted should be not decrypted");
+  XCTAssertFalse([document unlockWithPassword:@"123" keyFileURL:nil error:&error], @"Decryption should fail");
+  XCTAssertNotNil(error, @"Error should occur on unlocking with correct password");
 }
 
 - (void)testLoadDatabaseVerions2 {
@@ -46,8 +49,8 @@
   NSURL *url = [myBundle URLForResource:@"Test_Password_1234" withExtension:@"kdbx"];
   NSError *error = nil;
   MPDocument *document = [[MPDocument alloc] initWithContentsOfURL:url ofType:@"kdbx" error:&error];
-  STAssertNil(error, @"No Error should occur on loading");
-  STAssertNotNil(document, @"Document cannot be nil");
+  XCTAssertNil(error, @"No Error should occur on loading");
+  XCTAssertNotNil(document, @"Document cannot be nil");
   /*
   STAssertFalse(document.decrypted, @"Document is not decrypted after inital load");
   STAssertTrue([document unlockWithPassword:@"1234" keyFileURL:nil], @"Should decrypt with password");

@@ -6,8 +6,12 @@
 //  Copyright (c) 2013 HicknHack Software GmbH. All rights reserved.
 //
 
-#import "KPKTestKeyfileParsing.h"
+#import <XCTest/XCTest.h>
 #import "NSData+Keyfile.h"
+
+@interface KPKTestKeyfileParsing : XCTestCase
+
+@end
 
 @implementation KPKTestKeyfileParsing
 
@@ -16,32 +20,32 @@
   NSURL *url = [myBundle URLForResource:@"Keepass2Key" withExtension:@"xml"];
   NSError *error;
   NSData *data = [NSData dataWithContentsOfKeyFile:url version:KPKXmlVersion error:&error];
-  STAssertNotNil(data, @"Data should be loaded");
-  STAssertNil(error, @"No error should occur on keyfile loading");
+  XCTAssertNotNil(data, @"Data should be loaded");
+  XCTAssertNil(error, @"No error should occur on keyfile loading");
 }
 
 - (void)testXmlKeyfileLoadingCorruptData {
-  STAssertFalse(NO, @"Not Implemented");
+  XCTAssertFalse(NO, @"Not Implemented");
 }
 
 - (void)testXmlKeyfileLoadingMissingVersion {
-  STAssertFalse(NO, @"Not Implemented");
+  XCTAssertFalse(NO, @"Not Implemented");
 }
 
 - (void)testXmlKeyfileLoadingLowerVersion {
-  STAssertFalse(NO, @"Not Implemented");
+  XCTAssertFalse(NO, @"Not Implemented");
 }
 
 - (void)testXmlKeyfilGeneration {
   NSData *data = [NSData generateKeyfiledataForVersion:KPKXmlVersion];
   // Test if structure is sound;
-  STAssertNotNil(data, @"Keydata should have been generated");
+  XCTAssertNotNil(data, @"Keydata should have been generated");
 }
 
 - (void)testLegacyKeyfileGeneration {
   NSData *data = [NSData generateKeyfiledataForVersion:KPKLegacyVersion];
   // test if strucutre is sound;
-  STAssertNotNil(data, @"Keydata should have been generated");
+  XCTAssertNotNil(data, @"Keydata should have been generated");
 }
 
 @end

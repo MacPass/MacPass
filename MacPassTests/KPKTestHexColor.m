@@ -6,9 +6,14 @@
 //  Copyright (c) 2013 HicknHack Software GmbH. All rights reserved.
 //
 
-#import "KPKTestHexColor.h"
+#import <XCTest/XCTest.h>
 
 #import "NSColor+KeePassKit.h"
+
+
+@interface KPKTestHexColor : XCTestCase
+
+@end
 
 @implementation KPKTestHexColor
 
@@ -21,26 +26,26 @@
   NSColor *green = [NSColor colorWithHexString:greeHex];
   NSColor *blue = [NSColor colorWithHexString:blueHex];
   
-  STAssertEquals([red redComponent], 1.0, @"Red color should have 100% red");
-  STAssertEquals([red blueComponent], 0.0, @"Red color should have 0% blue");
-  STAssertEquals([red greenComponent], 0.0, @"Red color should have 0% green");
+  XCTAssertEqual([red redComponent], 1.0, @"Red color should have 100%% red");
+  XCTAssertEqual([red blueComponent], 0.0, @"Red color should have 0%% blue");
+  XCTAssertEqual([red greenComponent], 0.0, @"Red color should have 0%% green");
   
-  STAssertEquals([green redComponent], 0.0, @"Green color should have 0% red");
-  STAssertEquals([green greenComponent], 1.0, @"Green color should have 100% green");
-  STAssertEquals([green blueComponent], 0.0, @"Green color should have 0% blue");
+  XCTAssertEqual([green redComponent], 0.0, @"Green color should have 0%% red");
+  XCTAssertEqual([green greenComponent], 1.0, @"Green color should have 100%% green");
+  XCTAssertEqual([green blueComponent], 0.0, @"Green color should have 0%% blue");
   
-  STAssertEquals([blue redComponent], 0.0, @"Blue color should have 0% red");
-  STAssertEquals([blue greenComponent], 0.0, @"Blue color should have 0% green");
-  STAssertEquals([blue blueComponent], 1.0, @"Blue color should have 100% blue");
+  XCTAssertEqual([blue redComponent], 0.0, @"Blue color should have 0%% red");
+  XCTAssertEqual([blue greenComponent], 0.0, @"Blue color should have 0%% green");
+  XCTAssertEqual([blue blueComponent], 1.0, @"Blue color should have 100%% blue");
 }
 
 - (void)testColorRefReading {
   uint32_t colorBytes = 0x000000FF;
   NSData *colorData = [NSData dataWithBytesNoCopy:&colorBytes length:3 freeWhenDone:NO];
   NSColor *color = [NSColor colorWithData:colorData];
-  STAssertEquals([color redComponent], 1.0, @"Red 100%");
-  STAssertEquals([color greenComponent], 0.0, @"Green 0%");
-  STAssertEquals([color blueComponent], 0.0, @"Blue 100%");
+  XCTAssertEqual([color redComponent], 1.0, @"Red 100%%");
+  XCTAssertEqual([color greenComponent], 0.0, @"Green 0%%");
+  XCTAssertEqual([color blueComponent], 0.0, @"Blue 100%%");
 }
 
 - (void)testColorRefWriting {
@@ -48,7 +53,7 @@
   NSData *colorData = [NSData dataWithBytesNoCopy:&colorBytes length:4 freeWhenDone:NO];
   NSColor *color = [NSColor colorWithData:colorData];
   NSData *newData = [color colorData];
-  STAssertEqualObjects(colorData, newData, @"Convertion should result in same data");
+  XCTAssertEqualObjects(colorData, newData, @"Convertion should result in same data");
 }
 
 @end

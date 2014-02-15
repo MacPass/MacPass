@@ -6,11 +6,17 @@
 //  Copyright (c) 2013 HicknHack Software GmbH. All rights reserved.
 //
 
-#import "KPKTestXmlParsing.h"
+
+#import <XCTest/XCTest.h>
+
 #import "KPKXmlTreeReader.h"
 #import "KPKErrors.h"
 
 #import "DDXMLDocument.h"
+
+@interface KPKTestXmlParsing : XCTestCase
+
+@end
 
 @implementation KPKTestXmlParsing
 
@@ -19,9 +25,9 @@
   KPKXmlTreeReader *reader = [[KPKXmlTreeReader alloc] initWithData:[document XMLData] headerReader:nil];
   NSError *error;
   KPKTree *tree = [reader tree:&error];
-  STAssertNil(tree, @"No Tree form emptry data");
-  STAssertNotNil(error, @"Error Object should be provided");
-  STAssertTrue([error code] == KPKErrorNoData, @"Error Code should be No Data");
+  XCTAssertNil(tree, @"No Tree form emptry data");
+  XCTAssertNotNil(error, @"Error Object should be provided");
+  XCTAssertTrue([error code] == KPKErrorNoData, @"Error Code should be No Data");
 }
 
 - (void)testNoNodeXmlFile {
@@ -29,9 +35,9 @@
   KPKXmlTreeReader *reader = [[KPKXmlTreeReader alloc] initWithData:[document XMLData] headerReader:nil];
   NSError *error;
   KPKTree *tree = [reader tree:&error];
-  STAssertNil(tree, @"No Tree form emptry data");
-  STAssertNotNil(error, @"Error Object should be provided");
-  STAssertTrue([error code] == KPKErrorXMLKeePassFileElementMissing, @"Error Code should be KeePassFile root missing");
+  XCTAssertNil(tree, @"No Tree form emptry data");
+  XCTAssertNotNil(error, @"Error Object should be provided");
+  XCTAssertTrue([error code] == KPKErrorXMLKeePassFileElementMissing, @"Error Code should be KeePassFile root missing");
 }
 
 - (void)testNoRoodXmlFil {
@@ -39,9 +45,9 @@
   KPKXmlTreeReader *reader = [[KPKXmlTreeReader alloc] initWithData:[document XMLData] headerReader:nil];
   NSError *error;
   KPKTree *tree = [reader tree:&error];
-  STAssertNil(tree, @"No Tree form emptry data");
-  STAssertNotNil(error, @"Error Object should be provided");
-  STAssertTrue([error code] == KPKErrorXMLMetaElementMissing, @"Error Code should be KeePassFile root missing");
+  XCTAssertNil(tree, @"No Tree form emptry data");
+  XCTAssertNotNil(error, @"Error Object should be provided");
+  XCTAssertTrue([error code] == KPKErrorXMLMetaElementMissing, @"Error Code should be KeePassFile root missing");
 }
 
 @end

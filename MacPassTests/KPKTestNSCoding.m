@@ -6,11 +6,16 @@
 //  Copyright (c) 2013 HicknHack Software GmbH. All rights reserved.
 //
 
-#import "KPKTestNSCoding.h"
+
+#import <XCTest/XCTest.h>
 #import "KPKEntry.h"
 #import "KPKBinary.h"
 #import "KPKAttribute.h"
 #import "KPKXmlElements.h"
+
+@interface KPKTestNSCoding : XCTestCase
+
+@end
 
 @implementation KPKTestNSCoding
 
@@ -19,13 +24,13 @@
   NSData *data =  [self encode:attribute];
   KPKAttribute *copy = [self decode:data ofClass:[KPKAttribute class]];
   
-  STAssertTrue([copy.value isEqualToString:attribute.value], @"Values should be preseved");
-  STAssertTrue([copy.key isEqualToString:attribute.key], @"Keys should be preserved");
-  STAssertTrue(copy.isProtected == attribute.isProtected, @"Protected status should be the same");
+  XCTAssertTrue([copy.value isEqualToString:attribute.value], @"Values should be preseved");
+  XCTAssertTrue([copy.key isEqualToString:attribute.key], @"Keys should be preserved");
+  XCTAssertTrue(copy.isProtected == attribute.isProtected, @"Protected status should be the same");
 }
 
 - (void)testBinaryCoding {
-
+  XCTFail(@"Not Tested");
 }
 
 - (void)testEntryCoding {
@@ -49,19 +54,19 @@
   NSData *encodedData = [self encode:entry];
   KPKEntry *copyEntry = [self decode:encodedData ofClass:[KPKEntry class]];
   
-  STAssertNotNil(copyEntry, @"Copied Entry cannot be nil");
-  STAssertTrue([copyEntry.title isEqualToString:entry.title], @"Titles should match");
-  STAssertTrue([copyEntry.url isEqualToString:entry.url], @"URLS should match");
-  STAssertTrue([copyEntry.binaries count] == 1, @"Binareis should be copied");
+  XCTAssertNotNil(copyEntry, @"Copied Entry cannot be nil");
+  XCTAssertTrue([copyEntry.title isEqualToString:entry.title], @"Titles should match");
+  XCTAssertTrue([copyEntry.url isEqualToString:entry.url], @"URLS should match");
+  XCTAssertTrue([copyEntry.binaries count] == 1, @"Binareis should be copied");
 
   KPKBinary *copiedBinary = [copyEntry.binaries lastObject];
-  STAssertTrue([copiedBinary.data isEqualToData:binary.data], @"Binary data should match");
-  STAssertTrue([copiedBinary.name isEqualToString:binary.name], @"Binary names should macht");
+  XCTAssertTrue([copiedBinary.data isEqualToData:binary.data], @"Binary data should match");
+  XCTAssertTrue([copiedBinary.name isEqualToString:binary.name], @"Binary names should macht");
 }
 
 
 - (void)testGroupCoding {
-  
+  XCTFail(@"Not Implemented");
 }
 
 

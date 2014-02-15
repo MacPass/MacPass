@@ -6,10 +6,16 @@
 //  Copyright (c) 2013 HicknHack Software GmbH. All rights reserved.
 //
 
-#import "MPDatabasePasswordAndKeyfile.h"
+
+#import <XCTest/XCTest.h>
 
 #import "MPDocument.h"
 #import "KPKCompositeKey.h"
+
+@interface MPDatabasePasswordAndKeyfile : XCTestCase {
+  MPDocument *_database;
+}
+@end
 
 @implementation MPDatabasePasswordAndKeyfile
 
@@ -22,9 +28,9 @@
 }
 
 - (void)testSetPassword {
-  STAssertNil(_database.compositeKey, @"New database should not have a composite key");
-  STAssertTrue([_database changePassword:@"password" keyFileURL:nil], @"Setting the Password should succeed");
-  STAssertFalse([_database changePassword:nil keyFileURL:nil], @"resetting the password and key to nil should not work");
+  XCTAssertNil(_database.compositeKey, @"New database should not have a composite key");
+  XCTAssertTrue([_database changePassword:@"password" keyFileURL:nil], @"Setting the Password should succeed");
+  XCTAssertFalse([_database changePassword:nil keyFileURL:nil], @"resetting the password and key to nil should not work");
 }
 
 - (void)testSetKeyfile {/*
