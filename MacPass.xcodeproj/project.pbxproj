@@ -235,6 +235,7 @@
 		4CCEDE2A179F203B008402BE /* MPOutlineView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CCEDE29179F203B008402BE /* MPOutlineView.m */; };
 		4CCEDE2E179F213B008402BE /* MPNotifications.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CCEDE2D179F213B008402BE /* MPNotifications.m */; };
 		4CCEDE32179F5B6C008402BE /* KPKDataStreamReader.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CCEDE31179F5B6C008402BE /* KPKDataStreamReader.m */; };
+		4CD25F9318B17A17006098E9 /* KPKTestUUIDAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CD25F9218B17A17006098E9 /* KPKTestUUIDAdditions.m */; };
 		4CD2B9061849424B0051B395 /* MPAutotypeContext.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CD2B9051849424B0051B395 /* MPAutotypeContext.m */; };
 		4CD3ABBA178F71B50073F5C5 /* KPKTree.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CD3ABB4178F71B50073F5C5 /* KPKTree.m */; };
 		4CD3ABBF178F72610073F5C5 /* KPKEntry.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CD3ABBE178F72610073F5C5 /* KPKEntry.m */; };
@@ -756,6 +757,7 @@
 		4CCEDE2F179F550D008402BE /* KPKTreeReading.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KPKTreeReading.h; sourceTree = "<group>"; };
 		4CCEDE30179F5B6C008402BE /* KPKDataStreamReader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KPKDataStreamReader.h; sourceTree = "<group>"; };
 		4CCEDE31179F5B6C008402BE /* KPKDataStreamReader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KPKDataStreamReader.m; sourceTree = "<group>"; };
+		4CD25F9218B17A17006098E9 /* KPKTestUUIDAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KPKTestUUIDAdditions.m; sourceTree = "<group>"; };
 		4CD2B9041849424B0051B395 /* MPAutotypeContext.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MPAutotypeContext.h; sourceTree = "<group>"; };
 		4CD2B9051849424B0051B395 /* MPAutotypeContext.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MPAutotypeContext.m; sourceTree = "<group>"; };
 		4CD3ABB2178F71B50073F5C5 /* KPKVersion.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; name = KPKVersion.h; path = Format/KPKVersion.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
@@ -1238,6 +1240,7 @@
 				4C6FDD2017BC4F4C004AEEC8 /* KPKTestPlaceholder.m */,
 				4CBA561517C2EA4900CE13D3 /* KPKTestXmlWriting.m */,
 				4C473A7E18AFD6340073FD2E /* KPKTestReference.m */,
+				4CD25F9218B17A17006098E9 /* KPKTestUUIDAdditions.m */,
 			);
 			path = MacPassTests;
 			sourceTree = "<group>";
@@ -2033,6 +2036,7 @@
 				4C45FB2D178E0BCB0010007D /* MPDatabaseLoading.m in Sources */,
 				4C45FB30178E0CE20010007D /* MPDatabaseCreation.m in Sources */,
 				4C473A7F18AFD6340073FD2E /* KPKTestReference.m in Sources */,
+				4CD25F9318B17A17006098E9 /* KPKTestUUIDAdditions.m in Sources */,
 				4C19E503178E2871002F2CD0 /* MPDatabasePasswordAndKeyfile.m in Sources */,
 				4C305F3C179A19F90082334F /* KPKIconLoading.m in Sources */,
 				4C1842B8179B348600E2F5BC /* KPKTestLegacyLoading.m in Sources */,
