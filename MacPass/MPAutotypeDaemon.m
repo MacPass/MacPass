@@ -34,6 +34,11 @@ NSString *const kMPApplciationNameKey = @"applicationName";
   NSAssert(NO,@"Not Implemented");
 }
 
+- (void)executeAutotypeWithSelectedMatch:(id)sender {
+  NSMenuItem *item = [self.matchSelectionButton selectedItem];
+  MPAutotypeContext *context = [item representedObject];
+}
+
 - (void)_didPressHotKey {
   NSArray *documents = [NSApp orderedDocuments];
   MPDocument *currentDocument = nil;
@@ -59,14 +64,14 @@ NSString *const kMPApplciationNameKey = @"applicationName";
    Query the document to generate a autotype command list for the window title
    We do not care where this came form, just get the autotype commands
    */
-  NSArray *autotypeCandidates = [[currentDocument autotypContextsForWindowTitle:windowTitle] lastObject];
+  NSArray *autotypeCandidates = [currentDocument autotypContextsForWindowTitle:windowTitle];
   NSUInteger candiates = [autotypeCandidates count];
   if(candiates == 0) {
     return; // No Entries found.
   }
-  
   if(candiates > 1) {
-    // open Dialog to select from possible entries
+    [self _presentSelectionWindow];
+    return; // Nothing to do, we get called back by the window
   }
   /* Just in case it's not there anymore, order the app for the window we want to autotype back to the foreground! */
   [self _orderApplicationToFront:applicationName];
@@ -113,11 +118,22 @@ NSString *const kMPApplciationNameKey = @"applicationName";
   return nil;
 }
 
+- (void)_presentSelectionWindow {
+  if(!self.matchSelectionWindow) {
+    [[NSBundle mainBundle] loadNibNamed:@"AutotypeCandidateSelectionWindow" owner:self topLevelObjects:nil];
+    [self.performAutotypeButton setTarget:self];
+    [self.performAutotypeButton setAction:@selector(executeAutotypeWithSelectedMatch:)];
+  }
+  [self.matchSelectionWindow makeKeyAndOrderFront:self];
+  /* Setup Items in Popup */
+}
+
 - (void)_orderApplicationToFront:(NSString *)applicationName {
   NSString *appleScript = [[NSString alloc] initWithFormat:@"activate application %@", applicationName];
   NSAppleScript *script = [[NSAppleScript alloc] initWithSource:appleScript];
   NSDictionary *error;
   [script executeAndReturnError:&error];
 }
+
 
 @end

@@ -31,6 +31,9 @@
 @implementation MPDocument (Autotype)
 
 - (NSArray *)autotypContextsForWindowTitle:(NSString *)windowTitle {
+  if(!windowTitle) {
+    return nil;
+  }
   NSArray *autotypeEntries = [self.root autotypeableChildEntries];
   NSMutableArray *contexts = [[NSMutableArray alloc] initWithCapacity:ceil([autotypeEntries count] / 4.0)];
   for(KPKEntry *entry in autotypeEntries) {

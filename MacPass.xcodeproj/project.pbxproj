@@ -18,6 +18,7 @@
 		4C0728BF17B68ED0005A7DD9 /* SavePanelAccessoryView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4C0728BE17B68ED0005A7DD9 /* SavePanelAccessoryView.xib */; };
 		4C08C3AE17B3022400BBBC95 /* KPKLegacyHeaderWriter.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C08C3AD17B3022400BBBC95 /* KPKLegacyHeaderWriter.m */; };
 		4C0C59F118B17F10009C7B76 /* DDHotKeyUtilities.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C0C59EF18B17F10009C7B76 /* DDHotKeyUtilities.m */; };
+		4C0DD6C618B2A44700FCB193 /* AutotypeCandidateSelectionWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4C0DD6C518B2A44700FCB193 /* AutotypeCandidateSelectionWindow.xib */; };
 		4C0F647817B6B65E00D9522A /* MPSheetWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C0F647717B6B65E00D9522A /* MPSheetWindowController.m */; };
 		4C0F647B17B6BC9C00D9522A /* MPSavePanelAccessoryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C0F647A17B6BC9C00D9522A /* MPSavePanelAccessoryViewController.m */; };
 		4C10412C178CDD44001B5239 /* NSDate+Humanized.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C10412B178CDD44001B5239 /* NSDate+Humanized.m */; };
@@ -364,6 +365,7 @@
 		4C08C3AF17B3036500BBBC95 /* KPKLegacyFormat.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = KPKLegacyFormat.h; path = Format/KPKLegacyFormat.h; sourceTree = "<group>"; };
 		4C0C59EF18B17F10009C7B76 /* DDHotKeyUtilities.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DDHotKeyUtilities.m; path = DDHotKey/DDHotKeyUtilities.m; sourceTree = "<group>"; };
 		4C0C59F018B17F10009C7B76 /* DDHotKeyUtilities.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DDHotKeyUtilities.h; path = DDHotKey/DDHotKeyUtilities.h; sourceTree = "<group>"; };
+		4C0DD6C518B2A44700FCB193 /* AutotypeCandidateSelectionWindow.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AutotypeCandidateSelectionWindow.xib; sourceTree = "<group>"; };
 		4C0F647617B6B65E00D9522A /* MPSheetWindowController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MPSheetWindowController.h; sourceTree = "<group>"; };
 		4C0F647717B6B65E00D9522A /* MPSheetWindowController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MPSheetWindowController.m; sourceTree = "<group>"; };
 		4C0F647917B6BC9C00D9522A /* MPSavePanelAccessoryViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MPSavePanelAccessoryViewController.h; sourceTree = "<group>"; };
@@ -1762,6 +1764,7 @@
 				4CD5D701177A5EE400100649 /* DatabaseSettingsWindow.xib */,
 				4C0728B917B5B7A4005A7DD9 /* PasswordEditWindow.xib */,
 				4C68456E17BC2A0700FCDBFC /* WelcomeWindow.xib */,
+				4C0DD6C518B2A44700FCB193 /* AutotypeCandidateSelectionWindow.xib */,
 			);
 			name = Windows;
 			sourceTree = "<group>";
@@ -2008,6 +2011,7 @@
 				4C7ABA4917BAEC6700FF5799 /* 16_BrowserTemplate.pdf in Resources */,
 				4C7ABA4A17BAEC6700FF5799 /* 17_CDRomTemplate.pdf in Resources */,
 				4C7ABA4B17BAEC6700FF5799 /* 19_EmailTemplate.pdf in Resources */,
+				4C0DD6C618B2A44700FCB193 /* AutotypeCandidateSelectionWindow.xib in Resources */,
 				4C7ABA4C17BAEC6700FF5799 /* 20_MiscTemplate.pdf in Resources */,
 				4C7ABA4E17BAEC7000FF5799 /* addEntryTemplate.pdf in Resources */,
 				4C53A7A51864C39D000DFF0D /* KPKLocalizeable.strings in Resources */,
