@@ -25,7 +25,7 @@
             <rect key="frame" x="0.0" y="0.0" width="400" height="418"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
             <subviews>
-                <box autoresizesSubviews="NO" title="General" borderType="line" translatesAutoresizingMaskIntoConstraints="NO" id="928">
+                <box autoresizesSubviews="NO" verticalHuggingPriority="500" title="General" borderType="line" translatesAutoresizingMaskIntoConstraints="NO" id="928">
                     <rect key="frame" x="17" y="266" width="366" height="54"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                     <view key="contentView">
@@ -49,7 +49,7 @@
                     <color key="borderColor" white="0.0" alpha="0.41999999999999998" colorSpace="calibratedWhite"/>
                     <color key="fillColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                 </box>
-                <box autoresizesSubviews="NO" verticalHuggingPriority="251" title="Security" borderType="line" translatesAutoresizingMaskIntoConstraints="NO" id="465">
+                <box autoresizesSubviews="NO" verticalHuggingPriority="500" title="Security" borderType="line" translatesAutoresizingMaskIntoConstraints="NO" id="465">
                     <rect key="frame" x="17" y="16" width="366" height="246"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                     <view key="contentView">
@@ -143,7 +143,7 @@
                                     <font key="font" metaFont="system"/>
                                 </buttonCell>
                             </button>
-                            <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" fixedFrame="YES" setsMaxLayoutWidthAtFirstLayout="YES" translatesAutoresizingMaskIntoConstraints="NO" id="5cV-xX-SUU">
+                            <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" setsMaxLayoutWidthAtFirstLayout="YES" translatesAutoresizingMaskIntoConstraints="NO" id="5cV-xX-SUU">
                                 <rect key="frame" x="16" y="43" width="332" height="56"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <textFieldCell key="cell" sendsActionOnEndEditing="YES" id="ACh-7H-42N">
@@ -180,18 +180,22 @@
                         <constraint firstItem="419" firstAttribute="leading" secondItem="584" secondAttribute="leading" id="876"/>
                         <constraint firstItem="419" firstAttribute="bottom" secondItem="431" secondAttribute="bottom" id="916"/>
                         <constraint firstItem="630" firstAttribute="top" secondItem="805" secondAttribute="bottom" constant="8" id="952"/>
+                        <constraint firstItem="5cV-xX-SUU" firstAttribute="trailing" secondItem="oQr-FC-HkN" secondAttribute="trailing" id="C45-9A-zjv"/>
+                        <constraint firstItem="oQr-FC-HkN" firstAttribute="top" secondItem="5cV-xX-SUU" secondAttribute="bottom" constant="8" id="GaD-sG-RBr"/>
+                        <constraint firstItem="5cV-xX-SUU" firstAttribute="top" secondItem="bSt-Wf-FNZ" secondAttribute="bottom" constant="9" id="Jsm-ij-y9e"/>
                         <constraint firstItem="oQr-FC-HkN" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="465" secondAttribute="leading" constant="16" id="XAl-D7-I6k"/>
                         <constraint firstItem="bSt-Wf-FNZ" firstAttribute="top" secondItem="630" secondAttribute="bottom" constant="11" id="XUI-7v-CA4"/>
                         <constraint firstItem="805" firstAttribute="top" secondItem="447" secondAttribute="bottom" constant="8" symbolic="YES" id="XhN-Ce-ut7"/>
                         <constraint firstItem="bSt-Wf-FNZ" firstAttribute="leading" secondItem="805" secondAttribute="leading" id="hcg-pe-Vtb"/>
                         <constraint firstAttribute="bottom" secondItem="oQr-FC-HkN" secondAttribute="bottom" constant="11" id="tDO-89-9Iu"/>
+                        <constraint firstItem="5cV-xX-SUU" firstAttribute="leading" secondItem="bSt-Wf-FNZ" secondAttribute="leading" id="tau-hs-tz4"/>
                         <constraint firstItem="447" firstAttribute="top" secondItem="419" secondAttribute="bottom" constant="8" symbolic="YES" id="xZh-T3-USE"/>
                         <constraint firstAttribute="trailing" secondItem="oQr-FC-HkN" secondAttribute="trailing" constant="16" id="xjj-cL-rTz"/>
                     </constraints>
                     <color key="borderColor" white="0.0" alpha="0.41999999999999998" colorSpace="calibratedWhite"/>
                     <color key="fillColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                 </box>
-                <box autoresizesSubviews="NO" title="Startup" borderType="line" translatesAutoresizingMaskIntoConstraints="NO" id="888">
+                <box autoresizesSubviews="NO" verticalHuggingPriority="500" title="Startup" borderType="line" translatesAutoresizingMaskIntoConstraints="NO" id="888">
                     <rect key="frame" x="17" y="324" width="366" height="74"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                     <view key="contentView">
@@ -239,7 +243,6 @@
                 <constraint firstAttribute="trailing" secondItem="928" secondAttribute="trailing" constant="20" symbolic="YES" id="947"/>
                 <constraint firstItem="465" firstAttribute="top" secondItem="928" secondAttribute="bottom" constant="8" symbolic="YES" id="949"/>
                 <constraint firstItem="465" firstAttribute="top" secondItem="1" secondAttribute="top" constant="156" id="950"/>
-                <constraint firstAttribute="height" constant="418" id="otH-bj-MWy"/>
                 <constraint firstAttribute="bottom" secondItem="465" secondAttribute="bottom" constant="20" symbolic="YES" id="uwq-az-XwJ"/>
             </constraints>
         </customView>

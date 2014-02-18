@@ -33,6 +33,7 @@ NSString *const kMPSettingsKeyRememeberdKeysForDatabases    = @"RememeberdKeysFo
 NSString *const kMPSettingsKeyRememberKeyFilesForDatabases  = @"RememberKeyFilesForDatabases";
 
 NSString *const kMPSettingsKeySendCommandForControlKey      = @"SendCommandKeyForControlKey";
+NSString *const kMPSettingsKeyEnableGlobalAutotype          = @"EnableGlobalAutotype";
 
 NSString *const kMPSettingsKeyEntrySearchFilterMode         = @"EntrySearchFilterMode";
 
@@ -66,7 +67,8 @@ NSString *const kMPSettingsKeyEntrySearchFilterMode         = @"EntrySearchFilte
            kMPSettingsKeyLegacyHideUsername: @NO,
            kMPSettingsKeyRememberKeyFilesForDatabases: @NO,
            kMPSettingsKeySendCommandForControlKey: @YES,
-           kMPSettingsKeyEntrySearchFilterMode: @0
+           kMPSettingsKeyEntrySearchFilterMode: @0,
+           kMPSettingsKeyEnableGlobalAutotype: @NO,
            };
 }
 

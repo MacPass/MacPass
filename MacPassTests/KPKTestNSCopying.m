@@ -10,6 +10,7 @@
 #import "KPKEntry.h"
 #import "KPKAttribute.h"
 #import "KPKBinary.h"
+#import "KPKXmlElements.h"
 
 @interface KPKTestNSCopying : XCTestCase
 
@@ -18,7 +19,7 @@
 @implementation KPKTestNSCopying
 
 - (void)testAttributeCopying {
-  KPKAttribute *attribute = [[KPKAttribute alloc] initWithKey:@"Key" value:@"Value" isProtected:NO];
+  KPKAttribute *attribute = [[KPKAttribute alloc] initWithKey:@"Key" value:kKPKXmlValue isProtected:NO];
   KPKAttribute *copy = [attribute copy];
   
   attribute.key = @"NewKey";
@@ -27,7 +28,7 @@
   
   XCTAssertNotNil(copy, @"Copy shoule exist");
   XCTAssertTrue([copy.key isEqualToString:@"Key"], @"Copy key should be key");
-  XCTAssertTrue([copy.value isEqualToString:@"Value"], @"Copy value should be value");
+  XCTAssertTrue([copy.value isEqualToString:kKPKXmlValue], @"Copy value should be value");
   XCTAssertFalse(copy.isProtected, @"Copy should not be protected");
 }
 
@@ -47,7 +48,7 @@
   binary.name = @"Binary";
   
   [entry addBinary:binary];
-  [entry addCustomAttribute:[[KPKAttribute alloc] initWithKey:@"Custom" value:@"Value" isProtected:NO]];
+  [entry addCustomAttribute:[[KPKAttribute alloc] initWithKey:@"Custom" value:kKPKXmlValue isProtected:NO]];
 
   KPKEntry *copyEntry = [entry copy];
   

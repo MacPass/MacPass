@@ -48,6 +48,7 @@ APPKIT_EXTERN NSString *const kMPSettingsKeyRememberKeyFilesForDatabases;
 
 /* Autotype */
 APPKIT_EXTERN NSString *const kMPSettingsKeySendCommandForControlKey;
+APPKIT_EXTERN NSString *const kMPSettingsKeyEnableGlobalAutotype;
 
 /* Search */
 APPKIT_EXTERN NSString *const kMPSettingsKeyEntrySearchFilterMode;

@@ -16,7 +16,7 @@
             <rect key="frame" x="0.0" y="0.0" width="400" height="95"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
             <subviews>
-                <button translatesAutoresizingMaskIntoConstraints="NO" id="Z6x-oU-NC5">
+                <button verticalHuggingPriority="500" translatesAutoresizingMaskIntoConstraints="NO" id="Z6x-oU-NC5">
                     <rect key="frame" x="21" y="59" width="228" height="18"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                     <constraints>
@@ -35,7 +35,7 @@
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                     <popUpButtonCell key="cell" type="push" bezelStyle="rounded" alignment="left" lineBreakMode="truncatingTail" borderStyle="borderAndBezel" imageScaling="proportionallyDown" inset="2" id="Hl5-gO-B1c">
                         <behavior key="behavior" lightByBackground="YES" lightByGray="YES"/>
-                        <font key="font" metaFont="system"/>
+                        <font key="font" metaFont="menu"/>
                         <menu key="menu" title="OtherViews" id="RKd-H8-eCF">
                             <items>
                                 <menuItem title="every Hour" tag="3600" id="DjF-1I-6Nq"/>
@@ -69,7 +69,6 @@
                 <constraint firstItem="Z6x-oU-NC5" firstAttribute="top" secondItem="1" secondAttribute="top" constant="20" symbolic="YES" id="Njn-tR-NbV"/>
                 <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="pWJ-eJ-MBf" secondAttribute="trailing" constant="20" symbolic="YES" id="QsU-uT-lfo"/>
                 <constraint firstItem="ckg-9t-MDS" firstAttribute="leading" secondItem="Z6x-oU-NC5" secondAttribute="leading" id="W0y-Rp-Ucq"/>
-                <constraint firstItem="Z6x-oU-NC5" firstAttribute="top" relation="greaterThanOrEqual" secondItem="1" secondAttribute="top" constant="20" symbolic="YES" id="fNf-ak-FhF"/>
                 <constraint firstItem="pWJ-eJ-MBf" firstAttribute="top" secondItem="Z6x-oU-NC5" secondAttribute="bottom" constant="20" symbolic="YES" id="fhM-Ri-Op9"/>
                 <constraint firstItem="ckg-9t-MDS" firstAttribute="baseline" secondItem="pWJ-eJ-MBf" secondAttribute="baseline" id="ozZ-bW-f7y"/>
                 <constraint firstAttribute="bottom" secondItem="pWJ-eJ-MBf" secondAttribute="bottom" constant="20" symbolic="YES" id="pHW-e8-EU6"/>

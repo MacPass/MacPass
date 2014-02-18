@@ -6,30 +6,30 @@
 //  Copyright (c) 2013 HicknHack Software GmbH. All rights reserved.
 //
 
-#import "MPServerSettingsController.h"
+#import "MPIntegrationSettingsController.h"
 #import "MPSettingsHelper.h"
 #import "MPIconHelper.h"
 
-@interface MPServerSettingsController ()
+@interface MPIntegrationSettingsController ()
 
 @end
 
-@implementation MPServerSettingsController
+@implementation MPIntegrationSettingsController
 
 - (NSString *)identifier {
-  return @"ServerSettings";
+  return @"Integration";
 }
 
 - (NSImage *)image {
-  return [NSImage imageNamed:NSImageNameNetwork];
+  return [NSImage imageNamed:NSImageNameComputer];
 }
 
 - (NSString *)label {
-  return NSLocalizedString(@"SERVER_SETTINGS", "");
+  return NSLocalizedString(@"INTEGRATION_SETTINGS", "");
 }
 
 - (id)init {
-  self = [super initWithNibName:@"ServerSettings" bundle:nil];
+  self = [super initWithNibName:@"IntegrationSettings" bundle:nil];
   return self;
 }
 

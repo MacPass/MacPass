@@ -9,7 +9,7 @@
 #import "MPViewController.h"
 #import "MPSettingsTab.h"
 
-@interface MPServerSettingsController : MPViewController <MPSettingsTab>
+@interface MPIntegrationSettingsController : MPViewController <MPSettingsTab>
 
 @property (weak) IBOutlet NSButton *enableServerCheckbutton;
 

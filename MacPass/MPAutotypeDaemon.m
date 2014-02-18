@@ -12,6 +12,7 @@
 #import "MPDocument.h"
 #import "MPDocument+Autotype.h"
 #import "MPAutotypeCommand.h"
+#import "MPSettingsHelper.h"
 
 #import "KPKEntry.h"
 
@@ -20,14 +21,29 @@
 NSString *const kMPWindowTitleKey = @"windowTitle";
 NSString *const kMPApplciationNameKey = @"applicationName";
 
+@interface MPAutotypeDaemon ()
+
+@property (nonatomic, assign) BOOL enabled;
+
+@end
+
 @implementation MPAutotypeDaemon
 
 - (id)init {
   self = [super init];
   if (self) {
-    [self _registerHotKey];
+    _enabled = NO;
+    [[NSUserDefaults standardUserDefaults] bind:kMPSettingsKeyEnableGlobalAutotype toObject:self withKeyPath:@"enabled" options:nil];
   }
   return self;
+}
+
+#pragma mark Properties
+- (void)setEnabled:(BOOL)enabled {
+  if(_enabled != enabled) {
+    _enabled = enabled;
+    self.enabled ? [self _registerHotKey] : [self _unregisterHotKey];
+  }
 }
 
 - (void)exectureAutotypeForEntry:(KPKEntry *)entry withWindowTitle:(NSString *)title {
@@ -99,6 +115,10 @@ NSString *const kMPApplciationNameKey = @"applicationName";
                                                           target:self
                                                           action:@selector(_didPressHotKey)
                                                           object:nil];
+}
+
+- (void)_unregisterHotKey {
+  [[DDHotKeyCenter sharedHotKeyCenter] unregisterHotKeysWithTarget:self action:@selector(_didPressHotKey)];
 }
 
 - (NSDictionary *)_frontMostApplicationInfoDict {

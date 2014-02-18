@@ -8,7 +8,7 @@
 
 #import "MPSettingsWindowController.h"
 #import "MPGeneralSettingsController.h"
-#import "MPServerSettingsController.h"
+#import "MPIntegrationSettingsController.h"
 #import "MPWorkflowSettingsController.h"
 #import "MPUpdateSettingsController.h"
 
@@ -116,18 +116,18 @@
 
 - (void)_setupDefaultSettingsTabs {
   MPGeneralSettingsController *generalSettingsController = [[MPGeneralSettingsController alloc] init];
-  MPServerSettingsController *serverSettingsController = [[MPServerSettingsController alloc] init];
+  MPIntegrationSettingsController *integrationSettingsController = [[MPIntegrationSettingsController alloc] init];
   MPWorkflowSettingsController *workflowSettingsController = [[MPWorkflowSettingsController alloc] init];
   MPUpdateSettingsController *updateSettingsController = [[MPUpdateSettingsController alloc] init];
   
   [self _addSettingsTab:generalSettingsController];
-  [self _addSettingsTab:serverSettingsController];
+  [self _addSettingsTab:integrationSettingsController];
   [self _addSettingsTab:workflowSettingsController];
   [self _addSettingsTab:updateSettingsController];
 
   self.defaultToolbarItems = @[ [generalSettingsController identifier],
+                                [integrationSettingsController identifier],
                                 [workflowSettingsController identifier],
-                                [serverSettingsController identifier],
                                 [updateSettingsController identifier]];
   
 

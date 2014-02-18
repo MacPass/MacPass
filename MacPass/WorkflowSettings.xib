@@ -17,7 +17,7 @@
             <rect key="frame" x="0.0" y="0.0" width="400" height="157"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
             <subviews>
-                <box autoresizesSubviews="NO" title="Entry Table" borderType="line" translatesAutoresizingMaskIntoConstraints="NO" id="2">
+                <box autoresizesSubviews="NO" verticalHuggingPriority="500" title="Entry Table" borderType="line" translatesAutoresizingMaskIntoConstraints="NO" id="2">
                     <rect key="frame" x="17" y="16" width="366" height="92"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                     <view key="contentView">
@@ -118,7 +118,6 @@
                 <constraint firstAttribute="trailing" secondItem="2" secondAttribute="trailing" constant="20" symbolic="YES" id="8"/>
                 <constraint firstAttribute="bottom" secondItem="2" secondAttribute="bottom" constant="20" symbolic="YES" id="51"/>
                 <constraint firstAttribute="width" constant="400" id="53"/>
-                <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="128" id="54"/>
                 <constraint firstItem="2" firstAttribute="top" secondItem="ehI-gq-lsb" secondAttribute="bottom" constant="8" symbolic="YES" id="CnN-aU-Qa1"/>
                 <constraint firstItem="ehI-gq-lsb" firstAttribute="leading" secondItem="lOo-NI-b07" secondAttribute="trailing" constant="8" symbolic="YES" id="KxB-TG-rH5"/>
                 <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="ehI-gq-lsb" secondAttribute="trailing" constant="20" symbolic="YES" id="Ldw-aO-wuX"/>

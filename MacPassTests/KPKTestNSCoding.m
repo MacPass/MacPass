@@ -20,7 +20,7 @@
 @implementation KPKTestNSCoding
 
 - (void)testAttributeCoding {
-  KPKAttribute *attribute = [[KPKAttribute alloc] initWithKey:kKPKXmlKey value:@"Value" isProtected:YES];
+  KPKAttribute *attribute = [[KPKAttribute alloc] initWithKey:kKPKXmlKey value:kKPKXmlValue isProtected:YES];
   NSData *data =  [self encode:attribute];
   KPKAttribute *copy = [self decode:data ofClass:[KPKAttribute class]];
   
@@ -49,7 +49,7 @@
   binary.name = @"Binary";
   
   [entry addBinary:binary];
-  [entry addCustomAttribute:[[KPKAttribute alloc] initWithKey:@"Custom" value:@"Value" isProtected:NO]];
+  [entry addCustomAttribute:[[KPKAttribute alloc] initWithKey:@"Custom" value:kKPKXmlValue isProtected:NO]];
 
   NSData *encodedData = [self encode:entry];
   KPKEntry *copyEntry = [self decode:encodedData ofClass:[KPKEntry class]];
