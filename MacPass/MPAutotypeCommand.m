@@ -15,6 +15,12 @@
 
 @implementation MPAutotypeCommand
 
++ (NSArray *)commandsForContext:(MPAutotypeContext *)context {
+  NSError *error;
+  NSRegularExpression *regularExpression = [[NSRegularExpression alloc] initWithPattern:@"" options:0 error:&error];
+  return nil;
+}
+
 - (void)sendPressKey:(CGKeyCode)keyCode modifierFlags:(CGEventFlags)flags {
   CGEventRef pressKey = CGEventCreateKeyboardEvent (NULL, keyCode, YES);
   CGEventRef releaseKey = CGEventCreateKeyboardEvent (NULL, keyCode, NO);

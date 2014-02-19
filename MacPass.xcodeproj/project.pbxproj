@@ -125,6 +125,7 @@
 		4C586FA216D07F6A00E7DB57 /* 02_MessageBoxWarningTemplate.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 4C586FA116D07F6A00E7DB57 /* 02_MessageBoxWarningTemplate.pdf */; };
 		4C58BD4F176370B100B8178C /* HNHBadgedTextField.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C58BD4E176370B100B8178C /* HNHBadgedTextField.m */; };
 		4C591B57178F897A0080B16B /* KPKBinary.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C591B56178F897A0080B16B /* KPKBinary.m */; };
+		4C59745118B3CE7200C8EBD1 /* KPKTestAutotypeNormalization.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C59745018B3CE7200C8EBD1 /* KPKTestAutotypeNormalization.m */; };
 		4C5A11FE1708DE8700223D8A /* MPPasswordCreatorViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C5A11FC1708DE8700223D8A /* MPPasswordCreatorViewController.m */; };
 		4C5A11FF1708DE8800223D8A /* PasswordCreatorView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4C5A11FD1708DE8700223D8A /* PasswordCreatorView.xib */; };
 		4C5AA591179549A1008ECAD7 /* KPKXmlTreeWriter.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C5AA590179549A1008ECAD7 /* KPKXmlTreeWriter.m */; };
@@ -233,7 +234,6 @@
 		4CC6DB7A17D23719002C6091 /* KPKNode+IconImage.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CC6DB7917D23719002C6091 /* KPKNode+IconImage.m */; };
 		4CC6DB7D17D23DCE002C6091 /* KPKUTIs.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CC6DB7C17D23DCE002C6091 /* KPKUTIs.m */; };
 		4CC7EA1B17807E7E0089D4F3 /* HNHRoundedTextFieldCellHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CC7EA1A17807E7E0089D4F3 /* HNHRoundedTextFieldCellHelper.m */; };
-		4CC87EA31847FDDA005AA18D /* MPAutotypeParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CC87EA21847FDDA005AA18D /* MPAutotypeParser.m */; };
 		4CCEDE2A179F203B008402BE /* MPOutlineView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CCEDE29179F203B008402BE /* MPOutlineView.m */; };
 		4CCEDE2E179F213B008402BE /* MPNotifications.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CCEDE2D179F213B008402BE /* MPNotifications.m */; };
 		4CCEDE32179F5B6C008402BE /* KPKDataStreamReader.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CCEDE31179F5B6C008402BE /* KPKDataStreamReader.m */; };
@@ -364,7 +364,7 @@
 		4C08C3AD17B3022400BBBC95 /* KPKLegacyHeaderWriter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KPKLegacyHeaderWriter.m; sourceTree = "<group>"; };
 		4C08C3AF17B3036500BBBC95 /* KPKLegacyFormat.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = KPKLegacyFormat.h; path = Format/KPKLegacyFormat.h; sourceTree = "<group>"; };
 		4C0C59EF18B17F10009C7B76 /* DDHotKeyUtilities.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DDHotKeyUtilities.m; path = DDHotKey/DDHotKeyUtilities.m; sourceTree = "<group>"; };
-		4C0C59F018B17F10009C7B76 /* DDHotKeyUtilities.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DDHotKeyUtilities.h; path = DDHotKey/DDHotKeyUtilities.h; sourceTree = "<group>"; };
+		4C0C59F018B17F10009C7B76 /* DDHotKeyUtilities.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; name = DDHotKeyUtilities.h; path = DDHotKey/DDHotKeyUtilities.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
 		4C0DD6C518B2A44700FCB193 /* AutotypeCandidateSelectionWindow.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AutotypeCandidateSelectionWindow.xib; sourceTree = "<group>"; };
 		4C0F647617B6B65E00D9522A /* MPSheetWindowController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MPSheetWindowController.h; sourceTree = "<group>"; };
 		4C0F647717B6B65E00D9522A /* MPSheetWindowController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MPSheetWindowController.m; sourceTree = "<group>"; };
@@ -452,15 +452,15 @@
 		4C245B60176E1E3D0086100E /* GCDAsyncSocket.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GCDAsyncSocket.h; sourceTree = "<group>"; };
 		4C245B61176E1E3D0086100E /* GCDAsyncSocket.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GCDAsyncSocket.m; sourceTree = "<group>"; };
 		4C245B64176E1E3D0086100E /* DDAbstractDatabaseLogger.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DDAbstractDatabaseLogger.h; sourceTree = "<group>"; };
-		4C245B65176E1E3D0086100E /* DDAbstractDatabaseLogger.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DDAbstractDatabaseLogger.m; sourceTree = "<group>"; };
+		4C245B65176E1E3D0086100E /* DDAbstractDatabaseLogger.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = DDAbstractDatabaseLogger.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		4C245B66176E1E3D0086100E /* DDASLLogger.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DDASLLogger.h; sourceTree = "<group>"; };
 		4C245B67176E1E3D0086100E /* DDASLLogger.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DDASLLogger.m; sourceTree = "<group>"; };
 		4C245B68176E1E3D0086100E /* DDFileLogger.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DDFileLogger.h; sourceTree = "<group>"; };
-		4C245B69176E1E3D0086100E /* DDFileLogger.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DDFileLogger.m; sourceTree = "<group>"; };
+		4C245B69176E1E3D0086100E /* DDFileLogger.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = DDFileLogger.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		4C245B6A176E1E3D0086100E /* DDLog.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DDLog.h; sourceTree = "<group>"; };
-		4C245B6B176E1E3D0086100E /* DDLog.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DDLog.m; sourceTree = "<group>"; };
+		4C245B6B176E1E3D0086100E /* DDLog.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = DDLog.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		4C245B6C176E1E3D0086100E /* DDTTYLogger.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DDTTYLogger.h; sourceTree = "<group>"; };
-		4C245B6D176E1E3D0086100E /* DDTTYLogger.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DDTTYLogger.m; sourceTree = "<group>"; };
+		4C245B6D176E1E3D0086100E /* DDTTYLogger.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = DDTTYLogger.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		4C245B6F176E1E3D0086100E /* ContextFilterLogFormatter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ContextFilterLogFormatter.h; sourceTree = "<group>"; };
 		4C245B70176E1E3D0086100E /* ContextFilterLogFormatter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ContextFilterLogFormatter.m; sourceTree = "<group>"; };
 		4C245B71176E1E3D0086100E /* DispatchQueueLogFormatter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DispatchQueueLogFormatter.h; sourceTree = "<group>"; };
@@ -552,6 +552,7 @@
 		4C58BD4E176370B100B8178C /* HNHBadgedTextField.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HNHBadgedTextField.m; sourceTree = "<group>"; };
 		4C591B55178F897A0080B16B /* KPKBinary.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KPKBinary.h; sourceTree = "<group>"; };
 		4C591B56178F897A0080B16B /* KPKBinary.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KPKBinary.m; sourceTree = "<group>"; };
+		4C59745018B3CE7200C8EBD1 /* KPKTestAutotypeNormalization.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KPKTestAutotypeNormalization.m; sourceTree = "<group>"; };
 		4C5A11FB1708DE8700223D8A /* MPPasswordCreatorViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MPPasswordCreatorViewController.h; sourceTree = "<group>"; };
 		4C5A11FC1708DE8700223D8A /* MPPasswordCreatorViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MPPasswordCreatorViewController.m; sourceTree = "<group>"; };
 		4C5A11FD1708DE8700223D8A /* PasswordCreatorView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PasswordCreatorView.xib; sourceTree = "<group>"; };
@@ -751,8 +752,6 @@
 		4CC6DB7C17D23DCE002C6091 /* KPKUTIs.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KPKUTIs.m; sourceTree = "<group>"; };
 		4CC7EA1917807E7E0089D4F3 /* HNHRoundedTextFieldCellHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HNHRoundedTextFieldCellHelper.h; sourceTree = "<group>"; };
 		4CC7EA1A17807E7E0089D4F3 /* HNHRoundedTextFieldCellHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HNHRoundedTextFieldCellHelper.m; sourceTree = "<group>"; };
-		4CC87EA11847FDDA005AA18D /* MPAutotypeParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MPAutotypeParser.h; sourceTree = "<group>"; };
-		4CC87EA21847FDDA005AA18D /* MPAutotypeParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MPAutotypeParser.m; sourceTree = "<group>"; };
 		4CCA7EEC1797866F00B0B55E /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/GeneralSettings.strings; sourceTree = "<group>"; };
 		4CCA7EEE1797867200B0B55E /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/GeneralSettings.strings; sourceTree = "<group>"; };
 		4CCEDE28179F203B008402BE /* MPOutlineView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MPOutlineView.h; sourceTree = "<group>"; };
@@ -1248,6 +1247,7 @@
 				4CBA561517C2EA4900CE13D3 /* KPKTestXmlWriting.m */,
 				4C473A7E18AFD6340073FD2E /* KPKTestReference.m */,
 				4CD25F9218B17A17006098E9 /* KPKTestUUIDAdditions.m */,
+				4C59745018B3CE7200C8EBD1 /* KPKTestAutotypeNormalization.m */,
 			);
 			path = MacPassTests;
 			sourceTree = "<group>";
@@ -1428,8 +1428,6 @@
 				4C90757B18A42E7A00E598DA /* Commands */,
 				4CEE46DB181C301D006BF1E5 /* MPAutotypeDaemon.h */,
 				4CEE46DC181C301D006BF1E5 /* MPAutotypeDaemon.m */,
-				4CC87EA11847FDDA005AA18D /* MPAutotypeParser.h */,
-				4CC87EA21847FDDA005AA18D /* MPAutotypeParser.m */,
 				4CD2B9041849424B0051B395 /* MPAutotypeContext.h */,
 				4CD2B9051849424B0051B395 /* MPAutotypeContext.m */,
 				4CA3530918A53CB800839B0F /* MPKeyMapper.h */,
@@ -2065,6 +2063,7 @@
 				4C6366AF17AF207600AAF17D /* KPKTestHexColor.m in Sources */,
 				4CE76DAD17B3AD010043B82B /* KPKHashedDataTest.m in Sources */,
 				4CEAF85B17BA9B44001307A6 /* KPKTestKeyfileParsing.m in Sources */,
+				4C59745118B3CE7200C8EBD1 /* KPKTestAutotypeNormalization.m in Sources */,
 				4C6FDD2117BC4F4C004AEEC8 /* KPKTestPlaceholder.m in Sources */,
 				4CBA561617C2EA4900CE13D3 /* KPKTestXmlWriting.m in Sources */,
 			);
@@ -2095,7 +2094,6 @@
 				4C61EA0316D2FD0800AC519E /* MPOutlineViewController.m in Sources */,
 				4C69A73A16D589DF00EC1B1A /* HNHGradientView.m in Sources */,
 				4C65C79C16DD283900E32CFF /* MPToolbarButton.m in Sources */,
-				4CC87EA31847FDDA005AA18D /* MPAutotypeParser.m in Sources */,
 				4C431BCD16E2A82800700A81 /* MPPasteBoardController.m in Sources */,
 				4CE8246F16E2E93400573141 /* MPOverlayWindowController.m in Sources */,
 				4CE8247516E2F2B900573141 /* MPOverlayView.m in Sources */,

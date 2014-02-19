@@ -22,7 +22,7 @@
 
 #import <Cocoa/Cocoa.h>
 
-extern NSString *const MPDidChangeStoredKeyFilesSettings;
+FOUNDATION_EXTERN NSString *const MPDidChangeStoredKeyFilesSettings;
 
 @interface MPAppDelegate : NSObject <NSApplicationDelegate, NSMenuDelegate>
 

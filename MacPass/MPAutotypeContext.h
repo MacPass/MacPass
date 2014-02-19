@@ -11,12 +11,20 @@
 @class KPKEntry;
 @class KPKWindowAssociation;
 
+/**
+ *  Context for a autotype command run.
+ *  It stores the Entry and corresponding sequence to use for autotyping
+ */
 @interface MPAutotypeContext : NSObject <NSCopying>
 
+/**
+ *  The entry associated with the command sequence.
+ */
 @property (nonatomic, strong) KPKEntry *entry;
+/**
+ *  The command in normalized (see NSString+Commands)
+ */
 @property (nonatomic, copy) NSString *command;
-@property (nonatomic, assign, readonly) BOOL isCommand;
-@property (nonatomic, assign) NSInteger value;
 
 /**
  *  Designated initializer

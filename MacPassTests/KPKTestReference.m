@@ -25,8 +25,7 @@
   KPKEntry *entry1 = [[KPKEntry alloc] init];
   KPKEntry *entry2 = [[KPKEntry alloc] init];
   entry1.title = @"-Entry1Title-";
-  NSString *title2 = [[NSString alloc] initWithFormat:@"Nothing{REF:T@I:%@}Changed", entry1.uuid.UUIDString];
-  entry2.title = title2;
+  entry2.title = [[NSString alloc] initWithFormat:@"Nothing{REF:T@I:%@}Changed", entry1.uuid.UUIDString];;
   entry2.url = @"-Entry2URL-";
   
   [group addEntry:entry1];
@@ -42,10 +41,8 @@
   KPKGroup *group = [[KPKGroup alloc] init];
   KPKEntry *entry1 = [[KPKEntry alloc] init];
   KPKEntry *entry2 = [[KPKEntry alloc] init];
-  NSString *title1 = [[NSString alloc] initWithFormat:@"Title1{REF:A@I:%@}", entry2.uuid.UUIDString];
-  entry1.title = title1; // References URL of entry 2
-  NSString *title2 = [[NSString alloc] initWithFormat:@"Nothing{REF:T@I:%@}Changed", entry1.uuid.UUIDString];
-  entry2.title = title2; // Refernces Title of entry 1
+  entry1.title = [[NSString alloc] initWithFormat:@"Title1{REF:A@I:%@}", entry2.uuid.UUIDString];
+  entry2.title = [[NSString alloc] initWithFormat:@"Nothing{REF:T@I:%@}Changed", entry1.uuid.UUIDString];
   entry2.url = @"-Entry2URL-";
   
   [group addEntry:entry1];

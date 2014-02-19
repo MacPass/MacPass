@@ -5,6 +5,19 @@
 //  Created by Michael Starke on 07.02.14.
 //  Copyright (c) 2014 HicknHack Software GmbH. All rights reserved.
 //
+//  Uses Code from:
+//  SRKeyCodeTransformer.h
+//  ShortcutRecorder
+//
+//  Copyright 2006-2007 Contributors. All rights reserved.
+//
+//  License: BSD
+//
+//  Contributors:
+//      David Dauer
+//      Jesper
+//      Jamie Kirkpatrick
+
 
 #import "MPKeyMapper.h"
 
@@ -17,20 +30,14 @@ uint16_t const kMPUnknownKeyCode = UINT16_MAX;
 + (NSString *)stringForKey:(CGKeyCode)keyCode {
   TISInputSourceRef currentKeyboard = TISCopyCurrentKeyboardInputSource();
   CFDataRef layoutData = TISGetInputSourceProperty(currentKeyboard,kTISPropertyUnicodeKeyLayoutData);
+
+  if(!layoutData) {
+    currentKeyboard = TISCopyCurrentASCIICapableKeyboardLayoutInputSource();
+    layoutData = (CFDataRef)TISGetInputSourceProperty(currentKeyboard, kTISPropertyUnicodeKeyLayoutData);
+  }
   CFRelease(currentKeyboard);
   
   const UCKeyboardLayout *keyboardLayout = (const UCKeyboardLayout *)CFDataGetBytePtr(layoutData);
-  /*
-   Fallback for non-unicode Keyboards taken from to SRKeyCodeTransformer.m
-   Copyright 2006-2007 Contributors. All rights reserved.
-   License: BSD
-   Contributors: David Dauer, Jesper, Jamie Kirkpatrick
-   */
-  if(!keyboardLayout) {
-    currentKeyboard = TISCopyCurrentASCIICapableKeyboardLayoutInputSource();
-    layoutData = (CFDataRef)TISGetInputSourceProperty(currentKeyboard, kTISPropertyUnicodeKeyLayoutData);
-    CFRelease(currentKeyboard);
-  }
   
   UInt32 keysDown = 0;
   UniChar chars[4];

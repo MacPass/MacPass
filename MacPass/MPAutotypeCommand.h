@@ -19,6 +19,8 @@
 
 @property (readonly, strong) MPAutotypeContext *context;
 
+
++ (NSArray *)commandsForContext:(MPAutotypeContext *)context;
 /**
  *  Sends a KeyPress Event with the supplied modifier flags and Keycode
  *  Any existing modifiers will be disabled for this event. If the user

@@ -8,7 +8,7 @@
 
 #import "MPViewController.h"
 
-extern NSInteger const kMPDefaultIcon;
+FOUNDATION_EXTERN NSInteger const kMPDefaultIcon;
 
 @interface MPIconSelectViewController : MPViewController <NSCollectionViewDelegate>
 

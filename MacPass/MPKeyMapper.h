@@ -8,7 +8,7 @@
 
 #import <Foundation/Foundation.h>
 
-extern uint16_t const kMPUnknownKeyCode;
+FOUNDATION_EXTERN uint16_t const kMPUnknownKeyCode;
 
 @interface MPKeyMapper : NSObject
 
