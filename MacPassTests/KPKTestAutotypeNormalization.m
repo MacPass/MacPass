@@ -8,6 +8,10 @@
 
 #import <XCTest/XCTest.h>
 #import "NSString+Commands.h"
+#import "MPAutotypeCommand.h"
+#import "MPAutotypeContext.h"
+
+#import "KPKEntry.h"
 
 @interface KPKTestAutotypeNormalization : XCTestCase
 
@@ -34,4 +38,14 @@
   XCTAssertTrue([@"{}{}{}{}{}{      }ThisIsValid{}{STOP}" validateCommmand]);
 }
 
+- (void)testCommandCreation {
+  KPKEntry *entry = [[KPKEntry alloc] init];
+  entry.title = @"Title";
+  entry.url = @"www.myurl.com";
+  entry.username = @"Username";
+  entry.password = @"Password";
+  
+  MPAutotypeContext *context = [[MPAutotypeContext alloc] initWithEntry:entry andSequence:@"{USERNAME}{TAB}{PASSWORD}{ENTER}"];
+  NSArray *commands = [MPAutotypeCommand commandsForContext:context];
+}
 @end

@@ -24,8 +24,8 @@
 /**
  *  The Autotype command as it's supplied by the entry
  */
-@property (nonatomic, copy) NSString *command;
-@property (nonatomic, copy) NSString *normalizedCommand;
+@property (nonatomic, readonly, copy) NSString *command;
+@property (nonatomic, readonly, copy) NSString *normalizedCommand;
 
 /**
  *  Designated initializer
@@ -44,5 +44,7 @@
  *  @return YES if valid, NO otherwise
  */
 - (BOOL)isValid;
+
+- (NSString *)evaluatedCommand;
 
 @end

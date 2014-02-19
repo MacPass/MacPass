@@ -40,8 +40,18 @@
   return copy;
 }
 
+
 - (BOOL)isValid {
   return (self.normalizedCommand != nil);
+}
+
+- (NSString *)evaluatedCommand {
+  static NSString *evaluated;
+  if(!evaluated) {
+    NSString *placeholderFilled = [self.normalizedCommand evaluatePlaceholderWithEntry:self.entry];
+    evaluated = [placeholderFilled resolveReferencesWithTree:self.entry.tree];
+  }
+  return evaluated;
 }
 
 @end

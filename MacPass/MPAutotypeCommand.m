@@ -20,37 +20,30 @@
 @implementation MPAutotypeCommand
 
 + (NSArray *)commandsForContext:(MPAutotypeContext *)context {
-  if([context isValid]) {
+  if(![context isValid]) {
     return nil;
   }
-  NSMutableArray *commands = [[NSMutableArray alloc] initWithCapacity:10];
-  BOOL outsideCommand = YES;
-  NSString *unparsedCommand = context.normalizedCommand;
-  while(YES) {
-    /* Outside Command */
-    if(outsideCommand) {
-      NSRange openingBracketRange = [unparsedCommand rangeOfString:@"{"];
-      if(openingBracketRange.location != NSNotFound && openingBracketRange.length == 1) {
-        outsideCommand = NO;
-        NSString *skipped = [unparsedCommand substringToIndex:openingBracketRange.location];
-        unparsedCommand = [unparsedCommand substringFromIndex:openingBracketRange.location + 1];
-      }
-      else {
-        /* No more opeing brackets, stop - or none at all */
-        [self appendPasteCommandForContent:unparsedCommand toCommands:commands];
-        break;
-      }
+  NSUInteger reserverd = [context.normalizedCommand length] / 4;
+  NSMutableArray *commands = [[NSMutableArray alloc] initWithCapacity:reserverd];
+  NSMutableArray __block *commandRanges = [[NSMutableArray alloc] initWithCapacity:reserverd];
+  NSRegularExpression *commandRegExp = [[NSRegularExpression alloc] initWithPattern:@"\\{[^\\}]+\\}" options:NSRegularExpressionCaseInsensitive error:0];
+  NSAssert(commandRegExp, @"RegExp is constant. Has to work all the time");
+  [commandRegExp enumerateMatchesInString:context.normalizedCommand options:0 range:NSMakeRange(0, [context.normalizedCommand length]) usingBlock:^(NSTextCheckingResult *result, NSMatchingFlags flags, BOOL *stop) {
+    @autoreleasepool {
+      [commandRanges addObject:[NSValue valueWithRange:result.range]];
     }
-    /* Inside Command */
-    else {
-      NSRange closingBracketRange = [unparsedCommand rangeOfString:@"}"];
-      if(closingBracketRange.location == NSNotFound || closingBracketRange.length != 1) {
-        return nil;
-      }
-      outsideCommand = NO;
+  }];
+  NSUInteger skipped = 0;
+  for(NSValue *rangeValue in commandRanges) {
+    NSRange range = [rangeValue rangeValue];
+    /* All non-commands will get translated into paste commands */
+    if(range.location > skipped) {
+      NSString *pasteValue = [context.normalizedCommand substringWithRange:NSMakeRange(skipped, range.location - skipped)];
+      [self appendPasteCommandForContent:pasteValue toCommands:commands];
+      skipped = range.location;
     }
   }
-  return commands;
+  return nil;
 }
 
 + (MPAutotypeCommand *)appendPasteCommandForContent:(NSString *)pasteContent toCommands:(NSMutableArray *)commands {
