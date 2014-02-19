@@ -8,6 +8,8 @@
 
 #import "MPAutotypeCommand.h"
 
+#import "MPAutotypePaste.h"
+
 #import "MPAutotypeContext.h"
 #import "MPKeyMapper.h"
 
@@ -21,19 +23,47 @@
   if([context isValid]) {
     return nil;
   }
+  NSMutableArray *commands = [[NSMutableArray alloc] initWithCapacity:10];
   BOOL outsideCommand = YES;
-  NSInteger currentIndex;
+  NSString *unparsedCommand = context.normalizedCommand;
   while(YES) {
+    /* Outside Command */
     if(outsideCommand) {
-      NSRange openingBracketRange = [context.normalizedCommand rangeOfString:@"{"];
+      NSRange openingBracketRange = [unparsedCommand rangeOfString:@"{"];
       if(openingBracketRange.location != NSNotFound && openingBracketRange.length == 1) {
+        outsideCommand = NO;
+        NSString *skipped = [unparsedCommand substringToIndex:openingBracketRange.location];
+        unparsedCommand = [unparsedCommand substringFromIndex:openingBracketRange.location + 1];
+      }
+      else {
+        /* No more opeing brackets, stop - or none at all */
+        [self appendPasteCommandForContent:unparsedCommand toCommands:commands];
+        break;
       }
     }
+    /* Inside Command */
     else {
+      NSRange closingBracketRange = [unparsedCommand rangeOfString:@"}"];
+      if(closingBracketRange.location == NSNotFound || closingBracketRange.length != 1) {
+        return nil;
+      }
+      outsideCommand = NO;
     }
-    
   }
-  return nil;
+  return commands;
+}
+
++ (MPAutotypeCommand *)appendPasteCommandForContent:(NSString *)pasteContent toCommands:(NSMutableArray *)commands {
+  if(pasteContent) {
+    MPAutotypePaste *pasteCommand = [[MPAutotypePaste alloc] initWithString:pasteContent];
+    [commands addObject:pasteCommand];
+  }
+}
+
++ (MPAutotypeCommand *)appendCommandForString:(NSString *)commandString toCommands:(NSMutableArray *)commands {
+  if(commandString) {
+    /* Find appropriate command */
+  }
 }
 
 - (void)sendPressKey:(CGKeyCode)keyCode modifierFlags:(CGEventFlags)flags {
