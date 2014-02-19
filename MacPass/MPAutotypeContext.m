@@ -28,7 +28,7 @@
 - (instancetype)initWithEntry:(KPKEntry *)entry andSequence:(NSString *)sequence {
   self = [super init];
   if(self) {
-    _command = [[sequence normalizedCommand] copy];
+    _command = [[sequence normalizedAutotypeSequence] copy];
     _entry = entry;
   }
   return self;
