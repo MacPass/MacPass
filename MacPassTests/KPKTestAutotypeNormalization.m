@@ -16,7 +16,8 @@
 @implementation KPKTestAutotypeNormalization
 
 - (void)testNormalization {
-  @"Whoo {%}";
+  NSString *normalized = [@"Whoo %{%}{^}{SHIFT}+ {SPACE}{ENTER}^V%V~T" normalizedCommand];
+  XCTAssertTrue([normalized isEqualToString:@"Whoo{SPACE}{ALT}{%}{^}{SHIFT}{SHIFT}{SPACE}{SPACE}{ENTER}{CONTROL}V{ALT}V{ENTER}T"], @"Normalization shoudl resutl in supplied string");
 }
 
 @end
