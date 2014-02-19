@@ -7,15 +7,19 @@
 //
 
 #import "MPAutotypeDaemon.h"
-#import "DDHotKeyCenter.h"
-#import "MPPasteBoardController.h"
 #import "MPDocument.h"
+
 #import "MPDocument+Autotype.h"
 #import "MPAutotypeCommand.h"
+#import "MPAutotypeContext.h"
+
+#import "MPPasteBoardController.h"
 #import "MPSettingsHelper.h"
+
 
 #import "KPKEntry.h"
 
+#import "DDHotKeyCenter.h"
 #import <Carbon/Carbon.h>
 
 NSString *const kMPWindowTitleKey = @"windowTitle";
@@ -33,9 +37,16 @@ NSString *const kMPApplciationNameKey = @"applicationName";
   self = [super init];
   if (self) {
     _enabled = NO;
-    [[NSUserDefaults standardUserDefaults] bind:kMPSettingsKeyEnableGlobalAutotype toObject:self withKeyPath:@"enabled" options:nil];
+    [self bind:@"enabled"
+      toObject:[NSUserDefaultsController sharedUserDefaultsController]
+   withKeyPath:[MPSettingsHelper defaultControllerPathForKey:kMPSettingsKeyEnableGlobalAutotype]
+       options:nil];
   }
   return self;
+}
+
+- (void)dealloc {
+  [self unbind:@"enabled"];
 }
 
 #pragma mark Properties
@@ -53,6 +64,8 @@ NSString *const kMPApplciationNameKey = @"applicationName";
 - (void)executeAutotypeWithSelectedMatch:(id)sender {
   NSMenuItem *item = [self.matchSelectionButton selectedItem];
   MPAutotypeContext *context = [item representedObject];
+  [self.matchSelectionWindow orderOut:self];
+  
 }
 
 - (void)_didPressHotKey {
@@ -86,7 +99,7 @@ NSString *const kMPApplciationNameKey = @"applicationName";
     return; // No Entries found.
   }
   if(candiates > 1) {
-    [self _presentSelectionWindow];
+    [self _presentSelectionWindow:autotypeCandidates];
     return; // Nothing to do, we get called back by the window
   }
   /* Just in case it's not there anymore, order the app for the window we want to autotype back to the foreground! */
@@ -138,12 +151,24 @@ NSString *const kMPApplciationNameKey = @"applicationName";
   return nil;
 }
 
-- (void)_presentSelectionWindow {
+- (void)_presentSelectionWindow:(NSArray *)candidates {
   if(!self.matchSelectionWindow) {
     [[NSBundle mainBundle] loadNibNamed:@"AutotypeCandidateSelectionWindow" owner:self topLevelObjects:nil];
     [self.performAutotypeButton setTarget:self];
     [self.performAutotypeButton setAction:@selector(executeAutotypeWithSelectedMatch:)];
+    [self.matchSelectionWindow setLevel:NSFloatingWindowLevel];
   }
+  NSMenu *associationMenu = [[NSMenu alloc] init];
+  [associationMenu addItemWithTitle:NSLocalizedString(@"SELECT_AUTOTYPE_CANDIDATE", "") action:NULL keyEquivalent:@""];
+  [associationMenu addItem:[NSMenuItem separatorItem]];
+  [associationMenu setAutoenablesItems:NO];
+  for(MPAutotypeContext *context in candidates) {
+    NSString *title = [[NSString alloc] initWithFormat:@"%@: %@", context.entry.title, context.command];
+    NSMenuItem *item = [[NSMenuItem alloc] initWithTitle:title action:0 keyEquivalent:@""];
+    [item setRepresentedObject:context];
+    [associationMenu addItem:item];
+  }
+  [self.matchSelectionButton setMenu:associationMenu];
   [self.matchSelectionWindow makeKeyAndOrderFront:self];
   /* Setup Items in Popup */
 }

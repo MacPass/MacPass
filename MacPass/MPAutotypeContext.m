@@ -28,8 +28,9 @@
 - (instancetype)initWithEntry:(KPKEntry *)entry andSequence:(NSString *)sequence {
   self = [super init];
   if(self) {
-    _command = [[sequence normalizedAutotypeSequence] copy];
+    _command = [sequence copy];
     _entry = entry;
+    _normalizedCommand = [[sequence normalizedAutotypeSequence] copy];
   }
   return self;
 }
@@ -37,6 +38,10 @@
 - (id)copyWithZone:(NSZone *)zone {
   MPAutotypeContext *copy = [[MPAutotypeContext alloc] initWithEntry:self.entry andSequence:self.command];
   return copy;
+}
+
+- (BOOL)isValid {
+  return (self.normalizedCommand != nil);
 }
 
 @end

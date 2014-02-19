@@ -7,17 +7,32 @@
 //
 
 #import "MPAutotypeCommand.h"
-#import "NSString+Commands.h"
 
+#import "MPAutotypeContext.h"
 #import "MPKeyMapper.h"
+
+#import "NSString+Commands.h"
 
 #import <Carbon/Carbon.h>
 
 @implementation MPAutotypeCommand
 
 + (NSArray *)commandsForContext:(MPAutotypeContext *)context {
-  NSError *error;
-  NSRegularExpression *regularExpression = [[NSRegularExpression alloc] initWithPattern:@"" options:0 error:&error];
+  if([context isValid]) {
+    return nil;
+  }
+  BOOL outsideCommand = YES;
+  NSInteger currentIndex;
+  while(YES) {
+    if(outsideCommand) {
+      NSRange openingBracketRange = [context.normalizedCommand rangeOfString:@"{"];
+      if(openingBracketRange.location != NSNotFound && openingBracketRange.length == 1) {
+      }
+    }
+    else {
+    }
+    
+  }
   return nil;
 }
 

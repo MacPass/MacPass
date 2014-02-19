@@ -22,9 +22,10 @@
  */
 @property (nonatomic, strong) KPKEntry *entry;
 /**
- *  The command in normalized (see NSString+Commands)
+ *  The Autotype command as it's supplied by the entry
  */
 @property (nonatomic, copy) NSString *command;
+@property (nonatomic, copy) NSString *normalizedCommand;
 
 /**
  *  Designated initializer
@@ -37,5 +38,11 @@
 - (instancetype)initWithEntry:(KPKEntry *)entry andSequence:(NSString *)sequence;
 - (instancetype)initWithDefaultSequenceForEntry:(KPKEntry *)entry;
 - (instancetype)initWithWindowAssociation:(KPKWindowAssociation *)association;
+/**
+ *  Returns YES if the given sequence is valid (currentyl only bracke missmatch is regarded as invalid
+ *
+ *  @return YES if valid, NO otherwise
+ */
+- (BOOL)isValid;
 
 @end

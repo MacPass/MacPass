@@ -48,7 +48,7 @@
       KPKWindowAssociation *association = [entry.autotype windowAssociationMatchingWindowTitle:windowTitle];
       context = [[MPAutotypeContext alloc] initWithWindowAssociation:association];
     }
-    if(context) {
+    if([context isValid]) {
       [contexts addObject:context];
     }
   }
