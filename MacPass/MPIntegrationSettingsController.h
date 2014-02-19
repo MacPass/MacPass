@@ -12,5 +12,6 @@
 @interface MPIntegrationSettingsController : MPViewController <MPSettingsTab>
 
 @property (weak) IBOutlet NSButton *enableServerCheckbutton;
+@property (weak) IBOutlet NSButton *enableGlobalAutotypeCheckbutton;
 
 @end

@@ -35,9 +35,11 @@
 
 - (void)didLoadView {
   NSUserDefaultsController *defaultsController = [NSUserDefaultsController sharedUserDefaultsController];
-  NSString *serverKeyPath = [NSString stringWithFormat:@"values.%@", kMPSettingsKeyEnableHttpServer];
+  NSString *serverKeyPath = [MPSettingsHelper defaultControllerPathForKey:kMPSettingsKeyEnableHttpServer];
+  NSString *globalAutotypeKeyPath = [MPSettingsHelper defaultControllerPathForKey:kMPSettingsKeyEnableGlobalAutotype];
   [self.enableServerCheckbutton bind:NSValueBinding toObject:defaultsController withKeyPath:serverKeyPath options:nil];
   [self.enableServerCheckbutton setEnabled:NO];
+  [self.enableGlobalAutotypeCheckbutton bind:NSValueBinding toObject:defaultsController withKeyPath:globalAutotypeKeyPath options:nil];
 }
 
 @end

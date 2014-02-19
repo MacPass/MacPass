@@ -7,6 +7,7 @@
     <objects>
         <customObject id="-2" userLabel="File's Owner" customClass="MPIntegrationSettingsController">
             <connections>
+                <outlet property="enableGlobalAutotypeCheckbutton" destination="tik-Ar-FJg" id="d2f-69-2BP"/>
                 <outlet property="enableServerCheckbutton" destination="2" id="17"/>
                 <outlet property="view" destination="1" id="18"/>
             </connections>
