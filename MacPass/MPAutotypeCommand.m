@@ -116,7 +116,7 @@
 }
 
 + (void)appendCommandForString:(NSString *)commandString toCommands:(NSMutableArray *)commands {
-  MPAutotypeCommand *
+  MPAutotypeCommand *command;
   if(!commandString) {
     NSDictionary *modifier = [self modifierCommands];
   }
