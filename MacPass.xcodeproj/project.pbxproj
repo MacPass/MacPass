@@ -275,6 +275,7 @@
 		4CEE46DD181C301D006BF1E5 /* MPAutotypeDaemon.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CEE46DC181C301D006BF1E5 /* MPAutotypeDaemon.m */; };
 		4CEED1C617D7BD0E007180F1 /* NSError+Messages.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CEED1C517D7BD0E007180F1 /* NSError+Messages.m */; };
 		4CF29BF417879D0000851B60 /* 26_FileSaveTemplate.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 4CF29BF317879D0000851B60 /* 26_FileSaveTemplate.pdf */; };
+		4CF5CF7418B7C81600B0C026 /* NSWindow+Shake.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CF5CF7318B7C81600B0C026 /* NSWindow+Shake.m */; };
 		4CF62B86179385D700B660B6 /* KPKAttribute.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CF62B85179385D700B660B6 /* KPKAttribute.m */; };
 		4CF6C711176F4533007A811D /* MPStringLengthValueTransformer.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CF6C710176F4533007A811D /* MPStringLengthValueTransformer.m */; };
 		4CF6C718176F5234007A811D /* MPAssociateRequestHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CF6C717176F5234007A811D /* MPAssociateRequestHandler.m */; };
@@ -824,6 +825,8 @@
 		4CEED1C417D7BD0E007180F1 /* NSError+Messages.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSError+Messages.h"; sourceTree = "<group>"; };
 		4CEED1C517D7BD0E007180F1 /* NSError+Messages.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSError+Messages.m"; sourceTree = "<group>"; };
 		4CF29BF317879D0000851B60 /* 26_FileSaveTemplate.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = 26_FileSaveTemplate.pdf; sourceTree = "<group>"; };
+		4CF5CF7218B7C81600B0C026 /* NSWindow+Shake.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "NSWindow+Shake.h"; path = "Categories/NSWindow+Shake.h"; sourceTree = "<group>"; };
+		4CF5CF7318B7C81600B0C026 /* NSWindow+Shake.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "NSWindow+Shake.m"; path = "Categories/NSWindow+Shake.m"; sourceTree = "<group>"; };
 		4CF62B84179385D700B660B6 /* KPKAttribute.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KPKAttribute.h; sourceTree = "<group>"; };
 		4CF62B85179385D700B660B6 /* KPKAttribute.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KPKAttribute.m; sourceTree = "<group>"; };
 		4CF6C70F176F4533007A811D /* MPStringLengthValueTransformer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MPStringLengthValueTransformer.h; sourceTree = "<group>"; };
@@ -1327,6 +1330,8 @@
 			children = (
 				4C5FD081189989B7006374C9 /* NSButton+HNHTextColor.h */,
 				4C5FD082189989B7006374C9 /* NSButton+HNHTextColor.m */,
+				4CF5CF7218B7C81600B0C026 /* NSWindow+Shake.h */,
+				4CF5CF7318B7C81600B0C026 /* NSWindow+Shake.m */,
 			);
 			name = Categories;
 			sourceTree = "<group>";
@@ -2190,6 +2195,7 @@
 				4C5AA591179549A1008ECAD7 /* KPKXmlTreeWriter.m in Sources */,
 				4CE298EB1795FC2A00DF7BDB /* MPEntryContextMenuDelegate.m in Sources */,
 				4CC0D2CE17974A47000B4BDA /* MPCustomFieldTableViewDelegate.m in Sources */,
+				4CF5CF7418B7C81600B0C026 /* NSWindow+Shake.m in Sources */,
 				4CC0D2D117974A5A000B4BDA /* MPAttachmentTableViewDelegate.m in Sources */,
 				4C67D33017981A2B00A7BDFC /* HNHTokenField.m in Sources */,
 				4C67D33317981ABA00A7BDFC /* HNHTokenFieldCell.m in Sources */,

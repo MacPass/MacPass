@@ -14,6 +14,7 @@
 #import "MPKeyfilePathControlDelegate.h"
 
 #import "HNHRoundedSecureTextField.h"
+#import "NSWindow+Shake.h"
 #import "NSError+Messages.h"
 
 @interface MPPasswordInputController ()
@@ -96,6 +97,7 @@
                           keyFileURL:[self.keyPathControl URL]
                                error:&error]) {
       [self _showError:error];
+      [[[self view] window] shakeWindow:nil];
     }
   }
 }
