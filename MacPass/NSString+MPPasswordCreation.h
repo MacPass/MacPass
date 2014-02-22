@@ -9,41 +9,55 @@
 #import <Foundation/Foundation.h>
 
 typedef NS_OPTIONS(NSUInteger, MPPasswordCharacterFlags) {
-  MPPasswordCharactersUpperCase = (1<<0), // NSCharacterset lowerCaseCharacterSet
-  MPPasswordCharactersLowerCase = (1<<1), // NSCharacterSet upperCaseCharacterSet
-  MPPasswordCharactersNumbers   = (1<<2), // NSCharacterSet numberCharacterSet
-  MPPasswordCharactersSymbols   = (1<<3),   // NSCharacterSet symbolCharacterSet
+  MPPasswordCharactersUpperCase = (1<<0),
+  MPPasswordCharactersLowerCase = (1<<1),
+  MPPasswordCharactersNumbers   = (1<<2),
+  MPPasswordCharactersSymbols   = (1<<3),
   MPPasswordCharactersAll = MPPasswordCharactersUpperCase | MPPasswordCharactersLowerCase | MPPasswordCharactersNumbers | MPPasswordCharactersSymbols
 };
 
 @interface NSString (MPPasswordCreation)
 
 /**
- @param array with allowed NSChractersSets for creation
- @param lenght lenght of the password to create
- @returns a new password with the allowed charaters an the requests lenght
- */
+*  Creates a Password using the supplied password character set with the given lenght
+*
+*  @param allowedCharacters Characters allowed for the password
+*  @param theLength         lenght of the password to be created
+*
+*  @return new password with only the allowed characters.
+*/
 + (NSString *)passwordWithCharactersets:(MPPasswordCharacterFlags)allowedCharacters length:(NSUInteger)theLength;
 /**
- @param Source string of allowed characters
- @param lenght Lenght of the password to create
- @return a new password with the given length and allowed characters
+ *  Creats a password based on the supplied string
+ *
+ *  @param source String containing the allowed characters
+ *  @param length Lenght for the password to be chreated
+ *
+ *  @return Password consisint only of allowed characters
  */
 + (NSString *)passwordFromString:(NSString *)source length:(NSUInteger)length;
-
 /**
- @param Length of the password
- @returns a password containing only the characters in the string
+ *
+ *  Creates a random password with only the characters of the receiver
+ *
+ *  @param length Length of the password to be created
+ *
+ *  @return Password containing only the charactesr in receiver
  */
 - (NSString *)passwordWithLength:(NSUInteger)length;
-
 /**
- @returns a random Character from the String
+ *  @return returns a random character from the string
  */
 - (NSString *)randomCharacter;
 /**
- @param allowedCharacters Characters that where allowed for the cration of the password
- @returns entrpy in bits taking into account, the creation was purely random. Do not use this to estimate user generated passswords
+ *  Calculates the entropy of the receiver based on the allowed characers. The caluclation consideres the characters chosen randomly.
+ *  If the password supplied was not created randomly based on the full character set, the calulated entropy is NOT correct.
+ *  Do NOT use this method to estrimate unknown passwords
+ *
+ *  @param allowedCharacters set of allowed Characters
+ *  @param customCharacters  alternative string of unique allowed charactes (String is not stripped of duplicates!)
+ *
+ *  @return entropy of the receiver as bits
  */
 - (CGFloat)entropyWhithPossibleCharacterSet:(MPPasswordCharacterFlags)allowedCharacters orCustomCharacters:(NSString *)customCharacters;
 
