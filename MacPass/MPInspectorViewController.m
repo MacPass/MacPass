@@ -104,7 +104,7 @@ typedef NS_ENUM(NSUInteger, MPContentTab) {
   
   [[self view] layoutSubtreeIfNeeded];
   
-  [self _updateItemBindings:nil];
+  [self _updateBindings:nil];
 }
 
 - (void)setupNotifications:(NSWindowController *)windowController {
@@ -220,7 +220,7 @@ typedef NS_ENUM(NSUInteger, MPContentTab) {
 
 #pragma mark -
 #pragma mark Bindings
-- (void)_updateItemBindings:(id)item {
+- (void)_updateBindings:(id)item {
   if(!item) {
     [self.itemNameTextField unbind:NSValueBinding];
     [self.itemNameTextField setHidden:YES];
@@ -240,6 +240,10 @@ typedef NS_ENUM(NSUInteger, MPContentTab) {
   }
   [self.itemImageView setHidden:NO];
   [self.itemNameTextField setHidden:NO];
+
+  if([item respondsToSelector:@selector(notes)]) {
+    
+  }
 }
 
 #pragma mark -
@@ -261,7 +265,7 @@ typedef NS_ENUM(NSUInteger, MPContentTab) {
       self.activeTab = MPEntryTab;
     }
   }
-  [self _updateItemBindings:document.selectedItem];
+  [self _updateBindings:document.selectedItem];
   
   /* disable the entry text fields whenever the entry selection changes */
   //[_entryViewController endEditing];

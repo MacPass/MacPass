@@ -824,6 +824,7 @@
 		4CEE46DC181C301D006BF1E5 /* MPAutotypeDaemon.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MPAutotypeDaemon.m; sourceTree = "<group>"; };
 		4CEED1C417D7BD0E007180F1 /* NSError+Messages.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSError+Messages.h"; sourceTree = "<group>"; };
 		4CEED1C517D7BD0E007180F1 /* NSError+Messages.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSError+Messages.m"; sourceTree = "<group>"; };
+		4CEFC2F118BA7644007D2565 /* KeePassKit.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KeePassKit.h; sourceTree = "<group>"; };
 		4CF29BF317879D0000851B60 /* 26_FileSaveTemplate.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = 26_FileSaveTemplate.pdf; sourceTree = "<group>"; };
 		4CF5CF7218B7C81600B0C026 /* NSWindow+Shake.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "NSWindow+Shake.h"; path = "Categories/NSWindow+Shake.h"; sourceTree = "<group>"; };
 		4CF5CF7318B7C81600B0C026 /* NSWindow+Shake.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "NSWindow+Shake.m"; path = "Categories/NSWindow+Shake.m"; sourceTree = "<group>"; };
@@ -1600,6 +1601,7 @@
 		4CD3ABAD178F71B50073F5C5 /* KeePassKit */ = {
 			isa = PBXGroup;
 			children = (
+				4CEFC2F118BA7644007D2565 /* KeePassKit.h */,
 				4C0104B817C37BFC00173EF3 /* Utilites */,
 				4C1842D6179C716100E2F5BC /* Format */,
 				4CD3ABAF178F71B50073F5C5 /* Categories */,

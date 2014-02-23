@@ -44,7 +44,6 @@
   NSBitmapImageRep *bitmapRep = (NSBitmapImageRep *)imageRep;
   NSData *pngData = [bitmapRep representationUsingType:NSPNGFileType properties:nil];
   XCTAssertTrue([pngData isEqualToData:_imageData], @"Image and PNG data shoudl be identical");
-  
 }
 
 @end
