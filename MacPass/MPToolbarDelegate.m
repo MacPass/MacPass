@@ -32,6 +32,7 @@
 #import "MPIconHelper.h"
 
 #import "MPDocumentWindowController.h"
+#import "MPDocumentSearchService.h"
 
 NSString *const MPToolbarItemLock = @"TOOLBAR_LOCK";
 NSString *const MPToolbarItemAddGroup = @"TOOLBAR_ADD_GROUP";
@@ -137,7 +138,6 @@ NSString *const MPToolbarItemSearch = @"TOOLBAR_SEARCH";
       NSSearchFieldCell *cell = [searchField cell];
       [[cell cancelButtonCell] setAction:@selector(cancelSearch:)];
       [[cell cancelButtonCell] setTarget:nil];
-      self.searchField = searchField;
       [item setView:searchField];
     }
     else {

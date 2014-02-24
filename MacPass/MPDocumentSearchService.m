@@ -12,6 +12,10 @@
 #import "KPKEntry.h"
 #import "MPFlagsHelper.h"
 
+NSString *const MPDocumentSearchServiceDidChangeSearchNotification = @"com.hicknhack.macpass.MPDocumentSearchServiceDidChangeSearchNotification";
+NSString *const MPDocumentSearchServiceDidClearSearchNotification = @"com.hicknhack.macpass.MPDocumentSearchServiceDidClearSearchNotification";
+NSString *const MPDocumentSearchServiceDidExitSearchNotification = @"com.hicknhack.macpass.MPDocumentSearchServiceDidExitSearchNotification";
+
 @implementation MPDocumentSearchService
 
 static MPDocumentSearchService *_kMPSearchServiceInstance;
@@ -31,6 +35,30 @@ static MPDocumentSearchService *_kMPSearchServiceInstance;
     _activeFlags = MPEntrySearchTitles; // Default search is set to titles
   }
   return self;
+}
+
+#pragma mark Actions
+- (void)updateSearch:(id)sender {
+  if(sender != self.searchField) {
+    return; // Wrong sender
+  }
+  self.searchString = [self.searchField stringValue];
+  [[NSNotificationCenter defaultCenter] postNotificationName:MPDocumentSearchServiceDidChangeSearchNotification object:self];
+}
+
+- (void)clearSearch:(id)sender {
+  if(sender != self.searchField) {
+    return; // Wrong sender
+  }
+  [self.searchField setStringValue:@""];
+  self.searchString = nil;
+  [[NSNotificationCenter defaultCenter] postNotificationName:MPDocumentSearchServiceDidClearSearchNotification object:self];
+}
+
+- (void)exitSearch:(id)sender {
+  [self.searchField setStringValue:@""];
+  self.searchString = nil;
+  [[NSNotificationCenter defaultCenter] postNotificationName:MPDocumentSearchServiceDidExitSearchNotification object:self];
 }
 
 - (NSArray *)entriesInDocument:(MPDocument *)document matching:(NSString *)string usingSearchMode:(MPEntrySearchFlags)mode {

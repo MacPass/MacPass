@@ -10,8 +10,9 @@
 
 @class MPDocument;
 
-FOUNDATION_EXTERN NSString *const MPSearchServiceSearchDidChangeNotification;
-FOUNDATION_EXTERN NSString *const MPSearchServiceSearchWasClearedNotification;
+FOUNDATION_EXTERN NSString *const MPDocumentSearchServiceDidChangeSearchNotification;
+FOUNDATION_EXTERN NSString *const MPDocumentSearchServiceDidClearSearchNotification;
+FOUNDATION_EXTERN NSString *const MPDocumentSearchServiceDidExitSearchNotification;
 
 typedef NS_OPTIONS(NSUInteger, MPEntrySearchFlags) {
   MPEntrySearchNone            = 0,
@@ -27,11 +28,14 @@ typedef NS_OPTIONS(NSUInteger, MPEntrySearchFlags) {
 
 @property (nonatomic, assign) MPEntrySearchFlags activeFlags;
 @property (nonatomic, copy) NSString *searchString;
+@property (nonatomic, weak) NSSearchField *searchField;
 
 + (instancetype)sharedService;
 - (NSArray *)entriesInDocument:(MPDocument *)document matching:(NSString *)string usingSearchMode:(MPEntrySearchFlags)mode;
 - (NSArray *)optionsEnabledInMode:(MPEntrySearchFlags)mode;
 
+/* Should be called by the NSSearchTextField to update the search string */
+- (IBAction)updateSearch:(id)sender;
 /* Clears the search string, but doesn't exit searching */
 - (IBAction)clearSearch:(id)sender;
 /* exits searching mode */

@@ -26,6 +26,4 @@
 
 @interface MPToolbarDelegate : NSObject <NSToolbarDelegate>
 
-@property (weak, readonly) NSSearchField *searchField;
-
 @end
