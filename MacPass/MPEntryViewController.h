@@ -37,6 +37,7 @@ typedef NS_ENUM( NSUInteger, MPCopyContentTypeTag) {
 
 /* Clear the Search filter*/
 - (void)showFilter:(id)sender;
+- (void)clearFilter:(id)sender;
 
 /* Copy/Paste */
 - (void)copyUsername:(id)sender;

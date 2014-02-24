@@ -14,6 +14,7 @@
 @class MPInspectorViewController;
 @class MPPasswordInputController;
 @class MPOutlineViewController;
+@class MPToolbarDelegate;
 
 @interface MPDocumentWindowController : NSWindowController <MPPasswordEditWindowDelegate>
 
@@ -21,10 +22,12 @@
 @property (readonly, strong) MPEntryViewController *entryViewController;
 @property (readonly, strong) MPOutlineViewController *outlineViewController;
 @property (readonly, strong) MPInspectorViewController *inspectorViewController;
+@property (readonly, strong) MPToolbarDelegate *toolbarDelegate;
 
 - (void)showEntries;
 - (void)showPasswordInput;
-- (void)performFindPanelAction:(id)sender;
+- (IBAction)performFindPanelAction:(id)sender;
+- (IBAction)cancelSearch:(id)sender;
 
 - (IBAction)saveDocument:(id)sender;
 

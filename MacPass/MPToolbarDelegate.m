@@ -21,14 +21,17 @@
 //
 
 #import "MPToolbarDelegate.h"
-#import "MPIconHelper.h"
-#import "MPAppDelegate.h"
+
 #import "MPToolbarButton.h"
 #import "MPToolbarItem.h"
-#import "MPActionHelper.h"
-#import "MPContextMenuHelper.h"
 #import "MPContextToolbarButton.h"
 #import "MPAddEntryContextMenuDelegate.h"
+
+#import "MPActionHelper.h"
+#import "MPContextMenuHelper.h"
+#import "MPIconHelper.h"
+
+#import "MPDocumentWindowController.h"
 
 NSString *const MPToolbarItemLock = @"TOOLBAR_LOCK";
 NSString *const MPToolbarItemAddGroup = @"TOOLBAR_ADD_GROUP";
@@ -45,6 +48,7 @@ NSString *const MPToolbarItemSearch = @"TOOLBAR_SEARCH";
 @property (strong) NSMutableDictionary *toolbarItems;
 @property (strong) NSArray *toolbarIdentifiers;
 @property (strong) NSDictionary *toolbarImages;
+@property (weak) NSSearchField *searchField;
 
 - (NSString *)_localizedLabelForToolbarItemIdentifier:(NSString *)identifier;
 - (SEL)_actionForToolbarItemIdentifier:(NSString *)identifier;
@@ -130,6 +134,10 @@ NSString *const MPToolbarItemSearch = @"TOOLBAR_SEARCH";
     else if( [itemIdentifier isEqualToString:MPToolbarItemSearch]){
       NSSearchField *searchField = [[NSSearchField alloc] init];
       [searchField setAction:@selector(performFindPanelAction:)];
+      NSSearchFieldCell *cell = [searchField cell];
+      [[cell cancelButtonCell] setAction:@selector(cancelSearch:)];
+      [[cell cancelButtonCell] setTarget:nil];
+      self.searchField = searchField;
       [item setView:searchField];
     }
     else {

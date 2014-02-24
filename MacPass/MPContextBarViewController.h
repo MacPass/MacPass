@@ -7,7 +7,7 @@
 //
 
 #import "MPViewController.h"
-#import "MPEntryFilterHelper.h"
+#import "MPDocumentSearchService.h"
 
 @protocol MPContextBarDelegate <NSObject>
 
@@ -22,12 +22,9 @@
 
 @interface MPContextBarViewController : MPViewController
 
-@property (nonatomic, assign) MPFilterMode filterMode;
 @property (nonatomic, readonly) BOOL hasFilter;
 @property (nonatomic, weak) id<MPContextBarDelegate> delegate;
 @property (weak) NSView *nextKeyView;
-
-- (NSString *)filterString;
 
 - (IBAction)toggleFilterSpace:(id)sender;
 - (IBAction)exitFilter:(id)sender;

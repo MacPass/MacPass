@@ -46,7 +46,6 @@ typedef NS_ENUM(NSUInteger, MPAlertContext) {
 @property (strong) MPDatabaseSettingsWindowController *documentSettingsWindowController;
 @property (strong) MPDocumentWindowDelegate *documentWindowDelegate;
 @property (strong) MPPasswordEditWindowController *passwordEditWindowController;
-
 @property (strong) MPToolbarDelegate *toolbarDelegate;
 
 @end
@@ -220,6 +219,10 @@ typedef NS_ENUM(NSUInteger, MPAlertContext) {
 
 - (void)performFindPanelAction:(id)sender {
   [self.entryViewController showFilter:sender];
+}
+
+- (void)cancelSearch:(id)sender {
+  [self.entryViewController clearFilter:sender];
 }
 
 - (void)showPasswordInput {

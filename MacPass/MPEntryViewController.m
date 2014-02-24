@@ -15,7 +15,7 @@
 #import "MPPasteBoardController.h"
 #import "MPOverlayWindowController.h"
 #import "MPContextBarViewController.h"
-#import "MPEntryFilterHelper.h"
+#import "MPDocumentSearchService.h"
 
 #import "MPContextMenuHelper.h"
 #import "MPActionHelper.h"
@@ -335,7 +335,7 @@ NSString *const _MPTAbleSecurCellView = @"PasswordCell";
   dispatch_async(backgroundQueue, ^{
     MPDocument *document = [[self windowController] document];
     
-    self.filteredEntries = [MPEntryFilterHelper entriesInDocument:document
+    self.filteredEntries = [MPDocumentSearchService entriesInDocument:document
                                                          matching:self.contextBarViewController.filterString
                                                   usingFilterMode:self.contextBarViewController.filterMode];
     
@@ -351,6 +351,10 @@ NSString *const _MPTAbleSecurCellView = @"PasswordCell";
 - (void)showFilter:(id)sender {
   [self.contextBarViewController showFilter];
   [self _showContextBar];
+}
+
+- (void)clearFilter:(id)sender {
+  [self.contextBarViewController exitFilter:sender];
 }
 
 #pragma mark ContextBar
