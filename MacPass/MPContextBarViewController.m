@@ -9,7 +9,7 @@
 #import "MPContextBarViewController.h"
 #import "HNHGradientView.h"
 #import "KPKEntry.h"
-#import "MPDocumentSearchService.h"
+#import "MPDocument+Search.h"
 
 #import "NSButton+HNHTextColor.h"
 
@@ -31,7 +31,6 @@ typedef NS_ENUM(NSUInteger, MPContextTab) {
 }
 
 @property (nonatomic, assign) MPContextTab activeTab;
-@property (nonatomic, assign) BOOL hasFilter;
 
 /* Filter */
 @property (weak) IBOutlet NSButton *filterDoneButton;
@@ -56,32 +55,34 @@ typedef NS_ENUM(NSUInteger, MPContextTab) {
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil {
   self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
   if (self) {
-    _hasFilter = NO;
     _delegateRespondsToDidExitFilter = NO;
     _delegateRespondsToDidExitHistory = NO;
     _delegateRespondsToShouldEmptyTrash = NO;
     _delegateRespondsToDidChangeFilter = NO;
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(_updateFilterButtons)
+                                                 name:MPDocumentDidChangeSearchFlags
+                                               object:nil];
   }
   return self;
 }
 
+- (void)dealloc {
+  [[NSNotificationCenter defaultCenter] removeObserver:self];
+}
+
 - (void)didLoadView {
- 
+  
   [[self.filterLabelTextField cell] setBackgroundStyle:NSBackgroundStyleRaised];
   
   self.historyBar.activeGradient = [[NSGradient alloc] initWithStartingColor:[NSColor redColor] endingColor:[NSColor greenColor]];
   
-  NSArray *activeColors = @[
-                            [NSColor colorWithCalibratedWhite:0.2 alpha:1],
-                            [NSColor colorWithCalibratedWhite:0.4 alpha:1]
-                            ];
-  NSArray *inactiveColors = @[ [NSColor colorWithCalibratedWhite:0.3 alpha:1],
-                               [NSColor colorWithCalibratedWhite:0.6 alpha:1]
-                               ];
+  NSArray *activeColors = @[[NSColor colorWithCalibratedWhite:0.2 alpha:1],[NSColor colorWithCalibratedWhite:0.4 alpha:1]];
+  NSArray *inactiveColors = @[[NSColor colorWithCalibratedWhite:0.3 alpha:1],[NSColor colorWithCalibratedWhite:0.6 alpha:1]];
   self.trashBar.activeGradient = [[NSGradient alloc] initWithColors:activeColors];
   self.trashBar.inactiveGradient = [[NSGradient alloc] initWithColors:inactiveColors];
   [[self view] bind:NSSelectedIndexBinding toObject:self withKeyPath:@"activeTab" options:nil];
-
+  
   self.emptyTrashButton.textColor = [NSColor whiteColor];
   
   if(self.nextKeyView) {
@@ -93,17 +94,6 @@ typedef NS_ENUM(NSUInteger, MPContextTab) {
 }
 
 #pragma mark Properties
-- (void)setFilterMode:(MPFilterMode)newFilterMode {
-  if(_filterMode != newFilterMode) {
-    if(newFilterMode == MPEntrySearchNone) {
-      newFilterMode = MPFilterTitles;
-    }
-    _filterMode = newFilterMode;
-    [self _updateFilterMenu];
-    [self _didChangeFilter];
-  }
-}
-
 - (void)setDelegate:(id<MPContextBarDelegate>)delegate {
   if(self.delegate != delegate) {
     _delegate = delegate;
@@ -114,50 +104,10 @@ typedef NS_ENUM(NSUInteger, MPContextTab) {
   }
 }
 
-- (void)disable {
-}
-
-- (void)enable {
-  [self.filterSearchField setEnabled:YES];
-  /* First responder handling */
-  switch (self.activeTab) {
-    case MPContextTabTrash:
-      break;
-      
-    case MPContextTabFilter:
-      [[[self view] window] makeFirstResponder:self.filterSearchField];
-      break;
-      
-    case MPContextTabHistory:
-      break;
-      
-    default:
-      break;
-  }
-}
-
-- (void)exitFilter:(id)sender {
-  if(!self.hasFilter) {
-    return; // Nothing to do;
-  }
-  if(![self showsFilter]) {
-    return; // We arent displaying the filter view
-  }
-  self.hasFilter = NO;
-  [self.filterSearchField setStringValue:@""];
-  if(_delegateRespondsToDidExitFilter) {
-    [self.delegate contextBarDidExitFilter];
-  }
-}
-
 - (void)showFilter {
-  self.hasFilter = YES;
   /* Select text if already visible */
-  if([self showsFilter]) {
-    [self.filterSearchField selectText:self];
-  }
   self.activeTab = MPContextTabFilter;
-  [self _updateFilterMenu];
+  [self _updateFilterButtons];
 }
 
 - (void)showHistory {
@@ -184,16 +134,14 @@ typedef NS_ENUM(NSUInteger, MPContextTab) {
   return self.activeTab == MPContextTabTrash;
 }
 
-- (NSString *)filterString {
-  return [self.filterSearchField stringValue];
-}
-
-- (BOOL)control:(NSControl*)control textView:(NSTextView*)textView doCommandBySelector:(SEL)commandSelector {
+/*
+ - (BOOL)control:(NSControl*)control textView:(NSTextView*)textView doCommandBySelector:(SEL)commandSelector {
   if(commandSelector == @selector(insertNewline:)) {
     [self _didChangeFilter];
   }
   return NO;
 }
+*/
 
 - (void)_didChangeFilter {
   if(_delegateRespondsToDidChangeFilter) {
@@ -204,6 +152,10 @@ typedef NS_ENUM(NSUInteger, MPContextTab) {
 #pragma mark UI Helper
 - (void)_updateBindings {
   // only the entry view has to be bound, the rest not
+}
+
+- (void)_updateFilterButtons {
+  MPDocument *document = [[self windowController] document];
 }
 
 @end

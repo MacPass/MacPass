@@ -24,11 +24,14 @@
 @property (readonly, strong) MPInspectorViewController *inspectorViewController;
 @property (readonly, strong) MPToolbarDelegate *toolbarDelegate;
 
+#pragma mark Search
+- (NSSearchField *)searchField;
+
 - (void)showEntries;
 - (void)showPasswordInput;
-- (IBAction)performFindPanelAction:(id)sender;
-- (IBAction)cancelSearch:(id)sender;
 
+#pragma mark Actions
+- (IBAction)performFindPanelAction:(id)sender;
 - (IBAction)saveDocument:(id)sender;
 
 - (IBAction)editPassword:(id)sender;

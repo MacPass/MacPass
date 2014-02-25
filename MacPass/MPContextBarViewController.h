@@ -7,7 +7,7 @@
 //
 
 #import "MPViewController.h"
-#import "MPDocumentSearchService.h"
+#import "MPDocument+Search.h"
 
 @protocol MPContextBarDelegate <NSObject>
 
@@ -37,8 +37,5 @@
 
 - (void)showHistory;
 - (void)showTrash;
-
-- (void)enable;
-- (void)disable;
 
 @end

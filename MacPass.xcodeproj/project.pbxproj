@@ -22,6 +22,7 @@
 		4C0F647817B6B65E00D9522A /* MPSheetWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C0F647717B6B65E00D9522A /* MPSheetWindowController.m */; };
 		4C0F647B17B6BC9C00D9522A /* MPSavePanelAccessoryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C0F647A17B6BC9C00D9522A /* MPSavePanelAccessoryViewController.m */; };
 		4C10412C178CDD44001B5239 /* NSDate+Humanized.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C10412B178CDD44001B5239 /* NSDate+Humanized.m */; };
+		4C15B74618BCA3B1003F8008 /* MPDocument+Search.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C15B74518BCA3B1003F8008 /* MPDocument+Search.m */; };
 		4C17D8E517A1C780006C8C1E /* MPDocumentWindowDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C17D8E417A1C780006C8C1E /* MPDocumentWindowDelegate.m */; };
 		4C17F105184E630200E85625 /* 14_BatteryTemplate.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 4C17F104184E630200E85625 /* 14_BatteryTemplate.pdf */; };
 		4C17F108184E6B6C00E85625 /* 31_PrintTemplate.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 4C17F106184E6B6C00E85625 /* 31_PrintTemplate.pdf */; };
@@ -199,7 +200,6 @@
 		4C8A173D1790AA41008B5C17 /* NSData+Keyfile.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C8A173C1790AA41008B5C17 /* NSData+Keyfile.m */; };
 		4C8B36AB17A6ED4B005E1FF1 /* MPOutlineContextMenuDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C8B36AA17A6ED4B005E1FF1 /* MPOutlineContextMenuDelegate.m */; };
 		4C8FECC816D57E3200BF26CF /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4C8FECC716D57E3200BF26CF /* QuartzCore.framework */; };
-		4C94DFCB1892860400F42F18 /* MPDocumentSearchService.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C94DFCA1892860400F42F18 /* MPDocumentSearchService.m */; };
 		4C96D15417A12E4F00D931FA /* 99_CreatedTemplate.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 4C96D15317A12E4F00D931FA /* 99_CreatedTemplate.pdf */; };
 		4C9D6AA917615199001C660C /* HNHRoundedSecureTextFieldCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C9D6AA817615199001C660C /* HNHRoundedSecureTextFieldCell.m */; };
 		4CA08DA017A831B200A6544B /* MPAddEntryContextMenuDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CA08D9F17A831B200A6544B /* MPAddEntryContextMenuDelegate.m */; };
@@ -375,6 +375,9 @@
 		4C10412B178CDD44001B5239 /* NSDate+Humanized.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDate+Humanized.m"; sourceTree = "<group>"; };
 		4C13904C17ADD1A300A62934 /* KPKTreeCrypting.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KPKTreeCrypting.h; sourceTree = "<group>"; };
 		4C13904D17ADD3BE00A62934 /* KPKTreeWriting.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KPKTreeWriting.h; sourceTree = "<group>"; };
+		4C15B73C18BCA379003F8008 /* MPDocument+Attachment.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "MPDocument+Attachment.h"; sourceTree = "<group>"; };
+		4C15B74418BCA3B1003F8008 /* MPDocument+Search.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "MPDocument+Search.h"; sourceTree = "<group>"; };
+		4C15B74518BCA3B1003F8008 /* MPDocument+Search.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "MPDocument+Search.m"; sourceTree = "<group>"; };
 		4C17D8E317A1C780006C8C1E /* MPDocumentWindowDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MPDocumentWindowDelegate.h; sourceTree = "<group>"; };
 		4C17D8E417A1C780006C8C1E /* MPDocumentWindowDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MPDocumentWindowDelegate.m; sourceTree = "<group>"; };
 		4C17F104184E630200E85625 /* 14_BatteryTemplate.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = 14_BatteryTemplate.pdf; sourceTree = "<group>"; };
@@ -690,8 +693,6 @@
 		4C8B36A917A6ED4B005E1FF1 /* MPOutlineContextMenuDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MPOutlineContextMenuDelegate.h; sourceTree = "<group>"; };
 		4C8B36AA17A6ED4B005E1FF1 /* MPOutlineContextMenuDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MPOutlineContextMenuDelegate.m; sourceTree = "<group>"; };
 		4C8FECC716D57E3200BF26CF /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
-		4C94DFC91892860400F42F18 /* MPDocumentSearchService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MPDocumentSearchService.h; sourceTree = "<group>"; };
-		4C94DFCA1892860400F42F18 /* MPDocumentSearchService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MPDocumentSearchService.m; sourceTree = "<group>"; };
 		4C96D15317A12E4F00D931FA /* 99_CreatedTemplate.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; name = 99_CreatedTemplate.pdf; path = Icons/99_CreatedTemplate.pdf; sourceTree = "<group>"; };
 		4C9D6AA717615199001C660C /* HNHRoundedSecureTextFieldCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HNHRoundedSecureTextFieldCell.h; sourceTree = "<group>"; };
 		4C9D6AA817615199001C660C /* HNHRoundedSecureTextFieldCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HNHRoundedSecureTextFieldCell.m; sourceTree = "<group>"; };
@@ -1209,8 +1210,6 @@
 		4C37A84215B8B495005EF8EE /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				4C94DFC91892860400F42F18 /* MPDocumentSearchService.h */,
-				4C94DFCA1892860400F42F18 /* MPDocumentSearchService.m */,
 				4C37A83E15B8B474005EF8EE /* MPOutlineDataSource.h */,
 				4C37A83F15B8B474005EF8EE /* MPOutlineDataSource.m */,
 				4C569D9F17652BFE00595B62 /* MPEntryTableDataSource.h */,
@@ -1220,9 +1219,12 @@
 				6E719715172058BA00E4C5FC /* MPDatabaseVersion.h */,
 				4CE5B548173AFBA700207B39 /* MPDocument.h */,
 				4CE5B549173AFBA700207B39 /* MPDocument.m */,
+				4C15B73C18BCA379003F8008 /* MPDocument+Attachment.h */,
 				4C3666401787327E00B249F1 /* MPDocument+Attachments.m */,
 				4C1FA07918231900003A3F8C /* MPDocument+Autotype.h */,
 				4C1FA07A18231900003A3F8C /* MPDocument+Autotype.m */,
+				4C15B74418BCA3B1003F8008 /* MPDocument+Search.h */,
+				4C15B74518BCA3B1003F8008 /* MPDocument+Search.m */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -2259,8 +2261,8 @@
 				4C5CD36317D15DCA000B7F38 /* KPKSalsa20RandomStream.m in Sources */,
 				4CC6DB7A17D23719002C6091 /* KPKNode+IconImage.m in Sources */,
 				4CC6DB7D17D23DCE002C6091 /* KPKUTIs.m in Sources */,
+				4C15B74618BCA3B1003F8008 /* MPDocument+Search.m in Sources */,
 				4CEED1C617D7BD0E007180F1 /* NSError+Messages.m in Sources */,
-				4C94DFCB1892860400F42F18 /* MPDocumentSearchService.m in Sources */,
 				4C00E33817D8FA3500F37192 /* DDHotKeyCenter.m in Sources */,
 				4C224B4217DFCB2400FF6AEE /* MPNumericalInputFormatter.m in Sources */,
 			);

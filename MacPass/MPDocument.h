@@ -39,6 +39,17 @@ APPKIT_EXTERN NSString *const MPDocumentGroupKey;
 @class KPKAttribute;
 @class KPKCompositeKey;
 
+typedef NS_OPTIONS(NSUInteger, MPEntrySearchFlags) {
+  MPEntrySearchNone            = 0,
+  MPEntrySearchUrls            = (1<<0),
+  MPEntrySearchUsernames       = (1<<1),
+  MPEntrySearchTitles          = (1<<2),
+  MPEntrySearchPasswords       = (1<<3),
+  MPEntrySearchNotes           = (1<<4),
+  MPEntrySearchDoublePasswords = (1<<5),
+  MPEntrySearchAllFlags        = (MPEntrySearchDoublePasswords | MPEntrySearchNotes | MPEntrySearchPasswords | MPEntrySearchTitles | MPEntrySearchUrls | MPEntrySearchUsernames)
+};
+
 @interface MPDocument : NSDocument
 
 @property (nonatomic, readonly, assign) BOOL encrypted;
@@ -50,8 +61,6 @@ APPKIT_EXTERN NSString *const MPDocumentGroupKey;
 @property (nonatomic, weak) KPKGroup *templates;
 
 @property (nonatomic, strong, readonly) KPKCompositeKey *compositeKey;
-//@property (nonatomic, copy) NSString *password;
-//@property (nonatomic, strong) NSURL *key;
 
 @property (assign, readonly, getter = isReadOnly) BOOL readOnly;
 @property (nonatomic, readonly, assign) KPKVersion versionForFileType;
@@ -62,6 +71,12 @@ APPKIT_EXTERN NSString *const MPDocumentGroupKey;
 @property (nonatomic, weak) KPKEntry *selectedEntry;
 @property (nonatomic, weak) KPKGroup *selectedGroup;
 @property (nonatomic, weak) id selectedItem;
+
+/*
+ Search - see MPDocument+Search for further details
+ */
+@property (nonatomic, assign) MPEntrySearchFlags activeFlags;
+@property (nonatomic, copy) NSString *searchString;
 
 
 + (KPKVersion)versionForFileType:(NSString *)fileType;
@@ -145,11 +160,5 @@ APPKIT_EXTERN NSString *const MPDocumentGroupKey;
  *  @param sender sender, that should respond to representedObject and return an NSUUID for the template to use
  */
 - (IBAction)createEntryFromTemplate:(id)sender;
-
-@end
-
-@interface MPDocument (Attachments)
-
-- (void)addAttachment:(NSURL *)location toEntry:(KPKEntry *)anEntry;
 
 @end

@@ -1,69 +1,69 @@
 //
-//  MPSearchHelper.m
+//  MPDocument+Search.m
 //  MacPass
 //
-//  Created by Michael Starke on 24/01/14.
+//  Created by Michael Starke on 25.02.14.
 //  Copyright (c) 2014 HicknHack Software GmbH. All rights reserved.
 //
 
-#import "MPDocumentSearchService.h"
+#import "MPDocument+Search.h"
 #import "MPDocument.h"
 #import "KPKGroup.h"
 #import "KPKEntry.h"
 #import "MPFlagsHelper.h"
 
-NSString *const MPDocumentSearchServiceDidChangeSearchNotification = @"com.hicknhack.macpass.MPDocumentSearchServiceDidChangeSearchNotification";
-NSString *const MPDocumentSearchServiceDidClearSearchNotification = @"com.hicknhack.macpass.MPDocumentSearchServiceDidClearSearchNotification";
-NSString *const MPDocumentSearchServiceDidExitSearchNotification = @"com.hicknhack.macpass.MPDocumentSearchServiceDidExitSearchNotification";
+NSString *const MPDocumentDidEnterSearchNotification  = @"com.hicknhack.macpass.MPDocumentDidEnterSearchNotification";
+NSString *const MPDocumentDidChangeSearchNotification = @"com.hicknhack.macpass.MPDocumentDidChangeSearchNotification";
+NSString *const MPDocumentDidChangeSearchFlags        = @"com.hicknhack.macpass.MPDocumentDidChangeSearchFlagsNotification";
+NSString *const MPDocumentDidExitSearchNotification   = @"com.hicknhack.macpass.MPDocumentDidExitSearchNotification";
 
-@implementation MPDocumentSearchService
-
-static MPDocumentSearchService *_kMPSearchServiceInstance;
-
-+ (instancetype)sharedService {
-  static dispatch_once_t onceToken;
-  dispatch_once(&onceToken, ^{
-    _kMPSearchServiceInstance = [[MPDocumentSearchService alloc] init];
-  });
-  return _kMPSearchServiceInstance;
-}
-
-- (instancetype)init {
-  NSAssert(_kMPSearchServiceInstance == nil, @"only one shared instance allowed");
-  self = [super init];
-  if(self) {
-    _activeFlags = MPEntrySearchTitles; // Default search is set to titles
-  }
-  return self;
-}
+@implementation MPDocument (Search)
 
 #pragma mark Actions
-- (void)updateSearch:(id)sender {
-  if(sender != self.searchField) {
-    return; // Wrong sender
-  }
-  self.searchString = [self.searchField stringValue];
-  [[NSNotificationCenter defaultCenter] postNotificationName:MPDocumentSearchServiceDidChangeSearchNotification object:self];
+
+- (void)performFindPanelAction:(id)sender {
+  [[NSNotificationCenter defaultCenter] postNotificationName:MPDocumentDidEnterSearchNotification object:self];
 }
 
-- (void)clearSearch:(id)sender {
-  if(sender != self.searchField) {
-    return; // Wrong sender
-  }
-  [self.searchField setStringValue:@""];
-  self.searchString = nil;
-  [[NSNotificationCenter defaultCenter] postNotificationName:MPDocumentSearchServiceDidClearSearchNotification object:self];
+- (void)updateSearch:(id)sender {
+  [[NSNotificationCenter defaultCenter] postNotificationName:MPDocumentDidChangeSearchNotification object:self];
 }
 
 - (void)exitSearch:(id)sender {
-  [self.searchField setStringValue:@""];
   self.searchString = nil;
-  [[NSNotificationCenter defaultCenter] postNotificationName:MPDocumentSearchServiceDidExitSearchNotification object:self];
+  [[NSNotificationCenter defaultCenter] postNotificationName:MPDocumentDidExitSearchNotification object:self];
 }
 
-- (NSArray *)entriesInDocument:(MPDocument *)document matching:(NSString *)string usingSearchMode:(MPEntrySearchFlags)mode {
+- (void)toggleFlags:(id)sender {
+  if(![sender respondsToSelector:@selector(tag)]) {
+    return; // We nee to read the button tag
+  }
+  if([sender respondsToSelector:@selector(state)]) {
+    return; // We need to read the button state
+  }
+  MPEntrySearchFlags toggleFlag = [sender tag];
+  switch([sender state]) {
+    case NSOffState:
+      toggleFlag ^= MPEntrySearchAllFlags;
+      break;
+    case NSOnState:
+      /* On is fine */
+      break;
+    default:
+      NSAssert(NO, @"Internal state is inconsistent");
+      return;
+  }
+  MPEntrySearchFlags newFlags = self.activeFlags & toggleFlag;
+  if(newFlags == self.activeFlags) {
+    self.activeFlags = (newFlags == MPEntrySearchNone) ? MPEntrySearchTitles : newFlags;
+    [[NSNotificationCenter defaultCenter] postNotificationName:MPDocumentDidChangeSearchFlags object:self];
+  }
+}
+
+#pragma mark Search
+- (NSArray *)entriesInDocument:(MPDocument *)document matching:(NSString *)string {
   /* Filter double passwords */
-  if(MPTestFlagInOptions(MPEntrySearchDoublePasswords, mode)) {
+  if(MPTestFlagInOptions(MPEntrySearchDoublePasswords, self.activeFlags)) {
     __block NSMutableDictionary *passwordToEntryMap;
     /* Build up a usage map */
     [[document.root childEntries] enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
@@ -88,7 +88,7 @@ static MPDocumentSearchService *_kMPSearchServiceInstance;
     return doublePasswords;
   }
   /* Filter using predicates */
-  NSArray *predicates = [self _filterPredicatesForMode:mode withString:string];
+  NSArray *predicates = [self _filterPredicatesWithString:string];
   if(predicates) {
     NSPredicate *fullFilter = [NSCompoundPredicate orPredicateWithSubpredicates:predicates];
     return  [[document.root childEntries] filteredArrayUsingPredicate:fullFilter];
@@ -101,7 +101,7 @@ static MPDocumentSearchService *_kMPSearchServiceInstance;
   NSArray *allOptions = @[ @(MPEntrySearchUrls), @(MPEntrySearchUsernames),
                            @(MPEntrySearchTitles), @(MPEntrySearchPasswords) ,
                            @(MPEntrySearchNotes), @(MPEntrySearchDoublePasswords) ];
-
+  
   NSIndexSet *indexes = [allOptions indexesOfObjectsPassingTest:^BOOL(id obj, NSUInteger idx, BOOL *stop) {
     MPEntrySearchFlags flag = [obj integerValue];
     return MPTestFlagInOptions(flag, mode);
@@ -109,22 +109,22 @@ static MPDocumentSearchService *_kMPSearchServiceInstance;
   return [allOptions objectsAtIndexes:indexes];
 }
 
-- (NSArray *)_filterPredicatesForMode:(MPEntrySearchFlags)mode withString:(NSString *)string{
+- (NSArray *)_filterPredicatesWithString:(NSString *)string{
   NSMutableArray *prediactes = [[NSMutableArray alloc] initWithCapacity:4];
   
-  if(MPTestFlagInOptions(MPEntrySearchTitles, mode)) {
+  if(MPTestFlagInOptions(MPEntrySearchTitles, self.activeFlags)) {
     [prediactes addObject:[NSPredicate predicateWithFormat:@"SELF.title CONTAINS[cd] %@", string]];
   }
-  if(MPTestFlagInOptions(MPEntrySearchUsernames, mode)) {
+  if(MPTestFlagInOptions(MPEntrySearchUsernames, self.activeFlags)) {
     [prediactes addObject:[NSPredicate predicateWithFormat:@"SELF.username CONTAINS[cd] %@", string]];
   }
-  if(MPTestFlagInOptions(MPEntrySearchUrls, mode)) {
+  if(MPTestFlagInOptions(MPEntrySearchUrls, self.activeFlags)) {
     [prediactes addObject:[NSPredicate predicateWithFormat:@"SELF.url CONTAINS[cd] %@", string]];
   }
-  if(MPTestFlagInOptions(MPEntrySearchPasswords, mode)) {
+  if(MPTestFlagInOptions(MPEntrySearchPasswords, self.activeFlags)) {
     [prediactes addObject:[NSPredicate predicateWithFormat:@"SELF.password CONTAINS[cd] %@", string]];
   }
-  if(MPTestFlagInOptions(MPEntrySearchNotes, mode)) {
+  if(MPTestFlagInOptions(MPEntrySearchNotes, self.activeFlags)) {
     [prediactes addObject:[NSPredicate predicateWithFormat:@"SELF.notes CONTAINS[cd] %@", string]];
   }
   return prediactes;

@@ -32,7 +32,7 @@
 #import "MPIconHelper.h"
 
 #import "MPDocumentWindowController.h"
-#import "MPDocumentSearchService.h"
+#import "MPDocument+Search.h"
 
 NSString *const MPToolbarItemLock = @"TOOLBAR_LOCK";
 NSString *const MPToolbarItemAddGroup = @"TOOLBAR_ADD_GROUP";
@@ -66,8 +66,13 @@ NSString *const MPToolbarItemSearch = @"TOOLBAR_SEARCH";
     _toolbarImages = [self createToolbarImages];
     _toolbarItems = [[NSMutableDictionary alloc] initWithCapacity:[self.toolbarIdentifiers count]];
     _entryMenuDelegate = [[MPAddEntryContextMenuDelegate alloc] init];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(_didExitSearch:) name:MPDocumentDidExitSearchNotification object:self];
   }
   return self;
+}
+
+- (void)dealloc {
+  [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
 
 
@@ -134,11 +139,12 @@ NSString *const MPToolbarItemSearch = @"TOOLBAR_SEARCH";
     }
     else if( [itemIdentifier isEqualToString:MPToolbarItemSearch]){
       NSSearchField *searchField = [[NSSearchField alloc] init];
-      [searchField setAction:@selector(performFindPanelAction:)];
+      [searchField setAction:@selector(updateSearch:)];
       NSSearchFieldCell *cell = [searchField cell];
-      [[cell cancelButtonCell] setAction:@selector(cancelSearch:)];
+      [[cell cancelButtonCell] setAction:@selector(exitSearch:)];
       [[cell cancelButtonCell] setTarget:nil];
       [item setView:searchField];
+      self.searchField = searchField;
     }
     else {
       NSButton *button = [[MPToolbarButton alloc] initWithFrame:NSMakeRect(0, 0, 32, 32)];
@@ -210,6 +216,10 @@ NSString *const MPToolbarItemSearch = @"TOOLBAR_SEARCH";
   });
   MPActionType actionType = (MPActionType)[actionDict[identifier] integerValue];
   return [MPActionHelper actionOfType:actionType];
+}
+
+- (void)_didExitSearch:(NSNotification *)notification {
+  [self.searchField setStringValue:@""];
 }
 
 @end

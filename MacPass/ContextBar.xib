@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="4514" systemVersion="13B42" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="4514" systemVersion="13C64" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
     <dependencies>
         <deployment defaultVersion="1080" identifier="macosx"/>
         <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="4514"/>
@@ -21,10 +21,6 @@
         <tabView type="noTabsNoBorder" translatesAutoresizingMaskIntoConstraints="NO" id="8MB-fC-M2Q">
             <rect key="frame" x="0.0" y="0.0" width="576" height="30"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-            <constraints>
-                <constraint firstAttribute="trailing" secondItem="Bn2-iY-mQ3" secondAttribute="leading" constant="302" id="CN2-8I-gC2"/>
-                <constraint firstAttribute="trailing" secondItem="0R1-PX-dgn" secondAttribute="leading" constant="469" id="Fzh-fb-BD7"/>
-            </constraints>
             <font key="font" metaFont="system"/>
             <tabViewItems>
                 <tabViewItem label="Filter" identifier="1" id="Ud6-Nz-6PS">
@@ -36,7 +32,7 @@
                                 <rect key="frame" x="0.0" y="0.0" width="576" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <subviews>
-                                    <textField verticalHuggingPriority="750" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="6">
+                                    <textField verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="6">
                                         <rect key="frame" x="6" y="8" width="45" height="14"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                         <textFieldCell key="cell" controlSize="small" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Search:" id="7">
@@ -45,7 +41,7 @@
                                             <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                         </textFieldCell>
                                     </textField>
-                                    <button verticalHuggingPriority="750" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="O7W-cn-eUP">
+                                    <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="O7W-cn-eUP">
                                         <rect key="frame" x="57" y="6" width="42" height="17"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                         <buttonCell key="cell" type="recessed" title="Title" bezelStyle="recessed" alignment="center" controlSize="small" state="on" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="53D-ne-nv6">
@@ -53,7 +49,7 @@
                                             <font key="font" metaFont="systemBold" size="12"/>
                                         </buttonCell>
                                     </button>
-                                    <button verticalHuggingPriority="750" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="0R1-PX-dgn">
+                                    <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="0R1-PX-dgn">
                                         <rect key="frame" x="107" y="6" width="77" height="17"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                         <buttonCell key="cell" type="recessed" title="Username" bezelStyle="recessed" alignment="center" controlSize="small" state="on" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="jfQ-Jh-2gl">
@@ -61,7 +57,7 @@
                                             <font key="font" metaFont="systemBold" size="12"/>
                                         </buttonCell>
                                     </button>
-                                    <button verticalHuggingPriority="750" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Uhl-ck-vVQ">
+                                    <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="Uhl-ck-vVQ">
                                         <rect key="frame" x="192" y="6" width="74" height="17"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                         <buttonCell key="cell" type="recessed" title="Password" bezelStyle="recessed" alignment="center" controlSize="small" state="on" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="rvQ-4V-SsS">
@@ -69,7 +65,7 @@
                                             <font key="font" metaFont="systemBold" size="12"/>
                                         </buttonCell>
                                     </button>
-                                    <button verticalHuggingPriority="750" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Bn2-iY-mQ3">
+                                    <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="Bn2-iY-mQ3">
                                         <rect key="frame" x="274" y="6" width="38" height="17"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                         <buttonCell key="cell" type="recessed" title="URL" bezelStyle="recessed" alignment="center" controlSize="small" state="on" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="92o-gN-Psj">
@@ -77,7 +73,7 @@
                                             <font key="font" metaFont="systemBold" size="12"/>
                                         </buttonCell>
                                     </button>
-                                    <button verticalHuggingPriority="750" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="SaV-5p-jIX">
+                                    <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="SaV-5p-jIX">
                                         <rect key="frame" x="320" y="6" width="50" height="17"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                         <buttonCell key="cell" type="recessed" title="Notes" bezelStyle="recessed" alignment="center" controlSize="small" state="on" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="iDN-2E-hwt">
@@ -85,7 +81,7 @@
                                             <font key="font" metaFont="systemBold" size="12"/>
                                         </buttonCell>
                                     </button>
-                                    <button verticalHuggingPriority="750" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="hMB-2T-pBD">
+                                    <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="hMB-2T-pBD">
                                         <rect key="frame" x="378" y="6" width="87" height="17"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                         <buttonCell key="cell" type="recessed" title="Everywhere" bezelStyle="recessed" alignment="center" controlSize="small" state="on" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="G1B-En-dc2">
@@ -95,10 +91,20 @@
                                     </button>
                                 </subviews>
                                 <constraints>
+                                    <constraint firstAttribute="centerY" secondItem="O7W-cn-eUP" secondAttribute="centerY" id="2uC-wS-HDi"/>
+                                    <constraint firstAttribute="centerY" secondItem="hMB-2T-pBD" secondAttribute="centerY" id="4rl-iO-76L"/>
                                     <constraint firstItem="O7W-cn-eUP" firstAttribute="leading" secondItem="6" secondAttribute="trailing" constant="8" symbolic="YES" id="5hN-x3-XlX"/>
                                     <constraint firstItem="0R1-PX-dgn" firstAttribute="leading" secondItem="O7W-cn-eUP" secondAttribute="trailing" constant="8" symbolic="YES" id="67f-i6-eOb"/>
+                                    <constraint firstAttribute="centerY" secondItem="SaV-5p-jIX" secondAttribute="centerY" id="7ch-eZ-Hzh"/>
+                                    <constraint firstAttribute="centerY" secondItem="0R1-PX-dgn" secondAttribute="centerY" id="Huh-PB-cbs"/>
+                                    <constraint firstItem="6" firstAttribute="leading" secondItem="1" secondAttribute="leading" constant="8" id="Seo-dI-FzX"/>
                                     <constraint firstItem="Bn2-iY-mQ3" firstAttribute="leading" secondItem="Uhl-ck-vVQ" secondAttribute="trailing" constant="8" id="TCJ-vg-IIt"/>
+                                    <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="hMB-2T-pBD" secondAttribute="trailing" constant="20" symbolic="YES" id="jAm-sk-ErW"/>
                                     <constraint firstItem="SaV-5p-jIX" firstAttribute="leading" secondItem="Bn2-iY-mQ3" secondAttribute="trailing" constant="8" symbolic="YES" id="pAA-uU-moF"/>
+                                    <constraint firstAttribute="centerY" secondItem="6" secondAttribute="centerY" id="qak-8F-xbj"/>
+                                    <constraint firstItem="Uhl-ck-vVQ" firstAttribute="leading" secondItem="0R1-PX-dgn" secondAttribute="trailing" constant="8" id="u8d-C2-O9h"/>
+                                    <constraint firstAttribute="centerY" secondItem="Uhl-ck-vVQ" secondAttribute="centerY" id="uvE-ch-ysK"/>
+                                    <constraint firstAttribute="centerY" secondItem="Bn2-iY-mQ3" secondAttribute="centerY" id="xZJ-EZ-Nic"/>
                                     <constraint firstItem="hMB-2T-pBD" firstAttribute="leading" secondItem="SaV-5p-jIX" secondAttribute="trailing" constant="8" symbolic="YES" id="zRT-y1-oMu"/>
                                 </constraints>
                             </customView>
@@ -179,7 +185,6 @@
                                 </subviews>
                                 <constraints>
                                     <constraint firstAttribute="centerY" secondItem="pqx-su-vAh" secondAttribute="centerY" id="7T6-QP-uaM"/>
-                                    <constraint firstItem="gGR-f0-dcr" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="S8L-rB-h0h" secondAttribute="leading" constant="20" id="B13-fg-dQY"/>
                                     <constraint firstAttribute="centerY" secondItem="gGR-f0-dcr" secondAttribute="centerY" id="KMF-ev-v2h"/>
                                     <constraint firstItem="pqx-su-vAh" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="gGR-f0-dcr" secondAttribute="trailing" constant="8" symbolic="YES" id="Wb1-xK-zZF"/>
                                     <constraint firstItem="gGR-f0-dcr" firstAttribute="leading" secondItem="S8L-rB-h0h" secondAttribute="leading" constant="20" symbolic="YES" id="gFm-N8-pwn"/>

@@ -111,6 +111,7 @@ NSString *const MPDocumentGroupKey                        = @"MPDocumentGroupKey
     _encryptedData = nil;
     _didLockFile = NO;
     _readOnly = NO;
+    _activeFlags = MPEntrySearchTitles;
     self.tree = [KPKTree templateTree];
   }
   return self;

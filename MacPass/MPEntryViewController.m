@@ -10,17 +10,18 @@
 #import "MPAppDelegate.h"
 #import "MPOutlineViewController.h"
 #import "MPDocument.h"
-#import "MPIconHelper.h"
+#import "MPDocument+Search.h"
 #import "MPDocumentWindowController.h"
 #import "MPPasteBoardController.h"
 #import "MPOverlayWindowController.h"
 #import "MPContextBarViewController.h"
-#import "MPDocumentSearchService.h"
 
-#import "MPContextMenuHelper.h"
-#import "MPActionHelper.h"
-#import "MPSettingsHelper.h"
 #import "MPConstants.h"
+
+#import "MPActionHelper.h"
+#import "MPContextMenuHelper.h"
+#import "MPIconHelper.h"
+#import "MPSettingsHelper.h"
 #import "MPEntryTableDataSource.h"
 #import "MPStringLengthValueTransformer.h"
 #import "MPStripLineBreaksTransformer.h"
@@ -97,14 +98,17 @@ NSString *const _MPTAbleSecurCellView = @"PasswordCell";
     _dataSource.viewController = self;
     _menuDelegate = [[MPEntryContextMenuDelegate alloc] init];
     _contextBarViewController = [[MPContextBarViewController alloc] init];
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(_updateSearchResults:)
+                                                 name:MPDocumentDidChangeSearchNotification
+                                               object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(showFilter:) name:MPDocumentDidEnterSearchNotification object:nil];
   }
   return self;
 }
 
 - (void)dealloc {
   [[NSNotificationCenter defaultCenter] removeObserver:self];
-  [self unbind:@"filterMode"];
-  
 }
 
 - (void)didLoadView {
@@ -173,8 +177,8 @@ NSString *const _MPTAbleSecurCellView = @"PasswordCell";
   [[attachmentsColumn headerCell] setStringValue:NSLocalizedString(@"ATTACHMENTS", "")];
   [[modifiedColumn headerCell] setStringValue:NSLocalizedString(@"MODIFIED", "")];
   
-  [self.entryTable bind:NSContentBinding toObject:self.entryArrayController withKeyPath:@"arrangedObjects" options:nil];
-  [self.entryTable bind:NSSortDescriptorsBinding toObject:self.entryArrayController withKeyPath:@"sortDescriptors" options:nil];
+  [self.entryTable bind:NSContentBinding toObject:self.entryArrayController withKeyPath:NSStringFromSelector(@selector(arrangedObjects)) options:nil];
+  [self.entryTable bind:NSSortDescriptorsBinding toObject:self.entryArrayController withKeyPath:NSStringFromSelector(@selector(sortDescriptors)) options:nil];
   [self.entryTable setDataSource:_dataSource];
   
   // bind NSArrayController sorting so that sort order gets auto-saved
@@ -223,19 +227,19 @@ NSString *const _MPTAbleSecurCellView = @"PasswordCell";
   if(isTitleColumn || isGroupColumn) {
     view = [tableView makeViewWithIdentifier:_MPTableImageCellView owner:self];
     if( isTitleColumn ) {
-      [[view textField] bind:NSValueBinding toObject:entry withKeyPath:@"title" options:nil];
-      [[view imageView] bind:NSValueBinding toObject:entry withKeyPath:@"iconImage" options:nil];
+      [[view textField] bind:NSValueBinding toObject:entry withKeyPath:NSStringFromSelector(@selector(title)) options:nil];
+      [[view imageView] bind:NSValueBinding toObject:entry withKeyPath:NSStringFromSelector(@selector(iconImage)) options:nil];
     }
     else {
       NSAssert(entry.parent != nil, @"Entry needs to have a parent");
-      [[view textField] bind:NSValueBinding toObject:entry.parent withKeyPath:@"name" options:nil];
-      [[view imageView] bind:NSValueBinding toObject:entry.parent withKeyPath:@"iconImage" options:nil];
+      [[view textField] bind:NSValueBinding toObject:entry.parent withKeyPath:NSStringFromSelector(@selector(name)) options:nil];
+      [[view imageView] bind:NSValueBinding toObject:entry.parent withKeyPath:NSStringFromSelector(@selector(iconImage)) options:nil];
     }
   }
   else if(isPasswordColum) {
     view = [tableView makeViewWithIdentifier:_MPTAbleSecurCellView owner:self];
     NSDictionary *options = @{ NSValueTransformerBindingOption : [NSValueTransformer valueTransformerForName:MPStringLengthValueTransformerName] };
-    [[view textField] bind:NSValueBinding toObject:entry withKeyPath:@"password" options:options];
+    [[view textField] bind:NSValueBinding toObject:entry withKeyPath:NSStringFromSelector(@selector(password)) options:options];
   }
   else  {
     view = [tableView makeViewWithIdentifier:_MPTableStringCellView owner:self];
@@ -322,22 +326,17 @@ NSString *const _MPTAbleSecurCellView = @"PasswordCell";
     document.selectedEntry = nil;
   }
 }
-#pragma mark MPContextBarDelegate
-- (void)contextBarDidExitFilter {
-  [[self.entryTable tableColumnWithIdentifier:MPEntryTableParentColumnIdentifier] setHidden:YES];
-  MPDocument *document = [[self windowController] document];
-  document.selectedItem = document.selectedGroup;
-  [self _updateContextBar];
-}
-
-- (void)contextBarDidChangeFilter {
+#pragma mark MPDocumentSearchServiceNotifications
+- (void)_updateSearchResults:(NSNotification *)notification {
+  if(!_isDisplayingContextBar || ![self.contextBarViewController showsFilter]) {
+    [self showFilter:nil];
+  }
   dispatch_queue_t backgroundQueue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
   dispatch_async(backgroundQueue, ^{
     MPDocument *document = [[self windowController] document];
-    
-    self.filteredEntries = [MPDocumentSearchService entriesInDocument:document
-                                                         matching:self.contextBarViewController.filterString
-                                                  usingFilterMode:self.contextBarViewController.filterMode];
+    NSString *searchString = [[[self windowController] searchField] stringValue];
+    self.filteredEntries = [document entriesInDocument:document
+                                              matching:searchString];
     
     dispatch_sync(dispatch_get_main_queue(), ^{
       document.selectedEntry = nil;
@@ -348,7 +347,19 @@ NSString *const _MPTAbleSecurCellView = @"PasswordCell";
   });
 }
 
-- (void)showFilter:(id)sender {
+#pragma mark MPContextBarDelegate
+- (void)contextBarDidExitFilter {
+  [[self.entryTable tableColumnWithIdentifier:MPEntryTableParentColumnIdentifier] setHidden:YES];
+  MPDocument *document = [[self windowController] document];
+  document.selectedItem = document.selectedGroup;
+  [self _updateContextBar];
+}
+
+- (void)showFilter:(NSNotification *)notification {
+  MPDocument *currentDocument = [[self windowController] document];
+  if(notification && [notification object] != currentDocument) {
+    return; // Wrong document
+  }
   [self.contextBarViewController showFilter];
   [self _showContextBar];
 }
@@ -411,9 +422,7 @@ NSString *const _MPTAbleSecurCellView = @"PasswordCell";
     context.duration = STATUS_BAR_ANIMATION_TIME;
     context.allowsImplicitAnimation = YES;
     [self.view layoutSubtreeIfNeeded];
-  } completionHandler:^{
-    [self.contextBarViewController enable];
-  }];
+  } completionHandler:nil];
 }
 
 - (void)_hideContextBar {
@@ -422,7 +431,6 @@ NSString *const _MPTAbleSecurCellView = @"PasswordCell";
   }
   self.contextBarTopConstraint.constant = -31;
   [[self view] addConstraint:self.tableToTopConstraint];
-  [self.contextBarViewController disable];
   
   [NSAnimationContext runAnimationGroup:^(NSAnimationContext* context) {
     context.duration = STATUS_BAR_ANIMATION_TIME;
@@ -473,7 +481,7 @@ NSString *const _MPTAbleSecurCellView = @"PasswordCell";
   
   KPKEntry *targetEntry = [self _clickedOrSelectedEntry];
   MPActionType actionType = [MPActionHelper typeForAction:[menuItem action]];
-
+  
   switch (actionType) {
     case MPActionCopyUsername:
       return  [targetEntry.username length] > 0;

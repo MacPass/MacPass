@@ -35,10 +35,6 @@ typedef NS_ENUM( NSUInteger, MPCopyContentTypeTag) {
 /* Call this after alle viewcontroller are loaded */
 - (void)setupNotifications:(MPDocumentWindowController *)windowController;
 
-/* Clear the Search filter*/
-- (void)showFilter:(id)sender;
-- (void)clearFilter:(id)sender;
-
 /* Copy/Paste */
 - (void)copyUsername:(id)sender;
 - (void)copyPassword:(id)sender;

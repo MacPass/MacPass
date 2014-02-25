@@ -121,6 +121,10 @@ typedef NS_ENUM(NSUInteger, MPAlertContext) {
   [_splitView setAutosaveName:@"SplitView"];
 }
 
+- (NSSearchField *)searchField {
+  return self.toolbarDelegate.searchField;
+}
+
 - (void)_setContentViewController:(MPViewController *)viewController {
   
   NSView *newContentView = nil;
@@ -215,14 +219,6 @@ typedef NS_ENUM(NSUInteger, MPAlertContext) {
       [self.outlineViewController showOutline];
     }
   }];
-}
-
-- (void)performFindPanelAction:(id)sender {
-  [self.entryViewController showFilter:sender];
-}
-
-- (void)cancelSearch:(id)sender {
-  [self.entryViewController clearFilter:sender];
 }
 
 - (void)showPasswordInput {
