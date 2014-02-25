@@ -136,7 +136,7 @@ NSString *const _MPOutlinveViewHeaderViewIdentifier = @"HeaderCell";
 }
 
 #pragma mark Notifications
-- (void)setupNotifications:(MPDocumentWindowController *)windowController {
+- (void)regsiterNotificationsForDocument:(MPDocument *)document {
   // Nothing to do anymore
 }
 

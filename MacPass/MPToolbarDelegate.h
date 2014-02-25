@@ -22,10 +22,12 @@
 
 #import <Foundation/Foundation.h>
 
-@class MPDocumentWindowController;
+@class MPDocument;
 
 @interface MPToolbarDelegate : NSObject <NSToolbarDelegate>
 
 @property (weak, readonly) NSSearchField *searchField;
+
+- (void)regsiterNotificationsForDocument:(MPDocument *)document;
 
 @end

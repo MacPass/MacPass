@@ -81,9 +81,12 @@ typedef NS_ENUM(NSUInteger, MPAlertContext) {
   [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(_didRevertDocument:) name:MPDocumentDidRevertNotifiation object:[self document]];
   [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(showEntries) name:MPDocumentDidUnlockDatabaseNotification object:[self document]];
   
-  [_entryViewController setupNotifications:self];
-  [_inspectorViewController setupNotifications:self];
-  [_outlineViewController setupNotifications:self];
+  MPDocument *document = [self document];
+  
+  [_entryViewController regsiterNotificationsForDocument:document];
+  [_inspectorViewController regsiterNotificationsForDocument:document];
+  [_outlineViewController regsiterNotificationsForDocument:document];
+  [_toolbarDelegate regsiterNotificationsForDocument:document];
   
   
   
@@ -109,8 +112,7 @@ typedef NS_ENUM(NSUInteger, MPAlertContext) {
   if(!showInspector) {
     [inspectorView removeFromSuperview];
   }
-  
-  MPDocument *document = [self document];
+
   if(document.encrypted) {
     [self showPasswordInput];
   }

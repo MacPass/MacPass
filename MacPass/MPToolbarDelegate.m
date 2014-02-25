@@ -66,7 +66,6 @@ NSString *const MPToolbarItemSearch = @"TOOLBAR_SEARCH";
     _toolbarImages = [self createToolbarImages];
     _toolbarItems = [[NSMutableDictionary alloc] initWithCapacity:[self.toolbarIdentifiers count]];
     _entryMenuDelegate = [[MPAddEntryContextMenuDelegate alloc] init];
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(_didExitSearch:) name:MPDocumentDidExitSearchNotification object:self];
   }
   return self;
 }
@@ -187,6 +186,12 @@ NSString *const MPToolbarItemSearch = @"TOOLBAR_SEARCH";
   return imageDict;
 }
 
+
+- (void)regsiterNotificationsForDocument:(MPDocument *)document {
+  [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(_didExitSearch:) name:MPDocumentDidExitSearchNotification object:document];
+  [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(_didExitSearch:) name:MPDocumentDidEnterSearchNotification object:document];
+}
+
 - (NSString *)_localizedLabelForToolbarItemIdentifier:(NSString *)identifier {
   static NSDictionary *labelDict;
   static dispatch_once_t onceToken;
@@ -220,6 +225,7 @@ NSString *const MPToolbarItemSearch = @"TOOLBAR_SEARCH";
 
 - (void)_didExitSearch:(NSNotification *)notification {
   [self.searchField setStringValue:@""];
+  [[self.searchField window] makeFirstResponder:nil];
 }
 
 @end

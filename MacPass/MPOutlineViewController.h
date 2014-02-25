@@ -12,7 +12,7 @@ APPKIT_EXTERN NSString *const MPOutlineViewDidChangeGroupSelection;
 
 @class MPOutlineViewDelegate;
 @class HNHGradientView;
-@class MPDocumentWindowController;
+@class MPDocument;
 
 @interface MPOutlineViewController : MPViewController <NSOutlineViewDelegate, NSMenuDelegate>
 
@@ -21,7 +21,7 @@ APPKIT_EXTERN NSString *const MPOutlineViewDidChangeGroupSelection;
 
 - (void)clearSelection;
 - (void)showOutline;
-- (void)setupNotifications:(MPDocumentWindowController *)windowController;
+- (void)regsiterNotificationsForDocument:(MPDocument *)document;
 
 - (void)createGroup:(id)sender;
 - (void)createEntry:(id)sender;

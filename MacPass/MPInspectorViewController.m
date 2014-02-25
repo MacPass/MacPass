@@ -107,8 +107,7 @@ typedef NS_ENUM(NSUInteger, MPContentTab) {
   [self _updateBindings:nil];
 }
 
-- (void)setupNotifications:(NSWindowController *)windowController {
-  MPDocument *document = [windowController document];
+- (void)regsiterNotificationsForDocument:(MPDocument *)document {
   [[NSNotificationCenter defaultCenter] addObserver:self
                                            selector:@selector(_didChangeCurrentItem:)
                                                name:MPCurrentItemChangedNotification

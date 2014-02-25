@@ -98,11 +98,6 @@ NSString *const _MPTAbleSecurCellView = @"PasswordCell";
     _dataSource.viewController = self;
     _menuDelegate = [[MPEntryContextMenuDelegate alloc] init];
     _contextBarViewController = [[MPContextBarViewController alloc] init];
-    [[NSNotificationCenter defaultCenter] addObserver:self
-                                             selector:@selector(_updateSearchResults:)
-                                                 name:MPDocumentDidChangeSearchNotification
-                                               object:nil];
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(showFilter:) name:MPDocumentDidEnterSearchNotification object:nil];
   }
   return self;
 }
@@ -196,12 +191,22 @@ NSString *const _MPTAbleSecurCellView = @"PasswordCell";
   return self.entryTable;
 }
 
-- (void)setupNotifications:(MPDocumentWindowController *)windowController {
-  MPDocument *document = [windowController document];
+- (void)regsiterNotificationsForDocument:(MPDocument *)document {
   [[NSNotificationCenter defaultCenter] addObserver:self
                                            selector:@selector(_didChangeCurrentItem:)
                                                name:MPCurrentItemChangedNotification
                                              object:document];
+  
+  [[NSNotificationCenter defaultCenter] addObserver:self
+                                           selector:@selector(_updateSearchResults:)
+                                               name:MPDocumentDidChangeSearchNotification
+                                             object:document];
+  [[NSNotificationCenter defaultCenter] addObserver:self
+                                           selector:@selector(showFilter:)
+                                               name:MPDocumentDidEnterSearchNotification
+                                             object:document];
+  
+  
 }
 
 #pragma mark NSTableViewDelgate
@@ -356,10 +361,6 @@ NSString *const _MPTAbleSecurCellView = @"PasswordCell";
 }
 
 - (void)showFilter:(NSNotification *)notification {
-  MPDocument *currentDocument = [[self windowController] document];
-  if(notification && [notification object] != currentDocument) {
-    return; // Wrong document
-  }
   [self.contextBarViewController showFilter];
   [self _showContextBar];
 }

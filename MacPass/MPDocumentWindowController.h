@@ -31,7 +31,6 @@
 - (void)showPasswordInput;
 
 #pragma mark Actions
-- (IBAction)performFindPanelAction:(id)sender;
 - (IBAction)saveDocument:(id)sender;
 
 - (IBAction)editPassword:(id)sender;

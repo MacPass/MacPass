@@ -26,6 +26,6 @@
 - (IBAction)toggleEdit:(id)sender;
 
 /* Seperate call to ensure alle registered objects are in place */
-- (void)setupNotifications:(NSWindowController *)windowController;
+- (void)regsiterNotificationsForDocument:(NSDocument *)document;
 
 @end

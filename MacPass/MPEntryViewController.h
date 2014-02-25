@@ -26,6 +26,7 @@ typedef NS_ENUM( NSUInteger, MPCopyContentTypeTag) {
 @class KPKEntry;
 @class MPOutlineViewDelegate;
 @class MPDocumentWindowController;
+@class MPDocument;
 
 @interface MPEntryViewController : MPViewController <NSTableViewDelegate, MPContextBarDelegate>
 
@@ -33,7 +34,7 @@ typedef NS_ENUM( NSUInteger, MPCopyContentTypeTag) {
 @property (readonly, strong) NSArrayController *entryArrayController;
 
 /* Call this after alle viewcontroller are loaded */
-- (void)setupNotifications:(MPDocumentWindowController *)windowController;
+- (void)regsiterNotificationsForDocument:(MPDocument *)document;
 
 /* Copy/Paste */
 - (void)copyUsername:(id)sender;
