@@ -22,15 +22,23 @@ NSString *const MPDocumentDidExitSearchNotification   = @"com.hicknhack.macpass.
 #pragma mark Actions
 
 - (void)performFindPanelAction:(id)sender {
+  self.hasSearch = YES;
+  NSWindow *window = [[self windowControllers][0] window];
+  NSToolbar *toolbar = [window toolbar];
+  if(![toolbar isVisible]) {
+    [toolbar setVisible:YES];
+  }
   [[NSNotificationCenter defaultCenter] postNotificationName:MPDocumentDidEnterSearchNotification object:self];
 }
 
 - (void)updateSearch:(id)sender {
+  self.hasSearch = YES;
   [[NSNotificationCenter defaultCenter] postNotificationName:MPDocumentDidChangeSearchNotification object:self];
 }
 
 - (void)exitSearch:(id)sender {
   self.searchString = nil;
+  self.hasSearch = NO;
   [[NSNotificationCenter defaultCenter] postNotificationName:MPDocumentDidExitSearchNotification object:self];
 }
 

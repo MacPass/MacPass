@@ -159,6 +159,7 @@
 		4C68456D17BC227B00FCDBFC /* KPKWindowAssociation.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C68456C17BC227B00FCDBFC /* KPKWindowAssociation.m */; };
 		4C68456F17BC2A0700FCDBFC /* WelcomeWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4C68456E17BC2A0700FCDBFC /* WelcomeWindow.xib */; };
 		4C69A73A16D589DF00EC1B1A /* HNHGradientView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C69A73916D589DF00EC1B1A /* HNHGradientView.m */; };
+		4C6B7C7D18BE7EB0001D5D77 /* MPDocument+HistoryBrowsing.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C6B7C7C18BE7EB0001D5D77 /* MPDocument+HistoryBrowsing.m */; };
 		4C6BEA3117A88E6C00CF69A8 /* MPStripLineBreaksTransformer.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C6BEA3017A88E6C00CF69A8 /* MPStripLineBreaksTransformer.m */; };
 		4C6C72C417C01E4200768849 /* NSMutableData+KeePassKit.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C6C72C317C01E4200768849 /* NSMutableData+KeePassKit.m */; };
 		4C6D1D25178579570014C5A5 /* 48_FolderTemplate.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 4C6D1D24178579570014C5A5 /* 48_FolderTemplate.pdf */; };
@@ -624,6 +625,8 @@
 		4C68456E17BC2A0700FCDBFC /* WelcomeWindow.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = WelcomeWindow.xib; sourceTree = "<group>"; };
 		4C69A73816D589DF00EC1B1A /* HNHGradientView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HNHGradientView.h; sourceTree = "<group>"; };
 		4C69A73916D589DF00EC1B1A /* HNHGradientView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HNHGradientView.m; sourceTree = "<group>"; };
+		4C6B7C7B18BE7EB0001D5D77 /* MPDocument+HistoryBrowsing.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "MPDocument+HistoryBrowsing.h"; sourceTree = "<group>"; };
+		4C6B7C7C18BE7EB0001D5D77 /* MPDocument+HistoryBrowsing.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "MPDocument+HistoryBrowsing.m"; sourceTree = "<group>"; };
 		4C6BEA2F17A88E6C00CF69A8 /* MPStripLineBreaksTransformer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MPStripLineBreaksTransformer.h; sourceTree = "<group>"; };
 		4C6BEA3017A88E6C00CF69A8 /* MPStripLineBreaksTransformer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MPStripLineBreaksTransformer.m; sourceTree = "<group>"; };
 		4C6C72C217C01E4200768849 /* NSMutableData+KeePassKit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSMutableData+KeePassKit.h"; sourceTree = "<group>"; };
@@ -1225,6 +1228,8 @@
 				4C1FA07A18231900003A3F8C /* MPDocument+Autotype.m */,
 				4C15B74418BCA3B1003F8008 /* MPDocument+Search.h */,
 				4C15B74518BCA3B1003F8008 /* MPDocument+Search.m */,
+				4C6B7C7B18BE7EB0001D5D77 /* MPDocument+HistoryBrowsing.h */,
+				4C6B7C7C18BE7EB0001D5D77 /* MPDocument+HistoryBrowsing.m */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -2093,6 +2098,7 @@
 				4CAD747F15B887FD00104512 /* DDXMLNode.m in Sources */,
 				4C37A84015B8B474005EF8EE /* MPOutlineDataSource.m in Sources */,
 				4CA0B2F915BCAF6700654E32 /* MPGeneralSettingsController.m in Sources */,
+				4C6B7C7D18BE7EB0001D5D77 /* MPDocument+HistoryBrowsing.m in Sources */,
 				4CA0B2FC15BCAF8600654E32 /* MPSettingsWindowController.m in Sources */,
 				4C83814215BF4677001AE468 /* MPDocumentWindowController.m in Sources */,
 				4C2E382316D1421B00037A9D /* MPIconHelper.m in Sources */,

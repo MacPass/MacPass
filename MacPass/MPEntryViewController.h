@@ -28,7 +28,7 @@ typedef NS_ENUM( NSUInteger, MPCopyContentTypeTag) {
 @class MPDocumentWindowController;
 @class MPDocument;
 
-@interface MPEntryViewController : MPViewController <NSTableViewDelegate, MPContextBarDelegate>
+@interface MPEntryViewController : MPViewController <NSTableViewDelegate>
 
 @property (weak,readonly) NSTableView *entryTable;
 @property (readonly, strong) NSArrayController *entryArrayController;

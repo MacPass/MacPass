@@ -8,6 +8,12 @@
 
 #import "MPDocument.h"
 
+FOUNDATION_EXPORT NSString *const MPDocumentDidEnterHistoryNotification;
+FOUNDATION_EXPORT NSString *const MPDocumentDidExitHistoryNotification;
+
 @interface MPDocument (HistoryBrowsing)
+
+- (IBAction)showHistory:(id)sender;
+- (IBAction)exitHistory:(id)sender;
 
 @end

@@ -187,9 +187,9 @@ NSString *const MPToolbarItemSearch = @"TOOLBAR_SEARCH";
 }
 
 
-- (void)regsiterNotificationsForDocument:(MPDocument *)document {
+- (void)registerNotificationsForDocument:(MPDocument *)document {
   [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(_didExitSearch:) name:MPDocumentDidExitSearchNotification object:document];
-  [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(_didExitSearch:) name:MPDocumentDidEnterSearchNotification object:document];
+  [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(_didEnterSearch:) name:MPDocumentDidEnterSearchNotification object:document];
 }
 
 - (NSString *)_localizedLabelForToolbarItemIdentifier:(NSString *)identifier {
@@ -223,9 +223,17 @@ NSString *const MPToolbarItemSearch = @"TOOLBAR_SEARCH";
   return [MPActionHelper actionOfType:actionType];
 }
 
+- (void)_didEnterSearch:(NSNotification *)notification {
+  [[self.searchField window] makeFirstResponder:self.searchField];
+}
+
 - (void)_didExitSearch:(NSNotification *)notification {
   [self.searchField setStringValue:@""];
-  [[self.searchField window] makeFirstResponder:nil];
+  NSWindow *window = [self.searchField window];
+  /* Resign first responder form search field only if it was the first responder */
+  if([window firstResponder] == self.searchField ) {
+    [window makeFirstResponder:nil];
+  }
 }
 
 @end

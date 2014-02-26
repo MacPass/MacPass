@@ -194,7 +194,7 @@ NSString *const _MPTAbleSecurCellView = @"PasswordCell";
 - (void)regsiterNotificationsForDocument:(MPDocument *)document {
   [[NSNotificationCenter defaultCenter] addObserver:self
                                            selector:@selector(_didChangeCurrentItem:)
-                                               name:MPCurrentItemChangedNotification
+                                               name:MPDocumentCurrentItemChangedNotification
                                              object:document];
   
   [[NSNotificationCenter defaultCenter] addObserver:self
@@ -206,6 +206,11 @@ NSString *const _MPTAbleSecurCellView = @"PasswordCell";
                                                name:MPDocumentDidEnterSearchNotification
                                              object:document];
   
+  
+  [[NSNotificationCenter defaultCenter] addObserver:self
+                                           selector:@selector(_updateContextBar)
+                                               name:MPDocumentDidExitSearchNotification
+                                             object:document];
   
 }
 
@@ -309,7 +314,7 @@ NSString *const _MPTAbleSecurCellView = @"PasswordCell";
   if(document.selectedItem == document.selectedGroup) {
     /* If we change to a group selection, we should clear the filter */
     if(_isDisplayingContextBar) {
-      [self.contextBarViewController exitFilter:self];
+      [document exitSearch:self];
     }
     else if([[self.entryArrayController content] count] > 0) {
       KPKEntry *entry = [[self.entryArrayController content] lastObject];
@@ -365,10 +370,6 @@ NSString *const _MPTAbleSecurCellView = @"PasswordCell";
   [self _showContextBar];
 }
 
-- (void)clearFilter:(id)sender {
-  [self.contextBarViewController exitFilter:sender];
-}
-
 #pragma mark ContextBar
 - (void)_showTrashBar {
   [self.contextBarViewController showTrash];
@@ -377,7 +378,7 @@ NSString *const _MPTAbleSecurCellView = @"PasswordCell";
 
 - (void)_updateContextBar {
   MPDocument *document = [[self windowController] document];
-  if(![self.contextBarViewController hasFilter]) {
+  if(!document.hasSearch) {
     BOOL showTrash = document.useTrash && (document.selectedGroup == document.trash || [document isItemTrashed:document.selectedItem]);
     if(showTrash) {
       [self _showTrashBar];

@@ -28,6 +28,6 @@
 
 @property (weak, readonly) NSSearchField *searchField;
 
-- (void)regsiterNotificationsForDocument:(MPDocument *)document;
+- (void)registerNotificationsForDocument:(MPDocument *)document;
 
 @end

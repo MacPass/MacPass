@@ -48,6 +48,8 @@ NSString *const MPDocumentDidRevertNotifiation            = @"com.hicknhack.macp
 NSString *const MPDocumentDidLockDatabaseNotification     = @"com.hicknhack.macpass.MPDocumentDidLockDatabaseNotification";
 NSString *const MPDocumentDidUnlockDatabaseNotification   = @"com.hicknhack.macpass.MPDocumentDidUnlockDatabaseNotification";
 
+NSString *const MPDocumentCurrentItemChangedNotification  = @"com.hicknhack.macpass.MPDocumentCurrentItemChangedNotification";
+
 NSString *const MPDocumentEntryKey                        = @"MPDocumentEntryKey";
 NSString *const MPDocumentGroupKey                        = @"MPDocumentGroupKey";
 
@@ -112,6 +114,7 @@ NSString *const MPDocumentGroupKey                        = @"MPDocumentGroupKey
     _didLockFile = NO;
     _readOnly = NO;
     _activeFlags = MPEntrySearchTitles;
+    _hasSearch = NO;
     self.tree = [KPKTree templateTree];
   }
   return self;
@@ -350,7 +353,7 @@ NSString *const MPDocumentGroupKey                        = @"MPDocumentGroupKey
 - (void)setSelectedItem:(id)selectedItem {
   if(_selectedItem != selectedItem) {
     _selectedItem = selectedItem;
-    [[NSNotificationCenter defaultCenter] postNotificationName:MPCurrentItemChangedNotification object:self];
+    [[NSNotificationCenter defaultCenter] postNotificationName:MPDocumentCurrentItemChangedNotification object:self];
   }
 }
 - (void)setTree:(KPKTree *)tree {

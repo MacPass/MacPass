@@ -29,6 +29,8 @@ APPKIT_EXTERN NSString *const MPDocumentDidRevertNotifiation;
 APPKIT_EXTERN NSString *const MPDocumentDidLockDatabaseNotification;
 APPKIT_EXTERN NSString *const MPDocumentDidUnlockDatabaseNotification;
 
+FOUNDATION_EXTERN NSString *const MPDocumentCurrentItemChangedNotification;
+
 APPKIT_EXTERN NSString *const MPDocumentEntryKey;
 APPKIT_EXTERN NSString *const MPDocumentGroupKey;
 
@@ -77,6 +79,7 @@ typedef NS_OPTIONS(NSUInteger, MPEntrySearchFlags) {
  */
 @property (nonatomic, assign) MPEntrySearchFlags activeFlags;
 @property (nonatomic, copy) NSString *searchString;
+@property (nonatomic, assign) BOOL hasSearch;
 
 
 + (KPKVersion)versionForFileType:(NSString *)fileType;

@@ -12,6 +12,5 @@
 #import <Foundation/Foundation.h>
 
 FOUNDATION_EXPORT NSString *const MPDidActivateViewNotification;
-FOUNDATION_EXPORT NSString *const MPCurrentItemChangedNotification;
 
 #endif

@@ -86,13 +86,13 @@ typedef NS_ENUM(NSUInteger, MPAlertContext) {
   [_entryViewController regsiterNotificationsForDocument:document];
   [_inspectorViewController regsiterNotificationsForDocument:document];
   [_outlineViewController regsiterNotificationsForDocument:document];
-  [_toolbarDelegate regsiterNotificationsForDocument:document];
+  [_toolbarDelegate registerNotificationsForDocument:document];
   
   
   
   _toolbar = [[NSToolbar alloc] initWithIdentifier:@"MainWindowToolbar"];
   [_toolbar setAutosavesConfiguration:YES];
-  [self.toolbar setAllowsUserCustomization:YES];
+  [self.toolbar setAllowsUserCustomization:NO];
   [self.toolbar setDelegate:self.toolbarDelegate];
   [self.window setToolbar:self.toolbar];
   

@@ -9,25 +9,16 @@
 #import "MPViewController.h"
 #import "MPDocument+Search.h"
 
-@protocol MPContextBarDelegate <NSObject>
-
-@optional
-- (void)contextBarDidChangeFilter;
-- (void)contextBarDidExitFilter;
-- (void)contextBarDidExitHistory;
-- (void)contextBarShouldEmptyTrash;
-@end
-
 @class HNHGradientView;
+@class MPDocument;
 
 @interface MPContextBarViewController : MPViewController
 
-@property (nonatomic, readonly) BOOL hasFilter;
-@property (nonatomic, weak) id<MPContextBarDelegate> delegate;
 @property (weak) NSView *nextKeyView;
 
+- (void)registerNotificationsForDocument:(MPDocument *)document;
+
 - (IBAction)toggleFilterSpace:(id)sender;
-- (IBAction)exitFilter:(id)sender;
 
 - (BOOL)showsFilter;
 - (BOOL)showsHistory;

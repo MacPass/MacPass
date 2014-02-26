@@ -59,10 +59,6 @@ typedef NS_ENUM(NSUInteger, MPContextTab) {
     _delegateRespondsToDidExitHistory = NO;
     _delegateRespondsToShouldEmptyTrash = NO;
     _delegateRespondsToDidChangeFilter = NO;
-    [[NSNotificationCenter defaultCenter] addObserver:self
-                                             selector:@selector(_updateFilterButtons)
-                                                 name:MPDocumentDidChangeSearchFlags
-                                               object:nil];
   }
   return self;
 }
@@ -94,15 +90,6 @@ typedef NS_ENUM(NSUInteger, MPContextTab) {
 }
 
 #pragma mark Properties
-- (void)setDelegate:(id<MPContextBarDelegate>)delegate {
-  if(self.delegate != delegate) {
-    _delegate = delegate;
-    _delegateRespondsToDidChangeFilter = [_delegate respondsToSelector:@selector(contextBarDidChangeFilter)];
-    _delegateRespondsToDidExitFilter = [_delegate respondsToSelector:@selector(contextBarDidExitFilter)];
-    _delegateRespondsToDidExitHistory = [_delegate respondsToSelector:@selector(contextBarDidExitHistory)];
-    _delegateRespondsToShouldEmptyTrash = [_delegate respondsToSelector:@selector(contextBarShouldEmptyTrash)];
-  }
-}
 
 - (void)showFilter {
   /* Select text if already visible */
@@ -111,13 +98,11 @@ typedef NS_ENUM(NSUInteger, MPContextTab) {
 }
 
 - (void)showHistory {
-  [self exitFilter:self];
   self.activeTab = MPContextTabHistory;
   [self _updateBindings];
 }
 
 - (void)showTrash {
-  [self exitFilter:self];
   self.activeTab = MPContextTabTrash;
   [self _updateBindings];
 }
@@ -134,6 +119,18 @@ typedef NS_ENUM(NSUInteger, MPContextTab) {
   return self.activeTab == MPContextTabTrash;
 }
 
+- (void)registerNotificationsForDocument:(MPDocument *)document {
+  [[NSNotificationCenter defaultCenter] addObserver:self
+                                           selector:@selector(_updateFilterButtons)
+                                               name:MPDocumentDidChangeSearchFlags
+                                             object:document];
+  [[NSNotificationCenter defaultCenter] addObserver:self
+                                           selector:@selector(showFilter)
+                                               name:MPDocumentDidEnterSearchNotification
+                                             object:document];
+
+}
+
 /*
  - (BOOL)control:(NSControl*)control textView:(NSTextView*)textView doCommandBySelector:(SEL)commandSelector {
   if(commandSelector == @selector(insertNewline:)) {
@@ -142,12 +139,6 @@ typedef NS_ENUM(NSUInteger, MPContextTab) {
   return NO;
 }
 */
-
-- (void)_didChangeFilter {
-  if(_delegateRespondsToDidChangeFilter) {
-    [self.delegate contextBarDidChangeFilter];
-  }
-}
 
 #pragma mark UI Helper
 - (void)_updateBindings {
