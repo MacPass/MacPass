@@ -14,19 +14,13 @@
 
 @interface MPContextBarViewController : MPViewController
 
-@property (weak) NSView *nextKeyView;
+@property (weak) IBOutlet NSButton *titleButton;
+@property (weak) IBOutlet NSButton *usernameButton;
+@property (weak) IBOutlet NSButton *passwordButton;
+@property (weak) IBOutlet NSButton *urlButton;
+@property (weak) IBOutlet NSButton *notesButton;
+@property (weak) IBOutlet NSButton *everywhereButton;
 
 - (void)registerNotificationsForDocument:(MPDocument *)document;
-
-- (IBAction)toggleFilterSpace:(id)sender;
-
-- (BOOL)showsFilter;
-- (BOOL)showsHistory;
-- (BOOL)showsTrash;
-
-- (void)showFilter;
-
-- (void)showHistory;
-- (void)showTrash;
 
 @end

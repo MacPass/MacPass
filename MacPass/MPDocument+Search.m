@@ -42,11 +42,11 @@ NSString *const MPDocumentDidExitSearchNotification   = @"com.hicknhack.macpass.
   [[NSNotificationCenter defaultCenter] postNotificationName:MPDocumentDidExitSearchNotification object:self];
 }
 
-- (void)toggleFlags:(id)sender {
+- (void)toggleSearchFlags:(id)sender {
   if(![sender respondsToSelector:@selector(tag)]) {
-    return; // We nee to read the button tag
+    return; // We need to read the button tag
   }
-  if([sender respondsToSelector:@selector(state)]) {
+  if(![sender respondsToSelector:@selector(state)]) {
     return; // We need to read the button state
   }
   MPEntrySearchFlags toggleFlag = [sender tag];
@@ -115,6 +115,10 @@ NSString *const MPDocumentDidExitSearchNotification   = @"com.hicknhack.macpass.
     return MPTestFlagInOptions(flag, mode);
   }];
   return [allOptions objectsAtIndexes:indexes];
+}
+
+- (void)_updateSearch {
+  self.searchResult = [self entriesInDocument:self matching:self.searchString];
 }
 
 - (NSArray *)_filterPredicatesWithString:(NSString *)string{

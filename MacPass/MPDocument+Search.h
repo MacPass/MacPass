@@ -12,6 +12,7 @@ FOUNDATION_EXPORT NSString *const MPDocumentDidEnterSearchNotification;
 FOUNDATION_EXTERN NSString *const MPDocumentDidChangeSearchNotification;
 FOUNDATION_EXPORT NSString *const MPDocumentDidChangeSearchFlags;
 FOUNDATION_EXTERN NSString *const MPDocumentDidExitSearchNotification;
+FOUNDATION_EXPORT NSString *const MPDocumentDidChangeSearchResults;
 
 @interface MPDocument (Search)
 
@@ -22,6 +23,6 @@ FOUNDATION_EXTERN NSString *const MPDocumentDidExitSearchNotification;
 /* exits searching mode */
 - (IBAction)exitSearch:(id)sender;
 /* called by the filter toggle buttons */
-- (IBAction)toggleFlags:(id)sender;
+- (IBAction)toggleSearchFlags:(id)sender;
 
 @end

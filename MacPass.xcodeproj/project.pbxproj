@@ -102,6 +102,7 @@
 		4C46E09E17673A0A00DA62E8 /* HNHShadowBox.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C46E09D17673A0A00DA62E8 /* HNHShadowBox.m */; };
 		4C473A7F18AFD6340073FD2E /* KPKTestReference.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C473A7E18AFD6340073FD2E /* KPKTestReference.m */; };
 		4C473A8718AFD85B0073FD2E /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4C473A8518AFD7250073FD2E /* XCTest.framework */; };
+		4C48A56218BE932100278A2D /* HNHCommon.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C48A56118BE932100278A2D /* HNHCommon.m */; };
 		4C4A100F176286FD00BBF2CA /* MPTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C4A100E176286FD00BBF2CA /* MPTableView.m */; };
 		4C4B7EE917A45EC6000234C7 /* MPDatePickingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C4B7EE717A45EC5000234C7 /* MPDatePickingViewController.m */; };
 		4C4B7EEA17A45EC6000234C7 /* DatePickingView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4C4B7EE817A45EC5000234C7 /* DatePickingView.xib */; };
@@ -519,6 +520,8 @@
 		4C46E09D17673A0A00DA62E8 /* HNHShadowBox.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HNHShadowBox.m; sourceTree = "<group>"; };
 		4C473A7E18AFD6340073FD2E /* KPKTestReference.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KPKTestReference.m; sourceTree = "<group>"; };
 		4C473A8518AFD7250073FD2E /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
+		4C48A56018BE932100278A2D /* HNHCommon.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HNHCommon.h; sourceTree = "<group>"; };
+		4C48A56118BE932100278A2D /* HNHCommon.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HNHCommon.m; sourceTree = "<group>"; };
 		4C4A100D176286FD00BBF2CA /* MPTableView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MPTableView.h; sourceTree = "<group>"; };
 		4C4A100E176286FD00BBF2CA /* MPTableView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MPTableView.m; sourceTree = "<group>"; };
 		4C4B7EE617A45EC5000234C7 /* MPDatePickingViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MPDatePickingViewController.h; sourceTree = "<group>"; };
@@ -1589,6 +1592,8 @@
 				4C2671AC17A7D8FC00F3A645 /* HNHColorWell.m */,
 				4CFDDDE7185E92A600A9E7F1 /* HNHTextView.h */,
 				4CFDDDE8185E92A600A9E7F1 /* HNHTextView.m */,
+				4C48A56018BE932100278A2D /* HNHCommon.h */,
+				4C48A56118BE932100278A2D /* HNHCommon.m */,
 			);
 			path = HNHUi;
 			sourceTree = "<group>";
@@ -2118,6 +2123,7 @@
 				4C888C9316EB6F5E003D34A1 /* MPToolbarItem.m in Sources */,
 				4C888C9716EB754B003D34A1 /* MPActionHelper.m in Sources */,
 				4C811C8316ECD06E00C4BAC6 /* MPKeyfilePathControlDelegate.m in Sources */,
+				4C48A56218BE932100278A2D /* HNHCommon.m in Sources */,
 				4CE39ABF16ECE34A000FE29D /* MPIconSelectViewController.m in Sources */,
 				4CE39AC416ECE4F7000FE29D /* MPPopupImageView.m in Sources */,
 				4C46B88517063A070046109A /* NSString+MPPasswordCreation.m in Sources */,

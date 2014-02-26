@@ -80,6 +80,7 @@ typedef NS_OPTIONS(NSUInteger, MPEntrySearchFlags) {
 @property (nonatomic, assign) MPEntrySearchFlags activeFlags;
 @property (nonatomic, copy) NSString *searchString;
 @property (nonatomic, assign) BOOL hasSearch;
+@property (nonatomic, strong) NSArray *searchResult;
 
 
 + (KPKVersion)versionForFileType:(NSString *)fileType;

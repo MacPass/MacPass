@@ -123,8 +123,6 @@ NSString *const _MPTAbleSecurCellView = @"PasswordCell";
                                                name:MPDidActivateViewNotification
                                              object:_entryTable];
   /* Filter bar notifications */
-  self.contextBarViewController.delegate = self;
-  self.contextBarViewController.nextKeyView = self.entryTable;
   [self _setupEntryMenu];
   
   NSTableColumn *parentColumn = [self.entryTable tableColumns][0];
@@ -202,7 +200,7 @@ NSString *const _MPTAbleSecurCellView = @"PasswordCell";
                                                name:MPDocumentDidChangeSearchNotification
                                              object:document];
   [[NSNotificationCenter defaultCenter] addObserver:self
-                                           selector:@selector(showFilter:)
+                                           selector:@selector(_didEnterSearch:)
                                                name:MPDocumentDidEnterSearchNotification
                                              object:document];
   
@@ -212,6 +210,8 @@ NSString *const _MPTAbleSecurCellView = @"PasswordCell";
                                                name:MPDocumentDidExitSearchNotification
                                              object:document];
   
+  
+  [self.contextBarViewController registerNotificationsForDocument:document];
 }
 
 #pragma mark NSTableViewDelgate
@@ -329,7 +329,7 @@ NSString *const _MPTAbleSecurCellView = @"PasswordCell";
 
 - (void)_didBecomFirstResponder:(NSNotification *)notification {
   MPDocument *document = [[self windowController] document];
-  if(document.selectedEntry.parent == document.selectedGroup || [self.contextBarViewController showsFilter]) {
+  if(document.selectedEntry.parent == document.selectedGroup || document.hasSearch) {
     document.selectedItem = document.selectedEntry;
   }
   else {
@@ -338,9 +338,7 @@ NSString *const _MPTAbleSecurCellView = @"PasswordCell";
 }
 #pragma mark MPDocumentSearchServiceNotifications
 - (void)_updateSearchResults:(NSNotification *)notification {
-  if(!_isDisplayingContextBar || ![self.contextBarViewController showsFilter]) {
-    [self showFilter:nil];
-  }
+  [self _showContextBar];
   dispatch_queue_t backgroundQueue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
   dispatch_async(backgroundQueue, ^{
     MPDocument *document = [[self windowController] document];
@@ -365,14 +363,12 @@ NSString *const _MPTAbleSecurCellView = @"PasswordCell";
   [self _updateContextBar];
 }
 
-- (void)showFilter:(NSNotification *)notification {
-  [self.contextBarViewController showFilter];
+- (void)_didEnterSearch:(NSNotification *)notification {
   [self _showContextBar];
 }
 
 #pragma mark ContextBar
 - (void)_showTrashBar {
-  [self.contextBarViewController showTrash];
   [self _showContextBar];
 }
 

@@ -8,11 +8,17 @@
         <customObject id="-2" userLabel="File's Owner" customClass="MPContextBarViewController">
             <connections>
                 <outlet property="emptyTrashButton" destination="szx-Hx-OrV" id="i1Y-qB-TW3"/>
+                <outlet property="everywhereButton" destination="hMB-2T-pBD" id="FEh-AQ-zSQ"/>
                 <outlet property="exitHistoryButton" destination="pqx-su-vAh" id="JmV-vC-F48"/>
                 <outlet property="filterLabelTextField" destination="6" id="60"/>
                 <outlet property="historyBar" destination="S8L-rB-h0h" id="6yZ-El-fVs"/>
                 <outlet property="historyLabel" destination="gGR-f0-dcr" id="slx-9D-8k8"/>
+                <outlet property="notesButton" destination="SaV-5p-jIX" id="sQc-nE-BOP"/>
+                <outlet property="passwordButton" destination="Uhl-ck-vVQ" id="I35-Nv-6jK"/>
+                <outlet property="titleButton" destination="O7W-cn-eUP" id="Vlg-KG-62R"/>
                 <outlet property="trashBar" destination="DXf-SC-gVG" id="3aZ-Xc-VDk"/>
+                <outlet property="urlButton" destination="Bn2-iY-mQ3" id="PNG-kv-PQN"/>
+                <outlet property="usernameButton" destination="0R1-PX-dgn" id="TWQ-1y-9cl"/>
                 <outlet property="view" destination="8MB-fC-M2Q" id="wYX-Cc-yoV"/>
             </connections>
         </customObject>
@@ -48,6 +54,9 @@
                                             <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES" changeBackground="YES" changeGray="YES"/>
                                             <font key="font" metaFont="systemBold" size="12"/>
                                         </buttonCell>
+                                        <connections>
+                                            <action selector="toggleSearchFlags:" target="-1" id="gUm-y4-CDb"/>
+                                        </connections>
                                     </button>
                                     <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="0R1-PX-dgn">
                                         <rect key="frame" x="107" y="6" width="77" height="17"/>
@@ -56,6 +65,9 @@
                                             <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES" changeBackground="YES" changeGray="YES"/>
                                             <font key="font" metaFont="systemBold" size="12"/>
                                         </buttonCell>
+                                        <connections>
+                                            <action selector="toggleSearchFlags:" target="-1" id="DEi-hq-N39"/>
+                                        </connections>
                                     </button>
                                     <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="Uhl-ck-vVQ">
                                         <rect key="frame" x="192" y="6" width="74" height="17"/>
@@ -64,6 +76,9 @@
                                             <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES" changeBackground="YES" changeGray="YES"/>
                                             <font key="font" metaFont="systemBold" size="12"/>
                                         </buttonCell>
+                                        <connections>
+                                            <action selector="toggleSearchFlags:" target="-1" id="xYd-Fp-jxn"/>
+                                        </connections>
                                     </button>
                                     <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="Bn2-iY-mQ3">
                                         <rect key="frame" x="274" y="6" width="38" height="17"/>
@@ -72,6 +87,9 @@
                                             <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES" changeBackground="YES" changeGray="YES"/>
                                             <font key="font" metaFont="systemBold" size="12"/>
                                         </buttonCell>
+                                        <connections>
+                                            <action selector="toggleSearchFlags:" target="-1" id="Ykb-ye-FqF"/>
+                                        </connections>
                                     </button>
                                     <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="SaV-5p-jIX">
                                         <rect key="frame" x="320" y="6" width="50" height="17"/>
@@ -80,6 +98,9 @@
                                             <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES" changeBackground="YES" changeGray="YES"/>
                                             <font key="font" metaFont="systemBold" size="12"/>
                                         </buttonCell>
+                                        <connections>
+                                            <action selector="toggleSearchFlags:" target="-1" id="cuN-5p-vZD"/>
+                                        </connections>
                                     </button>
                                     <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="hMB-2T-pBD">
                                         <rect key="frame" x="378" y="6" width="87" height="17"/>

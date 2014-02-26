@@ -43,8 +43,4 @@ typedef NS_ENUM( NSUInteger, MPCopyContentTypeTag) {
 - (void)copyURL:(id)sender;
 - (void)openURL:(id)sender;
 
-/* History*/
-- (IBAction)enterHistoryBrowser:(id)sender;
-- (IBAction)exitHistoryBrowser:(id)sender;
-
 @end

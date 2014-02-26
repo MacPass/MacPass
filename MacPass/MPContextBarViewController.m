@@ -9,9 +9,12 @@
 #import "MPContextBarViewController.h"
 #import "HNHGradientView.h"
 #import "KPKEntry.h"
+#import "MPDocument+HistoryBrowsing.h"
 #import "MPDocument+Search.h"
 
 #import "NSButton+HNHTextColor.h"
+#import "MPFlagsHelper.h"
+#import "HNHCommon.h"
 
 NSUInteger const MPContextBarViewControllerActiveFilterMenuItemTag = 1000;
 
@@ -22,13 +25,7 @@ typedef NS_ENUM(NSUInteger, MPContextTab) {
 };
 
 
-@interface MPContextBarViewController () {
-@private
-  BOOL _delegateRespondsToDidChangeFilter;
-  BOOL _delegateRespondsToDidExitFilter;
-  BOOL _delegateRespondsToDidExitHistory;
-  BOOL _delegateRespondsToShouldEmptyTrash;
-}
+@interface MPContextBarViewController ()
 
 @property (nonatomic, assign) MPContextTab activeTab;
 
@@ -52,17 +49,6 @@ typedef NS_ENUM(NSUInteger, MPContextTab) {
   return self;
 }
 
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil {
-  self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
-  if (self) {
-    _delegateRespondsToDidExitFilter = NO;
-    _delegateRespondsToDidExitHistory = NO;
-    _delegateRespondsToShouldEmptyTrash = NO;
-    _delegateRespondsToDidChangeFilter = NO;
-  }
-  return self;
-}
-
 - (void)dealloc {
   [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
@@ -81,64 +67,47 @@ typedef NS_ENUM(NSUInteger, MPContextTab) {
   
   self.emptyTrashButton.textColor = [NSColor whiteColor];
   
-  if(self.nextKeyView) {
-    [self.exitHistoryButton setNextKeyView:self.nextKeyView];
-    [self.emptyTrashButton setNextKeyView:self.nextKeyView];
-    [self.filterDoneButton setNextKeyView:self.nextKeyView];
+  NSInteger tags[] = { MPEntrySearchTitles, MPEntrySearchUsernames, MPEntrySearchPasswords, MPEntrySearchNotes, MPEntrySearchUrls };
+  NSArray *buttons  = @[self.titleButton, self.usernameButton, self.passwordButton, self.notesButton, self.urlButton ];
+  for(NSUInteger iIndex = 0; iIndex < [buttons count]; iIndex++) {
+    [buttons[iIndex] setAction:@selector(toggleSearchFlags:)];
+    [buttons[iIndex] setTag:tags[iIndex]];
   }
   [self _updateFilterButtons];
 }
 
 #pragma mark Properties
 
-- (void)showFilter {
+- (void)_didEnterSearch:(NSNotification *)notification {
   /* Select text if already visible */
   self.activeTab = MPContextTabFilter;
   [self _updateFilterButtons];
 }
 
-- (void)showHistory {
+- (void)_didEnterHistory:(NSNotification *)notification {
   self.activeTab = MPContextTabHistory;
   [self _updateBindings];
 }
 
-- (void)showTrash {
+- (void)_showTrash {
   self.activeTab = MPContextTabTrash;
   [self _updateBindings];
 }
 
-- (BOOL)showsFilter {
-  return self.activeTab == MPContextTabFilter;
-}
-
-- (BOOL)showsHistory {
-  return self.activeTab == MPContextTabHistory;
-}
-
-- (BOOL)showsTrash {
-  return self.activeTab == MPContextTabTrash;
-}
-
 - (void)registerNotificationsForDocument:(MPDocument *)document {
-  [[NSNotificationCenter defaultCenter] addObserver:self
-                                           selector:@selector(_updateFilterButtons)
-                                               name:MPDocumentDidChangeSearchFlags
-                                             object:document];
-  [[NSNotificationCenter defaultCenter] addObserver:self
-                                           selector:@selector(showFilter)
-                                               name:MPDocumentDidEnterSearchNotification
-                                             object:document];
-
+  [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(_updateFilterButtons) name:MPDocumentDidChangeSearchFlags object:document];
+  [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(_didEnterSearch:) name:MPDocumentDidEnterSearchNotification object:document];
+  [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(_didEnterHistory:) name:MPDocumentDidEnterHistoryNotification object:document];
 }
 
 /*
  - (BOOL)control:(NSControl*)control textView:(NSTextView*)textView doCommandBySelector:(SEL)commandSelector {
-  if(commandSelector == @selector(insertNewline:)) {
-    [self _didChangeFilter];
-  }
-  return NO;
-}
-*/
+ if(commandSelector == @selector(insertNewline:)) {
+ [self _didChangeFilter];
+ }
+ return NO;
+ }
+ */
 
 #pragma mark UI Helper
 - (void)_updateBindings {
@@ -147,6 +116,12 @@ typedef NS_ENUM(NSUInteger, MPContextTab) {
 
 - (void)_updateFilterButtons {
   MPDocument *document = [[self windowController] document];
+  [self.everywhereButton setEnabled:NO];
+  [self.notesButton setState:HNHStateForBool(MPTestFlagInOptions(MPEntrySearchNotes, document.activeFlags))];
+  [self.passwordButton setState:HNHStateForBool(MPTestFlagInOptions(MPEntrySearchPasswords, document.activeFlags))];
+  [self.titleButton setState:HNHStateForBool(MPTestFlagInOptions(MPEntrySearchTitles, document.activeFlags))];
+  [self.urlButton setState:HNHStateForBool(MPTestFlagInOptions(MPEntrySearchUrls, document.activeFlags))];
+  [self.usernameButton setState:HNHStateForBool(MPTestFlagInOptions(MPEntrySearchUsernames, document.activeFlags))];
 }
 
 @end
