@@ -22,7 +22,7 @@ If you want to live dangerously and want to take a look at the master:
     git submodule init
     git submodule update
 
-After that you can build and run in XCode. If you run into signing issues take a look at [Issue #92](https://github.com/mstarke/MacPass/issues/92)
+After that you can build and run in Xcode. If you run into signing issues take a look at [Issue #92](https://github.com/mstarke/MacPass/issues/92)
 
 ##Known Major Issues
 
@@ -80,6 +80,29 @@ GNU General Public License for more details.
 
 You should have received a copy of the GNU General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>.
+
+##Contribtuions
+
+[Iiro Jäppinen](https://iiro.jappinen.me) MacPass icon
+
+[Gil André](mailto:gil@panix.com) French localizations
+
+[Nathaniel Madura](mailto:nmadura@umich.edu) Refacotrings, first create Database 
+
+[Kurt Legerlotz](https://github.com/lotz) Settings to open or copy URL on double click
+
+[Adam Doppelt](mailto:amd@gurge.com) whitespace polish on EntryInspectorView, Autosave table sorting. Default to sort by title.
+
+[Stephen Taylor](http://www.makegames.co.uk/) Fixed tab ordering
+
+[Andrew Schleifer](mailto:me@andrewschleifer.name) Enable fullscreen option for document windows, Centralise the Validation, Only enable password entry fields when option is checked
+
+[Frank Enderle](http://www.anamica.de/) Cmd+F now marks the text of the search field if the filterbar is already visible and sets the focus. Set remaining password fields to fixed width font.
+
+[Josh Halstead](mailto:jhalstead85@gmail.com) Update Readme (typo)
+
+[Chhom Seng](https://github.com/cseng) Fixed issue with blank outline and entry views if the inspector was hidden before unlocking the database. Implemented context menu validation for entry context menu.
+
 
 ##Copyright
 
