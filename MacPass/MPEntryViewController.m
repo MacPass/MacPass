@@ -314,7 +314,7 @@ NSString *const _MPTAbleSecurCellView = @"PasswordCell";
   if(document.selectedItem == document.selectedGroup) {
     /* If we change to a group selection, we should clear the filter */
     if(_isDisplayingContextBar) {
-      [document exitSearch:self];
+      // nothing?
     }
     else if([[self.entryArrayController content] count] > 0) {
       KPKEntry *entry = [[self.entryArrayController content] lastObject];

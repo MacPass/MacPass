@@ -225,13 +225,14 @@ NSString *const MPToolbarItemSearch = @"TOOLBAR_SEARCH";
 
 - (void)_didEnterSearch:(NSNotification *)notification {
   [[self.searchField window] makeFirstResponder:self.searchField];
+  [self.searchField selectText:self];
 }
 
 - (void)_didExitSearch:(NSNotification *)notification {
   [self.searchField setStringValue:@""];
   NSWindow *window = [self.searchField window];
   /* Resign first responder form search field only if it was the first responder */
-  if([window firstResponder] == self.searchField ) {
+  if([window firstResponder] == [self.searchField currentEditor]) {
     [window makeFirstResponder:nil];
   }
 }
