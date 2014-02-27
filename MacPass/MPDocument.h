@@ -165,4 +165,8 @@ typedef NS_OPTIONS(NSUInteger, MPEntrySearchFlags) {
  */
 - (IBAction)createEntryFromTemplate:(id)sender;
 
+- (IBAction)cloneEntry:(id)sender;
+
+- (IBAction)cloneEntryWithOptions:(id)sender;
+
 @end

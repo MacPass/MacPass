@@ -244,6 +244,7 @@
 		4CD3ABBF178F72610073F5C5 /* KPKEntry.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CD3ABBE178F72610073F5C5 /* KPKEntry.m */; };
 		4CD3ABC2178F72720073F5C5 /* KPKGroup.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CD3ABC1178F72720073F5C5 /* KPKGroup.m */; };
 		4CD4901018513C180017397F /* KPKXmlElements.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CD4900F18513C180017397F /* KPKXmlElements.m */; };
+		4CD5A79118BFE17900162DCB /* CloneEntryWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4CD5A79018BFE17900162DCB /* CloneEntryWindow.xib */; };
 		4CD5D702177A5EE400100649 /* DatabaseSettingsWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4CD5D701177A5EE400100649 /* DatabaseSettingsWindow.xib */; };
 		4CD5D705177A5F3300100649 /* MPDatabaseSettingsWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CD5D704177A5F3300100649 /* MPDatabaseSettingsWindowController.m */; };
 		4CD6C5AE1789FDE6000891F6 /* HNHRoundedSecureTextField.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CD6C5AD1789FDE6000891F6 /* HNHRoundedSecureTextField.m */; };
@@ -779,6 +780,7 @@
 		4CD3ABC1178F72720073F5C5 /* KPKGroup.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KPKGroup.m; sourceTree = "<group>"; };
 		4CD4900E18513C180017397F /* KPKXmlElements.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = KPKXmlElements.h; path = Format/KPKXmlElements.h; sourceTree = "<group>"; };
 		4CD4900F18513C180017397F /* KPKXmlElements.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = KPKXmlElements.m; path = Format/KPKXmlElements.m; sourceTree = "<group>"; };
+		4CD5A79018BFE17900162DCB /* CloneEntryWindow.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CloneEntryWindow.xib; sourceTree = "<group>"; };
 		4CD5D701177A5EE400100649 /* DatabaseSettingsWindow.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DatabaseSettingsWindow.xib; sourceTree = "<group>"; };
 		4CD5D703177A5F3300100649 /* MPDatabaseSettingsWindowController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MPDatabaseSettingsWindowController.h; sourceTree = "<group>"; };
 		4CD5D704177A5F3300100649 /* MPDatabaseSettingsWindowController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MPDatabaseSettingsWindowController.m; sourceTree = "<group>"; };
@@ -1787,6 +1789,7 @@
 				4C0728B917B5B7A4005A7DD9 /* PasswordEditWindow.xib */,
 				4C68456E17BC2A0700FCDBFC /* WelcomeWindow.xib */,
 				4C0DD6C518B2A44700FCB193 /* AutotypeCandidateSelectionWindow.xib */,
+				4CD5A79018BFE17900162DCB /* CloneEntryWindow.xib */,
 			);
 			name = Windows;
 			sourceTree = "<group>";
@@ -2006,6 +2009,7 @@
 				4C5A11FF1708DE8800223D8A /* PasswordCreatorView.xib in Resources */,
 				4C1DDCDD1711ECEB00C98DA3 /* PasswordCreatorWindow.xib in Resources */,
 				4C7714AA176C998F00549F2A /* 43_TrashTemplate.pdf in Resources */,
+				4CD5A79118BFE17900162DCB /* CloneEntryWindow.xib in Resources */,
 				4C7714AC176C9D4600549F2A /* 99_InfoTemplate.pdf in Resources */,
 				4CF7805F176E75110032EE71 /* IntegrationSettings.xib in Resources */,
 				4CA3531218A5577300839B0F /* dsa_sparkle_pub.pem in Resources */,

@@ -25,6 +25,7 @@ static void MPContextmenuHelperBeginSection(NSMutableArray *items) {
   BOOL const insertDelete = MPTestFlagInOptions(MPContextMenuDelete, flags);
   BOOL const insertCopy = MPTestFlagInOptions(MPContextMenuCopy, flags);
   BOOL const insertTrash = MPTestFlagInOptions(MPContextMenuTrash, flags);
+  BOOL const insertClone = MPTestFlagInOptions(MPContextMenuClone, flags);
   
   NSMutableArray *items = [NSMutableArray arrayWithCapacity:10];
   if(insertCreate) {
@@ -37,6 +38,18 @@ static void MPContextmenuHelperBeginSection(NSMutableArray *items) {
                                                keyEquivalent:@"E"];
     
     [items addObjectsFromArray:@[ newGroup, newEntry ]];
+  }
+  if(insertClone) {
+    MPContextmenuHelperBeginSection(items);
+    NSMenuItem *cloneEntry = [[NSMenuItem alloc] initWithTitle:NSLocalizedString(@"CLONE_ENTRY", @"")
+                                                      action:[MPActionHelper actionOfType:MPActionCloneEntry]
+                                               keyEquivalent:@"D"];
+    NSMenuItem *cloneEntyWithOptions = [[NSMenuItem alloc] initWithTitle:NSLocalizedString(@"CLONE_ENTRY_WITH_OPTIONS", @"")
+                                                      action:[MPActionHelper actionOfType:MPActionCloneEntryWithOptions]
+                                               keyEquivalent:@""];
+    
+    [items addObjectsFromArray:@[ cloneEntry, cloneEntyWithOptions ]];
+  
   }
   if(insertDelete || insertTrash) {
     MPContextmenuHelperBeginSection(items);

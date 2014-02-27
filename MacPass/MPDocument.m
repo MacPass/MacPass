@@ -489,6 +489,7 @@ NSString *const MPDocumentGroupKey                        = @"MPDocumentGroupKey
 
 #pragma mark Actions
 
+
 - (void)emptyTrash:(id)sender {
   NSAlert *alert = [[NSAlert alloc] init];
   [alert setAlertStyle:NSWarningAlertStyle];
@@ -528,6 +529,18 @@ NSString *const MPDocumentGroupKey                        = @"MPDocumentGroupKey
   }
 }
 
+- (void)cloneEntry:(id)sender {
+  KPKEntry *clone = [self.selectedEntry copyWithTitle:nil];
+  NSInteger index = [self.selectedEntry.parent.entries indexOfObject:self.selectedEntry];
+  [self.selectedEntry.parent addEntry:clone atIndex:index+1];
+  [self.undoManager setActionName:NSLocalizedString(@"CLONE_ENTRY", "")];
+}
+
+- (void)cloneEntryWithOptions:(id)sender {
+}
+
+
+#pragma mark Validation
 - (BOOL)validateMenuItem:(NSMenuItem *)menuItem {
   return [self validateUserInterfaceItem:menuItem];
 }
@@ -538,7 +551,7 @@ NSString *const MPDocumentGroupKey                        = @"MPDocumentGroupKey
 
 - (BOOL)validateUserInterfaceItem:(id<NSValidatedUserInterfaceItem>)anItem {
   if(self.encrypted || self.isReadOnly) { return NO; }
-
+  
   BOOL valid = YES;
   switch([MPActionHelper typeForAction:[anItem action]]) {
     case MPActionAddGroup:
@@ -550,6 +563,11 @@ NSString *const MPDocumentGroupKey                        = @"MPDocumentGroupKey
       valid &= (nil != self.selectedItem);
       valid &= (self.trash != self.selectedItem);
       valid &= ![self isItemTrashed:self.selectedItem];
+      break;
+    case MPActionCloneEntry:
+      //case MPActionCloneEntryWithOptions:
+      valid &= (nil != self.selectedItem);
+      valid &= self.selectedEntry == self.selectedItem;
       break;
     case MPActionEmptyTrash:
       valid &= [self.trash.groups count] > 0;

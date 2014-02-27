@@ -13,8 +13,9 @@ typedef NS_OPTIONS(NSUInteger, MPContextMenuItemsFlags) {
   MPContextMenuDelete   = 1 << 1,
   MPContextMenuCopy     = 1 << 2,
   MPContextMenuTrash    = 1 << 3,
+  MPContextMenuClone    = 1 << 4,
   MPContextMenuMinimal  = MPContextMenuCreate | MPContextMenuDelete,
-  MPContextMenuFull     = MPContextMenuMinimal | MPContextMenuCopy,
+  MPContextMenuFull     = MPContextMenuMinimal | MPContextMenuCopy | MPContextMenuClone,
   MPContextMenuExtended = MPContextMenuFull | MPContextMenuTrash
 };
 
