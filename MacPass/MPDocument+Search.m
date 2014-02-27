@@ -31,6 +31,7 @@ NSString *const kMPDocumentSearchResultsKey           = @"kMPDocumentSearchResul
 - (void)performFindPanelAction:(id)sender {
   self.hasSearch = YES;
   [[NSNotificationCenter defaultCenter] postNotificationName:MPDocumentDidEnterSearchNotification object:self];
+  [self updateSearch:self];
 }
 
 - (void)updateSearch:(id)sender {

@@ -199,7 +199,7 @@ NSString *const _MPTAbleSecurCellView = @"PasswordCell";
                                            selector:@selector(_didEnterSearch:)
                                                name:MPDocumentDidEnterSearchNotification
                                              object:document];
-    
+  
   [[NSNotificationCenter defaultCenter] addObserver:self
                                            selector:@selector(_didExitSearch:)
                                                name:MPDocumentDidExitSearchNotification
@@ -300,7 +300,7 @@ NSString *const _MPTAbleSecurCellView = @"PasswordCell";
   }
 }
 
-#pragma mark Notifications
+#pragma mark MPDocument Notifications
 - (void)_didChangeCurrentItem:(NSNotification *)notification {
   MPDocument *document = [notification object];
   
@@ -312,9 +312,9 @@ NSString *const _MPTAbleSecurCellView = @"PasswordCell";
    If a group is the current item, see if we already show that group
    */
   if(document.selectedItem == document.selectedGroup) {
-    /* If we change to a group selection, we should clear the filter */
-    if(_isDisplayingContextBar) {
-      // nothing?
+    if(document.hasSearch) {
+      /* If search was active, stop it and exit */
+      [document exitSearch:self];
     }
     else if([[self.entryArrayController content] count] > 0) {
       KPKEntry *entry = [[self.entryArrayController content] lastObject];
@@ -336,9 +336,8 @@ NSString *const _MPTAbleSecurCellView = @"PasswordCell";
     document.selectedEntry = nil;
   }
 }
-#pragma mark MPDocumentSearchServiceNotifications
+
 - (void)_didUpdateSearchResults:(NSNotification *)notification {
-  BOOL main = [NSThread isMainThread];
   [self _showContextBar];
   NSArray *result = [notification userInfo][kMPDocumentSearchResultsKey];
   NSAssert(result != nil, @"Resutls should never be nil");
@@ -348,7 +347,7 @@ NSString *const _MPTAbleSecurCellView = @"PasswordCell";
   [[self.entryTable tableColumnWithIdentifier:MPEntryTableParentColumnIdentifier] setHidden:NO];
 }
 
-#pragma mark NSDocument+Search Notifications
+
 - (void)_didExitSearch:(NSNotification *)notification {
   [[self.entryTable tableColumnWithIdentifier:MPEntryTableParentColumnIdentifier] setHidden:YES];
   MPDocument *document = [[self windowController] document];

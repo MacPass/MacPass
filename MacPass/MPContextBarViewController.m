@@ -99,7 +99,7 @@ typedef NS_ENUM(NSUInteger, MPContextTab) {
 - (void)_didChangeCurrentItem:(NSNotification *)notification {
   MPDocument *document = [notification object];
   BOOL showTrash = document.useTrash && (document.selectedGroup == document.trash || [document isItemTrashed:document.selectedItem]);
-  if(showTrash) {
+  if(showTrash && ! document.hasSearch) {
     self.activeTab = MPContextTabTrash;
     [self _updateBindings];
   }
