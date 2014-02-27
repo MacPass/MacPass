@@ -44,6 +44,7 @@ typedef NS_ENUM(NSUInteger, MPContextTab) {
 
 @implementation MPContextBarViewController
 
+#pragma mark Livecycle
 - (instancetype)init {
   self = [self initWithNibName:@"ContextBar" bundle:nil];
   return self;
@@ -76,7 +77,13 @@ typedef NS_ENUM(NSUInteger, MPContextTab) {
   [self _updateFilterButtons];
 }
 
-#pragma mark Properties
+#pragma mark MPDocument Notifications
+- (void)registerNotificationsForDocument:(MPDocument *)document {
+  [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(_updateFilterButtons) name:MPDocumentDidChangeSearchFlags object:document];
+  [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(_didEnterSearch:) name:MPDocumentDidEnterSearchNotification object:document];
+  [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(_didEnterHistory:) name:MPDocumentDidEnterHistoryNotification object:document];
+  [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(_didChangeCurrentItem:) name:MPDocumentCurrentItemChangedNotification object:document];
+}
 
 - (void)_didEnterSearch:(NSNotification *)notification {
   /* Select text if already visible */
@@ -89,15 +96,13 @@ typedef NS_ENUM(NSUInteger, MPContextTab) {
   [self _updateBindings];
 }
 
-- (void)_showTrash {
-  self.activeTab = MPContextTabTrash;
-  [self _updateBindings];
-}
-
-- (void)registerNotificationsForDocument:(MPDocument *)document {
-  [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(_updateFilterButtons) name:MPDocumentDidChangeSearchFlags object:document];
-  [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(_didEnterSearch:) name:MPDocumentDidEnterSearchNotification object:document];
-  [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(_didEnterHistory:) name:MPDocumentDidEnterHistoryNotification object:document];
+- (void)_didChangeCurrentItem:(NSNotification *)notification {
+  MPDocument *document = [notification object];
+  BOOL showTrash = document.useTrash && (document.selectedGroup == document.trash || [document isItemTrashed:document.selectedItem]);
+  if(showTrash) {
+    self.activeTab = MPContextTabTrash;
+    [self _updateBindings];
+  }
 }
 
 /*
@@ -108,6 +113,7 @@ typedef NS_ENUM(NSUInteger, MPContextTab) {
  return NO;
  }
  */
+
 
 #pragma mark UI Helper
 - (void)_updateBindings {

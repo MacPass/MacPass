@@ -12,6 +12,8 @@ typedef NS_ENUM(NSUInteger, MPActionType) {
   MPUnkownAction, // Neutral element to be used for returns
   MPActionAddEntry, // Add an new entry
   MPActionAddGroup, // Add a new group
+  MPActionCloneEntry, // Simply clone an entry (inlcuding history)
+  MPActionCloneEntryWithOptions, // Request user inptu what clone
   MPActionDelete, // Delete entry or group
   MPActionCopyUsername, // copy username to pasteboard
   MPActionCopyPassword, // copy password to pasteboard

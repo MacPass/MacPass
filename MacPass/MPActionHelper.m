@@ -15,21 +15,22 @@
   static dispatch_once_t onceToken;
   dispatch_once(&onceToken, ^{
     actionDict = @{
-                   @(MPActionAddEntry) : @"createEntry:",
-                   @(MPActionAddGroup) : @"createGroup:",
-                   @(MPActionCopyPassword) : @"copyPassword:",
-                   @(MPActionCopyURL) : @"copyURL:",
-                   @(MPActionCopyUsername) : @"copyUsername:",
-                   @(MPActionDelete) : @"delete:",
-                   @(MPActionEditPassword) : @"editPassword:",
-                   @(MPActionOpenURL) : @"openURL:",
-                   @(MPActionToggleInspector) : @"toggleInspector:",
-                   @(MPActionLock) : @"lock:",
-                   @(MPActionEmptyTrash) : @"emptyTrash:",
-                   @(MPActionDatabaseSettings) : @"showDatabaseSettings:",
-                   @(MPActionEditTemplateGroup) : @"editTemplateGroup:",
-                   @(MPActionExportXML) : @"exportAsXML",
-                   @(MPActionImportXML) : @"importFromXMl",
+                   @(MPActionAddEntry):           @"createEntry:",
+                   @(MPActionAddGroup):           @"createGroup:",
+                   @(MPActionCloneEntry):         @"cloneEntry:",
+                   @(MPActionCopyPassword):       @"copyPassword:",
+                   @(MPActionCopyURL):            @"copyURL:",
+                   @(MPActionCopyUsername):       @"copyUsername:",
+                   @(MPActionDelete):             @"delete:",
+                   @(MPActionEditPassword):       @"editPassword:",
+                   @(MPActionOpenURL):            @"openURL:",
+                   @(MPActionToggleInspector):    @"toggleInspector:",
+                   @(MPActionLock):               @"lock:",
+                   @(MPActionEmptyTrash):         @"emptyTrash:",
+                   @(MPActionDatabaseSettings):   @"showDatabaseSettings:",
+                   @(MPActionEditTemplateGroup):  @"editTemplateGroup:",
+                   @(MPActionExportXML):          @"exportAsXML",
+                   @(MPActionImportXML):          @"importFromXMl",
                    };
   });
   return actionDict;

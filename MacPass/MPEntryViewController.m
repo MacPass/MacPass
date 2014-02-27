@@ -206,7 +206,7 @@ NSString *const _MPTAbleSecurCellView = @"PasswordCell";
   
   
   [[NSNotificationCenter defaultCenter] addObserver:self
-                                           selector:@selector(_updateContextBar)
+                                           selector:@selector(_didExitSearch:)
                                                name:MPDocumentDidExitSearchNotification
                                              object:document];
   
@@ -355,8 +355,8 @@ NSString *const _MPTAbleSecurCellView = @"PasswordCell";
   });
 }
 
-#pragma mark MPContextBarDelegate
-- (void)contextBarDidExitFilter {
+#pragma mark NSDocument+Search Notifications
+- (void)_didExitSearch:(NSNotification *)notification {
   [[self.entryTable tableColumnWithIdentifier:MPEntryTableParentColumnIdentifier] setHidden:YES];
   MPDocument *document = [[self windowController] document];
   document.selectedItem = document.selectedGroup;
@@ -368,16 +368,12 @@ NSString *const _MPTAbleSecurCellView = @"PasswordCell";
 }
 
 #pragma mark ContextBar
-- (void)_showTrashBar {
-  [self _showContextBar];
-}
-
 - (void)_updateContextBar {
   MPDocument *document = [[self windowController] document];
   if(!document.hasSearch) {
     BOOL showTrash = document.useTrash && (document.selectedGroup == document.trash || [document isItemTrashed:document.selectedItem]);
     if(showTrash) {
-      [self _showTrashBar];
+      [self _showContextBar];
     }
     else {
       [self _hideContextBar];

@@ -9,13 +9,22 @@
 #import "MPContextMenuHelper.h"
 #import "MPActionHelper.h"
 
+#import "MPFlagsHelper.h"
+
+static void MPContextmenuHelperBeginSection(NSMutableArray *items) {
+  if([items count] > 0) {
+    [items addObject:[NSMenuItem separatorItem]];
+  }
+}
+
 @implementation MPContextMenuHelper
 
 + (NSArray *)contextMenuItemsWithItems:(MPContextMenuItemsFlags)flags {
-  BOOL insertCreate = (0 != (flags & MPContextMenuCreate));
-  BOOL insertDelete = (0 != (flags & MPContextMenuDelete));
-  BOOL insertCopy = (0 != (flags & MPContextMenuCopy));
-  BOOL insertTrash = (0 != (flags & MPContextMenuTrash));
+  
+  BOOL const insertCreate = MPTestFlagInOptions(MPContextMenuCreate, flags);
+  BOOL const insertDelete = MPTestFlagInOptions(MPContextMenuDelete, flags);
+  BOOL const insertCopy = MPTestFlagInOptions(MPContextMenuCopy, flags);
+  BOOL const insertTrash = MPTestFlagInOptions(MPContextMenuTrash, flags);
   
   NSMutableArray *items = [NSMutableArray arrayWithCapacity:10];
   if(insertCreate) {
@@ -30,27 +39,27 @@
     [items addObjectsFromArray:@[ newGroup, newEntry ]];
   }
   if(insertDelete || insertTrash) {
-    [self _beginSection:items];
+    MPContextmenuHelperBeginSection(items);
     if(insertDelete) {
       NSMenuItem *delete = [[NSMenuItem alloc] initWithTitle:NSLocalizedString(@"DELETE", @"")
                                                       action:[MPActionHelper actionOfType:MPActionDelete]
                                                keyEquivalent:@""];
       [items addObject:delete];
-
+      
     }
     if(insertTrash) {
       NSMenuItem *emptyTrash = [[NSMenuItem alloc] initWithTitle:NSLocalizedString(@"EMPTY_TRASH", @"")
-                                                      action:[MPActionHelper actionOfType:MPActionEmptyTrash]
-                                               keyEquivalent:@""];
+                                                          action:[MPActionHelper actionOfType:MPActionEmptyTrash]
+                                                   keyEquivalent:@""];
       [emptyTrash setKeyEquivalentModifierMask:(NSShiftKeyMask | NSCommandKeyMask)];
       unichar backSpace = NSBackspaceCharacter;
       [emptyTrash setKeyEquivalent:[NSString stringWithCharacters:&backSpace length:1]];
       [items addObject:emptyTrash];
-
+      
     }
   }
   if(insertCopy) {
-    [self _beginSection:items];
+    MPContextmenuHelperBeginSection(items);
     NSMenuItem *copyUsername = [[NSMenuItem alloc] initWithTitle:NSLocalizedString(@"COPY_USERNAME", @"")
                                                           action:[MPActionHelper actionOfType:MPActionCopyUsername]
                                                    keyEquivalent:@"C"];
@@ -77,12 +86,6 @@
   }
   
   return items;
-}
-
-+ (void)_beginSection:(NSMutableArray *)items {
-  if([items count] > 0) {
-    [items addObject:[NSMenuItem separatorItem]];
-  }
 }
 
 @end
