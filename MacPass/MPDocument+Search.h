@@ -8,15 +8,20 @@
 
 #import "MPDocument.h"
 
-FOUNDATION_EXPORT NSString *const MPDocumentDidEnterSearchNotification;
-FOUNDATION_EXTERN NSString *const MPDocumentDidChangeSearchNotification;
-FOUNDATION_EXPORT NSString *const MPDocumentDidChangeSearchFlags;
+FOUNDATION_EXTERN NSString *const MPDocumentDidEnterSearchNotification;
+FOUNDATION_EXTERN NSString *const MPDocumentDidChangeSearchFlags;
 FOUNDATION_EXTERN NSString *const MPDocumentDidExitSearchNotification;
-FOUNDATION_EXPORT NSString *const MPDocumentDidChangeSearchResults;
+/**
+ *  Posted by the document, when the search results have been updated. This is only called when searching.
+ *  If the search is exited, it will be notified by MPDocumentDidExitSearchNotification
+ *  The userInfo dictionary has one key kMPDocumentSearchResultsKey with an NSArray of KPKEntries mathching the search.
+ */
+FOUNDATION_EXTERN NSString *const MPDocumentDidChangeSearchResults;
+
+/* keys used in userInfo dictionaries on notifications */
+FOUNDATION_EXTERN NSString *const kMPDocumentSearchResultsKey;
 
 @interface MPDocument (Search)
-
-- (NSArray *)entriesInDocument:(MPDocument *)document matching:(NSString *)string;
 
 /* Should be called by the NSSearchTextField to update the search string */
 - (IBAction)updateSearch:(id)sender;

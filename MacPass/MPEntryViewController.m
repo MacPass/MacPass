@@ -196,18 +196,18 @@ NSString *const _MPTAbleSecurCellView = @"PasswordCell";
                                              object:document];
   
   [[NSNotificationCenter defaultCenter] addObserver:self
-                                           selector:@selector(_updateSearchResults:)
-                                               name:MPDocumentDidChangeSearchNotification
-                                             object:document];
-  [[NSNotificationCenter defaultCenter] addObserver:self
                                            selector:@selector(_didEnterSearch:)
                                                name:MPDocumentDidEnterSearchNotification
                                              object:document];
-  
-  
+    
   [[NSNotificationCenter defaultCenter] addObserver:self
                                            selector:@selector(_didExitSearch:)
                                                name:MPDocumentDidExitSearchNotification
+                                             object:document];
+  
+  [[NSNotificationCenter defaultCenter] addObserver:self
+                                           selector:@selector(_didUpdateSearchResults:)
+                                               name:MPDocumentDidChangeSearchResults
                                              object:document];
   
   
@@ -337,22 +337,15 @@ NSString *const _MPTAbleSecurCellView = @"PasswordCell";
   }
 }
 #pragma mark MPDocumentSearchServiceNotifications
-- (void)_updateSearchResults:(NSNotification *)notification {
+- (void)_didUpdateSearchResults:(NSNotification *)notification {
+  BOOL main = [NSThread isMainThread];
   [self _showContextBar];
-  dispatch_queue_t backgroundQueue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
-  dispatch_async(backgroundQueue, ^{
-    MPDocument *document = [[self windowController] document];
-    NSString *searchString = [[[self windowController] searchField] stringValue];
-    self.filteredEntries = [document entriesInDocument:document
-                                              matching:searchString];
-    
-    dispatch_sync(dispatch_get_main_queue(), ^{
-      document.selectedEntry = nil;
-      [self.entryArrayController unbind:NSContentArrayBinding];
-      [self.entryArrayController setContent:self.filteredEntries];
-      [[self.entryTable tableColumnWithIdentifier:MPEntryTableParentColumnIdentifier] setHidden:NO];
-    });
-  });
+  NSArray *result = [notification userInfo][kMPDocumentSearchResultsKey];
+  NSAssert(result != nil, @"Resutls should never be nil");
+  self.filteredEntries = result;
+  [self.entryArrayController unbind:NSContentArrayBinding];
+  [self.entryArrayController setContent:self.filteredEntries];
+  [[self.entryTable tableColumnWithIdentifier:MPEntryTableParentColumnIdentifier] setHidden:NO];
 }
 
 #pragma mark NSDocument+Search Notifications

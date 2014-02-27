@@ -8,14 +8,21 @@
 
 #import "MPDocument+Search.h"
 #import "MPDocument.h"
+#import "MPDocumentWindowController.h"
+
 #import "KPKGroup.h"
 #import "KPKEntry.h"
+
 #import "MPFlagsHelper.h"
 
 NSString *const MPDocumentDidEnterSearchNotification  = @"com.hicknhack.macpass.MPDocumentDidEnterSearchNotification";
-NSString *const MPDocumentDidChangeSearchNotification = @"com.hicknhack.macpass.MPDocumentDidChangeSearchNotification";
 NSString *const MPDocumentDidChangeSearchFlags        = @"com.hicknhack.macpass.MPDocumentDidChangeSearchFlagsNotification";
 NSString *const MPDocumentDidExitSearchNotification   = @"com.hicknhack.macpass.MPDocumentDidExitSearchNotification";
+
+NSString *const MPDocumentDidChangeSearchResults      = @"com.hicknhack.macpass.MPDocumentDidChangeSearchResults";
+
+NSString *const kMPDocumentSearchResultsKey           = @"kMPDocumentSearchResultsKey";
+
 
 @implementation MPDocument (Search)
 
@@ -23,17 +30,25 @@ NSString *const MPDocumentDidExitSearchNotification   = @"com.hicknhack.macpass.
 
 - (void)performFindPanelAction:(id)sender {
   self.hasSearch = YES;
-  NSWindow *window = [[self windowControllers][0] window];
-  NSToolbar *toolbar = [window toolbar];
-  if(![toolbar isVisible]) {
-    [toolbar setVisible:YES];
-  }
   [[NSNotificationCenter defaultCenter] postNotificationName:MPDocumentDidEnterSearchNotification object:self];
 }
 
 - (void)updateSearch:(id)sender {
+  MPDocumentWindowController *windowController = [self windowControllers][0];
+  self.searchString = [windowController.searchField stringValue];
+  if(NO == self.hasSearch) {
+    [[NSNotificationCenter defaultCenter] postNotificationName:MPDocumentDidEnterSearchNotification object:self];
+  }
   self.hasSearch = YES;
-  [[NSNotificationCenter defaultCenter] postNotificationName:MPDocumentDidChangeSearchNotification object:self];
+  MPDocument __weak *weakSelf = self;
+  dispatch_queue_t backgroundQueue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
+  dispatch_async(backgroundQueue, ^{
+    NSArray *results = [weakSelf _findEntriesMatchingCurrentSearch];
+    dispatch_sync(dispatch_get_main_queue(), ^{
+      weakSelf.selectedEntry = nil;
+      [[NSNotificationCenter defaultCenter] postNotificationName:MPDocumentDidChangeSearchResults object:weakSelf userInfo:@{ kMPDocumentSearchResultsKey: results }];
+    });
+  });
 }
 
 - (void)exitSearch:(id)sender {
@@ -65,16 +80,18 @@ NSString *const MPDocumentDidExitSearchNotification   = @"com.hicknhack.macpass.
   if(newFlags == self.activeFlags) {
     self.activeFlags = (newFlags == MPEntrySearchNone) ? MPEntrySearchTitles : newFlags;
     [[NSNotificationCenter defaultCenter] postNotificationName:MPDocumentDidChangeSearchFlags object:self];
+    [self updateSearch:self];
   }
 }
 
 #pragma mark Search
-- (NSArray *)entriesInDocument:(MPDocument *)document matching:(NSString *)string {
+- (NSArray *)_findEntriesMatchingCurrentSearch {
   /* Filter double passwords */
+  MPDocument __weak *weakSelf = self;
   if(MPTestFlagInOptions(MPEntrySearchDoublePasswords, self.activeFlags)) {
     __block NSMutableDictionary *passwordToEntryMap;
     /* Build up a usage map */
-    [[document.root childEntries] enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
+    [[weakSelf.root childEntries] enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
       KPKEntry *entry = obj;
       NSMutableSet *entrySet = passwordToEntryMap[entry.password];
       if(entrySet) {
@@ -96,13 +113,13 @@ NSString *const MPDocumentDidExitSearchNotification   = @"com.hicknhack.macpass.
     return doublePasswords;
   }
   /* Filter using predicates */
-  NSArray *predicates = [self _filterPredicatesWithString:string];
+  NSArray *predicates = [self _filterPredicatesWithString:self.searchString];
   if(predicates) {
     NSPredicate *fullFilter = [NSCompoundPredicate orPredicateWithSubpredicates:predicates];
-    return  [[document.root childEntries] filteredArrayUsingPredicate:fullFilter];
+    return [[self.root childEntries] filteredArrayUsingPredicate:fullFilter];
   }
   /* No filter, just return everything */
-  return [document.root childEntries];
+  return [self.root childEntries];
 }
 
 - (NSArray *)optionsEnabledInMode:(MPEntrySearchFlags)mode {
@@ -115,10 +132,6 @@ NSString *const MPDocumentDidExitSearchNotification   = @"com.hicknhack.macpass.
     return MPTestFlagInOptions(flag, mode);
   }];
   return [allOptions objectsAtIndexes:indexes];
-}
-
-- (void)_updateSearch {
-  self.searchResult = [self entriesInDocument:self matching:self.searchString];
 }
 
 - (NSArray *)_filterPredicatesWithString:(NSString *)string{

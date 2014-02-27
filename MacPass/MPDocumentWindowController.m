@@ -33,6 +33,7 @@ typedef NS_ENUM(NSUInteger, MPAlertContext) {
 @private
   id _firstResponder;
   BOOL _saveAfterPasswordChange;
+  BOOL _didShowToolbarForSearch;
 }
 
 @property (strong) IBOutlet NSSplitView *splitView;
@@ -57,6 +58,7 @@ typedef NS_ENUM(NSUInteger, MPAlertContext) {
   if( self ) {
     _firstResponder = nil;
     _saveAfterPasswordChange = NO;
+    _didShowToolbarForSearch = NO;
     _toolbarDelegate = [[MPToolbarDelegate alloc] init];
     _outlineViewController = [[MPOutlineViewController alloc] init];
     _entryViewController = [[MPEntryViewController alloc] init];
@@ -77,11 +79,12 @@ typedef NS_ENUM(NSUInteger, MPAlertContext) {
   [[self window] setDelegate:self.documentWindowDelegate];
   [[self window] registerForDraggedTypes:@[NSURLPboardType]];
   
-  
-  [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(_didRevertDocument:) name:MPDocumentDidRevertNotifiation object:[self document]];
-  [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(showEntries) name:MPDocumentDidUnlockDatabaseNotification object:[self document]];
-  
   MPDocument *document = [self document];
+  
+  [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(_didRevertDocument:) name:MPDocumentDidRevertNotifiation object:document];
+  [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(showEntries) name:MPDocumentDidUnlockDatabaseNotification object:document];
+  [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(_didEnterSearch:) name:MPDocumentDidEnterSearchNotification object:document];
+  [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(_didExitSearch:) name:MPDocumentDidExitSearchNotification object:document];
   
   [_entryViewController regsiterNotificationsForDocument:document];
   [_inspectorViewController regsiterNotificationsForDocument:document];
@@ -112,7 +115,7 @@ typedef NS_ENUM(NSUInteger, MPAlertContext) {
   if(!showInspector) {
     [inspectorView removeFromSuperview];
   }
-
+  
   if(document.encrypted) {
     [self showPasswordInput];
   }
@@ -159,9 +162,30 @@ typedef NS_ENUM(NSUInteger, MPAlertContext) {
   [self.window makeFirstResponder:[viewController reconmendedFirstResponder]];
 }
 
+#pragma mark MPDocument notifications
 - (void)_didRevertDocument:(NSNotification *)notification {
   [self.outlineViewController clearSelection];
   [self showPasswordInput];
+}
+
+- (void)_didEnterSearch:(NSNotificationCenter *)notification {
+  /* Hide again after search ? */
+  NSWindow *window = [self window];
+  NSToolbar *toolbar = [window toolbar];
+  if(![toolbar isVisible]) {
+    _didShowToolbarForSearch = YES;
+    [toolbar setVisible:YES];
+  }
+}
+
+- (void)_didExitSearch:(NSNotification *)notification {
+  /* Hide again after search ? */
+  NSWindow *window = [self window];
+  NSToolbar *toolbar = [window toolbar];
+  if(_didShowToolbarForSearch && [toolbar isVisible]) {
+    _didShowToolbarForSearch = NO;
+    [toolbar setVisible:NO];
+  }
 }
 
 #pragma mark Actions
@@ -359,7 +383,7 @@ typedef NS_ENUM(NSUInteger, MPAlertContext) {
   [_inspectorViewController updateResponderChain];
   [_outlineViewController updateResponderChain];
   [_outlineViewController showOutline];
-
+  
   /* Restore the State the inspector view was in before the view change */
   if(removeInspector) {
     [inspectorView removeFromSuperview];
