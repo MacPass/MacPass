@@ -27,6 +27,7 @@
 @interface MPToolbarDelegate : NSObject <NSToolbarDelegate>
 
 @property (weak, readonly) NSSearchField *searchField;
+@property (weak) NSToolbar *toolbar;
 
 - (void)registerNotificationsForDocument:(MPDocument *)document;
 

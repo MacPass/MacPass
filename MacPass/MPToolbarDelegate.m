@@ -44,6 +44,9 @@ NSString *const MPToolbarItemSearch = @"TOOLBAR_SEARCH";
 
 @interface MPToolbarDelegate() {
   MPAddEntryContextMenuDelegate *_entryMenuDelegate;
+  BOOL _didShowToolbarForSearch;
+  BOOL _didAddSearchfieldForSearch;
+  NSToolbarDisplayMode _displayModeBeforeSearch;
 }
 
 @property (strong) NSMutableDictionary *toolbarItems;
@@ -62,7 +65,16 @@ NSString *const MPToolbarItemSearch = @"TOOLBAR_SEARCH";
 - (id)init {
   self = [super init];
   if (self) {
-    _toolbarIdentifiers = @[ MPToolbarItemAddEntry, MPToolbarItemDelete, MPToolbarItemAddGroup, MPToolbarItemAction, NSToolbarFlexibleSpaceItemIdentifier, MPToolbarItemSearch, MPToolbarItemLock, MPToolbarItemInspector ];
+    _didShowToolbarForSearch = NO;
+    _didAddSearchfieldForSearch = NO;
+    _toolbarIdentifiers = @[ MPToolbarItemAddEntry,
+                             MPToolbarItemDelete,
+                             MPToolbarItemAddGroup,
+                             MPToolbarItemAction,
+                             NSToolbarFlexibleSpaceItemIdentifier,
+                             MPToolbarItemSearch,
+                             MPToolbarItemLock,
+                             MPToolbarItemInspector ];
     _toolbarImages = [self createToolbarImages];
     _toolbarItems = [[NSMutableDictionary alloc] initWithCapacity:[self.toolbarIdentifiers count]];
     _entryMenuDelegate = [[MPAddEntryContextMenuDelegate alloc] init];
@@ -142,6 +154,7 @@ NSString *const MPToolbarItemSearch = @"TOOLBAR_SEARCH";
       NSSearchFieldCell *cell = [searchField cell];
       [[cell cancelButtonCell] setAction:@selector(exitSearch:)];
       [[cell cancelButtonCell] setTarget:nil];
+      [searchField setRecentsAutosaveName:@"RecentEntrySearches"];
       [item setView:searchField];
       self.searchField = searchField;
     }
@@ -224,6 +237,22 @@ NSString *const MPToolbarItemSearch = @"TOOLBAR_SEARCH";
 }
 
 - (void)_didEnterSearch:(NSNotification *)notification {
+  /* We enter search. If there is no Item to search in the toolbar, we need to add it */
+  NSArray *currentItems = [self.toolbar items];
+  NSToolbarItem *searchItem = self.toolbarItems[MPToolbarItemSearch];
+  if(!searchItem || ![currentItems containsObject:searchItem]) {
+    [self.toolbar insertItemWithItemIdentifier:MPToolbarItemSearch atIndex:[currentItems count]];
+    _didAddSearchfieldForSearch = YES;
+  }
+  /* Then we should make sure the toolbar is visible. Just to make life easier */
+  if(![self.toolbar isVisible]) {
+    _didShowToolbarForSearch = YES;
+    [self.toolbar setVisible:YES];
+  }
+  _displayModeBeforeSearch = [self.toolbar displayMode];
+  if(_displayModeBeforeSearch == NSToolbarDisplayModeLabelOnly) {
+    [self.toolbar setDisplayMode:NSToolbarDisplayModeIconAndLabel];
+  }
   [[self.searchField window] makeFirstResponder:self.searchField];
   [self.searchField selectText:self];
 }
@@ -234,6 +263,21 @@ NSString *const MPToolbarItemSearch = @"TOOLBAR_SEARCH";
   /* Resign first responder form search field only if it was the first responder */
   if([window firstResponder] == [self.searchField currentEditor]) {
     [window makeFirstResponder:nil];
+  }
+  if(_didAddSearchfieldForSearch) {
+    NSToolbarItem *searchItem = self.toolbarItems[MPToolbarItemSearch];
+    NSUInteger index = [[self.toolbar items] indexOfObject:searchItem];
+    if(index != NSNotFound) {
+      [self.toolbar removeItemAtIndex:index];
+      _didAddSearchfieldForSearch = NO;
+    }
+  }
+  if(_displayModeBeforeSearch != [self.toolbar displayMode]) {
+    [self.toolbar setDisplayMode:_displayModeBeforeSearch];
+  }
+  if(_didShowToolbarForSearch && [self.toolbar isVisible]) {
+    _didShowToolbarForSearch = NO;
+    [self.toolbar setVisible:NO];
   }
 }
 
