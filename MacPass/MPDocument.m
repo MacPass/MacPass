@@ -21,6 +21,7 @@
 //
 
 #import "MPDocument.h"
+#import "MPDocument+Search.h"
 #import "MPAppDelegate.h"
 #import "MPDocumentWindowController.h"
 #import "MPDatabaseVersion.h"
@@ -238,6 +239,7 @@ NSString *const MPDocumentGroupKey                        = @"MPDocumentGroupKey
 #pragma mark Lock/Unlock/Decrypt
 
 - (void)lockDatabase:(id)sender {
+  [self exitSearch:self];
   NSError *error;
   /* Locking needs to be lossless hence just use the XML format */
   _encryptedData = [self.tree encryptWithPassword:self.compositeKey forVersion:KPKXmlVersion error:&error];
