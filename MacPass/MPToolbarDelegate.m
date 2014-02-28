@@ -156,6 +156,8 @@ NSString *const MPToolbarItemSearch = @"TOOLBAR_SEARCH";
       [[cell cancelButtonCell] setTarget:nil];
       [searchField setRecentsAutosaveName:@"RecentEntrySearches"];
       [item setView:searchField];
+      [item setMinSize:NSMakeSize(140, 32)];
+      [item setMaxSize:NSMakeSize(240, 32)];
       self.searchField = searchField;
     }
     else {
