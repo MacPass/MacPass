@@ -10,10 +10,15 @@
 "KPK_GROUP_COPY_%@" = "%@ copy";
 "KPK_ENTRY_COPY_%@" = "%@ copy";
 
+/* Validation Errors */
+"ERROR_WINDOW_TITLE_VALIDATION_FAILED" = "The Format of the Window Title is not valid!";
+"ERROR_ATTRIBUTE_KEY_VALIDATION_FAILED" = "The Attribute Key is not unique!";
+"ERROR_AUTOTYPE_SEQUENCE_VALIDATION_FAILED" = "Tht Autotype Sequence is not valid!";
+
 /* Errors */
 "ERROR_CORRUPT_TREE" = "The internal file structure is corrupted!";
-"ERROR_INVALID_FIELD_SIZE" = "A data filed has an incorrect size!";
-"ERROR_KEYFILE_NO_KEY_XML_ELEMENT" = "XML Keyfile is missing Key Element";
+"ERROR_INVALID_FIELD_SIZE" = "Incorrect size at data field. Password wrong?";
+"ERROR_INVALID_FIELD_TYPE" = "Unknown data field. Password wrong?";
 "ERROR_UNSUPPORTED_DATABASER_VERSION" = "The Database version is not supported";
 "ERROR_UNSUPPORTED_CHIPHER" = "Unsupported chipher algorithm";
 "ERROR_UNKNOWN_FILE_FORMAT" = "Unknown file format";
