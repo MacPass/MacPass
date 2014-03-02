@@ -12,37 +12,6 @@
 @implementation NSError (Messages)
 
 - (NSString *)descriptionForErrorCode {
-  switch ([self code]) {
-    case KPKErrorUnknownFileFormat:
-    case KPKErrorUnsupportedDatabaseVersion:
-    case KPKErrorNoData:
-    case KPKErrorHeaderCorrupted:
-    case KPKErrorWriteFailed:
-    case KPKErrorEncryptionFaild:
-    case KPKErrorDecryptionFaild:
-    case KPKErrorDatabaseParsingFailed:
-    case KPKerrorXMLKeyUnsupportedVersion:
-    case KPKErrorXMLKeyKeyElementMissing:
-    case KPKErrorXMLKeyDataElementMissing:
-    case KPKErrorXMLKeyDataParsingError:
-    case KPKErrorUnsupportedCipher:
-    case KPKErrorUnsupportedCompressionAlgorithm:
-    case KPKErrorUnsupportedRandomStream:
-    case KPKErrorPasswordAndOrKeyfileWrong:
-    case KPKErrorIntegrityCheckFaild:
-    case KPKErrorXMLKeePassFileElementMissing:
-    case KPKErrorXMLRootElementMissing:
-    case KPKErrorXMLMetaElementMissing:
-    case KPKErrorXMLGroupElementMissing:
-    case KPKErrorXMLInvalidHeaderFieldSize:
-    case KPKErrorXMLInvalidHeaderFieldType:
-    case KPKErrorLegacyInvalidFieldType:
-    case KPKErrorLegacyInvalidFieldSize:
-    case KPKErrorLegacyHeaderHashCorrupted:
-    case KPKErrorLegacyCorruptTree:
-    default: {
-      return [NSString stringWithFormat:@"%@ (%ld)", [self localizedDescription], [self code] ];
-    }
-  }
+  return [NSString stringWithFormat:@"%@ (%ld)", [self localizedDescription], [self code] ];
 }
 @end
