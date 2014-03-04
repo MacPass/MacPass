@@ -26,7 +26,6 @@ After that you can build and run in Xcode. If you run into signing issues take a
 
 ##Known Major Issues
 
-* **Currently Search is broken in master, as the interface is in limbo!**
 * Binary releases (0.2.x - 0.3.x):
   * KDBX DeletedObjects are stripped on save. This will break synchronisation features!
 * All Versions (including master branch)
