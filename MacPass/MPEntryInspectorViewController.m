@@ -159,11 +159,14 @@ typedef NS_ENUM(NSUInteger, MPEntryTab) {
 }
 
 - (void)addWindowAssociation:(id)sender {
+  KPKWindowAssociation *associtation = [[KPKWindowAssociation alloc] initWithWindow:NSLocalizedString(@"DEFAULT_WINDOW_TITLE", "") keystrokeSequence:nil];
+  [self.entry.autotype addAssociation:associtation];
 }
 
 - (void)removeWindowAssociation:(id)sender {
   NSInteger row = [self.windowAssociationsTableView selectedRow];
   if(row > - 1 && row < [self.entry.autotype.associations count]) {
+    [self.entry.autotype removeAssociation:self.entry.autotype.associations[row]];
   }
 }
 
