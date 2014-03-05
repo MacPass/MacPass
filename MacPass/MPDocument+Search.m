@@ -66,19 +66,20 @@ NSString *const kMPDocumentSearchResultsKey           = @"kMPDocumentSearchResul
     return; // We need to read the button state
   }
   MPEntrySearchFlags toggleFlag = [sender tag];
+  MPEntrySearchFlags newFlags = MPEntrySearchNone;
   switch([sender state]) {
     case NSOffState:
       toggleFlag ^= MPEntrySearchAllFlags;
+      newFlags = self.activeFlags & toggleFlag;
       break;
     case NSOnState:
-      /* On is fine */
+      newFlags = self.activeFlags | toggleFlag;
       break;
     default:
       NSAssert(NO, @"Internal state is inconsistent");
       return;
   }
-  MPEntrySearchFlags newFlags = self.activeFlags & toggleFlag;
-  if(newFlags == self.activeFlags) {
+  if(newFlags != self.activeFlags) {
     self.activeFlags = (newFlags == MPEntrySearchNone) ? MPEntrySearchTitles : newFlags;
     [[NSNotificationCenter defaultCenter] postNotificationName:MPDocumentDidChangeSearchFlags object:self];
     [self updateSearch:self];

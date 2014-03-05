@@ -255,8 +255,11 @@ NSString *const MPToolbarItemSearch = @"TOOLBAR_SEARCH";
   if(_displayModeBeforeSearch == NSToolbarDisplayModeLabelOnly) {
     [self.toolbar setDisplayMode:NSToolbarDisplayModeIconAndLabel];
   }
-  [[self.searchField window] makeFirstResponder:self.searchField];
-  [self.searchField selectText:self];
+  /* only make the searchfield first responder if it's not aleady in an active search */
+  if(![self.searchField currentEditor]) {
+    [[self.searchField window] makeFirstResponder:self.searchField];
+    [self.searchField selectText:self];
+  }
 }
 
 - (void)_didExitSearch:(NSNotification *)notification {
