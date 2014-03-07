@@ -1,5 +1,5 @@
-//
 //  MPDocument+Search.m
+//
 //  MacPass
 //
 //  Created by Michael Starke on 25.02.14.
@@ -59,6 +59,7 @@ NSString *const kMPDocumentSearchResultsKey           = @"kMPDocumentSearchResul
 }
 
 - (void)toggleSearchFlags:(id)sender {
+  static MPEntrySearchFlags oldFlags;
   if(![sender respondsToSelector:@selector(tag)]) {
     return; // We need to read the button tag
   }
@@ -67,13 +68,22 @@ NSString *const kMPDocumentSearchResultsKey           = @"kMPDocumentSearchResul
   }
   MPEntrySearchFlags toggleFlag = [sender tag];
   MPEntrySearchFlags newFlags = MPEntrySearchNone;
+  BOOL isDoublePasswordFlag = (toggleFlag == MPEntrySearchDoublePasswords);
   switch([sender state]) {
     case NSOffState:
       toggleFlag ^= MPEntrySearchAllFlags;
-      newFlags = self.activeFlags & toggleFlag;
+      newFlags = isDoublePasswordFlag ? oldFlags : (self.activeFlags & toggleFlag);
       break;
     case NSOnState:
-      newFlags = self.activeFlags | toggleFlag;
+      if(isDoublePasswordFlag) {
+        oldFlags = self.activeFlags;
+        newFlags = MPEntrySearchDoublePasswords;
+      }
+      else {
+        /* always mask the double passwords in case another button was pressed */
+        self.activeFlags &= (MPEntrySearchDoublePasswords ^ MPEntrySearchAllFlags);
+        newFlags = self.activeFlags | toggleFlag;
+      }
       break;
     default:
       NSAssert(NO, @"Internal state is inconsistent");
@@ -89,27 +99,28 @@ NSString *const kMPDocumentSearchResultsKey           = @"kMPDocumentSearchResul
 #pragma mark Search
 - (NSArray *)_findEntriesMatchingCurrentSearch {
   /* Filter double passwords */
-  MPDocument __weak *weakSelf = self;
   if(MPTestFlagInOptions(MPEntrySearchDoublePasswords, self.activeFlags)) {
-    __block NSMutableDictionary *passwordToEntryMap;
+    __block NSMutableDictionary *passwordToEntryMap = [[NSMutableDictionary alloc] initWithCapacity:100];
     /* Build up a usage map */
-    [[weakSelf.root childEntries] enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
+    [[self.root childEntries] enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
       KPKEntry *entry = obj;
-      NSMutableSet *entrySet = passwordToEntryMap[entry.password];
-      if(entrySet) {
-        [entrySet addObject:entry];
-      }
-      else {
-        passwordToEntryMap[entry.password] = [NSMutableSet setWithObject:entry];
+      /* skip entries without passwords */
+      if([entry.password length] > 0) {
+        NSMutableSet *entrySet = passwordToEntryMap[entry.password];
+        if(entrySet) {
+          [entrySet addObject:entry];
+        }
+        else {
+          passwordToEntryMap[entry.password] = [NSMutableSet setWithObject:entry];
+        }
       }
     }];
     /* check for usage count */
     __block NSMutableArray *doublePasswords = [[NSMutableArray alloc] init];
     [[passwordToEntryMap allKeys] enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
       NSSet *entrySet = passwordToEntryMap[obj];
-      KPKEntry *entry = [entrySet anyObject];
-      if(entry) {
-        [doublePasswords addObject:entry];
+      if([entrySet count] > 1) {
+        [doublePasswords addObjectsFromArray:[entrySet allObjects]];
       }
     }];
     return doublePasswords;

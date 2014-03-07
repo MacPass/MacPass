@@ -48,8 +48,15 @@ typedef NS_OPTIONS(NSUInteger, MPEntrySearchFlags) {
   MPEntrySearchTitles          = (1<<2),
   MPEntrySearchPasswords       = (1<<3),
   MPEntrySearchNotes           = (1<<4),
-  MPEntrySearchDoublePasswords = (1<<5),
-  MPEntrySearchAllFlags        = (MPEntrySearchDoublePasswords | MPEntrySearchNotes | MPEntrySearchPasswords | MPEntrySearchTitles | MPEntrySearchUrls | MPEntrySearchUsernames)
+  MPEntrySearchAllAttributes   = (1<<5),
+  MPEntrySearchDoublePasswords = (1<<6), // Unused in GUI for now
+  MPEntrySearchAllFlags        = (MPEntrySearchDoublePasswords |
+                                  MPEntrySearchNotes |
+                                  MPEntrySearchPasswords |
+                                  MPEntrySearchTitles |
+                                  MPEntrySearchUrls |
+                                  MPEntrySearchUsernames |
+                                  MPEntrySearchAllAttributes )
 };
 
 @interface MPDocument : NSDocument

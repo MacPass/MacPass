@@ -147,12 +147,14 @@ NSString *const MPDocumentGroupKey                        = @"MPDocumentGroupKey
     }
     return NO;
   }
+  [self _watchForFileChanges:NO];
   NSData *treeData = [self.tree encryptWithPassword:self.compositeKey forVersion:version error:outError];
-  if(![treeData writeToURL:url options:0 error:outError]) {
+  BOOL sucess = [treeData writeToURL:url options:0 error:outError];
+  if(!sucess) {
     NSLog(@"%@", [*outError localizedDescription]);
-    return NO;
   }
-  return YES;
+  [self _watchForFileChanges:YES];
+  return sucess;
 }
 
 - (BOOL)readFromURL:(NSURL *)url ofType:(NSString *)typeName error:(NSError **)outError {
@@ -632,6 +634,10 @@ NSString *const MPDocumentGroupKey                        = @"MPDocumentGroupKey
     [[self undoManager] removeAllActionsWithTarget:group];
   }
   [self.trash clear];
+}
+
+# pragma mark File Watching
+- (void) _watchForFileChanges:(BOOL)watch {
 }
 
 @end

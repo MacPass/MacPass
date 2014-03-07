@@ -68,8 +68,8 @@ typedef NS_ENUM(NSUInteger, MPContextTab) {
   
   self.emptyTrashButton.textColor = [NSColor whiteColor];
   
-  NSInteger tags[] = { MPEntrySearchTitles, MPEntrySearchUsernames, MPEntrySearchPasswords, MPEntrySearchNotes, MPEntrySearchUrls };
-  NSArray *buttons  = @[self.titleButton, self.usernameButton, self.passwordButton, self.notesButton, self.urlButton ];
+  NSInteger tags[] = { MPEntrySearchTitles, MPEntrySearchUsernames, MPEntrySearchPasswords, MPEntrySearchNotes, MPEntrySearchUrls, MPEntrySearchDoublePasswords };
+  NSArray *buttons  = @[self.titleButton, self.usernameButton, self.passwordButton, self.notesButton, self.urlButton, self.everywhereButton ];
   for(NSUInteger iIndex = 0; iIndex < [buttons count]; iIndex++) {
     [buttons[iIndex] setAction:@selector(toggleSearchFlags:)];
     [buttons[iIndex] setTag:tags[iIndex]];
@@ -122,7 +122,8 @@ typedef NS_ENUM(NSUInteger, MPContextTab) {
 
 - (void)_updateFilterButtons {
   MPDocument *document = [[self windowController] document];
-  [self.everywhereButton setEnabled:NO];
+  //[self.everywhereButton setEnabled:NO];
+  [self.everywhereButton setState:HNHStateForBool(MPTestFlagInOptions(MPEntrySearchDoublePasswords, document.activeFlags))];
   [self.notesButton setState:HNHStateForBool(MPTestFlagInOptions(MPEntrySearchNotes, document.activeFlags))];
   [self.passwordButton setState:HNHStateForBool(MPTestFlagInOptions(MPEntrySearchPasswords, document.activeFlags))];
   [self.titleButton setState:HNHStateForBool(MPTestFlagInOptions(MPEntrySearchTitles, document.activeFlags))];
