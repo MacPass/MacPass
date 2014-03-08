@@ -2,8 +2,6 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
-	<key>SUPublicDSAKeyFile</key>
-	<string>dsa_sparkle_pub.pem</string>
 	<key>CFBundleDevelopmentRegion</key>
 	<string>en</string>
 	<key>CFBundleDocumentTypes</key>
@@ -62,7 +60,7 @@
 	<key>LSMinimumSystemVersion</key>
 	<string>${MACOSX_DEPLOYMENT_TARGET}</string>
 	<key>NSHumanReadableCopyright</key>
-	<string>Copyright © 2012-2013 HicknHack Software GmbH. All rights reserved.</string>
+	<string>Copyright © 2012-2014 HicknHack Software GmbH. All rights reserved.</string>
 	<key>NSMainNibFile</key>
 	<string>MainMenu</string>
 	<key>NSPrincipalClass</key>
@@ -71,6 +69,8 @@
 	<true/>
 	<key>SUFeedURL</key>
 	<string>https://raw.github.com/mstarke/MacPassUpdates/master/sparklecast.xml.rss</string>
+	<key>SUPublicDSAKeyFile</key>
+	<string>dsa_sparkle_pub.pem</string>
 	<key>UTExportedTypeDeclarations</key>
 	<array>
 		<dict>
