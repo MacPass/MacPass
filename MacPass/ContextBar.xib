@@ -7,8 +7,8 @@
     <objects>
         <customObject id="-2" userLabel="File's Owner" customClass="MPContextBarViewController">
             <connections>
+                <outlet property="duplicatePasswordsButton" destination="hMB-2T-pBD" id="dWH-3p-fy6"/>
                 <outlet property="emptyTrashButton" destination="szx-Hx-OrV" id="i1Y-qB-TW3"/>
-                <outlet property="everywhereButton" destination="hMB-2T-pBD" id="FEh-AQ-zSQ"/>
                 <outlet property="exitHistoryButton" destination="pqx-su-vAh" id="JmV-vC-F48"/>
                 <outlet property="filterLabelTextField" destination="6" id="60"/>
                 <outlet property="historyBar" destination="S8L-rB-h0h" id="6yZ-El-fVs"/>
@@ -103,9 +103,9 @@
                                         </connections>
                                     </button>
                                     <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="hMB-2T-pBD">
-                                        <rect key="frame" x="378" y="6" width="87" height="17"/>
+                                        <rect key="frame" x="378" y="6" width="144" height="17"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                        <buttonCell key="cell" type="recessed" title="Everywhere" bezelStyle="recessed" alignment="center" controlSize="small" state="on" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="G1B-En-dc2">
+                                        <buttonCell key="cell" type="recessed" title="Duplicate Passwords" bezelStyle="recessed" alignment="center" controlSize="small" state="on" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="G1B-En-dc2">
                                             <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES" changeBackground="YES" changeGray="YES"/>
                                             <font key="font" metaFont="systemBold" size="12"/>
                                         </buttonCell>
