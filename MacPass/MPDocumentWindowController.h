@@ -32,6 +32,7 @@
 
 #pragma mark Actions
 - (IBAction)saveDocument:(id)sender;
+- (IBAction)saveDocumentAs:(id)sender;
 
 - (IBAction)editPassword:(id)sender;
 - (IBAction)showDatabaseSettings:(id)sender;

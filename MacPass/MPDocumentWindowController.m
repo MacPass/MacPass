@@ -29,10 +29,11 @@ typedef NS_ENUM(NSUInteger, MPAlertContext) {
   MPAlertLossySaveWarning,
 };
 
+typedef void (^MPPasswordChangedBlock)(void);
+
 @interface MPDocumentWindowController () {
 @private
   id _firstResponder;
-  BOOL _saveAfterPasswordChange;
 }
 
 @property (strong) IBOutlet NSSplitView *splitView;
@@ -48,6 +49,8 @@ typedef NS_ENUM(NSUInteger, MPAlertContext) {
 @property (strong) MPPasswordEditWindowController *passwordEditWindowController;
 @property (strong) MPToolbarDelegate *toolbarDelegate;
 
+@property (nonatomic, copy) MPPasswordChangedBlock passwordChangedBlock;
+
 @end
 
 @implementation MPDocumentWindowController
@@ -56,7 +59,6 @@ typedef NS_ENUM(NSUInteger, MPAlertContext) {
   self = [super initWithWindowNibName:@"DocumentWindow" owner:self];
   if( self ) {
     _firstResponder = nil;
-    _saveAfterPasswordChange = NO;
     _toolbarDelegate = [[MPToolbarDelegate alloc] init];
     _outlineViewController = [[MPOutlineViewController alloc] init];
     _entryViewController = [[MPEntryViewController alloc] init];
@@ -167,7 +169,7 @@ typedef NS_ENUM(NSUInteger, MPAlertContext) {
 
 #pragma mark Actions
 - (void)saveDocument:(id)sender {
-  _saveAfterPasswordChange = NO;
+  self.passwordChangedBlock = nil;
   MPDocument *document = [self document];
   NSString *fileType = [document fileType];
   /* we did open as legacy */
@@ -187,12 +189,24 @@ typedef NS_ENUM(NSUInteger, MPAlertContext) {
     }
   }
   else if(!document.compositeKey) {
-    _saveAfterPasswordChange = YES;
+    __weak MPDocument *weakDocument = [self document];
+    self.passwordChangedBlock = ^void(void){[weakDocument saveDocument:sender];};
     [self editPassword:sender];
     return;
   }
   /* All set and good ready to save */
   [[self document] saveDocument:sender];
+}
+- (void)saveDocumentAs:(id)sender {
+  self.passwordChangedBlock = nil;
+  MPDocument *document = [self document];
+  if(!document.compositeKey) {
+    __weak MPDocument *weakDocument = [self document];
+    self.passwordChangedBlock = ^void(void){[weakDocument saveDocumentAs:sender];};
+    [self editPassword:sender];
+    return;
+  }
+  [[self document] saveDocumentAs:sender];
 }
 
 - (void)exportAsXML:(id)sender {
@@ -238,7 +252,7 @@ typedef NS_ENUM(NSUInteger, MPAlertContext) {
     self.passwordEditWindowController.delegate = self;
   }
   /* Disallow empty password if we want to save afterwards, otherwise the dialog keeps poping up */
-  self.passwordEditWindowController.allowsEmptyPasswordOrKey = !_saveAfterPasswordChange;
+  self.passwordEditWindowController.allowsEmptyPasswordOrKey = (self.passwordChangedBlock == nil);
   [NSApp beginSheet:[self.passwordEditWindowController window] modalForWindow:[self window] modalDelegate:nil didEndSelector:NULL contextInfo:NULL];
 }
 
@@ -375,10 +389,10 @@ typedef NS_ENUM(NSUInteger, MPAlertContext) {
 
 #pragma mark MPPasswordEditWindowDelegate
 - (void)didFinishPasswordEditing:(BOOL)changedPasswordOrKey {
-  if(changedPasswordOrKey && _saveAfterPasswordChange) {
-    [self saveDocument:nil];
+  if(changedPasswordOrKey && self.passwordChangedBlock) {
+    self.passwordChangedBlock();
   }
-  _saveAfterPasswordChange = NO;
+  self.passwordChangedBlock = nil;
 }
 
 #pragma mark Alert Delegate

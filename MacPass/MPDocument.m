@@ -130,6 +130,14 @@ NSString *const MPDocumentGroupKey                        = @"MPDocumentGroupKey
   [self addWindowController:windowController];
 }
 
+- (void)saveDocumentAs:(id)sender {
+  [super saveDocumentAs:sender];
+}
+
+- (void)saveDocument:(id)sender {
+  [super saveDocument:sender];
+}
+
 - (void)windowControllerDidLoadNib:(NSWindowController *)aController
 {
   [super windowControllerDidLoadNib:aController];
@@ -137,13 +145,18 @@ NSString *const MPDocumentGroupKey                        = @"MPDocumentGroupKey
 
 - (BOOL)writeToURL:(NSURL *)url ofType:(NSString *)typeName error:(NSError **)outError {
   if(!self.compositeKey.hasPasswordOrKeyFile) {
+    if(outError != NULL) {
+      NSDictionary *userInfo = @{ NSLocalizedDescriptionKey: NSLocalizedString(@"NO_PASSWORD_OR_KEY_SET", "") };
+      *outError = [NSError errorWithDomain:MPErrorDomain code:0 userInfo:userInfo];
+    }
     return NO; // No password or key. No save possible
   }
   NSString *fileType = [self fileTypeFromLastRunSavePanel];
   KPKVersion version = [[self class] versionForFileType:fileType];
   if(version == KPKUnknownVersion) {
     if(outError != NULL) {
-      *outError = [NSError errorWithDomain:MPErrorDomain code:0 userInfo:nil];
+      NSDictionary *userInfo = @{ NSLocalizedDescriptionKey: NSLocalizedString(@"UNKNOWN_FILE_VERSION", "") };
+      *outError = [NSError errorWithDomain:MPErrorDomain code:0 userInfo:userInfo];
     }
     return NO;
   }
