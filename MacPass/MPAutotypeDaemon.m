@@ -53,7 +53,7 @@ NSString *const kMPApplciationNameKey = @"applicationName";
 - (void)setEnabled:(BOOL)enabled {
   if(_enabled != enabled) {
     _enabled = enabled;
-    self.enabled ? [self _registerHotKey] : [self _unregisterHotKey];
+    //self.enabled ? [self _registerHotKey] : [self _unregisterHotKey];
   }
 }
 
