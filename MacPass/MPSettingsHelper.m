@@ -43,6 +43,10 @@ NSString *const kMPSettingsKeyEntrySearchFilterMode         = @"EntrySearchFilte
   [[NSUserDefaults standardUserDefaults] registerDefaults:[self _standardDefaults]];
 }
 
++ (void)migrateDefaults {
+  [self _fixEntryTableSortDescriptors];
+}
+
 + (NSString *)defaultControllerPathForKey:(NSString *)key {
   return [NSString stringWithFormat:@"values.%@", key];
 }
@@ -70,6 +74,24 @@ NSString *const kMPSettingsKeyEntrySearchFilterMode         = @"EntrySearchFilte
            kMPSettingsKeyEntrySearchFilterMode: @0,
            kMPSettingsKeyEnableGlobalAutotype: @NO,
            };
+}
+
++ (void)_fixEntryTableSortDescriptors {
+  /*
+   MacPass < 0.4 did use compare: for the entry table view,
+   this was changed in 0.4 to localizedCaseInsensitiveCompare:
+   */
+  NSData *descriptorData = [[NSUserDefaults standardUserDefaults] dataForKey:kMPSettingsKeyEntryTableSortDescriptors];
+  if(!descriptorData) {
+    return; // No user defaults
+  }
+  NSArray *sortDescriptors = [NSUnarchiver unarchiveObjectWithData:descriptorData];
+  for(NSSortDescriptor *descriptor in sortDescriptors) {
+    if([descriptor selector] == @selector(compare:)) {
+      [[NSUserDefaults standardUserDefaults] removeObjectForKey:kMPSettingsKeyEntryTableSortDescriptors];
+      break;
+    }
+  }
 }
 
 @end

@@ -149,11 +149,11 @@ NSString *const _MPTAbleSecurCellView = @"PasswordCell";
   [self.entryTable setAutosaveName:@"EntryTable"];
   [self.entryTable setAutosaveTableColumns:YES];
   
-	NSSortDescriptor *titleColumSortDescriptor = [NSSortDescriptor sortDescriptorWithKey:@"title" ascending:YES selector:@selector(compare:)];
-  NSSortDescriptor *userNameSortDescriptor = [NSSortDescriptor sortDescriptorWithKey:@"username" ascending:YES selector:@selector(compare:)];
-  NSSortDescriptor *urlSortDescriptor = [NSSortDescriptor sortDescriptorWithKey:@"url" ascending:YES selector:@selector(compare:)];
-  NSSortDescriptor *groupnameSortDescriptor = [NSSortDescriptor sortDescriptorWithKey:@"parent.name" ascending:YES selector:@selector(compare:)];
-  NSSortDescriptor *dateSortDescriptor = [NSSortDescriptor sortDescriptorWithKey:@"timeInfo.lastModificationTime" ascending:YES selector:@selector(compare:)];
+	NSSortDescriptor *titleColumSortDescriptor = [NSSortDescriptor sortDescriptorWithKey:@"title" ascending:YES selector:@selector(localizedCaseInsensitiveCompare:)];
+  NSSortDescriptor *userNameSortDescriptor = [NSSortDescriptor sortDescriptorWithKey:@"username" ascending:YES selector:@selector(localizedCaseInsensitiveCompare:)];
+  NSSortDescriptor *urlSortDescriptor = [NSSortDescriptor sortDescriptorWithKey:@"url" ascending:YES selector:@selector(localizedCaseInsensitiveCompare:)];
+  NSSortDescriptor *groupnameSortDescriptor = [NSSortDescriptor sortDescriptorWithKey:@"parent.name" ascending:YES selector:@selector(localizedCaseInsensitiveCompare:)];
+  NSSortDescriptor *dateSortDescriptor = [NSSortDescriptor sortDescriptorWithKey:@"timeInfo.lastModificationTime" ascending:YES selector:@selector(localizedCaseInsensitiveCompare:)];
   
   [titleColumn setSortDescriptorPrototype:titleColumSortDescriptor];
   [userNameColumn setSortDescriptorPrototype:userNameSortDescriptor];

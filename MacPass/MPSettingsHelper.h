@@ -64,6 +64,11 @@ typedef NS_ENUM(NSUInteger, MPPasswordEncoding) {
  *  Registers all the defaults for the applciaiton
  */
 + (void)setupDefaults;
+
+/**
+ *  Brings the defaults to a current status. Removes obsoltes entries.
+ */
++ (void)migrateDefaults;
 /**
  *  Convenience Method to create a bind path for the NSUserDefaultsController
  *

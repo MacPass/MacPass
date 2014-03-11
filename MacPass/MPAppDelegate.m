@@ -56,6 +56,7 @@ NSString *const MPDidChangeStoredKeyFilesSettings = @"com.hicknhack.macpass.MPDi
 
 + (void)initialize {
   [MPSettingsHelper setupDefaults];
+  [MPSettingsHelper migrateDefaults];
   [MPUppercaseStringValueTransformer registerTransformer];
   [MPStringLengthValueTransformer registerTransformer];
   [MPStripLineBreaksTransformer registerTransformer];
