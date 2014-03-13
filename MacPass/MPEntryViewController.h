@@ -24,7 +24,6 @@ typedef NS_ENUM( NSUInteger, MPCopyContentTypeTag) {
 };
 
 @class KPKEntry;
-@class MPOutlineViewDelegate;
 @class MPDocumentWindowController;
 @class MPDocument;
 
