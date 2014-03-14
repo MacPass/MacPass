@@ -70,7 +70,7 @@
 
   NSInteger compressionIndex = [self.databaseCompressionPopupButton indexOfSelectedItem];
   if(compressionIndex >= KPKCompressionNone && compressionIndex < KPKCompressionCount) {
-    metaData.compressionAlgorithm = compressionIndex;
+    metaData.compressionAlgorithm = (uint32_t)compressionIndex;
   }
   NSColor *databaseColor = [self.databaseColorColorWell color];
   if([databaseColor isEqual:[NSColor clearColor]]) {
