@@ -15,6 +15,7 @@
 #import "MPIconSelectViewController.h"
 
 #import "NSDate+Humanized.h"
+#import "KPKNode+IconImage.h"
 
 #import "KPKTree.h"
 #import "KPKMetaData.h"
@@ -44,6 +45,10 @@ typedef NS_ENUM(NSUInteger, MPContentTab) {
 
 @property (nonatomic, assign) NSUInteger activeTab;
 @property (weak) IBOutlet NSTabView *tabView;
+@property (weak) IBOutlet NSSplitView *splitView;
+@property (weak) IBOutlet NSTextField *notesHeaderTextField;
+@property (weak) IBOutlet HNHGradientView *notesHeaderGradientView;
+@property (unsafe_unretained) IBOutlet NSTextView *notesTextView;
 
 @end
 
@@ -79,8 +84,11 @@ typedef NS_ENUM(NSUInteger, MPContentTab) {
   }
 }
 
-- (void)didLoadView {
-  [_bottomBar setBorderType:HNHBorderTop];
+- (void)awakeFromNib {
+  [self.bottomBar setBorderType:HNHBorderTop|HNHBorderHighlight];
+  [self.notesHeaderGradientView setBorderType:HNHBorderBottom|HNHBorderHighlight];
+  [[self.notesHeaderTextField cell] setBackgroundStyle:NSBackgroundStyleRaised];
+  
   [[self.noSelectionInfo cell] setBackgroundStyle:NSBackgroundStyleRaised];
   [[self.itemImageView cell] setBackgroundStyle:NSBackgroundStyleRaised];
   [self.tabView bind:NSSelectedIndexBinding toObject:self withKeyPath:@"activeTab" options:nil];
@@ -102,9 +110,12 @@ typedef NS_ENUM(NSUInteger, MPContentTab) {
   [_groupViewController updateResponderChain];
   [_entryViewController updateResponderChain];
   
-  [[self view] layoutSubtreeIfNeeded];
-  
+  [[self view] layout];
   [self _updateBindings:nil];
+}
+
+- (void)didLoadView {
+
 }
 
 - (void)regsiterNotificationsForDocument:(MPDocument *)document {
@@ -225,17 +236,20 @@ typedef NS_ENUM(NSUInteger, MPContentTab) {
     [self.itemNameTextField setHidden:YES];
     [self.itemImageView unbind:NSValueBinding];
     [self.itemImageView setHidden:YES];
+    [self.notesTextView unbind:NSValueBinding];
+    [self.notesTextView setString:@""];
+    [self.notesTextView setEditable:NO];
     
     return;
   }
-  
-  [self.itemImageView bind:NSValueBinding toObject:item withKeyPath:@"iconImage" options:nil];
-  
+  [self.itemImageView bind:NSValueBinding toObject:item withKeyPath:NSStringFromSelector(@selector(iconImage)) options:nil];
+  [self.notesTextView setEditable:YES];
+  [self.notesTextView bind:NSValueBinding toObject:item withKeyPath:NSStringFromSelector(@selector(notes)) options:nil];
   if([item respondsToSelector:@selector(title)]) {
-    [self.itemNameTextField bind:NSValueBinding toObject:item withKeyPath:@"title" options:nil];
+    [self.itemNameTextField bind:NSValueBinding toObject:item withKeyPath:NSStringFromSelector(@selector(title)) options:nil];
   }
   else if( [item respondsToSelector:@selector(name)]) {
-    [self.itemNameTextField bind:NSValueBinding toObject:item withKeyPath:@"name" options:nil];
+    [self.itemNameTextField bind:NSValueBinding toObject:item withKeyPath:NSStringFromSelector(@selector(name)) options:nil];
   }
   [self.itemImageView setHidden:NO];
   [self.itemNameTextField setHidden:NO];

@@ -14,7 +14,6 @@
 
 @property (strong) IBOutlet NSView *contentView;
 @property (weak) IBOutlet HNHRoundedTextField *titleTextField;
-@property (unsafe_unretained) IBOutlet NSTextView *notesTextView;
 
 @property (weak) IBOutlet NSButton *expiresCheckButton;
 

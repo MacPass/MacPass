@@ -109,7 +109,7 @@ NSString *const _MPTAbleSecurCellView = @"PasswordCell";
 - (void)didLoadView {
   [[self view] setWantsLayer:YES];
   
-  [_bottomBar setBorderType:HNHBorderTop];
+  [_bottomBar setBorderType:HNHBorderTop|HNHBorderHighlight];
   [self.addEntryButton setAction:[MPActionHelper actionOfType:MPActionAddEntry]];
   
   [self.entryTable setDelegate:self];

@@ -272,7 +272,6 @@ typedef NS_ENUM(NSUInteger, MPEntryTab) {
     [self.passwordTextField bind:NSValueBinding toObject:self.entry withKeyPath:@"password" options:nil];
     [self.usernameTextField bind:NSValueBinding toObject:self.entry withKeyPath:@"username" options:nil];
     [self.URLTextField bind:NSValueBinding toObject:self.entry withKeyPath:@"url" options:nil];
-    [self.notesTextView bind:NSValueBinding toObject:self.entry withKeyPath:@"notes" options:nil];
     [self.expiresCheckButton bind:NSValueBinding toObject:self.entry.timeInfo withKeyPath:@"expires" options:nil];
     [self.tagsTokenField bind:NSValueBinding toObject:self.entry withKeyPath:@"tags" options:nil];
   }
@@ -281,7 +280,6 @@ typedef NS_ENUM(NSUInteger, MPEntryTab) {
     [self.passwordTextField unbind:NSValueBinding];
     [self.usernameTextField unbind:NSValueBinding];
     [self.URLTextField unbind:NSValueBinding];
-    [self.notesTextView unbind:NSValueBinding];
     [self.expiresCheckButton unbind:NSValueBinding];
   }
 }
@@ -338,8 +336,6 @@ typedef NS_ENUM(NSUInteger, MPEntryTab) {
   
   [_createdTextField setEditable:edit];
   [_createdTextField setSelectable:edit];
-  [_notesTextView setEditable:edit];
-  [_notesTextView setSelectable:edit];
   [_modifiedTextField setEditable:edit];
   [_modifiedTextField setSelectable:edit];
   
