@@ -532,7 +532,7 @@ NSString *const MPDocumentGroupKey                        = @"MPDocumentGroupKey
     return; // sender cannot provide usefull data
   }
   id obj = [sender representedObject];
-  if([obj isKindOfClass:[NSUUID class]]) {
+  if(![obj isKindOfClass:[NSUUID class]]) {
     return; // sender cannot provide NSUUID
   }
   NSUUID *entryUUID = [sender representedObject];
