@@ -46,8 +46,6 @@ typedef NS_ENUM(NSUInteger, MPContentTab) {
 @property (nonatomic, assign) NSUInteger activeTab;
 @property (weak) IBOutlet NSTabView *tabView;
 @property (weak) IBOutlet NSSplitView *splitView;
-@property (weak) IBOutlet NSTextField *notesHeaderTextField;
-@property (weak) IBOutlet HNHGradientView *notesHeaderGradientView;
 @property (unsafe_unretained) IBOutlet NSTextView *notesTextView;
 
 @end
@@ -86,8 +84,6 @@ typedef NS_ENUM(NSUInteger, MPContentTab) {
 
 - (void)awakeFromNib {
   [self.bottomBar setBorderType:HNHBorderTop|HNHBorderHighlight];
-  [self.notesHeaderGradientView setBorderType:HNHBorderBottom|HNHBorderHighlight];
-  [[self.notesHeaderTextField cell] setBackgroundStyle:NSBackgroundStyleRaised];
   
   [[self.noSelectionInfo cell] setBackgroundStyle:NSBackgroundStyleRaised];
   [[self.itemImageView cell] setBackgroundStyle:NSBackgroundStyleRaised];
@@ -236,14 +232,13 @@ typedef NS_ENUM(NSUInteger, MPContentTab) {
     [self.itemNameTextField setHidden:YES];
     [self.itemImageView unbind:NSValueBinding];
     [self.itemImageView setHidden:YES];
+    [[self.notesTextView enclosingScrollView] setHidden:YES];
     [self.notesTextView unbind:NSValueBinding];
     [self.notesTextView setString:@""];
-    [self.notesTextView setEditable:NO];
-    
     return;
   }
   [self.itemImageView bind:NSValueBinding toObject:item withKeyPath:NSStringFromSelector(@selector(iconImage)) options:nil];
-  [self.notesTextView setEditable:YES];
+  [[self.notesTextView enclosingScrollView] setHidden:NO];
   [self.notesTextView bind:NSValueBinding toObject:item withKeyPath:NSStringFromSelector(@selector(notes)) options:nil];
   if([item respondsToSelector:@selector(title)]) {
     [self.itemNameTextField bind:NSValueBinding toObject:item withKeyPath:NSStringFromSelector(@selector(title)) options:nil];

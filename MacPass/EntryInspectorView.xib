@@ -224,6 +224,9 @@
                                             </subviews>
                                             <color key="backgroundColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
                                         </clipView>
+                                        <constraints>
+                                            <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="100" id="KFw-Ma-DSd"/>
+                                        </constraints>
                                         <scroller key="horizontalScroller" hidden="YES" verticalHuggingPriority="750" horizontal="YES" id="138">
                                             <rect key="frame" x="1" y="147" width="52" height="16"/>
                                             <autoresizingMask key="autoresizingMask"/>
@@ -413,6 +416,9 @@
                                             </subviews>
                                             <color key="backgroundColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
                                         </clipView>
+                                        <constraints>
+                                            <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="100" id="Car-Dj-KWv"/>
+                                        </constraints>
                                         <scroller key="horizontalScroller" hidden="YES" verticalHuggingPriority="750" horizontal="YES" id="192">
                                             <rect key="frame" x="1" y="119" width="223" height="15"/>
                                             <autoresizingMask key="autoresizingMask"/>
