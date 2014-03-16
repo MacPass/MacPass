@@ -54,20 +54,17 @@ typedef NS_ENUM(NSUInteger, MPContextTab) {
   [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
 
-- (void)didLoadView {
-  
+- (void)awakeFromNib {
   [[self.filterLabelTextField cell] setBackgroundStyle:NSBackgroundStyleRaised];
   
   self.historyBar.activeGradient = [[NSGradient alloc] initWithStartingColor:[NSColor redColor] endingColor:[NSColor greenColor]];
   
-  /*
    NSArray *activeColors = @[[NSColor colorWithCalibratedWhite:0.2 alpha:1],[NSColor colorWithCalibratedWhite:0.4 alpha:1]];
    NSArray *inactiveColors = @[[NSColor colorWithCalibratedWhite:0.3 alpha:1],[NSColor colorWithCalibratedWhite:0.6 alpha:1]];
    self.trashBar.activeGradient = [[NSGradient alloc] initWithColors:activeColors];
    self.trashBar.inactiveGradient = [[NSGradient alloc] initWithColors:inactiveColors];
-   */
-   [[self view] bind:NSSelectedIndexBinding toObject:self withKeyPath:@"activeTab" options:nil];
-
+  [[self view] bind:NSSelectedIndexBinding toObject:self withKeyPath:@"activeTab" options:nil];
+  
   
   self.emptyTrashButton.textColor = [NSColor whiteColor];
   

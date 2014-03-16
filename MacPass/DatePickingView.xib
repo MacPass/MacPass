@@ -1,12 +1,14 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="4514" systemVersion="13A603" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="5053" systemVersion="13C64" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
     <dependencies>
         <deployment version="1070" defaultVersion="1080" identifier="macosx"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="4514"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="5053"/>
     </dependencies>
     <objects>
         <customObject id="-2" userLabel="File's Owner" customClass="MPDatePickingViewController">
             <connections>
+                <outlet property="datePicker" destination="3" id="YOw-gi-A02"/>
+                <outlet property="presetPopupButton" destination="15" id="VJh-of-PEU"/>
                 <outlet property="view" destination="1" id="2"/>
             </connections>
         </customObject>
@@ -16,7 +18,7 @@
             <rect key="frame" x="0.0" y="0.0" width="179" height="259"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
             <subviews>
-                <datePicker verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="3">
+                <datePicker horizontalHuggingPriority="750" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="3">
                     <rect key="frame" x="20" y="91" width="139" height="148"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                     <datePickerCell key="cell" borderStyle="bezel" alignment="left" datePickerStyle="clockAndCalendar" id="4">
@@ -24,7 +26,7 @@
                         <calendarDate key="date" timeIntervalSinceReferenceDate="-595929600" calendarFormat="%Y-%m-%d %H:%M:%S %z">
                             <!--1982-02-12 08:00:00 -0800-->
                             <timeZone key="timeZone" name="US/Pacific">
-                                <mutableData key="data">
+                                <data key="data">
 VFppZgAAAAAAAAAAAAAAAAAAAAAAAAAEAAAABAAAAAAAAAC5AAAABAAAABCepkign7sVkKCGKqChmveQ
 y4kaoNIj9HDSYSYQ1v50INiArZDa/tGg28CQENzes6DdqayQ3r6VoN+JjpDgnneg4WlwkOJ+WaDjSVKQ
 5F47oOUpNJDmR1gg5xJREOgnOiDo8jMQ6gccIOrSFRDr5v4g7LH3EO3G4CDukdkQ76/8oPBxuxDxj96g
@@ -42,7 +44,7 @@ f5gqkAABAAECAwEAAQABAAEAAQABAAEAAQABAAEAAQABAAEAAQABAAEAAQABAAEAAQABAAEAAQABAAEA
 AQABAAEAAQABAAEAAQABAAEAAQABAAEAAQABAAEAAQABAAEAAQABAAEAAQABAAEAAQABAAEAAQABAAEA
 AQABAAEAAQABAAEAAQABAAEAAQABAAEAAQABAAEAAQABAAEAAQABAAEAAQABAAEAAQABAAEAAQABAAEA
 AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA
-</mutableData>
+</data>
                             </timeZone>
                         </calendarDate>
                         <color key="backgroundColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
@@ -50,18 +52,12 @@ AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA
                     </datePickerCell>
                 </datePicker>
                 <popUpButton verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="15">
-                    <rect key="frame" x="18" y="59" width="144" height="26"/>
+                    <rect key="frame" x="18" y="47" width="144" height="26"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                    <popUpButtonCell key="cell" type="push" title="1 Week" bezelStyle="rounded" alignment="left" lineBreakMode="truncatingTail" state="on" borderStyle="borderAndBezel" imageScaling="proportionallyDown" inset="2" id="16">
+                    <popUpButtonCell key="cell" type="push" bezelStyle="rounded" alignment="left" lineBreakMode="truncatingTail" borderStyle="borderAndBezel" imageScaling="proportionallyDown" inset="2" id="16">
                         <behavior key="behavior" lightByBackground="YES" lightByGray="YES"/>
-                        <font key="font" metaFont="system"/>
-                        <menu key="menu" title="OtherViews" id="17">
-                            <items>
-                                <menuItem title="1 Week" state="on" id="18"/>
-                                <menuItem title="1 Month" id="19"/>
-                                <menuItem title="1 Year" id="20"/>
-                            </items>
-                        </menu>
+                        <font key="font" metaFont="menu"/>
+                        <menu key="menu" title="OtherViews" id="17"/>
                     </popUpButtonCell>
                 </popUpButton>
                 <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="25">
@@ -71,6 +67,9 @@ AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA
                         <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                         <font key="font" metaFont="system"/>
                     </buttonCell>
+                    <connections>
+                        <action selector="useDate:" target="-2" id="34n-E5-FQq"/>
+                    </connections>
                 </button>
                 <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="29">
                     <rect key="frame" x="20" y="18" width="56" height="25"/>
@@ -79,18 +78,23 @@ AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA
                         <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                         <font key="font" metaFont="system"/>
                     </buttonCell>
+                    <connections>
+                        <action selector="cancel:" target="-2" id="eww-6g-58Z"/>
+                    </connections>
                 </button>
             </subviews>
             <constraints>
                 <constraint firstItem="3" firstAttribute="leading" secondItem="1" secondAttribute="leading" constant="20" symbolic="YES" id="13"/>
                 <constraint firstItem="3" firstAttribute="top" secondItem="1" secondAttribute="top" constant="20" symbolic="YES" id="14"/>
-                <constraint firstItem="15" firstAttribute="top" secondItem="3" secondAttribute="bottom" constant="8" id="21"/>
+                <constraint firstItem="15" firstAttribute="top" secondItem="3" secondAttribute="bottom" constant="20" symbolic="YES" id="21"/>
                 <constraint firstItem="15" firstAttribute="leading" secondItem="1" secondAttribute="leading" constant="20" symbolic="YES" id="22"/>
                 <constraint firstAttribute="trailing" secondItem="15" secondAttribute="trailing" constant="20" symbolic="YES" id="24"/>
                 <constraint firstAttribute="trailing" secondItem="25" secondAttribute="trailing" constant="20" symbolic="YES" id="27"/>
                 <constraint firstItem="29" firstAttribute="leading" secondItem="1" secondAttribute="leading" constant="20" symbolic="YES" id="35"/>
                 <constraint firstAttribute="bottom" secondItem="25" secondAttribute="bottom" constant="20" symbolic="YES" id="36"/>
-                <constraint firstAttribute="bottom" secondItem="29" secondAttribute="bottom" constant="20" symbolic="YES" id="37"/>
+                <constraint firstAttribute="trailing" secondItem="3" secondAttribute="trailing" constant="20" id="6Qs-OP-VRr"/>
+                <constraint firstItem="25" firstAttribute="centerY" secondItem="29" secondAttribute="centerY" id="M8N-5g-ClS"/>
+                <constraint firstItem="25" firstAttribute="top" secondItem="15" secondAttribute="bottom" constant="8" symbolic="YES" id="sxX-fk-xaJ"/>
             </constraints>
         </customView>
     </objects>

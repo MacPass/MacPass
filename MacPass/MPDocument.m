@@ -367,7 +367,7 @@ NSString *const MPDocumentGroupKey                        = @"MPDocumentGroupKey
   self.selectedItem = selectedEntry;
 }
 
-- (void)setSelectedItem:(id)selectedItem {
+- (void)setSelectedItem:(KPKNode *)selectedItem {
   if(_selectedItem != selectedItem) {
     _selectedItem = selectedItem;
     [[NSNotificationCenter defaultCenter] postNotificationName:MPDocumentCurrentItemChangedNotification object:self];

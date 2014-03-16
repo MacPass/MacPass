@@ -16,6 +16,7 @@
 @property (weak) IBOutlet HNHRoundedTextField *titleTextField;
 
 @property (weak) IBOutlet NSButton *expiresCheckButton;
+@property (weak) IBOutlet NSButton *expireDateSelectButton;
 
 @property (weak) IBOutlet NSPopUpButton *searchPopupButton;
 @property (weak) IBOutlet NSPopUpButton *autotypePopupButton;

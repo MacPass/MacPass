@@ -13,6 +13,7 @@
 #import "MPDocument.h"
 #import "MPNotifications.h"
 #import "MPIconSelectViewController.h"
+#import "MPDatePickingViewController.h"
 
 #import "NSDate+Humanized.h"
 #import "KPKNode+IconImage.h"
@@ -21,6 +22,8 @@
 #import "KPKMetaData.h"
 #import "KPKGroup.h"
 #import "KPKEntry.h"
+#import "KPKNode.h"
+#import "KPKTimeInfo.h"
 
 #import "HNHGradientView.h"
 #import "MPPopupImageView.h"
@@ -34,11 +37,11 @@ typedef NS_ENUM(NSUInteger, MPContentTab) {
 @interface MPInspectorViewController () {
   MPEntryInspectorViewController *_entryViewController;
   MPGroupInspectorViewController *_groupViewController;
-  NSPopover *_popover;
   BOOL _isEditing;
 }
 
-@property (strong)  MPIconSelectViewController *iconSelectionViewController;
+@property (strong) MPIconSelectViewController *iconSelectionViewController;
+@property (strong) NSPopover *popover;
 
 @property (nonatomic, strong) NSDate *modificationDate;
 @property (nonatomic, strong) NSDate *creationDate;
@@ -203,25 +206,50 @@ typedef NS_ENUM(NSUInteger, MPContentTab) {
 }
 
 - (void)popoverDidClose:(NSNotification *)notification {
-  MPIconSelectViewController *viewController = (MPIconSelectViewController *)_popover.contentViewController;
-  if(!viewController.didCancel) {
-    
-    MPDocument *document = [[self windowController] document];
-    BOOL useDefault = (viewController.selectedIcon == -1);
-    switch (self.activeTab) {
-      case MPGroupTab:
-        document.selectedGroup.iconId = useDefault ? [KPKGroup defaultIcon] : viewController.selectedIcon;
-        break;
-        
-      case MPEntryTab:
-        document.selectedEntry.iconId = useDefault ? [KPKEntry defaultIcon]: viewController.selectedIcon;
-        break;
-        
-      default:
-        break;
+  NSPopover *popover = [notification object];
+  if([popover.contentViewController isKindOfClass:[MPIconSelectViewController class]]) {
+    MPIconSelectViewController *viewController = (MPIconSelectViewController *)popover.contentViewController;
+    if(!viewController.didCancel) {
+      [self _setIcon:viewController.selectedIcon];
     }
   }
-  _popover = nil;
+  if([popover.contentViewController isKindOfClass:[MPDatePickingViewController class]]) {
+    MPDatePickingViewController *viewController = (MPDatePickingViewController *)popover.contentViewController;
+    [self _setExpiryDate:viewController.date];
+  }
+  self.popover = nil;
+}
+
+- (IBAction)pickExpiryDate:(id)sender {
+  NSAssert(self.popover == nil, @"Popover hast to be niled out");
+  NSAssert([sender isKindOfClass:[NSView class]], @"");
+  self.popover = [[NSPopover alloc] init];
+  self.popover.delegate = self;
+  self.popover.behavior = NSPopoverBehaviorTransient;
+  self.popover.contentViewController = [[MPDatePickingViewController alloc] init];
+  [self.popover showRelativeToRect:NSZeroRect ofView:sender preferredEdge:NSMinYEdge];
+}
+
+- (void)_setIcon:(NSInteger)iconId {
+  MPDocument *document = [[self windowController] document];
+  BOOL useDefault = (iconId == -1);
+  switch (self.activeTab) {
+    case MPGroupTab:
+      document.selectedGroup.iconId = useDefault ? [KPKGroup defaultIcon] : iconId;
+      break;
+      
+    case MPEntryTab:
+      document.selectedEntry.iconId = useDefault ? [KPKEntry defaultIcon]: iconId;
+      break;
+      
+    default:
+      break;
+  }
+}
+
+- (void)_setExpiryDate:(NSDate *)date {
+  MPDocument *document = [[self windowController] document];
+  document.selectedItem.timeInfo.expiryTime = date;
 }
 
 #pragma mark -
@@ -248,10 +276,6 @@ typedef NS_ENUM(NSUInteger, MPContentTab) {
   }
   [self.itemImageView setHidden:NO];
   [self.itemNameTextField setHidden:NO];
-
-  if([item respondsToSelector:@selector(notes)]) {
-    
-  }
 }
 
 #pragma mark -

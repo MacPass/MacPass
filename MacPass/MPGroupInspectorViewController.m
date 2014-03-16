@@ -11,6 +11,7 @@
 #import "MPPasteBoardController.h"
 
 #import "KPKGroup.h"
+#import "KPKTimeInfo.h"
 
 #import "HNHScrollView.h"
 #import "HNHRoundedTextField.h"
@@ -18,6 +19,7 @@
 @interface MPGroupInspectorViewController ()
 
 @property (nonatomic, weak) KPKGroup *group;
+@property (strong) NSPopover *popover;
 
 @end
 
@@ -28,15 +30,15 @@
 }
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil {
-    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
-    if (self) {
-    }
-    return self;
+  self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
+  if (self) {
+  }
+  return self;
 }
 
-- (void)didLoadView {
+- (void)awakeFromNib {
   HNHScrollView *scrollView = (HNHScrollView *)[self view];
-
+  
   scrollView.actAsFlipped = NO;
   scrollView.showBottomShadow = NO;
   [scrollView setHasVerticalScroller:YES];
@@ -53,11 +55,13 @@
                                                                      views:views]];
   [[self view] layoutSubtreeIfNeeded];
   
-  void(^copyBlock)(NSTextField *textField) = ^void(NSTextField *textField) {
-    [[MPPasteBoardController defaultController] copyObjects:@[ textField.stringValue ]];
-  };
-  
-  self.titleTextField.copyActionBlock = copyBlock;
+  /*
+   void(^copyBlock)(NSTextField *textField) = ^void(NSTextField *textField) {
+   [[MPPasteBoardController defaultController] copyObjects:@[ textField.stringValue ]];
+   };
+   
+   self.titleTextField.copyActionBlock = copyBlock;
+   */
 }
 
 - (void)setupBindings:(MPDocument *)document {
@@ -73,8 +77,12 @@
 
 - (void)_updateBindings {
   if(self.group) {
-    [self.titleTextField bind:NSValueBinding toObject:self.group withKeyPath:@"name" options:nil];
-    [self.expiresCheckButton bind:NSValueBinding toObject:self.group.timeInfo withKeyPath:@"expires" options:nil];
+    [self.titleTextField bind:NSValueBinding toObject:self.group withKeyPath:NSStringFromSelector(@selector(name)) options:nil];
+    [self.expiresCheckButton bind:NSValueBinding toObject:self.group.timeInfo withKeyPath:NSStringFromSelector(@selector(expires)) options:nil];
+    [self.expireDateSelectButton bind:NSHiddenBinding
+                             toObject:self.group.timeInfo
+                          withKeyPath:NSStringFromSelector(@selector(expires))
+                              options:@{ NSValueTransformerNameBindingOption : NSNegateBooleanTransformerName }];
     [self.autotypePopupButton bind:NSSelectedTagBinding toObject:self.group withKeyPath:@"isAutoTypeEnabled" options:nil];
     [self.searchPopupButton bind:NSSelectedTagBinding toObject:self.group withKeyPath:@"isSearchEnabled" options:nil];
   }
@@ -82,6 +90,7 @@
     [self.titleTextField unbind:NSValueBinding];
     
     [self.expiresCheckButton unbind:NSValueBinding];
+    [self.expireDateSelectButton unbind:NSHiddenBinding];
     [self.autotypePopupButton unbind:NSSelectedTagBinding];
     [self.searchPopupButton unbind:NSSelectedTagBinding];
   }

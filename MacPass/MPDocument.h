@@ -40,6 +40,7 @@ APPKIT_EXTERN NSString *const MPDocumentGroupKey;
 @class KPKBinary;
 @class KPKAttribute;
 @class KPKCompositeKey;
+@class KPKNode;
 
 typedef NS_OPTIONS(NSUInteger, MPEntrySearchFlags) {
   MPEntrySearchNone            = 0,
@@ -79,7 +80,7 @@ typedef NS_OPTIONS(NSUInteger, MPEntrySearchFlags) {
  */
 @property (nonatomic, weak) KPKEntry *selectedEntry;
 @property (nonatomic, weak) KPKGroup *selectedGroup;
-@property (nonatomic, weak) id selectedItem;
+@property (nonatomic, weak) KPKNode *selectedItem;
 
 /*
  Search - see MPDocument+Search for further details

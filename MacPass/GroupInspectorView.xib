@@ -9,6 +9,7 @@
             <connections>
                 <outlet property="autotypePopupButton" destination="240" id="285"/>
                 <outlet property="contentView" destination="38" id="Dv7-1B-VeH"/>
+                <outlet property="expireDateSelectButton" destination="4" id="KxN-kK-lan"/>
                 <outlet property="expiresCheckButton" destination="5" id="283"/>
                 <outlet property="searchPopupButton" destination="229" id="284"/>
                 <outlet property="titleTextField" destination="23" id="35"/>
@@ -55,9 +56,12 @@
                                 </buttonCell>
                             </button>
                             <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="4">
-                                <rect key="frame" x="174" y="127" width="63" height="19"/>
+                                <rect key="frame" x="206" y="127" width="31" height="19"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                <buttonCell key="cell" type="roundRect" title="Set Date" bezelStyle="roundedRect" alignment="center" state="on" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="33">
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="31" id="l5I-EF-dHs"/>
+                                </constraints>
+                                <buttonCell key="cell" type="roundRect" bezelStyle="roundedRect" image="NSActionTemplate" imagePosition="only" alignment="center" state="on" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="33">
                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                     <font key="font" metaFont="cellTitle"/>
                                 </buttonCell>
@@ -153,5 +157,9 @@
                 <autoresizingMask key="autoresizingMask"/>
             </scroller>
         </scrollView>
+        <userDefaultsController representsSharedInstance="YES" id="ePk-k3-9qj"/>
     </objects>
+    <resources>
+        <image name="NSActionTemplate" width="14" height="14"/>
+    </resources>
 </document>

@@ -23,6 +23,7 @@
 @property (weak) IBOutlet NSButton *cancelEditButton;
 
 - (IBAction)showImagePopup:(id)sender;
+- (IBAction)pickExpiryDate:(id)sender;
 - (IBAction)toggleEdit:(id)sender;
 
 /* Seperate call to ensure alle registered objects are in place */
