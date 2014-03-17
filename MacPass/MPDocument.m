@@ -171,6 +171,7 @@ NSString *const MPDocumentGroupKey                        = @"MPDocumentGroupKey
 }
 
 - (BOOL)readFromURL:(NSURL *)url ofType:(NSString *)typeName error:(NSError **)outError {
+  [self _watchForFileChanges:YES];
   /* FIXME: Lockfile handling
    self.lockFileURL = [url URLByAppendingPathExtension:@"lock"];
    if([[NSFileManager defaultManager] fileExistsAtPath:[_lockFileURL path]]) {

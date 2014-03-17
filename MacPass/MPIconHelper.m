@@ -17,7 +17,8 @@
   }
   if([[icons allKeys] containsObject:@(type)]) {
     NSString *imageName = icons[@(type)];
-    return [[NSBundle mainBundle] imageForResource:imageName];
+    NSImage *image = [NSImage imageNamed:imageName];
+    return image;
   }
   return [NSImage imageNamed:NSImageNameActionTemplate];
 }
@@ -83,7 +84,10 @@
                    @(MPIconHardDisk): @"99_HarddiskTemplate",
                    @(MPIconCreated): @"99_CreatedTemplate",
                    @(MPIconAddEntry): @"addEntryTemplate",
-                   @(MPIconContextTriangle): @"contextTriangleTemplate"
+                   @(MPIconContextTriangle): @"contextTriangleTemplate",
+                   
+                   @(MPIconExpiredEntry): NSImageNameCaution,
+                   @(MPIconExpiredGroup): NSImageNameCaution
                    };
   });
   return imageNames;

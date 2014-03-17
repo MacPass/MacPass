@@ -9,18 +9,26 @@
 #import "KPKNode+IconImage.h"
 
 #import "KPKIcon.h"
+#import "KPKGroup.h"
 #import "KPKTree.h"
 #import "KPKMetaData.h"
+#import "KPKTimeInfo.h"
 
 #import "MPIconHelper.h"
 
 @implementation KPKNode (IconImage)
 
 + (NSSet *)keyPathsForValuesAffectingIconImage {
-  return [NSSet setWithArray:@[@"iconUUID", @"iconId"]];
+  return [NSSet setWithArray:@[NSStringFromSelector(@selector(iconUUID)),
+                               NSStringFromSelector(@selector(iconId)),
+                               @"timeInfo.expires"]];
 }
 
 - (NSImage *)iconImage {
+  if(self.timeInfo.expires) {
+    const BOOL isGroup = [self isKindOfClass:[KPKGroup class]];
+    return [MPIconHelper icon:(isGroup ? MPIconExpiredGroup : MPIconExpiredEntry)];
+  }
   if(self.iconUUID) {
     KPKIcon *icon = [self.tree.metaData findIcon:self.iconUUID];
     if(icon && icon.image) {

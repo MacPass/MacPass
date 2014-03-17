@@ -48,6 +48,8 @@ typedef NS_ENUM(NSUInteger, MPIconType) {
   MPIconCreated,
   MPIconAddEntry,
   MPIconContextTriangle,
+  MPIconExpiredEntry,
+  MPIconExpiredGroup,
 };
 
 /**
