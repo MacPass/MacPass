@@ -14,7 +14,6 @@
 #import "MPConstants.h"
 #import "MPActionHelper.h"
 #import "MPIconHelper.h"
-#import "MPUppercaseStringValueTransformer.h"
 #import "MPNotifications.h"
 #import "MPOutlineContextMenuDelegate.h"
 
@@ -188,7 +187,6 @@ NSString *const _MPOutlinveViewHeaderViewIdentifier = @"HeaderCell";
 - (NSView *)outlineView:(NSOutlineView *)outlineView viewForTableColumn:(NSTableColumn *)tableColumn item:(id)item {
   NSTableCellView *view;
   if( [self _itemIsRootNode:item] ) {
-    //NSDictionary *options = @{ NSValueTransformerBindingOption : [NSValueTransformer valueTransformerForName:MPUppsercaseStringValueTransformerName] };
     view = [outlineView makeViewWithIdentifier:_MPOutlinveViewHeaderViewIdentifier owner:self];
     [view.textField bind:NSValueBinding toObject:self  withKeyPath:@"databaseNameWrapper" options:nil];
   }

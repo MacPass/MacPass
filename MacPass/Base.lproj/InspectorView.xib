@@ -70,7 +70,7 @@
                     </constraints>
                     <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyUpOrDown" image="NSActionTemplate" id="2999"/>
                     <connections>
-                        <action selector="showImagePopup:" target="-2" id="3095"/>
+                        <action selector="pickIcon:" target="-1" id="IZz-hu-GkW"/>
                     </connections>
                 </imageView>
                 <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="249" translatesAutoresizingMaskIntoConstraints="NO" id="3013">

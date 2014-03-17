@@ -24,7 +24,7 @@
 #import "MPSettingsHelper.h"
 #import "MPEntryTableDataSource.h"
 #import "MPStringLengthValueTransformer.h"
-#import "MPStripLineBreaksTransformer.h"
+#import "MPValueTransformerHelper.h"
 #import "MPEntryContextMenuDelegate.h"
 
 #import "KPKUTIs.h"
@@ -32,6 +32,7 @@
 #import "KPKEntry.h"
 #import "KPKNode+IconImage.h"
 #import "KPKAttribute.h"
+#import "KPKTimeInfo.h"
 
 #import "HNHTableHeaderCell.h"
 #import "HNHGradientView.h"
@@ -149,11 +150,13 @@ NSString *const _MPTAbleSecurCellView = @"PasswordCell";
   [self.entryTable setAutosaveName:@"EntryTable"];
   [self.entryTable setAutosaveTableColumns:YES];
   
-	NSSortDescriptor *titleColumSortDescriptor = [NSSortDescriptor sortDescriptorWithKey:@"title" ascending:YES selector:@selector(localizedCaseInsensitiveCompare:)];
-  NSSortDescriptor *userNameSortDescriptor = [NSSortDescriptor sortDescriptorWithKey:@"username" ascending:YES selector:@selector(localizedCaseInsensitiveCompare:)];
-  NSSortDescriptor *urlSortDescriptor = [NSSortDescriptor sortDescriptorWithKey:@"url" ascending:YES selector:@selector(localizedCaseInsensitiveCompare:)];
-  NSSortDescriptor *groupnameSortDescriptor = [NSSortDescriptor sortDescriptorWithKey:@"parent.name" ascending:YES selector:@selector(localizedCaseInsensitiveCompare:)];
-  NSSortDescriptor *dateSortDescriptor = [NSSortDescriptor sortDescriptorWithKey:@"timeInfo.lastModificationTime" ascending:YES selector:@selector(localizedCaseInsensitiveCompare:)];
+  NSString *parentNameKeyPath = [[NSString alloc] initWithFormat:@"%@.%@", NSStringFromSelector(@selector(parent)), NSStringFromSelector(@selector(name))];
+  NSString *timeInfoModificationTimeKeyPath = [[NSString alloc] initWithFormat:@"%@.%@", NSStringFromSelector(@selector(timeInfo)), NSStringFromSelector(@selector(lastModificationTime))];
+	NSSortDescriptor *titleColumSortDescriptor = [NSSortDescriptor sortDescriptorWithKey:NSStringFromSelector(@selector(title))ascending:YES selector:@selector(localizedCaseInsensitiveCompare:)];
+  NSSortDescriptor *userNameSortDescriptor = [NSSortDescriptor sortDescriptorWithKey:NSStringFromSelector(@selector(username)) ascending:YES selector:@selector(localizedCaseInsensitiveCompare:)];
+  NSSortDescriptor *urlSortDescriptor = [NSSortDescriptor sortDescriptorWithKey:NSStringFromSelector(@selector(url)) ascending:YES selector:@selector(localizedCaseInsensitiveCompare:)];
+  NSSortDescriptor *groupnameSortDescriptor = [NSSortDescriptor sortDescriptorWithKey:parentNameKeyPath ascending:YES selector:@selector(localizedCaseInsensitiveCompare:)];
+  NSSortDescriptor *dateSortDescriptor = [NSSortDescriptor sortDescriptorWithKey:timeInfoModificationTimeKeyPath ascending:YES selector:@selector(localizedCaseInsensitiveCompare:)];
   
   [titleColumn setSortDescriptorPrototype:titleColumSortDescriptor];
   [userNameColumn setSortDescriptorPrototype:userNameSortDescriptor];
@@ -270,18 +273,18 @@ NSString *const _MPTAbleSecurCellView = @"PasswordCell";
         });
         [textField setFormatter:formatter];
       }
-      [textField bind:NSValueBinding toObject:entry.timeInfo withKeyPath:@"lastModificationTime" options:nil];
+      [textField bind:NSValueBinding toObject:entry.timeInfo withKeyPath:NSStringFromSelector(@selector(lastModificationTime)) options:nil];
       return view;
     }
     else if(isURLColumn) {
-      [textField bind:NSValueBinding toObject:entry withKeyPath:@"url" options:nil];
+      [textField bind:NSValueBinding toObject:entry withKeyPath:NSStringFromSelector(@selector(url)) options:nil];
     }
     else if(isUsernameColumn) {
-      [textField bind:NSValueBinding toObject:entry withKeyPath:@"username" options:nil];
+      [textField bind:NSValueBinding toObject:entry withKeyPath:NSStringFromSelector(@selector(username)) options:nil];
     }
     else if(isNotesColumn) {
       NSDictionary *options = @{ NSValueTransformerNameBindingOption : MPStripLineBreaksTransformerName };
-      [textField bind:NSValueBinding toObject:entry withKeyPath:@"notes" options:options];
+      [textField bind:NSValueBinding toObject:entry withKeyPath:NSStringFromSelector(@selector(notes)) options:options];
     }
     else if(isAttachmentColumn) {
       [textField bind:NSValueBinding toObject:entry withKeyPath:@"binaries.@count" options:nil];
@@ -322,7 +325,7 @@ NSString *const _MPTAbleSecurCellView = @"PasswordCell";
         return; // we are showing the correct object right now.
       }
     }
-    [self.entryArrayController bind:NSContentArrayBinding toObject:document.selectedGroup withKeyPath:@"entries" options:nil];
+    [self.entryArrayController bind:NSContentArrayBinding toObject:document.selectedGroup withKeyPath:NSStringFromSelector(@selector(entries)) options:nil];
   }
   [self _updateContextBar];
 }

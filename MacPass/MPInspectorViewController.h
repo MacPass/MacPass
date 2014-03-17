@@ -22,7 +22,7 @@
 @property (weak) IBOutlet NSButton *editButton;
 @property (weak) IBOutlet NSButton *cancelEditButton;
 
-- (IBAction)showImagePopup:(id)sender;
+- (IBAction)pickIcon:(id)sender;
 - (IBAction)pickExpiryDate:(id)sender;
 - (IBAction)toggleEdit:(id)sender;
 

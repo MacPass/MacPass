@@ -88,6 +88,13 @@
 		4C37A84015B8B474005EF8EE /* MPOutlineDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C37A83F15B8B474005EF8EE /* MPOutlineDataSource.m */; };
 		4C39B3F5178FEFAE0027DC7C /* KPKNode.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C39B3F4178FEFAE0027DC7C /* KPKNode.m */; };
 		4C3BD51516D276F800389F1F /* MPToolbarDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C3BD51416D276F800389F1F /* MPToolbarDelegate.m */; };
+		4C3C4EA218D6FEA100153127 /* NSValueTransformer+TransformerKit.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C3C4E9618D6FEA100153127 /* NSValueTransformer+TransformerKit.m */; };
+		4C3C4EA318D6FEA100153127 /* TTTCryptographyTransformers.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C3C4E9918D6FEA100153127 /* TTTCryptographyTransformers.m */; };
+		4C3C4EA418D6FEA100153127 /* TTTDateTransformers.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C3C4E9B18D6FEA100153127 /* TTTDateTransformers.m */; };
+		4C3C4EA518D6FEA100153127 /* TTTImageTransformers.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C3C4E9D18D6FEA100153127 /* TTTImageTransformers.m */; };
+		4C3C4EA618D6FEA100153127 /* TTTJSONTransformer.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C3C4E9F18D6FEA100153127 /* TTTJSONTransformer.m */; };
+		4C3C4EA718D6FEA100153127 /* TTTStringTransformers.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C3C4EA118D6FEA100153127 /* TTTStringTransformers.m */; };
+		4C3C4EAF18D7039300153127 /* MPValueTransformerHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C3C4EAE18D7039300153127 /* MPValueTransformerHelper.m */; };
 		4C3D4C0817594CA40038DAAC /* HNHSeparator.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C3D4C0717594CA40038DAAC /* HNHSeparator.m */; };
 		4C3F28541791EDFD00703281 /* KPKErrors.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C3F28531791EDFD00703281 /* KPKErrors.m */; };
 		4C3FFD9E16DAF60600DF9186 /* ContextBar.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4C3FFD9D16DAF60600DF9186 /* ContextBar.xib */; };
@@ -130,7 +137,6 @@
 		4C5A11FE1708DE8700223D8A /* MPPasswordCreatorViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C5A11FC1708DE8700223D8A /* MPPasswordCreatorViewController.m */; };
 		4C5A11FF1708DE8800223D8A /* PasswordCreatorView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4C5A11FD1708DE8700223D8A /* PasswordCreatorView.xib */; };
 		4C5AA591179549A1008ECAD7 /* KPKXmlTreeWriter.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C5AA590179549A1008ECAD7 /* KPKXmlTreeWriter.m */; };
-		4C5BF67B175C01F300D53DF7 /* MPUppercaseStringValueTransformer.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C5BF67A175C01F300D53DF7 /* MPUppercaseStringValueTransformer.m */; };
 		4C5CD35517D15DBD000B7F38 /* NSData+Gzip.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C5CD34A17D15DBD000B7F38 /* NSData+Gzip.m */; };
 		4C5CD35617D15DBD000B7F38 /* NSData+Random.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C5CD34C17D15DBD000B7F38 /* NSData+Random.m */; };
 		4C5CD35717D15DBD000B7F38 /* NSDate+Packed.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C5CD34E17D15DBD000B7F38 /* NSDate+Packed.m */; };
@@ -160,7 +166,6 @@
 		4C68456F17BC2A0700FCDBFC /* WelcomeWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4C68456E17BC2A0700FCDBFC /* WelcomeWindow.xib */; };
 		4C69A73A16D589DF00EC1B1A /* HNHGradientView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C69A73916D589DF00EC1B1A /* HNHGradientView.m */; };
 		4C6B7C7D18BE7EB0001D5D77 /* MPDocument+HistoryBrowsing.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C6B7C7C18BE7EB0001D5D77 /* MPDocument+HistoryBrowsing.m */; };
-		4C6BEA3117A88E6C00CF69A8 /* MPStripLineBreaksTransformer.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C6BEA3017A88E6C00CF69A8 /* MPStripLineBreaksTransformer.m */; };
 		4C6C72C417C01E4200768849 /* NSMutableData+KeePassKit.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C6C72C317C01E4200768849 /* NSMutableData+KeePassKit.m */; };
 		4C6D1D25178579570014C5A5 /* 48_FolderTemplate.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 4C6D1D24178579570014C5A5 /* 48_FolderTemplate.pdf */; };
 		4C6D1D27178586CA0014C5A5 /* 99_AddFolderTemplate.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 4C6D1D26178586CA0014C5A5 /* 99_AddFolderTemplate.pdf */; };
@@ -499,6 +504,21 @@
 		4C39B3F4178FEFAE0027DC7C /* KPKNode.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KPKNode.m; sourceTree = "<group>"; };
 		4C3BD51316D276F800389F1F /* MPToolbarDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MPToolbarDelegate.h; sourceTree = "<group>"; };
 		4C3BD51416D276F800389F1F /* MPToolbarDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MPToolbarDelegate.m; sourceTree = "<group>"; };
+		4C3C4E9518D6FEA100153127 /* NSValueTransformer+TransformerKit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSValueTransformer+TransformerKit.h"; sourceTree = "<group>"; };
+		4C3C4E9618D6FEA100153127 /* NSValueTransformer+TransformerKit.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSValueTransformer+TransformerKit.m"; sourceTree = "<group>"; };
+		4C3C4E9718D6FEA100153127 /* TransformerKit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TransformerKit.h; sourceTree = "<group>"; };
+		4C3C4E9818D6FEA100153127 /* TTTCryptographyTransformers.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TTTCryptographyTransformers.h; sourceTree = "<group>"; };
+		4C3C4E9918D6FEA100153127 /* TTTCryptographyTransformers.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TTTCryptographyTransformers.m; sourceTree = "<group>"; };
+		4C3C4E9A18D6FEA100153127 /* TTTDateTransformers.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TTTDateTransformers.h; sourceTree = "<group>"; };
+		4C3C4E9B18D6FEA100153127 /* TTTDateTransformers.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TTTDateTransformers.m; sourceTree = "<group>"; };
+		4C3C4E9C18D6FEA100153127 /* TTTImageTransformers.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TTTImageTransformers.h; sourceTree = "<group>"; };
+		4C3C4E9D18D6FEA100153127 /* TTTImageTransformers.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TTTImageTransformers.m; sourceTree = "<group>"; };
+		4C3C4E9E18D6FEA100153127 /* TTTJSONTransformer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TTTJSONTransformer.h; sourceTree = "<group>"; };
+		4C3C4E9F18D6FEA100153127 /* TTTJSONTransformer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TTTJSONTransformer.m; sourceTree = "<group>"; };
+		4C3C4EA018D6FEA100153127 /* TTTStringTransformers.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TTTStringTransformers.h; sourceTree = "<group>"; };
+		4C3C4EA118D6FEA100153127 /* TTTStringTransformers.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TTTStringTransformers.m; sourceTree = "<group>"; };
+		4C3C4EAD18D7039300153127 /* MPValueTransformerHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MPValueTransformerHelper.h; sourceTree = "<group>"; };
+		4C3C4EAE18D7039300153127 /* MPValueTransformerHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MPValueTransformerHelper.m; sourceTree = "<group>"; };
 		4C3D4C0617594CA40038DAAC /* HNHSeparator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HNHSeparator.h; sourceTree = "<group>"; };
 		4C3D4C0717594CA40038DAAC /* HNHSeparator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HNHSeparator.m; sourceTree = "<group>"; };
 		4C3F28521791EDE800703281 /* KPKErrors.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KPKErrors.h; sourceTree = "<group>"; };
@@ -568,8 +588,6 @@
 		4C5AA590179549A1008ECAD7 /* KPKXmlTreeWriter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KPKXmlTreeWriter.m; sourceTree = "<group>"; };
 		4C5ADC2E17830AFB004E1E8D /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InspectorView.strings; sourceTree = "<group>"; };
 		4C5ADC3017830B09004E1E8D /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/InspectorView.strings; sourceTree = "<group>"; };
-		4C5BF679175C01F300D53DF7 /* MPUppercaseStringValueTransformer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MPUppercaseStringValueTransformer.h; sourceTree = "<group>"; };
-		4C5BF67A175C01F300D53DF7 /* MPUppercaseStringValueTransformer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MPUppercaseStringValueTransformer.m; sourceTree = "<group>"; };
 		4C5CD34017D158DE000B7F38 /* fr */ = {isa = PBXFileReference; fileEncoding = 10; lastKnownFileType = text.plist.strings; name = fr; path = fr.lproj/Localizable.strings; sourceTree = "<group>"; };
 		4C5CD34117D158DE000B7F38 /* fr */ = {isa = PBXFileReference; lastKnownFileType = text.rtf; name = fr; path = fr.lproj/Credits.rtf; sourceTree = "<group>"; };
 		4C5CD34217D158DE000B7F38 /* fr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fr; path = fr.lproj/InfoPlist.strings; sourceTree = "<group>"; };
@@ -630,8 +648,6 @@
 		4C69A73916D589DF00EC1B1A /* HNHGradientView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HNHGradientView.m; sourceTree = "<group>"; };
 		4C6B7C7B18BE7EB0001D5D77 /* MPDocument+HistoryBrowsing.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "MPDocument+HistoryBrowsing.h"; sourceTree = "<group>"; };
 		4C6B7C7C18BE7EB0001D5D77 /* MPDocument+HistoryBrowsing.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "MPDocument+HistoryBrowsing.m"; sourceTree = "<group>"; };
-		4C6BEA2F17A88E6C00CF69A8 /* MPStripLineBreaksTransformer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MPStripLineBreaksTransformer.h; sourceTree = "<group>"; };
-		4C6BEA3017A88E6C00CF69A8 /* MPStripLineBreaksTransformer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MPStripLineBreaksTransformer.m; sourceTree = "<group>"; };
 		4C6C72C217C01E4200768849 /* NSMutableData+KeePassKit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSMutableData+KeePassKit.h"; sourceTree = "<group>"; };
 		4C6C72C317C01E4200768849 /* NSMutableData+KeePassKit.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSMutableData+KeePassKit.m"; sourceTree = "<group>"; };
 		4C6D1D24178579570014C5A5 /* 48_FolderTemplate.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = 48_FolderTemplate.pdf; sourceTree = "<group>"; };
@@ -1156,12 +1172,8 @@
 		4C2E382016D141F700037A9D /* Helper */ = {
 			isa = PBXGroup;
 			children = (
-				4C5BF679175C01F300D53DF7 /* MPUppercaseStringValueTransformer.h */,
-				4C5BF67A175C01F300D53DF7 /* MPUppercaseStringValueTransformer.m */,
 				4CF6C70F176F4533007A811D /* MPStringLengthValueTransformer.h */,
 				4CF6C710176F4533007A811D /* MPStringLengthValueTransformer.m */,
-				4C6BEA2F17A88E6C00CF69A8 /* MPStripLineBreaksTransformer.h */,
-				4C6BEA3017A88E6C00CF69A8 /* MPStripLineBreaksTransformer.m */,
 				4C888C9516EB754B003D34A1 /* MPActionHelper.h */,
 				4C888C9616EB754B003D34A1 /* MPActionHelper.m */,
 				4C2E382116D1421B00037A9D /* MPIconHelper.h */,
@@ -1177,6 +1189,8 @@
 				4C224B4017DFCB2300FF6AEE /* MPNumericalInputFormatter.h */,
 				4C224B4117DFCB2400FF6AEE /* MPNumericalInputFormatter.m */,
 				4CB63A6018986530002DEC4C /* MPFlagsHelper.h */,
+				4C3C4EAD18D7039300153127 /* MPValueTransformerHelper.h */,
+				4C3C4EAE18D7039300153127 /* MPValueTransformerHelper.m */,
 			);
 			name = Helper;
 			sourceTree = "<group>";
@@ -1238,6 +1252,27 @@
 				4C6B7C7C18BE7EB0001D5D77 /* MPDocument+HistoryBrowsing.m */,
 			);
 			name = Model;
+			sourceTree = "<group>";
+		};
+		4C3C4E9418D6FEA100153127 /* TransformerKit */ = {
+			isa = PBXGroup;
+			children = (
+				4C3C4E9518D6FEA100153127 /* NSValueTransformer+TransformerKit.h */,
+				4C3C4E9618D6FEA100153127 /* NSValueTransformer+TransformerKit.m */,
+				4C3C4E9718D6FEA100153127 /* TransformerKit.h */,
+				4C3C4E9818D6FEA100153127 /* TTTCryptographyTransformers.h */,
+				4C3C4E9918D6FEA100153127 /* TTTCryptographyTransformers.m */,
+				4C3C4E9A18D6FEA100153127 /* TTTDateTransformers.h */,
+				4C3C4E9B18D6FEA100153127 /* TTTDateTransformers.m */,
+				4C3C4E9C18D6FEA100153127 /* TTTImageTransformers.h */,
+				4C3C4E9D18D6FEA100153127 /* TTTImageTransformers.m */,
+				4C3C4E9E18D6FEA100153127 /* TTTJSONTransformer.h */,
+				4C3C4E9F18D6FEA100153127 /* TTTJSONTransformer.m */,
+				4C3C4EA018D6FEA100153127 /* TTTStringTransformers.h */,
+				4C3C4EA118D6FEA100153127 /* TTTStringTransformers.m */,
+			);
+			name = TransformerKit;
+			path = TransformerKit/TransformerKit;
 			sourceTree = "<group>";
 		};
 		4C45FB1E178E09ED0010007D /* MacPassTests */ = {
@@ -1356,6 +1391,7 @@
 				4CC5D35218A1162100AF7FA8 /* Sparkle.xcodeproj */,
 				4C00E33917D8FA3B00F37192 /* DDHotKey */,
 				4C245A64176E1E3C0086100E /* CocoaHTTPServer */,
+				4C3C4E9418D6FEA100153127 /* TransformerKit */,
 				4CC3AAB6175F4983003EF01B /* HNHUi */,
 				4CD3ABAD178F71B50073F5C5 /* KeePassKit */,
 				4CAD745415B887FD00104512 /* KissXML */,
@@ -2136,7 +2172,6 @@
 				4C5A11FE1708DE8700223D8A /* MPPasswordCreatorViewController.m in Sources */,
 				4CE5B54B173AFBA700207B39 /* MPDocument.m in Sources */,
 				4C3D4C0817594CA40038DAAC /* HNHSeparator.m in Sources */,
-				4C5BF67B175C01F300D53DF7 /* MPUppercaseStringValueTransformer.m in Sources */,
 				4CC3AABD175F4983003EF01B /* HNHRoundedTextFieldCell.m in Sources */,
 				4C9D6AA917615199001C660C /* HNHRoundedSecureTextFieldCell.m in Sources */,
 				4C4A100F176286FD00BBF2CA /* MPTableView.m in Sources */,
@@ -2150,6 +2185,7 @@
 				4C569DA117652BFE00595B62 /* MPEntryTableDataSource.m in Sources */,
 				4C79DF2A176685870083708F /* HNHRoundedTextField.m in Sources */,
 				4C46E09E17673A0A00DA62E8 /* HNHShadowBox.m in Sources */,
+				4C3C4EA318D6FEA100153127 /* TTTCryptographyTransformers.m in Sources */,
 				4C37A6731769393300AD0A40 /* HNHTableHeaderCell.m in Sources */,
 				4C89F521182F9FDD0069C73C /* NSString+Commands.m in Sources */,
 				4CA2335A176DBFE100F0B6AC /* MPLockDaemon.m in Sources */,
@@ -2157,10 +2193,13 @@
 				4C245B76176E1E3D0086100E /* DDData.m in Sources */,
 				4C245B77176E1E3D0086100E /* DDNumber.m in Sources */,
 				4C245B78176E1E3D0086100E /* DDRange.m in Sources */,
+				4C3C4EA618D6FEA100153127 /* TTTJSONTransformer.m in Sources */,
 				4C245B79176E1E3D0086100E /* HTTPAuthenticationRequest.m in Sources */,
 				4C245B7A176E1E3D0086100E /* HTTPConnection.m in Sources */,
 				4C245B7B176E1E3D0086100E /* HTTPMessage.m in Sources */,
+				4C3C4EA718D6FEA100153127 /* TTTStringTransformers.m in Sources */,
 				4C245B7C176E1E3D0086100E /* HTTPServer.m in Sources */,
+				4C3C4EAF18D7039300153127 /* MPValueTransformerHelper.m in Sources */,
 				4C245B7D176E1E3D0086100E /* MultipartFormDataParser.m in Sources */,
 				4C245B7E176E1E3D0086100E /* MultipartMessageHeader.m in Sources */,
 				4C245B7F176E1E3D0086100E /* MultipartMessageHeaderField.m in Sources */,
@@ -2169,6 +2208,7 @@
 				4C245B82176E1E3D0086100E /* HTTPDynamicFileResponse.m in Sources */,
 				4C245B83176E1E3D0086100E /* HTTPErrorResponse.m in Sources */,
 				4C245B84176E1E3D0086100E /* HTTPFileResponse.m in Sources */,
+				4C3C4EA218D6FEA100153127 /* NSValueTransformer+TransformerKit.m in Sources */,
 				4C245B85176E1E3D0086100E /* HTTPRedirectResponse.m in Sources */,
 				4C245B86176E1E3D0086100E /* WebSocket.m in Sources */,
 				4C245BE9176E1E3D0086100E /* GCDAsyncSocket.m in Sources */,
@@ -2204,6 +2244,7 @@
 				4CD3ABC2178F72720073F5C5 /* KPKGroup.m in Sources */,
 				4C591B57178F897A0080B16B /* KPKBinary.m in Sources */,
 				4C0C59F118B17F10009C7B76 /* DDHotKeyUtilities.m in Sources */,
+				4C3C4EA418D6FEA100153127 /* TTTDateTransformers.m in Sources */,
 				4CEE46DD181C301D006BF1E5 /* MPAutotypeDaemon.m in Sources */,
 				4CA3530B18A53CB800839B0F /* MPKeyMapper.m in Sources */,
 				4C39B3F5178FEFAE0027DC7C /* KPKNode.m in Sources */,
@@ -2252,7 +2293,6 @@
 				4CD7223B17A7CB0700F5A1E1 /* MPWorkflowSettingsController.m in Sources */,
 				4C2671AD17A7D8FC00F3A645 /* HNHColorWell.m in Sources */,
 				4CA08DA017A831B200A6544B /* MPAddEntryContextMenuDelegate.m in Sources */,
-				4C6BEA3117A88E6C00CF69A8 /* MPStripLineBreaksTransformer.m in Sources */,
 				4C79E80317A9187400AC6CD2 /* KPKXmlHeaderWriter.m in Sources */,
 				4CE3E62617AB0D2D00D9E4B4 /* MPAttachmentTableDataSource.m in Sources */,
 				4C6366AC17AF1E0100AAF17D /* NSColor+KeePassKit.m in Sources */,
@@ -2277,6 +2317,7 @@
 				4C5CD36117D15DCA000B7F38 /* KPKArc4RandomStream.m in Sources */,
 				4C5CD36217D15DCA000B7F38 /* KPKRandomStream.m in Sources */,
 				4C5CD36317D15DCA000B7F38 /* KPKSalsa20RandomStream.m in Sources */,
+				4C3C4EA518D6FEA100153127 /* TTTImageTransformers.m in Sources */,
 				4CC6DB7A17D23719002C6091 /* KPKNode+IconImage.m in Sources */,
 				4CC6DB7D17D23DCE002C6091 /* KPKUTIs.m in Sources */,
 				4C15B74618BCA3B1003F8008 /* MPDocument+Search.m in Sources */,

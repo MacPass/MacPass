@@ -32,4 +32,8 @@
   return YES;
 }
 
+- (BOOL)resignFirstResponder {
+  return [super resignFirstResponder];
+}
+
 @end

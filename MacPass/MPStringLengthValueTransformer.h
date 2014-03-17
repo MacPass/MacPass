@@ -1,5 +1,5 @@
-//
 //  MPStringLengthValueTransformer.h
+//
 //  MacPass
 //
 //  Created by Michael Starke on 17.06.13.

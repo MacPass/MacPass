@@ -25,9 +25,8 @@
 #import "MPSettingsWindowController.h"
 #import "MPPasswordCreatorViewController.h"
 #import "MPSettingsHelper.h"
-#import "MPUppercaseStringValueTransformer.h"
 #import "MPStringLengthValueTransformer.h"
-#import "MPStripLineBreaksTransformer.h"
+#import "MPValueTransformerHelper.h"
 #import "MPServerDaemon.h"
 #import "MPLockDaemon.h"
 #import "MPAutotypeDaemon.h"
@@ -57,9 +56,8 @@ NSString *const MPDidChangeStoredKeyFilesSettings = @"com.hicknhack.macpass.MPDi
 + (void)initialize {
   [MPSettingsHelper setupDefaults];
   [MPSettingsHelper migrateDefaults];
-  [MPUppercaseStringValueTransformer registerTransformer];
   [MPStringLengthValueTransformer registerTransformer];
-  [MPStripLineBreaksTransformer registerTransformer];
+  [MPValueTransformerHelper registerValueTransformer];
 }
 
 - (void)dealloc {

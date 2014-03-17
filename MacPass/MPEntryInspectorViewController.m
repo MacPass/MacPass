@@ -15,10 +15,12 @@
 
 #import "MPDocument.h"
 #import "MPIconHelper.h"
+#import "MPValueTransformerHelper.h"
 
 #import "KPKEntry.h"
 #import "KPKBinary.h"
 #import "KPKAutotype.h"
+#import "KPKTimeInfo.h"
 #import "KPKWindowAssociation.h"
 
 #import "HNHScrollView.h"
@@ -266,12 +268,15 @@ typedef NS_ENUM(NSUInteger, MPEntryTab) {
 }
 
 - (void)_bindEntry {
-  
   if(self.entry) {
     [self.titleTextField bind:NSValueBinding toObject:self.entry withKeyPath:@"title" options:nil];
     [self.passwordTextField bind:NSValueBinding toObject:self.entry withKeyPath:@"password" options:nil];
     [self.usernameTextField bind:NSValueBinding toObject:self.entry withKeyPath:@"username" options:nil];
     [self.URLTextField bind:NSValueBinding toObject:self.entry withKeyPath:@"url" options:nil];
+    [self.expiresCheckButton bind:NSTitleBinding
+                         toObject:self.entry.timeInfo
+                      withKeyPath:NSStringFromSelector(@selector(expiryTime))
+                          options:@{ NSValueTransformerNameBindingOption:MPExpiryDateValueTransformer }];
     [self.expiresCheckButton bind:NSValueBinding toObject:self.entry.timeInfo withKeyPath:@"expires" options:nil];
     [self.tagsTokenField bind:NSValueBinding toObject:self.entry withKeyPath:@"tags" options:nil];
   }
@@ -281,6 +286,7 @@ typedef NS_ENUM(NSUInteger, MPEntryTab) {
     [self.usernameTextField unbind:NSValueBinding];
     [self.URLTextField unbind:NSValueBinding];
     [self.expiresCheckButton unbind:NSValueBinding];
+    [self.expiresCheckButton unbind:NSTitleBinding];
   }
 }
 

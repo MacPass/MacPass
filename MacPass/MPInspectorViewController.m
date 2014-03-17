@@ -28,6 +28,7 @@
 #import "HNHGradientView.h"
 #import "MPPopupImageView.h"
 
+
 typedef NS_ENUM(NSUInteger, MPContentTab) {
   MPEntryTab,
   MPGroupTab,
@@ -45,6 +46,7 @@ typedef NS_ENUM(NSUInteger, MPContentTab) {
 
 @property (nonatomic, strong) NSDate *modificationDate;
 @property (nonatomic, strong) NSDate *creationDate;
+@property (copy) NSString *expiryDateText;
 
 @property (nonatomic, assign) NSUInteger activeTab;
 @property (weak) IBOutlet NSTabView *tabView;
@@ -78,13 +80,6 @@ typedef NS_ENUM(NSUInteger, MPContentTab) {
   return [self view];
 }
 
-#pragma mark Properties
-- (void)setActiveTab:(NSUInteger)activeTab {
-  if(_activeTab != activeTab) {
-    _activeTab = activeTab;
-  }
-}
-
 - (void)awakeFromNib {
   [self.bottomBar setBorderType:HNHBorderTop|HNHBorderHighlight];
   
@@ -95,26 +90,24 @@ typedef NS_ENUM(NSUInteger, MPContentTab) {
   NSView *entryView = [_entryViewController view];
   NSView *groupView = [_groupViewController view];
   
-  NSView *entryTabView = [[self.tabView tabViewItemAtIndex:MPEntryTab] view];
+  
+  NSTabViewItem *entryTabItem = [self.tabView tabViewItemAtIndex:MPEntryTab];
+  NSView *entryTabView = [entryTabItem view];
   [entryTabView addSubview:entryView];
   NSDictionary *views = NSDictionaryOfVariableBindings(entryView, groupView);
   [entryTabView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|[entryView]|" options:0 metrics:nil views:views]];
   [entryTabView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|[entryView]|" options:0 metrics:nil views:views]];
+  [entryTabItem setInitialFirstResponder:entryTabView];
   
-  NSView *groupTabView = [[self.tabView tabViewItemAtIndex:MPGroupTab] view];
+  NSTabViewItem *groupTabItem = [self.tabView tabViewItemAtIndex:MPGroupTab];
+  NSView *groupTabView = [groupTabItem view];
   [groupTabView addSubview:groupView];
   [groupTabView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|[groupView]|" options:0 metrics:nil views:views]];
   [groupTabView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|[groupView]|" options:0 metrics:nil views:views]];
-  
-  [_groupViewController updateResponderChain];
-  [_entryViewController updateResponderChain];
+  [groupTabItem setInitialFirstResponder:groupView];
   
   [[self view] layout];
   [self _updateBindings:nil];
-}
-
-- (void)didLoadView {
-
 }
 
 - (void)regsiterNotificationsForDocument:(MPDocument *)document {
@@ -124,7 +117,20 @@ typedef NS_ENUM(NSUInteger, MPContentTab) {
                                              object:document];
   [_entryViewController setupBindings:document];
   [_groupViewController setupBindings:document];
-  
+}
+
+- (void)updateResponderChain {
+  [super updateResponderChain];
+  [_groupViewController updateResponderChain];
+  [_entryViewController updateResponderChain];
+}
+
+#pragma mark -
+#pragma mark Properties
+- (void)setActiveTab:(NSUInteger)activeTab {
+  if(_activeTab != activeTab) {
+    _activeTab = activeTab;
+  }
 }
 
 - (void)setModificationDate:(NSDate *)modificationDate {
@@ -190,19 +196,32 @@ typedef NS_ENUM(NSUInteger, MPContentTab) {
 
 #pragma mark -
 #pragma mark Popup
-- (IBAction)showImagePopup:(id)sender {
-  
-  NSAssert(_popover == nil, @"Popover hast to be niled out");
-  _popover = [[NSPopover alloc] init];
-  _popover.delegate = self;
-  _popover.behavior = NSPopoverBehaviorTransient;
+- (IBAction)pickIcon:(id)sender {
+  if(self.popover) {
+    return; // There is still a popover so do nothing
+  }
+  self.popover = [[NSPopover alloc] init];
+  self.popover.delegate = self;
+  self.popover.behavior = NSPopoverBehaviorTransient;
   if(!self.iconSelectionViewController) {
     self.iconSelectionViewController = [[MPIconSelectViewController alloc] init];
   }
   [self.iconSelectionViewController reset];
   self.iconSelectionViewController.popover = _popover;
-  _popover.contentViewController = self.iconSelectionViewController;
-  [_popover showRelativeToRect:NSZeroRect ofView:self.itemImageView preferredEdge:NSMinYEdge];
+  self.popover.contentViewController = self.iconSelectionViewController;
+  [self.popover showRelativeToRect:NSZeroRect ofView:sender preferredEdge:NSMinYEdge];
+}
+
+- (IBAction)pickExpiryDate:(id)sender {
+  if(self.popover) {
+    return; // Popover still active, abort
+  }
+  NSAssert([sender isKindOfClass:[NSView class]], @"");
+  self.popover = [[NSPopover alloc] init];
+  self.popover.delegate = self;
+  self.popover.behavior = NSPopoverBehaviorTransient;
+  self.popover.contentViewController = [[MPDatePickingViewController alloc] init];
+  [self.popover showRelativeToRect:NSZeroRect ofView:sender preferredEdge:NSMinYEdge];
 }
 
 - (void)popoverDidClose:(NSNotification *)notification {
@@ -218,16 +237,6 @@ typedef NS_ENUM(NSUInteger, MPContentTab) {
     [self _setExpiryDate:viewController.date];
   }
   self.popover = nil;
-}
-
-- (IBAction)pickExpiryDate:(id)sender {
-  NSAssert(self.popover == nil, @"Popover hast to be niled out");
-  NSAssert([sender isKindOfClass:[NSView class]], @"");
-  self.popover = [[NSPopover alloc] init];
-  self.popover.delegate = self;
-  self.popover.behavior = NSPopoverBehaviorTransient;
-  self.popover.contentViewController = [[MPDatePickingViewController alloc] init];
-  [self.popover showRelativeToRect:NSZeroRect ofView:sender preferredEdge:NSMinYEdge];
 }
 
 - (void)_setIcon:(NSInteger)iconId {
@@ -279,7 +288,7 @@ typedef NS_ENUM(NSUInteger, MPContentTab) {
 }
 
 #pragma mark -
-#pragma mark Notificiations
+#pragma mark MPDocument Notifications
 
 - (void)_didChangeCurrentItem:(NSNotification *)notification {
   MPDocument *document = [notification object];

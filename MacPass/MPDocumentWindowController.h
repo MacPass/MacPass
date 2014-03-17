@@ -43,8 +43,10 @@
 - (IBAction)importFromXML:(id)sender;
 
 - (IBAction)lock:(id)sender;
-
 - (IBAction)createGroup:(id)sender;
+
+- (IBAction)pickIcon:(id)sender;
+- (IBAction)pickExpiryDate:(id)sender;
 
 #pragma mark View Actions
 - (IBAction)toggleInspector:(id)sender;

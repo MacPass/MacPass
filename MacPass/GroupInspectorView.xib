@@ -9,7 +9,7 @@
             <connections>
                 <outlet property="autotypePopupButton" destination="240" id="285"/>
                 <outlet property="contentView" destination="38" id="Dv7-1B-VeH"/>
-                <outlet property="expireDateSelectButton" destination="4" id="KxN-kK-lan"/>
+                <outlet property="expireDateSelectButton" destination="4" id="Bzg-8k-0OS"/>
                 <outlet property="expiresCheckButton" destination="5" id="283"/>
                 <outlet property="searchPopupButton" destination="229" id="284"/>
                 <outlet property="titleTextField" destination="23" id="35"/>
@@ -47,24 +47,27 @@
                                     <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                 </textFieldCell>
                             </textField>
-                            <button translatesAutoresizingMaskIntoConstraints="NO" id="5">
+                            <button horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="5">
                                 <rect key="frame" x="18" y="128" width="67" height="18"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                <buttonCell key="cell" type="check" title="Expires" bezelStyle="regularSquare" imagePosition="left" state="on" inset="2" id="32">
+                                <buttonCell key="cell" type="check" title="Expires" bezelStyle="regularSquare" imagePosition="left" lineBreakMode="truncatingMiddle" state="on" inset="2" id="32">
                                     <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                                     <font key="font" metaFont="system"/>
                                 </buttonCell>
                             </button>
-                            <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="4">
+                            <button focusRingType="exterior" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="4">
                                 <rect key="frame" x="206" y="127" width="31" height="19"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="31" id="l5I-EF-dHs"/>
                                 </constraints>
-                                <buttonCell key="cell" type="roundRect" bezelStyle="roundedRect" image="NSActionTemplate" imagePosition="only" alignment="center" state="on" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="33">
+                                <buttonCell key="cell" type="roundRect" bezelStyle="roundedRect" image="NSActionTemplate" imagePosition="only" alignment="center" state="on" borderStyle="border" focusRingType="exterior" imageScaling="proportionallyDown" inset="2" id="33">
                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                     <font key="font" metaFont="cellTitle"/>
                                 </buttonCell>
+                                <connections>
+                                    <action selector="pickExpiryDate:" target="-1" id="KIc-p2-zJQ"/>
+                                </connections>
                             </button>
                             <popUpButton verticalHuggingPriority="750" horizontalCompressionResistancePriority="249" translatesAutoresizingMaskIntoConstraints="NO" id="229">
                                 <rect key="frame" x="18" y="72" width="222" height="26"/>
@@ -125,6 +128,7 @@
                             <constraint firstItem="240" firstAttribute="leading" secondItem="38" secondAttribute="leading" constant="20" id="E0a-1e-KR9"/>
                             <constraint firstItem="5" firstAttribute="centerY" secondItem="4" secondAttribute="centerY" id="FdF-Pn-yY2"/>
                             <constraint firstItem="5" firstAttribute="top" secondItem="23" secondAttribute="bottom" constant="8" symbolic="YES" id="GFF-xs-Nuj"/>
+                            <constraint firstItem="4" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="5" secondAttribute="trailing" constant="8" symbolic="YES" id="HDo-Yu-P02"/>
                             <constraint firstItem="24" firstAttribute="leading" secondItem="38" secondAttribute="leading" constant="20" id="OhC-BP-oPg"/>
                             <constraint firstAttribute="trailing" secondItem="240" secondAttribute="trailing" constant="20" symbolic="YES" id="V4d-R9-46P"/>
                             <constraint firstAttribute="trailing" secondItem="23" secondAttribute="trailing" constant="20" id="Vej-zI-z2w"/>
@@ -157,7 +161,6 @@
                 <autoresizingMask key="autoresizingMask"/>
             </scroller>
         </scrollView>
-        <userDefaultsController representsSharedInstance="YES" id="ePk-k3-9qj"/>
     </objects>
     <resources>
         <image name="NSActionTemplate" width="14" height="14"/>

@@ -16,5 +16,6 @@
 
 - (IBAction)useDate:(id)sender;
 - (IBAction)cancel:(id)sender;
+- (IBAction)setDatePreset:(id)sender;
 
 @end

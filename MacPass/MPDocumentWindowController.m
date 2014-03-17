@@ -288,6 +288,14 @@ typedef void (^MPPasswordChangedBlock)(void);
   [_outlineViewController createEntry:nil];
 }
 
+- (void)pickIcon:(id)sender {
+  [self.inspectorViewController pickIcon:sender];
+}
+
+- (void)pickExpiryDate:(id)sender {
+  [self.inspectorViewController pickExpiryDate:sender];
+}
+
 - (void)toggleInspector:(id)sender {
   NSView *inspectorView = [_inspectorViewController view];
   BOOL inspectorVisible = NO;
@@ -303,6 +311,7 @@ typedef void (^MPPasswordChangedBlock)(void);
                                                                        options:0
                                                                        metrics:nil
                                                                          views:NSDictionaryOfVariableBindings(inspectorView)]];
+    [self.inspectorViewController updateResponderChain];
   }
   [[NSUserDefaults standardUserDefaults] setBool:inspectorVisible forKey:kMPSettingsKeyShowInspector];
 }
@@ -328,7 +337,6 @@ typedef void (^MPPasswordChangedBlock)(void);
     [[contentView subviews][0] removeFromSuperviewWithoutNeedingDisplay];
   }
   [contentView addSubview:_splitView];
-  //[_splitView adjustSubviews];
   NSView *outlineView = [_outlineViewController view];
   NSView *inspectorView = [_inspectorViewController view];
   NSView *entryView = [_entryViewController view];

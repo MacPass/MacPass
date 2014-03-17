@@ -119,9 +119,11 @@ This Project is based upon the following work:
 
 [KSPasswordField](https://github.com/karelia/SecurityInterface) Copyright 2012 Mike Abdullah, Karelia Software. All rights reserved.
 
-[DDHotKey](https://github.com/davedelong/DDHotKey) Copyright Dave DeLong http://www.davedelong.com. All rights reserved.
+[DDHotKey](https://github.com/davedelong/DDHotKey) Copyright [Dave DeLong](http://www.davedelong.com). All rights reserved.
 
 [Sparkle](http://sparkle.andymatuschak.org) Copyright 2006 Andy Matuschak
+
+[TransformerKit](https://github.com/mattt/TransformerKit) Copyright 2012 [Mattt Thompson](http://mattt.me/). All rights reseverd
 
 See submodules for additional Licenses
 

@@ -577,10 +577,10 @@
                         <outlet property="nextKeyView" destination="59" id="ZRe-l9-kNq"/>
                     </connections>
                 </button>
-                <button translatesAutoresizingMaskIntoConstraints="NO" id="7">
+                <button horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="7">
                     <rect key="frame" x="18" y="129" width="67" height="18"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                    <buttonCell key="cell" type="check" title="Expires" bezelStyle="regularSquare" imagePosition="left" state="on" inset="2" id="78">
+                    <buttonCell key="cell" type="check" title="Expires" bezelStyle="regularSquare" imagePosition="left" lineBreakMode="truncatingMiddle" state="on" inset="2" id="78">
                         <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                         <font key="font" metaFont="system"/>
                     </buttonCell>
@@ -599,6 +599,7 @@
                         <font key="font" metaFont="cellTitle"/>
                     </buttonCell>
                     <connections>
+                        <action selector="pickExpiryDate:" target="-1" id="DQK-sp-SIL"/>
                         <outlet property="nextKeyView" destination="5" id="Yg4-Ua-HVe"/>
                     </connections>
                 </button>
@@ -661,6 +662,7 @@
                 <constraint firstAttribute="trailing" secondItem="5" secondAttribute="trailing" constant="20" symbolic="YES" id="50"/>
                 <constraint firstAttribute="bottom" secondItem="5" secondAttribute="bottom" constant="20" symbolic="YES" id="51"/>
                 <constraint firstItem="7" firstAttribute="top" secondItem="59" secondAttribute="bottom" constant="8" symbolic="YES" id="QPJ-9m-AzZ"/>
+                <constraint firstItem="8" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="7" secondAttribute="trailing" constant="8" symbolic="YES" id="Xa5-Ir-XNC"/>
             </constraints>
         </customView>
         <view translatesAutoresizingMaskIntoConstraints="NO" id="zv7-wE-Bmg" customClass="HNHScrollDocumentViewAdapter">

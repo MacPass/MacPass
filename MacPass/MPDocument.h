@@ -95,7 +95,7 @@ typedef NS_OPTIONS(NSUInteger, MPEntrySearchFlags) {
 + (NSString *)fileTypeForVersion:(KPKVersion)version;
 
 #pragma mark Lock/Decrypt
-- (void)lockDatabase:(id)sender;
+- (IBAction)lockDatabase:(id)sender;
 /**
  *  Decrypts the databse with the given password and keyfile
  *

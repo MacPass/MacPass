@@ -9,12 +9,14 @@
 #import "MPGroupInspectorViewController.h"
 #import "MPDocument.h"
 #import "MPPasteBoardController.h"
+#import "MPValueTransformerHelper.h"
 
 #import "KPKGroup.h"
 #import "KPKTimeInfo.h"
 
 #import "HNHScrollView.h"
 #import "HNHRoundedTextField.h"
+
 
 @interface MPGroupInspectorViewController ()
 
@@ -54,7 +56,6 @@
                                                                    metrics:nil
                                                                      views:views]];
   [[self view] layoutSubtreeIfNeeded];
-  
   /*
    void(^copyBlock)(NSTextField *textField) = ^void(NSTextField *textField) {
    [[MPPasteBoardController defaultController] copyObjects:@[ textField.stringValue ]];
@@ -79,6 +80,10 @@
   if(self.group) {
     [self.titleTextField bind:NSValueBinding toObject:self.group withKeyPath:NSStringFromSelector(@selector(name)) options:nil];
     [self.expiresCheckButton bind:NSValueBinding toObject:self.group.timeInfo withKeyPath:NSStringFromSelector(@selector(expires)) options:nil];
+    [self.expiresCheckButton bind:NSTitleBinding
+                         toObject:self.group.timeInfo
+                      withKeyPath:NSStringFromSelector(@selector(expiryTime))
+                          options:@{ NSValueTransformerNameBindingOption:MPExpiryDateValueTransformer }];
     [self.expireDateSelectButton bind:NSHiddenBinding
                              toObject:self.group.timeInfo
                           withKeyPath:NSStringFromSelector(@selector(expires))
@@ -90,6 +95,8 @@
     [self.titleTextField unbind:NSValueBinding];
     
     [self.expiresCheckButton unbind:NSValueBinding];
+    [self.expiresCheckButton unbind:NSTitleBinding];
+    [self.expiresCheckButton setTitle:NSLocalizedString(@"EXPIRES", "")];
     [self.expireDateSelectButton unbind:NSHiddenBinding];
     [self.autotypePopupButton unbind:NSSelectedTagBinding];
     [self.searchPopupButton unbind:NSSelectedTagBinding];
