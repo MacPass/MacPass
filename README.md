@@ -28,7 +28,7 @@ After that you can build and run in Xcode. If you run into signing issues take a
 
 * Binary releases (0.2.x - 0.3.x):
   * KDBX DeletedObjects are stripped on save. This will break synchronisation features!
-* All Versions (including master branch)
+* Binary releases (since 0.4.x):
   * KDBX History is not supported
   
 ##System Requirement
