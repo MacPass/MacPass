@@ -159,6 +159,8 @@ NSString *const MPToolbarItemSearch = @"TOOLBAR_SEARCH";
       /* Use default size base on documentation */
       [item setMinSize:NSMakeSize(140, 32)];
       [item setMaxSize:NSMakeSize(240, 32)];
+      NSMenu *templateMenu = [self _allocateSearchMenuTemplate];
+      [[searchField cell] setSearchMenuTemplate:templateMenu];
       self.searchField = searchField;
     }
     else {
@@ -237,6 +239,29 @@ NSString *const MPToolbarItemSearch = @"TOOLBAR_SEARCH";
   });
   MPActionType actionType = (MPActionType)[actionDict[identifier] integerValue];
   return [MPActionHelper actionOfType:actionType];
+}
+
+- (NSMenu *)_allocateSearchMenuTemplate {
+  NSMenu *menu = [[NSMenu alloc] initWithTitle:NSLocalizedString(@"SEARCH_MENU", @"")];
+  NSMenuItem *item = [[NSMenuItem alloc] initWithTitle:NSLocalizedString(@"CLEAR_RECENT_SEARCHES", @"") action:NULL keyEquivalent:@""];
+  [item setTag:NSSearchFieldClearRecentsMenuItemTag];
+  [menu addItem:item];
+  
+  [menu addItem:[NSMenuItem separatorItem]];
+  
+  item = [[NSMenuItem alloc] initWithTitle:NSLocalizedString(@"RECENT_SEARCHES", @"") action:NULL keyEquivalent:@""];
+  [item setTag:NSSearchFieldRecentsTitleMenuItemTag];
+  [menu addItem:item];
+  
+  item = [[NSMenuItem alloc] initWithTitle:@"Recents" action:NULL keyEquivalent:@""];
+  [item setTag:NSSearchFieldRecentsMenuItemTag];
+  [menu addItem:item];
+  
+  item = [[NSMenuItem alloc] initWithTitle:@"NoEntries" action:NULL keyEquivalent:@""];
+  [item setTag:NSSearchFieldNoRecentsMenuItemTag];
+  [menu addItem:item];
+  
+  return menu;
 }
 
 - (void)_didEnterSearch:(NSNotification *)notification {
