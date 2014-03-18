@@ -522,7 +522,7 @@ NSString *const _MPTAbleSecurCellView = @"PasswordCell";
   for(NSMenuItem *item in [headerMenu itemArray]) {
     NSUInteger index = [headerMenu indexOfItem:item];
     NSTableColumn *column= [self.entryTable tableColumnWithIdentifier:identifier[index]];
-    [item bind:NSValueBinding toObject:column withKeyPath:@"hidden" options:options];
+    [item bind:NSValueBinding toObject:column withKeyPath:NSHiddenBinding options:options];
   }
   
   [[self.entryTable headerView] setMenu:headerMenu];

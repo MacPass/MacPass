@@ -242,13 +242,13 @@ NSString *const MPToolbarItemSearch = @"TOOLBAR_SEARCH";
 }
 
 - (NSMenu *)_allocateSearchMenuTemplate {
-  NSMenu *menu = [[NSMenu alloc] initWithTitle:NSLocalizedString(@"SEARCH_MENU", @"")];
+  NSMenu *menu = [[NSMenu alloc] init];
   NSMenuItem *item = [[NSMenuItem alloc] initWithTitle:NSLocalizedString(@"CLEAR_RECENT_SEARCHES", @"") action:NULL keyEquivalent:@""];
   [item setTag:NSSearchFieldClearRecentsMenuItemTag];
   [menu addItem:item];
   
   [menu addItem:[NSMenuItem separatorItem]];
-  
+
   item = [[NSMenuItem alloc] initWithTitle:NSLocalizedString(@"RECENT_SEARCHES", @"") action:NULL keyEquivalent:@""];
   [item setTag:NSSearchFieldRecentsTitleMenuItemTag];
   [menu addItem:item];

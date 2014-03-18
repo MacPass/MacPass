@@ -514,7 +514,7 @@ CA
                     </connections>
                 </textField>
                 <textField verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="56" customClass="HNHRoundedTextField">
-                    <rect key="frame" x="20" y="237" width="212" height="22"/>
+                    <rect key="frame" x="20" y="157" width="212" height="22"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                     <textFieldCell key="cell" lineBreakMode="truncatingTail" truncatesLastVisibleLine="YES" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" drawsBackground="YES" usesSingleLineMode="YES" id="67">
                         <font key="font" metaFont="system"/>
@@ -526,7 +526,7 @@ CA
                     </connections>
                 </textField>
                 <textField verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="57">
-                    <rect key="frame" x="18" y="267" width="25" height="14"/>
+                    <rect key="frame" x="18" y="187" width="25" height="14"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                     <textFieldCell key="cell" controlSize="small" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="URL" id="66">
                         <font key="font" metaFont="smallSystem"/>
@@ -535,7 +535,7 @@ CA
                     </textFieldCell>
                 </textField>
                 <textField verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="58">
-                    <rect key="frame" x="18" y="211" width="57" height="14"/>
+                    <rect key="frame" x="18" y="267" width="57" height="14"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                     <textFieldCell key="cell" controlSize="small" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Password" id="65">
                         <font key="font" metaFont="smallSystem"/>
@@ -544,7 +544,7 @@ CA
                     </textFieldCell>
                 </textField>
                 <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="59">
-                    <rect key="frame" x="20" y="152" width="212" height="19"/>
+                    <rect key="frame" x="20" y="208" width="212" height="19"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                     <buttonCell key="cell" type="roundRect" title="Generate" bezelStyle="roundedRect" alignment="center" state="on" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="64">
                         <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
@@ -555,7 +555,7 @@ CA
                     </connections>
                 </button>
                 <secureTextField verticalHuggingPriority="750" horizontalCompressionResistancePriority="249" translatesAutoresizingMaskIntoConstraints="NO" id="60" customClass="HNHRoundedSecureTextField">
-                    <rect key="frame" x="20" y="179" width="173" height="24"/>
+                    <rect key="frame" x="20" y="235" width="173" height="24"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                     <secureTextFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" borderStyle="bezel" drawsBackground="YES" usesSingleLineMode="YES" id="63">
                         <font key="font" size="13" name="Menlo-Regular"/>
@@ -570,7 +570,7 @@ CA
                     </connections>
                 </secureTextField>
                 <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="61">
-                    <rect key="frame" x="201" y="177" width="31" height="25"/>
+                    <rect key="frame" x="201" y="233" width="31" height="25"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                     <buttonCell key="cell" type="roundTextured" bezelStyle="texturedRounded" image="NSQuickLookTemplate" imagePosition="only" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="62">
                         <behavior key="behavior" pushIn="YES" changeContents="YES" lightByContents="YES"/>
@@ -583,6 +583,9 @@ CA
                 <button horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="7">
                     <rect key="frame" x="18" y="129" width="67" height="18"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="14" id="vgc-Xu-RJs"/>
+                    </constraints>
                     <buttonCell key="cell" type="check" title="Expires" bezelStyle="regularSquare" imagePosition="left" lineBreakMode="truncatingMiddle" state="on" inset="2" id="78">
                         <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                         <font key="font" metaFont="system"/>
@@ -640,13 +643,11 @@ CA
                 <constraint firstItem="55" firstAttribute="top" secondItem="54" secondAttribute="bottom" constant="8" symbolic="YES" id="19"/>
                 <constraint firstAttribute="trailing" secondItem="55" secondAttribute="trailing" constant="20" symbolic="YES" id="20"/>
                 <constraint firstItem="57" firstAttribute="leading" secondItem="4" secondAttribute="leading" constant="20" symbolic="YES" id="21"/>
-                <constraint firstItem="57" firstAttribute="top" secondItem="55" secondAttribute="bottom" constant="12" id="22"/>
                 <constraint firstItem="56" firstAttribute="leading" secondItem="4" secondAttribute="leading" constant="20" symbolic="YES" id="23"/>
                 <constraint firstItem="56" firstAttribute="top" secondItem="57" secondAttribute="bottom" constant="8" symbolic="YES" id="24"/>
                 <constraint firstAttribute="trailing" secondItem="56" secondAttribute="trailing" constant="20" symbolic="YES" id="25"/>
                 <constraint firstItem="58" firstAttribute="leading" secondItem="4" secondAttribute="leading" constant="20" symbolic="YES" id="26"/>
                 <constraint firstItem="58" firstAttribute="trailing" secondItem="54" secondAttribute="trailing" id="27"/>
-                <constraint firstItem="58" firstAttribute="top" secondItem="56" secondAttribute="bottom" constant="12" id="28"/>
                 <constraint firstItem="60" firstAttribute="top" secondItem="58" secondAttribute="bottom" constant="8" symbolic="YES" id="29"/>
                 <constraint firstItem="60" firstAttribute="leading" secondItem="4" secondAttribute="leading" constant="20" symbolic="YES" id="30"/>
                 <constraint firstItem="59" firstAttribute="top" secondItem="61" secondAttribute="bottom" constant="8" symbolic="YES" id="31"/>
@@ -663,9 +664,11 @@ CA
                 <constraint firstItem="5" firstAttribute="top" secondItem="6" secondAttribute="bottom" constant="8" symbolic="YES" id="48"/>
                 <constraint firstItem="5" firstAttribute="leading" secondItem="4" secondAttribute="leading" constant="20" symbolic="YES" id="49"/>
                 <constraint firstAttribute="trailing" secondItem="5" secondAttribute="trailing" constant="20" symbolic="YES" id="50"/>
-                <constraint firstAttribute="bottom" secondItem="5" secondAttribute="bottom" constant="20" symbolic="YES" id="51"/>
-                <constraint firstItem="7" firstAttribute="top" secondItem="59" secondAttribute="bottom" constant="8" symbolic="YES" id="QPJ-9m-AzZ"/>
+                <constraint firstItem="7" firstAttribute="top" secondItem="56" secondAttribute="bottom" constant="12" id="Gh9-Lg-kcm"/>
+                <constraint firstItem="58" firstAttribute="top" secondItem="55" secondAttribute="bottom" constant="12" id="JiM-Dm-AG8"/>
                 <constraint firstItem="8" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="7" secondAttribute="trailing" constant="8" symbolic="YES" id="Xa5-Ir-XNC"/>
+                <constraint firstAttribute="bottom" secondItem="5" secondAttribute="bottom" constant="20" symbolic="YES" id="bPh-V3-4rv"/>
+                <constraint firstItem="57" firstAttribute="top" secondItem="59" secondAttribute="bottom" constant="8" symbolic="YES" id="lYe-am-xJx"/>
             </constraints>
         </customView>
         <view translatesAutoresizingMaskIntoConstraints="NO" id="zv7-wE-Bmg" customClass="HNHScrollDocumentViewAdapter">
