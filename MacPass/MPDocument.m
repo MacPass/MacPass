@@ -433,7 +433,7 @@ NSString *const MPDocumentGroupKey                        = @"MPDocumentGroupKey
   KPKEntry *newEntry = [self.tree createEntry:parent];
   newEntry.title = NSLocalizedString(@"DEFAULT_ENTRY_TITLE", @"Title for a newly created entry");
   if([self.tree.metaData.defaultUserName length] > 0) {
-    newEntry.title = self.tree.metaData.defaultUserName;
+    newEntry.username = self.tree.metaData.defaultUserName;
   }
   [parent addEntry:newEntry];
   [parent.undoManager setActionName:NSLocalizedString(@"ADD_ENTRY", "")];
