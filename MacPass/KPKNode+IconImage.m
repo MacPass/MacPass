@@ -25,10 +25,12 @@
 }
 
 - (NSImage *)iconImage {
-  if(self.timeInfo.expires) {
+  /*
+   if(self.timeInfo.expires) {
     const BOOL isGroup = [self isKindOfClass:[KPKGroup class]];
     return [MPIconHelper icon:(isGroup ? MPIconExpiredGroup : MPIconExpiredEntry)];
   }
+  */
   if(self.iconUUID) {
     KPKIcon *icon = [self.tree.metaData findIcon:self.iconUUID];
     if(icon && icon.image) {
