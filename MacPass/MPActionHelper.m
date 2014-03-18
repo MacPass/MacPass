@@ -42,6 +42,17 @@
   return NSSelectorFromString(actionDict[@(type)]);
 }
 
++ (NSString *)keyEquivalentForAction:(MPActionType)type {
+  static NSDictionary *keyEquivalentDictionary;
+  static unichar backspaceCharacter = NSBackspaceCharacter;
+  static dispatch_once_t onceToken;
+  dispatch_once(&onceToken, ^{
+    keyEquivalentDictionary = @{ @(MPActionDelete): [[NSString alloc] initWithCharacters:&backspaceCharacter length:1] };
+  });
+  NSString *keyEquivalent = keyEquivalentDictionary[@(type)];
+  return keyEquivalent ? keyEquivalent : @"";
+}
+
 + (MPActionType)typeForAction:(SEL)action {
   NSString *selectorString = NSStringFromSelector(action);
   NSArray *selectors = [[self _actionDictionary] allValues];

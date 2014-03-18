@@ -308,7 +308,7 @@ NSString *const _MPTAbleSecurCellView = @"PasswordCell";
   MPDocument *document = [notification object];
   
   if(!document.selectedGroup) {
-    /* No group, this only can happen in filtering, just return */
+    /* TODO: handle deleted item */
     return;
   }
   /*

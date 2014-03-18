@@ -44,5 +44,11 @@ typedef NS_ENUM(NSUInteger, MPActionType) {
  *	@return	MPActionTpype for action, if no match was found MPUnknownAction is returned
  */
 + (MPActionType)typeForAction:(SEL)action;
+/**
+ *  Returns the key equivalent for the given action type
+ *  @param type Action to get the equivalent for
+ *  @return NSString containing the key equivalent for this action. If none is present, an empty NString is returned
+ */
++ (NSString *)keyEquivalentForAction:(MPActionType)type;
 
 @end

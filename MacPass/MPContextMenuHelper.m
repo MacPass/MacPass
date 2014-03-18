@@ -56,7 +56,7 @@ static void MPContextmenuHelperBeginSection(NSMutableArray *items) {
     if(insertDelete) {
       NSMenuItem *delete = [[NSMenuItem alloc] initWithTitle:NSLocalizedString(@"DELETE", @"")
                                                       action:[MPActionHelper actionOfType:MPActionDelete]
-                                               keyEquivalent:@""];
+                                               keyEquivalent:[MPActionHelper keyEquivalentForAction:MPActionDelete]];
       [items addObject:delete];
       
     }
