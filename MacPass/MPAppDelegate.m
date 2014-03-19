@@ -32,6 +32,8 @@
 #import "MPAutotypeDaemon.h"
 #import "MPDocumentWindowController.h"
 
+#import "MPTemporaryFileStorageCenter.h"
+
 #import "MPDocument.h"
 #import "KPKCompositeKey.h"
 
@@ -121,6 +123,17 @@ NSString *const MPDidChangeStoredKeyFilesSettings = @"com.hicknhack.macpass.MPDi
                                              object:nil];
   
   
+}
+
+- (NSApplicationTerminateReply)applicationShouldTerminate:(NSApplication *)sender {
+  if([[MPTemporaryFileStorageCenter defaultCenter] hasPendingStorages]) {
+    dispatch_async(dispatch_get_main_queue(), ^{
+      [[MPTemporaryFileStorageCenter defaultCenter] cleanupStorages];
+      [sender replyToApplicationShouldTerminate:YES];
+    });
+    return NSTerminateLater;
+  }
+  return NSTerminateNow;
 }
 
 - (BOOL)application:(NSApplication *)sender openFile:(NSString *)filename {

@@ -16,6 +16,10 @@
 #import "MPDocument.h"
 #import "MPIconHelper.h"
 #import "MPValueTransformerHelper.h"
+#import "MPTemporaryFileStorage.h"
+#import "MPTemporaryFileStorageCenter.h"
+#import "MPActionHelper.h"
+#import "MPSettingsHelper.h"
 
 #import "KPKEntry.h"
 #import "KPKBinary.h"
@@ -49,6 +53,7 @@ typedef NS_ENUM(NSUInteger, MPEntryTab) {
 @property (strong) NSPopover *activePopover;
 
 @property (nonatomic, weak) KPKEntry *entry;
+@property (strong) MPTemporaryFileStorage *quicklookStorage;
 
 @end
 
@@ -128,7 +133,11 @@ typedef NS_ENUM(NSUInteger, MPEntryTab) {
 }
 
 - (void)saveAttachment:(id)sender {
-  KPKBinary *binary = self.entry.binaries[[sender tag]];
+  NSInteger row = [self.attachmentTableView selectedRow];
+  if(row < 0) {
+    return; // No selection
+  }
+  KPKBinary *binary = self.entry.binaries[row];
   NSSavePanel *savePanel = [NSSavePanel savePanel];
   [savePanel setCanCreateDirectories:YES];
   [savePanel setNameFieldStringValue:binary.name];
@@ -156,7 +165,11 @@ typedef NS_ENUM(NSUInteger, MPEntryTab) {
 }
 
 - (void)removeAttachment:(id)sender {
-  KPKBinary *binary = self.entry.binaries[[sender tag]];
+  NSInteger row = [self.attachmentTableView selectedRow];
+  if(row < 0) {
+    return; // no selection
+  }
+  KPKBinary *binary = self.entry.binaries[row];
   [self.entry removeBinary:binary];
 }
 
@@ -172,13 +185,67 @@ typedef NS_ENUM(NSUInteger, MPEntryTab) {
   }
 }
 
-#pragma mark Editing
+- (void)toggleQuicklookPreview:(id)sender {
+  if([QLPreviewPanel sharedPreviewPanelExists] && [[QLPreviewPanel sharedPreviewPanel] isVisible]) {
+    QLPreviewPanel *panel = [QLPreviewPanel sharedPreviewPanel];
+    if([self acceptsPreviewPanelControl:nil]) {
+      [self _updatePreviewItemForPanel:panel];
+      [panel reloadData];
+    }
+    else {
+      [panel orderOut:sender];
+    }
+  }
+  else {
+    [[QLPreviewPanel sharedPreviewPanel] makeKeyAndOrderFront:sender];
+  }
+}
+
 - (void)beginEditing {
   [self _toggleEditing:YES];
   
 }
 - (void)endEditing {
   [self _toggleEditing:NO];
+}
+
+- (BOOL)validateMenuItem:(NSMenuItem *)menuItem {
+  switch([MPActionHelper typeForAction:[menuItem action]]) {
+    case MPActionToggleQuicklook: {
+      BOOL enabled = [[NSUserDefaults standardUserDefaults] boolForKey:kMPSettingsKeyEnableQuicklookPreview];
+      return enabled ? [self acceptsPreviewPanelControl:nil] : NO;
+    }
+    default:
+      return YES;
+  }
+}
+
+#pragma mark -
+#pragma mark QLPreviewPanelDelegate
+
+- (BOOL)acceptsPreviewPanelControl:(QLPreviewPanel *)panel {
+  if(self.activeTab == MPEntryTabFiles) {
+    return ([self.attachmentTableView selectedRow] != -1);
+  }
+  return NO;
+}
+
+- (void)beginPreviewPanelControl:(QLPreviewPanel *)panel {
+  [self _updatePreviewItemForPanel:panel];
+}
+
+- (void)endPreviewPanelControl:(QLPreviewPanel *)panel {
+  MPTemporaryFileStorage *storage = (MPTemporaryFileStorage *)panel.dataSource;
+  [[MPTemporaryFileStorageCenter defaultCenter] unregisterStorage:storage];
+}
+
+- (void)_updatePreviewItemForPanel:(QLPreviewPanel *)panel {
+  NSInteger row = [self.attachmentTableView selectedRow];
+  NSAssert(row > -1, @"Row needs to be selected");
+  KPKBinary *binary = self.entry.binaries[row];
+  MPTemporaryFileStorage *oldStorage = (MPTemporaryFileStorage *)panel.dataSource;
+  [[MPTemporaryFileStorageCenter defaultCenter] unregisterStorage:oldStorage];
+  panel.dataSource = [[MPTemporaryFileStorageCenter defaultCenter] storageForBinary:binary];
 }
 
 #pragma mark -

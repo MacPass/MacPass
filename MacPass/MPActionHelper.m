@@ -30,8 +30,9 @@
                    @(MPActionEmptyTrash):             @"emptyTrash:",
                    @(MPActionDatabaseSettings):       @"showDatabaseSettings:",
                    @(MPActionEditTemplateGroup):      @"editTemplateGroup:",
-                   @(MPActionExportXML):              @"exportAsXML",
-                   @(MPActionImportXML):              @"importFromXMl",
+                   @(MPActionExportXML):              @"exportAsXML:",
+                   @(MPActionImportXML):              @"importFromXMl:",
+                   @(MPActionToggleQuicklook):        @"toggleQuicklookPreview:",
                    };
   });
   return actionDict;

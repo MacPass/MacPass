@@ -13,5 +13,6 @@
 
 @property (weak) IBOutlet NSButton *enableServerCheckbutton;
 @property (weak) IBOutlet NSButton *enableGlobalAutotypeCheckbutton;
+@property (weak) IBOutlet NSButton *enableQuicklookCheckbutton;
 
 @end

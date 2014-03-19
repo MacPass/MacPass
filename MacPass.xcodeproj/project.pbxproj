@@ -73,7 +73,6 @@
 		4C25D58716CF0FAA00F6806C /* EntryView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4C25D58616CF0FAA00F6806C /* EntryView.xib */; };
 		4C2671AD17A7D8FC00F3A645 /* HNHColorWell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C2671AC17A7D8FC00F3A645 /* HNHColorWell.m */; };
 		4C26C33F18D8C92100CF1A1C /* MPTemporaryFileStorage.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C26C33E18D8C92100CF1A1C /* MPTemporaryFileStorage.m */; };
-		4C26C34718D8C9C400CF1A1C /* KPKBinary+Quickook.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C26C34618D8C9C400CF1A1C /* KPKBinary+Quickook.m */; };
 		4C26C34B18D8D5A300CF1A1C /* MPPreviewViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C26C34918D8D5A300CF1A1C /* MPPreviewViewController.m */; };
 		4C26C34C18D8D5A300CF1A1C /* PreviewView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4C26C34A18D8D5A300CF1A1C /* PreviewView.xib */; };
 		4C2724D71778FF1A00FD8456 /* NSUUID+KeePassKit.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C2724D61778FF1A00FD8456 /* NSUUID+KeePassKit.m */; };
@@ -205,6 +204,7 @@
 		4C888C9016EB6C91003D34A1 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 4C888C8E16EB6C91003D34A1 /* Localizable.strings */; };
 		4C888C9316EB6F5E003D34A1 /* MPToolbarItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C888C9216EB6F5E003D34A1 /* MPToolbarItem.m */; };
 		4C888C9716EB754B003D34A1 /* MPActionHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C888C9616EB754B003D34A1 /* MPActionHelper.m */; };
+		4C88C66918D9F8D600F43852 /* MPTemporaryFileStorageCenter.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C88C66818D9F8D600F43852 /* MPTemporaryFileStorageCenter.m */; };
 		4C89F521182F9FDD0069C73C /* NSString+Commands.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C89F520182F9FDD0069C73C /* NSString+Commands.m */; };
 		4C89F524182FB4740069C73C /* MPAutotypeCommand.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C89F523182FB4740069C73C /* MPAutotypeCommand.m */; };
 		4C8A173D1790AA41008B5C17 /* NSData+Keyfile.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C8A173C1790AA41008B5C17 /* NSData+Keyfile.m */; };
@@ -487,8 +487,6 @@
 		4C2671AC17A7D8FC00F3A645 /* HNHColorWell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HNHColorWell.m; sourceTree = "<group>"; };
 		4C26C33D18D8C92100CF1A1C /* MPTemporaryFileStorage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MPTemporaryFileStorage.h; sourceTree = "<group>"; };
 		4C26C33E18D8C92100CF1A1C /* MPTemporaryFileStorage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MPTemporaryFileStorage.m; sourceTree = "<group>"; };
-		4C26C34518D8C9C400CF1A1C /* KPKBinary+Quickook.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "KPKBinary+Quickook.h"; sourceTree = "<group>"; };
-		4C26C34618D8C9C400CF1A1C /* KPKBinary+Quickook.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "KPKBinary+Quickook.m"; sourceTree = "<group>"; };
 		4C26C34818D8D5A300CF1A1C /* MPPreviewViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MPPreviewViewController.h; sourceTree = "<group>"; };
 		4C26C34918D8D5A300CF1A1C /* MPPreviewViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MPPreviewViewController.m; sourceTree = "<group>"; };
 		4C26C34A18D8D5A300CF1A1C /* PreviewView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PreviewView.xib; sourceTree = "<group>"; };
@@ -718,6 +716,8 @@
 		4C888C9216EB6F5E003D34A1 /* MPToolbarItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MPToolbarItem.m; sourceTree = "<group>"; };
 		4C888C9516EB754B003D34A1 /* MPActionHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MPActionHelper.h; sourceTree = "<group>"; };
 		4C888C9616EB754B003D34A1 /* MPActionHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MPActionHelper.m; sourceTree = "<group>"; };
+		4C88C66718D9F8D600F43852 /* MPTemporaryFileStorageCenter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MPTemporaryFileStorageCenter.h; sourceTree = "<group>"; };
+		4C88C66818D9F8D600F43852 /* MPTemporaryFileStorageCenter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MPTemporaryFileStorageCenter.m; sourceTree = "<group>"; };
 		4C89F51F182F9FDD0069C73C /* NSString+Commands.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+Commands.h"; sourceTree = "<group>"; };
 		4C89F520182F9FDD0069C73C /* NSString+Commands.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+Commands.m"; sourceTree = "<group>"; };
 		4C89F522182FB4740069C73C /* MPAutotypeCommand.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MPAutotypeCommand.h; sourceTree = "<group>"; };
@@ -997,8 +997,6 @@
 				4CC6DB7917D23719002C6091 /* KPKNode+IconImage.m */,
 				4CEED1C417D7BD0E007180F1 /* NSError+Messages.h */,
 				4CEED1C517D7BD0E007180F1 /* NSError+Messages.m */,
-				4C26C34518D8C9C400CF1A1C /* KPKBinary+Quickook.h */,
-				4C26C34618D8C9C400CF1A1C /* KPKBinary+Quickook.m */,
 			);
 			name = Categories;
 			sourceTree = "<group>";
@@ -1210,6 +1208,8 @@
 				4C3C4EAE18D7039300153127 /* MPValueTransformerHelper.m */,
 				4C26C33D18D8C92100CF1A1C /* MPTemporaryFileStorage.h */,
 				4C26C33E18D8C92100CF1A1C /* MPTemporaryFileStorage.m */,
+				4C88C66718D9F8D600F43852 /* MPTemporaryFileStorageCenter.h */,
+				4C88C66818D9F8D600F43852 /* MPTemporaryFileStorageCenter.m */,
 			);
 			name = Helper;
 			sourceTree = "<group>";
@@ -2217,6 +2217,7 @@
 				4C245B77176E1E3D0086100E /* DDNumber.m in Sources */,
 				4C245B78176E1E3D0086100E /* DDRange.m in Sources */,
 				4C3C4EA618D6FEA100153127 /* TTTJSONTransformer.m in Sources */,
+				4C88C66918D9F8D600F43852 /* MPTemporaryFileStorageCenter.m in Sources */,
 				4C245B79176E1E3D0086100E /* HTTPAuthenticationRequest.m in Sources */,
 				4C245B7A176E1E3D0086100E /* HTTPConnection.m in Sources */,
 				4C245B7B176E1E3D0086100E /* HTTPMessage.m in Sources */,
@@ -2265,7 +2266,6 @@
 				4C10412C178CDD44001B5239 /* NSDate+Humanized.m in Sources */,
 				4CD3ABBA178F71B50073F5C5 /* KPKTree.m in Sources */,
 				4CD3ABBF178F72610073F5C5 /* KPKEntry.m in Sources */,
-				4C26C34718D8C9C400CF1A1C /* KPKBinary+Quickook.m in Sources */,
 				4CD3ABC2178F72720073F5C5 /* KPKGroup.m in Sources */,
 				4C591B57178F897A0080B16B /* KPKBinary.m in Sources */,
 				4C0C59F118B17F10009C7B76 /* DDHotKeyUtilities.m in Sources */,

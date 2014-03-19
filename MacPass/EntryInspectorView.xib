@@ -168,7 +168,7 @@
                                                                             <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyDown" image="NSActionTemplate" id="170"/>
                                                                         </imageView>
                                                                         <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="166">
-                                                                            <rect key="frame" x="41" y="10" width="126" height="17"/>
+                                                                            <rect key="frame" x="41" y="10" width="160" height="17"/>
                                                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
                                                                             <textFieldCell key="cell" lineBreakMode="truncatingTail" sendsActionOnEndEditing="YES" title="Table View Cell" id="171">
                                                                                 <font key="font" metaFont="system"/>
@@ -176,47 +176,44 @@
                                                                                 <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                                                             </textFieldCell>
                                                                         </textField>
-                                                                        <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="156">
-                                                                            <rect key="frame" x="213" y="8" width="32" height="19"/>
+                                                                        <popUpButton verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="42g-QS-XtW">
+                                                                            <rect key="frame" x="207" y="8" width="38" height="19"/>
                                                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                                                             <constraints>
-                                                                                <constraint firstAttribute="width" constant="32" id="172"/>
+                                                                                <constraint firstAttribute="width" constant="38" id="2EY-Pv-ic4"/>
                                                                             </constraints>
-                                                                            <buttonCell key="cell" type="roundRect" bezelStyle="roundedRect" image="NSRemoveTemplate" imagePosition="overlaps" alignment="center" state="on" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="173">
+                                                                            <popUpButtonCell key="cell" type="roundRect" bezelStyle="roundedRect" alignment="center" lineBreakMode="truncatingTail" borderStyle="border" imageScaling="proportionallyDown" inset="2" pullsDown="YES" altersStateOfSelectedItem="NO" id="nJc-UT-cas">
                                                                                 <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                                                                 <font key="font" metaFont="cellTitle"/>
-                                                                                <string key="keyEquivalent" base64-UTF8="YES">
-CA
-</string>
-                                                                            </buttonCell>
-                                                                        </button>
-                                                                        <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="155">
-                                                                            <rect key="frame" x="173" y="8" width="32" height="19"/>
-                                                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                                                            <constraints>
-                                                                                <constraint firstAttribute="width" constant="32" id="174"/>
-                                                                            </constraints>
-                                                                            <buttonCell key="cell" type="roundRect" bezelStyle="roundedRect" image="26_FileSaveTemplate" imagePosition="only" alignment="center" state="on" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="175">
-                                                                                <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
-                                                                                <font key="font" metaFont="cellTitle"/>
-                                                                            </buttonCell>
-                                                                        </button>
+                                                                                <menu key="menu" title="OtherViews" id="sNS-o1-pD7">
+                                                                                    <items>
+                                                                                        <menuItem hidden="YES" id="lbx-U1-RCe">
+                                                                                            <modifierMask key="keyEquivalentModifierMask"/>
+                                                                                        </menuItem>
+                                                                                        <menuItem title="Save" id="0ok-MC-QMP"/>
+                                                                                        <menuItem title="Delete" id="bke-G2-oEf">
+                                                                                            <modifierMask key="keyEquivalentModifierMask"/>
+                                                                                        </menuItem>
+                                                                                        <menuItem title="Quicklook" id="NtM-y3-l4D">
+                                                                                            <modifierMask key="keyEquivalentModifierMask"/>
+                                                                                        </menuItem>
+                                                                                    </items>
+                                                                                </menu>
+                                                                            </popUpButtonCell>
+                                                                        </popUpButton>
                                                                     </subviews>
                                                                     <constraints>
                                                                         <constraint firstItem="167" firstAttribute="leading" secondItem="141" secondAttribute="leading" constant="3" id="157"/>
                                                                         <constraint firstItem="167" firstAttribute="centerY" secondItem="166" secondAttribute="centerY" id="158"/>
                                                                         <constraint firstItem="167" firstAttribute="centerY" secondItem="141" secondAttribute="centerY" id="159"/>
                                                                         <constraint firstItem="166" firstAttribute="leading" secondItem="167" secondAttribute="trailing" constant="8" symbolic="YES" id="160"/>
-                                                                        <constraint firstItem="155" firstAttribute="baseline" secondItem="156" secondAttribute="baseline" id="161"/>
-                                                                        <constraint firstItem="155" firstAttribute="top" secondItem="166" secondAttribute="top" id="162"/>
-                                                                        <constraint firstItem="155" firstAttribute="leading" secondItem="166" secondAttribute="trailing" constant="8" symbolic="YES" id="163"/>
-                                                                        <constraint firstAttribute="trailing" secondItem="156" secondAttribute="trailing" constant="3" id="164"/>
-                                                                        <constraint firstItem="156" firstAttribute="leading" secondItem="155" secondAttribute="trailing" constant="8" symbolic="YES" id="165"/>
+                                                                        <constraint firstItem="42g-QS-XtW" firstAttribute="centerY" secondItem="166" secondAttribute="centerY" constant="0.5" id="04U-i0-gjS"/>
+                                                                        <constraint firstItem="42g-QS-XtW" firstAttribute="leading" secondItem="166" secondAttribute="trailing" constant="8" id="EEX-YD-llx"/>
+                                                                        <constraint firstAttribute="trailing" secondItem="42g-QS-XtW" secondAttribute="trailing" constant="3" id="vvP-2V-gwi"/>
                                                                     </constraints>
                                                                     <connections>
+                                                                        <outlet property="actionButton" destination="42g-QS-XtW" id="IEV-gn-6YI"/>
                                                                         <outlet property="imageView" destination="167" id="244"/>
-                                                                        <outlet property="removeButton" destination="156" id="247"/>
-                                                                        <outlet property="saveButton" destination="155" id="246"/>
                                                                         <outlet property="textField" destination="166" id="245"/>
                                                                     </connections>
                                                                 </tableCellView>
@@ -880,7 +877,6 @@ CA
         </view>
     </objects>
     <resources>
-        <image name="26_FileSaveTemplate" width="16" height="16"/>
         <image name="NSActionTemplate" width="14" height="14"/>
         <image name="NSAddTemplate" width="8" height="8"/>
         <image name="NSQuickLookTemplate" width="21" height="16"/>

@@ -43,6 +43,8 @@
 #import "KPKTimeInfo.h"
 #import "KPKAttribute.h"
 
+#import "NSError+Messages.h"
+
 NSString *const MPDocumentDidAddGroupNotification         = @"com.hicknhack.macpass.MPDocumentDidAddGroupNotification";
 NSString *const MPDocumentDidRevertNotifiation            = @"com.hicknhack.macpass.MPDocumentDidRevertNotifiation";
 

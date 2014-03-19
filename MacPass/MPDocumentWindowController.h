@@ -17,7 +17,7 @@
 @class MPOutlineViewController;
 @class MPToolbarDelegate;
 
-@interface MPDocumentWindowController : NSWindowController <MPPasswordEditWindowDelegate, QLPreviewPanelDataSource, QLPreviewPanelDelegate>
+@interface MPDocumentWindowController : NSWindowController <MPPasswordEditWindowDelegate>
 
 @property (readonly, strong) MPPasswordInputController *passwordInputController;
 @property (readonly, strong) MPEntryViewController *entryViewController;

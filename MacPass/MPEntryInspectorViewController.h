@@ -8,10 +8,12 @@
 
 #import "MPViewController.h"
 
+#import <Quartz/Quartz.h>
+
 @class HNHRoundedSecureTextField;
 @class MPDocument;
 
-@interface MPEntryInspectorViewController : MPViewController <NSPopoverDelegate>
+@interface MPEntryInspectorViewController : MPViewController <NSPopoverDelegate, QLPreviewPanelDelegate>
 
 @property (weak) IBOutlet NSTextField *titleTextField;
 @property (weak) IBOutlet NSTextField *usernameTextField;
@@ -57,7 +59,10 @@
 - (IBAction)addWindowAssociation:(id)sender;
 - (IBAction)removeWindowAssociation:(id)sender;
 
+- (IBAction)toggleQuicklookPreview:(id)sender;
+
 - (void)beginEditing;
 - (void)endEditing;
+
 
 @end

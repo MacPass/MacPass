@@ -8,7 +8,11 @@
 
 #import <Foundation/Foundation.h>
 
+FOUNDATION_EXPORT NSString *const MPErrorDomain;
+
 @interface NSError (Messages)
+
++ (NSError *)errorWithCode:(NSInteger)code description:(NSString *)description;
 
 - (NSString *)descriptionForErrorCode;
 

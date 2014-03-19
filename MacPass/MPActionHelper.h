@@ -26,7 +26,8 @@ typedef NS_ENUM(NSUInteger, MPActionType) {
   MPActionDatabaseSettings, // Show the settings for the database
   MPActionEditTemplateGroup, // Edit the Template group
   MPActionExportXML, // Exporte as XML
-  MPActionImportXML // Import form XML
+  MPActionImportXML, // Import form XML
+  MPActionToggleQuicklook
 };
 /**
  *	Helper to retrieve commonly used actions

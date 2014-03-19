@@ -7,17 +7,17 @@
 //
 
 #import <Foundation/Foundation.h>
-/**
- *  Instance to handle a temporary file storage. Quicklook support uses this as a means to vent attachments to the system
- *  After using the file, the storage is removed.
- */
+#import <Quartz/Quartz.h>
 
 @class KPKBinary;
-
-@interface MPTemporaryFileStorage : NSObject
+/**
+ *  File Storage the Storage center vents on request. Use this to feed as datasource to QLPreviewPanels
+ */
+@interface MPTemporaryFileStorage : NSObject <QLPreviewPanelDataSource, QLPreviewItem>
 
 - (instancetype)initWithBinary:(KPKBinary *)binary;
 
-- (void)quicklook;
+- (void)cleanup;
+- (void)cleanupNow;
 
 @end

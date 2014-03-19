@@ -48,13 +48,7 @@
   NSTableCellView *view;
   if([selectedIndexes containsIndex:row]) {
     MPSelectedAttachmentTableCellView *cellView  = [tableView makeViewWithIdentifier:@"SelectedCell" owner:tableView];
-    [cellView.saveButton setTag:row];
-    [cellView.saveButton setAction:@selector(saveAttachment:)];
-    [cellView.saveButton setTarget:self.viewController];
-    [cellView.removeButton setTag:row];
-    [cellView.removeButton setAction:@selector(removeAttachment:)];
-    [cellView.removeButton setTarget:nil];
-    [cellView.removeButton setTarget:self.viewController];
+    [cellView.actionButton setMenu:[self allocateActionMenu]];
     view = cellView;
   }
   else {
@@ -74,6 +68,27 @@
   view = [[HNHTableRowView alloc] init];
   view.selectionCornerRadius = 7;
   return view;
+}
+
+- (NSMenu *)allocateActionMenu {
+  NSMenu *menu = [[NSMenu alloc] init];
+  /* Image for Popup button */
+  NSMenuItem *item = [[NSMenuItem alloc] initWithTitle:@"" action:NULL keyEquivalent:@""];
+  [item setImage:[NSImage imageNamed:NSImageNameActionTemplate]];
+  [menu addItem:item];
+  /* Quicklook */
+  [menu addItemWithTitle:NSLocalizedString(@"PREVIEW", "") action:@selector(toggleQuicklookPreview:) keyEquivalent:@""];
+  /* Save */
+  item = [[NSMenuItem alloc] initWithTitle:NSLocalizedString(@"SAVE", "") action:@selector(saveAttachment:) keyEquivalent:@""];
+  [item setTarget:self.viewController];
+  [menu addItem:item];
+  /* Remove */
+  [menu addItem:[NSMenuItem separatorItem]];
+  item = [[NSMenuItem alloc] initWithTitle:NSLocalizedString(@"DELETE", "") action:@selector(removeAttachment:) keyEquivalent:@""];
+  [item setTarget:self.viewController];
+  [menu addItem:item];
+  
+  return menu;
 }
 
 @end

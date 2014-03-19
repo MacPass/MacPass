@@ -51,8 +51,6 @@ typedef void (^MPPasswordChangedBlock)(void);
 
 @property (nonatomic, copy) MPPasswordChangedBlock passwordChangedBlock;
 
-@property (strong) QLPreviewPanel *previewPanel;
-
 @end
 
 @implementation MPDocumentWindowController
@@ -437,40 +435,6 @@ typedef void (^MPPasswordChangedBlock)(void);
                                  didEndSelector:NULL
                                     contextInfo:NULL];
   
-}
-
-- (void)toggleQuicklookPreview:(id)sender {
-  if([QLPreviewPanel sharedPreviewPanelExists] && [[QLPreviewPanel sharedPreviewPanel] isVisible]) {
-    [[QLPreviewPanel sharedPreviewPanel] orderOut:sender];
-  }
-  else {
-    [[QLPreviewPanel sharedPreviewPanel] makeKeyAndOrderFront:sender];
-  }
-}
-
-#pragma mark -
-#pragma mark QLPreviewDelegate
-- (BOOL)acceptsPreviewPanelControl:(QLPreviewPanel *)panel {
-  return YES;
-}
-- (void)beginPreviewPanelControl:(QLPreviewPanel *)panel {
-  self.previewPanel = panel;
-  [self.previewPanel setDataSource:self];
-}
-
-- (void)endPreviewPanelControl:(QLPreviewPanel *)panel {
-  self.previewPanel = nil;
-}
-
-#pragma mark -
-#pragma mark QLPreviewDataSource
-
-- (NSInteger)numberOfPreviewItemsInPreviewPanel:(QLPreviewPanel *)panel {
-  return (self.previewPanel == panel ? 1 : 0);
-}
-
-- (id<QLPreviewItem>)previewPanel:(QLPreviewPanel *)panel previewItemAtIndex:(NSInteger)index {
-  return [[NSURL alloc] initWithString:@"file:///test.txt"];
 }
 
 @end
