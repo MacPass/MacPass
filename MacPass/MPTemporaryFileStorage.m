@@ -96,7 +96,6 @@
     self.temporaryFileURL = nil;
     return NO;
   }
-  NSLog(@"Did write data to %@", [self.temporaryFileURL path]);
   return YES;
 }
 
