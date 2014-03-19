@@ -10,6 +10,7 @@
 #import "MPPasteBoardController.h"
 #import "NSString+MPPasswordCreation.h"
 #import "MPUniqueCharactersFormatter.h"
+#import "MPSettingsHelper.h"
 
 typedef NS_ENUM(NSUInteger, MPPasswordRating) {
   MPPasswordTerrible = 10,
@@ -18,7 +19,6 @@ typedef NS_ENUM(NSUInteger, MPPasswordRating) {
   MPPasswordGood = 50,
   MPPasswordStrong = 60
 };
-
 
 /*
  
@@ -43,7 +43,7 @@ typedef NS_ENUM(NSUInteger, MPPasswordRating) {
 @property (weak) IBOutlet NSTextField *passwordLengthTextField;
 @property (weak) IBOutlet NSTextField *customCharactersTextField;
 @property (weak) IBOutlet NSSlider *passwordLengthSlider;
-@property (weak) IBOutlet NSButton *addPasswordToPasteboardButton;
+@property (weak) IBOutlet NSButton *shouldCopyPasswordToPasteboardButton;
 @property (weak) IBOutlet NSButton *upperCaseButton;
 @property (weak) IBOutlet NSButton *lowerCaseButton;
 @property (weak) IBOutlet NSButton *numbersButton;
@@ -79,8 +79,7 @@ typedef NS_ENUM(NSUInteger, MPPasswordRating) {
   return self;
 }
 
-
-- (void)didLoadView {
+- (void)awakeFromNib {
   [self.passwordLengthSlider setMinValue:MIN_PASSWORD_LENGTH];
   [self.passwordLengthSlider setMaxValue:MAX_PASSWORD_LENGTH];
   [self.passwordLengthSlider setContinuous:YES];
@@ -95,14 +94,18 @@ typedef NS_ENUM(NSUInteger, MPPasswordRating) {
   
   [self.entropyIndicator bind:NSValueBinding toObject:self withKeyPath:@"entropy" options:nil];
   [self.entropyTextField bind:NSValueBinding toObject:self withKeyPath:@"entropy" options:nil];
-
+  
   [self.customCharactersTextField setDelegate:self];
-  [_customButton bind:NSValueBinding toObject:self withKeyPath:@"useCustomString" options:nil];
-
-  [_numbersButton setTag:MPPasswordCharactersNumbers];
-  [_upperCaseButton setTag:MPPasswordCharactersUpperCase];
-  [_lowerCaseButton setTag:MPPasswordCharactersLowerCase];
-  [_symbolsButton setTag:MPPasswordCharactersSymbols];
+  [self.customButton bind:NSValueBinding toObject:self withKeyPath:@"useCustomString" options:nil];
+  
+  NSString *copyToPasteBoardKeyPath = [MPSettingsHelper defaultControllerPathForKey:kMPSettingsKeyCopyGeneratedPasswordToClipboard];
+  NSUserDefaultsController *defaultsController = [NSUserDefaultsController sharedUserDefaultsController];
+  [self.shouldCopyPasswordToPasteboardButton bind:NSValueBinding toObject:defaultsController withKeyPath:copyToPasteBoardKeyPath options:nil];
+  
+  [self.numbersButton setTag:MPPasswordCharactersNumbers];
+  [self.upperCaseButton setTag:MPPasswordCharactersUpperCase];
+  [self.lowerCaseButton setTag:MPPasswordCharactersLowerCase];
+  [self.symbolsButton setTag:MPPasswordCharactersSymbols];
   
   [self _resetCharacters];
   [self _generatePassword:nil];
@@ -131,17 +134,18 @@ typedef NS_ENUM(NSUInteger, MPPasswordRating) {
 
 - (IBAction)_usePassword:(id)sender {
   self.generatedPassword = _password;
-  if([self.addPasswordToPasteboardButton state] == NSOnState) {
+  if([self.shouldCopyPasswordToPasteboardButton state] == NSOnState) {
     [[MPPasteBoardController defaultController] copyObjects:@[_password]];
   }
+  /* Since we might be displayed inside a NSPopup or a NSWindow, search for the target */
   id target = [NSApp targetForAction:@selector(performClose:)];
   [target performClose:nil];
 }
 
 - (IBAction)_cancel:(id)sender {
+  /* Since we might be displayed inside a NSPopup or a NSWindow, search for the target */
   id target = [NSApp targetForAction:@selector(performClose:)];
   [target performClose:nil];
-  
 }
 
 #pragma mark -

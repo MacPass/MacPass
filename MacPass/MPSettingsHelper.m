@@ -37,6 +37,10 @@ NSString *const kMPSettingsKeyEnableGlobalAutotype          = @"EnableGlobalAuto
 
 NSString *const kMPSettingsKeyEntrySearchFilterMode         = @"EntrySearchFilterMode";
 
+NSString *const kMPSettingsKeyEnableQuicklookPreview        = @"EnableQuicklookPreview";
+
+NSString *const kMPSettingsKeyCopyGeneratedPasswordToClipboard = @"CopyGeneratedPasswordToClipboard";
+
 @implementation MPSettingsHelper
 
 + (void)setupDefaults {
@@ -73,6 +77,8 @@ NSString *const kMPSettingsKeyEntrySearchFilterMode         = @"EntrySearchFilte
            kMPSettingsKeySendCommandForControlKey: @YES,
            kMPSettingsKeyEntrySearchFilterMode: @0,
            kMPSettingsKeyEnableGlobalAutotype: @NO,
+           kMPSettingsKeyEnableQuicklookPreview: @NO,
+           kMPSettingsKeyCopyGeneratedPasswordToClipboard: @NO,
            };
 }
 

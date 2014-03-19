@@ -53,6 +53,12 @@ APPKIT_EXTERN NSString *const kMPSettingsKeyEnableGlobalAutotype;
 /* Search */
 APPKIT_EXTERN NSString *const kMPSettingsKeyEntrySearchFilterMode;
 
+/* Quicklook */
+APPKIT_EXTERN NSString *const kMPSettingsKeyEnableQuicklookPreview;
+
+/* Password Generation */
+APPKIT_EXTERN NSString *const kMPSettingsKeyCopyGeneratedPasswordToClipboard;
+
 typedef NS_ENUM(NSUInteger, MPPasswordEncoding) {
   MPPasswordEncodingUTF8,
   MPPasswordEncodingASCII,
