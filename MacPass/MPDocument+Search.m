@@ -69,7 +69,8 @@ NSString *const kMPDocumentSearchResultsKey           = @"kMPDocumentSearchResul
   MPEntrySearchFlags toggleFlag = [sender tag];
   MPEntrySearchFlags newFlags = MPEntrySearchNone;
   BOOL isDoublePasswordFlag = (toggleFlag == MPEntrySearchDoublePasswords);
-  switch([sender state]) {
+  NSButton *button = sender;
+  switch([button state]) {
     case NSOffState:
       toggleFlag ^= MPEntrySearchAllFlags;
       newFlags = isDoublePasswordFlag ? oldFlags : (self.activeFlags & toggleFlag);

@@ -7,6 +7,7 @@
 //
 
 #import <Cocoa/Cocoa.h>
+#import <Quartz/Quartz.h>
 #import "MPPasswordEditWindowController.h"
 
 @class MPViewController;
@@ -16,7 +17,7 @@
 @class MPOutlineViewController;
 @class MPToolbarDelegate;
 
-@interface MPDocumentWindowController : NSWindowController <MPPasswordEditWindowDelegate>
+@interface MPDocumentWindowController : NSWindowController <MPPasswordEditWindowDelegate, QLPreviewPanelDataSource, QLPreviewPanelDelegate>
 
 @property (readonly, strong) MPPasswordInputController *passwordInputController;
 @property (readonly, strong) MPEntryViewController *entryViewController;
