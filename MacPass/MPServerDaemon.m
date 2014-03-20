@@ -30,10 +30,10 @@
   self = [super init];
   if (self) {
     NSUserDefaultsController *defaultsController = [NSUserDefaultsController sharedUserDefaultsController];
-    NSString *enableServerKeyPath = [NSString stringWithFormat:@"values.%@", kMPSettingsKeyEnableHttpServer];
-    NSString *showItemKeyPath = [NSString stringWithFormat:@"values.%@", kMPSettingsKeyShowMenuItem];
-    [self bind:@"isEnabled" toObject:defaultsController withKeyPath:enableServerKeyPath options:nil];
-    [self bind:@"showStatusItem" toObject:defaultsController withKeyPath:showItemKeyPath options:nil];
+    NSString *enableServerKeyPath = [MPSettingsHelper defaultControllerPathForKey:kMPSettingsKeyEnableHttpServer];
+    NSString *showItemKeyPath = [MPSettingsHelper defaultControllerPathForKey:kMPSettingsKeyShowMenuItem];
+    [self bind:NSStringFromSelector(@selector(isEnabled)) toObject:defaultsController withKeyPath:enableServerKeyPath options:nil];
+    [self bind:NSStringFromSelector(@selector(showStatusItem)) toObject:defaultsController withKeyPath:showItemKeyPath options:nil];
   }
   return self;
 }
