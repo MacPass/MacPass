@@ -41,6 +41,8 @@ NSString *const MPToolbarItemDelete =@"TOOLBAR_DELETE";
 NSString *const MPToolbarItemAction = @"TOOLBAR_ACTION";
 NSString *const MPToolbarItemInspector = @"TOOLBAR_INSPECTOR";
 NSString *const MPToolbarItemSearch = @"TOOLBAR_SEARCH";
+NSString *const MPToolbarItemCopyUsername = @"TOOLBAR_COPY_USERNAME";
+NSString *const MPToolbarItemCopyPassword = @"TOOLBAR_COPY_PASSWORD";
 
 @interface MPToolbarDelegate() {
   MPAddEntryContextMenuDelegate *_entryMenuDelegate;
@@ -51,16 +53,13 @@ NSString *const MPToolbarItemSearch = @"TOOLBAR_SEARCH";
 
 @property (strong) NSMutableDictionary *toolbarItems;
 @property (strong) NSArray *toolbarIdentifiers;
+@property (strong) NSArray *defaultToolbarIdentifiers;
 @property (strong) NSDictionary *toolbarImages;
 @property (weak) NSSearchField *searchField;
-
-- (NSString *)_localizedLabelForToolbarItemIdentifier:(NSString *)identifier;
-- (SEL)_actionForToolbarItemIdentifier:(NSString *)identifier;
 
 @end
 
 @implementation MPToolbarDelegate
-
 
 - (id)init {
   self = [super init];
@@ -71,10 +70,20 @@ NSString *const MPToolbarItemSearch = @"TOOLBAR_SEARCH";
                              MPToolbarItemDelete,
                              MPToolbarItemAddGroup,
                              MPToolbarItemAction,
+                             MPToolbarItemCopyPassword,
+                             MPToolbarItemCopyUsername,
                              NSToolbarFlexibleSpaceItemIdentifier,
                              MPToolbarItemSearch,
                              MPToolbarItemLock,
                              MPToolbarItemInspector ];
+    _defaultToolbarIdentifiers = @[ MPToolbarItemAddEntry,
+                                    MPToolbarItemDelete,
+                                    MPToolbarItemAddGroup,
+                                    MPToolbarItemAction,
+                                    NSToolbarFlexibleSpaceItemIdentifier,
+                                    MPToolbarItemSearch,
+                                    MPToolbarItemLock,
+                                    MPToolbarItemInspector ];
     _toolbarImages = [self createToolbarImages];
     _toolbarItems = [[NSMutableDictionary alloc] initWithCapacity:[self.toolbarIdentifiers count]];
     _entryMenuDelegate = [[MPAddEntryContextMenuDelegate alloc] init];
@@ -186,7 +195,7 @@ NSString *const MPToolbarItemSearch = @"TOOLBAR_SEARCH";
 }
 
 - (NSArray *)toolbarDefaultItemIdentifiers:(NSToolbar*)toolbar {
-  return self.toolbarIdentifiers;
+  return self.defaultToolbarIdentifiers;
 }
 
 - (NSArray *)toolbarAllowedItemIdentifiers:(NSToolbar*)toolbar {
@@ -195,8 +204,10 @@ NSString *const MPToolbarItemSearch = @"TOOLBAR_SEARCH";
 
 - (NSDictionary *)createToolbarImages {
   NSDictionary *imageDict = @{ MPToolbarItemLock: [NSImage imageNamed:NSImageNameLockUnlockedTemplate],
-                               MPToolbarItemAddEntry: [MPIconHelper icon:MPIconPassword],
+                               MPToolbarItemAddEntry: [MPIconHelper icon:MPIconAddEntry],
                                MPToolbarItemAddGroup: [MPIconHelper icon:MPIconAddFolder],
+                               MPToolbarItemCopyUsername : [MPIconHelper icon:MPIconIdentity],
+                               MPToolbarItemCopyPassword : [MPIconHelper icon:MPIconPassword],
                                MPToolbarItemDelete: [MPIconHelper icon:MPIconTrash],
                                MPToolbarItemAction: [NSImage imageNamed:NSImageNameActionTemplate],
                                MPToolbarItemInspector: [MPIconHelper icon:MPIconInfo],
@@ -218,6 +229,8 @@ NSString *const MPToolbarItemSearch = @"TOOLBAR_SEARCH";
                    MPToolbarItemAction: NSLocalizedString(@"ACTION", @""),
                    MPToolbarItemAddEntry: NSLocalizedString(@"ADD_ENTRY", @""),
                    MPToolbarItemAddGroup: NSLocalizedString(@"ADD_GROUP", @""),
+                   MPToolbarItemCopyPassword: NSLocalizedString(@"COPY_PASSWORD", @""),
+                   MPToolbarItemCopyUsername: NSLocalizedString(@"COPY_USERNAME", @""),
                    MPToolbarItemDelete: NSLocalizedString(@"DELETE", @""),
                    MPToolbarItemInspector: NSLocalizedString(@"INSPECTOR", @""),
                    MPToolbarItemSearch: NSLocalizedString(@"SEARCH", @"")
@@ -234,6 +247,8 @@ NSString *const MPToolbarItemSearch = @"TOOLBAR_SEARCH";
                     MPToolbarItemAddEntry: @(MPActionAddEntry),
                     MPToolbarItemAddGroup: @(MPActionAddGroup),
                     MPToolbarItemDelete: @(MPActionDelete),
+                    MPToolbarItemCopyPassword: @(MPActionCopyPassword),
+                    MPToolbarItemCopyUsername: @(MPActionCopyUsername),
                     MPToolbarItemInspector: @(MPActionToggleInspector)
                     };
   });
