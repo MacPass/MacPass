@@ -26,6 +26,10 @@
  */
 @property (nonatomic, readonly, copy) NSString *command;
 @property (nonatomic, readonly, copy) NSString *normalizedCommand;
+/**
+ *  Command with placeholders and references resolved
+ */
+@property (nonatomic, readonly, copy) NSString *evaluatedCommand;
 
 /**
  *  Designated initializer
@@ -44,7 +48,5 @@
  *  @return YES if valid, NO otherwise
  */
 - (BOOL)isValid;
-
-- (NSString *)evaluatedCommand;
 
 @end

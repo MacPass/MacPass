@@ -20,6 +20,24 @@
 
 #import <Carbon/Carbon.h>
 
+@interface NSNumber (AutotypeCommand)
+
+- (CGEventFlags)eventFlagsValue;
+- (CGKeyCode)keyCodeValue;
+
+@end
+
+@implementation NSNumber (AutotypeCommand)
+
+- (CGEventFlags)eventFlagsValue {
+  return (CGEventFlags)[self integerValue];
+}
+- (CGKeyCode)keyCodeValue {
+  return (CGKeyCode)[self integerValue];
+}
+
+@end
+
 @implementation MPAutotypeCommand
 
 + (NSDictionary *)keypressCommands {
@@ -57,7 +75,7 @@
 
 /**
  *  Mapping for modifier to CGEventFlags.
- *  @note KeypassControl is mapped to command!
+ *  @note KeepassControl is mapped to command!
  *
  *  @return dictionary with commands as keys and CGEventFlags as wrapped values
  */
@@ -83,7 +101,7 @@
   NSMutableArray __block *commandRanges = [[NSMutableArray alloc] initWithCapacity:reserverd];
   NSRegularExpression *commandRegExp = [[NSRegularExpression alloc] initWithPattern:@"\\{[^\\}]+\\}" options:NSRegularExpressionCaseInsensitive error:0];
   NSAssert(commandRegExp, @"RegExp is constant. Has to work all the time");
-  [commandRegExp enumerateMatchesInString:context.normalizedCommand options:0 range:NSMakeRange(0, [context.normalizedCommand length]) usingBlock:^(NSTextCheckingResult *result, NSMatchingFlags flags, BOOL *stop) {
+  [commandRegExp enumerateMatchesInString:context.evaluatedCommand options:0 range:NSMakeRange(0, [context.evaluatedCommand length]) usingBlock:^(NSTextCheckingResult *result, NSMatchingFlags flags, BOOL *stop) {
     @autoreleasepool {
       [commandRanges addObject:[NSValue valueWithRange:result.range]];
     }
@@ -94,16 +112,17 @@
     NSRange commandRange = [rangeValue rangeValue];
     /* All non-commands will get translated into paste commands */
     if(commandRange.location > lastLocation) {
-      /* If were modifiers we need to use the next single stroke and make update the modifier command */
+      /* If there were modifiers we need to use the next single stroke and make update the modifier command */
       if(keyPress) {
+        
       }
-      NSString *pasteValue = [context.normalizedCommand substringWithRange:NSMakeRange(lastLocation, commandRange.location - lastLocation)];
+      NSString *pasteValue = [context.evaluatedCommand substringWithRange:NSMakeRange(lastLocation, commandRange.location - lastLocation)];
       // Determin if it's amodifier key, and collect them!
       [self appendPasteCommandForContent:pasteValue toCommands:commands];
     }
-    NSString *commandString = [context.normalizedCommand substringWithRange:commandRange];
-    [self appendCommandForString:commandString toCommands:commands];
-    lastLocation = commandRange.location;
+    NSString *commandString = [context.evaluatedCommand substringWithRange:commandRange];
+    [self appendCommandForString:commandString toCommands:commands keyPressCommand:&keyPress];
+    lastLocation = commandRange.location + commandRange.length;
   }
   return commands;
 }
@@ -115,10 +134,41 @@
   }
 }
 
-+ (void)appendCommandForString:(NSString *)commandString toCommands:(NSMutableArray *)commands {
-  MPAutotypeCommand *command;
++ (void)appendCommandForString:(NSString *)commandString toCommands:(NSMutableArray *)commands keyPressCommand:(MPAutotypeKeyPress **)keyPress {
   if(!commandString) {
-    NSDictionary *modifier = [self modifierCommands];
+    return;
+  }
+  
+  NSNumber *flagNumber = [self modifierCommands][commandString];
+  NSNumber *keyCodeNumber = [self keypressCommands][commandString];
+  
+  /* modifier key */
+  if(flagNumber) {
+    if(keyPress == NULL) {
+      return; // We need a pointer to return the keypress!
+    }
+    CGEventFlags flags = [flagNumber eventFlagsValue];
+    if(*keyPress == nil) {
+      *keyPress = [[MPAutotypeKeyPress alloc] initWithModifierMask:flags keyCode:0];
+      [commands addObject:*keyPress];
+    }
+    else {
+      NSAssert([*keyPress isKindOfClass:[MPAutotypeKeyPress class]], @"Invalid command supplied");
+      (*keyPress).modifierMask |= flags;
+    }
+  }
+  /* key press */
+  else if(keyCodeNumber) {
+    CGKeyCode keyCode = [keyCodeNumber keyCodeValue];
+    /* we have no modifers collected */
+    if(keyPress != NULL && keyPress == nil) {
+      *keyPress = [[MPAutotypeKeyPress alloc] initWithModifierMask:0 keyCode:keyCode];
+      [commands addObject:*keyPress];
+    }
+    /* modifers collected, set keycode */
+    else if(keyPress) {
+      (*keyPress).keyCode = keyCode;
+    }
   }
 }
 

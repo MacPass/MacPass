@@ -11,6 +11,15 @@
 
 @implementation MPAutotypeKeyPress
 
+- (instancetype)initWithModifierMask:(CGEventFlags)modiferMask keyCode:(CGKeyCode)code {
+  self = [super init];
+  if(self) {
+    _modifierMask = modiferMask;
+    _keyCode = code;
+  }
+  return self;
+}
+
 - (void)execute {
   if(![self isValid]) {
     return; // no valid command. Stop.

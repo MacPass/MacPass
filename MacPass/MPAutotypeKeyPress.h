@@ -16,4 +16,6 @@
 @property (assign) CGEventFlags modifierMask;
 @property (assign) CGKeyCode keyCode;
 
+- (instancetype)initWithModifierMask:(CGEventFlags)modiferMask keyCode:(CGKeyCode)code;
+
 @end

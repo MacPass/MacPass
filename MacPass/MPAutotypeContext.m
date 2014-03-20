@@ -13,6 +13,12 @@
 #import "KPKWindowAssociation.h"
 #import "NSString+Commands.h"
 
+@interface MPAutotypeContext () {
+  NSString *_evaluatedCommand;
+}
+
+@end
+
 @implementation MPAutotypeContext
 
 - (instancetype)initWithWindowAssociation:(KPKWindowAssociation *)association {
@@ -46,12 +52,11 @@
 }
 
 - (NSString *)evaluatedCommand {
-  static NSString *evaluated;
-  if(!evaluated) {
+  if(!_evaluatedCommand) {
     NSString *placeholderFilled = [self.normalizedCommand evaluatePlaceholderWithEntry:self.entry];
-    evaluated = [placeholderFilled resolveReferencesWithTree:self.entry.tree];
+    _evaluatedCommand = [[placeholderFilled resolveReferencesWithTree:self.entry.tree] copy];
   }
-  return evaluated;
+  return _evaluatedCommand;
 }
 
 @end

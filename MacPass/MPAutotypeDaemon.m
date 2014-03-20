@@ -65,7 +65,6 @@ NSString *const kMPApplciationNameKey = @"applicationName";
   NSMenuItem *item = [self.matchSelectionButton selectedItem];
   MPAutotypeContext *context = [item representedObject];
   [self.matchSelectionWindow orderOut:self];
-  
 }
 
 - (void)_didPressHotKey {
