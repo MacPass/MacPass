@@ -210,7 +210,6 @@
 		4C8A173D1790AA41008B5C17 /* NSData+Keyfile.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C8A173C1790AA41008B5C17 /* NSData+Keyfile.m */; };
 		4C8B36AB17A6ED4B005E1FF1 /* MPOutlineContextMenuDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C8B36AA17A6ED4B005E1FF1 /* MPOutlineContextMenuDelegate.m */; };
 		4C8EB8C118D399FD00438B08 /* KPKTag.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C8EB8C018D399FD00438B08 /* KPKTag.m */; };
-		4C8FECC816D57E3200BF26CF /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4C8FECC716D57E3200BF26CF /* QuartzCore.framework */; };
 		4C96D15417A12E4F00D931FA /* 99_CreatedTemplate.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 4C96D15317A12E4F00D931FA /* 99_CreatedTemplate.pdf */; };
 		4C9D6AA917615199001C660C /* HNHRoundedSecureTextFieldCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C9D6AA817615199001C660C /* HNHRoundedSecureTextFieldCell.m */; };
 		4CA08DA017A831B200A6544B /* MPAddEntryContextMenuDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CA08D9F17A831B200A6544B /* MPAddEntryContextMenuDelegate.m */; };
@@ -728,7 +727,6 @@
 		4C8B36AA17A6ED4B005E1FF1 /* MPOutlineContextMenuDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MPOutlineContextMenuDelegate.m; sourceTree = "<group>"; };
 		4C8EB8BF18D399FD00438B08 /* KPKTag.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KPKTag.h; sourceTree = "<group>"; };
 		4C8EB8C018D399FD00438B08 /* KPKTag.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KPKTag.m; sourceTree = "<group>"; };
-		4C8FECC716D57E3200BF26CF /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		4C96D15317A12E4F00D931FA /* 99_CreatedTemplate.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; name = 99_CreatedTemplate.pdf; path = Icons/99_CreatedTemplate.pdf; sourceTree = "<group>"; };
 		4C9D6AA717615199001C660C /* HNHRoundedSecureTextFieldCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HNHRoundedSecureTextFieldCell.h; sourceTree = "<group>"; };
 		4C9D6AA817615199001C660C /* HNHRoundedSecureTextFieldCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HNHRoundedSecureTextFieldCell.m; sourceTree = "<group>"; };
@@ -917,7 +915,6 @@
 				4CC5D36418A1162D00AF7FA8 /* Sparkle.framework in Frameworks */,
 				4C00E33B17D8FAC100F37192 /* Carbon.framework in Frameworks */,
 				4CAD748E15B88AC100104512 /* libz.dylib in Frameworks */,
-				4C8FECC816D57E3200BF26CF /* QuartzCore.framework in Frameworks */,
 				4CAD748C15B889B700104512 /* Security.framework in Frameworks */,
 				4C77E36715B84A240093A587 /* Cocoa.framework in Frameworks */,
 			);
@@ -1437,7 +1434,6 @@
 				4C473A8518AFD7250073FD2E /* XCTest.framework */,
 				4CAD748D15B88AC100104512 /* libz.dylib */,
 				4C00E33A17D8FAC100F37192 /* Carbon.framework */,
-				4C8FECC716D57E3200BF26CF /* QuartzCore.framework */,
 				4CAD748B15B889B700104512 /* Security.framework */,
 				4C77E36615B84A240093A587 /* Cocoa.framework */,
 				4CE88C2417C163FE00BFD195 /* CoreFoundation.framework */,
