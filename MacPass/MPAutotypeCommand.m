@@ -107,21 +107,35 @@
     }
   }];
   NSUInteger lastLocation = 0;
-  MPAutotypeKeyPress *keyPress;
+  CGEventFlags collectedModifers = 0;
   for(NSValue *rangeValue in commandRanges) {
     NSRange commandRange = [rangeValue rangeValue];
     /* All non-commands will get translated into paste commands */
     if(commandRange.location > lastLocation) {
       /* If there were modifiers we need to use the next single stroke and make update the modifier command */
-      if(keyPress) {
-        
+      if(collectedModifers) {
+        NSString *modifiedKey = [context.evaluatedCommand substringWithRange:NSMakeRange(lastLocation, 1)];
+        MPAutotypeKeyPress *press = [[MPAutotypeKeyPress alloc] initWithModifierMask:collectedModifers character:modifiedKey];
+        if(press) {
+          [commands addObject:press];
+        }
+        collectedModifers = 0;
+        lastLocation++;
       }
-      NSString *pasteValue = [context.evaluatedCommand substringWithRange:NSMakeRange(lastLocation, commandRange.location - lastLocation)];
-      // Determin if it's amodifier key, and collect them!
-      [self appendPasteCommandForContent:pasteValue toCommands:commands];
+      NSRange pasteRange = NSMakeRange(lastLocation, commandRange.location - lastLocation);
+      if(pasteRange.length > 0) {
+        NSString *pasteValue = [context.evaluatedCommand substringWithRange:NSMakeRange(lastLocation, commandRange.location - lastLocation)];
+        // Determin if it's amodifier key, and collect them!
+        [self appendPasteCommandForContent:pasteValue toCommands:commands];
+      }
     }
+    /* Test for modifer Key */
     NSString *commandString = [context.evaluatedCommand substringWithRange:commandRange];
-    [self appendCommandForString:commandString toCommands:commands keyPressCommand:&keyPress];
+    /* append commands for non-modifer keys */
+    if(![self updateModifierMask:&collectedModifers forCommand:commandString]) {
+      [self appendCommandForString:commandString toCommands:commands activeModifer:collectedModifers];
+      collectedModifers = 0; // Reset the modifers;
+    }
     lastLocation = commandRange.location + commandRange.length;
   }
   return commands;
@@ -134,42 +148,31 @@
   }
 }
 
-+ (void)appendCommandForString:(NSString *)commandString toCommands:(NSMutableArray *)commands keyPressCommand:(MPAutotypeKeyPress **)keyPress {
++ (void)appendCommandForString:(NSString *)commandString toCommands:(NSMutableArray *)commands activeModifer:(CGEventFlags)flags {
   if(!commandString) {
     return;
   }
   
-  NSNumber *flagNumber = [self modifierCommands][commandString];
   NSNumber *keyCodeNumber = [self keypressCommands][commandString];
   
-  /* modifier key */
-  if(flagNumber) {
-    if(keyPress == NULL) {
-      return; // We need a pointer to return the keypress!
-    }
-    CGEventFlags flags = [flagNumber eventFlagsValue];
-    if(*keyPress == nil) {
-      *keyPress = [[MPAutotypeKeyPress alloc] initWithModifierMask:flags keyCode:0];
-      [commands addObject:*keyPress];
-    }
-    else {
-      NSAssert([*keyPress isKindOfClass:[MPAutotypeKeyPress class]], @"Invalid command supplied");
-      (*keyPress).modifierMask |= flags;
-    }
-  }
-  /* key press */
-  else if(keyCodeNumber) {
+  if(keyCodeNumber) {
     CGKeyCode keyCode = [keyCodeNumber keyCodeValue];
-    /* we have no modifers collected */
-    if(keyPress != NULL && keyPress == nil) {
-      *keyPress = [[MPAutotypeKeyPress alloc] initWithModifierMask:0 keyCode:keyCode];
-      [commands addObject:*keyPress];
-    }
-    /* modifers collected, set keycode */
-    else if(keyPress) {
-      (*keyPress).keyCode = keyCode;
-    }
+    [commands addObject:[[MPAutotypeKeyPress alloc] initWithModifierMask:flags keyCode:keyCode]];
   }
+}
+
++ (BOOL)updateModifierMask:(CGEventFlags *)mask forCommand:(NSString *)commandString {
+  NSAssert(mask != NULL, @"Input pointer missing!");
+  if(mask == NULL) {
+    return NO;
+  }
+  NSNumber *flagNumber = [self modifierCommands][commandString];
+  if(!flagNumber) {
+    return NO; // No modifier key, just leave
+  }
+  CGEventFlags flags = [flagNumber eventFlagsValue];
+  *mask |= flags;
+  return YES;
 }
 
 - (void)sendPressKey:(CGKeyCode)keyCode modifierFlags:(CGEventFlags)flags {

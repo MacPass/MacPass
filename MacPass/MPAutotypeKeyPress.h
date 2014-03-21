@@ -17,5 +17,6 @@
 @property (assign) CGKeyCode keyCode;
 
 - (instancetype)initWithModifierMask:(CGEventFlags)modiferMask keyCode:(CGKeyCode)code;
+- (instancetype)initWithModifierMask:(CGEventFlags)modiferMask character:(NSString *)character;
 
 @end

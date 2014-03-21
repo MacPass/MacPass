@@ -20,6 +20,17 @@
   return self;
 }
 
+- (instancetype)initWithModifierMask:(CGEventFlags)modiferMask character:(NSString *)character {
+  CGKeyCode mappedKey = [MPKeyMapper keyCodeForCharacter:character];
+  if(mappedKey == kMPUnknownKeyCode) {
+    self = nil;
+  }
+  else {
+    self = [self initWithModifierMask:modiferMask keyCode:mappedKey];
+  }
+  return self;
+}
+
 - (void)execute {
   if(![self isValid]) {
     return; // no valid command. Stop.
