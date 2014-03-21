@@ -20,11 +20,5 @@
 @property (weak) IBOutlet NSButton *performAutotypeButton;
 
 - (void)exectureAutotypeForEntry:(KPKEntry *)entry withWindowTitle:(NSString *)title;
-/**
- *  Called by the selection window to start the autotype sequence
- *
- *  @param sender sender of the action.
- */
-- (IBAction)executeAutotypeWithSelectedMatch:(id)sender;
 
 @end

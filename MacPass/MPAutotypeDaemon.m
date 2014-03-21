@@ -12,6 +12,7 @@
 #import "MPDocument+Autotype.h"
 #import "MPAutotypeCommand.h"
 #import "MPAutotypeContext.h"
+#import "MPAutotypePaste.h"
 
 #import "MPPasteBoardController.h"
 #import "MPSettingsHelper.h"
@@ -28,6 +29,7 @@ NSString *const kMPApplciationNameKey = @"applicationName";
 @interface MPAutotypeDaemon ()
 
 @property (nonatomic, assign) BOOL enabled;
+@property (copy) NSString *lastFrontMostApplication;
 
 @end
 
@@ -53,18 +55,15 @@ NSString *const kMPApplciationNameKey = @"applicationName";
 - (void)setEnabled:(BOOL)enabled {
   if(_enabled != enabled) {
     _enabled = enabled;
-    //self.enabled ? [self _registerHotKey] : [self _unregisterHotKey];
+    self.enabled ? [self _registerHotKey] : [self _unregisterHotKey];
   }
-}
-
-- (void)exectureAutotypeForEntry:(KPKEntry *)entry withWindowTitle:(NSString *)title {
-  NSAssert(NO,@"Not Implemented");
 }
 
 - (void)executeAutotypeWithSelectedMatch:(id)sender {
   NSMenuItem *item = [self.matchSelectionButton selectedItem];
   MPAutotypeContext *context = [item representedObject];
   [self.matchSelectionWindow orderOut:self];
+  [self _performAutotypeForContext:context];
 }
 
 - (void)_didPressHotKey {
@@ -76,7 +75,7 @@ NSString *const kMPApplciationNameKey = @"applicationName";
       break;
     }
   }
-  if(currentDocument.encrypted) {
+  if(!currentDocument) {
     return; // No need to search in closed documents
   }
   /*
@@ -85,15 +84,15 @@ NSString *const kMPApplciationNameKey = @"applicationName";
    */
   NSDictionary *frontApplicationInfoDict = [self _frontMostApplicationInfoDict];
   NSString *windowTitle = frontApplicationInfoDict[kMPWindowTitleKey];
-  NSString *applicationName = frontApplicationInfoDict[kMPApplciationNameKey];
-  NSLog(@"Looking for entries matching window title:%@ of applciation: %@", windowTitle, applicationName);
+  self.lastFrontMostApplication = frontApplicationInfoDict[kMPApplciationNameKey];
+  //NSLog(@"Looking for entries matching window title:%@ of applciation: %@", windowTitle, applicationName);
   
   /*
    Query the document to generate a autotype command list for the window title
    We do not care where this came form, just get the autotype commands
    */
   NSArray *autotypeCandidates = [currentDocument autotypContextsForWindowTitle:windowTitle];
-  NSUInteger candiates = [autotypeCandidates count];
+  NSInteger candiates = [autotypeCandidates count];
   if(candiates == 0) {
     return; // No Entries found.
   }
@@ -101,24 +100,23 @@ NSString *const kMPApplciationNameKey = @"applicationName";
     [self _presentSelectionWindow:autotypeCandidates];
     return; // Nothing to do, we get called back by the window
   }
-  /* Just in case it's not there anymore, order the app for the window we want to autotype back to the foreground! */
-  [self _orderApplicationToFront:applicationName];
-  /*
-   Implement!
-   */
-  return;
-  
-  KPKEntry *selectedEntry = currentDocument.selectedEntry;
-  if(nil == currentDocument || nil == selectedEntry) {
-    return; // no open documents, no selected entry
-  }
-  
-  /* TODO:
-   Replace entry based palce holders
-   Replace global placeholders
-   Translate to paste/copy commands
-   Find correct key-codes for current keyboard layout to perform paste command
-   */
+  [self _performAutotypeForContext:autotypeCandidates[0]];
+}
+
+- (void)_performAutotypeForContext:(MPAutotypeContext *)context {
+  dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+    NSArray *commands = [MPAutotypeCommand commandsForContext:context];
+    [MPAutotypeDaemon _orderApplicationToFront:self.lastFrontMostApplication];
+    usleep(1000*1000);
+    BOOL lastCommandWasPaste = NO;
+    for(MPAutotypeCommand *command in commands) {
+      if(lastCommandWasPaste) {
+        usleep(500*1000);
+      }
+      [command execute];
+      lastCommandWasPaste = [command isKindOfClass:[MPAutotypePaste class]];
+    }
+  });
 }
 
 - (void)_registerHotKey {
@@ -161,8 +159,9 @@ NSString *const kMPApplciationNameKey = @"applicationName";
   [associationMenu addItemWithTitle:NSLocalizedString(@"SELECT_AUTOTYPE_CANDIDATE", "") action:NULL keyEquivalent:@""];
   [associationMenu addItem:[NSMenuItem separatorItem]];
   [associationMenu setAutoenablesItems:NO];
+  NSString *entryMask = NSLocalizedString(@"TITLE_%@_USERNAME_%@_PASSWORD_%@_AUTOTYPE_SEQUENCE_%@", "Mask to create autotype entries for selection by the user. %1 Title %2 Username %3 Password %4 Sequence");
   for(MPAutotypeContext *context in candidates) {
-    NSString *title = [[NSString alloc] initWithFormat:@"%@: %@", context.entry.title, context.command];
+    NSString *title = [[NSString alloc] initWithFormat:entryMask, context.entry.title, context.entry.username, context.entry.password, context.command];
     NSMenuItem *item = [[NSMenuItem alloc] initWithTitle:title action:0 keyEquivalent:@""];
     [item setRepresentedObject:context];
     [associationMenu addItem:item];
@@ -172,11 +171,12 @@ NSString *const kMPApplciationNameKey = @"applicationName";
   /* Setup Items in Popup */
 }
 
-- (void)_orderApplicationToFront:(NSString *)applicationName {
-  NSString *appleScript = [[NSString alloc] initWithFormat:@"activate application %@", applicationName];
++ (void)_orderApplicationToFront:(NSString *)applicationName {
+  NSLog(@"Moving %@ to the front.", applicationName);
+  NSString *appleScript = [[NSString alloc] initWithFormat:@"activate application \"%@\"", applicationName];
   NSAppleScript *script = [[NSAppleScript alloc] initWithSource:appleScript];
   NSDictionary *error;
-  [script executeAndReturnError:&error];
+  NSAppleEventDescriptor *descriptor = [script executeAndReturnError:&error];
 }
 
 

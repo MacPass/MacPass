@@ -41,7 +41,7 @@
   [self.enableServerCheckbutton bind:NSValueBinding toObject:defaultsController withKeyPath:serverKeyPath options:nil];
   [self.enableServerCheckbutton setEnabled:NO];
   [self.enableGlobalAutotypeCheckbutton bind:NSValueBinding toObject:defaultsController withKeyPath:globalAutotypeKeyPath options:nil];
-  [self.enableGlobalAutotypeCheckbutton setEnabled:NO];
+  //[self.enableGlobalAutotypeCheckbutton setEnabled:NO];
   [self.enableQuicklookCheckbutton bind:NSValueBinding toObject:defaultsController withKeyPath:quicklookKeyPath options:nil];
 }
 

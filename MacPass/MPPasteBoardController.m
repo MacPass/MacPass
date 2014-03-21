@@ -73,6 +73,7 @@ NSString *const MPPasteBoardControllerDidClearClipboard = @"com.hicknhack.macpas
 }
 
 - (void)copyObjects:(NSArray *)objects {
+  NSLog(@"ShoudlCopy %@", objects);
   /* Should we save the old content ?*/
   [[NSPasteboard generalPasteboard] clearContents];
   [[NSPasteboard generalPasteboard] writeObjects:objects];
