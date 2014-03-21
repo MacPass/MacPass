@@ -486,7 +486,7 @@
                         <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                     </textFieldCell>
                     <connections>
-                        <outlet property="nextKeyView" destination="55" id="zdp-8L-2De"/>
+                        <outlet property="nextKeyView" destination="55" id="FgE-cj-E5Z"/>
                     </connections>
                 </textField>
                 <textField verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="54">
@@ -507,7 +507,7 @@
                         <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                     </textFieldCell>
                     <connections>
-                        <outlet property="nextKeyView" destination="56" id="XBy-DG-08B"/>
+                        <outlet property="nextKeyView" destination="60" id="ZPp-lg-TBS"/>
                     </connections>
                 </textField>
                 <textField verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="56" customClass="HNHRoundedTextField">
@@ -519,7 +519,7 @@
                         <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                     </textFieldCell>
                     <connections>
-                        <outlet property="nextKeyView" destination="60" id="1Df-fB-wSk"/>
+                        <outlet property="nextKeyView" destination="7" id="8Vo-ZR-aWE"/>
                     </connections>
                 </textField>
                 <textField verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="57">
@@ -549,6 +549,7 @@
                     </buttonCell>
                     <connections>
                         <action selector="_popUpPasswordGenerator:" target="-2" id="272"/>
+                        <outlet property="nextKeyView" destination="56" id="rY0-PH-WBT"/>
                     </connections>
                 </button>
                 <secureTextField verticalHuggingPriority="750" horizontalCompressionResistancePriority="249" translatesAutoresizingMaskIntoConstraints="NO" id="60" customClass="HNHRoundedSecureTextField">
@@ -603,7 +604,7 @@
                     </buttonCell>
                     <connections>
                         <action selector="pickExpiryDate:" target="-1" id="DQK-sp-SIL"/>
-                        <outlet property="nextKeyView" destination="5" id="Yg4-Ua-HVe"/>
+                        <outlet property="nextKeyView" destination="5" id="cVg-qt-OBX"/>
                     </connections>
                 </button>
                 <tokenField verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="5">
@@ -617,6 +618,9 @@
                         <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
                         <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                     </tokenFieldCell>
+                    <connections>
+                        <outlet property="nextKeyView" destination="53" id="Bzj-Cf-ZRv"/>
+                    </connections>
                 </tokenField>
                 <textField verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="6">
                     <rect key="frame" x="18" y="105" width="29" height="14"/>

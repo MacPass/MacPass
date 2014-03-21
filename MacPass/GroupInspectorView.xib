@@ -46,6 +46,9 @@
                                     <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
                                     <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                 </textFieldCell>
+                                <connections>
+                                    <outlet property="nextKeyView" destination="5" id="KV0-QE-2i4"/>
+                                </connections>
                             </textField>
                             <button horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="5">
                                 <rect key="frame" x="18" y="128" width="67" height="18"/>
@@ -54,6 +57,9 @@
                                     <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                                     <font key="font" metaFont="system"/>
                                 </buttonCell>
+                                <connections>
+                                    <outlet property="nextKeyView" destination="4" id="Rem-Pk-yFJ"/>
+                                </connections>
                             </button>
                             <button focusRingType="exterior" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="4">
                                 <rect key="frame" x="206" y="127" width="31" height="19"/>
@@ -67,6 +73,7 @@
                                 </buttonCell>
                                 <connections>
                                     <action selector="pickExpiryDate:" target="-1" id="KIc-p2-zJQ"/>
+                                    <outlet property="nextKeyView" destination="229" id="12E-SZ-Mtu"/>
                                 </connections>
                             </button>
                             <popUpButton verticalHuggingPriority="750" horizontalCompressionResistancePriority="249" translatesAutoresizingMaskIntoConstraints="NO" id="229">
@@ -85,6 +92,9 @@
                                         </items>
                                     </menu>
                                 </popUpButtonCell>
+                                <connections>
+                                    <outlet property="nextKeyView" destination="240" id="XsX-U5-uZd"/>
+                                </connections>
                             </popUpButton>
                             <popUpButton verticalHuggingPriority="750" horizontalCompressionResistancePriority="249" translatesAutoresizingMaskIntoConstraints="NO" id="240">
                                 <rect key="frame" x="18" y="17" width="222" height="26"/>
@@ -100,6 +110,9 @@
                                         </items>
                                     </menu>
                                 </popUpButtonCell>
+                                <connections>
+                                    <outlet property="nextKeyView" destination="23" id="uir-lY-3HQ"/>
+                                </connections>
                             </popUpButton>
                             <textField verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="264">
                                 <rect key="frame" x="18" y="104" width="40" height="14"/>
