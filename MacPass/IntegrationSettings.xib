@@ -51,10 +51,13 @@
                         <rect key="frame" x="1" y="1" width="364" height="69"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <textField verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="Kvg-he-3c8">
-                                <rect key="frame" x="79" y="15" width="46" height="22"/>
+                            <textField verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="Kvg-he-3c8" customClass="DDHotKeyTextField">
+                                <rect key="frame" x="79" y="15" width="89" height="22"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" title="⌘⌥M" drawsBackground="YES" id="sW8-rh-bhD">
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="89" id="Mia-b8-HCZ"/>
+                                </constraints>
+                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" placeholderString="" drawsBackground="YES" id="sW8-rh-bhD" customClass="DDHotKeyTextFieldCell">
                                     <font key="font" metaFont="system"/>
                                     <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
                                     <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
@@ -81,6 +84,7 @@
                     </view>
                     <constraints>
                         <constraint firstItem="tik-Ar-FJg" firstAttribute="top" secondItem="P9N-HM-wER" secondAttribute="top" constant="25" id="1HW-Ac-jq4"/>
+                        <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="Kvg-he-3c8" secondAttribute="trailing" constant="26" id="1cu-ot-jaU"/>
                         <constraint firstAttribute="bottom" secondItem="Kvg-he-3c8" secondAttribute="bottom" constant="12" id="3bK-25-sTQ"/>
                         <constraint firstItem="buI-Wb-o3V" firstAttribute="baseline" secondItem="Kvg-he-3c8" secondAttribute="baseline" id="49G-2q-5ye"/>
                         <constraint firstItem="Kvg-he-3c8" firstAttribute="leading" secondItem="buI-Wb-o3V" secondAttribute="trailing" constant="8" symbolic="YES" id="Khi-Pi-iBU"/>

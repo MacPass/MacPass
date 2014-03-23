@@ -120,6 +120,7 @@
 		4C4B7EF317A467FC000234C7 /* MPEntryInspectorViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C4B7EF117A467FC000234C7 /* MPEntryInspectorViewController.m */; };
 		4C4B7EF417A467FC000234C7 /* EntryInspectorView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4C4B7EF217A467FC000234C7 /* EntryInspectorView.xib */; };
 		4C4B7EF817A4B335000234C7 /* MPUniqueCharactersFormatter.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C4B7EF717A4B335000234C7 /* MPUniqueCharactersFormatter.m */; };
+		4C4F72D118DF704400E8D378 /* DDHotKeyTextField.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C4F72CF18DF704400E8D378 /* DDHotKeyTextField.m */; };
 		4C4FCE15177CFE6B00BBF7AE /* MPCustomFieldTableCellView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C4FCE14177CFE6B00BBF7AE /* MPCustomFieldTableCellView.m */; };
 		4C52A244177D7B9F0000D88F /* HNHScrollView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C52A243177D7B9F0000D88F /* HNHScrollView.m */; };
 		4C52A88E1788628B00868229 /* 06_BlockDeviceTemplate.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 4C52A88B1788628B00868229 /* 06_BlockDeviceTemplate.pdf */; };
@@ -564,6 +565,8 @@
 		4C4B7EF217A467FC000234C7 /* EntryInspectorView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = EntryInspectorView.xib; sourceTree = "<group>"; };
 		4C4B7EF617A4B335000234C7 /* MPUniqueCharactersFormatter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MPUniqueCharactersFormatter.h; sourceTree = "<group>"; };
 		4C4B7EF717A4B335000234C7 /* MPUniqueCharactersFormatter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MPUniqueCharactersFormatter.m; sourceTree = "<group>"; };
+		4C4F72CF18DF704400E8D378 /* DDHotKeyTextField.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DDHotKeyTextField.m; path = DDHotKey/DDHotKeyTextField.m; sourceTree = "<group>"; };
+		4C4F72D018DF704400E8D378 /* DDHotKeyTextField.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DDHotKeyTextField.h; path = DDHotKey/DDHotKeyTextField.h; sourceTree = "<group>"; };
 		4C4FCE13177CFE6B00BBF7AE /* MPCustomFieldTableCellView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MPCustomFieldTableCellView.h; sourceTree = "<group>"; };
 		4C4FCE14177CFE6B00BBF7AE /* MPCustomFieldTableCellView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MPCustomFieldTableCellView.m; sourceTree = "<group>"; };
 		4C52A242177D7B9F0000D88F /* HNHScrollView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HNHScrollView.h; sourceTree = "<group>"; };
@@ -926,6 +929,8 @@
 		4C00E33917D8FA3B00F37192 /* DDHotKey */ = {
 			isa = PBXGroup;
 			children = (
+				4C4F72CF18DF704400E8D378 /* DDHotKeyTextField.m */,
+				4C4F72D018DF704400E8D378 /* DDHotKeyTextField.h */,
 				4C0C59F018B17F10009C7B76 /* DDHotKeyUtilities.h */,
 				4C0C59EF18B17F10009C7B76 /* DDHotKeyUtilities.m */,
 				4C00E33617D8FA3500F37192 /* DDHotKeyCenter.h */,
@@ -2166,6 +2171,7 @@
 				4CA0B2F915BCAF6700654E32 /* MPGeneralSettingsController.m in Sources */,
 				4C6B7C7D18BE7EB0001D5D77 /* MPDocument+HistoryBrowsing.m in Sources */,
 				4CA0B2FC15BCAF8600654E32 /* MPSettingsWindowController.m in Sources */,
+				4C4F72D118DF704400E8D378 /* DDHotKeyTextField.m in Sources */,
 				4C83814215BF4677001AE468 /* MPDocumentWindowController.m in Sources */,
 				4C2E382316D1421B00037A9D /* MPIconHelper.m in Sources */,
 				4C2E382616D1470200037A9D /* MPViewController.m in Sources */,
