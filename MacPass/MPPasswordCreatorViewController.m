@@ -107,8 +107,7 @@ typedef NS_ENUM(NSUInteger, MPPasswordRating) {
   [self.lowerCaseButton setTag:MPPasswordCharactersLowerCase];
   [self.symbolsButton setTag:MPPasswordCharactersSymbols];
   
-  [self _resetCharacters];
-  [self _generatePassword:self];
+  [self reset];
 }
 
 - (void)reset {
@@ -133,8 +132,7 @@ typedef NS_ENUM(NSUInteger, MPPasswordRating) {
 - (IBAction)_toggleCharacters:(id)sender {
   _characterFlags ^= [sender tag];
   self.useCustomString = NO;
-  [self _resetCharacters];
-  [self _generatePassword:nil];
+  [self reset];
 }
 
 - (IBAction)_usePassword:(id)sender {
