@@ -12,4 +12,11 @@
 
 @property (copy, readonly) NSString *generatedPassword;
 
+/**
+ *  Should be called to reset the generator
+ *
+ *  @param sender sender of the action
+ */
+- (void)reset;
+
 @end

@@ -108,13 +108,18 @@ typedef NS_ENUM(NSUInteger, MPPasswordRating) {
   [self.symbolsButton setTag:MPPasswordCharactersSymbols];
   
   [self _resetCharacters];
-  [self _generatePassword:nil];
+  [self _generatePassword:self];
+}
+
+- (void)reset {
+  [self _resetCharacters];
+  [self _generatePassword:self];
 }
 
 #pragma mark -
 #pragma mark Actions
 
-- (IBAction)_generatePassword:(id)sender { 
+- (IBAction)_generatePassword:(id)sender {
   if(_useCustomString) {
     if([[_customCharactersTextField stringValue] length] > 0) {
       self.password = [[_customCharactersTextField stringValue] passwordWithLength:_passwordLength];
