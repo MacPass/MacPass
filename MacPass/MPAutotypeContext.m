@@ -27,7 +27,7 @@
 }
 
 - (instancetype)initWithDefaultSequenceForEntry:(KPKEntry *)entry {
-  self = [self initWithEntry:entry andSequence:entry.autotype.defaultSequence];
+  self = [self initWithEntry:entry andSequence:entry.autotype.defaultKeystrokeSequence];
   return self;
 }
 

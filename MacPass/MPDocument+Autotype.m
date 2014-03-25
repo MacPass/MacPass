@@ -41,7 +41,7 @@
     NSRange titleRange = [entry.title rangeOfString:windowTitle options:NSCaseInsensitiveSearch];
     MPAutotypeContext *context;
     if(titleRange.location != NSNotFound && titleRange.length != 0) {
-      context = [[MPAutotypeContext alloc] initWithEntry:entry andSequence:entry.autotype.defaultSequence];
+      context = [[MPAutotypeContext alloc] initWithEntry:entry andSequence:entry.autotype.defaultKeystrokeSequence];
     }
     /* search in Autotype entries for match */
     else {

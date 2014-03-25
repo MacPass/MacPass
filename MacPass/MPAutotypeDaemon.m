@@ -84,9 +84,7 @@ NSString *const kMPApplciationNameKey = @"applicationName";
    */
   NSDictionary *frontApplicationInfoDict = [self _frontMostApplicationInfoDict];
   NSString *windowTitle = frontApplicationInfoDict[kMPWindowTitleKey];
-  self.lastFrontMostApplication = frontApplicationInfoDict[kMPApplciationNameKey];
-  //NSLog(@"Looking for entries matching window title:%@ of applciation: %@", windowTitle, applicationName);
-  
+  self.lastFrontMostApplication = frontApplicationInfoDict[kMPApplciationNameKey];  
   /*
    Query the document to generate a autotype command list for the window title
    We do not care where this came form, just get the autotype commands
@@ -137,6 +135,10 @@ NSString *const kMPApplciationNameKey = @"applicationName";
   
   NSArray *currentWindows = CFBridgingRelease(CGWindowListCopyWindowInfo(kCGWindowListOptionOnScreenOnly | kCGWindowListExcludeDesktopElements, kCGNullWindowID));
   for(NSDictionary *windowDict in currentWindows) {
+    NSString *windowTitle = windowDict[(NSString *)kCGWindowName];
+    if([windowTitle length] <= 0) {
+      continue;
+    }
     NSNumber *processId = windowDict[(NSString *)kCGWindowOwnerPID];
     if(processId && [processId isEqualToNumber:@(frontApplication.processIdentifier)]) {
       return @{
@@ -172,11 +174,14 @@ NSString *const kMPApplciationNameKey = @"applicationName";
 }
 
 + (void)_orderApplicationToFront:(NSString *)applicationName {
-  NSLog(@"Moving %@ to the front.", applicationName);
+  //NSLog(@"Moving %@ to the front.", applicationName);
   NSString *appleScript = [[NSString alloc] initWithFormat:@"activate application \"%@\"", applicationName];
   NSAppleScript *script = [[NSAppleScript alloc] initWithSource:appleScript];
   NSDictionary *error;
   NSAppleEventDescriptor *descriptor = [script executeAndReturnError:&error];
+  if(descriptor) {
+    NSLog(@"Error trying to execure %@: %@", script, error);
+  }
 }
 
 

@@ -86,30 +86,30 @@ typedef NS_ENUM(NSUInteger, MPEntryTab) {
   [self _addScrollViewWithView:self.generalView atTab:MPEntryTabGeneral];
   [self _addScrollViewWithView:self.autotypView atTab:MPEntryTabAutotype];
   
-  [self.infoTabControl bind:NSSelectedIndexBinding toObject:self withKeyPath:@"activeTab" options:nil];
-  [self.tabView bind:NSSelectedIndexBinding toObject:self withKeyPath:@"activeTab" options:nil];
+  [self.infoTabControl bind:NSSelectedIndexBinding toObject:self withKeyPath:NSStringFromSelector(@selector(activeTab)) options:nil];
+  [self.tabView bind:NSSelectedIndexBinding toObject:self withKeyPath:NSStringFromSelector(@selector(activeTab)) options:nil];
   
   /* Set background to clearcolor so we can draw in the scrollview */
   [self.attachmentTableView setBackgroundColor:[NSColor clearColor]];
-  [self.attachmentTableView bind:NSContentBinding toObject:_attachmentsController withKeyPath:@"arrangedObjects" options:nil];
+  [self.attachmentTableView bind:NSContentBinding toObject:_attachmentsController withKeyPath:NSStringFromSelector(@selector(arrangedObjects)) options:nil];
   [self.attachmentTableView setDelegate:_attachmentTableDelegate];
   [self.attachmentTableView setDataSource:_attachmentDataSource];
   [self.attachmentTableView registerForDraggedTypes:@[NSFilenamesPboardType]];
   /* Set background to clearcolor so we can draw in the scrollview */
   [self.customFieldsTableView setBackgroundColor:[NSColor clearColor]];
-  [self.customFieldsTableView bind:NSContentBinding toObject:_customFieldsController withKeyPath:@"arrangedObjects" options:nil];
+  [self.customFieldsTableView bind:NSContentBinding toObject:_customFieldsController withKeyPath:NSStringFromSelector(@selector(arrangedObjects)) options:nil];
   [self.customFieldsTableView setDelegate:_customFieldTableDelegate];
   
   [self.windowAssociationsTableView setBackgroundColor:[NSColor clearColor]];
   [self.windowAssociationsTableView setDelegate:_windowAssociationsTableDelegate];
-  [self.windowAssociationsTableView bind:NSContentBinding toObject:_windowAssociationsController withKeyPath:@"arrangedObjects" options:nil];
+  [self.windowAssociationsTableView bind:NSContentBinding toObject:_windowAssociationsController withKeyPath:NSStringFromSelector(@selector(arrangedObjects)) options:nil];
   
-  [self.passwordTextField bind:@"showPassword" toObject:self withKeyPath:@"showPassword" options:nil];
-  [self.togglePassword bind:NSValueBinding toObject:self withKeyPath:@"showPassword" options:nil];
+  [self.passwordTextField bind:NSStringFromSelector(@selector(showPassword)) toObject:self withKeyPath:NSStringFromSelector(@selector(showPassword)) options:nil];
+  [self.togglePassword bind:NSValueBinding toObject:self withKeyPath:NSStringFromSelector(@selector(showPassword)) options:nil];
 }
 
 - (void)setupBindings:(MPDocument *)document {
-  [self bind:@"entry" toObject:document withKeyPath:@"selectedEntry" options:nil];
+  [self bind:NSStringFromSelector(@selector(entry)) toObject:document withKeyPath:NSStringFromSelector(@selector(selectedEntry)) options:nil];
 }
 
 - (void)setEntry:(KPKEntry *)entry {
@@ -336,16 +336,16 @@ typedef NS_ENUM(NSUInteger, MPEntryTab) {
 
 - (void)_bindEntry {
   if(self.entry) {
-    [self.titleTextField bind:NSValueBinding toObject:self.entry withKeyPath:@"title" options:nil];
-    [self.passwordTextField bind:NSValueBinding toObject:self.entry withKeyPath:@"password" options:nil];
-    [self.usernameTextField bind:NSValueBinding toObject:self.entry withKeyPath:@"username" options:nil];
-    [self.URLTextField bind:NSValueBinding toObject:self.entry withKeyPath:@"url" options:nil];
+    [self.titleTextField bind:NSValueBinding toObject:self.entry withKeyPath:NSStringFromSelector(@selector(title)) options:nil];
+    [self.passwordTextField bind:NSValueBinding toObject:self.entry withKeyPath:NSStringFromSelector(@selector(password)) options:nil];
+    [self.usernameTextField bind:NSValueBinding toObject:self.entry withKeyPath:NSStringFromSelector(@selector(username)) options:nil];
+    [self.URLTextField bind:NSValueBinding toObject:self.entry withKeyPath:NSStringFromSelector(@selector(url)) options:nil];
     [self.expiresCheckButton bind:NSTitleBinding
                          toObject:self.entry.timeInfo
                       withKeyPath:NSStringFromSelector(@selector(expiryTime))
                           options:@{ NSValueTransformerNameBindingOption:MPExpiryDateValueTransformer }];
-    [self.expiresCheckButton bind:NSValueBinding toObject:self.entry.timeInfo withKeyPath:@"expires" options:nil];
-    [self.tagsTokenField bind:NSValueBinding toObject:self.entry withKeyPath:@"tags" options:nil];
+    [self.expiresCheckButton bind:NSValueBinding toObject:self.entry.timeInfo withKeyPath:NSStringFromSelector(@selector(expires)) options:nil];
+    [self.tagsTokenField bind:NSValueBinding toObject:self.entry withKeyPath:NSStringFromSelector(@selector(tags)) options:nil];
   }
   else {
     [self.titleTextField unbind:NSValueBinding];
@@ -359,7 +359,7 @@ typedef NS_ENUM(NSUInteger, MPEntryTab) {
 
 - (void)_bindAttachments {
   if(self.entry) {
-    [_attachmentsController bind:NSContentArrayBinding toObject:self.entry withKeyPath:@"binaries" options:nil];
+    [_attachmentsController bind:NSContentArrayBinding toObject:self.entry withKeyPath:NSStringFromSelector(@selector(binaries)) options:nil];
   }
   else if([_attachmentsController content] != nil){
     [_attachmentsController unbind:NSContentArrayBinding];
@@ -369,7 +369,7 @@ typedef NS_ENUM(NSUInteger, MPEntryTab) {
 
 - (void)_bindCustomFields {
   if(self.entry) {
-    [_customFieldsController bind:NSContentArrayBinding toObject:self.entry withKeyPath:@"customAttributes" options:nil];
+    [_customFieldsController bind:NSContentArrayBinding toObject:self.entry withKeyPath:NSStringFromSelector(@selector(customAttributes)) options:nil];
   }
   else if ([_customFieldsController content] != nil ) {
     [_customFieldsController unbind:NSContentArrayBinding];
@@ -379,10 +379,10 @@ typedef NS_ENUM(NSUInteger, MPEntryTab) {
 
 - (void)_bindAutotype {
   if(self.entry) {
-    [self.enableAutotypeCheckButton bind:NSValueBinding toObject:self.entry.autotype withKeyPath:@"isEnabled" options:nil];
-    [self.customEntrySequenceTextField bind:NSEnabledBinding toObject:self.entry.autotype withKeyPath:@"isEnabled" options:nil];
-    [self.customEntrySequenceTextField bind:NSValueBinding toObject:self.entry.autotype withKeyPath:@"defaultSequence" options:nil];
-    [_windowAssociationsController bind:NSContentArrayBinding toObject:self.entry.autotype withKeyPath:@"associations" options:nil];
+    [self.enableAutotypeCheckButton bind:NSValueBinding toObject:self.entry.autotype withKeyPath:NSStringFromSelector(@selector(isEnabled)) options:nil];
+    [self.customEntrySequenceTextField bind:NSEnabledBinding toObject:self.entry.autotype withKeyPath:NSStringFromSelector(@selector(isEnabled)) options:nil];
+    [self.customEntrySequenceTextField bind:NSValueBinding toObject:self.entry.autotype withKeyPath:NSStringFromSelector(@selector(defaultKeystrokeSequence)) options:nil];
+    [_windowAssociationsController bind:NSContentArrayBinding toObject:self.entry.autotype withKeyPath:NSStringFromSelector(@selector(associations)) options:nil];
   }
   else {
     [self.enableAutotypeCheckButton unbind:NSValueBinding];
