@@ -897,6 +897,15 @@
 		4CFC8742179DFD3E000DFC03 /* KPKTestXmlLoading.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KPKTestXmlLoading.m; sourceTree = "<group>"; };
 		4CFDDDE7185E92A600A9E7F1 /* HNHTextView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HNHTextView.h; sourceTree = "<group>"; };
 		4CFDDDE8185E92A600A9E7F1 /* HNHTextView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HNHTextView.m; sourceTree = "<group>"; };
+		601F811118E016340028F3DE /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/GeneralSettings.strings"; sourceTree = "<group>"; };
+		601F811218E016340028F3DE /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/MainMenu.strings"; sourceTree = "<group>"; };
+		601F811318E016340028F3DE /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/PasswordInputView.strings"; sourceTree = "<group>"; };
+		601F811418E016340028F3DE /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/InspectorView.strings"; sourceTree = "<group>"; };
+		601F811818E016340028F3DE /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/Localizable.strings"; sourceTree = "<group>"; };
+		601F811918E016340028F3DE /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.rtf; name = "zh-Hans"; path = "zh-Hans.lproj/Credits.rtf"; sourceTree = "<group>"; };
+		601F811A18E016340028F3DE /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/InfoPlist.strings"; sourceTree = "<group>"; };
+		601F811B18E016340028F3DE /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/KPKLocalizeable.strings"; sourceTree = "<group>"; };
+		601F811C18E016340028F3DE /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/InfoPlist.strings"; sourceTree = "<group>"; };
 		6E719715172058BA00E4C5FC /* MPDatabaseVersion.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MPDatabaseVersion.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -1963,6 +1972,7 @@
 				de,
 				Base,
 				fr,
+				"zh-Hans",
 			);
 			mainGroup = 4C77E35715B84A240093A587;
 			productRefGroup = 4C77E36315B84A240093A587 /* Products */;
@@ -2363,6 +2373,7 @@
 			children = (
 				4C45FB22178E09ED0010007D /* en */,
 				4C5CD34417D158DE000B7F38 /* fr */,
+				601F811C18E016340028F3DE /* zh-Hans */,
 			);
 			name = InfoPlist.strings;
 			sourceTree = "<group>";
@@ -2373,6 +2384,7 @@
 				4C53A7A81864C3A1000DFF0D /* de */,
 				4C53A7A91864C3A2000DFF0D /* en */,
 				4C53A7AA1864C3A2000DFF0D /* fr */,
+				601F811B18E016340028F3DE /* zh-Hans */,
 			);
 			name = KPKLocalizeable.strings;
 			sourceTree = "<group>";
@@ -2384,6 +2396,7 @@
 				4CCA7EEC1797866F00B0B55E /* de */,
 				4CCA7EEE1797867200B0B55E /* en */,
 				4C5CD34517D158F5000B7F38 /* fr */,
+				601F811118E016340028F3DE /* zh-Hans */,
 			);
 			name = GeneralSettings.xib;
 			sourceTree = "<group>";
@@ -2395,6 +2408,7 @@
 				4C76156C1764C0CC0015A1A6 /* en */,
 				4C7615751764C4A40015A1A6 /* de */,
 				4C5CD34717D1591A000B7F38 /* fr */,
+				601F811318E016340028F3DE /* zh-Hans */,
 			);
 			name = PasswordInputView.xib;
 			sourceTree = "<group>";
@@ -2406,6 +2420,7 @@
 				4C5ADC2E17830AFB004E1E8D /* en */,
 				4C5ADC3017830B09004E1E8D /* de */,
 				4C5CD34817D15920000B7F38 /* fr */,
+				601F811418E016340028F3DE /* zh-Hans */,
 			);
 			name = InspectorView.xib;
 			sourceTree = "<group>";
@@ -2416,6 +2431,7 @@
 				4C77E37015B84A240093A587 /* en */,
 				4C7615791764C4A50015A1A6 /* de */,
 				4C5CD34217D158DE000B7F38 /* fr */,
+				601F811A18E016340028F3DE /* zh-Hans */,
 			);
 			name = InfoPlist.strings;
 			sourceTree = "<group>";
@@ -2426,6 +2442,7 @@
 				4C7615601764C05A0015A1A6 /* Base */,
 				4CAAFDD51787AED60013FCF9 /* en */,
 				4C5CD34617D15912000B7F38 /* fr */,
+				601F811218E016340028F3DE /* zh-Hans */,
 			);
 			name = MainMenu.xib;
 			sourceTree = "<group>";
@@ -2436,6 +2453,7 @@
 				4C888C8F16EB6C91003D34A1 /* en */,
 				4C7615771764C4A40015A1A6 /* de */,
 				4C5CD34017D158DE000B7F38 /* fr */,
+				601F811818E016340028F3DE /* zh-Hans */,
 			);
 			name = Localizable.strings;
 			sourceTree = "<group>";
@@ -2446,6 +2464,7 @@
 				4CB9339816D3A0DD00A13B5D /* en */,
 				4C7615781764C4A50015A1A6 /* de */,
 				4C5CD34117D158DE000B7F38 /* fr */,
+				601F811918E016340028F3DE /* zh-Hans */,
 			);
 			name = Credits.rtf;
 			sourceTree = "<group>";
