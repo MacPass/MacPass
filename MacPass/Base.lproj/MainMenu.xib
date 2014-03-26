@@ -112,6 +112,12 @@
                                 </connections>
                             </menuItem>
                             <menuItem isSeparatorItem="YES" id="FVA-Cn-g79"/>
+                            <menuItem title="Fix Autotype…" id="nx7-Vf-LiD">
+                                <modifierMask key="keyEquivalentModifierMask"/>
+                                <connections>
+                                    <action selector="fixAutotype:" target="-1" id="eVm-am-dL6"/>
+                                </connections>
+                            </menuItem>
                             <menuItem title="Quicklook" keyEquivalent="y" id="aVO-9F-Lwc">
                                 <connections>
                                     <action selector="toggleQuicklookPreview:" target="-1" id="LeI-cb-9vg"/>

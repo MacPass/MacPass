@@ -17,8 +17,8 @@
 
 @property (strong) IBOutlet NSWindow *matchSelectionWindow;
 @property (weak) IBOutlet NSPopUpButton *matchSelectionButton;
-@property (weak) IBOutlet NSButton *performAutotypeButton;
 
-- (void)exectureAutotypeForEntry:(KPKEntry *)entry withWindowTitle:(NSString *)title;
+- (IBAction)executeAutotypeWithSelectedMatch:(id)sender;
+- (IBAction)cancelAutotypeSelection:(id)sender;
 
 @end

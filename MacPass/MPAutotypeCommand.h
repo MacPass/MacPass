@@ -13,14 +13,23 @@
 /**
  *  The Autotype command reperesent a capsualted Action that was determined by interpreting
  *  Autotype field for a given entry. This is a class cluster and schould be considered the sole
- *  enty point for creating AutotypeCommands.
+ *  enty point for creating AutotypeCommands. You should never need to build a command on your own.
  */
 @interface MPAutotypeCommand : NSObject
 
 @property (readonly, strong) MPAutotypeContext *context;
 
-
+/**
+ *  Creates a command sequence for the given context. The context's keystroke sequence is
+ *  is evaluated (Placholders filled, references resolved) and the commands are created in the 
+ *  order of their execution
+ *
+ *  @param context the context to create the comamnds from.
+ *
+ *  @return NSArray of MPAutotypeCommand
+ */
 + (NSArray *)commandsForContext:(MPAutotypeContext *)context;
+
 /**
  *  Sends a KeyPress Event with the supplied modifier flags and Keycode
  *  Any existing modifiers will be disabled for this event. If the user
@@ -37,7 +46,7 @@
 - (void)sendPasteKeyCode;
 
 /**
- *  Exectues the Autotype Command. This will be called by the autotype daemon.
+ *  Exectues the Autotype Command.
  */
 - (void)execute;
 

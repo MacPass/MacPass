@@ -16,6 +16,8 @@
 		4C0728BD17B5B7F7005A7DD9 /* MPPasswordEditWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C0728BC17B5B7F7005A7DD9 /* MPPasswordEditWindowController.m */; };
 		4C0728BF17B68ED0005A7DD9 /* SavePanelAccessoryView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4C0728BE17B68ED0005A7DD9 /* SavePanelAccessoryView.xib */; };
 		4C08C3AE17B3022400BBBC95 /* KPKLegacyHeaderWriter.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C08C3AD17B3022400BBBC95 /* KPKLegacyHeaderWriter.m */; };
+		4C0B038C18E36DA400B9F9C9 /* MPFixAutotypeWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C0B038A18E36DA400B9F9C9 /* MPFixAutotypeWindowController.m */; };
+		4C0B038D18E36DA400B9F9C9 /* FixAutotypeWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4C0B038B18E36DA400B9F9C9 /* FixAutotypeWindow.xib */; };
 		4C0C59F118B17F10009C7B76 /* DDHotKeyUtilities.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C0C59EF18B17F10009C7B76 /* DDHotKeyUtilities.m */; };
 		4C0DD6C618B2A44700FCB193 /* AutotypeCandidateSelectionWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4C0DD6C518B2A44700FCB193 /* AutotypeCandidateSelectionWindow.xib */; };
 		4C0F647817B6B65E00D9522A /* MPSheetWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C0F647717B6B65E00D9522A /* MPSheetWindowController.m */; };
@@ -377,6 +379,9 @@
 		4C08C3AC17B3022400BBBC95 /* KPKLegacyHeaderWriter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KPKLegacyHeaderWriter.h; sourceTree = "<group>"; };
 		4C08C3AD17B3022400BBBC95 /* KPKLegacyHeaderWriter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KPKLegacyHeaderWriter.m; sourceTree = "<group>"; };
 		4C08C3AF17B3036500BBBC95 /* KPKLegacyFormat.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = KPKLegacyFormat.h; path = Format/KPKLegacyFormat.h; sourceTree = "<group>"; };
+		4C0B038918E36DA400B9F9C9 /* MPFixAutotypeWindowController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MPFixAutotypeWindowController.h; sourceTree = "<group>"; };
+		4C0B038A18E36DA400B9F9C9 /* MPFixAutotypeWindowController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MPFixAutotypeWindowController.m; sourceTree = "<group>"; };
+		4C0B038B18E36DA400B9F9C9 /* FixAutotypeWindow.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FixAutotypeWindow.xib; sourceTree = "<group>"; };
 		4C0C59EF18B17F10009C7B76 /* DDHotKeyUtilities.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DDHotKeyUtilities.m; path = DDHotKey/DDHotKeyUtilities.m; sourceTree = "<group>"; };
 		4C0C59F018B17F10009C7B76 /* DDHotKeyUtilities.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; name = DDHotKeyUtilities.h; path = DDHotKey/DDHotKeyUtilities.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
 		4C0DD6C518B2A44700FCB193 /* AutotypeCandidateSelectionWindow.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AutotypeCandidateSelectionWindow.xib; sourceTree = "<group>"; };
@@ -1879,6 +1884,8 @@
 				4CD5D704177A5F3300100649 /* MPDatabaseSettingsWindowController.m */,
 				4C0728BB17B5B7F7005A7DD9 /* MPPasswordEditWindowController.h */,
 				4C0728BC17B5B7F7005A7DD9 /* MPPasswordEditWindowController.m */,
+				4C0B038918E36DA400B9F9C9 /* MPFixAutotypeWindowController.h */,
+				4C0B038A18E36DA400B9F9C9 /* MPFixAutotypeWindowController.m */,
 			);
 			name = "Window Controller";
 			sourceTree = "<group>";
@@ -1895,6 +1902,7 @@
 		4CE8247216E2E99F00573141 /* Windows */ = {
 			isa = PBXGroup;
 			children = (
+				4C0B038B18E36DA400B9F9C9 /* FixAutotypeWindow.xib */,
 				4CA0B2EC15BCADAC00654E32 /* SettingsWindow.xib */,
 				4CD884B615BD47080042BBF8 /* DocumentWindow.xib */,
 				4C431BCE16E2BAB000700A81 /* OverlayWindow.xib */,
@@ -2153,6 +2161,7 @@
 				4C7ABA4917BAEC6700FF5799 /* 16_BrowserTemplate.pdf in Resources */,
 				4C7ABA4A17BAEC6700FF5799 /* 17_CDRomTemplate.pdf in Resources */,
 				4C7ABA4B17BAEC6700FF5799 /* 19_EmailTemplate.pdf in Resources */,
+				4C0B038D18E36DA400B9F9C9 /* FixAutotypeWindow.xib in Resources */,
 				4C0DD6C618B2A44700FCB193 /* AutotypeCandidateSelectionWindow.xib in Resources */,
 				4C7ABA4C17BAEC6700FF5799 /* 20_MiscTemplate.pdf in Resources */,
 				4C7ABA4E17BAEC7000FF5799 /* addEntryTemplate.pdf in Resources */,
@@ -2282,6 +2291,7 @@
 				4C245B7E176E1E3D0086100E /* MultipartMessageHeader.m in Sources */,
 				4C245B7F176E1E3D0086100E /* MultipartMessageHeaderField.m in Sources */,
 				4C245B80176E1E3D0086100E /* HTTPAsyncFileResponse.m in Sources */,
+				4C0B038C18E36DA400B9F9C9 /* MPFixAutotypeWindowController.m in Sources */,
 				4C245B81176E1E3D0086100E /* HTTPDataResponse.m in Sources */,
 				4C245B82176E1E3D0086100E /* HTTPDynamicFileResponse.m in Sources */,
 				4C245B83176E1E3D0086100E /* HTTPErrorResponse.m in Sources */,

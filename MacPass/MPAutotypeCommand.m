@@ -124,8 +124,7 @@
       }
       NSRange pasteRange = NSMakeRange(lastLocation, commandRange.location - lastLocation);
       if(pasteRange.length > 0) {
-        NSString *pasteValue = [context.evaluatedCommand substringWithRange:NSMakeRange(lastLocation, commandRange.location - lastLocation)];
-        // Determin if it's amodifier key, and collect them!
+        NSString *pasteValue = [context.evaluatedCommand substringWithRange:pasteRange];
         [self appendPasteCommandForContent:pasteValue toCommands:commands];
       }
     }
@@ -137,6 +136,15 @@
       collectedModifers = 0; // Reset the modifers;
     }
     lastLocation = commandRange.location + commandRange.length;
+  }
+  /* Collect any part that isn't a command or if onyl paste is used */
+  if(lastLocation < [context.evaluatedCommand length]) {
+    NSRange pasteRange = NSMakeRange(lastLocation, [context.evaluatedCommand length] - lastLocation);
+    if(pasteRange.length > 0) {
+      NSString *pasteValue = [context.evaluatedCommand substringWithRange:pasteRange];
+      [self appendPasteCommandForContent:pasteValue toCommands:commands];
+    }
+    
   }
   return commands;
 }

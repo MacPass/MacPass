@@ -35,6 +35,7 @@ FOUNDATION_EXTERN NSString *const MPDidChangeStoredKeyFilesSettings;
 - (IBAction)showPasswordCreator:(id)sender;
 - (IBAction)createNewDatabase:(id)sender;
 - (IBAction)openDatabase:(id)sender;
+- (IBAction)fixAutotype:(id)sender;
 /**
  *  Clears the stored key files for any documents.
  *  @param sender sender of this action

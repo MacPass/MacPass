@@ -66,7 +66,18 @@ NSString *const kMPApplciationNameKey = @"applicationName";
   [self _performAutotypeForContext:context];
 }
 
+- (void)cancelAutotypeSelection:(id)sender {
+  [self.matchSelectionWindow orderOut:sender];
+  if(self.lastFrontMostApplication) {
+    [MPAutotypeDaemon _orderApplicationToFront:self.lastFrontMostApplication];
+  }
+}
+
 - (void)_didPressHotKey {
+
+  /* Reset the applciation on every keypress */
+  self.lastFrontMostApplication = nil;
+  
   NSArray *documents = [NSApp orderedDocuments];
   MPDocument *currentDocument = nil;
   for(MPDocument *openDocument in documents) {
@@ -105,11 +116,11 @@ NSString *const kMPApplciationNameKey = @"applicationName";
   dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
     NSArray *commands = [MPAutotypeCommand commandsForContext:context];
     [MPAutotypeDaemon _orderApplicationToFront:self.lastFrontMostApplication];
-    usleep(1000*1000);
     BOOL lastCommandWasPaste = NO;
     for(MPAutotypeCommand *command in commands) {
       if(lastCommandWasPaste) {
-        usleep(500*1000);
+        NSLog(@"Sleeping for pasting!");
+        usleep(1000*1000);
       }
       [command execute];
       lastCommandWasPaste = [command isKindOfClass:[MPAutotypePaste class]];
@@ -153,22 +164,26 @@ NSString *const kMPApplciationNameKey = @"applicationName";
 - (void)_presentSelectionWindow:(NSArray *)candidates {
   if(!self.matchSelectionWindow) {
     [[NSBundle mainBundle] loadNibNamed:@"AutotypeCandidateSelectionWindow" owner:self topLevelObjects:nil];
-    [self.performAutotypeButton setTarget:self];
-    [self.performAutotypeButton setAction:@selector(executeAutotypeWithSelectedMatch:)];
     [self.matchSelectionWindow setLevel:NSFloatingWindowLevel];
   }
   NSMenu *associationMenu = [[NSMenu alloc] init];
   [associationMenu addItemWithTitle:NSLocalizedString(@"SELECT_AUTOTYPE_CANDIDATE", "") action:NULL keyEquivalent:@""];
   [associationMenu addItem:[NSMenuItem separatorItem]];
   [associationMenu setAutoenablesItems:NO];
-  NSString *entryMask = NSLocalizedString(@"TITLE_%@_USERNAME_%@_PASSWORD_%@_AUTOTYPE_SEQUENCE_%@", "Mask to create autotype entries for selection by the user. %1 Title %2 Username %3 Password %4 Sequence");
   for(MPAutotypeContext *context in candidates) {
-    NSString *title = [[NSString alloc] initWithFormat:entryMask, context.entry.title, context.entry.username, context.entry.password, context.command];
-    NSMenuItem *item = [[NSMenuItem alloc] initWithTitle:title action:0 keyEquivalent:@""];
+    NSMenuItem *item = [[NSMenuItem alloc] initWithTitle:context.entry.title action:0 keyEquivalent:@""];
     [item setRepresentedObject:context];
     [associationMenu addItem:item];
+    NSArray *attributes = @[ context.entry.username, context.command ];
+    for(NSString *value in attributes) {
+      NSMenuItem *valueItem  = [[NSMenuItem alloc] initWithTitle:value action:NULL keyEquivalent:@""];
+      [valueItem setIndentationLevel:1];
+      [valueItem setEnabled:NO];
+      [associationMenu addItem:valueItem];
+    }
   }
   [self.matchSelectionButton setMenu:associationMenu];
+  [NSApp activateIgnoringOtherApps:YES];
   [self.matchSelectionWindow makeKeyAndOrderFront:self];
   /* Setup Items in Popup */
 }
@@ -179,7 +194,7 @@ NSString *const kMPApplciationNameKey = @"applicationName";
   NSAppleScript *script = [[NSAppleScript alloc] initWithSource:appleScript];
   NSDictionary *error;
   NSAppleEventDescriptor *descriptor = [script executeAndReturnError:&error];
-  if(descriptor) {
+  if(!descriptor) {
     NSLog(@"Error trying to execure %@: %@", script, error);
   }
 }
