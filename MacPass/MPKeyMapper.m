@@ -61,7 +61,8 @@ uint16_t const kMPUnknownKeyCode = UINT16_MAX;
   static NSMutableDictionary *keyboardCodeDictionary;
   
   TISInputSourceRef currentKeyboard = TISCopyCurrentKeyboardInputSource();
-  NSString *localizedName = CFBridgingRelease(TISGetInputSourceProperty(currentKeyboard, kTISPropertyLocalizedName));
+  NSString *localizedName = (__bridge NSString *)TISGetInputSourceProperty(currentKeyboard, kTISPropertyLocalizedName);
+  CFRelease(currentKeyboard);
   
   if(keyboardCodeDictionary == nil) {
     /* Input source should not change that much while we are running */

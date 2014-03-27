@@ -149,7 +149,7 @@ NSString *const MPDidChangeStoredKeyFilesSettings = @"com.hicknhack.macpass.MPDi
   serverDaemon = [[MPServerDaemon alloc] init];
   lockDaemon = [[MPLockDaemon alloc] init];
   autotypeDaemon = [[MPAutotypeDaemon alloc] init];
-  dockTileHelper = [[MPDockTileHelper alloc] init];
+  //dockTileHelper = [[MPDockTileHelper alloc] init];
 }
 
 - (NSString *)applicationName {
