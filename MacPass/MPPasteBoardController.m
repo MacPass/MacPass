@@ -11,7 +11,7 @@
 
 /* Notifications */
 NSString *const MPPasteBoardControllerDidCopyObjects    = @"com.hicknhack.macpass.MPPasteBoardControllerDidCopyObjects";
-NSString *const MPPasteBoardControllerDidClearClipboard = @"com.hicknhack.macpass.MPPasteBoardControllerDidCopyObjects";
+NSString *const MPPasteBoardControllerDidClearClipboard = @"com.hicknhack.macpass.MPPasteBoardControllerDidClearClipboard";
 
 @interface MPPasteBoardController ()
 
@@ -73,7 +73,6 @@ NSString *const MPPasteBoardControllerDidClearClipboard = @"com.hicknhack.macpas
 }
 
 - (void)copyObjects:(NSArray *)objects {
-  NSLog(@"ShoudlCopy %@", objects);
   /* Should we save the old content ?*/
   [[NSPasteboard generalPasteboard] clearContents];
   [[NSPasteboard generalPasteboard] writeObjects:objects];
@@ -96,9 +95,9 @@ NSString *const MPPasteBoardControllerDidClearClipboard = @"com.hicknhack.macpas
 - (void)_setupBindings {
   NSUserDefaultsController *userDefaultsController = [NSUserDefaultsController sharedUserDefaultsController];
   NSString *clearOnShutdownKeyPath = [NSString stringWithFormat:@"values.%@", kMPSettingsKeyClearPasteboardOnQuit];
+  [self bind:NSStringFromSelector(@selector(clearPasteboardOnShutdown)) toObject:userDefaultsController withKeyPath:clearOnShutdownKeyPath options:nil];
   NSString *clearTimoutKeyPath = [NSString stringWithFormat:@"values.%@", kMPSettingsKeyPasteboardClearTimeout];
-  [self bind:@"clearPasteboardOnShutdown" toObject:userDefaultsController withKeyPath:clearOnShutdownKeyPath options:nil];
-  [self bind:@"clearTimeout" toObject:userDefaultsController withKeyPath:clearTimoutKeyPath options:nil];
+  [self bind:NSStringFromSelector(@selector(clearTimeout)) toObject:userDefaultsController withKeyPath:clearTimoutKeyPath options:nil];
 }
 
 @end

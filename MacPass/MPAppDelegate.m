@@ -32,6 +32,7 @@
 #import "MPAutotypeDaemon.h"
 #import "MPDocumentWindowController.h"
 #import "MPFixAutotypeWindowController.h"
+#import "MPDockTileHelper.h"
 
 #import "MPTemporaryFileStorageCenter.h"
 
@@ -45,6 +46,7 @@ NSString *const MPDidChangeStoredKeyFilesSettings = @"com.hicknhack.macpass.MPDi
   MPServerDaemon *serverDaemon;
   MPLockDaemon *lockDaemon;
   MPAutotypeDaemon *autotypeDaemon;
+  MPDockTileHelper *dockTileHelper;
   BOOL _shouldOpenFile; // YES if app was started to open a
 }
 
@@ -147,6 +149,7 @@ NSString *const MPDidChangeStoredKeyFilesSettings = @"com.hicknhack.macpass.MPDi
   serverDaemon = [[MPServerDaemon alloc] init];
   lockDaemon = [[MPLockDaemon alloc] init];
   autotypeDaemon = [[MPAutotypeDaemon alloc] init];
+  dockTileHelper = [[MPDockTileHelper alloc] init];
 }
 
 - (NSString *)applicationName {

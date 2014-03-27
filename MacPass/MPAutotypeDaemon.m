@@ -29,11 +29,15 @@ NSString *const kMPApplciationNameKey = @"applicationName";
 @interface MPAutotypeDaemon ()
 
 @property (nonatomic, assign) BOOL enabled;
-@property (copy) NSString *lastFrontMostApplication;
+@property (copy) NSString *targetApplicationName;
+@property (copy) NSString *targetWindowTitle;
 
 @end
 
 @implementation MPAutotypeDaemon
+
+#pragma mark -
+#pragma mark Lifecylce
 
 - (id)init {
   self = [super init];
@@ -51,13 +55,18 @@ NSString *const kMPApplciationNameKey = @"applicationName";
   [self unbind:@"enabled"];
 }
 
+#pragma mark -
 #pragma mark Properties
+
 - (void)setEnabled:(BOOL)enabled {
   if(_enabled != enabled) {
     _enabled = enabled;
     self.enabled ? [self _registerHotKey] : [self _unregisterHotKey];
   }
 }
+
+#pragma mark -
+#pragma mark Actions
 
 - (void)executeAutotypeWithSelectedMatch:(id)sender {
   NSMenuItem *item = [self.matchSelectionButton selectedItem];
@@ -68,16 +77,33 @@ NSString *const kMPApplciationNameKey = @"applicationName";
 
 - (void)cancelAutotypeSelection:(id)sender {
   [self.matchSelectionWindow orderOut:sender];
-  if(self.lastFrontMostApplication) {
-    [MPAutotypeDaemon _orderApplicationToFront:self.lastFrontMostApplication];
+  if(self.targetApplicationName) {
+    [MPAutotypeDaemon _orderApplicationToFront:self.targetApplicationName];
   }
 }
 
-- (void)_didPressHotKey {
+#pragma mark -
+#pragma mark Hotkey evaluation
 
-  /* Reset the applciation on every keypress */
-  self.lastFrontMostApplication = nil;
-  
+- (void)_didPressHotKey {
+  [self _performAutotypeUsingCurrentWindowAndApplication:YES];
+}
+
+- (void)_performAutotypeUsingCurrentWindowAndApplication:(BOOL)useCurrentWindowAndApplication {
+  if(useCurrentWindowAndApplication) {
+    [self _updateTargetApplicationAndWindow];
+  }
+ 
+  MPDocument *document = [self _findAutotypeDocument];
+  if(!document) {
+    return; // nothing to do
+  }
+
+  MPAutotypeContext *context = [self _autotypeContextInDocument:document forWindowTitle:self.targetWindowTitle];
+  [self _performAutotypeForContext:context];
+}
+
+- (MPDocument *)_findAutotypeDocument {
   NSArray *documents = [NSApp orderedDocuments];
   MPDocument *currentDocument = nil;
   for(MPDocument *openDocument in documents) {
@@ -86,40 +112,42 @@ NSString *const kMPApplciationNameKey = @"applicationName";
       break;
     }
   }
-  if(!currentDocument) {
-    return; // No need to search in closed documents
+  BOOL hasOpenDocuments = [documents count] > 0;
+  if(!currentDocument && hasOpenDocuments) {
+    [NSApp activateIgnoringOtherApps:YES];
+    [[NSApp mainWindow] makeKeyAndOrderFront:self];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(_didUnlockDatabase:) name:MPDocumentDidUnlockDatabaseNotification object:nil];
   }
-  /*
-   Determine the window title of  the current front most application
-   Start searching the db for the best fit (based on title, then on window associations
-   */
-  NSDictionary *frontApplicationInfoDict = [self _frontMostApplicationInfoDict];
-  NSString *windowTitle = frontApplicationInfoDict[kMPWindowTitleKey];
-  self.lastFrontMostApplication = frontApplicationInfoDict[kMPApplciationNameKey];  
+  return currentDocument;
+}
+
+- (MPAutotypeContext *)_autotypeContextInDocument:(MPDocument *)document forWindowTitle:(NSString *)windowTitle {
   /*
    Query the document to generate a autotype command list for the window title
    We do not care where this came form, just get the autotype commands
    */
-  NSArray *autotypeCandidates = [currentDocument autotypContextsForWindowTitle:windowTitle];
-  NSInteger candiates = [autotypeCandidates count];
-  if(candiates == 0) {
-    return; // No Entries found.
+  NSArray *autotypeCandidates = [document autotypContextsForWindowTitle:windowTitle];
+  NSUInteger candidates = [autotypeCandidates count];
+  if(candidates == 0) {
+    return nil;
   }
-  if(candiates > 1) {
-    [self _presentSelectionWindow:autotypeCandidates];
-    return; // Nothing to do, we get called back by the window
+  if(candidates == 1 ) {
+    return  [autotypeCandidates lastObject];
   }
-  [self _performAutotypeForContext:autotypeCandidates[0]];
+  [self _presentSelectionWindow:autotypeCandidates];
+  return nil; // Nothing to do, we get called back by the window
 }
 
 - (void)_performAutotypeForContext:(MPAutotypeContext *)context {
+  if(nil == context) {
+    return; // No context to work with
+  }
   dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
     NSArray *commands = [MPAutotypeCommand commandsForContext:context];
-    [MPAutotypeDaemon _orderApplicationToFront:self.lastFrontMostApplication];
+    [MPAutotypeDaemon _orderApplicationToFront:self.targetApplicationName];
     BOOL lastCommandWasPaste = NO;
     for(MPAutotypeCommand *command in commands) {
       if(lastCommandWasPaste) {
-        NSLog(@"Sleeping for pasting!");
         usleep(1000*1000);
       }
       [command execute];
@@ -127,6 +155,9 @@ NSString *const kMPApplciationNameKey = @"applicationName";
     }
   });
 }
+
+#pragma mark -
+#pragma mark Hotkey Registration
 
 - (void)_registerHotKey {
   [[DDHotKeyCenter sharedHotKeyCenter] registerHotKeyWithKeyCode:kVK_ANSI_M
@@ -188,6 +219,17 @@ NSString *const kMPApplciationNameKey = @"applicationName";
   /* Setup Items in Popup */
 }
 
+#pragma mark -
+#pragma mark MPDocument Notifications
+
+- (void)_didUnlockDatabase:(NSNotification *)notification {
+  [[NSNotificationCenter defaultCenter] removeObserver:self];
+  [self _performAutotypeUsingCurrentWindowAndApplication:NO];
+}
+
+#pragma mark -
+#pragma mark Application information
+
 + (void)_orderApplicationToFront:(NSString *)applicationName {
   //NSLog(@"Moving %@ to the front.", applicationName);
   NSString *appleScript = [[NSString alloc] initWithFormat:@"activate application \"%@\"", applicationName];
@@ -199,5 +241,14 @@ NSString *const kMPApplciationNameKey = @"applicationName";
   }
 }
 
+- (void)_updateTargetApplicationAndWindow {
+  /*
+   Determine the window title of  the current front most application
+   Start searching the db for the best fit (based on title, then on window associations
+   */
+  NSDictionary *frontApplicationInfoDict = [self _frontMostApplicationInfoDict];
+  self.targetApplicationName = frontApplicationInfoDict[kMPApplciationNameKey];
+  self.targetWindowTitle = frontApplicationInfoDict[kMPWindowTitleKey];
+}
 
 @end

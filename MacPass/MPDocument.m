@@ -262,6 +262,7 @@ NSString *const MPDocumentGroupKey                        = @"MPDocumentGroupKey
   /* Locking needs to be lossless hence just use the XML format */
   _encryptedData = [self.tree encryptWithPassword:self.compositeKey forVersion:KPKXmlVersion error:&error];
   self.tree = nil;
+  [[NSNotificationCenter defaultCenter] postNotificationName:MPDocumentDidLockDatabaseNotification object:self];
 }
 
 - (BOOL)unlockWithPassword:(NSString *)password keyFileURL:(NSURL *)keyFileURL error:(NSError *__autoreleasing*)error{
@@ -279,6 +280,9 @@ NSString *const MPDocumentGroupKey                        = @"MPDocumentGroupKey
   }
   else {
     self.compositeKey = nil; // clear the key?
+  }
+  if(isUnlocked) {
+    [[NSNotificationCenter defaultCenter] postNotificationName:MPDocumentDidUnlockDatabaseNotification object:self];
   }
   return isUnlocked;
 }

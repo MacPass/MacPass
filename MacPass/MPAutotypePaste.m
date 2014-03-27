@@ -28,7 +28,6 @@
 }
 
 - (void)execute {
-  [NSThread isMainThread] ? NSLog(@"MainThread") : NSLog(@"NonMainThread");
   if([self.pasteData length] > 0) {
     MPPasteBoardController *controller = [MPPasteBoardController defaultController];
     [controller copyObjects:@[self.pasteData]];
