@@ -13,6 +13,10 @@
 #import "KPKGroup.h"
 #import "KPKAutotype.h"
 
+NSString *const kMPAutotypeCell = @"AutotypeCell";
+NSString *const kMPTitleCell = @"TitleCell";
+NSString *const kMPIsDefaultCell = @"IsDefaultCell";
+
 @interface KPKGroup (Breadcrumb)
 
 - (NSString *)breadcrumb;
@@ -33,8 +37,6 @@
 @interface MPFixAutotypeWindowController () {
   NSMutableArray *_elements;
 }
-
-@property (weak) NSTableView *tableView;
 
 @end
 
@@ -61,33 +63,52 @@
   [self.tableView reloadData];
 }
 
+
+#pragma mark -
+#pragma mark Actions
+
+- (void)clearAutotype:(id)sender {
+  
+  MPDocument *document = [self document];
+  [[document undoManager] beginUndoGrouping];
+  NSIndexSet *indexes = [self.tableView selectedRowIndexes];
+  MPFixAutotypeWindowController __weak *weakSelf = self;
+  [indexes enumerateIndexesUsingBlock:^(NSUInteger idx, BOOL *stop) {
+    id item = [weakSelf entriesAndGroups][idx];
+    if([item respondsToSelector:@selector(defaultAutoTypeSequence)]) {
+      [item setDefaultAutoTypeSequence:nil];
+    }
+    else {
+      [item autotype].defaultKeystrokeSequence = nil;
+    }
+  }];
+  [[document undoManager] endUndoGrouping];
+  [[document undoManager] setActionName:@"Clear Autotype"];
+  [self.tableView reloadDataForRowIndexes:indexes columnIndexes:[NSIndexSet indexSetWithIndexesInRange:NSMakeRange(0,2)]];
+}
+
 #pragma mark -
 #pragma mark NSTableViewDataSource
 
 - (NSInteger)numberOfRowsInTableView:(NSTableView *)tableView {
-  
-  self.tableView = tableView;
-  
   return [[self entriesAndGroups] count];
 }
 
 - (id)tableView:(NSTableView *)tableView objectValueForTableColumn:(NSTableColumn *)tableColumn row:(NSInteger)row {
-  
-  self.tableView = tableView;
   id node = [self entriesAndGroups][row];
-  if([[tableColumn identifier] isEqualToString:@"TitleCell"]) {
+  if([[tableColumn identifier] isEqualToString:kMPTitleCell]) {
     if( [node respondsToSelector:@selector(title)]) {
       return [node title];
     }
     return [node breadcrumb];
   }
-  else if ([[tableColumn identifier] isEqualToString:@"AutotypeCell"]) {
+  else if ([[tableColumn identifier] isEqualToString:kMPAutotypeCell]) {
     if([node respondsToSelector:@selector(defaultAutoTypeSequence)]) {
       return [node defaultAutoTypeSequence];
     }
     return [[node autotype] defaultKeystrokeSequence];
   }
-  else if([[tableColumn identifier] isEqualToString:@"IsDefaultCell"]) {
+  else if([[tableColumn identifier] isEqualToString:kMPIsDefaultCell]) {
     BOOL isDefault = NO;
     if([node respondsToSelector:@selector(hasDefaultAutotypeSequence)]) {
       isDefault = [node hasDefaultAutotypeSequence];
@@ -100,8 +121,23 @@
   return nil;
 }
 
+
+- (void)tableView:(NSTableView *)tableView setObjectValue:(id)object forTableColumn:(NSTableColumn *)tableColumn row:(NSInteger)row {
+  id item = [self entriesAndGroups][row];
+  if([item respondsToSelector:@selector(defaultAutoTypeSequence)]) {
+    [item setDefaultAutoTypeSequence:object];
+  }
+  else {
+    [[item autotype] setDefaultKeystrokeSequence:object];
+  }
+}
+
 #pragma mark -
 #pragma mark NSTableViewDelegate
+
+- (BOOL)tableView:(NSTableView *)tableView shouldEditTableColumn:(NSTableColumn *)tableColumn row:(NSInteger)row {
+  return [[tableColumn identifier] isEqualToString:kMPAutotypeCell];
+}
 
 - (BOOL)tableView:(NSTableView *)tableView isGroupRow:(NSInteger)row {
   id item = [self entriesAndGroups][row];
@@ -113,15 +149,9 @@
 
 - (NSArray *)entriesAndGroups {
   if(nil == _elements) {
-    NSArray *documents = [[NSDocumentController sharedDocumentController] documents];
     _elements = [[NSMutableArray alloc] init];
-    for(MPDocument *document in documents) {
-      if(!document.root) {
-        continue;
-      }
-      KPKGroup *group = document.root;
-      [self flattenGroup:group toArray:_elements];
-    }
+    MPDocument *document = [self document];
+    [self flattenGroup:document.root toArray:_elements];
   }
   return _elements;
 }

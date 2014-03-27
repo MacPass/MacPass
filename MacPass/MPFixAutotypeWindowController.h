@@ -8,7 +8,18 @@
 
 #import <Cocoa/Cocoa.h>
 
+@class MPDocument;
+
 @interface MPFixAutotypeWindowController : NSWindowController <NSTableViewDataSource, NSTableViewDelegate>
+
+@property (weak) IBOutlet NSTableView *tableView;
+
+/**
+ *  Clears the autotype sequences for the selected entries
+ *
+ *  @param sender sender of the action
+ */
+- (IBAction)clearAutotype:(id)sender;
 
 - (void)reset;
 

@@ -45,7 +45,6 @@ NSString *const MPDidChangeStoredKeyFilesSettings = @"com.hicknhack.macpass.MPDi
   MPServerDaemon *serverDaemon;
   MPLockDaemon *lockDaemon;
   MPAutotypeDaemon *autotypeDaemon;
-  BOOL _restoredWindows; // YES if windows where restored at launch
   BOOL _shouldOpenFile; // YES if app was started to open a
 }
 
@@ -65,7 +64,7 @@ NSString *const MPDidChangeStoredKeyFilesSettings = @"com.hicknhack.macpass.MPDi
 }
 
 - (void)dealloc {
-  [self unbind:@"isAllowedToStoreKeyFile"];
+  [self unbind:NSStringFromSelector(@selector(isAllowedToStoreKeyFile))];
   [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
 
@@ -88,7 +87,7 @@ NSString *const MPDidChangeStoredKeyFilesSettings = @"com.hicknhack.macpass.MPDi
   [[self.saveMenuItem menu] setDelegate:self];
   
   /* We want to inform anyone about the changes to keyFile remmebering */
-  [self bind:@"isAllowedToStoreKeyFile"
+  [self bind:NSStringFromSelector(@selector(isAllowedToStoreKeyFile))
     toObject:[NSUserDefaultsController sharedUserDefaultsController]
  withKeyPath:[MPSettingsHelper defaultControllerPathForKey:kMPSettingsKeyRememberKeyFilesForDatabases]
      options:nil];
@@ -117,7 +116,6 @@ NSString *const MPDidChangeStoredKeyFilesSettings = @"com.hicknhack.macpass.MPDi
 
 
 - (void)applicationWillFinishLaunching:(NSNotification *)notification {
-  _restoredWindows = NO;
   _shouldOpenFile = NO;
   [[NSNotificationCenter defaultCenter] addObserver:self
                                            selector:@selector(_applicationDidFinishRestoringWindows:)
@@ -149,15 +147,6 @@ NSString *const MPDidChangeStoredKeyFilesSettings = @"com.hicknhack.macpass.MPDi
   serverDaemon = [[MPServerDaemon alloc] init];
   lockDaemon = [[MPLockDaemon alloc] init];
   autotypeDaemon = [[MPAutotypeDaemon alloc] init];
-  
-  BOOL reopen = [[NSUserDefaults standardUserDefaults] boolForKey:kMPSettingsKeyReopenLastDatabaseOnLaunch];
-  BOOL showWelcomeScreen = !_restoredWindows && !_shouldOpenFile;
-  if(reopen && !_restoredWindows && !_shouldOpenFile) {
-    showWelcomeScreen = ![self _reopenLastDocument];
-  }
-  if(showWelcomeScreen) {
-    [self _showWelcomeWindow];
-  }
 }
 
 - (NSString *)applicationName {
@@ -226,6 +215,7 @@ NSString *const MPDidChangeStoredKeyFilesSettings = @"com.hicknhack.macpass.MPDi
     self.fixAutotypeWindowController = [[MPFixAutotypeWindowController alloc] init];
   }
   [self.fixAutotypeWindowController reset];
+  [self.fixAutotypeWindowController setDocument:[[NSDocumentController sharedDocumentController] currentDocument]];
   [[self.fixAutotypeWindowController window] makeKeyAndOrderFront:sender];
 }
 
@@ -234,7 +224,16 @@ NSString *const MPDidChangeStoredKeyFilesSettings = @"com.hicknhack.macpass.MPDi
 - (void)_applicationDidFinishRestoringWindows:(NSNotification *)notification {
   NSDocumentController *documentController = [NSDocumentController sharedDocumentController];
   NSArray *documents = [documentController documents];
-  _restoredWindows = [documents count] > 0;
+  BOOL restoredWindows = [documents count] > 0;
+  
+  BOOL reopen = [[NSUserDefaults standardUserDefaults] boolForKey:kMPSettingsKeyReopenLastDatabaseOnLaunch];
+  BOOL showWelcomeScreen = !restoredWindows && !_shouldOpenFile;
+  if(reopen && !restoredWindows && !_shouldOpenFile) {
+    showWelcomeScreen = ![self _reopenLastDocument];
+  }
+  if(showWelcomeScreen) {
+    [self _showWelcomeWindow];
+  }
 }
 
 - (void)_showWelcomeWindow {
