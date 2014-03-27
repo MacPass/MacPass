@@ -20,6 +20,7 @@
 #import "MPConstants.h"
 #import "MPSettingsHelper.h"
 #import "MPDocumentWindowDelegate.h"
+#import "MPFixAutotypeWindowController.h"
 
 #import "MPContextToolbarButton.h"
 #import "KPKTree.h"
@@ -48,6 +49,7 @@ typedef void (^MPPasswordChangedBlock)(void);
 @property (strong) MPDocumentWindowDelegate *documentWindowDelegate;
 @property (strong) MPPasswordEditWindowController *passwordEditWindowController;
 @property (strong) MPToolbarDelegate *toolbarDelegate;
+@property (strong) MPFixAutotypeWindowController *fixAutotypeWindowController;
 
 @property (nonatomic, copy) MPPasswordChangedBlock passwordChangedBlock;
 
@@ -236,6 +238,14 @@ typedef void (^MPPasswordChangedBlock)(void);
       [self.outlineViewController showOutline];
     }
   }];
+}
+
+- (void)fixAutotype:(id)sender {
+  if(!self.fixAutotypeWindowController) {
+    self.fixAutotypeWindowController = [[MPFixAutotypeWindowController alloc] init];
+  }
+  self.fixAutotypeWindowController.workingDocument = [self document];
+  [[self.fixAutotypeWindowController window] makeKeyAndOrderFront:sender];
 }
 
 - (void)showPasswordInput {

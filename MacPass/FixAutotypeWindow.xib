@@ -16,27 +16,27 @@
         <window title="Fix Autotype" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" oneShot="NO" releasedWhenClosed="NO" visibleAtLaunch="NO" animationBehavior="default" id="F0z-JX-Cv5">
             <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES" resizable="YES"/>
             <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
-            <rect key="contentRect" x="196" y="240" width="419" height="490"/>
-            <rect key="screenRect" x="0.0" y="0.0" width="1680" height="1028"/>
+            <rect key="contentRect" x="196" y="240" width="655" height="630"/>
+            <rect key="screenRect" x="0.0" y="0.0" width="2560" height="1418"/>
             <view key="contentView" id="se5-gp-TjO">
-                <rect key="frame" x="0.0" y="0.0" width="419" height="490"/>
+                <rect key="frame" x="0.0" y="0.0" width="655" height="630"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <scrollView autohidesScrollers="YES" horizontalLineScroll="19" horizontalPageScroll="10" verticalLineScroll="19" verticalPageScroll="10" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="y73-eV-Aoo">
-                        <rect key="frame" x="20" y="61" width="379" height="409"/>
+                        <rect key="frame" x="20" y="61" width="615" height="456"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                         <clipView key="contentView" id="Phq-Ux-7lP">
-                            <rect key="frame" x="1" y="17" width="377" height="391"/>
+                            <rect key="frame" x="1" y="17" width="613" height="438"/>
                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                             <subviews>
                                 <tableView verticalHuggingPriority="750" allowsExpansionToolTips="YES" columnAutoresizingStyle="lastColumnOnly" alternatingRowBackgroundColors="YES" columnReordering="NO" autosaveColumns="NO" typeSelect="NO" headerView="wul-lK-g0n" id="nVa-6i-9j2">
-                                    <rect key="frame" x="0.0" y="0.0" width="377" height="391"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="613" height="438"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <size key="intercellSpacing" width="3" height="2"/>
                                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                     <color key="gridColor" name="gridColor" catalog="System" colorSpace="catalog"/>
                                     <tableColumns>
-                                        <tableColumn identifier="TitleCell" width="116" minWidth="40" maxWidth="1000" id="Khy-1d-ouB">
+                                        <tableColumn identifier="TitleCell" width="213.56640625" minWidth="40" maxWidth="1000" id="Khy-1d-ouB">
                                             <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border" alignment="left" title="Title">
                                                 <font key="font" metaFont="smallSystem"/>
                                                 <color key="textColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>
@@ -49,7 +49,7 @@
                                             </textFieldCell>
                                             <tableColumnResizingMask key="resizingMask" resizeWithTable="YES" userResizable="YES"/>
                                         </tableColumn>
-                                        <tableColumn identifier="AutotypeCell" width="144.35546875" minWidth="40" maxWidth="1000" id="zVR-Xo-8oY">
+                                        <tableColumn identifier="AutotypeCell" width="246.828125" minWidth="40" maxWidth="1000" id="zVR-Xo-8oY">
                                             <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border" alignment="left" title="Keystroke Sequence">
                                                 <font key="font" metaFont="smallSystem"/>
                                                 <color key="textColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>
@@ -62,7 +62,7 @@
                                             </textFieldCell>
                                             <tableColumnResizingMask key="resizingMask" resizeWithTable="YES" userResizable="YES"/>
                                         </tableColumn>
-                                        <tableColumn identifier="IsDefaultCell" width="107.5" minWidth="10" maxWidth="3.4028234663852886e+38" id="0uz-Re-mk3">
+                                        <tableColumn identifier="IsDefaultCell" width="143" minWidth="10" maxWidth="3.4028234663852886e+38" id="0uz-Re-mk3">
                                             <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border" alignment="left" title="Is default">
                                                 <font key="font" metaFont="smallSystem"/>
                                                 <color key="textColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>
@@ -85,31 +85,34 @@
                             <color key="backgroundColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
                         </clipView>
                         <scroller key="horizontalScroller" hidden="YES" verticalHuggingPriority="750" horizontal="YES" id="UGM-Rv-JzB">
-                            <rect key="frame" x="1" y="391" width="515" height="16"/>
+                            <rect key="frame" x="1" y="346" width="467" height="16"/>
                             <autoresizingMask key="autoresizingMask"/>
                         </scroller>
-                        <scroller key="verticalScroller" hidden="YES" verticalHuggingPriority="750" doubleValue="1" horizontal="NO" id="W8o-DQ-iiR">
-                            <rect key="frame" x="-15" y="17" width="16" height="0.0"/>
+                        <scroller key="verticalScroller" hidden="YES" verticalHuggingPriority="750" horizontal="NO" id="W8o-DQ-iiR">
+                            <rect key="frame" x="581" y="17" width="16" height="0.0"/>
                             <autoresizingMask key="autoresizingMask"/>
                         </scroller>
                         <tableHeaderView key="headerView" id="wul-lK-g0n">
-                            <rect key="frame" x="0.0" y="0.0" width="377" height="17"/>
+                            <rect key="frame" x="0.0" y="0.0" width="613" height="17"/>
                             <autoresizingMask key="autoresizingMask"/>
                         </tableHeaderView>
                     </scrollView>
                     <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="2Ui-5h-uFs">
-                        <rect key="frame" x="271" y="13" width="134" height="32"/>
+                        <rect key="frame" x="507" y="13" width="134" height="32"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                         <buttonCell key="cell" type="push" title="Clear Autotype" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="sGh-Ec-oIL">
                             <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                             <font key="font" metaFont="system"/>
+                            <string key="keyEquivalent" base64-UTF8="YES">
+DQ
+</string>
                         </buttonCell>
                         <connections>
                             <action selector="clearAutotype:" target="-2" id="ePc-iQ-f9g"/>
                         </connections>
                     </button>
                     <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="iZd-HT-6CT">
-                        <rect key="frame" x="189" y="13" width="82" height="32"/>
+                        <rect key="frame" x="425" y="13" width="82" height="32"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                         <buttonCell key="cell" type="push" title="Cancel" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="KhL-Mg-BJ7">
                             <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
@@ -122,15 +125,29 @@ Gw
                             <action selector="orderOut:" target="-1" id="BWI-LN-m2J"/>
                         </connections>
                     </button>
+                    <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" setsMaxLayoutWidthAtFirstLayout="YES" translatesAutoresizingMaskIntoConstraints="NO" id="8tc-oM-VP4">
+                        <rect key="frame" x="18" y="540" width="619" height="70"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                        <textFieldCell key="cell" sendsActionOnEndEditing="YES" allowsEditingTextAttributes="YES" id="quD-MA-fPt">
+                            <font key="font" metaFont="smallSystem"/>
+                            <string key="title">Below is a list of all entries, groups and window associations for the database. Normally you should see most of the entries marked as default (YES) and with a keystroke sequence {USERNAME}{TAB}{ENTER}. If the sequence however is {TAB}{USERNAME}{TAB}{ENTER} and default is NO it's highly likely that MacPass (0.4 or 0.4.1) did fuck this up.
+To fix this, you can select entries and clear their sequence. You may also customize any sequence to your liking. Inputs are NOT validated.</string>
+                            <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
+                            <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                        </textFieldCell>
+                    </textField>
                 </subviews>
                 <constraints>
                     <constraint firstAttribute="trailing" secondItem="2Ui-5h-uFs" secondAttribute="trailing" constant="20" id="Enl-NU-6sz"/>
+                    <constraint firstAttribute="trailing" secondItem="8tc-oM-VP4" secondAttribute="trailing" constant="20" id="FWG-XF-hF9"/>
                     <constraint firstItem="2Ui-5h-uFs" firstAttribute="leading" secondItem="iZd-HT-6CT" secondAttribute="trailing" constant="12" id="K5O-HW-msJ"/>
                     <constraint firstAttribute="bottom" secondItem="2Ui-5h-uFs" secondAttribute="bottom" constant="20" id="Lfc-Fq-4IC"/>
+                    <constraint firstItem="8tc-oM-VP4" firstAttribute="top" secondItem="se5-gp-TjO" secondAttribute="top" constant="20" id="WNW-Xe-7ol"/>
                     <constraint firstItem="iZd-HT-6CT" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="se5-gp-TjO" secondAttribute="leading" constant="20" symbolic="YES" id="cQL-6C-Wam"/>
                     <constraint firstAttribute="trailing" secondItem="y73-eV-Aoo" secondAttribute="trailing" constant="20" id="eEP-Dv-Nxs"/>
-                    <constraint firstItem="y73-eV-Aoo" firstAttribute="top" secondItem="se5-gp-TjO" secondAttribute="top" constant="20" id="eTt-c8-ztu"/>
                     <constraint firstItem="iZd-HT-6CT" firstAttribute="centerY" secondItem="2Ui-5h-uFs" secondAttribute="centerY" id="fi6-45-S3y"/>
+                    <constraint firstItem="8tc-oM-VP4" firstAttribute="leading" secondItem="se5-gp-TjO" secondAttribute="leading" constant="20" id="g7S-IX-9b9"/>
+                    <constraint firstItem="y73-eV-Aoo" firstAttribute="top" secondItem="8tc-oM-VP4" secondAttribute="bottom" constant="23" id="gbK-21-VBE"/>
                     <constraint firstItem="y73-eV-Aoo" firstAttribute="leading" secondItem="se5-gp-TjO" secondAttribute="leading" constant="20" id="mkc-Fr-gJM"/>
                     <constraint firstItem="2Ui-5h-uFs" firstAttribute="top" secondItem="y73-eV-Aoo" secondAttribute="bottom" constant="20" id="xpf-JP-jIQ"/>
                 </constraints>

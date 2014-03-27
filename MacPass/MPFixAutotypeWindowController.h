@@ -13,6 +13,7 @@
 @interface MPFixAutotypeWindowController : NSWindowController <NSTableViewDataSource, NSTableViewDelegate>
 
 @property (weak) IBOutlet NSTableView *tableView;
+@property (nonatomic, weak) MPDocument *workingDocument;
 
 /**
  *  Clears the autotype sequences for the selected entries
@@ -20,7 +21,5 @@
  *  @param sender sender of the action
  */
 - (IBAction)clearAutotype:(id)sender;
-
-- (void)reset;
 
 @end

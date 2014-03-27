@@ -31,7 +31,6 @@
 #import "MPLockDaemon.h"
 #import "MPAutotypeDaemon.h"
 #import "MPDocumentWindowController.h"
-#import "MPFixAutotypeWindowController.h"
 #import "MPDockTileHelper.h"
 
 #import "MPTemporaryFileStorageCenter.h"
@@ -52,7 +51,6 @@ NSString *const MPDidChangeStoredKeyFilesSettings = @"com.hicknhack.macpass.MPDi
 
 @property (strong, nonatomic) MPSettingsWindowController *settingsController;
 @property (strong, nonatomic) MPPasswordCreatorViewController *passwordCreatorController;
-@property (strong) MPFixAutotypeWindowController *fixAutotypeWindowController;
 
 @end
 
@@ -213,14 +211,6 @@ NSString *const MPDidChangeStoredKeyFilesSettings = @"com.hicknhack.macpass.MPDi
   [[NSUserDefaults standardUserDefaults] removeObjectForKey:kMPSettingsKeyRememeberdKeysForDatabases];
 }
 
-- (void)fixAutotype:(id)sender {
-  if(!self.fixAutotypeWindowController) {
-    self.fixAutotypeWindowController = [[MPFixAutotypeWindowController alloc] init];
-  }
-  [self.fixAutotypeWindowController reset];
-  [self.fixAutotypeWindowController setDocument:[[NSDocumentController sharedDocumentController] currentDocument]];
-  [[self.fixAutotypeWindowController window] makeKeyAndOrderFront:sender];
-}
 
 #pragma mark -
 #pragma mark Private Helper

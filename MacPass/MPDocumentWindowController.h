@@ -49,11 +49,15 @@
 - (IBAction)pickIcon:(id)sender;
 - (IBAction)pickExpiryDate:(id)sender;
 
+#pragma mark Helper
+- (void)fixAutotype:(id)sender;
+
 #pragma mark View Actions
 - (IBAction)toggleInspector:(id)sender;
 - (IBAction)focusGroups:(id)sender;
 - (IBAction)focusEntries:(id)sender;
 - (IBAction)focusInspector:(id)sender;
+
 
 #pragma mark MPPasswordEditWindowDelegater
 - (void)didFinishPasswordEditing:(BOOL)changedPasswordOrKey;

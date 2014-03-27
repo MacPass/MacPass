@@ -12,18 +12,15 @@
 #import "KPKEntry.h"
 #import "KPKGroup.h"
 #import "KPKAutotype.h"
+#import "KPKWindowAssociation.h"
 
 NSString *const kMPAutotypeCell = @"AutotypeCell";
 NSString *const kMPTitleCell = @"TitleCell";
 NSString *const kMPIsDefaultCell = @"IsDefaultCell";
 
-@interface KPKGroup (Breadcrumb)
+/* Helper Categries */
 
-- (NSString *)breadcrumb;
-
-@end
-
-@implementation KPKGroup (Breadcrumb)
+@implementation KPKGroup (MPFixAutotypeWindowControllerBreadCrumb)
 
 - (NSString *)breadcrumb {
   if(self.parent) {
@@ -34,11 +31,19 @@ NSString *const kMPIsDefaultCell = @"IsDefaultCell";
 
 @end
 
-@interface MPFixAutotypeWindowController () {
-  NSMutableArray *_elements;
+@implementation KPKWindowAssociation (MPFixAutotypeWindowControllerQualifedName)
+
+- (NSString *)qualifedName {
+  return [[NSString alloc] initWithFormat:@"%@ (%@)", self.windowTitle, self.autotype.entry.title ];
 }
 
 @end
+
+@interface MPFixAutotypeWindowController () {
+  NSMutableArray *_elements;
+}
+@end
+
 
 @implementation MPFixAutotypeWindowController
 
@@ -58,32 +63,39 @@ NSString *const kMPIsDefaultCell = @"IsDefaultCell";
   [super windowDidLoad];
 }
 
-- (void)reset {
+
+#pragma mark -
+#pragma mark Properties
+
+- (void)setWorkingDocument:(MPDocument *)workingDocument {
+  if(_workingDocument != workingDocument) {
+    _workingDocument = workingDocument;
+  }
   _elements = nil;
   [self.tableView reloadData];
 }
-
 
 #pragma mark -
 #pragma mark Actions
 
 - (void)clearAutotype:(id)sender {
-  
-  MPDocument *document = [self document];
-  [[document undoManager] beginUndoGrouping];
+  [[self.workingDocument undoManager] beginUndoGrouping];
   NSIndexSet *indexes = [self.tableView selectedRowIndexes];
   MPFixAutotypeWindowController __weak *weakSelf = self;
   [indexes enumerateIndexesUsingBlock:^(NSUInteger idx, BOOL *stop) {
     id item = [weakSelf entriesAndGroups][idx];
-    if([item respondsToSelector:@selector(defaultAutoTypeSequence)]) {
+    if([item isKindOfClass:[KPKEntry class]]){
+      [item autotype].defaultKeystrokeSequence = nil;
+    }
+    else if([item isKindOfClass:[KPKGroup class]]) {
       [item setDefaultAutoTypeSequence:nil];
     }
     else {
-      [item autotype].defaultKeystrokeSequence = nil;
+      [item setKeystrokeSequence:nil];
     }
   }];
-  [[document undoManager] endUndoGrouping];
-  [[document undoManager] setActionName:@"Clear Autotype"];
+  [[self.workingDocument undoManager] endUndoGrouping];
+  [[self.workingDocument undoManager] setActionName:@"Clear Autotype"];
   [self.tableView reloadDataForRowIndexes:indexes columnIndexes:[NSIndexSet indexSetWithIndexesInRange:NSMakeRange(0,2)]];
 }
 
@@ -95,26 +107,48 @@ NSString *const kMPIsDefaultCell = @"IsDefaultCell";
 }
 
 - (id)tableView:(NSTableView *)tableView objectValueForTableColumn:(NSTableColumn *)tableColumn row:(NSInteger)row {
-  id node = [self entriesAndGroups][row];
+  id item = [self entriesAndGroups][row];
+  KPKGroup *group;
+  KPKEntry *entry;
+  KPKWindowAssociation *association;
+  if([item isKindOfClass:[KPKEntry class]]) {
+    entry = item;
+  }
+  else if([item isKindOfClass:[KPKGroup class]]) {
+    group = item;
+  }
+  else if([item isKindOfClass:[KPKWindowAssociation class]]) {
+    association = item;
+  }
+  
   if([[tableColumn identifier] isEqualToString:kMPTitleCell]) {
-    if( [node respondsToSelector:@selector(title)]) {
-      return [node title];
+    if(entry) {
+      return entry.title;
     }
-    return [node breadcrumb];
+    if(group) {
+      return [group breadcrumb];
+    }
+    return [association qualifedName];
   }
   else if ([[tableColumn identifier] isEqualToString:kMPAutotypeCell]) {
-    if([node respondsToSelector:@selector(defaultAutoTypeSequence)]) {
-      return [node defaultAutoTypeSequence];
+    if(entry) {
+      return entry.autotype.defaultKeystrokeSequence;
     }
-    return [[node autotype] defaultKeystrokeSequence];
+    if(group) {
+      return group.defaultAutoTypeSequence;
+    }
+    return association.keystrokeSequence;
   }
   else if([[tableColumn identifier] isEqualToString:kMPIsDefaultCell]) {
     BOOL isDefault = NO;
-    if([node respondsToSelector:@selector(hasDefaultAutotypeSequence)]) {
-      isDefault = [node hasDefaultAutotypeSequence];
+    if(entry) {
+      isDefault = entry.autotype.hasDefaultKeystrokeSequence;
+    }
+    else if( group ) {
+      isDefault = group.hasDefaultAutotypeSequence;
     }
     else {
-      isDefault = [[node autotype] hasDefaultKeystrokeSequence];
+      isDefault = association.hasDefaultKeystrokeSequence;
     }
     return isDefault ? @"Yes" : @"No";
   }
@@ -124,11 +158,15 @@ NSString *const kMPIsDefaultCell = @"IsDefaultCell";
 
 - (void)tableView:(NSTableView *)tableView setObjectValue:(id)object forTableColumn:(NSTableColumn *)tableColumn row:(NSInteger)row {
   id item = [self entriesAndGroups][row];
-  if([item respondsToSelector:@selector(defaultAutoTypeSequence)]) {
-    [item setDefaultAutoTypeSequence:object];
-  }
-  else {
+  
+  if([item isKindOfClass:[KPKEntry class]]) {
     [[item autotype] setDefaultKeystrokeSequence:object];
+  }
+  else if([item isKindOfClass:[KPKGroup class]]) {
+    [item setDefaultKeystrokeSequence:object];
+  }
+  else if([item isKindOfClass:[KPKWindowAssociation class]]) {
+    [item setKeystrokeSequence:object];
   }
 }
 
@@ -150,8 +188,7 @@ NSString *const kMPIsDefaultCell = @"IsDefaultCell";
 - (NSArray *)entriesAndGroups {
   if(nil == _elements) {
     _elements = [[NSMutableArray alloc] init];
-    MPDocument *document = [self document];
-    [self flattenGroup:document.root toArray:_elements];
+    [self flattenGroup:self.workingDocument.root toArray:_elements];
   }
   return _elements;
 }
@@ -159,7 +196,10 @@ NSString *const kMPIsDefaultCell = @"IsDefaultCell";
 
 - (void)flattenGroup:(KPKGroup *)group toArray:(NSMutableArray *)array {
   [array addObject:group];
-  [array addObjectsFromArray:group.entries];
+  for(KPKEntry *entry in group.entries) {
+    [array addObject:entry];
+    [array addObjectsFromArray:entry.autotype.associations];
+  }
   for(KPKGroup *childGroup in group.groups) {
     [self flattenGroup:childGroup toArray:array];
   }
