@@ -613,7 +613,10 @@ NSString *const _MPTAbleSecurCellView = @"PasswordCell";
   }
   NSTableColumn *column = [self.entryTable tableColumns][[self.entryTable clickedColumn]];
   NSString *identifier = [column identifier];
-  if([identifier isEqualToString:MPEntryTablePasswordColumnIdentifier]) {
+  if([identifier isEqualToString:MPEntryTableTitleColumnIdentifier]) {
+    
+  }
+  else if([identifier isEqualToString:MPEntryTablePasswordColumnIdentifier]) {
     [self copyPassword:nil];
   }
   else if([identifier isEqualToString:MPEntryTableUserNameColumnIdentifier]) {

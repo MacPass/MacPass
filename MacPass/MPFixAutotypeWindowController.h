@@ -16,7 +16,7 @@
 @property (nonatomic, weak) MPDocument *workingDocument;
 
 /**
- *  Clears the autotype sequences for the selected entries
+ *  Clears the autotype sequences for the selected entries, groups or window associations
  *
  *  @param sender sender of the action
  */

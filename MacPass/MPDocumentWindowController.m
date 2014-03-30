@@ -308,14 +308,11 @@ typedef void (^MPPasswordChangedBlock)(void);
 
 - (void)toggleInspector:(id)sender {
   NSView *inspectorView = [_inspectorViewController view];
-  BOOL inspectorVisible = NO;
-  if([inspectorView superview]) {
-    //[inspectorView animator]
+  BOOL inspectorWasVisible = [self _isInspectorVisible];
+  if(inspectorWasVisible) {
     [inspectorView removeFromSuperview];
   }
   else {
-    // Remove contraint on view removal.
-    inspectorVisible = YES;
     [_splitView addSubview:inspectorView];
     [_splitView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"[inspectorView(>=200)]"
                                                                        options:0
@@ -323,7 +320,11 @@ typedef void (^MPPasswordChangedBlock)(void);
                                                                          views:NSDictionaryOfVariableBindings(inspectorView)]];
     [self.inspectorViewController updateResponderChain];
   }
-  [[NSUserDefaults standardUserDefaults] setBool:inspectorVisible forKey:kMPSettingsKeyShowInspector];
+  [[NSUserDefaults standardUserDefaults] setBool:!inspectorWasVisible forKey:kMPSettingsKeyShowInspector];
+}
+
+- (void)showInspector:(id)sender {
+  // TODO;
 }
 
 - (void)focusEntries:(id)sender {
@@ -434,6 +435,10 @@ typedef void (^MPPasswordChangedBlock)(void);
       return; // Cancel or unknown
   }
 }
+
+#pragma mark -
+#pragma mark UI Helper
+
 - (void)_showDatabaseSetting:(MPDatabaseSettingsTab)tab {
   if(!self.documentSettingsWindowController) {
     _documentSettingsWindowController = [[MPDatabaseSettingsWindowController alloc] initWithDocument:[self document]];
@@ -445,6 +450,11 @@ typedef void (^MPPasswordChangedBlock)(void);
                                  didEndSelector:NULL
                                     contextInfo:NULL];
   
+}
+
+- (BOOL)_isInspectorVisible {
+  NSView *inspectorView = [_inspectorViewController view];
+  return (nil != [inspectorView superview]);
 }
 
 @end

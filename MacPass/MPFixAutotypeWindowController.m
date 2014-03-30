@@ -14,9 +14,12 @@
 #import "KPKAutotype.h"
 #import "KPKWindowAssociation.h"
 
+#import "MPIconHelper.h"
+
 NSString *const kMPAutotypeCell = @"AutotypeCell";
 NSString *const kMPTitleCell = @"TitleCell";
 NSString *const kMPIsDefaultCell = @"IsDefaultCell";
+NSString *const kMPIconCell = @"IconCell";
 
 /* Helper Categries */
 
@@ -61,6 +64,10 @@ NSString *const kMPIsDefaultCell = @"IsDefaultCell";
 
 - (void)windowDidLoad {
   [super windowDidLoad];
+}
+
+- (void)dealloc {
+  [self.window orderOut:self];
 }
 
 
@@ -139,18 +146,28 @@ NSString *const kMPIsDefaultCell = @"IsDefaultCell";
     }
     return association.keystrokeSequence;
   }
-  else if([[tableColumn identifier] isEqualToString:kMPIsDefaultCell]) {
+  else {
     BOOL isDefault = NO;
+    NSString *keystrokeSequence;
     if(entry) {
       isDefault = entry.autotype.hasDefaultKeystrokeSequence;
+      keystrokeSequence = entry.autotype.defaultKeystrokeSequence;
     }
     else if( group ) {
       isDefault = group.hasDefaultAutotypeSequence;
+      keystrokeSequence = group.defaultAutoTypeSequence;
     }
     else {
       isDefault = association.hasDefaultKeystrokeSequence;
+      keystrokeSequence = association.keystrokeSequence;
     }
-    return isDefault ? @"Yes" : @"No";
+    if([[tableColumn identifier] isEqualToString:kMPIsDefaultCell]) {
+      return isDefault ? @"Yes" : @"No";
+    }
+    else if( [[tableColumn identifier] isEqualToString:kMPIconCell]) {
+      BOOL isWrongFormat = (NSOrderedSame == [@"{TAB}{USERNAME}{TAB}{PASSWORD}{ENTER}" compare:keystrokeSequence options:NSCaseInsensitiveSearch]);
+      return (isWrongFormat && !isDefault) ? [MPIconHelper icon:MPIconWarning] : nil;
+    }
   }
   return nil;
 }
@@ -180,6 +197,16 @@ NSString *const kMPIsDefaultCell = @"IsDefaultCell";
 - (BOOL)tableView:(NSTableView *)tableView isGroupRow:(NSInteger)row {
   id item = [self entriesAndGroups][row];
   return [item isKindOfClass:[KPKGroup class]];
+}
+
+#pragma mark -
+#pragma mark MenuItem Validation
+
+- (BOOL)validateMenuItem:(NSMenuItem *)menuItem {
+  if(!([menuItem action] == @selector(clearAutotype:))) {
+    return NO;
+  }
+  return ([[self.tableView selectedRowIndexes] count] > 0);
 }
 
 #pragma mark -

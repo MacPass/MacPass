@@ -54,6 +54,7 @@
 
 #pragma mark View Actions
 - (IBAction)toggleInspector:(id)sender;
+- (IBAction)showInspector:(id)sender;
 - (IBAction)focusGroups:(id)sender;
 - (IBAction)focusEntries:(id)sender;
 - (IBAction)focusInspector:(id)sender;
