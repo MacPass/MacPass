@@ -293,6 +293,13 @@ NSString *const _MPTAbleSecurCellView = @"PasswordCell";
   return view;
 }
 
+- (void)tableView:(NSTableView *)tableView didRemoveRowView:(NSTableRowView *)rowView forRow:(NSInteger)row {
+  /* Rows being removed for data change should be chekced here to clear selections */
+  if(row == -1) {
+    [self tableViewSelectionDidChange:nil];
+  }
+}
+
 - (void)tableViewSelectionDidChange:(NSNotification *)notification {
   MPDocument *document = [[self windowController] document];
   if([self.entryTable selectedRow] < 0 || [[_entryTable selectedRowIndexes] count] > 1) {
