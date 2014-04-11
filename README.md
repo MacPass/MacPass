@@ -30,7 +30,7 @@ After that you can build and run in Xcode. If you run into signing issues take a
   * KDBX DeletedObjects are stripped on save. This will break synchronisation features!
 * Binary releases (since 0.4.x):
   * KDBX History is only preseverd. Editting doesn't create new history entries
-  * Default Autotype Sequences will get stored
+  * Default Autotype Sequences will get stored although they shouldn't be stored
   * Default Autotype sequence is wrong ````{TAB}{USERNAME}{TAB}{PASSWORD}{ENTER}```` instead of ````{USERNAME}{TAB}{PASSWORD}{ENTER}````
   
 ##System Requirement
