@@ -78,4 +78,10 @@ typedef NS_ENUM(NSUInteger, MPIconType) {
  */
 + (NSArray *)databaseIcons;
 
+/**
+ *	List of all available DatabaseIcons as MPIconType. Sorted by IconIndex
+ *	@return	Array of Names as NSNumber objects
+ */
++ (NSArray *)databaseIconType;
+
 @end
