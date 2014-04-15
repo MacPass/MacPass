@@ -47,7 +47,7 @@
 }
 
 
-+ (NSArray *)databaseIconType {
++ (NSArray *)databaseIconTypes {
     static NSArray *iconTypes;
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{

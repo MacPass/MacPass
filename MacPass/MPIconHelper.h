@@ -73,15 +73,15 @@ typedef NS_ENUM(NSUInteger, MPIconType) {
 + (NSDictionary *)availableIconNames;
 
 /**
- *	List of all availabel DatabaseIcons as Images. Sorted by IconIndex
+ *	List of all available DatabaseIcons as an array of Images. Sorted by IconIndex.
  *	@return	Array of Icons as NSImage objects
  */
 + (NSArray *)databaseIcons;
 
 /**
- *	List of all available DatabaseIcons as MPIconType. Sorted by IconIndex
- *	@return	Array of Names as NSNumber objects
+ *	List of all available DatabaseIcons as an array of MPIconType. Sorted by IconIndex.
+ *	@return	Array of MPIconType as NSNumber objects
  */
-+ (NSArray *)databaseIconType;
++ (NSArray *)databaseIconTypes;
 
 @end
