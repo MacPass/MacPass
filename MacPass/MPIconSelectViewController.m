@@ -58,7 +58,7 @@ NSInteger const kMPDefaultIcon = -1;
   NSButton *button = sender;
   NSImage *image = [button image];
   NSUInteger buttonIndex = [[self.iconCollectionView content] indexOfObject:image];
-  self.selectedIcon = [[[MPIconHelper availableIconNames] allKeys][buttonIndex] integerValue];
+  self.selectedIcon = [[MPIconHelper databaseIconTypes] [buttonIndex] integerValue];
   [self.popover performClose:self];
 }
 

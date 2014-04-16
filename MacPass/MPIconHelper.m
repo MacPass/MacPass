@@ -29,7 +29,12 @@
   dispatch_once(&onceToken, ^{
     NSDictionary *imageNames = [MPIconHelper availableIconNames];
     NSMutableArray *mutableIcons = [[NSMutableArray alloc] initWithCapacity:[imageNames count]];
-    for(NSNumber *iconNumber in [imageNames allKeys]) {
+      
+    NSArray *sortedImageNames = [[imageNames allKeys] sortedArrayUsingComparator:^NSComparisonResult(id obj1, id obj2) {
+          return [[imageNames objectForKey:obj1] compare:[imageNames objectForKey:obj2]];
+    }];
+      
+    for(NSNumber *iconNumber in sortedImageNames) {
       if([iconNumber integerValue] > MPCustomIconTypeBegin) {
         continue; // Skip all non-db Keys
       }
@@ -40,6 +45,30 @@
   });
   return icons;
 }
+
+
++ (NSArray *)databaseIconTypes {
+    static NSArray *iconTypes;
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
+        NSDictionary *imageNames = [MPIconHelper availableIconNames];
+        NSMutableArray *mutableIcons = [[NSMutableArray alloc] initWithCapacity:[imageNames count]];
+        
+        NSArray *sortedImageNames = [[imageNames allKeys] sortedArrayUsingComparator:^NSComparisonResult(id obj1, id obj2) {
+            return [[imageNames objectForKey:obj1] compare:[imageNames objectForKey:obj2]];
+        }];
+        
+        for(NSNumber *iconNumber in sortedImageNames) {
+            if([iconNumber integerValue] > MPCustomIconTypeBegin) {
+                continue; // Skip all non-db Keys
+            }
+            [mutableIcons addObject:iconNumber];
+        }
+        iconTypes = mutableIcons;
+    });
+    return iconTypes;
+}
+
 
 + (NSDictionary *)availableIconNames {
   static NSDictionary *imageNames;
