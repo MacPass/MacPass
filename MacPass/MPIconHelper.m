@@ -41,7 +41,7 @@
       MPIconType iconType = (MPIconType)[iconNumber integerValue];
       [mutableIcons addObject:[MPIconHelper icon:iconType]];
     }
-    icons = mutableIcons;
+    icons = [mutableIcons copy];
   });
   return icons;
 }
@@ -64,7 +64,7 @@
             }
             [mutableIcons addObject:iconNumber];
         }
-        iconTypes = mutableIcons;
+        iconTypes = [mutableIcons copy];
     });
     return iconTypes;
 }
