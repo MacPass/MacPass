@@ -580,9 +580,14 @@ NSString *const MPDocumentGroupKey                        = @"MPDocumentGroupKey
   switch([MPActionHelper typeForAction:[anItem action]]) {
     case MPActionAddGroup:
       valid &= (nil != self.selectedGroup);
-      // fall-through
+      valid &= (self.trash != self.selectedGroup);
+      valid &= ![self isItemTrashed:self.selectedGroup];
+      break;
     case MPActionAddEntry:
-      // fall-through
+      valid &= (nil != self.selectedGroup);
+      valid &= (self.trash != self.selectedGroup);
+      valid &= ![self isItemTrashed:self.selectedGroup];
+      break;
     case MPActionDelete:
       valid &= (nil != self.selectedItem);
       valid &= (self.trash != self.selectedItem);
