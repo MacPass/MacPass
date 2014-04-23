@@ -49,6 +49,7 @@ NSString *const kMPSettingsKeyCopyGeneratedPasswordToClipboard = @"CopyGenerated
 }
 
 + (void)migrateDefaults {
+  [self _removeObsolteValues];
   [self _fixEntryTableSortDescriptors];
 }
 
@@ -81,6 +82,13 @@ NSString *const kMPSettingsKeyCopyGeneratedPasswordToClipboard = @"CopyGenerated
            kMPSettingsKeyEnableQuicklookPreview: @NO,
            kMPSettingsKeyCopyGeneratedPasswordToClipboard: @NO,
            };
+}
+
++ (void)_removeObsolteValues {
+  /* Clear old style values */
+  for(NSString *key in @[ @"kMPSettingsKeyRememberKeyFilesForDatabases", @"MPLastDatabasePath" ]) {
+    [[NSUserDefaults standardUserDefaults] removeObjectForKey:key];
+  }
 }
 
 + (void)_fixEntryTableSortDescriptors {
