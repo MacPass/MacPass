@@ -42,6 +42,8 @@ NSString *const kMPSettingsKeyEnableQuicklookPreview        = @"EnableQuicklookP
 
 NSString *const kMPSettingsKeyCopyGeneratedPasswordToClipboard = @"CopyGeneratedPasswordToClipboard";
 
+NSString *const kMPSettingsKeyDefaultPasswordRounds         = @"KeyDefaultPasswordRounds";
+
 @implementation MPSettingsHelper
 
 + (void)setupDefaults {
@@ -81,6 +83,7 @@ NSString *const kMPSettingsKeyCopyGeneratedPasswordToClipboard = @"CopyGenerated
            kMPSettingsKeyEnableGlobalAutotype: @NO,
            kMPSettingsKeyEnableQuicklookPreview: @NO,
            kMPSettingsKeyCopyGeneratedPasswordToClipboard: @NO,
+           kMPSettingsKeyDefaultPasswordRounds: @50000
            };
 }
 

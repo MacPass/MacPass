@@ -119,6 +119,7 @@ NSString *const MPDocumentGroupKey                        = @"MPDocumentGroupKey
     _activeFlags = MPEntrySearchTitles;
     _hasSearch = NO;
     self.tree = [KPKTree templateTree];
+    self.tree.metaData.rounds = [[NSUserDefaults standardUserDefaults] integerForKey:kMPSettingsKeyDefaultPasswordRounds];
   }
   return self;
 }

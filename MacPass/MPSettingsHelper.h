@@ -59,6 +59,7 @@ APPKIT_EXTERN NSString *const kMPSettingsKeyEnableQuicklookPreview;
 
 /* Password Generation */
 APPKIT_EXTERN NSString *const kMPSettingsKeyCopyGeneratedPasswordToClipboard;
+APPKIT_EXTERN NSString *const kMPSettingsKeyDefaultPasswordRounds;
 
 typedef NS_ENUM(NSUInteger, MPPasswordEncoding) {
   MPPasswordEncodingUTF8,
