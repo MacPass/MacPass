@@ -66,21 +66,25 @@ NSString *const _MPOutlinveViewHeaderViewIdentifier = @"HeaderCell";
   return self;
 }
 
+- (void)dealloc {
+  [[NSNotificationCenter defaultCenter] removeObserver:self];
+  [self.outlineView setDelegate:nil];
+}
 
 - (void)didLoadView {
-  [_outlineView setDelegate:self];
-  [_outlineView setMenu:[self _contextMenu]];
-  [_outlineView setAllowsEmptySelection:YES];
-  [_outlineView setFloatsGroupRows:NO];
-  [_outlineView registerForDraggedTypes:@[ KPKGroupUTI, KPKEntryUTI ]];
-  [_outlineView setDraggingSourceOperationMask:NSDragOperationEvery forLocal:YES];
-  [_bottomBar setBorderType:HNHBorderTop|HNHBorderHighlight];
-  [_addGroupButton setAction:[MPActionHelper actionOfType:MPActionAddGroup]];
+  [self.outlineView setDelegate:self];
+  [self.outlineView setMenu:[self _contextMenu]];
+  [self.outlineView setAllowsEmptySelection:YES];
+  [self.outlineView setFloatsGroupRows:NO];
+  [self.outlineView registerForDraggedTypes:@[ KPKGroupUTI, KPKEntryUTI ]];
+  [self.outlineView setDraggingSourceOperationMask:NSDragOperationEvery forLocal:YES];
+  [self.bottomBar setBorderType:HNHBorderTop|HNHBorderHighlight];
+  [self.addGroupButton setAction:[MPActionHelper actionOfType:MPActionAddGroup]];
   
   [[NSNotificationCenter defaultCenter] addObserver:self
                                            selector:@selector(_didBecomeFirstResponder:)
                                                name:MPDidActivateViewNotification
-                                             object:_outlineView];
+                                             object:self.outlineView];
   
 }
 
