@@ -53,8 +53,7 @@
 
 - (NSString *)evaluatedCommand {
   if(!_evaluatedCommand) {
-    NSString *placeholderFilled = [self.normalizedCommand evaluatePlaceholderWithEntry:self.entry];
-    _evaluatedCommand = [[placeholderFilled resolveReferencesWithTree:self.entry.tree] copy];
+    _evaluatedCommand = [[self.normalizedCommand finalValueForEntry:self.entry] copy];
   }
   return _evaluatedCommand;
 }

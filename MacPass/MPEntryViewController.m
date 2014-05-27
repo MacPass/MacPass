@@ -39,6 +39,8 @@
 
 #import "MPNotifications.h"
 
+#import "NSString+Commands.h"
+
 #define STATUS_BAR_ANIMATION_TIME 0.15
 
 typedef NS_ENUM(NSUInteger,MPOVerlayInfoType) {
@@ -554,14 +556,14 @@ NSString *const _MPTAbleSecurCellView = @"PasswordCell";
 - (void)copyPassword:(id)sender {
   KPKEntry *selectedEntry = [self _clickedOrSelectedEntry];
   if(selectedEntry) {
-    [self _copyToPasteboard:selectedEntry.password overlayInfo:MPOverlayInfoPassword name:nil];
+    [self _copyToPasteboard:[selectedEntry.password finalValueForEntry:selectedEntry] overlayInfo:MPOverlayInfoPassword name:nil];
   }
 }
 
 - (void)copyUsername:(id)sender {
   KPKEntry *selectedEntry = [self _clickedOrSelectedEntry];
   if(selectedEntry) {
-    [self _copyToPasteboard:selectedEntry.username overlayInfo:MPOverlayInfoUsername name:nil];
+    [self _copyToPasteboard:[selectedEntry.username finalValueForEntry:selectedEntry] overlayInfo:MPOverlayInfoUsername name:nil];
   }
 }
 
@@ -571,14 +573,14 @@ NSString *const _MPTAbleSecurCellView = @"PasswordCell";
     NSUInteger index = [sender tag];
     NSAssert((index >= 0)  && (index < [selectedEntry.customAttributes count]), @"Index for custom field needs to be valid");
     KPKAttribute *attribute = selectedEntry.customAttributes[index];
-    [self _copyToPasteboard:attribute.value overlayInfo:MPOverlayInfoCustom name:attribute.key];
+    [self _copyToPasteboard:attribute.evaluatedValue overlayInfo:MPOverlayInfoCustom name:attribute.key];
   }
 }
 
 - (void)copyURL:(id)sender {
   KPKEntry *selectedEntry = [self _clickedOrSelectedEntry];
   if(selectedEntry) {
-    [self _copyToPasteboard:selectedEntry.url overlayInfo:MPOverlayInfoURL name:nil];
+    [self _copyToPasteboard:[selectedEntry.url finalValueForEntry:selectedEntry] overlayInfo:MPOverlayInfoURL name:nil];
   }
 }
 
