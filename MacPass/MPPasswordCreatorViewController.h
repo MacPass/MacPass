@@ -11,6 +11,7 @@
 @interface MPPasswordCreatorViewController : MPViewController <NSTextFieldDelegate>
 
 @property (copy, readonly) NSString *generatedPassword;
+@property (weak) id closeTarget;
 
 /**
  *  Should be called to reset the generator

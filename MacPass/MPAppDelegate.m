@@ -181,6 +181,7 @@ NSString *const MPDidChangeStoredKeyFilesSettings = @"com.hicknhack.macpass.MPDi
   }
   if(!self.passwordCreatorController) {
     self.passwordCreatorController = [[MPPasswordCreatorViewController alloc] init];
+    self.passwordCreatorController.closeTarget = self.passwordCreatorWindow;
     NSView *creatorView = [_passwordCreatorController view];
     [self.passwordCreatorWindow setContentView:creatorView];
   }

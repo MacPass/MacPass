@@ -41,6 +41,7 @@ APPKIT_EXTERN NSString *const MPDocumentGroupKey;
 @class KPKAttribute;
 @class KPKCompositeKey;
 @class KPKNode;
+@class MPEditSession;
 
 typedef NS_OPTIONS(NSUInteger, MPEntrySearchFlags) {
   MPEntrySearchNone            = 0,
@@ -90,6 +91,10 @@ typedef NS_OPTIONS(NSUInteger, MPEntrySearchFlags) {
 @property (nonatomic, assign) BOOL hasSearch;
 @property (nonatomic, strong) NSArray *searchResult;
 
+/*
+ Editing Session
+ */
+@property (nonatomic, strong) MPEditSession *editingSession;
 
 + (KPKVersion)versionForFileType:(NSString *)fileType;
 + (NSString *)fileTypeForVersion:(KPKVersion)version;

@@ -35,11 +35,10 @@ typedef NS_ENUM(NSUInteger, MPContentTab) {
   MPEmptyTab,
 };
 
-@interface MPInspectorViewController () {
-  MPEntryInspectorViewController *_entryViewController;
-  MPGroupInspectorViewController *_groupViewController;
-  BOOL _isEditing;
-}
+@interface MPInspectorViewController ()
+
+@property (strong) MPEntryInspectorViewController *entryViewController;
+@property (strong) MPGroupInspectorViewController *groupViewController;
 
 @property (strong) MPIconSelectViewController *iconSelectionViewController;
 @property (strong) NSPopover *popover;
@@ -64,10 +63,9 @@ typedef NS_ENUM(NSUInteger, MPContentTab) {
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil {
   self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
   if (self) {
-    _activeTab = MPEmptyTab;
-    _entryViewController = [[MPEntryInspectorViewController alloc] init];
-    _groupViewController = [[MPGroupInspectorViewController alloc] init];
-    _isEditing = NO;
+    self.activeTab = MPEmptyTab;
+    self.entryViewController = [[MPEntryInspectorViewController alloc] init];
+    self.groupViewController = [[MPGroupInspectorViewController alloc] init];
   }
   return self;
 }
@@ -87,8 +85,8 @@ typedef NS_ENUM(NSUInteger, MPContentTab) {
   [[self.itemImageView cell] setBackgroundStyle:NSBackgroundStyleRaised];
   [self.tabView bind:NSSelectedIndexBinding toObject:self withKeyPath:@"activeTab" options:nil];
   
-  NSView *entryView = [_entryViewController view];
-  NSView *groupView = [_groupViewController view];
+  NSView *entryView = [self.entryViewController view];
+  NSView *groupView = [self.groupViewController view];
   
   
   NSTabViewItem *entryTabItem = [self.tabView tabViewItemAtIndex:MPEntryTab];
@@ -115,14 +113,14 @@ typedef NS_ENUM(NSUInteger, MPContentTab) {
                                            selector:@selector(_didChangeCurrentItem:)
                                                name:MPDocumentCurrentItemChangedNotification
                                              object:document];
-  [_entryViewController setupBindings:document];
-  [_groupViewController setupBindings:document];
+  [self.entryViewController setupBindings:document];
+  [self.groupViewController setupBindings:document];
 }
 
 - (void)updateResponderChain {
   [super updateResponderChain];
-  [_groupViewController updateResponderChain];
-  [_entryViewController updateResponderChain];
+  [self.groupViewController updateResponderChain];
+  [self.entryViewController updateResponderChain];
 }
 
 #pragma mark -
@@ -167,31 +165,31 @@ typedef NS_ENUM(NSUInteger, MPContentTab) {
 - (void)toggleEdit:(id)sender {
   BOOL didCancel = sender == self.cancelEditButton;
   MPDocument *document = [[self windowController] document];
-  NSUndoManager *undoManager = [document undoManager];
   
-  if(_isEditing) {
-    BOOL didChangeItem = [undoManager canUndo];
-    [undoManager endUndoGrouping];
-    [undoManager setActionName:NSLocalizedString(@"EDIT_GROUP_OR_ENTRY", "")];
+  if(document.selectedItem) {
+
+    /* TODO UndoManager handling */
     [self.editButton setTitle:NSLocalizedString(@"EDIT_ITEM", "")];
     [self.cancelEditButton setHidden:YES];
-    [_entryViewController endEditing];
+    [self.entryViewController endEditing];
     
     /*
      We need to be carefull to only undo the things we actually changed
      otherwise we undo older actions
      */
-    if(didCancel && didChangeItem) {
-      [undoManager undo];
+    if(didCancel) {
+      
+    }
+    else {
+      
     }
   }
   else {
-    [undoManager beginUndoGrouping];
+    //[document.selectedItem beginEditSession];
     [self.editButton setTitle:NSLocalizedString(@"SAVE_CHANGES", "")];
     [self.cancelEditButton setHidden:NO];
-    [_entryViewController beginEditing];
+    [self.entryViewController beginEditing];
   }
-  _isEditing = !_isEditing;
 }
 
 #pragma mark -
@@ -309,6 +307,6 @@ typedef NS_ENUM(NSUInteger, MPContentTab) {
   [self _updateBindings:document.selectedItem];
   
   /* disable the entry text fields whenever the entry selection changes */
-  //[_entryViewController endEditing];
+  //[self.entryViewController endEditing];
 }
 @end

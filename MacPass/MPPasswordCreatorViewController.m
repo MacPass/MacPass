@@ -57,11 +57,6 @@ typedef NS_ENUM(NSUInteger, MPPasswordRating) {
 @property (nonatomic, assign) NSUInteger passwordLength;
 @property (nonatomic, assign) CGFloat entropy;
 
-- (IBAction)_generatePassword:(id)sender;
-- (IBAction)_toggleCharacters:(id)sender;
-- (IBAction)_usePassword:(id)sender;
-- (IBAction)_cancel:(id)sender;
-
 @end
 
 @implementation MPPasswordCreatorViewController
@@ -140,15 +135,11 @@ typedef NS_ENUM(NSUInteger, MPPasswordRating) {
   if([self.shouldCopyPasswordToPasteboardButton state] == NSOnState) {
     [[MPPasteBoardController defaultController] copyObjects:@[_password]];
   }
-  /* Since we might be displayed inside a NSPopup or a NSWindow, search for the target */
-  id target = [NSApp targetForAction:@selector(performClose:)];
-  [target performClose:nil];
+  [[self _findCloseTarget] performClose:nil];
 }
 
 - (IBAction)_cancel:(id)sender {
-  /* Since we might be displayed inside a NSPopup or a NSWindow, search for the target */
-  id target = [NSApp targetForAction:@selector(performClose:)];
-  [target performClose:nil];
+  [[self _findCloseTarget] performClose:nil];
 }
 
 #pragma mark -
@@ -212,5 +203,12 @@ typedef NS_ENUM(NSUInteger, MPPasswordRating) {
   [_lowerCaseButton setState:userLowercase ? NSOnState : NSOffState];
   [_numbersButton setState:useNumbers ? NSOnState : NSOffState];
   [_symbolsButton setState:useSymbols ? NSOnState : NSOffState];
+}
+
+- (id)_findCloseTarget {
+  if([self.closeTarget respondsToSelector:@selector(performClose:)]) {
+    return self.closeTarget;
+  }
+  return [NSApp targetForAction:@selector(performClose:)];
 }
 @end

@@ -265,7 +265,11 @@ typedef NS_ENUM(NSUInteger, MPEntryTab) {
   _activePopover = [[NSPopover alloc] init];
   _activePopover.delegate = self;
   _activePopover.behavior = NSPopoverBehaviorTransient;
+  if([viewController respondsToSelector:@selector(setCloseTarget:)]) {
+    [(id)viewController setCloseTarget:_activePopover];
+  }
   _activePopover.contentViewController = viewController;
+  
   [_activePopover showRelativeToRect:NSZeroRect ofView:view preferredEdge:edge];
 }
 
