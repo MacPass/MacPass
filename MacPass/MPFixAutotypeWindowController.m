@@ -180,7 +180,7 @@ NSString *const kMPIconCell = @"IconCell";
     [[item autotype] setDefaultKeystrokeSequence:object];
   }
   else if([item isKindOfClass:[KPKGroup class]]) {
-    [item setDefaultKeystrokeSequence:object];
+    [item setDefaultAutoTypeSequence:object];
   }
   else if([item isKindOfClass:[KPKWindowAssociation class]]) {
     [item setKeystrokeSequence:object];
