@@ -86,15 +86,15 @@ typedef void (^MPPasswordChangedBlock)(void);
   [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(_didRevertDocument:) name:MPDocumentDidRevertNotifiation object:document];
   [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(showEntries) name:MPDocumentDidUnlockDatabaseNotification object:document];
   
-  [_entryViewController regsiterNotificationsForDocument:document];
-  [_inspectorViewController regsiterNotificationsForDocument:document];
-  [_outlineViewController regsiterNotificationsForDocument:document];
-  [_toolbarDelegate registerNotificationsForDocument:document];
+  [self.entryViewController regsiterNotificationsForDocument:document];
+  [self.inspectorViewController regsiterNotificationsForDocument:document];
+  [self.outlineViewController regsiterNotificationsForDocument:document];
+  [self.toolbarDelegate registerNotificationsForDocument:document];
   
   
   
-  _toolbar = [[NSToolbar alloc] initWithIdentifier:@"MainWindowToolbar"];
-  [_toolbar setAutosavesConfiguration:YES];
+  self.toolbar = [[NSToolbar alloc] initWithIdentifier:@"MainWindowToolbar"];
+  [self.toolbar setAutosavesConfiguration:YES];
   [self.toolbar setAllowsUserCustomization:YES];
   [self.toolbar setDelegate:self.toolbarDelegate];
   [self.window setToolbar:self.toolbar];
@@ -102,15 +102,15 @@ typedef void (^MPPasswordChangedBlock)(void);
   
   [self.splitView setTranslatesAutoresizingMaskIntoConstraints:NO];
   
-  NSView *outlineView = [_outlineViewController view];
-  NSView *inspectorView = [_inspectorViewController view];
-  NSView *entryView = [_entryViewController view];
-  [_splitView addSubview:outlineView];
-  [_splitView addSubview:entryView];
-  [_splitView addSubview:inspectorView];
+  NSView *outlineView = [self.outlineViewController view];
+  NSView *inspectorView = [self.inspectorViewController view];
+  NSView *entryView = [self.entryViewController view];
+  [self.splitView addSubview:outlineView];
+  [self.splitView addSubview:entryView];
+  [self.splitView addSubview:inspectorView];
   
-  [_splitView setHoldingPriority:NSLayoutPriorityDefaultLow+2 forSubviewAtIndex:0];
-  [_splitView setHoldingPriority:NSLayoutPriorityDefaultLow+1 forSubviewAtIndex:2];
+  [self.splitView setHoldingPriority:NSLayoutPriorityDefaultLow+2 forSubviewAtIndex:0];
+  [self.splitView setHoldingPriority:NSLayoutPriorityDefaultLow+1 forSubviewAtIndex:2];
   
   BOOL showInspector = [[NSUserDefaults standardUserDefaults] boolForKey:kMPSettingsKeyShowInspector];
   if(!showInspector) {
@@ -124,7 +124,7 @@ typedef void (^MPPasswordChangedBlock)(void);
     [self showEntries];
   }
   
-  [_splitView setAutosaveName:@"SplitView"];
+  [self.splitView setAutosaveName:@"SplitView"];
 }
 
 - (NSSearchField *)searchField {
@@ -291,11 +291,11 @@ typedef void (^MPPasswordChangedBlock)(void);
 }
 
 - (void)createGroup:(id)sender {
-  [_outlineViewController createGroup:nil];
+  [self.outlineViewController createGroup:nil];
 }
 
 - (void)createEntry:(id)sender {
-  [_outlineViewController createEntry:nil];
+  [self.outlineViewController createEntry:nil];
 }
 
 - (void)pickIcon:(id)sender {
@@ -307,14 +307,14 @@ typedef void (^MPPasswordChangedBlock)(void);
 }
 
 - (void)toggleInspector:(id)sender {
-  NSView *inspectorView = [_inspectorViewController view];
+  NSView *inspectorView = [self.inspectorViewController view];
   BOOL inspectorWasVisible = [self _isInspectorVisible];
   if(inspectorWasVisible) {
     [inspectorView removeFromSuperview];
   }
   else {
-    [_splitView addSubview:inspectorView];
-    [_splitView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"[inspectorView(>=200)]"
+    [self.splitView addSubview:inspectorView];
+    [self.splitView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"[inspectorView(>=200)]"
                                                                        options:0
                                                                        metrics:nil
                                                                          views:NSDictionaryOfVariableBindings(inspectorView)]];
@@ -341,16 +341,16 @@ typedef void (^MPPasswordChangedBlock)(void);
 
 - (void)showEntries {
   NSView *contentView = [[self window] contentView];
-  if(_splitView == contentView) {
+  if(self.splitView == contentView) {
     return; // We are displaying the entries already
   }
   if([[contentView subviews] count] == 1) {
     [[contentView subviews][0] removeFromSuperviewWithoutNeedingDisplay];
   }
-  [contentView addSubview:_splitView];
-  NSView *outlineView = [_outlineViewController view];
-  NSView *inspectorView = [_inspectorViewController view];
-  NSView *entryView = [_entryViewController view];
+  [contentView addSubview:self.splitView];
+  NSView *outlineView = [self.outlineViewController view];
+  NSView *inspectorView = [self.inspectorViewController view];
+  NSView *entryView = [self.entryViewController view];
   
   /*
    The current easy way to prevent layout hickups is to add the inspect
@@ -358,7 +358,7 @@ typedef void (^MPPasswordChangedBlock)(void);
    */
   BOOL removeInspector = NO;
   if(![inspectorView superview]) {
-    [_splitView addSubview:inspectorView];
+    [self.splitView addSubview:inspectorView];
     removeInspector = YES;
   }
   /* Maybe we should consider not double adding constraints */
@@ -389,10 +389,10 @@ typedef void (^MPPasswordChangedBlock)(void);
                                                                       options:0
                                                                       metrics:nil
                                                                         views:views]];
-  [_entryViewController updateResponderChain];
-  [_inspectorViewController updateResponderChain];
-  [_outlineViewController updateResponderChain];
-  [_outlineViewController showOutline];
+  [self.entryViewController updateResponderChain];
+  [self.inspectorViewController updateResponderChain];
+  [self.outlineViewController updateResponderChain];
+  [self.outlineViewController showOutline];
   
   /* Restore the State the inspector view was in before the view change */
   if(removeInspector) {
@@ -453,7 +453,7 @@ typedef void (^MPPasswordChangedBlock)(void);
 }
 
 - (BOOL)_isInspectorVisible {
-  NSView *inspectorView = [_inspectorViewController view];
+  NSView *inspectorView = [self.inspectorViewController view];
   return (nil != [inspectorView superview]);
 }
 

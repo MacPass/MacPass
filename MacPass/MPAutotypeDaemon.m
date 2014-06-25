@@ -26,6 +26,11 @@
 NSString *const kMPWindowTitleKey = @"windowTitle";
 NSString *const kMPApplciationNameKey = @"applicationName";
 
+/*
+ Enabel to activate autotype
+#define MP_AUTOTYPE
+*/
+
 @interface MPAutotypeDaemon ()
 
 @property (nonatomic, assign) BOOL enabled;
@@ -43,7 +48,7 @@ NSString *const kMPApplciationNameKey = @"applicationName";
   self = [super init];
   if (self) {
     _enabled = NO;
-    [self bind:@"enabled"
+    [self bind:NSStringFromSelector(@selector(enabled))
       toObject:[NSUserDefaultsController sharedUserDefaultsController]
    withKeyPath:[MPSettingsHelper defaultControllerPathForKey:kMPSettingsKeyEnableGlobalAutotype]
        options:nil];
@@ -52,7 +57,7 @@ NSString *const kMPApplciationNameKey = @"applicationName";
 }
 
 - (void)dealloc {
-  [self unbind:@"enabled"];
+  [self unbind:NSStringFromSelector(@selector(enabled))];
 }
 
 #pragma mark -
@@ -61,7 +66,9 @@ NSString *const kMPApplciationNameKey = @"applicationName";
 - (void)setEnabled:(BOOL)enabled {
   if(_enabled != enabled) {
     _enabled = enabled;
+#ifdef MP_AUTOTYPE
     self.enabled ? [self _registerHotKey] : [self _unregisterHotKey];
+#endif
   }
 }
 
@@ -184,7 +191,7 @@ NSString *const kMPApplciationNameKey = @"applicationName";
     NSNumber *processId = windowDict[(NSString *)kCGWindowOwnerPID];
     if(processId && [processId isEqualToNumber:@(frontApplication.processIdentifier)]) {
       return @{
-               kMPWindowTitleKey:windowDict[(NSString *)kCGWindowName],
+               kMPWindowTitleKey: windowDict[(NSString *)kCGWindowName],
                kMPApplciationNameKey : name
                };
     }

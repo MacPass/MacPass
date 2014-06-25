@@ -50,7 +50,7 @@
 - (IBAction)pickExpiryDate:(id)sender;
 
 #pragma mark Helper
-- (void)fixAutotype:(id)sender;
+- (IBAction)fixAutotype:(id)sender;
 
 #pragma mark View Actions
 - (IBAction)toggleInspector:(id)sender;

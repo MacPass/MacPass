@@ -436,6 +436,8 @@
 		4C1E9884185F71A800943563 /* MPContextBarViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MPContextBarViewController.m; sourceTree = "<group>"; };
 		4C1FA07918231900003A3F8C /* MPDocument+Autotype.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "MPDocument+Autotype.h"; sourceTree = "<group>"; };
 		4C1FA07A18231900003A3F8C /* MPDocument+Autotype.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "MPDocument+Autotype.m"; sourceTree = "<group>"; };
+		4C21F29D195B39B9002D610D /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/MainMenu.strings; sourceTree = "<group>"; };
+		4C21F29F195B3A48002D610D /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/MainMenu.strings; sourceTree = "<group>"; };
 		4C224B4017DFCB2300FF6AEE /* MPNumericalInputFormatter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MPNumericalInputFormatter.h; sourceTree = "<group>"; };
 		4C224B4117DFCB2400FF6AEE /* MPNumericalInputFormatter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MPNumericalInputFormatter.m; sourceTree = "<group>"; };
 		4C245A69176E1E3C0086100E /* DDData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DDData.h; sourceTree = "<group>"; };
@@ -761,7 +763,6 @@
 		4CA3530918A53CB800839B0F /* MPKeyMapper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MPKeyMapper.h; sourceTree = "<group>"; };
 		4CA3530A18A53CB800839B0F /* MPKeyMapper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MPKeyMapper.m; sourceTree = "<group>"; };
 		4CA3531118A5577300839B0F /* dsa_sparkle_pub.pem */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = dsa_sparkle_pub.pem; sourceTree = "<group>"; };
-		4CAAFDD51787AED60013FCF9 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/MainMenu.strings; sourceTree = "<group>"; };
 		4CAC614217AD319200023F9E /* KPKTestXmlParsing.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KPKTestXmlParsing.m; sourceTree = "<group>"; };
 		4CAD745615B887FD00104512 /* DDXMLElementAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DDXMLElementAdditions.h; sourceTree = "<group>"; };
 		4CAD745715B887FD00104512 /* DDXMLElementAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DDXMLElementAdditions.m; sourceTree = "<group>"; };
@@ -973,7 +974,7 @@
 		BD6C366019484CF40089EB37 /* nl */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = nl; path = nl.lproj/GroupInspectorView.strings; sourceTree = "<group>"; };
 		BD6C366119484CF40089EB37 /* nl */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = nl; path = nl.lproj/EntryInspectorView.strings; sourceTree = "<group>"; };
 		BD6C366219484CF40089EB37 /* nl */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = nl; path = nl.lproj/DatePickingView.strings; sourceTree = "<group>"; };
-		BD6C366319484CF40089EB37 /* nl */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = nl; path = nl.lproj/Localizable.strings; sourceTree = "<group>"; };
+		BD6C366319484CF40089EB37 /* nl */ = {isa = PBXFileReference; fileEncoding = 10; lastKnownFileType = text.plist.strings; name = nl; path = nl.lproj/Localizable.strings; sourceTree = "<group>"; };
 		BD6C366419484CF40089EB37 /* nl */ = {isa = PBXFileReference; lastKnownFileType = text.rtf; name = nl; path = nl.lproj/Credits.rtf; sourceTree = "<group>"; };
 		BD6C366519484CF40089EB37 /* nl */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = nl; path = nl.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		BD6C366619484CF40089EB37 /* nl */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = nl; path = nl.lproj/KPKLocalizeable.strings; sourceTree = "<group>"; };
@@ -2543,10 +2544,11 @@
 			isa = PBXVariantGroup;
 			children = (
 				4C7615601764C05A0015A1A6 /* Base */,
-				4CAAFDD51787AED60013FCF9 /* en */,
 				4C5CD34617D15912000B7F38 /* fr */,
 				601F811218E016340028F3DE /* zh-Hans */,
 				BD6C365C19484CF40089EB37 /* nl */,
+				4C21F29D195B39B9002D610D /* en */,
+				4C21F29F195B3A48002D610D /* de */,
 			);
 			name = MainMenu.xib;
 			sourceTree = "<group>";

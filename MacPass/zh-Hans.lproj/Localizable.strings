@@ -99,6 +99,9 @@
 "COPY_URL" = "拷贝 URL";
 "COPY_USERNAME" = "拷贝用户名";
 
+/* Dock Badge */
+"CLEARING_PASTEBOARD" = "…";
+
 
 /*
  Date/Time Displays
@@ -144,8 +147,6 @@
 
 /* Autoype Dialog */
 "SELECT_AUTOTYPE_CANDIDATE" = "选择候选!";
-/* Mask to create autotype entries for selection by the user. %1 Title %2 Username %3 Password %4 Sequence */
-"TITLE_%@_USERNAME_%@_PASSWORD_%@_AUTOTYPE_SEQUENCE_%@" = "%@: 用户名:%@ 密码:%@ 序列:%@";
 
 /* Alert Dialogs */
 "WARNING_ON_EMPTY_TRASH_DESCRIPTION" = "清空废纸篓无法撤销";
@@ -163,3 +164,6 @@
 "ERROR_PASSWORD_MISSMATCH_INVALID_KEYFILE" = "密码和密钥文件不正确!";
 "ERROR_PASSWORD_MISSMATCH" = "密码不正确!";
 "ERROR_INVALID_KEYFILE" = "密钥文件不正确!";
+
+/* Misc */
+"DOCUMENT_AUTOTYPE_CORRUPTION_WARNING" = "Please run Fix Autotype...";
