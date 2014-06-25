@@ -44,22 +44,15 @@ NSString *const kMPIconCell = @"IconCell";
 
 @interface MPFixAutotypeWindowController () {
   NSMutableArray *_elements;
+  BOOL _didRegisterForUndoRedo;
 }
 @end
 
 
 @implementation MPFixAutotypeWindowController
 
-- (instancetype)init {
-  self = [super initWithWindowNibName:@"FixAutotypeWindow"];
-  return self;
-}
-
-- (instancetype)initWithWindow:(NSWindow *)window {
-  self = [super initWithWindow:window];
-  if (self) {
-  }
-  return self;
+- (NSString *)windowNibName {
+  return @"FixAutotypeWindow";
 }
 
 - (void)windowDidLoad {
@@ -67,6 +60,7 @@ NSString *const kMPIconCell = @"IconCell";
 }
 
 - (void)dealloc {
+  [[NSNotificationCenter defaultCenter] removeObserver:self];
   [self.window orderOut:self];
 }
 
@@ -77,6 +71,12 @@ NSString *const kMPIconCell = @"IconCell";
 - (void)setWorkingDocument:(MPDocument *)workingDocument {
   if(_workingDocument != workingDocument) {
     _workingDocument = workingDocument;
+  }
+  if(!_didRegisterForUndoRedo) {
+    NSUndoManager *manager = [_workingDocument undoManager];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(_didChangeDocument:) name:NSUndoManagerDidRedoChangeNotification object:manager];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(_didChangeDocument:) name:NSUndoManagerDidUndoChangeNotification object:manager];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(_didChangeDocument:) name:NSUndoManagerDidCloseUndoGroupNotification object:manager];
   }
   _elements = nil;
   [self.tableView reloadData];
@@ -232,5 +232,9 @@ NSString *const kMPIconCell = @"IconCell";
   }
 }
 
+#pragma mark NSUndoManagerNotifications
+- (void)_didChangeDocument:(NSNotification *)notification {
+  [self.tableView reloadData];
+}
 
 @end
