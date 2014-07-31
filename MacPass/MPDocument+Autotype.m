@@ -35,7 +35,7 @@
     return nil;
   }
   NSArray *autotypeEntries = [self.root autotypeableChildEntries];
-  NSMutableArray *contexts = [[NSMutableArray alloc] initWithCapacity:ceil([autotypeEntries count] / 4.0)];
+  NSMutableArray *contexts = [[NSMutableArray alloc] initWithCapacity:MAX(1,ceil([autotypeEntries count] / 4.0))];
   for(KPKEntry *entry in autotypeEntries) {
     /* Test for title */
     NSRange titleRange = [entry.title rangeOfString:windowTitle options:NSCaseInsensitiveSearch];

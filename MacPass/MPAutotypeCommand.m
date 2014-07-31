@@ -96,7 +96,7 @@
   if(![context isValid]) {
     return nil;
   }
-  NSUInteger reserverd = [context.normalizedCommand length] / 4;
+  NSUInteger reserverd = MAX(1,[context.normalizedCommand length] / 4);
   NSMutableArray *commands = [[NSMutableArray alloc] initWithCapacity:reserverd];
   NSMutableArray __block *commandRanges = [[NSMutableArray alloc] initWithCapacity:reserverd];
   NSRegularExpression *commandRegExp = [[NSRegularExpression alloc] initWithPattern:@"\\{[^\\}]+\\}" options:NSRegularExpressionCaseInsensitive error:0];
