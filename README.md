@@ -50,7 +50,7 @@ More Screenshots in the [Wiki](https://github.com/mstarke/MacPass/wiki/Screensho
 
 ##Alternatives
 
-[KeePassX](http://www.keepassx.org) is a Qt based KeePass port. The stable 0.4.3 releas only support Version 1 formats. The Alpha  can read database version 1 and 2 and write version 2 containers rather nicely.
+[KeePassX](http://www.keepassx.org) is a Qt based KeePass port. The stable 0.4.3 release only supports the version 1 format. The Alpha can read database version 1 and 2 and write version 2 containers rather nicely.
 It's in active development and open source. Since Alpha 4 the random password generator has found it's way back into the Alpha releases, version 0.4.3 includes one as well. The Alpha fully supports all database 2 features and should be stable enough for daily usage. It can import version 1 into a version 2 file but is unable to natively write version 1 files.
 
 [KyPass Companion](http://www.kyuran.be/logiciels/kypass4mac/) is a native Cocoa port and offers KeePassHttp compatiblity.
