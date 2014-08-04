@@ -27,7 +27,7 @@ NSString *const kMPWindowTitleKey = @"windowTitle";
 NSString *const kMPApplciationNameKey = @"applicationName";
 
 /*
- Enabel to activate autotype
+ Enable to activate autotype
 #define MP_AUTOTYPE
 */
 

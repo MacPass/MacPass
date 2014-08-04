@@ -37,8 +37,12 @@
   NSArray *autotypeEntries = [self.root autotypeableChildEntries];
   NSMutableArray *contexts = [[NSMutableArray alloc] initWithCapacity:MAX(1,ceil([autotypeEntries count] / 4.0))];
   for(KPKEntry *entry in autotypeEntries) {
-    /* Test for title */
-    NSRange titleRange = [entry.title rangeOfString:windowTitle options:NSCaseInsensitiveSearch];
+    /* Test for entry title in window title */
+    NSRange titleRange = [windowTitle rangeOfString:entry.title options:NSCaseInsensitiveSearch];
+    /* Test for window title in entry title */
+    if (titleRange.location == NSNotFound || titleRange.length == 0) {
+      titleRange = [entry.title rangeOfString:windowTitle options:NSCaseInsensitiveSearch];
+    }
     MPAutotypeContext *context;
     if(titleRange.location != NSNotFound && titleRange.length != 0) {
       context = [[MPAutotypeContext alloc] initWithEntry:entry andSequence:entry.autotype.defaultKeystrokeSequence];
