@@ -26,7 +26,7 @@ NSInteger const kMPDefaultIcon = -1;
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
-      _didCancel = NO;
+      _didCancel = YES;
     }
     return self;
 }
@@ -40,6 +40,7 @@ NSInteger const kMPDefaultIcon = -1;
 }
 
 - (IBAction)useDefault:(id)sender {
+  self.didCancel = NO;
   self.selectedIcon = kMPDefaultIcon;
   [self.popover performClose:self];
 }
@@ -50,11 +51,12 @@ NSInteger const kMPDefaultIcon = -1;
 }
 
 - (void)reset {
-  self.didCancel = NO;
+  self.didCancel = YES;
   self.selectedIcon = kMPDefaultIcon;
 }
 
 - (IBAction)_selectImage:(id)sender {
+  self.didCancel = NO;
   NSButton *button = sender;
   NSImage *image = [button image];
   NSUInteger buttonIndex = [[self.iconCollectionView content] indexOfObject:image];
