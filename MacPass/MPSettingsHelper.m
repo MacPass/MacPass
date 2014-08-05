@@ -7,6 +7,7 @@
 //
 
 #import "MPSettingsHelper.h"
+#import "NSString+MPPasswordCreation.h"
 
 NSString *const kMPSettingsKeyPasteboardClearTimeout                  = @"ClipboardClearTimeout";
 NSString *const kMPSettingsKeyClearPasteboardOnQuit                   = @"ClearClipboardOnQuit";
@@ -44,6 +45,10 @@ NSString *const kMPSettingsKeyEnableQuicklookPreview                  = @"Enable
 NSString *const kMPSettingsKeyCopyGeneratedPasswordToClipboard        = @"CopyGeneratedPasswordToClipboard";
 
 NSString *const kMPSettingsKeyDefaultPasswordRounds                   = @"KeyDefaultPasswordRounds";
+NSString *const kMPSettingsKeyDefaultPasswordLength                   = @"DefaultPasswordLength";
+NSString *const kMPSettingsKeyPasswordCharacterFlags                  = @"PasswordCharacterFlags";
+NSString *const kMPSettingsKeyPasswordUseCustomString                 = @"PasswordUseCustomString";
+NSString *const kMPSettingsKeyPasswordCustomString                    = @"PasswordCustomString";
 
 @implementation MPSettingsHelper
 
@@ -84,7 +89,11 @@ NSString *const kMPSettingsKeyDefaultPasswordRounds                   = @"KeyDef
            kMPSettingsKeyEnableGlobalAutotype: @NO,
            kMPSettingsKeyEnableQuicklookPreview: @NO,
            kMPSettingsKeyCopyGeneratedPasswordToClipboard: @NO,
-           kMPSettingsKeyDefaultPasswordRounds: @50000
+           kMPSettingsKeyDefaultPasswordRounds: @50000,
+           kMPSettingsKeyDefaultPasswordLength: @12,
+           kMPSettingsKeyPasswordCharacterFlags: @(MPPasswordCharactersAll),
+           kMPSettingsKeyPasswordUseCustomString: @NO,
+           kMPSettingsKeyPasswordCustomString: @""
            };
 }
 

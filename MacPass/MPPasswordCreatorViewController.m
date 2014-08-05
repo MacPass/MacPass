@@ -49,6 +49,7 @@ typedef NS_ENUM(NSUInteger, MPPasswordRating) {
 @property (weak) IBOutlet NSButton *numbersButton;
 @property (weak) IBOutlet NSButton *symbolsButton;
 @property (weak) IBOutlet NSButton *customButton;
+@property (weak) IBOutlet NSButton *setDefaultButton;
 @property (weak) IBOutlet NSTextField *entropyTextField;
 @property (weak) IBOutlet NSLevelIndicator *entropyIndicator;
 
@@ -65,19 +66,24 @@ typedef NS_ENUM(NSUInteger, MPPasswordRating) {
   self = [super initWithNibName:@"PasswordCreatorView" bundle:nil];
   if (self) {
     _password = @"";
-    _passwordLength = 12;
-    _characterFlags = MPPasswordCharactersAll;
-    _useCustomString = NO;
-    _customString = @"";
+    _passwordLength = [[NSUserDefaults standardUserDefaults] integerForKey:kMPSettingsKeyDefaultPasswordLength];
+    _characterFlags = [[NSUserDefaults standardUserDefaults] integerForKey:kMPSettingsKeyPasswordCharacterFlags];
+    _useCustomString = [[NSUserDefaults standardUserDefaults] boolForKey:kMPSettingsKeyPasswordUseCustomString];
+    _customString = [[NSUserDefaults standardUserDefaults] stringForKey:kMPSettingsKeyPasswordCustomString];
     _entropy = 0.0;
   }
   return self;
 }
 
 - (void)awakeFromNib {
+  [self.setDefaultButton setEnabled:NO];
+    
   [self.passwordLengthSlider setMinValue:MIN_PASSWORD_LENGTH];
   [self.passwordLengthSlider setMaxValue:MAX_PASSWORD_LENGTH];
   [self.passwordLengthSlider setContinuous:YES];
+  
+  [self.customCharactersTextField setStringValue:_customString];
+  
   /* Value Transformer */
   
   id formatter = [[MPUniqueCharactersFormatter alloc] init];
@@ -125,6 +131,7 @@ typedef NS_ENUM(NSUInteger, MPPasswordRating) {
 }
 
 - (IBAction)_toggleCharacters:(id)sender {
+  [_setDefaultButton setEnabled:YES];
   _characterFlags ^= [sender tag];
   self.useCustomString = NO;
   [self reset];
@@ -142,6 +149,16 @@ typedef NS_ENUM(NSUInteger, MPPasswordRating) {
   [[self _findCloseTarget] performClose:nil];
 }
 
+- (IBAction)_setDefault:(id)sender
+{
+  [[NSUserDefaults standardUserDefaults] setInteger:_passwordLength forKey:kMPSettingsKeyDefaultPasswordLength];
+  [[NSUserDefaults standardUserDefaults] setInteger:_characterFlags forKey:kMPSettingsKeyPasswordCharacterFlags];
+  [[NSUserDefaults standardUserDefaults] setBool:_useCustomString forKey:kMPSettingsKeyPasswordUseCustomString];
+  [[NSUserDefaults standardUserDefaults] setObject:[_customCharactersTextField stringValue] forKey:kMPSettingsKeyPasswordCustomString];
+  
+  [_setDefaultButton setEnabled:NO];
+}
+
 #pragma mark -
 #pragma mark Custom Setter
 
@@ -155,6 +172,7 @@ typedef NS_ENUM(NSUInteger, MPPasswordRating) {
 
 - (void)setUseCustomString:(BOOL)useCustomString {
   if(_useCustomString != useCustomString) {
+    [_setDefaultButton setEnabled:YES];
     _useCustomString = useCustomString;
     [self _resetCharacters];
   }
@@ -162,6 +180,7 @@ typedef NS_ENUM(NSUInteger, MPPasswordRating) {
 
 - (void)setPasswordLength:(NSUInteger)passwordLength {
   if(_passwordLength != passwordLength) {
+    [_setDefaultButton setEnabled:YES];
     _passwordLength = passwordLength;
     [self _generatePassword:nil];
   }
@@ -172,6 +191,7 @@ typedef NS_ENUM(NSUInteger, MPPasswordRating) {
 
 - (void)controlTextDidChange:(NSNotification *)obj {
   if([obj object] == self.customCharactersTextField) {
+    [_setDefaultButton setEnabled:YES];
     [self _generatePassword:nil];
   }
 }
