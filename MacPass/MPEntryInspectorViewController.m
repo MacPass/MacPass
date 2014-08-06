@@ -13,6 +13,8 @@
 #import "MPAttachmentTableDataSource.h"
 #import "MPWindowAssociationsTableViewDelegate.h"
 
+#import "NSString+MPPasswordCreation.h"
+
 #import "MPDocument.h"
 #import "MPIconHelper.h"
 #import "MPValueTransformerHelper.h"
@@ -117,6 +119,17 @@ typedef NS_ENUM(NSUInteger, MPEntryTab) {
     _entry = entry;
     [self _updateContent];
   }
+}
+
+- (void)regsiterNotificationsForDocument:(MPDocument *)document {
+  [[NSNotificationCenter defaultCenter] addObserver:self
+                                           selector:@selector(_didAddItem:)
+                                               name:MPDocumentItemAddedNotification
+                                            object:document];
+}
+
+- (void)dealloc {
+  [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
 
 #pragma mark -
@@ -416,6 +429,30 @@ typedef NS_ENUM(NSUInteger, MPEntryTab) {
   [_modifiedTextField setEditable:edit];
   [_modifiedTextField setSelectable:edit];
   
+}
+
+#pragma mark -
+#pragma mark MPDocument Notifications
+
+- (void)_didAddItem:(NSNotification *)notification {
+  [self.tabView selectTabViewItemAtIndex:MPEntryTabGeneral];
+
+  /* generate and pre-fill password using default password creation settings */
+  NSUInteger passwordLength = [[NSUserDefaults standardUserDefaults] integerForKey:kMPSettingsKeyDefaultPasswordLength];
+  MPPasswordCharacterFlags characterFlags = [[NSUserDefaults standardUserDefaults] integerForKey:kMPSettingsKeyPasswordCharacterFlags];
+  BOOL useCustomString = [[NSUserDefaults standardUserDefaults] boolForKey:kMPSettingsKeyPasswordUseCustomString];
+  NSString *customString = [[NSUserDefaults standardUserDefaults] stringForKey:kMPSettingsKeyPasswordCustomString];
+  
+  if(useCustomString) {
+    if([customString length] > 0) {
+      [self.passwordTextField setStringValue:[customString passwordWithLength:passwordLength]];
+    }
+  }
+  else {
+    [self.passwordTextField setStringValue:[NSString passwordWithCharactersets:characterFlags length:passwordLength]];
+  }
+  
+  [self.titleTextField becomeFirstResponder];
 }
 
 @end

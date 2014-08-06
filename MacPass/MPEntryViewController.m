@@ -207,6 +207,11 @@ NSString *const _MPTAbleSecurCellView = @"PasswordCell";
                                              object:document];
   
   [[NSNotificationCenter defaultCenter] addObserver:self
+                                           selector:@selector(_didAddItem:)
+                                               name:MPDocumentItemAddedNotification
+                                             object:document];
+  
+  [[NSNotificationCenter defaultCenter] addObserver:self
                                            selector:@selector(_didEnterSearch:)
                                                name:MPDocumentDidEnterSearchNotification
                                              object:document];
@@ -220,7 +225,6 @@ NSString *const _MPTAbleSecurCellView = @"PasswordCell";
                                            selector:@selector(_didUpdateSearchResults:)
                                                name:MPDocumentDidChangeSearchResults
                                              object:document];
-  
   
   [self.contextBarViewController registerNotificationsForDocument:document];
   
@@ -369,6 +373,14 @@ NSString *const _MPTAbleSecurCellView = @"PasswordCell";
   else {
     document.selectedEntry = nil;
   }
+}
+
+- (void)_didAddItem:(NSNotification *)notification {
+  MPDocument *document = [[self windowController] document];
+  KPKEntry *entry = document.selectedGroup.entries.lastObject;
+  NSUInteger row = [self.entryArrayController.arrangedObjects indexOfObject:entry];
+  [self.entryTable scrollRowToVisible:row];
+  [self.entryTable selectRowIndexes:[NSIndexSet indexSetWithIndex:row] byExtendingSelection:NO];
 }
 
 - (void)_didUpdateSearchResults:(NSNotification *)notification {

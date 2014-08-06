@@ -52,6 +52,7 @@ NSString *const MPDocumentDidLockDatabaseNotification     = @"com.hicknhack.macp
 NSString *const MPDocumentDidUnlockDatabaseNotification   = @"com.hicknhack.macpass.MPDocumentDidUnlockDatabaseNotification";
 
 NSString *const MPDocumentCurrentItemChangedNotification  = @"com.hicknhack.macpass.MPDocumentCurrentItemChangedNotification";
+NSString *const MPDocumentItemAddedNotification           = @"com.hicknhack.macpass.MPDocumentItemAddedNotification";
 
 NSString *const MPDocumentEntryKey                        = @"MPDocumentEntryKey";
 NSString *const MPDocumentGroupKey                        = @"MPDocumentGroupKey";
@@ -444,6 +445,7 @@ NSString *const MPDocumentGroupKey                        = @"MPDocumentGroupKey
   }
   [parent addEntry:newEntry];
   [parent.undoManager setActionName:NSLocalizedString(@"ADD_ENTRY", "")];
+  [[NSNotificationCenter defaultCenter] postNotificationName:MPDocumentItemAddedNotification object:self];
   return newEntry;
 }
 

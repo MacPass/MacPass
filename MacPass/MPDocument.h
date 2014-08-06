@@ -30,6 +30,7 @@ APPKIT_EXTERN NSString *const MPDocumentDidLockDatabaseNotification;
 APPKIT_EXTERN NSString *const MPDocumentDidUnlockDatabaseNotification;
 
 FOUNDATION_EXTERN NSString *const MPDocumentCurrentItemChangedNotification;
+FOUNDATION_EXTERN NSString *const MPDocumentItemAddedNotification;
 
 APPKIT_EXTERN NSString *const MPDocumentEntryKey;
 APPKIT_EXTERN NSString *const MPDocumentGroupKey;
