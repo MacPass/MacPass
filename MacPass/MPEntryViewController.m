@@ -377,7 +377,8 @@ NSString *const _MPTAbleSecurCellView = @"PasswordCell";
 
 - (void)_didAddItem:(NSNotification *)notification {
   MPDocument *document = [[self windowController] document];
-  NSInteger row = document.selectedGroup.entries.count - 1;
+  KPKEntry *entry = document.selectedGroup.entries.lastObject;
+  NSUInteger row = [self.entryArrayController.arrangedObjects indexOfObject:entry];
   [self.entryTable scrollRowToVisible:row];
   [self.entryTable selectRowIndexes:[NSIndexSet indexSetWithIndex:row] byExtendingSelection:NO];
 }
