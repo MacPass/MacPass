@@ -9,7 +9,7 @@
 #import "NSString+MPPasswordCreation.h"
 #import "NSData+Random.h"
 
-NSString *const kMPLowercaseLetterCharacters = @"abcdefghijklmnopqrstuvw";
+NSString *const kMPLowercaseLetterCharacters = @"abcdefghijklmnopqrstuvwxyz";
 NSString *const kMPNumberCharacters = @"1234567890";
 NSString *const kMPSymbolCharacters = @"!$%&\\|/<>(){}[]=?*'+#-_.:,;";
 
