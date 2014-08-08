@@ -11,10 +11,19 @@
 @implementation DDHotKey (Keydata)
 
 - (instancetype)initWithKeyData:(NSData *)data {
-  NSKeyedUnarchiver *unarchiver = [[NSKeyedUnarchiver alloc] initForReadingWithData:data];
-  unsigned short keyCode = [unarchiver decodeIntForKey:NSStringFromSelector(@selector(keyCode))];
-  NSUInteger modiferFlags = [unarchiver decodeIntegerForKey:NSStringFromSelector(@selector(modifierFlags))];
-  self = [DDHotKey hotKeyWithKeyCode:keyCode modifierFlags:modiferFlags task:nil];
+  self = [self initWithKeyData:data taks:nil];
+  return self;
+}
+
+- (instancetype)initWithKeyData:(NSData *)data taks:(DDHotKeyTask)task{
+  NSUInteger modifierFlags;
+  unsigned short keyCode;
+  if([self _getKeyCode:&keyCode modifierFlags:&modifierFlags fromData:data]) {
+    self = [DDHotKey hotKeyWithKeyCode:keyCode modifierFlags:modifierFlags task:task];
+  }
+  else {
+    self = nil;
+  }
   return self;
 }
 
@@ -27,4 +36,14 @@
   return  [data copy];
 }
 
+
+- (BOOL)_getKeyCode:(unsigned short *)keyCode modifierFlags:(NSUInteger *)modifierFlags fromData:(NSData *)data {
+  if(keyCode == NULL || modifierFlags == NULL || data == nil) {
+    return NO;
+  }
+  NSKeyedUnarchiver *unarchiver = [[NSKeyedUnarchiver alloc] initForReadingWithData:data];
+  *keyCode = [unarchiver decodeIntForKey:NSStringFromSelector(@selector(keyCode))];
+  *modifierFlags = [unarchiver decodeIntegerForKey:NSStringFromSelector(@selector(modifierFlags))];
+  return YES;
+}
 @end

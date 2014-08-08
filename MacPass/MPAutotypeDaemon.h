@@ -8,7 +8,7 @@
 
 #import <Foundation/Foundation.h>
 
-@class KPKEntry;
+@class DDHotKey;
 
 /**
  *  The autotype daemon is repsonsible for registering the globa hotkey and to perform any autotype actions
@@ -17,6 +17,7 @@
 
 @property (strong) IBOutlet NSWindow *matchSelectionWindow;
 @property (weak) IBOutlet NSPopUpButton *matchSelectionButton;
+@property (readonly, strong) DDHotKey *registredHotKey;
 
 - (IBAction)executeAutotypeWithSelectedMatch:(id)sender;
 - (IBAction)cancelAutotypeSelection:(id)sender;

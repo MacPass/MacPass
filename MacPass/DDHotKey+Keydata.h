@@ -11,6 +11,6 @@
 @interface DDHotKey (Keydata)
 
 - (NSData *)keyData;
+- (instancetype)initWithKeyData:(NSData *)data taks:(DDHotKeyTask)task;
 - (instancetype)initWithKeyData:(NSData *)data;
-
 @end

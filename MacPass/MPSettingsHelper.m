@@ -35,7 +35,7 @@ NSString *const kMPSettingsKeyRememberKeyFilesForDatabases            = @"Rememb
 
 NSString *const kMPSettingsKeySendCommandForControlKey                = @"SendCommandKeyForControlKey";
 NSString *const kMPSettingsKeyEnableGlobalAutotype                    = @"EnableGlobalAutotype";
-NSString *const kMPSettingsKeyGlobalAutotypeKeyKey                    = @"GlobalAutotypeKey";
+NSString *const kMPSettingsKeyGlobalAutotypeKeyDataKey                = @"GlobalAutotypeKeyDataKey";
 NSString *const kMPSettingsKeyDocumentsAutotypeFixNoteWasShown        = @"DocumentsAutotypeFixNoteWasShown";
 
 NSString *const kMPSettingsKeyEntrySearchFilterMode                   = @"EntrySearchFilterMode";

@@ -21,6 +21,7 @@
 #import "KPKEntry.h"
 
 #import "DDHotKeyCenter.h"
+#import "DDHotKey+Keydata.h"
 #import <Carbon/Carbon.h>
 
 NSString *const kMPWindowTitleKey = @"windowTitle";
@@ -28,12 +29,14 @@ NSString *const kMPApplciationNameKey = @"applicationName";
 
 /*
  Enable to activate autotype
+ */
 #define MP_AUTOTYPE
-*/
 
 @interface MPAutotypeDaemon ()
 
 @property (nonatomic, assign) BOOL enabled;
+@property (nonatomic, copy) NSData *hotKeyData;
+@property (strong) DDHotKey *registredHotKey;
 @property (copy) NSString *targetApplicationName;
 @property (copy) NSString *targetWindowTitle;
 
@@ -52,12 +55,18 @@ NSString *const kMPApplciationNameKey = @"applicationName";
       toObject:[NSUserDefaultsController sharedUserDefaultsController]
    withKeyPath:[MPSettingsHelper defaultControllerPathForKey:kMPSettingsKeyEnableGlobalAutotype]
        options:nil];
+    
+    [self bind:NSStringFromSelector(@selector(hotKeyData))
+      toObject:[NSUserDefaultsController sharedUserDefaultsController]
+   withKeyPath:[MPSettingsHelper defaultControllerPathForKey:kMPSettingsKeyGlobalAutotypeKeyDataKey]
+       options:nil];
   }
   return self;
 }
 
 - (void)dealloc {
   [self unbind:NSStringFromSelector(@selector(enabled))];
+  [self unbind:NSStringFromSelector(@selector(hotKeyData))];
 }
 
 #pragma mark -
@@ -71,6 +80,21 @@ NSString *const kMPApplciationNameKey = @"applicationName";
 #endif
   }
 }
+
+- (void)setHotKeyData:(NSData *)hotKeyData {
+  if(![_hotKeyData isEqualToData:hotKeyData]) {
+#ifdef MP_AUTOTYPE
+    [self _unregisterHotKey];
+#endif
+    _hotKeyData = [hotKeyData copy];
+#ifdef MP_AUTOTYPE
+    if(self.enabled) {
+      [self _registerHotKey];
+    }
+#endif
+  }
+}
+
 
 #pragma mark -
 #pragma mark Actions
@@ -100,12 +124,12 @@ NSString *const kMPApplciationNameKey = @"applicationName";
   if(useCurrentWindowAndApplication) {
     [self _updateTargetApplicationAndWindow];
   }
- 
+  
   MPDocument *document = [self _findAutotypeDocument];
   if(!document) {
     return; // nothing to do
   }
-
+  
   MPAutotypeContext *context = [self _autotypeContextInDocument:document forWindowTitle:self.targetWindowTitle];
   [self _performAutotypeForContext:context];
 }
@@ -167,15 +191,19 @@ NSString *const kMPApplciationNameKey = @"applicationName";
 #pragma mark Hotkey Registration
 
 - (void)_registerHotKey {
-  [[DDHotKeyCenter sharedHotKeyCenter] registerHotKeyWithKeyCode:kVK_ANSI_M
-                                                   modifierFlags:(NSCommandKeyMask | NSAlternateKeyMask )
-                                                          target:self
-                                                          action:@selector(_didPressHotKey)
-                                                          object:nil];
+  if(nil == self.hotKeyData) {
+    return; // No hotkey data defined, so nothign to do
+  }
+  __weak MPAutotypeDaemon *welf = self;
+  DDHotKey *storedHotkey = [[DDHotKey alloc] initWithKeyData:self.hotKeyData taks:^(NSEvent *event) {
+    [welf _didPressHotKey];
+  }];
+  self.registredHotKey = [[DDHotKeyCenter sharedHotKeyCenter] registerHotKey:storedHotkey];
 }
 
 - (void)_unregisterHotKey {
-  [[DDHotKeyCenter sharedHotKeyCenter] unregisterHotKeysWithTarget:self action:@selector(_didPressHotKey)];
+  [[DDHotKeyCenter sharedHotKeyCenter] unregisterHotKey:self.registredHotKey];
+  self.registredHotKey = nil;
 }
 
 - (NSDictionary *)_frontMostApplicationInfoDict {
