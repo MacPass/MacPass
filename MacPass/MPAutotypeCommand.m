@@ -196,6 +196,7 @@
   
   /* Send the event */
   CGEventPost(kCGSessionEventTap, pressKey);
+  usleep(100000);
   CGEventPost(kCGSessionEventTap, releaseKey);
   
   CFRelease(pressKey);
