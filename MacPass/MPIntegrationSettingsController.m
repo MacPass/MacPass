@@ -12,6 +12,8 @@
 
 @interface MPIntegrationSettingsController ()
 
+@property (copy) NSData *globalAutotypeKeyData;
+
 @end
 
 @implementation MPIntegrationSettingsController
@@ -38,10 +40,12 @@
   NSString *serverKeyPath = [MPSettingsHelper defaultControllerPathForKey:kMPSettingsKeyEnableHttpServer];
   NSString *globalAutotypeKeyPath = [MPSettingsHelper defaultControllerPathForKey:kMPSettingsKeyEnableGlobalAutotype];
   NSString *quicklookKeyPath = [MPSettingsHelper defaultControllerPathForKey:kMPSettingsKeyEnableQuicklookPreview];
+  NSString *globalAutotypeDataKeyPath = [MPSettingsHelper defaultControllerPathForKey:kMPSettingsKeyGlobalAutotypeKeyDataKey];
   [self.enableServerCheckbutton bind:NSValueBinding toObject:defaultsController withKeyPath:serverKeyPath options:nil];
   [self.enableServerCheckbutton setEnabled:NO];
   [self.enableGlobalAutotypeCheckbutton bind:NSValueBinding toObject:defaultsController withKeyPath:globalAutotypeKeyPath options:nil];
   [self.enableQuicklookCheckbutton bind:NSValueBinding toObject:defaultsController withKeyPath:quicklookKeyPath options:nil];
+  [self.globalAutotypeKeyData bind:NSValueBinding toObject:defaultsController withKeyPath:globalAutotypeDataKeyPath options:nil];
 
 }
 
