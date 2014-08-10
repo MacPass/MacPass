@@ -21,18 +21,6 @@ NSString *const kMPTitleCell = @"TitleCell";
 NSString *const kMPIsDefaultCell = @"IsDefaultCell";
 NSString *const kMPIconCell = @"IconCell";
 
-/* Helper Categries */
-
-@implementation KPKGroup (MPFixAutotypeWindowControllerBreadCrumb)
-
-- (NSString *)breadcrumb {
-  if(self.parent) {
-    return [[self.parent breadcrumb] stringByAppendingFormat:@" > %@", self.name];
-  }
-  return self.name;
-}
-
-@end
 
 @implementation KPKWindowAssociation (MPFixAutotypeWindowControllerQualifedName)
 
@@ -133,7 +121,7 @@ NSString *const kMPIconCell = @"IconCell";
       return entry.title;
     }
     if(group) {
-      return [group breadcrumb];
+      return [group breadcrumbWithSeparator:@" > "];
     }
     return [association qualifedName];
   }
