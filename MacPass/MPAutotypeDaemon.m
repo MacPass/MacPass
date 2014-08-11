@@ -191,19 +191,25 @@ NSString *const kMPApplciationNameKey = @"applicationName";
 #pragma mark Hotkey Registration
 
 - (void)_registerHotKey {
-  if(nil == self.hotKeyData) {
-    return; // No hotkey data defined, so nothign to do
-  }
   __weak MPAutotypeDaemon *welf = self;
-  DDHotKey *storedHotkey = [[DDHotKey alloc] initWithKeyData:self.hotKeyData taks:^(NSEvent *event) {
+  DDHotKeyTask aTask = ^(NSEvent *event) {
     [welf _didPressHotKey];
-  }];
+  };
+  DDHotKey *storedHotkey;
+  if(nil == self.hotKeyData) {
+    storedHotkey = [DDHotKey hotKeyWithKeyCode:kVK_ANSI_M modifierFlags:kCGEventFlagMaskControl|kCGEventFlagMaskAlternate task:aTask];
+  }
+  else {
+    storedHotkey = [[DDHotKey alloc] initWithKeyData:self.hotKeyData taks:aTask];
+  }
   self.registredHotKey = [[DDHotKeyCenter sharedHotKeyCenter] registerHotKey:storedHotkey];
 }
 
 - (void)_unregisterHotKey {
-  [[DDHotKeyCenter sharedHotKeyCenter] unregisterHotKey:self.registredHotKey];
-  self.registredHotKey = nil;
+  if(nil != self.registredHotKey) {
+    [[DDHotKeyCenter sharedHotKeyCenter] unregisterHotKey:self.registredHotKey];
+    self.registredHotKey = nil;
+  }
 }
 
 - (NSDictionary *)_frontMostApplicationInfoDict {
