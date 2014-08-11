@@ -65,6 +65,7 @@ typedef NS_OPTIONS(NSUInteger, MPEntrySearchFlags) {
 @interface MPDocument : NSDocument
 
 @property (nonatomic, readonly, assign) BOOL encrypted;
+@property (nonatomic, readonly, assign) NSUInteger unlockCount; // Amount of times the Document was unlocked;
 
 @property (strong, readonly, nonatomic) KPKTree *tree;
 @property (nonatomic, weak, readonly) KPKGroup *root;

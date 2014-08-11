@@ -22,6 +22,7 @@
 
 #import "MPDocument+Autotype.h"
 #import "MPAutotypeContext.h"
+#import "MPAutotypeHelper.h"
 
 #import "KPKGroup.h"
 #import "KPKEntry.h"
@@ -29,6 +30,22 @@
 #import "KPKWindowAssociation.h"
 
 @implementation MPDocument (Autotype)
+
++ (BOOL)isCandidateForMalformedAutotype:(id)item {
+  
+  NSString *keystrokeSequence;
+  if([item isKindOfClass:[KPKEntry class]] && ![((KPKEntry *)item).autotype hasDefaultKeystrokeSequence]) {
+    keystrokeSequence = ((KPKEntry *)item).autotype.defaultKeystrokeSequence;
+  }
+  else if( [item isKindOfClass:[KPKGroup class]] && ![item hasDefaultAutotypeSequence]) {
+    keystrokeSequence = ((KPKGroup *)item).defaultAutoTypeSequence;
+  }
+  else if( [item isKindOfClass:[KPKWindowAssociation class]] && ![item hasDefaultKeystrokeSequence]){
+    keystrokeSequence = ((KPKWindowAssociation *)item).keystrokeSequence;
+  }
+  /* if nothing is true, keystrokeSequence is nil an hence return is NO */
+  return (NSOrderedSame == [@"{TAB}{USERNAME}{TAB}{PASSWORD}{ENTER}" compare:keystrokeSequence options:NSCaseInsensitiveSearch]);
+}
 
 - (NSArray *)autotypContextsForWindowTitle:(NSString *)windowTitle {
   if(!windowTitle) {
@@ -57,6 +74,31 @@
     }
   }
   return contexts;
+}
+
+- (BOOL)hasMalformedAutotypeItems {
+  return [[self malformedAutotypeItems] count] > 0;
+}
+
+- (NSArray *)malformedAutotypeItems {
+  NSMutableArray *items = [[NSMutableArray alloc] initWithCapacity:1000];
+  [self _flattenGroup:self.root toArray:items];
+  NSPredicate *malformedPrediacte = [NSPredicate predicateWithBlock:^BOOL(id evaluatedObject, NSDictionary *bindings) {
+    return [MPDocument isCandidateForMalformedAutotype:evaluatedObject];
+  }];
+  NSArray *malformedItems = [items filteredArrayUsingPredicate:malformedPrediacte];
+  return malformedItems;
+}
+
+- (void)_flattenGroup:(KPKGroup *)group toArray:(NSMutableArray *)array {
+  [array addObject:group];
+  for(KPKEntry *entry in group.entries) {
+    [array addObject:entry];
+    [array addObjectsFromArray:entry.autotype.associations];
+  }
+  for(KPKGroup *childGroup in group.groups) {
+    [self _flattenGroup:childGroup toArray:array];
+  }
 }
 
 @end

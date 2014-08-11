@@ -24,6 +24,31 @@
 
 @interface MPDocument (Autotype)
 
+/**
+ *  Tests the given item for a possible wrong autotype format
+ *  MacPass 0.4 and 0.4.1 did store wrong Autotype sequences and thus mangled database files
+ *
+ *  @param item Item to test for malformation. Allowed Items are KPKNode, KPKEntry, KPKGroup and KPKAutotype
+ *
+ *  @return YES if the given item is considered a possible candiate. NO in all other cases
+ */
++ (BOOL)isCandidateForMalformedAutotype:(id)item;
+
+/**
+ *  Returns an NSArray containing all Autotype Contexts that match the given window title
+ *
+ *  @param windowTitle Window title to search matches for
+ *
+ *  @return NSArray of MPAutotypeContexts for the given window title
+ */
 - (NSArray *)autotypContextsForWindowTitle:(NSString *)windowTitle;
+/**
+ *  Checks if the document has malformed autotype items
+ *
+ *  @return YES if any malformed items are found
+ */
+- (BOOL)hasMalformedAutotypeItems;
+
+- (NSArray *)malformedAutotypeItems;
 
 @end

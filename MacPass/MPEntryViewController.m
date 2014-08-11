@@ -9,9 +9,12 @@
 #import "MPEntryViewController.h"
 #import "MPAppDelegate.h"
 #import "MPOutlineViewController.h"
+
 #import "MPDocument.h"
 #import "MPDocument+Search.h"
+#import "MPDocument+Autotype.h"
 #import "MPDocumentWindowController.h"
+
 #import "MPPasteBoardController.h"
 #import "MPOverlayWindowController.h"
 #import "MPContextBarViewController.h"
@@ -66,7 +69,7 @@ NSString *const _MPTAbleSecurCellView = @"PasswordCell";
 @interface MPEntryViewController () {
   MPEntryContextMenuDelegate *_menuDelegate;
   BOOL _isDisplayingContextBar;
-  BOOL _showFooterInfo;
+  BOOL _didUnlock;
 }
 
 @property (strong) NSArrayController *entryArrayController;
@@ -191,9 +194,6 @@ NSString *const _MPTAbleSecurCellView = @"PasswordCell";
   
   [self _setupHeaderMenu];
   [parentColumn setHidden:YES];
-  
-  [self.footerInfoText setHidden:!_showFooterInfo];
-  [self.footerInfoText setStringValue:NSLocalizedString(@"DOCUMENT_AUTOTYPE_CORRUPTION_WARNING", "")];
 }
 
 - (NSResponder *)reconmendedFirstResponder {
@@ -225,24 +225,11 @@ NSString *const _MPTAbleSecurCellView = @"PasswordCell";
                                            selector:@selector(_didUpdateSearchResults:)
                                                name:MPDocumentDidChangeSearchResults
                                              object:document];
-  
+  [[NSNotificationCenter defaultCenter] addObserver:self
+                                           selector:@selector(_didUnlockDatabase:)
+                                               name:MPDocumentDidUnlockDatabaseNotification
+                                             object:document];
   [self.contextBarViewController registerNotificationsForDocument:document];
-  
-  /* Setup warning message at the bottom*/
-  NSArray *array = [[NSUserDefaults standardUserDefaults] arrayForKey:kMPSettingsKeyDocumentsAutotypeFixNoteWasShown];
-  NSString *path = [[document fileURL] path];
-  if(!path) {
-    return; // No path, nothing to do
-  }
-  if(![array containsObject:path]) {
-    array = array ? [array arrayByAddingObject:path] : @[path];
-    [[NSUserDefaults standardUserDefaults] setObject:array forKey:kMPSettingsKeyDocumentsAutotypeFixNoteWasShown];
-    [[NSUserDefaults standardUserDefaults] synchronize];
-    _showFooterInfo = YES;
-  }
-  else {
-    _showFooterInfo = NO;
-  }
 }
 
 #pragma mark NSTableViewDelgate
@@ -403,6 +390,15 @@ NSString *const _MPTAbleSecurCellView = @"PasswordCell";
 
 - (void)_didEnterSearch:(NSNotification *)notification {
   [self _showContextBar];
+}
+
+- (void)_didUnlockDatabase:(NSNotification *)notificiation {
+  MPDocument *document = [[self windowController] document];
+  /* If the document was locked and unlocked we do not need to recheck */
+  if(document.unlockCount != 1) {
+    [self.footerInfoText setHidden:![document hasMalformedAutotypeItems]];
+    [self.footerInfoText setStringValue:NSLocalizedString(@"DOCUMENT_AUTOTYPE_CORRUPTION_WARNING", "")];
+  }
 }
 
 #pragma mark ContextBar

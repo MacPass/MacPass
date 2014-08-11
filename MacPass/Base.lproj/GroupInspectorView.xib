@@ -1,13 +1,14 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="5053" systemVersion="13C64" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="5056" systemVersion="13E28" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
     <dependencies>
         <deployment defaultVersion="1080" identifier="macosx"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="5053"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="5056"/>
     </dependencies>
     <objects>
         <customObject id="-2" userLabel="File's Owner" customClass="MPGroupInspectorViewController">
             <connections>
                 <outlet property="autotypePopupButton" destination="240" id="285"/>
+                <outlet property="autotypeSequenceTextField" destination="Fnw-qz-IZU" id="a7M-zz-0ye"/>
                 <outlet property="contentView" destination="38" id="Dv7-1B-VeH"/>
                 <outlet property="expireDateSelectButton" destination="4" id="Bzg-8k-0OS"/>
                 <outlet property="expiresCheckButton" destination="5" id="283"/>

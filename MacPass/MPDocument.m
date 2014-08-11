@@ -64,6 +64,8 @@ NSString *const MPDocumentGroupKey                        = @"MPDocumentGroupKey
   NSData *_encryptedData;
 }
 
+@property (nonatomic, assign) NSUInteger unlockCount;
+
 @property (strong, nonatomic) MPSavePanelAccessoryViewController *savePanelViewController;
 
 @property (strong, nonatomic) KPKTree *tree;
@@ -120,6 +122,7 @@ NSString *const MPDocumentGroupKey                        = @"MPDocumentGroupKey
     _readOnly = NO;
     _activeFlags = MPEntrySearchTitles;
     _hasSearch = NO;
+    _unlockCount = 0;
     self.tree = [KPKTree templateTree];
     self.tree.metaData.rounds = [[NSUserDefaults standardUserDefaults] integerForKey:kMPSettingsKeyDefaultPasswordRounds];
   }
@@ -285,6 +288,7 @@ NSString *const MPDocumentGroupKey                        = @"MPDocumentGroupKey
     self.compositeKey = nil; // clear the key?
   }
   if(isUnlocked) {
+    self.unlockCount += 1;
     [[NSNotificationCenter defaultCenter] postNotificationName:MPDocumentDidUnlockDatabaseNotification object:self];
   }
   return isUnlocked;

@@ -20,6 +20,7 @@
 
 @property (weak) IBOutlet NSPopUpButton *searchPopupButton;
 @property (weak) IBOutlet NSPopUpButton *autotypePopupButton;
+@property (weak) IBOutlet HNHRoundedTextField *autotypeSequenceTextField;
 
 - (void)setupBindings:(MPDocument *)document;
 

@@ -30,13 +30,12 @@ NSString *const kMPSettingsKeyLegacyHideNotes                         = @"Legacy
 NSString *const kMPSettingsKeyLegacyHideURL                           = @"LegacyHideURL";
 
 NSString *const kMPSettingsKeyLastDatabasePath                        = @"LastDatabasePath";
-NSString *const kMPSettingsKeyRememeberdKeysForDatabases              = @"RememeberdKeysForDatabases";
 NSString *const kMPSettingsKeyRememberKeyFilesForDatabases            = @"RememberKeyFilesForDatabases";
+NSString *const kMPSettingsKeyRememeberdKeysForDatabases              = @"RememeberdKeysForDatabases";
 
 NSString *const kMPSettingsKeySendCommandForControlKey                = @"SendCommandKeyForControlKey";
 NSString *const kMPSettingsKeyEnableGlobalAutotype                    = @"EnableGlobalAutotype";
 NSString *const kMPSettingsKeyGlobalAutotypeKeyDataKey                = @"GlobalAutotypeKeyDataKey";
-NSString *const kMPSettingsKeyDocumentsAutotypeFixNoteWasShown        = @"DocumentsAutotypeFixNoteWasShown";
 
 NSString *const kMPSettingsKeyEntrySearchFilterMode                   = @"EntrySearchFilterMode";
 
@@ -49,6 +48,11 @@ NSString *const kMPSettingsKeyDefaultPasswordLength                   = @"Defaul
 NSString *const kMPSettingsKeyPasswordCharacterFlags                  = @"PasswordCharacterFlags";
 NSString *const kMPSettingsKeyPasswordUseCustomString                 = @"PasswordUseCustomString";
 NSString *const kMPSettingsKeyPasswordCustomString                    = @"PasswordCustomString";
+
+/* Depricated */
+NSString *const kMPDepricatedSettingsKeyRememberKeyFilesForDatabases      = @"kMPSettingsKeyRememberKeyFilesForDatabases";
+NSString *const kMPDepricatedSettingsKeyLastDatabasePath                  = @"MPLastDatabasePath";
+NSString *const kMPDepricatedSettingsKeyDocumentsAutotypeFixNoteWasShown  = @"DocumentsAutotypeFixNoteWasShown";
 
 @implementation MPSettingsHelper
 
@@ -66,40 +70,57 @@ NSString *const kMPSettingsKeyPasswordCustomString                    = @"Passwo
 }
 
 + (NSDictionary *)_standardDefaults {
-  return @{
-           kMPSettingsKeyShowInspector: @YES, // Show the Inspector by default
-           kMPSettingsKeyPasteboardClearTimeout: @30, // 30 seconds
-           kMPSettingsKeyClearPasteboardOnQuit: @YES,
-           kMPSettingsKeyDoubleClickURLToLaunch: @NO,
-           kMPSettingsKeyOpenEmptyDatabaseOnLaunch: @NO,
-           kMPSettingsKeyReopenLastDatabaseOnLaunch: @YES,
-           kMPSettingsKeyHttpPort: @19455,
-           kMPSettingsKeyEnableHttpServer: @NO,
-           kMPSettingsKeyShowMenuItem: @YES,
-           kMPSettingsKeyLockOnSleep: @YES,
-           kMPSettingsKeyIdleLockTimeOut: @0, // 5 minutes
-           kMPSettingsKeyLegacyHideNotes: @NO,
-           kMPSettingsKeyLegacyHidePassword: @YES,
-           kMPSettingsKeyLegacyHideTitle: @NO,
-           kMPSettingsKeyLegacyHideURL: @NO,
-           kMPSettingsKeyLegacyHideUsername: @NO,
-           kMPSettingsKeyRememberKeyFilesForDatabases: @NO,
-           kMPSettingsKeySendCommandForControlKey: @YES,
-           kMPSettingsKeyEntrySearchFilterMode: @0,
-           kMPSettingsKeyEnableGlobalAutotype: @NO,
-           kMPSettingsKeyEnableQuicklookPreview: @NO,
-           kMPSettingsKeyCopyGeneratedPasswordToClipboard: @NO,
-           kMPSettingsKeyDefaultPasswordRounds: @50000,
-           kMPSettingsKeyDefaultPasswordLength: @12,
-           kMPSettingsKeyPasswordCharacterFlags: @(MPPasswordCharactersAll),
-           kMPSettingsKeyPasswordUseCustomString: @NO,
-           kMPSettingsKeyPasswordCustomString: @""
-           };
+  static NSDictionary *standardDefaults;
+  static dispatch_once_t onceToken;
+  dispatch_once(&onceToken, ^{
+    standardDefaults = @{
+                         kMPSettingsKeyShowInspector: @YES, // Show the Inspector by default
+                         kMPSettingsKeyPasteboardClearTimeout: @30, // 30 seconds
+                         kMPSettingsKeyClearPasteboardOnQuit: @YES,
+                         kMPSettingsKeyDoubleClickURLToLaunch: @NO,
+                         kMPSettingsKeyOpenEmptyDatabaseOnLaunch: @NO,
+                         kMPSettingsKeyReopenLastDatabaseOnLaunch: @YES,
+                         kMPSettingsKeyHttpPort: @19455,
+                         kMPSettingsKeyEnableHttpServer: @NO,
+                         kMPSettingsKeyShowMenuItem: @YES,
+                         kMPSettingsKeyLockOnSleep: @YES,
+                         kMPSettingsKeyIdleLockTimeOut: @0, // 5 minutes
+                         kMPSettingsKeyLegacyHideNotes: @NO,
+                         kMPSettingsKeyLegacyHidePassword: @YES,
+                         kMPSettingsKeyLegacyHideTitle: @NO,
+                         kMPSettingsKeyLegacyHideURL: @NO,
+                         kMPSettingsKeyLegacyHideUsername: @NO,
+                         kMPSettingsKeyRememberKeyFilesForDatabases: @NO,
+                         kMPSettingsKeySendCommandForControlKey: @YES,
+                         kMPSettingsKeyEntrySearchFilterMode: @0,
+                         kMPSettingsKeyEnableGlobalAutotype: @NO,
+                         kMPSettingsKeyEnableQuicklookPreview: @NO,
+                         kMPSettingsKeyCopyGeneratedPasswordToClipboard: @NO,
+                         kMPSettingsKeyDefaultPasswordRounds: @50000,
+                         kMPSettingsKeyDefaultPasswordLength: @12,
+                         kMPSettingsKeyPasswordCharacterFlags: @(MPPasswordCharactersAll),
+                         kMPSettingsKeyPasswordUseCustomString: @NO,
+                         kMPSettingsKeyPasswordCustomString: @""
+                         };
+  });
+  return standardDefaults;
 }
+
++ (NSArray *)_depircatedSettingsKeys {
+  static NSArray *depircatedSettings;
+  static dispatch_once_t onceToken;
+  dispatch_once(&onceToken, ^{
+    depircatedSettings = @[ kMPDepricatedSettingsKeyRememberKeyFilesForDatabases,
+                            kMPDepricatedSettingsKeyLastDatabasePath,
+                            kMPDepricatedSettingsKeyDocumentsAutotypeFixNoteWasShown ];
+  });
+  return depircatedSettings;
+}
+
 
 + (void)_removeObsolteValues {
   /* Clear old style values */
-  for(NSString *key in @[ @"kMPSettingsKeyRememberKeyFilesForDatabases", @"MPLastDatabasePath" ]) {
+  for(NSString *key in [self _depircatedSettingsKeys]) {
     [[NSUserDefaults standardUserDefaults] removeObjectForKey:key];
   }
 }

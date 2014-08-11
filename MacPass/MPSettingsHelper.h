@@ -42,15 +42,15 @@ APPKIT_EXTERN NSString *const kMPSettingsKeyLegacyHideNotes;
 APPKIT_EXTERN NSString *const kMPSettingsKeyLegacyHideURL;
 
 /* Document/Key Location store */
-APPKIT_EXTERN NSString *const kMPSettingsKeyLastDatabasePath;
-APPKIT_EXTERN NSString *const kMPSettingsKeyRememeberdKeysForDatabases;
-APPKIT_EXTERN NSString *const kMPSettingsKeyRememberKeyFilesForDatabases;
+APPKIT_EXTERN NSString *const kMPSettingsKeyLastDatabasePath;                 // Path to the last opened Database. Workaround if users have disabled the feautere in the OS
+APPKIT_EXTERN NSString *const kMPSettingsKeyRememeberdKeysForDatabases;       // NSDictionary of all db file urls and the corresponding key file url
+APPKIT_EXTERN NSString *const kMPSettingsKeyRememberKeyFilesForDatabases;     // YES if key files should be rememberd
 
 /* Autotype */
-APPKIT_EXTERN NSString *const kMPSettingsKeySendCommandForControlKey; // Should MacPass swap control for command. This is usefull in a cross plattform environment
-APPKIT_EXTERN NSString *const kMPSettingsKeyEnableGlobalAutotype; // Is Global Autotype enabled?
-APPKIT_EXTERN NSString *const kMPSettingsKeyGlobalAutotypeKeyDataKey; // The stored Data for the useder defined global autotype key
-APPKIT_EXTERN NSString *const kMPSettingsKeyDocumentsAutotypeFixNoteWasShown; //
+APPKIT_EXTERN NSString *const kMPSettingsKeySendCommandForControlKey;         // Should MacPass swap control for command. This is usefull in a cross plattform environment
+APPKIT_EXTERN NSString *const kMPSettingsKeyEnableGlobalAutotype;             // Is Global Autotype enabled?
+APPKIT_EXTERN NSString *const kMPSettingsKeyGlobalAutotypeKeyDataKey;         // The stored Data for the useder defined global autotype key
+APPKIT_EXTERN NSString *const kMPDepricatedSettingsKeyDocumentsAutotypeFixNoteWasShown; // YES if Autotype fix was shown
 
 /* Search */
 APPKIT_EXTERN NSString *const kMPSettingsKeyEntrySearchFilterMode;

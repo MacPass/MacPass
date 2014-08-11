@@ -7,14 +7,17 @@
 //
 
 #import "MPFixAutotypeWindowController.h"
+
 #import "MPDocument.h"
+#import "MPDocument+Autotype.h"
+#import "MPIconHelper.h"
+
 #import "KPKNode.h"
 #import "KPKEntry.h"
 #import "KPKGroup.h"
 #import "KPKAutotype.h"
 #import "KPKWindowAssociation.h"
 
-#import "MPIconHelper.h"
 
 NSString *const kMPAutotypeCell = @"AutotypeCell";
 NSString *const kMPTitleCell = @"TitleCell";
@@ -31,7 +34,7 @@ NSString *const kMPIconCell = @"IconCell";
 @end
 
 @interface MPFixAutotypeWindowController () {
-  NSMutableArray *_elements;
+  NSArray *_itemsCache;
   BOOL _didRegisterForUndoRedo;
 }
 @end
@@ -66,7 +69,7 @@ NSString *const kMPIconCell = @"IconCell";
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(_didChangeDocument:) name:NSUndoManagerDidUndoChangeNotification object:manager];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(_didChangeDocument:) name:NSUndoManagerDidCloseUndoGroupNotification object:manager];
   }
-  _elements = nil;
+  _itemsCache = nil;
   [self.tableView reloadData];
 }
 
@@ -201,11 +204,10 @@ NSString *const kMPIconCell = @"IconCell";
 #pragma mark Data accessors
 
 - (NSArray *)entriesAndGroups {
-  if(nil == _elements) {
-    _elements = [[NSMutableArray alloc] init];
-    [self flattenGroup:self.workingDocument.root toArray:_elements];
+  if(nil == _itemsCache) {
+    _itemsCache = [self.workingDocument malformedAutotypeItems];
   }
-  return _elements;
+  return _itemsCache;
 }
 
 
@@ -222,6 +224,7 @@ NSString *const kMPIconCell = @"IconCell";
 
 #pragma mark NSUndoManagerNotifications
 - (void)_didChangeDocument:(NSNotification *)notification {
+  _itemsCache = nil;
   [self.tableView reloadData];
 }
 
