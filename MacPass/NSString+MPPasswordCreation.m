@@ -9,6 +9,8 @@
 #import "NSString+MPPasswordCreation.h"
 #import "NSData+Random.h"
 
+#import "MPSettingsHelper.h"
+
 NSString *const kMPLowercaseLetterCharacters = @"abcdefghijklmnopqrstuvwxyz";
 NSString *const kMPNumberCharacters = @"1234567890";
 NSString *const kMPSymbolCharacters = @"!$%&\\|/<>(){}[]=?*'+#-_.:,;";
@@ -49,6 +51,19 @@ static NSString *allowedCharactersString(MPPasswordCharacterFlags flags) {
   return password;
 }
 
++ (NSString *)passwordWithDefaultSettings {
+  /* generate and pre-fill password using default password creation settings */
+  NSUInteger passwordLength = [[NSUserDefaults standardUserDefaults] integerForKey:kMPSettingsKeyDefaultPasswordLength];
+  MPPasswordCharacterFlags characterFlags = [[NSUserDefaults standardUserDefaults] integerForKey:kMPSettingsKeyPasswordCharacterFlags];
+  BOOL useCustomString = [[NSUserDefaults standardUserDefaults] boolForKey:kMPSettingsKeyPasswordUseCustomString];
+  NSString *customString = [[NSUserDefaults standardUserDefaults] stringForKey:kMPSettingsKeyPasswordCustomString];
+  
+  if(useCustomString && [customString length] > 0) {
+    return [customString passwordWithLength:passwordLength];
+  }
+  return [NSString passwordWithCharactersets:characterFlags length:passwordLength];
+}
+
 - (NSString *)passwordWithLength:(NSUInteger)length {
   return [NSString passwordFromString:self length:length];
 }
@@ -69,5 +84,4 @@ static NSString *allowedCharactersString(MPPasswordCharacterFlags flags) {
   CGFloat passwordLegnth = [self length];
   return passwordLegnth * ( log10(alphabetCount) / log10(2) );
 }
-
 @end

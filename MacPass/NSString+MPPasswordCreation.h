@@ -36,6 +36,8 @@ typedef NS_OPTIONS(NSUInteger, MPPasswordCharacterFlags) {
  *  @return Password consisint only of allowed characters
  */
 + (NSString *)passwordFromString:(NSString *)source length:(NSUInteger)length;
+
++ (NSString *)passwordWithDefaultSettings;
 /**
  *
  *  Creates a random password with only the characters of the receiver

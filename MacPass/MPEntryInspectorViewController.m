@@ -436,22 +436,6 @@ typedef NS_ENUM(NSUInteger, MPEntryTab) {
 
 - (void)_didAddItem:(NSNotification *)notification {
   [self.tabView selectTabViewItemAtIndex:MPEntryTabGeneral];
-
-  /* generate and pre-fill password using default password creation settings */
-  NSUInteger passwordLength = [[NSUserDefaults standardUserDefaults] integerForKey:kMPSettingsKeyDefaultPasswordLength];
-  MPPasswordCharacterFlags characterFlags = [[NSUserDefaults standardUserDefaults] integerForKey:kMPSettingsKeyPasswordCharacterFlags];
-  BOOL useCustomString = [[NSUserDefaults standardUserDefaults] boolForKey:kMPSettingsKeyPasswordUseCustomString];
-  NSString *customString = [[NSUserDefaults standardUserDefaults] stringForKey:kMPSettingsKeyPasswordCustomString];
-  
-  if(useCustomString) {
-    if([customString length] > 0) {
-      [self.passwordTextField setStringValue:[customString passwordWithLength:passwordLength]];
-    }
-  }
-  else {
-    [self.passwordTextField setStringValue:[NSString passwordWithCharactersets:characterFlags length:passwordLength]];
-  }
-  
   [self.titleTextField becomeFirstResponder];
 }
 

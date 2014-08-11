@@ -44,6 +44,7 @@
 #import "KPKAttribute.h"
 
 #import "NSError+Messages.h"
+#import "NSString+MPPasswordCreation.h"
 
 NSString *const MPDocumentDidAddGroupNotification         = @"com.hicknhack.macpass.MPDocumentDidAddGroupNotification";
 NSString *const MPDocumentDidRevertNotifiation            = @"com.hicknhack.macpass.MPDocumentDidRevertNotifiation";
@@ -442,6 +443,10 @@ NSString *const MPDocumentGroupKey                        = @"MPDocumentGroupKey
   newEntry.title = NSLocalizedString(@"DEFAULT_ENTRY_TITLE", @"Title for a newly created entry");
   if([self.tree.metaData.defaultUserName length] > 0) {
     newEntry.username = self.tree.metaData.defaultUserName;
+  }
+  NSString *defaultPassword = [NSString passwordWithDefaultSettings];
+  if(defaultPassword) {
+    newEntry.password = defaultPassword;
   }
   [parent addEntry:newEntry];
   [parent.undoManager setActionName:NSLocalizedString(@"ADD_ENTRY", "")];
