@@ -22,7 +22,6 @@
 
 #import "MPDocument+Autotype.h"
 #import "MPAutotypeContext.h"
-#import "MPAutotypeHelper.h"
 
 #import "KPKGroup.h"
 #import "KPKEntry.h"
