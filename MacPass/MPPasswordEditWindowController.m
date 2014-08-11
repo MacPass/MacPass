@@ -33,7 +33,7 @@
 }
 
 - (id)initWithDocument:(MPDocument *)document {
-  self = [super init];
+  self = [super initWithWindow:nil];
   if(self){
     _allowsEmptyPasswordOrKey = YES;
     _showPassword = NO;

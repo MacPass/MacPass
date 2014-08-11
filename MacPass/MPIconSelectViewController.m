@@ -18,9 +18,8 @@ NSInteger const kMPDefaultIcon = -1;
 
 @implementation MPIconSelectViewController
 
-
-- (id)init {
-  return [self initWithNibName:@"IconSelection" bundle:nil];
+- (NSString *)nibName {
+  return @"IconSelection";
 }
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil {

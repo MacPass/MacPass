@@ -93,9 +93,8 @@ NSString *const _MPTAbleSecurCellView = @"PasswordCell";
 
 @implementation MPEntryViewController
 
-
-- (id)init {
-  return [[MPEntryViewController alloc] initWithNibName:@"EntryView" bundle:nil];
+- (NSString *)nibName {
+  return @"EntryView";
 }
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil {
@@ -208,7 +207,7 @@ NSString *const _MPTAbleSecurCellView = @"PasswordCell";
   
   [[NSNotificationCenter defaultCenter] addObserver:self
                                            selector:@selector(_didAddItem:)
-                                               name:MPDocumentItemAddedNotification
+                                               name:MPDocumentDidAddEntryNotification
                                              object:document];
   
   [[NSNotificationCenter defaultCenter] addObserver:self
@@ -653,7 +652,7 @@ NSString *const _MPTAbleSecurCellView = @"PasswordCell";
   NSTableColumn *column = [self.entryTable tableColumns][[self.entryTable clickedColumn]];
   NSString *identifier = [column identifier];
   if([identifier isEqualToString:MPEntryTableTitleColumnIdentifier]) {
-    
+    [[self windowController] showInspector:nil];
   }
   else if([identifier isEqualToString:MPEntryTablePasswordColumnIdentifier]) {
     [self copyPassword:nil];

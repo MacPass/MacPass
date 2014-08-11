@@ -23,9 +23,13 @@
   static MPOverlayWindowController *sharedInstance;
   static dispatch_once_t onceToken;
   dispatch_once(&onceToken, ^{
-    sharedInstance = [[MPOverlayWindowController alloc] initWithWindowNibName:@"OverlayWindow"];
+    sharedInstance = [[MPOverlayWindowController alloc] initWithWindow:nil];
   });
   return sharedInstance;
+}
+
+- (NSString *)windowNibName {
+  return @"OverlayWindow";
 }
 
 - (id)initWithWindow:(NSWindow *)window {

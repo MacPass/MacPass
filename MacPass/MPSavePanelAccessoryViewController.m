@@ -19,11 +19,8 @@
 
 @implementation MPSavePanelAccessoryViewController
 
-- (id)init {
-  self = [super initWithNibName:@"SavePanelAccessoryView" bundle:nil];
-  if(self) {
-  }
-  return self;
+- (NSString *)nibName {
+  return @"SavePanelAccessoryView";
 }
 
 - (void)didLoadView {

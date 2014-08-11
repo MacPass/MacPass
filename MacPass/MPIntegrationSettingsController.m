@@ -18,6 +18,10 @@
 
 @implementation MPIntegrationSettingsController
 
+- (NSString *)nibName {
+  return @"IntegrationSettings";
+}
+
 - (NSString *)identifier {
   return @"Integration";
 }
@@ -28,11 +32,6 @@
 
 - (NSString *)label {
   return NSLocalizedString(@"INTEGRATION_SETTINGS", "");
-}
-
-- (id)init {
-  self = [super initWithNibName:@"IntegrationSettings" bundle:nil];
-  return self;
 }
 
 - (void)awakeFromNib {
@@ -46,7 +45,7 @@
   [self.enableGlobalAutotypeCheckbutton bind:NSValueBinding toObject:defaultsController withKeyPath:globalAutotypeKeyPath options:nil];
   [self.enableQuicklookCheckbutton bind:NSValueBinding toObject:defaultsController withKeyPath:quicklookKeyPath options:nil];
   [self.globalAutotypeKeyData bind:NSValueBinding toObject:defaultsController withKeyPath:globalAutotypeDataKeyPath options:nil];
-
+  
 }
 
 @end

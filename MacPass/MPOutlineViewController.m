@@ -48,8 +48,8 @@ NSString *const _MPOutlinveViewHeaderViewIdentifier = @"HeaderCell";
 
 @implementation MPOutlineViewController
 
-- (id)init {
-  return [[MPOutlineViewController alloc] initWithNibName:@"OutlineView" bundle:nil];
+- (NSString *)nibName {
+  return @"OutlineView";
 }
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil {
@@ -78,6 +78,7 @@ NSString *const _MPOutlinveViewHeaderViewIdentifier = @"HeaderCell";
   [self.outlineView setFloatsGroupRows:NO];
   [self.outlineView registerForDraggedTypes:@[ KPKGroupUTI, KPKEntryUTI ]];
   [self.outlineView setDraggingSourceOperationMask:NSDragOperationEvery forLocal:YES];
+  [self.outlineView setDoubleAction:@selector(_doubleClickedGroup:)];
   [self.bottomBar setBorderType:HNHBorderTop|HNHBorderHighlight];
   [self.addGroupButton setAction:[MPActionHelper actionOfType:MPActionAddGroup]];
   
@@ -140,7 +141,7 @@ NSString *const _MPOutlinveViewHeaderViewIdentifier = @"HeaderCell";
 
 #pragma mark Notifications
 - (void)regsiterNotificationsForDocument:(MPDocument *)document {
-  // Nothing to do anymore
+  [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(_didAddGroup:) name:MPDocumentDidAddGroupNotification object:document];
 }
 
 - (void)clearSelection {
@@ -154,6 +155,11 @@ NSString *const _MPOutlinveViewHeaderViewIdentifier = @"HeaderCell";
   }
   MPDocument *document = [[self windowController] document];
   document.selectedItem = document.selectedGroup;
+}
+
+# pragma mark MPDocument Notifications
+- (void)_didAddGroup:(NSNotification *)notification {
+  //TODO: find group to expand!
 }
 
 - (id)itemUnderMouse {
@@ -185,6 +191,10 @@ NSString *const _MPOutlinveViewHeaderViewIdentifier = @"HeaderCell";
 
 - (void)delete:(id)sender {
   [[[self windowController] document] deleteGroup:[self _clickedOrSelectedGroup]];
+}
+
+- (void)_doubleClickedGroup:(id)sender {
+  [[self windowController] showInspector:sender];
 }
 
 #pragma mark NSOutlineViewDelegate

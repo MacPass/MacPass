@@ -16,10 +16,8 @@
 
 @implementation MPWorkflowSettingsController
 
-#pragma mark LifeCycle
-- (id)init {
-  self = [self initWithNibName:@"WorkflowSettings" bundle:nil];
-  return self;
+- (NSString *)nibName {
+  return @"WorkflowSettings";
 }
 
 - (void)didLoadView {

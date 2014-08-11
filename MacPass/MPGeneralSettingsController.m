@@ -14,8 +14,8 @@ NSString *const MPGeneralSetingsIdentifier = @"GeneralSettingsTab";
 
 @implementation MPGeneralSettingsController
 
-- (id)init {
-  return [self initWithNibName:@"GeneralSettings" bundle:[NSBundle mainBundle]];
+- (NSString *)nibName {
+  return @"GeneralSettings";
 }
 
 - (NSString *)identifier {

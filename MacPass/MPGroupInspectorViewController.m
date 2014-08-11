@@ -27,8 +27,8 @@
 
 @implementation MPGroupInspectorViewController
 
-- (id)init {
-  return [self initWithNibName:@"GroupInspectorView" bundle:nil];
+- (NSString *)nibName {
+  return @"GroupInspectorView";
 }
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil {

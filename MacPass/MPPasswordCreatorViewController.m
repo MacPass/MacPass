@@ -62,8 +62,12 @@ typedef NS_ENUM(NSUInteger, MPPasswordRating) {
 
 @implementation MPPasswordCreatorViewController
 
-- (id)init {
-  self = [super initWithNibName:@"PasswordCreatorView" bundle:nil];
+- (NSString *)nibName {
+  return @"PasswordCreatorView";
+}
+
+- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil {
+  self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
   if (self) {
     _password = @"";
     _passwordLength = [[NSUserDefaults standardUserDefaults] integerForKey:kMPSettingsKeyDefaultPasswordLength];

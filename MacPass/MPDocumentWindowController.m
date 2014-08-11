@@ -57,8 +57,12 @@ typedef void (^MPPasswordChangedBlock)(void);
 
 @implementation MPDocumentWindowController
 
+- (NSString *)windowNibName {
+  return @"DocumentWindow";
+}
+
 -(id)init {
-  self = [super initWithWindowNibName:@"DocumentWindow" owner:self];
+  self = [super initWithWindow:nil];
   if( self ) {
     _firstResponder = nil;
     _toolbarDelegate = [[MPToolbarDelegate alloc] init];
@@ -85,13 +89,13 @@ typedef void (^MPPasswordChangedBlock)(void);
   
   [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(_didRevertDocument:) name:MPDocumentDidRevertNotifiation object:document];
   [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(showEntries) name:MPDocumentDidUnlockDatabaseNotification object:document];
+  [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(_didAddEntry:) name:MPDocumentDidAddEntryNotification object:document];
+  [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(_didAddGroup:) name:MPDocumentDidAddGroupNotification object:document];
   
   [self.entryViewController regsiterNotificationsForDocument:document];
   [self.inspectorViewController regsiterNotificationsForDocument:document];
   [self.outlineViewController regsiterNotificationsForDocument:document];
   [self.toolbarDelegate registerNotificationsForDocument:document];
-  
-  
   
   self.toolbar = [[NSToolbar alloc] initWithIdentifier:@"MainWindowToolbar"];
   [self.toolbar setAutosavesConfiguration:YES];
@@ -167,6 +171,14 @@ typedef void (^MPPasswordChangedBlock)(void);
 - (void)_didRevertDocument:(NSNotification *)notification {
   [self.outlineViewController clearSelection];
   [self showPasswordInput];
+}
+
+- (void)_didAddEntry:(NSNotification *)notification {
+  [self showInspector:self];
+}
+
+- (void)_didAddGroup:(NSNotification *)notification {
+  [self showInspector:self];
 }
 
 #pragma mark Actions
@@ -324,7 +336,9 @@ typedef void (^MPPasswordChangedBlock)(void);
 }
 
 - (void)showInspector:(id)sender {
-  // TODO;
+  if(![self _isInspectorVisible]) {
+    [self toggleInspector:sender];
+  }
 }
 
 - (void)focusEntries:(id)sender {

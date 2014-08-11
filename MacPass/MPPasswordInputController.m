@@ -34,9 +34,8 @@
 
 @implementation MPPasswordInputController
 
-- (id)init {
-  self = [self initWithNibName:@"PasswordInputView" bundle:nil];
-  return self;
+- (NSString *)nibName {
+  return @"PasswordInputView";
 }
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil {

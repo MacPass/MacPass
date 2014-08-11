@@ -56,8 +56,8 @@ typedef NS_ENUM(NSUInteger, MPContentTab) {
 
 @implementation MPInspectorViewController
 
-- (id)init {
-  return [[MPInspectorViewController alloc] initWithNibName:@"InspectorView" bundle:nil];
+- (NSString *)nibName {
+  return @"InspectorView";
 }
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil {

@@ -27,9 +27,8 @@ typedef NS_ENUM(NSUInteger, MPDatePreset) {
 
 @implementation MPDatePickingViewController
 
-- (id)init {
-  self = [self initWithNibName:@"DatePickingView" bundle:nil];
-  return self;
+- (NSString *)nibName {
+  return @"DatePickingView";
 }
 
 - (void)awakeFromNib {

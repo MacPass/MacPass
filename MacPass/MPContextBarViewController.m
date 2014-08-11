@@ -44,11 +44,12 @@ typedef NS_ENUM(NSUInteger, MPContextTab) {
 
 @implementation MPContextBarViewController
 
-#pragma mark Livecycle
-- (instancetype)init {
-  self = [self initWithNibName:@"ContextBar" bundle:nil];
-  return self;
+#pragma mark Nib handling
+- (NSString *)nibName {
+  return @"ContextBar";
 }
+
+#pragma mark Livecycle
 
 - (void)dealloc {
   [[NSNotificationCenter defaultCenter] removeObserver:self];

@@ -14,9 +14,8 @@
 
 @implementation MPUpdateSettingsController
 
-- (instancetype)init {
-  self = [super initWithNibName:@"UpdateSettings" bundle:nil];
-  return self;
+- (NSString *)nibName {
+  return @"UpdateSettings";
 }
 
 - (NSString *)identifier {

@@ -37,13 +37,17 @@
 
 @implementation MPDatabaseSettingsWindowController
 
+- (NSString *)windowNibName {
+  return @"DatabaseSettingsWindow";
+}
+
 - (id)init {
   self = [self initWithDocument:nil];
   return self;
 }
 
 - (id)initWithDocument:(MPDocument *)document {
-  self = [super initWithWindowNibName:@"DatabaseSettingsWindow"];
+  self = [super initWithWindow:nil];
   if(self) {
     _document = document;
     _missingFeature = NSLocalizedString(@"KDBX_ONLY_FEATURE", "Feature only available in kdbx databases");

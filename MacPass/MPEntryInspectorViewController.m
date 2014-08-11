@@ -61,8 +61,8 @@ typedef NS_ENUM(NSUInteger, MPEntryTab) {
 
 @implementation MPEntryInspectorViewController
 
-- (id)init {
-  return  [self initWithNibName:@"EntryInspectorView" bundle:nil];
+- (NSString *)nibName {
+  return @"EntryInspectorView";
 }
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil {
@@ -123,8 +123,8 @@ typedef NS_ENUM(NSUInteger, MPEntryTab) {
 
 - (void)regsiterNotificationsForDocument:(MPDocument *)document {
   [[NSNotificationCenter defaultCenter] addObserver:self
-                                           selector:@selector(_didAddItem:)
-                                               name:MPDocumentItemAddedNotification
+                                           selector:@selector(_didAddEntry:)
+                                               name:MPDocumentDidAddEntryNotification
                                             object:document];
 }
 
@@ -434,7 +434,7 @@ typedef NS_ENUM(NSUInteger, MPEntryTab) {
 #pragma mark -
 #pragma mark MPDocument Notifications
 
-- (void)_didAddItem:(NSNotification *)notification {
+- (void)_didAddEntry:(NSNotification *)notification {
   [self.tabView selectTabViewItemAtIndex:MPEntryTabGeneral];
   [self.titleTextField becomeFirstResponder];
 }

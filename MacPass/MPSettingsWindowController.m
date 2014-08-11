@@ -25,8 +25,12 @@
 
 @implementation MPSettingsWindowController
 
+- (NSString *)windowNibName {
+  return @"SettingsWindow";
+}
+
 -(id)init {
-  self = [super initWithWindowNibName:@"SettingsWindow"];
+  self = [super initWithWindow:nil];
   if(self) {
     _toolbar = [[NSToolbar alloc] initWithIdentifier:@"SettingsToolBar"];
     [self.toolbar setAllowsUserCustomization:NO];
