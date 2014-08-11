@@ -233,7 +233,6 @@
 		4CAD748E15B88AC100104512 /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 4CAD748D15B88AC100104512 /* libz.dylib */; };
 		4CAF62FC1763604000CD7084 /* HNHBadgedTextFieldCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CAF62FB1763604000CD7084 /* HNHBadgedTextFieldCell.m */; };
 		4CB4AA0D17C2274200454CAD /* KeePass1_native_test.kdb in Resources */ = {isa = PBXBuildFile; fileRef = 4CB4AA0C17C2274200454CAD /* KeePass1_native_test.kdb */; };
-		4CB4ED891997DA1800582DBB /* MPAutotypeHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CB4ED881997DA1800582DBB /* MPAutotypeHelper.m */; };
 		4CB9339916D3A0DD00A13B5D /* Credits.rtf in Resources */ = {isa = PBXBuildFile; fileRef = 4CB9339716D3A0DD00A13B5D /* Credits.rtf */; };
 		4CBA2ABA17074C07006D8139 /* MPSettingsHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CBA2AB917074C07006D8139 /* MPSettingsHelper.m */; };
 		4CBA561617C2EA4900CE13D3 /* KPKTestXmlWriting.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CBA561517C2EA4900CE13D3 /* KPKTestXmlWriting.m */; };
@@ -782,8 +781,6 @@
 		4CAF62FA1763604000CD7084 /* HNHBadgedTextFieldCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HNHBadgedTextFieldCell.h; sourceTree = "<group>"; };
 		4CAF62FB1763604000CD7084 /* HNHBadgedTextFieldCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HNHBadgedTextFieldCell.m; sourceTree = "<group>"; };
 		4CB4AA0C17C2274200454CAD /* KeePass1_native_test.kdb */ = {isa = PBXFileReference; lastKnownFileType = file; name = KeePass1_native_test.kdb; path = Databases/KeePass1_native_test.kdb; sourceTree = "<group>"; };
-		4CB4ED871997DA1800582DBB /* MPAutotypeHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MPAutotypeHelper.h; sourceTree = "<group>"; };
-		4CB4ED881997DA1800582DBB /* MPAutotypeHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MPAutotypeHelper.m; sourceTree = "<group>"; };
 		4CB63A6018986530002DEC4C /* MPFlagsHelper.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MPFlagsHelper.h; sourceTree = "<group>"; };
 		4CB9339816D3A0DD00A13B5D /* en */ = {isa = PBXFileReference; lastKnownFileType = text.rtf; name = en; path = en.lproj/Credits.rtf; sourceTree = "<group>"; };
 		4CBA2AB617074B59006D8139 /* MPSettingsHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MPSettingsHelper.h; sourceTree = "<group>"; };
@@ -1600,8 +1597,6 @@
 				4CD2B9051849424B0051B395 /* MPAutotypeContext.m */,
 				4CA3530918A53CB800839B0F /* MPKeyMapper.h */,
 				4CA3530A18A53CB800839B0F /* MPKeyMapper.m */,
-				4CB4ED871997DA1800582DBB /* MPAutotypeHelper.h */,
-				4CB4ED881997DA1800582DBB /* MPAutotypeHelper.m */,
 			);
 			name = Autotype;
 			sourceTree = "<group>";
@@ -2399,7 +2394,6 @@
 				4CE298EB1795FC2A00DF7BDB /* MPEntryContextMenuDelegate.m in Sources */,
 				4CC0D2CE17974A47000B4BDA /* MPCustomFieldTableViewDelegate.m in Sources */,
 				4CF5CF7418B7C81600B0C026 /* NSWindow+Shake.m in Sources */,
-				4CB4ED891997DA1800582DBB /* MPAutotypeHelper.m in Sources */,
 				4CC0D2D117974A5A000B4BDA /* MPAttachmentTableViewDelegate.m in Sources */,
 				4C67D33017981A2B00A7BDFC /* HNHTokenField.m in Sources */,
 				4C67D33317981ABA00A7BDFC /* HNHTokenFieldCell.m in Sources */,
@@ -2721,6 +2715,7 @@
 				GCC_PREFIX_HEADER = "MacPassTests/MacPassTests-Prefix.pch";
 				INFOPLIST_FILE = "MacPassTests/MacPassTests-Info.plist";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = macosx10.8;
 				TEST_HOST = "$(BUNDLE_LOADER)";
 			};
 			name = Debug;
@@ -2743,6 +2738,7 @@
 				GCC_PREFIX_HEADER = "MacPassTests/MacPassTests-Prefix.pch";
 				INFOPLIST_FILE = "MacPassTests/MacPassTests-Info.plist";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = macosx10.8;
 				TEST_HOST = "$(BUNDLE_LOADER)";
 			};
 			name = Release;
@@ -2826,6 +2822,7 @@
 				MACOSX_DEPLOYMENT_TARGET = 10.8;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
+				SDKROOT = macosx10.8;
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -2842,6 +2839,7 @@
 				MACOSX_DEPLOYMENT_TARGET = 10.8;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
+				SDKROOT = macosx10.8;
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;
