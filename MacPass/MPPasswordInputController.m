@@ -103,7 +103,13 @@
 }
 
 - (IBAction)resetKeyFile:(id)sender {
-  [self _selectKeyURL];
+  /* If the reset was triggerd by ourselves we want to preselct the keyfile */
+  if(sender == self) {
+    [self _selectKeyURL];
+  }
+  else {
+    [self.keyPathControl setURL:nil];
+  }
 }
 
 - (void)_reset {
@@ -112,7 +118,7 @@
   [self.passwordTextField setStringValue:@""];
   [self.errorInfoTextField setHidden:YES];
   [self.errorImageView setHidden:YES];
-  [self resetKeyFile:nil];
+  [self resetKeyFile:self];
 }
 
 - (void)_selectKeyURL {
