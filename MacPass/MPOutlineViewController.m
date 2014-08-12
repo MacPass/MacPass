@@ -98,10 +98,10 @@ NSString *const _MPOutlinveViewHeaderViewIdentifier = @"HeaderCell";
 - (void)showOutline {
   if(!_bindingEstablished) {
     MPDocument *document = [[self windowController] document];
-    [_treeController setChildrenKeyPath:@"groups"];
-    [_treeController bind:NSContentBinding toObject:document withKeyPath:@"tree" options:nil];
-    [_outlineView bind:NSContentBinding toObject:_treeController withKeyPath:@"arrangedObjects" options:nil];
-    [self bind:@"databaseNameWrapper" toObject:document.tree.metaData withKeyPath:@"databaseName" options:nil];
+    [_treeController setChildrenKeyPath:NSStringFromSelector(@selector(groups))];
+    [_treeController bind:NSContentBinding toObject:document withKeyPath:NSStringFromSelector(@selector(tree)) options:nil];
+    [_outlineView bind:NSContentBinding toObject:_treeController withKeyPath:NSStringFromSelector(@selector(arrangedObjects)) options:nil];
+    [self bind:NSStringFromSelector(@selector(databaseNameWrapper)) toObject:document.tree.metaData withKeyPath:NSStringFromSelector(@selector(databaseName)) options:nil];
     [_outlineView setDataSource:self.datasource];
     _bindingEstablished = YES;
   }
@@ -202,15 +202,16 @@ NSString *const _MPOutlinveViewHeaderViewIdentifier = @"HeaderCell";
   NSTableCellView *view;
   if( [self _itemIsRootNode:item] ) {
     view = [outlineView makeViewWithIdentifier:_MPOutlinveViewHeaderViewIdentifier owner:self];
-    [view.textField bind:NSValueBinding toObject:self  withKeyPath:@"databaseNameWrapper" options:nil];
+    [view.textField bind:NSValueBinding toObject:self  withKeyPath:NSStringFromSelector(@selector(databaseNameWrapper)) options:nil];
   }
   else {
     KPKGroup *group = [item representedObject];
     view = [outlineView makeViewWithIdentifier:_MPOutlineViewDataViewIdentifier owner:self];
     
-    [[view imageView] bind:NSValueBinding toObject:group withKeyPath:@"iconImage" options:nil];
-    [[view textField] bind:NSValueBinding toObject:group withKeyPath:@"name" options:nil];
-    [[view textField] bind:@"count" toObject:group withKeyPath:@"entries.@count" options:nil];
+    [[view imageView] bind:NSValueBinding toObject:group withKeyPath:NSStringFromSelector(@selector(iconImage)) options:nil];
+    [[view textField] bind:NSValueBinding toObject:group withKeyPath:NSStringFromSelector(@selector(name)) options:nil];
+    NSString *entriesCountKeyPath = [[NSString alloc] initWithFormat:@"%@.%@", NSStringFromSelector(@selector(entries)), @"@count"];
+    [[view textField] bind:NSStringFromSelector(@selector(count)) toObject:group withKeyPath:entriesCountKeyPath options:nil];
   }
   
   return view;
@@ -237,7 +238,7 @@ NSString *const _MPOutlinveViewHeaderViewIdentifier = @"HeaderCell";
 
 - (void)outlineViewItemDidExpand:(NSNotification *)notification {
   NSDictionary *userInfo = [notification userInfo];
-  id item = userInfo[@"NSObject"];
+  id item = userInfo[NSStringFromClass([NSObject class])];
   id representedObject = [item representedObject];
   if([representedObject isKindOfClass:[KPKGroup class]]) {
     KPKGroup *group = (KPKGroup *)representedObject;
@@ -246,7 +247,7 @@ NSString *const _MPOutlinveViewHeaderViewIdentifier = @"HeaderCell";
 }
 - (void)outlineViewItemDidCollapse:(NSNotification *)notification {
   NSDictionary *userInfo = [notification userInfo];
-  id item = userInfo[@"NSObject"];
+  id item = userInfo[NSStringFromClass([NSObject class])];
   id representedObject = [item representedObject];
   if([representedObject isKindOfClass:[KPKGroup class]]) {
     KPKGroup *group = (KPKGroup *)representedObject;
