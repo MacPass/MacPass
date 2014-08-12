@@ -47,13 +47,14 @@
 #import "NSString+MPPasswordCreation.h"
 
 NSString *const MPDocumentDidAddGroupNotification         = @"com.hicknhack.macpass.MPDocumentDidAddGroupNotification";
+NSString *const MPDocumentDidAddEntryNotification         = @"com.hicknhack.macpass.MPDocumentDidAddEntryNotification";
+
 NSString *const MPDocumentDidRevertNotifiation            = @"com.hicknhack.macpass.MPDocumentDidRevertNotifiation";
 
 NSString *const MPDocumentDidLockDatabaseNotification     = @"com.hicknhack.macpass.MPDocumentDidLockDatabaseNotification";
 NSString *const MPDocumentDidUnlockDatabaseNotification   = @"com.hicknhack.macpass.MPDocumentDidUnlockDatabaseNotification";
 
 NSString *const MPDocumentCurrentItemChangedNotification  = @"com.hicknhack.macpass.MPDocumentCurrentItemChangedNotification";
-NSString *const MPDocumentDidAddEntryNotification         = @"com.hicknhack.macpass.MPDocumentDidAddEntryNotification";
 
 NSString *const MPDocumentEntryKey                        = @"MPDocumentEntryKey";
 NSString *const MPDocumentGroupKey                        = @"MPDocumentGroupKey";
@@ -454,7 +455,8 @@ NSString *const MPDocumentGroupKey                        = @"MPDocumentGroupKey
   }
   [parent addEntry:newEntry];
   [parent.undoManager setActionName:NSLocalizedString(@"ADD_ENTRY", "")];
-  [[NSNotificationCenter defaultCenter] postNotificationName:MPDocumentDidAddEntryNotification object:self];
+  NSDictionary *userInfo = @{ MPDocumentEntryKey: newEntry };
+  [[NSNotificationCenter defaultCenter] postNotificationName:MPDocumentDidAddEntryNotification object:self userInfo:userInfo];
   return newEntry;
 }
 

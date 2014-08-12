@@ -23,15 +23,24 @@
 #import <Cocoa/Cocoa.h>
 #import "KPKVersion.h"
 
+/**
+ *  Postes when a new group was added by the document. This is only fired when the user caused this by adding. Undo/Redo does NOT post this
+ *  The userInfo dictionary conatins one the added group at MPDocumentGroupKey
+ */
 APPKIT_EXTERN NSString *const MPDocumentDidAddGroupNotification;
+/**
+ *  Posted when the used has added a new entry. Not posted on undo/redo.
+ *  The userInfo dictionary contains the added entry at MPDocumentEntryKey
+ */
+APPKIT_EXTERN NSString *const MPDocumentDidAddEntryNotification;
 APPKIT_EXTERN NSString *const MPDocumentDidRevertNotifiation;
 
 APPKIT_EXTERN NSString *const MPDocumentDidLockDatabaseNotification;
 APPKIT_EXTERN NSString *const MPDocumentDidUnlockDatabaseNotification;
 
-FOUNDATION_EXTERN NSString *const MPDocumentCurrentItemChangedNotification;
-FOUNDATION_EXTERN NSString *const MPDocumentDidAddEntryNotification;
+APPKIT_EXTERN NSString *const MPDocumentCurrentItemChangedNotification;
 
+/* Keys used in userInfo NSDictionaries on notifications */
 APPKIT_EXTERN NSString *const MPDocumentEntryKey;
 APPKIT_EXTERN NSString *const MPDocumentGroupKey;
 

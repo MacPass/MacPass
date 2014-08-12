@@ -159,7 +159,18 @@ NSString *const _MPOutlinveViewHeaderViewIdentifier = @"HeaderCell";
 
 # pragma mark MPDocument Notifications
 - (void)_didAddGroup:(NSNotification *)notification {
-  //TODO: find group to expand!
+  NSDictionary *userInfo = [notification userInfo];
+  KPKGroup *group = userInfo[MPDocumentGroupKey];
+  NSIndexPath *groupIndexPath = [group indexPath];
+  NSTreeNode *groupNode = [[self.treeController arrangedObjects] descendantNodeAtIndexPath:groupIndexPath];
+  [self.outlineView expandItem:groupNode.parentNode];
+  /* TODO: Select created Group
+  NSUInteger row = 0;
+  for(NSUInteger index = 0; index < [groupIndexPath length]; index++ ) {
+    row += [groupIndexPath indexAtPosition:index];
+  }
+  [self.outlineView selectRowIndexes:[NSIndexSet indexSetWithIndex:row] byExtendingSelection:NO];
+   */
 }
 
 - (id)itemUnderMouse {
@@ -242,6 +253,7 @@ NSString *const _MPOutlinveViewHeaderViewIdentifier = @"HeaderCell";
   id representedObject = [item representedObject];
   if([representedObject isKindOfClass:[KPKGroup class]]) {
     KPKGroup *group = (KPKGroup *)representedObject;
+    NSLog(@"IndexPath for %@: %@ vs. %@", group.name, [item indexPath], [group indexPath]);
     group.isExpanded = YES;
   }
 }
