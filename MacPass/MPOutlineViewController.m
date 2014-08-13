@@ -164,13 +164,7 @@ NSString *const _MPOutlinveViewHeaderViewIdentifier = @"HeaderCell";
   NSIndexPath *groupIndexPath = [group indexPath];
   NSTreeNode *groupNode = [[self.treeController arrangedObjects] descendantNodeAtIndexPath:groupIndexPath];
   [self.outlineView expandItem:groupNode.parentNode];
-  /* TODO: Select created Group
-  NSUInteger row = 0;
-  for(NSUInteger index = 0; index < [groupIndexPath length]; index++ ) {
-    row += [groupIndexPath indexAtPosition:index];
-  }
-  [self.outlineView selectRowIndexes:[NSIndexSet indexSetWithIndex:row] byExtendingSelection:NO];
-   */
+  [self.outlineView selectRowIndexes:[NSIndexSet indexSetWithIndex:[self.outlineView rowForItem:groupNode]] byExtendingSelection:NO];
 }
 
 - (id)itemUnderMouse {
