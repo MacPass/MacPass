@@ -40,8 +40,8 @@ APPKIT_EXTERN NSString *const kMPSettingsKeyLegacyHideUsername;
 APPKIT_EXTERN NSString *const kMPSettingsKeyLegacyHidePassword;
 APPKIT_EXTERN NSString *const kMPSettingsKeyLegacyHideNotes;
 APPKIT_EXTERN NSString *const kMPSettingsKeyLegacyHideURL;
-
 /* Document/Key Location store */
+
 APPKIT_EXTERN NSString *const kMPSettingsKeyLastDatabasePath;                 // Path to the last opened Database. Workaround if users have disabled the feautere in the OS
 APPKIT_EXTERN NSString *const kMPSettingsKeyRememeberdKeysForDatabases;       // NSDictionary of all db file urls and the corresponding key file url
 APPKIT_EXTERN NSString *const kMPSettingsKeyRememberKeyFilesForDatabases;     // YES if key files should be rememberd

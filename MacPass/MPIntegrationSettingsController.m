@@ -16,7 +16,7 @@
 
 @interface MPIntegrationSettingsController ()
 
-@property (nonatomic, copy) NSData *globalAutotypeKeyData;
+@property (nonatomic, strong) DDHotKey *hotKey;
 
 @end
 
@@ -39,25 +39,30 @@
 }
 
 - (void)awakeFromNib {
+  self.hotKey = [DDHotKey defaultHotKey];
   NSUserDefaultsController *defaultsController = [NSUserDefaultsController sharedUserDefaultsController];
   NSString *serverKeyPath = [MPSettingsHelper defaultControllerPathForKey:kMPSettingsKeyEnableHttpServer];
-  NSString *globalAutotypeKeyPath = [MPSettingsHelper defaultControllerPathForKey:kMPSettingsKeyEnableGlobalAutotype];
+  NSString *enableGlobalAutotypeKeyPath = [MPSettingsHelper defaultControllerPathForKey:kMPSettingsKeyEnableGlobalAutotype];
   NSString *quicklookKeyPath = [MPSettingsHelper defaultControllerPathForKey:kMPSettingsKeyEnableQuicklookPreview];
-  NSString *globalAutotypeDataKeyPath = [MPSettingsHelper defaultControllerPathForKey:kMPSettingsKeyGlobalAutotypeKeyDataKey];
   [self.enableServerCheckbutton bind:NSValueBinding toObject:defaultsController withKeyPath:serverKeyPath options:nil];
   [self.enableServerCheckbutton setEnabled:NO];
-  [self.enableGlobalAutotypeCheckbutton bind:NSValueBinding toObject:defaultsController withKeyPath:globalAutotypeKeyPath options:nil];
+  [self.enableGlobalAutotypeCheckbutton bind:NSValueBinding toObject:defaultsController withKeyPath:enableGlobalAutotypeKeyPath options:nil];
   [self.enableQuicklookCheckbutton bind:NSValueBinding toObject:defaultsController withKeyPath:quicklookKeyPath options:nil];
-  [self.globalAutotypeKeyData bind:NSValueBinding toObject:defaultsController withKeyPath:globalAutotypeDataKeyPath options:nil];
+  [self.hotKeyTextField bind:NSEnabledBinding toObject:defaultsController withKeyPath:enableGlobalAutotypeKeyPath options:nil];
+  [self.hotKeyTextField bind:NSStringFromSelector(@selector(hotKey)) toObject:self withKeyPath:NSStringFromSelector(@selector(hotKey)) options:nil];
 }
 
-#pragma mark Properties
-- (void)setGlobalAutotypeKeyData:(NSData *)globalAutotypeKeyData {
-  if(![_globalAutotypeKeyData isEqualToData:globalAutotypeKeyData]) {
-    _globalAutotypeKeyData = [globalAutotypeKeyData copy];
+- (void)setHotKey:(DDHotKey *)hotKey {
+  static NSData *defaultHotKeyData = nil;
+  static dispatch_once_t onceToken;
+  dispatch_once(&onceToken, ^{
+    defaultHotKeyData = [[DDHotKey defaultHotKey] keyData];
+  });
+  NSData *newData = [hotKey keyData];
+  if(![newData isEqualToData:defaultHotKeyData]) {
+    [[NSUserDefaults standardUserDefaults] setObject:newData forKey:kMPSettingsKeyGlobalAutotypeKeyDataKey];
   }
-  DDHotKey *hotKey = [[DDHotKey alloc] initWithKeyData:_globalAutotypeKeyData];
-  self.hotKeyTextField.hotKey = hotKey;
+  _hotKey = hotKey;
 }
 
 
