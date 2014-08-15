@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="5056" systemVersion="13D65" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="5056" systemVersion="13E28" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
     <dependencies>
         <deployment defaultVersion="1080" identifier="macosx"/>
         <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="5056"/>
@@ -10,6 +10,7 @@
                 <outlet property="enableGlobalAutotypeCheckbutton" destination="tik-Ar-FJg" id="d2f-69-2BP"/>
                 <outlet property="enableQuicklookCheckbutton" destination="LNw-5t-TS4" id="NRN-7y-W0e"/>
                 <outlet property="enableServerCheckbutton" destination="2" id="17"/>
+                <outlet property="hotKeyTextField" destination="Kvg-he-3c8" id="c7p-1F-zth"/>
                 <outlet property="view" destination="1" id="18"/>
             </connections>
         </customObject>

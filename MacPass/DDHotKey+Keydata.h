@@ -10,6 +10,8 @@
 
 @interface DDHotKey (Keydata)
 
++ (instancetype)defaultHotKey;
++ (instancetype)defaultHotKeyWithTask:(DDHotKeyTask)task;
 - (NSData *)keyData;
 - (instancetype)initWithKeyData:(NSData *)data taks:(DDHotKeyTask)task;
 - (instancetype)initWithKeyData:(NSData *)data;

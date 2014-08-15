@@ -197,7 +197,7 @@ NSString *const kMPApplciationNameKey = @"applicationName";
   };
   DDHotKey *storedHotkey;
   if(nil == self.hotKeyData) {
-    storedHotkey = [DDHotKey hotKeyWithKeyCode:kVK_ANSI_M modifierFlags:kCGEventFlagMaskControl|kCGEventFlagMaskAlternate task:aTask];
+    storedHotkey = [DDHotKey defaultHotKeyWithTask:aTask];
   }
   else {
     storedHotkey = [[DDHotKey alloc] initWithKeyData:self.hotKeyData taks:aTask];

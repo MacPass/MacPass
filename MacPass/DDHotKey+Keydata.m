@@ -7,8 +7,17 @@
 //
 
 #import "DDHotKey+Keydata.h"
+#import <Carbon/Carbon.h>
 
 @implementation DDHotKey (Keydata)
+
++ (instancetype)defaultHotKey {
+  return [DDHotKey defaultHotKeyWithTask:nil];
+}
+
++ (instancetype)defaultHotKeyWithTask:(DDHotKeyTask)task {
+  return [[DDHotKey alloc] initWithKeyData:nil];
+}
 
 - (instancetype)initWithKeyData:(NSData *)data {
   self = [self initWithKeyData:data taks:nil];
@@ -18,7 +27,10 @@
 - (instancetype)initWithKeyData:(NSData *)data taks:(DDHotKeyTask)task{
   NSUInteger modifierFlags;
   unsigned short keyCode;
-  if([self _getKeyCode:&keyCode modifierFlags:&modifierFlags fromData:data]) {
+  if(!data) {
+    self = [DDHotKey hotKeyWithKeyCode:kVK_ANSI_M modifierFlags:kCGEventFlagMaskControl|kCGEventFlagMaskAlternate task:task];
+  }
+  else if([self _getKeyCode:&keyCode modifierFlags:&modifierFlags fromData:data]) {
     self = [DDHotKey hotKeyWithKeyCode:keyCode modifierFlags:modifierFlags task:task];
   }
   else {

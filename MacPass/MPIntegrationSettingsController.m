@@ -10,9 +10,13 @@
 #import "MPSettingsHelper.h"
 #import "MPIconHelper.h"
 
+#import "DDHotKeyCenter.h"
+#import "DDHotKey+Keydata.h"
+#import "DDHotKeyTextField.h"
+
 @interface MPIntegrationSettingsController ()
 
-@property (copy) NSData *globalAutotypeKeyData;
+@property (nonatomic, copy) NSData *globalAutotypeKeyData;
 
 @end
 
@@ -45,7 +49,16 @@
   [self.enableGlobalAutotypeCheckbutton bind:NSValueBinding toObject:defaultsController withKeyPath:globalAutotypeKeyPath options:nil];
   [self.enableQuicklookCheckbutton bind:NSValueBinding toObject:defaultsController withKeyPath:quicklookKeyPath options:nil];
   [self.globalAutotypeKeyData bind:NSValueBinding toObject:defaultsController withKeyPath:globalAutotypeDataKeyPath options:nil];
-  
 }
+
+#pragma mark Properties
+- (void)setGlobalAutotypeKeyData:(NSData *)globalAutotypeKeyData {
+  if(![_globalAutotypeKeyData isEqualToData:globalAutotypeKeyData]) {
+    _globalAutotypeKeyData = [globalAutotypeKeyData copy];
+  }
+  DDHotKey *hotKey = [[DDHotKey alloc] initWithKeyData:_globalAutotypeKeyData];
+  self.hotKeyTextField.hotKey = hotKey;
+}
+
 
 @end
