@@ -125,7 +125,12 @@ typedef NS_ENUM(NSUInteger, MPEntryTab) {
   [[NSNotificationCenter defaultCenter] addObserver:self
                                            selector:@selector(_didAddEntry:)
                                                name:MPDocumentDidAddEntryNotification
-                                            object:document];
+                                             object:document];
+  
+  [[NSNotificationCenter defaultCenter] addObserver:self
+                                           selector:@selector(_willSave:)
+                                               name:MPDocumentWillSaveNotification
+                                             object:document];
 }
 
 - (void)dealloc {
@@ -437,6 +442,11 @@ typedef NS_ENUM(NSUInteger, MPEntryTab) {
 - (void)_didAddEntry:(NSNotification *)notification {
   [self.tabView selectTabViewItemAtIndex:MPEntryTabGeneral];
   [self.titleTextField becomeFirstResponder];
+}
+
+- (void)_willSave:(NSNotification *)notification {
+  // Force selected textfield to end editing
+  [[[self view] window] makeFirstResponder:nil];
 }
 
 @end
