@@ -14,6 +14,10 @@ APPKIT_EXTERN NSString *const MPEntryTableTitleColumnIdentifier;
 APPKIT_EXTERN NSString *const MPEntryTablePasswordColumnIdentifier;
 APPKIT_EXTERN NSString *const MPEntryTableParentColumnIdentifier;
 APPKIT_EXTERN NSString *const MPEntryTableURLColumnIdentifier;
+APPKIT_EXTERN NSString *const MPEntryTableNotesColumnIdentifier;
+APPKIT_EXTERN NSString *const MPEntryTableAttachmentColumnIdentifier;
+APPKIT_EXTERN NSString *const MPEntryTableModfiedColumnIdentifier;
+
 
 /* Tags to determine what to copy */
 typedef NS_ENUM( NSUInteger, MPCopyContentTypeTag) {
