@@ -616,10 +616,10 @@ NSString *const _MPTAbleSecurCellView = @"PasswordCell";
 - (void)openURL:(id)sender {
   KPKEntry *selectedEntry = [self _clickedOrSelectedEntry];
   if(selectedEntry && [selectedEntry.url length] > 0) {
-    NSURL *webURL = [NSURL URLWithString:selectedEntry.url];
+    NSURL *webURL = [NSURL URLWithString:[selectedEntry.url stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]];
     NSString *scheme = [webURL scheme];
     if(!scheme) {
-      webURL = [NSURL URLWithString:[NSString stringWithFormat:@"http://%@", selectedEntry.url]];
+      webURL = [NSURL URLWithString:[NSString stringWithFormat:@"http://%@", [selectedEntry.url stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]]];
     }
     [[NSWorkspace sharedWorkspace] openURL:webURL];
     /* Add custom browser support */
