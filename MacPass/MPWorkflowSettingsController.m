@@ -86,6 +86,9 @@
   for(NSString *bundleIdentifier in [self _bundleIdentifierForHTTPS]) {
     NSString *bundlePath = [[NSWorkspace sharedWorkspace] absolutePathForAppBundleWithIdentifier:bundleIdentifier];
     NSString *browserName = [[NSFileManager defaultManager] displayNameAtPath:bundlePath];
+    if(nil == bundlePath || nil == browserName) {
+      continue; // Skip missing Applications
+    }
     NSMenuItem *browserItem = [[NSMenuItem alloc] initWithTitle:browserName action:@selector(selectBrowser:) keyEquivalent:@""];
     [browserItem setRepresentedObject:bundleIdentifier];
     [browserItem setTarget:self];
