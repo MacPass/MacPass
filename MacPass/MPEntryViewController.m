@@ -621,9 +621,17 @@ NSString *const _MPTAbleSecurCellView = @"PasswordCell";
     if(!scheme) {
       webURL = [NSURL URLWithString:[NSString stringWithFormat:@"http://%@", [selectedEntry.url stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]]];
     }
-    [[NSWorkspace sharedWorkspace] openURL:webURL];
-    /* Add custom browser support */
-    //[[NSWorkspace sharedWorkspace] openURLs:@[webURL] withAppBundleIdentifier:@"org.mozilla.firefox" options:NSWorkspaceLaunchAsync additionalEventParamDescriptor:nil launchIdentifiers:NULL];
+    
+    NSString *browserBundleID = [[NSUserDefaults standardUserDefaults] objectForKey:kMPSettingsKeyBrowserBundleId];
+    BOOL launched = NO;
+    
+    if (browserBundleID) {
+      launched = [[NSWorkspace sharedWorkspace] openURLs:@[webURL] withAppBundleIdentifier:browserBundleID options:NSWorkspaceLaunchAsync additionalEventParamDescriptor:nil launchIdentifiers:NULL];
+    }
+    
+    if (!launched) {
+      [[NSWorkspace sharedWorkspace] openURL:webURL];
+    }
   }
 }
 
