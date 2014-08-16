@@ -51,7 +51,8 @@
 
 - (void)showCustomBrowserSelection:(id)sender {
   NSOpenPanel *openPanel = [NSOpenPanel openPanel];
-  [openPanel setDirectoryURL:[NSURL URLWithString:@"/Applications"]];
+  NSURL *applicationURL = [[NSFileManager defaultManager] URLsForDirectory:NSApplicationDirectory inDomains:NSSystemDomainMask][0];
+  [openPanel setDirectoryURL:applicationURL];
   [openPanel setAllowsMultipleSelection:NO];
   [openPanel setCanChooseDirectories:NO];
   [openPanel setCanChooseFiles:YES];
