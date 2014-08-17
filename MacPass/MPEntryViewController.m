@@ -660,17 +660,7 @@ NSString *const _MPTAbleSecurCellView = @"PasswordCell";
   NSTableColumn *column = [self.entryTable tableColumns][[self.entryTable clickedColumn]];
   NSString *identifier = [column identifier];
   if([identifier isEqualToString:MPEntryTableTitleColumnIdentifier]) {
-    MPDoubleClickTitleAction action = [[NSUserDefaults standardUserDefaults] integerForKey:kMPSettingsKeyDoubleClickTitleAction];
-    if (action == MPDoubleClickTitleActionInspect) {
-      [[self windowController] showInspector:nil];
-    }
-    else if (action == MPDoubleClickTitleActionIgnore) {
-      
-    }
-    else {
-      NSLog(@"Unknown double click action");
-    }
-    
+    [self _executeTitleColumnDoubleClick];
   }
   else if([identifier isEqualToString:MPEntryTablePasswordColumnIdentifier]) {
     [self copyPassword:nil];
@@ -679,18 +669,36 @@ NSString *const _MPTAbleSecurCellView = @"PasswordCell";
     [self copyUsername:nil];
   }
   else if([identifier isEqualToString:MPEntryTableURLColumnIdentifier]) {
-    MPDoubleClickURLAction action = [[NSUserDefaults standardUserDefaults] integerForKey:kMPSettingsKeyDoubleClickURLAction];
-    if(action == MPDoubleClickURLActionOpen) {
-      [self openURL:nil];
-    }
-    else if (action == MPDoubleClickURLActionCopy) {
-      [self copyURL:nil];
-    }
-    else {
-      NSLog(@"Unknown double click URL action");
-    }
+    [self _executeURLColumnDoubleClick];
   }
   // TODO: Add more actions for new columns
 }
 
+- (void)_executeTitleColumnDoubleClick {
+  MPDoubleClickTitleAction action = [[NSUserDefaults standardUserDefaults] integerForKey:kMPSettingsKeyDoubleClickTitleAction];
+  switch(action) {
+    case MPDoubleClickTitleActionInspect:
+      [[self windowController] showInspector:nil];
+      break;
+    case MPDoubleClickTitleActionIgnore:
+      break;
+    default:
+      NSLog(@"Unknown double click title action");
+      break;
+  }
+}
+- (void)_executeURLColumnDoubleClick {
+  MPDoubleClickURLAction action = [[NSUserDefaults standardUserDefaults] integerForKey:kMPSettingsKeyDoubleClickURLAction];
+  switch (action) {
+    case MPDoubleClickURLActionOpen:
+      [self openURL:nil];
+      break;
+    case MPDoubleClickURLActionCopy:
+      [self copyURL:nil];
+      break;
+    default:
+      NSLog(@"Unknown double click URL action");
+      break;
+  }
+}
 @end
