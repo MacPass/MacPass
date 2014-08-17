@@ -32,7 +32,7 @@
 
 + (BOOL)isCandidateForMalformedAutotype:(id)item {
   
-  NSString *keystrokeSequence;
+  NSString *keystrokeSequence = @"";
   if([item isKindOfClass:[KPKEntry class]] && ![((KPKEntry *)item).autotype hasDefaultKeystrokeSequence]) {
     keystrokeSequence = ((KPKEntry *)item).autotype.defaultKeystrokeSequence;
   }

@@ -119,6 +119,10 @@ NSString *const kMPIconCell = @"IconCell";
     association = item;
   }
   
+  if(nil == entry || nil == group || nil == association) {
+    return nil;
+  }
+  
   if([[tableColumn identifier] isEqualToString:kMPTitleCell]) {
     if(entry) {
       return entry.title;
