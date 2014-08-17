@@ -660,7 +660,17 @@ NSString *const _MPTAbleSecurCellView = @"PasswordCell";
   NSTableColumn *column = [self.entryTable tableColumns][[self.entryTable clickedColumn]];
   NSString *identifier = [column identifier];
   if([identifier isEqualToString:MPEntryTableTitleColumnIdentifier]) {
-    [[self windowController] showInspector:nil];
+    MPDoubleClickTitleAction action = [[NSUserDefaults standardUserDefaults] integerForKey:kMPSettingsKeyDoubleClickTitleAction];
+    if (action == MPDoubleClickTitleActionInspect) {
+      [[self windowController] showInspector:nil];
+    }
+    else if (action == MPDoubleClickTitleActionIgnore) {
+      
+    }
+    else {
+      NSLog(@"Unknown double click action");
+    }
+    
   }
   else if([identifier isEqualToString:MPEntryTablePasswordColumnIdentifier]) {
     [self copyPassword:nil];
@@ -669,10 +679,16 @@ NSString *const _MPTAbleSecurCellView = @"PasswordCell";
     [self copyUsername:nil];
   }
   else if([identifier isEqualToString:MPEntryTableURLColumnIdentifier]) {
-    if([[NSUserDefaults standardUserDefaults] boolForKey:kMPSettingsKeyDoubleClickURLToLaunch])
+    MPDoubleClickURLAction action = [[NSUserDefaults standardUserDefaults] integerForKey:kMPSettingsKeyDoubleClickURLAction];
+    if(action == MPDoubleClickURLActionOpen) {
       [self openURL:nil];
-    else
+    }
+    else if (action == MPDoubleClickURLActionCopy) {
       [self copyURL:nil];
+    }
+    else {
+      NSLog(@"Unknown double click URL action");
+    }
   }
   // TODO: Add more actions for new columns
 }
