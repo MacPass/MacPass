@@ -44,10 +44,13 @@
 #pragma mark Actions
 - (void)_selectBrowser:(id)sender {
   NSString *browserBundleId = [sender representedObject];
-  if(browserBundleId) {
-    [[NSUserDefaults standardUserDefaults] setObject:browserBundleId forKey:kMPSettingsKeyBrowserBundleId];
-    [[NSUserDefaults standardUserDefaults] synchronize];
+  if(nil == browserBundleId) {
+    [[NSUserDefaults standardUserDefaults] removeObjectForKey:kMPSettingsKeyBrowserBundleId];
   }
+  else {
+    [[NSUserDefaults standardUserDefaults] setObject:browserBundleId forKey:kMPSettingsKeyBrowserBundleId];
+  }
+  [[NSUserDefaults standardUserDefaults] synchronize];
   [self _updateBrowserSelection];
 }
 
