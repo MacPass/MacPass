@@ -62,6 +62,7 @@
   
   [openPanel beginSheetModalForWindow:[[self view] window] completionHandler:^(NSInteger result) {
     if(result == NSFileHandlingPanelOKButton) {
+      // TODO: Autorelease pool?
       NSMenuItem *customBrowser = [[NSMenuItem alloc] init];
       [customBrowser setRepresentedObject:[[NSBundle bundleWithPath:[[openPanel URL] path]] bundleIdentifier]];
       [self _selectBrowser:customBrowser];
