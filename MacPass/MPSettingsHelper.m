@@ -64,8 +64,9 @@ NSString *const kMPDeprecatedSettingsKeyDoubleClickURLToLaunch            = @"Do
 }
 
 + (void)migrateDefaults {
-  [self _removeObsolteValues];
   [self _fixEntryTableSortDescriptors];
+  [self _migrateURLDoubleClickPreferences];
+  [self _removeDeprecatedValues];
 }
 
 + (NSString *)defaultControllerPathForKey:(NSString *)key {
@@ -123,7 +124,7 @@ NSString *const kMPDeprecatedSettingsKeyDoubleClickURLToLaunch            = @"Do
 }
 
 
-+ (void)_removeObsolteValues {
++ (void)_removeDeprecatedValues {
   /* Clear old style values */
   for(NSString *key in [self _deprecatedSettingsKeys]) {
     [[NSUserDefaults standardUserDefaults] removeObjectForKey:key];
@@ -145,6 +146,14 @@ NSString *const kMPDeprecatedSettingsKeyDoubleClickURLToLaunch            = @"Do
       [[NSUserDefaults standardUserDefaults] removeObjectForKey:kMPSettingsKeyEntryTableSortDescriptors];
       break;
     }
+  }
+}
+
++ (void)_migrateURLDoubleClickPreferences {
+  /* Default was NO so if the key was not set, we also get NO, which is what we want */
+  BOOL openURL = [[NSUserDefaults standardUserDefaults] boolForKey:kMPDeprecatedSettingsKeyDoubleClickURLToLaunch];
+  if(NO == openURL) {
+    [[NSUserDefaults standardUserDefaults] setInteger:MPDoubleClickURLActionOpen forKey:kMPSettingsKeyDoubleClickURLAction];
   }
 }
 
