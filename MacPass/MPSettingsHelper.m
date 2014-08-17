@@ -11,7 +11,6 @@
 
 NSString *const kMPSettingsKeyPasteboardClearTimeout                  = @"ClipboardClearTimeout";
 NSString *const kMPSettingsKeyClearPasteboardOnQuit                   = @"ClearClipboardOnQuit";
-NSString *const kMPSettingsKeyDoubleClickURLToLaunch                  = @"DoubleClickURLToLaunch";
 NSString *const kMPSettingsKeyBrowserBundleId                         = @"BrowserBundleId";
 NSString *const kMPSettingsKeyOpenEmptyDatabaseOnLaunch               = @"OpenEmptyDatabaseOnLaunch";
 NSString *const kMPSettingsKeyReopenLastDatabaseOnLaunch              = @"ReopenLastDatabaseOnLaunch";
@@ -49,10 +48,14 @@ NSString *const kMPSettingsKeyPasswordCharacterFlags                  = @"Passwo
 NSString *const kMPSettingsKeyPasswordUseCustomString                 = @"PasswordUseCustomString";
 NSString *const kMPSettingsKeyPasswordCustomString                    = @"PasswordCustomString";
 
-/* Depricated */
-NSString *const kMPDepricatedSettingsKeyRememberKeyFilesForDatabases      = @"kMPSettingsKeyRememberKeyFilesForDatabases";
-NSString *const kMPDepricatedSettingsKeyLastDatabasePath                  = @"MPLastDatabasePath";
-NSString *const kMPDepricatedSettingsKeyDocumentsAutotypeFixNoteWasShown  = @"DocumentsAutotypeFixNoteWasShown";
+NSString *const kMPSettingsKeyDoubleClickURLAction                    = @"DoubleClickURLAction";
+NSString *const kMPSettingsKeyDoubleClickTitleAction                  = @"DoubleClickTitleAction";
+
+/* Deprecated */
+NSString *const kMPDeprecatedSettingsKeyRememberKeyFilesForDatabases      = @"kMPSettingsKeyRememberKeyFilesForDatabases";
+NSString *const kMPDeprecatedSettingsKeyLastDatabasePath                  = @"MPLastDatabasePath";
+NSString *const kMPDeprecatedSettingsKeyDocumentsAutotypeFixNoteWasShown  = @"DocumentsAutotypeFixNoteWasShown";
+NSString *const kMPDeprecatedSettingsKeyDoubleClickURLToLaunch            = @"DoubleClickURLToLaunch";
 
 @implementation MPSettingsHelper
 
@@ -77,7 +80,6 @@ NSString *const kMPDepricatedSettingsKeyDocumentsAutotypeFixNoteWasShown  = @"Do
                          kMPSettingsKeyShowInspector: @YES, // Show the Inspector by default
                          kMPSettingsKeyPasteboardClearTimeout: @30, // 30 seconds
                          kMPSettingsKeyClearPasteboardOnQuit: @YES,
-                         kMPSettingsKeyDoubleClickURLToLaunch: @NO,
                          kMPSettingsKeyOpenEmptyDatabaseOnLaunch: @NO,
                          kMPSettingsKeyReopenLastDatabaseOnLaunch: @YES,
                          kMPSettingsKeyHttpPort: @19455,
@@ -100,27 +102,30 @@ NSString *const kMPDepricatedSettingsKeyDocumentsAutotypeFixNoteWasShown  = @"Do
                          kMPSettingsKeyDefaultPasswordLength: @12,
                          kMPSettingsKeyPasswordCharacterFlags: @(MPPasswordCharactersAll),
                          kMPSettingsKeyPasswordUseCustomString: @NO,
-                         kMPSettingsKeyPasswordCustomString: @""
+                         kMPSettingsKeyPasswordCustomString: @"",
+                         kMPSettingsKeyDoubleClickURLAction: @(MPDoubleClickURLActionCopy),
+                         kMPSettingsKeyDoubleClickTitleAction: @(MPDoubleClickTitleActionInspect)
                          };
   });
   return standardDefaults;
 }
 
-+ (NSArray *)_depircatedSettingsKeys {
-  static NSArray *depircatedSettings;
++ (NSArray *)_deprecatedSettingsKeys {
+  static NSArray *deprecatedSettings;
   static dispatch_once_t onceToken;
   dispatch_once(&onceToken, ^{
-    depircatedSettings = @[ kMPDepricatedSettingsKeyRememberKeyFilesForDatabases,
-                            kMPDepricatedSettingsKeyLastDatabasePath,
-                            kMPDepricatedSettingsKeyDocumentsAutotypeFixNoteWasShown ];
+    deprecatedSettings = @[ kMPDeprecatedSettingsKeyRememberKeyFilesForDatabases,
+                            kMPDeprecatedSettingsKeyLastDatabasePath,
+                            kMPDeprecatedSettingsKeyDocumentsAutotypeFixNoteWasShown,
+                            kMPDeprecatedSettingsKeyDoubleClickURLToLaunch ];
   });
-  return depircatedSettings;
+  return deprecatedSettings;
 }
 
 
 + (void)_removeObsolteValues {
   /* Clear old style values */
-  for(NSString *key in [self _depircatedSettingsKeys]) {
+  for(NSString *key in [self _deprecatedSettingsKeys]) {
     [[NSUserDefaults standardUserDefaults] removeObjectForKey:key];
   }
 }

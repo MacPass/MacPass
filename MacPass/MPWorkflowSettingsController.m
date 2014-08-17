@@ -21,6 +21,11 @@
 }
 
 - (void)didLoadView {
+  NSUserDefaultsController *defaultsController = [NSUserDefaultsController sharedUserDefaultsController];
+  
+  [self.doubleClickURLPopup bind:NSSelectedIndexBinding toObject:defaultsController withKeyPath:[MPSettingsHelper defaultControllerPathForKey:kMPSettingsKeyDoubleClickURLAction] options:nil];
+  [self.doubleClickTitlePopup bind:NSSelectedIndexBinding toObject:defaultsController withKeyPath:[MPSettingsHelper defaultControllerPathForKey:kMPSettingsKeyDoubleClickTitleAction] options:nil];
+  
   [self _updateBrowserSelection];
 }
 

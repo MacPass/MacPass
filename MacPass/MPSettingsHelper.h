@@ -18,7 +18,6 @@ APPKIT_EXTERN NSString *const kMPSettingsKeyOpenEmptyDatabaseOnLaunch;
 APPKIT_EXTERN NSString *const kMPSettingsKeyReopenLastDatabaseOnLaunch;
 
 /* URL handling */
-APPKIT_EXTERN NSString *const kMPSettingsKeyDoubleClickURLToLaunch;
 APPKIT_EXTERN NSString *const kMPSettingsKeyBrowserBundleId;
 
 /* Server Settings */
@@ -50,13 +49,26 @@ APPKIT_EXTERN NSString *const kMPSettingsKeyRememberKeyFilesForDatabases;     //
 APPKIT_EXTERN NSString *const kMPSettingsKeySendCommandForControlKey;         // Should MacPass swap control for command. This is usefull in a cross plattform environment
 APPKIT_EXTERN NSString *const kMPSettingsKeyEnableGlobalAutotype;             // Is Global Autotype enabled?
 APPKIT_EXTERN NSString *const kMPSettingsKeyGlobalAutotypeKeyDataKey;         // The stored Data for the useder defined global autotype key
-APPKIT_EXTERN NSString *const kMPDepricatedSettingsKeyDocumentsAutotypeFixNoteWasShown; // YES if Autotype fix was shown
 
 /* Search */
 APPKIT_EXTERN NSString *const kMPSettingsKeyEntrySearchFilterMode;
 
 /* Quicklook */
 APPKIT_EXTERN NSString *const kMPSettingsKeyEnableQuicklookPreview;
+
+/* Workflow */
+APPKIT_EXTERN NSString *const kMPSettingsKeyDoubleClickURLAction;
+APPKIT_EXTERN NSString *const kMPSettingsKeyDoubleClickTitleAction;
+
+typedef NS_ENUM(NSUInteger, MPDoubleClickURLAction) {
+  MPDoubleClickURLActionCopy,
+  MPDoubleClickURLActionOpen,
+};
+
+typedef NS_ENUM(NSUInteger, MPDoubleClickTitleAction) {
+  MPDoubleClickTitleActionInspect,
+  MPDoubleClickTitleActionIgnore,
+};
 
 /* Password Generation */
 APPKIT_EXTERN NSString *const kMPSettingsKeyCopyGeneratedPasswordToClipboard;

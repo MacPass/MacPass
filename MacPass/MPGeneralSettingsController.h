@@ -13,7 +13,6 @@
 @interface MPGeneralSettingsController : MPViewController <MPSettingsTab>
 
 @property (weak) IBOutlet NSButton *clearPasteboardOnQuitCheckButton;
-@property (weak) IBOutlet NSButton *doubleClickURLToLaunchCheckButton;
 @property (weak) IBOutlet NSPopUpButton *clearPasteboardTimeoutPopup;
 @property (weak) IBOutlet NSPopUpButton *idleTimeOutPopup;
 @property (weak) IBOutlet NSButton *lockOnSleepCheckButton;

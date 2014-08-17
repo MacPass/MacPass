@@ -12,6 +12,8 @@
 @interface MPWorkflowSettingsController : MPViewController <MPSettingsTab>
 
 @property (weak) IBOutlet NSPopUpButton *browserPopup;
+@property (weak) IBOutlet NSPopUpButton *doubleClickURLPopup;
+@property (weak) IBOutlet NSPopUpButton *doubleClickTitlePopup;
 
 - (IBAction)_showCustomBrowserSelection:(id)sender;
 

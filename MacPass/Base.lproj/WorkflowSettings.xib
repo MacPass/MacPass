@@ -8,6 +8,8 @@
         <customObject id="-2" userLabel="File's Owner" customClass="MPWorkflowSettingsController">
             <connections>
                 <outlet property="browserPopup" destination="ehI-gq-lsb" id="YMy-L1-pQw"/>
+                <outlet property="doubleClickTitlePopup" destination="40" id="aKJ-q9-xjb"/>
+                <outlet property="doubleClickURLPopup" destination="13" id="fGP-5I-0XK"/>
                 <outlet property="view" destination="1" id="52"/>
             </connections>
         </customObject>
@@ -36,7 +38,7 @@
                             <popUpButton verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="13">
                                 <rect key="frame" x="161" y="42" width="105" height="26"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                <popUpButtonCell key="cell" type="push" bezelStyle="rounded" alignment="left" lineBreakMode="truncatingTail" enabled="NO" borderStyle="borderAndBezel" imageScaling="proportionallyDown" inset="2" id="14">
+                                <popUpButtonCell key="cell" type="push" bezelStyle="rounded" alignment="left" lineBreakMode="truncatingTail" borderStyle="borderAndBezel" imageScaling="proportionallyDown" inset="2" id="14">
                                     <behavior key="behavior" lightByBackground="YES" lightByGray="YES"/>
                                     <font key="font" metaFont="menu"/>
                                     <menu key="menu" title="OtherViews" id="15">
@@ -59,13 +61,13 @@
                             <popUpButton verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="40">
                                 <rect key="frame" x="161" y="11" width="136" height="26"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                <popUpButtonCell key="cell" type="push" bezelStyle="rounded" alignment="left" lineBreakMode="truncatingTail" enabled="NO" borderStyle="borderAndBezel" imageScaling="proportionallyDown" inset="2" id="41">
+                                <popUpButtonCell key="cell" type="push" bezelStyle="rounded" alignment="left" lineBreakMode="truncatingTail" borderStyle="borderAndBezel" imageScaling="proportionallyDown" inset="2" id="41">
                                     <behavior key="behavior" lightByBackground="YES" lightByGray="YES"/>
                                     <font key="font" metaFont="menu"/>
                                     <menu key="menu" title="OtherViews" id="42">
                                         <items>
                                             <menuItem title="Opens Inspector" id="44"/>
-                                            <menuItem title="is Ignored" id="43"/>
+                                            <menuItem title="Is Ignored" id="43"/>
                                         </items>
                                     </menu>
                                 </popUpButtonCell>
