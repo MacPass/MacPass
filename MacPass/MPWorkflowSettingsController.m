@@ -42,14 +42,16 @@
 }
 
 #pragma mark Actions
-- (void)selectBrowser:(id)sender {
+- (void)_selectBrowser:(id)sender {
   NSString *browserBundleId = [sender representedObject];
-  [[NSUserDefaults standardUserDefaults] setObject:browserBundleId forKey:kMPSettingsKeyBrowserBundleId];
-  [[NSUserDefaults standardUserDefaults] synchronize];
+  if(browserBundleId) {
+    [[NSUserDefaults standardUserDefaults] setObject:browserBundleId forKey:kMPSettingsKeyBrowserBundleId];
+    [[NSUserDefaults standardUserDefaults] synchronize];
+  }
   [self _updateBrowserSelection];
 }
 
-- (void)showCustomBrowserSelection:(id)sender {
+- (void)_showCustomBrowserSelection:(id)sender {
   NSOpenPanel *openPanel = [NSOpenPanel openPanel];
   NSURL *applicationURL = [[NSFileManager defaultManager] URLsForDirectory:NSApplicationDirectory inDomains:NSSystemDomainMask][0];
   [openPanel setDirectoryURL:applicationURL];
@@ -62,7 +64,11 @@
     if(result == NSFileHandlingPanelOKButton) {
       NSMenuItem *customBrowser = [[NSMenuItem alloc] init];
       [customBrowser setRepresentedObject:[[NSBundle bundleWithPath:[[openPanel URL] path]] bundleIdentifier]];
-      [self selectBrowser:customBrowser];
+      [self _selectBrowser:customBrowser];
+    }
+    else {
+      /* Reset the selection if the user cancels */
+      [self _updateBrowserSelection];
     }
   }];
 }
@@ -73,7 +79,7 @@
   NSMenu *browserMenu = [[NSMenu alloc] init];
   [self.browserPopup setMenu:browserMenu];
   
-  NSMenuItem *defaultItem = [[NSMenuItem alloc] initWithTitle:NSLocalizedString(@"DEFAULT_BROWSER", "Default Browser") action:@selector(selectBrowser:) keyEquivalent:@""];
+  NSMenuItem *defaultItem = [[NSMenuItem alloc] initWithTitle:NSLocalizedString(@"DEFAULT_BROWSER", "Default Browser") action:@selector(_selectBrowser:) keyEquivalent:@""];
   [defaultItem setRepresentedObject:nil];
   [defaultItem setTarget:self];
   [browserMenu addItem:defaultItem];
@@ -89,7 +95,7 @@
     if(nil == bundlePath || nil == browserName) {
       continue; // Skip missing Applications
     }
-    NSMenuItem *browserItem = [[NSMenuItem alloc] initWithTitle:browserName action:@selector(selectBrowser:) keyEquivalent:@""];
+    NSMenuItem *browserItem = [[NSMenuItem alloc] initWithTitle:browserName action:@selector(_selectBrowser:) keyEquivalent:@""];
     [browserItem setRepresentedObject:bundleIdentifier];
     [browserItem setTarget:self];
     [browserMenu addItem:browserItem];
@@ -107,7 +113,7 @@
     NSString *bundlePath = [[NSWorkspace sharedWorkspace] absolutePathForAppBundleWithIdentifier:currentDefaultBrowser];
     if (bundlePath != nil) {
       NSString *browserName = [[NSFileManager defaultManager] displayNameAtPath:bundlePath];
-      NSMenuItem *browserItem = [[NSMenuItem alloc] initWithTitle:browserName action:@selector(selectBrowser:) keyEquivalent:@""];
+      NSMenuItem *browserItem = [[NSMenuItem alloc] initWithTitle:browserName action:@selector(_selectBrowser:) keyEquivalent:@""];
       [browserItem setRepresentedObject:currentDefaultBrowser];
       [browserItem setTarget:self];
       [browserMenu addItem:browserItem];
@@ -117,7 +123,7 @@
   }
   
   NSMenuItem *selectOtherBrowserItem = [[NSMenuItem alloc] initWithTitle:NSLocalizedString(@"OTHER_BROWSER", "Select Browser")
-                                                                  action:@selector(showCustomBrowserSelection:)
+                                                                  action:@selector(_showCustomBrowserSelection:)
                                                            keyEquivalent:@""];
   [selectOtherBrowserItem setTarget:self];
   

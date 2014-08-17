@@ -13,6 +13,6 @@
 
 @property (weak) IBOutlet NSPopUpButton *browserPopup;
 
-- (IBAction)showCustomBrowserSelection:(id)sender;
+- (IBAction)_showCustomBrowserSelection:(id)sender;
 
 @end
