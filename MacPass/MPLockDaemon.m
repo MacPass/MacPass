@@ -10,7 +10,6 @@
 #import "MPSettingsHelper.h"
 #import "MPAppDelegate.h"
 
-NSString *const MPShouldLockDatabaseNotification = @"com.hicknhack.macpass.MPShouldLockDatabaseNotification";
 
 @interface MPLockDaemon () {
   NSTimer *idleCheckTimer;

@@ -8,8 +8,6 @@
 
 #import <Foundation/Foundation.h>
 
-APPKIT_EXTERN NSString *const MPShouldLockDatabaseNotification;
-
 @interface MPLockDaemon : NSObject
 
 + (MPLockDaemon *)sharedInstance;
