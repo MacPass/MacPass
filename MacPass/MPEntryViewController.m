@@ -641,10 +641,6 @@ NSString *const _MPTAbleSecurCellView = @"PasswordCell";
   }
 }
 
-- (IBAction)enterHistoryBrowser:(id)sender {
-  
-}
-
 - (void)delete:(id)sender {
   KPKEntry *entry =[self _clickedOrSelectedEntry];
   if(!entry) {
