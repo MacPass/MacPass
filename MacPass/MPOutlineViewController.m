@@ -247,7 +247,6 @@ NSString *const _MPOutlinveViewHeaderViewIdentifier = @"HeaderCell";
   id representedObject = [item representedObject];
   if([representedObject isKindOfClass:[KPKGroup class]]) {
     KPKGroup *group = (KPKGroup *)representedObject;
-    NSLog(@"IndexPath for %@: %@ vs. %@", group.name, [item indexPath], [group indexPath]);
     group.isExpanded = YES;
   }
 }
@@ -258,6 +257,13 @@ NSString *const _MPOutlinveViewHeaderViewIdentifier = @"HeaderCell";
   if([representedObject isKindOfClass:[KPKGroup class]]) {
     KPKGroup *group = (KPKGroup *)representedObject;
     group.isExpanded = NO;
+  }
+}
+
+- (void)outlineView:(NSOutlineView *)outlineView didRemoveRowView:(NSTableRowView *)rowView forRow:(NSInteger)row {
+  /* Deletion of an item */
+  if(row == -1) {
+    [self outlineViewSelectionDidChange:nil];
   }
 }
 

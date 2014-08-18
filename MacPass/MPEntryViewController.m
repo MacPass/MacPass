@@ -328,8 +328,10 @@ NSString *const _MPTAbleSecurCellView = @"PasswordCell";
 - (void)_didChangeCurrentItem:(NSNotification *)notification {
   MPDocument *document = [notification object];
   
-  if(!document.selectedGroup) {
-    /* TODO: handle deleted item */
+  if(!document.selectedGroup && !document.hasSearch) {
+    /* no group selection out of search is wrong */
+    [self.entryArrayController unbind:NSContentArrayBinding];
+    [self.entryArrayController setContent:nil];
     return;
   }
   /*
@@ -384,6 +386,10 @@ NSString *const _MPTAbleSecurCellView = @"PasswordCell";
   [[self.entryTable tableColumnWithIdentifier:MPEntryTableParentColumnIdentifier] setHidden:YES];
   MPDocument *document = [[self windowController] document];
   document.selectedItem = document.selectedGroup;
+  if( nil == document.selectedItem && nil == document.selectedGroup ) {
+    [self.entryArrayController unbind:NSContentArrayBinding];
+    [self.entryArrayController setContent:nil];
+  }
   [self _updateContextBar];
 }
 
