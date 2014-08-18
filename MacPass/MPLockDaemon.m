@@ -10,13 +10,13 @@
 #import "MPSettingsHelper.h"
 #import "MPAppDelegate.h"
 
-
-@interface MPLockDaemon () {
-  NSTimer *idleCheckTimer;
-}
+@interface MPLockDaemon ()
 
 @property (nonatomic,assign) BOOL lockOnSleep;
 @property (nonatomic,assign) NSUInteger idleLockTime;
+@property (nonatomic,strong) id eventHandler;
+@property (nonatomic,strong) NSTimer *idleCheckTimer;
+@property (assign) NSTimeInterval lastLocalEventTime;
 
 @end
 
@@ -34,22 +34,19 @@
 - (id)init {
   self = [super init];
   if (self) {
-    NSString *lockOnSleepKey = [NSString stringWithFormat:@"values.%@", kMPSettingsKeyLockOnSleep];
-    NSString *idleTimeOutKey = [NSString stringWithFormat:@"values.%@", kMPSettingsKeyIdleLockTimeOut];
     NSUserDefaultsController *defaultsController = [NSUserDefaultsController sharedUserDefaultsController];
-    [self bind:@"lockOnSleep" toObject:defaultsController withKeyPath:lockOnSleepKey options:nil];
-    [self bind:@"idleLockTime" toObject:defaultsController withKeyPath:idleTimeOutKey options:nil];
+    [self bind:NSStringFromSelector(@selector(lockOnSleep)) toObject:defaultsController withKeyPath:[MPSettingsHelper defaultControllerPathForKey:kMPSettingsKeyLockOnSleep] options:nil];
+    [self bind:NSStringFromSelector(@selector(idleLockTime)) toObject:defaultsController withKeyPath:[MPSettingsHelper defaultControllerPathForKey:kMPSettingsKeyIdleLockTimeOut] options:nil];
   }
   return self;
 }
 
-- (void)dealloc
-{
+- (void)dealloc {
   /* Notifications */
   [[[NSWorkspace sharedWorkspace] notificationCenter] removeObserver:self];
   
   /* Timer */
-  [idleCheckTimer invalidate];
+  [NSEvent removeMonitor:self.eventHandler];
   
 }
 
@@ -70,18 +67,10 @@
   if(_idleLockTime != idleLockTime) {
     _idleLockTime = idleLockTime;
     if(_idleLockTime == 0) {
-      [idleCheckTimer invalidate];
-      idleCheckTimer = nil;
+      [self _stopIdleChecking];
     }
     else {
-      if( idleCheckTimer ) {
-        NSAssert([idleCheckTimer isValid], @"Timer needs to be valid");
-        [idleCheckTimer setFireDate:[NSDate dateWithTimeIntervalSinceNow:_idleLockTime ]];
-        return; // Done
-      }
-      /* Create new timer and schedule it with runloop */
-      idleCheckTimer = [NSTimer timerWithTimeInterval:_idleLockTime target:self selector:@selector(_checkIdleTime:) userInfo:nil repeats:YES];
-      [[NSRunLoop mainRunLoop] addTimer:idleCheckTimer forMode:NSDefaultRunLoopMode];
+      [self _updateOrStartIdleChecking];
     }
   }
 }
@@ -91,15 +80,46 @@
 }
 
 - (void)_checkIdleTime:(NSTimer *)timer {
-  CFTimeInterval interval = CGEventSourceSecondsSinceLastEventType(kCGEventSourceStateCombinedSessionState,kCGAnyInputEventType);
-  if(interval >= _idleLockTime) {
+  if(timer != self.idleCheckTimer) {
+    return; // Wrong timer?!
+  }
+  NSTimeInterval currentInterval = ([NSDate timeIntervalSinceReferenceDate] - self.lastLocalEventTime);
+  if(self.idleLockTime < currentInterval) {
     [[NSApp delegate] lockAllDocuments];
     /* Reset the timer to full intervall */
-    [idleCheckTimer setFireDate:[NSDate dateWithTimeIntervalSinceNow:_idleLockTime]];
+    [self.idleCheckTimer setFireDate:[NSDate dateWithTimeIntervalSinceNow:_idleLockTime]];
   }
   else {
-    [idleCheckTimer setFireDate:[NSDate dateWithTimeIntervalSinceNow:(_idleLockTime - interval) ]];
+    [self.idleCheckTimer setFireDate:[NSDate dateWithTimeIntervalSinceNow:(_idleLockTime - currentInterval)]];
   }
+}
+
+- (void)_stopIdleChecking {
+  [self.idleCheckTimer invalidate];
+  self.idleCheckTimer = nil;
+  [NSEvent removeMonitor:self.eventHandler];
+  self.eventHandler = nil;
+}
+
+- (void)_updateOrStartIdleChecking {
+  /* update or create Timer */
+  if( self.idleCheckTimer ) {
+    NSAssert([self.idleCheckTimer isValid], @"Timer needs to be valid");
+    [self.idleCheckTimer setFireDate:[NSDate dateWithTimeIntervalSinceNow:self.idleLockTime ]];
+  }
+  else {
+    self.idleCheckTimer = [NSTimer timerWithTimeInterval:self.idleLockTime target:self selector:@selector(_checkIdleTime:) userInfo:nil repeats:YES];
+    [[NSRunLoop mainRunLoop] addTimer:self.idleCheckTimer forMode:NSDefaultRunLoopMode];
+  }
+  /* Create event handler if necessary */
+  if(self.eventHandler) {
+    return;
+  }
+  MPLockDaemon __weak *welf = self;
+  self.eventHandler = [NSEvent addLocalMonitorForEventsMatchingMask:NSAnyEventMask handler:^NSEvent *(NSEvent *theEvent) {
+    welf.lastLocalEventTime = [NSDate timeIntervalSinceReferenceDate];
+    return theEvent;
+  }];
 }
 
 @end
