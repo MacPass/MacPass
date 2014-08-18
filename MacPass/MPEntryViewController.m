@@ -384,6 +384,7 @@ NSString *const _MPTAbleSecurCellView = @"PasswordCell";
   [[self.entryTable tableColumnWithIdentifier:MPEntryTableParentColumnIdentifier] setHidden:YES];
   MPDocument *document = [[self windowController] document];
   document.selectedItem = document.selectedGroup;
+  [self.entryArrayController bind:NSContentArrayBinding toObject:document.selectedGroup withKeyPath:NSStringFromSelector(@selector(entries)) options:nil];
   [self _updateContextBar];
 }
 
