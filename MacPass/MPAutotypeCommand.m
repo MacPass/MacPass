@@ -99,7 +99,7 @@
   NSUInteger reserverd = MAX(1,[context.normalizedCommand length] / 4);
   NSMutableArray *commands = [[NSMutableArray alloc] initWithCapacity:reserverd];
   NSMutableArray __block *commandRanges = [[NSMutableArray alloc] initWithCapacity:reserverd];
-  NSRegularExpression *commandRegExp = [[NSRegularExpression alloc] initWithPattern:@"\\{[^\\}]+\\}" options:NSRegularExpressionCaseInsensitive error:0];
+  NSRegularExpression *commandRegExp = [[NSRegularExpression alloc] initWithPattern:@"\\{[^\\{\\}]+\\}" options:NSRegularExpressionCaseInsensitive error:0];
   NSAssert(commandRegExp, @"RegExp is constant. Has to work all the time");
   [commandRegExp enumerateMatchesInString:context.evaluatedCommand options:0 range:NSMakeRange(0, [context.evaluatedCommand length]) usingBlock:^(NSTextCheckingResult *result, NSMatchingFlags flags, BOOL *stop) {
     @autoreleasepool {
@@ -160,12 +160,18 @@
   if(!commandString) {
     return;
   }
+  /* TODO: Test for special Commands */
+  /* TODO: fall back to paste if nothing matches */
+  
   
   NSNumber *keyCodeNumber = [self keypressCommands][commandString];
   
   if(keyCodeNumber) {
     CGKeyCode keyCode = [keyCodeNumber keyCodeValue];
     [commands addObject:[[MPAutotypeKeyPress alloc] initWithModifierMask:flags keyCode:keyCode]];
+  }
+  else {
+    [self appendPasteCommandForContent:commandString toCommands:commands];
   }
 }
 
