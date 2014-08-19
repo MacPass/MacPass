@@ -200,7 +200,7 @@ NSString *const kMPApplciationNameKey = @"applicationName";
     storedHotkey = [DDHotKey defaultHotKeyWithTask:aTask];
   }
   else {
-    storedHotkey = [[DDHotKey alloc] initWithKeyData:self.hotKeyData taks:aTask];
+    storedHotkey = [[DDHotKey alloc] initWithKeyData:self.hotKeyData task:aTask];
   }
   self.registredHotKey = [[DDHotKeyCenter sharedHotKeyCenter] registerHotKey:storedHotkey];
 }

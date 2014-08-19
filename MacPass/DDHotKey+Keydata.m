@@ -16,15 +16,15 @@
 }
 
 + (instancetype)defaultHotKeyWithTask:(DDHotKeyTask)task {
-  return [[DDHotKey alloc] initWithKeyData:nil];
+  return [[DDHotKey alloc] initWithKeyData:nil task:task];
 }
 
 - (instancetype)initWithKeyData:(NSData *)data {
-  self = [self initWithKeyData:data taks:nil];
+  self = [self initWithKeyData:data task:nil];
   return self;
 }
 
-- (instancetype)initWithKeyData:(NSData *)data taks:(DDHotKeyTask)task{
+- (instancetype)initWithKeyData:(NSData *)data task:(DDHotKeyTask)task{
   NSUInteger modifierFlags;
   unsigned short keyCode;
   if(!data) {
