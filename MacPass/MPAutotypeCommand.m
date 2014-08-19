@@ -151,8 +151,14 @@
 
 + (void)appendPasteCommandForContent:(NSString *)pasteContent toCommands:(NSMutableArray *)commands {
   if(pasteContent) {
-    MPAutotypePaste *pasteCommand = [[MPAutotypePaste alloc] initWithString:pasteContent];
-    [commands addObject:pasteCommand];
+    /* Update an already inserted paste command with the new conents */
+    if([[commands lastObject] isKindOfClass:[MPAutotypePaste class]]) {
+      [[commands lastObject] appendString:pasteContent];
+    }
+    else {
+      MPAutotypePaste *pasteCommand = [[MPAutotypePaste alloc] initWithString:pasteContent];
+      [commands addObject:pasteCommand];
+    }
   }
 }
 

@@ -14,5 +14,6 @@
 @interface MPAutotypePaste : MPAutotypeCommand
 
 - (instancetype)initWithString:(NSString *)aString;
+- (void)appendString:(NSString *)aString;
 
 @end

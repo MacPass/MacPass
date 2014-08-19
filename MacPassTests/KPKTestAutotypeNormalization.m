@@ -50,14 +50,11 @@
   MPAutotypeContext *context = [[MPAutotypeContext alloc] initWithEntry:entry andSequence:@"{USERNAME}{TAB}{PASSWORD}{ENTER}"];
   NSArray *commands = [MPAutotypeCommand commandsForContext:context];
   
-  XCTAssert([commands count] == 7);
+  XCTAssert([commands count] == 4);
   XCTAssert([commands[0] isKindOfClass:[MPAutotypePaste class]]);
-  XCTAssert([commands[1] isKindOfClass:[MPAutotypePaste class]]);
+  XCTAssert([commands[1] isKindOfClass:[MPAutotypeKeyPress class]]);
   XCTAssert([commands[2] isKindOfClass:[MPAutotypePaste class]]);
   XCTAssert([commands[3] isKindOfClass:[MPAutotypeKeyPress class]]);
-  XCTAssert([commands[4] isKindOfClass:[MPAutotypePaste class]]);
-  XCTAssert([commands[5] isKindOfClass:[MPAutotypePaste class]]);
-  XCTAssert([commands[6] isKindOfClass:[MPAutotypeKeyPress class]]);
   
   context = [[MPAutotypeContext alloc] initWithEntry:entry andSequence:@"^T{USERNAME}%+^{TAB}Whoo{PASSWORD}{ENTER}"];
   commands = [MPAutotypeCommand commandsForContext:context];

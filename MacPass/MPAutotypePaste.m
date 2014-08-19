@@ -27,6 +27,11 @@
   return self;
 }
 
+- (void)appendString:(NSString *)aString {
+  self.pasteData = [self.pasteData stringByAppendingString:aString];
+}
+
+
 - (void)execute {
   if([self.pasteData length] > 0) {
     MPPasteBoardController *controller = [MPPasteBoardController defaultController];
@@ -39,5 +44,7 @@
   /* Pasting shoudl always be valid */
   return YES;
 }
+
+
 
 @end
