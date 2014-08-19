@@ -27,7 +27,9 @@ typedef NS_ENUM(NSUInteger, MPActionType) {
   MPActionEditTemplateGroup, // Edit the Template group
   MPActionExportXML, // Exporte as XML
   MPActionImportXML, // Import form XML
-  MPActionToggleQuicklook
+  MPActionToggleQuicklook,
+  MPActionShowHistory, // History anzeigen
+  MPActionExitHistory // History ausblenden
 };
 /**
  *	Helper to retrieve commonly used actions

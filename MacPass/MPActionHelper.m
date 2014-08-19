@@ -7,6 +7,8 @@
 //
 
 #import "MPActionHelper.h"
+#import "MPDocument+HistoryBrowsing.h"
+#import "MPEntryInspectorViewController.h"
 
 @implementation MPActionHelper
 
@@ -32,7 +34,9 @@
                    @(MPActionEditTemplateGroup):      @"editTemplateGroup:",
                    @(MPActionExportXML):              @"exportAsXML:",
                    @(MPActionImportXML):              @"importFromXMl:",
-                   @(MPActionToggleQuicklook):        @"toggleQuicklookPreview:",
+                   @(MPActionToggleQuicklook):        NSStringFromSelector(@selector(toggleQuicklookPreview:)),
+                   @(MPActionShowHistory):            NSStringFromSelector(@selector(showHistory:)),
+                   @(MPActionExitHistory):            NSStringFromSelector(@selector(exitHistory:))
                    };
   });
   return actionDict;
