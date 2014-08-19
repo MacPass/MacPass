@@ -617,8 +617,7 @@ NSString *const MPDocumentGroupKey                        = @"MPDocumentGroupKey
       valid &= self.selectedEntry == self.selectedItem;
       break;
     case MPActionEmptyTrash:
-      valid &= [self.trash.groups count] > 0;
-      valid &= [self.trash.entries count] > 0;
+      valid &= ([self.trash.groups count] + [self.trash.entries count]) > 0;
       break;
     case MPActionDatabaseSettings:
     case MPActionEditPassword:
