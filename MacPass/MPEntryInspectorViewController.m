@@ -357,6 +357,15 @@ typedef NS_ENUM(NSUInteger, MPEntryTab) {
 }
 
 - (void)_bindEntry {
+  static NSArray *items;
+  if(!items) {
+    items = @[ self.titleTextField,
+               self.passwordTextField,
+               self.usernameTextField,
+               self.URLTextField,
+               self.expiresCheckButton,
+               self.tagsTokenField ];
+  }
   if(self.entry) {
     [self.titleTextField bind:NSValueBinding toObject:self.entry withKeyPath:NSStringFromSelector(@selector(title)) options:nil];
     [self.passwordTextField bind:NSValueBinding toObject:self.entry withKeyPath:NSStringFromSelector(@selector(password)) options:nil];
@@ -368,13 +377,17 @@ typedef NS_ENUM(NSUInteger, MPEntryTab) {
                           options:@{ NSValueTransformerNameBindingOption:MPExpiryDateValueTransformer }];
     [self.expiresCheckButton bind:NSValueBinding toObject:self.entry.timeInfo withKeyPath:NSStringFromSelector(@selector(expires)) options:nil];
     [self.tagsTokenField bind:NSValueBinding toObject:self.entry withKeyPath:NSStringFromSelector(@selector(tags)) options:nil];
+  
+    /* Setup enable/disable */
+    for(id item in items) {
+      [item bind:NSEnabledBinding toObject:self.entry withKeyPath:NSStringFromSelector(@selector(isEditable)) options:nil];
+    }
   }
   else {
-    [self.titleTextField unbind:NSValueBinding];
-    [self.passwordTextField unbind:NSValueBinding];
-    [self.usernameTextField unbind:NSValueBinding];
-    [self.URLTextField unbind:NSValueBinding];
-    [self.expiresCheckButton unbind:NSValueBinding];
+    for(id item in items) {
+      [item unbind:NSValueBinding];
+      [item unbind:NSEnabledBinding];
+    }
     [self.expiresCheckButton unbind:NSTitleBinding];
   }
 }

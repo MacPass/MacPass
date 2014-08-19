@@ -594,7 +594,7 @@ NSString *const MPDocumentGroupKey                        = @"MPDocumentGroupKey
 - (BOOL)validateUserInterfaceItem:(id<NSValidatedUserInterfaceItem>)anItem {
   if(self.encrypted || self.isReadOnly) { return NO; }
   
-  BOOL valid = YES;
+  BOOL valid = self.selectedItem ? self.selectedItem.isEditable : YES;
   switch([MPActionHelper typeForAction:[anItem action]]) {
     case MPActionAddGroup:
       valid &= (nil != self.selectedGroup);
@@ -627,8 +627,10 @@ NSString *const MPDocumentGroupKey                        = @"MPDocumentGroupKey
     case MPActionLock:
       valid &= self.compositeKey.hasPasswordOrKeyFile;
       break;
+    case MPActionShowHistory:
+      valid &= (self.selectedEntry && (self.selectedItem == (id)self.selectedEntry));
     default:
-      valid = YES;
+      break;
   }
   return (valid && [super validateUserInterfaceItem:anItem]);
 }

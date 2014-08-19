@@ -14,6 +14,7 @@ NSString *const MPDocumentDidExitHistoryNotification  = @"MPDocumentDidExitHisto
 @implementation MPDocument (HistoryBrowsing)
 
 - (void)showHistory:(id)sender {
+  NSAssert(self.selectedEntry && self.selectedItem == (id)self.selectedEntry, @"Entry needs to be selected for history browsing!");
   [[NSNotificationCenter defaultCenter] postNotificationName:MPDocumentDidEnterHistoryNotification object:self];
 }
 

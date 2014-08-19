@@ -170,7 +170,7 @@ typedef NS_ENUM(NSUInteger, MPContentTab) {
   MPDocument *document = [[self windowController] document];
   
   if(document.selectedItem) {
-
+    
     /* TODO UndoManager handling */
     [self.editButton setTitle:NSLocalizedString(@"EDIT_ITEM", "")];
     [self.cancelEditButton setHidden:YES];
@@ -267,14 +267,24 @@ typedef NS_ENUM(NSUInteger, MPContentTab) {
 - (void)_updateBindings:(id)item {
   if(!item) {
     [self.itemNameTextField unbind:NSValueBinding];
+    [self.itemNameTextField unbind:NSEnabledBinding];
     [self.itemNameTextField setHidden:YES];
     [self.itemImageView unbind:NSValueBinding];
+    [self.itemImageView unbind:NSEnabledBinding];
     [self.itemImageView setHidden:YES];
     [[self.notesTextView enclosingScrollView] setHidden:YES];
     [self.notesTextView unbind:NSValueBinding];
+    [self.notesTextView unbind:NSEditableBinding];
     [self.notesTextView setString:@""];
     return;
   }
+  
+  /* Disable if item is not editable */
+  NSLog(@"%@ isEditable: %i", item, [item isEditable]);
+  [self.itemNameTextField bind:NSEnabledBinding toObject:item withKeyPath:NSStringFromSelector(@selector(isEditable)) options:nil];
+  [self.itemImageView bind:NSEnabledBinding toObject:item withKeyPath:NSStringFromSelector(@selector(isEditable)) options:nil];
+  [self.notesTextView bind:NSEditableBinding toObject:item withKeyPath:NSStringFromSelector(@selector(isEditable)) options:nil];
+  
   [self.itemImageView bind:NSValueBinding toObject:item withKeyPath:NSStringFromSelector(@selector(iconImage)) options:nil];
   [[self.notesTextView enclosingScrollView] setHidden:NO];
   [self.notesTextView bind:NSValueBinding toObject:item withKeyPath:NSStringFromSelector(@selector(notes)) options:nil];

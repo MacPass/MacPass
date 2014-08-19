@@ -13,6 +13,7 @@
 #import "MPDocument.h"
 #import "MPDocument+Search.h"
 #import "MPDocument+Autotype.h"
+#import "MPDocument+HistoryBrowsing.h"
 #import "MPDocumentWindowController.h"
 
 #import "MPPasteBoardController.h"
@@ -235,6 +236,9 @@ NSString *const _MPTAbleSecurCellView = @"PasswordCell";
                                            selector:@selector(_didUnlockDatabase:)
                                                name:MPDocumentDidUnlockDatabaseNotification
                                              object:document];
+  [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(_didEnterHistory:) name:MPDocumentDidEnterHistoryNotification object:document];
+  [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(_didExitHistory:) name:MPDocumentDidExitHistoryNotification object:document];
+  
   [self.contextBarViewController registerNotificationsForDocument:document];
 }
 
@@ -412,6 +416,20 @@ NSString *const _MPTAbleSecurCellView = @"PasswordCell";
     [self.footerInfoText setStringValue:NSLocalizedString(@"DOCUMENT_AUTOTYPE_CORRUPTION_WARNING", "")];
   }
 }
+
+- (void)_didEnterHistory:(NSNotification *)notification {
+  [self _showContextBar];
+  /* TODO: Show modification date column if not present? */
+  MPDocument *document = [[self windowController] document];
+  [self.entryArrayController bind:NSContentArrayBinding toObject:document.selectedEntry withKeyPath:NSStringFromSelector(@selector(history)) options:nil];
+}
+
+- (void)_didExitHistory:(NSNotification *)notification {
+  [self _hideContextBar];
+  MPDocument *document = [[self windowController] document];
+  document.selectedItem = document.selectedEntry;
+}
+
 
 #pragma mark ContextBar
 - (void)_updateContextBar {
