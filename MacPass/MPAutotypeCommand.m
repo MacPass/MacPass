@@ -10,6 +10,8 @@
 
 #import "MPAutotypePaste.h"
 #import "MPAutotypeKeyPress.h"
+#import "MPAutotypeClear.h"
+#import "MPAutotypeDelay.h"
 
 #import "MPAutotypeContext.h"
 #import "MPKeyMapper.h"
@@ -163,18 +165,25 @@
 }
 
 + (void)appendCommandForString:(NSString *)commandString toCommands:(NSMutableArray *)commands activeModifer:(CGEventFlags)flags {
-  if(!commandString) {
+  if(nil == commandString) {
     return;
   }
   /* TODO: Test for special Commands */
   /* TODO: fall back to paste if nothing matches */
   
-  
+  NSString *delayPrefix = [[NSString alloc] initWithFormat:@"{%@", kKPKAutotypeDelay];
   NSNumber *keyCodeNumber = [self keypressCommands][commandString];
   
-  if(keyCodeNumber) {
+  if(nil != keyCodeNumber) {
     CGKeyCode keyCode = [keyCodeNumber keyCodeValue];
     [commands addObject:[[MPAutotypeKeyPress alloc] initWithModifierMask:flags keyCode:keyCode]];
+  }
+  else if([kKPKAutotypeClearField isEqualToString:commandString]) {
+    [commands addObject:[[MPAutotypeClear alloc] init]];
+  }
+  else if([commandString hasPrefix:delayPrefix]){
+    [commands addObject:[[MPAutotypeDelay alloc] initWithDelay:5]];
+    /* TODO: find the delay */
   }
   else {
     [self appendPasteCommandForContent:commandString toCommands:commands];
