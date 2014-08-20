@@ -56,6 +56,9 @@
   XCTAssert([commands[2] isKindOfClass:[MPAutotypePaste class]]);
   XCTAssert([commands[3] isKindOfClass:[MPAutotypeKeyPress class]]);
   
+  context = [[MPAutotypeContext alloc] initWithEntry:entry andSequence:@"{DELAY=5}{VKEY-NX 1}{VKEY-EX 200}{DELAY 5}{VKEY 300}"];
+  commands = [MPAutotypeCommand commandsForContext:context];
+  
   context = [[MPAutotypeContext alloc] initWithEntry:entry andSequence:@"^T{USERNAME}%+^{TAB}Whoo{PASSWORD}{ENTER}"];
   commands = [MPAutotypeCommand commandsForContext:context];
   

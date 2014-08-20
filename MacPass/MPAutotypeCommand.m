@@ -166,24 +166,47 @@
 
 + (void)appendCommandForString:(NSString *)commandString toCommands:(NSMutableArray *)commands activeModifer:(CGEventFlags)flags {
   if(nil == commandString) {
-    return;
+    return; // Nothing to parse
   }
-  /* TODO: Test for special Commands */
-  /* TODO: fall back to paste if nothing matches */
-  
-  NSString *delayPrefix = [[NSString alloc] initWithFormat:@"{%@", kKPKAutotypeDelay];
+  /* Simple Special Press */
   NSNumber *keyCodeNumber = [self keypressCommands][commandString];
-  
   if(nil != keyCodeNumber) {
     CGKeyCode keyCode = [keyCodeNumber keyCodeValue];
     [commands addObject:[[MPAutotypeKeyPress alloc] initWithModifierMask:flags keyCode:keyCode]];
+    return; // Done
   }
-  else if([kKPKAutotypeClearField isEqualToString:commandString]) {
+  /* Clearfield */
+  if([kKPKAutotypeClearField isEqualToString:commandString]) {
     [commands addObject:[[MPAutotypeClear alloc] init]];
+    return; // Done
   }
-  else if([commandString hasPrefix:delayPrefix]){
-    [commands addObject:[[MPAutotypeDelay alloc] initWithDelay:5]];
-    /* TODO: find the delay */
+  // TODO: add {APPLICATION <appname>}
+  /* Delay */
+  NSString *delayPattern = [[NSString alloc] initWithFormat:@"\\{(%@|%@|)[:|=]+([0-9])+\\}",
+                            kKPKAutotypeDelay,
+                            kKPKAutotypeVirtualKey/*,
+                            kKPKAutotypeVirtualExtendedKey,
+                            kKPKAutotypeVirtualNonExtendedKey*/];
+  NSRegularExpression *delayRegExp = [[NSRegularExpression alloc] initWithPattern:delayPattern options:NSRegularExpressionCaseInsensitive error:0];
+  NSAssert(delayRegExp, @"Regex for delay should work!");
+  NSTextCheckingResult *result = [delayRegExp firstMatchInString:commandString options:0 range:NSMakeRange(0, [commandString length])];
+  if(result && (result.numberOfRanges == 3)) {
+    NSString *command = [commandString substringWithRange:[result rangeAtIndex:1]];
+    NSString *valueString = [commandString substringWithRange:[result rangeAtIndex:2]];
+    NSScanner *numberScanner = [[NSScanner alloc] initWithString:valueString];
+    NSInteger value;
+    if([numberScanner scanInteger:&value]) {
+      if([kKPKAutotypeDelay isEqualToString:command]) {
+        [commands addObject:[[MPAutotypeDelay alloc] initWithDelay:value]];
+        return; // Done
+      }
+      else if([kKPKAutotypeVirtualKey isEqualToString:command]) {
+        // TODO add key
+      }
+    }
+    else {
+      NSLog(@"Unable to determine delay!");
+    }
   }
   else {
     [self appendPasteCommandForContent:commandString toCommands:commands];
