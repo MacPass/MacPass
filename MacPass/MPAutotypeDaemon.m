@@ -24,8 +24,8 @@
 #import "DDHotKey+Keydata.h"
 #import <Carbon/Carbon.h>
 
-NSString *const kMPWindowTitleKey = @"windowTitle";
-NSString *const kMPApplciationNameKey = @"applicationName";
+NSString *const kMPWindowTitleKey = @"kMPWindowTitleKey";
+NSString *const kMPProcessIdentifierKey = @"kMPProcessIdentifierKey";
 
 /*
  Enable to activate autotype
@@ -37,7 +37,7 @@ NSString *const kMPApplciationNameKey = @"applicationName";
 @property (nonatomic, assign) BOOL enabled;
 @property (nonatomic, copy) NSData *hotKeyData;
 @property (strong) DDHotKey *registredHotKey;
-@property (copy) NSString *targetApplicationName;
+@property (assign) pid_t targetPID;
 @property (copy) NSString *targetWindowTitle;
 
 @end
@@ -51,6 +51,7 @@ NSString *const kMPApplciationNameKey = @"applicationName";
   self = [super init];
   if (self) {
     _enabled = NO;
+    _targetPID = -1;
     [self bind:NSStringFromSelector(@selector(enabled))
       toObject:[NSUserDefaultsController sharedUserDefaultsController]
    withKeyPath:[MPSettingsHelper defaultControllerPathForKey:kMPSettingsKeyEnableGlobalAutotype]
@@ -108,8 +109,8 @@ NSString *const kMPApplciationNameKey = @"applicationName";
 
 - (void)cancelAutotypeSelection:(id)sender {
   [self.matchSelectionWindow orderOut:sender];
-  if(self.targetApplicationName) {
-    [MPAutotypeDaemon _orderApplicationToFront:self.targetApplicationName];
+  if(self.targetPID) {
+    [MPAutotypeDaemon _orderApplicationToFront:self.targetPID];
   }
 }
 
@@ -175,7 +176,12 @@ NSString *const kMPApplciationNameKey = @"applicationName";
   }
   dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
     NSArray *commands = [MPAutotypeCommand commandsForContext:context];
-    [MPAutotypeDaemon _orderApplicationToFront:self.targetApplicationName];
+    if([MPAutotypeDaemon _orderApplicationToFront:self.targetPID]) {
+      /* Sleep a bit after the app was activated */
+      NSLog(@"App wasn frontmost, did order it there. Wating a bit.");
+      usleep(1000*500);
+      NSLog(@"Done waiting.");
+    }
     BOOL lastCommandWasPaste = NO;
     for(MPAutotypeCommand *command in commands) {
       if(lastCommandWasPaste) {
@@ -214,7 +220,6 @@ NSString *const kMPApplciationNameKey = @"applicationName";
 
 - (NSDictionary *)_frontMostApplicationInfoDict {
   NSRunningApplication *frontApplication = [[NSWorkspace sharedWorkspace] frontmostApplication];
-  NSString *name = frontApplication.localizedName;
   
   NSArray *currentWindows = CFBridgingRelease(CGWindowListCopyWindowInfo(kCGWindowListOptionOnScreenOnly | kCGWindowListExcludeDesktopElements, kCGNullWindowID));
   for(NSDictionary *windowDict in currentWindows) {
@@ -226,7 +231,7 @@ NSString *const kMPApplciationNameKey = @"applicationName";
     if(processId && [processId isEqualToNumber:@(frontApplication.processIdentifier)]) {
       return @{
                kMPWindowTitleKey: windowDict[(NSString *)kCGWindowName],
-               kMPApplciationNameKey : name
+               kMPProcessIdentifierKey : processId
                };
     }
   }
@@ -271,15 +276,14 @@ NSString *const kMPApplciationNameKey = @"applicationName";
 #pragma mark -
 #pragma mark Application information
 
-+ (void)_orderApplicationToFront:(NSString *)applicationName {
-  //NSLog(@"Moving %@ to the front.", applicationName);
-  NSString *appleScript = [[NSString alloc] initWithFormat:@"activate application \"%@\"", applicationName];
-  NSAppleScript *script = [[NSAppleScript alloc] initWithSource:appleScript];
-  NSDictionary *error;
-  NSAppleEventDescriptor *descriptor = [script executeAndReturnError:&error];
-  if(!descriptor) {
-    NSLog(@"Error trying to execure %@: %@", script, error);
++ (BOOL)_orderApplicationToFront:(pid_t)processIdentifier {
+  NSRunningApplication *runingApplication = [NSRunningApplication runningApplicationWithProcessIdentifier:processIdentifier];
+  NSRunningApplication *frontApplication = [[NSWorkspace sharedWorkspace] frontmostApplication];
+  if(frontApplication.processIdentifier == processIdentifier) {
+    return NO;
   }
+  [runingApplication activateWithOptions:0];
+  return YES;
 }
 
 - (void)_updateTargetApplicationAndWindow {
@@ -288,7 +292,7 @@ NSString *const kMPApplciationNameKey = @"applicationName";
    Start searching the db for the best fit (based on title, then on window associations
    */
   NSDictionary *frontApplicationInfoDict = [self _frontMostApplicationInfoDict];
-  self.targetApplicationName = frontApplicationInfoDict[kMPApplciationNameKey];
+  self.targetPID = [frontApplicationInfoDict[kMPProcessIdentifierKey] intValue];
   self.targetWindowTitle = frontApplicationInfoDict[kMPWindowTitleKey];
 }
 
