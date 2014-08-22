@@ -16,6 +16,7 @@ typedef NS_ENUM(NSUInteger, MPDatePreset) {
   MPDatePresetTomorrow,
   MPDatePresetOneWeek,
   MPDatePresetOneMonth,
+  MPDatePreset90Days,
   MPDatePresetOneYear,
 };
 
@@ -33,8 +34,8 @@ typedef NS_ENUM(NSUInteger, MPDatePreset) {
 
 - (void)awakeFromNib {
   NSMenu *presetMenu = [[NSMenu alloc] init];
-  NSUInteger tags[] = { MPDatePresetTomorrow, MPDatePresetOneWeek, MPDatePresetOneMonth, MPDatePresetOneYear };
-  NSArray *dateItems = @[ NSLocalizedString(@"TOMORROW", ""), NSLocalizedString(@"ONE_WEEK", ""), NSLocalizedString(@"ONE_MONTH", ""), NSLocalizedString(@"ONE_YEAR", "") ];
+  NSUInteger tags[] = { MPDatePresetTomorrow, MPDatePresetOneWeek, MPDatePresetOneMonth, MPDatePreset90Days, MPDatePresetOneYear };
+  NSArray *dateItems = @[ NSLocalizedString(@"TOMORROW", ""), NSLocalizedString(@"ONE_WEEK", ""), NSLocalizedString(@"ONE_MONTH", ""), NSLocalizedString(@"90_DAYS", ""), NSLocalizedString(@"ONE_YEAR", "") ];
   
   NSMenuItem *item = [[NSMenuItem alloc] initWithTitle:NSLocalizedString(@"SELECT_DATE_PRESET", "") action:NULL keyEquivalent:@""];
   [item setTag:-1];
@@ -80,6 +81,9 @@ typedef NS_ENUM(NSUInteger, MPDatePreset) {
       break;
     case MPDatePresetOneMonth:
       [offsetComponents setMonth:1];
+      break;
+    case MPDatePreset90Days:
+      [offsetComponents setDay:90];
       break;
     case MPDatePresetOneYear:
       [offsetComponents setYear:1];
