@@ -126,7 +126,7 @@
 		4C52A88F1788628B00868229 /* 13_KeysTemplate.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 4C52A88C1788628B00868229 /* 13_KeysTemplate.pdf */; };
 		4C52A8901788628B00868229 /* 18_DisplayTemplate.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 4C52A88D1788628B00868229 /* 18_DisplayTemplate.pdf */; };
 		4C52A892178863B000868229 /* 68_PhoneTemplate.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 4C52A891178863B000868229 /* 68_PhoneTemplate.pdf */; };
-		4C53A7A51864C39D000DFF0D /* KPKLocalizeable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 4C53A7A71864C39D000DFF0D /* KPKLocalizeable.strings */; };
+		4C53A7A51864C39D000DFF0D /* KPKLocalizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 4C53A7A71864C39D000DFF0D /* KPKLocalizable.strings */; };
 		4C5426F317BEEA8700A4424C /* Autotype_test.kdbx in Resources */ = {isa = PBXBuildFile; fileRef = 4C5426F217BEEA8700A4424C /* Autotype_test.kdbx */; };
 		4C569D9E17652B0600595B62 /* MPConstants.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C569D9D17652B0600595B62 /* MPConstants.m */; };
 		4C569DA117652BFE00595B62 /* MPEntryTableDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C569DA017652BFE00595B62 /* MPEntryTableDataSource.m */; };
@@ -586,9 +586,9 @@
 		4C52A88C1788628B00868229 /* 13_KeysTemplate.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = 13_KeysTemplate.pdf; sourceTree = "<group>"; };
 		4C52A88D1788628B00868229 /* 18_DisplayTemplate.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = 18_DisplayTemplate.pdf; sourceTree = "<group>"; };
 		4C52A891178863B000868229 /* 68_PhoneTemplate.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = 68_PhoneTemplate.pdf; sourceTree = "<group>"; };
-		4C53A7A81864C3A1000DFF0D /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/KPKLocalizeable.strings; sourceTree = "<group>"; };
-		4C53A7A91864C3A2000DFF0D /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/KPKLocalizeable.strings; sourceTree = "<group>"; };
-		4C53A7AA1864C3A2000DFF0D /* fr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fr; path = fr.lproj/KPKLocalizeable.strings; sourceTree = "<group>"; };
+		4C53A7A81864C3A1000DFF0D /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/KPKLocalizable.strings; sourceTree = "<group>"; };
+		4C53A7A91864C3A2000DFF0D /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/KPKLocalizable.strings; sourceTree = "<group>"; };
+		4C53A7AA1864C3A2000DFF0D /* fr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fr; path = fr.lproj/KPKLocalizable.strings; sourceTree = "<group>"; };
 		4C5426F217BEEA8700A4424C /* Autotype_test.kdbx */ = {isa = PBXFileReference; lastKnownFileType = file; name = Autotype_test.kdbx; path = Databases/Autotype_test.kdbx; sourceTree = "<group>"; };
 		4C569D9C17652AC800595B62 /* MPConstants.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MPConstants.h; sourceTree = "<group>"; };
 		4C569D9D17652B0600595B62 /* MPConstants.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MPConstants.m; sourceTree = "<group>"; };
@@ -919,7 +919,7 @@
 		601F811818E016340028F3DE /* zh-Hans */ = {isa = PBXFileReference; fileEncoding = 10; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/Localizable.strings"; sourceTree = "<group>"; };
 		601F811918E016340028F3DE /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.rtf; name = "zh-Hans"; path = "zh-Hans.lproj/Credits.rtf"; sourceTree = "<group>"; };
 		601F811A18E016340028F3DE /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/InfoPlist.strings"; sourceTree = "<group>"; };
-		601F811B18E016340028F3DE /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/KPKLocalizeable.strings"; sourceTree = "<group>"; };
+		601F811B18E016340028F3DE /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/KPKLocalizable.strings"; sourceTree = "<group>"; };
 		601F811C18E016340028F3DE /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/InfoPlist.strings"; sourceTree = "<group>"; };
 		6021FE3C18E1341900C3BC51 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/EntryInspectorView.xib; sourceTree = "<group>"; };
 		6021FE4418E1342500C3BC51 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/EntryInspectorView.strings"; sourceTree = "<group>"; };
@@ -983,7 +983,7 @@
 		BD6C366319484CF40089EB37 /* nl */ = {isa = PBXFileReference; fileEncoding = 10; lastKnownFileType = text.plist.strings; name = nl; path = nl.lproj/Localizable.strings; sourceTree = "<group>"; };
 		BD6C366419484CF40089EB37 /* nl */ = {isa = PBXFileReference; lastKnownFileType = text.rtf; name = nl; path = nl.lproj/Credits.rtf; sourceTree = "<group>"; };
 		BD6C366519484CF40089EB37 /* nl */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = nl; path = nl.lproj/InfoPlist.strings; sourceTree = "<group>"; };
-		BD6C366619484CF40089EB37 /* nl */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = nl; path = nl.lproj/KPKLocalizeable.strings; sourceTree = "<group>"; };
+		BD6C366619484CF40089EB37 /* nl */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = nl; path = nl.lproj/KPKLocalizable.strings; sourceTree = "<group>"; };
 		BD6C366719484CF40089EB37 /* nl */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = nl; path = nl.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -1590,7 +1590,7 @@
 				4C77E36F15B84A240093A587 /* InfoPlist.strings */,
 				4C77E37215B84A240093A587 /* main.m */,
 				4C77E37415B84A240093A587 /* MacPass-Prefix.pch */,
-				4C53A7A71864C39D000DFF0D /* KPKLocalizeable.strings */,
+				4C53A7A71864C39D000DFF0D /* KPKLocalizable.strings */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -2220,7 +2220,7 @@
 				4C0DD6C618B2A44700FCB193 /* AutotypeCandidateSelectionWindow.xib in Resources */,
 				4C7ABA4C17BAEC6700FF5799 /* 20_MiscTemplate.pdf in Resources */,
 				4C7ABA4E17BAEC7000FF5799 /* addEntryTemplate.pdf in Resources */,
-				4C53A7A51864C39D000DFF0D /* KPKLocalizeable.strings in Resources */,
+				4C53A7A51864C39D000DFF0D /* KPKLocalizable.strings in Resources */,
 				4C68456F17BC2A0700FCDBFC /* WelcomeWindow.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -2491,7 +2491,7 @@
 			name = InfoPlist.strings;
 			sourceTree = "<group>";
 		};
-		4C53A7A71864C39D000DFF0D /* KPKLocalizeable.strings */ = {
+		4C53A7A71864C39D000DFF0D /* KPKLocalizable.strings */ = {
 			isa = PBXVariantGroup;
 			children = (
 				4C53A7A81864C3A1000DFF0D /* de */,
@@ -2500,7 +2500,7 @@
 				601F811B18E016340028F3DE /* zh-Hans */,
 				BD6C366619484CF40089EB37 /* nl */,
 			);
-			name = KPKLocalizeable.strings;
+			name = KPKLocalizable.strings;
 			sourceTree = "<group>";
 		};
 		4C76155E1764C04C0015A1A6 /* GeneralSettings.xib */ = {

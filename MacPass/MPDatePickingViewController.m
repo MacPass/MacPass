@@ -13,6 +13,7 @@
 #import "KPKTimeInfo.h"
 
 typedef NS_ENUM(NSUInteger, MPDatePreset) {
+  MPDatePresetNone,
   MPDatePresetTomorrow,
   MPDatePresetOneWeek,
   MPDatePresetOneMonth,
@@ -38,7 +39,7 @@ typedef NS_ENUM(NSUInteger, MPDatePreset) {
   NSArray *dateItems = @[ NSLocalizedString(@"TOMORROW", ""), NSLocalizedString(@"ONE_WEEK", ""), NSLocalizedString(@"ONE_MONTH", ""), NSLocalizedString(@"90_DAYS", ""), NSLocalizedString(@"ONE_YEAR", "") ];
   
   NSMenuItem *item = [[NSMenuItem alloc] initWithTitle:NSLocalizedString(@"SELECT_DATE_PRESET", "") action:NULL keyEquivalent:@""];
-  [item setTag:-1];
+  [item setTag:MPDatePresetNone];
   [presetMenu addItem:item];
   [presetMenu addItem:[NSMenuItem separatorItem]];
 
@@ -88,9 +89,9 @@ typedef NS_ENUM(NSUInteger, MPDatePreset) {
     case MPDatePresetOneYear:
       [offsetComponents setYear:1];
       break;
+    case MPDatePresetNone:
     default:
-      return; // No valid selection, just return
-      break;
+      return; // Nothing to do;
   }
   NSDate *newDate = [gregorian dateByAddingComponents:offsetComponents toDate:[NSDate date] options:0];
   [self.datePicker setDateValue:newDate];
