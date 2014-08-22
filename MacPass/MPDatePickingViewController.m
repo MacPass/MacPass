@@ -35,6 +35,12 @@ typedef NS_ENUM(NSUInteger, MPDatePreset) {
   NSMenu *presetMenu = [[NSMenu alloc] init];
   NSUInteger tags[] = { MPDatePresetTomorrow, MPDatePresetOneWeek, MPDatePresetOneMonth, MPDatePresetOneYear };
   NSArray *dateItems = @[ NSLocalizedString(@"TOMORROW", ""), NSLocalizedString(@"ONE_WEEK", ""), NSLocalizedString(@"ONE_MONTH", ""), NSLocalizedString(@"ONE_YEAR", "") ];
+  
+  NSMenuItem *item = [[NSMenuItem alloc] initWithTitle:NSLocalizedString(@"SELECT_DATE_PRESET", "") action:NULL keyEquivalent:@""];
+  [item setTag:-1];
+  [presetMenu addItem:item];
+  [presetMenu addItem:[NSMenuItem separatorItem]];
+
   for(NSInteger iIndex = 0; iIndex < sizeof(tags)/sizeof(NSUInteger); iIndex++) {
     NSMenuItem *item = [[NSMenuItem alloc] initWithTitle:dateItems[iIndex] action:NULL keyEquivalent:@""];
     [item setTag:tags[iIndex]];
@@ -55,7 +61,7 @@ typedef NS_ENUM(NSUInteger, MPDatePreset) {
 }
 
 - (IBAction)cancel:(id)sender {
-  self.date = [NSDate distantFuture];
+  self.date = nil;
   id target = [NSApp targetForAction:@selector(performClose:)];
   [target performClose:sender];
 }
@@ -79,6 +85,7 @@ typedef NS_ENUM(NSUInteger, MPDatePreset) {
       [offsetComponents setYear:1];
       break;
     default:
+      return; // No valid selection, just return
       break;
   }
   NSDate *newDate = [gregorian dateByAddingComponents:offsetComponents toDate:[NSDate date] options:0];
