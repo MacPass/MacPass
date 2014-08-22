@@ -19,18 +19,24 @@
 @implementation KPKNode (IconImage)
 
 + (NSSet *)keyPathsForValuesAffectingIconImage {
+  static NSString *expireDateKeyPath;
+  static dispatch_once_t onceToken;
+  dispatch_once(&onceToken, ^{
+    expireDateKeyPath = [[NSString alloc] initWithFormat:@"%@.%@", NSStringFromSelector(@selector(timeInfo)), NSStringFromSelector(@selector(isExpired))];
+  });
   return [NSSet setWithArray:@[NSStringFromSelector(@selector(iconUUID)),
                                NSStringFromSelector(@selector(iconId)),
-                               @"timeInfo.expires"]];
+                               expireDateKeyPath
+                               ]];
 }
 
 - (NSImage *)iconImage {
-  /*
-   if(self.timeInfo.expires) {
+  
+  if(self.timeInfo.isExpired) {
     const BOOL isGroup = [self isKindOfClass:[KPKGroup class]];
     return [MPIconHelper icon:(isGroup ? MPIconExpiredGroup : MPIconExpiredEntry)];
   }
-  */
+  
   if(self.iconUUID) {
     KPKIcon *icon = [self.tree.metaData findIcon:self.iconUUID];
     if(icon && icon.image) {
