@@ -24,6 +24,7 @@ typedef NS_ENUM(NSUInteger, MPDatePreset) {
 @interface MPDatePickingViewController ()
 
 @property (strong) NSDate *date;
+@property (assign) BOOL didCancel;
 
 @end
 
@@ -57,13 +58,14 @@ typedef NS_ENUM(NSUInteger, MPDatePreset) {
 }
 
 - (IBAction)useDate:(id)sender {
+  self.didCancel = NO;
   self.date = [self.datePicker dateValue];
   id target = [NSApp targetForAction:@selector(performClose:)];
   [target performClose:sender];
 }
 
 - (IBAction)cancel:(id)sender {
-  self.date = nil;
+  self.didCancel = YES;
   id target = [NSApp targetForAction:@selector(performClose:)];
   [target performClose:sender];
 }

@@ -30,7 +30,7 @@ NSString *const MPExpiryDateValueTransformer = @"com.hicknhack.macpass.kMPExpiry
                                  transformedValueClass:[NSString class]
                     returningTransformedValueWithBlock:^id(id value) {
                       if(![value isKindOfClass:[NSDate class]]) {
-                        return @""; // Wrong input
+                        return NSLocalizedString(@"NO_EXPIRE_DATE_SET","");
                       }
                       static NSDateFormatter *formatter;
                       if(!formatter) {

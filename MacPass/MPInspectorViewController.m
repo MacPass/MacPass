@@ -235,7 +235,9 @@ typedef NS_ENUM(NSUInteger, MPContentTab) {
   }
   if([popover.contentViewController isKindOfClass:[MPDatePickingViewController class]]) {
     MPDatePickingViewController *viewController = (MPDatePickingViewController *)popover.contentViewController;
-    [self _setExpiryDate:viewController.date];
+    if(!viewController.didCancel) {
+      [self _setExpiryDate:viewController.date];
+    }
   }
   self.popover = nil;
 }

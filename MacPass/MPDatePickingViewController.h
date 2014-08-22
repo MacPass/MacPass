@@ -13,6 +13,7 @@
 @property (strong,readonly) NSDate *date;
 @property (weak) IBOutlet NSDatePicker *datePicker;
 @property (weak) IBOutlet NSPopUpButton *presetPopupButton;
+@property (assign, readonly) BOOL didCancel;
 
 - (IBAction)useDate:(id)sender;
 - (IBAction)cancel:(id)sender;
