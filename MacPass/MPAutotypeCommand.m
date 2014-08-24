@@ -16,11 +16,15 @@
 #import "MPAutotypeContext.h"
 #import "MPKeyMapper.h"
 
+#import "KPKEntry.h"
+#import "KPKAutotype.h"
 #import "KPKAutotypeCommands.h"
 
 #import "NSString+Commands.h"
 
 #import <Carbon/Carbon.h>
+
+#import <CommonCrypto/CommonCrypto.h>
 
 @interface NSNumber (AutotypeCommand)
 
@@ -127,14 +131,14 @@
       NSRange pasteRange = NSMakeRange(lastLocation, commandRange.location - lastLocation);
       if(pasteRange.length > 0) {
         NSString *pasteValue = [context.evaluatedCommand substringWithRange:pasteRange];
-        [self appendPasteCommandForContent:pasteValue toCommands:commands];
+        [self appendAppropriatePasteCommandForEntry:context.entry withContent:pasteValue toCommands:commands];
       }
     }
     /* Test for modifer Key */
     NSString *commandString = [context.evaluatedCommand substringWithRange:commandRange];
     /* append commands for non-modifer keys */
     if(![self updateModifierMask:&collectedModifers forCommand:commandString]) {
-      [self appendCommandForString:commandString toCommands:commands activeModifer:collectedModifers];
+      [self appendCommandForEntry:context.entry withString:commandString toCommands:commands activeModifer:collectedModifers];
       collectedModifers = 0; // Reset the modifers;
     }
     lastLocation = commandRange.location + commandRange.length;
@@ -144,27 +148,102 @@
     NSRange pasteRange = NSMakeRange(lastLocation, [context.evaluatedCommand length] - lastLocation);
     if(pasteRange.length > 0) {
       NSString *pasteValue = [context.evaluatedCommand substringWithRange:pasteRange];
-      [self appendPasteCommandForContent:pasteValue toCommands:commands];
+      [self appendAppropriatePasteCommandForEntry:context.entry withContent:pasteValue toCommands:commands];
     }
     
   }
   return commands;
 }
 
++ (void)appendAppropriatePasteCommandForEntry:(KPKEntry *)entry withContent:(NSString *)pasteContent toCommands:(NSMutableArray *)commands
+{
+  if (entry.autotype.obfuscateDataTransfer)
+    [self appendObfuscatedPasteCommandForContent:pasteContent toCommands:commands];
+  else
+    [self appendPasteCommandForContent:pasteContent toCommands:commands];
+}
+
 + (void)appendPasteCommandForContent:(NSString *)pasteContent toCommands:(NSMutableArray *)commands {
+  /* Update an already inserted paste command with the new conents */
+  if([[commands lastObject] isKindOfClass:[MPAutotypePaste class]]) {
+    [[commands lastObject] appendString:pasteContent];
+  }
+  else {
+    MPAutotypePaste *pasteCommand = [[MPAutotypePaste alloc] initWithString:pasteContent];
+    [commands addObject:pasteCommand];
+  }
+}
+
++ (void)appendObfuscatedPasteCommandForContent:(NSString *)pasteContent toCommands:(NSMutableArray *)commands {
   if(pasteContent) {
-    /* Update an already inserted paste command with the new conents */
-    if([[commands lastObject] isKindOfClass:[MPAutotypePaste class]]) {
-      [[commands lastObject] appendString:pasteContent];
+    
+    /* 
+     * obfuscate entered data using Two-Channel Auto-Type Obfuscation
+     * refer to KeePass documentation for more information
+     * http://keepass.info/help/v2/autotype_obfuscation.html
+     */
+    
+    NSString *paste = @"";
+    NSMutableArray *typeKeys = [NSMutableArray array];
+    NSMutableArray *modifiers = [NSMutableArray array];
+    
+    /* 
+     * seed the random number generator using the first 4 bytes of the string's SHA1
+     * this ensures that you get the same string split every time for a given string
+     */
+    const char *cstr = [pasteContent cStringUsingEncoding:NSUTF8StringEncoding];
+    NSData *data = [NSData dataWithBytes:cstr length:pasteContent.length];
+    uint8_t digest[CC_SHA1_DIGEST_LENGTH];
+    CC_SHA1(data.bytes, (unsigned int)data.length, digest);
+    srandom(*((unsigned int*)digest));
+    
+    for (NSUInteger i = 0; i < pasteContent.length; i++) {
+      NSUInteger part = random() % 2;
+      
+      unichar key = [pasteContent characterAtIndex:i];
+      CGKeyCode keyCode = [MPKeyMapper keyCodeForCharacter:[NSString stringWithFormat:@"%c", key]];
+      
+      /* append unknown keycodes to the paste since we can't type them */
+      if (part == 0 || keyCode == kMPUnknownKeyCode) {
+        paste = [paste stringByAppendingFormat:@"%c", key];
+        
+        [typeKeys addObject:@(kVK_RightArrow)];
+        [modifiers addObject:@0];
+      }
+      else {
+        [typeKeys addObject:@(keyCode)];
+
+        if ([[NSCharacterSet uppercaseLetterCharacterSet] characterIsMember:key])
+          [modifiers addObject:@(kCGEventFlagMaskShift)];
+        else
+          [modifiers addObject:@0];
+      }
     }
-    else {
-      MPAutotypePaste *pasteCommand = [[MPAutotypePaste alloc] initWithString:pasteContent];
-      [commands addObject:pasteCommand];
+    
+    /* move to the end of the content */
+    for (NSUInteger i = typeKeys.count; i < pasteContent.length; i++) {
+      [typeKeys addObject:@(kVK_RightArrow)];
+      [modifiers addObject:@0];
+    }
+    
+    /* add paste command */
+    MPAutotypePaste *pasteCommand = [[MPAutotypePaste alloc] initWithString:paste];
+    [commands addObject:pasteCommand];
+    
+    /* add keypress commands */
+    if (typeKeys.count > 0) {
+      for (NSUInteger i = 0; i < paste.length; i++) {
+        [commands addObject:[[MPAutotypeKeyPress alloc] initWithModifierMask:0 keyCode:kVK_LeftArrow]];
+      }
+      
+      for (NSUInteger i = 0; i < typeKeys.count; i++) {
+        [commands addObject:[[MPAutotypeKeyPress alloc] initWithModifierMask:[modifiers[i] longLongValue] keyCode:[typeKeys[i] unsignedShortValue]]];
+      }
     }
   }
 }
 
-+ (void)appendCommandForString:(NSString *)commandString toCommands:(NSMutableArray *)commands activeModifer:(CGEventFlags)flags {
++ (void)appendCommandForEntry:(KPKEntry *)entry withString:(NSString *)commandString toCommands:(NSMutableArray *)commands activeModifer:(CGEventFlags)flags {
   if(nil == commandString) {
     return; // Nothing to parse
   }
@@ -209,7 +288,7 @@
     }
   }
   else {
-    [self appendPasteCommandForContent:commandString toCommands:commands];
+    [self appendAppropriatePasteCommandForEntry:entry withContent:commandString toCommands:commands];
   }
 }
 
@@ -240,7 +319,7 @@
   
   /* Send the event */
   CGEventPost(kCGSessionEventTap, pressKey);
-  usleep(100000);
+  usleep(0.05 * NSEC_PER_MSEC);
   CGEventPost(kCGSessionEventTap, releaseKey);
   
   CFRelease(pressKey);

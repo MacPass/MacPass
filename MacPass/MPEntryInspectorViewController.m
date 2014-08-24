@@ -415,6 +415,7 @@ typedef NS_ENUM(NSUInteger, MPEntryTab) {
 - (void)_bindAutotype {
   if(self.entry) {
     [self.enableAutotypeCheckButton bind:NSValueBinding toObject:self.entry.autotype withKeyPath:NSStringFromSelector(@selector(isEnabled)) options:nil];
+    [self.obfuscateAutotypeCheckButton bind:NSValueBinding toObject:self.entry.autotype withKeyPath:NSStringFromSelector(@selector(obfuscateDataTransfer)) options:nil];
     [self.customEntrySequenceTextField bind:NSEnabledBinding toObject:self.entry.autotype withKeyPath:NSStringFromSelector(@selector(isEnabled)) options:nil];
     [self.customEntrySequenceTextField bind:NSValueBinding toObject:self.entry.autotype withKeyPath:NSStringFromSelector(@selector(defaultKeystrokeSequence)) options:nil];
     [_windowAssociationsController bind:NSContentArrayBinding toObject:self.entry.autotype withKeyPath:NSStringFromSelector(@selector(associations)) options:nil];

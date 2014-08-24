@@ -29,6 +29,9 @@ FOUNDATION_EXPORT NSString *const MPPasteBoardControllerDidClearClipboard;
 
 + (MPPasteBoardController *)defaultController;
 
+- (void)stashObjects;
+- (void)restoreObjects;
 - (void)copyObjects:(NSArray *)objects;
+- (void)copyObjectsWithoutTimeout:(NSArray *)objects;
 
 @end

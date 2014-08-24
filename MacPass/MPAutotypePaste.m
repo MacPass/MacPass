@@ -35,8 +35,10 @@
 - (void)execute {
   if([self.pasteData length] > 0) {
     MPPasteBoardController *controller = [MPPasteBoardController defaultController];
-    [controller copyObjects:@[self.pasteData]];
+    [controller stashObjects];
+    [controller copyObjectsWithoutTimeout:@[self.pasteData]];
     [self sendPasteKeyCode];
+    [controller restoreObjects];
   }
 }
 
