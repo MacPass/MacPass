@@ -20,14 +20,11 @@
     
     <script src="assets/js/jquery.min.js"></script>
     <script src="assets/js/smoothscroll.js"></script>
-    
-
   </head>
 
-  <body data-spy="scroll" data-offset="0" data-target="#navigation">
-
+  <body data-spy="scroll" data-offset="0" data-target="#navigation" style="padding-top:0px">
     <!-- Fixed navbar -->
-	    <div id="navigation" class="navbar navbar-default navbar-fixed-top">
+	    <div id="navigation" class="navbar-default navbar-top">
 	      <div class="container">
 	        <div class="navbar-header">
 	          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
@@ -39,7 +36,7 @@
 	        </div>
 	        <div class="navbar-collapse collapse">
 	          <ul class="nav navbar-nav">
-	            <li class="active"><a href="#home" class="smothscroll">Home</a></li>
+	            <li><a href="" class="smothscroll">Home</a></li>
 	            <li><a href="#showcase" class="smothScroll">Showcase</a></li>
 	            <li><a href="#contact" class="smothScroll">Contact</a></li>
 	          </ul>
@@ -49,7 +46,7 @@
 
 
 	<section id="home" name="home"></section>
-	<div id="headerwrap" style="margin-top:0px">
+	<div id="headerwrap" style="padding-top:0px">
 	    <div class="container">
 	    	<div class="row centered">
 	    		<div class="col-lg-12">
@@ -78,32 +75,31 @@
 	
 	<!-- INTRO WRAP -->
 	<div id="intro">
-		<div class="container">
+		<div class="container" style="padding:3%">
 			<div class="row centered">
-				<h1>Designed To Excel</h1>
+				<h1>Latest Pre-Release</h1>
 				<br>
 				<br>
-				<div class="col-lg-4">
-					<img src="assets/img/intro01.png" alt="">
-					<h3>Community</h3>
-					<p>Lorem Ipsum is simply dummy text of the printing and typesetting industry.</p>
-				</div>
-				<div class="col-lg-4">
-					<img src="assets/img/intro02.png" alt="">
-					<h3>Schedule</h3>
-					<p>Lorem Ipsum is simply dummy text of the printing and typesetting industry.</p>
-				</div>
-				<div class="col-lg-4">
-					<img src="assets/img/intro03.png" alt="">
-					<h3>Monitoring</h3>
-					<p>Lorem Ipsum is simply dummy text of the printing and typesetting industry.</p>
+				<div class="col-lg-12">
+					<p><a class="btn btn-primary btn-large" role="button" href="https://github.com/mstarke/MacPass/releases/download/0.4.1-alpha/MacPass-0.4.1-alpha.zip" style="font-size:larger"> 0.4.1 alpha</a></p>
 				</div>
 			</div>
 			<br>
-			<hr>
-	    </div> <!--/ .container 
-	</div><!--/ #introwrap
-	
+	    </div> <!--/ .container -->		
+		<div class="container" style="padding:3%">
+			<div class="row centered">
+				<h1>Make a Contribution</h1>
+				<br>
+				<br>
+				<div class="col-lg-12">
+					<p><a class="btn btn-success btn-large" role="button" href="https://github.com/mstarke/MacPass" style="font-size:larger">GitHub</a></p>
+				</div>
+			</div>
+			<br>
+	    </div> <!--/ .container -->
+	</div> <!--#introwrap -->
+	<hr>
+
 	<!-- FEATURE 1 WRAP -->
 	<div id="features">
 		<div class="container">
