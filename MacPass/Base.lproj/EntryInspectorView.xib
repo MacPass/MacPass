@@ -699,7 +699,7 @@
                         <font key="font" metaFont="system"/>
                     </buttonCell>
                 </button>
-                <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="45R-v4-ywl">
+                <textField verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="45R-v4-ywl">
                     <rect key="frame" x="18" y="358" width="265" height="14"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                     <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Autotype Sequence" id="bQ5-0E-h3O">
@@ -720,7 +720,7 @@
                         <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                     </textFieldCell>
                 </textField>
-                <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="iR3-FU-MYu">
+                <textField verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="iR3-FU-MYu">
                     <rect key="frame" x="18" y="306" width="265" height="14"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                     <constraints>
@@ -826,8 +826,8 @@
                         <action selector="removeWindowAssociation:" target="-2" id="hAz-SO-hJ0"/>
                     </connections>
                 </button>
-                <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="HQa-of-iwh">
-                    <rect key="frame" x="18" y="90" width="73" height="14"/>
+                <textField verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="HQa-of-iwh">
+                    <rect key="frame" x="18" y="90" width="265" height="14"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="14" id="GF5-sR-zdR"/>
@@ -850,7 +850,7 @@
                         <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                     </comboBoxCell>
                 </comboBox>
-                <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="z03-zW-GN3">
+                <textField verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="z03-zW-GN3">
                     <rect key="frame" x="18" y="40" width="265" height="14"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                     <constraints>
@@ -904,11 +904,11 @@
                 <constraint firstAttribute="trailing" secondItem="kdV-Xa-8p3" secondAttribute="trailing" constant="20" symbolic="YES" id="f01-vc-rzb"/>
                 <constraint firstAttribute="trailing" secondItem="NjR-ea-Y7k" secondAttribute="trailing" constant="20" symbolic="YES" id="fgY-B5-4tR"/>
                 <constraint firstItem="kdV-Xa-8p3" firstAttribute="top" secondItem="zv7-wE-Bmg" secondAttribute="top" constant="10" id="kgH-mm-a6T"/>
+                <constraint firstAttribute="trailing" secondItem="HQa-of-iwh" secondAttribute="trailing" constant="20" symbolic="YES" id="mL9-wt-Dii"/>
                 <constraint firstItem="HQa-of-iwh" firstAttribute="top" secondItem="2YH-c2-Cwc" secondAttribute="bottom" constant="34" id="mij-7h-Ole"/>
                 <constraint firstAttribute="trailing" secondItem="rD3-Wn-ZFX" secondAttribute="trailing" constant="20" symbolic="YES" id="p2a-EL-RhF"/>
                 <constraint firstItem="iR3-FU-MYu" firstAttribute="leading" secondItem="zv7-wE-Bmg" secondAttribute="leading" constant="20" symbolic="YES" id="ph4-gE-YzQ"/>
                 <constraint firstItem="NjR-ea-Y7k" firstAttribute="leading" secondItem="zv7-wE-Bmg" secondAttribute="leading" constant="20" symbolic="YES" id="rw6-R6-DHk"/>
-                <constraint firstAttribute="trailing" secondItem="HQa-of-iwh" secondAttribute="trailing" constant="212" id="se8-Oc-Nzz"/>
                 <constraint firstAttribute="trailing" secondItem="2YH-c2-Cwc" secondAttribute="trailing" constant="20" symbolic="YES" id="tbK-Cg-Tx8"/>
                 <constraint firstAttribute="trailing" secondItem="45R-v4-ywl" secondAttribute="trailing" constant="20" symbolic="YES" id="uUm-S5-cxM"/>
                 <constraint firstAttribute="trailing" secondItem="z03-zW-GN3" secondAttribute="trailing" constant="20" symbolic="YES" id="wiq-pY-TG8"/>
