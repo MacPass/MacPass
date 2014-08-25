@@ -260,8 +260,8 @@ NSString *const kMPProcessIdentifierKey = @"kMPProcessIdentifierKey";
     }
   }
   [self.matchSelectionButton setMenu:associationMenu];
-  [NSApp activateIgnoringOtherApps:YES];
   [self.matchSelectionWindow makeKeyAndOrderFront:self];
+  [NSApp activateIgnoringOtherApps:YES];
   /* Setup Items in Popup */
 }
 
