@@ -1,10 +1,10 @@
-#The point of this branch is to make a nice looking website that might attract users and give a very general overview of MacPass plus links.
+###The point of this branch is to make a nice looking website that might attract users and give a very general overview of MacPass plus links.
 
-Some things that aren't done yet include:
+####Some things that aren't done yet include:
 * making the site *completely* mobile friendly
 
 
-Some Credits:
+####Some Credits:
 
 * Design of the Pratt website template by http://blacktie.co
 * Font Awesome by Dave Gandy - http://fontawesome.io
