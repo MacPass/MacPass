@@ -276,15 +276,19 @@
     NSInteger value;
     if([numberScanner scanInteger:&value]) {
       if([kKPKAutotypeDelay isEqualToString:command]) {
+        if(MAX(0, value) <= 0) {
+          return; // Value too low, just skipp
+        }
         [commands addObject:[[MPAutotypeDelay alloc] initWithDelay:value]];
         return; // Done
       }
       else if([kKPKAutotypeVirtualKey isEqualToString:command]) {
+        NSLog(@"Virutal key strokes aren't supported yet!");
         // TODO add key
       }
     }
     else {
-      NSLog(@"Unable to determine delay!");
+      NSLog(@"Unable to value part in command:%@", commandString);
     }
   }
   else {

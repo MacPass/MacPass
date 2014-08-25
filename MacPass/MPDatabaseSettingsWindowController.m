@@ -37,6 +37,33 @@
 
 @implementation MPDatabaseSettingsWindowController
 
+NSInteger _MPStateForBool(BOOL flag) {
+  return flag ? NSOnState : NSOffState;
+}
+
+BOOL _MPBoolFotState(NSInteger state) {
+  switch (state) {
+    case NSOnState:
+      return YES;
+    default:
+    case NSMixedState:
+      NSLog(@"Indetermined state!");
+    case NSOffState:
+      return NO;
+      break;
+  }
+}
+
+void _MPSetState(id stateItem, BOOL isOn) {
+  if([stateItem respondsToSelector:@selector(setState:)]) {
+    [stateItem setState:_MPStateForBool(isOn)];
+  }
+  else {
+    NSLog(@"%@ does not respond to setState:", stateItem);
+    assert(false);
+  }
+}
+
 - (NSString *)windowNibName {
   return @"DatabaseSettingsWindow";
 }
@@ -94,17 +121,27 @@
   KPKGroup *templateGroup = [templateMenuItem representedObject];
   _document.templates = templateGroup;
   
-  BOOL protectNotes = [self.protectNotesCheckButton state] == NSOnState;
-  BOOL protectPassword = [self.protectPasswortCheckButton state] == NSOnState;
-  BOOL protectTitle = [self.protectTitleCheckButton state] == NSOnState;
-  BOOL protectURL = [self.protectURLCheckButton state] == NSOnState;
-  BOOL protectUsername = [self.protectUserNameCheckButton state] == NSOnState;
   
-  metaData.protectNotes = protectNotes;
-  metaData.protectPassword = protectPassword;
-  metaData.protectTitle = protectTitle;
-  metaData.protectUrl = protectURL;
-  metaData.protectUserName = protectUsername;
+  BOOL enforceMasterKeyChange = _MPBoolFotState([self.enforceKeyChangeCheckButton state]);
+  BOOL recommendMasterKeyChange = _MPBoolFotState([self.recommendKeyChangeCheckButton state]);
+  
+  enforceMasterKeyChange &= ([[self.enforceKeyChangeIntervalTextField stringValue] length] != 0);
+  recommendMasterKeyChange &= ([[self.recommendKeyChangeIntervalTextField stringValue] length] != 0);
+  
+  NSInteger enfoceInterval = [self.enforceKeyChangeIntervalTextField integerValue];
+  NSInteger recommendInterval = [self.recommendKeyChangeIntervalTextField integerValue];
+
+  metaData.masterKeyChangeEnforcementInterval = enforceMasterKeyChange ? enfoceInterval : -1;
+  metaData.masterKeyChangeRecommendationInterval = recommendMasterKeyChange ? recommendInterval : -1;
+  
+  /* Security */
+  
+  metaData.protectNotes =  _MPBoolFotState([self.protectNotesCheckButton state]);
+  metaData.protectPassword = _MPBoolFotState([self.protectPasswortCheckButton state]);
+  metaData.protectTitle = _MPBoolFotState([self.protectTitleCheckButton state]);
+  metaData.protectUrl = _MPBoolFotState([self.protectURLCheckButton state]);
+  metaData.protectUserName = _MPBoolFotState([self.protectUserNameCheckButton state]);
+  
   metaData.defaultUserName = [self.defaultUsernameTextField stringValue];
   
   /*
@@ -178,16 +215,18 @@
 }
 
 - (void)_setupProtectionTab:(KPKMetaData *)metaData {
-  [self.protectNotesCheckButton setState:metaData.protectNotes ? NSOnState : NSOffState ];
-  [self.protectPasswortCheckButton setState:metaData.protectPassword ? NSOnState : NSOffState];
-  [self.protectTitleCheckButton setState:metaData.protectTitle ? NSOnState : NSOffState];
-  [self.protectURLCheckButton setState:metaData.protectUrl ? NSOnState : NSOffState];
-  [self.protectUserNameCheckButton setState:metaData.protectUserName ? NSOnState : NSOffState];
+  _MPSetState(self.protectNotesCheckButton, metaData.protectNotes);
+  _MPSetState(self.protectPasswortCheckButton, metaData.protectPassword);
+  _MPSetState(self.protectTitleCheckButton, metaData.protectTitle);
+  _MPSetState(self.protectURLCheckButton, metaData.protectUrl);
+  _MPSetState(self.protectUserNameCheckButton, metaData.protectUserName);
+
   [self.encryptionRoundsTextField setIntegerValue:metaData.rounds];
   [self.benchmarkButton setEnabled:YES];
 }
 
 - (void)_setupAdvancedTab:(KPKTree *)tree {
+  /* TODO Do not use bindings, as the user should be able to cancel */
   [self bind:@"trashEnabled" toObject:tree.metaData withKeyPath:@"recycleBinEnabled" options:nil];
   [self.enableRecycleBinCheckButton bind:NSValueBinding toObject:self withKeyPath:@"trashEnabled" options:nil];
   [self.selectRecycleBinGroupPopUpButton bind:NSEnabledBinding toObject:self withKeyPath:@"trashEnabled" options:nil];
@@ -196,6 +235,26 @@
   [self.defaultUsernameTextField setStringValue:tree.metaData.defaultUserName];
   [self.defaultUsernameTextField setEditable:YES];
   [self _updateTemplateGroup:tree];
+  
+  _MPSetState(self.enforceKeyChangeCheckButton, tree.metaData.enforceMasterKeyChange);
+  _MPSetState(self.recommendKeyChangeCheckButton, tree.metaData.recommendMasterKeyChange);
+  [self.enforceKeyChangeIntervalTextField setEnabled:tree.metaData.enforceMasterKeyChange];
+  [self.recommendKeyChangeIntervalTextField setEnabled:tree.metaData.recommendMasterKeyChange];
+
+  if(tree.metaData.enforceMasterKeyChange) {
+    [self.enforceKeyChangeIntervalTextField setIntegerValue:tree.metaData.masterKeyChangeEnforcementInterval];
+  }
+  else {
+    [self.enforceKeyChangeIntervalTextField setStringValue:@""];
+  }
+  if(tree.metaData.recommendMasterKeyChange) {
+    [self.recommendKeyChangeIntervalTextField setIntegerValue:tree.metaData.masterKeyChangeRecommendationInterval];
+  }
+  else {
+    [self.recommendKeyChangeIntervalTextField setStringValue:@""];
+  }
+  [self.enforceKeyChangeCheckButton bind:NSValueBinding toObject:self.enforceKeyChangeIntervalTextField withKeyPath:NSEnabledBinding options:nil];
+  [self.recommendKeyChangeCheckButton bind:NSValueBinding toObject:self.recommendKeyChangeIntervalTextField withKeyPath:NSEnabledBinding options:nil];
 }
 
 - (void)_updateFirstResponder {

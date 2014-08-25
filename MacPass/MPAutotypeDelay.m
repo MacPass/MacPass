@@ -24,13 +24,14 @@
 - (instancetype)initWithDelay:(NSUInteger)delay {
   self = [super init];
   if(self) {
-    _delay = delay;
+    /* Delays longer than a minute are a bit lon */
+    _delay = MIN(60,delay);
   }
   return self;
 }
 
 - (void)execute {
-  usleep((useconds_t)(_delay*1000*1000));
+  usleep((useconds_t)(_delay*NSEC_PER_MSEC));
 }
 
 @end
