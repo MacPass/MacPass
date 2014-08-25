@@ -1,4 +1,5 @@
-###The point of this branch is to make a nice looking website that might attract users and give a very general overview of MacPass plus links.
+####Why?
+The point of this branch is to make a nice looking website that might attract users and give a very general overview of MacPass plus links.
 
 ####Some things that aren't done yet include:
 * making the site *completely* mobile friendly
