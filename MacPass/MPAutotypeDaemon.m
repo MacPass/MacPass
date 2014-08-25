@@ -178,17 +178,12 @@ NSString *const kMPProcessIdentifierKey = @"kMPProcessIdentifierKey";
     NSArray *commands = [MPAutotypeCommand commandsForContext:context];
     if([MPAutotypeDaemon _orderApplicationToFront:self.targetPID]) {
       /* Sleep a bit after the app was activated */
-      NSLog(@"App wasn frontmost, did order it there. Wating a bit.");
-      usleep(1000*500);
+      NSLog(@"App wasn't frontmost, did order it there. Waiting a bit.");
+      usleep(0.5 * NSEC_PER_MSEC);
       NSLog(@"Done waiting.");
     }
-    BOOL lastCommandWasPaste = NO;
     for(MPAutotypeCommand *command in commands) {
-      if(lastCommandWasPaste) {
-        usleep(1000*1000);
-      }
       [command execute];
-      lastCommandWasPaste = [command isKindOfClass:[MPAutotypePaste class]];
     }
   });
 }

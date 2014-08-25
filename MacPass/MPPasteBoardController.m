@@ -16,6 +16,7 @@ NSString *const MPPasteBoardControllerDidClearClipboard = @"com.hicknhack.macpas
 @interface MPPasteBoardController ()
 
 @property (assign) BOOL isEmpty;
+@property (nonatomic, strong) NSMutableArray *stashedObjects;
 
 @end
 
@@ -56,15 +57,6 @@ NSString *const MPPasteBoardControllerDidClearClipboard = @"com.hicknhack.macpas
   }
 }
 
-- (void)setClearTimeout:(NSTimeInterval)clearTimeout {
-  if(_clearTimeout != clearTimeout) {
-    if(clearTimeout > 0) {
-      [self _clearPasteboardContents];
-    }
-    _clearTimeout = clearTimeout;
-  }
-}
-
 - (void)setClearPasteboardOnShutdown:(BOOL)clearPasteboardOnShutdown {
   if(_clearPasteboardOnShutdown != clearPasteboardOnShutdown ) {
     _clearPasteboardOnShutdown = !_clearPasteboardOnShutdown;
@@ -72,15 +64,45 @@ NSString *const MPPasteBoardControllerDidClearClipboard = @"com.hicknhack.macpas
   }
 }
 
+- (void)stashObjects
+{
+  self.stashedObjects = [NSMutableArray array];
+  for (NSPasteboardItem *item in [[NSPasteboard generalPasteboard] pasteboardItems]) {
+    NSPasteboardItem *newItem = [[NSPasteboardItem alloc] init];
+    for (NSString *type in [item types]) {
+      NSData *data = [[item dataForType:type] mutableCopy];
+      if (data) {
+        [newItem setData:data forType:type];
+      }
+    }
+    [self.stashedObjects addObject:newItem];
+  }
+}
+
+- (void)restoreObjects
+{
+  if (self.stashedObjects)
+  {
+    [[NSPasteboard generalPasteboard] clearContents];
+    [[NSPasteboard generalPasteboard] writeObjects:self.stashedObjects];
+    self.stashedObjects = nil;
+    self.isEmpty = YES;
+  }
+}
+
 - (void)copyObjects:(NSArray *)objects {
-  /* Should we save the old content ?*/
-  [[NSPasteboard generalPasteboard] clearContents];
-  [[NSPasteboard generalPasteboard] writeObjects:objects];
-  self.isEmpty = NO;
+  [self copyObjectsWithoutTimeout:objects];
   if(self.clearTimeout != 0) {
     [[NSNotificationCenter defaultCenter] postNotificationName:MPPasteBoardControllerDidCopyObjects object:self];
     [self performSelector:@selector(_clearPasteboardContents) withObject:nil afterDelay:self.clearTimeout];
   }
+}
+
+- (void)copyObjectsWithoutTimeout:(NSArray *)objects
+{
+  [[NSPasteboard generalPasteboard] clearContents];
+  [[NSPasteboard generalPasteboard] writeObjects:objects];
+  self.isEmpty = NO;
 }
 
 - (void)_clearPasteboardContents {

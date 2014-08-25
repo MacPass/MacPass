@@ -38,6 +38,7 @@
 
 /* Autotype */
 @property (weak) IBOutlet NSButton *enableAutotypeCheckButton;
+@property (weak) IBOutlet NSButton *obfuscateAutotypeCheckButton;
 @property (weak) IBOutlet NSTableView *windowAssociationsTableView;
 @property (weak) IBOutlet NSTextField *customEntrySequenceTextField;
 @property (weak) IBOutlet NSComboBox *windowTitleComboBox;
