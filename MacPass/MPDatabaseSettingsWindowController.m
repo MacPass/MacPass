@@ -41,7 +41,7 @@ NSInteger _MPStateForBool(BOOL flag) {
   return flag ? NSOnState : NSOffState;
 }
 
-BOOL _MPBoolFotState(NSInteger state) {
+BOOL _MPBoolForState(NSInteger state) {
   switch (state) {
     case NSOnState:
       return YES;
@@ -122,8 +122,8 @@ void _MPSetState(id stateItem, BOOL isOn) {
   _document.templates = templateGroup;
   
   
-  BOOL enforceMasterKeyChange = _MPBoolFotState([self.enforceKeyChangeCheckButton state]);
-  BOOL recommendMasterKeyChange = _MPBoolFotState([self.recommendKeyChangeCheckButton state]);
+  BOOL enforceMasterKeyChange = _MPBoolForState([self.enforceKeyChangeCheckButton state]);
+  BOOL recommendMasterKeyChange = _MPBoolForState([self.recommendKeyChangeCheckButton state]);
   
   enforceMasterKeyChange &= ([[self.enforceKeyChangeIntervalTextField stringValue] length] != 0);
   recommendMasterKeyChange &= ([[self.recommendKeyChangeIntervalTextField stringValue] length] != 0);
@@ -136,11 +136,11 @@ void _MPSetState(id stateItem, BOOL isOn) {
   
   /* Security */
   
-  metaData.protectNotes =  _MPBoolFotState([self.protectNotesCheckButton state]);
-  metaData.protectPassword = _MPBoolFotState([self.protectPasswortCheckButton state]);
-  metaData.protectTitle = _MPBoolFotState([self.protectTitleCheckButton state]);
-  metaData.protectUrl = _MPBoolFotState([self.protectURLCheckButton state]);
-  metaData.protectUserName = _MPBoolFotState([self.protectUserNameCheckButton state]);
+  metaData.protectNotes =  _MPBoolForState([self.protectNotesCheckButton state]);
+  metaData.protectPassword = _MPBoolForState([self.protectPasswortCheckButton state]);
+  metaData.protectTitle = _MPBoolForState([self.protectTitleCheckButton state]);
+  metaData.protectUrl = _MPBoolForState([self.protectURLCheckButton state]);
+  metaData.protectUserName = _MPBoolForState([self.protectUserNameCheckButton state]);
   
   metaData.defaultUserName = [self.defaultUsernameTextField stringValue];
   
