@@ -106,6 +106,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 [Chhom Seng](https://github.com/cseng) Fixed issue with blank outline and entry views if the inspector was hidden before unlocking the database. Implemented context menu validation for entry context menu.
 
+[James Hurst](https://github.com/jamesrhurst) Obfuscated autotyping and restoring of pasteboard objects. Fixed issues when exiting search. Implemented workflow double click settings. Make selected textfield end editing when a save will occur. Finished custom browser support for open URL action. Percent escape strings before creating URLs. Fixed issues with Autotype key events. Added missing characters for password generation. Improved "Add Entry" workflow. Fixed bug with icon resetting to default after closing popover. Added ability to set default password generation settings. Made autotype work in more situations
 
 ##Copyright
 
