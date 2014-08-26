@@ -153,6 +153,8 @@ void _MPSetState(id stateItem, BOOL isOn) {
     [defaults setBool:protectUsername forKey:kMPSettingsKeyLegacyHideUsername];
     [defaults synchronize];
    */
+  
+  metaData.rounds = MAX(0,[self.encryptionRoundsTextField integerValue]);
   [self close:nil];
 }
 

@@ -10,7 +10,6 @@
 
 APPKIT_EXTERN NSString *const MPOutlineViewDidChangeGroupSelection;
 
-@class MPOutlineViewDelegate;
 @class HNHGradientView;
 @class MPDocument;
 
