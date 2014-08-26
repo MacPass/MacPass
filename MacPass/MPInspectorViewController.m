@@ -221,7 +221,12 @@ typedef NS_ENUM(NSUInteger, MPContentTab) {
   self.popover = [[NSPopover alloc] init];
   self.popover.delegate = self;
   self.popover.behavior = NSPopoverBehaviorTransient;
-  self.popover.contentViewController = [[MPDatePickingViewController alloc] init];
+  MPDatePickingViewController *controller = [[MPDatePickingViewController alloc] init];
+  MPDocument *document = [[self windowController] document];
+  if(document.selectedItem.timeInfo.expiryTime) {
+    controller.date = document.selectedItem.timeInfo.expiryTime;
+  }
+  self.popover.contentViewController = controller;
   [self.popover showRelativeToRect:NSZeroRect ofView:sender preferredEdge:NSMinYEdge];
 }
 

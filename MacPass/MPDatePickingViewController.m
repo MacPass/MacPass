@@ -23,7 +23,6 @@ typedef NS_ENUM(NSUInteger, MPDatePreset) {
 
 @interface MPDatePickingViewController ()
 
-@property (strong) NSDate *date;
 @property (assign) BOOL didCancel;
 
 @end

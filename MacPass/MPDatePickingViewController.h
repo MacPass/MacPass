@@ -10,7 +10,7 @@
 
 @interface MPDatePickingViewController : MPViewController
 
-@property (strong,readonly) NSDate *date;
+@property (strong) NSDate *date;
 @property (weak) IBOutlet NSDatePicker *datePicker;
 @property (weak) IBOutlet NSPopUpButton *presetPopupButton;
 @property (assign, readonly) BOOL didCancel;
