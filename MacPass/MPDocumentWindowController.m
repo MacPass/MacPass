@@ -215,7 +215,17 @@ typedef void (^MPPasswordChangedBlock)(BOOL didChangePassword);
         [weakDocument saveDocument:sender];
       }
     };
-    [self _editPasswordRequiringValidInput:YES];
+    [self editPassword:nil];
+    return;
+  }
+  else if(document.shouldEnforcePasswordChange) {
+    __weak MPDocument *weakDocument = [self document];
+    self.passwordChangedBlock = ^void(BOOL didChangePassword){
+      if(didChangePassword) {
+        [weakDocument saveDocument:nil];
+      }
+    };
+    [self _presentPasswordIntervalAlters];
     return;
   }
   /* All set and good ready to save */
@@ -224,17 +234,18 @@ typedef void (^MPPasswordChangedBlock)(BOOL didChangePassword);
 - (void)saveDocumentAs:(id)sender {
   self.passwordChangedBlock = nil;
   MPDocument *document = [self document];
-  if(!document.compositeKey) {
-    __weak MPDocument *weakDocument = [self document];
-    self.passwordChangedBlock = ^void(BOOL didChangePassword){
-      if(didChangePassword) {
-        [weakDocument saveDocumentAs:sender];
-      }
-    };
-    [self _editPasswordRequiringValidInput:YES];
+  if(document.compositeKey) {
+    [[self document] saveDocumentAs:sender];
     return;
   }
-  [[self document] saveDocumentAs:sender];
+  /* we need to make sure that a password is set */
+  __weak MPDocument *weakDocument = [self document];
+  self.passwordChangedBlock = ^void(BOOL didChangePassword){
+    if(didChangePassword) {
+      [weakDocument saveDocumentAs:sender];
+    }
+  };
+  [self editPassword:nil];
 }
 
 - (void)exportAsXML:(id)sender {
@@ -283,16 +294,10 @@ typedef void (^MPPasswordChangedBlock)(BOOL didChangePassword);
 }
 
 - (void)editPassword:(id)sender {
-  [self _editPasswordRequiringValidInput:YES];
-}
-
-- (void)_editPasswordRequiringValidInput:(BOOL)canCancel {
   if(!self.passwordEditWindowController) {
     self.passwordEditWindowController = [[MPPasswordEditWindowController alloc] initWithDocument:[self document]];
     self.passwordEditWindowController.delegate = self;
   }
-  /* Disallow empty password if we want to save afterwards, otherwise the dialog keeps poping up */
-  self.passwordEditWindowController.allowsEmptyPasswordOrKey = canCancel;
   [NSApp beginSheet:[self.passwordEditWindowController window] modalForWindow:[self window] modalDelegate:nil didEndSelector:NULL contextInfo:NULL];
 }
 
@@ -454,7 +459,9 @@ typedef void (^MPPasswordChangedBlock)(BOOL didChangePassword);
     [alert setAlertStyle:NSCriticalAlertStyle];
     [alert setMessageText:NSLocalizedString(@"ENFORCE_PASSWORD_CHANGE_ALERT_TITLE", "")];
     [alert setInformativeText:NSLocalizedString(@"ENFORCE_PASSWORD_CHANGE_ALERT_DESCRIPTION", "")];
-    [alert addButtonWithTitle:NSLocalizedString(@"CHANGE_PASSWORD", "")];
+    [alert addButtonWithTitle:NSLocalizedString(@"CHANGE_PASSWORD_WITH_DOTS", "")];
+    [alert addButtonWithTitle:NSLocalizedString(@"CANCEL", "")];
+    [[alert buttons][1] setKeyEquivalent:[NSString stringWithFormat:@"%c", 0x1b]];
     [alert beginSheetModalForWindow:[self window] modalDelegate:self didEndSelector:@selector(_enforcePasswordChangeAlertDidEnd:returnCode:contextInfo:) contextInfo:NULL];
   }
   else if(document.shouldRecommendPasswordChange) {
@@ -462,7 +469,7 @@ typedef void (^MPPasswordChangedBlock)(BOOL didChangePassword);
     [alert setAlertStyle:NSInformationalAlertStyle];
     [alert setMessageText:NSLocalizedString(@"RECOMMEND_PASSWORD_CHANGE_ALERT_TITLE", "")];
     [alert setInformativeText:NSLocalizedString(@"RECOMMEND_PASSWORD_CHANGE_ALERT_DESCRIPTION", "")];
-    [alert addButtonWithTitle:NSLocalizedString(@"CHANGE_PASSWORD", "")];
+    [alert addButtonWithTitle:NSLocalizedString(@"CHANGE_PASSWORD_WITH_DOTS", "")];
     [alert addButtonWithTitle:NSLocalizedString(@"CANCEL", "")];
     [[alert buttons][1] setKeyEquivalent:[NSString stringWithFormat:@"%c", 0x1b]];
     [alert beginSheetModalForWindow:[self window] modalDelegate:self didEndSelector:@selector(_recommentPasswordChangeAlertDidEnd:returnCode:contextInfo:) contextInfo:NULL];
@@ -491,25 +498,23 @@ typedef void (^MPPasswordChangedBlock)(BOOL didChangePassword);
 }
 
 - (void)_recommentPasswordChangeAlertDidEnd:(NSAlert *)alert returnCode:(NSInteger)returnCode contextInfo:(void *)contextInfo {
-  if(returnCode == NSAlertFirstButtonReturn) {
-    id __weak welf = self;
-    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.5 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-      [welf _editPasswordRequiringValidInput:YES];
-    });
-    
+  if(returnCode == NSAlertSecondButtonReturn) {
+    return;
   }
+  id __weak welf = self;
+  dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.5 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+    [welf editPassword:nil];
+  });
+  
 }
 
 - (void)_enforcePasswordChangeAlertDidEnd:(NSAlert *)alert returnCode:(NSInteger)returnCode contextInfo:(void *)contextInfo {
-  NSAssert(returnCode == NSAlertFirstButtonReturn, @"Return for password change should always be NSAlertFirstButtonReturn");
+  if(NSAlertSecondButtonReturn == returnCode) {
+    return;
+  }
   id __weak welf = self;
-  self.passwordChangedBlock = ^(BOOL didChangePassword){
-    if(!didChangePassword) {
-      [welf _presentPasswordIntervalAlters];
-    }
-  };
   dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.5 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-    [welf _editPasswordRequiringValidInput:NO];
+    [welf editPassword:nil];
   });
 }
 

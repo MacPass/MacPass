@@ -31,8 +31,8 @@
 @property (weak) IBOutlet NSTextField *errorTextField;
 @property (weak) IBOutlet NSButton *changePasswordButton;
 @property (weak) IBOutlet NSButton *hasPasswordSwitchButton;
-@property (nonatomic,assign) BOOL allowsEmptyPasswordOrKey;
 
+//@property (nonatomic,assign) BOOL allowsEmptyPasswordOrKey;
 @property (weak) id<MPPasswordEditWindowDelegate> delegate;
 
 /**

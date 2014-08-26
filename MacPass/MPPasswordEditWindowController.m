@@ -35,7 +35,7 @@
 - (id)initWithDocument:(MPDocument *)document {
   self = [super initWithWindow:nil];
   if(self){
-    _allowsEmptyPasswordOrKey = YES;
+    //_allowsEmptyPasswordOrKey = YES;
     _showPassword = NO;
     _hasValidPasswordOrKey = NO;
     _currentDocument = document;
@@ -55,22 +55,22 @@
     return;
   }
   self.showPassword = NO;
-  // TODO: fix initial view for password edit
-  //[self.passwordTextField setStringValue:_currentDocument.password ? _currentDocument.password : @""];
-  //[self.passwordRepeatTextField setStringValue:[self.passwordTextField stringValue]];
-  //self.keyURL = _currentDocument.key;
   
   NSDictionary *negateOption = @{ NSValueTransformerNameBindingOption : NSNegateBooleanTransformerName };
-  [self.hasPasswordSwitchButton bind:NSValueBinding toObject:self withKeyPath:@"enablePassword" options:nil];
-  [self.passwordTextField bind:NSStringFromSelector(@selector(showPassword)) toObject:self withKeyPath:NSStringFromSelector(@selector(showPassword)) options:nil];
-  [self.passwordTextField bind:NSEnabledBinding toObject:self withKeyPath:@"enablePassword" options:nil];
-  [self.togglePasswordButton bind:NSValueBinding toObject:self withKeyPath:NSStringFromSelector(@selector(showPassword)) options:nil];
-  [self.togglePasswordButton bind:NSEnabledBinding toObject:self withKeyPath:@"enablePassword" options:nil];
-  [self.passwordRepeatTextField bind:NSEnabledBinding toObject:self withKeyPath:NSStringFromSelector(@selector(showPassword)) options:negateOption];
-  [self.passwordRepeatTextField bind:NSEnabledBinding toObject:self withKeyPath:@"enablePassword" options:nil];
-  [self.errorTextField bind:NSHiddenBinding toObject:self withKeyPath:@"hasValidPasswordOrKey" options:nil];
-  [self.changePasswordButton bind:NSEnabledBinding toObject:self withKeyPath:@"hasValidPasswordOrKey" options:nil];
-  [self.keyfilePathControl bind:NSValueBinding toObject:self withKeyPath:@"keyURL" options:nil];
+  NSString *enablePasswordKeyPath = NSStringFromSelector(@selector(enablePassword));
+  NSString *showPasswordKeyPath = NSStringFromSelector(@selector(showPassword));
+  NSString *hasValidPasswordOrKeyKeyPath = NSStringFromSelector(@selector(hasValidPasswordOrKey));
+  
+  [self.hasPasswordSwitchButton bind:NSValueBinding toObject:self withKeyPath:enablePasswordKeyPath options:nil];
+  [self.passwordTextField bind:showPasswordKeyPath toObject:self withKeyPath:showPasswordKeyPath options:nil];
+  [self.passwordTextField bind:NSEnabledBinding toObject:self withKeyPath:enablePasswordKeyPath options:nil];
+  [self.togglePasswordButton bind:NSValueBinding toObject:self withKeyPath:showPasswordKeyPath options:nil];
+  [self.togglePasswordButton bind:NSEnabledBinding toObject:self withKeyPath:enablePasswordKeyPath options:nil];
+  [self.passwordRepeatTextField bind:NSEnabledBinding toObject:self withKeyPath:showPasswordKeyPath options:negateOption];
+  [self.passwordRepeatTextField bind:NSEnabledBinding toObject:self withKeyPath:enablePasswordKeyPath options:nil];
+  [self.errorTextField bind:NSHiddenBinding toObject:self withKeyPath:hasValidPasswordOrKeyKeyPath options:nil];
+  [self.changePasswordButton bind:NSEnabledBinding toObject:self withKeyPath:hasValidPasswordOrKeyKeyPath options:nil];
+  [self.keyfilePathControl bind:NSValueBinding toObject:self withKeyPath:NSStringFromSelector(@selector(keyURL)) options:nil];
   
   [self.passwordRepeatTextField setDelegate:self];
   [self.passwordTextField setDelegate:self];
@@ -169,7 +169,7 @@
   BOOL hasPasswordOrKey = (hasKey || hasPassword);
   keyOk = hasKey ? keyOk : YES;
   passwordOk = hasPassword ? passwordOk : YES;
-  self.hasValidPasswordOrKey = (hasPasswordOrKey || self.allowsEmptyPasswordOrKey ) && passwordOk && keyOk;
+  self.hasValidPasswordOrKey = hasPasswordOrKey && passwordOk && keyOk;
   
   if(!hasPasswordOrKey) {
     [self.errorTextField setTextColor:[NSColor controlTextColor]];
