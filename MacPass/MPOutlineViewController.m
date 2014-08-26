@@ -18,12 +18,16 @@
 #import "MPOutlineContextMenuDelegate.h"
 
 #import "KPKTree.h"
+#import "KPKNode.h"
+#import "KPKTimeInfo.h"
 #import "KPKGroup.h"
 #import "KPKNode+IconImage.h"
 #import "KPKMetaData.h"
 #import "KPKUTIs.h"
 
 #import "HNHGradientView.h"
+
+#define EXPIRED_GROUP_REFRESH_SECONDS 60
 
 NSString *const MPOutlineViewDidChangeGroupSelection = @"com.macpass.MPOutlineViewDidChangeGroupSelection";
 
@@ -104,6 +108,8 @@ NSString *const _MPOutlinveViewHeaderViewIdentifier = @"HeaderCell";
     [self bind:NSStringFromSelector(@selector(databaseNameWrapper)) toObject:document.tree.metaData withKeyPath:NSStringFromSelector(@selector(databaseName)) options:nil];
     [_outlineView setDataSource:self.datasource];
     _bindingEstablished = YES;
+    [self _updateExpirationDisplay];
+    
   }
   NSTreeNode *node = [_outlineView itemAtRow:0];
   [self _expandItems:node];
@@ -299,6 +305,15 @@ NSString *const _MPOutlinveViewHeaderViewIdentifier = @"HeaderCell";
 - (BOOL)_itemIsRootNode:(id)item {
   id node = [item representedObject];
   return [node isKindOfClass:[KPKTree class]];
+}
+
+- (void)_updateExpirationDisplay {
+  MPDocument *document = [[self windowController] document];
+  [document.root.timeInfo isExpired];
+  [[document.tree allGroups] enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
+    [[obj timeInfo] isExpired];
+  }];
+  [self performSelector:@selector(_updateExpirationDisplay) withObject:nil afterDelay:EXPIRED_GROUP_REFRESH_SECONDS];
 }
 
 @end

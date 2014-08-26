@@ -680,17 +680,6 @@ NSString *const MPDocumentGroupKey                        = @"MPDocumentGroupKey
   }
   [self.trash clear];
 }
-# pragma mark Expiration updates
-- (void)_updateExpirationState {
-  dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(60*60*6* NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-    /* TODO: find better way to do this! Test for alle entries if expired */
-    [[self.tree allEntries] enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
-      KPKEntry *entry = obj;
-      [entry.timeInfo willChangeValueForKey:NSStringFromSelector(@selector(isExpired))];
-      [entry.timeInfo didChangeValueForKey:NSStringFromSelector(@selector(isExpired))];
-    }];
-  });
-}
 
 # pragma mark File Watching
 - (void) _watchForFileChanges:(BOOL)watch {

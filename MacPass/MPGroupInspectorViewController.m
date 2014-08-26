@@ -81,18 +81,15 @@
     [self.titleTextField bind:NSValueBinding toObject:self.group withKeyPath:NSStringFromSelector(@selector(name)) options:nil];
     [self.expiresCheckButton bind:NSValueBinding toObject:self.group.timeInfo withKeyPath:NSStringFromSelector(@selector(expires)) options:nil];
     [self.expiresCheckButton bind:NSTitleBinding toObject:self.group.timeInfo withKeyPath:NSStringFromSelector(@selector(expiryTime)) options:@{ NSValueTransformerNameBindingOption:MPExpiryDateValueTransformer }];
-    [self.expireDateSelectButton bind:NSHiddenBinding toObject:self.group.timeInfo withKeyPath:NSStringFromSelector(@selector(expires)) options:@{ NSValueTransformerNameBindingOption : NSNegateBooleanTransformerName }];
     [self.autotypePopupButton bind:NSSelectedTagBinding toObject:self.group withKeyPath:NSStringFromSelector(@selector(isAutoTypeEnabled)) options:nil];
     [self.autotypeSequenceTextField bind:NSValueBinding toObject:self.group withKeyPath:NSStringFromSelector(@selector(defaultAutoTypeSequence)) options:nil];
     [self.searchPopupButton bind:NSSelectedTagBinding toObject:self.group withKeyPath:NSStringFromSelector(@selector(isSearchEnabled)) options:nil];
   }
   else {
     [self.titleTextField unbind:NSValueBinding];
-    
     [self.expiresCheckButton unbind:NSValueBinding];
     [self.expiresCheckButton unbind:NSTitleBinding];
     [self.expiresCheckButton setTitle:NSLocalizedString(@"EXPIRES", "")];
-    [self.expireDateSelectButton unbind:NSHiddenBinding];
     [self.searchPopupButton unbind:NSSelectedTagBinding];
     [self.autotypePopupButton unbind:NSSelectedTagBinding];
     [self.autotypeSequenceTextField unbind:NSValueBinding];

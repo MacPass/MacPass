@@ -37,6 +37,7 @@
 #import "KPKNode+IconImage.h"
 #import "KPKAttribute.h"
 #import "KPKTimeInfo.h"
+#import "KPKMetaData.h"
 
 #import "HNHTableHeaderCell.h"
 #import "HNHGradientView.h"
@@ -46,6 +47,7 @@
 #import "NSString+Commands.h"
 
 #define STATUS_BAR_ANIMATION_TIME 0.15
+#define EXPIRED_ENTRY_REFRESH_SECONDS 60
 
 typedef NS_ENUM(NSUInteger,MPOVerlayInfoType) {
   MPOverlayInfoPassword,
@@ -115,6 +117,7 @@ NSString *const _MPTAbleSecurCellView = @"PasswordCell";
     _dataSource.viewController = self;
     _menuDelegate = [[MPEntryContextMenuDelegate alloc] init];
     _contextBarViewController = [[MPContextBarViewController alloc] init];
+    [self _updateExpirationDisplay];
   }
   return self;
 }
@@ -728,4 +731,12 @@ NSString *const _MPTAbleSecurCellView = @"PasswordCell";
       break;
   }
 }
+- (void)_updateExpirationDisplay {
+  /* items are all entries */
+  [[self.entryArrayController arrangedObjects] enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
+    [[obj timeInfo] isExpired];
+  }];
+  [self performSelector:@selector(_updateExpirationDisplay) withObject:nil afterDelay:EXPIRED_ENTRY_REFRESH_SECONDS];
+}
+
 @end
