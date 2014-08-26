@@ -161,6 +161,9 @@ typedef NS_OPTIONS(NSUInteger, MPEntrySearchFlags) {
 - (NSArray *)allEntries;
 - (NSArray *)allGroups;
 
+- (BOOL)shouldRecommendPasswordChange;
+- (BOOL)shouldEnforcePasswordChange;
+
 /**
  *  Determines, whether the given item is inside the trash.
  *  The trash group itself is not considered as trashed.

@@ -50,9 +50,7 @@ typedef NS_ENUM(NSUInteger, MPDatePreset) {
     [presetMenu addItem:item];
   }
   
-  MPDocument *document = [[self windowController] document];
-  
-  [self.datePicker setDateValue:document.selectedItem.timeInfo.expiryTime];
+  [self.datePicker setDateValue:[NSDate date]];
   [self.presetPopupButton setAction:@selector(setDatePreset:)];
   [self.presetPopupButton setMenu:presetMenu];
 }

@@ -282,6 +282,7 @@ NSString *const MPDocumentGroupKey                        = @"MPDocumentGroupKey
   
   BOOL isUnlocked = (nil != self.tree);
   if(isUnlocked) {
+    self.unlockCount += 1;
     [[NSNotificationCenter defaultCenter] postNotificationName:MPDocumentDidUnlockDatabaseNotification object:self];
     /* Make sure to only store */
     MPAppDelegate *delegate = [NSApp delegate];
@@ -291,11 +292,6 @@ NSString *const MPDocumentGroupKey                        = @"MPDocumentGroupKey
   }
   else {
     self.compositeKey = nil; // clear the key?
-  }
-  if(isUnlocked) {
-    
-    self.unlockCount += 1;
-    [[NSNotificationCenter defaultCenter] postNotificationName:MPDocumentDidUnlockDatabaseNotification object:self];
   }
   return isUnlocked;
 }
@@ -312,6 +308,8 @@ NSString *const MPDocumentGroupKey                        = @"MPDocumentGroupKey
     [self.compositeKey setPassword:password andKeyfile:keyFileURL];
   }
   self.tree.metaData.masterKeyChanged = [NSDate date];
+  /* Key change is not undoable so just recored the change as done */
+  [self updateChangeCount:NSChangeDone];
   /* We need to store the key file once the user actually writes the database */
   return YES;
 }
@@ -436,6 +434,18 @@ NSString *const MPDocumentGroupKey                        = @"MPDocumentGroupKey
     return isTrashed;
   }
   return NO;
+}
+
+- (BOOL)shouldEnforcePasswordChange {
+  KPKMetaData *metaData = self.tree.metaData;
+  if(!metaData.enforceMasterKeyChange) { return NO; }
+  return ( (24*60*60*metaData.masterKeyChangeEnforcementInterval) < -[metaData.masterKeyChanged timeIntervalSinceNow]);
+}
+
+- (BOOL)shouldRecommendPasswordChange {
+  KPKMetaData *metaData = self.tree.metaData;
+  if(!metaData.recommendMasterKeyChange) { return NO; }
+  return ( (24*60*60*metaData.masterKeyChangeRecommendationInterval) < -[metaData.masterKeyChanged timeIntervalSinceNow]);
 }
 
 #pragma mark Data manipulation
