@@ -22,6 +22,7 @@
 
 #import <Cocoa/Cocoa.h>
 #import "KPKVersion.h"
+#import "MPEntrySearchContext.h"
 
 /**
  *  Posted when a new group was added to the document.
@@ -58,24 +59,6 @@ APPKIT_EXTERN NSString *const MPDocumentGroupKey;
 @class KPKNode;
 @class MPEditSession;
 
-typedef NS_OPTIONS(NSUInteger, MPEntrySearchFlags) {
-  MPEntrySearchNone            = 0,
-  MPEntrySearchUrls            = (1<<0),
-  MPEntrySearchUsernames       = (1<<1),
-  MPEntrySearchTitles          = (1<<2),
-  MPEntrySearchPasswords       = (1<<3),
-  MPEntrySearchNotes           = (1<<4),
-  MPEntrySearchAllAttributes   = (1<<5),
-  MPEntrySearchDoublePasswords = (1<<6), // Unused in GUI for now
-  MPEntrySearchAllFlags        = (MPEntrySearchDoublePasswords |
-                                  MPEntrySearchNotes |
-                                  MPEntrySearchPasswords |
-                                  MPEntrySearchTitles |
-                                  MPEntrySearchUrls |
-                                  MPEntrySearchUsernames |
-                                  MPEntrySearchAllAttributes )
-};
-
 @interface MPDocument : NSDocument
 
 @property (nonatomic, readonly, assign) BOOL encrypted;
@@ -102,9 +85,8 @@ typedef NS_OPTIONS(NSUInteger, MPEntrySearchFlags) {
 /*
  Search - see MPDocument+Search for further details
  */
-@property (nonatomic, assign) MPEntrySearchFlags activeFlags;
-@property (nonatomic, copy) NSString *searchString;
-@property (nonatomic, assign) BOOL hasSearch;
+@property (nonatomic, readonly, assign) BOOL hasSearch;
+@property (nonatomic, copy) MPEntrySearchContext *searchContext;
 @property (nonatomic, strong) NSArray *searchResult;
 
 /*

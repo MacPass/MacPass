@@ -123,9 +123,6 @@ NSString *const MPDocumentGroupKey                        = @"MPDocumentGroupKey
     _encryptedData = nil;
     _didLockFile = NO;
     _readOnly = NO;
-    _activeFlags = MPEntrySearchTitles;
-    _hasSearch = NO;
-    _unlockCount = 0;
     self.tree = [KPKTree templateTree];
     self.tree.metaData.rounds = [[NSUserDefaults standardUserDefaults] integerForKey:kMPSettingsKeyDefaultPasswordRounds];
   }

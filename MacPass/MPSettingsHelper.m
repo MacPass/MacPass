@@ -37,7 +37,7 @@ NSString *const kMPSettingsKeySendCommandForControlKey                = @"SendCo
 NSString *const kMPSettingsKeyEnableGlobalAutotype                    = @"EnableGlobalAutotype";
 NSString *const kMPSettingsKeyGlobalAutotypeKeyDataKey                = @"GlobalAutotypeKeyDataKey";
 
-NSString *const kMPSettingsKeyEntrySearchFilterMode                   = @"EntrySearchFilterMode";
+NSString *const kMPSettingsKeyEntrySearchFilterContext                = @"EntrySearchFilterContext";
 
 NSString *const kMPSettingsKeyEnableQuicklookPreview                  = @"EnableQuicklookPreview";
 
@@ -49,6 +49,7 @@ NSString *const kMPSettingsKeyPasswordCharacterFlags                  = @"Passwo
 NSString *const kMPSettingsKeyPasswordUseCustomString                 = @"PasswordUseCustomString";
 NSString *const kMPSettingsKeyPasswordCustomString                    = @"PasswordCustomString";
 
+/* Depricated */
 NSString *const kMPSettingsKeyDoubleClickURLAction                    = @"DoubleClickURLAction";
 NSString *const kMPSettingsKeyDoubleClickTitleAction                  = @"DoubleClickTitleAction";
 

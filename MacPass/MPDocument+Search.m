@@ -30,13 +30,17 @@ NSString *const kMPDocumentSearchResultsKey           = @"kMPDocumentSearchResul
 
 - (void)performFindPanelAction:(id)sender {
   self.hasSearch = YES;
+  /* the search context is loaded via defaults */
+  self.searchContext = [[MPEntrySearchContext alloc] init];
   [[NSNotificationCenter defaultCenter] postNotificationName:MPDocumentDidEnterSearchNotification object:self];
   [self updateSearch:self];
 }
 
 - (void)updateSearch:(id)sender {
   MPDocumentWindowController *windowController = [self windowControllers][0];
-  self.searchString = [windowController.searchField stringValue];
+  NSString *searchString = [windowController.searchField stringValue];
+  /* Update the search string */
+  self.searchContext = [[MPEntrySearchContext alloc] initWithString:searchString flags:self.searchContext.searchFlags];
   if(NO == self.hasSearch) {
     [[NSNotificationCenter defaultCenter] postNotificationName:MPDocumentDidEnterSearchNotification object:self];
   }
@@ -53,8 +57,10 @@ NSString *const kMPDocumentSearchResultsKey           = @"kMPDocumentSearchResul
 }
 
 - (void)exitSearch:(id)sender {
-  self.searchString = nil;
+  self.searchContext = nil;
+  /*self.searchString = nil;
   self.hasSearch = NO;
+   */
   [[NSNotificationCenter defaultCenter] postNotificationName:MPDocumentDidExitSearchNotification object:self];
 }
 
@@ -95,6 +101,10 @@ NSString *const kMPDocumentSearchResultsKey           = @"kMPDocumentSearchResul
     [[NSNotificationCenter defaultCenter] postNotificationName:MPDocumentDidChangeSearchFlags object:self];
     [self updateSearch:self];
   }
+}
+
+- (NSArray *)entriesMatchingSearch:(MPEntrySearchContext *)search {
+  return nil;
 }
 
 #pragma mark Search

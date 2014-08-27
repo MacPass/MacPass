@@ -51,7 +51,7 @@ APPKIT_EXTERN NSString *const kMPSettingsKeyEnableGlobalAutotype;             //
 APPKIT_EXTERN NSString *const kMPSettingsKeyGlobalAutotypeKeyDataKey;         // The stored Data for the useder defined global autotype key
 
 /* Search */
-APPKIT_EXTERN NSString *const kMPSettingsKeyEntrySearchFilterMode;
+APPKIT_EXTERN NSString *const kMPSettingsKeyEntrySearchFilterContext;
 
 /* Quicklook */
 APPKIT_EXTERN NSString *const kMPSettingsKeyEnableQuicklookPreview;

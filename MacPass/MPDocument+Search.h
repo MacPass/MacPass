@@ -8,6 +8,8 @@
 
 #import "MPDocument.h"
 
+@class MPEntrySearchContext;
+
 FOUNDATION_EXTERN NSString *const MPDocumentDidEnterSearchNotification;
 FOUNDATION_EXTERN NSString *const MPDocumentDidChangeSearchFlags;
 FOUNDATION_EXTERN NSString *const MPDocumentDidExitSearchNotification;
@@ -29,5 +31,7 @@ FOUNDATION_EXTERN NSString *const kMPDocumentSearchResultsKey;
 - (IBAction)exitSearch:(id)sender;
 /* called by the filter toggle buttons */
 - (IBAction)toggleSearchFlags:(id)sender;
+
+- (NSArray *)entriesMatchingSearch:(MPEntrySearchContext *)search;
 
 @end

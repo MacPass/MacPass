@@ -7,13 +7,15 @@
 //
 
 #import "MPContextBarViewController.h"
-#import "HNHGradientView.h"
 #import "KPKEntry.h"
+
 #import "MPDocument+HistoryBrowsing.h"
 #import "MPDocument+Search.h"
+#import "MPFlagsHelper.h"
+#import "MPEntrySearchContext.h"
 
 #import "NSButton+HNHTextColor.h"
-#import "MPFlagsHelper.h"
+#import "HNHGradientView.h"
 #import "HNHCommon.h"
 
 NSUInteger const MPContextBarViewControllerActiveFilterMenuItemTag = 1000;
@@ -122,12 +124,13 @@ typedef NS_ENUM(NSUInteger, MPContextTab) {
 
 - (void)_updateFilterButtons {
   MPDocument *document = [[self windowController] document];
-  [self.duplicatePasswordsButton setState:HNHStateForBool(MPTestFlagInOptions(MPEntrySearchDoublePasswords, document.activeFlags))];
-  [self.notesButton setState:HNHStateForBool(MPTestFlagInOptions(MPEntrySearchNotes, document.activeFlags))];
-  [self.passwordButton setState:HNHStateForBool(MPTestFlagInOptions(MPEntrySearchPasswords, document.activeFlags))];
-  [self.titleButton setState:HNHStateForBool(MPTestFlagInOptions(MPEntrySearchTitles, document.activeFlags))];
-  [self.urlButton setState:HNHStateForBool(MPTestFlagInOptions(MPEntrySearchUrls, document.activeFlags))];
-  [self.usernameButton setState:HNHStateForBool(MPTestFlagInOptions(MPEntrySearchUsernames, document.activeFlags))];
+  MPEntrySearchFlags currentFlags = document.searchContext.searchFlags;
+  [self.duplicatePasswordsButton setState:HNHStateForBool(MPTestFlagInOptions(MPEntrySearchDoublePasswords, currentFlags))];
+  [self.notesButton setState:HNHStateForBool(MPTestFlagInOptions(MPEntrySearchNotes, currentFlags))];
+  [self.passwordButton setState:HNHStateForBool(MPTestFlagInOptions(MPEntrySearchPasswords, currentFlags))];
+  [self.titleButton setState:HNHStateForBool(MPTestFlagInOptions(MPEntrySearchTitles, currentFlags))];
+  [self.urlButton setState:HNHStateForBool(MPTestFlagInOptions(MPEntrySearchUrls, currentFlags))];
+  [self.usernameButton setState:HNHStateForBool(MPTestFlagInOptions(MPEntrySearchUsernames, currentFlags))];
 }
 
 @end
