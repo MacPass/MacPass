@@ -170,7 +170,9 @@ NSString *const _MPOutlinveViewHeaderViewIdentifier = @"HeaderCell";
   NSIndexPath *groupIndexPath = [group indexPath];
   NSTreeNode *groupNode = [[self.treeController arrangedObjects] descendantNodeAtIndexPath:groupIndexPath];
   [self.outlineView expandItem:groupNode.parentNode];
-  [self.outlineView selectRowIndexes:[NSIndexSet indexSetWithIndex:[self.outlineView rowForItem:groupNode]] byExtendingSelection:NO];
+  NSInteger groupRow = [self.outlineView rowForItem:groupNode];
+  [self.outlineView selectRowIndexes:[NSIndexSet indexSetWithIndex:groupRow] byExtendingSelection:NO];
+  [self.outlineView scrollRowToVisible:groupRow];
 }
 
 - (id)itemUnderMouse {
