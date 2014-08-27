@@ -25,13 +25,13 @@ FOUNDATION_EXTERN NSString *const kMPDocumentSearchResultsKey;
 
 @interface MPDocument (Search)
 
+- (void)enterSearchWithContext:(MPEntrySearchContext *)context;
+
 /* Should be called by the NSSearchTextField to update the search string */
 - (IBAction)updateSearch:(id)sender;
 /* exits searching mode */
 - (IBAction)exitSearch:(id)sender;
 /* called by the filter toggle buttons */
 - (IBAction)toggleSearchFlags:(id)sender;
-
-- (NSArray *)entriesMatchingSearch:(MPEntrySearchContext *)search;
 
 @end

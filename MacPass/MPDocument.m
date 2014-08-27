@@ -354,6 +354,10 @@ NSString *const MPDocumentGroupKey                        = @"MPDocumentGroupKey
   return [self findGroup:self.tree.metaData.entryTemplatesGroup];
 }
 
+- (BOOL)hasSearch {
+  return self.searchContext != nil;
+}
+
 - (void)setTrash:(KPKGroup *)trash {
   if(self.useTrash) {
     if(![self.tree.metaData.recycleBinUuid isEqual:trash.uuid]) {

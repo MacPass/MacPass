@@ -61,6 +61,7 @@ APPKIT_EXTERN NSString *const MPDocumentGroupKey;
 
 @interface MPDocument : NSDocument
 
+
 @property (nonatomic, readonly, assign) BOOL encrypted;
 @property (nonatomic, readonly, assign) NSUInteger unlockCount; // Amount of times the Document was unlocked;
 
@@ -85,7 +86,7 @@ APPKIT_EXTERN NSString *const MPDocumentGroupKey;
 /*
  Search - see MPDocument+Search for further details
  */
-@property (nonatomic, readonly, assign) BOOL hasSearch;
+@property (nonatomic, readonly) BOOL hasSearch;
 @property (nonatomic, copy) MPEntrySearchContext *searchContext;
 @property (nonatomic, strong) NSArray *searchResult;
 

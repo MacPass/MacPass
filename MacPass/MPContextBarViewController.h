@@ -20,6 +20,7 @@
 @property (weak) IBOutlet NSButton *urlButton;
 @property (weak) IBOutlet NSButton *notesButton;
 @property (weak) IBOutlet NSButton *duplicatePasswordsButton;
+@property (weak) IBOutlet NSPopUpButton *specialFilterPopUpButton;
 
 - (void)registerNotificationsForDocument:(MPDocument *)document;
 

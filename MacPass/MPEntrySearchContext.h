@@ -16,8 +16,11 @@ typedef NS_OPTIONS(NSUInteger, MPEntrySearchFlags) {
   MPEntrySearchPasswords       = (1<<3),
   MPEntrySearchNotes           = (1<<4),
   MPEntrySearchAllAttributes   = (1<<5),
-  MPEntrySearchDoublePasswords = (1<<6), // Unused in GUI for now
-  MPEntrySearchExpiredEntries  = (1<<7), // Unused for now
+  /* The following two flags should be used like enums.
+   They are not intented to be used in conjunktion with any other flag */
+  MPEntrySearchDoublePasswords = (1<<6),
+  MPEntrySearchExpiredEntries  = (1<<7),
+  /* All search flags that are combineable combined */
   MPEntrySearchAllFlags        = (MPEntrySearchDoublePasswords |
                                   MPEntrySearchExpiredEntries |
                                   MPEntrySearchNotes |
@@ -30,12 +33,24 @@ typedef NS_OPTIONS(NSUInteger, MPEntrySearchFlags) {
 
 
 /* Wrap serach criteria to be able to store them */
-@interface MPEntrySearchContext : NSObject <NSSecureCoding>
+@interface MPEntrySearchContext : NSObject <NSSecureCoding,NSCopying>
 
+/**
+ *  Returns a default search context initalized with sane values.
+ *
+ *  @return The default search context
+ */
 + (instancetype)defaultContext;
+/**
+ *  Returns the search context using the users preferences. If none are found, a default context is created
+ *
+ *  @return Search context configured to the users data. If nothing is configures, defaultContext is used
+ */
++ (instancetype)userContext;
+
 - (instancetype)initWithString:(NSString *)searchString flags:(MPEntrySearchFlags)flags;
 
-@property (readonly, assign) NSInteger searchFlags;
-@property (readonly, copy) NSString *searchString;
+@property (nonatomic, assign) NSInteger searchFlags;
+@property (nonatomic, copy) NSString *searchString;
 
 @end

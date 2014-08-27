@@ -49,7 +49,6 @@ NSString *const kMPSettingsKeyPasswordCharacterFlags                  = @"Passwo
 NSString *const kMPSettingsKeyPasswordUseCustomString                 = @"PasswordUseCustomString";
 NSString *const kMPSettingsKeyPasswordCustomString                    = @"PasswordCustomString";
 
-/* Depricated */
 NSString *const kMPSettingsKeyDoubleClickURLAction                    = @"DoubleClickURLAction";
 NSString *const kMPSettingsKeyDoubleClickTitleAction                  = @"DoubleClickTitleAction";
 
@@ -58,6 +57,7 @@ NSString *const kMPDeprecatedSettingsKeyRememberKeyFilesForDatabases      = @"kM
 NSString *const kMPDeprecatedSettingsKeyLastDatabasePath                  = @"MPLastDatabasePath";
 NSString *const kMPDeprecatedSettingsKeyDocumentsAutotypeFixNoteWasShown  = @"DocumentsAutotypeFixNoteWasShown";
 NSString *const kMPDeprecatedSettingsKeyDoubleClickURLToLaunch            = @"DoubleClickURLToLaunch";
+NSString *const kMPDeprecatedSettingsKeyEntrySearchFilterMode             = @"EntrySearchFilterMode";
 
 @implementation MPSettingsHelper
 
@@ -68,6 +68,7 @@ NSString *const kMPDeprecatedSettingsKeyDoubleClickURLToLaunch            = @"Do
 + (void)migrateDefaults {
   [self _fixEntryTableSortDescriptors];
   [self _migrateURLDoubleClickPreferences];
+  [self _migrateEntrySearchFlags];
   [self _removeDeprecatedValues];
 }
 
@@ -97,7 +98,6 @@ NSString *const kMPDeprecatedSettingsKeyDoubleClickURLToLaunch            = @"Do
                          kMPSettingsKeyLegacyHideUsername: @NO,
                          kMPSettingsKeyRememberKeyFilesForDatabases: @NO,
                          kMPSettingsKeySendCommandForControlKey: @YES,
-                         kMPSettingsKeyEntrySearchFilterMode: @0,
                          kMPSettingsKeyEnableGlobalAutotype: @NO,
                          kMPSettingsKeyEnableQuicklookPreview: @NO,
                          kMPSettingsKeyCopyGeneratedPasswordToClipboard: @NO,
@@ -120,7 +120,8 @@ NSString *const kMPDeprecatedSettingsKeyDoubleClickURLToLaunch            = @"Do
     deprecatedSettings = @[ kMPDeprecatedSettingsKeyRememberKeyFilesForDatabases,
                             kMPDeprecatedSettingsKeyLastDatabasePath,
                             kMPDeprecatedSettingsKeyDocumentsAutotypeFixNoteWasShown,
-                            kMPDeprecatedSettingsKeyDoubleClickURLToLaunch ];
+                            kMPDeprecatedSettingsKeyDoubleClickURLToLaunch,
+                            kMPDeprecatedSettingsKeyEntrySearchFilterMode];
   });
   return deprecatedSettings;
 }
@@ -157,6 +158,15 @@ NSString *const kMPDeprecatedSettingsKeyDoubleClickURLToLaunch            = @"Do
   BOOL openURL = [[NSUserDefaults standardUserDefaults] boolForKey:kMPDeprecatedSettingsKeyDoubleClickURLToLaunch];
   if(NO == openURL) {
     [[NSUserDefaults standardUserDefaults] setInteger:MPDoubleClickURLActionOpen forKey:kMPSettingsKeyDoubleClickURLAction];
+  }
+}
+
++ (void)_migrateEntrySearchFlags {
+  NSInteger flags = [[NSUserDefaults standardUserDefaults] integerForKey:kMPDeprecatedSettingsKeyEntrySearchFilterMode];
+  if(flags != 0) {
+    MPEntrySearchContext *context = [[MPEntrySearchContext alloc] initWithString:nil flags:flags];
+    NSData *contextData = [NSKeyedArchiver archivedDataWithRootObject:context];
+    [[NSUserDefaults standardUserDefaults] setObject:contextData forKey:kMPSettingsKeyEntrySearchFilterContext];
   }
 }
 

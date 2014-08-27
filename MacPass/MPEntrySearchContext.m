@@ -7,13 +7,7 @@
 //
 
 #import "MPEntrySearchContext.h"
-
-@interface MPEntrySearchContext ()
-
-@property (assign) NSInteger searchFlags;
-@property (copy) NSString *searchString;
-
-@end
+#import "MPSettingsHelper.h"
 
 @implementation MPEntrySearchContext
 
@@ -22,11 +16,19 @@
 }
 
 + (instancetype)defaultContext {
-  
+  return [[MPEntrySearchContext alloc] init];
+}
+
++ (instancetype)userContext {
+  NSData *data = [[NSUserDefaults standardUserDefaults] dataForKey:kMPSettingsKeyEntrySearchFilterContext];
+  if(data) {
+    return [NSKeyedUnarchiver unarchiveObjectWithData:data];
+  }
+  return [self defaultContext];
 }
 
 - (instancetype)init {
-  self = [self initWithString:nil flags:MPEntrySearchNone];
+  self = [self initWithString:nil flags:MPEntrySearchTitles|MPEntrySearchUsernames];
   return self;
 }
 
@@ -40,6 +42,7 @@
 
 }
 
+#pragma mark NSSecureCoding
 - (void)encodeWithCoder:(NSCoder *)aCoder {
   [aCoder encodeInteger:self.searchFlags forKey:NSStringFromSelector(@selector(searchFlags))];
   [aCoder encodeObject:self.searchString forKey:NSStringFromSelector(@selector(searchString))];
@@ -52,4 +55,28 @@
   return self;
 }
 
+#pragma mark NSCopying
+- (id)copyWithZone:(NSZone *)zone {
+  return [[MPEntrySearchContext alloc] initWithString:self.searchString flags:self.searchFlags];
+}
+
+- (void)setSearchFlags:(NSInteger)searchFlags {
+  if(_searchFlags != searchFlags) {
+    _searchFlags = searchFlags;
+    [self _updatePreferences];
+  }
+}
+
+- (void)setSearchString:(NSString *)searchString {
+  if(![_searchString isEqualToString:searchString]) {
+    _searchString = [searchString copy];
+    [self _updatePreferences];
+  }
+}
+
+- (void )_updatePreferences {
+  NSData *myData = [NSKeyedArchiver archivedDataWithRootObject:self];
+  [[NSUserDefaults standardUserDefaults] setObject:myData forKey:kMPSettingsKeyEntrySearchFilterContext];
+  [[NSUserDefaults standardUserDefaults] synchronize];
+}
 @end

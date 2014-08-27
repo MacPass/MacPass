@@ -70,12 +70,24 @@ typedef NS_ENUM(NSUInteger, MPContextTab) {
   
   self.emptyTrashButton.textColor = [NSColor whiteColor];
   
-  NSInteger tags[] = { MPEntrySearchTitles, MPEntrySearchUsernames, MPEntrySearchPasswords, MPEntrySearchNotes, MPEntrySearchUrls, MPEntrySearchDoublePasswords };
-  NSArray *buttons  = @[self.titleButton, self.usernameButton, self.passwordButton, self.notesButton, self.urlButton, self.duplicatePasswordsButton ];
+  NSInteger tags[] = { MPEntrySearchTitles, MPEntrySearchUsernames, MPEntrySearchPasswords, MPEntrySearchNotes, MPEntrySearchUrls };
+  NSArray *buttons  = @[self.titleButton, self.usernameButton, self.passwordButton, self.notesButton, self.urlButton ];
   for(NSUInteger iIndex = 0; iIndex < [buttons count]; iIndex++) {
     [buttons[iIndex] setAction:@selector(toggleSearchFlags:)];
     [buttons[iIndex] setTag:tags[iIndex]];
   }
+  NSInteger specialTags[] = { MPEntrySearchDoublePasswords, MPEntrySearchExpiredEntries };
+  NSArray *titles = @[ NSLocalizedString(@"SEARCH_DUPLICATE_PASSWORDS", ""), NSLocalizedString(@"SEARCH_EXPIRED_ENTRIES", "") ];
+  NSMenu *specialMenu = [[NSMenu alloc] initWithTitle:@"Special Filters Menu"];
+  [specialMenu addItemWithTitle:NSLocalizedString(@"SELECT_FILTER_WITH_DOTS", "") action:NULL keyEquivalent:@""];
+  [[specialMenu itemAtIndex:0] setEnabled:NO];
+  [[specialMenu itemAtIndex:0] setTag:MPEntrySearchNone];
+  for(NSInteger iIndex = 0; iIndex < [titles count]; iIndex++) {
+    NSMenuItem *item = [[NSMenuItem alloc] initWithTitle:titles[iIndex] action:@selector(toggleSearchFlags:) keyEquivalent:@""];
+    [item setTag:specialTags[iIndex]];
+    [specialMenu addItem:item];
+  }
+  [self.specialFilterPopUpButton setMenu:specialMenu];
   [self _updateFilterButtons];
 }
 
@@ -131,6 +143,22 @@ typedef NS_ENUM(NSUInteger, MPContextTab) {
   [self.titleButton setState:HNHStateForBool(MPTestFlagInOptions(MPEntrySearchTitles, currentFlags))];
   [self.urlButton setState:HNHStateForBool(MPTestFlagInOptions(MPEntrySearchUrls, currentFlags))];
   [self.usernameButton setState:HNHStateForBool(MPTestFlagInOptions(MPEntrySearchUsernames, currentFlags))];
+  NSInteger selectedTag = MPEntrySearchNone;
+  for(NSMenuItem *item in [[self.specialFilterPopUpButton menu] itemArray]) {
+    MPEntrySearchFlags flag = [item tag];
+    if(flag == MPEntrySearchNone) {
+      [item setState:NSOffState];
+      [item setEnabled:NO];
+    }
+    else {
+      BOOL isActive = MPTestFlagInOptions(flag, currentFlags);
+      if(isActive) {
+        selectedTag = flag;
+      }
+      [item setState:HNHStateForBool(isActive)];
+    }
+  }
+  [self.specialFilterPopUpButton selectItemWithTag:selectedTag];
 }
 
 @end
