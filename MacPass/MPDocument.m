@@ -123,9 +123,6 @@ NSString *const MPDocumentGroupKey                        = @"MPDocumentGroupKey
     _encryptedData = nil;
     _didLockFile = NO;
     _readOnly = NO;
-    _activeFlags = MPEntrySearchTitles;
-    _hasSearch = NO;
-    _unlockCount = 0;
     self.tree = [KPKTree templateTree];
     self.tree.metaData.rounds = [[NSUserDefaults standardUserDefaults] integerForKey:kMPSettingsKeyDefaultPasswordRounds];
   }
@@ -355,6 +352,10 @@ NSString *const MPDocumentGroupKey                        = @"MPDocumentGroupKey
 - (KPKGroup *)templates {
   /* Caching is dangerous as we might have deleted the group */
   return [self findGroup:self.tree.metaData.entryTemplatesGroup];
+}
+
+- (BOOL)hasSearch {
+  return self.searchContext != nil;
 }
 
 - (void)setTrash:(KPKGroup *)trash {

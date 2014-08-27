@@ -7,7 +7,6 @@
     <objects>
         <customObject id="-2" userLabel="File's Owner" customClass="MPContextBarViewController">
             <connections>
-                <outlet property="duplicatePasswordsButton" destination="hMB-2T-pBD" id="dWH-3p-fy6"/>
                 <outlet property="emptyTrashButton" destination="szx-Hx-OrV" id="i1Y-qB-TW3"/>
                 <outlet property="exitHistoryButton" destination="pqx-su-vAh" id="JmV-vC-F48"/>
                 <outlet property="filterLabelTextField" destination="6" id="60"/>
@@ -15,6 +14,7 @@
                 <outlet property="historyLabel" destination="gGR-f0-dcr" id="slx-9D-8k8"/>
                 <outlet property="notesButton" destination="SaV-5p-jIX" id="sQc-nE-BOP"/>
                 <outlet property="passwordButton" destination="Uhl-ck-vVQ" id="I35-Nv-6jK"/>
+                <outlet property="specialFilterPopUpButton" destination="aPQ-t2-bgz" id="5II-Ml-qg1"/>
                 <outlet property="titleButton" destination="O7W-cn-eUP" id="Vlg-KG-62R"/>
                 <outlet property="trashBar" destination="DXf-SC-gVG" id="3aZ-Xc-VDk"/>
                 <outlet property="urlButton" destination="Bn2-iY-mQ3" id="PNG-kv-PQN"/>
@@ -102,31 +102,38 @@
                                             <action selector="toggleSearchFlags:" target="-1" id="cuN-5p-vZD"/>
                                         </connections>
                                     </button>
-                                    <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="hMB-2T-pBD">
-                                        <rect key="frame" x="412" y="6" width="144" height="17"/>
+                                    <popUpButton verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="aPQ-t2-bgz">
+                                        <rect key="frame" x="493" y="5" width="63" height="19"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                        <buttonCell key="cell" type="recessed" title="Duplicate Passwords" bezelStyle="recessed" alignment="center" controlSize="small" state="on" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="G1B-En-dc2">
+                                        <popUpButtonCell key="cell" type="recessed" title="Item 1" bezelStyle="recessed" alignment="center" lineBreakMode="truncatingTail" state="on" borderStyle="border" imageScaling="proportionallyDown" inset="2" autoenablesItems="NO" selectedItem="LRm-iZ-XrA" id="faz-pC-uGX">
                                             <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES" changeBackground="YES" changeGray="YES"/>
                                             <font key="font" metaFont="systemBold" size="12"/>
-                                        </buttonCell>
-                                    </button>
+                                            <menu key="menu" title="OtherViews" autoenablesItems="NO" id="wC4-fF-dLW">
+                                                <items>
+                                                    <menuItem title="Item 1" state="on" id="LRm-iZ-XrA"/>
+                                                    <menuItem title="Item 2" id="cpr-p6-YAY"/>
+                                                    <menuItem title="Item 3" id="CFk-71-NYQ"/>
+                                                </items>
+                                            </menu>
+                                        </popUpButtonCell>
+                                    </popUpButton>
                                 </subviews>
                                 <constraints>
                                     <constraint firstAttribute="centerY" secondItem="O7W-cn-eUP" secondAttribute="centerY" id="2uC-wS-HDi"/>
-                                    <constraint firstAttribute="centerY" secondItem="hMB-2T-pBD" secondAttribute="centerY" id="4rl-iO-76L"/>
                                     <constraint firstItem="O7W-cn-eUP" firstAttribute="leading" secondItem="6" secondAttribute="trailing" constant="8" symbolic="YES" id="5hN-x3-XlX"/>
                                     <constraint firstItem="0R1-PX-dgn" firstAttribute="leading" secondItem="O7W-cn-eUP" secondAttribute="trailing" constant="8" symbolic="YES" id="67f-i6-eOb"/>
                                     <constraint firstAttribute="centerY" secondItem="SaV-5p-jIX" secondAttribute="centerY" id="7ch-eZ-Hzh"/>
+                                    <constraint firstItem="aPQ-t2-bgz" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="SaV-5p-jIX" secondAttribute="trailing" constant="8" symbolic="YES" id="91Q-Aq-ulG"/>
+                                    <constraint firstItem="aPQ-t2-bgz" firstAttribute="centerY" secondItem="SaV-5p-jIX" secondAttribute="centerY" id="EUG-hL-jbn"/>
                                     <constraint firstAttribute="centerY" secondItem="0R1-PX-dgn" secondAttribute="centerY" id="Huh-PB-cbs"/>
                                     <constraint firstItem="6" firstAttribute="leading" secondItem="1" secondAttribute="leading" constant="8" id="Seo-dI-FzX"/>
                                     <constraint firstItem="Bn2-iY-mQ3" firstAttribute="leading" secondItem="Uhl-ck-vVQ" secondAttribute="trailing" constant="8" id="TCJ-vg-IIt"/>
-                                    <constraint firstAttribute="trailing" secondItem="hMB-2T-pBD" secondAttribute="trailing" constant="20" symbolic="YES" id="jAm-sk-ErW"/>
+                                    <constraint firstAttribute="trailing" secondItem="aPQ-t2-bgz" secondAttribute="trailing" constant="20" symbolic="YES" id="XFv-Pv-Bzq"/>
                                     <constraint firstItem="SaV-5p-jIX" firstAttribute="leading" secondItem="Bn2-iY-mQ3" secondAttribute="trailing" constant="8" symbolic="YES" id="pAA-uU-moF"/>
                                     <constraint firstAttribute="centerY" secondItem="6" secondAttribute="centerY" id="qak-8F-xbj"/>
                                     <constraint firstItem="Uhl-ck-vVQ" firstAttribute="leading" secondItem="0R1-PX-dgn" secondAttribute="trailing" constant="8" id="u8d-C2-O9h"/>
                                     <constraint firstAttribute="centerY" secondItem="Uhl-ck-vVQ" secondAttribute="centerY" id="uvE-ch-ysK"/>
                                     <constraint firstAttribute="centerY" secondItem="Bn2-iY-mQ3" secondAttribute="centerY" id="xZJ-EZ-Nic"/>
-                                    <constraint firstItem="hMB-2T-pBD" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="SaV-5p-jIX" secondAttribute="trailing" constant="8" symbolic="YES" id="zRT-y1-oMu"/>
                                 </constraints>
                             </customView>
                         </subviews>
@@ -135,6 +142,8 @@
                             <constraint firstAttribute="bottom" secondItem="1" secondAttribute="bottom" id="Z4A-sK-v8K"/>
                             <constraint firstItem="1" firstAttribute="top" secondItem="caQ-XO-RkM" secondAttribute="top" id="a5u-p3-ay5"/>
                             <constraint firstAttribute="trailing" secondItem="1" secondAttribute="trailing" id="hTR-dg-7Ql"/>
+                            <constraint firstAttribute="trailing" secondItem="1" secondAttribute="trailing" id="mos-cv-3fn"/>
+                            <constraint firstAttribute="trailing" secondItem="1" secondAttribute="trailing" id="rO8-g6-lT3"/>
                         </constraints>
                     </view>
                 </tabViewItem>

@@ -8,6 +8,8 @@
 
 #import "MPDocument.h"
 
+@class MPEntrySearchContext;
+
 FOUNDATION_EXTERN NSString *const MPDocumentDidEnterSearchNotification;
 FOUNDATION_EXTERN NSString *const MPDocumentDidChangeSearchFlags;
 FOUNDATION_EXTERN NSString *const MPDocumentDidExitSearchNotification;
@@ -22,6 +24,8 @@ FOUNDATION_EXTERN NSString *const MPDocumentDidChangeSearchResults;
 FOUNDATION_EXTERN NSString *const kMPDocumentSearchResultsKey;
 
 @interface MPDocument (Search)
+
+- (void)enterSearchWithContext:(MPEntrySearchContext *)context;
 
 /* Should be called by the NSSearchTextField to update the search string */
 - (IBAction)updateSearch:(id)sender;
