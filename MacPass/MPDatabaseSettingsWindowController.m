@@ -23,6 +23,7 @@
 
 #import "HNHRoundedTextField.h"
 #import "HNHRoundedSecureTextField.h"
+#import "HNHCommon.h"
 
 #import "NSString+Empty.h"
 
@@ -36,33 +37,6 @@
 @end
 
 @implementation MPDatabaseSettingsWindowController
-
-NSInteger _MPStateForBool(BOOL flag) {
-  return flag ? NSOnState : NSOffState;
-}
-
-BOOL _MPBoolForState(NSInteger state) {
-  switch (state) {
-    case NSOnState:
-      return YES;
-    default:
-    case NSMixedState:
-      NSLog(@"Indetermined state!");
-    case NSOffState:
-      return NO;
-      break;
-  }
-}
-
-void _MPSetState(id stateItem, BOOL isOn) {
-  if([stateItem respondsToSelector:@selector(setState:)]) {
-    [stateItem setState:_MPStateForBool(isOn)];
-  }
-  else {
-    NSLog(@"%@ does not respond to setState:", stateItem);
-    assert(false);
-  }
-}
 
 - (NSString *)windowNibName {
   return @"DatabaseSettingsWindow";
@@ -122,8 +96,8 @@ void _MPSetState(id stateItem, BOOL isOn) {
   _document.templates = templateGroup;
   
   
-  BOOL enforceMasterKeyChange = _MPBoolForState([self.enforceKeyChangeCheckButton state]);
-  BOOL recommendMasterKeyChange = _MPBoolForState([self.recommendKeyChangeCheckButton state]);
+  BOOL enforceMasterKeyChange = HNHBoolForState([self.enforceKeyChangeCheckButton state]);
+  BOOL recommendMasterKeyChange = HNHBoolForState([self.recommendKeyChangeCheckButton state]);
   
   enforceMasterKeyChange &= ([[self.enforceKeyChangeIntervalTextField stringValue] length] != 0);
   recommendMasterKeyChange &= ([[self.recommendKeyChangeIntervalTextField stringValue] length] != 0);
@@ -136,11 +110,11 @@ void _MPSetState(id stateItem, BOOL isOn) {
   
   /* Security */
   
-  metaData.protectNotes =  _MPBoolForState([self.protectNotesCheckButton state]);
-  metaData.protectPassword = _MPBoolForState([self.protectPasswortCheckButton state]);
-  metaData.protectTitle = _MPBoolForState([self.protectTitleCheckButton state]);
-  metaData.protectUrl = _MPBoolForState([self.protectURLCheckButton state]);
-  metaData.protectUserName = _MPBoolForState([self.protectUserNameCheckButton state]);
+  metaData.protectNotes =  HNHBoolForState([self.protectNotesCheckButton state]);
+  metaData.protectPassword = HNHBoolForState([self.protectPasswortCheckButton state]);
+  metaData.protectTitle = HNHBoolForState([self.protectTitleCheckButton state]);
+  metaData.protectUrl = HNHBoolForState([self.protectURLCheckButton state]);
+  metaData.protectUserName = HNHBoolForState([self.protectUserNameCheckButton state]);
   
   metaData.defaultUserName = [self.defaultUsernameTextField stringValue];
   
@@ -217,11 +191,11 @@ void _MPSetState(id stateItem, BOOL isOn) {
 }
 
 - (void)_setupProtectionTab:(KPKMetaData *)metaData {
-  _MPSetState(self.protectNotesCheckButton, metaData.protectNotes);
-  _MPSetState(self.protectPasswortCheckButton, metaData.protectPassword);
-  _MPSetState(self.protectTitleCheckButton, metaData.protectTitle);
-  _MPSetState(self.protectURLCheckButton, metaData.protectUrl);
-  _MPSetState(self.protectUserNameCheckButton, metaData.protectUserName);
+  HNHSetStateFromBool(self.protectNotesCheckButton, metaData.protectNotes);
+  HNHSetStateFromBool(self.protectPasswortCheckButton, metaData.protectPassword);
+  HNHSetStateFromBool(self.protectTitleCheckButton, metaData.protectTitle);
+  HNHSetStateFromBool(self.protectURLCheckButton, metaData.protectUrl);
+  HNHSetStateFromBool(self.protectUserNameCheckButton, metaData.protectUserName);
 
   [self.encryptionRoundsTextField setIntegerValue:metaData.rounds];
   [self.benchmarkButton setEnabled:YES];
@@ -238,8 +212,8 @@ void _MPSetState(id stateItem, BOOL isOn) {
   [self.defaultUsernameTextField setEditable:YES];
   [self _updateTemplateGroup:tree];
   
-  _MPSetState(self.enforceKeyChangeCheckButton, tree.metaData.enforceMasterKeyChange);
-  _MPSetState(self.recommendKeyChangeCheckButton, tree.metaData.recommendMasterKeyChange);
+  HNHSetStateFromBool(self.enforceKeyChangeCheckButton, tree.metaData.enforceMasterKeyChange);
+  HNHSetStateFromBool(self.recommendKeyChangeCheckButton, tree.metaData.recommendMasterKeyChange);
   [self.enforceKeyChangeIntervalTextField setEnabled:tree.metaData.enforceMasterKeyChange];
   [self.recommendKeyChangeIntervalTextField setEnabled:tree.metaData.recommendMasterKeyChange];
 

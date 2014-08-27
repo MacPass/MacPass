@@ -216,6 +216,8 @@
 		4C94A06F1938DC8C0040ABAB /* MPEditSession.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C94A06E1938DC8C0040ABAB /* MPEditSession.m */; };
 		4C94A0721938DDC20040ABAB /* MPDocument+EditingSession.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C94A0711938DDC20040ABAB /* MPDocument+EditingSession.m */; };
 		4C96D15417A12E4F00D931FA /* 99_CreatedTemplate.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 4C96D15317A12E4F00D931FA /* 99_CreatedTemplate.pdf */; };
+		4C978E0619AE53FE003067DF /* HNHCommon.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C978E0519AE53FE003067DF /* HNHCommon.m */; };
+		4C978E0D19AE54AB003067DF /* MPFlagsHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C978E0C19AE54AB003067DF /* MPFlagsHelper.m */; };
 		4C9D6AA917615199001C660C /* HNHRoundedSecureTextFieldCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C9D6AA817615199001C660C /* HNHRoundedSecureTextFieldCell.m */; };
 		4CA08DA017A831B200A6544B /* MPAddEntryContextMenuDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CA08D9F17A831B200A6544B /* MPAddEntryContextMenuDelegate.m */; };
 		4CA0B2ED15BCADAC00654E32 /* SettingsWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4CA0B2EC15BCADAC00654E32 /* SettingsWindow.xib */; };
@@ -753,6 +755,8 @@
 		4C94A06E1938DC8C0040ABAB /* MPEditSession.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MPEditSession.m; sourceTree = "<group>"; };
 		4C94A0711938DDC20040ABAB /* MPDocument+EditingSession.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "MPDocument+EditingSession.m"; sourceTree = "<group>"; };
 		4C96D15317A12E4F00D931FA /* 99_CreatedTemplate.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; name = 99_CreatedTemplate.pdf; path = Icons/99_CreatedTemplate.pdf; sourceTree = "<group>"; };
+		4C978E0519AE53FE003067DF /* HNHCommon.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HNHCommon.m; sourceTree = "<group>"; };
+		4C978E0C19AE54AB003067DF /* MPFlagsHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MPFlagsHelper.m; sourceTree = "<group>"; };
 		4C9D6AA717615199001C660C /* HNHRoundedSecureTextFieldCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HNHRoundedSecureTextFieldCell.h; sourceTree = "<group>"; };
 		4C9D6AA817615199001C660C /* HNHRoundedSecureTextFieldCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HNHRoundedSecureTextFieldCell.m; sourceTree = "<group>"; };
 		4CA08D9E17A831B200A6544B /* MPAddEntryContextMenuDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MPAddEntryContextMenuDelegate.h; sourceTree = "<group>"; };
@@ -1297,7 +1301,6 @@
 				4C4B7EF717A4B335000234C7 /* MPUniqueCharactersFormatter.m */,
 				4C224B4017DFCB2300FF6AEE /* MPNumericalInputFormatter.h */,
 				4C224B4117DFCB2400FF6AEE /* MPNumericalInputFormatter.m */,
-				4CB63A6018986530002DEC4C /* MPFlagsHelper.h */,
 				4C3C4EAD18D7039300153127 /* MPValueTransformerHelper.h */,
 				4C3C4EAE18D7039300153127 /* MPValueTransformerHelper.m */,
 				4C26C33D18D8C92100CF1A1C /* MPTemporaryFileStorage.h */,
@@ -1306,6 +1309,8 @@
 				4C88C66818D9F8D600F43852 /* MPTemporaryFileStorageCenter.m */,
 				4C4B728318E4B9B400A1A5D5 /* MPDockTileHelper.h */,
 				4C4B728418E4B9B400A1A5D5 /* MPDockTileHelper.m */,
+				4CB63A6018986530002DEC4C /* MPFlagsHelper.h */,
+				4C978E0C19AE54AB003067DF /* MPFlagsHelper.m */,
 			);
 			name = Helper;
 			sourceTree = "<group>";
@@ -1761,6 +1766,7 @@
 				4CFDDDE7185E92A600A9E7F1 /* HNHTextView.h */,
 				4CFDDDE8185E92A600A9E7F1 /* HNHTextView.m */,
 				4C48A56018BE932100278A2D /* HNHCommon.h */,
+				4C978E0519AE53FE003067DF /* HNHCommon.m */,
 			);
 			path = HNHUi;
 			sourceTree = "<group>";
@@ -2298,6 +2304,7 @@
 				4C65FAE916D16DDB006E0577 /* MPPasswordInputController.m in Sources */,
 				4CDF01A316D1B76700D0AC08 /* MPEntryViewController.m in Sources */,
 				4C3BD51516D276F800389F1F /* MPToolbarDelegate.m in Sources */,
+				4C978E0619AE53FE003067DF /* HNHCommon.m in Sources */,
 				4C61EA0316D2FD0800AC519E /* MPOutlineViewController.m in Sources */,
 				4C69A73A16D589DF00EC1B1A /* HNHGradientView.m in Sources */,
 				4C65C79C16DD283900E32CFF /* MPToolbarButton.m in Sources */,
@@ -2353,6 +2360,7 @@
 				4C3C4EAF18D7039300153127 /* MPValueTransformerHelper.m in Sources */,
 				4C245B7D176E1E3D0086100E /* MultipartFormDataParser.m in Sources */,
 				4C245B7E176E1E3D0086100E /* MultipartMessageHeader.m in Sources */,
+				4C978E0D19AE54AB003067DF /* MPFlagsHelper.m in Sources */,
 				4C245B7F176E1E3D0086100E /* MultipartMessageHeaderField.m in Sources */,
 				4C245B80176E1E3D0086100E /* HTTPAsyncFileResponse.m in Sources */,
 				4C6F228919A4A7F90012310C /* MPAutotypeClear.m in Sources */,
