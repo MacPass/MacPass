@@ -38,6 +38,7 @@
     [controller stashObjects];
     [controller copyObjectsWithoutTimeout:@[self.pasteData]];
     [self sendPasteKeyCode];
+    usleep(0.1 * NSEC_PER_MSEC); // on 10.10 we need to wait a bit before restoring the pasteboard contents
     [controller restoreObjects];
   }
 }
