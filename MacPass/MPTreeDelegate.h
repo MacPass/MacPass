@@ -9,6 +9,10 @@
 #import <Foundation/Foundation.h>
 #import "KPKTree.h"
 
+@class MPDocument;
+
 @interface MPTreeDelegate : NSObject <KPKTreeDelegate>
+
+- (instancetype)initWithDocument:(MPDocument *)document;
 
 @end

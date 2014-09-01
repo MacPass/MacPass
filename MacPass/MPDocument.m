@@ -31,6 +31,8 @@
 #import "MPNotifications.h"
 #import "MPConstants.h"
 #import "MPSavePanelAccessoryViewController.h"
+#import "MPTreeDelegate.h"
+
 
 #import "DDXMLNode.h"
 
@@ -65,6 +67,7 @@ NSString *const MPDocumentGroupKey                        = @"MPDocumentGroupKey
 @private
   BOOL _didLockFile;
   NSData *_encryptedData;
+  MPTreeDelegate *_treeDelgate;
 }
 
 @property (nonatomic, assign) NSUInteger unlockCount;
@@ -396,6 +399,10 @@ NSString *const MPDocumentGroupKey                        = @"MPDocumentGroupKey
   if(_tree != tree) {
     _tree = tree;
     _tree.undoManager = [self undoManager];
+    if(nil == _treeDelgate) {
+      _treeDelgate = [[MPTreeDelegate alloc] initWithDocument:self];
+    }
+    _tree.delegate = _treeDelgate;
   }
 }
 

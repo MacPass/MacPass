@@ -36,6 +36,7 @@ NSString *const kMPSettingsKeyRememeberdKeysForDatabases              = @"Rememe
 NSString *const kMPSettingsKeySendCommandForControlKey                = @"SendCommandKeyForControlKey";
 NSString *const kMPSettingsKeyEnableGlobalAutotype                    = @"EnableGlobalAutotype";
 NSString *const kMPSettingsKeyGlobalAutotypeKeyDataKey                = @"GlobalAutotypeKeyDataKey";
+NSString *const kMPSettingsKeyDefaultGlobalAutotypeSequence           = @"DefaultGlobalAutotypeSequence";
 
 NSString *const kMPSettingsKeyEntrySearchFilterContext                = @"EntrySearchFilterContext";
 
@@ -99,6 +100,7 @@ NSString *const kMPDeprecatedSettingsKeyEntrySearchFilterMode             = @"En
                          kMPSettingsKeyRememberKeyFilesForDatabases: @NO,
                          kMPSettingsKeySendCommandForControlKey: @YES,
                          kMPSettingsKeyEnableGlobalAutotype: @NO,
+                         kMPSettingsKeyDefaultGlobalAutotypeSequence: @"{USERNAME}{TAB}{PASSWORD}{ENTER}",
                          kMPSettingsKeyEnableQuicklookPreview: @NO,
                          kMPSettingsKeyCopyGeneratedPasswordToClipboard: @NO,
                          kMPSettingsKeyDefaultPasswordRounds: @50000,
