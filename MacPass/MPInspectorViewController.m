@@ -287,7 +287,6 @@ typedef NS_ENUM(NSUInteger, MPContentTab) {
   }
   
   /* Disable if item is not editable */
-  NSLog(@"%@ isEditable: %i", item, [item isEditable]);
   [self.itemNameTextField bind:NSEnabledBinding toObject:item withKeyPath:NSStringFromSelector(@selector(isEditable)) options:nil];
   [self.itemImageView bind:NSEnabledBinding toObject:item withKeyPath:NSStringFromSelector(@selector(isEditable)) options:nil];
   [self.notesTextView bind:NSEditableBinding toObject:item withKeyPath:NSStringFromSelector(@selector(isEditable)) options:nil];
