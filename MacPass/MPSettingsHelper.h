@@ -49,6 +49,7 @@ APPKIT_EXTERN NSString *const kMPSettingsKeyRememberKeyFilesForDatabases;     //
 APPKIT_EXTERN NSString *const kMPSettingsKeySendCommandForControlKey;         // Should MacPass swap control for command. This is usefull in a cross plattform environment
 APPKIT_EXTERN NSString *const kMPSettingsKeyEnableGlobalAutotype;             // Is Global Autotype enabled?
 APPKIT_EXTERN NSString *const kMPSettingsKeyGlobalAutotypeKeyDataKey;         // The stored Data for the useder defined global autotype key
+APPKIT_EXTERN NSString *const kMPSettingsKeyDefaultGlobalAutotypeSequence;    // Default sequence used for Autotype
 
 /* Search */
 APPKIT_EXTERN NSString *const kMPSettingsKeyEntrySearchFilterContext;
