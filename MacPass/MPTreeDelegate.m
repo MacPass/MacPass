@@ -10,4 +10,9 @@
 
 @implementation MPTreeDelegate
 
+- (NSString *)defaultAutotypeSequenceForTree:(KPKTree *)tree {
+  /* TODO use Settings for the default autotype sequence */
+  return nil;
+}
+
 @end

@@ -208,6 +208,7 @@
 		4C888C9316EB6F5E003D34A1 /* MPToolbarItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C888C9216EB6F5E003D34A1 /* MPToolbarItem.m */; };
 		4C888C9716EB754B003D34A1 /* MPActionHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C888C9616EB754B003D34A1 /* MPActionHelper.m */; };
 		4C88C66918D9F8D600F43852 /* MPTemporaryFileStorageCenter.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C88C66818D9F8D600F43852 /* MPTemporaryFileStorageCenter.m */; };
+		4C89B71019B4B4A300DC0A6A /* MPTreeDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C89B70F19B4B4A300DC0A6A /* MPTreeDelegate.m */; };
 		4C89F521182F9FDD0069C73C /* NSString+Commands.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C89F520182F9FDD0069C73C /* NSString+Commands.m */; };
 		4C89F524182FB4740069C73C /* MPAutotypeCommand.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C89F523182FB4740069C73C /* MPAutotypeCommand.m */; };
 		4C8A173D1790AA41008B5C17 /* NSData+Keyfile.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C8A173C1790AA41008B5C17 /* NSData+Keyfile.m */; };
@@ -741,6 +742,8 @@
 		4C888C9616EB754B003D34A1 /* MPActionHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MPActionHelper.m; sourceTree = "<group>"; };
 		4C88C66718D9F8D600F43852 /* MPTemporaryFileStorageCenter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MPTemporaryFileStorageCenter.h; sourceTree = "<group>"; };
 		4C88C66818D9F8D600F43852 /* MPTemporaryFileStorageCenter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MPTemporaryFileStorageCenter.m; sourceTree = "<group>"; };
+		4C89B70E19B4B4A300DC0A6A /* MPTreeDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MPTreeDelegate.h; sourceTree = "<group>"; };
+		4C89B70F19B4B4A300DC0A6A /* MPTreeDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MPTreeDelegate.m; sourceTree = "<group>"; };
 		4C89F51F182F9FDD0069C73C /* NSString+Commands.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+Commands.h"; sourceTree = "<group>"; };
 		4C89F520182F9FDD0069C73C /* NSString+Commands.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+Commands.m"; sourceTree = "<group>"; };
 		4C89F522182FB4740069C73C /* MPAutotypeCommand.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MPAutotypeCommand.h; sourceTree = "<group>"; };
@@ -1346,6 +1349,8 @@
 				4C8B36AA17A6ED4B005E1FF1 /* MPOutlineContextMenuDelegate.m */,
 				4CA334C818AD60D1008A3322 /* MPWindowAssociationsTableViewDelegate.h */,
 				4CA334C918AD60D1008A3322 /* MPWindowAssociationsTableViewDelegate.m */,
+				4C89B70E19B4B4A300DC0A6A /* MPTreeDelegate.h */,
+				4C89B70F19B4B4A300DC0A6A /* MPTreeDelegate.m */,
 			);
 			name = Delegates;
 			sourceTree = "<group>";
@@ -2350,6 +2355,7 @@
 				4C94A0721938DDC20040ABAB /* MPDocument+EditingSession.m in Sources */,
 				4C77C84118E240E000D1C42B /* DDHotKey+Keydata.m in Sources */,
 				4C3C4EA618D6FEA100153127 /* TTTJSONTransformer.m in Sources */,
+				4C89B71019B4B4A300DC0A6A /* MPTreeDelegate.m in Sources */,
 				4C88C66918D9F8D600F43852 /* MPTemporaryFileStorageCenter.m in Sources */,
 				4C245B79176E1E3D0086100E /* HTTPAuthenticationRequest.m in Sources */,
 				4C245B7A176E1E3D0086100E /* HTTPConnection.m in Sources */,

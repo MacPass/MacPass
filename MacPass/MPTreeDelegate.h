@@ -7,7 +7,8 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "KPKTree.h"
 
-@interface MPTreeDelegate : NSObject
+@interface MPTreeDelegate : NSObject <KPKTreeDelegate>
 
 @end
