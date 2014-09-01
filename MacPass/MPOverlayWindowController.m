@@ -47,7 +47,7 @@
   [self.window setOpaque:NO];
   [self.window setHasShadow:NO];
   [[self.textField cell] setBackgroundStyle:NSBackgroundStyleLowered];
-  [[self.imageView cell] setBackgroundStyle:NSBackgroundStyleLowered];
+  [[self.imageView cell] setBackgroundStyle:NSBackgroundStyleDark];
   [[self.imageView cell] setImageAlignment:NSImageAlignCenter];
 }
 
