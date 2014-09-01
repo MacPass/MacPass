@@ -53,6 +53,15 @@
   NSArray *autotypeEntries = [self.root autotypeableChildEntries];
   NSMutableArray *contexts = [[NSMutableArray alloc] initWithCapacity:MAX(1,ceil([autotypeEntries count] / 4.0))];
   for(KPKEntry *entry in autotypeEntries) {
+    /* TODO:
+     
+      KeePass for Windows hase the following options for matching:
+     Title is contained
+     URL is contained
+     Host component is contained
+     A tag is contained
+     
+    */
     /* Test for entry title in window title */
     NSRange titleRange = [windowTitle rangeOfString:entry.title options:NSCaseInsensitiveSearch];
     /* Test for window title in entry title */
