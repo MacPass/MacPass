@@ -67,7 +67,7 @@ NSString *const MPEntryTableModfiedColumnIdentifier = @"MPEntryTableModfiedColum
 
 NSString *const _MPTableImageCellView = @"ImageCell";
 NSString *const _MPTableStringCellView = @"StringCell";
-NSString *const _MPTAbleSecurCellView = @"PasswordCell";
+NSString *const _MPTableSecurCellView = @"PasswordCell";
 
 @interface MPEntryViewController () {
   MPEntryContextMenuDelegate *_menuDelegate;
@@ -278,7 +278,7 @@ NSString *const _MPTAbleSecurCellView = @"PasswordCell";
     }
   }
   else if(isPasswordColum) {
-    view = [tableView makeViewWithIdentifier:_MPTAbleSecurCellView owner:self];
+    view = [tableView makeViewWithIdentifier:_MPTableSecurCellView owner:self];
     NSDictionary *options = @{ NSValueTransformerBindingOption : [NSValueTransformer valueTransformerForName:MPStringLengthValueTransformerName] };
     [[view textField] bind:NSValueBinding toObject:entry withKeyPath:NSStringFromSelector(@selector(password)) options:options];
   }
@@ -731,6 +731,9 @@ NSString *const _MPTAbleSecurCellView = @"PasswordCell";
       break;
   }
 }
+
+#pragma mark periodic UI Update
+
 - (void)_updateExpirationDisplay {
   /* items are all entries */
   [[self.entryArrayController arrangedObjects] enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
