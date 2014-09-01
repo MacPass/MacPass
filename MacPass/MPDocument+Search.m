@@ -70,7 +70,6 @@ NSString *const kMPDocumentSearchResultsKey           = @"kMPDocumentSearchResul
 }
 
 - (void)toggleSearchFlags:(id)sender {
-  static MPEntrySearchFlags oldFlags;
   if(![sender respondsToSelector:@selector(tag)]) {
     return; // We need to read the button tag
   }
@@ -79,23 +78,21 @@ NSString *const kMPDocumentSearchResultsKey           = @"kMPDocumentSearchResul
   }
   MPEntrySearchFlags toggleFlag = [sender tag];
   MPEntrySearchFlags newFlags = MPEntrySearchNone;
-  BOOL isDoublePasswordFlag = (toggleFlag == MPEntrySearchDoublePasswords);
-  BOOL isExpiredFlag = (toggleFlag == MPEntrySearchExpiredEntries);
+  BOOL isSingleFlag = toggleFlag & MPEntrySearchSingleFlags;
   NSButton *button = sender;
   switch([button state]) {
     case NSOffState:
-      toggleFlag ^= MPEntrySearchAllFlags;
-      newFlags = isDoublePasswordFlag ? oldFlags : (self.searchContext.searchFlags & toggleFlag);
+      toggleFlag ^= MPEntrySearchAllCombineableFlags;
+      newFlags = isSingleFlag ? MPEntrySearchNone : (self.searchContext.searchFlags & toggleFlag);
       break;
     case NSOnState:
-      if(isDoublePasswordFlag || isExpiredFlag ) {
-        oldFlags = self.searchContext.searchFlags;
-        newFlags = toggleFlag;//MPEntrySearchDoublePasswords;
+      if(isSingleFlag ) {
+        newFlags = toggleFlag; // This has to be either expired or double passwords
       }
       else {
         /* always mask the double passwords in case another button was pressed */
-        self.searchContext.searchFlags &= ((MPEntrySearchDoublePasswords | MPEntrySearchExpiredEntries) ^ MPEntrySearchAllFlags);
         newFlags = self.searchContext.searchFlags | toggleFlag;
+        newFlags &= (MPEntrySearchSingleFlags ^ MPEntrySearchAllFlags);
       }
       break;
     default:

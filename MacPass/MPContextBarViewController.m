@@ -82,6 +82,7 @@ typedef NS_ENUM(NSUInteger, MPContextTab) {
   [specialMenu addItemWithTitle:NSLocalizedString(@"SELECT_FILTER_WITH_DOTS", "") action:NULL keyEquivalent:@""];
   [[specialMenu itemAtIndex:0] setEnabled:NO];
   [[specialMenu itemAtIndex:0] setTag:MPEntrySearchNone];
+  [[specialMenu itemAtIndex:0] setAction:@selector(toggleSearchFlags:)];
   for(NSInteger iIndex = 0; iIndex < [titles count]; iIndex++) {
     NSMenuItem *item = [[NSMenuItem alloc] initWithTitle:titles[iIndex] action:@selector(toggleSearchFlags:) keyEquivalent:@""];
     [item setTag:specialTags[iIndex]];
