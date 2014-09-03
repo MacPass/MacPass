@@ -1,204 +1,281 @@
-<!DOCTYPE html>
-<html>
-  <head>
-    <meta charset='utf-8'>
-    <meta http-equiv="X-UA-Compatible" content="chrome=1">
-    <link href='https://fonts.googleapis.com/css?family=Chivo:900' rel='stylesheet' type='text/css'>
-    <link rel="stylesheet" type="text/css" href="stylesheets/stylesheet.css" media="screen">
-    <link rel="stylesheet" type="text/css" href="stylesheets/pygment_trac.css" media="screen">
-    <link rel="stylesheet" type="text/css" href="stylesheets/print.css" media="print">
-    <!--[if lt IE 9]>
-    <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
-    <![endif]-->
-    <title>MacPass by mstarke</title>
-  </head>
-
-  <body>
-    <div id="container">
-      <div class="inner">
-
-        <header>
-          <h1>MacPass</h1>
-          <h2>A KeePass client for OS X</h2>
-        </header>
-
-        <section id="downloads" class="clearfix">
-          <a href="https://github.com/mstarke/MacPass/releases" id="view-on-github" class="button"><span>Binaries</span></a>
-          <a href="https://github.com/mstarke/MacPass" id="view-on-github" class="button"><span>View on GitHub</span></a>
-          <a href="https://github.com/mstarke/MacPass/zipball/master" id="download-zip" class="button"><span>Source .zip</span></a>
-        </section>
-
-        <hr>
-
-        <section id="main_content">
-          <h1>
-<a name="macpass" class="anchor" href="#macpass"><span class="octicon octicon-link"></span></a>MacPass</h1>
-
-<p>There are a lot of iOS KeePass tools around but a distinct lack of a good OS X version.
-KeePass can be used via Mono on OS X but lacks vital functionality and feels sluggish.</p>
-
-<p>MacPass is an attempt to create a native OS X port of KeePass.</p>
-
-<h2>
-<a name="disclaimer" class="anchor" href="#disclaimer"><span class="octicon octicon-link"></span></a>Disclaimer</h2>
-
-<p>The Project is in heavy development. Beware that I'm going to shift things around so stuff is going to break. A lot.</p>
-
-<h2>
-<a name="download" class="anchor" href="#download"><span class="octicon octicon-link"></span></a>Download</h2>
-
-<p>Since Github now provides a release feature, I'm trying to upload binaries for all the tags I create along the way.
-Use it with caution, it's unfinished. Really!</p>
-
-<p>All releases can be found at <a href="https://github.com/mstarke/MacPass/releases">Github</a>.</p>
-
-<p>If you want to live dangerously and want to take a look at the master:</p>
-
-<pre><code>git clone https://github.com/mstarke/MacPass
-cd MacPass
-git submodule init
-git submodule update
-</code></pre>
-
-<p>After that you can build and run in Xcode. If you run into signing issues take a look at <a href="https://github.com/mstarke/MacPass/issues/92">Issue #92</a></p>
-
-<h2>
-<a name="known-major-issues" class="anchor" href="#known-major-issues"><span class="octicon octicon-link"></span></a>Known Major Issues</h2>
-
-<ul>
-<li>Binary releases (0.2.x - 0.3.x):
-
-<ul>
-<li>KDBX DeletedObjects are stripped on save. This will break synchronisation features!</li>
-</ul>
-</li>
-<li>Binary releases (since 0.4.x):
-
-<ul>
-<li>KDBX History is only preseverd. Editting doesn't create new history entries</li>
-<li>Default Autotype Sequences will get stored although they shouldn't be stored</li>
-<li>Default Autotype sequence is wrong <code>{TAB}{USERNAME}{TAB}{PASSWORD}{ENTER}</code> instead of <code>{USERNAME}{TAB}{PASSWORD}{ENTER}</code>
-</li>
-</ul>
-</li>
-</ul><h2>
-<a name="system-requirement" class="anchor" href="#system-requirement"><span class="octicon octicon-link"></span></a>System Requirement</h2>
-
-<p>The minimum OS X version required for MacPass is currently 10.8 Mountain Lion.
-Since 10.9 Mavericks is a free upgrade I have no plans to support 10.7 Lion.</p>
-
-<h2>
-<a name="status" class="anchor" href="#status"><span class="octicon octicon-link"></span></a>Status</h2>
-
-<p>The Status can be found on the dedicated <a href="https://github.com/mstarke/MacPass/wiki/Status">Wiki page</a>.</p>
-
-<h2>
-<a name="what-does-it-look-like" class="anchor" href="#what-does-it-look-like"><span class="octicon octicon-link"></span></a>What does it look like?</h2>
-
-<p><img src="https://raw.github.com/mstarke/MacPass/master/Assets/Screenshots/MacPass.png" alt="image"></p>
-
-<p>More Screenshots in the <a href="https://github.com/mstarke/MacPass/wiki/Screenshots">Wiki</a></p>
-
-<h2>
-<a name="alternatives" class="anchor" href="#alternatives"><span class="octicon octicon-link"></span></a>Alternatives</h2>
-
-<p><a href="http://www.keepassx.org">KeePassX</a> is a Qt based KeePass port. The stable 0.4.3 release only supports the version 1 format. The Alpha can read database version 1 and 2 and write version 2 containers rather nicely.
-It's in active development and open source. Since Alpha 4 the random password generator has found it's way back into the Alpha releases, version 0.4.3 includes one as well. The Alpha fully supports all database 2 features and should be stable enough for daily usage. It can import version 1 into a version 2 file but is unable to natively write version 1 files.</p>
-
-<p><a href="http://www.kyuran.be/logiciels/kypass4mac/">KyPass Companion</a> is a native Cocoa port and offers KeePassHttp compatiblity.
-Should be able to read and write database version 1 and 2. It is closed source and currently available in the Mac App Store. It's rather expensive considering the bugs and missing features. Based on the user reviews it should work. Not all version 2 features are supported. It is unable to convert between database versions.</p>
-
-<p><a href="http://s3crets.com/en/help/">S3crets</a> native Cocoa Port with a different approach to displaying the database fully inside a tree.
-It is able to read and write database version 1 and 2. Not all database features are fully supported.</p>
-
-<h2>
-<a name="help" class="anchor" href="#help"><span class="octicon octicon-link"></span></a>Help</h2>
-
-<p>Some questions might be ansered in the <a href="https://github.com/mstarke/MacPass/wiki/FAQ">FAQ</a></p>
-
-<p>Another place to look is the IRC channel #macpass on irc.freenode.org</p>
-
-<h2>
-<a name="license" class="anchor" href="#license"><span class="octicon octicon-link"></span></a>License</h2>
-
-<p>MacPass KeePass compatible client for OS X
-Copyright (c) 2012-2013  Michael Starke, HicknHack Software GmbH</p>
-
-<p>This program is free software: you can redistribute it and/or modify
-it under the terms of the GNU General Public License as published by
-the Free Software Foundation, either version 3 of the License, or
-(at your option) any later version.</p>
-
-<p>This program is distributed in the hope that it will be useful,
-but WITHOUT ANY WARRANTY; without even the implied warranty of</p>
-
-<p>MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-GNU General Public License for more details.</p>
-
-<p>You should have received a copy of the GNU General Public License
-along with this program.  If not, see <a href="http://www.gnu.org/licenses/">http://www.gnu.org/licenses/</a>.</p>
-
-<h2>
-<a name="contribtuions" class="anchor" href="#contribtuions"><span class="octicon octicon-link"></span></a>Contribtuions</h2>
-
-<p><a href="https://iiro.jappinen.me">Iiro Jäppinen</a> MacPass icon</p>
-
-<p><a href="mailto:gil@panix.com">Gil André</a> French localizations</p>
-
-<p><a href="mailto:nmadura@umich.edu">Nathaniel Madura</a> Refacotrings, first create Database </p>
-
-<p><a href="https://github.com/lotz">Kurt Legerlotz</a> Settings to open or copy URL on double click</p>
-
-<p><a href="mailto:amd@gurge.com">Adam Doppelt</a> whitespace polish on EntryInspectorView, Autosave table sorting. Default to sort by title.</p>
-
-<p><a href="http://www.makegames.co.uk/">Stephen Taylor</a> Fixed tab ordering</p>
-
-<p><a href="mailto:me@andrewschleifer.name">Andrew Schleifer</a> Enable fullscreen option for document windows, Centralise the Validation, Only enable password entry fields when option is checked</p>
-
-<p><a href="http://www.anamica.de/">Frank Enderle</a> Cmd+F now marks the text of the search field if the filterbar is already visible and sets the focus. Set remaining password fields to fixed width font.</p>
-
-<p><a href="mailto:jhalstead85@gmail.com">Josh Halstead</a> Update Readme (typo)</p>
-
-<p><a href="https://github.com/cseng">Chhom Seng</a> Fixed issue with blank outline and entry views if the inspector was hidden before unlocking the database. Implemented context menu validation for entry context menu.</p>
-
-<h2>
-<a name="copyright" class="anchor" href="#copyright"><span class="octicon octicon-link"></span></a>Copyright</h2>
-
-<p>This Project is based upon the following work:</p>
-
-<p><a href="https://github.com/robbiehanson/KissXML">KissXML</a> Copyright 2012 Robbie Hanson. All rights reserved.</p>
-
-<p><a href="https://github.com/MiniKeePass/MiniKeePass">MiniKeePass</a> Copyright 2011 Jason Rush and John Flanagan. All rights reserved.</p>
-
-<p><a href="https://github.com/mpowrie/KeePassLib">KeePass Database Library</a> Copyright 2010 Qiang Yu. All rights reserved.</p>
-
-<p><a href="https://github.com/Perspx/PXSourceList">PXSourceList</a> Copyright 2011, Alex Rozanski. All rights reserved.</p>
-
-<p><a href="https://github.com/robbiehanson/CocoaHTTPServer">CocoaHTTPServer</a> Copyright 2011, Deusty, LLC. All rights reserved.</p>
-
-<p><a href="https://github.com/karelia/SecurityInterface">KSPasswordField</a> Copyright 2012 Mike Abdullah, Karelia Software. All rights reserved.</p>
-
-<p><a href="https://github.com/davedelong/DDHotKey">DDHotKey</a> Copyright <a href="http://www.davedelong.com">Dave DeLong</a>. All rights reserved.</p>
-
-<p><a href="http://sparkle.andymatuschak.org">Sparkle</a> Copyright 2006 Andy Matuschak</p>
-
-<p><a href="https://github.com/mattt/TransformerKit">TransformerKit</a> Copyright 2012 <a href="http://mattt.me/">Mattt Thompson</a>. All rights reseverd</p>
-
-<p>See submodules for additional Licenses</p>
-
-<h2>
-<a name="feedback" class="anchor" href="#feedback"><span class="octicon octicon-link"></span></a>Feedback</h2>
-
-<p><a href="http://flattr.com/thing/1550529/mstarkeMacPass-on-GitHub"><img src="http://api.flattr.com/button/flattr-badge-large.png" alt="Flattr this"></a></p>
-        </section>
-
-        <footer>
-          MacPass is maintained by <a href="https://github.com/mstarke">mstarke</a><br>
-          This page was generated by <a href="http://pages.github.com">GitHub Pages</a>. Tactile theme by <a href="https://twitter.com/jasonlong">Jason Long</a>.
-        </footer>
-
-        
+---
+layout: default
+title: MacPass | KeePass Port for Mac OS X 
+---
+<!-- Fixed navbar -->
+    <div id="navigation" class="navbar-default navbar-top">
+      <div class="container">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="">Mac<b>Pass</b></a>
+        </div>
+        <div class="navbar-collapse collapse">
+          <ul class="nav navbar-nav pull-right">
+            <li><a href="https://www.facebook.com/sharer/sharer.php?u=http://bit.ly/1py5q3n" class="fa fa-facebook-square" style="font-size:larger"></a></li>
+            <li><a href="https://twitter.com/home?status=Beautiful%20and%20free%20password%20manager%20for%20your%20Mac.%20http://bit.ly/1py5q3n" class="fa fa-twitter-square" style="font-size:larger"></a></li>
+            <li><a href="https://plus.google.com/share?url=http://bit.ly/1py5q3n" class="fa fa-google-plus-square" style="font-size:larger"></a></li>
+            <li><a href="https://github.com/mstarke/MacPass" class="fa fa-github-square" style="font-size:larger"></a></li>
+            
+          </ul>
+        </div><!--/.nav-collapse -->
       </div>
     </div>
-  </body>
-</html>
+
+
+<section id="home" name="home"></section>
+<div id="headerwrap" style="padding-top:0px">
+    <div class="container">
+        <div class="row centered">
+            <div class="col-lg-12">
+                <h1>Mac<b>Pass</b></h1>
+                <br>
+            </div>
+            
+            <div class="col-lg-4">
+
+            </div>
+            <div class="col-lg-4">
+                <img class="img-responsive" style="margin: 0 auto;" src="assets/img/icon-512.png" alt="">
+                <br>
+            </div>
+            <div class="col-lg-4">
+                
+            </div>
+        </div>
+        <div class="row centered" style="margin-bottom:4%">
+            <h3>A native OS X KeePass client</h3>
+        </div>
+    </div> <!--/ .container -->
+</div><!--/ #headerwrap -->    
+
+<div id="intro" class="white-container">
+    <div class="container">
+        <div class="row centered">
+            <h1>Lock tight, on every level</h1>
+            <br>
+            <br>
+            <br>
+            <div class="col-lg-4">
+                <span class="fa fa-lock" style="font-size:128pt"></span>
+                <h3>Secure</h3>
+                <p>Built on the tried-and-tested KeePass framework.</p>
+            </div>
+            <div class="col-lg-4">
+                <span class="fa fa-apple" style="font-size:128pt"></span>
+                <h3>Native</h3>
+                <p>Ported for OS X from the ground up.</p>
+            </div>
+            <div class="col-lg-4">
+                <span class="fa fa-github" style="font-size:128pt"></span>
+                <h3>Open Source</h3>
+                <p>Free to use. Free to change.</p>
+            </div>
+        </div>
+        <br>
+    </div> <!--/ .container -->
+</div><!--/ #locktightwrap -->
+
+<div id="" class="lite-container">
+    <br>
+    
+    <!-- Release wrap -->
+    <div class="container" style="padding:0%">
+        <div class="row centered">
+            <div class="col-lg-12">
+            <h3>Get the latest pre-release.</h3>
+            <br>
+                <p><a class="btn btn-primary btn-large" role="button" href="https://github.com/mstarke/MacPass/releases/download/0.4.1-alpha/MacPass-0.4.1-alpha.zip" style="font-size:larger"><span class="fa fa-download" style="font-size:larger"></span> &nbsp 0.4.1 alpha</a></p>
+            </div>
+        </div>
+        <br>
+    </div> <!--/ .container -->	
+</div> <!-- #introwrap -->
+    
+    
+
+<!-- FEATURE 1 WRAP -->
+<div id="features" class="white-container" style="padding-top:1%; padding-bottom:2%">
+    <div class="container">
+        <div class="row">
+            <h1 class="centered">Why MacPass?</h1>
+            <br>
+            <br>
+            <div class="col-lg-7">
+                <img class="img-responsive" src="assets/img/Locked.png" alt="">
+            </div>
+            
+            <div class="col-lg-5">
+                <h3>It's like a safe for your keys</h3>
+                <br>
+            <!-- ACCORDION -->
+                <div class="accordion ac" id="accordion2">
+                    <div class="accordion-group">
+                        <div class="accordion-heading">
+                            <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion2" href="#collapseOne">
+                            <!-- It's like a safe for your keys -->
+                            </a>
+                        </div><!-- /accordion-heading -->
+                        <div id="collapseOne" class="accordion-body collapse in">
+                            <div class="accordion-inner">
+                            <p style="font-size:larger"><br>MacPass keeps all of your passwords in an encrypted .kdb or .kdbx database.<br> <br>Use a strong password or a keyfile to gain access, or use both just to be sure.</p>
+                            </div><!-- /accordion-inner -->
+                        </div><!-- /collapse -->
+                    </div><!-- /accordion-group -->
+                    <br>
+    
+                    <div class="accordion-group">
+                        <div class="accordion-heading">
+                            <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion2" href="#collapseTwo">
+                            Get <b>clever</b>
+                            </a>
+                        </div>
+                        <div id="collapseTwo" class="accordion-body collapse">
+                            <div class="accordion-inner">
+                            <p><br>Encrypt your keyfile on a USB dongle.<br> <br>Carry it around with you like a true cypherpunk. <br> </p>
+                            </div><!-- /accordion-inner -->
+                        </div><!-- /collapse -->
+                    </div><!-- /accordion-group -->
+                </div><!-- Accordion -->
+            </div>
+        </div>
+    </div><!--/ .container -->
+</div><!--/ #features -->
+
+
+<!-- FEATURE 2 WRAP -->
+<div id="" class="lite-container" style="padding-bottom:2%">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-5">
+                <h3>Hard to break, simple to use</h3>
+                <br>
+            <!-- ACCORDION -->
+                <div class="accordion ac" id="accordion3">
+                    <div class="accordion-group">
+                        <div class="accordion-heading">
+                            <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion3" href="#collapse">
+                            </a>
+                        </div><!-- /accordion-heading -->
+                        <div id="collapse" class="accordion-body collapse in">
+                            <div class="accordion-inner">
+                            <p style="font-size:larger"><br>Keeping your passwords private shouldn't be a chore,<br> it should be the default. <br> <br> Add entries to your database with a single click, and remove them just as easily. </p>
+                            </div><!-- /accordion-inner -->
+                        </div><!-- /collapse -->
+                    </div><!-- /accordion-group -->
+                    <br>
+                    <div class="accordion-group">
+                        <div class="accordion-heading">
+                            <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion2" href="#collapseThree" style="font-size:larger">
+                            It <b>looks</b> Mac
+                            </a>
+                        </div>
+                        <div id="collapseThree" class="accordion-body collapse">
+                            <div class="accordion-inner">
+                            <p><br>MacPass is being built with the Cocoa API, so it looks and feels like a built-in app.<br> </p>
+                            </div><!-- /accordion-inner -->
+                        </div><!-- /collapse -->
+                    </div><!-- /accordion-group -->
+                </div><!-- Accordion -->
+            </div>
+            <div class="col-lg-7">
+                <img class="img-responsive" src="assets/img/MacPass.png" alt="">
+            </div>				
+        </div>
+    </div><!--/ .container -->
+</div><!--/ feature 2 -->
+
+<!-- FEATURE 3 WRAP -->
+<div id="" class="white-container">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-7">
+                <img class="img-responsive" src="assets/img/passwordgenerator.png" alt="">
+            </div>
+            
+            <div class="col-lg-5">
+                <h3>Make safer passwords</h3>
+                <br>
+            <!-- ACCORDION -->
+                <div class="accordion ac" id="accordion2">
+                    <div class="accordion-group">
+                        <div class="accordion-heading">
+                            <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion2" href="#collapseOne">
+                            <!-- It's like a safe for your keys -->
+                            </a>
+                        </div><!-- /accordion-heading -->
+                        <div id="collapseOne" class="accordion-body collapse in">
+                            <div class="accordion-inner">
+                            <p style="font-size:larger"><br>The in-app generator helps create passwords that nobody can guess. <br><br> No need to use the same password accross all your accounts anymore.</p>
+                            </div><!-- /accordion-inner -->
+                        </div><!-- /collapse -->
+                    </div><!-- /accordion-group -->
+                    <br>
+    
+                    <div class="accordion-group">
+                        <div class="accordion-heading">
+                            <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion2" href="#collapseFour" style="font-size:larger">
+                            Go <b>mobile</b>
+                            </a>
+                        </div>
+                        <div id="collapseFour" class="accordion-body collapse">
+                            <div class="accordion-inner">
+                            <p><br>MacPass is only for OS X, but the databases and keyfiles it uses are compatible with any KeePass client.<br> <br>Check out the <a href="http://keepass.info/download.html">official KeePass website</a> for a list of ports.<br> </p>
+                            </div><!-- /accordion-inner -->
+                        </div><!-- /collapse -->
+                    </div><!-- /accordion-group -->
+                    <br>			
+                </div><!-- Accordion -->
+            </div>
+        </div>
+    </div><!--/ .container -->
+</div><!--/ #features -->
+
+
+
+
+    <div class="container" style="padding:3%; padding-bottom:1%">
+        <div class="row centered">
+
+            <div class="col-lg-12">
+            <h1>Contribute</h1>
+            <br>
+            <h4>Don't take our word for it. <br><br>Check out the source code. Make MacPass better.</h4>
+            <br>
+            <br>
+                <p><a class="btn btn-success btn-large" role="button" href="https://github.com/mstarke/MacPass" style="font-size:larger"><span class="fa fa-code-fork" style="font-size:larger"></span>
+&nbsp Fork On GitHub</a></p>
+            </div>
+        </div>
+        <br>
+    </div> <!--/ .container -->    
+<section id="contact" name="contact"></section>
+<div id="footerwrap">
+    <div class="container">
+        <div class="row centered">
+            <div class="col-lg-12">
+                <h1>Share</h1>
+                <br>
+                <br>
+            </div>
+        </div>
+        <div class="centered">
+            <div class="col-lg-12">
+                <ul class="nav row">
+                   <a href="https://www.facebook.com/sharer/sharer.php?u=http://bit.ly/1py5q3n" class="fa fa-facebook-square" style="font-size:100pt"></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="https://twitter.com/home?status=Beautiful%20and%20free%20password%20manager%20for%20your%20Mac.%20http://bit.ly/1py5q3n" class="fa fa-twitter-square" style="font-size:100pt"></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="https://plus.google.com/share?url=http://bit.ly/1py5q3n" class="fa fa-google-plus-square" style="font-size:100pt"></a>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- 
+<div id="c">
+    <div class="container">
+        <p></p>
+    
+    </div>
+</div>
+-->
