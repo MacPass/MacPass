@@ -31,7 +31,7 @@ typedef NS_ENUM(NSUInteger, MPPasswordRating) {
  Skale 0-90
  */
 #define MIN_PASSWORD_LENGTH 1
-#define MAX_PASSWORD_LENGTH 64
+#define MAX_PASSWORD_LENGTH 256
 
 @interface MPPasswordCreatorViewController () {
   MPPasswordCharacterFlags _characterFlags;
