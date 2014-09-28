@@ -7,6 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "KPHServer.h"
 
 @class KPKEntry;
 @class MPDocument;
@@ -16,7 +17,7 @@
  *  This shared instance handles creating of config entries,
  *  and abstracts all open documents for the KeePassHttp interface.
  */
-@interface MPDocumentQueryService : NSObject
+@interface MPDocumentQueryService : NSObject <KPHDelegate>
 
 /**
  *  The MPDocument we currently use for our queries
@@ -33,7 +34,5 @@
  *  @return shared MPDocumentQueryService instance
  */
 + (MPDocumentQueryService *)sharedService;
-
-- (KPKEntry *)createConfigurationEntry;
 
 @end
