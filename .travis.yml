@@ -1,2 +1,3 @@
 language: objective-c
-xctool -project MacPass.xcodeproj -scheme MacPassTests build test
+xcode_project: MacPass.xcodeproj
+xcode_scheme: MacPass test
