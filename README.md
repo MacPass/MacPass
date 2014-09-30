@@ -8,6 +8,8 @@ MacPass is an attempt to create a native OS X port of KeePass.
 ##Disclaimer
 The Project is in heavy development. Beware that I'm going to shift things around so stuff is going to break. A lot.
 
+[![Build Status](https://travis-ci.org/viegelinsch/MacPass.svg?branch=master)](https://travis-ci.org/viegelinsch/MacPass)
+
 ##Download
 
 Since Github now provides a release feature, I'm trying to upload binaries for all the tags I create along the way.
