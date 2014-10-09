@@ -248,7 +248,7 @@
 		4CC29A02176F9D140050C939 /* MPTestAssociateRequestHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CC29A01176F9D140050C939 /* MPTestAssociateRequestHandler.m */; };
 		4CC3AABD175F4983003EF01B /* HNHRoundedTextFieldCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CC3AAB9175F4983003EF01B /* HNHRoundedTextFieldCell.m */; };
 		4CC5D36418A1162D00AF7FA8 /* Sparkle.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4CC5D35B18A1162100AF7FA8 /* Sparkle.framework */; };
-		4CC5D36718A1333000AF7FA8 /* Sparkle.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 4CC5D35B18A1162100AF7FA8 /* Sparkle.framework */; };
+		4CC5D36718A1333000AF7FA8 /* Sparkle.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 4CC5D35B18A1162100AF7FA8 /* Sparkle.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
 		4CC6DB7A17D23719002C6091 /* KPKNode+IconImage.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CC6DB7917D23719002C6091 /* KPKNode+IconImage.m */; };
 		4CC6DB7D17D23DCE002C6091 /* KPKUTIs.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CC6DB7C17D23DCE002C6091 /* KPKUTIs.m */; };
 		4CC7EA1B17807E7E0089D4F3 /* HNHRoundedTextFieldCellHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CC7EA1A17807E7E0089D4F3 /* HNHRoundedTextFieldCellHelper.m */; };
@@ -2073,7 +2073,7 @@
 			isa = PBXProject;
 			attributes = {
 				CLASSPREFIX = MP;
-				LastUpgradeCheck = 0510;
+				LastUpgradeCheck = 0600;
 				ORGANIZATIONNAME = "HicknHack Software GmbH";
 				TargetAttributes = {
 					4C77E36115B84A240093A587 = {
@@ -2787,9 +2787,11 @@
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				CODE_SIGN_IDENTITY = "Developer ID Application";
 				COPY_PHASE_STRIP = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
@@ -2824,10 +2826,12 @@
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				CODE_SIGN_IDENTITY = "Developer ID Application";
 				COPY_PHASE_STRIP = YES;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
 				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
