@@ -1781,7 +1781,7 @@
 			children = (
 				4CC5D35B18A1162100AF7FA8 /* Sparkle.framework */,
 				4CC5D35D18A1162100AF7FA8 /* Sparkle Test App.app */,
-				4CC5D35F18A1162100AF7FA8 /* Sparkle Unit Tests.octest */,
+				4CC5D35F18A1162100AF7FA8 /* Sparkle Unit Tests.xctest */,
 				4CC5D36118A1162100AF7FA8 /* BinaryDelta */,
 				4CC5D36318A1162100AF7FA8 /* Autoupdate.app */,
 			);
@@ -2126,10 +2126,10 @@
 			remoteRef = 4CC5D35C18A1162100AF7FA8 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
-		4CC5D35F18A1162100AF7FA8 /* Sparkle Unit Tests.octest */ = {
+		4CC5D35F18A1162100AF7FA8 /* Sparkle Unit Tests.xctest */ = {
 			isa = PBXReferenceProxy;
 			fileType = wrapper.cfbundle;
-			path = "Sparkle Unit Tests.octest";
+			path = "Sparkle Unit Tests.xctest";
 			remoteRef = 4CC5D35E18A1162100AF7FA8 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
@@ -2749,7 +2749,7 @@
 				GCC_PREFIX_HEADER = "MacPassTests/MacPassTests-Prefix.pch";
 				INFOPLIST_FILE = "MacPassTests/MacPassTests-Info.plist";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SDKROOT = macosx10.8;
+				SDKROOT = macosx;
 				TEST_HOST = "$(BUNDLE_LOADER)";
 			};
 			name = Debug;
@@ -2772,7 +2772,7 @@
 				GCC_PREFIX_HEADER = "MacPassTests/MacPassTests-Prefix.pch";
 				INFOPLIST_FILE = "MacPassTests/MacPassTests-Info.plist";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SDKROOT = macosx10.8;
+				SDKROOT = macosx;
 				TEST_HOST = "$(BUNDLE_LOADER)";
 			};
 			name = Release;
@@ -2810,7 +2810,7 @@
 				MACOSX_DEPLOYMENT_TARGET = 10.8;
 				ONLY_ACTIVE_ARCH = YES;
 				OTHER_LDFLAGS = "-lxml2";
-				SDKROOT = macosx10.8;
+				SDKROOT = macosx;
 			};
 			name = Debug;
 		};
@@ -2840,7 +2840,7 @@
 				HEADER_SEARCH_PATHS = "$(SDKROOT)/usr/include/libxml2/**";
 				MACOSX_DEPLOYMENT_TARGET = 10.8;
 				OTHER_LDFLAGS = "-lxml2";
-				SDKROOT = macosx10.8;
+				SDKROOT = macosx;
 			};
 			name = Release;
 		};
@@ -2860,7 +2860,7 @@
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
-				SDKROOT = macosx10.8;
+				SDKROOT = macosx;
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -2881,7 +2881,7 @@
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
-				SDKROOT = macosx10.8;
+				SDKROOT = macosx;
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;
