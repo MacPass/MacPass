@@ -128,7 +128,9 @@ This Project is based upon the following work:
 
 [Sparkle](http://sparkle.andymatuschak.org) Copyright 2006 Andy Matuschak
 
-[TransformerKit](https://github.com/mattt/TransformerKit) Copyright 2012 [Mattt Thompson](http://mattt.me/). All rights reseverd
+[TransformerKit](https://github.com/mattt/TransformerKit) Licensed under MIT license. Copyright 2012 [Mattt Thompson](http://mattt.me/). All rights reseverd
+
+[MJGFoundation](https://github.com/mstarke/MJGFoundation) Licensed under BSD 2-Clause License. Copyright 2011 [Matt Galloway](http://www.galloway.me.uk/). All rights reserved.
 
 See submodules for additional Licenses
 
