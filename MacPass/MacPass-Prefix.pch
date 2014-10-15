@@ -3,6 +3,7 @@
 //
 
 #ifdef __OBJC__
+  #define __MAC_OS_X_VERSION_SOFT_MAX_REQUIRED __MAC_10_8
+  #import "MJGAvailability.h"
   #import <Cocoa/Cocoa.h>
-//#import "KPKAutotypeCommands.h"
 #endif

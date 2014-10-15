@@ -689,6 +689,7 @@
 		4C701CBB178618A000581B88 /* 12_RemoteTemplate.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = 12_RemoteTemplate.pdf; sourceTree = "<group>"; };
 		4C70D0FE179092F200652EE9 /* KPKCompositeKey.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KPKCompositeKey.h; sourceTree = "<group>"; };
 		4C70D0FF179092F200652EE9 /* KPKCompositeKey.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = KPKCompositeKey.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
+		4C725F3F19EEF4FC00191B01 /* MJGAvailability.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MJGAvailability.h; sourceTree = "<group>"; };
 		4C74DD05177BD1640034A9DB /* MPCustomFieldView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MPCustomFieldView.h; sourceTree = "<group>"; };
 		4C74DD06177BD1640034A9DB /* MPCustomFieldView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MPCustomFieldView.m; sourceTree = "<group>"; };
 		4C76155F1764C0590015A1A6 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/GeneralSettings.xib; sourceTree = "<group>"; };
@@ -1135,6 +1136,7 @@
 		4C217D8E17A32BCF00609FAA /* Common */ = {
 			isa = PBXGroup;
 			children = (
+				4C725F3F19EEF4FC00191B01 /* MJGAvailability.h */,
 				4C569D9C17652AC800595B62 /* MPConstants.h */,
 				4C569D9D17652B0600595B62 /* MPConstants.m */,
 				4CCEDE2C179F2122008402BE /* MPNotifications.h */,
