@@ -46,7 +46,13 @@ static NSString *allowedCharactersString(MPPasswordCharacterFlags flags) {
   NSMutableString *password = [NSMutableString stringWithCapacity:length];
   NSString *characters = allowedCharactersString(allowedCharacters);
   while([password length] < length) {
-    [password appendString:[characters randomCharacter]];
+    NSString *randomCharacter = [characters randomCharacter];
+    if([randomCharacter length] > 0) {
+      [password appendString:randomCharacter];
+    }
+    else {
+      break;
+    }
   }
   return password;
 }
@@ -69,6 +75,9 @@ static NSString *allowedCharactersString(MPPasswordCharacterFlags flags) {
 }
 
 - (NSString *)randomCharacter {
+  if([self length] == 0) {
+    return nil;
+  }
   NSData *data = [NSData dataWithRandomBytes:sizeof(unsigned long)];
   NSUInteger randomIndex;
   [data getBytes:&randomIndex length:[data length]];
