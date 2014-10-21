@@ -12,6 +12,7 @@
 
 @property (copy, readonly) NSString *generatedPassword;
 @property (weak) id closeTarget;
+@property (assign) BOOL allowsEntryDefaults;
 
 /**
  *  Should be called to reset the generator

@@ -12,14 +12,6 @@
 #import "MPUniqueCharactersFormatter.h"
 #import "MPSettingsHelper.h"
 
-typedef NS_ENUM(NSUInteger, MPPasswordRating) {
-  MPPasswordTerrible = 10,
-  MPPasswordWeak = 20,
-  MPPasswordOk = 30,
-  MPPasswordGood = 50,
-  MPPasswordStrong = 60
-};
-
 /*
  
  0 - 20 Terrible
@@ -30,11 +22,25 @@ typedef NS_ENUM(NSUInteger, MPPasswordRating) {
  
  Skale 0-90
  */
+typedef NS_ENUM(NSUInteger, MPPasswordRating) {
+  MPPasswordTerrible = 10,
+  MPPasswordWeak = 20,
+  MPPasswordOk = 30,
+  MPPasswordGood = 50,
+  MPPasswordStrong = 60
+};
+
+typedef NS_ENUM(NSUInteger, MPDefaultDomain) {
+  MPEntryDomain,
+  MPGlobalDomain,
+};
+
 #define MIN_PASSWORD_LENGTH 1
 #define MAX_PASSWORD_LENGTH 256
 
 @interface MPPasswordCreatorViewController () {
   MPPasswordCharacterFlags _characterFlags;
+  MPDefaultDomain _defaultDomain;
 }
 @property (nonatomic, copy) NSString *password;
 @property (copy) NSString *generatedPassword;
@@ -75,13 +81,15 @@ typedef NS_ENUM(NSUInteger, MPPasswordRating) {
     _useCustomString = [[NSUserDefaults standardUserDefaults] boolForKey:kMPSettingsKeyPasswordUseCustomString];
     _customString = [[NSUserDefaults standardUserDefaults] stringForKey:kMPSettingsKeyPasswordCustomString];
     _entropy = 0.0;
+    _defaultDomain = MPGlobalDomain;
+    _allowsEntryDefaults = NO;
   }
   return self;
 }
 
 - (void)awakeFromNib {
   [self.setDefaultButton setEnabled:NO];
-    
+  
   [self.passwordLengthSlider setMinValue:MIN_PASSWORD_LENGTH];
   [self.passwordLengthSlider setMaxValue:MAX_PASSWORD_LENGTH];
   [self.passwordLengthSlider setContinuous:YES];
@@ -93,15 +101,15 @@ typedef NS_ENUM(NSUInteger, MPPasswordRating) {
   id formatter = [[MPUniqueCharactersFormatter alloc] init];
   [self. customCharactersTextField setFormatter:formatter];
   
-  [self.passwordLengthSlider bind:NSValueBinding toObject:self withKeyPath:@"passwordLength" options:nil];
-  [self.passwordLengthTextField bind:NSValueBinding toObject:self withKeyPath:@"passwordLength" options:nil];
-  [self.passwordTextField bind:NSValueBinding toObject:self withKeyPath:@"password" options:nil];
+  [self.passwordLengthSlider bind:NSValueBinding toObject:self withKeyPath:NSStringFromSelector(@selector(passwordLength)) options:nil];
+  [self.passwordLengthTextField bind:NSValueBinding toObject:self withKeyPath:NSStringFromSelector(@selector(passwordLength)) options:nil];
+  [self.passwordTextField bind:NSValueBinding toObject:self withKeyPath:NSStringFromSelector(@selector(password)) options:nil];
   
-  [self.entropyIndicator bind:NSValueBinding toObject:self withKeyPath:@"entropy" options:nil];
-  [self.entropyTextField bind:NSValueBinding toObject:self withKeyPath:@"entropy" options:nil];
+  [self.entropyIndicator bind:NSValueBinding toObject:self withKeyPath:NSStringFromSelector(@selector(entropy)) options:nil];
+  [self.entropyTextField bind:NSValueBinding toObject:self withKeyPath:NSStringFromSelector(@selector(entropy)) options:nil];
   
   [self.customCharactersTextField setDelegate:self];
-  [self.customButton bind:NSValueBinding toObject:self withKeyPath:@"useCustomString" options:nil];
+  [self.customButton bind:NSValueBinding toObject:self withKeyPath:NSStringFromSelector(@selector(useCustomString)) options:nil];
   
   NSString *copyToPasteBoardKeyPath = [MPSettingsHelper defaultControllerPathForKey:kMPSettingsKeyCopyGeneratedPasswordToClipboard];
   NSUserDefaultsController *defaultsController = [NSUserDefaultsController sharedUserDefaultsController];
@@ -112,12 +120,26 @@ typedef NS_ENUM(NSUInteger, MPPasswordRating) {
   [self.lowerCaseButton setTag:MPPasswordCharactersLowerCase];
   [self.symbolsButton setTag:MPPasswordCharactersSymbols];
   
+  [self updateResponderChain];
+  [self _updateSetDefaultButton];
   [self reset];
 }
 
 - (void)reset {
   [self _resetCharacters];
   [self _generatePassword:self];
+}
+
+#pragma mark -
+#pragma mark Events
+
+- (void)flagsChanged:(NSEvent *)theEvent {
+  if(!self.allowsEntryDefaults) {
+    return;
+  }
+  BOOL altIsDown = (0 != ([NSEvent modifierFlags] & NSAlternateKeyMask));
+  _defaultDomain = altIsDown ? MPEntryDomain : MPGlobalDomain;
+  [self _updateSetDefaultButton];
 }
 
 #pragma mark -
@@ -202,6 +224,20 @@ typedef NS_ENUM(NSUInteger, MPPasswordRating) {
 
 #pragma mark -
 #pragma mark Helper
+
+- (void)_updateSetDefaultButton {
+  
+  switch (_defaultDomain) {
+    case MPEntryDomain:
+      [self.setDefaultButton setTitle:NSLocalizedString(@"SET_DEFAULT_ENTRY_PASSWORD_RULE", "")];
+      break;
+      
+    case MPGlobalDomain:
+    default:
+      [self.setDefaultButton setTitle:NSLocalizedString(@"SET_DEFAULT_GENERAL_PASSWORD_RULE", "")];
+      break;
+  }
+}
 
 - (void)_resetCharacters {
   if(_useCustomString) {
