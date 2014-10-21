@@ -79,6 +79,8 @@ APPKIT_EXTERN NSString *const kMPSettingsKeyPasswordCharacterFlags;
 APPKIT_EXTERN NSString *const kMPSettingsKeyPasswordUseCustomString;
 APPKIT_EXTERN NSString *const kMPSettingsKeyPasswordCustomString;
 
+APPKIT_EXTERN NSString *const kMPSettingsKeyPasswordDefaultsForEntry;
+
 typedef NS_ENUM(NSUInteger, MPPasswordEncoding) {
   MPPasswordEncodingUTF8,
   MPPasswordEncodingASCII,

@@ -50,6 +50,8 @@ NSString *const kMPSettingsKeyPasswordCharacterFlags                  = @"Passwo
 NSString *const kMPSettingsKeyPasswordUseCustomString                 = @"PasswordUseCustomString";
 NSString *const kMPSettingsKeyPasswordCustomString                    = @"PasswordCustomString";
 
+NSString *const kMPSettingsKeyPasswordDefaultsForEntry                = @"PasswordDefaultsForEntry";
+
 NSString *const kMPSettingsKeyDoubleClickURLAction                    = @"DoubleClickURLAction";
 NSString *const kMPSettingsKeyDoubleClickTitleAction                  = @"DoubleClickTitleAction";
 
