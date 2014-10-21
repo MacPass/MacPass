@@ -70,6 +70,7 @@ NSString *const _MPTableStringCellView = @"StringCell";
 NSString *const _MPTableSecurCellView = @"PasswordCell";
 
 @interface MPEntryViewController () {
+  /* TODO unify delegation */
   MPEntryContextMenuDelegate *_menuDelegate;
   BOOL _isDisplayingContextBar;
   BOOL _didUnlock;
@@ -170,7 +171,7 @@ NSString *const _MPTableSecurCellView = @"PasswordCell";
   [self.entryTable setAutosaveTableColumns:YES];
   
   NSString *parentNameKeyPath = [[NSString alloc] initWithFormat:@"%@.%@", NSStringFromSelector(@selector(parent)), NSStringFromSelector(@selector(name))];
-	NSSortDescriptor *titleColumSortDescriptor = [NSSortDescriptor sortDescriptorWithKey:NSStringFromSelector(@selector(title))ascending:YES selector:@selector(localizedCaseInsensitiveCompare:)];
+  NSSortDescriptor *titleColumSortDescriptor = [NSSortDescriptor sortDescriptorWithKey:NSStringFromSelector(@selector(title))ascending:YES selector:@selector(localizedCaseInsensitiveCompare:)];
   NSSortDescriptor *userNameSortDescriptor = [NSSortDescriptor sortDescriptorWithKey:NSStringFromSelector(@selector(username)) ascending:YES selector:@selector(localizedCaseInsensitiveCompare:)];
   NSSortDescriptor *urlSortDescriptor = [NSSortDescriptor sortDescriptorWithKey:NSStringFromSelector(@selector(url)) ascending:YES selector:@selector(localizedCaseInsensitiveCompare:)];
   NSSortDescriptor *groupnameSortDescriptor = [NSSortDescriptor sortDescriptorWithKey:parentNameKeyPath ascending:YES selector:@selector(localizedCaseInsensitiveCompare:)];
@@ -336,6 +337,19 @@ NSString *const _MPTableSecurCellView = @"PasswordCell";
   else {
     document.selectedEntry = [self.entryArrayController arrangedObjects][[self.entryTable selectedRow]];
   }
+}
+
+#pragma mark MPTargetItemResolving
+- (KPKNode *)targetItemForAction {
+  NSInteger activeRow = [self.entryTable clickedRow];
+  /* Fallback to selection e.g. for toolbar actions */
+  if(activeRow < 0 ) {
+    activeRow = [self.entryTable selectedRow];
+  }
+  if(activeRow >= 0 && activeRow <= [[self.entryArrayController arrangedObjects] count]) {
+    return [self.entryArrayController arrangedObjects][activeRow];
+  }
+  return nil;
 }
 
 #pragma mark MPDocument Notifications
@@ -535,28 +549,9 @@ NSString *const _MPTableSecurCellView = @"PasswordCell";
 
 #pragma mark Validation
 - (BOOL)validateMenuItem:(NSMenuItem *)menuItem {
+  /* Validation is soley handeld in the document */
   MPDocument *document = [[self windowController] document];
-  if(![document validateMenuItem:menuItem]) {
-    return NO;
-  }
-  
-  KPKEntry *targetEntry = [self _clickedOrSelectedEntry];
-  MPActionType actionType = [MPActionHelper typeForAction:[menuItem action]];
-  
-  switch (actionType) {
-    case MPActionCopyUsername:
-      return  [targetEntry.username length] > 0;
-      
-    case MPActionCopyPassword:
-      return  [targetEntry.password length] > 0;
-      
-    case MPActionCopyURL:
-    case MPActionOpenURL:
-      return [targetEntry.url length] > 0;
-      
-    default:
-      return YES;
-  }
+  return [document validateMenuItem:menuItem];
 }
 
 #pragma mark ContextMenu
@@ -600,38 +595,23 @@ NSString *const _MPTableSecurCellView = @"PasswordCell";
   [[self.entryTable headerView] setMenu:headerMenu];
 }
 
-
-#pragma mark Action Helper
-
-- (KPKEntry *)_clickedOrSelectedEntry {
-  NSInteger activeRow = [self.entryTable clickedRow];
-  /* Fallback to selection e.g. for toolbar actions */
-  if(activeRow < 0 ) {
-    activeRow = [self.entryTable selectedRow];
-  }
-  if(activeRow >= 0 && activeRow <= [[self.entryArrayController arrangedObjects] count]) {
-    return [self.entryArrayController arrangedObjects][activeRow];
-  }
-  return nil;
-}
-
 #pragma mark Actions
 - (void)copyPassword:(id)sender {
-  KPKEntry *selectedEntry = [self _clickedOrSelectedEntry];
+  KPKEntry *selectedEntry = [[self targetItemForAction] asEntry];
   if(selectedEntry) {
     [self _copyToPasteboard:[selectedEntry.password finalValueForEntry:selectedEntry] overlayInfo:MPOverlayInfoPassword name:nil];
   }
 }
 
 - (void)copyUsername:(id)sender {
-  KPKEntry *selectedEntry = [self _clickedOrSelectedEntry];
+  KPKEntry *selectedEntry = [[self targetItemForAction] asEntry];
   if(selectedEntry) {
     [self _copyToPasteboard:[selectedEntry.username finalValueForEntry:selectedEntry] overlayInfo:MPOverlayInfoUsername name:nil];
   }
 }
 
 - (void)copyCustomAttribute:(id)sender {
-  KPKEntry *selectedEntry = [self _clickedOrSelectedEntry];
+  KPKEntry *selectedEntry = [[self targetItemForAction] asEntry];
   if(selectedEntry && [selectedEntry isKindOfClass:[KPKEntry class]]) {
     NSUInteger index = [sender tag];
     NSAssert((index >= 0)  && (index < [selectedEntry.customAttributes count]), @"Index for custom field needs to be valid");
@@ -641,14 +621,14 @@ NSString *const _MPTableSecurCellView = @"PasswordCell";
 }
 
 - (void)copyURL:(id)sender {
-  KPKEntry *selectedEntry = [self _clickedOrSelectedEntry];
+  KPKEntry *selectedEntry = [[self targetItemForAction] asEntry];
   if(selectedEntry) {
     [self _copyToPasteboard:[selectedEntry.url finalValueForEntry:selectedEntry] overlayInfo:MPOverlayInfoURL name:nil];
   }
 }
 
 - (void)openURL:(id)sender {
-  KPKEntry *selectedEntry = [self _clickedOrSelectedEntry];
+  KPKEntry *selectedEntry = [[self targetItemForAction] asEntry];
   if(selectedEntry && [selectedEntry.url length] > 0) {
     NSURL *webURL = [NSURL URLWithString:[selectedEntry.url stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]];
     NSString *scheme = [webURL scheme];
@@ -670,7 +650,7 @@ NSString *const _MPTableSecurCellView = @"PasswordCell";
 }
 
 - (void)delete:(id)sender {
-  KPKEntry *entry =[self _clickedOrSelectedEntry];
+  KPKEntry *entry = [[self targetItemForAction] asEntry];
   if(!entry) {
     return;
   }

@@ -184,6 +184,7 @@ NSString *const MPDidChangeStoredKeyFilesSettings = @"com.hicknhack.macpass.MPDi
     self.passwordCreatorController.closeTarget = self.passwordCreatorWindow;
     NSView *creatorView = [_passwordCreatorController view];
     [self.passwordCreatorWindow setContentView:creatorView];
+    [self.passwordCreatorController updateResponderChain];
   }
   [self.passwordCreatorController reset];
   [self.passwordCreatorWindow makeKeyAndOrderFront:self.passwordCreatorWindow];

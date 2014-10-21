@@ -32,6 +32,7 @@
 #import "MPConstants.h"
 #import "MPSavePanelAccessoryViewController.h"
 #import "MPTreeDelegate.h"
+#import "MPTargetItemResolving.h"
 
 
 #import "DDXMLNode.h"
@@ -285,7 +286,7 @@ NSString *const MPDocumentGroupKey                        = @"MPDocumentGroupKey
     self.unlockCount += 1;
     [[NSNotificationCenter defaultCenter] postNotificationName:MPDocumentDidUnlockDatabaseNotification object:self];
     /* Make sure to only store */
-    MPAppDelegate *delegate = [NSApp delegate];
+    MPAppDelegate *delegate = (MPAppDelegate *)[NSApp delegate];
     if(self.compositeKey.hasKeyFile && self.compositeKey.hasPassword && delegate.isAllowedToStoreKeyFile) {
       [self _storeKeyURL:keyFileURL];
     }
@@ -315,7 +316,7 @@ NSString *const MPDocumentGroupKey                        = @"MPDocumentGroupKey
 }
 
 - (NSURL *)suggestedKeyURL {
-  MPAppDelegate *delegate = [NSApp delegate];
+  MPAppDelegate *delegate = (MPAppDelegate *)[NSApp delegate];
   if(!delegate.isAllowedToStoreKeyFile) {
     return nil;
   }
@@ -611,6 +612,11 @@ NSString *const MPDocumentGroupKey                        = @"MPDocumentGroupKey
 }
 
 - (BOOL)validateUserInterfaceItem:(id<NSValidatedUserInterfaceItem>)anItem {
+  id target = [NSApp targetForAction:@selector(targetItemForAction)];
+  KPKNode *targetNode = [target targetItemForAction];
+  KPKEntry *targetEntry = [targetNode asEntry];
+  KPKGroup *targetGroup = [targetNode asGroup];
+
   if(self.encrypted || self.isReadOnly) { return NO; }
   
   BOOL valid = self.selectedItem ? self.selectedItem.isEditable : YES;
@@ -647,6 +653,18 @@ NSString *const MPDocumentGroupKey                        = @"MPDocumentGroupKey
       break;
     case MPActionShowHistory:
       valid &= (self.selectedEntry && (self.selectedItem == (id)self.selectedEntry));
+      break;
+    /* Entry View Actions */
+    case MPActionCopyUsername:
+      valid &= (nil != targetEntry) && ([targetEntry.username length] > 0);
+      break;
+    case MPActionCopyPassword:
+      valid &= (nil != targetEntry ) && ([targetEntry.password length] > 0);
+      break;
+    case MPActionCopyURL:
+    case MPActionOpenURL:
+      valid &= (nil != targetEntry ) && ([targetEntry.url length] > 0);
+      break;
     default:
       break;
   }
@@ -657,7 +675,7 @@ NSString *const MPDocumentGroupKey                        = @"MPDocumentGroupKey
   if(nil == keyURL) {
     return; // no URL to store in the first place
   }
-  MPAppDelegate *delegate = [NSApp delegate];
+  MPAppDelegate *delegate = (MPAppDelegate *)[NSApp delegate];
   NSAssert(delegate.isAllowedToStoreKeyFile, @"We can only store if we are allowed to do so!");
   NSMutableDictionary *keysForFiles = [[[NSUserDefaults standardUserDefaults] dictionaryForKey:kMPSettingsKeyRememeberdKeysForDatabases] mutableCopy];
   if(nil == keysForFiles) {

@@ -8,6 +8,7 @@
 
 #import "MPViewController.h"
 #import "MPContextBarViewController.h"
+#import "MPTargetItemResolving.h"
 
 APPKIT_EXTERN NSString *const MPEntryTableUserNameColumnIdentifier;
 APPKIT_EXTERN NSString *const MPEntryTableTitleColumnIdentifier;
@@ -31,7 +32,7 @@ typedef NS_ENUM( NSUInteger, MPCopyContentTypeTag) {
 @class MPDocumentWindowController;
 @class MPDocument;
 
-@interface MPEntryViewController : MPViewController <NSTableViewDelegate>
+@interface MPEntryViewController : MPViewController <NSTableViewDelegate, MPTargetItemResolving>
 
 @property (weak,readonly) NSTableView *entryTable;
 @property (readonly, strong) NSArrayController *entryArrayController;
