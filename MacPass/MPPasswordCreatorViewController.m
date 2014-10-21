@@ -175,8 +175,7 @@ typedef NS_ENUM(NSUInteger, MPDefaultDomain) {
   [[self _findCloseTarget] performClose:nil];
 }
 
-- (IBAction)_setDefault:(id)sender
-{
+- (IBAction)_setDefault:(id)sender {
   [[NSUserDefaults standardUserDefaults] setInteger:_passwordLength forKey:kMPSettingsKeyDefaultPasswordLength];
   [[NSUserDefaults standardUserDefaults] setInteger:_characterFlags forKey:kMPSettingsKeyPasswordCharacterFlags];
   [[NSUserDefaults standardUserDefaults] setBool:_useCustomString forKey:kMPSettingsKeyPasswordUseCustomString];
