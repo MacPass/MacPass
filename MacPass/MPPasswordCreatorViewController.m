@@ -93,7 +93,6 @@ typedef NS_ENUM(NSUInteger, MPPasswordRating) {
   [self.customCharactersTextField setStringValue:_customString];
   
   /* Value Transformer */
-  
   id formatter = [[MPUniqueCharactersFormatter alloc] init];
   [self. customCharactersTextField setFormatter:formatter];
   
@@ -166,7 +165,7 @@ typedef NS_ENUM(NSUInteger, MPPasswordRating) {
 }
 
 - (IBAction)_setDefault:(id)sender {
-  if(self.useEntryDefaults) {
+  if(self.useEntryDefaults && self.entry) {
     NSMutableDictionary *entryDefaults = [[self _currentEntryDefaults] mutableCopy];
     if(!entryDefaults) {
       entryDefaults = [[NSMutableDictionary alloc] initWithCapacity:4]; // we will only add one enty to new settings
@@ -179,13 +178,17 @@ typedef NS_ENUM(NSUInteger, MPPasswordRating) {
     if(!availableDefaults) {
       availableDefaults = [[NSMutableDictionary alloc] initWithCapacity:1];
     }
-    availableDefaults[self.entry.uuid] = entryDefaults;
+    availableDefaults[[self.entry.uuid UUIDString]] = entryDefaults;
+    [[NSUserDefaults standardUserDefaults] setObject:availableDefaults forKey:kMPSettingsKeyPasswordDefaultsForEntry];
   }
-  else {
+  else if(!self.useEntryDefaults) {
     [[NSUserDefaults standardUserDefaults] setInteger:self.passwordLength forKey:kMPSettingsKeyDefaultPasswordLength];
     [[NSUserDefaults standardUserDefaults] setInteger:self.characterFlags forKey:kMPSettingsKeyPasswordCharacterFlags];
     [[NSUserDefaults standardUserDefaults] setBool:self.useCustomString forKey:kMPSettingsKeyPasswordUseCustomString];
     [[NSUserDefaults standardUserDefaults] setObject:[self.customCharactersTextField stringValue] forKey:kMPSettingsKeyPasswordCustomString];
+  }
+  else {
+    NSLog(@"Cannot set password generator defaults. Inconsitent state. Aborting.");
   }
   [self.setDefaultButton setEnabled:NO];
 }
@@ -195,6 +198,7 @@ typedef NS_ENUM(NSUInteger, MPPasswordRating) {
 - (void)setUseEntryDefaults:(BOOL)useEntryDefaults {
   if(self.useEntryDefaults != useEntryDefaults) {
     _useEntryDefaults = useEntryDefaults;
+    [self.setDefaultButton setEnabled:YES];
     [self _setupDefaults];
     [self reset];
   }
@@ -203,8 +207,7 @@ typedef NS_ENUM(NSUInteger, MPPasswordRating) {
 - (void)setEntry:(KPKEntry *)entry {
   if(_entry != entry) {
     _entry = entry;
-    [self _setupDefaults];
-    [self reset];
+    self.useEntryDefaults = [self _hasValidDefaultsForCurrentEntry];
   }
 }
 
@@ -250,18 +253,18 @@ typedef NS_ENUM(NSUInteger, MPPasswordRating) {
 
 - (NSDictionary *)_currentEntryDefaults {
   if(self.entry) {
-    return [self _availableEntryDefaults][self.entry.uuid];
+    return [self _availableEntryDefaults][[self.entry.uuid UUIDString]];
   }
   return nil;
 }
 
 - (void)_setupDefaults {
   NSDictionary *entryDefaults = [self _currentEntryDefaults];
-  if(entryDefaults) {
+  if(entryDefaults && self.useEntryDefaults) {
     self.passwordLength = [entryDefaults[kMPSettingsKeyDefaultPasswordLength] integerValue];
     self.characterFlags = [entryDefaults[kMPSettingsKeyPasswordCharacterFlags] integerValue];
     self.useCustomString = [entryDefaults[kMPSettingsKeyPasswordUseCustomString] boolValue];
-    self.customString = [entryDefaults[kMPSettingsKeyPasswordCustomString] stringValue];
+    self.customString = entryDefaults[kMPSettingsKeyPasswordCustomString];
   }
   else {
     self.passwordLength = [[NSUserDefaults standardUserDefaults] integerForKey:kMPSettingsKeyDefaultPasswordLength];
@@ -269,6 +272,10 @@ typedef NS_ENUM(NSUInteger, MPPasswordRating) {
     self.useCustomString = [[NSUserDefaults standardUserDefaults] boolForKey:kMPSettingsKeyPasswordUseCustomString];
     self.customString = [[NSUserDefaults standardUserDefaults] stringForKey:kMPSettingsKeyPasswordCustomString];
   }
+}
+
+- (BOOL)_hasValidDefaultsForCurrentEntry {
+  return (nil != [self _currentEntryDefaults]);
 }
 
 - (void)_resetCharacters {

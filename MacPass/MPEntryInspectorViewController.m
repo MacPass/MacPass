@@ -273,6 +273,7 @@ typedef NS_ENUM(NSUInteger, MPEntryTab) {
   [self.generatePasswordButton setEnabled:NO];
   MPPasswordCreatorViewController *viewController = [[MPPasswordCreatorViewController alloc] init];
   viewController.allowsEntryDefaults = YES;
+  viewController.entry = self.entry;
   [self _showPopopver:viewController atView:self.passwordTextField onEdge:NSMinYEdge];
 }
 
