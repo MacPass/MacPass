@@ -20,5 +20,5 @@
  *
  *  @return YES if any bit of flag is set in mode
  */
-FOUNDATION_EXTERN BOOL MPTestFlagInOptions(const NSUInteger flag, const NSUInteger options );
+FOUNDATION_EXTERN BOOL MPIsFlagSetInOptions(const NSUInteger flag, const NSUInteger options );
 #endif

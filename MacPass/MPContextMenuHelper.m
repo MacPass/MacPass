@@ -21,11 +21,11 @@ static void MPContextmenuHelperBeginSection(NSMutableArray *items) {
 
 + (NSArray *)contextMenuItemsWithItems:(MPContextMenuItemsFlags)flags {
   
-  BOOL const insertCreate = MPTestFlagInOptions(MPContextMenuCreate, flags);
-  BOOL const insertDelete = MPTestFlagInOptions(MPContextMenuDelete, flags);
-  BOOL const insertCopy = MPTestFlagInOptions(MPContextMenuCopy, flags);
-  BOOL const insertTrash = MPTestFlagInOptions(MPContextMenuTrash, flags);
-  BOOL const insertClone = MPTestFlagInOptions(MPContextMenuClone, flags);
+  BOOL const insertCreate = MPIsFlagSetInOptions(MPContextMenuCreate, flags);
+  BOOL const insertDelete = MPIsFlagSetInOptions(MPContextMenuDelete, flags);
+  BOOL const insertCopy = MPIsFlagSetInOptions(MPContextMenuCopy, flags);
+  BOOL const insertTrash = MPIsFlagSetInOptions(MPContextMenuTrash, flags);
+  BOOL const insertClone = MPIsFlagSetInOptions(MPContextMenuClone, flags);
   
   NSMutableArray *items = [NSMutableArray arrayWithCapacity:10];
   if(insertCreate) {

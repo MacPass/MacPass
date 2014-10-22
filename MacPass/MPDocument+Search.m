@@ -113,7 +113,7 @@ NSString *const kMPDocumentSearchResultsKey           = @"kMPDocumentSearchResul
 #pragma mark Search
 - (NSArray *)_findEntriesMatchingCurrentSearch {
   /* Filter double passwords */
-  if(MPTestFlagInOptions(MPEntrySearchDoublePasswords, self.searchContext.searchFlags)) {
+  if(MPIsFlagSetInOptions(MPEntrySearchDoublePasswords, self.searchContext.searchFlags)) {
     __block NSMutableDictionary *passwordToEntryMap = [[NSMutableDictionary alloc] initWithCapacity:100];
     /* Build up a usage map */
     [[self.root childEntries] enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
@@ -139,7 +139,7 @@ NSString *const kMPDocumentSearchResultsKey           = @"kMPDocumentSearchResul
     }];
     return doublePasswords;
   }
-  if(MPTestFlagInOptions(MPEntrySearchExpiredEntries, self.searchContext.searchFlags)) {
+  if(MPIsFlagSetInOptions(MPEntrySearchExpiredEntries, self.searchContext.searchFlags)) {
     NSPredicate *expiredPredicate = [NSPredicate predicateWithBlock:^BOOL(id evaluatedObject, NSDictionary *bindings) {
       KPKNode *node = evaluatedObject;
       return node.timeInfo.isExpired;
@@ -159,19 +159,19 @@ NSString *const kMPDocumentSearchResultsKey           = @"kMPDocumentSearchResul
 - (NSArray *)_filterPredicatesWithString:(NSString *)string{
   NSMutableArray *prediactes = [[NSMutableArray alloc] initWithCapacity:4];
   
-  if(MPTestFlagInOptions(MPEntrySearchTitles, self.searchContext.searchFlags)) {
+  if(MPIsFlagSetInOptions(MPEntrySearchTitles, self.searchContext.searchFlags)) {
     [prediactes addObject:[NSPredicate predicateWithFormat:@"SELF.title CONTAINS[cd] %@", string]];
   }
-  if(MPTestFlagInOptions(MPEntrySearchUsernames, self.searchContext.searchFlags)) {
+  if(MPIsFlagSetInOptions(MPEntrySearchUsernames, self.searchContext.searchFlags)) {
     [prediactes addObject:[NSPredicate predicateWithFormat:@"SELF.username CONTAINS[cd] %@", string]];
   }
-  if(MPTestFlagInOptions(MPEntrySearchUrls, self.searchContext.searchFlags)) {
+  if(MPIsFlagSetInOptions(MPEntrySearchUrls, self.searchContext.searchFlags)) {
     [prediactes addObject:[NSPredicate predicateWithFormat:@"SELF.url CONTAINS[cd] %@", string]];
   }
-  if(MPTestFlagInOptions(MPEntrySearchPasswords, self.searchContext.searchFlags)) {
+  if(MPIsFlagSetInOptions(MPEntrySearchPasswords, self.searchContext.searchFlags)) {
     [prediactes addObject:[NSPredicate predicateWithFormat:@"SELF.password CONTAINS[cd] %@", string]];
   }
-  if(MPTestFlagInOptions(MPEntrySearchNotes, self.searchContext.searchFlags)) {
+  if(MPIsFlagSetInOptions(MPEntrySearchNotes, self.searchContext.searchFlags)) {
     [prediactes addObject:[NSPredicate predicateWithFormat:@"SELF.notes CONTAINS[cd] %@", string]];
   }
   return prediactes;

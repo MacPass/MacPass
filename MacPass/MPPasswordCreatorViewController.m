@@ -12,6 +12,7 @@
 #import "MPUniqueCharactersFormatter.h"
 #import "MPSettingsHelper.h"
 
+#import "MPFlagsHelper.h"
 #import "KPKEntry.h"
 
 /*

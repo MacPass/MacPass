@@ -8,6 +8,6 @@
 
 #import "MPFlagsHelper.h"
 
-BOOL MPTestFlagInOptions(const NSUInteger flag, const NSUInteger options ) {
+BOOL MPIsFlagSetInOptions(const NSUInteger flag, const NSUInteger options ) {
   return (0 != (options & flag));
 }

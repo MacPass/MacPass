@@ -138,12 +138,12 @@ typedef NS_ENUM(NSUInteger, MPContextTab) {
 - (void)_updateFilterButtons {
   MPDocument *document = [[self windowController] document];
   MPEntrySearchFlags currentFlags = document.searchContext.searchFlags;
-  [self.duplicatePasswordsButton setState:HNHStateForBool(MPTestFlagInOptions(MPEntrySearchDoublePasswords, currentFlags))];
-  [self.notesButton setState:HNHStateForBool(MPTestFlagInOptions(MPEntrySearchNotes, currentFlags))];
-  [self.passwordButton setState:HNHStateForBool(MPTestFlagInOptions(MPEntrySearchPasswords, currentFlags))];
-  [self.titleButton setState:HNHStateForBool(MPTestFlagInOptions(MPEntrySearchTitles, currentFlags))];
-  [self.urlButton setState:HNHStateForBool(MPTestFlagInOptions(MPEntrySearchUrls, currentFlags))];
-  [self.usernameButton setState:HNHStateForBool(MPTestFlagInOptions(MPEntrySearchUsernames, currentFlags))];
+  [self.duplicatePasswordsButton setState:HNHStateForBool(MPIsFlagSetInOptions(MPEntrySearchDoublePasswords, currentFlags))];
+  [self.notesButton setState:HNHStateForBool(MPIsFlagSetInOptions(MPEntrySearchNotes, currentFlags))];
+  [self.passwordButton setState:HNHStateForBool(MPIsFlagSetInOptions(MPEntrySearchPasswords, currentFlags))];
+  [self.titleButton setState:HNHStateForBool(MPIsFlagSetInOptions(MPEntrySearchTitles, currentFlags))];
+  [self.urlButton setState:HNHStateForBool(MPIsFlagSetInOptions(MPEntrySearchUrls, currentFlags))];
+  [self.usernameButton setState:HNHStateForBool(MPIsFlagSetInOptions(MPEntrySearchUsernames, currentFlags))];
   NSInteger selectedTag = MPEntrySearchNone;
   for(NSMenuItem *item in [[self.specialFilterPopUpButton menu] itemArray]) {
     MPEntrySearchFlags flag = [item tag];
@@ -152,7 +152,7 @@ typedef NS_ENUM(NSUInteger, MPContextTab) {
       [item setEnabled:NO];
     }
     else {
-      BOOL isActive = MPTestFlagInOptions(flag, currentFlags);
+      BOOL isActive = MPIsFlagSetInOptions(flag, currentFlags);
       if(isActive) {
         selectedTag = flag;
       }
