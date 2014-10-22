@@ -533,6 +533,9 @@ NSString *const MPDocumentGroupKey                        = @"MPDocumentGroupKey
 }
 
 - (void)deleteGroup:(KPKGroup *)group {
+  if(!group) {
+    return; // Nothing to do;
+  }
   if(self.useTrash) {
     if(!self.trash) {
       [self _createTrashGroup];

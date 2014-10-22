@@ -145,6 +145,15 @@ NSString *const _MPOutlinveViewHeaderViewIdentifier = @"HeaderCell";
   }
 }
 
+#pragma mark MPTargetItemResolving
+- (KPKNode *)targetItemForAction {
+  NSInteger row = [self.outlineView clickedRow];
+  if( row < 0 ) {
+    row = [self.outlineView selectedRow];
+  }
+  return [[self.outlineView itemAtRow:row] representedObject];
+}
+
 #pragma mark Notifications
 - (void)regsiterNotificationsForDocument:(MPDocument *)document {
   [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(_didAddGroup:) name:MPDocumentDidAddGroupNotification object:document];
@@ -189,7 +198,7 @@ NSString *const _MPOutlinveViewHeaderViewIdentifier = @"HeaderCell";
 #pragma mark Actions
 
 - (void)createGroup:(id)sender {
-  KPKGroup *group = [self _clickedOrSelectedGroup];
+  KPKGroup *group = [[self targetItemForAction] asGroup];
   MPDocument *document = [[self windowController] document];
   if(!group) {
     group = document.root;
@@ -199,11 +208,11 @@ NSString *const _MPOutlinveViewHeaderViewIdentifier = @"HeaderCell";
 
 - (void)createEntry:(id)sender {
   MPDocument *document = [[self windowController] document];
-  [document createEntry:[self _clickedOrSelectedGroup]];
+  [document createEntry:[[self targetItemForAction] asGroup]];
 }
 
 - (void)delete:(id)sender {
-  [[[self windowController] document] deleteGroup:[self _clickedOrSelectedGroup]];
+  [[[self windowController] document] deleteGroup:[[self targetItemForAction] asGroup]];
 }
 
 - (void)_doubleClickedGroup:(id)sender {
@@ -281,21 +290,14 @@ NSString *const _MPOutlinveViewHeaderViewIdentifier = @"HeaderCell";
   if(![document validateUserInterfaceItem:menuItem]) {
     return NO;
   }
-  id selected = [self _clickedOrSelectedGroup];
-  if(!selected) { return NO; }
-  if(selected == document.trash) { return NO; }
-  return ![document isItemTrashed:selected];
-}
-
-#pragma mark -
-#pragma mark Private
-
-- (KPKGroup *)_clickedOrSelectedGroup {
-  NSInteger row = [self.outlineView clickedRow];
-  if( row < 0 ) {
-    row = [self.outlineView selectedRow];
+  id selected = [[self targetItemForAction] asGroup];
+  if(!selected) {
+    return NO;
   }
-  return [[self.outlineView itemAtRow:row] representedObject];
+  if(selected == document.trash) {
+    return NO;
+  }
+  return ![document isItemTrashed:selected];
 }
 
 - (NSMenu *)_contextMenu {

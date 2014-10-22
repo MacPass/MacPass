@@ -7,13 +7,14 @@
 //
 
 #import "MPViewController.h"
+#import "MPTargetItemResolving.h"
 
 APPKIT_EXTERN NSString *const MPOutlineViewDidChangeGroupSelection;
 
 @class HNHGradientView;
 @class MPDocument;
 
-@interface MPOutlineViewController : MPViewController <NSOutlineViewDelegate, NSMenuDelegate>
+@interface MPOutlineViewController : MPViewController <MPTargetItemResolving, NSOutlineViewDelegate, NSMenuDelegate>
 
 
 @property (weak) IBOutlet HNHGradientView *bottomBar;
