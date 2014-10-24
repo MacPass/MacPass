@@ -630,28 +630,43 @@ NSString *const MPDocumentGroupKey                        = @"MPDocumentGroupKey
   id<MPTargetNodeResolving> entryResolver = [NSApp targetForAction:@selector(currentTargetEntry)];
   id<MPTargetNodeResolving> groupResolver = [NSApp targetForAction:@selector(currentTargetGroup)];
   id<MPTargetNodeResolving> nodeResolver = [NSApp targetForAction:@selector(currentTargetNode)];
+  
+  NSLog(@"entryResolver:%@", [entryResolver class]);
+  NSLog(@"groupResolver:%@", [groupResolver class]);
+  NSLog(@"nodeResolver:%@", [nodeResolver class]);
+  
   KPKNode *targetNode = [nodeResolver currentTargetNode];
   KPKEntry *targetEntry = [entryResolver currentTargetEntry];
   KPKGroup *targetGroup = [groupResolver currentTargetGroup];
   
+  if([targetNode asGroup]) {
+    NSLog(@"targetNode:%@", ((KPKGroup *)targetNode).name);
+  }
+  else if([targetNode asEntry]) {
+    NSLog(@"targetNode:%@", ((KPKEntry *)targetNode).title);
+  }
+  
+  NSLog(@"targetGroup:%@", targetGroup.name);
+  NSLog(@"tagetEntry:%@", targetEntry.title );
+  
   if(self.encrypted || self.isReadOnly) { return NO; }
   
-  BOOL valid = self.selectedItem ? self.selectedItem.isEditable : YES;
+  BOOL valid = targetNode ? targetNode.isEditable : YES;
   switch([MPActionHelper typeForAction:[anItem action]]) {
     case MPActionAddGroup:
-      valid &= (nil != self.selectedGroup);
-      valid &= (self.trash != self.selectedGroup);
-      valid &= ![self isItemTrashed:self.selectedGroup];
+      valid &= (nil != targetGroup);
+      valid &= (self.trash != targetGroup);
+      valid &= ![self isItemTrashed:targetGroup];
       break;
     case MPActionAddEntry:
-      valid &= (nil != self.selectedGroup);
-      valid &= (self.trash != self.selectedGroup);
-      valid &= ![self isItemTrashed:self.selectedGroup];
+      valid &= (nil != targetGroup);
+      valid &= (self.trash != targetGroup);
+      valid &= ![self isItemTrashed:targetGroup];
       break;
     case MPActionDelete:
-      valid &= (nil != self.selectedItem);
-      valid &= (self.trash != self.selectedItem);
-      valid &= ![self isItemTrashed:self.selectedItem];
+      valid &= (nil != targetNode);
+      valid &= (self.trash != targetNode);
+      valid &= ![self isItemTrashed:targetNode];
       break;
     case MPActionCloneEntry:
       valid &= (nil != targetEntry);
@@ -667,9 +682,9 @@ NSString *const MPDocumentGroupKey                        = @"MPDocumentGroupKey
       valid &= self.compositeKey.hasPasswordOrKeyFile;
       break;
     case MPActionShowHistory:
-      valid &= (self.selectedEntry && (self.selectedItem == (id)self.selectedEntry));
+      valid &= (nil != targetEntry);
       break;
-    /* Entry View Actions */
+      /* Entry View Actions */
     case MPActionCopyUsername:
       valid &= (nil != targetEntry) && ([targetEntry.username length] > 0);
       break;
