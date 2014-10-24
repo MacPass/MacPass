@@ -24,6 +24,7 @@
 
 #import "MPContextToolbarButton.h"
 #import "KPKTree.h"
+#import "KPKEntry.h"
 #import "KPKCompositeKey.h"
 
 typedef NS_ENUM(NSUInteger, MPAlertContext) {
@@ -326,15 +327,25 @@ typedef void (^MPPasswordChangedBlock)(BOOL didChangePassword);
 }
 
 - (void)createGroup:(id)sender {
-  [self.outlineViewController createGroup:nil];
+  id<MPTargetNodeResolving> target = [NSApp targetForAction:@selector(currentTargetGroup)];
+  KPKGroup *group = [target currentTargetGroup];
+  MPDocument *document = self.document;
+  if(!group) {
+    group = document.root;
+  }
+  [document createGroup:group];
 }
 
 - (void)createEntry:(id)sender {
-  [self.outlineViewController createEntry:nil];
+  id<MPTargetNodeResolving> target = [NSApp targetForAction:@selector(currentTargetGroup)];
+  KPKGroup *group = [target currentTargetGroup];
+  [(MPDocument *)self.document createEntry:group];
 }
 
-- (void)pickIcon:(id)sender {
-  [self.inspectorViewController pickIcon:sender];
+- (void)delete:(id)sender {
+  id<MPTargetNodeResolving> target = [NSApp targetForAction:@selector(currentTargetNode)];
+  KPKNode *node = [target currentTargetNode];
+  [self.document deleteNode:node];
 }
 
 - (void)pickExpiryDate:(id)sender {

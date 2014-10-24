@@ -340,7 +340,7 @@ NSString *const _MPTableSecurCellView = @"PasswordCell";
 }
 
 #pragma mark MPTargetItemResolving
-- (KPKNode *)targetItemForAction {
+- (KPKEntry *)currentTargetEntry {
   NSInteger activeRow = [self.entryTable clickedRow];
   /* Fallback to selection e.g. for toolbar actions */
   if(activeRow < 0 ) {
@@ -350,6 +350,15 @@ NSString *const _MPTableSecurCellView = @"PasswordCell";
     return [self.entryArrayController arrangedObjects][activeRow];
   }
   return nil;
+}
+
+- (KPKNode *)currentTargetNode {
+  KPKEntry *entry = [self currentTargetEntry];
+  if(entry) {
+    return entry;
+  }
+  MPDocument *document = [[self windowController] document];
+  return document.selectedItem;
 }
 
 #pragma mark MPDocument Notifications
@@ -597,21 +606,21 @@ NSString *const _MPTableSecurCellView = @"PasswordCell";
 
 #pragma mark Actions
 - (void)copyPassword:(id)sender {
-  KPKEntry *selectedEntry = [[self targetItemForAction] asEntry];
+  KPKEntry *selectedEntry = [[self currentTargetNode] asEntry];
   if(selectedEntry) {
     [self _copyToPasteboard:[selectedEntry.password finalValueForEntry:selectedEntry] overlayInfo:MPOverlayInfoPassword name:nil];
   }
 }
 
 - (void)copyUsername:(id)sender {
-  KPKEntry *selectedEntry = [[self targetItemForAction] asEntry];
+  KPKEntry *selectedEntry = [[self currentTargetNode] asEntry];
   if(selectedEntry) {
     [self _copyToPasteboard:[selectedEntry.username finalValueForEntry:selectedEntry] overlayInfo:MPOverlayInfoUsername name:nil];
   }
 }
 
 - (void)copyCustomAttribute:(id)sender {
-  KPKEntry *selectedEntry = [[self targetItemForAction] asEntry];
+  KPKEntry *selectedEntry = [[self currentTargetNode] asEntry];
   if(selectedEntry && [selectedEntry isKindOfClass:[KPKEntry class]]) {
     NSUInteger index = [sender tag];
     NSAssert((index >= 0)  && (index < [selectedEntry.customAttributes count]), @"Index for custom field needs to be valid");
@@ -621,14 +630,14 @@ NSString *const _MPTableSecurCellView = @"PasswordCell";
 }
 
 - (void)copyURL:(id)sender {
-  KPKEntry *selectedEntry = [[self targetItemForAction] asEntry];
+  KPKEntry *selectedEntry = [[self currentTargetNode] asEntry];
   if(selectedEntry) {
     [self _copyToPasteboard:[selectedEntry.url finalValueForEntry:selectedEntry] overlayInfo:MPOverlayInfoURL name:nil];
   }
 }
 
 - (void)openURL:(id)sender {
-  KPKEntry *selectedEntry = [[self targetItemForAction] asEntry];
+  KPKEntry *selectedEntry = [[self currentTargetNode] asEntry];
   if(selectedEntry && [selectedEntry.url length] > 0) {
     NSURL *webURL = [NSURL URLWithString:[selectedEntry.url stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]];
     NSString *scheme = [webURL scheme];
@@ -650,7 +659,7 @@ NSString *const _MPTableSecurCellView = @"PasswordCell";
 }
 
 - (void)delete:(id)sender {
-  KPKEntry *entry = [[self targetItemForAction] asEntry];
+  KPKEntry *entry = [[self currentTargetNode] asEntry];
   if(!entry) {
     return;
   }

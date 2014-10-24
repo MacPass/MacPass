@@ -73,9 +73,9 @@
                         <constraint firstAttribute="width" constant="32" id="3027"/>
                         <constraint firstAttribute="height" constant="32" id="3028"/>
                     </constraints>
-                    <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyUpOrDown" image="NSActionTemplate" id="2999"/>
+                    <imageCell key="cell" alignment="left" imageScaling="proportionallyUpOrDown" image="NSActionTemplate" id="2999"/>
                     <connections>
-                        <action selector="pickIcon:" target="-1" id="IZz-hu-GkW"/>
+                        <action selector="pickIcon:" target="-2" id="6wh-Ka-Thl"/>
                     </connections>
                 </imageView>
                 <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="249" translatesAutoresizingMaskIntoConstraints="NO" id="3013">

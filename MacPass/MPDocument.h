@@ -23,6 +23,7 @@
 #import <Cocoa/Cocoa.h>
 #import "KPKVersion.h"
 #import "MPEntrySearchContext.h"
+#import "MPTargetNodeResolving.h"
 
 /**
  *  Posted when a new group was added to the document.
@@ -59,7 +60,7 @@ APPKIT_EXTERN NSString *const MPDocumentGroupKey;
 @class KPKNode;
 @class MPEditSession;
 
-@interface MPDocument : NSDocument
+@interface MPDocument : NSDocument <MPTargetNodeResolving>
 
 
 @property (nonatomic, readonly, assign) BOOL encrypted;
@@ -164,6 +165,7 @@ APPKIT_EXTERN NSString *const MPDocumentGroupKey;
 - (KPKEntry *)createEntry:(KPKGroup *)parent;
 - (KPKAttribute *)createCustomAttribute:(KPKEntry *)entry;
 
+- (void)deleteNode:(KPKNode *)node;
 - (void)deleteGroup:(KPKGroup *)group;
 - (void)deleteEntry:(KPKEntry *)entry;
 

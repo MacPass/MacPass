@@ -7,14 +7,14 @@
 //
 
 #import "MPViewController.h"
-#import "MPTargetItemResolving.h"
+#import "MPTargetNodeResolving.h"
 
 APPKIT_EXTERN NSString *const MPOutlineViewDidChangeGroupSelection;
 
 @class HNHGradientView;
 @class MPDocument;
 
-@interface MPOutlineViewController : MPViewController <MPTargetItemResolving, NSOutlineViewDelegate, NSMenuDelegate>
+@interface MPOutlineViewController : MPViewController <MPTargetNodeResolving, NSOutlineViewDelegate, NSMenuDelegate>
 
 
 @property (weak) IBOutlet HNHGradientView *bottomBar;
@@ -23,8 +23,6 @@ APPKIT_EXTERN NSString *const MPOutlineViewDidChangeGroupSelection;
 - (void)showOutline;
 - (void)regsiterNotificationsForDocument:(MPDocument *)document;
 
-- (void)createGroup:(id)sender;
-- (void)createEntry:(id)sender;
 /**
  *	Retrieves the current item for the current mouse location
  *	@return	Item under mouse. If the mouse isn't inside the view, nil is returned

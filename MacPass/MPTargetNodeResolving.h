@@ -7,11 +7,15 @@
 //
 
 #import <Foundation/Foundation.h>
+@class KPKEntry;
+@class KPKGroup;
 @class KPKNode;
 
-@protocol MPTargetItemResolving <NSObject>
+@protocol MPTargetNodeResolving <NSObject>
 
-@required
-- (KPKNode *)targetItemForAction;
+@optional
+- (KPKNode *)currentTargetNode;
+- (KPKGroup *)currentTargetGroup;
+- (KPKEntry *)currentTargetEntry;
 
 @end

@@ -45,8 +45,9 @@
 
 - (IBAction)lock:(id)sender;
 - (IBAction)createGroup:(id)sender;
+- (IBAction)createEntry:(id)sender;
+- (IBAction)delete:(id)sender;
 
-- (IBAction)pickIcon:(id)sender;
 - (IBAction)pickExpiryDate:(id)sender;
 
 #pragma mark Helper

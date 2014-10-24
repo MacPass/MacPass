@@ -510,7 +510,7 @@
 		4C26C34A18D8D5A300CF1A1C /* PreviewView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PreviewView.xib; sourceTree = "<group>"; };
 		4C2724D51778FF1A00FD8456 /* NSUUID+KeePassKit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSUUID+KeePassKit.h"; sourceTree = "<group>"; };
 		4C2724D61778FF1A00FD8456 /* NSUUID+KeePassKit.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSUUID+KeePassKit.m"; sourceTree = "<group>"; };
-		4C2B0B7419F66F6400E48913 /* MPTargetItemResolving.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MPTargetItemResolving.h; sourceTree = "<group>"; };
+		4C2B0B7419F66F6400E48913 /* MPTargetNodeResolving.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MPTargetNodeResolving.h; sourceTree = "<group>"; };
 		4C2C8B331787500E009649F3 /* UnprotectedWarningView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = UnprotectedWarningView.xib; sourceTree = "<group>"; };
 		4C2E381A16D11FF900037A9D /* 03_ServerTemplate.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = 03_ServerTemplate.pdf; sourceTree = "<group>"; };
 		4C2E381B16D11FF900037A9D /* 04_KlipperTemplate.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = 04_KlipperTemplate.pdf; sourceTree = "<group>"; };
@@ -1683,7 +1683,7 @@
 			children = (
 				4CF6C715176F5183007A811D /* MPServerRequestHandling.h */,
 				4CA0B30D15BCB6FD00654E32 /* MPSettingsTab.h */,
-				4C2B0B7419F66F6400E48913 /* MPTargetItemResolving.h */,
+				4C2B0B7419F66F6400E48913 /* MPTargetNodeResolving.h */,
 			);
 			name = Protocolls;
 			sourceTree = "<group>";

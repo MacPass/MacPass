@@ -32,7 +32,7 @@
 #import "MPConstants.h"
 #import "MPSavePanelAccessoryViewController.h"
 #import "MPTreeDelegate.h"
-#import "MPTargetItemResolving.h"
+#import "MPTargetNodeResolving.h"
 
 
 #import "DDXMLNode.h"
@@ -512,7 +512,19 @@ NSString *const MPDocumentGroupKey                        = @"MPDocumentGroupKey
   return newAttribute;
 }
 
+- (void)deleteNode:(KPKNode *)node {
+  if([node asGroup]) {
+    [self deleteGroup:[node asGroup]];
+  }
+  else if([node asEntry]) {
+    [self deleteEntry:[node asEntry]];
+  }
+}
+
 - (void)deleteEntry:(KPKEntry *)entry {
+  if(!entry) {
+    return; // Nothing to do;
+  }
   if(self.useTrash) {
     if([self isItemTrashed:entry]) {
       return; // Entry is already trashed
@@ -615,11 +627,13 @@ NSString *const MPDocumentGroupKey                        = @"MPDocumentGroupKey
 }
 
 - (BOOL)validateUserInterfaceItem:(id<NSValidatedUserInterfaceItem>)anItem {
-  id target = [NSApp targetForAction:@selector(targetItemForAction)];
-  KPKNode *targetNode = [target targetItemForAction];
-  KPKEntry *targetEntry = [targetNode asEntry];
-  KPKGroup *targetGroup = [targetNode asGroup];
-
+  id<MPTargetNodeResolving> entryResolver = [NSApp targetForAction:@selector(currentTargetEntry)];
+  id<MPTargetNodeResolving> groupResolver = [NSApp targetForAction:@selector(currentTargetGroup)];
+  id<MPTargetNodeResolving> nodeResolver = [NSApp targetForAction:@selector(currentTargetNode)];
+  KPKNode *targetNode = [nodeResolver currentTargetNode];
+  KPKEntry *targetEntry = [entryResolver currentTargetEntry];
+  KPKGroup *targetGroup = [groupResolver currentTargetGroup];
+  
   if(self.encrypted || self.isReadOnly) { return NO; }
   
   BOOL valid = self.selectedItem ? self.selectedItem.isEditable : YES;
@@ -640,9 +654,7 @@ NSString *const MPDocumentGroupKey                        = @"MPDocumentGroupKey
       valid &= ![self isItemTrashed:self.selectedItem];
       break;
     case MPActionCloneEntry:
-      //case MPActionCloneEntryWithOptions:
-      valid &= (nil != self.selectedItem);
-      valid &= self.selectedEntry == self.selectedItem;
+      valid &= (nil != targetEntry);
       break;
     case MPActionEmptyTrash:
       valid &= ([self.trash.groups count] + [self.trash.entries count]) > 0;
@@ -719,6 +731,18 @@ NSString *const MPDocumentGroupKey                        = @"MPDocumentGroupKey
   }
   [self.trash clear];
 }
+
+#pragma mark -
+#pragma mark MPTargetNodeResolving
+
+- (KPKEntry *)currentTargetEntry {
+  return self.selectedEntry;
+}
+
+- (KPKGroup *)currentTargetGroup {
+  return self.selectedGroup;
+}
+
 
 # pragma mark File Watching
 - (void) _watchForFileChanges:(BOOL)watch {

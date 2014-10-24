@@ -80,7 +80,7 @@ typedef NS_ENUM(NSUInteger, MPContentTab) {
 
 - (void)awakeFromNib {
   [self.bottomBar setBorderType:HNHBorderTop|HNHBorderHighlight];
-  
+    
   [[self.noSelectionInfo cell] setBackgroundStyle:NSBackgroundStyleRaised];
   [[self.itemImageView cell] setBackgroundStyle:NSBackgroundStyleRaised];
   [self.tabView bind:NSSelectedIndexBinding toObject:self withKeyPath:@"activeTab" options:nil];
@@ -303,6 +303,7 @@ typedef NS_ENUM(NSUInteger, MPContentTab) {
   [self.itemImageView setHidden:NO];
   [self.itemNameTextField setHidden:NO];
 }
+
 
 #pragma mark -
 #pragma mark MPDocument Notifications

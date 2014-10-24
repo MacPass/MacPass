@@ -7,22 +7,23 @@
 //
 
 #import "MPOutlineViewController.h"
-#import "MPOutlineDataSource.h"
+#import "MPActionHelper.h"
+#import "MPConstants.h"
+#import "MPContextMenuHelper.h"
 #import "MPDocument.h"
 #import "MPDocumentWindowController.h"
-#import "MPContextMenuHelper.h"
-#import "MPConstants.h"
-#import "MPActionHelper.h"
 #import "MPIconHelper.h"
 #import "MPNotifications.h"
 #import "MPOutlineContextMenuDelegate.h"
+#import "MPOutlineDataSource.h"
 
-#import "KPKTree.h"
-#import "KPKNode.h"
-#import "KPKTimeInfo.h"
+#import "KPKEntry.h"
 #import "KPKGroup.h"
-#import "KPKNode+IconImage.h"
 #import "KPKMetaData.h"
+#import "KPKNode.h"
+#import "KPKNode+IconImage.h"
+#import "KPKTimeInfo.h"
+#import "KPKTree.h"
 #import "KPKUTIs.h"
 
 #import "HNHGradientView.h"
@@ -136,22 +137,26 @@ NSString *const _MPOutlinveViewHeaderViewIdentifier = @"HeaderCell";
 #pragma mark Custom Setter/Getter
 - (void)setDatabaseNameWrapper:(NSString *)databaseNameWrapper {
   if(![_databaseNameWrapper isEqualToString:databaseNameWrapper]) {
-    if([databaseNameWrapper length] == 0) {
-      _databaseNameWrapper = NSLocalizedString(@"DATABASE", "Default name database");
-    }
-    else {
-      _databaseNameWrapper= [databaseNameWrapper copy];
-    }
+    _databaseNameWrapper = (databaseNameWrapper.length == 0) ? NSLocalizedString(@"DATABASE", "Default name database") : [databaseNameWrapper copy];
   }
 }
 
-#pragma mark MPTargetItemResolving
-- (KPKNode *)targetItemForAction {
+#pragma mark MPTargetNodeResolving
+- (KPKGroup *)currentTargetGroup {
   NSInteger row = [self.outlineView clickedRow];
   if( row < 0 ) {
     row = [self.outlineView selectedRow];
   }
   return [[self.outlineView itemAtRow:row] representedObject];
+}
+
+- (KPKNode *)currentTargetNode {
+  KPKGroup *group = [self currentTargetGroup];
+  if(group) {
+    return group;
+  }
+  MPDocument *document = [[self windowController] document];
+  return document.selectedItem;
 }
 
 #pragma mark Notifications
@@ -196,24 +201,6 @@ NSString *const _MPOutlinveViewHeaderViewIdentifier = @"HeaderCell";
 
 #pragma mark -
 #pragma mark Actions
-
-- (void)createGroup:(id)sender {
-  KPKGroup *group = [[self targetItemForAction] asGroup];
-  MPDocument *document = [[self windowController] document];
-  if(!group) {
-    group = document.root;
-  }
-  [document createGroup:group];
-}
-
-- (void)createEntry:(id)sender {
-  MPDocument *document = [[self windowController] document];
-  [document createEntry:[[self targetItemForAction] asGroup]];
-}
-
-- (void)delete:(id)sender {
-  [[[self windowController] document] deleteGroup:[[self targetItemForAction] asGroup]];
-}
 
 - (void)_doubleClickedGroup:(id)sender {
   [[self windowController] showInspector:sender];
@@ -290,7 +277,7 @@ NSString *const _MPOutlinveViewHeaderViewIdentifier = @"HeaderCell";
   if(![document validateUserInterfaceItem:menuItem]) {
     return NO;
   }
-  id selected = [[self targetItemForAction] asGroup];
+  id selected = [[self currentTargetNode] asGroup];
   if(!selected) {
     return NO;
   }
