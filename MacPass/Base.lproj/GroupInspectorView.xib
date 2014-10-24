@@ -171,7 +171,7 @@
                             <constraint firstItem="264" firstAttribute="leading" secondItem="38" secondAttribute="leading" constant="20" id="qnB-Pd-MqU"/>
                             <constraint firstItem="229" firstAttribute="leading" secondItem="38" secondAttribute="leading" constant="20" id="sCg-Na-ouj"/>
                             <constraint firstItem="276" firstAttribute="leading" secondItem="38" secondAttribute="leading" constant="20" id="xLc-Rz-374"/>
-                            <constraint firstAttribute="bottom" secondItem="Fnw-qz-IZU" secondAttribute="bottom" constant="20" symbolic="YES" id="xRe-8b-p6s"/>
+                            <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="Fnw-qz-IZU" secondAttribute="bottom" constant="20" symbolic="YES" id="xRe-8b-p6s"/>
                             <constraint firstItem="264" firstAttribute="top" secondItem="5" secondAttribute="bottom" constant="12" id="xe7-ue-Wip"/>
                         </constraints>
                     </view>
