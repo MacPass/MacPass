@@ -631,14 +631,17 @@ NSString *const MPDocumentGroupKey                        = @"MPDocumentGroupKey
   id<MPTargetNodeResolving> groupResolver = [NSApp targetForAction:@selector(currentTargetGroup)];
   id<MPTargetNodeResolving> nodeResolver = [NSApp targetForAction:@selector(currentTargetNode)];
   
+  /*
   NSLog(@"entryResolver:%@", [entryResolver class]);
   NSLog(@"groupResolver:%@", [groupResolver class]);
   NSLog(@"nodeResolver:%@", [nodeResolver class]);
+  */
   
   KPKNode *targetNode = [nodeResolver currentTargetNode];
   KPKEntry *targetEntry = [entryResolver currentTargetEntry];
   KPKGroup *targetGroup = [groupResolver currentTargetGroup];
   
+  /*
   if([targetNode asGroup]) {
     NSLog(@"targetNode:%@", ((KPKGroup *)targetNode).name);
   }
@@ -648,6 +651,7 @@ NSString *const MPDocumentGroupKey                        = @"MPDocumentGroupKey
   
   NSLog(@"targetGroup:%@", targetGroup.name);
   NSLog(@"tagetEntry:%@", targetEntry.title );
+  */
   
   if(self.encrypted || self.isReadOnly) { return NO; }
   

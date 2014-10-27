@@ -85,17 +85,18 @@ typedef NS_ENUM(NSUInteger, MPPasswordRating) {
 }
 
 - (void)awakeFromNib {
-  [self.setDefaultButton setEnabled:NO];
+  self.setDefaultButton.enabled = NO;
+  [self _updateSetDefaultsButton:NO];
   
-  [self.passwordLengthSlider setMinValue:MIN_PASSWORD_LENGTH];
-  [self.passwordLengthSlider setMaxValue:MAX_PASSWORD_LENGTH];
-  [self.passwordLengthSlider setContinuous:YES];
+  self.passwordLengthSlider.minValue = MIN_PASSWORD_LENGTH;
+  self.passwordLengthSlider.maxValue = MAX_PASSWORD_LENGTH;
+  self.passwordLengthSlider.continuous = YES;
   
-  [self.customCharactersTextField setStringValue:_customString];
+  self.customCharactersTextField.stringValue = self.customString;
   
   /* Value Transformer */
   id formatter = [[MPUniqueCharactersFormatter alloc] init];
-  [self. customCharactersTextField setFormatter:formatter];
+  self.customCharactersTextField.formatter = formatter;
   
   [self.passwordLengthSlider bind:NSValueBinding toObject:self withKeyPath:NSStringFromSelector(@selector(passwordLength)) options:nil];
   [self.passwordLengthTextField bind:NSValueBinding toObject:self withKeyPath:NSStringFromSelector(@selector(passwordLength)) options:nil];
@@ -118,10 +119,10 @@ typedef NS_ENUM(NSUInteger, MPPasswordRating) {
     [self.useEntryDefaultsButton setEnabled:self.allowsEntryDefaults];
   }
   
-  [self.numbersButton setTag:MPPasswordCharactersNumbers];
-  [self.upperCaseButton setTag:MPPasswordCharactersUpperCase];
-  [self.lowerCaseButton setTag:MPPasswordCharactersLowerCase];
-  [self.symbolsButton setTag:MPPasswordCharactersSymbols];
+  self.numbersButton.tag = MPPasswordCharactersNumbers;
+  self.upperCaseButton.tag = MPPasswordCharactersUpperCase;
+  self.lowerCaseButton.tag = MPPasswordCharactersLowerCase;
+  self.symbolsButton.tag = MPPasswordCharactersSymbols;
   
   [self updateResponderChain];
   [self reset];
@@ -133,12 +134,23 @@ typedef NS_ENUM(NSUInteger, MPPasswordRating) {
 }
 
 #pragma mark -
+#pragma mark Key Events
+
+- (void)flagsChanged:(NSEvent *)theEvent {
+  if(!self.allowsEntryDefaults || (nil == [self _currentEntryDefaults])) {
+    return; // We aren't using entry so just leave;
+  }
+  BOOL deleteEntryDefaults = MPIsFlagSetInOptions(NSAlternateKeyMask, [NSEvent modifierFlags]);
+  [self _updateSetDefaultsButton:deleteEntryDefaults];
+}
+
+#pragma mark -
 #pragma mark Actions
 
 - (IBAction)_generatePassword:(id)sender {
   if(self.useCustomString) {
     if([[self.customCharactersTextField stringValue] length] > 0) {
-      self.password = [[self.customCharactersTextField stringValue] passwordWithLength:self.passwordLength];
+      self.password = [self.customCharactersTextField.stringValue passwordWithLength:self.passwordLength];
     }
   }
   else {
@@ -147,7 +159,7 @@ typedef NS_ENUM(NSUInteger, MPPasswordRating) {
 }
 
 - (IBAction)_toggleCharacters:(id)sender {
-  [self.setDefaultButton setEnabled:YES];
+  self.setDefaultButton.enabled = YES;
   self.characterFlags ^= [sender tag];
   self.useCustomString = NO;
   [self reset];
@@ -155,7 +167,7 @@ typedef NS_ENUM(NSUInteger, MPPasswordRating) {
 
 - (IBAction)_usePassword:(id)sender {
   self.generatedPassword = self.password;
-  if([self.shouldCopyPasswordToPasteboardButton state] == NSOnState) {
+  if(self.shouldCopyPasswordToPasteboardButton.state == NSOnState) {
     [[MPPasteBoardController defaultController] copyObjects:@[self.password]];
   }
   [[self _findCloseTarget] performClose:nil];
@@ -191,15 +203,29 @@ typedef NS_ENUM(NSUInteger, MPPasswordRating) {
   else {
     NSLog(@"Cannot set password generator defaults. Inconsitent state. Aborting.");
   }
-  [self.setDefaultButton setEnabled:NO];
+  self.setDefaultButton.enabled = NO;
+}
+
+- (IBAction)_resetEntryDefaults:(id)sender {
+  NSMutableDictionary *entryDefaults = [[self _currentEntryDefaults] mutableCopy];
+  if(!entryDefaults) {
+    return; // We have no defaults, hence nothing to delete
+  }
+  NSMutableDictionary *availableDefaults = [[self _availableEntryDefaults] mutableCopy];
+  NSAssert(availableDefaults, @"Password generator defaults for should be present!");
+  [availableDefaults removeObjectForKey:[self.entry.uuid UUIDString]];
+  [[NSUserDefaults standardUserDefaults] setObject:availableDefaults forKey:kMPSettingsKeyPasswordDefaultsForEntry];
+  self.useEntryDefaults = NO; /* Resetting the UI and Defaults is handled via the setter */
+  [self _updateSetDefaultsButton:NO];
 }
 
 #pragma mark -
 #pragma mark Custom Setter
+
 - (void)setUseEntryDefaults:(BOOL)useEntryDefaults {
   if(self.useEntryDefaults != useEntryDefaults) {
     _useEntryDefaults = useEntryDefaults;
-    [self.setDefaultButton setEnabled:YES];
+    self.setDefaultButton.enabled = YES;
     [self _setupDefaults];
     [self reset];
   }
@@ -215,14 +241,14 @@ typedef NS_ENUM(NSUInteger, MPPasswordRating) {
 - (void)setPassword:(NSString *)password {
   if(![_password isEqualToString:password]) {
     _password = [password copy];
-    NSString *customString = self.useCustomString ? [self.customCharactersTextField stringValue] : nil;
+    NSString *customString = self.useCustomString ? self.customCharactersTextField.stringValue : nil;
     self.entropy = [password entropyWhithPossibleCharacterSet:self.characterFlags orCustomCharacters:customString];
   }
 }
 
 - (void)setUseCustomString:(BOOL)useCustomString {
   if(self.useCustomString != useCustomString) {
-    [self.setDefaultButton setEnabled:YES];
+    self.setDefaultButton.enabled = YES;
     _useCustomString = useCustomString;
     [self _resetCharacters];
   }
@@ -230,7 +256,7 @@ typedef NS_ENUM(NSUInteger, MPPasswordRating) {
 
 - (void)setPasswordLength:(NSUInteger)passwordLength {
   if(self.passwordLength != passwordLength) {
-    [self.setDefaultButton setEnabled:YES];
+    self.setDefaultButton.enabled = YES;
     _passwordLength = passwordLength;
     [self _generatePassword:nil];
   }
@@ -241,13 +267,25 @@ typedef NS_ENUM(NSUInteger, MPPasswordRating) {
 
 - (void)controlTextDidChange:(NSNotification *)obj {
   if([obj object] == self.customCharactersTextField) {
-    [self.setDefaultButton setEnabled:YES];
+    self.setDefaultButton.enabled = YES;
     [self _generatePassword:nil];
   }
 }
 
 #pragma mark -
 #pragma mark Helper
+- (void)_updateSetDefaultsButton:(BOOL)shouldDeleteEntryDefaults {
+  if(shouldDeleteEntryDefaults) {
+    self.setDefaultButton.title = NSLocalizedString(@"PASSWORD_GENERATOR_RESET_ENTRY_DEFAULTS", "");
+    self.setDefaultButton.enabled = YES;
+    self.setDefaultButton.action = @selector(_resetEntryDefaults:);
+  }
+  else {
+    self.setDefaultButton.title = NSLocalizedString(@"PASSWORD_GENERATOR_SET_DEFAULTS", "");
+    self.setDefaultButton.action = @selector(_setDefault:);
+  }
+}
+
 - (NSDictionary *)_availableEntryDefaults {
   return [[NSUserDefaults standardUserDefaults] dictionaryForKey:kMPSettingsKeyPasswordDefaultsForEntry];
 }
@@ -281,28 +319,29 @@ typedef NS_ENUM(NSUInteger, MPPasswordRating) {
 
 - (void)_resetCharacters {
   if(self.useCustomString) {
-    [self.customButton setState:NSOnState];
+    self.customButton.state = NSOnState;
   }
-  [self.customCharactersTextField setEnabled:_useCustomString];
-  [self.upperCaseButton setEnabled:!_useCustomString];
-  [self.lowerCaseButton setEnabled:!_useCustomString];
-  [self.numbersButton setEnabled:!_useCustomString];
-  [self.symbolsButton setEnabled:!_useCustomString];
+  self.customCharactersTextField.stringValue = self.customString;
+  self.customCharactersTextField.enabled = self.useCustomString;
+  self.upperCaseButton.enabled = !self.useCustomString;
+  self.lowerCaseButton.enabled = !self.useCustomString;
+  self.numbersButton.enabled = !self.useCustomString;
+  self.symbolsButton.enabled = !self.useCustomString;
   
   /* Set to defaults, if we got nothing */
   if(self.characterFlags == 0) {
     self.characterFlags = MPPasswordCharactersAll;
   }
   
-  const BOOL userLowercase = ( 0 != (MPPasswordCharactersLowerCase & self.characterFlags));
-  const BOOL useUppercase = ( 0 != (MPPasswordCharactersUpperCase & self.characterFlags) );
-  const BOOL useNumbers = ( 0 != (MPPasswordCharactersNumbers & self.characterFlags) );
-  const BOOL useSymbols = ( 0 != (MPPasswordCharactersSymbols & self.characterFlags) );
+  const BOOL userLowercase = (0 != (MPPasswordCharactersLowerCase & self.characterFlags));
+  const BOOL useUppercase = (0 != (MPPasswordCharactersUpperCase & self.characterFlags));
+  const BOOL useNumbers = (0 != (MPPasswordCharactersNumbers & self.characterFlags));
+  const BOOL useSymbols = (0 != (MPPasswordCharactersSymbols & self.characterFlags));
   
-  [self.upperCaseButton setState:useUppercase ? NSOnState : NSOffState];
-  [self.lowerCaseButton setState:userLowercase ? NSOnState : NSOffState];
-  [self.numbersButton setState:useNumbers ? NSOnState : NSOffState];
-  [self.symbolsButton setState:useSymbols ? NSOnState : NSOffState];
+  self.upperCaseButton.state = (useUppercase ? NSOnState : NSOffState);
+  self.lowerCaseButton.state = (userLowercase ? NSOnState : NSOffState);
+  self.numbersButton.state = (useNumbers ? NSOnState : NSOffState);
+  self.symbolsButton.state = (useSymbols ? NSOnState : NSOffState);
 }
 
 - (id)_findCloseTarget {
