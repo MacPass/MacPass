@@ -50,6 +50,7 @@
   [self.enableQuicklookCheckbutton bind:NSValueBinding toObject:defaultsController withKeyPath:quicklookKeyPath options:nil];
   [self.hotKeyTextField bind:NSEnabledBinding toObject:defaultsController withKeyPath:enableGlobalAutotypeKeyPath options:nil];
   self.hotKeyTextField.hotKey = self.hotKey;
+  self.hotKeyTextField.delegate = self;
 }
 
 - (void)setHotKey:(DDHotKey *)hotKey {
@@ -63,6 +64,10 @@
     [[NSUserDefaults standardUserDefaults] setObject:newData forKey:kMPSettingsKeyGlobalAutotypeKeyDataKey];
   }
   _hotKey = hotKey;
+}
+
+- (void)controlTextDidChange:(NSNotification *)obj {
+  NSLog(@"controlTextDidChange:");
 }
 
 @end

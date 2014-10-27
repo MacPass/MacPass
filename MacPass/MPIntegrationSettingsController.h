@@ -11,7 +11,7 @@
 
 @class DDHotKeyTextField;
 
-@interface MPIntegrationSettingsController : MPViewController <MPSettingsTab>
+@interface MPIntegrationSettingsController : MPViewController <MPSettingsTab, NSTextFieldDelegate>
 
 @property (weak) IBOutlet NSButton *enableServerCheckbutton;
 @property (weak) IBOutlet NSButton *enableGlobalAutotypeCheckbutton;
