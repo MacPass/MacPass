@@ -27,11 +27,6 @@
 NSString *const kMPWindowTitleKey = @"kMPWindowTitleKey";
 NSString *const kMPProcessIdentifierKey = @"kMPProcessIdentifierKey";
 
-/*
- Enable to activate autotype
- */
-#define MP_AUTOTYPE
-
 @interface MPAutotypeDaemon ()
 
 @property (nonatomic, assign) BOOL enabled;
@@ -76,23 +71,17 @@ NSString *const kMPProcessIdentifierKey = @"kMPProcessIdentifierKey";
 - (void)setEnabled:(BOOL)enabled {
   if(_enabled != enabled) {
     _enabled = enabled;
-#ifdef MP_AUTOTYPE
     self.enabled ? [self _registerHotKey] : [self _unregisterHotKey];
-#endif
   }
 }
 
 - (void)setHotKeyData:(NSData *)hotKeyData {
   if(![_hotKeyData isEqualToData:hotKeyData]) {
-#ifdef MP_AUTOTYPE
     [self _unregisterHotKey];
-#endif
     _hotKeyData = [hotKeyData copy];
-#ifdef MP_AUTOTYPE
     if(self.enabled) {
       [self _registerHotKey];
     }
-#endif
   }
 }
 
@@ -178,9 +167,7 @@ NSString *const kMPProcessIdentifierKey = @"kMPProcessIdentifierKey";
     NSArray *commands = [MPAutotypeCommand commandsForContext:context];
     if([MPAutotypeDaemon _orderApplicationToFront:self.targetPID]) {
       /* Sleep a bit after the app was activated */
-      NSLog(@"App wasn't frontmost, did order it there. Waiting a bit.");
       usleep(0.5 * NSEC_PER_MSEC);
-      NSLog(@"Done waiting.");
     }
     for(MPAutotypeCommand *command in commands) {
       [command execute];

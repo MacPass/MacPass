@@ -49,7 +49,7 @@
   [self.enableGlobalAutotypeCheckbutton bind:NSValueBinding toObject:defaultsController withKeyPath:enableGlobalAutotypeKeyPath options:nil];
   [self.enableQuicklookCheckbutton bind:NSValueBinding toObject:defaultsController withKeyPath:quicklookKeyPath options:nil];
   [self.hotKeyTextField bind:NSEnabledBinding toObject:defaultsController withKeyPath:enableGlobalAutotypeKeyPath options:nil];
-  [self.hotKeyTextField bind:NSStringFromSelector(@selector(hotKey)) toObject:self withKeyPath:NSStringFromSelector(@selector(hotKey)) options:nil];
+  self.hotKeyTextField.hotKey = self.hotKey;
 }
 
 - (void)setHotKey:(DDHotKey *)hotKey {
@@ -64,6 +64,5 @@
   }
   _hotKey = hotKey;
 }
-
 
 @end
