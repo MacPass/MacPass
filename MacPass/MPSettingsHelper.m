@@ -9,6 +9,7 @@
 #import "MPSettingsHelper.h"
 #import "NSString+MPPasswordCreation.h"
 #import "MPEntryViewController.h" // Sort descriptors
+#import "DDHotKey+MacPassAdditions.h" // Default hotkey;
 
 NSString *const kMPSettingsKeyPasteboardClearTimeout                  = @"ClipboardClearTimeout";
 NSString *const kMPSettingsKeyClearPasteboardOnQuit                   = @"ClearClipboardOnQuit";
@@ -102,6 +103,7 @@ NSString *const kMPDeprecatedSettingsKeyEntrySearchFilterMode             = @"En
                          kMPSettingsKeyRememberKeyFilesForDatabases: @NO,
                          kMPSettingsKeySendCommandForControlKey: @YES,
                          kMPSettingsKeyEnableGlobalAutotype: @NO,
+                         kMPSettingsKeyGlobalAutotypeKeyDataKey: [[DDHotKey defaultHotKey] keyData],
                          kMPSettingsKeyDefaultGlobalAutotypeSequence: @"{USERNAME}{TAB}{PASSWORD}{ENTER}",
                          kMPSettingsKeyEnableQuicklookPreview: @NO,
                          kMPSettingsKeyCopyGeneratedPasswordToClipboard: @NO,

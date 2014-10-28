@@ -17,5 +17,6 @@
 @property (weak) IBOutlet NSButton *enableGlobalAutotypeCheckbutton;
 @property (weak) IBOutlet NSButton *enableQuicklookCheckbutton;
 @property (weak) IBOutlet DDHotKeyTextField *hotKeyTextField;
+@property (weak) IBOutlet NSTextField *hotkeyWarningTextField;
 
 @end

@@ -42,7 +42,7 @@
   return NSLocalizedString(@"WORKFLOW_SETTINGS", "");
 }
 
-- (void)willSelectTab {
+- (void)willShowTab {
   [self _updateBrowserSelection];
 }
 

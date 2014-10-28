@@ -21,8 +21,8 @@
 - (NSString *)label;
 - (NSImage *)image;
 /* Called when the tab is about to be selected and displayed */
-- (void)willSelectTab;
+- (void)willShowTab;
 /* Called whent the tab was selected and is being displayed */
-- (void)didSelectTab;
+- (void)didShowTab;
 
 @end

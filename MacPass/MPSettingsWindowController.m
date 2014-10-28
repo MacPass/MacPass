@@ -63,9 +63,6 @@
     NSLog(@"Warning. Unknow settingscontroller for identifier: %@. Did you miss to add the controller?", identifier);
     return;
   }
-  if([tab respondsToSelector:@selector(willSelectTab)]) {
-    [tab willSelectTab];
-  }
   [self.toolbar setSelectedItemIdentifier:identifier];
   if([tab respondsToSelector:@selector(label)]) {
     [[self window] setTitle:[tab label]];
@@ -73,7 +70,11 @@
   else {
     [[self window] setTitle:[tab identifier]];
   }
+  /* Access the view before calling the willShoTab to make sure the view is fully loaded */
   NSView *tabView = [(NSViewController *)tab view];
+  if([tab respondsToSelector:@selector(willShowTab)]) {
+    [tab willShowTab];
+  }
   NSView *contentView = [[self window] contentView];
   if( [[contentView subviews] count] == 1) {
     [[contentView subviews][0] removeFromSuperview];
@@ -90,8 +91,8 @@
                                                                         views:NSDictionaryOfVariableBindings(tabView)]];
   
   [contentView layoutSubtreeIfNeeded];
-  if([tab respondsToSelector:@selector(didSelectTab)]) {
-    [tab didSelectTab];
+  if([tab respondsToSelector:@selector(didShowTab)]) {
+    [tab didShowTab];
   }
   [[self window] makeKeyAndOrderFront:[self window]];
 }

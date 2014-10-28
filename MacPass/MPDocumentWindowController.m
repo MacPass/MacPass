@@ -185,7 +185,7 @@ typedef void (^MPPasswordChangedBlock)(BOOL didChangePassword);
 - (void)_didUnlockDatabase:(NSNotification *)notification {
   [self showEntries];
   /* Show password reminders */
-  [self _presentPasswordIntervalAlters];
+  [self _presentPasswordIntervalAlerts];
 }
 
 #pragma mark Actions
@@ -226,7 +226,7 @@ typedef void (^MPPasswordChangedBlock)(BOOL didChangePassword);
         [weakDocument saveDocument:nil];
       }
     };
-    [self _presentPasswordIntervalAlters];
+    [self _presentPasswordIntervalAlerts];
     return;
   }
   /* All set and good ready to save */
@@ -463,7 +463,7 @@ typedef void (^MPPasswordChangedBlock)(BOOL didChangePassword);
 }
 
 #pragma mark NSAlert handling
-- (void)_presentPasswordIntervalAlters {
+- (void)_presentPasswordIntervalAlerts {
   MPDocument *document = [self document];
   if(document.shouldEnforcePasswordChange) {
     NSAlert *alert = [[NSAlert alloc] init];

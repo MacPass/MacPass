@@ -6,10 +6,13 @@
 //  Copyright (c) 2014 HicknHack Software GmbH. All rights reserved.
 //
 
-#import "DDHotKey+Keydata.h"
+#import "DDHotKey+MacPassAdditions.h"
+
+#import "MPFlagsHelper.h"
+
 #import <Carbon/Carbon.h>
 
-@implementation DDHotKey (Keydata)
+@implementation DDHotKey (MPKeydata)
 
 + (instancetype)defaultHotKey {
   return [DDHotKey defaultHotKeyWithTask:nil];
@@ -59,3 +62,34 @@
   return YES;
 }
 @end
+
+@implementation DDHotKey (MPValidation)
+
+- (BOOL)isValid {
+  NSEventModifierFlags flags = 0;
+  switch(self.keyCode) {
+    case  kVK_Command:
+      flags = NSCommandKeyMask;
+      break;
+    case kVK_Shift:
+    case kVK_RightShift:
+      flags = NSShiftKeyMask;
+      break;
+    case kVK_Option:
+    case kVK_RightOption:
+      flags = NSAlternateKeyMask;
+      break;
+    case kVK_Control:
+    case kVK_RightControl:
+      flags = NSControlKeyMask;
+      break;
+  }
+  BOOL missingModifier = self.modifierFlags == 0;
+  BOOL onlyModifiers = MPIsFlagSetInOptions(flags, self.modifierFlags) || (self.modifierFlags != 0 && flags != 0);
+  BOOL isInvalid = onlyModifiers || missingModifier;
+  NSLog(@"%@ valid:%d", self, !isInvalid);
+  return !isInvalid;
+}
+
+@end
+

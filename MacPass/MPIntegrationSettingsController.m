@@ -11,7 +11,7 @@
 #import "MPIconHelper.h"
 
 #import "DDHotKeyCenter.h"
-#import "DDHotKey+Keydata.h"
+#import "DDHotKey+MacPassAdditions.h"
 #import "DDHotKeyTextField.h"
 
 @interface MPIntegrationSettingsController ()
@@ -39,7 +39,6 @@
 }
 
 - (void)awakeFromNib {
-  self.hotKey = [DDHotKey defaultHotKey];
   NSUserDefaultsController *defaultsController = [NSUserDefaultsController sharedUserDefaultsController];
   NSString *serverKeyPath = [MPSettingsHelper defaultControllerPathForKey:kMPSettingsKeyEnableHttpServer];
   NSString *enableGlobalAutotypeKeyPath = [MPSettingsHelper defaultControllerPathForKey:kMPSettingsKeyEnableGlobalAutotype];
@@ -49,25 +48,40 @@
   [self.enableGlobalAutotypeCheckbutton bind:NSValueBinding toObject:defaultsController withKeyPath:enableGlobalAutotypeKeyPath options:nil];
   [self.enableQuicklookCheckbutton bind:NSValueBinding toObject:defaultsController withKeyPath:quicklookKeyPath options:nil];
   [self.hotKeyTextField bind:NSEnabledBinding toObject:defaultsController withKeyPath:enableGlobalAutotypeKeyPath options:nil];
-  self.hotKeyTextField.hotKey = self.hotKey;
   self.hotKeyTextField.delegate = self;
+  
+  [self _showWarning:NO];
 }
 
+- (void)willShowTab {
+  _hotKey = [[DDHotKey alloc] initWithKeyData:[[NSUserDefaults standardUserDefaults] dataForKey:kMPSettingsKeyGlobalAutotypeKeyDataKey]];
+  /* Change any invalid hotkeys to valid ones? */
+  self.hotKeyTextField.hotKey = self.hotKey;
+}
+
+#pragma mark -
+#pragma mark Properties
 - (void)setHotKey:(DDHotKey *)hotKey {
-  static NSData *defaultHotKeyData = nil;
-  static dispatch_once_t onceToken;
-  dispatch_once(&onceToken, ^{
-    defaultHotKeyData = [[DDHotKey defaultHotKey] keyData];
-  });
-  NSData *newData = [hotKey keyData];
-  if(![newData isEqualToData:defaultHotKeyData]) {
-    [[NSUserDefaults standardUserDefaults] setObject:newData forKey:kMPSettingsKeyGlobalAutotypeKeyDataKey];
+  if([self.hotKey isEqual:hotKey]) {
+    return; // Nothing of interest has changed;
   }
   _hotKey = hotKey;
+  [[NSUserDefaults standardUserDefaults] setObject:self.hotKey.keyData forKey:kMPSettingsKeyGlobalAutotypeKeyDataKey];
 }
 
+#pragma mark -
+#pragma mark NSTextFieldDelegate
+
 - (void)controlTextDidChange:(NSNotification *)obj {
-  NSLog(@"controlTextDidChange:");
+  BOOL validHotKey = self.hotKeyTextField.hotKey.valid;
+  [self _showWarning:!validHotKey];
+  if(validHotKey) {
+    self.hotKey = self.hotKeyTextField.hotKey;
+  }
+}
+
+- (void)_showWarning:(BOOL)show {
+  self.hotkeyWarningTextField.hidden = !show;
 }
 
 @end

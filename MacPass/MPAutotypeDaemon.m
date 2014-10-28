@@ -21,7 +21,8 @@
 #import "KPKEntry.h"
 
 #import "DDHotKeyCenter.h"
-#import "DDHotKey+Keydata.h"
+#import "DDHotKey+MacPassAdditions.h"
+
 #import <Carbon/Carbon.h>
 
 NSString *const kMPWindowTitleKey = @"kMPWindowTitleKey";
