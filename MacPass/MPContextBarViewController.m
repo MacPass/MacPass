@@ -83,7 +83,7 @@ typedef NS_ENUM(NSUInteger, MPContextTab) {
   [[specialMenu itemAtIndex:0] setEnabled:NO];
   [[specialMenu itemAtIndex:0] setTag:MPEntrySearchNone];
   [[specialMenu itemAtIndex:0] setAction:@selector(toggleSearchFlags:)];
-  for(NSInteger iIndex = 0; iIndex < [titles count]; iIndex++) {
+  for(NSInteger iIndex = 0; iIndex < (sizeof(specialTags)/sizeof(NSInteger)); iIndex++) {
     NSMenuItem *item = [[NSMenuItem alloc] initWithTitle:titles[iIndex] action:@selector(toggleSearchFlags:) keyEquivalent:@""];
     [item setTag:specialTags[iIndex]];
     [specialMenu addItem:item];
