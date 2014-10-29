@@ -67,8 +67,8 @@ Another place to look is the IRC channel [#macpass](irc://irc.freenode.org/macpa
 
 ##License
 
-MacPass KeePass compatible client for OS X
-Copyright (c) 2012-2013  Michael Starke, HicknHack Software GmbH
+MacPass, a KeePass compatible Password Manager for OS X
+Copyright (c) 2012-2014  Michael Starke (HicknHack Software GmbH) and all MacPass contributors
   
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
