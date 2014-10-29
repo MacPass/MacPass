@@ -606,14 +606,15 @@ NSString *const MPDocumentGroupKey                        = @"MPDocumentGroupKey
   }
 }
 
-- (void)cloneEntry:(id)sender {
-  KPKEntry *clone = [self.selectedEntry copyWithTitle:nil];
+- (void)duplicateEntry:(id)sender {
+  KPKEntry *duplicate = [self.selectedEntry copyWithTitle:nil];
   NSInteger index = [self.selectedEntry.parent.entries indexOfObject:self.selectedEntry];
-  [self.selectedEntry.parent addEntry:clone atIndex:index+1];
-  [self.undoManager setActionName:NSLocalizedString(@"CLONE_ENTRY", "")];
+  [self.selectedEntry.parent addEntry:duplicate atIndex:index+1];
+  [self.undoManager setActionName:NSLocalizedString(@"DUPLICATE_ENTRY", "")];
 }
 
-- (void)cloneEntryWithOptions:(id)sender {
+- (void)duplicateEntryWithOptions:(id)sender {
+  
 }
 
 
@@ -672,7 +673,7 @@ NSString *const MPDocumentGroupKey                        = @"MPDocumentGroupKey
       valid &= (self.trash != targetNode);
       valid &= ![self isItemTrashed:targetNode];
       break;
-    case MPActionCloneEntry:
+    case MPActionDuplicateEntry:
       valid &= (nil != targetEntry);
       break;
     case MPActionEmptyTrash:

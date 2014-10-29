@@ -182,8 +182,8 @@ APPKIT_EXTERN NSString *const MPDocumentGroupKey;
  */
 - (IBAction)createEntryFromTemplate:(id)sender;
 
-- (IBAction)cloneEntry:(id)sender;
+- (IBAction)duplicateEntry:(id)sender;
 
-- (IBAction)cloneEntryWithOptions:(id)sender;
+- (IBAction)duplicateEntryWithOptions:(id)sender;
 
 @end

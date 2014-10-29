@@ -25,7 +25,7 @@ static void MPContextmenuHelperBeginSection(NSMutableArray *items) {
   BOOL const insertDelete = MPIsFlagSetInOptions(MPContextMenuDelete, flags);
   BOOL const insertCopy = MPIsFlagSetInOptions(MPContextMenuCopy, flags);
   BOOL const insertTrash = MPIsFlagSetInOptions(MPContextMenuTrash, flags);
-  BOOL const insertClone = MPIsFlagSetInOptions(MPContextMenuClone, flags);
+  BOOL const insertDuplicate = MPIsFlagSetInOptions(MPContextMenuDuplicate, flags);
   
   NSMutableArray *items = [NSMutableArray arrayWithCapacity:10];
   if(insertCreate) {
@@ -39,16 +39,16 @@ static void MPContextmenuHelperBeginSection(NSMutableArray *items) {
     
     [items addObjectsFromArray:@[ newGroup, newEntry ]];
   }
-  if(insertClone) {
+  if(insertDuplicate) {
     MPContextmenuHelperBeginSection(items);
-    NSMenuItem *cloneEntry = [[NSMenuItem alloc] initWithTitle:NSLocalizedString(@"CLONE_ENTRY", @"")
-                                                      action:[MPActionHelper actionOfType:MPActionCloneEntry]
+    NSMenuItem *duplicateEntry = [[NSMenuItem alloc] initWithTitle:NSLocalizedString(@"DUPLICATE_ENTRY", @"")
+                                                      action:[MPActionHelper actionOfType:MPActionDuplicateEntry]
                                                keyEquivalent:@"D"];
-    NSMenuItem *cloneEntyWithOptions = [[NSMenuItem alloc] initWithTitle:NSLocalizedString(@"CLONE_ENTRY_WITH_OPTIONS", @"")
-                                                      action:[MPActionHelper actionOfType:MPActionCloneEntryWithOptions]
+    NSMenuItem *duplicateEntyWithOptions = [[NSMenuItem alloc] initWithTitle:NSLocalizedString(@"DUPLICATE_ENTRY_WITH_OPTIONS", @"")
+                                                      action:[MPActionHelper actionOfType:MPActionDuplicateEntryWithOptions]
                                                keyEquivalent:@""];
     
-    [items addObjectsFromArray:@[ cloneEntry, cloneEntyWithOptions ]];
+    [items addObjectsFromArray:@[ duplicateEntry, duplicateEntyWithOptions ]];
   
   }
   if(insertDelete || insertTrash) {

@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="6250" systemVersion="13F34" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" customObjectInstantitationMethod="direct">
+    <dependencies>
+        <deployment identifier="macosx"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="6250"/>
+    </dependencies>
+    <objects>
+        <customObject id="-2" userLabel="File's Owner"/>
+        <customObject id="-1" userLabel="First Responder" customClass="FirstResponder"/>
+        <customObject id="-3" userLabel="Application" customClass="NSObject"/>
+        <window title="Window" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" oneShot="NO" releasedWhenClosed="NO" visibleAtLaunch="NO" animationBehavior="default" id="QvC-M9-y7g">
+            <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES"/>
+            <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
+            <rect key="contentRect" x="196" y="240" width="364" height="115"/>
+            <rect key="screenRect" x="0.0" y="0.0" width="2560" height="1418"/>
+            <view key="contentView" id="EiT-Mj-1SZ">
+                <rect key="frame" x="0.0" y="0.0" width="364" height="115"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <button translatesAutoresizingMaskIntoConstraints="NO" id="KYV-1i-31e">
+                        <rect key="frame" x="18" y="79" width="328" height="18"/>
+                        <buttonCell key="cell" type="check" title="Replace password and usernamen with refernces" bezelStyle="regularSquare" imagePosition="left" state="on" inset="2" id="O9X-XH-n8o">
+                            <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                            <font key="font" metaFont="system"/>
+                        </buttonCell>
+                    </button>
+                    <button translatesAutoresizingMaskIntoConstraints="NO" id="DG4-bd-Jhl">
+                        <rect key="frame" x="18" y="59" width="129" height="18"/>
+                        <buttonCell key="cell" type="check" title="Duplicate history" bezelStyle="regularSquare" imagePosition="left" state="on" inset="2" id="dXl-KS-4rE">
+                            <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                            <font key="font" metaFont="system"/>
+                        </buttonCell>
+                    </button>
+                    <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="TFC-xG-RlB">
+                        <rect key="frame" x="214" y="13" width="136" height="32"/>
+                        <buttonCell key="cell" type="push" title="Duplicate Entry" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="WqI-qH-ARf">
+                            <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                            <font key="font" metaFont="system"/>
+                        </buttonCell>
+                    </button>
+                    <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="0j0-db-9Wu">
+                        <rect key="frame" x="132" y="13" width="82" height="32"/>
+                        <buttonCell key="cell" type="push" title="Cancel" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="x6e-bE-Y6R">
+                            <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                            <font key="font" metaFont="system"/>
+                            <string key="keyEquivalent" base64-UTF8="YES">
+Gw
+</string>
+                        </buttonCell>
+                    </button>
+                </subviews>
+                <constraints>
+                    <constraint firstItem="KYV-1i-31e" firstAttribute="leading" secondItem="EiT-Mj-1SZ" secondAttribute="leading" constant="20" id="2MP-Nd-nEI"/>
+                    <constraint firstAttribute="bottom" secondItem="TFC-xG-RlB" secondAttribute="bottom" constant="20" symbolic="YES" id="7dL-yz-Jec"/>
+                    <constraint firstAttribute="trailing" secondItem="TFC-xG-RlB" secondAttribute="trailing" constant="20" symbolic="YES" id="Bp5-7H-WQn"/>
+                    <constraint firstItem="TFC-xG-RlB" firstAttribute="leading" secondItem="0j0-db-9Wu" secondAttribute="trailing" constant="12" id="Mo1-NA-twC"/>
+                    <constraint firstItem="TFC-xG-RlB" firstAttribute="centerY" secondItem="0j0-db-9Wu" secondAttribute="centerY" id="OI2-vr-Dxa"/>
+                    <constraint firstItem="DG4-bd-Jhl" firstAttribute="top" secondItem="KYV-1i-31e" secondAttribute="bottom" constant="6" id="Qsu-7N-dnm"/>
+                    <constraint firstItem="KYV-1i-31e" firstAttribute="leading" secondItem="DG4-bd-Jhl" secondAttribute="leading" id="TpN-gj-FoI"/>
+                    <constraint firstItem="TFC-xG-RlB" firstAttribute="top" secondItem="DG4-bd-Jhl" secondAttribute="bottom" constant="20" symbolic="YES" id="dbV-TU-M0Z"/>
+                    <constraint firstItem="KYV-1i-31e" firstAttribute="top" secondItem="EiT-Mj-1SZ" secondAttribute="top" constant="20" id="tvk-Ic-tmq"/>
+                    <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="KYV-1i-31e" secondAttribute="trailing" constant="20" symbolic="YES" id="xhH-o0-KHo"/>
+                    <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="DG4-bd-Jhl" secondAttribute="trailing" constant="20" symbolic="YES" id="xnL-R7-g2p"/>
+                </constraints>
+            </view>
+            <point key="canvasLocation" x="640" y="443.5"/>
+        </window>
+    </objects>
+</document>
