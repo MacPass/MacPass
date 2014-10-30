@@ -150,8 +150,9 @@ NSString *const kMPIconCell = @"IconCell";
   }
   else {
     BOOL isMalformed = [MPDocument isCandidateForMalformedAutotype:item];
+    BOOL isDefault = [entry.autotype hasDefaultKeystrokeSequence] || [group hasDefaultAutotypeSequence] || [association hasDefaultKeystrokeSequence];
     if([[tableColumn identifier] isEqualToString:kMPIsDefaultCell]) {
-      return isMalformed ? @"Yes" : @"No";
+      return isDefault ? @"Yes" : @"No";
     }
     else if( [[tableColumn identifier] isEqualToString:kMPIconCell]) {
       return isMalformed ? [MPIconHelper icon:MPIconWarning] : nil;
