@@ -25,6 +25,13 @@ NSString *const kMPIsDefaultCell = @"IsDefaultCell";
 NSString *const kMPIconCell = @"IconCell";
 
 
+@interface KPKWindowAssociation (MPFixAutotypeWindowControllerQualifedName)
+
+@property (nonatomic, readonly) NSString *qualifedName;
+
+@end
+
+
 @implementation KPKWindowAssociation (MPFixAutotypeWindowControllerQualifedName)
 
 - (NSString *)qualifedName {
@@ -119,7 +126,7 @@ NSString *const kMPIconCell = @"IconCell";
     association = item;
   }
   
-  if(nil == entry || nil == group || nil == association) {
+  if(nil == entry && nil == group && nil == association) {
     return nil;
   }
   
@@ -142,26 +149,12 @@ NSString *const kMPIconCell = @"IconCell";
     return association.keystrokeSequence;
   }
   else {
-    BOOL isDefault = NO;
-    NSString *keystrokeSequence;
-    if(entry) {
-      isDefault = entry.autotype.hasDefaultKeystrokeSequence;
-      keystrokeSequence = entry.autotype.defaultKeystrokeSequence;
-    }
-    else if( group ) {
-      isDefault = group.hasDefaultAutotypeSequence;
-      keystrokeSequence = group.defaultAutoTypeSequence;
-    }
-    else {
-      isDefault = association.hasDefaultKeystrokeSequence;
-      keystrokeSequence = association.keystrokeSequence;
-    }
+    BOOL isMalformed = [MPDocument isCandidateForMalformedAutotype:item];
     if([[tableColumn identifier] isEqualToString:kMPIsDefaultCell]) {
-      return isDefault ? @"Yes" : @"No";
+      return isMalformed ? @"Yes" : @"No";
     }
     else if( [[tableColumn identifier] isEqualToString:kMPIconCell]) {
-      BOOL isWrongFormat = (NSOrderedSame == [@"{TAB}{USERNAME}{TAB}{PASSWORD}{ENTER}" compare:keystrokeSequence options:NSCaseInsensitiveSearch]);
-      return (isWrongFormat && !isDefault) ? [MPIconHelper icon:MPIconWarning] : nil;
+      return isMalformed ? [MPIconHelper icon:MPIconWarning] : nil;
     }
   }
   return nil;
