@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="6250" systemVersion="13F34" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="6250" systemVersion="14A389" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
     <dependencies>
         <deployment identifier="macosx"/>
         <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="6250"/>
@@ -13,7 +13,6 @@
                 <outlet property="itemImageView" destination="2998" id="3024"/>
                 <outlet property="itemNameTextField" destination="3013" id="3025"/>
                 <outlet property="noSelectionInfo" destination="2985" id="2993"/>
-                <outlet property="notesHeaderTextField" destination="PzR-P9-3al" id="kxL-bk-BVS"/>
                 <outlet property="notesTextView" destination="g24-gQ-foD" id="pcU-EQ-Vgn"/>
                 <outlet property="splitView" destination="3145" id="lyG-RH-yu4"/>
                 <outlet property="tabView" destination="2895" id="2994"/>
@@ -28,7 +27,7 @@
                 <customView translatesAutoresizingMaskIntoConstraints="NO" id="2930" customClass="HNHGradientView">
                     <rect key="frame" x="0.0" y="0.0" width="278" height="30"/>
                     <subviews>
-                        <button hidden="YES" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="3109">
+                        <button hidden="YES" verticalHuggingPriority="750" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="3109">
                             <rect key="frame" x="220" y="2" width="38" height="25"/>
                             <buttonCell key="cell" type="roundTextured" title="Edit" bezelStyle="texturedRounded" imagePosition="left" alignment="center" state="on" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="3110">
                                 <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
@@ -38,7 +37,7 @@
                                 <action selector="toggleEdit:" target="-2" id="3143"/>
                             </connections>
                         </button>
-                        <button hidden="YES" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="3126">
+                        <button hidden="YES" verticalHuggingPriority="750" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="3126">
                             <rect key="frame" x="156" y="2" width="56" height="25"/>
                             <buttonCell key="cell" type="roundTextured" title="Cancel" bezelStyle="texturedRounded" alignment="center" state="on" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="3127">
                                 <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
@@ -114,7 +113,7 @@
                                                 <rect key="frame" x="0.0" y="0.0" width="278" height="283"/>
                                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                 <subviews>
-                                                    <textField verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="2985">
+                                                    <textField verticalHuggingPriority="750" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="2985">
                                                         <rect key="frame" x="77" y="150" width="125" height="24"/>
                                                         <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="No Selection" id="2986">
                                                             <font key="font" metaFont="system" size="20"/>
@@ -144,7 +143,7 @@
                             <rect key="frame" x="0.0" y="371" width="278" height="211"/>
                             <autoresizingMask key="autoresizingMask"/>
                             <subviews>
-                                <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="PzR-P9-3al">
+                                <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="PzR-P9-3al">
                                     <rect key="frame" x="18" y="192" width="35" height="14"/>
                                     <textFieldCell key="cell" controlSize="small" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Notes" id="hwn-UY-9Cr">
                                         <font key="font" metaFont="smallSystem"/>
