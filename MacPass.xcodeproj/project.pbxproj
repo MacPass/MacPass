@@ -168,6 +168,8 @@
 		4C68456D17BC227B00FCDBFC /* KPKWindowAssociation.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C68456C17BC227B00FCDBFC /* KPKWindowAssociation.m */; };
 		4C68456F17BC2A0700FCDBFC /* WelcomeWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4C68456E17BC2A0700FCDBFC /* WelcomeWindow.xib */; };
 		4C69A73A16D589DF00EC1B1A /* HNHGradientView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C69A73916D589DF00EC1B1A /* HNHGradientView.m */; };
+		4C6AEEF91A043E2B00CA2420 /* MPDocumentController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C6AEEF81A043E2B00CA2420 /* MPDocumentController.m */; };
+		4C6AEF031A04400E00CA2420 /* OpenPanelAccessoryView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4C6AEF021A04400E00CA2420 /* OpenPanelAccessoryView.xib */; };
 		4C6B7C7D18BE7EB0001D5D77 /* MPDocument+HistoryBrowsing.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C6B7C7C18BE7EB0001D5D77 /* MPDocument+HistoryBrowsing.m */; };
 		4C6C72C417C01E4200768849 /* NSMutableData+KeePassKit.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C6C72C317C01E4200768849 /* NSMutableData+KeePassKit.m */; };
 		4C6D1D25178579570014C5A5 /* 48_FolderTemplate.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 4C6D1D24178579570014C5A5 /* 48_FolderTemplate.pdf */; };
@@ -675,6 +677,9 @@
 		4C68456E17BC2A0700FCDBFC /* WelcomeWindow.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = WelcomeWindow.xib; sourceTree = "<group>"; };
 		4C69A73816D589DF00EC1B1A /* HNHGradientView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HNHGradientView.h; sourceTree = "<group>"; };
 		4C69A73916D589DF00EC1B1A /* HNHGradientView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HNHGradientView.m; sourceTree = "<group>"; };
+		4C6AEEF71A043E2B00CA2420 /* MPDocumentController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MPDocumentController.h; sourceTree = "<group>"; };
+		4C6AEEF81A043E2B00CA2420 /* MPDocumentController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MPDocumentController.m; sourceTree = "<group>"; };
+		4C6AEF021A04400E00CA2420 /* OpenPanelAccessoryView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = OpenPanelAccessoryView.xib; sourceTree = "<group>"; };
 		4C6B7C7B18BE7EB0001D5D77 /* MPDocument+HistoryBrowsing.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "MPDocument+HistoryBrowsing.h"; sourceTree = "<group>"; };
 		4C6B7C7C18BE7EB0001D5D77 /* MPDocument+HistoryBrowsing.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "MPDocument+HistoryBrowsing.m"; sourceTree = "<group>"; };
 		4C6C72C217C01E4200768849 /* NSMutableData+KeePassKit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSMutableData+KeePassKit.h"; sourceTree = "<group>"; };
@@ -1055,6 +1060,7 @@
 		4C06398C15B980480004DE27 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				4C6AEF041A0441F800CA2420 /* AccessoryViews */,
 				4CF78060176E75180032EE71 /* Settings */,
 				4C25D58616CF0FAA00F6806C /* EntryView.xib */,
 				4C3FFD9D16DAF60600DF9186 /* ContextBar.xib */,
@@ -1065,7 +1071,6 @@
 				4CE39AC016ECE359000FE29D /* IconSelection.xib */,
 				4C2C8B331787500E009649F3 /* UnprotectedWarningView.xib */,
 				6021FE7918E15FF300C3BC51 /* DatePickingView.xib */,
-				4C0728BE17B68ED0005A7DD9 /* SavePanelAccessoryView.xib */,
 				4C26C34A18D8D5A300CF1A1C /* PreviewView.xib */,
 				4C74DD05177BD1640034A9DB /* MPCustomFieldView.h */,
 				4C74DD06177BD1640034A9DB /* MPCustomFieldView.m */,
@@ -1519,6 +1524,15 @@
 			name = Categories;
 			sourceTree = "<group>";
 		};
+		4C6AEF041A0441F800CA2420 /* AccessoryViews */ = {
+			isa = PBXGroup;
+			children = (
+				4C0728BE17B68ED0005A7DD9 /* SavePanelAccessoryView.xib */,
+				4C6AEF021A04400E00CA2420 /* OpenPanelAccessoryView.xib */,
+			);
+			name = AccessoryViews;
+			sourceTree = "<group>";
+		};
 		4C77E35715B84A240093A587 = {
 			isa = PBXGroup;
 			children = (
@@ -1969,6 +1983,8 @@
 			children = (
 				4C431BCB16E2A82700700A81 /* MPPasteBoardController.h */,
 				4C431BCC16E2A82700700A81 /* MPPasteBoardController.m */,
+				4C6AEEF71A043E2B00CA2420 /* MPDocumentController.h */,
+				4C6AEEF81A043E2B00CA2420 /* MPDocumentController.m */,
 			);
 			name = "Data Controller";
 			sourceTree = "<group>";
@@ -2199,6 +2215,7 @@
 				4CD78AC016D155FF00768A1D /* 11_CameraTemplate.pdf in Resources */,
 				4C61EA0516D2FFE200AC519E /* OutlineView.xib in Resources */,
 				4CB9339916D3A0DD00A13B5D /* Credits.rtf in Resources */,
+				4C6AEF031A04400E00CA2420 /* OpenPanelAccessoryView.xib in Resources */,
 				4C3FFD9E16DAF60600DF9186 /* ContextBar.xib in Resources */,
 				4C431BCF16E2BAB000700A81 /* OverlayWindow.xib in Resources */,
 				4C17F105184E630200E85625 /* 14_BatteryTemplate.pdf in Resources */,
@@ -2318,6 +2335,7 @@
 				4C69A73A16D589DF00EC1B1A /* HNHGradientView.m in Sources */,
 				4C65C79C16DD283900E32CFF /* MPToolbarButton.m in Sources */,
 				4C431BCD16E2A82800700A81 /* MPPasteBoardController.m in Sources */,
+				4C6AEEF91A043E2B00CA2420 /* MPDocumentController.m in Sources */,
 				4CE8246F16E2E93400573141 /* MPOverlayWindowController.m in Sources */,
 				4CE8247516E2F2B900573141 /* MPOverlayView.m in Sources */,
 				4C77547516E55FE800970E02 /* MPInspectorViewController.m in Sources */,
