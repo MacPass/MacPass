@@ -24,6 +24,11 @@ If you want to live dangerously and want to take a look at the master:
 
 After that you can build and run in Xcode. If you run into signing issues take a look at [Issue #92](https://github.com/mstarke/MacPass/issues/92)
 
+There have been some changes in the submodule urls. Please consider re-syncing and initalizing all submodules.
+
+	git submodule sync
+	git submodule init
+
 ##Known Major Issues
 
 * Binary releases (0.2.x - 0.3.x):
