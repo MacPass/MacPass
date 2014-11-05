@@ -373,8 +373,9 @@ NSString *const _MPTableSecurCellView = @"PasswordCell";
   }
   /*
    If a group is the current item, see if we already show that group
+	 also test if an element has been selected (issue #257)
    */
-  if(document.selectedItem == document.selectedGroup) {
+  if(document.selectedItem == document.selectedGroup && document.selectedItem != nil) {
     if(document.hasSearch) {
       /* If search was active, stop it and exit */
       [document exitSearch:self];
