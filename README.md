@@ -101,7 +101,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 [Gil André](mailto:gil@panix.com) and [Michel Bibal](https://github.com/MBibal) French localization
 
-[auge](https://github.com/auge) German localization
+[Benjamin Steinwender](https://github.com/auge) German localization
 
 [Zhao Peng](patchao2000@gmail.com) Simplified Chinese localization
 
