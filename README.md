@@ -99,7 +99,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 [Jannick Hemelhof](https://github.com/clone1612) Dutch localization
 
-[Gil André](mailto:gil@panix.com) and [MBibal](https://github.com/MBibal) French localization
+[Gil André](mailto:gil@panix.com) and [Michel Bibal](https://github.com/MBibal) French localization
 
 [auge](https://github.com/auge) German localization
 
