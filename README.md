@@ -93,7 +93,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 [Iiro Jäppinen](https://iiro.jappinen.me) MacPass icon
 
-[thomscode](https://github.com/thomscode) Document icons
+[Thom Williams](https://github.com/thomscode) Document icons
 
 [Jellyfrog](https://github.com/Jellyfrog) Asset file size optimization
 
