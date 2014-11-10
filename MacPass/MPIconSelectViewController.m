@@ -14,6 +14,14 @@
 NSInteger const kMPDefaultIcon = -1;
 
 @interface MPIconSelectViewController ()
+
+@property (nonatomic, assign) NSInteger selectedIcon;
+@property (nonatomic, assign) BOOL didCancel;
+
+/* UI properties */
+@property (weak) IBOutlet NSCollectionView *iconCollectionView;
+@property (weak) IBOutlet NSButton *imageButton;
+
 @end
 
 @implementation MPIconSelectViewController
@@ -26,6 +34,7 @@ NSInteger const kMPDefaultIcon = -1;
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
       _didCancel = YES;
+      _selectedIcon = kMPDefaultIcon;
     }
     return self;
 }
