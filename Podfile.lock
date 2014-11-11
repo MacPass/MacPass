@@ -1,0 +1,36 @@
+PODS:
+  - CocoaAsyncSocket (7.3.5)
+  - CocoaHTTPServer (2.3):
+    - CocoaAsyncSocket
+    - CocoaLumberjack
+  - CocoaLumberjack (2.0.0-beta4):
+    - CocoaLumberjack/Default
+    - CocoaLumberjack/Extensions
+  - CocoaLumberjack/Core (2.0.0-beta4)
+  - CocoaLumberjack/Default (2.0.0-beta4):
+    - CocoaLumberjack/Core
+  - CocoaLumberjack/Extensions (2.0.0-beta4):
+    - CocoaLumberjack/Default
+  - KissXML (5.0)
+  - Sparkle (1.8.0)
+  - TransformerKit/Core (0.5.3)
+
+DEPENDENCIES:
+  - CocoaHTTPServer
+  - KissXML
+  - Sparkle
+  - TransformerKit/Core (from `https://github.com/mattt/TransformerKit.git`)
+
+EXTERNAL SOURCES:
+  TransformerKit:
+    :git: https://github.com/mattt/TransformerKit.git
+
+SPEC CHECKSUMS:
+  CocoaAsyncSocket: 45bdbbc1c0a5ed0640ff4c42af325ba43a2f099a
+  CocoaHTTPServer: 217df4cba4e48803db2480f97b805aaad2230dd1
+  CocoaLumberjack: 24153b24b17d853d7182b22b128971fb98e8cb18
+  KissXML: e537c38b18ede903ee6de45953a9bd86c131ebe9
+  Sparkle: 5eb20bb37ca21e471dab8417dee880198d905327
+  TransformerKit: 03680f192fb4e4ae66c070356b934986e2581bac
+
+COCOAPODS: 0.34.4
