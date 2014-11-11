@@ -19,13 +19,13 @@
 
 @implementation KPKTestReference
 
-- (void)testCorrectReference {
+- (void)testCorrectUUIDReference {
   KPKTree *tree = [[KPKTree alloc] init];
   KPKGroup *group = [[KPKGroup alloc] init];
   KPKEntry *entry1 = [[KPKEntry alloc] init];
   KPKEntry *entry2 = [[KPKEntry alloc] init];
   entry1.title = @"-Entry1Title-";
-  entry2.title = [[NSString alloc] initWithFormat:@"Nothing{REF:T@I:%@}Changed", entry1.uuid.UUIDString];;
+  entry2.title = [[NSString alloc] initWithFormat:@"Nothing{ref:t@i:%@}Changed", entry1.uuid.UUIDString];;
   entry2.url = @"-Entry2URL-";
   
   [group addEntry:entry1];
@@ -36,13 +36,13 @@
   XCTAssertTrue([result isEqualToString:@"Nothing-Entry1Title-Changed"], @"Replaced Strings should match");
 }
 
-- (void)testRecursiveReference{
+- (void)testRecursiveUUIDReference{
   KPKTree *tree = [[KPKTree alloc] init];
   KPKGroup *group = [[KPKGroup alloc] init];
   KPKEntry *entry1 = [[KPKEntry alloc] init];
   KPKEntry *entry2 = [[KPKEntry alloc] init];
-  entry1.title = [[NSString alloc] initWithFormat:@"Title1{REF:A@I:%@}", entry2.uuid.UUIDString];
-  entry2.title = [[NSString alloc] initWithFormat:@"Nothing{REF:T@I:%@}Changed", entry1.uuid.UUIDString];
+  entry1.title = [[NSString alloc] initWithFormat:@"Title1{REF:A@i:%@}", entry2.uuid.UUIDString];
+  entry2.title = [[NSString alloc] initWithFormat:@"Nothing{REF:t@I:%@}Changed", entry1.uuid.UUIDString];
   entry2.url = @"-Entry2URL-";
   
   [group addEntry:entry1];
@@ -53,7 +53,7 @@
   XCTAssertTrue([result isEqualToString:@"NothingTitle1-Entry2URL-Changed"], @"Replaced Strings should match");
 }
 
-- (void)testWrongRefernceFormat {
+- (void)testWrongRefernce {
   XCTFail(@"Missing Test");
 }
 
@@ -61,7 +61,7 @@
   XCTFail(@"Missing Test");
 }
 
-- (void)testMultipleMatchinRefernce {
+- (void)testMultipleMatchinReference {
   XCTFail(@"Missing Test");
 }
 
