@@ -42,8 +42,9 @@
 
 - (IBAction)toggleAllowAllFilesButton:(id)sender {
   NSButton *button = (NSButton *)sender;
-  self.openPanel.allowsOtherFileTypes = HNHBoolForState(button.state);
   self.allowAllFiles = HNHBoolForState(button.state);
+  self.openPanel.allowedFileTypes = self.allowAllFiles ? nil : @[@".kdb", @".kdbx"];
+  //self.openPanel.directoryURL = self.openPanel.directoryURL;
 }
 
 #pragma mark NSOpenSavePanelDelegate

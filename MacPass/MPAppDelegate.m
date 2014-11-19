@@ -22,20 +22,20 @@
 
 #import "MPAppDelegate.h"
 
-#import "MPSettingsWindowController.h"
-#import "MPPasswordCreatorViewController.h"
-#import "MPSettingsHelper.h"
-#import "MPStringLengthValueTransformer.h"
-#import "MPValueTransformerHelper.h"
-#import "MPServerDaemon.h"
-#import "MPLockDaemon.h"
 #import "MPAutotypeDaemon.h"
-#import "MPDocumentWindowController.h"
 #import "MPDockTileHelper.h"
-
-#import "MPTemporaryFileStorageCenter.h"
-
 #import "MPDocument.h"
+#import "MPDocumentController.h"
+#import "MPDocumentWindowController.h"
+#import "MPLockDaemon.h"
+#import "MPPasswordCreatorViewController.h"
+#import "MPServerDaemon.h"
+#import "MPSettingsHelper.h"
+#import "MPSettingsWindowController.h"
+#import "MPStringLengthValueTransformer.h"
+#import "MPTemporaryFileStorageCenter.h"
+#import "MPValueTransformerHelper.h"
+
 #import "KPKCompositeKey.h"
 
 NSString *const MPDidChangeStoredKeyFilesSettings = @"com.hicknhack.macpass.MPDidChangeStoredKeyFilesSettings";
@@ -61,6 +61,18 @@ NSString *const MPDidChangeStoredKeyFilesSettings = @"com.hicknhack.macpass.MPDi
   [MPSettingsHelper migrateDefaults];
   [MPStringLengthValueTransformer registerTransformer];
   [MPValueTransformerHelper registerValueTransformer];
+}
+
+- (instancetype)init {
+  self = [super init];
+  if(self) {
+    /* We know that we do not use the varibale after instancation */
+    #pragma clang diagnostic push
+    #pragma clang diagnostic ignored "-Wunused-variable"
+    MPDocumentController *documentController = [[MPDocumentController alloc] init];
+    #pragma clang diagnostic pop
+  }
+  return self;
 }
 
 - (void)dealloc {
