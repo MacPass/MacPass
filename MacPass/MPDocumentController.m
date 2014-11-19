@@ -7,8 +7,12 @@
 //
 
 #import "MPDocumentController.h"
+#import "MPConstants.h"
 
 #import "HNHCommon.h"
+
+#import "KPKFormat.h"
+#import "KPKFormat+MPUTIDetection.h"
 
 @interface MPDocumentController ()
 
@@ -43,8 +47,18 @@
 - (IBAction)toggleAllowAllFilesButton:(id)sender {
   NSButton *button = (NSButton *)sender;
   self.allowAllFiles = HNHBoolForState(button.state);
-  self.openPanel.allowedFileTypes = self.allowAllFiles ? nil : @[@".kdb", @".kdbx"];
-  //self.openPanel.directoryURL = self.openPanel.directoryURL;
+  self.openPanel.allowedFileTypes = self.allowAllFiles ? nil : @[MPLegacyDocumentUTI, MPXMLDocumentUTI];
+  self.openPanel.canChooseDirectories = self.allowAllFiles;
+  self.openPanel.delegate = self.allowAllFiles ? self : nil;
+  [self.openPanel validateVisibleColumns];
+}
+
+- (NSString *)typeForContentsOfURL:(NSURL *)url error:(NSError *__autoreleasing *)outError {
+  NSString *detectedType = [[KPKFormat sharedFormat] typeForContentOfURL:url];
+  if(nil != detectedType) {
+    return detectedType;
+  }
+  return [super typeForContentsOfURL:url error:outError];
 }
 
 #pragma mark NSOpenSavePanelDelegate

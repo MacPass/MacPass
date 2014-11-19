@@ -87,6 +87,7 @@
 		4C305F36179A0BD70082334F /* KPKIcon.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C305F35179A0BD70082334F /* KPKIcon.m */; };
 		4C305F3C179A19F90082334F /* KPKIconLoading.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C305F3B179A19F90082334F /* KPKIconLoading.m */; };
 		4C305F3E179A1A760082334F /* image.png in Resources */ = {isa = PBXBuildFile; fileRef = 4C305F3D179A1A760082334F /* image.png */; };
+		4C32B0E71A1D4436007E12F1 /* KPKFormat+MPUTIDetection.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C32B0E61A1D4436007E12F1 /* KPKFormat+MPUTIDetection.m */; };
 		4C3666411787327E00B249F1 /* MPDocument+Attachments.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C3666401787327E00B249F1 /* MPDocument+Attachments.m */; };
 		4C366643178748F500B249F1 /* 99_HarddiskTemplate.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 4C366642178748F500B249F1 /* 99_HarddiskTemplate.pdf */; };
 		4C37A6731769393300AD0A40 /* HNHTableHeaderCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C37A6721769393300AD0A40 /* HNHTableHeaderCell.m */; };
@@ -525,6 +526,8 @@
 		4C305F35179A0BD70082334F /* KPKIcon.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KPKIcon.m; sourceTree = "<group>"; };
 		4C305F3B179A19F90082334F /* KPKIconLoading.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KPKIconLoading.m; sourceTree = "<group>"; };
 		4C305F3D179A1A760082334F /* image.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = image.png; path = Images/image.png; sourceTree = "<group>"; };
+		4C32B0E51A1D4436007E12F1 /* KPKFormat+MPUTIDetection.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "KPKFormat+MPUTIDetection.h"; sourceTree = "<group>"; };
+		4C32B0E61A1D4436007E12F1 /* KPKFormat+MPUTIDetection.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "KPKFormat+MPUTIDetection.m"; sourceTree = "<group>"; };
 		4C3666401787327E00B249F1 /* MPDocument+Attachments.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "MPDocument+Attachments.m"; sourceTree = "<group>"; };
 		4C366642178748F500B249F1 /* 99_HarddiskTemplate.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; name = 99_HarddiskTemplate.pdf; path = Icons/99_HarddiskTemplate.pdf; sourceTree = "<group>"; };
 		4C37A6711769393300AD0A40 /* HNHTableHeaderCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HNHTableHeaderCell.h; sourceTree = "<group>"; };
@@ -1115,6 +1118,8 @@
 				4CEED1C517D7BD0E007180F1 /* NSError+Messages.m */,
 				4C77C83F18E240E000D1C42B /* DDHotKey+MacPassAdditions.h */,
 				4C77C84018E240E000D1C42B /* DDHotKey+MacPassAdditions.m */,
+				4C32B0E51A1D4436007E12F1 /* KPKFormat+MPUTIDetection.h */,
+				4C32B0E61A1D4436007E12F1 /* KPKFormat+MPUTIDetection.m */,
 			);
 			name = Categories;
 			sourceTree = "<group>";
@@ -2515,6 +2520,7 @@
 				4C5CD35717D15DBD000B7F38 /* NSDate+Packed.m in Sources */,
 				4C5CD35817D15DBD000B7F38 /* NSMutableData+Base64.m in Sources */,
 				4C5CD35917D15DBD000B7F38 /* NSString+Empty.m in Sources */,
+				4C32B0E71A1D4436007E12F1 /* KPKFormat+MPUTIDetection.m in Sources */,
 				4C5CD35A17D15DBD000B7F38 /* NSString+Hexdata.m in Sources */,
 				4C5CD36117D15DCA000B7F38 /* KPKArc4RandomStream.m in Sources */,
 				4C5CD36217D15DCA000B7F38 /* KPKRandomStream.m in Sources */,
