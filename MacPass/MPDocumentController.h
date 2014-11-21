@@ -10,6 +10,7 @@
 
 @interface MPDocumentController : NSDocumentController
 
-- (IBAction)toggleAllowAllFilesButton:(id)sender;
+- (IBAction)toggleAllowAllFiles:(id)sender;
+- (IBAction)toggleShowHiddenFiles:(id)sender;
 
 @end
