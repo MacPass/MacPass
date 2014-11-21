@@ -6,6 +6,7 @@
 //  Copyright (c) 2014 HicknHack Software GmbH. All rights reserved.
 //
 
+
 #import "MPDocumentController.h"
 #import "MPConstants.h"
 
@@ -18,6 +19,7 @@
 
 @property (strong) IBOutlet NSView *accessoryView;
 @property (weak) NSOpenPanel *openPanel;
+@property (strong) id openPanelTableHack;
 @property (assign) BOOL allowAllFiles;
 
 @end
@@ -40,7 +42,6 @@
     [myBundle loadNibNamed:@"OpenPanelAccessoryView" owner:self topLevelObjects:&topLevelObjects];
   }
   self.openPanel.accessoryView = self.accessoryView;
-  //self.openPanel.delegate = self;
   [super beginOpenPanel:openPanel forTypes:inTypes completionHandler:completionHandler];
 }
 
@@ -48,9 +49,7 @@
   NSButton *button = (NSButton *)sender;
   self.allowAllFiles = HNHBoolForState(button.state);
   self.openPanel.allowedFileTypes = self.allowAllFiles ? nil : @[MPLegacyDocumentUTI, MPXMLDocumentUTI];
-  self.openPanel.canChooseDirectories = self.allowAllFiles;
-  self.openPanel.delegate = self.allowAllFiles ? self : nil;
-  [self.openPanel validateVisibleColumns];
+  //[self _refreshOpenPanel];
 }
 
 - (NSString *)typeForContentsOfURL:(NSURL *)url error:(NSError *__autoreleasing *)outError {
@@ -61,12 +60,35 @@
   return [super typeForContentsOfURL:url error:outError];
 }
 
-#pragma mark NSOpenSavePanelDelegate
-- (BOOL)panel:(id)sender shouldEnableURL:(NSURL *)url {
-  if(self.allowAllFiles) {
-    return YES;
+/*
+ Hack is from http://stackoverflow.com/users/1564216/eidola at
+ http://stackoverflow.com/questions/18192986/nsopenpanel-doesnt-validatevisiblecolumns
+ */
+#pragma mark NSOpenPanel Refresh Hack
+- (id)_openPanelFindTable:(NSArray*)subviews; {
+  id table;
+  for(id view in subviews) {
+    if([[view className] isEqualToString: @"FI_TListView"]) {
+      table = view;
+      break;
+    }
+    else {
+      table = [self _openPanelFindTable:[view subviews]];
+      if (table != nil) {
+        break;
+      }
+    }
   }
-  return NO;
+  return table;
+}
+
+
+- (void)_refreshOpenPanel {
+  if(self.openPanelTableHack == nil) {
+    self.openPanelTableHack = [self _openPanelFindTable:[[self.openPanel contentView] subviews]];
+  }
+  [_openPanelTableHack reloadData];
+  [_openPanel validateVisibleColumns];
 }
 
 @end
