@@ -269,6 +269,10 @@ NSString *const MPDocumentGroupKey                        = @"MPDocumentGroupKey
 #pragma mark Lock/Unlock/Decrypt
 
 - (void)lockDatabase:(id)sender {
+  if(self.undoManager.canUndo) {
+    /* ask the user? */
+    [self.undoManager removeAllActions];
+  }
   [self exitSearch:self];
   NSError *error;
   /* Locking needs to be lossless hence just use the XML format */
