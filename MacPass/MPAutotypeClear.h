@@ -10,5 +10,4 @@
 
 @interface MPAutotypeClear : MPAutotypeCommand
 
-
 @end

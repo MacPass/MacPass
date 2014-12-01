@@ -12,6 +12,10 @@
 
 @implementation MPAutotypeClear
 
+- (NSString *)description {
+  return [[self class] description];
+}
+
 - (void)execute {
   CGKeyCode keyCode = [MPKeyMapper keyCodeForCharacter:@"A"];
   if(keyCode == kMPUnknownKeyCode) {

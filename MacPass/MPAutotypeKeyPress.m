@@ -31,6 +31,10 @@
   return self;
 }
 
+- (NSString *)description {
+  return [[NSString alloc] initWithFormat:@"%@: modifierMaks:%llu keyCode:%d", [self class], self.modifierMask, self.keyCode];
+}
+
 - (void)execute {
   if(![self isValid]) {
     return; // no valid command. Stop.

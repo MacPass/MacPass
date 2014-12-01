@@ -27,6 +27,10 @@
   return self;
 }
 
+- (NSString *)description {
+  return [[NSString alloc] initWithFormat:@"%@ paste:%@", [self class], self.pasteData];
+}
+
 - (void)appendString:(NSString *)aString {
   self.pasteData = [self.pasteData stringByAppendingString:aString];
 }

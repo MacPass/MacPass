@@ -21,10 +21,14 @@
   return self;
 }
 
+- (NSString *)description {
+  return [[NSString alloc] initWithFormat:@"%@ delay: %ld ms", [self class], _delay];
+}
+
 - (instancetype)initWithDelay:(NSUInteger)delay {
   self = [super init];
   if(self) {
-    /* Delays longer than a minute are a bit lon */
+    /* Delays longer than a minute are a bit long */
     _delay = MIN(60,delay);
   }
   return self;
