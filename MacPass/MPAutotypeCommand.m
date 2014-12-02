@@ -118,7 +118,7 @@
     NSRange commandRange = [rangeValue rangeValue];
     /* All non-commands will get translated into paste commands */
     if(commandRange.location > lastLocation) {
-      /* If there were modifiers we need to use the next single stroke and make update the modifier command */
+      /* If there were modifiers we need to use the next single stroke and update the modifier command */
       if(collectedModifers) {
         NSString *modifiedKey = [context.evaluatedCommand substringWithRange:NSMakeRange(lastLocation, 1)];
         MPAutotypeKeyPress *press = [[MPAutotypeKeyPress alloc] initWithModifierMask:collectedModifers character:modifiedKey];
@@ -283,12 +283,12 @@
         return; // Done
       }
       else if([kKPKAutotypeVirtualKey isEqualToString:command]) {
-        NSLog(@"Virutal key strokes aren't supported yet!");
+        NSLog(@"Virtual key strokes aren't supported yet!");
         // TODO add key
       }
     }
     else {
-      NSLog(@"Unable to value part in command:%@", commandString);
+      NSLog(@"Unable to parse value part in command:%@", commandString);
     }
   }
   else {
