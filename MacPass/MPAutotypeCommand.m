@@ -311,8 +311,13 @@
 }
 
 - (void)sendPressKey:(CGKeyCode)keyCode modifierFlags:(CGEventFlags)flags {
-  CGEventRef pressKey = CGEventCreateKeyboardEvent (NULL, keyCode, YES);
-  CGEventRef releaseKey = CGEventCreateKeyboardEvent (NULL, keyCode, NO);
+  
+  CGEventSourceRef eventSource = CGEventSourceCreate(kCGEventSourceStatePrivate);
+  if(NULL == eventSource) {
+    return; // We could not create our own source, abort!
+  }
+  CGEventRef pressKey = CGEventCreateKeyboardEvent (eventSource, keyCode, YES);
+  CGEventRef releaseKey = CGEventCreateKeyboardEvent (eventSource, keyCode, NO);
   
   /* The modifer Masks might be set, reset them */
   CGEventSetFlags(pressKey,0);
@@ -322,12 +327,14 @@
   CGEventSetFlags(releaseKey, flags);
   
   /* Send the event */
-  CGEventPost(kCGSessionEventTap, pressKey);
+  NSLog(@"Seding %@", self);
+  CGEventPost(kCGHIDEventTap, pressKey);
   usleep(0.05 * NSEC_PER_MSEC);
-  CGEventPost(kCGSessionEventTap, releaseKey);
+  CGEventPost(kCGHIDEventTap, releaseKey);
   
   CFRelease(pressKey);
   CFRelease(releaseKey);
+  CFRelease(eventSource);
 }
 
 - (void)sendPasteKeyCode {
