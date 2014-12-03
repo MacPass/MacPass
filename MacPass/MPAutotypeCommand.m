@@ -323,11 +323,10 @@
    Set the modifiers to the ones we want
    We use our private event source so no modifier reset should be needed
    */
-  CGEventSetFlags(pressKey,flags);
+  CGEventSetFlags(pressKey, flags);
   CGEventSetFlags(releaseKey, flags);
   
   /* Send the event */
-  NSLog(@"Seding %@", self);
   CGEventPost(kCGHIDEventTap, pressKey);
   usleep(0.05 * NSEC_PER_MSEC);
   CGEventPost(kCGHIDEventTap, releaseKey);
