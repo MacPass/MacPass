@@ -13,7 +13,7 @@
 
 @interface MPAutotypePaste ()
 
-@property (strong) NSString *pasteData;
+@property (copy) NSString *pasteData;
 
 @end
 
@@ -34,7 +34,6 @@
 - (void)appendString:(NSString *)aString {
   self.pasteData = [self.pasteData stringByAppendingString:aString];
 }
-
 
 - (void)execute {
   if([self.pasteData length] > 0) {

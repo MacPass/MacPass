@@ -319,10 +319,10 @@
   CGEventRef pressKey = CGEventCreateKeyboardEvent (eventSource, keyCode, YES);
   CGEventRef releaseKey = CGEventCreateKeyboardEvent (eventSource, keyCode, NO);
   
-  /* The modifer Masks might be set, reset them */
-  CGEventSetFlags(pressKey,0);
-  CGEventSetFlags(releaseKey, 0);
-  /* Set the modifiers to the ones we want */
+  /*
+   Set the modifiers to the ones we want
+   We use our private event source so no modifier reset should be needed
+   */
   CGEventSetFlags(pressKey,flags);
   CGEventSetFlags(releaseKey, flags);
   

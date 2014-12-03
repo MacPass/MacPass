@@ -13,6 +13,8 @@
  */
 @interface MPAutotypePaste : MPAutotypeCommand
 
+@property (readonly, copy) NSString *pasteData;
+
 - (instancetype)initWithString:(NSString *)aString;
 - (void)appendString:(NSString *)aString;
 
