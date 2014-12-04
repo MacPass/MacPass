@@ -20,6 +20,8 @@
 @property (weak) IBOutlet NSTextField *URLTextField;
 @property (weak) IBOutlet HNHRoundedSecureTextField *passwordTextField;
 
+@property (weak) IBOutlet NSTextField *uuidTextField;
+
 @property (weak) IBOutlet NSTextField *createdTextField;
 @property (weak) IBOutlet NSTextField *modifiedTextField;
 

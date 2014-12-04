@@ -386,6 +386,8 @@ typedef NS_ENUM(NSUInteger, MPEntryTab) {
                           options:@{ NSValueTransformerNameBindingOption:MPExpiryDateValueTransformer }];
     [self.expiresCheckButton bind:NSValueBinding toObject:self.entry.timeInfo withKeyPath:NSStringFromSelector(@selector(expires)) options:nil];
     [self.tagsTokenField bind:NSValueBinding toObject:self.entry withKeyPath:NSStringFromSelector(@selector(tags)) options:nil];
+    [self.uuidTextField bind:NSValueBinding toObject:self.entry.uuid withKeyPath:NSStringFromSelector(@selector(UUIDString)) options:nil];
+    self.uuidTextField.editable = NO;
     
     /* Setup enable/disable */
     for(id item in items) {
@@ -397,6 +399,7 @@ typedef NS_ENUM(NSUInteger, MPEntryTab) {
       [item unbind:NSValueBinding];
       [item unbind:NSEnabledBinding];
     }
+    [self.uuidTextField unbind:NSValueBinding];
     [self.expiresCheckButton unbind:NSTitleBinding];
   }
 }
