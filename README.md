@@ -36,8 +36,8 @@ There have been some changes in the submodule urls. Please consider re-syncing a
 * Binary releases (0.4.x):
   * Default Autotype Sequences will get stored although they shouldn't be stored
   * Default Autotype sequence is wrong ````{TAB}{USERNAME}{TAB}{PASSWORD}{ENTER}```` instead of ````{USERNAME}{TAB}{PASSWORD}{ENTER}````
-* Binary releases (0.5):
-  * KDBX History is only preseverd. Editting doesn't create new history entries
+* Binary releases (0.5.x):
+  * KDBX History is only preseverd. Editing doesn't create new history entries
   
 ##System Requirement
 
