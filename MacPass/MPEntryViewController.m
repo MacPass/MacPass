@@ -403,7 +403,14 @@ NSString *const _MPTableSecurCellView = @"PasswordCell";
 
 - (void)_didAddItem:(NSNotification *)notification {
   MPDocument *document = [[self windowController] document];
+  if(!document.selectedGroup) {
+    /* TODO: show group? */
+    return; // No group selected
+  }
   KPKEntry *entry = document.selectedGroup.entries.lastObject;
+  if(!entry) {
+    return; // No Entry found, nothing to select.
+  }
   NSUInteger row = [self.entryArrayController.arrangedObjects indexOfObject:entry];
   [self.entryTable scrollRowToVisible:row];
   [self.entryTable selectRowIndexes:[NSIndexSet indexSetWithIndex:row] byExtendingSelection:NO];
