@@ -315,7 +315,10 @@ NSString *const MPDocumentGroupKey                        = @"MPDocumentGroupKey
   self.tree.metaData.masterKeyChanged = [NSDate date];
   /* Key change is not undoable so just recored the change as done */
   [self updateChangeCount:NSChangeDone];
-  /* We need to store the key file once the user actually writes the database */
+  /*
+   If the user opted to remeber key files for documents, we should update this information.
+   But it's impossible to know, if he actaully saves the changes!
+   */
   return YES;
 }
 
