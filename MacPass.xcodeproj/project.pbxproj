@@ -223,6 +223,7 @@
 		4C96D15417A12E4F00D931FA /* 99_CreatedTemplate.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 4C96D15317A12E4F00D931FA /* 99_CreatedTemplate.pdf */; };
 		4C978E0619AE53FE003067DF /* HNHCommon.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C978E0519AE53FE003067DF /* HNHCommon.m */; };
 		4C978E0D19AE54AB003067DF /* MPFlagsHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C978E0C19AE54AB003067DF /* MPFlagsHelper.m */; };
+		4C99E6A51A30FDFD00E2BA8D /* ReferenceBuilderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4C99E6A41A30FDFD00E2BA8D /* ReferenceBuilderView.xib */; };
 		4C9D6AA917615199001C660C /* HNHRoundedSecureTextFieldCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C9D6AA817615199001C660C /* HNHRoundedSecureTextFieldCell.m */; };
 		4CA08DA017A831B200A6544B /* MPAddEntryContextMenuDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CA08D9F17A831B200A6544B /* MPAddEntryContextMenuDelegate.m */; };
 		4CA0B2ED15BCADAC00654E32 /* SettingsWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4CA0B2EC15BCADAC00654E32 /* SettingsWindow.xib */; };
@@ -782,6 +783,7 @@
 		4C96D15317A12E4F00D931FA /* 99_CreatedTemplate.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; name = 99_CreatedTemplate.pdf; path = Icons/99_CreatedTemplate.pdf; sourceTree = "<group>"; };
 		4C978E0519AE53FE003067DF /* HNHCommon.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HNHCommon.m; sourceTree = "<group>"; };
 		4C978E0C19AE54AB003067DF /* MPFlagsHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MPFlagsHelper.m; sourceTree = "<group>"; };
+		4C99E6A41A30FDFD00E2BA8D /* ReferenceBuilderView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ReferenceBuilderView.xib; sourceTree = "<group>"; };
 		4C9D6AA717615199001C660C /* HNHRoundedSecureTextFieldCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HNHRoundedSecureTextFieldCell.h; sourceTree = "<group>"; };
 		4C9D6AA817615199001C660C /* HNHRoundedSecureTextFieldCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HNHRoundedSecureTextFieldCell.m; sourceTree = "<group>"; };
 		4CA08D9E17A831B200A6544B /* MPAddEntryContextMenuDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MPAddEntryContextMenuDelegate.h; sourceTree = "<group>"; };
@@ -1104,6 +1106,7 @@
 				4C5FE9AD17843CE20001D5A8 /* MPSelectedAttachmentTableCellView.m */,
 				4CCEDE28179F203B008402BE /* MPOutlineView.h */,
 				4CCEDE29179F203B008402BE /* MPOutlineView.m */,
+				4C99E6A41A30FDFD00E2BA8D /* ReferenceBuilderView.xib */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -2245,6 +2248,7 @@
 				6021FE8D18E1617300C3BC51 /* PasswordCreatorView.xib in Resources */,
 				4C1DDCDD1711ECEB00C98DA3 /* PasswordCreatorWindow.xib in Resources */,
 				4C7714AA176C998F00549F2A /* 43_TrashTemplate.pdf in Resources */,
+				4C99E6A51A30FDFD00E2BA8D /* ReferenceBuilderView.xib in Resources */,
 				4C7714AC176C9D4600549F2A /* 99_InfoTemplate.pdf in Resources */,
 				6021FE5618E1429500C3BC51 /* IntegrationSettings.xib in Resources */,
 				4CA3531218A5577300839B0F /* dsa_sparkle_pub.pem in Resources */,
