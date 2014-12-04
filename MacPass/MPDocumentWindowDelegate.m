@@ -38,24 +38,21 @@
   
   NSArray *classArray = [NSArray arrayWithObject:[NSURL class]];
   NSArray *arrayOfURLs = [draggingPasteBoard readObjectsForClasses:classArray options:nil];
-  BOOL ok = NO;
+  BOOL ok = YES;
   for(NSURL *url in arrayOfURLs) {
     if([url isFileURL] || [url isFileReferenceURL]) {
-      continue;
       ok = NO;
+      break; // OK stays NO;
     }
-    ok = YES;
   }
   return ok ? NSDragOperationCopy : NSDragOperationNone;
 }
 
-- (BOOL)prepareForDragOperation:(id<NSDraggingInfo>)sender {
-  return YES;
+- (BOOL)wantsPeriodicDraggingUpdates {
+  return NO;
 }
 
 - (BOOL)performDragOperation:(id<NSDraggingInfo>)sender {
-  
-
   NSPasteboard *draggingPasteBoard = [sender draggingPasteboard];
   NSArray *classArray = [NSArray arrayWithObject:[NSURL class]];
   NSArray *arrayOfURLs = [draggingPasteBoard readObjectsForClasses:classArray options:nil];
@@ -66,16 +63,22 @@
   }
   /* Currently not working, as the underlying operations do not get the unomanager */
   MPDocument *document = [[[sender draggingDestinationWindow] windowController] document];
-  BOOL ok = NO;
-  if(document.selectedGroup) {
-    [[document undoManager] beginUndoGrouping];
-    KPKEntry *entry = [document createEntry:document.selectedGroup];
-    ok = (nil != entry);
-    entry.url = [url absoluteString];
-    [[document undoManager] endUndoGrouping];
-    [[document undoManager] setActionName:NSLocalizedString(@"IMPORT_URL", @"Imports a dragged URL for a new entry")];
+  KPKGroup *parentGroup = document.selectedGroup ? document.selectedGroup : document.root;
+  [document.undoManager beginUndoGrouping];
+  KPKEntry *entry = [document createEntry:parentGroup];
+  BOOL didOk = (entry != nil);
+  if(url.absoluteString) {
+    entry.url = url.absoluteString;
   }
-  return ok;
+  else {
+    didOk = NO;
+  }
+  if(url.host) {
+    entry.title = url.host;
+  }
+  [document.undoManager endUndoGrouping];
+  [document.undoManager setActionName:NSLocalizedString(@"IMPORT_URL", @"Imports a dragged URL for a new entry")];
+  return didOk;
 }
 
 @end
