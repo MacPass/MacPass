@@ -1,5 +1,7 @@
 #MacPass
 
+[![Build Status](https://travis-ci.org/tanob/MacPass.svg)](https://travis-ci.org/tanob/MacPass)
+
 There are a lot of iOS KeePass tools around but a distinct lack of a good OS X version.
 KeePass can be used via Mono on OS X but lacks vital functionality and feels sluggish.
 
