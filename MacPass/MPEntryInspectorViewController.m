@@ -12,6 +12,7 @@
 #import "MPPasswordCreatorViewController.h"
 #import "MPAttachmentTableDataSource.h"
 #import "MPWindowAssociationsTableViewDelegate.h"
+#import "MPWindowTitleComboBoxDelegate.h"
 
 #import "NSString+MPPasswordCreation.h"
 
@@ -48,6 +49,7 @@ typedef NS_ENUM(NSUInteger, MPEntryTab) {
   MPCustomFieldTableViewDelegate *_customFieldTableDelegate;
   MPAttachmentTableDataSource *_attachmentDataSource;
   MPWindowAssociationsTableViewDelegate *_windowAssociationsTableDelegate;
+  MPWindowTitleComboBoxDelegate *_windowTitleMenuDelegate;
 }
 
 @property (nonatomic, assign) BOOL showPassword;
@@ -76,6 +78,7 @@ typedef NS_ENUM(NSUInteger, MPEntryTab) {
     _customFieldTableDelegate = [[MPCustomFieldTableViewDelegate alloc] init];
     _attachmentDataSource = [[MPAttachmentTableDataSource alloc] init];
     _windowAssociationsTableDelegate = [[MPWindowAssociationsTableViewDelegate alloc] init];
+    _windowTitleMenuDelegate = [[MPWindowTitleComboBoxDelegate alloc] init];
     _attachmentTableDelegate.viewController = self;
     _customFieldTableDelegate.viewController = self;
     _activeTab = MPEntryTabGeneral;
@@ -92,19 +95,22 @@ typedef NS_ENUM(NSUInteger, MPEntryTab) {
   [self.tabView bind:NSSelectedIndexBinding toObject:self withKeyPath:NSStringFromSelector(@selector(activeTab)) options:nil];
   
   /* Set background to clearcolor so we can draw in the scrollview */
-  [self.attachmentTableView setBackgroundColor:[NSColor clearColor]];
+  self.attachmentTableView.backgroundColor = [NSColor clearColor];
   [self.attachmentTableView bind:NSContentBinding toObject:_attachmentsController withKeyPath:NSStringFromSelector(@selector(arrangedObjects)) options:nil];
-  [self.attachmentTableView setDelegate:_attachmentTableDelegate];
-  [self.attachmentTableView setDataSource:_attachmentDataSource];
+  self.attachmentTableView.delegate = _attachmentTableDelegate;
+  self.attachmentTableView.dataSource = _attachmentDataSource;
   [self.attachmentTableView registerForDraggedTypes:@[NSFilenamesPboardType]];
   /* Set background to clearcolor so we can draw in the scrollview */
-  [self.customFieldsTableView setBackgroundColor:[NSColor clearColor]];
+  self.customFieldsTableView.backgroundColor = [NSColor clearColor];
   [self.customFieldsTableView bind:NSContentBinding toObject:_customFieldsController withKeyPath:NSStringFromSelector(@selector(arrangedObjects)) options:nil];
-  [self.customFieldsTableView setDelegate:_customFieldTableDelegate];
+  self.customFieldsTableView.delegate = _customFieldTableDelegate;
   
-  [self.windowAssociationsTableView setBackgroundColor:[NSColor clearColor]];
-  [self.windowAssociationsTableView setDelegate:_windowAssociationsTableDelegate];
+  self.windowAssociationsTableView.backgroundColor = [NSColor clearColor];
+  self.windowAssociationsTableView.delegate = _windowAssociationsTableDelegate;
   [self.windowAssociationsTableView bind:NSContentBinding toObject:_windowAssociationsController withKeyPath:NSStringFromSelector(@selector(arrangedObjects)) options:nil];
+  [self.windowAssociationsTableView bind:NSSelectionIndexesBinding toObject:_windowAssociationsController withKeyPath:NSSelectionIndexesBinding options:nil];
+
+  self.windowTitleComboBox.delegate = _windowTitleMenuDelegate;
   
   [self.passwordTextField bind:NSStringFromSelector(@selector(showPassword)) toObject:self withKeyPath:NSStringFromSelector(@selector(showPassword)) options:nil];
   [self.togglePassword bind:NSValueBinding toObject:self withKeyPath:NSStringFromSelector(@selector(showPassword)) options:nil];
@@ -380,7 +386,7 @@ typedef NS_ENUM(NSUInteger, MPEntryTab) {
                           options:@{ NSValueTransformerNameBindingOption:MPExpiryDateValueTransformer }];
     [self.expiresCheckButton bind:NSValueBinding toObject:self.entry.timeInfo withKeyPath:NSStringFromSelector(@selector(expires)) options:nil];
     [self.tagsTokenField bind:NSValueBinding toObject:self.entry withKeyPath:NSStringFromSelector(@selector(tags)) options:nil];
-  
+    
     /* Setup enable/disable */
     for(id item in items) {
       [item bind:NSEnabledBinding toObject:self.entry withKeyPath:NSStringFromSelector(@selector(isEditable)) options:nil];
@@ -422,6 +428,12 @@ typedef NS_ENUM(NSUInteger, MPEntryTab) {
     [self.customEntrySequenceTextField bind:NSEnabledBinding toObject:self.entry.autotype withKeyPath:NSStringFromSelector(@selector(isEnabled)) options:nil];
     [self.customEntrySequenceTextField bind:NSValueBinding toObject:self.entry.autotype withKeyPath:NSStringFromSelector(@selector(defaultKeystrokeSequence)) options:@{ NSValidatesImmediatelyBindingOption: @(YES) }];
     [_windowAssociationsController bind:NSContentArrayBinding toObject:self.entry.autotype withKeyPath:NSStringFromSelector(@selector(associations)) options:nil];
+    //[self.windowTitleComboBox setStringValue:@""];
+    NSString *selectedWindowTitlePath = [[NSString alloc] initWithFormat:@"selection.%@", NSStringFromSelector(@selector(windowTitle))];
+    [self.windowTitleComboBox bind:NSValueBinding toObject:_windowAssociationsController withKeyPath:selectedWindowTitlePath options:nil];
+    
+    NSString *selectedWindowKeyStrokesPath = [[NSString alloc] initWithFormat:@"selection.%@", NSStringFromSelector(@selector(keystrokeSequence))];
+    [self.associationSequenceTextField bind:NSValueBinding toObject:_windowAssociationsController withKeyPath:selectedWindowKeyStrokesPath options:nil];
   }
   else {
     [self.enableAutotypeCheckButton unbind:NSValueBinding];
@@ -431,6 +443,8 @@ typedef NS_ENUM(NSUInteger, MPEntryTab) {
       [_windowAssociationsController unbind:NSContentArrayBinding];
       [_windowAssociationsController setContent:nil];
     }
+    [self.windowTitleComboBox unbind:NSValueBinding];
+    [self.associationSequenceTextField unbind:NSValueBinding];
   }
 }
 
