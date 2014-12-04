@@ -234,7 +234,10 @@ NSString *const kMPProcessIdentifierKey = @"kMPProcessIdentifierKey";
     NSMenuItem *item = [[NSMenuItem alloc] initWithTitle:context.entry.title action:0 keyEquivalent:@""];
     [item setRepresentedObject:context];
     [associationMenu addItem:item];
-    NSArray *attributes = @[ context.entry.username, context.command ];
+    NSArray *attributes = (context.entry.username.length > 0 )
+    ? @[ context.entry.username, context.command ]
+    : @[ context.command ];
+
     for(NSString *value in attributes) {
       NSMenuItem *valueItem  = [[NSMenuItem alloc] initWithTitle:value action:NULL keyEquivalent:@""];
       [valueItem setIndentationLevel:1];
