@@ -223,7 +223,6 @@
 		4C96D15417A12E4F00D931FA /* 99_CreatedTemplate.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 4C96D15317A12E4F00D931FA /* 99_CreatedTemplate.pdf */; };
 		4C978E0619AE53FE003067DF /* HNHCommon.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C978E0519AE53FE003067DF /* HNHCommon.m */; };
 		4C978E0D19AE54AB003067DF /* MPFlagsHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C978E0C19AE54AB003067DF /* MPFlagsHelper.m */; };
-		4C99E6A51A30FDFD00E2BA8D /* ReferenceBuilderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4C99E6A41A30FDFD00E2BA8D /* ReferenceBuilderView.xib */; };
 		4C9D6AA917615199001C660C /* HNHRoundedSecureTextFieldCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C9D6AA817615199001C660C /* HNHRoundedSecureTextFieldCell.m */; };
 		4CA08DA017A831B200A6544B /* MPAddEntryContextMenuDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CA08D9F17A831B200A6544B /* MPAddEntryContextMenuDelegate.m */; };
 		4CA0B2ED15BCADAC00654E32 /* SettingsWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4CA0B2EC15BCADAC00654E32 /* SettingsWindow.xib */; };
@@ -277,6 +276,7 @@
 		4CD78ABE16D155FF00768A1D /* 09_IdentityTemplate.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 4CD78AB916D155FF00768A1D /* 09_IdentityTemplate.pdf */; };
 		4CD78ABF16D155FF00768A1D /* 10_ContactTemplate.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 4CD78ABA16D155FF00768A1D /* 10_ContactTemplate.pdf */; };
 		4CD78AC016D155FF00768A1D /* 11_CameraTemplate.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 4CD78ABB16D155FF00768A1D /* 11_CameraTemplate.pdf */; };
+		4CD820211A32173100399DBB /* ReferenceBuilderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4CD820231A32173100399DBB /* ReferenceBuilderView.xib */; };
 		4CD884B715BD47080042BBF8 /* DocumentWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4CD884B615BD47080042BBF8 /* DocumentWindow.xib */; };
 		4CDB5C421794AA4F0017667E /* KPKTree+Serializing.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CDB5C411794AA4F0017667E /* KPKTree+Serializing.m */; };
 		4CDF01A316D1B76700D0AC08 /* MPEntryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CDF01A216D1B76700D0AC08 /* MPEntryViewController.m */; };
@@ -784,7 +784,6 @@
 		4C96D15317A12E4F00D931FA /* 99_CreatedTemplate.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; name = 99_CreatedTemplate.pdf; path = Icons/99_CreatedTemplate.pdf; sourceTree = "<group>"; };
 		4C978E0519AE53FE003067DF /* HNHCommon.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HNHCommon.m; sourceTree = "<group>"; };
 		4C978E0C19AE54AB003067DF /* MPFlagsHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MPFlagsHelper.m; sourceTree = "<group>"; };
-		4C99E6A41A30FDFD00E2BA8D /* ReferenceBuilderView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ReferenceBuilderView.xib; sourceTree = "<group>"; };
 		4C9D6AA717615199001C660C /* HNHRoundedSecureTextFieldCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HNHRoundedSecureTextFieldCell.h; sourceTree = "<group>"; };
 		4C9D6AA817615199001C660C /* HNHRoundedSecureTextFieldCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HNHRoundedSecureTextFieldCell.m; sourceTree = "<group>"; };
 		4CA08D9E17A831B200A6544B /* MPAddEntryContextMenuDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MPAddEntryContextMenuDelegate.h; sourceTree = "<group>"; };
@@ -881,6 +880,7 @@
 		4CD78AB916D155FF00768A1D /* 09_IdentityTemplate.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = 09_IdentityTemplate.pdf; sourceTree = "<group>"; };
 		4CD78ABA16D155FF00768A1D /* 10_ContactTemplate.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = 10_ContactTemplate.pdf; sourceTree = "<group>"; };
 		4CD78ABB16D155FF00768A1D /* 11_CameraTemplate.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = 11_CameraTemplate.pdf; sourceTree = "<group>"; };
+		4CD820221A32173100399DBB /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/ReferenceBuilderView.xib; sourceTree = "<group>"; };
 		4CD884B615BD47080042BBF8 /* DocumentWindow.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DocumentWindow.xib; sourceTree = "<group>"; };
 		4CDB5C401794AA4F0017667E /* KPKTree+Serializing.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "KPKTree+Serializing.h"; sourceTree = "<group>"; };
 		4CDB5C411794AA4F0017667E /* KPKTree+Serializing.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = "KPKTree+Serializing.m"; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
@@ -1093,7 +1093,7 @@
 				4C2C8B331787500E009649F3 /* UnprotectedWarningView.xib */,
 				6021FE7918E15FF300C3BC51 /* DatePickingView.xib */,
 				4C26C34A18D8D5A300CF1A1C /* PreviewView.xib */,
-				4C99E6A41A30FDFD00E2BA8D /* ReferenceBuilderView.xib */,
+				4CD820231A32173100399DBB /* ReferenceBuilderView.xib */,
 				4C74DD05177BD1640034A9DB /* MPCustomFieldView.h */,
 				4C74DD06177BD1640034A9DB /* MPCustomFieldView.m */,
 				4CE8247316E2F2B900573141 /* MPOverlayView.h */,
@@ -2253,7 +2253,7 @@
 				6021FE8D18E1617300C3BC51 /* PasswordCreatorView.xib in Resources */,
 				4C1DDCDD1711ECEB00C98DA3 /* PasswordCreatorWindow.xib in Resources */,
 				4C7714AA176C998F00549F2A /* 43_TrashTemplate.pdf in Resources */,
-				4C99E6A51A30FDFD00E2BA8D /* ReferenceBuilderView.xib in Resources */,
+				4CD820211A32173100399DBB /* ReferenceBuilderView.xib in Resources */,
 				4C7714AC176C9D4600549F2A /* 99_InfoTemplate.pdf in Resources */,
 				6021FE5618E1429500C3BC51 /* IntegrationSettings.xib in Resources */,
 				4CA3531218A5577300839B0F /* dsa_sparkle_pub.pem in Resources */,
@@ -2689,6 +2689,14 @@
 				BD6C366419484CF40089EB37 /* nl */,
 			);
 			name = Credits.rtf;
+			sourceTree = "<group>";
+		};
+		4CD820231A32173100399DBB /* ReferenceBuilderView.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				4CD820221A32173100399DBB /* Base */,
+			);
+			name = ReferenceBuilderView.xib;
 			sourceTree = "<group>";
 		};
 		6021FE3D18E1341900C3BC51 /* EntryInspectorView.xib */ = {

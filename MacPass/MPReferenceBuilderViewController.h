@@ -12,5 +12,9 @@
 @property (weak) IBOutlet NSPopUpButton *valuePopUpButton;
 @property (weak) IBOutlet NSPopUpButton *searchKeyPopUpButton;
 @property (weak) IBOutlet NSTextField *searchStringTextField;
+@property (weak) IBOutlet NSTextField *referenceStringTextField;
+
+- (IBAction)updateReference:(id)sender;
+- (IBAction)updateKey:(id)sender;
 
 @end
