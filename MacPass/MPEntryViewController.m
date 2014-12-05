@@ -705,7 +705,7 @@ NSString *const _MPTableSecurCellView = @"PasswordCell";
   MPDoubleClickTitleAction action = [[NSUserDefaults standardUserDefaults] integerForKey:kMPSettingsKeyDoubleClickTitleAction];
   switch(action) {
     case MPDoubleClickTitleActionInspect:
-      [[self windowController] showInspector:nil];
+      [(MPDocumentWindowController *)self.windowController showInspector:nil];
       break;
     case MPDoubleClickTitleActionIgnore:
       break;

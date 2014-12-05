@@ -284,6 +284,7 @@
 		4CE2961518429AA5005F01CE /* MPAutotypeKeyPress.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CE2961418429AA5005F01CE /* MPAutotypeKeyPress.m */; };
 		4CE296191842A166005F01CE /* MPAutotypePaste.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CE296181842A166005F01CE /* MPAutotypePaste.m */; };
 		4CE298EB1795FC2A00DF7BDB /* MPEntryContextMenuDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CE298EA1795FC2A00DF7BDB /* MPEntryContextMenuDelegate.m */; };
+		4CE30ACC1A312B7F0063FCC6 /* MPReferenceBuilderViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CE30ACB1A312B7F0063FCC6 /* MPReferenceBuilderViewController.m */; };
 		4CE39ABF16ECE34A000FE29D /* MPIconSelectViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CE39ABE16ECE34A000FE29D /* MPIconSelectViewController.m */; };
 		4CE39AC416ECE4F7000FE29D /* MPPopupImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CE39AC316ECE4F7000FE29D /* MPPopupImageView.m */; };
 		4CE3E62617AB0D2D00D9E4B4 /* MPAttachmentTableDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CE3E62517AB0D2D00D9E4B4 /* MPAttachmentTableDataSource.m */; };
@@ -893,6 +894,8 @@
 		4CE296181842A166005F01CE /* MPAutotypePaste.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MPAutotypePaste.m; sourceTree = "<group>"; };
 		4CE298E91795FC2A00DF7BDB /* MPEntryContextMenuDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MPEntryContextMenuDelegate.h; sourceTree = "<group>"; };
 		4CE298EA1795FC2A00DF7BDB /* MPEntryContextMenuDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MPEntryContextMenuDelegate.m; sourceTree = "<group>"; };
+		4CE30ACA1A312B7F0063FCC6 /* MPReferenceBuilderViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MPReferenceBuilderViewController.h; sourceTree = "<group>"; };
+		4CE30ACB1A312B7F0063FCC6 /* MPReferenceBuilderViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MPReferenceBuilderViewController.m; sourceTree = "<group>"; };
 		4CE39ABD16ECE34A000FE29D /* MPIconSelectViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MPIconSelectViewController.h; sourceTree = "<group>"; };
 		4CE39ABE16ECE34A000FE29D /* MPIconSelectViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MPIconSelectViewController.m; sourceTree = "<group>"; };
 		4CE39AC216ECE4F7000FE29D /* MPPopupImageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MPPopupImageView.h; sourceTree = "<group>"; };
@@ -1090,6 +1093,7 @@
 				4C2C8B331787500E009649F3 /* UnprotectedWarningView.xib */,
 				6021FE7918E15FF300C3BC51 /* DatePickingView.xib */,
 				4C26C34A18D8D5A300CF1A1C /* PreviewView.xib */,
+				4C99E6A41A30FDFD00E2BA8D /* ReferenceBuilderView.xib */,
 				4C74DD05177BD1640034A9DB /* MPCustomFieldView.h */,
 				4C74DD06177BD1640034A9DB /* MPCustomFieldView.m */,
 				4CE8247316E2F2B900573141 /* MPOverlayView.h */,
@@ -1106,7 +1110,6 @@
 				4C5FE9AD17843CE20001D5A8 /* MPSelectedAttachmentTableCellView.m */,
 				4CCEDE28179F203B008402BE /* MPOutlineView.h */,
 				4CCEDE29179F203B008402BE /* MPOutlineView.m */,
-				4C99E6A41A30FDFD00E2BA8D /* ReferenceBuilderView.xib */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -1711,6 +1714,8 @@
 				4C1E9884185F71A800943563 /* MPContextBarViewController.m */,
 				4C26C34818D8D5A300CF1A1C /* MPPreviewViewController.h */,
 				4C26C34918D8D5A300CF1A1C /* MPPreviewViewController.m */,
+				4CE30ACA1A312B7F0063FCC6 /* MPReferenceBuilderViewController.h */,
+				4CE30ACB1A312B7F0063FCC6 /* MPReferenceBuilderViewController.m */,
 			);
 			name = "View Controller";
 			sourceTree = "<group>";
@@ -2405,6 +2410,7 @@
 				4C88C66918D9F8D600F43852 /* MPTemporaryFileStorageCenter.m in Sources */,
 				4C245B79176E1E3D0086100E /* HTTPAuthenticationRequest.m in Sources */,
 				4C245B7A176E1E3D0086100E /* HTTPConnection.m in Sources */,
+				4CE30ACC1A312B7F0063FCC6 /* MPReferenceBuilderViewController.m in Sources */,
 				4C6F228C19A4AA700012310C /* MPAutotypeDelay.m in Sources */,
 				4C245B7B176E1E3D0086100E /* HTTPMessage.m in Sources */,
 				4C3C4EA718D6FEA100153127 /* TTTStringTransformers.m in Sources */,

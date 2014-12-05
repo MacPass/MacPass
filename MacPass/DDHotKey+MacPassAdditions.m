@@ -87,7 +87,6 @@
   BOOL missingModifier = self.modifierFlags == 0;
   BOOL onlyModifiers = MPIsFlagSetInOptions(flags, self.modifierFlags) || (self.modifierFlags != 0 && flags != 0);
   BOOL isInvalid = onlyModifiers || missingModifier;
-  NSLog(@"%@ valid:%d", self, !isInvalid);
   return !isInvalid;
 }
 

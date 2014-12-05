@@ -203,7 +203,7 @@ NSString *const _MPOutlinveViewHeaderViewIdentifier = @"HeaderCell";
 #pragma mark Actions
 
 - (void)_doubleClickedGroup:(id)sender {
-  [[self windowController] showInspector:sender];
+  [(MPDocumentWindowController *)self.windowController showInspector:sender];
 }
 
 #pragma mark NSOutlineViewDelegate

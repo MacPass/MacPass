@@ -20,8 +20,8 @@
   // override
 }
 
-- (id)windowController {
-  return [[[self view] window] windowController];
+- (NSWindowController *)windowController {
+  return [self.view.window windowController];
 }
 
 #pragma mark Responder Chain
