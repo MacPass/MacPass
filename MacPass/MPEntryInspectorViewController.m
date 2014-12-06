@@ -7,10 +7,10 @@
 //
 
 #import "MPEntryInspectorViewController.h"
+#import "MPAttachmentTableDataSource.h"
 #import "MPAttachmentTableViewDelegate.h"
 #import "MPCustomFieldTableViewDelegate.h"
 #import "MPPasswordCreatorViewController.h"
-#import "MPAttachmentTableDataSource.h"
 #import "MPWindowAssociationsTableViewDelegate.h"
 #import "MPWindowTitleComboBoxDelegate.h"
 
