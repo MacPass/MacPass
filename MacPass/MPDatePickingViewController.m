@@ -42,7 +42,7 @@ typedef NS_ENUM(NSUInteger, MPDatePreset) {
   [item setTag:MPDatePresetNone];
   [presetMenu addItem:item];
   [presetMenu addItem:[NSMenuItem separatorItem]];
-
+  
   for(NSInteger iIndex = 0; iIndex < sizeof(tags)/sizeof(NSUInteger); iIndex++) {
     NSMenuItem *item = [[NSMenuItem alloc] initWithTitle:dateItems[iIndex] action:NULL keyEquivalent:@""];
     [item setTag:tags[iIndex]];
@@ -57,14 +57,12 @@ typedef NS_ENUM(NSUInteger, MPDatePreset) {
 - (IBAction)useDate:(id)sender {
   self.didCancel = NO;
   self.date = [self.datePicker dateValue];
-  id target = [NSApp targetForAction:@selector(performClose:)];
-  [target performClose:sender];
+  [self.popover performClose:self];
 }
 
 - (IBAction)cancel:(id)sender {
   self.didCancel = YES;
-  id target = [NSApp targetForAction:@selector(performClose:)];
-  [target performClose:sender];
+  [self.popover performClose:self];
 }
 
 - (IBAction)setDatePreset:(id)sender {
