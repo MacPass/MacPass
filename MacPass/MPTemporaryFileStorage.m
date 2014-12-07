@@ -34,7 +34,6 @@
 }
 
 - (void)dealloc {
-  NSLog(@"dealloc");
   [self cleanup];
   [[MPTemporaryFileStorageCenter defaultCenter] unregisterStorage:self];
 }
