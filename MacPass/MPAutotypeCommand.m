@@ -135,7 +135,7 @@
       }
     }
     /* Test for modifer Key */
-    NSString *commandString = [context.evaluatedCommand substringWithRange:commandRange];
+    NSString *commandString = [[context.evaluatedCommand substringWithRange:commandRange] uppercaseString];
     /* append commands for non-modifer keys */
     if(![self updateModifierMask:&collectedModifers forCommand:commandString]) {
       [self appendCommandForEntry:context.entry withString:commandString toCommands:commands activeModifer:collectedModifers];
