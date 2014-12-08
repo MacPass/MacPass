@@ -18,6 +18,9 @@
 #import "MPKeyMapper.h"
 
 #import "KPKEntry.h"
+#import "KPKAttribute.h"
+#import "KPKAutotype.h"
+#import "KPKWindowAssociation.h"
 
 @interface KPKTestAutotype : XCTestCase
 
@@ -42,6 +45,42 @@
   XCTAssertFalse([@"{{}}}}" validateCommmand]);
   XCTAssertFalse([@"{}{}{{{}{{{{{{}}" validateCommmand]);
   XCTAssertTrue([@"{}{}{}{}{}{      }ThisIsValid{}{STOP}" validateCommmand]);
+}
+
+- (void)testCaseInsenstivieKeyPress {
+  KPKEntry *entry = [[KPKEntry alloc] init];
+  entry.title = @"Title";
+  entry.url = @"www.myurl.com";
+  entry.username = @"Username";
+  entry.password = @"Password";
+  
+  /* Command 1 */
+  MPAutotypeContext *context = [[MPAutotypeContext alloc] initWithEntry:entry andSequence:@"{TAB}{ENTER}~{tAb}{ShIfT}"];
+  NSArray *commands = [MPAutotypeCommand commandsForContext:context];
+  
+  XCTAssert(nil);
+
+}
+
+- (void)testCaseSensitiveCustomAttributeLookup {
+  KPKEntry *entry = [[KPKEntry alloc] init];
+  entry.title = @"Title";
+  entry.url = @"www.myurl.com";
+  entry.username = @"Username";
+  entry.password = @"Password";
+  
+  KPKAttribute *lowerCaseAttribute = [[KPKAttribute alloc] initWithKey:@"custom" value:@"value"];
+  KPKAttribute *upperCaseAttribute = [[KPKAttribute alloc] initWithKey:@"CUSTOM" value:@"VALUE"];
+  KPKAttribute *mixedCaseAttribute = [[KPKAttribute alloc] initWithKey:@"CuStOm" value:@"VaLuE"];
+  [entry addCustomAttribute:lowerCaseAttribute];
+  [entry addCustomAttribute:upperCaseAttribute];
+  [entry addCustomAttribute:mixedCaseAttribute];
+  
+  entry.autotype.defaultKeystrokeSequence = [[NSString alloc] initWithFormat:@"{USERNAME}{s:%@}{S:%@}{s:%@}", lowerCaseAttribute.key, mixedCaseAttribute.key, upperCaseAttribute.key];
+  
+  MPAutotypeContext *context = [[MPAutotypeContext alloc] initWithDefaultSequenceForEntry:entry];
+  NSString *result = [[NSString alloc] initWithFormat:@"%@%@%@%@", entry.username, lowerCaseAttribute.value, mixedCaseAttribute.value, upperCaseAttribute.value];
+  XCTAssertTrue([[context evaluatedCommand] isEqualToString:result]);
 }
 
 - (void)testCommandCreation {
