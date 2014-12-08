@@ -55,7 +55,7 @@
   for(KPKEntry *entry in autotypeEntries) {
     /* TODO:
      
-      KeePass for Windows hase the following options for matching:
+    KeePass for Windows hase the following options for matching:
      Title is contained
      URL is contained
      Host component is contained
