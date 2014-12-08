@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="6250" systemVersion="13F34" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="6254" systemVersion="13F34" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
     <dependencies>
         <deployment identifier="macosx"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="6250"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="6254"/>
     </dependencies>
     <objects>
         <customObject id="-2" userLabel="File's Owner" customClass="MPGroupInspectorViewController">
@@ -76,7 +76,7 @@
                             </button>
                             <popUpButton verticalHuggingPriority="750" horizontalCompressionResistancePriority="249" translatesAutoresizingMaskIntoConstraints="NO" id="229">
                                 <rect key="frame" x="18" y="128" width="222" height="26"/>
-                                <popUpButtonCell key="cell" type="push" bezelStyle="rounded" alignment="left" lineBreakMode="truncatingTail" borderStyle="borderAndBezel" imageScaling="proportionallyDown" inset="2" id="230">
+                                <popUpButtonCell key="cell" type="push" title="Exclude from Search" bezelStyle="rounded" alignment="left" lineBreakMode="truncatingTail" state="on" borderStyle="borderAndBezel" tag="1" imageScaling="proportionallyDown" inset="2" selectedItem="234" id="230">
                                     <behavior key="behavior" lightByBackground="YES" lightByGray="YES"/>
                                     <font key="font" metaFont="menu"/>
                                     <menu key="menu" title="OtherViews" id="231">
@@ -85,7 +85,7 @@
                                                 <modifierMask key="keyEquivalentModifierMask"/>
                                             </menuItem>
                                             <menuItem title="Include in Search" id="233"/>
-                                            <menuItem title="Exclude from Search" tag="1" id="234"/>
+                                            <menuItem title="Exclude from Search" state="on" tag="1" id="234"/>
                                         </items>
                                     </menu>
                                 </popUpButtonCell>
@@ -98,13 +98,7 @@
                                 <popUpButtonCell key="cell" type="push" bezelStyle="rounded" alignment="left" lineBreakMode="truncatingTail" borderStyle="borderAndBezel" imageScaling="proportionallyDown" inset="2" id="242">
                                     <behavior key="behavior" lightByBackground="YES" lightByGray="YES"/>
                                     <font key="font" metaFont="menu"/>
-                                    <menu key="menu" title="OtherViews" id="243">
-                                        <items>
-                                            <menuItem title="Inherit Autotype Settings" tag="-1" id="246"/>
-                                            <menuItem title="Enable Autotype" id="245"/>
-                                            <menuItem title="Disable Autotype" tag="1" id="244"/>
-                                        </items>
-                                    </menu>
+                                    <menu key="menu" title="OtherViews" id="243"/>
                                 </popUpButtonCell>
                                 <connections>
                                     <outlet property="nextKeyView" destination="Fnw-qz-IZU" id="Q0q-HY-T34"/>

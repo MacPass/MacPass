@@ -56,6 +56,19 @@
                                                                    metrics:nil
                                                                      views:views]];
   [[self view] layoutSubtreeIfNeeded];
+  
+  NSMenu *autotypeMenu = self.autotypePopupButton.menu;
+  NSMenuItem *inheritItem = [[NSMenuItem alloc] initWithTitle:NSLocalizedString(@"AUTOTYPE_INHERIT", "") action:NULL keyEquivalent:@""];
+  inheritItem.tag = KPKInherit;
+  NSMenuItem *yesItem = [[NSMenuItem alloc] initWithTitle:NSLocalizedString(@"AUTOTYPE_YES", "") action:NULL keyEquivalent:@""];
+  yesItem.tag = KPKInheritYES;
+  NSMenuItem *noItem = [[NSMenuItem alloc] initWithTitle:NSLocalizedString(@"AUTOTYPE_NO", "") action:NULL keyEquivalent:@""];
+  noItem.tag = KPKInheritNO;
+  
+  [autotypeMenu addItem:inheritItem];
+  [autotypeMenu addItem:yesItem];
+  [autotypeMenu addItem:noItem];
+  
   /*
    void(^copyBlock)(NSTextField *textField) = ^void(NSTextField *textField) {
    [[MPPasteBoardController defaultController] copyObjects:@[ textField.stringValue ]];
