@@ -135,7 +135,7 @@
       }
     }
     /* Test for modifer Key */
-    NSString *commandString = [[context.evaluatedCommand substringWithRange:commandRange] uppercaseString];
+    NSString *commandString = [context.evaluatedCommand substringWithRange:commandRange];
     /* append commands for non-modifer keys */
     if(![self updateModifierMask:&collectedModifers forCommand:commandString]) {
       [self appendCommandForEntry:context.entry withString:commandString toCommands:commands activeModifer:collectedModifers];
@@ -248,14 +248,15 @@
     return; // Nothing to parse
   }
   /* Simple Special Press */
-  NSNumber *keyCodeNumber = [self keypressCommands][commandString];
+  NSString *uppercaseCommand = commandString.uppercaseString;
+  NSNumber *keyCodeNumber = [self keypressCommands][uppercaseCommand];
   if(nil != keyCodeNumber) {
     CGKeyCode keyCode = [keyCodeNumber keyCodeValue];
     [commands addObject:[[MPAutotypeKeyPress alloc] initWithModifierMask:flags keyCode:keyCode]];
     return; // Done
   }
   /* Clearfield */
-  if([kKPKAutotypeClearField isEqualToString:commandString]) {
+  if([kKPKAutotypeClearField isEqualToString:uppercaseCommand]) {
     [commands addObject:[[MPAutotypeClear alloc] init]];
     return; // Done
   }
@@ -270,19 +271,19 @@
   NSAssert(delayRegExp, @"Regex for delay should work!");
   NSTextCheckingResult *result = [delayRegExp firstMatchInString:commandString options:0 range:NSMakeRange(0, [commandString length])];
   if(result && (result.numberOfRanges == 3)) {
-    NSString *command = [commandString substringWithRange:[result rangeAtIndex:1]];
+    NSString *uppercaseCommand = [[commandString substringWithRange:[result rangeAtIndex:1]] uppercaseString];
     NSString *valueString = [commandString substringWithRange:[result rangeAtIndex:2]];
     NSScanner *numberScanner = [[NSScanner alloc] initWithString:valueString];
     NSInteger value;
     if([numberScanner scanInteger:&value]) {
-      if([kKPKAutotypeDelay isEqualToString:command]) {
+      if([kKPKAutotypeDelay isEqualToString:uppercaseCommand]) {
         if(MAX(0, value) <= 0) {
           return; // Value too low, just skipp
         }
         [commands addObject:[[MPAutotypeDelay alloc] initWithDelay:value]];
         return; // Done
       }
-      else if([kKPKAutotypeVirtualKey isEqualToString:command]) {
+      else if([kKPKAutotypeVirtualKey isEqualToString:uppercaseCommand]) {
         NSLog(@"Virtual key strokes aren't supported yet!");
         // TODO add key
       }
@@ -301,7 +302,7 @@
   if(mask == NULL) {
     return NO;
   }
-  NSNumber *flagNumber = [self modifierCommands][commandString];
+  NSNumber *flagNumber = [self modifierCommands][commandString.uppercaseString];
   if(!flagNumber) {
     return NO; // No modifier key, just leave
   }
