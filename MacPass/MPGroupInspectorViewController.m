@@ -58,17 +58,29 @@
   [[self view] layoutSubtreeIfNeeded];
   
   NSMenu *autotypeMenu = self.autotypePopupButton.menu;
-  NSMenuItem *inheritItem = [[NSMenuItem alloc] initWithTitle:NSLocalizedString(@"AUTOTYPE_INHERIT", "") action:NULL keyEquivalent:@""];
-  inheritItem.tag = KPKInherit;
-  NSMenuItem *yesItem = [[NSMenuItem alloc] initWithTitle:NSLocalizedString(@"AUTOTYPE_YES", "") action:NULL keyEquivalent:@""];
-  yesItem.tag = KPKInheritYES;
-  NSMenuItem *noItem = [[NSMenuItem alloc] initWithTitle:NSLocalizedString(@"AUTOTYPE_NO", "") action:NULL keyEquivalent:@""];
-  noItem.tag = KPKInheritNO;
+  NSMenuItem *inheritAutotype = [[NSMenuItem alloc] initWithTitle:NSLocalizedString(@"AUTOTYPE_INHERIT", "") action:NULL keyEquivalent:@""];
+  inheritAutotype.tag = KPKInherit;
+  NSMenuItem *enableAutotype = [[NSMenuItem alloc] initWithTitle:NSLocalizedString(@"AUTOTYPE_YES", "") action:NULL keyEquivalent:@""];
+  enableAutotype.tag = KPKInheritYES;
+  NSMenuItem *disableAutotype = [[NSMenuItem alloc] initWithTitle:NSLocalizedString(@"AUTOTYPE_NO", "") action:NULL keyEquivalent:@""];
+  disableAutotype.tag = KPKInheritNO;
   
-  [autotypeMenu addItem:inheritItem];
-  [autotypeMenu addItem:yesItem];
-  [autotypeMenu addItem:noItem];
+  [autotypeMenu addItem:inheritAutotype];
+  [autotypeMenu addItem:enableAutotype];
+  [autotypeMenu addItem:disableAutotype];
   
+  NSMenu *searchMenu = self.searchPopupButton.menu;
+  NSMenuItem *inheritSearch = [[NSMenuItem alloc] initWithTitle:NSLocalizedString(@"SEARCH_INHERIT", "") action:NULL keyEquivalent:@""];
+  inheritSearch.tag = KPKInherit;
+  NSMenuItem *includeInSearch = [[NSMenuItem alloc] initWithTitle:NSLocalizedString(@"SEARCH_YES", "") action:NULL keyEquivalent:@""];
+  includeInSearch.tag = KPKInheritYES;
+  NSMenuItem *excludeFromSearch = [[NSMenuItem alloc] initWithTitle:NSLocalizedString(@"SEARCH_NO", "") action:NULL keyEquivalent:@""];
+  excludeFromSearch.tag = KPKInheritNO;
+  
+  [searchMenu addItem:inheritSearch];
+  [searchMenu addItem:includeInSearch];
+  [searchMenu addItem:excludeFromSearch];
+
   /*
    void(^copyBlock)(NSTextField *textField) = ^void(NSTextField *textField) {
    [[MPPasteBoardController defaultController] copyObjects:@[ textField.stringValue ]];

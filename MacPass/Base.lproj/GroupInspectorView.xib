@@ -76,18 +76,10 @@
                             </button>
                             <popUpButton verticalHuggingPriority="750" horizontalCompressionResistancePriority="249" translatesAutoresizingMaskIntoConstraints="NO" id="229">
                                 <rect key="frame" x="18" y="128" width="222" height="26"/>
-                                <popUpButtonCell key="cell" type="push" title="Exclude from Search" bezelStyle="rounded" alignment="left" lineBreakMode="truncatingTail" state="on" borderStyle="borderAndBezel" tag="1" imageScaling="proportionallyDown" inset="2" selectedItem="234" id="230">
+                                <popUpButtonCell key="cell" type="push" bezelStyle="rounded" alignment="left" lineBreakMode="truncatingTail" borderStyle="borderAndBezel" imageScaling="proportionallyDown" inset="2" id="230">
                                     <behavior key="behavior" lightByBackground="YES" lightByGray="YES"/>
                                     <font key="font" metaFont="menu"/>
-                                    <menu key="menu" title="OtherViews" id="231">
-                                        <items>
-                                            <menuItem title="Inherit Search Settings" tag="-1" id="232">
-                                                <modifierMask key="keyEquivalentModifierMask"/>
-                                            </menuItem>
-                                            <menuItem title="Include in Search" id="233"/>
-                                            <menuItem title="Exclude from Search" state="on" tag="1" id="234"/>
-                                        </items>
-                                    </menu>
+                                    <menu key="menu" title="OtherViews" id="231"/>
                                 </popUpButtonCell>
                                 <connections>
                                     <outlet property="nextKeyView" destination="240" id="XsX-U5-uZd"/>

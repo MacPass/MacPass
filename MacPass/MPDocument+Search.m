@@ -116,7 +116,7 @@ NSString *const kMPDocumentSearchResultsKey           = @"kMPDocumentSearchResul
   if(MPIsFlagSetInOptions(MPEntrySearchDoublePasswords, self.searchContext.searchFlags)) {
     __block NSMutableDictionary *passwordToEntryMap = [[NSMutableDictionary alloc] initWithCapacity:100];
     /* Build up a usage map */
-    [[self.root childEntries] enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
+    [[self.root searchableChildEntries] enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
       KPKEntry *entry = obj;
       /* skip entries without passwords */
       if([entry.password length] > 0) {
@@ -144,16 +144,16 @@ NSString *const kMPDocumentSearchResultsKey           = @"kMPDocumentSearchResul
       KPKNode *node = evaluatedObject;
       return node.timeInfo.isExpired;
     }];
-    return [[self.root childEntries] filteredArrayUsingPredicate:expiredPredicate];
+    return [[self.root searchableChildEntries] filteredArrayUsingPredicate:expiredPredicate];
   }
   /* Filter using predicates */
   NSArray *predicates = [self _filterPredicatesWithString:self.searchContext.searchString];
   if(predicates) {
     NSPredicate *fullFilter = [NSCompoundPredicate orPredicateWithSubpredicates:predicates];
-    return [[self.root childEntries] filteredArrayUsingPredicate:fullFilter];
+    return [[self.root searchableChildEntries] filteredArrayUsingPredicate:fullFilter];
   }
   /* No filter, just return everything */
-  return [self.root childEntries];
+  return [self.root searchableChildEntries];
 }
 
 - (NSArray *)_filterPredicatesWithString:(NSString *)string{
