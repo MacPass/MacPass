@@ -55,11 +55,34 @@
   entry.password = @"Password";
   
   /* Command 1 */
-  MPAutotypeContext *context = [[MPAutotypeContext alloc] initWithEntry:entry andSequence:@"{TAB}{ENTER}~{tAb}{ShIfT}"];
+  MPAutotypeContext *context = [[MPAutotypeContext alloc] initWithEntry:entry andSequence:@"{TAB}{ENTER}~{tAb}{ShIfT}{enter}"];
   NSArray *commands = [MPAutotypeCommand commandsForContext:context];
   
-  XCTAssert(nil);
+  XCTAssertTrue(commands.count == 5);
+  /* {TAB} */
+  MPAutotypeKeyPress *keyPress = commands[0];
+  XCTAssertEqual(keyPress.keyCode, kVK_Tab);
+  XCTAssertEqual(keyPress.modifierMask, 0);
+  
+  /* {ENTER} */
+  keyPress = commands[1];
+  XCTAssertEqual(keyPress.keyCode, kVK_Return);
+  XCTAssertEqual(keyPress.modifierMask, 0);
 
+  /* ~ -> Enter */
+  keyPress = commands[2];
+  XCTAssertEqual(keyPress.keyCode, kVK_Return);
+  XCTAssertEqual(keyPress.modifierMask, 0);
+  
+  /* {tAb} */
+  keyPress = commands[3];
+  XCTAssertEqual(keyPress.keyCode, kVK_Tab);
+  XCTAssertEqual(keyPress.modifierMask, 0);
+  
+  /* {ShIfT}{enter}*/
+  keyPress = commands[4];
+  XCTAssertEqual(keyPress.keyCode, kVK_Return);
+  XCTAssertEqual(keyPress.modifierMask, kCGEventFlagMaskShift);
 }
 
 - (void)testCaseSensitiveCustomAttributeLookup {
@@ -72,9 +95,11 @@
   KPKAttribute *lowerCaseAttribute = [[KPKAttribute alloc] initWithKey:@"custom" value:@"value"];
   KPKAttribute *upperCaseAttribute = [[KPKAttribute alloc] initWithKey:@"CUSTOM" value:@"VALUE"];
   KPKAttribute *mixedCaseAttribute = [[KPKAttribute alloc] initWithKey:@"CuStOm" value:@"VaLuE"];
+  KPKAttribute *randomCase = [[KPKAttribute alloc] initWithKey:@"custoM" value:@"valuE"];
   [entry addCustomAttribute:lowerCaseAttribute];
   [entry addCustomAttribute:upperCaseAttribute];
   [entry addCustomAttribute:mixedCaseAttribute];
+  [entry addCustomAttribute:randomCase];
   
   entry.autotype.defaultKeystrokeSequence = [[NSString alloc] initWithFormat:@"{USERNAME}{s:%@}{S:%@}{s:%@}", lowerCaseAttribute.key, mixedCaseAttribute.key, upperCaseAttribute.key];
   
@@ -89,7 +114,7 @@
   entry.url = @"www.myurl.com";
   entry.username = @"{{User{name}}}";
   entry.password = @"Pass{word}";
-
+  
   /* Command 1 */
   MPAutotypeContext *context = [[MPAutotypeContext alloc] initWithEntry:entry andSequence:@"{USERNAME}{TAB}{PASSWORD}{ENTER}"];
   NSArray *commands = [MPAutotypeCommand commandsForContext:context];
@@ -103,11 +128,11 @@
   /* {USERNAME} */
   MPAutotypePaste *paste = commands[0];
   XCTAssertTrue([paste.pasteData isEqualToString:entry.username]);
-
+  
   /* {TAB} */
   MPAutotypeKeyPress *keyPress = commands[1];
-  XCTAssertTrue(keyPress.keyCode == kVK_Tab); // Tab is a fixed key, no mapping needed
-  XCTAssertTrue(keyPress.modifierMask == 0);
+  XCTAssertEqual(keyPress.keyCode, kVK_Tab); // Tab is a fixed key, no mapping needed
+  XCTAssertEqual(keyPress.modifierMask, 0);
   
   /* {PASSWORD} */
   paste = commands[2];
@@ -115,7 +140,7 @@
   
   /* {ENTER} */
   keyPress = commands[3];
-  XCTAssertTrue(keyPress.keyCode = kVK_Return);
+  XCTAssertEqual(keyPress.keyCode, kVK_Return);
   
   /* Command 2 */
   context = [[MPAutotypeContext alloc] initWithEntry:entry andSequence:@"^T{USERNAME}%+^{TAB}Whoo{PASSWORD}{ENTER}"];
@@ -131,16 +156,16 @@
   keyPress = commands[0];
   /* Lower case is ok, since we only need the key, not the sequence to reproduce the string */
   XCTAssertTrue([@"t" isEqualToString:[MPKeyMapper stringForKey:keyPress.keyCode]]);
-  XCTAssertTrue(keyPress.modifierMask == kCGEventFlagMaskCommand);
-
+  XCTAssertEqual(keyPress.modifierMask, kCGEventFlagMaskCommand);
+  
   /* {USERNAME} */
   paste = commands[1];
   XCTAssertTrue([paste.pasteData isEqualToString:entry.username]);
   
   /* %+^{TAB} */
   keyPress = commands[2];
-  XCTAssertTrue(keyPress.keyCode == kVK_Tab); // Tab is a fixed key, no mapping needed
-  XCTAssertTrue(keyPress.modifierMask = kCGEventFlagMaskCommand | kCGEventFlagMaskAlphaShift | kCGEventFlagMaskAlternate);
+  XCTAssertEqual(keyPress.keyCode, kVK_Tab); // Tab is a fixed key, no mapping needed
+  XCTAssertEqual(keyPress.modifierMask, (kCGEventFlagMaskCommand | kCGEventFlagMaskShift | kCGEventFlagMaskAlternate));
   
   /* Whoo{PASSWORD} */
   paste = commands[3];
@@ -149,6 +174,7 @@
   
   /* {ENTER} */
   keyPress = commands[4];
-  XCTAssertTrue(keyPress.keyCode = kVK_Return);
+  XCTAssertEqual(keyPress.keyCode, kVK_Return);
+  XCTAssertEqual(keyPress.modifierMask, 0);
 }
 @end

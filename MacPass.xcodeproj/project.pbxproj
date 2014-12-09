@@ -171,6 +171,7 @@
 		4C6AEEF91A043E2B00CA2420 /* MPDocumentController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C6AEEF81A043E2B00CA2420 /* MPDocumentController.m */; };
 		4C6AEF031A04400E00CA2420 /* OpenPanelAccessoryView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4C6AEF021A04400E00CA2420 /* OpenPanelAccessoryView.xib */; };
 		4C6B7C7D18BE7EB0001D5D77 /* MPDocument+HistoryBrowsing.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C6B7C7C18BE7EB0001D5D77 /* MPDocument+HistoryBrowsing.m */; };
+		4C6BC6601A36717E00BDDF3D /* MPDatabaseSearch.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C6BC65F1A36717E00BDDF3D /* MPDatabaseSearch.m */; };
 		4C6C72C417C01E4200768849 /* NSMutableData+KeePassKit.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C6C72C317C01E4200768849 /* NSMutableData+KeePassKit.m */; };
 		4C6D1D25178579570014C5A5 /* 48_FolderTemplate.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 4C6D1D24178579570014C5A5 /* 48_FolderTemplate.pdf */; };
 		4C6D1D27178586CA0014C5A5 /* 99_AddFolderTemplate.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 4C6D1D26178586CA0014C5A5 /* 99_AddFolderTemplate.pdf */; };
@@ -687,6 +688,7 @@
 		4C6AEF021A04400E00CA2420 /* OpenPanelAccessoryView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = OpenPanelAccessoryView.xib; sourceTree = "<group>"; };
 		4C6B7C7B18BE7EB0001D5D77 /* MPDocument+HistoryBrowsing.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "MPDocument+HistoryBrowsing.h"; sourceTree = "<group>"; };
 		4C6B7C7C18BE7EB0001D5D77 /* MPDocument+HistoryBrowsing.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "MPDocument+HistoryBrowsing.m"; sourceTree = "<group>"; };
+		4C6BC65F1A36717E00BDDF3D /* MPDatabaseSearch.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MPDatabaseSearch.m; sourceTree = "<group>"; };
 		4C6C72C217C01E4200768849 /* NSMutableData+KeePassKit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSMutableData+KeePassKit.h"; sourceTree = "<group>"; };
 		4C6C72C317C01E4200768849 /* NSMutableData+KeePassKit.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSMutableData+KeePassKit.m"; sourceTree = "<group>"; };
 		4C6D1D24178579570014C5A5 /* 48_FolderTemplate.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = 48_FolderTemplate.pdf; sourceTree = "<group>"; };
@@ -1449,6 +1451,7 @@
 				4C45FB2C178E0BCB0010007D /* MPDatabaseLoading.m */,
 				4C45FB2F178E0CE20010007D /* MPDatabaseCreation.m */,
 				4C19E502178E2871002F2CD0 /* MPDatabasePasswordAndKeyfile.m */,
+				4C6BC65F1A36717E00BDDF3D /* MPDatabaseSearch.m */,
 				4C45FB1F178E09ED0010007D /* Supporting Files */,
 				4C305F3B179A19F90082334F /* KPKIconLoading.m */,
 				4C1842B7179B348600E2F5BC /* KPKTestLegacyLoading.m */,
@@ -2321,6 +2324,7 @@
 				4C19E503178E2871002F2CD0 /* MPDatabasePasswordAndKeyfile.m in Sources */,
 				4C305F3C179A19F90082334F /* KPKIconLoading.m in Sources */,
 				4C1842B8179B348600E2F5BC /* KPKTestLegacyLoading.m in Sources */,
+				4C6BC6601A36717E00BDDF3D /* MPDatabaseSearch.m in Sources */,
 				4CFC8743179DFD3E000DFC03 /* KPKTestXmlLoading.m in Sources */,
 				4C79E80617A9400500AC6CD2 /* KPKTestNSCoding.m in Sources */,
 				4C79E80917A9485600AC6CD2 /* KPKTestNSCopying.m in Sources */,
