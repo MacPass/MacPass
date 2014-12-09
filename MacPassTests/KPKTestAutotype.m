@@ -23,10 +23,24 @@
 #import "KPKWindowAssociation.h"
 
 @interface KPKTestAutotype : XCTestCase
-
+@property (strong) KPKEntry *entry;
 @end
 
 @implementation KPKTestAutotype
+
+- (void)setUp {
+  [super setUp];
+  self.entry = [[KPKEntry alloc] init];
+  self.entry.title = @"Title";
+  self.entry.url = @"www.myurl.com";
+  self.entry.username = @"Username";
+  self.entry.password = @"Password";
+}
+
+- (void)tearDown {
+  self.entry = nil;
+  [super tearDown];
+}
 
 - (void)testSimpleNormalization {
   NSString *normalized = [@"Whoo %{%}{^}{SHIFT}+ {SPACE}{ENTER}^V%V~T" normalizedAutotypeSequence];
@@ -48,14 +62,8 @@
 }
 
 - (void)testCaseInsenstivieKeyPress {
-  KPKEntry *entry = [[KPKEntry alloc] init];
-  entry.title = @"Title";
-  entry.url = @"www.myurl.com";
-  entry.username = @"Username";
-  entry.password = @"Password";
-  
   /* Command 1 */
-  MPAutotypeContext *context = [[MPAutotypeContext alloc] initWithEntry:entry andSequence:@"{TAB}{ENTER}~{tAb}{ShIfT}{enter}"];
+  MPAutotypeContext *context = [[MPAutotypeContext alloc] initWithEntry:self.entry andSequence:@"{TAB}{ENTER}~{tAb}{ShIfT}{enter}"];
   NSArray *commands = [MPAutotypeCommand commandsForContext:context];
   
   XCTAssertTrue(commands.count == 5);
@@ -86,37 +94,40 @@
 }
 
 - (void)testCaseSensitiveCustomAttributeLookup {
-  KPKEntry *entry = [[KPKEntry alloc] init];
-  entry.title = @"Title";
-  entry.url = @"www.myurl.com";
-  entry.username = @"Username";
-  entry.password = @"Password";
-  
   KPKAttribute *lowerCaseAttribute = [[KPKAttribute alloc] initWithKey:@"custom" value:@"value"];
   KPKAttribute *upperCaseAttribute = [[KPKAttribute alloc] initWithKey:@"CUSTOM" value:@"VALUE"];
   KPKAttribute *mixedCaseAttribute = [[KPKAttribute alloc] initWithKey:@"CuStOm" value:@"VaLuE"];
   KPKAttribute *randomCase = [[KPKAttribute alloc] initWithKey:@"custoM" value:@"valuE"];
-  [entry addCustomAttribute:lowerCaseAttribute];
-  [entry addCustomAttribute:upperCaseAttribute];
-  [entry addCustomAttribute:mixedCaseAttribute];
-  [entry addCustomAttribute:randomCase];
+  [self.entry addCustomAttribute:lowerCaseAttribute];
+  [self.entry addCustomAttribute:upperCaseAttribute];
+  [self.entry addCustomAttribute:mixedCaseAttribute];
+  [self.entry addCustomAttribute:randomCase];
   
-  entry.autotype.defaultKeystrokeSequence = [[NSString alloc] initWithFormat:@"{USERNAME}{s:%@}{S:%@}{s:%@}", lowerCaseAttribute.key, mixedCaseAttribute.key, upperCaseAttribute.key];
+  self.entry.autotype.defaultKeystrokeSequence = [[NSString alloc] initWithFormat:@"{USERNAME}{s:%@}{S:%@}{s:%@}", lowerCaseAttribute.key, mixedCaseAttribute.key, upperCaseAttribute.key];
   
-  MPAutotypeContext *context = [[MPAutotypeContext alloc] initWithDefaultSequenceForEntry:entry];
-  NSString *result = [[NSString alloc] initWithFormat:@"%@%@%@%@", entry.username, lowerCaseAttribute.value, mixedCaseAttribute.value, upperCaseAttribute.value];
+  MPAutotypeContext *context = [[MPAutotypeContext alloc] initWithDefaultSequenceForEntry:self.entry];
+  NSString *result = [[NSString alloc] initWithFormat:@"%@%@%@%@", self.entry.username, lowerCaseAttribute.value, mixedCaseAttribute.value, upperCaseAttribute.value];
   XCTAssertTrue([[context evaluatedCommand] isEqualToString:result]);
 }
 
-- (void)testCommandCreation {
-  KPKEntry *entry = [[KPKEntry alloc] init];
-  entry.title = @"Title";
-  entry.url = @"www.myurl.com";
-  entry.username = @"{{User{name}}}";
-  entry.password = @"Pass{word}";
+- (void)testCustomAttributeRepetition {
+  KPKAttribute *numberAttribute = [[KPKAttribute alloc] initWithKey:@"NoRepeat 3" value:@"NoRepeatValue"];
+  [self.entry addCustomAttribute:numberAttribute];
   
+  NSString *autotypeSequence = [[NSString alloc] initWithFormat:@"{S:%@}{USERNAME 3}", numberAttribute.key];
+  MPAutotypeContext *context = [[MPAutotypeContext alloc] initWithEntry:self.entry andSequence:autotypeSequence];
+  
+  NSArray *commands = [MPAutotypeCommand commandsForContext:context];
+  XCTAssertEqual(commands.count, 1);
+  MPAutotypePaste *paste = commands[0];
+  NSString *result = [[NSString alloc] initWithFormat:@"%@%@", numberAttribute.value, self.entry.username];
+  XCTAssertEqual(paste.pasteData, result);
+}
+
+
+- (void)testCommandCreation {
   /* Command 1 */
-  MPAutotypeContext *context = [[MPAutotypeContext alloc] initWithEntry:entry andSequence:@"{USERNAME}{TAB}{PASSWORD}{ENTER}"];
+  MPAutotypeContext *context = [[MPAutotypeContext alloc] initWithEntry:self.entry andSequence:@"{USERNAME}{TAB}{PASSWORD}{ENTER}"];
   NSArray *commands = [MPAutotypeCommand commandsForContext:context];
   
   XCTAssertTrue(commands.count == 4);
@@ -127,7 +138,7 @@
   
   /* {USERNAME} */
   MPAutotypePaste *paste = commands[0];
-  XCTAssertTrue([paste.pasteData isEqualToString:entry.username]);
+  XCTAssertTrue([paste.pasteData isEqualToString:self.entry.username]);
   
   /* {TAB} */
   MPAutotypeKeyPress *keyPress = commands[1];
@@ -136,14 +147,14 @@
   
   /* {PASSWORD} */
   paste = commands[2];
-  XCTAssertTrue([entry.password isEqualToString:paste.pasteData]);
+  XCTAssertTrue([self.entry.password isEqualToString:paste.pasteData]);
   
   /* {ENTER} */
   keyPress = commands[3];
   XCTAssertEqual(keyPress.keyCode, kVK_Return);
   
   /* Command 2 */
-  context = [[MPAutotypeContext alloc] initWithEntry:entry andSequence:@"^T{USERNAME}%+^{TAB}Whoo{PASSWORD}{ENTER}"];
+  context = [[MPAutotypeContext alloc] initWithEntry:self.entry andSequence:@"^T{USERNAME}%+^{TAB}Whoo{PASSWORD}{ENTER}"];
   commands = [MPAutotypeCommand commandsForContext:context];
   XCTAssertTrue(commands.count == 5);
   XCTAssertTrue([commands[0] isKindOfClass:[MPAutotypeKeyPress class]]);
@@ -160,7 +171,7 @@
   
   /* {USERNAME} */
   paste = commands[1];
-  XCTAssertTrue([paste.pasteData isEqualToString:entry.username]);
+  XCTAssertTrue([paste.pasteData isEqualToString:self.entry.username]);
   
   /* %+^{TAB} */
   keyPress = commands[2];
@@ -169,7 +180,7 @@
   
   /* Whoo{PASSWORD} */
   paste = commands[3];
-  NSString *pasteString = [[NSString alloc] initWithFormat:@"%@%@", @"Whoo", entry.password];
+  NSString *pasteString = [[NSString alloc] initWithFormat:@"%@%@", @"Whoo", self.entry.password];
   XCTAssertTrue([pasteString isEqualToString:paste.pasteData]);
   
   /* {ENTER} */

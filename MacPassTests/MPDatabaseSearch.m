@@ -32,6 +32,7 @@
   self.tree = [[KPKTree alloc] init];
   self.tree.root = [[KPKGroup alloc] init];
   
+  /* FIXEM weak! */
   self.inheritingGroup = [self.tree createGroup:self.tree.root];
   self.includedGroup = [self.tree createGroup:self.tree.root];
   self.excludedGroup = [self.tree createGroup:self.tree.root];
