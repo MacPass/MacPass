@@ -26,6 +26,8 @@
 
 #import <CommonCrypto/CommonCrypto.h>
 
+static CGKeyCode kMPFunctionKeyCodes[] = { kVK_F1, kVK_F2, kVK_F3, kVK_F4, kVK_F5, kVK_F6, kVK_F7, kVK_F8, kVK_F9, kVK_F10, kVK_F11, kVK_F12, kVK_F13, kVK_F14, kVK_F15, kVK_F16, kVK_F17, kVK_F18, kVK_F19 };
+
 @interface NSNumber (AutotypeCommand)
 
 - (CGEventFlags)eventFlagsValue;
@@ -177,7 +179,7 @@
 + (void)appendObfuscatedPasteCommandForContent:(NSString *)pasteContent toCommands:(NSMutableArray *)commands {
   if(pasteContent) {
     
-    /* 
+    /*
      * obfuscate entered data using Two-Channel Auto-Type Obfuscation
      * refer to KeePass documentation for more information
      * http://keepass.info/help/v2/autotype_obfuscation.html
@@ -187,7 +189,7 @@
     NSMutableArray *typeKeys = [NSMutableArray array];
     NSMutableArray *modifiers = [NSMutableArray array];
     
-    /* 
+    /*
      * seed the random number generator using the first 4 bytes of the string's SHA1
      * this ensures that you get the same string split every time for a given string
      */
@@ -212,7 +214,7 @@
       }
       else {
         [typeKeys addObject:@(keyCode)];
-
+        
         if ([[NSCharacterSet uppercaseLetterCharacterSet] characterIsMember:key])
           [modifiers addObject:@(kCGEventFlagMaskShift)];
         else
@@ -255,6 +257,21 @@
     [commands addObject:[[MPAutotypeKeyPress alloc] initWithModifierMask:flags keyCode:keyCode]];
     return; // Done
   }
+  /* F1-16 */
+  NSRegularExpression *functionKeyRegExp = [[NSRegularExpression alloc] initWithPattern:kKPKAutotypeFunctionMaskRegularExpression options:NSRegularExpressionCaseInsensitive error:0];
+  NSTextCheckingResult *functionResult = [functionKeyRegExp firstMatchInString:commandString options:0 range:NSMakeRange(0, commandString.length)];
+  if(functionResult && functionResult.numberOfRanges == 2) {
+    NSString *numberString = [commandString substringWithRange:[functionResult rangeAtIndex:1]];
+    NSScanner *numberScanner = [[NSScanner alloc] initWithString:numberString];
+    NSInteger functionNumber = 0;
+    if([numberScanner scanInteger:&functionNumber] && functionNumber >= 1 && functionNumber <= 19) {
+      [commands addObject:[[MPAutotypeKeyPress alloc] initWithModifierMask:flags keyCode:kMPFunctionKeyCodes[functionNumber-1]]];
+      return; // Done
+    }
+  }
+  /* Numpad 0-9 */
+  /* TODO: Numpad is not invariant, mapping is needed */
+  
   /* Clearfield */
   if([kKPKAutotypeClearField isEqualToString:uppercaseCommand]) {
     [commands addObject:[[MPAutotypeClear alloc] init]];
@@ -262,14 +279,14 @@
   }
   // TODO: add {APPLICATION <appname>}
   /* Delay */
-  NSString *delayPattern = [[NSString alloc] initWithFormat:@"\\{(%@|%@|)[:|=]+([0-9])+\\}",
+  NSString *delayPattern = [[NSString alloc] initWithFormat:@"\\{(%@|%@|)[ |=]+([0-9])+\\}",
                             kKPKAutotypeDelay,
                             kKPKAutotypeVirtualKey/*,
-                            kKPKAutotypeVirtualExtendedKey,
-                            kKPKAutotypeVirtualNonExtendedKey*/];
+                                                   kKPKAutotypeVirtualExtendedKey,
+                                                   kKPKAutotypeVirtualNonExtendedKey*/];
   NSRegularExpression *delayRegExp = [[NSRegularExpression alloc] initWithPattern:delayPattern options:NSRegularExpressionCaseInsensitive error:0];
   NSAssert(delayRegExp, @"Regex for delay should work!");
-  NSTextCheckingResult *result = [delayRegExp firstMatchInString:commandString options:0 range:NSMakeRange(0, [commandString length])];
+  NSTextCheckingResult *result = [delayRegExp firstMatchInString:commandString options:0 range:NSMakeRange(0, commandString.length)];
   if(result && (result.numberOfRanges == 3)) {
     NSString *uppercaseCommand = [[commandString substringWithRange:[result rangeAtIndex:1]] uppercaseString];
     NSString *valueString = [commandString substringWithRange:[result rangeAtIndex:2]];
