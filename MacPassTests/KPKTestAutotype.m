@@ -124,6 +124,57 @@
   XCTAssertEqualObjects(paste.pasteData, result);
 }
 
+- (void)testFunctionKeyCommand {
+  MPAutotypeContext *context = [[MPAutotypeContext alloc] initWithEntry:self.entry andSequence:@"{F0}{F1}{F2}{F3}{F4}{F5}^%{F6}{F7}{F19}{F20}"];
+  NSArray *commands = [MPAutotypeCommand commandsForContext:context];
+  XCTAssertEqual(commands.count, 10);
+  /* {F0} -> invalid, paste */
+  MPAutotypePaste *paste = commands[0];
+  XCTAssertEqualObjects(paste.pasteData, @"{F0}");
+
+  /* {F1} */
+  MPAutotypeKeyPress *key = commands[1];
+  XCTAssertEqual(key.modifierMask, 0);
+  XCTAssertEqual(key.keyCode, kVK_F1);
+  
+  /* {F2} */
+  key = commands[2];
+  XCTAssertEqual(key.modifierMask, 0);
+  XCTAssertEqual(key.keyCode, kVK_F2);
+
+  /* {F3} */
+  key = commands[3];
+  XCTAssertEqual(key.modifierMask, 0);
+  XCTAssertEqual(key.keyCode, kVK_F3);
+  
+  /* {F4} */
+  key = commands[4];
+  XCTAssertEqual(key.modifierMask, 0);
+  XCTAssertEqual(key.keyCode, kVK_F4);
+  
+  /* {F5} */
+  key = commands[5];
+  XCTAssertEqual(key.modifierMask, 0);
+  XCTAssertEqual(key.keyCode, kVK_F5);
+  
+  /* ^%{F6} */
+  key = commands[6];
+  XCTAssertEqual(key.modifierMask, (kCGEventFlagMaskCommand | kCGEventFlagMaskAlternate));
+  XCTAssertEqual(key.keyCode, kVK_F6);
+
+  /* {F7} */
+  key = commands[7];
+  XCTAssertEqual(key.modifierMask, 0);
+  XCTAssertEqual(key.keyCode, kVK_F7);
+  
+  /* {F19} */
+  key = commands[8];
+  XCTAssertEqual(key.modifierMask, 0);
+  XCTAssertEqual(key.keyCode, kVK_F19);
+  
+  paste = commands[9];
+  XCTAssertEqualObjects(paste.pasteData, @"{F20}");
+}
 
 - (void)testCommandCreation {
   /* Command 1 */
