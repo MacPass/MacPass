@@ -120,8 +120,8 @@
   NSArray *commands = [MPAutotypeCommand commandsForContext:context];
   XCTAssertEqual(commands.count, 1);
   MPAutotypePaste *paste = commands[0];
-  NSString *result = [[NSString alloc] initWithFormat:@"%@%@", numberAttribute.value, self.entry.username];
-  XCTAssertEqual(paste.pasteData, result);
+  NSString *result = [[NSString alloc] initWithFormat:@"%@%@%@%@", numberAttribute.value, self.entry.username, self.entry.username, self.entry.username];
+  XCTAssertEqualObjects(paste.pasteData, result);
 }
 
 
