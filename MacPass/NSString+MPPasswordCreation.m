@@ -78,7 +78,7 @@ static NSString *allowedCharactersString(MPPasswordCharacterFlags flags) {
   if([self length] == 0) {
     return nil;
   }
-  NSData *data = [NSData dataWithRandomBytes:sizeof(unsigned long)];
+  NSData *data = [NSData dataWithRandomBytes:sizeof(NSUInteger)];
   NSUInteger randomIndex;
   [data getBytes:&randomIndex length:[data length]];
   return [self substringWithRange:NSMakeRange(randomIndex % [self length], 1)];
