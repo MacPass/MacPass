@@ -35,11 +35,17 @@ There have been some changes in the submodule urls. Please consider re-syncing a
   * KDBX DeletedObjects are stripped on save. This will break synchronisation features!
 * Binary releases (0.4.x):
   * Default Autotype Sequences will get stored although they shouldn't be stored
-  * Default Autotype sequence is wrong ````{TAB}{USERNAME}{TAB}{PASSWORD}{ENTER}```` instead of ````{USERNAME}{TAB}{PASSWORD}{ENTER}````
+  * Default Autotype sequence is wrong `{TAB}{USERNAME}{TAB}{PASSWORD}{ENTER}` instead of `{USERNAME}{TAB}{PASSWORD}{ENTER}`
   * Forced and Recomended database key change intervals are wrongfully initalized with 0. This has the nasty side effect, that 0.5 or Keepass under Windows complains to you about it all the time. (Issue [#269](https://github.com/mstarke/MacPass/issues/269) and [#276](https://github.com/mstarke/MacPass/issues/276))
 * Binary releases (0.5.x):
   * KDBX History is only preseverd. Editing doesn't create new history entries
-  
+
+## Help
+
+Some questions might be ansered in the [FAQ](https://github.com/mstarke/MacPass/wiki/FAQ)
+
+Another place to look is the IRC channel [#macpass](irc://irc.freenode.org/macpass) on [irc.freenode.org](irc://irc.freenode.org)
+
 ##System Requirement
 
 The minimum OS X version required for MacPass is currently 10.8 Mountain Lion.
@@ -65,12 +71,6 @@ Should be able to read and write database version 1 and 2. It is closed source a
 
 [S3crets](http://s3crets.com/en/help/) native Cocoa Port with a different approach to displaying the database fully inside a tree.
 It is able to read and write database version 1 and 2. Not all database features are fully supported.
-
-## Help
-
-Some questions might be ansered in the [FAQ](https://github.com/mstarke/MacPass/wiki/FAQ)
-
-Another place to look is the IRC channel [#macpass](irc://irc.freenode.org/macpass) on [irc.freenode.org](irc://irc.freenode.org)
 
 ##License
 
