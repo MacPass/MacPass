@@ -57,11 +57,17 @@ NSString *const kMPProcessIdentifierKey = @"kMPProcessIdentifierKey";
       toObject:[NSUserDefaultsController sharedUserDefaultsController]
    withKeyPath:[MPSettingsHelper defaultControllerPathForKey:kMPSettingsKeyGlobalAutotypeKeyDataKey]
        options:nil];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(_applicationWillBecomeActive:)
+                                                 name:NSApplicationWillBecomeActiveNotification
+                                               object:[NSApplication sharedApplication]];
   }
   return self;
 }
 
 - (void)dealloc {
+  [[NSNotificationCenter defaultCenter] removeObserver:self];
   [self unbind:NSStringFromSelector(@selector(enabled))];
   [self unbind:NSStringFromSelector(@selector(hotKeyData))];
 }
@@ -257,6 +263,13 @@ NSString *const kMPProcessIdentifierKey = @"kMPProcessIdentifierKey";
 - (void)_didUnlockDatabase:(NSNotification *)notification {
   [[NSNotificationCenter defaultCenter] removeObserver:self];
   [self _performAutotypeUsingCurrentWindowAndApplication:NO];
+}
+
+#pragma mark -
+#pragma mark NSApplication Notifications
+- (void)_applicationWillBecomeActive:(NSNotification *)notification {
+  //[self _updateTargetApplicationAndWindow];
+  //NSLog(@"_applicaiontWillBecomActive");
 }
 
 #pragma mark -
