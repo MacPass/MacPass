@@ -102,6 +102,7 @@
 		4C3C4EA718D6FEA100153127 /* TTTStringTransformers.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C3C4EA118D6FEA100153127 /* TTTStringTransformers.m */; };
 		4C3C4EAF18D7039300153127 /* MPValueTransformerHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C3C4EAE18D7039300153127 /* MPValueTransformerHelper.m */; };
 		4C3D4C0817594CA40038DAAC /* HNHSeparator.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C3D4C0717594CA40038DAAC /* HNHSeparator.m */; };
+		4C3F25211A3B0C95007DD98B /* KPKTextXMLUtilities.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C3F25201A3B0C95007DD98B /* KPKTextXMLUtilities.m */; };
 		4C3F28541791EDFD00703281 /* KPKErrors.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C3F28531791EDFD00703281 /* KPKErrors.m */; };
 		4C3FFD9E16DAF60600DF9186 /* ContextBar.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4C3FFD9D16DAF60600DF9186 /* ContextBar.xib */; };
 		4C431BCD16E2A82800700A81 /* MPPasteBoardController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C431BCC16E2A82700700A81 /* MPPasteBoardController.m */; };
@@ -559,6 +560,7 @@
 		4C3C4EAE18D7039300153127 /* MPValueTransformerHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MPValueTransformerHelper.m; sourceTree = "<group>"; };
 		4C3D4C0617594CA40038DAAC /* HNHSeparator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HNHSeparator.h; sourceTree = "<group>"; };
 		4C3D4C0717594CA40038DAAC /* HNHSeparator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HNHSeparator.m; sourceTree = "<group>"; };
+		4C3F25201A3B0C95007DD98B /* KPKTextXMLUtilities.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KPKTextXMLUtilities.m; sourceTree = "<group>"; };
 		4C3F28521791EDE800703281 /* KPKErrors.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KPKErrors.h; sourceTree = "<group>"; };
 		4C3F28531791EDFD00703281 /* KPKErrors.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = KPKErrors.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		4C3FFD9D16DAF60600DF9186 /* ContextBar.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ContextBar.xib; sourceTree = "<group>"; };
@@ -1468,6 +1470,7 @@
 				4C473A7E18AFD6340073FD2E /* KPKTestReference.m */,
 				4CD25F9218B17A17006098E9 /* KPKTestUUIDAdditions.m */,
 				4C59745018B3CE7200C8EBD1 /* KPKTestAutotype.m */,
+				4C3F25201A3B0C95007DD98B /* KPKTextXMLUtilities.m */,
 			);
 			path = MacPassTests;
 			sourceTree = "<group>";
@@ -2333,6 +2336,7 @@
 				4C6366AF17AF207600AAF17D /* KPKTestHexColor.m in Sources */,
 				4CE76DAD17B3AD010043B82B /* KPKHashedDataTest.m in Sources */,
 				4CEAF85B17BA9B44001307A6 /* KPKTestKeyfileParsing.m in Sources */,
+				4C3F25211A3B0C95007DD98B /* KPKTextXMLUtilities.m in Sources */,
 				4C59745118B3CE7200C8EBD1 /* KPKTestAutotype.m in Sources */,
 				4C6FDD2117BC4F4C004AEEC8 /* KPKTestPlaceholder.m in Sources */,
 				4CBA561617C2EA4900CE13D3 /* KPKTestXmlWriting.m in Sources */,
