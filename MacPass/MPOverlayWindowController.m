@@ -52,6 +52,16 @@
 }
 
 - (void)displayOverlayImage:(NSImage *)imageOrNil label:(NSString *)labelOrNil atView:(NSView *)view {
+  if(![NSThread currentThread].isMainThread) {  NSAssert(NO, @"Must be called on main thread"); }
+  /*
+  if(![NSThread currentThread].isMainThread) {
+    __weak MPOverlayWindowController *welf = self;
+    dispatch_async(dispatch_get_main_queue(), ^{
+      [welf displayOverlayImage:imageOrNil label:labelOrNil atView:view];
+    });
+    return;
+  }
+  */
   if(self.isAnimating) {
     return;
   }

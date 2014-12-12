@@ -14,6 +14,7 @@
 #import "MPAutotypeContext.h"
 #import "MPAutotypePaste.h"
 
+#import "MPOverlayWindowController.h"
 #import "MPPasteBoardController.h"
 #import "MPSettingsHelper.h"
 
@@ -121,6 +122,10 @@ NSString *const kMPProcessIdentifierKey = @"kMPProcessIdentifierKey";
   if(useCurrentWindowAndApplication) {
     [self _updateTargetApplicationAndWindow];
   }
+  NSInteger pid = [[NSProcessInfo processInfo] processIdentifier];
+  if(self.targetPID == pid) {
+    return; // We do not perform Autotype on ourselves
+  }
   
   MPDocument *document = [self _findAutotypeDocument];
   if(!document) {
@@ -157,9 +162,11 @@ NSString *const kMPProcessIdentifierKey = @"kMPProcessIdentifierKey";
   NSArray *autotypeCandidates = [document autotypContextsForWindowTitle:windowTitle];
   NSUInteger candidates = [autotypeCandidates count];
   if(candidates == 0) {
+    [[MPOverlayWindowController sharedController] displayOverlayImage:[NSImage imageNamed:NSImageNameCaution] label:NSLocalizedString(@"AUTOTYPE_OVERLAY_NO_MATCH", "") atView:nil];
     return nil;
   }
   if(candidates == 1 ) {
+    [[MPOverlayWindowController sharedController] displayOverlayImage:[NSImage imageNamed:NSImageNameActionTemplate] label:NSLocalizedString(@"AUTOTYPE_OVERLAY_SINGLE_MATCH", "") atView:nil];
     return  [autotypeCandidates lastObject];
   }
   [self _presentSelectionWindow:autotypeCandidates];
@@ -170,6 +177,7 @@ NSString *const kMPProcessIdentifierKey = @"kMPProcessIdentifierKey";
   if(nil == context) {
     return; // No context to work with
   }
+  
   dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
     NSArray *commands = [MPAutotypeCommand commandsForContext:context];
     if([MPAutotypeDaemon _orderApplicationToFront:self.targetPID]) {
