@@ -143,6 +143,7 @@ NSString *const MPDocumentGroupKey                        = @"MPDocumentGroupKey
 }
 
 - (void)saveDocumentAs:(id)sender {
+  /* take a look at NSEditor Protocoll commitEding, as NSDocument supports that */
   [[NSNotificationCenter defaultCenter] postNotificationName:MPDocumentWillSaveNotification object:self];
   [super saveDocumentAs:sender];
 }
@@ -150,6 +151,11 @@ NSString *const MPDocumentGroupKey                        = @"MPDocumentGroupKey
 - (void)saveDocument:(id)sender {
   [[NSNotificationCenter defaultCenter] postNotificationName:MPDocumentWillSaveNotification object:self];
   [super saveDocument:sender];
+}
+
+- (void)saveDocumentTo:(id)sender {
+  [[NSNotificationCenter defaultCenter] postNotificationName:MPDocumentWillSaveNotification object:self];
+  [super saveDocumentTo:sender];
 }
 
 - (void)windowControllerDidLoadNib:(NSWindowController *)aController
