@@ -93,7 +93,7 @@ static CGKeyCode kMPFunctionKeyCodes[] = { kVK_F1, kVK_F2, kVK_F3, kVK_F4, kVK_F
   dispatch_once(&onceToken, ^{
     modifierCommands = @{
                          kKPKAutotypeAlt : @(kCGEventFlagMaskAlternate),
-                         kKPKAutotypeControl : @(kCGEventFlagMaskCommand),
+                         kKPKAutotypeControl : @(kCGEventFlagMaskControl),
                          kKPKAutotypeShift : @(kCGEventFlagMaskShift)
                          };
   });

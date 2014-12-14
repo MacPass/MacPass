@@ -7,14 +7,25 @@
 //
 
 #import "MPAutotypeKeyPress.h"
+#import "MPFlagsHelper.h"
 #import "MPKeyMapper.h"
 
+#import "MPSettingsHelper.h"
+
 @implementation MPAutotypeKeyPress
+
+static CGEventFlags _updateModifierMaskForCurrentDefaults(CGEventFlags modifiers) {
+  BOOL sendCommand = [[NSUserDefaults standardUserDefaults] boolForKey:kMPSettingsKeySendCommandForControlKey];
+  if(sendCommand && MPIsFlagSetInOptions(kCGEventFlagMaskControl, modifiers)) {
+    return (modifiers ^ kCGEventFlagMaskControl) | kCGEventFlagMaskCommand;
+  }
+  return modifiers;
+}
 
 - (instancetype)initWithModifierMask:(CGEventFlags)modiferMask keyCode:(CGKeyCode)code {
   self = [super init];
   if(self) {
-    _modifierMask = modiferMask;
+    _modifierMask = _updateModifierMaskForCurrentDefaults(modiferMask);
     _keyCode = code;
   }
   return self;
