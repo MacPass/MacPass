@@ -129,6 +129,8 @@
    */
   
   metaData.rounds = MAX(0,[self.encryptionRoundsTextField integerValue]);
+  /* Register an action to enable promts when user cloeses without saving */
+  [_document updateChangeCount:NSChangeDone];
   [self close:nil];
 }
 
