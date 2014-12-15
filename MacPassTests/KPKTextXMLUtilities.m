@@ -9,7 +9,7 @@
 #import <Cocoa/Cocoa.h>
 #import <XCTest/XCTest.h>
 
-#import "KPKXmlUtilities.h"
+#import "NSString+XMLUtilities.h"
 
 @interface KPKTextXMLUtilities : XCTestCase
 
@@ -26,8 +26,8 @@
 }
 
 - (void)testExample {
-  NSString *safe = stripUnsafeCharacterForXMLFromString(@"*EORDIE\x10\x16\x12\x10");
-  XCTAssertEqualObjects(@"*EORDIE", safe);
+  NSString *unsave = @"*EORDIE\x10\x16\x12\x10";
+  XCTAssertEqualObjects(@"*EORDIE", unsave.XMLCompatibleString);
 }
 
 @end

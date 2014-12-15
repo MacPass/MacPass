@@ -238,5 +238,21 @@
   keyPress = commands[4];
   XCTAssertEqual(keyPress.keyCode, kVK_Return);
   XCTAssertEqual(keyPress.modifierMask, 0);
+  
+  
+  /* Command 3 */
+  context = [[MPAutotypeContext alloc] initWithEntry:self.entry andSequence:@"^T"];
+  commands = [MPAutotypeCommand commandsForContext:context];
+  XCTAssertTrue(commands.count == 1);
+  XCTAssertTrue([commands[0] isKindOfClass:[MPAutotypeKeyPress class]]);
+  
+  /*^T*/
+  keyPress = commands[0];
+  XCTAssertEqualObjects(@"t", [MPKeyMapper stringForKey:keyPress.keyCode]);
+  /* TODO - Respect user settings? */
+  XCTAssertEqual(keyPress.modifierMask, kCGEventFlagMaskCommand);
+  /*XCTAssertEqual(keyPress.modifierMask, kCGEventFlagMaskControl);*/
+
+
 }
 @end

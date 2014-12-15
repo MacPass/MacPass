@@ -147,12 +147,20 @@ static CGKeyCode kMPFunctionKeyCodes[] = { kVK_F1, kVK_F2, kVK_F3, kVK_F4, kVK_F
   }
   /* Collect any part that isn't a command or if onyl paste is used */
   if(lastLocation < [context.evaluatedCommand length]) {
-    NSRange pasteRange = NSMakeRange(lastLocation, [context.evaluatedCommand length] - lastLocation);
-    if(pasteRange.length > 0) {
-      NSString *pasteValue = [context.evaluatedCommand substringWithRange:pasteRange];
-      [self appendAppropriatePasteCommandForEntry:context.entry withContent:pasteValue toCommands:commands];
+    /* We might have some dangling modifiers */
+    NSRange lastRange = NSMakeRange(lastLocation, [context.evaluatedCommand length] - lastLocation);
+    if(lastRange.length > 0) {
+      NSString *modifiedKey = [context.evaluatedCommand substringWithRange:NSMakeRange(lastLocation, 1)];
+      MPAutotypeKeyPress *press = [[MPAutotypeKeyPress alloc] initWithModifierMask:collectedModifers character:modifiedKey];
+      if(press) {
+        [commands addObject:press];
+      }
+      if(lastRange.length > 1) {
+        NSRange pasteRange = NSMakeRange(lastRange.location + 1, lastRange.length - 1);
+        NSString *pasteValue = [context.evaluatedCommand substringWithRange:pasteRange];
+        [self appendAppropriatePasteCommandForEntry:context.entry withContent:pasteValue toCommands:commands];
+      }
     }
-    
   }
   return commands;
 }

@@ -7,21 +7,25 @@
     <objects>
         <customObject id="-2" userLabel="File's Owner" customClass="MPIntegrationSettingsController">
             <connections>
-                <outlet property="enableGlobalAutotypeCheckbutton" destination="tik-Ar-FJg" id="d2f-69-2BP"/>
-                <outlet property="enableQuicklookCheckbutton" destination="LNw-5t-TS4" id="NRN-7y-W0e"/>
-                <outlet property="enableServerCheckbutton" destination="2" id="17"/>
+                <outlet property="enableGlobalAutotypeCheckBox" destination="tik-Ar-FJg" id="yVA-bM-sSh"/>
+                <outlet property="enableQuicklookCheckBox" destination="LNw-5t-TS4" id="YiZ-Kk-0dF"/>
+                <outlet property="enableServerCheckBox" destination="2" id="GTJ-GU-nxB"/>
                 <outlet property="hotKeyTextField" destination="Kvg-he-3c8" id="c7p-1F-zth"/>
                 <outlet property="hotkeyWarningTextField" destination="f5q-EW-RHf" id="Z2Q-Sb-HCS"/>
+                <outlet property="matchHostCheckBox" destination="TiO-ah-BlR" id="MWr-Uh-TRB"/>
+                <outlet property="matchTagsCheckBox" destination="9MH-jx-GpG" id="j1Y-BT-J81"/>
+                <outlet property="matchURLCheckBox" destination="DAX-V8-Say" id="g4T-v4-NVe"/>
+                <outlet property="sendCommandForControlCheckBox" destination="VK8-z4-2ci" id="nIa-ap-QfD"/>
                 <outlet property="view" destination="1" id="18"/>
             </connections>
         </customObject>
         <customObject id="-1" userLabel="First Responder" customClass="FirstResponder"/>
         <customObject id="-3" userLabel="Application" customClass="NSObject"/>
         <customView translatesAutoresizingMaskIntoConstraints="NO" id="1">
-            <rect key="frame" x="0.0" y="0.0" width="400" height="343"/>
+            <rect key="frame" x="0.0" y="0.0" width="400" height="410"/>
             <subviews>
                 <box autoresizesSubviews="NO" verticalHuggingPriority="500" title="Keepass HTTP" borderType="line" translatesAutoresizingMaskIntoConstraints="NO" id="KbH-0Q-5Tw">
-                    <rect key="frame" x="17" y="269" width="366" height="54"/>
+                    <rect key="frame" x="17" y="336" width="366" height="54"/>
                     <view key="contentView">
                         <rect key="frame" x="1" y="1" width="364" height="38"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -44,13 +48,13 @@
                     <color key="fillColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                 </box>
                 <box autoresizesSubviews="NO" verticalHuggingPriority="500" title="Autotype" borderType="line" translatesAutoresizingMaskIntoConstraints="NO" id="P9N-HM-wER">
-                    <rect key="frame" x="17" y="118" width="366" height="147"/>
+                    <rect key="frame" x="17" y="115" width="366" height="217"/>
                     <view key="contentView">
-                        <rect key="frame" x="1" y="1" width="364" height="131"/>
+                        <rect key="frame" x="1" y="1" width="364" height="201"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <textField verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="Kvg-he-3c8" customClass="DDHotKeyTextField">
-                                <rect key="frame" x="79" y="77" width="89" height="22"/>
+                                <rect key="frame" x="79" y="147" width="89" height="22"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="89" id="Mia-b8-HCZ"/>
                                 </constraints>
@@ -61,14 +65,14 @@
                                 </textFieldCell>
                             </textField>
                             <button translatesAutoresizingMaskIntoConstraints="NO" id="tik-Ar-FJg">
-                                <rect key="frame" x="16" y="105" width="168" height="18"/>
+                                <rect key="frame" x="16" y="175" width="168" height="18"/>
                                 <buttonCell key="cell" type="check" title="Enable global Autotype" bezelStyle="regularSquare" imagePosition="left" state="on" inset="2" id="1qb-Rd-jYu">
                                     <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                                     <font key="font" metaFont="system"/>
                                 </buttonCell>
                             </button>
                             <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="buI-Wb-o3V">
-                                <rect key="frame" x="16" y="79" width="57" height="17"/>
+                                <rect key="frame" x="16" y="149" width="57" height="17"/>
                                 <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Shortcut" id="6oN-CH-T0O">
                                     <font key="font" metaFont="system"/>
                                     <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
@@ -76,7 +80,7 @@
                                 </textFieldCell>
                             </textField>
                             <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="f5q-EW-RHf">
-                                <rect key="frame" x="174" y="82" width="127" height="14"/>
+                                <rect key="frame" x="174" y="152" width="127" height="14"/>
                                 <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Shortcut is missing Key" id="Lxp-wI-yQy">
                                     <font key="font" metaFont="smallSystem"/>
                                     <color key="textColor" name="disabledControlTextColor" catalog="System" colorSpace="catalog"/>
@@ -84,26 +88,41 @@
                                 </textFieldCell>
                             </textField>
                             <button translatesAutoresizingMaskIntoConstraints="NO" id="DAX-V8-Say">
-                                <rect key="frame" x="16" y="53" width="175" height="18"/>
+                                <rect key="frame" x="16" y="119" width="175" height="18"/>
                                 <buttonCell key="cell" type="check" title="Inlcude URL for matches" bezelStyle="regularSquare" imagePosition="left" enabled="NO" state="on" inset="2" id="tmL-dT-D0G">
                                     <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                                     <font key="font" metaFont="system"/>
                                 </buttonCell>
                             </button>
                             <button translatesAutoresizingMaskIntoConstraints="NO" id="TiO-ah-BlR">
-                                <rect key="frame" x="16" y="32" width="179" height="18"/>
+                                <rect key="frame" x="16" y="99" width="179" height="18"/>
                                 <buttonCell key="cell" type="check" title="Inlcude Host for matches" bezelStyle="regularSquare" imagePosition="left" enabled="NO" state="on" inset="2" id="B1D-j9-L8x">
                                     <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                                     <font key="font" metaFont="system"/>
                                 </buttonCell>
                             </button>
                             <button translatesAutoresizingMaskIntoConstraints="NO" id="9MH-jx-GpG">
-                                <rect key="frame" x="16" y="12" width="179" height="18"/>
+                                <rect key="frame" x="16" y="79" width="179" height="18"/>
                                 <buttonCell key="cell" type="check" title="Inlcude Tags for matches" bezelStyle="regularSquare" imagePosition="left" enabled="NO" state="on" inset="2" id="rbu-G7-MT8">
                                     <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                                     <font key="font" metaFont="system"/>
                                 </buttonCell>
                             </button>
+                            <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="VK8-z4-2ci">
+                                <rect key="frame" x="16" y="53" width="126" height="18"/>
+                                <buttonCell key="cell" type="check" title="Interpret ⌃ as ⌘" bezelStyle="regularSquare" imagePosition="left" state="on" inset="2" id="QfO-yG-l3F">
+                                    <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                                    <font key="font" metaFont="system"/>
+                                </buttonCell>
+                            </button>
+                            <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" setsMaxLayoutWidthAtFirstLayout="YES" translatesAutoresizingMaskIntoConstraints="NO" id="wbP-A9-jpw">
+                                <rect key="frame" x="16" y="19" width="332" height="28"/>
+                                <textFieldCell key="cell" sendsActionOnEndEditing="YES" title="If enabled, every {CONTROL} command will be sent as ⌘. Only disable this if you are sure you need to." id="QRy-CY-ENC">
+                                    <font key="font" metaFont="smallSystem"/>
+                                    <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
+                                    <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                                </textFieldCell>
+                            </textField>
                         </subviews>
                     </view>
                     <constraints>
@@ -112,37 +131,42 @@
                         <constraint firstItem="buI-Wb-o3V" firstAttribute="baseline" secondItem="Kvg-he-3c8" secondAttribute="baseline" id="49G-2q-5ye"/>
                         <constraint firstItem="TiO-ah-BlR" firstAttribute="leading" secondItem="9MH-jx-GpG" secondAttribute="leading" id="4Ta-Nl-wk9"/>
                         <constraint firstItem="9MH-jx-GpG" firstAttribute="top" secondItem="TiO-ah-BlR" secondAttribute="bottom" constant="6" symbolic="YES" id="87J-fo-zxM"/>
+                        <constraint firstAttribute="trailing" secondItem="wbP-A9-jpw" secondAttribute="trailing" constant="16" id="9NI-Sn-76Y"/>
                         <constraint firstItem="Kvg-he-3c8" firstAttribute="baseline" secondItem="f5q-EW-RHf" secondAttribute="baseline" constant="3" id="ANl-zC-sOX"/>
                         <constraint firstItem="f5q-EW-RHf" firstAttribute="leading" secondItem="Kvg-he-3c8" secondAttribute="trailing" constant="8" symbolic="YES" id="AkG-U9-TdD"/>
                         <constraint firstItem="Kvg-he-3c8" firstAttribute="leading" secondItem="buI-Wb-o3V" secondAttribute="trailing" constant="8" symbolic="YES" id="Khi-Pi-iBU"/>
-                        <constraint firstItem="TiO-ah-BlR" firstAttribute="top" secondItem="DAX-V8-Say" secondAttribute="bottom" constant="7" id="RjQ-Al-xG7"/>
+                        <constraint firstItem="VK8-z4-2ci" firstAttribute="top" secondItem="9MH-jx-GpG" secondAttribute="bottom" constant="12" id="O4y-q6-wtM"/>
+                        <constraint firstItem="wbP-A9-jpw" firstAttribute="top" secondItem="VK8-z4-2ci" secondAttribute="bottom" constant="8" symbolic="YES" id="OVF-L6-rLK"/>
+                        <constraint firstItem="TiO-ah-BlR" firstAttribute="top" secondItem="DAX-V8-Say" secondAttribute="bottom" constant="6" symbolic="YES" id="RjQ-Al-xG7"/>
                         <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="f5q-EW-RHf" secondAttribute="trailing" constant="26" id="U3J-vD-O03"/>
-                        <constraint firstItem="DAX-V8-Say" firstAttribute="top" secondItem="Kvg-he-3c8" secondAttribute="bottom" constant="8" symbolic="YES" id="W4U-F9-ZJc"/>
-                        <constraint firstAttribute="bottom" secondItem="9MH-jx-GpG" secondAttribute="bottom" constant="11" id="Wr7-qu-9Lm"/>
+                        <constraint firstItem="DAX-V8-Say" firstAttribute="top" secondItem="Kvg-he-3c8" secondAttribute="bottom" constant="12" id="W4U-F9-ZJc"/>
+                        <constraint firstItem="VK8-z4-2ci" firstAttribute="leading" secondItem="wbP-A9-jpw" secondAttribute="leading" id="aII-Dc-SrH"/>
                         <constraint firstItem="Kvg-he-3c8" firstAttribute="top" secondItem="tik-Ar-FJg" secondAttribute="bottom" constant="8" symbolic="YES" id="cn1-4v-XHZ"/>
                         <constraint firstItem="tik-Ar-FJg" firstAttribute="leading" secondItem="buI-Wb-o3V" secondAttribute="leading" id="eVT-oc-Oz8"/>
                         <constraint firstItem="DAX-V8-Say" firstAttribute="leading" secondItem="tik-Ar-FJg" secondAttribute="leading" id="h3Q-Ek-YXQ"/>
+                        <constraint firstAttribute="bottom" secondItem="wbP-A9-jpw" secondAttribute="bottom" constant="16" id="nFT-v0-cpZ"/>
                         <constraint firstItem="tik-Ar-FJg" firstAttribute="leading" secondItem="P9N-HM-wER" secondAttribute="leading" constant="16" id="rMB-zA-WBv"/>
                         <constraint firstItem="tik-Ar-FJg" firstAttribute="leading" secondItem="TiO-ah-BlR" secondAttribute="leading" id="tzg-JW-Xgm"/>
+                        <constraint firstItem="VK8-z4-2ci" firstAttribute="leading" secondItem="9MH-jx-GpG" secondAttribute="leading" id="zxB-d2-oKp"/>
                     </constraints>
                     <color key="borderColor" white="0.0" alpha="0.41999999999999998" colorSpace="calibratedWhite"/>
                     <color key="fillColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                 </box>
                 <box autoresizesSubviews="NO" verticalHuggingPriority="500" title="Preview" borderType="line" translatesAutoresizingMaskIntoConstraints="NO" id="VVs-b5-cX9">
-                    <rect key="frame" x="17" y="16" width="366" height="98"/>
+                    <rect key="frame" x="17" y="16" width="366" height="95"/>
                     <view key="contentView">
-                        <rect key="frame" x="1" y="1" width="364" height="82"/>
+                        <rect key="frame" x="1" y="1" width="364" height="79"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <button translatesAutoresizingMaskIntoConstraints="NO" id="LNw-5t-TS4">
-                                <rect key="frame" x="16" y="56" width="183" height="18"/>
+                                <rect key="frame" x="16" y="53" width="183" height="18"/>
                                 <buttonCell key="cell" type="check" title="Enable Quicklook Preview" bezelStyle="regularSquare" imagePosition="left" state="on" inset="2" id="ERs-ct-Eyx">
                                     <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                                     <font key="font" metaFont="system"/>
                                 </buttonCell>
                             </button>
                             <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" setsMaxLayoutWidthAtFirstLayout="YES" translatesAutoresizingMaskIntoConstraints="NO" id="V6l-R9-hIj">
-                                <rect key="frame" x="16" y="22" width="322" height="28"/>
+                                <rect key="frame" x="16" y="19" width="322" height="28"/>
                                 <textFieldCell key="cell" controlSize="small" sendsActionOnEndEditing="YES" title="If enabled attached files will be copied to a tempoary location for preview and deleted after the preview is closed." id="WmI-IB-Aso">
                                     <font key="font" metaFont="smallSystem"/>
                                     <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
@@ -152,8 +176,8 @@
                         </subviews>
                     </view>
                     <constraints>
-                        <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="V6l-R9-hIj" secondAttribute="trailing" constant="26" id="6va-Ii-axg"/>
-                        <constraint firstAttribute="bottom" secondItem="V6l-R9-hIj" secondAttribute="bottom" constant="19" id="W4Q-ec-J2U"/>
+                        <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="V6l-R9-hIj" secondAttribute="trailing" constant="16" id="6va-Ii-axg"/>
+                        <constraint firstAttribute="bottom" secondItem="V6l-R9-hIj" secondAttribute="bottom" constant="16" id="W4Q-ec-J2U"/>
                         <constraint firstItem="LNw-5t-TS4" firstAttribute="leading" secondItem="VVs-b5-cX9" secondAttribute="leading" constant="16" id="dgd-Gt-Zxu"/>
                         <constraint firstItem="LNw-5t-TS4" firstAttribute="top" secondItem="VVs-b5-cX9" secondAttribute="top" constant="25" id="obp-WH-C6P"/>
                         <constraint firstItem="V6l-R9-hIj" firstAttribute="leading" secondItem="VVs-b5-cX9" secondAttribute="leading" constant="16" id="qDK-YA-moR"/>
@@ -176,7 +200,7 @@
                 <constraint firstItem="P9N-HM-wER" firstAttribute="trailing" secondItem="KbH-0Q-5Tw" secondAttribute="trailing" id="sIZ-ZD-A8K"/>
                 <constraint firstItem="VVs-b5-cX9" firstAttribute="leading" secondItem="P9N-HM-wER" secondAttribute="leading" id="z4a-9C-78h"/>
             </constraints>
-            <point key="canvasLocation" x="-358" y="519.5"/>
+            <point key="canvasLocation" x="-188" y="59"/>
         </customView>
     </objects>
 </document>

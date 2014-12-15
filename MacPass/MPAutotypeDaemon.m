@@ -133,6 +133,11 @@ NSString *const kMPProcessIdentifierKey = @"kMPProcessIdentifierKey";
   }
   
   MPAutotypeContext *context = [self _autotypeContextInDocument:document forWindowTitle:self.targetWindowTitle];
+  if(useCurrentWindowAndApplication) {
+    NSImage *appIcon = [[NSApplication sharedApplication] applicationIconImage];
+    NSString *label = context ? NSLocalizedString(@"AUTOTYPE_OVERLAY_SINGLE_MATCH", "") : NSLocalizedString(@"AUTOTYPE_OVERLAY_NO_MATCH", "");
+    [[MPOverlayWindowController sharedController] displayOverlayImage:appIcon label:label atView:nil];
+  }
   [self _performAutotypeForContext:context];
 }
 
@@ -162,11 +167,9 @@ NSString *const kMPProcessIdentifierKey = @"kMPProcessIdentifierKey";
   NSArray *autotypeCandidates = [document autotypContextsForWindowTitle:windowTitle];
   NSUInteger candidates = [autotypeCandidates count];
   if(candidates == 0) {
-    [[MPOverlayWindowController sharedController] displayOverlayImage:[NSImage imageNamed:NSImageNameCaution] label:NSLocalizedString(@"AUTOTYPE_OVERLAY_NO_MATCH", "") atView:nil];
     return nil;
   }
   if(candidates == 1 ) {
-    [[MPOverlayWindowController sharedController] displayOverlayImage:[NSImage imageNamed:NSImageNameActionTemplate] label:NSLocalizedString(@"AUTOTYPE_OVERLAY_SINGLE_MATCH", "") atView:nil];
     return  [autotypeCandidates lastObject];
   }
   [self _presentSelectionWindow:autotypeCandidates];
@@ -251,7 +254,7 @@ NSString *const kMPProcessIdentifierKey = @"kMPProcessIdentifierKey";
     NSArray *attributes = (context.entry.username.length > 0 )
     ? @[ context.entry.username, context.command ]
     : @[ context.command ];
-
+    
     for(NSString *value in attributes) {
       NSMenuItem *valueItem  = [[NSMenuItem alloc] initWithTitle:value action:NULL keyEquivalent:@""];
       [valueItem setIndentationLevel:1];

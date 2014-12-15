@@ -225,6 +225,7 @@
 		4C96D15417A12E4F00D931FA /* 99_CreatedTemplate.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 4C96D15317A12E4F00D931FA /* 99_CreatedTemplate.pdf */; };
 		4C978E0619AE53FE003067DF /* HNHCommon.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C978E0519AE53FE003067DF /* HNHCommon.m */; };
 		4C978E0D19AE54AB003067DF /* MPFlagsHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C978E0C19AE54AB003067DF /* MPFlagsHelper.m */; };
+		4C9B38CF1A3EFCA100CD21C3 /* NSString+XMLUtilities.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C9B38CE1A3EFCA100CD21C3 /* NSString+XMLUtilities.m */; };
 		4C9D6AA917615199001C660C /* HNHRoundedSecureTextFieldCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C9D6AA817615199001C660C /* HNHRoundedSecureTextFieldCell.m */; };
 		4CA08DA017A831B200A6544B /* MPAddEntryContextMenuDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CA08D9F17A831B200A6544B /* MPAddEntryContextMenuDelegate.m */; };
 		4CA0B2ED15BCADAC00654E32 /* SettingsWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4CA0B2EC15BCADAC00654E32 /* SettingsWindow.xib */; };
@@ -788,6 +789,8 @@
 		4C96D15317A12E4F00D931FA /* 99_CreatedTemplate.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; name = 99_CreatedTemplate.pdf; path = Icons/99_CreatedTemplate.pdf; sourceTree = "<group>"; };
 		4C978E0519AE53FE003067DF /* HNHCommon.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HNHCommon.m; sourceTree = "<group>"; };
 		4C978E0C19AE54AB003067DF /* MPFlagsHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MPFlagsHelper.m; sourceTree = "<group>"; };
+		4C9B38CD1A3EFCA100CD21C3 /* NSString+XMLUtilities.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+XMLUtilities.h"; sourceTree = "<group>"; };
+		4C9B38CE1A3EFCA100CD21C3 /* NSString+XMLUtilities.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+XMLUtilities.m"; sourceTree = "<group>"; };
 		4C9D6AA717615199001C660C /* HNHRoundedSecureTextFieldCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HNHRoundedSecureTextFieldCell.h; sourceTree = "<group>"; };
 		4C9D6AA817615199001C660C /* HNHRoundedSecureTextFieldCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HNHRoundedSecureTextFieldCell.m; sourceTree = "<group>"; };
 		4CA08D9E17A831B200A6544B /* MPAddEntryContextMenuDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MPAddEntryContextMenuDelegate.h; sourceTree = "<group>"; };
@@ -1879,6 +1882,8 @@
 				4C5CD35417D15DBD000B7F38 /* NSString+Hexdata.m */,
 				4C89F51F182F9FDD0069C73C /* NSString+Commands.h */,
 				4C89F520182F9FDD0069C73C /* NSString+Commands.m */,
+				4C9B38CD1A3EFCA100CD21C3 /* NSString+XMLUtilities.h */,
+				4C9B38CE1A3EFCA100CD21C3 /* NSString+XMLUtilities.m */,
 				4C1842BE179B5BFD00E2F5BC /* NSData+CommonCrypto.h */,
 				4C1842BF179B5BFD00E2F5BC /* NSData+CommonCrypto.m */,
 				4C2724D51778FF1A00FD8456 /* NSUUID+KeePassKit.h */,
@@ -2448,6 +2453,7 @@
 				4C245BF0176E1E3D0086100E /* ContextFilterLogFormatter.m in Sources */,
 				4C245BF1176E1E3D0086100E /* DispatchQueueLogFormatter.m in Sources */,
 				4CF78057176E5CFD0032EE71 /* MPConnection.m in Sources */,
+				4C9B38CF1A3EFCA100CD21C3 /* NSString+XMLUtilities.m in Sources */,
 				4CF7805A176E6D5F0032EE71 /* HNHTableRowView.m in Sources */,
 				4CF7805D176E71170032EE71 /* MPServerDaemon.m in Sources */,
 				4CF78064176E75AD0032EE71 /* MPIntegrationSettingsController.m in Sources */,
