@@ -22,12 +22,15 @@
 
 #import <Cocoa/Cocoa.h>
 
-FOUNDATION_EXTERN NSString *const MPDidChangeStoredKeyFilesSettings;
+APPKIT_EXTERN NSString *const MPDidChangeStoredKeyFilesSettings;
+
+@class MPAutotypeDaemon;
 
 @interface MPAppDelegate : NSObject <NSApplicationDelegate, NSMenuDelegate>
 
 @property (strong) IBOutlet NSWindow *passwordCreatorWindow;
 @property (strong) IBOutlet NSWindow *welcomeWindow;
+@property (strong) MPAutotypeDaemon *autotypeDaemon;
 @property (weak) IBOutlet NSMenuItem *saveMenuItem;
 @property (nonatomic, assign) BOOL isAllowedToStoreKeyFile;
 
@@ -40,7 +43,6 @@ FOUNDATION_EXTERN NSString *const MPDidChangeStoredKeyFilesSettings;
  *  @param sender sender of this action
  */
 - (IBAction)clearRememberdKeyFiles:(id)sender;
-
 
 - (NSString *)applicationName;
 - (void)lockAllDocuments;

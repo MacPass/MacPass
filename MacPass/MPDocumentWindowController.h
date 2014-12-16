@@ -50,6 +50,8 @@
 
 - (IBAction)pickExpiryDate:(id)sender;
 
+- (IBAction)performAutotypeForEntry:(id)sender;
+
 #pragma mark Helper
 - (IBAction)fixAutotype:(id)sender;
 

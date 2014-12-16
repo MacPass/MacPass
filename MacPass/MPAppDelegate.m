@@ -44,7 +44,6 @@ NSString *const MPDidChangeStoredKeyFilesSettings = @"com.hicknhack.macpass.MPDi
 @private
   MPServerDaemon *serverDaemon;
   MPLockDaemon *lockDaemon;
-  MPAutotypeDaemon *autotypeDaemon;
   MPDockTileHelper *dockTileHelper;
   BOOL _shouldOpenFile; // YES if app was started to open a
 }
@@ -158,7 +157,7 @@ NSString *const MPDidChangeStoredKeyFilesSettings = @"com.hicknhack.macpass.MPDi
 - (void)applicationDidFinishLaunching:(NSNotification *)notification {
   serverDaemon = [[MPServerDaemon alloc] init];
   lockDaemon = [[MPLockDaemon alloc] init];
-  autotypeDaemon = [[MPAutotypeDaemon alloc] init];
+  self.autotypeDaemon = [[MPAutotypeDaemon alloc] init];
   //dockTileHelper = [[MPDockTileHelper alloc] init];
 }
 

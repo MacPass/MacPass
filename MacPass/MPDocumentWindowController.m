@@ -7,25 +7,26 @@
 //
 
 #import "MPDocumentWindowController.h"
-#import "MPDocument.h"
-#import "MPPasswordInputController.h"
-#import "MPEntryViewController.h"
-#import "MPToolbarDelegate.h"
-#import "MPOutlineViewController.h"
-#import "MPInspectorViewController.h"
-#import "MPAppDelegate.h"
 #import "MPActionHelper.h"
-#import "MPDatabaseSettingsWindowController.h"
-#import "MPPasswordEditWindowController.h"
+#import "MPAppDelegate.h"
+#import "MPAutotypeDaemon.h"
 #import "MPConstants.h"
-#import "MPSettingsHelper.h"
-#import "MPDocumentWindowDelegate.h"
-#import "MPFixAutotypeWindowController.h"
-
 #import "MPContextToolbarButton.h"
-#import "KPKTree.h"
-#import "KPKEntry.h"
+#import "MPDatabaseSettingsWindowController.h"
+#import "MPDocument.h"
+#import "MPDocumentWindowDelegate.h"
+#import "MPEntryViewController.h"
+#import "MPFixAutotypeWindowController.h"
+#import "MPInspectorViewController.h"
+#import "MPOutlineViewController.h"
+#import "MPPasswordEditWindowController.h"
+#import "MPPasswordInputController.h"
+#import "MPSettingsHelper.h"
+#import "MPToolbarDelegate.h"
+
 #import "KPKCompositeKey.h"
+#import "KPKEntry.h"
+#import "KPKTree.h"
 
 typedef NS_ENUM(NSUInteger, MPAlertContext) {
   MPAlertLossySaveWarning,
@@ -367,6 +368,13 @@ typedef void (^MPPasswordChangedBlock)(BOOL didChangePassword);
     [self.inspectorViewController updateResponderChain];
   }
   [[NSUserDefaults standardUserDefaults] setBool:!inspectorWasVisible forKey:kMPSettingsKeyShowInspector];
+}
+
+- (void)performAutotypeForEntry:(id)sender {
+  id<MPTargetNodeResolving> entryResolver = [NSApp targetForAction:@selector(currentTargetEntry)];
+  KPKEntry *targetEntry = [entryResolver currentTargetEntry];
+  MPAutotypeDaemon *autotyped = ((MPAppDelegate *)[NSApplication sharedApplication]).autotypeDaemon;
+  [autotyped performAutotypeForEntry:targetEntry];
 }
 
 - (void)showInspector:(id)sender {

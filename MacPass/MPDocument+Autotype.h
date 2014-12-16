@@ -25,23 +25,25 @@
 @interface MPDocument (Autotype)
 
 /**
- *  Tests the given item for a possible wrong autotype format
- *  MacPass 0.4 and 0.4.1 did store wrong Autotype sequences and thus mangled database files
- *
- *  @param item Item to test for malformation. Allowed Items are KPKNode, KPKEntry, KPKGroup and KPKAutotype
- *
- *  @return YES if the given item is considered a possible candidate. NO in all other cases
- */
+*  Tests the given item for a possible wrong autotype format
+*  MacPass 0.4 and 0.4.1 did store wrong Autotype sequences and thus mangled database files
+*
+*  @param item Item to test for malformation. Allowed Items are KPKNode, KPKEntry, KPKGroup and KPKAutotype
+*
+*  @return YES if the given item is considered a possible candidate. NO in all other cases
+*/
 + (BOOL)isCandidateForMalformedAutotype:(id)item;
 
 /**
- *  Returns an NSArray containing all Autotype Contexts that match the given window title
+ *  Returns an NSArray containing all Autotype Contexts that match the given window title.
+ *  If no entry is set, all entries in the document will be searched
  *
  *  @param windowTitle Window title to search matches for
+ *  @param entry       Entry to use for lookup. If nil lookup will be performed in complete document
  *
- *  @return NSArray of MPAutotypeContexts for the given window title
+ *  @return NSArray of MPAutotypeContext objects matching the window title.
  */
-- (NSArray *)autotypContextsForWindowTitle:(NSString *)windowTitle;
+- (NSArray *)autotypContextsForWindowTitle:(NSString *)windowTitle preferredEntry:(KPKEntry *)entryOrNil;
 /**
  *  Checks if the document has malformed autotype items
  *

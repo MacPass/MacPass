@@ -46,11 +46,11 @@
   return (NSOrderedSame == [@"{TAB}{USERNAME}{TAB}{PASSWORD}{ENTER}" compare:keystrokeSequence options:NSCaseInsensitiveSearch]);
 }
 
-- (NSArray *)autotypContextsForWindowTitle:(NSString *)windowTitle {
+- (NSArray *)autotypContextsForWindowTitle:(NSString *)windowTitle preferredEntry:(KPKEntry *)entry {
   if(!windowTitle) {
     return nil;
   }
-  NSArray *autotypeEntries = [self.root autotypeableChildEntries];
+  NSArray *autotypeEntries = entry ? [[NSArray alloc] initWithObjects:entry, nil] : [self.root autotypeableChildEntries];
   NSMutableArray *contexts = [[NSMutableArray alloc] initWithCapacity:MAX(1,ceil([autotypeEntries count] / 4.0))];
   for(KPKEntry *entry in autotypeEntries) {
     /* TODO:
