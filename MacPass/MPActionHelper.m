@@ -19,26 +19,27 @@
   static dispatch_once_t onceToken;
   dispatch_once(&onceToken, ^{
     actionDict = @{
-                   @(MPActionAddEntry):                   NSStringFromSelector(@selector(createEntry:)),
-                   @(MPActionAddGroup):                   NSStringFromSelector(@selector(createGroup:)),
-                   @(MPActionDuplicateEntry):             NSStringFromSelector(@selector(duplicateEntry:)),
-                   @(MPActionDuplicateEntryWithOptions):  NSStringFromSelector(@selector(duplicateEntryWithOptions:)),
-                   @(MPActionCopyPassword):               NSStringFromSelector(@selector(copyPassword:)),
-                   @(MPActionCopyURL):                    NSStringFromSelector(@selector(copyURL:)),
-                   @(MPActionCopyUsername):               NSStringFromSelector(@selector(copyUsername:)),
-                   @(MPActionDelete):                     NSStringFromSelector(@selector(delete:)),
-                   @(MPActionEditPassword):               NSStringFromSelector(@selector(editPassword:)),
-                   @(MPActionOpenURL):                    NSStringFromSelector(@selector(openURL:)),
-                   @(MPActionToggleInspector):            NSStringFromSelector(@selector(toggleInspector:)),
-                   @(MPActionLock):                       NSStringFromSelector(@selector(lock:)),
-                   @(MPActionEmptyTrash):                 NSStringFromSelector(@selector(emptyTrash:)),
-                   @(MPActionDatabaseSettings):           NSStringFromSelector(@selector(showDatabaseSettings:)),
-                   @(MPActionEditTemplateGroup):          NSStringFromSelector(@selector(editTemplateGroup:)),
-                   @(MPActionExportXML):                  NSStringFromSelector(@selector(exportAsXML:)),
-                   @(MPActionImportXML):                  NSStringFromSelector(@selector(importFromXML:)),
-                   @(MPActionToggleQuicklook):            NSStringFromSelector(@selector(toggleQuicklookPreview:)),
-                   @(MPActionShowHistory):                NSStringFromSelector(@selector(showHistory:)),
-                   @(MPActionExitHistory):                NSStringFromSelector(@selector(exitHistory:))
+                   @(MPActionAddEntry):                         NSStringFromSelector(@selector(createEntry:)),
+                   @(MPActionAddGroup):                         NSStringFromSelector(@selector(createGroup:)),
+                   @(MPActionDuplicateEntry):                   NSStringFromSelector(@selector(duplicateEntry:)),
+                   @(MPActionDuplicateEntryWithOptions):        NSStringFromSelector(@selector(duplicateEntryWithOptions:)),
+                   @(MPActionCopyPassword):                     NSStringFromSelector(@selector(copyPassword:)),
+                   @(MPActionCopyURL):                          NSStringFromSelector(@selector(copyURL:)),
+                   @(MPActionCopyUsername):                     NSStringFromSelector(@selector(copyUsername:)),
+                   @(MPActionDelete):                           NSStringFromSelector(@selector(delete:)),
+                   @(MPActionEditPassword):                     NSStringFromSelector(@selector(editPassword:)),
+                   @(MPActionOpenURL):                          NSStringFromSelector(@selector(openURL:)),
+                   @(MPActionToggleInspector):                  NSStringFromSelector(@selector(toggleInspector:)),
+                   @(MPActionLock):                             NSStringFromSelector(@selector(lock:)),
+                   @(MPActionEmptyTrash):                       NSStringFromSelector(@selector(emptyTrash:)),
+                   @(MPActionDatabaseSettings):                 NSStringFromSelector(@selector(showDatabaseSettings:)),
+                   @(MPActionEditTemplateGroup):                NSStringFromSelector(@selector(editTemplateGroup:)),
+                   @(MPActionExportXML):                        NSStringFromSelector(@selector(exportAsXML:)),
+                   @(MPActionImportXML):                        NSStringFromSelector(@selector(importFromXML:)),
+                   @(MPActionToggleQuicklook):                  NSStringFromSelector(@selector(toggleQuicklookPreview:)),
+                   @(MPActionShowHistory):                      NSStringFromSelector(@selector(showHistory:)),
+                   @(MPActionExitHistory):                      NSStringFromSelector(@selector(exitHistory:)),
+                   @(MPActionPerformAutotypeForSelectedEntry):  NSStringFromSelector(@selector(performAutotypeForEntry:))
                    };
   });
   return actionDict;

@@ -26,6 +26,7 @@ static void MPContextmenuHelperBeginSection(NSMutableArray *items) {
   BOOL const insertCopy = MPIsFlagSetInOptions(MPContextMenuCopy, flags);
   BOOL const insertTrash = MPIsFlagSetInOptions(MPContextMenuTrash, flags);
   BOOL const insertDuplicate = MPIsFlagSetInOptions(MPContextMenuDuplicate, flags);
+  BOOL const insertAutotype = MPIsFlagSetInOptions(MPContextMenuAutotype, flags);
   
   NSMutableArray *items = [NSMutableArray arrayWithCapacity:10];
   if(insertCreate) {
@@ -96,6 +97,14 @@ static void MPContextmenuHelperBeginSection(NSMutableArray *items) {
     [urlMenu addItem:openURL];
     
     [items addObjectsFromArray:@[ copyUsername, copyPassword, urlItem]];
+  }
+  if(insertAutotype) {
+    MPContextmenuHelperBeginSection(items);
+    NSMenuItem *performAutotype = [[NSMenuItem alloc] initWithTitle:NSLocalizedString(@"PERFORM_AUTOTYPE_FOR_ENTRY", @"")
+                                                          action:[MPActionHelper actionOfType:MPActionPerformAutotypeForSelectedEntry]
+                                                   keyEquivalent:@"a"];
+    [performAutotype setKeyEquivalentModifierMask:[performAutotype keyEquivalentModifierMask] | NSControlKeyMask];
+    [items addObject:performAutotype];
   }
   
   return items;

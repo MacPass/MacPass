@@ -29,7 +29,8 @@ typedef NS_ENUM(NSUInteger, MPActionType) {
   MPActionImportXML, // Import form XML
   MPActionToggleQuicklook,
   MPActionShowHistory, // History anzeigen
-  MPActionExitHistory // History ausblenden
+  MPActionExitHistory, // History ausblenden
+  MPActionPerformAutotypeForSelectedEntry // Perform Autotype for selected Entry
 };
 /**
  *	Helper to retrieve commonly used actions

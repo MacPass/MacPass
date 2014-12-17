@@ -30,6 +30,10 @@
  *  Command with placeholders and references resolved
  */
 @property (nonatomic, readonly, copy) NSString *evaluatedCommand;
+/**
+ *  @return YES if valid, NO otherwise
+ */
+@property (nonatomic, readonly, assign) BOOL isValid;
 
 /**
  *  Designated initializer
@@ -42,11 +46,5 @@
 - (instancetype)initWithEntry:(KPKEntry *)entry andSequence:(NSString *)sequence;
 - (instancetype)initWithDefaultSequenceForEntry:(KPKEntry *)entry;
 - (instancetype)initWithWindowAssociation:(KPKWindowAssociation *)association;
-/**
- *  Returns YES if the given sequence is valid (currentyl only bracke missmatch is regarded as invalid
- *
- *  @return YES if valid, NO otherwise
- */
-- (BOOL)isValid;
 
 @end

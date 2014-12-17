@@ -143,7 +143,6 @@ NSString *const _MPTableSecurCellView = @"PasswordCell";
                                            selector:@selector(_didBecomFirstResponder:)
                                                name:MPDidActivateViewNotification
                                              object:_entryTable];
-  /* Filter bar notifications */
   [self _setupEntryMenu];
   
   NSTableColumn *parentColumn = [self.entryTable tableColumns][0];

@@ -20,7 +20,7 @@
 @property (weak) IBOutlet NSPopUpButton *matchSelectionButton;
 @property (readonly, strong) DDHotKey *registredHotKey;
 
-- (void)performAutotypeForEntry:(KPKEntry *)entryOrNil;
+- (void)performAutotypeForEntry:(KPKEntry *)entry;
 - (IBAction)performAutotypeWithSelectedMatch:(id)sender;
 - (IBAction)cancelAutotypeSelection:(id)sender;
 

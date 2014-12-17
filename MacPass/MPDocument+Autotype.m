@@ -50,8 +50,10 @@
   if(!windowTitle) {
     return nil;
   }
-  NSArray *autotypeEntries = entry ? [[NSArray alloc] initWithObjects:entry, nil] : [self.root autotypeableChildEntries];
+  BOOL usePreferredEntry = (nil != entry);
+  NSArray *autotypeEntries = usePreferredEntry ? [[NSArray alloc] initWithObjects:entry, nil] : [self.root autotypeableChildEntries];
   NSMutableArray *contexts = [[NSMutableArray alloc] initWithCapacity:MAX(1,ceil([autotypeEntries count] / 4.0))];
+  MPAutotypeContext *context;
   for(KPKEntry *entry in autotypeEntries) {
     /* TODO:
      
@@ -68,7 +70,6 @@
     if (titleRange.location == NSNotFound || titleRange.length == 0) {
       titleRange = [entry.title rangeOfString:windowTitle options:NSCaseInsensitiveSearch];
     }
-    MPAutotypeContext *context;
     if(titleRange.location != NSNotFound && titleRange.length != 0) {
       context = [[MPAutotypeContext alloc] initWithEntry:entry andSequence:entry.autotype.defaultKeystrokeSequence];
     }
@@ -77,7 +78,14 @@
       KPKWindowAssociation *association = [entry.autotype windowAssociationMatchingWindowTitle:windowTitle];
       context = [[MPAutotypeContext alloc] initWithWindowAssociation:association];
     }
-    if([context isValid]) {
+    if(context.isValid) {
+      [contexts addObject:context];
+    }
+  }
+  /* Fall back to preferred Entry if no match was found */
+  if(contexts.count == 0 && usePreferredEntry) {
+    context = [[MPAutotypeContext alloc] initWithEntry:entry andSequence:entry.autotype.defaultKeystrokeSequence];
+    if(context.isValid) {
       [contexts addObject:context];
     }
   }

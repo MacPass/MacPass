@@ -713,6 +713,9 @@ NSString *const MPDocumentGroupKey                        = @"MPDocumentGroupKey
     case MPActionOpenURL:
       valid &= (nil != targetEntry ) && ([targetEntry.url length] > 0);
       break;
+    case MPActionPerformAutotypeForSelectedEntry:
+      valid &= (nil != targetEntry);
+      break;
     default:
       break;
   }

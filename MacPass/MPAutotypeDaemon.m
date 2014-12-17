@@ -34,8 +34,9 @@ NSString *const kMPProcessIdentifierKey = @"kMPProcessIdentifierKey";
 @property (nonatomic, assign) BOOL enabled;
 @property (nonatomic, copy) NSData *hotKeyData;
 @property (strong) DDHotKey *registredHotKey;
-@property (assign) pid_t targetPID;
-@property (copy) NSString *targetWindowTitle;
+@property (assign) pid_t targetPID; // The pid of the process we want to sent commands to
+@property (copy) NSString *targetWindowTitle; // The title of the window that we are targeting
+@property (strong) NSRunningApplication *previousApplication; // The application that was active before we got invoked
 
 @end
 
@@ -43,7 +44,6 @@ NSString *const kMPProcessIdentifierKey = @"kMPProcessIdentifierKey";
 
 #pragma mark -
 #pragma mark Lifecylce
-
 - (instancetype)init {
   self = [super init];
   if (self) {
@@ -76,7 +76,6 @@ NSString *const kMPProcessIdentifierKey = @"kMPProcessIdentifierKey";
 
 #pragma mark -
 #pragma mark Properties
-
 - (void)setEnabled:(BOOL)enabled {
   if(_enabled != enabled) {
     _enabled = enabled;
@@ -94,7 +93,18 @@ NSString *const kMPProcessIdentifierKey = @"kMPProcessIdentifierKey";
   }
 }
 
-- (void)executeAutotypeForEntry:(KPKEntry *)entry {
+#pragma mark -
+#pragma mark Autotype Invocation
+- (void)performAutotypeForEntry:(KPKEntry *)entry {
+  if(entry) {
+    [self _updateTargeInformationForApplication:self.previousApplication];
+    [self _performAutotypeForEntry:entry];
+  }
+}
+
+- (void)_didPressHotKey {
+  [self _updateTargetInfoForFrontMostApplication];
+  [self _performAutotypeForEntry:nil];
 }
 
 #pragma mark -
@@ -114,14 +124,9 @@ NSString *const kMPProcessIdentifierKey = @"kMPProcessIdentifierKey";
 }
 
 #pragma mark -
-#pragma mark Hotkey evaluation
+#pragma mark Autotype Execution
 
-- (void)_didPressHotKey {
-  [self _updateTargetInfoForFrontMostApplication];
-  [self performAutotypeForEntry:nil];
-}
-
-- (void)performAutotypeForEntry:(KPKEntry *)entryOrNil {
+- (void)_performAutotypeForEntry:(KPKEntry *)entryOrNil {
   NSInteger pid = [[NSProcessInfo processInfo] processIdentifier];
   if(self.targetPID == pid) {
     return; // We do not perform Autotype on ourselves
@@ -200,7 +205,6 @@ NSString *const kMPProcessIdentifierKey = @"kMPProcessIdentifierKey";
 
 #pragma mark -
 #pragma mark Hotkey Registration
-
 - (void)_registerHotKey {
   __weak MPAutotypeDaemon *welf = self;
   DDHotKeyTask aTask = ^(NSEvent *event) {
@@ -272,23 +276,21 @@ NSString *const kMPProcessIdentifierKey = @"kMPProcessIdentifierKey";
 
 #pragma mark -
 #pragma mark MPDocument Notifications
-
 - (void)_didUnlockDatabase:(NSNotification *)notification {
   /* Remove ourselves and call again to search matches */
   [[NSNotificationCenter defaultCenter] removeObserver:self];
-  [self performAutotypeForEntry:nil];
+  [self _performAutotypeForEntry:nil];
 }
 
 #pragma mark -
 #pragma mark NSApplication Notifications
 - (void)_didDeactivateApplication:(NSNotification *)notification {
   NSDictionary *userInfo = notification.userInfo;
-  [self _updateTargeInformationForApplication:userInfo[NSWorkspaceApplicationKey]];
+  self.previousApplication = userInfo[NSWorkspaceApplicationKey];
 }
 
 #pragma mark -
 #pragma mark Application information
-
 - (BOOL)_orderApplicationToFront:(pid_t)processIdentifier {
   NSRunningApplication *runingApplication = [NSRunningApplication runningApplicationWithProcessIdentifier:processIdentifier];
   NSRunningApplication *frontApplication = [[NSWorkspace sharedWorkspace] frontmostApplication];
