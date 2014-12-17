@@ -143,17 +143,19 @@ NSString *const MPDocumentGroupKey                        = @"MPDocumentGroupKey
 }
 
 - (void)saveDocumentAs:(id)sender {
-  /* take a look at NSEditor Protocoll commitEding, as NSDocument supports that */
+  /* FIXME: Use controllers for bindings to enable NSEditorRegistration. NSDocument supports this! */
   [[NSNotificationCenter defaultCenter] postNotificationName:MPDocumentWillSaveNotification object:self];
   [super saveDocumentAs:sender];
 }
 
 - (void)saveDocument:(id)sender {
+  /* FIXME: Use controllers for bindings to enable NSEditorRegistration. NSDocument supports this! */
   [[NSNotificationCenter defaultCenter] postNotificationName:MPDocumentWillSaveNotification object:self];
   [super saveDocument:sender];
 }
 
 - (void)saveDocumentTo:(id)sender {
+  /* FIXME: Use controllers for bindings to enable NSEditorRegistration. NSDocument supports this! */
   [[NSNotificationCenter defaultCenter] postNotificationName:MPDocumentWillSaveNotification object:self];
   [super saveDocumentTo:sender];
 }
