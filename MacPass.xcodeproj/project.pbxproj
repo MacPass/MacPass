@@ -214,6 +214,7 @@
 		4C888C9316EB6F5E003D34A1 /* MPToolbarItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C888C9216EB6F5E003D34A1 /* MPToolbarItem.m */; };
 		4C888C9716EB754B003D34A1 /* MPActionHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C888C9616EB754B003D34A1 /* MPActionHelper.m */; };
 		4C88C66918D9F8D600F43852 /* MPTemporaryFileStorageCenter.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C88C66818D9F8D600F43852 /* MPTemporaryFileStorageCenter.m */; };
+		4C8913661A422C8C0071A4CB /* MPFileWatcher.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C8913651A422C8C0071A4CB /* MPFileWatcher.m */; };
 		4C89B71019B4B4A300DC0A6A /* MPTreeDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C89B70F19B4B4A300DC0A6A /* MPTreeDelegate.m */; };
 		4C89F521182F9FDD0069C73C /* NSString+Commands.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C89F520182F9FDD0069C73C /* NSString+Commands.m */; };
 		4C89F524182FB4740069C73C /* MPAutotypeCommand.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C89F523182FB4740069C73C /* MPAutotypeCommand.m */; };
@@ -771,6 +772,8 @@
 		4C888C9616EB754B003D34A1 /* MPActionHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MPActionHelper.m; sourceTree = "<group>"; };
 		4C88C66718D9F8D600F43852 /* MPTemporaryFileStorageCenter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MPTemporaryFileStorageCenter.h; sourceTree = "<group>"; };
 		4C88C66818D9F8D600F43852 /* MPTemporaryFileStorageCenter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MPTemporaryFileStorageCenter.m; sourceTree = "<group>"; };
+		4C8913641A422C8C0071A4CB /* MPFileWatcher.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MPFileWatcher.h; sourceTree = "<group>"; };
+		4C8913651A422C8C0071A4CB /* MPFileWatcher.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MPFileWatcher.m; sourceTree = "<group>"; };
 		4C89B70E19B4B4A300DC0A6A /* MPTreeDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MPTreeDelegate.h; sourceTree = "<group>"; };
 		4C89B70F19B4B4A300DC0A6A /* MPTreeDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MPTreeDelegate.m; sourceTree = "<group>"; };
 		4C89F51F182F9FDD0069C73C /* NSString+Commands.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+Commands.h"; sourceTree = "<group>"; };
@@ -1353,6 +1356,8 @@
 				4C4B728418E4B9B400A1A5D5 /* MPDockTileHelper.m */,
 				4CB63A6018986530002DEC4C /* MPFlagsHelper.h */,
 				4C978E0C19AE54AB003067DF /* MPFlagsHelper.m */,
+				4C8913641A422C8C0071A4CB /* MPFileWatcher.h */,
+				4C8913651A422C8C0071A4CB /* MPFileWatcher.m */,
 			);
 			name = Helper;
 			sourceTree = "<group>";
@@ -2398,6 +2403,7 @@
 				4CC3AABD175F4983003EF01B /* HNHRoundedTextFieldCell.m in Sources */,
 				4C9D6AA917615199001C660C /* HNHRoundedSecureTextFieldCell.m in Sources */,
 				4C4A100F176286FD00BBF2CA /* MPTableView.m in Sources */,
+				4C8913661A422C8C0071A4CB /* MPFileWatcher.m in Sources */,
 				4CAF62FC1763604000CD7084 /* HNHBadgedTextFieldCell.m in Sources */,
 				4CA334CA18AD60D1008A3322 /* MPWindowAssociationsTableViewDelegate.m in Sources */,
 				4C58BD4F176370B100B8178C /* HNHBadgedTextField.m in Sources */,

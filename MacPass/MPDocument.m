@@ -784,6 +784,7 @@ NSString *const MPDocumentGroupKey                        = @"MPDocumentGroupKey
 
 # pragma mark File Watching
 - (void) _watchForFileChanges:(BOOL)watch {
+  
 }
 
 @end
