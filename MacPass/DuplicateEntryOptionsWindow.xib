@@ -18,8 +18,8 @@
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <button translatesAutoresizingMaskIntoConstraints="NO" id="KYV-1i-31e">
-                        <rect key="frame" x="18" y="79" width="328" height="18"/>
-                        <buttonCell key="cell" type="check" title="Replace password and usernamen with refernces" bezelStyle="regularSquare" imagePosition="left" state="on" inset="2" id="O9X-XH-n8o">
+                        <rect key="frame" x="18" y="79" width="320" height="18"/>
+                        <buttonCell key="cell" type="check" title="Replace password and username with refernces" bezelStyle="regularSquare" imagePosition="left" state="on" inset="2" id="O9X-XH-n8o">
                             <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                             <font key="font" metaFont="system"/>
                         </buttonCell>
@@ -63,7 +63,7 @@ Gw
                     <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="DG4-bd-Jhl" secondAttribute="trailing" constant="20" symbolic="YES" id="xnL-R7-g2p"/>
                 </constraints>
             </view>
-            <point key="canvasLocation" x="553" y="405.5"/>
+            <point key="canvasLocation" x="419" y="402.5"/>
         </window>
     </objects>
 </document>
