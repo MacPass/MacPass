@@ -50,7 +50,6 @@ typedef NS_ENUM(NSUInteger, MPDatePreset) {
   }
   
   [self.datePicker setDateValue:[NSDate date]];
-  [self.presetPopupButton setAction:@selector(setDatePreset:)];
   [self.presetPopupButton setMenu:presetMenu];
 }
 
