@@ -97,6 +97,8 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 [Thom Williams](https://github.com/thomscode) Document icons
 
+[Joanna Olsen](https://github.com/JoannaOlsen) Database Icons
+
 [Jellyfrog](https://github.com/Jellyfrog) Asset file size optimization
 
 [Jannick Hemelhof](https://github.com/clone1612) Dutch localization
