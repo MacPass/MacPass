@@ -273,8 +273,10 @@ NSString *const _MPTableSecurCellView = @"PasswordCell";
     }
     else {
       NSAssert(entry.parent != nil, @"Entry needs to have a parent");
-      [[view textField] bind:NSValueBinding toObject:entry.parent withKeyPath:NSStringFromSelector(@selector(name)) options:nil];
-      [[view imageView] bind:NSValueBinding toObject:entry.parent withKeyPath:NSStringFromSelector(@selector(iconImage)) options:nil];
+      NSString *parentNameKeyPath = [NSString stringWithFormat:@"%@.%@",NSStringFromSelector(@selector(parent)),NSStringFromSelector(@selector(name))];
+      NSString *parentIconImageKeyPath = [NSString stringWithFormat:@"%@.%@",NSStringFromSelector(@selector(parent)),NSStringFromSelector(@selector(iconImage))];
+      [[view textField] bind:NSValueBinding toObject:entry withKeyPath:parentNameKeyPath options:nil];
+      [[view imageView] bind:NSValueBinding toObject:entry withKeyPath:parentIconImageKeyPath options:nil];
     }
   }
   else if(isPasswordColum) {
