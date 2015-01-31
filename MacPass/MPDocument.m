@@ -91,7 +91,7 @@ NSString *const MPDocumentGroupKey                        = @"MPDocumentGroupKey
 @implementation MPDocument
 
 + (NSSet *)keyPathsForValuesAffectingRoot {
-  return [NSSet setWithObject:@"tree"];
+  return [NSSet setWithObject:NSStringFromSelector(@selector(tree))];
 }
 
 + (KPKVersion)versionForFileType:(NSString *)fileType {
@@ -542,7 +542,8 @@ NSString *const MPDocumentGroupKey                        = @"MPDocumentGroupKey
   }
   if(self.useTrash) {
     if([self isItemTrashed:entry]) {
-      return; // Entry is already trashed
+      [self _presentTrashAlertForItem:entry];
+      return;
     }
     if(!self.trash) {
       [self _createTrashGroup];
@@ -564,11 +565,15 @@ NSString *const MPDocumentGroupKey                        = @"MPDocumentGroupKey
     return; // Nothing to do;
   }
   if(self.useTrash) {
+    if([self isItemTrashed:group]) {
+      [self _presentTrashAlertForItem:group];
+      return;
+    }
     if(!self.trash) {
       [self _createTrashGroup];
     }
-    if( (group == self.trash) || [self isItemTrashed:group] ) {
-      return; //Groups already trashed cannot be deleted
+    if(group == self.trash) {
+      return; //Groups is trash!
     }
     [group moveToGroup:self.trash atIndex:[self.trash.groups count]];
     [[self undoManager] setActionName:NSLocalizedString(@"TRASH_GROUP", "Move Group to Trash")];
@@ -580,8 +585,6 @@ NSString *const MPDocumentGroupKey                        = @"MPDocumentGroupKey
 }
 
 #pragma mark Actions
-
-
 - (void)emptyTrash:(id)sender {
   NSAlert *alert = [[NSAlert alloc] init];
   [alert setAlertStyle:NSWarningAlertStyle];
@@ -599,6 +602,38 @@ NSString *const MPDocumentGroupKey                        = @"MPDocumentGroupKey
 - (void)_emptyTrashAlertDidEnd:(NSAlert *)alert returnCode:(NSInteger)returnCode contextInfo:(void *)contextInfo {
   if(returnCode == NSAlertFirstButtonReturn) {
     [self _emptyTrash];
+  }
+}
+
+- (void)_presentTrashAlertForItem:(KPKNode *)node {
+  KPKEntry *entry = [node asEntry];
+  
+  NSAlert *alert = [[NSAlert alloc] init];
+  [alert setAlertStyle:NSWarningAlertStyle];
+  [alert setMessageText:NSLocalizedString(@"WARNING_ON_DELETE_TRASHED_NODE_TITLE", "")];
+  [alert setInformativeText:NSLocalizedString(@"WARNING_ON_DELETE_TRASHED_NODE_DESCRIPTION", "Informative Text displayed when clearing the Trash")];
+  NSString *okButtonText = entry ? NSLocalizedString(@"DELETE_TRASHED_ENTRY", "Empty Trash") : NSLocalizedString(@"DELETE_TRASHED_GROUP", "Empty Trash");
+  [alert addButtonWithTitle:okButtonText];
+  [alert addButtonWithTitle:NSLocalizedString(@"CANCEL", "Cancel")];
+  
+  [[alert buttons][1] setKeyEquivalent:[NSString stringWithFormat:@"%c", 0x1b]];
+  
+  NSWindow *window = [[self windowControllers][0] window];
+  [alert beginSheetModalForWindow:window modalDelegate:self didEndSelector:@selector(_deleteTrashedItemAlertDidEnd:returnCode:contextInfo:) contextInfo:(__bridge void *)(node)];
+}
+
+- (void)_deleteTrashedItemAlertDidEnd:(NSAlert *)alert returnCode:(NSInteger)returnCode contextInfo:(void *)contextInfo {
+  if(returnCode == NSAlertFirstButtonReturn) {
+    KPKNode *node = (__bridge KPKNode *)(contextInfo);
+    /* No undo on this operation */
+    for( KPKEntry *entry in [[node asGroup] childEntries]) {
+      [node.undoManager removeAllActionsWithTarget:entry];
+    }
+    for(KPKGroup *group in [[node asGroup] childGroups]) {
+      [node.undoManager removeAllActionsWithTarget:group];
+    }
+    [node remove];
+    [node.undoManager removeAllActionsWithTarget:node];
   }
 }
 
@@ -686,7 +721,7 @@ NSString *const MPDocumentGroupKey                        = @"MPDocumentGroupKey
     case MPActionDelete:
       valid &= (nil != targetNode);
       valid &= (self.trash != targetNode);
-      valid &= ![self isItemTrashed:targetNode];
+      //valid &= ![self isItemTrashed:targetNode];
       break;
     case MPActionDuplicateEntry:
       valid &= (nil != targetEntry);
