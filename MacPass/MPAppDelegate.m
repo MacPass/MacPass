@@ -224,6 +224,9 @@ NSString *const MPDidChangeStoredKeyFilesSettings = @"com.hicknhack.macpass.MPDi
   [[NSUserDefaults standardUserDefaults] removeObjectForKey:kMPSettingsKeyRememeberdKeysForDatabases];
 }
 
+- (void)showHelp:(id)sender {
+  [[NSWorkspace sharedWorkspace] openURL:[NSURL URLWithString:@"https://github.com/mstarke/MacPass"]];
+}
 
 #pragma mark -
 #pragma mark Private Helper
