@@ -59,17 +59,21 @@ typedef NS_ENUM(NSUInteger, MPContextTab) {
 
 - (void)awakeFromNib {
   [[self.filterLabelTextField cell] setBackgroundStyle:NSBackgroundStyleRaised];
+  /* Setup History Bar colors */
   self.historyBar.activeGradient = [[NSGradient alloc] initWithStartingColor:[[NSColor orangeColor] shadowWithLevel:0.2] endingColor:[[NSColor orangeColor] highlightWithLevel:0.2]];
   
-   NSArray *activeColors = @[[NSColor colorWithCalibratedWhite:0.2 alpha:1],[NSColor colorWithCalibratedWhite:0.4 alpha:1]];
-   NSArray *inactiveColors = @[[NSColor colorWithCalibratedWhite:0.3 alpha:1],[NSColor colorWithCalibratedWhite:0.6 alpha:1]];
-   self.trashBar.activeGradient = [[NSGradient alloc] initWithColors:activeColors];
-   self.trashBar.inactiveGradient = [[NSGradient alloc] initWithColors:inactiveColors];
+  /* Setup Trash Bar color */
+  if(!HNHIsRunningOnYosemiteOrNewer()) {
+    NSArray *activeColors = @[[NSColor colorWithCalibratedWhite:0.2 alpha:1],[NSColor colorWithCalibratedWhite:0.4 alpha:1]];
+    NSArray *inactiveColors = @[[NSColor colorWithCalibratedWhite:0.3 alpha:1],[NSColor colorWithCalibratedWhite:0.6 alpha:1]];
+    self.trashBar.activeGradient = [[NSGradient alloc] initWithColors:activeColors];
+    self.trashBar.inactiveGradient = [[NSGradient alloc] initWithColors:inactiveColors];
+    //self.emptyTrashButton.textColor = [NSColor whiteColor];
+  }
+  
   [[self view] bind:NSSelectedIndexBinding toObject:self withKeyPath:@"activeTab" options:nil];
   
-  
-  self.emptyTrashButton.textColor = [NSColor whiteColor];
-  
+  /* Setup Filter Bar buttons and menu */
   NSInteger tags[] = { MPEntrySearchTitles, MPEntrySearchUsernames, MPEntrySearchPasswords, MPEntrySearchNotes, MPEntrySearchUrls };
   NSArray *buttons  = @[self.titleButton, self.usernameButton, self.passwordButton, self.notesButton, self.urlButton ];
   for(NSUInteger iIndex = 0; iIndex < [buttons count]; iIndex++) {
