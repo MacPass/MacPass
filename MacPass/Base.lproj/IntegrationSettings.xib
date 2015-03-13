@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="6254" systemVersion="13F34" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="6751" systemVersion="14C1510" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
     <dependencies>
         <deployment identifier="macosx"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="6254"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="6751"/>
     </dependencies>
     <objects>
         <customObject id="-2" userLabel="File's Owner" customClass="MPIntegrationSettingsController">
@@ -30,7 +30,7 @@
                         <rect key="frame" x="1" y="1" width="364" height="38"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <button translatesAutoresizingMaskIntoConstraints="NO" id="2">
+                            <button misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="2">
                                 <rect key="frame" x="16" y="12" width="187" height="18"/>
                                 <buttonCell key="cell" type="check" title="Enable KeePassHttp server" bezelStyle="regularSquare" imagePosition="left" lineBreakMode="truncatingMiddle" state="on" inset="2" id="3">
                                     <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
@@ -64,7 +64,7 @@
                                     <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                 </textFieldCell>
                             </textField>
-                            <button translatesAutoresizingMaskIntoConstraints="NO" id="tik-Ar-FJg">
+                            <button misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="tik-Ar-FJg">
                                 <rect key="frame" x="16" y="175" width="168" height="18"/>
                                 <buttonCell key="cell" type="check" title="Enable global Autotype" bezelStyle="regularSquare" imagePosition="left" state="on" inset="2" id="1qb-Rd-jYu">
                                     <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
@@ -79,7 +79,7 @@
                                     <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                 </textFieldCell>
                             </textField>
-                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="f5q-EW-RHf">
+                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="f5q-EW-RHf">
                                 <rect key="frame" x="174" y="152" width="127" height="14"/>
                                 <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Shortcut is missing Key" id="Lxp-wI-yQy">
                                     <font key="font" metaFont="smallSystem"/>
@@ -94,21 +94,21 @@
                                     <font key="font" metaFont="system"/>
                                 </buttonCell>
                             </button>
-                            <button translatesAutoresizingMaskIntoConstraints="NO" id="TiO-ah-BlR">
+                            <button misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="TiO-ah-BlR">
                                 <rect key="frame" x="16" y="99" width="179" height="18"/>
                                 <buttonCell key="cell" type="check" title="Inlcude Host for matches" bezelStyle="regularSquare" imagePosition="left" enabled="NO" state="on" inset="2" id="B1D-j9-L8x">
                                     <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                                     <font key="font" metaFont="system"/>
                                 </buttonCell>
                             </button>
-                            <button translatesAutoresizingMaskIntoConstraints="NO" id="9MH-jx-GpG">
+                            <button misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="9MH-jx-GpG">
                                 <rect key="frame" x="16" y="79" width="179" height="18"/>
                                 <buttonCell key="cell" type="check" title="Inlcude Tags for matches" bezelStyle="regularSquare" imagePosition="left" enabled="NO" state="on" inset="2" id="rbu-G7-MT8">
                                     <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                                     <font key="font" metaFont="system"/>
                                 </buttonCell>
                             </button>
-                            <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="VK8-z4-2ci">
+                            <button verticalHuggingPriority="750" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="VK8-z4-2ci">
                                 <rect key="frame" x="16" y="53" width="126" height="18"/>
                                 <buttonCell key="cell" type="check" title="Interpret ⌃ as ⌘" bezelStyle="regularSquare" imagePosition="left" state="on" inset="2" id="QfO-yG-l3F">
                                     <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
@@ -158,16 +158,16 @@
                         <rect key="frame" x="1" y="1" width="364" height="79"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <button translatesAutoresizingMaskIntoConstraints="NO" id="LNw-5t-TS4">
+                            <button misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="LNw-5t-TS4">
                                 <rect key="frame" x="16" y="53" width="183" height="18"/>
                                 <buttonCell key="cell" type="check" title="Enable Quicklook Preview" bezelStyle="regularSquare" imagePosition="left" state="on" inset="2" id="ERs-ct-Eyx">
                                     <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                                     <font key="font" metaFont="system"/>
                                 </buttonCell>
                             </button>
-                            <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" setsMaxLayoutWidthAtFirstLayout="YES" translatesAutoresizingMaskIntoConstraints="NO" id="V6l-R9-hIj">
+                            <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" misplaced="YES" setsMaxLayoutWidthAtFirstLayout="YES" translatesAutoresizingMaskIntoConstraints="NO" id="V6l-R9-hIj">
                                 <rect key="frame" x="16" y="19" width="322" height="28"/>
-                                <textFieldCell key="cell" controlSize="small" sendsActionOnEndEditing="YES" title="If enabled attached files will be copied to a tempoary location for preview and deleted after the preview is closed." id="WmI-IB-Aso">
+                                <textFieldCell key="cell" controlSize="small" sendsActionOnEndEditing="YES" title="If enabled attached files will be copied to a temporary location for preview and deleted after the preview is closed." id="WmI-IB-Aso">
                                     <font key="font" metaFont="smallSystem"/>
                                     <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
                                     <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
