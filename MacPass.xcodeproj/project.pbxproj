@@ -89,9 +89,55 @@
 		4C305F3E179A1A760082334F /* image.png in Resources */ = {isa = PBXBuildFile; fileRef = 4C305F3D179A1A760082334F /* image.png */; };
 		4C32B0E71A1D4436007E12F1 /* KPKFormat+MPUTIDetection.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C32B0E61A1D4436007E12F1 /* KPKFormat+MPUTIDetection.m */; };
 		4C3666411787327E00B249F1 /* MPDocument+Attachments.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C3666401787327E00B249F1 /* MPDocument+Attachments.m */; };
-		4C366643178748F500B249F1 /* 99_HarddiskTemplate.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 4C366642178748F500B249F1 /* 99_HarddiskTemplate.pdf */; };
 		4C37A6731769393300AD0A40 /* HNHTableHeaderCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C37A6721769393300AD0A40 /* HNHTableHeaderCell.m */; };
 		4C37A84015B8B474005EF8EE /* MPOutlineDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C37A83F15B8B474005EF8EE /* MPOutlineDataSource.m */; };
+		4C3826721AD04B51007D7D67 /* addFolderTemplate.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 4C3826711AD04B51007D7D67 /* addFolderTemplate.pdf */; };
+		4C3826741AD04BA5007D7D67 /* infoTemplate.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 4C3826731AD04BA5007D7D67 /* infoTemplate.pdf */; };
+		4C3826761AD04C24007D7D67 /* harddiskTemplate.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 4C3826751AD04C24007D7D67 /* harddiskTemplate.pdf */; };
+		4C3826781AD04C8A007D7D67 /* createdTemplate.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 4C3826771AD04C8A007D7D67 /* createdTemplate.pdf */; };
+		4C38267A1AD04CC6007D7D67 /* downloadTemplate.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 4C3826791AD04CC6007D7D67 /* downloadTemplate.pdf */; };
+		4C3826A51AD04D8E007D7D67 /* 21_OrganizerTemplate.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 4C38267B1AD04D8E007D7D67 /* 21_OrganizerTemplate.pdf */; };
+		4C3826A61AD04D8E007D7D67 /* 22_ASCIITemplate.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 4C38267C1AD04D8E007D7D67 /* 22_ASCIITemplate.pdf */; };
+		4C3826A71AD04D8E007D7D67 /* 23_IconsTemplate.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 4C38267D1AD04D8E007D7D67 /* 23_IconsTemplate.pdf */; };
+		4C3826A81AD04D8E007D7D67 /* 24_EstablishedConnectionTemplate.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 4C38267E1AD04D8E007D7D67 /* 24_EstablishedConnectionTemplate.pdf */; };
+		4C3826A91AD04D8E007D7D67 /* 25_MailFolderTemplate.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 4C38267F1AD04D8E007D7D67 /* 25_MailFolderTemplate.pdf */; };
+		4C3826AA1AD04D8E007D7D67 /* 27_NFSUnmountTemplate.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 4C3826801AD04D8E007D7D67 /* 27_NFSUnmountTemplate.pdf */; };
+		4C3826AB1AD04D8E007D7D67 /* 28_QuickTimeTemplate.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 4C3826811AD04D8E007D7D67 /* 28_QuickTimeTemplate.pdf */; };
+		4C3826AC1AD04D8E007D7D67 /* 29_SecureTerminalTemplate.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 4C3826821AD04D8E007D7D67 /* 29_SecureTerminalTemplate.pdf */; };
+		4C3826AD1AD04D8E007D7D67 /* 32_FileSystemViewTemplate.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 4C3826831AD04D8E007D7D67 /* 32_FileSystemViewTemplate.pdf */; };
+		4C3826AE1AD04D8E007D7D67 /* 33_RunTemplate.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 4C3826841AD04D8E007D7D67 /* 33_RunTemplate.pdf */; };
+		4C3826AF1AD04D8E007D7D67 /* 34_ConfigureTemplate.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 4C3826851AD04D8E007D7D67 /* 34_ConfigureTemplate.pdf */; };
+		4C3826B01AD04D8E007D7D67 /* 35_BrowserWindowTemplate.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 4C3826861AD04D8E007D7D67 /* 35_BrowserWindowTemplate.pdf */; };
+		4C3826B11AD04D8E007D7D67 /* 36_ArchiveTemplate.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 4C3826871AD04D8E007D7D67 /* 36_ArchiveTemplate.pdf */; };
+		4C3826B21AD04D8E007D7D67 /* 37_PercentageTemplate.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 4C3826881AD04D8E007D7D67 /* 37_PercentageTemplate.pdf */; };
+		4C3826B31AD04D8E007D7D67 /* 38_SambaUnmountTemplate.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 4C3826891AD04D8E007D7D67 /* 38_SambaUnmountTemplate.pdf */; };
+		4C3826B41AD04D8E007D7D67 /* 39_HistoryTemplate.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 4C38268A1AD04D8E007D7D67 /* 39_HistoryTemplate.pdf */; };
+		4C3826B51AD04D8E007D7D67 /* 40_FindMailTemplate.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 4C38268B1AD04D8E007D7D67 /* 40_FindMailTemplate.pdf */; };
+		4C3826B61AD04D8E007D7D67 /* 41_VectorTemplate.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 4C38268C1AD04D8E007D7D67 /* 41_VectorTemplate.pdf */; };
+		4C3826B71AD04D8E007D7D67 /* 42_MemoryTemplate.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 4C38268D1AD04D8E007D7D67 /* 42_MemoryTemplate.pdf */; };
+		4C3826B81AD04D8E007D7D67 /* 44_NotesTemplate.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 4C38268E1AD04D8E007D7D67 /* 44_NotesTemplate.pdf */; };
+		4C3826B91AD04D8E007D7D67 /* 45_CancelTemplate.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 4C38268F1AD04D8E007D7D67 /* 45_CancelTemplate.pdf */; };
+		4C3826BA1AD04D8E007D7D67 /* 46_HelpTemplate.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 4C3826901AD04D8E007D7D67 /* 46_HelpTemplate.pdf */; };
+		4C3826BB1AD04D8E007D7D67 /* 47_PackageTemplate.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 4C3826911AD04D8E007D7D67 /* 47_PackageTemplate.pdf */; };
+		4C3826BC1AD04D8E007D7D67 /* 49_FolderOpenTemplate.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 4C3826921AD04D8E007D7D67 /* 49_FolderOpenTemplate.pdf */; };
+		4C3826BD1AD04D8E007D7D67 /* 50_FolderTarTemplate.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 4C3826931AD04D8E007D7D67 /* 50_FolderTarTemplate.pdf */; };
+		4C3826BE1AD04D8E007D7D67 /* 51_DecryptedTemplate.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 4C3826941AD04D8E007D7D67 /* 51_DecryptedTemplate.pdf */; };
+		4C3826BF1AD04D8E007D7D67 /* 52_EncryptedTemplate.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 4C3826951AD04D8E007D7D67 /* 52_EncryptedTemplate.pdf */; };
+		4C3826C01AD04D8E007D7D67 /* 53_ApplyTemplate.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 4C3826961AD04D8E007D7D67 /* 53_ApplyTemplate.pdf */; };
+		4C3826C11AD04D8E007D7D67 /* 54_SignatureTemplate.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 4C3826971AD04D8E007D7D67 /* 54_SignatureTemplate.pdf */; };
+		4C3826C21AD04D8E007D7D67 /* 55_ThumbnailTemplate.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 4C3826981AD04D8E007D7D67 /* 55_ThumbnailTemplate.pdf */; };
+		4C3826C31AD04D8E007D7D67 /* 56_AddressBookTemplate.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 4C3826991AD04D8E007D7D67 /* 56_AddressBookTemplate.pdf */; };
+		4C3826C41AD04D8E007D7D67 /* 57_TextViewTemplate.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 4C38269A1AD04D8E007D7D67 /* 57_TextViewTemplate.pdf */; };
+		4C3826C51AD04D8E007D7D67 /* 58_SecureAccountTemplate.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 4C38269B1AD04D8E007D7D67 /* 58_SecureAccountTemplate.pdf */; };
+		4C3826C61AD04D8E007D7D67 /* 59_DevelopmentTemplate.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 4C38269C1AD04D8E007D7D67 /* 59_DevelopmentTemplate.pdf */; };
+		4C3826C71AD04D8E007D7D67 /* 60_HomeTemplate.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 4C38269D1AD04D8E007D7D67 /* 60_HomeTemplate.pdf */; };
+		4C3826C81AD04D8E007D7D67 /* 61_ServicesTemplate.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 4C38269E1AD04D8E007D7D67 /* 61_ServicesTemplate.pdf */; };
+		4C3826C91AD04D8E007D7D67 /* 62_TuxTemplate.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 4C38269F1AD04D8E007D7D67 /* 62_TuxTemplate.pdf */; };
+		4C3826CA1AD04D8E007D7D67 /* 63_FeatherTemplate.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 4C3826A01AD04D8E007D7D67 /* 63_FeatherTemplate.pdf */; };
+		4C3826CB1AD04D8E007D7D67 /* 64_AppleTemplate.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 4C3826A11AD04D8E007D7D67 /* 64_AppleTemplate.pdf */; };
+		4C3826CC1AD04D8E007D7D67 /* 65_WikiTemplate.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 4C3826A21AD04D8E007D7D67 /* 65_WikiTemplate.pdf */; };
+		4C3826CD1AD04D8E007D7D67 /* 66_MoneyTemplate.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 4C3826A31AD04D8E007D7D67 /* 66_MoneyTemplate.pdf */; };
+		4C3826CE1AD04D8E007D7D67 /* 67_CertificatTemplate.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 4C3826A41AD04D8E007D7D67 /* 67_CertificatTemplate.pdf */; };
 		4C39B3F5178FEFAE0027DC7C /* KPKNode.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C39B3F4178FEFAE0027DC7C /* KPKNode.m */; };
 		4C3BD51516D276F800389F1F /* MPToolbarDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C3BD51416D276F800389F1F /* MPToolbarDelegate.m */; };
 		4C3C4EA218D6FEA100153127 /* NSValueTransformer+TransformerKit.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C3C4E9618D6FEA100153127 /* NSValueTransformer+TransformerKit.m */; };
@@ -175,7 +221,6 @@
 		4C6BC6601A36717E00BDDF3D /* MPDatabaseSearch.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C6BC65F1A36717E00BDDF3D /* MPDatabaseSearch.m */; };
 		4C6C72C417C01E4200768849 /* NSMutableData+KeePassKit.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C6C72C317C01E4200768849 /* NSMutableData+KeePassKit.m */; };
 		4C6D1D25178579570014C5A5 /* 48_FolderTemplate.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 4C6D1D24178579570014C5A5 /* 48_FolderTemplate.pdf */; };
-		4C6D1D27178586CA0014C5A5 /* 99_AddFolderTemplate.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 4C6D1D26178586CA0014C5A5 /* 99_AddFolderTemplate.pdf */; };
 		4C6F228919A4A7F90012310C /* MPAutotypeClear.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C6F228819A4A7F90012310C /* MPAutotypeClear.m */; };
 		4C6F228C19A4AA700012310C /* MPAutotypeDelay.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C6F228B19A4AA700012310C /* MPAutotypeDelay.m */; };
 		4C6FDD2117BC4F4C004AEEC8 /* KPKTestPlaceholder.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C6FDD2017BC4F4C004AEEC8 /* KPKTestPlaceholder.m */; };
@@ -187,7 +232,6 @@
 		4C7615681764C0C40015A1A6 /* PasswordInputView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4C76156A1764C0C40015A1A6 /* PasswordInputView.xib */; };
 		4C76156D1764C0E20015A1A6 /* InspectorView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4C76156F1764C0E20015A1A6 /* InspectorView.xib */; };
 		4C7714AA176C998F00549F2A /* 43_TrashTemplate.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 4C7714A9176C998F00549F2A /* 43_TrashTemplate.pdf */; };
-		4C7714AC176C9D4600549F2A /* 99_InfoTemplate.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 4C7714AB176C9D4600549F2A /* 99_InfoTemplate.pdf */; };
 		4C77547516E55FE800970E02 /* MPInspectorViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C77547416E55FE800970E02 /* MPInspectorViewController.m */; };
 		4C77C84118E240E000D1C42B /* DDHotKey+MacPassAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C77C84018E240E000D1C42B /* DDHotKey+MacPassAdditions.m */; };
 		4C77E36715B84A240093A587 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4C77E36615B84A240093A587 /* Cocoa.framework */; };
@@ -223,7 +267,6 @@
 		4C8EB8C118D399FD00438B08 /* KPKTag.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C8EB8C018D399FD00438B08 /* KPKTag.m */; };
 		4C94A06F1938DC8C0040ABAB /* MPEditSession.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C94A06E1938DC8C0040ABAB /* MPEditSession.m */; };
 		4C94A0721938DDC20040ABAB /* MPDocument+EditingSession.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C94A0711938DDC20040ABAB /* MPDocument+EditingSession.m */; };
-		4C96D15417A12E4F00D931FA /* 99_CreatedTemplate.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 4C96D15317A12E4F00D931FA /* 99_CreatedTemplate.pdf */; };
 		4C978E0619AE53FE003067DF /* HNHCommon.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C978E0519AE53FE003067DF /* HNHCommon.m */; };
 		4C978E0D19AE54AB003067DF /* MPFlagsHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C978E0C19AE54AB003067DF /* MPFlagsHelper.m */; };
 		4C9B38CF1A3EFCA100CD21C3 /* NSString+XMLUtilities.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C9B38CE1A3EFCA100CD21C3 /* NSString+XMLUtilities.m */; };
@@ -536,11 +579,57 @@
 		4C32B0E51A1D4436007E12F1 /* KPKFormat+MPUTIDetection.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "KPKFormat+MPUTIDetection.h"; sourceTree = "<group>"; };
 		4C32B0E61A1D4436007E12F1 /* KPKFormat+MPUTIDetection.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "KPKFormat+MPUTIDetection.m"; sourceTree = "<group>"; };
 		4C3666401787327E00B249F1 /* MPDocument+Attachments.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "MPDocument+Attachments.m"; sourceTree = "<group>"; };
-		4C366642178748F500B249F1 /* 99_HarddiskTemplate.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; name = 99_HarddiskTemplate.pdf; path = Icons/99_HarddiskTemplate.pdf; sourceTree = "<group>"; };
 		4C37A6711769393300AD0A40 /* HNHTableHeaderCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HNHTableHeaderCell.h; sourceTree = "<group>"; };
 		4C37A6721769393300AD0A40 /* HNHTableHeaderCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HNHTableHeaderCell.m; sourceTree = "<group>"; };
 		4C37A83E15B8B474005EF8EE /* MPOutlineDataSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MPOutlineDataSource.h; sourceTree = "<group>"; };
 		4C37A83F15B8B474005EF8EE /* MPOutlineDataSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MPOutlineDataSource.m; sourceTree = "<group>"; };
+		4C3826711AD04B51007D7D67 /* addFolderTemplate.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; name = addFolderTemplate.pdf; path = Icons/addFolderTemplate.pdf; sourceTree = "<group>"; };
+		4C3826731AD04BA5007D7D67 /* infoTemplate.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; name = infoTemplate.pdf; path = Icons/infoTemplate.pdf; sourceTree = "<group>"; };
+		4C3826751AD04C24007D7D67 /* harddiskTemplate.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; name = harddiskTemplate.pdf; path = Icons/harddiskTemplate.pdf; sourceTree = "<group>"; };
+		4C3826771AD04C8A007D7D67 /* createdTemplate.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; name = createdTemplate.pdf; path = Icons/createdTemplate.pdf; sourceTree = "<group>"; };
+		4C3826791AD04CC6007D7D67 /* downloadTemplate.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; name = downloadTemplate.pdf; path = Icons/downloadTemplate.pdf; sourceTree = "<group>"; };
+		4C38267B1AD04D8E007D7D67 /* 21_OrganizerTemplate.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = 21_OrganizerTemplate.pdf; sourceTree = "<group>"; };
+		4C38267C1AD04D8E007D7D67 /* 22_ASCIITemplate.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = 22_ASCIITemplate.pdf; sourceTree = "<group>"; };
+		4C38267D1AD04D8E007D7D67 /* 23_IconsTemplate.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = 23_IconsTemplate.pdf; sourceTree = "<group>"; };
+		4C38267E1AD04D8E007D7D67 /* 24_EstablishedConnectionTemplate.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = 24_EstablishedConnectionTemplate.pdf; sourceTree = "<group>"; };
+		4C38267F1AD04D8E007D7D67 /* 25_MailFolderTemplate.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = 25_MailFolderTemplate.pdf; sourceTree = "<group>"; };
+		4C3826801AD04D8E007D7D67 /* 27_NFSUnmountTemplate.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = 27_NFSUnmountTemplate.pdf; sourceTree = "<group>"; };
+		4C3826811AD04D8E007D7D67 /* 28_QuickTimeTemplate.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = 28_QuickTimeTemplate.pdf; sourceTree = "<group>"; };
+		4C3826821AD04D8E007D7D67 /* 29_SecureTerminalTemplate.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = 29_SecureTerminalTemplate.pdf; sourceTree = "<group>"; };
+		4C3826831AD04D8E007D7D67 /* 32_FileSystemViewTemplate.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = 32_FileSystemViewTemplate.pdf; sourceTree = "<group>"; };
+		4C3826841AD04D8E007D7D67 /* 33_RunTemplate.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = 33_RunTemplate.pdf; sourceTree = "<group>"; };
+		4C3826851AD04D8E007D7D67 /* 34_ConfigureTemplate.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = 34_ConfigureTemplate.pdf; sourceTree = "<group>"; };
+		4C3826861AD04D8E007D7D67 /* 35_BrowserWindowTemplate.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = 35_BrowserWindowTemplate.pdf; sourceTree = "<group>"; };
+		4C3826871AD04D8E007D7D67 /* 36_ArchiveTemplate.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = 36_ArchiveTemplate.pdf; sourceTree = "<group>"; };
+		4C3826881AD04D8E007D7D67 /* 37_PercentageTemplate.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = 37_PercentageTemplate.pdf; sourceTree = "<group>"; };
+		4C3826891AD04D8E007D7D67 /* 38_SambaUnmountTemplate.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = 38_SambaUnmountTemplate.pdf; sourceTree = "<group>"; };
+		4C38268A1AD04D8E007D7D67 /* 39_HistoryTemplate.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = 39_HistoryTemplate.pdf; sourceTree = "<group>"; };
+		4C38268B1AD04D8E007D7D67 /* 40_FindMailTemplate.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = 40_FindMailTemplate.pdf; sourceTree = "<group>"; };
+		4C38268C1AD04D8E007D7D67 /* 41_VectorTemplate.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = 41_VectorTemplate.pdf; sourceTree = "<group>"; };
+		4C38268D1AD04D8E007D7D67 /* 42_MemoryTemplate.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = 42_MemoryTemplate.pdf; sourceTree = "<group>"; };
+		4C38268E1AD04D8E007D7D67 /* 44_NotesTemplate.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = 44_NotesTemplate.pdf; sourceTree = "<group>"; };
+		4C38268F1AD04D8E007D7D67 /* 45_CancelTemplate.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = 45_CancelTemplate.pdf; sourceTree = "<group>"; };
+		4C3826901AD04D8E007D7D67 /* 46_HelpTemplate.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = 46_HelpTemplate.pdf; sourceTree = "<group>"; };
+		4C3826911AD04D8E007D7D67 /* 47_PackageTemplate.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = 47_PackageTemplate.pdf; sourceTree = "<group>"; };
+		4C3826921AD04D8E007D7D67 /* 49_FolderOpenTemplate.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = 49_FolderOpenTemplate.pdf; sourceTree = "<group>"; };
+		4C3826931AD04D8E007D7D67 /* 50_FolderTarTemplate.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = 50_FolderTarTemplate.pdf; sourceTree = "<group>"; };
+		4C3826941AD04D8E007D7D67 /* 51_DecryptedTemplate.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = 51_DecryptedTemplate.pdf; sourceTree = "<group>"; };
+		4C3826951AD04D8E007D7D67 /* 52_EncryptedTemplate.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = 52_EncryptedTemplate.pdf; sourceTree = "<group>"; };
+		4C3826961AD04D8E007D7D67 /* 53_ApplyTemplate.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = 53_ApplyTemplate.pdf; sourceTree = "<group>"; };
+		4C3826971AD04D8E007D7D67 /* 54_SignatureTemplate.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = 54_SignatureTemplate.pdf; sourceTree = "<group>"; };
+		4C3826981AD04D8E007D7D67 /* 55_ThumbnailTemplate.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = 55_ThumbnailTemplate.pdf; sourceTree = "<group>"; };
+		4C3826991AD04D8E007D7D67 /* 56_AddressBookTemplate.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = 56_AddressBookTemplate.pdf; sourceTree = "<group>"; };
+		4C38269A1AD04D8E007D7D67 /* 57_TextViewTemplate.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = 57_TextViewTemplate.pdf; sourceTree = "<group>"; };
+		4C38269B1AD04D8E007D7D67 /* 58_SecureAccountTemplate.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = 58_SecureAccountTemplate.pdf; sourceTree = "<group>"; };
+		4C38269C1AD04D8E007D7D67 /* 59_DevelopmentTemplate.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = 59_DevelopmentTemplate.pdf; sourceTree = "<group>"; };
+		4C38269D1AD04D8E007D7D67 /* 60_HomeTemplate.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = 60_HomeTemplate.pdf; sourceTree = "<group>"; };
+		4C38269E1AD04D8E007D7D67 /* 61_ServicesTemplate.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = 61_ServicesTemplate.pdf; sourceTree = "<group>"; };
+		4C38269F1AD04D8E007D7D67 /* 62_TuxTemplate.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = 62_TuxTemplate.pdf; sourceTree = "<group>"; };
+		4C3826A01AD04D8E007D7D67 /* 63_FeatherTemplate.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = 63_FeatherTemplate.pdf; sourceTree = "<group>"; };
+		4C3826A11AD04D8E007D7D67 /* 64_AppleTemplate.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = 64_AppleTemplate.pdf; sourceTree = "<group>"; };
+		4C3826A21AD04D8E007D7D67 /* 65_WikiTemplate.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = 65_WikiTemplate.pdf; sourceTree = "<group>"; };
+		4C3826A31AD04D8E007D7D67 /* 66_MoneyTemplate.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = 66_MoneyTemplate.pdf; sourceTree = "<group>"; };
+		4C3826A41AD04D8E007D7D67 /* 67_CertificatTemplate.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = 67_CertificatTemplate.pdf; sourceTree = "<group>"; };
 		4C39B3F3178FEFAE0027DC7C /* KPKNode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KPKNode.h; sourceTree = "<group>"; };
 		4C39B3F4178FEFAE0027DC7C /* KPKNode.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KPKNode.m; sourceTree = "<group>"; };
 		4C3BD51316D276F800389F1F /* MPToolbarDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MPToolbarDelegate.h; sourceTree = "<group>"; };
@@ -696,7 +785,6 @@
 		4C6C72C217C01E4200768849 /* NSMutableData+KeePassKit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSMutableData+KeePassKit.h"; sourceTree = "<group>"; };
 		4C6C72C317C01E4200768849 /* NSMutableData+KeePassKit.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSMutableData+KeePassKit.m"; sourceTree = "<group>"; };
 		4C6D1D24178579570014C5A5 /* 48_FolderTemplate.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = 48_FolderTemplate.pdf; sourceTree = "<group>"; };
-		4C6D1D26178586CA0014C5A5 /* 99_AddFolderTemplate.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; name = 99_AddFolderTemplate.pdf; path = Icons/99_AddFolderTemplate.pdf; sourceTree = "<group>"; };
 		4C6F228719A4A7F90012310C /* MPAutotypeClear.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MPAutotypeClear.h; sourceTree = "<group>"; };
 		4C6F228819A4A7F90012310C /* MPAutotypeClear.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MPAutotypeClear.m; sourceTree = "<group>"; };
 		4C6F228A19A4AA700012310C /* MPAutotypeDelay.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MPAutotypeDelay.h; sourceTree = "<group>"; };
@@ -724,7 +812,6 @@
 		4C7615781764C4A50015A1A6 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.rtf; name = de; path = de.lproj/Credits.rtf; sourceTree = "<group>"; };
 		4C7615791764C4A50015A1A6 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		4C7714A9176C998F00549F2A /* 43_TrashTemplate.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = 43_TrashTemplate.pdf; sourceTree = "<group>"; };
-		4C7714AB176C9D4600549F2A /* 99_InfoTemplate.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; name = 99_InfoTemplate.pdf; path = Icons/99_InfoTemplate.pdf; sourceTree = "<group>"; };
 		4C77547316E55FE800970E02 /* MPInspectorViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MPInspectorViewController.h; sourceTree = "<group>"; };
 		4C77547416E55FE800970E02 /* MPInspectorViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MPInspectorViewController.m; sourceTree = "<group>"; };
 		4C77C83F18E240E000D1C42B /* DDHotKey+MacPassAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "DDHotKey+MacPassAdditions.h"; sourceTree = "<group>"; };
@@ -789,7 +876,6 @@
 		4C94A06D1938DC8C0040ABAB /* MPEditSession.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MPEditSession.h; sourceTree = "<group>"; };
 		4C94A06E1938DC8C0040ABAB /* MPEditSession.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MPEditSession.m; sourceTree = "<group>"; };
 		4C94A0711938DDC20040ABAB /* MPDocument+EditingSession.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "MPDocument+EditingSession.m"; sourceTree = "<group>"; };
-		4C96D15317A12E4F00D931FA /* 99_CreatedTemplate.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; name = 99_CreatedTemplate.pdf; path = Icons/99_CreatedTemplate.pdf; sourceTree = "<group>"; };
 		4C978E0519AE53FE003067DF /* HNHCommon.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HNHCommon.m; sourceTree = "<group>"; };
 		4C978E0C19AE54AB003067DF /* MPFlagsHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MPFlagsHelper.m; sourceTree = "<group>"; };
 		4C9B38CD1A3EFCA100CD21C3 /* NSString+XMLUtilities.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+XMLUtilities.h"; sourceTree = "<group>"; };
@@ -1542,11 +1628,53 @@
 				4C52A88D1788628B00868229 /* 18_DisplayTemplate.pdf */,
 				4C7ABA4617BAEC6700FF5799 /* 19_EmailTemplate.pdf */,
 				4C7ABA4717BAEC6700FF5799 /* 20_MiscTemplate.pdf */,
+				4C38267B1AD04D8E007D7D67 /* 21_OrganizerTemplate.pdf */,
+				4C38267C1AD04D8E007D7D67 /* 22_ASCIITemplate.pdf */,
+				4C38267D1AD04D8E007D7D67 /* 23_IconsTemplate.pdf */,
+				4C38267E1AD04D8E007D7D67 /* 24_EstablishedConnectionTemplate.pdf */,
+				4C38267F1AD04D8E007D7D67 /* 25_MailFolderTemplate.pdf */,
 				4CF29BF317879D0000851B60 /* 26_FileSaveTemplate.pdf */,
+				4C3826801AD04D8E007D7D67 /* 27_NFSUnmountTemplate.pdf */,
+				4C3826811AD04D8E007D7D67 /* 28_QuickTimeTemplate.pdf */,
+				4C3826821AD04D8E007D7D67 /* 29_SecureTerminalTemplate.pdf */,
 				4C17F107184E6B6C00E85625 /* 30_TerminalTemplate.pdf */,
 				4C17F106184E6B6C00E85625 /* 31_PrintTemplate.pdf */,
+				4C3826831AD04D8E007D7D67 /* 32_FileSystemViewTemplate.pdf */,
+				4C3826841AD04D8E007D7D67 /* 33_RunTemplate.pdf */,
+				4C3826851AD04D8E007D7D67 /* 34_ConfigureTemplate.pdf */,
+				4C3826861AD04D8E007D7D67 /* 35_BrowserWindowTemplate.pdf */,
+				4C3826871AD04D8E007D7D67 /* 36_ArchiveTemplate.pdf */,
+				4C3826881AD04D8E007D7D67 /* 37_PercentageTemplate.pdf */,
+				4C3826891AD04D8E007D7D67 /* 38_SambaUnmountTemplate.pdf */,
+				4C38268A1AD04D8E007D7D67 /* 39_HistoryTemplate.pdf */,
+				4C38268B1AD04D8E007D7D67 /* 40_FindMailTemplate.pdf */,
+				4C38268C1AD04D8E007D7D67 /* 41_VectorTemplate.pdf */,
+				4C38268D1AD04D8E007D7D67 /* 42_MemoryTemplate.pdf */,
 				4C7714A9176C998F00549F2A /* 43_TrashTemplate.pdf */,
+				4C38268E1AD04D8E007D7D67 /* 44_NotesTemplate.pdf */,
+				4C38268F1AD04D8E007D7D67 /* 45_CancelTemplate.pdf */,
+				4C3826901AD04D8E007D7D67 /* 46_HelpTemplate.pdf */,
+				4C3826911AD04D8E007D7D67 /* 47_PackageTemplate.pdf */,
 				4C6D1D24178579570014C5A5 /* 48_FolderTemplate.pdf */,
+				4C3826921AD04D8E007D7D67 /* 49_FolderOpenTemplate.pdf */,
+				4C3826931AD04D8E007D7D67 /* 50_FolderTarTemplate.pdf */,
+				4C3826941AD04D8E007D7D67 /* 51_DecryptedTemplate.pdf */,
+				4C3826951AD04D8E007D7D67 /* 52_EncryptedTemplate.pdf */,
+				4C3826961AD04D8E007D7D67 /* 53_ApplyTemplate.pdf */,
+				4C3826971AD04D8E007D7D67 /* 54_SignatureTemplate.pdf */,
+				4C3826981AD04D8E007D7D67 /* 55_ThumbnailTemplate.pdf */,
+				4C3826991AD04D8E007D7D67 /* 56_AddressBookTemplate.pdf */,
+				4C38269A1AD04D8E007D7D67 /* 57_TextViewTemplate.pdf */,
+				4C38269B1AD04D8E007D7D67 /* 58_SecureAccountTemplate.pdf */,
+				4C38269C1AD04D8E007D7D67 /* 59_DevelopmentTemplate.pdf */,
+				4C38269D1AD04D8E007D7D67 /* 60_HomeTemplate.pdf */,
+				4C38269E1AD04D8E007D7D67 /* 61_ServicesTemplate.pdf */,
+				4C38269F1AD04D8E007D7D67 /* 62_TuxTemplate.pdf */,
+				4C3826A01AD04D8E007D7D67 /* 63_FeatherTemplate.pdf */,
+				4C3826A11AD04D8E007D7D67 /* 64_AppleTemplate.pdf */,
+				4C3826A21AD04D8E007D7D67 /* 65_WikiTemplate.pdf */,
+				4C3826A31AD04D8E007D7D67 /* 66_MoneyTemplate.pdf */,
+				4C3826A41AD04D8E007D7D67 /* 67_CertificatTemplate.pdf */,
 				4C52A891178863B000868229 /* 68_PhoneTemplate.pdf */,
 			);
 			name = "Database Icons";
@@ -2054,11 +2182,12 @@
 			isa = PBXGroup;
 			children = (
 				4C7ABA4D17BAEC7000FF5799 /* addEntryTemplate.pdf */,
+				4C3826711AD04B51007D7D67 /* addFolderTemplate.pdf */,
 				4CE88B9617BA651C0042E078 /* contextTriangleTemplate.pdf */,
-				4C6D1D26178586CA0014C5A5 /* 99_AddFolderTemplate.pdf */,
-				4C96D15317A12E4F00D931FA /* 99_CreatedTemplate.pdf */,
-				4C366642178748F500B249F1 /* 99_HarddiskTemplate.pdf */,
-				4C7714AB176C9D4600549F2A /* 99_InfoTemplate.pdf */,
+				4C3826771AD04C8A007D7D67 /* createdTemplate.pdf */,
+				4C3826791AD04CC6007D7D67 /* downloadTemplate.pdf */,
+				4C3826751AD04C24007D7D67 /* harddiskTemplate.pdf */,
+				4C3826731AD04BA5007D7D67 /* infoTemplate.pdf */,
 			);
 			name = Icons;
 			sourceTree = "<group>";
@@ -2235,61 +2364,101 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4C3826AE1AD04D8E007D7D67 /* 33_RunTemplate.pdf in Resources */,
+				4C3826A51AD04D8E007D7D67 /* 21_OrganizerTemplate.pdf in Resources */,
 				4C17F108184E6B6C00E85625 /* 31_PrintTemplate.pdf in Resources */,
 				4C77E37115B84A240093A587 /* InfoPlist.strings in Resources */,
+				4C3826781AD04C8A007D7D67 /* createdTemplate.pdf in Resources */,
+				4C3826BE1AD04D8E007D7D67 /* 51_DecryptedTemplate.pdf in Resources */,
+				4C3826BC1AD04D8E007D7D67 /* 49_FolderOpenTemplate.pdf in Resources */,
+				4C3826CE1AD04D8E007D7D67 /* 67_CertificatTemplate.pdf in Resources */,
+				4C3826B71AD04D8E007D7D67 /* 42_MemoryTemplate.pdf in Resources */,
+				4C3826B41AD04D8E007D7D67 /* 39_HistoryTemplate.pdf in Resources */,
 				4C77E37D15B84A240093A587 /* MainMenu.xib in Resources */,
+				4C3826CD1AD04D8E007D7D67 /* 66_MoneyTemplate.pdf in Resources */,
 				4CA0B2ED15BCADAC00654E32 /* SettingsWindow.xib in Resources */,
 				4C76155C1764C04C0015A1A6 /* GeneralSettings.xib in Resources */,
 				4CD884B715BD47080042BBF8 /* DocumentWindow.xib in Resources */,
 				4C17F109184E6B6C00E85625 /* 30_TerminalTemplate.pdf in Resources */,
 				4C7615681764C0C40015A1A6 /* PasswordInputView.xib in Resources */,
+				4C3826BA1AD04D8E007D7D67 /* 46_HelpTemplate.pdf in Resources */,
 				4C25D58716CF0FAA00F6806C /* EntryView.xib in Resources */,
+				4C3826CA1AD04D8E007D7D67 /* 63_FeatherTemplate.pdf in Resources */,
 				4C586F9E16D07ABD00E7DB57 /* 00_PasswordTemplate.pdf in Resources */,
 				4C26C34C18D8D5A300CF1A1C /* PreviewView.xib in Resources */,
 				4C586FA016D07D7200E7DB57 /* 01_PackageNetworkTemplate.pdf in Resources */,
+				4C3826CB1AD04D8E007D7D67 /* 64_AppleTemplate.pdf in Resources */,
+				4C3826AA1AD04D8E007D7D67 /* 27_NFSUnmountTemplate.pdf in Resources */,
+				4C3826C31AD04D8E007D7D67 /* 56_AddressBookTemplate.pdf in Resources */,
+				4C3826A91AD04D8E007D7D67 /* 25_MailFolderTemplate.pdf in Resources */,
+				4C3826CC1AD04D8E007D7D67 /* 65_WikiTemplate.pdf in Resources */,
 				4C586FA216D07F6A00E7DB57 /* 02_MessageBoxWarningTemplate.pdf in Resources */,
+				4C3826B91AD04D8E007D7D67 /* 45_CancelTemplate.pdf in Resources */,
 				4C2E381D16D11FF900037A9D /* 03_ServerTemplate.pdf in Resources */,
 				6021FE6C18E15E6D00C3BC51 /* UpdateSettings.xib in Resources */,
+				4C3826B21AD04D8E007D7D67 /* 37_PercentageTemplate.pdf in Resources */,
+				4C3826C51AD04D8E007D7D67 /* 58_SecureAccountTemplate.pdf in Resources */,
+				4C3826A71AD04D8E007D7D67 /* 23_IconsTemplate.pdf in Resources */,
 				4C2E381E16D11FF900037A9D /* 04_KlipperTemplate.pdf in Resources */,
+				4C3826C01AD04D8E007D7D67 /* 53_ApplyTemplate.pdf in Resources */,
+				4C3826C71AD04D8E007D7D67 /* 60_HomeTemplate.pdf in Resources */,
+				4C3826C91AD04D8E007D7D67 /* 62_TuxTemplate.pdf in Resources */,
+				4C3826B51AD04D8E007D7D67 /* 40_FindMailTemplate.pdf in Resources */,
 				4C2E381F16D11FF900037A9D /* 05_LanguagesTemplate.pdf in Resources */,
+				4C3826721AD04B51007D7D67 /* addFolderTemplate.pdf in Resources */,
+				4C3826C21AD04D8E007D7D67 /* 55_ThumbnailTemplate.pdf in Resources */,
+				4C3826A61AD04D8E007D7D67 /* 22_ASCIITemplate.pdf in Resources */,
 				4CD78ABC16D155FF00768A1D /* 07_NotepadTemplate.pdf in Resources */,
+				4C3826C11AD04D8E007D7D67 /* 54_SignatureTemplate.pdf in Resources */,
 				4CD78ABD16D155FF00768A1D /* 08_SocketTemplate.pdf in Resources */,
 				4CD78ABE16D155FF00768A1D /* 09_IdentityTemplate.pdf in Resources */,
 				4CD78ABF16D155FF00768A1D /* 10_ContactTemplate.pdf in Resources */,
 				4CD78AC016D155FF00768A1D /* 11_CameraTemplate.pdf in Resources */,
 				4C61EA0516D2FFE200AC519E /* OutlineView.xib in Resources */,
+				4C3826AB1AD04D8E007D7D67 /* 28_QuickTimeTemplate.pdf in Resources */,
+				4C3826B31AD04D8E007D7D67 /* 38_SambaUnmountTemplate.pdf in Resources */,
 				4CB9339916D3A0DD00A13B5D /* Credits.rtf in Resources */,
 				4C6AEF031A04400E00CA2420 /* OpenPanelAccessoryView.xib in Resources */,
 				4C3FFD9E16DAF60600DF9186 /* ContextBar.xib in Resources */,
 				4C431BCF16E2BAB000700A81 /* OverlayWindow.xib in Resources */,
+				4C3826B61AD04D8E007D7D67 /* 41_VectorTemplate.pdf in Resources */,
 				4C17F105184E630200E85625 /* 14_BatteryTemplate.pdf in Resources */,
 				4C76156D1764C0E20015A1A6 /* InspectorView.xib in Resources */,
 				4C888C9016EB6C91003D34A1 /* Localizable.strings in Resources */,
+				4C3826B01AD04D8E007D7D67 /* 35_BrowserWindowTemplate.pdf in Resources */,
 				4C7155D81A10DB6D00979307 /* IconSelection.xib in Resources */,
+				4C3826AF1AD04D8E007D7D67 /* 34_ConfigureTemplate.pdf in Resources */,
+				4C3826BB1AD04D8E007D7D67 /* 47_PackageTemplate.pdf in Resources */,
 				6021FE8D18E1617300C3BC51 /* PasswordCreatorView.xib in Resources */,
+				4C3826AC1AD04D8E007D7D67 /* 29_SecureTerminalTemplate.pdf in Resources */,
 				4C1DDCDD1711ECEB00C98DA3 /* PasswordCreatorWindow.xib in Resources */,
+				4C3826741AD04BA5007D7D67 /* infoTemplate.pdf in Resources */,
+				4C3826B11AD04D8E007D7D67 /* 36_ArchiveTemplate.pdf in Resources */,
 				4C7714AA176C998F00549F2A /* 43_TrashTemplate.pdf in Resources */,
 				4CD820211A32173100399DBB /* ReferenceBuilderView.xib in Resources */,
-				4C7714AC176C9D4600549F2A /* 99_InfoTemplate.pdf in Resources */,
 				6021FE5618E1429500C3BC51 /* IntegrationSettings.xib in Resources */,
+				4C3826B81AD04D8E007D7D67 /* 44_NotesTemplate.pdf in Resources */,
+				4C3826C41AD04D8E007D7D67 /* 57_TextViewTemplate.pdf in Resources */,
 				4CA3531218A5577300839B0F /* dsa_sparkle_pub.pem in Resources */,
 				6021FE9818E1650F00C3BC51 /* DatabaseSettingsWindow.xib in Resources */,
 				4C6D1D25178579570014C5A5 /* 48_FolderTemplate.pdf in Resources */,
-				4C6D1D27178586CA0014C5A5 /* 99_AddFolderTemplate.pdf in Resources */,
 				4C701CBC178618A000581B88 /* 12_RemoteTemplate.pdf in Resources */,
-				4C366643178748F500B249F1 /* 99_HarddiskTemplate.pdf in Resources */,
 				4C2C8B341787500E009649F3 /* UnprotectedWarningView.xib in Resources */,
 				4CF29BF417879D0000851B60 /* 26_FileSaveTemplate.pdf in Resources */,
 				4C7BD07619FE94C900C7AA5C /* MacPassImages.xcassets in Resources */,
 				4CB915941A0159A20089CE5B /* DuplicateEntryOptionsWindow.xib in Resources */,
 				4C52A88E1788628B00868229 /* 06_BlockDeviceTemplate.pdf in Resources */,
 				4C52A88F1788628B00868229 /* 13_KeysTemplate.pdf in Resources */,
+				4C3826C61AD04D8E007D7D67 /* 59_DevelopmentTemplate.pdf in Resources */,
 				4C52A8901788628B00868229 /* 18_DisplayTemplate.pdf in Resources */,
 				4C52A892178863B000868229 /* 68_PhoneTemplate.pdf in Resources */,
-				4C96D15417A12E4F00D931FA /* 99_CreatedTemplate.pdf in Resources */,
 				6021FE7718E15FF300C3BC51 /* DatePickingView.xib in Resources */,
+				4C3826A81AD04D8E007D7D67 /* 24_EstablishedConnectionTemplate.pdf in Resources */,
 				6021FE4B18E13F1D00C3BC51 /* GroupInspectorView.xib in Resources */,
+				4C3826BF1AD04D8E007D7D67 /* 52_EncryptedTemplate.pdf in Resources */,
+				4C3826BD1AD04D8E007D7D67 /* 50_FolderTarTemplate.pdf in Resources */,
 				6021FE3B18E1341900C3BC51 /* EntryInspectorView.xib in Resources */,
+				4C3826AD1AD04D8E007D7D67 /* 32_FileSystemViewTemplate.pdf in Resources */,
 				6021FE6118E15D9100C3BC51 /* WorkflowSettings.xib in Resources */,
 				6021FE8218E160BC00C3BC51 /* PasswordEditWindow.xib in Resources */,
 				4C0728BF17B68ED0005A7DD9 /* SavePanelAccessoryView.xib in Resources */,
@@ -2298,11 +2467,14 @@
 				4C7ABA4917BAEC6700FF5799 /* 16_BrowserTemplate.pdf in Resources */,
 				4C7ABA4A17BAEC6700FF5799 /* 17_CDRomTemplate.pdf in Resources */,
 				4C7ABA4B17BAEC6700FF5799 /* 19_EmailTemplate.pdf in Resources */,
+				4C3826C81AD04D8E007D7D67 /* 61_ServicesTemplate.pdf in Resources */,
 				4C0B038D18E36DA400B9F9C9 /* FixAutotypeWindow.xib in Resources */,
 				4C0DD6C618B2A44700FCB193 /* AutotypeCandidateSelectionWindow.xib in Resources */,
+				4C38267A1AD04CC6007D7D67 /* downloadTemplate.pdf in Resources */,
 				4C7ABA4C17BAEC6700FF5799 /* 20_MiscTemplate.pdf in Resources */,
 				4C7ABA4E17BAEC7000FF5799 /* addEntryTemplate.pdf in Resources */,
 				4C53A7A51864C39D000DFF0D /* KPKLocalizable.strings in Resources */,
+				4C3826761AD04C24007D7D67 /* harddiskTemplate.pdf in Resources */,
 				4C7F8B681A10B68400CCB83D /* WelcomeWindow.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
