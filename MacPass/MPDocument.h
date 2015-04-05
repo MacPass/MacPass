@@ -62,7 +62,6 @@ APPKIT_EXTERN NSString *const MPDocumentGroupKey;
 
 @interface MPDocument : NSDocument <MPTargetNodeResolving>
 
-
 @property (nonatomic, readonly, assign) BOOL encrypted;
 @property (nonatomic, readonly, assign) NSUInteger unlockCount; // Amount of times the Document was unlocked;
 

@@ -67,8 +67,6 @@ NSString *const MPDocumentGroupKey                        = @"MPDocumentGroupKey
 @interface MPDocument () {
 @private
   BOOL _didLockFile;
-  NSData *_encryptedData;
-  MPTreeDelegate *_treeDelgate;
 }
 
 @property (nonatomic, assign) NSUInteger unlockCount;
@@ -78,6 +76,9 @@ NSString *const MPDocumentGroupKey                        = @"MPDocumentGroupKey
 @property (strong, nonatomic) KPKTree *tree;
 @property (weak, nonatomic) KPKGroup *root;
 @property (nonatomic, strong) KPKCompositeKey *compositeKey;
+@property (nonatomic, strong) NSData *encryptedData;
+@property (nonatomic, strong) MPTreeDelegate *treeDelgate;
+
 
 @property (assign) BOOL readOnly;
 @property (strong) NSURL *lockFileURL;
@@ -86,7 +87,6 @@ NSString *const MPDocumentGroupKey                        = @"MPDocumentGroupKey
 @property (weak) IBOutlet NSImageView *warningViewImage;
 
 @end
-
 
 @implementation MPDocument
 
@@ -124,10 +124,9 @@ NSString *const MPDocumentGroupKey                        = @"MPDocumentGroupKey
 - (id)init {
   self = [super init];
   if(self) {
-    _encryptedData = nil;
     _didLockFile = NO;
     _readOnly = NO;
-    self.tree = [KPKTree templateTree];
+    self.tree = [KPKTree allocTemplateTree];
     self.tree.metaData.rounds = [[NSUserDefaults standardUserDefaults] integerForKey:kMPSettingsKeyDefaultPasswordRounds];
   }
   return self;
@@ -209,7 +208,7 @@ NSString *const MPDocumentGroupKey                        = @"MPDocumentGroupKey
    Delete our old Tree, and just grab the data
    */
   self.tree = nil;
-  _encryptedData = [NSData dataWithContentsOfURL:url options:NSDataReadingUncached error:outError];
+  self.encryptedData = [NSData dataWithContentsOfURL:url options:NSDataReadingUncached error:outError];
   return YES;
 }
 
@@ -271,7 +270,7 @@ NSString *const MPDocumentGroupKey                        = @"MPDocumentGroupKey
   NSError *error;
   self.tree = [[KPKTree alloc] initWithXmlContentsOfURL:url error:&error];
   self.compositeKey = nil;
-  _encryptedData = Nil;
+  self.encryptedData = nil;
 }
 
 #pragma mark Lock/Unlock/Decrypt
@@ -284,14 +283,14 @@ NSString *const MPDocumentGroupKey                        = @"MPDocumentGroupKey
   [self exitSearch:self];
   NSError *error;
   /* Locking needs to be lossless hence just use the XML format */
-  _encryptedData = [self.tree encryptWithPassword:self.compositeKey forVersion:KPKXmlVersion error:&error];
+  self.encryptedData = [self.tree encryptWithPassword:self.compositeKey forVersion:KPKXmlVersion error:&error];
   self.tree = nil;
   [[NSNotificationCenter defaultCenter] postNotificationName:MPDocumentDidLockDatabaseNotification object:self];
 }
 
 - (BOOL)unlockWithPassword:(NSString *)password keyFileURL:(NSURL *)keyFileURL error:(NSError *__autoreleasing*)error{
   self.compositeKey = [[KPKCompositeKey alloc] initWithPassword:password key:keyFileURL];
-  self.tree = [[KPKTree alloc] initWithData:_encryptedData password:self.compositeKey error:error];
+  self.tree = [[KPKTree alloc] initWithData:self.encryptedData password:self.compositeKey error:error];
   
   BOOL isUnlocked = (nil != self.tree);
   if(isUnlocked) {

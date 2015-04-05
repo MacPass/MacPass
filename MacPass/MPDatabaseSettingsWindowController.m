@@ -29,9 +29,10 @@
 
 
 @interface MPDatabaseSettingsWindowController () {
-  MPDocument *_document;
   NSString *_missingFeature;
 }
+
+@property (nonatomic, weak) MPDocument *document;
 @property (nonatomic,assign) BOOL trashEnabled;
 
 @end
@@ -50,7 +51,7 @@
 - (id)initWithDocument:(MPDocument *)document {
   self = [super initWithWindow:nil];
   if(self) {
-    _document = document;
+    self.document = document;
     _missingFeature = NSLocalizedString(@"KDBX_ONLY_FEATURE", "Feature only available in kdbx databases");
   }
   return self;
@@ -59,7 +60,7 @@
 - (void)windowDidLoad {
   [super windowDidLoad];
   
-  NSAssert(_document != nil, @"Document needs to be present");
+  NSAssert(self.document != nil, @"Document needs to be present");
     
   [self.sectionTabView setDelegate:self];
   [self.encryptionRoundsTextField setFormatter:[[MPNumericalInputFormatter alloc] init]];
@@ -69,7 +70,7 @@
 
 - (IBAction)save:(id)sender {
   /* General */
-  KPKMetaData *metaData = _document.tree.metaData;
+  KPKMetaData *metaData = self.document.tree.metaData;
   metaData.databaseDescription = [self.databaseDescriptionTextView string];
   metaData.databaseName = [self.databaseNameTextField stringValue];
 
@@ -89,11 +90,11 @@
   metaData.recycleBinEnabled = self.trashEnabled;
   NSMenuItem *trashMenuItem = [self.selectRecycleBinGroupPopUpButton selectedItem];
   KPKGroup *trashGroup = [trashMenuItem representedObject];
-  _document.trash  = trashGroup;
+  self.document.trash  = trashGroup;
   
   NSMenuItem *templateMenuItem = [self.templateGroupPopUpButton selectedItem];
   KPKGroup *templateGroup = [templateMenuItem representedObject];
-  _document.templates = templateGroup;
+  self.document.templates = templateGroup;
   
   
   BOOL enforceMasterKeyChange = HNHBoolForState([self.enforceKeyChangeCheckButton state]);
@@ -130,7 +131,7 @@
   
   metaData.rounds = MAX(0,[self.encryptionRoundsTextField integerValue]);
   /* Register an action to enable promts when user cloeses without saving */
-  [_document updateChangeCount:NSChangeDone];
+  [self.document updateChangeCount:NSChangeDone];
   [self close:nil];
 }
 
@@ -151,10 +152,10 @@
     return;
   }
   /* Update all stuff that might have changed */
-  KPKMetaData *metaData = _document.tree.metaData;
+  KPKMetaData *metaData = self.document.tree.metaData;
   [self _setupDatabaseTab:metaData];
   [self _setupProtectionTab:metaData];
-  [self _setupAdvancedTab:_document.tree];
+  [self _setupAdvancedTab:self.document.tree];
   self.isDirty = NO;
 }
 
