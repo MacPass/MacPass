@@ -65,13 +65,10 @@ NSString *const kMPIconCell = @"IconCell";
 
 #pragma mark -
 #pragma mark Properties
-
-- (void)setWorkingDocument:(MPDocument *)workingDocument {
-  if(_workingDocument != workingDocument) {
-    _workingDocument = workingDocument;
-  }
+- (void)setDocument:(id)document {
+  [super setDocument:document];
   if(!_didRegisterForUndoRedo) {
-    NSUndoManager *manager = [_workingDocument undoManager];
+    NSUndoManager *manager = [document undoManager];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(_didChangeDocument:) name:NSUndoManagerDidRedoChangeNotification object:manager];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(_didChangeDocument:) name:NSUndoManagerDidUndoChangeNotification object:manager];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(_didChangeDocument:) name:NSUndoManagerDidCloseUndoGroupNotification object:manager];
@@ -84,7 +81,7 @@ NSString *const kMPIconCell = @"IconCell";
 #pragma mark Actions
 
 - (void)clearAutotype:(id)sender {
-  [[self.workingDocument undoManager] beginUndoGrouping];
+  [[self.document undoManager] beginUndoGrouping];
   NSIndexSet *indexes = [self.tableView selectedRowIndexes];
   MPFixAutotypeWindowController __weak *weakSelf = self;
   [indexes enumerateIndexesUsingBlock:^(NSUInteger idx, BOOL *stop) {
@@ -99,8 +96,8 @@ NSString *const kMPIconCell = @"IconCell";
       [item setKeystrokeSequence:nil];
     }
   }];
-  [[self.workingDocument undoManager] endUndoGrouping];
-  [[self.workingDocument undoManager] setActionName:@"Clear Autotype"];
+  [[self.document undoManager] endUndoGrouping];
+  [[self.document undoManager] setActionName:@"Clear Autotype"];
   [self.tableView reloadDataForRowIndexes:indexes columnIndexes:[NSIndexSet indexSetWithIndexesInRange:NSMakeRange(0,2)]];
 }
 
@@ -203,7 +200,7 @@ NSString *const kMPIconCell = @"IconCell";
 
 - (NSArray *)entriesAndGroups {
   if(nil == _itemsCache) {
-    _itemsCache = [self.workingDocument malformedAutotypeItems];
+    _itemsCache = [self.document malformedAutotypeItems];
   }
   return _itemsCache;
 }

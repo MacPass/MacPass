@@ -32,7 +32,6 @@
   NSString *_missingFeature;
 }
 
-@property (nonatomic, weak) MPDocument *document;
 @property (nonatomic,assign) BOOL trashEnabled;
 
 @end
@@ -43,15 +42,9 @@
   return @"DatabaseSettingsWindow";
 }
 
-- (id)init {
-  self = [self initWithDocument:nil];
-  return self;
-}
-
-- (id)initWithDocument:(MPDocument *)document {
-  self = [super initWithWindow:nil];
+- (id)initWithWindow:(NSWindow *)window {
+  self = [super initWithWindow:window];
   if(self) {
-    self.document = document;
     _missingFeature = NSLocalizedString(@"KDBX_ONLY_FEATURE", "Feature only available in kdbx databases");
   }
   return self;
@@ -70,7 +63,7 @@
 
 - (IBAction)save:(id)sender {
   /* General */
-  KPKMetaData *metaData = self.document.tree.metaData;
+  KPKMetaData *metaData = ((MPDocument *)self.document).tree.metaData;
   metaData.databaseDescription = [self.databaseDescriptionTextView string];
   metaData.databaseName = [self.databaseNameTextField stringValue];
 
@@ -90,11 +83,11 @@
   metaData.recycleBinEnabled = self.trashEnabled;
   NSMenuItem *trashMenuItem = [self.selectRecycleBinGroupPopUpButton selectedItem];
   KPKGroup *trashGroup = [trashMenuItem representedObject];
-  self.document.trash  = trashGroup;
+  ((MPDocument *)self.document).trash  = trashGroup;
   
   NSMenuItem *templateMenuItem = [self.templateGroupPopUpButton selectedItem];
   KPKGroup *templateGroup = [templateMenuItem representedObject];
-  self.document.templates = templateGroup;
+  ((MPDocument *)self.document).templates = templateGroup;
   
   
   BOOL enforceMasterKeyChange = HNHBoolForState([self.enforceKeyChangeCheckButton state]);
@@ -152,10 +145,10 @@
     return;
   }
   /* Update all stuff that might have changed */
-  KPKMetaData *metaData = self.document.tree.metaData;
+  KPKMetaData *metaData = ((MPDocument *)self.document).tree.metaData;
   [self _setupDatabaseTab:metaData];
   [self _setupProtectionTab:metaData];
-  [self _setupAdvancedTab:self.document.tree];
+  [self _setupAdvancedTab:((MPDocument *)self.document).tree];
   self.isDirty = NO;
 }
 

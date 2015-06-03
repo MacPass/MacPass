@@ -13,8 +13,6 @@
 @interface MPFixAutotypeWindowController : NSWindowController <NSTableViewDataSource, NSTableViewDelegate>
 
 @property (weak) IBOutlet NSTableView *tableView;
-@property (nonatomic, weak) MPDocument *workingDocument;
-
 /**
  *  Clears the autotype sequences for the selected entries, groups or window associations
  *

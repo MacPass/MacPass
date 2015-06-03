@@ -283,7 +283,7 @@ typedef void (^MPPasswordChangedBlock)(BOOL didChangePassword);
   if(!self.fixAutotypeWindowController) {
     self.fixAutotypeWindowController = [[MPFixAutotypeWindowController alloc] init];
   }
-  self.fixAutotypeWindowController.workingDocument = [self document];
+  [self.document addWindowController:self.fixAutotypeWindowController];
   [[self.fixAutotypeWindowController window] makeKeyAndOrderFront:sender];
 }
 
@@ -542,8 +542,9 @@ typedef void (^MPPasswordChangedBlock)(BOOL didChangePassword);
 
 - (void)_showDatabaseSetting:(MPDatabaseSettingsTab)tab {
   if(!self.documentSettingsWindowController) {
-    _documentSettingsWindowController = [[MPDatabaseSettingsWindowController alloc] initWithDocument:[self document]];
+    _documentSettingsWindowController = [[MPDatabaseSettingsWindowController alloc] init];
   }
+  [self.document addWindowController:_documentSettingsWindowController];
   [self.documentSettingsWindowController showSettingsTab:tab];
   [[NSApplication sharedApplication] beginSheet:[self.documentSettingsWindowController window]
                                  modalForWindow:[self window]
