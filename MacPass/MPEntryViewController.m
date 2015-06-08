@@ -368,8 +368,8 @@ NSString *const _MPTableSecurCellView = @"PasswordCell";
   
   if(!document.selectedGroup && !document.hasSearch) {
     /* no group selection out of search is wrong */
-    //[self.entryArrayController unbind:NSContentArrayBinding];
-    self.entryArrayController.content = nil;
+    [self.entryArrayController unbind:NSContentArrayBinding];
+    [self.entryArrayController setContent:nil];
     return;
   }
   /*
@@ -387,7 +387,7 @@ NSString *const _MPTableSecurCellView = @"PasswordCell";
         return; // we are showing the correct object right now.
       }
     }
-    self.entryArrayController.content = document.selectedGroup.entries;
+    [self.entryArrayController bind:NSContentArrayBinding toObject:document.selectedGroup withKeyPath:NSStringFromSelector(@selector(entries)) options:nil];
   }
   [self _updateContextBar];
 }
@@ -422,7 +422,8 @@ NSString *const _MPTableSecurCellView = @"PasswordCell";
   NSArray *result = [notification userInfo][kMPDocumentSearchResultsKey];
   NSAssert(result != nil, @"Resutls should never be nil");
   self.filteredEntries = result;
-  self.entryArrayController.content = self.filteredEntries;
+  [self.entryArrayController unbind:NSContentArrayBinding];
+  [self.entryArrayController setContent:self.filteredEntries];
   [[self.entryTable tableColumnWithIdentifier:MPEntryTableParentColumnIdentifier] setHidden:NO];
 }
 
@@ -432,7 +433,8 @@ NSString *const _MPTableSecurCellView = @"PasswordCell";
   MPDocument *document = [[self windowController] document];
   document.selectedItem = document.selectedGroup;
   if( nil == document.selectedItem && nil == document.selectedGroup ) {
-    self.entryArrayController.content = nil;
+    [self.entryArrayController unbind:NSContentArrayBinding];
+    [self.entryArrayController setContent:nil];
   }
   [self _updateContextBar];
 }
@@ -454,7 +456,7 @@ NSString *const _MPTableSecurCellView = @"PasswordCell";
   [self _showContextBar];
   /* TODO: Show modification date column if not present? */
   MPDocument *document = [[self windowController] document];
-  self.entryArrayController.content = document.selectedEntry.history;
+  [self.entryArrayController bind:NSContentArrayBinding toObject:document.selectedEntry withKeyPath:NSStringFromSelector(@selector(history)) options:nil];
 }
 
 - (void)_didExitHistory:(NSNotification *)notification {
