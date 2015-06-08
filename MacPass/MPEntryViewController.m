@@ -124,6 +124,8 @@ NSString *const _MPTableSecurCellView = @"PasswordCell";
 }
 
 - (void)dealloc {
+  [self.entryTable unbind:NSContentArrayBinding];
+  [self.entryArrayController unbind:NSContentArrayBinding];
   [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
 
@@ -387,6 +389,7 @@ NSString *const _MPTableSecurCellView = @"PasswordCell";
         return; // we are showing the correct object right now.
       }
     }
+    [self.entryArrayController unbind:NSContentArrayBinding];
     [self.entryArrayController bind:NSContentArrayBinding toObject:document.selectedGroup withKeyPath:NSStringFromSelector(@selector(entries)) options:nil];
   }
   [self _updateContextBar];
@@ -423,7 +426,7 @@ NSString *const _MPTableSecurCellView = @"PasswordCell";
   NSAssert(result != nil, @"Resutls should never be nil");
   self.filteredEntries = result;
   [self.entryArrayController unbind:NSContentArrayBinding];
-  [self.entryArrayController setContent:self.filteredEntries];
+  [self.entryArrayController bind:NSContentArrayBinding toObject:self withKeyPath:NSStringFromSelector(@selector(filteredEntries)) options:nil];
   [[self.entryTable tableColumnWithIdentifier:MPEntryTableParentColumnIdentifier] setHidden:NO];
 }
 
@@ -432,6 +435,7 @@ NSString *const _MPTableSecurCellView = @"PasswordCell";
   [[self.entryTable tableColumnWithIdentifier:MPEntryTableParentColumnIdentifier] setHidden:YES];
   MPDocument *document = [[self windowController] document];
   document.selectedItem = document.selectedGroup;
+  // TODO: really necessary?
   if( nil == document.selectedItem && nil == document.selectedGroup ) {
     [self.entryArrayController unbind:NSContentArrayBinding];
     [self.entryArrayController setContent:nil];
@@ -737,6 +741,7 @@ NSString *const _MPTableSecurCellView = @"PasswordCell";
 #pragma mark periodic UI Update
 
 - (void)_updateExpirationDisplay {
+  return;
   /* items are all entries */
   [[self.entryArrayController arrangedObjects] enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
     [[obj timeInfo] isExpired];

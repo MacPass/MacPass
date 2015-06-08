@@ -66,10 +66,10 @@ NSString *const MPDidChangeStoredKeyFilesSettings = @"com.hicknhack.macpass.MPDi
   self = [super init];
   if(self) {
     /* We know that we do not use the varibale after instancation */
-    #pragma clang diagnostic push
-    #pragma clang diagnostic ignored "-Wunused-variable"
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wunused-variable"
     MPDocumentController *documentController = [[MPDocumentController alloc] init];
-    #pragma clang diagnostic pop
+#pragma clang diagnostic pop
   }
   return self;
 }
@@ -212,10 +212,11 @@ NSString *const MPDidChangeStoredKeyFilesSettings = @"com.hicknhack.macpass.MPDi
 }
 
 - (void)lockAllDocuments {
-  for(NSDocument *document in [[NSDocumentController sharedDocumentController] documents]) {
-    NSArray *windowControllers = [document windowControllers];
-    if([windowControllers count] > 0) {
-      [windowControllers[0] lock:nil];
+  for(NSDocument *document in ((NSDocumentController *)[NSDocumentController sharedDocumentController]).documents) {
+    for(id windowController in document.windowControllers) {
+      if([windowController respondsToSelector:@selector(lock)]) {
+        [windowController lock];
+      }
     }
   }
 }
@@ -234,6 +235,12 @@ NSString *const MPDidChangeStoredKeyFilesSettings = @"com.hicknhack.macpass.MPDi
   NSDocumentController *documentController = [NSDocumentController sharedDocumentController];
   NSArray *documents = [documentController documents];
   BOOL restoredWindows = [documents count] > 0;
+  
+  for(NSDocument *document in documents) {
+    for(NSWindowController *windowController in [document windowControllers]) {
+      [windowController.window.contentView layout];
+    }
+  }
   
   BOOL reopen = [[NSUserDefaults standardUserDefaults] boolForKey:kMPSettingsKeyReopenLastDatabaseOnLaunch];
   BOOL showWelcomeScreen = !restoredWindows && !_shouldOpenFile;

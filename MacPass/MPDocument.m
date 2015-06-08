@@ -126,14 +126,21 @@ NSString *const MPDocumentGroupKey                        = @"MPDocumentGroupKey
   if(self) {
     _didLockFile = NO;
     _readOnly = NO;
-    self.tree = [KPKTree allocTemplateTree];
-    self.tree.metaData.rounds = [[NSUserDefaults standardUserDefaults] integerForKey:kMPSettingsKeyDefaultPasswordRounds];
   }
   return self;
 }
 
 - (void)dealloc {
   [self _cleanupLock];
+}
+
+- (instancetype)initWithType:(NSString *)typeName error:(NSError *__autoreleasing *)outError {
+  self = [self init];
+  if(self) {
+    self.tree = [[KPKTree alloc] initWithTemplateContents];
+    self.tree.metaData.rounds = [[NSUserDefaults standardUserDefaults] integerForKey:kMPSettingsKeyDefaultPasswordRounds];
+  }
+  return self;
 }
 
 - (void)makeWindowControllers {
@@ -234,6 +241,7 @@ NSString *const MPDocumentGroupKey                        = @"MPDocumentGroupKey
   if([[self fileURL] isFileURL]) {
     [[NSUserDefaults standardUserDefaults] setObject:[self.fileURL absoluteString] forKey:kMPSettingsKeyLastDatabasePath];
   }
+  self.tree = nil;
   [super close];
 }
 
@@ -410,16 +418,16 @@ NSString *const MPDocumentGroupKey                        = @"MPDocumentGroupKey
     [[NSNotificationCenter defaultCenter] postNotificationName:MPDocumentCurrentItemChangedNotification object:self];
   }
 }
-- (void)setTree:(KPKTree *)tree {
-  if(_tree != tree) {
-    _tree = tree;
-    _tree.undoManager = [self undoManager];
-    if(nil == _treeDelgate) {
-      _treeDelgate = [[MPTreeDelegate alloc] initWithDocument:self];
-    }
-    _tree.delegate = _treeDelgate;
-  }
-}
+//- (void)setTree:(KPKTree *)tree {
+//  if(_tree != tree) {
+//    _tree = tree;
+//    _tree.undoManager = [self undoManager];
+//    if(nil == _treeDelgate) {
+//      _treeDelgate = [[MPTreeDelegate alloc] initWithDocument:self];
+//    }
+//    _tree.delegate = _treeDelgate;
+//  }
+//}
 
 #pragma mark Data Accesors
 
@@ -682,26 +690,26 @@ NSString *const MPDocumentGroupKey                        = @"MPDocumentGroupKey
   id<MPTargetNodeResolving> nodeResolver = [NSApp targetForAction:@selector(currentTargetNode)];
   
   /*
-  NSLog(@"entryResolver:%@", [entryResolver class]);
-  NSLog(@"groupResolver:%@", [groupResolver class]);
-  NSLog(@"nodeResolver:%@", [nodeResolver class]);
-  */
+   NSLog(@"entryResolver:%@", [entryResolver class]);
+   NSLog(@"groupResolver:%@", [groupResolver class]);
+   NSLog(@"nodeResolver:%@", [nodeResolver class]);
+   */
   
   KPKNode *targetNode = [nodeResolver currentTargetNode];
   KPKEntry *targetEntry = [entryResolver currentTargetEntry];
   KPKGroup *targetGroup = [groupResolver currentTargetGroup];
   
   /*
-  if([targetNode asGroup]) {
-    NSLog(@"targetNode:%@", ((KPKGroup *)targetNode).name);
-  }
-  else if([targetNode asEntry]) {
-    NSLog(@"targetNode:%@", ((KPKEntry *)targetNode).title);
-  }
-  
-  NSLog(@"targetGroup:%@", targetGroup.name);
-  NSLog(@"tagetEntry:%@", targetEntry.title );
-  */
+   if([targetNode asGroup]) {
+   NSLog(@"targetNode:%@", ((KPKGroup *)targetNode).name);
+   }
+   else if([targetNode asEntry]) {
+   NSLog(@"targetNode:%@", ((KPKEntry *)targetNode).title);
+   }
+   
+   NSLog(@"targetGroup:%@", targetGroup.name);
+   NSLog(@"tagetEntry:%@", targetEntry.title );
+   */
   
   if(self.encrypted || self.isReadOnly) { return NO; }
   

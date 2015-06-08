@@ -72,6 +72,8 @@ NSString *const _MPOutlinveViewHeaderViewIdentifier = @"HeaderCell";
 }
 
 - (void)dealloc {
+  [self.outlineView unbind:NSContentBinding];
+  [self.treeController unbind:NSContentBinding];
   [[NSNotificationCenter defaultCenter] removeObserver:self];
   [self.outlineView setDelegate:nil];
 }
@@ -299,6 +301,7 @@ NSString *const _MPOutlinveViewHeaderViewIdentifier = @"HeaderCell";
 }
 
 - (void)_updateExpirationDisplay {
+  return;
   MPDocument *document = [[self windowController] document];
   [document.root.timeInfo isExpired];
   [[document.tree allGroups] enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
