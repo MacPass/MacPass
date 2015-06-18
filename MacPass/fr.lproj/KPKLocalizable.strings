@@ -10,10 +10,17 @@
 "KPK_GROUP_COPY_%@" = "%@ copy";
 "KPK_ENTRY_COPY_%@" = "%@ copy";
 
+/* Validation Errors */
+"ERROR_WINDOW_TITLE_VALIDATION_FAILED" = "The Format of the Window Title is not valid!";
+"ERROR_ATTRIBUTE_KEY_VALIDATION_FAILED" = "The Attribute Key is not unique!";
+"ERROR_AUTOTYPE_SEQUENCE_VALIDATION_FAILED" = "Tht Autotype Sequence is not valid!";
+
 /* Errors */
 "ERROR_KEYFILE_NO_KEY_XML_ELEMENT" = "Fichier de clef XML ne contenant pas d'élément Clef";
 "ERROR_UNSUPPORTED_DATABASER_VERSION" = "Version de la base de données non pris en charge";
+"ERROR_INVALID_FIELD_TYPE" = "Unknown data field. Password wrong?";
 "ERROR_UNSUPPORTED_CHIPHER" = "ID de chiffrement non pris en charge";
+"ERROR_UNSUPPORTED_CHIPHER" = "Unsupported chipher algorithm";
 "ERROR_UNKNOWN_FILE_FORMAT" = "Format de fichier inconnu";
 "ERROR_HEADER_CORRUPTED" = "En-tête de fichier corrompu";
 "ERROR_UNSUPPORTED_KDBX_COMPRESSION_ALGORITHM" = "Algorithme de compression non pris en charge";
@@ -27,3 +34,4 @@
 "ERROR_XML_KEYFILE_WITHOUT_KEY_ELEMENT" = "Le fichier XML ne contient pas d'élément clef";
 "ERROR_XML_KEYFILE_WITHOUT_DATA_ELEMENT" = "Le champ XML de clef ne contient pas d'élément de données";
 "ERROR_XML_KEYFILE_DATA_PARSING_ERROR" = "Impossible de lire les données du fichier XML de clef";
+"ERROR_HEADER_HASH_VERIFICATION_FAILED" = "The database header hash is wrong. Data integritiy might be broken!"
