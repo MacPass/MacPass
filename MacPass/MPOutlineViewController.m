@@ -45,7 +45,6 @@ NSString *const _MPOutlinveViewHeaderViewIdentifier = @"HeaderCell";
 
 @property (strong) NSTreeController *treeController;
 @property (strong) MPOutlineDataSource *datasource;
-@property (strong) NSMenu *menu;
 
 @property (copy, nonatomic) NSString *databaseNameWrapper;
 
