@@ -110,8 +110,6 @@ NSString *const _MPOutlinveViewHeaderViewIdentifier = @"HeaderCell";
     [self bind:NSStringFromSelector(@selector(databaseNameWrapper)) toObject:document.tree.metaData withKeyPath:NSStringFromSelector(@selector(databaseName)) options:nil];
     [_outlineView setDataSource:self.datasource];
     _bindingEstablished = YES;
-    [self _updateExpirationDisplay];
-    
   }
   NSTreeNode *node = [_outlineView itemAtRow:0];
   [self _expandItems:node];
@@ -297,16 +295,6 @@ NSString *const _MPOutlinveViewHeaderViewIdentifier = @"HeaderCell";
 - (BOOL)_itemIsRootNode:(id)item {
   id node = [item representedObject];
   return [node isKindOfClass:[KPKTree class]];
-}
-
-- (void)_updateExpirationDisplay {
-  return;
-  MPDocument *document = [[self windowController] document];
-  [document.root.timeInfo isExpired];
-  [[document.tree allGroups] enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
-    [[obj timeInfo] isExpired];
-  }];
-  [self performSelector:@selector(_updateExpirationDisplay) withObject:nil afterDelay:EXPIRED_GROUP_REFRESH_SECONDS];
 }
 
 @end

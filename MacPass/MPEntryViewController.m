@@ -118,7 +118,6 @@ NSString *const _MPTableSecurCellView = @"PasswordCell";
     _dataSource.viewController = self;
     _menuDelegate = [[MPEntryContextMenuDelegate alloc] init];
     _contextBarViewController = [[MPContextBarViewController alloc] init];
-    [self _updateExpirationDisplay];
   }
   return self;
 }
@@ -737,16 +736,4 @@ NSString *const _MPTableSecurCellView = @"PasswordCell";
       break;
   }
 }
-
-#pragma mark periodic UI Update
-
-- (void)_updateExpirationDisplay {
-  return;
-  /* items are all entries */
-  [[self.entryArrayController arrangedObjects] enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
-    [[obj timeInfo] isExpired];
-  }];
-  [self performSelector:@selector(_updateExpirationDisplay) withObject:nil afterDelay:EXPIRED_ENTRY_REFRESH_SECONDS];
-}
-
 @end

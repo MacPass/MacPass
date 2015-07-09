@@ -7,6 +7,7 @@
 //
 
 #import "MPViewController.h"
+#import "MPDocument.h"
 
 @implementation MPViewController
 
@@ -21,7 +22,7 @@
 }
 
 - (NSWindowController *)windowController {
-  return [self.view.window windowController];
+  return self.view.window.windowController;
 }
 
 #pragma mark Responder Chain
