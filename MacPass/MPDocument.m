@@ -418,16 +418,16 @@ NSString *const MPDocumentGroupKey                        = @"MPDocumentGroupKey
     [[NSNotificationCenter defaultCenter] postNotificationName:MPDocumentCurrentItemChangedNotification object:self];
   }
 }
-//- (void)setTree:(KPKTree *)tree {
-//  if(_tree != tree) {
-//    _tree = tree;
-//    _tree.undoManager = [self undoManager];
-//    if(nil == _treeDelgate) {
-//      _treeDelgate = [[MPTreeDelegate alloc] initWithDocument:self];
-//    }
-//    _tree.delegate = _treeDelgate;
-//  }
-//}
+- (void)setTree:(KPKTree *)tree {
+  if(_tree != tree) {
+    _tree = tree;
+    _tree.undoManager = [self undoManager];
+    if(nil == _treeDelgate) {
+      _treeDelgate = [[MPTreeDelegate alloc] initWithDocument:self];
+    }
+    _tree.delegate = _treeDelgate;
+  }
+}
 
 #pragma mark Data Accesors
 
