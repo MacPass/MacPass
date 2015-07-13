@@ -255,7 +255,7 @@ NSString *const _MPTableSecurCellView = @"PasswordCell";
 }
 
 - (NSView *)tableView:(NSTableView *)tableView viewForTableColumn:(NSTableColumn *)tableColumn row:(NSInteger)row {
-  KPKEntry *entry = [self.entryArrayController arrangedObjects][row];
+  
   BOOL isTitleColumn = [[tableColumn identifier] isEqualToString:MPEntryTableTitleColumnIdentifier];
   BOOL isGroupColumn = [[tableColumn identifier] isEqualToString:MPEntryTableParentColumnIdentifier];
   BOOL isPasswordColum = [[tableColumn identifier] isEqualToString:MPEntryTablePasswordColumnIdentifier];
@@ -269,21 +269,38 @@ NSString *const _MPTableSecurCellView = @"PasswordCell";
   if(isTitleColumn || isGroupColumn) {
     view = [tableView makeViewWithIdentifier:_MPTableImageCellView owner:self];
     if( isTitleColumn ) {
-      [[view textField] bind:NSValueBinding toObject:entry withKeyPath:NSStringFromSelector(@selector(title)) options:nil];
-      [[view imageView] bind:NSValueBinding toObject:entry withKeyPath:NSStringFromSelector(@selector(iconImage)) options:nil];
+      NSString *titleKeyPath = [NSString stringWithFormat:@"%@.%@",
+                                NSStringFromSelector(@selector(objectValue)),
+                                NSStringFromSelector(@selector(title))];
+      NSString *iconImageKeyPath = [NSString stringWithFormat:@"%@.%@",
+                                    NSStringFromSelector(@selector(objectValue)),
+                                    NSStringFromSelector(@selector(iconImage))];
+      [[view textField] bind:NSValueBinding toObject:view withKeyPath:titleKeyPath options:nil];
+      [[view imageView] bind:NSValueBinding toObject:view withKeyPath:iconImageKeyPath options:nil];
     }
     else {
+      KPKEntry *entry = [self.entryArrayController arrangedObjects][row];
       NSAssert(entry.parent != nil, @"Entry needs to have a parent");
-      NSString *parentNameKeyPath = [NSString stringWithFormat:@"%@.%@",NSStringFromSelector(@selector(parent)),NSStringFromSelector(@selector(name))];
-      NSString *parentIconImageKeyPath = [NSString stringWithFormat:@"%@.%@",NSStringFromSelector(@selector(parent)),NSStringFromSelector(@selector(iconImage))];
-      [[view textField] bind:NSValueBinding toObject:entry withKeyPath:parentNameKeyPath options:nil];
-      [[view imageView] bind:NSValueBinding toObject:entry withKeyPath:parentIconImageKeyPath options:nil];
+      
+      NSString *parentNameKeyPath = [NSString stringWithFormat:@"%@.%@.%@",
+                                     NSStringFromSelector(@selector(objectValue)),
+                                     NSStringFromSelector(@selector(parent)),
+                                     NSStringFromSelector(@selector(name))];
+      NSString *parentIconImageKeyPath = [NSString stringWithFormat:@"%@.%@.%@",
+                                          NSStringFromSelector(@selector(objectValue)),
+                                          NSStringFromSelector(@selector(parent)),
+                                          NSStringFromSelector(@selector(iconImage))];
+      [[view textField] bind:NSValueBinding toObject:view withKeyPath:parentNameKeyPath options:nil];
+      [[view imageView] bind:NSValueBinding toObject:view withKeyPath:parentIconImageKeyPath options:nil];
     }
   }
   else if(isPasswordColum) {
     view = [tableView makeViewWithIdentifier:_MPTableSecurCellView owner:self];
+    NSString *passwordKeyPath = [NSString stringWithFormat:@"%@.%@",
+                                 NSStringFromSelector(@selector(objectValue)),
+                                 NSStringFromSelector(@selector(password))];
     NSDictionary *options = @{ NSValueTransformerBindingOption : [NSValueTransformer valueTransformerForName:MPStringLengthValueTransformerName] };
-    [[view textField] bind:NSValueBinding toObject:entry withKeyPath:NSStringFromSelector(@selector(password)) options:options];
+    [[view textField] bind:NSValueBinding toObject:view withKeyPath:passwordKeyPath options:options];
   }
   else  {
     view = [tableView makeViewWithIdentifier:_MPTableStringCellView owner:self];
@@ -304,21 +321,36 @@ NSString *const _MPTableSecurCellView = @"PasswordCell";
         });
         [textField setFormatter:formatter];
       }
-      [textField bind:NSValueBinding toObject:entry.timeInfo withKeyPath:NSStringFromSelector(@selector(lastModificationTime)) options:nil];
+      NSString *modificatoinTimeKeyPath = [NSString stringWithFormat:@"%@.%@.%@",
+                                           NSStringFromSelector(@selector(objectValue)),
+                                           NSStringFromSelector(@selector(timeInfo)),
+                                           NSStringFromSelector(@selector(lastModificationTime))];
+      
+      [textField bind:NSValueBinding toObject:view withKeyPath:modificatoinTimeKeyPath options:nil];
       return view;
     }
     else if(isURLColumn) {
-      [textField bind:NSValueBinding toObject:entry withKeyPath:NSStringFromSelector(@selector(url)) options:nil];
+      NSString *urlKeyPath = [NSString stringWithFormat:@"%@.%@",
+                              NSStringFromSelector(@selector(objectValue)),
+                              NSStringFromSelector(@selector(url))];
+      [textField bind:NSValueBinding toObject:view withKeyPath:urlKeyPath options:nil];
     }
     else if(isUsernameColumn) {
-      [textField bind:NSValueBinding toObject:entry withKeyPath:NSStringFromSelector(@selector(username)) options:nil];
+      NSString *usernameKeyPath = [NSString stringWithFormat:@"%@.%@",
+                                   NSStringFromSelector(@selector(objectValue)),
+                                   NSStringFromSelector(@selector(username))];
+      
+      [textField bind:NSValueBinding toObject:view withKeyPath:usernameKeyPath options:nil];
     }
     else if(isNotesColumn) {
       NSDictionary *options = @{ NSValueTransformerNameBindingOption : MPStripLineBreaksTransformerName };
-      [textField bind:NSValueBinding toObject:entry withKeyPath:NSStringFromSelector(@selector(notes)) options:options];
+      NSString *notesKeyPath = [NSString stringWithFormat:@"%@.%@",
+                               NSStringFromSelector(@selector(objectValue)),
+                               NSStringFromSelector(@selector(notes))];
+      [textField bind:NSValueBinding toObject:view withKeyPath:notesKeyPath options:options];
     }
     else if(isAttachmentColumn) {
-      [textField bind:NSValueBinding toObject:entry withKeyPath:@"binaries.@count" options:nil];
+      [textField bind:NSValueBinding toObject:view withKeyPath:@"objectValue.binaries.@count" options:nil];
     }
   }
   return view;
@@ -375,7 +407,7 @@ NSString *const _MPTableSecurCellView = @"PasswordCell";
   }
   /*
    If a group is the current item, see if we already show that group
-	 also test if an element has been selected (issue #257)
+   also test if an element has been selected (issue #257)
    */
   if(document.selectedItem == document.selectedGroup && document.selectedItem != nil) {
     if(document.hasSearch) {
