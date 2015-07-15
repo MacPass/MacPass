@@ -283,7 +283,22 @@ NSString *const MPDidChangeStoredKeyFilesSettings = @"com.hicknhack.macpass.MPDi
   if(isFileURL) {
     [documentController openDocumentWithContentsOfURL:documentUrl
                                               display:YES
-                                    completionHandler:^(NSDocument *document, BOOL documentWasAlreadyOpen, NSError *error) {}];
+                                    completionHandler:^(NSDocument *document, BOOL documentWasAlreadyOpen, NSError *error) {
+                                    
+                                      if(error != nil){
+                                        
+                                        NSAlert *alert = [[NSAlert alloc] init];
+                                        [alert setMessageText:   NSLocalizedString(@"FILE_OPEN_ERROR", nil)];
+                                        [alert setInformativeText: [error localizedDescription]];
+                                        [alert setAlertStyle:NSCriticalAlertStyle ];
+                                        [alert runModal];
+                                      }
+                                      
+                                      if(document == nil){
+                                        [self _showWelcomeWindow];
+                                      }
+                                    
+                                    }];
   }
   return isFileURL;
 }
