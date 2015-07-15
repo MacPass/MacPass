@@ -18,7 +18,6 @@
 
 @interface MPPasswordEditWindowController ()
 
-@property (nonatomic, weak) MPDocument *currentDocument;
 @property (nonatomic, assign) BOOL showPassword;
 @property (nonatomic, assign) BOOL enablePassword;
 @property (nonatomic, assign) BOOL hasValidPasswordOrKey;
@@ -32,13 +31,12 @@
   return @"PasswordEditWindow";
 }
 
-- (id)initWithDocument:(MPDocument *)document {
-  self = [super initWithWindow:nil];
+- (id)initWithWindow:(NSWindow *)window {
+  self = [super initWithWindow:window];
   if(self){
     //_allowsEmptyPasswordOrKey = YES;
     _showPassword = NO;
     _hasValidPasswordOrKey = NO;
-    _currentDocument = document;
   }
   return self;
 }
@@ -47,7 +45,8 @@
   [super windowDidLoad];
   [self.togglePasswordButton bind:NSValueBinding toObject:self withKeyPath:NSStringFromSelector(@selector(showPassword)) options:nil];
   [[self window] setDefaultButtonCell:[self.changePasswordButton cell]];
-  self.enablePassword = _currentDocument.compositeKey.hasPassword;
+  MPDocument *document = self.document;
+  self.enablePassword = document.compositeKey.hasPassword;
 }
 
 - (void)updateView {
@@ -107,7 +106,8 @@
 - (IBAction)save:(id)sender {
   const BOOL hasPassword = ([self.hasPasswordSwitchButton state] == NSOnState);
   NSString *password = hasPassword ? [self.passwordTextField stringValue] : nil;
-  [_currentDocument changePassword:password keyFileURL:[self.keyfilePathControl URL]];
+  MPDocument *document = self.document;
+  [document changePassword:password keyFileURL:[self.keyfilePathControl URL]];
   [self dismissSheet:NSRunStoppedResponse];
   if(self.delegate && [self.delegate respondsToSelector:@selector(didFinishPasswordEditing:)]) {
     [self.delegate didFinishPasswordEditing:YES];
@@ -126,7 +126,8 @@
 }
 
 - (IBAction)generateKey:(id)sender {
-  NSData *data = [NSData generateKeyfiledataForVersion:_currentDocument.tree.minimumVersion];
+  MPDocument *document = self.document;
+  NSData *data = [NSData generateKeyfiledataForVersion:document.tree.minimumVersion];
   if(data) {
     NSSavePanel *savePanel = [NSSavePanel savePanel];
     [savePanel setAllowedFileTypes:@[@"key", @"xml"]];

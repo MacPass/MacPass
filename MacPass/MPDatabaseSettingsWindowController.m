@@ -144,6 +144,9 @@
   if(!self.isDirty) {
     return;
   }
+  if(!self.document) {
+    return; // no document, just leave
+  }
   /* Update all stuff that might have changed */
   KPKMetaData *metaData = ((MPDocument *)self.document).tree.metaData;
   [self _setupDatabaseTab:metaData];
@@ -155,7 +158,7 @@
 - (void)showSettingsTab:(MPDatabaseSettingsTab)tab {
   /*
    We need to make sure the window is loaded
-   so we just call the the getter and led the loading commence
+   so we just call the the getter and let the loading commence
    */
   if(![self window]) {
     return;

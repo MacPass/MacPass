@@ -35,13 +35,6 @@
 //@property (nonatomic,assign) BOOL allowsEmptyPasswordOrKey;
 @property (weak) id<MPPasswordEditWindowDelegate> delegate;
 
-/**
- *	Dedicated initializer for the Windowcontroller
- *	@param	document	The Database document that is currently active
- *	@return	initalized windowcontroller
- */
-- (id)initWithDocument:(MPDocument *)document;
-
 - (IBAction)clearKey:(id)sender;
 - (IBAction)generateKey:(id)sender;
 
