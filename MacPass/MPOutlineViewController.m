@@ -213,13 +213,16 @@ NSString *const _MPOutlinveViewHeaderViewIdentifier = @"HeaderCell";
     [view.textField bind:NSValueBinding toObject:self  withKeyPath:NSStringFromSelector(@selector(databaseNameWrapper)) options:nil];
   }
   else {
-    KPKGroup *group = [item representedObject];
     view = [outlineView makeViewWithIdentifier:_MPOutlineViewDataViewIdentifier owner:self];
     
-    [[view imageView] bind:NSValueBinding toObject:group withKeyPath:NSStringFromSelector(@selector(iconImage)) options:nil];
-    [[view textField] bind:NSValueBinding toObject:group withKeyPath:NSStringFromSelector(@selector(name)) options:nil];
-    NSString *entriesCountKeyPath = [[NSString alloc] initWithFormat:@"%@.%@", NSStringFromSelector(@selector(entries)), @"@count"];
-    [[view textField] bind:NSStringFromSelector(@selector(count)) toObject:group withKeyPath:entriesCountKeyPath options:nil];
+    NSString *iconImageKeyPath = [NSString stringWithFormat:@"%@.%@", NSStringFromSelector(@selector(representedObject)), NSStringFromSelector(@selector(iconImage))];
+    NSString *nameKeyPath = [NSString stringWithFormat:@"%@.%@", NSStringFromSelector(@selector(representedObject)), NSStringFromSelector(@selector(name))];
+    [[view imageView] bind:NSValueBinding toObject:item withKeyPath:iconImageKeyPath options:nil];
+    [[view textField] bind:NSValueBinding toObject:item withKeyPath:nameKeyPath options:nil];
+
+    
+    NSString *entriesCountKeyPath = [[NSString alloc] initWithFormat:@"%@.%@.%@", NSStringFromSelector(@selector(representedObject)), NSStringFromSelector(@selector(entries)), @"@count"];
+    [[view textField] bind:NSStringFromSelector(@selector(count)) toObject:item withKeyPath:entriesCountKeyPath options:nil];
   }
   
   return view;
