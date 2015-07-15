@@ -134,10 +134,10 @@ NSString *const _MPTableSecurCellView = @"PasswordCell";
   [_bottomBar setBorderType:HNHBorderTop|HNHBorderHighlight];
   [self.addEntryButton setAction:[MPActionHelper actionOfType:MPActionAddEntry]];
   
-  [self.entryTable setDelegate:self];
-  [self.entryTable setDoubleAction:@selector(_columnDoubleClick:)];
-  [self.entryTable setTarget:self];
-  [self.entryTable setFloatsGroupRows:NO];
+  self.entryTable.delegate = self;
+  self.entryTable.doubleAction = @selector(_columnDoubleClick:);
+  self.entryTable.target = self;
+  self.entryTable.floatsGroupRows = NO;
   [self.entryTable registerForDraggedTypes:@[KPKEntryUTI]];
   /* First responder notifications */
   [[NSNotificationCenter defaultCenter] addObserver:self
@@ -146,55 +146,51 @@ NSString *const _MPTableSecurCellView = @"PasswordCell";
                                              object:_entryTable];
   [self _setupEntryMenu];
   
-  NSTableColumn *parentColumn = [self.entryTable tableColumns][0];
-  NSTableColumn *titleColumn = [self.entryTable tableColumns][1];
-  NSTableColumn *userNameColumn = [self.entryTable tableColumns][2];
-  NSTableColumn *passwordColumn = [self.entryTable tableColumns][3];
-  NSTableColumn *urlColumn = [self.entryTable tableColumns][4];
+  NSTableColumn *parentColumn = self.entryTable.tableColumns[0];
+  NSTableColumn *titleColumn = self.entryTable.tableColumns[1];
+  NSTableColumn *userNameColumn = self.entryTable.tableColumns[2];
+  NSTableColumn *passwordColumn = self.entryTable.tableColumns[3];
+  NSTableColumn *urlColumn = self.entryTable.tableColumns[4];
   NSTableColumn *attachmentsColumn = [[NSTableColumn alloc] initWithIdentifier:MPEntryTableAttachmentColumnIdentifier];
   NSTableColumn *notesColumn = [[NSTableColumn alloc] initWithIdentifier:MPEntryTableNotesColumnIdentifier];
   NSTableColumn *modifiedColumn = [[NSTableColumn alloc] initWithIdentifier:MPEntryTableModfiedColumnIdentifier];
-  [notesColumn setMinWidth:40.0];
-  [attachmentsColumn setMinWidth:40.0];
-  [modifiedColumn setMinWidth:40.0];
+  notesColumn.minWidth = 40.0;
+  attachmentsColumn.minWidth = 40.0;
+  modifiedColumn.minWidth = 40.0;
   [self.entryTable addTableColumn:notesColumn];
   [self.entryTable addTableColumn:attachmentsColumn];
   [self.entryTable addTableColumn:modifiedColumn];
   
-  [parentColumn setIdentifier:MPEntryTableParentColumnIdentifier];
-  [titleColumn setIdentifier:MPEntryTableTitleColumnIdentifier];
-  [userNameColumn setIdentifier:MPEntryTableUserNameColumnIdentifier];
-  [passwordColumn setIdentifier:MPEntryTablePasswordColumnIdentifier];
-  [urlColumn setIdentifier:MPEntryTableURLColumnIdentifier];
+  parentColumn.identifier = MPEntryTableParentColumnIdentifier;
+  titleColumn.identifier = MPEntryTableTitleColumnIdentifier;
+  userNameColumn.identifier = MPEntryTableUserNameColumnIdentifier;
+  passwordColumn.identifier = MPEntryTablePasswordColumnIdentifier;
+  urlColumn.identifier = MPEntryTableURLColumnIdentifier;
   
-  [self.entryTable setAutosaveName:@"EntryTable"];
-  [self.entryTable setAutosaveTableColumns:YES];
+  self.entryTable.autosaveName = @"EntryTable";
+  self.entryTable.autosaveTableColumns = YES;
+  
   
   NSString *parentNameKeyPath = [[NSString alloc] initWithFormat:@"%@.%@", NSStringFromSelector(@selector(parent)), NSStringFromSelector(@selector(name))];
-  NSSortDescriptor *titleColumSortDescriptor = [NSSortDescriptor sortDescriptorWithKey:NSStringFromSelector(@selector(title))ascending:YES selector:@selector(localizedCaseInsensitiveCompare:)];
-  NSSortDescriptor *userNameSortDescriptor = [NSSortDescriptor sortDescriptorWithKey:NSStringFromSelector(@selector(username)) ascending:YES selector:@selector(localizedCaseInsensitiveCompare:)];
-  NSSortDescriptor *urlSortDescriptor = [NSSortDescriptor sortDescriptorWithKey:NSStringFromSelector(@selector(url)) ascending:YES selector:@selector(localizedCaseInsensitiveCompare:)];
-  NSSortDescriptor *groupnameSortDescriptor = [NSSortDescriptor sortDescriptorWithKey:parentNameKeyPath ascending:YES selector:@selector(localizedCaseInsensitiveCompare:)];
-  NSSortDescriptor *dateSortDescriptor = [NSSortDescriptor sortDescriptorWithKey:[MPEntryViewController timeInfoModificationTimeKeyPath] ascending:YES selector:@selector(compare:)];
   
-  [titleColumn setSortDescriptorPrototype:titleColumSortDescriptor];
-  [userNameColumn setSortDescriptorPrototype:userNameSortDescriptor];
-  [urlColumn setSortDescriptorPrototype:urlSortDescriptor];
-  [parentColumn setSortDescriptorPrototype:groupnameSortDescriptor];
-  [modifiedColumn setSortDescriptorPrototype:dateSortDescriptor];
+  titleColumn.sortDescriptorPrototype = [NSSortDescriptor sortDescriptorWithKey:NSStringFromSelector(@selector(title))ascending:YES selector:@selector(localizedCaseInsensitiveCompare:)];
+  userNameColumn.sortDescriptorPrototype = [NSSortDescriptor sortDescriptorWithKey:NSStringFromSelector(@selector(username)) ascending:YES selector:@selector(localizedCaseInsensitiveCompare:)];
+  urlColumn.sortDescriptorPrototype = [NSSortDescriptor sortDescriptorWithKey:NSStringFromSelector(@selector(url)) ascending:YES selector:@selector(localizedCaseInsensitiveCompare:)];
+  parentColumn.sortDescriptorPrototype = [NSSortDescriptor sortDescriptorWithKey:parentNameKeyPath ascending:YES selector:@selector(localizedCaseInsensitiveCompare:)];
+  modifiedColumn.sortDescriptorPrototype = [NSSortDescriptor sortDescriptorWithKey:[MPEntryViewController timeInfoModificationTimeKeyPath] ascending:YES selector:@selector(compare:)];
   
-  [[parentColumn headerCell] setStringValue:NSLocalizedString(@"GROUP", "")];
-  [[titleColumn headerCell] setStringValue:NSLocalizedString(@"TITLE", "")];
-  [[userNameColumn headerCell] setStringValue:NSLocalizedString(@"USERNAME", "")];
-  [[passwordColumn headerCell] setStringValue:NSLocalizedString(@"PASSWORD", "")];
-  [[urlColumn headerCell] setStringValue:NSLocalizedString(@"URL", "")];
-  [[notesColumn headerCell] setStringValue:NSLocalizedString(@"NOTES", "")];
-  [[attachmentsColumn headerCell] setStringValue:NSLocalizedString(@"ATTACHMENTS", "")];
-  [[modifiedColumn headerCell] setStringValue:NSLocalizedString(@"MODIFIED", "")];
+  [parentColumn.headerCell setStringValue:NSLocalizedString(@"GROUP", "")];
+  [titleColumn.headerCell setStringValue:NSLocalizedString(@"TITLE", "")];
+  [userNameColumn.headerCell setStringValue:NSLocalizedString(@"USERNAME", "")];
+  [passwordColumn.headerCell setStringValue:NSLocalizedString(@"PASSWORD", "")];
+  [urlColumn.headerCell setStringValue:NSLocalizedString(@"URL", "")];
+  [notesColumn.headerCell setStringValue:NSLocalizedString(@"NOTES", "")];
+  [attachmentsColumn.headerCell setStringValue:NSLocalizedString(@"ATTACHMENTS", "")];
+  [modifiedColumn.headerCell setStringValue:NSLocalizedString(@"MODIFIED", "")];
   
   [self.entryTable bind:NSContentBinding toObject:self.entryArrayController withKeyPath:NSStringFromSelector(@selector(arrangedObjects)) options:nil];
   [self.entryTable bind:NSSortDescriptorsBinding toObject:self.entryArrayController withKeyPath:NSStringFromSelector(@selector(sortDescriptors)) options:nil];
-  [self.entryTable setDataSource:_dataSource];
+  self.entryTable.dataSource = self.dataSource;
   
   // bind NSArrayController sorting so that sort order gets auto-saved
   // see: http://simx.me/technonova/software_development/sort_descriptors_nstableview_bindings_a.html
@@ -204,7 +200,7 @@ NSString *const _MPTableSecurCellView = @"PasswordCell";
                           options:@{ NSValueTransformerNameBindingOption: NSUnarchiveFromDataTransformerName }];
   
   [self _setupHeaderMenu];
-  [parentColumn setHidden:YES];
+  parentColumn.hidden = YES;
 }
 
 - (NSResponder *)reconmendedFirstResponder {
@@ -256,14 +252,14 @@ NSString *const _MPTableSecurCellView = @"PasswordCell";
 
 - (NSView *)tableView:(NSTableView *)tableView viewForTableColumn:(NSTableColumn *)tableColumn row:(NSInteger)row {
   
-  BOOL isTitleColumn = [[tableColumn identifier] isEqualToString:MPEntryTableTitleColumnIdentifier];
-  BOOL isGroupColumn = [[tableColumn identifier] isEqualToString:MPEntryTableParentColumnIdentifier];
-  BOOL isPasswordColum = [[tableColumn identifier] isEqualToString:MPEntryTablePasswordColumnIdentifier];
-  BOOL isUsernameColumn = [[tableColumn identifier] isEqualToString:MPEntryTableUserNameColumnIdentifier];
-  BOOL isURLColumn = [[tableColumn identifier] isEqualToString:MPEntryTableURLColumnIdentifier];
-  BOOL isAttachmentColumn = [[tableColumn identifier] isEqualToString:MPEntryTableAttachmentColumnIdentifier];
-  BOOL isNotesColumn = [[tableColumn identifier] isEqualToString:MPEntryTableNotesColumnIdentifier];
-  BOOL isModifedColumn = [[tableColumn identifier] isEqualToString:MPEntryTableModfiedColumnIdentifier];
+  BOOL isTitleColumn = [tableColumn.identifier isEqualToString:MPEntryTableTitleColumnIdentifier];
+  BOOL isGroupColumn = [tableColumn.identifier isEqualToString:MPEntryTableParentColumnIdentifier];
+  BOOL isPasswordColum = [tableColumn.identifier isEqualToString:MPEntryTablePasswordColumnIdentifier];
+  BOOL isUsernameColumn = [tableColumn.identifier isEqualToString:MPEntryTableUserNameColumnIdentifier];
+  BOOL isURLColumn = [tableColumn.identifier isEqualToString:MPEntryTableURLColumnIdentifier];
+  BOOL isAttachmentColumn = [tableColumn.identifier isEqualToString:MPEntryTableAttachmentColumnIdentifier];
+  BOOL isNotesColumn = [tableColumn.identifier isEqualToString:MPEntryTableNotesColumnIdentifier];
+  BOOL isModifedColumn = [tableColumn.identifier isEqualToString:MPEntryTableModfiedColumnIdentifier];
   
   NSTableCellView *view = nil;
   if(isTitleColumn || isGroupColumn) {
@@ -275,8 +271,8 @@ NSString *const _MPTableSecurCellView = @"PasswordCell";
       NSString *iconImageKeyPath = [NSString stringWithFormat:@"%@.%@",
                                     NSStringFromSelector(@selector(objectValue)),
                                     NSStringFromSelector(@selector(iconImage))];
-      [[view textField] bind:NSValueBinding toObject:view withKeyPath:titleKeyPath options:nil];
-      [[view imageView] bind:NSValueBinding toObject:view withKeyPath:iconImageKeyPath options:nil];
+      [view.textField bind:NSValueBinding toObject:view withKeyPath:titleKeyPath options:nil];
+      [view.imageView bind:NSValueBinding toObject:view withKeyPath:iconImageKeyPath options:nil];
     }
     else {
       KPKEntry *entry = [self.entryArrayController arrangedObjects][row];
@@ -290,8 +286,8 @@ NSString *const _MPTableSecurCellView = @"PasswordCell";
                                           NSStringFromSelector(@selector(objectValue)),
                                           NSStringFromSelector(@selector(parent)),
                                           NSStringFromSelector(@selector(iconImage))];
-      [[view textField] bind:NSValueBinding toObject:view withKeyPath:parentNameKeyPath options:nil];
-      [[view imageView] bind:NSValueBinding toObject:view withKeyPath:parentIconImageKeyPath options:nil];
+      [view.textField bind:NSValueBinding toObject:view withKeyPath:parentNameKeyPath options:nil];
+      [view.imageView bind:NSValueBinding toObject:view withKeyPath:parentIconImageKeyPath options:nil];
     }
   }
   else if(isPasswordColum) {
@@ -300,17 +296,16 @@ NSString *const _MPTableSecurCellView = @"PasswordCell";
                                  NSStringFromSelector(@selector(objectValue)),
                                  NSStringFromSelector(@selector(password))];
     NSDictionary *options = @{ NSValueTransformerBindingOption : [NSValueTransformer valueTransformerForName:MPStringLengthValueTransformerName] };
-    [[view textField] bind:NSValueBinding toObject:view withKeyPath:passwordKeyPath options:options];
+    [view.textField bind:NSValueBinding toObject:view withKeyPath:passwordKeyPath options:options];
   }
   else  {
     view = [tableView makeViewWithIdentifier:_MPTableStringCellView owner:self];
-    NSTextField *textField = [view textField];
     if(!isModifedColumn) {
       /* clean up old formatter that might be left */
-      [textField setFormatter:nil];
+      view.textField.formatter = nil;
     }
     if(isModifedColumn) {
-      if(![[view textField] formatter]) {
+      if(!view.textField.formatter) {
         /* Just use one formatter instance since it's expensive to create */
         static NSDateFormatter *formatter = nil;
         static dispatch_once_t onceToken;
@@ -319,38 +314,41 @@ NSString *const _MPTableSecurCellView = @"PasswordCell";
           [formatter setDateStyle:NSDateFormatterMediumStyle];
           [formatter setTimeStyle:NSDateFormatterMediumStyle];
         });
-        [textField setFormatter:formatter];
+        view.textField.formatter = formatter;
       }
       NSString *modificatoinTimeKeyPath = [NSString stringWithFormat:@"%@.%@.%@",
                                            NSStringFromSelector(@selector(objectValue)),
                                            NSStringFromSelector(@selector(timeInfo)),
                                            NSStringFromSelector(@selector(lastModificationTime))];
       
-      [textField bind:NSValueBinding toObject:view withKeyPath:modificatoinTimeKeyPath options:nil];
+      [view.textField bind:NSValueBinding toObject:view withKeyPath:modificatoinTimeKeyPath options:nil];
       return view;
     }
     else if(isURLColumn) {
       NSString *urlKeyPath = [NSString stringWithFormat:@"%@.%@",
                               NSStringFromSelector(@selector(objectValue)),
                               NSStringFromSelector(@selector(url))];
-      [textField bind:NSValueBinding toObject:view withKeyPath:urlKeyPath options:nil];
+      [view.textField bind:NSValueBinding toObject:view withKeyPath:urlKeyPath options:nil];
     }
     else if(isUsernameColumn) {
       NSString *usernameKeyPath = [NSString stringWithFormat:@"%@.%@",
                                    NSStringFromSelector(@selector(objectValue)),
                                    NSStringFromSelector(@selector(username))];
       
-      [textField bind:NSValueBinding toObject:view withKeyPath:usernameKeyPath options:nil];
+      [view.textField bind:NSValueBinding toObject:view withKeyPath:usernameKeyPath options:nil];
     }
     else if(isNotesColumn) {
       NSDictionary *options = @{ NSValueTransformerNameBindingOption : MPStripLineBreaksTransformerName };
       NSString *notesKeyPath = [NSString stringWithFormat:@"%@.%@",
                                NSStringFromSelector(@selector(objectValue)),
                                NSStringFromSelector(@selector(notes))];
-      [textField bind:NSValueBinding toObject:view withKeyPath:notesKeyPath options:options];
+      [view.textField bind:NSValueBinding toObject:view withKeyPath:notesKeyPath options:options];
     }
     else if(isAttachmentColumn) {
-      [textField bind:NSValueBinding toObject:view withKeyPath:@"objectValue.binaries.@count" options:nil];
+      NSString *binariesCoundKeyPath = [NSString stringWithFormat:@"%@.%@.@count",
+                                       NSStringFromSelector(@selector(objectValue)),
+                                       NSStringFromSelector(@selector(binaries))];
+      [view.textField bind:NSValueBinding toObject:view withKeyPath:binariesCoundKeyPath options:nil];
     }
   }
   return view;
