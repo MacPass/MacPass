@@ -87,6 +87,7 @@
 		4C305F36179A0BD70082334F /* KPKIcon.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C305F35179A0BD70082334F /* KPKIcon.m */; };
 		4C305F3C179A19F90082334F /* KPKIconLoading.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C305F3B179A19F90082334F /* KPKIconLoading.m */; };
 		4C305F3E179A1A760082334F /* image.png in Resources */ = {isa = PBXBuildFile; fileRef = 4C305F3D179A1A760082334F /* image.png */; };
+		4C31FEB31B57CDDB008E7CE3 /* MPPluginManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C31FEB21B57CDDB008E7CE3 /* MPPluginManager.m */; };
 		4C32B0E71A1D4436007E12F1 /* KPKFormat+MPUTIDetection.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C32B0E61A1D4436007E12F1 /* KPKFormat+MPUTIDetection.m */; };
 		4C3666411787327E00B249F1 /* MPDocument+Attachments.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C3666401787327E00B249F1 /* MPDocument+Attachments.m */; };
 		4C37A6731769393300AD0A40 /* HNHTableHeaderCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C37A6721769393300AD0A40 /* HNHTableHeaderCell.m */; };
@@ -576,6 +577,9 @@
 		4C305F35179A0BD70082334F /* KPKIcon.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KPKIcon.m; sourceTree = "<group>"; };
 		4C305F3B179A19F90082334F /* KPKIconLoading.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KPKIconLoading.m; sourceTree = "<group>"; };
 		4C305F3D179A1A760082334F /* image.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = image.png; path = Images/image.png; sourceTree = "<group>"; };
+		4C31FEB11B57CDDB008E7CE3 /* MPPluginManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MPPluginManager.h; sourceTree = "<group>"; };
+		4C31FEB21B57CDDB008E7CE3 /* MPPluginManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MPPluginManager.m; sourceTree = "<group>"; };
+		4C31FEBD1B57CE45008E7CE3 /* MPGenericPlugin.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MPGenericPlugin.h; sourceTree = "<group>"; };
 		4C32B0E51A1D4436007E12F1 /* KPKFormat+MPUTIDetection.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "KPKFormat+MPUTIDetection.h"; sourceTree = "<group>"; };
 		4C32B0E61A1D4436007E12F1 /* KPKFormat+MPUTIDetection.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "KPKFormat+MPUTIDetection.m"; sourceTree = "<group>"; };
 		4C3666401787327E00B249F1 /* MPDocument+Attachments.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "MPDocument+Attachments.m"; sourceTree = "<group>"; };
@@ -1456,6 +1460,16 @@
 			name = Images;
 			sourceTree = "<group>";
 		};
+		4C31FEBC1B57CDE0008E7CE3 /* Plugins */ = {
+			isa = PBXGroup;
+			children = (
+				4C31FEB11B57CDDB008E7CE3 /* MPPluginManager.h */,
+				4C31FEB21B57CDDB008E7CE3 /* MPPluginManager.m */,
+				4C31FEBD1B57CE45008E7CE3 /* MPGenericPlugin.h */,
+			);
+			name = Plugins;
+			sourceTree = "<group>";
+		};
 		4C37A84115B8B47D005EF8EE /* Delegates */ = {
 			isa = PBXGroup;
 			children = (
@@ -1758,6 +1772,7 @@
 		4C77E36C15B84A240093A587 /* MacPass */ = {
 			isa = PBXGroup;
 			children = (
+				4C31FEBC1B57CDE0008E7CE3 /* Plugins */,
 				4C217D8E17A32BCF00609FAA /* Common */,
 				4C104129178CDD26001B5239 /* Categories */,
 				4C245C11176E22150086100E /* KeepassHttp */,
@@ -2732,6 +2747,7 @@
 				4C5CD35A17D15DBD000B7F38 /* NSString+Hexdata.m in Sources */,
 				4C5CD36117D15DCA000B7F38 /* KPKArc4RandomStream.m in Sources */,
 				4C5CD36217D15DCA000B7F38 /* KPKRandomStream.m in Sources */,
+				4C31FEB31B57CDDB008E7CE3 /* MPPluginManager.m in Sources */,
 				4C5CD36317D15DCA000B7F38 /* KPKSalsa20RandomStream.m in Sources */,
 				4C3C4EA518D6FEA100153127 /* TTTImageTransformers.m in Sources */,
 				4CC6DB7A17D23719002C6091 /* KPKNode+IconImage.m in Sources */,
