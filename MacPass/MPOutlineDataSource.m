@@ -99,7 +99,7 @@
         validTarget &= index != NSOutlineViewDropOnItemIndex;
         validTarget &= index != [self.localDraggedGroup.parent.groups indexOfObject:self.localDraggedGroup];
       }
-      BOOL isAnchesor = [self.localDraggedGroup isAnchestorOfGroup:targetGroup];
+      BOOL isAnchesor = [self.localDraggedGroup isAnchestorOf:targetGroup];
       validTarget &= !isAnchesor;
     }
     else {

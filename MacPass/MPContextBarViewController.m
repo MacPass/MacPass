@@ -8,6 +8,8 @@
 
 #import "MPContextBarViewController.h"
 #import "KPKEntry.h"
+#import "KPKTree.h"
+#import "KPKMetaData.h"
 
 #import "MPDocument+HistoryBrowsing.h"
 #import "MPDocument+Search.h"
@@ -117,7 +119,8 @@ typedef NS_ENUM(NSUInteger, MPContextTab) {
 
 - (void)_didChangeCurrentItem:(NSNotification *)notification {
   MPDocument *document = [notification object];
-  BOOL showTrash = document.useTrash && (document.selectedGroup == document.trash || [document isItemTrashed:document.selectedItem]);
+
+  BOOL showTrash = document.tree.metaData.useTrash && (document.selectedItem.isTrashed || document.selectedItem.isTrash);
   if(showTrash && ! document.hasSearch) {
     self.activeTab = MPContextTabTrash;
     [self _updateBindings];

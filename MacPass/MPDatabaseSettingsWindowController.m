@@ -80,10 +80,10 @@
   }
     
   /* Advanced */
-  metaData.recycleBinEnabled = self.trashEnabled;
-  NSMenuItem *trashMenuItem = [self.selectRecycleBinGroupPopUpButton selectedItem];
+  metaData.useTrash = self.trashEnabled;
+  NSMenuItem *trashMenuItem = [self.selectTrashGoupPopUpButton selectedItem];
   KPKGroup *trashGroup = [trashMenuItem representedObject];
-  ((MPDocument *)self.document).trash  = trashGroup;
+  ((MPDocument *)self.document).tree.trash  = trashGroup;
   
   NSMenuItem *templateMenuItem = [self.templateGroupPopUpButton selectedItem];
   KPKGroup *templateGroup = [templateMenuItem representedObject];
@@ -202,9 +202,9 @@
 
 - (void)_setupAdvancedTab:(KPKTree *)tree {
   /* TODO Do not use bindings, as the user should be able to cancel */
-  [self bind:@"trashEnabled" toObject:tree.metaData withKeyPath:@"recycleBinEnabled" options:nil];
-  [self.enableRecycleBinCheckButton bind:NSValueBinding toObject:self withKeyPath:@"trashEnabled" options:nil];
-  [self.selectRecycleBinGroupPopUpButton bind:NSEnabledBinding toObject:self withKeyPath:@"trashEnabled" options:nil];
+  [self bind:NSStringFromSelector(@selector(trashEnabled)) toObject:tree.metaData withKeyPath:NSStringFromSelector(@selector(trashEnabled)) options:nil];
+  [self.enableTrashCheckButton bind:NSValueBinding toObject:self withKeyPath:NSStringFromSelector(@selector(trashEnabled)) options:nil];
+  [self.selectTrashGoupPopUpButton bind:NSEnabledBinding toObject:self withKeyPath:NSStringFromSelector(@selector(trashEnabled)) options:nil];
   [self _updateTrashFolders:tree];
   
   [self.defaultUsernameTextField setStringValue:tree.metaData.defaultUserName];
@@ -253,7 +253,7 @@
 
 - (void)_updateTrashFolders:(KPKTree *)tree {
   NSMenu *menu = [self _buildTrashTreeMenu:tree];
-  [self.selectRecycleBinGroupPopUpButton setMenu:menu];
+  [self.selectTrashGoupPopUpButton setMenu:menu];
 }
 
 - (void)_updateTemplateGroup:(KPKTree *)tree {
@@ -262,7 +262,7 @@
 }
 
 - (NSMenu *)_buildTrashTreeMenu:(KPKTree *)tree {
-  NSMenu *menu = [self _buildTreeMenu:tree preselect:tree.metaData.recycleBinUuid];
+  NSMenu *menu = [self _buildTreeMenu:tree preselect:tree.metaData.trashUuid];
   
   NSMenuItem *selectItem = [[NSMenuItem alloc] initWithTitle:NSLocalizedString(@"AUTOCREATE_TRASH_FOLDER", @"Menu item for automatic trash creation")
                                                       action:NULL

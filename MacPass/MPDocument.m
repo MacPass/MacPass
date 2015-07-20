@@ -364,15 +364,7 @@ NSString *const MPDocumentGroupKey                        = @"MPDocumentGroupKey
 }
 
 - (KPKGroup *)trash {
-  /* Caching is dangerous, as we might have deleted the trashcan */
-  if(self.useTrash) {
-    return [self findGroup:self.tree.metaData.recycleBinUuid];
-  }
-  return nil;
-}
-
-- (BOOL)useTrash {
-  return self.tree.metaData.recycleBinEnabled;
+  return self.tree.trash;
 }
 
 - (KPKGroup *)templates {
@@ -382,14 +374,6 @@ NSString *const MPDocumentGroupKey                        = @"MPDocumentGroupKey
 
 - (BOOL)hasSearch {
   return self.searchContext != nil;
-}
-
-- (void)setTrash:(KPKGroup *)trash {
-  if(self.useTrash) {
-    if(![self.tree.metaData.recycleBinUuid isEqual:trash.uuid]) {
-      self.tree.metaData.recycleBinUuid = trash.uuid;
-    }
-  }
 }
 
 - (void)setTemplates:(KPKGroup *)templates {
@@ -447,26 +431,6 @@ NSString *const MPDocumentGroupKey                        = @"MPDocumentGroupKey
   return self.tree.allGroups;
 }
 
-- (BOOL)isItemTrashed:(id)item {
-  BOOL validItem = [item isKindOfClass:[KPKEntry class]] || [item isKindOfClass:[KPKGroup class]];
-  if(!item) {
-    return NO;
-  }
-  if(item == self.trash) {
-    return NO; // No need to look further as this is the trashcan
-  }
-  if(validItem) {
-    BOOL isTrashed = NO;
-    id parent = [item parent];
-    while( parent && !isTrashed ) {
-      isTrashed = (parent == self.trash);
-      parent = [parent parent];
-    }
-    return isTrashed;
-  }
-  return NO;
-}
-
 - (BOOL)shouldEnforcePasswordChange {
   KPKMetaData *metaData = self.tree.metaData;
   if(!metaData.enforceMasterKeyChange) { return NO; }
@@ -484,11 +448,8 @@ NSString *const MPDocumentGroupKey                        = @"MPDocumentGroupKey
   if(!parent) {
     return nil; // No parent
   }
-  if(parent == self.trash) {
+  if(parent.isTrash || parent.isTrashed) {
     return nil; // no new Groups in trash
-  }
-  if([self isItemTrashed:parent]) {
-    return nil;
   }
   KPKEntry *newEntry = [self.tree createEntry:parent];
   newEntry.title = NSLocalizedString(@"DEFAULT_ENTRY_TITLE", @"Title for a newly created entry");
@@ -510,11 +471,8 @@ NSString *const MPDocumentGroupKey                        = @"MPDocumentGroupKey
   if(!parent) {
     return nil; // no parent!
   }
-  if(parent == self.trash) {
+  if(parent.isTrash || parent.isTrashed) {
     return nil; // no new Groups in trash
-  }
-  if([self isItemTrashed:parent]) {
-    return nil;
   }
   KPKGroup *newGroup = [self.tree createGroup:parent];
   newGroup.name = NSLocalizedString(@"DEFAULT_GROUP_NAME", @"Title for a newly created group");
@@ -547,8 +505,8 @@ NSString *const MPDocumentGroupKey                        = @"MPDocumentGroupKey
   if(!entry) {
     return; // Nothing to do;
   }
-  if(self.useTrash) {
-    if([self isItemTrashed:entry]) {
+  if(self.tree.metaData.useTrash) {
+    if(entry.isTrashed) {
       [self _presentTrashAlertForItem:entry];
       return;
     }
@@ -571,8 +529,8 @@ NSString *const MPDocumentGroupKey                        = @"MPDocumentGroupKey
   if(!group) {
     return; // Nothing to do;
   }
-  if(self.useTrash) {
-    if([self isItemTrashed:group]) {
+  if(self.tree.metaData.useTrash) {
+    if(group.isTrashed) {
       [self _presentTrashAlertForItem:group];
       return;
     }
@@ -580,7 +538,7 @@ NSString *const MPDocumentGroupKey                        = @"MPDocumentGroupKey
       [self _createTrashGroup];
     }
     if(group == self.trash) {
-      return; //Groups is trash!
+      return; //Group is trash!
     }
     [group moveToGroup:self.trash atIndex:[self.trash.groups count]];
     [[self undoManager] setActionName:NSLocalizedString(@"TRASH_GROUP", "Move Group to Trash")];
@@ -717,17 +675,18 @@ NSString *const MPDocumentGroupKey                        = @"MPDocumentGroupKey
   switch([MPActionHelper typeForAction:[anItem action]]) {
     case MPActionAddGroup:
       valid &= (nil != targetGroup);
-      valid &= (self.trash != targetGroup);
-      valid &= ![self isItemTrashed:targetGroup];
+      valid &= !targetGroup.isTrash;
+      valid &= !targetGroup.isTrashed;
       break;
     case MPActionAddEntry:
       valid &= (nil != targetGroup);
-      valid &= (self.trash != targetGroup);
-      valid &= ![self isItemTrashed:targetGroup];
+      valid &= !targetGroup.isTrash;
+      valid &= !targetGroup.isTrashed;
       break;
     case MPActionDelete:
       valid &= (nil != targetNode);
       valid &= (self.trash != targetNode);
+      valid &= (targetNode != self.tree.root);
       //valid &= ![self isItemTrashed:targetNode];
       break;
     case MPActionDuplicateEntry:
@@ -798,7 +757,7 @@ NSString *const MPDocumentGroupKey                        = @"MPDocumentGroupKey
   if(wasEnabled) {
     [self.undoManager enableUndoRegistration];
   }
-  self.tree.metaData.recycleBinUuid = trash.uuid;
+  self.tree.metaData.trashUuid = trash.uuid;
   return trash;
 }
 

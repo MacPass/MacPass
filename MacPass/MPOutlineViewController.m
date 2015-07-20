@@ -279,14 +279,8 @@ NSString *const _MPOutlinveViewHeaderViewIdentifier = @"HeaderCell";
   if(![document validateUserInterfaceItem:menuItem]) {
     return NO;
   }
-  id selected = [[self currentTargetNode] asGroup];
-  if(!selected) {
-    return NO;
-  }
-  if(selected == document.trash) {
-    return NO;
-  }
-  return ![document isItemTrashed:selected];
+  KPKGroup *group = [[self currentTargetNode] asGroup];
+  return group.isTrash && group.isTrashed;
 }
 
 - (NSMenu *)_contextMenu {

@@ -37,6 +37,7 @@
 #import "KPKNode+IconImage.h"
 #import "KPKAttribute.h"
 #import "KPKTimeInfo.h"
+#import "KPKTree.h"
 #import "KPKMetaData.h"
 
 #import "HNHTableHeaderCell.h"
@@ -503,7 +504,7 @@ NSString *const _MPTableSecurCellView = @"PasswordCell";
 - (void)_updateContextBar {
   MPDocument *document = [[self windowController] document];
   if(!document.hasSearch) {
-    BOOL showTrash = document.useTrash && (document.selectedGroup == document.trash || [document isItemTrashed:document.selectedItem]);
+    BOOL showTrash = document.tree.metaData.useTrash && (document.selectedGroup.isTrash || document.selectedItem.isTrashed);
     if(showTrash) {
       [self _showContextBar];
     }

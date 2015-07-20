@@ -67,8 +67,6 @@ APPKIT_EXTERN NSString *const MPDocumentGroupKey;
 
 @property (strong, readonly, nonatomic) KPKTree *tree;
 @property (nonatomic, weak, readonly) KPKGroup *root;
-@property (nonatomic, weak) KPKGroup *trash;
-@property (nonatomic, readonly) BOOL useTrash;
 @property (nonatomic, weak) KPKGroup *templates;
 
 @property (nonatomic, strong, readonly) KPKCompositeKey *compositeKey;
@@ -146,15 +144,6 @@ APPKIT_EXTERN NSString *const MPDocumentGroupKey;
 
 - (BOOL)shouldRecommendPasswordChange;
 - (BOOL)shouldEnforcePasswordChange;
-
-/**
- *  Determines, whether the given item is inside the trash.
- *  The trash group itself is not considered as trashed.
- *  Hence when sending this message with the trash group as item, NO is returned
- *  @param item Item to test if trashed or not
- *  @return YES, if the item is inside the trash, NO otherwise (and if item is trash group)
- */
-- (BOOL)isItemTrashed:(id)item;
 
 - (void)writeXMLToURL:(NSURL *)url;
 - (void)readXMLfromURL:(NSURL *)url;

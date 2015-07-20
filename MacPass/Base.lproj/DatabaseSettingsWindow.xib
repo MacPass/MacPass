@@ -1,8 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="6254" systemVersion="13F34" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="7706" systemVersion="14E46" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
     <dependencies>
-        <deployment identifier="macosx"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="6254"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="7706"/>
     </dependencies>
     <objects>
         <customObject id="-2" userLabel="File's Owner" customClass="MPDatabaseSettingsWindowController">
@@ -13,8 +12,8 @@
                 <outlet property="databaseDescriptionTextView" destination="1531" id="1553"/>
                 <outlet property="databaseNameTextField" destination="231" id="655"/>
                 <outlet property="defaultUsernameTextField" destination="1730" id="1819"/>
-                <outlet property="emptyRecycleBinOnQuitCheckButton" destination="539" id="689"/>
-                <outlet property="enableRecycleBinCheckButton" destination="535" id="815"/>
+                <outlet property="emptyTrashOnQuitCheckButton" destination="539" id="pgQ-AP-HB2"/>
+                <outlet property="enableTrashCheckButton" destination="535" id="UNd-h9-aw3"/>
                 <outlet property="encryptionRoundsTextField" destination="1647" id="1773"/>
                 <outlet property="enforceKeyChangeCheckButton" destination="upv-b3-vCc" id="JjM-CX-15q"/>
                 <outlet property="enforceKeyChangeIntervalTextField" destination="VYh-cm-fix" id="aqu-Dm-tlH"/>
@@ -26,7 +25,7 @@
                 <outlet property="recommendKeyChangeCheckButton" destination="Hqc-B0-xyz" id="3CK-D7-b8S"/>
                 <outlet property="recommendKeyChangeIntervalTextField" destination="19r-LE-7X5" id="c5C-1h-LpD"/>
                 <outlet property="sectionTabView" destination="357" id="699"/>
-                <outlet property="selectRecycleBinGroupPopUpButton" destination="678" id="690"/>
+                <outlet property="selectTrashGoupPopUpButton" destination="678" id="MmE-QI-reD"/>
                 <outlet property="templateGroupPopUpButton" destination="1738" id="1796"/>
                 <outlet property="window" destination="1" id="265"/>
             </connections>

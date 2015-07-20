@@ -38,9 +38,9 @@ typedef NS_ENUM(NSUInteger, MPDatabaseSettingsTab) {
 @property (weak) IBOutlet NSButton *benchmarkButton;
 
 /* Advanced Tab*/
-@property (weak) IBOutlet NSButton *enableRecycleBinCheckButton;
-@property (weak) IBOutlet NSButton *emptyRecycleBinOnQuitCheckButton;
-@property (weak) IBOutlet NSPopUpButton *selectRecycleBinGroupPopUpButton;
+@property (weak) IBOutlet NSButton *enableTrashCheckButton;
+@property (weak) IBOutlet NSButton *emptyTrashOnQuitCheckButton;
+@property (weak) IBOutlet NSPopUpButton *selectTrashGoupPopUpButton;
 @property (weak) IBOutlet NSTextField *defaultUsernameTextField;
 @property (weak) IBOutlet NSPopUpButton *templateGroupPopUpButton;
 
