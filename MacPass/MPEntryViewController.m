@@ -101,7 +101,7 @@ NSString *const _MPTableSecurCellView = @"PasswordCell";
 + (NSString *)timeInfoModificationTimeKeyPath {
   static NSString *timeInfoModificationTimeKeyPath;
   if(nil == timeInfoModificationTimeKeyPath) {
-    timeInfoModificationTimeKeyPath = [[NSString alloc] initWithFormat:@"%@.%@", NSStringFromSelector(@selector(timeInfo)), NSStringFromSelector(@selector(lastModificationTime))];
+    timeInfoModificationTimeKeyPath = [[NSString alloc] initWithFormat:@"%@.%@", NSStringFromSelector(@selector(timeInfo)), NSStringFromSelector(@selector(modificationDate))];
   }
   return timeInfoModificationTimeKeyPath;
 }
@@ -320,7 +320,7 @@ NSString *const _MPTableSecurCellView = @"PasswordCell";
       NSString *modificatoinTimeKeyPath = [NSString stringWithFormat:@"%@.%@.%@",
                                            NSStringFromSelector(@selector(objectValue)),
                                            NSStringFromSelector(@selector(timeInfo)),
-                                           NSStringFromSelector(@selector(lastModificationTime))];
+                                           NSStringFromSelector(@selector(modificationDate))];
       
       [view.textField bind:NSValueBinding toObject:view withKeyPath:modificatoinTimeKeyPath options:nil];
       return view;

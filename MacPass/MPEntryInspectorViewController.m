@@ -382,7 +382,7 @@ typedef NS_ENUM(NSUInteger, MPEntryTab) {
     [self.URLTextField bind:NSValueBinding toObject:self.entry withKeyPath:NSStringFromSelector(@selector(url)) options:nil];
     [self.expiresCheckButton bind:NSTitleBinding
                          toObject:self.entry.timeInfo
-                      withKeyPath:NSStringFromSelector(@selector(expiryTime))
+                      withKeyPath:NSStringFromSelector(@selector(expirationDate))
                           options:@{ NSValueTransformerNameBindingOption:MPExpiryDateValueTransformer }];
     [self.expiresCheckButton bind:NSValueBinding toObject:self.entry.timeInfo withKeyPath:NSStringFromSelector(@selector(expires)) options:nil];
     [self.tagsTokenField bind:NSValueBinding toObject:self.entry withKeyPath:NSStringFromSelector(@selector(tags)) options:nil];

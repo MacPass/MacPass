@@ -158,7 +158,7 @@
 		4C45FB1D178E09ED0010007D /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4C77E36615B84A240093A587 /* Cocoa.framework */; };
 		4C45FB23178E09ED0010007D /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 4C45FB21178E09ED0010007D /* InfoPlist.strings */; };
 		4C45FB2D178E0BCB0010007D /* MPDatabaseLoading.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C45FB2C178E0BCB0010007D /* MPDatabaseLoading.m */; };
-		4C45FB30178E0CE20010007D /* MPDatabaseCreation.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C45FB2F178E0CE20010007D /* MPDatabaseCreation.m */; };
+		4C45FB30178E0CE20010007D /* MPTestDocument.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C45FB2F178E0CE20010007D /* MPTestDocument.m */; };
 		4C46B88517063A070046109A /* NSString+MPPasswordCreation.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C46B88417063A070046109A /* NSString+MPPasswordCreation.m */; };
 		4C46E09E17673A0A00DA62E8 /* HNHShadowBox.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C46E09D17673A0A00DA62E8 /* HNHShadowBox.m */; };
 		4C473A7F18AFD6340073FD2E /* KPKTestReference.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C473A7E18AFD6340073FD2E /* KPKTestReference.m */; };
@@ -669,7 +669,7 @@
 		4C45FB22178E09ED0010007D /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		4C45FB27178E09ED0010007D /* MacPassTests-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "MacPassTests-Prefix.pch"; sourceTree = "<group>"; };
 		4C45FB2C178E0BCB0010007D /* MPDatabaseLoading.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MPDatabaseLoading.m; sourceTree = "<group>"; };
-		4C45FB2F178E0CE20010007D /* MPDatabaseCreation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MPDatabaseCreation.m; sourceTree = "<group>"; };
+		4C45FB2F178E0CE20010007D /* MPTestDocument.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MPTestDocument.m; sourceTree = "<group>"; };
 		4C46B88317063A070046109A /* NSString+MPPasswordCreation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+MPPasswordCreation.h"; sourceTree = "<group>"; };
 		4C46B88417063A070046109A /* NSString+MPPasswordCreation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+MPPasswordCreation.m"; sourceTree = "<group>"; };
 		4C46E09C17673A0A00DA62E8 /* HNHShadowBox.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HNHShadowBox.h; sourceTree = "<group>"; };
@@ -1559,7 +1559,7 @@
 				4C305F3F179A1A790082334F /* Images */,
 				4C18F9AC178E123200890BCE /* Databases */,
 				4C45FB2C178E0BCB0010007D /* MPDatabaseLoading.m */,
-				4C45FB2F178E0CE20010007D /* MPDatabaseCreation.m */,
+				4C45FB2F178E0CE20010007D /* MPTestDocument.m */,
 				4C19E502178E2871002F2CD0 /* MPDatabasePasswordAndKeyfile.m */,
 				4C6BC65F1A36717E00BDDF3D /* MPDatabaseSearch.m */,
 				4C45FB1F178E09ED0010007D /* Supporting Files */,
@@ -2518,7 +2518,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				4C45FB2D178E0BCB0010007D /* MPDatabaseLoading.m in Sources */,
-				4C45FB30178E0CE20010007D /* MPDatabaseCreation.m in Sources */,
+				4C45FB30178E0CE20010007D /* MPTestDocument.m in Sources */,
 				4C473A7F18AFD6340073FD2E /* KPKTestReference.m in Sources */,
 				4CD25F9318B17A17006098E9 /* KPKTestUUIDAdditions.m in Sources */,
 				4C19E503178E2871002F2CD0 /* MPDatabasePasswordAndKeyfile.m in Sources */,

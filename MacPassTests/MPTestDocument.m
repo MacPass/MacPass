@@ -12,18 +12,27 @@
 #import "KPKTree.h"
 #import "KPKCompositeKey.h"
 
-@interface MPDatabaseCreation : XCTestCase
+@interface MPTestDocument : XCTestCase
 
 @end
 
-@implementation MPDatabaseCreation
+@implementation MPTestDocument
 
-- (void)testCreateNewDatabase {
+- (void)testCreateEmptyDocument {
   MPDocument *document = [[MPDocument alloc] init];
+  XCTAssertNotNil(document, @"Document should be created");
+  XCTAssertNil(document.tree, @"Allocated document should not have a tree");
+  XCTAssertFalse(document.encrypted, @"Document cannot be encrypted without a tree");
+  XCTAssertNil(document.compositeKey, @"Document shoudl have not key at all");
+}
+
+- (void)testCreateUntitledDocument {
+  MPDocument *document = [[MPDocument alloc] initWithType:@"" error:nil];
   XCTAssertNotNil(document, @"Document should be created");
   XCTAssertTrue(document.tree.minimumVersion == KPKLegacyVersion, @"Tree should be Legacy Version in default case");
   XCTAssertFalse(document.encrypted, @"Document cannot be encrypted at creation");
   XCTAssertFalse(document.compositeKey.hasPasswordOrKeyFile, @"Document has no Password/Keyfile and thus is not secured");
+
 }
 
 @end
