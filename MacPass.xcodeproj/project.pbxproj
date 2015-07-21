@@ -164,6 +164,7 @@
 		4C473A7F18AFD6340073FD2E /* KPKTestReference.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C473A7E18AFD6340073FD2E /* KPKTestReference.m */; };
 		4C473A8718AFD85B0073FD2E /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4C473A8518AFD7250073FD2E /* XCTest.framework */; };
 		4C4A100F176286FD00BBF2CA /* MPTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C4A100E176286FD00BBF2CA /* MPTableView.m */; };
+		4C4B6E3E1B5E56600082EEF2 /* KPKTestEntryLookup.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C4B6E3D1B5E56600082EEF2 /* KPKTestEntryLookup.m */; };
 		4C4B728518E4B9B400A1A5D5 /* MPDockTileHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C4B728418E4B9B400A1A5D5 /* MPDockTileHelper.m */; };
 		4C4B7EE917A45EC6000234C7 /* MPDatePickingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C4B7EE717A45EC5000234C7 /* MPDatePickingViewController.m */; };
 		4C4B7EEE17A467E1000234C7 /* MPGroupInspectorViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C4B7EEC17A467E1000234C7 /* MPGroupInspectorViewController.m */; };
@@ -679,6 +680,7 @@
 		4C48A56018BE932100278A2D /* HNHCommon.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HNHCommon.h; sourceTree = "<group>"; };
 		4C4A100D176286FD00BBF2CA /* MPTableView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MPTableView.h; sourceTree = "<group>"; };
 		4C4A100E176286FD00BBF2CA /* MPTableView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MPTableView.m; sourceTree = "<group>"; };
+		4C4B6E3D1B5E56600082EEF2 /* KPKTestEntryLookup.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KPKTestEntryLookup.m; sourceTree = "<group>"; };
 		4C4B728318E4B9B400A1A5D5 /* MPDockTileHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MPDockTileHelper.h; sourceTree = "<group>"; };
 		4C4B728418E4B9B400A1A5D5 /* MPDockTileHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MPDockTileHelper.m; sourceTree = "<group>"; };
 		4C4B7EE617A45EC5000234C7 /* MPDatePickingViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MPDatePickingViewController.h; sourceTree = "<group>"; };
@@ -1558,9 +1560,9 @@
 				4CEAF85817BA9B25001307A6 /* Keyfiles */,
 				4C305F3F179A1A790082334F /* Images */,
 				4C18F9AC178E123200890BCE /* Databases */,
+				4C4B6E331B5E247E0082EEF2 /* KeePassKit */,
 				4C4B6E3C1B5E24870082EEF2 /* MacPass */,
 				4C45FB1F178E09ED0010007D /* Supporting Files */,
-				4C4B6E331B5E247E0082EEF2 /* KeePassKit */,
 			);
 			path = MacPassTests;
 			sourceTree = "<group>";
@@ -1609,6 +1611,7 @@
 				4CD25F9218B17A17006098E9 /* KPKTestUUIDAdditions.m */,
 				4C59745018B3CE7200C8EBD1 /* KPKTestAutotype.m */,
 				4C3F25201A3B0C95007DD98B /* KPKTextXMLUtilities.m */,
+				4C4B6E3D1B5E56600082EEF2 /* KPKTestEntryLookup.m */,
 			);
 			name = KeePassKit;
 			sourceTree = "<group>";
@@ -2534,6 +2537,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				4C45FB2D178E0BCB0010007D /* MPDatabaseLoading.m in Sources */,
+				4C4B6E3E1B5E56600082EEF2 /* KPKTestEntryLookup.m in Sources */,
 				4C45FB30178E0CE20010007D /* MPTestDocument.m in Sources */,
 				4C473A7F18AFD6340073FD2E /* KPKTestReference.m in Sources */,
 				4CD25F9318B17A17006098E9 /* KPKTestUUIDAdditions.m in Sources */,
