@@ -1558,27 +1558,9 @@
 				4CEAF85817BA9B25001307A6 /* Keyfiles */,
 				4C305F3F179A1A790082334F /* Images */,
 				4C18F9AC178E123200890BCE /* Databases */,
-				4C45FB2C178E0BCB0010007D /* MPDatabaseLoading.m */,
-				4C45FB2F178E0CE20010007D /* MPTestDocument.m */,
-				4C19E502178E2871002F2CD0 /* MPDatabasePasswordAndKeyfile.m */,
-				4C6BC65F1A36717E00BDDF3D /* MPDatabaseSearch.m */,
+				4C4B6E3C1B5E24870082EEF2 /* MacPass */,
 				4C45FB1F178E09ED0010007D /* Supporting Files */,
-				4C305F3B179A19F90082334F /* KPKIconLoading.m */,
-				4C1842B7179B348600E2F5BC /* KPKTestLegacyLoading.m */,
-				4CECB31617AC326D00EAFB0F /* KPKTestLegacyWriting.m */,
-				4CFC8742179DFD3E000DFC03 /* KPKTestXmlLoading.m */,
-				4C79E80517A9400500AC6CD2 /* KPKTestNSCoding.m */,
-				4C79E80817A9485600AC6CD2 /* KPKTestNSCopying.m */,
-				4CAC614217AD319200023F9E /* KPKTestXmlParsing.m */,
-				4C6366AE17AF207600AAF17D /* KPKTestHexColor.m */,
-				4CE76DAC17B3AD010043B82B /* KPKHashedDataTest.m */,
-				4CEAF85A17BA9B44001307A6 /* KPKTestKeyfileParsing.m */,
-				4C6FDD2017BC4F4C004AEEC8 /* KPKTestPlaceholder.m */,
-				4CBA561517C2EA4900CE13D3 /* KPKTestXmlWriting.m */,
-				4C473A7E18AFD6340073FD2E /* KPKTestReference.m */,
-				4CD25F9218B17A17006098E9 /* KPKTestUUIDAdditions.m */,
-				4C59745018B3CE7200C8EBD1 /* KPKTestAutotype.m */,
-				4C3F25201A3B0C95007DD98B /* KPKTextXMLUtilities.m */,
+				4C4B6E331B5E247E0082EEF2 /* KeePassKit */,
 			);
 			path = MacPassTests;
 			sourceTree = "<group>";
@@ -1606,6 +1588,40 @@
 				4CFB18E318A17FA20097A34B /* MPUpdateSettingsController.m */,
 			);
 			name = Settings;
+			sourceTree = "<group>";
+		};
+		4C4B6E331B5E247E0082EEF2 /* KeePassKit */ = {
+			isa = PBXGroup;
+			children = (
+				4C305F3B179A19F90082334F /* KPKIconLoading.m */,
+				4C1842B7179B348600E2F5BC /* KPKTestLegacyLoading.m */,
+				4CECB31617AC326D00EAFB0F /* KPKTestLegacyWriting.m */,
+				4CFC8742179DFD3E000DFC03 /* KPKTestXmlLoading.m */,
+				4C79E80517A9400500AC6CD2 /* KPKTestNSCoding.m */,
+				4C79E80817A9485600AC6CD2 /* KPKTestNSCopying.m */,
+				4CAC614217AD319200023F9E /* KPKTestXmlParsing.m */,
+				4C6366AE17AF207600AAF17D /* KPKTestHexColor.m */,
+				4CE76DAC17B3AD010043B82B /* KPKHashedDataTest.m */,
+				4CEAF85A17BA9B44001307A6 /* KPKTestKeyfileParsing.m */,
+				4C6FDD2017BC4F4C004AEEC8 /* KPKTestPlaceholder.m */,
+				4CBA561517C2EA4900CE13D3 /* KPKTestXmlWriting.m */,
+				4C473A7E18AFD6340073FD2E /* KPKTestReference.m */,
+				4CD25F9218B17A17006098E9 /* KPKTestUUIDAdditions.m */,
+				4C59745018B3CE7200C8EBD1 /* KPKTestAutotype.m */,
+				4C3F25201A3B0C95007DD98B /* KPKTextXMLUtilities.m */,
+			);
+			name = KeePassKit;
+			sourceTree = "<group>";
+		};
+		4C4B6E3C1B5E24870082EEF2 /* MacPass */ = {
+			isa = PBXGroup;
+			children = (
+				4C45FB2C178E0BCB0010007D /* MPDatabaseLoading.m */,
+				4C45FB2F178E0CE20010007D /* MPTestDocument.m */,
+				4C19E502178E2871002F2CD0 /* MPDatabasePasswordAndKeyfile.m */,
+				4C6BC65F1A36717E00BDDF3D /* MPDatabaseSearch.m */,
+			);
+			name = MacPass;
 			sourceTree = "<group>";
 		};
 		4C4B7EF517A46815000234C7 /* Inspector */ = {

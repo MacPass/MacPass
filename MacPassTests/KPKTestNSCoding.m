@@ -8,12 +8,13 @@
 
 
 #import <XCTest/XCTest.h>
+
+#import "KPKAttribute.h"
+#import "KPKBinary.h"
 #import "KPKEntry.h"
 #import "KPKGroup.h"
-#import "KPKBinary.h"
-#import "KPKAttribute.h"
-#import "KPKXmlElements.h"
 #import "KPKIcon.h"
+#import "KPKXmlElements.h"
 
 #import "NSData+Random.h"
 
@@ -127,12 +128,24 @@
 - (NSData *)encode:(id)object {
   NSMutableData *data = [[NSMutableData alloc] initWithCapacity:500];
   NSKeyedArchiver *archiver = [[NSKeyedArchiver alloc] initForWritingWithMutableData:data];
+  if(![object respondsToSelector:@selector(encodeWithCoder:)]) {
+    return nil;
+  }
   [object encodeWithCoder:archiver];
   [archiver finishEncoding];
   return data;
 }
 
 - (id)decode:(NSData *)data ofClass:(Class)class usingSecureCoding:(BOOL)secureCoding {
+
+  id instance = [class alloc];
+  if(secureCoding && ![instance respondsToSelector:@selector(supportsSecureCoding)]) {
+    return nil;
+  }
+  
+  if(![instance respondsToSelector:@selector(initWithCoder:)]) {
+    return nil;
+  }
   NSKeyedUnarchiver *unarchiver = [[NSKeyedUnarchiver alloc] initForReadingWithData:data];
   id object = [[class alloc] initWithCoder:unarchiver];
   [unarchiver finishDecoding];
