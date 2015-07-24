@@ -138,12 +138,11 @@
 
 - (id)decode:(NSData *)data ofClass:(Class)class usingSecureCoding:(BOOL)secureCoding {
 
-  id instance = [class alloc];
-  if(secureCoding && ![instance respondsToSelector:@selector(supportsSecureCoding)]) {
+  if(secureCoding && ![class instancesRespondToSelector:@selector(supportsSecureCoding)]) {
     return nil;
   }
   
-  if(![instance respondsToSelector:@selector(initWithCoder:)]) {
+  if(![class instancesRespondToSelector:@selector(initWithCoder:)]) {
     return nil;
   }
   NSKeyedUnarchiver *unarchiver = [[NSKeyedUnarchiver alloc] initForReadingWithData:data];
