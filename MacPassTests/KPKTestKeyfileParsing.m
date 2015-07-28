@@ -19,7 +19,7 @@
   NSBundle *myBundle = [NSBundle bundleForClass:[self class]];
   NSURL *url = [myBundle URLForResource:@"Keepass2Key" withExtension:@"xml"];
   NSError *error;
-  NSData *data = [NSData dataWithContentsOfKeyFile:url error:&error];
+  NSData *data = [NSData dataWithContentsOfKeyFile:url version:KPKLegacyVersion error:&error];
   XCTAssertNotNil(data, @"Data should be loaded");
   XCTAssertNil(error, @"No error should occur on keyfile loading");
 }
