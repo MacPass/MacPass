@@ -2013,6 +2013,11 @@
 		4CD106201935E5A1006A3A58 /* Protocols */ = {
 			isa = PBXGroup;
 			children = (
+				4C13904C17ADD1A300A62934 /* KPKTreeCrypting.h */,
+				4C1842D4179C6DE400E2F5BC /* KPKHeaderReading.h */,
+				4C1842D5179C6F1800E2F5BC /* KPKHeaderWriting.h */,
+				4CCEDE2F179F550D008402BE /* KPKTreeReading.h */,
+				4C13904D17ADD3BE00A62934 /* KPKTreeWriting.h */,
 				4CD106211935E5A1006A3A58 /* KPKModificationRecording.h */,
 			);
 			path = Protocols;
@@ -2135,11 +2140,6 @@
 				4C08C3AD17B3022400BBBC95 /* KPKLegacyHeaderWriter.m */,
 				4C1842CE179C64DC00E2F5BC /* KPKLegacyTreeCryptor.h */,
 				4C1842CF179C64DD00E2F5BC /* KPKLegacyTreeCryptor.m */,
-				4C13904C17ADD1A300A62934 /* KPKTreeCrypting.h */,
-				4C1842D4179C6DE400E2F5BC /* KPKHeaderReading.h */,
-				4C1842D5179C6F1800E2F5BC /* KPKHeaderWriting.h */,
-				4CCEDE2F179F550D008402BE /* KPKTreeReading.h */,
-				4C13904D17ADD3BE00A62934 /* KPKTreeWriting.h */,
 				4CCEDE30179F5B6C008402BE /* KPKDataStreamReader.h */,
 				4CCEDE31179F5B6C008402BE /* KPKDataStreamReader.m */,
 				4C5FA86B17A5F26800C781C9 /* KPKDataStreamWriter.h */,
