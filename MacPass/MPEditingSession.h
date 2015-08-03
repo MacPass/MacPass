@@ -10,7 +10,7 @@
 
 @class KPKNode;
 
-@interface MPEditSession : NSObject
+@interface MPEditingSession : NSObject
 
 @property (strong, readonly) KPKNode *node;
 @property (copy, readonly) KPKNode *rollbackNode;

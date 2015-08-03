@@ -6,17 +6,17 @@
 //  Copyright (c) 2014 HicknHack Software GmbH. All rights reserved.
 //
 
-#import "MPEditSession.h"
+#import "MPEditingSession.h"
 #import "KPKNode.h"
 
-@interface MPEditSession ()
+@interface MPEditingSession ()
 
 @property (strong) KPKNode *node;
 @property (copy) KPKNode *rollbackNode;
 
 @end
 
-@implementation MPEditSession
+@implementation MPEditingSession
 
 - (instancetype)init {
   self = [self initWithNode:nil];
