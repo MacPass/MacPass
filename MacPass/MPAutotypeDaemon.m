@@ -9,7 +9,6 @@
 #import "MPAutotypeDaemon.h"
 #import "MPDocument.h"
 
-#import "MPDocument+Autotype.h"
 #import "MPAutotypeCommand.h"
 #import "MPAutotypeContext.h"
 #import "MPAutotypePaste.h"

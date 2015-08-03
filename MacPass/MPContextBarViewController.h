@@ -7,7 +7,7 @@
 //
 
 #import "MPViewController.h"
-#import "MPDocument+Search.h"
+#import "MPDocument.h"
 
 @class HNHGradientView;
 @class MPDocument;

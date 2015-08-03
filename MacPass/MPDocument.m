@@ -21,7 +21,6 @@
 //
 
 #import "MPDocument.h"
-#import "MPDocument+Search.h"
 #import "MPAppDelegate.h"
 #import "MPDocumentWindowController.h"
 #import "MPDatabaseVersion.h"

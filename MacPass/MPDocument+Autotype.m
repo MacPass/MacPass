@@ -20,7 +20,7 @@
 //  along with this program.  If not, see <http://www.gnu.org/licenses/>.
 //
 
-#import "MPDocument+Autotype.h"
+#import "MPDocument.h"
 #import "MPAutotypeContext.h"
 
 #import "KPKGroup.h"

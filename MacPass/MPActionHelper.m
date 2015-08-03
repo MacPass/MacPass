@@ -7,7 +7,7 @@
 //
 
 #import "MPActionHelper.h"
-#import "MPDocument+HistoryBrowsing.h"
+#import "MPDocument.h"
 #import "MPEntryInspectorViewController.h"
 #import "MPEntryViewController.h"
 #import "MPDocumentWindowController.h"

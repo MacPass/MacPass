@@ -32,7 +32,7 @@
 #import "MPIconHelper.h"
 
 #import "MPDocumentWindowController.h"
-#import "MPDocument+Search.h"
+#import "MPDocument.h"
 
 NSString *const MPToolbarItemLock = @"TOOLBAR_LOCK";
 NSString *const MPToolbarItemAddGroup = @"TOOLBAR_ADD_GROUP";

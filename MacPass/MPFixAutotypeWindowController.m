@@ -9,7 +9,6 @@
 #import "MPFixAutotypeWindowController.h"
 
 #import "MPDocument.h"
-#import "MPDocument+Autotype.h"
 #import "MPIconHelper.h"
 
 #import "KPKNode.h"

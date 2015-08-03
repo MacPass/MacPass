@@ -21,7 +21,7 @@
 //
 
 #import "MPAttachmentTableDataSource.h"
-#import "MPDocument+Attachment.h"
+#import "MPDocument.h"
 
 @implementation MPAttachmentTableDataSource
 

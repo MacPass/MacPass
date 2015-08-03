@@ -459,8 +459,6 @@
 		4C10412B178CDD44001B5239 /* NSDate+Humanized.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDate+Humanized.m"; sourceTree = "<group>"; };
 		4C13904C17ADD1A300A62934 /* KPKTreeCrypting.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KPKTreeCrypting.h; sourceTree = "<group>"; };
 		4C13904D17ADD3BE00A62934 /* KPKTreeWriting.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KPKTreeWriting.h; sourceTree = "<group>"; };
-		4C15B73C18BCA379003F8008 /* MPDocument+Attachment.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "MPDocument+Attachment.h"; sourceTree = "<group>"; };
-		4C15B74418BCA3B1003F8008 /* MPDocument+Search.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "MPDocument+Search.h"; sourceTree = "<group>"; };
 		4C15B74518BCA3B1003F8008 /* MPDocument+Search.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "MPDocument+Search.m"; sourceTree = "<group>"; };
 		4C17D8E317A1C780006C8C1E /* MPDocumentWindowDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MPDocumentWindowDelegate.h; sourceTree = "<group>"; };
 		4C17D8E417A1C780006C8C1E /* MPDocumentWindowDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MPDocumentWindowDelegate.m; sourceTree = "<group>"; };
@@ -497,7 +495,6 @@
 		4C1DDCDC1711ECEB00C98DA3 /* PasswordCreatorWindow.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PasswordCreatorWindow.xib; sourceTree = "<group>"; };
 		4C1E9883185F71A800943563 /* MPContextBarViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MPContextBarViewController.h; sourceTree = "<group>"; };
 		4C1E9884185F71A800943563 /* MPContextBarViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MPContextBarViewController.m; sourceTree = "<group>"; };
-		4C1FA07918231900003A3F8C /* MPDocument+Autotype.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "MPDocument+Autotype.h"; sourceTree = "<group>"; };
 		4C1FA07A18231900003A3F8C /* MPDocument+Autotype.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "MPDocument+Autotype.m"; sourceTree = "<group>"; };
 		4C21F29D195B39B9002D610D /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/MainMenu.strings; sourceTree = "<group>"; };
 		4C21F29F195B3A48002D610D /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/MainMenu.strings; sourceTree = "<group>"; };
@@ -785,7 +782,6 @@
 		4C6AEEF71A043E2B00CA2420 /* MPDocumentController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MPDocumentController.h; sourceTree = "<group>"; };
 		4C6AEEF81A043E2B00CA2420 /* MPDocumentController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MPDocumentController.m; sourceTree = "<group>"; };
 		4C6AEF021A04400E00CA2420 /* OpenPanelAccessoryView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = OpenPanelAccessoryView.xib; sourceTree = "<group>"; };
-		4C6B7C7B18BE7EB0001D5D77 /* MPDocument+HistoryBrowsing.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "MPDocument+HistoryBrowsing.h"; sourceTree = "<group>"; };
 		4C6B7C7C18BE7EB0001D5D77 /* MPDocument+HistoryBrowsing.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "MPDocument+HistoryBrowsing.m"; sourceTree = "<group>"; };
 		4C6BC65F1A36717E00BDDF3D /* MPDatabaseSearch.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MPDatabaseSearch.m; sourceTree = "<group>"; };
 		4C6C72C217C01E4200768849 /* NSMutableData+KeePassKit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSMutableData+KeePassKit.h"; sourceTree = "<group>"; };
@@ -1004,7 +1000,6 @@
 		4CE39AC316ECE4F7000FE29D /* MPPopupImageView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MPPopupImageView.m; sourceTree = "<group>"; };
 		4CE3E62417AB0D2D00D9E4B4 /* MPAttachmentTableDataSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MPAttachmentTableDataSource.h; sourceTree = "<group>"; };
 		4CE3E62517AB0D2D00D9E4B4 /* MPAttachmentTableDataSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MPAttachmentTableDataSource.m; sourceTree = "<group>"; };
-		4CE5299F194847150078C2FF /* MPDocument+EditingSession.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "MPDocument+EditingSession.h"; sourceTree = "<group>"; };
 		4CE5B548173AFBA700207B39 /* MPDocument.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MPDocument.h; sourceTree = "<group>"; };
 		4CE5B549173AFBA700207B39 /* MPDocument.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = MPDocument.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		4CE76DAC17B3AD010043B82B /* KPKHashedDataTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KPKHashedDataTest.m; sourceTree = "<group>"; };
@@ -1515,15 +1510,10 @@
 				6E719715172058BA00E4C5FC /* MPDatabaseVersion.h */,
 				4CE5B548173AFBA700207B39 /* MPDocument.h */,
 				4CE5B549173AFBA700207B39 /* MPDocument.m */,
-				4C15B73C18BCA379003F8008 /* MPDocument+Attachment.h */,
 				4C3666401787327E00B249F1 /* MPDocument+Attachments.m */,
-				4C1FA07918231900003A3F8C /* MPDocument+Autotype.h */,
 				4C1FA07A18231900003A3F8C /* MPDocument+Autotype.m */,
-				4C15B74418BCA3B1003F8008 /* MPDocument+Search.h */,
 				4C15B74518BCA3B1003F8008 /* MPDocument+Search.m */,
-				4C6B7C7B18BE7EB0001D5D77 /* MPDocument+HistoryBrowsing.h */,
 				4C6B7C7C18BE7EB0001D5D77 /* MPDocument+HistoryBrowsing.m */,
-				4CE5299F194847150078C2FF /* MPDocument+EditingSession.h */,
 				4C94A0711938DDC20040ABAB /* MPDocument+EditingSession.m */,
 				4C94A06D1938DC8C0040ABAB /* MPEditingSession.h */,
 				4C94A06E1938DC8C0040ABAB /* MPEditingSession.m */,

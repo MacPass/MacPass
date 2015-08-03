@@ -11,9 +11,6 @@
 #import "MPOutlineViewController.h"
 
 #import "MPDocument.h"
-#import "MPDocument+Search.h"
-#import "MPDocument+Autotype.h"
-#import "MPDocument+HistoryBrowsing.h"
 #import "MPDocumentWindowController.h"
 
 #import "MPPasteBoardController.h"

@@ -11,8 +11,7 @@
 #import "KPKTree.h"
 #import "KPKMetaData.h"
 
-#import "MPDocument+HistoryBrowsing.h"
-#import "MPDocument+Search.h"
+#import "MPDocument.h"
 #import "MPFlagsHelper.h"
 #import "MPEntrySearchContext.h"
 

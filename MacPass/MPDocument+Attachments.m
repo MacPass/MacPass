@@ -20,7 +20,7 @@
 //  along with this program.  If not, see <http://www.gnu.org/licenses/>.
 //
 
-#import "MPDocument+Attachment.h"
+#import "MPDocument.h"
 
 #import "KPKEntry.h"
 #import "KPKBinary.h"

@@ -175,3 +175,109 @@ APPKIT_EXTERN NSString *const MPDocumentGroupKey;
 - (IBAction)duplicateEntryWithOptions:(id)sender;
 
 @end
+
+@interface MPDocument (Attachments)
+
+- (void)addAttachment:(NSURL *)location toEntry:(KPKEntry *)anEntry;
+
+@end
+
+#pragma mark -
+#pragma mark Autotype
+
+@interface MPDocument (Autotype)
+
+/**
+ *  Tests the given item for a possible wrong autotype format
+ *  MacPass 0.4 and 0.4.1 did store wrong Autotype sequences and thus mangled database files
+ *
+ *  @param item Item to test for malformation. Allowed Items are KPKNode, KPKEntry, KPKGroup and KPKAutotype
+ *
+ *  @return YES if the given item is considered a possible candiate. NO in all other cases
+ */
++ (BOOL)isCandidateForMalformedAutotype:(id)item;
+
+/**
+ *  Returns an NSArray containing all Autotype Contexts that match the given window title.
+ *  If no entry is set, all entries in the document will be searched
+ *
+ *  @param windowTitle Window title to search matches for
+ *  @param entry       Entry to use for lookup. If nil lookup will be performed in complete document
+ *
+ *  @return NSArray of MPAutotypeContext objects matching the window title.
+ */
+- (NSArray *)autotypContextsForWindowTitle:(NSString *)windowTitle preferredEntry:(KPKEntry *)entryOrNil;
+/**
+ *  Checks if the document has malformed autotype items
+ *
+ *  @return YES if any malformed items are found
+ */
+- (BOOL)hasMalformedAutotypeItems;
+
+- (NSArray *)malformedAutotypeItems;
+
+@end
+
+#pragma mark -
+#pragma mark Edit Sessiong
+
+APPKIT_EXTERN NSString *const MPDocumentDidBeginEditingSelectedItem;
+APPKIT_EXTERN NSString *const MPDocumentDidCancelChangesToSelectedItem;
+APPKIT_EXTERN NSString *const MPDocumentDidCommitChangesToSelectedItem;
+
+@interface MPDocument (EditingSession)
+
+- (BOOL)isEditing;
+
+#pragma mark Edit Actions
+- (IBAction)beginEditingSelectedItem:(id)sender;
+- (IBAction)cancelChangesToSelectedItem:(id)sender;
+- (IBAction)commitChangesToSelectedItem:(id)sender;
+
+@end
+
+
+#pragma mark -
+#pragma mark History Browsing
+
+FOUNDATION_EXPORT NSString *const MPDocumentDidEnterHistoryNotification;
+FOUNDATION_EXPORT NSString *const MPDocumentDidExitHistoryNotification;
+
+@interface MPDocument (HistoryBrowsing)
+
+- (IBAction)showHistory:(id)sender;
+- (IBAction)exitHistory:(id)sender;
+
+@end
+
+#pragma mark -
+#pragma mark Search
+
+FOUNDATION_EXTERN NSString *const MPDocumentDidEnterSearchNotification;
+FOUNDATION_EXTERN NSString *const MPDocumentDidChangeSearchFlags;
+FOUNDATION_EXTERN NSString *const MPDocumentDidExitSearchNotification;
+/**
+ *  Posted by the document, when the search results have been updated. This is only called when searching.
+ *  If the search is exited, it will be notified by MPDocumentDidExitSearchNotification
+ *  The userInfo dictionary has one key kMPDocumentSearchResultsKey with an NSArray of KPKEntries mathching the search.
+ */
+FOUNDATION_EXTERN NSString *const MPDocumentDidChangeSearchResults;
+
+/* keys used in userInfo dictionaries on notifications */
+FOUNDATION_EXTERN NSString *const kMPDocumentSearchResultsKey;
+
+@interface MPDocument (Search)
+
+- (void)enterSearchWithContext:(MPEntrySearchContext *)context;
+
+/* Should be called by the NSSearchTextField to update the search string */
+- (IBAction)updateSearch:(id)sender;
+/* exits searching mode */
+- (IBAction)exitSearch:(id)sender;
+/* called by the filter toggle buttons */
+- (IBAction)toggleSearchFlags:(id)sender;
+
+@end
+
+
+

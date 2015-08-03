@@ -6,7 +6,6 @@
 //  Copyright (c) 2014 HicknHack Software GmbH. All rights reserved.
 //
 
-#import "MPDocument+Search.h"
 #import "MPDocument.h"
 #import "MPDocumentWindowController.h"
 

@@ -6,43 +6,53 @@
 //  Copyright (c) 2014 HicknHack Software GmbH. All rights reserved.
 //
 
-#import "MPDocument+EditingSession.h"
+#import "MPDocument.h"
+#import "MPEditingSession.h"
 
 #import "KPKNode.h"
-#import "MPEditingSession.h"
+
+NSString *const MPDocumentDidBeginEditingSelectedItem      = @"com.hicknhack.macpass.MPDocumentDidBeginEditingSelectedItem";
+NSString *const MPDocumentDidCancelChangesToSelectedItem   = @"com.hicknhack.macpass.MPDocumentDidCancelChangesToSelectedItem";
+NSString *const MPDocumentDidCommitChangesToSelectedItem   = @"com.hicknhack.macpass.MPDocumentDidCommitChangesToSelectedItem";
 
 @implementation MPDocument (EditingSession)
 
-- (BOOL)hasActiveSession {
+- (BOOL)isEditing {
   return (self.editingSession != nil);
 }
 
-- (void)commitEditingSession {
-  [self _commitEditingSession:self.editingSession];
-}
-
-- (void)cancelEditingSession {
-  [self _cancelEditingSession:self.editingSession];
-}
-
-#pragma mark Private
-- (void)_commitEditingSession:(MPEditingSession *)session {
-  if(nil == session) {
+- (void)commitChangesToSelectedItem:(id)sender {
+  if(nil == self.editingSession) {
     return; // No session to commit
   }
-  [[self.undoManager prepareWithInvocationTarget:self] _cancelEditingSession:session];
-  if(session.hasChanges) {
-  }
+  /* Force any lingering updates to be written */
+  /* FIXME explore potential usage of:
+   * NSObject(NSEditorRegistration)
+   * NSObject(NSEditor)
+   */
+  [((NSWindowController *)self.windowControllers.firstObject).window makeFirstResponder:nil];
+  
+  /* update the data */
+  [self.editingSession.source updateToNode:self.editingSession.node];
+  [self.undoManager setActionName:NSLocalizedString(@"UPDATE_ENTRY", "")];
+  self.editingSession = nil;
+  [[NSNotificationCenter defaultCenter] postNotificationName:MPDocumentDidCommitChangesToSelectedItem object:self];
 }
 
-- (void)_cancelEditingSession:(MPEditingSession *)session {
-  if(nil == session) {
+- (void)cancelChangesToSelectedItem:(id)sender {
+  if(nil == self.editingSession) {
     return; // No session to cancel
   }
-  [[self.undoManager prepareWithInvocationTarget:self] _commitEditingSession:session];
-  if(session.hasChanges) {
-    [session.node updateToNode:session.rollbackNode];
+  self.editingSession = nil;
+  [[NSNotificationCenter defaultCenter] postNotificationName:MPDocumentDidCancelChangesToSelectedItem object:self];
+}
+
+- (void)beginEditingSelectedItem:(id)sender {
+  if(nil == self.selectedItem) {
+    return;
   }
+  self.editingSession = [[MPEditingSession alloc] initWithSource:self.selectedItem];
+  [[NSNotificationCenter defaultCenter] postNotificationName:MPDocumentDidBeginEditingSelectedItem object:self];
 }
 
 @end
