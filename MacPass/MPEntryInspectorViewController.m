@@ -467,7 +467,6 @@ typedef NS_ENUM(NSUInteger, MPEntryTab) {
   [_createdTextField setSelectable:edit];
   [_modifiedTextField setEditable:edit];
   [_modifiedTextField setSelectable:edit];
-  
 }
 
 #pragma mark -

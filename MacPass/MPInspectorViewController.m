@@ -7,26 +7,27 @@
 //
 
 #import "MPInspectorViewController.h"
-#import "MPIconHelper.h"
+#import "MPDatePickingViewController.h"
+#import "MPDocument.h"
+#import "MPEditingSession.h"
 #import "MPEntryInspectorViewController.h"
 #import "MPGroupInspectorViewController.h"
-#import "MPDocument.h"
-#import "MPNotifications.h"
+#import "MPIconHelper.h"
 #import "MPIconSelectViewController.h"
-#import "MPDatePickingViewController.h"
+#import "MPNotifications.h"
+#import "MPPopupImageView.h"
 
 #import "NSDate+Humanized.h"
-#import "KPKNode+IconImage.h"
 
+#import "KPKEntry.h"
+#import "KPKGroup.h"
+#import "KPKTimeInfo.h"
 #import "KPKTree.h"
 #import "KPKMetaData.h"
-#import "KPKGroup.h"
-#import "KPKEntry.h"
 #import "KPKNode.h"
-#import "KPKTimeInfo.h"
+#import "KPKNode+IconImage.h"
 
 #import "HNHGradientView.h"
-#import "MPPopupImageView.h"
 
 
 typedef NS_ENUM(NSUInteger, MPContentTab) {
@@ -105,6 +106,12 @@ typedef NS_ENUM(NSUInteger, MPContentTab) {
   [groupTabItem setInitialFirstResponder:groupView];
   
   [[self view] layout];
+
+  /* Init edit and cancel buttons */
+  [self.editButton setAction:@selector(beginEditingSelectedItem:)];
+  [self.cancelEditButton setAction:@selector(cancelChangesToSelectedItem:)];
+  [self.cancelEditButton setHidden:YES];
+
   [self _updateBindings:nil];
 }
 
@@ -112,6 +119,21 @@ typedef NS_ENUM(NSUInteger, MPContentTab) {
   [[NSNotificationCenter defaultCenter] addObserver:self
                                            selector:@selector(_didChangeCurrentItem:)
                                                name:MPDocumentCurrentItemChangedNotification
+                                             object:document];
+  
+  [[NSNotificationCenter defaultCenter] addObserver:self
+                                           selector:@selector(_didBeginEditingSelectedItem:)
+                                               name:MPDocumentDidBeginEditingSelectedItem
+                                             object:document];
+  
+  [[NSNotificationCenter defaultCenter] addObserver:self
+                                           selector:@selector(_didCancelOrCommitChangesToSelectedItem:)
+                                               name:MPDocumentDidCommitChangesToSelectedItem
+                                             object:document];
+  
+  [[NSNotificationCenter defaultCenter] addObserver:self
+                                           selector:@selector(_didCancelOrCommitChangesToSelectedItem:)
+                                               name:MPDocumentDidCancelChangesToSelectedItem
                                              object:document];
   
   [self.entryViewController regsiterNotificationsForDocument:document];
@@ -161,38 +183,6 @@ typedef NS_ENUM(NSUInteger, MPContentTab) {
   [self.modifiedTextField setStringValue:[NSString stringWithFormat:modifedAtTemplate, modificationString]];
   [self.createdTextField setStringValue:[NSString stringWithFormat:createdAtTemplate, creationString]];
   
-}
-
-#pragma mark -
-#pragma mark Click Edit Button
-- (void)toggleEdit:(id)sender {
-  BOOL didCancel = sender == self.cancelEditButton;
-  MPDocument *document = [[self windowController] document];
-  
-  if(document.selectedItem) {
-    
-    /* TODO UndoManager handling */
-    [self.editButton setTitle:NSLocalizedString(@"EDIT_ITEM", "")];
-    [self.cancelEditButton setHidden:YES];
-    [self.entryViewController endEditing];
-    
-    /*
-     We need to be careful to only undo the things we actually changed
-     otherwise we undo older actions
-     */
-    if(didCancel) {
-      
-    }
-    else {
-      
-    }
-  }
-  else {
-    //[document.selectedItem beginEditSession];
-    [self.editButton setTitle:NSLocalizedString(@"SAVE_CHANGES", "")];
-    [self.cancelEditButton setHidden:NO];
-    [self.entryViewController beginEditing];
-  }
 }
 
 #pragma mark -
@@ -312,7 +302,7 @@ typedef NS_ENUM(NSUInteger, MPContentTab) {
 - (void)_didChangeCurrentItem:(NSNotification *)notification {
   MPDocument *document = [notification object];
   if(!document.selectedItem) {
-    /* show empty tab and hide edit button */
+    /* show emty tab and hide edit button */
     self.activeTab = MPEmptyTab;
   }
   else {
@@ -329,5 +319,21 @@ typedef NS_ENUM(NSUInteger, MPContentTab) {
   
   /* disable the entry text fields whenever the entry selection changes */
   //[self.entryViewController endEditing];
+}
+
+- (void)_didBeginEditingSelectedItem:(NSNotification *)notification {
+  MPDocument *document = [notification object];
+  [self.editButton setAction:@selector(commitChangesToSelectedItem:)];
+  [self.editButton setTitle:NSLocalizedString(@"DONE", "")];
+  [self.cancelEditButton setHidden:NO];
+  [self _updateBindings:document.editingSession.node];
+}
+
+- (void)_didCancelOrCommitChangesToSelectedItem:(NSNotification *)notification {
+  MPDocument *document = [notification object];
+  [self.editButton setTitle:NSLocalizedString(@"EDIT", "")];
+  [self.cancelEditButton setHidden:YES];
+  [self.editButton setAction:@selector(beginEditingSelectedItem:)];
+  [self _updateBindings:document.selectedItem];
 }
 @end

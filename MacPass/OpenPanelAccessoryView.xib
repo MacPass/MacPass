@@ -18,8 +18,8 @@
             <rect key="frame" x="0.0" y="0.0" width="243" height="54"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
             <subviews>
-                <button misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="x9q-qY-Jy2">
-                    <rect key="frame" x="69" y="8" width="133" height="18"/>
+                <button translatesAutoresizingMaskIntoConstraints="NO" id="x9q-qY-Jy2">
+                    <rect key="frame" x="71" y="8" width="131" height="18"/>
                     <buttonCell key="cell" type="check" title="Show hidden files" bezelStyle="regularSquare" imagePosition="left" state="on" inset="2" id="FfY-KA-8IC">
                         <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                         <font key="font" metaFont="system"/>
@@ -28,8 +28,8 @@
                         <action selector="toggleShowHiddenFiles:" target="-2" id="zq6-5l-C22"/>
                     </connections>
                 </button>
-                <button misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="I5Q-M2-Ha7">
-                    <rect key="frame" x="69" y="28" width="105" height="18"/>
+                <button translatesAutoresizingMaskIntoConstraints="NO" id="I5Q-M2-Ha7">
+                    <rect key="frame" x="71" y="28" width="102" height="18"/>
                     <buttonCell key="cell" type="check" title="Allow all files" bezelStyle="regularSquare" imagePosition="left" inset="2" id="tvV-1s-Be3">
                         <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                         <font key="font" metaFont="system"/>
