@@ -408,7 +408,6 @@ NSString *const MPDocumentGroupKey                        = @"MPDocumentGroupKey
 - (void)setTree:(KPKTree *)tree {
   if(_tree != tree) {
     _tree = tree;
-    _tree.undoManager = [self undoManager];
     if(nil == _treeDelgate) {
       _treeDelgate = [[MPTreeDelegate alloc] initWithDocument:self];
     }
@@ -516,7 +515,7 @@ NSString *const MPDocumentGroupKey                        = @"MPDocumentGroupKey
     if(!self.trash) {
       [self _createTrashGroup];
     }
-    [entry moveToGroup:self.trash atIndex:[self.trash.entries count]];
+    [entry moveToGroup:self.trash];
     [[self undoManager] setActionName:NSLocalizedString(@"TRASH_ENTRY", "Move Entry to Trash")];
   }
   else {
@@ -626,8 +625,7 @@ NSString *const MPDocumentGroupKey                        = @"MPDocumentGroupKey
 
 - (void)duplicateEntry:(id)sender {
   KPKEntry *duplicate = [self.selectedEntry copyWithTitle:nil];
-  NSInteger index = [self.selectedEntry.parent.entries indexOfObject:self.selectedEntry];
-  [self.selectedEntry.parent addEntry:duplicate atIndex:index+1];
+  [self.selectedEntry.parent addEntry:duplicate];
   [self.undoManager setActionName:NSLocalizedString(@"DUPLICATE_ENTRY", "")];
 }
 

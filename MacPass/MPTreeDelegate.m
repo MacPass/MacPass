@@ -36,4 +36,8 @@
   return (NO == self.document.isReadOnly);
 }
 
+- (NSUndoManager *)undoManagerForTree:(KPKTree *)tree {
+  return self.document.undoManager;
+}
+
 @end

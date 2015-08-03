@@ -9,7 +9,7 @@
 #import "MPDocument+EditingSession.h"
 
 #import "KPKNode.h"
-#import "MPEditSession.h"
+#import "MPEditingSession.h"
 
 @implementation MPDocument (EditingSession)
 
@@ -26,7 +26,7 @@
 }
 
 #pragma mark Private
-- (void)_commitEditingSession:(MPEditSession *)session {
+- (void)_commitEditingSession:(MPEditingSession *)session {
   if(nil == session) {
     return; // No session to commit
   }
@@ -35,13 +35,13 @@
   }
 }
 
-- (void)_cancelEditingSession:(MPEditSession *)session {
+- (void)_cancelEditingSession:(MPEditingSession *)session {
   if(nil == session) {
     return; // No session to cancel
   }
   [[self.undoManager prepareWithInvocationTarget:self] _commitEditingSession:session];
   if(session.hasChanges) {
-    [session.node updateTo:session.rollbackNode];
+    [session.node updateToNode:session.rollbackNode];
   }
 }
 

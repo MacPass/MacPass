@@ -160,12 +160,12 @@
   else if(draggedEntry) {
     if(copyItem || (nil == self.localDraggedEntry)) {
       draggedEntry = [draggedEntry copyWithTitle:nil];
-      [targetGroup addEntry:draggedEntry atIndex:index];
+      [targetGroup addEntry:draggedEntry];
       [targetGroup.undoManager setActionName:NSLocalizedString(@"COPY_ENTRY", "")];
       return YES;
     }
     else if(self.localDraggedEntry) {
-      [self.localDraggedEntry moveToGroup:targetGroup atIndex:index];
+      [self.localDraggedEntry moveToGroup:targetGroup];
       [self.localDraggedEntry.undoManager setActionName:NSLocalizedString(@"MOVE_ENTRY", "")];
       return YES;
     }

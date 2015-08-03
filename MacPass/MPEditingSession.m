@@ -11,29 +11,29 @@
 
 @interface MPEditingSession ()
 
-@property (strong) KPKNode *node;
-@property (copy) KPKNode *rollbackNode;
+@property (copy) KPKNode *node;
+@property (weak) KPKNode *source;
 
 @end
 
 @implementation MPEditingSession
 
 - (instancetype)init {
-  self = [self initWithNode:nil];
+  self = [self initWithSource:nil];
   return self;
 }
 
-- (instancetype)initWithNode:(KPKNode *)node {
+- (instancetype)initWithSource:(KPKNode *)node {
   self = [super init];
   if(self) {
     self.node = node;
-    self.rollbackNode = node;
+    self.source = node;
   }
   return self;
 }
 
 - (BOOL)hasChanges {
-  return [self.node isEqual:self.rollbackNode];
+  return ![self.node isEqual:self.source];
 }
 
 @end

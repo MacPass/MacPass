@@ -58,7 +58,7 @@ APPKIT_EXTERN NSString *const MPDocumentGroupKey;
 @class KPKAttribute;
 @class KPKCompositeKey;
 @class KPKNode;
-@class MPEditSession;
+@class MPEditingSession;
 
 @interface MPDocument : NSDocument <MPTargetNodeResolving>
 
@@ -91,7 +91,7 @@ APPKIT_EXTERN NSString *const MPDocumentGroupKey;
 /*
  Editing Session
  */
-@property (nonatomic, strong) MPEditSession *editingSession;
+@property (nonatomic, strong) MPEditingSession *editingSession;
 
 + (KPKVersion)versionForFileType:(NSString *)fileType;
 + (NSString *)fileTypeForVersion:(KPKVersion)version;

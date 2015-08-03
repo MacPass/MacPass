@@ -12,10 +12,10 @@
 
 @interface MPEditingSession : NSObject
 
-@property (strong, readonly) KPKNode *node;
-@property (copy, readonly) KPKNode *rollbackNode;
+@property (copy, readonly) KPKNode *node;
+@property (weak, readonly) KPKNode *source;
 
-- (instancetype)initWithNode:(KPKNode *)node;
+- (instancetype)initWithSource:(KPKNode *)node;
 
 - (BOOL)hasChanges;
 

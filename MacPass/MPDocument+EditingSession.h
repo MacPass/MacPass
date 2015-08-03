@@ -8,7 +8,7 @@
 
 #import "MPDocument.h"
 
-@class MPEditSession;
+@class MPEditingSession;
 
 @interface MPDocument (EditingSession)
 
