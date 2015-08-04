@@ -103,7 +103,7 @@
 
 - (void)_updateBindings {
   if(self.group) {
-    [self.titleTextField bind:NSValueBinding toObject:self.group withKeyPath:NSStringFromSelector(@selector(name)) options:nil];
+    [self.titleTextField bind:NSValueBinding toObject:self.group withKeyPath:NSStringFromSelector(@selector(title)) options:nil];
     [self.expiresCheckButton bind:NSValueBinding toObject:self.group.timeInfo withKeyPath:NSStringFromSelector(@selector(expires)) options:nil];
     [self.expiresCheckButton bind:NSTitleBinding toObject:self.group.timeInfo withKeyPath:NSStringFromSelector(@selector(expirationDate)) options:@{ NSValueTransformerNameBindingOption:MPExpiryDateValueTransformer }];
     [self.autotypePopupButton bind:NSSelectedTagBinding toObject:self.group withKeyPath:NSStringFromSelector(@selector(isAutoTypeEnabled)) options:nil];

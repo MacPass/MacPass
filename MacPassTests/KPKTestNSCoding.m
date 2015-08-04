@@ -102,7 +102,7 @@
 
 - (void)testGroupCoding {
   KPKGroup *group = [[KPKGroup alloc] init];
-  group.name = @"A Group";
+  group.title = @"A Group";
   group.iconId = 50;
   group.notes = @"Some notes";
   KPKEntry *entry = [[KPKEntry alloc] init];
@@ -114,7 +114,7 @@
   KPKGroup *decodedGroup = [self decode:data ofClass:[KPKGroup class]];
   
   XCTAssertTrue([group.uuid isEqual:decodedGroup.uuid]);
-  XCTAssertTrue([group.name isEqualToString:decodedGroup.name]);
+  XCTAssertTrue([group.title isEqualToString:decodedGroup.title]);
   XCTAssertEqual([group.entries count], [decodedGroup.entries count]);
   XCTAssertEqual(group.iconId, decodedGroup.iconId);
   XCTAssertTrue([group.notes isEqualToString:decodedGroup.notes]);

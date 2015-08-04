@@ -253,12 +253,12 @@
 
 - (void)_updateTrashFolders:(KPKTree *)tree {
   NSMenu *menu = [self _buildTrashTreeMenu:tree];
-  [self.selectTrashGoupPopUpButton setMenu:menu];
+  self.selectTrashGoupPopUpButton.menu = menu;
 }
 
 - (void)_updateTemplateGroup:(KPKTree *)tree {
   NSMenu *menu = [self _buildTemplateTreeMenu:tree];
-  [self.templateGroupPopUpButton setMenu:menu];
+  self.templateGroupPopUpButton.menu = menu;
 }
 
 - (NSMenu *)_buildTrashTreeMenu:(KPKTree *)tree {
@@ -267,7 +267,7 @@
   NSMenuItem *selectItem = [[NSMenuItem alloc] initWithTitle:NSLocalizedString(@"AUTOCREATE_TRASH_FOLDER", @"Menu item for automatic trash creation")
                                                       action:NULL
                                                keyEquivalent:@""];
-  [selectItem setEnabled:YES];
+  selectItem.enabled = YES;
   [menu insertItem:selectItem atIndex:0];
   
   return menu;
@@ -279,7 +279,7 @@
   NSMenuItem *selectItem = [[NSMenuItem alloc] initWithTitle:NSLocalizedString(@"NO_TEMPLATE_GROUP", @"Menu item to reset the template groups")
                                                       action:NULL
                                                keyEquivalent:@""];
-  [selectItem setEnabled:YES];
+  selectItem.enabled = YES;
   [menu insertItem:selectItem atIndex:0];
   
   return menu;
@@ -288,7 +288,7 @@
 
 - (NSMenu *)_buildTreeMenu:(KPKTree *)tree preselect:(NSUUID *)uuid {
   NSMenu *menu = [[NSMenu alloc] init];
-  [menu setAutoenablesItems:NO];
+  menu.autoenablesItems = NO;
   for(KPKGroup *group in tree.root.groups) {
     [self _insertMenuItemsForGroup:group atLevel:0 inMenu:menu preselect:uuid];
   }
@@ -297,14 +297,14 @@
 
 - (void)_insertMenuItemsForGroup:(KPKGroup *)group atLevel:(NSUInteger)level inMenu:(NSMenu *)menu preselect:(NSUUID *)uuid{
   NSMenuItem *groupItem = [[NSMenuItem alloc] init];
-  [groupItem setImage:group.iconImage];
-  [groupItem setTitle:group.name];
-  [groupItem setRepresentedObject:group];
-  [groupItem setEnabled:YES];
+  groupItem.image = group.iconImage;
+  groupItem.title = group.title;
+  groupItem.representedObject = group;
+  groupItem.enabled = YES;
   if(uuid && [group.uuid isEqual:uuid]) {
-    [groupItem setState:NSOnState];
+    groupItem.state = NSOnState;
   }
-  [groupItem setIndentationLevel:level];
+  groupItem.indentationLevel = level;
   [menu addItem:groupItem];
   for(KPKGroup *childGroup in group.groups) {
     [self _insertMenuItemsForGroup:childGroup atLevel:level + 1 inMenu:menu preselect:uuid];

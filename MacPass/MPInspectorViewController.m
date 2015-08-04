@@ -285,12 +285,7 @@ typedef NS_ENUM(NSUInteger, MPContentTab) {
   [self.itemImageView bind:NSValueBinding toObject:item withKeyPath:NSStringFromSelector(@selector(iconImage)) options:nil];
   [[self.notesTextView enclosingScrollView] setHidden:NO];
   [self.notesTextView bind:NSValueBinding toObject:item withKeyPath:NSStringFromSelector(@selector(notes)) options:nil];
-  if([item respondsToSelector:@selector(title)]) {
-    [self.itemNameTextField bind:NSValueBinding toObject:item withKeyPath:NSStringFromSelector(@selector(title)) options:nil];
-  }
-  else if( [item respondsToSelector:@selector(name)]) {
-    [self.itemNameTextField bind:NSValueBinding toObject:item withKeyPath:NSStringFromSelector(@selector(name)) options:nil];
-  }
+  [self.itemNameTextField bind:NSValueBinding toObject:item withKeyPath:NSStringFromSelector(@selector(title)) options:nil];
   [self.itemImageView setHidden:NO];
   [self.itemNameTextField setHidden:NO];
 }

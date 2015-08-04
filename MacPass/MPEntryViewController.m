@@ -169,12 +169,12 @@ NSString *const _MPTableSecurCellView = @"PasswordCell";
   self.entryTable.autosaveTableColumns = YES;
   
   
-  NSString *parentNameKeyPath = [[NSString alloc] initWithFormat:@"%@.%@", NSStringFromSelector(@selector(parent)), NSStringFromSelector(@selector(name))];
+  NSString *parentTitleKeyPath = [[NSString alloc] initWithFormat:@"%@.%@", NSStringFromSelector(@selector(parent)), NSStringFromSelector(@selector(title))];
   
   titleColumn.sortDescriptorPrototype = [NSSortDescriptor sortDescriptorWithKey:NSStringFromSelector(@selector(title))ascending:YES selector:@selector(localizedCaseInsensitiveCompare:)];
   userNameColumn.sortDescriptorPrototype = [NSSortDescriptor sortDescriptorWithKey:NSStringFromSelector(@selector(username)) ascending:YES selector:@selector(localizedCaseInsensitiveCompare:)];
   urlColumn.sortDescriptorPrototype = [NSSortDescriptor sortDescriptorWithKey:NSStringFromSelector(@selector(url)) ascending:YES selector:@selector(localizedCaseInsensitiveCompare:)];
-  parentColumn.sortDescriptorPrototype = [NSSortDescriptor sortDescriptorWithKey:parentNameKeyPath ascending:YES selector:@selector(localizedCaseInsensitiveCompare:)];
+  parentColumn.sortDescriptorPrototype = [NSSortDescriptor sortDescriptorWithKey:parentTitleKeyPath ascending:YES selector:@selector(localizedCaseInsensitiveCompare:)];
   modifiedColumn.sortDescriptorPrototype = [NSSortDescriptor sortDescriptorWithKey:[MPEntryViewController timeInfoModificationTimeKeyPath] ascending:YES selector:@selector(compare:)];
   
   [parentColumn.headerCell setStringValue:NSLocalizedString(@"GROUP", "")];
@@ -276,15 +276,15 @@ NSString *const _MPTableSecurCellView = @"PasswordCell";
       KPKEntry *entry = [self.entryArrayController arrangedObjects][row];
       NSAssert(entry.parent != nil, @"Entry needs to have a parent");
       
-      NSString *parentNameKeyPath = [NSString stringWithFormat:@"%@.%@.%@",
+      NSString *parentTitleKeyPath = [NSString stringWithFormat:@"%@.%@.%@",
                                      NSStringFromSelector(@selector(objectValue)),
                                      NSStringFromSelector(@selector(parent)),
-                                     NSStringFromSelector(@selector(name))];
+                                     NSStringFromSelector(@selector(title))];
       NSString *parentIconImageKeyPath = [NSString stringWithFormat:@"%@.%@.%@",
                                           NSStringFromSelector(@selector(objectValue)),
                                           NSStringFromSelector(@selector(parent)),
                                           NSStringFromSelector(@selector(iconImage))];
-      [view.textField bind:NSValueBinding toObject:view withKeyPath:parentNameKeyPath options:nil];
+      [view.textField bind:NSValueBinding toObject:view withKeyPath:parentTitleKeyPath options:nil];
       [view.imageView bind:NSValueBinding toObject:view withKeyPath:parentIconImageKeyPath options:nil];
     }
   }

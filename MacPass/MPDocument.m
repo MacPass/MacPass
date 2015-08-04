@@ -476,7 +476,7 @@ NSString *const MPDocumentGroupKey                        = @"MPDocumentGroupKey
     return nil; // no new Groups in trash
   }
   KPKGroup *newGroup = [self.tree createGroup:parent];
-  newGroup.name = NSLocalizedString(@"DEFAULT_GROUP_NAME", @"Title for a newly created group");
+  newGroup.title = NSLocalizedString(@"DEFAULT_GROUP_NAME", @"Title for a newly created group");
   newGroup.iconId = MPIconFolder;
   [parent addGroup:newGroup];
   NSDictionary *userInfo = @{ MPDocumentGroupKey : newGroup };
@@ -615,7 +615,7 @@ NSString *const MPDocumentGroupKey                        = @"MPDocumentGroupKey
   if(entryUUID) {
     KPKEntry *templateEntry = [self findEntry:entryUUID];
     if(templateEntry && self.selectedGroup) {
-      KPKEntry *copy = [templateEntry copyWithTitle:templateEntry.title];
+      KPKEntry *copy = [templateEntry copyWithTitle:templateEntry.title options:kKPKCopyOptionNone];
       [self.selectedGroup addEntry:copy];
       [self.selectedGroup.undoManager setActionName:NSLocalizedString(@"ADD_TREMPLATE_ENTRY", "")];
     }
@@ -623,7 +623,7 @@ NSString *const MPDocumentGroupKey                        = @"MPDocumentGroupKey
 }
 
 - (void)duplicateEntry:(id)sender {
-  KPKEntry *duplicate = [self.selectedEntry copyWithTitle:nil];
+  KPKEntry *duplicate = [self.selectedEntry copyWithTitle:nil options:kKPKCopyOptionNone];
   [self.selectedEntry.parent addEntry:duplicate];
   [self.undoManager setActionName:NSLocalizedString(@"DUPLICATE_ENTRY", "")];
 }
@@ -751,7 +751,7 @@ NSString *const MPDocumentGroupKey                        = @"MPDocumentGroupKey
   KPKGroup *trash = [self.tree createGroup:self.tree.root];
   BOOL wasEnabled = [self.undoManager isUndoRegistrationEnabled];
   [self.undoManager disableUndoRegistration];
-  trash.name = NSLocalizedString(@"TRASH", @"Name for the trash group");
+  trash.title = NSLocalizedString(@"TRASH", @"Name for the trash group");
   trash.iconId = MPIconTrash;
   [self.tree.root addGroup:trash];
   if(wasEnabled) {

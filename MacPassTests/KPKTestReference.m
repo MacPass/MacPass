@@ -28,7 +28,7 @@
   self.tree = [[KPKTree alloc] init];
   
   self.tree.root = [[KPKGroup alloc] init];
-  self.tree.root.name = @"Root";
+  self.tree.root.title = @"Root";
   
   KPKEntry *entry1 = [self.tree createEntry:self.tree.root];
   KPKEntry *entry2 = [self.tree createEntry:self.tree.root];

@@ -216,9 +216,9 @@ NSString *const _MPOutlinveViewHeaderViewIdentifier = @"HeaderCell";
     view = [outlineView makeViewWithIdentifier:_MPOutlineViewDataViewIdentifier owner:self];
     
     NSString *iconImageKeyPath = [NSString stringWithFormat:@"%@.%@", NSStringFromSelector(@selector(representedObject)), NSStringFromSelector(@selector(iconImage))];
-    NSString *nameKeyPath = [NSString stringWithFormat:@"%@.%@", NSStringFromSelector(@selector(representedObject)), NSStringFromSelector(@selector(name))];
+    NSString *titleKeyPath = [NSString stringWithFormat:@"%@.%@", NSStringFromSelector(@selector(representedObject)), NSStringFromSelector(@selector(title))];
     [[view imageView] bind:NSValueBinding toObject:item withKeyPath:iconImageKeyPath options:nil];
-    [[view textField] bind:NSValueBinding toObject:item withKeyPath:nameKeyPath options:nil];
+    [[view textField] bind:NSValueBinding toObject:item withKeyPath:titleKeyPath options:nil];
 
     
     NSString *entriesCountKeyPath = [[NSString alloc] initWithFormat:@"%@.%@.%@", NSStringFromSelector(@selector(representedObject)), NSStringFromSelector(@selector(entries)), @"@count"];
