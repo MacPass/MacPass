@@ -158,7 +158,7 @@
   XCTAssertTrue(_undoManager.canUndo, @"Undomanager can undo");
   XCTAssertFalse(_undoManager.canRedo, @"Undomanager still cannot redo");
   
- [_undoManager undo];
+  [_undoManager undo];
   
   XCTAssertEqual(_groupA.entries.count, 1, @"Group A has one entry after undo");
   XCTAssertTrue([_groupA.entries containsObject:_entryA], @"Entry A is in group A after undo");
@@ -190,31 +190,87 @@
 }
 
 - (void)testUndoRedoMoveGroup {
-  XCTFail(@"Missing Test");
+  XCTAssertFalse(_undoManager.canUndo, @"Undo stack is empty");
+  XCTAssertFalse(_undoManager.canRedo, @"Redo stack is empty");
+  
+  XCTAssertEqual(_groupA.groups.count, 0, @"Group A has no child groups");
+  XCTAssertEqual(_groupB.groups.count, 0, @"Group B has no child groups");
+  XCTAssertEqual(_root.groups.count, 2, @"Root has two child groups");
+  
+  XCTAssertTrue([_root.groups containsObject:_groupA], @"Group A is in root group");
+  XCTAssertTrue([_root.groups containsObject:_groupB], @"Group B is in root group");
+  
+  [_groupA moveToGroup:_groupB];
+  
+  XCTAssertTrue(_undoManager.canUndo, @"Undomanager can undo after move");
+  XCTAssertFalse(_undoManager.canRedo, @"Redo stack is still empty");
+
+  XCTAssertEqual(_groupA.groups.count, 0, @"Group A has no child groups");
+  XCTAssertEqual(_groupB.groups.count, 1, @"Group B has one child group");
+  XCTAssertTrue([_groupB.groups containsObject:_groupA], @"Group A is child group of Group B");
+  XCTAssertEqual(_groupB, _groupA.parent, @"Group B is parent of Group A");
+  XCTAssertEqual(_root.groups.count, 1, @"Root has one child group");
+  
+  XCTAssertFalse([_root.groups containsObject:_groupA], @"Group A is not root group");
+  XCTAssertTrue([_root.groups containsObject:_groupB], @"Group B is in root group");
+  
+  [_undoManager undo];
+  
+  XCTAssertFalse(_undoManager.canUndo, @"Undo stack is empty after undo");
+  XCTAssertTrue(_undoManager.canRedo, @"Undomanager can redo after undo");
+  
+  XCTAssertEqual(_groupA.groups.count, 0, @"Group A has no child groups after undo");
+  XCTAssertEqual(_groupB.groups.count, 0, @"Group B has no child groups after undo");
+  XCTAssertEqual(_root, _groupA.parent, @"Root is parent of Group A after undo");
+  XCTAssertEqual(_root, _groupB.parent, @"Root is parent of Group B after undo");
+  XCTAssertEqual(_root.groups.count, 2, @"Root has two child groups after undo");
+  
+  XCTAssertTrue([_root.groups containsObject:_groupA], @"Group A is in root group after undo");
+  XCTAssertTrue([_root.groups containsObject:_groupB], @"Group B is in root group after undo");
+  
+  [_undoManager redo];
+  
+  XCTAssertTrue(_undoManager.canUndo, @"Undomanager can undo again after redo");
+  XCTAssertFalse(_undoManager.canRedo, @"Redo stack is empty after redo");
+  
+  XCTAssertEqual(_groupA.groups.count, 0, @"Group A has no child groups after redo");
+  XCTAssertEqual(_groupB.groups.count, 1, @"Group B has one child group after redo");
+  XCTAssertTrue([_groupB.groups containsObject:_groupA], @"Group A is child group of Group B after redo");
+  XCTAssertEqual(_groupB, _groupA.parent, @"Group B is parent of Group A after redo");
+  XCTAssertEqual(_root.groups.count, 1, @"Root has one child group after redo");
+  
+  XCTAssertFalse([_root.groups containsObject:_groupA], @"Group A is not root group after redo");
+  XCTAssertTrue([_root.groups containsObject:_groupB], @"Group B is in root group after redo");
+}
+
+- (void)testUndoRedoReorderGroups {
+  XCTFail(@"Missing test");
 }
 
 - (void)testUndoRedoDeleteGroupWithoutTrash {
-  XCTFail(@"Missing Test");
+  /* TODO: Deleting groups needs to be moved from MPDocument to KeePassKit */
+  XCTFail(@"Missing test");
 }
 
 - (void)testUndoRedoDeleteEntryWithoutTrash {
-  XCTFail(@"Missing Test");
+  /* TODO: Deleting entries needs to be moved from MPDocument to KeePassKit */
+  XCTFail(@"Missing test");
 }
 
 - (void)testUndoRedoDeleteGroupWithTrash {
-  XCTFail(@"Missing Test");
+  XCTFail(@"Missing test");
 }
 
 - (void)testUndoRedoDeleteEntryWithTrash {
-  XCTFail(@"Missing Test");
+  XCTFail(@"Missing test");
 }
 
 - (void)testUndoRedoEditEntry {
-  XCTFail(@"Missing Test");
+  XCTFail(@"Missing test");
 }
 
 - (void)testUndoRedoEditGroup {
-  XCTFail(@"Missing Test");
+  XCTFail(@"Missing test");
 }
 
 
