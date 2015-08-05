@@ -19,7 +19,7 @@
 }
 
 - (NSWindow *)window {
-  NSWindow *window = [super window];
+  NSWindow *window = super.window;
   [self updateView];
   return window;
 }

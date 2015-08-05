@@ -32,8 +32,6 @@
   NSString *_missingFeature;
 }
 
-@property (nonatomic,assign) BOOL trashEnabled;
-
 @end
 
 @implementation MPDatabaseSettingsWindowController
@@ -55,8 +53,8 @@
   
   NSAssert(self.document != nil, @"Document needs to be present");
     
-  [self.sectionTabView setDelegate:self];
-  [self.encryptionRoundsTextField setFormatter:[[MPNumericalInputFormatter alloc] init]];
+  self.sectionTabView.delegate = self;
+  self.encryptionRoundsTextField.formatter = [[MPNumericalInputFormatter alloc] init];
 }
 
 #pragma mark Actions
@@ -64,14 +62,14 @@
 - (IBAction)save:(id)sender {
   /* General */
   KPKMetaData *metaData = ((MPDocument *)self.document).tree.metaData;
-  metaData.databaseDescription = [self.databaseDescriptionTextView string];
-  metaData.databaseName = [self.databaseNameTextField stringValue];
+  metaData.databaseDescription = self.databaseDescriptionTextView.string;
+  metaData.databaseName = self.databaseNameTextField.stringValue;
 
-  NSInteger compressionIndex = [self.databaseCompressionPopupButton indexOfSelectedItem];
+  NSInteger compressionIndex = self.databaseCompressionPopupButton.indexOfSelectedItem;
   if(compressionIndex >= KPKCompressionNone && compressionIndex < KPKCompressionCount) {
     metaData.compressionAlgorithm = (uint32_t)compressionIndex;
   }
-  NSColor *databaseColor = [self.databaseColorColorWell color];
+  NSColor *databaseColor = self.databaseColorColorWell.color;
   if([databaseColor isEqual:[NSColor clearColor]]) {
     metaData.color = nil;
   }
@@ -80,37 +78,37 @@
   }
     
   /* Advanced */
-  metaData.useTrash = self.trashEnabled;
-  NSMenuItem *trashMenuItem = [self.selectTrashGoupPopUpButton selectedItem];
-  KPKGroup *trashGroup = [trashMenuItem representedObject];
+  metaData.useTrash = HNHBoolForState(self.enableTrashCheckButton.state);
+  NSMenuItem *trashMenuItem = self.selectTrashGoupPopUpButton.selectedItem;
+  KPKGroup *trashGroup = trashMenuItem.representedObject;
   ((MPDocument *)self.document).tree.trash  = trashGroup;
   
-  NSMenuItem *templateMenuItem = [self.templateGroupPopUpButton selectedItem];
-  KPKGroup *templateGroup = [templateMenuItem representedObject];
+  NSMenuItem *templateMenuItem = self.templateGroupPopUpButton.selectedItem;
+  KPKGroup *templateGroup = templateMenuItem.representedObject;
   ((MPDocument *)self.document).templates = templateGroup;
   
   
-  BOOL enforceMasterKeyChange = HNHBoolForState([self.enforceKeyChangeCheckButton state]);
-  BOOL recommendMasterKeyChange = HNHBoolForState([self.recommendKeyChangeCheckButton state]);
+  BOOL enforceMasterKeyChange = HNHBoolForState(self.enforceKeyChangeCheckButton.state);
+  BOOL recommendMasterKeyChange = HNHBoolForState(self.recommendKeyChangeCheckButton.state);
   
-  enforceMasterKeyChange &= ([[self.enforceKeyChangeIntervalTextField stringValue] length] != 0);
-  recommendMasterKeyChange &= ([[self.recommendKeyChangeIntervalTextField stringValue] length] != 0);
+  enforceMasterKeyChange &= (self.enforceKeyChangeIntervalTextField.stringValue.length != 0);
+  recommendMasterKeyChange &= (self.recommendKeyChangeIntervalTextField.stringValue.length != 0);
   
-  NSInteger enfoceInterval = [self.enforceKeyChangeIntervalTextField integerValue];
-  NSInteger recommendInterval = [self.recommendKeyChangeIntervalTextField integerValue];
+  NSInteger enfoceInterval = self.enforceKeyChangeIntervalTextField.integerValue;
+  NSInteger recommendInterval = self.recommendKeyChangeIntervalTextField.integerValue;
 
   metaData.masterKeyChangeEnforcementInterval = enforceMasterKeyChange ? enfoceInterval : -1;
   metaData.masterKeyChangeRecommendationInterval = recommendMasterKeyChange ? recommendInterval : -1;
   
   /* Security */
   
-  metaData.protectNotes =  HNHBoolForState([self.protectNotesCheckButton state]);
-  metaData.protectPassword = HNHBoolForState([self.protectPasswortCheckButton state]);
-  metaData.protectTitle = HNHBoolForState([self.protectTitleCheckButton state]);
-  metaData.protectUrl = HNHBoolForState([self.protectURLCheckButton state]);
-  metaData.protectUserName = HNHBoolForState([self.protectUserNameCheckButton state]);
+  metaData.protectNotes =  HNHBoolForState(self.protectNotesCheckButton.state);
+  metaData.protectPassword = HNHBoolForState(self.protectPasswortCheckButton.state);
+  metaData.protectTitle = HNHBoolForState(self.protectTitleCheckButton.state);
+  metaData.protectUrl = HNHBoolForState(self.protectURLCheckButton.state);
+  metaData.protectUserName = HNHBoolForState(self.protectUserNameCheckButton.state);
   
-  metaData.defaultUserName = [self.defaultUsernameTextField stringValue];
+  metaData.defaultUserName = self.defaultUsernameTextField.stringValue;
   
   /*
    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
@@ -122,8 +120,8 @@
     [defaults synchronize];
    */
   
-  metaData.rounds = MAX(0,[self.encryptionRoundsTextField integerValue]);
-  /* Register an action to enable prompts when user closes without saving */
+  metaData.rounds = MAX(0,self.encryptionRoundsTextField.integerValue);
+  /* Register an action to enable promts when user cloeses without saving */
   [self.document updateChangeCount:NSChangeDone];
   [self close:nil];
 }
@@ -135,8 +133,8 @@
 - (IBAction)benchmarkRounds:(id)sender {
   [self.benchmarkButton setEnabled:NO];
   [KPKCompositeKey benchmarkTransformationRounds:1 completionHandler:^(NSUInteger rounds) {
-    [self.encryptionRoundsTextField setIntegerValue:rounds];
-    [self.benchmarkButton setEnabled:YES];
+    self.encryptionRoundsTextField.integerValue = rounds;
+    self.benchmarkButton.enabled = YES;
   }];
 }
 
@@ -182,11 +180,11 @@
 
 #pragma mark Private Helper
 - (void)_setupDatabaseTab:(KPKMetaData *)metaData {
-  [self.databaseNameTextField setStringValue:metaData.databaseName];
-  [self.databaseDescriptionTextView setString:metaData.databaseDescription];
+  self.databaseNameTextField.stringValue = metaData.databaseName;
+  self.databaseDescriptionTextView.string = metaData.databaseDescription;
   [self.databaseCompressionPopupButton selectItemAtIndex:metaData.compressionAlgorithm];
   NSColor *databaseColor = metaData.color ? metaData.color : [NSColor clearColor];
-  [self.databaseColorColorWell setColor:databaseColor];
+  self.databaseColorColorWell.color = databaseColor;
 }
 
 - (void)_setupProtectionTab:(KPKMetaData *)metaData {
@@ -202,13 +200,13 @@
 
 - (void)_setupAdvancedTab:(KPKTree *)tree {
   /* TODO Do not use bindings, as the user should be able to cancel */
-  [self bind:NSStringFromSelector(@selector(trashEnabled)) toObject:tree.metaData withKeyPath:NSStringFromSelector(@selector(trashEnabled)) options:nil];
-  [self.enableTrashCheckButton bind:NSValueBinding toObject:self withKeyPath:NSStringFromSelector(@selector(trashEnabled)) options:nil];
-  [self.selectTrashGoupPopUpButton bind:NSEnabledBinding toObject:self withKeyPath:NSStringFromSelector(@selector(trashEnabled)) options:nil];
+  //[self bind:NSStringFromSelector(@selector(trashEnabled)) toObject:tree.metaData withKeyPath:NSStringFromSelector(@selector(useTrash)) options:nil];
+  [self.enableTrashCheckButton bind:NSValueBinding toObject:tree.metaData withKeyPath:NSStringFromSelector(@selector(useTrash)) options:nil];
+  [self.selectTrashGoupPopUpButton bind:NSEnabledBinding toObject:tree.metaData withKeyPath:NSStringFromSelector(@selector(useTrash)) options:nil];
   [self _updateTrashFolders:tree];
   
-  [self.defaultUsernameTextField setStringValue:tree.metaData.defaultUserName];
-  [self.defaultUsernameTextField setEditable:YES];
+  self.defaultUsernameTextField.stringValue = tree.metaData.defaultUserName;
+  self.defaultUsernameTextField.editable = YES;
   [self _updateTemplateGroup:tree];
   
   HNHSetStateFromBool(self.enforceKeyChangeCheckButton, tree.metaData.enforceMasterKeyChange);
@@ -238,15 +236,15 @@
   
   switch(tab) {
     case MPDatabaseSettingsTabAdvanced:
-      [[self window] makeFirstResponder:self.defaultUsernameTextField];
+      [self.window makeFirstResponder:self.defaultUsernameTextField];
       break;
       
     case MPDatabaseSettingsTabSecurity:
-      [[self window] makeFirstResponder:self.protectTitleCheckButton];
+      [self.window makeFirstResponder:self.protectTitleCheckButton];
       break;
       
     case MPDatabaseSettingsTabGeneral:
-      [[self window] makeFirstResponder:self.databaseNameTextField];
+      [self.window makeFirstResponder:self.databaseNameTextField];
       break;
   }
 }

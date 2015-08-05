@@ -506,21 +506,14 @@ NSString *const MPDocumentGroupKey                        = @"MPDocumentGroupKey
   if(!entry) {
     return; // Nothing to do;
   }
-  if(self.tree.metaData.useTrash) {
-    if(entry.isTrashed) {
-      [self _presentTrashAlertForItem:entry];
-      return;
-    }
-    if(!self.trash) {
-      [self _createTrashGroup];
-    }
-    [entry moveToGroup:self.trash];
-    [[self undoManager] setActionName:NSLocalizedString(@"TRASH_ENTRY", "Move Entry to Trash")];
+  if(entry.isTrashed) {
+    [self _presentTrashAlertForItem:entry];
+    return;
   }
-  else {
-    [entry remove];
-    [[self undoManager] setActionName:NSLocalizedString(@"DELETE_ENTRY", "")];
-  }
+  [entry trashOrRemove];
+  BOOL permanent = (nil == self.trash);
+  [self.undoManager setActionName:permanent ? NSLocalizedString(@"DELETE_ENTRY", "") : NSLocalizedString(@"TRASH_ENTRY", "Move Entry to Trash")];
+  
   if(self.selectedEntry == entry) {
     self.selectedEntry = nil;
   }
@@ -530,24 +523,13 @@ NSString *const MPDocumentGroupKey                        = @"MPDocumentGroupKey
   if(!group) {
     return; // Nothing to do;
   }
-  if(self.tree.metaData.useTrash) {
-    if(group.isTrashed) {
-      [self _presentTrashAlertForItem:group];
-      return;
-    }
-    if(!self.trash) {
-      [self _createTrashGroup];
-    }
-    if(group == self.trash) {
-      return; //Group is trash!
-    }
-    [group moveToGroup:self.trash];
-    [[self undoManager] setActionName:NSLocalizedString(@"TRASH_GROUP", "Move Group to Trash")];
+  if(group.isTrashed) {
+    [self _presentTrashAlertForItem:group];
+    return;
   }
-  else {
-    [group remove];
-    [[self undoManager] setActionName:NSLocalizedString(@"DELETE_GROUP", "Delete Group")];
-  }
+  [group trashOrRemove];
+  BOOL permanent = (nil == self.trash);
+  [self.undoManager setActionName:permanent ? NSLocalizedString(@"DELETE_GROUP", "Delete Group") : NSLocalizedString(@"TRASH_GROUP", "Move Group to Trash")];
 }
 
 #pragma mark Actions
@@ -746,8 +728,8 @@ NSString *const MPDocumentGroupKey                        = @"MPDocumentGroupKey
   }
 }
 
+/*
 - (KPKGroup *)_createTrashGroup {
-  /* Maybe push the stuff to the Tree? */
   KPKGroup *trash = [self.tree createGroup:self.tree.root];
   BOOL wasEnabled = [self.undoManager isUndoRegistrationEnabled];
   [self.undoManager disableUndoRegistration];
@@ -760,7 +742,7 @@ NSString *const MPDocumentGroupKey                        = @"MPDocumentGroupKey
   self.tree.metaData.trashUuid = trash.uuid;
   return trash;
 }
-
+*/
 - (void)_emptyTrash {
   for(KPKEntry *entry in [self.trash childEntries]) {
     [[self undoManager] removeAllActionsWithTarget:entry];
