@@ -30,7 +30,7 @@
 
 - (void)dismissSheet:(NSInteger)returnCode {
   self.isDirty = YES;
-  [NSApp endSheet:[super window] returnCode:returnCode];
   [[super window] orderOut:self];
+  [NSApp endSheet:[super window] returnCode:returnCode];
 }
 @end
