@@ -204,7 +204,7 @@
   
   XCTAssertTrue(_undoManager.canUndo, @"Undomanager can undo after move");
   XCTAssertFalse(_undoManager.canRedo, @"Redo stack is still empty");
-
+  
   XCTAssertEqual(_groupA.groups.count, 0, @"Group A has no child groups");
   XCTAssertEqual(_groupB.groups.count, 1, @"Group B has one child group");
   XCTAssertTrue([_groupB.groups containsObject:_groupA], @"Group A is child group of Group B");
