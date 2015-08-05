@@ -119,6 +119,9 @@
   
   XCTAssertEqual(_root.entries.count, 0, @"Root has no entries");
   XCTAssertFalse([_root.entries containsObject:entry], @"Created entry is not in root group");
+  
+  XCTAssertTrue(_undoManager.canUndo, @"Undomanager can undo again after redo");
+  XCTAssertFalse(_undoManager.canRedo, @"Undomanger cannot redo after redo");
 }
 
 - (void)testUndoRedoCreateGroup {
@@ -126,7 +129,64 @@
 }
 
 - (void)testUndoRedoMoveEntry {
-  XCTFail(@"Missing Test");
+  
+  XCTAssertFalse(_undoManager.canUndo, @"Undo stack is empty");
+  XCTAssertFalse(_undoManager.canRedo, @"Redo stack is empty");
+  
+  XCTAssertEqual(_groupA.entries.count, 1, @"Group A has one entry");
+  XCTAssertTrue([_groupA.entries containsObject:_entryA], @"Entry A is in group A");
+  
+  XCTAssertEqual(_groupB.entries.count, 1, @"Group B has one entry");
+  XCTAssertTrue([_groupB.entries containsObject:_entryB], @"Entry B is in group B");
+  
+  XCTAssertEqual(_root.entries.count, 0, @"Root has no entries");
+  XCTAssertFalse([_root.entries containsObject:_entryB], @"Entry A is not in root group");
+  XCTAssertFalse([_root.entries containsObject:_entryA], @"Entry A is not in root group");
+  
+  [_entryA moveToGroup:_groupB];
+  
+  XCTAssertEqual(_groupA.entries.count, 0, @"Group A has no entries");
+  
+  XCTAssertEqual(_groupB.entries.count, 2, @"Group B has two entries");
+  XCTAssertTrue([_groupB.entries containsObject:_entryA], @"Entry A is moved to group B");
+  XCTAssertTrue([_groupB.entries containsObject:_entryB], @"Entry B is in group B");
+  
+  XCTAssertEqual(_root.entries.count, 0, @"Root has no entries");
+  XCTAssertFalse([_root.entries containsObject:_entryB], @"Entry A is not in root group");
+  XCTAssertFalse([_root.entries containsObject:_entryA], @"Entry A is not in root group");
+  
+  XCTAssertTrue(_undoManager.canUndo, @"Undomanager can undo");
+  XCTAssertFalse(_undoManager.canRedo, @"Undomanager still cannot redo");
+  
+ [_undoManager undo];
+  
+  XCTAssertEqual(_groupA.entries.count, 1, @"Group A has one entry after undo");
+  XCTAssertTrue([_groupA.entries containsObject:_entryA], @"Entry A is in group A after undo");
+  
+  XCTAssertEqual(_groupB.entries.count, 1, @"Group B has one entry after undo");
+  XCTAssertTrue([_groupB.entries containsObject:_entryB], @"Entry B is in group B after undo");
+  
+  XCTAssertEqual(_root.entries.count, 0, @"Root has no entries");
+  XCTAssertFalse([_root.entries containsObject:_entryA], @"Entry A is not in root group after undo");
+  XCTAssertFalse([_root.entries containsObject:_entryB], @"Entry B is not in root group after undo");
+  
+  XCTAssertFalse(_undoManager.canUndo, @"Undomanager cannot undo anymore");
+  XCTAssertTrue(_undoManager.canRedo, @"Undomanger can redo executed undo");
+  
+  [_undoManager redo];
+  
+  XCTAssertEqual(_groupA.entries.count, 0, @"Group A has no entries after redo");
+  
+  XCTAssertEqual(_groupB.entries.count, 2, @"Group B has two entries");
+  XCTAssertTrue([_groupB.entries containsObject:_entryA], @"Entry A is moved to group B after redo");
+  XCTAssertTrue([_groupB.entries containsObject:_entryB], @"Entry B is in group B");
+  
+  XCTAssertEqual(_root.entries.count, 0, @"Root has no entries");
+  XCTAssertFalse([_root.entries containsObject:_entryA], @"Entry A is not in root group after redo");
+  XCTAssertFalse([_root.entries containsObject:_entryB], @"Entry B is not in root group after redo");
+  
+  XCTAssertTrue(_undoManager.canUndo, @"Undomanager can undo again after redo");
+  XCTAssertFalse(_undoManager.canRedo, @"Undomanager cannot redo anymore after redo");
 }
 
 - (void)testUndoRedoMoveGroup {
