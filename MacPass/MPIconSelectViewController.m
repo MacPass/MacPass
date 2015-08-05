@@ -41,10 +41,10 @@ NSInteger const kMPDefaultIcon = -1;
 
 - (void)didLoadView {
   //[[self.imageButton cell] setBackgroundStyle:NSBackgroundStyleLowered];
-  [self.iconCollectionView setBackgroundColors:@[[NSColor clearColor]]];
-  [self.iconCollectionView setSelectable:YES];
-  [self.iconCollectionView setAllowsMultipleSelection:NO];
-  [self.iconCollectionView setContent:[MPIconHelper databaseIcons]];
+  self.iconCollectionView.backgroundColors = @[[NSColor clearColor]];
+  self.iconCollectionView.selectable = YES;
+  self.iconCollectionView.allowsMultipleSelection = NO;
+  self.iconCollectionView.content = [MPIconHelper databaseIcons];
 }
 
 - (IBAction)useDefault:(id)sender {
@@ -66,9 +66,9 @@ NSInteger const kMPDefaultIcon = -1;
 - (IBAction)_selectImage:(id)sender {
   self.didCancel = NO;
   NSButton *button = sender;
-  NSImage *image = [button image];
-  NSUInteger buttonIndex = [[self.iconCollectionView content] indexOfObject:image];
-  self.selectedIcon = [[MPIconHelper databaseIconTypes] [buttonIndex] integerValue];
+  NSImage *image = button.image;
+  NSUInteger buttonIndex = [self.iconCollectionView.content indexOfObject:image];
+  self.selectedIcon = ((NSNumber *)[MPIconHelper databaseIconTypes][buttonIndex]).integerValue;
   [self.popover performClose:self];
 }
 

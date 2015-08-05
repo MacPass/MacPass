@@ -541,7 +541,7 @@ NSString *const MPDocumentGroupKey                        = @"MPDocumentGroupKey
     if(group == self.trash) {
       return; //Group is trash!
     }
-    [group moveToGroup:self.trash atIndex:[self.trash.groups count]];
+    [group moveToGroup:self.trash];
     [[self undoManager] setActionName:NSLocalizedString(@"TRASH_GROUP", "Move Group to Trash")];
   }
   else {

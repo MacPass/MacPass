@@ -28,17 +28,17 @@
   static dispatch_once_t onceToken;
   dispatch_once(&onceToken, ^{
     NSDictionary *imageNames = [MPIconHelper availableIconNames];
-    NSMutableArray *mutableIcons = [[NSMutableArray alloc] initWithCapacity:[imageNames count]];
+    NSMutableArray *mutableIcons = [[NSMutableArray alloc] initWithCapacity:imageNames.count];
     
-    NSArray *sortedImageNames = [[imageNames allKeys] sortedArrayUsingComparator:^NSComparisonResult(id obj1, id obj2) {
-      return [[imageNames objectForKey:obj1] compare:[imageNames objectForKey:obj2]];
+    NSArray *sortedImageNames = [imageNames.allKeys sortedArrayUsingComparator:^NSComparisonResult(id obj1, id obj2) {
+      return [imageNames[obj1] compare:imageNames[obj2]];
     }];
     
     for(NSNumber *iconNumber in sortedImageNames) {
-      if([iconNumber integerValue] > MPCustomIconTypeBegin) {
+      if(iconNumber.integerValue > MPCustomIconTypeBegin) {
         continue; // Skip all non-db Keys
       }
-      MPIconType iconType = (MPIconType)[iconNumber integerValue];
+      MPIconType iconType = (MPIconType)iconNumber.integerValue;
       [mutableIcons addObject:[MPIconHelper icon:iconType]];
     }
     icons = [mutableIcons copy];
@@ -52,19 +52,14 @@
   static dispatch_once_t onceToken;
   dispatch_once(&onceToken, ^{
     NSDictionary *imageNames = [MPIconHelper availableIconNames];
-    NSMutableArray *mutableIcons = [[NSMutableArray alloc] initWithCapacity:[imageNames count]];
     
     NSArray *sortedImageNames = [[imageNames allKeys] sortedArrayUsingComparator:^NSComparisonResult(id obj1, id obj2) {
       return [[imageNames objectForKey:obj1] compare:[imageNames objectForKey:obj2]];
     }];
-    
-    for(NSNumber *iconNumber in sortedImageNames) {
-      if([iconNumber integerValue] > MPCustomIconTypeBegin) {
-        continue; // Skip all non-db Keys
-      }
-      [mutableIcons addObject:iconNumber];
-    }
-    iconTypes = [mutableIcons copy];
+    iconTypes = [sortedImageNames filteredArrayUsingPredicate:[NSPredicate predicateWithBlock:^BOOL(id evaluatedObject, NSDictionary *bindings) {
+      NSNumber *iconNumber = (NSNumber *)evaluatedObject;
+      return (iconNumber.integerValue < MPCustomIconTypeBegin);
+    }]];
   });
   return iconTypes;
 }
