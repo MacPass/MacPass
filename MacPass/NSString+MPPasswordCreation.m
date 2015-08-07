@@ -42,7 +42,9 @@ static NSString *allowedCharactersString(MPPasswordCharacterFlags flags) {
   return password;
 }
 
-+ (NSString *)passwordWithCharactersets:(MPPasswordCharacterFlags)allowedCharacters length:(NSUInteger)length {
++ (NSString *)passwordWithCharactersets:(MPPasswordCharacterFlags)allowedCharacters
+                   withCustomCharacters:(NSString*)customCharacters
+                                 length:(NSUInteger)length {
   NSMutableString *password = [NSMutableString stringWithCapacity:length];
   NSString *characters = allowedCharactersString(allowedCharacters);
   while([password length] < length) {
@@ -67,7 +69,9 @@ static NSString *allowedCharactersString(MPPasswordCharacterFlags flags) {
   if(useCustomString && [customString length] > 0) {
     return [customString passwordWithLength:passwordLength];
   }
-  return [NSString passwordWithCharactersets:characterFlags length:passwordLength];
+  return [NSString passwordWithCharactersets:characterFlags
+                        withCustomCharacters:@""
+                                      length:passwordLength];
 }
 
 - (NSString *)passwordWithLength:(NSUInteger)length {

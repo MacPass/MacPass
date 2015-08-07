@@ -148,14 +148,19 @@ typedef NS_ENUM(NSUInteger, MPPasswordRating) {
 #pragma mark Actions
 
 - (IBAction)_generatePassword:(id)sender {
-  if(self.useCustomString) {
-    if([[self.customCharactersTextField stringValue] length] > 0) {
-      self.password = [self.customCharactersTextField.stringValue passwordWithLength:self.passwordLength];
+  self.password = [NSString passwordWithCharactersets:self.characterFlags
+                                 withCustomCharacters:self._customCharacters
+                                               length:self.passwordLength];
+}
+
+- (NSString*)_customCharacters{
+  if(self.useCustomString && [[self.customCharactersTextField stringValue] length] > 0) {
+      return self.customCharactersTextField.stringValue;
     }
-  }
-  else {
-    self.password = [NSString passwordWithCharactersets:self.characterFlags length:self.passwordLength];
-  }
+    else{
+      return @"";
+    }
+  
 }
 
 - (IBAction)_toggleCharacters:(id)sender {
