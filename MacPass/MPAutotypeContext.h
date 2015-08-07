@@ -33,7 +33,7 @@
 /**
  *  @return YES if valid, NO otherwise
  */
-@property (nonatomic, readonly, assign) BOOL isValid;
+@property (nonatomic, readonly, assign) BOOL valid;
 
 /**
  *  Designated initializer

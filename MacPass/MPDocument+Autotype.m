@@ -78,14 +78,14 @@
       KPKWindowAssociation *association = [entry.autotype windowAssociationMatchingWindowTitle:windowTitle];
       context = [[MPAutotypeContext alloc] initWithWindowAssociation:association];
     }
-    if(context.isValid) {
+    if(context.valid) {
       [contexts addObject:context];
     }
   }
   /* Fall back to preferred Entry if no match was found */
   if(contexts.count == 0 && usePreferredEntry) {
     context = [[MPAutotypeContext alloc] initWithEntry:entry andSequence:entry.autotype.defaultKeystrokeSequence];
-    if(context.isValid) {
+    if(context.valid) {
       [contexts addObject:context];
     }
   }
