@@ -32,6 +32,20 @@ static NSString *allowedCharactersString(MPPasswordCharacterFlags flags) {
   return characterString;
 }
 
+static NSString *mergeWithoutDuplicates(NSString* baseCharacters, NSString* customCharacters){
+  NSInteger maxLength =[baseCharacters length] + [customCharacters length];
+  NSMutableString* mergedCharacters = [NSMutableString stringWithCapacity: maxLength];
+  [mergedCharacters appendString:baseCharacters];
+  [customCharacters enumerateSubstringsInRange: NSMakeRange(0, [customCharacters length])
+                                       options: NSStringEnumerationByComposedCharacterSequences
+                                    usingBlock: ^(NSString *inSubstring, NSRange inSubstringRange, NSRange inEnclosingRange, BOOL *outStop) {
+                                      if(![mergedCharacters containsString:inSubstring]){
+                                        [mergedCharacters appendString:inSubstring];
+                                      }
+                                    }];
+  return [NSString stringWithString:mergedCharacters];
+}
+
 @implementation NSString (MPPasswordCreation)
 
 + (NSString *)passwordFromString:(NSString *)source length:(NSUInteger)length {
@@ -46,7 +60,9 @@ static NSString *allowedCharactersString(MPPasswordCharacterFlags flags) {
                    withCustomCharacters:(NSString*)customCharacters
                                  length:(NSUInteger)length {
   NSMutableString *password = [NSMutableString stringWithCapacity:length];
-  NSString *characters = allowedCharactersString(allowedCharacters);
+  NSString *characters = mergeWithoutDuplicates(
+                                                allowedCharactersString(allowedCharacters),
+                                                customCharacters);
   while([password length] < length) {
     NSString *randomCharacter = [characters randomCharacter];
     if([randomCharacter length] > 0) {
