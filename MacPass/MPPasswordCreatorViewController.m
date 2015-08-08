@@ -166,7 +166,6 @@ typedef NS_ENUM(NSUInteger, MPPasswordRating) {
 - (IBAction)_toggleCharacters:(id)sender {
   self.setDefaultButton.enabled = YES;
   self.characterFlags ^= [sender tag];
-  self.useCustomString = NO;
   [self reset];
 }
 
@@ -326,15 +325,10 @@ typedef NS_ENUM(NSUInteger, MPPasswordRating) {
   if(self.useCustomString) {
     self.customButton.state = NSOnState;
   }
-  self.customCharactersTextField.stringValue = self.customString;
   self.customCharactersTextField.enabled = self.useCustomString;
-  self.upperCaseButton.enabled = !self.useCustomString;
-  self.lowerCaseButton.enabled = !self.useCustomString;
-  self.numbersButton.enabled = !self.useCustomString;
-  self.symbolsButton.enabled = !self.useCustomString;
   
   /* Set to defaults, if we got nothing */
-  if(self.characterFlags == 0) {
+  if(self.characterFlags == 0 && !self.useCustomString) {
     self.characterFlags = MPPasswordCharactersAll;
   }
   
