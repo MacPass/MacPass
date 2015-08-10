@@ -80,9 +80,12 @@
   
   XCTAssertFalse(_undoManager.canUndo, @"Undo stack is empty");
   XCTAssertFalse(_undoManager.canRedo, @"Redo stack is empty");
+  XCTAssertEqual(_tree.deletedObjects.count, 0, @"There are no deleted objects in the database");
+  
   KPKEntry *entry = [_tree createEntry:_groupA];
   [_groupA addEntry:entry];
   
+  XCTAssertTrue(_undoManager.canUndo, @"Undomanager can undo");
   
   XCTAssertEqual(_groupA.entries.count, 2, @"Group A has two entries");
   XCTAssertTrue([_groupA.entries containsObject:entry], @"Created entry is in group A");
@@ -93,9 +96,12 @@
   XCTAssertEqual(_root.entries.count, 0, @"Root has no entries");
   XCTAssertFalse([_root.entries containsObject:entry], @"Created entry is not in root group");
   
-  XCTAssertTrue(_undoManager.canUndo, @"Undomanager can undo");
+  XCTAssertEqual(_tree.deletedObjects.count, 0, @"There are no deleted objects in the database");
   
   [_undoManager undo];
+  
+  XCTAssertFalse(_undoManager.canUndo, @"Undomanager cannot undo anymore");
+  XCTAssertTrue(_undoManager.canRedo, @"Undomanger can redo executed undo");
   
   XCTAssertEqual(_groupA.entries.count, 1, @"Group A has one entry after undo");
   XCTAssertFalse([_groupA.entries containsObject:entry], @"Created enty is not in group A");
@@ -106,10 +112,12 @@
   XCTAssertEqual(_root.entries.count, 0, @"Root has no entries");
   XCTAssertFalse([_root.entries containsObject:entry], @"Created enty is not in group A");
   
-  XCTAssertFalse(_undoManager.canUndo, @"Undomanager cannot undo anymore");
-  XCTAssertTrue(_undoManager.canRedo, @"Undomanger can redo executed undo");
+  XCTAssertEqual(_tree.deletedObjects.count, 0, @"There are no deleted objects in the database");
   
   [_undoManager redo];
+  
+  XCTAssertTrue(_undoManager.canUndo, @"Undomanager can undo again after redo");
+  XCTAssertFalse(_undoManager.canRedo, @"Undomanger cannot redo after redo");
   
   XCTAssertEqual(_groupA.entries.count, 2, @"Group A has two entries");
   XCTAssertTrue([_groupA.entries containsObject:entry], @"Created entry is in group A");
@@ -120,35 +128,44 @@
   XCTAssertEqual(_root.entries.count, 0, @"Root has no entries");
   XCTAssertFalse([_root.entries containsObject:entry], @"Created entry is not in root group");
   
-  XCTAssertTrue(_undoManager.canUndo, @"Undomanager can undo again after redo");
-  XCTAssertFalse(_undoManager.canRedo, @"Undomanger cannot redo after redo");
+  XCTAssertEqual(_tree.deletedObjects.count, 0, @"There are no deleted objects in the database");
+  
 }
 
 - (void)testUndoRedoCreateGroup {
   XCTAssertFalse(_undoManager.canUndo, @"Undo stack is empty");
   XCTAssertFalse(_undoManager.canRedo, @"Redo stack is empty");
+  
+  XCTAssertEqual(_tree.deletedObjects.count, 0, @"There are no deleted objects in the database");
   KPKGroup *group = [_tree createGroup:_tree.root];
   /* insert group between group A and B */
   [_tree.root addGroup:group atIndex:1];
   
-  XCTAssertEqual(_groupA.groups.count, 0, @"Group A has no child groups");
-  XCTAssertEqual(_groupB.groups.count, 0, @"Group B has no child groups");
-  XCTAssertEqual(_tree.root.groups.count, 3, @"Root has 3 child groups");
-  XCTAssertTrue([_tree.root.groups containsObject:group], @"Created group is in root group");
-  XCTAssertEqual([_tree.root.groups indexOfObject:group], 1, @"Created group is at index 1");
   
   XCTAssertTrue(_undoManager.canUndo, @"Undomanager can undo");
   XCTAssertFalse(_undoManager.canRedo, @"Undomanager cannot redo");
   
+  XCTAssertEqual(_groupA.groups.count, 0, @"Group A has no child groups");
+  XCTAssertEqual(_groupB.groups.count, 0, @"Group B has no child groups");
+  
+  XCTAssertEqual(_tree.root.groups.count, 3, @"Root has 3 child groups");
+  XCTAssertTrue([_tree.root.groups containsObject:group], @"Created group is in root group");
+  XCTAssertEqual([_tree.root.groups indexOfObject:group], 1, @"Created group is at index 1");
+  
+  XCTAssertEqual(_tree.deletedObjects.count, 0, @"There are no deleted objects in the database");
+  
   [_undoManager undo];
-
+  
   XCTAssertFalse(_undoManager.canUndo, @"No undo after undo");
   XCTAssertTrue(_undoManager.canRedo, @"Redo is available after undo");
   
   XCTAssertEqual(_groupA.groups.count, 0, @"Group A has no child groups");
   XCTAssertEqual(_groupB.groups.count, 0, @"Group B has no child groups");
+  
   XCTAssertEqual(_tree.root.groups.count, 2, @"Root has 2 child groups");
   XCTAssertFalse([_tree.root.groups containsObject:group], @"Created group is not in root after undo");
+  
+  XCTAssertEqual(_tree.deletedObjects.count, 0, @"There are no deleted objects in the database");
   
   [_undoManager redo];
   
@@ -157,15 +174,20 @@
   
   XCTAssertEqual(_groupA.groups.count, 0, @"Group A has no child groups after redo");
   XCTAssertEqual(_groupB.groups.count, 0, @"Group B has no child groups after redo");
+  
   XCTAssertEqual(_tree.root.groups.count, 3, @"Root has 3 child groups after redo");
   XCTAssertTrue([_tree.root.groups containsObject:group], @"Created group is in root group after redo");
   XCTAssertEqual([_tree.root.groups indexOfObject:group], 1, @"Created group is at index 1 after redo");
+  
+  XCTAssertEqual(_tree.deletedObjects.count, 0, @"There are no deleted objects in the database");
 }
 
 - (void)testUndoRedoMoveEntry {
   
   XCTAssertFalse(_undoManager.canUndo, @"Undo stack is empty");
   XCTAssertFalse(_undoManager.canRedo, @"Redo stack is empty");
+  
+  XCTAssertEqual(_tree.deletedObjects.count, 0, @"There are no deleted objects in the database");
   
   XCTAssertEqual(_groupA.entries.count, 1, @"Group A has one entry");
   XCTAssertTrue([_groupA.entries containsObject:_entryA], @"Entry A is in group A");
@@ -179,6 +201,7 @@
   
   [_entryA moveToGroup:_groupB];
   
+  
   XCTAssertEqual(_groupA.entries.count, 0, @"Group A has no entries");
   
   XCTAssertEqual(_groupB.entries.count, 2, @"Group B has two entries");
@@ -188,6 +211,8 @@
   XCTAssertEqual(_root.entries.count, 0, @"Root has no entries");
   XCTAssertFalse([_root.entries containsObject:_entryB], @"Entry A is not in root group");
   XCTAssertFalse([_root.entries containsObject:_entryA], @"Entry A is not in root group");
+  
+  XCTAssertEqual(_tree.deletedObjects.count, 0, @"There are no deleted objects in the database");
   
   XCTAssertTrue(_undoManager.canUndo, @"Undomanager can undo");
   XCTAssertFalse(_undoManager.canRedo, @"Undomanager still cannot redo");
@@ -204,6 +229,8 @@
   XCTAssertFalse([_root.entries containsObject:_entryA], @"Entry A is not in root group after undo");
   XCTAssertFalse([_root.entries containsObject:_entryB], @"Entry B is not in root group after undo");
   
+  XCTAssertEqual(_tree.deletedObjects.count, 0, @"There are no deleted objects in the database");
+  
   XCTAssertFalse(_undoManager.canUndo, @"Undomanager cannot undo anymore");
   XCTAssertTrue(_undoManager.canRedo, @"Undomanger can redo executed undo");
   
@@ -218,6 +245,8 @@
   XCTAssertEqual(_root.entries.count, 0, @"Root has no entries");
   XCTAssertFalse([_root.entries containsObject:_entryA], @"Entry A is not in root group after redo");
   XCTAssertFalse([_root.entries containsObject:_entryB], @"Entry B is not in root group after redo");
+  
+  XCTAssertEqual(_tree.deletedObjects.count, 0, @"There are no deleted objects in the database");
   
   XCTAssertTrue(_undoManager.canUndo, @"Undomanager can undo again after redo");
   XCTAssertFalse(_undoManager.canRedo, @"Undomanager cannot redo anymore after redo");
@@ -234,6 +263,8 @@
   XCTAssertTrue([_root.groups containsObject:_groupA], @"Group A is in root group");
   XCTAssertTrue([_root.groups containsObject:_groupB], @"Group B is in root group");
   
+  XCTAssertEqual(_tree.deletedObjects.count, 0, @"There are no deleted objects in the database");
+  
   [_groupA moveToGroup:_groupB];
   
   XCTAssertTrue(_undoManager.canUndo, @"Undomanager can undo after move");
@@ -247,6 +278,8 @@
   
   XCTAssertFalse([_root.groups containsObject:_groupA], @"Group A is not root group");
   XCTAssertTrue([_root.groups containsObject:_groupB], @"Group B is in root group");
+  
+  XCTAssertEqual(_tree.deletedObjects.count, 0, @"There are no deleted objects in the database");
   
   [_undoManager undo];
   
@@ -262,6 +295,8 @@
   XCTAssertTrue([_root.groups containsObject:_groupA], @"Group A is in root group after undo");
   XCTAssertTrue([_root.groups containsObject:_groupB], @"Group B is in root group after undo");
   
+  XCTAssertEqual(_tree.deletedObjects.count, 0, @"There are no deleted objects in the database");
+  
   [_undoManager redo];
   
   XCTAssertTrue(_undoManager.canUndo, @"Undomanager can undo again after redo");
@@ -275,6 +310,8 @@
   
   XCTAssertFalse([_root.groups containsObject:_groupA], @"Group A is not root group after redo");
   XCTAssertTrue([_root.groups containsObject:_groupB], @"Group B is in root group after redo");
+  
+  XCTAssertEqual(_tree.deletedObjects.count, 0, @"There are no deleted objects in the database");
 }
 
 - (void)testUndoRedoReorderGroups {
