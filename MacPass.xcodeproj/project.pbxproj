@@ -23,6 +23,7 @@
 		4C0DD6C618B2A44700FCB193 /* AutotypeCandidateSelectionWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4C0DD6C518B2A44700FCB193 /* AutotypeCandidateSelectionWindow.xib */; };
 		4C0F647817B6B65E00D9522A /* MPSheetWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C0F647717B6B65E00D9522A /* MPSheetWindowController.m */; };
 		4C0F647B17B6BC9C00D9522A /* MPSavePanelAccessoryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C0F647A17B6BC9C00D9522A /* MPSavePanelAccessoryViewController.m */; };
+		4C10207F1B750E2F00BFCD59 /* MPTestAutotype.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C10207E1B750E2F00BFCD59 /* MPTestAutotype.m */; };
 		4C10412C178CDD44001B5239 /* NSDate+Humanized.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C10412B178CDD44001B5239 /* NSDate+Humanized.m */; };
 		4C15B74618BCA3B1003F8008 /* MPDocument+Search.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C15B74518BCA3B1003F8008 /* MPDocument+Search.m */; };
 		4C17D8E517A1C780006C8C1E /* MPDocumentWindowDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C17D8E417A1C780006C8C1E /* MPDocumentWindowDelegate.m */; };
@@ -456,6 +457,7 @@
 		4C0F647717B6B65E00D9522A /* MPSheetWindowController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MPSheetWindowController.m; sourceTree = "<group>"; };
 		4C0F647917B6BC9C00D9522A /* MPSavePanelAccessoryViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MPSavePanelAccessoryViewController.h; sourceTree = "<group>"; };
 		4C0F647A17B6BC9C00D9522A /* MPSavePanelAccessoryViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MPSavePanelAccessoryViewController.m; sourceTree = "<group>"; };
+		4C10207E1B750E2F00BFCD59 /* MPTestAutotype.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MPTestAutotype.m; sourceTree = "<group>"; };
 		4C10412A178CDD44001B5239 /* NSDate+Humanized.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDate+Humanized.h"; sourceTree = "<group>"; };
 		4C10412B178CDD44001B5239 /* NSDate+Humanized.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDate+Humanized.m"; sourceTree = "<group>"; };
 		4C13904C17ADD1A300A62934 /* KPKTreeCrypting.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KPKTreeCrypting.h; sourceTree = "<group>"; };
@@ -1614,6 +1616,7 @@
 		4C4B6E3C1B5E24870082EEF2 /* MacPass */ = {
 			isa = PBXGroup;
 			children = (
+				4C10207E1B750E2F00BFCD59 /* MPTestAutotype.m */,
 				4C45FB2C178E0BCB0010007D /* MPDatabaseLoading.m */,
 				4C45FB2F178E0CE20010007D /* MPTestDocument.m */,
 				4C19E502178E2871002F2CD0 /* MPDatabasePasswordAndKeyfile.m */,
@@ -2550,6 +2553,7 @@
 				4CE76DAD17B3AD010043B82B /* KPKHashedDataTest.m in Sources */,
 				4CEAF85B17BA9B44001307A6 /* KPKTestKeyfileParsing.m in Sources */,
 				4C3F25211A3B0C95007DD98B /* KPKTextXMLUtilities.m in Sources */,
+				4C10207F1B750E2F00BFCD59 /* MPTestAutotype.m in Sources */,
 				4C59745118B3CE7200C8EBD1 /* KPKTestAutotype.m in Sources */,
 				4C6FDD2117BC4F4C004AEEC8 /* KPKTestPlaceholder.m in Sources */,
 				4CBA561617C2EA4900CE13D3 /* KPKTestXmlWriting.m in Sources */,
@@ -3053,7 +3057,6 @@
 				CLANG_WARN_EMPTY_BODY = YES;
 				COMBINE_HIDPI_IMAGES = YES;
 				FRAMEWORK_SEARCH_PATHS = (
-					"\\\"$(DEVELOPER_LIBRARY_DIR)/Frameworks\\\"",
 					"$(inherited)",
 					"$(DEVELOPER_FRAMEWORKS_DIR)",
 				);
@@ -3076,7 +3079,6 @@
 				CLANG_WARN_EMPTY_BODY = YES;
 				COMBINE_HIDPI_IMAGES = YES;
 				FRAMEWORK_SEARCH_PATHS = (
-					"\\\"$(DEVELOPER_LIBRARY_DIR)/Frameworks\\\"",
 					"$(inherited)",
 					"$(DEVELOPER_FRAMEWORKS_DIR)",
 				);
