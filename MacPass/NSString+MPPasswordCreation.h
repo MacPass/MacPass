@@ -26,7 +26,9 @@ typedef NS_OPTIONS(NSUInteger, MPPasswordCharacterFlags) {
 *
 *  @return new password with only the allowed characters.
 */
-+ (NSString *)passwordWithCharactersets:(MPPasswordCharacterFlags)allowedCharacters length:(NSUInteger)theLength;
++ (NSString *)passwordWithCharactersets:(MPPasswordCharacterFlags)allowedCharacters
+                   withCustomCharacters:(NSString*)customCharacters
+                                 length:(NSUInteger)theLength;
 /**
  *  Creats a password based on the supplied string
  *
