@@ -125,7 +125,41 @@
 }
 
 - (void)testUndoRedoCreateGroup {
-  XCTFail(@"Missing Test");
+  XCTAssertFalse(_undoManager.canUndo, @"Undo stack is empty");
+  XCTAssertFalse(_undoManager.canRedo, @"Redo stack is empty");
+  KPKGroup *group = [_tree createGroup:_tree.root];
+  /* insert group between group A and B */
+  [_tree.root addGroup:group atIndex:1];
+  
+  XCTAssertEqual(_groupA.groups.count, 0, @"Group A has no child groups");
+  XCTAssertEqual(_groupB.groups.count, 0, @"Group B has no child groups");
+  XCTAssertEqual(_tree.root.groups.count, 3, @"Root has 3 child groups");
+  XCTAssertTrue([_tree.root.groups containsObject:group], @"Created group is in root group");
+  XCTAssertEqual([_tree.root.groups indexOfObject:group], 1, @"Created group is at index 1");
+  
+  XCTAssertTrue(_undoManager.canUndo, @"Undomanager can undo");
+  XCTAssertFalse(_undoManager.canRedo, @"Undomanager cannot redo");
+  
+  [_undoManager undo];
+
+  XCTAssertFalse(_undoManager.canUndo, @"No undo after undo");
+  XCTAssertTrue(_undoManager.canRedo, @"Redo is available after undo");
+  
+  XCTAssertEqual(_groupA.groups.count, 0, @"Group A has no child groups");
+  XCTAssertEqual(_groupB.groups.count, 0, @"Group B has no child groups");
+  XCTAssertEqual(_tree.root.groups.count, 2, @"Root has 2 child groups");
+  XCTAssertFalse([_tree.root.groups containsObject:group], @"Created group is not in root after undo");
+  
+  [_undoManager redo];
+  
+  XCTAssertTrue(_undoManager.canUndo, @"Undomanager can undo after redo");
+  XCTAssertFalse(_undoManager.canRedo, @"Undomanager cannot redo after redo");
+  
+  XCTAssertEqual(_groupA.groups.count, 0, @"Group A has no child groups after redo");
+  XCTAssertEqual(_groupB.groups.count, 0, @"Group B has no child groups after redo");
+  XCTAssertEqual(_tree.root.groups.count, 3, @"Root has 3 child groups after redo");
+  XCTAssertTrue([_tree.root.groups containsObject:group], @"Created group is in root group after redo");
+  XCTAssertEqual([_tree.root.groups indexOfObject:group], 1, @"Created group is at index 1 after redo");
 }
 
 - (void)testUndoRedoMoveEntry {
