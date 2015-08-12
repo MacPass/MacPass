@@ -7,6 +7,8 @@
 //
 
 #import <XCTest/XCTest.h>
+#import "KPKIconTypes.h"
+#import "KPKGroup.h"
 #import "KPKEntry.h"
 #import "KPKAttribute.h"
 #import "KPKBinary.h"
@@ -54,16 +56,64 @@
   
   entry.title = @"NewTitle";
   [entry removeBinary:binary];
-  [[entry.customAttributes lastObject] setKey:@"NewCustomKey"];
+  ((KPKAttribute *)entry.customAttributes.lastObject).key = @"NewCustomKey";
   
   XCTAssertNotNil(copyEntry, @"Copied Entry cannot be nil");
-  XCTAssertTrue([copyEntry.title isEqualToString:@"Title"], @"Titles should match");
-  XCTAssertTrue([copyEntry.url isEqualToString:@"URL"], @"URLS should match");
-  XCTAssertTrue([copyEntry.binaries count] == 1, @"Binaries should be copied");
+  XCTAssertEqualObjects(copyEntry.title, @"Title", @"Titles should match");
+  XCTAssertEqualObjects(copyEntry.url, @"URL", @"URLS should match");
+  XCTAssertEqual(copyEntry.binaries.count, 1, @"Binareis should be copied");
   
   KPKBinary *copiedBinary = [copyEntry.binaries lastObject];
   XCTAssertTrue([copiedBinary.data isEqualToData:binary.data], @"Binary data should match");
-  XCTAssertTrue([copiedBinary.name isEqualToString:binary.name], @"Binary names should match");
+  XCTAssertTrue([copiedBinary.name isEqualToString:binary.name], @"Binary names should macht");
+}
+
+- (void)testGroupCopying {
+  
+  /*
+   root
+    + Group A
+      + Entry A
+      + Group A1
+      + Group A2
+        + Entry B
+   */
+  
+  KPKGroup *root = [[KPKGroup alloc] init];
+  root.title = @"root";
+  
+  KPKGroup *groupA = [[KPKGroup alloc] init];
+  groupA.title = @"Group A";
+  groupA.isAutoTypeEnabled = KPKInheritNO;
+  
+  KPKGroup *groupA1 = [[KPKGroup alloc] init];
+  groupA1.title = @"Group A1";
+  groupA1.notes = @"Some notes";
+  groupA1.iconId = KPKIconASCII;
+  
+  KPKGroup *groupA2 = [[KPKGroup alloc] init];
+  groupA2.title = @"Group A2";
+  groupA2.notes = @"More notes";
+  groupA2.isSearchEnabled = KPKInheritYES;
+  
+  KPKEntry *entryA = [[KPKEntry alloc] init];
+  entryA.title = @"Entry A";
+  entryA.url = @"www.url.com";
+  KPKEntry *entryB = [[KPKEntry alloc] init];
+  entryB.title = @"Entry B";
+  entryB.url = @"www.nope.com";
+
+  
+  [groupA addEntry:entryA];
+  [groupA addGroup:groupA1];
+  [groupA addGroup:groupA2];
+  [groupA2 addEntry:entryB];
+  
+  [root addGroup:groupA];
+  
+  KPKGroup *copy = [root copy];
+  
+  XCTAssertEqualObjects(root, copy);
 }
 
 @end

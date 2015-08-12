@@ -42,7 +42,6 @@
   NSData *data = [self encode:binary];
   KPKBinary *decodedBinary = [self decode:data ofClass:[KPKBinary class]];
   
-  
   XCTAssertTrue([decodedBinary.data isEqualToData:binary.data]);
   XCTAssertTrue([decodedBinary.name isEqualToString:binary.name]);
 }
@@ -105,20 +104,36 @@
   group.title = @"A Group";
   group.iconId = 50;
   group.notes = @"Some notes";
+  group.isAutoTypeEnabled = KPKInheritYES;
+  
   KPKEntry *entry = [[KPKEntry alloc] init];
   entry.title = @"Entry";
   entry.url = @"www.url.com";
   [group addEntry:entry];
+
+  KPKGroup *childGroup = [[KPKGroup alloc] init];
+  childGroup.title = @"Subgroup";
+  childGroup.iconId = 1;
+  childGroup.isAutoTypeEnabled = KPKInheritNO;
+  [group addGroup:childGroup];
+  
+  KPKEntry *subEntry = [[KPKEntry alloc] init];
+  subEntry.title = @"Subentry";
+  subEntry.url = @"www.url.com";
+  [childGroup addEntry:subEntry];
   
   NSData *data = [self encode:group];
   KPKGroup *decodedGroup = [self decode:data ofClass:[KPKGroup class]];
   
   XCTAssertTrue([group.uuid isEqual:decodedGroup.uuid]);
   XCTAssertTrue([group.title isEqualToString:decodedGroup.title]);
-  XCTAssertEqual([group.entries count], [decodedGroup.entries count]);
+  XCTAssertEqual(group.entries.count, decodedGroup.entries.count);
   XCTAssertEqual(group.iconId, decodedGroup.iconId);
   XCTAssertTrue([group.notes isEqualToString:decodedGroup.notes]);
-
+ 
+  XCTAssertEqualObjects(childGroup.parent, group);
+  XCTAssertEqualObjects(subEntry.parent, childGroup);
+  
   KPKEntry *decodedEntry = [decodedGroup entryForUUID:entry.uuid];
   XCTAssertNotNil(decodedEntry);
   XCTAssertEqualObjects(decodedEntry.parent, decodedGroup);
@@ -137,11 +152,9 @@
 }
 
 - (id)decode:(NSData *)data ofClass:(Class)class usingSecureCoding:(BOOL)secureCoding {
-
   if(secureCoding && ![class instancesRespondToSelector:@selector(supportsSecureCoding)]) {
     return nil;
   }
-  
   if(![class instancesRespondToSelector:@selector(initWithCoder:)]) {
     return nil;
   }

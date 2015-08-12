@@ -336,8 +336,27 @@
   XCTFail(@"Missing test");
 }
 
+- (void)testUpdateToInvalidNode {
+  XCTAssertFalse(_undoManager.canUndo, @"Undo stack is empty");
+  XCTAssertFalse(_undoManager.canRedo, @"Redo stack is empty");
+
+  KPKEntry *invalid = [_tree createEntry:_tree.root];
+  KPKEntry *copy = [_entryA copy];
+  XCTAssertThrows([_entryA updateToNode:invalid], @"Updating to a wrong node is not allowed");
+  XCTAssertEqualObjects(_entryA, copy, @"Entry a has no changes after updateToNode was called with wrong node argument");
+
+  XCTAssertFalse(_undoManager.canUndo, @"Undo stack is empty after failed update");
+  XCTAssertFalse(_undoManager.canRedo, @"Redo stack is empty after failed update");
+
+}
+
 - (void)testUndoRedoEditEntry {
-  XCTFail(@"Missing test");
+  XCTAssertFalse(_undoManager.canUndo, @"Undo stack is empty");
+  XCTAssertFalse(_undoManager.canRedo, @"Redo stack is empty");
+  
+  KPKEntry *copy = [_entryA copy];
+  copy.title = @"New Title";
+  copy.url = @"New URL";
 }
 
 - (void)testUndoRedoEditGroup {
