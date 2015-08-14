@@ -8,11 +8,12 @@
 
 #import "KPKNode+IconImage.h"
 
-#import "KPKIcon.h"
 #import "KPKGroup.h"
-#import "KPKTree.h"
+#import "KPKIcon.h"
 #import "KPKMetaData.h"
+#import "KPKNode+Private.h"
 #import "KPKTimeInfo.h"
+#import "KPKTree.h"
 
 #import "MPIconHelper.h"
 
