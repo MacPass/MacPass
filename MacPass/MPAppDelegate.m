@@ -29,7 +29,6 @@
 #import "MPDocumentWindowController.h"
 #import "MPLockDaemon.h"
 #import "MPPasswordCreatorViewController.h"
-#import "MPServerDaemon.h"
 #import "MPSettingsHelper.h"
 #import "MPSettingsWindowController.h"
 #import "MPStringLengthValueTransformer.h"
@@ -42,7 +41,6 @@ NSString *const MPDidChangeStoredKeyFilesSettings = @"com.hicknhack.macpass.MPDi
 
 @interface MPAppDelegate () {
 @private
-  MPServerDaemon *serverDaemon;
   MPLockDaemon *lockDaemon;
   MPDockTileHelper *dockTileHelper;
   BOOL _shouldOpenFile; // YES if app was started to open a
@@ -155,7 +153,6 @@ NSString *const MPDidChangeStoredKeyFilesSettings = @"com.hicknhack.macpass.MPDi
 }
 
 - (void)applicationDidFinishLaunching:(NSNotification *)notification {
-  serverDaemon = [[MPServerDaemon alloc] init];
   lockDaemon = [[MPLockDaemon alloc] init];
   self.autotypeDaemon = [[MPAutotypeDaemon alloc] init];
   //dockTileHelper = [[MPDockTileHelper alloc] init];

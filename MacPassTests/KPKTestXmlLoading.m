@@ -42,8 +42,8 @@
   KPKTree *tree = [[KPKTree alloc] initWithData:_data password:_password error:&error];
   XCTAssertNotNil(tree, @"Loading should result in a tree object");
 
-  XCTAssertTrue([tree.root.groups count] == 0, @"Tree contains just root group");
-  XCTAssertTrue([tree.root.entries count] == 1, @"Tree has only one entry");
+  XCTAssertEqual(tree.root.groups.count, 0, @"Tree contains just root group");
+  XCTAssertEqual(tree.root.entries.count, 1, @"Tree has only one entry");
 }
 
 - (void)testAutotypeLoading {
@@ -55,6 +55,7 @@
   XCTAssertNotNil(tree, @"Tree shoud be loaded");
   KPKEntry *entry = tree.root.entries[0];
   XCTAssertNotNil(entry, @"Entry should be there");
+  XCTFail(@"Uncomplete Test!");
 }
 
 @end
