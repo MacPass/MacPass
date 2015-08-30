@@ -8,14 +8,17 @@
 
 #import "MPServerDaemon.h"
 #import "MPSettingsHelper.h"
-#import "HTTPServer.h"
 #import "MPIconHelper.h"
-#import "MPConnection.h"
 #import "MPServerRequestHandling.h"
+#import "NSString+MPPasswordCreation.h"
+#import "MPDocument.h"
+#import "KPKGroup.h"
+#import "MPDocumentQueryService.h"
+#import "KPHServer.h"
 
 @interface MPServerDaemon () {
 @private
-  HTTPServer *server;
+  KPHServer *server;
   NSStatusItem *statusItem;
 }
 
@@ -38,24 +41,24 @@
   return self;
 }
 
-
 - (void)setIsEnabled:(BOOL)enabled {
-  if(_isEnabled == enabled) {
+  if(_isEnabled == enabled)
     return; // NO changes
-  }
+
   _isEnabled = enabled;
   if(enabled) {
+    
     if(!server) {
-      [self _setupServer];
+      server = [[KPHServer alloc] init];
+      server.delegate = [MPDocumentQueryService sharedService];
     }
-    NSError *error= nil;
-    if(![server start:&error]) {
-      [NSApp presentError:error];
-    }
-    // setup menu item
+    
+    if(![server startWithPort:[[NSUserDefaults standardUserDefaults] integerForKey:kMPSettingsKeyHttpPort]])
+      NSLog(@"Failed to start KeePassHttp server");
   }
   else {
-    /* Do not let the resource linger around */
+    if (server)
+      [server stop];
     server = nil;
   }
   [self _updateStatusItem];
@@ -78,16 +81,6 @@
     [[NSStatusBar systemStatusBar] removeStatusItem:statusItem];
     statusItem = nil;
   }
-}
-
-- (void)_setupServer {
-  NSAssert(server == nil, @"Server should be nil");
-  server = [[HTTPServer alloc] init];
-  [server setConnectionClass:[MPConnection class]];
-  [server setInterface:@"localhost"];
-  NSInteger port = [[NSUserDefaults standardUserDefaults] integerForKey:kMPSettingsKeyHttpPort];
-  [server setPort:port];
-
 }
 
 @end

@@ -94,7 +94,7 @@ NSString *const kMPDeprecatedSettingsKeyEntrySearchFilterMode             = @"En
                          kMPSettingsKeyOpenEmptyDatabaseOnLaunch: @NO,
                          kMPSettingsKeyReopenLastDatabaseOnLaunch: @YES,
                          kMPSettingsKeyHttpPort: @19455,
-                         kMPSettingsKeyEnableHttpServer: @NO,
+                         kMPSettingsKeyEnableHttpServer: @YES,
                          kMPSettingsKeyShowMenuItem: @YES,
                          kMPSettingsKeyLockOnSleep: @YES,
                          kMPSettingsKeyIdleLockTimeOut: @0, // 5 minutes
