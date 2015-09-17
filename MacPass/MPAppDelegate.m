@@ -148,7 +148,7 @@ NSString *const MPDidChangeStoredKeyFilesSettings = @"com.hicknhack.macpass.MPDi
 - (BOOL)application:(NSApplication *)sender openFile:(NSString *)filename {
   _shouldOpenFile = YES;
   NSURL *fileURL = [NSURL fileURLWithPath:filename];
-  [[NSDocumentController sharedDocumentController] openDocumentWithContentsOfURL:fileURL display:YES completionHandler:nil];
+  [[NSDocumentController sharedDocumentController] openDocumentWithContentsOfURL:fileURL display:YES completionHandler:^(NSDocument * _Nullable document, BOOL documentWasAlreadyOpen, NSError * _Nullable error){}];
   return YES;
 }
 

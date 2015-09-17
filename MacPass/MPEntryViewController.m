@@ -355,17 +355,21 @@ NSString *const _MPTableSecurCellView = @"PasswordCell";
 - (void)tableView:(NSTableView *)tableView didRemoveRowView:(NSTableRowView *)rowView forRow:(NSInteger)row {
   /* Rows being removed for data change should be checked here to clear selections */
   if(row == -1) {
-    [self tableViewSelectionDidChange:nil];
+    [self tableViewSelectionDidChange:[NSNotification notificationWithName:NSTableViewSelectionDidChangeNotification object:tableView]];
   }
 }
 
 - (void)tableViewSelectionDidChange:(NSNotification *)notification {
-  MPDocument *document = [[self windowController] document];
-  if([self.entryTable selectedRow] < 0 || [[_entryTable selectedRowIndexes] count] > 1) {
+  NSTableView *tableView = notification.object;
+  if(tableView != self.entryTable) {
+    return; // Not the right table view
+  }
+  MPDocument *document = self.windowController.document;
+  if(tableView.selectedRow < 0 || tableView.selectedRowIndexes.count > 1) {
     document.selectedEntry = nil;
   }
   else {
-    document.selectedEntry = [self.entryArrayController arrangedObjects][[self.entryTable selectedRow]];
+    document.selectedEntry = self.entryArrayController.arrangedObjects[tableView.selectedRow];
   }
 }
 
