@@ -2061,7 +2061,7 @@
 			isa = PBXProject;
 			attributes = {
 				CLASSPREFIX = MP;
-				LastUpgradeCheck = 0630;
+				LastUpgradeCheck = 0700;
 				ORGANIZATIONNAME = "HicknHack Software GmbH";
 				TargetAttributes = {
 					4C77E36115B84A240093A587 = {
@@ -2795,6 +2795,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "MacPassTests/MacPassTests-Prefix.pch";
 				INFOPLIST_FILE = "MacPassTests/MacPassTests-Info.plist";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.hicknhacksoftware.${PRODUCT_NAME:rfc1034identifier}";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = macosx;
 				TEST_HOST = "$(BUNDLE_LOADER)";
@@ -2817,6 +2818,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "MacPassTests/MacPassTests-Prefix.pch";
 				INFOPLIST_FILE = "MacPassTests/MacPassTests-Info.plist";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.hicknhacksoftware.${PRODUCT_NAME:rfc1034identifier}";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = macosx;
 				TEST_HOST = "$(BUNDLE_LOADER)";
@@ -2838,6 +2840,7 @@
 				CODE_SIGN_IDENTITY = "Developer ID Application";
 				COPY_PHASE_STRIP = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
@@ -2911,6 +2914,7 @@
 					"-lxml2",
 					"-Wl,-rpath,@loader_path/../Frameworks",
 				);
+				PRODUCT_BUNDLE_IDENTIFIER = "com.hicknhacksoftware.${PRODUCT_NAME:rfc1034identifier}";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				SDKROOT = macosx;
@@ -2933,6 +2937,7 @@
 					"-lxml2",
 					"-Wl,-rpath,@loader_path/../Frameworks",
 				);
+				PRODUCT_BUNDLE_IDENTIFIER = "com.hicknhacksoftware.${PRODUCT_NAME:rfc1034identifier}";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				SDKROOT = macosx;
