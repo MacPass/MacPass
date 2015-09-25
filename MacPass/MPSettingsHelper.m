@@ -38,6 +38,7 @@ NSString *const kMPSettingsKeySendCommandForControlKey                = @"SendCo
 NSString *const kMPSettingsKeyEnableGlobalAutotype                    = @"EnableGlobalAutotype";
 NSString *const kMPSettingsKeyGlobalAutotypeKeyDataKey                = @"GlobalAutotypeKeyDataKey";
 NSString *const kMPSettingsKeyDefaultGlobalAutotypeSequence           = @"DefaultGlobalAutotypeSequence";
+NSString *const kMPSettingsKeyAutotypeMatchTitle                      = @"AutotypeMatchTitle";
 NSString *const kMPSettingsKeyAutotypeMatchURL                        = @"AutotypeMatchURL";
 NSString *const kMPSettingsKeyAutotypeMatchHost                       = @"AutotypeMatchHost";
 NSString *const kMPSettingsKeyAutotypeMatchTags                       = @"AutotypeMatchTags";
@@ -108,6 +109,7 @@ NSString *const kMPDeprecatedSettingsKeyEntrySearchFilterMode             = @"En
                          kMPSettingsKeyEnableGlobalAutotype: @NO,
                          kMPSettingsKeyGlobalAutotypeKeyDataKey: [[DDHotKey defaultHotKey] keyData],
                          kMPSettingsKeyDefaultGlobalAutotypeSequence: @"{USERNAME}{TAB}{PASSWORD}{ENTER}",
+                         kMPSettingsKeyAutotypeMatchTitle: @YES,
                          kMPSettingsKeyAutotypeMatchURL: @NO,
                          kMPSettingsKeyAutotypeMatchHost: @NO,
                          kMPSettingsKeyAutotypeMatchTags: @NO,

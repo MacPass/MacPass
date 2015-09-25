@@ -23,10 +23,13 @@
 #import "MPDocument.h"
 #import "MPAutotypeContext.h"
 
+#import "KPKNode.h"
 #import "KPKGroup.h"
 #import "KPKEntry.h"
 #import "KPKAutotype.h"
 #import "KPKWindowAssociation.h"
+
+#import "MPSettingsHelper.h"
 
 @implementation MPDocument (Autotype)
 
@@ -51,37 +54,58 @@
     return nil;
   }
   BOOL usePreferredEntry = (nil != entry);
+  /* We might get a preferred entry from other documents, if so, stop searching and return */
+  if(usePreferredEntry && entry.rootGroup != self.root) {
+    return nil;
+  }
   NSArray *autotypeEntries = usePreferredEntry ? [[NSArray alloc] initWithObjects:entry, nil] : [self.root autotypeableChildEntries];
-  NSMutableArray *contexts = [[NSMutableArray alloc] initWithCapacity:MAX(1,ceil([autotypeEntries count] / 4.0))];
+  NSMutableArray *contexts = [[NSMutableArray alloc] initWithCapacity:MAX(1,ceil(autotypeEntries.count / 4.0))];
+  
+  BOOL matchTitle = [[NSUserDefaults standardUserDefaults] boolForKey:kMPSettingsKeyAutotypeMatchTitle];
+  BOOL matchURL = [[NSUserDefaults standardUserDefaults] boolForKey:kMPSettingsKeyAutotypeMatchURL];
+  BOOL matchHost = [[NSUserDefaults standardUserDefaults] boolForKey:kMPSettingsKeyAutotypeMatchHost];
+  BOOL matchTags = [[NSUserDefaults standardUserDefaults] boolForKey:kMPSettingsKeyAutotypeMatchTags];
+  
   MPAutotypeContext *context;
   for(KPKEntry *entry in autotypeEntries) {
-    /* TODO:
-     
-    KeePass for Windows has the following options for matching:
-     Title is contained
-     URL is contained
-     Host component is contained
-     A tag is contained
-     
-    */
-    /* Test for entry title in window title */
-    NSRange titleRange = [windowTitle rangeOfString:entry.title options:NSCaseInsensitiveSearch];
-    /* Test for window title in entry title */
-    if (titleRange.location == NSNotFound || titleRange.length == 0) {
-      titleRange = [entry.title rangeOfString:windowTitle options:NSCaseInsensitiveSearch];
-    }
-    if(titleRange.location != NSNotFound && titleRange.length != 0) {
-      context = [[MPAutotypeContext alloc] initWithEntry:entry andSequence:entry.autotype.defaultKeystrokeSequence];
-    }
     /* search in Autotype entries for match */
-    else {
-      KPKWindowAssociation *association = [entry.autotype windowAssociationMatchingWindowTitle:windowTitle];
-      context = [[MPAutotypeContext alloc] initWithWindowAssociation:association];
-    }
+    KPKWindowAssociation *association = [entry.autotype windowAssociationMatchingWindowTitle:windowTitle];
+    context = [[MPAutotypeContext alloc] initWithWindowAssociation:association];
     if(context.valid) {
       [contexts addObject:context];
+      continue; // association did match
+    }
+    BOOL foundMatch = NO;
+    /* Test for entry title in window title */
+    if(matchTitle && !foundMatch) {
+      foundMatch = [windowTitle rangeOfString:entry.title options:NSCaseInsensitiveSearch].length != 0 || [entry.title rangeOfString:windowTitle options:NSCaseInsensitiveSearch].length != 0;
+    }
+    /* test for URL */
+    if(matchURL && !foundMatch) {
+      foundMatch = [windowTitle rangeOfString:entry.url options:NSCaseInsensitiveSearch].length != 0;
+    }
+    /* test for host */
+    if(matchHost && foundMatch) {
+      //TODO:
+    }
+    /* test for tags */
+    if(matchTags && !context.valid) {
+      NSArray *tags = [entry.tags componentsSeparatedByCharactersInSet:[NSCharacterSet characterSetWithCharactersInString:@".:;"]];
+      for(NSString *tag in tags) {
+        foundMatch = ([windowTitle rangeOfString:tag options:NSCaseInsensitiveSearch].length != 0);
+        if(foundMatch) {
+          break;
+        }
+      }
+    }
+    if(foundMatch) {
+      context = [[MPAutotypeContext alloc] initWithDefaultSequenceForEntry:entry];
+      if(context.valid) {
+        [contexts addObject:context];
+      }
     }
   }
+  
   /* Fall back to preferred Entry if no match was found */
   if(contexts.count == 0 && usePreferredEntry) {
     context = [[MPAutotypeContext alloc] initWithEntry:entry andSequence:entry.autotype.defaultKeystrokeSequence];
@@ -116,5 +140,4 @@
     [self _flattenGroup:childGroup toArray:array];
   }
 }
-
 @end

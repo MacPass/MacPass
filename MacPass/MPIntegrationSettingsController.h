@@ -21,6 +21,7 @@
 @property (weak) IBOutlet DDHotKeyTextField *hotKeyTextField;
 @property (weak) IBOutlet NSTextField *hotkeyWarningTextField;
 
+@property (weak) IBOutlet NSButton *matchTitleCheckBox;
 @property (weak) IBOutlet NSButton *matchURLCheckBox;
 @property (weak) IBOutlet NSButton *matchHostCheckBox;
 @property (weak) IBOutlet NSButton *matchTagsCheckBox;
