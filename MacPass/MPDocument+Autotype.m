@@ -85,8 +85,9 @@
       foundMatch = [windowTitle rangeOfString:entry.url options:NSCaseInsensitiveSearch].length != 0;
     }
     /* test for host */
-    if(matchHost && foundMatch) {
-      //TODO:
+    if(matchHost && !foundMatch) {
+      NSURL *url = [NSURL URLWithString:entry.url];
+      foundMatch = [windowTitle rangeOfString:url.host options:NSCaseInsensitiveSearch].length != 0;
     }
     /* test for tags */
     if(matchTags && !context.valid) {
