@@ -90,7 +90,7 @@
       foundMatch = [windowTitle rangeOfString:url.host options:NSCaseInsensitiveSearch].length != 0;
     }
     /* test for tags */
-    if(matchTags && !context.valid) {
+    if(matchTags && !foundMatch) {
       NSArray *tags = [entry.tags componentsSeparatedByCharactersInSet:[NSCharacterSet characterSetWithCharactersInString:@".:;"]];
       for(NSString *tag in tags) {
         foundMatch = ([windowTitle rangeOfString:tag options:NSCaseInsensitiveSearch].length != 0);
