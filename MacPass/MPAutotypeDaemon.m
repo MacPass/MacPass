@@ -154,7 +154,7 @@ NSString *const kMPProcessIdentifierKey = @"kMPProcessIdentifierKey";
   NSArray *documents = [NSApp orderedDocuments];
   NSPredicate *filterPredicate = [NSPredicate predicateWithBlock:^BOOL(id  _Nonnull evaluatedObject, NSDictionary<NSString *,id> * _Nullable bindings) {
     MPDocument *document = evaluatedObject;
-    return document.encrypted;}];
+    return !document.encrypted;}];
   NSArray *unlockedDocuments = [documents filteredArrayUsingPredicate:filterPredicate];
   /* We look for all unlocked documents, if all open documents are locked, we pop the front most and try to search again */
   if(unlockedDocuments.count == 0 && documents.count > 0) {
