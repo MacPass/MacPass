@@ -311,6 +311,7 @@
 		4CE39ABF16ECE34A000FE29D /* MPIconSelectViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CE39ABE16ECE34A000FE29D /* MPIconSelectViewController.m */; };
 		4CE39AC416ECE4F7000FE29D /* MPPopupImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CE39AC316ECE4F7000FE29D /* MPPopupImageView.m */; };
 		4CE3E62617AB0D2D00D9E4B4 /* MPAttachmentTableDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CE3E62517AB0D2D00D9E4B4 /* MPAttachmentTableDataSource.m */; };
+		4CE501341BBC47F500FB819D /* MPTagsTokenFieldDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CE501331BBC47F500FB819D /* MPTagsTokenFieldDelegate.m */; settings = {ASSET_TAGS = (); }; };
 		4CE5B54B173AFBA700207B39 /* MPDocument.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CE5B549173AFBA700207B39 /* MPDocument.m */; };
 		4CE76DAD17B3AD010043B82B /* KPKHashedDataTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CE76DAC17B3AD010043B82B /* KPKHashedDataTest.m */; };
 		4CE8246F16E2E93400573141 /* MPOverlayWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CE8246E16E2E93400573141 /* MPOverlayWindowController.m */; };
@@ -919,6 +920,8 @@
 		4CE3E62517AB0D2D00D9E4B4 /* MPAttachmentTableDataSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MPAttachmentTableDataSource.m; sourceTree = "<group>"; };
 		4CE5012C1BBC13C100FB819D /* KPKWindowAssociation+Private.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "KPKWindowAssociation+Private.h"; sourceTree = "<group>"; };
 		4CE5012F1BBC15B600FB819D /* KPKAutotype+Private.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "KPKAutotype+Private.h"; sourceTree = "<group>"; };
+		4CE501321BBC47F500FB819D /* MPTagsTokenFieldDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MPTagsTokenFieldDelegate.h; sourceTree = "<group>"; };
+		4CE501331BBC47F500FB819D /* MPTagsTokenFieldDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MPTagsTokenFieldDelegate.m; sourceTree = "<group>"; };
 		4CE5B548173AFBA700207B39 /* MPDocument.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MPDocument.h; sourceTree = "<group>"; };
 		4CE5B549173AFBA700207B39 /* MPDocument.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = MPDocument.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		4CE76DAC17B3AD010043B82B /* KPKHashedDataTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KPKHashedDataTest.m; sourceTree = "<group>"; };
@@ -1266,6 +1269,8 @@
 				4C89B70F19B4B4A300DC0A6A /* MPTreeDelegate.m */,
 				4CA0F3EB1A3074B50067C0E5 /* MPWindowTitleComboBoxDelegate.h */,
 				4CA0F3EC1A3074B50067C0E5 /* MPWindowTitleComboBoxDelegate.m */,
+				4CE501321BBC47F500FB819D /* MPTagsTokenFieldDelegate.h */,
+				4CE501331BBC47F500FB819D /* MPTagsTokenFieldDelegate.m */,
 			);
 			name = Delegates;
 			sourceTree = "<group>";
@@ -2502,6 +2507,7 @@
 				4C32B0E71A1D4436007E12F1 /* KPKFormat+MPUTIDetection.m in Sources */,
 				4C5CD35A17D15DBD000B7F38 /* NSString+Hexdata.m in Sources */,
 				4C5CD36117D15DCA000B7F38 /* KPKArc4RandomStream.m in Sources */,
+				4CE501341BBC47F500FB819D /* MPTagsTokenFieldDelegate.m in Sources */,
 				4C5CD36217D15DCA000B7F38 /* KPKRandomStream.m in Sources */,
 				4C31FEB31B57CDDB008E7CE3 /* MPPluginManager.m in Sources */,
 				4C5CD36317D15DCA000B7F38 /* KPKSalsa20RandomStream.m in Sources */,

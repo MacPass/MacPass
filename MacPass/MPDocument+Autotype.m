@@ -91,8 +91,7 @@
     }
     /* test for tags */
     if(matchTags && !foundMatch) {
-      NSArray *tags = [entry.tags componentsSeparatedByCharactersInSet:[NSCharacterSet characterSetWithCharactersInString:@".:;"]];
-      for(NSString *tag in tags) {
+      for(NSString *tag in entry.tags) {
         foundMatch = ([windowTitle rangeOfString:tag options:NSCaseInsensitiveSearch].length != 0);
         if(foundMatch) {
           break;
