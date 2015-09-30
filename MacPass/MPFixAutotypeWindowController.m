@@ -146,7 +146,7 @@ NSString *const kMPIconCell = @"IconCell";
   }
   else {
     BOOL isMalformed = [MPDocument isCandidateForMalformedAutotype:item];
-    BOOL isDefault = [entry.autotype hasDefaultKeystrokeSequence] || [group hasDefaultAutotypeSequence] || [association hasDefaultKeystrokeSequence];
+    BOOL isDefault = entry.autotype.hasDefaultKeystrokeSequence || group.hasDefaultAutotypeSequence || association.hasDefaultKeystrokeSequence;
     if([[tableColumn identifier] isEqualToString:kMPIsDefaultCell]) {
       return isDefault ? @"Yes" : @"No";
     }
@@ -162,13 +162,13 @@ NSString *const kMPIconCell = @"IconCell";
   id item = [self entriesAndGroups][row];
   
   if([item isKindOfClass:[KPKEntry class]]) {
-    [[item autotype] setDefaultKeystrokeSequence:object];
+    ((KPKEntry *)item).autotype.defaultKeystrokeSequence = object;
   }
   else if([item isKindOfClass:[KPKGroup class]]) {
-    [item setDefaultAutoTypeSequence:object];
+    ((KPKGroup *)item).defaultAutoTypeSequence = object;
   }
   else if([item isKindOfClass:[KPKWindowAssociation class]]) {
-    [item setKeystrokeSequence:object];
+    ((KPKWindowAssociation *)item).keystrokeSequence = object;
   }
 }
 
@@ -176,7 +176,7 @@ NSString *const kMPIconCell = @"IconCell";
 #pragma mark NSTableViewDelegate
 
 - (BOOL)tableView:(NSTableView *)tableView shouldEditTableColumn:(NSTableColumn *)tableColumn row:(NSInteger)row {
-  return [[tableColumn identifier] isEqualToString:kMPAutotypeCell];
+  return [tableColumn.identifier isEqualToString:kMPAutotypeCell];
 }
 
 - (BOOL)tableView:(NSTableView *)tableView isGroupRow:(NSInteger)row {
@@ -188,10 +188,10 @@ NSString *const kMPIconCell = @"IconCell";
 #pragma mark MenuItem Validation
 
 - (BOOL)validateMenuItem:(NSMenuItem *)menuItem {
-  if(!([menuItem action] == @selector(clearAutotype:))) {
+  if(!(menuItem.action == @selector(clearAutotype:))) {
     return NO;
   }
-  return ([[self.tableView selectedRowIndexes] count] > 0);
+  return (self.tableView.selectedRowIndexes.count > 0);
 }
 
 #pragma mark -

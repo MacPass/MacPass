@@ -127,6 +127,7 @@ typedef NS_ENUM(NSUInteger, MPEntryTab) {
   }
 }
 
+
 - (void)regsiterNotificationsForDocument:(MPDocument *)document {
   [[NSNotificationCenter defaultCenter] addObserver:self
                                            selector:@selector(_didAddEntry:)
@@ -198,7 +199,7 @@ typedef NS_ENUM(NSUInteger, MPEntryTab) {
 }
 
 - (void)addWindowAssociation:(id)sender {
-  KPKWindowAssociation *associtation = [[KPKWindowAssociation alloc] initWithWindow:NSLocalizedString(@"DEFAULT_WINDOW_TITLE", "") keystrokeSequence:nil];
+  KPKWindowAssociation *associtation = [[KPKWindowAssociation alloc] initWithWindowTitle:NSLocalizedString(@"DEFAULT_WINDOW_TITLE", "") keystrokeSequence:nil];
   [self.entry.autotype addAssociation:associtation];
 }
 
@@ -223,14 +224,6 @@ typedef NS_ENUM(NSUInteger, MPEntryTab) {
   else {
     [[QLPreviewPanel sharedPreviewPanel] makeKeyAndOrderFront:sender];
   }
-}
-
-- (void)beginEditing {
-  [self _toggleEditing:YES];
-  
-}
-- (void)endEditing {
-  [self _toggleEditing:NO];
 }
 
 - (BOOL)validateMenuItem:(NSMenuItem *)menuItem {

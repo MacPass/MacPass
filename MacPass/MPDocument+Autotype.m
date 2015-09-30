@@ -108,7 +108,7 @@
   }
   
   /* Fall back to preferred Entry if no match was found */
-  if(contexts.count == 0 && usePreferredEntry) {
+  if(usePreferredEntry && contexts.count == 0 ) {
     context = [[MPAutotypeContext alloc] initWithEntry:entry andSequence:entry.autotype.defaultKeystrokeSequence];
     if(context.valid) {
       [contexts addObject:context];
