@@ -199,10 +199,9 @@
 }
 
 - (void)_setupAdvancedTab:(KPKTree *)tree {
-  /* TODO Do not use bindings, as the user should be able to cancel */
-  //[self bind:NSStringFromSelector(@selector(trashEnabled)) toObject:tree.metaData withKeyPath:NSStringFromSelector(@selector(useTrash)) options:nil];
-  [self.enableTrashCheckButton bind:NSValueBinding toObject:tree.metaData withKeyPath:NSStringFromSelector(@selector(useTrash)) options:nil];
-  [self.selectTrashGoupPopUpButton bind:NSEnabledBinding toObject:tree.metaData withKeyPath:NSStringFromSelector(@selector(useTrash)) options:nil];
+  HNHSetStateFromBool(self.enableTrashCheckButton, tree.metaData.useTrash);
+  self.selectTrashGoupPopUpButton.enabled = tree.metaData.useTrash;
+  [self.enableTrashCheckButton bind:NSValueBinding toObject:self.selectTrashGoupPopUpButton withKeyPath:NSEnabledBinding options:nil];
   [self _updateTrashFolders:tree];
   
   self.defaultUsernameTextField.stringValue = tree.metaData.defaultUserName;
@@ -214,25 +213,21 @@
   [self.enforceKeyChangeIntervalTextField setEnabled:tree.metaData.enforceMasterKeyChange];
   [self.recommendKeyChangeIntervalTextField setEnabled:tree.metaData.recommendMasterKeyChange];
 
+  self.enforceKeyChangeIntervalTextField.stringValue = @"";
   if(tree.metaData.enforceMasterKeyChange) {
-    [self.enforceKeyChangeIntervalTextField setIntegerValue:tree.metaData.masterKeyChangeEnforcementInterval];
+    self.enforceKeyChangeIntervalTextField.integerValue = tree.metaData.masterKeyChangeEnforcementInterval;
   }
-  else {
-    [self.enforceKeyChangeIntervalTextField setStringValue:@""];
-  }
+  self.recommendKeyChangeIntervalTextField.stringValue = @"";
   if(tree.metaData.recommendMasterKeyChange) {
-    [self.recommendKeyChangeIntervalTextField setIntegerValue:tree.metaData.masterKeyChangeRecommendationInterval];
-  }
-  else {
-    [self.recommendKeyChangeIntervalTextField setStringValue:@""];
+    self.recommendKeyChangeIntervalTextField.integerValue = tree.metaData.masterKeyChangeRecommendationInterval;
   }
   [self.enforceKeyChangeCheckButton bind:NSValueBinding toObject:self.enforceKeyChangeIntervalTextField withKeyPath:NSEnabledBinding options:nil];
   [self.recommendKeyChangeCheckButton bind:NSValueBinding toObject:self.recommendKeyChangeIntervalTextField withKeyPath:NSEnabledBinding options:nil];
 }
 
 - (void)_updateFirstResponder {
-  NSTabViewItem *selected = [self.sectionTabView selectedTabViewItem];
-  MPDatabaseSettingsTab tab = [[self.sectionTabView tabViewItems] indexOfObject:selected];
+  NSTabViewItem *selected = self.sectionTabView.selectedTabViewItem;
+  MPDatabaseSettingsTab tab = [self.sectionTabView.tabViewItems indexOfObject:selected];
   
   switch(tab) {
     case MPDatabaseSettingsTabAdvanced:
