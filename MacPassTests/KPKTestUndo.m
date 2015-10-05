@@ -340,10 +340,8 @@
   XCTAssertFalse(_undoManager.canUndo, @"Undo stack is empty");
   XCTAssertFalse(_undoManager.canRedo, @"Redo stack is empty");
 
-  KPKEntry *invalid = [_tree createEntry:_tree.root];
-  KPKEntry *copy = [_entryA copy];
-  XCTAssertThrows([_entryA updateToNode:invalid], @"Updating to a wrong node is not allowed");
-  XCTAssertEqualObjects(_entryA, copy, @"Entry a has no changes after updateToNode was called with wrong node argument");
+  XCTAssertThrows([_entryA updateToNode:_groupA], @"Updating Entry to Group is not possible");
+  XCTAssertThrows([_groupA updateToNode:_entryA], @"Updating Group to Entry is not possible");
 
   XCTAssertFalse(_undoManager.canUndo, @"Undo stack is empty after failed update");
   XCTAssertFalse(_undoManager.canRedo, @"Redo stack is empty after failed update");
