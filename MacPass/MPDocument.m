@@ -494,11 +494,11 @@ NSString *const MPDocumentGroupKey                        = @"MPDocumentGroupKey
 }
 
 - (void)deleteNode:(KPKNode *)node {
-  if([node asGroup]) {
-    [self deleteGroup:[node asGroup]];
+  if(node.asGroup) {
+    [self deleteGroup:node.asGroup];
   }
-  else if([node asEntry]) {
-    [self deleteEntry:[node asEntry]];
+  else if(node.asEntry) {
+    [self deleteEntry:node.asEntry];
   }
 }
 
@@ -554,7 +554,7 @@ NSString *const MPDocumentGroupKey                        = @"MPDocumentGroupKey
 }
 
 - (void)_presentTrashAlertForItem:(KPKNode *)node {
-  KPKEntry *entry = [node asEntry];
+  KPKEntry *entry = node.asEntry;
   
   NSAlert *alert = [[NSAlert alloc] init];
   [alert setAlertStyle:NSWarningAlertStyle];
@@ -574,10 +574,10 @@ NSString *const MPDocumentGroupKey                        = @"MPDocumentGroupKey
   if(returnCode == NSAlertFirstButtonReturn) {
     KPKNode *node = (__bridge KPKNode *)(contextInfo);
     /* No undo on this operation */
-    for( KPKEntry *entry in [[node asGroup] childEntries]) {
+    for( KPKEntry *entry in node.asGroup.childEntries) {
       [node.undoManager removeAllActionsWithTarget:entry];
     }
-    for(KPKGroup *group in [[node asGroup] childGroups]) {
+    for(KPKGroup *group in node.asGroup.childGroups) {
       [node.undoManager removeAllActionsWithTarget:group];
     }
     [node remove];
@@ -640,10 +640,10 @@ NSString *const MPDocumentGroupKey                        = @"MPDocumentGroupKey
   KPKGroup *targetGroup = [groupResolver currentTargetGroup];
   
   /*
-   if([targetNode asGroup]) {
+   if(targetNode.asGroup) {
    NSLog(@"targetNode:%@", ((KPKGroup *)targetNode).name);
    }
-   else if([targetNode asEntry]) {
+   else if(targetNode.asEntry) {
    NSLog(@"targetNode:%@", ((KPKEntry *)targetNode).title);
    }
    

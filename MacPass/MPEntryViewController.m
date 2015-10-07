@@ -650,21 +650,21 @@ NSString *const _MPTableSecurCellView = @"PasswordCell";
 
 #pragma mark Actions
 - (void)copyPassword:(id)sender {
-  KPKEntry *selectedEntry = [[self currentTargetNode] asEntry];
+  KPKEntry *selectedEntry = [self currentTargetNode].asEntry;
   if(selectedEntry) {
     [self _copyToPasteboard:[selectedEntry.password finalValueForEntry:selectedEntry] overlayInfo:MPOverlayInfoPassword name:nil];
   }
 }
 
 - (void)copyUsername:(id)sender {
-  KPKEntry *selectedEntry = [[self currentTargetNode] asEntry];
+  KPKEntry *selectedEntry = [self currentTargetNode].asEntry;
   if(selectedEntry) {
     [self _copyToPasteboard:[selectedEntry.username finalValueForEntry:selectedEntry] overlayInfo:MPOverlayInfoUsername name:nil];
   }
 }
 
 - (void)copyCustomAttribute:(id)sender {
-  KPKEntry *selectedEntry = [[self currentTargetNode] asEntry];
+  KPKEntry *selectedEntry = [self currentTargetNode].asEntry;
   if(selectedEntry && [selectedEntry isKindOfClass:[KPKEntry class]]) {
     NSUInteger index = [sender tag];
     NSAssert((index >= 0)  && (index < [selectedEntry.customAttributes count]), @"Index for custom field needs to be valid");
@@ -674,14 +674,14 @@ NSString *const _MPTableSecurCellView = @"PasswordCell";
 }
 
 - (void)copyURL:(id)sender {
-  KPKEntry *selectedEntry = [[self currentTargetNode] asEntry];
+  KPKEntry *selectedEntry = [self currentTargetNode].asEntry;
   if(selectedEntry) {
     [self _copyToPasteboard:[selectedEntry.url finalValueForEntry:selectedEntry] overlayInfo:MPOverlayInfoURL name:nil];
   }
 }
 
 - (void)openURL:(id)sender {
-  KPKEntry *selectedEntry = [[self currentTargetNode] asEntry];
+  KPKEntry *selectedEntry = [self currentTargetNode].asEntry;
   NSString *expandedURL = [selectedEntry.url finalValueForEntry:selectedEntry];
   if(expandedURL.length > 0) {
     NSURL *webURL = [NSURL URLWithString:[expandedURL stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]];
@@ -707,7 +707,7 @@ NSString *const _MPTableSecurCellView = @"PasswordCell";
 }
 
 - (void)delete:(id)sender {
-  KPKEntry *entry = [[self currentTargetNode] asEntry];
+  KPKEntry *entry = [self currentTargetNode].asEntry;
   if(!entry) {
     return;
   }
