@@ -165,7 +165,8 @@ NSString *const _MPOutlinveViewHeaderViewIdentifier = @"HeaderCell";
 
 - (void)clearSelection {
   [_outlineView deselectAll:nil];
-  [self outlineViewSelectionDidChange:nil];
+  NSNotification *notification = [NSNotification notificationWithName:NSOutlineViewSelectionDidChangeNotification object:_outlineView];
+  [self outlineViewSelectionDidChange:notification];
 }
 
 - (void)_didBecomeFirstResponder:(NSNotification *)notification {
@@ -219,7 +220,7 @@ NSString *const _MPOutlinveViewHeaderViewIdentifier = @"HeaderCell";
     NSString *titleKeyPath = [NSString stringWithFormat:@"%@.%@", NSStringFromSelector(@selector(representedObject)), NSStringFromSelector(@selector(title))];
     [[view imageView] bind:NSValueBinding toObject:item withKeyPath:iconImageKeyPath options:nil];
     [[view textField] bind:NSValueBinding toObject:item withKeyPath:titleKeyPath options:nil];
-
+    
     
     NSString *entriesCountKeyPath = [[NSString alloc] initWithFormat:@"%@.%@.%@", NSStringFromSelector(@selector(representedObject)), NSStringFromSelector(@selector(entries)), @"@count"];
     [[view textField] bind:NSStringFromSelector(@selector(count)) toObject:item withKeyPath:entriesCountKeyPath options:nil];
@@ -269,7 +270,8 @@ NSString *const _MPOutlinveViewHeaderViewIdentifier = @"HeaderCell";
 - (void)outlineView:(NSOutlineView *)outlineView didRemoveRowView:(NSTableRowView *)rowView forRow:(NSInteger)row {
   /* Deletion of an item */
   if(row == -1) {
-    [self outlineViewSelectionDidChange:nil];
+    NSNotification *notification = [NSNotification notificationWithName:NSOutlineViewSelectionDidChangeNotification object:outlineView];
+    [self outlineViewSelectionDidChange:notification];
   }
 }
 
@@ -279,7 +281,7 @@ NSString *const _MPOutlinveViewHeaderViewIdentifier = @"HeaderCell";
   if(![document validateUserInterfaceItem:menuItem]) {
     return NO;
   }
-  KPKGroup *group = [[self currentTargetNode] asGroup];
+  KPKGroup *group = [self currentTargetNode].asGroup;
   return group.isTrash && group.isTrashed;
 }
 
