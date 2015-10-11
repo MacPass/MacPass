@@ -250,7 +250,7 @@ NSString *const _MPTableSecurCellView = @"PasswordCell";
 
 - (void)tableView:(NSTableView *)tableView didAddRowView:(NSTableRowView *)rowView forRow:(NSInteger)row {
   /*
-   bind bakground color to entry color
+   bind background color to entry color
    */
 }
 
@@ -357,7 +357,7 @@ NSString *const _MPTableSecurCellView = @"PasswordCell";
 }
 
 - (void)tableView:(NSTableView *)tableView didRemoveRowView:(NSTableRowView *)rowView forRow:(NSInteger)row {
-  /* Rows being removed for data change should be chekced here to clear selections */
+  /* Rows being removed for data change should be checked here to clear selections */
   if(row == -1) {
     [self tableViewSelectionDidChange:nil];
   }
@@ -376,7 +376,7 @@ NSString *const _MPTableSecurCellView = @"PasswordCell";
 #pragma mark MPTargetItemResolving
 - (KPKEntry *)currentTargetEntry {
   NSInteger activeRow = [self.entryTable clickedRow];
-  /* Fallback to selection e.g. for toolbar actions */
+  /* Fall back to selection e.g. for toolbar actions */
   if(activeRow < 0 ) {
     activeRow = [self.entryTable selectedRow];
   }
@@ -531,7 +531,7 @@ NSString *const _MPTableSecurCellView = @"PasswordCell";
     [[self view] addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|[contextBar]|" options:0 metrics:nil views:views]];
     /* Pin height and to top of entry table */
     [[self view] addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:[contextBar(==30)]-0-[scrollView]" options:0 metrics:nil views:views]];
-    /* Create the top constraint for the filter bar where we can change the contanst instaed of removing/adding constraints all the time */
+    /* Create the top constraint for the filter bar where we can change the constant instead of removing/adding constraints all the time */
     self.contextBarTopConstraint = [NSLayoutConstraint constraintWithItem:contextBar
                                                                 attribute:NSLayoutAttributeTop
                                                                 relatedBy:NSLayoutRelationEqual
@@ -594,7 +594,7 @@ NSString *const _MPTableSecurCellView = @"PasswordCell";
       
     case MPOverlayInfoCustom:
       infoImage = [[NSBundle mainBundle] imageForResource:@"00_PasswordTemplate"];
-      infoText = [NSString stringWithFormat:NSLocalizedString(@"COPIED_FIELD_%@", "Field nam that was copied to the pasteboard"), name];
+      infoText = [NSString stringWithFormat:NSLocalizedString(@"COPIED_FIELD_%@", "Field name that was copied to the pasteboard"), name];
       break;
   }
   [[MPOverlayWindowController sharedController] displayOverlayImage:infoImage label:infoText atView:self.view];
@@ -602,7 +602,7 @@ NSString *const _MPTableSecurCellView = @"PasswordCell";
 
 #pragma mark Validation
 - (BOOL)validateMenuItem:(NSMenuItem *)menuItem {
-  /* Validation is soley handeld in the document */
+  /* Validation is solely handled in the document */
   MPDocument *document = [[self windowController] document];
   return [document validateMenuItem:menuItem];
 }
@@ -722,7 +722,7 @@ NSString *const _MPTableSecurCellView = @"PasswordCell";
   }
   NSInteger columnIndex = [self.entryTable clickedColumn];
   if(columnIndex < 0 || columnIndex >= [[self.entryTable tableColumns] count]) {
-    return; // No Colum to use
+    return; // No Column to use
   }
   NSTableColumn *column = [self.entryTable tableColumns][[self.entryTable clickedColumn]];
   NSString *identifier = [column identifier];

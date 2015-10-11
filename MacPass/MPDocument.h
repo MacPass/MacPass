@@ -101,9 +101,9 @@ APPKIT_EXTERN NSString *const MPDocumentGroupKey;
 #pragma mark Lock/Decrypt
 - (IBAction)lockDatabase:(id)sender;
 /**
- *  Decrypts the databse with the given password and keyfile
+ *  Decrypts the database with the given password and keyfile
  *
- *  @param password   The password to unlock the db with, can be nil. This is not the same as an empty stirng @""
+ *  @param password   The password to unlock the db with, can be nil. This is not the same as an empty string @""
  *  @param keyFileURL URL for the keyfile to use, can be nil
  *  @param error  Pointer to an NSError pointer of error reporting.
  *
@@ -111,7 +111,7 @@ APPKIT_EXTERN NSString *const MPDocumentGroupKey;
  */
 - (BOOL)unlockWithPassword:(NSString *)password keyFileURL:(NSURL *)keyFileURL error:(NSError *__autoreleasing*)error;
 /**
- *  Changes the password of the database. Some sanity checks are applied and the change is aborted if the new values arent valid
+ *  Changes the password of the database. Some sanity checks are applied and the change is aborted if the new values aren't valid
  *
  *  @param password   new password, can be nil
  *  @param keyFileURL new key URL can be nil
@@ -132,7 +132,7 @@ APPKIT_EXTERN NSString *const MPDocumentGroupKey;
 /**
  *  Finds an entry with the given UUID. If none is found, nil is returned
  *  @param uuid The UUID for the searched Entry
- *  @return enty, matching the UUID, nil if none was found
+ *  @return entry, matching the UUID, nil if none was found
  */
 - (KPKEntry *)findEntry:(NSUUID *)uuid;
 /**
@@ -170,7 +170,7 @@ APPKIT_EXTERN NSString *const MPDocumentGroupKey;
 
 #pragma mark Actions
 /**
- *  Empties the Trash group. Removing all Groups and Entries inside. This aciton is not undoable
+ *  Empties the Trash group. Removing all Groups and Entries inside. This action is not undo-able
  *  @param sender sender
  */
 - (IBAction)emptyTrash:(id)sender;

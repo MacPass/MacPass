@@ -62,7 +62,7 @@
   NSDragOperation operationMask = NSDragOperationMove;
   /*
    If we can support copy on drag, this can be used
-   to optain the dragging modifier mask the user presses
+   to obtain the dragging modifier mask the user presses
    */
   BOOL localCopy = NO;
   if([info draggingSourceOperationMask] == NSDragOperationCopy) {

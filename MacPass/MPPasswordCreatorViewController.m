@@ -23,7 +23,7 @@
  56 - 85 Excellent
  85 - Fantastic
  
- Skale 0-90
+ Scale 0-90
  */
 typedef NS_ENUM(NSUInteger, MPPasswordRating) {
   MPPasswordTerrible = 10,
@@ -205,7 +205,7 @@ typedef NS_ENUM(NSUInteger, MPPasswordRating) {
     [[NSUserDefaults standardUserDefaults] setObject:[self.customCharactersTextField stringValue] forKey:kMPSettingsKeyPasswordCustomString];
   }
   else {
-    NSLog(@"Cannot set password generator defaults. Inconsitent state. Aborting.");
+    NSLog(@"Cannot set password generator defaults. Inconsistent state. Aborting.");
   }
   self.setDefaultButton.enabled = NO;
 }

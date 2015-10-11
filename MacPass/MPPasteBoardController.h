@@ -12,7 +12,7 @@
 
 /**
  *  The PasteBoardController did copy new items to the pasteboard
- *  The userInfo dictionary is empty. You can optain the timeout via the clearTimeout property
+ *  The userInfo dictionary is empty. You can obtain the timeout via the clearTimeout property
  */
 FOUNDATION_EXPORT NSString *const MPPasteBoardControllerDidCopyObjects;
 /**
@@ -22,7 +22,7 @@ FOUNDATION_EXPORT NSString *const MPPasteBoardControllerDidCopyObjects;
 FOUNDATION_EXPORT NSString *const MPPasteBoardControllerDidClearClipboard;
 
 /*
- This time sets the time interval after which a copied entry shoudl be purged from the pasteboard
+ This time sets the time interval after which a copied entry should be purged from the pasteboard
  */
 @property (assign, nonatomic) NSTimeInterval clearTimeout;
 @property (assign, nonatomic) BOOL clearPasteboardOnShutdown;

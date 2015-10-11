@@ -45,7 +45,7 @@ static NSUInteger const kMPAttachmentsMenuItem = 2000;
   if([lastItem isSeparatorItem]) {
     [menu removeItem:lastItem];
   }
-  /* since we can get opend on the non-selected entry, we have to resolve the target node */
+  /* since we can get opened on the non-selected entry, we have to resolve the target node */
   id<MPTargetNodeResolving> entryResolver = [NSApp targetForAction:@selector(currentTargetEntry)];
   KPKEntry *entry  = [entryResolver currentTargetEntry];
 

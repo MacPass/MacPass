@@ -19,10 +19,10 @@ typedef NS_OPTIONS(NSUInteger, MPPasswordCharacterFlags) {
 @interface NSString (MPPasswordCreation)
 
 /**
-*  Creates a Password using the supplied password character set with the given lenght
+*  Creates a Password using the supplied password character set with the given length
 *
 *  @param allowedCharacters Characters allowed for the password
-*  @param theLength         lenght of the password to be created
+*  @param theLength         length of the password to be created
 *
 *  @return new password with only the allowed characters.
 */
@@ -33,9 +33,9 @@ typedef NS_OPTIONS(NSUInteger, MPPasswordCharacterFlags) {
  *  Creats a password based on the supplied string
  *
  *  @param source String containing the allowed characters
- *  @param length Lenght for the password to be chreated
+ *  @param length Length for the password to be created
  *
- *  @return Password consisint only of allowed characters
+ *  @return Password consistent only of allowed characters
  */
 + (NSString *)passwordFromString:(NSString *)source length:(NSUInteger)length;
 
@@ -46,7 +46,7 @@ typedef NS_OPTIONS(NSUInteger, MPPasswordCharacterFlags) {
  *
  *  @param length Length of the password to be created
  *
- *  @return Password containing only the charactesr in receiver
+ *  @return Password containing only the characters in receiver
  */
 - (NSString *)passwordWithLength:(NSUInteger)length;
 /**
@@ -54,12 +54,12 @@ typedef NS_OPTIONS(NSUInteger, MPPasswordCharacterFlags) {
  */
 - (NSString *)randomCharacter;
 /**
- *  Calculates the entropy of the receiver based on the allowed characers. The caluclation consideres the characters chosen randomly.
- *  If the password supplied was not created randomly based on the full character set, the calulated entropy is NOT correct.
- *  Do NOT use this method to estrimate unknown passwords
+ *  Calculates the entropy of the receiver based on the allowed characters. The calculation considers the characters chosen randomly.
+ *  If the password supplied was not created randomly based on the full character set, the calculated entropy is NOT correct.
+ *  Do NOT use this method to estimate unknown passwords
  *
  *  @param allowedCharacters set of allowed Characters
- *  @param customCharacters  alternative string of unique allowed charactes (String is not stripped of duplicates!)
+ *  @param customCharacters  alternative string of unique allowed characters (String is not stripped of duplicates!)
  *
  *  @return entropy of the receiver as bits
  */

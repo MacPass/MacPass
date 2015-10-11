@@ -12,7 +12,7 @@
 @class MPDocument;
 
 /**
- *  Service for querying for resultis withing a request
+ *  Service for querying for result is withing a request
  *  This shared instance handles creating of config entries,
  *  and abstracts all open documents for the KeePassHttp interface.
  */

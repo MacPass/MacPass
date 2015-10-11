@@ -301,18 +301,18 @@ typedef NS_ENUM(NSUInteger, MPEntryTab) {
 }
 
 - (void)popoverDidClose:(NSNotification *)notification {
-  /* We do not enable the button all the time, but it's wokring find this way */
+  /* We do not enable the button all the time, but it's working find this way */
   [self.generatePasswordButton setEnabled:YES];
   id controller = _activePopover.contentViewController;
   /* Check for password wizzard */
   if([controller respondsToSelector:@selector(generatedPassword)]) {
     NSString *password = [controller generatedPassword];
-    /* We should only use the password if there is actally one */
+    /* We should only use the password if there is actually one */
     if([password length] > 0) {
       self.entry.password = [controller generatedPassword];
     }
   }
-  /* TODO: Check for Icon wizzard */
+  /* TODO: Check for Icon wizard */
   
   _activePopover = nil;
 }

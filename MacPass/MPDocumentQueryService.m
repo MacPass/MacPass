@@ -46,7 +46,7 @@ static NSUUID *_rootUuid = nil;
 }
 
 - (KPKEntry *)configurationEntry {
-  /* TODO: lazy getter or do something differen like init at first call? */
+  /* TODO: lazy getter or do something different like init at first call? */
   if(nil != _configurationEntry) {
     return  _configurationEntry;
   }

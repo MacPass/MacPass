@@ -200,7 +200,7 @@ typedef void (^MPPasswordChangedBlock)(BOOL didChangePassword);
       NSAlert *alert = [[NSAlert alloc] init];
       [alert setAlertStyle:NSWarningAlertStyle];
       [alert setMessageText:NSLocalizedString(@"WARNING_ON_LOSSY_SAVE", "")];
-      [alert setInformativeText:NSLocalizedString(@"WARNING_ON_LOSSY_SAVE_DESCRIPTION", "Informative Text displayed when saving woudl yield data loss")];
+      [alert setInformativeText:NSLocalizedString(@"WARNING_ON_LOSSY_SAVE_DESCRIPTION", "Informative Text displayed when saving would yield data loss")];
       [alert addButtonWithTitle:NSLocalizedString(@"SAVE_LOSSY", "Save lossy")];
       [alert addButtonWithTitle:NSLocalizedString(@"CHANGE_FORMAT", "")];
       [alert addButtonWithTitle:NSLocalizedString(@"CANCEL", "Cancel")];
@@ -417,8 +417,8 @@ typedef void (^MPPasswordChangedBlock)(BOOL didChangePassword);
   NSView *entryView = [self.entryViewController view];
   
   /*
-   The current easy way to prevent layout hickups is to add the inspect
-   Add all neded contraints an then remove it again, if it was hidden
+   The current easy way to prevent layout hiccups is to add the inspect
+   Add all needed constraints an then remove it again, if it was hidden
    */
   BOOL removeInspector = NO;
   if(![inspectorView superview]) {

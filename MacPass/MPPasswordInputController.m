@@ -67,7 +67,7 @@
 }
 
 - (void)requestPassword {
-  // show Warnign if read-only mode!
+  // show warning if read-only mode!
   [self _reset];
 }
 
@@ -102,7 +102,7 @@
 }
 
 - (IBAction)resetKeyFile:(id)sender {
-  /* If the reset was triggerd by ourselves we want to preselct the keyfile */
+  /* If the reset was triggered by ourselves we want to preselect the keyfile */
   if(sender == self) {
     [self _selectKeyURL];
   }

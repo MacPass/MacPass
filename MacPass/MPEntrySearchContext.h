@@ -17,10 +17,10 @@ typedef NS_OPTIONS(NSUInteger, MPEntrySearchFlags) {
   MPEntrySearchNotes                = (1<<4),
   MPEntrySearchAllAttributes        = (1<<5),
   /* The following two flags should be used like enums.
-   They are not intented to be used in conjunktion with any other flag */
+   They are not intended to be used in conjunction with any other flag */
   MPEntrySearchDoublePasswords      = (1<<6),
   MPEntrySearchExpiredEntries       = (1<<7),
-  /* All combinebale search flags combined */
+  /* All combine-able search flags combined */
   MPEntrySearchAllCombineableFlags  = (MPEntrySearchDoublePasswords |
                                        MPEntrySearchExpiredEntries |
                                        MPEntrySearchNotes |
@@ -33,11 +33,11 @@ typedef NS_OPTIONS(NSUInteger, MPEntrySearchFlags) {
   MPEntrySearchAllFlags             = (MPEntrySearchAllCombineableFlags | MPEntrySearchSingleFlags )
 };
 
-/* Wrap serach criteria to be able to store them */
+/* Wrap search criteria to be able to store them */
 @interface MPEntrySearchContext : NSObject <NSSecureCoding,NSCopying>
 
 /**
- *  Returns a default search context initalized with sane values.
+ *  Returns a default search context initialized with sane values.
  *
  *  @return The default search context
  */

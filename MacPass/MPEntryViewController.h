@@ -37,7 +37,7 @@ typedef NS_ENUM( NSUInteger, MPCopyContentTypeTag) {
 @property (weak,readonly) NSTableView *entryTable;
 @property (readonly, strong) NSArrayController *entryArrayController;
 
-/* Call this after alle viewcontroller are loaded */
+/* Call this after all view controllers are loaded */
 - (void)regsiterNotificationsForDocument:(MPDocument *)document;
 
 /* Copy/Paste */

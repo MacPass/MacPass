@@ -17,7 +17,7 @@ FOUNDATION_EXPORT NSString *const MPRequestTypeSetLogin;
 FOUNDATION_EXPORT NSString *const MPRequestTypeGeneratePassword;
 
 /**
- *  Servive class to be called for getting specific request handler for indifidual reuqest
+ *  Service class to be called for getting specific request handler for individual request
  *  The service is identified by a string
  */
 @interface MPRequestHandlerService : NSObject

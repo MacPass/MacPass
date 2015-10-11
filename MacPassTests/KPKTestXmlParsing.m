@@ -25,7 +25,7 @@
   KPKXmlTreeReader *reader = [[KPKXmlTreeReader alloc] initWithData:[document XMLData] headerReader:nil];
   NSError *error;
   KPKTree *tree = [reader tree:&error];
-  XCTAssertNil(tree, @"No Tree form emptry data");
+  XCTAssertNil(tree, @"No Tree from empty data");
   XCTAssertNotNil(error, @"Error Object should be provided");
   XCTAssertTrue([error code] == KPKErrorNoData, @"Error Code should be No Data");
 }
@@ -35,7 +35,7 @@
   KPKXmlTreeReader *reader = [[KPKXmlTreeReader alloc] initWithData:[document XMLData] headerReader:nil];
   NSError *error;
   KPKTree *tree = [reader tree:&error];
-  XCTAssertNil(tree, @"No Tree form emptry data");
+  XCTAssertNil(tree, @"No Tree from empty data");
   XCTAssertNotNil(error, @"Error Object should be provided");
   XCTAssertTrue([error code] == KPKErrorXMLKeePassFileElementMissing, @"Error Code should be KeePassFile root missing");
 }
@@ -45,7 +45,7 @@
   KPKXmlTreeReader *reader = [[KPKXmlTreeReader alloc] initWithData:[document XMLData] headerReader:nil];
   NSError *error;
   KPKTree *tree = [reader tree:&error];
-  XCTAssertNil(tree, @"No Tree form emptry data");
+  XCTAssertNil(tree, @"No Tree from empty data");
   XCTAssertNotNil(error, @"Error Object should be provided");
   XCTAssertTrue([error code] == KPKErrorXMLMetaElementMissing, @"Error Code should be KeePassFile root missing");
 }

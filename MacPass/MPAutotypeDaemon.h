@@ -12,7 +12,7 @@
 @class KPKEntry;
 
 /**
- *  The autotype daemon is repsonsible for registering the globa hotkey and to perform any autotype actions
+ *  The autotype daemon is responsible for registering the global hotkey and to perform any autotype actions
  */
 @interface MPAutotypeDaemon : NSObject
 

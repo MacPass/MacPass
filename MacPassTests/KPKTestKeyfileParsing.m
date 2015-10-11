@@ -44,7 +44,7 @@
 
 - (void)testLegacyKeyfileGeneration {
   NSData *data = [NSData generateKeyfiledataForVersion:KPKLegacyVersion];
-  // test if strucutre is sound;
+  // test if structure is sound;
   XCTAssertNotNil(data, @"Keydata should have been generated");
 }
 

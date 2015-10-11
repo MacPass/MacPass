@@ -47,7 +47,7 @@
 }
 
 - (BOOL)isValid {
-  /* Pasting shoudl always be valid */
+  /* Pasting should always be valid */
   return YES;
 }
 

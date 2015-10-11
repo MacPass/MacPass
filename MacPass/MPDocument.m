@@ -235,8 +235,8 @@ NSString *const MPDocumentGroupKey                        = @"MPDocumentGroupKey
 - (void)close {
   [self _cleanupLock];
   /*
-   We store the last url. Restored windows are automatically handeld.
-   If closeAllDocuments is set, all docs get this messgae
+   We store the last url. Restored windows are automatically handled.
+   If closeAllDocuments is set, all docs get this message
    */
   if([[self fileURL] isFileURL]) {
     [[NSUserDefaults standardUserDefaults] setObject:[self.fileURL absoluteString] forKey:kMPSettingsKeyLastDatabasePath];
@@ -331,8 +331,8 @@ NSString *const MPDocumentGroupKey                        = @"MPDocumentGroupKey
   /* Key change is not undoable so just recored the change as done */
   [self updateChangeCount:NSChangeDone];
   /*
-   If the user opted to remeber key files for documents, we should update this information.
-   But it's impossible to know, if he actaully saves the changes!
+   If the user opted to remember key files for documents, we should update this information.
+   But it's impossible to know, if he actually saves the changes!
    */
   return YES;
 }
@@ -646,7 +646,7 @@ NSString *const MPDocumentGroupKey                        = @"MPDocumentGroupKey
 
 - (void)createEntryFromTemplate:(id)sender {
   if(![sender respondsToSelector:@selector(representedObject)]) {
-    return; // sender cannot provide usefull data
+    return; // sender cannot provide useful data
   }
   id obj = [sender representedObject];
   if(![obj isKindOfClass:[NSUUID class]]) {

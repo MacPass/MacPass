@@ -26,7 +26,7 @@
 - (IBAction)pickExpiryDate:(id)sender;
 - (IBAction)toggleEdit:(id)sender;
 
-/* Seperate call to ensure alle registered objects are in place */
+/* Separate call to ensure all registered objects are in place */
 - (void)regsiterNotificationsForDocument:(NSDocument *)document;
 
 @end

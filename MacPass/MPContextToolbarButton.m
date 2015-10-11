@@ -63,7 +63,7 @@
 }
 
 /*
- Block the segment setter to prevent accidential settings
+ Block the segment setter to prevent accidental settings
  */
 - (void)setImage:(NSImage *)image forSegment:(NSInteger)segment {
   if(segment < 2) {

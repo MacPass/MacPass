@@ -9,7 +9,7 @@
 #import "MPAutotypeCommand.h"
 
 /**
- *  Autotype command to press a single key. Can be used with modifer keys as well
+ *  Autotype command to press a single key. Can be used with modifier keys as well
  */
 @interface MPAutotypeKeyPress : MPAutotypeCommand
 

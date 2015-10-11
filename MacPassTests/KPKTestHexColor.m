@@ -53,7 +53,7 @@
   NSData *colorData = [NSData dataWithBytesNoCopy:&colorBytes length:4 freeWhenDone:NO];
   NSColor *color = [NSColor colorWithData:colorData];
   NSData *newData = [color colorData];
-  XCTAssertEqualObjects(colorData, newData, @"Convertion should result in same data");
+  XCTAssertEqualObjects(colorData, newData, @"Conversion should result in same data");
 }
 
 @end

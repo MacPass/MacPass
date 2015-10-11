@@ -10,7 +10,7 @@
 
 /*
  Protrocoll to be implemented by ViewControllers that can be added to
- the settings windows. Tabs are orded as the controllers are included.
+ the settings windows. Tabs are ordered as the controllers are included.
  */
 @protocol MPSettingsTab <NSObject>
 
@@ -22,7 +22,7 @@
 - (NSImage *)image;
 /* Called when the tab is about to be selected and displayed */
 - (void)willShowTab;
-/* Called whent the tab was selected and is being displayed */
+/* Called when the tab was selected and is being displayed */
 - (void)didShowTab;
 
 @end
