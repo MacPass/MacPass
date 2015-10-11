@@ -63,7 +63,7 @@
     
     dispatch_source_set_event_handler(self.source, self.block);
     
-    // close the file descriptor when the dispatch source is cancelled
+    // close the file descriptor when the dispatch source is canceled
     dispatch_source_set_cancel_handler(self.source, ^{
       
       close(self.fileDescriptor);

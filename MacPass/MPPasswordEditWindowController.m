@@ -175,7 +175,7 @@
   if(!hasPasswordOrKey) {
     [self.errorTextField setTextColor:[NSColor controlTextColor]];
     [self.errorTextField setStringValue:NSLocalizedString(@"WARNING_NO_PASSWORD_OR_KEYFILE", "No Key or Password")];
-    return; // alldone
+    return; // all done
   }
   [self.errorTextField setTextColor:[NSColor redColor]];
   if(!passwordOk && !keyOk ) {

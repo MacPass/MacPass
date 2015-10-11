@@ -177,7 +177,7 @@ typedef NS_ENUM(NSUInteger, MPContentTab) {
     [self.entryViewController endEditing];
     
     /*
-     We need to be carefull to only undo the things we actually changed
+     We need to be careful to only undo the things we actually changed
      otherwise we undo older actions
      */
     if(didCancel) {
@@ -312,7 +312,7 @@ typedef NS_ENUM(NSUInteger, MPContentTab) {
 - (void)_didChangeCurrentItem:(NSNotification *)notification {
   MPDocument *document = [notification object];
   if(!document.selectedItem) {
-    /* show emty tab and hide edit button */
+    /* show empty tab and hide edit button */
     self.activeTab = MPEmptyTab;
   }
   else {

@@ -95,7 +95,7 @@ typedef NS_ENUM(NSUInteger, MPIconType) {
 };
 
 /**
- *	Helper class to retrieve Icons for Keys. KDB sortes Icons as an Integer
+ *	Helper class to retrieve Icons for Keys. KDB sorts Icons as an Integer
  *  The Helper maps those numbers to icons.
  *  It can furthermore be used to retrieve other Icons, that are non-Database Icons
  */
@@ -110,7 +110,7 @@ typedef NS_ENUM(NSUInteger, MPIconType) {
 
 /**
  *	Available Icon names (all)
- *	@return	Dictioary with MPIconType keys and NSString values containing their names
+ *	@return	Dictionary with MPIconType keys and NSString values containing their names
  */
 + (NSDictionary *)availableIconNames;
 

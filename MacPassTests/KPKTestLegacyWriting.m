@@ -25,7 +25,7 @@
   XCTAssertNotNil(tree, @"Tree should be created");
   error = nil;
   NSData *data = [tree encryptWithPassword:password forVersion:KPKLegacyVersion error:&error];
-  XCTAssertNotNil(data, @"Serialized Data shoudl be created");
+  XCTAssertNotNil(data, @"Serialized Data should be created");
   NSString *tempFile = [NSTemporaryDirectory() stringByAppendingString:@"CustomIcon_Password_1234.kdb"];
   NSLog(@"Saved to %@", tempFile);
   [data writeToFile:tempFile atomically:YES];

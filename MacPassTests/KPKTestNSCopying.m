@@ -59,11 +59,11 @@
   XCTAssertNotNil(copyEntry, @"Copied Entry cannot be nil");
   XCTAssertTrue([copyEntry.title isEqualToString:@"Title"], @"Titles should match");
   XCTAssertTrue([copyEntry.url isEqualToString:@"URL"], @"URLS should match");
-  XCTAssertTrue([copyEntry.binaries count] == 1, @"Binareis should be copied");
+  XCTAssertTrue([copyEntry.binaries count] == 1, @"Binaries should be copied");
   
   KPKBinary *copiedBinary = [copyEntry.binaries lastObject];
   XCTAssertTrue([copiedBinary.data isEqualToData:binary.data], @"Binary data should match");
-  XCTAssertTrue([copiedBinary.name isEqualToString:binary.name], @"Binary names should macht");
+  XCTAssertTrue([copiedBinary.name isEqualToString:binary.name], @"Binary names should match");
 }
 
 @end

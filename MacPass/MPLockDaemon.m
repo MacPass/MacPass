@@ -86,7 +86,7 @@
   NSTimeInterval currentInterval = ([NSDate timeIntervalSinceReferenceDate] - self.lastLocalEventTime);
   if(self.idleLockTime < currentInterval) {
     [(MPAppDelegate *)[NSApp delegate] lockAllDocuments];
-    /* Reset the timer to full intervall */
+    /* Reset the timer to full interval */
     [self.idleCheckTimer setFireDate:[NSDate dateWithTimeIntervalSinceNow:_idleLockTime]];
   }
   else {

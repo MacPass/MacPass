@@ -21,7 +21,7 @@ FOUNDATION_EXTERN uint16_t const kMPUnknownKeyCode;
 + (NSString *)stringForKey:(CGKeyCode)keyCode;
 
 /**
- *  Determines the keyCode (if possible) for the charater
+ *  Determines the keyCode (if possible) for the character
  *
  *  @param character NSString with a single character to be transformed
  *  @return virtual Keycode for the supplied string. If none is found, kMPUnkonwKeyCode is returned

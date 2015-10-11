@@ -23,7 +23,7 @@
 /**
  *  Formulate a response to the request passed in as Dictionary
  *
- *  @param data An NSDictionary containing the parsed JSON reuest
+ *  @param data An NSDictionary containing the parsed JSON request
  */
 - (void)respondTo:(NSDictionary *)data;
 

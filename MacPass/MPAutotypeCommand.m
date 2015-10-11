@@ -136,16 +136,16 @@ static CGKeyCode kMPFunctionKeyCodes[] = { kVK_F1, kVK_F2, kVK_F3, kVK_F4, kVK_F
         [self appendAppropriatePasteCommandForEntry:context.entry withContent:pasteValue toCommands:commands];
       }
     }
-    /* Test for modifer Key */
+    /* Test for modifier Key */
     NSString *commandString = [context.evaluatedCommand substringWithRange:commandRange];
-    /* append commands for non-modifer keys */
+    /* append commands for non-modifier keys */
     if(![self updateModifierMask:&collectedModifers forCommand:commandString]) {
       [self appendCommandForEntry:context.entry withString:commandString toCommands:commands activeModifer:collectedModifers];
-      collectedModifers = 0; // Reset the modifers;
+      collectedModifers = 0; // Reset the modifiers;
     }
     lastLocation = commandRange.location + commandRange.length;
   }
-  /* Collect any part that isn't a command or if onyl paste is used */
+  /* Collect any part that isn't a command or if only paste is used */
   if(lastLocation < [context.evaluatedCommand length]) {
     /* We might have some dangling modifiers */
     NSRange lastRange = NSMakeRange(lastLocation, [context.evaluatedCommand length] - lastLocation);
@@ -174,7 +174,7 @@ static CGKeyCode kMPFunctionKeyCodes[] = { kVK_F1, kVK_F2, kVK_F3, kVK_F4, kVK_F
 }
 
 + (void)appendPasteCommandForContent:(NSString *)pasteContent toCommands:(NSMutableArray *)commands {
-  /* Update an already inserted paste command with the new conents */
+  /* Update an already inserted paste command with the new contents */
   if([[commands lastObject] isKindOfClass:[MPAutotypePaste class]]) {
     [[commands lastObject] appendString:pasteContent];
   }
@@ -303,7 +303,7 @@ static CGKeyCode kMPFunctionKeyCodes[] = { kVK_F1, kVK_F2, kVK_F3, kVK_F4, kVK_F
     if([numberScanner scanInteger:&value]) {
       if([kKPKAutotypeDelay isEqualToString:uppercaseCommand]) {
         if(MAX(0, value) <= 0) {
-          return; // Value too low, just skipp
+          return; // Value too low, just skip
         }
         [commands addObject:[[MPAutotypeDelay alloc] initWithDelay:value]];
         return; // Done

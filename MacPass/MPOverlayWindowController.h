@@ -13,7 +13,7 @@
 + (MPOverlayWindowController *)sharedController;
 
 /**
- *  Displays an overlay HUD style image with the given text, image centerd at the given view.
+ *  Displays an overlay HUD style image with the given text, image centered at the given view.
  *  There are two use cases. Either displaying information over a view by providing on,
  *  or displaying information on the main screen by using nil for the view.
  *

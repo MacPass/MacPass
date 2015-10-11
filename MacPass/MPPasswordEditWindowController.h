@@ -16,7 +16,7 @@
 @optional
 /**
  *	Get's called on dismissing the password editor.
- *	@param	changedPasswordOrKey	YES if the password and/or key was saved (not necessairly changed!);
+ *	@param	changedPasswordOrKey	YES if the password and/or key was saved (not necessarily changed!);
  */
 - (void)didFinishPasswordEditing:(BOOL)changedPasswordOrKey;
 

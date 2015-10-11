@@ -41,14 +41,14 @@ APPKIT_EXTERN NSString *const kMPSettingsKeyLegacyHideNotes;
 APPKIT_EXTERN NSString *const kMPSettingsKeyLegacyHideURL;
 /* Document/Key Location store */
 
-APPKIT_EXTERN NSString *const kMPSettingsKeyLastDatabasePath;                 // Path to the last opened Database. Workaround if users have disabled the feautere in the OS
+APPKIT_EXTERN NSString *const kMPSettingsKeyLastDatabasePath;                 // Path to the last opened Database. Workaround if users have disabled the feature in the OS
 APPKIT_EXTERN NSString *const kMPSettingsKeyRememeberdKeysForDatabases;       // NSDictionary of all db file urls and the corresponding key file url
-APPKIT_EXTERN NSString *const kMPSettingsKeyRememberKeyFilesForDatabases;     // YES if key files should be rememberd
+APPKIT_EXTERN NSString *const kMPSettingsKeyRememberKeyFilesForDatabases;     // YES if key files should be remembers
 
 /* Autotype */
-APPKIT_EXTERN NSString *const kMPSettingsKeySendCommandForControlKey;         // Should MacPass swap control for command. This is usefull in a cross plattform environment
+APPKIT_EXTERN NSString *const kMPSettingsKeySendCommandForControlKey;         // Should MacPass swap control for command. This is useful in a cross platform environment
 APPKIT_EXTERN NSString *const kMPSettingsKeyEnableGlobalAutotype;             // Is Global Autotype enabled?
-APPKIT_EXTERN NSString *const kMPSettingsKeyGlobalAutotypeKeyDataKey;         // The stored Data for the useder defined global autotype key
+APPKIT_EXTERN NSString *const kMPSettingsKeyGlobalAutotypeKeyDataKey;         // The stored Data for the user defined global autotype key
 APPKIT_EXTERN NSString *const kMPSettingsKeyDefaultGlobalAutotypeSequence;    // Default sequence used for Autotype
 APPKIT_EXTERN NSString *const kMPSettingsKeyAutotypeMatchURL;                 // Autotype lookup included entry URL
 APPKIT_EXTERN NSString *const kMPSettingsKeyAutotypeMatchHost;                // Autotype lookup included host part of entry URL
@@ -92,12 +92,12 @@ typedef NS_ENUM(NSUInteger, MPPasswordEncoding) {
 @interface MPSettingsHelper : NSObject
 
 /**
- *  Registers all the defaults for the applciaiton
+ *  Registers all the defaults for the application
  */
 + (void)setupDefaults;
 
 /**
- *  Brings the defaults to a current status. Removes obsoltes entries.
+ *  Brings the defaults to a current status. Removes obsolete entries.
  */
 + (void)migrateDefaults;
 /**

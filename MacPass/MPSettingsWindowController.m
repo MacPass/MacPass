@@ -60,7 +60,7 @@
   }
   id<MPSettingsTab> tab = self.settingsController[identifier];
   if(tab == nil){
-    NSLog(@"Warning. Unknow settingscontroller for identifier: %@. Did you miss to add the controller?", identifier);
+    NSLog(@"Warning. Unknown settingscontroller for identifier: %@. Did you miss to add the controller?", identifier);
     return;
   }
   [self.toolbar setSelectedItemIdentifier:identifier];
@@ -112,7 +112,7 @@
   }
   NSString *identifier = [tabController identifier];
   if(nil != self.settingsController[identifier]) {
-    NSLog(@"Warning: Settingscontroller with identifer %@ already present!", identifier);
+    NSLog(@"Warning: Settingscontroller with identifier %@ already present!", identifier);
   }
   else {
     self.settingsController[identifier] = tabController;
@@ -165,7 +165,7 @@
     item = [[NSToolbarItem alloc] initWithItemIdentifier:itemIdentifier];
     /*
      Setup the item to use the controllers label if one is present
-     and supports the appropriate @optional protocoll messages
+     and supports the appropriate @optional protocol messages
      */
     id<MPSettingsTab> tab = self.settingsController[itemIdentifier];
     if([tab respondsToSelector:@selector(label)]) {

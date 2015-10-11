@@ -65,7 +65,7 @@ NSString *const MPDidChangeStoredKeyFilesSettings = @"com.hicknhack.macpass.MPDi
 - (instancetype)init {
   self = [super init];
   if(self) {
-    /* We know that we do not use the varibale after instancation */
+    /* We know that we do not use the variable after instantiation */
 #pragma clang diagnostic push
 #pragma clang diagnostic ignored "-Wunused-variable"
     MPDocumentController *documentController = [[MPDocumentController alloc] init];
@@ -97,7 +97,7 @@ NSString *const MPDidChangeStoredKeyFilesSettings = @"com.hicknhack.macpass.MPDi
   /* Update the … at the save menu */
   [[self.saveMenuItem menu] setDelegate:self];
   
-  /* We want to inform anyone about the changes to keyFile remmebering */
+  /* We want to inform anyone about the changes to keyFile remembering */
   [self bind:NSStringFromSelector(@selector(isAllowedToStoreKeyFile))
     toObject:[NSUserDefaultsController sharedUserDefaultsController]
  withKeyPath:[MPSettingsHelper defaultControllerPathForKey:kMPSettingsKeyRememberKeyFilesForDatabases]
