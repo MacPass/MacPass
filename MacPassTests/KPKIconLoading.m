@@ -43,7 +43,7 @@
   XCTAssertNotNil(imageRep, @"One image rep shoudl be there");
   XCTAssertTrue([imageRep isKindOfClass:repClass], @"Representation should be bitmap");
   NSBitmapImageRep *bitmapRep = (NSBitmapImageRep *)imageRep;
-  NSData *pngData = [bitmapRep representationUsingType:NSPNGFileType properties:nil];
+  NSData *pngData = [bitmapRep representationUsingType:NSPNGFileType properties:@{}];
   XCTAssertEqualObjects(pngData, _imageData, @"Image and PNG data shoudl be identical");
 }
 

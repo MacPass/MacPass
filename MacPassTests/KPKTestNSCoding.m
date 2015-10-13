@@ -83,16 +83,16 @@
   KPKIcon *icon = [[KPKIcon alloc] initWithImageAtURL:imageURL];
   NSData *data = [self encode:icon];
   KPKIcon *decodedIcon = [self decode:data ofClass:[KPKIcon class]];
-  NSBitmapImageRep *originalRep = [[icon.image representations] lastObject];
-  NSBitmapImageRep *decodedRep = [[decodedIcon.image representations] lastObject];
+  NSImageRep *originalRep = icon.image.representations.lastObject;
+  NSImageRep *decodedRep = decodedIcon.image.representations.lastObject;
   XCTAssertTrue([originalRep isKindOfClass:[NSBitmapImageRep class]]);
   XCTAssertTrue([decodedRep isKindOfClass:[NSBitmapImageRep class]]);
   /*
    We cannot assert bit depth since TIFF conversion might just strip a full white alpha channel
    XCTAssertEqual([originalRep bitsPerPixel], [decodedRep bitsPerPixel]);
    */
-  XCTAssertEqual([originalRep pixelsHigh], [decodedRep pixelsHigh]);
-  XCTAssertEqual([originalRep pixelsWide], [decodedRep pixelsWide]);
+  XCTAssertEqual(originalRep.pixelsHigh, decodedRep.pixelsHigh);
+  XCTAssertEqual(originalRep.pixelsWide, decodedRep.pixelsWide);
   
   NSData *originalData = [icon.image TIFFRepresentation];
   NSData *decodedData = [decodedIcon.image TIFFRepresentation];
