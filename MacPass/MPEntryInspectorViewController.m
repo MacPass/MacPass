@@ -138,6 +138,21 @@ typedef NS_ENUM(NSUInteger, MPEntryTab) {
                                            selector:@selector(_willSave:)
                                                name:MPDocumentWillSaveNotification
                                              object:document];
+
+  [[NSNotificationCenter defaultCenter] addObserver:self
+                                           selector:@selector(_didBeginEditingSelectedItem:)
+                                               name:MPDocumentDidBeginEditingSelectedItem
+                                             object:document];
+  
+  [[NSNotificationCenter defaultCenter] addObserver:self
+                                           selector:@selector(_didCancelOrCommitChangesToSelectedItem:)
+                                               name:MPDocumentDidCommitChangesToSelectedItem
+                                             object:document];
+  
+  [[NSNotificationCenter defaultCenter] addObserver:self
+                                           selector:@selector(_didCancelOrCommitChangesToSelectedItem:)
+                                               name:MPDocumentDidCancelChangesToSelectedItem
+                                             object:document];
 }
 
 - (void)dealloc {
@@ -318,27 +333,27 @@ typedef NS_ENUM(NSUInteger, MPEntryTab) {
   HNHScrollView *scrollView = [[HNHScrollView alloc] init];
   scrollView.actAsFlipped = NO;
   scrollView.showBottomShadow = NO;
-  [scrollView setHasVerticalScroller:YES];
-  [scrollView setDrawsBackground:NO];
-  [scrollView setTranslatesAutoresizingMaskIntoConstraints:NO];
-  NSView *clipView = [scrollView contentView];
+  scrollView.hasVerticalScroller = YES;
+  scrollView.drawsBackground = NO;
+  scrollView.translatesAutoresizingMaskIntoConstraints = NO;
+  NSView *clipView = scrollView.contentView;
   
   NSTabViewItem *tabViewItem = [self.tabView tabViewItemAtIndex:tab];
-  NSView *tabView = [tabViewItem view];
+  NSView *tabView = tabViewItem.view;
   /*
    DO NEVER SET setTranslatesAutoresizingMaskIntoConstraints on NSTabViewItem's view
    [tabView setTranslatesAutoresizingMaskIntoConstraints:NO];
    */
-  [scrollView setDocumentView:view];
+  scrollView.documentView = view;
   [tabView addSubview:scrollView];
-  [tabViewItem setInitialFirstResponder:scrollView];
+  tabViewItem.initialFirstResponder = scrollView;
   
   NSDictionary *views = NSDictionaryOfVariableBindings(view, scrollView);
-  [[scrollView superview] addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|[scrollView]|"
+  [scrollView.superview addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|[scrollView]|"
                                                                                  options:0
                                                                                  metrics:nil
                                                                                    views:views ]];
-  [[scrollView superview] addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|[scrollView]|"
+  [scrollView.superview addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|[scrollView]|"
                                                                                  options:0
                                                                                  metrics:nil
                                                                                    views:views]];
@@ -445,21 +460,18 @@ typedef NS_ENUM(NSUInteger, MPEntryTab) {
 }
 
 - (void)_toggleEditing:(BOOL)edit {
-  /* TODO: not fully working right now */
-  
-  [_titleTextField setEditable:edit];
-  [_titleTextField setSelectable:edit];
-  [_usernameTextField setEditable:edit];
-  [_usernameTextField setSelectable:edit];
-  [_URLTextField setEditable:edit];
-  [_URLTextField setSelectable:edit];
-  [_passwordTextField setEditable:edit];
-  [_passwordTextField setSelectable:edit];
-  
-  [_createdTextField setEditable:edit];
-  [_createdTextField setSelectable:edit];
-  [_modifiedTextField setEditable:edit];
-  [_modifiedTextField setSelectable:edit];
+  NSArray <NSTextField *> *textFields = @[self.titleTextField,
+                                self.usernameTextField,
+                                self.URLTextField,
+                                self.passwordTextField,
+                                self.tagsTokenField
+                                /*self.createdTextField,
+                                self.modifiedTextField*/
+                                ];
+  for(NSTextField *t in textFields) {
+    t.editable = edit;
+    t.selectable = edit;
+  }
 }
 
 #pragma mark -
@@ -475,4 +487,11 @@ typedef NS_ENUM(NSUInteger, MPEntryTab) {
   [[[self view] window] makeFirstResponder:nil];
 }
 
+- (void)_didBeginEditingSelectedItem:(NSNotification *)notification {
+  [self _toggleEditing:YES];
+}
+
+- (void)_didCancelOrCommitChangesToSelectedItem:(NSNotification *)notification {
+  [self _toggleEditing:NO];
+}
 @end

@@ -8,15 +8,23 @@
 
 #import <Foundation/Foundation.h>
 
+NS_ASSUME_NONNULL_BEGIN
+
 @class KPKNode;
 
 @interface MPEditingSession : NSObject
 
 @property (copy, readonly) KPKNode *node;
-@property (weak, readonly) KPKNode *source;
+@property (nullable, weak, readonly) KPKNode *source;
 
++ (instancetype)editingSessionWithSource:(KPKNode *)node;
 - (instancetype)initWithSource:(KPKNode *)node;
+
+- (instancetype)init NS_UNAVAILABLE;
 
 - (BOOL)hasChanges;
 
 @end
+
+NS_ASSUME_NONNULL_END
+

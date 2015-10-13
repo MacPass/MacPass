@@ -34,7 +34,12 @@ NSString *const MPDocumentDidCommitChangesToSelectedItem   = @"com.hicknhack.mac
   
   /* update the data */
   [self.editingSession.source updateToNode:self.editingSession.node];
-  [self.undoManager setActionName:NSLocalizedString(@"UPDATE_ENTRY", "")];
+  if(self.editingSession.node.asEntry) {
+    [self.undoManager setActionName:NSLocalizedString(@"UPDATE_ENTRY", "")];
+  }
+  else if(self.editingSession.node.asGroup) {
+    [self.undoManager setActionName:NSLocalizedString(@"UPDATE_GROUP", "")];
+  }
   self.editingSession = nil;
   [[NSNotificationCenter defaultCenter] postNotificationName:MPDocumentDidCommitChangesToSelectedItem object:self];
 }
@@ -51,7 +56,7 @@ NSString *const MPDocumentDidCommitChangesToSelectedItem   = @"com.hicknhack.mac
   if(nil == self.selectedItem) {
     return;
   }
-  self.editingSession = [[MPEditingSession alloc] initWithSource:self.selectedItem];
+  self.editingSession = [MPEditingSession editingSessionWithSource:self.selectedItem];
   [[NSNotificationCenter defaultCenter] postNotificationName:MPDocumentDidBeginEditingSelectedItem object:self];
 }
 

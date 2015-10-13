@@ -108,11 +108,12 @@ typedef NS_ENUM(NSUInteger, MPContentTab) {
   [[self view] layout];
 
   /* Init edit and cancel buttons */
-  [self.editButton setAction:@selector(beginEditingSelectedItem:)];
-  [self.cancelEditButton setAction:@selector(cancelChangesToSelectedItem:)];
-  [self.cancelEditButton setHidden:YES];
+  self.editButton.action = @selector(beginEditingSelectedItem:);
+  self.cancelEditButton.action = @selector(cancelChangesToSelectedItem:);
+  self.cancelEditButton.hidden = YES;
 
   [self _updateBindings:nil];
+  [self _toggleEditors:NO];
 }
 
 - (void)regsiterNotificationsForDocument:(MPDocument *)document {
@@ -265,70 +266,70 @@ typedef NS_ENUM(NSUInteger, MPContentTab) {
 - (void)_updateBindings:(id)item {
   if(!item) {
     [self.itemNameTextField unbind:NSValueBinding];
-    [self.itemNameTextField unbind:NSEnabledBinding];
-    [self.itemNameTextField setHidden:YES];
+    self.itemNameTextField.hidden = YES;
+
     [self.itemImageView unbind:NSValueBinding];
-    [self.itemImageView unbind:NSEnabledBinding];
-    [self.itemImageView setHidden:YES];
-    [[self.notesTextView enclosingScrollView] setHidden:YES];
+    self.itemImageView.hidden = YES;
+    
+    self.notesTextView.enclosingScrollView.hidden = YES;
     [self.notesTextView unbind:NSValueBinding];
-    [self.notesTextView unbind:NSEditableBinding];
-    [self.notesTextView setString:@""];
+    self.notesTextView.string = @"";
+    
     return;
   }
   
   /* Disable if item is not editable */
-  [self.itemNameTextField bind:NSEnabledBinding toObject:item withKeyPath:NSStringFromSelector(@selector(isEditable)) options:nil];
-  [self.itemImageView bind:NSEnabledBinding toObject:item withKeyPath:NSStringFromSelector(@selector(isEditable)) options:nil];
-  [self.notesTextView bind:NSEditableBinding toObject:item withKeyPath:NSStringFromSelector(@selector(isEditable)) options:nil];
-  
   [self.itemImageView bind:NSValueBinding toObject:item withKeyPath:NSStringFromSelector(@selector(iconImage)) options:nil];
-  [[self.notesTextView enclosingScrollView] setHidden:NO];
+  self.notesTextView.enclosingScrollView.hidden = NO;
   [self.notesTextView bind:NSValueBinding toObject:item withKeyPath:NSStringFromSelector(@selector(notes)) options:nil];
   [self.itemNameTextField bind:NSValueBinding toObject:item withKeyPath:NSStringFromSelector(@selector(title)) options:nil];
-  [self.itemImageView setHidden:NO];
-  [self.itemNameTextField setHidden:NO];
+  self.itemImageView.hidden = NO;
+  self.itemNameTextField.hidden = NO;
 }
 
-
+#pragma mark -
+#pragma mark Editing
+- (void)_toggleEditors:(BOOL)editable {
+  self.itemImageView.enabled = editable;
+  self.itemNameTextField.enabled = editable;
+  self.itemImageView.enabled = editable;
+  self.notesTextView.editable = editable;
+}
 #pragma mark -
 #pragma mark MPDocument Notifications
 
 - (void)_didChangeCurrentItem:(NSNotification *)notification {
-  MPDocument *document = [notification object];
-  if(!document.selectedItem) {
-    /* show emty tab and hide edit button */
-    self.activeTab = MPEmptyTab;
+  MPDocument *document = notification.object;
+  if(document.selectedItem.asGroup) {
+    self.activeTab = MPGroupTab;
+  }
+  else if(document.selectedItem.asEntry) {
+      self.activeTab = MPEntryTab;
   }
   else {
-    BOOL isGroup = document.selectedItem == document.selectedGroup;
-    BOOL isEntry = document.selectedItem == document.selectedEntry;
-    if(isGroup) {
-      self.activeTab = MPGroupTab;
-    }
-    else if(isEntry) {
-      self.activeTab = MPEntryTab;
-    }
+    self.activeTab = MPEmptyTab;
   }
+//  self.representedObject = document.selectedItem;
+//  self.entryViewController.representedObject = document.selectedItem.asEntry;
+//  self.groupViewController.representedObject = document.selectedItem.asGroup;
   [self _updateBindings:document.selectedItem];
-  
-  /* disable the entry text fields whenever the entry selection changes */
-  //[self.entryViewController endEditing];
 }
 
 - (void)_didBeginEditingSelectedItem:(NSNotification *)notification {
-  MPDocument *document = [notification object];
-  [self.editButton setAction:@selector(commitChangesToSelectedItem:)];
-  [self.editButton setTitle:NSLocalizedString(@"DONE", "")];
-  [self.cancelEditButton setHidden:NO];
+  MPDocument *document = notification.object;
+  self.editButton.action = @selector(commitChangesToSelectedItem:);
+  self.editButton.title = NSLocalizedString(@"SAVE", "");
+  self.cancelEditButton.hidden = NO;
   [self _updateBindings:document.editingSession.node];
+  [self _toggleEditors:YES];
 }
 
 - (void)_didCancelOrCommitChangesToSelectedItem:(NSNotification *)notification {
-  MPDocument *document = [notification object];
-  [self.editButton setTitle:NSLocalizedString(@"EDIT", "")];
-  [self.cancelEditButton setHidden:YES];
-  [self.editButton setAction:@selector(beginEditingSelectedItem:)];
+  MPDocument *document = notification.object;
+  self.editButton.title = NSLocalizedString(@"EDIT", "");
+  self.cancelEditButton.hidden = YES;
+  self.editButton.action = @selector(beginEditingSelectedItem:);
   [self _updateBindings:document.selectedItem];
+  [self _toggleEditors:NO];
 }
 @end

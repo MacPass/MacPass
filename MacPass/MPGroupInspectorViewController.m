@@ -18,7 +18,9 @@
 #import "HNHRoundedTextField.h"
 
 
-@interface MPGroupInspectorViewController ()
+@interface MPGroupInspectorViewController () {
+  NSObjectController *_entryController;
+}
 
 @property (nonatomic, weak) KPKGroup *group;
 @property (strong) NSPopover *popover;
@@ -34,28 +36,29 @@
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil {
   self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
   if (self) {
+    _entryController = [[NSObjectController alloc] init];
   }
   return self;
 }
 
 - (void)awakeFromNib {
-  HNHScrollView *scrollView = (HNHScrollView *)[self view];
+  HNHScrollView *scrollView = (HNHScrollView *)self.view;
   
   scrollView.actAsFlipped = NO;
   scrollView.showBottomShadow = NO;
-  [scrollView setHasVerticalScroller:YES];
-  [scrollView setDrawsBackground:NO];
-  [scrollView setTranslatesAutoresizingMaskIntoConstraints:NO];
-  NSView *clipView = [scrollView contentView];
+  scrollView.hasVerticalRuler = YES;
+  scrollView.drawsBackground = NO;
+  scrollView.translatesAutoresizingMaskIntoConstraints = NO;
+  NSView *clipView = scrollView.contentView;
   
-  [scrollView setDocumentView:self.contentView];
+  scrollView.documentView = self.contentView;
   
   NSDictionary *views = NSDictionaryOfVariableBindings(_contentView);
   [clipView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|[_contentView]|"
                                                                    options:0
                                                                    metrics:nil
                                                                      views:views]];
-  [[self view] layoutSubtreeIfNeeded];
+  [self.view layoutSubtreeIfNeeded];
   
   NSMenu *autotypeMenu = self.autotypePopupButton.menu;
   NSMenuItem *inheritAutotype = [[NSMenuItem alloc] initWithTitle:NSLocalizedString(@"AUTOTYPE_INHERIT", "") action:NULL keyEquivalent:@""];

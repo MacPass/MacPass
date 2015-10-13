@@ -18,9 +18,8 @@
 
 @implementation MPEditingSession
 
-- (instancetype)init {
-  self = [self initWithSource:nil];
-  return self;
++ (instancetype)editingSessionWithSource:(KPKNode *)node {
+  return [[MPEditingSession alloc] initWithSource:node];
 }
 
 - (instancetype)initWithSource:(KPKNode *)node {

@@ -23,5 +23,7 @@
 @property (weak) IBOutlet HNHRoundedTextField *autotypeSequenceTextField;
 
 - (void)setupBindings:(MPDocument *)document;
+- (void)beginEditing;
+- (void)endEditing;
 
 @end
