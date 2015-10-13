@@ -259,7 +259,7 @@ FOUNDATION_EXTERN NSString *const MPDocumentDidExitSearchNotification;
 /**
  *  Posted by the document, when the search results have been updated. This is only called when searching.
  *  If the search is exited, it will be notified by MPDocumentDidExitSearchNotification
- *  The userInfo dictionary has one key kMPDocumentSearchResultsKey with an NSArray of KPKEntries mathching the search.
+ *  The userInfo dictionary has one key kMPDocumentSearchResultsKey with an NSArray of KPKEntries matching the search.
  */
 FOUNDATION_EXTERN NSString *const MPDocumentDidChangeSearchResults;
 
@@ -278,6 +278,5 @@ FOUNDATION_EXTERN NSString *const kMPDocumentSearchResultsKey;
 - (IBAction)toggleSearchFlags:(id)sender;
 
 @end
-
 
 
