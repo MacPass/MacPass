@@ -9,7 +9,7 @@
 #import "MPInspectorViewController.h"
 #import "MPDatePickingViewController.h"
 #import "MPDocument.h"
-#import "MPEditingSession.h"
+#import "KPKEditingSession.h"
 #import "MPEntryInspectorViewController.h"
 #import "MPGroupInspectorViewController.h"
 #import "MPIconHelper.h"

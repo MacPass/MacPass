@@ -58,7 +58,7 @@ APPKIT_EXTERN NSString *const MPDocumentGroupKey;
 @class KPKAttribute;
 @class KPKCompositeKey;
 @class KPKNode;
-@class MPEditingSession;
+@class KPKEditingSession;
 
 @interface MPDocument : NSDocument <MPTargetNodeResolving>
 
@@ -87,11 +87,6 @@ APPKIT_EXTERN NSString *const MPDocumentGroupKey;
 @property (nonatomic, readonly) BOOL hasSearch;
 @property (nonatomic, copy) MPEntrySearchContext *searchContext;
 @property (nonatomic, strong) NSArray *searchResult;
-
-/*
- Editing Session
- */
-@property (nonatomic, strong) MPEditingSession *editingSession;
 
 + (KPKVersion)versionForFileType:(NSString *)fileType;
 + (NSString *)fileTypeForVersion:(KPKVersion)version;

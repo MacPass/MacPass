@@ -7,7 +7,7 @@
 //
 
 #import "MPDocument.h"
-#import "MPEditingSession.h"
+#import "KPKEditingSession.h"
 
 #import "KPKNode.h"
 
@@ -33,14 +33,13 @@ NSString *const MPDocumentDidCommitChangesToSelectedItem   = @"com.hicknhack.mac
   [((NSWindowController *)self.windowControllers.firstObject).window makeFirstResponder:nil];
   
   /* update the data */
-  [self.editingSession.source updateToNode:self.editingSession.node];
-  if(self.editingSession.node.asEntry) {
+  [self.editingSession.source commitEditing];
+  if(self.editingSession.source.asEntry) {
     [self.undoManager setActionName:NSLocalizedString(@"UPDATE_ENTRY", "")];
   }
-  else if(self.editingSession.node.asGroup) {
+  else if(self.editingSession.source.asGroup) {
     [self.undoManager setActionName:NSLocalizedString(@"UPDATE_GROUP", "")];
   }
-  self.editingSession = nil;
   [[NSNotificationCenter defaultCenter] postNotificationName:MPDocumentDidCommitChangesToSelectedItem object:self];
 }
 
@@ -48,7 +47,7 @@ NSString *const MPDocumentDidCommitChangesToSelectedItem   = @"com.hicknhack.mac
   if(nil == self.editingSession) {
     return; // No session to cancel
   }
-  self.editingSession = nil;
+  [self.selectedItem cancelEditing];
   [[NSNotificationCenter defaultCenter] postNotificationName:MPDocumentDidCancelChangesToSelectedItem object:self];
 }
 
@@ -56,7 +55,7 @@ NSString *const MPDocumentDidCommitChangesToSelectedItem   = @"com.hicknhack.mac
   if(nil == self.selectedItem) {
     return;
   }
-  self.editingSession = [MPEditingSession editingSessionWithSource:self.selectedItem];
+  [self.selectedItem beginEditing];
   [[NSNotificationCenter defaultCenter] postNotificationName:MPDocumentDidBeginEditingSelectedItem object:self];
 }
 

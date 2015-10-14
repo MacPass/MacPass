@@ -244,7 +244,7 @@
 		4C8A173D1790AA41008B5C17 /* NSData+Keyfile.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C8A173C1790AA41008B5C17 /* NSData+Keyfile.m */; };
 		4C8B36AB17A6ED4B005E1FF1 /* MPOutlineContextMenuDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C8B36AA17A6ED4B005E1FF1 /* MPOutlineContextMenuDelegate.m */; };
 		4C8EB8C118D399FD00438B08 /* KPKTag.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C8EB8C018D399FD00438B08 /* KPKTag.m */; };
-		4C94A06F1938DC8C0040ABAB /* MPEditingSession.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C94A06E1938DC8C0040ABAB /* MPEditingSession.m */; };
+		4C94A06F1938DC8C0040ABAB /* KPKEditingSession.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C94A06E1938DC8C0040ABAB /* KPKEditingSession.m */; };
 		4C94A0721938DDC20040ABAB /* MPDocument+EditingSession.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C94A0711938DDC20040ABAB /* MPDocument+EditingSession.m */; };
 		4C978E0619AE53FE003067DF /* HNHCommon.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C978E0519AE53FE003067DF /* HNHCommon.m */; };
 		4C978E0D19AE54AB003067DF /* MPFlagsHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C978E0C19AE54AB003067DF /* MPFlagsHelper.m */; };
@@ -798,8 +798,8 @@
 		4C8B36AA17A6ED4B005E1FF1 /* MPOutlineContextMenuDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MPOutlineContextMenuDelegate.m; sourceTree = "<group>"; };
 		4C8EB8BF18D399FD00438B08 /* KPKTag.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KPKTag.h; sourceTree = "<group>"; };
 		4C8EB8C018D399FD00438B08 /* KPKTag.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KPKTag.m; sourceTree = "<group>"; };
-		4C94A06D1938DC8C0040ABAB /* MPEditingSession.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MPEditingSession.h; sourceTree = "<group>"; };
-		4C94A06E1938DC8C0040ABAB /* MPEditingSession.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MPEditingSession.m; sourceTree = "<group>"; };
+		4C94A06D1938DC8C0040ABAB /* KPKEditingSession.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KPKEditingSession.h; sourceTree = "<group>"; };
+		4C94A06E1938DC8C0040ABAB /* KPKEditingSession.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KPKEditingSession.m; sourceTree = "<group>"; };
 		4C94A0711938DDC20040ABAB /* MPDocument+EditingSession.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "MPDocument+EditingSession.m"; sourceTree = "<group>"; };
 		4C978E0519AE53FE003067DF /* HNHCommon.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HNHCommon.m; sourceTree = "<group>"; };
 		4C978E0C19AE54AB003067DF /* MPFlagsHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MPFlagsHelper.m; sourceTree = "<group>"; };
@@ -899,6 +899,7 @@
 		4CD78ABB16D155FF00768A1D /* 11_CameraTemplate.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = 11_CameraTemplate.pdf; sourceTree = "<group>"; };
 		4CD820221A32173100399DBB /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/ReferenceBuilderView.xib; sourceTree = "<group>"; };
 		4CD884B615BD47080042BBF8 /* DocumentWindow.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DocumentWindow.xib; sourceTree = "<group>"; };
+		4CD9D6CB1BCE6539008C1960 /* KPKEditingSession+Private.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "KPKEditingSession+Private.h"; sourceTree = "<group>"; };
 		4CDB5C401794AA4F0017667E /* KPKTree+Serializing.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "KPKTree+Serializing.h"; sourceTree = "<group>"; };
 		4CDB5C411794AA4F0017667E /* KPKTree+Serializing.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = "KPKTree+Serializing.m"; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		4CDF01A116D1B76700D0AC08 /* MPEntryViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MPEntryViewController.h; sourceTree = "<group>"; };
@@ -1293,8 +1294,6 @@
 				4C15B74518BCA3B1003F8008 /* MPDocument+Search.m */,
 				4C6B7C7C18BE7EB0001D5D77 /* MPDocument+HistoryBrowsing.m */,
 				4C94A0711938DDC20040ABAB /* MPDocument+EditingSession.m */,
-				4C94A06D1938DC8C0040ABAB /* MPEditingSession.h */,
-				4C94A06E1938DC8C0040ABAB /* MPEditingSession.m */,
 				4C0AF62D195C1F2B009E658D /* MPEntrySearchContext.h */,
 				4C0AF62E195C1F2B009E658D /* MPEntrySearchContext.m */,
 			);
@@ -1843,6 +1842,9 @@
 		4CD3ABB1178F71B50073F5C5 /* Core */ = {
 			isa = PBXGroup;
 			children = (
+				4C94A06D1938DC8C0040ABAB /* KPKEditingSession.h */,
+				4CD9D6CB1BCE6539008C1960 /* KPKEditingSession+Private.h */,
+				4C94A06E1938DC8C0040ABAB /* KPKEditingSession.m */,
 				4C70D0FE179092F200652EE9 /* KPKCompositeKey.h */,
 				4C70D0FF179092F200652EE9 /* KPKCompositeKey.m */,
 				4CD3ABB3178F71B50073F5C5 /* KPKTree.h */,
@@ -2369,7 +2371,7 @@
 				4C77547516E55FE800970E02 /* MPInspectorViewController.m in Sources */,
 				4C89F524182FB4740069C73C /* MPAutotypeCommand.m in Sources */,
 				4C8EB8C118D399FD00438B08 /* KPKTag.m in Sources */,
-				4C94A06F1938DC8C0040ABAB /* MPEditingSession.m in Sources */,
+				4C94A06F1938DC8C0040ABAB /* KPKEditingSession.m in Sources */,
 				4CFC53BF16E94729007396BE /* MPShadowBox.m in Sources */,
 				4C0AF62F195C1F2B009E658D /* MPEntrySearchContext.m in Sources */,
 				4C888C9316EB6F5E003D34A1 /* MPToolbarItem.m in Sources */,

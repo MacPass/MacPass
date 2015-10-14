@@ -78,7 +78,6 @@ NSString *const MPDocumentGroupKey                        = @"MPDocumentGroupKey
 @property (nonatomic, strong) NSData *encryptedData;
 @property (nonatomic, strong) MPTreeDelegate *treeDelgate;
 
-
 @property (assign) BOOL readOnly;
 @property (strong) NSURL *lockFileURL;
 
