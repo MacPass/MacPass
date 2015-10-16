@@ -9,7 +9,6 @@
 #import "MPInspectorViewController.h"
 #import "MPDatePickingViewController.h"
 #import "MPDocument.h"
-#import "KPKEditingSession.h"
 #import "MPEntryInspectorViewController.h"
 #import "MPGroupInspectorViewController.h"
 #import "MPIconHelper.h"
@@ -108,8 +107,8 @@ typedef NS_ENUM(NSUInteger, MPContentTab) {
   [[self view] layout];
 
   /* Init edit and cancel buttons */
-  self.editButton.action = @selector(beginEditingSelectedItem:);
-  self.cancelEditButton.action = @selector(cancelChangesToSelectedItem:);
+  self.editButton.action = @selector(beginEditing:);
+  self.cancelEditButton.action = @selector(cancelEditing:);
   self.cancelEditButton.hidden = YES;
 
   [self _updateBindings:nil];
@@ -121,22 +120,6 @@ typedef NS_ENUM(NSUInteger, MPContentTab) {
                                            selector:@selector(_didChangeCurrentItem:)
                                                name:MPDocumentCurrentItemChangedNotification
                                              object:document];
-  
-  [[NSNotificationCenter defaultCenter] addObserver:self
-                                           selector:@selector(_didBeginEditingSelectedItem:)
-                                               name:MPDocumentDidBeginEditingSelectedItem
-                                             object:document];
-  
-  [[NSNotificationCenter defaultCenter] addObserver:self
-                                           selector:@selector(_didCancelOrCommitChangesToSelectedItem:)
-                                               name:MPDocumentDidCommitChangesToSelectedItem
-                                             object:document];
-  
-  [[NSNotificationCenter defaultCenter] addObserver:self
-                                           selector:@selector(_didCancelOrCommitChangesToSelectedItem:)
-                                               name:MPDocumentDidCancelChangesToSelectedItem
-                                             object:document];
-  
   [self.entryViewController regsiterNotificationsForDocument:document];
   
   [self.entryViewController setupBindings:document];
@@ -315,21 +298,21 @@ typedef NS_ENUM(NSUInteger, MPContentTab) {
   [self _updateBindings:document.selectedItem];
 }
 
-- (void)_didBeginEditingSelectedItem:(NSNotification *)notification {
-  MPDocument *document = notification.object;
-  self.editButton.action = @selector(commitChangesToSelectedItem:);
+- (IBAction)beginEditing:(id)sender {
+  self.editButton.action = @selector(commitEditing:);
   self.editButton.title = NSLocalizedString(@"SAVE", "");
   self.cancelEditButton.hidden = NO;
-  [self _updateBindings:document.editingSession.node];
   [self _toggleEditors:YES];
 }
 
-- (void)_didCancelOrCommitChangesToSelectedItem:(NSNotification *)notification {
-  MPDocument *document = notification.object;
+- (IBAction)cancelEditing:(id)sender {
   self.editButton.title = NSLocalizedString(@"EDIT", "");
   self.cancelEditButton.hidden = YES;
-  self.editButton.action = @selector(beginEditingSelectedItem:);
-  [self _updateBindings:document.selectedItem];
+  self.editButton.action = @selector(beginEditing:);
   [self _toggleEditors:NO];
+}
+
+- (IBAction)commitEditing:(id)sender {
+  [self cancelEditing:sender];
 }
 @end

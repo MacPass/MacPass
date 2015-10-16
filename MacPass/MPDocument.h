@@ -86,7 +86,7 @@ APPKIT_EXTERN NSString *const MPDocumentGroupKey;
  */
 @property (nonatomic, readonly) BOOL hasSearch;
 @property (nonatomic, copy) MPEntrySearchContext *searchContext;
-@property (nonatomic, strong) NSArray *searchResult;
+@property (nonatomic, strong, readonly) NSArray *searchResult;
 
 + (KPKVersion)versionForFileType:(NSString *)fileType;
 + (NSString *)fileTypeForVersion:(KPKVersion)version;
@@ -221,8 +221,6 @@ APPKIT_EXTERN NSString *const MPDocumentDidCancelChangesToSelectedItem;
 APPKIT_EXTERN NSString *const MPDocumentDidCommitChangesToSelectedItem;
 
 @interface MPDocument (EditingSession)
-
-- (BOOL)isEditing;
 
 #pragma mark Edit Actions
 - (IBAction)beginEditingSelectedItem:(id)sender;

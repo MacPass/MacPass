@@ -7,8 +7,8 @@
 //
 
 #import "MPDocument.h"
-#import "KPKEditingSession.h"
 
+#import "KPKTree.h"
 #import "KPKNode.h"
 
 NSString *const MPDocumentDidBeginEditingSelectedItem      = @"com.hicknhack.macpass.MPDocumentDidBeginEditingSelectedItem";
@@ -17,14 +17,12 @@ NSString *const MPDocumentDidCommitChangesToSelectedItem   = @"com.hicknhack.mac
 
 @implementation MPDocument (EditingSession)
 
-- (BOOL)isEditing {
-  return (self.editingSession != nil);
+- (BOOL)hasActiveEditingSession {
+//  return (self.tree.activeEditingSession != nil);
+//  return (self.editingSession != nil);
 }
 
 - (void)commitChangesToSelectedItem:(id)sender {
-  if(nil == self.editingSession) {
-    return; // No session to commit
-  }
   /* Force any lingering updates to be written */
   /* FIXME explore potential usage of:
    * NSObject(NSEditorRegistration)
@@ -33,20 +31,17 @@ NSString *const MPDocumentDidCommitChangesToSelectedItem   = @"com.hicknhack.mac
   [((NSWindowController *)self.windowControllers.firstObject).window makeFirstResponder:nil];
   
   /* update the data */
-  [self.editingSession.source commitEditing];
-  if(self.editingSession.source.asEntry) {
+  [self.selectedItem commitEditing];
+  if(self.selectedItem.asEntry) {
     [self.undoManager setActionName:NSLocalizedString(@"UPDATE_ENTRY", "")];
   }
-  else if(self.editingSession.source.asGroup) {
+  else if(self.selectedItem.asGroup) {
     [self.undoManager setActionName:NSLocalizedString(@"UPDATE_GROUP", "")];
   }
   [[NSNotificationCenter defaultCenter] postNotificationName:MPDocumentDidCommitChangesToSelectedItem object:self];
 }
 
 - (void)cancelChangesToSelectedItem:(id)sender {
-  if(nil == self.editingSession) {
-    return; // No session to cancel
-  }
   [self.selectedItem cancelEditing];
   [[NSNotificationCenter defaultCenter] postNotificationName:MPDocumentDidCancelChangesToSelectedItem object:self];
 }

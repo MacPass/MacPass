@@ -487,11 +487,4 @@ typedef NS_ENUM(NSUInteger, MPEntryTab) {
   [[[self view] window] makeFirstResponder:nil];
 }
 
-- (void)_didBeginEditingSelectedItem:(NSNotification *)notification {
-  [self _toggleEditing:YES];
-}
-
-- (void)_didCancelOrCommitChangesToSelectedItem:(NSNotification *)notification {
-  [self _toggleEditing:NO];
-}
 @end

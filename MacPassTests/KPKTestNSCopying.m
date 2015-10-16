@@ -63,7 +63,7 @@
   XCTAssertEqualObjects(copyEntry.url, @"URL", @"URLS should match");
   XCTAssertEqual(copyEntry.binaries.count, 1, @"Binareis should be copied");
   
-  KPKBinary *copiedBinary = [copyEntry.binaries lastObject];
+  KPKBinary *copiedBinary = copyEntry.binaries.lastObject;
   XCTAssertTrue([copiedBinary.data isEqualToData:binary.data], @"Binary data should match");
   XCTAssertTrue([copiedBinary.name isEqualToString:binary.name], @"Binary names should macht");
 }

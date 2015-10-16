@@ -10,6 +10,7 @@
 #import <XCTest/XCTest.h>
 
 #import "KPKTree.h"
+#import "KPKNode+Private.h"
 #import "KPKGroup.h"
 #import "KPKEntry.h"
 
@@ -340,8 +341,8 @@
   XCTAssertFalse(_undoManager.canUndo, @"Undo stack is empty");
   XCTAssertFalse(_undoManager.canRedo, @"Redo stack is empty");
 
-  XCTAssertThrows([_entryA updateToNode:_groupA], @"Updating Entry to Group is not possible");
-  XCTAssertThrows([_groupA updateToNode:_entryA], @"Updating Group to Entry is not possible");
+  XCTAssertThrows([_entryA _updateToNode:_groupA], @"Updating Entry to Group is not possible");
+  XCTAssertThrows([_groupA _updateToNode:_entryA], @"Updating Group to Entry is not possible");
 
   XCTAssertFalse(_undoManager.canUndo, @"Undo stack is empty after failed update");
   XCTAssertFalse(_undoManager.canRedo, @"Redo stack is empty after failed update");
