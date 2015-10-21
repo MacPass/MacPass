@@ -38,12 +38,12 @@
     NSData *data = [NSKeyedArchiver archivedDataWithRootObject:[self cell]];
     NSKeyedUnarchiver *unarchiver = [[NSKeyedUnarchiver alloc] initForReadingWithData:data];
     MPSegmentedContextCell *cell = [[MPSegmentedContextCell alloc] initWithCoder:unarchiver];
-    [self setCell:cell];
+    self.cell = cell;
 
-    [self setFocusRingType:NSFocusRingTypeNone];
-    [self setSegmentCount:2];
+    self.focusRingType = NSFocusRingTypeNone;
+    self.segmentCount = 2;
     [cell setTrackingMode:NSSegmentSwitchTrackingMomentary];
-    [self setSegmentStyle:NSSegmentStyleTexturedSquare];
+    self.segmentStyle = NSSegmentStyleTexturedSquare;
     [cell setWidth:31 forSegment:0];
     [cell setWidth:17 forSegment:1];
 
@@ -73,7 +73,7 @@
 
 - (void)setSegmentCount:(NSInteger)count {
   if(count == 2) {
-    [super setSegmentCount:count];
+    super.segmentCount = count;
   }
 }
 
@@ -82,10 +82,18 @@
 }
 
 - (void)showContextMenu:(id)sender {
-  NSPoint point = [self frame].origin;
-  point.x = [[self cell] widthForSegment:0];
-  point.y = NSHeight([self frame]) + 3;
+  NSPoint point = self.frame.origin;
+  point.x = [self.cell widthForSegment:0];
+  point.y = NSHeight(self.frame) + 3;
   [_contextMenu popUpMenuPositioningItem:nil atLocation:point inView:self];
+}
+
+- (void)setControlSize:(NSControlSize)controlSize {
+  self.cell.controlSize = controlSize;
+}
+
+- (NSControlSize)controlSize {
+  return self.cell.controlSize;
 }
 
 @end

@@ -20,13 +20,6 @@
   return @"ReferenceBuilderView";
 }
 
-//- (instancetype)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil {
-//  self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
-//  if(self) {
-//  }
-//  return self;
-//}
-
 - (void)didLoadView {
   [self.searchKeyPopUpButton setMenu:[self _allocateAttributeItemMenu:YES withTitle:NSLocalizedString(@"SEARCH_VALUE", "")]];
   [self.valuePopUpButton setMenu:[self _allocateAttributeItemMenu:NO withTitle:NSLocalizedString(@"OUTPUT_VALUE", "")]];

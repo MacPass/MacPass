@@ -27,4 +27,7 @@
 - (void)setImage:(NSImage *)image;
 - (void)setContextMenu:(NSMenu *)menu;
 
+- (NSControlSize)controlSize;
+- (void)setControlSize:(NSControlSize)controlSize;
+
 @end
