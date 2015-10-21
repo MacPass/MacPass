@@ -280,6 +280,7 @@
 		4CC6DB7A17D23719002C6091 /* KPKNode+IconImage.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CC6DB7917D23719002C6091 /* KPKNode+IconImage.m */; };
 		4CC6DB7D17D23DCE002C6091 /* KPKUTIs.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CC6DB7C17D23DCE002C6091 /* KPKUTIs.m */; };
 		4CC7EA1B17807E7E0089D4F3 /* HNHRoundedTextFieldCellHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CC7EA1A17807E7E0089D4F3 /* HNHRoundedTextFieldCellHelper.m */; };
+		4CC8EF601BD7B7C30014A2DA /* KPKTestPerformance.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CC8EF5F1BD7B7C30014A2DA /* KPKTestPerformance.m */; settings = {ASSET_TAGS = (); }; };
 		4CCA8E9B18D91ED9001A6754 /* Quartz.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4CCA8E9A18D91ED9001A6754 /* Quartz.framework */; };
 		4CCEDE2A179F203B008402BE /* MPOutlineView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CCEDE29179F203B008402BE /* MPOutlineView.m */; };
 		4CCEDE2E179F213B008402BE /* MPNotifications.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CCEDE2D179F213B008402BE /* MPNotifications.m */; };
@@ -859,6 +860,7 @@
 		4CC6DB7C17D23DCE002C6091 /* KPKUTIs.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KPKUTIs.m; sourceTree = "<group>"; };
 		4CC7EA1917807E7E0089D4F3 /* HNHRoundedTextFieldCellHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HNHRoundedTextFieldCellHelper.h; sourceTree = "<group>"; };
 		4CC7EA1A17807E7E0089D4F3 /* HNHRoundedTextFieldCellHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HNHRoundedTextFieldCellHelper.m; sourceTree = "<group>"; };
+		4CC8EF5F1BD7B7C30014A2DA /* KPKTestPerformance.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KPKTestPerformance.m; sourceTree = "<group>"; };
 		4CC97C3B1B7B9D52007D54AA /* KPKNode+Private.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "KPKNode+Private.h"; sourceTree = "<group>"; };
 		4CCA7EEC1797866F00B0B55E /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/GeneralSettings.strings; sourceTree = "<group>"; };
 		4CCA7EEE1797867200B0B55E /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/GeneralSettings.strings; sourceTree = "<group>"; };
@@ -1377,6 +1379,7 @@
 				4C3F25201A3B0C95007DD98B /* KPKTextXMLUtilities.m */,
 				4C4B6E3D1B5E56600082EEF2 /* KPKTestEntryLookup.m */,
 				4C87751F1B70CA4B00069609 /* KPKTestUndo.m */,
+				4CC8EF5F1BD7B7C30014A2DA /* KPKTestPerformance.m */,
 			);
 			name = KeePassKit;
 			sourceTree = "<group>";
@@ -2312,6 +2315,7 @@
 				4CD25F9318B17A17006098E9 /* KPKTestUUIDAdditions.m in Sources */,
 				4C19E503178E2871002F2CD0 /* MPDatabasePasswordAndKeyfile.m in Sources */,
 				4C305F3C179A19F90082334F /* KPKIconLoading.m in Sources */,
+				4CC8EF601BD7B7C30014A2DA /* KPKTestPerformance.m in Sources */,
 				4C1842B8179B348600E2F5BC /* KPKTestLegacyLoading.m in Sources */,
 				4C8775201B70CA4B00069609 /* KPKTestUndo.m in Sources */,
 				4C6BC6601A36717E00BDDF3D /* MPDatabaseSearch.m in Sources */,
