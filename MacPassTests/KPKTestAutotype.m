@@ -15,6 +15,10 @@
 
 @implementation KPKTestAutotype
 
+- (void)testCommandValidation {
+  XCTAssertFalse([@"" validateCommmand], @"Emptry strings aren't valid commands");
+}
+
 - (void)testSimpleNormalization {
   NSString *normalized = [@"Whoo %{%}{^}{SHIFT}+ {SPACE}{ENTER}^V%V~T" normalizedAutotypeSequence];
   XCTAssertTrue([normalized isEqualToString:@"Whoo{SPACE}{ALT}{%}{^}{SHIFT}{SHIFT}{SPACE}{SPACE}{ENTER}{CONTROL}V{ALT}V{ENTER}T"]);

@@ -7,6 +7,7 @@
 //
 
 #import "MPReferenceBuilderViewController.h"
+#import "KPKReferenceKeys.h"
 
 @interface MPReferenceBuilderViewController ()
 
@@ -40,7 +41,7 @@
   if(allowCustomAttributes) {
     [menu addItemWithTitle:NSLocalizedString(@"CUSTOM_ATTRIBUTE","") action:NULL keyEquivalent:@""];
   }
-  NSArray *keys = @[ @"I", @"T", @"U", @"P", @"A", @"N", @"S" ];
+  NSArray *keys = @[ kKPKReferenceUUIDKey, kKPKReferenceTitleKey, kKPKReferenceUsernameKey, kKPKReferencePasswordKey, kKPKReferenceURLKey, kKPKReferenceNotesKey, @"S" ];
   [menu.itemArray enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
     NSMenuItem *item = (NSMenuItem *)obj;
     NSAssert(keys.count > idx, @"");
