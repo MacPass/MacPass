@@ -14,6 +14,6 @@ FOUNDATION_EXPORT NSString *const MPErrorDomain;
 
 + (NSError *)errorWithCode:(NSInteger)code description:(NSString *)description;
 
-- (NSString *)descriptionForErrorCode;
+@property (nonatomic, readonly, copy) NSString *descriptionForErrorCode;
 
 @end

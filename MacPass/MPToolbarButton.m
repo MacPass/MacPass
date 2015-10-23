@@ -64,6 +64,9 @@
 }
 
 - (NSControlSize)controlSize {
+  if([self.superclass instancesRespondToSelector:@selector(controlSize)]) {
+    return super.controlSize;
+  }
   return self.cell.controlSize;
 }
 

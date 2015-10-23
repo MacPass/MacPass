@@ -13,7 +13,7 @@ NSString *const MPErrorDomain       = @"com.hicknhack.macpass.error";
 @implementation NSError (Messages)
 
 - (NSString *)descriptionForErrorCode {
-  return [NSString stringWithFormat:@"%@ (%ld)", [self localizedDescription], [self code] ];
+  return [NSString stringWithFormat:@"%@ (%ld)", self.localizedDescription, self.code ];
 }
 
 + (NSError *)errorWithCode:(NSInteger)code description:(NSString *)description {

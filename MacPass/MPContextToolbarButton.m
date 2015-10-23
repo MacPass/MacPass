@@ -106,10 +106,18 @@
     default:
       break;
   }
-  self.cell.controlSize = controlSize;
+  if([self.superclass instancesRespondToSelector:@selector(setControlSize:)]) {
+    super.controlSize = controlSize;
+  }
+  else {
+    self.cell.controlSize = controlSize;
+  }
 }
 
 - (NSControlSize)controlSize {
+  if([self.superclass instancesRespondToSelector:@selector(controlSize)]) {
+    return super.controlSize;
+  }
   return self.cell.controlSize;
 }
 
