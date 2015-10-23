@@ -76,7 +76,7 @@
 }
 
 - (void)_willSleepNotification:(NSNotification *)notification {
-  [(MPAppDelegate *)[NSApp delegate] lockAllDocuments];
+  [((MPAppDelegate *)NSApp.delegate) lockAllDocuments];
 }
 
 - (void)_checkIdleTime:(NSTimer *)timer {
@@ -85,7 +85,7 @@
   }
   NSTimeInterval currentInterval = ([NSDate timeIntervalSinceReferenceDate] - self.lastLocalEventTime);
   if(self.idleLockTime < currentInterval) {
-    [(MPAppDelegate *)[NSApp delegate] lockAllDocuments];
+    [((MPAppDelegate *)NSApp.delegate) lockAllDocuments];
     /* Reset the timer to full interval */
     [self.idleCheckTimer setFireDate:[NSDate dateWithTimeIntervalSinceNow:_idleLockTime]];
   }
