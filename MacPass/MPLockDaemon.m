@@ -43,7 +43,7 @@
 
 - (void)dealloc {
   /* Notifications */
-  [[[NSWorkspace sharedWorkspace] notificationCenter] removeObserver:self];
+  [[NSWorkspace sharedWorkspace].notificationCenter removeObserver:self];
   
   /* Timer */
   [NSEvent removeMonitor:self.eventHandler];
@@ -53,12 +53,11 @@
 - (void)setLockOnSleep:(BOOL)lockOnSleep {
   if(_lockOnSleep != lockOnSleep) {
     _lockOnSleep = lockOnSleep;
-    NSNotificationCenter *notificationCenter = [[NSWorkspace sharedWorkspace] notificationCenter];
     if(_lockOnSleep) {
-      [notificationCenter addObserver:self selector:@selector(_willSleepNotification:) name:NSWorkspaceWillSleepNotification object:nil];
+      [[NSWorkspace sharedWorkspace].notificationCenter addObserver:self selector:@selector(_willSleepNotification:) name:NSWorkspaceWillSleepNotification object:nil];
     }
     else {
-      [notificationCenter removeObserver:self];
+      [[NSWorkspace sharedWorkspace].notificationCenter removeObserver:self];
     }
   }
 }
@@ -105,7 +104,7 @@
   /* update or create Timer */
   if( self.idleCheckTimer ) {
     NSAssert([self.idleCheckTimer isValid], @"Timer needs to be valid");
-    [self.idleCheckTimer setFireDate:[NSDate dateWithTimeIntervalSinceNow:self.idleLockTime ]];
+    self.idleCheckTimer.fireDate = [NSDate dateWithTimeIntervalSinceNow:self.idleLockTime];
   }
   else {
     self.idleCheckTimer = [NSTimer timerWithTimeInterval:self.idleLockTime target:self selector:@selector(_checkIdleTime:) userInfo:nil repeats:YES];
