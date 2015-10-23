@@ -214,8 +214,8 @@ NSString *const MPDidChangeStoredKeyFilesSettings = @"com.hicknhack.macpass.MPDi
 - (void)lockAllDocuments {
   for(NSDocument *document in ((NSDocumentController *)[NSDocumentController sharedDocumentController]).documents) {
     for(id windowController in document.windowControllers) {
-      if([windowController respondsToSelector:@selector(lock)]) {
-        [windowController lock];
+      if([windowController respondsToSelector:@selector(lock:)]) {
+        [windowController lock:self];
       }
     }
   }
