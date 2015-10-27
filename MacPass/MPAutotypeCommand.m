@@ -18,7 +18,7 @@
 
 #import "KPKEntry.h"
 #import "KPKAutotype.h"
-#import "KPKAutotypeCommands.h"
+#import "KPKFormat.h"
 
 #import "NSString+Commands.h"
 

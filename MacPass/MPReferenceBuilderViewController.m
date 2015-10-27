@@ -7,7 +7,7 @@
 //
 
 #import "MPReferenceBuilderViewController.h"
-#import "KPKReferenceKeys.h"
+#import "KPKFormat.h"
 
 @interface MPReferenceBuilderViewController ()
 

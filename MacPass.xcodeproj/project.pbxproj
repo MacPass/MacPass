@@ -13,7 +13,6 @@
 		4C0104BE17C37DA400173EF3 /* KPKXmlUtilities.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C0104BD17C37DA400173EF3 /* KPKXmlUtilities.m */; };
 		4C01C2421764D8980016D5D0 /* MPContextMenuHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C01C2411764D8980016D5D0 /* MPContextMenuHelper.m */; };
 		4C01C245176500C40016D5D0 /* HNHLevelIndicatorCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C01C244176500C40016D5D0 /* HNHLevelIndicatorCell.m */; };
-		4C066A7F1BD8E2C60082CB39 /* KPKReferenceKeys.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C066A7E1BD8E2C60082CB39 /* KPKReferenceKeys.m */; settings = {ASSET_TAGS = (); }; };
 		4C0728BD17B5B7F7005A7DD9 /* MPPasswordEditWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C0728BC17B5B7F7005A7DD9 /* MPPasswordEditWindowController.m */; };
 		4C0728BF17B68ED0005A7DD9 /* SavePanelAccessoryView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4C0728BE17B68ED0005A7DD9 /* SavePanelAccessoryView.xib */; };
 		4C08C3AE17B3022400BBBC95 /* KPKLegacyHeaderWriter.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C08C3AD17B3022400BBBC95 /* KPKLegacyHeaderWriter.m */; };
@@ -141,6 +140,7 @@
 		4C473A7F18AFD6340073FD2E /* KPKTestReference.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C473A7E18AFD6340073FD2E /* KPKTestReference.m */; };
 		4C473A8718AFD85B0073FD2E /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4C473A8518AFD7250073FD2E /* XCTest.framework */; };
 		4C4A100F176286FD00BBF2CA /* MPTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C4A100E176286FD00BBF2CA /* MPTableView.m */; };
+		4C4AD82D1BDE67BD002E70AB /* KPKTestModificationDates.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C4AD82C1BDE67BD002E70AB /* KPKTestModificationDates.m */; };
 		4C4B6E3E1B5E56600082EEF2 /* KPKTestEntryLookup.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C4B6E3D1B5E56600082EEF2 /* KPKTestEntryLookup.m */; };
 		4C4B728518E4B9B400A1A5D5 /* MPDockTileHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C4B728418E4B9B400A1A5D5 /* MPDockTileHelper.m */; };
 		4C4B7EE917A45EC6000234C7 /* MPDatePickingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C4B7EE717A45EC5000234C7 /* MPDatePickingViewController.m */; };
@@ -281,7 +281,7 @@
 		4CC6DB7A17D23719002C6091 /* KPKNode+IconImage.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CC6DB7917D23719002C6091 /* KPKNode+IconImage.m */; };
 		4CC6DB7D17D23DCE002C6091 /* KPKUTIs.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CC6DB7C17D23DCE002C6091 /* KPKUTIs.m */; };
 		4CC7EA1B17807E7E0089D4F3 /* HNHRoundedTextFieldCellHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CC7EA1A17807E7E0089D4F3 /* HNHRoundedTextFieldCellHelper.m */; };
-		4CC8EF601BD7B7C30014A2DA /* KPKTestPerformance.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CC8EF5F1BD7B7C30014A2DA /* KPKTestPerformance.m */; settings = {ASSET_TAGS = (); }; };
+		4CC8EF601BD7B7C30014A2DA /* KPKTestPerformance.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CC8EF5F1BD7B7C30014A2DA /* KPKTestPerformance.m */; };
 		4CCA8E9B18D91ED9001A6754 /* Quartz.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4CCA8E9A18D91ED9001A6754 /* Quartz.framework */; };
 		4CCEDE2A179F203B008402BE /* MPOutlineView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CCEDE29179F203B008402BE /* MPOutlineView.m */; };
 		4CCEDE2E179F213B008402BE /* MPNotifications.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CCEDE2D179F213B008402BE /* MPNotifications.m */; };
@@ -291,7 +291,6 @@
 		4CD3ABBA178F71B50073F5C5 /* KPKTree.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CD3ABB4178F71B50073F5C5 /* KPKTree.m */; };
 		4CD3ABBF178F72610073F5C5 /* KPKEntry.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CD3ABBE178F72610073F5C5 /* KPKEntry.m */; };
 		4CD3ABC2178F72720073F5C5 /* KPKGroup.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CD3ABC1178F72720073F5C5 /* KPKGroup.m */; };
-		4CD4901018513C180017397F /* KPKXmlElements.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CD4900F18513C180017397F /* KPKXmlElements.m */; };
 		4CD5D705177A5F3300100649 /* MPDatabaseSettingsWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CD5D704177A5F3300100649 /* MPDatabaseSettingsWindowController.m */; };
 		4CD6C5AE1789FDE6000891F6 /* HNHRoundedSecureTextField.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CD6C5AD1789FDE6000891F6 /* HNHRoundedSecureTextField.m */; };
 		4CD7223B17A7CB0700F5A1E1 /* MPWorkflowSettingsController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CD7223A17A7CB0700F5A1E1 /* MPWorkflowSettingsController.m */; };
@@ -304,7 +303,6 @@
 		4CD884B715BD47080042BBF8 /* DocumentWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4CD884B615BD47080042BBF8 /* DocumentWindow.xib */; };
 		4CDB5C421794AA4F0017667E /* KPKTree+Serializing.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CDB5C411794AA4F0017667E /* KPKTree+Serializing.m */; };
 		4CDF01A316D1B76700D0AC08 /* MPEntryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CDF01A216D1B76700D0AC08 /* MPEntryViewController.m */; };
-		4CDFD35818AED5C5002BB267 /* KPKAutotypeCommands.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CDFD35718AED5C5002BB267 /* KPKAutotypeCommands.m */; };
 		4CE2961518429AA5005F01CE /* MPAutotypeKeyPress.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CE2961418429AA5005F01CE /* MPAutotypeKeyPress.m */; };
 		4CE296191842A166005F01CE /* MPAutotypePaste.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CE296181842A166005F01CE /* MPAutotypePaste.m */; };
 		4CE298EB1795FC2A00DF7BDB /* MPEntryContextMenuDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CE298EA1795FC2A00DF7BDB /* MPEntryContextMenuDelegate.m */; };
@@ -312,7 +310,7 @@
 		4CE39ABF16ECE34A000FE29D /* MPIconSelectViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CE39ABE16ECE34A000FE29D /* MPIconSelectViewController.m */; };
 		4CE39AC416ECE4F7000FE29D /* MPPopupImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CE39AC316ECE4F7000FE29D /* MPPopupImageView.m */; };
 		4CE3E62617AB0D2D00D9E4B4 /* MPAttachmentTableDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CE3E62517AB0D2D00D9E4B4 /* MPAttachmentTableDataSource.m */; };
-		4CE501341BBC47F500FB819D /* MPTagsTokenFieldDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CE501331BBC47F500FB819D /* MPTagsTokenFieldDelegate.m */; settings = {ASSET_TAGS = (); }; };
+		4CE501341BBC47F500FB819D /* MPTagsTokenFieldDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CE501331BBC47F500FB819D /* MPTagsTokenFieldDelegate.m */; };
 		4CE5B54B173AFBA700207B39 /* MPDocument.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CE5B549173AFBA700207B39 /* MPDocument.m */; };
 		4CE76DAD17B3AD010043B82B /* KPKHashedDataTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CE76DAC17B3AD010043B82B /* KPKHashedDataTest.m */; };
 		4CE8246F16E2E93400573141 /* MPOverlayWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CE8246E16E2E93400573141 /* MPOverlayWindowController.m */; };
@@ -410,8 +408,6 @@
 		4C01C2411764D8980016D5D0 /* MPContextMenuHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = MPContextMenuHelper.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		4C01C243176500C40016D5D0 /* HNHLevelIndicatorCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HNHLevelIndicatorCell.h; sourceTree = "<group>"; };
 		4C01C244176500C40016D5D0 /* HNHLevelIndicatorCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HNHLevelIndicatorCell.m; sourceTree = "<group>"; };
-		4C066A7D1BD8E2C60082CB39 /* KPKReferenceKeys.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KPKReferenceKeys.h; sourceTree = "<group>"; };
-		4C066A7E1BD8E2C60082CB39 /* KPKReferenceKeys.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KPKReferenceKeys.m; sourceTree = "<group>"; };
 		4C0728BB17B5B7F7005A7DD9 /* MPPasswordEditWindowController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MPPasswordEditWindowController.h; sourceTree = "<group>"; };
 		4C0728BC17B5B7F7005A7DD9 /* MPPasswordEditWindowController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MPPasswordEditWindowController.m; sourceTree = "<group>"; };
 		4C0728BE17B68ED0005A7DD9 /* SavePanelAccessoryView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SavePanelAccessoryView.xib; sourceTree = "<group>"; };
@@ -603,6 +599,7 @@
 		4C48A56018BE932100278A2D /* HNHCommon.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HNHCommon.h; sourceTree = "<group>"; };
 		4C4A100D176286FD00BBF2CA /* MPTableView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MPTableView.h; sourceTree = "<group>"; };
 		4C4A100E176286FD00BBF2CA /* MPTableView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MPTableView.m; sourceTree = "<group>"; };
+		4C4AD82C1BDE67BD002E70AB /* KPKTestModificationDates.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KPKTestModificationDates.m; sourceTree = "<group>"; };
 		4C4B6E3D1B5E56600082EEF2 /* KPKTestEntryLookup.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KPKTestEntryLookup.m; sourceTree = "<group>"; };
 		4C4B728318E4B9B400A1A5D5 /* MPDockTileHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MPDockTileHelper.h; sourceTree = "<group>"; };
 		4C4B728418E4B9B400A1A5D5 /* MPDockTileHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MPDockTileHelper.m; sourceTree = "<group>"; };
@@ -887,8 +884,6 @@
 		4CD3ABBE178F72610073F5C5 /* KPKEntry.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = KPKEntry.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		4CD3ABC0178F72720073F5C5 /* KPKGroup.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KPKGroup.h; sourceTree = "<group>"; };
 		4CD3ABC1178F72720073F5C5 /* KPKGroup.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = KPKGroup.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
-		4CD4900E18513C180017397F /* KPKXmlElements.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = KPKXmlElements.h; path = Format/KPKXmlElements.h; sourceTree = "<group>"; };
-		4CD4900F18513C180017397F /* KPKXmlElements.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; name = KPKXmlElements.m; path = Format/KPKXmlElements.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		4CD5D703177A5F3300100649 /* MPDatabaseSettingsWindowController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MPDatabaseSettingsWindowController.h; sourceTree = "<group>"; };
 		4CD5D704177A5F3300100649 /* MPDatabaseSettingsWindowController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MPDatabaseSettingsWindowController.m; sourceTree = "<group>"; };
 		4CD6C5AC1789FDE6000891F6 /* HNHRoundedSecureTextField.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HNHRoundedSecureTextField.h; sourceTree = "<group>"; };
@@ -906,8 +901,6 @@
 		4CDB5C411794AA4F0017667E /* KPKTree+Serializing.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = "KPKTree+Serializing.m"; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		4CDF01A116D1B76700D0AC08 /* MPEntryViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MPEntryViewController.h; sourceTree = "<group>"; };
 		4CDF01A216D1B76700D0AC08 /* MPEntryViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MPEntryViewController.m; sourceTree = "<group>"; };
-		4CDFD35618AED5C5002BB267 /* KPKAutotypeCommands.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = KPKAutotypeCommands.h; path = Format/KPKAutotypeCommands.h; sourceTree = "<group>"; };
-		4CDFD35718AED5C5002BB267 /* KPKAutotypeCommands.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = KPKAutotypeCommands.m; path = Format/KPKAutotypeCommands.m; sourceTree = "<group>"; };
 		4CE2961318429AA5005F01CE /* MPAutotypeKeyPress.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MPAutotypeKeyPress.h; sourceTree = "<group>"; };
 		4CE2961418429AA5005F01CE /* MPAutotypeKeyPress.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MPAutotypeKeyPress.m; sourceTree = "<group>"; };
 		4CE296171842A166005F01CE /* MPAutotypePaste.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MPAutotypePaste.h; sourceTree = "<group>"; };
@@ -1159,12 +1152,6 @@
 				4CD3ABB2178F71B50073F5C5 /* KPKVersion.h */,
 				4C1842B9179B3A1700E2F5BC /* KPKXmlFormat.h */,
 				4C08C3AF17B3036500BBBC95 /* KPKLegacyFormat.h */,
-				4CD4900E18513C180017397F /* KPKXmlElements.h */,
-				4CD4900F18513C180017397F /* KPKXmlElements.m */,
-				4CDFD35618AED5C5002BB267 /* KPKAutotypeCommands.h */,
-				4CDFD35718AED5C5002BB267 /* KPKAutotypeCommands.m */,
-				4C066A7D1BD8E2C60082CB39 /* KPKReferenceKeys.h */,
-				4C066A7E1BD8E2C60082CB39 /* KPKReferenceKeys.m */,
 			);
 			name = Format;
 			sourceTree = "<group>";
@@ -1385,6 +1372,7 @@
 				4C4B6E3D1B5E56600082EEF2 /* KPKTestEntryLookup.m */,
 				4C87751F1B70CA4B00069609 /* KPKTestUndo.m */,
 				4CC8EF5F1BD7B7C30014A2DA /* KPKTestPerformance.m */,
+				4C4AD82C1BDE67BD002E70AB /* KPKTestModificationDates.m */,
 			);
 			name = KeePassKit;
 			sourceTree = "<group>";
@@ -2321,6 +2309,7 @@
 				4C19E503178E2871002F2CD0 /* MPDatabasePasswordAndKeyfile.m in Sources */,
 				4C305F3C179A19F90082334F /* KPKIconLoading.m in Sources */,
 				4CC8EF601BD7B7C30014A2DA /* KPKTestPerformance.m in Sources */,
+				4C4AD82D1BDE67BD002E70AB /* KPKTestModificationDates.m in Sources */,
 				4C1842B8179B348600E2F5BC /* KPKTestLegacyLoading.m in Sources */,
 				4C8775201B70CA4B00069609 /* KPKTestUndo.m in Sources */,
 				4C6BC6601A36717E00BDDF3D /* MPDatabaseSearch.m in Sources */,
@@ -2430,7 +2419,6 @@
 				4C26C34B18D8D5A300CF1A1C /* MPPreviewViewController.m in Sources */,
 				4C4B728518E4B9B400A1A5D5 /* MPDockTileHelper.m in Sources */,
 				4C52A244177D7B9F0000D88F /* HNHScrollView.m in Sources */,
-				4C066A7F1BD8E2C60082CB39 /* KPKReferenceKeys.m in Sources */,
 				4CC7EA1B17807E7E0089D4F3 /* HNHRoundedTextFieldCellHelper.m in Sources */,
 				4C5FE9AE17843CE20001D5A8 /* MPSelectedAttachmentTableCellView.m in Sources */,
 				4C3666411787327E00B249F1 /* MPDocument+Attachments.m in Sources */,
@@ -2448,7 +2436,6 @@
 				4C39B3F5178FEFAE0027DC7C /* KPKNode.m in Sources */,
 				4C70D100179092F200652EE9 /* KPKCompositeKey.m in Sources */,
 				4C8A173D1790AA41008B5C17 /* NSData+Keyfile.m in Sources */,
-				4CD4901018513C180017397F /* KPKXmlElements.m in Sources */,
 				4C3F28541791EDFD00703281 /* KPKErrors.m in Sources */,
 				4C4436771792BE810099E220 /* KPKFormat.m in Sources */,
 				4CF62B86179385D700B660B6 /* KPKAttribute.m in Sources */,
@@ -2495,7 +2482,6 @@
 				4C79E80317A9187400AC6CD2 /* KPKXmlHeaderWriter.m in Sources */,
 				4CE3E62617AB0D2D00D9E4B4 /* MPAttachmentTableDataSource.m in Sources */,
 				4C6366AC17AF1E0100AAF17D /* NSColor+KeePassKit.m in Sources */,
-				4CDFD35818AED5C5002BB267 /* KPKAutotypeCommands.m in Sources */,
 				4C08C3AE17B3022400BBBC95 /* KPKLegacyHeaderWriter.m in Sources */,
 				4C0728BD17B5B7F7005A7DD9 /* MPPasswordEditWindowController.m in Sources */,
 				4C0F647817B6B65E00D9522A /* MPSheetWindowController.m in Sources */,

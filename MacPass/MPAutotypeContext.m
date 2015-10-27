@@ -36,7 +36,7 @@
   if(self) {
     _command = [sequence copy];
     _entry = entry;
-    _normalizedCommand = [[sequence normalizedAutotypeSequence] copy];
+    _normalizedCommand = sequence.normalizedAutotypeSequence;
   }
   return self;
 }
