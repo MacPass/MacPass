@@ -921,6 +921,7 @@
 		4CE501331BBC47F500FB819D /* MPTagsTokenFieldDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MPTagsTokenFieldDelegate.m; sourceTree = "<group>"; };
 		4CE5B548173AFBA700207B39 /* MPDocument.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MPDocument.h; sourceTree = "<group>"; };
 		4CE5B549173AFBA700207B39 /* MPDocument.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = MPDocument.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
+		4CE5DFE51BE0DAD700A6C685 /* KeePassKit+Private.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "KeePassKit+Private.h"; sourceTree = "<group>"; };
 		4CE76DAC17B3AD010043B82B /* KPKHashedDataTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KPKHashedDataTest.m; sourceTree = "<group>"; };
 		4CE8246D16E2E93400573141 /* MPOverlayWindowController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MPOverlayWindowController.h; sourceTree = "<group>"; };
 		4CE8246E16E2E93400573141 /* MPOverlayWindowController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MPOverlayWindowController.m; sourceTree = "<group>"; };
@@ -1787,6 +1788,7 @@
 			isa = PBXGroup;
 			children = (
 				4CEFC2F118BA7644007D2565 /* KeePassKit.h */,
+				4CE5DFE51BE0DAD700A6C685 /* KeePassKit+Private.h */,
 				4C0104B817C37BFC00173EF3 /* Utilites */,
 				4C1842D6179C716100E2F5BC /* Format */,
 				4CD3ABAF178F71B50073F5C5 /* Categories */,

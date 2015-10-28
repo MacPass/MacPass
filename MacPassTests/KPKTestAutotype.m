@@ -8,7 +8,7 @@
 
 #import <XCTest/XCTest.h>
 
-#import "NSString+Commands.h"
+#import "KeePassKit.h"
 
 @interface KPKTestAutotype : XCTestCase
 @end

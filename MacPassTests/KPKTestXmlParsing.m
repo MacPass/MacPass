@@ -9,8 +9,8 @@
 
 #import <XCTest/XCTest.h>
 
-#import "KPKXmlTreeReader.h"
-#import "KPKErrors.h"
+#import "KeePassKit.h"
+#import "KeePassKit+Private.h"
 
 #import "DDXMLDocument.h"
 

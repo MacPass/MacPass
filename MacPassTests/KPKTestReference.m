@@ -8,12 +8,7 @@
 
 #import <XCTest/XCTest.h>
 
-#import "KPKAttribute.h"
-#import "KPKEntry.h"
-#import "KPKGroup.h"
-#import "KPKTree.h"
-
-#import "NSString+Commands.h"
+#import "KeePassKit.h"
 
 @interface KPKTestReference : XCTestCase
 @property (strong) KPKTree *tree;

@@ -29,7 +29,7 @@
 }
 
 - (NSString *)defaultAutotypeSequenceForTree:(KPKTree *)tree {
-  return  [[NSUserDefaults standardUserDefaults] stringForKey:kMPSettingsKeyDefaultGlobalAutotypeSequence];
+  return [[NSUserDefaults standardUserDefaults] stringForKey:kMPSettingsKeyDefaultGlobalAutotypeSequence];
 }
 
 - (BOOL)shouldEditTree:(KPKTree *)tree {

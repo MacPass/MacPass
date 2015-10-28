@@ -8,10 +8,7 @@
 
 #import <XCTest/XCTest.h>
 
-#import "KPKCompositeKey.h"
-#import "KPKTree+Serializing.h"
-#import "KPKEntry.h"
-#import "KPKGroup.h"
+#import "KeePassKit.h"
 
 
 @interface KPKTestXmlLoading : XCTestCase {

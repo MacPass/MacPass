@@ -7,7 +7,9 @@
 //
 
 #import <XCTest/XCTest.h>
-#import "NSUUID+KeePassKit.h"
+
+#import "KeePassKit.h"
+
 @interface KPKTestUUIDAdditions : XCTestCase
 
 @end

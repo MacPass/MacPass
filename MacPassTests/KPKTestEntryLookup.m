@@ -6,13 +6,9 @@
 //  Copyright (c) 2015 HicknHack Software GmbH. All rights reserved.
 //
 
-#import <Cocoa/Cocoa.h>
 #import <XCTest/XCTest.h>
 
-#import "KPKTree.h"
-#import "KPKGroup.h"
-#import "KPKEntry.h"
-#import "KPKAutotype.h"
+#import "KeePassKit.h"
 
 @interface KPKTestEntryLookup : XCTestCase
 @property (strong) KPKTree *tree;

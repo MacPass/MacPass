@@ -6,10 +6,9 @@
 //  Copyright (c) 2014 HicknHack Software GmbH. All rights reserved.
 //
 
-#import <Cocoa/Cocoa.h>
 #import <XCTest/XCTest.h>
 
-#import "NSString+XMLUtilities.h"
+#import "KeePassKit.h"
 
 @interface KPKTextXMLUtilities : XCTestCase
 

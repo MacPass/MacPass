@@ -8,8 +8,7 @@
 
 #import <XCTest/XCTest.h>
 
-#import "NSData+HashedData.h"
-#import "NSData+Random.h"
+#import "KeePassKit.h"
 
 @interface KPKHashedDataTest : XCTestCase
 

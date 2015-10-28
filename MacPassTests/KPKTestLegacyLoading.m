@@ -9,12 +9,7 @@
 
 #import <XCTest/XCTest.h>
 
-#import "KPKTree+Serializing.h"
-#import "KPKCompositeKey.h"
-#import "KPKMetaData.h"
-#import "KPKIcon.h"
-
-#import "KPKErrors.h"
+#import "KeePassKit.h"
 
 @interface KPKTestLegacyLoading : XCTestCase
 

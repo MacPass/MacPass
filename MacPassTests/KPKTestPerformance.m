@@ -7,9 +7,8 @@
 //
 
 #import <XCTest/XCTest.h>
-#import "KPKEntry.h"
-#import "KPKAttribute.h"
-#import "KPKFormat.h"
+
+#import "KeePassKit.h"
 
 NSUInteger const _kKPKEntryCount = 1000;
 

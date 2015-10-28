@@ -8,7 +8,7 @@
 
 #import <XCTest/XCTest.h>
 
-#import "KPKIcon.h"
+#import "KeePassKit.h"
 
 @interface KPKIconLoading : XCTestCase {
   NSImage *_image;

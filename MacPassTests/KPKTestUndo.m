@@ -6,13 +6,10 @@
 //  Copyright (c) 2015 HicknHack Software GmbH. All rights reserved.
 //
 
-#import <Cocoa/Cocoa.h>
 #import <XCTest/XCTest.h>
 
-#import "KPKTree.h"
-#import "KPKNode+Private.h"
-#import "KPKGroup.h"
-#import "KPKEntry.h"
+#import "KeePassKit.h"
+#import "KeePassKit+Private.h"
 
 @interface KPKTestUndo : XCTestCase <KPKTreeDelegate> {
   NSUndoManager *_undoManager;

@@ -7,7 +7,8 @@
 //
 
 #import <XCTest/XCTest.h>
-#import "NSData+Keyfile.h"
+
+#import "KeePassKit.h"
 
 @interface KPKTestKeyfileParsing : XCTestCase
 

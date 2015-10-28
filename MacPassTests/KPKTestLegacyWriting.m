@@ -8,8 +8,7 @@
 
 #import <XCTest/XCTest.h>
 
-#import "KPKCompositeKey.h"
-#import "KPKTree+Serializing.h"
+#import "KeePassKit.h"
 
 @interface KPKTestLegacyWriting : XCTestCase
 

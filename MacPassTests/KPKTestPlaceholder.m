@@ -7,10 +7,8 @@
 //
 
 #import <XCTest/XCTest.h>
-#import "KPKEntry.h"
-#import "KPKAttribute.h"
 
-#import "NSString+Commands.h"
+#import "KeePassKit.h"
 
 
 @interface KPKTextPlaceholder : XCTestCase

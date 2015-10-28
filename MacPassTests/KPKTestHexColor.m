@@ -8,8 +8,7 @@
 
 #import <XCTest/XCTest.h>
 
-#import "NSColor+KeePassKit.h"
-
+#import "KeePassKit.h"
 
 @interface KPKTestHexColor : XCTestCase
 
