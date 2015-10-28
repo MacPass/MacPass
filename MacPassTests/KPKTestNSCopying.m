@@ -7,12 +7,7 @@
 //
 
 #import <XCTest/XCTest.h>
-#import "KPKIconTypes.h"
-#import "KPKGroup.h"
-#import "KPKEntry.h"
-#import "KPKAttribute.h"
-#import "KPKBinary.h"
-#import "KPKXmlElements.h"
+#import "KeePassKit.h"
 
 @interface KPKTestNSCopying : XCTestCase
 

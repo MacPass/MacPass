@@ -36,8 +36,21 @@
   [super tearDown];
 }
 
-- (void)testGroupModificationDate {
+- (void)testEnableDisableModificationRecording {
+  XCTAssertTrue(self.group.updateTiming, @"updateTiming is enabled for newly created groups!");
+  XCTAssertTrue(self.entry.updateTiming, @"updateTiming is enabled for newly created entries!");
+  self.group.updateTiming = NO;
+  self.entry.updateTiming = NO;
+  XCTAssertFalse(self.group.updateTiming, @"updateTiming is disabled!");
+  XCTAssertFalse(self.entry.updateTiming, @"updateTiming is disabled!");
+  self.group.updateTiming = YES;
+  self.entry.updateTiming = YES;
+  XCTAssertTrue(self.group.updateTiming, @"updateTiming is enabled!");
+  XCTAssertTrue(self.entry.updateTiming, @"updateTiming is enabled!");
+}
 
+- (void)testGroupModificationDate {
+  XCTFail(@"Missing Test");
 }
 
 - (void)testEntryModifiationDate {

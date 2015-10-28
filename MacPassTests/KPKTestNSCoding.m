@@ -9,14 +9,7 @@
 
 #import <XCTest/XCTest.h>
 
-#import "KPKAttribute.h"
-#import "KPKBinary.h"
-#import "KPKEntry.h"
-#import "KPKGroup.h"
-#import "KPKIcon.h"
-#import "KPKXmlElements.h"
-
-#import "NSData+Random.h"
+#import "KeePassKit.h"
 
 @interface KPKTestNSCoding : XCTestCase
 
