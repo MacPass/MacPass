@@ -9,7 +9,8 @@
 #import "MPPluginManager.h"
 
 #import "MPDocument.h"
-#import "KPKTree.h"
+
+#import "KeePassKit/KeePassKit.h"
 
 @implementation MPPluginManager
 

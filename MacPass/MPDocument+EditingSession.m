@@ -8,8 +8,7 @@
 
 #import "MPDocument.h"
 
-#import "KPKTree.h"
-#import "KPKNode.h"
+#import "KeePassKit/KeePassKit.h"
 
 NSString *const MPDocumentDidBeginEditingSelectedItem      = @"com.hicknhack.macpass.MPDocumentDidBeginEditingSelectedItem";
 NSString *const MPDocumentDidCancelChangesToSelectedItem   = @"com.hicknhack.macpass.MPDocumentDidCancelChangesToSelectedItem";

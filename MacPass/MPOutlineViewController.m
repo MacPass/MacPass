@@ -17,14 +17,8 @@
 #import "MPOutlineContextMenuDelegate.h"
 #import "MPOutlineDataSource.h"
 
-#import "KPKEntry.h"
-#import "KPKGroup.h"
-#import "KPKMetaData.h"
-#import "KPKNode.h"
+#import "KeePassKit/KeePassKit.h"
 #import "KPKNode+IconImage.h"
-#import "KPKTimeInfo.h"
-#import "KPKTree.h"
-#import "KPKUTIs.h"
 
 #import "HNHGradientView.h"
 

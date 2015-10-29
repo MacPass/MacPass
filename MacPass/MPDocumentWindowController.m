@@ -24,9 +24,7 @@
 #import "MPSettingsHelper.h"
 #import "MPToolbarDelegate.h"
 
-#import "KPKCompositeKey.h"
-#import "KPKEntry.h"
-#import "KPKTree.h"
+#import "KeePassKit/KeePassKit.h"
 
 typedef NS_ENUM(NSUInteger, MPAlertContext) {
   MPAlertLossySaveWarning,

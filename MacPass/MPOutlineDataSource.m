@@ -24,11 +24,7 @@
 #import "MPDocument.h"
 #import "MPConstants.h"
 
-#import "KPKGroup.h"
-#import "KPKEntry.h"
-#import "KPKUTIs.h"
-
-#import "NSUUID+KeePassKit.h"
+#import "KeePassKit/KeePassKit.h"
 
 @interface MPOutlineDataSource ()
 

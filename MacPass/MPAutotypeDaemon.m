@@ -18,7 +18,7 @@
 #import "MPSettingsHelper.h"
 
 
-#import "KPKEntry.h"
+#import "KeePassKit/KeePassKit.h"
 
 #import "DDHotKeyCenter.h"
 #import "DDHotKey+MacPassAdditions.h"

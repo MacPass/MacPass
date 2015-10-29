@@ -25,8 +25,7 @@
 #import "MPCustomFieldTableCellView.h"
 #import "MPEntryInspectorViewController.h"
 
-#import "KPKEntry.h"
-#import "KPKAttribute.h"
+#import "KeePassKit/KeePassKit.h"
 
 @implementation MPCustomFieldTableViewDelegate
 

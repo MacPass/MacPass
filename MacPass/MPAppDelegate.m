@@ -35,7 +35,7 @@
 #import "MPTemporaryFileStorageCenter.h"
 #import "MPValueTransformerHelper.h"
 
-#import "KPKCompositeKey.h"
+#import "KeePassKit/KeePassKit.h"
 
 NSString *const MPDidChangeStoredKeyFilesSettings = @"com.hicknhack.macpass.MPDidChangeStoredKeyFilesSettings";
 

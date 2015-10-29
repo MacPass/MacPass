@@ -23,11 +23,7 @@
 #import "MPDocument.h"
 #import "MPAutotypeContext.h"
 
-#import "KPKNode.h"
-#import "KPKGroup.h"
-#import "KPKEntry.h"
-#import "KPKAutotype.h"
-#import "KPKWindowAssociation.h"
+#import "KeePassKit/KeePassKit.h"
 
 #import "MPSettingsHelper.h"
 

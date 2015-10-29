@@ -24,11 +24,7 @@
 #import "MPActionHelper.h"
 #import "MPSettingsHelper.h"
 
-#import "KPKEntry.h"
-#import "KPKBinary.h"
-#import "KPKAutotype.h"
-#import "KPKTimeInfo.h"
-#import "KPKWindowAssociation.h"
+#import "KeePassKit/KeePassKit.h"
 
 #import "HNHScrollView.h"
 #import "HNHRoundedSecureTextField.h"
@@ -184,7 +180,11 @@ typedef NS_ENUM(NSUInteger, MPEntryTab) {
   
   [savePanel beginSheetModalForWindow:[[self windowController] window] completionHandler:^(NSInteger result) {
     if(result == NSFileHandlingPanelOKButton) {
-      [binary saveToLocation:[savePanel URL]];
+      NSError *error;
+      BOOL sucess = [binary saveToLocation:[savePanel URL] error:&error];
+      if(!sucess && error) {
+        [NSApp presentError:error];
+      }
     }
   }];
 }

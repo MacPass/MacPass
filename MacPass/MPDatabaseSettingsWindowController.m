@@ -14,19 +14,13 @@
 #import "MPSettingsHelper.h"
 #import "MPNumericalInputFormatter.h"
 
-#import "KPKXmlFormat.h"
-#import "KPKGroup.h"
-#import "KPKTree.h"
-#import "KPKMetaData.h"
-#import "KPKNode+IconImage.h"
-#import "KPKCompositeKey.h"
+#import "KeePassKit/KeePassKit.h"
 
 #import "HNHRoundedTextField.h"
 #import "HNHRoundedSecureTextField.h"
 #import "HNHCommon.h"
 
-#import "NSString+Empty.h"
-
+#import "KPKNode+IconImage.h"
 
 @interface MPDatabaseSettingsWindowController () {
   NSString *_missingFeature;

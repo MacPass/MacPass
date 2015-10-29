@@ -9,9 +9,7 @@
 #import "MPDocument.h"
 #import "MPDocumentWindowController.h"
 
-#import "KPKGroup.h"
-#import "KPKEntry.h"
-#import "KPKTimeInfo.h"
+#import "KeePassKit/KeePassKit.h"
 
 #import "MPFlagsHelper.h"
 

@@ -11,8 +11,7 @@
 #import "MPPasteBoardController.h"
 #import "MPValueTransformerHelper.h"
 
-#import "KPKGroup.h"
-#import "KPKTimeInfo.h"
+#import "KeePassKit/KeePassKit.h"
 
 #import "HNHScrollView.h"
 #import "HNHRoundedTextField.h"

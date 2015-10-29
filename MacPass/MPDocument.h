@@ -21,7 +21,7 @@
 //
 
 #import <Cocoa/Cocoa.h>
-#import "KPKVersion.h"
+#import "KeePassKit/KeePassKit.h"
 #import "MPEntrySearchContext.h"
 #import "MPTargetNodeResolving.h"
 

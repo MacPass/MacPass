@@ -9,9 +9,8 @@
 #import "MPWindowAssociationsTableViewDelegate.h"
 
 #import "MPDocument.h"
-#import "KPKEntry.h"
-#import "KPKAutotype.h"
-#import "KPKWindowAssociation.h"
+
+#import "KeePassKit/KeePassKit.h"
 
 @implementation MPWindowAssociationsTableViewDelegate
 

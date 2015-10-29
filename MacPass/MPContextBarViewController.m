@@ -7,9 +7,8 @@
 //
 
 #import "MPContextBarViewController.h"
-#import "KPKEntry.h"
-#import "KPKTree.h"
-#import "KPKMetaData.h"
+
+#import "KeePassKit/KeePassKit.h"
 
 #import "MPDocument.h"
 #import "MPFlagsHelper.h"

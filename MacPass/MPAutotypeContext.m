@@ -8,10 +8,7 @@
 
 #import "MPAutotypeContext.h"
 
-#import "KPKAutotype.h"
-#import "KPKEntry.h"
-#import "KPKWindowAssociation.h"
-#import "NSString+Commands.h"
+#import "KeePassKit/KeePassKit.h"
 
 @interface MPAutotypeContext () {
   NSString *_evaluatedCommand;

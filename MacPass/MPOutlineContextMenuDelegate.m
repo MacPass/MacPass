@@ -29,8 +29,7 @@
 #import "MPActionHelper.h"
 #import "MPContextMenuHelper.h"
 
-#import "KPKGroup.h"
-#import "KPKTree.h"
+#import "KeePassKit/KeePassKit.h"
 
 NSString *const _MPOutlineMenuDefault = @"Default";
 NSString *const _MPOutlineMenuTrash = @"Trash";

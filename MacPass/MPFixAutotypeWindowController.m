@@ -11,11 +11,7 @@
 #import "MPDocument.h"
 #import "MPIconHelper.h"
 
-#import "KPKNode.h"
-#import "KPKEntry.h"
-#import "KPKGroup.h"
-#import "KPKAutotype.h"
-#import "KPKWindowAssociation.h"
+#import "KeePassKit/KeePassKit.h"
 
 
 NSString *const kMPAutotypeCell = @"AutotypeCell";

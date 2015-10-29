@@ -13,7 +13,8 @@
 #import "MPSettingsHelper.h"
 
 #import "MPFlagsHelper.h"
-#import "KPKEntry.h"
+
+#import "KeePassKit/KeePassKit.h"
 
 /*
  

@@ -178,6 +178,8 @@
 		4C7F8B681A10B68400CCB83D /* WelcomeWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4C7F8B6A1A10B68400CCB83D /* WelcomeWindow.xib */; };
 		4C80BB6F176DE06F00E5E248 /* HNHScrollDocumentViewAdapter.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C80BB6E176DE06F00E5E248 /* HNHScrollDocumentViewAdapter.m */; };
 		4C811C8316ECD06E00C4BAC6 /* MPKeyfilePathControlDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C811C8216ECD06E00C4BAC6 /* MPKeyfilePathControlDelegate.m */; };
+		4C8138451BE28621001BF195 /* KeePassKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4C81383E1BE28517001BF195 /* KeePassKit.framework */; };
+		4C8138461BE28621001BF195 /* KeePassKit.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 4C81383E1BE28517001BF195 /* KeePassKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		4C83814215BF4677001AE468 /* MPDocumentWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C83814115BF4677001AE468 /* MPDocumentWindowController.m */; };
 		4C888C9016EB6C91003D34A1 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 4C888C8E16EB6C91003D34A1 /* Localizable.strings */; };
 		4C888C9316EB6F5E003D34A1 /* MPToolbarItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C888C9216EB6F5E003D34A1 /* MPToolbarItem.m */; };
@@ -262,6 +264,27 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
+		4C81383D1BE28517001BF195 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 4C8138381BE28517001BF195 /* KeePassKit.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 4C5CF3181BE10B650019AA81;
+			remoteInfo = KeePassKit;
+		};
+		4C81383F1BE28517001BF195 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 4C8138381BE28517001BF195 /* KeePassKit.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 4C5CF3221BE10B650019AA81;
+			remoteInfo = KeePassKitTests;
+		};
+		4C8138471BE28621001BF195 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 4C8138381BE28517001BF195 /* KeePassKit.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = 4C5CF3171BE10B650019AA81;
+			remoteInfo = KeePassKit;
+		};
 		4CC5D35A18A1162100AF7FA8 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 4CC5D35218A1162100AF7FA8 /* Sparkle.xcodeproj */;
@@ -306,6 +329,7 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
+				4C8138461BE28621001BF195 /* KeePassKit.framework in CopyFiles */,
 				4CC5D36718A1333000AF7FA8 /* Sparkle.framework in CopyFiles */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -593,6 +617,7 @@
 		4C80BB6E176DE06F00E5E248 /* HNHScrollDocumentViewAdapter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HNHScrollDocumentViewAdapter.m; sourceTree = "<group>"; };
 		4C811C8116ECD06E00C4BAC6 /* MPKeyfilePathControlDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MPKeyfilePathControlDelegate.h; sourceTree = "<group>"; };
 		4C811C8216ECD06E00C4BAC6 /* MPKeyfilePathControlDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MPKeyfilePathControlDelegate.m; sourceTree = "<group>"; };
+		4C8138381BE28517001BF195 /* KeePassKit.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = KeePassKit.xcodeproj; path = KeePassKit/KeePassKit.xcodeproj; sourceTree = "<group>"; };
 		4C83814015BF4677001AE468 /* MPDocumentWindowController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MPDocumentWindowController.h; sourceTree = "<group>"; };
 		4C83814115BF4677001AE468 /* MPDocumentWindowController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MPDocumentWindowController.m; sourceTree = "<group>"; };
 		4C888C8F16EB6C91003D34A1 /* en */ = {isa = PBXFileReference; fileEncoding = 10; lastKnownFileType = text.plist.strings; lineEnding = 0; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.simpleColoring; };
@@ -814,6 +839,7 @@
 				4CC5D36418A1162D00AF7FA8 /* Sparkle.framework in Frameworks */,
 				4C00E33B17D8FAC100F37192 /* Carbon.framework in Frameworks */,
 				4CAD748E15B88AC100104512 /* libz.dylib in Frameworks */,
+				4C8138451BE28621001BF195 /* KeePassKit.framework in Frameworks */,
 				4CAD748C15B889B700104512 /* Security.framework in Frameworks */,
 				4C77E36715B84A240093A587 /* Cocoa.framework in Frameworks */,
 			);
@@ -1180,6 +1206,7 @@
 		4C77E35715B84A240093A587 = {
 			isa = PBXGroup;
 			children = (
+				4C8138381BE28517001BF195 /* KeePassKit.xcodeproj */,
 				4CC5D35218A1162100AF7FA8 /* Sparkle.xcodeproj */,
 				4C00E33917D8FA3B00F37192 /* DDHotKey */,
 				4C3C4E9418D6FEA100153127 /* TransformerKit */,
@@ -1266,6 +1293,15 @@
 				4C53A7A71864C39D000DFF0D /* KPKLocalizable.strings */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		4C8138391BE28517001BF195 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				4C81383E1BE28517001BF195 /* KeePassKit.framework */,
+				4C8138401BE28517001BF195 /* KeePassKitTests.xctest */,
+			);
+			name = Products;
 			sourceTree = "<group>";
 		};
 		4C89F525182FB4C50069C73C /* Autotype */ = {
@@ -1536,6 +1572,7 @@
 			buildRules = (
 			);
 			dependencies = (
+				4C8138481BE28621001BF195 /* PBXTargetDependency */,
 			);
 			name = MacPass;
 			productName = MacPass;
@@ -1575,6 +1612,10 @@
 			projectDirPath = "";
 			projectReferences = (
 				{
+					ProductGroup = 4C8138391BE28517001BF195 /* Products */;
+					ProjectRef = 4C8138381BE28517001BF195 /* KeePassKit.xcodeproj */;
+				},
+				{
 					ProductGroup = 4CC5D35318A1162100AF7FA8 /* Products */;
 					ProjectRef = 4CC5D35218A1162100AF7FA8 /* Sparkle.xcodeproj */;
 				},
@@ -1588,6 +1629,20 @@
 /* End PBXProject section */
 
 /* Begin PBXReferenceProxy section */
+		4C81383E1BE28517001BF195 /* KeePassKit.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = KeePassKit.framework;
+			remoteRef = 4C81383D1BE28517001BF195 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		4C8138401BE28517001BF195 /* KeePassKitTests.xctest */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.cfbundle;
+			path = KeePassKitTests.xctest;
+			remoteRef = 4C81383F1BE28517001BF195 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
 		4CC5D35B18A1162100AF7FA8 /* Sparkle.framework */ = {
 			isa = PBXReferenceProxy;
 			fileType = wrapper.framework;
@@ -1917,6 +1972,14 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		4C8138481BE28621001BF195 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = KeePassKit;
+			targetProxy = 4C8138471BE28621001BF195 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		4C45FB21178E09ED0010007D /* InfoPlist.strings */ = {
@@ -2308,12 +2371,14 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = MacPassAppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				CLANG_ENABLE_OBJC_ARC = YES;
 				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "";
 				COMBINE_HIDPI_IMAGES = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "MacPass/MacPass-Prefix.pch";
 				INFOPLIST_FILE = "MacPass/MacPass-Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
 				MACOSX_DEPLOYMENT_TARGET = 10.8;
 				OTHER_LDFLAGS = (
 					"-lxml2",
@@ -2331,12 +2396,14 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = MacPassAppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				CLANG_ENABLE_OBJC_ARC = YES;
 				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "";
 				COMBINE_HIDPI_IMAGES = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "MacPass/MacPass-Prefix.pch";
 				INFOPLIST_FILE = "MacPass/MacPass-Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
 				MACOSX_DEPLOYMENT_TARGET = 10.8;
 				OTHER_LDFLAGS = (
 					"-lxml2",

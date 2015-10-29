@@ -23,7 +23,7 @@
 #import "MPDocumentWindowDelegate.h"
 #import "MPDocument.h"
 
-#import "KPKEntry.h"
+#import "KeePassKit/KeePassKit.h"
 
 @implementation MPDocumentWindowDelegate
 

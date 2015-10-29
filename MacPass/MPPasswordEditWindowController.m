@@ -10,11 +10,8 @@
 #import "MPDocument.h"
 
 #import "HNHRoundedSecureTextField.h"
-#import "NSString+Empty.h"
-#import "NSData+Keyfile.h"
 
-#import "KPKTree.h"
-#import "KPKCompositeKey.h"
+#import "KeePassKit/KeePassKit.h"
 
 @interface MPPasswordEditWindowController ()
 

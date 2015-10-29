@@ -10,8 +10,7 @@
 #import "MPDocument.h"
 #import "MPConstants.h"
 
-#import "KPKUTIs.h"
-#import "KPKTree.h"
+#import "KeePassKit/KeePassKit.h"
 
 @interface MPSavePanelAccessoryViewController ()
 @property (readwrite, assign) KPKVersion selectedVersion;

@@ -23,8 +23,7 @@
 #import "MPEntryContextMenuDelegate.h"
 #import "MPEntryViewController.h"
 
-#import "KPKEntry.h"
-#import "KPKAttribute.h"
+#import "KeePassKit/KeePassKit.h"
 
 static NSUInteger const kMPCustomFieldMenuItem = 1000;
 static NSUInteger const kMPAttachmentsMenuItem = 2000;

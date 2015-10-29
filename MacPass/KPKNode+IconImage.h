@@ -6,7 +6,7 @@
 //  Copyright (c) 2013 HicknHack Software GmbH. All rights reserved.
 //
 
-#import "KPKNode.h"
+#import "KeePassKit/KeePassKit.h"
 
 @interface KPKNode (IconImage)
 

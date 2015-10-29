@@ -9,7 +9,7 @@
 #import "MPTemporaryFileStorage.h"
 #import "MPTemporaryFileStorageCenter.h"
 
-#import "KPKBinary.h"
+#import "KeePassKit/KeePassKit.h"
 
 #import "NSError+Messages.h"
 

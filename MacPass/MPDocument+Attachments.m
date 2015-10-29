@@ -22,8 +22,7 @@
 
 #import "MPDocument.h"
 
-#import "KPKEntry.h"
-#import "KPKBinary.h"
+#import "KeePassKit/KeePassKit.h"
 
 @implementation MPDocument (Attachments)
 

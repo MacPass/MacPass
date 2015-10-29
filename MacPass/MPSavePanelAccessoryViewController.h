@@ -7,7 +7,7 @@
 //
 
 #import "MPViewController.h"
-#import "KPKVersion.h"
+#import "KeePassKit/KeePassKit.h"
 
 @class MPDocument;
 

@@ -23,8 +23,7 @@
 #import "MPEntryTableDataSource.h"
 #import "MPEntryViewController.h"
 
-#import "KPKEntry.h"
-#import "NSUUID+KeePassKit.h"
+#import "KeePassKit/KeePassKit.h"
 
 @interface MPEntryTableDataSource ()
 

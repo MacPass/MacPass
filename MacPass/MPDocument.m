@@ -33,17 +33,7 @@
 #import "MPTreeDelegate.h"
 #import "MPTargetNodeResolving.h"
 
-
-#import "DDXMLNode.h"
-
-#import "KPKEntry.h"
-#import "KPKGroup.h"
-#import "KPKTree.h"
-#import "KPKTree+Serializing.h"
-#import "KPKCompositeKey.h"
-#import "KPKMetaData.h"
-#import "KPKTimeInfo.h"
-#import "KPKAttribute.h"
+#import "KeePassKit/KeePassKit.h"
 
 #import "NSError+Messages.h"
 #import "NSString+MPPasswordCreation.h"

@@ -26,8 +26,7 @@
 #import "MPEntryInspectorViewController.h"
 #import "MPSelectedAttachmentTableCellView.h"
 
-#import "KPKEntry.h"
-#import "KPKBinary.h"
+#import "KeePassKit/KeePassKit.h"
 
 #import "HNHTableRowView.h"
 
