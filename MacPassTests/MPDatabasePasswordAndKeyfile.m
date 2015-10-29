@@ -10,7 +10,7 @@
 #import <XCTest/XCTest.h>
 
 #import "MPDocument.h"
-#import "KPKCompositeKey.h"
+#import "KeePassKit/KeePassKit.h"
 
 @interface MPDatabasePasswordAndKeyfile : XCTestCase {
   MPDocument *_database;

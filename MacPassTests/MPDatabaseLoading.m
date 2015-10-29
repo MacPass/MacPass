@@ -9,7 +9,7 @@
 #import <XCTest/XCTest.h>
 
 #import "MPDocument.h"
-#import "KPKTree.h"
+#import "KeePassKit/KeePassKit.h"
 
 @interface MPDatabaseLoading : XCTestCase
 
@@ -19,7 +19,7 @@
 
 
 - (void)testLoadVersion1 {
-  NSBundle *myBundle = [NSBundle bundleForClass:[self class]];
+  NSBundle *myBundle = [NSBundle bundleForClass:[KPKTree class]];
   NSURL *url = [myBundle URLForResource:@"Test_Password_1234" withExtension:@"kdb"];
   NSError *error = nil;
   MPDocument *document = [[MPDocument alloc] initWithContentsOfURL:url ofType:@"kdb" error:&error];
@@ -33,7 +33,7 @@
 }
 
 - (void)testVersion1WrongPassword {
-  NSBundle *myBundle = [NSBundle bundleForClass:[self class]];
+  NSBundle *myBundle = [NSBundle bundleForClass:[KPKTree class]];
   NSURL *url = [myBundle URLForResource:@"Test_Password_1234" withExtension:@"kdb"];
   NSError *error = nil;
   MPDocument *document = [[MPDocument alloc] initWithContentsOfURL:url ofType:@"kdb" error:&error];
@@ -45,7 +45,7 @@
 }
 
 - (void)testLoadDatabaseVerions2 {
-  NSBundle *myBundle = [NSBundle bundleForClass:[self class]];
+  NSBundle *myBundle = [NSBundle bundleForClass:[KPKTree class]];
   NSURL *url = [myBundle URLForResource:@"Test_Password_1234" withExtension:@"kdbx"];
   NSError *error = nil;
   MPDocument *document = [[MPDocument alloc] initWithContentsOfURL:url ofType:@"kdbx" error:&error];

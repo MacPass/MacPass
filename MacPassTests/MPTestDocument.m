@@ -9,9 +9,7 @@
 #import <XCTest/XCTest.h>
 
 #import "MPDocument.h"
-#import "KPKTree.h"
-#import "KPKCompositeKey.h"
-
+#import "KeePassKit/KeePassKit.h"
 @interface MPTestDocument : XCTestCase
 
 @end

@@ -9,9 +9,7 @@
 #import <Cocoa/Cocoa.h>
 #import <XCTest/XCTest.h>
 
-#import "KPKTree.h"
-#import "KPKGroup.h"
-#import "KPKEntry.h"
+#import "KeePassKit/KeePassKit.h"
 
 @interface MPDatabaseSearch : XCTestCase
 

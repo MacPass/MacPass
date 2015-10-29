@@ -17,10 +17,7 @@
 
 #import "MPKeyMapper.h"
 
-#import "KPKEntry.h"
-#import "KPKAttribute.h"
-#import "KPKAutotype.h"
-#import "KPKWindowAssociation.h"
+#import "KeePassKit/KeePassKit.h"
 
 @interface MPTestAutotype : XCTestCase
 @property (strong) KPKEntry *entry;
