@@ -17,8 +17,7 @@ NSString *const MPDocumentDidCommitChangesToSelectedItem   = @"com.hicknhack.mac
 @implementation MPDocument (EditingSession)
 
 - (BOOL)hasActiveEditingSession {
-//  return (self.tree.activeEditingSession != nil);
-//  return (self.editingSession != nil);
+  return NO;
 }
 
 - (void)commitChangesToSelectedItem:(id)sender {

@@ -29,6 +29,7 @@
 #import "MPEntryContextMenuDelegate.h"
 
 #import "KeePassKit/KeePassKit.h"
+#import "KPKNode+IconImage.h"
 
 #import "HNHTableHeaderCell.h"
 #import "HNHGradientView.h"
