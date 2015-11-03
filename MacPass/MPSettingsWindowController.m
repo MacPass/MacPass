@@ -16,7 +16,6 @@
   NSString *lastIdentifier;
 }
 
-@property (strong, nonatomic) NSToolbar *toolbar;
 @property (strong, nonatomic) NSMutableDictionary *settingsController;
 @property (strong, nonatomic) NSMutableDictionary *toolbarItems;
 @property (strong) NSArray *defaultToolbarItems;
@@ -32,24 +31,24 @@
 -(id)init {
   self = [super initWithWindow:nil];
   if(self) {
-    _toolbar = [[NSToolbar alloc] initWithIdentifier:@"SettingsToolBar"];
-    [self.toolbar setAllowsUserCustomization:NO];
-    [self.toolbar setDisplayMode:NSToolbarDisplayModeIconAndLabel];
+    NSToolbar *tb = [[NSToolbar alloc] initWithIdentifier:@"SettingsToolBar"];
+    tb.allowsUserCustomization = NO;
+    tb.displayMode = NSToolbarDisplayModeIconAndLabel;
     _settingsController = [[NSMutableDictionary alloc] initWithCapacity:5];
     _toolbarItems = [[NSMutableDictionary alloc] initWithCapacity:5];
     lastIdentifier = nil;
     
     [self _setupDefaultSettingsTabs];
     
-    [self.toolbar setDelegate:self];
-    [[self window] setToolbar:self.toolbar];
+    tb.delegate = self;
+    self.window.toolbar = tb;
   }
   return self;
 }
 
 
 - (void)showSettings {
-  if([self.defaultToolbarItems count] > 0) {
+  if(self.defaultToolbarItems.count > 0) {
     [self showSettingsTabWithIdentifier:self.defaultToolbarItems[0]];
   }
 }
@@ -63,12 +62,12 @@
     NSLog(@"Warning. Unknown settingscontroller for identifier: %@. Did you miss to add the controller?", identifier);
     return;
   }
-  [self.toolbar setSelectedItemIdentifier:identifier];
+  self.window.toolbar.selectedItemIdentifier = identifier;
   if([tab respondsToSelector:@selector(label)]) {
-    [[self window] setTitle:[tab label]];
+    self.window.title = [tab label];
   }
   else {
-    [[self window] setTitle:[tab identifier]];
+    self.window.title = [tab identifier];
   }
   /* Access the view before calling the willShoTab to make sure the view is fully loaded */
   NSView *tabView = [(NSViewController *)tab view];
