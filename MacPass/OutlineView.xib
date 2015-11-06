@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="6250" systemVersion="13F34" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="9059" systemVersion="15B42" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
     <dependencies>
         <deployment identifier="macosx"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="6250"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="9059"/>
     </dependencies>
     <objects>
         <customObject id="-2" userLabel="File's Owner" customClass="MPOutlineViewController">
@@ -20,12 +20,14 @@
             <subviews>
                 <scrollView borderType="none" autohidesScrollers="YES" horizontalLineScroll="24" horizontalPageScroll="10" verticalLineScroll="24" verticalPageScroll="10" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="227">
                     <rect key="frame" x="0.0" y="30" width="272" height="419"/>
-                    <clipView key="contentView" id="WAU-Bu-ack">
+                    <clipView key="contentView" drawsBackground="NO" id="WAU-Bu-ack">
                         <rect key="frame" x="0.0" y="0.0" width="272" height="419"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <outlineView verticalHuggingPriority="750" allowsExpansionToolTips="YES" columnAutoresizingStyle="lastColumnOnly" selectionHighlightStyle="sourceList" multipleSelection="NO" autosaveColumns="NO" rowHeight="24" rowSizeStyle="automatic" viewBased="YES" indentationPerLevel="16" outlineTableColumn="231" id="228" customClass="MPOutlineView">
+                                <rect key="frame" x="0.0" y="0.0" width="272" height="0.0"/>
                                 <autoresizingMask key="autoresizingMask"/>
+                                <animations/>
                                 <size key="intercellSpacing" width="3" height="0.0"/>
                                 <color key="backgroundColor" name="_sourceListBackgroundColor" catalog="System" colorSpace="catalog"/>
                                 <color key="gridColor" name="gridColor" catalog="System" colorSpace="catalog"/>
@@ -49,6 +51,7 @@
                                                 <subviews>
                                                     <textField verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="238">
                                                         <rect key="frame" x="1" y="1" width="267" height="14"/>
+                                                        <animations/>
                                                         <textFieldCell key="cell" lineBreakMode="truncatingTail" sendsActionOnEndEditing="YES" title="HEADER CELL" id="239">
                                                             <font key="font" metaFont="smallSystemBold"/>
                                                             <color key="textColor" red="0.43921568630000002" green="0.4941176471" blue="0.54901960780000003" alpha="1" colorSpace="calibratedRGB"/>
@@ -61,6 +64,7 @@
                                                     <constraint firstAttribute="trailing" secondItem="238" secondAttribute="trailing" constant="3" id="253"/>
                                                     <constraint firstItem="238" firstAttribute="centerY" secondItem="237" secondAttribute="centerY" id="254"/>
                                                 </constraints>
+                                                <animations/>
                                                 <connections>
                                                     <outlet property="textField" destination="238" id="245"/>
                                                 </connections>
@@ -75,11 +79,13 @@
                                                             <constraint firstAttribute="width" constant="17" id="385"/>
                                                             <constraint firstAttribute="height" constant="17" id="bah-Ng-60T"/>
                                                         </constraints>
+                                                        <animations/>
                                                         <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyDown" image="NSActionTemplate" id="242"/>
                                                     </imageView>
-                                                    <textField verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="243" customClass="HNHBadgedTextField">
+                                                    <textField verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="243" customClass="HNHUIBadgedTextField">
                                                         <rect key="frame" x="26" y="4" width="242" height="17"/>
-                                                        <textFieldCell key="cell" lineBreakMode="truncatingTail" sendsActionOnEndEditing="YES" title="Table View Cell" id="244" customClass="HNHBadgedTextFieldCell">
+                                                        <animations/>
+                                                        <textFieldCell key="cell" lineBreakMode="truncatingTail" sendsActionOnEndEditing="YES" title="Table View Cell" id="244" customClass="HNHUIBadgedTextFieldCell">
                                                             <font key="font" metaFont="system"/>
                                                             <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
                                                             <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
@@ -94,6 +100,7 @@
                                                     <constraint firstItem="243" firstAttribute="bottom" secondItem="241" secondAttribute="bottom" id="388"/>
                                                     <constraint firstAttribute="trailing" secondItem="243" secondAttribute="trailing" constant="3" id="389"/>
                                                 </constraints>
+                                                <animations/>
                                                 <connections>
                                                     <outlet property="imageView" destination="241" id="247"/>
                                                     <outlet property="textField" destination="243" id="246"/>
@@ -104,18 +111,22 @@
                                 </tableColumns>
                             </outlineView>
                         </subviews>
+                        <animations/>
                         <nil key="backgroundColor"/>
                     </clipView>
+                    <animations/>
                     <scroller key="horizontalScroller" hidden="YES" verticalHuggingPriority="750" horizontal="YES" id="229">
                         <rect key="frame" x="1" y="119" width="238" height="15"/>
                         <autoresizingMask key="autoresizingMask"/>
+                        <animations/>
                     </scroller>
                     <scroller key="verticalScroller" hidden="YES" verticalHuggingPriority="750" horizontal="NO" id="230">
                         <rect key="frame" x="224" y="17" width="15" height="102"/>
                         <autoresizingMask key="autoresizingMask"/>
+                        <animations/>
                     </scroller>
                 </scrollView>
-                <customView translatesAutoresizingMaskIntoConstraints="NO" id="394" customClass="HNHGradientView">
+                <customView translatesAutoresizingMaskIntoConstraints="NO" id="394" customClass="HNHUIGradientView">
                     <rect key="frame" x="0.0" y="0.0" width="272" height="30"/>
                     <subviews>
                         <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="425">
@@ -123,6 +134,7 @@
                             <constraints>
                                 <constraint firstAttribute="width" constant="32" id="432"/>
                             </constraints>
+                            <animations/>
                             <buttonCell key="cell" type="roundRect" bezelStyle="roundedRect" image="NSAddTemplate" imagePosition="overlaps" alignment="center" state="on" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="426">
                                 <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                 <font key="font" metaFont="cellTitle"/>
@@ -134,6 +146,7 @@
                         <constraint firstItem="425" firstAttribute="centerY" secondItem="394" secondAttribute="centerY" id="428"/>
                         <constraint firstItem="425" firstAttribute="leading" secondItem="394" secondAttribute="leading" constant="7" id="429"/>
                     </constraints>
+                    <animations/>
                 </customView>
             </subviews>
             <constraints>
@@ -145,10 +158,11 @@
                 <constraint firstItem="394" firstAttribute="bottom" secondItem="196" secondAttribute="bottom" id="408"/>
                 <constraint firstItem="394" firstAttribute="top" secondItem="227" secondAttribute="bottom" id="409"/>
             </constraints>
+            <animations/>
         </customView>
     </objects>
     <resources>
         <image name="NSActionTemplate" width="14" height="14"/>
-        <image name="NSAddTemplate" width="8" height="8"/>
+        <image name="NSAddTemplate" width="11" height="11"/>
     </resources>
 </document>

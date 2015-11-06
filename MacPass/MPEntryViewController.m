@@ -31,8 +31,7 @@
 #import "KeePassKit/KeePassKit.h"
 #import "KPKNode+IconImage.h"
 
-#import "HNHTableHeaderCell.h"
-#import "HNHGradientView.h"
+#import "HNHUi/HNHUi.h"
 
 #import "MPNotifications.h"
 

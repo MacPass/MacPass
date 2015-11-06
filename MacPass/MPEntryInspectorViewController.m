@@ -26,8 +26,7 @@
 
 #import "KeePassKit/KeePassKit.h"
 
-#import "HNHScrollView.h"
-#import "HNHRoundedSecureTextField.h"
+#import "HNHUi/HNHUi.h"
 
 typedef NS_ENUM(NSUInteger, MPEntryTab) {
   MPEntryTabGeneral,

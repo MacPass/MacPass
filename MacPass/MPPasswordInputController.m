@@ -13,8 +13,8 @@
 #import "MPSettingsHelper.h"
 #import "MPKeyfilePathControlDelegate.h"
 
-#import "HNHRoundedSecureTextField.h"
-#import "NSWindow+Shake.h"
+#import "HNHUi/HNHUi.h"
+
 #import "NSError+Messages.h"
 
 @interface MPPasswordInputController ()

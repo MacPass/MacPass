@@ -9,7 +9,7 @@
 #import "MPViewController.h"
 #import "MPDocument.h"
 
-@class HNHGradientView;
+@class HNHUIGradientView;
 @class MPDocument;
 
 @interface MPContextBarViewController : MPViewController

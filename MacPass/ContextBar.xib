@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="6250" systemVersion="13F34" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="9059" systemVersion="15B42" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
     <dependencies>
         <deployment identifier="macosx"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="6250"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="9059"/>
     </dependencies>
     <objects>
         <customObject id="-2" userLabel="File's Owner" customClass="MPContextBarViewController">
@@ -26,6 +26,7 @@
         <customObject id="-3" userLabel="Application" customClass="NSObject"/>
         <tabView type="noTabsNoBorder" translatesAutoresizingMaskIntoConstraints="NO" id="8MB-fC-M2Q">
             <rect key="frame" x="0.0" y="0.0" width="576" height="30"/>
+            <animations/>
             <font key="font" metaFont="system"/>
             <tabViewItems>
                 <tabViewItem label="Filter" identifier="1" id="Ud6-Nz-6PS">
@@ -33,19 +34,21 @@
                         <rect key="frame" x="0.0" y="0.0" width="576" height="30"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <customView translatesAutoresizingMaskIntoConstraints="NO" id="1" customClass="HNHGradientView">
+                            <customView translatesAutoresizingMaskIntoConstraints="NO" id="1" customClass="HNHUIGradientView">
                                 <rect key="frame" x="0.0" y="0.0" width="576" height="30"/>
                                 <subviews>
-                                    <textField verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="6">
+                                    <textField verticalHuggingPriority="750" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="6">
                                         <rect key="frame" x="6" y="8" width="45" height="14"/>
+                                        <animations/>
                                         <textFieldCell key="cell" controlSize="small" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Search:" id="7">
                                             <font key="font" metaFont="smallSystemBold"/>
                                             <color key="textColor" name="disabledControlTextColor" catalog="System" colorSpace="catalog"/>
                                             <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                         </textFieldCell>
                                     </textField>
-                                    <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="O7W-cn-eUP">
+                                    <button verticalHuggingPriority="750" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="O7W-cn-eUP">
                                         <rect key="frame" x="57" y="6" width="42" height="17"/>
+                                        <animations/>
                                         <buttonCell key="cell" type="recessed" title="Title" bezelStyle="recessed" alignment="center" controlSize="small" state="on" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="53D-ne-nv6">
                                             <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES" changeBackground="YES" changeGray="YES"/>
                                             <font key="font" metaFont="systemBold" size="12"/>
@@ -54,8 +57,9 @@
                                             <action selector="toggleSearchFlags:" target="-1" id="gUm-y4-CDb"/>
                                         </connections>
                                     </button>
-                                    <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="0R1-PX-dgn">
+                                    <button verticalHuggingPriority="750" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="0R1-PX-dgn">
                                         <rect key="frame" x="107" y="6" width="77" height="17"/>
+                                        <animations/>
                                         <buttonCell key="cell" type="recessed" title="Username" bezelStyle="recessed" alignment="center" controlSize="small" state="on" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="jfQ-Jh-2gl">
                                             <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES" changeBackground="YES" changeGray="YES"/>
                                             <font key="font" metaFont="systemBold" size="12"/>
@@ -64,8 +68,9 @@
                                             <action selector="toggleSearchFlags:" target="-1" id="DEi-hq-N39"/>
                                         </connections>
                                     </button>
-                                    <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="Uhl-ck-vVQ">
+                                    <button verticalHuggingPriority="750" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Uhl-ck-vVQ">
                                         <rect key="frame" x="192" y="6" width="74" height="17"/>
+                                        <animations/>
                                         <buttonCell key="cell" type="recessed" title="Password" bezelStyle="recessed" alignment="center" controlSize="small" state="on" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="rvQ-4V-SsS">
                                             <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES" changeBackground="YES" changeGray="YES"/>
                                             <font key="font" metaFont="systemBold" size="12"/>
@@ -74,8 +79,9 @@
                                             <action selector="toggleSearchFlags:" target="-1" id="xYd-Fp-jxn"/>
                                         </connections>
                                     </button>
-                                    <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="Bn2-iY-mQ3">
+                                    <button verticalHuggingPriority="750" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Bn2-iY-mQ3">
                                         <rect key="frame" x="274" y="6" width="38" height="17"/>
+                                        <animations/>
                                         <buttonCell key="cell" type="recessed" title="URL" bezelStyle="recessed" alignment="center" controlSize="small" state="on" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="92o-gN-Psj">
                                             <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES" changeBackground="YES" changeGray="YES"/>
                                             <font key="font" metaFont="systemBold" size="12"/>
@@ -84,8 +90,9 @@
                                             <action selector="toggleSearchFlags:" target="-1" id="Ykb-ye-FqF"/>
                                         </connections>
                                     </button>
-                                    <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="SaV-5p-jIX">
+                                    <button verticalHuggingPriority="750" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="SaV-5p-jIX">
                                         <rect key="frame" x="320" y="6" width="50" height="17"/>
+                                        <animations/>
                                         <buttonCell key="cell" type="recessed" title="Notes" bezelStyle="recessed" alignment="center" controlSize="small" state="on" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="iDN-2E-hwt">
                                             <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES" changeBackground="YES" changeGray="YES"/>
                                             <font key="font" metaFont="systemBold" size="12"/>
@@ -94,8 +101,9 @@
                                             <action selector="toggleSearchFlags:" target="-1" id="cuN-5p-vZD"/>
                                         </connections>
                                     </button>
-                                    <popUpButton verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="aPQ-t2-bgz">
+                                    <popUpButton verticalHuggingPriority="750" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="aPQ-t2-bgz">
                                         <rect key="frame" x="491" y="5" width="65" height="19"/>
+                                        <animations/>
                                         <popUpButtonCell key="cell" type="recessed" title="Item 1" bezelStyle="recessed" alignment="center" lineBreakMode="truncatingTail" state="on" borderStyle="border" imageScaling="proportionallyDown" inset="2" autoenablesItems="NO" selectedItem="LRm-iZ-XrA" id="faz-pC-uGX">
                                             <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES" changeBackground="YES" changeGray="YES"/>
                                             <font key="font" metaFont="systemBold" size="12"/>
@@ -126,6 +134,7 @@
                                     <constraint firstAttribute="centerY" secondItem="Uhl-ck-vVQ" secondAttribute="centerY" id="uvE-ch-ysK"/>
                                     <constraint firstAttribute="centerY" secondItem="Bn2-iY-mQ3" secondAttribute="centerY" id="xZJ-EZ-Nic"/>
                                 </constraints>
+                                <animations/>
                             </customView>
                         </subviews>
                         <constraints>
@@ -136,6 +145,7 @@
                             <constraint firstAttribute="trailing" secondItem="1" secondAttribute="trailing" id="mos-cv-3fn"/>
                             <constraint firstAttribute="trailing" secondItem="1" secondAttribute="trailing" id="rO8-g6-lT3"/>
                         </constraints>
+                        <animations/>
                     </view>
                 </tabViewItem>
                 <tabViewItem label="Trash" identifier="2" id="na6-h9-r9q">
@@ -143,11 +153,12 @@
                         <rect key="frame" x="0.0" y="0.0" width="576" height="30"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <customView translatesAutoresizingMaskIntoConstraints="NO" id="DXf-SC-gVG" customClass="HNHGradientView">
+                            <customView translatesAutoresizingMaskIntoConstraints="NO" id="DXf-SC-gVG" customClass="HNHUIGradientView">
                                 <rect key="frame" x="0.0" y="0.0" width="576" height="30"/>
                                 <subviews>
                                     <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="szx-Hx-OrV">
                                         <rect key="frame" x="478" y="5" width="78" height="19"/>
+                                        <animations/>
                                         <buttonCell key="cell" type="roundTextured" title="Empty Trash" bezelStyle="texturedRounded" alignment="center" controlSize="small" state="on" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="8Ok-oe-6AB">
                                             <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                             <font key="font" metaFont="smallSystem"/>
@@ -162,6 +173,7 @@
                                     <constraint firstItem="szx-Hx-OrV" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="DXf-SC-gVG" secondAttribute="leading" constant="20" symbolic="YES" id="s8f-1l-4Yy"/>
                                     <constraint firstAttribute="centerY" secondItem="szx-Hx-OrV" secondAttribute="centerY" id="sG5-pc-EzQ"/>
                                 </constraints>
+                                <animations/>
                             </customView>
                         </subviews>
                         <constraints>
@@ -170,6 +182,7 @@
                             <constraint firstItem="DXf-SC-gVG" firstAttribute="top" secondItem="F6S-GS-AwI" secondAttribute="top" id="j4h-gk-JVJ"/>
                             <constraint firstAttribute="trailing" secondItem="DXf-SC-gVG" secondAttribute="trailing" id="wap-ZJ-5Rw"/>
                         </constraints>
+                        <animations/>
                     </view>
                     <connections>
                         <outlet property="initialFirstResponder" destination="szx-Hx-OrV" id="Cqa-Po-xMe"/>
@@ -180,11 +193,12 @@
                         <rect key="frame" x="0.0" y="0.0" width="576" height="30"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <customView translatesAutoresizingMaskIntoConstraints="NO" id="S8L-rB-h0h" customClass="HNHGradientView">
+                            <customView translatesAutoresizingMaskIntoConstraints="NO" id="S8L-rB-h0h" customClass="HNHUIGradientView">
                                 <rect key="frame" x="0.0" y="0.0" width="576" height="30"/>
                                 <subviews>
-                                    <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="gGR-f0-dcr">
+                                    <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="gGR-f0-dcr">
                                         <rect key="frame" x="18" y="6" width="38" height="17"/>
+                                        <animations/>
                                         <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Label" id="8LU-cT-rsU">
                                             <font key="font" metaFont="system"/>
                                             <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
@@ -193,6 +207,7 @@
                                     </textField>
                                     <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="pqx-su-vAh">
                                         <rect key="frame" x="483" y="5" width="73" height="19"/>
+                                        <animations/>
                                         <buttonCell key="cell" type="roundTextured" title="Exit History" bezelStyle="texturedRounded" alignment="center" controlSize="small" state="on" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="ewQ-8F-e1E">
                                             <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                             <font key="font" metaFont="smallSystem"/>
@@ -209,6 +224,7 @@
                                     <constraint firstItem="gGR-f0-dcr" firstAttribute="leading" secondItem="S8L-rB-h0h" secondAttribute="leading" constant="20" symbolic="YES" id="gFm-N8-pwn"/>
                                     <constraint firstAttribute="trailing" secondItem="pqx-su-vAh" secondAttribute="trailing" constant="20" symbolic="YES" id="mao-02-HsJ"/>
                                 </constraints>
+                                <animations/>
                             </customView>
                         </subviews>
                         <constraints>
@@ -217,6 +233,7 @@
                             <constraint firstAttribute="bottom" secondItem="S8L-rB-h0h" secondAttribute="bottom" id="bz5-FS-Gg2"/>
                             <constraint firstItem="S8L-rB-h0h" firstAttribute="top" secondItem="iPb-SZ-Lfm" secondAttribute="top" id="mW1-xp-CdF"/>
                         </constraints>
+                        <animations/>
                     </view>
                     <connections>
                         <outlet property="initialFirstResponder" destination="pqx-su-vAh" id="bi5-CA-b4P"/>

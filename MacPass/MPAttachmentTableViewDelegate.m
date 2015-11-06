@@ -28,7 +28,7 @@
 
 #import "KeePassKit/KeePassKit.h"
 
-#import "HNHTableRowView.h"
+#import "HNHUi/HNHUi.h"
 
 @implementation MPAttachmentTableViewDelegate
 
@@ -63,8 +63,8 @@
 }
 
 - (NSTableRowView *)tableView:(NSTableView *)tableView rowViewForRow:(NSInteger)row {
-  HNHTableRowView *view = nil;
-  view = [[HNHTableRowView alloc] init];
+  HNHUITableRowView *view = nil;
+  view = [[HNHUITableRowView alloc] init];
   view.selectionCornerRadius = 7;
   return view;
 }

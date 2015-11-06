@@ -14,9 +14,7 @@
 #import "MPFlagsHelper.h"
 #import "MPEntrySearchContext.h"
 
-#import "NSButton+HNHTextColor.h"
-#import "HNHGradientView.h"
-#import "HNHCommon.h"
+#import "HNHUi/HNHUi.h"
 
 NSUInteger const MPContextBarViewControllerActiveFilterMenuItemTag = 1000;
 
@@ -35,7 +33,7 @@ typedef NS_ENUM(NSUInteger, MPContextTab) {
 @property (weak) IBOutlet NSButton *filterDoneButton;
 @property (weak) IBOutlet NSTextField *filterLabelTextField;
 /* History */
-@property (weak) IBOutlet HNHGradientView *historyBar;
+@property (weak) IBOutlet HNHUIGradientView *historyBar;
 @property (weak) IBOutlet NSTextField *historyLabel;
 @property (weak) IBOutlet NSButton *exitHistoryButton;
 /* Trash*/
@@ -63,7 +61,7 @@ typedef NS_ENUM(NSUInteger, MPContextTab) {
   self.historyBar.activeGradient = [[NSGradient alloc] initWithStartingColor:[[NSColor orangeColor] shadowWithLevel:0.2] endingColor:[[NSColor orangeColor] highlightWithLevel:0.2]];
   
   /* Setup Trash Bar color */
-  if(!HNHIsRunningOnYosemiteOrNewer()) {
+  if(!HNHUIIsRunningOnYosemiteOrNewer()) {
     NSArray *activeColors = @[[NSColor colorWithCalibratedWhite:0.2 alpha:1],[NSColor colorWithCalibratedWhite:0.4 alpha:1]];
     NSArray *inactiveColors = @[[NSColor colorWithCalibratedWhite:0.3 alpha:1],[NSColor colorWithCalibratedWhite:0.6 alpha:1]];
     self.trashBar.activeGradient = [[NSGradient alloc] initWithColors:activeColors];

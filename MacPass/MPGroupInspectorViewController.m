@@ -13,9 +13,7 @@
 
 #import "KeePassKit/KeePassKit.h"
 
-#import "HNHScrollView.h"
-#import "HNHRoundedTextField.h"
-
+#import "HNHUi/HNHUi.h"
 
 @interface MPGroupInspectorViewController () {
   NSObjectController *_entryController;

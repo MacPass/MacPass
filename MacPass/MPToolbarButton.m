@@ -21,7 +21,7 @@
 //
 
 #import "MPToolbarButton.h"
-#import "HNHCommon.h"
+#import "HNHUi/HNHUi.h"
 
 @implementation MPToolbarButton
 

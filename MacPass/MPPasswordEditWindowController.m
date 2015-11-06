@@ -9,7 +9,7 @@
 #import "MPPasswordEditWindowController.h"
 #import "MPDocument.h"
 
-#import "HNHRoundedSecureTextField.h"
+#import "HNHUi/HNHUi.h"
 
 #import "KeePassKit/KeePassKit.h"
 
