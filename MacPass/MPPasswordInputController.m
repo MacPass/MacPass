@@ -19,7 +19,7 @@
 
 @interface MPPasswordInputController ()
 
-@property (weak) IBOutlet HNHRoundedSecureTextField *passwordTextField;
+@property (weak) IBOutlet HNHUIRoundedSecureTextField *passwordTextField;
 @property (weak) IBOutlet NSPathControl *keyPathControl;
 @property (strong) MPKeyfilePathControlDelegate *pathControlDelegate;
 @property (weak) IBOutlet NSImageView *errorImageView;

@@ -20,7 +20,7 @@
 #import "KeePassKit/KeePassKit.h"
 #import "KPKNode+IconImage.h"
 
-#import "HNHGradientView.h"
+#import "HNHUi/HNHUi.h"
 
 #define EXPIRED_GROUP_REFRESH_SECONDS 60
 

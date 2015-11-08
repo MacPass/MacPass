@@ -37,8 +37,8 @@
                             <customView translatesAutoresizingMaskIntoConstraints="NO" id="1" customClass="HNHUIGradientView">
                                 <rect key="frame" x="0.0" y="0.0" width="576" height="30"/>
                                 <subviews>
-                                    <textField verticalHuggingPriority="750" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="6">
-                                        <rect key="frame" x="6" y="8" width="45" height="14"/>
+                                    <textField verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="6">
+                                        <rect key="frame" x="6" y="8" width="47" height="14"/>
                                         <animations/>
                                         <textFieldCell key="cell" controlSize="small" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Search:" id="7">
                                             <font key="font" metaFont="smallSystemBold"/>
@@ -46,8 +46,8 @@
                                             <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                         </textFieldCell>
                                     </textField>
-                                    <button verticalHuggingPriority="750" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="O7W-cn-eUP">
-                                        <rect key="frame" x="57" y="6" width="42" height="17"/>
+                                    <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="O7W-cn-eUP">
+                                        <rect key="frame" x="59" y="6" width="42" height="17"/>
                                         <animations/>
                                         <buttonCell key="cell" type="recessed" title="Title" bezelStyle="recessed" alignment="center" controlSize="small" state="on" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="53D-ne-nv6">
                                             <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES" changeBackground="YES" changeGray="YES"/>
@@ -57,8 +57,8 @@
                                             <action selector="toggleSearchFlags:" target="-1" id="gUm-y4-CDb"/>
                                         </connections>
                                     </button>
-                                    <button verticalHuggingPriority="750" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="0R1-PX-dgn">
-                                        <rect key="frame" x="107" y="6" width="77" height="17"/>
+                                    <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="0R1-PX-dgn">
+                                        <rect key="frame" x="109" y="6" width="76" height="17"/>
                                         <animations/>
                                         <buttonCell key="cell" type="recessed" title="Username" bezelStyle="recessed" alignment="center" controlSize="small" state="on" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="jfQ-Jh-2gl">
                                             <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES" changeBackground="YES" changeGray="YES"/>
@@ -68,8 +68,8 @@
                                             <action selector="toggleSearchFlags:" target="-1" id="DEi-hq-N39"/>
                                         </connections>
                                     </button>
-                                    <button verticalHuggingPriority="750" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Uhl-ck-vVQ">
-                                        <rect key="frame" x="192" y="6" width="74" height="17"/>
+                                    <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="Uhl-ck-vVQ">
+                                        <rect key="frame" x="193" y="6" width="73" height="17"/>
                                         <animations/>
                                         <buttonCell key="cell" type="recessed" title="Password" bezelStyle="recessed" alignment="center" controlSize="small" state="on" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="rvQ-4V-SsS">
                                             <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES" changeBackground="YES" changeGray="YES"/>
@@ -79,8 +79,8 @@
                                             <action selector="toggleSearchFlags:" target="-1" id="xYd-Fp-jxn"/>
                                         </connections>
                                     </button>
-                                    <button verticalHuggingPriority="750" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Bn2-iY-mQ3">
-                                        <rect key="frame" x="274" y="6" width="38" height="17"/>
+                                    <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="Bn2-iY-mQ3">
+                                        <rect key="frame" x="274" y="6" width="39" height="17"/>
                                         <animations/>
                                         <buttonCell key="cell" type="recessed" title="URL" bezelStyle="recessed" alignment="center" controlSize="small" state="on" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="92o-gN-Psj">
                                             <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES" changeBackground="YES" changeGray="YES"/>
@@ -90,8 +90,8 @@
                                             <action selector="toggleSearchFlags:" target="-1" id="Ykb-ye-FqF"/>
                                         </connections>
                                     </button>
-                                    <button verticalHuggingPriority="750" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="SaV-5p-jIX">
-                                        <rect key="frame" x="320" y="6" width="50" height="17"/>
+                                    <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="SaV-5p-jIX">
+                                        <rect key="frame" x="321" y="6" width="50" height="17"/>
                                         <animations/>
                                         <buttonCell key="cell" type="recessed" title="Notes" bezelStyle="recessed" alignment="center" controlSize="small" state="on" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="iDN-2E-hwt">
                                             <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES" changeBackground="YES" changeGray="YES"/>
@@ -101,8 +101,8 @@
                                             <action selector="toggleSearchFlags:" target="-1" id="cuN-5p-vZD"/>
                                         </connections>
                                     </button>
-                                    <popUpButton verticalHuggingPriority="750" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="aPQ-t2-bgz">
-                                        <rect key="frame" x="491" y="5" width="65" height="19"/>
+                                    <popUpButton verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="aPQ-t2-bgz">
+                                        <rect key="frame" x="492" y="5" width="64" height="19"/>
                                         <animations/>
                                         <popUpButtonCell key="cell" type="recessed" title="Item 1" bezelStyle="recessed" alignment="center" lineBreakMode="truncatingTail" state="on" borderStyle="border" imageScaling="proportionallyDown" inset="2" autoenablesItems="NO" selectedItem="LRm-iZ-XrA" id="faz-pC-uGX">
                                             <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES" changeBackground="YES" changeGray="YES"/>
@@ -196,8 +196,8 @@
                             <customView translatesAutoresizingMaskIntoConstraints="NO" id="S8L-rB-h0h" customClass="HNHUIGradientView">
                                 <rect key="frame" x="0.0" y="0.0" width="576" height="30"/>
                                 <subviews>
-                                    <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="gGR-f0-dcr">
-                                        <rect key="frame" x="18" y="6" width="38" height="17"/>
+                                    <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="gGR-f0-dcr">
+                                        <rect key="frame" x="18" y="6" width="37" height="17"/>
                                         <animations/>
                                         <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Label" id="8LU-cT-rsU">
                                             <font key="font" metaFont="system"/>

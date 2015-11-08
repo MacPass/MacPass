@@ -11,13 +11,13 @@
 
 APPKIT_EXTERN NSString *const MPOutlineViewDidChangeGroupSelection;
 
-@class HNHGradientView;
+@class HNHUIGradientView;
 @class MPDocument;
 
 @interface MPOutlineViewController : MPViewController <MPTargetNodeResolving, NSOutlineViewDelegate, NSMenuDelegate>
 
 
-@property (weak) IBOutlet HNHGradientView *bottomBar;
+@property (weak) IBOutlet HNHUIGradientView *bottomBar;
 
 - (void)clearSelection;
 - (void)showOutline;

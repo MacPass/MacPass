@@ -75,7 +75,7 @@ NSString *const _MPTableSecurCellView = @"PasswordCell";
 @property (strong) IBOutlet NSLayoutConstraint *tableToTopConstraint;
 @property (strong) NSLayoutConstraint *contextBarTopConstraint;
 
-@property (weak) IBOutlet HNHGradientView *bottomBar;
+@property (weak) IBOutlet HNHUIGradientView *bottomBar;
 @property (weak) IBOutlet NSButton *addEntryButton;
 
 @property (weak) IBOutlet NSTextField *footerInfoText;

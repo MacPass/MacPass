@@ -37,7 +37,7 @@ typedef NS_ENUM(NSUInteger, MPContextTab) {
 @property (weak) IBOutlet NSTextField *historyLabel;
 @property (weak) IBOutlet NSButton *exitHistoryButton;
 /* Trash*/
-@property (weak) IBOutlet HNHGradientView *trashBar;
+@property (weak) IBOutlet HNHUIGradientView *trashBar;
 @property (weak) IBOutlet NSButton *emptyTrashButton;
 
 @end
@@ -141,12 +141,12 @@ typedef NS_ENUM(NSUInteger, MPContextTab) {
 - (void)_updateFilterButtons {
   MPDocument *document = [[self windowController] document];
   MPEntrySearchFlags currentFlags = document.searchContext.searchFlags;
-  [self.duplicatePasswordsButton setState:HNHStateForBool(MPIsFlagSetInOptions(MPEntrySearchDoublePasswords, currentFlags))];
-  [self.notesButton setState:HNHStateForBool(MPIsFlagSetInOptions(MPEntrySearchNotes, currentFlags))];
-  [self.passwordButton setState:HNHStateForBool(MPIsFlagSetInOptions(MPEntrySearchPasswords, currentFlags))];
-  [self.titleButton setState:HNHStateForBool(MPIsFlagSetInOptions(MPEntrySearchTitles, currentFlags))];
-  [self.urlButton setState:HNHStateForBool(MPIsFlagSetInOptions(MPEntrySearchUrls, currentFlags))];
-  [self.usernameButton setState:HNHStateForBool(MPIsFlagSetInOptions(MPEntrySearchUsernames, currentFlags))];
+  [self.duplicatePasswordsButton setState:HNHUIStateForBool(MPIsFlagSetInOptions(MPEntrySearchDoublePasswords, currentFlags))];
+  [self.notesButton setState:HNHUIStateForBool(MPIsFlagSetInOptions(MPEntrySearchNotes, currentFlags))];
+  [self.passwordButton setState:HNHUIStateForBool(MPIsFlagSetInOptions(MPEntrySearchPasswords, currentFlags))];
+  [self.titleButton setState:HNHUIStateForBool(MPIsFlagSetInOptions(MPEntrySearchTitles, currentFlags))];
+  [self.urlButton setState:HNHUIStateForBool(MPIsFlagSetInOptions(MPEntrySearchUrls, currentFlags))];
+  [self.usernameButton setState:HNHUIStateForBool(MPIsFlagSetInOptions(MPEntrySearchUsernames, currentFlags))];
   NSInteger selectedTag = MPEntrySearchNone;
   for(NSMenuItem *item in [[self.specialFilterPopUpButton menu] itemArray]) {
     MPEntrySearchFlags flag = [item tag];
@@ -159,7 +159,7 @@ typedef NS_ENUM(NSUInteger, MPContextTab) {
       if(isActive) {
         selectedTag = flag;
       }
-      [item setState:HNHStateForBool(isActive)];
+      [item setState:HNHUIStateForBool(isActive)];
     }
   }
   [self.specialFilterPopUpButton selectItemWithTag:selectedTag];

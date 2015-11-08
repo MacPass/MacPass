@@ -43,7 +43,7 @@
 
 - (void)toggleAllowAllFiles:(id)sender {
   NSButton *button = (NSButton *)sender;
-  BOOL allowAllFiles = HNHBoolForState(button.state);
+  BOOL allowAllFiles = HNHUIBoolForState(button.state);
   /* Toggle hidden to force a refresh */
   self.openPanel.showsHiddenFiles = !self.openPanel.showsHiddenFiles;
   self.openPanel.allowedFileTypes = allowAllFiles ? nil : @[MPLegacyDocumentUTI, MPXMLDocumentUTI];

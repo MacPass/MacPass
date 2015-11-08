@@ -329,7 +329,7 @@ typedef NS_ENUM(NSUInteger, MPEntryTab) {
 - (void)_addScrollViewWithView:(NSView *)view atTab:(MPEntryTab)tab {
   /* ScrollView setup for the General Tab */
   
-  HNHScrollView *scrollView = [[HNHScrollView alloc] init];
+  HNHUIScrollView *scrollView = [[HNHUIScrollView alloc] init];
   scrollView.actAsFlipped = NO;
   scrollView.showBottomShadow = NO;
   scrollView.hasVerticalScroller = YES;

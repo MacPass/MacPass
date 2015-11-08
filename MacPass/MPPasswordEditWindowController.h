@@ -9,7 +9,7 @@
 #import <Cocoa/Cocoa.h>
 #import "MPSheetWindowController.h"
 @class MPDocument;
-@class HNHRoundedSecureTextField;
+@class HNHUIRoundedSecureTextField;
 
 @protocol MPPasswordEditWindowDelegate <NSObject>
 
@@ -24,8 +24,8 @@
 
 @interface MPPasswordEditWindowController : MPSheetWindowController <NSTextFieldDelegate>
 
-@property (weak) IBOutlet HNHRoundedSecureTextField *passwordTextField;
-@property (weak) IBOutlet HNHRoundedSecureTextField *passwordRepeatTextField;
+@property (weak) IBOutlet HNHUIRoundedSecureTextField *passwordTextField;
+@property (weak) IBOutlet HNHUIRoundedSecureTextField *passwordRepeatTextField;
 @property (weak) IBOutlet NSPathControl *keyfilePathControl;
 @property (weak) IBOutlet NSButton *togglePasswordButton;
 @property (weak) IBOutlet NSTextField *errorTextField;

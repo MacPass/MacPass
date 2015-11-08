@@ -40,8 +40,8 @@
         <view translatesAutoresizingMaskIntoConstraints="NO" id="3">
             <rect key="frame" x="0.0" y="0.0" width="293" height="529"/>
             <subviews>
-                <segmentedControl verticalHuggingPriority="750" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="82">
-                    <rect key="frame" x="35" y="505" width="223" height="19"/>
+                <segmentedControl verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="82">
+                    <rect key="frame" x="34.5" y="505" width="224" height="19"/>
                     <animations/>
                     <segmentedCell key="cell" controlSize="small" borderStyle="border" alignment="left" style="texturedSquare" trackingMode="selectOne" id="238">
                         <font key="font" metaFont="smallSystem"/>
@@ -512,8 +512,8 @@
                         <outlet property="nextKeyView" destination="55" id="FgE-cj-E5Z"/>
                     </connections>
                 </textField>
-                <textField verticalHuggingPriority="750" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="54">
-                    <rect key="frame" x="18" y="378" width="57" height="14"/>
+                <textField verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="54">
+                    <rect key="frame" x="18" y="378" width="58" height="14"/>
                     <animations/>
                     <textFieldCell key="cell" controlSize="small" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Username" id="69">
                         <font key="font" metaFont="smallSystem"/>
@@ -551,8 +551,8 @@
                         <outlet property="nextKeyView" destination="7" id="8Vo-ZR-aWE"/>
                     </connections>
                 </textField>
-                <textField verticalHuggingPriority="750" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="57">
-                    <rect key="frame" x="18" y="244" width="25" height="14"/>
+                <textField verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="57">
+                    <rect key="frame" x="18" y="244" width="26" height="14"/>
                     <animations/>
                     <textFieldCell key="cell" controlSize="small" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="URL" id="66">
                         <font key="font" metaFont="smallSystem"/>
@@ -560,8 +560,8 @@
                         <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                     </textFieldCell>
                 </textField>
-                <textField verticalHuggingPriority="750" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="58">
-                    <rect key="frame" x="18" y="322" width="57" height="14"/>
+                <textField verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="58">
+                    <rect key="frame" x="18" y="322" width="55" height="14"/>
                     <animations/>
                     <textFieldCell key="cell" controlSize="small" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Password" id="65">
                         <font key="font" metaFont="smallSystem"/>
@@ -666,8 +666,8 @@
                         <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                     </textFieldCell>
                 </textField>
-                <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" horizontalCompressionResistancePriority="249" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="0U8-TS-giU">
-                    <rect key="frame" x="18" y="50" width="31" height="14"/>
+                <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" horizontalCompressionResistancePriority="249" translatesAutoresizingMaskIntoConstraints="NO" id="0U8-TS-giU">
+                    <rect key="frame" x="18" y="50" width="32" height="14"/>
                     <animations/>
                     <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" allowsUndo="NO" sendsActionOnEndEditing="YES" title="UUID" id="vTq-N1-5oa">
                         <font key="font" metaFont="smallSystem"/>
@@ -704,7 +704,6 @@
                 <constraint firstItem="56" firstAttribute="top" secondItem="57" secondAttribute="bottom" constant="8" symbolic="YES" id="24"/>
                 <constraint firstAttribute="trailing" secondItem="56" secondAttribute="trailing" constant="20" symbolic="YES" id="25"/>
                 <constraint firstItem="58" firstAttribute="leading" secondItem="4" secondAttribute="leading" constant="20" symbolic="YES" id="26"/>
-                <constraint firstItem="58" firstAttribute="trailing" secondItem="54" secondAttribute="trailing" id="27"/>
                 <constraint firstItem="60" firstAttribute="top" secondItem="58" secondAttribute="bottom" constant="8" symbolic="YES" id="29"/>
                 <constraint firstItem="60" firstAttribute="leading" secondItem="4" secondAttribute="leading" constant="20" symbolic="YES" id="30"/>
                 <constraint firstItem="59" firstAttribute="top" secondItem="61" secondAttribute="bottom" constant="8" symbolic="YES" id="31"/>

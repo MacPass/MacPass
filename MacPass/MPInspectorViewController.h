@@ -8,12 +8,12 @@
 
 #import "MPViewController.h"
 
-@class HNHGradientView;
+@class HNHUIGradientView;
 @class MPPopupImageView;
 
 @interface MPInspectorViewController : MPViewController <NSPopoverDelegate>
 
-@property (weak) IBOutlet HNHGradientView *bottomBar;
+@property (weak) IBOutlet HNHUIGradientView *bottomBar;
 @property (weak) IBOutlet NSTextField *createdTextField;
 @property (weak) IBOutlet NSTextField *modifiedTextField;
 @property (weak) IBOutlet NSTextField *noSelectionInfo;

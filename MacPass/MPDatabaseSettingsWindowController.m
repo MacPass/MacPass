@@ -70,7 +70,7 @@
   }
     
   /* Advanced */
-  metaData.useTrash = HNHBoolForState(self.enableTrashCheckButton.state);
+  metaData.useTrash = HNHUIBoolForState(self.enableTrashCheckButton.state);
   NSMenuItem *trashMenuItem = self.selectTrashGoupPopUpButton.selectedItem;
   KPKGroup *trashGroup = trashMenuItem.representedObject;
   ((MPDocument *)self.document).tree.trash  = trashGroup;
@@ -80,8 +80,8 @@
   ((MPDocument *)self.document).templates = templateGroup;
   
   
-  BOOL enforceMasterKeyChange = HNHBoolForState(self.enforceKeyChangeCheckButton.state);
-  BOOL recommendMasterKeyChange = HNHBoolForState(self.recommendKeyChangeCheckButton.state);
+  BOOL enforceMasterKeyChange = HNHUIBoolForState(self.enforceKeyChangeCheckButton.state);
+  BOOL recommendMasterKeyChange = HNHUIBoolForState(self.recommendKeyChangeCheckButton.state);
   
   enforceMasterKeyChange &= (self.enforceKeyChangeIntervalTextField.stringValue.length != 0);
   recommendMasterKeyChange &= (self.recommendKeyChangeIntervalTextField.stringValue.length != 0);
@@ -94,11 +94,11 @@
   
   /* Security */
   
-  metaData.protectNotes =  HNHBoolForState(self.protectNotesCheckButton.state);
-  metaData.protectPassword = HNHBoolForState(self.protectPasswortCheckButton.state);
-  metaData.protectTitle = HNHBoolForState(self.protectTitleCheckButton.state);
-  metaData.protectUrl = HNHBoolForState(self.protectURLCheckButton.state);
-  metaData.protectUserName = HNHBoolForState(self.protectUserNameCheckButton.state);
+  metaData.protectNotes =  HNHUIBoolForState(self.protectNotesCheckButton.state);
+  metaData.protectPassword = HNHUIBoolForState(self.protectPasswortCheckButton.state);
+  metaData.protectTitle = HNHUIBoolForState(self.protectTitleCheckButton.state);
+  metaData.protectUrl = HNHUIBoolForState(self.protectURLCheckButton.state);
+  metaData.protectUserName = HNHUIBoolForState(self.protectUserNameCheckButton.state);
   
   metaData.defaultUserName = self.defaultUsernameTextField.stringValue;
   
@@ -180,18 +180,18 @@
 }
 
 - (void)_setupProtectionTab:(KPKMetaData *)metaData {
-  HNHSetStateFromBool(self.protectNotesCheckButton, metaData.protectNotes);
-  HNHSetStateFromBool(self.protectPasswortCheckButton, metaData.protectPassword);
-  HNHSetStateFromBool(self.protectTitleCheckButton, metaData.protectTitle);
-  HNHSetStateFromBool(self.protectURLCheckButton, metaData.protectUrl);
-  HNHSetStateFromBool(self.protectUserNameCheckButton, metaData.protectUserName);
+  self.protectNotesCheckButton.state = HNHUIStateForBool(metaData.protectNotes);
+  self.protectPasswortCheckButton.state = HNHUIStateForBool(metaData.protectPassword);
+  self.protectTitleCheckButton.state = HNHUIStateForBool(metaData.protectTitle);
+  self.protectURLCheckButton.state = HNHUIStateForBool(metaData.protectUrl);
+  self.protectUserNameCheckButton.state = HNHUIStateForBool(metaData.protectUserName);
 
   [self.encryptionRoundsTextField setIntegerValue:metaData.rounds];
   [self.benchmarkButton setEnabled:YES];
 }
 
 - (void)_setupAdvancedTab:(KPKTree *)tree {
-  HNHSetStateFromBool(self.enableTrashCheckButton, tree.metaData.useTrash);
+  HNHUISetStateFromBool(self.enableTrashCheckButton, tree.metaData.useTrash);
   self.selectTrashGoupPopUpButton.enabled = tree.metaData.useTrash;
   [self.enableTrashCheckButton bind:NSValueBinding toObject:self.selectTrashGoupPopUpButton withKeyPath:NSEnabledBinding options:nil];
   [self _updateTrashFolders:tree];
@@ -200,8 +200,8 @@
   self.defaultUsernameTextField.editable = YES;
   [self _updateTemplateGroup:tree];
   
-  HNHSetStateFromBool(self.enforceKeyChangeCheckButton, tree.metaData.enforceMasterKeyChange);
-  HNHSetStateFromBool(self.recommendKeyChangeCheckButton, tree.metaData.recommendMasterKeyChange);
+  HNHUISetStateFromBool(self.enforceKeyChangeCheckButton, tree.metaData.enforceMasterKeyChange);
+  HNHUISetStateFromBool(self.recommendKeyChangeCheckButton, tree.metaData.recommendMasterKeyChange);
   [self.enforceKeyChangeIntervalTextField setEnabled:tree.metaData.enforceMasterKeyChange];
   [self.recommendKeyChangeIntervalTextField setEnabled:tree.metaData.recommendMasterKeyChange];
 

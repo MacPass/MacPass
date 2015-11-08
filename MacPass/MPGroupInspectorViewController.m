@@ -39,7 +39,7 @@
 }
 
 - (void)awakeFromNib {
-  HNHScrollView *scrollView = (HNHScrollView *)self.view;
+  HNHUIScrollView *scrollView = (HNHUIScrollView *)self.view;
   
   scrollView.actAsFlipped = NO;
   scrollView.showBottomShadow = NO;
