@@ -26,7 +26,6 @@
 		4C17F105184E630200E85625 /* 14_BatteryTemplate.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 4C17F104184E630200E85625 /* 14_BatteryTemplate.pdf */; };
 		4C17F108184E6B6C00E85625 /* 31_PrintTemplate.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 4C17F106184E6B6C00E85625 /* 31_PrintTemplate.pdf */; };
 		4C17F109184E6B6C00E85625 /* 30_TerminalTemplate.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 4C17F107184E6B6C00E85625 /* 30_TerminalTemplate.pdf */; };
-		4C19E503178E2871002F2CD0 /* MPDatabasePasswordAndKeyfile.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C19E502178E2871002F2CD0 /* MPDatabasePasswordAndKeyfile.m */; };
 		4C1DDCDD1711ECEB00C98DA3 /* PasswordCreatorWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4C1DDCDC1711ECEB00C98DA3 /* PasswordCreatorWindow.xib */; };
 		4C1E9885185F71A800943563 /* MPContextBarViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C1E9884185F71A800943563 /* MPContextBarViewController.m */; };
 		4C1FA07B18231900003A3F8C /* MPDocument+Autotype.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C1FA07A18231900003A3F8C /* MPDocument+Autotype.m */; };
@@ -202,6 +201,8 @@
 		4CCA8E9B18D91ED9001A6754 /* Quartz.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4CCA8E9A18D91ED9001A6754 /* Quartz.framework */; };
 		4CCEDE2A179F203B008402BE /* MPOutlineView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CCEDE29179F203B008402BE /* MPOutlineView.m */; };
 		4CCEDE2E179F213B008402BE /* MPNotifications.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CCEDE2D179F213B008402BE /* MPNotifications.m */; };
+		4CCFA13D1BF0CC7A0078E0A1 /* Test_Password_1234.kdb in Resources */ = {isa = PBXBuildFile; fileRef = 4CCFA1321BF0CC7A0078E0A1 /* Test_Password_1234.kdb */; };
+		4CCFA13E1BF0CC7A0078E0A1 /* Test_Password_1234.kdbx in Resources */ = {isa = PBXBuildFile; fileRef = 4CCFA1331BF0CC7A0078E0A1 /* Test_Password_1234.kdbx */; };
 		4CD2B9061849424B0051B395 /* MPAutotypeContext.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CD2B9051849424B0051B395 /* MPAutotypeContext.m */; };
 		4CD5D705177A5F3300100649 /* MPDatabaseSettingsWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CD5D704177A5F3300100649 /* MPDatabaseSettingsWindowController.m */; };
 		4CD7223B17A7CB0700F5A1E1 /* MPWorkflowSettingsController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CD7223A17A7CB0700F5A1E1 /* MPWorkflowSettingsController.m */; };
@@ -382,7 +383,6 @@
 		4C17F104184E630200E85625 /* 14_BatteryTemplate.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = 14_BatteryTemplate.pdf; sourceTree = "<group>"; };
 		4C17F106184E6B6C00E85625 /* 31_PrintTemplate.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = 31_PrintTemplate.pdf; sourceTree = "<group>"; };
 		4C17F107184E6B6C00E85625 /* 30_TerminalTemplate.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = 30_TerminalTemplate.pdf; sourceTree = "<group>"; };
-		4C19E502178E2871002F2CD0 /* MPDatabasePasswordAndKeyfile.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MPDatabasePasswordAndKeyfile.m; sourceTree = "<group>"; };
 		4C1DDCDC1711ECEB00C98DA3 /* PasswordCreatorWindow.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PasswordCreatorWindow.xib; sourceTree = "<group>"; };
 		4C1E9883185F71A800943563 /* MPContextBarViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MPContextBarViewController.h; sourceTree = "<group>"; };
 		4C1E9884185F71A800943563 /* MPContextBarViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MPContextBarViewController.m; sourceTree = "<group>"; };
@@ -665,6 +665,8 @@
 		4CCEDE29179F203B008402BE /* MPOutlineView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MPOutlineView.m; sourceTree = "<group>"; };
 		4CCEDE2C179F2122008402BE /* MPNotifications.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MPNotifications.h; sourceTree = "<group>"; };
 		4CCEDE2D179F213B008402BE /* MPNotifications.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MPNotifications.m; sourceTree = "<group>"; };
+		4CCFA1321BF0CC7A0078E0A1 /* Test_Password_1234.kdb */ = {isa = PBXFileReference; lastKnownFileType = file; path = Test_Password_1234.kdb; sourceTree = "<group>"; };
+		4CCFA1331BF0CC7A0078E0A1 /* Test_Password_1234.kdbx */ = {isa = PBXFileReference; lastKnownFileType = file; path = Test_Password_1234.kdbx; sourceTree = "<group>"; };
 		4CD2B9041849424B0051B395 /* MPAutotypeContext.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MPAutotypeContext.h; sourceTree = "<group>"; };
 		4CD2B9051849424B0051B395 /* MPAutotypeContext.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MPAutotypeContext.m; sourceTree = "<group>"; };
 		4CD5D703177A5F3300100649 /* MPDatabaseSettingsWindowController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MPDatabaseSettingsWindowController.h; sourceTree = "<group>"; };
@@ -1027,7 +1029,11 @@
 		4C45FB1E178E09ED0010007D /* MacPassTests */ = {
 			isa = PBXGroup;
 			children = (
-				4C4B6E3C1B5E24870082EEF2 /* MacPass */,
+				4CCFA12C1BF0CC7A0078E0A1 /* Databases */,
+				4C10207E1B750E2F00BFCD59 /* MPTestAutotype.m */,
+				4C45FB2C178E0BCB0010007D /* MPDatabaseLoading.m */,
+				4C45FB2F178E0CE20010007D /* MPTestDocument.m */,
+				4C6BC65F1A36717E00BDDF3D /* MPDatabaseSearch.m */,
 				4C45FB1F178E09ED0010007D /* Supporting Files */,
 			);
 			path = MacPassTests;
@@ -1056,18 +1062,6 @@
 				4CFB18E318A17FA20097A34B /* MPUpdateSettingsController.m */,
 			);
 			name = Settings;
-			sourceTree = "<group>";
-		};
-		4C4B6E3C1B5E24870082EEF2 /* MacPass */ = {
-			isa = PBXGroup;
-			children = (
-				4C10207E1B750E2F00BFCD59 /* MPTestAutotype.m */,
-				4C45FB2C178E0BCB0010007D /* MPDatabaseLoading.m */,
-				4C45FB2F178E0CE20010007D /* MPTestDocument.m */,
-				4C19E502178E2871002F2CD0 /* MPDatabasePasswordAndKeyfile.m */,
-				4C6BC65F1A36717E00BDDF3D /* MPDatabaseSearch.m */,
-			);
-			name = MacPass;
 			sourceTree = "<group>";
 		};
 		4C4B7EF517A46815000234C7 /* Inspector */ = {
@@ -1365,6 +1359,15 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
+		4CCFA12C1BF0CC7A0078E0A1 /* Databases */ = {
+			isa = PBXGroup;
+			children = (
+				4CCFA1321BF0CC7A0078E0A1 /* Test_Password_1234.kdb */,
+				4CCFA1331BF0CC7A0078E0A1 /* Test_Password_1234.kdbx */,
+			);
+			path = Databases;
+			sourceTree = "<group>";
+		};
 		4CDB556616E29A8A00635918 /* Controls */ = {
 			isa = PBXGroup;
 			children = (
@@ -1631,6 +1634,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				4C45FB23178E09ED0010007D /* InfoPlist.strings in Resources */,
+				4CCFA13E1BF0CC7A0078E0A1 /* Test_Password_1234.kdbx in Resources */,
+				4CCFA13D1BF0CC7A0078E0A1 /* Test_Password_1234.kdb in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1778,7 +1783,6 @@
 			files = (
 				4C45FB2D178E0BCB0010007D /* MPDatabaseLoading.m in Sources */,
 				4C45FB30178E0CE20010007D /* MPTestDocument.m in Sources */,
-				4C19E503178E2871002F2CD0 /* MPDatabasePasswordAndKeyfile.m in Sources */,
 				4C6BC6601A36717E00BDDF3D /* MPDatabaseSearch.m in Sources */,
 				4C10207F1B750E2F00BFCD59 /* MPTestAutotype.m in Sources */,
 			);
