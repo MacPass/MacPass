@@ -44,11 +44,9 @@
   return [[NSArray alloc] initWithArray:[entries filteredArrayUsingPredicate:predicate] copyItems:YES];
 }
 
-
 - (NSArray *)filteredGroupsUsingBlock:(NodeMatchBlock)matchBlock {
   return nil;
 }
-
 
 - (void)_loadPlugins {
 

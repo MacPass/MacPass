@@ -30,6 +30,8 @@
 		4C1E9885185F71A800943563 /* MPContextBarViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C1E9884185F71A800943563 /* MPContextBarViewController.m */; };
 		4C1FA07B18231900003A3F8C /* MPDocument+Autotype.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C1FA07A18231900003A3F8C /* MPDocument+Autotype.m */; };
 		4C224B4217DFCB2400FF6AEE /* MPNumericalInputFormatter.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C224B4117DFCB2400FF6AEE /* MPNumericalInputFormatter.m */; };
+		4C25703F1BF11C2300D39416 /* MPPluginSettingsController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C25703D1BF11C2300D39416 /* MPPluginSettingsController.m */; };
+		4C2570401BF11C2300D39416 /* PluginSettings.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4C25703E1BF11C2300D39416 /* PluginSettings.xib */; };
 		4C25D58716CF0FAA00F6806C /* EntryView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4C25D58616CF0FAA00F6806C /* EntryView.xib */; };
 		4C26C33F18D8C92100CF1A1C /* MPTemporaryFileStorage.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C26C33E18D8C92100CF1A1C /* MPTemporaryFileStorage.m */; };
 		4C26C34B18D8D5A300CF1A1C /* MPPreviewViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C26C34918D8D5A300CF1A1C /* MPPreviewViewController.m */; };
@@ -391,6 +393,9 @@
 		4C21F29F195B3A48002D610D /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/MainMenu.strings; sourceTree = "<group>"; };
 		4C224B4017DFCB2300FF6AEE /* MPNumericalInputFormatter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MPNumericalInputFormatter.h; sourceTree = "<group>"; };
 		4C224B4117DFCB2400FF6AEE /* MPNumericalInputFormatter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MPNumericalInputFormatter.m; sourceTree = "<group>"; };
+		4C25703C1BF11C2300D39416 /* MPPluginSettingsController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MPPluginSettingsController.h; sourceTree = "<group>"; };
+		4C25703D1BF11C2300D39416 /* MPPluginSettingsController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MPPluginSettingsController.m; sourceTree = "<group>"; };
+		4C25703E1BF11C2300D39416 /* PluginSettings.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PluginSettings.xib; sourceTree = "<group>"; };
 		4C25D58616CF0FAA00F6806C /* EntryView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = EntryView.xib; sourceTree = "<group>"; };
 		4C26C33D18D8C92100CF1A1C /* MPTemporaryFileStorage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MPTemporaryFileStorage.h; sourceTree = "<group>"; };
 		4C26C33E18D8C92100CF1A1C /* MPTemporaryFileStorage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MPTemporaryFileStorage.m; sourceTree = "<group>"; };
@@ -1060,6 +1065,8 @@
 				4CD7223A17A7CB0700F5A1E1 /* MPWorkflowSettingsController.m */,
 				4CFB18E218A17FA20097A34B /* MPUpdateSettingsController.h */,
 				4CFB18E318A17FA20097A34B /* MPUpdateSettingsController.m */,
+				4C25703C1BF11C2300D39416 /* MPPluginSettingsController.h */,
+				4C25703D1BF11C2300D39416 /* MPPluginSettingsController.m */,
 			);
 			name = Settings;
 			sourceTree = "<group>";
@@ -1453,6 +1460,7 @@
 				6021FE5818E1429500C3BC51 /* IntegrationSettings.xib */,
 				6021FE6318E15D9100C3BC51 /* WorkflowSettings.xib */,
 				6021FE6E18E15E6D00C3BC51 /* UpdateSettings.xib */,
+				4C25703E1BF11C2300D39416 /* PluginSettings.xib */,
 			);
 			name = Settings;
 			sourceTree = "<group>";
@@ -1754,6 +1762,7 @@
 				4C7ABA4E17BAEC7000FF5799 /* addEntryTemplate.pdf in Resources */,
 				4C53A7A51864C39D000DFF0D /* KPKLocalizable.strings in Resources */,
 				4C3826761AD04C24007D7D67 /* harddiskTemplate.pdf in Resources */,
+				4C2570401BF11C2300D39416 /* PluginSettings.xib in Resources */,
 				4C7F8B681A10B68400CCB83D /* WelcomeWindow.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1848,6 +1857,7 @@
 				4C3C4EA218D6FEA100153127 /* NSValueTransformer+TransformerKit.m in Sources */,
 				4CA0F3ED1A3074B50067C0E5 /* MPWindowTitleComboBoxDelegate.m in Sources */,
 				4CF78064176E75AD0032EE71 /* MPIntegrationSettingsController.m in Sources */,
+				4C25703F1BF11C2300D39416 /* MPPluginSettingsController.m in Sources */,
 				4CF6C711176F4533007A811D /* MPStringLengthValueTransformer.m in Sources */,
 				4CD5D705177A5F3300100649 /* MPDatabaseSettingsWindowController.m in Sources */,
 				4C74DD07177BD1640034A9DB /* MPCustomFieldView.m in Sources */,

@@ -11,6 +11,7 @@
 #import "MPIntegrationSettingsController.h"
 #import "MPWorkflowSettingsController.h"
 #import "MPUpdateSettingsController.h"
+#import "MPPluginSettingsController.h"
 
 @interface MPSettingsWindowController () {
   NSString *lastIdentifier;
@@ -74,9 +75,9 @@
   if([tab respondsToSelector:@selector(willShowTab)]) {
     [tab willShowTab];
   }
-  NSView *contentView = [[self window] contentView];
-  if( [[contentView subviews] count] == 1) {
-    [[contentView subviews][0] removeFromSuperview];
+  NSView *contentView = self.window.contentView;
+  if( contentView.subviews.count == 1) {
+    [contentView.subviews.firstObject removeFromSuperview];
   }
   [contentView addSubview:tabView];
   [contentView layout];
@@ -93,7 +94,7 @@
   if([tab respondsToSelector:@selector(didShowTab)]) {
     [tab didShowTab];
   }
-  [[self window] makeKeyAndOrderFront:[self window]];
+  [self.window makeKeyAndOrderFront:nil];
 }
 
 - (void)_addSettingsTab:(id<MPSettingsTab>)tabController {
@@ -109,7 +110,7 @@
                                                              userInfo:nil];
     @throw controllerException;
   }
-  NSString *identifier = [tabController identifier];
+  NSString *identifier = tabController.identifier;
   if(nil != self.settingsController[identifier]) {
     NSLog(@"Warning: Settingscontroller with identifier %@ already present!", identifier);
   }
@@ -119,22 +120,17 @@
 }
 
 - (void)_setupDefaultSettingsTabs {
-  MPGeneralSettingsController *generalSettingsController = [[MPGeneralSettingsController alloc] init];
-  MPIntegrationSettingsController *integrationSettingsController = [[MPIntegrationSettingsController alloc] init];
-  MPWorkflowSettingsController *workflowSettingsController = [[MPWorkflowSettingsController alloc] init];
-  MPUpdateSettingsController *updateSettingsController = [[MPUpdateSettingsController alloc] init];
-  
-  [self _addSettingsTab:generalSettingsController];
-  [self _addSettingsTab:integrationSettingsController];
-  [self _addSettingsTab:workflowSettingsController];
-  [self _addSettingsTab:updateSettingsController];
-
-  self.defaultToolbarItems = @[ [generalSettingsController identifier],
-                                [integrationSettingsController identifier],
-                                [workflowSettingsController identifier],
-                                [updateSettingsController identifier]];
-  
-
+  NSArray *controllers = @[ [[MPGeneralSettingsController alloc] init],
+                         [[MPIntegrationSettingsController alloc] init],
+                         [[MPWorkflowSettingsController alloc] init],
+                         [[MPUpdateSettingsController alloc] init],
+                         [[MPPluginSettingsController alloc] init] ];
+  NSMutableArray *identifier = [[NSMutableArray alloc] initWithCapacity:controllers.count];
+  for(id<MPSettingsTab> controller in controllers) {
+    [self _addSettingsTab:controller];
+    [identifier addObject:controller.identifier];
+  }
+  self.defaultToolbarItems = [identifier copy];
 }
 
 - (void)_showSettingsTab:(id)sender {
@@ -147,7 +143,7 @@
 #pragma mark NSToolbarDelegate
 
 - (NSArray *)toolbarAllowedItemIdentifiers:(NSToolbar *)toolbar {
-  return [self.settingsController allKeys];
+  return self.settingsController.allKeys;
 }
 
 - (NSArray *)toolbarDefaultItemIdentifiers:(NSToolbar *)toolbar {
@@ -155,7 +151,7 @@
 }
 
 - (NSArray *)toolbarSelectableItemIdentifiers:(NSToolbar *)toolbar {
-  return [self.settingsController allKeys];
+  return self.settingsController.allKeys;
 }
 
 - (NSToolbarItem *)toolbar:(NSToolbar *)toolbar itemForItemIdentifier:(NSString *)itemIdentifier willBeInsertedIntoToolbar:(BOOL)flag {
@@ -168,19 +164,19 @@
      */
     id<MPSettingsTab> tab = self.settingsController[itemIdentifier];
     if([tab respondsToSelector:@selector(label)]) {
-      [item setLabel:[tab label]];
+      item.label = [tab label];
     }
     else {
-      [item setLabel:itemIdentifier];
+      item.label = itemIdentifier;
     }
     if([tab respondsToSelector:@selector(image)]) {
-      [item setImage:[tab image]];
+      item.image = [tab image];
     }
     else {
-      [item setImage:[NSImage imageNamed:NSImageNameCaution ]];
+      item.image = [NSImage imageNamed:NSImageNameCaution];
     }
     
-    [item setAction:@selector(_showSettingsTab:)];
+    item.action = @selector(_showSettingsTab:);
     self.toolbarItems[itemIdentifier] = item;
   }
   return item;
