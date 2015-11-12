@@ -10,16 +10,46 @@
 #import "MPPluginManager.h"
 #import "MPPlugin.h"
 
+#import "MPSettingsHelper.h"
+
 NSString *const _kMPPluginTableNameColumn = @"Name";
 
 @interface MPPluginSettingsController () <NSTableViewDataSource, NSTableViewDelegate>
 
 @property (weak) IBOutlet NSTableView *pluginTableView;
 @property (weak) IBOutlet NSView *settingsView;
+@property (weak) IBOutlet NSButton *loadInsecurePlugsinCheckButton;
 
 @end
 
 @implementation MPPluginSettingsController
+
+- (instancetype)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil {
+  self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
+  if(self) {
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(_didChangePlugins:)
+                                                 name:MPPluginManagerWillLoadPlugin
+                                               object:[MPPluginManager sharedManager]];
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(_didChangePlugins:)
+                                                 name:MPPluginManagerDidLoadPlugin
+                                               object:[MPPluginManager sharedManager]];
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(_didChangePlugins:)
+                                                 name:MPPluginManagerWillUnloadPlugin
+                                               object:[MPPluginManager sharedManager]];
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(_didChangePlugins:)
+                                                 name:MPPluginManagerDidUnloadPlugin
+                                               object:[MPPluginManager sharedManager]];
+  }
+  return self;
+}
+
+- (void)dealloc {
+  [[NSNotificationCenter defaultCenter] removeObserver:self];
+}
 
 - (NSString *)nibName {
   return @"PluginSettings";
@@ -39,10 +69,15 @@ NSString *const _kMPPluginTableNameColumn = @"Name";
 
 - (void)didLoadView {
   self.pluginTableView.tableColumns[0].identifier = _kMPPluginTableNameColumn;
-  
+
   self.pluginTableView.delegate = self;
   self.pluginTableView.dataSource = self;
-
+  
+  [self.loadInsecurePlugsinCheckButton bind:NSValueBinding
+                                   toObject:[NSUserDefaultsController sharedUserDefaultsController]
+                                withKeyPath:[MPSettingsHelper defaultControllerPathForKey:kMPSettingsKeyLoadUnsecurePlugins]
+                                    options:nil];
+  
 }
 
 - (NSInteger)numberOfRowsInTableView:(NSTableView *)tableView {
@@ -68,8 +103,8 @@ NSString *const _kMPPluginTableNameColumn = @"Name";
     [self.settingsView addSubview:viewController.view];
     NSDictionary *dict = @{ @"view" : viewController.view,
                             @"table" : self.pluginTableView.enclosingScrollView };
-    [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-0-[view]-0-|" options:0 metrics:nil views:dict]];
-    [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-0-[view]-0-|" options:0 metrics:nil views:dict]];
+    [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-[view]-|" options:0 metrics:nil views:dict]];
+    [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-[view]-|" options:0 metrics:nil views:dict]];
   }
 }
 
@@ -86,5 +121,11 @@ NSString *const _kMPPluginTableNameColumn = @"Name";
   [self showSettingsForPlugin:[self pluginForRow:table.selectedRow]];
 }
 
+
+- (void)_didChangePlugins:(NSNotification *)notification {
+  /* better way? */
+  [self.pluginTableView deselectAll:self];
+  [self.pluginTableView reloadData];
+}
 
 @end

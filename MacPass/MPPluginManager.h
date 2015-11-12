@@ -8,12 +8,20 @@
 
 #import <Foundation/Foundation.h>
 
+FOUNDATION_EXPORT NSString *const MPPluginManagerWillLoadPlugin;
+FOUNDATION_EXPORT NSString *const MPPluginManagerDidLoadPlugin;
+FOUNDATION_EXPORT NSString *const MPPluginManagerWillUnloadPlugin;
+FOUNDATION_EXPORT NSString *const MPPluginManagerDidUnloadPlugin;
+
+FOUNDATION_EXPORT NSString *const MPPluginManagerPluginBundleIdentifiyerKey;
+
 @class KPKNode;
 @class MPPlugin;
 
 @interface MPPluginManager : NSObject
 
 @property (readonly, copy) NSArray <MPPlugin __kindof*> *plugins;
+@property (nonatomic, readonly) BOOL loadUnsecurePlugins;
 
 typedef BOOL (^NodeMatchBlock)(KPKNode *aNode);
 
@@ -23,8 +31,5 @@ typedef BOOL (^NodeMatchBlock)(KPKNode *aNode);
 
 - (NSArray *)filteredEntriesUsingBlock:(NodeMatchBlock) matchBlock;
 - (NSArray *)filteredGroupsUsingBlock:(NodeMatchBlock) matchBlock;
-
-- (void)loadPlugins;
-- (void)installPluginAtURL:(NSURL *)url;
 
 @end

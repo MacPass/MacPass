@@ -16,6 +16,7 @@
 		4C0B038C18E36DA400B9F9C9 /* MPFixAutotypeWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C0B038A18E36DA400B9F9C9 /* MPFixAutotypeWindowController.m */; };
 		4C0B038D18E36DA400B9F9C9 /* FixAutotypeWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4C0B038B18E36DA400B9F9C9 /* FixAutotypeWindow.xib */; };
 		4C0C59F118B17F10009C7B76 /* DDHotKeyUtilities.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C0C59EF18B17F10009C7B76 /* DDHotKeyUtilities.m */; };
+		4C0DBEF51BF508DE00F9B287 /* PluginSettings.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4C0DBEF71BF508DE00F9B287 /* PluginSettings.xib */; };
 		4C0DD6C618B2A44700FCB193 /* AutotypeCandidateSelectionWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4C0DD6C518B2A44700FCB193 /* AutotypeCandidateSelectionWindow.xib */; };
 		4C0F647817B6B65E00D9522A /* MPSheetWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C0F647717B6B65E00D9522A /* MPSheetWindowController.m */; };
 		4C0F647B17B6BC9C00D9522A /* MPSavePanelAccessoryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C0F647A17B6BC9C00D9522A /* MPSavePanelAccessoryViewController.m */; };
@@ -31,7 +32,6 @@
 		4C1FA07B18231900003A3F8C /* MPDocument+Autotype.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C1FA07A18231900003A3F8C /* MPDocument+Autotype.m */; };
 		4C224B4217DFCB2400FF6AEE /* MPNumericalInputFormatter.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C224B4117DFCB2400FF6AEE /* MPNumericalInputFormatter.m */; };
 		4C25703F1BF11C2300D39416 /* MPPluginSettingsController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C25703D1BF11C2300D39416 /* MPPluginSettingsController.m */; };
-		4C2570401BF11C2300D39416 /* PluginSettings.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4C25703E1BF11C2300D39416 /* PluginSettings.xib */; };
 		4C25D58716CF0FAA00F6806C /* EntryView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4C25D58616CF0FAA00F6806C /* EntryView.xib */; };
 		4C26C33F18D8C92100CF1A1C /* MPTemporaryFileStorage.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C26C33E18D8C92100CF1A1C /* MPTemporaryFileStorage.m */; };
 		4C26C34B18D8D5A300CF1A1C /* MPPreviewViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C26C34918D8D5A300CF1A1C /* MPPreviewViewController.m */; };
@@ -373,6 +373,7 @@
 		4C0B038B18E36DA400B9F9C9 /* FixAutotypeWindow.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FixAutotypeWindow.xib; sourceTree = "<group>"; };
 		4C0C59EF18B17F10009C7B76 /* DDHotKeyUtilities.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DDHotKeyUtilities.m; path = DDHotKey/DDHotKeyUtilities.m; sourceTree = "<group>"; };
 		4C0C59F018B17F10009C7B76 /* DDHotKeyUtilities.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; name = DDHotKeyUtilities.h; path = DDHotKey/DDHotKeyUtilities.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
+		4C0DBEF61BF508DE00F9B287 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/PluginSettings.xib; sourceTree = "<group>"; };
 		4C0DD6C518B2A44700FCB193 /* AutotypeCandidateSelectionWindow.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AutotypeCandidateSelectionWindow.xib; sourceTree = "<group>"; };
 		4C0F647617B6B65E00D9522A /* MPSheetWindowController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MPSheetWindowController.h; sourceTree = "<group>"; };
 		4C0F647717B6B65E00D9522A /* MPSheetWindowController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MPSheetWindowController.m; sourceTree = "<group>"; };
@@ -397,7 +398,6 @@
 		4C224B4117DFCB2400FF6AEE /* MPNumericalInputFormatter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MPNumericalInputFormatter.m; sourceTree = "<group>"; };
 		4C25703C1BF11C2300D39416 /* MPPluginSettingsController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MPPluginSettingsController.h; sourceTree = "<group>"; };
 		4C25703D1BF11C2300D39416 /* MPPluginSettingsController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MPPluginSettingsController.m; sourceTree = "<group>"; };
-		4C25703E1BF11C2300D39416 /* PluginSettings.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PluginSettings.xib; sourceTree = "<group>"; };
 		4C25D58616CF0FAA00F6806C /* EntryView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = EntryView.xib; sourceTree = "<group>"; };
 		4C26C33D18D8C92100CF1A1C /* MPTemporaryFileStorage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MPTemporaryFileStorage.h; sourceTree = "<group>"; };
 		4C26C33E18D8C92100CF1A1C /* MPTemporaryFileStorage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MPTemporaryFileStorage.m; sourceTree = "<group>"; };
@@ -1466,7 +1466,7 @@
 				6021FE5818E1429500C3BC51 /* IntegrationSettings.xib */,
 				6021FE6318E15D9100C3BC51 /* WorkflowSettings.xib */,
 				6021FE6E18E15E6D00C3BC51 /* UpdateSettings.xib */,
-				4C25703E1BF11C2300D39416 /* PluginSettings.xib */,
+				4C0DBEF71BF508DE00F9B287 /* PluginSettings.xib */,
 			);
 			name = Settings;
 			sourceTree = "<group>";
@@ -1768,7 +1768,7 @@
 				4C7ABA4E17BAEC7000FF5799 /* addEntryTemplate.pdf in Resources */,
 				4C53A7A51864C39D000DFF0D /* KPKLocalizable.strings in Resources */,
 				4C3826761AD04C24007D7D67 /* harddiskTemplate.pdf in Resources */,
-				4C2570401BF11C2300D39416 /* PluginSettings.xib in Resources */,
+				4C0DBEF51BF508DE00F9B287 /* PluginSettings.xib in Resources */,
 				4C7F8B681A10B68400CCB83D /* WelcomeWindow.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1942,6 +1942,14 @@
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
+		4C0DBEF71BF508DE00F9B287 /* PluginSettings.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				4C0DBEF61BF508DE00F9B287 /* Base */,
+			);
+			name = PluginSettings.xib;
+			sourceTree = "<group>";
+		};
 		4C45FB21178E09ED0010007D /* InfoPlist.strings */ = {
 			isa = PBXVariantGroup;
 			children = (

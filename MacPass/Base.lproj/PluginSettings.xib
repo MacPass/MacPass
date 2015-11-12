@@ -3,32 +3,58 @@
     <dependencies>
         <deployment identifier="macosx"/>
         <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="9060"/>
+        <capability name="box content view" minToolsVersion="7.0"/>
     </dependencies>
     <objects>
         <customObject id="-2" userLabel="File's Owner" customClass="MPPluginSettingsController">
             <connections>
+                <outlet property="loadInsecurePlugsinCheckButton" destination="CqP-oK-S8k" id="YET-o6-7Cc"/>
                 <outlet property="pluginTableView" destination="Jyk-V9-KXR" id="qnk-aD-CkH"/>
-                <outlet property="settingsView" destination="RyZ-1L-3WB" id="MZn-vo-eTf"/>
+                <outlet property="settingsView" destination="tD5-Na-7XI" id="Pa0-Tt-20U"/>
                 <outlet property="view" destination="Hz6-mo-xeY" id="0bl-1N-x8E"/>
             </connections>
         </customObject>
         <customObject id="-1" userLabel="First Responder" customClass="FirstResponder"/>
         <customObject id="-3" userLabel="Application" customClass="NSObject"/>
         <customView translatesAutoresizingMaskIntoConstraints="NO" id="Hz6-mo-xeY">
-            <rect key="frame" x="0.0" y="0.0" width="501" height="240"/>
+            <rect key="frame" x="0.0" y="0.0" width="520" height="248"/>
             <subviews>
-                <customView translatesAutoresizingMaskIntoConstraints="NO" id="RyZ-1L-3WB">
-                    <rect key="frame" x="178" y="20" width="303" height="200"/>
+                <box misplaced="YES" title="Box" borderType="line" titlePosition="noTitle" translatesAutoresizingMaskIntoConstraints="NO" id="vBs-Ga-aq0">
+                    <rect key="frame" x="175" y="16" width="325" height="156"/>
+                    <view key="contentView" id="tD5-Na-7XI">
+                        <rect key="frame" x="1" y="1" width="323" height="154"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <animations/>
+                    </view>
                     <animations/>
-                </customView>
+                    <color key="borderColor" white="0.0" alpha="0.41999999999999998" colorSpace="calibratedWhite"/>
+                    <color key="fillColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                </box>
+                <button translatesAutoresizingMaskIntoConstraints="NO" id="CqP-oK-S8k">
+                    <rect key="frame" x="18" y="212" width="159" height="18"/>
+                    <animations/>
+                    <buttonCell key="cell" type="check" title="Load unsecure Plugins" bezelStyle="regularSquare" imagePosition="left" state="on" inset="2" id="C4B-6z-ZqX">
+                        <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                        <font key="font" metaFont="system"/>
+                    </buttonCell>
+                </button>
+                <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="aoG-FD-ds8">
+                    <rect key="frame" x="18" y="178" width="484" height="28"/>
+                    <animations/>
+                    <textFieldCell key="cell" controlSize="small" sendsActionOnEndEditing="YES" title="If enabled, only properly signed Plugins will be loaded. Keep in mind, that Plugins have full access to your data!" id="2bX-8S-9XM">
+                        <font key="font" metaFont="smallSystem"/>
+                        <color key="textColor" name="disabledControlTextColor" catalog="System" colorSpace="catalog"/>
+                        <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                    </textFieldCell>
+                </textField>
                 <scrollView autohidesScrollers="YES" horizontalLineScroll="19" horizontalPageScroll="10" verticalLineScroll="19" verticalPageScroll="10" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wl5-yF-mBn">
-                    <rect key="frame" x="20" y="20" width="150" height="200"/>
+                    <rect key="frame" x="20" y="20" width="150" height="150"/>
                     <clipView key="contentView" id="0PQ-0m-LPv">
-                        <rect key="frame" x="1" y="1" width="148" height="198"/>
+                        <rect key="frame" x="1" y="1" width="148" height="148"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView verticalHuggingPriority="750" allowsExpansionToolTips="YES" columnAutoresizingStyle="lastColumnOnly" columnReordering="NO" columnSelection="YES" columnResizing="NO" multipleSelection="NO" autosaveColumns="NO" rowSizeStyle="automatic" viewBased="YES" id="Jyk-V9-KXR">
-                                <rect key="frame" x="0.0" y="0.0" width="148" height="0.0"/>
+                                <rect key="frame" x="0.0" y="0.0" width="148" height="148"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <animations/>
                                 <size key="intercellSpacing" width="3" height="2"/>
@@ -52,8 +78,8 @@
                                                 <rect key="frame" x="1" y="1" width="145" height="17"/>
                                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                 <subviews>
-                                                    <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="lcQ-hj-Tcp">
-                                                        <rect key="frame" x="0.0" y="0.0" width="100" height="17"/>
+                                                    <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="lcQ-hj-Tcp">
+                                                        <rect key="frame" x="0.0" y="0.0" width="147" height="17"/>
                                                         <animations/>
                                                         <textFieldCell key="cell" lineBreakMode="truncatingTail" sendsActionOnEndEditing="YES" title="Table View Cell" id="uLo-aP-Zyb">
                                                             <font key="font" metaFont="system"/>
@@ -62,6 +88,11 @@
                                                         </textFieldCell>
                                                     </textField>
                                                 </subviews>
+                                                <constraints>
+                                                    <constraint firstAttribute="trailing" secondItem="lcQ-hj-Tcp" secondAttribute="trailing" id="0Fj-Mh-WAj"/>
+                                                    <constraint firstItem="lcQ-hj-Tcp" firstAttribute="leading" secondItem="ksr-nD-o30" secondAttribute="leading" constant="2" id="3Ey-Pz-9eS"/>
+                                                    <constraint firstItem="lcQ-hj-Tcp" firstAttribute="centerY" secondItem="ksr-nD-o30" secondAttribute="centerY" id="nl4-Wi-CIO"/>
+                                                </constraints>
                                                 <animations/>
                                                 <connections>
                                                     <outlet property="textField" destination="lcQ-hj-Tcp" id="n9m-kx-gWy"/>
@@ -77,7 +108,7 @@
                     </clipView>
                     <constraints>
                         <constraint firstAttribute="width" constant="150" id="7Wq-9K-BgW"/>
-                        <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="200" id="Zhj-a1-fc5"/>
+                        <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="150" id="fGs-bu-lXJ"/>
                     </constraints>
                     <animations/>
                     <scroller key="horizontalScroller" hidden="YES" verticalHuggingPriority="750" horizontal="YES" id="C0h-Cx-fXX">
@@ -93,16 +124,21 @@
                 </scrollView>
             </subviews>
             <constraints>
-                <constraint firstItem="RyZ-1L-3WB" firstAttribute="leading" secondItem="Jyk-V9-KXR" secondAttribute="trailing" constant="9" id="0fX-KU-NhZ"/>
-                <constraint firstAttribute="trailing" secondItem="RyZ-1L-3WB" secondAttribute="trailing" constant="20" id="3UR-Be-L2K"/>
-                <constraint firstAttribute="bottom" secondItem="wl5-yF-mBn" secondAttribute="bottom" constant="20" id="7Wl-rl-S6F"/>
-                <constraint firstItem="wl5-yF-mBn" firstAttribute="top" secondItem="Hz6-mo-xeY" secondAttribute="top" constant="20" id="HFD-Sm-3aB"/>
-                <constraint firstItem="RyZ-1L-3WB" firstAttribute="top" secondItem="Hz6-mo-xeY" secondAttribute="top" constant="20" id="Y0h-Pg-tZ3"/>
-                <constraint firstItem="wl5-yF-mBn" firstAttribute="leading" secondItem="Hz6-mo-xeY" secondAttribute="leading" constant="20" id="eqA-Pl-0j5"/>
-                <constraint firstAttribute="bottom" secondItem="RyZ-1L-3WB" secondAttribute="bottom" constant="20" id="rkB-Iz-nN5"/>
+                <constraint firstItem="CqP-oK-S8k" firstAttribute="top" secondItem="Hz6-mo-xeY" secondAttribute="top" constant="20" id="1Rj-zS-7t2"/>
+                <constraint firstItem="vBs-Ga-aq0" firstAttribute="height" secondItem="wl5-yF-mBn" secondAttribute="height" id="8ZG-7i-tAO"/>
+                <constraint firstAttribute="trailing" secondItem="aoG-FD-ds8" secondAttribute="trailing" constant="20" symbolic="YES" id="95O-Jh-0KG"/>
+                <constraint firstItem="wl5-yF-mBn" firstAttribute="top" secondItem="aoG-FD-ds8" secondAttribute="bottom" constant="8" symbolic="YES" id="BeI-8A-KLq"/>
+                <constraint firstAttribute="bottom" secondItem="wl5-yF-mBn" secondAttribute="bottom" constant="20" symbolic="YES" id="JEh-Vt-Nyb"/>
+                <constraint firstItem="wl5-yF-mBn" firstAttribute="leading" secondItem="Hz6-mo-xeY" secondAttribute="leading" constant="20" id="JeU-Ru-xzh"/>
+                <constraint firstAttribute="trailing" secondItem="vBs-Ga-aq0" secondAttribute="trailing" constant="20" id="LUb-Un-azV"/>
+                <constraint firstItem="aoG-FD-ds8" firstAttribute="leading" secondItem="CqP-oK-S8k" secondAttribute="leading" id="NcW-ya-DPx"/>
+                <constraint firstItem="vBs-Ga-aq0" firstAttribute="leading" secondItem="wl5-yF-mBn" secondAttribute="trailing" constant="8" id="bf8-gO-xQc"/>
+                <constraint firstItem="wl5-yF-mBn" firstAttribute="top" secondItem="vBs-Ga-aq0" secondAttribute="top" id="dO2-W1-V2z"/>
+                <constraint firstItem="CqP-oK-S8k" firstAttribute="leading" secondItem="Hz6-mo-xeY" secondAttribute="leading" constant="20" id="rN1-3Z-BBi"/>
+                <constraint firstItem="aoG-FD-ds8" firstAttribute="top" secondItem="CqP-oK-S8k" secondAttribute="bottom" constant="8" symbolic="YES" id="zSW-h3-BrT"/>
             </constraints>
             <animations/>
-            <point key="canvasLocation" x="-52.5" y="175"/>
+            <point key="canvasLocation" x="-556.5" y="166.5"/>
         </customView>
     </objects>
 </document>

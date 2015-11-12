@@ -156,8 +156,8 @@ NSString *const MPDidChangeStoredKeyFilesSettings = @"com.hicknhack.macpass.MPDi
   /* Daemon instanziieren */
   [MPLockDaemon defaultDaemon];
   [MPAutotypeDaemon defaultDaemon];
-  /* Load plugins */
-  [[MPPluginManager sharedManager] loadPlugins];
+  /* Create Plugin Manager */
+  [MPPluginManager sharedManager];
 }
 
 #pragma mark -

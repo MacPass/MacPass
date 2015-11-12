@@ -20,8 +20,6 @@ FOUNDATION_EXPORT NSString *const kMPPluginFileExtension;
 @property (copy, readonly) NSString *name;
 @property (copy, readonly) NSString *version;
 
-
-+ (instancetype)pluginWithBundleURL:(NSURL *)url pluginManager:(MPPluginManager *)manager;
 - (instancetype)initWithPluginManager:(MPPluginManager *)manager NS_DESIGNATED_INITIALIZER;
 - (instancetype)init NS_UNAVAILABLE;
 
