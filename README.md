@@ -63,8 +63,8 @@ More Screenshots in the [Wiki](https://github.com/mstarke/MacPass/wiki/Screensho
 
 ##Alternatives
 
-[KeePassX](http://www.keepassx.org) is a Qt based KeePass port. The stable 0.4.3 release only supports the version 1 format. The Alpha can read database version 1 and 2 and write version 2 containers rather nicely.
-It's in active development and open source. Since Alpha 4 the random password generator has found it's way back into the Alpha releases, version 0.4.3 includes one as well. The Alpha fully supports all database 2 features and should be stable enough for daily usage. It can import version 1 into a version 2 file but is unable to natively write version 1 files.
+[KeePassX](http://www.keepassx.org) is a Qt based KeePass port. The stable 0.4.3 release only supports the version 1 format. The Beta can read database version 1 and 2 and write version 2 containers rather nicely.
+It's in active development and open source. The Beta fully supports all database 2 features and should be stable enough for daily usage. It can import version 1 into a version 2 file but is unable to natively write version 1 files.
 
 [KyPass Companion](http://www.kyuran.be/logiciels/kypass4mac/) is a native Cocoa port and offers KeePassHttp compatiblity.
 Should be able to read and write database version 1 and 2. It is closed source and currently available in the Mac App Store. It's rather expensive considering the bugs and missing features. Based on the user reviews it should work. Not all version 2 features are supported. It is unable to convert between database versions.
@@ -135,15 +135,15 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 This Project is based upon the following work:
 
-[KissXML](https://github.com/robbiehanson/KissXML) Copyright 2012 Robbie Hanson. All rights reserved.
+[KeePassKit](https://github.com/mstarke/KeePassKit) Copyright 2012 HicknHack Software GmbH. All rights reserved.
+
+[HNHUi](https://github.com/mstarke/HNHUi) Copyright 2012 HicknHack Software GmbH. All rights reserved.
 
 [MiniKeePass](https://github.com/MiniKeePass/MiniKeePass) Copyright 2011 Jason Rush and John Flanagan. All rights reserved.
 
 [KeePass Database Library](https://github.com/mpowrie/KeePassLib) Copyright 2010 Qiang Yu. All rights reserved.
 
 [PXSourceList](https://github.com/Perspx/PXSourceList) Copyright 2011, Alex Rozanski. All rights reserved.
-
-[CocoaHTTPServer](https://github.com/robbiehanson/CocoaHTTPServer ) Copyright 2011, Deusty, LLC. All rights reserved.
 
 [KSPasswordField](https://github.com/karelia/SecurityInterface) Copyright 2012 Mike Abdullah, Karelia Software. All rights reserved.
 
@@ -156,6 +156,8 @@ This Project is based upon the following work:
 [MJGFoundation](https://github.com/mstarke/MJGFoundation) Licensed under BSD 2-Clause License. Copyright 2011 [Matt Galloway](http://www.galloway.me.uk/). All rights reserved.
 
 [ShortcutRecorder](http://wafflesoftware.net/shortcut/) Copyright 2006—2013 all [Shortcut Recorder contributors](http://wafflesoftware.net/shortcut/contributors/) 
+
+[NSBundle Codesignature Check](http://jedda.me/2012/03/verifying-plugin-bundles-using-code-signing/) Copyright 2014 [Jedda Wignall](http://jedda.me). All rights reserved.
 
 See submodules for additional Licenses
 
