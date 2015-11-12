@@ -22,16 +22,22 @@
 
 @implementation MPLockDaemon
 
-+ (MPLockDaemon *)sharedInstance {
-  static id sharedInstance;
+static MPLockDaemon *_sharedInstance;
+
++ (instancetype)defaultDaemon {
   static dispatch_once_t onceToken;
   dispatch_once(&onceToken, ^{
-    sharedInstance = [[MPLockDaemon alloc] init];
+    _sharedInstance = [[MPLockDaemon alloc] _init];
   });
-  return sharedInstance;
+  return _sharedInstance;
 }
 
-- (id)init {
+- (instancetype)init {
+  return nil;
+}
+
+- (instancetype)_init {
+  NSAssert(_sharedInstance == nil, @"Multiple instances of MPLockDaemon not allowed!");
   self = [super init];
   if (self) {
     NSUserDefaultsController *defaultsController = [NSUserDefaultsController sharedUserDefaultsController];
@@ -47,7 +53,6 @@
   
   /* Timer */
   [NSEvent removeMonitor:self.eventHandler];
-  
 }
 
 - (void)setLockOnSleep:(BOOL)lockOnSleep {

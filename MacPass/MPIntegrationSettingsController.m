@@ -40,16 +40,12 @@
 
 - (void)awakeFromNib {
   NSUserDefaultsController *defaultsController = [NSUserDefaultsController sharedUserDefaultsController];
-  NSString *serverKeyPath = [MPSettingsHelper defaultControllerPathForKey:kMPSettingsKeyEnableHttpServer];
   NSString *enableGlobalAutotypeKeyPath = [MPSettingsHelper defaultControllerPathForKey:kMPSettingsKeyEnableGlobalAutotype];
   NSString *quicklookKeyPath = [MPSettingsHelper defaultControllerPathForKey:kMPSettingsKeyEnableQuicklookPreview];
-  [self.enableServerCheckBox bind:NSValueBinding toObject:defaultsController withKeyPath:serverKeyPath options:nil];
-  [self.enableServerCheckBox setEnabled:NO];
   [self.enableGlobalAutotypeCheckBox bind:NSValueBinding toObject:defaultsController withKeyPath:enableGlobalAutotypeKeyPath options:nil];
   [self.enableQuicklookCheckBox bind:NSValueBinding toObject:defaultsController withKeyPath:quicklookKeyPath options:nil];
   [self.hotKeyTextField bind:NSEnabledBinding toObject:defaultsController withKeyPath:enableGlobalAutotypeKeyPath options:nil];
   self.hotKeyTextField.delegate = self;
-  
   
   [self.matchTitleCheckBox bind:NSValueBinding toObject:defaultsController withKeyPath:[MPSettingsHelper defaultControllerPathForKey:kMPSettingsKeyAutotypeMatchTitle ] options:nil];
   [self.matchURLCheckBox bind:NSValueBinding toObject:defaultsController withKeyPath:[MPSettingsHelper defaultControllerPathForKey:kMPSettingsKeyAutotypeMatchURL] options:nil];

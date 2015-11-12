@@ -9,8 +9,16 @@
 #import "MPPluginManager.h"
 
 #import "MPDocument.h"
+#import "MPPlugin.h"
+#import "NSApplication+MPAdditions.h"
 
 #import "KeePassKit/KeePassKit.h"
+
+@interface MPPluginManager ()
+
+@property (strong) NSMutableArray<MPPlugin __kindof *> *mutablePlugins;
+
+@end
 
 @implementation MPPluginManager
 
@@ -29,7 +37,14 @@
 
 - (instancetype)_init {
   self = [super init];
+  if(self) {
+    _mutablePlugins = [[NSMutableArray alloc] init];
+  }
   return self;
+}
+
+- (NSArray<MPPlugin *> *)plugins {
+  return [self.mutablePlugins copy];
 }
 
 - (NSArray *)filteredEntriesUsingBlock:(NodeMatchBlock)matchBlock {
@@ -48,8 +63,18 @@
   return nil;
 }
 
-- (void)_loadPlugins {
-
+- (void)loadPlugins {
+  NSURL *dir = [NSApp applicationSupportDirectoryURL:YES];
+  NSError *error;
+  NSArray *contentURLs = [[NSFileManager defaultManager] contentsOfDirectoryAtURL:dir includingPropertiesForKeys:@[] options:NSDirectoryEnumerationSkipsHiddenFiles error:&error];
+  if(!contentURLs) {
+    NSLog(@"Error while trying to locate Plugins: %@", error.localizedDescription);
+  }
+  for(NSURL *pluginURL in contentURLs) {
+    MPPlugin *plugin = [MPPlugin pluginWithBundleURL:pluginURL pluginManager:self];
+    if(plugin) {
+      [self.mutablePlugins addObject:plugin];
+    }
+  }
 }
-
 @end

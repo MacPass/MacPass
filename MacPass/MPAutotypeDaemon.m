@@ -43,7 +43,23 @@ NSString *const kMPProcessIdentifierKey = @"kMPProcessIdentifierKey";
 
 #pragma mark -
 #pragma mark Lifecylce
+
+static MPAutotypeDaemon *_sharedInstance;
+
++ (instancetype)defaultDaemon {
+  static dispatch_once_t onceToken;
+  dispatch_once(&onceToken, ^{
+    _sharedInstance = [[MPAutotypeDaemon alloc] _init];
+  });
+  return _sharedInstance;
+}
+
 - (instancetype)init {
+  return nil;
+}
+
+- (instancetype)_init {
+  NSAssert(_sharedInstance == nil, @"Multiple initializations not allowed on singleton");
   self = [super init];
   if (self) {
     _enabled = NO;

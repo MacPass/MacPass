@@ -12,10 +12,6 @@
 @class DDHotKeyTextField;
 
 @interface MPIntegrationSettingsController : MPViewController <MPSettingsTab, NSTextFieldDelegate>
-
-/* Keepass HTTP */
-@property (weak) IBOutlet NSButton *enableServerCheckBox;
-
 /* Autotype */
 @property (weak) IBOutlet NSButton *enableGlobalAutotypeCheckBox;
 @property (weak) IBOutlet DDHotKeyTextField *hotKeyTextField;

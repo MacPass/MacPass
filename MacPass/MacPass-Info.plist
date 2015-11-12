@@ -124,6 +124,25 @@
 				</array>
 			</dict>
 		</dict>
+		<dict>
+			<key>UTTypeConformsTo</key>
+			<array>
+				<string>com.apple.package</string>
+			</array>
+			<key>UTTypeDescription</key>
+			<string>MacPass Plugin</string>
+			<key>UTTypeIdentifier</key>
+			<string>com.hicknhack.macpass.plugin</string>
+			<key>UTTypeTagSpecification</key>
+			<dict>
+				<key>public.filename-extension</key>
+				<array>
+					<string>mpplugin</string>
+					<string>mpPlugin</string>
+					<string>mpPlugIn</string>
+				</array>
+			</dict>
+		</dict>
 	</array>
 </dict>
 </plist>

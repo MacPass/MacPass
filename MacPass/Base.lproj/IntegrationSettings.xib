@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="9059" systemVersion="15B42" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="9060" systemVersion="15B42" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
     <dependencies>
         <deployment identifier="macosx"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="9059"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="9060"/>
         <capability name="box content view" minToolsVersion="7.0"/>
     </dependencies>
     <objects>
@@ -10,7 +10,6 @@
             <connections>
                 <outlet property="enableGlobalAutotypeCheckBox" destination="tik-Ar-FJg" id="yVA-bM-sSh"/>
                 <outlet property="enableQuicklookCheckBox" destination="LNw-5t-TS4" id="YiZ-Kk-0dF"/>
-                <outlet property="enableServerCheckBox" destination="2" id="GTJ-GU-nxB"/>
                 <outlet property="hotKeyTextField" destination="Kvg-he-3c8" id="c7p-1F-zth"/>
                 <outlet property="hotkeyWarningTextField" destination="f5q-EW-RHf" id="Z2Q-Sb-HCS"/>
                 <outlet property="matchHostCheckBox" destination="TiO-ah-BlR" id="MWr-Uh-TRB"/>
@@ -24,34 +23,8 @@
         <customObject id="-1" userLabel="First Responder" customClass="FirstResponder"/>
         <customObject id="-3" userLabel="Application" customClass="NSObject"/>
         <customView translatesAutoresizingMaskIntoConstraints="NO" id="1">
-            <rect key="frame" x="0.0" y="0.0" width="400" height="424"/>
+            <rect key="frame" x="0.0" y="0.0" width="400" height="366"/>
             <subviews>
-                <box autoresizesSubviews="NO" verticalHuggingPriority="500" title="Keepass HTTP" borderType="line" translatesAutoresizingMaskIntoConstraints="NO" id="KbH-0Q-5Tw">
-                    <rect key="frame" x="17" y="350" width="366" height="54"/>
-                    <view key="contentView" id="8nz-mp-KUp">
-                        <rect key="frame" x="1" y="1" width="364" height="38"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <button translatesAutoresizingMaskIntoConstraints="NO" id="2">
-                                <rect key="frame" x="16" y="12" width="186" height="18"/>
-                                <animations/>
-                                <buttonCell key="cell" type="check" title="Enable KeePassHttp server" bezelStyle="regularSquare" imagePosition="left" lineBreakMode="truncatingMiddle" state="on" inset="2" id="3">
-                                    <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
-                                    <font key="font" metaFont="system"/>
-                                </buttonCell>
-                            </button>
-                        </subviews>
-                        <animations/>
-                    </view>
-                    <constraints>
-                        <constraint firstItem="2" firstAttribute="leading" secondItem="KbH-0Q-5Tw" secondAttribute="leading" constant="16" id="2Qk-ad-9AX"/>
-                        <constraint firstAttribute="bottom" secondItem="2" secondAttribute="bottom" constant="11" id="W6e-Pj-6qk"/>
-                        <constraint firstItem="2" firstAttribute="top" secondItem="KbH-0Q-5Tw" secondAttribute="top" constant="25" id="nEn-ND-YR7"/>
-                    </constraints>
-                    <animations/>
-                    <color key="borderColor" white="0.0" alpha="0.41999999999999998" colorSpace="calibratedWhite"/>
-                    <color key="fillColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                </box>
                 <box autoresizesSubviews="NO" verticalHuggingPriority="500" title="Autotype" borderType="line" translatesAutoresizingMaskIntoConstraints="NO" id="P9N-HM-wER">
                     <rect key="frame" x="17" y="115" width="366" height="231"/>
                     <view key="contentView" id="faU-Ok-HJ3">
@@ -221,15 +194,12 @@
             </subviews>
             <constraints>
                 <constraint firstAttribute="width" constant="400" id="19"/>
-                <constraint firstAttribute="trailing" secondItem="KbH-0Q-5Tw" secondAttribute="trailing" constant="20" symbolic="YES" id="0x4-nr-DuM"/>
+                <constraint firstItem="P9N-HM-wER" firstAttribute="top" secondItem="1" secondAttribute="top" constant="20" symbolic="YES" id="8fy-q5-VJy"/>
                 <constraint firstAttribute="bottom" secondItem="VVs-b5-cX9" secondAttribute="bottom" constant="20" symbolic="YES" id="TZB-qe-7eg"/>
                 <constraint firstItem="VVs-b5-cX9" firstAttribute="top" secondItem="P9N-HM-wER" secondAttribute="bottom" constant="8" id="VCX-JW-cBe"/>
-                <constraint firstItem="KbH-0Q-5Tw" firstAttribute="leading" secondItem="1" secondAttribute="leading" constant="20" symbolic="YES" id="dln-JS-u45"/>
-                <constraint firstItem="P9N-HM-wER" firstAttribute="leading" secondItem="KbH-0Q-5Tw" secondAttribute="leading" id="iZD-AQ-EeG"/>
                 <constraint firstItem="VVs-b5-cX9" firstAttribute="trailing" secondItem="P9N-HM-wER" secondAttribute="trailing" id="k9i-4T-WY0"/>
-                <constraint firstItem="KbH-0Q-5Tw" firstAttribute="top" secondItem="1" secondAttribute="top" constant="20" symbolic="YES" id="mtr-dI-3QM"/>
-                <constraint firstItem="P9N-HM-wER" firstAttribute="top" secondItem="KbH-0Q-5Tw" secondAttribute="bottom" constant="8" symbolic="YES" id="oFy-uk-HLJ"/>
-                <constraint firstItem="P9N-HM-wER" firstAttribute="trailing" secondItem="KbH-0Q-5Tw" secondAttribute="trailing" id="sIZ-ZD-A8K"/>
+                <constraint firstAttribute="trailing" secondItem="P9N-HM-wER" secondAttribute="trailing" constant="20" id="n5w-Cw-Bbt"/>
+                <constraint firstItem="P9N-HM-wER" firstAttribute="leading" secondItem="1" secondAttribute="leading" constant="20" id="ulV-xL-ldJ"/>
                 <constraint firstItem="VVs-b5-cX9" firstAttribute="leading" secondItem="P9N-HM-wER" secondAttribute="leading" id="z4a-9C-78h"/>
             </constraints>
             <animations/>

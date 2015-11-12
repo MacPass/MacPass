@@ -32,6 +32,7 @@ APPKIT_EXTERN NSString *const MPDidChangeStoredKeyFilesSettings;
 @property (strong) IBOutlet NSWindow *welcomeWindow;
 @property (strong) MPAutotypeDaemon *autotypeDaemon;
 @property (weak) IBOutlet NSMenuItem *saveMenuItem;
+
 @property (nonatomic, assign) BOOL isAllowedToStoreKeyFile;
 
 - (IBAction)showPreferences:(id)sender;
@@ -45,7 +46,6 @@ APPKIT_EXTERN NSString *const MPDidChangeStoredKeyFilesSettings;
  */
 - (IBAction)clearRememberdKeyFiles:(id)sender;
 
-- (NSString *)applicationName;
 - (void)lockAllDocuments;
 
 @end

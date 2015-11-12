@@ -20,11 +20,6 @@ APPKIT_EXTERN NSString *const kMPSettingsKeyReopenLastDatabaseOnLaunch;
 /* URL handling */
 APPKIT_EXTERN NSString *const kMPSettingsKeyBrowserBundleId;
 
-/* Server Settings */
-APPKIT_EXTERN NSString *const kMPSettingsKeyHttpPort;
-APPKIT_EXTERN NSString *const kMPSettingsKeyEnableHttpServer;
-APPKIT_EXTERN NSString *const kMPSettingsKeyShowMenuItem;
-
 /* Autolock */
 APPKIT_EXTERN NSString *const kMPSettingsKeyLockOnSleep;
 APPKIT_EXTERN NSString *const kMPSettingsKeyIdleLockTimeOut;
@@ -64,6 +59,9 @@ APPKIT_EXTERN NSString *const kMPSettingsKeyEnableQuicklookPreview;
 /* Workflow */
 APPKIT_EXTERN NSString *const kMPSettingsKeyDoubleClickURLAction;
 APPKIT_EXTERN NSString *const kMPSettingsKeyDoubleClickTitleAction;
+
+/* Plugins */
+APPKIT_EXTERN NSString *const kMPSettingsKeyLoadUnsecurePlugins;            // If set to YES this will load all plugins regardless of their codesignature status
 
 typedef NS_ENUM(NSUInteger, MPDoubleClickURLAction) {
   MPDoubleClickURLActionCopy,

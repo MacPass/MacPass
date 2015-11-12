@@ -20,6 +20,9 @@
 @property (weak) IBOutlet NSPopUpButton *matchSelectionButton;
 @property (readonly, strong) DDHotKey *registredHotKey;
 
++ (instancetype)defaultDaemon;
+- (instancetype)init NS_UNAVAILABLE;
+
 - (void)performAutotypeForEntry:(KPKEntry *)entry;
 - (IBAction)performAutotypeWithSelectedMatch:(id)sender;
 - (IBAction)cancelAutotypeSelection:(id)sender;

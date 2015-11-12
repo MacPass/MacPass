@@ -231,6 +231,8 @@
 		4CEE46DD181C301D006BF1E5 /* MPAutotypeDaemon.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CEE46DC181C301D006BF1E5 /* MPAutotypeDaemon.m */; };
 		4CEED1C617D7BD0E007180F1 /* NSError+Messages.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CEED1C517D7BD0E007180F1 /* NSError+Messages.m */; };
 		4CF29BF417879D0000851B60 /* 26_FileSaveTemplate.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 4CF29BF317879D0000851B60 /* 26_FileSaveTemplate.pdf */; };
+		4CF5BE6D1BF33E3000048505 /* NSApplication+MPAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CF5BE6C1BF33E3000048505 /* NSApplication+MPAdditions.m */; };
+		4CF5BEC41BF3461800048505 /* MPPlugin.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CF5BEC31BF3461800048505 /* MPPlugin.m */; };
 		4CF6C711176F4533007A811D /* MPStringLengthValueTransformer.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CF6C710176F4533007A811D /* MPStringLengthValueTransformer.m */; };
 		4CF78064176E75AD0032EE71 /* MPIntegrationSettingsController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CF78063176E75AD0032EE71 /* MPIntegrationSettingsController.m */; };
 		4CFB18E418A17FA20097A34B /* MPUpdateSettingsController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CFB18E318A17FA20097A34B /* MPUpdateSettingsController.m */; };
@@ -413,7 +415,6 @@
 		4C2E382516D1470200037A9D /* MPViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MPViewController.m; sourceTree = "<group>"; };
 		4C31FEB11B57CDDB008E7CE3 /* MPPluginManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MPPluginManager.h; sourceTree = "<group>"; };
 		4C31FEB21B57CDDB008E7CE3 /* MPPluginManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MPPluginManager.m; sourceTree = "<group>"; };
-		4C31FEBD1B57CE45008E7CE3 /* MPGenericPlugin.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MPGenericPlugin.h; sourceTree = "<group>"; };
 		4C32B0E51A1D4436007E12F1 /* KPKFormat+MPUTIDetection.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "KPKFormat+MPUTIDetection.h"; sourceTree = "<group>"; };
 		4C32B0E61A1D4436007E12F1 /* KPKFormat+MPUTIDetection.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "KPKFormat+MPUTIDetection.m"; sourceTree = "<group>"; };
 		4C3666401787327E00B249F1 /* MPDocument+Attachments.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "MPDocument+Attachments.m"; sourceTree = "<group>"; };
@@ -717,9 +718,12 @@
 		4CEED1C417D7BD0E007180F1 /* NSError+Messages.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSError+Messages.h"; sourceTree = "<group>"; };
 		4CEED1C517D7BD0E007180F1 /* NSError+Messages.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSError+Messages.m"; sourceTree = "<group>"; };
 		4CF29BF317879D0000851B60 /* 26_FileSaveTemplate.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = 26_FileSaveTemplate.pdf; sourceTree = "<group>"; };
+		4CF5BE6B1BF33E3000048505 /* NSApplication+MPAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSApplication+MPAdditions.h"; sourceTree = "<group>"; };
+		4CF5BE6C1BF33E3000048505 /* NSApplication+MPAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSApplication+MPAdditions.m"; sourceTree = "<group>"; };
+		4CF5BEC21BF3461800048505 /* MPPlugin.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MPPlugin.h; sourceTree = "<group>"; };
+		4CF5BEC31BF3461800048505 /* MPPlugin.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MPPlugin.m; sourceTree = "<group>"; };
 		4CF6C70F176F4533007A811D /* MPStringLengthValueTransformer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MPStringLengthValueTransformer.h; sourceTree = "<group>"; };
 		4CF6C710176F4533007A811D /* MPStringLengthValueTransformer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MPStringLengthValueTransformer.m; sourceTree = "<group>"; };
-		4CF6C715176F5183007A811D /* MPServerRequestHandling.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MPServerRequestHandling.h; sourceTree = "<group>"; };
 		4CF78062176E75AD0032EE71 /* MPIntegrationSettingsController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MPIntegrationSettingsController.h; sourceTree = "<group>"; };
 		4CF78063176E75AD0032EE71 /* MPIntegrationSettingsController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MPIntegrationSettingsController.m; sourceTree = "<group>"; };
 		4CFB18E218A17FA20097A34B /* MPUpdateSettingsController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MPUpdateSettingsController.h; sourceTree = "<group>"; };
@@ -881,6 +885,8 @@
 		4C104129178CDD26001B5239 /* Categories */ = {
 			isa = PBXGroup;
 			children = (
+				4CF5BE6B1BF33E3000048505 /* NSApplication+MPAdditions.h */,
+				4CF5BE6C1BF33E3000048505 /* NSApplication+MPAdditions.m */,
 				4C46B88317063A070046109A /* NSString+MPPasswordCreation.h */,
 				4C46B88417063A070046109A /* NSString+MPPasswordCreation.m */,
 				4C10412A178CDD44001B5239 /* NSDate+Humanized.h */,
@@ -944,14 +950,15 @@
 			name = Helper;
 			sourceTree = "<group>";
 		};
-		4C31FEBC1B57CDE0008E7CE3 /* Plugins */ = {
+		4C31FEBC1B57CDE0008E7CE3 /* Plugin */ = {
 			isa = PBXGroup;
 			children = (
 				4C31FEB11B57CDDB008E7CE3 /* MPPluginManager.h */,
 				4C31FEB21B57CDDB008E7CE3 /* MPPluginManager.m */,
-				4C31FEBD1B57CE45008E7CE3 /* MPGenericPlugin.h */,
+				4CF5BEC21BF3461800048505 /* MPPlugin.h */,
+				4CF5BEC31BF3461800048505 /* MPPlugin.m */,
 			);
-			name = Plugins;
+			name = Plugin;
 			sourceTree = "<group>";
 		};
 		4C37A84115B8B47D005EF8EE /* Delegates */ = {
@@ -1231,7 +1238,7 @@
 		4C77E36C15B84A240093A587 /* MacPass */ = {
 			isa = PBXGroup;
 			children = (
-				4C31FEBC1B57CDE0008E7CE3 /* Plugins */,
+				4C31FEBC1B57CDE0008E7CE3 /* Plugin */,
 				4C217D8E17A32BCF00609FAA /* Common */,
 				4C104129178CDD26001B5239 /* Categories */,
 				4C89F525182FB4C50069C73C /* Autotype */,
@@ -1347,7 +1354,6 @@
 		4CA0B30E15BCB70200654E32 /* Protocolls */ = {
 			isa = PBXGroup;
 			children = (
-				4CF6C715176F5183007A811D /* MPServerRequestHandling.h */,
 				4CA0B30D15BCB6FD00654E32 /* MPSettingsTab.h */,
 				4C2B0B7419F66F6400E48913 /* MPTargetNodeResolving.h */,
 			);
@@ -1802,6 +1808,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				4C77E37315B84A240093A587 /* main.m in Sources */,
+				4CF5BEC41BF3461800048505 /* MPPlugin.m in Sources */,
 				4CBA2ABA17074C07006D8139 /* MPSettingsHelper.m in Sources */,
 				4C77E37A15B84A240093A587 /* MPAppDelegate.m in Sources */,
 				4C37A84015B8B474005EF8EE /* MPOutlineDataSource.m in Sources */,
@@ -1847,6 +1854,7 @@
 				4C3C4EA618D6FEA100153127 /* TTTJSONTransformer.m in Sources */,
 				4C89B71019B4B4A300DC0A6A /* MPTreeDelegate.m in Sources */,
 				4C88C66918D9F8D600F43852 /* MPTemporaryFileStorageCenter.m in Sources */,
+				4CF5BE6D1BF33E3000048505 /* NSApplication+MPAdditions.m in Sources */,
 				4CE30ACC1A312B7F0063FCC6 /* MPReferenceBuilderViewController.m in Sources */,
 				4C6F228C19A4AA700012310C /* MPAutotypeDelay.m in Sources */,
 				4C3C4EA718D6FEA100153127 /* TTTStringTransformers.m in Sources */,

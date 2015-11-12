@@ -7,12 +7,15 @@
 //
 
 #import "MPPluginSettingsController.h"
+#import "MPPluginManager.h"
+#import "MPPlugin.h"
 
 NSString *const _kMPPluginTableNameColumn = @"Name";
-NSString *const _kMPPluginTableLoadedColumn = @"Loaded";
 
-@interface MPPluginSettingsController () <NSTableViewDataSource>
+@interface MPPluginSettingsController () <NSTableViewDataSource, NSTableViewDelegate>
+
 @property (weak) IBOutlet NSTableView *pluginTableView;
+@property (weak) IBOutlet NSView *settingsView;
 
 @end
 
@@ -36,26 +39,52 @@ NSString *const _kMPPluginTableLoadedColumn = @"Loaded";
 
 - (void)didLoadView {
   self.pluginTableView.tableColumns[0].identifier = _kMPPluginTableNameColumn;
-  self.pluginTableView.tableColumns[1].identifier = _kMPPluginTableLoadedColumn;
-  self.pluginTableView.tableColumns[0].title = NSLocalizedString(@"PLUGIN_TABLE_NAME_HEADER", "");
-  self.pluginTableView.tableColumns[1].title = NSLocalizedString(@"PLUGIN_TABLE_LOAD_HEADER", "");
-
-  //self.pluginTableView.delegate = self;
+  
+  self.pluginTableView.delegate = self;
   self.pluginTableView.dataSource = self;
+
 }
 
 - (NSInteger)numberOfRowsInTableView:(NSTableView *)tableView {
-  return 2;
+  return [MPPluginManager sharedManager].plugins.count;
 }
 
-- (id)tableView:(NSTableView *)tableView objectValueForTableColumn:(NSTableColumn *)tableColumn row:(NSInteger)row {
-  if([tableColumn.identifier isEqualToString:_kMPPluginTableLoadedColumn]) {
-    return @YES;
+- (NSView *)tableView:(NSTableView *)tableView viewForTableColumn:(NSTableColumn *)tableColumn row:(NSInteger)row {
+  if(![tableColumn.identifier isEqualToString:_kMPPluginTableNameColumn]) {
+    return nil;
   }
-  else if([tableColumn.identifier isEqualToString:_kMPPluginTableNameColumn]) {
-    return @"DummyPlugin";
-  }
-  return nil;
+  MPPlugin *plugin = [self pluginForRow:row];
+  NSTableCellView *view = [tableView makeViewWithIdentifier:@"NameCell" owner:nil];
+  view.textField.stringValue = plugin.name;
+  return view;
 }
+
+- (void)showSettingsForPlugin:(MPPlugin *)plugin {
+  /* move old one regardless */
+  [self.settingsView.subviews.firstObject removeFromSuperview];
+  if([plugin conformsToProtocol:@protocol(MPPluginSettings)]) {
+    NSAssert([plugin respondsToSelector:@selector(settingsViewController)], @"Required getter for settings on plugins");
+    NSViewController *viewController = ((id<MPPluginSettings>)plugin).settingsViewController;
+    [self.settingsView addSubview:viewController.view];
+    NSDictionary *dict = @{ @"view" : viewController.view,
+                            @"table" : self.pluginTableView.enclosingScrollView };
+    [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-0-[view]-0-|" options:0 metrics:nil views:dict]];
+    [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-0-[view]-0-|" options:0 metrics:nil views:dict]];
+  }
+}
+
+- (MPPlugin *)pluginForRow:(NSInteger)row {
+  NSArray<MPPlugin __kindof *> *plugins = [MPPluginManager sharedManager].plugins;
+  if(0 > row || row >= plugins.count) {
+    return nil;
+  }
+  return plugins[row];
+}
+
+- (void)tableViewSelectionDidChange:(NSNotification *)notification {
+  NSTableView *table = notification.object;
+  [self showSettingsForPlugin:[self pluginForRow:table.selectedRow]];
+}
+
 
 @end

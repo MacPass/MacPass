@@ -16,9 +16,6 @@ NSString *const kMPSettingsKeyClearPasteboardOnQuit                   = @"ClearC
 NSString *const kMPSettingsKeyBrowserBundleId                         = @"BrowserBundleId";
 NSString *const kMPSettingsKeyOpenEmptyDatabaseOnLaunch               = @"OpenEmptyDatabaseOnLaunch";
 NSString *const kMPSettingsKeyReopenLastDatabaseOnLaunch              = @"ReopenLastDatabaseOnLaunch";
-NSString *const kMPSettingsKeyHttpPort                                = @"HttpPort";
-NSString *const kMPSettingsKeyEnableHttpServer                        = @"EnableHttpServer";
-NSString *const kMPSettingsKeyShowMenuItem                            = @"ShowMenuItem";
 NSString *const kMPSettingsKeyLockOnSleep                             = @"LockOnSleep";
 NSString *const kMPSettingsKeyIdleLockTimeOut                         = @"IdleLockTimeOut";
 NSString *const kMPSettingsKeyShowInspector                           = @"ShowInspector";
@@ -60,12 +57,18 @@ NSString *const kMPSettingsKeyPasswordDefaultsForEntry                = @"Passwo
 NSString *const kMPSettingsKeyDoubleClickURLAction                    = @"DoubleClickURLAction";
 NSString *const kMPSettingsKeyDoubleClickTitleAction                  = @"DoubleClickTitleAction";
 
+NSString *const kMPSettingsKeyLoadUnsecurePlugins                     = @"MPLoadUnsecurePlugins";
+
 /* Deprecated */
 NSString *const kMPDeprecatedSettingsKeyRememberKeyFilesForDatabases      = @"kMPSettingsKeyRememberKeyFilesForDatabases";
 NSString *const kMPDeprecatedSettingsKeyLastDatabasePath                  = @"MPLastDatabasePath";
 NSString *const kMPDeprecatedSettingsKeyDocumentsAutotypeFixNoteWasShown  = @"DocumentsAutotypeFixNoteWasShown";
 NSString *const kMPDeprecatedSettingsKeyDoubleClickURLToLaunch            = @"DoubleClickURLToLaunch";
 NSString *const kMPDeprecatedSettingsKeyEntrySearchFilterMode             = @"EntrySearchFilterMode";
+NSString *const kMPDeprecatedSettingsKeyHttpPort                          = @"HttpPort";
+NSString *const kMPDeprecatedSettingsKeyEnableHttpServer                  = @"EnableHttpServer";
+NSString *const kMPDeprecatedSettingsKeyShowMenuItem                      = @"ShowMenuItem";
+
 
 @implementation MPSettingsHelper
 
@@ -94,9 +97,6 @@ NSString *const kMPDeprecatedSettingsKeyEntrySearchFilterMode             = @"En
                          kMPSettingsKeyClearPasteboardOnQuit: @YES,
                          kMPSettingsKeyOpenEmptyDatabaseOnLaunch: @NO,
                          kMPSettingsKeyReopenLastDatabaseOnLaunch: @YES,
-                         kMPSettingsKeyHttpPort: @19455,
-                         kMPSettingsKeyEnableHttpServer: @NO,
-                         kMPSettingsKeyShowMenuItem: @YES,
                          kMPSettingsKeyLockOnSleep: @YES,
                          kMPSettingsKeyIdleLockTimeOut: @0, // 5 minutes
                          kMPSettingsKeyLegacyHideNotes: @NO,
@@ -121,7 +121,8 @@ NSString *const kMPDeprecatedSettingsKeyEntrySearchFilterMode             = @"En
                          kMPSettingsKeyPasswordUseCustomString: @NO,
                          kMPSettingsKeyPasswordCustomString: @"",
                          kMPSettingsKeyDoubleClickURLAction: @(MPDoubleClickURLActionCopy),
-                         kMPSettingsKeyDoubleClickTitleAction: @(MPDoubleClickTitleActionInspect)
+                         kMPSettingsKeyDoubleClickTitleAction: @(MPDoubleClickTitleActionInspect),
+                         kMPSettingsKeyLoadUnsecurePlugins: @NO
                          };
   });
   return standardDefaults;
@@ -135,7 +136,12 @@ NSString *const kMPDeprecatedSettingsKeyEntrySearchFilterMode             = @"En
                             kMPDeprecatedSettingsKeyLastDatabasePath,
                             kMPDeprecatedSettingsKeyDocumentsAutotypeFixNoteWasShown,
                             kMPDeprecatedSettingsKeyDoubleClickURLToLaunch,
-                            kMPDeprecatedSettingsKeyEntrySearchFilterMode];
+                            kMPDeprecatedSettingsKeyEntrySearchFilterMode,
+                            /* Moved to KeePassHttp Plugin */
+                            kMPDeprecatedSettingsKeyHttpPort,
+                            kMPDeprecatedSettingsKeyEnableHttpServer,
+                            kMPDeprecatedSettingsKeyShowMenuItem
+                            ];
   });
   return deprecatedSettings;
 }

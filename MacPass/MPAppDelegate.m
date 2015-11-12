@@ -29,6 +29,7 @@
 #import "MPDocumentWindowController.h"
 #import "MPLockDaemon.h"
 #import "MPPasswordCreatorViewController.h"
+#import "MPPluginManager.h"
 #import "MPSettingsHelper.h"
 #import "MPSettingsWindowController.h"
 #import "MPStringLengthValueTransformer.h"
@@ -41,7 +42,6 @@ NSString *const MPDidChangeStoredKeyFilesSettings = @"com.hicknhack.macpass.MPDi
 
 @interface MPAppDelegate () {
 @private
-  MPLockDaemon *lockDaemon;
   MPDockTileHelper *dockTileHelper;
   BOOL _shouldOpenFile; // YES if app was started to open a
 }
@@ -153,13 +153,11 @@ NSString *const MPDidChangeStoredKeyFilesSettings = @"com.hicknhack.macpass.MPDi
 }
 
 - (void)applicationDidFinishLaunching:(NSNotification *)notification {
-  lockDaemon = [[MPLockDaemon alloc] init];
-  self.autotypeDaemon = [[MPAutotypeDaemon alloc] init];
-  //dockTileHelper = [[MPDockTileHelper alloc] init];
-}
-
-- (NSString *)applicationName {
-  return [[NSBundle mainBundle] infoDictionary][@"CFBundleName"];
+  /* Daemon instanziieren */
+  [MPLockDaemon defaultDaemon];
+  [MPAutotypeDaemon defaultDaemon];
+  /* Load plugins */
+  [[MPPluginManager sharedManager] loadPlugins];
 }
 
 #pragma mark -
