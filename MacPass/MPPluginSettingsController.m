@@ -12,8 +12,6 @@
 
 #import "MPSettingsHelper.h"
 
-NSString *const _kMPPluginTableNameColumn = @"Name";
-
 @interface MPPluginSettingsController () <NSTableViewDataSource, NSTableViewDelegate>
 
 @property (weak) IBOutlet NSTableView *pluginTableView;
@@ -41,8 +39,6 @@ NSString *const _kMPPluginTableNameColumn = @"Name";
 }
 
 - (void)didLoadView {
-  self.pluginTableView.tableColumns[0].identifier = _kMPPluginTableNameColumn;
-
   self.pluginTableView.delegate = self;
   self.pluginTableView.dataSource = self;
   
@@ -58,11 +54,8 @@ NSString *const _kMPPluginTableNameColumn = @"Name";
 }
 
 - (NSView *)tableView:(NSTableView *)tableView viewForTableColumn:(NSTableColumn *)tableColumn row:(NSInteger)row {
-  if(![tableColumn.identifier isEqualToString:_kMPPluginTableNameColumn]) {
-    return nil;
-  }
   MPPlugin *plugin = [self pluginForRow:row];
-  NSTableCellView *view = [tableView makeViewWithIdentifier:@"NameCell" owner:nil];
+  NSTableCellView *view = [tableView makeViewWithIdentifier:tableColumn.identifier owner:nil];
   view.textField.stringValue = plugin.name;
   return view;
 }
@@ -76,8 +69,8 @@ NSString *const _kMPPluginTableNameColumn = @"Name";
     [self.settingsView addSubview:viewController.view];
     NSDictionary *dict = @{ @"view" : viewController.view,
                             @"table" : self.pluginTableView.enclosingScrollView };
-    [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-[view]-|" options:0 metrics:nil views:dict]];
-    [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-[view]-|" options:0 metrics:nil views:dict]];
+    [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|[view]|" options:0 metrics:nil views:dict]];
+    [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|[view]|" options:0 metrics:nil views:dict]];
   }
 }
 
