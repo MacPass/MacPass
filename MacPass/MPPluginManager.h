@@ -23,13 +23,8 @@ FOUNDATION_EXPORT NSString *const MPPluginManagerPluginBundleIdentifiyerKey;
 @property (readonly, copy) NSArray <MPPlugin __kindof*> *plugins;
 @property (nonatomic, readonly) BOOL loadUnsecurePlugins;
 
-typedef BOOL (^NodeMatchBlock)(KPKNode *aNode);
-
 + (instancetype)sharedManager;
 
 - (instancetype)init NS_UNAVAILABLE;
-
-- (NSArray *)filteredEntriesUsingBlock:(NodeMatchBlock) matchBlock;
-- (NSArray *)filteredGroupsUsingBlock:(NodeMatchBlock) matchBlock;
 
 @end

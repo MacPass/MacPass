@@ -45,4 +45,12 @@ NSString *const kMPPluginFileExtension = @"mpplugin";
 }
 
 
+- (void)didLoadPlugin {
+
+}
+
+- (void)willUnloadPlugin {
+
+}
+
 @end

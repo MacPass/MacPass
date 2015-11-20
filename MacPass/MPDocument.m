@@ -368,9 +368,11 @@ NSString *const MPDocumentGroupKey                        = @"MPDocumentGroupKey
 }
 
 - (void)setTemplates:(KPKGroup *)templates {
-  if(![self.tree.metaData.entryTemplatesGroup isEqual:templates.uuid]) {
-    self.tree.metaData.entryTemplatesGroup = templates.uuid;
-  }
+  self.tree.templates = templates;
+}
+
+- (void)setTrash:(KPKGroup *)trash {
+  self.tree.trash = trash;
 }
 
 - (void)setSelectedGroup:(KPKGroup *)selectedGroup {

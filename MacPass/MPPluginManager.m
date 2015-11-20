@@ -8,7 +8,6 @@
 
 #import "MPPluginManager.h"
 
-#import "MPDocument.h"
 #import "MPPlugin.h"
 #import "NSApplication+MPAdditions.h"
 #import "MPSettingsHelper.h"
@@ -46,6 +45,10 @@ NSString *const MPPluginManagerPluginBundleIdentifiyerKey = @"MPPluginManagerPlu
   return instance;
 }
 
+- (void)dealloc {
+  NSLog(@"%@ dealloc", [self class]);
+}
+
 - (instancetype)init {
   return nil;
 }
@@ -65,38 +68,17 @@ NSString *const MPPluginManagerPluginBundleIdentifiyerKey = @"MPPluginManagerPlu
   return self;
 }
 
-- (void)setLoadUnsecurePlugins:(BOOL)loadUnsecurePlugins {
-  if(_loadUnsecurePlugins != loadUnsecurePlugins) {
-    _loadUnsecurePlugins = loadUnsecurePlugins;
-    [self _loadPlugins];
-  }
-}
-
 - (NSArray<MPPlugin *> *)plugins {
   return [self.mutablePlugins copy];
-}
-
-- (NSArray *)filteredEntriesUsingBlock:(NodeMatchBlock)matchBlock {
-  NSArray *currentDocuments = [[NSDocumentController sharedDocumentController] documents];
-  NSMutableArray *entries = [[NSMutableArray alloc] initWithCapacity:200];
-  for(MPDocument *document in currentDocuments) {
-    if(document.tree) {
-      [entries addObjectsFromArray:document.tree.allEntries];
-    }
-  }
-  NSPredicate *predicate = [NSPredicate predicateWithBlock:^BOOL(id evaluatedObject, NSDictionary *bindings) { return matchBlock(evaluatedObject); }];
-  return [[NSArray alloc] initWithArray:[entries filteredArrayUsingPredicate:predicate] copyItems:YES];
-}
-
-- (NSArray *)filteredGroupsUsingBlock:(NodeMatchBlock)matchBlock {
-  NSAssert(NO, @"Not implemented");
-  return nil;
 }
 
 - (void)_unloadPlugins {
   /* TODO Notofications for UI */
   NSMutableArray *bundles = [[NSMutableArray alloc] initWithCapacity:self.mutablePlugins.count];
+  // clear our interal refernce
   for(MPPlugin *plugin in self.mutablePlugins) {
+    // let the plugin know we are about to unload it
+    [plugin willUnloadPlugin];
     NSBundle *pluginBundle = [NSBundle bundleForClass:plugin.class];
     if(pluginBundle) {
       [bundles addObject:pluginBundle];
@@ -105,15 +87,13 @@ NSString *const MPPluginManagerPluginBundleIdentifiyerKey = @"MPPluginManagerPlu
   }
   [self.mutablePlugins removeAllObjects];
   for(NSBundle *bundle in bundles) {
-    [bundle unload];
     NSString *identifiery = bundle.bundleIdentifier ? bundle.bundleIdentifier : @"unknown";
     [[NSNotificationCenter defaultCenter] postNotificationName:MPPluginManagerDidUnloadPlugin object:self userInfo:@{ MPPluginManagerPluginBundleIdentifiyerKey : identifiery }];
+    [bundle unload];
   }
 }
 
 - (void)_loadPlugins {
-  /* unload all plugins just to be sure */
-  [self _unloadPlugins];
   NSURL *dir = [NSApp applicationSupportDirectoryURL:YES];
   NSError *error;
   NSArray *contentURLs = [[NSFileManager defaultManager] contentsOfDirectoryAtURL:dir
@@ -137,6 +117,11 @@ NSString *const MPPluginManagerPluginBundleIdentifiyerKey = @"MPPluginManagerPlu
     if(!pluginBundle) {
       continue;
     }
+    NSError *error;
+    if(![pluginBundle preflightAndReturnError:&error]) {
+      NSLog(@"%@", error.localizedDescription );
+      continue;
+    };
     
     if(![self _validateClass:pluginBundle.principalClass]) {
       continue;

@@ -23,6 +23,9 @@ FOUNDATION_EXPORT NSString *const kMPPluginFileExtension;
 - (instancetype)initWithPluginManager:(MPPluginManager *)manager NS_DESIGNATED_INITIALIZER;
 - (instancetype)init NS_UNAVAILABLE;
 
+- (void)didLoadPlugin;
+- (void)willUnloadPlugin;
+
 @end
 
 @protocol MPPluginSettings <NSObject>
@@ -31,5 +34,6 @@ FOUNDATION_EXPORT NSString *const kMPPluginFileExtension;
 @property (strong, readonly) NSViewController *settingsViewController;
 
 @end
+
 
 NS_ASSUME_NONNULL_END
