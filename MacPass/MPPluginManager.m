@@ -17,8 +17,6 @@
 
 NSString *const MPPluginManagerWillLoadPlugin = @"com.hicknhack.macpass.MPPluginManagerWillLoadPlugin";
 NSString *const MPPluginManagerDidLoadPlugin = @"comt.hicknhack.macpass.MPPluginManagerDidLoadPlugin";
-NSString *const MPPluginManagerWillUnloadPlugin = @"com.hicknhack.macpass.MPPluginManagerWillUnloadPlugin";
-NSString *const MPPluginManagerDidUnloadPlugin = @"com.hicknhack.macpass.MPPluginManagerDidUnloadPlugin";
 
 NSString *const MPPluginManagerPluginBundleIdentifiyerKey = @"MPPluginManagerPluginBundleIdentifiyerKey";
 
@@ -59,7 +57,7 @@ NSString *const MPPluginManagerPluginBundleIdentifiyerKey = @"MPPluginManagerPlu
     _mutablePlugins = [[NSMutableArray alloc] init];
     _loadUnsecurePlugins = [[NSUserDefaults standardUserDefaults] boolForKey:kMPSettingsKeyLoadUnsecurePlugins];
     [self _loadPlugins];
-
+    
     [self bind:NSStringFromSelector(@selector(loadUnsecurePlugins))
       toObject:[NSUserDefaultsController sharedUserDefaultsController]
    withKeyPath:[MPSettingsHelper defaultControllerPathForKey:kMPSettingsKeyLoadUnsecurePlugins]
@@ -70,27 +68,6 @@ NSString *const MPPluginManagerPluginBundleIdentifiyerKey = @"MPPluginManagerPlu
 
 - (NSArray<MPPlugin *> *)plugins {
   return [self.mutablePlugins copy];
-}
-
-- (void)_unloadPlugins {
-  /* TODO Notofications for UI */
-  NSMutableArray *bundles = [[NSMutableArray alloc] initWithCapacity:self.mutablePlugins.count];
-  // clear our interal refernce
-  for(MPPlugin *plugin in self.mutablePlugins) {
-    // let the plugin know we are about to unload it
-    [plugin willUnloadPlugin];
-    NSBundle *pluginBundle = [NSBundle bundleForClass:plugin.class];
-    if(pluginBundle) {
-      [bundles addObject:pluginBundle];
-      [[NSNotificationCenter defaultCenter] postNotificationName:MPPluginManagerWillUnloadPlugin object:self userInfo:@{ MPPluginManagerPluginBundleIdentifiyerKey : plugin.identifier}];
-    }
-  }
-  [self.mutablePlugins removeAllObjects];
-  for(NSBundle *bundle in bundles) {
-    NSString *identifiery = bundle.bundleIdentifier ? bundle.bundleIdentifier : @"unknown";
-    [[NSNotificationCenter defaultCenter] postNotificationName:MPPluginManagerDidUnloadPlugin object:self userInfo:@{ MPPluginManagerPluginBundleIdentifiyerKey : identifiery }];
-    [bundle unload];
-  }
 }
 
 - (void)_loadPlugins {

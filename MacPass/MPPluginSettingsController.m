@@ -24,33 +24,6 @@ NSString *const _kMPPluginTableNameColumn = @"Name";
 
 @implementation MPPluginSettingsController
 
-- (instancetype)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil {
-  self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
-  if(self) {
-    [[NSNotificationCenter defaultCenter] addObserver:self
-                                             selector:@selector(_didChangePlugins:)
-                                                 name:MPPluginManagerWillLoadPlugin
-                                               object:[MPPluginManager sharedManager]];
-    [[NSNotificationCenter defaultCenter] addObserver:self
-                                             selector:@selector(_didChangePlugins:)
-                                                 name:MPPluginManagerDidLoadPlugin
-                                               object:[MPPluginManager sharedManager]];
-    [[NSNotificationCenter defaultCenter] addObserver:self
-                                             selector:@selector(_didChangePlugins:)
-                                                 name:MPPluginManagerWillUnloadPlugin
-                                               object:[MPPluginManager sharedManager]];
-    [[NSNotificationCenter defaultCenter] addObserver:self
-                                             selector:@selector(_didChangePlugins:)
-                                                 name:MPPluginManagerDidUnloadPlugin
-                                               object:[MPPluginManager sharedManager]];
-  }
-  return self;
-}
-
-- (void)dealloc {
-  [[NSNotificationCenter defaultCenter] removeObserver:self];
-}
-
 - (NSString *)nibName {
   return @"PluginSettings";
 }
@@ -119,13 +92,6 @@ NSString *const _kMPPluginTableNameColumn = @"Name";
 - (void)tableViewSelectionDidChange:(NSNotification *)notification {
   NSTableView *table = notification.object;
   [self showSettingsForPlugin:[self pluginForRow:table.selectedRow]];
-}
-
-
-- (void)_didChangePlugins:(NSNotification *)notification {
-  /* better way? */
-  [self.pluginTableView deselectAll:self];
-  [self.pluginTableView reloadData];
 }
 
 @end
