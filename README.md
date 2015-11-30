@@ -10,19 +10,24 @@ The Project is in heavy development. Beware that I'm going to shift things aroun
 
 ##Download
 
-Since Github now provides a release feature, I'm trying to upload binaries for all the tags I create along the way.
-Use it with caution, it's unfinished. Really!
+I'm trying to upload binaries for all the tags I create along the way. Use it with caution, it's unfinished. Really!
 
 All releases can be found at [Github](https://github.com/mstarke/MacPass/releases).
 
-If you want to live dangerously and want to take a look at the master:
+##How to Build
 
-    git clone https://github.com/mstarke/MacPass
-    cd MacPass
-    git submodule update --init --recursive
-
-After that you can build and run in Xcode. The following command will build and make the application available through Spotlight.
-If you run into signing issues take a look at [Issue #92](https://github.com/mstarke/MacPass/issues/92)
+* Fetch the source of MacPass
+```bash
+git clone https://github.com/mstarke/MacPass
+cd MacPass
+git submodule update --init --recursive
+```
+* Install [Carthage](https://github.com/Carthage/Carthage#installing-carthage)
+* Install all Dependencies
+```bash
+carthage bootstrap --platform Mac
+```
+After that you can build and run in Xcode. The following command will build and make the application available through Spotlight. If you run into signing issues take a look at [Issue #92](https://github.com/mstarke/MacPass/issues/92)
 
     xcodebuild -scheme MacPass -target MacPass -configuration Release
 
@@ -33,12 +38,6 @@ There have been some changes in the submodule urls. Please consider re-syncing a
 
 ##Known Major Issues
 
-* Binary releases (0.2.x - 0.3.x):
-  * KDBX DeletedObjects are stripped on save. This will break synchronisation features!
-* Binary releases (0.4.x):
-  * Default Autotype Sequences will get stored although they shouldn't be stored
-  * Default Autotype sequence is wrong `{TAB}{USERNAME}{TAB}{PASSWORD}{ENTER}` instead of `{USERNAME}{TAB}{PASSWORD}{ENTER}`
-  * Forced and Recomended database key change intervals are wrongfully initalized with 0. This has the nasty side effect, that 0.5 or Keepass under Windows complains to you about it all the time. (Issue [#269](https://github.com/mstarke/MacPass/issues/269) and [#276](https://github.com/mstarke/MacPass/issues/276))
 * Binary releases (0.5.x):
   * KDBX History is only preserved. Editing doesn't create new history entries
 
@@ -51,7 +50,6 @@ Another place to look is the IRC channel [#macpass](irc://irc.freenode.org/macpa
 ##System Requirement
 
 The minimum OS X version required for MacPass is currently 10.8 Mountain Lion.
-Since 10.9 Mavericks is a free upgrade I have no plans to support 10.7 Lion.
 
 ##Status
 
