@@ -8,6 +8,8 @@
 
 #import <Foundation/Foundation.h>
 @class KPKNode;
+@class KPKEntry;
+@class KPKGroup;
 
 typedef BOOL (^NodeMatchBlock)(KPKNode *aNode);
 
@@ -17,7 +19,7 @@ typedef BOOL (^NodeMatchBlock)(KPKNode *aNode);
 
 - (instancetype)init NS_UNAVAILABLE;
 
-- (NSArray *)filteredEntriesUsingBlock:(NodeMatchBlock)matchBlock;
-- (NSArray *)filteredGroupsUsingBlock:(NodeMatchBlock)matchBlock;
+- (NSArray<KPKEntry *> *)filteredEntriesUsingBlock:(NodeMatchBlock)matchBlock;
+- (NSArray<KPKGroup *> *)filteredGroupsUsingBlock:(NodeMatchBlock)matchBlock;
 
 @end
