@@ -19,7 +19,6 @@ If you want to live dangerously and want to take a look at the master:
 
     git clone https://github.com/mstarke/MacPass
     cd MacPass
-    git submodule init
     git submodule update --init --recursive
 
 After that you can build and run in Xcode. If you run into signing issues take a look at [Issue #92](https://github.com/mstarke/MacPass/issues/92)
