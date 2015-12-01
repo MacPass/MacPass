@@ -21,7 +21,10 @@ If you want to live dangerously and want to take a look at the master:
     cd MacPass
     git submodule update --init --recursive
 
-After that you can build and run in Xcode. If you run into signing issues take a look at [Issue #92](https://github.com/mstarke/MacPass/issues/92)
+After that you can build and run in Xcode. The following command will build and make the application available through Spotlight.
+If you run into signing issues take a look at [Issue #92](https://github.com/mstarke/MacPass/issues/92)
+
+    xcodebuild -scheme MacPass -target MacPass -configuration Release
 
 There have been some changes in the submodule urls. Please consider re-syncing and initalizing all submodules.
 
