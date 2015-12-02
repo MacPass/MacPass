@@ -7,7 +7,8 @@
 //
 
 #import <Cocoa/Cocoa.h>
-#import "MPSheetWindowController.h"
+#import <HNHUi/HNHUi.h>
+
 @class MPDocument;
 @class HNHUIRoundedSecureTextField;
 
@@ -22,7 +23,7 @@
 
 @end
 
-@interface MPPasswordEditWindowController : MPSheetWindowController <NSTextFieldDelegate>
+@interface MPPasswordEditWindowController : HNHUISheetWindowController <NSTextFieldDelegate>
 
 @property (weak) IBOutlet HNHUIRoundedSecureTextField *passwordTextField;
 @property (weak) IBOutlet HNHUIRoundedSecureTextField *passwordRepeatTextField;

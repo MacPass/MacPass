@@ -7,7 +7,7 @@
 //
 
 #import <Cocoa/Cocoa.h>
-#import "MPSheetWindowController.h"
+#import <HNHUi/HNHUi.h>
 
 typedef NS_ENUM(NSUInteger, MPDatabaseSettingsTab) {
   MPDatabaseSettingsTabGeneral,
@@ -18,7 +18,7 @@ typedef NS_ENUM(NSUInteger, MPDatabaseSettingsTab) {
 @class MPDocument;
 @class HNHRoundedTextField;
 
-@interface MPDatabaseSettingsWindowController : MPSheetWindowController <NSTextFieldDelegate, NSTabViewDelegate>
+@interface MPDatabaseSettingsWindowController : HNHUISheetWindowController <NSTextFieldDelegate, NSTabViewDelegate>
 
 @property (weak) IBOutlet NSTabView *sectionTabView;
 

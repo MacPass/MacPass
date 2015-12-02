@@ -18,7 +18,6 @@
 		4C0C59F118B17F10009C7B76 /* DDHotKeyUtilities.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C0C59EF18B17F10009C7B76 /* DDHotKeyUtilities.m */; };
 		4C0DBEF51BF508DE00F9B287 /* PluginSettings.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4C0DBEF71BF508DE00F9B287 /* PluginSettings.xib */; };
 		4C0DD6C618B2A44700FCB193 /* AutotypeCandidateSelectionWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4C0DD6C518B2A44700FCB193 /* AutotypeCandidateSelectionWindow.xib */; };
-		4C0F647817B6B65E00D9522A /* MPSheetWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C0F647717B6B65E00D9522A /* MPSheetWindowController.m */; };
 		4C0F647B17B6BC9C00D9522A /* MPSavePanelAccessoryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C0F647A17B6BC9C00D9522A /* MPSavePanelAccessoryViewController.m */; };
 		4C10207F1B750E2F00BFCD59 /* MPTestAutotype.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C10207E1B750E2F00BFCD59 /* MPTestAutotype.m */; };
 		4C10412C178CDD44001B5239 /* NSDate+Humanized.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C10412B178CDD44001B5239 /* NSDate+Humanized.m */; };
@@ -163,10 +162,8 @@
 		4C7B63751C0CB51F00D7038C /* TTTImageTransformers.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C7B636C1C0CB51F00D7038C /* TTTImageTransformers.m */; };
 		4C7B63761C0CB51F00D7038C /* TTTJSONTransformer.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C7B636E1C0CB51F00D7038C /* TTTJSONTransformer.m */; };
 		4C7B63771C0CB51F00D7038C /* TTTStringTransformers.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C7B63701C0CB51F00D7038C /* TTTStringTransformers.m */; };
-		4C7B637B1C0CB55600D7038C /* HNHUi.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4C7B63781C0CB55600D7038C /* HNHUi.framework */; };
 		4C7B637C1C0CB55600D7038C /* KeePassKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4C7B63791C0CB55600D7038C /* KeePassKit.framework */; };
 		4C7B637D1C0CB55600D7038C /* Sparkle.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4C7B637A1C0CB55600D7038C /* Sparkle.framework */; };
-		4C7B637E1C0CB57300D7038C /* HNHUi.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 4C7B63781C0CB55600D7038C /* HNHUi.framework */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		4C7B637F1C0CB57300D7038C /* KeePassKit.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 4C7B63791C0CB55600D7038C /* KeePassKit.framework */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		4C7B63801C0CB57300D7038C /* Sparkle.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 4C7B637A1C0CB55600D7038C /* Sparkle.framework */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		4C7BD07619FE94C900C7AA5C /* MacPassImages.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4C7BD07519FE94C900C7AA5C /* MacPassImages.xcassets */; };
@@ -199,6 +196,7 @@
 		4CBA2ABA17074C07006D8139 /* MPSettingsHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CBA2AB917074C07006D8139 /* MPSettingsHelper.m */; };
 		4CC0D2CE17974A47000B4BDA /* MPCustomFieldTableViewDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CC0D2CD17974A47000B4BDA /* MPCustomFieldTableViewDelegate.m */; };
 		4CC0D2D117974A5A000B4BDA /* MPAttachmentTableViewDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CC0D2D017974A5A000B4BDA /* MPAttachmentTableViewDelegate.m */; };
+		4CC281891C0F675B00B9174D /* HNHUi.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4CC281881C0F675B00B9174D /* HNHUi.framework */; };
 		4CC6DB7A17D23719002C6091 /* KPKNode+IconImage.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CC6DB7917D23719002C6091 /* KPKNode+IconImage.m */; };
 		4CCA8E9B18D91ED9001A6754 /* Quartz.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4CCA8E9A18D91ED9001A6754 /* Quartz.framework */; };
 		4CCEDE2A179F203B008402BE /* MPOutlineView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CCEDE29179F203B008402BE /* MPOutlineView.m */; };
@@ -257,7 +255,6 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				4C7B637E1C0CB57300D7038C /* HNHUi.framework in CopyFiles */,
 				4C7B637F1C0CB57300D7038C /* KeePassKit.framework in CopyFiles */,
 				4C7B63801C0CB57300D7038C /* Sparkle.framework in CopyFiles */,
 			);
@@ -283,8 +280,6 @@
 		4C0C59F018B17F10009C7B76 /* DDHotKeyUtilities.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; name = DDHotKeyUtilities.h; path = DDHotKey/DDHotKeyUtilities.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
 		4C0DBEF61BF508DE00F9B287 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/PluginSettings.xib; sourceTree = "<group>"; };
 		4C0DD6C518B2A44700FCB193 /* AutotypeCandidateSelectionWindow.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AutotypeCandidateSelectionWindow.xib; sourceTree = "<group>"; };
-		4C0F647617B6B65E00D9522A /* MPSheetWindowController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MPSheetWindowController.h; sourceTree = "<group>"; };
-		4C0F647717B6B65E00D9522A /* MPSheetWindowController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MPSheetWindowController.m; sourceTree = "<group>"; };
 		4C0F647917B6BC9C00D9522A /* MPSavePanelAccessoryViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MPSavePanelAccessoryViewController.h; sourceTree = "<group>"; };
 		4C0F647A17B6BC9C00D9522A /* MPSavePanelAccessoryViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MPSavePanelAccessoryViewController.m; sourceTree = "<group>"; };
 		4C10207E1B750E2F00BFCD59 /* MPTestAutotype.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MPTestAutotype.m; sourceTree = "<group>"; };
@@ -511,7 +506,6 @@
 		4C7B636E1C0CB51F00D7038C /* TTTJSONTransformer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TTTJSONTransformer.m; sourceTree = "<group>"; };
 		4C7B636F1C0CB51F00D7038C /* TTTStringTransformers.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TTTStringTransformers.h; sourceTree = "<group>"; };
 		4C7B63701C0CB51F00D7038C /* TTTStringTransformers.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TTTStringTransformers.m; sourceTree = "<group>"; };
-		4C7B63781C0CB55600D7038C /* HNHUi.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = HNHUi.framework; path = Carthage/Build/Mac/HNHUi.framework; sourceTree = "<group>"; };
 		4C7B63791C0CB55600D7038C /* KeePassKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = KeePassKit.framework; path = Carthage/Build/Mac/KeePassKit.framework; sourceTree = "<group>"; };
 		4C7B637A1C0CB55600D7038C /* Sparkle.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Sparkle.framework; path = Carthage/Build/Mac/Sparkle.framework; sourceTree = "<group>"; };
 		4C7BD07519FE94C900C7AA5C /* MacPassImages.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = MacPassImages.xcassets; sourceTree = "<group>"; };
@@ -570,6 +564,7 @@
 		4CC0D2CD17974A47000B4BDA /* MPCustomFieldTableViewDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MPCustomFieldTableViewDelegate.m; sourceTree = "<group>"; };
 		4CC0D2CF17974A5A000B4BDA /* MPAttachmentTableViewDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MPAttachmentTableViewDelegate.h; sourceTree = "<group>"; };
 		4CC0D2D017974A5A000B4BDA /* MPAttachmentTableViewDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MPAttachmentTableViewDelegate.m; sourceTree = "<group>"; };
+		4CC281881C0F675B00B9174D /* HNHUi.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = HNHUi.framework; path = Carthage/Build/Mac/HNHUi.framework; sourceTree = "<group>"; };
 		4CC6DB7817D23719002C6091 /* KPKNode+IconImage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "KPKNode+IconImage.h"; sourceTree = "<group>"; };
 		4CC6DB7917D23719002C6091 /* KPKNode+IconImage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "KPKNode+IconImage.m"; sourceTree = "<group>"; };
 		4CCA7EEC1797866F00B0B55E /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/GeneralSettings.strings; sourceTree = "<group>"; };
@@ -734,11 +729,11 @@
 				4CCA8E9B18D91ED9001A6754 /* Quartz.framework in Frameworks */,
 				4C00E33B17D8FAC100F37192 /* Carbon.framework in Frameworks */,
 				4CAD748E15B88AC100104512 /* libz.dylib in Frameworks */,
-				4C7B637B1C0CB55600D7038C /* HNHUi.framework in Frameworks */,
 				4C7B637C1C0CB55600D7038C /* KeePassKit.framework in Frameworks */,
 				4CAD748C15B889B700104512 /* Security.framework in Frameworks */,
 				4C77E36715B84A240093A587 /* Cocoa.framework in Frameworks */,
 				4C7B637D1C0CB55600D7038C /* Sparkle.framework in Frameworks */,
+				4CC281891C0F675B00B9174D /* HNHUi.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1057,7 +1052,7 @@
 		4C77E35715B84A240093A587 = {
 			isa = PBXGroup;
 			children = (
-				4C7B63781C0CB55600D7038C /* HNHUi.framework */,
+				4CC281881C0F675B00B9174D /* HNHUi.framework */,
 				4C7B63791C0CB55600D7038C /* KeePassKit.framework */,
 				4C7B637A1C0CB55600D7038C /* Sparkle.framework */,
 				4C7B63611C0CB51F00D7038C /* TransformerKit */,
@@ -1272,8 +1267,6 @@
 		4CE8247016E2E96500573141 /* Window Controller */ = {
 			isa = PBXGroup;
 			children = (
-				4C0F647617B6B65E00D9522A /* MPSheetWindowController.h */,
-				4C0F647717B6B65E00D9522A /* MPSheetWindowController.m */,
 				4CA0B2FA15BCAF8600654E32 /* MPSettingsWindowController.h */,
 				4CA0B2FB15BCAF8600654E32 /* MPSettingsWindowController.m */,
 				4C83814015BF4677001AE468 /* MPDocumentWindowController.h */,
@@ -1708,7 +1701,6 @@
 				4CA08DA017A831B200A6544B /* MPAddEntryContextMenuDelegate.m in Sources */,
 				4CE3E62617AB0D2D00D9E4B4 /* MPAttachmentTableDataSource.m in Sources */,
 				4C0728BD17B5B7F7005A7DD9 /* MPPasswordEditWindowController.m in Sources */,
-				4C0F647817B6B65E00D9522A /* MPSheetWindowController.m in Sources */,
 				4C0F647B17B6BC9C00D9522A /* MPSavePanelAccessoryViewController.m in Sources */,
 				4C57AE1417BA422B00CA4F34 /* MPSegmentedContextCell.m in Sources */,
 				4CE2961518429AA5005F01CE /* MPAutotypeKeyPress.m in Sources */,

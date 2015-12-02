@@ -32,7 +32,7 @@ static MPPluginHost *_instance;
   return self;
 }
 
-- (NSArray *)filteredEntriesUsingBlock:(NodeMatchBlock)matchBlock {
+- (NSArray<KPKEntry *> *)filteredEntriesUsingBlock:(NodeMatchBlock)matchBlock {
   NSArray *currentDocuments = [[NSDocumentController sharedDocumentController] documents];
   NSMutableArray *entries = [[NSMutableArray alloc] initWithCapacity:200];
   for(MPDocument *document in currentDocuments) {
@@ -44,7 +44,7 @@ static MPPluginHost *_instance;
   return [[NSArray alloc] initWithArray:[entries filteredArrayUsingPredicate:predicate] copyItems:YES];
 }
 
-- (NSArray *)filteredGroupsUsingBlock:(NodeMatchBlock)matchBlock {
+- (NSArray<KPKGroup *> *)filteredGroupsUsingBlock:(NodeMatchBlock)matchBlock {
   NSAssert(NO, @"Not implemented");
   return nil;
 }
