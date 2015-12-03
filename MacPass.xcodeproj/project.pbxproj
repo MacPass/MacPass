@@ -208,6 +208,7 @@
 		4CD034AC1BFE113B003C002C /* MPPluginManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CD034A91BFE113B003C002C /* MPPluginManager.m */; };
 		4CD2B9061849424B0051B395 /* MPAutotypeContext.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CD2B9051849424B0051B395 /* MPAutotypeContext.m */; };
 		4CD5D705177A5F3300100649 /* MPDatabaseSettingsWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CD5D704177A5F3300100649 /* MPDatabaseSettingsWindowController.m */; };
+		4CD60C131C104AD4005BE5F8 /* HNHUi.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 4CC281881C0F675B00B9174D /* HNHUi.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		4CD7223B17A7CB0700F5A1E1 /* MPWorkflowSettingsController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CD7223A17A7CB0700F5A1E1 /* MPWorkflowSettingsController.m */; };
 		4CD78ABC16D155FF00768A1D /* 07_NotepadTemplate.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 4CD78AB716D155FF00768A1D /* 07_NotepadTemplate.pdf */; };
 		4CD78ABD16D155FF00768A1D /* 08_SocketTemplate.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 4CD78AB816D155FF00768A1D /* 08_SocketTemplate.pdf */; };
@@ -255,6 +256,7 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
+				4CD60C131C104AD4005BE5F8 /* HNHUi.framework in CopyFiles */,
 				4C7B637F1C0CB57300D7038C /* KeePassKit.framework in CopyFiles */,
 				4C7B63801C0CB57300D7038C /* Sparkle.framework in CopyFiles */,
 			);
