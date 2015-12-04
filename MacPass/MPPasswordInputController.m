@@ -87,13 +87,13 @@
 #pragma mark -
 #pragma mark Private
 - (IBAction)_decrypt:(id)sender {
-  MPDocument *document = [[self windowController] document];
+  MPDocument *document = self.windowController.document;
   if(document) {
     NSError *error = nil;
     /* No password is different than an empty password */
-    NSString *password = self.enablePassword ? [self.passwordTextField stringValue] : nil;
+    NSString *password = self.enablePassword ? self.passwordTextField.stringValue : nil;
     if(![document unlockWithPassword:password
-                          keyFileURL:[self.keyPathControl URL]
+                          keyFileURL:self.keyPathControl.URL
                                error:&error]) {
       [self _showError:error];
       [[[self view] window] shakeWindow:nil];

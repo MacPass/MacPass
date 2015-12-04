@@ -287,11 +287,12 @@ NSString *const MPDocumentGroupKey                        = @"MPDocumentGroupKey
 - (BOOL)unlockWithPassword:(NSString *)password keyFileURL:(NSURL *)keyFileURL error:(NSError *__autoreleasing*)error{
   self.compositeKey = [[KPKCompositeKey alloc] initWithPassword:password key:keyFileURL];
   self.tree = [[KPKTree alloc] initWithData:self.encryptedData password:self.compositeKey error:error];
-  /* clear out the encrypted data as we do not need it for now */
-  self.encryptedData = nil;
   
   BOOL isUnlocked = (nil != self.tree);
+
   if(isUnlocked) {
+    /* only clear the data if we actually do not need it anymore */
+    self.encryptedData = nil;
     self.unlockCount += 1;
     [[NSNotificationCenter defaultCenter] postNotificationName:MPDocumentDidUnlockDatabaseNotification object:self];
     /* Make sure to only store */
