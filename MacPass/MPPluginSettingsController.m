@@ -31,7 +31,7 @@
 }
 
 - (NSImage *)image {
-  return [NSImage imageNamed:NSImageNameApplicationIcon];
+  return [[NSWorkspace sharedWorkspace] iconForFileType:@"bundle"];
 }
 
 - (NSString *)label {
