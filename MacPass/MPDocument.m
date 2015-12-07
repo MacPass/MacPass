@@ -67,6 +67,7 @@ NSString *const MPDocumentGroupKey                        = @"MPDocumentGroupKey
 @property (nonatomic, strong) KPKCompositeKey *compositeKey;
 @property (nonatomic, strong) NSData *encryptedData;
 @property (nonatomic, strong) MPTreeDelegate *treeDelgate;
+@property (copy) NSDate *lastLoadedModificationDate;
 
 @property (assign) BOOL readOnly;
 @property (strong) NSURL *lockFileURL;
@@ -176,18 +177,18 @@ NSString *const MPDocumentGroupKey                        = @"MPDocumentGroupKey
     }
     return NO;
   }
-  [self _watchForFileChanges:NO];
   NSData *treeData = [self.tree encryptWithPassword:self.compositeKey forVersion:version error:outError];
   BOOL sucess = [treeData writeToURL:url options:0 error:outError];
   if(!sucess) {
     NSLog(@"%@", [*outError localizedDescription]);
   }
-  [self _watchForFileChanges:YES];
+  else {
+    self.lastLoadedModificationDate = [NSDate date];
+  }
   return sucess;
 }
 
 - (BOOL)readFromURL:(NSURL *)url ofType:(NSString *)typeName error:(NSError **)outError {
-  [self _watchForFileChanges:YES];
   /* FIXME: Lockfile handling
    self.lockFileURL = [url URLByAppendingPathExtension:@"lock"];
    if([[NSFileManager defaultManager] fileExistsAtPath:[_lockFileURL path]]) {
@@ -204,6 +205,7 @@ NSString *const MPDocumentGroupKey                        = @"MPDocumentGroupKey
    */
   self.tree = nil;
   self.encryptedData = [NSData dataWithContentsOfURL:url options:NSDataReadingUncached error:outError];
+  self.lastLoadedModificationDate = self.fileModificationDate;
   return YES;
 }
 
@@ -226,8 +228,8 @@ NSString *const MPDocumentGroupKey                        = @"MPDocumentGroupKey
    We store the last url. Restored windows are automatically handled.
    If closeAllDocuments is set, all docs get this message
    */
-  if([[self fileURL] isFileURL]) {
-    [[NSUserDefaults standardUserDefaults] setObject:[self.fileURL absoluteString] forKey:kMPSettingsKeyLastDatabasePath];
+  if(self.fileURL.isFileURL) {
+    [[NSUserDefaults standardUserDefaults] setObject:self.fileURL.absoluteString forKey:kMPSettingsKeyLastDatabasePath];
   }
   self.tree = nil;
   [super close];
@@ -720,21 +722,6 @@ NSString *const MPDocumentGroupKey                        = @"MPDocumentGroupKey
   }
 }
 
-/*
-- (KPKGroup *)_createTrashGroup {
-  KPKGroup *trash = [self.tree createGroup:self.tree.root];
-  BOOL wasEnabled = [self.undoManager isUndoRegistrationEnabled];
-  [self.undoManager disableUndoRegistration];
-  trash.title = NSLocalizedString(@"TRASH", @"Name for the trash group");
-  trash.iconId = MPIconTrash;
-  [self.tree.root addGroup:trash];
-  if(wasEnabled) {
-    [self.undoManager enableUndoRegistration];
-  }
-  self.tree.metaData.trashUuid = trash.uuid;
-  return trash;
-}
-*/
 - (void)_emptyTrash {
   for(KPKEntry *entry in [self.trash childEntries]) {
     [[self undoManager] removeAllActionsWithTarget:entry];
@@ -754,12 +741,6 @@ NSString *const MPDocumentGroupKey                        = @"MPDocumentGroupKey
 
 - (KPKGroup *)currentTargetGroup {
   return self.selectedGroup;
-}
-
-
-# pragma mark File Watching
-- (void) _watchForFileChanges:(BOOL)watch {
-  
 }
 
 @end
