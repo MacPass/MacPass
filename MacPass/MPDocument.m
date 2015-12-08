@@ -67,7 +67,6 @@ NSString *const MPDocumentGroupKey                        = @"MPDocumentGroupKey
 @property (nonatomic, strong) KPKCompositeKey *compositeKey;
 @property (nonatomic, strong) NSData *encryptedData;
 @property (nonatomic, strong) MPTreeDelegate *treeDelgate;
-@property (copy) NSDate *lastLoadedModificationDate;
 
 @property (assign) BOOL readOnly;
 @property (strong) NSURL *lockFileURL;
@@ -182,9 +181,6 @@ NSString *const MPDocumentGroupKey                        = @"MPDocumentGroupKey
   if(!sucess) {
     NSLog(@"%@", [*outError localizedDescription]);
   }
-  else {
-    self.lastLoadedModificationDate = [NSDate date];
-  }
   return sucess;
 }
 
@@ -205,13 +201,11 @@ NSString *const MPDocumentGroupKey                        = @"MPDocumentGroupKey
    */
   self.tree = nil;
   self.encryptedData = [NSData dataWithContentsOfURL:url options:NSDataReadingUncached error:outError];
-  self.lastLoadedModificationDate = self.fileModificationDate;
   return YES;
 }
 
 - (BOOL)revertToContentsOfURL:(NSURL *)absoluteURL ofType:(NSString *)typeName error:(NSError **)outError {
-  self.tree = nil;
-  if([self readFromURL:absoluteURL ofType:typeName error:outError]) {
+  if([super revertToContentsOfURL:absoluteURL ofType:typeName error:outError]) {
     [[NSNotificationCenter defaultCenter] postNotificationName:MPDocumentDidRevertNotifiation object:self];
     return YES;
   }
@@ -259,6 +253,27 @@ NSString *const MPDocumentGroupKey                        = @"MPDocumentGroupKey
   return [self fileType];
 }
 
+- (void)presentedItemDidChange {
+  [super presentedItemDidChange];
+  
+  NSFileManager *fileManager = [NSFileManager defaultManager];
+  NSDate *creationDate = nil;
+  NSDictionary *attributes = [fileManager attributesOfItemAtPath:self.fileURL.path error:nil];
+  creationDate = attributes[NSFileModificationDate];
+  /* Dispatch the alert to the main queue */
+  dispatch_async(dispatch_get_main_queue(), ^{
+    NSAlert *alert = [[NSAlert alloc] init];
+    alert.alertStyle = NSWarningAlertStyle;
+    alert.messageText = NSLocalizedString(@"FILE_CHANGED_BY_OTHERS_MESSAGE_TEXT", @"Message displayed when an open file was changed from another application");
+    alert.informativeText = NSLocalizedString(@"FILE_CHANGED_BY_OTHERS_INFO_TEXT", @"Informative text displayed when the file was change form another application");
+    [alert addButtonWithTitle:NSLocalizedString(@"IGNORE", @"Ignore the changes to an open file!")];
+    [alert addButtonWithTitle:NSLocalizedString(@"REOPEN", @"Reopen the file!")];
+    [alert beginSheetModalForWindow:self.windowForSheet completionHandler:^(NSModalResponse returnCode) {
+      [self revertDocumentToSaved:nil];
+    }];
+  });
+}
+
 - (void)writeXMLToURL:(NSURL *)url {
   NSData *xmlData = [self.tree xmlData];
   [xmlData writeToURL:url atomically:YES];
@@ -291,7 +306,7 @@ NSString *const MPDocumentGroupKey                        = @"MPDocumentGroupKey
   self.tree = [[KPKTree alloc] initWithData:self.encryptedData password:self.compositeKey error:error];
   
   BOOL isUnlocked = (nil != self.tree);
-
+  
   if(isUnlocked) {
     /* only clear the data if we actually do not need it anymore */
     self.encryptedData = nil;
