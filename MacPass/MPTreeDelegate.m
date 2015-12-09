@@ -33,7 +33,7 @@
 }
 
 - (BOOL)shouldEditTree:(KPKTree *)tree {
-  return (NO == self.document.isReadOnly);
+  return !self.document.isReadOnly;
 }
 
 - (NSUndoManager *)undoManagerForTree:(KPKTree *)tree {

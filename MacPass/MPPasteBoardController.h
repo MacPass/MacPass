@@ -21,10 +21,13 @@ FOUNDATION_EXPORT NSString *const MPPasteBoardControllerDidCopyObjects;
  */
 FOUNDATION_EXPORT NSString *const MPPasteBoardControllerDidClearClipboard;
 
-/*
+/**
  This time sets the time interval after which a copied entry should be purged from the pasteboard
  */
 @property (assign, nonatomic) NSTimeInterval clearTimeout;
+/**
+ *  If set to YES, MacPass will clear the pastboard when it quits.
+ */
 @property (assign, nonatomic) BOOL clearPasteboardOnShutdown;
 
 + (MPPasteBoardController *)defaultController;

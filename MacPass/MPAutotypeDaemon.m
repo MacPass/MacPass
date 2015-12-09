@@ -158,7 +158,7 @@ static MPAutotypeDaemon *_sharedInstance;
   MPAutotypeContext *context = [self _autotypeContextForDocuments:documents forWindowTitle:self.targetWindowTitle preferredEntry:entryOrNil];
   /* TODO: that's popping up if the mulit seleciton dialog goes up! */
   if(!entryOrNil) {
-    NSImage *appIcon = [[NSApplication sharedApplication] applicationIconImage];
+    NSImage *appIcon = [NSApplication sharedApplication].applicationIconImage;
     NSString *label = context ? NSLocalizedString(@"AUTOTYPE_OVERLAY_SINGLE_MATCH", "") : NSLocalizedString(@"AUTOTYPE_OVERLAY_NO_MATCH", "");
     [[MPOverlayWindowController sharedController] displayOverlayImage:appIcon label:label atView:nil];
   }
@@ -210,7 +210,7 @@ static MPAutotypeDaemon *_sharedInstance;
   }
   if([self _orderApplicationToFront:self.targetPID]) {
     /* Sleep a bit after the app was activated */
-    /* TODO - we can use a saver way and use a notification to chekc if the app actally was activated */
+    /* TODO - we can use a saver way and use a notification to check if the app actally was activated */
     usleep(1 * NSEC_PER_MSEC);
   }
   dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
