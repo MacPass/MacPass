@@ -167,8 +167,8 @@ NSString *const MPDocumentGroupKey                        = @"MPDocumentGroupKey
     }
     return NO; // No password or key. No save possible
   }
-  NSString *fileType = [self fileTypeFromLastRunSavePanel];
-  KPKVersion version = [[self class] versionForFileType:fileType];
+  NSString *fileType = self.fileTypeFromLastRunSavePanel;
+  KPKVersion version = [self.class versionForFileType:fileType];
   if(version == KPKUnknownVersion) {
     if(outError != NULL) {
       NSDictionary *userInfo = @{ NSLocalizedDescriptionKey: NSLocalizedString(@"UNKNOWN_FILE_VERSION", "") };
@@ -179,7 +179,7 @@ NSString *const MPDocumentGroupKey                        = @"MPDocumentGroupKey
   NSData *treeData = [self.tree encryptWithPassword:self.compositeKey forVersion:version error:outError];
   BOOL sucess = [treeData writeToURL:url options:0 error:outError];
   if(!sucess) {
-    NSLog(@"%@", [*outError localizedDescription]);
+    NSLog(@"%@", (*outError).localizedDescription);
   }
   return sucess;
 }
@@ -248,18 +248,24 @@ NSString *const MPDocumentGroupKey                        = @"MPDocumentGroupKey
 
 - (NSString *)fileTypeFromLastRunSavePanel {
   if(self.savePanelViewController) {
-    return [[self class] fileTypeForVersion:self.savePanelViewController.selectedVersion];
+    return [self.class fileTypeForVersion:self.savePanelViewController.selectedVersion];
   }
-  return [self fileType];
+  return self.fileType;
 }
 
 - (void)presentedItemDidChange {
   [super presentedItemDidChange];
   
-  NSFileManager *fileManager = [NSFileManager defaultManager];
-  NSDate *creationDate = nil;
-  NSDictionary *attributes = [fileManager attributesOfItemAtPath:self.fileURL.path error:nil];
-  creationDate = attributes[NSFileModificationDate];
+  /* If we are locked we have the data written back to file - just revert */
+  if(self.encrypted) {
+    [self revertDocumentToSaved:nil];
+    return;
+  }
+  NSDictionary *attributes = [[NSFileManager defaultManager] attributesOfItemAtPath:self.fileURL.path error:nil];
+  NSDate *modificationDate = attributes[NSFileModificationDate];
+  if(NSOrderedSame == [self.fileModificationDate compare:modificationDate]) {
+    return; // Just metadata has changed
+  }
   /* Dispatch the alert to the main queue */
   dispatch_async(dispatch_get_main_queue(), ^{
     NSAlert *alert = [[NSAlert alloc] init];
@@ -269,7 +275,9 @@ NSString *const MPDocumentGroupKey                        = @"MPDocumentGroupKey
     [alert addButtonWithTitle:NSLocalizedString(@"IGNORE", @"Ignore the changes to an open file!")];
     [alert addButtonWithTitle:NSLocalizedString(@"REOPEN", @"Reopen the file!")];
     [alert beginSheetModalForWindow:self.windowForSheet completionHandler:^(NSModalResponse returnCode) {
-      [self revertDocumentToSaved:nil];
+      if(returnCode == NSAlertSecondButtonReturn) {
+        [self revertDocumentToSaved:nil];
+      }
     }];
   });
 }
@@ -289,13 +297,10 @@ NSString *const MPDocumentGroupKey                        = @"MPDocumentGroupKey
 #pragma mark Lock/Unlock/Decrypt
 
 - (void)lockDatabase:(id)sender {
-  if(self.undoManager.canUndo) {
-    /* ask the user? */
-    [self.undoManager removeAllActions];
-  }
   [self exitSearch:self];
   NSError *error;
-  /* Locking needs to be lossless hence just use the XML format */
+  /* FIXME: User feedback is ignored */
+  [self saveDocument:sender];
   self.encryptedData = [self.tree encryptWithPassword:self.compositeKey forVersion:KPKXmlVersion error:&error];
   self.tree = nil;
   [[NSNotificationCenter defaultCenter] postNotificationName:MPDocumentDidLockDatabaseNotification object:self];
