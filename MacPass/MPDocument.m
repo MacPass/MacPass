@@ -272,8 +272,8 @@ NSString *const MPDocumentGroupKey                        = @"MPDocumentGroupKey
     alert.alertStyle = NSWarningAlertStyle;
     alert.messageText = NSLocalizedString(@"FILE_CHANGED_BY_OTHERS_MESSAGE_TEXT", @"Message displayed when an open file was changed from another application");
     alert.informativeText = NSLocalizedString(@"FILE_CHANGED_BY_OTHERS_INFO_TEXT", @"Informative text displayed when the file was change form another application");
-    [alert addButtonWithTitle:NSLocalizedString(@"IGNORE", @"Ignore the changes to an open file!")];
-    [alert addButtonWithTitle:NSLocalizedString(@"REOPEN", @"Reopen the file!")];
+    [alert addButtonWithTitle:NSLocalizedString(@"KEEP_MINE", @"Ignore the changes to an open file!")];
+    [alert addButtonWithTitle:NSLocalizedString(@"LOAD_CHANGES", @"Reopen the file!")];
     [alert beginSheetModalForWindow:self.windowForSheet completionHandler:^(NSModalResponse returnCode) {
       if(returnCode == NSAlertSecondButtonReturn) {
         [self revertDocumentToSaved:nil];
