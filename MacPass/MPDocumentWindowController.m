@@ -379,8 +379,7 @@ typedef void (^MPPasswordChangedBlock)(BOOL didChangePassword);
 - (void)performAutotypeForEntry:(id)sender {
   id<MPTargetNodeResolving> entryResolver = [NSApp targetForAction:@selector(currentTargetEntry)];
   KPKEntry *targetEntry = [entryResolver currentTargetEntry];
-  MPAutotypeDaemon *autotyped = ((MPAppDelegate *)[NSApplication sharedApplication].delegate).autotypeDaemon;
-  [autotyped performAutotypeForEntry:targetEntry];
+  [[MPAutotypeDaemon defaultDaemon] performAutotypeForEntry:targetEntry];
 }
 
 - (void)showInspector:(id)sender {

@@ -30,7 +30,6 @@ APPKIT_EXTERN NSString *const MPDidChangeStoredKeyFilesSettings;
 
 @property (strong) IBOutlet NSWindow *passwordCreatorWindow;
 @property (strong) IBOutlet NSWindow *welcomeWindow;
-@property (strong) MPAutotypeDaemon *autotypeDaemon;
 @property (weak) IBOutlet NSMenuItem *saveMenuItem;
 
 @property (nonatomic, assign) BOOL isAllowedToStoreKeyFile;
