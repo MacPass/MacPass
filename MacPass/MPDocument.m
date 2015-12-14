@@ -508,57 +508,41 @@ NSString *const MPDocumentGroupKey                        = @"MPDocumentGroupKey
 }
 
 - (void)deleteNode:(KPKNode *)node {
+  if(!node.asEntry && !node.asGroup) {
+    return; // Nothing do
+  }
+  if(node.isTrashed) {
+    [self _presentTrashAlertForItem:node];
+    return;
+  }
+  [node trashOrRemove];
+  BOOL permanent = (nil == self.trash);
   if(node.asGroup) {
-    [self deleteGroup:node.asGroup];
+    [self.undoManager setActionName:permanent ? NSLocalizedString(@"DELETE_GROUP", "Delete Group") : NSLocalizedString(@"TRASH_GROUP", "Move Group to Trash")];
+    if(self.selectedGroup == node) {
+      self.selectedGroup = nil;
+    }
   }
   else if(node.asEntry) {
-    [self deleteEntry:node.asEntry];
+    [self.undoManager setActionName:permanent ? NSLocalizedString(@"DELETE_ENTRY", "") : NSLocalizedString(@"TRASH_ENTRY", "Move Entry to Trash")];
+    if(self.selectedEntry == node) {
+      self.selectedEntry = nil;
+    }
   }
-}
-
-- (void)deleteEntry:(KPKEntry *)entry {
-  if(!entry) {
-    return; // Nothing to do;
-  }
-  if(entry.isTrashed) {
-    [self _presentTrashAlertForItem:entry];
-    return;
-  }
-  [entry trashOrRemove];
-  BOOL permanent = (nil == self.trash);
-  [self.undoManager setActionName:permanent ? NSLocalizedString(@"DELETE_ENTRY", "") : NSLocalizedString(@"TRASH_ENTRY", "Move Entry to Trash")];
-  
-  if(self.selectedEntry == entry) {
-    self.selectedEntry = nil;
-  }
-}
-
-- (void)deleteGroup:(KPKGroup *)group {
-  if(!group) {
-    return; // Nothing to do;
-  }
-  if(group.isTrashed) {
-    [self _presentTrashAlertForItem:group];
-    return;
-  }
-  [group trashOrRemove];
-  BOOL permanent = (nil == self.trash);
-  [self.undoManager setActionName:permanent ? NSLocalizedString(@"DELETE_GROUP", "Delete Group") : NSLocalizedString(@"TRASH_GROUP", "Move Group to Trash")];
 }
 
 #pragma mark Actions
 - (void)emptyTrash:(id)sender {
   NSAlert *alert = [[NSAlert alloc] init];
-  [alert setAlertStyle:NSWarningAlertStyle];
-  [alert setMessageText:NSLocalizedString(@"WARNING_ON_EMPTY_TRASH_TITLE", "")];
-  [alert setInformativeText:NSLocalizedString(@"WARNING_ON_EMPTY_TRASH_DESCRIPTION", "Informative Text displayed when clearing the Trash")];
+  alert.alertStyle = NSWarningAlertStyle;
+  alert.messageText = NSLocalizedString(@"WARNING_ON_EMPTY_TRASH_TITLE", "");
+  alert.informativeText = NSLocalizedString(@"WARNING_ON_EMPTY_TRASH_DESCRIPTION", "Informative Text displayed when clearing the Trash");
+
   [alert addButtonWithTitle:NSLocalizedString(@"EMPTY_TRASH", "Empty Trash")];
   [alert addButtonWithTitle:NSLocalizedString(@"CANCEL", "Cancel")];
+  alert.buttons.lastObject.keyEquivalent = [NSString stringWithFormat:@"%c", 0x1b];
   
-  [[alert buttons][1] setKeyEquivalent:[NSString stringWithFormat:@"%c", 0x1b]];
-  
-  NSWindow *window = [[self windowControllers][0] window];
-  [alert beginSheetModalForWindow:window modalDelegate:self didEndSelector:@selector(_emptyTrashAlertDidEnd:returnCode:contextInfo:) contextInfo:NULL];
+  [alert beginSheetModalForWindow:self.windowForSheet modalDelegate:self didEndSelector:@selector(_emptyTrashAlertDidEnd:returnCode:contextInfo:) contextInfo:NULL];
 }
 
 - (void)_emptyTrashAlertDidEnd:(NSAlert *)alert returnCode:(NSInteger)returnCode contextInfo:(void *)contextInfo {
@@ -571,17 +555,16 @@ NSString *const MPDocumentGroupKey                        = @"MPDocumentGroupKey
   KPKEntry *entry = node.asEntry;
   
   NSAlert *alert = [[NSAlert alloc] init];
-  [alert setAlertStyle:NSWarningAlertStyle];
-  [alert setMessageText:NSLocalizedString(@"WARNING_ON_DELETE_TRASHED_NODE_TITLE", "")];
-  [alert setInformativeText:NSLocalizedString(@"WARNING_ON_DELETE_TRASHED_NODE_DESCRIPTION", "Informative Text displayed when clearing the Trash")];
+  alert.alertStyle = NSWarningAlertStyle;
+  alert.messageText = NSLocalizedString(@"WARNING_ON_DELETE_TRASHED_NODE_TITLE", "");
+  alert.informativeText = NSLocalizedString(@"WARNING_ON_DELETE_TRASHED_NODE_DESCRIPTION", "Informative Text displayed when clearing the Trash");
+
   NSString *okButtonText = entry ? NSLocalizedString(@"DELETE_TRASHED_ENTRY", "Empty Trash") : NSLocalizedString(@"DELETE_TRASHED_GROUP", "Empty Trash");
   [alert addButtonWithTitle:okButtonText];
   [alert addButtonWithTitle:NSLocalizedString(@"CANCEL", "Cancel")];
-  
-  [[alert buttons][1] setKeyEquivalent:[NSString stringWithFormat:@"%c", 0x1b]];
-  
-  NSWindow *window = [[self windowControllers][0] window];
-  [alert beginSheetModalForWindow:window modalDelegate:self didEndSelector:@selector(_deleteTrashedItemAlertDidEnd:returnCode:contextInfo:) contextInfo:(__bridge void *)(node)];
+  alert.buttons.lastObject.keyEquivalent = [NSString stringWithFormat:@"%c", 0x1b];
+
+  [alert beginSheetModalForWindow:self.windowForSheet modalDelegate:self didEndSelector:@selector(_deleteTrashedItemAlertDidEnd:returnCode:contextInfo:) contextInfo:(__bridge void *)(node)];
 }
 
 - (void)_deleteTrashedItemAlertDidEnd:(NSAlert *)alert returnCode:(NSInteger)returnCode contextInfo:(void *)contextInfo {

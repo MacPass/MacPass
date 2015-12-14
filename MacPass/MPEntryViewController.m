@@ -382,7 +382,7 @@ NSString *const _MPTableSecurCellView = @"PasswordCell";
   if(entry) {
     return entry;
   }
-  MPDocument *document = [[self windowController] document];
+  MPDocument *document = self.windowController.document;
   return document.selectedItem;
 }
 
@@ -702,8 +702,9 @@ NSString *const _MPTableSecurCellView = @"PasswordCell";
   if(!entry) {
     return;
   }
-  MPDocument *document = [[self windowController] document];
-  [document deleteEntry:entry];
+  
+  MPDocument *document = self.windowController.document;
+  [document deleteNode:entry];
 }
 
 

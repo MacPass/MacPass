@@ -150,8 +150,6 @@ APPKIT_EXTERN NSString *const MPDocumentGroupKey;
 - (KPKAttribute *)createCustomAttribute:(KPKEntry *)entry;
 
 - (void)deleteNode:(KPKNode *)node;
-- (void)deleteGroup:(KPKGroup *)group;
-- (void)deleteEntry:(KPKEntry *)entry;
 
 #pragma mark Actions
 /**
