@@ -15,12 +15,11 @@
 
 #import "HNHUi/HNHUi.h"
 
-@interface MPGroupInspectorViewController () {
-  NSObjectController *_entryController;
-}
+@interface MPGroupInspectorViewController ()
 
-@property (nonatomic, weak) KPKGroup *group;
+//@property (nonatomic, weak) KPKGroup *group;
 @property (strong) NSPopover *popover;
+@property (strong) NSObjectController *groupController;
 
 @end
 
@@ -33,7 +32,7 @@
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil {
   self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
   if (self) {
-    _entryController = [[NSObjectController alloc] init];
+    _groupController = [[NSObjectController alloc] init];
   }
   return self;
 }
@@ -80,45 +79,39 @@
   [searchMenu addItem:inheritSearch];
   [searchMenu addItem:includeInSearch];
   [searchMenu addItem:excludeFromSearch];
-
-  /*
-   void(^copyBlock)(NSTextField *textField) = ^void(NSTextField *textField) {
-   [[MPPasteBoardController defaultController] copyObjects:@[ textField.stringValue ]];
-   };
-   
-   self.titleTextField.copyActionBlock = copyBlock;
-   */
+  
+  [self _establishBindings];
 }
 
 - (void)setupBindings:(MPDocument *)document {
-  [self bind:NSStringFromSelector(@selector(group)) toObject:document withKeyPath:NSStringFromSelector(@selector(selectedGroup)) options:nil];
+  [self.groupController bind:NSContentObjectBinding toObject:document withKeyPath:NSStringFromSelector(@selector(selectedGroup)) options:nil];
 }
 
-- (void)setGroup:(KPKGroup *)group {
-  if(_group != group) {
-    _group = group;
-    [self _updateBindings];
-  }
-}
-
-- (void)_updateBindings {
-  if(self.group) {
-    [self.titleTextField bind:NSValueBinding toObject:self.group withKeyPath:NSStringFromSelector(@selector(title)) options:nil];
-    [self.expiresCheckButton bind:NSValueBinding toObject:self.group.timeInfo withKeyPath:NSStringFromSelector(@selector(expires)) options:nil];
-    [self.expiresCheckButton bind:NSTitleBinding toObject:self.group.timeInfo withKeyPath:NSStringFromSelector(@selector(expirationDate)) options:@{ NSValueTransformerNameBindingOption:MPExpiryDateValueTransformer }];
-    [self.autotypePopupButton bind:NSSelectedTagBinding toObject:self.group withKeyPath:NSStringFromSelector(@selector(isAutoTypeEnabled)) options:nil];
-    [self.autotypeSequenceTextField bind:NSValueBinding toObject:self.group withKeyPath:NSStringFromSelector(@selector(defaultAutoTypeSequence)) options:nil];
-    [self.searchPopupButton bind:NSSelectedTagBinding toObject:self.group withKeyPath:NSStringFromSelector(@selector(isSearchEnabled)) options:nil];
-  }
-  else {
-    [self.titleTextField unbind:NSValueBinding];
-    [self.expiresCheckButton unbind:NSValueBinding];
-    [self.expiresCheckButton unbind:NSTitleBinding];
-    [self.expiresCheckButton setTitle:NSLocalizedString(@"EXPIRES", "")];
-    [self.searchPopupButton unbind:NSSelectedTagBinding];
-    [self.autotypePopupButton unbind:NSSelectedTagBinding];
-    [self.autotypeSequenceTextField unbind:NSValueBinding];
-  }
+- (void)_establishBindings {
+  [self.titleTextField bind:NSValueBinding
+                   toObject:self.groupController
+                withKeyPath:[NSString stringWithFormat:@"%@.%@", NSContentBinding, NSStringFromSelector(@selector(title))]
+                    options:@{NSNullPlaceholderBindingOption: NSLocalizedString(@"NONE", @"")}];
+  [self.expiresCheckButton bind:NSValueBinding
+                       toObject:self.groupController
+                    withKeyPath:[NSString stringWithFormat:@"%@.%@.%@", NSContentBinding, NSStringFromSelector(@selector(timeInfo)), NSStringFromSelector(@selector(expires))]
+                        options:nil];
+  [self.expiresCheckButton bind:NSTitleBinding
+                       toObject:self.groupController
+                    withKeyPath:[NSString stringWithFormat:@"%@.%@.%@", NSContentBinding, NSStringFromSelector(@selector(timeInfo)), NSStringFromSelector(@selector(expirationDate))]
+                        options:@{ NSValueTransformerNameBindingOption:MPExpiryDateValueTransformer }];
+  [self.autotypePopupButton bind:NSSelectedTagBinding
+                        toObject:self.groupController
+                     withKeyPath:[NSString stringWithFormat:@"%@.%@", NSContentBinding, NSStringFromSelector(@selector(isAutoTypeEnabled))]
+                         options:nil];
+  [self.autotypeSequenceTextField bind:NSValueBinding
+                              toObject:self.groupController
+                           withKeyPath:[NSString stringWithFormat:@"%@.%@", NSContentBinding, NSStringFromSelector(@selector(defaultAutoTypeSequence))]
+                               options:@{NSNullPlaceholderBindingOption: NSLocalizedString(@"NONE", @"")}];
+  [self.searchPopupButton bind:NSSelectedTagBinding
+                      toObject:self.groupController
+                   withKeyPath:[NSString stringWithFormat:@"%@.%@", NSContentBinding, NSStringFromSelector(@selector(isSearchEnabled))]
+                       options:nil];
 }
 
 @end
