@@ -92,22 +92,33 @@ NSString *const MPPluginManagerPluginBundleIdentifiyerKey = @"MPPluginManagerPlu
     
     NSBundle *pluginBundle = [NSBundle bundleWithURL:pluginURL];
     if(!pluginBundle) {
+      NSLog(@"Could not create bundle %@", pluginURL.path);
       continue;
     }
     NSError *error;
     if(![pluginBundle preflightAndReturnError:&error]) {
-      NSLog(@"%@", error.localizedDescription );
+      NSLog(@"Preflight Error %@ %@", error.localizedDescription, error.localizedFailureReason );
       continue;
     };
+  
+    if(![pluginBundle loadAndReturnError:&error]) {
+      NSLog(@"Bunlde Loading Error %@ %@", error.localizedDescription, error.localizedFailureReason);
+      continue;
+    }
     
     if(![self _validateClass:pluginBundle.principalClass]) {
+      NSLog(@"Wrong principal Class.");
       continue;
     }
     MPPlugin *plugin = [[pluginBundle.principalClass alloc] initWithPluginManager:self];
     if(plugin) {
+      NSLog(@"Loaded plugin instance %@", pluginBundle.principalClass);
       [[NSNotificationCenter defaultCenter] postNotificationName:MPPluginManagerWillLoadPlugin object:self userInfo:@{ MPPluginManagerPluginBundleIdentifiyerKey : plugin.identifier }];
       [self.mutablePlugins addObject:plugin];
       [[NSNotificationCenter defaultCenter] postNotificationName:MPPluginManagerDidLoadPlugin object:self userInfo:@{ MPPluginManagerPluginBundleIdentifiyerKey : plugin.identifier }];
+    }
+    else {
+      NSLog(@"Unable to instanciate instance of plugin class %@", pluginBundle.principalClass);
     }
   }
 }
