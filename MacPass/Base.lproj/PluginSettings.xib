@@ -40,7 +40,7 @@
                     <textFieldCell key="cell" controlSize="small" sendsActionOnEndEditing="YES" id="2bX-8S-9XM">
                         <font key="font" metaFont="smallSystem"/>
                         <string key="title">If enabled, only properly signed Plugins will be loaded. Keep in mind, that Plugins have full access to your data! Changes take affect on restart.</string>
-                        <color key="textColor" name="disabledControlTextColor" catalog="System" colorSpace="catalog"/>
+                        <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
                         <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                     </textFieldCell>
                 </textField>
@@ -122,7 +122,7 @@
                 <constraint firstItem="vBs-Ga-aq0" firstAttribute="leading" secondItem="fCk-fL-jU8" secondAttribute="trailing" constant="8" id="xNu-Sj-xQO"/>
                 <constraint firstItem="aoG-FD-ds8" firstAttribute="top" secondItem="CqP-oK-S8k" secondAttribute="bottom" constant="8" symbolic="YES" id="zSW-h3-BrT"/>
             </constraints>
-            <point key="canvasLocation" x="-629" y="119"/>
+            <point key="canvasLocation" x="-455" y="97"/>
         </customView>
     </objects>
 </document>

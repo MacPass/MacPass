@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="9060" systemVersion="15B42" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="9531" systemVersion="15C50" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
     <dependencies>
         <deployment identifier="macosx"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="9060"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="9531"/>
         <capability name="box content view" minToolsVersion="7.0"/>
     </dependencies>
     <objects>
@@ -34,7 +34,6 @@
                                 <constraints>
                                     <constraint firstAttribute="height" constant="17" id="803"/>
                                 </constraints>
-                                <animations/>
                                 <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Clear Copied Items" id="432">
                                     <font key="font" metaFont="system"/>
                                     <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
@@ -46,7 +45,6 @@
                                 <constraints>
                                     <constraint firstAttribute="width" constant="165" id="877"/>
                                 </constraints>
-                                <animations/>
                                 <popUpButtonCell key="cell" type="push" title="after 1 Minute" bezelStyle="rounded" alignment="left" lineBreakMode="truncatingTail" state="on" borderStyle="borderAndBezel" tag="60" imageScaling="proportionallyDown" inset="2" selectedItem="424" id="420">
                                     <behavior key="behavior" lightByBackground="YES" lightByGray="YES"/>
                                     <font key="font" metaFont="menu"/>
@@ -67,7 +65,6 @@
                                 <constraints>
                                     <constraint firstAttribute="height" constant="14" id="773"/>
                                 </constraints>
-                                <animations/>
                                 <buttonCell key="cell" type="check" title="Clear Clipboard on Quit" bezelStyle="regularSquare" imagePosition="left" state="on" inset="2" id="448">
                                     <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                                     <font key="font" metaFont="system"/>
@@ -75,7 +72,6 @@
                             </button>
                             <popUpButton verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="584">
                                 <rect key="frame" x="179" y="150" width="170" height="26"/>
-                                <animations/>
                                 <popUpButtonCell key="cell" type="push" bezelStyle="rounded" alignment="left" lineBreakMode="truncatingTail" borderStyle="borderAndBezel" imageScaling="proportionallyDown" inset="2" id="585">
                                     <behavior key="behavior" lightByBackground="YES" lightByGray="YES"/>
                                     <font key="font" metaFont="menu"/>
@@ -93,7 +89,6 @@
                             </popUpButton>
                             <button misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="630">
                                 <rect key="frame" x="31" y="131" width="121" height="18"/>
-                                <animations/>
                                 <buttonCell key="cell" type="check" title="Lock after sleep" bezelStyle="regularSquare" imagePosition="left" enabled="NO" state="on" inset="2" id="631">
                                     <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                                     <font key="font" metaFont="system"/>
@@ -101,7 +96,6 @@
                             </button>
                             <textField verticalHuggingPriority="750" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="805">
                                 <rect key="frame" x="16" y="155" width="97" height="17"/>
-                                <animations/>
                                 <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Lock while idle" id="806">
                                     <font key="font" metaFont="system"/>
                                     <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
@@ -110,7 +104,6 @@
                             </textField>
                             <button verticalHuggingPriority="249" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="bSt-Wf-FNZ">
                                 <rect key="frame" x="16" y="106" width="226" height="18"/>
-                                <animations/>
                                 <buttonCell key="cell" type="check" title="Remember Keyfile for Databases" bezelStyle="regularSquare" imagePosition="left" state="on" inset="2" id="r6q-He-nYU">
                                     <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                                     <font key="font" metaFont="system"/>
@@ -118,7 +111,6 @@
                             </button>
                             <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" setsMaxLayoutWidthAtFirstLayout="YES" translatesAutoresizingMaskIntoConstraints="NO" id="5cV-xX-SUU">
                                 <rect key="frame" x="16" y="43" width="332" height="56"/>
-                                <animations/>
                                 <textFieldCell key="cell" sendsActionOnEndEditing="YES" id="ACh-7H-42N">
                                     <font key="font" metaFont="smallSystem"/>
                                     <string key="title">Enabling this compromises security. If enabled, your preferences will contain mappings from database to keyfile. Key locations for databases without a password will not be saved.</string>
@@ -128,7 +120,6 @@
                             </textField>
                             <button verticalHuggingPriority="750" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="oQr-FC-HkN">
                                 <rect key="frame" x="156" y="7" width="196" height="32"/>
-                                <animations/>
                                 <buttonCell key="cell" type="push" title="Clear all stored locations" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="8Ri-2s-c39">
                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                     <font key="font" metaFont="system"/>
@@ -138,7 +129,6 @@
                                 </connections>
                             </button>
                         </subviews>
-                        <animations/>
                     </view>
                     <constraints>
                         <constraint firstAttribute="trailing" secondItem="419" secondAttribute="trailing" constant="16" id="1de-jU-TAq"/>
@@ -166,7 +156,6 @@
                         <constraint firstItem="805" firstAttribute="top" secondItem="447" secondAttribute="bottom" constant="8" symbolic="YES" id="ywh-V0-xuC"/>
                         <constraint firstItem="447" firstAttribute="top" secondItem="431" secondAttribute="bottom" constant="8" symbolic="YES" id="zkd-Hf-09b"/>
                     </constraints>
-                    <animations/>
                     <color key="borderColor" white="0.0" alpha="0.41999999999999998" colorSpace="calibratedWhite"/>
                     <color key="fillColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                 </box>
@@ -178,7 +167,6 @@
                         <subviews>
                             <button verticalHuggingPriority="252" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="530">
                                 <rect key="frame" x="16" y="12" width="240" height="18"/>
-                                <animations/>
                                 <buttonCell key="cell" type="check" title="Reopen last Database after Launch" bezelStyle="regularSquare" imagePosition="left" state="on" inset="2" id="531">
                                     <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                                     <font key="font" metaFont="system"/>
@@ -186,14 +174,12 @@
                             </button>
                             <button verticalHuggingPriority="252" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="879">
                                 <rect key="frame" x="16" y="32" width="228" height="18"/>
-                                <animations/>
                                 <buttonCell key="cell" type="check" title="Create new Database if activated" bezelStyle="regularSquare" imagePosition="left" enabled="NO" state="on" inset="2" id="880">
                                     <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                                     <font key="font" metaFont="system"/>
                                 </buttonCell>
                             </button>
                         </subviews>
-                        <animations/>
                     </view>
                     <constraints>
                         <constraint firstItem="530" firstAttribute="top" secondItem="879" secondAttribute="bottom" constant="6" symbolic="YES" id="7o7-SS-zEg"/>
@@ -202,7 +188,6 @@
                         <constraint firstItem="530" firstAttribute="leading" secondItem="888" secondAttribute="leading" constant="16" id="iCa-F0-TFe"/>
                         <constraint firstItem="879" firstAttribute="top" secondItem="888" secondAttribute="top" constant="25" id="mTD-NM-deL"/>
                     </constraints>
-                    <animations/>
                     <color key="borderColor" white="0.0" alpha="0.41999999999999998" colorSpace="calibratedWhite"/>
                     <color key="fillColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                 </box>
@@ -217,8 +202,7 @@
                 <constraint firstItem="465" firstAttribute="top" secondItem="1" secondAttribute="top" constant="98" id="950"/>
                 <constraint firstAttribute="bottom" secondItem="465" secondAttribute="bottom" constant="20" symbolic="YES" id="uwq-az-XwJ"/>
             </constraints>
-            <animations/>
-            <point key="canvasLocation" x="411" y="190"/>
+            <point key="canvasLocation" x="394" y="190"/>
         </customView>
     </objects>
 </document>
