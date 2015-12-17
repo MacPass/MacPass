@@ -93,7 +93,7 @@ typedef void (^MPPasswordChangedBlock)(BOOL didChangePassword);
   [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(_didAddGroup:) name:MPDocumentDidAddGroupNotification object:document];
   
   [self.entryViewController regsiterNotificationsForDocument:document];
-  [self.inspectorViewController regsiterNotificationsForDocument:document];
+  [self.inspectorViewController registerNotificationsForDocument:document];
   [self.outlineViewController regsiterNotificationsForDocument:document];
   [self.toolbarDelegate registerNotificationsForDocument:document];
   

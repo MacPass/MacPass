@@ -26,6 +26,6 @@
 - (IBAction)pickExpiryDate:(id)sender;
 
 /* Separate call to ensure all registered objects are in place */
-- (void)regsiterNotificationsForDocument:(NSDocument *)document;
+- (void)registerNotificationsForDocument:(NSDocument *)document;
 
 @end

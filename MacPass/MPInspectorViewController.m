@@ -47,6 +47,8 @@ typedef NS_ENUM(NSUInteger, MPContentTab) {
 @property (weak) IBOutlet NSSplitView *splitView;
 @property (unsafe_unretained) IBOutlet NSTextView *notesTextView;
 
+@property (strong) NSObjectController *nodeController;
+
 @end
 
 @implementation MPInspectorViewController
@@ -61,6 +63,7 @@ typedef NS_ENUM(NSUInteger, MPContentTab) {
     self.activeTab = MPEmptyTab;
     self.entryViewController = [[MPEntryInspectorViewController alloc] init];
     self.groupViewController = [[MPGroupInspectorViewController alloc] init];
+    self.nodeController = [[NSObjectController alloc] init];
   }
   return self;
 }
@@ -70,18 +73,18 @@ typedef NS_ENUM(NSUInteger, MPContentTab) {
 }
 
 - (NSResponder *)reconmendedFirstResponder {
-  return [self view];
+  return self.view;
 }
 
 - (void)awakeFromNib {
-  [self.bottomBar setBorderType:HNHBorderTop|HNHBorderHighlight];
-    
-  [[self.noSelectionInfo cell] setBackgroundStyle:NSBackgroundStyleRaised];
-  [[self.itemImageView cell] setBackgroundStyle:NSBackgroundStyleRaised];
-  [self.tabView bind:NSSelectedIndexBinding toObject:self withKeyPath:@"activeTab" options:nil];
+  self.bottomBar.borderType = (HNHBorderTop|HNHBorderHighlight);
   
-  NSView *entryView = [self.entryViewController view];
-  NSView *groupView = [self.groupViewController view];
+  self.noSelectionInfo.cell.backgroundStyle = NSBackgroundStyleRaised;
+  self.itemImageView.cell.backgroundStyle = NSBackgroundStyleRaised;
+  [self.tabView bind:NSSelectedIndexBinding toObject:self withKeyPath:NSStringFromSelector(@selector(activeTab)) options:nil];
+  
+  NSView *entryView = self.entryViewController.view;
+  NSView *groupView = self.groupViewController.view;
   
   
   NSTabViewItem *entryTabItem = [self.tabView tabViewItemAtIndex:MPEntryTab];
@@ -99,7 +102,7 @@ typedef NS_ENUM(NSUInteger, MPContentTab) {
   [groupTabView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|[groupView]|" options:0 metrics:nil views:views]];
   [groupTabItem setInitialFirstResponder:groupView];
   
-  [[self view] layout];
+  [self.view layout];
 
   /* Init edit and cancel buttons */
   self.editButton.action = @selector(beginEditing:);
@@ -110,12 +113,12 @@ typedef NS_ENUM(NSUInteger, MPContentTab) {
   [self _toggleEditors:NO];
 }
 
-- (void)regsiterNotificationsForDocument:(MPDocument *)document {
+- (void)registerNotificationsForDocument:(MPDocument *)document {
   [[NSNotificationCenter defaultCenter] addObserver:self
                                            selector:@selector(_didChangeCurrentItem:)
                                                name:MPDocumentCurrentItemChangedNotification
                                              object:document];
-  [self.entryViewController regsiterNotificationsForDocument:document];
+  [self.entryViewController registerNotificationsForDocument:document];
   
   [self.entryViewController setupBindings:document];
   [self.groupViewController setupBindings:document];

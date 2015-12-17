@@ -53,7 +53,7 @@
 @property (weak) IBOutlet NSTextField *associationSequenceTextField;
 
 - (void)setupBindings:(MPDocument *)document;
-- (void)regsiterNotificationsForDocument:(MPDocument *)document;
+- (void)registerNotificationsForDocument:(MPDocument *)document;
 
 - (IBAction)saveAttachment:(id)sender;
 - (IBAction)addAttachment:(id)sender;
