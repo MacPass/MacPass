@@ -139,26 +139,6 @@ static NSString *kMPContentBindingString3 = @"content.%@.%@.%@";
                                            selector:@selector(_didAddEntry:)
                                                name:MPDocumentDidAddEntryNotification
                                              object:document];
-  
-  //  [[NSNotificationCenter defaultCenter] addObserver:self
-  //                                           selector:@selector(_willSave:)
-  //                                               name:MPDocumentWillSaveNotification
-  //                                             object:document];
-  
-  [[NSNotificationCenter defaultCenter] addObserver:self
-                                           selector:@selector(_didBeginEditingSelectedItem:)
-                                               name:MPDocumentDidBeginEditingSelectedItem
-                                             object:document];
-  
-  [[NSNotificationCenter defaultCenter] addObserver:self
-                                           selector:@selector(_didCancelOrCommitChangesToSelectedItem:)
-                                               name:MPDocumentDidCommitChangesToSelectedItem
-                                             object:document];
-  
-  [[NSNotificationCenter defaultCenter] addObserver:self
-                                           selector:@selector(_didCancelOrCommitChangesToSelectedItem:)
-                                               name:MPDocumentDidCancelChangesToSelectedItem
-                                             object:document];
 }
 
 - (void)dealloc {

@@ -360,7 +360,7 @@ typedef void (^MPPasswordChangedBlock)(BOOL didChangePassword);
 }
 
 - (void)toggleInspector:(id)sender {
-  NSView *inspectorView = [self.inspectorViewController view];
+  NSView *inspectorView = self.inspectorViewController.view;
   BOOL inspectorWasVisible = [self _isInspectorVisible];
   if(inspectorWasVisible) {
     [inspectorView removeFromSuperview];
