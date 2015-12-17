@@ -45,8 +45,6 @@ APPKIT_EXTERN NSString *const MPDocumentDidUnlockDatabaseNotification;
 
 APPKIT_EXTERN NSString *const MPDocumentCurrentItemChangedNotification;
 
-APPKIT_EXTERN NSString *const MPDocumentWillSaveNotification;
-
 /* Keys used in userInfo NSDictionaries on notifications */
 APPKIT_EXTERN NSString *const MPDocumentEntryKey;
 APPKIT_EXTERN NSString *const MPDocumentGroupKey;

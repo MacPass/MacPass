@@ -48,8 +48,6 @@ NSString *const MPDocumentDidUnlockDatabaseNotification   = @"com.hicknhack.macp
 
 NSString *const MPDocumentCurrentItemChangedNotification  = @"com.hicknhack.macpass.MPDocumentCurrentItemChangedNotification";
 
-NSString *const MPDocumentWillSaveNotification            = @"com.hicknhack.macpass.MPDocumentWillSaveNotification";
-
 NSString *const MPDocumentEntryKey                        = @"MPDocumentEntryKey";
 NSString *const MPDocumentGroupKey                        = @"MPDocumentGroupKey";
 
@@ -134,29 +132,6 @@ NSString *const MPDocumentGroupKey                        = @"MPDocumentGroupKey
 - (void)makeWindowControllers {
   MPDocumentWindowController *windowController = [[MPDocumentWindowController alloc] init];
   [self addWindowController:windowController];
-}
-
-- (void)saveDocumentAs:(id)sender {
-  /* FIXME: Use controllers for bindings to enable NSEditorRegistration. NSDocument supports this! */
-  [[NSNotificationCenter defaultCenter] postNotificationName:MPDocumentWillSaveNotification object:self];
-  [super saveDocumentAs:sender];
-}
-
-- (void)saveDocument:(id)sender {
-  /* FIXME: Use controllers for bindings to enable NSEditorRegistration. NSDocument supports this! */
-  [[NSNotificationCenter defaultCenter] postNotificationName:MPDocumentWillSaveNotification object:self];
-  [super saveDocument:sender];
-}
-
-- (void)saveDocumentTo:(id)sender {
-  /* FIXME: Use controllers for bindings to enable NSEditorRegistration. NSDocument supports this! */
-  [[NSNotificationCenter defaultCenter] postNotificationName:MPDocumentWillSaveNotification object:self];
-  [super saveDocumentTo:sender];
-}
-
-- (void)windowControllerDidLoadNib:(NSWindowController *)aController
-{
-  [super windowControllerDidLoadNib:aController];
 }
 
 - (BOOL)writeToURL:(NSURL *)url ofType:(NSString *)typeName error:(NSError **)outError {
