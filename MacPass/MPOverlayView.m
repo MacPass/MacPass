@@ -13,9 +13,9 @@
 - (void)drawRect:(NSRect)dirtyRect {
   [[NSGraphicsContext currentContext] saveGraphicsState];
   [[NSColor clearColor] set];
-  NSRectFill([self bounds]);
+  NSRectFill(self.bounds);
   NSColor *backgroundColor = [NSColor colorWithCalibratedWhite:0 alpha:0.7];
-  NSBezierPath *path = [NSBezierPath bezierPathWithRoundedRect:[self bounds] xRadius:10 yRadius:10];
+  NSBezierPath *path = [NSBezierPath bezierPathWithRoundedRect:self.bounds xRadius:10 yRadius:10];
   [backgroundColor set];
   [path fill];
   [[NSGraphicsContext currentContext] restoreGraphicsState];
