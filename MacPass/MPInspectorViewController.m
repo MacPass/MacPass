@@ -103,13 +103,12 @@ typedef NS_ENUM(NSUInteger, MPContentTab) {
   [groupTabItem setInitialFirstResponder:groupView];
   
   [self.view layout];
-
+  
   /* Init edit and cancel buttons */
   self.editButton.action = @selector(beginEditing:);
   self.cancelEditButton.action = @selector(cancelEditing:);
   self.cancelEditButton.hidden = YES;
-
-  [self _updateBindings:nil];
+  
   [self _toggleEditors:NO];
 }
 
@@ -119,6 +118,10 @@ typedef NS_ENUM(NSUInteger, MPContentTab) {
                                                name:MPDocumentCurrentItemChangedNotification
                                              object:document];
   [self.entryViewController registerNotificationsForDocument:document];
+  
+  
+  [self.nodeController bind:NSContentBinding toObject:document withKeyPath:NSStringFromSelector(@selector(selectedItem)) options:nil];
+  [self _establishBindings];
   
   [self.entryViewController setupBindings:document];
   [self.groupViewController setupBindings:document];
@@ -164,7 +167,6 @@ typedef NS_ENUM(NSUInteger, MPContentTab) {
   
   [self.modifiedTextField setStringValue:[NSString stringWithFormat:modifedAtTemplate, modificationString]];
   [self.createdTextField setStringValue:[NSString stringWithFormat:createdAtTemplate, creationString]];
-  
 }
 
 #pragma mark -
@@ -244,28 +246,20 @@ typedef NS_ENUM(NSUInteger, MPContentTab) {
 
 #pragma mark -
 #pragma mark Bindings
-- (void)_updateBindings:(id)item {
-  if(!item) {
-    [self.itemNameTextField unbind:NSValueBinding];
-    self.itemNameTextField.hidden = YES;
-
-    [self.itemImageView unbind:NSValueBinding];
-    self.itemImageView.hidden = YES;
-    
-    self.notesTextView.enclosingScrollView.hidden = YES;
-    [self.notesTextView unbind:NSValueBinding];
-    self.notesTextView.string = @"";
-    
-    return;
-  }
+- (void)_establishBindings {
   
-  /* Disable if item is not editable */
-  [self.itemImageView bind:NSValueBinding toObject:item withKeyPath:NSStringFromSelector(@selector(iconImage)) options:nil];
-  self.notesTextView.enclosingScrollView.hidden = NO;
-  [self.notesTextView bind:NSValueBinding toObject:item withKeyPath:NSStringFromSelector(@selector(notes)) options:nil];
-  [self.itemNameTextField bind:NSValueBinding toObject:item withKeyPath:NSStringFromSelector(@selector(title)) options:nil];
-  self.itemImageView.hidden = NO;
-  self.itemNameTextField.hidden = NO;
+  [self.itemImageView bind:NSValueBinding
+                  toObject:self.nodeController
+               withKeyPath:[NSString stringWithFormat:@"%@.%@", NSStringFromSelector(@selector(content)), NSStringFromSelector(@selector(iconImage))]
+                   options:nil];
+  [self.notesTextView bind:NSValueBinding
+                  toObject:self.nodeController
+               withKeyPath:[NSString stringWithFormat:@"%@.%@", NSStringFromSelector(@selector(content)), NSStringFromSelector(@selector(notes))]
+                   options:@{ NSNullPlaceholderBindingOption: NSLocalizedString(@"NONE", "")}];
+  [self.itemNameTextField bind:NSValueBinding
+                      toObject:self.nodeController
+                   withKeyPath:[NSString stringWithFormat:@"%@.%@", NSStringFromSelector(@selector(content)), NSStringFromSelector(@selector(title))]
+                       options:@{NSNullPlaceholderBindingOption: NSLocalizedString(@"NONE", "")}];
 }
 
 #pragma mark -
@@ -285,15 +279,13 @@ typedef NS_ENUM(NSUInteger, MPContentTab) {
     self.activeTab = MPGroupTab;
   }
   else if(document.selectedItem.asEntry) {
-      self.activeTab = MPEntryTab;
+    self.activeTab = MPEntryTab;
   }
   else {
     self.activeTab = MPEmptyTab;
   }
-//  self.representedObject = document.selectedItem;
-//  self.entryViewController.representedObject = document.selectedItem.asEntry;
-//  self.groupViewController.representedObject = document.selectedItem.asGroup;
-  [self _updateBindings:document.selectedItem];
+  
+  [self _establishBindings];
 }
 
 - (IBAction)beginEditing:(id)sender {
