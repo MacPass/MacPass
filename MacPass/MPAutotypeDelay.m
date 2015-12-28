@@ -29,7 +29,7 @@
   self = [super init];
   if(self) {
     /* Delays longer than a minute are a bit long */
-    _delay = MIN(60,delay);
+    _delay = MIN(60*1000,delay);
   }
   return self;
 }
