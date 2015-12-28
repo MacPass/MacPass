@@ -177,7 +177,7 @@
                                                                             </constraints>
                                                                             <popUpButtonCell key="cell" type="roundTextured" bezelStyle="texturedRounded" alignment="center" lineBreakMode="truncatingTail" borderStyle="border" imageScaling="proportionallyDown" inset="2" pullsDown="YES" altersStateOfSelectedItem="NO" id="nJc-UT-cas">
                                                                                 <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
-                                                                                <font key="font" metaFont="system"/>
+                                                                                <font key="font" metaFont="menu"/>
                                                                                 <menu key="menu" title="OtherViews" id="sNS-o1-pD7">
                                                                                     <items>
                                                                                         <menuItem image="NSActionTemplate" hidden="YES" id="lbx-U1-RCe">
@@ -278,7 +278,7 @@
                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                             <subviews>
                                                 <tableView verticalHuggingPriority="750" allowsExpansionToolTips="YES" columnAutoresizingStyle="lastColumnOnly" selectionHighlightStyle="none" columnSelection="YES" columnResizing="NO" multipleSelection="NO" autosaveColumns="NO" rowHeight="54" rowSizeStyle="automatic" viewBased="YES" id="193">
-                                                    <rect key="frame" x="0.0" y="0.0" width="259" height="430"/>
+                                                    <rect key="frame" x="0.0" y="0.0" width="259" height="0.0"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <size key="intercellSpacing" width="3" height="2"/>
                                                     <color key="backgroundColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
@@ -797,7 +797,7 @@
                     </scroller>
                 </scrollView>
                 <button verticalHuggingPriority="750" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Iy9-9L-Aev">
-                    <rect key="frame" x="249" y="106" width="32" height="25"/>
+                    <rect key="frame" x="249" y="106" width="32" height="21"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="18" id="VeX-Jj-eA9"/>
                         <constraint firstAttribute="width" constant="32" id="mjs-Yf-Cb2"/>
@@ -811,7 +811,7 @@
                     </connections>
                 </button>
                 <button verticalHuggingPriority="750" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="AAj-Ak-z46">
-                    <rect key="frame" x="209" y="106" width="32" height="25"/>
+                    <rect key="frame" x="209" y="106" width="32" height="21"/>
                     <constraints>
                         <constraint firstAttribute="width" constant="32" id="vWY-ez-gy9"/>
                         <constraint firstAttribute="height" constant="18" id="xwN-WB-cn2"/>

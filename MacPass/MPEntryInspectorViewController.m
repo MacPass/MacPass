@@ -435,11 +435,11 @@ static NSString *kMPContentBindingString3 = @"content.%@.%@.%@";
   [self.customEntrySequenceTextField bind:NSValueBinding
                                  toObject:self.entryController
                               withKeyPath:[NSString stringWithFormat:kMPContentBindingString2, NSStringFromSelector(@selector(autotype)), NSStringFromSelector(@selector(defaultKeystrokeSequence))]
-                                  options:@{ NSValidatesImmediatelyBindingOption: @(YES) }];
+                                  options:@{ NSValidatesImmediatelyBindingOption: @YES }];
   [_windowAssociationsController bind:NSContentArrayBinding
                              toObject:self.entryController
                           withKeyPath:[NSString stringWithFormat:kMPContentBindingString2, NSStringFromSelector(@selector(autotype)), NSStringFromSelector(@selector(associations))]
-                              options:nil];
+                              options:@{ NSSelectsAllWhenSettingContentBindingOption: @NO }];
   [self.windowTitleComboBox setStringValue:@""];
   [self.windowTitleComboBox bind:NSValueBinding
                         toObject:_windowAssociationsController

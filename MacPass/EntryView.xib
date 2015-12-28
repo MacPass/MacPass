@@ -27,7 +27,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView verticalHuggingPriority="750" allowsExpansionToolTips="YES" columnAutoresizingStyle="lastColumnOnly" alternatingRowBackgroundColors="YES" multipleSelection="NO" rowSizeStyle="automatic" headerView="676" viewBased="YES" id="55" customClass="MPTableView">
-                                <rect key="frame" x="0.0" y="0.0" width="695" height="542"/>
+                                <rect key="frame" x="0.0" y="0.0" width="694" height="542"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <size key="intercellSpacing" width="3" height="2"/>
                                 <color key="backgroundColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
@@ -133,7 +133,7 @@
                                         <tableColumnResizingMask key="resizingMask" resizeWithTable="YES" userResizable="YES"/>
                                         <prototypeCellViews>
                                             <tableCellView identifier="PasswordCell" id="428">
-                                                <rect key="frame" x="256" y="1" width="119" height="17"/>
+                                                <rect key="frame" x="255.5" y="1" width="119" height="17"/>
                                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                 <subviews>
                                                     <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="429" customClass="NSSecureTextField">
@@ -235,7 +235,7 @@
                         </subviews>
                         <color key="backgroundColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
                     </clipView>
-                    <scroller key="horizontalScroller" verticalHuggingPriority="750" horizontal="YES" id="56">
+                    <scroller key="horizontalScroller" hidden="YES" verticalHuggingPriority="750" horizontal="YES" id="56">
                         <rect key="frame" x="0.0" y="549" width="694" height="16"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </scroller>
