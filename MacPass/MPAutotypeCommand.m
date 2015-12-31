@@ -290,7 +290,7 @@ static CGKeyCode kMPFunctionKeyCodes[] = { kVK_F1, kVK_F2, kVK_F3, kVK_F4, kVK_F
   }
   // TODO: add {APPLICATION <appname>}
   /* Delay */
-  NSString *delayPattern = [[NSString alloc] initWithFormat:@"\\{(%@|%@|)[ |=]+([0-9])+\\}",
+  NSString *delayPattern = [[NSString alloc] initWithFormat:@"\\{(%@|%@)[ |=]+([0-9]+)\\}",
                             kKPKAutotypeDelay,
                             kKPKAutotypeVirtualKey/*,
                                                    kKPKAutotypeVirtualExtendedKey,

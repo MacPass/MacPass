@@ -22,7 +22,7 @@
 }
 
 - (NSString *)description {
-  return [[NSString alloc] initWithFormat:@"%@ delay: %ld ms", [self class], _delay];
+  return [[NSString alloc] initWithFormat:@"%@ delay: %ld ms", self.class, _delay];
 }
 
 - (instancetype)initWithDelay:(NSUInteger)delay {
@@ -35,7 +35,8 @@
 }
 
 - (void)execute {
-  usleep((useconds_t)(_delay*NSEC_PER_MSEC));
+  /* milliseconds * 10000 = microseconds */
+  usleep((useconds_t)(_delay*1000));
 }
 
 @end
