@@ -35,5 +35,21 @@ FOUNDATION_EXPORT NSString *const kMPPluginFileExtension;
 
 @end
 
+@class KPKTree;
+
+@protocol MPTreeImporting <NSObject>
+
+@required
+- (KPKTree *)importTreeAtURL:(NSURL *)url error:(NSError **)error;
+
+@end
+
+@protocol MPTreeExporting <NSObject>
+
+@required
+- (NSData *)dataForTree:(KPKTree *)tree error:(NSError **)error;
+
+@end
+
 
 NS_ASSUME_NONNULL_END

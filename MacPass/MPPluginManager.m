@@ -43,10 +43,6 @@ NSString *const MPPluginManagerPluginBundleIdentifiyerKey = @"MPPluginManagerPlu
   return instance;
 }
 
-- (void)dealloc {
-  NSLog(@"%@ dealloc", [self class]);
-}
-
 - (instancetype)init {
   return nil;
 }
@@ -71,16 +67,30 @@ NSString *const MPPluginManagerPluginBundleIdentifiyerKey = @"MPPluginManagerPlu
 }
 
 - (void)_loadPlugins {
-  NSURL *dir = [NSApp applicationSupportDirectoryURL:YES];
+  NSURL *appSupportDir = [NSApp applicationSupportDirectoryURL:YES];
   NSError *error;
-  NSArray *contentURLs = [[NSFileManager defaultManager] contentsOfDirectoryAtURL:dir
+  NSArray *externalPluginsURLs = [[NSFileManager defaultManager] contentsOfDirectoryAtURL:appSupportDir
                                                        includingPropertiesForKeys:@[]
                                                                           options:NSDirectoryEnumerationSkipsHiddenFiles
                                                                             error:&error];
-  if(!contentURLs) {
-    NSLog(@"Error while trying to locate Plugins: %@", error.localizedDescription);
+  
+  NSArray *internalPluginsURLs = [[NSFileManager defaultManager] contentsOfDirectoryAtURL:[NSBundle mainBundle].builtInPlugInsURL
+                                                              includingPropertiesForKeys:@[]
+                                                                                 options:NSDirectoryEnumerationSkipsHiddenFiles
+                                                                                   error:&error];
+  
+  
+  if(!externalPluginsURLs) {
+    // No external plugins
+    NSLog(@"No external plugins found!");
   }
-  for(NSURL *pluginURL in contentURLs) {
+  if(!internalPluginsURLs) {
+    // No internal plugins
+    NSLog(@"No internal plugins found!");
+  }
+  NSArray *pluginURLs = [externalPluginsURLs arrayByAddingObjectsFromArray:internalPluginsURLs];
+  
+  for(NSURL *pluginURL in pluginURLs) {
     
     if(![self _validURL:pluginURL]) {
       continue;
@@ -113,12 +123,16 @@ NSString *const MPPluginManagerPluginBundleIdentifiyerKey = @"MPPluginManagerPlu
     MPPlugin *plugin = [[pluginBundle.principalClass alloc] initWithPluginManager:self];
     if(plugin) {
       NSLog(@"Loaded plugin instance %@", pluginBundle.principalClass);
-      [[NSNotificationCenter defaultCenter] postNotificationName:MPPluginManagerWillLoadPlugin object:self userInfo:@{ MPPluginManagerPluginBundleIdentifiyerKey : plugin.identifier }];
+      [[NSNotificationCenter defaultCenter] postNotificationName:MPPluginManagerWillLoadPlugin
+                                                          object:self
+                                                        userInfo:@{ MPPluginManagerPluginBundleIdentifiyerKey : plugin.identifier }];
       [self.mutablePlugins addObject:plugin];
-      [[NSNotificationCenter defaultCenter] postNotificationName:MPPluginManagerDidLoadPlugin object:self userInfo:@{ MPPluginManagerPluginBundleIdentifiyerKey : plugin.identifier }];
+      [[NSNotificationCenter defaultCenter] postNotificationName:MPPluginManagerDidLoadPlugin
+                                                          object:self
+                                                        userInfo:@{ MPPluginManagerPluginBundleIdentifiyerKey : plugin.identifier }];
     }
     else {
-      NSLog(@"Unable to instanciate instance of plugin class %@", pluginBundle.principalClass);
+      NSLog(@"Unable to create instance of plugin class %@", pluginBundle.principalClass);
     }
   }
 }

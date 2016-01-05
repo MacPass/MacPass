@@ -8,8 +8,7 @@
 
 #import <Cocoa/Cocoa.h>
 #import <XCTest/XCTest.h>
-
-#import "KeePassKit/KeePassKit.h"
+#import <KeePassKit/KeePassKit.h>
 
 @interface MPDatabaseSearch : XCTestCase
 

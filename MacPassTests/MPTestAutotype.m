@@ -9,6 +9,7 @@
 #import <Cocoa/Cocoa.h>
 #import <Carbon/Carbon.h>
 #import <XCTest/XCTest.h>
+#import <KeePassKit/KeePassKit.h>
 
 #import "MPAutotypeCommand.h"
 #import "MPAutotypeContext.h"
@@ -17,7 +18,6 @@
 
 #import "MPKeyMapper.h"
 
-#import "KeePassKit/KeePassKit.h"
 
 @interface MPTestAutotype : XCTestCase
 @property (strong) KPKEntry *entry;
