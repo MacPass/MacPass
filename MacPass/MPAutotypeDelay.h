@@ -9,6 +9,8 @@
 #import "MPAutotypeCommand.h"
 
 @interface MPAutotypeDelay : MPAutotypeCommand
+
+@property (readonly) NSUInteger delay;
 /**
  *  Creates an DelayCommand that delays the execution for n milliseconds
  *

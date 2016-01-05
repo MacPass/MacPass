@@ -8,10 +8,8 @@
 
 #import "MPAutotypeDelay.h"
 
-@interface MPAutotypeDelay () {
-@private
-  NSUInteger _delay;
-}
+@interface MPAutotypeDelay ()
+@property (readwrite) NSUInteger delay;
 @end
 
 @implementation MPAutotypeDelay
@@ -22,7 +20,7 @@
 }
 
 - (NSString *)description {
-  return [[NSString alloc] initWithFormat:@"%@ delay: %ld ms", self.class, _delay];
+  return [[NSString alloc] initWithFormat:@"%@ delay: %ld ms", self.class, self.delay];
 }
 
 - (instancetype)initWithDelay:(NSUInteger)delay {
@@ -36,7 +34,7 @@
 
 - (void)execute {
   /* milliseconds * 10000 = microseconds */
-  usleep((useconds_t)(_delay*1000));
+  usleep((useconds_t)(self.delay*1000));
 }
 
 @end
