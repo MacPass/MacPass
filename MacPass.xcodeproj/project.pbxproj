@@ -712,6 +712,28 @@
 		BD6C366519484CF40089EB37 /* nl */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = nl; path = nl.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		BD6C366619484CF40089EB37 /* nl */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; lineEnding = 0; name = nl; path = nl.lproj/KPKLocalizable.strings; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.simpleColoring; };
 		BD6C366719484CF40089EB37 /* nl */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = nl; path = nl.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		FA638D0E1C39BFCB00B10CC6 /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/DatabaseSettingsWindow.strings; sourceTree = "<group>"; };
+		FA638D0F1C39BFCB00B10CC6 /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/PasswordEditWindow.strings; sourceTree = "<group>"; };
+		FA638D101C39BFCB00B10CC6 /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/WelcomeWindow.strings; sourceTree = "<group>"; };
+		FA638D111C39BFCB00B10CC6 /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/GeneralSettings.strings; sourceTree = "<group>"; };
+		FA638D121C39BFCB00B10CC6 /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/IntegrationSettings.strings; sourceTree = "<group>"; };
+		FA638D131C39BFCC00B10CC6 /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/WorkflowSettings.strings; sourceTree = "<group>"; };
+		FA638D141C39BFCC00B10CC6 /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/UpdateSettings.strings; sourceTree = "<group>"; };
+		FA638D151C39BFCC00B10CC6 /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/PluginSettings.strings; sourceTree = "<group>"; };
+		FA638D161C39BFCC00B10CC6 /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/MainMenu.strings; sourceTree = "<group>"; };
+		FA638D171C39BFCC00B10CC6 /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/PasswordInputView.strings; sourceTree = "<group>"; };
+		FA638D181C39BFCC00B10CC6 /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/PasswordCreatorView.strings; sourceTree = "<group>"; };
+		FA638D191C39BFCC00B10CC6 /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/InspectorView.strings; sourceTree = "<group>"; };
+		FA638D1A1C39BFCC00B10CC6 /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/GroupInspectorView.strings; sourceTree = "<group>"; };
+		FA638D1B1C39BFCC00B10CC6 /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/EntryInspectorView.strings; sourceTree = "<group>"; };
+		FA638D1C1C39BFCC00B10CC6 /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/IconSelection.strings; sourceTree = "<group>"; };
+		FA638D1D1C39BFCC00B10CC6 /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/DatePickingView.strings; sourceTree = "<group>"; };
+		FA638D1E1C39BFCC00B10CC6 /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/ReferenceBuilderView.strings; sourceTree = "<group>"; };
+		FA638D1F1C39BFCC00B10CC6 /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/Localizable.strings; sourceTree = "<group>"; };
+		FA638D201C39BFCC00B10CC6 /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.rtf; name = ru; path = ru.lproj/Credits.rtf; sourceTree = "<group>"; };
+		FA638D211C39BFCC00B10CC6 /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		FA638D221C39BFCC00B10CC6 /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/KPKLocalizable.strings; sourceTree = "<group>"; };
+		FA638D231C39BFCC00B10CC6 /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -1428,6 +1450,7 @@
 				fr,
 				"zh-Hans",
 				nl,
+				ru,
 			);
 			mainGroup = 4C77E35715B84A240093A587;
 			productRefGroup = 4C77E36315B84A240093A587 /* Products */;
@@ -1724,6 +1747,7 @@
 			isa = PBXVariantGroup;
 			children = (
 				4C0DBEF61BF508DE00F9B287 /* Base */,
+				FA638D151C39BFCC00B10CC6 /* ru */,
 			);
 			name = PluginSettings.xib;
 			sourceTree = "<group>";
@@ -1735,6 +1759,7 @@
 				4C5CD34417D158DE000B7F38 /* fr */,
 				601F811C18E016340028F3DE /* zh-Hans */,
 				BD6C366719484CF40089EB37 /* nl */,
+				FA638D231C39BFCC00B10CC6 /* ru */,
 			);
 			name = InfoPlist.strings;
 			sourceTree = "<group>";
@@ -1747,6 +1772,7 @@
 				4C53A7AA1864C3A2000DFF0D /* fr */,
 				601F811B18E016340028F3DE /* zh-Hans */,
 				BD6C366619484CF40089EB37 /* nl */,
+				FA638D221C39BFCC00B10CC6 /* ru */,
 			);
 			name = KPKLocalizable.strings;
 			sourceTree = "<group>";
@@ -1760,6 +1786,7 @@
 				4C7155E81A10DB7700979307 /* fr */,
 				4C7155EA1A10DB7800979307 /* de */,
 				4C7155EC1A10DB7900979307 /* en */,
+				FA638D1C1C39BFCC00B10CC6 /* ru */,
 			);
 			name = IconSelection.xib;
 			sourceTree = "<group>";
@@ -1773,6 +1800,7 @@
 				4C5CD34517D158F5000B7F38 /* fr */,
 				601F811118E016340028F3DE /* zh-Hans */,
 				BD6C365819484CF40089EB37 /* nl */,
+				FA638D111C39BFCB00B10CC6 /* ru */,
 			);
 			name = GeneralSettings.xib;
 			sourceTree = "<group>";
@@ -1786,6 +1814,7 @@
 				4C5CD34717D1591A000B7F38 /* fr */,
 				601F811318E016340028F3DE /* zh-Hans */,
 				BD6C365D19484CF40089EB37 /* nl */,
+				FA638D171C39BFCC00B10CC6 /* ru */,
 			);
 			name = PasswordInputView.xib;
 			sourceTree = "<group>";
@@ -1799,6 +1828,7 @@
 				4C5CD34817D15920000B7F38 /* fr */,
 				601F811418E016340028F3DE /* zh-Hans */,
 				BD6C365F19484CF40089EB37 /* nl */,
+				FA638D191C39BFCC00B10CC6 /* ru */,
 			);
 			name = InspectorView.xib;
 			sourceTree = "<group>";
@@ -1811,6 +1841,7 @@
 				4C5CD34217D158DE000B7F38 /* fr */,
 				601F811A18E016340028F3DE /* zh-Hans */,
 				BD6C366519484CF40089EB37 /* nl */,
+				FA638D211C39BFCC00B10CC6 /* ru */,
 			);
 			name = InfoPlist.strings;
 			sourceTree = "<group>";
@@ -1824,6 +1855,7 @@
 				BD6C365C19484CF40089EB37 /* nl */,
 				4C21F29D195B39B9002D610D /* en */,
 				4C21F29F195B3A48002D610D /* de */,
+				FA638D161C39BFCC00B10CC6 /* ru */,
 			);
 			name = MainMenu.xib;
 			sourceTree = "<group>";
@@ -1837,6 +1869,7 @@
 				4C7F8B781A10B69500CCB83D /* fr */,
 				4C7F8B7A1A10B69700CCB83D /* de */,
 				4C7F8B7C1A10B69800CCB83D /* en */,
+				FA638D101C39BFCB00B10CC6 /* ru */,
 			);
 			name = WelcomeWindow.xib;
 			sourceTree = "<group>";
@@ -1849,6 +1882,7 @@
 				4C5CD34017D158DE000B7F38 /* fr */,
 				601F811818E016340028F3DE /* zh-Hans */,
 				BD6C366319484CF40089EB37 /* nl */,
+				FA638D1F1C39BFCC00B10CC6 /* ru */,
 			);
 			name = Localizable.strings;
 			sourceTree = "<group>";
@@ -1861,6 +1895,7 @@
 				4C5CD34117D158DE000B7F38 /* fr */,
 				601F811918E016340028F3DE /* zh-Hans */,
 				BD6C366419484CF40089EB37 /* nl */,
+				FA638D201C39BFCC00B10CC6 /* ru */,
 			);
 			name = Credits.rtf;
 			sourceTree = "<group>";
@@ -1869,6 +1904,7 @@
 			isa = PBXVariantGroup;
 			children = (
 				4CD820221A32173100399DBB /* Base */,
+				FA638D1E1C39BFCC00B10CC6 /* ru */,
 			);
 			name = ReferenceBuilderView.xib;
 			sourceTree = "<group>";
@@ -1882,6 +1918,7 @@
 				6021FE4818E1356800C3BC51 /* de */,
 				6021FE4A18E1356B00C3BC51 /* fr */,
 				BD6C366119484CF40089EB37 /* nl */,
+				FA638D1B1C39BFCC00B10CC6 /* ru */,
 			);
 			name = EntryInspectorView.xib;
 			sourceTree = "<group>";
@@ -1895,6 +1932,7 @@
 				6021FE5318E13F2900C3BC51 /* fr */,
 				6021FE5518E13F2A00C3BC51 /* zh-Hans */,
 				BD6C366019484CF40089EB37 /* nl */,
+				FA638D1A1C39BFCC00B10CC6 /* ru */,
 			);
 			name = GroupInspectorView.xib;
 			sourceTree = "<group>";
@@ -1908,6 +1946,7 @@
 				6021FE5E18E142A300C3BC51 /* fr */,
 				6021FE6018E142A400C3BC51 /* zh-Hans */,
 				BD6C365919484CF40089EB37 /* nl */,
+				FA638D121C39BFCB00B10CC6 /* ru */,
 			);
 			name = IntegrationSettings.xib;
 			sourceTree = "<group>";
@@ -1921,6 +1960,7 @@
 				6021FE6918E15D9B00C3BC51 /* fr */,
 				6021FE6B18E15D9D00C3BC51 /* zh-Hans */,
 				BD6C365A19484CF40089EB37 /* nl */,
+				FA638D131C39BFCC00B10CC6 /* ru */,
 			);
 			name = WorkflowSettings.xib;
 			sourceTree = "<group>";
@@ -1934,6 +1974,7 @@
 				6021FE7418E15E7900C3BC51 /* fr */,
 				6021FE7618E15E7B00C3BC51 /* zh-Hans */,
 				BD6C365B19484CF40089EB37 /* nl */,
+				FA638D141C39BFCC00B10CC6 /* ru */,
 			);
 			name = UpdateSettings.xib;
 			sourceTree = "<group>";
@@ -1947,6 +1988,7 @@
 				6021FE7F18E1600000C3BC51 /* fr */,
 				6021FE8118E1600200C3BC51 /* zh-Hans */,
 				BD6C366219484CF40089EB37 /* nl */,
+				FA638D1D1C39BFCC00B10CC6 /* ru */,
 			);
 			name = DatePickingView.xib;
 			sourceTree = "<group>";
@@ -1960,6 +2002,7 @@
 				6021FE8A18E160C900C3BC51 /* fr */,
 				6021FE8C18E160CB00C3BC51 /* zh-Hans */,
 				BD6C365719484CF40089EB37 /* nl */,
+				FA638D0F1C39BFCB00B10CC6 /* ru */,
 			);
 			name = PasswordEditWindow.xib;
 			sourceTree = "<group>";
@@ -1973,6 +2016,7 @@
 				6021FE9518E1617D00C3BC51 /* fr */,
 				6021FE9718E1617E00C3BC51 /* zh-Hans */,
 				BD6C365E19484CF40089EB37 /* nl */,
+				FA638D181C39BFCC00B10CC6 /* ru */,
 			);
 			name = PasswordCreatorView.xib;
 			sourceTree = "<group>";
@@ -1986,6 +2030,7 @@
 				6021FEA018E1651E00C3BC51 /* fr */,
 				6021FEA218E1652000C3BC51 /* zh-Hans */,
 				BD6C365619484CF40089EB37 /* nl */,
+				FA638D0E1C39BFCB00B10CC6 /* ru */,
 			);
 			name = DatabaseSettingsWindow.xib;
 			sourceTree = "<group>";
