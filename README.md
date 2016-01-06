@@ -93,21 +93,31 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 ##Contributions
 
+The following list might not be complete, please refer to [merged Pull Requests](https://github.com/mstarke/MacPass/pulls?utf8=✓&q=is%3Apr+is%3Aclosed+is%3Amerged) on GitHub for more details.
+
+### Art
+
 [Iiro Jäppinen](https://iiro.jappinen.me) MacPass icon
 
 [Thom Williams](https://github.com/thomscode) Document icons
 
 [Joanna Olsen](https://github.com/JoannaOlsen) Database Icons
 
-[Jellyfrog](https://github.com/Jellyfrog) Asset file size optimization
-
-[Jannick Hemelhof](https://github.com/clone1612) Dutch localization
+### Localization
 
 [Gil André](mailto:gil@panix.com) and [Michel Bibal](https://github.com/MBibal) French localization
+
+[Jannick Hemelhof](https://github.com/clone1612) Dutch localization
 
 [Benjamin Steinwender](https://github.com/auge) German localization
 
 [Zhao Peng](patchao2000@gmail.com) Simplified Chinese localization
+
+[Alex Petkevich](alex@mrdoggy.info) Russion localization
+
+### Other
+
+[Jellyfrog](https://github.com/Jellyfrog) Asset file size optimization
 
 [Nathaniel Madura](mailto:nmadura@umich.edu) Refacotrings, first create Database 
 
@@ -130,6 +140,10 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 [Yono Mittlefehldt](https://twitter.com/yonomitt) Added 90 days expiration preset.
 
 [Dennis Bolio](https://github.com/dennisbolio) Fixes issues with icon selection
+
+[Mario Sangiorgio](mariosangiorgio@gmail.com) Improved password generation, Improved English localization
+
+[Michael Belz](https://github.com/sub0ne) Fixed MacPass not opening any window, when lastly opened Database is missing.
 
 ##Copyright
 
