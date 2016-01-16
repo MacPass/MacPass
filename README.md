@@ -69,9 +69,6 @@ It's in active development and open source. The Beta fully supports all database
 [KyPass Companion](http://www.kyuran.be/logiciels/kypass4mac/) is a native Cocoa port and offers KeePassHttp compatiblity.
 Should be able to read and write database version 1 and 2. It is closed source and currently available in the Mac App Store. It's rather expensive considering the bugs and missing features. Based on the user reviews it should work. Not all version 2 features are supported. It is unable to convert between database versions.
 
-[S3crets](http://s3crets.com/en/help/) native Cocoa Port with a different approach to displaying the database fully inside a tree.
-It is able to read and write database version 1 and 2. Not all database features are fully supported.
-
 ##License
 
 MacPass, a KeePass compatible Password Manager for OS X
@@ -90,6 +87,11 @@ GNU General Public License for more details.
 
 You should have received a copy of the GNU General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>.
+
+## App Store
+
+Due to being lincensed under GPLv3 it's not possible to publish a version of MacPass on the App Store.
+For further details, take a look at the [explanation](https://www.fsf.org/news/2010-05-app-store-compliance) of the Free Software Foundation.
 
 ##Contributions
 
