@@ -8,6 +8,7 @@
 
 #import "MPSettingsHelper.h"
 #import "NSString+MPPasswordCreation.h"
+#import "NSString+MPHash.h"
 #import "MPEntryViewController.h" // Sort descriptors
 #import "DDHotKey+MacPassAdditions.h" // Default hotkey;
 
@@ -80,6 +81,7 @@ NSString *const kMPDeprecatedSettingsKeyShowMenuItem                      = @"Sh
   [self _fixEntryTableSortDescriptors];
   [self _migrateURLDoubleClickPreferences];
   [self _migrateEntrySearchFlags];
+  [self _migrateRememberedKeyFiles];
   [self _removeDeprecatedValues];
 }
 
@@ -182,12 +184,32 @@ NSString *const kMPDeprecatedSettingsKeyShowMenuItem                      = @"Sh
 }
 
 + (void)_migrateEntrySearchFlags {
+  /* Entry filters are now stored as archivd search context not just flags */
   NSInteger flags = [[NSUserDefaults standardUserDefaults] integerForKey:kMPDeprecatedSettingsKeyEntrySearchFilterMode];
   if(flags != 0) {
     MPEntrySearchContext *context = [[MPEntrySearchContext alloc] initWithString:nil flags:flags];
     NSData *contextData = [NSKeyedArchiver archivedDataWithRootObject:context];
     [[NSUserDefaults standardUserDefaults] setObject:contextData forKey:kMPSettingsKeyEntrySearchFilterContext];
   }
+}
+
++ (void)_migrateRememberedKeyFiles {
+  /*
+   Database file paths was stored as plain text in keyfile mapping.
+   We only need to store the key file ulr in plain text, thus hashing the path is sufficent
+   */
+  NSDictionary<NSString *, NSString *> *plainTextDict = [[NSUserDefaults standardUserDefaults] dictionaryForKey:kMPSettingsKeyRememeberdKeysForDatabases];
+  if(!plainTextDict) {
+    return;
+  }
+  NSMutableDictionary *hashedDict = [[NSMutableDictionary alloc] initWithCapacity:plainTextDict.count];
+  for(NSString *key in plainTextDict) {
+    NSString *digest = key.sha1HexDigest;
+    if(digest) {
+      hashedDict[key.sha1HexDigest] = plainTextDict[key];
+    }
+  }
+  [[NSUserDefaults standardUserDefaults] setObject:hashedDict forKey:kMPSettingsKeyRememeberdKeysForDatabases];
 }
 
 @end

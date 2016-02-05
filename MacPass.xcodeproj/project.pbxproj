@@ -119,6 +119,7 @@
 		4C569D9E17652B0600595B62 /* MPConstants.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C569D9D17652B0600595B62 /* MPConstants.m */; };
 		4C569DA117652BFE00595B62 /* MPEntryTableDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C569DA017652BFE00595B62 /* MPEntryTableDataSource.m */; };
 		4C57AE1417BA422B00CA4F34 /* MPSegmentedContextCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C57AE1317BA422B00CA4F34 /* MPSegmentedContextCell.m */; };
+		4C5807781C64F67000E7171F /* NSString+MPHash.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C5807771C64F67000E7171F /* NSString+MPHash.m */; };
 		4C586F9E16D07ABD00E7DB57 /* 00_PasswordTemplate.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 4C586F9D16D07ABD00E7DB57 /* 00_PasswordTemplate.pdf */; };
 		4C586FA016D07D7200E7DB57 /* 01_PackageNetworkTemplate.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 4C586F9F16D07D7200E7DB57 /* 01_PackageNetworkTemplate.pdf */; };
 		4C586FA216D07F6A00E7DB57 /* 02_MessageBoxWarningTemplate.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 4C586FA116D07F6A00E7DB57 /* 02_MessageBoxWarningTemplate.pdf */; };
@@ -440,6 +441,8 @@
 		4C569DA017652BFE00595B62 /* MPEntryTableDataSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MPEntryTableDataSource.m; sourceTree = "<group>"; };
 		4C57AE1217BA422B00CA4F34 /* MPSegmentedContextCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MPSegmentedContextCell.h; sourceTree = "<group>"; };
 		4C57AE1317BA422B00CA4F34 /* MPSegmentedContextCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MPSegmentedContextCell.m; sourceTree = "<group>"; };
+		4C5807761C64F67000E7171F /* NSString+MPHash.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+MPHash.h"; sourceTree = "<group>"; };
+		4C5807771C64F67000E7171F /* NSString+MPHash.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+MPHash.m"; sourceTree = "<group>"; };
 		4C586F9D16D07ABD00E7DB57 /* 00_PasswordTemplate.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = 00_PasswordTemplate.pdf; sourceTree = "<group>"; };
 		4C586F9F16D07D7200E7DB57 /* 01_PackageNetworkTemplate.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = 01_PackageNetworkTemplate.pdf; sourceTree = "<group>"; };
 		4C586FA116D07F6A00E7DB57 /* 02_MessageBoxWarningTemplate.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = 02_MessageBoxWarningTemplate.pdf; sourceTree = "<group>"; };
@@ -856,6 +859,8 @@
 				4C77C84018E240E000D1C42B /* DDHotKey+MacPassAdditions.m */,
 				4C32B0E51A1D4436007E12F1 /* KPKFormat+MPUTIDetection.h */,
 				4C32B0E61A1D4436007E12F1 /* KPKFormat+MPUTIDetection.m */,
+				4C5807761C64F67000E7171F /* NSString+MPHash.h */,
+				4C5807771C64F67000E7171F /* NSString+MPHash.m */,
 			);
 			name = Categories;
 			sourceTree = "<group>";
@@ -1759,6 +1764,7 @@
 				4C57AE1417BA422B00CA4F34 /* MPSegmentedContextCell.m in Sources */,
 				4CE2961518429AA5005F01CE /* MPAutotypeKeyPress.m in Sources */,
 				4C32B0E71A1D4436007E12F1 /* KPKFormat+MPUTIDetection.m in Sources */,
+				4C5807781C64F67000E7171F /* NSString+MPHash.m in Sources */,
 				4CE501341BBC47F500FB819D /* MPTagsTokenFieldDelegate.m in Sources */,
 				4CC6DB7A17D23719002C6091 /* KPKNode+IconImage.m in Sources */,
 				4C15B74618BCA3B1003F8008 /* MPDocument+Search.m in Sources */,

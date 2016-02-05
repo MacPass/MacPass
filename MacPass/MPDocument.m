@@ -37,6 +37,7 @@
 
 #import "NSError+Messages.h"
 #import "NSString+MPPasswordCreation.h"
+#import "NSString+MPHash.h"
 
 NSString *const MPDocumentDidAddGroupNotification         = @"com.hicknhack.macpass.MPDocumentDidAddGroupNotification";
 NSString *const MPDocumentDidAddEntryNotification         = @"com.hicknhack.macpass.MPDocumentDidAddEntryNotification";
@@ -331,7 +332,7 @@ NSString *const MPDocumentGroupKey                        = @"MPDocumentGroupKey
     return nil;
   }
   NSDictionary *keysForFiles = [[NSUserDefaults standardUserDefaults] dictionaryForKey:kMPSettingsKeyRememeberdKeysForDatabases];
-  NSString *keyPath = keysForFiles[[[self fileURL] path]];
+  NSString *keyPath = keysForFiles[self.fileURL.path.sha1HexDigest];
   if(!keyPath) {
     return nil;
   }
@@ -689,7 +690,7 @@ NSString *const MPDocumentGroupKey                        = @"MPDocumentGroupKey
   if(nil == keysForFiles) {
     keysForFiles = [[NSMutableDictionary alloc] initWithCapacity:1];
   }
-  keysForFiles[[[self fileURL] path]] = [keyURL path];
+  keysForFiles[self.fileURL.path.sha1HexDigest] = keyURL.path;
   [[NSUserDefaults standardUserDefaults] setObject:keysForFiles forKey:kMPSettingsKeyRememeberdKeysForDatabases];
 }
 
