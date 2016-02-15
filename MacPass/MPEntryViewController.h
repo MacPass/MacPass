@@ -47,8 +47,5 @@ typedef NS_ENUM( NSUInteger, MPCopyContentTypeTag) {
 - (void)copyURL:(id)sender;
 - (void)openURL:(id)sender;
 
-/* Settings migration */
-+ (NSString *)timeInfoModificationTimeKeyPath;
-
 @end
 

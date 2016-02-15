@@ -86,14 +86,6 @@ NSString *const _MPTableSecurCellView = @"PasswordCell";
 
 @implementation MPEntryViewController
 
-+ (NSString *)timeInfoModificationTimeKeyPath {
-  static NSString *timeInfoModificationTimeKeyPath;
-  if(nil == timeInfoModificationTimeKeyPath) {
-    timeInfoModificationTimeKeyPath = [[NSString alloc] initWithFormat:@"%@.%@", NSStringFromSelector(@selector(timeInfo)), NSStringFromSelector(@selector(modificationDate))];
-  }
-  return timeInfoModificationTimeKeyPath;
-}
-
 - (NSString *)nibName {
   return @"EntryView";
 }
@@ -159,14 +151,14 @@ NSString *const _MPTableSecurCellView = @"PasswordCell";
   self.entryTable.autosaveName = @"EntryTable";
   self.entryTable.autosaveTableColumns = YES;
   
-  
   NSString *parentTitleKeyPath = [[NSString alloc] initWithFormat:@"%@.%@", NSStringFromSelector(@selector(parent)), NSStringFromSelector(@selector(title))];
+  NSString *timeInfoModificationTimeKeyPath = [[NSString alloc] initWithFormat:@"%@.%@", NSStringFromSelector(@selector(timeInfo)), NSStringFromSelector(@selector(modificationDate))];
   
   titleColumn.sortDescriptorPrototype = [NSSortDescriptor sortDescriptorWithKey:NSStringFromSelector(@selector(title))ascending:YES selector:@selector(localizedCaseInsensitiveCompare:)];
   userNameColumn.sortDescriptorPrototype = [NSSortDescriptor sortDescriptorWithKey:NSStringFromSelector(@selector(username)) ascending:YES selector:@selector(localizedCaseInsensitiveCompare:)];
   urlColumn.sortDescriptorPrototype = [NSSortDescriptor sortDescriptorWithKey:NSStringFromSelector(@selector(url)) ascending:YES selector:@selector(localizedCaseInsensitiveCompare:)];
   parentColumn.sortDescriptorPrototype = [NSSortDescriptor sortDescriptorWithKey:parentTitleKeyPath ascending:YES selector:@selector(localizedCaseInsensitiveCompare:)];
-  modifiedColumn.sortDescriptorPrototype = [NSSortDescriptor sortDescriptorWithKey:[MPEntryViewController timeInfoModificationTimeKeyPath] ascending:YES selector:@selector(compare:)];
+  modifiedColumn.sortDescriptorPrototype = [NSSortDescriptor sortDescriptorWithKey:timeInfoModificationTimeKeyPath ascending:YES selector:@selector(compare:)];
   
   [parentColumn.headerCell setStringValue:NSLocalizedString(@"GROUP", "")];
   [titleColumn.headerCell setStringValue:NSLocalizedString(@"TITLE", "")];

@@ -9,7 +9,7 @@
 #import "MPSettingsHelper.h"
 #import "NSString+MPPasswordCreation.h"
 #import "NSString+MPHash.h"
-#import "MPEntryViewController.h" // Sort descriptors
+#import "MPEntrySearchContext.h"
 #import "DDHotKey+MacPassAdditions.h" // Default hotkey;
 
 NSString *const kMPSettingsKeyPasteboardClearTimeout                  = @"ClipboardClearTimeout";
@@ -172,8 +172,9 @@ NSString *const kMPDeprecatedSettingsKeyShowMenuItem                      = @"Sh
   NSArray *sortDescriptors = [NSUnarchiver unarchiveObjectWithData:descriptorData];
   
   for(NSSortDescriptor *descriptor in sortDescriptors) {
+    /* Brute force, just kill the settings if they might cause trouble */
     if(descriptor.selector == @selector(compare:)
-       || [descriptor.key isEqualToString:[MPEntryViewController timeInfoModificationTimeKeyPath]]
+       || [descriptor.key isEqualToString:@"timeInfo.modificationDate"]
        || [descriptor.key isEqualToString:@"parent.name"] ) {
       [[NSUserDefaults standardUserDefaults] removeObjectForKey:kMPSettingsKeyEntryTableSortDescriptors];
       break;
