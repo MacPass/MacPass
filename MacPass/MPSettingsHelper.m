@@ -160,6 +160,10 @@ NSString *const kMPDeprecatedSettingsKeyShowMenuItem                      = @"Sh
   /*
    MacPass < 0.4 did use compare: for the entry table view,
    this was changed in 0.4 to localizedCaseInsensitiveCompare:
+   
+   MacPass < 0.5.2 did use parent.name for group names,
+   this was changed in 0.6. to parent.title
+   
    */
   NSData *descriptorData = [[NSUserDefaults standardUserDefaults] dataForKey:kMPSettingsKeyEntryTableSortDescriptors];
   if(!descriptorData) {
@@ -168,7 +172,9 @@ NSString *const kMPDeprecatedSettingsKeyShowMenuItem                      = @"Sh
   NSArray *sortDescriptors = [NSUnarchiver unarchiveObjectWithData:descriptorData];
   
   for(NSSortDescriptor *descriptor in sortDescriptors) {
-    if([descriptor selector] == @selector(compare:) || [[descriptor key] isEqualToString:[MPEntryViewController timeInfoModificationTimeKeyPath]] ) {
+    if(descriptor.selector == @selector(compare:)
+       || [descriptor.key isEqualToString:[MPEntryViewController timeInfoModificationTimeKeyPath]]
+       || [descriptor.key isEqualToString:@"parent.name"] ) {
       [[NSUserDefaults standardUserDefaults] removeObjectForKey:kMPSettingsKeyEntryTableSortDescriptors];
       break;
     }
