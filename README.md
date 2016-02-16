@@ -63,11 +63,12 @@ More Screenshots in the [Wiki](https://github.com/mstarke/MacPass/wiki/Screensho
 
 ##Alternatives
 
-[KeePassX](http://www.keepassx.org) is a Qt based KeePass port. The stable 0.4.3 release only supports the version 1 format. The Beta can read database version 1 and 2 and write version 2 containers rather nicely.
-It's in active development and open source. The Beta fully supports all database 2 features and should be stable enough for daily usage. It can import version 1 into a version 2 file but is unable to natively write version 1 files.
+[KeePassX](http://www.keepassx.org) is a Qt based KeePass port. It's in active development and open source. It fully supports all KDBX features and can import KDB into a KDBX file but is unable to safe as KDB. There's an older release just that handles only KDB files.
 
 [KyPass Companion](http://www.kyuran.be/logiciels/kypass4mac/) is a native Cocoa port and offers KeePassHttp compatiblity.
-Should be able to read and write database version 1 and 2. It is closed source and currently available in the Mac App Store. It's rather expensive considering the bugs and missing features. Based on the user reviews it should work. Not all version 2 features are supported. It is unable to convert between database versions.
+Should be able to read and write KDB and KDBX files. It is closed source and currently available in the Mac App Store. It's rather expensive considering the bugs and missing features. Based on the user reviews it should work. Not all KDBX features are supported. It is unable to convert between database versions.
+
+[KeeWeb](https://keeweb.info) is a cross plattform web client in active development based on [electron](http://electron.atom.io) and thus also is available as an offline version for all mayor plattforms. The project is open source. It supports all features of KDBX files but has no KDB support. Because of the technology it's look is customizeable, but the native one is quite pretty.
 
 ##License
 
