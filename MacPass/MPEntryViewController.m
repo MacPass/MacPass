@@ -75,11 +75,6 @@ NSString *const _MPTableSecurCellView = @"PasswordCell";
 @property (strong) IBOutlet NSLayoutConstraint *tableToTopConstraint;
 @property (strong) NSLayoutConstraint *contextBarTopConstraint;
 
-@property (weak) IBOutlet HNHUIGradientView *bottomBar;
-@property (weak) IBOutlet NSButton *addEntryButton;
-
-@property (weak) IBOutlet NSTextField *footerInfoText;
-
 @property (nonatomic, strong) MPEntryTableDataSource *dataSource;
 
 @end
@@ -110,10 +105,8 @@ NSString *const _MPTableSecurCellView = @"PasswordCell";
 }
 
 - (void)didLoadView {
-  [[self view] setWantsLayer:YES];
   
-  [_bottomBar setBorderType:HNHBorderTop|HNHBorderHighlight];
-  [self.addEntryButton setAction:[MPActionHelper actionOfType:MPActionAddEntry]];
+  [self.view setWantsLayer:YES];
   
   self.entryTable.delegate = self;
   self.entryTable.doubleAction = @selector(_columnDoubleClick:);
@@ -465,8 +458,10 @@ NSString *const _MPTableSecurCellView = @"PasswordCell";
   MPDocument *document = [[self windowController] document];
   /* If the document was locked and unlocked we do not need to recheck */
   if(document.unlockCount != 1) {
+    /* TODO add another method to display this!
     [self.footerInfoText setHidden:![document hasMalformedAutotypeItems]];
     [self.footerInfoText setStringValue:NSLocalizedString(@"DOCUMENT_AUTOTYPE_CORRUPTION_WARNING", "")];
+     */
   }
 }
 
