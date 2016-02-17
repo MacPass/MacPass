@@ -35,7 +35,6 @@ NSString *const _MPOutlinveViewHeaderViewIdentifier = @"HeaderCell";
   
 }
 @property (weak) IBOutlet NSOutlineView *outlineView;
-@property (weak) IBOutlet NSButton *addGroupButton;
 
 @property (strong) NSTreeController *treeController;
 @property (strong) MPOutlineDataSource *datasource;
@@ -79,9 +78,7 @@ NSString *const _MPOutlinveViewHeaderViewIdentifier = @"HeaderCell";
   [self.outlineView registerForDraggedTypes:@[ KPKGroupUTI, KPKEntryUTI ]];
   [self.outlineView setDraggingSourceOperationMask:NSDragOperationEvery forLocal:YES];
   [self.outlineView setDoubleAction:@selector(_doubleClickedGroup:)];
-  [self.bottomBar setBorderType:HNHBorderTop|HNHBorderHighlight];
-  [self.addGroupButton setAction:[MPActionHelper actionOfType:MPActionAddGroup]];
-  
+
   [[NSNotificationCenter defaultCenter] addObserver:self
                                            selector:@selector(_didBecomeFirstResponder:)
                                                name:MPDidActivateViewNotification
