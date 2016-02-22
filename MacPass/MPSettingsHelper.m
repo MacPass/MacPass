@@ -205,18 +205,30 @@ NSString *const kMPDeprecatedSettingsKeyShowMenuItem                      = @"Sh
    Database file paths was stored as plain text in keyfile mapping.
    We only need to store the key file ulr in plain text, thus hashing the path is sufficent
    */
-  NSDictionary<NSString *, NSString *> *plainTextDict = [[NSUserDefaults standardUserDefaults] dictionaryForKey:kMPSettingsKeyRememeberdKeysForDatabases];
-  if(!plainTextDict) {
+  NSDictionary<NSString *, NSString *> *currentMapping = [[NSUserDefaults standardUserDefaults] dictionaryForKey:kMPSettingsKeyRememeberdKeysForDatabases];
+  if(!currentMapping) {
     return;
   }
-  NSMutableDictionary *hashedDict = [[NSMutableDictionary alloc] initWithCapacity:plainTextDict.count];
-  for(NSString *key in plainTextDict) {
-    NSString *digest = key.sha1HexDigest;
-    if(digest) {
-      hashedDict[key.sha1HexDigest] = plainTextDict[key];
+  NSMutableDictionary *hashedDict = [[NSMutableDictionary alloc] initWithCapacity:MAX(1,currentMapping.count)];
+  BOOL didHash = NO;
+  for(NSString *key in currentMapping) {
+    NSURL *fileURL = [NSURL URLWithString:key];
+    /* Only hash file paths */
+    if(fileURL.isFileURL) {
+      NSString *digest = key.sha1HexDigest;
+      if(digest) {
+        hashedDict[key.sha1HexDigest] = currentMapping[key];
+        didHash = YES;
+      }
+    }
+    /* keep all hasehd or unknown data */
+    else {
+      hashedDict[key] = currentMapping[key];
     }
   }
-  [[NSUserDefaults standardUserDefaults] setObject:hashedDict forKey:kMPSettingsKeyRememeberdKeysForDatabases];
+  if(didHash) {
+    [[NSUserDefaults standardUserDefaults] setObject:hashedDict forKey:kMPSettingsKeyRememeberdKeysForDatabases];
+  }
 }
 
 @end
