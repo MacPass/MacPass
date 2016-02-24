@@ -38,6 +38,8 @@
 
 #import "KeePassKit/KeePassKit.h"
 
+#import <Sparkle/Sparkle.h>
+
 NSString *const MPDidChangeStoredKeyFilesSettings = @"com.hicknhack.macpass.MPDidChangeStoredKeyFilesSettings";
 
 @interface MPAppDelegate () {
@@ -158,6 +160,10 @@ NSString *const MPDidChangeStoredKeyFilesSettings = @"com.hicknhack.macpass.MPDi
   [MPAutotypeDaemon defaultDaemon];
   /* Create Plugin Manager */
   [MPPluginManager sharedManager];
+#ifdef RELEASE
+  /* Only enabel updater in Release */
+  [SUUpdater sharedUpdater];
+#endif
 }
 
 #pragma mark -
