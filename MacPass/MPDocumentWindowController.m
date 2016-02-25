@@ -393,25 +393,25 @@ typedef void (^MPPasswordChangedBlock)(BOOL didChangePassword);
 }
 
 - (void)focusGroups:(id)sender {
-  [[self window] makeFirstResponder:[self.outlineViewController reconmendedFirstResponder]];
+  [self.window makeFirstResponder:[self.outlineViewController reconmendedFirstResponder]];
 }
 
 - (void)focusInspector:(id)sender {
-  [[self window] makeFirstResponder:[self.inspectorViewController reconmendedFirstResponder]];
+  [self.window makeFirstResponder:[self.inspectorViewController reconmendedFirstResponder]];
 }
 
 - (void)showEntries {
-  NSView *contentView = [[self window] contentView];
+  NSView *contentView = self.window.contentView;
   if(self.splitView == contentView) {
     return; // We are displaying the entries already
   }
-  if([[contentView subviews] count] == 1) {
-    [[contentView subviews][0] removeFromSuperviewWithoutNeedingDisplay];
+  if(contentView.subviews.count == 1) {
+    [contentView.subviews[0] removeFromSuperviewWithoutNeedingDisplay];
   }
   [contentView addSubview:self.splitView];
-  NSView *outlineView = [self.outlineViewController view];
-  NSView *inspectorView = [self.inspectorViewController view];
-  NSView *entryView = [self.entryViewController view];
+  NSView *outlineView = self.outlineViewController.view;
+  NSView *inspectorView = self.inspectorViewController.view;
+  NSView *entryView = self.entryViewController.view;
   
   /*
    The current easy way to prevent layout hiccups is to add the inspect
