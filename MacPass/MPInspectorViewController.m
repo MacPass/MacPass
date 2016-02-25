@@ -104,12 +104,9 @@ typedef NS_ENUM(NSUInteger, MPContentTab) {
   
   [self.view layout];
   
-  /* Init edit and cancel buttons */
-  self.editButton.action = @selector(beginEditing:);
-  self.cancelEditButton.action = @selector(cancelEditing:);
   self.cancelEditButton.hidden = YES;
   
-  [self _toggleEditors:NO];
+  [self _establishBindings];
 }
 
 - (void)registerNotificationsForDocument:(MPDocument *)document {
@@ -118,10 +115,6 @@ typedef NS_ENUM(NSUInteger, MPContentTab) {
                                                name:MPDocumentCurrentItemChangedNotification
                                              object:document];
   [self.entryViewController registerNotificationsForDocument:document];
-  
-  
-  [self.nodeController bind:NSContentBinding toObject:document withKeyPath:NSStringFromSelector(@selector(selectedItem)) options:nil];
-  [self _establishBindings];
   
   [self.entryViewController setupBindings:document];
   [self.groupViewController setupBindings:document];
@@ -284,8 +277,9 @@ typedef NS_ENUM(NSUInteger, MPContentTab) {
   else {
     self.activeTab = MPEmptyTab;
   }
-  
-  [self _establishBindings];
+  self.nodeController.content = document.selectedItem;
+  self.entryViewController.representedObject = document.selectedItem.asEntry;
+  self.groupViewController.representedObject = document.selectedItem.asGroup;
 }
 
 - (IBAction)beginEditing:(id)sender {
