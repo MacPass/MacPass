@@ -19,11 +19,12 @@
 }
 
 - (NSView *)tableView:(NSTableView *)tableView viewForTableColumn:(NSTableColumn *)tableColumn row:(NSInteger)row {
-  MPDocument *document = [[[tableView window] windowController] document];
   NSTableCellView *view = [tableView makeViewWithIdentifier:@"WindowAssociationCell" owner:tableView];
-  KPKEntry *entry = document.selectedEntry;
-  KPKWindowAssociation *association = entry.autotype.associations[row];
-  [[view textField] bind:NSValueBinding toObject:association withKeyPath:@"windowTitle" options:nil];
+  NSString *windowTitleKeyPath = [NSString stringWithFormat:@"%@.%@",
+                                  NSStringFromSelector(@selector(objectValue)),
+                                  NSStringFromSelector(@selector(windowTitle))];
+  
+  [view.textField bind:NSValueBinding toObject:view withKeyPath:windowTitleKeyPath options:nil];
   return view;
 }
 

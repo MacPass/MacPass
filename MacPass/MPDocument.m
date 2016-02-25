@@ -67,6 +67,8 @@ NSString *const MPDocumentGroupKey                        = @"MPDocumentGroupKey
 @property (nonatomic, strong) NSData *encryptedData;
 @property (nonatomic, strong) MPTreeDelegate *treeDelgate;
 
+@property (nonatomic, copy) NSArray<KPKNode *> *selectedNodes;
+
 @property (assign) BOOL readOnly;
 @property (strong) NSURL *lockFileURL;
 
@@ -374,26 +376,6 @@ NSString *const MPDocumentGroupKey                        = @"MPDocumentGroupKey
   self.tree.trash = trash;
 }
 
-- (void)setSelectedGroup:(KPKGroup *)selectedGroup {
-  if(_selectedGroup != selectedGroup) {
-    _selectedGroup = selectedGroup;
-  }
-  self.selectedItem = _selectedGroup;
-}
-
-- (void)setSelectedEntry:(KPKEntry *)selectedEntry {
-  if(_selectedEntry != selectedEntry) {
-    _selectedEntry = selectedEntry;
-  }
-  self.selectedItem = selectedEntry;
-}
-
-- (void)setSelectedItem:(KPKNode *)selectedItem {
-  if(_selectedItem != selectedItem) {
-    _selectedItem = selectedItem;
-    [[NSNotificationCenter defaultCenter] postNotificationName:MPDocumentCurrentItemChangedNotification object:self];
-  }
-}
 - (void)setTree:(KPKTree *)tree {
   if(_tree != tree) {
     _tree = tree;
@@ -402,6 +384,28 @@ NSString *const MPDocumentGroupKey                        = @"MPDocumentGroupKey
     }
     _tree.delegate = _treeDelgate;
   }
+}
+
+#pragma mark -
+- (void)setSelectedNodes:(NSArray<KPKNode *> *)selectedNodes {
+  if(![_selectedNodes isEqualToArray:selectedNodes]) {
+    _selectedNodes = [selectedNodes copy];
+    [[NSNotificationCenter defaultCenter] postNotificationName:MPDocumentCurrentItemChangedNotification object:self];
+  }
+}
+
+- (void)setSelectedGroups:(NSArray<KPKGroup *> *)selectedGroups {
+  if(![self.selectedGroups isEqualToArray:selectedGroups]) {
+    _selectedGroups = [selectedGroups copy];
+  }
+  self.selectedNodes = self.selectedGroups;
+}
+
+- (void)setSelectedEntries:(NSArray<KPKEntry *> *)selectedEntries {
+  if(![self.selectedEntries isEqualToArray:selectedEntries]) {
+    _selectedEntries = [selectedEntries copy];
+  }
+  self.selectedNodes = self.selectedEntries;
 }
 
 #pragma mark Data Accesors
@@ -451,8 +455,8 @@ NSString *const MPDocumentGroupKey                        = @"MPDocumentGroupKey
   if(defaultPassword) {
     newEntry.password = defaultPassword;
   }
-  [parent addEntry:newEntry];
-  [parent.undoManager setActionName:NSLocalizedString(@"ADD_ENTRY", "")];
+  [newEntry addToGroup:parent];
+  [newEntry.undoManager setActionName:NSLocalizedString(@"ADD_ENTRY", "")];
   NSDictionary *userInfo = @{ MPDocumentEntryKey: newEntry };
   [[NSNotificationCenter defaultCenter] postNotificationName:MPDocumentDidAddEntryNotification object:self userInfo:userInfo];
   return newEntry;
@@ -468,7 +472,8 @@ NSString *const MPDocumentGroupKey                        = @"MPDocumentGroupKey
   KPKGroup *newGroup = [self.tree createGroup:parent];
   newGroup.title = NSLocalizedString(@"DEFAULT_GROUP_NAME", @"Title for a newly created group");
   newGroup.iconId = MPIconFolder;
-  [parent addGroup:newGroup];
+  [newGroup addToGroup:parent];
+  [newGroup.undoManager setActionName:NSLocalizedString(@"ADD_GROUP", "")];
   NSDictionary *userInfo = @{ MPDocumentGroupKey : newGroup };
   [[NSNotificationCenter defaultCenter] postNotificationName:MPDocumentDidAddGroupNotification object:self userInfo:userInfo];
   return newGroup;
@@ -491,19 +496,24 @@ NSString *const MPDocumentGroupKey                        = @"MPDocumentGroupKey
     [self _presentTrashAlertForItem:node];
     return;
   }
+ 
+//  if(node.asGroup == self.selectedGroup) {
+//    self.selectedGroup = node.asGroup;
+//  }
+//  if(node.asEntry == self.selectedEntry) {
+//    self.selectedEntry = node.asEntry;
+//  }
+  
+  if(!self.tree.metaData.useTrash) {
+    /* Display warning about permanently removing items! */
+  }
   [node trashOrRemove];
-  BOOL permanent = (nil == self.trash);
+  BOOL permanent = !node.isTrashed;
   if(node.asGroup) {
     [self.undoManager setActionName:permanent ? NSLocalizedString(@"DELETE_GROUP", "Delete Group") : NSLocalizedString(@"TRASH_GROUP", "Move Group to Trash")];
-    if(self.selectedGroup == node) {
-      self.selectedGroup = nil;
-    }
   }
   else if(node.asEntry) {
     [self.undoManager setActionName:permanent ? NSLocalizedString(@"DELETE_ENTRY", "") : NSLocalizedString(@"TRASH_ENTRY", "Move Entry to Trash")];
-    if(self.selectedEntry == node) {
-      self.selectedEntry = nil;
-    }
   }
 }
 
@@ -554,7 +564,6 @@ NSString *const MPDocumentGroupKey                        = @"MPDocumentGroupKey
       [node.undoManager removeAllActionsWithTarget:group];
     }
     [node remove];
-    [node.undoManager removeAllActionsWithTarget:node];
   }
 }
 
@@ -569,18 +578,21 @@ NSString *const MPDocumentGroupKey                        = @"MPDocumentGroupKey
   NSUUID *entryUUID = [sender representedObject];
   if(entryUUID) {
     KPKEntry *templateEntry = [self findEntry:entryUUID];
-    if(templateEntry && self.selectedGroup) {
+    KPKGroup *group = self.selectedGroups.count == 1 ? self.selectedGroups.firstObject : nil;
+    if(templateEntry && group) {
       KPKEntry *copy = [templateEntry copyWithTitle:templateEntry.title options:kKPKCopyOptionNone];
-      [self.selectedGroup addEntry:copy];
-      [self.selectedGroup.undoManager setActionName:NSLocalizedString(@"ADD_TREMPLATE_ENTRY", "")];
+      [copy addToGroup:group];
+      [self.undoManager setActionName:NSLocalizedString(@"ADD_TREMPLATE_ENTRY", "")];
     }
   }
 }
 
 - (void)duplicateEntry:(id)sender {
+  /*
   KPKEntry *duplicate = [self.selectedEntry copyWithTitle:nil options:kKPKCopyOptionNone];
-  [self.selectedEntry.parent addEntry:duplicate];
+  [duplicate addToGroup:self.selectedEntry.parent];
   [self.undoManager setActionName:NSLocalizedString(@"DUPLICATE_ENTRY", "")];
+   */
 }
 
 - (void)duplicateEntryWithOptions:(id)sender {
@@ -715,11 +727,12 @@ NSString *const MPDocumentGroupKey                        = @"MPDocumentGroupKey
 #pragma mark MPTargetNodeResolving
 
 - (KPKEntry *)currentTargetEntry {
-  return self.selectedEntry;
+  return self.selectedEntries.firstObject;
+  //return self.selectedEntry;
 }
 
 - (KPKGroup *)currentTargetGroup {
-  return self.selectedGroup;
+  return self.selectedGroups.firstObject;
 }
 
 @end

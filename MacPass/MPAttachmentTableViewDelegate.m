@@ -33,16 +33,14 @@
 @implementation MPAttachmentTableViewDelegate
 
 - (void)tableViewSelectionDidChange:(NSNotification *)notification {
-  NSTableView *tableView = [notification object];
-  MPDocument *document = [[[tableView window] windowController] document];
-  NSIndexSet *allColumns = [NSIndexSet indexSetWithIndexesInRange:NSMakeRange(0, [[tableView tableColumns] count])];
-  NSIndexSet *indexSet = [NSIndexSet indexSetWithIndexesInRange:NSMakeRange(0, [document.selectedEntry.binaries count] )];
+  NSTableView *tableView = notification.object;
+  NSIndexSet *allColumns = [NSIndexSet indexSetWithIndexesInRange:NSMakeRange(0, tableView.numberOfColumns)];
+  NSIndexSet *indexSet = [NSIndexSet indexSetWithIndexesInRange:NSMakeRange(0, tableView.numberOfRows )];
   [tableView reloadDataForRowIndexes:indexSet columnIndexes:allColumns];
 }
 
 - (NSView *)tableView:(NSTableView *)tableView viewForTableColumn:(NSTableColumn *)tableColumn row:(NSInteger)row {
   /* Decide what view to use */
-  MPDocument *document = [[[tableView window] windowController] document];
   NSIndexSet *selectedIndexes = [tableView selectedRowIndexes];
   NSTableCellView *view;
   if([selectedIndexes containsIndex:row]) {
@@ -54,11 +52,10 @@
     view = [tableView makeViewWithIdentifier:@"NormalCell" owner:tableView];
   }
   /* Bind view */
-  KPKEntry *entry = document.selectedEntry;
-  NSAssert([entry.binaries count] > row, @"Indes needs to be valid for binaries");
-  KPKBinary *binary = entry.binaries[row];
-  [[view textField] bind:NSValueBinding toObject:binary withKeyPath:@"name" options:nil];
-  [[view imageView] setImage:[[NSWorkspace sharedWorkspace] iconForFileType:[binary.name pathExtension]]];
+  KPKBinary *binary = view.objectValue;
+  NSString *nameKeyPath = [NSString stringWithFormat:@"%@.%@", NSStringFromSelector(@selector(objectValue)), NSStringFromSelector(@selector(name))];
+  [view.textField bind:NSValueBinding toObject:view withKeyPath:nameKeyPath options:nil];
+  view.imageView.image = [[NSWorkspace sharedWorkspace] iconForFileType:binary.name.pathExtension];
   return view;
 }
 
@@ -73,18 +70,18 @@
   NSMenu *menu = [[NSMenu alloc] init];
   /* Image for Popup button */
   NSMenuItem *item = [[NSMenuItem alloc] initWithTitle:@"" action:NULL keyEquivalent:@""];
-  [item setImage:[NSImage imageNamed:NSImageNameActionTemplate]];
+  item.image = [NSImage imageNamed:NSImageNameActionTemplate];
   [menu addItem:item];
   /* Quicklook */
   [menu addItemWithTitle:NSLocalizedString(@"PREVIEW", "") action:@selector(toggleQuicklookPreview:) keyEquivalent:@""];
   /* Save */
   item = [[NSMenuItem alloc] initWithTitle:NSLocalizedString(@"SAVE", "") action:@selector(saveAttachment:) keyEquivalent:@""];
-  [item setTarget:self.viewController];
+  item.target = self.viewController;
   [menu addItem:item];
   /* Remove */
   [menu addItem:[NSMenuItem separatorItem]];
   item = [[NSMenuItem alloc] initWithTitle:NSLocalizedString(@"DELETE", "") action:@selector(removeAttachment:) keyEquivalent:@""];
-  [item setTarget:self.viewController];
+  item.target = self.viewController;
   [menu addItem:item];
   
   return menu;

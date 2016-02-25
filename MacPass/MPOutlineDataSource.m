@@ -140,8 +140,8 @@
   if(draggedGroup) {
     if(copyItem || (nil == self.localDraggedGroup) ) {
       draggedGroup = [draggedGroup copyWithTitle:nil options:kKPKCopyOptionNone];
-      [targetGroup addGroup:draggedGroup atIndex:index];
-      [targetGroup.undoManager setActionName:NSLocalizedString(@"COPY_GROUP", "")];
+      [draggedGroup addToGroup:targetGroup atIndex:index];
+      [draggedGroup.undoManager setActionName:NSLocalizedString(@"COPY_GROUP", "")];
       return YES;
     }
     else if(self.localDraggedGroup) {
@@ -156,8 +156,8 @@
   else if(draggedEntry) {
     if(copyItem || (nil == self.localDraggedEntry)) {
       draggedEntry = [draggedEntry copyWithTitle:nil options:kKPKCopyOptionNone];
-      [targetGroup addEntry:draggedEntry];
-      [targetGroup.undoManager setActionName:NSLocalizedString(@"COPY_ENTRY", "")];
+      [draggedEntry addToGroup:targetGroup];
+      [draggedEntry.undoManager setActionName:NSLocalizedString(@"COPY_ENTRY", "")];
       return YES;
     }
     else if(self.localDraggedEntry) {

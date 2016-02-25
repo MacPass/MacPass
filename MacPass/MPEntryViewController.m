@@ -65,7 +65,7 @@ NSString *const _MPTableSecurCellView = @"PasswordCell";
   BOOL _didUnlock;
 }
 
-@property (strong) NSArrayController *entryArrayController;
+//@property (strong) NSArrayController *entryArrayController;
 @property (strong) MPContextBarViewController *contextBarViewController;
 @property (strong) NSArray *filteredEntries;
 
@@ -94,6 +94,8 @@ NSString *const _MPTableSecurCellView = @"PasswordCell";
     _dataSource.viewController = self;
     _menuDelegate = [[MPEntryContextMenuDelegate alloc] init];
     _contextBarViewController = [[MPContextBarViewController alloc] init];
+    NSString *entriesKeyPath = [NSString stringWithFormat:@"%@.%@", NSStringFromSelector(@selector(representedObject)), NSStringFromSelector(@selector(entries))];
+    [_entryArrayController bind:NSContentBinding toObject:self withKeyPath:entriesKeyPath options:nil];
   }
   return self;
 }
@@ -164,6 +166,7 @@ NSString *const _MPTableSecurCellView = @"PasswordCell";
   
   [self.entryTable bind:NSContentBinding toObject:self.entryArrayController withKeyPath:NSStringFromSelector(@selector(arrangedObjects)) options:nil];
   [self.entryTable bind:NSSortDescriptorsBinding toObject:self.entryArrayController withKeyPath:NSStringFromSelector(@selector(sortDescriptors)) options:nil];
+  [self.entryTable bind:NSSelectionIndexesBinding toObject:self.entryArrayController withKeyPath:NSStringFromSelector(@selector(selectionIndexes)) options:nil];
   self.entryTable.dataSource = self.dataSource;
   
   // bind NSArrayController sorting so that sort order gets auto-saved
@@ -341,22 +344,17 @@ NSString *const _MPTableSecurCellView = @"PasswordCell";
     return; // Not the right table view
   }
   MPDocument *document = self.windowController.document;
-  if(tableView.selectedRow < 0 || tableView.selectedRowIndexes.count > 1) {
-    document.selectedEntry = nil;
-  }
-  else {
-    document.selectedEntry = self.entryArrayController.arrangedObjects[tableView.selectedRow];
-  }
+  document.selectedEntries = self.entryArrayController.selectedObjects;
 }
 
 #pragma mark MPTargetItemResolving
 - (KPKEntry *)currentTargetEntry {
-  NSInteger activeRow = [self.entryTable clickedRow];
+  NSInteger activeRow = self.entryTable.clickedRow;
   /* Fall back to selection e.g. for toolbar actions */
   if(activeRow < 0 ) {
-    activeRow = [self.entryTable selectedRow];
+    activeRow = self.entryTable.selectedRow;
   }
-  if(activeRow >= 0 && activeRow <= [[self.entryArrayController arrangedObjects] count]) {
+  if(activeRow >= 0 && activeRow <= [self.entryArrayController.arrangedObjects count]) {
     return [self.entryArrayController arrangedObjects][activeRow];
   }
   return nil;
@@ -368,60 +366,55 @@ NSString *const _MPTableSecurCellView = @"PasswordCell";
     return entry;
   }
   MPDocument *document = self.windowController.document;
-  return document.selectedItem;
+  return document.selectedNodes.firstObject;
 }
 
 #pragma mark MPDocument Notifications
 - (void)_didChangeCurrentItem:(NSNotification *)notification {
   MPDocument *document = [notification object];
   
-  if(!document.selectedGroup && !document.hasSearch) {
+  if(document.selectedGroups.count != 1 && !document.hasSearch) {
     /* no group selection out of search is wrong */
-    [self.entryArrayController unbind:NSContentArrayBinding];
-    [self.entryArrayController setContent:nil];
+    self.representedObject = nil;
     return;
   }
   /*
    If a group is the current item, see if we already show that group
    also test if an element has been selected (issue #257)
    */
-  if(document.selectedItem == document.selectedGroup && document.selectedItem != nil) {
+  if(document.selectedNodes.firstObject == document.selectedGroups.firstObject && document.selectedNodes.count > 0) {
     if(document.hasSearch) {
       /* If search was active, stop it and exit */
       [document exitSearch:self];
     }
-    else if([[self.entryArrayController content] count] > 0) {
-      KPKEntry *entry = [[self.entryArrayController content] lastObject];
-      if(entry.parent == document.selectedGroup) {
+    else if([self.entryArrayController.content count] > 0) {
+      KPKEntry *entry = [self.entryArrayController.content lastObject];
+      if(entry.parent == document.selectedGroups.lastObject) {
         return; // we are showing the correct object right now.
       }
     }
-    [self.entryArrayController unbind:NSContentArrayBinding];
-    [self.entryArrayController bind:NSContentArrayBinding toObject:document.selectedGroup withKeyPath:NSStringFromSelector(@selector(entries)) options:nil];
+    self.representedObject = document.selectedGroups.count == 1 ? document.selectedGroups.firstObject : nil;
   }
   [self _updateContextBar];
 }
 
 - (void)_didBecomFirstResponder:(NSNotification *)notification {
-  MPDocument *document = [[self windowController] document];
+  MPDocument *document =   self.windowController.document;
+  document.selectedEntries = self.entryArrayController.selectedObjects;
+  
+  /*
   if(document.selectedEntry.parent == document.selectedGroup || document.hasSearch) {
     document.selectedItem = document.selectedEntry;
   }
   else {
     document.selectedEntry = nil;
   }
+  */
 }
 
 - (void)_didAddItem:(NSNotification *)notification {
-  MPDocument *document = [[self windowController] document];
-  if(!document.selectedGroup) {
-    /* TODO: show group? */
-    return; // No group selected
-  }
-  KPKEntry *entry = document.selectedGroup.entries.lastObject;
-  if(!entry) {
-    return; // No Entry found, nothing to select.
-  }
+  NSDictionary *dict = notification.userInfo;
+  KPKEntry *entry = dict[MPDocumentEntryKey];
   NSUInteger row = [self.entryArrayController.arrangedObjects indexOfObject:entry];
   [self.entryTable scrollRowToVisible:row];
   [self.entryTable selectRowIndexes:[NSIndexSet indexSetWithIndex:row] byExtendingSelection:NO];
@@ -440,13 +433,13 @@ NSString *const _MPTableSecurCellView = @"PasswordCell";
 
 - (void)_didExitSearch:(NSNotification *)notification {
   [[self.entryTable tableColumnWithIdentifier:MPEntryTableParentColumnIdentifier] setHidden:YES];
-  MPDocument *document = [[self windowController] document];
-  document.selectedItem = document.selectedGroup;
-  // TODO: really necessary?
-  if( nil == document.selectedItem && nil == document.selectedGroup ) {
-    [self.entryArrayController unbind:NSContentArrayBinding];
-    [self.entryArrayController setContent:nil];
-  }
+//  MPDocument *document = [[self windowController] document];
+//  document.selectedItem = document.selectedGroup;
+//  // TODO: really necessary?
+//  if( nil == document.selectedItem && nil == document.selectedGroup ) {
+//    [self.entryArrayController unbind:NSContentArrayBinding];
+//    [self.entryArrayController setContent:nil];
+//  }
   [self _updateContextBar];
 }
 
@@ -469,13 +462,13 @@ NSString *const _MPTableSecurCellView = @"PasswordCell";
   [self _showContextBar];
   /* TODO: Show modification date column if not present? */
   MPDocument *document = [[self windowController] document];
-  [self.entryArrayController bind:NSContentArrayBinding toObject:document.selectedEntry withKeyPath:NSStringFromSelector(@selector(history)) options:nil];
+  //[self.entryArrayController bind:NSContentArrayBinding toObject:document.selectedEntry withKeyPath:NSStringFromSelector(@selector(history)) options:nil];
 }
 
 - (void)_didExitHistory:(NSNotification *)notification {
   [self _hideContextBar];
   MPDocument *document = [[self windowController] document];
-  document.selectedItem = document.selectedEntry;
+  //document.selectedItem = document.selectedEntry;
 }
 
 
@@ -483,7 +476,9 @@ NSString *const _MPTableSecurCellView = @"PasswordCell";
 - (void)_updateContextBar {
   MPDocument *document = [[self windowController] document];
   if(!document.hasSearch) {
-    BOOL showTrash = document.tree.metaData.useTrash && (document.selectedGroup.isTrash || document.selectedItem.isTrashed);
+    KPKGroup *group = self.representedObject;
+    KPKNode *node = document.selectedNodes.count == 1 ? document.selectedNodes.firstObject : nil;
+    BOOL showTrash = document.tree.metaData.useTrash && (group.isTrash || node.isTrashed);
     if(showTrash) {
       [self _showContextBar];
     }

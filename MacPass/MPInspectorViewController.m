@@ -190,9 +190,9 @@ typedef NS_ENUM(NSUInteger, MPContentTab) {
   self.popover.behavior = NSPopoverBehaviorTransient;
   MPDatePickingViewController *controller = [[MPDatePickingViewController alloc] init];
   controller.popover = self.popover;
-  MPDocument *document = self.windowController.document;
-  if(document.selectedItem.timeInfo.expirationDate) {
-    controller.date = document.selectedItem.timeInfo.expirationDate;
+  KPKNode *node = self.representedObject;
+  if(node.timeInfo.expirationDate) {
+    controller.date = node.timeInfo.expirationDate;
   }
   self.popover.contentViewController = controller;
   [self.popover showRelativeToRect:NSZeroRect ofView:sender preferredEdge:NSMinYEdge];
@@ -216,16 +216,19 @@ typedef NS_ENUM(NSUInteger, MPContentTab) {
 }
 
 - (void)_setIcon:(NSInteger)iconId {
-  MPDocument *document = [[self windowController] document];
   BOOL useDefault = (iconId == -1);
   switch (self.activeTab) {
-    case MPGroupTab:
-      document.selectedGroup.iconId = useDefault ? [KPKGroup defaultIcon] : iconId;
+    case MPGroupTab: {
+      KPKGroup *group = self.nodeController.content;
+      group.iconId = useDefault ? [KPKGroup defaultIcon] : iconId;
       break;
+    }
       
-    case MPEntryTab:
-      document.selectedEntry.iconId = useDefault ? [KPKEntry defaultIcon]: iconId;
+    case MPEntryTab: {
+      KPKEntry *entry = self.nodeController.content;
+      entry.iconId = useDefault ? [KPKEntry defaultIcon]: iconId;
       break;
+    }
       
     default:
       break;
@@ -233,8 +236,8 @@ typedef NS_ENUM(NSUInteger, MPContentTab) {
 }
 
 - (void)_setExpiryDate:(NSDate *)date {
-  MPDocument *document = [[self windowController] document];
-  document.selectedItem.timeInfo.expirationDate = date;
+  KPKNode *node = self.representedObject;
+  node.timeInfo.expirationDate = date;
 }
 
 #pragma mark -
@@ -268,18 +271,19 @@ typedef NS_ENUM(NSUInteger, MPContentTab) {
 
 - (void)_didChangeCurrentItem:(NSNotification *)notification {
   MPDocument *document = notification.object;
-  if(document.selectedItem.asGroup) {
+  KPKNode *node = document.selectedNodes.count == 1 ? document.selectedNodes.firstObject : nil;
+  if(node.asGroup) {
     self.activeTab = MPGroupTab;
   }
-  else if(document.selectedItem.asEntry) {
+  else if(node.asEntry) {
     self.activeTab = MPEntryTab;
   }
   else {
     self.activeTab = MPEmptyTab;
   }
-  self.nodeController.content = document.selectedItem;
-  self.entryViewController.representedObject = document.selectedItem.asEntry;
-  self.groupViewController.representedObject = document.selectedItem.asGroup;
+  self.nodeController.content = node;
+  self.entryViewController.representedObject = node.asEntry;
+  self.groupViewController.representedObject = node.asGroup;
 }
 
 - (IBAction)beginEditing:(id)sender {

@@ -56,7 +56,6 @@ APPKIT_EXTERN NSString *const MPDocumentGroupKey;
 @class KPKAttribute;
 @class KPKCompositeKey;
 @class KPKNode;
-@class KPKEditingSession;
 
 @interface MPDocument : NSDocument <MPTargetNodeResolving>
 
@@ -76,9 +75,15 @@ APPKIT_EXTERN NSString *const MPDocumentGroupKey;
 /*
  State (active group/entry)
  */
-@property (nonatomic, weak) KPKEntry *selectedEntry;
-@property (nonatomic, weak) KPKGroup *selectedGroup;
-@property (nonatomic, weak) KPKNode *selectedItem;
+//@property (nonatomic, weak) KPKEntry *selectedEntry;
+//@property (nonatomic, weak) KPKGroup *selectedGroup;
+//@property (nonatomic, weak) KPKNode *selectedItem;
+
+
+@property (nonatomic, copy, readonly) NSArray<KPKNode *> *selectedNodes;
+@property (nonatomic, copy) NSArray<KPKGroup *> *selectedGroups;
+@property (nonatomic, copy) NSArray<KPKEntry *> *selectedEntries;
+
 
 /*
  Search - see MPDocument+Search for further details

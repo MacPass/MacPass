@@ -82,10 +82,10 @@ typedef void (^MPPasswordChangedBlock)(BOOL didChangePassword);
 - (void)windowDidLoad {
   [super windowDidLoad];
   
-  [[self window] setDelegate:self.documentWindowDelegate];
-  [[self window] registerForDraggedTypes:@[NSURLPboardType]];
+  self.window.delegate = self.documentWindowDelegate;
+  [self.window registerForDraggedTypes:@[NSURLPboardType]];
   
-  MPDocument *document = [self document];
+  MPDocument *document = self.document;
   
   [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(_didRevertDocument:) name:MPDocumentDidRevertNotifiation object:document];
   [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(_didUnlockDatabase:) name:MPDocumentDidUnlockDatabaseNotification object:document];
@@ -104,7 +104,7 @@ typedef void (^MPPasswordChangedBlock)(BOOL didChangePassword);
   self.window.toolbar = self.toolbar;
   self.toolbarDelegate.toolbar = self.toolbar;
   
-  [self.splitView setTranslatesAutoresizingMaskIntoConstraints:NO];
+  self.splitView.translatesAutoresizingMaskIntoConstraints = NO;
   
   NSView *outlineView = self.outlineViewController.view;
   NSView *inspectorView = self.inspectorViewController.view;
@@ -128,7 +128,7 @@ typedef void (^MPPasswordChangedBlock)(BOOL didChangePassword);
     [self showEntries];
   }
   
-  [self.splitView setAutosaveName:@"SplitView"];
+  self.splitView.autosaveName = @"SplitView";
 }
 
 - (NSSearchField *)searchField {

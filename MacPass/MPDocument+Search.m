@@ -53,7 +53,6 @@ NSString *const kMPDocumentSearchResultsKey           = @"kMPDocumentSearchResul
   dispatch_async(backgroundQueue, ^{
     NSArray *results = [weakSelf _findEntriesMatchingCurrentSearch];
     dispatch_sync(dispatch_get_main_queue(), ^{
-      weakSelf.selectedEntry = nil;
       [[NSNotificationCenter defaultCenter] postNotificationName:MPDocumentDidChangeSearchResults object:weakSelf userInfo:@{ kMPDocumentSearchResultsKey: results }];
     });
   });

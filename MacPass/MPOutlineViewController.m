@@ -71,13 +71,14 @@ NSString *const _MPOutlinveViewHeaderViewIdentifier = @"HeaderCell";
 }
 
 - (void)didLoadView {
+  self.outlineView.menu = [self _contextMenu];
+  self.outlineView.allowsEmptySelection = YES;
+  self.outlineView.floatsGroupRows = NO;
+  self.outlineView.doubleAction = @selector(_doubleClickedGroup:);
+  self.outlineView.allowsMultipleSelection = YES;
   [self.outlineView setDelegate:self];
-  [self.outlineView setMenu:[self _contextMenu]];
-  [self.outlineView setAllowsEmptySelection:YES];
-  [self.outlineView setFloatsGroupRows:NO];
   [self.outlineView registerForDraggedTypes:@[ KPKGroupUTI, KPKEntryUTI ]];
   [self.outlineView setDraggingSourceOperationMask:NSDragOperationEvery forLocal:YES];
-  [self.outlineView setDoubleAction:@selector(_doubleClickedGroup:)];
 
   [[NSNotificationCenter defaultCenter] addObserver:self
                                            selector:@selector(_didBecomeFirstResponder:)
@@ -94,12 +95,13 @@ NSString *const _MPOutlinveViewHeaderViewIdentifier = @"HeaderCell";
 
 - (void)showOutline {
   if(!_bindingEstablished) {
-    MPDocument *document = [[self windowController] document];
-    [_treeController setChildrenKeyPath:NSStringFromSelector(@selector(groups))];
-    [_treeController bind:NSContentBinding toObject:document withKeyPath:NSStringFromSelector(@selector(tree)) options:nil];
-    [_outlineView bind:NSContentBinding toObject:_treeController withKeyPath:NSStringFromSelector(@selector(arrangedObjects)) options:nil];
+    MPDocument *document = self.windowController.document;
+    self.treeController.childrenKeyPath = NSStringFromSelector(@selector(groups));
+    [self.treeController bind:NSContentBinding toObject:document withKeyPath:NSStringFromSelector(@selector(tree)) options:nil];
+    [self.outlineView bind:NSContentBinding toObject:self.treeController withKeyPath:NSStringFromSelector(@selector(arrangedObjects)) options:nil];
+    [self.outlineView bind:NSSelectionIndexPathsBinding toObject:self.treeController withKeyPath:NSStringFromSelector(@selector(selectionIndexPaths)) options:nil];
     [self bind:NSStringFromSelector(@selector(databaseNameWrapper)) toObject:document.tree.metaData withKeyPath:NSStringFromSelector(@selector(databaseName)) options:nil];
-    [_outlineView setDataSource:self.datasource];
+    [self.outlineView setDataSource:self.datasource];
     _bindingEstablished = YES;
   }
   NSTreeNode *node = [_outlineView itemAtRow:0];
@@ -119,7 +121,7 @@ NSString *const _MPOutlinveViewHeaderViewIdentifier = @"HeaderCell";
       [self.outlineView collapseItem:node];
     }
   }
-  for(NSTreeNode *child in [node childNodes]) {
+  for(NSTreeNode *child in node.childNodes) {
     [self _expandItems:child];
   }
 }
@@ -133,9 +135,9 @@ NSString *const _MPOutlinveViewHeaderViewIdentifier = @"HeaderCell";
 
 #pragma mark MPTargetNodeResolving
 - (KPKGroup *)currentTargetGroup {
-  NSInteger row = [self.outlineView clickedRow];
+  NSInteger row = self.outlineView.clickedRow;
   if( row < 0 ) {
-    row = [self.outlineView selectedRow];
+    row = self.outlineView.selectedRow;
   }
   return [[self.outlineView itemAtRow:row] representedObject];
 }
@@ -145,8 +147,8 @@ NSString *const _MPOutlinveViewHeaderViewIdentifier = @"HeaderCell";
   if(group) {
     return group;
   }
-  MPDocument *document = [[self windowController] document];
-  return document.selectedItem;
+  MPDocument *document = self.windowController.document;
+  return document.selectedNodes.firstObject;
 }
 
 #pragma mark Notifications
@@ -165,7 +167,8 @@ NSString *const _MPOutlinveViewHeaderViewIdentifier = @"HeaderCell";
     return; // Nothing we need to worry about
   }
   MPDocument *document = [[self windowController] document];
-  document.selectedItem = document.selectedGroup;
+  document.selectedGroups = self.treeController.selectedObjects;
+  //document.selectedItem = document.selectedGroup;
 }
 
 # pragma mark MPDocument Notifications
@@ -229,10 +232,13 @@ NSString *const _MPOutlinveViewHeaderViewIdentifier = @"HeaderCell";
 }
 
 - (void)outlineViewSelectionDidChange:(NSNotification *)notification {
-  NSTreeNode *treeNode = [_outlineView itemAtRow:[_outlineView selectedRow]];
-  KPKGroup *selectedGroup = [treeNode representedObject];
-  MPDocument *document = [[self windowController] document];
-  document.selectedGroup = selectedGroup;
+  MPDocument *document = self.windowController.document;
+  if(![self.treeController.selectedObjects.firstObject isKindOfClass:[KPKTree class]]) {
+    document.selectedGroups = self.treeController.selectedObjects;
+  }
+  else {
+    document.selectedGroups = nil;
+  }
 }
 
 - (BOOL)outlineView:(NSOutlineView *)outlineView shouldShowOutlineCellForItem:(id)item {

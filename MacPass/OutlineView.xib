@@ -23,7 +23,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <outlineView verticalHuggingPriority="750" allowsExpansionToolTips="YES" columnAutoresizingStyle="lastColumnOnly" selectionHighlightStyle="sourceList" multipleSelection="NO" autosaveColumns="NO" rowHeight="24" rowSizeStyle="automatic" viewBased="YES" indentationPerLevel="16" outlineTableColumn="231" id="228" customClass="MPOutlineView">
-                                <rect key="frame" x="0.0" y="0.0" width="272" height="449"/>
+                                <rect key="frame" x="0.0" y="0.0" width="272" height="0.0"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <size key="intercellSpacing" width="3" height="0.0"/>
                                 <color key="backgroundColor" name="_sourceListBackgroundColor" catalog="System" colorSpace="catalog"/>
@@ -92,6 +92,7 @@
                                                     <constraint firstItem="241" firstAttribute="centerY" secondItem="240" secondAttribute="centerY" id="349"/>
                                                     <constraint firstItem="243" firstAttribute="bottom" secondItem="241" secondAttribute="bottom" id="388"/>
                                                     <constraint firstAttribute="trailing" secondItem="243" secondAttribute="trailing" constant="3" id="389"/>
+                                                    <constraint firstAttribute="trailing" secondItem="243" secondAttribute="trailing" constant="3" id="4Vg-BQ-zVQ"/>
                                                 </constraints>
                                                 <connections>
                                                     <outlet property="imageView" destination="241" id="247"/>

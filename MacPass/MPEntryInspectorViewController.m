@@ -131,7 +131,8 @@ static NSString *kMPContentBindingString3 = @"content.%@.%@.%@";
 }
 
 - (void)setupBindings:(MPDocument *)document {
-  [self.entryController bind:NSContentObjectBinding toObject:document withKeyPath:NSStringFromSelector(@selector(selectedEntry)) options:nil];
+  [self.entryController bind:NSContentObjectBinding toObject:self withKeyPath:NSStringFromSelector(@selector(representedObject)) options:nil];
+  //  [self.entryController bind:NSContentObjectBinding toObject:document withKeyPath:NSStringFromSelector(@selector(selectedEntry)) options:nil];
 }
 
 - (void)registerNotificationsForDocument:(MPDocument *)document {
@@ -247,7 +248,7 @@ static NSString *kMPContentBindingString3 = @"content.%@.%@.%@";
 
 - (BOOL)acceptsPreviewPanelControl:(QLPreviewPanel *)panel {
   if(self.activeTab == MPEntryTabFiles) {
-    return ([self.attachmentTableView selectedRow] != -1);
+    return (self.attachmentTableView.selectedRow != -1);
   }
   return NO;
 }

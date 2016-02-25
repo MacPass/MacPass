@@ -63,7 +63,7 @@
   }
   /* Currently not working, as the underlying operations do not get the unomanager */
   MPDocument *document = [[[sender draggingDestinationWindow] windowController] document];
-  KPKGroup *parentGroup = document.selectedGroup ? document.selectedGroup : document.root;
+  KPKGroup *parentGroup = document.selectedGroups.count == 1 ? document.selectedGroups.firstObject : document.root;
   [document.undoManager beginUndoGrouping];
   KPKEntry *entry = [document createEntry:parentGroup];
   BOOL didOk = (entry != nil);

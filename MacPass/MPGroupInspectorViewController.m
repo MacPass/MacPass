@@ -84,7 +84,8 @@
 }
 
 - (void)setupBindings:(MPDocument *)document {
-  [self.groupController bind:NSContentObjectBinding toObject:document withKeyPath:NSStringFromSelector(@selector(selectedGroup)) options:nil];
+  [self.groupController bind:NSContentObjectBinding toObject:self withKeyPath:NSStringFromSelector(@selector(representedObject)) options:nil];
+  //[self.groupController bind:NSContentObjectBinding toObject:document withKeyPath:NSStringFromSelector(@selector(selectedGroup)) options:nil];
 }
 
 - (void)_establishBindings {
