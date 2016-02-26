@@ -135,10 +135,10 @@ NSString *const _MPOutlinveViewHeaderViewIdentifier = @"HeaderCell";
 
 #pragma mark MPTargetNodeResolving
 - (NSArray<KPKGroup *> *)currentTargetGroups {
-  //  NSInteger row = self.outlineView.clickedRow;
-//  if( row > -1 ) {
-//      return @[ [[self.outlineView itemAtRow:row] representedObject] ];
-//  }
+  /* there are instances where we get the KPKTree tree as selection, so filter this out! */
+  if([self.treeController.selectedObjects.firstObject isKindOfClass:[KPKTree class]] ) {
+    return @[];
+  }
   return self.treeController.selectedObjects;
 }
 
@@ -167,8 +167,7 @@ NSString *const _MPOutlinveViewHeaderViewIdentifier = @"HeaderCell";
     return; // Nothing we need to worry about
   }
   MPDocument *document = [[self windowController] document];
-  document.selectedGroups = self.treeController.selectedObjects;
-  //document.selectedItem = document.selectedGroup;
+  document.selectedGroups = [self currentTargetGroups];
 }
 
 # pragma mark MPDocument Notifications
@@ -233,12 +232,7 @@ NSString *const _MPOutlinveViewHeaderViewIdentifier = @"HeaderCell";
 
 - (void)outlineViewSelectionDidChange:(NSNotification *)notification {
   MPDocument *document = self.windowController.document;
-  if(![self.treeController.selectedObjects.firstObject isKindOfClass:[KPKTree class]]) {
-    document.selectedGroups = self.treeController.selectedObjects;
-  }
-  else {
-    document.selectedGroups = nil;
-  }
+  document.selectedGroups = [self currentTargetGroups];
 }
 
 - (BOOL)outlineView:(NSOutlineView *)outlineView shouldShowOutlineCellForItem:(id)item {
