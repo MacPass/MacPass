@@ -31,16 +31,16 @@
     NSString *title = [NSString stringWithFormat:@"%@ (%@)", description, extension];
     [menu addItemWithTitle:title action:@selector(setFileType:) keyEquivalent:@""];
     NSMenuItem *item = [[menu itemArray] lastObject];
-    [item setTarget:self];
-    [item setRepresentedObject:uti];
+    item.target =  self;
+    item.representedObject = uti;
   }
-  [self.fileTypePopupButton setMenu:menu];
-  [self.infoTextField setHidden:YES];
+  self.fileTypePopupButton.menu = menu;
+  self.infoTextField.hidden = YES;
   [self updateView];
 }
 
 - (IBAction)setFileType:(id)sender {
-  NSString *uti = [[self.fileTypePopupButton selectedItem] representedObject];
+  NSString *uti = self.fileTypePopupButton.selectedItem.representedObject;
   if([uti isEqualToString:MPLegacyDocumentUTI]) {
     self.selectedVersion = KPKLegacyVersion;
   }
@@ -49,7 +49,7 @@
   }
   NSAssert(uti != nil, @"UTI cannot be nil");
   [self _updateNote];
-  [self.savePanel setAllowedFileTypes:@[uti]];
+  self.savePanel.allowedFileTypes = @[uti];
 }
 
 - (void)setDocument:(MPDocument *)document {
@@ -63,7 +63,7 @@
   /*
    Access view at least once to make sure it is properly loaded
    */
-  NSView *view = [self view];
+  NSView *view = self.view;
   NSAssert(view != nil, @"View has to be loaded at this point");
   switch(self.document.versionForFileType) {
     case KPKLegacyVersion:

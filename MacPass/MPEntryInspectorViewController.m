@@ -210,7 +210,7 @@ static NSString *kMPContentBindingString3 = @"content.%@.%@.%@";
 }
 
 - (void)removeWindowAssociation:(id)sender {
-  NSInteger row = [self.windowAssociationsTableView selectedRow];
+  NSInteger row = self.windowAssociationsTableView.selectedRow;
   if(row > - 1 && row < [self.contentEntry.autotype.associations count]) {
     [self.contentEntry.autotype removeAssociation:self.contentEntry.autotype.associations[row]];
   }
@@ -233,7 +233,7 @@ static NSString *kMPContentBindingString3 = @"content.%@.%@.%@";
 }
 
 - (BOOL)validateMenuItem:(NSMenuItem *)menuItem {
-  switch([MPActionHelper typeForAction:[menuItem action]]) {
+  switch([MPActionHelper typeForAction:menuItem.action]) {
     case MPActionToggleQuicklook: {
       BOOL enabled = [[NSUserDefaults standardUserDefaults] boolForKey:kMPSettingsKeyEnableQuicklookPreview];
       return enabled ? [self acceptsPreviewPanelControl:nil] : NO;
@@ -474,11 +474,6 @@ static NSString *kMPContentBindingString3 = @"content.%@.%@.%@";
 - (void)_didAddEntry:(NSNotification *)notification {
   [self.tabView selectTabViewItemAtIndex:MPEntryTabGeneral];
   [self.titleTextField becomeFirstResponder];
-}
-
-- (void)_willSave:(NSNotification *)notification {
-  // Force selected textfield to end editing
-  [self.view.window makeFirstResponder:nil];
 }
 
 @end
