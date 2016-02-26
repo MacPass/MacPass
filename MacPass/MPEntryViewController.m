@@ -256,9 +256,9 @@ NSString *const _MPTableSecurCellView = @"PasswordCell";
       NSAssert(entry.parent != nil, @"Entry needs to have a parent");
       
       NSString *parentTitleKeyPath = [NSString stringWithFormat:@"%@.%@.%@",
-                                     NSStringFromSelector(@selector(objectValue)),
-                                     NSStringFromSelector(@selector(parent)),
-                                     NSStringFromSelector(@selector(title))];
+                                      NSStringFromSelector(@selector(objectValue)),
+                                      NSStringFromSelector(@selector(parent)),
+                                      NSStringFromSelector(@selector(title))];
       NSString *parentIconImageKeyPath = [NSString stringWithFormat:@"%@.%@.%@",
                                           NSStringFromSelector(@selector(objectValue)),
                                           NSStringFromSelector(@selector(parent)),
@@ -317,14 +317,14 @@ NSString *const _MPTableSecurCellView = @"PasswordCell";
     else if(isNotesColumn) {
       NSDictionary *options = @{ NSValueTransformerNameBindingOption : MPStripLineBreaksTransformerName };
       NSString *notesKeyPath = [NSString stringWithFormat:@"%@.%@",
-                               NSStringFromSelector(@selector(objectValue)),
-                               NSStringFromSelector(@selector(notes))];
+                                NSStringFromSelector(@selector(objectValue)),
+                                NSStringFromSelector(@selector(notes))];
       [view.textField bind:NSValueBinding toObject:view withKeyPath:notesKeyPath options:options];
     }
     else if(isAttachmentColumn) {
       NSString *binariesCoundKeyPath = [NSString stringWithFormat:@"%@.%@.@count",
-                                       NSStringFromSelector(@selector(objectValue)),
-                                       NSStringFromSelector(@selector(binaries))];
+                                        NSStringFromSelector(@selector(objectValue)),
+                                        NSStringFromSelector(@selector(binaries))];
       [view.textField bind:NSValueBinding toObject:view withKeyPath:binariesCoundKeyPath options:nil];
     }
   }
@@ -348,25 +348,22 @@ NSString *const _MPTableSecurCellView = @"PasswordCell";
 }
 
 #pragma mark MPTargetItemResolving
-- (KPKEntry *)currentTargetEntry {
-  NSInteger activeRow = self.entryTable.clickedRow;
-  /* Fall back to selection e.g. for toolbar actions */
-  if(activeRow < 0 ) {
-    activeRow = self.entryTable.selectedRow;
+- (NSArray<KPKEntry *> *)currentTargetEntries {
+  /*NSInteger activeRow = self.entryTable.clickedRow;
+  if(activeRow > -1) {
+    return @[ [self.entryArrayController arrangedObjects][activeRow] ];
   }
-  if(activeRow >= 0 && activeRow <= [self.entryArrayController.arrangedObjects count]) {
-    return [self.entryArrayController arrangedObjects][activeRow];
-  }
-  return nil;
+  */
+  return self.entryArrayController.selectedObjects;
 }
 
-- (KPKNode *)currentTargetNode {
-  KPKEntry *entry = [self currentTargetEntry];
-  if(entry) {
-    return entry;
+- (NSArray<KPKNode *> *)currentTargetNodes {
+  NSArray *entries = [self currentTargetEntries];
+  if(entries.count > 0) {
+    return entries;
   }
   MPDocument *document = self.windowController.document;
-  return document.selectedNodes.firstObject;
+  return document.selectedNodes;
 }
 
 #pragma mark MPDocument Notifications
@@ -403,13 +400,13 @@ NSString *const _MPTableSecurCellView = @"PasswordCell";
   document.selectedEntries = self.entryArrayController.selectedObjects;
   
   /*
-  if(document.selectedEntry.parent == document.selectedGroup || document.hasSearch) {
-    document.selectedItem = document.selectedEntry;
-  }
-  else {
-    document.selectedEntry = nil;
-  }
-  */
+   if(document.selectedEntry.parent == document.selectedGroup || document.hasSearch) {
+   document.selectedItem = document.selectedEntry;
+   }
+   else {
+   document.selectedEntry = nil;
+   }
+   */
 }
 
 - (void)_didAddItem:(NSNotification *)notification {
@@ -433,13 +430,13 @@ NSString *const _MPTableSecurCellView = @"PasswordCell";
 
 - (void)_didExitSearch:(NSNotification *)notification {
   [[self.entryTable tableColumnWithIdentifier:MPEntryTableParentColumnIdentifier] setHidden:YES];
-//  MPDocument *document = [[self windowController] document];
-//  document.selectedItem = document.selectedGroup;
-//  // TODO: really necessary?
-//  if( nil == document.selectedItem && nil == document.selectedGroup ) {
-//    [self.entryArrayController unbind:NSContentArrayBinding];
-//    [self.entryArrayController setContent:nil];
-//  }
+  //  MPDocument *document = [[self windowController] document];
+  //  document.selectedItem = document.selectedGroup;
+  //  // TODO: really necessary?
+  //  if( nil == document.selectedItem && nil == document.selectedGroup ) {
+  //    [self.entryArrayController unbind:NSContentArrayBinding];
+  //    [self.entryArrayController setContent:nil];
+  //  }
   [self _updateContextBar];
 }
 
@@ -452,8 +449,8 @@ NSString *const _MPTableSecurCellView = @"PasswordCell";
   /* If the document was locked and unlocked we do not need to recheck */
   if(document.unlockCount != 1) {
     /* TODO add another method to display this!
-    [self.footerInfoText setHidden:![document hasMalformedAutotypeItems]];
-    [self.footerInfoText setStringValue:NSLocalizedString(@"DOCUMENT_AUTOTYPE_CORRUPTION_WARNING", "")];
+     [self.footerInfoText setHidden:![document hasMalformedAutotypeItems]];
+     [self.footerInfoText setStringValue:NSLocalizedString(@"DOCUMENT_AUTOTYPE_CORRUPTION_WARNING", "")];
      */
   }
 }
@@ -623,21 +620,24 @@ NSString *const _MPTableSecurCellView = @"PasswordCell";
 
 #pragma mark Actions
 - (void)copyPassword:(id)sender {
-  KPKEntry *selectedEntry = [self currentTargetNode].asEntry;
+  NSArray *nodes = [self currentTargetNodes];
+  KPKEntry *selectedEntry = nodes.count == 1 ? [nodes.firstObject asEntry] : nil;
   if(selectedEntry) {
     [self _copyToPasteboard:[selectedEntry.password finalValueForEntry:selectedEntry] overlayInfo:MPOverlayInfoPassword name:nil];
   }
 }
 
 - (void)copyUsername:(id)sender {
-  KPKEntry *selectedEntry = [self currentTargetNode].asEntry;
+  NSArray *nodes = [self currentTargetNodes];
+  KPKEntry *selectedEntry = nodes.count == 1 ? [nodes.firstObject asEntry] : nil;
   if(selectedEntry) {
     [self _copyToPasteboard:[selectedEntry.username finalValueForEntry:selectedEntry] overlayInfo:MPOverlayInfoUsername name:nil];
   }
 }
 
 - (void)copyCustomAttribute:(id)sender {
-  KPKEntry *selectedEntry = [self currentTargetNode].asEntry;
+  NSArray *nodes = [self currentTargetNodes];
+  KPKEntry *selectedEntry = nodes.count == 1 ? [nodes.firstObject asEntry] : nil;
   if(selectedEntry && [selectedEntry isKindOfClass:[KPKEntry class]]) {
     NSUInteger index = [sender tag];
     NSAssert((index >= 0)  && (index < [selectedEntry.customAttributes count]), @"Index for custom field needs to be valid");
@@ -647,14 +647,16 @@ NSString *const _MPTableSecurCellView = @"PasswordCell";
 }
 
 - (void)copyURL:(id)sender {
-  KPKEntry *selectedEntry = [self currentTargetNode].asEntry;
+  NSArray *nodes = [self currentTargetNodes];
+  KPKEntry *selectedEntry = nodes.count == 1 ? [nodes.firstObject asEntry] : nil;
   if(selectedEntry) {
     [self _copyToPasteboard:[selectedEntry.url finalValueForEntry:selectedEntry] overlayInfo:MPOverlayInfoURL name:nil];
   }
 }
 
 - (void)openURL:(id)sender {
-  KPKEntry *selectedEntry = [self currentTargetNode].asEntry;
+  NSArray *nodes = [self currentTargetNodes];
+  KPKEntry *selectedEntry = nodes.count == 1 ? [nodes.firstObject asEntry] : nil;
   NSString *expandedURL = [selectedEntry.url finalValueForEntry:selectedEntry];
   if(expandedURL.length > 0) {
     NSURL *webURL = [NSURL URLWithString:[expandedURL stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]];
@@ -680,13 +682,11 @@ NSString *const _MPTableSecurCellView = @"PasswordCell";
 }
 
 - (void)delete:(id)sender {
-  KPKEntry *entry = [self currentTargetNode].asEntry;
-  if(!entry) {
-    return;
-  }
-  
+  NSArray *entries = [self currentTargetEntries];
   MPDocument *document = self.windowController.document;
-  [document deleteNode:entry];
+  for(KPKEntry *entry in entries) {
+    [document deleteNode:entry];
+  }
 }
 
 

@@ -32,17 +32,13 @@
 @implementation MPEntryTableDataSource
 
 - (BOOL)tableView:(NSTableView *)tableView writeRowsWithIndexes:(NSIndexSet *)rowIndexes toPasteboard:(NSPasteboard *)pboard {
-  
-  if([rowIndexes count] != 1) {
-    return NO; // No valid drag
+  NSArray *entries = self.viewController.entryArrayController.selectedObjects;
+  for(KPKEntry *entry in entries) {
+    if(![entry isKindOfClass:[KPKEntry class]]) {
+      return NO;
+    }
   }
-  
-  id item = [self.viewController.entryArrayController arrangedObjects][[rowIndexes firstIndex]];
-  if(![item isKindOfClass:[KPKEntry class]]) {
-    return NO;
-  }
-  KPKEntry *draggedEntry = (KPKEntry *)item;
-  [pboard writeObjects:@[draggedEntry]];
+  [pboard writeObjects:entries];
   return YES;
 }
 

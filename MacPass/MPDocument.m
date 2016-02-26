@@ -496,13 +496,6 @@ NSString *const MPDocumentGroupKey                        = @"MPDocumentGroupKey
     [self _presentTrashAlertForItem:node];
     return;
   }
- 
-//  if(node.asGroup == self.selectedGroup) {
-//    self.selectedGroup = node.asGroup;
-//  }
-//  if(node.asEntry == self.selectedEntry) {
-//    self.selectedEntry = node.asEntry;
-//  }
   
   if(!self.tree.metaData.useTrash) {
     /* Display warning about permanently removing items! */
@@ -610,35 +603,21 @@ NSString *const MPDocumentGroupKey                        = @"MPDocumentGroupKey
 }
 
 - (BOOL)validateUserInterfaceItem:(id<NSValidatedUserInterfaceItem>)anItem {
-  id<MPTargetNodeResolving> entryResolver = [NSApp targetForAction:@selector(currentTargetEntry)];
-  id<MPTargetNodeResolving> groupResolver = [NSApp targetForAction:@selector(currentTargetGroup)];
-  id<MPTargetNodeResolving> nodeResolver = [NSApp targetForAction:@selector(currentTargetNode)];
+  id<MPTargetNodeResolving> entryResolver = [NSApp targetForAction:@selector(currentTargetEntries)];
+  id<MPTargetNodeResolving> groupResolver = [NSApp targetForAction:@selector(currentTargetGroups)];
+  id<MPTargetNodeResolving> nodeResolver = [NSApp targetForAction:@selector(currentTargetNodes)];
   
-  /*
-   NSLog(@"entryResolver:%@", [entryResolver class]);
-   NSLog(@"groupResolver:%@", [groupResolver class]);
-   NSLog(@"nodeResolver:%@", [nodeResolver class]);
-   */
   
-  KPKNode *targetNode = [nodeResolver currentTargetNode];
-  KPKEntry *targetEntry = [entryResolver currentTargetEntry];
-  KPKGroup *targetGroup = [groupResolver currentTargetGroup];
+  NSArray *targetNodes = [nodeResolver currentTargetNodes];
+  NSArray *targetGroups = [groupResolver currentTargetGroups];
+  NSArray *targetEntries = [entryResolver currentTargetEntries];
   
-  /*
-   if(targetNode.asGroup) {
-   NSLog(@"targetNode:%@", ((KPKGroup *)targetNode).name);
-   }
-   else if(targetNode.asEntry) {
-   NSLog(@"targetNode:%@", ((KPKEntry *)targetNode).title);
-   }
-   
-   NSLog(@"targetGroup:%@", targetGroup.name);
-   NSLog(@"tagetEntry:%@", targetEntry.title );
-   */
+  KPKEntry *targetEntry = targetEntries.count == 1 ? targetEntries.firstObject : nil;
+  KPKGroup *targetGroup = targetGroups.count == 1 ? targetGroups.firstObject : nil;
   
   if(self.encrypted || self.isReadOnly) { return NO; }
   
-  BOOL valid = targetNode ? targetNode.isEditable : YES;
+  BOOL valid = /*targetNode ? targetNode.isEditable : */YES;
   switch([MPActionHelper typeForAction:[anItem action]]) {
     case MPActionAddGroup:
       valid &= (nil != targetGroup);
@@ -651,13 +630,17 @@ NSString *const MPDocumentGroupKey                        = @"MPDocumentGroupKey
       valid &= !targetGroup.isTrashed;
       break;
     case MPActionDelete:
-      valid &= (nil != targetNode);
-      valid &= (self.trash != targetNode);
-      valid &= (targetNode != self.tree.root);
-      //valid &= ![self isItemTrashed:targetNode];
+      valid &= targetNodes.count > 0;
+      for(KPKNode *node in targetNodes) {
+        valid &= (self.trash != node);
+        valid &= (node != self.tree.root);
+        if(!valid) {
+          break;
+        }
+      }
       break;
     case MPActionDuplicateEntry:
-      valid &= (nil != targetEntry);
+      valid &= targetEntries.count > 0;
       break;
     case MPActionEmptyTrash:
       valid &= ([self.trash.groups count] + [self.trash.entries count]) > 0;
@@ -726,13 +709,12 @@ NSString *const MPDocumentGroupKey                        = @"MPDocumentGroupKey
 #pragma mark -
 #pragma mark MPTargetNodeResolving
 
-- (KPKEntry *)currentTargetEntry {
-  return self.selectedEntries.firstObject;
-  //return self.selectedEntry;
+- (NSArray<KPKEntry *> *)currentTargetEntries {
+  return self.selectedEntries;
 }
 
-- (KPKGroup *)currentTargetGroup {
-  return self.selectedGroups.firstObject;
+- (NSArray<KPKGroup *> *)currentTargetGroups {
+  return self.selectedGroups;
 }
 
 @end

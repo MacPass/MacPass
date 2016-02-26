@@ -334,25 +334,31 @@ typedef void (^MPPasswordChangedBlock)(BOOL didChangePassword);
 }
 
 - (void)createGroup:(id)sender {
-  id<MPTargetNodeResolving> target = [NSApp targetForAction:@selector(currentTargetGroup)];
-  KPKGroup *group = [target currentTargetGroup];
+  id<MPTargetNodeResolving> target = [NSApp targetForAction:@selector(currentTargetGroups)];
+  NSArray *groups = [target currentTargetGroups];
   MPDocument *document = self.document;
-  if(!group) {
-    group = document.root;
+  if(groups.count == 1) {
+    [document createGroup:groups.firstObject];
   }
-  [document createGroup:group];
+  else {
+    [document createGroup:document.root];
+  }
 }
 
 - (void)createEntry:(id)sender {
-  id<MPTargetNodeResolving> target = [NSApp targetForAction:@selector(currentTargetGroup)];
-  KPKGroup *group = [target currentTargetGroup];
-  [(MPDocument *)self.document createEntry:group];
+  id<MPTargetNodeResolving> target = [NSApp targetForAction:@selector(currentTargetGroups)];
+  NSArray *groups = [target currentTargetGroups];
+  if(groups.count == 1) {
+    [(MPDocument *)self.document createEntry:groups.firstObject];
+  }
 }
 
 - (void)delete:(id)sender {
-  id<MPTargetNodeResolving> target = [NSApp targetForAction:@selector(currentTargetNode)];
-  KPKNode *node = [target currentTargetNode];
-  [self.document deleteNode:node];
+  id<MPTargetNodeResolving> target = [NSApp targetForAction:@selector(currentTargetNodes)];
+  NSArray *nodes = [target currentTargetNodes];
+  for(KPKNode *node in nodes) {
+    [self.document deleteNode:node];
+  }
 }
 
 - (void)pickExpiryDate:(id)sender {
@@ -377,9 +383,11 @@ typedef void (^MPPasswordChangedBlock)(BOOL didChangePassword);
 }
 
 - (void)performAutotypeForEntry:(id)sender {
-  id<MPTargetNodeResolving> entryResolver = [NSApp targetForAction:@selector(currentTargetEntry)];
-  KPKEntry *targetEntry = [entryResolver currentTargetEntry];
-  [[MPAutotypeDaemon defaultDaemon] performAutotypeForEntry:targetEntry];
+  id<MPTargetNodeResolving> entryResolver = [NSApp targetForAction:@selector(currentTargetEntries)];
+  NSArray *entries = [entryResolver currentTargetEntries];
+  if(entries.count == 1) {
+    [[MPAutotypeDaemon defaultDaemon] performAutotypeForEntry:entries.firstObject];
+  }
 }
 
 - (void)showInspector:(id)sender {

@@ -134,21 +134,21 @@ NSString *const _MPOutlinveViewHeaderViewIdentifier = @"HeaderCell";
 }
 
 #pragma mark MPTargetNodeResolving
-- (KPKGroup *)currentTargetGroup {
-  NSInteger row = self.outlineView.clickedRow;
-  if( row < 0 ) {
-    row = self.outlineView.selectedRow;
-  }
-  return [[self.outlineView itemAtRow:row] representedObject];
+- (NSArray<KPKGroup *> *)currentTargetGroups {
+  //  NSInteger row = self.outlineView.clickedRow;
+//  if( row > -1 ) {
+//      return @[ [[self.outlineView itemAtRow:row] representedObject] ];
+//  }
+  return self.treeController.selectedObjects;
 }
 
-- (KPKNode *)currentTargetNode {
-  KPKGroup *group = [self currentTargetGroup];
-  if(group) {
-    return group;
+- (NSArray<KPKNode *> *)currentTargetNodes {
+  NSArray *groups = [self currentTargetGroups];
+  if(groups.count > 0) {
+    return groups;
   }
   MPDocument *document = self.windowController.document;
-  return document.selectedNodes.firstObject;
+  return document.selectedNodes;
 }
 
 #pragma mark Notifications
@@ -184,7 +184,7 @@ NSString *const _MPOutlinveViewHeaderViewIdentifier = @"HeaderCell";
 }
 
 - (id)itemUnderMouse {
-  NSPoint mouseLocation = [[self.outlineView window] mouseLocationOutsideOfEventStream];
+  NSPoint mouseLocation = [self.outlineView.window mouseLocationOutsideOfEventStream];
   NSPoint localPoint = [self.outlineView convertPoint:mouseLocation fromView:[[self.outlineView window] contentView]];
   NSInteger row = [self.outlineView rowAtPoint:localPoint];
   if(row == -1) {
@@ -278,7 +278,7 @@ NSString *const _MPOutlinveViewHeaderViewIdentifier = @"HeaderCell";
   if(![document validateUserInterfaceItem:menuItem]) {
     return NO;
   }
-  KPKGroup *group = [self currentTargetNode].asGroup;
+  KPKGroup *group = [self currentTargetNodes].firstObject.asGroup;
   return group.isTrash && group.isTrashed;
 }
 
