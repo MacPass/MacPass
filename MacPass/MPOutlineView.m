@@ -17,18 +17,6 @@
 
 @implementation MPOutlineView
 
-- (void)dealloc {
-  [[NSNotificationCenter defaultCenter] removeObserver:self];
-}
-
-
-- (void)viewDidMoveToSuperview {
-  [[NSNotificationCenter defaultCenter] removeObserver:self];
-  if(self.enclosingScrollView) {
-    [self _setupNotifications];
-  }
-}
-
 - (void)mouseDown:(NSEvent *)theEvent {
   [super mouseDown:theEvent];
   if(_didBecomeFirstResponder) {
@@ -46,17 +34,6 @@
 
 - (BOOL)resignFirstResponder {
   return [super resignFirstResponder];
-}
-
-- (void)_setupNotifications {
-  [[NSNotificationCenter defaultCenter] removeObserver:self];
-  if(self.enclosingScrollView.contentView) {
-     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(_didChangeFrame:) name:NSViewBoundsDidChangeNotification object:self.enclosingScrollView.contentView];
-  }
-}
-
-- (void)_didChangeFrame:(NSNotification *)notification {
-  NSLog(@"DidChangeFrame:%@", NSStringFromRect(self.bounds));
 }
 
 @end
