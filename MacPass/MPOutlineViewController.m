@@ -114,9 +114,7 @@ NSString *const _MPOutlinveViewHeaderViewIdentifier = @"HeaderCell";
 }
 
 - (void)_expandItems:(NSTreeNode *)node {
-  KPKTree *tree = self.treeController.content;
-
-  id nodeItem = [node representedObject];
+  id nodeItem = node.representedObject;
   if([nodeItem isKindOfClass:[KPKTree class]]) {
     [self.outlineView expandItem:node expandChildren:NO];
   }
@@ -128,7 +126,7 @@ NSString *const _MPOutlinveViewHeaderViewIdentifier = @"HeaderCell";
       [self.outlineView collapseItem:node];
     }
   }
-  for(NSTreeNode *child in [node childNodes]) {
+  for(NSTreeNode *child in node.childNodes) {
     [self _expandItems:child];
   }
 }
@@ -186,7 +184,7 @@ NSString *const _MPOutlinveViewHeaderViewIdentifier = @"HeaderCell";
   id item = [[self.outlineView itemAtRow:topRow] representedObject];
   if([item isKindOfClass:[KPKGroup class]]) {
     KPKGroup *group = item;
-    KPKTree *tree = self.treeController.content;
+    KPKTree *tree = [self.treeController.content firstObject];
     tree.metaData.lastTopVisibleGroup = group.uuid;
   }
 }
