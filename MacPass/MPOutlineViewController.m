@@ -85,6 +85,13 @@ NSString *const _MPOutlinveViewHeaderViewIdentifier = @"HeaderCell";
                                                name:MPDidActivateViewNotification
                                              object:self.outlineView];
   
+  
+  NSView *clipView = self.outlineView.enclosingScrollView.contentView;
+  [[NSNotificationCenter defaultCenter] addObserver:self
+                                           selector:@selector(_outlineDidScroll:)
+                                               name:NSViewBoundsDidChangeNotification
+                                             object:clipView];
+  
 }
 
 - (NSResponder *)reconmendedFirstResponder {
@@ -105,13 +112,20 @@ NSString *const _MPOutlinveViewHeaderViewIdentifier = @"HeaderCell";
     _bindingEstablished = YES;
   }
   NSTreeNode *node = [_outlineView itemAtRow:0];
-  [self _expandItems:node];
+  NSInteger topRow;
+  [self _expandItems:node topRow:&topRow];
+  if(topRow > 0) {
+    NSRect rowRect = [self.outlineView rectOfRow:topRow];
+    [self.outlineView scrollPoint:rowRect.origin];
+  }
 }
 
-- (void)_expandItems:(NSTreeNode *)node {
-  id nodeItem = [node representedObject];
+- (void)_expandItems:(NSTreeNode *)node topRow:(NSInteger *)topRow {
+  NSAssert(NULL != topRow, @"Invalid paramter!");
+  id nodeItem = node.representedObject;
   if([nodeItem isKindOfClass:[KPKTree class]]) {
     [self.outlineView expandItem:node expandChildren:NO];
+    *topRow = -1;
   }
   else if([nodeItem respondsToSelector:@selector(isExpanded)]) {
     if([nodeItem isExpanded]) {
@@ -122,7 +136,20 @@ NSString *const _MPOutlinveViewHeaderViewIdentifier = @"HeaderCell";
     }
   }
   for(NSTreeNode *child in node.childNodes) {
-    [self _expandItems:child];
+   [self _expandItems:child topRow:topRow];
+  }
+  if([nodeItem respondsToSelector:@selector(uuid)]) {
+    MPDocument *document = self.windowController.document;
+    NSUUID *uuid = [nodeItem uuid];
+    if(*topRow != 1 && [document.tree.metaData.lastTopVisibleGroup isEqual:uuid]) {
+      *topRow = [self.outlineView rowForItem:node];
+    }
+    if([uuid isEqual:document.tree.metaData.lastSelectedGroup]) {
+      NSInteger selectedRow = [self.outlineView rowForItem:node];
+      if(selectedRow >= 0) {
+        [self.outlineView selectRowIndexes:[NSIndexSet indexSetWithIndex:selectedRow] byExtendingSelection:NO];
+      }
+    }
   }
 }
 
@@ -170,6 +197,23 @@ NSString *const _MPOutlinveViewHeaderViewIdentifier = @"HeaderCell";
   document.selectedGroups = [self currentTargetGroups];
 }
 
+- (void)_outlineDidScroll:(NSNotification *)notification {
+  NSView *clipView = notification.object;
+  if(nil == clipView || self.outlineView.enclosingScrollView.contentView != clipView) {
+    return; // Wrong view
+  }
+  /* padding to compensate for clipped items */
+  CGPoint point = CGPointMake(clipView.bounds.origin.x, clipView.bounds.origin.y + 11);
+  NSInteger topRow = [self.outlineView rowAtPoint:point];
+  id item = [[self.outlineView itemAtRow:topRow] representedObject];
+  if([item isKindOfClass:[KPKGroup class]]) {
+    KPKGroup *group = item;
+    NSLog(@"%@", group.title);
+    KPKTree *tree = [self.treeController.content firstObject];
+    tree.metaData.lastTopVisibleGroup = group.uuid;
+  }
+}
+
 # pragma mark MPDocument Notifications
 - (void)_didAddGroup:(NSNotification *)notification {
   NSDictionary *userInfo = [notification userInfo];
@@ -184,7 +228,7 @@ NSString *const _MPOutlinveViewHeaderViewIdentifier = @"HeaderCell";
 
 - (id)itemUnderMouse {
   NSPoint mouseLocation = [self.outlineView.window mouseLocationOutsideOfEventStream];
-  NSPoint localPoint = [self.outlineView convertPoint:mouseLocation fromView:[[self.outlineView window] contentView]];
+  NSPoint localPoint = [self.outlineView convertPoint:mouseLocation fromView:self.outlineView.window.contentView];
   NSInteger row = [self.outlineView rowAtPoint:localPoint];
   if(row == -1) {
     return nil; // No row was hit
@@ -231,6 +275,8 @@ NSString *const _MPOutlinveViewHeaderViewIdentifier = @"HeaderCell";
 }
 
 - (void)outlineViewSelectionDidChange:(NSNotification *)notification {
+  NSTreeNode *treeNode = [_outlineView itemAtRow:[_outlineView selectedRow]];
+  KPKGroup *selectedGroup = [treeNode representedObject];
   MPDocument *document = self.windowController.document;
   document.selectedGroups = [self currentTargetGroups];
 }
