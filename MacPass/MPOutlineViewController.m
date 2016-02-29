@@ -84,6 +84,13 @@ NSString *const _MPOutlinveViewHeaderViewIdentifier = @"HeaderCell";
                                                name:MPDidActivateViewNotification
                                              object:self.outlineView];
   
+  
+  NSView *clipView = self.outlineView.enclosingScrollView.contentView;
+  [[NSNotificationCenter defaultCenter] addObserver:self
+                                           selector:@selector(_outlineDidScroll:)
+                                               name:NSViewBoundsDidChangeNotification
+                                             object:clipView];
+  
 }
 
 - (NSResponder *)reconmendedFirstResponder {
@@ -107,6 +114,8 @@ NSString *const _MPOutlinveViewHeaderViewIdentifier = @"HeaderCell";
 }
 
 - (void)_expandItems:(NSTreeNode *)node {
+  KPKTree *tree = self.treeController.content;
+
   id nodeItem = [node representedObject];
   if([nodeItem isKindOfClass:[KPKTree class]]) {
     [self.outlineView expandItem:node expandChildren:NO];
@@ -168,6 +177,20 @@ NSString *const _MPOutlinveViewHeaderViewIdentifier = @"HeaderCell";
   document.selectedItem = document.selectedGroup;
 }
 
+- (void)_outlineDidScroll:(NSNotification *)notification {
+  NSView *clipView = notification.object;
+  if(nil == clipView || self.outlineView.enclosingScrollView.contentView != clipView) {
+    return; // Wrong view
+  }
+  NSInteger topRow = [self.outlineView rowAtPoint:clipView.bounds.origin];
+  id item = [[self.outlineView itemAtRow:topRow] representedObject];
+  if([item isKindOfClass:[KPKGroup class]]) {
+    KPKGroup *group = item;
+    KPKTree *tree = self.treeController.content;
+    tree.metaData.lastTopVisibleGroup = group.uuid;
+  }
+}
+
 # pragma mark MPDocument Notifications
 - (void)_didAddGroup:(NSNotification *)notification {
   NSDictionary *userInfo = [notification userInfo];
@@ -181,8 +204,8 @@ NSString *const _MPOutlinveViewHeaderViewIdentifier = @"HeaderCell";
 }
 
 - (id)itemUnderMouse {
-  NSPoint mouseLocation = [[self.outlineView window] mouseLocationOutsideOfEventStream];
-  NSPoint localPoint = [self.outlineView convertPoint:mouseLocation fromView:[[self.outlineView window] contentView]];
+  NSPoint mouseLocation = [self.outlineView.window mouseLocationOutsideOfEventStream];
+  NSPoint localPoint = [self.outlineView convertPoint:mouseLocation fromView:self.outlineView.window.contentView];
   NSInteger row = [self.outlineView rowAtPoint:localPoint];
   if(row == -1) {
     return nil; // No row was hit
