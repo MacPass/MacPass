@@ -33,7 +33,7 @@ static MPPluginHost *_instance;
 }
 
 - (NSArray<KPKEntry *> *)filteredEntriesUsingBlock:(NodeMatchBlock)matchBlock {
-  NSArray *currentDocuments = [[NSDocumentController sharedDocumentController] documents];
+  NSArray *currentDocuments = [NSDocumentController sharedDocumentController].documents;
   NSMutableArray *entries = [[NSMutableArray alloc] initWithCapacity:200];
   for(MPDocument *document in currentDocuments) {
     if(document.tree) {
@@ -47,6 +47,9 @@ static MPPluginHost *_instance;
 - (NSArray<KPKGroup *> *)filteredGroupsUsingBlock:(NodeMatchBlock)matchBlock {
   NSAssert(NO, @"Not implemented");
   return nil;
+}
+
+- (void)presentError:(NSError *)error completionHandler:(void (^)(NSModalResponse))completionHandler {
 }
 
 @end

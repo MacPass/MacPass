@@ -142,7 +142,7 @@ NSString *const MPPluginManagerPluginBundleIdentifiyerKey = @"MPPluginManagerPlu
 }
 
 - (BOOL)_validateClass:(Class)class {
-  return ([class isSubclassOfClass:[MPPlugin class]]);
+  return [class isSubclassOfClass:[MPPlugin class]];
 }
 
 /* Code by Jedda Wignall<jedda@jedda.me> http://jedda.me/2012/03/verifying-plugin-bundles-using-code-signing/ */

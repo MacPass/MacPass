@@ -263,7 +263,7 @@ typedef NS_ENUM(NSUInteger, MPContentTab) {
 - (void)_toggleEditors:(BOOL)editable {
   self.itemImageView.enabled = editable;
   self.itemNameTextField.enabled = editable;
-  self.itemImageView.enabled = editable;
+  self.itemImageView.editable = editable;
   self.notesTextView.editable = editable;
 }
 #pragma mark -
@@ -284,6 +284,7 @@ typedef NS_ENUM(NSUInteger, MPContentTab) {
   self.nodeController.content = node;
   self.entryViewController.representedObject = node.asEntry;
   self.groupViewController.representedObject = node.asGroup;
+  [self _toggleEditors:(nil != node.asGroup)];
 }
 
 - (IBAction)beginEditing:(id)sender {

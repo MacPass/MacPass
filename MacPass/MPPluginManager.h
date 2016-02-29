@@ -15,7 +15,6 @@ FOUNDATION_EXPORT NSString *const MPPluginManagerDidUnloadPlugin;
 
 FOUNDATION_EXPORT NSString *const MPPluginManagerPluginBundleIdentifiyerKey;
 
-@class KPKNode;
 @class MPPlugin;
 
 @interface MPPluginManager : NSObject

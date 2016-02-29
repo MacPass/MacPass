@@ -7,6 +7,9 @@
 //
 
 #import <Foundation/Foundation.h>
+
+NS_ASSUME_NONNULL_BEGIN
+
 @class KPKNode;
 @class KPKEntry;
 @class KPKGroup;
@@ -22,4 +25,7 @@ typedef BOOL (^NodeMatchBlock)(KPKNode *aNode);
 - (NSArray<KPKEntry *> *)filteredEntriesUsingBlock:(NodeMatchBlock)matchBlock;
 - (NSArray<KPKGroup *> *)filteredGroupsUsingBlock:(NodeMatchBlock)matchBlock;
 
+- (void)presentError:(NSError *)error completionHandler:(void (^)(NSModalResponse response))completionHandler;
+
 @end
+NS_ASSUME_NONNULL_END
