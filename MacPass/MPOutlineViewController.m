@@ -184,16 +184,16 @@ NSString *const _MPOutlinveViewHeaderViewIdentifier = @"HeaderCell";
 }
 
 - (void)clearSelection {
-  [_outlineView deselectAll:nil];
-  NSNotification *notification = [NSNotification notificationWithName:NSOutlineViewSelectionDidChangeNotification object:_outlineView];
+  [self.outlineView deselectAll:nil];
+  NSNotification *notification = [NSNotification notificationWithName:NSOutlineViewSelectionDidChangeNotification object:self.outlineView];
   [self outlineViewSelectionDidChange:notification];
 }
 
 - (void)_didBecomeFirstResponder:(NSNotification *)notification {
-  if( [notification object] != _outlineView ) {
+  if( [notification object] != self.outlineView ) {
     return; // Nothing we need to worry about
   }
-  MPDocument *document = [[self windowController] document];
+  MPDocument *document = self.windowController.document;
   document.selectedGroups = [self currentTargetGroups];
 }
 
@@ -209,8 +209,8 @@ NSString *const _MPOutlinveViewHeaderViewIdentifier = @"HeaderCell";
   if([item isKindOfClass:[KPKGroup class]]) {
     KPKGroup *group = item;
     NSLog(@"%@", group.title);
-    KPKTree *tree = [self.treeController.content firstObject];
-    tree.metaData.lastTopVisibleGroup = group.uuid;
+    MPDocument *document = self.windowController.document;
+    document.tree.metaData.lastTopVisibleGroup = group.uuid;
   }
 }
 
@@ -275,10 +275,10 @@ NSString *const _MPOutlinveViewHeaderViewIdentifier = @"HeaderCell";
 }
 
 - (void)outlineViewSelectionDidChange:(NSNotification *)notification {
-  NSTreeNode *treeNode = [_outlineView itemAtRow:[_outlineView selectedRow]];
-  KPKGroup *selectedGroup = [treeNode representedObject];
   MPDocument *document = self.windowController.document;
-  document.selectedGroups = [self currentTargetGroups];
+  NSArray<KPKGroup *> *groups = [self currentTargetGroups];
+  document.tree.metaData.lastSelectedGroup = (groups.count == 1 ? groups.firstObject.uuid : [NSUUID nullUUID]);
+  document.selectedGroups = groups;
 }
 
 - (BOOL)outlineView:(NSOutlineView *)outlineView shouldShowOutlineCellForItem:(id)item {
