@@ -281,6 +281,7 @@ NSString *const MPDocumentGroupKey                        = @"MPDocumentGroupKey
   [self saveDocument:sender];
   self.encryptedData = [self.tree encryptWithPassword:self.compositeKey forVersion:KPKXmlVersion error:&error];
   self.tree = nil;
+  [self.undoManager removeAllActions];
   [[NSNotificationCenter defaultCenter] postNotificationName:MPDocumentDidLockDatabaseNotification object:self];
 }
 
