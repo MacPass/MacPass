@@ -36,20 +36,20 @@
 @implementation MPOutlineDataSource
 
 - (BOOL)outlineView:(NSOutlineView *)outlineView writeItems:(NSArray *)items toPasteboard:(NSPasteboard *)pasteboard {
-  if([items count] == 1) {
-    self.localDraggedGroup = nil;  id item = [[items lastObject] representedObject];
-    if(![item isKindOfClass:[KPKGroup class]]) {
-      return NO;
-    }
-    KPKGroup *draggedGroup = item;
-    [pasteboard writeObjects:@[draggedGroup]];
-    return (nil != draggedGroup.parent);
+  if(items.count != 1) {
+    return NO;
   }
-  return NO;
+  self.localDraggedGroup = nil;  id item = [[items lastObject] representedObject];
+  if(![item isKindOfClass:[KPKGroup class]]) {
+    return NO;
+  }
+  KPKGroup *draggedGroup = item;
+  [pasteboard writeObjects:@[draggedGroup]];
+  return (nil != draggedGroup.parent);
 }
 
 - (NSDragOperation)outlineView:(NSOutlineView *)outlineView validateDrop:(id<NSDraggingInfo>)info proposedItem:(id)item proposedChildIndex:(NSInteger)index {
-
+  
   /* Clean up our local search */
   self.localDraggedEntry = nil;
   self.localDraggedGroup = nil;
@@ -170,7 +170,7 @@
 }
 
 - (BOOL)_readDataFromPasteboard:(NSPasteboard *)pasteboard group:(KPKGroup **)group entry:(KPKEntry **)entry;{
-
+  
   if(entry == NULL || group == NULL) {
     return NO; // Need valid pointers
   }
