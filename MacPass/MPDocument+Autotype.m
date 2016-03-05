@@ -83,7 +83,7 @@
     /* test for host */
     if(matchHost && !foundMatch) {
       NSURL *url = [NSURL URLWithString:entry.url];
-      foundMatch = [windowTitle rangeOfString:url.host options:NSCaseInsensitiveSearch].length != 0;
+      foundMatch = url.host != nil && [windowTitle rangeOfString:url.host options:NSCaseInsensitiveSearch].length != 0;
     }
     /* test for tags */
     if(matchTags && !foundMatch) {
