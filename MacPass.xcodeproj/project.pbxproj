@@ -200,6 +200,8 @@
 		4CC281891C0F675B00B9174D /* HNHUi.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4CC281881C0F675B00B9174D /* HNHUi.framework */; };
 		4CC6DB7A17D23719002C6091 /* KPKNode+IconImage.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CC6DB7917D23719002C6091 /* KPKNode+IconImage.m */; };
 		4CCA8E9B18D91ED9001A6754 /* Quartz.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4CCA8E9A18D91ED9001A6754 /* Quartz.framework */; };
+		4CCCD83E1C8DFF20002B77B6 /* MPEntryProxy.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CCCD83D1C8DFF20002B77B6 /* MPEntryProxy.m */; };
+		4CCCD8401C8E02FE002B77B6 /* MPTextEntryProxy.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CCCD83F1C8E02FE002B77B6 /* MPTextEntryProxy.m */; };
 		4CCEDE2A179F203B008402BE /* MPOutlineView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CCEDE29179F203B008402BE /* MPOutlineView.m */; };
 		4CCEDE2E179F213B008402BE /* MPNotifications.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CCEDE2D179F213B008402BE /* MPNotifications.m */; };
 		4CCFA13D1BF0CC7A0078E0A1 /* Test_Password_1234.kdb in Resources */ = {isa = PBXBuildFile; fileRef = 4CCFA1321BF0CC7A0078E0A1 /* Test_Password_1234.kdb */; };
@@ -596,6 +598,9 @@
 		4CCA7EEC1797866F00B0B55E /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/GeneralSettings.strings; sourceTree = "<group>"; };
 		4CCA7EEE1797867200B0B55E /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/GeneralSettings.strings; sourceTree = "<group>"; };
 		4CCA8E9A18D91ED9001A6754 /* Quartz.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Quartz.framework; path = System/Library/Frameworks/Quartz.framework; sourceTree = SDKROOT; };
+		4CCCD83C1C8DFF20002B77B6 /* MPEntryProxy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MPEntryProxy.h; sourceTree = "<group>"; };
+		4CCCD83D1C8DFF20002B77B6 /* MPEntryProxy.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MPEntryProxy.m; sourceTree = "<group>"; };
+		4CCCD83F1C8E02FE002B77B6 /* MPTextEntryProxy.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MPTextEntryProxy.m; sourceTree = "<group>"; };
 		4CCEDE28179F203B008402BE /* MPOutlineView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MPOutlineView.h; sourceTree = "<group>"; };
 		4CCEDE29179F203B008402BE /* MPOutlineView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MPOutlineView.m; sourceTree = "<group>"; };
 		4CCEDE2C179F2122008402BE /* MPNotifications.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MPNotifications.h; sourceTree = "<group>"; };
@@ -959,6 +964,8 @@
 				4C6B7C7C18BE7EB0001D5D77 /* MPDocument+HistoryBrowsing.m */,
 				4C0AF62D195C1F2B009E658D /* MPEntrySearchContext.h */,
 				4C0AF62E195C1F2B009E658D /* MPEntrySearchContext.m */,
+				4CCCD83C1C8DFF20002B77B6 /* MPEntryProxy.h */,
+				4CCCD83D1C8DFF20002B77B6 /* MPEntryProxy.m */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -972,6 +979,7 @@
 				4C45FB2C178E0BCB0010007D /* MPDatabaseLoading.m */,
 				4C45FB2F178E0CE20010007D /* MPTestDocument.m */,
 				4C6BC65F1A36717E00BDDF3D /* MPDatabaseSearch.m */,
+				4CCCD83F1C8E02FE002B77B6 /* MPTextEntryProxy.m */,
 				4C45FB1F178E09ED0010007D /* Supporting Files */,
 			);
 			path = MacPassTests;
@@ -1648,6 +1656,7 @@
 				4C45FB2D178E0BCB0010007D /* MPDatabaseLoading.m in Sources */,
 				4C8DEAA21C314D2C00D24C32 /* MPTestAutotypeDelay.m in Sources */,
 				4C45FB30178E0CE20010007D /* MPTestDocument.m in Sources */,
+				4CCCD8401C8E02FE002B77B6 /* MPTextEntryProxy.m in Sources */,
 				4C6BC6601A36717E00BDDF3D /* MPDatabaseSearch.m in Sources */,
 				4C10207F1B750E2F00BFCD59 /* MPTestAutotype.m in Sources */,
 			);
@@ -1707,6 +1716,7 @@
 				4C89B71019B4B4A300DC0A6A /* MPTreeDelegate.m in Sources */,
 				4C88C66918D9F8D600F43852 /* MPTemporaryFileStorageCenter.m in Sources */,
 				4C7B63741C0CB51F00D7038C /* TTTDateTransformers.m in Sources */,
+				4CCCD83E1C8DFF20002B77B6 /* MPEntryProxy.m in Sources */,
 				4CF5BE6D1BF33E3000048505 /* NSApplication+MPAdditions.m in Sources */,
 				4CE30ACC1A312B7F0063FCC6 /* MPReferenceBuilderViewController.m in Sources */,
 				4C6F228C19A4AA700012310C /* MPAutotypeDelay.m in Sources */,
