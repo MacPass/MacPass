@@ -33,9 +33,6 @@
                                 <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                 <font key="font" metaFont="system"/>
                             </buttonCell>
-                            <connections>
-                                <action selector="beginEditingSelectedItem:" target="-1" id="DRJ-M6-PkP"/>
-                            </connections>
                         </button>
                         <button verticalHuggingPriority="750" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="3126">
                             <rect key="frame" x="154" y="2" width="57" height="25"/>
