@@ -39,8 +39,12 @@
 
 - (void)testMethodForwarding {
   NSString *newPassword = @"new password";
+  NSString *newKeystrokes = @"{ENTER 3}";
   [((id)self.proxy) setPassword:newPassword];
-  XCTAssertEqualObjects(self.entry.password, newPassword, @"Proxy has forwared password setting to KPKEntry!");
+  XCTAssertEqualObjects(self.entry.password, newPassword, @"Proxy sets password on entry!");
+
+  [((id)self.proxy) autotype].defaultKeystrokeSequence= newKeystrokes;
+  XCTAssertEqualObjects(self.entry.autotype.defaultKeystrokeSequence, newKeystrokes, @"Proxy sets default keystroke sequence on entry autotype!");
 }
 
 @end

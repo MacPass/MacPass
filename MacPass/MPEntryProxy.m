@@ -26,10 +26,12 @@
 }
 
 - (void)forwardInvocation:(NSInvocation *)invocation {
+  NSLog(@"forwardInvocation: %@", NSStringFromSelector(invocation.selector));
   [invocation invokeWithTarget:self.entry];
 }
 
 - (NSMethodSignature *)methodSignatureForSelector:(SEL)sel {
+  NSLog(@"methodSignatureForSelector %@", NSStringFromSelector(sel));
   return [self.entry methodSignatureForSelector:sel];
 }
 
