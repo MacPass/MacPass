@@ -68,7 +68,7 @@ More Screenshots in the [Wiki](https://github.com/mstarke/MacPass/wiki/Screensho
 [KyPass Companion](http://www.kyuran.be/logiciels/kypass4mac/) is a native Cocoa port and offers KeePassHttp compatiblity.
 Should be able to read and write KDB and KDBX files. It is closed source and currently available in the Mac App Store. It's rather expensive considering the bugs and missing features. Based on the user reviews it should work. Not all KDBX features are supported. It is unable to convert between database versions.
 
-[KeeWeb](https://keeweb.info) is a cross plattform web client in active development based on [electron](http://electron.atom.io) and thus also is available as an offline version for all mayor plattforms. The project is open source. It supports all features of KDBX files but has no KDB support. Because of the technology it's look is customizeable, but the native one is quite pretty.
+[KeeWeb](https://keeweb.info) is a cross plattform web client in active development based on [electron](http://electron.atom.io) and thus also is available as an offline version for all major plattforms. The project is open source. It supports all features of KDBX files but has no KDB support. Because of the technology it's look is customizeable, but the native one is quite pretty.
 
 ##License
 
