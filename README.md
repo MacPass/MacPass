@@ -65,16 +65,16 @@ More Screenshots in the [Wiki](https://github.com/mstarke/MacPass/wiki/Screensho
 
 [KeePassX](http://www.keepassx.org) is a Qt based KeePass port. It's in active development and open source. It fully supports all KDBX features and can import KDB into a KDBX file but is unable to safe as KDB. There's an older release just that handles only KDB files.
 
-[KyPass Companion](http://www.kyuran.be/logiciels/kypass4mac/) is a native Cocoa port and offers KeePassHttp compatiblity.
+[KyPass Companion](http://www.kyuran.be/logiciels/kypass4mac/) is a native Cocoa port and offers KeePassHttp compatibility.
 Should be able to read and write KDB and KDBX files. It is closed source and currently available in the Mac App Store. It's rather expensive considering the bugs and missing features. Based on the user reviews it should work. Not all KDBX features are supported. It is unable to convert between database versions.
 
-[KeeWeb](https://keeweb.info) is a cross plattform web client in active development based on [electron](http://electron.atom.io) and thus also is available as an offline version for all mayor plattforms. The project is open source. It supports all features of KDBX files but has no KDB support. Because of the technology it's look is customizeable, but the native one is quite pretty.
+[KeeWeb](https://keeweb.info) is a cross platform web client in active development based on [electron](http://electron.atom.io) and thus also is available as an offline version for all major platforms. The project is open source. It supports all features of KDBX files but has no KDB support. Because of the technology it's look is customizable, but the native one is quite pretty.
 
 ##License
 
 MacPass, a KeePass compatible Password Manager for OS X
 Copyright (c) 2012-2014  Michael Starke (HicknHack Software GmbH) and all [MacPass contributors](https://github.com/mstarke/MacPass/graphs/contributors)
-  
+
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
 the Free Software Foundation, either version 3 of the License, or
@@ -91,7 +91,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 ## App Store
 
-Due to being lincensed under GPLv3 it's not possible to publish a version of MacPass on the App Store.
+Due to being licensed under GPLv3 it's not possible to publish a version of MacPass on the App Store.
 For further details, take a look at the [explanation](https://www.fsf.org/news/2010-05-app-store-compliance) of the Free Software Foundation.
 
 ##Contributions
@@ -116,13 +116,13 @@ The following list might not be complete, please refer to [merged Pull Requests]
 
 [Zhao Peng](patchao2000@gmail.com) Simplified Chinese localization
 
-[Alex Petkevich](alex@mrdoggy.info) Russion localization
+[Alex Petkevich](alex@mrdoggy.info) Russian localization
 
 ### Other
 
 [Jellyfrog](https://github.com/Jellyfrog) Asset file size optimization
 
-[Nathaniel Madura](mailto:nmadura@umich.edu) Refacotrings, first create Database 
+[Nathaniel Madura](mailto:nmadura@umich.edu) Refacotrings, first create Database
 
 [Kurt Legerlotz](https://github.com/lotz) Settings to open or copy URL on double click
 
@@ -138,7 +138,7 @@ The following list might not be complete, please refer to [merged Pull Requests]
 
 [Chhom Seng](https://github.com/cseng) Fixed issue with blank outline and entry views if the inspector was hidden before unlocking the database. Implemented context menu validation for entry context menu.
 
-[James Hurst](https://github.com/jamesrhurst) Obfuscated autotyping and restoring of pasteboard objects. Fixed issues when exiting search. Implemented workflow double click settings. Make selected textfield end editing when a save will occur. Finished custom browser support for open URL action. Percent escape strings before creating URLs. Fixed issues with Autotype key events. Added missing characters for password generation. Improved "Add Entry" workflow. Fixed bug with icon resetting to default after closing popover. Added ability to set default password generation settings. Made autotype work in more situations. Fixed various issues with Sparkle. 
+[James Hurst](https://github.com/jamesrhurst) Obfuscated autotyping and restoring of pasteboard objects. Fixed issues when exiting search. Implemented workflow double click settings. Make selected textfield end editing when a save will occur. Finished custom browser support for open URL action. Percent escape strings before creating URLs. Fixed issues with Autotype key events. Added missing characters for password generation. Improved "Add Entry" workflow. Fixed bug with icon resetting to default after closing popover. Added ability to set default password generation settings. Made autotype work in more situations. Fixed various issues with Sparkle.
 
 [Yono Mittlefehldt](https://twitter.com/yonomitt) Added 90 days expiration preset.
 
@@ -168,11 +168,11 @@ This Project is based upon the following work:
 
 [Sparkle](http://sparkle.andymatuschak.org) Copyright 2006 Andy Matuschak
 
-[TransformerKit](https://github.com/mattt/TransformerKit) Licensed under MIT license. Copyright 2012 [Mattt Thompson](http://mattt.me/). All rights reseverd
+[TransformerKit](https://github.com/mattt/TransformerKit) Licensed under MIT license. Copyright 2012 [Mattt Thompson](http://mattt.me/). All rights reserved
 
 [MJGFoundation](https://github.com/mstarke/MJGFoundation) Licensed under BSD 2-Clause License. Copyright 2011 [Matt Galloway](http://www.galloway.me.uk/). All rights reserved.
 
-[ShortcutRecorder](http://wafflesoftware.net/shortcut/) Copyright 2006—2013 all [Shortcut Recorder contributors](http://wafflesoftware.net/shortcut/contributors/) 
+[ShortcutRecorder](http://wafflesoftware.net/shortcut/) Copyright 2006—2013 all [Shortcut Recorder contributors](http://wafflesoftware.net/shortcut/contributors/)
 
 [NSBundle Codesignature Check](http://jedda.me/2012/03/verifying-plugin-bundles-using-code-signing/) Copyright 2014 [Jedda Wignall](http://jedda.me). All rights reserved.
 
