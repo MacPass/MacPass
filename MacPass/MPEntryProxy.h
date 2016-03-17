@@ -18,6 +18,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface MPEntryProxy : NSProxy
 
+@property (strong, readonly) KPKEntry *entry;
+
 - (instancetype)initWithEntry:(KPKEntry *)entry;
 
 @end

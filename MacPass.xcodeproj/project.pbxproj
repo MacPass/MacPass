@@ -965,8 +965,7 @@
 				4C6B7C7C18BE7EB0001D5D77 /* MPDocument+HistoryBrowsing.m */,
 				4C0AF62D195C1F2B009E658D /* MPEntrySearchContext.h */,
 				4C0AF62E195C1F2B009E658D /* MPEntrySearchContext.m */,
-				4CCCD83C1C8DFF20002B77B6 /* MPEntryProxy.h */,
-				4CCCD83D1C8DFF20002B77B6 /* MPEntryProxy.m */,
+				4CB44EEE1C972BFD00EE2D60 /* Proxies */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -1297,6 +1296,15 @@
 				4C2B0B7419F66F6400E48913 /* MPTargetNodeResolving.h */,
 			);
 			name = Protocolls;
+			sourceTree = "<group>";
+		};
+		4CB44EEE1C972BFD00EE2D60 /* Proxies */ = {
+			isa = PBXGroup;
+			children = (
+				4CCCD83C1C8DFF20002B77B6 /* MPEntryProxy.h */,
+				4CCCD83D1C8DFF20002B77B6 /* MPEntryProxy.m */,
+			);
+			name = Proxies;
 			sourceTree = "<group>";
 		};
 		4CCFA12C1BF0CC7A0078E0A1 /* Databases */ = {
