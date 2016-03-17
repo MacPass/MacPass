@@ -1,12 +1,14 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="9531" systemVersion="15C50" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="9532" systemVersion="15D21" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
     <dependencies>
         <deployment identifier="macosx"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="9531"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="9532"/>
     </dependencies>
     <objects>
         <customObject id="-2" userLabel="File's Owner" customClass="MPUpdateSettingsController">
             <connections>
+                <outlet property="automaticallyCheckForUpdatesCheckButton" destination="Z6x-oU-NC5" id="xHU-Lt-PmA"/>
+                <outlet property="checkIntervallPopupButton" destination="pWJ-eJ-MBf" id="znu-Me-2Me"/>
                 <outlet property="view" destination="1" id="0Ig-r5-x8L"/>
             </connections>
         </customObject>
@@ -24,9 +26,6 @@
                         <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                         <font key="font" metaFont="system"/>
                     </buttonCell>
-                    <connections>
-                        <binding destination="Tm5-i7-V4P" name="value" keyPath="automaticallyChecksForUpdates" id="8wg-xJ-C1I"/>
-                    </connections>
                 </button>
                 <popUpButton verticalHuggingPriority="750" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="pWJ-eJ-MBf">
                     <rect key="frame" x="145" y="17" width="112" height="26"/>
@@ -44,10 +43,6 @@
                             </items>
                         </menu>
                     </popUpButtonCell>
-                    <connections>
-                        <binding destination="Tm5-i7-V4P" name="enabled" keyPath="automaticallyChecksForUpdates" id="Ctn-0w-mKO"/>
-                        <binding destination="Tm5-i7-V4P" name="selectedTag" keyPath="updateCheckInterval" id="N5f-FS-bbr"/>
-                    </connections>
                 </popUpButton>
                 <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ckg-9t-MDS">
                     <rect key="frame" x="21" y="23" width="120" height="17"/>
@@ -69,7 +64,7 @@
                 <constraint firstItem="ckg-9t-MDS" firstAttribute="baseline" secondItem="pWJ-eJ-MBf" secondAttribute="baseline" id="ozZ-bW-f7y"/>
                 <constraint firstAttribute="bottom" secondItem="pWJ-eJ-MBf" secondAttribute="bottom" constant="20" symbolic="YES" id="pHW-e8-EU6"/>
             </constraints>
+            <point key="canvasLocation" x="504" y="511.5"/>
         </customView>
-        <customObject id="Tm5-i7-V4P" customClass="SUUpdater"/>
     </objects>
 </document>

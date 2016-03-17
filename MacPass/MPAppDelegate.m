@@ -36,7 +36,11 @@
 #import "MPTemporaryFileStorageCenter.h"
 #import "MPValueTransformerHelper.h"
 
+#import "NSApplication+MPAdditions.h"
+
 #import "KeePassKit/KeePassKit.h"
+
+#import <Sparkle/Sparkle.h>
 
 NSString *const MPDidChangeStoredKeyFilesSettings = @"com.hicknhack.macpass.MPDidChangeStoredKeyFilesSettings";
 
@@ -93,7 +97,7 @@ NSString *const MPDidChangeStoredKeyFilesSettings = @"com.hicknhack.macpass.MPDi
 - (void)awakeFromNib {
   _isAllowedToStoreKeyFile = NO;
   /* Update the … at the save menu */
-  [[self.saveMenuItem menu] setDelegate:self];
+  self.saveMenuItem.menu.delegate = self;
   
   /* We want to inform anyone about the changes to keyFile remembering */
   [self bind:NSStringFromSelector(@selector(isAllowedToStoreKeyFile))
@@ -158,6 +162,10 @@ NSString *const MPDidChangeStoredKeyFilesSettings = @"com.hicknhack.macpass.MPDi
   [MPAutotypeDaemon defaultDaemon];
   /* Create Plugin Manager */
   [MPPluginManager sharedManager];
+#ifndef DEBUG
+  /* Only enable updater in Release */
+  [SUUpdater sharedUpdater];
+#endif
 }
 
 #pragma mark -
@@ -221,7 +229,17 @@ NSString *const MPDidChangeStoredKeyFilesSettings = @"com.hicknhack.macpass.MPDi
 }
 
 - (void)showHelp:(id)sender {
+  /* TODO: use Info.plist for URL */
   [[NSWorkspace sharedWorkspace] openURL:[NSURL URLWithString:@"https://github.com/mstarke/MacPass"]];
+}
+
+- (void)checkForUpdates:(id)sender {
+#ifdef DEBUG
+  NSAlert *alert = [NSAlert alertWithMessageText:@"Updates are disabled!" defaultButton:@"Ok" alternateButton:nil otherButton:nil informativeTextWithFormat:@"Sparkle updates are only available in offical releases of %@!", NSApp.applicationName];
+  [alert runModal];
+#else
+  [[SUUpdater sharedUpdater] checkForUpdates:sender];
+#endif
 }
 
 #pragma mark -
