@@ -34,6 +34,7 @@ APPKIT_EXTERN NSString *const MPDidChangeStoredKeyFilesSettings;
 
 @property (nonatomic, assign) BOOL isAllowedToStoreKeyFile;
 
+- (IBAction)checkForUpdates:(id)sender;
 - (IBAction)showPreferences:(id)sender;
 - (IBAction)showPasswordCreator:(id)sender;
 - (IBAction)createNewDatabase:(id)sender;
