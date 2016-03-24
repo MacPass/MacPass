@@ -111,6 +111,11 @@ NSString *const MPPluginManagerPluginBundleIdentifiyerKey = @"MPPluginManagerPlu
       continue;
     };
     
+    if([self _validateBundle:pluginBundle]) {
+      NSLog(@"Plugin %@ already loaded!", pluginBundle.bundleIdentifier);
+      continue;
+    }
+    
     if(![pluginBundle loadAndReturnError:&error]) {
       NSLog(@"Bunlde Loading Error %@ %@", error.localizedDescription, error.localizedFailureReason);
       continue;
@@ -135,6 +140,16 @@ NSString *const MPPluginManagerPluginBundleIdentifiyerKey = @"MPPluginManagerPlu
       NSLog(@"Unable to create instance of plugin class %@", pluginBundle.principalClass);
     }
   }
+}
+
+- (BOOL)_validateBundle:(NSBundle *)bundle {
+  for(MPPlugin *plugin in self.mutablePlugins) {
+    NSBundle *pluginBundle = [NSBundle bundleForClass:plugin.class];
+    if([pluginBundle.bundleIdentifier isEqualToString:bundle.bundleIdentifier]) {
+      return YES;
+    }
+  }
+  return NO;
 }
 
 - (BOOL)_validURL:(NSURL *)url {
