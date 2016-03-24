@@ -70,14 +70,14 @@ NSString *const MPPluginManagerPluginBundleIdentifiyerKey = @"MPPluginManagerPlu
   NSURL *appSupportDir = [NSApp applicationSupportDirectoryURL:YES];
   NSError *error;
   NSArray *externalPluginsURLs = [[NSFileManager defaultManager] contentsOfDirectoryAtURL:appSupportDir
-                                                       includingPropertiesForKeys:@[]
-                                                                          options:NSDirectoryEnumerationSkipsHiddenFiles
-                                                                            error:&error];
+                                                               includingPropertiesForKeys:@[]
+                                                                                  options:NSDirectoryEnumerationSkipsHiddenFiles
+                                                                                    error:&error];
   
   NSArray *internalPluginsURLs = [[NSFileManager defaultManager] contentsOfDirectoryAtURL:[NSBundle mainBundle].builtInPlugInsURL
-                                                              includingPropertiesForKeys:@[]
-                                                                                 options:NSDirectoryEnumerationSkipsHiddenFiles
-                                                                                   error:&error];
+                                                               includingPropertiesForKeys:@[]
+                                                                                  options:NSDirectoryEnumerationSkipsHiddenFiles
+                                                                                    error:&error];
   
   
   if(!externalPluginsURLs) {
@@ -110,7 +110,7 @@ NSString *const MPPluginManagerPluginBundleIdentifiyerKey = @"MPPluginManagerPlu
       NSLog(@"Preflight Error %@ %@", error.localizedDescription, error.localizedFailureReason );
       continue;
     };
-  
+    
     if(![pluginBundle loadAndReturnError:&error]) {
       NSLog(@"Bunlde Loading Error %@ %@", error.localizedDescription, error.localizedFailureReason);
       continue;

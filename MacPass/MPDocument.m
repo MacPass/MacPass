@@ -517,7 +517,7 @@ NSString *const MPDocumentGroupKey                        = @"MPDocumentGroupKey
   alert.alertStyle = NSWarningAlertStyle;
   alert.messageText = NSLocalizedString(@"WARNING_ON_EMPTY_TRASH_TITLE", "");
   alert.informativeText = NSLocalizedString(@"WARNING_ON_EMPTY_TRASH_DESCRIPTION", "Informative Text displayed when clearing the Trash");
-
+  
   [alert addButtonWithTitle:NSLocalizedString(@"EMPTY_TRASH", "Empty Trash")];
   [alert addButtonWithTitle:NSLocalizedString(@"CANCEL", "Cancel")];
   alert.buttons.lastObject.keyEquivalent = [NSString stringWithFormat:@"%c", 0x1b];
@@ -538,12 +538,12 @@ NSString *const MPDocumentGroupKey                        = @"MPDocumentGroupKey
   alert.alertStyle = NSWarningAlertStyle;
   alert.messageText = NSLocalizedString(@"WARNING_ON_DELETE_TRASHED_NODE_TITLE", "");
   alert.informativeText = NSLocalizedString(@"WARNING_ON_DELETE_TRASHED_NODE_DESCRIPTION", "Informative Text displayed when clearing the Trash");
-
+  
   NSString *okButtonText = entry ? NSLocalizedString(@"DELETE_TRASHED_ENTRY", "Empty Trash") : NSLocalizedString(@"DELETE_TRASHED_GROUP", "Empty Trash");
   [alert addButtonWithTitle:okButtonText];
   [alert addButtonWithTitle:NSLocalizedString(@"CANCEL", "Cancel")];
   alert.buttons.lastObject.keyEquivalent = [NSString stringWithFormat:@"%c", 0x1b];
-
+  
   [alert beginSheetModalForWindow:self.windowForSheet modalDelegate:self didEndSelector:@selector(_deleteTrashedItemAlertDidEnd:returnCode:contextInfo:) contextInfo:(__bridge void *)(node)];
 }
 
@@ -583,9 +583,9 @@ NSString *const MPDocumentGroupKey                        = @"MPDocumentGroupKey
 
 - (void)duplicateEntry:(id)sender {
   /*
-  KPKEntry *duplicate = [self.selectedEntry copyWithTitle:nil options:kKPKCopyOptionNone];
-  [duplicate addToGroup:self.selectedEntry.parent];
-  [self.undoManager setActionName:NSLocalizedString(@"DUPLICATE_ENTRY", "")];
+   KPKEntry *duplicate = [self.selectedEntry copyWithTitle:nil options:kKPKCopyOptionNone];
+   [duplicate addToGroup:self.selectedEntry.parent];
+   [self.undoManager setActionName:NSLocalizedString(@"DUPLICATE_ENTRY", "")];
    */
 }
 
