@@ -115,7 +115,7 @@ static NSString *mergeWithoutDuplicates(NSString* baseCharacters, NSString* cust
                                                   customCharacters);
   }
   CGFloat alphabetCount = characters.length;
-  CGFloat passwordLegnth = self.length;
-  return passwordLegnth * ( log10(alphabetCount) / log10(2) );
+  CGFloat passwordLength = self.length;
+  return passwordLength * ( log10(alphabetCount) / log10(2) );
 }
 @end
