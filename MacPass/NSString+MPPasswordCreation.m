@@ -105,12 +105,17 @@ static NSString *mergeWithoutDuplicates(NSString* baseCharacters, NSString* cust
 }
 
 - (CGFloat)entropyWhithPossibleCharacterSet:(MPPasswordCharacterFlags)allowedCharacters orCustomCharacters:(NSString *)customCharacters {
-  CGFloat alphabetCount = customCharacters.length;
+  NSString *characters = nil;
   if(nil == customCharacters) {
-    NSString *stringSet = allowedCharactersString(allowedCharacters);
-    alphabetCount = stringSet.length;
+    characters = allowedCharactersString(allowedCharacters);
   }
-  CGFloat passwordLegnth = self.length;
-  return passwordLegnth * ( log10(alphabetCount) / log10(2) );
+  else {
+    NSString *characters = mergeWithoutDuplicates(
+                                                  allowedCharactersString(allowedCharacters),
+                                                  customCharacters);
+  }
+  CGFloat alphabetCount = characters.length;
+  CGFloat passwordLength = self.length;
+  return passwordLength * ( log10(alphabetCount) / log10(2) );
 }
 @end
