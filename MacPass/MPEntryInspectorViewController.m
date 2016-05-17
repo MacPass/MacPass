@@ -399,7 +399,7 @@ static NSString *kMPContentBindingString3 = @"content.%@.%@.%@";
   [self.uuidTextField bind:NSValueBinding
                   toObject:self.entryController
                withKeyPath:[NSString stringWithFormat:kMPContentBindingString2, NSStringFromSelector(@selector(uuid)), NSStringFromSelector(@selector(UUIDString))]
-                   options:nil];
+                   options:@{ NSConditionallySetsEditableBindingOption: @NO }];
   self.uuidTextField.editable = NO;
   
   /*for(id item in items) {
