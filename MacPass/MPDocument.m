@@ -75,6 +75,8 @@ NSString *const MPDocumentGroupKey                        = @"MPDocumentGroupKey
 @property (strong) IBOutlet NSView *warningView;
 @property (weak) IBOutlet NSImageView *warningViewImage;
 
+@property (assign) BOOL fileChangeDialogOpen;;
+
 @end
 
 @implementation MPDocument
@@ -115,6 +117,7 @@ NSString *const MPDocumentGroupKey                        = @"MPDocumentGroupKey
   if(self) {
     _didLockFile = NO;
     _readOnly = NO;
+    _fileChangeDialogOpen = NO;
   }
   return self;
 }
@@ -244,15 +247,26 @@ NSString *const MPDocumentGroupKey                        = @"MPDocumentGroupKey
   if(NSOrderedSame == [self.fileModificationDate compare:modificationDate]) {
     return; // Just metadata has changed
   }
+  
+  if(_fileChangeDialogOpen) {
+    return; // This alert is already being shown
+  }
+  
   /* Dispatch the alert to the main queue */
   dispatch_async(dispatch_get_main_queue(), ^{
+    
+    _fileChangeDialogOpen = YES;
+    
     NSAlert *alert = [[NSAlert alloc] init];
     alert.alertStyle = NSWarningAlertStyle;
     alert.messageText = NSLocalizedString(@"FILE_CHANGED_BY_OTHERS_MESSAGE_TEXT", @"Message displayed when an open file was changed from another application");
-    alert.informativeText = NSLocalizedString(@"FILE_CHANGED_BY_OTHERS_INFO_TEXT", @"Informative text displayed when the file was change form another application");
+    alert.informativeText = NSLocalizedString(@"FILE_CHANGED_BY_OTHERS_INFO_TEXT", @"Informative text displayed when the file was change from another application");
     [alert addButtonWithTitle:NSLocalizedString(@"KEEP_MINE", @"Ignore the changes to an open file!")];
     [alert addButtonWithTitle:NSLocalizedString(@"LOAD_CHANGES", @"Reopen the file!")];
     [alert beginSheetModalForWindow:self.windowForSheet completionHandler:^(NSModalResponse returnCode) {
+      
+      _fileChangeDialogOpen = NO;
+      
       if(returnCode == NSAlertSecondButtonReturn) {
         [self revertDocumentToSaved:nil];
       }
