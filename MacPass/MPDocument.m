@@ -248,14 +248,14 @@ NSString *const MPDocumentGroupKey                        = @"MPDocumentGroupKey
     return; // Just metadata has changed
   }
   
-  if(_fileChangeDialogOpen) {
+  if(self.fileChangeDialogOpen) {
     return; // This alert is already being shown
   }
   
   /* Dispatch the alert to the main queue */
   dispatch_async(dispatch_get_main_queue(), ^{
     
-    _fileChangeDialogOpen = YES;
+    self.fileChangeDialogOpen = YES;
     
     NSAlert *alert = [[NSAlert alloc] init];
     alert.alertStyle = NSWarningAlertStyle;
@@ -265,7 +265,7 @@ NSString *const MPDocumentGroupKey                        = @"MPDocumentGroupKey
     [alert addButtonWithTitle:NSLocalizedString(@"LOAD_CHANGES", @"Reopen the file!")];
     [alert beginSheetModalForWindow:self.windowForSheet completionHandler:^(NSModalResponse returnCode) {
       
-      _fileChangeDialogOpen = NO;
+      self.fileChangeDialogOpen = NO;
       
       if(returnCode == NSAlertSecondButtonReturn) {
         [self revertDocumentToSaved:nil];
