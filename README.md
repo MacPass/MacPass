@@ -18,9 +18,7 @@ All releases can be found at [Github](https://github.com/mstarke/MacPass/release
 
 * Fetch the source of MacPass
 ```bash
-git clone https://github.com/mstarke/MacPass
-cd MacPass
-git submodule update --init --recursive
+git clone https://github.com/mstarke/MacPass --recursive
 ```
 * Install [Carthage](https://github.com/Carthage/Carthage#installing-carthage)
 * Install all Dependencies
