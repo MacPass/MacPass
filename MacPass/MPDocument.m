@@ -249,7 +249,7 @@ NSString *const MPDocumentGroupKey                        = @"MPDocumentGroupKey
   }
   
   if(self.fileChangeDialogOpen) {
-    return; // This alert is already being shown
+    return; // We are already displaying an alert
   }
   
   /* Dispatch the alert to the main queue */
