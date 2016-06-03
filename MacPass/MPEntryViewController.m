@@ -410,6 +410,10 @@ NSString *const _MPTableSecurCellView = @"PasswordCell";
 }
 
 - (void)_didAddItem:(NSNotification *)notification {
+  MPDocument *document = notification.object;
+  if(document.hasSearch) {
+    return; // Search should not react to new Entries as it's displaying search results
+  }
   NSDictionary *dict = notification.userInfo;
   KPKEntry *entry = dict[MPDocumentEntryKey];
   NSUInteger row = [self.entryArrayController.arrangedObjects indexOfObject:entry];
@@ -424,7 +428,7 @@ NSString *const _MPTableSecurCellView = @"PasswordCell";
   self.filteredEntries = result;
   [self.entryArrayController unbind:NSContentArrayBinding];
   [self.entryArrayController bind:NSContentArrayBinding toObject:self withKeyPath:NSStringFromSelector(@selector(filteredEntries)) options:nil];
-  [[self.entryTable tableColumnWithIdentifier:MPEntryTableParentColumnIdentifier] setHidden:NO];
+  [self.entryTable tableColumnWithIdentifier:MPEntryTableParentColumnIdentifier].hidden = NO;
 }
 
 
@@ -445,7 +449,7 @@ NSString *const _MPTableSecurCellView = @"PasswordCell";
 }
 
 - (void)_didUnlockDatabase:(NSNotification *)notificiation {
-  MPDocument *document = [[self windowController] document];
+  MPDocument *document = self.windowController.document;
   /* If the document was locked and unlocked we do not need to recheck */
   if(document.unlockCount != 1) {
     /* TODO add another method to display this!
