@@ -246,7 +246,7 @@ static MPAutotypeDaemon *_sharedInstance;
 }
 
 - (NSDictionary *)_infoDictionaryForApplication:(NSRunningApplication *)application {
-  NSArray *currentWindows = CFBridgingRelease(CGWindowListCopyWindowInfo(kCGWindowListOptionOnScreenOnly | kCGWindowListExcludeDesktopElements, kCGNullWindowID));
+  NSArray *currentWindows = CFBridgingRelease(CGWindowListCopyWindowInfo(kCGWindowListExcludeDesktopElements, kCGNullWindowID));
   for(NSDictionary *windowDict in currentWindows) {
     NSString *windowTitle = windowDict[(NSString *)kCGWindowName];
     if(windowTitle.length <= 0) {
@@ -315,7 +315,7 @@ static MPAutotypeDaemon *_sharedInstance;
   if(frontApplication.processIdentifier == processIdentifier) {
     return NO;
   }
-  [runingApplication activateWithOptions:0];
+  [runingApplication activateWithOptions:NSApplicationActivateIgnoringOtherApps];
   return YES;
 }
 - (void)_updateTargetInfoForFrontMostApplication {
