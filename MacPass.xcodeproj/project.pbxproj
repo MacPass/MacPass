@@ -151,6 +151,8 @@
 		4C77E37315B84A240093A587 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C77E37215B84A240093A587 /* main.m */; };
 		4C77E37A15B84A240093A587 /* MPAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C77E37915B84A240093A587 /* MPAppDelegate.m */; };
 		4C77E37D15B84A240093A587 /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4C77E37B15B84A240093A587 /* MainMenu.xib */; };
+		4C7931031D0F053900A511E8 /* MPTestNodeDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C7931021D0F053900A511E8 /* MPTestNodeDelegate.m */; };
+		4C7931061D0F0B0800A511E8 /* MPNodeDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C7931051D0F0B0800A511E8 /* MPNodeDelegate.m */; };
 		4C7ABA4817BAEC6700FF5799 /* 15_ScannerTemplate.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 4C7ABA4317BAEC6700FF5799 /* 15_ScannerTemplate.pdf */; };
 		4C7ABA4917BAEC6700FF5799 /* 16_BrowserTemplate.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 4C7ABA4417BAEC6700FF5799 /* 16_BrowserTemplate.pdf */; };
 		4C7ABA4A17BAEC6700FF5799 /* 17_CDRomTemplate.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 4C7ABA4517BAEC6700FF5799 /* 17_CDRomTemplate.pdf */; };
@@ -514,6 +516,9 @@
 		4C77E37415B84A240093A587 /* MacPass-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "MacPass-Prefix.pch"; sourceTree = "<group>"; };
 		4C77E37815B84A240093A587 /* MPAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MPAppDelegate.h; sourceTree = "<group>"; };
 		4C77E37915B84A240093A587 /* MPAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MPAppDelegate.m; sourceTree = "<group>"; };
+		4C7931021D0F053900A511E8 /* MPTestNodeDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MPTestNodeDelegate.m; sourceTree = "<group>"; };
+		4C7931041D0F0B0800A511E8 /* MPNodeDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MPNodeDelegate.h; sourceTree = "<group>"; };
+		4C7931051D0F0B0800A511E8 /* MPNodeDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MPNodeDelegate.m; sourceTree = "<group>"; };
 		4C7ABA4317BAEC6700FF5799 /* 15_ScannerTemplate.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = 15_ScannerTemplate.pdf; sourceTree = "<group>"; };
 		4C7ABA4417BAEC6700FF5799 /* 16_BrowserTemplate.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = 16_BrowserTemplate.pdf; sourceTree = "<group>"; };
 		4C7ABA4517BAEC6700FF5799 /* 17_CDRomTemplate.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = 17_CDRomTemplate.pdf; sourceTree = "<group>"; };
@@ -943,6 +948,8 @@
 				4CA0F3EC1A3074B50067C0E5 /* MPWindowTitleComboBoxDelegate.m */,
 				4CE501321BBC47F500FB819D /* MPTagsTokenFieldDelegate.h */,
 				4CE501331BBC47F500FB819D /* MPTagsTokenFieldDelegate.m */,
+				4C7931041D0F0B0800A511E8 /* MPNodeDelegate.h */,
+				4C7931051D0F0B0800A511E8 /* MPNodeDelegate.m */,
 			);
 			name = Delegates;
 			sourceTree = "<group>";
@@ -980,6 +987,7 @@
 				4C45FB2F178E0CE20010007D /* MPTestDocument.m */,
 				4C6BC65F1A36717E00BDDF3D /* MPDatabaseSearch.m */,
 				4CCCD83F1C8E02FE002B77B6 /* MPTextEntryProxy.m */,
+				4C7931021D0F053900A511E8 /* MPTestNodeDelegate.m */,
 				4C45FB1F178E09ED0010007D /* Supporting Files */,
 			);
 			path = MacPassTests;
@@ -1664,6 +1672,7 @@
 			files = (
 				4C45FB2D178E0BCB0010007D /* MPDatabaseLoading.m in Sources */,
 				4C8DEAA21C314D2C00D24C32 /* MPTestAutotypeDelay.m in Sources */,
+				4C7931031D0F053900A511E8 /* MPTestNodeDelegate.m in Sources */,
 				4C45FB30178E0CE20010007D /* MPTestDocument.m in Sources */,
 				4CCCD8401C8E02FE002B77B6 /* MPTextEntryProxy.m in Sources */,
 				4C6BC6601A36717E00BDDF3D /* MPDatabaseSearch.m in Sources */,
@@ -1678,6 +1687,7 @@
 				4CD034AC1BFE113B003C002C /* MPPluginManager.m in Sources */,
 				4C77E37315B84A240093A587 /* main.m in Sources */,
 				4CBA2ABA17074C07006D8139 /* MPSettingsHelper.m in Sources */,
+				4C7931061D0F0B0800A511E8 /* MPNodeDelegate.m in Sources */,
 				4C77E37A15B84A240093A587 /* MPAppDelegate.m in Sources */,
 				4C37A84015B8B474005EF8EE /* MPOutlineDataSource.m in Sources */,
 				4CA0B2F915BCAF6700654E32 /* MPGeneralSettingsController.m in Sources */,
@@ -2169,7 +2179,7 @@
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				CODE_SIGN_IDENTITY = "Developer ID Application";
+				CODE_SIGN_IDENTITY = "";
 				COPY_PHASE_STRIP = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
@@ -2210,7 +2220,7 @@
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				CODE_SIGN_IDENTITY = "Developer ID Application";
+				CODE_SIGN_IDENTITY = "";
 				COPY_PHASE_STRIP = YES;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_STRICT_OBJC_MSGSEND = YES;

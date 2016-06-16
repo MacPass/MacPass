@@ -438,14 +438,14 @@ static NSString *kMPContentBindingString3 = @"content.%@.%@.%@";
   
   [self.enableAutotypeCheckButton bind:NSValueBinding
                               toObject:self.entryController
-                           withKeyPath:[NSString stringWithFormat:kMPContentBindingString2, NSStringFromSelector(@selector(autotype)), NSStringFromSelector(@selector(isEnabled))] options:nil];
+                           withKeyPath:[NSString stringWithFormat:kMPContentBindingString2, NSStringFromSelector(@selector(autotype)), NSStringFromSelector(@selector(enabled))] options:nil];
   [self.obfuscateAutotypeCheckButton bind:NSValueBinding
                                  toObject:self.entryController
                               withKeyPath:[NSString stringWithFormat:kMPContentBindingString2, NSStringFromSelector(@selector(autotype)), NSStringFromSelector(@selector(obfuscateDataTransfer))]
                                   options:nil];
   [self.customEntrySequenceTextField bind:NSEnabledBinding
                                  toObject:self.entryController
-                              withKeyPath:[NSString stringWithFormat:kMPContentBindingString2, NSStringFromSelector(@selector(autotype)), NSStringFromSelector(@selector(isEnabled))]
+                              withKeyPath:[NSString stringWithFormat:kMPContentBindingString2, NSStringFromSelector(@selector(autotype)), NSStringFromSelector(@selector(enabled))]
                                   options:nil];
   [self.customEntrySequenceTextField bind:NSValueBinding
                                  toObject:self.entryController
