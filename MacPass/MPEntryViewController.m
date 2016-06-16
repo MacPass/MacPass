@@ -434,13 +434,6 @@ NSString *const _MPTableSecurCellView = @"PasswordCell";
 
 - (void)_didExitSearch:(NSNotification *)notification {
   [[self.entryTable tableColumnWithIdentifier:MPEntryTableParentColumnIdentifier] setHidden:YES];
-  //  MPDocument *document = [[self windowController] document];
-  //  document.selectedItem = document.selectedGroup;
-  //  // TODO: really necessary?
-  //  if( nil == document.selectedItem && nil == document.selectedGroup ) {
-  //    [self.entryArrayController unbind:NSContentArrayBinding];
-  //    [self.entryArrayController setContent:nil];
-  //  }
   [self _updateContextBar];
 }
 
@@ -461,15 +454,10 @@ NSString *const _MPTableSecurCellView = @"PasswordCell";
 
 - (void)_didEnterHistory:(NSNotification *)notification {
   [self _showContextBar];
-  /* TODO: Show modification date column if not present? */
-  MPDocument *document = [[self windowController] document];
-  //[self.entryArrayController bind:NSContentArrayBinding toObject:document.selectedEntry withKeyPath:NSStringFromSelector(@selector(history)) options:nil];
 }
 
 - (void)_didExitHistory:(NSNotification *)notification {
   [self _hideContextBar];
-  MPDocument *document = [[self windowController] document];
-  //document.selectedItem = document.selectedEntry;
 }
 
 

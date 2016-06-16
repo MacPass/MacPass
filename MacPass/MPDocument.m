@@ -462,6 +462,9 @@ NSString *const MPDocumentGroupKey                        = @"MPDocumentGroupKey
     return nil; // no new Groups in trash
   }
   KPKEntry *newEntry = [self.tree createEntry:parent];
+  /* setting properties on entries is undoable, but we do not want to record this so disable on creation */
+  BOOL wasUndoEnabeld = self.undoManager.isUndoRegistrationEnabled;
+  [self.undoManager disableUndoRegistration];
   newEntry.title = NSLocalizedString(@"DEFAULT_ENTRY_TITLE", @"Title for a newly created entry");
   if([self.tree.metaData.defaultUserName length] > 0) {
     newEntry.username = self.tree.metaData.defaultUserName;
@@ -469,6 +472,10 @@ NSString *const MPDocumentGroupKey                        = @"MPDocumentGroupKey
   NSString *defaultPassword = [NSString passwordWithDefaultSettings];
   if(defaultPassword) {
     newEntry.password = defaultPassword;
+  }
+  /* re-enable undo/redo if we did turn it off */
+  if(wasUndoEnabeld) {
+    [self.undoManager enableUndoRegistration];
   }
   [newEntry addToGroup:parent];
   [newEntry.undoManager setActionName:NSLocalizedString(@"ADD_ENTRY", "")];
@@ -485,8 +492,15 @@ NSString *const MPDocumentGroupKey                        = @"MPDocumentGroupKey
     return nil; // no new Groups in trash
   }
   KPKGroup *newGroup = [self.tree createGroup:parent];
+  /* setting properties on entries is undoable, but we do not want to record this so disable on creation */
+  BOOL wasUndoEnabeld = self.undoManager.isUndoRegistrationEnabled;
+  [self.undoManager disableUndoRegistration];
   newGroup.title = NSLocalizedString(@"DEFAULT_GROUP_NAME", @"Title for a newly created group");
   newGroup.iconId = MPIconFolder;
+  /* re-enable undo/redo if we did turn it off */
+  if(wasUndoEnabeld) {
+    [self.undoManager enableUndoRegistration];
+  }
   [newGroup addToGroup:parent];
   [newGroup.undoManager setActionName:NSLocalizedString(@"ADD_GROUP", "")];
   NSDictionary *userInfo = @{ MPDocumentGroupKey : newGroup };
@@ -571,6 +585,7 @@ NSString *const MPDocumentGroupKey                        = @"MPDocumentGroupKey
     for(KPKGroup *group in node.asGroup.childGroups) {
       [node.undoManager removeAllActionsWithTarget:group];
     }
+    //[self.undoManager setActionIsDiscardable:YES];
     [node remove];
   }
 }
