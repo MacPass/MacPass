@@ -1,14 +1,13 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="9532" systemVersion="15D21" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="10117" systemVersion="15F34" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
     <dependencies>
         <deployment identifier="macosx"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="9532"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="10117"/>
     </dependencies>
     <objects>
         <customObject id="-2" userLabel="File's Owner" customClass="MPInspectorViewController">
             <connections>
                 <outlet property="bottomBar" destination="2930" id="2995"/>
-                <outlet property="cancelEditButton" destination="3126" id="3141"/>
                 <outlet property="editButton" destination="3109" id="3122"/>
                 <outlet property="itemImageView" destination="2998" id="3024"/>
                 <outlet property="itemNameTextField" destination="3013" id="3025"/>
@@ -34,33 +33,11 @@
                                 <font key="font" metaFont="system"/>
                             </buttonCell>
                         </button>
-                        <button verticalHuggingPriority="750" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="3126">
-                            <rect key="frame" x="154" y="2" width="57" height="25"/>
-                            <buttonCell key="cell" type="roundTextured" title="Cancel" bezelStyle="texturedRounded" alignment="center" state="on" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="3127">
-                                <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
-                                <font key="font" metaFont="system"/>
-                            </buttonCell>
-                            <connections>
-                                <action selector="cancelChangesToSelectedItem:" target="-1" id="Hg9-6o-dRD"/>
-                            </connections>
-                        </button>
-                        <button hidden="YES" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="jBD-3D-knW">
-                            <rect key="frame" x="20" y="2" width="59" height="25"/>
-                            <buttonCell key="cell" type="roundTextured" title="History" bezelStyle="texturedRounded" alignment="center" enabled="NO" state="on" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="w1z-1n-b0m">
-                                <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
-                                <font key="font" metaFont="system"/>
-                            </buttonCell>
-                            <connections>
-                                <action selector="showHistory:" target="-1" id="Ay6-cl-onN"/>
-                            </connections>
-                        </button>
                     </subviews>
                     <constraints>
                         <constraint firstAttribute="height" constant="30" id="2949"/>
-                        <constraint firstItem="3126" firstAttribute="baseline" secondItem="3109" secondAttribute="baseline" id="3129"/>
                         <constraint firstAttribute="trailing" secondItem="3109" secondAttribute="trailing" constant="20" symbolic="YES" id="3138"/>
                         <constraint firstItem="3109" firstAttribute="centerY" secondItem="2930" secondAttribute="centerY" id="3139"/>
-                        <constraint firstItem="3109" firstAttribute="leading" secondItem="3126" secondAttribute="trailing" constant="8" symbolic="YES" id="3140"/>
                     </constraints>
                 </customView>
                 <imageView translatesAutoresizingMaskIntoConstraints="NO" id="2998" customClass="MPPopupImageView">

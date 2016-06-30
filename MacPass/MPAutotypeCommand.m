@@ -75,6 +75,26 @@ static CGKeyCode kMPFunctionKeyCodes[] = { kVK_F1, kVK_F2, kVK_F3, kVK_F4, kVK_F
   });
   return keypressCommands;
 }
+/* Commands that are actually just one symbol to be pasted */
++ (NSDictionary *)pasteableCommands {
+  static NSDictionary *pasteableCommands;
+  static dispatch_once_t onceToken;
+  dispatch_once(&onceToken, ^{
+    pasteableCommands = @{
+                          kKPKAutotypePlus: @"+",
+                          kKPKAutotypeOr: @"^",
+                          kKPKAutotypePercent: @"%",
+                          kKPKAutotypeTilde : @"~",
+                          kKPKAutotypeRoundBracketLeft : @"(",
+                          kKPKAutotypeRoundBracketRight : @")",
+                          kKPKAutotypeSquareBracketLeft : @"[",
+                          kKPKAutotypeSquareBracketRight : @"]",
+                          kKPKAutotypeCurlyBracketLeft: @"{",
+                          kKPKAutotypeCurlyBracketRight: @"}"
+                          };
+  });
+  return pasteableCommands;
+}
 
 /**
  *  Mapping for modifier to CGEventFlags.
@@ -112,7 +132,7 @@ static CGKeyCode kMPFunctionKeyCodes[] = { kVK_F1, kVK_F2, kVK_F3, kVK_F4, kVK_F
   NSUInteger lastLocation = 0;
   CGEventFlags collectedModifers = 0;
   for(NSValue *rangeValue in commandRanges) {
-    NSRange commandRange = [rangeValue rangeValue];
+    NSRange commandRange = rangeValue.rangeValue;
     /* All non-commands will get translated into paste commands */
     if(commandRange.location > lastLocation) {
       /* If there were modifiers we need to use the next single stroke and update the modifier command */
@@ -268,6 +288,13 @@ static CGKeyCode kMPFunctionKeyCodes[] = { kVK_F1, kVK_F2, kVK_F3, kVK_F4, kVK_F
     [commands addObject:[[MPAutotypeKeyPress alloc] initWithModifierMask:flags keyCode:keyCode]];
     return; // Done
   }
+  /* {PLUS}, {TILDE}, {PERCENT}, {+}, etc */
+  NSString *pasteConent = [self pasteableCommands][uppercaseCommand];
+  if(pasteConent) {
+   [self appendAppropriatePasteCommandForEntry:entry withContent:pasteConent toCommands:commands];
+    return; // Done
+  }
+  
   /* F1-16 */
   NSRegularExpression *functionKeyRegExp = [[NSRegularExpression alloc] initWithPattern:kKPKAutotypeFunctionMaskRegularExpression options:NSRegularExpressionCaseInsensitive error:0];
   NSTextCheckingResult *functionResult = [functionKeyRegExp firstMatchInString:commandString options:0 range:NSMakeRange(0, commandString.length)];
@@ -321,6 +348,7 @@ static CGKeyCode kMPFunctionKeyCodes[] = { kVK_F1, kVK_F2, kVK_F3, kVK_F4, kVK_F
     }
   }
   else {
+    /* Fallback */
     [self appendAppropriatePasteCommandForEntry:entry withContent:commandString toCommands:commands];
   }
 }
