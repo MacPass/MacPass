@@ -13,7 +13,6 @@
 #import "MPAutotypeContext.h"
 #import "MPAutotypePaste.h"
 
-#import "MPOverlayWindowController.h"
 #import "MPPasteBoardController.h"
 #import "MPSettingsHelper.h"
 
@@ -158,9 +157,11 @@ static MPAutotypeDaemon *_sharedInstance;
   MPAutotypeContext *context = [self _autotypeContextForDocuments:documents forWindowTitle:self.targetWindowTitle preferredEntry:entryOrNil];
   /* TODO: that's popping up if the mulit seleciton dialog goes up! */
   if(!entryOrNil) {
-    NSImage *appIcon = [NSApplication sharedApplication].applicationIconImage;
-    NSString *label = context ? NSLocalizedString(@"AUTOTYPE_OVERLAY_SINGLE_MATCH", "") : NSLocalizedString(@"AUTOTYPE_OVERLAY_NO_MATCH", "");
-    [[MPOverlayWindowController sharedController] displayOverlayImage:appIcon label:label atView:nil];
+    NSUserNotification *notification = [[NSUserNotification alloc] init];
+    notification.title = @"MacPass";
+    notification.informativeText = context ? NSLocalizedString(@"AUTOTYPE_OVERLAY_SINGLE_MATCH", "") : NSLocalizedString(@"AUTOTYPE_OVERLAY_NO_MATCH", "");
+    
+    [[NSUserNotificationCenter defaultUserNotificationCenter] deliverNotification:notification];
   }
   [self _performAutotypeForContext:context];
 }
