@@ -151,7 +151,6 @@
 		4C77E37315B84A240093A587 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C77E37215B84A240093A587 /* main.m */; };
 		4C77E37A15B84A240093A587 /* MPAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C77E37915B84A240093A587 /* MPAppDelegate.m */; };
 		4C77E37D15B84A240093A587 /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4C77E37B15B84A240093A587 /* MainMenu.xib */; };
-		4C7931061D0F0B0800A511E8 /* MPNodeDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C7931051D0F0B0800A511E8 /* MPNodeDelegate.m */; };
 		4C7ABA4817BAEC6700FF5799 /* 15_ScannerTemplate.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 4C7ABA4317BAEC6700FF5799 /* 15_ScannerTemplate.pdf */; };
 		4C7ABA4917BAEC6700FF5799 /* 16_BrowserTemplate.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 4C7ABA4417BAEC6700FF5799 /* 16_BrowserTemplate.pdf */; };
 		4C7ABA4A17BAEC6700FF5799 /* 17_CDRomTemplate.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 4C7ABA4517BAEC6700FF5799 /* 17_CDRomTemplate.pdf */; };
@@ -514,8 +513,6 @@
 		4C77E37415B84A240093A587 /* MacPass-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "MacPass-Prefix.pch"; sourceTree = "<group>"; };
 		4C77E37815B84A240093A587 /* MPAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MPAppDelegate.h; sourceTree = "<group>"; };
 		4C77E37915B84A240093A587 /* MPAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MPAppDelegate.m; sourceTree = "<group>"; };
-		4C7931041D0F0B0800A511E8 /* MPNodeDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MPNodeDelegate.h; sourceTree = "<group>"; };
-		4C7931051D0F0B0800A511E8 /* MPNodeDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MPNodeDelegate.m; sourceTree = "<group>"; };
 		4C7ABA4317BAEC6700FF5799 /* 15_ScannerTemplate.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = 15_ScannerTemplate.pdf; sourceTree = "<group>"; };
 		4C7ABA4417BAEC6700FF5799 /* 16_BrowserTemplate.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = 16_BrowserTemplate.pdf; sourceTree = "<group>"; };
 		4C7ABA4517BAEC6700FF5799 /* 17_CDRomTemplate.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = 17_CDRomTemplate.pdf; sourceTree = "<group>"; };
@@ -944,8 +941,6 @@
 				4CA0F3EC1A3074B50067C0E5 /* MPWindowTitleComboBoxDelegate.m */,
 				4CE501321BBC47F500FB819D /* MPTagsTokenFieldDelegate.h */,
 				4CE501331BBC47F500FB819D /* MPTagsTokenFieldDelegate.m */,
-				4C7931041D0F0B0800A511E8 /* MPNodeDelegate.h */,
-				4C7931051D0F0B0800A511E8 /* MPNodeDelegate.m */,
 			);
 			name = Delegates;
 			sourceTree = "<group>";
@@ -1679,7 +1674,6 @@
 				4CD034AC1BFE113B003C002C /* MPPluginManager.m in Sources */,
 				4C77E37315B84A240093A587 /* main.m in Sources */,
 				4CBA2ABA17074C07006D8139 /* MPSettingsHelper.m in Sources */,
-				4C7931061D0F0B0800A511E8 /* MPNodeDelegate.m in Sources */,
 				4C77E37A15B84A240093A587 /* MPAppDelegate.m in Sources */,
 				4C37A84015B8B474005EF8EE /* MPOutlineDataSource.m in Sources */,
 				4CA0B2F915BCAF6700654E32 /* MPGeneralSettingsController.m in Sources */,
