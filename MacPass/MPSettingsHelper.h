@@ -59,6 +59,7 @@ APPKIT_EXTERN NSString *const kMPSettingsKeyEnableQuicklookPreview;
 /* Workflow */
 APPKIT_EXTERN NSString *const kMPSettingsKeyDoubleClickURLAction;
 APPKIT_EXTERN NSString *const kMPSettingsKeyDoubleClickTitleAction;
+APPKIT_EXTERN NSString *const kMPSettingsKeyUpdatePasswordOnTemplateEntries;
 
 /* Plugins */
 APPKIT_EXTERN NSString *const kMPSettingsKeyLoadUnsecurePlugins;            // If set to YES this will load all plugins regardless of their codesignature status

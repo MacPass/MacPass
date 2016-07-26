@@ -57,6 +57,7 @@ NSString *const kMPSettingsKeyPasswordDefaultsForEntry                = @"Passwo
 
 NSString *const kMPSettingsKeyDoubleClickURLAction                    = @"DoubleClickURLAction";
 NSString *const kMPSettingsKeyDoubleClickTitleAction                  = @"DoubleClickTitleAction";
+NSString *const kMPSettingsKeyUpdatePasswordOnTemplateEntries         = @"UpdatePasswordOnTemplateEntries";
 
 NSString *const kMPSettingsKeyLoadUnsecurePlugins                     = @"MPLoadUnsecurePlugins";
 
@@ -124,7 +125,8 @@ NSString *const kMPDeprecatedSettingsKeyShowMenuItem                      = @"Sh
                          kMPSettingsKeyPasswordCustomString: @"",
                          kMPSettingsKeyDoubleClickURLAction: @(MPDoubleClickURLActionCopy),
                          kMPSettingsKeyDoubleClickTitleAction: @(MPDoubleClickTitleActionInspect),
-                         kMPSettingsKeyLoadUnsecurePlugins: @NO
+                         kMPSettingsKeyLoadUnsecurePlugins: @NO,
+                         kMPSettingsKeyUpdatePasswordOnTemplateEntries: @YES
                          };
   });
   return standardDefaults;
