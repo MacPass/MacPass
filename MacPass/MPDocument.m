@@ -604,6 +604,19 @@ NSString *const MPDocumentGroupKey                        = @"MPDocumentGroupKey
     KPKGroup *group = self.selectedGroups.count == 1 ? self.selectedGroups.firstObject : nil;
     if(templateEntry && group) {
       KPKEntry *copy = [templateEntry copyWithTitle:templateEntry.title options:kKPKCopyOptionNone];
+      
+      BOOL updatePassword = [[NSUserDefaults standardUserDefaults] boolForKey:kMPSettingsKeyUpdatePasswordOnTemplateEntries];
+      if( updatePassword ) {
+        BOOL undoEnabled = self.undoManager.isUndoRegistrationEnabled;
+        [self.undoManager disableUndoRegistration];
+        NSString *password = [NSString passwordWithDefaultSettings];
+        if( password ) {
+          copy.password = password;
+        }
+        if(undoEnabled) {
+          [self.undoManager enableUndoRegistration];
+        }
+      }
       [copy addToGroup:group];
       [self.undoManager setActionName:NSLocalizedString(@"ADD_TREMPLATE_ENTRY", "")];
     }
