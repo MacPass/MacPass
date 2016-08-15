@@ -26,11 +26,11 @@
   dispatch_once(&onceToken, ^{
     ownerSkipList = @[ @"SystemUIServer", @"Window Server", @"Dock" ];
   });
-  NSArray *currentWindows = CFBridgingRelease(CGWindowListCopyWindowInfo(kCGWindowListOptionOnScreenOnly | kCGWindowListExcludeDesktopElements, kCGNullWindowID));
+  NSArray *currentWindows = CFBridgingRelease(CGWindowListCopyWindowInfo(kCGWindowListExcludeDesktopElements, kCGNullWindowID));
   NSMutableArray *windowTitles = [[NSMutableArray alloc] initWithCapacity:MAX(1,currentWindows.count)];
   for(NSDictionary *windowDict in currentWindows) {
     NSString *windowName = windowDict[(NSString *)kCGWindowName];
-    if([windowName length] <= 0) {
+    if(windowName.length <= 0) {
       continue; // No title, skip
     }
     NSString *ownerName = windowDict[(NSString *)kCGWindowOwnerName];
