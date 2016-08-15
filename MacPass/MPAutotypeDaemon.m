@@ -16,6 +16,7 @@
 #import "MPPasteBoardController.h"
 #import "MPSettingsHelper.h"
 
+#import "NSApplication+MPAdditions.h"
 
 #import "KeePassKit/KeePassKit.h"
 
@@ -158,8 +159,8 @@ static MPAutotypeDaemon *_sharedInstance;
   /* TODO: that's popping up if the mulit seleciton dialog goes up! */
   if(!entryOrNil) {
     NSUserNotification *notification = [[NSUserNotification alloc] init];
-    notification.title = @"MacPass";
-    notification.informativeText = context ? NSLocalizedString(@"AUTOTYPE_OVERLAY_SINGLE_MATCH", "") : NSLocalizedString(@"AUTOTYPE_OVERLAY_NO_MATCH", "");
+    notification.title = NSApp.applicationName;
+    notification.informativeText = context ? [NSString stringWithFormat:NSLocalizedString(@"AUTOTYPE_OVERLAY_NO_MATCH_FOR_%@", ""), self.targetWindowTitle] : NSLocalizedString(@"AUTOTYPE_OVERLAY_NO_MATCH", "");
     
     [[NSUserNotificationCenter defaultUserNotificationCenter] deliverNotification:notification];
   }
