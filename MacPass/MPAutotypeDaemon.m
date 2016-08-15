@@ -160,8 +160,12 @@ static MPAutotypeDaemon *_sharedInstance;
   if(!entryOrNil) {
     NSUserNotification *notification = [[NSUserNotification alloc] init];
     notification.title = NSApp.applicationName;
-    notification.informativeText = context ? [NSString stringWithFormat:NSLocalizedString(@"AUTOTYPE_OVERLAY_NO_MATCH_FOR_%@", ""), self.targetWindowTitle] : NSLocalizedString(@"AUTOTYPE_OVERLAY_NO_MATCH", "");
-    
+    if(context) {
+      notification.informativeText = NSLocalizedString(@"AUTOTYPE_OVERLAY_SINGLE_MATCH", "");
+    }
+    else {
+      notification.informativeText = [NSString stringWithFormat:NSLocalizedString(@"AUTOTYPE_OVERLAY_NO_MATCH_FOR_%@", ""), self.targetWindowTitle];
+    }
     [[NSUserNotificationCenter defaultUserNotificationCenter] deliverNotification:notification];
   }
   [self _performAutotypeForContext:context];
