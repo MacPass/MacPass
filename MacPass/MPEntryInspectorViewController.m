@@ -299,7 +299,7 @@ static NSString *kMPContentBindingString3 = @"content.%@.%@.%@";
   [_activePopover showRelativeToRect:NSZeroRect ofView:view preferredEdge:edge];
 }
 
-- ( BOOL) popoverShouldClose: ( NSPopover*) popover {
+- (BOOL)popoverShouldClose:(NSPopover *)popover {
   /* See http://stackoverflow.com/a/34215887/353268
    * PasswordCreator uses a NSNumberFormatter to validate the input.
    * If the user types something that's not a number it will open a
@@ -307,10 +307,7 @@ static NSString *kMPContentBindingString3 = @"content.%@.%@.%@";
    *
    * This stops the popover to close when the dialog is active.
    */
-  if( ![[[[ popover contentViewController] view] window] makeFirstResponder: popover]) {
-    return NO;
-  }
-  return YES;
+  return ![popover.contentViewController.view.window makeFirstResponder:popover];
 }
 
 - (void)popoverDidClose:(NSNotification *)notification {
