@@ -235,7 +235,7 @@ NSString *const MPDocumentGroupKey                        = @"MPDocumentGroupKey
   self.savePanelViewController.savePanel = savePanel;
   self.savePanelViewController.document = self;
   
-  [savePanel setAccessoryView:[self.savePanelViewController view]];
+  savePanel.accessoryView = self.savePanelViewController.view;
   [self.savePanelViewController updateView];
   
   return YES;
@@ -291,7 +291,10 @@ NSString *const MPDocumentGroupKey                        = @"MPDocumentGroupKey
 
 - (void)writeXMLToURL:(NSURL *)url {
   NSData *xmlData = [self.tree xmlData];
-  [xmlData writeToURL:url atomically:YES];
+  NSError *error;
+  if(![xmlData writeToURL:url options:0 error:&error]) {
+    // error handling
+  }
 }
 
 - (void)readXMLfromURL:(NSURL *)url {
