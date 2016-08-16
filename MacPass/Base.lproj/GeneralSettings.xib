@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="9531" systemVersion="15C50" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="10117" systemVersion="15G31" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
     <dependencies>
         <deployment identifier="macosx"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="9531"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="10117"/>
         <capability name="box content view" minToolsVersion="7.0"/>
     </dependencies>
     <objects>
@@ -29,8 +29,8 @@
                         <rect key="frame" x="1" y="1" width="364" height="230"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <textField verticalHuggingPriority="750" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="431">
-                                <rect key="frame" x="16" y="202" width="124" height="17"/>
+                            <textField verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="431">
+                                <rect key="frame" x="16" y="202" width="120" height="17"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="17" id="803"/>
                                 </constraints>
@@ -60,8 +60,8 @@
                                     </menu>
                                 </popUpButtonCell>
                             </popUpButton>
-                            <button verticalHuggingPriority="251" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="447">
-                                <rect key="frame" x="31" y="178" width="172" height="18"/>
+                            <button verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="447">
+                                <rect key="frame" x="31" y="178" width="164" height="18"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="14" id="773"/>
                                 </constraints>
@@ -87,23 +87,23 @@
                                     </menu>
                                 </popUpButtonCell>
                             </popUpButton>
-                            <button misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="630">
-                                <rect key="frame" x="31" y="131" width="121" height="18"/>
+                            <button translatesAutoresizingMaskIntoConstraints="NO" id="630">
+                                <rect key="frame" x="31" y="131" width="119" height="18"/>
                                 <buttonCell key="cell" type="check" title="Lock after sleep" bezelStyle="regularSquare" imagePosition="left" enabled="NO" state="on" inset="2" id="631">
                                     <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                                     <font key="font" metaFont="system"/>
                                 </buttonCell>
                             </button>
-                            <textField verticalHuggingPriority="750" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="805">
-                                <rect key="frame" x="16" y="155" width="97" height="17"/>
+                            <textField verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="805">
+                                <rect key="frame" x="16" y="155" width="93" height="17"/>
                                 <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Lock while idle" id="806">
                                     <font key="font" metaFont="system"/>
                                     <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
                                     <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                 </textFieldCell>
                             </textField>
-                            <button verticalHuggingPriority="249" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="bSt-Wf-FNZ">
-                                <rect key="frame" x="16" y="106" width="226" height="18"/>
+                            <button verticalHuggingPriority="249" translatesAutoresizingMaskIntoConstraints="NO" id="bSt-Wf-FNZ">
+                                <rect key="frame" x="16" y="106" width="220" height="18"/>
                                 <buttonCell key="cell" type="check" title="Remember Keyfile for Databases" bezelStyle="regularSquare" imagePosition="left" state="on" inset="2" id="r6q-He-nYU">
                                     <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                                     <font key="font" metaFont="system"/>
@@ -118,8 +118,8 @@
                                     <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                 </textFieldCell>
                             </textField>
-                            <button verticalHuggingPriority="750" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="oQr-FC-HkN">
-                                <rect key="frame" x="156" y="7" width="196" height="32"/>
+                            <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="oQr-FC-HkN">
+                                <rect key="frame" x="162" y="7" width="190" height="32"/>
                                 <buttonCell key="cell" type="push" title="Clear all stored locations" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="8Ri-2s-c39">
                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                     <font key="font" metaFont="system"/>
@@ -165,15 +165,15 @@
                         <rect key="frame" x="1" y="1" width="364" height="58"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <button verticalHuggingPriority="252" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="530">
-                                <rect key="frame" x="16" y="12" width="240" height="18"/>
+                            <button verticalHuggingPriority="252" translatesAutoresizingMaskIntoConstraints="NO" id="530">
+                                <rect key="frame" x="16" y="12" width="234" height="18"/>
                                 <buttonCell key="cell" type="check" title="Reopen last Database after Launch" bezelStyle="regularSquare" imagePosition="left" state="on" inset="2" id="531">
                                     <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                                     <font key="font" metaFont="system"/>
                                 </buttonCell>
                             </button>
-                            <button verticalHuggingPriority="252" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="879">
-                                <rect key="frame" x="16" y="32" width="228" height="18"/>
+                            <button verticalHuggingPriority="252" translatesAutoresizingMaskIntoConstraints="NO" id="879">
+                                <rect key="frame" x="16" y="32" width="223" height="18"/>
                                 <buttonCell key="cell" type="check" title="Create new Database if activated" bezelStyle="regularSquare" imagePosition="left" enabled="NO" state="on" inset="2" id="880">
                                     <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                                     <font key="font" metaFont="system"/>

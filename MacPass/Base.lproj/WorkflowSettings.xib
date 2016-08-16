@@ -57,12 +57,12 @@
                             </textField>
                             <popUpButton verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="40">
                                 <rect key="frame" x="154" y="11" width="138" height="26"/>
-                                <popUpButtonCell key="cell" type="push" bezelStyle="rounded" alignment="left" lineBreakMode="truncatingTail" borderStyle="borderAndBezel" imageScaling="proportionallyDown" inset="2" id="41">
+                                <popUpButtonCell key="cell" type="push" title="Opens Inspector" bezelStyle="rounded" alignment="left" lineBreakMode="truncatingTail" state="on" borderStyle="borderAndBezel" imageScaling="proportionallyDown" inset="2" selectedItem="44" id="41">
                                     <behavior key="behavior" lightByBackground="YES" lightByGray="YES"/>
                                     <font key="font" metaFont="menu"/>
                                     <menu key="menu" title="OtherViews" id="42">
                                         <items>
-                                            <menuItem title="Opens Inspector" id="44"/>
+                                            <menuItem title="Opens Inspector" state="on" id="44"/>
                                             <menuItem title="Is Ignored" id="43"/>
                                         </items>
                                     </menu>
