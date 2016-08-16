@@ -109,7 +109,7 @@ NSString *const MPDocumentGroupKey                        = @"MPDocumentGroupKey
 }
 
 + (BOOL)autosavesInPlace {
-  return NO;
+  return YES;
 }
 
 - (id)init {
@@ -140,13 +140,32 @@ NSString *const MPDocumentGroupKey                        = @"MPDocumentGroupKey
   [self addWindowController:windowController];
 }
 
-- (BOOL)writeToURL:(NSURL *)url ofType:(NSString *)typeName error:(NSError **)outError {
+- (BOOL)checkAutosavingSafetyAndReturnError:(NSError **)outError {
+  if(![super checkAutosavingSafetyAndReturnError:outError]) {
+    return NO; // default checking has found an error!
+  }
+  /* FIXME potential overriding of differnt file format! */
+  if(self.encryptedData) {
+    return YES;
+  }
+  if(self.compositeKey.hasPasswordOrKeyFile) {
+    return YES; // key is set, so autosave should be save
+  }
+  NSDictionary *userInfo = @{ NSLocalizedDescriptionKey: NSLocalizedString(@"NO_PASSWORD_OR_KEY_SET", "") };
+  *outError = [NSError errorWithDomain:MPErrorDomain code:0 userInfo:userInfo];
+  return NO;
+}
+
+- (NSData *)dataOfType:(NSString *)typeName error:(NSError * _Nullable __autoreleasing *)outError {
+  if(self.encrypted) {
+    // return self.encryptedData;
+  }
   if(!self.compositeKey.hasPasswordOrKeyFile) {
     if(outError != NULL) {
       NSDictionary *userInfo = @{ NSLocalizedDescriptionKey: NSLocalizedString(@"NO_PASSWORD_OR_KEY_SET", "") };
       *outError = [NSError errorWithDomain:MPErrorDomain code:0 userInfo:userInfo];
     }
-    return NO; // No password or key. No save possible
+    return nil; // Saving without a password/key is not possible
   }
   NSString *fileType = self.fileTypeFromLastRunSavePanel;
   KPKVersion version = [self.class versionForFileType:fileType];
@@ -155,14 +174,9 @@ NSString *const MPDocumentGroupKey                        = @"MPDocumentGroupKey
       NSDictionary *userInfo = @{ NSLocalizedDescriptionKey: NSLocalizedString(@"UNKNOWN_FILE_VERSION", "") };
       *outError = [NSError errorWithDomain:MPErrorDomain code:0 userInfo:userInfo];
     }
-    return NO;
+    return nil; // We do not know what version to save!
   }
-  NSData *treeData = [self.tree encryptWithPassword:self.compositeKey forVersion:version error:outError];
-  BOOL sucess = [treeData writeToURL:url options:0 error:outError];
-  if(!sucess) {
-    NSLog(@"%@", (*outError).localizedDescription);
-  }
-  return sucess;
+  return [self.tree encryptWithPassword:self.compositeKey forVersion:version error:outError];
 }
 
 - (BOOL)readFromURL:(NSURL *)url ofType:(NSString *)typeName error:(NSError **)outError {
@@ -228,6 +242,7 @@ NSString *const MPDocumentGroupKey                        = @"MPDocumentGroupKey
 }
 
 - (NSString *)fileTypeFromLastRunSavePanel {
+  /* TODO evaluate if this is still necessary! */
   if(self.savePanelViewController) {
     return [self.class fileTypeForVersion:self.savePanelViewController.selectedVersion];
   }
