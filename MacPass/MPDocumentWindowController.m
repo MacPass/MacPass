@@ -253,11 +253,11 @@ typedef void (^MPPasswordChangedBlock)(BOOL didChangePassword);
 
 - (void)exportAsXML:(id)sender {
   NSSavePanel *savePanel = [NSSavePanel savePanel];
-  MPDocument *document = [self document];
-  [savePanel setNameFieldStringValue:[document displayName]];
-  [savePanel setAllowsOtherFileTypes:YES];
-  [savePanel setAllowedFileTypes:@[(id)kUTTypeXML]];
-  [savePanel setCanSelectHiddenExtension:YES];
+  MPDocument *document = self.document;
+  savePanel.nameFieldStringValue = document.displayName;
+  savePanel.allowsOtherFileTypes = YES;
+  savePanel.allowedFileTypes = @[(id)kUTTypeXML];
+  savePanel.canSelectHiddenExtension = YES;
   [savePanel beginSheetModalForWindow:self.window completionHandler:^(NSInteger result) {
     if(result == NSFileHandlingPanelOKButton) {
       [document writeXMLToURL:savePanel.URL];
@@ -267,11 +267,11 @@ typedef void (^MPPasswordChangedBlock)(BOOL didChangePassword);
 
 - (void)importFromXML:(id)sender {
   NSOpenPanel *openPanel = [NSOpenPanel openPanel];
-  MPDocument *document = [self document];
-  [openPanel setAllowsMultipleSelection:NO];
-  [openPanel setCanChooseDirectories:NO];
-  [openPanel setCanChooseFiles:YES];
-  [openPanel setAllowedFileTypes:@[(id)kUTTypeXML]];
+  MPDocument *document = self.document;
+  openPanel.allowsMultipleSelection = NO;
+  openPanel.canChooseDirectories = NO;
+  openPanel.canChooseFiles = YES;
+  openPanel.allowedFileTypes = @[(id)kUTTypeXML];
   [openPanel beginSheetModalForWindow:self.window completionHandler:^(NSInteger result) {
     if(result == NSFileHandlingPanelOKButton) {
       [document readXMLfromURL:openPanel.URL];
