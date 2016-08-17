@@ -112,7 +112,7 @@ NSString *const _MPOutlinveViewHeaderViewIdentifier = @"HeaderCell";
     _bindingEstablished = YES;
   }
   NSTreeNode *node = [_outlineView itemAtRow:0];
-  NSInteger topRow;
+  NSInteger topRow = 0;
   [self _expandItems:node topRow:&topRow];
   if(topRow > 0) {
     NSRect rowRect = [self.outlineView rectOfRow:topRow];
