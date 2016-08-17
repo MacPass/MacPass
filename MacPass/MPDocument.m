@@ -152,7 +152,9 @@ NSString *const MPDocumentGroupKey                        = @"MPDocumentGroupKey
     return YES; // key is set, so autosave should be save
   }
   NSDictionary *userInfo = @{ NSLocalizedDescriptionKey: NSLocalizedString(@"NO_PASSWORD_OR_KEY_SET", "") };
-  *outError = [NSError errorWithDomain:MPErrorDomain code:0 userInfo:userInfo];
+  if(outError != NULL) {
+    *outError = [NSError errorWithDomain:MPErrorDomain code:0 userInfo:userInfo];
+  }
   return NO;
 }
 
