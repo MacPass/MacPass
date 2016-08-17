@@ -196,14 +196,14 @@ typedef void (^MPPasswordChangedBlock)(BOOL didChangePassword);
   if([fileType isEqualToString:MPLegacyDocumentUTI]) {
     if(document.tree.minimumVersion != KPKLegacyVersion) {
       NSAlert *alert = [[NSAlert alloc] init];
-      [alert setAlertStyle:NSWarningAlertStyle];
-      [alert setMessageText:NSLocalizedString(@"WARNING_ON_LOSSY_SAVE", "")];
-      [alert setInformativeText:NSLocalizedString(@"WARNING_ON_LOSSY_SAVE_DESCRIPTION", "Informative Text displayed when saving would yield data loss")];
+      alert.alertStyle = NSWarningAlertStyle;
+      alert.messageText = NSLocalizedString(@"WARNING_ON_LOSSY_SAVE", "");
+      alert.informativeText = NSLocalizedString(@"WARNING_ON_LOSSY_SAVE_DESCRIPTION", "Informative Text displayed when saving would yield data loss");
+      
       [alert addButtonWithTitle:NSLocalizedString(@"SAVE_LOSSY", "Save lossy")];
       [alert addButtonWithTitle:NSLocalizedString(@"CHANGE_FORMAT", "")];
       [alert addButtonWithTitle:NSLocalizedString(@"CANCEL", "Cancel")];
       
-      //[[alert buttons][2] setKeyEquivalent:[NSString stringWithFormat:@"%c", 0x1b]];
       [alert beginSheetModalForWindow:self.window
                         modalDelegate:self
                        didEndSelector:@selector(_dataLossOnSaveAlertDidEnd:returnCode:contextInfo:)
@@ -232,7 +232,7 @@ typedef void (^MPPasswordChangedBlock)(BOOL didChangePassword);
     return;
   }
   /* All set and good ready to save */
-  [[self document] saveDocument:sender];
+  [self.document saveDocument:sender];
 }
 - (void)saveDocumentAs:(id)sender {
   self.passwordChangedBlock = nil;
@@ -297,6 +297,10 @@ typedef void (^MPPasswordChangedBlock)(BOOL didChangePassword);
 }
 
 - (void)editPassword:(id)sender {
+  [self editPasswordWithCompetionHandler:nil];
+}
+
+- (void)editPasswordWithCompetionHandler:(void (^)(NSInteger result))handler {
   if(!self.passwordEditWindowController) {
     self.passwordEditWindowController = [[MPPasswordEditWindowController alloc] init];
     self.passwordEditWindowController.delegate = self;
@@ -422,7 +426,7 @@ typedef void (^MPPasswordChangedBlock)(BOOL didChangePassword);
   NSView *entryView = self.entryViewController.view;
   
   /*
-   The current easy way to prevent layout hiccups is to add the inspect
+   The current easy way to prevent layout hiccups is to add the inspector
    Add all needed constraints an then remove it again, if it was hidden
    */
   BOOL removeInspector = NO;
@@ -488,12 +492,15 @@ typedef void (^MPPasswordChangedBlock)(BOOL didChangePassword);
   MPDocument *document = [self document];
   if(document.shouldEnforcePasswordChange) {
     NSAlert *alert = [[NSAlert alloc] init];
-    [alert setAlertStyle:NSCriticalAlertStyle];
-    [alert setMessageText:NSLocalizedString(@"ENFORCE_PASSWORD_CHANGE_ALERT_TITLE", "")];
-    [alert setInformativeText:NSLocalizedString(@"ENFORCE_PASSWORD_CHANGE_ALERT_DESCRIPTION", "")];
+    
+    alert.alertStyle = NSCriticalAlertStyle;
+    alert.messageText = NSLocalizedString(@"ENFORCE_PASSWORD_CHANGE_ALERT_TITLE", "");
+    alert.informativeText = NSLocalizedString(@"ENFORCE_PASSWORD_CHANGE_ALERT_DESCRIPTION", "");
+    
     [alert addButtonWithTitle:NSLocalizedString(@"CHANGE_PASSWORD_WITH_DOTS", "")];
     [alert addButtonWithTitle:NSLocalizedString(@"CANCEL", "")];
-    [[alert buttons][1] setKeyEquivalent:[NSString stringWithFormat:@"%c", 0x1b]];
+    alert.buttons[1].keyEquivalent = [NSString stringWithFormat:@"%c", 0x1b];
+    
     [alert beginSheetModalForWindow:self.window
                       modalDelegate:self
                      didEndSelector:@selector(_enforcePasswordChangeAlertDidEnd:returnCode:contextInfo:)
@@ -501,12 +508,15 @@ typedef void (^MPPasswordChangedBlock)(BOOL didChangePassword);
   }
   else if(document.shouldRecommendPasswordChange) {
     NSAlert *alert = [[NSAlert alloc] init];
-    [alert setAlertStyle:NSInformationalAlertStyle];
-    [alert setMessageText:NSLocalizedString(@"RECOMMEND_PASSWORD_CHANGE_ALERT_TITLE", "")];
-    [alert setInformativeText:NSLocalizedString(@"RECOMMEND_PASSWORD_CHANGE_ALERT_DESCRIPTION", "")];
+    
+    alert.alertStyle = NSInformationalAlertStyle;
+    alert.messageText = NSLocalizedString(@"RECOMMEND_PASSWORD_CHANGE_ALERT_TITLE", "");
+    alert.informativeText = NSLocalizedString(@"RECOMMEND_PASSWORD_CHANGE_ALERT_DESCRIPTION", "");
+    
     [alert addButtonWithTitle:NSLocalizedString(@"CHANGE_PASSWORD_WITH_DOTS", "")];
     [alert addButtonWithTitle:NSLocalizedString(@"CANCEL", "")];
-    [[alert buttons][1] setKeyEquivalent:[NSString stringWithFormat:@"%c", 0x1b]];
+    alert.buttons[1].keyEquivalent = [NSString stringWithFormat:@"%c", 0x1b];
+    
     [alert beginSheetModalForWindow:self.window
                       modalDelegate:self
                      didEndSelector:@selector(_recommentPasswordChangeAlertDidEnd:returnCode:contextInfo:)
@@ -519,14 +529,12 @@ typedef void (^MPPasswordChangedBlock)(BOOL didChangePassword);
   switch(returnCode) {
     case NSAlertFirstButtonReturn:
       /* Save lossy */
-      [[self document] saveDocument:nil];
+      [self.document saveDocument:nil];
       return;
       
     case NSAlertSecondButtonReturn:
-      /* Change Format */
-      //[[self document] setFileType:[MPDocument fileTypeForVersion:KPKXmlVersion]];
-      [[alert window] orderOut:nil];
-      [[self document] saveDocumentAs:nil];
+      [alert.window orderOut:nil];
+      [self.document saveDocumentAs:nil];
       return;
       
     case NSAlertThirdButtonReturn:
@@ -562,8 +570,11 @@ typedef void (^MPPasswordChangedBlock)(BOOL didChangePassword);
   self.passwordEditWindowController = nil;
 }
 
-#pragma mark -
-#pragma mark UI Helper
+- (void)_settingsSheetDidEnd:(NSWindow *)sheet returnCode:(NSInteger)returnCode contextInfo:(void *)contextInfo {
+  /* cleanup the window controller */
+  [self.document removeWindowController:self.documentSettingsWindowController];
+  self.documentSettingsWindowController = nil;
+}
 
 - (void)_showDatabaseSetting:(MPDatabaseSettingsTab)tab {
   if(!self.documentSettingsWindowController) {
@@ -579,11 +590,8 @@ typedef void (^MPPasswordChangedBlock)(BOOL didChangePassword);
   
 }
 
-- (void)_settingsSheetDidEnd:(NSWindow *)sheet returnCode:(NSInteger)returnCode contextInfo:(void *)contextInfo {
-  /* cleanup the window controller */
-  [self.document removeWindowController:self.documentSettingsWindowController];
-  self.documentSettingsWindowController = nil;
-}
+#pragma mark -
+#pragma mark UI Helper
 
 - (BOOL)_isInspectorVisible {
   NSView *inspectorView = [self.inspectorViewController view];

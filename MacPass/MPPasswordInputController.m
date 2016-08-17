@@ -96,7 +96,7 @@
                           keyFileURL:self.keyPathControl.URL
                                error:&error]) {
       [self _showError:error];
-      [[[self view] window] shakeWindow:nil];
+      [self.view.window shakeWindow:nil];
     }
   }
 }
