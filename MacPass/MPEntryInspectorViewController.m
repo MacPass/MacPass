@@ -51,7 +51,6 @@ typedef NS_ENUM(NSUInteger, MPEntryTab) {
 @property (nonatomic, assign) MPEntryTab activeTab;
 @property (strong) NSPopover *activePopover;
 @property (strong) NSObjectController *entryController;
-@property (readonly, nonatomic) KPKEntry *contentEntry;
 
 
 //@property (nonatomic, weak) KPKEntry *entry;
@@ -64,7 +63,6 @@ typedef NS_ENUM(NSUInteger, MPEntryTab) {
 static NSString *kMPContentBindingString1 = @"content.%@";
 static NSString *kMPContentBindingString2 = @"content.%@.%@";
 static NSString *kMPContentBindingString3 = @"content.%@.%@.%@";
-
 
 - (NSString *)nibName {
   return @"EntryInspectorView";
@@ -132,7 +130,6 @@ static NSString *kMPContentBindingString3 = @"content.%@.%@.%@";
 
 - (void)setupBindings:(MPDocument *)document {
   [self.entryController bind:NSContentObjectBinding toObject:self withKeyPath:NSStringFromSelector(@selector(representedObject)) options:nil];
-  //  [self.entryController bind:NSContentObjectBinding toObject:document withKeyPath:NSStringFromSelector(@selector(selectedEntry)) options:nil];
 }
 
 - (void)registerNotificationsForDocument:(MPDocument *)document {
