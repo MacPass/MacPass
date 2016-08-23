@@ -50,7 +50,7 @@ typedef NS_ENUM(NSUInteger, MPEntryTab) {
 @property (nonatomic, assign) BOOL showPassword;
 @property (nonatomic, assign) MPEntryTab activeTab;
 @property (strong) NSPopover *activePopover;
-@property (strong) NSObjectController *entryController;
+@property (nonatomic, readonly) KPKEntry *representedEntry;
 
 
 //@property (nonatomic, weak) KPKEntry *entry;
@@ -83,15 +83,13 @@ static NSString *kMPContentBindingString3 = @"content.%@.%@.%@";
     _attachmentTableDelegate.viewController = self;
     _customFieldTableDelegate.viewController = self;
     _activeTab = MPEntryTabGeneral;
-    _entryController = [[NSObjectController alloc] init];
-    _entryController.objectClass = [KPKEntry class];
   }
   return self;
 }
 
-- (KPKEntry *)contentEntry {
-  if([self.entryController.content isKindOfClass:[KPKEntry class]]) {
-    return self.entryController.content;
+- (KPKEntry *)representedEntry {
+  if([self.representedObject isKindOfClass:[KPKEntry class]]) {
+    return self.representedObject;
   }
   return nil;
 }
@@ -129,7 +127,7 @@ static NSString *kMPContentBindingString3 = @"content.%@.%@.%@";
 }
 
 - (void)setupBindings:(MPDocument *)document {
-  [self.entryController bind:NSContentObjectBinding toObject:self withKeyPath:NSStringFromSelector(@selector(representedObject)) options:nil];
+  //[self.entryController bind:NSContentObjectBinding toObject:self withKeyPath:NSStringFromSelector(@selector(representedObject)) options:nil];
 }
 
 - (void)registerNotificationsForDocument:(MPDocument *)document {
@@ -147,13 +145,12 @@ static NSString *kMPContentBindingString3 = @"content.%@.%@.%@";
 #pragma mark Actions
 
 - (void)addCustomField:(id)sender {
-  MPDocument *document = [[self windowController] document];
-  [document createCustomAttribute:self.entryController.content];
+  [self.windowController.document createCustomAttribute:self.representedObject];
 }
 - (void)removeCustomField:(id)sender {
   NSUInteger index = [sender tag];
-  KPKAttribute *attribute = self.contentEntry.customAttributes[index];
-  [self.contentEntry removeCustomAttribute:attribute];
+  KPKAttribute *attribute = self.representedEntry.customAttributes[index];
+  [self.representedEntry removeCustomAttribute:attribute];
 }
 
 - (void)saveAttachment:(id)sender {
@@ -161,7 +158,7 @@ static NSString *kMPContentBindingString3 = @"content.%@.%@.%@";
   if(row < 0) {
     return; // No selection
   }
-  KPKBinary *binary = self.contentEntry.binaries[row];
+  KPKBinary *binary = self.representedEntry.binaries[row];
   NSSavePanel *savePanel = [NSSavePanel savePanel];
   savePanel.canCreateDirectories = YES;
   savePanel.nameFieldStringValue = binary.name;
@@ -186,7 +183,7 @@ static NSString *kMPContentBindingString3 = @"content.%@.%@.%@";
     if(result == NSFileHandlingPanelOKButton) {
       for (NSURL *attachmentURL in openPanel.URLs) {
         KPKBinary *binary = [[KPKBinary alloc] initWithContentsOfURL:attachmentURL];
-        [self.contentEntry addBinary:binary];
+        [self.representedEntry addBinary:binary];
       }
     }
   }];
@@ -198,18 +195,18 @@ static NSString *kMPContentBindingString3 = @"content.%@.%@.%@";
     return; // no selection
   }
   KPKBinary *binary = self.contentEntry.binaries[row];
-  [self.contentEntry removeBinary:binary];
+  [self.representedEntry removeBinary:binary];
 }
 
 - (void)addWindowAssociation:(id)sender {
   KPKWindowAssociation *associtation = [[KPKWindowAssociation alloc] initWithWindowTitle:NSLocalizedString(@"DEFAULT_WINDOW_TITLE", "") keystrokeSequence:nil];
-  [self.contentEntry.autotype addAssociation:associtation];
+  [self.representedEntry.autotype addAssociation:associtation];
 }
 
 - (void)removeWindowAssociation:(id)sender {
   NSInteger row = self.windowAssociationsTableView.selectedRow;
   if(row > - 1 && row < [self.contentEntry.autotype.associations count]) {
-    [self.contentEntry.autotype removeAssociation:self.contentEntry.autotype.associations[row]];
+    [self.representedEntry.autotype removeAssociation:self.contentEntry.autotype.associations[row]];
   }
 }
 
@@ -262,7 +259,7 @@ static NSString *kMPContentBindingString3 = @"content.%@.%@.%@";
 - (void)_updatePreviewItemForPanel:(QLPreviewPanel *)panel {
   NSInteger row = [self.attachmentTableView selectedRow];
   NSAssert(row > -1, @"Row needs to be selected");
-  KPKBinary *binary = self.contentEntry.binaries[row];
+  KPKBinary *binary = self.representedEntry.binaries[row];
   MPTemporaryFileStorage *oldStorage = (MPTemporaryFileStorage *)panel.dataSource;
   [[MPTemporaryFileStorageCenter defaultCenter] unregisterStorage:oldStorage];
   panel.dataSource = [[MPTemporaryFileStorageCenter defaultCenter] storageForBinary:binary];
@@ -275,7 +272,7 @@ static NSString *kMPContentBindingString3 = @"content.%@.%@.%@";
   [self.generatePasswordButton setEnabled:NO];
   MPPasswordCreatorViewController *viewController = [[MPPasswordCreatorViewController alloc] init];
   viewController.allowsEntryDefaults = YES;
-  viewController.entry = self.contentEntry;
+  viewController.representedObject = self.representedObject;
   [self _showPopopver:viewController atView:self.passwordTextField onEdge:NSMinYEdge];
 }
 

@@ -65,7 +65,6 @@ NSString *const _MPTableSecurCellView = @"PasswordCell";
   BOOL _didUnlock;
 }
 
-//@property (strong) NSArrayController *entryArrayController;
 @property (strong) MPContextBarViewController *contextBarViewController;
 @property (strong) NSArray *filteredEntries;
 
@@ -107,8 +106,7 @@ NSString *const _MPTableSecurCellView = @"PasswordCell";
 }
 
 - (void)didLoadView {
-  
-  [self.view setWantsLayer:YES];
+  self.view.wantsLayer = YES;
   
   self.entryTable.delegate = self;
   self.entryTable.doubleAction = @selector(_columnDoubleClick:);
@@ -155,14 +153,14 @@ NSString *const _MPTableSecurCellView = @"PasswordCell";
   parentColumn.sortDescriptorPrototype = [NSSortDescriptor sortDescriptorWithKey:parentTitleKeyPath ascending:YES selector:@selector(localizedCaseInsensitiveCompare:)];
   modifiedColumn.sortDescriptorPrototype = [NSSortDescriptor sortDescriptorWithKey:timeInfoModificationTimeKeyPath ascending:YES selector:@selector(compare:)];
   
-  [parentColumn.headerCell setStringValue:NSLocalizedString(@"GROUP", "")];
-  [titleColumn.headerCell setStringValue:NSLocalizedString(@"TITLE", "")];
-  [userNameColumn.headerCell setStringValue:NSLocalizedString(@"USERNAME", "")];
-  [passwordColumn.headerCell setStringValue:NSLocalizedString(@"PASSWORD", "")];
-  [urlColumn.headerCell setStringValue:NSLocalizedString(@"URL", "")];
-  [notesColumn.headerCell setStringValue:NSLocalizedString(@"NOTES", "")];
-  [attachmentsColumn.headerCell setStringValue:NSLocalizedString(@"ATTACHMENTS", "")];
-  [modifiedColumn.headerCell setStringValue:NSLocalizedString(@"MODIFIED", "")];
+  parentColumn.headerCell.stringValue = NSLocalizedString(@"GROUP", "");
+  titleColumn.headerCell.stringValue = NSLocalizedString(@"TITLE", "");
+  userNameColumn.headerCell.stringValue = NSLocalizedString(@"USERNAME", "");
+  passwordColumn.headerCell.stringValue = NSLocalizedString(@"PASSWORD", "");
+  urlColumn.headerCell.stringValue = NSLocalizedString(@"URL", "");
+  notesColumn.headerCell.stringValue = NSLocalizedString(@"NOTES", "");
+  attachmentsColumn.headerCell.stringValue = NSLocalizedString(@"ATTACHMENTS", "");
+  modifiedColumn.headerCell.stringValue = NSLocalizedString(@"MODIFIED", "");
   
   [self.entryTable bind:NSContentBinding toObject:self.entryArrayController withKeyPath:NSStringFromSelector(@selector(arrangedObjects)) options:nil];
   [self.entryTable bind:NSSortDescriptorsBinding toObject:self.entryArrayController withKeyPath:NSStringFromSelector(@selector(sortDescriptors)) options:nil];
@@ -252,7 +250,7 @@ NSString *const _MPTableSecurCellView = @"PasswordCell";
       [view.imageView bind:NSValueBinding toObject:view withKeyPath:iconImageKeyPath options:nil];
     }
     else {
-      KPKEntry *entry = [self.entryArrayController arrangedObjects][row];
+      KPKEntry *entry = self.entryArrayController.arrangedObjects[row];
       NSAssert(entry.parent != nil, @"Entry needs to have a parent");
       
       NSString *parentTitleKeyPath = [NSString stringWithFormat:@"%@.%@.%@",
@@ -288,8 +286,8 @@ NSString *const _MPTableSecurCellView = @"PasswordCell";
         static dispatch_once_t onceToken;
         dispatch_once(&onceToken, ^{
           formatter = [[NSDateFormatter alloc] init];
-          [formatter setDateStyle:NSDateFormatterMediumStyle];
-          [formatter setTimeStyle:NSDateFormatterMediumStyle];
+          formatter.dateStyle = NSDateFormatterMediumStyle;
+          formatter.timeStyle = NSDateFormatterMediumStyle;
         });
         view.textField.formatter = formatter;
       }
@@ -368,7 +366,7 @@ NSString *const _MPTableSecurCellView = @"PasswordCell";
 
 #pragma mark MPDocument Notifications
 - (void)_didChangeCurrentItem:(NSNotification *)notification {
-  MPDocument *document = [notification object];
+  MPDocument *document = notification.object;
   
   if(document.selectedGroups.count != 1 && !document.hasSearch) {
     /* no group selection out of search is wrong */
@@ -423,7 +421,7 @@ NSString *const _MPTableSecurCellView = @"PasswordCell";
 
 - (void)_didUpdateSearchResults:(NSNotification *)notification {
   [self _showContextBar];
-  NSArray *result = [notification userInfo][kMPDocumentSearchResultsKey];
+  NSArray *result = notification.userInfo[kMPDocumentSearchResultsKey];
   NSAssert(result != nil, @"Resutls should never be nil");
   self.filteredEntries = result;
   [self.entryArrayController unbind:NSContentArrayBinding];
@@ -482,11 +480,11 @@ NSString *const _MPTableSecurCellView = @"PasswordCell";
     return;
   }
   _isDisplayingContextBar = YES;
-  if(![[self.contextBarViewController view] superview]) {
-    [[self view] addSubview:[self.contextBarViewController view]];
+  if(!self.contextBarViewController.view.superview) {
+    [self.view addSubview:[self.contextBarViewController view]];
     [self.contextBarViewController updateResponderChain];
-    NSView *contextBar = [self.contextBarViewController view];
-    NSView *scrollView = [_entryTable enclosingScrollView];
+    NSView *contextBar = self.contextBarViewController.view;
+    NSView *scrollView = self.entryTable.enclosingScrollView;
     NSDictionary *views = NSDictionaryOfVariableBindings(scrollView, contextBar);
     
     /* Pin to the left */
@@ -497,15 +495,15 @@ NSString *const _MPTableSecurCellView = @"PasswordCell";
     self.contextBarTopConstraint = [NSLayoutConstraint constraintWithItem:contextBar
                                                                 attribute:NSLayoutAttributeTop
                                                                 relatedBy:NSLayoutRelationEqual
-                                                                   toItem:[self view]
+                                                                   toItem:self.view
                                                                 attribute:NSLayoutAttributeTop
                                                                multiplier:1
                                                                  constant:-31];
   }
   /* Add the view for the first time */
-  [[self view] removeConstraint:self.tableToTopConstraint];
-  [[self view] addConstraint:self.contextBarTopConstraint];
-  [[self view] layout];
+  [self.view removeConstraint:self.tableToTopConstraint];
+  [self.view addConstraint:self.contextBarTopConstraint];
+  [self.view layout];
   self.contextBarTopConstraint.constant = 0;
   
   [NSAnimationContext runAnimationGroup:^(NSAnimationContext* context) {
@@ -520,7 +518,7 @@ NSString *const _MPTableSecurCellView = @"PasswordCell";
     return; // nothing to do;
   }
   self.contextBarTopConstraint.constant = -31;
-  [[self view] addConstraint:self.tableToTopConstraint];
+  [self.view addConstraint:self.tableToTopConstraint];
   
   [NSAnimationContext runAnimationGroup:^(NSAnimationContext* context) {
     context.duration = STATUS_BAR_ANIMATION_TIME;
@@ -565,8 +563,7 @@ NSString *const _MPTableSecurCellView = @"PasswordCell";
 #pragma mark Validation
 - (BOOL)validateMenuItem:(NSMenuItem *)menuItem {
   /* Validation is solely handled in the document */
-  MPDocument *document = [[self windowController] document];
-  return [document validateMenuItem:menuItem];
+  return [self.windowController.document validateMenuItem:menuItem];
 }
 
 #pragma mark ContextMenu
@@ -577,8 +574,8 @@ NSString *const _MPTableSecurCellView = @"PasswordCell";
   for(NSMenuItem *item in items) {
     [menu addItem:item];
   }
-  [menu setDelegate:_menuDelegate];
-  [self.entryTable setMenu:menu];
+  menu.delegate = _menuDelegate;
+  self.entryTable.menu = menu;
 }
 
 - (void)_setupHeaderMenu {
@@ -601,7 +598,7 @@ NSString *const _MPTableSecurCellView = @"PasswordCell";
                            MPEntryTableModfiedColumnIdentifier ];
   
   NSDictionary *options = @{ NSValueTransformerNameBindingOption : NSNegateBooleanTransformerName };
-  for(NSMenuItem *item in [headerMenu itemArray]) {
+  for(NSMenuItem *item in headerMenu.itemArray) {
     NSUInteger index = [headerMenu indexOfItem:item];
     NSTableColumn *column= [self.entryTable tableColumnWithIdentifier:identifier[index]];
     [item bind:NSValueBinding toObject:column withKeyPath:NSHiddenBinding options:options];

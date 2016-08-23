@@ -47,8 +47,6 @@ typedef NS_ENUM(NSUInteger, MPContentTab) {
 @property (weak) IBOutlet NSSplitView *splitView;
 @property (unsafe_unretained) IBOutlet NSTextView *notesTextView;
 
-@property (strong) NSObjectController *nodeController;
-
 @end
 
 @implementation MPInspectorViewController
@@ -63,7 +61,6 @@ typedef NS_ENUM(NSUInteger, MPContentTab) {
     self.activeTab = MPEmptyTab;
     self.entryViewController = [[MPEntryInspectorViewController alloc] init];
     self.groupViewController = [[MPGroupInspectorViewController alloc] init];
-    self.nodeController = [[NSObjectController alloc] init];
   }
   return self;
 }
@@ -105,8 +102,6 @@ typedef NS_ENUM(NSUInteger, MPContentTab) {
   [self.view layout];
   
   self.cancelEditButton.hidden = YES;
-  
-  [self _establishBindings];
 }
 
 - (void)registerNotificationsForDocument:(MPDocument *)document {
@@ -219,13 +214,13 @@ typedef NS_ENUM(NSUInteger, MPContentTab) {
   BOOL useDefault = (iconId == -1);
   switch (self.activeTab) {
     case MPGroupTab: {
-      KPKGroup *group = self.nodeController.content;
+      KPKGroup *group = self.representedObject;
       group.iconId = useDefault ? [KPKGroup defaultIcon] : iconId;
       break;
     }
       
     case MPEntryTab: {
-      KPKEntry *entry = self.nodeController.content;
+      KPKEntry *entry = self.representedObject;
       entry.iconId = useDefault ? [KPKEntry defaultIcon]: iconId;
       break;
     }
@@ -244,18 +239,18 @@ typedef NS_ENUM(NSUInteger, MPContentTab) {
 #pragma mark Bindings
 - (void)_establishBindings {
   
-  [self.itemImageView bind:NSValueBinding
-                  toObject:self.nodeController
-               withKeyPath:[NSString stringWithFormat:@"%@.%@", NSStringFromSelector(@selector(content)), NSStringFromSelector(@selector(iconImage))]
-                   options:nil];
-  [self.notesTextView bind:NSValueBinding
-                  toObject:self.nodeController
-               withKeyPath:[NSString stringWithFormat:@"%@.%@", NSStringFromSelector(@selector(content)), NSStringFromSelector(@selector(notes))]
-                   options:@{ NSNullPlaceholderBindingOption: NSLocalizedString(@"NONE", "")}];
-  [self.itemNameTextField bind:NSValueBinding
-                      toObject:self.nodeController
-                   withKeyPath:[NSString stringWithFormat:@"%@.%@", NSStringFromSelector(@selector(content)), NSStringFromSelector(@selector(title))]
-                       options:@{NSNullPlaceholderBindingOption: NSLocalizedString(@"NONE", "")}];
+//  [self.itemImageView bind:NSValueBinding
+//                  toObject:self
+//               withKeyPath:[NSString stringWithFormat:@"%@.%@", NSStringFromSelector(@selector(representedObject)), NSStringFromSelector(@selector(iconImage))]
+//                   options:nil];
+//  [self.notesTextView bind:NSValueBinding
+//                  toObject:self
+//               withKeyPath:[NSString stringWithFormat:@"%@.%@", NSStringFromSelector(@selector(representedObject)), NSStringFromSelector(@selector(notes))]
+//                   options:@{ NSNullPlaceholderBindingOption: NSLocalizedString(@"NONE", "")}];
+//  [self.itemNameTextField bind:NSValueBinding
+//                      toObject:self
+//                   withKeyPath:[NSString stringWithFormat:@"%@.%@", NSStringFromSelector(@selector(representedObject)), NSStringFromSelector(@selector(title))]
+//                       options:@{NSNullPlaceholderBindingOption: NSLocalizedString(@"NONE", "")}];
 }
 
 #pragma mark -
@@ -281,7 +276,7 @@ typedef NS_ENUM(NSUInteger, MPContentTab) {
   else {
     self.activeTab = MPEmptyTab;
   }
-  self.nodeController.content = node;
+  self.representedObject = node;
   self.entryViewController.representedObject = node.asEntry;
   self.groupViewController.representedObject = node.asGroup;
   [self _toggleEditors:(nil != node.asGroup)];
