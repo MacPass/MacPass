@@ -10,6 +10,7 @@
 #import "MPDocument.h"
 #import "MPPasteBoardController.h"
 #import "MPValueTransformerHelper.h"
+#import "MPObjectController.h"
 
 #import "KeePassKit/KeePassKit.h"
 
@@ -19,7 +20,7 @@
 
 //@property (nonatomic, weak) KPKGroup *group;
 @property (strong) NSPopover *popover;
-@property (strong) NSObjectController *groupController;
+@property (strong) MPObjectController *groupController;
 
 @end
 
@@ -32,7 +33,7 @@
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil {
   self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
   if (self) {
-    _groupController = [[NSObjectController alloc] init];
+    _groupController = [[MPObjectController alloc] init];
   }
   return self;
 }
@@ -85,7 +86,6 @@
 
 - (void)setupBindings:(MPDocument *)document {
   [self.groupController bind:NSContentObjectBinding toObject:self withKeyPath:NSStringFromSelector(@selector(representedObject)) options:nil];
-  //[self.groupController bind:NSContentObjectBinding toObject:document withKeyPath:NSStringFromSelector(@selector(selectedGroup)) options:nil];
 }
 
 - (void)_establishBindings {

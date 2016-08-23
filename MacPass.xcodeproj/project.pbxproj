@@ -219,6 +219,7 @@
 		4CD78AC016D155FF00768A1D /* 11_CameraTemplate.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 4CD78ABB16D155FF00768A1D /* 11_CameraTemplate.pdf */; };
 		4CD820211A32173100399DBB /* ReferenceBuilderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4CD820231A32173100399DBB /* ReferenceBuilderView.xib */; };
 		4CD884B715BD47080042BBF8 /* DocumentWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4CD884B615BD47080042BBF8 /* DocumentWindow.xib */; };
+		4CDE7B161D660983008C4160 /* MPObjectController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CDE7B151D660983008C4160 /* MPObjectController.m */; };
 		4CDF01A316D1B76700D0AC08 /* MPEntryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CDF01A216D1B76700D0AC08 /* MPEntryViewController.m */; };
 		4CE2961518429AA5005F01CE /* MPAutotypeKeyPress.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CE2961418429AA5005F01CE /* MPAutotypeKeyPress.m */; };
 		4CE296191842A166005F01CE /* MPAutotypePaste.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CE296181842A166005F01CE /* MPAutotypePaste.m */; };
@@ -624,6 +625,8 @@
 		4CD78ABB16D155FF00768A1D /* 11_CameraTemplate.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = 11_CameraTemplate.pdf; sourceTree = "<group>"; };
 		4CD820221A32173100399DBB /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/ReferenceBuilderView.xib; sourceTree = "<group>"; };
 		4CD884B615BD47080042BBF8 /* DocumentWindow.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DocumentWindow.xib; sourceTree = "<group>"; };
+		4CDE7B141D660983008C4160 /* MPObjectController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MPObjectController.h; sourceTree = "<group>"; };
+		4CDE7B151D660983008C4160 /* MPObjectController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MPObjectController.m; sourceTree = "<group>"; };
 		4CDF01A116D1B76700D0AC08 /* MPEntryViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MPEntryViewController.h; sourceTree = "<group>"; };
 		4CDF01A216D1B76700D0AC08 /* MPEntryViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MPEntryViewController.m; sourceTree = "<group>"; };
 		4CE2961318429AA5005F01CE /* MPAutotypeKeyPress.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MPAutotypeKeyPress.h; sourceTree = "<group>"; };
@@ -1354,6 +1357,8 @@
 				4C431BCC16E2A82700700A81 /* MPPasteBoardController.m */,
 				4C6AEEF71A043E2B00CA2420 /* MPDocumentController.h */,
 				4C6AEEF81A043E2B00CA2420 /* MPDocumentController.m */,
+				4CDE7B141D660983008C4160 /* MPObjectController.h */,
+				4CDE7B151D660983008C4160 /* MPObjectController.m */,
 			);
 			name = "Data Controller";
 			sourceTree = "<group>";
@@ -1714,6 +1719,7 @@
 				4CE296191842A166005F01CE /* MPAutotypePaste.m in Sources */,
 				4C569D9E17652B0600595B62 /* MPConstants.m in Sources */,
 				4C569DA117652BFE00595B62 /* MPEntryTableDataSource.m in Sources */,
+				4CDE7B161D660983008C4160 /* MPObjectController.m in Sources */,
 				4C7B63711C0CB51F00D7038C /* NSValueTransformer+TransformerKit.m in Sources */,
 				4CD034AA1BFE113B003C002C /* MPPlugin.m in Sources */,
 				4CA2335A176DBFE100F0B6AC /* MPLockDaemon.m in Sources */,

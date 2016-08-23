@@ -196,7 +196,7 @@ typedef NS_ENUM(NSUInteger, MPPasswordRating) {
     if(!availableDefaults) {
       availableDefaults = [[NSMutableDictionary alloc] initWithCapacity:1];
     }
-    availableDefaults[[self.entry.uuid UUIDString]] = entryDefaults;
+    availableDefaults[[self.representedObject uuid].UUIDString] = entryDefaults;
     [[NSUserDefaults standardUserDefaults] setObject:availableDefaults forKey:kMPSettingsKeyPasswordDefaultsForEntry];
   }
   else if(!self.useEntryDefaults) {
@@ -218,7 +218,7 @@ typedef NS_ENUM(NSUInteger, MPPasswordRating) {
   }
   NSMutableDictionary *availableDefaults = [[self _availableEntryDefaults] mutableCopy];
   NSAssert(availableDefaults, @"Password generator defaults for should be present!");
-  [availableDefaults removeObjectForKey:[self.entry.uuid UUIDString]];
+  [availableDefaults removeObjectForKey:[self.representedObject uuid].UUIDString];
   [[NSUserDefaults standardUserDefaults] setObject:availableDefaults forKey:kMPSettingsKeyPasswordDefaultsForEntry];
   self.useEntryDefaults = NO; /* Resetting the UI and Defaults is handled via the setter */
   [self _updateSetDefaultsButton:NO];

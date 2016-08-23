@@ -10,4 +10,6 @@
 
 @interface MPObjectController : NSObjectController
 
+@property (weak) NSDocument *document;
+
 @end

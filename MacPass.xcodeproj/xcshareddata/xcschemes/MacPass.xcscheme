@@ -85,6 +85,10 @@
             argument = "-NSConstraintBasedLayoutVisualizeMutuallyExclusiveConstraints YES"
             isEnabled = "NO">
          </CommandLineArgument>
+         <CommandLineArgument
+            argument = "-NSBindingDebugLogLevel YES"
+            isEnabled = "YES">
+         </CommandLineArgument>
       </CommandLineArguments>
       <EnvironmentVariables>
          <EnvironmentVariable

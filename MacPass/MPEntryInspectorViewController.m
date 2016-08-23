@@ -60,7 +60,6 @@ typedef NS_ENUM(NSUInteger, MPEntryTab) {
 
 @implementation MPEntryInspectorViewController
 
-static NSString *kMPContentBindingString1 = @"content.%@";
 static NSString *kMPContentBindingString2 = @"content.%@.%@";
 static NSString *kMPContentBindingString3 = @"content.%@.%@.%@";
 
@@ -194,7 +193,7 @@ static NSString *kMPContentBindingString3 = @"content.%@.%@.%@";
   if(row < 0) {
     return; // no selection
   }
-  KPKBinary *binary = self.contentEntry.binaries[row];
+  KPKBinary *binary = self.representedEntry.binaries[row];
   [self.representedEntry removeBinary:binary];
 }
 
@@ -205,8 +204,8 @@ static NSString *kMPContentBindingString3 = @"content.%@.%@.%@";
 
 - (void)removeWindowAssociation:(id)sender {
   NSInteger row = self.windowAssociationsTableView.selectedRow;
-  if(row > - 1 && row < [self.contentEntry.autotype.associations count]) {
-    [self.representedEntry.autotype removeAssociation:self.contentEntry.autotype.associations[row]];
+  if(row > - 1 && row < [self.representedEntry.autotype.associations count]) {
+    [self.representedEntry.autotype removeAssociation:self.representedEntry.autotype.associations[row]];
   }
 }
 
@@ -313,7 +312,7 @@ static NSString *kMPContentBindingString3 = @"content.%@.%@.%@";
     NSString *password = [controller generatedPassword];
     /* We should only use the password if there is actually one */
     if(password.length > 0) {
-      self.contentEntry.password = [controller generatedPassword];
+      self.representedEntry.password = [controller generatedPassword];
     }
   }
   /* TODO: Check for Icon wizard */
@@ -371,39 +370,39 @@ static NSString *kMPContentBindingString3 = @"content.%@.%@.%@";
 
 - (void)_bindEntry {
   [self.titleTextField bind:NSValueBinding
-                   toObject:self.entryController
-                withKeyPath:[NSString stringWithFormat:kMPContentBindingString1, NSStringFromSelector(@selector(title))]
+                   toObject:self
+                withKeyPath:[NSString stringWithFormat:@"%@.%@", NSStringFromSelector(@selector(representedObject)), NSStringFromSelector(@selector(title))]
                     options:@{ NSNullPlaceholderBindingOption: NSLocalizedString(@"NONE", "")} ];
   [self.passwordTextField bind:NSValueBinding
-                      toObject:self.entryController
-                   withKeyPath:[NSString stringWithFormat:kMPContentBindingString1, NSStringFromSelector(@selector(password))]
+                      toObject:self
+                   withKeyPath:[NSString stringWithFormat:@"%@.%@", NSStringFromSelector(@selector(representedObject)), NSStringFromSelector(@selector(password))]
                        options:@{ NSNullPlaceholderBindingOption: NSLocalizedString(@"NONE", "") }];
   [self.usernameTextField bind:NSValueBinding
-                      toObject:self.entryController
-                   withKeyPath:[NSString stringWithFormat:kMPContentBindingString1, NSStringFromSelector(@selector(username))]
+                      toObject:self
+                   withKeyPath:[NSString stringWithFormat:@"%@.%@", NSStringFromSelector(@selector(representedObject)), NSStringFromSelector(@selector(username))]
                        options:@{ NSNullPlaceholderBindingOption: NSLocalizedString(@"NONE", "") }];
   [self.URLTextField bind:NSValueBinding
-                 toObject:self.entryController
-              withKeyPath:[NSString stringWithFormat:kMPContentBindingString1, NSStringFromSelector(@selector(url))]
+                 toObject:self
+              withKeyPath:[NSString stringWithFormat:@"%@.%@", NSStringFromSelector(@selector(representedObject)), NSStringFromSelector(@selector(url))]
                   options:@{ NSNullPlaceholderBindingOption: NSLocalizedString(@"NONE", "")}];
 
   
   
   [self.expiresCheckButton bind:NSTitleBinding
-                       toObject:self.entryController
-                    withKeyPath:[NSString stringWithFormat:kMPContentBindingString2, NSStringFromSelector(@selector(timeInfo)), NSStringFromSelector(@selector(expirationDate))]
+                       toObject:self
+                    withKeyPath:[NSString stringWithFormat:@"%@.%@.%@", NSStringFromSelector(@selector(representedObject)), NSStringFromSelector(@selector(timeInfo)), NSStringFromSelector(@selector(expirationDate))]
                         options:@{ NSValueTransformerNameBindingOption:MPExpiryDateValueTransformer }];
   [self.expiresCheckButton bind:NSValueBinding
-                       toObject:self.entryController
-                    withKeyPath:[NSString stringWithFormat:kMPContentBindingString2, NSStringFromSelector(@selector(timeInfo)), NSStringFromSelector(@selector(expires))]
+                       toObject:self
+                    withKeyPath:[NSString stringWithFormat:@"%@.%@.%@", NSStringFromSelector(@selector(representedObject)), NSStringFromSelector(@selector(timeInfo)), NSStringFromSelector(@selector(expires))]
                         options:nil];
   [self.tagsTokenField bind:NSValueBinding
-                   toObject:self.entryController
-                withKeyPath:[NSString stringWithFormat:kMPContentBindingString1, NSStringFromSelector(@selector(tags))]
+                   toObject:self
+                withKeyPath:[NSString stringWithFormat:@"%@.%@", NSStringFromSelector(@selector(representedObject)), NSStringFromSelector(@selector(tags))]
                     options:nil];
   [self.uuidTextField bind:NSValueBinding
-                  toObject:self.entryController
-               withKeyPath:[NSString stringWithFormat:kMPContentBindingString2, NSStringFromSelector(@selector(uuid)), NSStringFromSelector(@selector(UUIDString))]
+                  toObject:self
+               withKeyPath:[NSString stringWithFormat:@"%@.%@.%@", NSStringFromSelector(@selector(representedObject)), NSStringFromSelector(@selector(uuid)), NSStringFromSelector(@selector(UUIDString))]
                    options:@{ NSConditionallySetsEditableBindingOption: @NO }];
   self.uuidTextField.editable = NO;
   
@@ -414,37 +413,37 @@ static NSString *kMPContentBindingString3 = @"content.%@.%@.%@";
 
 - (void)_bindAttachments {
   [_attachmentsController bind:NSContentArrayBinding
-                      toObject:self.entryController
-                   withKeyPath:[NSString stringWithFormat:kMPContentBindingString1, NSStringFromSelector(@selector(binaries))]
+                      toObject:self
+                   withKeyPath:[NSString stringWithFormat:@"%@.%@", NSStringFromSelector(@selector(representedObject)), NSStringFromSelector(@selector(binaries))]
                        options:nil];
 }
 
 - (void)_bindCustomFields {
   [_customFieldsController bind:NSContentArrayBinding
-                       toObject:self.entryController
-                    withKeyPath:[NSString stringWithFormat:kMPContentBindingString1, NSStringFromSelector(@selector(customAttributes))]
+                       toObject:self
+                    withKeyPath:[NSString stringWithFormat:@"%@.%@", NSStringFromSelector(@selector(representedObject)), NSStringFromSelector(@selector(customAttributes))]
                         options:nil];
 }
 -  (void)_bindAutotype {
   
   [self.enableAutotypeCheckButton bind:NSValueBinding
-                              toObject:self.entryController
-                           withKeyPath:[NSString stringWithFormat:kMPContentBindingString2, NSStringFromSelector(@selector(autotype)), NSStringFromSelector(@selector(enabled))] options:nil];
+                              toObject:self
+                           withKeyPath:[NSString stringWithFormat:@"%@.%@.%@", NSStringFromSelector(@selector(representedObject)), NSStringFromSelector(@selector(autotype)), NSStringFromSelector(@selector(enabled))] options:nil];
   [self.obfuscateAutotypeCheckButton bind:NSValueBinding
-                                 toObject:self.entryController
-                              withKeyPath:[NSString stringWithFormat:kMPContentBindingString2, NSStringFromSelector(@selector(autotype)), NSStringFromSelector(@selector(obfuscateDataTransfer))]
+                                 toObject:self
+                              withKeyPath:[NSString stringWithFormat:@"%@.%@.%@", NSStringFromSelector(@selector(representedObject)), NSStringFromSelector(@selector(autotype)), NSStringFromSelector(@selector(obfuscateDataTransfer))]
                                   options:nil];
   [self.customEntrySequenceTextField bind:NSEnabledBinding
-                                 toObject:self.entryController
-                              withKeyPath:[NSString stringWithFormat:kMPContentBindingString2, NSStringFromSelector(@selector(autotype)), NSStringFromSelector(@selector(enabled))]
+                                 toObject:self
+                              withKeyPath:[NSString stringWithFormat:@"%@.%@.%@", NSStringFromSelector(@selector(representedObject)), NSStringFromSelector(@selector(autotype)), NSStringFromSelector(@selector(enabled))]
                                   options:nil];
   [self.customEntrySequenceTextField bind:NSValueBinding
-                                 toObject:self.entryController
-                              withKeyPath:[NSString stringWithFormat:kMPContentBindingString2, NSStringFromSelector(@selector(autotype)), NSStringFromSelector(@selector(defaultKeystrokeSequence))]
+                                 toObject:self
+                              withKeyPath:[NSString stringWithFormat:@"%@.%@.%@", NSStringFromSelector(@selector(representedObject)), NSStringFromSelector(@selector(autotype)), NSStringFromSelector(@selector(defaultKeystrokeSequence))]
                                   options:@{ NSValidatesImmediatelyBindingOption: @YES }];
   [_windowAssociationsController bind:NSContentArrayBinding
-                             toObject:self.entryController
-                          withKeyPath:[NSString stringWithFormat:kMPContentBindingString2, NSStringFromSelector(@selector(autotype)), NSStringFromSelector(@selector(associations))]
+                             toObject:self
+                          withKeyPath:[NSString stringWithFormat:@"%@.%@.%@", NSStringFromSelector(@selector(representedObject)), NSStringFromSelector(@selector(autotype)), NSStringFromSelector(@selector(associations))]
                               options:@{ NSSelectsAllWhenSettingContentBindingOption: @NO }];
   [self.windowTitleComboBox setStringValue:@""];
   [self.windowTitleComboBox bind:NSValueBinding

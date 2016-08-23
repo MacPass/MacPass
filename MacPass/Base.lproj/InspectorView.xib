@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="10117" systemVersion="15F34" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="10117" systemVersion="15G31" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
     <dependencies>
         <deployment identifier="macosx"/>
         <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="10117"/>
@@ -49,6 +49,11 @@
                     <imageCell key="cell" alignment="left" imageScaling="proportionallyUpOrDown" image="NSActionTemplate" id="2999"/>
                     <connections>
                         <action selector="pickIcon:" target="-2" id="6wh-Ka-Thl"/>
+                        <binding destination="-2" name="value" keyPath="representedObject.iconImage" id="agf-eg-okr">
+                            <dictionary key="options">
+                                <bool key="NSConditionallySetsEnabled" value="NO"/>
+                            </dictionary>
+                        </binding>
                     </connections>
                 </imageView>
                 <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="249" translatesAutoresizingMaskIntoConstraints="NO" id="3013">
@@ -58,6 +63,9 @@
                         <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
                         <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                     </textFieldCell>
+                    <connections>
+                        <binding destination="-2" name="value" keyPath="representedObject.title" id="2ek-Ns-ybY"/>
+                    </connections>
                 </textField>
                 <splitView autosaveName="InspectorNotesSplitView" dividerStyle="thin" translatesAutoresizingMaskIntoConstraints="NO" id="3145">
                     <rect key="frame" x="0.0" y="30" width="278" height="582"/>
@@ -140,6 +148,14 @@
                                                 <color key="insertionPointColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                                                 <size key="minSize" width="236" height="177"/>
                                                 <size key="maxSize" width="463" height="10000000"/>
+                                                <connections>
+                                                    <binding destination="-2" name="value" keyPath="representedObject.notes" id="E0d-ZH-Wbc">
+                                                        <dictionary key="options">
+                                                            <bool key="NSConditionallySetsEditable" value="NO"/>
+                                                            <string key="NSNoSelectionPlaceholder">No Selection</string>
+                                                        </dictionary>
+                                                    </binding>
+                                                </connections>
                                             </textView>
                                         </subviews>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -189,6 +205,7 @@
             </constraints>
             <point key="canvasLocation" x="268" y="-437"/>
         </customView>
+        <userDefaultsController representsSharedInstance="YES" id="U5N-S2-0zc"/>
     </objects>
     <resources>
         <image name="NSActionTemplate" width="14" height="14"/>
