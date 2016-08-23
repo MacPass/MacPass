@@ -183,7 +183,7 @@ typedef NS_ENUM(NSUInteger, MPPasswordRating) {
 }
 
 - (IBAction)_setDefault:(id)sender {
-  if(self.useEntryDefaults && self.entry) {
+  if(self.useEntryDefaults && self.representedObject) {
     NSMutableDictionary *entryDefaults = [[self _currentEntryDefaults] mutableCopy];
     if(!entryDefaults) {
       entryDefaults = [[NSMutableDictionary alloc] initWithCapacity:4]; // we will only add one enty to new settings
@@ -236,11 +236,11 @@ typedef NS_ENUM(NSUInteger, MPPasswordRating) {
   }
 }
 
-- (void)setEntry:(KPKEntry *)entry {
-  if(_entry != entry) {
-    _entry = entry;
+- (void)setRepresentedObject:(id)representedObject {
+  if(self.representedObject != representedObject) {
     self.useEntryDefaults = [self _hasValidDefaultsForCurrentEntry];
   }
+  [super setRepresentedObject:representedObject];
 }
 
 - (void)setPassword:(NSString *)password {
@@ -296,8 +296,9 @@ typedef NS_ENUM(NSUInteger, MPPasswordRating) {
 }
 
 - (NSDictionary *)_currentEntryDefaults {
-  if(self.entry) {
-    return [self _availableEntryDefaults][[self.entry.uuid UUIDString]];
+  if(self.representedObject) {
+    NSAssert([self.representedObject isKindOfClass:[KPKEntry class]], @"Only KPKEntry as represented object supported!");
+    return [self _availableEntryDefaults][[self.representedObject uuid].UUIDString];
   }
   return nil;
 }

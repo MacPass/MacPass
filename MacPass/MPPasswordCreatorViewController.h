@@ -13,7 +13,6 @@
 
 @property (copy, readonly) NSString *generatedPassword;
 @property (weak) id closeTarget;
-@property (nonatomic, weak) KPKEntry *entry;
 @property (assign) BOOL allowsEntryDefaults;
 
 /**
