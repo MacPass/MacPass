@@ -17,10 +17,7 @@
 #import "HNHUi/HNHUi.h"
 
 @interface MPGroupInspectorViewController ()
-
-//@property (nonatomic, weak) KPKGroup *group;
 @property (strong) NSPopover *popover;
-@property (strong) MPObjectController *groupController;
 
 @end
 
@@ -28,14 +25,6 @@
 
 - (NSString *)nibName {
   return @"GroupInspectorView";
-}
-
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil {
-  self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
-  if (self) {
-    _groupController = [[MPObjectController alloc] init];
-  }
-  return self;
 }
 
 - (void)awakeFromNib {
@@ -84,34 +73,30 @@
   [self _establishBindings];
 }
 
-- (void)setupBindings:(MPDocument *)document {
-  [self.groupController bind:NSContentObjectBinding toObject:self withKeyPath:NSStringFromSelector(@selector(representedObject)) options:nil];
-}
-
 - (void)_establishBindings {
   [self.titleTextField bind:NSValueBinding
-                   toObject:self.groupController
-                withKeyPath:[NSString stringWithFormat:@"%@.%@", NSContentBinding, NSStringFromSelector(@selector(title))]
+                   toObject:self
+                withKeyPath:[NSString stringWithFormat:@"%@.%@", NSStringFromSelector(@selector(representedObject)), NSStringFromSelector(@selector(title))]
                     options:@{NSNullPlaceholderBindingOption: NSLocalizedString(@"NONE", @"")}];
   [self.expiresCheckButton bind:NSValueBinding
-                       toObject:self.groupController
-                    withKeyPath:[NSString stringWithFormat:@"%@.%@.%@", NSContentBinding, NSStringFromSelector(@selector(timeInfo)), NSStringFromSelector(@selector(expires))]
+                       toObject:self
+                    withKeyPath:[NSString stringWithFormat:@"%@.%@.%@", NSStringFromSelector(@selector(representedObject)), NSStringFromSelector(@selector(timeInfo)), NSStringFromSelector(@selector(expires))]
                         options:nil];
   [self.expiresCheckButton bind:NSTitleBinding
-                       toObject:self.groupController
-                    withKeyPath:[NSString stringWithFormat:@"%@.%@.%@", NSContentBinding, NSStringFromSelector(@selector(timeInfo)), NSStringFromSelector(@selector(expirationDate))]
+                       toObject:self
+                    withKeyPath:[NSString stringWithFormat:@"%@.%@.%@", NSStringFromSelector(@selector(representedObject)), NSStringFromSelector(@selector(timeInfo)), NSStringFromSelector(@selector(expirationDate))]
                         options:@{ NSValueTransformerNameBindingOption:MPExpiryDateValueTransformer }];
   [self.autotypePopupButton bind:NSSelectedTagBinding
-                        toObject:self.groupController
-                     withKeyPath:[NSString stringWithFormat:@"%@.%@", NSContentBinding, NSStringFromSelector(@selector(isAutoTypeEnabled))]
+                        toObject:self
+                     withKeyPath:[NSString stringWithFormat:@"%@.%@", NSStringFromSelector(@selector(representedObject)), NSStringFromSelector(@selector(isAutoTypeEnabled))]
                          options:nil];
   [self.autotypeSequenceTextField bind:NSValueBinding
-                              toObject:self.groupController
-                           withKeyPath:[NSString stringWithFormat:@"%@.%@", NSContentBinding, NSStringFromSelector(@selector(defaultAutoTypeSequence))]
+                              toObject:self
+                           withKeyPath:[NSString stringWithFormat:@"%@.%@", NSStringFromSelector(@selector(representedObject)), NSStringFromSelector(@selector(defaultAutoTypeSequence))]
                                options:@{NSNullPlaceholderBindingOption: NSLocalizedString(@"NONE", @"")}];
   [self.searchPopupButton bind:NSSelectedTagBinding
-                      toObject:self.groupController
-                   withKeyPath:[NSString stringWithFormat:@"%@.%@", NSContentBinding, NSStringFromSelector(@selector(isSearchEnabled))]
+                      toObject:self
+                   withKeyPath:[NSString stringWithFormat:@"%@.%@", NSStringFromSelector(@selector(representedObject)), NSStringFromSelector(@selector(isSearchEnabled))]
                        options:nil];
 }
 

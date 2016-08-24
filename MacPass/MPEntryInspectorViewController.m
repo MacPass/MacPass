@@ -125,10 +125,6 @@ static NSString *kMPContentBindingString3 = @"content.%@.%@.%@";
   [self _setupViewBindings];
 }
 
-- (void)setupBindings:(MPDocument *)document {
-  //[self.entryController bind:NSContentObjectBinding toObject:self withKeyPath:NSStringFromSelector(@selector(representedObject)) options:nil];
-}
-
 - (void)registerNotificationsForDocument:(MPDocument *)document {
   [[NSNotificationCenter defaultCenter] addObserver:self
                                            selector:@selector(_didAddEntry:)
