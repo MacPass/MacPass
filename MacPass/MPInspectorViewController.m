@@ -208,6 +208,7 @@ typedef NS_ENUM(NSUInteger, MPContentTab) {
 }
 
 - (void)_setIcon:(NSInteger)iconId {
+  /* TODO move to ViewController */
   BOOL useDefault = (iconId == -1);
   switch (self.activeTab) {
     case MPGroupTab: {
