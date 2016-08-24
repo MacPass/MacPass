@@ -10,13 +10,7 @@
 #import "MPIconHelper.h"
 #import "MPDocument.h"
 
-
-NSInteger const kMPDefaultIcon = -1;
-
 @interface MPIconSelectViewController ()
-
-@property (nonatomic, assign) NSInteger selectedIcon;
-@property (nonatomic, assign) BOOL didCancel;
 
 /* UI properties */
 @property (weak) IBOutlet NSCollectionView *iconCollectionView;
@@ -30,15 +24,6 @@ NSInteger const kMPDefaultIcon = -1;
   return @"IconSelection";
 }
 
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil {
-    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
-    if (self) {
-      _didCancel = YES;
-      _selectedIcon = kMPDefaultIcon;
-    }
-    return self;
-}
-
 - (void)didLoadView {
   //[[self.imageButton cell] setBackgroundStyle:NSBackgroundStyleLowered];
   self.iconCollectionView.backgroundColors = @[[NSColor clearColor]];
@@ -48,28 +33,23 @@ NSInteger const kMPDefaultIcon = -1;
 }
 
 - (IBAction)useDefault:(id)sender {
-  self.didCancel = NO;
-  self.selectedIcon = kMPDefaultIcon;
-  [self.popover performClose:self];
+  KPKNode *node = self.representedObject;
+  node.iconId = [[node class] defaultIcon];
+  
+  [self.view.window performClose:sender];
 }
 
 - (IBAction)cancel:(id)sender {
-  self.didCancel = YES;
-  [self.popover performClose:self];
-}
-
-- (void)reset {
-  self.didCancel = YES;
-  self.selectedIcon = kMPDefaultIcon;
+  [self.view.window performClose:sender];
 }
 
 - (IBAction)_selectImage:(id)sender {
-  self.didCancel = NO;
   NSButton *button = sender;
   NSImage *image = button.image;
   NSUInteger buttonIndex = [self.iconCollectionView.content indexOfObject:image];
-  self.selectedIcon = ((NSNumber *)[MPIconHelper databaseIconTypes][buttonIndex]).integerValue;
-  [self.popover performClose:self];
+  NSInteger newIconId = ((NSNumber *)[MPIconHelper databaseIconTypes][buttonIndex]).integerValue;
+  KPKNode *node = self.representedObject;
+  node.iconId = newIconId;
+  [self.view.window performClose:sender];
 }
-
 @end

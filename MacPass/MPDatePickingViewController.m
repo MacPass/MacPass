@@ -23,8 +23,6 @@ typedef NS_ENUM(NSUInteger, MPDatePreset) {
 
 @interface MPDatePickingViewController ()
 
-@property (assign) BOOL didCancel;
-
 @end
 
 @implementation MPDatePickingViewController
@@ -53,15 +51,21 @@ typedef NS_ENUM(NSUInteger, MPDatePreset) {
   self.presetPopupButton.menu = presetMenu;
 }
 
+- (void)setRepresentedObject:(id)representedObject {
+  [super setRepresentedObject:representedObject];
+  if(self.representedObject) {
+    self.datePicker.dateValue = [self.representedObject timeInfo].expirationDate;
+  }
+}
+
 - (IBAction)useDate:(id)sender {
-  self.didCancel = NO;
-  self.date = self.datePicker.dateValue;
-  [self.popover performClose:self];
+  KPKTimeInfo *timeInfo = [self.representedObject timeInfo];
+  timeInfo.expirationDate = self.datePicker.dateValue;
+  [self.view.window performClose:sender];
 }
 
 - (IBAction)cancel:(id)sender {
-  self.didCancel = YES;
-  [self.popover performClose:self];
+  [self.view.window performClose:sender];
 }
 
 - (IBAction)setDatePreset:(id)sender {

@@ -35,7 +35,6 @@ typedef NS_ENUM(NSUInteger, MPContentTab) {
 @property (strong) MPEntryInspectorViewController *entryViewController;
 @property (strong) MPGroupInspectorViewController *groupViewController;
 
-@property (strong) MPIconSelectViewController *iconSelectionViewController;
 @property (strong) NSPopover *popover;
 
 @property (nonatomic, strong) NSDate *modificationDate;
@@ -163,12 +162,10 @@ typedef NS_ENUM(NSUInteger, MPContentTab) {
   self.popover = [[NSPopover alloc] init];
   self.popover.delegate = self;
   self.popover.behavior = NSPopoverBehaviorTransient;
-  if(!self.iconSelectionViewController) {
-    self.iconSelectionViewController = [[MPIconSelectViewController alloc] init];
-  }
-  [self.iconSelectionViewController reset];
-  self.iconSelectionViewController.popover = self.popover;
-  self.popover.contentViewController = self.iconSelectionViewController;
+  MPIconSelectViewController *vc = [[MPIconSelectViewController alloc] init];
+  vc.representedObject = self.representedObject;
+  vc.popover = self.popover;
+  self.popover.contentViewController = vc;
   [self.popover showRelativeToRect:NSZeroRect ofView:sender preferredEdge:NSMinYEdge];
 }
 
@@ -180,57 +177,15 @@ typedef NS_ENUM(NSUInteger, MPContentTab) {
   self.popover = [[NSPopover alloc] init];
   self.popover.delegate = self;
   self.popover.behavior = NSPopoverBehaviorTransient;
-  MPDatePickingViewController *controller = [[MPDatePickingViewController alloc] init];
-  controller.popover = self.popover;
-  KPKNode *node = self.representedObject;
-  if(node.timeInfo.expirationDate) {
-    controller.date = node.timeInfo.expirationDate;
-  }
-  self.popover.contentViewController = controller;
+  MPDatePickingViewController *vc = [[MPDatePickingViewController alloc] init];
+  vc.representedObject = self.representedObject;
+  self.popover.contentViewController = vc;
   [self.popover showRelativeToRect:NSZeroRect ofView:sender preferredEdge:NSMinYEdge];
 }
 
 - (void)popoverDidClose:(NSNotification *)notification {
-  NSPopover *popover = [notification object];
-  if([popover.contentViewController isKindOfClass:[MPIconSelectViewController class]]) {
-    MPIconSelectViewController *viewController = (MPIconSelectViewController *)popover.contentViewController;
-    if(!viewController.didCancel) {
-      [self _setIcon:viewController.selectedIcon];
-    }
-  }
-  if([popover.contentViewController isKindOfClass:[MPDatePickingViewController class]]) {
-    MPDatePickingViewController *viewController = (MPDatePickingViewController *)popover.contentViewController;
-    if(!viewController.didCancel) {
-      [self _setExpiryDate:viewController.date];
-    }
-  }
+  /* clear out the popover */
   self.popover = nil;
-}
-
-- (void)_setIcon:(NSInteger)iconId {
-  /* TODO move to ViewController */
-  BOOL useDefault = (iconId == -1);
-  switch (self.activeTab) {
-    case MPGroupTab: {
-      KPKGroup *group = self.representedObject;
-      group.iconId = useDefault ? [KPKGroup defaultIcon] : iconId;
-      break;
-    }
-      
-    case MPEntryTab: {
-      KPKEntry *entry = self.representedObject;
-      entry.iconId = useDefault ? [KPKEntry defaultIcon]: iconId;
-      break;
-    }
-      
-    default:
-      break;
-  }
-}
-
-- (void)_setExpiryDate:(NSDate *)date {
-  KPKNode *node = self.representedObject;
-  node.timeInfo.expirationDate = date;
 }
 
 #pragma mark -
