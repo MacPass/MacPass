@@ -38,4 +38,24 @@
   }
 }
 
+#pragma mark Binding observation
+- (void)setValue:(id)value forKeyPath:(NSString *)keyPath {
+  if([keyPath hasPrefix:@"representedObject."]) {
+    [self didChangeValueForRepresentedObjectKeyPath:keyPath];
+    [super setValue:value forKeyPath:keyPath];
+    [self didChangeValueForRepresentedObjectKeyPath:keyPath];
+  }
+  else {
+    [super setValue:value forKeyPath:keyPath];
+  }
+}
+
+- (void)willChangeValueForRepresentedObjectKeyPath:(NSString *)keyPath {
+  NSLog(@"[%@ willChangeValueForRepresentedObjectKeyPath:%@]", NSStringFromClass([self class]), keyPath);
+}
+
+- (void)didChangeValueForRepresentedObjectKeyPath:(NSString *)keyPath {
+  NSLog(@"[%@ didChangeValueForRepresentedObjectKeyPath:%@]", NSStringFromClass([self class]), keyPath);
+}
+
 @end
