@@ -268,7 +268,7 @@ static NSString *kMPContentBindingString3 = @"content.%@.%@.%@";
 #pragma mark Popovers
 
 - (IBAction)_popUpPasswordGenerator:(id)sender {
-  [self.generatePasswordButton setEnabled:NO];
+  self.generatePasswordButton.enabled = NO;
   MPPasswordCreatorViewController *viewController = [[MPPasswordCreatorViewController alloc] init];
   viewController.allowsEntryDefaults = YES;
   viewController.representedObject = self.representedObject;
@@ -290,17 +290,6 @@ static NSString *kMPContentBindingString3 = @"content.%@.%@.%@";
   _activePopover.contentViewController = viewController;
   
   [_activePopover showRelativeToRect:NSZeroRect ofView:view preferredEdge:edge];
-}
-
-- (BOOL)popoverShouldClose:(NSPopover *)popover {
-  /* See http://stackoverflow.com/a/34215887/353268
-   * PasswordCreator uses a NSNumberFormatter to validate the input.
-   * If the user types something that's not a number it will open a
-   * dialog, which would cause the popover to close and MacPass to crash.
-   *
-   * This stops the popover to close when the dialog is active.
-   */
-  return ![popover.contentViewController.view.window makeFirstResponder:popover];
 }
 
 - (void)popoverDidClose:(NSNotification *)notification {

@@ -130,6 +130,7 @@
 		4C63B8FB17A3154D0091BD72 /* MPContextToolbarButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C63B8FA17A3154D0091BD72 /* MPContextToolbarButton.m */; };
 		4C65C79C16DD283900E32CFF /* MPToolbarButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C65C79B16DD283900E32CFF /* MPToolbarButton.m */; };
 		4C65FAE916D16DDB006E0577 /* MPPasswordInputController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C65FAE716D16DDB006E0577 /* MPPasswordInputController.m */; };
+		4C663D411D6D91A900CB6237 /* MPNumberFormatter.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C663D401D6D91A900CB6237 /* MPNumberFormatter.m */; };
 		4C6AEEF91A043E2B00CA2420 /* MPDocumentController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C6AEEF81A043E2B00CA2420 /* MPDocumentController.m */; };
 		4C6AEF031A04400E00CA2420 /* OpenPanelAccessoryView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4C6AEF021A04400E00CA2420 /* OpenPanelAccessoryView.xib */; };
 		4C6B7C7D18BE7EB0001D5D77 /* MPDocument+HistoryBrowsing.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C6B7C7C18BE7EB0001D5D77 /* MPDocument+HistoryBrowsing.m */; };
@@ -469,6 +470,8 @@
 		4C65C79B16DD283900E32CFF /* MPToolbarButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MPToolbarButton.m; sourceTree = "<group>"; };
 		4C65FAE616D16DDB006E0577 /* MPPasswordInputController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MPPasswordInputController.h; sourceTree = "<group>"; };
 		4C65FAE716D16DDB006E0577 /* MPPasswordInputController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MPPasswordInputController.m; sourceTree = "<group>"; };
+		4C663D3F1D6D91A900CB6237 /* MPNumberFormatter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MPNumberFormatter.h; sourceTree = "<group>"; };
+		4C663D401D6D91A900CB6237 /* MPNumberFormatter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MPNumberFormatter.m; sourceTree = "<group>"; };
 		4C6AEEF71A043E2B00CA2420 /* MPDocumentController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MPDocumentController.h; sourceTree = "<group>"; };
 		4C6AEEF81A043E2B00CA2420 /* MPDocumentController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MPDocumentController.m; sourceTree = "<group>"; };
 		4C6AEF021A04400E00CA2420 /* OpenPanelAccessoryView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = OpenPanelAccessoryView.xib; sourceTree = "<group>"; };
@@ -876,6 +879,8 @@
 				4C569D9D17652B0600595B62 /* MPConstants.m */,
 				4CCEDE2C179F2122008402BE /* MPNotifications.h */,
 				4CCEDE2D179F213B008402BE /* MPNotifications.m */,
+				4C663D3F1D6D91A900CB6237 /* MPNumberFormatter.h */,
+				4C663D401D6D91A900CB6237 /* MPNumberFormatter.m */,
 			);
 			name = Common;
 			sourceTree = "<group>";
@@ -1754,6 +1759,7 @@
 				4CC0D2CE17974A47000B4BDA /* MPCustomFieldTableViewDelegate.m in Sources */,
 				4CC0D2D117974A5A000B4BDA /* MPAttachmentTableViewDelegate.m in Sources */,
 				4C26C33F18D8C92100CF1A1C /* MPTemporaryFileStorage.m in Sources */,
+				4C663D411D6D91A900CB6237 /* MPNumberFormatter.m in Sources */,
 				4CD2B9061849424B0051B395 /* MPAutotypeContext.m in Sources */,
 				4CFB18E418A17FA20097A34B /* MPUpdateSettingsController.m in Sources */,
 				4C7B63771C0CB51F00D7038C /* TTTStringTransformers.m in Sources */,
