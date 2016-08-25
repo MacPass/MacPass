@@ -171,14 +171,19 @@ typedef NS_ENUM(NSUInteger, MPPasswordRating) {
 }
 
 - (IBAction)_usePassword:(id)sender {
-  self.generatedPassword = self.password;
   if(self.shouldCopyPasswordToPasteboardButton.state == NSOnState) {
     [[MPPasteBoardController defaultController] copyObjects:@[self.password]];
+  }
+  if(self.completionHandler) {
+    self.completionHandler(NSModalResponseOK, self.password);
   }
   [self.view.window performClose:sender];
 }
 
 - (IBAction)_cancel:(id)sender {
+  if(self.completionHandler) {
+    self.completionHandler(NSModalResponseCancel, self.password);
+  }
   [self.view.window performClose:sender];
 }
 

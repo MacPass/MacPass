@@ -22,7 +22,4 @@
 @property (weak) IBOutlet NSPopUpButton *autotypePopupButton;
 @property (weak) IBOutlet HNHUIRoundedTextField *autotypeSequenceTextField;
 
-- (void)beginEditing;
-- (void)endEditing;
-
 @end

@@ -8,11 +8,12 @@
         <customObject id="-2" userLabel="File's Owner" customClass="MPInspectorViewController">
             <connections>
                 <outlet property="bottomBar" destination="2930" id="2995"/>
-                <outlet property="editButton" destination="3109" id="3122"/>
+                <outlet property="discardChangesButton" destination="hfJ-b8-tQJ" id="CCz-S9-SiC"/>
                 <outlet property="itemImageView" destination="2998" id="3024"/>
                 <outlet property="itemNameTextField" destination="3013" id="3025"/>
                 <outlet property="noSelectionInfo" destination="2985" id="2993"/>
                 <outlet property="notesTextView" destination="g24-gQ-foD" id="pcU-EQ-Vgn"/>
+                <outlet property="saveChangesButton" destination="lje-Eh-VCc" id="JK1-gy-w3R"/>
                 <outlet property="splitView" destination="3145" id="lyG-RH-yu4"/>
                 <outlet property="tabView" destination="2895" id="2994"/>
                 <outlet property="view" destination="2894" id="2976"/>
@@ -26,9 +27,16 @@
                 <customView translatesAutoresizingMaskIntoConstraints="NO" id="2930" customClass="HNHUIGradientView">
                     <rect key="frame" x="0.0" y="0.0" width="278" height="30"/>
                     <subviews>
-                        <button verticalHuggingPriority="750" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="3109">
-                            <rect key="frame" x="219" y="2" width="39" height="25"/>
-                            <buttonCell key="cell" type="roundTextured" title="Edit" bezelStyle="texturedRounded" imagePosition="left" alignment="center" state="on" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="3110">
+                        <button hidden="YES" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="lje-Eh-VCc">
+                            <rect key="frame" x="194" y="-2" width="70" height="32"/>
+                            <buttonCell key="cell" type="push" title="Save" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="15U-vA-2Dj">
+                                <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                <font key="font" metaFont="system"/>
+                            </buttonCell>
+                        </button>
+                        <button hidden="YES" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="hfJ-b8-tQJ">
+                            <rect key="frame" x="107" y="-2" width="87" height="32"/>
+                            <buttonCell key="cell" type="push" title="Discard" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="bQO-6W-0DC">
                                 <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                 <font key="font" metaFont="system"/>
                             </buttonCell>
@@ -36,8 +44,13 @@
                     </subviews>
                     <constraints>
                         <constraint firstAttribute="height" constant="30" id="2949"/>
-                        <constraint firstAttribute="trailing" secondItem="3109" secondAttribute="trailing" constant="20" symbolic="YES" id="3138"/>
-                        <constraint firstItem="3109" firstAttribute="centerY" secondItem="2930" secondAttribute="centerY" id="3139"/>
+                        <constraint firstAttribute="bottom" secondItem="hfJ-b8-tQJ" secondAttribute="bottom" constant="5" id="98h-mh-kLI"/>
+                        <constraint firstItem="hfJ-b8-tQJ" firstAttribute="top" secondItem="2930" secondAttribute="top" constant="4" id="KJY-bS-IEo"/>
+                        <constraint firstAttribute="trailing" secondItem="lje-Eh-VCc" secondAttribute="trailing" constant="20" symbolic="YES" id="ctS-Ss-3p5"/>
+                        <constraint firstItem="lje-Eh-VCc" firstAttribute="leading" secondItem="hfJ-b8-tQJ" secondAttribute="trailing" constant="12" symbolic="YES" id="dqP-vX-v2w"/>
+                        <constraint firstItem="hfJ-b8-tQJ" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="2930" secondAttribute="leading" constant="20" symbolic="YES" id="eHL-y7-iiE"/>
+                        <constraint firstAttribute="bottom" secondItem="lje-Eh-VCc" secondAttribute="bottom" constant="5" id="jQ2-v5-1GZ"/>
+                        <constraint firstItem="lje-Eh-VCc" firstAttribute="top" secondItem="2930" secondAttribute="top" constant="4" id="t64-P5-H3N"/>
                     </constraints>
                 </customView>
                 <imageView translatesAutoresizingMaskIntoConstraints="NO" id="2998" customClass="MPPopupImageView">
@@ -95,8 +108,8 @@
                                                 <rect key="frame" x="0.0" y="0.0" width="278" height="370"/>
                                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                 <subviews>
-                                                    <textField verticalHuggingPriority="750" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="2985">
-                                                        <rect key="frame" x="80" y="194" width="119" height="24"/>
+                                                    <textField verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="2985">
+                                                        <rect key="frame" x="81" y="194" width="118" height="24"/>
                                                         <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="No Selection" id="2986">
                                                             <font key="font" metaFont="system" size="20"/>
                                                             <color key="textColor" name="controlShadowColor" catalog="System" colorSpace="catalog"/>
@@ -125,8 +138,8 @@
                             <rect key="frame" x="0.0" y="371" width="278" height="211"/>
                             <autoresizingMask key="autoresizingMask"/>
                             <subviews>
-                                <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="PzR-P9-3al">
-                                    <rect key="frame" x="18" y="192" width="36" height="14"/>
+                                <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="PzR-P9-3al">
+                                    <rect key="frame" x="18" y="192" width="35" height="14"/>
                                     <textFieldCell key="cell" controlSize="small" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Notes" id="hwn-UY-9Cr">
                                         <font key="font" metaFont="smallSystem"/>
                                         <color key="textColor" name="disabledControlTextColor" catalog="System" colorSpace="catalog"/>
@@ -203,9 +216,8 @@
                 <constraint firstAttribute="trailing" secondItem="3145" secondAttribute="trailing" id="3154"/>
                 <constraint firstItem="3145" firstAttribute="leading" secondItem="2894" secondAttribute="leading" id="3155"/>
             </constraints>
-            <point key="canvasLocation" x="268" y="-437"/>
+            <point key="canvasLocation" x="412" y="-682"/>
         </customView>
-        <userDefaultsController representsSharedInstance="YES" id="U5N-S2-0zc"/>
     </objects>
     <resources>
         <image name="NSActionTemplate" width="14" height="14"/>

@@ -457,8 +457,6 @@ NSString *const _MPTableSecurCellView = @"PasswordCell";
 - (void)_didExitHistory:(NSNotification *)notification {
   [self _hideContextBar];
 }
-
-
 #pragma mark ContextBar
 - (void)_updateContextBar {
   MPDocument *document = [[self windowController] document];

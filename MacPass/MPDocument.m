@@ -65,7 +65,7 @@ NSString *const MPDocumentGroupKey                        = @"MPDocumentGroupKey
 @property (weak, nonatomic) KPKGroup *root;
 @property (nonatomic, strong) KPKCompositeKey *compositeKey;
 @property (nonatomic, strong) NSData *encryptedData;
-@property (nonatomic, strong) MPTreeDelegate *treeDelgate;
+@property (nonatomic, strong) MPTreeDelegate *treeDelegate;
 
 @property (nonatomic, copy) NSArray<KPKNode *> *selectedNodes;
 
@@ -75,7 +75,9 @@ NSString *const MPDocumentGroupKey                        = @"MPDocumentGroupKey
 @property (strong) IBOutlet NSView *warningView;
 @property (weak) IBOutlet NSImageView *warningViewImage;
 
-@property (assign) BOOL fileChangeDialogOpen;;
+@property (assign) BOOL fileChangeDialogOpen;
+
+@property (strong) NSMutableDictionary *modifiedEntries;
 
 @end
 
@@ -412,12 +414,12 @@ NSString *const MPDocumentGroupKey                        = @"MPDocumentGroupKey
 }
 
 - (void)setTree:(KPKTree *)tree {
-  if(_tree != tree) {
+  if(self.tree != tree) {
     _tree = tree;
-    if(nil == _treeDelgate) {
-      _treeDelgate = [[MPTreeDelegate alloc] initWithDocument:self];
+    if(nil == self.treeDelegate) {
+      self.treeDelegate = [[MPTreeDelegate alloc] initWithDocument:self];
     }
-    _tree.delegate = _treeDelgate;
+    self.tree.delegate = self.treeDelegate;
   }
 }
 
@@ -767,6 +769,22 @@ NSString *const MPDocumentGroupKey                        = @"MPDocumentGroupKey
     [[self undoManager] removeAllActionsWithTarget:group];
   }
   [self.trash clear];
+}
+
+- (void)willChangeEntry:(KPKEntry *)entry {
+  /* we store a copy of the entry */
+  NSAssert(nil == self.modifiedEntries[entry.uuid], @"Inconsistent state, pending changes present for entry!");
+  self.modifiedEntries[entry.uuid] = [entry copy];
+}
+
+- (void)discardChangesToEntry:(KPKEntry *)entry {
+  self.modifiedEntries[entry.uuid] = nil;
+  /* TODO KeePassKit copy entry with info from old entry */
+}
+
+- (void)commitChangesToEntry:(KPKEntry *)entry {
+  /* TODO KeePassKit entry pushHistory:self.modifiedEntries[entry.uuid] */
+  [self discardChangesToEntry:entry];
 }
 
 #pragma mark -

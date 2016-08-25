@@ -16,8 +16,6 @@
 - (NSResponder *)reconmendedFirstResponder;
 - (void)updateResponderChain;
 
-
-
 #pragma mark Binding Observation
 /**
  *  Override this to get notificied when setValue:forKeyPath will be called with a keypath starting with representedObject.
@@ -35,5 +33,7 @@
  *  @param keyPath the full key path affected
  */
 - (void)didChangeValueForRepresentedObjectKeyPath:(NSString *)keyPath;
+
+
 
 @end

@@ -66,7 +66,4 @@
 
 - (IBAction)toggleQuicklookPreview:(id)sender;
 
-- (void)beginEditing;
-- (void)endEditing;
-
 @end

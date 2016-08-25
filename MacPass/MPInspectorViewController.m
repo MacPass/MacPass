@@ -100,7 +100,8 @@ typedef NS_ENUM(NSUInteger, MPContentTab) {
   
   [self.view layout];
   
-  self.cancelEditButton.hidden = YES;
+  self.discardChangesButton.hidden = YES;
+  self.saveChangesButton.hidden = YES;
 }
 
 - (void)registerNotificationsForDocument:(MPDocument *)document {
@@ -183,6 +184,22 @@ typedef NS_ENUM(NSUInteger, MPContentTab) {
   [self.popover showRelativeToRect:NSZeroRect ofView:sender preferredEdge:NSMinYEdge];
 }
 
+
+- (void)saveChanges:(id)sender {
+  MPDocument *document = self.windowController.document;
+  KPKEntry *entry = self.representedObject;
+  [document commitChangesToEntry:entry];
+}
+
+- (void)discardChanges:(id)sender {
+  MPDocument *document = self.windowController.document;
+  KPKEntry *entry = self.representedObject;
+  [document discardChangesToEntry:entry];
+}
+
+#pragma mark -
+#pragma mark NSPopover Delegate
+
 - (void)popoverDidClose:(NSNotification *)notification {
   /* clear out the popover */
   self.popover = nil;
@@ -206,14 +223,16 @@ typedef NS_ENUM(NSUInteger, MPContentTab) {
 //                       options:@{NSNullPlaceholderBindingOption: NSLocalizedString(@"NONE", "")}];
 }
 
-#pragma mark -
-#pragma mark Editing
-- (void)_toggleEditors:(BOOL)editable {
-  self.itemImageView.enabled = editable;
-  self.itemNameTextField.enabled = editable;
-  self.itemImageView.editable = editable;
-  self.notesTextView.editable = editable;
+- (void)willChangeValueForRepresentedObjectKeyPath:(NSString *)keyPath {
+  MPDocument *document = self.windowController.document;
+  KPKEntry *entry = [self.representedObject asEntry];
+  if(entry) {
+    [document willChangeEntry:entry];
+  }
 }
+
+
+
 #pragma mark -
 #pragma mark MPDocument Notifications
 
@@ -232,24 +251,6 @@ typedef NS_ENUM(NSUInteger, MPContentTab) {
   self.representedObject = node;
   self.entryViewController.representedObject = node.asEntry;
   self.groupViewController.representedObject = node.asGroup;
-  [self _toggleEditors:(nil != node.asGroup)];
 }
 
-- (IBAction)beginEditing:(id)sender {
-  self.editButton.action = @selector(commitEditing:);
-  self.editButton.title = NSLocalizedString(@"SAVE", "");
-  self.cancelEditButton.hidden = NO;
-  [self _toggleEditors:YES];
-}
-
-- (IBAction)cancelEditing:(id)sender {
-  self.editButton.title = NSLocalizedString(@"EDIT", "");
-  self.cancelEditButton.hidden = YES;
-  self.editButton.action = @selector(beginEditing:);
-  [self _toggleEditors:NO];
-}
-
-- (IBAction)commitEditing:(id)sender {
-  [self cancelEditing:sender];
-}
 @end

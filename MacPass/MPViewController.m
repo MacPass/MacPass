@@ -41,7 +41,7 @@
 #pragma mark Binding observation
 - (void)setValue:(id)value forKeyPath:(NSString *)keyPath {
   if([keyPath hasPrefix:@"representedObject."]) {
-    [self didChangeValueForRepresentedObjectKeyPath:keyPath];
+    [self willChangeValueForRepresentedObjectKeyPath:keyPath];
     [super setValue:value forKeyPath:keyPath];
     [self didChangeValueForRepresentedObjectKeyPath:keyPath];
   }

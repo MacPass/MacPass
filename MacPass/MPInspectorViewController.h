@@ -19,13 +19,18 @@
 @property (weak) IBOutlet NSTextField *noSelectionInfo;
 @property (weak) IBOutlet MPPopupImageView *itemImageView;
 @property (weak) IBOutlet NSTextField *itemNameTextField;
-@property (weak) IBOutlet NSButton *editButton;
-@property (weak) IBOutlet NSButton *cancelEditButton;
+@property (weak) IBOutlet NSButton *saveChangesButton;
+@property (weak) IBOutlet NSButton *discardChangesButton;
 
 - (IBAction)pickIcon:(id)sender;
 - (IBAction)pickExpiryDate:(id)sender;
+- (IBAction)saveChanges:(id)sender;
+- (IBAction)discardChanges:(id)sender;
+
 
 /* Separate call to ensure all registered objects are in place */
 - (void)registerNotificationsForDocument:(NSDocument *)document;
+
+
 
 @end

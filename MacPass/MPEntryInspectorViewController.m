@@ -268,6 +268,15 @@ static NSString *kMPContentBindingString3 = @"content.%@.%@.%@";
   MPPasswordCreatorViewController *viewController = [[MPPasswordCreatorViewController alloc] init];
   viewController.allowsEntryDefaults = YES;
   viewController.representedObject = self.representedObject;
+  viewController.completionHandler = ^void (NSModalResponse response, NSString *password) {
+    /* TODO mark for modification! */
+    self.generatePasswordButton.enabled = YES;
+    /* We should only use the password if there is actually one */
+    if(password.length > 0) {
+      self.representedEntry.password = password;
+    }
+  };
+  
   [self _showPopopver:viewController atView:self.passwordTextField onEdge:NSMinYEdge];
 }
 
@@ -285,18 +294,6 @@ static NSString *kMPContentBindingString3 = @"content.%@.%@.%@";
 }
 
 - (void)popoverDidClose:(NSNotification *)notification {
-  /* We do not enable the button all the time, but it's working find this way */
-  [self.generatePasswordButton setEnabled:YES];
-  NSPopover *popover = notification.object;
-  id controller = _activePopover.contentViewController;
-  /* Check for password wizzard */
-  if([controller respondsToSelector:@selector(generatedPassword)]) {
-    NSString *password = [controller generatedPassword];
-    /* We should only use the password if there is actually one */
-    if(password.length > 0) {
-      self.representedEntry.password = [controller generatedPassword];
-    }
-  }
   self.activePopover = nil;
 }
 
@@ -435,21 +432,6 @@ static NSString *kMPContentBindingString3 = @"content.%@.%@.%@";
                                  toObject:_windowAssociationsController
                               withKeyPath:[NSString stringWithFormat:@"selection.%@", NSStringFromSelector(@selector(keystrokeSequence))]
                                   options:nil];
-}
-
-- (void)_toggleEditing:(BOOL)edit {
-  NSArray <NSTextField *> *textFields = @[self.titleTextField,
-                                          self.usernameTextField,
-                                          self.URLTextField,
-                                          self.passwordTextField,
-                                          self.tagsTokenField
-                                          /*self.createdTextField,
-                                           self.modifiedTextField*/
-                                          ];
-  for(NSTextField *t in textFields) {
-    t.editable = edit;
-    t.selectable = edit;
-  }
 }
 
 #pragma mark -

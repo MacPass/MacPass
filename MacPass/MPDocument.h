@@ -167,6 +167,14 @@ APPKIT_EXTERN NSString *const MPDocumentGroupKey;
 
 - (IBAction)duplicateEntryWithOptions:(id)sender;
 
+
+#pragma mark -
+#pragma mark Editing
+
+- (void)willChangeEntry:(KPKEntry *)entry;
+- (void)commitChangesToEntry:(KPKEntry *)entry;
+- (void)discardChangesToEntry:(KPKEntry *)entry;
+
 @end
 
 @interface MPDocument (Attachments)
@@ -210,23 +218,6 @@ APPKIT_EXTERN NSString *const MPDocumentGroupKey;
 - (NSArray *)malformedAutotypeItems;
 
 @end
-
-#pragma mark -
-#pragma mark Edit Sessiong
-
-APPKIT_EXTERN NSString *const MPDocumentDidBeginEditingSelectedItem;
-APPKIT_EXTERN NSString *const MPDocumentDidCancelChangesToSelectedItem;
-APPKIT_EXTERN NSString *const MPDocumentDidCommitChangesToSelectedItem;
-
-@interface MPDocument (EditingSession)
-
-#pragma mark Edit Actions
-- (IBAction)beginEditingSelectedItem:(id)sender;
-- (IBAction)cancelChangesToSelectedItem:(id)sender;
-- (IBAction)commitChangesToSelectedItem:(id)sender;
-
-@end
-
 
 #pragma mark -
 #pragma mark History Browsing
