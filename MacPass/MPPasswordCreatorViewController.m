@@ -175,11 +175,11 @@ typedef NS_ENUM(NSUInteger, MPPasswordRating) {
   if(self.shouldCopyPasswordToPasteboardButton.state == NSOnState) {
     [[MPPasteBoardController defaultController] copyObjects:@[self.password]];
   }
-  [[self _findCloseTarget] performClose:nil];
+  [self.view.window performClose:sender];
 }
 
 - (IBAction)_cancel:(id)sender {
-  [[self _findCloseTarget] performClose:nil];
+  [self.view.window performClose:sender];
 }
 
 - (IBAction)_setDefault:(id)sender {
@@ -343,12 +343,5 @@ typedef NS_ENUM(NSUInteger, MPPasswordRating) {
   self.lowerCaseButton.state = (userLowercase ? NSOnState : NSOffState);
   self.numbersButton.state = (useNumbers ? NSOnState : NSOffState);
   self.symbolsButton.state = (useSymbols ? NSOnState : NSOffState);
-}
-
-- (id)_findCloseTarget {
-  if([self.closeTarget respondsToSelector:@selector(performClose:)]) {
-    return self.closeTarget;
-  }
-  return [NSApp targetForAction:@selector(performClose:)];
 }
 @end

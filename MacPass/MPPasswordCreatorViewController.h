@@ -12,7 +12,7 @@
 @interface MPPasswordCreatorViewController : MPViewController <NSTextFieldDelegate>
 
 @property (copy, readonly) NSString *generatedPassword;
-@property (weak) id closeTarget;
+//@property (weak) id closeTarget;
 @property (assign) BOOL allowsEntryDefaults;
 
 /**

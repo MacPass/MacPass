@@ -272,25 +272,22 @@ static NSString *kMPContentBindingString3 = @"content.%@.%@.%@";
 }
 
 - (void)_showPopopver:(NSViewController *)viewController atView:(NSView *)view onEdge:(NSRectEdge)edge {
-  if(_activePopover.contentViewController == viewController) {
+  if(self.activePopover.contentViewController == viewController) {
     return; // Do nothing, we already did show the controller
   }
-  [_activePopover close];
-  NSAssert(_activePopover == nil, @"Popover hast to be niled out");
-  _activePopover = [[NSPopover alloc] init];
-  _activePopover.delegate = self;
-  _activePopover.behavior = NSPopoverBehaviorTransient;
-  if([viewController respondsToSelector:@selector(setCloseTarget:)]) {
-    [(id)viewController setCloseTarget:_activePopover];
-  }
-  _activePopover.contentViewController = viewController;
-  
-  [_activePopover showRelativeToRect:NSZeroRect ofView:view preferredEdge:edge];
+  [self.activePopover close];
+  NSAssert(self.activePopover == nil, @"Popover hast to be niled out");
+  self.activePopover = [[NSPopover alloc] init];
+  self.activePopover.delegate = self;
+  self.activePopover.behavior = NSPopoverBehaviorTransient;
+  self.activePopover.contentViewController = viewController;
+  [self.activePopover showRelativeToRect:NSZeroRect ofView:view preferredEdge:edge];
 }
 
 - (void)popoverDidClose:(NSNotification *)notification {
   /* We do not enable the button all the time, but it's working find this way */
   [self.generatePasswordButton setEnabled:YES];
+  NSPopover *popover = notification.object;
   id controller = _activePopover.contentViewController;
   /* Check for password wizzard */
   if([controller respondsToSelector:@selector(generatedPassword)]) {
@@ -300,9 +297,7 @@ static NSString *kMPContentBindingString3 = @"content.%@.%@.%@";
       self.representedEntry.password = [controller generatedPassword];
     }
   }
-  /* TODO: Check for Icon wizard */
-  
-  _activePopover = nil;
+  self.activePopover = nil;
 }
 
 #pragma mark -
