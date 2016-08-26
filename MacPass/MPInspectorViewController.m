@@ -176,6 +176,10 @@ typedef NS_ENUM(NSUInteger, MPContentTab) {
   self.popover.delegate = self;
   self.popover.behavior = NSPopoverBehaviorTransient;
   MPIconSelectViewController *vc = [[MPIconSelectViewController alloc] init];
+  [[NSNotificationCenter defaultCenter] addObserver:self
+                                           selector:@selector(_willChangeValueForRepresentedObjectNotification:)
+                                               name:MPViewControllerWillChangeValueForRepresentedObjectKeyPathNotification
+                                             object:vc];
   vc.representedObject = self.representedObject;
   vc.popover = self.popover;
   self.popover.contentViewController = vc;
@@ -191,6 +195,10 @@ typedef NS_ENUM(NSUInteger, MPContentTab) {
   self.popover.delegate = self;
   self.popover.behavior = NSPopoverBehaviorTransient;
   MPDatePickingViewController *vc = [[MPDatePickingViewController alloc] init];
+  [[NSNotificationCenter defaultCenter] addObserver:self
+                                           selector:@selector(_willChangeValueForRepresentedObjectNotification:)
+                                               name:MPViewControllerWillChangeValueForRepresentedObjectKeyPathNotification
+                                             object:vc];
   vc.representedObject = self.representedObject;
   self.popover.contentViewController = vc;
   [self.popover showRelativeToRect:NSZeroRect ofView:sender preferredEdge:NSMinYEdge];
@@ -202,6 +210,8 @@ typedef NS_ENUM(NSUInteger, MPContentTab) {
 
 - (void)popoverDidClose:(NSNotification *)notification {
   /* clear out the popover */
+  NSPopover *po = notification.object;
+  [[NSNotificationCenter defaultCenter] removeObserver:self name:MPViewControllerWillChangeValueForRepresentedObjectKeyPathNotification object:po.contentViewController];
   self.popover = nil;
 }
 
@@ -209,6 +219,7 @@ typedef NS_ENUM(NSUInteger, MPContentTab) {
 #pragma mark Bindings
 
 - (void)willChangeValueForRepresentedObjectKeyPath:(NSString *)keyPath {
+  [super willChangeValueForKey:keyPath];
   [self _recordChangesForCurrentNode];
 }
 
@@ -246,7 +257,7 @@ typedef NS_ENUM(NSUInteger, MPContentTab) {
     self.activeTab = MPEmptyTab;
   }
   self.didPushHistory = NO;
-
+  
   self.representedObject = node;
   self.entryViewController.representedObject = node.asEntry;
   self.groupViewController.representedObject = node.asGroup;

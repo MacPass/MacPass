@@ -60,7 +60,9 @@ typedef NS_ENUM(NSUInteger, MPDatePreset) {
 
 - (IBAction)useDate:(id)sender {
   KPKTimeInfo *timeInfo = [self.representedObject timeInfo];
+  [self willChangeValueForRepresentedObjectKeyPath:[NSString stringWithFormat:@"%@.%@.%@", NSStringFromSelector(@selector(representedObject)), NSStringFromSelector(@selector(timeInfo)), NSStringFromSelector(@selector(expirationDate))]];
   timeInfo.expirationDate = self.datePicker.dateValue;
+  [self didChangeValueForRepresentedObjectKeyPath:[NSString stringWithFormat:@"%@.%@.%@", NSStringFromSelector(@selector(representedObject)), NSStringFromSelector(@selector(timeInfo)), NSStringFromSelector(@selector(expirationDate))]];
   [self.view.window performClose:sender];
 }
 

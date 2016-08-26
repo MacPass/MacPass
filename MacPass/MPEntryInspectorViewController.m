@@ -60,9 +60,6 @@ typedef NS_ENUM(NSUInteger, MPEntryTab) {
 
 @implementation MPEntryInspectorViewController
 
-static NSString *kMPContentBindingString2 = @"content.%@.%@";
-static NSString *kMPContentBindingString3 = @"content.%@.%@.%@";
-
 - (NSString *)nibName {
   return @"EntryInspectorView";
 }

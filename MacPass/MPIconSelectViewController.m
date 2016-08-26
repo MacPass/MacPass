@@ -34,8 +34,9 @@
 
 - (IBAction)useDefault:(id)sender {
   KPKNode *node = self.representedObject;
+  [self willChangeValueForRepresentedObjectKeyPath:[NSString stringWithFormat:@"%@.%@", NSStringFromSelector(@selector(representedObject)), NSStringFromSelector(@selector(iconId))]];
   node.iconId = [[node class] defaultIcon];
-  
+  [self didChangeValueForRepresentedObjectKeyPath:[NSString stringWithFormat:@"%@.%@", NSStringFromSelector(@selector(representedObject)), NSStringFromSelector(@selector(iconId))]];
   [self.view.window performClose:sender];
 }
 
@@ -49,7 +50,11 @@
   NSUInteger buttonIndex = [self.iconCollectionView.content indexOfObject:image];
   NSInteger newIconId = ((NSNumber *)[MPIconHelper databaseIconTypes][buttonIndex]).integerValue;
   KPKNode *node = self.representedObject;
+  [self willChangeValueForRepresentedObjectKeyPath:[NSString stringWithFormat:@"%@.%@", NSStringFromSelector(@selector(representedObject)), NSStringFromSelector(@selector(iconId))]];
   node.iconId = newIconId;
+  [self didChangeValueForRepresentedObjectKeyPath:[NSString stringWithFormat:@"%@.%@", NSStringFromSelector(@selector(representedObject)), NSStringFromSelector(@selector(iconId))]];
   [self.view.window performClose:sender];
 }
+
+
 @end

@@ -43,10 +43,8 @@ NSString *const MPViewControllerDidChangeValueForRepresentedObjectKeyPathNotific
 #pragma mark Binding observation
 - (void)setValue:(id)value forKeyPath:(NSString *)keyPath {
   if([keyPath hasPrefix:@"representedObject."]) {
-    [[NSNotificationCenter defaultCenter] postNotificationName:MPViewControllerWillChangeValueForRepresentedObjectKeyPathNotification object:self];
     [self willChangeValueForRepresentedObjectKeyPath:keyPath];
     [super setValue:value forKeyPath:keyPath];
-    [[NSNotificationCenter defaultCenter] postNotificationName:MPViewControllerDidChangeValueForRepresentedObjectKeyPathNotification object:self];
     [self didChangeValueForRepresentedObjectKeyPath:keyPath];
   }
   else {
@@ -55,11 +53,11 @@ NSString *const MPViewControllerDidChangeValueForRepresentedObjectKeyPathNotific
 }
 
 - (void)willChangeValueForRepresentedObjectKeyPath:(NSString *)keyPath {
-  NSLog(@"[%@ willChangeValueForRepresentedObjectKeyPath:%@]", NSStringFromClass([self class]), keyPath);
+  [[NSNotificationCenter defaultCenter] postNotificationName:MPViewControllerWillChangeValueForRepresentedObjectKeyPathNotification object:self];
 }
 
 - (void)didChangeValueForRepresentedObjectKeyPath:(NSString *)keyPath {
-  NSLog(@"[%@ didChangeValueForRepresentedObjectKeyPath:%@]", NSStringFromClass([self class]), keyPath);
+  [[NSNotificationCenter defaultCenter] postNotificationName:MPViewControllerDidChangeValueForRepresentedObjectKeyPathNotification object:self];
 }
 
 @end
