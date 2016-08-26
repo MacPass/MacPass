@@ -24,9 +24,6 @@
 
 - (IBAction)pickIcon:(id)sender;
 - (IBAction)pickExpiryDate:(id)sender;
-- (IBAction)saveChanges:(id)sender;
-- (IBAction)discardChanges:(id)sender;
-
 
 /* Separate call to ensure all registered objects are in place */
 - (void)registerNotificationsForDocument:(NSDocument *)document;

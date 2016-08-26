@@ -167,14 +167,6 @@ APPKIT_EXTERN NSString *const MPDocumentGroupKey;
 
 - (IBAction)duplicateEntryWithOptions:(id)sender;
 
-
-#pragma mark -
-#pragma mark Editing
-
-- (void)willChangeEntry:(KPKEntry *)entry;
-- (void)commitChangesToEntry:(KPKEntry *)entry;
-- (void)discardChangesToEntry:(KPKEntry *)entry;
-
 @end
 
 @interface MPDocument (Attachments)

@@ -10,6 +10,9 @@
 
 @interface MPViewController : NSViewController
 
+APPKIT_EXTERN NSString *const MPViewControllerWillChangeValueForRepresentedObjectKeyPathNotification;
+APPKIT_EXTERN NSString *const MPViewControllerDidChangeValueForRepresentedObjectKeyPathNotification;
+
 @property (nonatomic, readonly) NSWindowController *windowController;
 
 - (void)didLoadView;

@@ -39,18 +39,18 @@
 #import "NSString+MPPasswordCreation.h"
 #import "NSString+MPHash.h"
 
-NSString *const MPDocumentDidAddGroupNotification         = @"com.hicknhack.macpass.MPDocumentDidAddGroupNotification";
-NSString *const MPDocumentDidAddEntryNotification         = @"com.hicknhack.macpass.MPDocumentDidAddEntryNotification";
+NSString *const MPDocumentDidAddGroupNotification             = @"com.hicknhack.macpass.MPDocumentDidAddGroupNotification";
+NSString *const MPDocumentDidAddEntryNotification             = @"com.hicknhack.macpass.MPDocumentDidAddEntryNotification";
 
-NSString *const MPDocumentDidRevertNotifiation            = @"com.hicknhack.macpass.MPDocumentDidRevertNotifiation";
+NSString *const MPDocumentDidRevertNotifiation                = @"com.hicknhack.macpass.MPDocumentDidRevertNotifiation";
 
-NSString *const MPDocumentDidLockDatabaseNotification     = @"com.hicknhack.macpass.MPDocumentDidLockDatabaseNotification";
-NSString *const MPDocumentDidUnlockDatabaseNotification   = @"com.hicknhack.macpass.MPDocumentDidUnlockDatabaseNotification";
+NSString *const MPDocumentDidLockDatabaseNotification         = @"com.hicknhack.macpass.MPDocumentDidLockDatabaseNotification";
+NSString *const MPDocumentDidUnlockDatabaseNotification       = @"com.hicknhack.macpass.MPDocumentDidUnlockDatabaseNotification";
 
-NSString *const MPDocumentCurrentItemChangedNotification  = @"com.hicknhack.macpass.MPDocumentCurrentItemChangedNotification";
+NSString *const MPDocumentCurrentItemChangedNotification      = @"com.hicknhack.macpass.MPDocumentCurrentItemChangedNotification";
 
-NSString *const MPDocumentEntryKey                        = @"MPDocumentEntryKey";
-NSString *const MPDocumentGroupKey                        = @"MPDocumentGroupKey";
+NSString *const MPDocumentEntryKey                            = @"MPDocumentEntryKey";
+NSString *const MPDocumentGroupKey                            = @"MPDocumentGroupKey";
 
 @interface MPDocument () {
 @private
@@ -76,8 +76,6 @@ NSString *const MPDocumentGroupKey                        = @"MPDocumentGroupKey
 @property (weak) IBOutlet NSImageView *warningViewImage;
 
 @property (assign) BOOL fileChangeDialogOpen;
-
-@property (strong) NSMutableDictionary *modifiedEntries;
 
 @end
 
@@ -769,22 +767,6 @@ NSString *const MPDocumentGroupKey                        = @"MPDocumentGroupKey
     [[self undoManager] removeAllActionsWithTarget:group];
   }
   [self.trash clear];
-}
-
-- (void)willChangeEntry:(KPKEntry *)entry {
-  /* we store a copy of the entry */
-  NSAssert(nil == self.modifiedEntries[entry.uuid], @"Inconsistent state, pending changes present for entry!");
-  self.modifiedEntries[entry.uuid] = [entry copy];
-}
-
-- (void)discardChangesToEntry:(KPKEntry *)entry {
-  self.modifiedEntries[entry.uuid] = nil;
-  /* TODO KeePassKit copy entry with info from old entry */
-}
-
-- (void)commitChangesToEntry:(KPKEntry *)entry {
-  /* TODO KeePassKit entry pushHistory:self.modifiedEntries[entry.uuid] */
-  [self discardChangesToEntry:entry];
 }
 
 #pragma mark -

@@ -46,6 +46,8 @@ typedef NS_ENUM(NSUInteger, MPContentTab) {
 @property (weak) IBOutlet NSSplitView *splitView;
 @property (unsafe_unretained) IBOutlet NSTextView *notesTextView;
 
+@property BOOL didPushHistory;
+
 @end
 
 @implementation MPInspectorViewController
@@ -60,6 +62,16 @@ typedef NS_ENUM(NSUInteger, MPContentTab) {
     self.activeTab = MPEmptyTab;
     self.entryViewController = [[MPEntryInspectorViewController alloc] init];
     self.groupViewController = [[MPGroupInspectorViewController alloc] init];
+    self.didPushHistory = NO;
+    /* subviewcontrollers will notify us about a change so we can handle the history pushing */
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(_willChangeValueForRepresentedObjectNotification:)
+                                                 name:MPViewControllerWillChangeValueForRepresentedObjectKeyPathNotification
+                                               object:self.entryViewController];
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(_willChangeValueForRepresentedObjectNotification:)
+                                                 name:MPViewControllerWillChangeValueForRepresentedObjectKeyPathNotification
+                                               object:self.groupViewController];
   }
   return self;
 }
@@ -185,18 +197,6 @@ typedef NS_ENUM(NSUInteger, MPContentTab) {
 }
 
 
-- (void)saveChanges:(id)sender {
-  MPDocument *document = self.windowController.document;
-  KPKEntry *entry = self.representedObject;
-  [document commitChangesToEntry:entry];
-}
-
-- (void)discardChanges:(id)sender {
-  MPDocument *document = self.windowController.document;
-  KPKEntry *entry = self.representedObject;
-  [document discardChangesToEntry:entry];
-}
-
 #pragma mark -
 #pragma mark NSPopover Delegate
 
@@ -207,31 +207,28 @@ typedef NS_ENUM(NSUInteger, MPContentTab) {
 
 #pragma mark -
 #pragma mark Bindings
-- (void)_establishBindings {
-  
-//  [self.itemImageView bind:NSValueBinding
-//                  toObject:self
-//               withKeyPath:[NSString stringWithFormat:@"%@.%@", NSStringFromSelector(@selector(representedObject)), NSStringFromSelector(@selector(iconImage))]
-//                   options:nil];
-//  [self.notesTextView bind:NSValueBinding
-//                  toObject:self
-//               withKeyPath:[NSString stringWithFormat:@"%@.%@", NSStringFromSelector(@selector(representedObject)), NSStringFromSelector(@selector(notes))]
-//                   options:@{ NSNullPlaceholderBindingOption: NSLocalizedString(@"NONE", "")}];
-//  [self.itemNameTextField bind:NSValueBinding
-//                      toObject:self
-//                   withKeyPath:[NSString stringWithFormat:@"%@.%@", NSStringFromSelector(@selector(representedObject)), NSStringFromSelector(@selector(title))]
-//                       options:@{NSNullPlaceholderBindingOption: NSLocalizedString(@"NONE", "")}];
-}
 
 - (void)willChangeValueForRepresentedObjectKeyPath:(NSString *)keyPath {
-  MPDocument *document = self.windowController.document;
-  KPKEntry *entry = [self.representedObject asEntry];
-  if(entry) {
-    [document willChangeEntry:entry];
-  }
+  [self _recordChangesForCurrentNode];
 }
 
+#pragma mark -
+#pragma mark MPViewController Notifications
+- (void)_willChangeValueForRepresentedObjectNotification:(NSNotification *)notification {
+  [self _recordChangesForCurrentNode];
+}
 
+- (void)_recordChangesForCurrentNode {
+  /* TODO use uuids for pushed item? */
+  if(self.didPushHistory) {
+    return;
+  }
+  KPKEntry *entry = [self.representedObject asEntry];
+  if( entry ) {
+    [entry pushHistory];
+    self.didPushHistory = YES;
+  }
+}
 
 #pragma mark -
 #pragma mark MPDocument Notifications
@@ -248,9 +245,12 @@ typedef NS_ENUM(NSUInteger, MPContentTab) {
   else {
     self.activeTab = MPEmptyTab;
   }
+  self.didPushHistory = NO;
+
   self.representedObject = node;
   self.entryViewController.representedObject = node.asEntry;
   self.groupViewController.representedObject = node.asGroup;
+  
 }
 
 @end

@@ -7,7 +7,9 @@
 //
 
 #import "MPViewController.h"
-#import "MPDocument.h"
+
+NSString *const MPViewControllerWillChangeValueForRepresentedObjectKeyPathNotification  = @"com.hicknhack.macpass.MPViewControllerWillChangeValueForRepresentedObjectKeyPathNotification";
+NSString *const MPViewControllerDidChangeValueForRepresentedObjectKeyPathNotification   = @"comt.hicknhack.macpass.MPViewControllerDidChangeValueForRepresentedObjectKeyPathNotification";
 
 @implementation MPViewController
 
@@ -41,8 +43,10 @@
 #pragma mark Binding observation
 - (void)setValue:(id)value forKeyPath:(NSString *)keyPath {
   if([keyPath hasPrefix:@"representedObject."]) {
+    [[NSNotificationCenter defaultCenter] postNotificationName:MPViewControllerWillChangeValueForRepresentedObjectKeyPathNotification object:self];
     [self willChangeValueForRepresentedObjectKeyPath:keyPath];
     [super setValue:value forKeyPath:keyPath];
+    [[NSNotificationCenter defaultCenter] postNotificationName:MPViewControllerDidChangeValueForRepresentedObjectKeyPathNotification object:self];
     [self didChangeValueForRepresentedObjectKeyPath:keyPath];
   }
   else {
