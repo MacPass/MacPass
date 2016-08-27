@@ -8,6 +8,10 @@
 
 #import "MPObjectController.h"
 
+@interface MPObjectController ()
+@property (strong) NSMutableSet *observedModelKeyPaths;
+@end
+
 @implementation MPObjectController
 
 - (void)discardEditing {
@@ -19,8 +23,33 @@
 }
 
 - (void)setValue:(id)value forKeyPath:(NSString *)keyPath {
-  NSLog(@"[%@ setValue:%@ forKeyPath:%@]", NSStringFromClass([self class]), value, keyPath);
+  BOOL observerd = NO;
+  for(NSString *observedKeyPath in self.observedModelKeyPaths) {
+    observerd = ([keyPath hasPrefix:observedKeyPath]);
+    if(observerd) {
+      break;
+    }
+  }
+  if(observerd) {
+    
+  }
   [super setValue:value forKeyPath:keyPath];
+}
+
+- (void)didChangeModel {
+
+}
+
+- (void)willChangeModel {
+
+}
+
+- (void)beginObservingModelKeyPath:(NSString *)keyPath {
+  [self.observedModelKeyPaths addObject:keyPath];
+}
+
+- (void)endObservingModelKeyPath:(NSString *)keyPath {
+  [self.observedModelKeyPaths removeObject:keyPath];
 }
 
 @end

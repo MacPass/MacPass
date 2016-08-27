@@ -26,6 +26,8 @@
 
 #import "KeePassKit/KeePassKit.h"
 
+#import "MPArrayController.h"
+
 #import "HNHUi/HNHUi.h"
 
 typedef NS_ENUM(NSUInteger, MPEntryTab) {
@@ -68,9 +70,9 @@ typedef NS_ENUM(NSUInteger, MPEntryTab) {
   self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
   if (self) {
     _showPassword = NO;
-    _attachmentsController = [[NSArrayController alloc] init];
-    _customFieldsController = [[NSArrayController alloc] init];
-    _windowAssociationsController = [[NSArrayController alloc] init];
+    _attachmentsController = [[MPArrayController alloc] init];
+    _customFieldsController = [[MPArrayController alloc] init];
+    _windowAssociationsController = [[MPArrayController alloc] init];
     _attachmentTableDelegate = [[MPAttachmentTableViewDelegate alloc] init];
     _customFieldTableDelegate = [[MPCustomFieldTableViewDelegate alloc] init];
     _attachmentDataSource = [[MPAttachmentTableDataSource alloc] init];

@@ -33,10 +33,10 @@ NSString *const MPViewControllerDidChangeValueForRepresentedObjectKeyPathNotific
 }
 
 - (void)updateResponderChain {
-  if(self.view && [self.view nextResponder] != self) {
-    NSResponder *nextResponder = [[self view] nextResponder];
-    [[self view] setNextResponder:self];
-    [self setNextResponder:nextResponder];
+  if(self.view && self.view.nextResponder != self) {
+    NSResponder *nextResponder = self.view.nextResponder;
+    self.view.nextResponder = self;
+    self.nextResponder = nextResponder;
   }
 }
 

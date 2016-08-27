@@ -7,8 +7,9 @@
 //
 
 #import <Cocoa/Cocoa.h>
+#import "MPModelChangeObserving.h"
 
-@interface MPObjectController : NSObjectController
+@interface MPObjectController : NSObjectController <MPModelChangeObserving>
 
 @property (weak) NSDocument *document;
 

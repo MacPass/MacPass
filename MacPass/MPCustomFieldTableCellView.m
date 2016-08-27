@@ -14,4 +14,9 @@
   [super setBackgroundStyle:NSBackgroundStyleLight];
 }
 
+- (void)setValue:(id)value forKeyPath:(NSString *)keyPath {
+  NSLog(@"%@ setValue:forKeyPath:%@", NSStringFromClass([self class]), keyPath);
+  [super setValue:value forKeyPath:keyPath];
+}
+
 @end
