@@ -12,15 +12,27 @@ NS_ASSUME_NONNULL_BEGIN
 
 @protocol MPModelChangeObserving <NSObject>
 
+/* A class conforming to the protocoll will shoudl always fire the appropriate notifications listes below
+ 
+ You need to overwrite setValue:forKeyPath in a conforming class. For convinience you can just call the helper and lett it do the job
+ 
+ */
 FOUNDATION_EXTERN NSString *const MPWillChangeModelNotification;
-FOUNDATION_EXTERN NSString *const MPDidChangreModelNotification;
+FOUNDATION_EXTERN NSString *const MPDidChangeModelNotification;
 
 FOUNDATION_EXTERN NSString *const MPModelChangeObservingKeyPathKey;
 
 @required
+- (void)observerModelChangesForKeyPath:(NSString *)keyPath;
+@end
 
-- (void)willChangeModel;
-- (void)didChangeModel;
+/* Use this helper to fire the right notifications */
+@interface MPModelChangeObservingHelper : NSObject
+
++ (void)willChangeModelKeyPath:(NSString *)keyPath observer:(id<MPModelChangeObserving>)observer;
++ (void)didChangeModelKeyPath:(NSString *)keyPath observer:(id<MPModelChangeObserving>)observer;
+
+- (void)setValue:(id)value forKeyPath:(NSString *)keyPath forTarget:(id)target;
 
 @end
 

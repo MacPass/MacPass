@@ -195,7 +195,7 @@
 		4CAD748E15B88AC100104512 /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 4CAD748D15B88AC100104512 /* libz.dylib */; };
 		4CB915941A0159A20089CE5B /* DuplicateEntryOptionsWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4CB915931A0159A20089CE5B /* DuplicateEntryOptionsWindow.xib */; };
 		4CB9339916D3A0DD00A13B5D /* Credits.rtf in Resources */ = {isa = PBXBuildFile; fileRef = 4CB9339716D3A0DD00A13B5D /* Credits.rtf */; };
-		4CB9D77F1D70CE6B00F43F76 /* MPModelChangeObservingHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CB9D77E1D70CE6B00F43F76 /* MPModelChangeObservingHelper.m */; };
+		4CB9D77F1D70CE6B00F43F76 /* MPModelChangeObserving.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CB9D77E1D70CE6B00F43F76 /* MPModelChangeObserving.m */; };
 		4CB9D7821D71AFBE00F43F76 /* MPArrayController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CB9D7811D71AFBE00F43F76 /* MPArrayController.m */; };
 		4CBA2ABA17074C07006D8139 /* MPSettingsHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CBA2AB917074C07006D8139 /* MPSettingsHelper.m */; };
 		4CC0D2CE17974A47000B4BDA /* MPCustomFieldTableViewDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CC0D2CD17974A47000B4BDA /* MPCustomFieldTableViewDelegate.m */; };
@@ -592,8 +592,7 @@
 		4CB915931A0159A20089CE5B /* DuplicateEntryOptionsWindow.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DuplicateEntryOptionsWindow.xib; sourceTree = "<group>"; };
 		4CB9339816D3A0DD00A13B5D /* en */ = {isa = PBXFileReference; lastKnownFileType = text.rtf; name = en; path = en.lproj/Credits.rtf; sourceTree = "<group>"; };
 		4CB9D77C1D70CBCE00F43F76 /* MPModelChangeObserving.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MPModelChangeObserving.h; sourceTree = "<group>"; };
-		4CB9D77D1D70CE6B00F43F76 /* MPModelChangeObservingHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MPModelChangeObservingHelper.h; sourceTree = "<group>"; };
-		4CB9D77E1D70CE6B00F43F76 /* MPModelChangeObservingHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MPModelChangeObservingHelper.m; sourceTree = "<group>"; };
+		4CB9D77E1D70CE6B00F43F76 /* MPModelChangeObserving.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MPModelChangeObserving.m; sourceTree = "<group>"; };
 		4CB9D7801D71AFBE00F43F76 /* MPArrayController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MPArrayController.h; sourceTree = "<group>"; };
 		4CB9D7811D71AFBE00F43F76 /* MPArrayController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MPArrayController.m; sourceTree = "<group>"; };
 		4CBA2AB617074B59006D8139 /* MPSettingsHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MPSettingsHelper.h; sourceTree = "<group>"; };
@@ -1307,6 +1306,7 @@
 				4CA0B30D15BCB6FD00654E32 /* MPSettingsTab.h */,
 				4C2B0B7419F66F6400E48913 /* MPTargetNodeResolving.h */,
 				4CB9D77C1D70CBCE00F43F76 /* MPModelChangeObserving.h */,
+				4CB9D77E1D70CE6B00F43F76 /* MPModelChangeObserving.m */,
 			);
 			name = Protocolls;
 			sourceTree = "<group>";
@@ -1372,8 +1372,6 @@
 				4C6AEEF81A043E2B00CA2420 /* MPDocumentController.m */,
 				4CDE7B141D660983008C4160 /* MPObjectController.h */,
 				4CDE7B151D660983008C4160 /* MPObjectController.m */,
-				4CB9D77D1D70CE6B00F43F76 /* MPModelChangeObservingHelper.h */,
-				4CB9D77E1D70CE6B00F43F76 /* MPModelChangeObservingHelper.m */,
 				4CB9D7801D71AFBE00F43F76 /* MPArrayController.h */,
 				4CB9D7811D71AFBE00F43F76 /* MPArrayController.m */,
 			);
@@ -1718,7 +1716,7 @@
 				4CE8246F16E2E93400573141 /* MPOverlayWindowController.m in Sources */,
 				4CE8247516E2F2B900573141 /* MPOverlayView.m in Sources */,
 				4C7B63761C0CB51F00D7038C /* TTTJSONTransformer.m in Sources */,
-				4CB9D77F1D70CE6B00F43F76 /* MPModelChangeObservingHelper.m in Sources */,
+				4CB9D77F1D70CE6B00F43F76 /* MPModelChangeObserving.m in Sources */,
 				4C77547516E55FE800970E02 /* MPInspectorViewController.m in Sources */,
 				4C89F524182FB4740069C73C /* MPAutotypeCommand.m in Sources */,
 				4CFC53BF16E94729007396BE /* MPShadowBox.m in Sources */,
