@@ -84,7 +84,8 @@ uint16_t const kMPUnknownKeyCode = UINT16_MAX;
         tempCharToCodeDict[string] = @(keyCode);
       }
     }
-    keyboardCodeDictionary[localizedName] = [[NSDictionary alloc] initWithDictionary:tempCharToCodeDict];
+    charToCodeDict = [[NSDictionary alloc] initWithDictionary:tempCharToCodeDict];
+    keyboardCodeDictionary[localizedName] = charToCodeDict;
   }
   NSString *singleCharacter = [character substringToIndex:1].lowercaseString;
   if(charToCodeDict[singleCharacter]) {
