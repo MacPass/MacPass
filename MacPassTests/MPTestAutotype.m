@@ -16,6 +16,8 @@
 #import "MPAutotypePaste.h"
 #import "MPAutotypeKeyPress.h"
 
+#import "MPSettingsHelper.h"
+
 #import "MPKeyMapper.h"
 
 
@@ -196,7 +198,13 @@
   keyPress = commands[0];
   /* Lower case is ok, since we only need the key, not the sequence to reproduce the string */
   XCTAssertTrue([@"t" isEqualToString:[MPKeyMapper stringForKey:keyPress.keyCode]]);
-  XCTAssertEqual(keyPress.modifierMask, kCGEventFlagMaskCommand);
+  BOOL useCommandInsteadOfControl = [[NSUserDefaults standardUserDefaults] boolForKey:kMPSettingsKeySendCommandForControlKey];
+  if(useCommandInsteadOfControl) {
+    XCTAssertEqual(keyPress.modifierMask, kCGEventFlagMaskCommand);
+  }
+  else {
+      XCTAssertEqual(keyPress.modifierMask, kCGEventFlagMaskControl);
+  }
   
   /* {USERNAME} */
   paste = commands[1];
@@ -205,7 +213,12 @@
   /* %+^{TAB} */
   keyPress = commands[2];
   XCTAssertEqual(keyPress.keyCode, kVK_Tab); // Tab is a fixed key, no mapping needed
-  XCTAssertEqual(keyPress.modifierMask, (kCGEventFlagMaskCommand | kCGEventFlagMaskShift | kCGEventFlagMaskAlternate));
+  if(useCommandInsteadOfControl) {
+    XCTAssertEqual(keyPress.modifierMask, (kCGEventFlagMaskCommand | kCGEventFlagMaskShift | kCGEventFlagMaskAlternate));
+  }
+  else {
+    XCTAssertEqual(keyPress.modifierMask, (kCGEventFlagMaskControl | kCGEventFlagMaskShift | kCGEventFlagMaskAlternate));
+  }
   
   /* Whoo{PASSWORD} */
   paste = commands[3];
@@ -228,7 +241,12 @@
   keyPress = commands[0];
   XCTAssertEqualObjects(@"t", [MPKeyMapper stringForKey:keyPress.keyCode]);
   /* TODO - Respect user settings? */
-  XCTAssertEqual(keyPress.modifierMask, kCGEventFlagMaskCommand);
+  if(useCommandInsteadOfControl) {
+    XCTAssertEqual(keyPress.modifierMask, kCGEventFlagMaskCommand);
+  }
+  else {
+    XCTAssertEqual(keyPress.modifierMask, kCGEventFlagMaskControl);
+  }
   /*XCTAssertEqual(keyPress.modifierMask, kCGEventFlagMaskControl);*/
   
 }

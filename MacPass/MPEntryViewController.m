@@ -53,6 +53,7 @@ NSString *const MPEntryTableURLColumnIdentifier = @"MPEntryTableURLColumnIdentif
 NSString *const MPEntryTableNotesColumnIdentifier = @"MPEntryTableNotesColumnIdentifier";
 NSString *const MPEntryTableAttachmentColumnIdentifier = @"MPEntryTableAttachmentColumnIdentifier";
 NSString *const MPEntryTableModfiedColumnIdentifier = @"MPEntryTableModfiedColumnIdentifier";
+NSString *const MPEntryTableHistoryColumnIdentifier = @"MPEntryTableHistoryColumnIdentifier";
 
 NSString *const _MPTableImageCellView = @"ImageCell";
 NSString *const _MPTableStringCellView = @"StringCell";
@@ -128,12 +129,15 @@ NSString *const _MPTableSecurCellView = @"PasswordCell";
   NSTableColumn *attachmentsColumn = [[NSTableColumn alloc] initWithIdentifier:MPEntryTableAttachmentColumnIdentifier];
   NSTableColumn *notesColumn = [[NSTableColumn alloc] initWithIdentifier:MPEntryTableNotesColumnIdentifier];
   NSTableColumn *modifiedColumn = [[NSTableColumn alloc] initWithIdentifier:MPEntryTableModfiedColumnIdentifier];
+  NSTableColumn *historyColumn = [[NSTableColumn alloc] initWithIdentifier:MPEntryTableHistoryColumnIdentifier];
   notesColumn.minWidth = 40.0;
   attachmentsColumn.minWidth = 40.0;
   modifiedColumn.minWidth = 40.0;
+  historyColumn.minWidth = 40.0;
   [self.entryTable addTableColumn:notesColumn];
   [self.entryTable addTableColumn:attachmentsColumn];
   [self.entryTable addTableColumn:modifiedColumn];
+  [self.entryTable addTableColumn:historyColumn];
   
   parentColumn.identifier = MPEntryTableParentColumnIdentifier;
   titleColumn.identifier = MPEntryTableTitleColumnIdentifier;
@@ -161,6 +165,7 @@ NSString *const _MPTableSecurCellView = @"PasswordCell";
   notesColumn.headerCell.stringValue = NSLocalizedString(@"NOTES", "");
   attachmentsColumn.headerCell.stringValue = NSLocalizedString(@"ATTACHMENTS", "");
   modifiedColumn.headerCell.stringValue = NSLocalizedString(@"MODIFIED", "");
+  historyColumn.headerCell.stringValue = NSLocalizedString(@"HISTORY", "");
   
   [self.entryTable bind:NSContentBinding toObject:self.entryArrayController withKeyPath:NSStringFromSelector(@selector(arrangedObjects)) options:nil];
   [self.entryTable bind:NSSortDescriptorsBinding toObject:self.entryArrayController withKeyPath:NSStringFromSelector(@selector(sortDescriptors)) options:nil];
@@ -235,6 +240,7 @@ NSString *const _MPTableSecurCellView = @"PasswordCell";
   BOOL isAttachmentColumn = [tableColumn.identifier isEqualToString:MPEntryTableAttachmentColumnIdentifier];
   BOOL isNotesColumn = [tableColumn.identifier isEqualToString:MPEntryTableNotesColumnIdentifier];
   BOOL isModifedColumn = [tableColumn.identifier isEqualToString:MPEntryTableModfiedColumnIdentifier];
+  BOOL isHistoryColumn = [tableColumn.identifier isEqualToString:MPEntryTableHistoryColumnIdentifier];
   
   NSTableCellView *view = nil;
   if(isTitleColumn || isGroupColumn) {
@@ -320,10 +326,16 @@ NSString *const _MPTableSecurCellView = @"PasswordCell";
       [view.textField bind:NSValueBinding toObject:view withKeyPath:notesKeyPath options:options];
     }
     else if(isAttachmentColumn) {
-      NSString *binariesCoundKeyPath = [NSString stringWithFormat:@"%@.%@.@count",
+      NSString *binariesCountKeyPath = [NSString stringWithFormat:@"%@.%@.@count",
                                         NSStringFromSelector(@selector(objectValue)),
                                         NSStringFromSelector(@selector(binaries))];
-      [view.textField bind:NSValueBinding toObject:view withKeyPath:binariesCoundKeyPath options:nil];
+      [view.textField bind:NSValueBinding toObject:view withKeyPath:binariesCountKeyPath options:nil];
+    }
+    else if(isHistoryColumn) {
+      NSString *historyCountKeyPath = [NSString stringWithFormat:@"%@.%@.@count",
+                                        NSStringFromSelector(@selector(objectValue)),
+                                        NSStringFromSelector(@selector(history))];
+      [view.textField bind:NSValueBinding toObject:view withKeyPath:historyCountKeyPath options:nil];
     }
   }
   return view;

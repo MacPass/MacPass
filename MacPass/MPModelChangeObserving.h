@@ -23,15 +23,17 @@ FOUNDATION_EXTERN NSString *const MPDidChangeModelNotification;
 FOUNDATION_EXTERN NSString *const MPModelChangeObservingKeyPathKey;
 
 @required
-- (void)observerModelChangesForKeyPath:(NSString *)keyPath;
+- (void)beginObservingModelChangesForKeyPath:(NSString *)keyPath;
+- (void)endObservingModelChangesForKeyPath:(NSString *)keyPath;
 @end
 
-/* Use this helper to fire the right notifications */
+/* Use this helper to fire the right notifications. You can hold an instance to help in you implementation of setValue:forKeyPath and observerModelChangesForKeyPath: */
 @interface MPModelChangeObservingHelper : NSObject
 
 + (void)willChangeModelKeyPath:(NSString *)keyPath observer:(id<MPModelChangeObserving>)observer;
 + (void)didChangeModelKeyPath:(NSString *)keyPath observer:(id<MPModelChangeObserving>)observer;
-
+- (void)beginObservingModelChangesForKeyPath:(NSString *)keyPath;
+- (void)endObservingModelChangesForKeyPath:(NSString *)keyPath;
 - (void)setValue:(id)value forKeyPath:(NSString *)keyPath forTarget:(id)target;
 
 @end
