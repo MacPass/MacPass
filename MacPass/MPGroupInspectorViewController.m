@@ -10,7 +10,6 @@
 #import "MPDocument.h"
 #import "MPPasteBoardController.h"
 #import "MPValueTransformerHelper.h"
-#import "MPObjectController.h"
 
 #import "KeePassKit/KeePassKit.h"
 
