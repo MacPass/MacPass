@@ -12,7 +12,6 @@
 
 @interface MPIconSelectViewController : MPViewController <NSCollectionViewDelegate>
 
-@property (weak, nullable) MPDocument *document;
 @property (weak, nullable) NSPopover *popover;
 
 @end

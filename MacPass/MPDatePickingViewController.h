@@ -15,8 +15,6 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface MPDatePickingViewController : MPViewController
 
-@property (nullable, weak) MPDocument *document;
-
 @end
 
 NS_ASSUME_NONNULL_END

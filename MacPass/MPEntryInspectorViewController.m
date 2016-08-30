@@ -129,6 +129,7 @@ typedef NS_ENUM(NSUInteger, MPEntryTab) {
                                            selector:@selector(_didAddEntry:)
                                                name:MPDocumentDidAddEntryNotification
                                              object:document];
+  _windowAssociationsController.observer = document;
 }
 
 - (void)dealloc {
@@ -139,12 +140,16 @@ typedef NS_ENUM(NSUInteger, MPEntryTab) {
 #pragma mark Actions
 
 - (void)addCustomField:(id)sender {
+  [self.observer willChangeModelProperty];
   [self.windowController.document createCustomAttribute:self.representedObject];
+  [self.observer didChangeModelProperty];
 }
 - (void)removeCustomField:(id)sender {
   NSUInteger index = [sender tag];
   KPKAttribute *attribute = self.representedEntry.customAttributes[index];
+  [self.observer willChangeModelProperty];
   [self.representedEntry removeCustomAttribute:attribute];
+  [self.observer didChangeModelProperty];
 }
 
 - (void)saveAttachment:(id)sender {
@@ -177,7 +182,9 @@ typedef NS_ENUM(NSUInteger, MPEntryTab) {
     if(result == NSFileHandlingPanelOKButton) {
       for (NSURL *attachmentURL in openPanel.URLs) {
         KPKBinary *binary = [[KPKBinary alloc] initWithContentsOfURL:attachmentURL];
+        [self.observer willChangeModelProperty];
         [self.representedEntry addBinary:binary];
+        [self.observer didChangeModelProperty];
       }
     }
   }];
@@ -189,18 +196,24 @@ typedef NS_ENUM(NSUInteger, MPEntryTab) {
     return; // no selection
   }
   KPKBinary *binary = self.representedEntry.binaries[row];
+  [self.observer willChangeModelProperty];
   [self.representedEntry removeBinary:binary];
+  [self.observer didChangeModelProperty];
 }
 
 - (void)addWindowAssociation:(id)sender {
   KPKWindowAssociation *associtation = [[KPKWindowAssociation alloc] initWithWindowTitle:NSLocalizedString(@"DEFAULT_WINDOW_TITLE", "") keystrokeSequence:nil];
+  [self.observer willChangeModelProperty];
   [self.representedEntry.autotype addAssociation:associtation];
+  [self.observer didChangeModelProperty];
 }
 
 - (void)removeWindowAssociation:(id)sender {
   NSInteger row = self.windowAssociationsTableView.selectedRow;
-  if(row > - 1 && row < [self.representedEntry.autotype.associations count]) {
+  if(row > - 1 && row < self.representedEntry.autotype.associations.count) {
+    [self.observer willChangeModelProperty];
     [self.representedEntry.autotype removeAssociation:self.representedEntry.autotype.associations[row]];
+    [self.observer didChangeModelProperty];
   }
 }
 
@@ -267,7 +280,7 @@ typedef NS_ENUM(NSUInteger, MPEntryTab) {
   MPPasswordCreatorViewController *viewController = [[MPPasswordCreatorViewController alloc] init];
   viewController.allowsEntryDefaults = YES;
   viewController.representedObject = self.representedObject;
-  viewController.document = self.windowController.document;
+  viewController.observer = self.windowController.document;
   [self _showPopopver:viewController atView:self.passwordTextField onEdge:NSMinYEdge];
 }
 

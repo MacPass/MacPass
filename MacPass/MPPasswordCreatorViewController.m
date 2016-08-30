@@ -12,6 +12,7 @@
 #import "MPUniqueCharactersFormatter.h"
 #import "MPSettingsHelper.h"
 #import "MPDocument.h"
+#import "MPModelChangeObserving.h"
 
 #import "MPFlagsHelper.h"
 
@@ -177,9 +178,9 @@ typedef NS_ENUM(NSUInteger, MPPasswordRating) {
   }
   KPKEntry *entry = self.representedObject;
   if(entry && self.password.length > 0) {
-    [self.document willChangeModelProperty];
+    [self.observer willChangeModelProperty];
     entry.password = self.password;
-    [self.document didChangeModelProperty];
+    [self.observer didChangeModelProperty];
   }
   [self.view.window performClose:sender];
 }

@@ -41,9 +41,9 @@
 #pragma mark Binding observation
 - (void)setValue:(id)value forKeyPath:(NSString *)keyPath {
   if([keyPath hasPrefix:@"representedObject."]) {
-    [((MPDocument *)self.windowController.document) willChangeModelProperty];
+    [self.observer willChangeModelProperty];
     [super setValue:value forKeyPath:keyPath];
-    [((MPDocument *)self.windowController.document) didChangeModelProperty];
+    [self.observer didChangeModelProperty];
   }
   else {
     [super setValue:value forKeyPath:keyPath];

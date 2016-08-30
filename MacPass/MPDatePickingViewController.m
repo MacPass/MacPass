@@ -62,9 +62,9 @@ typedef NS_ENUM(NSUInteger, MPDatePreset) {
 }
 
 - (IBAction)useDate:(id)sender {
-  [self.document willChangeModelProperty];
+  [self.observer willChangeModelProperty];
   [self.representedObject timeInfo].expirationDate = self.datePicker.dateValue;
-  [self.document didChangeModelProperty];
+  [self.observer didChangeModelProperty];
   [self.view.window performClose:sender];
 }
 

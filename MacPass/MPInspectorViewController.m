@@ -119,6 +119,8 @@ typedef NS_ENUM(NSUInteger, MPContentTab) {
                                                name:MPDocumentWillChangeModelPropertyNotification
                                              object:document];
   
+  self.entryViewController.observer = document;
+  
   [self.entryViewController registerNotificationsForDocument:document];
 }
 
@@ -176,7 +178,7 @@ typedef NS_ENUM(NSUInteger, MPContentTab) {
   MPIconSelectViewController *vc = [[MPIconSelectViewController alloc] init];
   vc.representedObject = self.representedObject;
   vc.popover = self.popover;
-  vc.document = self.windowController.document;
+  vc.observer = self.windowController.document;
   self.popover.contentViewController = vc;
   [self.popover showRelativeToRect:NSZeroRect ofView:sender preferredEdge:NSMinYEdge];
 }
@@ -191,7 +193,7 @@ typedef NS_ENUM(NSUInteger, MPContentTab) {
   self.popover.behavior = NSPopoverBehaviorTransient;
   MPDatePickingViewController *vc = [[MPDatePickingViewController alloc] init];
   vc.representedObject = self.representedObject;
-  vc.document = self.windowController.document;
+  vc.observer = self.windowController.document;
   self.popover.contentViewController = vc;
   [self.popover showRelativeToRect:NSZeroRect ofView:sender preferredEdge:NSMinYEdge];
 }

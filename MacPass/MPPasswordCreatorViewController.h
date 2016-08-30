@@ -12,10 +12,10 @@
 NS_ASSUME_NONNULL_BEGIN
 
 @class MPDocument;
+@protocol MPModelChangeObserving;
 
 @interface MPPasswordCreatorViewController : MPViewController <NSTextFieldDelegate>
 
-@property (weak, nullable) MPDocument *document;
 @property (assign) BOOL allowsEntryDefaults;
 
 /**

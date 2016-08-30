@@ -8,10 +8,10 @@
 
 #import <Cocoa/Cocoa.h>
 
-@class MPDocument;
+@protocol MPModelChangeObserving;
 
 @interface MPArrayController : NSArrayController
 
-@property (weak) MPDocument *document;
+@property (weak) id<MPModelChangeObserving> observer;
 
 @end

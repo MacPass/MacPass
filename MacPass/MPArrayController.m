@@ -7,16 +7,15 @@
 //
 
 #import "MPArrayController.h"
-#import "MPDocument.h"
+#import "MPModelChangeObserving.h"
 
 @implementation MPArrayController
 
-
 - (void)setValue:(id)value forKeyPath:(NSString *)keyPath {
   if([keyPath hasPrefix:@"selection."]) {
-    [self.document willChangeModelProperty];
+    [self.observer willChangeModelProperty];
     [super setValue:value forKeyPath:keyPath];
-    [self.document didChangeModelProperty];
+    [self.observer didChangeModelProperty];
   }
   else {
     [super setValue:value forKeyPath:keyPath];

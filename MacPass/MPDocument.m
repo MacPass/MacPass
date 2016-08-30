@@ -49,6 +49,9 @@ NSString *const MPDocumentDidUnlockDatabaseNotification       = @"com.hicknhack.
 
 NSString *const MPDocumentCurrentItemChangedNotification      = @"com.hicknhack.macpass.MPDocumentCurrentItemChangedNotification";
 
+NSString *const MPDocumentWillChangeModelPropertyNotification = @"com.hicknhack.macpass.MPDocumentWillChangeModelPropertyNotification";
+NSString *const MPDocumentDidChangeModelPropertyNotification  = @"com.hicknhack.macpass.MPDocumentDidChangeModelPropertyNotification";
+
 NSString *const MPDocumentEntryKey                            = @"MPDocumentEntryKey";
 NSString *const MPDocumentGroupKey                            = @"MPDocumentGroupKey";
 
@@ -779,5 +782,17 @@ NSString *const MPDocumentGroupKey                            = @"MPDocumentGrou
 - (NSArray<KPKGroup *> *)currentTargetGroups {
   return self.selectedGroups;
 }
+
+#pragma mark -
+#pragma mark MPModelChangeObserving
+
+- (void)willChangeModelProperty {
+  [[NSNotificationCenter defaultCenter] postNotificationName:MPDocumentWillChangeModelPropertyNotification object:self];
+}
+
+- (void)didChangeModelProperty {
+  [[NSNotificationCenter defaultCenter] postNotificationName:MPDocumentDidChangeModelPropertyNotification object:self];
+}
+
 
 @end

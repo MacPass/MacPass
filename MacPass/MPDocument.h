@@ -24,6 +24,7 @@
 #import <KeePassKit/KeePassKit.h>
 #import "MPEntrySearchContext.h"
 #import "MPTargetNodeResolving.h"
+#import "MPModelChangeObserving.h"
 
 /**
  *  Posted when a new group was added to the document.
@@ -31,23 +32,30 @@
  *  Undo/Redo will not cause this notification to be reposted
  *  The userInfo dictionary contains the added group at MPDocumentGroupKey
  */
-APPKIT_EXTERN NSString *const MPDocumentDidAddGroupNotification;
+FOUNDATION_EXPORT NSString *const MPDocumentDidAddGroupNotification;
 /**
  *  Posted when the user has added a new entry to the document.
  *  Undo/redo will not cause this notification to be reposted.
  *  The userInfo dictionary contains the added entry at MPDocumentEntryKey
  */
-APPKIT_EXTERN NSString *const MPDocumentDidAddEntryNotification;
-APPKIT_EXTERN NSString *const MPDocumentDidRevertNotifiation;
+FOUNDATION_EXPORT NSString *const MPDocumentDidAddEntryNotification;
+FOUNDATION_EXPORT NSString *const MPDocumentDidRevertNotifiation;
 
-APPKIT_EXTERN NSString *const MPDocumentDidLockDatabaseNotification;
-APPKIT_EXTERN NSString *const MPDocumentDidUnlockDatabaseNotification;
+FOUNDATION_EXPORT NSString *const MPDocumentDidLockDatabaseNotification;
+FOUNDATION_EXPORT NSString *const MPDocumentDidUnlockDatabaseNotification;
 
-APPKIT_EXTERN NSString *const MPDocumentCurrentItemChangedNotification;
+FOUNDATION_EXPORT NSString *const MPDocumentCurrentItemChangedNotification;
+
+/**
+ *  Posted whenever a model change is initated via the user. This is mainly to broadcast changes
+ *  to an entry done via the ui throuhgout the app.
+ */
+FOUNDATION_EXPORT NSString *const MPDocumentWillChangeModelPropertyNotification;
+FOUNDATION_EXPORT NSString *const MPDocumentDidChangeModelPropertyNotification;
 
 /* Keys used in userInfo NSDictionaries on notifications */
-APPKIT_EXTERN NSString *const MPDocumentEntryKey;
-APPKIT_EXTERN NSString *const MPDocumentGroupKey;
+FOUNDATION_EXPORT NSString *const MPDocumentEntryKey;
+FOUNDATION_EXPORT NSString *const MPDocumentGroupKey;
 
 @class KPKGroup;
 @class KPKEntry;
@@ -57,7 +65,7 @@ APPKIT_EXTERN NSString *const MPDocumentGroupKey;
 @class KPKCompositeKey;
 @class KPKNode;
 
-@interface MPDocument : NSDocument <MPTargetNodeResolving>
+@interface MPDocument : NSDocument <MPTargetNodeResolving, MPModelChangeObserving>
 
 @property (nonatomic, readonly, assign) BOOL encrypted;
 @property (nonatomic, readonly, assign) NSUInteger unlockCount; // Amount of times the Document was unlocked;
@@ -221,27 +229,6 @@ FOUNDATION_EXPORT NSString *const MPDocumentDidExitHistoryNotification;
 
 - (IBAction)showHistory:(id)sender;
 - (IBAction)exitHistory:(id)sender;
-
-@end
-
-#pragma mark -
-#pragma mark ModelChanges
-/**
- *  Notifications will be posted by the document to inform about changes to a model property being displayed
- */
-FOUNDATION_EXPORT NSString *const MPDocumentWillChangeModelPropertyNotification;
-FOUNDATION_EXPORT NSString *const MPDocumentDidChangeModelPropertyNotification;
-
-@interface MPDocument (ModelChange)
-
-/**
- *  Call this on the document ot inform it about changes about to happen. This is an entry point for views and controllers to notify others about changes done to the model.
- *  You coudl also observer modification times on objects but this way it's impossible to determine the source of the change. Undo/Redo or external plugins or merging can all introduce
- *  changes to a database that aren't relevant.
- *  The main use case for this is to update the history of entries on editing
- */
-- (void)willChangeModelProperty;
-- (void)didChangeModelProperty;
 
 @end
 

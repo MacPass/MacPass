@@ -190,7 +190,7 @@
   [self.benchmarkButton setEnabled:YES];
 }
 
-- (void)_setupAdvancedTab:(KPKTree *)tree {
+- (void)_setupAdvancedTab:(KPKTree *)tree {  
   HNHUISetStateFromBool(self.enableTrashCheckButton, tree.metaData.useTrash);
   self.selectTrashGoupPopUpButton.enabled = tree.metaData.useTrash;
   [self.enableTrashCheckButton bind:NSValueBinding toObject:self.selectTrashGoupPopUpButton withKeyPath:NSEnabledBinding options:nil];
