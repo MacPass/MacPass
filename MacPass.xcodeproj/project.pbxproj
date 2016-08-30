@@ -202,6 +202,7 @@
 		4CC6DB7A17D23719002C6091 /* KPKNode+IconImage.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CC6DB7917D23719002C6091 /* KPKNode+IconImage.m */; };
 		4CCA8E9B18D91ED9001A6754 /* Quartz.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4CCA8E9A18D91ED9001A6754 /* Quartz.framework */; };
 		4CCCD83E1C8DFF20002B77B6 /* MPEntryProxy.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CCCD83D1C8DFF20002B77B6 /* MPEntryProxy.m */; };
+		4CCCE8011D75CA48006AA951 /* MPArrayController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CCCE8001D75CA48006AA951 /* MPArrayController.m */; };
 		4CCEDE2A179F203B008402BE /* MPOutlineView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CCEDE29179F203B008402BE /* MPOutlineView.m */; };
 		4CCEDE2E179F213B008402BE /* MPNotifications.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CCEDE2D179F213B008402BE /* MPNotifications.m */; };
 		4CCFA13D1BF0CC7A0078E0A1 /* Test_Password_1234.kdb in Resources */ = {isa = PBXBuildFile; fileRef = 4CCFA1321BF0CC7A0078E0A1 /* Test_Password_1234.kdb */; };
@@ -601,6 +602,8 @@
 		4CCA8E9A18D91ED9001A6754 /* Quartz.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Quartz.framework; path = System/Library/Frameworks/Quartz.framework; sourceTree = SDKROOT; };
 		4CCCD83C1C8DFF20002B77B6 /* MPEntryProxy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MPEntryProxy.h; sourceTree = "<group>"; };
 		4CCCD83D1C8DFF20002B77B6 /* MPEntryProxy.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MPEntryProxy.m; sourceTree = "<group>"; };
+		4CCCE7FF1D75CA48006AA951 /* MPArrayController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MPArrayController.h; sourceTree = "<group>"; };
+		4CCCE8001D75CA48006AA951 /* MPArrayController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MPArrayController.m; sourceTree = "<group>"; };
 		4CCEDE28179F203B008402BE /* MPOutlineView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MPOutlineView.h; sourceTree = "<group>"; };
 		4CCEDE29179F203B008402BE /* MPOutlineView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MPOutlineView.m; sourceTree = "<group>"; };
 		4CCEDE2C179F2122008402BE /* MPNotifications.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MPNotifications.h; sourceTree = "<group>"; };
@@ -1357,6 +1360,8 @@
 				4C431BCC16E2A82700700A81 /* MPPasteBoardController.m */,
 				4C6AEEF71A043E2B00CA2420 /* MPDocumentController.h */,
 				4C6AEEF81A043E2B00CA2420 /* MPDocumentController.m */,
+				4CCCE7FF1D75CA48006AA951 /* MPArrayController.h */,
+				4CCCE8001D75CA48006AA951 /* MPArrayController.m */,
 			);
 			name = "Data Controller";
 			sourceTree = "<group>";
@@ -1748,6 +1753,7 @@
 				4CEE46DD181C301D006BF1E5 /* MPAutotypeDaemon.m in Sources */,
 				4CA3530B18A53CB800839B0F /* MPKeyMapper.m in Sources */,
 				4CE298EB1795FC2A00DF7BDB /* MPEntryContextMenuDelegate.m in Sources */,
+				4CCCE8011D75CA48006AA951 /* MPArrayController.m in Sources */,
 				4CC0D2CE17974A47000B4BDA /* MPCustomFieldTableViewDelegate.m in Sources */,
 				4CC0D2D117974A5A000B4BDA /* MPAttachmentTableViewDelegate.m in Sources */,
 				4C26C33F18D8C92100CF1A1C /* MPTemporaryFileStorage.m in Sources */,

@@ -115,7 +115,7 @@ typedef NS_ENUM(NSUInteger, MPContentTab) {
                                              object:document];
   
   [[NSNotificationCenter defaultCenter] addObserver:self
-                                           selector:@selector(_willChangeValueForRepresentedObjectNotification:)
+                                           selector:@selector(_willChangeModelProperty:)
                                                name:MPDocumentWillChangeModelPropertyNotification
                                              object:document];
   
@@ -160,8 +160,8 @@ typedef NS_ENUM(NSUInteger, MPContentTab) {
   NSString *modifedAtTemplate = NSLocalizedString(@"MODIFED_AT_%@", @"Modifed at template string. %@ is replaced by locaized date and time");
   NSString *createdAtTemplate = NSLocalizedString(@"CREATED_AT_%@", @"Created at template string. %@ is replaced by locaized date and time");
   
-  [self.modifiedTextField setStringValue:[NSString stringWithFormat:modifedAtTemplate, modificationString]];
-  [self.createdTextField setStringValue:[NSString stringWithFormat:createdAtTemplate, creationString]];
+  self.modifiedTextField.stringValue = [NSString stringWithFormat:modifedAtTemplate, modificationString];
+  self.createdTextField.stringValue = [NSString stringWithFormat:createdAtTemplate, creationString];
 }
 
 #pragma mark -
@@ -176,6 +176,7 @@ typedef NS_ENUM(NSUInteger, MPContentTab) {
   MPIconSelectViewController *vc = [[MPIconSelectViewController alloc] init];
   vc.representedObject = self.representedObject;
   vc.popover = self.popover;
+  vc.document = self.windowController.document;
   self.popover.contentViewController = vc;
   [self.popover showRelativeToRect:NSZeroRect ofView:sender preferredEdge:NSMinYEdge];
 }
@@ -190,6 +191,7 @@ typedef NS_ENUM(NSUInteger, MPContentTab) {
   self.popover.behavior = NSPopoverBehaviorTransient;
   MPDatePickingViewController *vc = [[MPDatePickingViewController alloc] init];
   vc.representedObject = self.representedObject;
+  vc.document = self.windowController.document;
   self.popover.contentViewController = vc;
   [self.popover showRelativeToRect:NSZeroRect ofView:sender preferredEdge:NSMinYEdge];
 }

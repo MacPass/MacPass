@@ -23,6 +23,9 @@ typedef NS_ENUM(NSUInteger, MPDatePreset) {
 
 @interface MPDatePickingViewController ()
 
+@property (nullable, weak) IBOutlet NSDatePicker *datePicker;
+@property (nullable, weak) IBOutlet NSPopUpButton *presetPopupButton;
+
 @end
 
 @implementation MPDatePickingViewController
@@ -59,10 +62,9 @@ typedef NS_ENUM(NSUInteger, MPDatePreset) {
 }
 
 - (IBAction)useDate:(id)sender {
-  KPKTimeInfo *timeInfo = [self.representedObject timeInfo];
-  [self.windowController.document willChangeModelProperty];
-  timeInfo.expirationDate = self.datePicker.dateValue;
-  [self.windowController.document didChangeModelProperty];
+  [self.document willChangeModelProperty];
+  [self.representedObject timeInfo].expirationDate = self.datePicker.dateValue;
+  [self.document didChangeModelProperty];
   [self.view.window performClose:sender];
 }
 
@@ -95,8 +97,7 @@ typedef NS_ENUM(NSUInteger, MPDatePreset) {
     default:
       return; // Nothing to do;
   }
-  NSDate *newDate = [gregorian dateByAddingComponents:offsetComponents toDate:[NSDate date] options:0];
-  self.datePicker.dateValue = newDate;
+  self.datePicker.dateValue = [gregorian dateByAddingComponents:offsetComponents toDate:[NSDate date] options:0];
 }
 
 @end

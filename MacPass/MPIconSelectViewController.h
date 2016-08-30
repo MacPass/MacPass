@@ -8,11 +8,11 @@
 
 #import "MPViewController.h"
 
+@class MPDocument;
+
 @interface MPIconSelectViewController : MPViewController <NSCollectionViewDelegate>
 
-@property (weak) NSPopover *popover;
-
-- (IBAction)cancel:(id)sender;
-- (IBAction)useDefault:(id)sender;
+@property (weak, nullable) MPDocument *document;
+@property (weak, nullable) NSPopover *popover;
 
 @end

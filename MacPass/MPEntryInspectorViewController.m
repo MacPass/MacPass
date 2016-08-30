@@ -24,6 +24,8 @@
 #import "MPActionHelper.h"
 #import "MPSettingsHelper.h"
 
+#import "MPArrayController.h"
+
 #import "KeePassKit/KeePassKit.h"
 
 #import "HNHUi/HNHUi.h"
@@ -39,7 +41,7 @@ typedef NS_ENUM(NSUInteger, MPEntryTab) {
 @private
   NSArrayController *_attachmentsController;
   NSArrayController *_customFieldsController;
-  NSArrayController *_windowAssociationsController;
+  MPArrayController *_windowAssociationsController;
   MPAttachmentTableViewDelegate *_attachmentTableDelegate;
   MPCustomFieldTableViewDelegate *_customFieldTableDelegate;
   MPAttachmentTableDataSource *_attachmentDataSource;
@@ -70,7 +72,7 @@ typedef NS_ENUM(NSUInteger, MPEntryTab) {
     _showPassword = NO;
     _attachmentsController = [[NSArrayController alloc] init];
     _customFieldsController = [[NSArrayController alloc] init];
-    _windowAssociationsController = [[NSArrayController alloc] init];
+    _windowAssociationsController = [[MPArrayController alloc] init];
     _attachmentTableDelegate = [[MPAttachmentTableViewDelegate alloc] init];
     _customFieldTableDelegate = [[MPCustomFieldTableViewDelegate alloc] init];
     _attachmentDataSource = [[MPAttachmentTableDataSource alloc] init];
@@ -265,15 +267,7 @@ typedef NS_ENUM(NSUInteger, MPEntryTab) {
   MPPasswordCreatorViewController *viewController = [[MPPasswordCreatorViewController alloc] init];
   viewController.allowsEntryDefaults = YES;
   viewController.representedObject = self.representedObject;
-  viewController.completionHandler = ^void (NSModalResponse response, NSString *password) {
-    /* TODO mark for modification! */
-    self.generatePasswordButton.enabled = YES;
-    /* We should only use the password if there is actually one */
-    if(password.length > 0) {
-      self.representedEntry.password = password;
-    }
-  };
-  
+  viewController.document = self.windowController.document;
   [self _showPopopver:viewController atView:self.passwordTextField onEdge:NSMinYEdge];
 }
 
@@ -291,6 +285,7 @@ typedef NS_ENUM(NSUInteger, MPEntryTab) {
 }
 
 - (void)popoverDidClose:(NSNotification *)notification {
+  self.generatePasswordButton.enabled = YES;
   self.activePopover = nil;
 }
 

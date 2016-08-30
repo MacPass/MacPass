@@ -11,6 +11,7 @@
 #import "NSString+MPPasswordCreation.h"
 #import "MPUniqueCharactersFormatter.h"
 #import "MPSettingsHelper.h"
+#import "MPDocument.h"
 
 #import "MPFlagsHelper.h"
 
@@ -174,16 +175,16 @@ typedef NS_ENUM(NSUInteger, MPPasswordRating) {
   if(self.shouldCopyPasswordToPasteboardButton.state == NSOnState) {
     [[MPPasteBoardController defaultController] copyObjects:@[self.password]];
   }
-  if(self.completionHandler) {
-    self.completionHandler(NSModalResponseOK, self.password);
+  KPKEntry *entry = self.representedObject;
+  if(entry && self.password.length > 0) {
+    [self.document willChangeModelProperty];
+    entry.password = self.password;
+    [self.document didChangeModelProperty];
   }
   [self.view.window performClose:sender];
 }
 
 - (IBAction)_cancel:(id)sender {
-  if(self.completionHandler) {
-    self.completionHandler(NSModalResponseCancel, self.password);
-  }
   [self.view.window performClose:sender];
 }
 

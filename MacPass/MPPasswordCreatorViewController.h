@@ -11,17 +11,12 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@class KPKEntry;
+@class MPDocument;
 
 @interface MPPasswordCreatorViewController : MPViewController <NSTextFieldDelegate>
 
-
-//@property (weak) id closeTarget;
+@property (weak, nullable) MPDocument *document;
 @property (assign) BOOL allowsEntryDefaults;
-/**
- *  Block gets called whenever the user opts to store the password or cancel
- */
-@property (nonatomic, copy, nullable) void (^completionHandler)(NSModalResponse response, NSString *password);
 
 /**
  *  Should be called to reset the generator

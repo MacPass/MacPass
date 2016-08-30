@@ -34,9 +34,9 @@
 
 - (IBAction)useDefault:(id)sender {
   KPKNode *node = self.representedObject;
-  [self.windowController.document willChangeModelProperty];
+  [self.document willChangeModelProperty];
   node.iconId = [[node class] defaultIcon];
-  [self.windowController.document didChangeModelProperty];
+  [self.document didChangeModelProperty];
   [self.view.window performClose:sender];
 }
 
@@ -50,9 +50,9 @@
   NSUInteger buttonIndex = [self.iconCollectionView.content indexOfObject:image];
   NSInteger newIconId = ((NSNumber *)[MPIconHelper databaseIconTypes][buttonIndex]).integerValue;
   KPKNode *node = self.representedObject;
-  [self.windowController.document willChangeModelProperty];
+  [self.document willChangeModelProperty];
   node.iconId = newIconId;
-  [self.windowController.document didChangeModelProperty];
+  [self.document didChangeModelProperty];
   [self.view.window performClose:sender];
 }
 
