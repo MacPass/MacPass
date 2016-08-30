@@ -115,7 +115,7 @@ NSString *const MPDocumentGroupKey                            = @"MPDocumentGrou
   return YES;
 }
 
-- (id)init {
+- (instancetype)init {
   self = [super init];
   if(self) {
     _didLockFile = NO;

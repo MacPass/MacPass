@@ -306,6 +306,7 @@ typedef void (^MPPasswordChangedBlock)(BOOL didChangePassword);
     self.passwordEditWindowController.delegate = self;
   }
   [self.document addWindowController:self.passwordEditWindowController];
+  
   [NSApp beginSheet:self.passwordEditWindowController.window
      modalForWindow:self.window
       modalDelegate:self

@@ -31,7 +31,6 @@
 - (id)initWithWindow:(NSWindow *)window {
   self = [super initWithWindow:window];
   if(self){
-    //_allowsEmptyPasswordOrKey = YES;
     _showPassword = NO;
     _hasValidPasswordOrKey = NO;
   }
