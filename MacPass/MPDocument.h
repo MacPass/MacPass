@@ -225,6 +225,27 @@ FOUNDATION_EXPORT NSString *const MPDocumentDidExitHistoryNotification;
 @end
 
 #pragma mark -
+#pragma mark ModelChanges
+/**
+ *  Notifications will be posted by the document to inform about changes to a model property being displayed
+ */
+FOUNDATION_EXPORT NSString *const MPDocumentWillChangeModelPropertyNotification;
+FOUNDATION_EXPORT NSString *const MPDocumentDidChangeModelPropertyNotification;
+
+@interface MPDocument (ModelChange)
+
+/**
+ *  Call this on the document ot inform it about changes about to happen. This is an entry point for views and controllers to notify others about changes done to the model.
+ *  You coudl also observer modification times on objects but this way it's impossible to determine the source of the change. Undo/Redo or external plugins or merging can all introduce
+ *  changes to a database that aren't relevant.
+ *  The main use case for this is to update the history of entries on editing
+ */
+- (void)willChangeModelProperty;
+- (void)didChangeModelProperty;
+
+@end
+
+#pragma mark -
 #pragma mark Search
 
 FOUNDATION_EXTERN NSString *const MPDocumentDidEnterSearchNotification;

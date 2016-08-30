@@ -64,14 +64,6 @@ typedef NS_ENUM(NSUInteger, MPContentTab) {
     self.groupViewController = [[MPGroupInspectorViewController alloc] init];
     self.didPushHistory = NO;
     /* subviewcontrollers will notify us about a change so we can handle the history pushing */
-    [[NSNotificationCenter defaultCenter] addObserver:self
-                                             selector:@selector(_willChangeValueForRepresentedObjectNotification:)
-                                                 name:MPViewControllerWillChangeValueForRepresentedObjectKeyPathNotification
-                                               object:self.entryViewController];
-    [[NSNotificationCenter defaultCenter] addObserver:self
-                                             selector:@selector(_willChangeValueForRepresentedObjectNotification:)
-                                                 name:MPViewControllerWillChangeValueForRepresentedObjectKeyPathNotification
-                                               object:self.groupViewController];
   }
   return self;
 }
@@ -121,6 +113,12 @@ typedef NS_ENUM(NSUInteger, MPContentTab) {
                                            selector:@selector(_didChangeCurrentItem:)
                                                name:MPDocumentCurrentItemChangedNotification
                                              object:document];
+  
+  [[NSNotificationCenter defaultCenter] addObserver:self
+                                           selector:@selector(_willChangeValueForRepresentedObjectNotification:)
+                                               name:MPDocumentWillChangeModelPropertyNotification
+                                             object:document];
+  
   [self.entryViewController registerNotificationsForDocument:document];
 }
 
@@ -176,10 +174,6 @@ typedef NS_ENUM(NSUInteger, MPContentTab) {
   self.popover.delegate = self;
   self.popover.behavior = NSPopoverBehaviorTransient;
   MPIconSelectViewController *vc = [[MPIconSelectViewController alloc] init];
-  [[NSNotificationCenter defaultCenter] addObserver:self
-                                           selector:@selector(_willChangeValueForRepresentedObjectNotification:)
-                                               name:MPViewControllerWillChangeValueForRepresentedObjectKeyPathNotification
-                                             object:vc];
   vc.representedObject = self.representedObject;
   vc.popover = self.popover;
   self.popover.contentViewController = vc;
@@ -195,10 +189,6 @@ typedef NS_ENUM(NSUInteger, MPContentTab) {
   self.popover.delegate = self;
   self.popover.behavior = NSPopoverBehaviorTransient;
   MPDatePickingViewController *vc = [[MPDatePickingViewController alloc] init];
-  [[NSNotificationCenter defaultCenter] addObserver:self
-                                           selector:@selector(_willChangeValueForRepresentedObjectNotification:)
-                                               name:MPViewControllerWillChangeValueForRepresentedObjectKeyPathNotification
-                                             object:vc];
   vc.representedObject = self.representedObject;
   self.popover.contentViewController = vc;
   [self.popover showRelativeToRect:NSZeroRect ofView:sender preferredEdge:NSMinYEdge];
@@ -210,26 +200,12 @@ typedef NS_ENUM(NSUInteger, MPContentTab) {
 
 - (void)popoverDidClose:(NSNotification *)notification {
   /* clear out the popover */
-  NSPopover *po = notification.object;
-  [[NSNotificationCenter defaultCenter] removeObserver:self name:MPViewControllerWillChangeValueForRepresentedObjectKeyPathNotification object:po.contentViewController];
   self.popover = nil;
 }
 
 #pragma mark -
-#pragma mark Bindings
-
-- (void)willChangeValueForRepresentedObjectKeyPath:(NSString *)keyPath {
-  [super willChangeValueForKey:keyPath];
-  [self _recordChangesForCurrentNode];
-}
-
-#pragma mark -
-#pragma mark MPViewController Notifications
-- (void)_willChangeValueForRepresentedObjectNotification:(NSNotification *)notification {
-  [self _recordChangesForCurrentNode];
-}
-
-- (void)_recordChangesForCurrentNode {
+#pragma mark MPDocument Notifications
+- (void)_willChangeModelProperty:(NSNotification *)notification {
   /* TODO use uuids for pushed item? */
   if(self.didPushHistory) {
     return;
@@ -240,9 +216,6 @@ typedef NS_ENUM(NSUInteger, MPContentTab) {
     self.didPushHistory = YES;
   }
 }
-
-#pragma mark -
-#pragma mark MPDocument Notifications
 
 - (void)_didChangeCurrentItem:(NSNotification *)notification {
   MPDocument *document = notification.object;
