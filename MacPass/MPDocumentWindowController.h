@@ -17,7 +17,7 @@
 @class MPOutlineViewController;
 @class MPToolbarDelegate;
 
-@interface MPDocumentWindowController : NSWindowController <MPPasswordEditWindowDelegate>
+@interface MPDocumentWindowController : NSWindowController
 
 @property (readonly, strong) MPPasswordInputController *passwordInputController;
 @property (readonly, strong) MPEntryViewController *entryViewController;
@@ -31,6 +31,8 @@
 - (void)showEntries;
 - (void)showPasswordInput;
 
+
+- (void)editPasswordWithCompetionHandler:(void (^)(NSInteger result))handler;
 #pragma mark Actions
 - (IBAction)saveDocument:(id)sender;
 - (IBAction)saveDocumentAs:(id)sender;
@@ -61,9 +63,5 @@
 - (IBAction)focusGroups:(id)sender;
 - (IBAction)focusEntries:(id)sender;
 - (IBAction)focusInspector:(id)sender;
-
-
-#pragma mark MPPasswordEditWindowDelegater
-- (void)didFinishPasswordEditing:(BOOL)changedPasswordOrKey;
 
 @end

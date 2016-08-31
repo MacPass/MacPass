@@ -51,7 +51,7 @@ typedef void (^MPPasswordChangedBlock)(BOOL didChangePassword);
 @property (strong) MPToolbarDelegate *toolbarDelegate;
 @property (strong) MPFixAutotypeWindowController *fixAutotypeWindowController;
 
-@property (nonatomic, copy) MPPasswordChangedBlock passwordChangedBlock;
+//@property (nonatomic, copy) MPPasswordChangedBlock passwordChangedBlock;
 
 @end
 
@@ -189,7 +189,6 @@ typedef void (^MPPasswordChangedBlock)(BOOL didChangePassword);
 
 #pragma mark Actions
 - (void)saveDocument:(id)sender {
-  self.passwordChangedBlock = nil;
   MPDocument *document = self.document;
   NSString *fileType = document.fileType;
   /* we did open as legacy */
@@ -203,31 +202,44 @@ typedef void (^MPPasswordChangedBlock)(BOOL didChangePassword);
       [alert addButtonWithTitle:NSLocalizedString(@"SAVE_LOSSY", "Save lossy")];
       [alert addButtonWithTitle:NSLocalizedString(@"CHANGE_FORMAT", "")];
       [alert addButtonWithTitle:NSLocalizedString(@"CANCEL", "Cancel")];
-      
-      [alert beginSheetModalForWindow:self.window
-                        modalDelegate:self
-                       didEndSelector:@selector(_dataLossOnSaveAlertDidEnd:returnCode:contextInfo:)
-                          contextInfo:NULL];
+      __weak MPDocumentWindowController *welf = self;
+      [alert beginSheetModalForWindow:[welf.document windowForSheet] completionHandler:^(NSModalResponse returnCode) {
+        switch(returnCode) {
+          case NSAlertFirstButtonReturn:
+            /* Save lossy */
+            [welf.document saveDocument:nil];
+            return;
+            
+          case NSAlertSecondButtonReturn:
+            [alert.window orderOut:nil];
+            [welf.document saveDocumentAs:nil];
+            return;
+            
+          case NSAlertThirdButtonReturn:
+          default:
+            return; // Cancel or unknown
+        }
+      }];
       return;
     }
   }
   else if(!document.compositeKey) {
-    __weak MPDocument *weakDocument = [self document];
-    self.passwordChangedBlock = ^void(BOOL didChangePassword){
-      if(didChangePassword) {
+    __weak MPDocument *weakDocument = self.document;
+    
+    [self editPasswordWithCompetionHandler:^(NSInteger result) {
+      if(result == NSModalResponseOK) {
         [weakDocument saveDocument:sender];
       }
-    };
-    [self editPassword:nil];
+    }];
     return;
   }
   else if(document.shouldEnforcePasswordChange) {
     __weak MPDocument *weakDocument = [self document];
-    self.passwordChangedBlock = ^void(BOOL didChangePassword){
-      if(didChangePassword) {
-        [weakDocument saveDocument:nil];
+    [self editPasswordWithCompetionHandler:^(NSInteger result) {
+      if(result == NSModalResponseOK) {
+        [weakDocument saveDocument:sender];
       }
-    };
+    }];
     [self _presentPasswordIntervalAlerts];
     return;
   }
@@ -235,20 +247,18 @@ typedef void (^MPPasswordChangedBlock)(BOOL didChangePassword);
   [self.document saveDocument:sender];
 }
 - (void)saveDocumentAs:(id)sender {
-  self.passwordChangedBlock = nil;
   MPDocument *document = [self document];
   if(document.compositeKey) {
     [[self document] saveDocumentAs:sender];
     return;
   }
   /* we need to make sure that a password is set */
-  __weak MPDocument *weakDocument = [self document];
-  self.passwordChangedBlock = ^void(BOOL didChangePassword){
-    if(didChangePassword) {
+  __weak MPDocument *weakDocument = self.document;
+  [self editPasswordWithCompetionHandler:^(NSInteger result) {
+    if(result == NSModalResponseOK) {
       [weakDocument saveDocumentAs:sender];
     }
-  };
-  [self editPassword:nil];
+  }];
 }
 
 - (void)exportAsXML:(id)sender {
@@ -303,15 +313,16 @@ typedef void (^MPPasswordChangedBlock)(BOOL didChangePassword);
 - (void)editPasswordWithCompetionHandler:(void (^)(NSInteger result))handler {
   if(!self.passwordEditWindowController) {
     self.passwordEditWindowController = [[MPPasswordEditWindowController alloc] init];
-    self.passwordEditWindowController.delegate = self;
   }
   [self.document addWindowController:self.passwordEditWindowController];
   
-  [NSApp beginSheet:self.passwordEditWindowController.window
-     modalForWindow:self.window
-      modalDelegate:self
-     didEndSelector:@selector(_editPasswordSheetDidEnd:returnCode:contextInfo:)
-        contextInfo:NULL];
+  [self.window beginSheet:self.passwordEditWindowController.window completionHandler:^(NSModalResponse returnCode) {
+    if(handler) {
+      handler(returnCode);
+    }
+    [self.passwordEditWindowController.document removeWindowController:self.passwordEditWindowController];
+    self.passwordEditWindowController = nil;
+  }];
 }
 
 - (void)showDatabaseSettings:(id)sender {
@@ -480,14 +491,6 @@ typedef void (^MPPasswordChangedBlock)(BOOL didChangePassword);
   return ([[self document] validateMenuItem:menuItem]);
 }
 
-#pragma mark MPPasswordEditWindowDelegate
-- (void)didFinishPasswordEditing:(BOOL)changedPasswordOrKey {
-  if(self.passwordChangedBlock) {
-    self.passwordChangedBlock(changedPasswordOrKey);
-  }
-  self.passwordChangedBlock = nil;
-}
-
 #pragma mark NSAlert handling
 - (void)_presentPasswordIntervalAlerts {
   MPDocument *document = [self document];
@@ -502,10 +505,15 @@ typedef void (^MPPasswordChangedBlock)(BOOL didChangePassword);
     [alert addButtonWithTitle:NSLocalizedString(@"CANCEL", "")];
     alert.buttons[1].keyEquivalent = [NSString stringWithFormat:@"%c", 0x1b];
     
-    [alert beginSheetModalForWindow:self.window
-                      modalDelegate:self
-                     didEndSelector:@selector(_enforcePasswordChangeAlertDidEnd:returnCode:contextInfo:)
-                        contextInfo:NULL];
+    [alert beginSheetModalForWindow:[self.document windowForSheet] completionHandler:^(NSModalResponse returnCode) {
+      if(NSAlertSecondButtonReturn == returnCode) {
+        return;
+      }
+      id __weak welf = self;
+      dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.5 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+        [welf editPassword:nil];
+      });
+    }];
   }
   else if(document.shouldRecommendPasswordChange) {
     NSAlert *alert = [[NSAlert alloc] init];
@@ -518,77 +526,30 @@ typedef void (^MPPasswordChangedBlock)(BOOL didChangePassword);
     [alert addButtonWithTitle:NSLocalizedString(@"CANCEL", "")];
     alert.buttons[1].keyEquivalent = [NSString stringWithFormat:@"%c", 0x1b];
     
-    [alert beginSheetModalForWindow:self.window
-                      modalDelegate:self
-                     didEndSelector:@selector(_recommentPasswordChangeAlertDidEnd:returnCode:contextInfo:)
-                        contextInfo:NULL];
+    
+    [alert beginSheetModalForWindow:[self.document windowForSheet]completionHandler:^(NSModalResponse returnCode) {
+      if(returnCode == NSAlertSecondButtonReturn) {
+        return;
+      }
+      id __weak welf = self;
+      dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.5 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+        [welf editPassword:nil];
+      });
+    }];
   }
-}
-
-- (void)_dataLossOnSaveAlertDidEnd:(NSAlert *)alert returnCode:(NSInteger)returnCode contextInfo:(void *)contextInfo {
-  
-  switch(returnCode) {
-    case NSAlertFirstButtonReturn:
-      /* Save lossy */
-      [self.document saveDocument:nil];
-      return;
-      
-    case NSAlertSecondButtonReturn:
-      [alert.window orderOut:nil];
-      [self.document saveDocumentAs:nil];
-      return;
-      
-    case NSAlertThirdButtonReturn:
-    default:
-      return; // Cancel or unknown
-  }
-}
-
-- (void)_recommentPasswordChangeAlertDidEnd:(NSAlert *)alert returnCode:(NSInteger)returnCode contextInfo:(void *)contextInfo {
-  if(returnCode == NSAlertSecondButtonReturn) {
-    return;
-  }
-  id __weak welf = self;
-  dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.5 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-    [welf editPassword:nil];
-  });
-  
-}
-
-- (void)_enforcePasswordChangeAlertDidEnd:(NSAlert *)alert returnCode:(NSInteger)returnCode contextInfo:(void *)contextInfo {
-  if(NSAlertSecondButtonReturn == returnCode) {
-    return;
-  }
-  id __weak welf = self;
-  dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.5 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-    [welf editPassword:nil];
-  });
 }
 
 #pragma mark Sheet handling
-- (void)_editPasswordSheetDidEnd:(NSWindow *)sheet returnCode:(NSInteger)returnCode contextInfo:(void *)contextInfo {
-  [self.document removeWindowController:self.passwordEditWindowController];
-  self.passwordEditWindowController = nil;
-}
-
-- (void)_settingsSheetDidEnd:(NSWindow *)sheet returnCode:(NSInteger)returnCode contextInfo:(void *)contextInfo {
-  /* cleanup the window controller */
-  [self.document removeWindowController:self.documentSettingsWindowController];
-  self.documentSettingsWindowController = nil;
-}
-
 - (void)_showDatabaseSetting:(MPDatabaseSettingsTab)tab {
   if(!self.documentSettingsWindowController) {
     self.documentSettingsWindowController = [[MPDatabaseSettingsWindowController alloc] init];
   }
   [self.document addWindowController:self.documentSettingsWindowController];
   [self.documentSettingsWindowController showSettingsTab:tab];
-  [[NSApplication sharedApplication] beginSheet:self.documentSettingsWindowController.window
-                                 modalForWindow:self.window
-                                  modalDelegate:self
-                                 didEndSelector:@selector(_settingsSheetDidEnd:returnCode:contextInfo:)
-                                    contextInfo:NULL];
-  
+  [self.window beginSheet:self.documentSettingsWindowController.window completionHandler:^(NSModalResponse returnCode) {
+    [self.documentSettingsWindowController.document removeWindowController:self.documentSettingsWindowController];
+    self.documentSettingsWindowController = nil;
+  }];
 }
 
 #pragma mark -

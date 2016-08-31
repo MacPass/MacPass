@@ -34,7 +34,7 @@
 @property (weak) IBOutlet NSButton *hasPasswordSwitchButton;
 
 //@property (nonatomic,assign) BOOL allowsEmptyPasswordOrKey;
-@property (weak) id<MPPasswordEditWindowDelegate> delegate;
+//@property (weak) id<MPPasswordEditWindowDelegate> delegate;
 
 - (IBAction)clearKey:(id)sender;
 - (IBAction)generateKey:(id)sender;

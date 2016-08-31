@@ -10,6 +10,10 @@
 
 FOUNDATION_EXPORT NSString *const MPErrorDomain;
 
+typedef NS_ENUM(NSInteger, MPErrorCodes) {
+  MPErrorNoPasswordOrKeyFile = 10000,
+};
+
 @interface NSError (Messages)
 
 + (NSError *)errorWithCode:(NSInteger)code description:(NSString *)description;

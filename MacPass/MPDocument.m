@@ -32,6 +32,7 @@
 #import "MPSavePanelAccessoryViewController.h"
 #import "MPTreeDelegate.h"
 #import "MPTargetNodeResolving.h"
+#import "MPErrorRecoveryAttempter.h"
 
 #import "KeePassKit/KeePassKit.h"
 
@@ -154,9 +155,17 @@ NSString *const MPDocumentGroupKey                            = @"MPDocumentGrou
   if(self.compositeKey.hasPasswordOrKeyFile) {
     return YES; // key is set, so autosave should be save
   }
-  NSDictionary *userInfo = @{ NSLocalizedDescriptionKey: NSLocalizedString(@"NO_PASSWORD_OR_KEY_SET", "") };
+  
+  MPErrorRecoveryAttempter *recovery = [[MPErrorRecoveryAttempter alloc] init];
+  recovery.document = self;
+  
+  NSDictionary *userInfo = @{ NSLocalizedDescriptionKey: NSLocalizedString(@"WARNING_ON_SAVE_NO_PASSWORD_OR_KEY_SET", ""),
+                              NSLocalizedRecoverySuggestionErrorKey : NSLocalizedString(@"WARNING_ON_SAVE_NO_PASSWORD_OR_KEY_SET_SUGGESTION", ""),
+                              NSLocalizedRecoveryOptionsErrorKey : @[ NSLocalizedString(@"CHANGE_PASSWORD_WITH_DOTS", ""), NSLocalizedString(@"CANCEL", "") ],
+                              NSRecoveryAttempterErrorKey : recovery
+                              };
   if(outError != NULL) {
-    *outError = [NSError errorWithDomain:MPErrorDomain code:0 userInfo:userInfo];
+    *outError = [NSError errorWithDomain:MPErrorDomain code:MPErrorNoPasswordOrKeyFile userInfo:userInfo];
   }
   return NO;
 }
@@ -167,7 +176,7 @@ NSString *const MPDocumentGroupKey                            = @"MPDocumentGrou
   }
   if(!self.compositeKey.hasPasswordOrKeyFile) {
     if(outError != NULL) {
-      NSDictionary *userInfo = @{ NSLocalizedDescriptionKey: NSLocalizedString(@"NO_PASSWORD_OR_KEY_SET", "") };
+      NSDictionary *userInfo = @{ NSLocalizedDescriptionKey: NSLocalizedString(@"WARNING_ON_SAVE_NO_PASSWORD_OR_KEY_SET", "") };
       *outError = [NSError errorWithDomain:MPErrorDomain code:0 userInfo:userInfo];
     }
     return nil; // Saving without a password/key is not possible
@@ -573,13 +582,11 @@ NSString *const MPDocumentGroupKey                            = @"MPDocumentGrou
   [alert addButtonWithTitle:NSLocalizedString(@"CANCEL", "Cancel")];
   alert.buttons.lastObject.keyEquivalent = [NSString stringWithFormat:@"%c", 0x1b];
   
-  [alert beginSheetModalForWindow:self.windowForSheet modalDelegate:self didEndSelector:@selector(_emptyTrashAlertDidEnd:returnCode:contextInfo:) contextInfo:NULL];
-}
-
-- (void)_emptyTrashAlertDidEnd:(NSAlert *)alert returnCode:(NSInteger)returnCode contextInfo:(void *)contextInfo {
-  if(returnCode == NSAlertFirstButtonReturn) {
-    [self _emptyTrash];
-  }
+  [alert beginSheetModalForWindow:self.windowForSheet completionHandler:^(NSModalResponse returnCode) {
+    if(returnCode == NSAlertFirstButtonReturn) {
+      [self _emptyTrash];
+    }
+  }];
 }
 
 - (void)_presentTrashAlertForItem:(KPKNode *)node {
@@ -595,22 +602,19 @@ NSString *const MPDocumentGroupKey                            = @"MPDocumentGrou
   [alert addButtonWithTitle:NSLocalizedString(@"CANCEL", "Cancel")];
   alert.buttons.lastObject.keyEquivalent = [NSString stringWithFormat:@"%c", 0x1b];
   
-  [alert beginSheetModalForWindow:self.windowForSheet modalDelegate:self didEndSelector:@selector(_deleteTrashedItemAlertDidEnd:returnCode:contextInfo:) contextInfo:(__bridge void *)(node)];
-}
-
-- (void)_deleteTrashedItemAlertDidEnd:(NSAlert *)alert returnCode:(NSInteger)returnCode contextInfo:(void *)contextInfo {
-  if(returnCode == NSAlertFirstButtonReturn) {
-    KPKNode *node = (__bridge KPKNode *)(contextInfo);
-    /* No undo on this operation */
-    for( KPKEntry *entry in node.asGroup.childEntries) {
-      [node.undoManager removeAllActionsWithTarget:entry];
+  [alert beginSheetModalForWindow:self.windowForSheet completionHandler:^(NSModalResponse returnCode) {
+    if(returnCode == NSAlertFirstButtonReturn) {
+      /* No undo on this operation */
+      for( KPKEntry *entry in node.asGroup.childEntries) {
+        [node.undoManager removeAllActionsWithTarget:entry];
+      }
+      for(KPKGroup *group in node.asGroup.childGroups) {
+        [node.undoManager removeAllActionsWithTarget:group];
+      }
+      //[self.undoManager setActionIsDiscardable:YES];
+      [node remove];
     }
-    for(KPKGroup *group in node.asGroup.childGroups) {
-      [node.undoManager removeAllActionsWithTarget:group];
-    }
-    //[self.undoManager setActionIsDiscardable:YES];
-    [node remove];
-  }
+  }];
 }
 
 - (void)createEntryFromTemplate:(id)sender {
