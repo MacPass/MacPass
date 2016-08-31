@@ -143,6 +143,7 @@
 		4C76155C1764C04C0015A1A6 /* GeneralSettings.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4C76155E1764C04C0015A1A6 /* GeneralSettings.xib */; };
 		4C7615681764C0C40015A1A6 /* PasswordInputView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4C76156A1764C0C40015A1A6 /* PasswordInputView.xib */; };
 		4C76156D1764C0E20015A1A6 /* InspectorView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4C76156F1764C0E20015A1A6 /* InspectorView.xib */; };
+		4C7679BF1D76D6D8001F33D6 /* MPErrorRecoveryAttempter.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C7679BE1D76D6D8001F33D6 /* MPErrorRecoveryAttempter.m */; };
 		4C7714AA176C998F00549F2A /* 43_TrashTemplate.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 4C7714A9176C998F00549F2A /* 43_TrashTemplate.pdf */; };
 		4C77547516E55FE800970E02 /* MPInspectorViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C77547416E55FE800970E02 /* MPInspectorViewController.m */; };
 		4C77C84118E240E000D1C42B /* DDHotKey+MacPassAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C77C84018E240E000D1C42B /* DDHotKey+MacPassAdditions.m */; };
@@ -498,6 +499,8 @@
 		4C7615781764C4A50015A1A6 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.rtf; name = de; path = de.lproj/Credits.rtf; sourceTree = "<group>"; };
 		4C7615791764C4A50015A1A6 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		4C7679BC1D75E690001F33D6 /* MPModelChangeObserving.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MPModelChangeObserving.h; sourceTree = "<group>"; };
+		4C7679BD1D76D6D8001F33D6 /* MPErrorRecoveryAttempter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MPErrorRecoveryAttempter.h; sourceTree = "<group>"; };
+		4C7679BE1D76D6D8001F33D6 /* MPErrorRecoveryAttempter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MPErrorRecoveryAttempter.m; sourceTree = "<group>"; };
 		4C7714A9176C998F00549F2A /* 43_TrashTemplate.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = 43_TrashTemplate.pdf; sourceTree = "<group>"; };
 		4C77547316E55FE800970E02 /* MPInspectorViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MPInspectorViewController.h; sourceTree = "<group>"; };
 		4C77547416E55FE800970E02 /* MPInspectorViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MPInspectorViewController.m; sourceTree = "<group>"; };
@@ -598,8 +601,6 @@
 		4CCA7EEC1797866F00B0B55E /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/GeneralSettings.strings; sourceTree = "<group>"; };
 		4CCA7EEE1797867200B0B55E /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/GeneralSettings.strings; sourceTree = "<group>"; };
 		4CCA8E9A18D91ED9001A6754 /* Quartz.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Quartz.framework; path = System/Library/Frameworks/Quartz.framework; sourceTree = SDKROOT; };
-		4CCCD83C1C8DFF20002B77B6 /* MPEntryProxy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MPEntryProxy.h; sourceTree = "<group>"; };
-		4CCCD83D1C8DFF20002B77B6 /* MPEntryProxy.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MPEntryProxy.m; sourceTree = "<group>"; };
 		4CCCE7FF1D75CA48006AA951 /* MPArrayController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MPArrayController.h; sourceTree = "<group>"; };
 		4CCCE8001D75CA48006AA951 /* MPArrayController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MPArrayController.m; sourceTree = "<group>"; };
 		4CCEDE28179F203B008402BE /* MPOutlineView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MPOutlineView.h; sourceTree = "<group>"; };
@@ -876,6 +877,8 @@
 				4CCEDE2D179F213B008402BE /* MPNotifications.m */,
 				4C663D3F1D6D91A900CB6237 /* MPNumberFormatter.h */,
 				4C663D401D6D91A900CB6237 /* MPNumberFormatter.m */,
+				4C7679BD1D76D6D8001F33D6 /* MPErrorRecoveryAttempter.h */,
+				4C7679BE1D76D6D8001F33D6 /* MPErrorRecoveryAttempter.m */,
 			);
 			name = Common;
 			sourceTree = "<group>";
@@ -966,7 +969,6 @@
 				4C6B7C7C18BE7EB0001D5D77 /* MPDocument+HistoryBrowsing.m */,
 				4C0AF62D195C1F2B009E658D /* MPEntrySearchContext.h */,
 				4C0AF62E195C1F2B009E658D /* MPEntrySearchContext.m */,
-				4CB44EEE1C972BFD00EE2D60 /* Proxies */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -1297,15 +1299,6 @@
 				4C7679BC1D75E690001F33D6 /* MPModelChangeObserving.h */,
 			);
 			name = Protocolls;
-			sourceTree = "<group>";
-		};
-		4CB44EEE1C972BFD00EE2D60 /* Proxies */ = {
-			isa = PBXGroup;
-			children = (
-				4CCCD83C1C8DFF20002B77B6 /* MPEntryProxy.h */,
-				4CCCD83D1C8DFF20002B77B6 /* MPEntryProxy.m */,
-			);
-			name = Proxies;
 			sourceTree = "<group>";
 		};
 		4CCFA12C1BF0CC7A0078E0A1 /* Databases */ = {
@@ -1727,7 +1720,6 @@
 				4C89B71019B4B4A300DC0A6A /* MPTreeDelegate.m in Sources */,
 				4C88C66918D9F8D600F43852 /* MPTemporaryFileStorageCenter.m in Sources */,
 				4C7B63741C0CB51F00D7038C /* TTTDateTransformers.m in Sources */,
-				4CCCD83E1C8DFF20002B77B6 /* MPEntryProxy.m in Sources */,
 				4CF5BE6D1BF33E3000048505 /* NSApplication+MPAdditions.m in Sources */,
 				4CE30ACC1A312B7F0063FCC6 /* MPReferenceBuilderViewController.m in Sources */,
 				4C6F228C19A4AA700012310C /* MPAutotypeDelay.m in Sources */,
@@ -1735,6 +1727,7 @@
 				4C978E0D19AE54AB003067DF /* MPFlagsHelper.m in Sources */,
 				4C6F228919A4A7F90012310C /* MPAutotypeClear.m in Sources */,
 				4C0B038C18E36DA400B9F9C9 /* MPFixAutotypeWindowController.m in Sources */,
+				4C7679BF1D76D6D8001F33D6 /* MPErrorRecoveryAttempter.m in Sources */,
 				4CA0F3ED1A3074B50067C0E5 /* MPWindowTitleComboBoxDelegate.m in Sources */,
 				4CF78064176E75AD0032EE71 /* MPIntegrationSettingsController.m in Sources */,
 				4C25703F1BF11C2300D39416 /* MPPluginSettingsController.m in Sources */,
