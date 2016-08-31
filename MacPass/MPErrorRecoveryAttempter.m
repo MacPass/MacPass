@@ -21,18 +21,28 @@
  */
 - (void)attemptRecoveryFromError:(NSError *)error optionIndex:(NSUInteger)recoveryOptionIndex delegate:(nullable id)delegate didRecoverSelector:(nullable SEL)didRecoverSelector contextInfo:(nullable void *)contextInfo {
   NSInvocation *invocation = [NSInvocation invocationWithMethodSignature:[delegate methodSignatureForSelector:didRecoverSelector]];
-  
+  __block void *contextInfoCopy = contextInfo;
   if(error.code == MPErrorNoPasswordOrKeyFile) {
     if([delegate isKindOfClass:[MPDocument class]]) {
       MPDocument *document = delegate;
-      [document.windowControllers.firstObject editPasswordWithCompetionHandler:^(NSInteger result) {
-        BOOL didRecover = result == NSModalResponseOK;
+      BOOL didRecover = NO;
+      if(recoveryOptionIndex == 0) {
+        [document.windowControllers.firstObject editPasswordWithCompetionHandler:^(NSInteger result) {
+          BOOL didRecover = result == NSModalResponseOK;
+          invocation.target = delegate;
+          invocation.selector = didRecoverSelector;
+          [invocation setArgument:&didRecover atIndex:2];
+          [invocation setArgument:&contextInfoCopy atIndex:3];
+          [invocation invoke];
+        }];
+      }
+      else {
         invocation.target = delegate;
         invocation.selector = didRecoverSelector;
         [invocation setArgument:&didRecover atIndex:2];
         [invocation setArgument:&contextInfo atIndex:3];
         [invocation invoke];
-      }];
+      }
     }
   }
   
