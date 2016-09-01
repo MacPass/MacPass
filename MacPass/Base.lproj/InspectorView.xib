@@ -7,13 +7,10 @@
     <objects>
         <customObject id="-2" userLabel="File's Owner" customClass="MPInspectorViewController">
             <connections>
-                <outlet property="bottomBar" destination="2930" id="2995"/>
-                <outlet property="discardChangesButton" destination="hfJ-b8-tQJ" id="CCz-S9-SiC"/>
                 <outlet property="itemImageView" destination="2998" id="3024"/>
                 <outlet property="itemNameTextField" destination="3013" id="3025"/>
                 <outlet property="noSelectionInfo" destination="2985" id="2993"/>
                 <outlet property="notesTextView" destination="g24-gQ-foD" id="pcU-EQ-Vgn"/>
-                <outlet property="saveChangesButton" destination="lje-Eh-VCc" id="JK1-gy-w3R"/>
                 <outlet property="splitView" destination="3145" id="lyG-RH-yu4"/>
                 <outlet property="tabView" destination="2895" id="2994"/>
                 <outlet property="view" destination="2894" id="2976"/>
@@ -24,35 +21,6 @@
         <customView translatesAutoresizingMaskIntoConstraints="NO" id="2894">
             <rect key="frame" x="0.0" y="0.0" width="278" height="662"/>
             <subviews>
-                <customView translatesAutoresizingMaskIntoConstraints="NO" id="2930" customClass="HNHUIGradientView">
-                    <rect key="frame" x="0.0" y="0.0" width="278" height="30"/>
-                    <subviews>
-                        <button hidden="YES" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="lje-Eh-VCc">
-                            <rect key="frame" x="194" y="-2" width="70" height="32"/>
-                            <buttonCell key="cell" type="push" title="Save" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="15U-vA-2Dj">
-                                <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
-                                <font key="font" metaFont="system"/>
-                            </buttonCell>
-                        </button>
-                        <button hidden="YES" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="hfJ-b8-tQJ">
-                            <rect key="frame" x="107" y="-2" width="87" height="32"/>
-                            <buttonCell key="cell" type="push" title="Discard" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="bQO-6W-0DC">
-                                <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
-                                <font key="font" metaFont="system"/>
-                            </buttonCell>
-                        </button>
-                    </subviews>
-                    <constraints>
-                        <constraint firstAttribute="height" constant="30" id="2949"/>
-                        <constraint firstAttribute="bottom" secondItem="hfJ-b8-tQJ" secondAttribute="bottom" constant="5" id="98h-mh-kLI"/>
-                        <constraint firstItem="hfJ-b8-tQJ" firstAttribute="top" secondItem="2930" secondAttribute="top" constant="4" id="KJY-bS-IEo"/>
-                        <constraint firstAttribute="trailing" secondItem="lje-Eh-VCc" secondAttribute="trailing" constant="20" symbolic="YES" id="ctS-Ss-3p5"/>
-                        <constraint firstItem="lje-Eh-VCc" firstAttribute="leading" secondItem="hfJ-b8-tQJ" secondAttribute="trailing" constant="12" symbolic="YES" id="dqP-vX-v2w"/>
-                        <constraint firstItem="hfJ-b8-tQJ" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="2930" secondAttribute="leading" constant="20" symbolic="YES" id="eHL-y7-iiE"/>
-                        <constraint firstAttribute="bottom" secondItem="lje-Eh-VCc" secondAttribute="bottom" constant="5" id="jQ2-v5-1GZ"/>
-                        <constraint firstItem="lje-Eh-VCc" firstAttribute="top" secondItem="2930" secondAttribute="top" constant="4" id="t64-P5-H3N"/>
-                    </constraints>
-                </customView>
                 <imageView translatesAutoresizingMaskIntoConstraints="NO" id="2998" customClass="MPPopupImageView">
                     <rect key="frame" x="20" y="620" width="32" height="32"/>
                     <constraints>
@@ -81,7 +49,7 @@
                     </connections>
                 </textField>
                 <splitView autosaveName="InspectorNotesSplitView" dividerStyle="thin" translatesAutoresizingMaskIntoConstraints="NO" id="3145">
-                    <rect key="frame" x="0.0" y="30" width="278" height="582"/>
+                    <rect key="frame" x="0.0" y="0.0" width="278" height="612"/>
                     <subviews>
                         <customView id="3146">
                             <rect key="frame" x="0.0" y="0.0" width="278" height="370"/>
@@ -135,11 +103,11 @@
                             </constraints>
                         </customView>
                         <customView id="3147">
-                            <rect key="frame" x="0.0" y="371" width="278" height="211"/>
+                            <rect key="frame" x="0.0" y="371" width="278" height="241"/>
                             <autoresizingMask key="autoresizingMask"/>
                             <subviews>
                                 <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="PzR-P9-3al">
-                                    <rect key="frame" x="18" y="192" width="35" height="14"/>
+                                    <rect key="frame" x="18" y="222" width="35" height="14"/>
                                     <textFieldCell key="cell" controlSize="small" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Notes" id="hwn-UY-9Cr">
                                         <font key="font" metaFont="smallSystem"/>
                                         <color key="textColor" name="disabledControlTextColor" catalog="System" colorSpace="catalog"/>
@@ -147,19 +115,19 @@
                                     </textFieldCell>
                                 </textField>
                                 <scrollView horizontalLineScroll="10" horizontalPageScroll="10" verticalLineScroll="10" verticalPageScroll="10" hasHorizontalScroller="NO" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0V7-UG-vEA">
-                                    <rect key="frame" x="20" y="5" width="238" height="179"/>
+                                    <rect key="frame" x="20" y="20" width="238" height="194"/>
                                     <clipView key="contentView" id="kcs-yQ-cbv">
-                                        <rect key="frame" x="1" y="1" width="236" height="177"/>
+                                        <rect key="frame" x="1" y="1" width="236" height="192"/>
                                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                         <subviews>
                                             <textView importsGraphics="NO" richText="NO" allowsUndo="YES" verticallyResizable="YES" allowsNonContiguousLayout="YES" smartInsertDelete="YES" id="g24-gQ-foD">
-                                                <rect key="frame" x="0.0" y="0.0" width="236" height="177"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="236" height="192"/>
                                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                                <size key="minSize" width="236" height="177"/>
+                                                <size key="minSize" width="236" height="192"/>
                                                 <size key="maxSize" width="463" height="10000000"/>
                                                 <color key="insertionPointColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
-                                                <size key="minSize" width="236" height="177"/>
+                                                <size key="minSize" width="236" height="192"/>
                                                 <size key="maxSize" width="463" height="10000000"/>
                                                 <connections>
                                                     <binding destination="-2" name="value" keyPath="representedObject.notes" id="E0d-ZH-Wbc">
@@ -178,14 +146,14 @@
                                         <autoresizingMask key="autoresizingMask"/>
                                     </scroller>
                                     <scroller key="verticalScroller" verticalHuggingPriority="750" doubleValue="1" horizontal="NO" id="Dgu-8Y-sx3">
-                                        <rect key="frame" x="221" y="1" width="16" height="177"/>
+                                        <rect key="frame" x="221" y="1" width="16" height="192"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                     </scroller>
                                 </scrollView>
                             </subviews>
                             <constraints>
                                 <constraint firstItem="0V7-UG-vEA" firstAttribute="leading" secondItem="3147" secondAttribute="leading" constant="20" symbolic="YES" id="0O8-PU-gfZ"/>
-                                <constraint firstAttribute="bottom" secondItem="0V7-UG-vEA" secondAttribute="bottom" constant="5" id="1CK-BI-i3x"/>
+                                <constraint firstAttribute="bottom" secondItem="0V7-UG-vEA" secondAttribute="bottom" constant="20" symbolic="YES" id="1CK-BI-i3x"/>
                                 <constraint firstItem="0V7-UG-vEA" firstAttribute="top" secondItem="PzR-P9-3al" secondAttribute="bottom" constant="8" id="3rs-J1-olq"/>
                                 <constraint firstItem="PzR-P9-3al" firstAttribute="top" secondItem="3147" secondAttribute="top" constant="5" id="DqT-BF-ASp"/>
                                 <constraint firstItem="PzR-P9-3al" firstAttribute="leading" secondItem="3147" secondAttribute="leading" constant="20" symbolic="YES" id="F4y-8m-e41"/>
@@ -201,20 +169,15 @@
                 </splitView>
             </subviews>
             <constraints>
-                <constraint firstItem="2930" firstAttribute="leading" secondItem="2894" secondAttribute="leading" id="2946"/>
-                <constraint firstItem="2930" firstAttribute="trailing" secondItem="2894" secondAttribute="trailing" id="2947"/>
-                <constraint firstAttribute="bottom" secondItem="2930" secondAttribute="bottom" id="2953"/>
                 <constraint firstItem="3013" firstAttribute="centerY" secondItem="2998" secondAttribute="centerY" id="3069"/>
                 <constraint firstItem="2998" firstAttribute="top" secondItem="2894" secondAttribute="top" constant="10" id="3072"/>
                 <constraint firstItem="3013" firstAttribute="leading" secondItem="2998" secondAttribute="trailing" constant="8" symbolic="YES" id="3073"/>
                 <constraint firstAttribute="trailing" secondItem="3013" secondAttribute="trailing" constant="20" symbolic="YES" id="3075"/>
                 <constraint firstItem="2998" firstAttribute="leading" secondItem="2894" secondAttribute="leading" constant="20" symbolic="YES" id="3076"/>
-                <constraint firstItem="3145" firstAttribute="leading" secondItem="2930" secondAttribute="leading" id="3149"/>
                 <constraint firstItem="3145" firstAttribute="top" secondItem="2998" secondAttribute="bottom" constant="8" symbolic="YES" id="3150"/>
-                <constraint firstItem="3145" firstAttribute="trailing" secondItem="2930" secondAttribute="trailing" id="3152"/>
-                <constraint firstAttribute="bottom" secondItem="3145" secondAttribute="bottom" constant="30" id="3153"/>
                 <constraint firstAttribute="trailing" secondItem="3145" secondAttribute="trailing" id="3154"/>
                 <constraint firstItem="3145" firstAttribute="leading" secondItem="2894" secondAttribute="leading" id="3155"/>
+                <constraint firstAttribute="bottom" secondItem="3145" secondAttribute="bottom" id="PjS-Y5-YA6"/>
             </constraints>
             <point key="canvasLocation" x="412" y="-682"/>
         </customView>

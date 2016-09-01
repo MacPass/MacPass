@@ -28,8 +28,8 @@ typedef NS_ENUM(NSUInteger, MPActionType) {
   MPActionExportXML, // Export as XML
   MPActionImportXML, // Import form XML
   MPActionToggleQuicklook,
-  MPActionShowHistory, // show history 
-  MPActionExitHistory, // exit history
+  MPActionShowEntryHistory, // show history
+  MPActionHideEntryHistory, // exit history
   MPActionPerformAutotypeForSelectedEntry // Perform Autotype for selected Entry
 };
 /**

@@ -685,7 +685,9 @@ NSString *const MPDocumentGroupKey                            = @"MPDocumentGrou
   KPKEntry *targetEntry = targetEntries.count == 1 ? targetEntries.firstObject : nil;
   KPKGroup *targetGroup = targetGroups.count == 1 ? targetGroups.firstObject : nil;
   
-  if(self.encrypted || self.isReadOnly) { return NO; }
+  if(self.encrypted || self.isReadOnly) {
+    return NO;
+  }
   
   BOOL valid = /*targetNode ? targetNode.isEditable : */YES;
   switch([MPActionHelper typeForAction:[anItem action]]) {
@@ -713,7 +715,7 @@ NSString *const MPDocumentGroupKey                            = @"MPDocumentGrou
       valid &= targetEntries.count > 0;
       break;
     case MPActionEmptyTrash:
-      valid &= ([self.trash.groups count] + [self.trash.entries count]) > 0;
+      valid &= (self.trash.groups.count + self.trash.entries.count) > 0;
       break;
     case MPActionDatabaseSettings:
     case MPActionEditPassword:
@@ -722,19 +724,20 @@ NSString *const MPDocumentGroupKey                            = @"MPDocumentGrou
     case MPActionLock:
       valid &= self.compositeKey.hasPasswordOrKeyFile;
       break;
-    case MPActionShowHistory:
+    case MPActionShowEntryHistory:
       valid &= (nil != targetEntry);
+      valid &= targetEntry.history.count > 0;
       break;
       /* Entry View Actions */
     case MPActionCopyUsername:
-      valid &= (nil != targetEntry) && ([targetEntry.username length] > 0);
+      valid &= (nil != targetEntry) && (targetEntry.username.length > 0);
       break;
     case MPActionCopyPassword:
-      valid &= (nil != targetEntry ) && ([targetEntry.password length] > 0);
+      valid &= (nil != targetEntry ) && (targetEntry.password.length > 0);
       break;
     case MPActionCopyURL:
     case MPActionOpenURL:
-      valid &= (nil != targetEntry ) && ([targetEntry.url length] > 0);
+      valid &= (nil != targetEntry ) && (targetEntry.url.length > 0);
       break;
     case MPActionPerformAutotypeForSelectedEntry:
       valid &= (nil != targetEntry);

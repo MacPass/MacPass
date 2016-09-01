@@ -486,9 +486,18 @@ typedef void (^MPPasswordChangedBlock)(BOOL didChangePassword);
   [contentView layoutSubtreeIfNeeded];
 }
 
+- (IBAction)showHistoryForEntry:(id)sender {
+  [self.document showHistoryForEntry:nil];
+}
+
+- (IBAction)hideHistoryForEntry:(id)sender {
+
+}
+
+
 #pragma mark Validation
 - (BOOL)validateMenuItem:(NSMenuItem *)menuItem {
-  return ([[self document] validateMenuItem:menuItem]);
+  return ([self.document validateMenuItem:menuItem]);
 }
 
 #pragma mark NSAlert handling
