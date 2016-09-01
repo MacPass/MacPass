@@ -7,31 +7,26 @@
     <objects>
         <customObject id="-2" userLabel="File's Owner" customClass="MPAutotypeBuilderViewController">
             <connections>
+                <outlet property="tokenField" destination="k06-gn-ahB" id="YKa-O1-bpM"/>
                 <outlet property="view" destination="Hz6-mo-xeY" id="0bl-1N-x8E"/>
             </connections>
         </customObject>
         <customObject id="-1" userLabel="First Responder" customClass="FirstResponder"/>
         <customObject id="-3" userLabel="Application" customClass="NSObject"/>
-        <customView misplaced="YES" id="Hz6-mo-xeY">
+        <customView id="Hz6-mo-xeY">
             <rect key="frame" x="0.0" y="0.0" width="405" height="298"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
             <subviews>
-                <tokenField verticalHuggingPriority="750" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Kvn-IG-DGI">
-                    <rect key="frame" x="20" y="-76" width="443" height="354"/>
-                    <tokenFieldCell key="cell" selectable="YES" editable="YES" alignment="left" allowsEditingTextAttributes="YES" id="GSA-a9-99Q">
+                <tokenField verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="k06-gn-ahB">
+                    <rect key="frame" x="20" y="15" width="365" height="268"/>
+                    <tokenFieldCell key="cell" selectable="YES" editable="YES" borderStyle="bezel" alignment="left" drawsBackground="YES" allowsEditingTextAttributes="YES" id="mfe-Zs-cxC">
                         <font key="font" metaFont="cellTitle"/>
                         <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
                         <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                     </tokenFieldCell>
                 </tokenField>
             </subviews>
-            <constraints>
-                <constraint firstAttribute="bottom" secondItem="Kvn-IG-DGI" secondAttribute="bottom" constant="20" id="YKC-lP-F5T"/>
-                <constraint firstItem="Kvn-IG-DGI" firstAttribute="top" secondItem="Hz6-mo-xeY" secondAttribute="top" constant="20" id="bJu-XA-mqO"/>
-                <constraint firstItem="Kvn-IG-DGI" firstAttribute="leading" secondItem="Hz6-mo-xeY" secondAttribute="leading" constant="22" id="p3m-hr-McG"/>
-                <constraint firstAttribute="trailing" secondItem="Kvn-IG-DGI" secondAttribute="trailing" constant="20" id="wNY-D6-iuK"/>
-            </constraints>
-            <point key="canvasLocation" x="324.5" y="487"/>
+            <point key="canvasLocation" x="344.5" y="200"/>
         </customView>
     </objects>
 </document>

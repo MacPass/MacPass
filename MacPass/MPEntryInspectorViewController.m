@@ -13,6 +13,7 @@
 #import "MPPasswordCreatorViewController.h"
 #import "MPWindowAssociationsTableViewDelegate.h"
 #import "MPWindowTitleComboBoxDelegate.h"
+#import "MPAutotypeBuilderViewController.h"
 
 #import "NSString+MPPasswordCreation.h"
 
@@ -275,13 +276,19 @@ typedef NS_ENUM(NSUInteger, MPEntryTab) {
 #pragma mark -
 #pragma mark Popovers
 
-- (IBAction)_popUpPasswordGenerator:(id)sender {
+- (IBAction)showAutotypeBuilder:(id)sender {
+  [sender setEnabled:NO];
+  MPAutotypeBuilderViewController *autotypeBuilder = [[MPAutotypeBuilderViewController alloc] init];
+  [self _showPopopver:autotypeBuilder atView:sender onEdge:NSMinYEdge];
+}
+
+- (IBAction)showPasswordGenerator:(id)sender {
   self.generatePasswordButton.enabled = NO;
   MPPasswordCreatorViewController *viewController = [[MPPasswordCreatorViewController alloc] init];
   viewController.allowsEntryDefaults = YES;
   viewController.representedObject = self.representedObject;
   viewController.observer = self.windowController.document;
-  [self _showPopopver:viewController atView:self.passwordTextField onEdge:NSMinYEdge];
+  [self _showPopopver:viewController atView:sender onEdge:NSMinYEdge];
 }
 
 - (void)_showPopopver:(NSViewController *)viewController atView:(NSView *)view onEdge:(NSRectEdge)edge {
@@ -299,6 +306,8 @@ typedef NS_ENUM(NSUInteger, MPEntryTab) {
 
 - (void)popoverDidClose:(NSNotification *)notification {
   self.generatePasswordButton.enabled = YES;
+  self.showCustomEntrySequenceAutotypeBuilderButton.enabled = YES;
+  self.showCustomAssociationSequenceAutotypeBuilderButton.enabled = YES;
   self.activePopover = nil;
 }
 

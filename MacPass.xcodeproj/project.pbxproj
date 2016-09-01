@@ -191,6 +191,8 @@
 		4CA2335A176DBFE100F0B6AC /* MPLockDaemon.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CA23359176DBFE100F0B6AC /* MPLockDaemon.m */; };
 		4CA334CA18AD60D1008A3322 /* MPWindowAssociationsTableViewDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CA334C918AD60D1008A3322 /* MPWindowAssociationsTableViewDelegate.m */; };
 		4CA3530B18A53CB800839B0F /* MPKeyMapper.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CA3530A18A53CB800839B0F /* MPKeyMapper.m */; };
+		4CAAA8271D787B8B00CDE977 /* MPAutotypeBuilderViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CAAA8251D787B8B00CDE977 /* MPAutotypeBuilderViewController.m */; };
+		4CAAA8281D787B8B00CDE977 /* AutotypeBuilderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4CAAA8261D787B8B00CDE977 /* AutotypeBuilderView.xib */; };
 		4CAD748C15B889B700104512 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4CAD748B15B889B700104512 /* Security.framework */; };
 		4CAD748E15B88AC100104512 /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 4CAD748D15B88AC100104512 /* libz.dylib */; };
 		4CB915941A0159A20089CE5B /* DuplicateEntryOptionsWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4CB915931A0159A20089CE5B /* DuplicateEntryOptionsWindow.xib */; };
@@ -602,6 +604,9 @@
 		4CA334C918AD60D1008A3322 /* MPWindowAssociationsTableViewDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MPWindowAssociationsTableViewDelegate.m; sourceTree = "<group>"; };
 		4CA3530918A53CB800839B0F /* MPKeyMapper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MPKeyMapper.h; sourceTree = "<group>"; };
 		4CA3530A18A53CB800839B0F /* MPKeyMapper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MPKeyMapper.m; sourceTree = "<group>"; };
+		4CAAA8241D787B8B00CDE977 /* MPAutotypeBuilderViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MPAutotypeBuilderViewController.h; sourceTree = "<group>"; };
+		4CAAA8251D787B8B00CDE977 /* MPAutotypeBuilderViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MPAutotypeBuilderViewController.m; sourceTree = "<group>"; };
+		4CAAA8261D787B8B00CDE977 /* AutotypeBuilderView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AutotypeBuilderView.xib; sourceTree = "<group>"; };
 		4CAD748B15B889B700104512 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
 		4CAD748D15B88AC100104512 /* libz.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.dylib; path = usr/lib/libz.dylib; sourceTree = SDKROOT; };
 		4CB63A6018986530002DEC4C /* MPFlagsHelper.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MPFlagsHelper.h; sourceTree = "<group>"; };
@@ -844,6 +849,7 @@
 				6021FE7918E15FF300C3BC51 /* DatePickingView.xib */,
 				4C26C34A18D8D5A300CF1A1C /* PreviewView.xib */,
 				4CD820231A32173100399DBB /* ReferenceBuilderView.xib */,
+				4CAAA8261D787B8B00CDE977 /* AutotypeBuilderView.xib */,
 				4CE8247316E2F2B900573141 /* MPOverlayView.h */,
 				4CE8247416E2F2B900573141 /* MPOverlayView.m */,
 				4CFC53BD16E94729007396BE /* MPShadowBox.h */,
@@ -1305,6 +1311,8 @@
 				4C26C34918D8D5A300CF1A1C /* MPPreviewViewController.m */,
 				4CE30ACA1A312B7F0063FCC6 /* MPReferenceBuilderViewController.h */,
 				4CE30ACB1A312B7F0063FCC6 /* MPReferenceBuilderViewController.m */,
+				4CAAA8241D787B8B00CDE977 /* MPAutotypeBuilderViewController.h */,
+				4CAAA8251D787B8B00CDE977 /* MPAutotypeBuilderViewController.m */,
 			);
 			name = "View Controller";
 			sourceTree = "<group>";
@@ -1539,6 +1547,7 @@
 			files = (
 				4C3826AE1AD04D8E007D7D67 /* 33_RunTemplate.pdf in Resources */,
 				4C3826A51AD04D8E007D7D67 /* 21_OrganizerTemplate.pdf in Resources */,
+				4CAAA8281D787B8B00CDE977 /* AutotypeBuilderView.xib in Resources */,
 				4C17F108184E6B6C00E85625 /* 31_PrintTemplate.pdf in Resources */,
 				4C77E37115B84A240093A587 /* InfoPlist.strings in Resources */,
 				4C3826781AD04C8A007D7D67 /* createdTemplate.pdf in Resources */,
@@ -1791,6 +1800,7 @@
 				4CE2961518429AA5005F01CE /* MPAutotypeKeyPress.m in Sources */,
 				4C32B0E71A1D4436007E12F1 /* KPKFormat+MPUTIDetection.m in Sources */,
 				4C5807781C64F67000E7171F /* NSString+MPHash.m in Sources */,
+				4CAAA8271D787B8B00CDE977 /* MPAutotypeBuilderViewController.m in Sources */,
 				4CE501341BBC47F500FB819D /* MPTagsTokenFieldDelegate.m in Sources */,
 				4CC6DB7A17D23719002C6091 /* KPKNode+IconImage.m in Sources */,
 				4C15B74618BCA3B1003F8008 /* MPDocument+Search.m in Sources */,

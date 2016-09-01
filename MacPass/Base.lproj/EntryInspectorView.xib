@@ -15,8 +15,6 @@
                 <outlet property="customEntrySequenceTextField" destination="cDK-DM-F5z" id="CDU-Oq-AHP"/>
                 <outlet property="customFieldsTableView" destination="193" id="266"/>
                 <outlet property="enableAutotypeCheckButton" destination="kdV-Xa-8p3" id="vlC-HP-lBv"/>
-                <outlet property="enableCustomAssociationSequenceButton" destination="m1C-m8-BKR" id="NCR-jQ-A0t"/>
-                <outlet property="enableCustomEntrySequenceButton" destination="HDS-Bz-jrr" id="z3o-uN-efY"/>
                 <outlet property="expiresCheckButton" destination="7" id="286"/>
                 <outlet property="generalView" destination="4" id="270"/>
                 <outlet property="generatePasswordButton" destination="59" id="282"/>
@@ -24,6 +22,8 @@
                 <outlet property="obfuscateAutotypeCheckButton" destination="I7L-Am-Qpa" id="hwa-zl-24W"/>
                 <outlet property="passwordTextField" destination="60" id="263"/>
                 <outlet property="removeAssociationButton" destination="AAj-Ak-z46" id="7Xj-Tf-8CI"/>
+                <outlet property="showCustomAssociationSequenceAutotypeBuilderButton" destination="m1C-m8-BKR" id="B3I-AG-TCJ"/>
+                <outlet property="showCustomEntrySequenceAutotypeBuilderButton" destination="HDS-Bz-jrr" id="7u1-17-oMK"/>
                 <outlet property="tabView" destination="83" id="269"/>
                 <outlet property="tagsTokenField" destination="5" id="287"/>
                 <outlet property="titleTextField" destination="53" id="260"/>
@@ -534,7 +534,7 @@
                         <font key="font" metaFont="system"/>
                     </buttonCell>
                     <connections>
-                        <action selector="_popUpPasswordGenerator:" target="-2" id="272"/>
+                        <action selector="showPasswordGenerator:" target="-2" id="xxV-lD-L1K"/>
                         <outlet property="nextKeyView" destination="56" id="rY0-PH-WBT"/>
                     </connections>
                 </button>
@@ -874,9 +874,12 @@
                         <constraint firstAttribute="width" constant="32" id="Ek5-IH-qGo"/>
                     </constraints>
                     <buttonCell key="cell" type="roundTextured" bezelStyle="texturedRounded" image="NSActionTemplate" imagePosition="only" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="HIC-T9-j9G">
-                        <behavior key="behavior" pushIn="YES" changeContents="YES" lightByContents="YES"/>
+                        <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                         <font key="font" metaFont="system"/>
                     </buttonCell>
+                    <connections>
+                        <action selector="showAutotypeBuilder:" target="-2" id="uGu-Lw-qBV"/>
+                    </connections>
                 </button>
                 <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="HDS-Bz-jrr">
                     <rect key="frame" x="249" y="325" width="32" height="25"/>
@@ -884,9 +887,12 @@
                         <constraint firstAttribute="width" constant="32" id="CbR-2P-dZH"/>
                     </constraints>
                     <buttonCell key="cell" type="roundTextured" bezelStyle="texturedRounded" image="NSActionTemplate" imagePosition="only" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="V5Z-qf-FVH">
-                        <behavior key="behavior" pushIn="YES" changeContents="YES" lightByContents="YES"/>
+                        <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                         <font key="font" metaFont="system"/>
                     </buttonCell>
+                    <connections>
+                        <action selector="showAutotypeBuilder:" target="-2" id="qyX-xA-cKB"/>
+                    </connections>
                 </button>
             </subviews>
             <constraints>

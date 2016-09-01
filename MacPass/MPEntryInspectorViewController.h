@@ -42,17 +42,19 @@
 @property (weak) IBOutlet NSButton *enableAutotypeCheckButton;
 @property (weak) IBOutlet NSButton *obfuscateAutotypeCheckButton;
 @property (weak) IBOutlet NSTableView *windowAssociationsTableView;
-@property (weak) IBOutlet NSButton *enableCustomEntrySequenceButton;
+@property (weak) IBOutlet NSButton *showCustomEntrySequenceAutotypeBuilderButton;
 @property (weak) IBOutlet NSTextField *customEntrySequenceTextField;
 @property (weak) IBOutlet NSComboBox *windowTitleComboBox;
 
 @property (weak) IBOutlet NSButton *removeAssociationButton;
 @property (weak) IBOutlet NSButton *addAssociationButton;
-@property (weak) IBOutlet NSButton *enableCustomAssociationSequenceButton;
+@property (weak) IBOutlet NSButton *showCustomAssociationSequenceAutotypeBuilderButton;
 
 @property (weak) IBOutlet NSTextField *associationSequenceTextField;
 
 - (void)registerNotificationsForDocument:(MPDocument *)document;
+
+- (IBAction)showPasswordGenerator:(id)sender;
 
 - (IBAction)saveAttachment:(id)sender;
 - (IBAction)addAttachment:(id)sender;
