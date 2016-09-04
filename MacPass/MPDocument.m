@@ -89,22 +89,22 @@ NSString *const MPDocumentGroupKey                            = @"MPDocumentGrou
   return [NSSet setWithObject:NSStringFromSelector(@selector(tree))];
 }
 
-+ (KPKVersion)versionForFileType:(NSString *)fileType {
++ (KPKDatabaseType)versionForFileType:(NSString *)fileType {
   if( NSOrderedSame == [fileType compare:MPLegacyDocumentUTI options:NSCaseInsensitiveSearch]) {
-    return KPKLegacyVersion;
+    return KPKDatabaseTypeBinary;
   }
   if( NSOrderedSame == [fileType compare:MPXMLDocumentUTI options:NSCaseInsensitiveSearch]) {
-    return KPKXmlVersion;
+    return KPKDatabaseTypeXml;
   }
-  return KPKUnknownVersion;
+  return KPKDatabaseTypeUnknown;
 }
 
-+ (NSString *)fileTypeForVersion:(KPKVersion)version {
++ (NSString *)fileTypeForVersion:(KPKDatabaseType)version {
   switch(version) {
-    case KPKLegacyVersion:
+    case KPKDatabaseTypeBinary:
       return MPLegacyDocumentUTI;
       
-    case KPKXmlVersion:
+    case KPKDatabaseTypeXml:
       return MPXMLDocumentUTI;
       
     default:
@@ -182,8 +182,8 @@ NSString *const MPDocumentGroupKey                            = @"MPDocumentGrou
     return nil; // Saving without a password/key is not possible
   }
   NSString *fileType = self.fileTypeFromLastRunSavePanel;
-  KPKVersion version = [self.class versionForFileType:fileType];
-  if(version == KPKUnknownVersion) {
+  KPKDatabaseType version = [self.class versionForFileType:fileType];
+  if(version == KPKDatabaseTypeUnknown) {
     if(outError != NULL) {
       NSDictionary *userInfo = @{ NSLocalizedDescriptionKey: NSLocalizedString(@"UNKNOWN_FILE_VERSION", "") };
       *outError = [NSError errorWithDomain:MPErrorDomain code:0 userInfo:userInfo];
@@ -325,7 +325,7 @@ NSString *const MPDocumentGroupKey                            = @"MPDocumentGrou
   NSError *error;
   /* FIXME: User feedback is ignored */
   [self saveDocument:sender];
-  self.encryptedData = [self.tree encryptWithPassword:self.compositeKey forVersion:KPKXmlVersion error:&error];
+  self.encryptedData = [self.tree encryptWithPassword:self.compositeKey forVersion:KPKDatabaseTypeXml error:&error];
   self.tree = nil;
   [self.undoManager removeAllActions];
   [[NSNotificationCenter defaultCenter] postNotificationName:MPDocumentDidLockDatabaseNotification object:self];
@@ -389,8 +389,8 @@ NSString *const MPDocumentGroupKey                            = @"MPDocumentGrou
 }
 
 #pragma mark Properties
-- (KPKVersion)versionForFileType {
-  return [[self class] versionForFileType:[self fileType]];
+- (KPKDatabaseType)versionForFileType {
+  return [[self class] versionForFileType:self.fileType];
 }
 
 - (BOOL)encrypted {

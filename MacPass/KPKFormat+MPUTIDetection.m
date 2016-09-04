@@ -17,16 +17,16 @@
   static dispatch_once_t onceToken;
   dispatch_once(&onceToken, ^{
     typeToUTI = @{
-                  @(KPKLegacyVersion) : MPLegacyDocumentUTI,
-                  @(KPKXmlVersion) : MPXMLDocumentUTI
+                  @(KPKDatabaseTypeBinary) : MPLegacyDocumentUTI,
+                  @(KPKDatabaseTypeXml) : MPXMLDocumentUTI
                   };
   });
   return typeToUTI;
 }
 
 - (NSString *)typeForData:(NSData *)data {
-  KPKVersion version = [self databaseVersionForData:data];
-  return [self _typeToUTIdictionary][@(version)];
+  KPKFileInfo fileInfo = [self fileInfoForData:data];
+  return [self _typeToUTIdictionary][@(fileInfo.type)];
 }
 
 - (NSString *)typeForContentOfURL:(NSURL *)url {

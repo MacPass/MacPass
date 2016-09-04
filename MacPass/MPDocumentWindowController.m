@@ -193,7 +193,7 @@ typedef void (^MPPasswordChangedBlock)(BOOL didChangePassword);
   NSString *fileType = document.fileType;
   /* we did open as legacy */
   if([fileType isEqualToString:MPLegacyDocumentUTI]) {
-    if(document.tree.minimumVersion != KPKLegacyVersion) {
+    if(document.tree.minimumType != KPKDatabaseTypeBinary) {
       NSAlert *alert = [[NSAlert alloc] init];
       alert.alertStyle = NSWarningAlertStyle;
       alert.messageText = NSLocalizedString(@"WARNING_ON_LOSSY_SAVE", "");

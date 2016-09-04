@@ -37,6 +37,9 @@
   return _tokens;
 }
 
+- (void)dealloc {
+  [[NSNotificationCenter defaultCenter] removeObserver:self];
+}
 
 - (NSString *)nibName {
   return @"AutotypeBuilderView";
@@ -46,6 +49,15 @@
   [super viewDidLoad];
   self.tokenField.editable = NO;
   self.tokenField.objectValue = self.tokens;
+  [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(_textViewDidChangeSelection:) name:NSTextViewDidChangeSelectionNotification object:nil];
 }
+
+- (void)_textViewDidChangeSelection:(NSNotification *)notification {
+  NSTextView *tv = [self.tokenField.cell fieldEditorForView:self.tokenField];
+  if(tv) {
+    NSArray *selectionRanges = tv.selectedRanges;
+  }
+}
+
 
 @end

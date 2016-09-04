@@ -78,7 +78,7 @@ FOUNDATION_EXPORT NSString *const MPDocumentGroupKey;
 @property (nonatomic, strong, readonly) KPKCompositeKey *compositeKey;
 
 @property (assign, readonly, getter = isReadOnly) BOOL readOnly;
-@property (nonatomic, readonly, assign) KPKVersion versionForFileType;
+@property (nonatomic, readonly, assign) KPKDatabaseType versionForFileType;
 
 /*
  State (active group/entry)
@@ -96,8 +96,8 @@ FOUNDATION_EXPORT NSString *const MPDocumentGroupKey;
 @property (nonatomic, copy) MPEntrySearchContext *searchContext;
 @property (nonatomic, strong, readonly) NSArray *searchResult;
 
-+ (KPKVersion)versionForFileType:(NSString *)fileType;
-+ (NSString *)fileTypeForVersion:(KPKVersion)version;
++ (KPKDatabaseType)versionForFileType:(NSString *)fileType;
++ (NSString *)fileTypeForVersion:(KPKDatabaseType)version;
 
 #pragma mark Lock/Decrypt
 - (IBAction)lockDatabase:(id)sender;
