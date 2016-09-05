@@ -30,7 +30,7 @@
     NSString *extension = [self.document fileNameExtensionForType:uti saveOperation:NSSaveOperation];
     NSString *title = [NSString stringWithFormat:@"%@ (%@)", description, extension];
     [menu addItemWithTitle:title action:@selector(setFileType:) keyEquivalent:@""];
-    NSMenuItem *item = [[menu itemArray] lastObject];
+    NSMenuItem *item = menu.itemArray.lastObject;
     item.target =  self;
     item.representedObject = uti;
   }
@@ -81,7 +81,7 @@
 }
 
 - (void)_updateNote {
-  NSString *uti = [[self.fileTypePopupButton selectedItem] representedObject];
+  NSString *uti = self.fileTypePopupButton.selectedItem.representedObject;
   BOOL showInfoText = (self.document.tree.minimumType == KPKDatabaseTypeXml && [uti isEqualToString:MPLegacyDocumentUTI]);
   self.infoTextField.hidden = !showInfoText;
 }

@@ -83,7 +83,7 @@
   
   KPKGroup *targetGroup = targetItem;
   BOOL validTarget = YES;
-  MPDocument *document = [[[outlineView window] windowController] document];
+  MPDocument *document = outlineView.window.windowController.document;
   /* Dragging Groups */
   if(draggedGroup) {
     self.localDraggedGroup = [document findGroup:draggedGroup.uuid];
@@ -177,18 +177,18 @@
   /* Cleanup old stuff */
   
   NSArray *types = [pasteboard types];
-  if([types count] > 1 || [types count] == 0) {
+  if(types.count > 1 || types.count == 0) {
     return NO;
   }
   
-  NSString *draggedType = [types lastObject];
+  NSString *draggedType = types.lastObject;
   if([draggedType isEqualToString:KPKGroupUTI]) {
     // dragging group
     NSArray *groups = [pasteboard readObjectsForClasses:@[[KPKGroup class]] options:nil];
-    if([groups count] != 1) {
+    if(groups.count != 1) {
       return NO;
     }
-    *group = [groups lastObject];
+    *group = groups.lastObject;
     return YES;
   }
   else if([draggedType isEqualToString:KPKEntryUTI]) {
@@ -196,7 +196,7 @@
     if([entries count] != 1) {
       return NO; // NO entry readable
     }
-    *entry = [entries lastObject];
+    *entry = entries.lastObject;
     return YES;
   }
   return NO;
