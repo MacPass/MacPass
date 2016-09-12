@@ -142,7 +142,7 @@ static MPAutotypeDaemon *_sharedInstance;
 #pragma mark Autotype Execution
 
 - (void)_performAutotypeForEntry:(KPKEntry *)entryOrNil {
-  NSInteger pid = [[NSProcessInfo processInfo] processIdentifier];
+  NSInteger pid = [NSProcessInfo processInfo].processIdentifier;
   if(self.targetPID == pid) {
     return; // We do not perform Autotype on ourselves
   }
@@ -181,7 +181,7 @@ static MPAutotypeDaemon *_sharedInstance;
   /* We look for all unlocked documents, if all open documents are locked, we pop the front most and try to search again */
   if(unlockedDocuments.count == 0 && documents.count > 0) {
     [NSApp activateIgnoringOtherApps:YES];
-    [[NSApp mainWindow] makeKeyAndOrderFront:self];
+    [NSApp.mainWindow makeKeyAndOrderFront:self];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(_didUnlockDatabase:) name:MPDocumentDidUnlockDatabaseNotification object:nil];
   }
   return unlockedDocuments;
@@ -317,7 +317,7 @@ static MPAutotypeDaemon *_sharedInstance;
 #pragma mark Application information
 - (BOOL)_orderApplicationToFront:(pid_t)processIdentifier {
   NSRunningApplication *runingApplication = [NSRunningApplication runningApplicationWithProcessIdentifier:processIdentifier];
-  NSRunningApplication *frontApplication = [[NSWorkspace sharedWorkspace] frontmostApplication];
+  NSRunningApplication *frontApplication = [NSWorkspace sharedWorkspace].frontmostApplication;
   if(frontApplication.processIdentifier == processIdentifier) {
     return NO;
   }
@@ -325,7 +325,7 @@ static MPAutotypeDaemon *_sharedInstance;
   return YES;
 }
 - (void)_updateTargetInfoForFrontMostApplication {
-  [self _updateTargeInformationForApplication:[[NSWorkspace sharedWorkspace] frontmostApplication]];
+  [self _updateTargeInformationForApplication:[NSWorkspace sharedWorkspace].frontmostApplication];
 }
 
 - (void)_updateTargeInformationForApplication:(NSRunningApplication *)application {
