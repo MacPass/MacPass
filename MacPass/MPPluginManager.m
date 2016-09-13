@@ -111,7 +111,7 @@ NSString *const MPPluginManagerPluginBundleIdentifiyerKey = @"MPPluginManagerPlu
       continue;
     };
     
-    if([self _validateBundle:pluginBundle]) {
+    if([self _validateUniqueBundle:pluginBundle]) {
       NSLog(@"Plugin %@ already loaded!", pluginBundle.bundleIdentifier);
       continue;
     }
@@ -142,7 +142,7 @@ NSString *const MPPluginManagerPluginBundleIdentifiyerKey = @"MPPluginManagerPlu
   }
 }
 
-- (BOOL)_validateBundle:(NSBundle *)bundle {
+- (BOOL)_validateUniqueBundle:(NSBundle *)bundle {
   for(MPPlugin *plugin in self.mutablePlugins) {
     NSBundle *pluginBundle = [NSBundle bundleForClass:plugin.class];
     if([pluginBundle.bundleIdentifier isEqualToString:bundle.bundleIdentifier]) {
