@@ -213,8 +213,11 @@ typedef NS_ENUM(NSUInteger, MPEntryTab) {
   NSInteger row = self.windowAssociationsTableView.selectedRow;
   if(row > - 1 && row < self.representedEntry.autotype.associations.count) {
     [self.observer willChangeModelProperty];
-    [self.representedEntry.autotype removeAssociation:self.representedEntry.autotype.associations[row]];
-    [self.observer didChangeModelProperty];
+    KPKWindowAssociation *association = self.representedEntry.autotype.associations[row];
+    if(association) {
+      [self.representedEntry.autotype removeAssociation:association];
+      [self.observer didChangeModelProperty];
+    }
   }
 }
 
