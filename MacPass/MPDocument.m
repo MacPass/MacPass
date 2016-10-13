@@ -172,7 +172,8 @@ NSString *const MPDocumentGroupKey                            = @"MPDocumentGrou
 
 - (NSData *)dataOfType:(NSString *)typeName error:(NSError * _Nullable __autoreleasing *)outError {
   if(self.encrypted) {
-    // return self.encryptedData;
+    NSAssert(!self.encrypted, @"%@ should not be called on locked databases!", NSStringFromSelector(_cmd));
+    //return self.encryptedData;
   }
   if(!self.compositeKey.hasPasswordOrKeyFile) {
     if(outError != NULL) {
@@ -321,16 +322,35 @@ NSString *const MPDocumentGroupKey                            = @"MPDocumentGrou
 #pragma mark Lock/Unlock/Decrypt
 
 - (void)lockDatabase:(id)sender {
-  [self exitSearch:self];
-  NSError *error;
+  /*
+   [self saveDocument] is enqued so that dataOfType is called too late to actually save teh database.
+   hence we need to get the ok from the NSDocument about the save, otherwise the lock fails!
+   */
+  [self saveDocumentWithDelegate:self didSaveSelector:@selector(_lockDatabaseForDocument:didSave:contextInfo:) contextInfo:NULL];
+}
+
+- (void)_lockDatabaseForDocument:(NSDocument *)document didSave:(BOOL)didSave contextInfo:(void  *)contextInfo {
+  NSAssert(self == document, @"Receiver does not match the actual document!");
+  if(self != document) {
+    return; // wrong parameters
+  }
+  if(didSave) {
+    return; // not saved!
+  }
   /* FIXME: User feedback is ignored */
-  [self saveDocument:sender];
-  self.encryptedData = [self.tree encryptWithPassword:self.compositeKey forVersion:KPKXmlVersion error:&error];
-  self.tree = nil;
+  [self exitSearch:self];
   [self.undoManager removeAllActions];
+  NSError *error;
+  self.encryptedData = [self.tree encryptWithPassword:self.compositeKey forVersion:KPKXmlVersion error:&error];
+  if(nil == self.encryptedData && error ) {
+    [self presentError:error];
+    return;
+  }
+  self.tree = nil;
   [[NSNotificationCenter defaultCenter] postNotificationName:MPDocumentDidLockDatabaseNotification object:self];
 }
 
+                                                               
 - (BOOL)unlockWithPassword:(NSString *)password keyFileURL:(NSURL *)keyFileURL error:(NSError *__autoreleasing*)error{
   self.compositeKey = [[KPKCompositeKey alloc] initWithPassword:password key:keyFileURL];
   self.tree = [[KPKTree alloc] initWithData:self.encryptedData password:self.compositeKey error:error];
