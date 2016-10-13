@@ -91,6 +91,7 @@ typedef void (^MPPasswordChangedBlock)(BOOL didChangePassword);
   [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(_didUnlockDatabase:) name:MPDocumentDidUnlockDatabaseNotification object:document];
   [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(_didAddEntry:) name:MPDocumentDidAddEntryNotification object:document];
   [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(_didAddGroup:) name:MPDocumentDidAddGroupNotification object:document];
+  [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(_didLockDatabase:) name:MPDocumentDidLockDatabaseNotification object:document];
   
   [self.entryViewController regsiterNotificationsForDocument:document];
   [self.inspectorViewController registerNotificationsForDocument:document];
@@ -181,11 +182,16 @@ typedef void (^MPPasswordChangedBlock)(BOOL didChangePassword);
   [self showInspector:self];
 }
 
+- (void)_didLockDatabase:(NSNotification *)notification {
+  [self showPasswordInput];
+}
+
 - (void)_didUnlockDatabase:(NSNotification *)notification {
   [self showEntries];
   /* Show password reminders */
   [self _presentPasswordIntervalAlerts];
 }
+
 
 #pragma mark Actions
 - (void)saveDocument:(id)sender {
@@ -345,7 +351,6 @@ typedef void (^MPPasswordChangedBlock)(BOOL didChangePassword);
   if(document.encrypted) {
     return; // Document already locked
   }
-  [self showPasswordInput];
   [document lockDatabase:sender];
 }
 

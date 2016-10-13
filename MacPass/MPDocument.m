@@ -334,7 +334,7 @@ NSString *const MPDocumentGroupKey                            = @"MPDocumentGrou
   if(self != document) {
     return; // wrong parameters
   }
-  if(didSave) {
+  if(!didSave) {
     return; // not saved!
   }
   /* FIXME: User feedback is ignored */
