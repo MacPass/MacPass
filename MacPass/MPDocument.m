@@ -341,6 +341,7 @@ NSString *const MPDocumentGroupKey                            = @"MPDocumentGrou
   [self exitSearch:self];
   [self.undoManager removeAllActions];
   NSError *error;
+  /* TODO let the tree chose the encryption */
   self.encryptedData = [self.tree encryptWithPassword:self.compositeKey forVersion:KPKDatabaseTypeXml error:&error];
   if(nil == self.encryptedData && error ) {
     [self presentError:error];
