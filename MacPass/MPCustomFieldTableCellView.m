@@ -10,6 +10,15 @@
 #import "MPDocument.h"
 
 @implementation MPCustomFieldTableCellView
+
+- (void)objectDidBeginEditing:(id)editor {
+  [self.window.windowController.document objectDidBeginEditing:editor];
+}
+
+- (void)objectDidEndEditing:(id)editor {
+  [self.window.windowController.document objectDidEndEditing:editor];
+}
+
 - (void)setBackgroundStyle:(NSBackgroundStyle)backgroundStyle {
   super.backgroundStyle = NSBackgroundStyleLight;
 }
