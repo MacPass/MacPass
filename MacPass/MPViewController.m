@@ -38,6 +38,17 @@
   }
 }
 
+#pragma mark NSEditorRegistration
+- (void)objectDidBeginEditing:(id)editor {
+  [self.windowController.document objectDidBeginEditing:editor];
+  [super objectDidBeginEditing:editor];
+}
+
+- (void)objectDidEndEditing:(id)editor {
+  [self.windowController.document objectDidEndEditing:editor];
+  [super objectDidEndEditing:editor];
+}
+
 #pragma mark Binding observation
 - (void)setValue:(id)value forKeyPath:(NSString *)keyPath {
   if([keyPath hasPrefix:@"representedObject."]) {

@@ -821,5 +821,4 @@ NSString *const MPDocumentGroupKey                            = @"MPDocumentGrou
   [[NSNotificationCenter defaultCenter] postNotificationName:MPDocumentDidChangeModelPropertyNotification object:self];
 }
 
-
 @end
