@@ -235,6 +235,11 @@ typedef NS_ENUM(NSUInteger, MPContentTab) {
   }
   self.didPushHistory = NO;
   
+  /* manually commit editing on any active editors */
+  [self commitEditing];
+  [self.entryViewController commitEditing];
+  [self.groupViewController commitEditing];
+  
   self.representedObject = node;
   self.entryViewController.representedObject = node.asEntry;
   self.groupViewController.representedObject = node.asGroup;
