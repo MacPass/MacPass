@@ -45,6 +45,7 @@ typedef NS_ENUM(NSUInteger,MPOVerlayInfoType) {
   MPOverlayInfoCustom,
 };
 
+NSString *const MPEntryTableIndexColumnIdentifier = @"MPEntryTableIndexColumnIdentifier";
 NSString *const MPEntryTableUserNameColumnIdentifier = @"MPUserNameColumnIdentifier";
 NSString *const MPEntryTableTitleColumnIdentifier = @"MPTitleColumnIdentifier";
 NSString *const MPEntryTablePasswordColumnIdentifier = @"MPPasswordColumnIdentifier";
@@ -130,14 +131,17 @@ NSString *const _MPTableSecurCellView = @"PasswordCell";
   NSTableColumn *notesColumn = [[NSTableColumn alloc] initWithIdentifier:MPEntryTableNotesColumnIdentifier];
   NSTableColumn *modifiedColumn = [[NSTableColumn alloc] initWithIdentifier:MPEntryTableModfiedColumnIdentifier];
   NSTableColumn *historyColumn = [[NSTableColumn alloc] initWithIdentifier:MPEntryTableHistoryColumnIdentifier];
+  NSTableColumn *indexColumn = [[NSTableColumn alloc] initWithIdentifier:MPEntryTableIndexColumnIdentifier];
   notesColumn.minWidth = 40.0;
   attachmentsColumn.minWidth = 40.0;
   modifiedColumn.minWidth = 40.0;
   historyColumn.minWidth = 40.0;
+  indexColumn.minWidth = 16.0;
   [self.entryTable addTableColumn:notesColumn];
   [self.entryTable addTableColumn:attachmentsColumn];
   [self.entryTable addTableColumn:modifiedColumn];
   [self.entryTable addTableColumn:historyColumn];
+  [self.entryTable addTableColumn:indexColumn];
   
   parentColumn.identifier = MPEntryTableParentColumnIdentifier;
   titleColumn.identifier = MPEntryTableTitleColumnIdentifier;
@@ -151,12 +155,14 @@ NSString *const _MPTableSecurCellView = @"PasswordCell";
   NSString *parentTitleKeyPath = [[NSString alloc] initWithFormat:@"%@.%@", NSStringFromSelector(@selector(parent)), NSStringFromSelector(@selector(title))];
   NSString *timeInfoModificationTimeKeyPath = [[NSString alloc] initWithFormat:@"%@.%@", NSStringFromSelector(@selector(timeInfo)), NSStringFromSelector(@selector(modificationDate))];
   
+  indexColumn.sortDescriptorPrototype = [NSSortDescriptor sortDescriptorWithKey:NSStringFromSelector(@selector(index)) ascending:YES selector:@selector(compare:)];
   titleColumn.sortDescriptorPrototype = [NSSortDescriptor sortDescriptorWithKey:NSStringFromSelector(@selector(title))ascending:YES selector:@selector(localizedCaseInsensitiveCompare:)];
   userNameColumn.sortDescriptorPrototype = [NSSortDescriptor sortDescriptorWithKey:NSStringFromSelector(@selector(username)) ascending:YES selector:@selector(localizedCaseInsensitiveCompare:)];
   urlColumn.sortDescriptorPrototype = [NSSortDescriptor sortDescriptorWithKey:NSStringFromSelector(@selector(url)) ascending:YES selector:@selector(localizedCaseInsensitiveCompare:)];
   parentColumn.sortDescriptorPrototype = [NSSortDescriptor sortDescriptorWithKey:parentTitleKeyPath ascending:YES selector:@selector(localizedCaseInsensitiveCompare:)];
   modifiedColumn.sortDescriptorPrototype = [NSSortDescriptor sortDescriptorWithKey:timeInfoModificationTimeKeyPath ascending:YES selector:@selector(compare:)];
   
+  indexColumn.headerCell.stringValue = @"";
   parentColumn.headerCell.stringValue = NSLocalizedString(@"GROUP", "");
   titleColumn.headerCell.stringValue = NSLocalizedString(@"TITLE", "");
   userNameColumn.headerCell.stringValue = NSLocalizedString(@"USERNAME", "");
@@ -232,6 +238,7 @@ NSString *const _MPTableSecurCellView = @"PasswordCell";
 
 - (NSView *)tableView:(NSTableView *)tableView viewForTableColumn:(NSTableColumn *)tableColumn row:(NSInteger)row {
   
+  BOOL isIndexColumn = [tableColumn.identifier isEqualToString:MPEntryTableIndexColumnIdentifier];
   BOOL isTitleColumn = [tableColumn.identifier isEqualToString:MPEntryTableTitleColumnIdentifier];
   BOOL isGroupColumn = [tableColumn.identifier isEqualToString:MPEntryTableParentColumnIdentifier];
   BOOL isPasswordColum = [tableColumn.identifier isEqualToString:MPEntryTablePasswordColumnIdentifier];
@@ -285,6 +292,7 @@ NSString *const _MPTableSecurCellView = @"PasswordCell";
       /* clean up old formatter that might be left */
       view.textField.formatter = nil;
     }
+    
     if(isModifedColumn) {
       if(!view.textField.formatter) {
         /* Just use one formatter instance since it's expensive to create */
@@ -336,6 +344,9 @@ NSString *const _MPTableSecurCellView = @"PasswordCell";
                                        NSStringFromSelector(@selector(objectValue)),
                                        NSStringFromSelector(@selector(history))];
       [view.textField bind:NSValueBinding toObject:view withKeyPath:historyCountKeyPath options:nil];
+    else if(isIndexColumn) {
+    }
+      view.textField.stringValue = @"";
     }
   }
   return view;
@@ -613,7 +624,7 @@ NSString *const _MPTableSecurCellView = @"PasswordCell";
     [item bind:NSValueBinding toObject:column withKeyPath:NSHiddenBinding options:options];
   }
   
-  [[self.entryTable headerView] setMenu:headerMenu];
+  self.entryTable.headerView.menu = headerMenu;
 }
 
 #pragma mark Actions
