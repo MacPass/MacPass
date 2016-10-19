@@ -344,8 +344,8 @@ NSString *const _MPTableSecurCellView = @"PasswordCell";
                                        NSStringFromSelector(@selector(objectValue)),
                                        NSStringFromSelector(@selector(history))];
       [view.textField bind:NSValueBinding toObject:view withKeyPath:historyCountKeyPath options:nil];
-    else if(isIndexColumn) {
     }
+    else if(isIndexColumn) {
       view.textField.stringValue = @"";
     }
   }
