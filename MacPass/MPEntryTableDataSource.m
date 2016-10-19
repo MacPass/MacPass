@@ -32,7 +32,10 @@
 @implementation MPEntryTableDataSource
 
 - (BOOL)tableView:(NSTableView *)tableView writeRowsWithIndexes:(NSIndexSet *)rowIndexes toPasteboard:(NSPasteboard *)pboard {
-  NSArray *entries = self.viewController.entryArrayController.selectedObjects;
+  NSMutableArray *entries = [[NSMutableArray alloc] initWithCapacity:rowIndexes.count];
+  [rowIndexes enumerateIndexesUsingBlock:^(NSUInteger idx, BOOL * _Nonnull stop) {
+    [entries addObject:self.viewController.entryArrayController.arrangedObjects[idx]];
+  }];
   for(KPKEntry *entry in entries) {
     if(![entry isKindOfClass:[KPKEntry class]]) {
       return NO;
