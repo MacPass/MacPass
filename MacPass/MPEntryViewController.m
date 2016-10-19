@@ -333,8 +333,8 @@ NSString *const _MPTableSecurCellView = @"PasswordCell";
     }
     else if(isHistoryColumn) {
       NSString *historyCountKeyPath = [NSString stringWithFormat:@"%@.%@.@count",
-                                        NSStringFromSelector(@selector(objectValue)),
-                                        NSStringFromSelector(@selector(history))];
+                                       NSStringFromSelector(@selector(objectValue)),
+                                       NSStringFromSelector(@selector(history))];
       [view.textField bind:NSValueBinding toObject:view withKeyPath:historyCountKeyPath options:nil];
     }
   }
@@ -359,11 +359,10 @@ NSString *const _MPTableSecurCellView = @"PasswordCell";
 
 #pragma mark MPTargetItemResolving
 - (NSArray<KPKEntry *> *)currentTargetEntries {
-  /*NSInteger activeRow = self.entryTable.clickedRow;
+  NSInteger activeRow = self.entryTable.clickedRow;
   if(activeRow > -1) {
     return @[ [self.entryArrayController arrangedObjects][activeRow] ];
   }
-  */
   return self.entryArrayController.selectedObjects;
 }
 

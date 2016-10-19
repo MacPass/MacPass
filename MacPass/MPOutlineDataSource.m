@@ -39,7 +39,7 @@
   if(items.count != 1) {
     return NO;
   }
-  self.localDraggedGroup = nil;  id item = [[items lastObject] representedObject];
+  self.localDraggedGroup = nil;  id item = [items.lastObject representedObject];
   if(![item isKindOfClass:[KPKGroup class]]) {
     return NO;
   }
