@@ -117,6 +117,13 @@
 }
 
 + (void)_runCleanupForPath:(NSString *)path {
+	/*
+	 * This crashes with mac 10.12.1 because the command /usr/bin/srm doesnt come with the OS.
+	 * This leads to leaf the plain data at drive.
+	 *
+	 * The data should be deleted by us. Further the plain data sould never touch the drive.
+	 */
+ 
   NSTask *task = [[NSTask alloc] init];
   [task setLaunchPath:@"/usr/bin/srm"];
   [task setArguments:@[@"-m", path]];
