@@ -15,7 +15,7 @@
 
 @property (nonatomic, weak) NSSavePanel *savePanel;
 @property (nonatomic, weak) MPDocument *document;
-@property (nonatomic, assign, readonly) KPKDatabaseType selectedVersion;
+@property (nonatomic, assign, readonly) KPKDatabaseFormat selectedVersion;
 
 @property (nonatomic, weak) IBOutlet NSPopUpButton *fileTypePopupButton;
 @property (nonatomic, weak) IBOutlet NSTextField *infoTextField;

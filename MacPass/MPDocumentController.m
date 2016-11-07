@@ -34,7 +34,7 @@
     NSArray *topLevelObjects;
     [myBundle loadNibNamed:@"OpenPanelAccessoryView" owner:self topLevelObjects:&topLevelObjects];
   }
-  self.openPanel.allowedFileTypes = @[MPLegacyDocumentUTI, MPXMLDocumentUTI];
+  self.openPanel.allowedFileTypes = @[MPKdbDocumentUTI, MPKdbxDocumentUTI];
   self.allowAllCheckBox.state = NSOffState;
   self.showHiddenCheckBox.state = NSOffState;
   self.openPanel.accessoryView = self.accessoryView;
@@ -46,7 +46,7 @@
   BOOL allowAllFiles = HNHUIBoolForState(button.state);
   /* Toggle hidden to force a refresh */
   self.openPanel.showsHiddenFiles = !self.openPanel.showsHiddenFiles;
-  self.openPanel.allowedFileTypes = allowAllFiles ? nil : @[MPLegacyDocumentUTI, MPXMLDocumentUTI];
+  self.openPanel.allowedFileTypes = allowAllFiles ? nil : @[MPKdbDocumentUTI, MPKdbxDocumentUTI];
   self.openPanel.showsHiddenFiles = !self.openPanel.showsHiddenFiles;
 }
 

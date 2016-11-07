@@ -47,7 +47,6 @@ NSString *const kMPSettingsKeyEnableQuicklookPreview                  = @"Enable
 
 NSString *const kMPSettingsKeyCopyGeneratedPasswordToClipboard        = @"CopyGeneratedPasswordToClipboard";
 
-NSString *const kMPSettingsKeyDefaultPasswordRounds                   = @"KeyDefaultPasswordRounds";
 NSString *const kMPSettingsKeyDefaultPasswordLength                   = @"DefaultPasswordLength";
 NSString *const kMPSettingsKeyPasswordCharacterFlags                  = @"PasswordCharacterFlags";
 NSString *const kMPSettingsKeyPasswordUseCustomString                 = @"PasswordUseCustomString";
@@ -70,6 +69,7 @@ NSString *const kMPDeprecatedSettingsKeyEntrySearchFilterMode             = @"En
 NSString *const kMPDeprecatedSettingsKeyHttpPort                          = @"HttpPort";
 NSString *const kMPDeprecatedSettingsKeyEnableHttpServer                  = @"EnableHttpServer";
 NSString *const kMPDeprecatedSettingsKeyShowMenuItem                      = @"ShowMenuItem";
+NSString *const kMPDeprecatedSettingsKeyDefaultPasswordRounds             = @"KeyDefaultPasswordRounds";
 
 
 @implementation MPSettingsHelper
@@ -118,7 +118,6 @@ NSString *const kMPDeprecatedSettingsKeyShowMenuItem                      = @"Sh
                          kMPSettingsKeyAutotypeMatchTags: @NO,
                          kMPSettingsKeyEnableQuicklookPreview: @NO,
                          kMPSettingsKeyCopyGeneratedPasswordToClipboard: @NO,
-                         kMPSettingsKeyDefaultPasswordRounds: @50000,
                          kMPSettingsKeyDefaultPasswordLength: @12,
                          kMPSettingsKeyPasswordCharacterFlags: @(MPPasswordCharactersAll),
                          kMPSettingsKeyPasswordUseCustomString: @NO,
@@ -141,6 +140,7 @@ NSString *const kMPDeprecatedSettingsKeyShowMenuItem                      = @"Sh
                             kMPDeprecatedSettingsKeyDocumentsAutotypeFixNoteWasShown,
                             kMPDeprecatedSettingsKeyDoubleClickURLToLaunch,
                             kMPDeprecatedSettingsKeyEntrySearchFilterMode,
+                            kMPDeprecatedSettingsKeyDefaultPasswordRounds,
                             /* Moved to KeePassHttp Plugin */
                             kMPDeprecatedSettingsKeyHttpPort,
                             kMPDeprecatedSettingsKeyEnableHttpServer,

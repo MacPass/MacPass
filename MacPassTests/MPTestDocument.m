@@ -28,7 +28,7 @@
 - (void)testCreateUntitledDocument {
   MPDocument *document = [[MPDocument alloc] initWithType:@"" error:nil];
   XCTAssertNotNil(document, @"Document should be created");
-  XCTAssertTrue(document.tree.minimumType == KPKDatabaseTypeBinary, @"Tree should be Legacy Version in default case");
+  XCTAssertTrue(document.tree.minimumType == KPKDatabaseFormatKdb, @"Tree should be Legacy Version in default case");
   XCTAssertFalse(document.encrypted, @"Document cannot be encrypted at creation");
   XCTAssertFalse(document.compositeKey.hasPasswordOrKeyFile, @"Document has no Password/Keyfile and thus is not secured");
 

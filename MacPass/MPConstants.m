@@ -9,5 +9,5 @@
 #import "MPConstants.h"
 
 NSString *const MPPasteBoardType    = @"com.hicknhack.macpass.pasteboard";
-NSString *const MPLegacyDocumentUTI = @"com.hicknhack.macpass.kdb";
-NSString *const MPXMLDocumentUTI    = @"com.hicknhack.macpass.kdbx";
+NSString *const MPKdbDocumentUTI = @"com.hicknhack.macpass.kdb";
+NSString *const MPKdbxDocumentUTI    = @"com.hicknhack.macpass.kdbx";

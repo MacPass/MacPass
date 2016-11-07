@@ -13,7 +13,7 @@
 #import "KeePassKit/KeePassKit.h"
 
 @interface MPSavePanelAccessoryViewController ()
-@property (readwrite, assign) KPKDatabaseType selectedVersion;
+@property (readwrite, assign) KPKDatabaseFormat selectedVersion;
 @end
 
 @implementation MPSavePanelAccessoryViewController
@@ -41,11 +41,11 @@
 
 - (IBAction)setFileType:(id)sender {
   NSString *uti = self.fileTypePopupButton.selectedItem.representedObject;
-  if([uti isEqualToString:MPLegacyDocumentUTI]) {
-    self.selectedVersion = KPKDatabaseTypeBinary;
+  if([uti isEqualToString:MPKdbDocumentUTI]) {
+    self.selectedVersion = KPKDatabaseFormatKdb;
   }
-  else if([uti isEqualToString:MPXMLDocumentUTI]) {
-    self.selectedVersion = KPKDatabaseTypeXml;
+  else if([uti isEqualToString:MPKdbxDocumentUTI]) {
+    self.selectedVersion = KPKDatabaseFormatKdbx;
   }
   NSAssert(uti != nil, @"UTI cannot be nil");
   [self _updateNote];
@@ -66,10 +66,10 @@
   NSView *view = self.view;
   NSAssert(view != nil, @"View has to be loaded at this point");
   switch(self.document.versionForFileType) {
-    case KPKDatabaseTypeBinary:
+    case KPKDatabaseFormatKdb:
       [self.fileTypePopupButton selectItemAtIndex:1];
       break;
-    case KPKDatabaseTypeXml:
+    case KPKDatabaseFormatKdbx:
       [self.fileTypePopupButton selectItemAtIndex:0];
       break;
     default:
@@ -82,7 +82,7 @@
 
 - (void)_updateNote {
   NSString *uti = self.fileTypePopupButton.selectedItem.representedObject;
-  BOOL showInfoText = (self.document.tree.minimumType == KPKDatabaseTypeXml && [uti isEqualToString:MPLegacyDocumentUTI]);
+  BOOL showInfoText = (self.document.tree.minimumType == KPKDatabaseFormatKdbx && [uti isEqualToString:MPKdbDocumentUTI]);
   self.infoTextField.hidden = !showInfoText;
 }
 

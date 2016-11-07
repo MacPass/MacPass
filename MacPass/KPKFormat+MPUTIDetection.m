@@ -17,8 +17,8 @@
   static dispatch_once_t onceToken;
   dispatch_once(&onceToken, ^{
     typeToUTI = @{
-                  @(KPKDatabaseTypeBinary) : MPLegacyDocumentUTI,
-                  @(KPKDatabaseTypeXml) : MPXMLDocumentUTI
+                  @(KPKDatabaseFormatKdb) : MPKdbDocumentUTI,
+                  @(KPKDatabaseFormatKdbx) : MPKdbxDocumentUTI
                   };
   });
   return typeToUTI;
@@ -26,7 +26,7 @@
 
 - (NSString *)typeForData:(NSData *)data {
   KPKFileInfo fileInfo = [self fileInfoForData:data];
-  return [self _typeToUTIdictionary][@(fileInfo.type)];
+  return [self _typeToUTIdictionary][@(fileInfo.format)];
 }
 
 - (NSString *)typeForContentOfURL:(NSURL *)url {

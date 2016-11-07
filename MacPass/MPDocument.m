@@ -89,23 +89,23 @@ NSString *const MPDocumentGroupKey                            = @"MPDocumentGrou
   return [NSSet setWithObject:NSStringFromSelector(@selector(tree))];
 }
 
-+ (KPKDatabaseType)versionForFileType:(NSString *)fileType {
-  if( NSOrderedSame == [fileType compare:MPLegacyDocumentUTI options:NSCaseInsensitiveSearch]) {
-    return KPKDatabaseTypeBinary;
++ (KPKDatabaseFormat)versionForFileType:(NSString *)fileType {
+  if( NSOrderedSame == [fileType compare:MPKdbDocumentUTI options:NSCaseInsensitiveSearch]) {
+    return KPKDatabaseFormatKdb;
   }
-  if( NSOrderedSame == [fileType compare:MPXMLDocumentUTI options:NSCaseInsensitiveSearch]) {
-    return KPKDatabaseTypeXml;
+  if( NSOrderedSame == [fileType compare:MPKdbxDocumentUTI options:NSCaseInsensitiveSearch]) {
+    return KPKDatabaseFormatKdbx;
   }
-  return KPKDatabaseTypeUnknown;
+  return KPKDatabaseFormatUnknown;
 }
 
-+ (NSString *)fileTypeForVersion:(KPKDatabaseType)version {
-  switch(version) {
-    case KPKDatabaseTypeBinary:
-      return MPLegacyDocumentUTI;
++ (NSString *)fileTypeForVersion:(KPKDatabaseFormat)format {
+  switch(format) {
+    case KPKDatabaseFormatKdb:
+      return MPKdbDocumentUTI;
       
-    case KPKDatabaseTypeXml:
-      return MPXMLDocumentUTI;
+    case KPKDatabaseFormatKdbx:
+      return MPKdbxDocumentUTI;
       
     default:
       return @"Unknown";
@@ -134,7 +134,6 @@ NSString *const MPDocumentGroupKey                            = @"MPDocumentGrou
   self = [self init];
   if(self) {
     self.tree = [[KPKTree alloc] initWithTemplateContents];
-    self.tree.metaData.rounds = [[NSUserDefaults standardUserDefaults] integerForKey:kMPSettingsKeyDefaultPasswordRounds];
   }
   return self;
 }
@@ -183,15 +182,15 @@ NSString *const MPDocumentGroupKey                            = @"MPDocumentGrou
     return nil; // Saving without a password/key is not possible
   }
   NSString *fileType = self.fileTypeFromLastRunSavePanel;
-  KPKDatabaseType version = [self.class versionForFileType:fileType];
-  if(version == KPKDatabaseTypeUnknown) {
+  KPKDatabaseFormat format = [self.class versionForFileType:fileType];
+  if(format == KPKDatabaseFormatUnknown) {
     if(outError != NULL) {
       NSDictionary *userInfo = @{ NSLocalizedDescriptionKey: NSLocalizedString(@"UNKNOWN_FILE_VERSION", "") };
       *outError = [NSError errorWithDomain:MPErrorDomain code:0 userInfo:userInfo];
     }
     return nil; // We do not know what version to save!
   }
-  return [self.tree encryptWithPassword:self.compositeKey forVersion:version error:outError];
+  return [self.tree encryptWithKey:self.compositeKey format:format error:outError];
 }
 
 - (BOOL)readFromURL:(NSURL *)url ofType:(NSString *)typeName error:(NSError **)outError {
@@ -342,7 +341,7 @@ NSString *const MPDocumentGroupKey                            = @"MPDocumentGrou
   [self.undoManager removeAllActions];
   NSError *error;
   /* TODO let the tree chose the encryption */
-  self.encryptedData = [self.tree encryptWithPassword:self.compositeKey forVersion:KPKDatabaseTypeXml error:&error];
+  self.encryptedData = [self.tree encryptWithKey:self.compositeKey format:KPKDatabaseFormatKdbx error:&error];
   if(nil == self.encryptedData && error ) {
     [self presentError:error];
     return;
@@ -354,7 +353,7 @@ NSString *const MPDocumentGroupKey                            = @"MPDocumentGrou
                                                                
 - (BOOL)unlockWithPassword:(NSString *)password keyFileURL:(NSURL *)keyFileURL error:(NSError *__autoreleasing*)error{
   self.compositeKey = [[KPKCompositeKey alloc] initWithPassword:password key:keyFileURL];
-  self.tree = [[KPKTree alloc] initWithData:self.encryptedData password:self.compositeKey error:error];
+  self.tree = [[KPKTree alloc] initWithData:self.encryptedData key:self.compositeKey error:error];
   
   BOOL isUnlocked = (nil != self.tree);
   
@@ -410,7 +409,7 @@ NSString *const MPDocumentGroupKey                            = @"MPDocumentGrou
 }
 
 #pragma mark Properties
-- (KPKDatabaseType)versionForFileType {
+- (KPKDatabaseFormat)versionForFileType {
   return [[self class] versionForFileType:self.fileType];
 }
 

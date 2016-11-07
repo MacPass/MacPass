@@ -111,8 +111,9 @@
     [defaults setBool:protectUsername forKey:kMPSettingsKeyLegacyHideUsername];
     [defaults synchronize];
    */
+
+  metaData.keyDerivationParameters = @{ KPKAESRoundsOption : [[KPKNumber alloc] initWithUnsignedInteger64: MAX(0,self.encryptionRoundsTextField.integerValue)]};
   
-  metaData.rounds = MAX(0,self.encryptionRoundsTextField.integerValue);
   /* Register an action to enable promts when user cloeses without saving */
   [self.document updateChangeCount:NSChangeDone];
   [self close:nil];
@@ -124,8 +125,8 @@
 
 - (IBAction)benchmarkRounds:(id)sender {
   [self.benchmarkButton setEnabled:NO];
-  [KPKCompositeKey benchmarkTransformationRounds:1 completionHandler:^(NSUInteger rounds) {
-    self.encryptionRoundsTextField.integerValue = rounds;
+  [KPKAESKeyDerivation parametersForDelay:1 completionHandler:^(NSDictionary * _Nonnull options) {
+    self.encryptionRoundsTextField.integerValue = [options[KPKAESRoundsOption] unsignedInteger64Value];
     self.benchmarkButton.enabled = YES;
   }];
 }
@@ -186,7 +187,8 @@
   self.protectURLCheckButton.state = HNHUIStateForBool(metaData.protectUrl);
   self.protectUserNameCheckButton.state = HNHUIStateForBool(metaData.protectUserName);
 
-  [self.encryptionRoundsTextField setIntegerValue:metaData.rounds];
+  [self.encryptionRoundsTextField setIntegerValue:[metaData.keyDerivationParameters[KPKAESRoundsOption] unsignedInteger64Value]];
+  
   [self.benchmarkButton setEnabled:YES];
 }
 
