@@ -29,13 +29,11 @@ typedef NS_ENUM(NSUInteger, MPDatabaseSettingsTab) {
 @property (weak) IBOutlet NSColorWell *databaseColorColorWell;
 
 /* Security Tab */
-@property (weak) IBOutlet NSButton *protectTitleCheckButton;
-@property (weak) IBOutlet NSButton *protectUserNameCheckButton;
-@property (weak) IBOutlet NSButton *protectPasswortCheckButton;
-@property (weak) IBOutlet NSButton *protectURLCheckButton;
-@property (weak) IBOutlet NSButton *protectNotesCheckButton;
-@property (weak) IBOutlet NSTextField *encryptionRoundsTextField;
-@property (weak) IBOutlet NSButton *benchmarkButton;
+@property (weak) IBOutlet NSTextField *AESEncryptionRoundsTextField;
+@property (weak) IBOutlet NSButton *createKeyDerivationParametersButton;
+@property (weak) IBOutlet NSPopUpButton *encryptionPopupButton;
+@property (weak) IBOutlet NSPopUpButton *keyDerivationPopupButton;
+
 
 /* Advanced Tab*/
 @property (weak) IBOutlet NSButton *enableHistoryCheckButton;

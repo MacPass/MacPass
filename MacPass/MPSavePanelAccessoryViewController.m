@@ -82,7 +82,7 @@
 
 - (void)_updateNote {
   NSString *uti = self.fileTypePopupButton.selectedItem.representedObject;
-  BOOL showInfoText = (self.document.tree.minimumType == KPKDatabaseFormatKdbx && [uti isEqualToString:MPKdbDocumentUTI]);
+  BOOL showInfoText = (self.document.tree.minimumFormat == KPKDatabaseFormatKdbx && [uti isEqualToString:MPKdbDocumentUTI]);
   self.infoTextField.hidden = !showInfoText;
 }
 

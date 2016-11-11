@@ -46,7 +46,23 @@
   NSAssert(self.document != nil, @"Document needs to be present");
     
   self.sectionTabView.delegate = self;
-  self.encryptionRoundsTextField.formatter = [[MPNumericalInputFormatter alloc] init];
+  self.AESEncryptionRoundsTextField.formatter = [[MPNumericalInputFormatter alloc] init];
+
+
+  NSMenu *kdfMenu = [[NSMenu alloc] init];
+  NSArray *keyderivations = [KPKKeyDerivation availableKeyDerivations];
+  for(KPKKeyDerivation *kd in keyderivations) {
+    [kdfMenu addItemWithTitle:kd.name action:NULL keyEquivalent:@""];
+    kdfMenu.itemArray.lastObject.representedObject = kd.uuid;
+  }
+  self.keyDerivationPopupButton.menu = kdfMenu;
+  NSMenu *cipherMenu = [[NSMenu alloc] init];
+  NSArray *ciphers = [KPKCipher availableCiphers];
+  for(KPKCipher *cipher in ciphers) {
+    [cipherMenu addItemWithTitle:cipher.name action:NULL keyEquivalent:@""];
+    cipherMenu.itemArray.lastObject.representedObject = cipher.uuid;
+  }
+  self.encryptionPopupButton.menu = cipherMenu;
 }
 
 #pragma mark Actions
@@ -94,25 +110,9 @@
   
   /* Security */
   
-  metaData.protectNotes =  HNHUIBoolForState(self.protectNotesCheckButton.state);
-  metaData.protectPassword = HNHUIBoolForState(self.protectPasswortCheckButton.state);
-  metaData.protectTitle = HNHUIBoolForState(self.protectTitleCheckButton.state);
-  metaData.protectUrl = HNHUIBoolForState(self.protectURLCheckButton.state);
-  metaData.protectUserName = HNHUIBoolForState(self.protectUserNameCheckButton.state);
-  
   metaData.defaultUserName = self.defaultUsernameTextField.stringValue;
-  
-  /*
-   NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-    [defaults setBool:protectNotes forKey:kMPSettingsKeyLegacyHideNotes];
-    [defaults setBool:protectPassword forKey:kMPSettingsKeyLegacyHidePassword];
-    [defaults setBool:protectTitle forKey:kMPSettingsKeyLegacyHideTitle];
-    [defaults setBool:protectURL forKey:kMPSettingsKeyLegacyHideURL];
-    [defaults setBool:protectUsername forKey:kMPSettingsKeyLegacyHideUsername];
-    [defaults synchronize];
-   */
 
-  metaData.keyDerivationParameters = @{ KPKAESRoundsOption : [[KPKNumber alloc] initWithUnsignedInteger64: MAX(0,self.encryptionRoundsTextField.integerValue)]};
+  metaData.keyDerivationParameters = @{ KPKAESRoundsOption : [[KPKNumber alloc] initWithUnsignedInteger64: MAX(0,self.AESEncryptionRoundsTextField.integerValue)]};
   
   /* Register an action to enable promts when user cloeses without saving */
   [self.document updateChangeCount:NSChangeDone];
@@ -124,10 +124,10 @@
 }
 
 - (IBAction)benchmarkRounds:(id)sender {
-  [self.benchmarkButton setEnabled:NO];
+  self.createKeyDerivationParametersButton.enabled = NO;
   [KPKAESKeyDerivation parametersForDelay:1 completionHandler:^(NSDictionary * _Nonnull options) {
-    self.encryptionRoundsTextField.integerValue = [options[KPKAESRoundsOption] unsignedInteger64Value];
-    self.benchmarkButton.enabled = YES;
+    self.AESEncryptionRoundsTextField.integerValue = [options[KPKAESRoundsOption] unsignedInteger64Value];
+    self.createKeyDerivationParametersButton.enabled = YES;
   }];
 }
 
@@ -141,7 +141,7 @@
   /* Update all stuff that might have changed */
   KPKMetaData *metaData = ((MPDocument *)self.document).tree.metaData;
   [self _setupDatabaseTab:metaData];
-  [self _setupProtectionTab:metaData];
+  [self _setupSecurityTab:metaData];
   [self _setupAdvancedTab:((MPDocument *)self.document).tree];
   self.isDirty = NO;
 }
@@ -180,16 +180,10 @@
   self.databaseColorColorWell.color = databaseColor;
 }
 
-- (void)_setupProtectionTab:(KPKMetaData *)metaData {
-  self.protectNotesCheckButton.state = HNHUIStateForBool(metaData.protectNotes);
-  self.protectPasswortCheckButton.state = HNHUIStateForBool(metaData.protectPassword);
-  self.protectTitleCheckButton.state = HNHUIStateForBool(metaData.protectTitle);
-  self.protectURLCheckButton.state = HNHUIStateForBool(metaData.protectUrl);
-  self.protectUserNameCheckButton.state = HNHUIStateForBool(metaData.protectUserName);
-
-  [self.encryptionRoundsTextField setIntegerValue:[metaData.keyDerivationParameters[KPKAESRoundsOption] unsignedInteger64Value]];
+- (void)_setupSecurityTab:(KPKMetaData *)metaData {
+  [self.AESEncryptionRoundsTextField setIntegerValue:[metaData.keyDerivationParameters[KPKAESRoundsOption] unsignedInteger64Value]];
   
-  [self.benchmarkButton setEnabled:YES];
+  self.createKeyDerivationParametersButton.enabled = YES;
 }
 
 - (void)_setupAdvancedTab:(KPKTree *)tree {  
@@ -229,7 +223,7 @@
       break;
       
     case MPDatabaseSettingsTabSecurity:
-      [self.window makeFirstResponder:self.protectTitleCheckButton];
+      //[self.window makeFirstResponder:self.protectTitleCheckButton];
       break;
       
     case MPDatabaseSettingsTabGeneral:
