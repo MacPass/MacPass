@@ -118,8 +118,22 @@
 
 + (void)_runCleanupForPath:(NSString *)path {
 	NSTask *task = [[NSTask alloc] init];
-  [task setLaunchPath:@"/bin/rm"];
-  [task setArguments:@[@"-P", path]];
+  
+  NSURL *srmURL = [NSURL fileURLWithPath:@"/usr/bin/srm"];
+  NSURL *rmURL = [NSURL fileURLWithPath:@"/bin/rm"];
+  
+  if([srmURL checkResourceIsReachableAndReturnError:nil]) {
+    task.launchPath = srmURL.path;
+    task.arguments = @[@"-m", path];
+  }
+  else if([rmURL checkResourceIsReachableAndReturnError:nil]) {
+    task.launchPath = rmURL.path;
+    task.arguments= @[@"-P", path];
+  }
+  else {
+    NSLog(@"Unable to retrieve remove command to whipe temporary file storage!");
+    return;
+  }
   [task launch];
   [task waitUntilExit];
 }
