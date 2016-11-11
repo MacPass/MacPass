@@ -117,9 +117,9 @@
 }
 
 + (void)_runCleanupForPath:(NSString *)path {
-  NSTask *task = [[NSTask alloc] init];
-  [task setLaunchPath:@"/usr/bin/srm"];
-  [task setArguments:@[@"-m", path]];
+	NSTask *task = [[NSTask alloc] init];
+  [task setLaunchPath:@"/bin/rm"];
+  [task setArguments:@[@"-P", path]];
   [task launch];
   [task waitUntilExit];
 }
