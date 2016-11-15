@@ -23,7 +23,6 @@
 @interface MPDatabaseSettingsWindowController () {
   NSString *_missingFeature;
 }
-
 @end
 
 @implementation MPDatabaseSettingsWindowController
@@ -48,7 +47,6 @@
   self.sectionTabView.delegate = self;
   self.AESEncryptionRoundsTextField.formatter = [[MPNumericalInputFormatter alloc] init];
 
-
   NSMenu *kdfMenu = [[NSMenu alloc] init];
   NSArray *keyderivations = [KPKKeyDerivation availableKeyDerivations];
   for(KPKKeyDerivation *kd in keyderivations) {
@@ -56,6 +54,9 @@
     kdfMenu.itemArray.lastObject.representedObject = kd.uuid;
   }
   self.keyDerivationPopupButton.menu = kdfMenu;
+  self.keyDerivationPopupButton.target = self;
+  self.keyDerivationPopupButton.action = @selector(selectKeyDerivation:);
+  
   NSMenu *cipherMenu = [[NSMenu alloc] init];
   NSArray *ciphers = [KPKCipher availableCiphers];
   for(KPKCipher *cipher in ciphers) {
@@ -63,9 +64,16 @@
     cipherMenu.itemArray.lastObject.representedObject = cipher.uuid;
   }
   self.encryptionPopupButton.menu = cipherMenu;
+  self.keyDerivationSettingsTabView.tabViewItems[0].identifier = [KPKAESKeyDerivation uuid];
+  self.keyDerivationSettingsTabView.tabViewItems[1].identifier = [KPKArgon2KeyDerivation uuid];
 }
 
 #pragma mark Actions
+
+- (IBAction)selectKeyDerivation:(id)sender {
+  NSUUID *uuid = self.keyDerivationPopupButton.selectedItem.representedObject;
+  [self.keyDerivationSettingsTabView selectTabViewItemWithIdentifier:uuid];
+}
 
 - (IBAction)save:(id)sender {
   /* General */
@@ -112,6 +120,7 @@
   
   metaData.defaultUserName = self.defaultUsernameTextField.stringValue;
 
+  /* fixme! */
   metaData.keyDerivationParameters = @{ KPKAESRoundsOption : [[KPKNumber alloc] initWithUnsignedInteger64: MAX(0,self.AESEncryptionRoundsTextField.integerValue)]};
   
   /* Register an action to enable promts when user cloeses without saving */
@@ -181,12 +190,44 @@
 }
 
 - (void)_setupSecurityTab:(KPKMetaData *)metaData {
-  [self.AESEncryptionRoundsTextField setIntegerValue:[metaData.keyDerivationParameters[KPKAESRoundsOption] unsignedInteger64Value]];
+  /* Tab 0 AES Tab 1 Argon2 */
+  KPKKeyDerivation *keyDerivation = [KPKKeyDerivation keyDerivationWithParameters:metaData.keyDerivationParameters];
   
-  self.createKeyDerivationParametersButton.enabled = YES;
+  NSUInteger kdfIndex = [self.keyDerivationPopupButton.menu indexOfItemWithRepresentedObject:keyDerivation.uuid];
+  [self.keyDerivationPopupButton selectItemAtIndex:kdfIndex];
+  
+  if([keyDerivation isKindOfClass:[KPKAESKeyDerivation class]]) {
+    [self.keyDerivationSettingsTabView selectTabViewItemAtIndex:0];
+    KPKAESKeyDerivation *aesKDF = (KPKAESKeyDerivation *)keyDerivation;
+    self.AESEncryptionRoundsTextField.integerValue = aesKDF.rounds;
+    self.createKeyDerivationParametersButton.enabled = YES;
+    
+    /* fill defautls for Argon2 */
+    KPKArgon2KeyDerivation *argon2Kdf = [[KPKArgon2KeyDerivation alloc] initWithParameters:[KPKArgon2KeyDerivation defaultParameters]];
+    self.Argon2IterationsTextField.integerValue = argon2Kdf.iterations;
+    self.Argon2MemoryTextField.integerValue = argon2Kdf.memory;
+    self.Argon2ThreadsTextField.integerValue = argon2Kdf.threads;
+  }
+  else if([keyDerivation isKindOfClass:[KPKArgon2KeyDerivation class]]) {
+    [self.keyDerivationSettingsTabView selectTabViewItemAtIndex:1];
+    KPKArgon2KeyDerivation *argon2KDF = (KPKArgon2KeyDerivation *)keyDerivation;
+    self.Argon2MemoryTextField.integerValue = argon2KDF.memory;
+    self.Argon2ThreadsTextField.integerValue = argon2KDF.threads;
+    self.Argon2IterationsTextField.integerValue = argon2KDF.iterations;
+    
+    /* fill defaults for AES */
+    KPKAESKeyDerivation *aesKdf = [[KPKAESKeyDerivation alloc] initWithParameters:[KPKAESKeyDerivation defaultParameters]];
+    self.AESEncryptionRoundsTextField.integerValue = aesKdf.rounds;
+  }
+  else {
+    
+  }
+  
+  NSUInteger cipherIndex = [self.encryptionPopupButton.menu indexOfItemWithRepresentedObject:metaData.cipherUUID];
+  [self.encryptionPopupButton selectItemAtIndex:cipherIndex];
 }
 
-- (void)_setupAdvancedTab:(KPKTree *)tree {  
+- (void)_setupAdvancedTab:(KPKTree *)tree {
   HNHUISetStateFromBool(self.enableTrashCheckButton, tree.metaData.useTrash);
   self.selectTrashGoupPopUpButton.enabled = tree.metaData.useTrash;
   [self.enableTrashCheckButton bind:NSValueBinding toObject:self.selectTrashGoupPopUpButton withKeyPath:NSEnabledBinding options:nil];
