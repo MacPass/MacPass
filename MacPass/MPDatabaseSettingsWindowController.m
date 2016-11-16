@@ -45,7 +45,7 @@
   NSAssert(self.document != nil, @"Document needs to be present");
     
   self.sectionTabView.delegate = self;
-  self.AESEncryptionRoundsTextField.formatter = [[MPNumericalInputFormatter alloc] init];
+  self.aesEncryptionRoundsTextField.formatter = [[MPNumericalInputFormatter alloc] init];
 
   NSMenu *kdfMenu = [[NSMenu alloc] init];
   NSArray *keyderivations = [KPKKeyDerivation availableKeyDerivations];
@@ -63,7 +63,7 @@
     [cipherMenu addItemWithTitle:cipher.name action:NULL keyEquivalent:@""];
     cipherMenu.itemArray.lastObject.representedObject = cipher.uuid;
   }
-  self.encryptionPopupButton.menu = cipherMenu;
+  self.cipherPopupButton.menu = cipherMenu;
   self.keyDerivationSettingsTabView.tabViewItems[0].identifier = [KPKAESKeyDerivation uuid];
   self.keyDerivationSettingsTabView.tabViewItems[1].identifier = [KPKArgon2KeyDerivation uuid];
 }
@@ -116,14 +116,28 @@
   metaData.masterKeyChangeEnforcementInterval = enforceMasterKeyChange ? enfoceInterval : -1;
   metaData.masterKeyChangeRecommendationInterval = recommendMasterKeyChange ? recommendInterval : -1;
   
-  /* Security */
-  
   metaData.defaultUserName = self.defaultUsernameTextField.stringValue;
-
-  /* fixme! */
-  metaData.keyDerivationParameters = @{ KPKAESRoundsOption : [[KPKNumber alloc] initWithUnsignedInteger64: MAX(0,self.AESEncryptionRoundsTextField.integerValue)]};
   
-  /* Register an action to enable promts when user cloeses without saving */
+  /* Security */
+  metaData.cipherUUID = self.cipherPopupButton.selectedItem.representedObject;
+  
+  KPKAESKeyDerivation *aesKdf = [[KPKAESKeyDerivation alloc] initWithParameters:[KPKAESKeyDerivation defaultParameters]];
+  KPKArgon2KeyDerivation *argon2Kdf = [[KPKArgon2KeyDerivation alloc] initWithParameters:[KPKArgon2KeyDerivation defaultParameters]];
+  
+  NSUUID *selectedKdfUUID = self.keyDerivationSettingsTabView.selectedTabViewItem.identifier;
+  
+  if([selectedKdfUUID isEqual:aesKdf.uuid]) {
+    //aesKdf.rounds = self.aesEncryptionRoundsTextField.integerValue;
+    metaData.keyDerivationParameters = aesKdf.parameters;
+  }
+  else if([selectedKdfUUID isEqual:argon2Kdf.uuid]) {
+    //argon2Kdf.iterations = self.argon2IterationsTextField.integerValue;
+    //argon2Kdf.memory = self.argon2MemoryTextField.integerValue;
+    //argon2Kdf.threads = self.argon2ThreadsTextField.integerValue;
+    metaData.keyDerivationParameters = argon2Kdf.parameters;
+  }
+  
+  /* Changes to metadata aren't backed by undomanager, thus we need to manually set the document dirty */
   [self.document updateChangeCount:NSChangeDone];
   [self close:nil];
 }
@@ -135,7 +149,7 @@
 - (IBAction)benchmarkRounds:(id)sender {
   self.createKeyDerivationParametersButton.enabled = NO;
   [KPKAESKeyDerivation parametersForDelay:1 completionHandler:^(NSDictionary * _Nonnull options) {
-    self.AESEncryptionRoundsTextField.integerValue = [options[KPKAESRoundsOption] unsignedInteger64Value];
+    self.aesEncryptionRoundsTextField.integerValue = [options[KPKAESRoundsOption] unsignedInteger64Value];
     self.createKeyDerivationParametersButton.enabled = YES;
   }];
 }
@@ -190,41 +204,42 @@
 }
 
 - (void)_setupSecurityTab:(KPKMetaData *)metaData {
-  /* Tab 0 AES Tab 1 Argon2 */
+  /*
+   If kdf or cipher is not found, exceptions are thrown.
+   This should not happen since we should not be able to load a file with unkonw cipher/kdf
+   */
   KPKKeyDerivation *keyDerivation = [KPKKeyDerivation keyDerivationWithParameters:metaData.keyDerivationParameters];
-  
   NSUInteger kdfIndex = [self.keyDerivationPopupButton.menu indexOfItemWithRepresentedObject:keyDerivation.uuid];
   [self.keyDerivationPopupButton selectItemAtIndex:kdfIndex];
+  [self.keyDerivationSettingsTabView selectTabViewItemWithIdentifier:keyDerivation.uuid];
   
   if([keyDerivation isKindOfClass:[KPKAESKeyDerivation class]]) {
-    [self.keyDerivationSettingsTabView selectTabViewItemAtIndex:0];
-    KPKAESKeyDerivation *aesKDF = (KPKAESKeyDerivation *)keyDerivation;
-    self.AESEncryptionRoundsTextField.integerValue = aesKDF.rounds;
+    KPKAESKeyDerivation *aesKdf = (KPKAESKeyDerivation *)keyDerivation;
+    self.aesEncryptionRoundsTextField.integerValue = aesKdf.rounds;
     self.createKeyDerivationParametersButton.enabled = YES;
     
-    /* fill defautls for Argon2 */
+    /* fill defaults for Argon2 */
     KPKArgon2KeyDerivation *argon2Kdf = [[KPKArgon2KeyDerivation alloc] initWithParameters:[KPKArgon2KeyDerivation defaultParameters]];
-    self.Argon2IterationsTextField.integerValue = argon2Kdf.iterations;
-    self.Argon2MemoryTextField.integerValue = argon2Kdf.memory;
-    self.Argon2ThreadsTextField.integerValue = argon2Kdf.threads;
+    self.argon2IterationsTextField.integerValue = argon2Kdf.iterations;
+    self.argon2MemoryTextField.integerValue = argon2Kdf.memory;
+    self.argon2ThreadsTextField.integerValue = argon2Kdf.threads;
   }
   else if([keyDerivation isKindOfClass:[KPKArgon2KeyDerivation class]]) {
-    [self.keyDerivationSettingsTabView selectTabViewItemAtIndex:1];
-    KPKArgon2KeyDerivation *argon2KDF = (KPKArgon2KeyDerivation *)keyDerivation;
-    self.Argon2MemoryTextField.integerValue = argon2KDF.memory;
-    self.Argon2ThreadsTextField.integerValue = argon2KDF.threads;
-    self.Argon2IterationsTextField.integerValue = argon2KDF.iterations;
+    KPKArgon2KeyDerivation *argon2Kdf = (KPKArgon2KeyDerivation *)keyDerivation;
+    self.argon2MemoryTextField.integerValue = argon2Kdf.memory;
+    self.argon2ThreadsTextField.integerValue = argon2Kdf.threads;
+    self.argon2IterationsTextField.integerValue = argon2Kdf.iterations;
     
     /* fill defaults for AES */
     KPKAESKeyDerivation *aesKdf = [[KPKAESKeyDerivation alloc] initWithParameters:[KPKAESKeyDerivation defaultParameters]];
-    self.AESEncryptionRoundsTextField.integerValue = aesKdf.rounds;
+    self.aesEncryptionRoundsTextField.integerValue = aesKdf.rounds;
   }
   else {
-    
+    NSAssert(NO, @"Unkown key derivation");
   }
   
-  NSUInteger cipherIndex = [self.encryptionPopupButton.menu indexOfItemWithRepresentedObject:metaData.cipherUUID];
-  [self.encryptionPopupButton selectItemAtIndex:cipherIndex];
+  NSUInteger cipherIndex = [self.cipherPopupButton.menu indexOfItemWithRepresentedObject:metaData.cipherUUID];
+  [self.cipherPopupButton selectItemAtIndex:cipherIndex];
 }
 
 - (void)_setupAdvancedTab:(KPKTree *)tree {

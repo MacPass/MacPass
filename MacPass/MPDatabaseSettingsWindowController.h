@@ -30,16 +30,16 @@ typedef NS_ENUM(NSUInteger, MPDatabaseSettingsTab) {
 
 /* Security Tab */
 @property (weak) IBOutlet NSButton *createKeyDerivationParametersButton;
-@property (weak) IBOutlet NSPopUpButton *encryptionPopupButton;
+@property (weak) IBOutlet NSPopUpButton *cipherPopupButton;
 @property (weak) IBOutlet NSPopUpButton *keyDerivationPopupButton;
 @property (weak) IBOutlet NSTabView *keyDerivationSettingsTabView;
 
 /* AES */
-@property (weak) IBOutlet NSTextField *AESEncryptionRoundsTextField;
+@property (weak) IBOutlet NSTextField *aesEncryptionRoundsTextField;
 /* Argon2 */
-@property (weak) IBOutlet NSTextField *Argon2ThreadsTextField;
-@property (weak) IBOutlet NSTextField *Argon2IterationsTextField;
-@property (weak) IBOutlet NSTextField *Argon2MemoryTextField;
+@property (weak) IBOutlet NSTextField *argon2ThreadsTextField;
+@property (weak) IBOutlet NSTextField *argon2IterationsTextField;
+@property (weak) IBOutlet NSTextField *argon2MemoryTextField;
 
 /* Advanced Tab*/
 @property (weak) IBOutlet NSButton *enableHistoryCheckButton;
