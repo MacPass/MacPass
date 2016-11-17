@@ -279,11 +279,11 @@ NSString *const MPDocumentGroupKey                            = @"MPDocumentGrou
   if(self.fileChangeDialogOpen) {
     return; // We are already displaying an alert
   }
+  /* Set the flag in this call! */
+  self.fileChangeDialogOpen = YES;
   
   /* Dispatch the alert to the main queue */
   dispatch_async(dispatch_get_main_queue(), ^{
-    
-    self.fileChangeDialogOpen = YES;
     
     NSAlert *alert = [[NSAlert alloc] init];
     alert.alertStyle = NSWarningAlertStyle;
