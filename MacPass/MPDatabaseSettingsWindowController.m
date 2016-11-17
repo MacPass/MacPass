@@ -127,13 +127,13 @@
   NSUUID *selectedKdfUUID = self.keyDerivationSettingsTabView.selectedTabViewItem.identifier;
   
   if([selectedKdfUUID isEqual:aesKdf.uuid]) {
-    //aesKdf.rounds = self.aesEncryptionRoundsTextField.integerValue;
+    aesKdf.rounds = self.aesEncryptionRoundsTextField.integerValue;
     metaData.keyDerivationParameters = aesKdf.parameters;
   }
   else if([selectedKdfUUID isEqual:argon2Kdf.uuid]) {
-    //argon2Kdf.iterations = self.argon2IterationsTextField.integerValue;
-    //argon2Kdf.memory = self.argon2MemoryTextField.integerValue;
-    //argon2Kdf.threads = self.argon2ThreadsTextField.integerValue;
+    argon2Kdf.iterations = self.argon2IterationsTextField.integerValue;
+    argon2Kdf.memory = self.argon2MemoryTextField.integerValue;
+    argon2Kdf.threads = self.argon2ThreadsTextField.intValue;
     metaData.keyDerivationParameters = argon2Kdf.parameters;
   }
   
