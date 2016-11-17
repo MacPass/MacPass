@@ -9,7 +9,6 @@
     <objects>
         <customObject id="-2" userLabel="File's Owner" customClass="MPDatabaseSettingsWindowController">
             <connections>
-                <outlet property="AESEncryptionRoundsTextField" destination="8aq-34-rcd" id="sl2-lb-9vc"/>
                 <outlet property="Argon2IterationsTextField" destination="39N-8Q-J8b" id="pnH-Mf-x5c"/>
                 <outlet property="Argon2MemoryTextField" destination="eEW-oa-V7U" id="iDH-eW-4TE"/>
                 <outlet property="Argon2ThreadsTextField" destination="178-0f-guB" id="ATl-km-DSX"/>
@@ -27,7 +26,6 @@
                 <outlet property="emptyTrashOnQuitCheckButton" destination="539" id="pgQ-AP-HB2"/>
                 <outlet property="enableHistoryCheckButton" destination="531" id="erw-Xj-ENh"/>
                 <outlet property="enableTrashCheckButton" destination="535" id="UNd-h9-aw3"/>
-                <outlet property="encryptionPopupButton" destination="3ek-Rg-w82" id="2OI-Cg-MDs"/>
                 <outlet property="enforceKeyChangeCheckButton" destination="upv-b3-vCc" id="JjM-CX-15q"/>
                 <outlet property="enforceKeyChangeIntervalTextField" destination="VYh-cm-fix" id="aqu-Dm-tlH"/>
                 <outlet property="historyMaximumItemsTextField" destination="593" id="NrX-e0-8Dw"/>
@@ -48,7 +46,7 @@
             <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES"/>
             <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
             <rect key="contentRect" x="196" y="240" width="548" height="411"/>
-            <rect key="screenRect" x="0.0" y="0.0" width="1680" height="1027"/>
+            <rect key="screenRect" x="0.0" y="0.0" width="2560" height="1417"/>
             <view key="contentView" misplaced="YES" id="2">
                 <rect key="frame" x="0.0" y="0.0" width="548" height="411"/>
                 <autoresizingMask key="autoresizingMask"/>
@@ -80,7 +78,7 @@ Gw
                         </connections>
                     </button>
                     <tabView translatesAutoresizingMaskIntoConstraints="NO" id="357">
-                        <rect key="frame" x="13" y="41" width="522" height="346"/>
+                        <rect key="frame" x="13" y="41" width="522" height="282"/>
                         <font key="font" metaFont="system"/>
                         <tabViewItems>
                             <tabViewItem label="General" identifier="1" id="358">
@@ -210,11 +208,11 @@ Gw
                             </tabViewItem>
                             <tabViewItem label="Security" identifier="" id="370">
                                 <view key="view" id="371">
-                                    <rect key="frame" x="10" y="33" width="502" height="300"/>
+                                    <rect key="frame" x="10" y="33" width="502" height="236"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <subviews>
                                         <popUpButton verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="3ek-Rg-w82">
-                                            <rect key="frame" x="233" y="256" width="37" height="26"/>
+                                            <rect key="frame" x="233" y="192" width="37" height="26"/>
                                             <popUpButtonCell key="cell" type="push" bezelStyle="rounded" alignment="left" lineBreakMode="truncatingTail" borderStyle="borderAndBezel" imageScaling="proportionallyDown" inset="2" id="e3h-dG-ekU">
                                                 <behavior key="behavior" lightByBackground="YES" lightByGray="YES"/>
                                                 <font key="font" metaFont="menu"/>
@@ -222,7 +220,7 @@ Gw
                                             </popUpButtonCell>
                                         </popUpButton>
                                         <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="vH7-5a-52C">
-                                            <rect key="frame" x="160" y="263" width="69" height="17"/>
+                                            <rect key="frame" x="160" y="199" width="69" height="17"/>
                                             <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Encryption" id="gxY-UL-bEG">
                                                 <font key="font" metaFont="system"/>
                                                 <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
@@ -230,13 +228,13 @@ Gw
                                             </textFieldCell>
                                         </textField>
                                         <box title="Key derivation" translatesAutoresizingMaskIntoConstraints="NO" id="pbl-Mb-r8V">
-                                            <rect key="frame" x="17" y="16" width="468" height="235"/>
+                                            <rect key="frame" x="17" y="16" width="468" height="171"/>
                                             <view key="contentView" id="hkT-SX-Te1">
-                                                <rect key="frame" x="2" y="2" width="464" height="218"/>
+                                                <rect key="frame" x="2" y="2" width="464" height="154"/>
                                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                 <subviews>
                                                     <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="cqu-Og-bZH">
-                                                        <rect key="frame" x="147" y="181" width="63" height="17"/>
+                                                        <rect key="frame" x="147" y="117" width="63" height="17"/>
                                                         <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Algorithm" id="U4f-lN-oxi">
                                                             <font key="font" metaFont="system"/>
                                                             <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
@@ -244,7 +242,7 @@ Gw
                                                         </textFieldCell>
                                                     </textField>
                                                     <popUpButton verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="5D9-bT-JAr">
-                                                        <rect key="frame" x="214" y="174" width="37" height="26"/>
+                                                        <rect key="frame" x="214" y="110" width="37" height="26"/>
                                                         <popUpButtonCell key="cell" type="push" bezelStyle="rounded" alignment="left" lineBreakMode="truncatingTail" borderStyle="borderAndBezel" imageScaling="proportionallyDown" inset="2" id="rf4-V3-tPC">
                                                             <behavior key="behavior" lightByBackground="YES" lightByGray="YES"/>
                                                             <font key="font" metaFont="menu"/>
@@ -259,7 +257,7 @@ Gw
                                                         </buttonCell>
                                                     </button>
                                                     <tabView drawsBackground="NO" type="noTabsNoBorder" translatesAutoresizingMaskIntoConstraints="NO" id="2MY-PW-kzL">
-                                                        <rect key="frame" x="13" y="50" width="438" height="126"/>
+                                                        <rect key="frame" x="13" y="50" width="438" height="62"/>
                                                         <font key="font" metaFont="system"/>
                                                         <tabViewItems>
                                                             <tabViewItem label="Aes" identifier="1" id="ft1-pl-lpO">
