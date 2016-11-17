@@ -266,7 +266,6 @@ NSString *const MPDocumentGroupKey                            = @"MPDocumentGrou
 
 - (void)presentedItemDidChange {
   [super presentedItemDidChange];
-  
   /* If we are locked we have the data written back to file - just revert */
   if(self.encrypted) {
     [self revertDocumentToSaved:nil];
@@ -298,7 +297,7 @@ NSString *const MPDocumentGroupKey                            = @"MPDocumentGrou
       self.fileChangeDialogOpen = NO;
       
       if(returnCode == NSAlertSecondButtonReturn) {
-        [self revertDocumentToSaved:nil];
+        [self revertToContentsOfURL:self.fileURL ofType:self.fileType error:nil];
       }
     }];
   });
