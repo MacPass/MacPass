@@ -117,7 +117,7 @@
 
 - (IBAction)generateKey:(id)sender {
   MPDocument *document = self.document;
-  NSData *data = [NSData generateKeyfiledataForVersion:document.tree.minimumFormat];
+  NSData *data = [NSData generateKeyfiledataForFormat:document.tree.minimumVersion.format];
   if(data) {
     NSSavePanel *savePanel = [NSSavePanel savePanel];
     savePanel.allowedFileTypes = @[@"key", @"xml"];

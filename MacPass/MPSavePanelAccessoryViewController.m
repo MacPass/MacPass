@@ -65,7 +65,7 @@
    */
   NSView *view = self.view;
   NSAssert(view != nil, @"View has to be loaded at this point");
-  switch(self.document.versionForFileType) {
+  switch(self.document.formatForFileType) {
     case KPKDatabaseFormatKdb:
       [self.fileTypePopupButton selectItemAtIndex:1];
       break;
@@ -82,7 +82,7 @@
 
 - (void)_updateNote {
   NSString *uti = self.fileTypePopupButton.selectedItem.representedObject;
-  BOOL showInfoText = (self.document.tree.minimumFormat == KPKDatabaseFormatKdbx && [uti isEqualToString:MPKdbDocumentUTI]);
+  BOOL showInfoText = (self.document.tree.minimumVersion.format == KPKDatabaseFormatKdbx && [uti isEqualToString:MPKdbDocumentUTI]);
   self.infoTextField.hidden = !showInfoText;
 }
 

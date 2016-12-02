@@ -89,7 +89,7 @@ NSString *const MPDocumentGroupKey                            = @"MPDocumentGrou
   return [NSSet setWithObject:NSStringFromSelector(@selector(tree))];
 }
 
-+ (KPKDatabaseFormat)versionForFileType:(NSString *)fileType {
++ (KPKDatabaseFormat)formatForFileType:(NSString *)fileType {
   if( NSOrderedSame == [fileType compare:MPKdbDocumentUTI options:NSCaseInsensitiveSearch]) {
     return KPKDatabaseFormatKdb;
   }
@@ -408,8 +408,8 @@ NSString *const MPDocumentGroupKey                            = @"MPDocumentGrou
 }
 
 #pragma mark Properties
-- (KPKDatabaseFormat)versionForFileType {
-  return [[self class] versionForFileType:self.fileType];
+- (KPKDatabaseFormat)formatForFileType {
+  return [self.class versionForFileType:self.fileType];
 }
 
 - (BOOL)encrypted {

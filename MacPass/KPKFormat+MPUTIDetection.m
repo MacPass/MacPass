@@ -25,8 +25,8 @@
 }
 
 - (NSString *)typeForData:(NSData *)data {
-  KPKFileInfo fileInfo = [self fileInfoForData:data];
-  return [self _typeToUTIdictionary][@(fileInfo.format)];
+  KPKFileVersion fileVersion = [self fileVersionForData:data];
+  return [self _typeToUTIdictionary][@(fileVersion.format)];
 }
 
 - (NSString *)typeForContentOfURL:(NSURL *)url {

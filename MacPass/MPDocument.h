@@ -78,7 +78,7 @@ FOUNDATION_EXPORT NSString *const MPDocumentGroupKey;
 @property (nonatomic, strong, readonly) KPKCompositeKey *compositeKey;
 
 @property (assign, readonly, getter = isReadOnly) BOOL readOnly;
-@property (nonatomic, readonly, assign) KPKDatabaseFormat versionForFileType;
+@property (nonatomic, readonly, assign) KPKDatabaseFormat formatForFileType;
 
 /*
  State (active group/entry)
