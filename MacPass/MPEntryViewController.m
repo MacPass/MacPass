@@ -632,7 +632,7 @@ NSString *const _MPTableSecurCellView = @"PasswordCell";
   NSArray *nodes = [self currentTargetNodes];
   KPKEntry *selectedEntry = nodes.count == 1 ? [nodes.firstObject asEntry] : nil;
   if(selectedEntry) {
-    [self _copyToPasteboard:[selectedEntry.password finalValueForEntry:selectedEntry] overlayInfo:MPOverlayInfoPassword name:nil];
+    [self _copyToPasteboard:[selectedEntry.password kpk_finalValueForEntry:selectedEntry] overlayInfo:MPOverlayInfoPassword name:nil];
   }
 }
 
@@ -640,7 +640,7 @@ NSString *const _MPTableSecurCellView = @"PasswordCell";
   NSArray *nodes = [self currentTargetNodes];
   KPKEntry *selectedEntry = nodes.count == 1 ? [nodes.firstObject asEntry] : nil;
   if(selectedEntry) {
-    [self _copyToPasteboard:[selectedEntry.username finalValueForEntry:selectedEntry] overlayInfo:MPOverlayInfoUsername name:nil];
+    [self _copyToPasteboard:[selectedEntry.username kpk_finalValueForEntry:selectedEntry] overlayInfo:MPOverlayInfoUsername name:nil];
   }
 }
 
@@ -659,14 +659,14 @@ NSString *const _MPTableSecurCellView = @"PasswordCell";
   NSArray *nodes = [self currentTargetNodes];
   KPKEntry *selectedEntry = nodes.count == 1 ? [nodes.firstObject asEntry] : nil;
   if(selectedEntry) {
-    [self _copyToPasteboard:[selectedEntry.url finalValueForEntry:selectedEntry] overlayInfo:MPOverlayInfoURL name:nil];
+    [self _copyToPasteboard:[selectedEntry.url kpk_finalValueForEntry:selectedEntry] overlayInfo:MPOverlayInfoURL name:nil];
   }
 }
 
 - (void)openURL:(id)sender {
   NSArray *nodes = [self currentTargetNodes];
   KPKEntry *selectedEntry = nodes.count == 1 ? [nodes.firstObject asEntry] : nil;
-  NSString *expandedURL = [selectedEntry.url finalValueForEntry:selectedEntry];
+  NSString *expandedURL = [selectedEntry.url kpk_finalValueForEntry:selectedEntry];
   if(expandedURL.length > 0) {
     NSURL *webURL = [NSURL URLWithString:[expandedURL stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]];
     NSString *scheme = [webURL scheme];

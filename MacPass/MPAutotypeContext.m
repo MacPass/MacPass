@@ -33,7 +33,7 @@
   if(self) {
     _command = [sequence copy];
     _entry = entry;
-    _normalizedCommand = sequence.normalizedAutotypeSequence;
+    _normalizedCommand = sequence.kpk_normalizedAutotypeSequence;
   }
   return self;
 }
@@ -50,7 +50,7 @@
 
 - (NSString *)evaluatedCommand {
   if(!_evaluatedCommand) {
-    _evaluatedCommand = [[self.normalizedCommand finalValueForEntry:self.entry] copy];
+    _evaluatedCommand = [[self.normalizedCommand kpk_finalValueForEntry:self.entry] copy];
   }
   return _evaluatedCommand;
 }

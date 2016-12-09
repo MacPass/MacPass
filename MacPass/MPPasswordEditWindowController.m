@@ -117,7 +117,7 @@
 
 - (IBAction)generateKey:(id)sender {
   MPDocument *document = self.document;
-  NSData *data = [NSData generateKeyfiledataForFormat:document.tree.minimumVersion.format];
+  NSData *data = [NSData kpk_generateKeyfiledataForFormat:document.tree.minimumVersion.format];
   if(data) {
     NSSavePanel *savePanel = [NSSavePanel savePanel];
     savePanel.allowedFileTypes = @[@"key", @"xml"];
@@ -149,9 +149,9 @@
   if(hasKey) {
     keyOk = [self.keyURL checkResourceIsReachableAndReturnError:nil];
   }
-  BOOL hasPassword = ![NSString isEmptyString:password];
+  BOOL hasPassword = password.kpk_isNotEmpty;
   if(!self.showPassword) {
-    hasPassword |= ![NSString isEmptyString:repeat];
+    hasPassword |= repeat.kpk_isNotEmpty;
   }
   BOOL passwordOk = YES;
   if(hasPassword ) {

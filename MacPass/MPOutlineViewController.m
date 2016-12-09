@@ -277,7 +277,7 @@ NSString *const _MPOutlinveViewHeaderViewIdentifier = @"HeaderCell";
 - (void)outlineViewSelectionDidChange:(NSNotification *)notification {
   MPDocument *document = self.windowController.document;
   NSArray<KPKGroup *> *groups = [self currentTargetGroups];
-  document.tree.metaData.lastSelectedGroup = (groups.count == 1 ? groups.firstObject.uuid : [NSUUID nullUUID]);
+  document.tree.metaData.lastSelectedGroup = (groups.count == 1 ? groups.firstObject.uuid : [NSUUID kpk_nullUUID]);
   document.selectedGroups = groups;
 }
 

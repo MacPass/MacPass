@@ -98,7 +98,7 @@ static NSString *mergeWithoutDuplicates(NSString* baseCharacters, NSString* cust
   if([self length] == 0) {
     return nil;
   }
-  NSData *data = [NSData dataWithRandomBytes:sizeof(NSUInteger)];
+  NSData *data = [NSData kpk_dataWithRandomBytes:sizeof(NSUInteger)];
   NSUInteger randomIndex;
   [data getBytes:&randomIndex length:data.length];
   return [self substringWithRange:NSMakeRange(randomIndex % self.length, 1)];
