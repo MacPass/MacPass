@@ -361,11 +361,7 @@ NSString *const MPDocumentGroupKey                            = @"MPDocumentGrou
     self.encryptedData = nil;
     self.unlockCount += 1;
     [[NSNotificationCenter defaultCenter] postNotificationName:MPDocumentDidUnlockDatabaseNotification object:self];
-    /* Make sure to only store */
-    MPAppDelegate *delegate = (MPAppDelegate *)[NSApp delegate];
-    if(self.compositeKey.hasKeyFile && self.compositeKey.hasPassword && delegate.isAllowedToStoreKeyFile) {
-      [self _storeKeyURL:keyFileURL];
-    }
+    [self _storeKeyURL:keyFileURL];
   }
   else {
     self.compositeKey = nil; // clear the key?
@@ -768,17 +764,21 @@ NSString *const MPDocumentGroupKey                            = @"MPDocumentGrou
 }
 
 - (void)_storeKeyURL:(NSURL *)keyURL {
-  if(nil == keyURL) {
-    return; // no URL to store in the first place
-  }
-  MPAppDelegate *delegate = (MPAppDelegate *)[NSApp delegate];
-  NSAssert(delegate.isAllowedToStoreKeyFile, @"We can only store if we are allowed to do so!");
   NSMutableDictionary *keysForFiles = [[[NSUserDefaults standardUserDefaults] dictionaryForKey:kMPSettingsKeyRememeberdKeysForDatabases] mutableCopy];
-  if(nil == keysForFiles) {
-    keysForFiles = [[NSMutableDictionary alloc] initWithCapacity:1];
+  MPAppDelegate *delegate = (MPAppDelegate *)[NSApp delegate];
+  if(!delegate.isAllowedToStoreKeyFile || nil == keyURL) {
+    /* user has removed the keyfile or we should not safe it so remove it */
+    [keysForFiles removeObjectForKey:self.fileURL.path.sha1HexDigest];
   }
-  keysForFiles[self.fileURL.path.sha1HexDigest] = keyURL.path;
-  [[NSUserDefaults standardUserDefaults] setObject:keysForFiles forKey:kMPSettingsKeyRememeberdKeysForDatabases];
+  else if(self.compositeKey.hasPassword && self.compositeKey.hasKeyFile) {
+    if(nil == keysForFiles) {
+      keysForFiles = [[NSMutableDictionary alloc] initWithCapacity:1];
+    }
+    keysForFiles[self.fileURL.path.sha1HexDigest] = keyURL.path;
+  }
+  if(keysForFiles) {
+    [[NSUserDefaults standardUserDefaults] setObject:keysForFiles forKey:kMPSettingsKeyRememeberdKeysForDatabases];
+  }
 }
 
 - (void)_cleanupLock {
