@@ -410,7 +410,7 @@ NSString *const _MPTableSecurCellView = @"PasswordCell";
         return; // we are showing the correct object right now.
       }
     }
-    self.representedObject = document.selectedGroups.count == 1 ? document.selectedGroups.firstObject : nil;
+    self.representedObject = document.selectedGroups.count == 1 ? document.selectedGroups.lastObject : nil;
   }
   [self _updateContextBar];
 }
