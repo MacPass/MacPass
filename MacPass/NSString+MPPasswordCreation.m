@@ -39,7 +39,7 @@ static NSString *mergeWithoutDuplicates(NSString* baseCharacters, NSString* cust
   [customCharacters enumerateSubstringsInRange: NSMakeRange(0, customCharacters.length)
                                        options: NSStringEnumerationByComposedCharacterSequences
                                     usingBlock: ^(NSString *inSubstring, NSRange inSubstringRange, NSRange inEnclosingRange, BOOL *outStop) {
-                                      if(![mergedCharacters containsString:inSubstring]){
+                                      if(0 == [mergedCharacters rangeOfString:inSubstring].length){
                                         [mergedCharacters appendString:inSubstring];
                                       }
                                     }];
