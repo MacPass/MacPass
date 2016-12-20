@@ -96,7 +96,7 @@ FOUNDATION_EXPORT NSString *const MPDocumentGroupKey;
 @property (nonatomic, copy) MPEntrySearchContext *searchContext;
 @property (nonatomic, strong, readonly) NSArray *searchResult;
 
-+ (KPKDatabaseFormat)versionForFileType:(NSString *)fileType;
++ (KPKDatabaseFormat)formatForFileType:(NSString *)fileType;
 + (NSString *)fileTypeForVersion:(KPKDatabaseFormat)format;
 
 #pragma mark Lock/Decrypt

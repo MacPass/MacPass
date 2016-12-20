@@ -182,7 +182,7 @@ NSString *const MPDocumentGroupKey                            = @"MPDocumentGrou
     return nil; // Saving without a password/key is not possible
   }
   NSString *fileType = self.fileTypeFromLastRunSavePanel;
-  KPKDatabaseFormat format = [self.class versionForFileType:fileType];
+  KPKDatabaseFormat format = [self.class formatForFileType:fileType];
   if(format == KPKDatabaseFormatUnknown) {
     if(outError != NULL) {
       NSDictionary *userInfo = @{ NSLocalizedDescriptionKey: NSLocalizedString(@"UNKNOWN_FILE_VERSION", "") };
@@ -409,7 +409,7 @@ NSString *const MPDocumentGroupKey                            = @"MPDocumentGrou
 
 #pragma mark Properties
 - (KPKDatabaseFormat)formatForFileType {
-  return [self.class versionForFileType:self.fileType];
+  return [self.class formatForFileType:self.fileType];
 }
 
 - (BOOL)encrypted {
