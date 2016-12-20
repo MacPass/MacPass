@@ -404,10 +404,7 @@ typedef NS_ENUM(NSUInteger, MPEntryTab) {
                withKeyPath:[NSString stringWithFormat:@"%@.%@.%@", NSStringFromSelector(@selector(representedObject)), NSStringFromSelector(@selector(uuid)), NSStringFromSelector(@selector(UUIDString))]
                    options:@{ NSConditionallySetsEditableBindingOption: @NO }];
   self.uuidTextField.editable = NO;
-  
-  /*for(id item in items) {
-   [item bind:NSEnabledBinding toObject:self.entryController withKeyPath:NSStringFromSelector(@selector(isEditable)) options:nil];
-   }*/
+
 }
 
 - (void)_bindAttachments {
