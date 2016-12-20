@@ -350,6 +350,11 @@ typedef NS_ENUM(NSUInteger, MPEntryTab) {
                                                                    options:0
                                                                    metrics:nil
                                                                      views:views]];
+  [clipView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|[view]"
+                                                                   options:0
+                                                                   metrics:nil
+                                                                     views:views]];
+
   [[self view] layoutSubtreeIfNeeded];
 }
 
