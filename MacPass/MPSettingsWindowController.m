@@ -80,7 +80,6 @@
     [contentView.subviews.firstObject removeFromSuperview];
   }
   [contentView addSubview:tabView];
-  [contentView layout];
   [contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-0-[tabView]-0-|"
                                                                       options:0
                                                                       metrics:nil
@@ -90,6 +89,7 @@
                                                                       metrics:nil
                                                                         views:NSDictionaryOfVariableBindings(tabView)]];
   
+  [contentView layout];
   [contentView layoutSubtreeIfNeeded];
   if([tab respondsToSelector:@selector(didShowTab)]) {
     [tab didShowTab];
