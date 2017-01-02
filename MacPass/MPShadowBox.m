@@ -6,11 +6,12 @@
 //  Copyright (c) 2013 HicknHack Software GmbH. All rights reserved.
 //
 
-#define ELIPSIS_OFFSET 0
-#define ELIPSIS_HEIGHT 20
-#define SHADOW_OFFSET 10
+static CGFloat kMPElipsisOffset = 0.0;
+static CGFloat kMPElipsisHeight = 20.0;
+static CGFloat kMPShadowOffset = 10.0;
 
 #import "MPShadowBox.h"
+#import "MPFlagsHelper.h"
 
 @implementation MPShadowBox
 
@@ -28,7 +29,7 @@
 
 - (void)drawRect:(NSRect)dirtyRect {
   
-  dirtyRect = [self bounds];
+  dirtyRect = self.bounds;
   [[NSGraphicsContext currentContext] saveGraphicsState];
   
   NSColor *topColor = [NSColor colorWithCalibratedWhite:0.9 alpha:1];
@@ -37,19 +38,20 @@
   [gradient drawInRect:dirtyRect angle:-90];
   
   NSShadow *dropShadow = [[NSShadow alloc] init];
-  [dropShadow setShadowColor:[NSColor colorWithCalibratedWhite:0 alpha:0.5]];
-  [dropShadow setShadowBlurRadius:10];
+  dropShadow.shadowColor = [NSColor colorWithCalibratedWhite:0 alpha:0.5];
+  dropShadow.shadowBlurRadius = 10;
   [dropShadow set];
   [[NSColor redColor] set]; // Use red to show visual errors
   
-  if(0 != (self.shadowDisplay & MPShadowTop)) {
-    [dropShadow setShadowOffset:NSMakeSize(0, -SHADOW_OFFSET)];
-    NSRect topElispis = NSMakeRect(0, dirtyRect.size.height + ELIPSIS_OFFSET, dirtyRect.size.width, ELIPSIS_HEIGHT);
+  
+  if(MPIsFlagSetInOptions(MPShadowTop, self.shadowDisplay)) {
+    dropShadow.shadowOffset = NSMakeSize(0, -kMPShadowOffset);
+    NSRect topElispis = NSMakeRect(0, dirtyRect.size.height + kMPElipsisOffset, dirtyRect.size.width, kMPElipsisHeight);
     [[NSBezierPath bezierPathWithOvalInRect:topElispis] fill];
   }
-  if(0 != (self.shadowDisplay & MPShadowBottom)) {
-    NSRect bottomElipsis = NSMakeRect(0, - ( ELIPSIS_OFFSET + ELIPSIS_HEIGHT ), dirtyRect.size.width, ELIPSIS_HEIGHT);
-    [dropShadow setShadowOffset:NSMakeSize(0, SHADOW_OFFSET)];
+  if(MPIsFlagSetInOptions(MPShadowBottom, self.shadowDisplay)) {
+    NSRect bottomElipsis = NSMakeRect(0, - ( kMPElipsisOffset + kMPElipsisHeight ), dirtyRect.size.width, kMPElipsisHeight);
+    dropShadow.shadowOffset = NSMakeSize(0, kMPShadowOffset);
     [[NSBezierPath bezierPathWithOvalInRect:bottomElipsis] fill];
   }
   
@@ -59,7 +61,7 @@
 - (void)setShadowDisplay:(MPShadowDisplay)shadowDisplay {
   if(_shadowDisplay != shadowDisplay) {
     _shadowDisplay = shadowDisplay;
-    [self setNeedsDisplay:YES];
+    self.needsDisplay = YES;
   }
 }
 

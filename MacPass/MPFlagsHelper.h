@@ -12,7 +12,7 @@
 #include <Foundation/Foundation.h>
 /**
  *  Tests if the given flag is set in the mode options.
- *  The test operatats on bit flag leve. Hence it will return YES
+ *  The test operates on bit flag left. Hence it will return YES
  *  if only one single bit is common in both parameters!
  *
  *  @param options single flag to test for

@@ -7,14 +7,15 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "MPModelChangeObserving.h"
 
 @interface MPViewController : NSViewController
 
-- (void)didLoadView;
-- (NSResponder *)reconmendedFirstResponder;
-/* Returns the associated window controller */
-- (id)windowController;
+@property (nonatomic, readonly, nullable) NSWindowController *windowController;
+@property (weak, nullable) id<MPModelChangeObserving> observer;
+@property (nonatomic, readonly, nullable) NSResponder *reconmendedFirstResponder;
 
+- (void)didLoadView;
 - (void)updateResponderChain;
 
 @end

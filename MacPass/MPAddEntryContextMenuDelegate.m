@@ -25,8 +25,7 @@
 #import "MPDocumentWindowController.h"
 #import "MPActionHelper.h"
 
-#import "KPKEntry.h"
-#import "KPKGroup.h"
+#import "KeePassKit/KeePassKit.h"
 
 #define EDIT_TEMPLATES_ITEM_TAG 10;
 

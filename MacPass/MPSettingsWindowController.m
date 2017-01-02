@@ -11,12 +11,12 @@
 #import "MPIntegrationSettingsController.h"
 #import "MPWorkflowSettingsController.h"
 #import "MPUpdateSettingsController.h"
+#import "MPPluginSettingsController.h"
 
 @interface MPSettingsWindowController () {
   NSString *lastIdentifier;
 }
 
-@property (strong, nonatomic) NSToolbar *toolbar;
 @property (strong, nonatomic) NSMutableDictionary *settingsController;
 @property (strong, nonatomic) NSMutableDictionary *toolbarItems;
 @property (strong) NSArray *defaultToolbarItems;
@@ -32,24 +32,24 @@
 -(id)init {
   self = [super initWithWindow:nil];
   if(self) {
-    _toolbar = [[NSToolbar alloc] initWithIdentifier:@"SettingsToolBar"];
-    [self.toolbar setAllowsUserCustomization:NO];
-    [self.toolbar setDisplayMode:NSToolbarDisplayModeIconAndLabel];
+    NSToolbar *tb = [[NSToolbar alloc] initWithIdentifier:@"SettingsToolBar"];
+    tb.allowsUserCustomization = NO;
+    tb.displayMode = NSToolbarDisplayModeIconAndLabel;
     _settingsController = [[NSMutableDictionary alloc] initWithCapacity:5];
     _toolbarItems = [[NSMutableDictionary alloc] initWithCapacity:5];
     lastIdentifier = nil;
     
     [self _setupDefaultSettingsTabs];
     
-    [self.toolbar setDelegate:self];
-    [[self window] setToolbar:self.toolbar];
+    tb.delegate = self;
+    self.window.toolbar = tb;
   }
   return self;
 }
 
 
 - (void)showSettings {
-  if([self.defaultToolbarItems count] > 0) {
+  if(self.defaultToolbarItems.count > 0) {
     [self showSettingsTabWithIdentifier:self.defaultToolbarItems[0]];
   }
 }
@@ -60,24 +60,24 @@
   }
   id<MPSettingsTab> tab = self.settingsController[identifier];
   if(tab == nil){
-    NSLog(@"Warning. Unknow settingscontroller for identifier: %@. Did you miss to add the controller?", identifier);
+    NSLog(@"Warning. Unknown settingscontroller for identifier: %@. Did you miss to add the controller?", identifier);
     return;
   }
-  [self.toolbar setSelectedItemIdentifier:identifier];
+  self.window.toolbar.selectedItemIdentifier = identifier;
   if([tab respondsToSelector:@selector(label)]) {
-    [[self window] setTitle:[tab label]];
+    self.window.title = [tab label];
   }
   else {
-    [[self window] setTitle:[tab identifier]];
+    self.window.title = [tab identifier];
   }
   /* Access the view before calling the willShoTab to make sure the view is fully loaded */
   NSView *tabView = [(NSViewController *)tab view];
   if([tab respondsToSelector:@selector(willShowTab)]) {
     [tab willShowTab];
   }
-  NSView *contentView = [[self window] contentView];
-  if( [[contentView subviews] count] == 1) {
-    [[contentView subviews][0] removeFromSuperview];
+  NSView *contentView = self.window.contentView;
+  if( contentView.subviews.count == 1) {
+    [contentView.subviews.firstObject removeFromSuperview];
   }
   [contentView addSubview:tabView];
   [contentView layout];
@@ -94,7 +94,7 @@
   if([tab respondsToSelector:@selector(didShowTab)]) {
     [tab didShowTab];
   }
-  [[self window] makeKeyAndOrderFront:[self window]];
+  [self.window makeKeyAndOrderFront:nil];
 }
 
 - (void)_addSettingsTab:(id<MPSettingsTab>)tabController {
@@ -110,9 +110,9 @@
                                                              userInfo:nil];
     @throw controllerException;
   }
-  NSString *identifier = [tabController identifier];
+  NSString *identifier = tabController.identifier;
   if(nil != self.settingsController[identifier]) {
-    NSLog(@"Warning: Settingscontroller with identifer %@ already present!", identifier);
+    NSLog(@"Warning: Settingscontroller with identifier %@ already present!", identifier);
   }
   else {
     self.settingsController[identifier] = tabController;
@@ -120,22 +120,17 @@
 }
 
 - (void)_setupDefaultSettingsTabs {
-  MPGeneralSettingsController *generalSettingsController = [[MPGeneralSettingsController alloc] init];
-  MPIntegrationSettingsController *integrationSettingsController = [[MPIntegrationSettingsController alloc] init];
-  MPWorkflowSettingsController *workflowSettingsController = [[MPWorkflowSettingsController alloc] init];
-  MPUpdateSettingsController *updateSettingsController = [[MPUpdateSettingsController alloc] init];
-  
-  [self _addSettingsTab:generalSettingsController];
-  [self _addSettingsTab:integrationSettingsController];
-  [self _addSettingsTab:workflowSettingsController];
-  [self _addSettingsTab:updateSettingsController];
-
-  self.defaultToolbarItems = @[ [generalSettingsController identifier],
-                                [integrationSettingsController identifier],
-                                [workflowSettingsController identifier],
-                                [updateSettingsController identifier]];
-  
-
+  NSArray *controllers = @[ [[MPGeneralSettingsController alloc] init],
+                         [[MPIntegrationSettingsController alloc] init],
+                         [[MPWorkflowSettingsController alloc] init],
+                         [[MPUpdateSettingsController alloc] init],
+                         [[MPPluginSettingsController alloc] init] ];
+  NSMutableArray *identifier = [[NSMutableArray alloc] initWithCapacity:controllers.count];
+  for(id<MPSettingsTab> controller in controllers) {
+    [self _addSettingsTab:controller];
+    [identifier addObject:controller.identifier];
+  }
+  self.defaultToolbarItems = [identifier copy];
 }
 
 - (void)_showSettingsTab:(id)sender {
@@ -148,7 +143,7 @@
 #pragma mark NSToolbarDelegate
 
 - (NSArray *)toolbarAllowedItemIdentifiers:(NSToolbar *)toolbar {
-  return [self.settingsController allKeys];
+  return self.settingsController.allKeys;
 }
 
 - (NSArray *)toolbarDefaultItemIdentifiers:(NSToolbar *)toolbar {
@@ -156,7 +151,7 @@
 }
 
 - (NSArray *)toolbarSelectableItemIdentifiers:(NSToolbar *)toolbar {
-  return [self.settingsController allKeys];
+  return self.settingsController.allKeys;
 }
 
 - (NSToolbarItem *)toolbar:(NSToolbar *)toolbar itemForItemIdentifier:(NSString *)itemIdentifier willBeInsertedIntoToolbar:(BOOL)flag {
@@ -165,23 +160,23 @@
     item = [[NSToolbarItem alloc] initWithItemIdentifier:itemIdentifier];
     /*
      Setup the item to use the controllers label if one is present
-     and supports the appropriate @optional protocoll messages
+     and supports the appropriate @optional protocol messages
      */
     id<MPSettingsTab> tab = self.settingsController[itemIdentifier];
     if([tab respondsToSelector:@selector(label)]) {
-      [item setLabel:[tab label]];
+      item.label = [tab label];
     }
     else {
-      [item setLabel:itemIdentifier];
+      item.label = itemIdentifier;
     }
     if([tab respondsToSelector:@selector(image)]) {
-      [item setImage:[tab image]];
+      item.image = [tab image];
     }
     else {
-      [item setImage:[NSImage imageNamed:NSImageNameCaution ]];
+      item.image = [NSImage imageNamed:NSImageNameCaution];
     }
     
-    [item setAction:@selector(_showSettingsTab:)];
+    item.action = @selector(_showSettingsTab:);
     self.toolbarItems[itemIdentifier] = item;
   }
   return item;

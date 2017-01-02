@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="6250" systemVersion="13F34" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="9531" systemVersion="15C50" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
     <dependencies>
         <deployment identifier="macosx"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="6250"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="9531"/>
     </dependencies>
     <objects>
         <customObject id="-2" userLabel="File's Owner" customClass="MPGroupInspectorViewController">
@@ -19,13 +19,13 @@
         </customObject>
         <customObject id="-1" userLabel="First Responder" customClass="FirstResponder"/>
         <customObject id="-3" userLabel="Application" customClass="NSObject"/>
-        <scrollView borderType="none" horizontalLineScroll="10" horizontalPageScroll="10" verticalLineScroll="10" verticalPageScroll="10" hasHorizontalScroller="NO" hasVerticalScroller="NO" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="37" customClass="HNHScrollView">
+        <scrollView borderType="none" horizontalLineScroll="10" horizontalPageScroll="10" verticalLineScroll="10" verticalPageScroll="10" hasHorizontalScroller="NO" hasVerticalScroller="NO" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="37" customClass="HNHUIScrollView">
             <rect key="frame" x="0.0" y="0.0" width="257" height="261"/>
             <clipView key="contentView" id="HjA-kA-fcX">
                 <rect key="frame" x="0.0" y="0.0" width="257" height="261"/>
                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                 <subviews>
-                    <view translatesAutoresizingMaskIntoConstraints="NO" id="38" customClass="HNHScrollDocumentViewAdapter">
+                    <view translatesAutoresizingMaskIntoConstraints="NO" id="38" customClass="HNHUIScrollDocumentViewAdapter">
                         <rect key="frame" x="0.0" y="0.0" width="257" height="261"/>
                         <subviews>
                             <textField verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="24">
@@ -36,7 +36,7 @@
                                     <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                 </textFieldCell>
                             </textField>
-                            <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="249" translatesAutoresizingMaskIntoConstraints="NO" id="23" customClass="HNHRoundedTextField">
+                            <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="249" translatesAutoresizingMaskIntoConstraints="NO" id="23" customClass="HNHUIRoundedTextField">
                                 <rect key="frame" x="20" y="212" width="217" height="22"/>
                                 <textFieldCell key="cell" lineBreakMode="truncatingTail" truncatesLastVisibleLine="YES" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" drawsBackground="YES" usesSingleLineMode="YES" id="26">
                                     <font key="font" metaFont="system"/>
@@ -61,13 +61,13 @@
                                 </connections>
                             </button>
                             <button focusRingType="exterior" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="4">
-                                <rect key="frame" x="206" y="183" width="31" height="19"/>
+                                <rect key="frame" x="205" y="180" width="32" height="25"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="31" id="l5I-EF-dHs"/>
+                                    <constraint firstAttribute="width" constant="32" id="l5I-EF-dHs"/>
                                 </constraints>
-                                <buttonCell key="cell" type="roundRect" bezelStyle="roundedRect" image="NSActionTemplate" imagePosition="only" alignment="center" state="on" borderStyle="border" focusRingType="exterior" imageScaling="proportionallyDown" inset="2" id="33">
+                                <buttonCell key="cell" type="roundTextured" bezelStyle="texturedRounded" image="NSActionTemplate" imagePosition="only" alignment="center" state="on" borderStyle="border" focusRingType="exterior" imageScaling="proportionallyDown" inset="2" id="33">
                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
-                                    <font key="font" metaFont="cellTitle"/>
+                                    <font key="font" metaFont="system"/>
                                 </buttonCell>
                                 <connections>
                                     <action selector="pickExpiryDate:" target="-1" id="KIc-p2-zJQ"/>
@@ -79,15 +79,7 @@
                                 <popUpButtonCell key="cell" type="push" bezelStyle="rounded" alignment="left" lineBreakMode="truncatingTail" borderStyle="borderAndBezel" imageScaling="proportionallyDown" inset="2" id="230">
                                     <behavior key="behavior" lightByBackground="YES" lightByGray="YES"/>
                                     <font key="font" metaFont="menu"/>
-                                    <menu key="menu" title="OtherViews" id="231">
-                                        <items>
-                                            <menuItem title="Inherit Search Settings" tag="-1" id="232">
-                                                <modifierMask key="keyEquivalentModifierMask"/>
-                                            </menuItem>
-                                            <menuItem title="Include in Search" id="233"/>
-                                            <menuItem title="Exclude from Search" tag="1" id="234"/>
-                                        </items>
-                                    </menu>
+                                    <menu key="menu" title="OtherViews" id="231"/>
                                 </popUpButtonCell>
                                 <connections>
                                     <outlet property="nextKeyView" destination="240" id="XsX-U5-uZd"/>
@@ -98,20 +90,14 @@
                                 <popUpButtonCell key="cell" type="push" bezelStyle="rounded" alignment="left" lineBreakMode="truncatingTail" borderStyle="borderAndBezel" imageScaling="proportionallyDown" inset="2" id="242">
                                     <behavior key="behavior" lightByBackground="YES" lightByGray="YES"/>
                                     <font key="font" metaFont="menu"/>
-                                    <menu key="menu" title="OtherViews" id="243">
-                                        <items>
-                                            <menuItem title="Inherit Autotype Settings" tag="-1" id="246"/>
-                                            <menuItem title="Enable Autotype" id="245"/>
-                                            <menuItem title="Disable Autotype" tag="1" id="244"/>
-                                        </items>
-                                    </menu>
+                                    <menu key="menu" title="OtherViews" id="243"/>
                                 </popUpButtonCell>
                                 <connections>
                                     <outlet property="nextKeyView" destination="Fnw-qz-IZU" id="Q0q-HY-T34"/>
                                 </connections>
                             </popUpButton>
                             <textField verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="264">
-                                <rect key="frame" x="18" y="160" width="40" height="14"/>
+                                <rect key="frame" x="18" y="160" width="41" height="14"/>
                                 <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Search" id="265">
                                     <font key="font" metaFont="smallSystem"/>
                                     <color key="textColor" name="disabledControlTextColor" catalog="System" colorSpace="catalog"/>
@@ -119,14 +105,14 @@
                                 </textFieldCell>
                             </textField>
                             <textField verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="276">
-                                <rect key="frame" x="18" y="105" width="53" height="14"/>
+                                <rect key="frame" x="18" y="105" width="52" height="14"/>
                                 <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Autotype" id="277">
                                     <font key="font" metaFont="smallSystem"/>
                                     <color key="textColor" name="disabledControlTextColor" catalog="System" colorSpace="catalog"/>
                                     <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                 </textFieldCell>
                             </textField>
-                            <textField verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="Fnw-qz-IZU" customClass="HNHRoundedTextField">
+                            <textField verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="Fnw-qz-IZU" customClass="HNHUIRoundedTextField">
                                 <rect key="frame" x="20" y="20" width="217" height="22"/>
                                 <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" drawsBackground="YES" id="VeF-V7-i2I">
                                     <font key="font" metaFont="system"/>

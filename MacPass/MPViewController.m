@@ -7,6 +7,7 @@
 //
 
 #import "MPViewController.h"
+#import "MPDocument.h"
 
 @implementation MPViewController
 
@@ -20,8 +21,8 @@
   // override
 }
 
-- (id)windowController {
-  return [[[self view] window] windowController];
+- (NSWindowController *)windowController {
+  return self.view.window.windowController;
 }
 
 #pragma mark Responder Chain
@@ -30,10 +31,33 @@
 }
 
 - (void)updateResponderChain {
-  if(self.view && [self.view nextResponder] != self) {
-    NSResponder *nextResponder = [[self view] nextResponder];
-    [[self view] setNextResponder:self];
-    [self setNextResponder:nextResponder];
+  if(self.view && self.view.nextResponder != self) {
+    NSResponder *nextResponder = self.view.nextResponder;
+    self.view.nextResponder = self;
+    self.nextResponder = nextResponder;
+  }
+}
+
+#pragma mark NSEditorRegistration
+- (void)objectDidBeginEditing:(id)editor {
+  [self.windowController.document objectDidBeginEditing:editor];
+  [super objectDidBeginEditing:editor];
+}
+
+- (void)objectDidEndEditing:(id)editor {
+  [self.windowController.document objectDidEndEditing:editor];
+  [super objectDidEndEditing:editor];
+}
+
+#pragma mark Binding observation
+- (void)setValue:(id)value forKeyPath:(NSString *)keyPath {
+  if([keyPath hasPrefix:@"representedObject."]) {
+    [self.observer willChangeModelProperty];
+    [super setValue:value forKeyPath:keyPath];
+    [self.observer didChangeModelProperty];
+  }
+  else {
+    [super setValue:value forKeyPath:keyPath];
   }
 }
 

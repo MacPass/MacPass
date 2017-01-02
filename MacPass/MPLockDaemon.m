@@ -22,16 +22,22 @@
 
 @implementation MPLockDaemon
 
-+ (MPLockDaemon *)sharedInstance {
-  static id sharedInstance;
+static MPLockDaemon *_sharedInstance;
+
++ (instancetype)defaultDaemon {
   static dispatch_once_t onceToken;
   dispatch_once(&onceToken, ^{
-    sharedInstance = [[MPLockDaemon alloc] init];
+    _sharedInstance = [[MPLockDaemon alloc] _init];
   });
-  return sharedInstance;
+  return _sharedInstance;
 }
 
-- (id)init {
+- (instancetype)init {
+  return nil;
+}
+
+- (instancetype)_init {
+  NSAssert(_sharedInstance == nil, @"Multiple instances of MPLockDaemon not allowed!");
   self = [super init];
   if (self) {
     NSUserDefaultsController *defaultsController = [NSUserDefaultsController sharedUserDefaultsController];
@@ -43,22 +49,20 @@
 
 - (void)dealloc {
   /* Notifications */
-  [[[NSWorkspace sharedWorkspace] notificationCenter] removeObserver:self];
+  [[NSWorkspace sharedWorkspace].notificationCenter removeObserver:self];
   
   /* Timer */
   [NSEvent removeMonitor:self.eventHandler];
-  
 }
 
 - (void)setLockOnSleep:(BOOL)lockOnSleep {
   if(_lockOnSleep != lockOnSleep) {
     _lockOnSleep = lockOnSleep;
-    NSNotificationCenter *notificationCenter = [[NSWorkspace sharedWorkspace] notificationCenter];
     if(_lockOnSleep) {
-      [notificationCenter addObserver:self selector:@selector(_willSleepNotification:) name:NSWorkspaceWillSleepNotification object:nil];
+      [[NSWorkspace sharedWorkspace].notificationCenter addObserver:self selector:@selector(_willSleepNotification:) name:NSWorkspaceWillSleepNotification object:nil];
     }
     else {
-      [notificationCenter removeObserver:self];
+      [[NSWorkspace sharedWorkspace].notificationCenter removeObserver:self];
     }
   }
 }
@@ -76,7 +80,7 @@
 }
 
 - (void)_willSleepNotification:(NSNotification *)notification {
-  [(MPAppDelegate *)[NSApp delegate] lockAllDocuments];
+  [((MPAppDelegate *)NSApp.delegate) lockAllDocuments];
 }
 
 - (void)_checkIdleTime:(NSTimer *)timer {
@@ -85,8 +89,8 @@
   }
   NSTimeInterval currentInterval = ([NSDate timeIntervalSinceReferenceDate] - self.lastLocalEventTime);
   if(self.idleLockTime < currentInterval) {
-    [(MPAppDelegate *)[NSApp delegate] lockAllDocuments];
-    /* Reset the timer to full intervall */
+    [((MPAppDelegate *)NSApp.delegate) lockAllDocuments];
+    /* Reset the timer to full interval */
     [self.idleCheckTimer setFireDate:[NSDate dateWithTimeIntervalSinceNow:_idleLockTime]];
   }
   else {
@@ -105,7 +109,7 @@
   /* update or create Timer */
   if( self.idleCheckTimer ) {
     NSAssert([self.idleCheckTimer isValid], @"Timer needs to be valid");
-    [self.idleCheckTimer setFireDate:[NSDate dateWithTimeIntervalSinceNow:self.idleLockTime ]];
+    self.idleCheckTimer.fireDate = [NSDate dateWithTimeIntervalSinceNow:self.idleLockTime];
   }
   else {
     self.idleCheckTimer = [NSTimer timerWithTimeInterval:self.idleLockTime target:self selector:@selector(_checkIdleTime:) userInfo:nil repeats:YES];

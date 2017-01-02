@@ -7,25 +7,24 @@
 //
 
 #import "MPDocumentWindowController.h"
-#import "MPDocument.h"
-#import "MPPasswordInputController.h"
-#import "MPEntryViewController.h"
-#import "MPToolbarDelegate.h"
-#import "MPOutlineViewController.h"
-#import "MPInspectorViewController.h"
-#import "MPAppDelegate.h"
 #import "MPActionHelper.h"
-#import "MPDatabaseSettingsWindowController.h"
-#import "MPPasswordEditWindowController.h"
+#import "MPAppDelegate.h"
+#import "MPAutotypeDaemon.h"
 #import "MPConstants.h"
-#import "MPSettingsHelper.h"
-#import "MPDocumentWindowDelegate.h"
-#import "MPFixAutotypeWindowController.h"
-
 #import "MPContextToolbarButton.h"
-#import "KPKTree.h"
-#import "KPKEntry.h"
-#import "KPKCompositeKey.h"
+#import "MPDatabaseSettingsWindowController.h"
+#import "MPDocument.h"
+#import "MPDocumentWindowDelegate.h"
+#import "MPEntryViewController.h"
+#import "MPFixAutotypeWindowController.h"
+#import "MPInspectorViewController.h"
+#import "MPOutlineViewController.h"
+#import "MPPasswordEditWindowController.h"
+#import "MPPasswordInputController.h"
+#import "MPSettingsHelper.h"
+#import "MPToolbarDelegate.h"
+
+#import "KeePassKit/KeePassKit.h"
 
 typedef NS_ENUM(NSUInteger, MPAlertContext) {
   MPAlertLossySaveWarning,
@@ -52,7 +51,7 @@ typedef void (^MPPasswordChangedBlock)(BOOL didChangePassword);
 @property (strong) MPToolbarDelegate *toolbarDelegate;
 @property (strong) MPFixAutotypeWindowController *fixAutotypeWindowController;
 
-@property (nonatomic, copy) MPPasswordChangedBlock passwordChangedBlock;
+//@property (nonatomic, copy) MPPasswordChangedBlock passwordChangedBlock;
 
 @end
 
@@ -83,33 +82,34 @@ typedef void (^MPPasswordChangedBlock)(BOOL didChangePassword);
 - (void)windowDidLoad {
   [super windowDidLoad];
   
-  [[self window] setDelegate:self.documentWindowDelegate];
-  [[self window] registerForDraggedTypes:@[NSURLPboardType]];
+  self.window.delegate = self.documentWindowDelegate;
+  [self.window registerForDraggedTypes:@[NSURLPboardType]];
   
-  MPDocument *document = [self document];
+  MPDocument *document = self.document;
   
   [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(_didRevertDocument:) name:MPDocumentDidRevertNotifiation object:document];
   [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(_didUnlockDatabase:) name:MPDocumentDidUnlockDatabaseNotification object:document];
   [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(_didAddEntry:) name:MPDocumentDidAddEntryNotification object:document];
   [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(_didAddGroup:) name:MPDocumentDidAddGroupNotification object:document];
+  [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(_didLockDatabase:) name:MPDocumentDidLockDatabaseNotification object:document];
   
   [self.entryViewController regsiterNotificationsForDocument:document];
-  [self.inspectorViewController regsiterNotificationsForDocument:document];
+  [self.inspectorViewController registerNotificationsForDocument:document];
   [self.outlineViewController regsiterNotificationsForDocument:document];
   [self.toolbarDelegate registerNotificationsForDocument:document];
   
   self.toolbar = [[NSToolbar alloc] initWithIdentifier:@"MainWindowToolbar"];
-  [self.toolbar setAutosavesConfiguration:YES];
-  [self.toolbar setAllowsUserCustomization:YES];
-  [self.toolbar setDelegate:self.toolbarDelegate];
-  [self.window setToolbar:self.toolbar];
-  self.toolbarDelegate.toolbar = _toolbar;
+  self.toolbar.autosavesConfiguration = YES;
+  self.toolbar.allowsUserCustomization = YES;
+  self.toolbar.delegate = self.toolbarDelegate;
+  self.window.toolbar = self.toolbar;
+  self.toolbarDelegate.toolbar = self.toolbar;
   
-  [self.splitView setTranslatesAutoresizingMaskIntoConstraints:NO];
+  self.splitView.translatesAutoresizingMaskIntoConstraints = NO;
   
-  NSView *outlineView = [self.outlineViewController view];
-  NSView *inspectorView = [self.inspectorViewController view];
-  NSView *entryView = [self.entryViewController view];
+  NSView *outlineView = self.outlineViewController.view;
+  NSView *inspectorView = self.inspectorViewController.view;
+  NSView *entryView = self.entryViewController.view;
   [self.splitView addSubview:outlineView];
   [self.splitView addSubview:entryView];
   [self.splitView addSubview:inspectorView];
@@ -129,7 +129,7 @@ typedef void (^MPPasswordChangedBlock)(BOOL didChangePassword);
     [self showEntries];
   }
   
-  [self.splitView setAutosaveName:@"SplitView"];
+  self.splitView.autosaveName = @"SplitView";
 }
 
 - (NSSearchField *)searchField {
@@ -142,10 +142,10 @@ typedef void (^MPPasswordChangedBlock)(BOOL didChangePassword);
   if(viewController && viewController.view) {
     newContentView = viewController.view;
   }
-  NSView *contentView = [[self window] contentView];
+  NSView *contentView = self.window.contentView;
   NSView *oldSubView = nil;
-  if([[contentView subviews] count] == 1) {
-    oldSubView = [contentView subviews][0];
+  if(contentView.subviews.count == 1) {
+    oldSubView = contentView.subviews[0];
   }
   if(oldSubView == newContentView) {
     return; // View is already present
@@ -182,80 +182,98 @@ typedef void (^MPPasswordChangedBlock)(BOOL didChangePassword);
   [self showInspector:self];
 }
 
+- (void)_didLockDatabase:(NSNotification *)notification {
+  [self showPasswordInput];
+}
+
 - (void)_didUnlockDatabase:(NSNotification *)notification {
   [self showEntries];
   /* Show password reminders */
   [self _presentPasswordIntervalAlerts];
 }
 
+
 #pragma mark Actions
 - (void)saveDocument:(id)sender {
-  self.passwordChangedBlock = nil;
-  MPDocument *document = [self document];
-  NSString *fileType = [document fileType];
+  MPDocument *document = self.document;
+  NSString *fileType = document.fileType;
   /* we did open as legacy */
-  if([fileType isEqualToString:MPLegacyDocumentUTI]) {
-    if(document.tree.minimumVersion != KPKLegacyVersion) {
+  if([fileType isEqualToString:MPKdbDocumentUTI]) {
+    if(document.tree.minimumVersion.format != KPKDatabaseFormatKdb) {
       NSAlert *alert = [[NSAlert alloc] init];
-      [alert setAlertStyle:NSWarningAlertStyle];
-      [alert setMessageText:NSLocalizedString(@"WARNING_ON_LOSSY_SAVE", "")];
-      [alert setInformativeText:NSLocalizedString(@"WARNING_ON_LOSSY_SAVE_DESCRIPTION", "Informative Text displayed when saving woudl yield data loss")];
+      alert.alertStyle = NSWarningAlertStyle;
+      alert.messageText = NSLocalizedString(@"WARNING_ON_LOSSY_SAVE", "");
+      alert.informativeText = NSLocalizedString(@"WARNING_ON_LOSSY_SAVE_DESCRIPTION", "Informative Text displayed when saving would yield data loss");
+      
       [alert addButtonWithTitle:NSLocalizedString(@"SAVE_LOSSY", "Save lossy")];
       [alert addButtonWithTitle:NSLocalizedString(@"CHANGE_FORMAT", "")];
       [alert addButtonWithTitle:NSLocalizedString(@"CANCEL", "Cancel")];
-      
-      //[[alert buttons][2] setKeyEquivalent:[NSString stringWithFormat:@"%c", 0x1b]];
-      [alert beginSheetModalForWindow:[self window] modalDelegate:self didEndSelector:@selector(_dataLossOnSaveAlertDidEnd:returnCode:contextInfo:) contextInfo:NULL];
+      __weak MPDocumentWindowController *welf = self;
+      [alert beginSheetModalForWindow:[welf.document windowForSheet] completionHandler:^(NSModalResponse returnCode) {
+        switch(returnCode) {
+          case NSAlertFirstButtonReturn:
+            /* Save lossy */
+            [welf.document saveDocument:nil];
+            return;
+            
+          case NSAlertSecondButtonReturn:
+            [alert.window orderOut:nil];
+            [welf.document saveDocumentAs:nil];
+            return;
+            
+          case NSAlertThirdButtonReturn:
+          default:
+            return; // Cancel or unknown
+        }
+      }];
       return;
     }
   }
   else if(!document.compositeKey) {
-    __weak MPDocument *weakDocument = [self document];
-    self.passwordChangedBlock = ^void(BOOL didChangePassword){
-      if(didChangePassword) {
+    __weak MPDocument *weakDocument = self.document;
+    
+    [self editPasswordWithCompetionHandler:^(NSInteger result) {
+      if(result == NSModalResponseOK) {
         [weakDocument saveDocument:sender];
       }
-    };
-    [self editPassword:nil];
+    }];
     return;
   }
   else if(document.shouldEnforcePasswordChange) {
     __weak MPDocument *weakDocument = [self document];
-    self.passwordChangedBlock = ^void(BOOL didChangePassword){
-      if(didChangePassword) {
-        [weakDocument saveDocument:nil];
+    [self editPasswordWithCompetionHandler:^(NSInteger result) {
+      if(result == NSModalResponseOK) {
+        [weakDocument saveDocument:sender];
       }
-    };
+    }];
     [self _presentPasswordIntervalAlerts];
     return;
   }
   /* All set and good ready to save */
-  [[self document] saveDocument:sender];
+  [self.document saveDocument:sender];
 }
 - (void)saveDocumentAs:(id)sender {
-  self.passwordChangedBlock = nil;
   MPDocument *document = [self document];
   if(document.compositeKey) {
     [[self document] saveDocumentAs:sender];
     return;
   }
   /* we need to make sure that a password is set */
-  __weak MPDocument *weakDocument = [self document];
-  self.passwordChangedBlock = ^void(BOOL didChangePassword){
-    if(didChangePassword) {
+  __weak MPDocument *weakDocument = self.document;
+  [self editPasswordWithCompetionHandler:^(NSInteger result) {
+    if(result == NSModalResponseOK) {
       [weakDocument saveDocumentAs:sender];
     }
-  };
-  [self editPassword:nil];
+  }];
 }
 
 - (void)exportAsXML:(id)sender {
   NSSavePanel *savePanel = [NSSavePanel savePanel];
-  MPDocument *document = [self document];
-  [savePanel setNameFieldStringValue:[document displayName]];
-  [savePanel setAllowsOtherFileTypes:YES];
-  [savePanel setAllowedFileTypes:@[(id)kUTTypeXML]];
-  [savePanel setCanSelectHiddenExtension:YES];
+  MPDocument *document = self.document;
+  savePanel.nameFieldStringValue = document.displayName;
+  savePanel.allowsOtherFileTypes = YES;
+  savePanel.allowedFileTypes = @[(id)kUTTypeXML];
+  savePanel.canSelectHiddenExtension = YES;
   [savePanel beginSheetModalForWindow:self.window completionHandler:^(NSInteger result) {
     if(result == NSFileHandlingPanelOKButton) {
       [document writeXMLToURL:savePanel.URL];
@@ -265,11 +283,11 @@ typedef void (^MPPasswordChangedBlock)(BOOL didChangePassword);
 
 - (void)importFromXML:(id)sender {
   NSOpenPanel *openPanel = [NSOpenPanel openPanel];
-  MPDocument *document = [self document];
-  [openPanel setAllowsMultipleSelection:NO];
-  [openPanel setCanChooseDirectories:NO];
-  [openPanel setCanChooseFiles:YES];
-  [openPanel setAllowedFileTypes:@[(id)kUTTypeXML]];
+  MPDocument *document = self.document;
+  openPanel.allowsMultipleSelection = NO;
+  openPanel.canChooseDirectories = NO;
+  openPanel.canChooseFiles = YES;
+  openPanel.allowedFileTypes = @[(id)kUTTypeXML];
   [openPanel beginSheetModalForWindow:self.window completionHandler:^(NSInteger result) {
     if(result == NSFileHandlingPanelOKButton) {
       [document readXMLfromURL:openPanel.URL];
@@ -282,7 +300,7 @@ typedef void (^MPPasswordChangedBlock)(BOOL didChangePassword);
   if(!self.fixAutotypeWindowController) {
     self.fixAutotypeWindowController = [[MPFixAutotypeWindowController alloc] init];
   }
-  self.fixAutotypeWindowController.workingDocument = [self document];
+  [self.document addWindowController:self.fixAutotypeWindowController];
   [[self.fixAutotypeWindowController window] makeKeyAndOrderFront:sender];
 }
 
@@ -295,11 +313,22 @@ typedef void (^MPPasswordChangedBlock)(BOOL didChangePassword);
 }
 
 - (void)editPassword:(id)sender {
+  [self editPasswordWithCompetionHandler:nil];
+}
+
+- (void)editPasswordWithCompetionHandler:(void (^)(NSInteger result))handler {
   if(!self.passwordEditWindowController) {
-    self.passwordEditWindowController = [[MPPasswordEditWindowController alloc] initWithDocument:[self document]];
-    self.passwordEditWindowController.delegate = self;
+    self.passwordEditWindowController = [[MPPasswordEditWindowController alloc] init];
   }
-  [NSApp beginSheet:[self.passwordEditWindowController window] modalForWindow:[self window] modalDelegate:nil didEndSelector:NULL contextInfo:NULL];
+  [self.document addWindowController:self.passwordEditWindowController];
+  
+  [self.window beginSheet:self.passwordEditWindowController.window completionHandler:^(NSModalResponse returnCode) {
+    if(handler) {
+      handler(returnCode);
+    }
+    [self.passwordEditWindowController.document removeWindowController:self.passwordEditWindowController];
+    self.passwordEditWindowController = nil;
+  }];
 }
 
 - (void)showDatabaseSettings:(id)sender {
@@ -322,30 +351,35 @@ typedef void (^MPPasswordChangedBlock)(BOOL didChangePassword);
   if(document.encrypted) {
     return; // Document already locked
   }
-  [self showPasswordInput];
   [document lockDatabase:sender];
 }
 
 - (void)createGroup:(id)sender {
-  id<MPTargetNodeResolving> target = [NSApp targetForAction:@selector(currentTargetGroup)];
-  KPKGroup *group = [target currentTargetGroup];
+  id<MPTargetNodeResolving> target = [NSApp targetForAction:@selector(currentTargetGroups)];
+  NSArray *groups = [target currentTargetGroups];
   MPDocument *document = self.document;
-  if(!group) {
-    group = document.root;
+  if(groups.count == 1) {
+    [document createGroup:groups.firstObject];
   }
-  [document createGroup:group];
+  else {
+    [document createGroup:document.root];
+  }
 }
 
 - (void)createEntry:(id)sender {
-  id<MPTargetNodeResolving> target = [NSApp targetForAction:@selector(currentTargetGroup)];
-  KPKGroup *group = [target currentTargetGroup];
-  [(MPDocument *)self.document createEntry:group];
+  id<MPTargetNodeResolving> target = [NSApp targetForAction:@selector(currentTargetGroups)];
+  NSArray *groups = [target currentTargetGroups];
+  if(groups.count == 1) {
+    [(MPDocument *)self.document createEntry:groups.firstObject];
+  }
 }
 
 - (void)delete:(id)sender {
-  id<MPTargetNodeResolving> target = [NSApp targetForAction:@selector(currentTargetNode)];
-  KPKNode *node = [target currentTargetNode];
-  [self.document deleteNode:node];
+  id<MPTargetNodeResolving> target = [NSApp targetForAction:@selector(currentTargetNodes)];
+  NSArray *nodes = [target currentTargetNodes];
+  for(KPKNode *node in nodes) {
+    [self.document deleteNode:node];
+  }
 }
 
 - (void)pickExpiryDate:(id)sender {
@@ -353,7 +387,7 @@ typedef void (^MPPasswordChangedBlock)(BOOL didChangePassword);
 }
 
 - (void)toggleInspector:(id)sender {
-  NSView *inspectorView = [self.inspectorViewController view];
+  NSView *inspectorView = self.inspectorViewController.view;
   BOOL inspectorWasVisible = [self _isInspectorVisible];
   if(inspectorWasVisible) {
     [inspectorView removeFromSuperview];
@@ -369,6 +403,14 @@ typedef void (^MPPasswordChangedBlock)(BOOL didChangePassword);
   [[NSUserDefaults standardUserDefaults] setBool:!inspectorWasVisible forKey:kMPSettingsKeyShowInspector];
 }
 
+- (void)performAutotypeForEntry:(id)sender {
+  id<MPTargetNodeResolving> entryResolver = [NSApp targetForAction:@selector(currentTargetEntries)];
+  NSArray *entries = [entryResolver currentTargetEntries];
+  if(entries.count == 1) {
+    [[MPAutotypeDaemon defaultDaemon] performAutotypeForEntry:entries.firstObject];
+  }
+}
+
 - (void)showInspector:(id)sender {
   if(![self _isInspectorVisible]) {
     [self toggleInspector:sender];
@@ -380,29 +422,29 @@ typedef void (^MPPasswordChangedBlock)(BOOL didChangePassword);
 }
 
 - (void)focusGroups:(id)sender {
-  [[self window] makeFirstResponder:[self.outlineViewController reconmendedFirstResponder]];
+  [self.window makeFirstResponder:[self.outlineViewController reconmendedFirstResponder]];
 }
 
 - (void)focusInspector:(id)sender {
-  [[self window] makeFirstResponder:[self.inspectorViewController reconmendedFirstResponder]];
+  [self.window makeFirstResponder:[self.inspectorViewController reconmendedFirstResponder]];
 }
 
 - (void)showEntries {
-  NSView *contentView = [[self window] contentView];
+  NSView *contentView = self.window.contentView;
   if(self.splitView == contentView) {
     return; // We are displaying the entries already
   }
-  if([[contentView subviews] count] == 1) {
-    [[contentView subviews][0] removeFromSuperviewWithoutNeedingDisplay];
+  if(contentView.subviews.count == 1) {
+    [contentView.subviews[0] removeFromSuperviewWithoutNeedingDisplay];
   }
   [contentView addSubview:self.splitView];
-  NSView *outlineView = [self.outlineViewController view];
-  NSView *inspectorView = [self.inspectorViewController view];
-  NSView *entryView = [self.entryViewController view];
+  NSView *outlineView = self.outlineViewController.view;
+  NSView *inspectorView = self.inspectorViewController.view;
+  NSView *entryView = self.entryViewController.view;
   
   /*
-   The current easy way to prevent layout hickups is to add the inspect
-   Add all neded contraints an then remove it again, if it was hidden
+   The current easy way to prevent layout hiccups is to add the inspector
+   Add all needed constraints an then remove it again, if it was hidden
    */
   BOOL removeInspector = NO;
   if(![inspectorView superview]) {
@@ -449,17 +491,18 @@ typedef void (^MPPasswordChangedBlock)(BOOL didChangePassword);
   [contentView layoutSubtreeIfNeeded];
 }
 
-#pragma mark Validation
-- (BOOL)validateMenuItem:(NSMenuItem *)menuItem {
-  return ([[self document] validateMenuItem:menuItem]);
+- (IBAction)showHistoryForEntry:(id)sender {
+  [self.document showHistoryForEntry:nil];
 }
 
-#pragma mark MPPasswordEditWindowDelegate
-- (void)didFinishPasswordEditing:(BOOL)changedPasswordOrKey {
-  if(self.passwordChangedBlock) {
-    self.passwordChangedBlock(changedPasswordOrKey);
-  }
-  self.passwordChangedBlock = nil;
+- (IBAction)hideHistoryForEntry:(id)sender {
+
+}
+
+
+#pragma mark Validation
+- (BOOL)validateMenuItem:(NSMenuItem *)menuItem {
+  return ([self.document validateMenuItem:menuItem]);
 }
 
 #pragma mark NSAlert handling
@@ -467,83 +510,64 @@ typedef void (^MPPasswordChangedBlock)(BOOL didChangePassword);
   MPDocument *document = [self document];
   if(document.shouldEnforcePasswordChange) {
     NSAlert *alert = [[NSAlert alloc] init];
-    [alert setAlertStyle:NSCriticalAlertStyle];
-    [alert setMessageText:NSLocalizedString(@"ENFORCE_PASSWORD_CHANGE_ALERT_TITLE", "")];
-    [alert setInformativeText:NSLocalizedString(@"ENFORCE_PASSWORD_CHANGE_ALERT_DESCRIPTION", "")];
+    
+    alert.alertStyle = NSCriticalAlertStyle;
+    alert.messageText = NSLocalizedString(@"ENFORCE_PASSWORD_CHANGE_ALERT_TITLE", "");
+    alert.informativeText = NSLocalizedString(@"ENFORCE_PASSWORD_CHANGE_ALERT_DESCRIPTION", "");
+    
     [alert addButtonWithTitle:NSLocalizedString(@"CHANGE_PASSWORD_WITH_DOTS", "")];
     [alert addButtonWithTitle:NSLocalizedString(@"CANCEL", "")];
-    [[alert buttons][1] setKeyEquivalent:[NSString stringWithFormat:@"%c", 0x1b]];
-    [alert beginSheetModalForWindow:[self window] modalDelegate:self didEndSelector:@selector(_enforcePasswordChangeAlertDidEnd:returnCode:contextInfo:) contextInfo:NULL];
+    alert.buttons[1].keyEquivalent = [NSString stringWithFormat:@"%c", 0x1b];
+    
+    [alert beginSheetModalForWindow:[self.document windowForSheet] completionHandler:^(NSModalResponse returnCode) {
+      if(NSAlertSecondButtonReturn == returnCode) {
+        return;
+      }
+      id __weak welf = self;
+      dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.5 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+        [welf editPassword:nil];
+      });
+    }];
   }
   else if(document.shouldRecommendPasswordChange) {
     NSAlert *alert = [[NSAlert alloc] init];
-    [alert setAlertStyle:NSInformationalAlertStyle];
-    [alert setMessageText:NSLocalizedString(@"RECOMMEND_PASSWORD_CHANGE_ALERT_TITLE", "")];
-    [alert setInformativeText:NSLocalizedString(@"RECOMMEND_PASSWORD_CHANGE_ALERT_DESCRIPTION", "")];
+    
+    alert.alertStyle = NSInformationalAlertStyle;
+    alert.messageText = NSLocalizedString(@"RECOMMEND_PASSWORD_CHANGE_ALERT_TITLE", "");
+    alert.informativeText = NSLocalizedString(@"RECOMMEND_PASSWORD_CHANGE_ALERT_DESCRIPTION", "");
+    
     [alert addButtonWithTitle:NSLocalizedString(@"CHANGE_PASSWORD_WITH_DOTS", "")];
     [alert addButtonWithTitle:NSLocalizedString(@"CANCEL", "")];
-    [[alert buttons][1] setKeyEquivalent:[NSString stringWithFormat:@"%c", 0x1b]];
-    [alert beginSheetModalForWindow:[self window] modalDelegate:self didEndSelector:@selector(_recommentPasswordChangeAlertDidEnd:returnCode:contextInfo:) contextInfo:NULL];
+    alert.buttons[1].keyEquivalent = [NSString stringWithFormat:@"%c", 0x1b];
+    
+    
+    [alert beginSheetModalForWindow:[self.document windowForSheet]completionHandler:^(NSModalResponse returnCode) {
+      if(returnCode == NSAlertSecondButtonReturn) {
+        return;
+      }
+      id __weak welf = self;
+      dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.5 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+        [welf editPassword:nil];
+      });
+    }];
   }
 }
 
-- (void)_dataLossOnSaveAlertDidEnd:(NSAlert *)alert returnCode:(NSInteger)returnCode contextInfo:(void *)contextInfo {
-  
-  switch(returnCode) {
-    case NSAlertFirstButtonReturn:
-      /* Save lossy */
-      [[self document] saveDocument:nil];
-      return;
-      
-    case NSAlertSecondButtonReturn:
-      /* Change Format */
-      //[[self document] setFileType:[MPDocument fileTypeForVersion:KPKXmlVersion]];
-      [[alert window] orderOut:nil];
-      [[self document] saveDocumentAs:nil];
-      return;
-      
-    case NSAlertThirdButtonReturn:
-    default:
-      return; // Cancel or unknown
+#pragma mark Sheet handling
+- (void)_showDatabaseSetting:(MPDatabaseSettingsTab)tab {
+  if(!self.documentSettingsWindowController) {
+    self.documentSettingsWindowController = [[MPDatabaseSettingsWindowController alloc] init];
   }
-}
-
-- (void)_recommentPasswordChangeAlertDidEnd:(NSAlert *)alert returnCode:(NSInteger)returnCode contextInfo:(void *)contextInfo {
-  if(returnCode == NSAlertSecondButtonReturn) {
-    return;
-  }
-  id __weak welf = self;
-  dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.5 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-    [welf editPassword:nil];
-  });
-  
-}
-
-- (void)_enforcePasswordChangeAlertDidEnd:(NSAlert *)alert returnCode:(NSInteger)returnCode contextInfo:(void *)contextInfo {
-  if(NSAlertSecondButtonReturn == returnCode) {
-    return;
-  }
-  id __weak welf = self;
-  dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.5 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-    [welf editPassword:nil];
-  });
+  [self.document addWindowController:self.documentSettingsWindowController];
+  [self.documentSettingsWindowController showSettingsTab:tab];
+  [self.window beginSheet:self.documentSettingsWindowController.window completionHandler:^(NSModalResponse returnCode) {
+    [self.documentSettingsWindowController.document removeWindowController:self.documentSettingsWindowController];
+    self.documentSettingsWindowController = nil;
+  }];
 }
 
 #pragma mark -
 #pragma mark UI Helper
-
-- (void)_showDatabaseSetting:(MPDatabaseSettingsTab)tab {
-  if(!self.documentSettingsWindowController) {
-    _documentSettingsWindowController = [[MPDatabaseSettingsWindowController alloc] initWithDocument:[self document]];
-  }
-  [self.documentSettingsWindowController showSettingsTab:tab];
-  [[NSApplication sharedApplication] beginSheet:[self.documentSettingsWindowController window]
-                                 modalForWindow:[self window]
-                                  modalDelegate:nil
-                                 didEndSelector:NULL
-                                    contextInfo:NULL];
-  
-}
 
 - (BOOL)_isInspectorVisible {
   NSView *inspectorView = [self.inspectorViewController view];

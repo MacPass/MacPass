@@ -29,8 +29,7 @@
 #import "MPActionHelper.h"
 #import "MPContextMenuHelper.h"
 
-#import "KPKGroup.h"
-#import "KPKTree.h"
+#import "KeePassKit/KeePassKit.h"
 
 NSString *const _MPOutlineMenuDefault = @"Default";
 NSString *const _MPOutlineMenuTrash = @"Trash";
@@ -58,17 +57,17 @@ NSString *const _MPOutlineMenuTemplate = @"Template";
   
   if( [item isKindOfClass:[KPKGroup class]]) {
     KPKGroup *group = (KPKGroup *)item;
-    MPDocument *document = [[NSDocumentController sharedDocumentController] currentDocument];
+    MPDocument *document = [NSDocumentController sharedDocumentController].currentDocument;
     if(group && document.root == group ) {
-
+      
     }
-    if(group && document.trash == group) {
+    if(group.isTrash) {
       [self _updateTrashMenu:menu];
     }
     else if( group && document.templates == group) {
       [self _updateTemplateMenu:menu];
     }
-    else if([document isItemTrashed:group]) {
+    else if(group.isTrashed) {
       [self _updateTrashItemMenu:menu];
     }
     else {
@@ -78,7 +77,7 @@ NSString *const _MPOutlineMenuTemplate = @"Template";
 }
 
 - (void)_updateRootMenu:(NSMenu *)menu {
-  if([[menu title] isEqualToString:_MPOutlineMenuRoot]) {
+  if([menu.title isEqualToString:_MPOutlineMenuRoot]) {
     return; // nothing to do, all fine
   }
   [menu removeAllItems];
@@ -86,11 +85,11 @@ NSString *const _MPOutlineMenuTemplate = @"Template";
                   action:[MPActionHelper actionOfType:MPActionDatabaseSettings]
            keyEquivalent:@""];
   
-  [menu setTitle:_MPOutlineMenuRoot];
+  menu.title = _MPOutlineMenuRoot;
 }
 
 - (void)_updateTrashMenu:(NSMenu *)menu {
-  if([[menu title] isEqualToString:_MPOutlineMenuTrash]) {
+  if([menu.title isEqualToString:_MPOutlineMenuTrash]) {
     return; // nothing to do, all fine
   }
   [menu removeAllItems];
@@ -102,11 +101,11 @@ NSString *const _MPOutlineMenuTemplate = @"Template";
                   action:[MPActionHelper actionOfType:MPActionEmptyTrash]
            keyEquivalent:@""];
   
-  [menu setTitle:_MPOutlineMenuTrash];
+  menu.title = _MPOutlineMenuTrash;
 }
 
 - (void)_updateTrashItemMenu:(NSMenu *)menu {
-  if([[menu title] isEqualToString:_MPOutlineMenuTrashItem]) {
+  if([menu.title isEqualToString:_MPOutlineMenuTrashItem]) {
     return; // nothing to do, all fine
   }
   [menu removeAllItems];
@@ -118,11 +117,11 @@ NSString *const _MPOutlineMenuTemplate = @"Template";
                   action:[MPActionHelper actionOfType:MPActionEmptyTrash]
            keyEquivalent:@""];
   
-  [menu setTitle:_MPOutlineMenuTrashItem];
+  menu.title = _MPOutlineMenuTrashItem;
 }
 
 - (void)_updateTemplateMenu:(NSMenu *)menu {
-  if([[menu title] isEqualToString:_MPOutlineMenuTemplate]) {
+  if([menu.title isEqualToString:_MPOutlineMenuTemplate]) {
     return; // nothing to do, all fine
   }
   [menu removeAllItems];
@@ -133,12 +132,12 @@ NSString *const _MPOutlineMenuTemplate = @"Template";
   for(NSMenuItem *item in [MPContextMenuHelper contextMenuItemsWithItems:MPContextMenuMinimal]) {
     [menu addItem:item];
   }
-  [menu setTitle:_MPOutlineMenuTemplate];
+  menu.title = _MPOutlineMenuTemplate;
 }
 
 
 - (void)_updateDefaultMenu:(NSMenu *)menu {
-  if([[menu title] isEqualToString:_MPOutlineMenuDefault]) {
+  if([menu.title isEqualToString:_MPOutlineMenuDefault]) {
     return; // nothing to do, all fine
   }
   [menu removeAllItems];

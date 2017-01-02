@@ -14,6 +14,7 @@
 @property (weak) IBOutlet NSPopUpButton *browserPopup;
 @property (weak) IBOutlet NSPopUpButton *doubleClickURLPopup;
 @property (weak) IBOutlet NSPopUpButton *doubleClickTitlePopup;
+@property (weak) IBOutlet NSButton *updatePasswordOnTemplateEntriesCheckButton;
 
 - (IBAction)_showCustomBrowserSelection:(id)sender;
 

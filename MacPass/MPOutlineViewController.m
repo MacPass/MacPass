@@ -17,16 +17,10 @@
 #import "MPOutlineContextMenuDelegate.h"
 #import "MPOutlineDataSource.h"
 
-#import "KPKEntry.h"
-#import "KPKGroup.h"
-#import "KPKMetaData.h"
-#import "KPKNode.h"
+#import "KeePassKit/KeePassKit.h"
 #import "KPKNode+IconImage.h"
-#import "KPKTimeInfo.h"
-#import "KPKTree.h"
-#import "KPKUTIs.h"
 
-#import "HNHGradientView.h"
+#import "HNHUi/HNHUi.h"
 
 #define EXPIRED_GROUP_REFRESH_SECONDS 60
 
@@ -41,11 +35,9 @@ NSString *const _MPOutlinveViewHeaderViewIdentifier = @"HeaderCell";
   
 }
 @property (weak) IBOutlet NSOutlineView *outlineView;
-@property (weak) IBOutlet NSButton *addGroupButton;
 
 @property (strong) NSTreeController *treeController;
 @property (strong) MPOutlineDataSource *datasource;
-@property (strong) NSMenu *menu;
 
 @property (copy, nonatomic) NSString *databaseNameWrapper;
 
@@ -72,25 +64,33 @@ NSString *const _MPOutlinveViewHeaderViewIdentifier = @"HeaderCell";
 }
 
 - (void)dealloc {
+  [self.outlineView unbind:NSContentBinding];
+  [self.treeController unbind:NSContentBinding];
   [[NSNotificationCenter defaultCenter] removeObserver:self];
   [self.outlineView setDelegate:nil];
 }
 
 - (void)didLoadView {
+  self.outlineView.menu = [self _contextMenu];
+  self.outlineView.allowsEmptySelection = YES;
+  self.outlineView.floatsGroupRows = NO;
+  self.outlineView.doubleAction = @selector(_doubleClickedGroup:);
+  self.outlineView.allowsMultipleSelection = YES;
   [self.outlineView setDelegate:self];
-  [self.outlineView setMenu:[self _contextMenu]];
-  [self.outlineView setAllowsEmptySelection:YES];
-  [self.outlineView setFloatsGroupRows:NO];
   [self.outlineView registerForDraggedTypes:@[ KPKGroupUTI, KPKEntryUTI ]];
   [self.outlineView setDraggingSourceOperationMask:NSDragOperationEvery forLocal:YES];
-  [self.outlineView setDoubleAction:@selector(_doubleClickedGroup:)];
-  [self.bottomBar setBorderType:HNHBorderTop|HNHBorderHighlight];
-  [self.addGroupButton setAction:[MPActionHelper actionOfType:MPActionAddGroup]];
-  
+
   [[NSNotificationCenter defaultCenter] addObserver:self
                                            selector:@selector(_didBecomeFirstResponder:)
                                                name:MPDidActivateViewNotification
                                              object:self.outlineView];
+  
+  
+  NSView *clipView = self.outlineView.enclosingScrollView.contentView;
+  [[NSNotificationCenter defaultCenter] addObserver:self
+                                           selector:@selector(_outlineDidScroll:)
+                                               name:NSViewBoundsDidChangeNotification
+                                             object:clipView];
   
 }
 
@@ -102,24 +102,30 @@ NSString *const _MPOutlinveViewHeaderViewIdentifier = @"HeaderCell";
 
 - (void)showOutline {
   if(!_bindingEstablished) {
-    MPDocument *document = [[self windowController] document];
-    [_treeController setChildrenKeyPath:NSStringFromSelector(@selector(groups))];
-    [_treeController bind:NSContentBinding toObject:document withKeyPath:NSStringFromSelector(@selector(tree)) options:nil];
-    [_outlineView bind:NSContentBinding toObject:_treeController withKeyPath:NSStringFromSelector(@selector(arrangedObjects)) options:nil];
+    MPDocument *document = self.windowController.document;
+    self.treeController.childrenKeyPath = NSStringFromSelector(@selector(groups));
+    [self.treeController bind:NSContentBinding toObject:document withKeyPath:NSStringFromSelector(@selector(tree)) options:nil];
+    [self.outlineView bind:NSContentBinding toObject:self.treeController withKeyPath:NSStringFromSelector(@selector(arrangedObjects)) options:nil];
+    [self.outlineView bind:NSSelectionIndexPathsBinding toObject:self.treeController withKeyPath:NSStringFromSelector(@selector(selectionIndexPaths)) options:nil];
     [self bind:NSStringFromSelector(@selector(databaseNameWrapper)) toObject:document.tree.metaData withKeyPath:NSStringFromSelector(@selector(databaseName)) options:nil];
-    [_outlineView setDataSource:self.datasource];
+    [self.outlineView setDataSource:self.datasource];
     _bindingEstablished = YES;
-    [self _updateExpirationDisplay];
-    
   }
   NSTreeNode *node = [_outlineView itemAtRow:0];
-  [self _expandItems:node];
+  NSInteger topRow = 0;
+  [self _expandItems:node topRow:&topRow];
+  if(topRow > 0) {
+    NSRect rowRect = [self.outlineView rectOfRow:topRow];
+    [self.outlineView scrollPoint:rowRect.origin];
+  }
 }
 
-- (void)_expandItems:(NSTreeNode *)node {
-  id nodeItem = [node representedObject];
+- (void)_expandItems:(NSTreeNode *)node topRow:(NSInteger *)topRow {
+  NSAssert(NULL != topRow, @"Invalid paramter!");
+  id nodeItem = node.representedObject;
   if([nodeItem isKindOfClass:[KPKTree class]]) {
     [self.outlineView expandItem:node expandChildren:NO];
+    *topRow = -1;
   }
   else if([nodeItem respondsToSelector:@selector(isExpanded)]) {
     if([nodeItem isExpanded]) {
@@ -129,8 +135,21 @@ NSString *const _MPOutlinveViewHeaderViewIdentifier = @"HeaderCell";
       [self.outlineView collapseItem:node];
     }
   }
-  for(NSTreeNode *child in [node childNodes]) {
-    [self _expandItems:child];
+  for(NSTreeNode *child in node.childNodes) {
+   [self _expandItems:child topRow:topRow];
+  }
+  if([nodeItem respondsToSelector:@selector(uuid)]) {
+    MPDocument *document = self.windowController.document;
+    NSUUID *uuid = [nodeItem uuid];
+    if(*topRow != 1 && [document.tree.metaData.lastTopVisibleGroup isEqual:uuid]) {
+      *topRow = [self.outlineView rowForItem:node];
+    }
+    if([uuid isEqual:document.tree.metaData.lastSelectedGroup]) {
+      NSInteger selectedRow = [self.outlineView rowForItem:node];
+      if(selectedRow >= 0) {
+        [self.outlineView selectRowIndexes:[NSIndexSet indexSetWithIndex:selectedRow] byExtendingSelection:NO];
+      }
+    }
   }
 }
 
@@ -142,21 +161,21 @@ NSString *const _MPOutlinveViewHeaderViewIdentifier = @"HeaderCell";
 }
 
 #pragma mark MPTargetNodeResolving
-- (KPKGroup *)currentTargetGroup {
-  NSInteger row = [self.outlineView clickedRow];
-  if( row < 0 ) {
-    row = [self.outlineView selectedRow];
+- (NSArray<KPKGroup *> *)currentTargetGroups {
+  /* there are instances where we get the KPKTree tree as selection, so filter this out! */
+  if([self.treeController.selectedObjects.firstObject isKindOfClass:[KPKTree class]] ) {
+    return @[];
   }
-  return [[self.outlineView itemAtRow:row] representedObject];
+  return self.treeController.selectedObjects;
 }
 
-- (KPKNode *)currentTargetNode {
-  KPKGroup *group = [self currentTargetGroup];
-  if(group) {
-    return group;
+- (NSArray<KPKNode *> *)currentTargetNodes {
+  NSArray *groups = [self currentTargetGroups];
+  if(groups.count > 0) {
+    return groups;
   }
-  MPDocument *document = [[self windowController] document];
-  return document.selectedItem;
+  MPDocument *document = self.windowController.document;
+  return document.selectedNodes;
 }
 
 #pragma mark Notifications
@@ -165,16 +184,34 @@ NSString *const _MPOutlinveViewHeaderViewIdentifier = @"HeaderCell";
 }
 
 - (void)clearSelection {
-  [_outlineView deselectAll:nil];
-  [self outlineViewSelectionDidChange:nil];
+  [self.outlineView deselectAll:nil];
+  NSNotification *notification = [NSNotification notificationWithName:NSOutlineViewSelectionDidChangeNotification object:self.outlineView];
+  [self outlineViewSelectionDidChange:notification];
 }
 
 - (void)_didBecomeFirstResponder:(NSNotification *)notification {
-  if( [notification object] != _outlineView ) {
+  if( [notification object] != self.outlineView ) {
     return; // Nothing we need to worry about
   }
-  MPDocument *document = [[self windowController] document];
-  document.selectedItem = document.selectedGroup;
+  MPDocument *document = self.windowController.document;
+  document.selectedGroups = [self currentTargetGroups];
+}
+
+- (void)_outlineDidScroll:(NSNotification *)notification {
+  NSView *clipView = notification.object;
+  if(nil == clipView || self.outlineView.enclosingScrollView.contentView != clipView) {
+    return; // Wrong view
+  }
+  /* padding to compensate for clipped items */
+  CGPoint point = CGPointMake(clipView.bounds.origin.x, clipView.bounds.origin.y + 11);
+  NSInteger topRow = [self.outlineView rowAtPoint:point];
+  id item = [[self.outlineView itemAtRow:topRow] representedObject];
+  if([item isKindOfClass:[KPKGroup class]]) {
+    KPKGroup *group = item;
+    NSLog(@"%@", group.title);
+    MPDocument *document = self.windowController.document;
+    document.tree.metaData.lastTopVisibleGroup = group.uuid;
+  }
 }
 
 # pragma mark MPDocument Notifications
@@ -190,8 +227,8 @@ NSString *const _MPOutlinveViewHeaderViewIdentifier = @"HeaderCell";
 }
 
 - (id)itemUnderMouse {
-  NSPoint mouseLocation = [[self.outlineView window] mouseLocationOutsideOfEventStream];
-  NSPoint localPoint = [self.outlineView convertPoint:mouseLocation fromView:[[self.outlineView window] contentView]];
+  NSPoint mouseLocation = [self.outlineView.window mouseLocationOutsideOfEventStream];
+  NSPoint localPoint = [self.outlineView convertPoint:mouseLocation fromView:self.outlineView.window.contentView];
   NSInteger row = [self.outlineView rowAtPoint:localPoint];
   if(row == -1) {
     return nil; // No row was hit
@@ -203,7 +240,7 @@ NSString *const _MPOutlinveViewHeaderViewIdentifier = @"HeaderCell";
 #pragma mark Actions
 
 - (void)_doubleClickedGroup:(id)sender {
-  [[self windowController] showInspector:sender];
+  [(MPDocumentWindowController *)self.windowController showInspector:sender];
 }
 
 #pragma mark NSOutlineViewDelegate
@@ -214,13 +251,16 @@ NSString *const _MPOutlinveViewHeaderViewIdentifier = @"HeaderCell";
     [view.textField bind:NSValueBinding toObject:self  withKeyPath:NSStringFromSelector(@selector(databaseNameWrapper)) options:nil];
   }
   else {
-    KPKGroup *group = [item representedObject];
     view = [outlineView makeViewWithIdentifier:_MPOutlineViewDataViewIdentifier owner:self];
     
-    [[view imageView] bind:NSValueBinding toObject:group withKeyPath:NSStringFromSelector(@selector(iconImage)) options:nil];
-    [[view textField] bind:NSValueBinding toObject:group withKeyPath:NSStringFromSelector(@selector(name)) options:nil];
-    NSString *entriesCountKeyPath = [[NSString alloc] initWithFormat:@"%@.%@", NSStringFromSelector(@selector(entries)), @"@count"];
-    [[view textField] bind:NSStringFromSelector(@selector(count)) toObject:group withKeyPath:entriesCountKeyPath options:nil];
+    NSString *iconImageKeyPath = [NSString stringWithFormat:@"%@.%@", NSStringFromSelector(@selector(representedObject)), NSStringFromSelector(@selector(iconImage))];
+    NSString *titleKeyPath = [NSString stringWithFormat:@"%@.%@", NSStringFromSelector(@selector(representedObject)), NSStringFromSelector(@selector(title))];
+    [[view imageView] bind:NSValueBinding toObject:item withKeyPath:iconImageKeyPath options:nil];
+    [[view textField] bind:NSValueBinding toObject:item withKeyPath:titleKeyPath options:nil];
+    
+    
+    NSString *entriesCountKeyPath = [[NSString alloc] initWithFormat:@"%@.%@.%@", NSStringFromSelector(@selector(representedObject)), NSStringFromSelector(@selector(entries)), @"@count"];
+    [[view textField] bind:NSStringFromSelector(@selector(count)) toObject:item withKeyPath:entriesCountKeyPath options:nil];
   }
   
   return view;
@@ -235,10 +275,10 @@ NSString *const _MPOutlinveViewHeaderViewIdentifier = @"HeaderCell";
 }
 
 - (void)outlineViewSelectionDidChange:(NSNotification *)notification {
-  NSTreeNode *treeNode = [_outlineView itemAtRow:[_outlineView selectedRow]];
-  KPKGroup *selectedGroup = [treeNode representedObject];
-  MPDocument *document = [[self windowController] document];
-  document.selectedGroup = selectedGroup;
+  MPDocument *document = self.windowController.document;
+  NSArray<KPKGroup *> *groups = [self currentTargetGroups];
+  document.tree.metaData.lastSelectedGroup = (groups.count == 1 ? groups.firstObject.uuid : [NSUUID kpk_nullUUID]);
+  document.selectedGroups = groups;
 }
 
 - (BOOL)outlineView:(NSOutlineView *)outlineView shouldShowOutlineCellForItem:(id)item {
@@ -267,7 +307,8 @@ NSString *const _MPOutlinveViewHeaderViewIdentifier = @"HeaderCell";
 - (void)outlineView:(NSOutlineView *)outlineView didRemoveRowView:(NSTableRowView *)rowView forRow:(NSInteger)row {
   /* Deletion of an item */
   if(row == -1) {
-    [self outlineViewSelectionDidChange:nil];
+    NSNotification *notification = [NSNotification notificationWithName:NSOutlineViewSelectionDidChangeNotification object:outlineView];
+    [self outlineViewSelectionDidChange:notification];
   }
 }
 
@@ -277,14 +318,8 @@ NSString *const _MPOutlinveViewHeaderViewIdentifier = @"HeaderCell";
   if(![document validateUserInterfaceItem:menuItem]) {
     return NO;
   }
-  id selected = [[self currentTargetNode] asGroup];
-  if(!selected) {
-    return NO;
-  }
-  if(selected == document.trash) {
-    return NO;
-  }
-  return ![document isItemTrashed:selected];
+  KPKGroup *group = [self currentTargetNodes].firstObject.asGroup;
+  return group.isTrash && group.isTrashed;
 }
 
 - (NSMenu *)_contextMenu {
@@ -296,15 +331,6 @@ NSString *const _MPOutlinveViewHeaderViewIdentifier = @"HeaderCell";
 - (BOOL)_itemIsRootNode:(id)item {
   id node = [item representedObject];
   return [node isKindOfClass:[KPKTree class]];
-}
-
-- (void)_updateExpirationDisplay {
-  MPDocument *document = [[self windowController] document];
-  [document.root.timeInfo isExpired];
-  [[document.tree allGroups] enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
-    [[obj timeInfo] isExpired];
-  }];
-  [self performSelector:@selector(_updateExpirationDisplay) withObject:nil afterDelay:EXPIRED_GROUP_REFRESH_SECONDS];
 }
 
 @end

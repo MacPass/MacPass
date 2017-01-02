@@ -9,14 +9,9 @@
 #import "MPFixAutotypeWindowController.h"
 
 #import "MPDocument.h"
-#import "MPDocument+Autotype.h"
 #import "MPIconHelper.h"
 
-#import "KPKNode.h"
-#import "KPKEntry.h"
-#import "KPKGroup.h"
-#import "KPKAutotype.h"
-#import "KPKWindowAssociation.h"
+#import "KeePassKit/KeePassKit.h"
 
 
 NSString *const kMPAutotypeCell = @"AutotypeCell";
@@ -65,13 +60,10 @@ NSString *const kMPIconCell = @"IconCell";
 
 #pragma mark -
 #pragma mark Properties
-
-- (void)setWorkingDocument:(MPDocument *)workingDocument {
-  if(_workingDocument != workingDocument) {
-    _workingDocument = workingDocument;
-  }
+- (void)setDocument:(id)document {
+  [super setDocument:document];
   if(!_didRegisterForUndoRedo) {
-    NSUndoManager *manager = [_workingDocument undoManager];
+    NSUndoManager *manager = [document undoManager];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(_didChangeDocument:) name:NSUndoManagerDidRedoChangeNotification object:manager];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(_didChangeDocument:) name:NSUndoManagerDidUndoChangeNotification object:manager];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(_didChangeDocument:) name:NSUndoManagerDidCloseUndoGroupNotification object:manager];
@@ -84,7 +76,7 @@ NSString *const kMPIconCell = @"IconCell";
 #pragma mark Actions
 
 - (void)clearAutotype:(id)sender {
-  [[self.workingDocument undoManager] beginUndoGrouping];
+  [[self.document undoManager] beginUndoGrouping];
   NSIndexSet *indexes = [self.tableView selectedRowIndexes];
   MPFixAutotypeWindowController __weak *weakSelf = self;
   [indexes enumerateIndexesUsingBlock:^(NSUInteger idx, BOOL *stop) {
@@ -99,8 +91,8 @@ NSString *const kMPIconCell = @"IconCell";
       [item setKeystrokeSequence:nil];
     }
   }];
-  [[self.workingDocument undoManager] endUndoGrouping];
-  [[self.workingDocument undoManager] setActionName:@"Clear Autotype"];
+  [[self.document undoManager] endUndoGrouping];
+  [[self.document undoManager] setActionName:@"Clear Autotype"];
   [self.tableView reloadDataForRowIndexes:indexes columnIndexes:[NSIndexSet indexSetWithIndexesInRange:NSMakeRange(0,2)]];
 }
 
@@ -150,7 +142,7 @@ NSString *const kMPIconCell = @"IconCell";
   }
   else {
     BOOL isMalformed = [MPDocument isCandidateForMalformedAutotype:item];
-    BOOL isDefault = [entry.autotype hasDefaultKeystrokeSequence] || [group hasDefaultAutotypeSequence] || [association hasDefaultKeystrokeSequence];
+    BOOL isDefault = entry.autotype.hasDefaultKeystrokeSequence || group.hasDefaultAutotypeSequence || association.hasDefaultKeystrokeSequence;
     if([[tableColumn identifier] isEqualToString:kMPIsDefaultCell]) {
       return isDefault ? @"Yes" : @"No";
     }
@@ -166,13 +158,13 @@ NSString *const kMPIconCell = @"IconCell";
   id item = [self entriesAndGroups][row];
   
   if([item isKindOfClass:[KPKEntry class]]) {
-    [[item autotype] setDefaultKeystrokeSequence:object];
+    ((KPKEntry *)item).autotype.defaultKeystrokeSequence = object;
   }
   else if([item isKindOfClass:[KPKGroup class]]) {
-    [item setDefaultAutoTypeSequence:object];
+    ((KPKGroup *)item).defaultAutoTypeSequence = object;
   }
   else if([item isKindOfClass:[KPKWindowAssociation class]]) {
-    [item setKeystrokeSequence:object];
+    ((KPKWindowAssociation *)item).keystrokeSequence = object;
   }
 }
 
@@ -180,7 +172,7 @@ NSString *const kMPIconCell = @"IconCell";
 #pragma mark NSTableViewDelegate
 
 - (BOOL)tableView:(NSTableView *)tableView shouldEditTableColumn:(NSTableColumn *)tableColumn row:(NSInteger)row {
-  return [[tableColumn identifier] isEqualToString:kMPAutotypeCell];
+  return [tableColumn.identifier isEqualToString:kMPAutotypeCell];
 }
 
 - (BOOL)tableView:(NSTableView *)tableView isGroupRow:(NSInteger)row {
@@ -192,10 +184,10 @@ NSString *const kMPIconCell = @"IconCell";
 #pragma mark MenuItem Validation
 
 - (BOOL)validateMenuItem:(NSMenuItem *)menuItem {
-  if(!([menuItem action] == @selector(clearAutotype:))) {
+  if(!(menuItem.action == @selector(clearAutotype:))) {
     return NO;
   }
-  return ([[self.tableView selectedRowIndexes] count] > 0);
+  return (self.tableView.selectedRowIndexes.count > 0);
 }
 
 #pragma mark -
@@ -203,7 +195,7 @@ NSString *const kMPIconCell = @"IconCell";
 
 - (NSArray *)entriesAndGroups {
   if(nil == _itemsCache) {
-    _itemsCache = [self.workingDocument malformedAutotypeItems];
+    _itemsCache = [self.document malformedAutotypeItems];
   }
   return _itemsCache;
 }

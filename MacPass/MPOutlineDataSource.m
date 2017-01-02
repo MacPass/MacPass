@@ -24,11 +24,7 @@
 #import "MPDocument.h"
 #import "MPConstants.h"
 
-#import "KPKGroup.h"
-#import "KPKEntry.h"
-#import "KPKUTIs.h"
-
-#import "NSUUID+KeePassKit.h"
+#import "KeePassKit/KeePassKit.h"
 
 @interface MPOutlineDataSource ()
 
@@ -40,20 +36,20 @@
 @implementation MPOutlineDataSource
 
 - (BOOL)outlineView:(NSOutlineView *)outlineView writeItems:(NSArray *)items toPasteboard:(NSPasteboard *)pasteboard {
-  if([items count] == 1) {
-    self.localDraggedGroup = nil;  id item = [[items lastObject] representedObject];
-    if(![item isKindOfClass:[KPKGroup class]]) {
-      return NO;
-    }
-    KPKGroup *draggedGroup = item;
-    [pasteboard writeObjects:@[draggedGroup]];
-    return (nil != draggedGroup.parent);
+  if(items.count != 1) {
+    return NO;
   }
-  return NO;
+  self.localDraggedGroup = nil;  id item = [items.lastObject representedObject];
+  if(![item isKindOfClass:[KPKGroup class]]) {
+    return NO;
+  }
+  KPKGroup *draggedGroup = item;
+  [pasteboard writeObjects:@[draggedGroup]];
+  return (nil != draggedGroup.parent);
 }
 
 - (NSDragOperation)outlineView:(NSOutlineView *)outlineView validateDrop:(id<NSDraggingInfo>)info proposedItem:(id)item proposedChildIndex:(NSInteger)index {
-
+  
   /* Clean up our local search */
   self.localDraggedEntry = nil;
   self.localDraggedGroup = nil;
@@ -62,7 +58,7 @@
   NSDragOperation operationMask = NSDragOperationMove;
   /*
    If we can support copy on drag, this can be used
-   to optain the dragging modifier mask the user presses
+   to obtain the dragging modifier mask the user presses
    */
   BOOL localCopy = NO;
   if([info draggingSourceOperationMask] == NSDragOperationCopy) {
@@ -87,7 +83,7 @@
   
   KPKGroup *targetGroup = targetItem;
   BOOL validTarget = YES;
-  MPDocument *document = [[[outlineView window] windowController] document];
+  MPDocument *document = outlineView.window.windowController.document;
   /* Dragging Groups */
   if(draggedGroup) {
     self.localDraggedGroup = [document findGroup:draggedGroup.uuid];
@@ -99,7 +95,7 @@
         validTarget &= index != NSOutlineViewDropOnItemIndex;
         validTarget &= index != [self.localDraggedGroup.parent.groups indexOfObject:self.localDraggedGroup];
       }
-      BOOL isAnchesor = [self.localDraggedGroup isAnchestorOfGroup:targetGroup];
+      BOOL isAnchesor = [self.localDraggedGroup isAnchestorOf:targetGroup];
       validTarget &= !isAnchesor;
     }
     else {
@@ -143,9 +139,9 @@
   KPKGroup *targetGroup = (KPKGroup *)targetItem;
   if(draggedGroup) {
     if(copyItem || (nil == self.localDraggedGroup) ) {
-      draggedGroup = [draggedGroup copyWithName:nil];
-      [targetGroup addGroup:draggedGroup atIndex:index];
-      [targetGroup.undoManager setActionName:NSLocalizedString(@"COPY_GROUP", "")];
+      draggedGroup = [draggedGroup copyWithTitle:nil options:kKPKCopyOptionNone];
+      [draggedGroup addToGroup:targetGroup atIndex:index];
+      [draggedGroup.undoManager setActionName:NSLocalizedString(@"COPY_GROUP", "")];
       return YES;
     }
     else if(self.localDraggedGroup) {
@@ -159,13 +155,13 @@
   }
   else if(draggedEntry) {
     if(copyItem || (nil == self.localDraggedEntry)) {
-      draggedEntry = [draggedEntry copyWithTitle:nil];
-      [targetGroup addEntry:draggedEntry atIndex:index];
-      [targetGroup.undoManager setActionName:NSLocalizedString(@"COPY_ENTRY", "")];
+      draggedEntry = [draggedEntry copyWithTitle:nil options:kKPKCopyOptionNone];
+      [draggedEntry addToGroup:targetGroup];
+      [draggedEntry.undoManager setActionName:NSLocalizedString(@"COPY_ENTRY", "")];
       return YES;
     }
     else if(self.localDraggedEntry) {
-      [self.localDraggedEntry moveToGroup:targetGroup atIndex:index];
+      [self.localDraggedEntry moveToGroup:targetGroup];
       [self.localDraggedEntry.undoManager setActionName:NSLocalizedString(@"MOVE_ENTRY", "")];
       return YES;
     }
@@ -174,25 +170,25 @@
 }
 
 - (BOOL)_readDataFromPasteboard:(NSPasteboard *)pasteboard group:(KPKGroup **)group entry:(KPKEntry **)entry;{
-
+  
   if(entry == NULL || group == NULL) {
     return NO; // Need valid pointers
   }
   /* Cleanup old stuff */
   
   NSArray *types = [pasteboard types];
-  if([types count] > 1 || [types count] == 0) {
+  if(types.count > 1 || types.count == 0) {
     return NO;
   }
   
-  NSString *draggedType = [types lastObject];
+  NSString *draggedType = types.lastObject;
   if([draggedType isEqualToString:KPKGroupUTI]) {
     // dragging group
     NSArray *groups = [pasteboard readObjectsForClasses:@[[KPKGroup class]] options:nil];
-    if([groups count] != 1) {
+    if(groups.count != 1) {
       return NO;
     }
-    *group = [groups lastObject];
+    *group = groups.lastObject;
     return YES;
   }
   else if([draggedType isEqualToString:KPKEntryUTI]) {
@@ -200,7 +196,7 @@
     if([entries count] != 1) {
       return NO; // NO entry readable
     }
-    *entry = [entries lastObject];
+    *entry = entries.lastObject;
     return YES;
   }
   return NO;

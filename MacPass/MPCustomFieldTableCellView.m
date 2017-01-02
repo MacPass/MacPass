@@ -7,11 +7,28 @@
 //
 
 #import "MPCustomFieldTableCellView.h"
+#import "MPDocument.h"
 
 @implementation MPCustomFieldTableCellView
 
-- (void)setBackgroundStyle:(NSBackgroundStyle)backgroundStyle {
-  [super setBackgroundStyle:NSBackgroundStyleLight];
+- (void)objectDidBeginEditing:(id)editor {
+  [self.window.windowController.document objectDidBeginEditing:editor];
 }
 
+- (void)objectDidEndEditing:(id)editor {
+  [self.window.windowController.document objectDidEndEditing:editor];
+}
+
+- (void)setBackgroundStyle:(NSBackgroundStyle)backgroundStyle {
+  super.backgroundStyle = NSBackgroundStyleLight;
+}
+
+- (void)setValue:(id)value forKeyPath:(NSString *)keyPath {
+  if([keyPath hasPrefix:@"objectValue."]) {
+    [self.window.windowController.document willChangeModelProperty];
+    [super setValue:value forKeyPath:keyPath];
+    [self.window.windowController.document didChangeModelProperty];
+  }
+  [super setValue:value forKeyPath:keyPath];
+}
 @end

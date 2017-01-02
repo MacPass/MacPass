@@ -33,7 +33,7 @@
     if(validateTarget) {
       isValid &= [validateTarget validateToolbarItem:self];
     }
-    [self setEnabled:isValid];
+    self.enabled = isValid;
   }
 }
 @end

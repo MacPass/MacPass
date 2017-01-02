@@ -10,6 +10,7 @@
 
 @interface MPLockDaemon : NSObject
 
-+ (MPLockDaemon *)sharedInstance;
++ (instancetype)defaultDaemon;
++ (instancetype)init NS_UNAVAILABLE;
 
 @end

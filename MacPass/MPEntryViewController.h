@@ -37,7 +37,7 @@ typedef NS_ENUM( NSUInteger, MPCopyContentTypeTag) {
 @property (weak,readonly) NSTableView *entryTable;
 @property (readonly, strong) NSArrayController *entryArrayController;
 
-/* Call this after alle viewcontroller are loaded */
+/* Call this after all view controllers are loaded */
 - (void)regsiterNotificationsForDocument:(MPDocument *)document;
 
 /* Copy/Paste */
@@ -46,9 +46,6 @@ typedef NS_ENUM( NSUInteger, MPCopyContentTypeTag) {
 - (void)copyCustomAttribute:(id)sender;
 - (void)copyURL:(id)sender;
 - (void)openURL:(id)sender;
-
-/* Settings migration */
-+ (NSString *)timeInfoModificationTimeKeyPath;
 
 @end
 

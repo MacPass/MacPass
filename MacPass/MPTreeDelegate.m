@@ -29,11 +29,15 @@
 }
 
 - (NSString *)defaultAutotypeSequenceForTree:(KPKTree *)tree {
-  return  [[NSUserDefaults standardUserDefaults] stringForKey:kMPSettingsKeyDefaultGlobalAutotypeSequence];
+  return [[NSUserDefaults standardUserDefaults] stringForKey:kMPSettingsKeyDefaultGlobalAutotypeSequence];
 }
 
 - (BOOL)shouldEditTree:(KPKTree *)tree {
-  return (NO == self.document.isReadOnly);
+  return !self.document.isReadOnly;
+}
+
+- (NSUndoManager *)undoManagerForTree:(KPKTree *)tree {
+  return self.document.undoManager;
 }
 
 @end

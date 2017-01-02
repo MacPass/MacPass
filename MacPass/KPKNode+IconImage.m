@@ -8,11 +8,7 @@
 
 #import "KPKNode+IconImage.h"
 
-#import "KPKIcon.h"
-#import "KPKGroup.h"
-#import "KPKTree.h"
-#import "KPKMetaData.h"
-#import "KPKTimeInfo.h"
+#import "KeePassKit/KeePassKit.h"
 
 #import "MPIconHelper.h"
 
@@ -36,12 +32,8 @@
     const BOOL isGroup = [self isKindOfClass:[KPKGroup class]];
     return [MPIconHelper icon:(isGroup ? MPIconExpiredGroup : MPIconExpiredEntry)];
   }
-  
-  if(self.iconUUID) {
-    KPKIcon *icon = [self.tree.metaData findIcon:self.iconUUID];
-    if(icon && icon.image) {
-      return icon.image;
-    }
+  if(self.icon) {
+    return self.icon.image;
   }
   return [MPIconHelper icon:(MPIconType)self.iconId];
 }

@@ -14,8 +14,8 @@
 @protocol MPTargetNodeResolving <NSObject>
 
 @optional
-- (KPKNode *)currentTargetNode;
-- (KPKGroup *)currentTargetGroup;
-- (KPKEntry *)currentTargetEntry;
+- (NSArray<KPKNode *> *)currentTargetNodes;
+- (NSArray<KPKGroup *> *)currentTargetGroups;
+- (NSArray<KPKEntry *> *)currentTargetEntries;
 
 @end

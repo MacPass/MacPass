@@ -38,12 +38,12 @@
     NSData *data = [NSKeyedArchiver archivedDataWithRootObject:[self cell]];
     NSKeyedUnarchiver *unarchiver = [[NSKeyedUnarchiver alloc] initForReadingWithData:data];
     MPSegmentedContextCell *cell = [[MPSegmentedContextCell alloc] initWithCoder:unarchiver];
-    [self setCell:cell];
+    self.cell = cell;
 
-    [self setFocusRingType:NSFocusRingTypeNone];
-    [self setSegmentCount:2];
+    self.focusRingType = NSFocusRingTypeNone;
+    self.segmentCount = 2;
     [cell setTrackingMode:NSSegmentSwitchTrackingMomentary];
-    [self setSegmentStyle:NSSegmentStyleTexturedSquare];
+    self.segmentStyle = NSSegmentStyleTexturedSquare;
     [cell setWidth:31 forSegment:0];
     [cell setWidth:17 forSegment:1];
 
@@ -63,7 +63,7 @@
 }
 
 /*
- Block the segment setter to prevent accidential settings
+ Block the segment setter to prevent accidental settings
  */
 - (void)setImage:(NSImage *)image forSegment:(NSInteger)segment {
   if(segment < 2) {
@@ -73,7 +73,7 @@
 
 - (void)setSegmentCount:(NSInteger)count {
   if(count == 2) {
-    [super setSegmentCount:count];
+    super.segmentCount = count;
   }
 }
 
@@ -82,10 +82,43 @@
 }
 
 - (void)showContextMenu:(id)sender {
-  NSPoint point = [self frame].origin;
-  point.x = [[self cell] widthForSegment:0];
-  point.y = NSHeight([self frame]) + 3;
+  NSPoint point = self.frame.origin;
+  point.x = [self.cell widthForSegment:0];
+  point.y = NSHeight(self.frame) + 3;
   [_contextMenu popUpMenuPositioningItem:nil atLocation:point inView:self];
+}
+
+- (void)setControlSize:(NSControlSize)controlSize {
+  NSImageRep *rep = [[self imageForSegment:0] bestRepresentationForRect:NSMakeRect(0, 0, 100, 100) context:nil hints:nil];
+  CGFloat scale = rep.size.width / rep.size.height;
+  switch (controlSize) {
+    case NSRegularControlSize:
+      [self imageForSegment:0].size = NSMakeSize(16 * scale, 16);
+      break;
+      
+    case NSSmallControlSize:
+      [self imageForSegment:0].size = NSMakeSize(14 * scale, 14);
+      break;
+      
+    case NSMiniControlSize:
+      [self imageForSegment:0].size = NSMakeSize(8 * scale, 8);
+      
+    default:
+      break;
+  }
+  if([self.superclass instancesRespondToSelector:@selector(setControlSize:)]) {
+    super.controlSize = controlSize;
+  }
+  else {
+    self.cell.controlSize = controlSize;
+  }
+}
+
+- (NSControlSize)controlSize {
+  if([self.superclass instancesRespondToSelector:@selector(controlSize)]) {
+    return super.controlSize;
+  }
+  return self.cell.controlSize;
 }
 
 @end

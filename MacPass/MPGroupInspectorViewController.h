@@ -8,20 +8,18 @@
 
 #import "MPViewController.h"
 @class MPDocument;
-@class HNHRoundedTextField;
+@class HNHUIRoundedTextField;
 
 @interface MPGroupInspectorViewController : MPViewController
 
 @property (strong) IBOutlet NSView *contentView;
-@property (weak) IBOutlet HNHRoundedTextField *titleTextField;
+@property (weak) IBOutlet HNHUIRoundedTextField *titleTextField;
 
 @property (weak) IBOutlet NSButton *expiresCheckButton;
 @property (weak) IBOutlet NSButton *expireDateSelectButton;
 
 @property (weak) IBOutlet NSPopUpButton *searchPopupButton;
 @property (weak) IBOutlet NSPopUpButton *autotypePopupButton;
-@property (weak) IBOutlet HNHRoundedTextField *autotypeSequenceTextField;
-
-- (void)setupBindings:(MPDocument *)document;
+@property (weak) IBOutlet HNHUIRoundedTextField *autotypeSequenceTextField;
 
 @end

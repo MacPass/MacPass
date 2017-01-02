@@ -10,11 +10,10 @@
 #import "MPDocument.h"
 #import "MPConstants.h"
 
-#import "KPKUTIs.h"
-#import "KPKTree.h"
+#import "KeePassKit/KeePassKit.h"
 
 @interface MPSavePanelAccessoryViewController ()
-@property (readwrite, assign) KPKVersion selectedVersion;
+@property (readwrite, assign) KPKDatabaseFormat selectedVersion;
 @end
 
 @implementation MPSavePanelAccessoryViewController
@@ -31,26 +30,26 @@
     NSString *extension = [self.document fileNameExtensionForType:uti saveOperation:NSSaveOperation];
     NSString *title = [NSString stringWithFormat:@"%@ (%@)", description, extension];
     [menu addItemWithTitle:title action:@selector(setFileType:) keyEquivalent:@""];
-    NSMenuItem *item = [[menu itemArray] lastObject];
-    [item setTarget:self];
-    [item setRepresentedObject:uti];
+    NSMenuItem *item = menu.itemArray.lastObject;
+    item.target =  self;
+    item.representedObject = uti;
   }
-  [self.fileTypePopupButton setMenu:menu];
-  [self.infoTextField setHidden:YES];
+  self.fileTypePopupButton.menu = menu;
+  self.infoTextField.hidden = YES;
   [self updateView];
 }
 
 - (IBAction)setFileType:(id)sender {
-  NSString *uti = [[self.fileTypePopupButton selectedItem] representedObject];
-  if([uti isEqualToString:MPLegacyDocumentUTI]) {
-    self.selectedVersion = KPKLegacyVersion;
+  NSString *uti = self.fileTypePopupButton.selectedItem.representedObject;
+  if([uti isEqualToString:MPKdbDocumentUTI]) {
+    self.selectedVersion = KPKDatabaseFormatKdb;
   }
-  else if([uti isEqualToString:MPXMLDocumentUTI]) {
-    self.selectedVersion = KPKXmlVersion;
+  else if([uti isEqualToString:MPKdbxDocumentUTI]) {
+    self.selectedVersion = KPKDatabaseFormatKdbx;
   }
   NSAssert(uti != nil, @"UTI cannot be nil");
   [self _updateNote];
-  [self.savePanel setAllowedFileTypes:@[uti]];
+  self.savePanel.allowedFileTypes = @[uti];
 }
 
 - (void)setDocument:(MPDocument *)document {
@@ -64,16 +63,16 @@
   /*
    Access view at least once to make sure it is properly loaded
    */
-  NSView *view = [self view];
+  NSView *view = self.view;
   NSAssert(view != nil, @"View has to be loaded at this point");
-  switch(self.document.versionForFileType) {
-    case KPKLegacyVersion:
+  switch(self.document.formatForFileType) {
+    case KPKDatabaseFormatKdb:
       [self.fileTypePopupButton selectItemAtIndex:1];
       break;
-    case KPKXmlVersion:
+    case KPKDatabaseFormatKdbx:
       [self.fileTypePopupButton selectItemAtIndex:0];
       break;
-    case KPKUnknownVersion:
+    default:
       NSAssert(NO, @"Minimum Version should always be valid");
       break;
   }
@@ -82,9 +81,9 @@
 }
 
 - (void)_updateNote {
-  NSString *uti = [[self.fileTypePopupButton selectedItem] representedObject];
-  BOOL showInfoText = (self.document.tree.minimumVersion == KPKXmlVersion && [uti isEqualToString:MPLegacyDocumentUTI]);
-  [self.infoTextField setHidden:!showInfoText];
+  NSString *uti = self.fileTypePopupButton.selectedItem.representedObject;
+  BOOL showInfoText = (self.document.tree.minimumVersion.format == KPKDatabaseFormatKdbx && [uti isEqualToString:MPKdbDocumentUTI]);
+  self.infoTextField.hidden = !showInfoText;
 }
 
 @end

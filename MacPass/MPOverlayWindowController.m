@@ -33,11 +33,11 @@
 }
 
 - (id)initWithWindow:(NSWindow *)window {
-    self = [super initWithWindow:window];
-    if (self) {
-        // Initialization code here.
-    }
-    return self;
+  self = [super initWithWindow:window];
+  if (self) {
+    // Initialization code here.
+  }
+  return self;
 }
 
 - (void)windowDidLoad {
@@ -45,15 +45,29 @@
   [self.window setStyleMask:NSBorderlessWindowMask];
   [self.window setAlphaValue:0];
   [self.window setOpaque:NO];
-  [self.window setHasShadow:NO];
+  [self.window setHasShadow:YES];
   [[self.textField cell] setBackgroundStyle:NSBackgroundStyleLowered];
   [[self.imageView cell] setBackgroundStyle:NSBackgroundStyleDark];
   [[self.imageView cell] setImageAlignment:NSImageAlignCenter];
 }
 
 - (void)displayOverlayImage:(NSImage *)imageOrNil label:(NSString *)labelOrNil atView:(NSView *)view {
+  if(![NSThread currentThread].isMainThread) {  NSAssert(NO, @"Must be called on main thread"); }
+  /*
+  if(![NSThread currentThread].isMainThread) {
+    __weak MPOverlayWindowController *welf = self;
+    dispatch_async(dispatch_get_main_queue(), ^{
+      [welf displayOverlayImage:imageOrNil label:labelOrNil atView:view];
+    });
+    return;
+  }
+  */
+  if(self.isAnimating) {
+    return;
+  }
+  self.isAnimating = YES;
   /* make window transparent */
-
+  
   [self.window setAlphaValue:0];
   [self.window setIsVisible:YES];
   
@@ -70,22 +84,36 @@
    Center in view
    */
   if(view) {
-    NSWindow *parentWindow = [view window];
-    NSRect parentFrame = [parentWindow frame];
-    NSRect myFrame = [self.window frame];
+    self.window.level = NSNormalWindowLevel;
+    NSWindow *parentWindow = view.window;
+    NSRect parentFrame = parentWindow.frame;
+    NSRect myFrame = self.window.frame;
     NSPoint newOrigin = parentFrame.origin;
     newOrigin.x += 0.5 * (parentFrame.size.width - myFrame.size.width);
     newOrigin.y += 0.5 * (parentFrame.size.height - myFrame.size.height);
     [self.window setFrameOrigin:newOrigin];
     [parentWindow addChildWindow:self.window ordered:NSWindowAbove];
-    [NSAnimationContext runAnimationGroup:^(NSAnimationContext *context) {
-      context.duration = 0.2;
-      [[self.window animator]setAlphaValue:1];
-    } completionHandler:^{
-      [self.window performSelector:@selector(close) withObject:nil afterDelay:0.5];
-    }];
-
   }
+  else {
+    self.window.level = NSStatusWindowLevel;
+    NSRect parentFrame = [NSScreen mainScreen].frame;
+    NSRect myFrame = self.window.frame;
+    NSPoint newOrigin = parentFrame.origin;
+    newOrigin.x += 0.5 * (parentFrame.size.width - myFrame.size.width);
+    newOrigin.y += 0.5 * (parentFrame.size.height - myFrame.size.height);
+    [self.window setFrameOrigin:newOrigin];
+  }
+  [NSAnimationContext runAnimationGroup:^(NSAnimationContext *context) {
+    context.duration = 0.2;
+    [[self.window animator]setAlphaValue:1];
+  } completionHandler:^{
+    [self performSelector:@selector(_didEndAnimation) withObject:nil afterDelay:0.5];
+  }];
+}
+
+- (void)_didEndAnimation {
+  self.isAnimating = NO;
+  [self.window close];
 }
 
 @end

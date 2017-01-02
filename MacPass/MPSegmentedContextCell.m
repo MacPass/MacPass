@@ -43,17 +43,17 @@
 }
 
 - (SEL)action {
-  if([self selectedSegment] == 1) {
+  if(self.selectedSegment == 1) {
     return self.contextMenuAction;
   }
-  return [super action];
+  return super.action;
 }
 
 - (id)target {
-  if([self selectedSegment] == 1) {
+  if(self.selectedSegment == 1) {
     return self.contextMenuTarget;
   }
-  return [super target];
+  return super.target;
 }
 
 @end

@@ -9,14 +9,16 @@
 #import <Cocoa/Cocoa.h>
 
 typedef NS_OPTIONS(NSUInteger, MPContextMenuItemsFlags) {
-  MPContextMenuCreate   = 1 << 0,
-  MPContextMenuDelete   = 1 << 1,
-  MPContextMenuCopy     = 1 << 2,
-  MPContextMenuTrash    = 1 << 3,
-  MPContextMenuDuplicate    = 1 << 4,
-  MPContextMenuMinimal  = MPContextMenuCreate | MPContextMenuDelete,
-  MPContextMenuFull     = MPContextMenuMinimal | MPContextMenuCopy | MPContextMenuDuplicate,
-  MPContextMenuExtended = MPContextMenuFull | MPContextMenuTrash
+  MPContextMenuCreate     = 1 << 0,
+  MPContextMenuDelete     = 1 << 1,
+  MPContextMenuCopy       = 1 << 2,
+  MPContextMenuTrash      = 1 << 3,
+  MPContextMenuDuplicate  = 1 << 4,
+  MPContextMenuAutotype   = 1 << 5,
+  MPContextMenuHistory    = 1 << 6,
+  MPContextMenuMinimal    = MPContextMenuCreate | MPContextMenuDelete,
+  MPContextMenuFull       = MPContextMenuMinimal | MPContextMenuCopy | MPContextMenuDuplicate | MPContextMenuAutotype | MPContextMenuHistory,
+  MPContextMenuExtended   = MPContextMenuFull | MPContextMenuTrash
 };
 
 @interface MPContextMenuHelper : NSTableCellView

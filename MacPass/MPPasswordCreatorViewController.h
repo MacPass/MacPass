@@ -6,14 +6,16 @@
 //  Copyright (c) 2013 HicknHack Software GmbH. All rights reserved.
 //
 
+
 #import "MPViewController.h"
-@class KPKEntry;
+
+NS_ASSUME_NONNULL_BEGIN
+
+@class MPDocument;
+@protocol MPModelChangeObserving;
 
 @interface MPPasswordCreatorViewController : MPViewController <NSTextFieldDelegate>
 
-@property (copy, readonly) NSString *generatedPassword;
-@property (weak) id closeTarget;
-@property (nonatomic, weak) KPKEntry *entry;
 @property (assign) BOOL allowsEntryDefaults;
 
 /**
@@ -24,3 +26,5 @@
 - (void)reset;
 
 @end
+
+NS_ASSUME_NONNULL_END

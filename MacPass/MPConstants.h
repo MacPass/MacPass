@@ -12,8 +12,8 @@
 #import <Foundation/Foundation.h>
 
 FOUNDATION_EXPORT NSString *const MPPasteBoardType;
-FOUNDATION_EXPORT NSString *const MPLegacyDocumentUTI;
-FOUNDATION_EXPORT NSString *const MPXMLDocumentUTI;
+FOUNDATION_EXPORT NSString *const MPKdbDocumentUTI;
+FOUNDATION_EXPORT NSString *const MPKdbxDocumentUTI;
 
 
 #endif

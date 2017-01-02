@@ -6,7 +6,7 @@
 //  Copyright (c) 2014 HicknHack Software GmbH. All rights reserved.
 //
 
-#import "KPKFormat.h"
+#import "KeePassKit/KeePassKit.h"
 
 @interface KPKFormat (MPUTIDetection)
 

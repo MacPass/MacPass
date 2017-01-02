@@ -12,8 +12,8 @@ typedef NS_ENUM(NSUInteger, MPActionType) {
   MPUnkownAction, // Neutral element to be used for returns
   MPActionAddEntry, // Add an new entry
   MPActionAddGroup, // Add a new group
-  MPActionDuplicateEntry, // Simply duplicate an entry (inlcuding history)
-  MPActionDuplicateEntryWithOptions, // Request user inptu on what to duplicate
+  MPActionDuplicateEntry, // Simply duplicate an entry (including history)
+  MPActionDuplicateEntryWithOptions, // Request user input on what to duplicate
   MPActionDelete, // Delete entry or group
   MPActionCopyUsername, // copy username to pasteboard
   MPActionCopyPassword, // copy password to pasteboard
@@ -25,11 +25,12 @@ typedef NS_ENUM(NSUInteger, MPActionType) {
   MPActionEditPassword, // change the database password
   MPActionDatabaseSettings, // Show the settings for the database
   MPActionEditTemplateGroup, // Edit the Template group
-  MPActionExportXML, // Exporte as XML
+  MPActionExportXML, // Export as XML
   MPActionImportXML, // Import form XML
   MPActionToggleQuicklook,
-  MPActionShowHistory, // History anzeigen
-  MPActionExitHistory // History ausblenden
+  MPActionShowEntryHistory, // show history
+  MPActionHideEntryHistory, // exit history
+  MPActionPerformAutotypeForSelectedEntry // Perform Autotype for selected Entry
 };
 /**
  *	Helper to retrieve commonly used actions

@@ -9,7 +9,6 @@
 #import "MPAutotypeDaemon.h"
 #import "MPDocument.h"
 
-#import "MPDocument+Autotype.h"
 #import "MPAutotypeCommand.h"
 #import "MPAutotypeContext.h"
 #import "MPAutotypePaste.h"
@@ -17,8 +16,9 @@
 #import "MPPasteBoardController.h"
 #import "MPSettingsHelper.h"
 
+#import "NSApplication+MPAdditions.h"
 
-#import "KPKEntry.h"
+#import "KeePassKit/KeePassKit.h"
 
 #import "DDHotKeyCenter.h"
 #import "DDHotKey+MacPassAdditions.h"
@@ -33,8 +33,9 @@ NSString *const kMPProcessIdentifierKey = @"kMPProcessIdentifierKey";
 @property (nonatomic, assign) BOOL enabled;
 @property (nonatomic, copy) NSData *hotKeyData;
 @property (strong) DDHotKey *registredHotKey;
-@property (assign) pid_t targetPID;
-@property (copy) NSString *targetWindowTitle;
+@property (assign) pid_t targetPID; // The pid of the process we want to sent commands to
+@property (copy) NSString *targetWindowTitle; // The title of the window that we are targeting
+@property (strong) NSRunningApplication *previousApplication; // The application that was active before we got invoked
 
 @end
 
@@ -43,7 +44,22 @@ NSString *const kMPProcessIdentifierKey = @"kMPProcessIdentifierKey";
 #pragma mark -
 #pragma mark Lifecylce
 
-- (id)init {
+static MPAutotypeDaemon *_sharedInstance;
+
++ (instancetype)defaultDaemon {
+  static dispatch_once_t onceToken;
+  dispatch_once(&onceToken, ^{
+    _sharedInstance = [[MPAutotypeDaemon alloc] _init];
+  });
+  return _sharedInstance;
+}
+
+- (instancetype)init {
+  return nil;
+}
+
+- (instancetype)_init {
+  NSAssert(_sharedInstance == nil, @"Multiple initializations not allowed on singleton");
   self = [super init];
   if (self) {
     _enabled = NO;
@@ -57,18 +73,24 @@ NSString *const kMPProcessIdentifierKey = @"kMPProcessIdentifierKey";
       toObject:[NSUserDefaultsController sharedUserDefaultsController]
    withKeyPath:[MPSettingsHelper defaultControllerPathForKey:kMPSettingsKeyGlobalAutotypeKeyDataKey]
        options:nil];
+    
+    [[[NSWorkspace sharedWorkspace] notificationCenter] addObserver:self
+                                                           selector:@selector(_didDeactivateApplication:)
+                                                               name:NSWorkspaceDidDeactivateApplicationNotification
+                                                             object:nil];
   }
   return self;
 }
 
 - (void)dealloc {
+  [[NSNotificationCenter defaultCenter] removeObserver:self];
+  [[[NSWorkspace sharedWorkspace] notificationCenter] removeObserver:self];
   [self unbind:NSStringFromSelector(@selector(enabled))];
   [self unbind:NSStringFromSelector(@selector(hotKeyData))];
 }
 
 #pragma mark -
 #pragma mark Properties
-
 - (void)setEnabled:(BOOL)enabled {
   if(_enabled != enabled) {
     _enabled = enabled;
@@ -86,13 +108,25 @@ NSString *const kMPProcessIdentifierKey = @"kMPProcessIdentifierKey";
   }
 }
 
+#pragma mark -
+#pragma mark Autotype Invocation
+- (void)performAutotypeForEntry:(KPKEntry *)entry {
+  if(entry) {
+    [self _updateTargeInformationForApplication:self.previousApplication];
+    [self _performAutotypeForEntry:entry];
+  }
+}
+
+- (void)_didPressHotKey {
+  [self _updateTargetInfoForFrontMostApplication];
+  [self _performAutotypeForEntry:nil];
+}
 
 #pragma mark -
 #pragma mark Actions
-
-- (void)executeAutotypeWithSelectedMatch:(id)sender {
-  NSMenuItem *item = [self.matchSelectionButton selectedItem];
-  MPAutotypeContext *context = [item representedObject];
+- (void)performAutotypeWithSelectedMatch:(id)sender {
+  NSMenuItem *item = self.matchSelectionButton.selectedItem;
+  MPAutotypeContext *context = item.representedObject;
   [self.matchSelectionWindow orderOut:self];
   [self _performAutotypeForContext:context];
 }
@@ -100,61 +134,77 @@ NSString *const kMPProcessIdentifierKey = @"kMPProcessIdentifierKey";
 - (void)cancelAutotypeSelection:(id)sender {
   [self.matchSelectionWindow orderOut:sender];
   if(self.targetPID) {
-    [MPAutotypeDaemon _orderApplicationToFront:self.targetPID];
+    [self _orderApplicationToFront:self.targetPID];
   }
 }
 
 #pragma mark -
-#pragma mark Hotkey evaluation
+#pragma mark Autotype Execution
 
-- (void)_didPressHotKey {
-  [self _performAutotypeUsingCurrentWindowAndApplication:YES];
-}
-
-- (void)_performAutotypeUsingCurrentWindowAndApplication:(BOOL)useCurrentWindowAndApplication {
-  if(useCurrentWindowAndApplication) {
-    [self _updateTargetApplicationAndWindow];
+- (void)_performAutotypeForEntry:(KPKEntry *)entryOrNil {
+  NSInteger pid = [NSProcessInfo processInfo].processIdentifier;
+  if(self.targetPID == pid) {
+    return; // We do not perform Autotype on ourselves
   }
   
-  MPDocument *document = [self _findAutotypeDocument];
-  if(!document) {
-    return; // nothing to do
+  NSArray *documents = [self _findAutotypeDocuments];
+  if(documents.count == 0) {
+    /* We do not have a document. This can be
+     a) there is none - nothing happens
+     b) there is at least one, but locked - we get called again after the document has been unlocked
+     */
+    return;
   }
-  
-  MPAutotypeContext *context = [self _autotypeContextInDocument:document forWindowTitle:self.targetWindowTitle];
+  MPAutotypeContext *context = [self _autotypeContextForDocuments:documents forWindowTitle:self.targetWindowTitle preferredEntry:entryOrNil];
+  /* TODO: that's popping up if the mulit seleciton dialog goes up! */
+  if(!entryOrNil) {
+    NSUserNotification *notification = [[NSUserNotification alloc] init];
+    notification.title = NSApp.applicationName;
+    if(context) {
+      notification.informativeText = NSLocalizedString(@"AUTOTYPE_OVERLAY_SINGLE_MATCH", "");
+    }
+    else {
+      notification.informativeText = [NSString stringWithFormat:NSLocalizedString(@"AUTOTYPE_OVERLAY_NO_MATCH_FOR_%@", ""), self.targetWindowTitle];
+    }
+    [[NSUserNotificationCenter defaultUserNotificationCenter] deliverNotification:notification];
+  }
   [self _performAutotypeForContext:context];
 }
 
-- (MPDocument *)_findAutotypeDocument {
+- (NSArray<MPDocument *> *)_findAutotypeDocuments {
+  
   NSArray *documents = [NSApp orderedDocuments];
-  MPDocument *currentDocument = nil;
-  for(MPDocument *openDocument in documents) {
-    if(NO == openDocument.encrypted) {
-      currentDocument = openDocument;
-      break;
-    }
-  }
-  BOOL hasOpenDocuments = [documents count] > 0;
-  if(!currentDocument && hasOpenDocuments) {
+  NSPredicate *filterPredicate = [NSPredicate predicateWithBlock:^BOOL(id  _Nonnull evaluatedObject, NSDictionary<NSString *,id> * _Nullable bindings) {
+    MPDocument *document = evaluatedObject;
+    return !document.encrypted;}];
+  NSArray *unlockedDocuments = [documents filteredArrayUsingPredicate:filterPredicate];
+  /* We look for all unlocked documents, if all open documents are locked, we pop the front most and try to search again */
+  if(unlockedDocuments.count == 0 && documents.count > 0) {
     [NSApp activateIgnoringOtherApps:YES];
-    [[NSApp mainWindow] makeKeyAndOrderFront:self];
+    [NSApp.mainWindow makeKeyAndOrderFront:self];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(_didUnlockDatabase:) name:MPDocumentDidUnlockDatabaseNotification object:nil];
   }
-  return currentDocument;
+  return unlockedDocuments;
 }
 
-- (MPAutotypeContext *)_autotypeContextInDocument:(MPDocument *)document forWindowTitle:(NSString *)windowTitle {
+- (MPAutotypeContext *)_autotypeContextForDocuments:(NSArray<MPDocument *> *)documents forWindowTitle:(NSString *)windowTitle preferredEntry:(KPKEntry *)entry {
   /*
    Query the document to generate a autotype command list for the window title
    We do not care where this came form, just get the autotype commands
    */
-  NSArray *autotypeCandidates = [document autotypContextsForWindowTitle:windowTitle];
-  NSUInteger candidates = [autotypeCandidates count];
+  NSMutableArray *autotypeCandidates = [[NSMutableArray alloc] init];
+  for(MPDocument *document in documents) {
+    NSArray *contexts = [document autotypContextsForWindowTitle:windowTitle preferredEntry:entry];
+    if(contexts ) {
+      [autotypeCandidates addObjectsFromArray:contexts];
+    }
+  }
+  NSUInteger candidates = autotypeCandidates.count;
   if(candidates == 0) {
     return nil;
   }
   if(candidates == 1 ) {
-    return  [autotypeCandidates lastObject];
+    return  autotypeCandidates.lastObject;
   }
   [self _presentSelectionWindow:autotypeCandidates];
   return nil; // Nothing to do, we get called back by the window
@@ -164,12 +214,13 @@ NSString *const kMPProcessIdentifierKey = @"kMPProcessIdentifierKey";
   if(nil == context) {
     return; // No context to work with
   }
+  if([self _orderApplicationToFront:self.targetPID]) {
+    /* Sleep a bit after the app was activated */
+    /* TODO - we can use a saver way and use a notification to check if the app actally was activated */
+    usleep(1 * NSEC_PER_MSEC);
+  }
   dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
-    NSArray *commands = [MPAutotypeCommand commandsForContext:context];
-    if([MPAutotypeDaemon _orderApplicationToFront:self.targetPID]) {
-      /* Sleep a bit after the app was activated */
-      usleep(0.5 * NSEC_PER_MSEC);
-    }
+    NSArray<MPAutotypeCommand *> *commands = [MPAutotypeCommand commandsForContext:context];
     for(MPAutotypeCommand *command in commands) {
       [command execute];
     }
@@ -178,7 +229,6 @@ NSString *const kMPProcessIdentifierKey = @"kMPProcessIdentifierKey";
 
 #pragma mark -
 #pragma mark Hotkey Registration
-
 - (void)_registerHotKey {
   __weak MPAutotypeDaemon *welf = self;
   DDHotKeyTask aTask = ^(NSEvent *event) {
@@ -201,17 +251,15 @@ NSString *const kMPProcessIdentifierKey = @"kMPProcessIdentifierKey";
   }
 }
 
-- (NSDictionary *)_frontMostApplicationInfoDict {
-  NSRunningApplication *frontApplication = [[NSWorkspace sharedWorkspace] frontmostApplication];
-  
-  NSArray *currentWindows = CFBridgingRelease(CGWindowListCopyWindowInfo(kCGWindowListOptionOnScreenOnly | kCGWindowListExcludeDesktopElements, kCGNullWindowID));
+- (NSDictionary *)_infoDictionaryForApplication:(NSRunningApplication *)application {
+  NSArray *currentWindows = CFBridgingRelease(CGWindowListCopyWindowInfo(kCGWindowListExcludeDesktopElements, kCGNullWindowID));
   for(NSDictionary *windowDict in currentWindows) {
     NSString *windowTitle = windowDict[(NSString *)kCGWindowName];
-    if([windowTitle length] <= 0) {
+    if(windowTitle.length <= 0) {
       continue;
     }
     NSNumber *processId = windowDict[(NSString *)kCGWindowOwnerPID];
-    if(processId && [processId isEqualToNumber:@(frontApplication.processIdentifier)]) {
+    if(processId && [processId isEqualToNumber:@(application.processIdentifier)]) {
       return @{
                kMPWindowTitleKey: windowDict[(NSString *)kCGWindowName],
                kMPProcessIdentifierKey : processId
@@ -224,59 +272,72 @@ NSString *const kMPProcessIdentifierKey = @"kMPProcessIdentifierKey";
 - (void)_presentSelectionWindow:(NSArray *)candidates {
   if(!self.matchSelectionWindow) {
     [[NSBundle mainBundle] loadNibNamed:@"AutotypeCandidateSelectionWindow" owner:self topLevelObjects:nil];
-    [self.matchSelectionWindow setLevel:NSFloatingWindowLevel];
+    self.matchSelectionWindow.level = NSFloatingWindowLevel;
   }
   NSMenu *associationMenu = [[NSMenu alloc] init];
   [associationMenu addItemWithTitle:NSLocalizedString(@"SELECT_AUTOTYPE_CANDIDATE", "") action:NULL keyEquivalent:@""];
   [associationMenu addItem:[NSMenuItem separatorItem]];
-  [associationMenu setAutoenablesItems:NO];
+  associationMenu.autoenablesItems = NO;
   for(MPAutotypeContext *context in candidates) {
     NSMenuItem *item = [[NSMenuItem alloc] initWithTitle:context.entry.title action:0 keyEquivalent:@""];
     [item setRepresentedObject:context];
     [associationMenu addItem:item];
-    NSArray *attributes = @[ context.entry.username, context.command ];
+    NSArray *attributes = (context.entry.username.length > 0 )
+    ? @[ context.entry.username, context.command ]
+    : @[ context.command ];
+    
     for(NSString *value in attributes) {
       NSMenuItem *valueItem  = [[NSMenuItem alloc] initWithTitle:value action:NULL keyEquivalent:@""];
-      [valueItem setIndentationLevel:1];
-      [valueItem setEnabled:NO];
+      valueItem.indentationLevel = 1;
+      valueItem.enabled = NO;
       [associationMenu addItem:valueItem];
     }
   }
-  [self.matchSelectionButton setMenu:associationMenu];
+  self.matchSelectionButton.menu = associationMenu;
   [self.matchSelectionWindow makeKeyAndOrderFront:self];
   [NSApp activateIgnoringOtherApps:YES];
-  /* Setup Items in Popup */
 }
 
 #pragma mark -
 #pragma mark MPDocument Notifications
-
 - (void)_didUnlockDatabase:(NSNotification *)notification {
+  /* Remove ourselves and call again to search matches */
   [[NSNotificationCenter defaultCenter] removeObserver:self];
-  [self _performAutotypeUsingCurrentWindowAndApplication:NO];
+  [self _performAutotypeForEntry:nil];
+}
+
+#pragma mark -
+#pragma mark NSApplication Notifications
+- (void)_didDeactivateApplication:(NSNotification *)notification {
+  NSDictionary *userInfo = notification.userInfo;
+  self.previousApplication = userInfo[NSWorkspaceApplicationKey];
 }
 
 #pragma mark -
 #pragma mark Application information
-
-+ (BOOL)_orderApplicationToFront:(pid_t)processIdentifier {
+- (BOOL)_orderApplicationToFront:(pid_t)processIdentifier {
   NSRunningApplication *runingApplication = [NSRunningApplication runningApplicationWithProcessIdentifier:processIdentifier];
-  NSRunningApplication *frontApplication = [[NSWorkspace sharedWorkspace] frontmostApplication];
+  NSRunningApplication *frontApplication = [NSWorkspace sharedWorkspace].frontmostApplication;
   if(frontApplication.processIdentifier == processIdentifier) {
     return NO;
   }
-  [runingApplication activateWithOptions:0];
+  [runingApplication activateWithOptions:NSApplicationActivateIgnoringOtherApps];
   return YES;
 }
+- (void)_updateTargetInfoForFrontMostApplication {
+  [self _updateTargeInformationForApplication:[NSWorkspace sharedWorkspace].frontmostApplication];
+}
 
-- (void)_updateTargetApplicationAndWindow {
-  /*
-   Determine the window title of  the current front most application
-   Start searching the db for the best fit (based on title, then on window associations
-   */
-  NSDictionary *frontApplicationInfoDict = [self _frontMostApplicationInfoDict];
-  self.targetPID = [frontApplicationInfoDict[kMPProcessIdentifierKey] intValue];
-  self.targetWindowTitle = frontApplicationInfoDict[kMPWindowTitleKey];
+- (void)_updateTargeInformationForApplication:(NSRunningApplication *)application {
+  if(!application) {
+    self.targetPID = -1;
+    self.targetWindowTitle = @"";
+  }
+  else {
+    NSDictionary *frontApplicationInfoDict = [self _infoDictionaryForApplication:application];
+    self.targetPID = [frontApplicationInfoDict[kMPProcessIdentifierKey] intValue];
+    self.targetWindowTitle = frontApplicationInfoDict[kMPWindowTitleKey];
+  }
 }
 
 @end

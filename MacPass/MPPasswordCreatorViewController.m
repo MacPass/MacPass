@@ -11,9 +11,12 @@
 #import "NSString+MPPasswordCreation.h"
 #import "MPUniqueCharactersFormatter.h"
 #import "MPSettingsHelper.h"
+#import "MPDocument.h"
+#import "MPModelChangeObserving.h"
 
 #import "MPFlagsHelper.h"
-#import "KPKEntry.h"
+
+#import "KeePassKit/KeePassKit.h"
 
 /*
  
@@ -23,7 +26,7 @@
  56 - 85 Excellent
  85 - Fantastic
  
- Skale 0-90
+ Scale 0-90
  */
 typedef NS_ENUM(NSUInteger, MPPasswordRating) {
   MPPasswordTerrible = 10,
@@ -148,37 +151,46 @@ typedef NS_ENUM(NSUInteger, MPPasswordRating) {
 #pragma mark Actions
 
 - (IBAction)_generatePassword:(id)sender {
-  if(self.useCustomString) {
-    if([[self.customCharactersTextField stringValue] length] > 0) {
-      self.password = [self.customCharactersTextField.stringValue passwordWithLength:self.passwordLength];
+  self.password = [NSString passwordWithCharactersets:self.characterFlags
+                                 withCustomCharacters:self._customCharacters
+                                               length:self.passwordLength];
+}
+
+- (NSString*)_customCharacters{
+  if(self.useCustomString && [[self.customCharactersTextField stringValue] length] > 0) {
+      return self.customCharactersTextField.stringValue;
     }
-  }
-  else {
-    self.password = [NSString passwordWithCharactersets:self.characterFlags length:self.passwordLength];
-  }
+    else{
+      return @"";
+    }
+  
 }
 
 - (IBAction)_toggleCharacters:(id)sender {
   self.setDefaultButton.enabled = YES;
   self.characterFlags ^= [sender tag];
-  self.useCustomString = NO;
   [self reset];
 }
 
 - (IBAction)_usePassword:(id)sender {
-  self.generatedPassword = self.password;
   if(self.shouldCopyPasswordToPasteboardButton.state == NSOnState) {
     [[MPPasteBoardController defaultController] copyObjects:@[self.password]];
   }
-  [[self _findCloseTarget] performClose:nil];
+  KPKEntry *entry = self.representedObject;
+  if(entry && self.password.length > 0) {
+    [self.observer willChangeModelProperty];
+    entry.password = self.password;
+    [self.observer didChangeModelProperty];
+  }
+  [self.view.window performClose:sender];
 }
 
 - (IBAction)_cancel:(id)sender {
-  [[self _findCloseTarget] performClose:nil];
+  [self.view.window performClose:sender];
 }
 
 - (IBAction)_setDefault:(id)sender {
-  if(self.useEntryDefaults && self.entry) {
+  if(self.useEntryDefaults && self.representedObject) {
     NSMutableDictionary *entryDefaults = [[self _currentEntryDefaults] mutableCopy];
     if(!entryDefaults) {
       entryDefaults = [[NSMutableDictionary alloc] initWithCapacity:4]; // we will only add one enty to new settings
@@ -191,7 +203,7 @@ typedef NS_ENUM(NSUInteger, MPPasswordRating) {
     if(!availableDefaults) {
       availableDefaults = [[NSMutableDictionary alloc] initWithCapacity:1];
     }
-    availableDefaults[[self.entry.uuid UUIDString]] = entryDefaults;
+    availableDefaults[[self.representedObject uuid].UUIDString] = entryDefaults;
     [[NSUserDefaults standardUserDefaults] setObject:availableDefaults forKey:kMPSettingsKeyPasswordDefaultsForEntry];
   }
   else if(!self.useEntryDefaults) {
@@ -201,7 +213,7 @@ typedef NS_ENUM(NSUInteger, MPPasswordRating) {
     [[NSUserDefaults standardUserDefaults] setObject:[self.customCharactersTextField stringValue] forKey:kMPSettingsKeyPasswordCustomString];
   }
   else {
-    NSLog(@"Cannot set password generator defaults. Inconsitent state. Aborting.");
+    NSLog(@"Cannot set password generator defaults. Inconsistent state. Aborting.");
   }
   self.setDefaultButton.enabled = NO;
 }
@@ -213,7 +225,7 @@ typedef NS_ENUM(NSUInteger, MPPasswordRating) {
   }
   NSMutableDictionary *availableDefaults = [[self _availableEntryDefaults] mutableCopy];
   NSAssert(availableDefaults, @"Password generator defaults for should be present!");
-  [availableDefaults removeObjectForKey:[self.entry.uuid UUIDString]];
+  [availableDefaults removeObjectForKey:[self.representedObject uuid].UUIDString];
   [[NSUserDefaults standardUserDefaults] setObject:availableDefaults forKey:kMPSettingsKeyPasswordDefaultsForEntry];
   self.useEntryDefaults = NO; /* Resetting the UI and Defaults is handled via the setter */
   [self _updateSetDefaultsButton:NO];
@@ -231,11 +243,11 @@ typedef NS_ENUM(NSUInteger, MPPasswordRating) {
   }
 }
 
-- (void)setEntry:(KPKEntry *)entry {
-  if(_entry != entry) {
-    _entry = entry;
+- (void)setRepresentedObject:(id)representedObject {
+  if(self.representedObject != representedObject) {
     self.useEntryDefaults = [self _hasValidDefaultsForCurrentEntry];
   }
+  [super setRepresentedObject:representedObject];
 }
 
 - (void)setPassword:(NSString *)password {
@@ -291,8 +303,9 @@ typedef NS_ENUM(NSUInteger, MPPasswordRating) {
 }
 
 - (NSDictionary *)_currentEntryDefaults {
-  if(self.entry) {
-    return [self _availableEntryDefaults][[self.entry.uuid UUIDString]];
+  if(self.representedObject) {
+    NSAssert([self.representedObject isKindOfClass:[KPKEntry class]], @"Only KPKEntry as represented object supported!");
+    return [self _availableEntryDefaults][[self.representedObject uuid].UUIDString];
   }
   return nil;
 }
@@ -321,15 +334,10 @@ typedef NS_ENUM(NSUInteger, MPPasswordRating) {
   if(self.useCustomString) {
     self.customButton.state = NSOnState;
   }
-  self.customCharactersTextField.stringValue = self.customString;
   self.customCharactersTextField.enabled = self.useCustomString;
-  self.upperCaseButton.enabled = !self.useCustomString;
-  self.lowerCaseButton.enabled = !self.useCustomString;
-  self.numbersButton.enabled = !self.useCustomString;
-  self.symbolsButton.enabled = !self.useCustomString;
   
   /* Set to defaults, if we got nothing */
-  if(self.characterFlags == 0) {
+  if(self.characterFlags == 0 && !self.useCustomString) {
     self.characterFlags = MPPasswordCharactersAll;
   }
   
@@ -342,12 +350,5 @@ typedef NS_ENUM(NSUInteger, MPPasswordRating) {
   self.lowerCaseButton.state = (userLowercase ? NSOnState : NSOffState);
   self.numbersButton.state = (useNumbers ? NSOnState : NSOffState);
   self.symbolsButton.state = (useSymbols ? NSOnState : NSOffState);
-}
-
-- (id)_findCloseTarget {
-  if([self.closeTarget respondsToSelector:@selector(performClose:)]) {
-    return self.closeTarget;
-  }
-  return [NSApp targetForAction:@selector(performClose:)];
 }
 @end

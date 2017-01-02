@@ -9,7 +9,7 @@
 #import "MPAutotypePaste.h"
 #import "MPPasteBoardController.h"
 
-#import "NSString+Commands.h"
+#import "KeePassKit/KeePassKit.h"
 
 @interface MPAutotypePaste ()
 
@@ -47,7 +47,7 @@
 }
 
 - (BOOL)isValid {
-  /* Pasting shoudl always be valid */
+  /* Pasting should always be valid */
   return YES;
 }
 

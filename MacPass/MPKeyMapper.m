@@ -64,30 +64,32 @@ uint16_t const kMPUnknownKeyCode = UINT16_MAX;
   NSString *localizedName = (__bridge NSString *)TISGetInputSourceProperty(currentKeyboard, kTISPropertyLocalizedName);
   CFRelease(currentKeyboard);
   
+  /* Initalize the keyboardCodeDictonary */
   if(keyboardCodeDictionary == nil) {
     /* Input source should not change that much while we are running */
     keyboardCodeDictionary = [[NSMutableDictionary alloc] initWithCapacity:2];
   }
-  NSDictionary *charToCodeDict = keyboardCodeDictionary[localizedName];
-  if(nil == keyboardCodeDictionary[localizedName]) {
-    /* We need 128 places for this dict */
-    charToCodeDict = [[NSMutableDictionary alloc] initWithCapacity:128];
+  /* search for current character mapping */
+  NSDictionary<NSString *, NSNumber *> *charToCodeDict = keyboardCodeDictionary[localizedName];
+
+  if(nil == charToCodeDict) {
+    /* Add mapping */
+    NSMutableDictionary *tempCharToCodeDict = [[NSMutableDictionary alloc] initWithCapacity:128];
     
+    /* Generate table of keycodes and characters. */
     /* Loop through every keycode (0 - 127) to find its current mapping. */
     for(CGKeyCode keyCode = 0; keyCode < 128; ++keyCode) {
       NSString *string = [self stringForKey:keyCode];
       if(string != nil) {
-        ((NSMutableDictionary *)charToCodeDict)[string] = @(keyCode);
+        tempCharToCodeDict[string] = @(keyCode);
       }
     }
-    keyboardCodeDictionary[localizedName] = [[NSDictionary alloc] initWithDictionary:charToCodeDict];
+    charToCodeDict = [[NSDictionary alloc] initWithDictionary:tempCharToCodeDict];
+    keyboardCodeDictionary[localizedName] = charToCodeDict;
   }
-  /* Add mapping */
-  /* Generate table of keycodes and characters. */
-  
-  NSString *singleCharacter = [[character substringToIndex:1] lowercaseString];
+  NSString *singleCharacter = [character substringToIndex:1].lowercaseString;
   if(charToCodeDict[singleCharacter]) {
-    return [charToCodeDict[singleCharacter] integerValue];
+    return charToCodeDict[singleCharacter].integerValue;
   }
   return kMPUnknownKeyCode;
 }

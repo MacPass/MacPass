@@ -6,17 +6,15 @@
 //  Copyright (c) 2013 HicknHack Software GmbH. All rights reserved.
 //
 
+
 #import "MPViewController.h"
+
+NS_ASSUME_NONNULL_BEGIN
+
+@class MPDocument;
 
 @interface MPDatePickingViewController : MPViewController
 
-@property (strong) NSDate *date;
-@property (weak) IBOutlet NSDatePicker *datePicker;
-@property (weak) IBOutlet NSPopUpButton *presetPopupButton;
-@property (assign, readonly) BOOL didCancel;
-
-- (IBAction)useDate:(id)sender;
-- (IBAction)cancel:(id)sender;
-- (IBAction)setDatePreset:(id)sender;
-
 @end
+
+NS_ASSUME_NONNULL_END

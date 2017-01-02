@@ -13,13 +13,13 @@
 #import "MPSettingsHelper.h"
 #import "MPKeyfilePathControlDelegate.h"
 
-#import "HNHRoundedSecureTextField.h"
-#import "NSWindow+Shake.h"
+#import "HNHUi/HNHUi.h"
+
 #import "NSError+Messages.h"
 
 @interface MPPasswordInputController ()
 
-@property (weak) IBOutlet HNHRoundedSecureTextField *passwordTextField;
+@property (weak) IBOutlet HNHUIRoundedSecureTextField *passwordTextField;
 @property (weak) IBOutlet NSPathControl *keyPathControl;
 @property (strong) MPKeyfilePathControlDelegate *pathControlDelegate;
 @property (weak) IBOutlet NSImageView *errorImageView;
@@ -67,7 +67,7 @@
 }
 
 - (void)requestPassword {
-  // show Warnign if read-only mode!
+  // show warning if read-only mode!
   [self _reset];
 }
 
@@ -87,22 +87,22 @@
 #pragma mark -
 #pragma mark Private
 - (IBAction)_decrypt:(id)sender {
-  MPDocument *document = [[self windowController] document];
+  MPDocument *document = self.windowController.document;
   if(document) {
     NSError *error = nil;
     /* No password is different than an empty password */
-    NSString *password = self.enablePassword ? [self.passwordTextField stringValue] : nil;
+    NSString *password = self.enablePassword ? self.passwordTextField.stringValue : nil;
     if(![document unlockWithPassword:password
-                          keyFileURL:[self.keyPathControl URL]
+                          keyFileURL:self.keyPathControl.URL
                                error:&error]) {
       [self _showError:error];
-      [[[self view] window] shakeWindow:nil];
+      [self.view.window shakeWindow:nil];
     }
   }
 }
 
 - (IBAction)resetKeyFile:(id)sender {
-  /* If the reset was triggerd by ourselves we want to preselct the keyfile */
+  /* If the reset was triggered by ourselves we want to preselect the keyfile */
   if(sender == self) {
     [self _selectKeyURL];
   }

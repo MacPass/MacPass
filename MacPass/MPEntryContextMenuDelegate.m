@@ -22,10 +22,8 @@
 
 #import "MPEntryContextMenuDelegate.h"
 #import "MPEntryViewController.h"
-#import "MPDocument.h"
 
-#import "KPKEntry.h"
-#import "KPKAttribute.h"
+#import "KeePassKit/KeePassKit.h"
 
 static NSUInteger const kMPCustomFieldMenuItem = 1000;
 static NSUInteger const kMPAttachmentsMenuItem = 2000;
@@ -46,22 +44,26 @@ static NSUInteger const kMPAttachmentsMenuItem = 2000;
   if([lastItem isSeparatorItem]) {
     [menu removeItem:lastItem];
   }
-  MPDocument *document = [[NSDocumentController sharedDocumentController] currentDocument];
-  
-  KPKEntry *entry = document.selectedEntry;
-  if([entry.customAttributes count] > 0) {
+  /* since we can get opened on the non-selected entry, we have to resolve the target node */
+  id<MPTargetNodeResolving> entryResolver = [NSApp targetForAction:@selector(currentTargetEntries)];
+  NSArray *entries  = [entryResolver currentTargetEntries];
+  if(entries.count != 1) {
+    return;
+  }
+  KPKEntry *entry = entries.lastObject;
+  if(entry.customAttributes.count > 0) {
     [menu addItem:[NSMenuItem separatorItem]];
     NSMenuItem *attributeItem = [[NSMenuItem alloc] init];
     NSMenu *submenu = [[NSMenu alloc] initWithTitle:@"Fields"];
-    [attributeItem setTitle:NSLocalizedString(@"COPY_CUSTOM_FIELDS", "Submenu to Copy custom fields")];
-    [attributeItem setTag:kMPCustomFieldMenuItem];
+    attributeItem.title = NSLocalizedString(@"COPY_CUSTOM_FIELDS", "Submenu to Copy custom fields");
+    attributeItem.tag = kMPCustomFieldMenuItem;
     for (KPKAttribute *attribute in entry.customAttributes) {
       NSString *title = [NSString stringWithFormat:NSLocalizedString(@"COPY_FIELD_%@", "Mask for title to copy field value"), attribute.key];
       NSMenuItem *item = [[NSMenuItem alloc] initWithTitle:title action:@selector(copyCustomAttribute:) keyEquivalent:@""];
-      [item setTag:[entry.customAttributes indexOfObject:attribute]];
+      item.tag = [entry.customAttributes indexOfObject:attribute];
       [submenu addItem:item];
     }
-    [attributeItem setSubmenu:submenu];
+    attributeItem.submenu = submenu;
     [menu addItem:attributeItem];
   }
 }

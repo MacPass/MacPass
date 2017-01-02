@@ -7,7 +7,8 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "KPKTree.h"
+
+#import "KeePassKit/KeePassKit.h"
 
 @class MPDocument;
 

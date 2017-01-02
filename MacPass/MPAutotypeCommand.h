@@ -11,9 +11,9 @@
 @class MPAutotypeContext;
 
 /**
- *  The Autotype command reperesent a capsualted Action that was determined by interpreting
- *  Autotype field for a given entry. This is a class cluster and schould be considered the sole
- *  enty point for creating AutotypeCommands. You should never need to build a command on your own.
+ *  The Autotype command represents a capsuled Action that was determined by interpreting
+ *  Autotype field for a given entry. This is a class cluster and should be considered the sole
+ *  entry point for creating AutotypeCommands. You should never need to build a command on your own.
  */
 @interface MPAutotypeCommand : NSObject
 
@@ -21,10 +21,10 @@
 
 /**
  *  Creates a command sequence for the given context. The context's keystroke sequence is
- *  is evaluated (Placholders filled, references resolved) and the commands are created in the 
+ *  is evaluated (Placeholders filled, references resolved) and the commands are created in the 
  *  order of their execution
  *
- *  @param context the context to create the comamnds from.
+ *  @param context the context to create the commands from.
  *
  *  @return NSArray of MPAutotypeCommand
  */
@@ -46,7 +46,7 @@
 - (void)sendPasteKeyCode;
 
 /**
- *  Exectues the Autotype Command.
+ *  Executes the Autotype Command.
  */
 - (void)execute;
 
