@@ -14,45 +14,48 @@
 
 @implementation DDHotKey (MPKeydata)
 
++ (NSData *)hotKeyDataWithKeyCode:(unsigned short)keyCode modifierFlags:(NSUInteger)flags {
+  NSMutableData *data = [[NSMutableData alloc] init];
+  NSKeyedArchiver *archiver = [[NSKeyedArchiver alloc] initForWritingWithMutableData:data];
+  [archiver encodeInt:keyCode forKey:NSStringFromSelector(@selector(keyCode))];
+  [archiver encodeInteger:flags forKey:NSStringFromSelector(@selector(modifierFlags))];
+  [archiver finishEncoding];
+  return [data copy];
+}
+
++ (NSData *)defaultHotKeyData {
+  return [self hotKeyDataWithKeyCode:kVK_ANSI_M modifierFlags:kCGEventFlagMaskControl|kCGEventFlagMaskAlternate];
+}
+
 + (instancetype)defaultHotKey {
   return [DDHotKey defaultHotKeyWithTask:nil];
 }
 
 + (instancetype)defaultHotKeyWithTask:(DDHotKeyTask)task {
-  return [[DDHotKey alloc] initWithKeyData:nil task:task];
+  return [DDHotKey hotKeyWithKeyData:nil task:task];
 }
 
-- (instancetype)initWithKeyData:(NSData *)data {
-  self = [self initWithKeyData:data task:nil];
-  return self;
++ (instancetype)hotKeyWithKeyData:(NSData *)data {
+  return [self hotKeyWithKeyData:data task:nil];
 }
 
-- (instancetype)initWithKeyData:(NSData *)data task:(DDHotKeyTask)task{
++ (instancetype)hotKeyWithKeyData:(NSData *)data task:(DDHotKeyTask)task {
   NSUInteger modifierFlags;
   unsigned short keyCode;
   if(!data) {
-    self = [DDHotKey hotKeyWithKeyCode:kVK_ANSI_M modifierFlags:kCGEventFlagMaskControl|kCGEventFlagMaskAlternate task:task];
+    return [DDHotKey hotKeyWithKeyCode:kVK_ANSI_M modifierFlags:kCGEventFlagMaskControl|kCGEventFlagMaskAlternate task:task];
   }
-  else if([self _getKeyCode:&keyCode modifierFlags:&modifierFlags fromData:data]) {
-    self = [DDHotKey hotKeyWithKeyCode:keyCode modifierFlags:modifierFlags task:task];
+  if([self _getKeyCode:&keyCode modifierFlags:&modifierFlags fromData:data]) {
+    return [DDHotKey hotKeyWithKeyCode:keyCode modifierFlags:modifierFlags task:task];
   }
-  else {
-    self = nil;
-  }
-  return self;
+  return nil;
 }
 
 - (NSData *)keyData {
-  NSMutableData *data = [[NSMutableData alloc] init];
-  NSKeyedArchiver *archiver = [[NSKeyedArchiver alloc] initForWritingWithMutableData:data];
-  [archiver encodeInt:self.keyCode forKey:NSStringFromSelector(@selector(keyCode))];
-  [archiver encodeInteger:self.modifierFlags forKey:NSStringFromSelector(@selector(modifierFlags))];
-  [archiver finishEncoding];
-  return  [data copy];
+  return [self.class hotKeyDataWithKeyCode:self.keyCode modifierFlags:self.modifierFlags];
 }
 
-
-- (BOOL)_getKeyCode:(unsigned short *)keyCode modifierFlags:(NSUInteger *)modifierFlags fromData:(NSData *)data {
++ (BOOL)_getKeyCode:(unsigned short *)keyCode modifierFlags:(NSUInteger *)modifierFlags fromData:(NSData *)data {
   if(keyCode == NULL || modifierFlags == NULL || data == nil) {
     return NO;
   }
