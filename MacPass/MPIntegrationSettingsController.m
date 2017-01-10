@@ -58,7 +58,7 @@
 }
 
 - (void)willShowTab {
-  _hotKey = [[DDHotKey alloc] initWithKeyData:[[NSUserDefaults standardUserDefaults] dataForKey:kMPSettingsKeyGlobalAutotypeKeyDataKey]];
+  _hotKey = [DDHotKey hotKeyWithKeyData:[[NSUserDefaults standardUserDefaults] dataForKey:kMPSettingsKeyGlobalAutotypeKeyDataKey]];
   /* Change any invalid hotkeys to valid ones? */
   self.hotKeyTextField.hotKey = self.hotKey;
 }

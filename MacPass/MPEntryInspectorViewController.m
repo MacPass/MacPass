@@ -350,6 +350,11 @@ typedef NS_ENUM(NSUInteger, MPEntryTab) {
                                                                    options:0
                                                                    metrics:nil
                                                                      views:views]];
+  [clipView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|[view]"
+                                                                   options:0
+                                                                   metrics:nil
+                                                                     views:views]];
+
   [[self view] layoutSubtreeIfNeeded];
 }
 
@@ -399,10 +404,7 @@ typedef NS_ENUM(NSUInteger, MPEntryTab) {
                withKeyPath:[NSString stringWithFormat:@"%@.%@.%@", NSStringFromSelector(@selector(representedObject)), NSStringFromSelector(@selector(uuid)), NSStringFromSelector(@selector(UUIDString))]
                    options:@{ NSConditionallySetsEditableBindingOption: @NO }];
   self.uuidTextField.editable = NO;
-  
-  /*for(id item in items) {
-   [item bind:NSEnabledBinding toObject:self.entryController withKeyPath:NSStringFromSelector(@selector(isEditable)) options:nil];
-   }*/
+
 }
 
 - (void)_bindAttachments {

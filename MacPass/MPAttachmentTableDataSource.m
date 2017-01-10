@@ -52,7 +52,7 @@
   KPKEntry *entry = document.selectedEntries.count == 1 ? document.selectedEntries.lastObject : nil;
   
   NSPasteboard *draggingPasteBoard = [info draggingPasteboard];
-  NSArray *arrayOfURLs = [draggingPasteBoard readObjectsForClasses:@[[NSArray class]] options:nil];
+  NSArray *arrayOfURLs = [draggingPasteBoard readObjectsForClasses:@[[NSURL class]] options:nil];
   
   for(NSURL *fileUrl in arrayOfURLs) {
     [document addAttachment:fileUrl toEntry:entry];

@@ -147,16 +147,32 @@ static MPAutotypeDaemon *_sharedInstance;
     return; // We do not perform Autotype on ourselves
   }
   
-  NSArray *documents = [self _findAutotypeDocuments];
+  /* find autotype documents */
+  NSArray *documents = [NSApp orderedDocuments];
+  /* No open document, inform the user and return without any action */
   if(documents.count == 0) {
-    /* We do not have a document. This can be
-     a) there is none - nothing happens
-     b) there is at least one, but locked - we get called again after the document has been unlocked
-     */
+    NSUserNotification *notification = [[NSUserNotification alloc] init];
+    notification.title = NSApp.applicationName;
+    notification.informativeText = NSLocalizedString(@"AUTOTYPE_OVERLAY_NO_DOCUMENTS", "");
+    [[NSUserNotificationCenter defaultUserNotificationCenter] deliverNotification:notification];
     return;
   }
+  NSPredicate *filterPredicate = [NSPredicate predicateWithBlock:^BOOL(id  _Nonnull evaluatedObject, NSDictionary<NSString *,id> * _Nullable bindings) {
+    MPDocument *document = evaluatedObject;
+    return !document.encrypted;}];
+  NSArray *unlockedDocuments = [documents filteredArrayUsingPredicate:filterPredicate];
+  /* We look for all unlocked documents, if all open documents are locked, we pop the front most and try to search again */
+  if(unlockedDocuments.count == 0) {
+    [NSApp activateIgnoringOtherApps:YES];
+    [NSApp.mainWindow makeKeyAndOrderFront:self];
+    /* show the actual document window to the user */
+    [documents.firstObject showWindows];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(_didUnlockDatabase:) name:MPDocumentDidUnlockDatabaseNotification object:nil];
+    return; // wait for the unlock to happen
+  }
+  
   MPAutotypeContext *context = [self _autotypeContextForDocuments:documents forWindowTitle:self.targetWindowTitle preferredEntry:entryOrNil];
-  /* TODO: that's popping up if the mulit seleciton dialog goes up! */
+  /* TODO: that's popping up if the mulit selection dialog goes up! */
   if(!entryOrNil) {
     NSUserNotification *notification = [[NSUserNotification alloc] init];
     notification.title = NSApp.applicationName;
@@ -169,22 +185,6 @@ static MPAutotypeDaemon *_sharedInstance;
     [[NSUserNotificationCenter defaultUserNotificationCenter] deliverNotification:notification];
   }
   [self _performAutotypeForContext:context];
-}
-
-- (NSArray<MPDocument *> *)_findAutotypeDocuments {
-  
-  NSArray *documents = [NSApp orderedDocuments];
-  NSPredicate *filterPredicate = [NSPredicate predicateWithBlock:^BOOL(id  _Nonnull evaluatedObject, NSDictionary<NSString *,id> * _Nullable bindings) {
-    MPDocument *document = evaluatedObject;
-    return !document.encrypted;}];
-  NSArray *unlockedDocuments = [documents filteredArrayUsingPredicate:filterPredicate];
-  /* We look for all unlocked documents, if all open documents are locked, we pop the front most and try to search again */
-  if(unlockedDocuments.count == 0 && documents.count > 0) {
-    [NSApp activateIgnoringOtherApps:YES];
-    [NSApp.mainWindow makeKeyAndOrderFront:self];
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(_didUnlockDatabase:) name:MPDocumentDidUnlockDatabaseNotification object:nil];
-  }
-  return unlockedDocuments;
 }
 
 - (MPAutotypeContext *)_autotypeContextForDocuments:(NSArray<MPDocument *> *)documents forWindowTitle:(NSString *)windowTitle preferredEntry:(KPKEntry *)entry {
@@ -230,22 +230,18 @@ static MPAutotypeDaemon *_sharedInstance;
 #pragma mark -
 #pragma mark Hotkey Registration
 - (void)_registerHotKey {
+  if(!self.hotKeyData) {
+    return;
+  }
   __weak MPAutotypeDaemon *welf = self;
   DDHotKeyTask aTask = ^(NSEvent *event) {
     [welf _didPressHotKey];
   };
-  DDHotKey *storedHotkey;
-  if(nil == self.hotKeyData) {
-    storedHotkey = [DDHotKey defaultHotKeyWithTask:aTask];
-  }
-  else {
-    storedHotkey = [[DDHotKey alloc] initWithKeyData:self.hotKeyData task:aTask];
-  }
-  self.registredHotKey = [[DDHotKeyCenter sharedHotKeyCenter] registerHotKey:storedHotkey];
+  self.registredHotKey = [[DDHotKeyCenter sharedHotKeyCenter] registerHotKey:[DDHotKey hotKeyWithKeyData:self.hotKeyData task:aTask]];
 }
 
 - (void)_unregisterHotKey {
-  if(nil != self.registredHotKey) {
+  if(self.registredHotKey) {
     [[DDHotKeyCenter sharedHotKeyCenter] unregisterHotKey:self.registredHotKey];
     self.registredHotKey = nil;
   }

@@ -12,11 +12,17 @@
 
 @property (readonly, copy) NSData *keyData;
 
+
+/**
+ Use this method to retrieve the data, since deallocation of a hotkey unregisters it, this could yield unwanted behaviour!
+ @return data for the default hot key.
+*/
++ (NSData *)hotKeyDataWithKeyCode:(unsigned short)keyCode modifierFlags:(NSUInteger)flags;
++ (NSData *)defaultHotKeyData;
 + (instancetype)defaultHotKey;
 + (instancetype)defaultHotKeyWithTask:(DDHotKeyTask)task;
-
-- (instancetype)initWithKeyData:(NSData *)data task:(DDHotKeyTask)task;
-- (instancetype)initWithKeyData:(NSData *)data;
++ (instancetype)hotKeyWithKeyData:(NSData *)data task:(DDHotKeyTask)task;
++ (instancetype)hotKeyWithKeyData:(NSData *)data;
 
 @end
 

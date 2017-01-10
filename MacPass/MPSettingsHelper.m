@@ -110,7 +110,7 @@ NSString *const kMPDeprecatedSettingsKeyDefaultPasswordRounds             = @"Ke
                          kMPSettingsKeyRememberKeyFilesForDatabases: @NO,
                          kMPSettingsKeySendCommandForControlKey: @YES,
                          kMPSettingsKeyEnableGlobalAutotype: @NO,
-                         kMPSettingsKeyGlobalAutotypeKeyDataKey: [[DDHotKey defaultHotKey] keyData],
+                         kMPSettingsKeyGlobalAutotypeKeyDataKey: [DDHotKey defaultHotKeyData],
                          kMPSettingsKeyDefaultGlobalAutotypeSequence: @"{USERNAME}{TAB}{PASSWORD}{ENTER}",
                          kMPSettingsKeyAutotypeMatchTitle: @YES,
                          kMPSettingsKeyAutotypeMatchURL: @NO,

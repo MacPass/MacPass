@@ -292,9 +292,9 @@ NSString *const MPToolbarItemCopyPassword = @"TOOLBAR_COPY_PASSWORD";
     _didShowToolbarForSearch = YES;
     self.toolbar.visible = YES;
   }
-  _displayModeBeforeSearch = [self.toolbar displayMode];
+  _displayModeBeforeSearch = self.toolbar.displayMode;
   if(_displayModeBeforeSearch == NSToolbarDisplayModeLabelOnly) {
-    [self.toolbar setDisplayMode:NSToolbarDisplayModeIconAndLabel];
+    self.toolbar.displayMode = NSToolbarDisplayModeIconAndLabel;
   }
   /* only make the searchfield first responder if it's not already in an active search */
   if(![self.searchField currentEditor]) {
