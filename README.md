@@ -116,9 +116,9 @@ The following list might not be complete, please refer to [merged Pull Requests]
 
 [Michał Jaglewicz](http://www.webii.pl) Polish localization
 
-[Alex Petkevich](alex@mrdoggy.info) Russian localization
+[Alex Petkevich](mailto:alex@mrdoggy.info) Russian localization
 
-[Zhao Peng](patchao2000@gmail.com) Simplified Chinese localization
+[Zhao Peng](mailto:patchao2000@gmail.com) Simplified Chinese localization
 
 [Moises Perez](https://github.com/m0yP) Spanish localization
 
@@ -148,7 +148,7 @@ The following list might not be complete, please refer to [merged Pull Requests]
 
 [Dennis Bolio](https://github.com/dennisbolio) Fixes issues with icon selection
 
-[Mario Sangiorgio](mariosangiorgio@gmail.com) Improved password generation, Improved English localization
+[Mario Sangiorgio](mailto:mariosangiorgio@gmail.com) Improved password generation, Improved English localization
 
 [Michael Belz](https://github.com/sub0ne) Fixed MacPass not opening any window, when lastly opened Database is missing.
 
