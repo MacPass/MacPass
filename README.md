@@ -112,9 +112,15 @@ The following list might not be complete, please refer to [merged Pull Requests]
 
 [Benjamin Steinwender](https://github.com/auge) German localization
 
-[Zhao Peng](patchao2000@gmail.com) Simplified Chinese localization
+[Francesco Servida](mailto:info@francescoservida.ch) Italian localization
+
+[Michał Jaglewicz](http://www.webii.pl) Polish localization
 
 [Alex Petkevich](alex@mrdoggy.info) Russian localization
+
+[Zhao Peng](patchao2000@gmail.com) Simplified Chinese localization
+
+[Moises Perez](https://github.com/m0yP) Spanish localization
 
 ### Other
 
