@@ -405,6 +405,8 @@
 		4C431BCB16E2A82700700A81 /* MPPasteBoardController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MPPasteBoardController.h; sourceTree = "<group>"; };
 		4C431BCC16E2A82700700A81 /* MPPasteBoardController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MPPasteBoardController.m; sourceTree = "<group>"; };
 		4C431BCE16E2BAB000700A81 /* OverlayWindow.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = OverlayWindow.xib; sourceTree = "<group>"; };
+		4C43B02F1E266A3A000CB4D7 /* pl */ = {isa = PBXFileReference; fileEncoding = 10; lastKnownFileType = text.plist.strings; name = pl; path = pl.lproj/Localizable.strings; sourceTree = "<group>"; };
+		4C43B0301E266A41000CB4D7 /* pl */ = {isa = PBXFileReference; lastKnownFileType = text.rtf; name = pl; path = pl.lproj/Credits.rtf; sourceTree = "<group>"; };
 		4C45FB1A178E09ED0010007D /* MacPassTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MacPassTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		4C45FB20178E09ED0010007D /* MacPassTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "MacPassTests-Info.plist"; sourceTree = "<group>"; };
 		4C45FB22178E09ED0010007D /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
@@ -1493,7 +1495,7 @@
 			isa = PBXProject;
 			attributes = {
 				CLASSPREFIX = MP;
-				LastUpgradeCheck = 0810;
+				LastUpgradeCheck = 0820;
 				ORGANIZATIONNAME = "HicknHack Software GmbH";
 				TargetAttributes = {
 					4C77E36115B84A240093A587 = {
@@ -1972,6 +1974,7 @@
 				BD6C366319484CF40089EB37 /* nl */,
 				FA638D1F1C39BFCC00B10CC6 /* ru */,
 				4825CC921C414D58003E37E9 /* it */,
+				4C43B02F1E266A3A000CB4D7 /* pl */,
 			);
 			name = Localizable.strings;
 			sourceTree = "<group>";
@@ -1986,6 +1989,7 @@
 				BD6C366419484CF40089EB37 /* nl */,
 				FA638D201C39BFCC00B10CC6 /* ru */,
 				4825CC931C414D58003E37E9 /* it */,
+				4C43B0301E266A41000CB4D7 /* pl */,
 			);
 			name = Credits.rtf;
 			sourceTree = "<group>";
