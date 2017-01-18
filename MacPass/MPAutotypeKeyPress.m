@@ -32,11 +32,15 @@ static CGEventFlags _updateModifierMaskForCurrentDefaults(CGEventFlags modifiers
 }
 
 - (instancetype)initWithModifierMask:(CGEventFlags)modiferMask character:(NSString *)character {
-  CGKeyCode mappedKey = [MPKeyMapper keyCodeForCharacter:character];
+  CGEventFlags modifiers;
+  CGKeyCode mappedKey = [MPKeyMapper keyCodeForCharacter:character modifier:&modifiers];
   if(mappedKey == kMPUnknownKeyCode) {
     self = nil;
   }
   else {
+    if(modifiers && (modiferMask != modifiers)) {
+      NSLog(@"Supplied modifiers for character %@ do not match required modifiers", character);
+    }
     self = [self initWithModifierMask:modiferMask keyCode:mappedKey];
   }
   return self;
@@ -58,11 +62,6 @@ static CGEventFlags _updateModifierMaskForCurrentDefaults(CGEventFlags modifiers
   return YES;
   /* TODO test for actual validity of the command */
   //return ([self _transformKeyCode] != kMPUnknownKeyCode);
-}
-
-- (CGKeyCode)_transformKeyCode {
-  NSString *key = [MPKeyMapper stringForKey:self.keyCode];
-  return [MPKeyMapper keyCodeForCharacter:key];
 }
 
 @end

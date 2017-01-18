@@ -16,16 +16,19 @@ FOUNDATION_EXTERN uint16_t const kMPUnknownKeyCode;
  *  Retrieves the string representation with the current keyboard mapping for the keycode
  *
  *  @param keyCode The virtual keycode to be pressed
+ *  @param modifier State of modifier flags being pressed with the key
  *  @return NSString containing the current mapping for the keyCode
  */
++ (NSString *)stringForKey:(CGKeyCode)keyCode modifier:(CGEventFlags)modifier;
 + (NSString *)stringForKey:(CGKeyCode)keyCode;
 
 /**
- *  Determines the keyCode (if possible) for the character
+ *  Determines the keyCode (if possible) for the character. Modifiers might be needed
  *
  *  @param character NSString with a single character to be transformed
+ *  @param modifier pointer to a modifer structure to return the modifer to use with the key code for the character
  *  @return virtual Keycode for the supplied string. If none is found, kMPUnkonwKeyCode is returned
  */
-+ (CGKeyCode)keyCodeForCharacter:(NSString *)character;
++ (CGKeyCode)keyCodeForCharacter:(NSString *)character modifier:(CGEventFlags *)modifer;
 
 @end

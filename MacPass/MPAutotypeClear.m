@@ -17,7 +17,7 @@
 }
 
 - (void)execute {
-  CGKeyCode keyCode = [MPKeyMapper keyCodeForCharacter:@"A"];
+  CGKeyCode keyCode = [MPKeyMapper keyCodeForCharacter:@"a" modifier:NULL];
   if(keyCode == kMPUnknownKeyCode) {
     NSLog(@"Unable to generate key code for 'A'");
     return;

@@ -234,7 +234,7 @@ static CGKeyCode kMPFunctionKeyCodes[] = { kVK_F1, kVK_F2, kVK_F3, kVK_F4, kVK_F
       NSUInteger part = random() % 2;
       
       unichar key = [pasteContent characterAtIndex:i];
-      CGKeyCode keyCode = [MPKeyMapper keyCodeForCharacter:[NSString stringWithFormat:@"%c", key]];
+      CGKeyCode keyCode = [MPKeyMapper keyCodeForCharacter:[NSString stringWithFormat:@"%c", key] modifier:NULL];
       
       /* append unknown keycodes to the paste since we can't type them */
       if (part == 0 || keyCode == kMPUnknownKeyCode) {
@@ -394,7 +394,7 @@ static CGKeyCode kMPFunctionKeyCodes[] = { kVK_F1, kVK_F2, kVK_F3, kVK_F4, kVK_F
 }
 
 - (void)sendPasteKeyCode {
-  CGKeyCode keyCode = [MPKeyMapper keyCodeForCharacter:@"V"];
+  CGKeyCode keyCode = [MPKeyMapper keyCodeForCharacter:@"v" modifier:NULL];
   if(keyCode == kMPUnknownKeyCode) {
     return; // We did not find a mapping for "V"
   }
