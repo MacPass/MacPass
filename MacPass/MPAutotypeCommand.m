@@ -208,7 +208,10 @@ static CGKeyCode kMPFunctionKeyCodes[] = { kVK_F1, kVK_F2, kVK_F3, kVK_F4, kVK_F
 }
 
 + (void)appendObfuscatedPasteCommandForContent:(NSString *)pasteContent toCommands:(NSMutableArray *)commands {
-  if(pasteContent) {
+  if(!pasteContent) {
+    return;
+  }
+  @autoreleasepool {
     
     /*
      * obfuscate entered data using Two-Channel Auto-Type Obfuscation
@@ -217,8 +220,9 @@ static CGKeyCode kMPFunctionKeyCodes[] = { kVK_F1, kVK_F2, kVK_F3, kVK_F4, kVK_F
      */
     
     NSString *paste = @"";
-    NSMutableArray *typeKeys = [NSMutableArray array];
-    NSMutableArray *modifiers = [NSMutableArray array];
+    
+    NSMutableArray *typeKeys = [[NSMutableArray alloc] init];
+    NSMutableArray *modifiers = [[NSMutableArray alloc] init];
     
     /*
      * seed the random number generator using the first 4 bytes of the string's SHA1
@@ -291,7 +295,7 @@ static CGKeyCode kMPFunctionKeyCodes[] = { kVK_F1, kVK_F2, kVK_F3, kVK_F4, kVK_F
   /* {PLUS}, {TILDE}, {PERCENT}, {+}, etc */
   NSString *pasteConent = [self pasteableCommands][uppercaseCommand];
   if(pasteConent) {
-   [self appendAppropriatePasteCommandForEntry:entry withContent:pasteConent toCommands:commands];
+    [self appendAppropriatePasteCommandForEntry:entry withContent:pasteConent toCommands:commands];
     return; // Done
   }
   
@@ -408,4 +412,5 @@ static CGKeyCode kMPFunctionKeyCodes[] = { kVK_F1, kVK_F2, kVK_F3, kVK_F4, kVK_F
 - (BOOL)isValid {
   return NO; // No valid command
 }
+
 @end
