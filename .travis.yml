@@ -1,0 +1,4 @@
+language: objective-c
+osx_image: xcode61
+script:
+  - xctool -scheme MacPass build test CODE_SIGN_IDENTITY=""
