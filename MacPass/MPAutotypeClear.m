@@ -17,12 +17,12 @@
 }
 
 - (void)execute {
-  CGKeyCode keyCode = [MPKeyMapper keyCodeForCharacter:@"a" modifier:NULL];
-  if(keyCode == kMPUnknownKeyCode) {
+  MPModifiedKey key = [MPKeyMapper modifiedKeyForCharacter:@"a"];
+  if(key.keyCode == kMPUnknownKeyCode) {
     NSLog(@"Unable to generate key code for 'A'");
     return;
   }
-  [self sendPressKey:keyCode modifierFlags:kCGEventFlagMaskCommand];
+  [self sendPressKey:key.keyCode modifierFlags:kCGEventFlagMaskCommand];
   [self sendPressKey:kVK_Delete modifierFlags:0];
 }
 

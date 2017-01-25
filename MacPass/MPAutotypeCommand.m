@@ -238,17 +238,16 @@ static CGKeyCode kMPFunctionKeyCodes[] = { kVK_F1, kVK_F2, kVK_F3, kVK_F4, kVK_F
       NSUInteger part = random() % 2;
       
       unichar key = [pasteContent characterAtIndex:i];
-      CGKeyCode keyCode = [MPKeyMapper keyCodeForCharacter:[NSString stringWithFormat:@"%c", key] modifier:NULL];
-      
+      MPModifiedKey mKey = [MPKeyMapper modifiedKeyForCharacter:[NSString stringWithFormat:@"%c", key]];
       /* append unknown keycodes to the paste since we can't type them */
-      if (part == 0 || keyCode == kMPUnknownKeyCode) {
+      if (part == 0 || mKey.keyCode == kMPUnknownKeyCode) {
         paste = [paste stringByAppendingFormat:@"%c", key];
         
         [typeKeys addObject:@(kVK_RightArrow)];
         [modifiers addObject:@0];
       }
       else {
-        [typeKeys addObject:@(keyCode)];
+        [typeKeys addObject:@(mKey.keyCode)];
         
         if ([[NSCharacterSet uppercaseLetterCharacterSet] characterIsMember:key])
           [modifiers addObject:@(kCGEventFlagMaskShift)];
@@ -398,11 +397,11 @@ static CGKeyCode kMPFunctionKeyCodes[] = { kVK_F1, kVK_F2, kVK_F3, kVK_F4, kVK_F
 }
 
 - (void)sendPasteKeyCode {
-  CGKeyCode keyCode = [MPKeyMapper keyCodeForCharacter:@"v" modifier:NULL];
-  if(keyCode == kMPUnknownKeyCode) {
+  MPModifiedKey mKey = [MPKeyMapper modifiedKeyForCharacter:@"v"];
+  if(mKey.keyCode == kMPUnknownKeyCode) {
     return; // We did not find a mapping for "V"
   }
-  [self sendPressKey:keyCode modifierFlags:kCGEventFlagMaskCommand];
+  [self sendPressKey:mKey.keyCode modifierFlags:kCGEventFlagMaskCommand];
 }
 
 - (void)execute {

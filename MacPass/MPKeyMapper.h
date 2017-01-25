@@ -10,6 +10,18 @@
 
 FOUNDATION_EXTERN uint16_t const kMPUnknownKeyCode;
 
+typedef struct {
+  CGEventFlags modifier;
+  CGKeyCode keyCode;
+} MPModifiedKey;
+
+NS_INLINE MPModifiedKey MPMakeModifiedKey(CGEventFlags modifier, CGKeyCode keyCode) {
+  MPModifiedKey k;
+  k.keyCode = keyCode;
+  k.modifier = modifier;
+  return k;
+}
+
 @interface MPKeyMapper : NSObject
 
 /**
@@ -19,16 +31,16 @@ FOUNDATION_EXTERN uint16_t const kMPUnknownKeyCode;
  *  @param modifier State of modifier flags being pressed with the key
  *  @return NSString containing the current mapping for the keyCode
  */
-+ (NSString *)stringForKey:(CGKeyCode)keyCode modifier:(CGEventFlags)modifier;
 + (NSString *)stringForKey:(CGKeyCode)keyCode;
++ (NSString *)stringForModifiedKey:(MPModifiedKey)modifiedKey;
 
 /**
- *  Determines the keyCode (if possible) for the character. Modifiers might be needed
+ *  Determines the modifiedkey (if possible) for the character. Modifiers might be needed
  *
  *  @param character NSString with a single character to be transformed
  *  @param modifier pointer to a modifer structure to return the modifer to use with the key code for the character
- *  @return virtual Keycode for the supplied string. If none is found, kMPUnkonwKeyCode is returned
+ *  @return ModifiedKey if one was found. If none is found, the returned modifiedKey.keyCode has the value kMPUnkonwKeyCode.
  */
-+ (CGKeyCode)keyCodeForCharacter:(NSString *)character modifier:(CGEventFlags *)modifer;
++ (MPModifiedKey)modifiedKeyForCharacter:(NSString *)character;
 
 @end

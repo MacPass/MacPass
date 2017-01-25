@@ -19,10 +19,10 @@
 @implementation MPTestKeyMapper
 
 - (void)testKeyMapper {
-  CGEventFlags flags = 0;
-  CGKeyCode keyCode = [MPKeyMapper keyCodeForCharacter:@"A" modifier:&flags];
-  XCTAssertEqual(kVK_ANSI_A, keyCode);
-  XCTAssertEqual(kCGEventFlagMaskShift, flags);
+  
+  MPModifiedKey key = [MPKeyMapper modifiedKeyForCharacter:@"A"];
+  XCTAssertEqual(kVK_ANSI_A, key.keyCode);
+  XCTAssertEqual(kCGEventFlagMaskShift, key.modifier);
   
   /* Test only works for german keyboard layout!
   XCTAssertEqualObjects(@"a",[MPKeyMapper stringForKey:kVK_ANSI_A modifier:0]);
