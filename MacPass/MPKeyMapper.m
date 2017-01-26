@@ -98,17 +98,13 @@ uint16_t const kMPUnknownKeyCode = UINT16_MAX;
       0,
       kCGEventFlagMaskShift,
       kCGEventFlagMaskAlternate,
-      kCGEventFlagMaskControl,
-      (kCGEventFlagMaskShift | kCGEventFlagMaskAlternate),
-      (kCGEventFlagMaskShift | kCGEventFlagMaskControl),
-      (kCGEventFlagMaskShift | kCGEventFlagMaskAlternate | kCGEventFlagMaskControl)
+      (kCGEventFlagMaskShift | kCGEventFlagMaskAlternate)
     };
-
     NSMutableDictionary *tempCharToCodeDict = [[NSMutableDictionary alloc] initWithCapacity:128];
     
     /* Generate table of keycodes and characters. */
     /* Loop through every keycode (0 - 127) to find its current mapping. */
-    /* Loop throuhg every control key compbination for every virutal key */
+    /* Loop throuhg every control key compbination for every virtual key */
     for(CGKeyCode keyCode = 0; keyCode < 128; ++keyCode) {
       for(int modifierIndex = 0; modifierIndex < sizeof(modifierCombinations); modifierIndex++) {
         MPModifiedKey mKey = MPMakeModifiedKey(modifierCombinations[modifierIndex], keyCode);
@@ -122,7 +118,7 @@ uint16_t const kMPUnknownKeyCode = UINT16_MAX;
     charToCodeDict = [[NSDictionary alloc] initWithDictionary:tempCharToCodeDict];
     keyboardCodeDictionary[localizedName] = charToCodeDict;
   }
-  NSString *singleCharacter = [character substringToIndex:1].lowercaseString;
+  NSString *singleCharacter = [character substringToIndex:1];
   NSValue *result = charToCodeDict[singleCharacter];
   if(!result) {
     return MPMakeModifiedKey(0, kMPUnknownKeyCode);
