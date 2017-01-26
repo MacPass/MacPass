@@ -22,7 +22,7 @@
 #import "MPKeyMapper.h"
 #import <Carbon/Carbon.h>
 
-#define MPSafeSetPointer(pointer, value) if(pointer != 0) { *pointer = value; }
+#define MPArrayCount(array) (sizeof(array) / sizeof(array[0]))
 
 uint16_t const kMPUnknownKeyCode = UINT16_MAX;
 
@@ -106,12 +106,11 @@ uint16_t const kMPUnknownKeyCode = UINT16_MAX;
     /* Loop through every keycode (0 - 127) to find its current mapping. */
     /* Loop throuhg every control key compbination for every virtual key */
     for(CGKeyCode keyCode = 0; keyCode < 128; ++keyCode) {
-      for(int modifierIndex = 0; modifierIndex < sizeof(modifierCombinations); modifierIndex++) {
+      for(int modifierIndex = 0; modifierIndex < MPArrayCount(modifierCombinations); modifierIndex++) {
         MPModifiedKey mKey = MPMakeModifiedKey(modifierCombinations[modifierIndex], keyCode);
         NSString *string = [self stringForModifiedKey:mKey];
         if(string != nil && string.length > 0 && nil == tempCharToCodeDict[string]) {
-          NSValue *value = [NSValue valueWithBytes:&mKey objCType:@encode(MPModifiedKey)];
-          tempCharToCodeDict[string] = value;
+          tempCharToCodeDict[string] = [NSValue valueWithModifiedKey:mKey];
         }
       }
     }
@@ -123,9 +122,7 @@ uint16_t const kMPUnknownKeyCode = UINT16_MAX;
   if(!result) {
     return MPMakeModifiedKey(0, kMPUnknownKeyCode);
   }
-  MPModifiedKey mKey;
-  [result getValue:&mKey];
-  return mKey;
+  return result.modifiedKeyValue;
 }
 
 @end

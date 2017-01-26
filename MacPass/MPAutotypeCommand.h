@@ -7,7 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
-
+#import "MPModifiedKey.h"
 @class MPAutotypeContext;
 
 /**
@@ -39,6 +39,7 @@
  *  @param flags   modifier flags for the key press event
  */
 - (void)sendPressKey:(CGKeyCode)keyCode modifierFlags:(CGEventFlags)flags;
+- (void)sendPressKey:(MPModifiedKey)key;
 
 /**
  *  Convenience message to be sent for executing a simple paste command

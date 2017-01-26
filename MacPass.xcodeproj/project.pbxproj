@@ -28,6 +28,7 @@
 		4C17F109184E6B6C00E85625 /* 30_TerminalTemplate.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 4C17F107184E6B6C00E85625 /* 30_TerminalTemplate.pdf */; };
 		4C1DDCDD1711ECEB00C98DA3 /* PasswordCreatorWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4C1DDCDC1711ECEB00C98DA3 /* PasswordCreatorWindow.xib */; };
 		4C1E9885185F71A800943563 /* MPContextBarViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C1E9884185F71A800943563 /* MPContextBarViewController.m */; };
+		4C1F7FA21E3A12E600D6A40E /* MPModifiedKey.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C1F7FA11E3A12E600D6A40E /* MPModifiedKey.m */; };
 		4C1FA07B18231900003A3F8C /* MPDocument+Autotype.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C1FA07A18231900003A3F8C /* MPDocument+Autotype.m */; };
 		4C224B4217DFCB2400FF6AEE /* MPNumericalInputFormatter.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C224B4117DFCB2400FF6AEE /* MPNumericalInputFormatter.m */; };
 		4C25703F1BF11C2300D39416 /* MPPluginSettingsController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C25703D1BF11C2300D39416 /* MPPluginSettingsController.m */; };
@@ -324,6 +325,8 @@
 		4C1DDCDC1711ECEB00C98DA3 /* PasswordCreatorWindow.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PasswordCreatorWindow.xib; sourceTree = "<group>"; };
 		4C1E9883185F71A800943563 /* MPContextBarViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MPContextBarViewController.h; sourceTree = "<group>"; };
 		4C1E9884185F71A800943563 /* MPContextBarViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MPContextBarViewController.m; sourceTree = "<group>"; };
+		4C1F7FA01E3A12E600D6A40E /* MPModifiedKey.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MPModifiedKey.h; sourceTree = "<group>"; };
+		4C1F7FA11E3A12E600D6A40E /* MPModifiedKey.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MPModifiedKey.m; sourceTree = "<group>"; };
 		4C1FA07A18231900003A3F8C /* MPDocument+Autotype.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "MPDocument+Autotype.m"; sourceTree = "<group>"; };
 		4C21F29D195B39B9002D610D /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/MainMenu.strings; sourceTree = "<group>"; };
 		4C21F29F195B3A48002D610D /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/MainMenu.strings; sourceTree = "<group>"; };
@@ -1261,6 +1264,8 @@
 				4CD2B9051849424B0051B395 /* MPAutotypeContext.m */,
 				4CA3530918A53CB800839B0F /* MPKeyMapper.h */,
 				4CA3530A18A53CB800839B0F /* MPKeyMapper.m */,
+				4C1F7FA01E3A12E600D6A40E /* MPModifiedKey.h */,
+				4C1F7FA11E3A12E600D6A40E /* MPModifiedKey.m */,
 			);
 			name = Autotype;
 			sourceTree = "<group>";
@@ -1730,6 +1735,7 @@
 				4C89F524182FB4740069C73C /* MPAutotypeCommand.m in Sources */,
 				4CFC53BF16E94729007396BE /* MPShadowBox.m in Sources */,
 				4C0AF62F195C1F2B009E658D /* MPEntrySearchContext.m in Sources */,
+				4C1F7FA21E3A12E600D6A40E /* MPModifiedKey.m in Sources */,
 				4C888C9316EB6F5E003D34A1 /* MPToolbarItem.m in Sources */,
 				4C888C9716EB754B003D34A1 /* MPActionHelper.m in Sources */,
 				4C811C8316ECD06E00C4BAC6 /* MPKeyfilePathControlDelegate.m in Sources */,

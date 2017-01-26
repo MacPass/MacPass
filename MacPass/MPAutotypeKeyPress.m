@@ -22,12 +22,16 @@ static CGEventFlags _updateModifierMaskForCurrentDefaults(CGEventFlags modifiers
   return modifiers;
 }
 
-- (instancetype)initWithModifierMask:(CGEventFlags)modiferMask keyCode:(CGKeyCode)code {
+- (instancetype)initWithModifiedKey:(MPModifiedKey)key {
   self = [super init];
   if(self) {
-    _modifierMask = _updateModifierMaskForCurrentDefaults(modiferMask);
-    _keyCode = code;
+    _key = key;
+    _key.modifier = _updateModifierMaskForCurrentDefaults(_key.modifier);
   }
+  return self;
+}
+- (instancetype)initWithModifierMask:(CGEventFlags)modiferMask keyCode:(CGKeyCode)code {
+  self = [self initWithModifiedKey:MPMakeModifiedKey(modiferMask, code)];
   return self;
 }
 
@@ -40,13 +44,13 @@ static CGEventFlags _updateModifierMaskForCurrentDefaults(CGEventFlags modifiers
     if(mappedKey.modifier && (modiferMask != mappedKey.modifier)) {
       NSLog(@"Supplied modifiers for character %@ do not match required modifiers", character);
     }
-    self = [self initWithModifierMask:modiferMask keyCode:mappedKey.modifier];
+    self = [self initWithModifierMask:modiferMask keyCode:mappedKey.keyCode];
   }
   return self;
 }
 
 - (NSString *)description {
-  return [[NSString alloc] initWithFormat:@"%@: modifierMaks:%llu keyCode:%d", [self class], self.modifierMask, self.keyCode];
+  return [[NSString alloc] initWithFormat:@"%@: modifierMaks:%llu keyCode:%d", [self class], self.key.modifier, self.key.keyCode];
 }
 
 - (void)execute {
@@ -54,7 +58,7 @@ static CGEventFlags _updateModifierMaskForCurrentDefaults(CGEventFlags modifiers
     return; // no valid command. Stop.
   }
   //CGKeyCode mappedKey = [self _transformKeyCode];
-  [self sendPressKey:self.keyCode modifierFlags:self.modifierMask];
+  [self sendPressKey:self.key];
 }
 
 - (BOOL)isValid {

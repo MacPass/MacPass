@@ -261,10 +261,9 @@ typedef struct {
      * http://keepass.info/help/v2/autotype_obfuscation.html
      */
     
-    NSString *paste = @"";
+    NSMutableString *paste = [@"" mutableCopy];
     
-    NSMutableArray *typeKeys = [[NSMutableArray alloc] init];
-    NSMutableArray *modifiers = [[NSMutableArray alloc] init];
+    NSMutableArray<NSValue *> *typeKeys = [[NSMutableArray alloc] init];
     
     /*
      * seed the random number generator using the first 4 bytes of the string's SHA1
@@ -279,29 +278,21 @@ typedef struct {
     for (NSUInteger i = 0; i < pasteContent.length; i++) {
       NSUInteger part = random() % 2;
       
-      unichar key = [pasteContent characterAtIndex:i];
-      MPModifiedKey mKey = [MPKeyMapper modifiedKeyForCharacter:[NSString stringWithFormat:@"%c", key]];
+      NSString *key = [pasteContent substringWithRange:NSMakeRange(i, 1)];
+      MPModifiedKey mKey = [MPKeyMapper modifiedKeyForCharacter:key];
       /* append unknown keycodes to the paste since we can't type them */
       if (part == 0 || mKey.keyCode == kMPUnknownKeyCode) {
-        paste = [paste stringByAppendingFormat:@"%c", key];
-        
-        [typeKeys addObject:@(kVK_RightArrow)];
-        [modifiers addObject:@0];
+        [paste appendString:key];
+        [typeKeys addObject:[NSValue valueWithModifiedKey:MPMakeModifiedKey(0, kVK_RightArrow)]];
       }
       else {
-        [typeKeys addObject:@(mKey.keyCode)];
-        
-        if ([[NSCharacterSet uppercaseLetterCharacterSet] characterIsMember:key])
-          [modifiers addObject:@(kCGEventFlagMaskShift)];
-        else
-          [modifiers addObject:@0];
+        [typeKeys addObject:[NSValue valueWithModifiedKey:mKey ]];
       }
     }
     
     /* move to the end of the content */
     for (NSUInteger i = typeKeys.count; i < pasteContent.length; i++) {
-      [typeKeys addObject:@(kVK_RightArrow)];
-      [modifiers addObject:@0];
+      [typeKeys addObject:[NSValue valueWithModifiedKey:MPMakeModifiedKey(0, kVK_RightArrow)]];
     }
     
     /* add paste command */
@@ -315,7 +306,7 @@ typedef struct {
       }
       
       for (NSUInteger i = 0; i < typeKeys.count; i++) {
-        [commands addObject:[[MPAutotypeKeyPress alloc] initWithModifierMask:[modifiers[i] longLongValue] keyCode:[typeKeys[i] unsignedShortValue]]];
+        [commands addObject:[[MPAutotypeKeyPress alloc] initWithModifiedKey:typeKeys[i].modifiedKeyValue]];
       }
     }
   }
@@ -410,6 +401,10 @@ typedef struct {
   CGEventFlags flags = flagNumber.eventFlagsValue;
   *mask |= flags;
   return YES;
+}
+
+- (void)sendPressKey:(MPModifiedKey)key {
+  [self sendPressKey:key.keyCode modifierFlags:key.modifier];
 }
 
 - (void)sendPressKey:(CGKeyCode)keyCode modifierFlags:(CGEventFlags)flags {

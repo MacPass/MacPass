@@ -7,20 +7,9 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "MPModifiedKey.h"
 
 FOUNDATION_EXTERN uint16_t const kMPUnknownKeyCode;
-
-typedef struct {
-  CGEventFlags modifier;
-  CGKeyCode keyCode;
-} MPModifiedKey;
-
-NS_INLINE MPModifiedKey MPMakeModifiedKey(CGEventFlags modifier, CGKeyCode keyCode) {
-  MPModifiedKey k;
-  k.keyCode = keyCode;
-  k.modifier = modifier;
-  return k;
-}
 
 @interface MPKeyMapper : NSObject
 
