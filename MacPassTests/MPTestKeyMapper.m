@@ -20,11 +20,21 @@
 
 - (void)testKeyMapper {
   
+  /* Test only works for german keyboard layout! */
   MPModifiedKey key = [MPKeyMapper modifiedKeyForCharacter:@"A"];
   XCTAssertEqual(kVK_ANSI_A, key.keyCode);
   XCTAssertEqual(kCGEventFlagMaskShift, key.modifier);
   
-  /* Test only works for german keyboard layout!
+  key = [MPKeyMapper modifiedKeyForCharacter:@"»"];
+  XCTAssertEqual(kVK_ANSI_Q, key.keyCode);
+  XCTAssertEqual((kCGEventFlagMaskShift | kCGEventFlagMaskAlternate), key.modifier);
+
+  key = [MPKeyMapper modifiedKeyForCharacter:@""];
+  XCTAssertEqual(kVK_ANSI_RightBracket, key.keyCode);
+  XCTAssertEqual((kCGEventFlagMaskShift | kCGEventFlagMaskAlternate), key.modifier);
+  
+  
+  /*
   XCTAssertEqualObjects(@"a",[MPKeyMapper stringForKey:kVK_ANSI_A modifier:0]);
   XCTAssertEqualObjects(@"A",[MPKeyMapper stringForKey:kVK_ANSI_A modifier:kCGEventFlagMaskShift]);
   

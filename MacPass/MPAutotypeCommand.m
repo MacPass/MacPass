@@ -23,20 +23,27 @@
 
 static CGKeyCode kMPFunctionKeyCodes[] = { kVK_F1, kVK_F2, kVK_F3, kVK_F4, kVK_F5, kVK_F6, kVK_F7, kVK_F8, kVK_F9, kVK_F10, kVK_F11, kVK_F12, kVK_F13, kVK_F14, kVK_F15, kVK_F16, kVK_F17, kVK_F18, kVK_F19 };
 
+typedef struct {
+  NSRange textRange;
+  NSRange commandRange;
+  NSUInteger location;
+  CGEventFlags modifiers;
+} MPAutotypeParserContext;
+
 @interface NSNumber (AutotypeCommand)
 
-- (CGEventFlags)eventFlagsValue;
-- (CGKeyCode)keyCodeValue;
+@property (nonatomic, readonly, assign) CGEventFlags eventFlagsValue;
+@property (nonatomic, readonly, assign) CGKeyCode keyCodeValue;
 
 @end
 
 @implementation NSNumber (AutotypeCommand)
 
 - (CGEventFlags)eventFlagsValue {
-  return (CGEventFlags)[self integerValue];
+  return (CGEventFlags)self.integerValue;
 }
 - (CGKeyCode)keyCodeValue {
-  return (CGKeyCode)[self integerValue];
+  return (CGKeyCode)self.integerValue;
 }
 
 @end
@@ -133,8 +140,10 @@ static CGKeyCode kMPFunctionKeyCodes[] = { kVK_F1, kVK_F2, kVK_F3, kVK_F4, kVK_F
   CGEventFlags collectedModifers = 0;
   for(NSValue *rangeValue in commandRanges) {
     NSRange commandRange = rangeValue.rangeValue;
-    /* All non-commands will get translated into paste commands */
-    if(commandRange.location > lastLocation) {
+    NSRange textRange = NSMakeRange(lastLocation, commandRange.location - lastLocation);
+    
+    /* All non-commands will get translated into key presses if possible, otherwiese into paste commands */
+    if(lastLocation < commandRange.location) {
       /* If there were modifiers we need to use the next single stroke and update the modifier command */
       if(collectedModifers) {
         NSString *modifiedKey = [context.evaluatedCommand substringWithRange:NSMakeRange(lastLocation, 1)];
@@ -145,10 +154,10 @@ static CGKeyCode kMPFunctionKeyCodes[] = { kVK_F1, kVK_F2, kVK_F3, kVK_F4, kVK_F
         collectedModifers = 0;
         lastLocation++;
       }
-      NSRange pasteRange = NSMakeRange(lastLocation, commandRange.location - lastLocation);
-      if(pasteRange.length > 0) {
-        NSString *pasteValue = [context.evaluatedCommand substringWithRange:pasteRange];
-        [self appendAppropriatePasteCommandForEntry:context.entry withContent:pasteValue toCommands:commands];
+      NSRange textRange = NSMakeRange(lastLocation, commandRange.location - lastLocation);
+      if(textRange.length > 0) {
+        NSString *textValue = [context.evaluatedCommand substringWithRange:textRange];
+        [self appendAppropriatePasteCommandForEntry:context.entry withContent:textValue toCommands:commands];
       }
     }
     /* Test for modifer Key */
@@ -160,6 +169,7 @@ static CGKeyCode kMPFunctionKeyCodes[] = { kVK_F1, kVK_F2, kVK_F3, kVK_F4, kVK_F
     }
     lastLocation = commandRange.location + commandRange.length;
   }
+  
   /* Collect last part that isn't a command */
   if(lastLocation < context.evaluatedCommand.length) {
     NSRange lastRange = NSMakeRange(lastLocation, context.evaluatedCommand.length - lastLocation);
@@ -167,7 +177,7 @@ static CGKeyCode kMPFunctionKeyCodes[] = { kVK_F1, kVK_F2, kVK_F3, kVK_F4, kVK_F
       return commands;
     }
     /* We have modifiers */
-    if(0 != collectedModifers) {
+    if(collectedModifers) {
       NSString *modifiedKey = [context.evaluatedCommand substringWithRange:NSMakeRange(lastLocation, 1)];
       MPAutotypeKeyPress *press = [[MPAutotypeKeyPress alloc] initWithModifierMask:collectedModifers character:modifiedKey];
       if(press) {
@@ -180,26 +190,58 @@ static CGKeyCode kMPFunctionKeyCodes[] = { kVK_F1, kVK_F2, kVK_F3, kVK_F4, kVK_F
     }
     /* No modifiers, just paste the rest */
     if(lastRange.length > 0) {
-      NSRange pasteRange = NSMakeRange(lastRange.location, lastRange.length);
-      NSString *pasteValue = [context.evaluatedCommand substringWithRange:pasteRange];
+      NSString *pasteValue = [context.evaluatedCommand substringWithRange:lastRange];
       [self appendAppropriatePasteCommandForEntry:context.entry withContent:pasteValue toCommands:commands];
     }
   }
   return commands;
 }
 
++ (void)appendCommandsForContext:(MPAutotypeContext *)context parserContext:(MPAutotypeParserContext *)parserContext toCommands:(NSMutableArray *)commands {
+  if(parserContext == NULL) {
+    return; // failed!
+  }
+  if(parserContext->textRange.length > 0 && parserContext->textRange.location < parserContext->commandRange.location) {
+    /* If there were modifiers we need to use the next single stroke and update the modifier command */
+    if(parserContext->modifiers) {
+      NSString *modifiedKey = [context.evaluatedCommand substringWithRange:NSMakeRange(parserContext->location, 1)];
+      MPAutotypeKeyPress *press = [[MPAutotypeKeyPress alloc] initWithModifierMask:parserContext->modifiers character:modifiedKey];
+      if(press) {
+        [commands addObject:press];
+      }
+      parserContext->modifiers = 0;
+      parserContext->location++;
+    }
+    NSRange textRange = NSMakeRange(parserContext->location, parserContext->commandRange.location - parserContext->location);
+    if(textRange.length > 0) {
+      NSString *textValue = [context.evaluatedCommand substringWithRange:textRange];
+      [self appendAppropriatePasteCommandForEntry:context.entry withContent:textValue toCommands:commands];
+    }
+  }
+  /* Test for modifer Key */
+  NSString *commandString = [context.evaluatedCommand substringWithRange:parserContext->commandRange];
+  /* append commands for non-modifer keys */
+  if(![self updateModifierMask:&(parserContext->modifiers) forCommand:commandString]) {
+    [self appendCommandForEntry:context.entry withString:commandString toCommands:commands activeModifer:parserContext->modifiers];
+    parserContext->modifiers = 0; // Reset the modifers;
+  }
+  parserContext->location = (parserContext->commandRange.location + parserContext->commandRange.length);
+}
+
 + (void)appendAppropriatePasteCommandForEntry:(KPKEntry *)entry withContent:(NSString *)pasteContent toCommands:(NSMutableArray *)commands
 {
-  if (entry.autotype.obfuscateDataTransfer)
+  if (entry.autotype.obfuscateDataTransfer) {
     [self appendObfuscatedPasteCommandForContent:pasteContent toCommands:commands];
-  else
+  }
+  else {
     [self appendPasteCommandForContent:pasteContent toCommands:commands];
+  }
 }
 
 + (void)appendPasteCommandForContent:(NSString *)pasteContent toCommands:(NSMutableArray *)commands {
   /* Update an already inserted paste command with the new conents */
-  if([[commands lastObject] isKindOfClass:[MPAutotypePaste class]]) {
-    [[commands lastObject] appendString:pasteContent];
+  if([commands.lastObject isKindOfClass:[MPAutotypePaste class]]) {
+    [commands.lastObject appendString:pasteContent];
   }
   else {
     MPAutotypePaste *pasteCommand = [[MPAutotypePaste alloc] initWithString:pasteContent];
@@ -287,7 +329,7 @@ static CGKeyCode kMPFunctionKeyCodes[] = { kVK_F1, kVK_F2, kVK_F3, kVK_F4, kVK_F
   NSString *uppercaseCommand = commandString.uppercaseString;
   NSNumber *keyCodeNumber = [self keypressCommands][uppercaseCommand];
   if(nil != keyCodeNumber) {
-    CGKeyCode keyCode = [keyCodeNumber keyCodeValue];
+    CGKeyCode keyCode = keyCodeNumber.keyCodeValue;
     [commands addObject:[[MPAutotypeKeyPress alloc] initWithModifierMask:flags keyCode:keyCode]];
     return; // Done
   }
@@ -365,7 +407,7 @@ static CGKeyCode kMPFunctionKeyCodes[] = { kVK_F1, kVK_F2, kVK_F3, kVK_F4, kVK_F
   if(!flagNumber) {
     return NO; // No modifier key, just leave
   }
-  CGEventFlags flags = [flagNumber eventFlagsValue];
+  CGEventFlags flags = flagNumber.eventFlagsValue;
   *mask |= flags;
   return YES;
 }
