@@ -49,28 +49,28 @@
   XCTAssertTrue(commands.count == 5);
   /* {TAB} */
   MPAutotypeKeyPress *keyPress = commands[0];
-  XCTAssertEqual(keyPress.keyCode, kVK_Tab);
-  XCTAssertEqual(keyPress.modifierMask, 0);
+  XCTAssertEqual(keyPress.key.keyCode, kVK_Tab);
+  XCTAssertEqual(keyPress.key.modifier, 0);
   
   /* {ENTER} */
   keyPress = commands[1];
-  XCTAssertEqual(keyPress.keyCode, kVK_Return);
-  XCTAssertEqual(keyPress.modifierMask, 0);
+  XCTAssertEqual(keyPress.key.keyCode, kVK_Return);
+  XCTAssertEqual(keyPress.key.modifier, 0);
   
   /* ~ -> Enter */
   keyPress = commands[2];
-  XCTAssertEqual(keyPress.keyCode, kVK_Return);
-  XCTAssertEqual(keyPress.modifierMask, 0);
+  XCTAssertEqual(keyPress.key.keyCode, kVK_Return);
+  XCTAssertEqual(keyPress.key.modifier, 0);
   
   /* {tAb} */
   keyPress = commands[3];
-  XCTAssertEqual(keyPress.keyCode, kVK_Tab);
-  XCTAssertEqual(keyPress.modifierMask, 0);
+  XCTAssertEqual(keyPress.key.keyCode, kVK_Tab);
+  XCTAssertEqual(keyPress.key.modifier, 0);
   
   /* {ShIfT}{enter}*/
   keyPress = commands[4];
-  XCTAssertEqual(keyPress.keyCode, kVK_Return);
-  XCTAssertEqual(keyPress.modifierMask, kCGEventFlagMaskShift);
+  XCTAssertEqual(keyPress.key.keyCode, kVK_Return);
+  XCTAssertEqual(keyPress.key.modifier, kCGEventFlagMaskShift);
 }
 
 - (void)testCaseSensitiveCustomAttributeLookup {
@@ -114,43 +114,43 @@
   
   /* {F1} */
   MPAutotypeKeyPress *key = commands[1];
-  XCTAssertEqual(key.modifierMask, 0);
-  XCTAssertEqual(key.keyCode, kVK_F1);
+  XCTAssertEqual(key.key.modifier, 0);
+  XCTAssertEqual(key.key.keyCode, kVK_F1);
   
   /* {F2} */
   key = commands[2];
-  XCTAssertEqual(key.modifierMask, 0);
-  XCTAssertEqual(key.keyCode, kVK_F2);
+  XCTAssertEqual(key.key.modifier, 0);
+  XCTAssertEqual(key.key.keyCode, kVK_F2);
   
   /* {F3} */
   key = commands[3];
-  XCTAssertEqual(key.modifierMask, 0);
-  XCTAssertEqual(key.keyCode, kVK_F3);
+  XCTAssertEqual(key.key.modifier, 0);
+  XCTAssertEqual(key.key.keyCode, kVK_F3);
   
   /* {F4} */
   key = commands[4];
-  XCTAssertEqual(key.modifierMask, 0);
-  XCTAssertEqual(key.keyCode, kVK_F4);
+  XCTAssertEqual(key.key.modifier, 0);
+  XCTAssertEqual(key.key.keyCode, kVK_F4);
   
   /* {F5} */
   key = commands[5];
-  XCTAssertEqual(key.modifierMask, 0);
-  XCTAssertEqual(key.keyCode, kVK_F5);
+  XCTAssertEqual(key.key.modifier, 0);
+  XCTAssertEqual(key.key.keyCode, kVK_F5);
   
   /* ^%{F6} */
   key = commands[6];
-  XCTAssertEqual(key.modifierMask, (kCGEventFlagMaskCommand | kCGEventFlagMaskAlternate));
-  XCTAssertEqual(key.keyCode, kVK_F6);
+  XCTAssertEqual(key.key.modifier, (kCGEventFlagMaskCommand | kCGEventFlagMaskAlternate));
+  XCTAssertEqual(key.key.keyCode, kVK_F6);
   
   /* {F7} */
   key = commands[7];
-  XCTAssertEqual(key.modifierMask, 0);
-  XCTAssertEqual(key.keyCode, kVK_F7);
+  XCTAssertEqual(key.key.modifier, 0);
+  XCTAssertEqual(key.key.keyCode, kVK_F7);
   
   /* {F19} */
   key = commands[8];
-  XCTAssertEqual(key.modifierMask, 0);
-  XCTAssertEqual(key.keyCode, kVK_F19);
+  XCTAssertEqual(key.key.modifier, 0);
+  XCTAssertEqual(key.key.keyCode, kVK_F19);
   
   paste = commands[9];
   XCTAssertEqualObjects(paste.pasteData, @"{F20}");
@@ -173,8 +173,8 @@
   
   /* {TAB} */
   MPAutotypeKeyPress *keyPress = commands[1];
-  XCTAssertEqual(keyPress.keyCode, kVK_Tab); // Tab is a fixed key, no mapping needed
-  XCTAssertEqual(keyPress.modifierMask, 0);
+  XCTAssertEqual(keyPress.key.keyCode, kVK_Tab); // Tab is a fixed key, no mapping needed
+  XCTAssertEqual(keyPress.key.modifier, 0);
   
   /* {PASSWORD} */
   paste = commands[2];
@@ -182,7 +182,7 @@
   
   /* {ENTER} */
   keyPress = commands[3];
-  XCTAssertEqual(keyPress.keyCode, kVK_Return);
+  XCTAssertEqual(keyPress.key.keyCode, kVK_Return);
   
   /* Command 2 */
   context = [[MPAutotypeContext alloc] initWithEntry:self.entry andSequence:@"^T{USERNAME}%+^{TAB}Whoo{PASSWORD}{ENTER}"];
@@ -196,14 +196,14 @@
   
   /* ^T */
   keyPress = commands[0];
-  /* Lower case is ok, since we only need the key, not the sequence to reproduce the string */
-  XCTAssertTrue([@"t" isEqualToString:[MPKeyMapper stringForKey:keyPress.keyCode]]);
+  /* lowercase T since we supplied modifiers so the ones needed for Uppercase T will be ignored, instead the "t" key is used */
+  XCTAssertEqualObjects(@"t", [MPKeyMapper stringForModifiedKey:keyPress.key]);
   BOOL useCommandInsteadOfControl = [[NSUserDefaults standardUserDefaults] boolForKey:kMPSettingsKeySendCommandForControlKey];
   if(useCommandInsteadOfControl) {
-    XCTAssertEqual(keyPress.modifierMask, kCGEventFlagMaskCommand);
+    XCTAssertEqual(keyPress.key.modifier, kCGEventFlagMaskCommand);
   }
   else {
-      XCTAssertEqual(keyPress.modifierMask, kCGEventFlagMaskControl);
+      XCTAssertEqual(keyPress.key.modifier, kCGEventFlagMaskControl);
   }
   
   /* {USERNAME} */
@@ -212,12 +212,12 @@
   
   /* %+^{TAB} */
   keyPress = commands[2];
-  XCTAssertEqual(keyPress.keyCode, kVK_Tab); // Tab is a fixed key, no mapping needed
+  XCTAssertEqual(keyPress.key.keyCode, kVK_Tab); // Tab is a fixed key, no mapping needed
   if(useCommandInsteadOfControl) {
-    XCTAssertEqual(keyPress.modifierMask, (kCGEventFlagMaskCommand | kCGEventFlagMaskShift | kCGEventFlagMaskAlternate));
+    XCTAssertEqual(keyPress.key.modifier, (kCGEventFlagMaskCommand | kCGEventFlagMaskShift | kCGEventFlagMaskAlternate));
   }
   else {
-    XCTAssertEqual(keyPress.modifierMask, (kCGEventFlagMaskControl | kCGEventFlagMaskShift | kCGEventFlagMaskAlternate));
+    XCTAssertEqual(keyPress.key.modifier, (kCGEventFlagMaskControl | kCGEventFlagMaskShift | kCGEventFlagMaskAlternate));
   }
   
   /* Whoo{PASSWORD} */
@@ -227,8 +227,8 @@
   
   /* {ENTER} */
   keyPress = commands[4];
-  XCTAssertEqual(keyPress.keyCode, kVK_Return);
-  XCTAssertEqual(keyPress.modifierMask, 0);
+  XCTAssertEqual(keyPress.key.keyCode, kVK_Return);
+  XCTAssertEqual(keyPress.key.modifier, 0);
   
   
   /* Command 3 */
@@ -239,13 +239,13 @@
   
   /*^T*/
   keyPress = commands[0];
-  XCTAssertEqualObjects(@"t", [MPKeyMapper stringForKey:keyPress.keyCode]);
+  XCTAssertEqualObjects(@"t", [MPKeyMapper stringForModifiedKey:keyPress.key]);
   /* TODO - Respect user settings? */
   if(useCommandInsteadOfControl) {
-    XCTAssertEqual(keyPress.modifierMask, kCGEventFlagMaskCommand);
+    XCTAssertEqual(keyPress.key.modifier, kCGEventFlagMaskCommand);
   }
   else {
-    XCTAssertEqual(keyPress.modifierMask, kCGEventFlagMaskControl);
+    XCTAssertEqual(keyPress.key.modifier, kCGEventFlagMaskControl);
   }
   /*XCTAssertEqual(keyPress.modifierMask, kCGEventFlagMaskControl);*/
   
