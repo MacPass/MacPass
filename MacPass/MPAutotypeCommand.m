@@ -98,7 +98,6 @@ static CGKeyCode kMPFunctionKeyCodes[] = { kVK_F1, kVK_F2, kVK_F3, kVK_F4, kVK_F
 
 /**
  *  Mapping for modifier to CGEventFlags.
- *  @note KeepassControl is mapped to command!
  *
  *  @return dictionary with commands as keys and CGEventFlags as wrapped values
  */
@@ -194,7 +193,6 @@ static CGKeyCode kMPFunctionKeyCodes[] = { kVK_F1, kVK_F2, kVK_F3, kVK_F4, kVK_F
     return;
   }
   @autoreleasepool {
-    
     /*
      * obfuscate entered data using Two-Channel Auto-Type Obfuscation
      * refer to KeePass documentation for more information
@@ -202,7 +200,6 @@ static CGKeyCode kMPFunctionKeyCodes[] = { kVK_F1, kVK_F2, kVK_F3, kVK_F4, kVK_F
      */
     
     NSMutableString *paste = [@"" mutableCopy];
-    
     NSMutableArray<NSValue *> *typeKeys = [[NSMutableArray alloc] init];
     
     /*
@@ -240,12 +237,11 @@ static CGKeyCode kMPFunctionKeyCodes[] = { kVK_F1, kVK_F2, kVK_F3, kVK_F4, kVK_F
     [commands addObject:pasteCommand];
     
     /* add keypress commands */
-    if (typeKeys.count > 0) {
-      for (NSUInteger i = 0; i < paste.length; i++) {
+    if(typeKeys.count > 0) {
+      for(NSUInteger i = 0; i < paste.length; i++) {
         [commands addObject:[[MPAutotypeKeyPress alloc] initWithModifierMask:0 keyCode:kVK_LeftArrow]];
       }
-      
-      for (NSUInteger i = 0; i < typeKeys.count; i++) {
+      for(NSUInteger i = 0; i < typeKeys.count; i++) {
         [commands addObject:[[MPAutotypeKeyPress alloc] initWithModifiedKey:typeKeys[i].modifiedKeyValue]];
       }
     }
