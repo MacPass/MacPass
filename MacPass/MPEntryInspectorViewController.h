@@ -28,6 +28,7 @@
 @property (weak) IBOutlet NSSegmentedControl *infoTabControl;
 @property (weak) IBOutlet NSTableView *attachmentTableView;
 @property (weak) IBOutlet NSTableView *customFieldsTableView;
+@property (weak) IBOutlet NSTableView *pluginDataTableView;
 @property (weak) IBOutlet NSButton *generatePasswordButton;
 @property (weak) IBOutlet NSButton *togglePassword;
 
