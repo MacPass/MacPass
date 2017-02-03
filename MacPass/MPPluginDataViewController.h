@@ -8,6 +8,6 @@
 
 #import "MPViewController.h"
 
-@interface MPPluginDataViewController : MPViewController
+@interface MPPluginDataViewController : MPViewController <NSTableViewDelegate>
 
 @end

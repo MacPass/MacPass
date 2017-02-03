@@ -27,7 +27,7 @@
 		4C17F108184E6B6C00E85625 /* 31_PrintTemplate.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 4C17F106184E6B6C00E85625 /* 31_PrintTemplate.pdf */; };
 		4C17F109184E6B6C00E85625 /* 30_TerminalTemplate.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 4C17F107184E6B6C00E85625 /* 30_TerminalTemplate.pdf */; };
 		4C1BDF2B1E4392640012A3F0 /* MPPluginDataViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C1BDF291E4392640012A3F0 /* MPPluginDataViewController.m */; };
-		4C1BDF2C1E4392640012A3F0 /* MPPluginDataViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4C1BDF2A1E4392640012A3F0 /* MPPluginDataViewController.xib */; };
+		4C1BDF2C1E4392640012A3F0 /* PluginDataView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4C1BDF2A1E4392640012A3F0 /* PluginDataView.xib */; };
 		4C1DDCDD1711ECEB00C98DA3 /* PasswordCreatorWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4C1DDCDC1711ECEB00C98DA3 /* PasswordCreatorWindow.xib */; };
 		4C1E9885185F71A800943563 /* MPContextBarViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C1E9884185F71A800943563 /* MPContextBarViewController.m */; };
 		4C1F7FA21E3A12E600D6A40E /* MPModifiedKey.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C1F7FA11E3A12E600D6A40E /* MPModifiedKey.m */; };
@@ -326,7 +326,7 @@
 		4C17F107184E6B6C00E85625 /* 30_TerminalTemplate.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = 30_TerminalTemplate.pdf; sourceTree = "<group>"; };
 		4C1BDF281E4392640012A3F0 /* MPPluginDataViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MPPluginDataViewController.h; sourceTree = "<group>"; };
 		4C1BDF291E4392640012A3F0 /* MPPluginDataViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MPPluginDataViewController.m; sourceTree = "<group>"; };
-		4C1BDF2A1E4392640012A3F0 /* MPPluginDataViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MPPluginDataViewController.xib; sourceTree = "<group>"; };
+		4C1BDF2A1E4392640012A3F0 /* PluginDataView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PluginDataView.xib; sourceTree = "<group>"; };
 		4C1DDCDC1711ECEB00C98DA3 /* PasswordCreatorWindow.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PasswordCreatorWindow.xib; sourceTree = "<group>"; };
 		4C1E9883185F71A800943563 /* MPContextBarViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MPContextBarViewController.h; sourceTree = "<group>"; };
 		4C1E9884185F71A800943563 /* MPContextBarViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MPContextBarViewController.m; sourceTree = "<group>"; };
@@ -1296,6 +1296,7 @@
 			isa = PBXGroup;
 			children = (
 				4C47D77718B37911002755E4 /* Settings */,
+				4C4B7EF517A46815000234C7 /* Inspector */,
 				4C2E382416D1470200037A9D /* MPViewController.h */,
 				4C2E382516D1470200037A9D /* MPViewController.m */,
 				4C65FAE616D16DDB006E0577 /* MPPasswordInputController.h */,
@@ -1316,7 +1317,6 @@
 				4C4B7EE617A45EC5000234C7 /* MPDatePickingViewController.h */,
 				4C4B7EE717A45EC5000234C7 /* MPDatePickingViewController.m */,
 				6021FE7918E15FF300C3BC51 /* DatePickingView.xib */,
-				4C4B7EF517A46815000234C7 /* Inspector */,
 				4C0F647917B6BC9C00D9522A /* MPSavePanelAccessoryViewController.h */,
 				4C0F647A17B6BC9C00D9522A /* MPSavePanelAccessoryViewController.m */,
 				4C1E9883185F71A800943563 /* MPContextBarViewController.h */,
@@ -1333,7 +1333,7 @@
 				4CAAA8261D787B8B00CDE977 /* AutotypeBuilderView.xib */,
 				4C1BDF281E4392640012A3F0 /* MPPluginDataViewController.h */,
 				4C1BDF291E4392640012A3F0 /* MPPluginDataViewController.m */,
-				4C1BDF2A1E4392640012A3F0 /* MPPluginDataViewController.xib */,
+				4C1BDF2A1E4392640012A3F0 /* PluginDataView.xib */,
 			);
 			name = "View Controller";
 			sourceTree = "<group>";
@@ -1657,7 +1657,7 @@
 				4C53A7A51864C39D000DFF0D /* KPKLocalizable.strings in Resources */,
 				4C3826761AD04C24007D7D67 /* harddiskTemplate.pdf in Resources */,
 				4C0DBEF51BF508DE00F9B287 /* PluginSettings.xib in Resources */,
-				4C1BDF2C1E4392640012A3F0 /* MPPluginDataViewController.xib in Resources */,
+				4C1BDF2C1E4392640012A3F0 /* PluginDataView.xib in Resources */,
 				4C7F8B681A10B68400CCB83D /* WelcomeWindow.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

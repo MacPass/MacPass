@@ -386,6 +386,10 @@ typedef void (^MPPasswordChangedBlock)(BOOL didChangePassword);
   [self.inspectorViewController pickExpiryDate:sender];
 }
 
+- (void)showPluginData:(id)sender {
+  [self.inspectorViewController showPluginData:sender];
+}
+
 - (void)toggleInspector:(id)sender {
   NSView *inspectorView = self.inspectorViewController.view;
   BOOL inspectorWasVisible = [self _isInspectorVisible];

@@ -8,15 +8,49 @@
 
 #import "MPPluginDataViewController.h"
 
+#import <KeePassKit/KeePassKit.h>
+
 @interface MPPluginDataViewController ()
+
+@property (nonatomic, readonly, assign) KPKNode *representedNode;
+@property (strong) NSDictionaryController *pluginDataController;
+@property (weak) IBOutlet NSTableView *pluginDataTabelView;
 
 @end
 
 @implementation MPPluginDataViewController
 
-- (void)viewDidLoad {
-    [super viewDidLoad];
-    // Do view setup here.
+- (NSString *)nibName {
+  return @"PluginDataView";
+}
+
+- (instancetype)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil {
+  self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
+  if(self) {
+    _pluginDataController = [[NSDictionaryController alloc] init];
+  }
+  return self;
+}
+
+- (void)didLoadView {
+  [self.pluginDataController bind:NSContentDictionaryBinding toObject:self.representedObject withKeyPath:NSStringFromSelector(@selector(customData)) options:nil];
+  self.pluginDataTabelView.backgroundColor = [NSColor clearColor];
+}
+
+- (KPKNode *)representedNode {
+  if([self.representedObject isKindOfClass:[KPKNode class]]) {
+    return self.representedObject;
+  }
+  return nil;
+}
+
+- (IBAction)removeAllPluginData:(id)sender {
+  //
+}
+
+- (NSView *)tableView:(NSTableView *)tableView viewForTableColumn:(NSTableColumn *)tableColumn row:(NSInteger)row {
+  NSTableCellView *view = [tableView makeViewWithIdentifier:@"PluginCell" owner:self];
+  return view;
 }
 
 @end
