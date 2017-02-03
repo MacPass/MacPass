@@ -7,6 +7,7 @@
 //
 
 #import "MPPluginDataViewController.h"
+#import "MPCustomFieldTableCellView.h"
 
 #import <KeePassKit/KeePassKit.h>
 
@@ -34,6 +35,7 @@
 
 - (void)didLoadView {
   [self.pluginDataController bind:NSContentDictionaryBinding toObject:self.representedObject withKeyPath:NSStringFromSelector(@selector(customData)) options:nil];
+  [self.pluginDataTabelView bind:NSContentBinding toObject:self.pluginDataController withKeyPath:NSStringFromSelector(@selector(arrangedObjects)) options:nil];
   self.pluginDataTabelView.backgroundColor = [NSColor clearColor];
 }
 
@@ -49,7 +51,15 @@
 }
 
 - (NSView *)tableView:(NSTableView *)tableView viewForTableColumn:(NSTableColumn *)tableColumn row:(NSInteger)row {
-  NSTableCellView *view = [tableView makeViewWithIdentifier:@"PluginCell" owner:self];
+  MPCustomFieldTableCellView *view = [tableView makeViewWithIdentifier:@"PluginCell" owner:self];
+  [view.valueTextField bind:NSValueBinding
+                   toObject:view
+                withKeyPath:[NSString stringWithFormat:@"%@.%@", NSStringFromSelector(@selector(objectValue)), NSStringFromSelector(@selector(value))]
+                    options:nil];
+  [view.labelTextField bind:NSValueBinding
+                   toObject:view
+                withKeyPath:[NSString stringWithFormat:@"%@.%@", NSStringFromSelector(@selector(objectValue)), NSStringFromSelector(@selector(key))]
+                    options:nil];
   return view;
 }
 

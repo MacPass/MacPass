@@ -102,6 +102,9 @@
                                         </prototypeCellViews>
                                     </tableColumn>
                                 </tableColumns>
+                                <connections>
+                                    <outlet property="delegate" destination="-2" id="vlQ-Zb-6LN"/>
+                                </connections>
                             </tableView>
                         </subviews>
                     </clipView>
@@ -147,7 +150,7 @@
                 <constraint firstItem="eUU-kx-L3U" firstAttribute="top" secondItem="ZhC-nS-vfd" secondAttribute="bottom" constant="8" symbolic="YES" id="Z31-cy-f9g"/>
                 <constraint firstAttribute="bottom" secondItem="wUR-gA-36a" secondAttribute="bottom" constant="20" symbolic="YES" id="ohy-oM-biY"/>
             </constraints>
-            <point key="canvasLocation" x="-159.5" y="130"/>
+            <point key="canvasLocation" x="-458" y="147"/>
         </customView>
     </objects>
     <resources>
