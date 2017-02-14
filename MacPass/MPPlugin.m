@@ -7,14 +7,14 @@
 //
 
 #import "MPPlugin.h"
-#import "MPPluginManager.h"
+#import "MPPluginHost.h"
 #import "MPSettingsHelper.h"
 
 NSString *const kMPPluginFileExtension = @"mpplugin";
 
 @implementation MPPlugin
 
-- (instancetype)initWithPluginManager:(MPPluginManager *)manager {
+- (instancetype)initWithPluginHost:(MPPluginHost *)host {
   self = [super init];
   return self;
 }
@@ -49,8 +49,14 @@ NSString *const kMPPluginFileExtension = @"mpplugin";
 
 }
 
-- (void)willUnloadPlugin {
+@end
 
+@implementation MPPlugin (Deprecated)
+
+- (instancetype)initWithPluginManager:(id)manager {
+  NSLog(@"Deprecated initalizer. Use initWithPluginHost: instead!");
+  self = [self initWithPluginManager:nil];
+  return self;
 }
 
 @end

@@ -213,8 +213,7 @@
 		4CCFA13D1BF0CC7A0078E0A1 /* Test_Password_1234.kdb in Resources */ = {isa = PBXBuildFile; fileRef = 4CCFA1321BF0CC7A0078E0A1 /* Test_Password_1234.kdb */; };
 		4CCFA13E1BF0CC7A0078E0A1 /* Test_Password_1234.kdbx in Resources */ = {isa = PBXBuildFile; fileRef = 4CCFA1331BF0CC7A0078E0A1 /* Test_Password_1234.kdbx */; };
 		4CD034AA1BFE113B003C002C /* MPPlugin.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CD034A51BFE113B003C002C /* MPPlugin.m */; };
-		4CD034AB1BFE113B003C002C /* MPPluginHost.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CD034A71BFE113B003C002C /* MPPluginHost.m */; };
-		4CD034AC1BFE113B003C002C /* MPPluginManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CD034A91BFE113B003C002C /* MPPluginManager.m */; };
+		4CD034AC1BFE113B003C002C /* MPPluginHost.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CD034A91BFE113B003C002C /* MPPluginHost.m */; };
 		4CD2B9061849424B0051B395 /* MPAutotypeContext.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CD2B9051849424B0051B395 /* MPAutotypeContext.m */; };
 		4CD5D705177A5F3300100649 /* MPDatabaseSettingsWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CD5D704177A5F3300100649 /* MPDatabaseSettingsWindowController.m */; };
 		4CD60C131C104AD4005BE5F8 /* HNHUi.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 4CC281881C0F675B00B9174D /* HNHUi.framework */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
@@ -645,10 +644,8 @@
 		4CCFA1331BF0CC7A0078E0A1 /* Test_Password_1234.kdbx */ = {isa = PBXFileReference; lastKnownFileType = file; path = Test_Password_1234.kdbx; sourceTree = "<group>"; };
 		4CD034A41BFE113B003C002C /* MPPlugin.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MPPlugin.h; path = MacPass/MPPlugin.h; sourceTree = SOURCE_ROOT; };
 		4CD034A51BFE113B003C002C /* MPPlugin.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MPPlugin.m; path = MacPass/MPPlugin.m; sourceTree = SOURCE_ROOT; };
-		4CD034A61BFE113B003C002C /* MPPluginHost.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MPPluginHost.h; path = MacPass/MPPluginHost.h; sourceTree = SOURCE_ROOT; };
-		4CD034A71BFE113B003C002C /* MPPluginHost.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MPPluginHost.m; path = MacPass/MPPluginHost.m; sourceTree = SOURCE_ROOT; };
-		4CD034A81BFE113B003C002C /* MPPluginManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MPPluginManager.h; path = MacPass/MPPluginManager.h; sourceTree = SOURCE_ROOT; };
-		4CD034A91BFE113B003C002C /* MPPluginManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MPPluginManager.m; path = MacPass/MPPluginManager.m; sourceTree = SOURCE_ROOT; };
+		4CD034A81BFE113B003C002C /* MPPluginHost.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MPPluginHost.h; path = MacPass/MPPluginHost.h; sourceTree = SOURCE_ROOT; };
+		4CD034A91BFE113B003C002C /* MPPluginHost.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MPPluginHost.m; path = MacPass/MPPluginHost.m; sourceTree = SOURCE_ROOT; };
 		4CD2B9041849424B0051B395 /* MPAutotypeContext.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MPAutotypeContext.h; sourceTree = "<group>"; };
 		4CD2B9051849424B0051B395 /* MPAutotypeContext.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MPAutotypeContext.m; sourceTree = "<group>"; };
 		4CD5D703177A5F3300100649 /* MPDatabaseSettingsWindowController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MPDatabaseSettingsWindowController.h; sourceTree = "<group>"; };
@@ -1440,10 +1437,8 @@
 			children = (
 				4CD034A41BFE113B003C002C /* MPPlugin.h */,
 				4CD034A51BFE113B003C002C /* MPPlugin.m */,
-				4CD034A61BFE113B003C002C /* MPPluginHost.h */,
-				4CD034A71BFE113B003C002C /* MPPluginHost.m */,
-				4CD034A81BFE113B003C002C /* MPPluginManager.h */,
-				4CD034A91BFE113B003C002C /* MPPluginManager.m */,
+				4CD034A81BFE113B003C002C /* MPPluginHost.h */,
+				4CD034A91BFE113B003C002C /* MPPluginHost.m */,
 			);
 			name = Plugin;
 			path = MacPassPlugin;
@@ -1700,7 +1695,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				4CD034AC1BFE113B003C002C /* MPPluginManager.m in Sources */,
+				4CD034AC1BFE113B003C002C /* MPPluginHost.m in Sources */,
 				4C77E37315B84A240093A587 /* main.m in Sources */,
 				4CBA2ABA17074C07006D8139 /* MPSettingsHelper.m in Sources */,
 				4C77E37A15B84A240093A587 /* MPAppDelegate.m in Sources */,
@@ -1710,7 +1705,6 @@
 				4CA0B2FC15BCAF8600654E32 /* MPSettingsWindowController.m in Sources */,
 				4C4F72D118DF704400E8D378 /* DDHotKeyTextField.m in Sources */,
 				4C83814215BF4677001AE468 /* MPDocumentWindowController.m in Sources */,
-				4CD034AB1BFE113B003C002C /* MPPluginHost.m in Sources */,
 				4C2E382316D1421B00037A9D /* MPIconHelper.m in Sources */,
 				4C2E382616D1470200037A9D /* MPViewController.m in Sources */,
 				4C65FAE916D16DDB006E0577 /* MPPasswordInputController.m in Sources */,

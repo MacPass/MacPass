@@ -29,7 +29,7 @@
 #import "MPDocumentWindowController.h"
 #import "MPLockDaemon.h"
 #import "MPPasswordCreatorViewController.h"
-#import "MPPluginManager.h"
+#import "MPPluginHost.h"
 #import "MPSettingsHelper.h"
 #import "MPSettingsWindowController.h"
 #import "MPStringLengthValueTransformer.h"
@@ -161,7 +161,7 @@ NSString *const MPDidChangeStoredKeyFilesSettings = @"com.hicknhack.macpass.MPDi
   [MPLockDaemon defaultDaemon];
   [MPAutotypeDaemon defaultDaemon];
   /* Create Plugin Manager */
-  [MPPluginManager sharedManager];
+  [MPPluginHost sharedHost];
 #ifndef DEBUG
   /* Only enable updater in Release */
   [SUUpdater sharedUpdater];
