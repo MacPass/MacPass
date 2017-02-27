@@ -1,18 +1,13 @@
 #MacPass
 
-There are a lot of iOS KeePass tools around but a distinct lack of a good OS X version.
-KeePass can be used via Mono on OS X but lacks vital functionality and feels sluggish.
+There are a lot of iOS KeePass tools around but a distinct lack of a good native macOS version.
+KeePass can be used via Mono on macOS but lacks vital functionality and feels sluggish and simply out of place.
 
-MacPass is an attempt to create a native OS X port of KeePass.
-
-##Disclaimer
-The Project is in heavy development. Beware that I'm going to shift things around so stuff is going to break. A lot.
+MacPass is an attempt to create a native macOS port of KeePass on a solid open source foundation with a vibrant community pushing it further to become the best KeePass client for macOS.
 
 ##Download
 
-I'm trying to upload binaries for all the tags I create along the way. Use it with caution, it's unfinished. Really!
-
-All releases can be found at [Github](https://github.com/mstarke/MacPass/releases).
+All pre-built releases can be found at [Github](https://github.com/mstarke/MacPass/releases).
 
 ##How to Build
 
@@ -39,6 +34,10 @@ There have been some changes in the submodule urls. Please consider re-syncing a
 * Binary releases (0.5.x):
   * KDBX History is only preserved. Editing doesn't create new history entries
 
+##How to Contribute
+
+If you want to contribute by fixing a bug, adding a feature or improving localization you're awesome. Please open a pull request!
+
 ## Help
 
 Some questions might be ansered in the [FAQ](https://github.com/mstarke/MacPass/wiki/FAQ)
@@ -61,17 +60,19 @@ More Screenshots in the [Wiki](https://github.com/mstarke/MacPass/wiki/Screensho
 
 ##Alternatives
 
-[KeePassX](http://www.keepassx.org) is a Qt based KeePass port. It's in active development and open source. It fully supports all KDBX features and can import KDB into a KDBX file but is unable to safe as KDB. There's an older release just that handles only KDB files.
+[KeePassX](http://www.keepassx.org) is a Qt based KeePass port. It's in active development and open source. It fully supports all KDBX features and can import KDB into a KDBX file but is unable to safe as KDB. There's an older release that only handles KDB files. KDBX3.1 is fully supported, KDBX4.0 is currently unsupported.
+
+[KeePassXC](https://github.com/keepassxc/keepassxc) straight from the project's README:
+>KeePassXC is a fork of KeePassX that aims to incorporate stalled pull requests, features, and bug fixes that have never made it into the main KeePassX repository.
 
 [KyPass Companion](http://www.kyuran.be/logiciels/kypass4mac/) is a native Cocoa port and offers KeePassHttp compatibility.
-Should be able to read and write KDB and KDBX files. It is closed source and currently available in the Mac App Store. It's rather expensive considering the bugs and missing features. Based on the user reviews it should work. Not all KDBX features are supported. It is unable to convert between database versions.
+Should be able to read and write KDB and KDBX files. It is closed source and currently available in the Mac App Store. It's rather expensive considering the bugs and missing features. Based on the user reviews it should work. Not all KDBX features are supported. It is unable to convert between database versions. KDBX4.0 support is in development.
 
-[KeeWeb](https://keeweb.info) is a cross platform web client in active development based on [electron](http://electron.atom.io) and thus also is available as an offline version for all major platforms. The project is open source. It supports all features of KDBX files but has no KDB support. Because of the technology it's look is customizable, but the native one is quite pretty.
-
+[KeeWeb](https://keeweb.info) is a cross platform web client in active development based on [electron](http://electron.atom.io) and thus also is available as an offline version for all major platforms. The project is open source. It supports all features of KDBX files but has no KDB support. Because of the technology it's look is customizable, but the native one is quite pretty. Full KDBX 4 support is present. Performance for Argon2 requires WebAssembly.
 ##License
 
 MacPass, a KeePass compatible Password Manager for OS X
-Copyright (c) 2012-2014  Michael Starke (HicknHack Software GmbH) and all [MacPass contributors](https://github.com/mstarke/MacPass/graphs/contributors)
+Copyright (c) 2012-2017  Michael Starke (HicknHack Software GmbH) and all [MacPass contributors](https://github.com/mstarke/MacPass/graphs/contributors)
 
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -94,7 +95,7 @@ For further details, take a look at the [explanation](https://www.fsf.org/news/2
 
 ##Contributions
 
-The following list might not be complete, please refer to [merged Pull Requests](https://github.com/mstarke/MacPass/pulls?utf8=✓&q=is%3Apr+is%3Aclosed+is%3Amerged) on GitHub for more details.
+The following list might not be complete, please refer to [merged Pull Requests](https://github.com/mstarke/MacPass/pulls?utf8=✓&q=is%3Apr+is%3Aclosed+is%3Amerged) on GitHub for more details. Please report open an issue if you think someone is missing from this list!
 
 ### Art
 
