@@ -69,6 +69,7 @@ More Screenshots in the [Wiki](https://github.com/mstarke/MacPass/wiki/Screensho
 Should be able to read and write KDB and KDBX files. It is closed source and currently available in the Mac App Store. It's rather expensive considering the bugs and missing features. Based on the user reviews it should work. Not all KDBX features are supported. It is unable to convert between database versions. KDBX4.0 support is in development.
 
 [KeeWeb](https://keeweb.info) is a cross platform web client in active development based on [electron](http://electron.atom.io) and thus also is available as an offline version for all major platforms. The project is open source. It supports all features of KDBX files but has no KDB support. Because of the technology it's look is customizable, but the native one is quite pretty. Full KDBX 4 support is present. Performance for Argon2 requires WebAssembly.
+
 ##License
 
 MacPass, a KeePass compatible Password Manager for OS X
