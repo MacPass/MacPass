@@ -62,13 +62,13 @@ More Screenshots in the [Wiki](https://github.com/mstarke/MacPass/wiki/Screensho
 
 [KeePassX](http://www.keepassx.org) is a Qt based KeePass port. It's in active development and open source. It fully supports all KDBX features and can import KDB into a KDBX file but is unable to safe as KDB. There's an older release that only handles KDB files. KDBX3.1 is fully supported, KDBX4.0 is currently unsupported.
 
-[KeePassXC](https://github.com/keepassxc/keepassxc) straight from the project's README:
+[KeePassXC](https://github.com/keepassxreboot/keepassxc) straight from the project's README:
 >KeePassXC is a fork of KeePassX that aims to incorporate stalled pull requests, features, and bug fixes that have never made it into the main KeePassX repository.
 
 [KyPass Companion](http://www.kyuran.be/logiciels/kypass4mac/) is a native Cocoa port and offers KeePassHttp compatibility.
 Should be able to read and write KDB and KDBX files. It is closed source and currently available in the Mac App Store. It's rather expensive considering the bugs and missing features. Based on the user reviews it should work. Not all KDBX features are supported. It is unable to convert between database versions. KDBX4.0 support is in development.
 
-[KeeWeb](https://keeweb.info) is a cross platform web client in active development based on [electron](http://electron.atom.io) and thus also is available as an offline version for all major platforms. The project is open source. It supports all features of KDBX files but has no KDB support. Because of the technology it's look is customizable, but the native one is quite pretty. Full KDBX 4 support is present. Performance for Argon2 requires WebAssembly.
+[KeeWeb](https://keeweb.info) is a cross platform web client in active development based on [electron](http://electron.atom.io) and thus also is available as an offline version for all major platforms. The project is open source. It supports all features of KDBX files but has no KDB support. Because of the technology its look is customizable, but the native one is quite pretty. Full KDBX 4 support is present. Performance for Argon2 requires WebAssembly.
 
 ## License
 
