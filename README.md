@@ -1,15 +1,15 @@
-#MacPass
+# MacPass
 
 There are a lot of iOS KeePass tools around but a distinct lack of a good native macOS version.
 KeePass can be used via Mono on macOS but lacks vital functionality and feels sluggish and simply out of place.
 
 MacPass is an attempt to create a native macOS port of KeePass on a solid open source foundation with a vibrant community pushing it further to become the best KeePass client for macOS.
 
-##Download
+## Download
 
 All pre-built releases can be found at [Github](https://github.com/mstarke/MacPass/releases).
 
-##How to Build
+## How to Build
 
 * Fetch the source of MacPass
 ```bash
@@ -29,12 +29,12 @@ There have been some changes in the submodule urls. Please consider re-syncing a
 	git submodule sync
 	git submodule init
 
-##Known Major Issues
+## Known Major Issues
 
 * Binary releases (0.5.x):
   * KDBX History is only preserved. Editing doesn't create new history entries
 
-##How to Contribute
+## How to Contribute
 
 If you want to contribute by fixing a bug, adding a feature or improving localization you're awesome. Please open a pull request!
 
@@ -44,21 +44,21 @@ Some questions might be ansered in the [FAQ](https://github.com/mstarke/MacPass/
 
 Another place to look is the IRC channel [#macpass](irc://irc.freenode.org/macpass) on [irc.freenode.org](irc://irc.freenode.org)
 
-##System Requirement
+## System Requirement
 
 The minimum OS X version required for MacPass is currently 10.8 Mountain Lion.
 
-##Status
+## Status
 
 The Status can be found on the dedicated [Wiki page](https://github.com/mstarke/MacPass/wiki/Status).
 
-##What does it look like?
+## What does it look like?
 
 ![image](https://raw.github.com/mstarke/MacPass/master/Assets/Screenshots/MacPass.png)
 
 More Screenshots in the [Wiki](https://github.com/mstarke/MacPass/wiki/Screenshots)
 
-##Alternatives
+## Alternatives
 
 [KeePassX](http://www.keepassx.org) is a Qt based KeePass port. It's in active development and open source. It fully supports all KDBX features and can import KDB into a KDBX file but is unable to safe as KDB. There's an older release that only handles KDB files. KDBX3.1 is fully supported, KDBX4.0 is currently unsupported.
 
@@ -69,7 +69,8 @@ More Screenshots in the [Wiki](https://github.com/mstarke/MacPass/wiki/Screensho
 Should be able to read and write KDB and KDBX files. It is closed source and currently available in the Mac App Store. It's rather expensive considering the bugs and missing features. Based on the user reviews it should work. Not all KDBX features are supported. It is unable to convert between database versions. KDBX4.0 support is in development.
 
 [KeeWeb](https://keeweb.info) is a cross platform web client in active development based on [electron](http://electron.atom.io) and thus also is available as an offline version for all major platforms. The project is open source. It supports all features of KDBX files but has no KDB support. Because of the technology its look is customizable, but the native one is quite pretty. Full KDBX 4 support is present. Performance for Argon2 requires WebAssembly.
-##License
+
+## License
 
 MacPass, a KeePass compatible Password Manager for OS X
 Copyright (c) 2012-2017  Michael Starke (HicknHack Software GmbH) and all [MacPass contributors](https://github.com/mstarke/MacPass/graphs/contributors)
@@ -93,7 +94,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 Due to being licensed under GPLv3 it's not possible to publish a version of MacPass on the App Store.
 For further details, take a look at the [explanation](https://www.fsf.org/news/2010-05-app-store-compliance) of the Free Software Foundation.
 
-##Contributions
+## Contributions
 
 The following list might not be complete, please refer to [merged Pull Requests](https://github.com/mstarke/MacPass/pulls?utf8=✓&q=is%3Apr+is%3Aclosed+is%3Amerged) on GitHub for more details. Please report open an issue if you think someone is missing from this list!
 
@@ -153,7 +154,7 @@ The following list might not be complete, please refer to [merged Pull Requests]
 
 [Michael Belz](https://github.com/sub0ne) Fixed MacPass not opening any window, when lastly opened Database is missing.
 
-##Copyright
+## Copyright
 
 This Project is based upon the following work:
 
@@ -183,6 +184,6 @@ This Project is based upon the following work:
 
 See submodules for additional Licenses
 
-##Feedback
+## Feedback
 
 [![Flattr this](http://api.flattr.com/button/flattr-badge-large.png)](http://flattr.com/thing/1550529/mstarkeMacPass-on-GitHub)
