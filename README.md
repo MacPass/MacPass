@@ -70,7 +70,6 @@ Should be able to read and write KDB and KDBX files. It is closed source and cur
 
 [KeeWeb](https://keeweb.info) is a cross platform web client in active development based on [electron](http://electron.atom.io) and thus also is available as an offline version for all major platforms. The project is open source. It supports all features of KDBX files but has no KDB support. Because of the technology its look is customizable, but the native one is quite pretty. Full KDBX 4 support is present. Performance for Argon2 requires WebAssembly.
 
-[KeeWeb](https://keeweb.info) is a cross platform web client in active development based on [electron](http://electron.atom.io) and thus also is available as an offline version for all major platforms. The project is open source. It supports all features of KDBX files but has no KDB support. Because of the technology it's look is customizable, but the native one is quite pretty. Full KDBX 4 support is present. Performance for Argon2 requires WebAssembly.
 ## License
 
 MacPass, a KeePass compatible Password Manager for OS X
