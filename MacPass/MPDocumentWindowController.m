@@ -495,11 +495,11 @@ typedef void (^MPPasswordChangedBlock)(BOOL didChangePassword);
   [contentView layoutSubtreeIfNeeded];
 }
 
-- (IBAction)showHistoryForEntry:(id)sender {
-  [self.document showHistoryForEntry:nil];
+- (void)showEntryHistory:(id)sender {
+
 }
 
-- (IBAction)hideHistoryForEntry:(id)sender {
+- (void)hideEntryHistory:(id)sender {
 
 }
 

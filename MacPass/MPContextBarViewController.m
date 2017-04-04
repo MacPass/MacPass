@@ -69,7 +69,7 @@ typedef NS_ENUM(NSUInteger, MPContextTab) {
     //self.emptyTrashButton.textColor = [NSColor whiteColor];
   }
   
-  [[self view] bind:NSSelectedIndexBinding toObject:self withKeyPath:@"activeTab" options:nil];
+  [self.view bind:NSSelectedIndexBinding toObject:self withKeyPath:NSStringFromSelector(@selector(activeTab)) options:nil];
   
   /* Setup Filter Bar buttons and menu */
   NSInteger tags[] = { MPEntrySearchTitles, MPEntrySearchUsernames, MPEntrySearchPasswords, MPEntrySearchNotes, MPEntrySearchUrls };
@@ -87,7 +87,7 @@ typedef NS_ENUM(NSUInteger, MPContextTab) {
   [[specialMenu itemAtIndex:0] setAction:@selector(toggleSearchFlags:)];
   for(NSInteger iIndex = 0; iIndex < (sizeof(specialTags)/sizeof(NSInteger)); iIndex++) {
     NSMenuItem *item = [[NSMenuItem alloc] initWithTitle:titles[iIndex] action:@selector(toggleSearchFlags:) keyEquivalent:@""];
-    [item setTag:specialTags[iIndex]];
+    item.tag = specialTags[iIndex];
     [specialMenu addItem:item];
   }
   [self.specialFilterPopUpButton setMenu:specialMenu];

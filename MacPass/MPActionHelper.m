@@ -37,8 +37,8 @@
                    @(MPActionExportXML):                        NSStringFromSelector(@selector(exportAsXML:)),
                    @(MPActionImportXML):                        NSStringFromSelector(@selector(importFromXML:)),
                    @(MPActionToggleQuicklook):                  NSStringFromSelector(@selector(toggleQuicklookPreview:)),
-                   @(MPActionShowEntryHistory):                 NSStringFromSelector(@selector(showHistoryForEntry:)),
-                   @(MPActionHideEntryHistory):                 NSStringFromSelector(@selector(hideHistoryForEntry:)),
+                   @(MPActionShowEntryHistory):                 NSStringFromSelector(@selector(showEntryHistory:)),
+                   @(MPActionHideEntryHistory):                 NSStringFromSelector(@selector(hideEntryHistory:)),
                    @(MPActionPerformAutotypeForSelectedEntry):  NSStringFromSelector(@selector(performAutotypeForEntry:))
                    };
   });
