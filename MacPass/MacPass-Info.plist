@@ -14,7 +14,7 @@
 			<key>CFBundleTypeIconFile</key>
 			<string>FileTypeIcon</string>
 			<key>CFBundleTypeName</key>
-			<string>kdbxFileType</string>
+			<string>KDBX Database</string>
 			<key>CFBundleTypeRole</key>
 			<string>Editor</string>
 			<key>LSItemContentTypes</key>
@@ -34,7 +34,7 @@
 			<key>CFBundleTypeIconFile</key>
 			<string>FileTypeIcon</string>
 			<key>CFBundleTypeName</key>
-			<string>kdbFileType</string>
+			<string>KDB Database</string>
 			<key>CFBundleTypeRole</key>
 			<string>Editor</string>
 			<key>LSItemContentTypes</key>
@@ -85,7 +85,7 @@
 				<string>public.data</string>
 			</array>
 			<key>UTTypeDescription</key>
-			<string>Keepass 2 Database</string>
+			<string>KDBX Database</string>
 			<key>UTTypeIdentifier</key>
 			<string>com.hicknhack.macpass.kdbx</string>
 			<key>UTTypeTagSpecification</key>
@@ -102,7 +102,7 @@
 				<string>public.data</string>
 			</array>
 			<key>UTTypeDescription</key>
-			<string>Keepass Database</string>
+			<string>KDB Database</string>
 			<key>UTTypeIdentifier</key>
 			<string>com.hicknhack.macpass.kdb</string>
 			<key>UTTypeTagSpecification</key>
@@ -131,6 +131,17 @@
 					<string>mpPlugIn</string>
 				</array>
 			</dict>
+		</dict>
+	</array>
+	<key>UTImportedTypeDeclarations</key>
+	<array>
+		<dict>
+			<key>UTTypeDescription</key>
+			<string>XML</string>
+			<key>UTTypeIdentifier</key>
+			<string>public.xml</string>
+			<key>UTTypeTagSpecification</key>
+			<dict/>
 		</dict>
 	</array>
 </dict>

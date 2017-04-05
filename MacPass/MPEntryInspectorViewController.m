@@ -101,17 +101,17 @@ typedef NS_ENUM(NSUInteger, MPEntryTab) {
   [self.infoTabControl bind:NSSelectedIndexBinding toObject:self withKeyPath:NSStringFromSelector(@selector(activeTab)) options:nil];
   [self.tabView bind:NSSelectedIndexBinding toObject:self withKeyPath:NSStringFromSelector(@selector(activeTab)) options:nil];
   
-  /* Set background to clearcolor so we can draw in the scrollview */
+  
   self.attachmentTableView.backgroundColor = [NSColor clearColor];
   [self.attachmentTableView bind:NSContentBinding toObject:_attachmentsController withKeyPath:NSStringFromSelector(@selector(arrangedObjects)) options:nil];
   self.attachmentTableView.delegate = _attachmentTableDelegate;
   self.attachmentTableView.dataSource = _attachmentDataSource;
   [self.attachmentTableView registerForDraggedTypes:@[NSFilenamesPboardType]];
-  /* Set background to clearcolor so we can draw in the scrollview */
+  
   self.customFieldsTableView.backgroundColor = [NSColor clearColor];
   [self.customFieldsTableView bind:NSContentBinding toObject:_customFieldsController withKeyPath:NSStringFromSelector(@selector(arrangedObjects)) options:nil];
   self.customFieldsTableView.delegate = _customFieldTableDelegate;
-  
+    
   self.windowAssociationsTableView.backgroundColor = [NSColor clearColor];
   self.windowAssociationsTableView.delegate = _windowAssociationsTableDelegate;
   [self.windowAssociationsTableView bind:NSContentBinding toObject:_windowAssociationsController withKeyPath:NSStringFromSelector(@selector(arrangedObjects)) options:nil];
@@ -452,6 +452,7 @@ typedef NS_ENUM(NSUInteger, MPEntryTab) {
                               withKeyPath:[NSString stringWithFormat:@"selection.%@", NSStringFromSelector(@selector(keystrokeSequence))]
                                   options:nil];
 }
+
 
 #pragma mark -
 #pragma mark MPDocument Notifications

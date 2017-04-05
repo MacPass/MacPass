@@ -26,6 +26,8 @@
 		4C17F105184E630200E85625 /* 14_BatteryTemplate.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 4C17F104184E630200E85625 /* 14_BatteryTemplate.pdf */; };
 		4C17F108184E6B6C00E85625 /* 31_PrintTemplate.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 4C17F106184E6B6C00E85625 /* 31_PrintTemplate.pdf */; };
 		4C17F109184E6B6C00E85625 /* 30_TerminalTemplate.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 4C17F107184E6B6C00E85625 /* 30_TerminalTemplate.pdf */; };
+		4C1BDF2B1E4392640012A3F0 /* MPPluginDataViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C1BDF291E4392640012A3F0 /* MPPluginDataViewController.m */; };
+		4C1BDF2C1E4392640012A3F0 /* PluginDataView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4C1BDF2A1E4392640012A3F0 /* PluginDataView.xib */; };
 		4C1DDCDD1711ECEB00C98DA3 /* PasswordCreatorWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4C1DDCDC1711ECEB00C98DA3 /* PasswordCreatorWindow.xib */; };
 		4C1E9885185F71A800943563 /* MPContextBarViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C1E9884185F71A800943563 /* MPContextBarViewController.m */; };
 		4C1F7FA21E3A12E600D6A40E /* MPModifiedKey.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C1F7FA11E3A12E600D6A40E /* MPModifiedKey.m */; };
@@ -211,8 +213,7 @@
 		4CCFA13D1BF0CC7A0078E0A1 /* Test_Password_1234.kdb in Resources */ = {isa = PBXBuildFile; fileRef = 4CCFA1321BF0CC7A0078E0A1 /* Test_Password_1234.kdb */; };
 		4CCFA13E1BF0CC7A0078E0A1 /* Test_Password_1234.kdbx in Resources */ = {isa = PBXBuildFile; fileRef = 4CCFA1331BF0CC7A0078E0A1 /* Test_Password_1234.kdbx */; };
 		4CD034AA1BFE113B003C002C /* MPPlugin.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CD034A51BFE113B003C002C /* MPPlugin.m */; };
-		4CD034AB1BFE113B003C002C /* MPPluginHost.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CD034A71BFE113B003C002C /* MPPluginHost.m */; };
-		4CD034AC1BFE113B003C002C /* MPPluginManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CD034A91BFE113B003C002C /* MPPluginManager.m */; };
+		4CD034AC1BFE113B003C002C /* MPPluginHost.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CD034A91BFE113B003C002C /* MPPluginHost.m */; };
 		4CD2B9061849424B0051B395 /* MPAutotypeContext.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CD2B9051849424B0051B395 /* MPAutotypeContext.m */; };
 		4CD5D705177A5F3300100649 /* MPDatabaseSettingsWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CD5D704177A5F3300100649 /* MPDatabaseSettingsWindowController.m */; };
 		4CD60C131C104AD4005BE5F8 /* HNHUi.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 4CC281881C0F675B00B9174D /* HNHUi.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
@@ -300,6 +301,9 @@
 		4C17F104184E630200E85625 /* 14_BatteryTemplate.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = 14_BatteryTemplate.pdf; sourceTree = "<group>"; };
 		4C17F106184E6B6C00E85625 /* 31_PrintTemplate.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = 31_PrintTemplate.pdf; sourceTree = "<group>"; };
 		4C17F107184E6B6C00E85625 /* 30_TerminalTemplate.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = 30_TerminalTemplate.pdf; sourceTree = "<group>"; };
+		4C1BDF281E4392640012A3F0 /* MPPluginDataViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MPPluginDataViewController.h; sourceTree = "<group>"; };
+		4C1BDF291E4392640012A3F0 /* MPPluginDataViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MPPluginDataViewController.m; sourceTree = "<group>"; };
+		4C1BDF2A1E4392640012A3F0 /* PluginDataView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PluginDataView.xib; sourceTree = "<group>"; };
 		4C1DDCDC1711ECEB00C98DA3 /* PasswordCreatorWindow.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PasswordCreatorWindow.xib; sourceTree = "<group>"; };
 		4C1E9883185F71A800943563 /* MPContextBarViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MPContextBarViewController.h; sourceTree = "<group>"; };
 		4C1E9884185F71A800943563 /* MPContextBarViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MPContextBarViewController.m; sourceTree = "<group>"; };
@@ -573,10 +577,8 @@
 		4CCFA1331BF0CC7A0078E0A1 /* Test_Password_1234.kdbx */ = {isa = PBXFileReference; lastKnownFileType = file; path = Test_Password_1234.kdbx; sourceTree = "<group>"; };
 		4CD034A41BFE113B003C002C /* MPPlugin.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MPPlugin.h; path = MacPass/MPPlugin.h; sourceTree = SOURCE_ROOT; };
 		4CD034A51BFE113B003C002C /* MPPlugin.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MPPlugin.m; path = MacPass/MPPlugin.m; sourceTree = SOURCE_ROOT; };
-		4CD034A61BFE113B003C002C /* MPPluginHost.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MPPluginHost.h; path = MacPass/MPPluginHost.h; sourceTree = SOURCE_ROOT; };
-		4CD034A71BFE113B003C002C /* MPPluginHost.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MPPluginHost.m; path = MacPass/MPPluginHost.m; sourceTree = SOURCE_ROOT; };
-		4CD034A81BFE113B003C002C /* MPPluginManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MPPluginManager.h; path = MacPass/MPPluginManager.h; sourceTree = SOURCE_ROOT; };
-		4CD034A91BFE113B003C002C /* MPPluginManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MPPluginManager.m; path = MacPass/MPPluginManager.m; sourceTree = SOURCE_ROOT; };
+		4CD034A81BFE113B003C002C /* MPPluginHost.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MPPluginHost.h; path = MacPass/MPPluginHost.h; sourceTree = SOURCE_ROOT; };
+		4CD034A91BFE113B003C002C /* MPPluginHost.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MPPluginHost.m; path = MacPass/MPPluginHost.m; sourceTree = SOURCE_ROOT; };
 		4CD2B9041849424B0051B395 /* MPAutotypeContext.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MPAutotypeContext.h; sourceTree = "<group>"; };
 		4CD2B9051849424B0051B395 /* MPAutotypeContext.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MPAutotypeContext.m; sourceTree = "<group>"; };
 		4CD5D703177A5F3300100649 /* MPDatabaseSettingsWindowController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MPDatabaseSettingsWindowController.h; sourceTree = "<group>"; };
@@ -721,19 +723,8 @@
 			isa = PBXGroup;
 			children = (
 				4C6AEF041A0441F800CA2420 /* AccessoryViews */,
-				4CF78060176E75180032EE71 /* Settings */,
-				4C25D58616CF0FAA00F6806C /* EntryView.xib */,
-				4C3FFD9D16DAF60600DF9186 /* ContextBar.xib */,
 				4C77E37B15B84A240093A587 /* MainMenu.xib */,
-				4C61EA0416D2FFE200AC519E /* OutlineView.xib */,
-				4CF78061176E752E0032EE71 /* PasswordInputs */,
-				4C4B7EF517A46815000234C7 /* Inspector */,
-				4C7155DA1A10DB6D00979307 /* IconSelection.xib */,
 				4C2C8B331787500E009649F3 /* UnprotectedWarningView.xib */,
-				6021FE7918E15FF300C3BC51 /* DatePickingView.xib */,
-				4C26C34A18D8D5A300CF1A1C /* PreviewView.xib */,
-				4CD820231A32173100399DBB /* ReferenceBuilderView.xib */,
-				4CAAA8261D787B8B00CDE977 /* AutotypeBuilderView.xib */,
 				4CE8247316E2F2B900573141 /* MPOverlayView.h */,
 				4CE8247416E2F2B900573141 /* MPOverlayView.m */,
 				4CFC53BD16E94729007396BE /* MPShadowBox.h */,
@@ -910,14 +901,19 @@
 			children = (
 				4CA0B2F715BCAF6700654E32 /* MPGeneralSettingsController.h */,
 				4CA0B2F815BCAF6700654E32 /* MPGeneralSettingsController.m */,
+				4C76155E1764C04C0015A1A6 /* GeneralSettings.xib */,
 				4CF78062176E75AD0032EE71 /* MPIntegrationSettingsController.h */,
 				4CF78063176E75AD0032EE71 /* MPIntegrationSettingsController.m */,
+				6021FE5818E1429500C3BC51 /* IntegrationSettings.xib */,
 				4CD7223917A7CB0700F5A1E1 /* MPWorkflowSettingsController.h */,
 				4CD7223A17A7CB0700F5A1E1 /* MPWorkflowSettingsController.m */,
+				6021FE6318E15D9100C3BC51 /* WorkflowSettings.xib */,
 				4CFB18E218A17FA20097A34B /* MPUpdateSettingsController.h */,
 				4CFB18E318A17FA20097A34B /* MPUpdateSettingsController.m */,
+				6021FE6E18E15E6D00C3BC51 /* UpdateSettings.xib */,
 				4C25703C1BF11C2300D39416 /* MPPluginSettingsController.h */,
 				4C25703D1BF11C2300D39416 /* MPPluginSettingsController.m */,
+				4C0DBEF71BF508DE00F9B287 /* PluginSettings.xib */,
 			);
 			name = Settings;
 			sourceTree = "<group>";
@@ -925,8 +921,14 @@
 		4C4B7EF517A46815000234C7 /* Inspector */ = {
 			isa = PBXGroup;
 			children = (
+				4C77547316E55FE800970E02 /* MPInspectorViewController.h */,
+				4C77547416E55FE800970E02 /* MPInspectorViewController.m */,
 				4C76156F1764C0E20015A1A6 /* InspectorView.xib */,
+				4C4B7EEB17A467E1000234C7 /* MPGroupInspectorViewController.h */,
+				4C4B7EEC17A467E1000234C7 /* MPGroupInspectorViewController.m */,
 				6021FE4D18E13F1D00C3BC51 /* GroupInspectorView.xib */,
+				4C4B7EF017A467FC000234C7 /* MPEntryInspectorViewController.h */,
+				4C4B7EF117A467FC000234C7 /* MPEntryInspectorViewController.m */,
 				6021FE3D18E1341900C3BC51 /* EntryInspectorView.xib */,
 			);
 			name = Inspector;
@@ -1169,36 +1171,44 @@
 			isa = PBXGroup;
 			children = (
 				4C47D77718B37911002755E4 /* Settings */,
+				4C4B7EF517A46815000234C7 /* Inspector */,
 				4C2E382416D1470200037A9D /* MPViewController.h */,
 				4C2E382516D1470200037A9D /* MPViewController.m */,
 				4C65FAE616D16DDB006E0577 /* MPPasswordInputController.h */,
 				4C65FAE716D16DDB006E0577 /* MPPasswordInputController.m */,
+				4C76156A1764C0C40015A1A6 /* PasswordInputView.xib */,
 				4C5A11FB1708DE8700223D8A /* MPPasswordCreatorViewController.h */,
 				4C5A11FC1708DE8700223D8A /* MPPasswordCreatorViewController.m */,
+				6021FE8F18E1617300C3BC51 /* PasswordCreatorView.xib */,
 				4CDF01A116D1B76700D0AC08 /* MPEntryViewController.h */,
 				4CDF01A216D1B76700D0AC08 /* MPEntryViewController.m */,
+				4C25D58616CF0FAA00F6806C /* EntryView.xib */,
 				4C61EA0116D2FD0800AC519E /* MPOutlineViewController.h */,
 				4C61EA0216D2FD0800AC519E /* MPOutlineViewController.m */,
+				4C61EA0416D2FFE200AC519E /* OutlineView.xib */,
 				4CE39ABD16ECE34A000FE29D /* MPIconSelectViewController.h */,
 				4CE39ABE16ECE34A000FE29D /* MPIconSelectViewController.m */,
+				4C7155DA1A10DB6D00979307 /* IconSelection.xib */,
 				4C4B7EE617A45EC5000234C7 /* MPDatePickingViewController.h */,
 				4C4B7EE717A45EC5000234C7 /* MPDatePickingViewController.m */,
-				4C77547316E55FE800970E02 /* MPInspectorViewController.h */,
-				4C77547416E55FE800970E02 /* MPInspectorViewController.m */,
-				4C4B7EEB17A467E1000234C7 /* MPGroupInspectorViewController.h */,
-				4C4B7EEC17A467E1000234C7 /* MPGroupInspectorViewController.m */,
-				4C4B7EF017A467FC000234C7 /* MPEntryInspectorViewController.h */,
-				4C4B7EF117A467FC000234C7 /* MPEntryInspectorViewController.m */,
+				6021FE7918E15FF300C3BC51 /* DatePickingView.xib */,
 				4C0F647917B6BC9C00D9522A /* MPSavePanelAccessoryViewController.h */,
 				4C0F647A17B6BC9C00D9522A /* MPSavePanelAccessoryViewController.m */,
 				4C1E9883185F71A800943563 /* MPContextBarViewController.h */,
 				4C1E9884185F71A800943563 /* MPContextBarViewController.m */,
+				4C3FFD9D16DAF60600DF9186 /* ContextBar.xib */,
 				4C26C34818D8D5A300CF1A1C /* MPPreviewViewController.h */,
 				4C26C34918D8D5A300CF1A1C /* MPPreviewViewController.m */,
+				4C26C34A18D8D5A300CF1A1C /* PreviewView.xib */,
 				4CE30ACA1A312B7F0063FCC6 /* MPReferenceBuilderViewController.h */,
 				4CE30ACB1A312B7F0063FCC6 /* MPReferenceBuilderViewController.m */,
+				4CD820231A32173100399DBB /* ReferenceBuilderView.xib */,
 				4CAAA8241D787B8B00CDE977 /* MPAutotypeBuilderViewController.h */,
 				4CAAA8251D787B8B00CDE977 /* MPAutotypeBuilderViewController.m */,
+				4CAAA8261D787B8B00CDE977 /* AutotypeBuilderView.xib */,
+				4C1BDF281E4392640012A3F0 /* MPPluginDataViewController.h */,
+				4C1BDF291E4392640012A3F0 /* MPPluginDataViewController.m */,
+				4C1BDF2A1E4392640012A3F0 /* PluginDataView.xib */,
 			);
 			name = "View Controller";
 			sourceTree = "<group>";
@@ -1242,16 +1252,22 @@
 			children = (
 				4CA0B2FA15BCAF8600654E32 /* MPSettingsWindowController.h */,
 				4CA0B2FB15BCAF8600654E32 /* MPSettingsWindowController.m */,
+				4CA0B2EC15BCADAC00654E32 /* SettingsWindow.xib */,
 				4C83814015BF4677001AE468 /* MPDocumentWindowController.h */,
 				4C83814115BF4677001AE468 /* MPDocumentWindowController.m */,
+				4CD884B615BD47080042BBF8 /* DocumentWindow.xib */,
 				4CE8246D16E2E93400573141 /* MPOverlayWindowController.h */,
 				4CE8246E16E2E93400573141 /* MPOverlayWindowController.m */,
+				4C431BCE16E2BAB000700A81 /* OverlayWindow.xib */,
 				4CD5D703177A5F3300100649 /* MPDatabaseSettingsWindowController.h */,
 				4CD5D704177A5F3300100649 /* MPDatabaseSettingsWindowController.m */,
+				6021FE9A18E1650F00C3BC51 /* DatabaseSettingsWindow.xib */,
 				4C0728BB17B5B7F7005A7DD9 /* MPPasswordEditWindowController.h */,
 				4C0728BC17B5B7F7005A7DD9 /* MPPasswordEditWindowController.m */,
+				6021FE8418E160BC00C3BC51 /* PasswordEditWindow.xib */,
 				4C0B038918E36DA400B9F9C9 /* MPFixAutotypeWindowController.h */,
 				4C0B038A18E36DA400B9F9C9 /* MPFixAutotypeWindowController.m */,
+				4C0B038B18E36DA400B9F9C9 /* FixAutotypeWindow.xib */,
 			);
 			name = "Window Controller";
 			sourceTree = "<group>";
@@ -1272,13 +1288,7 @@
 		4CE8247216E2E99F00573141 /* Windows */ = {
 			isa = PBXGroup;
 			children = (
-				4C0B038B18E36DA400B9F9C9 /* FixAutotypeWindow.xib */,
-				4CA0B2EC15BCADAC00654E32 /* SettingsWindow.xib */,
-				4CD884B615BD47080042BBF8 /* DocumentWindow.xib */,
-				4C431BCE16E2BAB000700A81 /* OverlayWindow.xib */,
 				4C1DDCDC1711ECEB00C98DA3 /* PasswordCreatorWindow.xib */,
-				6021FE9A18E1650F00C3BC51 /* DatabaseSettingsWindow.xib */,
-				6021FE8418E160BC00C3BC51 /* PasswordEditWindow.xib */,
 				4C7F8B6A1A10B68400CCB83D /* WelcomeWindow.xib */,
 				4C0DD6C518B2A44700FCB193 /* AutotypeCandidateSelectionWindow.xib */,
 				4CB915931A0159A20089CE5B /* DuplicateEntryOptionsWindow.xib */,
@@ -1300,36 +1310,13 @@
 			name = Icons;
 			sourceTree = "<group>";
 		};
-		4CF78060176E75180032EE71 /* Settings */ = {
-			isa = PBXGroup;
-			children = (
-				4C76155E1764C04C0015A1A6 /* GeneralSettings.xib */,
-				6021FE5818E1429500C3BC51 /* IntegrationSettings.xib */,
-				6021FE6318E15D9100C3BC51 /* WorkflowSettings.xib */,
-				6021FE6E18E15E6D00C3BC51 /* UpdateSettings.xib */,
-				4C0DBEF71BF508DE00F9B287 /* PluginSettings.xib */,
-			);
-			name = Settings;
-			sourceTree = "<group>";
-		};
-		4CF78061176E752E0032EE71 /* PasswordInputs */ = {
-			isa = PBXGroup;
-			children = (
-				4C76156A1764C0C40015A1A6 /* PasswordInputView.xib */,
-				6021FE8F18E1617300C3BC51 /* PasswordCreatorView.xib */,
-			);
-			name = PasswordInputs;
-			sourceTree = "<group>";
-		};
 		4CF9ECAE1BFDEC5700C58E99 /* Plugin */ = {
 			isa = PBXGroup;
 			children = (
 				4CD034A41BFE113B003C002C /* MPPlugin.h */,
 				4CD034A51BFE113B003C002C /* MPPlugin.m */,
-				4CD034A61BFE113B003C002C /* MPPluginHost.h */,
-				4CD034A71BFE113B003C002C /* MPPluginHost.m */,
-				4CD034A81BFE113B003C002C /* MPPluginManager.h */,
-				4CD034A91BFE113B003C002C /* MPPluginManager.m */,
+				4CD034A81BFE113B003C002C /* MPPluginHost.h */,
+				4CD034A91BFE113B003C002C /* MPPluginHost.m */,
 			);
 			name = Plugin;
 			path = MacPassPlugin;
@@ -1538,6 +1525,7 @@
 				4C53A7A51864C39D000DFF0D /* KPKLocalizable.strings in Resources */,
 				4C3826761AD04C24007D7D67 /* harddiskTemplate.pdf in Resources */,
 				4C0DBEF51BF508DE00F9B287 /* PluginSettings.xib in Resources */,
+				4C1BDF2C1E4392640012A3F0 /* PluginDataView.xib in Resources */,
 				4C7F8B681A10B68400CCB83D /* WelcomeWindow.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1580,7 +1568,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				4CD034AC1BFE113B003C002C /* MPPluginManager.m in Sources */,
+				4CD034AC1BFE113B003C002C /* MPPluginHost.m in Sources */,
 				4C77E37315B84A240093A587 /* main.m in Sources */,
 				4CBA2ABA17074C07006D8139 /* MPSettingsHelper.m in Sources */,
 				4C77E37A15B84A240093A587 /* MPAppDelegate.m in Sources */,
@@ -1590,7 +1578,6 @@
 				4CA0B2FC15BCAF8600654E32 /* MPSettingsWindowController.m in Sources */,
 				4C4F72D118DF704400E8D378 /* DDHotKeyTextField.m in Sources */,
 				4C83814215BF4677001AE468 /* MPDocumentWindowController.m in Sources */,
-				4CD034AB1BFE113B003C002C /* MPPluginHost.m in Sources */,
 				4C2E382316D1421B00037A9D /* MPIconHelper.m in Sources */,
 				4C2E382616D1470200037A9D /* MPViewController.m in Sources */,
 				4C65FAE916D16DDB006E0577 /* MPPasswordInputController.m in Sources */,
@@ -1672,6 +1659,7 @@
 				4C4B7EEE17A467E1000234C7 /* MPGroupInspectorViewController.m in Sources */,
 				4C7B63721C0CB51F00D7038C /* TTTCryptographyTransformers.m in Sources */,
 				4C4B7EF317A467FC000234C7 /* MPEntryInspectorViewController.m in Sources */,
+				4C1BDF2B1E4392640012A3F0 /* MPPluginDataViewController.m in Sources */,
 				4C4B7EF817A4B335000234C7 /* MPUniqueCharactersFormatter.m in Sources */,
 				4C8B36AB17A6ED4B005E1FF1 /* MPOutlineContextMenuDelegate.m in Sources */,
 				4CD7223B17A7CB0700F5A1E1 /* MPWorkflowSettingsController.m in Sources */,

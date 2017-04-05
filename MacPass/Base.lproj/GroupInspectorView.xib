@@ -1,8 +1,9 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="9531" systemVersion="15C50" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="11762" systemVersion="16D32" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
     <dependencies>
         <deployment identifier="macosx"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="9531"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="11762"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
         <customObject id="-2" userLabel="File's Owner" customClass="MPGroupInspectorViewController">
@@ -10,7 +11,6 @@
                 <outlet property="autotypePopupButton" destination="240" id="285"/>
                 <outlet property="autotypeSequenceTextField" destination="Fnw-qz-IZU" id="a7M-zz-0ye"/>
                 <outlet property="contentView" destination="38" id="Dv7-1B-VeH"/>
-                <outlet property="expireDateSelectButton" destination="4" id="Bzg-8k-0OS"/>
                 <outlet property="expiresCheckButton" destination="5" id="283"/>
                 <outlet property="searchPopupButton" destination="229" id="284"/>
                 <outlet property="titleTextField" destination="23" id="35"/>
@@ -20,16 +20,16 @@
         <customObject id="-1" userLabel="First Responder" customClass="FirstResponder"/>
         <customObject id="-3" userLabel="Application" customClass="NSObject"/>
         <scrollView borderType="none" horizontalLineScroll="10" horizontalPageScroll="10" verticalLineScroll="10" verticalPageScroll="10" hasHorizontalScroller="NO" hasVerticalScroller="NO" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="37" customClass="HNHUIScrollView">
-            <rect key="frame" x="0.0" y="0.0" width="257" height="261"/>
+            <rect key="frame" x="0.0" y="0.0" width="257" height="291"/>
             <clipView key="contentView" id="HjA-kA-fcX">
-                <rect key="frame" x="0.0" y="0.0" width="257" height="261"/>
+                <rect key="frame" x="0.0" y="0.0" width="257" height="291"/>
                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                 <subviews>
                     <view translatesAutoresizingMaskIntoConstraints="NO" id="38" customClass="HNHUIScrollDocumentViewAdapter">
-                        <rect key="frame" x="0.0" y="0.0" width="257" height="261"/>
+                        <rect key="frame" x="0.0" y="0.0" width="257" height="291"/>
                         <subviews>
                             <textField verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="24">
-                                <rect key="frame" x="18" y="242" width="35" height="14"/>
+                                <rect key="frame" x="18" y="272" width="35" height="14"/>
                                 <textFieldCell key="cell" controlSize="small" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Name" id="25">
                                     <font key="font" metaFont="smallSystem"/>
                                     <color key="textColor" name="disabledControlTextColor" catalog="System" colorSpace="catalog"/>
@@ -37,7 +37,7 @@
                                 </textFieldCell>
                             </textField>
                             <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="249" translatesAutoresizingMaskIntoConstraints="NO" id="23" customClass="HNHUIRoundedTextField">
-                                <rect key="frame" x="20" y="212" width="217" height="22"/>
+                                <rect key="frame" x="20" y="242" width="217" height="22"/>
                                 <textFieldCell key="cell" lineBreakMode="truncatingTail" truncatesLastVisibleLine="YES" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" drawsBackground="YES" usesSingleLineMode="YES" id="26">
                                     <font key="font" metaFont="system"/>
                                     <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
@@ -48,7 +48,7 @@
                                 </connections>
                             </textField>
                             <button horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="5">
-                                <rect key="frame" x="18" y="184" width="67" height="18"/>
+                                <rect key="frame" x="18" y="214" width="67" height="18"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="14" id="pWR-o1-KI6"/>
                                 </constraints>
@@ -61,7 +61,7 @@
                                 </connections>
                             </button>
                             <button focusRingType="exterior" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="4">
-                                <rect key="frame" x="205" y="180" width="32" height="25"/>
+                                <rect key="frame" x="205" y="210" width="32" height="25"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="32" id="l5I-EF-dHs"/>
                                 </constraints>
@@ -75,7 +75,7 @@
                                 </connections>
                             </button>
                             <popUpButton verticalHuggingPriority="750" horizontalCompressionResistancePriority="249" translatesAutoresizingMaskIntoConstraints="NO" id="229">
-                                <rect key="frame" x="18" y="128" width="222" height="26"/>
+                                <rect key="frame" x="18" y="158" width="222" height="26"/>
                                 <popUpButtonCell key="cell" type="push" bezelStyle="rounded" alignment="left" lineBreakMode="truncatingTail" borderStyle="borderAndBezel" imageScaling="proportionallyDown" inset="2" id="230">
                                     <behavior key="behavior" lightByBackground="YES" lightByGray="YES"/>
                                     <font key="font" metaFont="menu"/>
@@ -86,7 +86,7 @@
                                 </connections>
                             </popUpButton>
                             <popUpButton verticalHuggingPriority="750" horizontalCompressionResistancePriority="249" translatesAutoresizingMaskIntoConstraints="NO" id="240">
-                                <rect key="frame" x="18" y="73" width="222" height="26"/>
+                                <rect key="frame" x="18" y="103" width="222" height="26"/>
                                 <popUpButtonCell key="cell" type="push" bezelStyle="rounded" alignment="left" lineBreakMode="truncatingTail" borderStyle="borderAndBezel" imageScaling="proportionallyDown" inset="2" id="242">
                                     <behavior key="behavior" lightByBackground="YES" lightByGray="YES"/>
                                     <font key="font" metaFont="menu"/>
@@ -97,7 +97,7 @@
                                 </connections>
                             </popUpButton>
                             <textField verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="264">
-                                <rect key="frame" x="18" y="160" width="41" height="14"/>
+                                <rect key="frame" x="18" y="190" width="41" height="14"/>
                                 <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Search" id="265">
                                     <font key="font" metaFont="smallSystem"/>
                                     <color key="textColor" name="disabledControlTextColor" catalog="System" colorSpace="catalog"/>
@@ -105,7 +105,7 @@
                                 </textFieldCell>
                             </textField>
                             <textField verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="276">
-                                <rect key="frame" x="18" y="105" width="52" height="14"/>
+                                <rect key="frame" x="18" y="135" width="52" height="14"/>
                                 <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Autotype" id="277">
                                     <font key="font" metaFont="smallSystem"/>
                                     <color key="textColor" name="disabledControlTextColor" catalog="System" colorSpace="catalog"/>
@@ -113,24 +113,35 @@
                                 </textFieldCell>
                             </textField>
                             <textField verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="Fnw-qz-IZU" customClass="HNHUIRoundedTextField">
-                                <rect key="frame" x="20" y="20" width="217" height="22"/>
+                                <rect key="frame" x="20" y="50" width="217" height="22"/>
                                 <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" drawsBackground="YES" id="VeF-V7-i2I">
                                     <font key="font" metaFont="system"/>
                                     <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
                                     <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                 </textFieldCell>
                                 <connections>
-                                    <outlet property="nextKeyView" destination="23" id="ZlU-EF-myK"/>
+                                    <outlet property="nextKeyView" destination="1Uh-eo-H0j" id="zer-UH-73e"/>
                                 </connections>
                             </textField>
                             <textField verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="6Lw-XW-x20">
-                                <rect key="frame" x="18" y="50" width="107" height="14"/>
+                                <rect key="frame" x="18" y="80" width="107" height="14"/>
                                 <textFieldCell key="cell" controlSize="small" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Autotype Sequence" id="6FG-UZ-Adh">
                                     <font key="font" metaFont="smallSystem"/>
                                     <color key="textColor" name="disabledControlTextColor" catalog="System" colorSpace="catalog"/>
                                     <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                 </textFieldCell>
                             </textField>
+                            <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="1Uh-eo-H0j">
+                                <rect key="frame" x="20" y="18" width="217" height="25"/>
+                                <buttonCell key="cell" type="roundTextured" title="Edit Plugin Data" bezelStyle="texturedRounded" alignment="center" lineBreakMode="truncatingTail" state="on" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="qGr-oT-WjP">
+                                    <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                    <font key="font" metaFont="system"/>
+                                </buttonCell>
+                                <connections>
+                                    <action selector="showPluginData:" target="-1" id="yjJ-Xy-m4c"/>
+                                    <outlet property="nextKeyView" destination="23" id="x9e-ya-hiK"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <constraints>
                             <constraint firstAttribute="trailing" secondItem="Fnw-qz-IZU" secondAttribute="trailing" constant="20" symbolic="YES" id="3Gx-EC-k0Q"/>
@@ -143,21 +154,24 @@
                             <constraint firstItem="5" firstAttribute="top" secondItem="23" secondAttribute="bottom" constant="12" id="GFF-xs-Nuj"/>
                             <constraint firstItem="Fnw-qz-IZU" firstAttribute="top" secondItem="6Lw-XW-x20" secondAttribute="bottom" constant="8" id="Gfr-Tc-ldH"/>
                             <constraint firstItem="4" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="5" secondAttribute="trailing" constant="8" symbolic="YES" id="HDo-Yu-P02"/>
+                            <constraint firstItem="1Uh-eo-H0j" firstAttribute="top" secondItem="Fnw-qz-IZU" secondAttribute="bottom" constant="8" symbolic="YES" id="ON2-U6-flt"/>
                             <constraint firstItem="24" firstAttribute="leading" secondItem="38" secondAttribute="leading" constant="20" id="OhC-BP-oPg"/>
                             <constraint firstItem="6Lw-XW-x20" firstAttribute="leading" secondItem="38" secondAttribute="leading" constant="20" id="SVn-Hh-xc6"/>
                             <constraint firstAttribute="trailing" secondItem="240" secondAttribute="trailing" constant="20" symbolic="YES" id="V4d-R9-46P"/>
                             <constraint firstAttribute="trailing" secondItem="23" secondAttribute="trailing" constant="20" id="Vej-zI-z2w"/>
                             <constraint firstItem="24" firstAttribute="top" secondItem="38" secondAttribute="top" constant="5" id="Wk6-kJ-fTY"/>
                             <constraint firstItem="5" firstAttribute="leading" secondItem="38" secondAttribute="leading" constant="20" id="ZaF-lS-pN8"/>
+                            <constraint firstAttribute="trailing" secondItem="1Uh-eo-H0j" secondAttribute="trailing" constant="20" symbolic="YES" id="ZzC-4Z-u4x"/>
                             <constraint firstItem="276" firstAttribute="top" secondItem="229" secondAttribute="bottom" constant="12" id="c0H-cE-rnF"/>
                             <constraint firstItem="6Lw-XW-x20" firstAttribute="top" secondItem="240" secondAttribute="bottom" constant="12" id="hDT-8L-2eV"/>
                             <constraint firstItem="23" firstAttribute="top" secondItem="24" secondAttribute="bottom" constant="8" id="kbc-Eb-FPr"/>
                             <constraint firstItem="Fnw-qz-IZU" firstAttribute="leading" secondItem="38" secondAttribute="leading" constant="20" id="lGO-Wz-eF9"/>
+                            <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="1Uh-eo-H0j" secondAttribute="bottom" constant="20" symbolic="YES" id="owP-KD-Io0"/>
                             <constraint firstItem="229" firstAttribute="top" secondItem="264" secondAttribute="bottom" constant="8" id="pDa-nw-ByQ"/>
                             <constraint firstItem="264" firstAttribute="leading" secondItem="38" secondAttribute="leading" constant="20" id="qnB-Pd-MqU"/>
+                            <constraint firstItem="1Uh-eo-H0j" firstAttribute="leading" secondItem="38" secondAttribute="leading" constant="20" symbolic="YES" id="rJf-uc-7me"/>
                             <constraint firstItem="229" firstAttribute="leading" secondItem="38" secondAttribute="leading" constant="20" id="sCg-Na-ouj"/>
                             <constraint firstItem="276" firstAttribute="leading" secondItem="38" secondAttribute="leading" constant="20" id="xLc-Rz-374"/>
-                            <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="Fnw-qz-IZU" secondAttribute="bottom" constant="20" symbolic="YES" id="xRe-8b-p6s"/>
                             <constraint firstItem="264" firstAttribute="top" secondItem="5" secondAttribute="bottom" constant="12" id="xe7-ue-Wip"/>
                         </constraints>
                     </view>
@@ -177,6 +191,7 @@
                 <rect key="frame" x="-100" y="-100" width="15" height="201"/>
                 <autoresizingMask key="autoresizingMask"/>
             </scroller>
+            <point key="canvasLocation" x="-2" y="132"/>
         </scrollView>
     </objects>
     <resources>

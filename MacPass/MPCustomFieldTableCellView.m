@@ -25,10 +25,12 @@
 
 - (void)setValue:(id)value forKeyPath:(NSString *)keyPath {
   if([keyPath hasPrefix:@"objectValue."]) {
-    [self.window.windowController.document willChangeModelProperty];
+    [self.observer willChangeModelProperty];
     [super setValue:value forKeyPath:keyPath];
-    [self.window.windowController.document didChangeModelProperty];
+    [self.observer didChangeModelProperty];
   }
-  [super setValue:value forKeyPath:keyPath];
+  else {
+    [super setValue:value forKeyPath:keyPath];
+  }
 }
 @end

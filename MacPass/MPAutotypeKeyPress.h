@@ -16,7 +16,6 @@
 @property (readonly, assign) MPModifiedKey key;
 
 - (instancetype)initWithModifiedKey:(MPModifiedKey)key;
-- (instancetype)initWithModifierMask:(CGEventFlags)modiferMask keyCode:(CGKeyCode)code;
 - (instancetype)initWithModifierMask:(CGEventFlags)modiferMask character:(NSString *)character;
 
 @end

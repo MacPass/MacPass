@@ -15,6 +15,7 @@
 #import "MPIconSelectViewController.h"
 #import "MPNotifications.h"
 #import "MPPopupImageView.h"
+#import "MPPluginDataViewController.h"
 
 #import "KeePassKit/KeePassKit.h"
 
@@ -169,33 +170,31 @@ typedef NS_ENUM(NSUInteger, MPContentTab) {
 #pragma mark -
 #pragma mark Popup
 - (IBAction)pickIcon:(id)sender {
-  if(self.popover) {
-    return; // There is still a popover so do nothing
-  }
-  self.popover = [[NSPopover alloc] init];
-  self.popover.delegate = self;
-  self.popover.behavior = NSPopoverBehaviorTransient;
-  MPIconSelectViewController *vc = [[MPIconSelectViewController alloc] init];
-  vc.representedObject = self.representedObject;
-  vc.popover = self.popover;
-  vc.observer = self.windowController.document;
-  self.popover.contentViewController = vc;
-  [self.popover showRelativeToRect:NSZeroRect ofView:sender preferredEdge:NSMinYEdge];
+  NSAssert([sender isKindOfClass:[NSView class]], @"");
+  [self _popupViewController:[[MPIconSelectViewController alloc] init] atView:(NSView *)sender];
 }
 
 - (IBAction)pickExpiryDate:(id)sender {
+  NSAssert([sender isKindOfClass:[NSView class]], @"");
+  [self _popupViewController:[[MPDatePickingViewController alloc] init] atView:(NSView *)sender];
+}
+
+- (IBAction)showPluginData:(id)sender {
+  NSAssert([sender isKindOfClass:[NSView class]], @"");
+  [self _popupViewController:[[MPPluginDataViewController alloc] init] atView:(NSView *)sender];
+}
+
+- (void)_popupViewController:(MPViewController *)vc atView:(NSView *)view {
   if(self.popover) {
     return; // Popover still active, abort
   }
-  NSAssert([sender isKindOfClass:[NSView class]], @"");
   self.popover = [[NSPopover alloc] init];
   self.popover.delegate = self;
   self.popover.behavior = NSPopoverBehaviorTransient;
-  MPDatePickingViewController *vc = [[MPDatePickingViewController alloc] init];
   vc.representedObject = self.representedObject;
   vc.observer = self.windowController.document;
   self.popover.contentViewController = vc;
-  [self.popover showRelativeToRect:NSZeroRect ofView:sender preferredEdge:NSMinYEdge];
+  [self.popover showRelativeToRect:NSZeroRect ofView:view preferredEdge:NSMinYEdge];
 }
 
 
