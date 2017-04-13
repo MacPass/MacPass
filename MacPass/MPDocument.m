@@ -667,11 +667,11 @@ NSString *const MPDocumentGroupKey                            = @"MPDocumentGrou
 }
 
 - (void)duplicateEntry:(id)sender {
-  /*
-   KPKEntry *duplicate = [self.selectedEntry copyWithTitle:nil options:kKPKCopyOptionNone];
-   [duplicate addToGroup:self.selectedEntry.parent];
-   [self.undoManager setActionName:NSLocalizedString(@"DUPLICATE_ENTRY", "")];
-   */
+  for(KPKEntry *entry in self.selectedEntries) {
+    KPKEntry *duplicate = [entry copyWithTitle:nil options:kKPKCopyOptionNone];
+    [duplicate addToGroup:entry.parent];
+  }
+  [self.undoManager setActionName:NSLocalizedString(@"DUPLICATE_ENTRY", "")];
 }
 
 - (void)duplicateEntryWithOptions:(id)sender {
