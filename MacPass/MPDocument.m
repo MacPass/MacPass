@@ -346,6 +346,7 @@ NSString *const MPDocumentGroupKey                            = @"MPDocumentGrou
     return;
   }
   self.tree = nil;
+  self.compositeKey = nil;
   [[NSNotificationCenter defaultCenter] postNotificationName:MPDocumentDidLockDatabaseNotification object:self];
 }
 
