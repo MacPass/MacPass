@@ -55,8 +55,6 @@ typedef NS_ENUM(NSUInteger, MPEntryTab) {
 @property (strong) NSPopover *activePopover;
 @property (nonatomic, readonly) KPKEntry *representedEntry;
 
-
-//@property (nonatomic, weak) KPKEntry *entry;
 @property (strong) MPTemporaryFileStorage *quicklookStorage;
 
 @end
