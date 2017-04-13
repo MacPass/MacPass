@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="11762" systemVersion="16C67" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="12118" systemVersion="16E195" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
     <dependencies>
         <deployment identifier="macosx"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="11762"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="12118"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
@@ -37,7 +37,7 @@
                             <customView translatesAutoresizingMaskIntoConstraints="NO" id="1" customClass="HNHUIGradientView">
                                 <rect key="frame" x="0.0" y="0.0" width="576" height="30"/>
                                 <subviews>
-                                    <textField verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="6">
+                                    <textField verticalHuggingPriority="750" allowsCharacterPickerTouchBarItem="YES" translatesAutoresizingMaskIntoConstraints="NO" id="6">
                                         <rect key="frame" x="6" y="8" width="47" height="14"/>
                                         <textFieldCell key="cell" controlSize="small" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Search:" id="7">
                                             <font key="font" metaFont="smallSystemBold"/>
@@ -184,7 +184,7 @@
                             <customView translatesAutoresizingMaskIntoConstraints="NO" id="S8L-rB-h0h" customClass="HNHUIGradientView">
                                 <rect key="frame" x="0.0" y="0.0" width="576" height="30"/>
                                 <subviews>
-                                    <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="gGR-f0-dcr">
+                                    <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" allowsCharacterPickerTouchBarItem="YES" translatesAutoresizingMaskIntoConstraints="NO" id="gGR-f0-dcr">
                                         <rect key="frame" x="18" y="6" width="37" height="17"/>
                                         <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Label" id="8LU-cT-rsU">
                                             <font key="font" metaFont="system"/>
@@ -224,7 +224,7 @@
                     </connections>
                 </tabViewItem>
             </tabViewItems>
-            <point key="canvasLocation" x="157" y="476"/>
+            <point key="canvasLocation" x="104" y="293"/>
         </tabView>
     </objects>
 </document>
