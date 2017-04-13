@@ -43,6 +43,7 @@ NSString *const MPToolbarItemInspector = @"TOOLBAR_INSPECTOR";
 NSString *const MPToolbarItemSearch = @"TOOLBAR_SEARCH";
 NSString *const MPToolbarItemCopyUsername = @"TOOLBAR_COPY_USERNAME";
 NSString *const MPToolbarItemCopyPassword = @"TOOLBAR_COPY_PASSWORD";
+NSString *const MPToolbarItemHistory = @"TOOLBAR_HISTORY";
 
 @interface MPToolbarDelegate() {
   MPAddEntryContextMenuDelegate *_entryMenuDelegate;
@@ -75,7 +76,8 @@ NSString *const MPToolbarItemCopyPassword = @"TOOLBAR_COPY_PASSWORD";
                              NSToolbarFlexibleSpaceItemIdentifier,
                              MPToolbarItemSearch,
                              MPToolbarItemLock,
-                             MPToolbarItemInspector ];
+                             MPToolbarItemInspector,
+                             MPToolbarItemHistory ];
     _defaultToolbarIdentifiers = @[ MPToolbarItemAddEntry,
                                     MPToolbarItemDelete,
                                     MPToolbarItemAddGroup,
@@ -211,6 +213,7 @@ NSString *const MPToolbarItemCopyPassword = @"TOOLBAR_COPY_PASSWORD";
                                MPToolbarItemDelete: [MPIconHelper icon:MPIconTrash],
                                MPToolbarItemAction: [NSImage imageNamed:NSImageNameActionTemplate],
                                MPToolbarItemInspector: [MPIconHelper icon:MPIconInfo],
+                               MPToolbarItemHistory: [MPIconHelper icon:MPIconHistory]
                                };
   return imageDict;
 }
@@ -233,7 +236,8 @@ NSString *const MPToolbarItemCopyPassword = @"TOOLBAR_COPY_PASSWORD";
                    MPToolbarItemCopyUsername: NSLocalizedString(@"COPY_USERNAME", @""),
                    MPToolbarItemDelete: NSLocalizedString(@"DELETE", @""),
                    MPToolbarItemInspector: NSLocalizedString(@"INSPECTOR", @""),
-                   MPToolbarItemSearch: NSLocalizedString(@"SEARCH", @"")
+                   MPToolbarItemSearch: NSLocalizedString(@"SEARCH", @""),
+                   MPToolbarItemHistory: NSLocalizedString(@"SHOW_HISTORY", @""),
                    };
   });
   return labelDict[identifier];
@@ -249,7 +253,8 @@ NSString *const MPToolbarItemCopyPassword = @"TOOLBAR_COPY_PASSWORD";
                     MPToolbarItemDelete: @(MPActionDelete),
                     MPToolbarItemCopyPassword: @(MPActionCopyPassword),
                     MPToolbarItemCopyUsername: @(MPActionCopyUsername),
-                    MPToolbarItemInspector: @(MPActionToggleInspector)
+                    MPToolbarItemInspector: @(MPActionToggleInspector),
+                    MPToolbarItemHistory: @(MPActionShowEntryHistory),
                     };
   });
   MPActionType actionType = (MPActionType)[actionDict[identifier] integerValue];
