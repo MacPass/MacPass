@@ -252,6 +252,8 @@ NSString *const _MPTableSecurCellView = @"PasswordCell";
   NSTableCellView *view = nil;
   if(isTitleColumn || isGroupColumn) {
     view = [tableView makeViewWithIdentifier:_MPTableImageCellView owner:self];
+    [view.textField unbind:NSValueBinding];
+    [view.imageView unbind:NSValueBinding];
     if( isTitleColumn ) {
       NSString *titleKeyPath = [NSString stringWithFormat:@"%@.%@",
                                 NSStringFromSelector(@selector(objectValue)),
