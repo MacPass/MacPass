@@ -496,13 +496,12 @@ typedef void (^MPPasswordChangedBlock)(BOOL didChangePassword);
 }
 
 - (void)showEntryHistory:(id)sender {
-
+  id<MPTargetNodeResolving> resolver = [NSApp targetForAction:@selector(currentTargetEntries)];
+  NSArray *entries = resolver.currentTargetEntries;
+  if(entries.count != 1) {
+    return; // only single selection is used
+  }
 }
-
-- (void)hideEntryHistory:(id)sender {
-
-}
-
 
 #pragma mark Validation
 - (BOOL)validateMenuItem:(NSMenuItem *)menuItem {

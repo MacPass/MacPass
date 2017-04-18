@@ -8,17 +8,17 @@
 
 #import "MPDocument.h"
 
-NSString *const MPDocumentDidEnterHistoryNotification = @"MPDocumentDidEnterHistoryNotification";
-NSString *const MPDocumentDidExitHistoryNotification  = @"MPDocumentDidExitHistoryNotification";
+NSString *const MPDocumentShowEntryHistoryNotification = @"MPDocumentShowEntryHistoryNotification";
+NSString *const MPDocumentHideEntryHistoryNotification  = @"MPDocumentHideEntryHistoryNotification";
 
 @implementation MPDocument (HistoryBrowsing)
 
-- (void)showHistory:(id)sender {
-  [[NSNotificationCenter defaultCenter] postNotificationName:MPDocumentDidEnterHistoryNotification object:self];
+- (void)showEntryHistory:(id)sender {
+  [[NSNotificationCenter defaultCenter] postNotificationName:MPDocumentShowEntryHistoryNotification object:self];
 }
 
-- (void)exitHistory:(id)sender {
-  [[NSNotificationCenter defaultCenter] postNotificationName:MPDocumentDidExitHistoryNotification object:self];
+- (void)hideEntryHistory:(id)sender {
+  [[NSNotificationCenter defaultCenter] postNotificationName:MPDocumentHideEntryHistoryNotification object:self];
 }
 
 

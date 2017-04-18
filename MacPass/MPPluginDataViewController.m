@@ -34,7 +34,7 @@
 }
 
 - (void)didLoadView {
-  [self.pluginDataController bind:NSContentDictionaryBinding toObject:self.representedObject withKeyPath:NSStringFromSelector(@selector(mutableCustomData)) options:nil];
+  [self.pluginDataController bind:NSContentDictionaryBinding toObject:self.representedObject withKeyPath:NSStringFromSelector(@selector(customData)) options:nil];
   [self.pluginDataTabelView bind:NSContentBinding toObject:self.pluginDataController withKeyPath:NSStringFromSelector(@selector(arrangedObjects)) options:nil];
   self.pluginDataTabelView.backgroundColor = [NSColor clearColor];
 }

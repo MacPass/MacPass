@@ -222,8 +222,8 @@ NSString *const _MPTableSecurCellView = @"PasswordCell";
                                            selector:@selector(_didUnlockDatabase:)
                                                name:MPDocumentDidUnlockDatabaseNotification
                                              object:document];
-  [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(_didEnterHistory:) name:MPDocumentDidEnterHistoryNotification object:document];
-  [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(_didExitHistory:) name:MPDocumentDidExitHistoryNotification object:document];
+  [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(_showEntryHistory:) name:MPDocumentShowEntryHistoryNotification object:document];
+  [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(_hideEntryHistory:) name:MPDocumentHideEntryHistoryNotification object:document];
   
   [self.contextBarViewController registerNotificationsForDocument:document];
 }
@@ -474,11 +474,11 @@ NSString *const _MPTableSecurCellView = @"PasswordCell";
   }
 }
 
-- (void)_didEnterHistory:(NSNotification *)notification {
+- (void)_showEntryHistory:(NSNotification *)notification {
   [self _showContextBar];
 }
 
-- (void)_didExitHistory:(NSNotification *)notification {
+- (void)_hideEntryHistory:(NSNotification *)notification {
   [self _hideContextBar];
 }
 #pragma mark ContextBar

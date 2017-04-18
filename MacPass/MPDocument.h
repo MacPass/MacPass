@@ -222,10 +222,13 @@ FOUNDATION_EXPORT NSString *const MPDocumentGroupKey;
 #pragma mark -
 #pragma mark History Browsing
 
-FOUNDATION_EXPORT NSString *const MPDocumentDidEnterHistoryNotification;
-FOUNDATION_EXPORT NSString *const MPDocumentDidExitHistoryNotification;
+FOUNDATION_EXPORT NSString *const MPDocumentShowEntryHistoryNotification;
+FOUNDATION_EXPORT NSString *const MPDocumentHideEntryHistoryNotification;
 
 @interface MPDocument (HistoryBrowsing)
+
+- (IBAction)showEntryHistory:(id)sender;
+- (IBAction)hideEntryHistory:(id)sender;
 
 @end
 

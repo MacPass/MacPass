@@ -98,7 +98,7 @@ typedef NS_ENUM(NSUInteger, MPContextTab) {
 - (void)registerNotificationsForDocument:(MPDocument *)document {
   [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(_updateFilterButtons) name:MPDocumentDidChangeSearchFlags object:document];
   [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(_didEnterSearch:) name:MPDocumentDidEnterSearchNotification object:document];
-  [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(_didEnterHistory:) name:MPDocumentDidEnterHistoryNotification object:document];
+  [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(_showEntryHistory:) name:MPDocumentShowEntryHistoryNotification object:document];
   [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(_didChangeCurrentItem:) name:MPDocumentCurrentItemChangedNotification object:document];
 }
 
@@ -108,7 +108,7 @@ typedef NS_ENUM(NSUInteger, MPContextTab) {
   [self _updateFilterButtons];
 }
 
-- (void)_didEnterHistory:(NSNotification *)notification {
+- (void)_showEntryHistory:(NSNotification *)notification {
   self.activeTab = MPContextTabHistory;
   [self _updateBindings];
 }
