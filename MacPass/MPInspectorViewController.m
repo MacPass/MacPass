@@ -121,6 +121,7 @@ typedef NS_ENUM(NSUInteger, MPContentTab) {
                                              object:document];
   
   self.entryViewController.observer = document;
+  self.observer = document;
   
   [self.entryViewController registerNotificationsForDocument:document];
 }
