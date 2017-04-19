@@ -14,7 +14,12 @@ NSString *const MPDocumentHideEntryHistoryNotification  = @"MPDocumentHideEntryH
 @implementation MPDocument (HistoryBrowsing)
 
 - (void)showEntryHistory:(id)sender {
-  [[NSNotificationCenter defaultCenter] postNotificationName:MPDocumentShowEntryHistoryNotification object:self];
+  id<MPTargetNodeResolving> resolver = [NSApp targetForAction:@selector(currentTargetEntries)];
+  NSArray *entries = resolver.currentTargetEntries;
+  if(entries.count != 1) {
+    return; // only single selection is used
+  }
+  [[NSNotificationCenter defaultCenter] postNotificationName:MPDocumentShowEntryHistoryNotification object:self userInfo:@{ MPDocumentEntryKey: entries.firstObject }];
 }
 
 - (void)hideEntryHistory:(id)sender {

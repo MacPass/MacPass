@@ -222,6 +222,10 @@ FOUNDATION_EXPORT NSString *const MPDocumentGroupKey;
 #pragma mark -
 #pragma mark History Browsing
 
+/**
+ *  Posted by the document to signal a reqest for history display.
+ *  the userInfo dictionary has one key MPDocumentEntryKey with the entry to display the history for
+ */
 FOUNDATION_EXPORT NSString *const MPDocumentShowEntryHistoryNotification;
 FOUNDATION_EXPORT NSString *const MPDocumentHideEntryHistoryNotification;
 
