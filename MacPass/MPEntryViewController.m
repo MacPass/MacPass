@@ -38,7 +38,7 @@
 #define STATUS_BAR_ANIMATION_TIME 0.15
 #define EXPIRED_ENTRY_REFRESH_SECONDS 60
 
-typedef NS_ENUM(NSUInteger,MPOVerlayInfoType) {
+typedef NS_ENUM(NSUInteger, MPOverlayInfoType) {
   MPOverlayInfoPassword,
   MPOverlayInfoUsername,
   MPOverlayInfoURL,
@@ -71,6 +71,8 @@ NSString *const _MPTableSecurCellView = @"PasswordCell";
 @property (strong) NSArray *filteredEntries;
 
 @property (weak) IBOutlet NSTableView *entryTable;
+@property (assign) MPDisplayMode displayMode;
+
 
 /* Constraints */
 @property (strong) IBOutlet NSLayoutConstraint *tableToTopConstraint;
@@ -90,6 +92,7 @@ NSString *const _MPTableSecurCellView = @"PasswordCell";
   self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
   if(self) {
     _isDisplayingContextBar = NO;
+    _displayMode = MPDisplayModeEntries;
     _entryArrayController = [[NSArrayController alloc] init];
     _dataSource = [[MPEntryTableDataSource alloc] init];
     _dataSource.viewController = self;
@@ -193,7 +196,7 @@ NSString *const _MPTableSecurCellView = @"PasswordCell";
   return self.entryTable;
 }
 
-- (void)regsiterNotificationsForDocument:(MPDocument *)document {
+- (void)registerNotificationsForDocument:(MPDocument *)document {
   [[NSNotificationCenter defaultCenter] addObserver:self
                                            selector:@selector(_didChangeCurrentItem:)
                                                name:MPDocumentCurrentItemChangedNotification
@@ -392,25 +395,34 @@ NSString *const _MPTableSecurCellView = @"PasswordCell";
 - (void)_didChangeCurrentItem:(NSNotification *)notification {
   MPDocument *document = notification.object;
   
-  if(document.selectedGroups.count != 1 && !document.hasSearch) {
-    /* no group selection out of search is wrong */
-    self.representedObject = nil;
-    return;
+  if(document.selectedGroups.count != 1) {
+    if(self.displayMode == MPDisplayModeEntries) {
+      /* no group selection out for entry display is wrong */
+      self.representedObject = nil;
+      return;
+    }
   }
   /*
    If a group is the current item, see if we already show that group
    also test if an element has been selected (issue #257)
    */
   if(document.selectedNodes.firstObject == document.selectedGroups.firstObject && document.selectedNodes.count > 0) {
-    if(document.hasSearch) {
-      /* If search was active, stop it and exit */
-      [document exitSearch:self];
-    }
-    else if([self.entryArrayController.content count] > 0) {
-      KPKEntry *entry = [self.entryArrayController.content lastObject];
-      if(entry.parent == document.selectedGroups.lastObject) {
-        return; // we are showing the correct object right now.
-      }
+    switch(self.displayMode) {
+        
+      case MPDisplayModeSearchResults:
+        [document exitSearch:nil];
+        break;
+      case MPDisplayModeHistory:
+        [document hideEntryHistory:nil];
+        break;
+      case MPDisplayModeEntries:
+        if([self.entryArrayController.content count] > 0) {
+          KPKEntry *entry = [self.entryArrayController.content lastObject];
+          if(entry.parent == document.selectedGroups.lastObject) {
+            return; // we are showing the correct object right now.
+          }
+          break;
+        }
     }
     self.representedObject = document.selectedGroups.count == 1 ? document.selectedGroups.lastObject : nil;
   }
@@ -444,24 +456,26 @@ NSString *const _MPTableSecurCellView = @"PasswordCell";
 }
 
 - (void)_didUpdateSearchResults:(NSNotification *)notification {
-  [self _showContextBar];
   NSArray *result = notification.userInfo[kMPDocumentSearchResultsKey];
   NSAssert(result != nil, @"Resutls should never be nil");
   self.filteredEntries = result;
   [self.entryArrayController unbind:NSContentArrayBinding];
   [self.entryArrayController bind:NSContentArrayBinding toObject:self withKeyPath:NSStringFromSelector(@selector(filteredEntries)) options:nil];
   [self.entryTable tableColumnWithIdentifier:MPEntryTableParentColumnIdentifier].hidden = NO;
+  [self _updateContextBar];
 }
 
 
 - (void)_didExitSearch:(NSNotification *)notification {
   [self.entryTable tableColumnWithIdentifier:MPEntryTableParentColumnIdentifier].hidden = YES;
   self.filteredEntries = nil;
+  self.displayMode = MPDisplayModeEntries;
   [self _updateContextBar];
 }
 
 - (void)_didEnterSearch:(NSNotification *)notification {
-  [self _showContextBar];
+  self.displayMode = MPDisplayModeSearchResults;
+  [self _updateContextBar];
 }
 
 - (void)_didUnlockDatabase:(NSNotification *)notificiation {
@@ -476,29 +490,32 @@ NSString *const _MPTableSecurCellView = @"PasswordCell";
 }
 
 - (void)_showEntryHistory:(NSNotification *)notification {
-  [self _showContextBar];
+  self.displayMode = MPDisplayModeHistory;
   KPKEntry *entry = notification.userInfo[MPDocumentEntryKey];
   NSAssert(entry != nil, @"Resutls should never be nil");
   [self.entryArrayController unbind:NSContentArrayBinding];
   [self.entryArrayController bind:NSContentArrayBinding toObject:entry withKeyPath:NSStringFromSelector(@selector(history)) options:nil];
+  [self _updateContextBar];
 }
 
 - (void)_hideEntryHistory:(NSNotification *)notification {
-  [self _hideContextBar];
+  self.displayMode = MPDisplayModeEntries;
+  [self _updateContextBar];
 }
 #pragma mark ContextBar
 - (void)_updateContextBar {
-  MPDocument *document = [[self windowController] document];
-  if(!document.hasSearch) {
-    KPKGroup *group = self.representedObject;
-    KPKNode *node = document.selectedNodes.count == 1 ? document.selectedNodes.firstObject : nil;
-    BOOL showTrash = document.tree.metaData.useTrash && (group.isTrash || node.isTrashed);
-    if(showTrash) {
+  switch(self.displayMode) {
+    case MPDisplayModeSearchResults:
+    case MPDisplayModeHistory:
       [self _showContextBar];
-    }
-    else {
-      [self _hideContextBar];
-    }
+      break;
+    case MPDisplayModeEntries:
+      if([[self currentTargetEntries].firstObject isTrashed]) {
+        [self _showContextBar];
+      }
+      else {
+        [self _hideContextBar];
+      }
   }
 }
 
@@ -508,16 +525,16 @@ NSString *const _MPTableSecurCellView = @"PasswordCell";
   }
   _isDisplayingContextBar = YES;
   if(!self.contextBarViewController.view.superview) {
-    [self.view addSubview:[self.contextBarViewController view]];
+    [self.view addSubview:self.contextBarViewController.view];
     [self.contextBarViewController updateResponderChain];
     NSView *contextBar = self.contextBarViewController.view;
     NSView *scrollView = self.entryTable.enclosingScrollView;
     NSDictionary *views = NSDictionaryOfVariableBindings(scrollView, contextBar);
     
     /* Pin to the left */
-    [[self view] addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|[contextBar]|" options:0 metrics:nil views:views]];
+    [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|[contextBar]|" options:0 metrics:nil views:views]];
     /* Pin height and to top of entry table */
-    [[self view] addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:[contextBar(==30)]-0-[scrollView]" options:0 metrics:nil views:views]];
+    [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:[contextBar(==30)]-0-[scrollView]" options:0 metrics:nil views:views]];
     /* Create the top constraint for the filter bar where we can change the constant instead of removing/adding constraints all the time */
     self.contextBarTopConstraint = [NSLayoutConstraint constraintWithItem:contextBar
                                                                 attribute:NSLayoutAttributeTop
@@ -557,7 +574,7 @@ NSString *const _MPTableSecurCellView = @"PasswordCell";
 }
 
 #pragma mark Copy/Paste Overlays
-- (void)_copyToPasteboard:(NSString *)data overlayInfo:(MPOVerlayInfoType)overlayInfoType name:(NSString *)name{
+- (void)_copyToPasteboard:(NSString *)data overlayInfo:(MPOverlayInfoType)overlayInfoType name:(NSString *)name{
   if(data) {
     [[MPPasteBoardController defaultController] copyObjects:@[ data ]];
   }

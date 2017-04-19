@@ -19,13 +19,10 @@ APPKIT_EXTERN NSString *const MPEntryTableNotesColumnIdentifier;
 APPKIT_EXTERN NSString *const MPEntryTableAttachmentColumnIdentifier;
 APPKIT_EXTERN NSString *const MPEntryTableModfiedColumnIdentifier;
 
-
-/* Tags to determine what to copy */
-typedef NS_ENUM( NSUInteger, MPCopyContentTypeTag) {
-  MPCopyUsername,
-  MPCopyPassword,
-  MPCopyURL,
-  MPCopyWholeEntry,
+typedef NS_ENUM(NSUInteger, MPDisplayMode) {
+  MPDisplayModeEntries,
+  MPDisplayModeSearchResults,
+  MPDisplayModeHistory
 };
 
 @class KPKEntry;
@@ -36,9 +33,10 @@ typedef NS_ENUM( NSUInteger, MPCopyContentTypeTag) {
 
 @property (weak,readonly) NSTableView *entryTable;
 @property (readonly, strong) NSArrayController *entryArrayController;
+@property (readonly, assign) MPDisplayMode displayMode;
 
 /* Call this after all view controllers are loaded */
-- (void)regsiterNotificationsForDocument:(MPDocument *)document;
+- (void)registerNotificationsForDocument:(MPDocument *)document;
 
 /* Copy/Paste */
 - (void)copyUsername:(id)sender;
