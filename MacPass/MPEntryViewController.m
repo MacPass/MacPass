@@ -455,7 +455,8 @@ NSString *const _MPTableSecurCellView = @"PasswordCell";
 
 
 - (void)_didExitSearch:(NSNotification *)notification {
-  [[self.entryTable tableColumnWithIdentifier:MPEntryTableParentColumnIdentifier] setHidden:YES];
+  [self.entryTable tableColumnWithIdentifier:MPEntryTableParentColumnIdentifier].hidden = YES;
+  self.filteredEntries = nil;
   [self _updateContextBar];
 }
 
@@ -476,6 +477,10 @@ NSString *const _MPTableSecurCellView = @"PasswordCell";
 
 - (void)_showEntryHistory:(NSNotification *)notification {
   [self _showContextBar];
+  KPKEntry *entry = notification.userInfo[MPDocumentEntryKey];
+  NSAssert(entry != nil, @"Resutls should never be nil");
+  [self.entryArrayController unbind:NSContentArrayBinding];
+  [self.entryArrayController bind:NSContentArrayBinding toObject:entry withKeyPath:NSStringFromSelector(@selector(history)) options:nil];
 }
 
 - (void)_hideEntryHistory:(NSNotification *)notification {
