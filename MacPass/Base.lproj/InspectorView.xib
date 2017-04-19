@@ -1,8 +1,9 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="10117" systemVersion="15G31" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="12120" systemVersion="16E195" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
     <dependencies>
         <deployment identifier="macosx"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="10117"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="12120"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
         <customObject id="-2" userLabel="File's Owner" customClass="MPInspectorViewController">
@@ -37,7 +38,7 @@
                         </binding>
                     </connections>
                 </imageView>
-                <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="249" translatesAutoresizingMaskIntoConstraints="NO" id="3013">
+                <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="249" allowsCharacterPickerTouchBarItem="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3013">
                     <rect key="frame" x="58" y="628" width="202" height="17"/>
                     <textFieldCell key="cell" lineBreakMode="truncatingTail" truncatesLastVisibleLine="YES" allowsUndo="NO" sendsActionOnEndEditing="YES" title="Label" usesSingleLineMode="YES" id="3014">
                         <font key="font" metaFont="system"/>
@@ -76,7 +77,7 @@
                                                 <rect key="frame" x="0.0" y="0.0" width="278" height="370"/>
                                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                 <subviews>
-                                                    <textField verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="2985">
+                                                    <textField verticalHuggingPriority="750" allowsCharacterPickerTouchBarItem="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2985">
                                                         <rect key="frame" x="81" y="194" width="118" height="24"/>
                                                         <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="No Selection" id="2986">
                                                             <font key="font" metaFont="system" size="20"/>
@@ -106,7 +107,7 @@
                             <rect key="frame" x="0.0" y="371" width="278" height="241"/>
                             <autoresizingMask key="autoresizingMask"/>
                             <subviews>
-                                <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="PzR-P9-3al">
+                                <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" allowsCharacterPickerTouchBarItem="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PzR-P9-3al">
                                     <rect key="frame" x="18" y="222" width="35" height="14"/>
                                     <textFieldCell key="cell" controlSize="small" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Notes" id="hwn-UY-9Cr">
                                         <font key="font" metaFont="smallSystem"/>
@@ -120,15 +121,13 @@
                                         <rect key="frame" x="1" y="1" width="236" height="192"/>
                                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                         <subviews>
-                                            <textView importsGraphics="NO" richText="NO" allowsUndo="YES" verticallyResizable="YES" allowsNonContiguousLayout="YES" smartInsertDelete="YES" id="g24-gQ-foD">
+                                            <textView importsGraphics="NO" richText="NO" allowsNonContiguousLayout="YES" smartInsertDelete="YES" id="g24-gQ-foD">
                                                 <rect key="frame" x="0.0" y="0.0" width="236" height="192"/>
                                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                 <size key="minSize" width="236" height="192"/>
                                                 <size key="maxSize" width="463" height="10000000"/>
                                                 <color key="insertionPointColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
-                                                <size key="minSize" width="236" height="192"/>
-                                                <size key="maxSize" width="463" height="10000000"/>
                                                 <connections>
                                                     <binding destination="-2" name="value" keyPath="representedObject.notes" id="E0d-ZH-Wbc">
                                                         <dictionary key="options">
@@ -179,7 +178,7 @@
                 <constraint firstItem="3145" firstAttribute="leading" secondItem="2894" secondAttribute="leading" id="3155"/>
                 <constraint firstAttribute="bottom" secondItem="3145" secondAttribute="bottom" id="PjS-Y5-YA6"/>
             </constraints>
-            <point key="canvasLocation" x="412" y="-682"/>
+            <point key="canvasLocation" x="-224" y="-890"/>
         </customView>
     </objects>
     <resources>
