@@ -19,11 +19,17 @@ NSString *const MPDocumentHideEntryHistoryNotification  = @"MPDocumentHideEntryH
   if(entries.count != 1) {
     return; // only single selection is used
   }
-  [[NSNotificationCenter defaultCenter] postNotificationName:MPDocumentShowEntryHistoryNotification object:self userInfo:@{ MPDocumentEntryKey: entries.firstObject }];
+  if(self.hasSearch) {
+    [self exitSearch:sender];
+  }
+  [[NSNotificationCenter defaultCenter] postNotificationName:MPDocumentShowEntryHistoryNotification
+                                                      object:self
+                                                    userInfo:@{ MPDocumentEntryKey: entries.firstObject }];
 }
 
 - (void)hideEntryHistory:(id)sender {
-  [[NSNotificationCenter defaultCenter] postNotificationName:MPDocumentHideEntryHistoryNotification object:self];
+  [[NSNotificationCenter defaultCenter] postNotificationName:MPDocumentHideEntryHistoryNotification
+                                                      object:self];
 }
 
 
