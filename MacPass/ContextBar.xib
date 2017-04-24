@@ -12,7 +12,6 @@
                 <outlet property="exitHistoryButton" destination="pqx-su-vAh" id="JmV-vC-F48"/>
                 <outlet property="filterLabelTextField" destination="6" id="60"/>
                 <outlet property="historyBar" destination="S8L-rB-h0h" id="6yZ-El-fVs"/>
-                <outlet property="historyLabel" destination="gGR-f0-dcr" id="slx-9D-8k8"/>
                 <outlet property="notesButton" destination="SaV-5p-jIX" id="sQc-nE-BOP"/>
                 <outlet property="passwordButton" destination="Uhl-ck-vVQ" id="I35-Nv-6jK"/>
                 <outlet property="specialFilterPopUpButton" destination="aPQ-t2-bgz" id="5II-Ml-qg1"/>
@@ -184,14 +183,6 @@
                             <customView translatesAutoresizingMaskIntoConstraints="NO" id="S8L-rB-h0h" customClass="HNHUIGradientView">
                                 <rect key="frame" x="0.0" y="0.0" width="576" height="30"/>
                                 <subviews>
-                                    <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" allowsCharacterPickerTouchBarItem="YES" translatesAutoresizingMaskIntoConstraints="NO" id="gGR-f0-dcr">
-                                        <rect key="frame" x="18" y="6" width="37" height="17"/>
-                                        <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Label" id="8LU-cT-rsU">
-                                            <font key="font" metaFont="system"/>
-                                            <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
-                                            <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
-                                        </textFieldCell>
-                                    </textField>
                                     <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="pqx-su-vAh">
                                         <rect key="frame" x="483" y="5" width="73" height="19"/>
                                         <buttonCell key="cell" type="roundTextured" title="Exit History" bezelStyle="texturedRounded" alignment="center" controlSize="small" state="on" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="ewQ-8F-e1E">
@@ -202,13 +193,22 @@
                                             </connections>
                                         </buttonCell>
                                     </button>
+                                    <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="JNP-Sd-Zh1">
+                                        <rect key="frame" x="15" y="0.0" width="97" height="28"/>
+                                        <buttonCell key="cell" type="push" title="Restore Entry" bezelStyle="rounded" alignment="center" controlSize="small" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="UTg-y9-4DN">
+                                            <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                            <font key="font" metaFont="smallSystem"/>
+                                        </buttonCell>
+                                        <connections>
+                                            <action selector="restoreHistoryEntry:" target="-1" id="CI5-4s-85Z"/>
+                                        </connections>
+                                    </button>
                                 </subviews>
                                 <constraints>
                                     <constraint firstAttribute="centerY" secondItem="pqx-su-vAh" secondAttribute="centerY" id="7T6-QP-uaM"/>
-                                    <constraint firstAttribute="centerY" secondItem="gGR-f0-dcr" secondAttribute="centerY" id="KMF-ev-v2h"/>
-                                    <constraint firstItem="pqx-su-vAh" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="gGR-f0-dcr" secondAttribute="trailing" constant="8" symbolic="YES" id="Wb1-xK-zZF"/>
-                                    <constraint firstItem="gGR-f0-dcr" firstAttribute="leading" secondItem="S8L-rB-h0h" secondAttribute="leading" constant="20" symbolic="YES" id="gFm-N8-pwn"/>
+                                    <constraint firstItem="JNP-Sd-Zh1" firstAttribute="centerY" secondItem="S8L-rB-h0h" secondAttribute="centerY" id="SpB-ks-AjH"/>
                                     <constraint firstAttribute="trailing" secondItem="pqx-su-vAh" secondAttribute="trailing" constant="20" symbolic="YES" id="mao-02-HsJ"/>
+                                    <constraint firstItem="JNP-Sd-Zh1" firstAttribute="leading" secondItem="S8L-rB-h0h" secondAttribute="leading" constant="20" symbolic="YES" id="vSW-J5-koK"/>
                                 </constraints>
                             </customView>
                         </subviews>
