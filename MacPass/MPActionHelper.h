@@ -14,6 +14,7 @@ typedef NS_ENUM(NSUInteger, MPActionType) {
   MPActionAddGroup, // Add a new group
   MPActionDuplicateEntry, // Simply duplicate an entry (including history)
   MPActionDuplicateEntryWithOptions, // Request user input on what to duplicate
+  MPActionReverToHistoryEntry, // Restore an entry to an older state in history
   MPActionDelete, // Delete entry or group
   MPActionCopyUsername, // copy username to pasteboard
   MPActionCopyPassword, // copy password to pasteboard

@@ -39,11 +39,15 @@ typedef NS_ENUM(NSUInteger, MPDisplayMode) {
 - (void)registerNotificationsForDocument:(MPDocument *)document;
 
 /* Copy/Paste */
-- (void)copyUsername:(id)sender;
-- (void)copyPassword:(id)sender;
-- (void)copyCustomAttribute:(id)sender;
-- (void)copyURL:(id)sender;
-- (void)openURL:(id)sender;
+- (IBAction)copyUsername:(id)sender;
+- (IBAction)copyPassword:(id)sender;
+- (IBAction)copyCustomAttribute:(id)sender;
+- (IBAction)copyURL:(id)sender;
+- (IBAction)openURL:(id)sender;
+
+/* More Actions */
+- (IBAction)delete:(id)sender;
+- (IBAction)revertToHistoryEntry:(id)sender;
 
 @end
 

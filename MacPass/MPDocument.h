@@ -233,6 +233,7 @@ FOUNDATION_EXPORT NSString *const MPDocumentHideEntryHistoryNotification;
 
 - (IBAction)showEntryHistory:(id)sender;
 - (IBAction)hideEntryHistory:(id)sender;
+- (IBAction)revertEntry:(KPKEntry *)entry toEntry:(KPKEntry *)historyEntry;
 
 @end
 

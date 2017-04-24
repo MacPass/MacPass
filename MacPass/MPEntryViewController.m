@@ -730,6 +730,14 @@ NSString *const _MPTableSecurCellView = @"PasswordCell";
   }
 }
 
+- (void)revertToHistoryEntry:(id)sender {
+  MPDocument *document = self.windowController.document;
+  NSArray<KPKEntry *> *historyEntries = [self currentTargetEntries];
+  if(historyEntries.count != 1) {
+    return;
+  }
+  //[document restoreEntry:entry toEntry:historyEntries.firstObject];
+}
 
 - (void)_columnDoubleClick:(id)sender {
   if(0 == [[self.entryArrayController arrangedObjects] count]) {
