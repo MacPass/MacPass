@@ -229,7 +229,7 @@ FOUNDATION_EXPORT NSString *const MPDocumentGroupKey;
 FOUNDATION_EXPORT NSString *const MPDocumentShowEntryHistoryNotification;
 FOUNDATION_EXPORT NSString *const MPDocumentHideEntryHistoryNotification;
 
-@interface MPDocument (HistoryBrowsing)
+@interface MPDocument (History)
 
 - (IBAction)showEntryHistory:(id)sender;
 - (IBAction)hideEntryHistory:(id)sender;

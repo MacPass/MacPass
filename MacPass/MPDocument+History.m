@@ -11,7 +11,7 @@
 NSString *const MPDocumentShowEntryHistoryNotification = @"MPDocumentShowEntryHistoryNotification";
 NSString *const MPDocumentHideEntryHistoryNotification  = @"MPDocumentHideEntryHistoryNotification";
 
-@implementation MPDocument (HistoryBrowsing)
+@implementation MPDocument (History)
 
 - (void)showEntryHistory:(id)sender {
   id<MPTargetNodeResolving> resolver = [NSApp targetForAction:@selector(currentTargetEntries)];
@@ -32,5 +32,9 @@ NSString *const MPDocumentHideEntryHistoryNotification  = @"MPDocumentHideEntryH
                                                       object:self];
 }
 
+- (void)restoreEntry:(KPKEntry *)entry toEntry:(KPKEntry *)historyEntry {
+  [entry revertToEntry:historyEntry];
+  [self.undoManager setActionName:NSLocalizedString(@"RESTORE_HISTORY_ENTRY", "Action to restore and Entry to a previous state of it's history")];
+}
 
 @end
