@@ -381,10 +381,7 @@ typedef NS_ENUM(NSUInteger, MPEntryTab) {
   [self.URLTextField bind:NSValueBinding
                  toObject:self
               withKeyPath:[NSString stringWithFormat:@"%@.%@", NSStringFromSelector(@selector(representedObject)), NSStringFromSelector(@selector(url))]
-                  options:@{ NSNullPlaceholderBindingOption: NSLocalizedString(@"NONE", "")}];
-
-  
-  
+                  options:@{ NSNullPlaceholderBindingOption: NSLocalizedString(@"NONE", "")}]; 
   [self.expiresCheckButton bind:NSTitleBinding
                        toObject:self
                     withKeyPath:[NSString stringWithFormat:@"%@.%@.%@", NSStringFromSelector(@selector(representedObject)), NSStringFromSelector(@selector(timeInfo)), NSStringFromSelector(@selector(expirationDate))]
@@ -397,6 +394,17 @@ typedef NS_ENUM(NSUInteger, MPEntryTab) {
                    toObject:self
                 withKeyPath:[NSString stringWithFormat:@"%@.%@", NSStringFromSelector(@selector(representedObject)), NSStringFromSelector(@selector(tags))]
                     options:nil];
+  
+  NSArray *inputs = @[ self.titleTextField, self.passwordTextField, self.usernameTextField, self.URLTextField, self.expiresCheckButton /*, self.tagsTokenField */];
+  
+  for(NSControl *control in inputs) {
+    NSString *keyPath = [NSString stringWithFormat:@"%@.%@", NSStringFromSelector(@selector(representedObject)), NSStringFromSelector(@selector(isHistory))];
+    [control bind:NSEnabledBinding
+         toObject:self
+      withKeyPath:keyPath
+          options:@{NSConditionallySetsEditableBindingOption: @NO, NSValueTransformerNameBindingOption: NSNegateBooleanTransformerName}];
+  }
+  
   [self.uuidTextField bind:NSValueBinding
                   toObject:self
                withKeyPath:[NSString stringWithFormat:@"%@.%@.%@", NSStringFromSelector(@selector(representedObject)), NSStringFromSelector(@selector(uuid)), NSStringFromSelector(@selector(UUIDString))]
