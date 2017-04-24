@@ -110,18 +110,14 @@ typedef NS_ENUM(NSUInteger, MPContextTab) {
 
 - (void)_showEntryHistory:(NSNotification *)notification {
   self.activeTab = MPContextTabHistory;
-  [self _updateBindings];
 }
 
 - (void)_didChangeCurrentItem:(NSNotification *)notification {
-  MPDocument *document = [notification object];
-
-  KPKNode *node = document.selectedNodes.count == 1 ? document.selectedNodes.firstObject : nil;
-  
-  BOOL showTrash = document.tree.metaData.useTrash && (node.isTrashed || node.isTrash);
+  MPDocument *document = notification.object;
+  KPKGroup *group = document.selectedGroups.firstObject;
+  BOOL showTrash = document.tree.metaData.useTrash && group.isTrash;
   if(showTrash && ! document.hasSearch) {
     self.activeTab = MPContextTabTrash;
-    [self _updateBindings];
   }
 }
 
@@ -136,10 +132,6 @@ typedef NS_ENUM(NSUInteger, MPContextTab) {
 
 
 #pragma mark UI Helper
-- (void)_updateBindings {
-  // only the entry view has to be bound, the rest not
-}
-
 - (void)_updateFilterButtons {
   MPDocument *document = [[self windowController] document];
   MPEntrySearchFlags currentFlags = document.searchContext.searchFlags;
