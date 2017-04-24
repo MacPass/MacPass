@@ -515,13 +515,15 @@ NSString *const _MPTableSecurCellView = @"PasswordCell";
     case MPDisplayModeHistory:
       [self _showContextBar];
       break;
-    case MPDisplayModeEntries:
-      if([[self currentTargetEntries].firstObject isTrashed]) {
+    case MPDisplayModeEntries: {
+      NSArray<KPKGroup *> *groups = [self.windowController.document selectedGroups];
+      if(groups.count == 1 && groups.firstObject.isTrash) {
         [self _showContextBar];
       }
       else {
         [self _hideContextBar];
       }
+    }
   }
 }
 
