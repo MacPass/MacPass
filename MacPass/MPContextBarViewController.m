@@ -57,8 +57,7 @@ typedef NS_ENUM(NSUInteger, MPContextTab) {
 
 - (void)awakeFromNib {
   [[self.filterLabelTextField cell] setBackgroundStyle:NSBackgroundStyleRaised];
-  /* Setup History Bar colors */
-  self.historyBar.activeGradient = [[NSGradient alloc] initWithStartingColor:[[NSColor orangeColor] shadowWithLevel:0.2] endingColor:[[NSColor orangeColor] highlightWithLevel:0.2]];
+  //self.historyBar.activeGradient = [[NSGradient alloc] initWithStartingColor:[[NSColor orangeColor] shadowWithLevel:0.2] endingColor:[[NSColor orangeColor] highlightWithLevel:0.2]];
   
   /* Setup Trash Bar color */
   if(!HNHUIIsRunningOnYosemiteOrNewer()) {
