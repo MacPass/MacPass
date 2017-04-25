@@ -765,7 +765,7 @@ NSString *const MPDocumentGroupKey                            = @"MPDocumentGrou
 }
 
 - (void)_storeKeyURL:(NSURL *)keyURL {
-  NSMutableDictionary *keysForFiles = [[[NSUserDefaults standardUserDefaults] dictionaryForKey:kMPSettingsKeyRememeberdKeysForDatabases] mutableCopy];
+  NSMutableDictionary *keysForFiles = [[NSUserDefaults.standardUserDefaults dictionaryForKey:kMPSettingsKeyRememeberdKeysForDatabases] mutableCopy];
   MPAppDelegate *delegate = (MPAppDelegate *)[NSApp delegate];
   if(!delegate.isAllowedToStoreKeyFile || nil == keyURL) {
     /* user has removed the keyfile or we should not safe it so remove it */
