@@ -12,10 +12,8 @@
 
 
 - (BOOL)isHistory {
-  if(self.asEntry) {
-    return self.asEntry.isHistory;
-  }
-  return NO;
+  /* nil call will return NO */
+  return self.asEntry.isHistory;
 }
 
 @end
