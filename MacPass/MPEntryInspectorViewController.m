@@ -395,7 +395,7 @@ typedef NS_ENUM(NSUInteger, MPEntryTab) {
                 withKeyPath:[NSString stringWithFormat:@"%@.%@", NSStringFromSelector(@selector(representedObject)), NSStringFromSelector(@selector(tags))]
                     options:nil];
   
-  NSArray *inputs = @[ self.titleTextField, self.passwordTextField, self.usernameTextField, self.URLTextField, self.expiresCheckButton /*, self.tagsTokenField */];
+  NSArray *inputs = @[ self.titleTextField, self.passwordTextField, self.usernameTextField, self.URLTextField, self.expiresCheckButton , self.tagsTokenField, self.generatePasswordButton];
   
   for(NSControl *control in inputs) {
     NSString *keyPath = [NSString stringWithFormat:@"%@.%@", NSStringFromSelector(@selector(representedObject)), NSStringFromSelector(@selector(isHistory))];
