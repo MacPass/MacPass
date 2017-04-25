@@ -31,6 +31,12 @@
                     <imageCell key="cell" alignment="left" imageScaling="proportionallyUpOrDown" image="NSActionTemplate" id="2999"/>
                     <connections>
                         <action selector="pickIcon:" target="-2" id="6wh-Ka-Thl"/>
+                        <binding destination="-2" name="enabled" keyPath="representedObject.isHistory" id="nhm-tN-zlN">
+                            <dictionary key="options">
+                                <bool key="NSRaisesForNotApplicableKeys" value="NO"/>
+                                <string key="NSValueTransformerName">NSNegateBoolean</string>
+                            </dictionary>
+                        </binding>
                         <binding destination="-2" name="value" keyPath="representedObject.iconImage" id="agf-eg-okr">
                             <dictionary key="options">
                                 <bool key="NSConditionallySetsEnabled" value="NO"/>
@@ -129,6 +135,12 @@
                                                 <size key="maxSize" width="463" height="10000000"/>
                                                 <color key="insertionPointColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                                                 <connections>
+                                                    <binding destination="-2" name="editable" keyPath="representedObject.isHistory" id="E4x-pV-sJk">
+                                                        <dictionary key="options">
+                                                            <bool key="NSRaisesForNotApplicableKeys" value="NO"/>
+                                                            <string key="NSValueTransformerName">NSNegateBoolean</string>
+                                                        </dictionary>
+                                                    </binding>
                                                     <binding destination="-2" name="value" keyPath="representedObject.notes" id="E0d-ZH-Wbc">
                                                         <dictionary key="options">
                                                             <bool key="NSConditionallySetsEditable" value="NO"/>

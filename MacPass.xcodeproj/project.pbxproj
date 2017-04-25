@@ -199,6 +199,7 @@
 		4CAAA8281D787B8B00CDE977 /* AutotypeBuilderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4CAAA8261D787B8B00CDE977 /* AutotypeBuilderView.xib */; };
 		4CAD748C15B889B700104512 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4CAD748B15B889B700104512 /* Security.framework */; };
 		4CAD748E15B88AC100104512 /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 4CAD748D15B88AC100104512 /* libz.dylib */; };
+		4CB33F861EAF54A000C9341E /* KPKNode+MPIsHistory.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CB33F851EAF54A000C9341E /* KPKNode+MPIsHistory.m */; };
 		4CB915941A0159A20089CE5B /* DuplicateEntryOptionsWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4CB915931A0159A20089CE5B /* DuplicateEntryOptionsWindow.xib */; };
 		4CB9339916D3A0DD00A13B5D /* Credits.rtf in Resources */ = {isa = PBXBuildFile; fileRef = 4CB9339716D3A0DD00A13B5D /* Credits.rtf */; };
 		4CBA2ABA17074C07006D8139 /* MPSettingsHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CBA2AB917074C07006D8139 /* MPSettingsHelper.m */; };
@@ -619,6 +620,8 @@
 		4CAAA8261D787B8B00CDE977 /* AutotypeBuilderView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AutotypeBuilderView.xib; sourceTree = "<group>"; };
 		4CAD748B15B889B700104512 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
 		4CAD748D15B88AC100104512 /* libz.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.dylib; path = usr/lib/libz.dylib; sourceTree = SDKROOT; };
+		4CB33F841EAF54A000C9341E /* KPKNode+MPIsHistory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "KPKNode+MPIsHistory.h"; sourceTree = "<group>"; };
+		4CB33F851EAF54A000C9341E /* KPKNode+MPIsHistory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "KPKNode+MPIsHistory.m"; sourceTree = "<group>"; };
 		4CB63A6018986530002DEC4C /* MPFlagsHelper.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MPFlagsHelper.h; sourceTree = "<group>"; };
 		4CB915931A0159A20089CE5B /* DuplicateEntryOptionsWindow.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DuplicateEntryOptionsWindow.xib; sourceTree = "<group>"; };
 		4CB9339816D3A0DD00A13B5D /* en */ = {isa = PBXFileReference; lastKnownFileType = text.rtf; name = en; path = en.lproj/Credits.rtf; sourceTree = "<group>"; };
@@ -876,6 +879,8 @@
 				4C10412B178CDD44001B5239 /* NSDate+Humanized.m */,
 				4CC6DB7817D23719002C6091 /* KPKNode+IconImage.h */,
 				4CC6DB7917D23719002C6091 /* KPKNode+IconImage.m */,
+				4CB33F841EAF54A000C9341E /* KPKNode+MPIsHistory.h */,
+				4CB33F851EAF54A000C9341E /* KPKNode+MPIsHistory.m */,
 				4C32B0E51A1D4436007E12F1 /* KPKFormat+MPUTIDetection.h */,
 				4C32B0E61A1D4436007E12F1 /* KPKFormat+MPUTIDetection.m */,
 				4CEED1C417D7BD0E007180F1 /* NSError+Messages.h */,
@@ -1777,6 +1782,7 @@
 				4CFB18E418A17FA20097A34B /* MPUpdateSettingsController.m in Sources */,
 				4C7B63771C0CB51F00D7038C /* TTTStringTransformers.m in Sources */,
 				4CCEDE2A179F203B008402BE /* MPOutlineView.m in Sources */,
+				4CB33F861EAF54A000C9341E /* KPKNode+MPIsHistory.m in Sources */,
 				4CCEDE2E179F213B008402BE /* MPNotifications.m in Sources */,
 				4C17D8E517A1C780006C8C1E /* MPDocumentWindowDelegate.m in Sources */,
 				4C63B8FB17A3154D0091BD72 /* MPContextToolbarButton.m in Sources */,
