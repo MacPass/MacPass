@@ -31,9 +31,8 @@
                     <imageCell key="cell" alignment="left" imageScaling="proportionallyUpOrDown" image="NSActionTemplate" id="2999"/>
                     <connections>
                         <action selector="pickIcon:" target="-2" id="6wh-Ka-Thl"/>
-                        <binding destination="-2" name="enabled" keyPath="representedObject.isHistory" id="nhm-tN-zlN">
+                        <binding destination="-2" name="enabled" keyPath="representedObject.isHistory" id="7Z5-A7-aqg">
                             <dictionary key="options">
-                                <bool key="NSRaisesForNotApplicableKeys" value="NO"/>
                                 <string key="NSValueTransformerName">NSNegateBoolean</string>
                             </dictionary>
                         </binding>
@@ -135,9 +134,8 @@
                                                 <size key="maxSize" width="463" height="10000000"/>
                                                 <color key="insertionPointColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                                                 <connections>
-                                                    <binding destination="-2" name="editable" keyPath="representedObject.isHistory" id="E4x-pV-sJk">
+                                                    <binding destination="-2" name="editable" keyPath="representedObject.isHistory" id="zUB-H2-SkW">
                                                         <dictionary key="options">
-                                                            <bool key="NSRaisesForNotApplicableKeys" value="NO"/>
                                                             <string key="NSValueTransformerName">NSNegateBoolean</string>
                                                         </dictionary>
                                                     </binding>
