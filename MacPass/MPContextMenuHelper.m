@@ -109,7 +109,7 @@ static void MPContextmenuHelperBeginSection(NSMutableArray *items) {
       [items addObject:performAutotype];
     }
     if(insertHistory) {
-      NSMenuItem *showHistory = [[NSMenuItem alloc] initWithTitle:NSLocalizedString(@"SHOW_ENTRY_HISTORY", @"")
+      NSMenuItem *showHistory = [[NSMenuItem alloc] initWithTitle:NSLocalizedString(@"SHOW_HISTORY", @"")
                                                                action:[MPActionHelper actionOfType:MPActionShowEntryHistory]
                                                         keyEquivalent:@"h"];
       showHistory.keyEquivalentModifierMask = (showHistory.keyEquivalentModifierMask | NSCommandKeyMask | NSControlKeyMask);
