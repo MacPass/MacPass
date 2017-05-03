@@ -40,6 +40,12 @@ typedef NS_OPTIONS(NSUInteger, MPPasswordCharacterFlags) {
 + (NSString *)passwordFromString:(NSString *)source length:(NSUInteger)length;
 
 + (NSString *)passwordWithDefaultSettings;
+
+/**
+ *  @return returns a random character from the string
+ */
+@property (nonatomic, readonly, copy) NSString *randomCharacter;
+
 /**
  *
  *  Creates a random password with only the characters of the receiver
@@ -49,10 +55,6 @@ typedef NS_OPTIONS(NSUInteger, MPPasswordCharacterFlags) {
  *  @return Password containing only the characters in receiver
  */
 - (NSString *)passwordWithLength:(NSUInteger)length;
-/**
- *  @return returns a random character from the string
- */
-- (NSString *)randomCharacter;
 /**
  *  Calculates the entropy of the receiver based on the allowed characters. The calculation considers the characters chosen randomly.
  *  If the password supplied was not created randomly based on the full character set, the calculated entropy is NOT correct.

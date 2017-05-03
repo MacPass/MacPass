@@ -9,6 +9,7 @@
 #import "NSString+MPPasswordCreation.h"
 #import "KeePassKit/KeePassKit.h"
 
+#import "NSString+MPComposedCharacterAdditions.h"
 #import "MPSettingsHelper.h"
 
 NSString *const kMPLowercaseLetterCharacters = @"abcdefghijklmnopqrstuvwxyz";
@@ -33,8 +34,7 @@ static NSString *allowedCharactersString(MPPasswordCharacterFlags flags) {
 }
 
 static NSString *mergeWithoutDuplicates(NSString* baseCharacters, NSString* customCharacters){
-  NSInteger maxLength = baseCharacters.length + customCharacters.length;
-  NSMutableString* mergedCharacters = [NSMutableString stringWithCapacity: maxLength];
+  NSMutableString* mergedCharacters = [[NSMutableString alloc] init];
   [mergedCharacters appendString:baseCharacters];
   [customCharacters enumerateSubstringsInRange: NSMakeRange(0, customCharacters.length)
                                        options: NSStringEnumerationByComposedCharacterSequences
@@ -50,7 +50,7 @@ static NSString *mergeWithoutDuplicates(NSString* baseCharacters, NSString* cust
 
 + (NSString *)passwordFromString:(NSString *)source length:(NSUInteger)length {
   NSMutableString *password = [[NSMutableString alloc] initWithCapacity:length];
-  while(password.length < length) {
+  while(password.composedCharacterLength < length) {
     [password appendString:[source randomCharacter]];
   }
   return password;
@@ -63,7 +63,7 @@ static NSString *mergeWithoutDuplicates(NSString* baseCharacters, NSString* cust
   NSString *characters = mergeWithoutDuplicates(
                                                 allowedCharactersString(allowedCharacters),
                                                 customCharacters);
-  while(password.length < length) {
+  while(password.composedCharacterLength < length) {
     NSString *randomCharacter = [characters randomCharacter];
     if(randomCharacter.length > 0) {
       [password appendString:randomCharacter];
@@ -77,10 +77,10 @@ static NSString *mergeWithoutDuplicates(NSString* baseCharacters, NSString* cust
 
 + (NSString *)passwordWithDefaultSettings {
   /* generate and pre-fill password using default password creation settings */
-  NSUInteger passwordLength = [[NSUserDefaults standardUserDefaults] integerForKey:kMPSettingsKeyDefaultPasswordLength];
-  MPPasswordCharacterFlags characterFlags = [[NSUserDefaults standardUserDefaults] integerForKey:kMPSettingsKeyPasswordCharacterFlags];
-  BOOL useCustomString = [[NSUserDefaults standardUserDefaults] boolForKey:kMPSettingsKeyPasswordUseCustomString];
-  NSString *customString = [[NSUserDefaults standardUserDefaults] stringForKey:kMPSettingsKeyPasswordCustomString];
+  NSUInteger passwordLength = [NSUserDefaults.standardUserDefaults integerForKey:kMPSettingsKeyDefaultPasswordLength];
+  MPPasswordCharacterFlags characterFlags = [NSUserDefaults.standardUserDefaults integerForKey:kMPSettingsKeyPasswordCharacterFlags];
+  BOOL useCustomString = [NSUserDefaults.standardUserDefaults boolForKey:kMPSettingsKeyPasswordUseCustomString];
+  NSString *customString = [NSUserDefaults.standardUserDefaults stringForKey:kMPSettingsKeyPasswordCustomString];
   
   if(useCustomString && customString.length > 0) {
     return [customString passwordWithLength:passwordLength];
@@ -95,27 +95,25 @@ static NSString *mergeWithoutDuplicates(NSString* baseCharacters, NSString* cust
 }
 
 - (NSString *)randomCharacter {
-  if([self length] == 0) {
+  if(self.length == 0) {
     return nil;
   }
   NSData *data = [NSData kpk_dataWithRandomBytes:sizeof(NSUInteger)];
   NSUInteger randomIndex;
   [data getBytes:&randomIndex length:data.length];
-  return [self substringWithRange:NSMakeRange(randomIndex % self.length, 1)];
+  return [self composedCharacterAtIndex:(randomIndex % self.composedCharacterLength)];
 }
 
 - (CGFloat)entropyWhithPossibleCharacterSet:(MPPasswordCharacterFlags)allowedCharacters orCustomCharacters:(NSString *)customCharacters {
   NSString *characters = nil;
-  if([[NSUserDefaults standardUserDefaults] boolForKey:kMPSettingsKeyPasswordUseCustomString] && nil != customCharacters) {
-    characters = mergeWithoutDuplicates(
-                                        allowedCharactersString(allowedCharacters),
-                                        customCharacters);
+  if([NSUserDefaults.standardUserDefaults boolForKey:kMPSettingsKeyPasswordUseCustomString] && nil != customCharacters) {
+    characters = mergeWithoutDuplicates(allowedCharactersString(allowedCharacters), customCharacters);
   }
   else {
     characters = allowedCharactersString(allowedCharacters);
   }
-  CGFloat alphabetCount = characters.length;
-  CGFloat passwordLength = self.length;
+  CGFloat alphabetCount = characters.composedCharacterLength;
+  CGFloat passwordLength = self.composedCharacterLength;
   return passwordLength * ( log10(alphabetCount) / log10(2) );
 }
 @end

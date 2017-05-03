@@ -226,6 +226,7 @@
 		4CD78AC016D155FF00768A1D /* 11_CameraTemplate.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 4CD78ABB16D155FF00768A1D /* 11_CameraTemplate.pdf */; };
 		4CD820211A32173100399DBB /* ReferenceBuilderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4CD820231A32173100399DBB /* ReferenceBuilderView.xib */; };
 		4CD884B715BD47080042BBF8 /* DocumentWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4CD884B615BD47080042BBF8 /* DocumentWindow.xib */; };
+		4CDA35751EBA0CF2003CD59F /* NSString+MPComposedCharacterAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CDA35741EBA0CF2003CD59F /* NSString+MPComposedCharacterAdditions.m */; };
 		4CDF01A316D1B76700D0AC08 /* MPEntryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CDF01A216D1B76700D0AC08 /* MPEntryViewController.m */; };
 		4CE2961518429AA5005F01CE /* MPAutotypeKeyPress.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CE2961418429AA5005F01CE /* MPAutotypeKeyPress.m */; };
 		4CE296191842A166005F01CE /* MPAutotypePaste.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CE296181842A166005F01CE /* MPAutotypePaste.m */; };
@@ -662,6 +663,8 @@
 		4CD78ABB16D155FF00768A1D /* 11_CameraTemplate.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = 11_CameraTemplate.pdf; sourceTree = "<group>"; };
 		4CD820221A32173100399DBB /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/ReferenceBuilderView.xib; sourceTree = "<group>"; };
 		4CD884B615BD47080042BBF8 /* DocumentWindow.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DocumentWindow.xib; sourceTree = "<group>"; };
+		4CDA35731EBA0CF2003CD59F /* NSString+MPComposedCharacterAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+MPComposedCharacterAdditions.h"; sourceTree = "<group>"; };
+		4CDA35741EBA0CF2003CD59F /* NSString+MPComposedCharacterAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+MPComposedCharacterAdditions.m"; sourceTree = "<group>"; };
 		4CDF01A116D1B76700D0AC08 /* MPEntryViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MPEntryViewController.h; sourceTree = "<group>"; };
 		4CDF01A216D1B76700D0AC08 /* MPEntryViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MPEntryViewController.m; sourceTree = "<group>"; };
 		4CE2961318429AA5005F01CE /* MPAutotypeKeyPress.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MPAutotypeKeyPress.h; sourceTree = "<group>"; };
@@ -889,6 +892,8 @@
 				4C77C84018E240E000D1C42B /* DDHotKey+MacPassAdditions.m */,
 				4C5807761C64F67000E7171F /* NSString+MPHash.h */,
 				4C5807771C64F67000E7171F /* NSString+MPHash.m */,
+				4CDA35731EBA0CF2003CD59F /* NSString+MPComposedCharacterAdditions.h */,
+				4CDA35741EBA0CF2003CD59F /* NSString+MPComposedCharacterAdditions.m */,
 			);
 			name = Categories;
 			sourceTree = "<group>";
@@ -1731,6 +1736,7 @@
 				4C888C9316EB6F5E003D34A1 /* MPToolbarItem.m in Sources */,
 				4C888C9716EB754B003D34A1 /* MPActionHelper.m in Sources */,
 				4C811C8316ECD06E00C4BAC6 /* MPKeyfilePathControlDelegate.m in Sources */,
+				4CDA35751EBA0CF2003CD59F /* NSString+MPComposedCharacterAdditions.m in Sources */,
 				4CE39ABF16ECE34A000FE29D /* MPIconSelectViewController.m in Sources */,
 				4CE39AC416ECE4F7000FE29D /* MPPopupImageView.m in Sources */,
 				4C46B88517063A070046109A /* NSString+MPPasswordCreation.m in Sources */,
