@@ -186,4 +186,4 @@ See submodules for additional Licenses
 
 ## Feedback
 
-[![Flattr this](http://api.flattr.com/button/flattr-badge-large.png)](http://flattr.com/thing/1550529/mstarkeMacPass-on-GitHub)
+[![Flattr this](https://api.flattr.com/button/flattr-badge-large.png)](https://flattr.com/thing/1550529/mstarkeMacPass-on-GitHub)
