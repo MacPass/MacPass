@@ -311,7 +311,7 @@
 }
 
 - (NSMenu *)_buildTemplateTreeMenu:(KPKTree *)tree {
-  NSMenu *menu = [self _buildTreeMenu:tree preselect:tree.metaData.entryTemplatesGroup];
+  NSMenu *menu = [self _buildTreeMenu:tree preselect:tree.metaData.entryTemplatesGroupUuid];
   
   NSMenuItem *selectItem = [[NSMenuItem alloc] initWithTitle:NSLocalizedString(@"NO_TEMPLATE_GROUP", @"Menu item to reset the template groups")
                                                       action:NULL

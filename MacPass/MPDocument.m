@@ -424,7 +424,7 @@ NSString *const MPDocumentGroupKey                            = @"MPDocumentGrou
 
 - (KPKGroup *)templates {
   /* Caching is dangerous as we might have deleted the group */
-  return [self findGroup:self.tree.metaData.entryTemplatesGroup];
+  return [self findGroup:self.tree.metaData.entryTemplatesGroupUuid];
 }
 
 - (BOOL)hasSearch {
