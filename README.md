@@ -44,6 +44,8 @@ Some questions might be ansered in the [FAQ](https://github.com/mstarke/MacPass/
 
 Another place to look is the IRC channel [#macpass](irc://irc.freenode.org/macpass) on [irc.freenode.org](irc://irc.freenode.org)
 
+Or follow the Twitter account [@MacPassApp](https://twitter.com/MacPassApp)
+
 ## System Requirement
 
 The minimum OS X version required for MacPass is currently 10.8 Mountain Lion.
