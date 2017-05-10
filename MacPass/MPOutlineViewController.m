@@ -180,7 +180,7 @@ NSString *const _MPOutlinveViewHeaderViewIdentifier = @"HeaderCell";
 
 #pragma mark Notifications
 - (void)regsiterNotificationsForDocument:(MPDocument *)document {
-  [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(_didAddGroup:) name:MPDocumentDidAddGroupNotification object:document];
+  [NSNotificationCenter.defaultCenter addObserver:self selector:@selector(_didAddGroup:) name:MPDocumentDidAddGroupNotification object:document];
 }
 
 - (void)clearSelection {
@@ -190,7 +190,7 @@ NSString *const _MPOutlinveViewHeaderViewIdentifier = @"HeaderCell";
 }
 
 - (void)_didBecomeFirstResponder:(NSNotification *)notification {
-  if( [notification object] != self.outlineView ) {
+  if( notification.object != self.outlineView ) {
     return; // Nothing we need to worry about
   }
   MPDocument *document = self.windowController.document;

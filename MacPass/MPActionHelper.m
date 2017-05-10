@@ -23,7 +23,7 @@
                    @(MPActionAddGroup):                         NSStringFromSelector(@selector(createGroup:)),
                    @(MPActionDuplicateEntry):                   NSStringFromSelector(@selector(duplicateEntry:)),
                    @(MPActionDuplicateEntryWithOptions):        NSStringFromSelector(@selector(duplicateEntryWithOptions:)),
-                   @(MPActionReverToHistoryEntry):              NSStringFromSelector(@selector(revertToHistoryEntry::)),
+                   @(MPActionReverToHistoryEntry):              NSStringFromSelector(@selector(revertToHistoryEntry:)),
                    @(MPActionCopyPassword):                     NSStringFromSelector(@selector(copyPassword:)),
                    @(MPActionCopyURL):                          NSStringFromSelector(@selector(copyURL:)),
                    @(MPActionCopyUsername):                     NSStringFromSelector(@selector(copyUsername:)),
