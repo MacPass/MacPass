@@ -46,6 +46,17 @@
   return nil;
 }
 
+- (IBAction)removePluginData:(id)sender {
+  if(![sender isKindOfClass:NSButton.class]) {
+    return; // wrong sender
+  }
+  NSInteger tag = ((NSButton *)sender).tag;
+  if(tag >= 0 && tag < [self.pluginDataController.arrangedObjects count]) {
+    id keyValueStore = ((NSArray *)self.pluginDataController.arrangedObjects)[tag];
+    [self.representedNode removeCustomDataValueForKey:[keyValueStore key]];
+  }
+}
+
 - (IBAction)removeAllPluginData:(id)sender {
   //
 }
@@ -60,7 +71,13 @@
                    toObject:view
                 withKeyPath:[NSString stringWithFormat:@"%@.%@", NSStringFromSelector(@selector(objectValue)), NSStringFromSelector(@selector(key))]
                     options:nil];
+  
+  view.removeButton.target = self;
+  view.removeButton.action = @selector(removePluginData:);
+  view.removeButton.tag = row;
+  
   view.observer = self.observer;
+  
   return view;
 }
 

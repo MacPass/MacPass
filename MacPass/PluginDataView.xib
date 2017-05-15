@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="11762" systemVersion="16D32" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" customObjectInstantitationMethod="direct">
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="12120" systemVersion="16E195" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" customObjectInstantitationMethod="direct">
     <dependencies>
         <deployment identifier="macosx"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="11762"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="12120"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
@@ -48,24 +48,24 @@
                                                 <rect key="frame" x="1" y="1" width="250" height="54"/>
                                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                 <subviews>
-                                                    <textField verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="Cg8-mb-FyC">
+                                                    <textField verticalHuggingPriority="750" allowsCharacterPickerTouchBarItem="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Cg8-mb-FyC">
                                                         <rect key="frame" x="3" y="10" width="206" height="22"/>
                                                         <constraints>
                                                             <constraint firstAttribute="height" constant="22" id="QuX-qP-qVw"/>
                                                             <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="50" id="iEU-n3-paT"/>
                                                         </constraints>
-                                                        <textFieldCell key="cell" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" placeholderString="Value" drawsBackground="YES" id="mLw-O5-6D3" customClass="HNHUIRoundedTextFieldCell">
+                                                        <textFieldCell key="cell" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" placeholderString="Value" drawsBackground="YES" id="mLw-O5-6D3" customClass="HNHUIRoundedTextFieldCell">
                                                             <font key="font" metaFont="system"/>
                                                             <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
                                                             <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                                         </textFieldCell>
                                                     </textField>
-                                                    <textField verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="8Hg-PS-kMA">
+                                                    <textField verticalHuggingPriority="750" allowsCharacterPickerTouchBarItem="YES" translatesAutoresizingMaskIntoConstraints="NO" id="8Hg-PS-kMA">
                                                         <rect key="frame" x="1" y="40" width="250" height="14"/>
                                                         <constraints>
                                                             <constraint firstAttribute="height" constant="14" id="wzo-VS-eAU"/>
                                                         </constraints>
-                                                        <textFieldCell key="cell" controlSize="small" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" placeholderString="Title" id="MaV-TP-92X">
+                                                        <textFieldCell key="cell" controlSize="small" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" state="on" placeholderString="Title" id="MaV-TP-92X">
                                                             <font key="font" metaFont="smallSystem"/>
                                                             <color key="textColor" name="disabledControlTextColor" catalog="System" colorSpace="catalog"/>
                                                             <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
@@ -120,7 +120,7 @@
                         <autoresizingMask key="autoresizingMask"/>
                     </scroller>
                 </scrollView>
-                <textField verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="ZhC-nS-vfd">
+                <textField verticalHuggingPriority="750" allowsCharacterPickerTouchBarItem="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ZhC-nS-vfd">
                     <rect key="frame" x="18" y="440" width="63" height="14"/>
                     <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Plugin data" id="unO-bO-8v0">
                         <font key="font" metaFont="smallSystem"/>
@@ -150,7 +150,7 @@
                 <constraint firstItem="eUU-kx-L3U" firstAttribute="top" secondItem="ZhC-nS-vfd" secondAttribute="bottom" constant="8" symbolic="YES" id="Z31-cy-f9g"/>
                 <constraint firstAttribute="bottom" secondItem="wUR-gA-36a" secondAttribute="bottom" constant="20" symbolic="YES" id="ohy-oM-biY"/>
             </constraints>
-            <point key="canvasLocation" x="-458" y="147"/>
+            <point key="canvasLocation" x="-59" y="38"/>
         </customView>
     </objects>
     <resources>
