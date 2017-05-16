@@ -53,7 +53,7 @@
   NSInteger tag = ((NSButton *)sender).tag;
   if(tag >= 0 && tag < [self.pluginDataController.arrangedObjects count]) {
     id keyValueStore = ((NSArray *)self.pluginDataController.arrangedObjects)[tag];
-    [self.representedNode removeCustomDataValueForKey:[keyValueStore key]];
+    [self.representedNode removeCustomDataForKey:[keyValueStore key]];
   }
 }
 

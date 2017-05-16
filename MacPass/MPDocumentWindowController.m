@@ -439,7 +439,7 @@ typedef void (^MPPasswordChangedBlock)(BOOL didChangePassword);
     return; // We are displaying the entries already
   }
   if(contentView.subviews.count == 1) {
-    [contentView.subviews[0] removeFromSuperviewWithoutNeedingDisplay];
+    [contentView.subviews.firstObject removeFromSuperviewWithoutNeedingDisplay];
   }
   [contentView addSubview:self.splitView];
   NSView *outlineView = self.outlineViewController.view;
@@ -565,8 +565,8 @@ typedef void (^MPPasswordChangedBlock)(BOOL didChangePassword);
 #pragma mark UI Helper
 
 - (BOOL)_isInspectorVisible {
-  NSView *inspectorView = [self.inspectorViewController view];
-  return (nil != [inspectorView superview]);
+  NSView *inspectorView = self.inspectorViewController.view;
+  return (nil != inspectorView.superview);
 }
 
 @end
