@@ -291,12 +291,22 @@ NSString *const MPDocumentGroupKey                            = @"MPDocumentGrou
     alert.informativeText = NSLocalizedString(@"FILE_CHANGED_BY_OTHERS_INFO_TEXT", @"Informative text displayed when the file was change from another application");
     [alert addButtonWithTitle:NSLocalizedString(@"KEEP_MINE", @"Ignore the changes to an open file!")];
     [alert addButtonWithTitle:NSLocalizedString(@"LOAD_CHANGES", @"Reopen the file!")];
+    [alert addButtonWithTitle:NSLocalizedString(@"MERGE_CHANGES", @"Merge changes into file!")];
     [alert beginSheetModalForWindow:self.windowForSheet completionHandler:^(NSModalResponse returnCode) {
       
       self.fileChangeDialogOpen = NO;
       
-      if(returnCode == NSAlertSecondButtonReturn) {
-        [self revertToContentsOfURL:self.fileURL ofType:self.fileType error:nil];
+      switch(returnCode) {
+        case NSAlertSecondButtonReturn:
+          [self revertToContentsOfURL:self.fileURL ofType:self.fileType error:nil];
+          break;
+        case NSAlertThirdButtonReturn: {
+          KPKTree *otherTree = [[KPKTree alloc] initWithContentsOfUrl:self.fileURL key:self.compositeKey error:nil];
+          [self.tree syncronizeWithTree:otherTree options:KPKSynchronizationSynchronizeOption];
+          break;
+        }
+        default:
+          break;
       }
     }];
   });
@@ -350,7 +360,7 @@ NSString *const MPDocumentGroupKey                            = @"MPDocumentGrou
   [[NSNotificationCenter defaultCenter] postNotificationName:MPDocumentDidLockDatabaseNotification object:self];
 }
 
-                                                               
+
 - (BOOL)unlockWithPassword:(NSString *)password keyFileURL:(NSURL *)keyFileURL error:(NSError *__autoreleasing*)error{
   self.compositeKey = [[KPKCompositeKey alloc] initWithPassword:password key:keyFileURL];
   self.tree = [[KPKTree alloc] initWithData:self.encryptedData key:self.compositeKey error:error];
