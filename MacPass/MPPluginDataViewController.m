@@ -58,7 +58,7 @@
 }
 
 - (IBAction)removeAllPluginData:(id)sender {
-  //
+  [self.representedNode clearCustomData];
 }
 
 - (NSView *)tableView:(NSTableView *)tableView viewForTableColumn:(NSTableColumn *)tableColumn row:(NSInteger)row {
