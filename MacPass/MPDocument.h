@@ -150,6 +150,7 @@ FOUNDATION_EXPORT NSString *const MPDocumentGroupKey;
 
 - (void)writeXMLToURL:(NSURL *)url;
 - (void)readXMLfromURL:(NSURL *)url;
+- (void)mergeWithContentsFromURL:(NSURL *)url;
 
 /* Undoable Intiialization of elements */
 - (KPKGroup *)createGroup:(KPKGroup *)parent;

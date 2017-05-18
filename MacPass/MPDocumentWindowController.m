@@ -296,6 +296,20 @@ typedef void (^MPPasswordChangedBlock)(BOOL didChangePassword);
   }];
 }
 
+- (void)mergeWithOther:(id)sender {
+  NSOpenPanel *openPanel = [NSOpenPanel openPanel];
+  MPDocument *document = self.document;
+  openPanel.allowsMultipleSelection = NO;
+  openPanel.canChooseDirectories = NO;
+  openPanel.canChooseFiles = YES;
+  //openPanel.allowedFileTypes = @[(id)kUTTypeXML];
+  [openPanel beginSheetModalForWindow:self.window completionHandler:^(NSInteger result) {
+    if(result == NSFileHandlingPanelOKButton) {
+      [document mergeWithContentsFromURL:openPanel.URL];
+    }
+  }];
+}
+
 - (void)fixAutotype:(id)sender {
   if(!self.fixAutotypeWindowController) {
     self.fixAutotypeWindowController = [[MPFixAutotypeWindowController alloc] init];

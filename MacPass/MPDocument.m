@@ -283,6 +283,7 @@ NSString *const MPDocumentGroupKey                            = @"MPDocumentGrou
   self.fileChangeDialogOpen = YES;
   
   /* Dispatch the alert to the main queue */
+  __weak MPDocument *welf = self;
   dispatch_async(dispatch_get_main_queue(), ^{
     
     NSAlert *alert = [[NSAlert alloc] init];
@@ -292,18 +293,16 @@ NSString *const MPDocumentGroupKey                            = @"MPDocumentGrou
     [alert addButtonWithTitle:NSLocalizedString(@"KEEP_MINE", @"Ignore the changes to an open file!")];
     [alert addButtonWithTitle:NSLocalizedString(@"LOAD_CHANGES", @"Reopen the file!")];
     [alert addButtonWithTitle:NSLocalizedString(@"MERGE_CHANGES", @"Merge changes into file!")];
-    [alert beginSheetModalForWindow:self.windowForSheet completionHandler:^(NSModalResponse returnCode) {
+    [alert beginSheetModalForWindow:welf.windowForSheet completionHandler:^(NSModalResponse returnCode) {
       
-      self.fileChangeDialogOpen = NO;
+      welf.fileChangeDialogOpen = NO;
       
       switch(returnCode) {
         case NSAlertSecondButtonReturn:
-          [self revertToContentsOfURL:self.fileURL ofType:self.fileType error:nil];
+          [welf revertToContentsOfURL:welf.fileURL ofType:welf.fileType error:nil];
           break;
         case NSAlertThirdButtonReturn: {
-          KPKTree *otherTree = [[KPKTree alloc] initWithContentsOfUrl:self.fileURL key:self.compositeKey error:nil];
-          [self.tree syncronizeWithTree:otherTree options:KPKSynchronizationSynchronizeOption];
-          break;
+          [welf mergeWithContentsFromURL:self.fileURL];
         }
         default:
           break;
@@ -325,6 +324,23 @@ NSString *const MPDocumentGroupKey                            = @"MPDocumentGrou
   self.tree = [[KPKTree alloc] initWithXmlContentsOfURL:url error:&error];
   self.compositeKey = nil;
   self.encryptedData = nil;
+}
+
+- (void)mergeWithContentsFromURL:(NSURL *)url {
+  /* TODO read file to check what format to use */
+  NSError *error;
+  KPKTree *otherTree = [[KPKTree alloc] initWithContentsOfUrl:url key:self.compositeKey error:&error];
+  if(!otherTree) {
+    if(error.code == KPKErrorPasswordAndOrKeyfileWrong) {
+      [self presentError:error];
+    }
+    else {
+      [self presentError:error];
+    }
+  }
+  else {
+    [self.tree syncronizeWithTree:otherTree options:KPKSynchronizationSynchronizeOption];
+  }
 }
 
 #pragma mark Lock/Unlock/Decrypt
