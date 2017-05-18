@@ -29,7 +29,7 @@
 
 @property (assign) BOOL showPassword;
 @property (nonatomic, assign) BOOL enablePassword;
-
+@property (copy) passwordInputCompletionBlock completionHandler;
 @end
 
 @implementation MPPasswordInputController
@@ -66,8 +66,8 @@
   return self.passwordTextField;
 }
 
-- (void)requestPassword {
-  // show warning if read-only mode!
+- (void)requestPassword:(passwordInputCompletionBlock)completionHandler {
+  self.completionHandler = completionHandler;
   [self _reset];
 }
 
@@ -87,15 +87,12 @@
 #pragma mark -
 #pragma mark Private
 - (IBAction)_decrypt:(id)sender {
-  /* reset show password */
-  MPDocument *document = self.windowController.document;
-  if(document) {
-    NSError *error = nil;
-    /* No password is different than an empty password */
-    NSString *password = self.enablePassword ? self.passwordTextField.stringValue : nil;
-    if(![document unlockWithPassword:password
-                          keyFileURL:self.keyPathControl.URL
-                               error:&error]) {
+
+  NSError *error = nil;
+  /* No password is different than an empty password */
+  NSString *password = self.enablePassword ? self.passwordTextField.stringValue : nil;
+  if(self.completionHandler) {
+    if(!self.completionHandler(password, self.keyPathControl.URL, &error)) {
       [self _showError:error];
       [self.view.window shakeWindow:nil];
     }

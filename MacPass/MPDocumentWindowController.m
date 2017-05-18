@@ -323,7 +323,10 @@ typedef void (^MPPasswordChangedBlock)(BOOL didChangePassword);
     self.passwordInputController = [[MPPasswordInputController alloc] init];
   }
   [self _setContentViewController:self.passwordInputController];
-  [self.passwordInputController requestPassword];
+  __weak MPDocumentWindowController *welf = self;
+  [self.passwordInputController requestPassword:^BOOL(NSString *password, NSURL *keyURL, NSError *__autoreleasing *error) {
+    return [((MPDocument *)welf.document) unlockWithPassword:password keyFileURL:keyURL error:error];
+  }];
 }
 
 - (void)editPassword:(id)sender {
