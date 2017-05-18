@@ -290,20 +290,23 @@ NSString *const MPDocumentGroupKey                            = @"MPDocumentGrou
     alert.alertStyle = NSWarningAlertStyle;
     alert.messageText = NSLocalizedString(@"FILE_CHANGED_BY_OTHERS_MESSAGE_TEXT", @"Message displayed when an open file was changed from another application");
     alert.informativeText = NSLocalizedString(@"FILE_CHANGED_BY_OTHERS_INFO_TEXT", @"Informative text displayed when the file was change from another application");
-    [alert addButtonWithTitle:NSLocalizedString(@"KEEP_MINE", @"Ignore the changes to an open file!")];
-    [alert addButtonWithTitle:NSLocalizedString(@"LOAD_CHANGES", @"Reopen the file!")];
     [alert addButtonWithTitle:NSLocalizedString(@"MERGE_CHANGES", @"Merge changes into file!")];
+    [alert addButtonWithTitle:NSLocalizedString(@"LOAD_CHANGES", @"Reopen the file!")];
+    [alert addButtonWithTitle:NSLocalizedString(@"KEEP_MINE", @"Ignore the changes to an open file!")];
     [alert beginSheetModalForWindow:welf.windowForSheet completionHandler:^(NSModalResponse returnCode) {
       
       welf.fileChangeDialogOpen = NO;
       
       switch(returnCode) {
+        case NSAlertFirstButtonReturn: {
+          [welf mergeWithContentsFromURL:self.fileURL];
+          break;
+        }
         case NSAlertSecondButtonReturn:
           [welf revertToContentsOfURL:welf.fileURL ofType:welf.fileType error:nil];
           break;
-        case NSAlertThirdButtonReturn: {
-          [welf mergeWithContentsFromURL:self.fileURL];
-        }
+        case NSAlertThirdButtonReturn:
+          // do not change anything
         default:
           break;
       }
