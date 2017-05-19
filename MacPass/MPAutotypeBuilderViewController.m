@@ -70,10 +70,9 @@
   }
   if([[representedObject uppercaseString] hasPrefix:@"{S:"]) {
     KPKEntry *entry = self.representedObject;
-    NSArray <KPKAttribute *> *customAttributes = entry.customAttributes;
-    if(customAttributes.count > 0 ) {
+    if(entry.hasCustomAttributes ) {
       NSMenu *menu = [[NSMenu alloc] init];
-      for(KPKAttribute *attribute in customAttributes) {
+      for(KPKAttribute *attribute in entry.customAttributes) {
         [menu addItemWithTitle:attribute.key action:@selector(addCustomKeyPlaceholder:) keyEquivalent:@""];
       }
       return menu;
@@ -86,7 +85,7 @@
   if(tokenField != self.availableCommandsTokenField) {
     return NO;
   }
-  BOOL showMenu = ([[representedObject uppercaseString] hasPrefix:@"{S:"] && [self.representedObject customAttributes].count > 0);
+  BOOL showMenu = ([[representedObject uppercaseString] hasPrefix:@"{S:"] && [self.representedObject hasCustomAttributes]);
   return showMenu;
 }
 
