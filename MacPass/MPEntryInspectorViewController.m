@@ -280,6 +280,7 @@ typedef NS_ENUM(NSUInteger, MPEntryTab) {
 - (IBAction)showAutotypeBuilder:(id)sender {
   [sender setEnabled:NO];
   MPAutotypeBuilderViewController *autotypeBuilder = [[MPAutotypeBuilderViewController alloc] init];
+  autotypeBuilder.representedObject = self.representedObject;
   [self _showPopopver:autotypeBuilder atView:sender onEdge:NSMinYEdge];
 }
 
@@ -395,7 +396,13 @@ typedef NS_ENUM(NSUInteger, MPEntryTab) {
                 withKeyPath:[NSString stringWithFormat:@"%@.%@", NSStringFromSelector(@selector(representedObject)), NSStringFromSelector(@selector(tags))]
                     options:nil];
   
-  NSArray *inputs = @[ self.titleTextField, self.passwordTextField, self.usernameTextField, self.URLTextField, self.expiresCheckButton , self.tagsTokenField, self.generatePasswordButton];
+  NSArray *inputs = @[self.titleTextField,
+                      self.passwordTextField,
+                      self.usernameTextField,
+                      self.URLTextField,
+                      self.expiresCheckButton,
+                      self.tagsTokenField,
+                      self.generatePasswordButton];
   
   for(NSControl *control in inputs) {
     NSString *keyPath = [NSString stringWithFormat:@"%@.%@", NSStringFromSelector(@selector(representedObject)), NSStringFromSelector(@selector(isHistory))];

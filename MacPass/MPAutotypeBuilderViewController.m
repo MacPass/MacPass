@@ -9,9 +9,11 @@
 #import "MPAutotypeBuilderViewController.h"
 #import <KeePassKit/KeePassKit.h>
 
-@interface MPAutotypeBuilderViewController ()
+@interface MPAutotypeBuilderViewController () <NSTokenFieldDelegate>
 
-@property (weak) IBOutlet NSTokenField *tokenField;
+@property (weak) IBOutlet NSTokenField *availableCommandsTokenField;
+@property (weak) IBOutlet NSTokenField *commandBuilderTokenField;
+
 @property (nonatomic, readonly, strong) NSArray<NSString *> *tokens;
 
 @end
@@ -28,7 +30,7 @@
     for(NSString *attribute in [KPKFormat sharedFormat].entryDefaultKeys) {
       [fields addObject:[NSString stringWithFormat:@"{%@}", attribute]];
     }
-    
+    [fields addObject:@"{S:Custom}"];
     _tokens = [fields arrayByAddingObjectsFromArray:@[ _MPToken(kKPKAutotypeShortEnter, kKPKAutotypeEnter),
                                                        _MPToken(kKPKAutotypeShortAlt, kKPKAutotypeAlt),
                                                        _MPToken(kKPKAutotypeShortControl, kKPKAutotypeControl),
@@ -47,17 +49,55 @@
 
 - (void)viewDidLoad {
   [super viewDidLoad];
-  self.tokenField.editable = NO;
-  self.tokenField.objectValue = self.tokens;
-  [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(_textViewDidChangeSelection:) name:NSTextViewDidChangeSelectionNotification object:nil];
+  self.availableCommandsTokenField.editable = NO;
+  self.availableCommandsTokenField.objectValue = self.tokens;
+  self.availableCommandsTokenField.delegate = self;
+  self.commandBuilderTokenField.delegate = self;
 }
 
-- (void)_textViewDidChangeSelection:(NSNotification *)notification {
-  NSTextView *tv = [self.tokenField.cell fieldEditorForView:self.tokenField];
-  if(tv) {
-    NSArray *selectionRanges = tv.selectedRanges;
+- (IBAction)addCustomKeyPlaceholder:(id)sender {
+  if(![sender isKindOfClass:NSMenuItem.class]) {
+    return;
   }
+  NSMenuItem *item = sender;
+  NSArray *tokens = [self.commandBuilderTokenField.objectValue arrayByAddingObject:[NSString stringWithFormat:@"{S:%@}", item.title]];
+  self.commandBuilderTokenField.objectValue = tokens;
 }
 
+- (NSMenu *)tokenField:(NSTokenField *)tokenField menuForRepresentedObject:(id)representedObject {
+  if(tokenField == self.commandBuilderTokenField) {
+    return nil;
+  }
+  if([[representedObject uppercaseString] hasPrefix:@"{S:"]) {
+    KPKEntry *entry = self.representedObject;
+    NSArray <KPKAttribute *> *customAttributes = entry.customAttributes;
+    if(customAttributes.count > 0 ) {
+      NSMenu *menu = [[NSMenu alloc] init];
+      for(KPKAttribute *attribute in customAttributes) {
+        [menu addItemWithTitle:attribute.key action:@selector(addCustomKeyPlaceholder:) keyEquivalent:@""];
+      }
+      return menu;
+    }
+  }
+  return nil;
+}
+
+- (BOOL)tokenField:(NSTokenField *)tokenField hasMenuForRepresentedObject:(id)representedObject {
+  if(tokenField != self.availableCommandsTokenField) {
+    return NO;
+  }
+  BOOL showMenu = ([[representedObject uppercaseString] hasPrefix:@"{S:"] && [self.representedObject customAttributes].count > 0);
+  return showMenu;
+}
+
+- (NSTokenStyle)tokenField:(NSTokenField *)tokenField styleForRepresentedObject:(id)representedObject {
+  if(tokenField == self.availableCommandsTokenField) {
+    return NSTokenStyleDefault;
+  }
+  if([representedObject hasPrefix:@"{"] || [representedObject hasSuffix:@"}"]) {
+    return NSTokenStyleDefault;
+  }
+  return NSTokenStyleNone;
+}
 
 @end
