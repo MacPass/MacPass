@@ -79,7 +79,7 @@ NSString *const MPDocumentGroupKey                            = @"MPDocumentGrou
 @property (strong) IBOutlet NSView *warningView;
 @property (weak) IBOutlet NSImageView *warningViewImage;
 
-@property (assign) BOOL fileChangeDialogOpen;
+@property (assign) BOOL lockedForFileChange;
 
 @end
 
@@ -121,7 +121,7 @@ NSString *const MPDocumentGroupKey                            = @"MPDocumentGrou
   if(self) {
     _didLockFile = NO;
     _readOnly = NO;
-    _fileChangeDialogOpen = NO;
+    _lockedForFileChange = NO;
   }
   return self;
 }
@@ -276,11 +276,12 @@ NSString *const MPDocumentGroupKey                            = @"MPDocumentGrou
     return; // Just metadata has changed
   }
   
-  if(self.fileChangeDialogOpen) {
+  if(self.lockedForFileChange) {
     return; // We are already displaying an alert
   }
+  
   /* Set the flag in this call! */
-  self.fileChangeDialogOpen = YES;
+  self.lockedForFileChange = YES;
   
   /* Dispatch the alert to the main queue */
   __weak MPDocument *welf = self;
@@ -295,7 +296,7 @@ NSString *const MPDocumentGroupKey                            = @"MPDocumentGrou
     [alert addButtonWithTitle:NSLocalizedString(@"KEEP_MINE", @"Ignore the changes to an open file!")];
     [alert beginSheetModalForWindow:welf.windowForSheet completionHandler:^(NSModalResponse returnCode) {
       
-      welf.fileChangeDialogOpen = NO;
+      welf.lockedForFileChange = NO;
       
       switch(returnCode) {
         case NSAlertFirstButtonReturn: {
