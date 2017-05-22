@@ -10,4 +10,6 @@
 
 @interface MPAutotypeBuilderViewController : NSViewController
 
+- (void)presentBuilderWithSequence:(NSString *)sequence;
+
 @end

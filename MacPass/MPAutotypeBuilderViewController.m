@@ -55,6 +55,11 @@
   self.commandBuilderTokenField.delegate = self;
 }
 
+- (void)presentBuilderWithSequence:(NSString *)sequence {
+  // TODO: tokenize input sequence!
+  //self.commandBuilderTokenField.stringValue = sequence;
+}
+
 - (IBAction)addCustomKeyPlaceholder:(id)sender {
   if(![sender isKindOfClass:NSMenuItem.class]) {
     return;
