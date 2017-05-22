@@ -283,6 +283,8 @@ NSString *const MPDocumentGroupKey                            = @"MPDocumentGrou
   /* Set the flag in this call! */
   self.lockedForFileChange = YES;
   
+  /* TODO read file to check if changes took place! */
+
   /* Dispatch the alert to the main queue */
   __weak MPDocument *welf = self;
   dispatch_async(dispatch_get_main_queue(), ^{

@@ -52,8 +52,8 @@
 }
 
 - (void)didLoadView {
-  [self.keyPathControl setDelegate:self.pathControlDelegate];
-  [self.errorImageView setImage:[NSImage imageNamed:NSImageNameCaution]];
+  self.keyPathControl.delegate = self.pathControlDelegate;
+  self.errorImageView.image = [NSImage imageNamed:NSImageNameCaution];
   [self.passwordTextField bind:NSStringFromSelector(@selector(showPassword)) toObject:self withKeyPath:NSStringFromSelector(@selector(showPassword)) options:nil];
   [self.togglePasswordButton bind:NSValueBinding toObject:self withKeyPath:NSStringFromSelector(@selector(showPassword)) options:nil];
   [self.enablePasswordCheckBox bind:NSValueBinding toObject:self withKeyPath:NSStringFromSelector(@selector(enablePassword)) options:nil];
@@ -76,22 +76,21 @@
   if(_enablePassword != enablePassword) {
     _enablePassword = enablePassword;
     if(!_enablePassword) {
-      [self.passwordTextField setStringValue:@""];
+      self.passwordTextField.stringValue = @"";
     }
   }
   NSString *placeHolderString = _enablePassword ? NSLocalizedString(@"PASSWORD_INPUT_ENTER_PASSWORD", "") : NSLocalizedString(@"PASSWORD_INPUT_NO_PASSWORD", "");
-  [self.passwordTextField.cell setPlaceholderString:placeHolderString];
+  ((NSTextFieldCell *)self.passwordTextField.cell).placeholderString = placeHolderString;
 }
 
 
 #pragma mark -
 #pragma mark Private
-- (IBAction)_decrypt:(id)sender {
-
-  NSError *error = nil;
-  /* No password is different than an empty password */
-  NSString *password = self.enablePassword ? self.passwordTextField.stringValue : nil;
+- (IBAction)_submit:(id)sender {
   if(self.completionHandler) {
+    /* No password is different than an empty password */
+    NSError *error = nil;
+    NSString *password = self.enablePassword ? self.passwordTextField.stringValue : nil;
     if(!self.completionHandler(password, self.keyPathControl.URL, &error)) {
       [self _showError:error];
       [self.view.window shakeWindow:nil];
@@ -105,31 +104,30 @@
     [self _selectKeyURL];
   }
   else {
-    [self.keyPathControl setURL:nil];
+    self.keyPathControl.URL = nil;
   }
 }
 
 - (void)_reset {
   self.showPassword = NO;
   self.enablePassword = YES;
-  [self.passwordTextField setStringValue:@""];
-  [self.errorInfoTextField setHidden:YES];
-  [self.errorImageView setHidden:YES];
+  self.passwordTextField.stringValue = @"";
+  self.errorInfoTextField.hidden = YES;
+  self.errorImageView.hidden = YES;
   [self resetKeyFile:self];
 }
 
 - (void)_selectKeyURL {
-  MPDocument *document = [[self windowController] document];
-  [self.keyPathControl setURL:document.suggestedKeyURL];
+  MPDocument *document = self.windowController.document;
+  self.keyPathControl.URL = document.suggestedKeyURL;
 }
 
 - (void)_showError:(NSError *)error {
   if(error) {
-    NSString *errorMessage = [error descriptionForErrorCode];
-    [self.errorInfoTextField setStringValue:errorMessage];
+    self.errorInfoTextField.stringValue = error.descriptionForErrorCode;
   }
-  [self.errorImageView setHidden:NO];
-  [self.errorInfoTextField setHidden:NO];
+  self.errorImageView.hidden = NO;
+  self.errorInfoTextField.hidden = NO;
 }
 
 @end
