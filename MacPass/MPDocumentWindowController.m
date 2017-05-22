@@ -145,7 +145,7 @@ typedef void (^MPPasswordChangedBlock)(BOOL didChangePassword);
   NSView *contentView = self.window.contentView;
   NSView *oldSubView = nil;
   if(contentView.subviews.count == 1) {
-    oldSubView = contentView.subviews[0];
+    oldSubView = contentView.subviews.firstObject;
   }
   if(oldSubView == newContentView) {
     return; // View is already present
@@ -165,7 +165,7 @@ typedef void (^MPPasswordChangedBlock)(BOOL didChangePassword);
   
   [contentView layout];
   [viewController updateResponderChain];
-  [self.window makeFirstResponder:[viewController reconmendedFirstResponder]];
+  [self.window makeFirstResponder:viewController.reconmendedFirstResponder];
 }
 
 #pragma mark MPDocument notifications
@@ -253,9 +253,9 @@ typedef void (^MPPasswordChangedBlock)(BOOL didChangePassword);
   [self.document saveDocument:sender];
 }
 - (void)saveDocumentAs:(id)sender {
-  MPDocument *document = [self document];
+  MPDocument *document = self.document;
   if(document.compositeKey) {
-    [[self document] saveDocumentAs:sender];
+    [self.document saveDocumentAs:sender];
     return;
   }
   /* we need to make sure that a password is set */
@@ -315,7 +315,7 @@ typedef void (^MPPasswordChangedBlock)(BOOL didChangePassword);
     self.fixAutotypeWindowController = [[MPFixAutotypeWindowController alloc] init];
   }
   [self.document addWindowController:self.fixAutotypeWindowController];
-  [[self.fixAutotypeWindowController window] makeKeyAndOrderFront:sender];
+  [self.fixAutotypeWindowController.window makeKeyAndOrderFront:sender];
 }
 
 - (void)showPasswordInput {
@@ -324,7 +324,7 @@ typedef void (^MPPasswordChangedBlock)(BOOL didChangePassword);
   }
   [self _setContentViewController:self.passwordInputController];
   __weak MPDocumentWindowController *welf = self;
-  [self.passwordInputController requestPassword:^BOOL(NSString *password, NSURL *keyURL, NSError *__autoreleasing *error) {
+  [self.passwordInputController requestPasswordWithCompletionHandler:^BOOL(NSString *password, NSURL *keyURL, NSError *__autoreleasing *error) {
     return [((MPDocument *)welf.document) unlockWithPassword:password keyFileURL:keyURL error:error];
   }];
 }

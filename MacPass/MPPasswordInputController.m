@@ -66,7 +66,7 @@
   return self.passwordTextField;
 }
 
-- (void)requestPassword:(passwordInputCompletionBlock)completionHandler {
+- (void)requestPasswordWithCompletionHandler:(passwordInputCompletionBlock)completionHandler {
   self.completionHandler = completionHandler;
   [self _reset];
 }

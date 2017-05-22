@@ -14,6 +14,6 @@
 
 typedef BOOL (^passwordInputCompletionBlock)(NSString *password, NSURL *keyURL, NSError *__autoreleasing*error);
 
-- (void)requestPassword:(passwordInputCompletionBlock)completionHandler;
+- (void)requestPasswordWithCompletionHandler:(passwordInputCompletionBlock)completionHandler;
 
 @end
