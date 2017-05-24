@@ -33,14 +33,14 @@
   return self;
 }
 
-- (void)didLoadView {
+- (void)viewDidLoad {
   [self.pluginDataController bind:NSContentDictionaryBinding toObject:self.representedObject withKeyPath:NSStringFromSelector(@selector(customData)) options:nil];
   [self.pluginDataTabelView bind:NSContentBinding toObject:self.pluginDataController withKeyPath:NSStringFromSelector(@selector(arrangedObjects)) options:nil];
-  self.pluginDataTabelView.backgroundColor = [NSColor clearColor];
+  self.pluginDataTabelView.backgroundColor = NSColor.clearColor;
 }
 
 - (KPKNode *)representedNode {
-  if([self.representedObject isKindOfClass:[KPKNode class]]) {
+  if([self.representedObject isKindOfClass:KPKNode.class]) {
     return self.representedObject;
   }
   return nil;

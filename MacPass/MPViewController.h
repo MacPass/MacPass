@@ -15,7 +15,4 @@
 @property (weak, nullable) id<MPModelChangeObserving> observer;
 @property (nonatomic, readonly, nullable) NSResponder *reconmendedFirstResponder;
 
-- (void)didLoadView;
-- (void)updateResponderChain;
-
 @end

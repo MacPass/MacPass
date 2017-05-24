@@ -22,7 +22,7 @@
   return @"SavePanelAccessoryView";
 }
 
-- (void)didLoadView {
+- (void)viewDidLoad {
   NSArray *types = [self.document writableTypesForSaveOperation:NSSaveOperation];
   NSMenu *menu = [[NSMenu alloc] init];
   for (NSString *uti in types ) {

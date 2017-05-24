@@ -30,7 +30,7 @@ NSString *const MPGeneralSetingsIdentifier = @"GeneralSettingsTab";
   return NSLocalizedString(@"GENERAL_SETTINGS", @"General Settings Label");
 }
 
-- (void)didLoadView {
+- (void)viewDidLoad {
   NSUserDefaultsController *defaultsController = [NSUserDefaultsController sharedUserDefaultsController];
 
   [self.clearPasteboardOnQuitCheckButton bind:NSValueBinding toObject:defaultsController withKeyPath:[MPSettingsHelper defaultControllerPathForKey:kMPSettingsKeyClearPasteboardOnQuit] options:nil];

@@ -196,7 +196,6 @@ NSString *const MPDidChangeStoredKeyFilesSettings = @"com.hicknhack.macpass.MPDi
   if(!self.passwordCreatorController) {
     self.passwordCreatorController = [[MPPasswordCreatorViewController alloc] init];
     self.passwordCreatorWindow.contentView = self.passwordCreatorController.view;
-    [self.passwordCreatorController updateResponderChain];
   }
   [self.passwordCreatorController reset];
   [self.passwordCreatorWindow makeKeyAndOrderFront:self.passwordCreatorWindow];
@@ -233,7 +232,10 @@ NSString *const MPDidChangeStoredKeyFilesSettings = @"com.hicknhack.macpass.MPDi
 
 - (void)checkForUpdates:(id)sender {
 #ifdef DEBUG
-  NSAlert *alert = [NSAlert alertWithMessageText:@"Updates are disabled!" defaultButton:@"Ok" alternateButton:nil otherButton:nil informativeTextWithFormat:@"Sparkle updates are only available in offical releases of %@!", NSApp.applicationName];
+  NSAlert *alert = [[NSAlert alloc] init];
+  alert.messageText = @"Updates are disabled!";
+  alert.informativeText = [NSString stringWithFormat:@"Sparkle updates are only available in offical releases of %@!", NSApp.applicationName];
+  [alert addButtonWithTitle:@"Ok"];
   [alert runModal];
 #else
   [[SUUpdater sharedUpdater] checkForUpdates:sender];

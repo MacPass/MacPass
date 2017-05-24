@@ -126,12 +126,6 @@ typedef NS_ENUM(NSUInteger, MPContentTab) {
   [self.entryViewController registerNotificationsForDocument:document];
 }
 
-- (void)updateResponderChain {
-  [super updateResponderChain];
-  [self.groupViewController updateResponderChain];
-  [self.entryViewController updateResponderChain];
-}
-
 #pragma mark -
 #pragma mark Properties
 - (void)setActiveTab:(NSUInteger)activeTab {

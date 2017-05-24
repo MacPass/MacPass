@@ -164,7 +164,6 @@ typedef void (^MPPasswordChangedBlock)(BOOL didChangePassword);
                                                                         views:NSDictionaryOfVariableBindings(newContentView)]];
   
   [contentView layout];
-  [viewController updateResponderChain];
   [self.window makeFirstResponder:viewController.reconmendedFirstResponder];
 }
 
@@ -419,7 +418,6 @@ typedef void (^MPPasswordChangedBlock)(BOOL didChangePassword);
                                                                            options:0
                                                                            metrics:nil
                                                                              views:NSDictionaryOfVariableBindings(inspectorView)]];
-    [self.inspectorViewController updateResponderChain];
   }
   [[NSUserDefaults standardUserDefaults] setBool:!inspectorWasVisible forKey:kMPSettingsKeyShowInspector];
 }
@@ -500,9 +498,6 @@ typedef void (^MPPasswordChangedBlock)(BOOL didChangePassword);
                                                                       options:0
                                                                       metrics:nil
                                                                         views:views]];
-  [self.entryViewController updateResponderChain];
-  [self.inspectorViewController updateResponderChain];
-  [self.outlineViewController updateResponderChain];
   [self.outlineViewController showOutline];
   
   /* Restore the State the inspector view was in before the view change */

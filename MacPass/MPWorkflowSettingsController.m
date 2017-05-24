@@ -20,7 +20,7 @@
   return @"WorkflowSettings";
 }
 
-- (void)didLoadView {
+- (void)viewDidLoad {
   NSUserDefaultsController *defaultsController = [NSUserDefaultsController sharedUserDefaultsController];
   
   [self.doubleClickURLPopup bind:NSSelectedIndexBinding toObject:defaultsController withKeyPath:[MPSettingsHelper defaultControllerPathForKey:kMPSettingsKeyDoubleClickURLAction] options:nil];

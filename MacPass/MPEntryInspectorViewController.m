@@ -91,7 +91,7 @@ typedef NS_ENUM(NSUInteger, MPEntryTab) {
   return nil;
 }
 
-- (void)didLoadView {
+- (void)viewDidLoad {
   
   [self _addScrollViewWithView:self.generalView atTab:MPEntryTabGeneral];
   [self _addScrollViewWithView:self.autotypView atTab:MPEntryTabAutotype];

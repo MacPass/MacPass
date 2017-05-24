@@ -66,11 +66,11 @@ NSString *const _MPOutlinveViewHeaderViewIdentifier = @"HeaderCell";
 - (void)dealloc {
   [self.outlineView unbind:NSContentBinding];
   [self.treeController unbind:NSContentBinding];
-  [[NSNotificationCenter defaultCenter] removeObserver:self];
+  [NSNotificationCenter.defaultCenter removeObserver:self];
   [self.outlineView setDelegate:nil];
 }
 
-- (void)didLoadView {
+- (void)viewDidLoad {
   self.outlineView.menu = [self _contextMenu];
   self.outlineView.allowsEmptySelection = YES;
   self.outlineView.floatsGroupRows = NO;
@@ -79,18 +79,18 @@ NSString *const _MPOutlinveViewHeaderViewIdentifier = @"HeaderCell";
   [self.outlineView setDelegate:self];
   [self.outlineView registerForDraggedTypes:@[ KPKGroupUTI, KPKEntryUTI ]];
   [self.outlineView setDraggingSourceOperationMask:NSDragOperationEvery forLocal:YES];
-
-  [[NSNotificationCenter defaultCenter] addObserver:self
-                                           selector:@selector(_didBecomeFirstResponder:)
-                                               name:MPDidActivateViewNotification
-                                             object:self.outlineView];
+  
+  [NSNotificationCenter.defaultCenter addObserver:self
+                                         selector:@selector(_didBecomeFirstResponder:)
+                                             name:MPDidActivateViewNotification
+                                           object:self.outlineView];
   
   
   NSView *clipView = self.outlineView.enclosingScrollView.contentView;
-  [[NSNotificationCenter defaultCenter] addObserver:self
-                                           selector:@selector(_outlineDidScroll:)
-                                               name:NSViewBoundsDidChangeNotification
-                                             object:clipView];
+  [NSNotificationCenter.defaultCenter addObserver:self
+                                         selector:@selector(_outlineDidScroll:)
+                                             name:NSViewBoundsDidChangeNotification
+                                           object:clipView];
   
 }
 
@@ -108,7 +108,7 @@ NSString *const _MPOutlinveViewHeaderViewIdentifier = @"HeaderCell";
     [self.outlineView bind:NSContentBinding toObject:self.treeController withKeyPath:NSStringFromSelector(@selector(arrangedObjects)) options:nil];
     [self.outlineView bind:NSSelectionIndexPathsBinding toObject:self.treeController withKeyPath:NSStringFromSelector(@selector(selectionIndexPaths)) options:nil];
     [self bind:NSStringFromSelector(@selector(databaseNameWrapper)) toObject:document.tree.metaData withKeyPath:NSStringFromSelector(@selector(databaseName)) options:nil];
-    [self.outlineView setDataSource:self.datasource];
+    self.outlineView.dataSource = self.datasource;
     _bindingEstablished = YES;
   }
   NSTreeNode *node = [_outlineView itemAtRow:0];
@@ -136,7 +136,7 @@ NSString *const _MPOutlinveViewHeaderViewIdentifier = @"HeaderCell";
     }
   }
   for(NSTreeNode *child in node.childNodes) {
-   [self _expandItems:child topRow:topRow];
+    [self _expandItems:child topRow:topRow];
   }
   if([nodeItem respondsToSelector:@selector(uuid)]) {
     MPDocument *document = self.windowController.document;

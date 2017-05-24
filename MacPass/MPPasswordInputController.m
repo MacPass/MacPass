@@ -51,7 +51,7 @@
   [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
 
-- (void)didLoadView {
+- (void)viewDidLoad {
   self.keyPathControl.delegate = self.pathControlDelegate;
   self.errorImageView.image = [NSImage imageNamed:NSImageNameCaution];
   [self.passwordTextField bind:NSStringFromSelector(@selector(showPassword)) toObject:self withKeyPath:NSStringFromSelector(@selector(showPassword)) options:nil];

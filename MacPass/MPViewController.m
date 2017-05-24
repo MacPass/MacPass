@@ -11,16 +11,6 @@
 
 @implementation MPViewController
 
-- (void)loadView {
-  [super loadView];
-  [self updateResponderChain];
-  [self didLoadView];
-}
-
-- (void)didLoadView {
-  // override
-}
-
 - (NSWindowController *)windowController {
   return self.view.window.windowController;
 }
@@ -28,14 +18,6 @@
 #pragma mark Responder Chain
 - (NSResponder *)reconmendedFirstResponder {
   return nil; // override
-}
-
-- (void)updateResponderChain {
-  if(self.view && self.view.nextResponder != self) {
-    NSResponder *nextResponder = self.view.nextResponder;
-    self.view.nextResponder = self;
-    self.nextResponder = nextResponder;
-  }
 }
 
 #pragma mark NSEditorRegistration

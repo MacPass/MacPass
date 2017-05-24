@@ -110,7 +110,7 @@ NSString *const _MPTableSecurCellView = @"PasswordCell";
   [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
 
-- (void)didLoadView {
+- (void)viewDidLoad {
   self.view.wantsLayer = YES;
   
   self.entryTable.delegate = self;
@@ -534,7 +534,6 @@ NSString *const _MPTableSecurCellView = @"PasswordCell";
   _isDisplayingContextBar = YES;
   if(!self.contextBarViewController.view.superview) {
     [self.view addSubview:self.contextBarViewController.view];
-    [self.contextBarViewController updateResponderChain];
     NSView *contextBar = self.contextBarViewController.view;
     NSView *scrollView = self.entryTable.enclosingScrollView;
     NSDictionary *views = NSDictionaryOfVariableBindings(scrollView, contextBar);

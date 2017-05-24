@@ -127,7 +127,6 @@ typedef NS_ENUM(NSUInteger, MPPasswordRating) {
   self.lowerCaseButton.tag = MPPasswordCharactersLowerCase;
   self.symbolsButton.tag = MPPasswordCharactersSymbols;
   
-  [self updateResponderChain];
   [self reset];
 }
 

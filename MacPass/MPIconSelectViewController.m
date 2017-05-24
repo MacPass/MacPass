@@ -24,8 +24,7 @@
   return @"IconSelection";
 }
 
-- (void)didLoadView {
-  //[[self.imageButton cell] setBackgroundStyle:NSBackgroundStyleLowered];
+- (void)viewDidLoad {
   self.iconCollectionView.backgroundColors = @[[NSColor clearColor]];
   self.iconCollectionView.selectable = YES;
   self.iconCollectionView.allowsMultipleSelection = NO;

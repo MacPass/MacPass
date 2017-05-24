@@ -22,7 +22,7 @@
   return @"ReferenceBuilderView";
 }
 
-- (void)didLoadView {
+- (void)viewDidLoad {
   [self.searchKeyPopUpButton setMenu:[self _allocateAttributeItemMenu:YES withTitle:NSLocalizedString(@"SEARCH_VALUE", "")]];
   [self.valuePopUpButton setMenu:[self _allocateAttributeItemMenu:NO withTitle:NSLocalizedString(@"OUTPUT_VALUE", "")]];
   [self.searchStringTextField bind:NSValueBinding toObject:self withKeyPath:NSStringFromSelector(@selector(searchString)) options:nil];
@@ -32,7 +32,6 @@
 - (NSMenu *)_allocateAttributeItemMenu:(BOOL)allowCustomAttributes withTitle:(NSString *)title {
   NSMenu *menu = [[NSMenu alloc] init];
   /* first item is button label */
-  //[menu addItemWithTitle:title action:NULL keyEquivalent:@""];
   [menu addItemWithTitle:NSLocalizedString(@"UUID","") action:NULL keyEquivalent:@""];
   [menu addItemWithTitle:NSLocalizedString(@"TITLE","") action:NULL keyEquivalent:@""];
   [menu addItemWithTitle:NSLocalizedString(@"USERNAME","") action:NULL keyEquivalent:@""];

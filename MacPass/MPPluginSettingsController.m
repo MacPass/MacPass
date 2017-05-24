@@ -38,7 +38,7 @@
   return NSLocalizedString(@"PLUGIN_SETTINGS", "");
 }
 
-- (void)didLoadView {
+- (void)viewDidLoad {
   self.pluginTableView.delegate = self;
   self.pluginTableView.dataSource = self;
   
