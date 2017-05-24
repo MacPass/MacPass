@@ -42,7 +42,7 @@
 
     self.focusRingType = NSFocusRingTypeNone;
     self.segmentCount = 2;
-    [cell setTrackingMode:NSSegmentSwitchTrackingMomentary];
+    cell.trackingMode = NSSegmentSwitchTrackingMomentary;
     self.segmentStyle = NSSegmentStyleTexturedSquare;
     [cell setWidth:31 forSegment:0];
     [cell setWidth:17 forSegment:1];
