@@ -4,4 +4,4 @@ before_install:
 - carthage bootstrap --platform Mac
 xcode_project: MacPass.xcodeproj
 xcode_scheme: MacPass
-script: xcodebuild clean && xcodebuild build -project MacPass.xcodeproj -scheme MacPass CODE_SIGNING_REQUIRED=NO
+script: xcodebuild clean && xcodebuild build -configuration release -project MacPass.xcodeproj -scheme MacPass CODE_SIGNING_REQUIRED=NO
