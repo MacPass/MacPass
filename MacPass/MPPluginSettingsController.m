@@ -7,7 +7,7 @@
 //
 
 #import "MPPluginSettingsController.h"
-#import "MPPluginManager.h"
+#import "MPPluginHost.h"
 #import "MPPlugin.h"
 
 #import "MPSettingsHelper.h"
@@ -50,7 +50,7 @@
 }
 
 - (NSInteger)numberOfRowsInTableView:(NSTableView *)tableView {
-  return [MPPluginManager sharedManager].plugins.count;
+  return [MPPluginHost sharedHost].plugins.count;
 }
 
 - (NSView *)tableView:(NSTableView *)tableView viewForTableColumn:(NSTableColumn *)tableColumn row:(NSInteger)row {
@@ -75,7 +75,7 @@
 }
 
 - (MPPlugin *)pluginForRow:(NSInteger)row {
-  NSArray<MPPlugin __kindof *> *plugins = [MPPluginManager sharedManager].plugins;
+  NSArray<MPPlugin __kindof *> *plugins = [MPPluginHost sharedHost].plugins;
   if(0 > row || row >= plugins.count) {
     return nil;
   }

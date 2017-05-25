@@ -2,30 +2,26 @@
 //  MPPluginHost.h
 //  MacPass
 //
-//  Created by Michael Starke on 13/11/15.
-//  Copyright © 2015 HicknHack Software GmbH. All rights reserved.
+//  Created by Michael Starke on 16/07/15.
+//  Copyright (c) 2015 HicknHack Software GmbH. All rights reserved.
 //
 
 #import <Foundation/Foundation.h>
 
-NS_ASSUME_NONNULL_BEGIN
+FOUNDATION_EXPORT NSString *const MPPluginHostWillLoadPlugin;
+FOUNDATION_EXPORT NSString *const MPPluginHostDidLoadPlugin;
 
-@class KPKNode;
-@class KPKEntry;
-@class KPKGroup;
+FOUNDATION_EXPORT NSString *const MPPluginHostPluginBundleIdentifiyerKey;
 
-typedef BOOL (^NodeMatchBlock)(KPKNode *aNode);
+@class MPPlugin;
 
 @interface MPPluginHost : NSObject
+
+@property (readonly, copy) NSArray <MPPlugin __kindof*> *plugins;
+@property (nonatomic, readonly) BOOL loadUnsecurePlugins;
 
 + (instancetype)sharedHost;
 
 - (instancetype)init NS_UNAVAILABLE;
 
-- (NSArray<KPKEntry *> *)filteredEntriesUsingBlock:(NodeMatchBlock)matchBlock;
-- (NSArray<KPKGroup *> *)filteredGroupsUsingBlock:(NodeMatchBlock)matchBlock;
-
-- (void)presentError:(NSError *)error completionHandler:(void (^)(NSModalResponse response))completionHandler;
-
 @end
-NS_ASSUME_NONNULL_END

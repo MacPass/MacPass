@@ -10,7 +10,7 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@class MPPluginManager;
+@class MPPluginHost;
 
 FOUNDATION_EXPORT NSString *const kMPPluginFileExtension;
 
@@ -20,11 +20,10 @@ FOUNDATION_EXPORT NSString *const kMPPluginFileExtension;
 @property (copy, readonly) NSString *name;
 @property (copy, readonly) NSString *version;
 
-- (instancetype)initWithPluginManager:(MPPluginManager *)manager NS_DESIGNATED_INITIALIZER;
+- (instancetype)initWithPluginHost:(MPPluginHost *)host NS_DESIGNATED_INITIALIZER;
 - (instancetype)init NS_UNAVAILABLE;
 
 - (void)didLoadPlugin;
-- (void)willUnloadPlugin;
 
 @end
 
@@ -51,5 +50,10 @@ FOUNDATION_EXPORT NSString *const kMPPluginFileExtension;
 
 @end
 
+@interface MPPlugin (Deprecated)
+
+- (instancetype)initWithPluginManager:(id)manager;
+
+@end
 
 NS_ASSUME_NONNULL_END

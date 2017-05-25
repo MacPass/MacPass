@@ -43,6 +43,8 @@
   view.removeButton.action = @selector(removeCustomField:);
   view.removeButton.tag = row;
   
+  view.observer = tableView.window.windowController.document;
+  
   return view;
 }
 

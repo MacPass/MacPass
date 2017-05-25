@@ -54,11 +54,11 @@
 - (void)didLoadView {
   [self.keyPathControl setDelegate:self.pathControlDelegate];
   [self.errorImageView setImage:[NSImage imageNamed:NSImageNameCaution]];
-  [self.passwordTextField bind:@"showPassword" toObject:self withKeyPath:@"showPassword" options:nil];
-  [self.togglePasswordButton bind:NSValueBinding toObject:self withKeyPath:@"showPassword" options:nil];
-  [self.enablePasswordCheckBox bind:NSValueBinding toObject:self withKeyPath:@"enablePassword" options:nil];
-  [self.togglePasswordButton bind:NSEnabledBinding toObject:self withKeyPath:@"enablePassword" options:nil];
-  [self.passwordTextField bind:NSEnabledBinding toObject:self withKeyPath:@"enablePassword" options:nil];
+  [self.passwordTextField bind:NSStringFromSelector(@selector(showPassword)) toObject:self withKeyPath:NSStringFromSelector(@selector(showPassword)) options:nil];
+  [self.togglePasswordButton bind:NSValueBinding toObject:self withKeyPath:NSStringFromSelector(@selector(showPassword)) options:nil];
+  [self.enablePasswordCheckBox bind:NSValueBinding toObject:self withKeyPath:NSStringFromSelector(@selector(enablePassword)) options:nil];
+  [self.togglePasswordButton bind:NSEnabledBinding toObject:self withKeyPath:NSStringFromSelector(@selector(enablePassword)) options:nil];
+  [self.passwordTextField bind:NSEnabledBinding toObject:self withKeyPath:NSStringFromSelector(@selector(enablePassword)) options:nil];
   [self _reset];
 }
 
@@ -79,14 +79,15 @@
       [self.passwordTextField setStringValue:@""];
     }
   }
-  NSString  *placeHolderString = _enablePassword ? NSLocalizedString(@"PASSWORD_INPUT_ENTER_PASSWORD", "") : NSLocalizedString(@"PASSWORD_INPUT_NO_PASSWORD", "");
-  [[self.passwordTextField cell] setPlaceholderString:placeHolderString];
+  NSString *placeHolderString = _enablePassword ? NSLocalizedString(@"PASSWORD_INPUT_ENTER_PASSWORD", "") : NSLocalizedString(@"PASSWORD_INPUT_NO_PASSWORD", "");
+  [self.passwordTextField.cell setPlaceholderString:placeHolderString];
 }
 
 
 #pragma mark -
 #pragma mark Private
 - (IBAction)_decrypt:(id)sender {
+  /* reset show password */
   MPDocument *document = self.windowController.document;
   if(document) {
     NSError *error = nil;

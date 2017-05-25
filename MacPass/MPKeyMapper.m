@@ -33,6 +33,9 @@ uint16_t const kMPUnknownKeyCode = UINT16_MAX;
 }
 
 + (NSString *)stringForModifiedKey:(MPModifiedKey)modifiedKey {
+  if(modifiedKey.keyCode == kMPUnknownKeyCode) {
+    return nil;
+  }
   TISInputSourceRef currentKeyboard = TISCopyCurrentKeyboardInputSource();
   CFDataRef layoutData = TISGetInputSourceProperty(currentKeyboard,kTISPropertyUnicodeKeyLayoutData);
   

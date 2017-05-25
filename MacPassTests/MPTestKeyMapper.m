@@ -20,32 +20,22 @@
 
 - (void)testKeyMapper {
   
-  /* Test only works for german keyboard layout! */
-  MPModifiedKey key = [MPKeyMapper modifiedKeyForCharacter:@"A"];
-  XCTAssertEqual(kVK_ANSI_A, key.keyCode);
-  XCTAssertEqual(kCGEventFlagMaskShift, key.modifier);
-  
-  key = [MPKeyMapper modifiedKeyForCharacter:@"»"];
-  XCTAssertEqual(kVK_ANSI_Q, key.keyCode);
-  XCTAssertEqual((kCGEventFlagMaskShift | kCGEventFlagMaskAlternate), key.modifier);
-
-  key = [MPKeyMapper modifiedKeyForCharacter:@""];
-  XCTAssertEqual(kVK_ANSI_RightBracket, key.keyCode);
-  XCTAssertEqual((kCGEventFlagMaskShift | kCGEventFlagMaskAlternate), key.modifier);
-  
-  
   /*
-  XCTAssertEqualObjects(@"a",[MPKeyMapper stringForKey:kVK_ANSI_A modifier:0]);
-  XCTAssertEqualObjects(@"A",[MPKeyMapper stringForKey:kVK_ANSI_A modifier:kCGEventFlagMaskShift]);
-  
-  XCTAssertEqualObjects(@"8",[MPKeyMapper stringForKey:kVK_ANSI_8 modifier:0]);
-  XCTAssertEqualObjects(@"(",[MPKeyMapper stringForKey:kVK_ANSI_8 modifier:kCGEventFlagMaskShift]);
-  XCTAssertEqualObjects(@"{",[MPKeyMapper stringForKey:kVK_ANSI_8 modifier:kCGEventFlagMaskAlternate]);
+   We could set certain keyboard layouts to run this test invariantly
+   The simpler aproach is to go full circle to check if the desired character is the actual character we get
+   */
 
-  XCTAssertEqualObjects(@"n",[MPKeyMapper stringForKey:kVK_ANSI_N modifier:0]);
-  XCTAssertEqualObjects(@"N",[MPKeyMapper stringForKey:kVK_ANSI_N modifier:kCGEventFlagMaskShift]);
-  XCTAssertEqualObjects(@"~",[MPKeyMapper stringForKey:kVK_ANSI_N modifier:kCGEventFlagMaskAlternate]);
-  */
+  /* Ì - has no key for US and DVORAK layout */
+  NSString *test = @"aB(]©®@ﬂ~±»";
+  
+  [test enumerateSubstringsInRange:NSMakeRange(0, test.length) options:NSStringEnumerationByComposedCharacterSequences usingBlock:^(NSString * _Nullable substring, NSRange substringRange, NSRange enclosingRange, BOOL * _Nonnull stop) {
+    /* we only support non-composed characters*/
+    if(substring.length == 1) {
+      MPModifiedKey key = [MPKeyMapper modifiedKeyForCharacter:substring];
+      NSString *result = [MPKeyMapper stringForModifiedKey:key];
+      XCTAssertEqualObjects(substring, result);
+    }    
+  }];
 }
 
 @end
