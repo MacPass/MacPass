@@ -1,7 +1,9 @@
 osx_image: xcode8.3
-language: objective-c
-before_install:
-- carthage bootstrap --platform Mac
 xcode_project: MacPass.xcodeproj
 xcode_scheme: MacPass
+language: objective-c
+
+before_install:
+- carthage bootstrap --platform Mac
+
 script: xcodebuild clean && xcodebuild build -configuration release -project MacPass.xcodeproj -scheme MacPass CODE_SIGNING_REQUIRED=NO
