@@ -17,7 +17,7 @@ script: xcodebuild clean && xcodebuild build -configuration release -project Mac
 #  - bash ./upload.sh build/*
   
 branches:
-  except:
+  only:
     - /^(?i:continuous)$/
 
 deploy:
