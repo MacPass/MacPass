@@ -386,7 +386,7 @@ typedef NS_ENUM(NSUInteger, MPEntryTab) {
   [self.expiresCheckButton bind:NSTitleBinding
                        toObject:self
                     withKeyPath:[NSString stringWithFormat:@"%@.%@.%@", NSStringFromSelector(@selector(representedObject)), NSStringFromSelector(@selector(timeInfo)), NSStringFromSelector(@selector(expirationDate))]
-                        options:@{ NSValueTransformerNameBindingOption:MPExpiryDateValueTransformer }];
+                        options:@{ NSValueTransformerNameBindingOption:MPExpiryDateValueTransformerName }];
   [self.expiresCheckButton bind:NSValueBinding
                        toObject:self
                     withKeyPath:[NSString stringWithFormat:@"%@.%@.%@", NSStringFromSelector(@selector(representedObject)), NSStringFromSelector(@selector(timeInfo)), NSStringFromSelector(@selector(expires))]

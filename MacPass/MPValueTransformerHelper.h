@@ -9,7 +9,7 @@
 #import <Foundation/Foundation.h>
 
 FOUNDATION_EXPORT NSString *const MPStripLineBreaksTransformerName;
-FOUNDATION_EXPORT NSString *const MPExpiryDateValueTransformer;
+FOUNDATION_EXPORT NSString *const MPExpiryDateValueTransformerName;
 
 @interface MPValueTransformerHelper : NSObject
 
