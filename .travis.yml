@@ -7,7 +7,10 @@ before_install:
   - carthage bootstrap --platform Mac
 
 after_success:
-  - zip -9r MacPass-continuous.zip ./build/Build/Products/Release/MacPass.app
+  - cd ./build/Build/Products/Release
+  - zip -9r MacPass-continuous.zip MacPass.app
+  - cd -
+  - mv ./build/Build/Products/Release/MacPass-continuous.zip .
 
 script: xcodebuild clean && xcodebuild build -configuration release -project MacPass.xcodeproj -scheme MacPass CODE_SIGNING_REQUIRED=NO -derivedDataPath ./build
 
@@ -26,6 +29,7 @@ deploy:
   api_key:
     secure: AEb7fgi29S3aXFt5bXz+lq1KHISumny6bf4j06JBC5gUrSs+dW0/tmVFq68XRAqigeOQU31wwv20f7OHiy+GRYDXM2xBsX9ZBQ2IilnaXlDy/mPsNcJJJsZ2gyodi3KnU0rZtTb93me2YyU86H4Na/gtaZZUKjLwCFtGGziExD8=
   file: MacPass-continuous.zip
+  overwrite: true
   on:
     tags: true
     repo: mstarke/MacPass
