@@ -18,7 +18,9 @@ script: xcodebuild clean && xcodebuild build -configuration release -project Mac
 #  - zip -9r ./build/Build/Products/Release/MacPass.app MacPass-continuous.zip
 #  - wget -c https://github.com/MacPass/uploadtool/raw/master/upload.sh
 #  - bash ./upload.sh build/*
-  
+
+# TODO: fix versioning since it yield a 00 release number
+
 branches:
   only:
     - /^(?i:continuous)$/

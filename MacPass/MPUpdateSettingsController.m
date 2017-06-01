@@ -35,7 +35,7 @@
 
 - (void)awakeFromNib {
 /* only enable bindings to settings in release mode */
-#ifdef DEBUG
+#if defined(DEBUG) || defined(NOSPARKLE)
   self.checkIntervallPopupButton.enabled = NO;
   self.automaticallyCheckForUpdatesCheckButton.enabled = NO;
 #else
