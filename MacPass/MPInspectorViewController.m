@@ -165,12 +165,12 @@ typedef NS_ENUM(NSUInteger, MPContentTab) {
 #pragma mark -
 #pragma mark Popup
 - (IBAction)pickIcon:(id)sender {
-  NSAssert([sender isKindOfClass:[NSView class]], @"");
+  NSAssert([sender isKindOfClass:NSView.class], @"");
   [self _popupViewController:[[MPIconSelectViewController alloc] init] atView:(NSView *)sender];
 }
 
 - (IBAction)pickExpiryDate:(id)sender {
-  NSAssert([sender isKindOfClass:[NSView class]], @"");
+  NSAssert([sender isKindOfClass:NSView.class], @"");
   [self _popupViewController:[[MPDatePickingViewController alloc] init] atView:(NSView *)sender];
 }
 

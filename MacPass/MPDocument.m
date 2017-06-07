@@ -738,7 +738,7 @@ NSString *const MPDocumentGroupKey                            = @"MPDocumentGrou
   }
   
   BOOL valid = /*targetNode ? targetNode.isEditable : */YES;
-  switch([MPActionHelper typeForAction:[anItem action]]) {
+  switch([MPActionHelper typeForAction:anItem.action]) {
     case MPActionAddGroup:
       valid &= (nil != targetGroup);
       valid &= !targetGroup.isTrash;
@@ -789,7 +789,7 @@ NSString *const MPDocumentGroupKey                            = @"MPDocumentGrou
       break;
     case MPActionPerformAutotypeForSelectedEntry:
       valid &= (nil != targetEntry);
-      break;
+      break;      
     default:
       break;
   }
