@@ -95,6 +95,7 @@ FOUNDATION_EXPORT NSString *const MPDocumentGroupKey;
 @property (nonatomic, readonly) BOOL hasSearch;
 @property (nonatomic, copy) MPEntrySearchContext *searchContext;
 @property (nonatomic, strong, readonly) NSArray *searchResult;
+@property (nonatomic, weak) KPKEntry *historyEntry;
 
 + (KPKDatabaseFormat)formatForFileType:(NSString *)fileType;
 + (NSString *)fileTypeForVersion:(KPKDatabaseFormat)format;

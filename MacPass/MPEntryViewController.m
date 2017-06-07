@@ -735,7 +735,7 @@ NSString *const _MPTableSecurCellView = @"PasswordCell";
   if(historyEntries.count != 1) {
     return;
   }
-  //[document restoreEntry:entry toEntry:historyEntries.firstObject];
+  [document revertEntry:document.historyEntry toEntry:historyEntries.firstObject];
 }
 
 - (void)_columnDoubleClick:(id)sender {

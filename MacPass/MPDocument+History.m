@@ -22,17 +22,22 @@ NSString *const MPDocumentHideEntryHistoryNotification  = @"MPDocumentHideEntryH
   if(self.hasSearch) {
     [self exitSearch:sender];
   }
-  [[NSNotificationCenter defaultCenter] postNotificationName:MPDocumentShowEntryHistoryNotification
-                                                      object:self
-                                                    userInfo:@{ MPDocumentEntryKey: entries.firstObject }];
+  self.historyEntry = entries.firstObject;
+  if(self.historyEntry) {
+    [[NSNotificationCenter defaultCenter] postNotificationName:MPDocumentShowEntryHistoryNotification
+                                                        object:self
+                                                      userInfo:@{ MPDocumentEntryKey: self.historyEntry }];
+  }
 }
 
 - (void)hideEntryHistory:(id)sender {
+  self.historyEntry = nil;
   [[NSNotificationCenter defaultCenter] postNotificationName:MPDocumentHideEntryHistoryNotification
                                                       object:self];
 }
 
 - (void)revertEntry:(KPKEntry *)entry toEntry:(KPKEntry *)historyEntry {
+  [entry pushHistory];
   [entry revertToEntry:historyEntry];
   [self.undoManager setActionName:NSLocalizedString(@"RESTORE_HISTORY_ENTRY", "Action to restore and Entry to a previous state of it's history")];
 }

@@ -30,7 +30,7 @@
 
 - (NSView *)tableView:(NSTableView *)tableView viewForTableColumn:(NSTableColumn *)tableColumn row:(NSInteger)row {
   MPCustomFieldTableCellView *view = [tableView makeViewWithIdentifier:@"SelectedCell" owner:tableView];
-    
+  
   [view.labelTextField bind:NSValueBinding
                    toObject:view
                 withKeyPath:[NSString stringWithFormat:@"%@.%@", NSStringFromSelector(@selector(objectValue)), NSStringFromSelector(@selector(key))]
@@ -39,6 +39,14 @@
                    toObject:view
                 withKeyPath:[NSString stringWithFormat:@"%@.%@", NSStringFromSelector(@selector(objectValue)), NSStringFromSelector(@selector(value))]
                     options:nil];
+  // TODO: Move to public KeePassKit API!
+  for(NSControl *control in @[view.labelTextField, view.valueTextField, view.removeButton ]) {
+    [control bind:NSEnabledBinding
+         toObject:view
+      withKeyPath:[NSString stringWithFormat:@"%@.%@.%@", NSStringFromSelector(@selector(objectValue)), NSStringFromSelector(@selector(entry)), NSStringFromSelector(@selector(isHistory))]
+          options:@{NSConditionallySetsEditableBindingOption: @NO, NSValueTransformerNameBindingOption: NSNegateBooleanTransformerName}];
+    
+  }
   view.removeButton.target = self.viewController;
   view.removeButton.action = @selector(removeCustomField:);
   view.removeButton.tag = row;

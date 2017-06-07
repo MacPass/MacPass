@@ -40,7 +40,8 @@
                    @(MPActionToggleQuicklook):                  NSStringFromSelector(@selector(toggleQuicklookPreview:)),
                    @(MPActionShowEntryHistory):                 NSStringFromSelector(@selector(showEntryHistory:)),
                    @(MPActionHideEntryHistory):                 NSStringFromSelector(@selector(hideEntryHistory:)),
-                   @(MPActionPerformAutotypeForSelectedEntry):  NSStringFromSelector(@selector(performAutotypeForEntry:))
+                   @(MPActionPerformAutotypeForSelectedEntry):  NSStringFromSelector(@selector(performAutotypeForEntry:)),
+                   @(MPActionRemoveAttachment):                 NSStringFromSelector(@selector(removeAttachment:))
                    };
   });
   return actionDict;

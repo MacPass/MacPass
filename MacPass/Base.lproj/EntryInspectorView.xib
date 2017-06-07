@@ -1,14 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="12120" systemVersion="16E195" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="12121" systemVersion="16F73" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
     <dependencies>
-        <deployment identifier="macosx"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="12120"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="12121"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
         <customObject id="-2" userLabel="File's Owner" customClass="MPEntryInspectorViewController">
             <connections>
                 <outlet property="URLTextField" destination="56" id="262"/>
+                <outlet property="addAttachmentButton" destination="177" id="w3F-U0-Rpk"/>
+                <outlet property="addCustomFieldButton" destination="179" id="I3F-Sp-dbI"/>
+                <outlet property="addWindowAssociationButton" destination="Iy9-9L-Aev" id="kDA-Mm-lah"/>
                 <outlet property="associationSequenceTextField" destination="NjR-ea-Y7k" id="kTb-Y5-XrZ"/>
                 <outlet property="attachmentTableView" destination="137" id="265"/>
                 <outlet property="autotypView" destination="zv7-wE-Bmg" id="m1g-dk-hFv"/>
@@ -21,6 +23,7 @@
                 <outlet property="infoTabControl" destination="82" id="264"/>
                 <outlet property="obfuscateAutotypeCheckButton" destination="I7L-Am-Qpa" id="hwa-zl-24W"/>
                 <outlet property="passwordTextField" destination="60" id="263"/>
+                <outlet property="pickExpireDateButton" destination="8" id="cJg-5V-AL6"/>
                 <outlet property="showCustomAssociationSequenceAutotypeBuilderButton" destination="m1C-m8-BKR" id="B3I-AG-TCJ"/>
                 <outlet property="showCustomEntrySequenceAutotypeBuilderButton" destination="HDS-Bz-jrr" id="7u1-17-oMK"/>
                 <outlet property="tabView" destination="83" id="269"/>
@@ -94,7 +97,7 @@
                                         <rect key="frame" x="20" y="26" width="253" height="396"/>
                                         <clipView key="contentView" drawsBackground="NO" copiesOnScroll="NO" id="F3N-QI-Di5">
                                             <rect key="frame" x="1" y="1" width="251" height="394"/>
-                                            <autoresizingMask key="autoresizingMask"/>
+                                            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                             <subviews>
                                                 <tableView verticalHuggingPriority="750" allowsExpansionToolTips="YES" columnAutoresizingStyle="lastColumnOnly" columnSelection="YES" multipleSelection="NO" autosaveColumns="NO" rowHeight="36" rowSizeStyle="automatic" viewBased="YES" id="137">
                                                     <rect key="frame" x="0.0" y="0.0" width="251" height="394"/>
@@ -271,7 +274,7 @@
                                         <rect key="frame" x="16" y="50" width="261" height="372"/>
                                         <clipView key="contentView" drawsBackground="NO" copiesOnScroll="NO" id="k8G-zp-BXZ">
                                             <rect key="frame" x="1" y="1" width="259" height="370"/>
-                                            <autoresizingMask key="autoresizingMask"/>
+                                            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                             <subviews>
                                                 <tableView verticalHuggingPriority="750" allowsExpansionToolTips="YES" columnAutoresizingStyle="lastColumnOnly" selectionHighlightStyle="none" columnSelection="YES" columnResizing="NO" multipleSelection="NO" autosaveColumns="NO" rowHeight="54" rowSizeStyle="automatic" viewBased="YES" id="193">
                                                     <rect key="frame" x="0.0" y="0.0" width="259" height="370"/>

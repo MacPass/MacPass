@@ -27,14 +27,18 @@
 @property (weak) IBOutlet HNHUIRoundedSecureTextField *passwordTextField;
 @property (weak) IBOutlet NSButton *generatePasswordButton;
 @property (weak) IBOutlet NSButton *togglePassword;
+@property (weak) IBOutlet NSButton *pickExpireDateButton;
 @property (weak) IBOutlet NSButton *expiresCheckButton;
 @property (weak) IBOutlet NSTokenField *tagsTokenField;
 @property (weak) IBOutlet NSTextField *uuidTextField;
 
 @property (weak) IBOutlet NSTextField *createdTextField;
 @property (weak) IBOutlet NSTextField *modifiedTextField;
+@property (weak) IBOutlet NSButton *addCustomFieldButton;
 
 /* Attachments */
+@property (weak) IBOutlet NSButtonCell *addAttachmentButton;
+
 @property (weak) IBOutlet NSTableView *attachmentTableView;
 @property (weak) IBOutlet NSTableView *customFieldsTableView;
 
@@ -50,6 +54,7 @@
 @property (weak) IBOutlet NSButton *showCustomAssociationSequenceAutotypeBuilderButton;
 
 @property (weak) IBOutlet NSTextField *associationSequenceTextField;
+@property (weak) IBOutlet NSButton *addWindowAssociationButton;
 
 - (void)registerNotificationsForDocument:(MPDocument *)document;
 

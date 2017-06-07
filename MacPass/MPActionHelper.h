@@ -31,7 +31,8 @@ typedef NS_ENUM(NSUInteger, MPActionType) {
   MPActionToggleQuicklook,
   MPActionShowEntryHistory, // show history
   MPActionHideEntryHistory, // exit history
-  MPActionPerformAutotypeForSelectedEntry // Perform Autotype for selected Entry
+  MPActionPerformAutotypeForSelectedEntry, // Perform Autotype for selected Entry
+  MPActionRemoveAttachment // Remove an attachment
 };
 /**
  *	Helper to retrieve commonly used actions
