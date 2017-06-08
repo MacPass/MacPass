@@ -159,6 +159,7 @@ FOUNDATION_EXPORT NSString *const MPDocumentGroupKey;
 - (KPKAttribute *)createCustomAttribute:(KPKEntry *)entry;
 
 - (void)deleteNode:(KPKNode *)node;
+- (void)duplicateEntryWithOptions:(KPKCopyOptions)options;
 
 #pragma mark Actions
 /**
@@ -172,10 +173,7 @@ FOUNDATION_EXPORT NSString *const MPDocumentGroupKey;
  *  @param sender sender, that should respond to representedObject and return an NSUUID for the template to use
  */
 - (IBAction)createEntryFromTemplate:(id)sender;
-
 - (IBAction)duplicateEntry:(id)sender;
-
-- (IBAction)duplicateEntryWithOptions:(id)sender;
 
 @end
 

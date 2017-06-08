@@ -182,6 +182,7 @@
 		4C888C9716EB754B003D34A1 /* MPActionHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C888C9616EB754B003D34A1 /* MPActionHelper.m */; };
 		4C88C66918D9F8D600F43852 /* MPTemporaryFileStorageCenter.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C88C66818D9F8D600F43852 /* MPTemporaryFileStorageCenter.m */; };
 		4C8913661A422C8C0071A4CB /* MPFileWatcher.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C8913651A422C8C0071A4CB /* MPFileWatcher.m */; };
+		4C8990F71EE978EB0043B48D /* MPDuplicateEntryOptionsWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C8990F51EE978EB0043B48D /* MPDuplicateEntryOptionsWindowController.m */; };
 		4C89B71019B4B4A300DC0A6A /* MPTreeDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C89B70F19B4B4A300DC0A6A /* MPTreeDelegate.m */; };
 		4C89F524182FB4740069C73C /* MPAutotypeCommand.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C89F523182FB4740069C73C /* MPAutotypeCommand.m */; };
 		4C8B36AB17A6ED4B005E1FF1 /* MPOutlineContextMenuDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C8B36AA17A6ED4B005E1FF1 /* MPOutlineContextMenuDelegate.m */; };
@@ -592,6 +593,8 @@
 		4C88C66818D9F8D600F43852 /* MPTemporaryFileStorageCenter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MPTemporaryFileStorageCenter.m; sourceTree = "<group>"; };
 		4C8913641A422C8C0071A4CB /* MPFileWatcher.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MPFileWatcher.h; sourceTree = "<group>"; };
 		4C8913651A422C8C0071A4CB /* MPFileWatcher.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MPFileWatcher.m; sourceTree = "<group>"; };
+		4C8990F41EE978EB0043B48D /* MPDuplicateEntryOptionsWindowController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MPDuplicateEntryOptionsWindowController.h; sourceTree = "<group>"; };
+		4C8990F51EE978EB0043B48D /* MPDuplicateEntryOptionsWindowController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MPDuplicateEntryOptionsWindowController.m; sourceTree = "<group>"; };
 		4C89B70E19B4B4A300DC0A6A /* MPTreeDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MPTreeDelegate.h; sourceTree = "<group>"; };
 		4C89B70F19B4B4A300DC0A6A /* MPTreeDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MPTreeDelegate.m; sourceTree = "<group>"; };
 		4C89F522182FB4740069C73C /* MPAutotypeCommand.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MPAutotypeCommand.h; sourceTree = "<group>"; };
@@ -1400,6 +1403,9 @@
 				4C0B038918E36DA400B9F9C9 /* MPFixAutotypeWindowController.h */,
 				4C0B038A18E36DA400B9F9C9 /* MPFixAutotypeWindowController.m */,
 				4C0B038B18E36DA400B9F9C9 /* FixAutotypeWindow.xib */,
+				4C8990F41EE978EB0043B48D /* MPDuplicateEntryOptionsWindowController.h */,
+				4C8990F51EE978EB0043B48D /* MPDuplicateEntryOptionsWindowController.m */,
+				4CB915931A0159A20089CE5B /* DuplicateEntryOptionsWindow.xib */,
 			);
 			name = "Window Controller";
 			sourceTree = "<group>";
@@ -1423,7 +1429,6 @@
 				4C1DDCDC1711ECEB00C98DA3 /* PasswordCreatorWindow.xib */,
 				4C7F8B6A1A10B68400CCB83D /* WelcomeWindow.xib */,
 				4C0DD6C518B2A44700FCB193 /* AutotypeCandidateSelectionWindow.xib */,
-				4CB915931A0159A20089CE5B /* DuplicateEntryOptionsWindow.xib */,
 			);
 			name = Windows;
 			sourceTree = "<group>";
@@ -1776,6 +1781,7 @@
 				4C10412C178CDD44001B5239 /* NSDate+Humanized.m in Sources */,
 				4C0C59F118B17F10009C7B76 /* DDHotKeyUtilities.m in Sources */,
 				4CEE46DD181C301D006BF1E5 /* MPAutotypeDaemon.m in Sources */,
+				4C8990F71EE978EB0043B48D /* MPDuplicateEntryOptionsWindowController.m in Sources */,
 				4CA3530B18A53CB800839B0F /* MPKeyMapper.m in Sources */,
 				4CE298EB1795FC2A00DF7BDB /* MPEntryContextMenuDelegate.m in Sources */,
 				4CCCE8011D75CA48006AA951 /* MPArrayController.m in Sources */,

@@ -51,6 +51,8 @@
 - (IBAction)createEntry:(id)sender;
 - (IBAction)delete:(id)sender;
 
+- (IBAction)duplicateEntryWithOptions:(id)sender;
+
 - (IBAction)pickExpiryDate:(id)sender;
 
 - (IBAction)performAutotypeForEntry:(id)sender;

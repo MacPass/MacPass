@@ -15,6 +15,7 @@
 #import "MPDatabaseSettingsWindowController.h"
 #import "MPDocument.h"
 #import "MPDocumentWindowDelegate.h"
+#import "MPDuplicateEntryOptionsWindowController.h"
 #import "MPEntryViewController.h"
 #import "MPFixAutotypeWindowController.h"
 #import "MPInspectorViewController.h"
@@ -396,6 +397,27 @@ typedef void (^MPPasswordChangedBlock)(BOOL didChangePassword);
   for(KPKNode *node in nodes) {
     [self.document deleteNode:node];
   }
+}
+- (void)duplicateEntryWithOptions:(id)sender {
+  MPDuplicateEntryOptionsWindowController *wc = [[MPDuplicateEntryOptionsWindowController alloc] init];
+  __weak MPDocumentWindowController *welf = self;
+  
+  [self.window beginSheet:wc.window completionHandler:^(NSModalResponse returnCode) {
+    if(returnCode == NSModalResponseOK) {
+      
+      KPKCopyOptions options = kKPKCopyOptionNone;
+      if(wc.referenceUsername) {
+        options |= kKPKCopyOptionReferenceUsername;
+      }
+      if(wc.referencePassword) {
+        options |= kKPKCopyOptionReferencePassword;
+      }
+      if(wc.duplicateHistory) {
+        options |= kKPKCopyOptionCopyHistory;
+      }
+      [((MPDocument *)welf.document) duplicateEntryWithOptions:options];
+    }
+  }];
 }
 
 - (void)pickExpiryDate:(id)sender {

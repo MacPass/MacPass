@@ -699,17 +699,17 @@ NSString *const MPDocumentGroupKey                            = @"MPDocumentGrou
 }
 
 - (void)duplicateEntry:(id)sender {
+  [self duplicateEntryWithOptions:kKPKCopyOptionNone];
+}
+
+- (void)duplicateEntryWithOptions:(KPKCopyOptions)options {
+  BOOL plural = self.selectedEntries.count > 1;
   for(KPKEntry *entry in self.selectedEntries) {
-    KPKEntry *duplicate = [entry copyWithTitle:nil options:kKPKCopyOptionNone];
+    KPKEntry *duplicate = [entry copyWithTitle:nil options:options];
     [duplicate addToGroup:entry.parent];
   }
-  [self.undoManager setActionName:NSLocalizedString(@"DUPLICATE_ENTRY", "")];
+  [self.undoManager setActionName:plural ? NSLocalizedString(@"DUPLICATE_ENTRIES", "") : NSLocalizedString(@"DUPLICATE_ENTRY", "")];
 }
-
-- (void)duplicateEntryWithOptions:(id)sender {
-  
-}
-
 
 #pragma mark Validation
 - (BOOL)validateMenuItem:(NSMenuItem *)menuItem {
