@@ -1,6 +1,0 @@
-#!/bin/bash
-
-git submodule update --init --recursive
-carthage bootstrap --platform Mac
-xcodebuild
-xcodebuild -scheme MacPass -target MacPass -configuration Release
