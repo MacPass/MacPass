@@ -743,11 +743,13 @@ NSString *const MPDocumentGroupKey                            = @"MPDocumentGrou
       valid &= (nil != targetGroup);
       valid &= !targetGroup.isTrash;
       valid &= !targetGroup.isTrashed;
+      valid &= !self.historyEntry;
       break;
     case MPActionAddEntry:
       valid &= (nil != targetGroup);
       valid &= !targetGroup.isTrash;
       valid &= !targetGroup.isTrashed;
+      valid &= !self.historyEntry;
       break;
     case MPActionDelete:
       valid &= targetNodes.count > 0;
@@ -760,7 +762,9 @@ NSString *const MPDocumentGroupKey                            = @"MPDocumentGrou
       }
       break;
     case MPActionDuplicateEntry:
+    case MPActionDuplicateEntryWithOptions:
       valid &= targetEntries.count > 0;
+      valid &= !self.historyEntry;
       break;
     case MPActionEmptyTrash:
       valid &= (self.trash.groups.count + self.trash.entries.count) > 0;
@@ -775,6 +779,7 @@ NSString *const MPDocumentGroupKey                            = @"MPDocumentGrou
     case MPActionShowEntryHistory:
       valid &= (nil != targetEntry);
       valid &= targetEntry.history.count > 0;
+      valid &= !self.historyEntry;
       break;
       /* Entry View Actions */
     case MPActionCopyUsername:

@@ -109,7 +109,7 @@ typedef NS_ENUM(NSUInteger, MPEntryTab) {
   self.customFieldsTableView.backgroundColor = [NSColor clearColor];
   [self.customFieldsTableView bind:NSContentBinding toObject:_customFieldsController withKeyPath:NSStringFromSelector(@selector(arrangedObjects)) options:nil];
   self.customFieldsTableView.delegate = _customFieldTableDelegate;
-    
+  
   self.windowAssociationsTableView.backgroundColor = [NSColor clearColor];
   self.windowAssociationsTableView.delegate = _windowAssociationsTableDelegate;
   [self.windowAssociationsTableView bind:NSContentBinding toObject:_windowAssociationsController withKeyPath:NSStringFromSelector(@selector(arrangedObjects)) options:nil];
@@ -355,13 +355,38 @@ typedef NS_ENUM(NSUInteger, MPEntryTab) {
                                                                    options:0
                                                                    metrics:nil
                                                                      views:views]];
-
+  
   [[self view] layoutSubtreeIfNeeded];
 }
 
 #pragma mark -
 #pragma mark Entry Selection
 - (void)_setupViewBindings {
+  /* Disable for history view */
+  NSArray *inputs = @[self.titleTextField,
+                      self.passwordTextField,
+                      self.usernameTextField,
+                      self.URLTextField,
+                      self.expiresCheckButton,
+                      self.tagsTokenField,
+                      self.generatePasswordButton,
+                      self.addAttachmentButton,
+                      self.addCustomFieldButton,
+                      self.addWindowAssociationButton,
+                      self.removeWindowAssociationButton,
+                      self.enableAutotypeCheckButton,
+                      self.obfuscateAutotypeCheckButton,
+                      self.customEntrySequenceTextField,
+                      self.windowTitleComboBox,
+                      self.associationSequenceTextField];
+  
+  for(NSControl *control in inputs) {
+    [control bind:NSEnabledBinding
+         toObject:self
+      withKeyPath:[NSString stringWithFormat:@"%@.%@", NSStringFromSelector(@selector(representedObject)), NSStringFromSelector(@selector(isHistory))]
+          options:@{NSConditionallySetsEditableBindingOption: @NO, NSValueTransformerNameBindingOption: NSNegateBooleanTransformerName}];
+  }
+
   /* general */
   [self.titleTextField bind:NSValueBinding
                    toObject:self
@@ -378,7 +403,7 @@ typedef NS_ENUM(NSUInteger, MPEntryTab) {
   [self.URLTextField bind:NSValueBinding
                  toObject:self
               withKeyPath:[NSString stringWithFormat:@"%@.%@", NSStringFromSelector(@selector(representedObject)), NSStringFromSelector(@selector(url))]
-                  options:@{ NSNullPlaceholderBindingOption: NSLocalizedString(@"NONE", "")}]; 
+                  options:@{ NSNullPlaceholderBindingOption: NSLocalizedString(@"NONE", "")}];
   [self.expiresCheckButton bind:NSTitleBinding
                        toObject:self
                     withKeyPath:[NSString stringWithFormat:@"%@.%@.%@", NSStringFromSelector(@selector(representedObject)), NSStringFromSelector(@selector(timeInfo)), NSStringFromSelector(@selector(expirationDate))]
@@ -398,13 +423,13 @@ typedef NS_ENUM(NSUInteger, MPEntryTab) {
                withKeyPath:[NSString stringWithFormat:@"%@.%@.%@", NSStringFromSelector(@selector(representedObject)), NSStringFromSelector(@selector(uuid)), NSStringFromSelector(@selector(UUIDString))]
                    options:@{ NSConditionallySetsEditableBindingOption: @NO }];
   self.uuidTextField.editable = NO;
-
+  
   /* Attachments */
   [_attachmentsController bind:NSContentArrayBinding
                       toObject:self
                    withKeyPath:[NSString stringWithFormat:@"%@.%@", NSStringFromSelector(@selector(representedObject)), NSStringFromSelector(@selector(binaries))]
                        options:nil];
-
+  
   /* CustomField */
   [_customFieldsController bind:NSContentArrayBinding
                        toObject:self
@@ -419,10 +444,14 @@ typedef NS_ENUM(NSUInteger, MPEntryTab) {
                                  toObject:self
                               withKeyPath:[NSString stringWithFormat:@"%@.%@.%@", NSStringFromSelector(@selector(representedObject)), NSStringFromSelector(@selector(autotype)), NSStringFromSelector(@selector(obfuscateDataTransfer))]
                                   options:nil];
-  [self.customEntrySequenceTextField bind:NSEnabledBinding
+  
+  /* Use enabled2 since NSEnabledBinding is already bound! */
+  [self.customEntrySequenceTextField bind:@"enabled2"
                                  toObject:self
                               withKeyPath:[NSString stringWithFormat:@"%@.%@.%@", NSStringFromSelector(@selector(representedObject)), NSStringFromSelector(@selector(autotype)), NSStringFromSelector(@selector(enabled))]
                                   options:nil];
+  
+  
   [self.customEntrySequenceTextField bind:NSValueBinding
                                  toObject:self
                               withKeyPath:[NSString stringWithFormat:@"%@.%@.%@", NSStringFromSelector(@selector(representedObject)), NSStringFromSelector(@selector(autotype)), NSStringFromSelector(@selector(defaultKeystrokeSequence))]
@@ -441,26 +470,7 @@ typedef NS_ENUM(NSUInteger, MPEntryTab) {
                                  toObject:_windowAssociationsController
                               withKeyPath:[NSString stringWithFormat:@"selection.%@", NSStringFromSelector(@selector(keystrokeSequence))]
                                   options:nil];
-
-  NSArray *inputs = @[self.titleTextField,
-                      self.passwordTextField,
-                      self.usernameTextField,
-                      self.URLTextField,
-                      self.expiresCheckButton,
-                      self.tagsTokenField,
-                      self.generatePasswordButton,
-                      self.addAttachmentButton,
-                      self.addCustomFieldButton,
-                      self.addWindowAssociationButton];
   
-  for(NSControl *control in inputs) {
-    NSString *keyPath = [NSString stringWithFormat:@"%@.%@", NSStringFromSelector(@selector(representedObject)), NSStringFromSelector(@selector(isHistory))];
-    [control bind:NSEnabledBinding
-         toObject:self
-      withKeyPath:keyPath
-          options:@{NSConditionallySetsEditableBindingOption: @NO, NSValueTransformerNameBindingOption: NSNegateBooleanTransformerName}];
-  }
-
 
 }
 

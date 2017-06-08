@@ -55,6 +55,7 @@
 
 @property (weak) IBOutlet NSTextField *associationSequenceTextField;
 @property (weak) IBOutlet NSButton *addWindowAssociationButton;
+@property (weak) IBOutlet NSButton *removeWindowAssociationButton;
 
 - (void)registerNotificationsForDocument:(MPDocument *)document;
 
