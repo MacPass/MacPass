@@ -606,6 +606,11 @@ NSString *const MPDocumentGroupKey                            = @"MPDocumentGrou
     return;
   }
   
+  if(node.asEntry.isHistory) {
+    [self.historyEntry removeHistoryEntry:node.asEntry];
+    return;
+  }
+  
   if(!self.tree.metaData.useTrash) {
     /* Display warning about permanently removing items! */
   }
