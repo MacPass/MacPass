@@ -12,14 +12,7 @@ after_success:
   - cd -
   - mv ./build/Build/Products/Release/MacPass-continuous.zip .
 
-script: xcodebuild clean && xcodebuild build -configuration release -project MacPass.xcodeproj -scheme MacPass CODE_SIGNING_REQUIRED=NO -derivedDataPath ./build
-
-#after_success:
-#  - zip -9r ./build/Build/Products/Release/MacPass.app MacPass-continuous.zip
-#  - wget -c https://github.com/MacPass/uploadtool/raw/master/upload.sh
-#  - bash ./upload.sh build/*
-
-# TODO: fix versioning since it yield a 00 release number
+script: xcodebuild clean && xcodebuild build -configuration release -project MacPass.xcodeproj  -scheme MacPass CODE_SIGNING_REQUIRED=NO -derivedDataPath ./build
 
 branches:
   only:
