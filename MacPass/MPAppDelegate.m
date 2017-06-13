@@ -157,7 +157,7 @@ NSString *const MPDidChangeStoredKeyFilesSettings = @"com.hicknhack.macpass.MPDi
 }
 
 - (void)applicationDidFinishLaunching:(NSNotification *)notification {
-#if defined(NOSPARKLE)
+#if defined(NO_SPARKLE)
   NSLog(@"Sparkle explicitly disabled!!!");
 #endif
   /* Daemon instanziieren */
@@ -165,7 +165,7 @@ NSString *const MPDidChangeStoredKeyFilesSettings = @"com.hicknhack.macpass.MPDi
   [MPAutotypeDaemon defaultDaemon];
   /* Create Plugin Manager */
   [MPPluginHost sharedHost];
-#if !defined(DEBUG) && !defined(NOSPARKLE)
+#if !defined(DEBUG) && !defined(NO_SPARKLE)
   /* Disable updates if in debug or nosparkle  */
   [SUUpdater sharedUpdater];
 #endif
@@ -234,7 +234,7 @@ NSString *const MPDidChangeStoredKeyFilesSettings = @"com.hicknhack.macpass.MPDi
 }
 
 - (void)checkForUpdates:(id)sender {
-#if defined(DEBUG) || defined(NOSPARKLE)
+#if defined(DEBUG) || defined(NO_SPARKLE)
   NSAlert *alert = [[NSAlert alloc] init];
   alert.messageText = @"Updates are disabled!";
   alert.informativeText = [NSString stringWithFormat:@"Sparkle updates are disabled for this build of %@!", NSApp.applicationName];
