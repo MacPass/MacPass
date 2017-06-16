@@ -34,7 +34,6 @@
 typedef NS_ENUM(NSUInteger, MPEntryTab) {
   MPEntryTabGeneral,
   MPEntryTabFiles,
-  MPEntryTabCustomFields,
   MPEntryTabAutotype
 };
 
@@ -106,11 +105,34 @@ typedef NS_ENUM(NSUInteger, MPEntryTab) {
   self.attachmentTableView.dataSource = _attachmentDataSource;
   [self.attachmentTableView registerForDraggedTypes:@[NSFilenamesPboardType]];
   
-  self.customFieldsTableView.backgroundColor = [NSColor clearColor];
+  /* extract custom field table view */
+  self.customFieldsTableView.translatesAutoresizingMaskIntoConstraints = NO;
+  NSView *customFieldTableView = self.customFieldsTableView;
+  [self.customFieldsTableView.enclosingScrollView removeFromSuperviewWithoutNeedingDisplay];
+  
+  
+  [self.generalView addSubview:customFieldTableView];
+  
+  NSDictionary *dict = NSDictionaryOfVariableBindings(customFieldTableView, _tagsTokenField, _addCustomFieldButton);
+  [self.generalView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-16-[customFieldTableView]-16-|"
+                                                                    options:0
+                                                                    metrics:nil
+                                                                      views:dict]];
+  [self.generalView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:[_tagsTokenField]-[customFieldTableView]-[_addCustomFieldButton]"
+                                                                    options:0
+                                                                    metrics:nil
+                                                                      views:dict]];
+  
+  
+  
+  
+  self.customFieldsTableView.backgroundColor = NSColor.clearColor;
   [self.customFieldsTableView bind:NSContentBinding toObject:_customFieldsController withKeyPath:NSStringFromSelector(@selector(arrangedObjects)) options:nil];
   self.customFieldsTableView.delegate = _customFieldTableDelegate;
   
-  self.windowAssociationsTableView.backgroundColor = [NSColor clearColor];
+  [self.customFieldsTableView sizeLastColumnToFit];
+  
+  self.windowAssociationsTableView.backgroundColor = NSColor.clearColor;
   self.windowAssociationsTableView.delegate = _windowAssociationsTableDelegate;
   [self.windowAssociationsTableView bind:NSContentBinding toObject:_windowAssociationsController withKeyPath:NSStringFromSelector(@selector(arrangedObjects)) options:nil];
   [self.windowAssociationsTableView bind:NSSelectionIndexesBinding toObject:_windowAssociationsController withKeyPath:NSSelectionIndexesBinding options:nil];
@@ -386,7 +408,7 @@ typedef NS_ENUM(NSUInteger, MPEntryTab) {
       withKeyPath:[NSString stringWithFormat:@"%@.%@", NSStringFromSelector(@selector(representedObject)), NSStringFromSelector(@selector(isHistory))]
           options:@{NSConditionallySetsEditableBindingOption: @NO, NSValueTransformerNameBindingOption: NSNegateBooleanTransformerName}];
   }
-
+  
   /* general */
   [self.titleTextField bind:NSValueBinding
                    toObject:self
@@ -471,7 +493,7 @@ typedef NS_ENUM(NSUInteger, MPEntryTab) {
                               withKeyPath:[NSString stringWithFormat:@"selection.%@", NSStringFromSelector(@selector(keystrokeSequence))]
                                   options:nil];
   
-
+  
 }
 
 
