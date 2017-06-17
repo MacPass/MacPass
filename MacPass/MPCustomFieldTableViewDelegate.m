@@ -53,6 +53,8 @@
   
   view.observer = tableView.window.windowController.document;
   
+  //[view.removeButton bind:NSVisibleBinding toObject:view.valueTextField withKeyPath:@"" options:nil];
+  
   return view;
 }
 
