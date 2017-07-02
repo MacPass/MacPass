@@ -39,6 +39,7 @@
                    toObject:view
                 withKeyPath:[NSString stringWithFormat:@"%@.%@", NSStringFromSelector(@selector(objectValue)), NSStringFromSelector(@selector(value))]
                     options:nil];
+    
   // TODO: Move to public KeePassKit API!
   for(NSControl *control in @[view.labelTextField, view.valueTextField, view.removeButton ]) {
     [control bind:NSEnabledBinding
@@ -53,9 +54,8 @@
   
   view.observer = tableView.window.windowController.document;
   
-  //[view.removeButton bind:NSVisibleBinding toObject:view.valueTextField withKeyPath:@"" options:nil];
-  
   return view;
 }
+
 
 @end

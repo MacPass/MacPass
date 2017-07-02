@@ -18,6 +18,7 @@ NSString *const kMPSettingsKeyBrowserBundleId                         = @"Browse
 NSString *const kMPSettingsKeyOpenEmptyDatabaseOnLaunch               = @"OpenEmptyDatabaseOnLaunch";
 NSString *const kMPSettingsKeyReopenLastDatabaseOnLaunch              = @"ReopenLastDatabaseOnLaunch";
 NSString *const kMPSettingsKeyLockOnSleep                             = @"LockOnSleep";
+NSString *const kMPSettingskeyLockOnLogout                            = @"LockOnLogout";
 NSString *const kMPSettingsKeyIdleLockTimeOut                         = @"IdleLockTimeOut";
 NSString *const kMPSettingsKeyShowInspector                           = @"ShowInspector";
 NSString *const kMPSettingsKeyEntryTableSortDescriptors               = @"EntryTableSortDescriptors";
@@ -101,6 +102,7 @@ NSString *const kMPDeprecatedSettingsKeyDefaultPasswordRounds             = @"Ke
                          kMPSettingsKeyOpenEmptyDatabaseOnLaunch: @NO,
                          kMPSettingsKeyReopenLastDatabaseOnLaunch: @YES,
                          kMPSettingsKeyLockOnSleep: @YES,
+                         kMPSettingskeyLockOnLogout: @NO,
                          kMPSettingsKeyIdleLockTimeOut: @0, // 5 minutes
                          kMPSettingsKeyLegacyHideNotes: @NO,
                          kMPSettingsKeyLegacyHidePassword: @YES,

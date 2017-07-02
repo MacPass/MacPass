@@ -13,6 +13,7 @@
 @interface MPLockDaemon ()
 
 @property (nonatomic,assign) BOOL lockOnSleep;
+@property (nonatomic,assign) BOOL lockOnLogout;
 @property (nonatomic,assign) NSUInteger idleLockTime;
 @property (nonatomic,strong) id eventHandler;
 @property (nonatomic,strong) NSTimer *idleCheckTimer;
@@ -43,6 +44,7 @@ static MPLockDaemon *_sharedInstance;
     NSUserDefaultsController *defaultsController = [NSUserDefaultsController sharedUserDefaultsController];
     [self bind:NSStringFromSelector(@selector(lockOnSleep)) toObject:defaultsController withKeyPath:[MPSettingsHelper defaultControllerPathForKey:kMPSettingsKeyLockOnSleep] options:nil];
     [self bind:NSStringFromSelector(@selector(idleLockTime)) toObject:defaultsController withKeyPath:[MPSettingsHelper defaultControllerPathForKey:kMPSettingsKeyIdleLockTimeOut] options:nil];
+    [self bind:NSStringFromSelector(@selector(lockOnLogout)) toObject:defaultsController withKeyPath:[MPSettingsHelper defaultControllerPathForKey:kMPSettingskeyLockOnLogout] options:nil];
   }
   return self;
 }
@@ -55,6 +57,18 @@ static MPLockDaemon *_sharedInstance;
   [NSEvent removeMonitor:self.eventHandler];
 }
 
+- (void)setLockOnLogout:(BOOL)lockOnLogout {
+  if(_lockOnLogout != lockOnLogout) {
+    _lockOnLogout = lockOnLogout;
+    if(_lockOnLogout) {
+      [NSWorkspace.sharedWorkspace.notificationCenter addObserver:self selector:@selector(_willLogOutNotification:) name:NSWorkspaceSessionDidResignActiveNotification object:nil];
+    }
+    else {
+      [NSWorkspace.sharedWorkspace.notificationCenter removeObserver:self name:@"" object:nil];
+    }
+  }
+}
+
 - (void)setLockOnSleep:(BOOL)lockOnSleep {
   if(_lockOnSleep != lockOnSleep) {
     _lockOnSleep = lockOnSleep;
@@ -62,7 +76,7 @@ static MPLockDaemon *_sharedInstance;
       [[NSWorkspace sharedWorkspace].notificationCenter addObserver:self selector:@selector(_willSleepNotification:) name:NSWorkspaceWillSleepNotification object:nil];
     }
     else {
-      [[NSWorkspace sharedWorkspace].notificationCenter removeObserver:self];
+      [[NSWorkspace sharedWorkspace].notificationCenter removeObserver:self name:NSWorkspaceWillSleepNotification object:nil];
     }
   }
 }
@@ -79,6 +93,9 @@ static MPLockDaemon *_sharedInstance;
   }
 }
 
+- (void)_willLogOutNotification:(NSNotification *)notification {
+  [((MPAppDelegate *)NSApp.delegate) lockAllDocuments];
+}
 - (void)_willSleepNotification:(NSNotification *)notification {
   [((MPAppDelegate *)NSApp.delegate) lockAllDocuments];
 }

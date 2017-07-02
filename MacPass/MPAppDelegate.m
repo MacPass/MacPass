@@ -101,7 +101,7 @@ NSString *const MPDidChangeStoredKeyFilesSettings = @"com.hicknhack.macpass.MPDi
   
   /* We want to inform anyone about the changes to keyFile remembering */
   [self bind:NSStringFromSelector(@selector(isAllowedToStoreKeyFile))
-    toObject:[NSUserDefaultsController sharedUserDefaultsController]
+    toObject:NSUserDefaultsController.sharedUserDefaultsController
  withKeyPath:[MPSettingsHelper defaultControllerPathForKey:kMPSettingsKeyRememberKeyFilesForDatabases]
      options:nil];
 }

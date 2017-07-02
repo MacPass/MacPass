@@ -42,7 +42,7 @@
 @property (weak) IBOutlet NSTableView *attachmentTableView;
 
 /* Custom Fields */
-@property (weak) IBOutlet NSTableView *customFieldsTableView;
+@property (strong) IBOutlet NSTableView *customFieldsTableView;
 @property (weak) IBOutlet NSButton *showCustomDataButton;
 
 /* Autotype */

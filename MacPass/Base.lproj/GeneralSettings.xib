@@ -1,9 +1,9 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="10117" systemVersion="15G31" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="12121" systemVersion="16F73" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
     <dependencies>
-        <deployment identifier="macosx"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="10117"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="12121"/>
         <capability name="box content view" minToolsVersion="7.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
         <customObject id="-2" userLabel="File's Owner" customClass="MPGeneralSettingsController">
@@ -12,6 +12,7 @@
                 <outlet property="clearPasteboardTimeoutPopup" destination="419" id="521"/>
                 <outlet property="createUntitledOnActivation" destination="879" id="920"/>
                 <outlet property="idleTimeOutPopup" destination="584" id="809"/>
+                <outlet property="lockOnLogoutCheckButton" destination="5SP-Vi-1sn" id="yaI-LH-R5A"/>
                 <outlet property="lockOnSleepCheckButton" destination="630" id="810"/>
                 <outlet property="rememberKeyFileCheckButton" destination="bSt-Wf-FNZ" id="aQm-EA-yAN"/>
                 <outlet property="reopenLastDatabase" destination="530" id="878"/>
@@ -21,16 +22,16 @@
         <customObject id="-1" userLabel="First Responder" customClass="FirstResponder"/>
         <customObject id="-3" userLabel="Application" customClass="NSObject"/>
         <customView translatesAutoresizingMaskIntoConstraints="NO" id="1">
-            <rect key="frame" x="0.0" y="0.0" width="400" height="360"/>
+            <rect key="frame" x="0.0" y="0.0" width="400" height="380"/>
             <subviews>
-                <box autoresizesSubviews="NO" verticalHuggingPriority="500" title="Security" borderType="line" translatesAutoresizingMaskIntoConstraints="NO" id="465">
-                    <rect key="frame" x="17" y="16" width="366" height="246"/>
+                <box autoresizesSubviews="NO" verticalHuggingPriority="500" borderType="line" title="Security" translatesAutoresizingMaskIntoConstraints="NO" id="465">
+                    <rect key="frame" x="17" y="16" width="366" height="266"/>
                     <view key="contentView" id="mNh-3L-Z6E">
-                        <rect key="frame" x="1" y="1" width="364" height="230"/>
+                        <rect key="frame" x="1" y="1" width="364" height="250"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <textField verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="431">
-                                <rect key="frame" x="16" y="202" width="120" height="17"/>
+                            <textField verticalHuggingPriority="750" allowsCharacterPickerTouchBarItem="NO" translatesAutoresizingMaskIntoConstraints="NO" id="431">
+                                <rect key="frame" x="16" y="222" width="120" height="17"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="17" id="803"/>
                                 </constraints>
@@ -41,7 +42,7 @@
                                 </textFieldCell>
                             </textField>
                             <popUpButton verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="419">
-                                <rect key="frame" x="179" y="199" width="170" height="22"/>
+                                <rect key="frame" x="179" y="219" width="170" height="22"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="165" id="877"/>
                                 </constraints>
@@ -61,7 +62,7 @@
                                 </popUpButtonCell>
                             </popUpButton>
                             <button verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="447">
-                                <rect key="frame" x="31" y="178" width="164" height="18"/>
+                                <rect key="frame" x="31" y="198" width="164" height="18"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="14" id="773"/>
                                 </constraints>
@@ -71,7 +72,7 @@
                                 </buttonCell>
                             </button>
                             <popUpButton verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="584">
-                                <rect key="frame" x="179" y="150" width="170" height="26"/>
+                                <rect key="frame" x="179" y="170" width="170" height="26"/>
                                 <popUpButtonCell key="cell" type="push" bezelStyle="rounded" alignment="left" lineBreakMode="truncatingTail" borderStyle="borderAndBezel" imageScaling="proportionallyDown" inset="2" id="585">
                                     <behavior key="behavior" lightByBackground="YES" lightByGray="YES"/>
                                     <font key="font" metaFont="menu"/>
@@ -88,14 +89,14 @@
                                 </popUpButtonCell>
                             </popUpButton>
                             <button translatesAutoresizingMaskIntoConstraints="NO" id="630">
-                                <rect key="frame" x="31" y="131" width="119" height="18"/>
-                                <buttonCell key="cell" type="check" title="Lock after sleep" bezelStyle="regularSquare" imagePosition="left" enabled="NO" state="on" inset="2" id="631">
+                                <rect key="frame" x="31" y="151" width="119" height="18"/>
+                                <buttonCell key="cell" type="check" title="Lock after sleep" bezelStyle="regularSquare" imagePosition="left" state="on" inset="2" id="631">
                                     <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                                     <font key="font" metaFont="system"/>
                                 </buttonCell>
                             </button>
-                            <textField verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="805">
-                                <rect key="frame" x="16" y="155" width="93" height="17"/>
+                            <textField verticalHuggingPriority="750" allowsCharacterPickerTouchBarItem="NO" translatesAutoresizingMaskIntoConstraints="NO" id="805">
+                                <rect key="frame" x="16" y="175" width="93" height="17"/>
                                 <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Lock while idle" id="806">
                                     <font key="font" metaFont="system"/>
                                     <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
@@ -109,7 +110,7 @@
                                     <font key="font" metaFont="system"/>
                                 </buttonCell>
                             </button>
-                            <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" setsMaxLayoutWidthAtFirstLayout="YES" translatesAutoresizingMaskIntoConstraints="NO" id="5cV-xX-SUU">
+                            <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" setsMaxLayoutWidthAtFirstLayout="YES" allowsCharacterPickerTouchBarItem="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5cV-xX-SUU">
                                 <rect key="frame" x="16" y="43" width="332" height="56"/>
                                 <textFieldCell key="cell" sendsActionOnEndEditing="YES" id="ACh-7H-42N">
                                     <font key="font" metaFont="smallSystem"/>
@@ -128,7 +129,19 @@
                                     <action selector="clearRememberdKeyFiles:" target="-1" id="Vlr-aK-ikW"/>
                                 </connections>
                             </button>
+                            <button translatesAutoresizingMaskIntoConstraints="NO" id="5SP-Vi-1sn">
+                                <rect key="frame" x="31" y="131" width="129" height="18"/>
+                                <buttonCell key="cell" type="check" title="Lock after log out" bezelStyle="regularSquare" imagePosition="left" state="on" inset="2" id="Dzn-9R-JjE">
+                                    <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                                    <font key="font" metaFont="system"/>
+                                </buttonCell>
+                            </button>
                         </subviews>
+                        <constraints>
+                            <constraint firstItem="bSt-Wf-FNZ" firstAttribute="top" secondItem="5SP-Vi-1sn" secondAttribute="bottom" constant="11" id="WUG-Uf-FCO"/>
+                            <constraint firstItem="5SP-Vi-1sn" firstAttribute="leading" secondItem="447" secondAttribute="leading" id="Ylr-aA-jaD"/>
+                            <constraint firstItem="5SP-Vi-1sn" firstAttribute="top" secondItem="630" secondAttribute="bottom" constant="6" symbolic="YES" id="acg-vp-LeB"/>
+                        </constraints>
                     </view>
                     <constraints>
                         <constraint firstAttribute="trailing" secondItem="419" secondAttribute="trailing" constant="16" id="1de-jU-TAq"/>
@@ -149,18 +162,15 @@
                         <constraint firstItem="oQr-FC-HkN" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="465" secondAttribute="leading" constant="16" id="kZ7-HL-y2Q"/>
                         <constraint firstItem="5cV-xX-SUU" firstAttribute="leading" secondItem="bSt-Wf-FNZ" secondAttribute="leading" id="qhV-iB-z4e"/>
                         <constraint firstItem="oQr-FC-HkN" firstAttribute="top" secondItem="5cV-xX-SUU" secondAttribute="bottom" constant="8" id="qsT-Cs-vVj"/>
-                        <constraint firstItem="bSt-Wf-FNZ" firstAttribute="top" secondItem="630" secondAttribute="bottom" constant="11" id="tje-q7-o1T"/>
                         <constraint firstItem="447" firstAttribute="top" secondItem="419" secondAttribute="bottom" constant="8" symbolic="YES" id="u35-aE-Ui9"/>
                         <constraint firstItem="419" firstAttribute="leading" secondItem="584" secondAttribute="leading" id="xws-PK-qQU"/>
                         <constraint firstItem="630" firstAttribute="leading" secondItem="447" secondAttribute="leading" id="ybt-cQ-JwG"/>
                         <constraint firstItem="805" firstAttribute="top" secondItem="447" secondAttribute="bottom" constant="8" symbolic="YES" id="ywh-V0-xuC"/>
                         <constraint firstItem="447" firstAttribute="top" secondItem="431" secondAttribute="bottom" constant="8" symbolic="YES" id="zkd-Hf-09b"/>
                     </constraints>
-                    <color key="borderColor" white="0.0" alpha="0.41999999999999998" colorSpace="calibratedWhite"/>
-                    <color key="fillColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                 </box>
-                <box autoresizesSubviews="NO" verticalHuggingPriority="500" title="Startup" borderType="line" translatesAutoresizingMaskIntoConstraints="NO" id="888">
-                    <rect key="frame" x="17" y="266" width="366" height="74"/>
+                <box autoresizesSubviews="NO" verticalHuggingPriority="500" borderType="line" title="Startup" translatesAutoresizingMaskIntoConstraints="NO" id="888">
+                    <rect key="frame" x="17" y="286" width="366" height="74"/>
                     <view key="contentView" id="cpg-tt-SHE">
                         <rect key="frame" x="1" y="1" width="364" height="58"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -188,8 +198,6 @@
                         <constraint firstItem="530" firstAttribute="leading" secondItem="888" secondAttribute="leading" constant="16" id="iCa-F0-TFe"/>
                         <constraint firstItem="879" firstAttribute="top" secondItem="888" secondAttribute="top" constant="25" id="mTD-NM-deL"/>
                     </constraints>
-                    <color key="borderColor" white="0.0" alpha="0.41999999999999998" colorSpace="calibratedWhite"/>
-                    <color key="fillColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                 </box>
             </subviews>
             <constraints>
@@ -202,7 +210,7 @@
                 <constraint firstItem="465" firstAttribute="top" secondItem="1" secondAttribute="top" constant="98" id="950"/>
                 <constraint firstAttribute="bottom" secondItem="465" secondAttribute="bottom" constant="20" symbolic="YES" id="uwq-az-XwJ"/>
             </constraints>
-            <point key="canvasLocation" x="394" y="190"/>
+            <point key="canvasLocation" x="-54" y="66"/>
         </customView>
     </objects>
 </document>
