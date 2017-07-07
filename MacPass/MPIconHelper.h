@@ -34,12 +34,54 @@ typedef NS_ENUM(NSUInteger, MPIconType) {
   MPIconDisplay,
   MPIconEmail,
   MPIconMisc,
-  MPIconFileSave = 26,
-  MPIconTerminal = 30,
-  MPIconPrint = 31,
-  MPIconTrash = 43,
-  MPIconFolder = 48,
-  MPIconPhone = 68,
+  MPIconOrganizer,
+  MPIconASCII,
+  MPIconIcons,
+  MPIconEstablishedConnection,
+  MPIconMailFolder,
+  MPIconFileSave,
+  MPIconNFSUnmount,
+  MPIconQuickTime,
+  MPIconSecureTerminal,
+  MPIconTerminal,
+  MPIconPrint,
+  MPIconFileSystemView,
+  MPIconRun,
+  MPIconConfigure,
+  MPIconBrowserWindow,
+  MPIconArchive,
+  MPIconPercentage,
+  MPIconSambaUnmount,
+  MPIconHistory,
+  MPIconFindMail,
+  MPIconVector,
+  MPIconMemory,
+  MPIconTrash,
+  MPIconNotes,
+  MPIconCancel,
+  MPIconHelp,
+  MPIconPackage,
+  MPIconFolder,
+  MPIconFolderOpen,
+  MPIconFolderTar,
+  MPIconDecrypted,
+  MPIconEncrypted,
+  MPIconApply,
+  MPIconSignature,
+  MPIconThumbnail,
+  MPIconAddressBook,
+  MPIconTextView,
+  MPIconSecureAccount,
+  MPIconDevelopment,
+  MPIconHome,
+  MPIconServices,
+  MPIconTux,
+  MPIconFeather,
+  MPIconApple,
+  MPIconWiki,
+  MPIconMoney,
+  MPIconCertificat,
+  MPIconPhone,
   /* Custom Icons not used in Database */
   MPCustomIconTypeBegin = 1000,
   MPIconInfo,
@@ -53,7 +95,7 @@ typedef NS_ENUM(NSUInteger, MPIconType) {
 };
 
 /**
- *	Helper class to retrieve Icons for Keys. KDB sortes Icons as an Integer
+ *	Helper class to retrieve Icons for Keys. KDB sorts Icons as an Integer
  *  The Helper maps those numbers to icons.
  *  It can furthermore be used to retrieve other Icons, that are non-Database Icons
  */
@@ -68,14 +110,20 @@ typedef NS_ENUM(NSUInteger, MPIconType) {
 
 /**
  *	Available Icon names (all)
- *	@return	Dictioary with MPIconType keys and NSString values containing their names
+ *	@return	Dictionary with MPIconType keys and NSString values containing their names
  */
 + (NSDictionary *)availableIconNames;
 
 /**
- *	List of all availabel DatabaseIcons as Images. Sorted by IconIndex
+ *	List of all available DatabaseIcons as an array of Images. Sorted by IconIndex.
  *	@return	Array of Icons as NSImage objects
  */
 + (NSArray *)databaseIcons;
+
+/**
+ *	List of all available DatabaseIcons as an array of MPIconType. Sorted by IconIndex.
+ *	@return	Array of MPIconType as NSNumber objects
+ */
++ (NSArray *)databaseIconTypes;
 
 @end

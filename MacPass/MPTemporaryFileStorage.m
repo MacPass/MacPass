@@ -9,7 +9,7 @@
 #import "MPTemporaryFileStorage.h"
 #import "MPTemporaryFileStorageCenter.h"
 
-#import "KPKBinary.h"
+#import "KeePassKit/KeePassKit.h"
 
 #import "NSError+Messages.h"
 
@@ -34,7 +34,6 @@
 }
 
 - (void)dealloc {
-  NSLog(@"dealloc");
   [self cleanup];
   [[MPTemporaryFileStorageCenter defaultCenter] unregisterStorage:self];
 }
@@ -118,9 +117,23 @@
 }
 
 + (void)_runCleanupForPath:(NSString *)path {
-  NSTask *task = [[NSTask alloc] init];
-  [task setLaunchPath:@"/usr/bin/srm"];
-  [task setArguments:@[@"-m", path]];
+	NSTask *task = [[NSTask alloc] init];
+  
+  NSURL *srmURL = [NSURL fileURLWithPath:@"/usr/bin/srm"];
+  NSURL *rmURL = [NSURL fileURLWithPath:@"/bin/rm"];
+  
+  if([srmURL checkResourceIsReachableAndReturnError:nil]) {
+    task.launchPath = srmURL.path;
+    task.arguments = @[@"-m", path];
+  }
+  else if([rmURL checkResourceIsReachableAndReturnError:nil]) {
+    task.launchPath = rmURL.path;
+    task.arguments= @[@"-P", path];
+  }
+  else {
+    NSLog(@"Unable to retrieve remove command to whipe temporary file storage!");
+    return;
+  }
   [task launch];
   [task waitUntilExit];
 }

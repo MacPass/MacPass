@@ -21,7 +21,7 @@
 //
 
 #import "MPAttachmentTableDataSource.h"
-#import "MPDocument+Attachment.h"
+#import "MPDocument.h"
 
 @implementation MPAttachmentTableDataSource
 
@@ -48,12 +48,11 @@
 }
 
 - (BOOL)tableView:(NSTableView *)tableView acceptDrop:(id<NSDraggingInfo>)info row:(NSInteger)row dropOperation:(NSTableViewDropOperation)dropOperation {
-  MPDocument *document = [[[tableView window] windowController] document];
-  id entry = document.selectedEntry;
+  MPDocument *document = tableView.window.windowController.document;
+  KPKEntry *entry = document.selectedEntries.count == 1 ? document.selectedEntries.lastObject : nil;
   
   NSPasteboard *draggingPasteBoard = [info draggingPasteboard];
-  NSArray *classArray = [NSArray arrayWithObject:[NSURL class]];
-  NSArray *arrayOfURLs = [draggingPasteBoard readObjectsForClasses:classArray options:nil];
+  NSArray *arrayOfURLs = [draggingPasteBoard readObjectsForClasses:@[[NSURL class]] options:nil];
   
   for(NSURL *fileUrl in arrayOfURLs) {
     [document addAttachment:fileUrl toEntry:entry];

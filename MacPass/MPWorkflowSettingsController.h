@@ -12,7 +12,10 @@
 @interface MPWorkflowSettingsController : MPViewController <MPSettingsTab>
 
 @property (weak) IBOutlet NSPopUpButton *browserPopup;
+@property (weak) IBOutlet NSPopUpButton *doubleClickURLPopup;
+@property (weak) IBOutlet NSPopUpButton *doubleClickTitlePopup;
+@property (weak) IBOutlet NSButton *updatePasswordOnTemplateEntriesCheckButton;
 
-- (IBAction)showCustomBrowserSelection:(id)sender;
+- (IBAction)_showCustomBrowserSelection:(id)sender;
 
 @end

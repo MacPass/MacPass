@@ -7,11 +7,14 @@
 //
 
 #import <Cocoa/Cocoa.h>
+#import "MPModelChangeObserving.h"
 
 @interface MPCustomFieldTableCellView : NSTableCellView
 
 @property (nonatomic, weak) IBOutlet NSTextField *labelTextField;
 @property (nonatomic, weak) IBOutlet NSTextField *valueTextField;
 @property (nonatomic, weak) IBOutlet NSButton *removeButton;
+
+@property (weak) id<MPModelChangeObserving> observer;
 
 @end

@@ -7,6 +7,10 @@
 //
 
 #import "MPActionHelper.h"
+#import "MPDocument.h"
+#import "MPEntryInspectorViewController.h"
+#import "MPEntryViewController.h"
+#import "MPDocumentWindowController.h"
 
 @implementation MPActionHelper
 
@@ -15,24 +19,29 @@
   static dispatch_once_t onceToken;
   dispatch_once(&onceToken, ^{
     actionDict = @{
-                   @(MPActionAddEntry):               @"createEntry:",
-                   @(MPActionAddGroup):               @"createGroup:",
-                   @(MPActionCloneEntry):             @"cloneEntry:",
-                   @(MPActionCloneEntryWithOptions):  @"cloneEntryWithOptions:",
-                   @(MPActionCopyPassword):           @"copyPassword:",
-                   @(MPActionCopyURL):                @"copyURL:",
-                   @(MPActionCopyUsername):           @"copyUsername:",
-                   @(MPActionDelete):                 @"delete:",
-                   @(MPActionEditPassword):           @"editPassword:",
-                   @(MPActionOpenURL):                @"openURL:",
-                   @(MPActionToggleInspector):        @"toggleInspector:",
-                   @(MPActionLock):                   @"lock:",
-                   @(MPActionEmptyTrash):             @"emptyTrash:",
-                   @(MPActionDatabaseSettings):       @"showDatabaseSettings:",
-                   @(MPActionEditTemplateGroup):      @"editTemplateGroup:",
-                   @(MPActionExportXML):              @"exportAsXML:",
-                   @(MPActionImportXML):              @"importFromXMl:",
-                   @(MPActionToggleQuicklook):        @"toggleQuicklookPreview:",
+                   @(MPActionAddEntry):                         NSStringFromSelector(@selector(createEntry:)),
+                   @(MPActionAddGroup):                         NSStringFromSelector(@selector(createGroup:)),
+                   @(MPActionDuplicateEntry):                   NSStringFromSelector(@selector(duplicateEntry:)),
+                   @(MPActionDuplicateEntryWithOptions):        NSStringFromSelector(@selector(duplicateEntryWithOptions:)),
+                   @(MPActionReverToHistoryEntry):              NSStringFromSelector(@selector(revertToHistoryEntry:)),
+                   @(MPActionCopyPassword):                     NSStringFromSelector(@selector(copyPassword:)),
+                   @(MPActionCopyURL):                          NSStringFromSelector(@selector(copyURL:)),
+                   @(MPActionCopyUsername):                     NSStringFromSelector(@selector(copyUsername:)),
+                   @(MPActionDelete):                           NSStringFromSelector(@selector(delete:)),
+                   @(MPActionEditPassword):                     NSStringFromSelector(@selector(editPassword:)),
+                   @(MPActionOpenURL):                          NSStringFromSelector(@selector(openURL:)),
+                   @(MPActionToggleInspector):                  NSStringFromSelector(@selector(toggleInspector:)),
+                   @(MPActionLock):                             NSStringFromSelector(@selector(lock:)),
+                   @(MPActionEmptyTrash):                       NSStringFromSelector(@selector(emptyTrash:)),
+                   @(MPActionDatabaseSettings):                 NSStringFromSelector(@selector(showDatabaseSettings:)),
+                   @(MPActionEditTemplateGroup):                NSStringFromSelector(@selector(editTemplateGroup:)),
+                   @(MPActionExportXML):                        NSStringFromSelector(@selector(exportAsXML:)),
+                   @(MPActionImportXML):                        NSStringFromSelector(@selector(importFromXML:)),
+                   @(MPActionToggleQuicklook):                  NSStringFromSelector(@selector(toggleQuicklookPreview:)),
+                   @(MPActionShowEntryHistory):                 NSStringFromSelector(@selector(showEntryHistory:)),
+                   @(MPActionHideEntryHistory):                 NSStringFromSelector(@selector(hideEntryHistory:)),
+                   @(MPActionPerformAutotypeForSelectedEntry):  NSStringFromSelector(@selector(performAutotypeForEntry:)),
+                   @(MPActionRemoveAttachment):                 NSStringFromSelector(@selector(removeAttachment:))
                    };
   });
   return actionDict;

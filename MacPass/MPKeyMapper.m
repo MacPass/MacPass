@@ -20,17 +20,25 @@
 
 
 #import "MPKeyMapper.h"
-
 #import <Carbon/Carbon.h>
+
+#define MPArrayCount(array) (sizeof(array) / sizeof(array[0]))
 
 uint16_t const kMPUnknownKeyCode = UINT16_MAX;
 
 @implementation MPKeyMapper
 
 + (NSString *)stringForKey:(CGKeyCode)keyCode {
+  return [self stringForModifiedKey:MPMakeModifiedKey(0, keyCode)];
+}
+
++ (NSString *)stringForModifiedKey:(MPModifiedKey)modifiedKey {
+  if(modifiedKey.keyCode == kMPUnknownKeyCode) {
+    return nil;
+  }
   TISInputSourceRef currentKeyboard = TISCopyCurrentKeyboardInputSource();
   CFDataRef layoutData = TISGetInputSourceProperty(currentKeyboard,kTISPropertyUnicodeKeyLayoutData);
-
+  
   if(!layoutData) {
     currentKeyboard = TISCopyCurrentASCIICapableKeyboardLayoutInputSource();
     layoutData = (CFDataRef)TISGetInputSourceProperty(currentKeyboard, kTISPropertyUnicodeKeyLayoutData);
@@ -43,52 +51,81 @@ uint16_t const kMPUnknownKeyCode = UINT16_MAX;
   UniChar chars[4];
   UniCharCount realLength;
   
-  UCKeyTranslate(keyboardLayout,
-                 keyCode,
-                 kUCKeyActionDisplay,
-                 0,
-                 LMGetKbdType(),
-                 kUCKeyTranslateNoDeadKeysBit,
-                 &keysDown,
-                 sizeof(chars) / sizeof(chars[0]),
-                 &realLength,
-                 chars);
+  
+  uint32_t modifierKeyState = 0;
+  if(modifiedKey.modifier & kCGEventFlagMaskCommand) {
+    modifierKeyState |= ((cmdKey >> 8 ) & 0xFF);
+  }
+  if(modifiedKey.modifier & kCGEventFlagMaskShift) {
+    modifierKeyState |= ((shiftKey >> 8) & 0xFF);
+  }
+  if(modifiedKey.modifier & kCGEventFlagMaskAlternate) {
+    modifierKeyState |= ((optionKey >> 8) & 0xFF);
+  }
+  if(modifiedKey.modifier & kCGEventFlagMaskControl) {
+    modifierKeyState |= ((controlKey >> 8) & 0xFF);
+  }
+  OSStatus success = 0;
+  success = UCKeyTranslate(keyboardLayout,
+                           modifiedKey.keyCode,
+                           kUCKeyActionDisplay,
+                           modifierKeyState,
+                           LMGetKbdType(),
+                           kUCKeyTranslateNoDeadKeysBit,
+                           &keysDown,
+                           sizeof(chars) / sizeof(chars[0]),
+                           &realLength,
+                           chars);
   
   return CFBridgingRelease(CFStringCreateWithCharacters(kCFAllocatorDefault, chars, 1));
 }
 
-+ (CGKeyCode)keyCodeForCharacter:(NSString *)character {
++ (MPModifiedKey)modifiedKeyForCharacter:(NSString *)character {
   static NSMutableDictionary *keyboardCodeDictionary;
   
   TISInputSourceRef currentKeyboard = TISCopyCurrentKeyboardInputSource();
-  NSString *localizedName = CFBridgingRelease(TISGetInputSourceProperty(currentKeyboard, kTISPropertyLocalizedName));
+  NSString *localizedName = (__bridge NSString *)TISGetInputSourceProperty(currentKeyboard, kTISPropertyLocalizedName);
+  CFRelease(currentKeyboard);
   
+  /* Initalize the keyboardCodeDictonary */
   if(keyboardCodeDictionary == nil) {
     /* Input source should not change that much while we are running */
     keyboardCodeDictionary = [[NSMutableDictionary alloc] initWithCapacity:2];
   }
-  NSDictionary *charToCodeDict = keyboardCodeDictionary[localizedName];
-  if(nil == keyboardCodeDictionary[localizedName]) {
-    /* We need 128 places for this dict */
-    charToCodeDict = [[NSMutableDictionary alloc] initWithCapacity:128];
+  /* search for current character mapping */
+  NSDictionary<NSString *, NSValue *> *charToCodeDict = keyboardCodeDictionary[localizedName];
+  
+  if(nil == charToCodeDict) {
+    /* Add mapping */
+    static uint64_t modifierCombinations[] = {
+      0,
+      kCGEventFlagMaskShift,
+      kCGEventFlagMaskAlternate,
+      (kCGEventFlagMaskShift | kCGEventFlagMaskAlternate)
+    };
+    NSMutableDictionary *tempCharToCodeDict = [[NSMutableDictionary alloc] initWithCapacity:128];
     
+    /* Generate table of keycodes and characters. */
     /* Loop through every keycode (0 - 127) to find its current mapping. */
+    /* Loop throuhg every control key compbination for every virtual key */
     for(CGKeyCode keyCode = 0; keyCode < 128; ++keyCode) {
-      NSString *string = [self stringForKey:keyCode];
-      if(string != nil) {
-        ((NSMutableDictionary *)charToCodeDict)[string] = @(keyCode);
+      for(int modifierIndex = 0; modifierIndex < MPArrayCount(modifierCombinations); modifierIndex++) {
+        MPModifiedKey mKey = MPMakeModifiedKey(modifierCombinations[modifierIndex], keyCode);
+        NSString *string = [self stringForModifiedKey:mKey];
+        if(string != nil && string.length > 0 && nil == tempCharToCodeDict[string]) {
+          tempCharToCodeDict[string] = [NSValue valueWithModifiedKey:mKey];
+        }
       }
     }
-    keyboardCodeDictionary[localizedName] = [[NSDictionary alloc] initWithDictionary:charToCodeDict];
+    charToCodeDict = [[NSDictionary alloc] initWithDictionary:tempCharToCodeDict];
+    keyboardCodeDictionary[localizedName] = charToCodeDict;
   }
-  /* Add mapping */
-  /* Generate table of keycodes and characters. */
-  
-  NSString *singleCharacter = [[character substringToIndex:1] lowercaseString];
-  if(charToCodeDict[singleCharacter]) {
-    return [charToCodeDict[singleCharacter] integerValue];
+  NSString *singleCharacter = [character substringToIndex:1];
+  NSValue *result = charToCodeDict[singleCharacter];
+  if(!result) {
+    return MPMakeModifiedKey(0, kMPUnknownKeyCode);
   }
-  return kMPUnknownKeyCode;
+  return result.modifiedKeyValue;
 }
 
 @end

@@ -6,11 +6,17 @@
 //  Copyright (c) 2013 HicknHack Software GmbH. All rights reserved.
 //
 
+
 #import "MPViewController.h"
+
+NS_ASSUME_NONNULL_BEGIN
+
+@class MPDocument;
+@protocol MPModelChangeObserving;
 
 @interface MPPasswordCreatorViewController : MPViewController <NSTextFieldDelegate>
 
-@property (copy, readonly) NSString *generatedPassword;
+@property (assign) BOOL allowsEntryDefaults;
 
 /**
  *  Should be called to reset the generator
@@ -20,3 +26,5 @@
 - (void)reset;
 
 @end
+
+NS_ASSUME_NONNULL_END

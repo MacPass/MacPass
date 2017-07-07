@@ -10,33 +10,33 @@
 #import "NSValueTransformer+TransformerKit.h"
 
 NSString *const MPStripLineBreaksTransformerName = @"com.hicknhack.macpass.MPStripLineBreaksTransformerName";
-NSString *const MPExpiryDateValueTransformer = @"com.hicknhack.macpass.kMPExpiryDateValueTransformer";
+NSString *const MPExpiryDateValueTransformerName = @"com.hicknhack.macpass.MPExpiryDateValueTransformer";
 
 @implementation MPValueTransformerHelper
 
 + (void)registerValueTransformer {
   [NSValueTransformer registerValueTransformerWithName:MPStripLineBreaksTransformerName
-                                 transformedValueClass:[NSString class]
+                                 transformedValueClass:NSString.class
                     returningTransformedValueWithBlock:^id(id value) {
-                      if(![value isKindOfClass:[NSString class]]) {
+                      if(![value isKindOfClass:NSString.class]) {
                         return @"";
                       }
-                      NSArray *elements = [value componentsSeparatedByCharactersInSet:[NSCharacterSet newlineCharacterSet]];
+                      NSArray *elements = [value componentsSeparatedByCharactersInSet:NSCharacterSet.newlineCharacterSet];
                       return [elements componentsJoinedByString:@" "];
                     }];
   
   
-  [NSValueTransformer registerValueTransformerWithName:MPExpiryDateValueTransformer
-                                 transformedValueClass:[NSString class]
+  [NSValueTransformer registerValueTransformerWithName:MPExpiryDateValueTransformerName
+                                 transformedValueClass:NSString.class
                     returningTransformedValueWithBlock:^id(id value) {
-                      if(![value isKindOfClass:[NSDate class]]) {
-                        return @""; // Wrong input
+                      if(![value isKindOfClass:NSDate.class]) {
+                        return NSLocalizedString(@"NO_EXPIRE_DATE_SET","");
                       }
                       static NSDateFormatter *formatter;
                       if(!formatter) {
                         formatter = [[NSDateFormatter alloc] init];
-                        [formatter setDateStyle:NSDateFormatterFullStyle];
-                        [formatter setTimeStyle:NSDateFormatterNoStyle];
+                        formatter.dateStyle = NSDateFormatterFullStyle;
+                        formatter.timeStyle = NSDateFormatterNoStyle;
                       }
                       NSString *template = NSLocalizedString(@"EXPIRES_AT_DATE_%@", "");
                       return [[NSString alloc] initWithFormat:template, [formatter stringFromDate:value]];

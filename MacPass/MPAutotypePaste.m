@@ -9,11 +9,11 @@
 #import "MPAutotypePaste.h"
 #import "MPPasteBoardController.h"
 
-#import "NSString+Commands.h"
+#import "KeePassKit/KeePassKit.h"
 
 @interface MPAutotypePaste ()
 
-@property (strong) NSString *pasteData;
+@property (copy) NSString *pasteData;
 
 @end
 
@@ -27,18 +27,30 @@
   return self;
 }
 
+- (NSString *)description {
+  return [[NSString alloc] initWithFormat:@"%@ paste:%@", [self class], self.pasteData];
+}
+
+- (void)appendString:(NSString *)aString {
+  self.pasteData = [self.pasteData stringByAppendingString:aString];
+}
+
 - (void)execute {
-  [NSThread isMainThread] ? NSLog(@"MainThread") : NSLog(@"NonMainThread");
   if([self.pasteData length] > 0) {
     MPPasteBoardController *controller = [MPPasteBoardController defaultController];
-    [controller copyObjects:@[self.pasteData]];
+    [controller stashObjects];
+    [controller copyObjectsWithoutTimeout:@[self.pasteData]];
     [self sendPasteKeyCode];
+    usleep(0.1 * NSEC_PER_MSEC); // on 10.10 we need to wait a bit before restoring the pasteboard contents
+    [controller restoreObjects];
   }
 }
 
 - (BOOL)isValid {
-  /* Pasting shoudl always be valid */
+  /* Pasting should always be valid */
   return YES;
 }
+
+
 
 @end

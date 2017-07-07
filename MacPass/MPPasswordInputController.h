@@ -8,8 +8,12 @@
 
 #import "MPViewController.h"
 
+@class KPKCompositeKey;
+
 @interface MPPasswordInputController : MPViewController
 
-- (void)requestPassword;
+typedef BOOL (^passwordInputCompletionBlock)(NSString *password, NSURL *keyURL, NSError *__autoreleasing*error);
+
+- (void)requestPasswordWithCompletionHandler:(passwordInputCompletionBlock)completionHandler;
 
 @end

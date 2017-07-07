@@ -14,9 +14,8 @@
 
 @implementation MPPreviewViewController
 
-- (instancetype)init {
-  self = [self initWithNibName:@"PreviewView" bundle:nil];
-  return self;
+- (NSString *)nibName {
+  return @"PreviewView";
 }
 
 @end

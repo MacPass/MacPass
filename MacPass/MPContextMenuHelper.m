@@ -12,7 +12,7 @@
 #import "MPFlagsHelper.h"
 
 static void MPContextmenuHelperBeginSection(NSMutableArray *items) {
-  if([items count] > 0) {
+  if(items.count > 0) {
     [items addObject:[NSMenuItem separatorItem]];
   }
 }
@@ -21,11 +21,13 @@ static void MPContextmenuHelperBeginSection(NSMutableArray *items) {
 
 + (NSArray *)contextMenuItemsWithItems:(MPContextMenuItemsFlags)flags {
   
-  BOOL const insertCreate = MPTestFlagInOptions(MPContextMenuCreate, flags);
-  BOOL const insertDelete = MPTestFlagInOptions(MPContextMenuDelete, flags);
-  BOOL const insertCopy = MPTestFlagInOptions(MPContextMenuCopy, flags);
-  BOOL const insertTrash = MPTestFlagInOptions(MPContextMenuTrash, flags);
-  BOOL const insertClone = MPTestFlagInOptions(MPContextMenuClone, flags);
+  BOOL const insertCreate = MPIsFlagSetInOptions(MPContextMenuCreate, flags);
+  BOOL const insertDelete = MPIsFlagSetInOptions(MPContextMenuDelete, flags);
+  BOOL const insertCopy = MPIsFlagSetInOptions(MPContextMenuCopy, flags);
+  BOOL const insertTrash = MPIsFlagSetInOptions(MPContextMenuTrash, flags);
+  BOOL const insertDuplicate = MPIsFlagSetInOptions(MPContextMenuDuplicate, flags);
+  BOOL const insertAutotype = MPIsFlagSetInOptions(MPContextMenuAutotype, flags);
+  BOOL const insertHistory = MPIsFlagSetInOptions(MPContextMenuHistory, flags);
   
   NSMutableArray *items = [NSMutableArray arrayWithCapacity:10];
   if(insertCreate) {
@@ -39,17 +41,17 @@ static void MPContextmenuHelperBeginSection(NSMutableArray *items) {
     
     [items addObjectsFromArray:@[ newGroup, newEntry ]];
   }
-  if(insertClone) {
+  if(insertDuplicate) {
     MPContextmenuHelperBeginSection(items);
-    NSMenuItem *cloneEntry = [[NSMenuItem alloc] initWithTitle:NSLocalizedString(@"CLONE_ENTRY", @"")
-                                                      action:[MPActionHelper actionOfType:MPActionCloneEntry]
-                                               keyEquivalent:@"D"];
-    NSMenuItem *cloneEntyWithOptions = [[NSMenuItem alloc] initWithTitle:NSLocalizedString(@"CLONE_ENTRY_WITH_OPTIONS", @"")
-                                                      action:[MPActionHelper actionOfType:MPActionCloneEntryWithOptions]
-                                               keyEquivalent:@""];
+    NSMenuItem *duplicateEntry = [[NSMenuItem alloc] initWithTitle:NSLocalizedString(@"DUPLICATE_ENTRY", @"")
+                                                            action:[MPActionHelper actionOfType:MPActionDuplicateEntry]
+                                                     keyEquivalent:@"D"];
+    NSMenuItem *duplicateEntyWithOptions = [[NSMenuItem alloc] initWithTitle:NSLocalizedString(@"DUPLICATE_ENTRY_WITH_OPTIONS", @"")
+                                                                      action:[MPActionHelper actionOfType:MPActionDuplicateEntryWithOptions]
+                                                               keyEquivalent:@""];
     
-    [items addObjectsFromArray:@[ cloneEntry, cloneEntyWithOptions ]];
-  
+    [items addObjectsFromArray:@[ duplicateEntry, duplicateEntyWithOptions ]];
+    
   }
   if(insertDelete || insertTrash) {
     MPContextmenuHelperBeginSection(items);
@@ -96,6 +98,23 @@ static void MPContextmenuHelperBeginSection(NSMutableArray *items) {
     [urlMenu addItem:openURL];
     
     [items addObjectsFromArray:@[ copyUsername, copyPassword, urlItem]];
+  }
+  if(insertAutotype || insertHistory) {
+    MPContextmenuHelperBeginSection(items);
+    if(insertAutotype) {
+      NSMenuItem *performAutotype = [[NSMenuItem alloc] initWithTitle:NSLocalizedString(@"PERFORM_AUTOTYPE_FOR_ENTRY", @"")
+                                                               action:[MPActionHelper actionOfType:MPActionPerformAutotypeForSelectedEntry]
+                                                        keyEquivalent:@"a"];
+      performAutotype.keyEquivalentModifierMask = (performAutotype.keyEquivalentModifierMask | NSControlKeyMask);
+      [items addObject:performAutotype];
+    }
+    if(insertHistory) {
+      NSMenuItem *showHistory = [[NSMenuItem alloc] initWithTitle:NSLocalizedString(@"SHOW_HISTORY", @"")
+                                                               action:[MPActionHelper actionOfType:MPActionShowEntryHistory]
+                                                        keyEquivalent:@"h"];
+      showHistory.keyEquivalentModifierMask = (showHistory.keyEquivalentModifierMask | NSCommandKeyMask | NSControlKeyMask);
+      [items addObject:showHistory];
+    }
   }
   
   return items;

@@ -25,8 +25,8 @@
 @interface MPToolbarButton : NSButton
 
 /* This methods ensure, that the button get sized correctly if used as the view in a NSToolbarItem*/
+
 - (void)setControlSize:(NSControlSize)controlSize;
 - (NSControlSize)controlSize;
-
 
 @end

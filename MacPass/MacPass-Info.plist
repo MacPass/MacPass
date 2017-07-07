@@ -11,14 +11,18 @@
 			<array>
 				<string>kdbx</string>
 			</array>
+			<key>CFBundleTypeIconFile</key>
+			<string>FileTypeIcon</string>
 			<key>CFBundleTypeName</key>
-			<string>kdbxFileType</string>
+			<string>KDBX Database</string>
 			<key>CFBundleTypeRole</key>
 			<string>Editor</string>
 			<key>LSItemContentTypes</key>
 			<array>
 				<string>com.hicknhack.macpass.kdbx</string>
 			</array>
+			<key>LSTypeIsPackage</key>
+			<integer>0</integer>
 			<key>NSDocumentClass</key>
 			<string>MPDocument</string>
 		</dict>
@@ -27,24 +31,26 @@
 			<array>
 				<string>kdb</string>
 			</array>
+			<key>CFBundleTypeIconFile</key>
+			<string>FileTypeIcon</string>
 			<key>CFBundleTypeName</key>
-			<string>kdbFileType</string>
+			<string>KDB Database</string>
 			<key>CFBundleTypeRole</key>
 			<string>Editor</string>
 			<key>LSItemContentTypes</key>
 			<array>
 				<string>com.hicknhack.macpass.kdb</string>
 			</array>
+			<key>LSTypeIsPackage</key>
+			<integer>0</integer>
 			<key>NSDocumentClass</key>
 			<string>MPDocument</string>
 		</dict>
 	</array>
 	<key>CFBundleExecutable</key>
 	<string>${EXECUTABLE_NAME}</string>
-	<key>CFBundleIconFile</key>
-	<string>MacPass</string>
 	<key>CFBundleIdentifier</key>
-	<string>com.hicknhacksoftware.${PRODUCT_NAME:rfc1034identifier}</string>
+	<string>$(PRODUCT_BUNDLE_IDENTIFIER)</string>
 	<key>CFBundleInfoDictionaryVersion</key>
 	<string>6.0</string>
 	<key>CFBundleName</key>
@@ -52,15 +58,15 @@
 	<key>CFBundlePackageType</key>
 	<string>APPL</string>
 	<key>CFBundleShortVersionString</key>
-	<string>0.4.1</string>
+	<string>0.6.2</string>
 	<key>CFBundleSignature</key>
 	<string>????</string>
 	<key>CFBundleVersion</key>
-	<string>2535</string>
+	<string>UNDEFINED</string>
 	<key>LSMinimumSystemVersion</key>
 	<string>${MACOSX_DEPLOYMENT_TARGET}</string>
 	<key>NSHumanReadableCopyright</key>
-	<string>Copyright © 2012-2014 HicknHack Software GmbH. All rights reserved.</string>
+	<string>Copyright © 2012-2016 HicknHack Software GmbH. All rights reserved.</string>
 	<key>NSMainNibFile</key>
 	<string>MainMenu</string>
 	<key>NSPrincipalClass</key>
@@ -68,9 +74,7 @@
 	<key>NSSupportsAutomaticGraphicsSwitching</key>
 	<true/>
 	<key>SUFeedURL</key>
-	<string>http://www.nomadsland.de/macpass_appcast.xml</string>
-	<key>SUPublicDSAKeyFile</key>
-	<string>dsa_sparkle_pub.pem</string>
+	<string>https://raw.githubusercontent.com/MacPass/MacPassUpdates/master/appcast_macpass.xml</string>
 	<key>UTExportedTypeDeclarations</key>
 	<array>
 		<dict>
@@ -79,7 +83,7 @@
 				<string>public.data</string>
 			</array>
 			<key>UTTypeDescription</key>
-			<string>Keepass 2 Database</string>
+			<string>KDBX Database</string>
 			<key>UTTypeIdentifier</key>
 			<string>com.hicknhack.macpass.kdbx</string>
 			<key>UTTypeTagSpecification</key>
@@ -96,7 +100,7 @@
 				<string>public.data</string>
 			</array>
 			<key>UTTypeDescription</key>
-			<string>Keepass Database</string>
+			<string>KDB Database</string>
 			<key>UTTypeIdentifier</key>
 			<string>com.hicknhack.macpass.kdb</string>
 			<key>UTTypeTagSpecification</key>
@@ -106,6 +110,36 @@
 					<string>kdb</string>
 				</array>
 			</dict>
+		</dict>
+		<dict>
+			<key>UTTypeConformsTo</key>
+			<array>
+				<string>com.apple.package</string>
+			</array>
+			<key>UTTypeDescription</key>
+			<string>MacPass Plugin</string>
+			<key>UTTypeIdentifier</key>
+			<string>com.hicknhack.macpass.plugin</string>
+			<key>UTTypeTagSpecification</key>
+			<dict>
+				<key>public.filename-extension</key>
+				<array>
+					<string>mpplugin</string>
+					<string>mpPlugin</string>
+					<string>mpPlugIn</string>
+				</array>
+			</dict>
+		</dict>
+	</array>
+	<key>UTImportedTypeDeclarations</key>
+	<array>
+		<dict>
+			<key>UTTypeDescription</key>
+			<string>XML</string>
+			<key>UTTypeIdentifier</key>
+			<string>public.xml</string>
+			<key>UTTypeTagSpecification</key>
+			<dict/>
 		</dict>
 	</array>
 </dict>

@@ -1,8 +1,8 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="5053" systemVersion="13C64" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="11201" systemVersion="16A323" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
     <dependencies>
-        <deployment defaultVersion="1080" identifier="macosx"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="5053"/>
+        <deployment identifier="macosx"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="11201"/>
     </dependencies>
     <objects>
         <customObject id="-2" userLabel="File's Owner" customClass="NSApplication">
@@ -11,7 +11,7 @@
             </connections>
         </customObject>
         <customObject id="-1" userLabel="First Responder" customClass="FirstResponder"/>
-        <customObject id="-3" userLabel="Application"/>
+        <customObject id="-3" userLabel="Application" customClass="NSObject"/>
         <menu title="AMainMenu" systemMenu="main" id="29">
             <items>
                 <menuItem title="MacPass" id="56">
@@ -26,7 +26,7 @@
                             <menuItem title="Check for Updates…" id="zMO-8r-g5v">
                                 <modifierMask key="keyEquivalentModifierMask"/>
                                 <connections>
-                                    <action selector="checkForUpdates:" target="EpI-0u-HQc" id="W42-xA-Wj6"/>
+                                    <action selector="checkForUpdates:" target="494" id="5dV-gw-yHT"/>
                                 </connections>
                             </menuItem>
                             <menuItem isSeparatorItem="YES" id="236">
@@ -112,13 +112,18 @@
                                 </connections>
                             </menuItem>
                             <menuItem isSeparatorItem="YES" id="FVA-Cn-g79"/>
+                            <menuItem title="Fix Autotype…" id="nx7-Vf-LiD">
+                                <modifierMask key="keyEquivalentModifierMask"/>
+                                <connections>
+                                    <action selector="fixAutotype:" target="-1" id="eVm-am-dL6"/>
+                                </connections>
+                            </menuItem>
                             <menuItem title="Quicklook" keyEquivalent="y" id="aVO-9F-Lwc">
                                 <connections>
                                     <action selector="toggleQuicklookPreview:" target="-1" id="LeI-cb-9vg"/>
                                 </connections>
                             </menuItem>
-                            <menuItem title="Lock" keyEquivalent="L" id="1261">
-                                <modifierMask key="keyEquivalentModifierMask" control="YES"/>
+                            <menuItem title="Lock" keyEquivalent="l" id="1261">
                                 <connections>
                                     <action selector="lock:" target="-1" id="1263"/>
                                 </connections>
@@ -136,6 +141,12 @@
                             <menuItem title="Save As…" keyEquivalent="S" id="1243">
                                 <connections>
                                     <action selector="saveDocumentAs:" target="-1" id="1255"/>
+                                </connections>
+                            </menuItem>
+                            <menuItem title="Save a Copy…" alternate="YES" keyEquivalent="s" id="i24-Gn-j9c">
+                                <modifierMask key="keyEquivalentModifierMask" option="YES" command="YES"/>
+                                <connections>
+                                    <action selector="saveDocumentTo:" target="-1" id="NHY-sz-zoR"/>
                                 </connections>
                             </menuItem>
                             <menuItem title="Revert to Saved" id="112">
@@ -294,7 +305,7 @@
                         <items>
                             <menuItem title="MacPass Help" keyEquivalent="?" id="492">
                                 <connections>
-                                    <action selector="showHelp:" target="-1" id="493"/>
+                                    <action selector="showHelp:" target="494" id="xjU-RJ-HgP"/>
                                 </connections>
                             </menuItem>
                         </items>
@@ -308,6 +319,5 @@
             </connections>
         </customObject>
         <customObject id="420" customClass="NSFontManager"/>
-        <customObject id="EpI-0u-HQc" customClass="SUUpdater"/>
     </objects>
 </document>

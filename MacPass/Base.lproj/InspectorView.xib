@@ -1,19 +1,16 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="5053" systemVersion="13C64" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="12120" systemVersion="16E195" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
     <dependencies>
-        <deployment defaultVersion="1080" identifier="macosx"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="5053"/>
+        <deployment identifier="macosx"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="12120"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
         <customObject id="-2" userLabel="File's Owner" customClass="MPInspectorViewController">
             <connections>
-                <outlet property="bottomBar" destination="2930" id="2995"/>
-                <outlet property="cancelEditButton" destination="3126" id="3141"/>
-                <outlet property="editButton" destination="3109" id="3122"/>
                 <outlet property="itemImageView" destination="2998" id="3024"/>
                 <outlet property="itemNameTextField" destination="3013" id="3025"/>
                 <outlet property="noSelectionInfo" destination="2985" id="2993"/>
-                <outlet property="notesHeaderTextField" destination="PzR-P9-3al" id="kxL-bk-BVS"/>
                 <outlet property="notesTextView" destination="g24-gQ-foD" id="pcU-EQ-Vgn"/>
                 <outlet property="splitView" destination="3145" id="lyG-RH-yu4"/>
                 <outlet property="tabView" destination="2895" id="2994"/>
@@ -21,70 +18,44 @@
             </connections>
         </customObject>
         <customObject id="-1" userLabel="First Responder" customClass="FirstResponder"/>
-        <customObject id="-3" userLabel="Application"/>
+        <customObject id="-3" userLabel="Application" customClass="NSObject"/>
         <customView translatesAutoresizingMaskIntoConstraints="NO" id="2894">
             <rect key="frame" x="0.0" y="0.0" width="278" height="662"/>
-            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
             <subviews>
-                <customView translatesAutoresizingMaskIntoConstraints="NO" id="2930" customClass="HNHGradientView">
-                    <rect key="frame" x="0.0" y="0.0" width="278" height="30"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                    <subviews>
-                        <button hidden="YES" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="3109">
-                            <rect key="frame" x="198" y="2" width="60" height="25"/>
-                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                            <buttonCell key="cell" type="roundTextured" title="Edit" bezelStyle="texturedRounded" image="07_NotepadTemplate" imagePosition="left" alignment="center" state="on" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="3110">
-                                <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
-                                <font key="font" metaFont="system"/>
-                            </buttonCell>
-                            <connections>
-                                <action selector="toggleEdit:" target="-2" id="3143"/>
-                            </connections>
-                        </button>
-                        <button hidden="YES" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="3126">
-                            <rect key="frame" x="134" y="2" width="56" height="25"/>
-                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                            <buttonCell key="cell" type="roundTextured" title="Cancel" bezelStyle="texturedRounded" alignment="center" state="on" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="3127">
-                                <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
-                                <font key="font" metaFont="system"/>
-                            </buttonCell>
-                            <connections>
-                                <action selector="toggleEdit:" target="-2" id="3144"/>
-                            </connections>
-                        </button>
-                    </subviews>
-                    <constraints>
-                        <constraint firstAttribute="height" constant="30" id="2949"/>
-                        <constraint firstItem="3126" firstAttribute="baseline" secondItem="3109" secondAttribute="baseline" id="3129"/>
-                        <constraint firstAttribute="trailing" secondItem="3109" secondAttribute="trailing" constant="20" symbolic="YES" id="3138"/>
-                        <constraint firstItem="3109" firstAttribute="centerY" secondItem="2930" secondAttribute="centerY" id="3139"/>
-                        <constraint firstItem="3109" firstAttribute="leading" secondItem="3126" secondAttribute="trailing" constant="8" symbolic="YES" id="3140"/>
-                    </constraints>
-                </customView>
                 <imageView translatesAutoresizingMaskIntoConstraints="NO" id="2998" customClass="MPPopupImageView">
                     <rect key="frame" x="20" y="620" width="32" height="32"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                     <constraints>
                         <constraint firstAttribute="width" constant="32" id="3027"/>
                         <constraint firstAttribute="height" constant="32" id="3028"/>
                     </constraints>
-                    <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyUpOrDown" image="NSActionTemplate" id="2999"/>
+                    <imageCell key="cell" alignment="left" imageScaling="proportionallyUpOrDown" image="NSActionTemplate" id="2999"/>
                     <connections>
-                        <action selector="pickIcon:" target="-1" id="IZz-hu-GkW"/>
+                        <action selector="pickIcon:" target="-2" id="6wh-Ka-Thl"/>
+                        <binding destination="-2" name="enabled" keyPath="representedObject.isHistory" id="7Z5-A7-aqg">
+                            <dictionary key="options">
+                                <string key="NSValueTransformerName">NSNegateBoolean</string>
+                            </dictionary>
+                        </binding>
+                        <binding destination="-2" name="value" keyPath="representedObject.iconImage" id="agf-eg-okr">
+                            <dictionary key="options">
+                                <bool key="NSConditionallySetsEnabled" value="NO"/>
+                            </dictionary>
+                        </binding>
                     </connections>
                 </imageView>
-                <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="249" translatesAutoresizingMaskIntoConstraints="NO" id="3013">
+                <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="249" allowsCharacterPickerTouchBarItem="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3013">
                     <rect key="frame" x="58" y="628" width="202" height="17"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                     <textFieldCell key="cell" lineBreakMode="truncatingTail" truncatesLastVisibleLine="YES" allowsUndo="NO" sendsActionOnEndEditing="YES" title="Label" usesSingleLineMode="YES" id="3014">
                         <font key="font" metaFont="system"/>
                         <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
                         <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                     </textFieldCell>
+                    <connections>
+                        <binding destination="-2" name="value" keyPath="representedObject.title" id="2ek-Ns-ybY"/>
+                    </connections>
                 </textField>
                 <splitView autosaveName="InspectorNotesSplitView" dividerStyle="thin" translatesAutoresizingMaskIntoConstraints="NO" id="3145">
-                    <rect key="frame" x="0.0" y="30" width="278" height="582"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                    <rect key="frame" x="0.0" y="0.0" width="278" height="612"/>
                     <subviews>
                         <customView id="3146">
                             <rect key="frame" x="0.0" y="0.0" width="278" height="370"/>
@@ -92,7 +63,6 @@
                             <subviews>
                                 <tabView type="noTabsNoBorder" initialItem="2896" translatesAutoresizingMaskIntoConstraints="NO" id="2895">
                                     <rect key="frame" x="0.0" y="0.0" width="278" height="370"/>
-                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                     <font key="font" metaFont="system"/>
                                     <tabViewItems>
                                         <tabViewItem label="Entry" identifier="2" id="2897">
@@ -109,14 +79,13 @@
                                         </tabViewItem>
                                         <tabViewItem label="NoSelection" identifier="" id="2974">
                                             <view key="view" id="2975">
-                                                <rect key="frame" x="0.0" y="0.0" width="278" height="283"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="278" height="370"/>
                                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                 <subviews>
-                                                    <textField verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="2985">
-                                                        <rect key="frame" x="77" y="150" width="125" height="24"/>
-                                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                                    <textField verticalHuggingPriority="750" allowsCharacterPickerTouchBarItem="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2985">
+                                                        <rect key="frame" x="81" y="194" width="118" height="24"/>
                                                         <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="No Selection" id="2986">
-                                                            <font key="font" size="20" name="LucidaGrande"/>
+                                                            <font key="font" metaFont="system" size="20"/>
                                                             <color key="textColor" name="controlShadowColor" catalog="System" colorSpace="catalog"/>
                                                             <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                                         </textFieldCell>
@@ -140,12 +109,11 @@
                             </constraints>
                         </customView>
                         <customView id="3147">
-                            <rect key="frame" x="0.0" y="371" width="278" height="211"/>
+                            <rect key="frame" x="0.0" y="371" width="278" height="241"/>
                             <autoresizingMask key="autoresizingMask"/>
                             <subviews>
-                                <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="PzR-P9-3al">
-                                    <rect key="frame" x="18" y="192" width="35" height="14"/>
-                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" allowsCharacterPickerTouchBarItem="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PzR-P9-3al">
+                                    <rect key="frame" x="18" y="222" width="35" height="14"/>
                                     <textFieldCell key="cell" controlSize="small" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Notes" id="hwn-UY-9Cr">
                                         <font key="font" metaFont="smallSystem"/>
                                         <color key="textColor" name="disabledControlTextColor" catalog="System" colorSpace="catalog"/>
@@ -153,21 +121,31 @@
                                     </textFieldCell>
                                 </textField>
                                 <scrollView horizontalLineScroll="10" horizontalPageScroll="10" verticalLineScroll="10" verticalPageScroll="10" hasHorizontalScroller="NO" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0V7-UG-vEA">
-                                    <rect key="frame" x="20" y="5" width="238" height="179"/>
-                                    <autoresizingMask key="autoresizingMask"/>
+                                    <rect key="frame" x="20" y="20" width="238" height="194"/>
                                     <clipView key="contentView" id="kcs-yQ-cbv">
-                                        <rect key="frame" x="1" y="1" width="236" height="177"/>
+                                        <rect key="frame" x="1" y="1" width="236" height="192"/>
                                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                         <subviews>
-                                            <textView importsGraphics="NO" richText="NO" allowsUndo="YES" verticallyResizable="YES" allowsNonContiguousLayout="YES" smartInsertDelete="YES" id="g24-gQ-foD">
-                                                <rect key="frame" x="0.0" y="0.0" width="236" height="177"/>
+                                            <textView importsGraphics="NO" richText="NO" allowsNonContiguousLayout="YES" smartInsertDelete="YES" id="g24-gQ-foD">
+                                                <rect key="frame" x="0.0" y="0.0" width="236" height="192"/>
                                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                                <size key="minSize" width="236" height="177"/>
+                                                <size key="minSize" width="236" height="192"/>
                                                 <size key="maxSize" width="463" height="10000000"/>
                                                 <color key="insertionPointColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
-                                                <size key="minSize" width="236" height="177"/>
-                                                <size key="maxSize" width="463" height="10000000"/>
+                                                <connections>
+                                                    <binding destination="-2" name="editable" keyPath="representedObject.isHistory" id="zUB-H2-SkW">
+                                                        <dictionary key="options">
+                                                            <string key="NSValueTransformerName">NSNegateBoolean</string>
+                                                        </dictionary>
+                                                    </binding>
+                                                    <binding destination="-2" name="value" keyPath="representedObject.notes" id="E0d-ZH-Wbc">
+                                                        <dictionary key="options">
+                                                            <bool key="NSConditionallySetsEditable" value="NO"/>
+                                                            <string key="NSNoSelectionPlaceholder">No Selection</string>
+                                                        </dictionary>
+                                                    </binding>
+                                                </connections>
                                             </textView>
                                         </subviews>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -177,14 +155,14 @@
                                         <autoresizingMask key="autoresizingMask"/>
                                     </scroller>
                                     <scroller key="verticalScroller" verticalHuggingPriority="750" doubleValue="1" horizontal="NO" id="Dgu-8Y-sx3">
-                                        <rect key="frame" x="221" y="1" width="16" height="177"/>
+                                        <rect key="frame" x="221" y="1" width="16" height="192"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                     </scroller>
                                 </scrollView>
                             </subviews>
                             <constraints>
                                 <constraint firstItem="0V7-UG-vEA" firstAttribute="leading" secondItem="3147" secondAttribute="leading" constant="20" symbolic="YES" id="0O8-PU-gfZ"/>
-                                <constraint firstAttribute="bottom" secondItem="0V7-UG-vEA" secondAttribute="bottom" constant="5" id="1CK-BI-i3x"/>
+                                <constraint firstAttribute="bottom" secondItem="0V7-UG-vEA" secondAttribute="bottom" constant="20" symbolic="YES" id="1CK-BI-i3x"/>
                                 <constraint firstItem="0V7-UG-vEA" firstAttribute="top" secondItem="PzR-P9-3al" secondAttribute="bottom" constant="8" id="3rs-J1-olq"/>
                                 <constraint firstItem="PzR-P9-3al" firstAttribute="top" secondItem="3147" secondAttribute="top" constant="5" id="DqT-BF-ASp"/>
                                 <constraint firstItem="PzR-P9-3al" firstAttribute="leading" secondItem="3147" secondAttribute="leading" constant="20" symbolic="YES" id="F4y-8m-e41"/>
@@ -200,25 +178,20 @@
                 </splitView>
             </subviews>
             <constraints>
-                <constraint firstItem="2930" firstAttribute="leading" secondItem="2894" secondAttribute="leading" id="2946"/>
-                <constraint firstItem="2930" firstAttribute="trailing" secondItem="2894" secondAttribute="trailing" id="2947"/>
-                <constraint firstAttribute="bottom" secondItem="2930" secondAttribute="bottom" id="2953"/>
                 <constraint firstItem="3013" firstAttribute="centerY" secondItem="2998" secondAttribute="centerY" id="3069"/>
                 <constraint firstItem="2998" firstAttribute="top" secondItem="2894" secondAttribute="top" constant="10" id="3072"/>
                 <constraint firstItem="3013" firstAttribute="leading" secondItem="2998" secondAttribute="trailing" constant="8" symbolic="YES" id="3073"/>
                 <constraint firstAttribute="trailing" secondItem="3013" secondAttribute="trailing" constant="20" symbolic="YES" id="3075"/>
                 <constraint firstItem="2998" firstAttribute="leading" secondItem="2894" secondAttribute="leading" constant="20" symbolic="YES" id="3076"/>
-                <constraint firstItem="3145" firstAttribute="leading" secondItem="2930" secondAttribute="leading" id="3149"/>
                 <constraint firstItem="3145" firstAttribute="top" secondItem="2998" secondAttribute="bottom" constant="8" symbolic="YES" id="3150"/>
-                <constraint firstItem="3145" firstAttribute="trailing" secondItem="2930" secondAttribute="trailing" id="3152"/>
-                <constraint firstAttribute="bottom" secondItem="3145" secondAttribute="bottom" constant="30" id="3153"/>
                 <constraint firstAttribute="trailing" secondItem="3145" secondAttribute="trailing" id="3154"/>
                 <constraint firstItem="3145" firstAttribute="leading" secondItem="2894" secondAttribute="leading" id="3155"/>
+                <constraint firstAttribute="bottom" secondItem="3145" secondAttribute="bottom" id="PjS-Y5-YA6"/>
             </constraints>
+            <point key="canvasLocation" x="-224" y="-890"/>
         </customView>
     </objects>
     <resources>
-        <image name="07_NotepadTemplate" width="16" height="16"/>
         <image name="NSActionTemplate" width="14" height="14"/>
     </resources>
 </document>

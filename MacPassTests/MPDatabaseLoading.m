@@ -7,9 +7,9 @@
 //
 
 #import <XCTest/XCTest.h>
+#import <KeePassKit/KeePassKit.h>
 
 #import "MPDocument.h"
-#import "KPKTree.h"
 
 @interface MPDatabaseLoading : XCTestCase
 
@@ -28,8 +28,8 @@
   XCTAssertTrue(document.encrypted, @"Loaded but unencrypted should be not decrypted");
   XCTAssertTrue([document unlockWithPassword:@"1234" keyFileURL:nil error:&error], @"Should decrypt with password");
   XCTAssertNil(error, @"No Error should occur on unlocking with correct password");
-  XCTAssertTrue((document.tree.minimumVersion = KPKLegacyVersion), @"Minimal Version should not increase with KDB File loaded");
-  //STAssertTrue([document.fileType isEqualToString:[MPDocument fileTypeForVersion:KPKLegacyVersion]], @"File type needs to match opened file");
+  KPKFileVersion kdb = { KPKDatabaseFormatKdb, kKPKKdbFileVersion };
+  XCTAssertEqual(NSOrderedSame, KPKFileVersionCompare(kdb, document.tree.minimumVersion), @"Minimal Version should not increase with KDB File loaded");
 }
 
 - (void)testVersion1WrongPassword {

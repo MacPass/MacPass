@@ -10,59 +10,73 @@
 #import "MPSettingsHelper.h"
 #import "MPAppDelegate.h"
 
-NSString *const MPShouldLockDatabaseNotification = @"com.hicknhack.macpass.MPShouldLockDatabaseNotification";
-
-@interface MPLockDaemon () {
-  NSTimer *idleCheckTimer;
-}
+@interface MPLockDaemon ()
 
 @property (nonatomic,assign) BOOL lockOnSleep;
+@property (nonatomic,assign) BOOL lockOnLogout;
 @property (nonatomic,assign) NSUInteger idleLockTime;
+@property (nonatomic,strong) id eventHandler;
+@property (nonatomic,strong) NSTimer *idleCheckTimer;
+@property (assign) NSTimeInterval lastLocalEventTime;
 
 @end
 
 @implementation MPLockDaemon
 
-+ (MPLockDaemon *)sharedInstance {
-  static id sharedInstance;
+static MPLockDaemon *_sharedInstance;
+
++ (instancetype)defaultDaemon {
   static dispatch_once_t onceToken;
   dispatch_once(&onceToken, ^{
-    sharedInstance = [[MPLockDaemon alloc] init];
+    _sharedInstance = [[MPLockDaemon alloc] _init];
   });
-  return sharedInstance;
+  return _sharedInstance;
 }
 
-- (id)init {
+- (instancetype)init {
+  return nil;
+}
+
+- (instancetype)_init {
+  NSAssert(_sharedInstance == nil, @"Multiple instances of MPLockDaemon not allowed!");
   self = [super init];
   if (self) {
-    NSString *lockOnSleepKey = [NSString stringWithFormat:@"values.%@", kMPSettingsKeyLockOnSleep];
-    NSString *idleTimeOutKey = [NSString stringWithFormat:@"values.%@", kMPSettingsKeyIdleLockTimeOut];
     NSUserDefaultsController *defaultsController = [NSUserDefaultsController sharedUserDefaultsController];
-    [self bind:@"lockOnSleep" toObject:defaultsController withKeyPath:lockOnSleepKey options:nil];
-    [self bind:@"idleLockTime" toObject:defaultsController withKeyPath:idleTimeOutKey options:nil];
+    [self bind:NSStringFromSelector(@selector(lockOnSleep)) toObject:defaultsController withKeyPath:[MPSettingsHelper defaultControllerPathForKey:kMPSettingsKeyLockOnSleep] options:nil];
+    [self bind:NSStringFromSelector(@selector(idleLockTime)) toObject:defaultsController withKeyPath:[MPSettingsHelper defaultControllerPathForKey:kMPSettingsKeyIdleLockTimeOut] options:nil];
+    [self bind:NSStringFromSelector(@selector(lockOnLogout)) toObject:defaultsController withKeyPath:[MPSettingsHelper defaultControllerPathForKey:kMPSettingskeyLockOnLogout] options:nil];
   }
   return self;
 }
 
-- (void)dealloc
-{
+- (void)dealloc {
   /* Notifications */
-  [[[NSWorkspace sharedWorkspace] notificationCenter] removeObserver:self];
+  [[NSWorkspace sharedWorkspace].notificationCenter removeObserver:self];
   
   /* Timer */
-  [idleCheckTimer invalidate];
-  
+  [NSEvent removeMonitor:self.eventHandler];
+}
+
+- (void)setLockOnLogout:(BOOL)lockOnLogout {
+  if(_lockOnLogout != lockOnLogout) {
+    _lockOnLogout = lockOnLogout;
+    if(_lockOnLogout) {
+      [NSWorkspace.sharedWorkspace.notificationCenter addObserver:self selector:@selector(_willLogOutNotification:) name:NSWorkspaceSessionDidResignActiveNotification object:nil];
+    }
+    else {
+      [NSWorkspace.sharedWorkspace.notificationCenter removeObserver:self name:@"" object:nil];
+    }
+  }
 }
 
 - (void)setLockOnSleep:(BOOL)lockOnSleep {
   if(_lockOnSleep != lockOnSleep) {
     _lockOnSleep = lockOnSleep;
-    NSNotificationCenter *notificationCenter = [[NSWorkspace sharedWorkspace] notificationCenter];
     if(_lockOnSleep) {
-      [notificationCenter addObserver:self selector:@selector(_willSleepNotification:) name:NSWorkspaceWillSleepNotification object:nil];
+      [[NSWorkspace sharedWorkspace].notificationCenter addObserver:self selector:@selector(_willSleepNotification:) name:NSWorkspaceWillSleepNotification object:nil];
     }
     else {
-      [notificationCenter removeObserver:self];
+      [[NSWorkspace sharedWorkspace].notificationCenter removeObserver:self name:NSWorkspaceWillSleepNotification object:nil];
     }
   }
 }
@@ -71,36 +85,62 @@ NSString *const MPShouldLockDatabaseNotification = @"com.hicknhack.macpass.MPSho
   if(_idleLockTime != idleLockTime) {
     _idleLockTime = idleLockTime;
     if(_idleLockTime == 0) {
-      [idleCheckTimer invalidate];
-      idleCheckTimer = nil;
+      [self _stopIdleChecking];
     }
     else {
-      if( idleCheckTimer ) {
-        NSAssert([idleCheckTimer isValid], @"Timer needs to be valid");
-        [idleCheckTimer setFireDate:[NSDate dateWithTimeIntervalSinceNow:_idleLockTime ]];
-        return; // Done
-      }
-      /* Create new timer and schedule it with runloop */
-      idleCheckTimer = [NSTimer timerWithTimeInterval:_idleLockTime target:self selector:@selector(_checkIdleTime:) userInfo:nil repeats:YES];
-      [[NSRunLoop mainRunLoop] addTimer:idleCheckTimer forMode:NSDefaultRunLoopMode];
+      [self _updateOrStartIdleChecking];
     }
   }
 }
 
+- (void)_willLogOutNotification:(NSNotification *)notification {
+  [((MPAppDelegate *)NSApp.delegate) lockAllDocuments];
+}
 - (void)_willSleepNotification:(NSNotification *)notification {
-  [[NSApp delegate] lockAllDocuments];
+  [((MPAppDelegate *)NSApp.delegate) lockAllDocuments];
 }
 
 - (void)_checkIdleTime:(NSTimer *)timer {
-  CFTimeInterval interval = CGEventSourceSecondsSinceLastEventType(kCGEventSourceStateCombinedSessionState,kCGAnyInputEventType);
-  if(interval >= _idleLockTime) {
-    [[NSApp delegate] lockAllDocuments];
-    /* Reset the timer to full intervall */
-    [idleCheckTimer setFireDate:[NSDate dateWithTimeIntervalSinceNow:_idleLockTime]];
+  if(timer != self.idleCheckTimer) {
+    return; // Wrong timer?!
+  }
+  NSTimeInterval currentInterval = ([NSDate timeIntervalSinceReferenceDate] - self.lastLocalEventTime);
+  if(self.idleLockTime < currentInterval) {
+    [((MPAppDelegate *)NSApp.delegate) lockAllDocuments];
+    /* Reset the timer to full interval */
+    [self.idleCheckTimer setFireDate:[NSDate dateWithTimeIntervalSinceNow:_idleLockTime]];
   }
   else {
-    [idleCheckTimer setFireDate:[NSDate dateWithTimeIntervalSinceNow:(_idleLockTime - interval) ]];
+    [self.idleCheckTimer setFireDate:[NSDate dateWithTimeIntervalSinceNow:(_idleLockTime - currentInterval)]];
   }
+}
+
+- (void)_stopIdleChecking {
+  [self.idleCheckTimer invalidate];
+  self.idleCheckTimer = nil;
+  [NSEvent removeMonitor:self.eventHandler];
+  self.eventHandler = nil;
+}
+
+- (void)_updateOrStartIdleChecking {
+  /* update or create Timer */
+  if( self.idleCheckTimer ) {
+    NSAssert([self.idleCheckTimer isValid], @"Timer needs to be valid");
+    self.idleCheckTimer.fireDate = [NSDate dateWithTimeIntervalSinceNow:self.idleLockTime];
+  }
+  else {
+    self.idleCheckTimer = [NSTimer timerWithTimeInterval:self.idleLockTime target:self selector:@selector(_checkIdleTime:) userInfo:nil repeats:YES];
+    [[NSRunLoop mainRunLoop] addTimer:self.idleCheckTimer forMode:NSDefaultRunLoopMode];
+  }
+  /* Create event handler if necessary */
+  if(self.eventHandler) {
+    return;
+  }
+  MPLockDaemon __weak *welf = self;
+  self.eventHandler = [NSEvent addLocalMonitorForEventsMatchingMask:NSAnyEventMask handler:^NSEvent *(NSEvent *theEvent) {
+    welf.lastLocalEventTime = [NSDate timeIntervalSinceReferenceDate];
+    return theEvent;
+  }];
 }
 
 @end

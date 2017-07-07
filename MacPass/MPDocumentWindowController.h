@@ -17,7 +17,7 @@
 @class MPOutlineViewController;
 @class MPToolbarDelegate;
 
-@interface MPDocumentWindowController : NSWindowController <MPPasswordEditWindowDelegate>
+@interface MPDocumentWindowController : NSWindowController
 
 @property (readonly, strong) MPPasswordInputController *passwordInputController;
 @property (readonly, strong) MPEntryViewController *entryViewController;
@@ -31,6 +31,8 @@
 - (void)showEntries;
 - (void)showPasswordInput;
 
+
+- (void)editPasswordWithCompetionHandler:(void (^)(NSInteger result))handler;
 #pragma mark Actions
 - (IBAction)saveDocument:(id)sender;
 - (IBAction)saveDocumentAs:(id)sender;
@@ -41,21 +43,28 @@
 - (IBAction)editTrashGroup:(id)sender;
 
 - (IBAction)exportAsXML:(id)sender;
+- (IBAction)mergeWithOther:(id)sender;
 - (IBAction)importFromXML:(id)sender;
 
 - (IBAction)lock:(id)sender;
 - (IBAction)createGroup:(id)sender;
+- (IBAction)createEntry:(id)sender;
+- (IBAction)delete:(id)sender;
 
-- (IBAction)pickIcon:(id)sender;
+- (IBAction)duplicateEntryWithOptions:(id)sender;
+
 - (IBAction)pickExpiryDate:(id)sender;
+
+- (IBAction)performAutotypeForEntry:(id)sender;
+
+#pragma mark Helper
+- (IBAction)fixAutotype:(id)sender;
 
 #pragma mark View Actions
 - (IBAction)toggleInspector:(id)sender;
+- (IBAction)showInspector:(id)sender;
 - (IBAction)focusGroups:(id)sender;
 - (IBAction)focusEntries:(id)sender;
 - (IBAction)focusInspector:(id)sender;
-
-#pragma mark MPPasswordEditWindowDelegater
-- (void)didFinishPasswordEditing:(BOOL)changedPasswordOrKey;
 
 @end

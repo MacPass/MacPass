@@ -21,18 +21,41 @@
 //
 
 #import <Cocoa/Cocoa.h>
-#import "KPKVersion.h"
+#import <KeePassKit/KeePassKit.h>
+#import "MPEntrySearchContext.h"
+#import "MPTargetNodeResolving.h"
+#import "MPModelChangeObserving.h"
 
-APPKIT_EXTERN NSString *const MPDocumentDidAddGroupNotification;
-APPKIT_EXTERN NSString *const MPDocumentDidRevertNotifiation;
+/**
+ *  Posted when a new group was added to the document.
+ *  This is only posted when the user caused this by adding.
+ *  Undo/Redo will not cause this notification to be reposted
+ *  The userInfo dictionary contains the added group at MPDocumentGroupKey
+ */
+FOUNDATION_EXPORT NSString *const MPDocumentDidAddGroupNotification;
+/**
+ *  Posted when the user has added a new entry to the document.
+ *  Undo/redo will not cause this notification to be reposted.
+ *  The userInfo dictionary contains the added entry at MPDocumentEntryKey
+ */
+FOUNDATION_EXPORT NSString *const MPDocumentDidAddEntryNotification;
+FOUNDATION_EXPORT NSString *const MPDocumentDidRevertNotifiation;
 
-APPKIT_EXTERN NSString *const MPDocumentDidLockDatabaseNotification;
-APPKIT_EXTERN NSString *const MPDocumentDidUnlockDatabaseNotification;
+FOUNDATION_EXPORT NSString *const MPDocumentDidLockDatabaseNotification;
+FOUNDATION_EXPORT NSString *const MPDocumentDidUnlockDatabaseNotification;
 
-FOUNDATION_EXTERN NSString *const MPDocumentCurrentItemChangedNotification;
+FOUNDATION_EXPORT NSString *const MPDocumentCurrentItemChangedNotification;
 
-APPKIT_EXTERN NSString *const MPDocumentEntryKey;
-APPKIT_EXTERN NSString *const MPDocumentGroupKey;
+/**
+ *  Posted whenever a model change is initated via the user. This is mainly to broadcast changes
+ *  to an entry done via the ui throuhgout the app.
+ */
+FOUNDATION_EXPORT NSString *const MPDocumentWillChangeModelPropertyNotification;
+FOUNDATION_EXPORT NSString *const MPDocumentDidChangeModelPropertyNotification;
+
+/* Keys used in userInfo NSDictionaries on notifications */
+FOUNDATION_EXPORT NSString *const MPDocumentEntryKey;
+FOUNDATION_EXPORT NSString *const MPDocumentGroupKey;
 
 @class KPKGroup;
 @class KPKEntry;
@@ -42,64 +65,47 @@ APPKIT_EXTERN NSString *const MPDocumentGroupKey;
 @class KPKCompositeKey;
 @class KPKNode;
 
-typedef NS_OPTIONS(NSUInteger, MPEntrySearchFlags) {
-  MPEntrySearchNone            = 0,
-  MPEntrySearchUrls            = (1<<0),
-  MPEntrySearchUsernames       = (1<<1),
-  MPEntrySearchTitles          = (1<<2),
-  MPEntrySearchPasswords       = (1<<3),
-  MPEntrySearchNotes           = (1<<4),
-  MPEntrySearchAllAttributes   = (1<<5),
-  MPEntrySearchDoublePasswords = (1<<6), // Unused in GUI for now
-  MPEntrySearchAllFlags        = (MPEntrySearchDoublePasswords |
-                                  MPEntrySearchNotes |
-                                  MPEntrySearchPasswords |
-                                  MPEntrySearchTitles |
-                                  MPEntrySearchUrls |
-                                  MPEntrySearchUsernames |
-                                  MPEntrySearchAllAttributes )
-};
-
-@interface MPDocument : NSDocument
+@interface MPDocument : NSDocument <MPTargetNodeResolving, MPModelChangeObserving>
 
 @property (nonatomic, readonly, assign) BOOL encrypted;
+@property (nonatomic, readonly, assign) NSUInteger unlockCount; // Amount of times the Document was unlocked;
 
 @property (strong, readonly, nonatomic) KPKTree *tree;
 @property (nonatomic, weak, readonly) KPKGroup *root;
 @property (nonatomic, weak) KPKGroup *trash;
-@property (nonatomic, readonly) BOOL useTrash;
 @property (nonatomic, weak) KPKGroup *templates;
 
 @property (nonatomic, strong, readonly) KPKCompositeKey *compositeKey;
 
 @property (assign, readonly, getter = isReadOnly) BOOL readOnly;
-@property (nonatomic, readonly, assign) KPKVersion versionForFileType;
+@property (nonatomic, readonly, assign) KPKDatabaseFormat formatForFileType;
 
 /*
  State (active group/entry)
  */
-@property (nonatomic, weak) KPKEntry *selectedEntry;
-@property (nonatomic, weak) KPKGroup *selectedGroup;
-@property (nonatomic, weak) KPKNode *selectedItem;
+
+@property (nonatomic, copy, readonly) NSArray<KPKNode *> *selectedNodes;
+@property (nonatomic, copy) NSArray<KPKGroup *> *selectedGroups;
+@property (nonatomic, copy) NSArray<KPKEntry *> *selectedEntries;
+
 
 /*
  Search - see MPDocument+Search for further details
  */
-@property (nonatomic, assign) MPEntrySearchFlags activeFlags;
-@property (nonatomic, copy) NSString *searchString;
-@property (nonatomic, assign) BOOL hasSearch;
-@property (nonatomic, strong) NSArray *searchResult;
+@property (nonatomic, readonly) BOOL hasSearch;
+@property (nonatomic, copy) MPEntrySearchContext *searchContext;
+@property (nonatomic, strong, readonly) NSArray *searchResult;
+@property (nonatomic, weak) KPKEntry *historyEntry;
 
-
-+ (KPKVersion)versionForFileType:(NSString *)fileType;
-+ (NSString *)fileTypeForVersion:(KPKVersion)version;
++ (KPKDatabaseFormat)formatForFileType:(NSString *)fileType;
++ (NSString *)fileTypeForVersion:(KPKDatabaseFormat)format;
 
 #pragma mark Lock/Decrypt
 - (IBAction)lockDatabase:(id)sender;
 /**
- *  Decrypts the databse with the given password and keyfile
+ *  Decrypts the database with the given password and keyfile
  *
- *  @param password   The password to unlock the db with, can be nil. This is not the same as an empty stirng @""
+ *  @param password   The password to unlock the db with, can be nil. This is not the same as an empty string @""
  *  @param keyFileURL URL for the keyfile to use, can be nil
  *  @param error  Pointer to an NSError pointer of error reporting.
  *
@@ -107,7 +113,7 @@ typedef NS_OPTIONS(NSUInteger, MPEntrySearchFlags) {
  */
 - (BOOL)unlockWithPassword:(NSString *)password keyFileURL:(NSURL *)keyFileURL error:(NSError *__autoreleasing*)error;
 /**
- *  Changes the password of the database. Some sanity checks are applied and the change is aborted if the new values arent valid
+ *  Changes the password of the database. Some sanity checks are applied and the change is aborted if the new values aren't valid
  *
  *  @param password   new password, can be nil
  *  @param keyFileURL new key URL can be nil
@@ -128,7 +134,7 @@ typedef NS_OPTIONS(NSUInteger, MPEntrySearchFlags) {
 /**
  *  Finds an entry with the given UUID. If none is found, nil is returned
  *  @param uuid The UUID for the searched Entry
- *  @return enty, matching the UUID, nil if none was found
+ *  @return entry, matching the UUID, nil if none was found
  */
 - (KPKEntry *)findEntry:(NSUUID *)uuid;
 /**
@@ -140,29 +146,24 @@ typedef NS_OPTIONS(NSUInteger, MPEntrySearchFlags) {
 - (NSArray *)allEntries;
 - (NSArray *)allGroups;
 
-/**
- *  Determines, whether the given item is inside the trash.
- *  The trash group itself is not considered as trashed.
- *  Hence when sending this message with the trash group as item, NO is returned
- *  @param item Item to test if trashed or not
- *  @return YES, if the item is inside the trash, NO otherwise (and if item is trash group)
- */
-- (BOOL)isItemTrashed:(id)item;
+- (BOOL)shouldRecommendPasswordChange;
+- (BOOL)shouldEnforcePasswordChange;
 
 - (void)writeXMLToURL:(NSURL *)url;
 - (void)readXMLfromURL:(NSURL *)url;
+- (void)mergeWithContentsFromURL:(NSURL *)url;
 
 /* Undoable Intiialization of elements */
 - (KPKGroup *)createGroup:(KPKGroup *)parent;
 - (KPKEntry *)createEntry:(KPKGroup *)parent;
 - (KPKAttribute *)createCustomAttribute:(KPKEntry *)entry;
 
-- (void)deleteGroup:(KPKGroup *)group;
-- (void)deleteEntry:(KPKEntry *)entry;
+- (void)deleteNode:(KPKNode *)node;
+- (void)duplicateEntryWithOptions:(KPKCopyOptions)options;
 
 #pragma mark Actions
 /**
- *  Empties the Trash group. Removing all Groups and Entries inside. This aciton is not undoable
+ *  Empties the Trash group. Removing all Groups and Entries inside. This action is not undo-able
  *  @param sender sender
  */
 - (IBAction)emptyTrash:(id)sender;
@@ -172,9 +173,97 @@ typedef NS_OPTIONS(NSUInteger, MPEntrySearchFlags) {
  *  @param sender sender, that should respond to representedObject and return an NSUUID for the template to use
  */
 - (IBAction)createEntryFromTemplate:(id)sender;
-
-- (IBAction)cloneEntry:(id)sender;
-
-- (IBAction)cloneEntryWithOptions:(id)sender;
+- (IBAction)duplicateEntry:(id)sender;
 
 @end
+
+@interface MPDocument (Attachments)
+
+- (void)addAttachment:(NSURL *)location toEntry:(KPKEntry *)anEntry;
+
+@end
+
+#pragma mark -
+#pragma mark Autotype
+
+@interface MPDocument (Autotype)
+
+/**
+ *  Tests the given item for a possible wrong autotype format
+ *  MacPass 0.4 and 0.4.1 did store wrong Autotype sequences and thus mangled database files
+ *
+ *  @param item Item to test for malformation. Allowed Items are KPKNode, KPKEntry, KPKGroup and KPKAutotype
+ *
+ *  @return YES if the given item is considered a possible candiate. NO in all other cases
+ */
++ (BOOL)isCandidateForMalformedAutotype:(id)item;
+
+/**
+ *  Returns an NSArray containing all Autotype Contexts that match the given window title.
+ *  If no entry is set, all entries in the document will be searched
+ *
+ *  @param windowTitle Window title to search matches for
+ *  @param entry       Entry to use for lookup. If nil lookup will be performed in complete document
+ *
+ *  @return NSArray of MPAutotypeContext objects matching the window title.
+ */
+- (NSArray *)autotypContextsForWindowTitle:(NSString *)windowTitle preferredEntry:(KPKEntry *)entryOrNil;
+/**
+ *  Checks if the document has malformed autotype items
+ *
+ *  @return YES if any malformed items are found
+ */
+- (BOOL)hasMalformedAutotypeItems;
+
+- (NSArray *)malformedAutotypeItems;
+
+@end
+
+#pragma mark -
+#pragma mark History Browsing
+
+/**
+ *  Posted by the document to signal a reqest for history display.
+ *  the userInfo dictionary has one key MPDocumentEntryKey with the entry to display the history for
+ */
+FOUNDATION_EXPORT NSString *const MPDocumentShowEntryHistoryNotification;
+FOUNDATION_EXPORT NSString *const MPDocumentHideEntryHistoryNotification;
+
+@interface MPDocument (History)
+
+- (IBAction)showEntryHistory:(id)sender;
+- (IBAction)hideEntryHistory:(id)sender;
+- (IBAction)revertEntry:(KPKEntry *)entry toEntry:(KPKEntry *)historyEntry;
+
+@end
+
+#pragma mark -
+#pragma mark Search
+
+FOUNDATION_EXTERN NSString *const MPDocumentDidEnterSearchNotification;
+FOUNDATION_EXTERN NSString *const MPDocumentDidChangeSearchFlags;
+FOUNDATION_EXTERN NSString *const MPDocumentDidExitSearchNotification;
+/**
+ *  Posted by the document, when the search results have been updated. This is only called when searching.
+ *  If the search is exited, it will be notified by MPDocumentDidExitSearchNotification
+ *  The userInfo dictionary has one key kMPDocumentSearchResultsKey with an NSArray of KPKEntries matching the search.
+ */
+FOUNDATION_EXTERN NSString *const MPDocumentDidChangeSearchResults;
+
+/* keys used in userInfo dictionaries on notifications */
+FOUNDATION_EXTERN NSString *const kMPDocumentSearchResultsKey;
+
+@interface MPDocument (Search)
+
+- (void)enterSearchWithContext:(MPEntrySearchContext *)context;
+
+/* Should be called by the NSSearchTextField to update the search string */
+- (IBAction)updateSearch:(id)sender;
+/* exits searching mode */
+- (IBAction)exitSearch:(id)sender;
+/* called by the filter toggle buttons */
+- (IBAction)toggleSearchFlags:(id)sender;
+
+@end
+
+

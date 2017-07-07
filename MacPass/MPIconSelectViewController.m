@@ -10,56 +10,50 @@
 #import "MPIconHelper.h"
 #import "MPDocument.h"
 
-
-NSInteger const kMPDefaultIcon = -1;
-
 @interface MPIconSelectViewController ()
+
+/* UI properties */
+@property (weak) IBOutlet NSCollectionView *iconCollectionView;
+@property (weak) IBOutlet NSButton *imageButton;
+
 @end
 
 @implementation MPIconSelectViewController
 
-
-- (id)init {
-  return [self initWithNibName:@"IconSelection" bundle:nil];
+- (NSString *)nibName {
+  return @"IconSelection";
 }
 
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil {
-    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
-    if (self) {
-      _didCancel = NO;
-    }
-    return self;
-}
-
-- (void)didLoadView {
-  //[[self.imageButton cell] setBackgroundStyle:NSBackgroundStyleLowered];
-  [self.iconCollectionView setBackgroundColors:@[[NSColor clearColor]]];
-  [self.iconCollectionView setSelectable:YES];
-  [self.iconCollectionView setAllowsMultipleSelection:NO];
-  [self.iconCollectionView setContent:[MPIconHelper databaseIcons]];
+- (void)viewDidLoad {
+  self.iconCollectionView.backgroundColors = @[[NSColor clearColor]];
+  self.iconCollectionView.selectable = YES;
+  self.iconCollectionView.allowsMultipleSelection = NO;
+  self.iconCollectionView.content = [MPIconHelper databaseIcons];
 }
 
 - (IBAction)useDefault:(id)sender {
-  self.selectedIcon = kMPDefaultIcon;
-  [self.popover performClose:self];
+  KPKNode *node = self.representedObject;
+  [self.observer willChangeModelProperty];
+  node.iconId = [[node class] defaultIcon];
+  [self.observer didChangeModelProperty];
+  [self.view.window performClose:sender];
 }
 
 - (IBAction)cancel:(id)sender {
-  self.didCancel = YES;
-  [self.popover performClose:self];
-}
-
-- (void)reset {
-  self.didCancel = NO;
-  self.selectedIcon = kMPDefaultIcon;
+  [self.view.window performClose:sender];
 }
 
 - (IBAction)_selectImage:(id)sender {
   NSButton *button = sender;
-  NSImage *image = [button image];
-  NSUInteger buttonIndex = [[self.iconCollectionView content] indexOfObject:image];
-  self.selectedIcon = [[[MPIconHelper availableIconNames] allKeys][buttonIndex] integerValue];
-  [self.popover performClose:self];
+  NSImage *image = button.image;
+  NSUInteger buttonIndex = [self.iconCollectionView.content indexOfObject:image];
+  NSInteger newIconId = ((NSNumber *)[MPIconHelper databaseIconTypes][buttonIndex]).integerValue;
+  KPKNode *node = self.representedObject;
+  [self.observer willChangeModelProperty];
+  node.iconId = newIconId;
+  [self.observer didChangeModelProperty];
+  [self.view.window performClose:sender];
 }
+
 
 @end

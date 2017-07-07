@@ -7,7 +7,7 @@
 //
 
 #import <Cocoa/Cocoa.h>
-#import "MPSheetWindowController.h"
+#import <HNHUi/HNHUi.h>
 
 typedef NS_ENUM(NSUInteger, MPDatabaseSettingsTab) {
   MPDatabaseSettingsTabGeneral,
@@ -18,7 +18,7 @@ typedef NS_ENUM(NSUInteger, MPDatabaseSettingsTab) {
 @class MPDocument;
 @class HNHRoundedTextField;
 
-@interface MPDatabaseSettingsWindowController : MPSheetWindowController <NSTextFieldDelegate, NSTabViewDelegate>
+@interface MPDatabaseSettingsWindowController : HNHUISheetWindowController <NSTextFieldDelegate, NSTabViewDelegate>
 
 @property (weak) IBOutlet NSTabView *sectionTabView;
 
@@ -29,23 +29,32 @@ typedef NS_ENUM(NSUInteger, MPDatabaseSettingsTab) {
 @property (weak) IBOutlet NSColorWell *databaseColorColorWell;
 
 /* Security Tab */
-@property (weak) IBOutlet NSButton *protectTitleCheckButton;
-@property (weak) IBOutlet NSButton *protectUserNameCheckButton;
-@property (weak) IBOutlet NSButton *protectPasswortCheckButton;
-@property (weak) IBOutlet NSButton *protectURLCheckButton;
-@property (weak) IBOutlet NSButton *protectNotesCheckButton;
-@property (weak) IBOutlet NSTextField *encryptionRoundsTextField;
-@property (weak) IBOutlet NSButton *benchmarkButton;
+@property (weak) IBOutlet NSButton *createKeyDerivationParametersButton;
+@property (weak) IBOutlet NSPopUpButton *cipherPopupButton;
+@property (weak) IBOutlet NSPopUpButton *keyDerivationPopupButton;
+@property (weak) IBOutlet NSTabView *keyDerivationSettingsTabView;
+
+/* AES */
+@property (weak) IBOutlet NSTextField *aesEncryptionRoundsTextField;
+/* Argon2 */
+@property (weak) IBOutlet NSTextField *argon2ThreadsTextField;
+@property (weak) IBOutlet NSTextField *argon2IterationsTextField;
+@property (weak) IBOutlet NSTextField *argon2MemoryTextField;
 
 /* Advanced Tab*/
-@property (weak) IBOutlet NSButton *enableRecycleBinCheckButton;
-@property (weak) IBOutlet NSButton *emptyRecycleBinOnQuitCheckButton;
-@property (weak) IBOutlet NSPopUpButton *selectRecycleBinGroupPopUpButton;
+@property (weak) IBOutlet NSButton *enableHistoryCheckButton;
+@property (weak) IBOutlet NSTextField *historyMaximumItemsTextField;
+@property (weak) IBOutlet NSTextField *historyMaxiumSizeTextField;
+@property (weak) IBOutlet NSButton *enableTrashCheckButton;
+@property (weak) IBOutlet NSButton *emptyTrashOnQuitCheckButton;
+@property (weak) IBOutlet NSPopUpButton *selectTrashGoupPopUpButton;
 @property (weak) IBOutlet NSTextField *defaultUsernameTextField;
 @property (weak) IBOutlet NSPopUpButton *templateGroupPopUpButton;
 
-
-- (id)initWithDocument:(MPDocument *)document;
+@property (weak) IBOutlet NSButton *recommendKeyChangeCheckButton;
+@property (weak) IBOutlet NSButton *enforceKeyChangeCheckButton;
+@property (weak) IBOutlet NSTextField *recommendKeyChangeIntervalTextField;
+@property (weak) IBOutlet NSTextField *enforceKeyChangeIntervalTextField;
 
 - (void)showSettingsTab:(MPDatabaseSettingsTab)tab;
 

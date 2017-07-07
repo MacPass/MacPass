@@ -7,14 +7,14 @@
 //
 
 #import "MPContextBarViewController.h"
-#import "HNHGradientView.h"
-#import "KPKEntry.h"
-#import "MPDocument+HistoryBrowsing.h"
-#import "MPDocument+Search.h"
 
-#import "NSButton+HNHTextColor.h"
+#import "KeePassKit/KeePassKit.h"
+
+#import "MPDocument.h"
 #import "MPFlagsHelper.h"
-#import "HNHCommon.h"
+#import "MPEntrySearchContext.h"
+
+#import "HNHUi/HNHUi.h"
 
 NSUInteger const MPContextBarViewControllerActiveFilterMenuItemTag = 1000;
 
@@ -33,22 +33,23 @@ typedef NS_ENUM(NSUInteger, MPContextTab) {
 @property (weak) IBOutlet NSButton *filterDoneButton;
 @property (weak) IBOutlet NSTextField *filterLabelTextField;
 /* History */
-@property (weak) IBOutlet HNHGradientView *historyBar;
+@property (weak) IBOutlet HNHUIGradientView *historyBar;
 @property (weak) IBOutlet NSTextField *historyLabel;
 @property (weak) IBOutlet NSButton *exitHistoryButton;
 /* Trash*/
-@property (weak) IBOutlet HNHGradientView *trashBar;
+@property (weak) IBOutlet HNHUIGradientView *trashBar;
 @property (weak) IBOutlet NSButton *emptyTrashButton;
 
 @end
 
 @implementation MPContextBarViewController
 
-#pragma mark Livecycle
-- (instancetype)init {
-  self = [self initWithNibName:@"ContextBar" bundle:nil];
-  return self;
+#pragma mark Nib handling
+- (NSString *)nibName {
+  return @"ContextBar";
 }
+
+#pragma mark Livecycle
 
 - (void)dealloc {
   [[NSNotificationCenter defaultCenter] removeObserver:self];
@@ -56,24 +57,39 @@ typedef NS_ENUM(NSUInteger, MPContextTab) {
 
 - (void)awakeFromNib {
   [[self.filterLabelTextField cell] setBackgroundStyle:NSBackgroundStyleRaised];
+  //self.historyBar.activeGradient = [[NSGradient alloc] initWithStartingColor:[[NSColor orangeColor] shadowWithLevel:0.2] endingColor:[[NSColor orangeColor] highlightWithLevel:0.2]];
   
-  self.historyBar.activeGradient = [[NSGradient alloc] initWithStartingColor:[NSColor redColor] endingColor:[NSColor greenColor]];
+  /* Setup Trash Bar color */
+  if(!HNHUIIsRunningOnYosemiteOrNewer()) {
+    NSArray *activeColors = @[[NSColor colorWithCalibratedWhite:0.2 alpha:1],[NSColor colorWithCalibratedWhite:0.4 alpha:1]];
+    NSArray *inactiveColors = @[[NSColor colorWithCalibratedWhite:0.3 alpha:1],[NSColor colorWithCalibratedWhite:0.6 alpha:1]];
+    self.trashBar.activeGradient = [[NSGradient alloc] initWithColors:activeColors];
+    self.trashBar.inactiveGradient = [[NSGradient alloc] initWithColors:inactiveColors];
+    //self.emptyTrashButton.textColor = [NSColor whiteColor];
+  }
   
-   NSArray *activeColors = @[[NSColor colorWithCalibratedWhite:0.2 alpha:1],[NSColor colorWithCalibratedWhite:0.4 alpha:1]];
-   NSArray *inactiveColors = @[[NSColor colorWithCalibratedWhite:0.3 alpha:1],[NSColor colorWithCalibratedWhite:0.6 alpha:1]];
-   self.trashBar.activeGradient = [[NSGradient alloc] initWithColors:activeColors];
-   self.trashBar.inactiveGradient = [[NSGradient alloc] initWithColors:inactiveColors];
-  [[self view] bind:NSSelectedIndexBinding toObject:self withKeyPath:@"activeTab" options:nil];
+  [self.view bind:NSSelectedIndexBinding toObject:self withKeyPath:NSStringFromSelector(@selector(activeTab)) options:nil];
   
-  
-  self.emptyTrashButton.textColor = [NSColor whiteColor];
-  
-  NSInteger tags[] = { MPEntrySearchTitles, MPEntrySearchUsernames, MPEntrySearchPasswords, MPEntrySearchNotes, MPEntrySearchUrls, MPEntrySearchDoublePasswords };
-  NSArray *buttons  = @[self.titleButton, self.usernameButton, self.passwordButton, self.notesButton, self.urlButton, self.duplicatePasswordsButton ];
+  /* Setup Filter Bar buttons and menu */
+  NSInteger tags[] = { MPEntrySearchTitles, MPEntrySearchUsernames, MPEntrySearchPasswords, MPEntrySearchNotes, MPEntrySearchUrls };
+  NSArray *buttons  = @[self.titleButton, self.usernameButton, self.passwordButton, self.notesButton, self.urlButton ];
   for(NSUInteger iIndex = 0; iIndex < [buttons count]; iIndex++) {
     [buttons[iIndex] setAction:@selector(toggleSearchFlags:)];
     [buttons[iIndex] setTag:tags[iIndex]];
   }
+  NSInteger specialTags[] = { MPEntrySearchDoublePasswords, MPEntrySearchExpiredEntries };
+  NSArray *titles = @[ NSLocalizedString(@"SEARCH_DUPLICATE_PASSWORDS", ""), NSLocalizedString(@"SEARCH_EXPIRED_ENTRIES", "") ];
+  NSMenu *specialMenu = [[NSMenu alloc] initWithTitle:@"Special Filters Menu"];
+  [specialMenu addItemWithTitle:NSLocalizedString(@"SELECT_FILTER_WITH_DOTS", "") action:NULL keyEquivalent:@""];
+  [[specialMenu itemAtIndex:0] setEnabled:NO];
+  [[specialMenu itemAtIndex:0] setTag:MPEntrySearchNone];
+  [[specialMenu itemAtIndex:0] setAction:@selector(toggleSearchFlags:)];
+  for(NSInteger iIndex = 0; iIndex < (sizeof(specialTags)/sizeof(NSInteger)); iIndex++) {
+    NSMenuItem *item = [[NSMenuItem alloc] initWithTitle:titles[iIndex] action:@selector(toggleSearchFlags:) keyEquivalent:@""];
+    item.tag = specialTags[iIndex];
+    [specialMenu addItem:item];
+  }
+  [self.specialFilterPopUpButton setMenu:specialMenu];
   [self _updateFilterButtons];
 }
 
@@ -81,7 +97,7 @@ typedef NS_ENUM(NSUInteger, MPContextTab) {
 - (void)registerNotificationsForDocument:(MPDocument *)document {
   [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(_updateFilterButtons) name:MPDocumentDidChangeSearchFlags object:document];
   [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(_didEnterSearch:) name:MPDocumentDidEnterSearchNotification object:document];
-  [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(_didEnterHistory:) name:MPDocumentDidEnterHistoryNotification object:document];
+  [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(_showEntryHistory:) name:MPDocumentShowEntryHistoryNotification object:document];
   [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(_didChangeCurrentItem:) name:MPDocumentCurrentItemChangedNotification object:document];
 }
 
@@ -91,17 +107,16 @@ typedef NS_ENUM(NSUInteger, MPContextTab) {
   [self _updateFilterButtons];
 }
 
-- (void)_didEnterHistory:(NSNotification *)notification {
+- (void)_showEntryHistory:(NSNotification *)notification {
   self.activeTab = MPContextTabHistory;
-  [self _updateBindings];
 }
 
 - (void)_didChangeCurrentItem:(NSNotification *)notification {
-  MPDocument *document = [notification object];
-  BOOL showTrash = document.useTrash && (document.selectedGroup == document.trash || [document isItemTrashed:document.selectedItem]);
+  MPDocument *document = notification.object;
+  KPKGroup *group = document.selectedGroups.firstObject;
+  BOOL showTrash = document.tree.metaData.useTrash && group.isTrash;
   if(showTrash && ! document.hasSearch) {
     self.activeTab = MPContextTabTrash;
-    [self _updateBindings];
   }
 }
 
@@ -116,18 +131,31 @@ typedef NS_ENUM(NSUInteger, MPContextTab) {
 
 
 #pragma mark UI Helper
-- (void)_updateBindings {
-  // only the entry view has to be bound, the rest not
-}
-
 - (void)_updateFilterButtons {
   MPDocument *document = [[self windowController] document];
-  [self.duplicatePasswordsButton setState:HNHStateForBool(MPTestFlagInOptions(MPEntrySearchDoublePasswords, document.activeFlags))];
-  [self.notesButton setState:HNHStateForBool(MPTestFlagInOptions(MPEntrySearchNotes, document.activeFlags))];
-  [self.passwordButton setState:HNHStateForBool(MPTestFlagInOptions(MPEntrySearchPasswords, document.activeFlags))];
-  [self.titleButton setState:HNHStateForBool(MPTestFlagInOptions(MPEntrySearchTitles, document.activeFlags))];
-  [self.urlButton setState:HNHStateForBool(MPTestFlagInOptions(MPEntrySearchUrls, document.activeFlags))];
-  [self.usernameButton setState:HNHStateForBool(MPTestFlagInOptions(MPEntrySearchUsernames, document.activeFlags))];
+  MPEntrySearchFlags currentFlags = document.searchContext.searchFlags;
+  [self.duplicatePasswordsButton setState:HNHUIStateForBool(MPIsFlagSetInOptions(MPEntrySearchDoublePasswords, currentFlags))];
+  [self.notesButton setState:HNHUIStateForBool(MPIsFlagSetInOptions(MPEntrySearchNotes, currentFlags))];
+  [self.passwordButton setState:HNHUIStateForBool(MPIsFlagSetInOptions(MPEntrySearchPasswords, currentFlags))];
+  [self.titleButton setState:HNHUIStateForBool(MPIsFlagSetInOptions(MPEntrySearchTitles, currentFlags))];
+  [self.urlButton setState:HNHUIStateForBool(MPIsFlagSetInOptions(MPEntrySearchUrls, currentFlags))];
+  [self.usernameButton setState:HNHUIStateForBool(MPIsFlagSetInOptions(MPEntrySearchUsernames, currentFlags))];
+  NSInteger selectedTag = MPEntrySearchNone;
+  for(NSMenuItem *item in [[self.specialFilterPopUpButton menu] itemArray]) {
+    MPEntrySearchFlags flag = [item tag];
+    if(flag == MPEntrySearchNone) {
+      [item setState:NSOffState];
+      [item setEnabled:NO];
+    }
+    else {
+      BOOL isActive = MPIsFlagSetInOptions(flag, currentFlags);
+      if(isActive) {
+        selectedTag = flag;
+      }
+      [item setState:HNHUIStateForBool(isActive)];
+    }
+  }
+  [self.specialFilterPopUpButton selectItemWithTag:selectedTag];
 }
 
 @end

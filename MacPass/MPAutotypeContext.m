@@ -8,10 +8,7 @@
 
 #import "MPAutotypeContext.h"
 
-#import "KPKAutotype.h"
-#import "KPKEntry.h"
-#import "KPKWindowAssociation.h"
-#import "NSString+Commands.h"
+#import "KeePassKit/KeePassKit.h"
 
 @interface MPAutotypeContext () {
   NSString *_evaluatedCommand;
@@ -27,7 +24,7 @@
 }
 
 - (instancetype)initWithDefaultSequenceForEntry:(KPKEntry *)entry {
-  self = [self initWithEntry:entry andSequence:entry.autotype.defaultSequence];
+  self = [self initWithEntry:entry andSequence:entry.autotype.defaultKeystrokeSequence];
   return self;
 }
 
@@ -36,7 +33,7 @@
   if(self) {
     _command = [sequence copy];
     _entry = entry;
-    _normalizedCommand = [[sequence normalizedAutotypeSequence] copy];
+    _normalizedCommand = sequence.kpk_normalizedAutotypeSequence;
   }
   return self;
 }
@@ -47,16 +44,24 @@
 }
 
 
-- (BOOL)isValid {
+- (BOOL)valid {
   return (self.normalizedCommand != nil);
 }
 
 - (NSString *)evaluatedCommand {
   if(!_evaluatedCommand) {
-    NSString *placeholderFilled = [self.normalizedCommand evaluatePlaceholderWithEntry:self.entry];
-    _evaluatedCommand = [[placeholderFilled resolveReferencesWithTree:self.entry.tree] copy];
+    _evaluatedCommand = [[self.normalizedCommand kpk_finalValueForEntry:self.entry] copy];
   }
   return _evaluatedCommand;
+}
+
+- (NSString *)description {
+  return [NSString stringWithFormat:@"command:%@\nnormalized:%@\nevaluated:%@\nentry.title:%@\nentry.uuid:%@\n",
+          self.command,
+          self.normalizedCommand,
+          self.evaluatedCommand,
+          self.entry.title,
+          self.entry.uuid.UUIDString];
 }
 
 @end

@@ -7,9 +7,9 @@
 //
 
 #import "MPViewController.h"
-#import "MPDocument+Search.h"
+#import "MPDocument.h"
 
-@class HNHGradientView;
+@class HNHUIGradientView;
 @class MPDocument;
 
 @interface MPContextBarViewController : MPViewController
@@ -20,6 +20,7 @@
 @property (weak) IBOutlet NSButton *urlButton;
 @property (weak) IBOutlet NSButton *notesButton;
 @property (weak) IBOutlet NSButton *duplicatePasswordsButton;
+@property (weak) IBOutlet NSPopUpButton *specialFilterPopUpButton;
 
 - (void)registerNotificationsForDocument:(MPDocument *)document;
 

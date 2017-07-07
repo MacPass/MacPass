@@ -21,44 +21,59 @@
 //
 
 #import "MPToolbarButton.h"
+#import "HNHUi/HNHUi.h"
 
 @implementation MPToolbarButton
 
 - (id)initWithFrame:(NSRect)frameRect {
   self = [super initWithFrame:frameRect];
   if(self) {
-    [self setFocusRingType:NSFocusRingTypeNone];
-    [[self cell] setBezelStyle:NSTexturedRoundedBezelStyle];
-    [[self cell] setImageScaling:NSImageScaleProportionallyDown];
+    self.focusRingType = NSFocusRingTypeNone;
+    self.bezelStyle = NSTexturedRoundedBezelStyle;
+    [self.cell setImageScaling:NSImageScaleProportionallyDown];
     [self setButtonType:NSMomentaryPushInButton];
-    [self setImagePosition:NSImageOnly];
+    self.imagePosition = NSImageOnly;
   }
   return self;
 }
 
 - (void)setControlSize:(NSControlSize)controlSize {
-  [[self cell] setControlSize:controlSize];
-  NSImageRep *rep = [[self image] bestRepresentationForRect:NSMakeRect(0, 0, 100, 100) context:nil hints:nil];
+  NSImageRep *rep = [self.image bestRepresentationForRect:NSMakeRect(0, 0, 100, 100) context:nil hints:nil];
   CGFloat scale = rep.size.width / rep.size.height;
   switch (controlSize) {
     case NSRegularControlSize:
-      [[self image] setSize:NSMakeSize(16 * scale, 16)];
+      self.image.size = NSMakeSize(16 * scale, 16);
       break;
       
     case NSSmallControlSize:
-      [[self image] setSize:NSMakeSize(14 * scale, 14)];
+      self.image.size = NSMakeSize(14 * scale, 14);
       break;
       
     case NSMiniControlSize:
-      [[self image] setSize:NSMakeSize(8 * scale, 8)];
+      self.image.size = NSMakeSize(8 * scale, 8);
       
     default:
       break;
   }
+  if([self.superclass instancesRespondToSelector:@selector(setControlSize:)]) {
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wunguarded-availability"
+    super.controlSize = controlSize;
+#pragma clang diagnostic pop
+  }
+  else {
+    self.cell.controlSize = controlSize;
+  }
 }
 
 - (NSControlSize)controlSize {
-  return [[self cell] controlSize];
+  if([self.superclass instancesRespondToSelector:@selector(controlSize)]) {
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wunguarded-availability"
+    return super.controlSize;
+#pragma clang pop
+  }
+  return self.cell.controlSize;
 }
 
 @end

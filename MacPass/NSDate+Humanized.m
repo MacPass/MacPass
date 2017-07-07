@@ -15,15 +15,15 @@
 }
 
 - (NSString *)humanized {
-  NSCalendar *calendar = [[NSCalendar alloc] initWithCalendarIdentifier:NSGregorianCalendar];
-  NSDateComponents *components = [calendar components:NSMinuteCalendarUnit|NSHourCalendarUnit|NSDayCalendarUnit|NSWeekCalendarUnit|NSMonthCalendarUnit fromDate:self toDate:[NSDate date] options:0];
+  NSCalendar *calendar = [[NSCalendar alloc] initWithCalendarIdentifier:NSCalendarIdentifierGregorian];
+  NSDateComponents *components = [calendar components:NSCalendarUnitMinute|NSCalendarUnitHour|NSCalendarUnitDay|NSCalendarUnitWeekOfMonth|NSCalendarUnitMonth fromDate:self toDate:[NSDate date] options:0];
   /* More than one month in the past, give full date */
-  if([components month] > 1) {
+  if(components.month > 1) {
     return [NSDateFormatter localizedStringFromDate:self
                                           dateStyle:NSDateFormatterShortStyle
                                           timeStyle:NSDateFormatterShortStyle];
   }
-  NSUInteger weeks = [components week];
+  NSUInteger weeks = components.weekOfMonth;
   /* More than one week, less than a month */
   if(weeks > 1) {
     NSString *weekTemplate = NSLocalizedString(@"%ld_WEEKS_AGO", "% Weeks ago");
@@ -34,7 +34,7 @@
     return NSLocalizedString(@"ONE_WEEK_AGO", "one week ago");
   }
   /* Last week */
-  NSUInteger days = [components day];
+  NSUInteger days = components.day;
   if(days > 3) {
     return NSLocalizedString(@"LAST_WEEK", "last week");
   }
@@ -48,14 +48,13 @@
     return NSLocalizedString(@"YESTERDAY", "Yesterday");
   }
   /* Hours ago */
-  if([components hour] > 1) {
+  if(components.hour > 1) {
     NSString *hourTemplate = NSLocalizedString(@"%ld_HOURS_AGO", "% Hours ago");
-    return [NSString stringWithFormat:hourTemplate, [components hour]];
+    return [NSString stringWithFormat:hourTemplate, components.hour];
   }
-  NSInteger minutes = [components minute];
-  if(minutes > 1) {
+  if(components.minute > 1) {
     NSString *minuteTemplate = NSLocalizedString(@"%ld_MINUTES_AGO", "% Minutes ago");
-    return [NSString stringWithFormat:minuteTemplate, minutes];
+    return [NSString stringWithFormat:minuteTemplate, components.minute];
   }
   return NSLocalizedString(@"JUST_NOW", "Just now");
 }

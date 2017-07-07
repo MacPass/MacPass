@@ -7,6 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "MPModifiedKey.h"
 
 FOUNDATION_EXTERN uint16_t const kMPUnknownKeyCode;
 
@@ -16,16 +17,19 @@ FOUNDATION_EXTERN uint16_t const kMPUnknownKeyCode;
  *  Retrieves the string representation with the current keyboard mapping for the keycode
  *
  *  @param keyCode The virtual keycode to be pressed
+ *  @param modifier State of modifier flags being pressed with the key
  *  @return NSString containing the current mapping for the keyCode
  */
 + (NSString *)stringForKey:(CGKeyCode)keyCode;
++ (NSString *)stringForModifiedKey:(MPModifiedKey)modifiedKey;
 
 /**
- *  Determines the keyCode (if possible) for the charater
+ *  Determines the modifiedkey (if possible) for the character. Modifiers might be needed
  *
  *  @param character NSString with a single character to be transformed
- *  @return virtual Keycode for the supplied string. If none is found, kMPUnkonwKeyCode is returned
+ *  @param modifier pointer to a modifer structure to return the modifer to use with the key code for the character
+ *  @return ModifiedKey if one was found. If none is found, the returned modifiedKey.keyCode has the value kMPUnkonwKeyCode.
  */
-+ (CGKeyCode)keyCodeForCharacter:(NSString *)character;
++ (MPModifiedKey)modifiedKeyForCharacter:(NSString *)character;
 
 @end

@@ -9,10 +9,22 @@
 #import "MPViewController.h"
 #import "MPSettingsTab.h"
 
-@interface MPIntegrationSettingsController : MPViewController <MPSettingsTab>
+@class DDHotKeyTextField;
 
-@property (weak) IBOutlet NSButton *enableServerCheckbutton;
-@property (weak) IBOutlet NSButton *enableGlobalAutotypeCheckbutton;
-@property (weak) IBOutlet NSButton *enableQuicklookCheckbutton;
+@interface MPIntegrationSettingsController : MPViewController <MPSettingsTab, NSTextFieldDelegate>
+/* Autotype */
+@property (weak) IBOutlet NSButton *enableGlobalAutotypeCheckBox;
+@property (weak) IBOutlet DDHotKeyTextField *hotKeyTextField;
+@property (weak) IBOutlet NSTextField *hotkeyWarningTextField;
+
+@property (weak) IBOutlet NSButton *matchTitleCheckBox;
+@property (weak) IBOutlet NSButton *matchURLCheckBox;
+@property (weak) IBOutlet NSButton *matchHostCheckBox;
+@property (weak) IBOutlet NSButton *matchTagsCheckBox;
+
+@property (weak) IBOutlet NSButton *sendCommandForControlCheckBox;
+
+/* Preview */
+@property (weak) IBOutlet NSButton *enableQuicklookCheckBox;
 
 @end

@@ -11,14 +11,12 @@
 #import "NSString+MPPasswordCreation.h"
 #import "MPUniqueCharactersFormatter.h"
 #import "MPSettingsHelper.h"
+#import "MPDocument.h"
+#import "MPModelChangeObserving.h"
 
-typedef NS_ENUM(NSUInteger, MPPasswordRating) {
-  MPPasswordTerrible = 10,
-  MPPasswordWeak = 20,
-  MPPasswordOk = 30,
-  MPPasswordGood = 50,
-  MPPasswordStrong = 60
-};
+#import "MPFlagsHelper.h"
+
+#import "KeePassKit/KeePassKit.h"
 
 /*
  
@@ -28,14 +26,21 @@ typedef NS_ENUM(NSUInteger, MPPasswordRating) {
  56 - 85 Excellent
  85 - Fantastic
  
- Skale 0-90
+ Scale 0-90
  */
-#define MIN_PASSWORD_LENGTH 1
-#define MAX_PASSWORD_LENGTH 64
+typedef NS_ENUM(NSUInteger, MPPasswordRating) {
+  MPPasswordTerrible = 10,
+  MPPasswordWeak = 20,
+  MPPasswordOk = 30,
+  MPPasswordGood = 50,
+  MPPasswordStrong = 60
+};
 
-@interface MPPasswordCreatorViewController () {
-  MPPasswordCharacterFlags _characterFlags;
-}
+#define MIN_PASSWORD_LENGTH 1
+#define MAX_PASSWORD_LENGTH 256
+
+@interface MPPasswordCreatorViewController ()
+
 @property (nonatomic, copy) NSString *password;
 @property (copy) NSString *generatedPassword;
 
@@ -49,63 +54,78 @@ typedef NS_ENUM(NSUInteger, MPPasswordRating) {
 @property (weak) IBOutlet NSButton *numbersButton;
 @property (weak) IBOutlet NSButton *symbolsButton;
 @property (weak) IBOutlet NSButton *customButton;
+@property (weak) IBOutlet NSButton *setDefaultButton;
 @property (weak) IBOutlet NSTextField *entropyTextField;
 @property (weak) IBOutlet NSLevelIndicator *entropyIndicator;
+@property (weak) IBOutlet NSButton *useEntryDefaultsButton;
 
 @property (nonatomic, copy) NSString *customString;
 @property (nonatomic, assign) BOOL useCustomString;
 @property (nonatomic, assign) NSUInteger passwordLength;
 @property (nonatomic, assign) CGFloat entropy;
 
-- (IBAction)_generatePassword:(id)sender;
-- (IBAction)_toggleCharacters:(id)sender;
-- (IBAction)_usePassword:(id)sender;
-- (IBAction)_cancel:(id)sender;
+@property (nonatomic, assign) BOOL useEntryDefaults;
+@property (nonatomic, assign) MPPasswordCharacterFlags characterFlags;
 
 @end
 
 @implementation MPPasswordCreatorViewController
 
-- (id)init {
-  self = [super initWithNibName:@"PasswordCreatorView" bundle:nil];
+- (NSString *)nibName {
+  return @"PasswordCreatorView";
+}
+
+- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil {
+  self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
   if (self) {
     _password = @"";
-    _passwordLength = 12;
-    _characterFlags = MPPasswordCharactersAll;
-    _useCustomString = NO;
-    _customString = @"";
     _entropy = 0.0;
+    _useEntryDefaults = NO;
+    _allowsEntryDefaults = NO;
+    [self _setupDefaults];
   }
   return self;
 }
 
 - (void)awakeFromNib {
-  [self.passwordLengthSlider setMinValue:MIN_PASSWORD_LENGTH];
-  [self.passwordLengthSlider setMaxValue:MAX_PASSWORD_LENGTH];
-  [self.passwordLengthSlider setContinuous:YES];
+  self.setDefaultButton.enabled = NO;
+  [self _updateSetDefaultsButton:NO];
+  
+  self.passwordLengthSlider.minValue = MIN_PASSWORD_LENGTH;
+  self.passwordLengthSlider.maxValue = MAX_PASSWORD_LENGTH;
+  self.passwordLengthSlider.continuous = YES;
+  
+  self.customCharactersTextField.stringValue = self.customString;
+  
   /* Value Transformer */
-  
   id formatter = [[MPUniqueCharactersFormatter alloc] init];
-  [self. customCharactersTextField setFormatter:formatter];
+  self.customCharactersTextField.formatter = formatter;
   
-  [self.passwordLengthSlider bind:NSValueBinding toObject:self withKeyPath:@"passwordLength" options:nil];
-  [self.passwordLengthTextField bind:NSValueBinding toObject:self withKeyPath:@"passwordLength" options:nil];
-  [self.passwordTextField bind:NSValueBinding toObject:self withKeyPath:@"password" options:nil];
+  [self.passwordLengthSlider bind:NSValueBinding toObject:self withKeyPath:NSStringFromSelector(@selector(passwordLength)) options:nil];
+  [self.passwordLengthTextField bind:NSValueBinding toObject:self withKeyPath:NSStringFromSelector(@selector(passwordLength)) options:nil];
+  [self.passwordTextField bind:NSValueBinding toObject:self withKeyPath:NSStringFromSelector(@selector(password)) options:nil];
   
-  [self.entropyIndicator bind:NSValueBinding toObject:self withKeyPath:@"entropy" options:nil];
-  [self.entropyTextField bind:NSValueBinding toObject:self withKeyPath:@"entropy" options:nil];
+  [self.entropyIndicator bind:NSValueBinding toObject:self withKeyPath:NSStringFromSelector(@selector(entropy)) options:nil];
+  [self.entropyTextField bind:NSValueBinding toObject:self withKeyPath:NSStringFromSelector(@selector(entropy)) options:nil];
   
   [self.customCharactersTextField setDelegate:self];
-  [self.customButton bind:NSValueBinding toObject:self withKeyPath:@"useCustomString" options:nil];
+  [self.customButton bind:NSValueBinding toObject:self withKeyPath:NSStringFromSelector(@selector(useCustomString)) options:nil];
   
   NSString *copyToPasteBoardKeyPath = [MPSettingsHelper defaultControllerPathForKey:kMPSettingsKeyCopyGeneratedPasswordToClipboard];
   NSUserDefaultsController *defaultsController = [NSUserDefaultsController sharedUserDefaultsController];
   [self.shouldCopyPasswordToPasteboardButton bind:NSValueBinding toObject:defaultsController withKeyPath:copyToPasteBoardKeyPath options:nil];
   
-  [self.numbersButton setTag:MPPasswordCharactersNumbers];
-  [self.upperCaseButton setTag:MPPasswordCharactersUpperCase];
-  [self.lowerCaseButton setTag:MPPasswordCharactersLowerCase];
-  [self.symbolsButton setTag:MPPasswordCharactersSymbols];
+  if(self.allowsEntryDefaults) {
+    [self.useEntryDefaultsButton bind:NSValueBinding toObject:self withKeyPath:NSStringFromSelector(@selector(useEntryDefaults)) options:nil];
+  }
+  else {
+    [self.useEntryDefaultsButton setEnabled:self.allowsEntryDefaults];
+  }
+  
+  self.numbersButton.tag = MPPasswordCharactersNumbers;
+  self.upperCaseButton.tag = MPPasswordCharactersUpperCase;
+  self.lowerCaseButton.tag = MPPasswordCharactersLowerCase;
+  self.symbolsButton.tag = MPPasswordCharactersSymbols;
   
   [self reset];
 }
@@ -116,61 +136,138 @@ typedef NS_ENUM(NSUInteger, MPPasswordRating) {
 }
 
 #pragma mark -
+#pragma mark Key Events
+
+- (void)flagsChanged:(NSEvent *)theEvent {
+  if(!self.allowsEntryDefaults || (nil == [self _currentEntryDefaults])) {
+    return; // We aren't using entry so just leave;
+  }
+  BOOL deleteEntryDefaults = MPIsFlagSetInOptions(NSAlternateKeyMask, [NSEvent modifierFlags]);
+  [self _updateSetDefaultsButton:deleteEntryDefaults];
+}
+
+#pragma mark -
 #pragma mark Actions
 
 - (IBAction)_generatePassword:(id)sender {
-  if(_useCustomString) {
-    if([[_customCharactersTextField stringValue] length] > 0) {
-      self.password = [[_customCharactersTextField stringValue] passwordWithLength:_passwordLength];
+  self.password = [NSString passwordWithCharactersets:self.characterFlags
+                                 withCustomCharacters:self._customCharacters
+                                               length:self.passwordLength];
+}
+
+- (NSString*)_customCharacters{
+  if(self.useCustomString && [[self.customCharactersTextField stringValue] length] > 0) {
+      return self.customCharactersTextField.stringValue;
     }
-  }
-  else {
-    self.password = [NSString passwordWithCharactersets:_characterFlags length:_passwordLength];
-  }
+    else{
+      return @"";
+    }
+  
 }
 
 - (IBAction)_toggleCharacters:(id)sender {
-  _characterFlags ^= [sender tag];
-  self.useCustomString = NO;
+  self.setDefaultButton.enabled = YES;
+  self.characterFlags ^= [sender tag];
   [self reset];
 }
 
 - (IBAction)_usePassword:(id)sender {
-  self.generatedPassword = _password;
-  if([self.shouldCopyPasswordToPasteboardButton state] == NSOnState) {
-    [[MPPasteBoardController defaultController] copyObjects:@[_password]];
+  if(self.shouldCopyPasswordToPasteboardButton.state == NSOnState) {
+    [[MPPasteBoardController defaultController] copyObjects:@[self.password]];
   }
-  /* Since we might be displayed inside a NSPopup or a NSWindow, search for the target */
-  id target = [NSApp targetForAction:@selector(performClose:)];
-  [target performClose:nil];
+  KPKEntry *entry = self.representedObject;
+  if(entry && self.password.length > 0) {
+    [self.observer willChangeModelProperty];
+    entry.password = self.password;
+    [self.observer didChangeModelProperty];
+  }
+  [self.view.window performClose:sender];
 }
 
 - (IBAction)_cancel:(id)sender {
-  /* Since we might be displayed inside a NSPopup or a NSWindow, search for the target */
-  id target = [NSApp targetForAction:@selector(performClose:)];
-  [target performClose:nil];
+  [self.view.window performClose:sender];
+}
+
+- (IBAction)_setDefault:(id)sender {
+  if(self.useEntryDefaults && self.representedObject) {
+    NSMutableDictionary *entryDefaults = [[self _currentEntryDefaults] mutableCopy];
+    if(!entryDefaults) {
+      entryDefaults = [[NSMutableDictionary alloc] initWithCapacity:4]; // we will only add one enty to new settings
+    }
+    entryDefaults[kMPSettingsKeyDefaultPasswordLength] = @(self.passwordLength);
+    entryDefaults[kMPSettingsKeyPasswordCharacterFlags] = @(self.characterFlags);
+    entryDefaults[kMPSettingsKeyPasswordUseCustomString] = @(self.useCustomString);
+    entryDefaults[kMPSettingsKeyPasswordCustomString] = [self.customCharactersTextField stringValue];
+    NSMutableDictionary *availableDefaults = [[self _availableEntryDefaults] mutableCopy];
+    if(!availableDefaults) {
+      availableDefaults = [[NSMutableDictionary alloc] initWithCapacity:1];
+    }
+    availableDefaults[[self.representedObject uuid].UUIDString] = entryDefaults;
+    [[NSUserDefaults standardUserDefaults] setObject:availableDefaults forKey:kMPSettingsKeyPasswordDefaultsForEntry];
+  }
+  else if(!self.useEntryDefaults) {
+    [[NSUserDefaults standardUserDefaults] setInteger:self.passwordLength forKey:kMPSettingsKeyDefaultPasswordLength];
+    [[NSUserDefaults standardUserDefaults] setInteger:self.characterFlags forKey:kMPSettingsKeyPasswordCharacterFlags];
+    [[NSUserDefaults standardUserDefaults] setBool:self.useCustomString forKey:kMPSettingsKeyPasswordUseCustomString];
+    [[NSUserDefaults standardUserDefaults] setObject:[self.customCharactersTextField stringValue] forKey:kMPSettingsKeyPasswordCustomString];
+  }
+  else {
+    NSLog(@"Cannot set password generator defaults. Inconsistent state. Aborting.");
+  }
+  self.setDefaultButton.enabled = NO;
+}
+
+- (IBAction)_resetEntryDefaults:(id)sender {
+  NSMutableDictionary *entryDefaults = [[self _currentEntryDefaults] mutableCopy];
+  if(!entryDefaults) {
+    return; // We have no defaults, hence nothing to delete
+  }
+  NSMutableDictionary *availableDefaults = [[self _availableEntryDefaults] mutableCopy];
+  NSAssert(availableDefaults, @"Password generator defaults for should be present!");
+  [availableDefaults removeObjectForKey:[self.representedObject uuid].UUIDString];
+  [[NSUserDefaults standardUserDefaults] setObject:availableDefaults forKey:kMPSettingsKeyPasswordDefaultsForEntry];
+  self.useEntryDefaults = NO; /* Resetting the UI and Defaults is handled via the setter */
+  [self _updateSetDefaultsButton:NO];
 }
 
 #pragma mark -
 #pragma mark Custom Setter
 
+- (void)setUseEntryDefaults:(BOOL)useEntryDefaults {
+  if(self.useEntryDefaults != useEntryDefaults) {
+    _useEntryDefaults = useEntryDefaults;
+    self.setDefaultButton.enabled = YES;
+    [self _setupDefaults];
+    [self reset];
+  }
+}
+
+- (void)setRepresentedObject:(id)representedObject {
+  if(self.representedObject != representedObject) {
+    self.useEntryDefaults = [self _hasValidDefaultsForCurrentEntry];
+  }
+  [super setRepresentedObject:representedObject];
+}
+
 - (void)setPassword:(NSString *)password {
   if(![_password isEqualToString:password]) {
     _password = [password copy];
-    NSString *customString = _useCustomString ? [_customCharactersTextField stringValue] : nil;
-    self.entropy = [password entropyWhithPossibleCharacterSet:_characterFlags orCustomCharacters:customString];
+    NSString *customString = self.useCustomString ? self.customCharactersTextField.stringValue : nil;
+    self.entropy = [password entropyWhithPossibleCharacterSet:self.characterFlags orCustomCharacters:customString];
   }
 }
 
 - (void)setUseCustomString:(BOOL)useCustomString {
-  if(_useCustomString != useCustomString) {
+  if(self.useCustomString != useCustomString) {
+    self.setDefaultButton.enabled = YES;
     _useCustomString = useCustomString;
     [self _resetCharacters];
   }
 }
 
 - (void)setPasswordLength:(NSUInteger)passwordLength {
-  if(_passwordLength != passwordLength) {
+  if(self.passwordLength != passwordLength) {
+    self.setDefaultButton.enabled = YES;
     _passwordLength = passwordLength;
     [self _generatePassword:nil];
   }
@@ -181,36 +278,76 @@ typedef NS_ENUM(NSUInteger, MPPasswordRating) {
 
 - (void)controlTextDidChange:(NSNotification *)obj {
   if([obj object] == self.customCharactersTextField) {
+    self.setDefaultButton.enabled = YES;
     [self _generatePassword:nil];
   }
 }
 
 #pragma mark -
 #pragma mark Helper
+- (void)_updateSetDefaultsButton:(BOOL)shouldDeleteEntryDefaults {
+  if(shouldDeleteEntryDefaults) {
+    self.setDefaultButton.title = NSLocalizedString(@"PASSWORD_GENERATOR_RESET_ENTRY_DEFAULTS", "");
+    self.setDefaultButton.enabled = YES;
+    self.setDefaultButton.action = @selector(_resetEntryDefaults:);
+  }
+  else {
+    self.setDefaultButton.title = NSLocalizedString(@"PASSWORD_GENERATOR_SET_DEFAULTS", "");
+    self.setDefaultButton.action = @selector(_setDefault:);
+  }
+}
+
+- (NSDictionary *)_availableEntryDefaults {
+  return [[NSUserDefaults standardUserDefaults] dictionaryForKey:kMPSettingsKeyPasswordDefaultsForEntry];
+}
+
+- (NSDictionary *)_currentEntryDefaults {
+  if(self.representedObject) {
+    NSAssert([self.representedObject isKindOfClass:[KPKEntry class]], @"Only KPKEntry as represented object supported!");
+    return [self _availableEntryDefaults][[self.representedObject uuid].UUIDString];
+  }
+  return nil;
+}
+
+- (void)_setupDefaults {
+  NSDictionary *entryDefaults = [self _currentEntryDefaults];
+  if(entryDefaults && self.useEntryDefaults) {
+    self.passwordLength = [entryDefaults[kMPSettingsKeyDefaultPasswordLength] integerValue];
+    self.characterFlags = [entryDefaults[kMPSettingsKeyPasswordCharacterFlags] integerValue];
+    self.useCustomString = [entryDefaults[kMPSettingsKeyPasswordUseCustomString] boolValue];
+    self.customString = entryDefaults[kMPSettingsKeyPasswordCustomString];
+  }
+  else {
+    self.passwordLength = [[NSUserDefaults standardUserDefaults] integerForKey:kMPSettingsKeyDefaultPasswordLength];
+    self.characterFlags = [[NSUserDefaults standardUserDefaults] integerForKey:kMPSettingsKeyPasswordCharacterFlags];
+    self.useCustomString = [[NSUserDefaults standardUserDefaults] boolForKey:kMPSettingsKeyPasswordUseCustomString];
+    self.customString = [[NSUserDefaults standardUserDefaults] stringForKey:kMPSettingsKeyPasswordCustomString];
+  }
+}
+
+- (BOOL)_hasValidDefaultsForCurrentEntry {
+  return (nil != [self _currentEntryDefaults]);
+}
 
 - (void)_resetCharacters {
-  if(_useCustomString) {
-    [_customButton setState:NSOnState];
+  if(self.useCustomString) {
+    self.customButton.state = NSOnState;
   }
-  [_customCharactersTextField setEnabled:_useCustomString];
-  [_upperCaseButton setEnabled:!_useCustomString];
-  [_lowerCaseButton setEnabled:!_useCustomString];
-  [_numbersButton setEnabled:!_useCustomString];
-  [_symbolsButton setEnabled:!_useCustomString];
+  self.customCharactersTextField.enabled = self.useCustomString;
   
-  /* Set to defualts, if we got nothing */
-  if(_characterFlags == 0) {
-    _characterFlags = MPPasswordCharactersAll;
+  /* Set to defaults, if we got nothing */
+  if(self.characterFlags == 0 && !self.useCustomString) {
+    self.characterFlags = MPPasswordCharactersAll;
   }
   
-  const BOOL userLowercase = ( 0 != (MPPasswordCharactersLowerCase & _characterFlags));
-  const BOOL useUppercase = ( 0 != (MPPasswordCharactersUpperCase & _characterFlags) );
-  const BOOL useNumbers = ( 0 != (MPPasswordCharactersNumbers & _characterFlags) );
-  const BOOL useSymbols = ( 0 != (MPPasswordCharactersSymbols & _characterFlags) );
+  const BOOL userLowercase = (0 != (MPPasswordCharactersLowerCase & self.characterFlags));
+  const BOOL useUppercase = (0 != (MPPasswordCharactersUpperCase & self.characterFlags));
+  const BOOL useNumbers = (0 != (MPPasswordCharactersNumbers & self.characterFlags));
+  const BOOL useSymbols = (0 != (MPPasswordCharactersSymbols & self.characterFlags));
   
-  [_upperCaseButton setState:useUppercase ? NSOnState : NSOffState];
-  [_lowerCaseButton setState:userLowercase ? NSOnState : NSOffState];
-  [_numbersButton setState:useNumbers ? NSOnState : NSOffState];
-  [_symbolsButton setState:useSymbols ? NSOnState : NSOffState];
+  self.upperCaseButton.state = (useUppercase ? NSOnState : NSOffState);
+  self.lowerCaseButton.state = (userLowercase ? NSOnState : NSOffState);
+  self.numbersButton.state = (useNumbers ? NSOnState : NSOffState);
+  self.symbolsButton.state = (useSymbols ? NSOnState : NSOffState);
 }
 @end

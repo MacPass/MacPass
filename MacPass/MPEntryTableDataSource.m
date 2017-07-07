@@ -23,8 +23,7 @@
 #import "MPEntryTableDataSource.h"
 #import "MPEntryViewController.h"
 
-#import "KPKEntry.h"
-#import "NSUUID+KeePassKit.h"
+#import "KeePassKit/KeePassKit.h"
 
 @interface MPEntryTableDataSource ()
 
@@ -33,17 +32,16 @@
 @implementation MPEntryTableDataSource
 
 - (BOOL)tableView:(NSTableView *)tableView writeRowsWithIndexes:(NSIndexSet *)rowIndexes toPasteboard:(NSPasteboard *)pboard {
-  
-  if([rowIndexes count] != 1) {
-    return NO; // No valid drag
+  NSMutableArray *entries = [[NSMutableArray alloc] initWithCapacity:rowIndexes.count];
+  [rowIndexes enumerateIndexesUsingBlock:^(NSUInteger idx, BOOL * _Nonnull stop) {
+    [entries addObject:self.viewController.entryArrayController.arrangedObjects[idx]];
+  }];
+  for(KPKEntry *entry in entries) {
+    if(![entry isKindOfClass:[KPKEntry class]]) {
+      return NO;
+    }
   }
-  
-  id item = [self.viewController.entryArrayController arrangedObjects][[rowIndexes firstIndex]];
-  if(![item isKindOfClass:[KPKEntry class]]) {
-    return NO;
-  }
-  KPKEntry *draggedEntry = (KPKEntry *)item;
-  [pboard writeObjects:@[draggedEntry]];
+  [pboard writeObjects:entries];
   return YES;
 }
 

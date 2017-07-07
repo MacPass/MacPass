@@ -6,12 +6,10 @@
 //  Copyright (c) 2014 HicknHack Software GmbH. All rights reserved.
 //
 
-#import "MPDocument+Search.h"
 #import "MPDocument.h"
 #import "MPDocumentWindowController.h"
 
-#import "KPKGroup.h"
-#import "KPKEntry.h"
+#import "KeePassKit/KeePassKit.h"
 
 #import "MPFlagsHelper.h"
 
@@ -26,40 +24,48 @@ NSString *const kMPDocumentSearchResultsKey           = @"kMPDocumentSearchResul
 
 @implementation MPDocument (Search)
 
-#pragma mark Actions
 
-- (void)performFindPanelAction:(id)sender {
-  self.hasSearch = YES;
+- (void)enterSearchWithContext:(MPEntrySearchContext *)context {
+  /* the search context is loaded via defaults */
+  self.searchContext = context;
+  [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(updateSearch:) name:NSUndoManagerDidRedoChangeNotification object:self.undoManager];
+  [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(updateSearch:) name:NSUndoManagerDidUndoChangeNotification object:self.undoManager];
   [[NSNotificationCenter defaultCenter] postNotificationName:MPDocumentDidEnterSearchNotification object:self];
   [self updateSearch:self];
 }
 
+#pragma mark Actions
+
+- (void)performFindPanelAction:(id)sender {
+  [self enterSearchWithContext:[MPEntrySearchContext userContext]];
+}
+
 - (void)updateSearch:(id)sender {
-  MPDocumentWindowController *windowController = [self windowControllers][0];
-  self.searchString = [windowController.searchField stringValue];
   if(NO == self.hasSearch) {
-    [[NSNotificationCenter defaultCenter] postNotificationName:MPDocumentDidEnterSearchNotification object:self];
+    [self enterSearchWithContext:[MPEntrySearchContext userContext]];
+    return; // We get called back!
   }
-  self.hasSearch = YES;
+  MPDocumentWindowController *windowController = [self windowControllers][0];
+  NSString *searchString = [windowController.searchField stringValue];
+  self.searchContext.searchString = searchString;
   MPDocument __weak *weakSelf = self;
   dispatch_queue_t backgroundQueue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
   dispatch_async(backgroundQueue, ^{
     NSArray *results = [weakSelf _findEntriesMatchingCurrentSearch];
     dispatch_sync(dispatch_get_main_queue(), ^{
-      weakSelf.selectedEntry = nil;
       [[NSNotificationCenter defaultCenter] postNotificationName:MPDocumentDidChangeSearchResults object:weakSelf userInfo:@{ kMPDocumentSearchResultsKey: results }];
     });
   });
 }
 
 - (void)exitSearch:(id)sender {
-  self.searchString = nil;
-  self.hasSearch = NO;
+  [[NSNotificationCenter defaultCenter] removeObserver:self name:NSUndoManagerDidUndoChangeNotification object:self.undoManager];
+  [[NSNotificationCenter defaultCenter] removeObserver:self name:NSUndoManagerDidRedoChangeNotification object:self.undoManager];
+  self.searchContext = nil;
   [[NSNotificationCenter defaultCenter] postNotificationName:MPDocumentDidExitSearchNotification object:self];
 }
 
 - (void)toggleSearchFlags:(id)sender {
-  static MPEntrySearchFlags oldFlags;
   if(![sender respondsToSelector:@selector(tag)]) {
     return; // We need to read the button tag
   }
@@ -68,45 +74,47 @@ NSString *const kMPDocumentSearchResultsKey           = @"kMPDocumentSearchResul
   }
   MPEntrySearchFlags toggleFlag = [sender tag];
   MPEntrySearchFlags newFlags = MPEntrySearchNone;
-  BOOL isDoublePasswordFlag = (toggleFlag == MPEntrySearchDoublePasswords);
+  BOOL isSingleFlag = toggleFlag & MPEntrySearchSingleFlags;
   NSButton *button = sender;
   switch([button state]) {
     case NSOffState:
-      toggleFlag ^= MPEntrySearchAllFlags;
-      newFlags = isDoublePasswordFlag ? oldFlags : (self.activeFlags & toggleFlag);
+      toggleFlag ^= MPEntrySearchAllCombineableFlags;
+      newFlags = isSingleFlag ? MPEntrySearchNone : (self.searchContext.searchFlags & toggleFlag);
       break;
     case NSOnState:
-      if(isDoublePasswordFlag) {
-        oldFlags = self.activeFlags;
-        newFlags = MPEntrySearchDoublePasswords;
+      if(isSingleFlag ) {
+        newFlags = toggleFlag; // This has to be either expired or double passwords
       }
       else {
         /* always mask the double passwords in case another button was pressed */
-        self.activeFlags &= (MPEntrySearchDoublePasswords ^ MPEntrySearchAllFlags);
-        newFlags = self.activeFlags | toggleFlag;
+        newFlags = self.searchContext.searchFlags | toggleFlag;
+        newFlags &= (MPEntrySearchSingleFlags ^ MPEntrySearchAllFlags);
       }
       break;
     default:
       NSAssert(NO, @"Internal state is inconsistent");
       return;
   }
-  if(newFlags != self.activeFlags) {
-    self.activeFlags = (newFlags == MPEntrySearchNone) ? MPEntrySearchTitles : newFlags;
+  if(newFlags != self.searchContext.searchFlags) {
+    self.searchContext.searchFlags = (newFlags == MPEntrySearchNone) ? MPEntrySearchTitles : newFlags;
     [[NSNotificationCenter defaultCenter] postNotificationName:MPDocumentDidChangeSearchFlags object:self];
     [self updateSearch:self];
   }
 }
 
+- (NSArray *)entriesMatchingSearch:(MPEntrySearchContext *)search {
+  return nil;
+}
+
 #pragma mark Search
 - (NSArray *)_findEntriesMatchingCurrentSearch {
   /* Filter double passwords */
-  if(MPTestFlagInOptions(MPEntrySearchDoublePasswords, self.activeFlags)) {
-    __block NSMutableDictionary *passwordToEntryMap = [[NSMutableDictionary alloc] initWithCapacity:100];
+  if(MPIsFlagSetInOptions(MPEntrySearchDoublePasswords, self.searchContext.searchFlags)) {
+    NSMutableDictionary *passwordToEntryMap = [[NSMutableDictionary alloc] initWithCapacity:100];
     /* Build up a usage map */
-    [[self.root childEntries] enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
-      KPKEntry *entry = obj;
+    for(KPKEntry *entry in self.root.searchableChildEntries) {
       /* skip entries without passwords */
-      if([entry.password length] > 0) {
+      if(entry.password.length > 0) {
         NSMutableSet *entrySet = passwordToEntryMap[entry.password];
         if(entrySet) {
           [entrySet addObject:entry];
@@ -115,55 +123,50 @@ NSString *const kMPDocumentSearchResultsKey           = @"kMPDocumentSearchResul
           passwordToEntryMap[entry.password] = [NSMutableSet setWithObject:entry];
         }
       }
-    }];
+    }
     /* check for usage count */
-    __block NSMutableArray *doublePasswords = [[NSMutableArray alloc] init];
-    [[passwordToEntryMap allKeys] enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
-      NSSet *entrySet = passwordToEntryMap[obj];
-      if([entrySet count] > 1) {
-        [doublePasswords addObjectsFromArray:[entrySet allObjects]];
+    NSMutableArray *doublePasswords = [[NSMutableArray alloc] init];
+    for(NSString *password in passwordToEntryMap.allKeys) {
+      NSSet *entrySet = passwordToEntryMap[password];
+      if(entrySet.count > 1) {
+        [doublePasswords addObjectsFromArray:entrySet.allObjects];
       }
-    }];
+    }
     return doublePasswords;
   }
+  if(MPIsFlagSetInOptions(MPEntrySearchExpiredEntries, self.searchContext.searchFlags)) {
+    NSPredicate *expiredPredicate = [NSPredicate predicateWithBlock:^BOOL(id evaluatedObject, NSDictionary *bindings) {
+      KPKNode *node = evaluatedObject;
+      return node.timeInfo.isExpired;
+    }];
+    return [[self.root searchableChildEntries] filteredArrayUsingPredicate:expiredPredicate];
+  }
   /* Filter using predicates */
-  NSArray *predicates = [self _filterPredicatesWithString:self.searchString];
+  NSArray *predicates = [self _filterPredicatesWithString:self.searchContext.searchString];
   if(predicates) {
     NSPredicate *fullFilter = [NSCompoundPredicate orPredicateWithSubpredicates:predicates];
-    return [[self.root childEntries] filteredArrayUsingPredicate:fullFilter];
+    return [[self.root searchableChildEntries] filteredArrayUsingPredicate:fullFilter];
   }
   /* No filter, just return everything */
-  return [self.root childEntries];
-}
-
-- (NSArray *)optionsEnabledInMode:(MPEntrySearchFlags)mode {
-  NSArray *allOptions = @[ @(MPEntrySearchUrls), @(MPEntrySearchUsernames),
-                           @(MPEntrySearchTitles), @(MPEntrySearchPasswords) ,
-                           @(MPEntrySearchNotes), @(MPEntrySearchDoublePasswords) ];
-  
-  NSIndexSet *indexes = [allOptions indexesOfObjectsPassingTest:^BOOL(id obj, NSUInteger idx, BOOL *stop) {
-    MPEntrySearchFlags flag = [obj integerValue];
-    return MPTestFlagInOptions(flag, mode);
-  }];
-  return [allOptions objectsAtIndexes:indexes];
+  return [self.root searchableChildEntries];
 }
 
 - (NSArray *)_filterPredicatesWithString:(NSString *)string{
   NSMutableArray *prediactes = [[NSMutableArray alloc] initWithCapacity:4];
   
-  if(MPTestFlagInOptions(MPEntrySearchTitles, self.activeFlags)) {
+  if(MPIsFlagSetInOptions(MPEntrySearchTitles, self.searchContext.searchFlags)) {
     [prediactes addObject:[NSPredicate predicateWithFormat:@"SELF.title CONTAINS[cd] %@", string]];
   }
-  if(MPTestFlagInOptions(MPEntrySearchUsernames, self.activeFlags)) {
+  if(MPIsFlagSetInOptions(MPEntrySearchUsernames, self.searchContext.searchFlags)) {
     [prediactes addObject:[NSPredicate predicateWithFormat:@"SELF.username CONTAINS[cd] %@", string]];
   }
-  if(MPTestFlagInOptions(MPEntrySearchUrls, self.activeFlags)) {
+  if(MPIsFlagSetInOptions(MPEntrySearchUrls, self.searchContext.searchFlags)) {
     [prediactes addObject:[NSPredicate predicateWithFormat:@"SELF.url CONTAINS[cd] %@", string]];
   }
-  if(MPTestFlagInOptions(MPEntrySearchPasswords, self.activeFlags)) {
+  if(MPIsFlagSetInOptions(MPEntrySearchPasswords, self.searchContext.searchFlags)) {
     [prediactes addObject:[NSPredicate predicateWithFormat:@"SELF.password CONTAINS[cd] %@", string]];
   }
-  if(MPTestFlagInOptions(MPEntrySearchNotes, self.activeFlags)) {
+  if(MPIsFlagSetInOptions(MPEntrySearchNotes, self.searchContext.searchFlags)) {
     [prediactes addObject:[NSPredicate predicateWithFormat:@"SELF.notes CONTAINS[cd] %@", string]];
   }
   return prediactes;

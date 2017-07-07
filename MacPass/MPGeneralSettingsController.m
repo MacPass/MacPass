@@ -14,8 +14,8 @@ NSString *const MPGeneralSetingsIdentifier = @"GeneralSettingsTab";
 
 @implementation MPGeneralSettingsController
 
-- (id)init {
-  return [self initWithNibName:@"GeneralSettings" bundle:[NSBundle mainBundle]];
+- (NSString *)nibName {
+  return @"GeneralSettings";
 }
 
 - (NSString *)identifier {
@@ -30,13 +30,13 @@ NSString *const MPGeneralSetingsIdentifier = @"GeneralSettingsTab";
   return NSLocalizedString(@"GENERAL_SETTINGS", @"General Settings Label");
 }
 
-- (void)didLoadView {
+- (void)viewDidLoad {
   NSUserDefaultsController *defaultsController = [NSUserDefaultsController sharedUserDefaultsController];
 
   [self.clearPasteboardOnQuitCheckButton bind:NSValueBinding toObject:defaultsController withKeyPath:[MPSettingsHelper defaultControllerPathForKey:kMPSettingsKeyClearPasteboardOnQuit] options:nil];
-  [self.doubleClickURLToLaunchCheckButton bind:NSValueBinding toObject:defaultsController withKeyPath:[MPSettingsHelper defaultControllerPathForKey:kMPSettingsKeyDoubleClickURLToLaunch] options:nil];
   [self.clearPasteboardTimeoutPopup bind:NSSelectedTagBinding toObject:defaultsController withKeyPath:[MPSettingsHelper defaultControllerPathForKey:kMPSettingsKeyPasteboardClearTimeout] options:nil];
   [self.lockOnSleepCheckButton bind:NSValueBinding toObject:defaultsController withKeyPath:[MPSettingsHelper defaultControllerPathForKey:kMPSettingsKeyLockOnSleep] options:nil];
+  [self.lockOnLogoutCheckButton bind:NSValueBinding toObject:defaultsController withKeyPath:[MPSettingsHelper defaultControllerPathForKey:kMPSettingskeyLockOnLogout] options:nil];
   [self.idleTimeOutPopup bind:NSSelectedTagBinding toObject:defaultsController withKeyPath:[MPSettingsHelper defaultControllerPathForKey:kMPSettingsKeyIdleLockTimeOut] options:nil];
   [self.reopenLastDatabase bind:NSValueBinding toObject:defaultsController withKeyPath:[MPSettingsHelper defaultControllerPathForKey:kMPSettingsKeyReopenLastDatabaseOnLaunch] options:nil];
   [self.rememberKeyFileCheckButton bind:NSValueBinding toObject:defaultsController withKeyPath:[MPSettingsHelper defaultControllerPathForKey:kMPSettingsKeyRememberKeyFilesForDatabases] options:nil];
