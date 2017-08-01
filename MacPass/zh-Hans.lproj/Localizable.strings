@@ -8,17 +8,16 @@
 "ONE_WEEK_AGO" = "一周以前";
 "YESTERDAY" = "昨天";
 "TOMORROW" = "明天";
-"ONE_WEEK" = "一周之内";
-"ONE_MONTH" = "一月之内";
-"90_DAYS" = "90天之内";
-"ONE_YEAR" = "一年之内";
+"ONE_WEEK" = "一周之后";
+"ONE_MONTH" = "一月之后";
+"90_DAYS" = "90 天之后";
+"ONE_YEAR" = "一年之后";
 
 /* Date Picker */
-"SELECT_DATE_PRESET" = "使用日期预设…";
+"SELECT_DATE_PRESET" = "使用预设值…";
 
 /* Menu item for automatic trash creation */
 "AUTOCREATE_TRASH_FOLDER" = "自动创建";
-
 
 /*
  Actions
@@ -39,8 +38,10 @@
 "NEW_ENTRY_WITH_TEMPLATE_%@" = "从模板 %@ 创建项目";
 "NEW_DATABASE" = "数据库";
 "OPEN_URL" = "打开 URL";
-"PERFORM_AUTOTYPE_FOR_ENTRY" = "执行自动填充";
+"PERFORM_AUTOTYPE_FOR_ENTRY" = "执行自动键入";
 "PREVIEW" = "预览";
+"PASSWORD_GENERATOR_SET_DEFAULTS" = "设为默认值";
+"PASSWORD_GENERATOR_RESET_ENTRY_DEFAULTS" = "重置";
 "TRASH_ENTRY" = "将项目移入废纸篓";
 "TRASH_GROUP" = "将组移入废纸篓";
 "SET_NAME" = "编辑名称";
@@ -56,6 +57,9 @@
  */
 "CLEAR_RECENT_SEARCHES" = "清除最近的搜索";
 "RECENT_SEARCHES" = "最近的搜索";
+"SEARCH_DUPLICATE_PASSWORDS" = "重复的密码";
+"SEARCH_EXPIRED_ENTRIES" = "已过期";
+"SELECT_FILTER_WITH_DOTS" = "筛选…";
 
 /*
  Direct Translations
@@ -106,16 +110,19 @@
 "COPY_URL" = "拷贝 URL";
 "COPY_USERNAME" = "拷贝用户名";
 
+/* Dock Badge */
+"CLEARING_PASTEBOARD" = "…";
+
 /* Group Inspector */
 /* Autotype Combobox */
-"AUTOTYPE_NO" = "不使用自动键入";
-"AUTOTYPE_YES" = "使用自动键入";
+"AUTOTYPE_NO" = "禁用自动键入";
+"AUTOTYPE_YES" = "打开自动键入";
 "AUTOTYPE_INHERIT" = "继承自动键入设置";
 
 /* Search Combobox */
 "SEARCH_INHERIT" = "继承搜索设置";
-"SEARCH_YES" = "包含在搜索结果中";
-"SEARCH_NO" = "排除在搜索结果外";
+"SEARCH_YES" = "包含在搜索中";
+"SEARCH_NO" = "排除在搜索外";
 
 /*
  Date/Time Displays
@@ -135,6 +142,7 @@
 "DEFAULT_CUSTOM_FIELD_VALUE" = "值";
 "DEFAULT_ENTRY_TITLE" = "新项目";
 "DEFAULT_GROUP_NAME" = "项目组";
+"DEFAULT_WINDOW_TITLE" = "Window Title";
 
 /* Number of Entries
  Plural (0, >1)
@@ -149,10 +157,11 @@
 "UPDATE_SETTINGS" = "更新";
 "WORKFLOW_SETTINGS" = "工作流";
 "DEFAULT_BROWSER" = "缺省浏览器";
+"OTHER_BROWSER" = "选择浏览器…";
 "PLUGIN_SETTINGS" = "插件";
 
 /* Feature not supported in Version */
-"KDBX_ONLY_FEATURE" = "此特性 KDB 数据库不支持";
+"KDBX_ONLY_FEATURE" = "KDB 数据库不支持此特性";
 
 /* Template */
 "NO_TEMPLATE_GROUP" = "无模板";
@@ -162,9 +171,11 @@
 "SAVE_KEYFILE" = "保存密钥文件";
 
 /* Autoype Dialog */
+/* Candiate dialog */
 "SELECT_AUTOTYPE_CANDIDATE" = "选择候选！";
-/* Mask to create autotype entries for selection by the user. %1 Title %2 Username %3 Password %4 Sequence */
-"TITLE_%@_USERNAME_%@_PASSWORD_%@_AUTOTYPE_SEQUENCE_%@" = "%@: 用户名:%@ 密码:%@ 序列:%@";
+"AUTOTYPE_OVERLAY_NO_DOCUMENTS" = "请打开一个文件以使用全局自动键入!";
+"AUTOTYPE_OVERLAY_NO_MATCH_FOR_%@" = "没有找到匹配 %@！";
+"AUTOTYPE_OVERLAY_SINGLE_MATCH" = "找到匹配！";
 
 /* Alert Dialogs */
 "WARNING_ON_EMPTY_TRASH_DESCRIPTION" = "清空废纸篓无法撤销";
@@ -172,7 +183,28 @@
 "WARNING_ON_LOSSY_SAVE" = "保存为 KDB 格式，将会损失数据";
 "WARNING_ON_LOSSY_SAVE_DESCRIPTION" = "KDB 格式无法保存所有信息";
 "CHANGE_FORMAT" = "更改文件格式为 KDBX";
-"SAVE_LOSSY" = "损失数据并保存";
+"SAVE_LOSSY" = "丢失数据并保存";
+
+"ENFORCE_PASSWORD_CHANGE_ALERT_TITLE" = "数据库密码已过期！";
+"ENFORCE_PASSWORD_CHANGE_ALERT_DESCRIPTION" = "更改密码/密钥文件之前，你将不能保存数据库";
+
+"RECOMMEND_PASSWORD_CHANGE_ALERT_TITLE" = "请更改数据库密码！";
+"RECOMMEND_PASSWORD_CHANGE_ALERT_DESCRIPTION" = "建议你更改数据库密码/密钥文件";
+"CHANGE_PASSWORD_WITH_DOTS" = "更改密码…";
+
+"WARNING_ON_SAVE_NO_PASSWORD_OR_KEY_SET" = "没有设置密码/密钥文件";
+"WARNING_ON_SAVE_NO_PASSWORD_OR_KEY_SET_SUGGESTION" = "请给这个数据库设置密码/密钥文件，终止操作将会撤销所有更改并锁定数据库。";
+
+/* Message displayed when an open file was changed from another application */
+"FILE_CHANGED_BY_OTHERS_MESSAGE_TEXT" = "数据库文件被修改！";
+/* Informative text displayed when the file was change form another application */
+"FILE_CHANGED_BY_OTHERS_INFO_TEXT" = "加载的文件和磁盘上的文件不同，你想怎么处理？";
+/* Button to ignore the changes */
+"KEEP_MINE" = "不要加载修改过的数据库";
+/* Button to reload the changes form disk */
+"LOAD_CHANGES" = "丢弃我的更改并且加载修改过的数据库";
+/* Merge changes into file! */
+"MERGE_CHANGES" = "合并更改";
 
 /* Password Input Messagaes, Errors and Warning */
 "PASSWORD_INPUT_NO_PASSWORD" = "无密码";
@@ -182,3 +214,7 @@
 "ERROR_PASSWORD_MISSMATCH_INVALID_KEYFILE" = "密码和密钥文件不正确！";
 "ERROR_PASSWORD_MISSMATCH" = "密码不正确！";
 "ERROR_INVALID_KEYFILE" = "密钥文件不正确！";
+
+/* Misc */
+"DOCUMENT_AUTOTYPE_CORRUPTION_WARNING" = "请执行修复自动键入";
+"FILE_OPEN_ERROR" = "打开文件错误";
