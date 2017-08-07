@@ -1,8 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="11201" systemVersion="16A323" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="12121" systemVersion="16G29" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
     <dependencies>
-        <deployment identifier="macosx"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="11201"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="12121"/>
     </dependencies>
     <objects>
         <customObject id="-2" userLabel="File's Owner" customClass="NSApplication">
@@ -76,10 +75,27 @@
                 <menuItem title="File" id="83">
                     <menu key="submenu" title="File" id="81">
                         <items>
-                            <menuItem title="New" keyEquivalent="n" id="82">
-                                <connections>
-                                    <action selector="newDocument:" target="-1" id="373"/>
-                                </connections>
+                            <menuItem title="New" id="82">
+                                <menu key="submenu" id="Mjd-iK-MxC">
+                                    <items>
+                                        <menuItem title="Entry" keyEquivalent="n" id="5pt-iM-iQB">
+                                            <connections>
+                                                <action selector="createEntry:" target="-1" id="NRG-FC-HaO"/>
+                                            </connections>
+                                        </menuItem>
+                                        <menuItem title="Group" keyEquivalent="N" id="dMl-Ia-k8o">
+                                            <connections>
+                                                <action selector="createGroup:" target="-1" id="RtX-HO-Zdw"/>
+                                            </connections>
+                                        </menuItem>
+                                        <menuItem title="Database" id="Ame-Ou-khG">
+                                            <modifierMask key="keyEquivalentModifierMask"/>
+                                            <connections>
+                                                <action selector="newDocument:" target="-1" id="VEe-mh-brx"/>
+                                            </connections>
+                                        </menuItem>
+                                    </items>
+                                </menu>
                             </menuItem>
                             <menuItem title="Open…" keyEquivalent="o" id="72">
                                 <connections>
