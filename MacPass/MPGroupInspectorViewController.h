@@ -22,4 +22,5 @@
 @property (weak) IBOutlet NSPopUpButton *autotypePopupButton;
 @property (weak) IBOutlet HNHUIRoundedTextField *autotypeSequenceTextField;
 
+- (void)registerNotificationsForDocument:(MPDocument *)document;
 @end

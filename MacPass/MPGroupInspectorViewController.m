@@ -17,13 +17,28 @@
 
 @interface MPGroupInspectorViewController ()
 @property (strong) NSPopover *popover;
-
+@property BOOL focusTitleOnceViewAppears;
 @end
 
 @implementation MPGroupInspectorViewController
 
 - (NSString *)nibName {
   return @"GroupInspectorView";
+}
+
+
+- (void)registerNotificationsForDocument:(MPDocument *)document {
+  [[NSNotificationCenter defaultCenter] addObserver:self
+                                           selector:@selector(_didAddGroup:)
+                                               name:MPDocumentDidAddGroupNotification
+                                             object:document];
+}
+
+- (void)viewDidAppear {
+  if(self.focusTitleOnceViewAppears) {
+    self.focusTitleOnceViewAppears = false;
+    [self.titleTextField becomeFirstResponder];
+  }
 }
 
 - (void)awakeFromNib {
@@ -98,11 +113,19 @@
                    withKeyPath:[NSString stringWithFormat:@"%@.%@", NSStringFromSelector(@selector(representedObject)), NSStringFromSelector(@selector(isSearchEnabled))]
                        options:nil];
 }
-
 - (IBAction)toggleExpire:(NSButton*)sender {
   KPKGroup *group = [self representedObject];
   if([sender state] == NSOnState && [group.timeInfo.expirationDate isEqualToDate:[NSDate distantFuture]]) {
     [NSApp sendAction:self.expireDateSelectButton.action to:nil from:self.expireDateSelectButton];
+  }
+}
+
+#pragma mark - MPDocument Notifications
+- (void)_didAddGroup:(NSNotification *)notification {
+  if(!self.titleTextField.window) {
+    self.focusTitleOnceViewAppears = true;
+  } else {
+    [self.titleTextField becomeFirstResponder];
   }
 }
 
