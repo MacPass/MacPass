@@ -239,7 +239,7 @@ CA
                             </menuItem>
                             <menuItem title="Find…" tag="1" keyEquivalent="f" id="209">
                                 <connections>
-                                    <action selector="performFindPanelAction:" target="-1" id="241"/>
+                                    <action selector="perfromCustomSearch:" target="-1" id="RSR-PQ-TH1"/>
                                 </connections>
                             </menuItem>
                         </items>
@@ -329,6 +329,9 @@ CA
                             </menuItem>
                         </items>
                     </menu>
+                </menuItem>
+                <menuItem title="Debug" id="Fzu-x8-3Yb">
+                    <modifierMask key="keyEquivalentModifierMask"/>
                 </menuItem>
             </items>
         </menu>

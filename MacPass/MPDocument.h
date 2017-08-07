@@ -254,7 +254,7 @@ FOUNDATION_EXTERN NSString *const MPDocumentDidChangeSearchResults;
 FOUNDATION_EXTERN NSString *const kMPDocumentSearchResultsKey;
 
 @interface MPDocument (Search)
-
+- (IBAction)perfromCustomSearch:(id)sender;
 - (void)enterSearchWithContext:(MPEntrySearchContext *)context;
 
 /* Should be called by the NSSearchTextField to update the search string */

@@ -35,8 +35,7 @@ NSString *const kMPDocumentSearchResultsKey           = @"kMPDocumentSearchResul
 }
 
 #pragma mark Actions
-
-- (void)performFindPanelAction:(id)sender {
+- (IBAction)perfromCustomSearch:(id)sender {
   [self enterSearchWithContext:[MPEntrySearchContext userContext]];
 }
 
