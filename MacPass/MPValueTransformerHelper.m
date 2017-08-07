@@ -35,9 +35,14 @@ NSString *const MPExpiryDateValueTransformerName = @"com.hicknhack.macpass.MPExp
                       static NSDateFormatter *formatter;
                       if(!formatter) {
                         formatter = [[NSDateFormatter alloc] init];
-                        formatter.dateStyle = NSDateFormatterFullStyle;
+                        formatter.dateStyle = kCFDateFormatterLongStyle;
                         formatter.timeStyle = NSDateFormatterNoStyle;
                       }
+
+                      if([value isEqualToDate:[NSDate distantFuture]]) {
+                        return NSLocalizedString(@"NO_EXPIRE_DATE_SET", "");
+                      }
+
                       NSString *template = NSLocalizedString(@"EXPIRES_AT_DATE_%@", "");
                       return [[NSString alloc] initWithFormat:template, [formatter stringFromDate:value]];
                     }];
