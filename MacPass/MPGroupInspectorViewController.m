@@ -99,4 +99,11 @@
                        options:nil];
 }
 
+- (IBAction)toggleExpire:(NSButton*)sender {
+  KPKGroup *group = [self representedObject];
+  if([sender state] == NSOnState && [group.timeInfo.expirationDate isEqualToDate:[NSDate distantFuture]]) {
+    [NSApp sendAction:self.expireDateSelectButton.action to:nil from:self.expireDateSelectButton];
+  }
+}
+
 @end

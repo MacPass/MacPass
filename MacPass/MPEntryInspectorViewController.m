@@ -434,6 +434,7 @@ typedef NS_ENUM(NSUInteger, MPEntryTab) {
                        toObject:self
                     withKeyPath:[NSString stringWithFormat:@"%@.%@.%@", NSStringFromSelector(@selector(representedObject)), NSStringFromSelector(@selector(timeInfo)), NSStringFromSelector(@selector(expires))]
                         options:nil];
+
   [self.tagsTokenField bind:NSValueBinding
                    toObject:self
                 withKeyPath:[NSString stringWithFormat:@"%@.%@", NSStringFromSelector(@selector(representedObject)), NSStringFromSelector(@selector(tags))]
@@ -496,6 +497,11 @@ typedef NS_ENUM(NSUInteger, MPEntryTab) {
   
 }
 
+- (IBAction)toggleExpire:(NSButton*)sender {
+  if([sender state] == NSOnState && [self.representedEntry.timeInfo.expirationDate isEqualToDate:[NSDate distantFuture]]) {
+    [NSApp sendAction:self.pickExpireDateButton.action to:nil from:self.pickExpireDateButton];
+  }
+}
 
 #pragma mark -
 #pragma mark MPDocument Notifications
