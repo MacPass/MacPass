@@ -52,13 +52,15 @@
 }
 
 - (void)viewDidLoad {
-  self.keyPathControl.delegate = self.pathControlDelegate;
+  self.keyPathControl.delegate = self.pathControlDelegate = [[MPKeyfilePathControlDelegate alloc] init];
   self.errorImageView.image = [NSImage imageNamed:NSImageNameCaution];
   [self.passwordTextField bind:NSStringFromSelector(@selector(showPassword)) toObject:self withKeyPath:NSStringFromSelector(@selector(showPassword)) options:nil];
   [self.togglePasswordButton bind:NSValueBinding toObject:self withKeyPath:NSStringFromSelector(@selector(showPassword)) options:nil];
   [self.enablePasswordCheckBox bind:NSValueBinding toObject:self withKeyPath:NSStringFromSelector(@selector(enablePassword)) options:nil];
   [self.togglePasswordButton bind:NSEnabledBinding toObject:self withKeyPath:NSStringFromSelector(@selector(enablePassword)) options:nil];
   [self.passwordTextField bind:NSEnabledBinding toObject:self withKeyPath:NSStringFromSelector(@selector(enablePassword)) options:nil];
+
+  [self.passwordTextField setNextKeyView:self.keyPathControl];
   [self _reset];
 }
 
