@@ -43,7 +43,7 @@
 #import <Sparkle/Sparkle.h>
 
 NSString *const MPDidChangeStoredKeyFilesSettings = @"com.hicknhack.macpass.MPDidChangeStoredKeyFilesSettings";
-
+NSString *const MPHelpURLKey = @"MPHelpURL";
 @interface MPAppDelegate () {
 @private
   MPDockTileHelper *dockTileHelper;
@@ -229,8 +229,8 @@ NSString *const MPDidChangeStoredKeyFilesSettings = @"com.hicknhack.macpass.MPDi
 }
 
 - (void)showHelp:(id)sender {
-  /* TODO: use Info.plist for URL */
-  [[NSWorkspace sharedWorkspace] openURL:[NSURL URLWithString:@"https://github.com/mstarke/MacPass"]];
+  NSString *urlString = [[NSBundle mainBundle] infoDictionary][MPHelpURLKey];
+  [[NSWorkspace sharedWorkspace] openURL:[NSURL URLWithString:urlString]];
 }
 
 - (void)checkForUpdates:(id)sender {
