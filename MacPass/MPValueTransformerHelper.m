@@ -11,7 +11,7 @@
 
 NSString *const MPStripLineBreaksTransformerName = @"com.hicknhack.macpass.MPStripLineBreaksTransformerName";
 NSString *const MPExpiryDateValueTransformerName = @"com.hicknhack.macpass.MPExpiryDateValueTransformer";
-
+NSString *const MPTokenValueTransformerName = @"com.hicknhack.macpass.MPTokenValueTransformer";
 @implementation MPValueTransformerHelper
 
 + (void)registerValueTransformer {
@@ -45,6 +45,14 @@ NSString *const MPExpiryDateValueTransformerName = @"com.hicknhack.macpass.MPExp
 
                       NSString *template = NSLocalizedString(@"EXPIRES_AT_DATE_%@", "");
                       return [[NSString alloc] initWithFormat:template, [formatter stringFromDate:value]];
+                    }];
+
+  [NSValueTransformer registerValueTransformerWithName:MPTokenValueTransformerName
+                                 transformedValueClass:NSArray.class
+                    returningTransformedValueWithBlock:^id(NSArray *value) {
+                      return [value filteredArrayUsingPredicate:[NSPredicate predicateWithBlock:^BOOL(id  _Nullable evaluatedObject, NSDictionary<NSString *,id> * _Nullable bindings) {
+                        return [evaluatedObject length];
+                      }]];
                     }];
 }
 

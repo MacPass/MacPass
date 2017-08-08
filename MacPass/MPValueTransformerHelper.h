@@ -10,6 +10,7 @@
 
 FOUNDATION_EXPORT NSString *const MPStripLineBreaksTransformerName;
 FOUNDATION_EXPORT NSString *const MPExpiryDateValueTransformerName;
+FOUNDATION_EXPORT NSString *const MPTokenValueTransformerName;
 
 @interface MPValueTransformerHelper : NSObject
 
