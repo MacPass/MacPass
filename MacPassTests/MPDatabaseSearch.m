@@ -57,8 +57,6 @@
   [super tearDown];
 }
 
-- (void)testSearch {
-  XCTFail(@"Missing Test");
-}
+
 
 @end
