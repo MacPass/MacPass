@@ -42,6 +42,6 @@ NSString *const MPGeneralSetingsIdentifier = @"GeneralSettingsTab";
   [self.rememberKeyFileCheckButton bind:NSValueBinding toObject:defaultsController withKeyPath:[MPSettingsHelper defaultControllerPathForKey:kMPSettingsKeyRememberKeyFilesForDatabases] options:nil];
   
   [self.createUntitledOnActivation setState:NSOffState];
-  //[self.createUntitledOnActivation bind:NSValueBinding toObject:defaultsController withKeyPath:createUntitledOnActivatePaht options:nil];
+  //kMPSettingsKeyOpenEmptyDatabaseOnLaunch
 }
 @end
