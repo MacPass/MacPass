@@ -199,12 +199,16 @@
 "FILE_CHANGED_BY_OTHERS_MESSAGE_TEXT" = "The database file was modified!";
 /* Informative text displayed when the file was change form another application */
 "FILE_CHANGED_BY_OTHERS_INFO_TEXT" = "The file loaded is not the same as the on on disk. How do you want to move on?";
+/* Set the selection as default file change strategy */
+"SET_AS_DEFAULT_FILE_CHANGE_STRATEGY" = "Use this method as default. You can change this at any time in the preferences.";
+/* Always show a dialog after an external file change */
+"FILE_CHANGE_STRATEGY_ASK" = "Ask";
 /* Button to ignore the changes */
-"KEEP_MINE" = "Don't Load Modified Database";
+"FILE_CHANGE_STRATEGY_KEEP_MINE" = "Keep My Version and Ignore Other Changes";
 /* Button to reload the changes form disk */
-"LOAD_CHANGES" = "Load Modified Database and Discard Mine";
+"FILE_CHANGE_STRATEGY_USE_OTHER" = "Load Changed Version and Discard Mine";
 /* Merge changes into file! */
-"MERGE_CHANGES" = "Merge Changes";
+"FILE_CHANGE_STRATEGY_MERGE" = "Merge Changes";
 
 /* Password Input Messages, Errors and Warning */
 "PASSWORD_INPUT_NO_PASSWORD" = "No Password";

@@ -79,7 +79,7 @@ NSString *const MPDocumentGroupKey                            = @"MPDocumentGrou
 @property (strong) IBOutlet NSView *warningView;
 @property (weak) IBOutlet NSImageView *warningViewImage;
 
-@property (assign) BOOL lockedForFileChange;
+@property (atomic, assign) BOOL lockedForFileChange;
 
 @end
 
@@ -288,33 +288,53 @@ NSString *const MPDocumentGroupKey                            = @"MPDocumentGrou
   /* Dispatch the alert to the main queue */
   __weak MPDocument *welf = self;
   dispatch_async(dispatch_get_main_queue(), ^{
-    
+    MPFileChangeStrategy strategy = (MPFileChangeStrategy)[NSUserDefaults.standardUserDefaults integerForKey:kMPSettingsKeyFileChangeStrategy];
+    if(strategy != MPFileChangeStrategyAsk) {
+      [welf _handleFileChangeWithStrategy:strategy setAsDefault:NO];
+      self.lockedForFileChange = NO;
+      return;
+    }
     NSAlert *alert = [[NSAlert alloc] init];
     alert.alertStyle = NSWarningAlertStyle;
     alert.messageText = NSLocalizedString(@"FILE_CHANGED_BY_OTHERS_MESSAGE_TEXT", @"Message displayed when an open file was changed from another application");
     alert.informativeText = NSLocalizedString(@"FILE_CHANGED_BY_OTHERS_INFO_TEXT", @"Informative text displayed when the file was change from another application");
-    [alert addButtonWithTitle:NSLocalizedString(@"MERGE_CHANGES", @"Merge changes into file!")];
-    [alert addButtonWithTitle:NSLocalizedString(@"LOAD_CHANGES", @"Reopen the file!")];
-    [alert addButtonWithTitle:NSLocalizedString(@"KEEP_MINE", @"Ignore the changes to an open file!")];
+    alert.showsSuppressionButton = YES;
+    alert.suppressionButton.title = NSLocalizedString(@"SET_AS_DEFAULT_FILE_CHANGE_STRATEGY", @"Set the selection as default file change strategy!");
+    [alert addButtonWithTitle:NSLocalizedString(@"FILE_CHANGE_STRATEGY_MERGE", @"Merge changes into file!")];
+    [alert addButtonWithTitle:NSLocalizedString(@"FILE_CHANGE_STRATEGY_USE_OTHER", @"Reopen the file!")];
+    [alert addButtonWithTitle:NSLocalizedString(@"FILE_CHANGE_STRATEGY_KEEP_MINE", @"Ignore the changes to an open file!")];
     [alert beginSheetModalForWindow:welf.windowForSheet completionHandler:^(NSModalResponse returnCode) {
-      
-      welf.lockedForFileChange = NO;
-      
+      BOOL useAsDefault = (alert.suppressionButton.state == NSOnState);
       switch(returnCode) {
         case NSAlertFirstButtonReturn: {
-          [welf mergeWithContentsFromURL:self.fileURL];
+          [welf _handleFileChangeWithStrategy:MPFileChangeStrategyMerge setAsDefault:useAsDefault];
           break;
         }
         case NSAlertSecondButtonReturn:
-          [welf revertToContentsOfURL:welf.fileURL ofType:welf.fileType error:nil];
+          [welf _handleFileChangeWithStrategy:MPFileChangeStrategyUseOther setAsDefault:useAsDefault];
           break;
         case NSAlertThirdButtonReturn:
-          // do not change anything
+          [welf _handleFileChangeWithStrategy:MPFileChangeStrategyKeepMine setAsDefault:useAsDefault];
         default:
           break;
       }
+      welf.lockedForFileChange = NO;
     }];
   });
+}
+
+- (void)_handleFileChangeWithStrategy:(MPFileChangeStrategy)strategy setAsDefault:(BOOL)setAsDefault {
+  if(setAsDefault) {
+    [NSUserDefaults.standardUserDefaults setInteger:strategy forKey:kMPSettingsKeyFileChangeStrategy];
+  }
+  
+  if(strategy == MPFileChangeStrategyMerge) {
+    [self mergeWithContentsFromURL:self.fileURL];
+  }
+  else if(strategy == MPFileChangeStrategyUseOther) {
+    [self revertToContentsOfURL:self.fileURL ofType:self.fileType error:nil];
+  }
+  // else do nothing!
 }
 
 - (void)writeXMLToURL:(NSURL *)url {
@@ -356,6 +376,10 @@ NSString *const MPDocumentGroupKey                            = @"MPDocumentGrou
    [self saveDocument] is enqued so that dataOfType is called too late to actually save teh database.
    hence we need to get the ok from the NSDocument about the save, otherwise the lock fails!
    */
+  if(self.lockedForFileChange) {
+    // we have user interaction that cannot be dismissed, instead ignore locking!
+    return;
+  }
   [self saveDocumentWithDelegate:self didSaveSelector:@selector(_lockDatabaseForDocument:didSave:contextInfo:) contextInfo:NULL];
 }
 

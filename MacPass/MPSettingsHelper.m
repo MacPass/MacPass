@@ -17,6 +17,7 @@ NSString *const kMPSettingsKeyClearPasteboardOnQuit                   = @"ClearC
 NSString *const kMPSettingsKeyBrowserBundleId                         = @"BrowserBundleId";
 NSString *const kMPSettingsKeyOpenEmptyDatabaseOnLaunch               = @"OpenEmptyDatabaseOnLaunch";
 NSString *const kMPSettingsKeyReopenLastDatabaseOnLaunch              = @"ReopenLastDatabaseOnLaunch";
+NSString *const kMPSettingsKeyFileChangeStrategy                      = @"FileChangeStrategy";
 NSString *const kMPSettingsKeyLockOnSleep                             = @"LockOnSleep";
 NSString *const kMPSettingskeyLockOnLogout                            = @"LockOnLogout";
 NSString *const kMPSettingsKeyIdleLockTimeOut                         = @"IdleLockTimeOut";
@@ -101,6 +102,7 @@ NSString *const kMPDeprecatedSettingsKeyDefaultPasswordRounds             = @"Ke
                          kMPSettingsKeyClearPasteboardOnQuit: @YES,
                          kMPSettingsKeyOpenEmptyDatabaseOnLaunch: @NO,
                          kMPSettingsKeyReopenLastDatabaseOnLaunch: @YES,
+                         kMPSettingsKeyFileChangeStrategy: @(MPFileChangeStrategyAsk), // Ask what to do on a file change!
                          kMPSettingsKeyLockOnSleep: @YES,
                          kMPSettingskeyLockOnLogout: @NO,
                          kMPSettingsKeyIdleLockTimeOut: @0, // 5 minutes
@@ -207,7 +209,7 @@ NSString *const kMPDeprecatedSettingsKeyDefaultPasswordRounds             = @"Ke
 + (void)_migrateRememberedKeyFiles {
   /*
    Database file paths was stored as plain text in keyfile mapping.
-   We only need to store the key file ulr in plain text, thus hashing the path is sufficent
+   We only need to store the key file url in plain text, thus hashing the path is sufficent
    */
   NSDictionary<NSString *, NSString *> *currentMapping = [[NSUserDefaults standardUserDefaults] dictionaryForKey:kMPSettingsKeyRememeberdKeysForDatabases];
   if(!currentMapping) {
@@ -225,7 +227,7 @@ NSString *const kMPDeprecatedSettingsKeyDefaultPasswordRounds             = @"Ke
         didHash = YES;
       }
     }
-    /* keep all hasehd or unknown data */
+    /* keep all hashed or unknown data */
     else {
       hashedDict[key] = currentMapping[key];
     }

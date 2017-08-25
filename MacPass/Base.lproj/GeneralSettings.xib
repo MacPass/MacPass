@@ -10,6 +10,7 @@
             <connections>
                 <outlet property="clearPasteboardOnQuitCheckButton" destination="447" id="520"/>
                 <outlet property="clearPasteboardTimeoutPopup" destination="419" id="521"/>
+                <outlet property="fileChangeStrategyPopup" destination="wIu-Sh-2a2" id="oJo-dA-lEE"/>
                 <outlet property="idleTimeOutPopup" destination="584" id="809"/>
                 <outlet property="lockOnLogoutCheckButton" destination="5SP-Vi-1sn" id="yaI-LH-R5A"/>
                 <outlet property="lockOnSleepCheckButton" destination="630" id="810"/>
@@ -168,7 +169,7 @@
                         <constraint firstItem="447" firstAttribute="top" secondItem="431" secondAttribute="bottom" constant="8" symbolic="YES" id="zkd-Hf-09b"/>
                     </constraints>
                 </box>
-                <box autoresizesSubviews="NO" verticalHuggingPriority="500" borderType="line" title="Startup" translatesAutoresizingMaskIntoConstraints="NO" id="888">
+                <box autoresizesSubviews="NO" verticalHuggingPriority="500" borderType="line" title="File Handling" translatesAutoresizingMaskIntoConstraints="NO" id="888">
                     <rect key="frame" x="17" y="286" width="366" height="85"/>
                     <view key="contentView" id="cpg-tt-SHE">
                         <rect key="frame" x="1" y="1" width="364" height="69"/>
@@ -182,25 +183,19 @@
                                 </buttonCell>
                             </button>
                             <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" allowsCharacterPickerTouchBarItem="NO" translatesAutoresizingMaskIntoConstraints="NO" id="h3w-Ms-ohK">
-                                <rect key="frame" x="16" y="20" width="207" height="17"/>
-                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="On external changes to open files" id="QrK-hM-Xt1">
+                                <rect key="frame" x="16" y="20" width="93" height="17"/>
+                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="If file changes:" id="QrK-hM-Xt1">
                                     <font key="font" metaFont="system"/>
                                     <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
                                     <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                 </textFieldCell>
                             </textField>
                             <popUpButton verticalHuggingPriority="750" horizontalCompressionResistancePriority="749" translatesAutoresizingMaskIntoConstraints="NO" id="wIu-Sh-2a2">
-                                <rect key="frame" x="227" y="14" width="120" height="26"/>
-                                <popUpButtonCell key="cell" type="push" title="Merge changes" bezelStyle="rounded" alignment="left" lineBreakMode="truncatingTail" state="on" borderStyle="borderAndBezel" imageScaling="proportionallyDown" inset="2" selectedItem="dbY-3j-eJU" id="1R2-5t-LWk">
+                                <rect key="frame" x="113" y="13" width="234" height="26"/>
+                                <popUpButtonCell key="cell" type="push" bezelStyle="rounded" alignment="left" lineBreakMode="truncatingTail" borderStyle="borderAndBezel" imageScaling="proportionallyDown" inset="2" id="1R2-5t-LWk">
                                     <behavior key="behavior" lightByBackground="YES" lightByGray="YES"/>
                                     <font key="font" metaFont="menu"/>
-                                    <menu key="menu" id="DQY-17-yKP">
-                                        <items>
-                                            <menuItem title="Merge changes" state="on" id="dbY-3j-eJU"/>
-                                            <menuItem title="Keep other" id="T1Y-M5-MlZ"/>
-                                            <menuItem title="Keep mine" id="BQb-L1-z8Y"/>
-                                        </items>
-                                    </menu>
+                                    <menu key="menu" id="DQY-17-yKP"/>
                                 </popUpButtonCell>
                             </popUpButton>
                         </subviews>

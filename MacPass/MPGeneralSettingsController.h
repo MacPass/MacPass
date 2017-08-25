@@ -20,5 +20,6 @@
 @property (weak) IBOutlet NSButton *reopenLastDatabase;
 @property (weak) IBOutlet NSButton *createUntitledOnActivation;
 @property (weak) IBOutlet NSButton *rememberKeyFileCheckButton;
+@property (weak) IBOutlet NSPopUpButton *fileChangeStrategyPopup;
 
 @end

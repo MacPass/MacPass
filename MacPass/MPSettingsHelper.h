@@ -16,6 +16,7 @@ APPKIT_EXTERN NSString *const kMPSettingsKeyClearPasteboardOnQuit;
 APPKIT_EXTERN NSString *const kMPSettingsKeyPasswordEncoding;
 APPKIT_EXTERN NSString *const kMPSettingsKeyOpenEmptyDatabaseOnLaunch;
 APPKIT_EXTERN NSString *const kMPSettingsKeyReopenLastDatabaseOnLaunch;
+APPKIT_EXTERN NSString *const kMPSettingsKeyFileChangeStrategy;
 
 /* URL handling */
 APPKIT_EXTERN NSString *const kMPSettingsKeyBrowserBundleId;
@@ -65,6 +66,13 @@ APPKIT_EXTERN NSString *const kMPSettingsKeyUpdatePasswordOnTemplateEntries;
 /* Plugins */
 APPKIT_EXTERN NSString *const kMPSettingsKeyLoadUnsecurePlugins;            // If set to YES this will load all plugins regardless of their codesignature status
 
+typedef NS_ENUM(NSUInteger, MPFileChangeStrategy) {
+  MPFileChangeStrategyAsk,
+  MPFileChangeStrategyKeepMine,
+  MPFileChangeStrategyUseOther,
+  MPFileChangeStrategyMerge
+};
+
 typedef NS_ENUM(NSUInteger, MPDoubleClickURLAction) {
   MPDoubleClickURLActionCopy,
   MPDoubleClickURLActionOpen,
@@ -84,10 +92,6 @@ APPKIT_EXTERN NSString *const kMPSettingsKeyPasswordCustomString;
 
 APPKIT_EXTERN NSString *const kMPSettingsKeyPasswordDefaultsForEntry;
 
-typedef NS_ENUM(NSUInteger, MPPasswordEncoding) {
-  MPPasswordEncodingUTF8,
-  MPPasswordEncodingASCII,
-};
 
 @interface MPSettingsHelper : NSObject
 
