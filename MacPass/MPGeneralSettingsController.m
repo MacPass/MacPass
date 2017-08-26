@@ -40,8 +40,21 @@ NSString *const MPGeneralSetingsIdentifier = @"GeneralSettingsTab";
   [self.idleTimeOutPopup bind:NSSelectedTagBinding toObject:defaultsController withKeyPath:[MPSettingsHelper defaultControllerPathForKey:kMPSettingsKeyIdleLockTimeOut] options:nil];
   [self.reopenLastDatabase bind:NSValueBinding toObject:defaultsController withKeyPath:[MPSettingsHelper defaultControllerPathForKey:kMPSettingsKeyReopenLastDatabaseOnLaunch] options:nil];
   [self.rememberKeyFileCheckButton bind:NSValueBinding toObject:defaultsController withKeyPath:[MPSettingsHelper defaultControllerPathForKey:kMPSettingsKeyRememberKeyFilesForDatabases] options:nil];
+  [self.createUntitledOnActivation setState:NSOffState]; //kMPSettingsKeyOpenEmptyDatabaseOnLaunch
+
+  /* File Change Strategy Menu */
+  NSDictionary *fileChangeStragegyDict = @{ @(MPFileChangeStrategyAsk) : NSLocalizedString(@"FILE_CHANGE_STRATEGY_ASK", @""),
+                                            @(MPFileChangeStrategyUseOther) : NSLocalizedString(@"FILE_CHANGE_STRATEGY_USE_OTHER", @""),
+                                            @(MPFileChangeStrategyKeepMine) : NSLocalizedString(@"FILE_CHANGE_STRATEGY_KEEP_MINE", @""),
+                                            @(MPFileChangeStrategyMerge) : NSLocalizedString(@"FILE_CHANGE_STRATEGY_MERGE", @""),
+                                            };
+  [self.fileChangeStrategyPopup.menu removeAllItems];
+  for(NSNumber *key in fileChangeStragegyDict) {
+    NSMenuItem *item = [[NSMenuItem alloc] initWithTitle:fileChangeStragegyDict[key] action:NULL keyEquivalent:@""];
+    item.tag = key.integerValue;
+    [self.fileChangeStrategyPopup.menu addItem:item];
+  }
+  [self.fileChangeStrategyPopup bind:NSSelectedTagBinding toObject:defaultsController withKeyPath:[MPSettingsHelper defaultControllerPathForKey:kMPSettingsKeyFileChangeStrategy] options:nil];
   
-  [self.createUntitledOnActivation setState:NSOffState];
-  //[self.createUntitledOnActivation bind:NSValueBinding toObject:defaultsController withKeyPath:createUntitledOnActivatePaht options:nil];
 }
 @end

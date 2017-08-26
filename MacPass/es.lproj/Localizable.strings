@@ -1,0 +1,224 @@
+﻿/* Formatted Times  */
+"%ld_DAYS_AGO" = "hace %ld días";
+"%ld_HOURS_AGO" = "hace aproximadamente %ld horas";
+"%ld_MINUTES_AGO" = "hace %ld minutos";
+"%ld_WEEKS_AGO" = "hace %ld semanas";
+"JUST_NOW" = "Justo ahora";
+"LAST_WEEK" = "La semana pasada";
+"ONE_WEEK_AGO" = "Hace una semana";
+"YESTERDAY" = "Ayer";
+"TOMORROW" = "Mañana";
+"ONE_WEEK" = "en una semana";
+"ONE_MONTH" = "en un mes";
+"90_DAYS" = "en 90 días";
+"ONE_YEAR" = "en un año";
+
+/* Date Picker */
+"SELECT_DATE_PRESET" = "Usar predefinido…";
+
+/* Menu item for automatic trash creation */
+"AUTOCREATE_TRASH_FOLDER" = "Crear automáticamente";
+
+/*
+ Actions
+ */
+"ADD_ENTRY" = "Agregar Entrada";
+"ADD_GROUP" = "Agregar Grupo";
+"DUPLICATE_ENTRY" = "Duplicar Entrada";
+"DUPLICATE_ENTRY_WITH_OPTIONS" = "Duplicar Entrada…";
+"COPY_ENTRY" = "Copiar Entrada";
+"COPY_GROUP" = "Copiar Grupo";
+"ADD_TREMPLATE_ENTRY" = "Crear Plantilla de Entrada";
+"DELETE_GROUP" = "Eliminar Grupo";
+"DELETE_ENTRY" = "Eliminar Entrada";
+"EDIT_TEMPLATE_GROUP" = "Editar Grupo de Plantilla";
+"EMPTY_TRASH" = "Vaciar Papelera";
+"MOVE_ENTRY" = "Mover Entrada";
+"MOVE_GROUP" = "Mover Grupo";
+"NEW_ENTRY_WITH_TEMPLATE_%@" = "Crear Entrada con Plantilla %@";
+"NEW_DATABASE" = "Base de Datos";
+"OPEN_URL" = "Abrir URL";
+"PERFORM_AUTOTYPE_FOR_ENTRY" = "Generar Autotype";
+"PREVIEW" = "Vista Previa";
+"PASSWORD_GENERATOR_SET_DEFAULTS" = "Configurar Predeterminados";
+"PASSWORD_GENERATOR_RESET_ENTRY_DEFAULTS" = "Reiniciar";
+"TRASH_ENTRY" = "Entrada de Papelera";
+"TRASH_GROUP" = "Grupo de Papelera";
+"SET_NAME" = "Editar Nombre";
+"SET_TITLE" = "Editar Título";
+"SET_USERNAME" = "Editar Nombre de Usuario";
+"SET_PASSWORD" = "Editar Contraseña";
+"SET_URL" = "Editar URL";
+"SET_NOTES" = "Editar Notas";
+"SHOW_HISTORY" = "Show History";
+
+/*
+ Search
+ */
+"CLEAR_RECENT_SEARCHES" = "Limpiar búsquedas recientes";
+"RECENT_SEARCHES" = "Búsquedas recientes";
+"SEARCH_DUPLICATE_PASSWORDS" = "Contraseñas duplicadas";
+"SEARCH_EXPIRED_ENTRIES" = "Expirado";
+"SELECT_FILTER_WITH_DOTS" = "Seleccionar…";
+
+/*
+ Direct Translations
+ */
+"ACTION" = "Acción";
+"ATTACHMENTS" = "Adjuntos";
+"CANCEL" = "Cancelar";
+"DATABASE" = "Base de Datos";
+"DELETE" = "Eliminar";
+"EDIT" = "Editar";
+"EMAIL" = "EMail";
+"GROUP" = "Grupo";
+"GENERAL" = "General";
+"HOMEBANKING" = "Bancos";
+"INSPECTOR" = "Inspector";
+"INTERNET" = "Internet";
+"LOCK" = "Bloquear";
+"MODIFIED" = "Modificado";
+"NAME" = "Nombre";
+"NETWORK" = "Red";
+"NONE" = "Ninguno";
+"NOTES" = "Notas";
+"PASSWORD" = "Contraseña";
+"SAVE" = "Guardar";
+"SAVE_WITH_DOTS" = "Guardar…";
+"SEARCH" = "Buscar";
+"TITLE" = "Título";
+"TRASH" = "Papelera";
+"URL" = "URL";
+"USERNAME" = "Nombre de usuario";
+"WINDOWS" = "Ventanas";
+
+
+"CHANGE_DATABASE_NAME" = "Cambiar Nombre de Base";
+"CHANGE_TRASH_GROUP" = "Cambiar Grupo de Papelera";
+"%@_COPY" = "%@ Copiar";
+
+"DUPLICTE_PASSWORDS" = "Duplicar Contraseñas";
+
+/* Field nam that was copied to the pasteboard */
+"COPIED_FIELD_%@" = "%@ copiado";
+"COPIED_PASSWORD" = "Contraseña copiada";
+"COPIED_URL" = "URL copiada";
+"COPIED_USERNAME" = "Nombre de usuario copiado";
+"COPY_CUSTOM_FIELDS" = "Copiar Campos Personalizados";
+"COPY_FIELD_%@" = "Copiar %@";
+"COPY_PASSWORD" = "Copiar Contraseña";
+"COPY_URL" = "Copy URL";
+"COPY_USERNAME" = "Copiar Nombre de Usuario";
+
+/* Dock Badge */
+"CLEARING_PASTEBOARD" = "…";
+
+/* Group Inspector */
+/* Autotype Combobox */
+"AUTOTYPE_NO" = "Deshabilitar Autotype";
+"AUTOTYPE_YES" = "Habilitar Autotype";
+"AUTOTYPE_INHERIT" = "Heredar Configuración de Autotype";
+
+/* Search Combobox */
+"SEARCH_INHERIT" = "Inherit Search Settings";
+"SEARCH_YES" = "Include in Search";
+"SEARCH_NO" = "Exclude from Search";
+
+/*
+ Date/Time Displays
+ */
+/* Created at template string. %@ is replaced by localized date and time */
+"CREATED_AT_%@" = "Creado: %@";
+/* Modifed at template string. %@ is replaced by localized date and time */
+"MODIFED_AT_%@" = "Modificado: %@";
+
+"EXPIRES_AT_DATE_%@" = "Expira: %@";
+"NO_EXPIRE_DATE_SET" = "No expira.";
+
+/*
+ Defaults for new objects
+ */
+"DEFAULT_CUSTOM_FIELD_TITLE" = "Personalizado";
+"DEFAULT_CUSTOM_FIELD_VALUE" = "Valor";
+"DEFAULT_ENTRY_TITLE" = "Nueva Entrada";
+"DEFAULT_GROUP_NAME" = "Nuevo Grupo";
+"DEFAULT_WINDOW_TITLE" = "Título de Ventana";
+
+/* Number of Entries
+ Plural (0, >1)
+ Singular (1)
+ */
+"%ld_ENTRIES" = "%ld Entradas";
+"%ld_ENTRY" = "%ld Entrada";
+
+/* Settings */
+"GENERAL_SETTINGS" = "General";
+"INTEGRATION_SETTINGS" = "Integración";
+"UPDATE_SETTINGS" = "Actualizaciones";
+"WORKFLOW_SETTINGS" = "Flujo de Trabajo";
+"DEFAULT_BROWSER" = "Navegador Predeterminado";
+"OTHER_BROWSER" = "Seleccionar Navegador…";
+"PLUGIN_SETTINGS" = "Plugins";
+
+/* Feature not supported in Version */
+"KDBX_ONLY_FEATURE" = "Caraterística no soportada en base de datos KDB";
+
+/* Template */
+"NO_TEMPLATE_GROUP" = "Sin plantillas";
+"NO_TEMPLATES" = "No se han encontrado Plantillas";
+
+/* Kefile */
+"SAVE_KEYFILE" = "Guardar Keyfile";
+
+/* Autoype */
+/* Candiate dialog */
+"SELECT_AUTOTYPE_CANDIDATE" = "Seleccionar candidato";
+"AUTOTYPE_OVERLAY_NO_DOCUMENTS" = "Please open a file to use Global Autotype!";
+"AUTOTYPE_OVERLAY_NO_MATCH_FOR_%@" = "No hay registros para %@!";
+"AUTOTYPE_OVERLAY_SINGLE_MATCH" = "Encontrado";
+
+/* Alert Dialogs */
+"WARNING_ON_EMPTY_TRASH_DESCRIPTION" = "Vaciar la Papelera es una acción no reversible.";
+"WARNING_ON_EMPTY_TRASH_TITLE" = "¿Vaciar Papelera?";
+"WARNING_ON_LOSSY_SAVE" = "Al guardar en formato KDB, se perderán algunos datos.";
+"WARNING_ON_LOSSY_SAVE_DESCRIPTION" = "El formato de archivo KDB no permite guardar toda la información.";
+"CHANGE_FORMAT" = "Cambiar formato de archivo a KDBX";
+"SAVE_LOSSY" = "Guardar y perder datos";
+
+"ENFORCE_PASSWORD_CHANGE_ALERT_TITLE" = "La contraseña de la base de datos ha expirado";
+"ENFORCE_PASSWORD_CHANGE_ALERT_DESCRIPTION" = "No será posible guardar cambios hsata que la contraseña o el keyfile sean modificados.";
+
+"RECOMMEND_PASSWORD_CHANGE_ALERT_TITLE" = "Por favor, cambia la contraseña para la base de datos.";
+"RECOMMEND_PASSWORD_CHANGE_ALERT_DESCRIPTION" = "Es recomendado cambiar la contraseña y/o el keyfile.";
+"CHANGE_PASSWORD_WITH_DOTS" = "Cambiar Contraseña…";
+
+"WARNING_ON_SAVE_NO_PASSWORD_OR_KEY_SET" = "No hay contraseña o keyfile establecido.";
+"WARNING_ON_SAVE_NO_PASSWORD_OR_KEY_SET_SUGGESTION" = "Por favor genera una contraseña o un keyfile para esta base de datos. Al salir, se perderán todos los cambios y el documento quedará bloqueado.";
+
+/* Message displayed when an open file was changed from another application */
+"FILE_CHANGED_BY_OTHERS_MESSAGE_TEXT" = "El archivo de la base de datos ha sido modificado";
+/* Informative text displayed when the file was change form another application */
+"FILE_CHANGED_BY_OTHERS_INFO_TEXT" = "El archivo cargado no coincide con el guardado en el disco. ¿Deseas continuar?";
+/* Set the selection as default file change strategy */
+"SET_AS_DEFAULT_FILE_CHANGE_STRATEGY" = "Use the selected strategy and do not ask me again!";
+/* Always show a dialog after an external file change */
+"FILE_CHANGE_STRATEGY_ASK" = "Ask Me What to Do";
+/* Button to ignore the changes */
+"KEEP_MINE" = "Conservar versión actual y descartar cambios";
+/* Button to reload the changes form disk */
+"LOAD_CHANGES" = "Cargar archivo modificado";
+/* Merge changes into file! */
+"MERGE_CHANGES" = "Merge changes!";
+
+/* Password Input Messages, Errors and Warning */
+"PASSWORD_INPUT_NO_PASSWORD" = "Sin Contraseña";
+"PASSWORD_INPUT_ENTER_PASSWORD" = "Ingresar Contraseña";
+"PASSWORD_INPUT_REPEAT_PASSWORD" = "Repetir Contraseña";
+"WARNING_NO_PASSWORD_OR_KEYFILE" = "Sin contraseña o keyfile";
+"ERROR_PASSWORD_MISSMATCH_INVALID_KEYFILE" = "Las contraseñas no coinciden y el keyfile no es válido";
+"ERROR_PASSWORD_MISSMATCH" = "Las contraseñas no coinciden";
+"ERROR_INVALID_KEYFILE" = "El Keyfile no es válido";
+
+/* Misc */
+"DOCUMENT_AUTOTYPE_CORRUPTION_WARNING" = "Por favor ejecuta Corregir Autotype...";
+"FILE_OPEN_ERROR" = "Error al abrir el archivo.";

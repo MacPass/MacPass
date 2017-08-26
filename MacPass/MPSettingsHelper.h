@@ -16,6 +16,7 @@ APPKIT_EXTERN NSString *const kMPSettingsKeyClearPasteboardOnQuit;
 APPKIT_EXTERN NSString *const kMPSettingsKeyPasswordEncoding;
 APPKIT_EXTERN NSString *const kMPSettingsKeyOpenEmptyDatabaseOnLaunch;
 APPKIT_EXTERN NSString *const kMPSettingsKeyReopenLastDatabaseOnLaunch;
+APPKIT_EXTERN NSString *const kMPSettingsKeyFileChangeStrategy;
 
 /* URL handling */
 APPKIT_EXTERN NSString *const kMPSettingsKeyBrowserBundleId;
@@ -68,6 +69,13 @@ APPKIT_EXTERN NSString *const kMPSettingsKeyLoadUnsecurePlugins;            // I
 /* Touch ID */
 APPKIT_EXTERN NSString *const kMPSettingsKeyDatabasesUsingTouchID;          // Inclused all the databases with Touch ID unlocking enabled
 
+typedef NS_ENUM(NSUInteger, MPFileChangeStrategy) {
+  MPFileChangeStrategyAsk,
+  MPFileChangeStrategyKeepMine,
+  MPFileChangeStrategyUseOther,
+  MPFileChangeStrategyMerge
+};
+
 typedef NS_ENUM(NSUInteger, MPDoubleClickURLAction) {
   MPDoubleClickURLActionCopy,
   MPDoubleClickURLActionOpen,
@@ -87,10 +95,6 @@ APPKIT_EXTERN NSString *const kMPSettingsKeyPasswordCustomString;
 
 APPKIT_EXTERN NSString *const kMPSettingsKeyPasswordDefaultsForEntry;
 
-typedef NS_ENUM(NSUInteger, MPPasswordEncoding) {
-  MPPasswordEncodingUTF8,
-  MPPasswordEncodingASCII,
-};
 
 @interface MPSettingsHelper : NSObject
 
