@@ -13,6 +13,10 @@
 
 #import "KeePassKit/KeePassKit.h"
 
+@import LocalAuthentication;
+#import "MacPass-Swift.h"
+#import "MPSettingsHelper.h"
+
 @interface MPPasswordEditWindowController ()
 
 @property (nonatomic, assign) BOOL showPassword;
@@ -104,6 +108,9 @@
   NSString *password = hasPassword ? self.passwordTextField.stringValue : nil;
   MPDocument *document = self.document;
   [document changePassword:password keyFileURL:self.keyfilePathControl.URL];
+
+  [self _askForTouchID:password];
+
   [self dismissSheet:NSModalResponseOK];
 }
 
@@ -134,6 +141,60 @@
       }
     }];
   }
+}
+
+-(void) _askForTouchID:(NSString*)password {
+	NSError *authError = nil;
+	LAContext *myContext = [LAContext new];
+	if ([myContext canEvaluatePolicy:LAPolicyDeviceOwnerAuthenticationWithBiometrics error:&authError]) {
+
+		NSAlert *alert = [NSAlert new];
+		[alert addButtonWithTitle:@"Yes"];
+		[alert addButtonWithTitle:@"No"];
+		[alert setMessageText:@"Use TouchID for unlocking this database?"];
+		[alert setInformativeText:@"If you select Yes, your database password will be saved in the Keychain and you will be able to unlock this database with your fingertip."];
+		[alert setAlertStyle:NSAlertStyleInformational];
+
+		if ([alert runModal] == NSAlertFirstButtonReturn) {
+			// Yes clicked, use TouchID
+			[self _savePasswordInKeychain:password];
+		} else {
+			NSLog(@"User denied Touch ID. Deleting password from keychain.");
+			[self _deletePasswordFromKeychain];
+		}
+	}
+}
+
+- (void) _savePasswordInKeychain:(NSString*)password {
+	@try {
+		MPDocument *document = self.document;
+		NSString *dbName = [document displayName];
+
+		KeychainPasswordItem *passwordItem = [[KeychainPasswordItem alloc] initWithService:@"MacPass" account:dbName accessGroup:nil];
+
+		[passwordItem savePassword:password error:nil]; //Save the password in the keychain
+		[MPSettingsHelper addTouchIdEnabledDatabaseWithName:dbName]; //Add DB name in the list of Touch ID enabled databases
+		NSLog(@"Saved DB (%@) password in the keychain.", dbName);
+	}
+	@catch(NSException *exceptionm) {
+		NSLog(@"Error updating keychain with DB password: %@", exceptionm.description);
+	}
+}
+
+- (void) _deletePasswordFromKeychain {
+	@try {
+		MPDocument *document = self.document;
+		NSString *dbName = [document displayName];
+
+		KeychainPasswordItem *passwordItem = [[KeychainPasswordItem alloc] initWithService:@"MacPass" account:dbName accessGroup:nil];
+
+		[passwordItem deleteItemAndReturnError:nil]; //Delete the password from the keychain
+		[MPSettingsHelper removeTouchIdEnabledDatabaseWithName:dbName]; //Remove DB name from the list of Touch ID enabled databases
+		NSLog(@"DB (%@) password deleted from keychain.", dbName);
+	}
+	@catch(NSException *exception) {
+		NSLog(@"Error deleting DB password from the keychain: %@", exception.description);
+	}
 }
 
 #pragma mark NSTextFieldDelegate

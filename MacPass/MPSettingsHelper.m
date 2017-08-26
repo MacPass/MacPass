@@ -61,6 +61,8 @@ NSString *const kMPSettingsKeyUpdatePasswordOnTemplateEntries         = @"Update
 
 NSString *const kMPSettingsKeyLoadUnsecurePlugins                     = @"MPLoadUnsecurePlugins";
 
+NSString *const kMPSettingsKeyDatabasesUsingTouchID										= @"DatabasesUsingTouchID";
+
 /* Deprecated */
 NSString *const kMPDeprecatedSettingsKeyRememberKeyFilesForDatabases      = @"kMPSettingsKeyRememberKeyFilesForDatabases";
 NSString *const kMPDeprecatedSettingsKeyLastDatabasePath                  = @"MPLastDatabasePath";
@@ -127,7 +129,8 @@ NSString *const kMPDeprecatedSettingsKeyDefaultPasswordRounds             = @"Ke
                          kMPSettingsKeyDoubleClickURLAction: @(MPDoubleClickURLActionCopy),
                          kMPSettingsKeyDoubleClickTitleAction: @(MPDoubleClickTitleActionInspect),
                          kMPSettingsKeyLoadUnsecurePlugins: @NO,
-                         kMPSettingsKeyUpdatePasswordOnTemplateEntries: @YES
+												 kMPSettingsKeyUpdatePasswordOnTemplateEntries: @YES //,
+//												 kMPSettingsKeyDatabasesUsingTouchID: [NSMutableArray new]
                          };
   });
   return standardDefaults;
@@ -233,6 +236,30 @@ NSString *const kMPDeprecatedSettingsKeyDefaultPasswordRounds             = @"Ke
   if(didHash) {
     [[NSUserDefaults standardUserDefaults] setObject:hashedDict forKey:kMPSettingsKeyRememeberdKeysForDatabases];
   }
+}
+
++ (NSArray*)getTouchIdEnabledDatabases {
+	NSArray<NSString *> *touchIdDatabases = [[NSUserDefaults standardUserDefaults] arrayForKey:kMPSettingsKeyDatabasesUsingTouchID];
+	return touchIdDatabases;
+}
+
++ (void)addTouchIdEnabledDatabaseWithName: (NSString*)name {
+	NSMutableArray<NSString *> *touchIdDatabases = [[[NSUserDefaults standardUserDefaults] arrayForKey:kMPSettingsKeyDatabasesUsingTouchID] mutableCopy];
+	if (touchIdDatabases == nil) {
+		touchIdDatabases = [NSMutableArray new];
+	}
+	[touchIdDatabases addObject:name];
+	[[NSUserDefaults standardUserDefaults] setObject:touchIdDatabases forKey:kMPSettingsKeyDatabasesUsingTouchID];
+	[[NSUserDefaults standardUserDefaults] synchronize];
+	NSLog(@"Saved DB %@ to the list of TouchID enabled databases.", name);
+}
+
++ (void)removeTouchIdEnabledDatabaseWithName: (NSString*)name {
+	NSMutableArray<NSString *> *touchIdDatabases = [[[NSUserDefaults standardUserDefaults] arrayForKey:kMPSettingsKeyDatabasesUsingTouchID] mutableCopy];
+	[touchIdDatabases removeObject:name];
+	[[NSUserDefaults standardUserDefaults] setObject:touchIdDatabases forKey:kMPSettingsKeyDatabasesUsingTouchID];
+	[[NSUserDefaults standardUserDefaults] synchronize];
+	NSLog(@"Removed DB %@ from the list of TouchID enabled databases.", name);
 }
 
 @end

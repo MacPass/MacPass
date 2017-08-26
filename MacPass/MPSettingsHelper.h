@@ -65,6 +65,9 @@ APPKIT_EXTERN NSString *const kMPSettingsKeyUpdatePasswordOnTemplateEntries;
 /* Plugins */
 APPKIT_EXTERN NSString *const kMPSettingsKeyLoadUnsecurePlugins;            // If set to YES this will load all plugins regardless of their codesignature status
 
+/* Touch ID */
+APPKIT_EXTERN NSString *const kMPSettingsKeyDatabasesUsingTouchID;          // Inclused all the databases with Touch ID unlocking enabled
+
 typedef NS_ENUM(NSUInteger, MPDoubleClickURLAction) {
   MPDoubleClickURLActionCopy,
   MPDoubleClickURLActionOpen,
@@ -108,5 +111,20 @@ typedef NS_ENUM(NSUInteger, MPPasswordEncoding) {
  *  @return NSString containing the bindpath for this property for the NSUserDefaultController
  */
 + (NSString *)defaultControllerPathForKey:(NSString *)key;
+
+/**
+ *  Returns the names of the databases with enabled Touch ID unlocking.
+ */
++ (NSArray*)getTouchIdEnabledDatabases;
+
+/**
+ *  Adds a new database to the list of Touch ID enabled databases.
+ */
++ (void)addTouchIdEnabledDatabaseWithName: (NSString*)name;
+
+/**
+ *  Removes a new database to the list of Touch ID enabled databases.
+ */
++ (void)removeTouchIdEnabledDatabaseWithName: (NSString*)name;
 
 @end

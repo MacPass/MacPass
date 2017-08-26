@@ -17,6 +17,10 @@
 
 #import "NSError+Messages.h"
 
+@import LocalAuthentication;
+#import "MacPass-Swift.h"
+#import "MPSettingsHelper.h"
+
 @interface MPPasswordInputController ()
 
 @property (weak) IBOutlet HNHUIRoundedSecureTextField *passwordTextField;
@@ -30,6 +34,7 @@
 @property (assign) BOOL showPassword;
 @property (nonatomic, assign) BOOL enablePassword;
 @property (copy) passwordInputCompletionBlock completionHandler;
+@property (weak) IBOutlet NSButton *useTouchIdButton;
 @end
 
 @implementation MPPasswordInputController
@@ -60,6 +65,11 @@
   [self.togglePasswordButton bind:NSEnabledBinding toObject:self withKeyPath:NSStringFromSelector(@selector(enablePassword)) options:nil];
   [self.passwordTextField bind:NSEnabledBinding toObject:self withKeyPath:NSStringFromSelector(@selector(enablePassword)) options:nil];
   [self _reset];
+}
+
+-(void)viewDidAppear {
+	[super viewDidAppear];
+	[self _enableTouchID]; //Maybe call this when the password text field is focused and not on viewDidAppear...
 }
 
 - (NSResponder *)reconmendedFirstResponder {
@@ -128,6 +138,75 @@
   }
   self.errorImageView.hidden = NO;
   self.errorInfoTextField.hidden = NO;
+}
+
+- (IBAction)showTouchIdDialog:(id)sender {
+	[self _enableTouchID];
+}
+
+- (void) appFocused {
+	NSLog(@"YO YO YO! I got focused!");
+}
+
+- (void)_enableTouchID {
+
+	if (![[MPSettingsHelper getTouchIdEnabledDatabases] containsObject:[self getDatabaseName]]) {
+		[_useTouchIdButton setEnabled:NO];
+		return; //Do not ask for TouchID if its not enabled for this database.
+	}
+
+	LAContext *myContext = [LAContext new];
+	NSString *myLocalizedReasonString = @"unlock this database";
+
+	NSError *authError = nil;
+	//	if (#available(OSX 10.12, *)) {
+
+	if (floor(NSFoundationVersionNumber) > NSFoundationVersionNumber10_11_4) {
+		if ([myContext canEvaluatePolicy:LAPolicyDeviceOwnerAuthenticationWithBiometrics error:&authError]) {
+			[myContext evaluatePolicy:LAPolicyDeviceOwnerAuthenticationWithBiometrics localizedReason:myLocalizedReasonString reply:^(BOOL success, NSError * _Nullable error) {
+				if (success) {
+					// User authenticated successfully, take appropriate action
+					NSLog(@"User authentication sucessful! Getting password from the keychain...");
+					[self _getPasswordFromKeychain];
+				} else {
+					// User did not authenticate successfully, look at error and take appropriate action
+					NSLog(@"User authentication failed. %@", authError.localizedDescription);
+				}
+			}];
+		} else {
+			// Could not evaluate policy; look at authError and present an appropriate message to user
+			NSLog(@"Could not evaluate authentication policy: %@", authError.localizedDescription);
+			if (authError.localizedFailureReason != nil) {
+				NSLog(@"Failure Reason: %@", authError.localizedFailureReason);
+			}
+		}
+	} else {
+		NSLog(@"TouchID is not supported.");
+	}
+}
+
+- (void) _getPasswordFromKeychain {
+	NSString *dbName = [self getDatabaseName];
+
+	KeychainPasswordItem *passwordItem = [[KeychainPasswordItem alloc] initWithService: @"MacPass" account:dbName accessGroup:nil];
+	__autoreleasing NSError *err = nil;
+
+	NSString *pass = [passwordItem readPasswordAndReturnError:&err];
+	if (err != nil) {
+		NSLog(@"Could not retrieve DB password from the keychain:");
+	} else {
+		dispatch_sync(dispatch_get_main_queue(), ^{
+			_passwordTextField.stringValue = pass;
+			[self _submit:nil];
+		});
+	}
+
+}
+
+- (NSString*) getDatabaseName {
+	MPDocumentWindowController *documentWindow = self.windowController;
+	MPDocument *document = documentWindow.document;
+	return [document displayName];
 }
 
 @end

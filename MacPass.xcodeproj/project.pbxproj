@@ -258,6 +258,7 @@
 		6021FE8218E160BC00C3BC51 /* PasswordEditWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6021FE8418E160BC00C3BC51 /* PasswordEditWindow.xib */; };
 		6021FE8D18E1617300C3BC51 /* PasswordCreatorView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6021FE8F18E1617300C3BC51 /* PasswordCreatorView.xib */; };
 		6021FE9818E1650F00C3BC51 /* DatabaseSettingsWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6021FE9A18E1650F00C3BC51 /* DatabaseSettingsWindow.xib */; };
+		EC0ADDBB1F4C7AFD0084F402 /* KeychainPasswordItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC0ADDBA1F4C7AFD0084F402 /* KeychainPasswordItem.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -785,6 +786,8 @@
 		BD6C366519484CF40089EB37 /* nl */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = nl; path = nl.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		BD6C366619484CF40089EB37 /* nl */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; lineEnding = 0; name = nl; path = nl.lproj/KPKLocalizable.strings; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.simpleColoring; };
 		BD6C366719484CF40089EB37 /* nl */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = nl; path = nl.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		EC0ADDB91F4C7AFC0084F402 /* MacPass-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "MacPass-Bridging-Header.h"; sourceTree = "<group>"; };
+		EC0ADDBA1F4C7AFD0084F402 /* KeychainPasswordItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KeychainPasswordItem.swift; sourceTree = "<group>"; };
 		FA638D0E1C39BFCB00B10CC6 /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/DatabaseSettingsWindow.strings; sourceTree = "<group>"; };
 		FA638D0F1C39BFCB00B10CC6 /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/PasswordEditWindow.strings; sourceTree = "<group>"; };
 		FA638D101C39BFCB00B10CC6 /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/WelcomeWindow.strings; sourceTree = "<group>"; };
@@ -1243,6 +1246,7 @@
 				4C77E37215B84A240093A587 /* main.m */,
 				4C77E37415B84A240093A587 /* MacPass-Prefix.pch */,
 				4C53A7A71864C39D000DFF0D /* KPKLocalizable.strings */,
+				EC0ADDB91F4C7AFC0084F402 /* MacPass-Bridging-Header.h */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -1420,6 +1424,7 @@
 				4C6AEEF81A043E2B00CA2420 /* MPDocumentController.m */,
 				4CCCE7FF1D75CA48006AA951 /* MPArrayController.h */,
 				4CCCE8001D75CA48006AA951 /* MPArrayController.m */,
+				EC0ADDBA1F4C7AFD0084F402 /* KeychainPasswordItem.swift */,
 			);
 			name = "Data Controller";
 			sourceTree = "<group>";
@@ -1511,6 +1516,7 @@
 				TargetAttributes = {
 					4C77E36115B84A240093A587 = {
 						DevelopmentTeam = 55SM4L4Z97;
+						LastSwiftMigration = 0830;
 					};
 				};
 			};
@@ -1731,6 +1737,7 @@
 				4C65C79C16DD283900E32CFF /* MPToolbarButton.m in Sources */,
 				4C431BCD16E2A82800700A81 /* MPPasteBoardController.m in Sources */,
 				4C6AEEF91A043E2B00CA2420 /* MPDocumentController.m in Sources */,
+				EC0ADDBB1F4C7AFD0084F402 /* KeychainPasswordItem.swift in Sources */,
 				4CE8246F16E2E93400573141 /* MPOverlayWindowController.m in Sources */,
 				4CE8247516E2F2B900573141 /* MPOverlayView.m in Sources */,
 				4C7B63761C0CB51F00D7038C /* TTTJSONTransformer.m in Sources */,
@@ -2329,6 +2336,9 @@
 				PROVISIONING_PROFILE = "";
 				SDKROOT = macosx;
 				STRIP_STYLE = debugging;
+				SWIFT_OBJC_BRIDGING_HEADER = "MacPass/MacPass-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 3.0;
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -2359,6 +2369,8 @@
 				PROVISIONING_PROFILE = "";
 				SDKROOT = macosx;
 				STRIP_STYLE = debugging;
+				SWIFT_OBJC_BRIDGING_HEADER = "MacPass/MacPass-Bridging-Header.h";
+				SWIFT_VERSION = 3.0;
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;
