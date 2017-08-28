@@ -151,8 +151,8 @@
 		NSAlert *alert = [NSAlert new];
 		[alert addButtonWithTitle:@"Yes"];
 		[alert addButtonWithTitle:@"No"];
-		[alert setMessageText:@"Use TouchID for unlocking this database?"];
-		[alert setInformativeText:@"If you select Yes, your database password will be saved in the Keychain and you will be able to unlock this database with your fingertip."];
+		alert.messageText = NSLocalizedString(@"ALERT_TOUCH_ID_MESSAGE", @"");
+		alert.informativeText = NSLocalizedString(@"ALERT_TOUCH_ID_DESCRIPTION", @"");
 		[alert setAlertStyle:NSAlertStyleInformational];
 
 		if ([alert runModal] == NSAlertFirstButtonReturn) {

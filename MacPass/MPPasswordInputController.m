@@ -156,7 +156,7 @@
 	}
 
 	LAContext *myContext = [LAContext new];
-	NSString *myLocalizedReasonString = @"unlock this database";
+	NSString *myLocalizedReasonString = NSLocalizedString(@"TOUCHBAR_TOUCH_ID_MESSAGE", @"");
 
 	NSError *authError = nil;
 	//	if (#available(OSX 10.12, *)) {
