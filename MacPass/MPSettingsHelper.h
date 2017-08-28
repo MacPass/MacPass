@@ -119,7 +119,7 @@ APPKIT_EXTERN NSString *const kMPSettingsKeyPasswordDefaultsForEntry;
 /**
  *  Returns the names of the databases with enabled Touch ID unlocking.
  */
-+ (NSArray*)getTouchIdEnabledDatabases;
++ (NSArray*)touchIdEnabledDatabases;
 
 /**
  *  Adds a new database to the list of Touch ID enabled databases.

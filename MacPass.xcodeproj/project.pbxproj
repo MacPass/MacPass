@@ -259,6 +259,7 @@
 		6021FE8D18E1617300C3BC51 /* PasswordCreatorView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6021FE8F18E1617300C3BC51 /* PasswordCreatorView.xib */; };
 		6021FE9818E1650F00C3BC51 /* DatabaseSettingsWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6021FE9A18E1650F00C3BC51 /* DatabaseSettingsWindow.xib */; };
 		EC0ADDBB1F4C7AFD0084F402 /* KeychainPasswordItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC0ADDBA1F4C7AFD0084F402 /* KeychainPasswordItem.swift */; };
+		EC243FC61F54430A008256CF /* MPOSHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = EC243FC51F54430A008256CF /* MPOSHelper.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -810,6 +811,8 @@
 		BD6C366719484CF40089EB37 /* nl */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = nl; path = nl.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		EC0ADDB91F4C7AFC0084F402 /* MacPass-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "MacPass-Bridging-Header.h"; sourceTree = "<group>"; };
 		EC0ADDBA1F4C7AFD0084F402 /* KeychainPasswordItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KeychainPasswordItem.swift; sourceTree = "<group>"; };
+		EC243FC41F54430A008256CF /* MPOSHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MPOSHelper.h; sourceTree = "<group>"; };
+		EC243FC51F54430A008256CF /* MPOSHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MPOSHelper.m; sourceTree = "<group>"; };
 		FA638D0E1C39BFCB00B10CC6 /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/DatabaseSettingsWindow.strings; sourceTree = "<group>"; };
 		FA638D0F1C39BFCB00B10CC6 /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/PasswordEditWindow.strings; sourceTree = "<group>"; };
 		FA638D101C39BFCB00B10CC6 /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/WelcomeWindow.strings; sourceTree = "<group>"; };
@@ -973,6 +976,8 @@
 				4C978E0C19AE54AB003067DF /* MPFlagsHelper.m */,
 				4C8913641A422C8C0071A4CB /* MPFileWatcher.h */,
 				4C8913651A422C8C0071A4CB /* MPFileWatcher.m */,
+				EC243FC41F54430A008256CF /* MPOSHelper.h */,
+				EC243FC51F54430A008256CF /* MPOSHelper.m */,
 			);
 			name = Helper;
 			sourceTree = "<group>";
@@ -1822,6 +1827,7 @@
 				4C26C33F18D8C92100CF1A1C /* MPTemporaryFileStorage.m in Sources */,
 				4C663D411D6D91A900CB6237 /* MPNumberFormatter.m in Sources */,
 				4CD2B9061849424B0051B395 /* MPAutotypeContext.m in Sources */,
+				EC243FC61F54430A008256CF /* MPOSHelper.m in Sources */,
 				4CFB18E418A17FA20097A34B /* MPUpdateSettingsController.m in Sources */,
 				4C7B63771C0CB51F00D7038C /* TTTStringTransformers.m in Sources */,
 				4CCEDE2A179F203B008402BE /* MPOutlineView.m in Sources */,

@@ -166,34 +166,35 @@
 }
 
 - (void) _savePasswordInKeychain:(NSString*)password {
-	@try {
-		MPDocument *document = self.document;
-		NSString *dbName = [document displayName];
+	MPDocument *document = self.document;
+	NSString *dbName = document.displayName;
+	NSError *error = nil;
 
-		KeychainPasswordItem *passwordItem = [[KeychainPasswordItem alloc] initWithService:@"MacPass" account:dbName accessGroup:nil];
+	KeychainPasswordItem *passwordItem = [[KeychainPasswordItem alloc] initWithService:@"MacPass" account:dbName accessGroup:nil];
 
-		[passwordItem savePassword:password error:nil]; //Save the password in the keychain
+	[passwordItem savePassword:password error:&error]; //Save the password in the keychain
+
+	if (error == nil) {
 		[MPSettingsHelper addTouchIdEnabledDatabaseWithName:dbName]; //Add DB name in the list of Touch ID enabled databases
 		NSLog(@"Saved DB (%@) password in the keychain.", dbName);
-	}
-	@catch(NSException *exceptionm) {
-		NSLog(@"Error updating keychain with DB password: %@", exceptionm.description);
+	} else {
+		NSLog(@"Error updating keychain with DB password: %@", error.localizedDescription);
 	}
 }
 
 - (void) _deletePasswordFromKeychain {
-	@try {
-		MPDocument *document = self.document;
-		NSString *dbName = [document displayName];
+	MPDocument *document = self.document;
+	NSString *dbName = document.displayName;
+	NSError *error = nil;
 
-		KeychainPasswordItem *passwordItem = [[KeychainPasswordItem alloc] initWithService:@"MacPass" account:dbName accessGroup:nil];
+	KeychainPasswordItem *passwordItem = [[KeychainPasswordItem alloc] initWithService:@"MacPass" account:dbName accessGroup:nil];
 
-		[passwordItem deleteItemAndReturnError:nil]; //Delete the password from the keychain
+	if (error == nil) {
+		[passwordItem deleteItemAndReturnError:&error]; //Delete the password from the keychain
 		[MPSettingsHelper removeTouchIdEnabledDatabaseWithName:dbName]; //Remove DB name from the list of Touch ID enabled databases
 		NSLog(@"DB (%@) password deleted from keychain.", dbName);
-	}
-	@catch(NSException *exception) {
-		NSLog(@"Error deleting DB password from the keychain: %@", exception.description);
+	} else {
+		NSLog(@"Error deleting DB password from the keychain: %@", error.localizedDescription);
 	}
 }
 
