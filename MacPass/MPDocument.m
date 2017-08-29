@@ -39,6 +39,7 @@
 #import "NSError+Messages.h"
 #import "NSString+MPPasswordCreation.h"
 #import "NSString+MPHash.h"
+#import "NSApplication+MPAdditions.h"
 
 NSString *const MPDocumentDidAddGroupNotification             = @"com.hicknhack.macpass.MPDocumentDidAddGroupNotification";
 NSString *const MPDocumentDidAddEntryNotification             = @"com.hicknhack.macpass.MPDocumentDidAddEntryNotification";
@@ -264,66 +265,70 @@ NSString *const MPDocumentGroupKey                            = @"MPDocumentGrou
 }
 
 - (void)presentedItemDidChange {
-  [super presentedItemDidChange];
-  /* If we are locked we have the data written back to file - just revert */
-  if(self.encrypted) {
-    [self revertDocumentToSaved:nil];
-    return;
-  }
-  NSDictionary *attributes = [[NSFileManager defaultManager] attributesOfItemAtPath:self.fileURL.path error:nil];
-  NSDate *modificationDate = attributes[NSFileModificationDate];
-  if(NSOrderedSame == [self.fileModificationDate compare:modificationDate]) {
-    return; // Just metadata has changed
-  }
+  NSFileCoordinator *coordinator = [[NSFileCoordinator alloc] initWithFilePresenter:self];
   
-  if(self.lockedForFileChange) {
-    return; // We are already displaying an alert
-  }
-  
-  /* Set the flag in this call! */
-  self.lockedForFileChange = YES;
-  
-  /* TODO read file to check if changes took place! */
-
-  /* Dispatch the alert to the main queue */
-  __weak MPDocument *welf = self;
-  dispatch_async(dispatch_get_main_queue(), ^{
-    MPFileChangeStrategy strategy = (MPFileChangeStrategy)[NSUserDefaults.standardUserDefaults integerForKey:kMPSettingsKeyFileChangeStrategy];
-    if(strategy != MPFileChangeStrategyAsk) {
-      [welf _handleFileChangeWithStrategy:strategy setAsDefault:NO];
-      self.lockedForFileChange = NO;
-      return;
+  [coordinator coordinateReadingItemAtURL:self.fileURL options:NSFileCoordinatorReadingWithoutChanges error:nil byAccessor:^(NSURL * _Nonnull newURL) {
+    NSDictionary *attributes = [NSFileManager.defaultManager attributesOfItemAtPath:newURL.path error:nil];
+    if(NSOrderedSame == [attributes.fileModificationDate compare:self.fileModificationDate]) {
+      return; // no content change
     }
-    NSAlert *alert = [[NSAlert alloc] init];
-    alert.alertStyle = NSWarningAlertStyle;
-    alert.messageText = NSLocalizedString(@"FILE_CHANGED_BY_OTHERS_MESSAGE_TEXT", @"Message displayed when an open file was changed from another application");
-    alert.informativeText = NSLocalizedString(@"FILE_CHANGED_BY_OTHERS_INFO_TEXT", @"Informative text displayed when the file was change from another application");
-    alert.showsSuppressionButton = YES;
-    alert.suppressionButton.title = NSLocalizedString(@"SET_AS_DEFAULT_FILE_CHANGE_STRATEGY", @"Set the selection as default file change strategy!");
-    [alert addButtonWithTitle:NSLocalizedString(@"FILE_CHANGE_STRATEGY_MERGE", @"Merge changes into file!")];
-    [alert addButtonWithTitle:NSLocalizedString(@"FILE_CHANGE_STRATEGY_USE_OTHER", @"Reopen the file!")];
-    [alert addButtonWithTitle:NSLocalizedString(@"FILE_CHANGE_STRATEGY_KEEP_MINE", @"Ignore the changes to an open file!")];
-    [alert beginSheetModalForWindow:welf.windowForSheet completionHandler:^(NSModalResponse returnCode) {
-      BOOL useAsDefault = (alert.suppressionButton.state == NSOnState);
-      switch(returnCode) {
-        case NSAlertFirstButtonReturn: {
-          [welf _handleFileChangeWithStrategy:MPFileChangeStrategyMerge setAsDefault:useAsDefault];
-          break;
-        }
-        case NSAlertSecondButtonReturn:
-          [welf _handleFileChangeWithStrategy:MPFileChangeStrategyUseOther setAsDefault:useAsDefault];
-          break;
-        case NSAlertThirdButtonReturn:
-          [welf _handleFileChangeWithStrategy:MPFileChangeStrategyKeepMine setAsDefault:useAsDefault];
-        default:
-          break;
+    
+    if(self.encrypted) {
+      __weak MPDocument *welf = self;
+      dispatch_async(dispatch_get_main_queue(), ^{
+        [welf _handleFileChangeWithStrategy:MPFileChangeStrategyUseOther setAsDefault:NO];
+      });
+      return; // Done!
+    }
+    
+    if(self.lockedForFileChange) {
+      return; // We are already displaying an alert
+    }
+    
+    /* Set the flag in this call! */
+    self.lockedForFileChange = YES;
+    
+    /* Dispatch the alert to the main queue */
+    __weak MPDocument *welf = self;
+    dispatch_async(dispatch_get_main_queue(), ^{
+      MPFileChangeStrategy strategy = (MPFileChangeStrategy)[NSUserDefaults.standardUserDefaults integerForKey:kMPSettingsKeyFileChangeStrategy];
+      if(strategy != MPFileChangeStrategyAsk) {
+        [welf _handleFileChangeWithStrategy:strategy setAsDefault:NO];
+        self.lockedForFileChange = NO;
+        return;
       }
-      welf.lockedForFileChange = NO;
-    }];
-  });
+      NSAlert *alert = [[NSAlert alloc] init];
+      alert.alertStyle = NSWarningAlertStyle;
+      alert.messageText = NSLocalizedString(@"FILE_CHANGED_BY_OTHERS_MESSAGE_TEXT", @"Message displayed when an open file was changed from another application");
+      alert.informativeText = NSLocalizedString(@"FILE_CHANGED_BY_OTHERS_INFO_TEXT", @"Informative text displayed when the file was change from another application");
+      alert.showsSuppressionButton = YES;
+      alert.suppressionButton.title = NSLocalizedString(@"SET_AS_DEFAULT_FILE_CHANGE_STRATEGY", @"Set the selection as default file change strategy!");
+      [alert addButtonWithTitle:NSLocalizedString(@"FILE_CHANGE_STRATEGY_MERGE", @"Merge changes into file!")];
+      [alert addButtonWithTitle:NSLocalizedString(@"FILE_CHANGE_STRATEGY_USE_OTHER", @"Reopen the file!")];
+      [alert addButtonWithTitle:NSLocalizedString(@"FILE_CHANGE_STRATEGY_KEEP_MINE", @"Ignore the changes to an open file!")];
+      [alert beginSheetModalForWindow:welf.windowForSheet completionHandler:^(NSModalResponse returnCode) {
+        BOOL useAsDefault = (alert.suppressionButton.state == NSOnState);
+        switch(returnCode) {
+          case NSAlertFirstButtonReturn: {
+            [welf _handleFileChangeWithStrategy:MPFileChangeStrategyMerge setAsDefault:useAsDefault];
+            break;
+          }
+          case NSAlertSecondButtonReturn:
+            [welf _handleFileChangeWithStrategy:MPFileChangeStrategyUseOther setAsDefault:useAsDefault];
+            break;
+          case NSAlertThirdButtonReturn:
+            [welf _handleFileChangeWithStrategy:MPFileChangeStrategyKeepMine setAsDefault:useAsDefault];
+          default:
+            break;
+        }
+        welf.lockedForFileChange = NO;
+      }];
+    });
+  }];
 }
 
 - (void)_handleFileChangeWithStrategy:(MPFileChangeStrategy)strategy setAsDefault:(BOOL)setAsDefault {
+  NSAssert(NSThread.currentThread.isMainThread, @"Invoke only on main thread!");
   if(setAsDefault) {
     [NSUserDefaults.standardUserDefaults setInteger:strategy forKey:kMPSettingsKeyFileChangeStrategy];
   }
@@ -366,6 +371,12 @@ NSString *const MPDocumentGroupKey                            = @"MPDocumentGrou
   }
   else {
     [self.tree syncronizeWithTree:otherTree options:KPKSynchronizationSynchronizeOption];
+    NSUserNotification *notification = [[NSUserNotification alloc] init];
+    notification.title = NSApp.applicationName;
+    notification.informativeText = NSLocalizedString(@"AUTO_MERGE_NOTIFICATION_TEXT", @"");
+    notification.deliveryDate = NSDate.date;
+    [NSUserNotificationCenter.defaultUserNotificationCenter scheduleNotification:notification];
+    
   }
 }
 
@@ -403,7 +414,7 @@ NSString *const MPDocumentGroupKey                            = @"MPDocumentGrou
   }
   self.tree = nil;
   self.compositeKey = nil;
-  [[NSNotificationCenter defaultCenter] postNotificationName:MPDocumentDidLockDatabaseNotification object:self];
+  [NSNotificationCenter.defaultCenter postNotificationName:MPDocumentDidLockDatabaseNotification object:self];
 }
 
 
@@ -417,7 +428,7 @@ NSString *const MPDocumentGroupKey                            = @"MPDocumentGrou
     /* only clear the data if we actually do not need it anymore */
     self.encryptedData = nil;
     self.unlockCount += 1;
-    [[NSNotificationCenter defaultCenter] postNotificationName:MPDocumentDidUnlockDatabaseNotification object:self];
+    [NSNotificationCenter.defaultCenter postNotificationName:MPDocumentDidUnlockDatabaseNotification object:self];
     [self _storeKeyURL:keyFileURL];
   }
   else {
@@ -452,7 +463,7 @@ NSString *const MPDocumentGroupKey                            = @"MPDocumentGrou
   if(!delegate.isAllowedToStoreKeyFile) {
     return nil;
   }
-  NSDictionary *keysForFiles = [[NSUserDefaults standardUserDefaults] dictionaryForKey:kMPSettingsKeyRememeberdKeysForDatabases];
+  NSDictionary *keysForFiles = [NSUserDefaults.standardUserDefaults dictionaryForKey:kMPSettingsKeyRememeberdKeysForDatabases];
   NSString *keyPath = keysForFiles[self.fileURL.path.sha1HexDigest];
   if(!keyPath) {
     return nil;
@@ -823,7 +834,7 @@ NSString *const MPDocumentGroupKey                            = @"MPDocumentGrou
       break;
     case MPActionPerformAutotypeForSelectedEntry:
       valid &= (nil != targetEntry);
-      break;      
+      break;
     default:
       break;
   }
