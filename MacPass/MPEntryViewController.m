@@ -583,7 +583,7 @@ NSString *const _MPTableSecurCellView = @"PasswordCell";
 #pragma mark Copy/Paste Overlays
 - (void)_copyToPasteboard:(NSString *)data overlayInfo:(MPOverlayInfoType)overlayInfoType name:(NSString *)name{
   if(data) {
-    [[MPPasteBoardController defaultController] copyObjects:@[ data ]];
+    [MPPasteBoardController.defaultController copyObjects:@[ data ]];
   }
   NSImage *infoImage = nil;
   NSString *infoText = nil;
