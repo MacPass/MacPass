@@ -52,32 +52,27 @@
 }
 
 - (void)displayOverlayImage:(NSImage *)imageOrNil label:(NSString *)labelOrNil atView:(NSView *)view {
-  if(![NSThread currentThread].isMainThread) {  NSAssert(NO, @"Must be called on main thread"); }
-  /*
-  if(![NSThread currentThread].isMainThread) {
-    __weak MPOverlayWindowController *welf = self;
-    dispatch_async(dispatch_get_main_queue(), ^{
-      [welf displayOverlayImage:imageOrNil label:labelOrNil atView:view];
-    });
+  if(!NSThread.currentThread.isMainThread) {
+    NSAssert(NO, @"Must be called on main thread");
     return;
   }
-  */
+  
   if(self.isAnimating) {
     return;
   }
   self.isAnimating = YES;
   /* make window transparent */
   
-  [self.window setAlphaValue:0];
-  [self.window setIsVisible:YES];
+  self.window.alphaValue = 0;
+  self.window.isVisible = YES;
   
   /* setup any provided images and labels*/
-  [self.imageView setImage:imageOrNil];
+  self.imageView.image = imageOrNil;
   if(labelOrNil) {
-    [self.textField setStringValue:labelOrNil];
+    self.textField.stringValue = labelOrNil;
   }
   else {
-    [self.textField setStringValue:@""];
+    self.textField.stringValue = @"";
   }
   [self.textField sizeToFit];
   /*
@@ -105,7 +100,7 @@
   }
   [NSAnimationContext runAnimationGroup:^(NSAnimationContext *context) {
     context.duration = 0.2;
-    [[self.window animator]setAlphaValue:1];
+    [self.window animator].alphaValue = 1;
   } completionHandler:^{
     [self performSelector:@selector(_didEndAnimation) withObject:nil afterDelay:0.5];
   }];
