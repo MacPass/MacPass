@@ -43,16 +43,16 @@ NSString *const MPPasteBoardControllerDidClearClipboard = @"com.hicknhack.macpas
 
 - (void)dealloc {
   if(_clearPasteboardOnShutdown) {
-    [[NSNotificationCenter defaultCenter] removeObserver:self];
+    [NSNotificationCenter.defaultCenter removeObserver:self];
   }
 }
 
 - (void)_updateNotifications {
   if(self.clearPasteboardOnShutdown) {
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(_clearPasteboardContents) name:NSApplicationWillTerminateNotification object:nil];
+    [NSNotificationCenter.defaultCenter addObserver:self selector:@selector(_clearPasteboardContents) name:NSApplicationWillTerminateNotification object:nil];
   }
   else {
-    [[NSNotificationCenter defaultCenter] removeObserver:self];
+    [NSNotificationCenter.defaultCenter removeObserver:self];
   }
 }
 
@@ -89,7 +89,7 @@ NSString *const MPPasteBoardControllerDidClearClipboard = @"com.hicknhack.macpas
 - (void)copyObjects:(NSArray *)objects {
   [self copyObjectsWithoutTimeout:objects];
   if(self.clearTimeout != 0) {
-    [[NSNotificationCenter defaultCenter] postNotificationName:MPPasteBoardControllerDidCopyObjects object:self];
+    [NSNotificationCenter.defaultCenter postNotificationName:MPPasteBoardControllerDidCopyObjects object:self];
     [self performSelector:@selector(_clearPasteboardContents) withObject:nil afterDelay:self.clearTimeout];
   }
 }
@@ -105,7 +105,7 @@ NSString *const MPPasteBoardControllerDidClearClipboard = @"com.hicknhack.macpas
   /* Only clear stuff we might have put there */
   if(!self.isEmpty) {
     [[NSPasteboard generalPasteboard] clearContents];
-    [[NSNotificationCenter defaultCenter] postNotificationName:MPPasteBoardControllerDidClearClipboard object:self];
+    [NSNotificationCenter.defaultCenter postNotificationName:MPPasteBoardControllerDidClearClipboard object:self];
   }
   self.isEmpty = YES;
 }
