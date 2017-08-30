@@ -363,6 +363,9 @@ NSString *const MPDocumentGroupKey                            = @"MPDocumentGrou
   KPKTree *otherTree = [[KPKTree alloc] initWithContentsOfUrl:url key:self.compositeKey error:&error];
   if(!otherTree) {
     if(error.code == KPKErrorPasswordAndOrKeyfileWrong) {
+      NSAlert *alert = [[NSAlert alloc] init];
+      alert.alertStyle = NSAlertStyleWarning;
+      alert.informativeText = NSLocalizedString(@"ALERT_MERGE_OTHER_KEY_CHANGED", @"");
       [self presentError:error];
     }
     else {
