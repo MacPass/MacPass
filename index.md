@@ -40,7 +40,7 @@ If you want to contribute by fixing a bug, adding a feature or improving localiz
 
 ## Help
 
-Some questions might be ansered in the [FAQ](https://github.com/mstarke/MacPass/wiki/FAQ)
+Some questions might be answered in the [FAQ](https://github.com/mstarke/MacPass/wiki/FAQ)
 
 Another place to look is the IRC channel [#macpass](irc://irc.freenode.org/macpass) on [irc.freenode.org](irc://irc.freenode.org)
 
