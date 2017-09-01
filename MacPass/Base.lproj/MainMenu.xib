@@ -1,8 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="11201" systemVersion="16A323" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="12121" systemVersion="16G29" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
     <dependencies>
-        <deployment identifier="macosx"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="11201"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="12121"/>
     </dependencies>
     <objects>
         <customObject id="-2" userLabel="File's Owner" customClass="NSApplication">
@@ -97,20 +96,6 @@
                                     </items>
                                 </menu>
                             </menuItem>
-                            <menuItem isSeparatorItem="YES" id="79">
-                                <modifierMask key="keyEquivalentModifierMask" command="YES"/>
-                            </menuItem>
-                            <menuItem title="Import XML…" id="rW0-r1-QYL">
-                                <modifierMask key="keyEquivalentModifierMask"/>
-                                <connections>
-                                    <action selector="importFromXML:" target="-1" id="ESL-Uw-7fk"/>
-                                </connections>
-                            </menuItem>
-                            <menuItem title="Export As XML…" keyEquivalent="E" id="1259">
-                                <connections>
-                                    <action selector="exportAsXML:" target="-1" id="NCG-gr-YI5"/>
-                                </connections>
-                            </menuItem>
                             <menuItem isSeparatorItem="YES" id="FVA-Cn-g79"/>
                             <menuItem title="Fix Autotype…" id="nx7-Vf-LiD">
                                 <modifierMask key="keyEquivalentModifierMask"/>
@@ -153,6 +138,20 @@
                                 <modifierMask key="keyEquivalentModifierMask"/>
                                 <connections>
                                     <action selector="revertDocumentToSaved:" target="-1" id="364"/>
+                                </connections>
+                            </menuItem>
+                            <menuItem isSeparatorItem="YES" id="79">
+                                <modifierMask key="keyEquivalentModifierMask" command="YES"/>
+                            </menuItem>
+                            <menuItem title="Import XML…" id="rW0-r1-QYL">
+                                <modifierMask key="keyEquivalentModifierMask"/>
+                                <connections>
+                                    <action selector="importFromXML:" target="-1" id="ESL-Uw-7fk"/>
+                                </connections>
+                            </menuItem>
+                            <menuItem title="Export As XML…" keyEquivalent="E" id="1259">
+                                <connections>
+                                    <action selector="exportAsXML:" target="-1" id="NCG-gr-YI5"/>
                                 </connections>
                             </menuItem>
                             <menuItem isSeparatorItem="YES" id="74">
