@@ -25,7 +25,7 @@
 }
 
 - (void)viewDidLoad {
-  self.iconCollectionView.backgroundColors = @[[NSColor clearColor]];
+  self.iconCollectionView.backgroundColors = @[NSColor.clearColor];
   self.iconCollectionView.selectable = YES;
   self.iconCollectionView.allowsMultipleSelection = NO;
   self.iconCollectionView.content = [MPIconHelper databaseIcons];
@@ -34,7 +34,7 @@
 - (IBAction)useDefault:(id)sender {
   KPKNode *node = self.representedObject;
   [self.observer willChangeModelProperty];
-  node.iconId = [[node class] defaultIcon];
+  node.iconId = [node.class defaultIcon];
   [self.observer didChangeModelProperty];
   [self.view.window performClose:sender];
 }
