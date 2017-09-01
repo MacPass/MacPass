@@ -203,10 +203,13 @@
 "SET_AS_DEFAULT_FILE_CHANGE_STRATEGY" = "Use this method as default. You can change this at any time in the preferences.";
 /* Always show a dialog after an external file change */
 "FILE_CHANGE_STRATEGY_ASK" = "Ask";
+"SHORT_FILE_CHANGE_STRATEGY_ASK" = "Ask";
 /* Button to ignore the changes */
 "FILE_CHANGE_STRATEGY_KEEP_MINE" = "Keep My Version and Ignore Other Changes";
+"KEEP_MINE_DISCARD_OTHER" = "Keep Mine, Discard Other";
 /* Button to reload the changes form disk */
 "FILE_CHANGE_STRATEGY_USE_OTHER" = "Load Changed Version and Discard Mine";
+"KEEP_OTHER_DISCARD_MINE" = "Keep Other, Discard Mine";
 /* Merge changes into file! */
 "FILE_CHANGE_STRATEGY_MERGE" = "Merge Changes";
 

@@ -305,8 +305,8 @@ NSString *const MPDocumentGroupKey                            = @"MPDocumentGrou
       alert.showsSuppressionButton = YES;
       alert.suppressionButton.title = NSLocalizedString(@"SET_AS_DEFAULT_FILE_CHANGE_STRATEGY", @"Set the selection as default file change strategy!");
       [alert addButtonWithTitle:NSLocalizedString(@"FILE_CHANGE_STRATEGY_MERGE", @"Merge changes into file!")];
-      [alert addButtonWithTitle:NSLocalizedString(@"FILE_CHANGE_STRATEGY_USE_OTHER", @"Reopen the file!")];
-      [alert addButtonWithTitle:NSLocalizedString(@"FILE_CHANGE_STRATEGY_KEEP_MINE", @"Ignore the changes to an open file!")];
+      [alert addButtonWithTitle:NSLocalizedString(@"KEEP_OTHER_DISCARD_MINE", @"Reopen the file!")];
+      [alert addButtonWithTitle:NSLocalizedString(@"KEEP_MINE_DISCARD_OTHER", @"Ignore the changes to an open file!")];
       [alert beginSheetModalForWindow:welf.windowForSheet completionHandler:^(NSModalResponse returnCode) {
         BOOL useAsDefault = (alert.suppressionButton.state == NSOnState);
         switch(returnCode) {
