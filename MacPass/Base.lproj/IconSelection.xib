@@ -1,8 +1,8 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="9059" systemVersion="15B42" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="12121" systemVersion="16G29" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
     <dependencies>
-        <deployment identifier="macosx"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="9059"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="12121"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
         <customObject id="-2" userLabel="File's Owner" customClass="MPIconSelectViewController">
@@ -26,31 +26,24 @@
                             <collectionView focusRingType="none" id="58">
                                 <rect key="frame" x="0.0" y="0.0" width="380" height="280"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                                <animations/>
                                 <color key="primaryBackgroundColor" name="windowBackgroundColor" catalog="System" colorSpace="catalog"/>
                                 <connections>
                                     <outlet property="itemPrototype" destination="61" id="63"/>
                                 </connections>
                             </collectionView>
                         </subviews>
-                        <animations/>
-                        <color key="backgroundColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
                     </clipView>
-                    <animations/>
                     <scroller key="horizontalScroller" hidden="YES" verticalHuggingPriority="750" horizontal="YES" id="59">
                         <rect key="frame" x="1" y="144" width="233" height="15"/>
                         <autoresizingMask key="autoresizingMask"/>
-                        <animations/>
                     </scroller>
                     <scroller key="verticalScroller" hidden="YES" verticalHuggingPriority="750" doubleValue="1" horizontal="NO" id="60">
                         <rect key="frame" x="234" y="1" width="15" height="143"/>
                         <autoresizingMask key="autoresizingMask"/>
-                        <animations/>
                     </scroller>
                 </scrollView>
                 <button verticalHuggingPriority="750" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="101">
                     <rect key="frame" x="263" y="18" width="117" height="25"/>
-                    <animations/>
                     <buttonCell key="cell" type="roundTextured" title="Use Default Icon" bezelStyle="texturedRounded" alignment="center" state="on" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="102">
                         <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                         <font key="font" metaFont="system"/>
@@ -61,7 +54,6 @@
                 </button>
                 <button verticalHuggingPriority="750" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="His-4A-hcY">
                     <rect key="frame" x="198" y="18" width="57" height="25"/>
-                    <animations/>
                     <buttonCell key="cell" type="roundTextured" title="Cancel" bezelStyle="texturedRounded" alignment="center" state="on" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="1kM-cI-P1o">
                         <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                         <font key="font" metaFont="system"/>
@@ -82,8 +74,7 @@
                 <constraint firstItem="101" firstAttribute="leading" secondItem="His-4A-hcY" secondAttribute="trailing" constant="8" id="EHs-2w-CJq"/>
                 <constraint firstItem="His-4A-hcY" firstAttribute="baseline" secondItem="101" secondAttribute="baseline" id="fq3-rS-gvQ"/>
             </constraints>
-            <animations/>
-            <point key="canvasLocation" x="370" y="95"/>
+            <point key="canvasLocation" x="-26" y="-60"/>
         </customView>
         <collectionViewItem id="61">
             <connections>
@@ -100,7 +91,6 @@
                         <constraint firstAttribute="width" constant="32" id="161"/>
                         <constraint firstAttribute="height" constant="32" id="162"/>
                     </constraints>
-                    <animations/>
                     <buttonCell key="cell" type="bevel" bezelStyle="regularSquare" image="NSAddTemplate" imagePosition="only" alignment="center" imageScaling="proportionallyUpOrDown" inset="2" id="115">
                         <behavior key="behavior" lightByContents="YES"/>
                         <font key="font" metaFont="system"/>
@@ -115,7 +105,6 @@
                 <constraint firstItem="114" firstAttribute="centerY" secondItem="113" secondAttribute="centerY" id="168"/>
                 <constraint firstItem="114" firstAttribute="centerX" secondItem="113" secondAttribute="centerX" id="169"/>
             </constraints>
-            <animations/>
         </customView>
     </objects>
     <resources>

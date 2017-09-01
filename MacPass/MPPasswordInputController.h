@@ -12,8 +12,10 @@
 
 @interface MPPasswordInputController : MPViewController
 
-typedef BOOL (^passwordInputCompletionBlock)(NSString *password, NSURL *keyURL, NSError *__autoreleasing*error);
+typedef BOOL (^passwordInputCompletionBlock)(NSString *password, NSURL *keyURL, BOOL didCancel, NSError *__autoreleasing*error);
 
 - (void)requestPasswordWithCompletionHandler:(passwordInputCompletionBlock)completionHandler;
+- (void)requestPasswordWithMessage:(NSString *)message cancelLabel:(NSString *)cancelLabel completionHandler:(passwordInputCompletionBlock)completionHandler;
+
 
 @end

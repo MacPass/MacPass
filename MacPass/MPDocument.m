@@ -33,6 +33,7 @@
 #import "MPTreeDelegate.h"
 #import "MPTargetNodeResolving.h"
 #import "MPErrorRecoveryAttempter.h"
+#import "MPPasswordInputController.h"
 
 #import "KeePassKit/KeePassKit.h"
 
@@ -334,7 +335,7 @@ NSString *const MPDocumentGroupKey                            = @"MPDocumentGrou
   }
   
   if(strategy == MPFileChangeStrategyMerge) {
-    [self mergeWithContentsFromURL:self.fileURL];
+    [self mergeWithContentsFromURL:self.fileURL key:self.compositeKey];
   }
   else if(strategy == MPFileChangeStrategyUseOther) {
     [self revertToContentsOfURL:self.fileURL ofType:self.fileType error:nil];
@@ -357,29 +358,53 @@ NSString *const MPDocumentGroupKey                            = @"MPDocumentGrou
   self.encryptedData = nil;
 }
 
-- (void)mergeWithContentsFromURL:(NSURL *)url {
-  /* TODO read file to check what format to use */
+- (void)mergeWithContentsFromURL:(NSURL *)url key:(KPKCompositeKey *)key {
   NSError *error;
-  KPKTree *otherTree = [[KPKTree alloc] initWithContentsOfUrl:url key:self.compositeKey error:&error];
-  if(!otherTree) {
-    if(error.code == KPKErrorPasswordAndOrKeyfileWrong) {
-      NSAlert *alert = [[NSAlert alloc] init];
-      alert.alertStyle = NSAlertStyleWarning;
-      alert.informativeText = NSLocalizedString(@"ALERT_MERGE_OTHER_KEY_CHANGED", @"");
-      [self presentError:error];
-    }
-    else {
-      [self presentError:error];
-    }
+  KPKTree *otherTree;
+
+  if(key) {
+    otherTree = [[KPKTree alloc] initWithContentsOfUrl:url key:key error:&error];
   }
-  else {
+  
+  if(otherTree) {
     [self.tree syncronizeWithTree:otherTree options:KPKSynchronizationSynchronizeOption];
+    /* the key might have changed so update ours! */
+    //self.compositeKey = key;
     NSUserNotification *notification = [[NSUserNotification alloc] init];
     notification.title = NSApp.applicationName;
     notification.informativeText = NSLocalizedString(@"AUTO_MERGE_NOTIFICATION_TEXT", @"");
     notification.deliveryDate = NSDate.date;
     [NSUserNotificationCenter.defaultUserNotificationCenter scheduleNotification:notification];
-    
+  }
+  else {
+    if(!key || error.code == KPKErrorPasswordAndOrKeyfileWrong) {
+      NSWindow *sheet = [[NSWindow alloc] initWithContentRect:NSMakeRect(0, 0, 100, 100)
+                                                    styleMask:NSWindowStyleMaskTitled|NSWindowStyleMaskClosable|NSWindowStyleMaskResizable
+                                                      backing:NSBackingStoreBuffered
+                                                        defer:NO];
+      MPPasswordInputController *passwordInputController = [[MPPasswordInputController alloc] init];
+      __weak MPDocument *welf = self;
+      [passwordInputController requestPasswordWithMessage:NSLocalizedString(@"EXTERN_CHANGE_OF_MASTERKEY", @"The master key was changed by an extrenal programm!")
+                                              cancelLabel:NSLocalizedString(@"ABORT_MERGE_KEEP_MINE", @"Button label to abort a merge on a file with changed master key!")
+                                        completionHandler:^BOOL(NSString *password, NSURL *keyURL, BOOL didCancel, NSError *__autoreleasing *error) {
+        [welf.windowForSheet endSheet:sheet returnCode:(didCancel ? NSModalResponseCancel : NSModalResponseOK)];
+        if(!didCancel) {
+          KPKCompositeKey *compositeKey = [[KPKCompositeKey alloc] initWithPassword:password key:keyURL];
+          [welf mergeWithContentsFromURL:url key:compositeKey];
+        }
+        // just return yes regardless since we will display the sheet again if needed!
+        return YES;
+      }];
+      sheet.contentViewController = passwordInputController;
+      [self.windowForSheet beginSheet:sheet completionHandler:^(NSModalResponse returnCode) { /* nothing to do, rest is done in other handler! */ }];
+    }
+    else {
+      /* unable to merge */
+      NSAlert *alert = [NSAlert alertWithError:error];
+      [alert beginSheetModalForWindow:self.windowForSheet completionHandler:^(NSModalResponse returnCode) {
+        // do nothing;
+      }];
+    }
   }
 }
 

@@ -305,7 +305,7 @@ typedef void (^MPPasswordChangedBlock)(BOOL didChangePassword);
   //openPanel.allowedFileTypes = @[(id)kUTTypeXML];
   [openPanel beginSheetModalForWindow:self.window completionHandler:^(NSInteger result) {
     if(result == NSFileHandlingPanelOKButton) {
-      [document mergeWithContentsFromURL:openPanel.URL];
+      [document mergeWithContentsFromURL:openPanel.URL key:document.compositeKey];
     }
   }];
 }
@@ -324,7 +324,10 @@ typedef void (^MPPasswordChangedBlock)(BOOL didChangePassword);
   }
   [self _setContentViewController:self.passwordInputController];
   __weak MPDocumentWindowController *welf = self;
-  [self.passwordInputController requestPasswordWithCompletionHandler:^BOOL(NSString *password, NSURL *keyURL, NSError *__autoreleasing *error) {
+  [self.passwordInputController requestPasswordWithCompletionHandler:^BOOL(NSString *password, NSURL *keyURL, BOOL cancel, NSError *__autoreleasing *error) {
+    if(cancel) {
+      return NO;
+    }
     return [((MPDocument *)welf.document) unlockWithPassword:password keyFileURL:keyURL error:error];
   }];
 }
