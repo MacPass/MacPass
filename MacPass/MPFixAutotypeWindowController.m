@@ -92,7 +92,7 @@ NSString *const kMPIconCell = @"IconCell";
     }
   }];
   [[self.document undoManager] endUndoGrouping];
-  [[self.document undoManager] setActionName:@"Clear Autotype"];
+  [[self.document undoManager] setActionName:NSLocalizedString(@"CLEAR_AUTOTYPE", @"Clear Autotype Button")];
   [self.tableView reloadDataForRowIndexes:indexes columnIndexes:[NSIndexSet indexSetWithIndexesInRange:NSMakeRange(0,2)]];
 }
 

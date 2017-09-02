@@ -79,7 +79,7 @@ typedef NS_ENUM(NSUInteger, MPContextTab) {
   }
   NSInteger specialTags[] = { MPEntrySearchDoublePasswords, MPEntrySearchExpiredEntries };
   NSArray *titles = @[ NSLocalizedString(@"SEARCH_DUPLICATE_PASSWORDS", ""), NSLocalizedString(@"SEARCH_EXPIRED_ENTRIES", "") ];
-  NSMenu *specialMenu = [[NSMenu alloc] initWithTitle:@"Special Filters Menu"];
+  NSMenu *specialMenu = [[NSMenu alloc] initWithTitle:NSLocalizedString(@"CUSTOM_SEARCH_FILTER_MENU", @"Title for menu for custom search filters")];
   [specialMenu addItemWithTitle:NSLocalizedString(@"SELECT_FILTER_WITH_DOTS", "") action:NULL keyEquivalent:@""];
   [[specialMenu itemAtIndex:0] setEnabled:NO];
   [[specialMenu itemAtIndex:0] setTag:MPEntrySearchNone];

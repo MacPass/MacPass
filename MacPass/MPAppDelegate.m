@@ -236,9 +236,9 @@ NSString *const MPDidChangeStoredKeyFilesSettings = @"com.hicknhack.macpass.MPDi
 - (void)checkForUpdates:(id)sender {
 #if defined(DEBUG) || defined(NO_SPARKLE)
   NSAlert *alert = [[NSAlert alloc] init];
-  alert.messageText = @"Updates are disabled!";
+  alert.messageText = NSLocalizedString(@"Updates are disabled!", @"Message text for disabled updates alert!");
   alert.informativeText = [NSString stringWithFormat:@"Sparkle updates are disabled for this build of %@!", NSApp.applicationName];
-  [alert addButtonWithTitle:@"Ok"];
+  [alert addButtonWithTitle:NSLocalizedString(@"OK", @"Ok button")];
   [alert runModal];
 #else
   [[SUUpdater sharedUpdater] checkForUpdates:sender];
