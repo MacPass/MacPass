@@ -143,6 +143,12 @@
                             <menuItem isSeparatorItem="YES" id="79">
                                 <modifierMask key="keyEquivalentModifierMask" command="YES"/>
                             </menuItem>
+                            <menuItem title="Merge…" id="zvE-0h-UxI">
+                                <modifierMask key="keyEquivalentModifierMask"/>
+                                <connections>
+                                    <action selector="mergeWithOther:" target="-1" id="OyM-CZ-TDD"/>
+                                </connections>
+                            </menuItem>
                             <menuItem title="Import XML…" id="rW0-r1-QYL">
                                 <modifierMask key="keyEquivalentModifierMask"/>
                                 <connections>
