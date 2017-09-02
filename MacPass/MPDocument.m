@@ -275,9 +275,8 @@ NSString *const MPDocumentGroupKey                            = @"MPDocumentGrou
     }
     
     if(self.encrypted) {
-      __weak MPDocument *welf = self;
       dispatch_async(dispatch_get_main_queue(), ^{
-        [welf _handleFileChangeWithStrategy:MPFileChangeStrategyUseOther setAsDefault:NO];
+        [self _handleFileChangeWithStrategy:MPFileChangeStrategyUseOther setAsDefault:NO];
       });
       return; // Done!
     }
@@ -290,11 +289,10 @@ NSString *const MPDocumentGroupKey                            = @"MPDocumentGrou
     self.lockedForFileChange = YES;
     
     /* Dispatch the alert to the main queue */
-    __weak MPDocument *welf = self;
     dispatch_async(dispatch_get_main_queue(), ^{
       MPFileChangeStrategy strategy = (MPFileChangeStrategy)[NSUserDefaults.standardUserDefaults integerForKey:kMPSettingsKeyFileChangeStrategy];
       if(strategy != MPFileChangeStrategyAsk) {
-        [welf _handleFileChangeWithStrategy:strategy setAsDefault:NO];
+        [self _handleFileChangeWithStrategy:strategy setAsDefault:NO];
         self.lockedForFileChange = NO;
         return;
       }
@@ -307,22 +305,22 @@ NSString *const MPDocumentGroupKey                            = @"MPDocumentGrou
       [alert addButtonWithTitle:NSLocalizedString(@"FILE_CHANGE_STRATEGY_MERGE", @"Merge changes into file!")];
       [alert addButtonWithTitle:NSLocalizedString(@"KEEP_OTHER_DISCARD_MINE", @"Reopen the file!")];
       [alert addButtonWithTitle:NSLocalizedString(@"KEEP_MINE_DISCARD_OTHER", @"Ignore the changes to an open file!")];
-      [alert beginSheetModalForWindow:welf.windowForSheet completionHandler:^(NSModalResponse returnCode) {
+      [alert beginSheetModalForWindow:self.windowForSheet completionHandler:^(NSModalResponse returnCode) {
         BOOL useAsDefault = (alert.suppressionButton.state == NSOnState);
         switch(returnCode) {
           case NSAlertFirstButtonReturn: {
-            [welf _handleFileChangeWithStrategy:MPFileChangeStrategyMerge setAsDefault:useAsDefault];
+            [self _handleFileChangeWithStrategy:MPFileChangeStrategyMerge setAsDefault:useAsDefault];
             break;
           }
           case NSAlertSecondButtonReturn:
-            [welf _handleFileChangeWithStrategy:MPFileChangeStrategyUseOther setAsDefault:useAsDefault];
+            [self _handleFileChangeWithStrategy:MPFileChangeStrategyUseOther setAsDefault:useAsDefault];
             break;
           case NSAlertThirdButtonReturn:
-            [welf _handleFileChangeWithStrategy:MPFileChangeStrategyKeepMine setAsDefault:useAsDefault];
+            [self _handleFileChangeWithStrategy:MPFileChangeStrategyKeepMine setAsDefault:useAsDefault];
           default:
             break;
         }
-        welf.lockedForFileChange = NO;
+        self.lockedForFileChange = NO;
       }];
     });
   }];
@@ -383,14 +381,13 @@ NSString *const MPDocumentGroupKey                            = @"MPDocumentGrou
                                                       backing:NSBackingStoreBuffered
                                                         defer:NO];
       MPPasswordInputController *passwordInputController = [[MPPasswordInputController alloc] init];
-      __weak MPDocument *welf = self;
       [passwordInputController requestPasswordWithMessage:NSLocalizedString(@"EXTERN_CHANGE_OF_MASTERKEY", @"The master key was changed by an extrenal programm!")
                                               cancelLabel:NSLocalizedString(@"ABORT_MERGE_KEEP_MINE", @"Button label to abort a merge on a file with changed master key!")
                                         completionHandler:^BOOL(NSString *password, NSURL *keyURL, BOOL didCancel, NSError *__autoreleasing *error) {
-        [welf.windowForSheet endSheet:sheet returnCode:(didCancel ? NSModalResponseCancel : NSModalResponseOK)];
+        [self.windowForSheet endSheet:sheet returnCode:(didCancel ? NSModalResponseCancel : NSModalResponseOK)];
         if(!didCancel) {
           KPKCompositeKey *compositeKey = [[KPKCompositeKey alloc] initWithPassword:password key:keyURL];
-          [welf mergeWithContentsFromURL:url key:compositeKey];
+          [self mergeWithContentsFromURL:url key:compositeKey];
         }
         // just return yes regardless since we will display the sheet again if needed!
         return YES;
