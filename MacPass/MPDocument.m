@@ -619,8 +619,9 @@ NSString *const MPDocumentGroupKey                            = @"MPDocumentGrou
   }
   [newEntry addToGroup:parent];
   [newEntry.undoManager setActionName:NSLocalizedString(@"ADD_ENTRY", "")];
-  NSDictionary *userInfo = @{ MPDocumentEntryKey: newEntry };
-  [[NSNotificationCenter defaultCenter] postNotificationName:MPDocumentDidAddEntryNotification object:self userInfo:userInfo];
+  [NSNotificationCenter.defaultCenter postNotificationName:MPDocumentDidAddEntryNotification
+                                                   object:self
+                                                 userInfo:@{ MPDocumentEntryKey: newEntry }];
   return newEntry;
 }
 
@@ -643,8 +644,9 @@ NSString *const MPDocumentGroupKey                            = @"MPDocumentGrou
   }
   [newGroup addToGroup:parent];
   [newGroup.undoManager setActionName:NSLocalizedString(@"ADD_GROUP", "")];
-  NSDictionary *userInfo = @{ MPDocumentGroupKey : newGroup };
-  [[NSNotificationCenter defaultCenter] postNotificationName:MPDocumentDidAddGroupNotification object:self userInfo:userInfo];
+  [NSNotificationCenter.defaultCenter postNotificationName:MPDocumentDidAddGroupNotification
+                                                    object:self
+                                                  userInfo:@{ MPDocumentGroupKey : newGroup }];
   return newGroup;
 }
 
