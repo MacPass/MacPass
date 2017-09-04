@@ -263,6 +263,9 @@ static MPAutotypeDaemon *_sharedInstance;
 
 - (NSDictionary *)_infoDictionaryForApplication:(NSRunningApplication *)application {
   NSArray *currentWindows = CFBridgingRelease(CGWindowListCopyWindowInfo(kCGWindowListExcludeDesktopElements, kCGNullWindowID));
+  NSArray *windowNumbers = [NSWindow windowNumbersWithOptions:NSWindowNumberListAllApplications];
+  NSUInteger minZIndex = NSNotFound;
+  NSDictionary *infoDict = nil;
   for(NSDictionary *windowDict in currentWindows) {
     NSString *windowTitle = windowDict[(NSString *)kCGWindowName];
     if(windowTitle.length <= 0) {
@@ -270,13 +273,19 @@ static MPAutotypeDaemon *_sharedInstance;
     }
     NSNumber *processId = windowDict[(NSString *)kCGWindowOwnerPID];
     if(processId && [processId isEqualToNumber:@(application.processIdentifier)]) {
-      return @{
-               kMPWindowTitleKey: windowDict[(NSString *)kCGWindowName],
-               kMPProcessIdentifierKey : processId
-               };
+      
+      NSNumber *number = (NSNumber *)windowDict[(NSString *)kCGWindowNumber];
+      NSUInteger zIndex = [windowNumbers indexOfObject:number];
+      if(zIndex < minZIndex) {
+        minZIndex = zIndex;
+        infoDict = @{
+                     kMPWindowTitleKey: windowTitle,
+                     kMPProcessIdentifierKey : processId
+                     };
+      }
     }
   }
-  return nil;
+  return infoDict;
 }
 
 - (void)_presentSelectionWindow:(NSArray *)candidates {
