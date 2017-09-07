@@ -20,7 +20,10 @@
 //  along with this program.  If not, see <http://www.gnu.org/licenses/>.
 //
 
+@class KPKIcon;
+
 #import <Foundation/Foundation.h>
+
 /**
  *	Available IconTypes
  *  Every Icon after MPCustomIconTypeBegin
@@ -132,7 +135,7 @@ typedef NS_ENUM(NSUInteger, MPIconType) {
  *	List of all available DatabaseIcons as an array of Images. Sorted by IconIndex.
  *	@return	Array of Icons as NSImage objects
  */
-+ (NSArray *)databaseIcons;
++ (NSArray<KPKIcon *> *)databaseIcons;
 
 /**
  *	List of all available DatabaseIcons as an array of MPIconType. Sorted by IconIndex.

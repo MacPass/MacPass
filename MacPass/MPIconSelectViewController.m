@@ -24,11 +24,18 @@
 #import "MPIconHelper.h"
 #import "MPDocument.h"
 
+typedef NS_ENUM(NSUInteger, MPIconeSelectionType) {
+  MPIconSelectionDefault,
+  MPIconSelectionCustom
+};
+
 @interface MPIconSelectViewController ()
 
 /* UI properties */
 @property (weak) IBOutlet NSCollectionView *iconCollectionView;
 @property (weak) IBOutlet NSButton *imageButton;
+@property (weak) IBOutlet NSSegmentedControl *typeSelectionButton;
+@property MPIconeSelectionType selectionType;
 
 @end
 
@@ -39,10 +46,35 @@
 }
 
 - (void)viewDidLoad {
+  KPKNode *node = self.representedObject;
+  if(!node.iconUUID) {
+    self.selectionType = MPIconSelectionDefault;
+  }
+  else {
+    self.selectionType = MPIconSelectionCustom;
+  }
+  self.typeSelectionButton.selectedSegment = self.selectionType;
+  
   self.iconCollectionView.backgroundColors = @[NSColor.clearColor];
   self.iconCollectionView.selectable = YES;
   self.iconCollectionView.allowsMultipleSelection = NO;
-  self.iconCollectionView.content = [MPIconHelper databaseIcons];
+  [self _updateContent];
+}
+
+- (void)_updateContent {
+  MPDocument *document = [NSDocumentController sharedDocumentController].currentDocument;
+  switch(self.selectionType) {
+    case MPIconSelectionCustom:
+      self.iconCollectionView.content = document.tree.metaData.customIcons;
+      break;
+    case MPIconSelectionDefault:
+    default:
+      self.iconCollectionView.content = [MPIconHelper databaseIcons];
+  }
+}
+- (IBAction)toggleIcons:(id)sender {
+  self.selectionType = self.typeSelectionButton.selectedSegment;
+  [self _updateContent];
 }
 
 - (IBAction)useDefault:(id)sender {
@@ -53,20 +85,35 @@
   [self.view.window performClose:sender];
 }
 
+- (IBAction)downloadIcon:(id)sender {
+  KPKNode *node = self.representedObject;
+  [self.observer willChangeModelProperty];
+  [self.observer didChangeModelProperty];
+  [self.view.window performClose:sender];
+}
+
 - (IBAction)cancel:(id)sender {
   [self.view.window performClose:sender];
 }
 
-- (IBAction)_selectImage:(id)sender {
-  NSButton *button = sender;
-  NSImage *image = button.image;
-  NSUInteger buttonIndex = [self.iconCollectionView.content indexOfObject:image];
-  NSInteger newIconId = ((NSNumber *)[MPIconHelper databaseIconTypes][buttonIndex]).integerValue;
+- (void)_selectIcon:(KPKIcon *)icon {
   KPKNode *node = self.representedObject;
   [self.observer willChangeModelProperty];
-  node.iconId = newIconId;
+  switch(self.selectionType) {
+    case MPIconSelectionCustom:
+      node.iconUUID = icon.uuid;
+      break;
+    default:
+    case MPIconSelectionDefault: {
+      NSUInteger iconIndex = [self.iconCollectionView.content indexOfObject:icon];
+      NSInteger newIconId = ((NSNumber *)[MPIconHelper databaseIconTypes][iconIndex]).integerValue;
+      node.iconId = newIconId;
+      node.iconUUID = nil;
+      break;
+    }
+  }
   [self.observer didChangeModelProperty];
-  [self.view.window performClose:sender];
+  [self.view.window performClose:nil];
 }
 
 

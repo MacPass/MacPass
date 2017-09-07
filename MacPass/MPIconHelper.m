@@ -21,6 +21,7 @@
 //
 
 #import "MPIconHelper.h"
+#import "KeePassKit/KeePassKit.h"
 
 @implementation MPIconHelper
 
@@ -53,7 +54,9 @@
         continue; // Skip all non-db Keys
       }
       MPIconType iconType = (MPIconType)iconNumber.integerValue;
-      [mutableIcons addObject:[MPIconHelper icon:iconType]];
+      KPKIcon *icon = [[KPKIcon alloc] init];
+      icon.image = [MPIconHelper icon:iconType];
+      [mutableIcons addObject:icon];
     }
     icons = [mutableIcons copy];
   });

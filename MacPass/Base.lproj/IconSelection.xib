@@ -8,6 +8,7 @@
         <customObject id="-2" userLabel="File's Owner" customClass="MPIconSelectViewController">
             <connections>
                 <outlet property="iconCollectionView" destination="58" id="77"/>
+                <outlet property="typeSelectionButton" destination="QWR-lI-xJr" id="U95-Gu-0UQ"/>
                 <outlet property="view" destination="1" id="56"/>
             </connections>
         </customObject>
@@ -18,13 +19,13 @@
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
             <subviews>
                 <scrollView focusRingType="none" borderType="none" autohidesScrollers="YES" horizontalLineScroll="10" horizontalPageScroll="10" verticalLineScroll="10" verticalPageScroll="10" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="57" customClass="HNHUIScrollView">
-                    <rect key="frame" x="10" y="50" width="380" height="280"/>
+                    <rect key="frame" x="10" y="50" width="380" height="240"/>
                     <clipView key="contentView" drawsBackground="NO" copiesOnScroll="NO" id="Gwf-zs-lPT">
-                        <rect key="frame" x="0.0" y="0.0" width="380" height="280"/>
+                        <rect key="frame" x="0.0" y="0.0" width="380" height="240"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <collectionView focusRingType="none" id="58">
-                                <rect key="frame" x="0.0" y="0.0" width="380" height="280"/>
+                                <rect key="frame" x="0.0" y="0.0" width="380" height="240"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 <color key="primaryBackgroundColor" name="windowBackgroundColor" catalog="System" colorSpace="catalog"/>
                                 <connections>
@@ -38,12 +39,12 @@
                         <autoresizingMask key="autoresizingMask"/>
                     </scroller>
                     <scroller key="verticalScroller" hidden="YES" verticalHuggingPriority="750" doubleValue="1" horizontal="NO" id="60">
-                        <rect key="frame" x="234" y="1" width="15" height="143"/>
+                        <rect key="frame" x="364" y="0.0" width="16" height="240"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </scroller>
                 </scrollView>
-                <button verticalHuggingPriority="750" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="101">
-                    <rect key="frame" x="263" y="18" width="117" height="25"/>
+                <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="101">
+                    <rect key="frame" x="265" y="18" width="115" height="25"/>
                     <buttonCell key="cell" type="roundTextured" title="Use Default Icon" bezelStyle="texturedRounded" alignment="center" state="on" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="102">
                         <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                         <font key="font" metaFont="system"/>
@@ -52,8 +53,28 @@
                         <action selector="useDefault:" target="-2" id="129"/>
                     </connections>
                 </button>
-                <button verticalHuggingPriority="750" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="His-4A-hcY">
-                    <rect key="frame" x="198" y="18" width="57" height="25"/>
+                <segmentedControl verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="QWR-lI-xJr">
+                    <rect key="frame" x="132" y="296" width="136" height="25"/>
+                    <segmentedCell key="cell" borderStyle="border" alignment="left" style="texturedRounded" trackingMode="selectOne" id="0BD-eH-GR9">
+                        <font key="font" metaFont="system"/>
+                        <segments>
+                            <segment label="Built in"/>
+                            <segment label="Custom" selected="YES" tag="1"/>
+                        </segments>
+                    </segmentedCell>
+                    <connections>
+                        <action selector="toggleIcons:" target="-2" id="mke-RW-XXE"/>
+                    </connections>
+                </segmentedControl>
+                <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="8kv-BJ-IEk">
+                    <rect key="frame" x="153" y="18" width="104" height="25"/>
+                    <buttonCell key="cell" type="roundTextured" title="Download Icon" bezelStyle="texturedRounded" alignment="center" lineBreakMode="truncatingTail" enabled="NO" state="on" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="iaf-XW-XUo">
+                        <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                        <font key="font" metaFont="system"/>
+                    </buttonCell>
+                </button>
+                <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="His-4A-hcY">
+                    <rect key="frame" x="89" y="18" width="56" height="25"/>
                     <buttonCell key="cell" type="roundTextured" title="Cancel" bezelStyle="texturedRounded" alignment="center" state="on" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="1kM-cI-P1o">
                         <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                         <font key="font" metaFont="system"/>
@@ -64,17 +85,21 @@
                 </button>
             </subviews>
             <constraints>
-                <constraint firstItem="57" firstAttribute="top" secondItem="1" secondAttribute="top" constant="10" id="88"/>
                 <constraint firstAttribute="bottom" secondItem="101" secondAttribute="bottom" constant="20" symbolic="YES" id="107"/>
                 <constraint firstAttribute="trailing" secondItem="101" secondAttribute="trailing" constant="20" symbolic="YES" id="108"/>
                 <constraint firstAttribute="trailing" secondItem="57" secondAttribute="trailing" constant="10" id="110"/>
                 <constraint firstItem="57" firstAttribute="leading" secondItem="1" secondAttribute="leading" constant="10" id="111"/>
                 <constraint firstItem="101" firstAttribute="top" secondItem="57" secondAttribute="bottom" constant="8" symbolic="YES" id="112"/>
                 <constraint firstItem="His-4A-hcY" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="1" secondAttribute="leading" constant="20" symbolic="YES" id="69a-Sb-jSj"/>
-                <constraint firstItem="101" firstAttribute="leading" secondItem="His-4A-hcY" secondAttribute="trailing" constant="8" id="EHs-2w-CJq"/>
+                <constraint firstItem="57" firstAttribute="top" secondItem="QWR-lI-xJr" secondAttribute="bottom" constant="8" symbolic="YES" id="DIj-jT-MV1"/>
+                <constraint firstItem="8kv-BJ-IEk" firstAttribute="baseline" secondItem="101" secondAttribute="baseline" id="Knp-g8-7FQ"/>
+                <constraint firstItem="8kv-BJ-IEk" firstAttribute="leading" secondItem="His-4A-hcY" secondAttribute="trailing" constant="8" symbolic="YES" id="MZ0-p6-6MH"/>
+                <constraint firstItem="QWR-lI-xJr" firstAttribute="top" secondItem="1" secondAttribute="top" constant="20" symbolic="YES" id="agZ-dA-Otd"/>
                 <constraint firstItem="His-4A-hcY" firstAttribute="baseline" secondItem="101" secondAttribute="baseline" id="fq3-rS-gvQ"/>
+                <constraint firstItem="101" firstAttribute="leading" secondItem="8kv-BJ-IEk" secondAttribute="trailing" constant="8" symbolic="YES" id="nvi-CZ-a6L"/>
+                <constraint firstItem="QWR-lI-xJr" firstAttribute="centerX" secondItem="1" secondAttribute="centerX" id="vp8-Zm-JHV"/>
             </constraints>
-            <point key="canvasLocation" x="-26" y="-60"/>
+            <point key="canvasLocation" x="-43" y="90"/>
         </customView>
         <collectionViewItem id="61">
             <connections>
@@ -96,8 +121,19 @@
                         <font key="font" metaFont="system"/>
                     </buttonCell>
                     <connections>
-                        <action selector="_selectImage:" target="-2" id="eFg-h5-9jy"/>
-                        <binding destination="61" name="image" keyPath="representedObject" id="139"/>
+                        <binding destination="61" name="argument" keyPath="representedObject" id="GTE-gb-8ra">
+                            <dictionary key="options">
+                                <bool key="NSConditionallySetsEnabled" value="NO"/>
+                                <string key="NSSelectorName">_selectIcon:</string>
+                            </dictionary>
+                        </binding>
+                        <binding destination="61" name="image" keyPath="representedObject.image" id="LKC-A5-b3U"/>
+                        <binding destination="-2" name="target" keyPath="self" previousBinding="GTE-gb-8ra" id="ujd-pu-j5v">
+                            <dictionary key="options">
+                                <bool key="NSConditionallySetsEnabled" value="NO"/>
+                                <string key="NSSelectorName">_selectIcon:</string>
+                            </dictionary>
+                        </binding>
                     </connections>
                 </button>
             </subviews>
