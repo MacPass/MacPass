@@ -1,3 +1,5 @@
+[![Build Status](https://travis-ci.org/mstarke/MacPass.svg?branch=continuous)](https://travis-ci.org/mstarke/MacPass)
+
 # MacPass
 
 There are a lot of iOS KeePass tools around but a distinct lack of a good native macOS version.
