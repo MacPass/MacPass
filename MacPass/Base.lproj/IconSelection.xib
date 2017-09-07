@@ -18,7 +18,7 @@
             <rect key="frame" x="0.0" y="0.0" width="400" height="340"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
             <subviews>
-                <scrollView focusRingType="none" borderType="none" autohidesScrollers="YES" horizontalLineScroll="10" horizontalPageScroll="10" verticalLineScroll="10" verticalPageScroll="10" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="57" customClass="HNHUIScrollView">
+                <scrollView wantsLayer="YES" focusRingType="none" borderType="none" autohidesScrollers="YES" horizontalLineScroll="10" horizontalPageScroll="10" verticalLineScroll="10" verticalPageScroll="10" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="57" customClass="HNHUIScrollView">
                     <rect key="frame" x="10" y="50" width="380" height="240"/>
                     <clipView key="contentView" drawsBackground="NO" copiesOnScroll="NO" id="Gwf-zs-lPT">
                         <rect key="frame" x="0.0" y="0.0" width="380" height="240"/>
@@ -38,7 +38,7 @@
                         <rect key="frame" x="1" y="144" width="233" height="15"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </scroller>
-                    <scroller key="verticalScroller" hidden="YES" verticalHuggingPriority="750" doubleValue="1" horizontal="NO" id="60">
+                    <scroller key="verticalScroller" verticalHuggingPriority="750" doubleValue="1" horizontal="NO" id="60">
                         <rect key="frame" x="364" y="0.0" width="16" height="240"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </scroller>
@@ -54,8 +54,8 @@
                     </connections>
                 </button>
                 <segmentedControl verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="QWR-lI-xJr">
-                    <rect key="frame" x="132" y="296" width="136" height="25"/>
-                    <segmentedCell key="cell" borderStyle="border" alignment="left" style="texturedRounded" trackingMode="selectOne" id="0BD-eH-GR9">
+                    <rect key="frame" x="134" y="296" width="132" height="25"/>
+                    <segmentedCell key="cell" borderStyle="border" alignment="left" style="texturedSquare" trackingMode="selectOne" id="0BD-eH-GR9">
                         <font key="font" metaFont="system"/>
                         <segments>
                             <segment label="Built in"/>

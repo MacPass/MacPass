@@ -81,6 +81,7 @@ typedef NS_ENUM(NSUInteger, MPIconeSelectionType) {
   KPKNode *node = self.representedObject;
   [self.observer willChangeModelProperty];
   node.iconId = [node.class defaultIcon];
+  node.iconUUID = nil;
   [self.observer didChangeModelProperty];
   [self.view.window performClose:sender];
 }
