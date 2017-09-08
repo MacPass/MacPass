@@ -24,18 +24,11 @@
 #import "MPIconHelper.h"
 #import "MPDocument.h"
 
-typedef NS_ENUM(NSUInteger, MPIconeSelectionType) {
-  MPIconSelectionDefault,
-  MPIconSelectionCustom
-};
-
 @interface MPIconSelectViewController () <NSCollectionViewDelegate>
 
 /* UI properties */
 @property (weak) IBOutlet NSCollectionView *iconCollectionView;
 @property (weak) IBOutlet NSButton *imageButton;
-@property (weak) IBOutlet NSSegmentedControl *typeSelectionButton;
-@property MPIconeSelectionType selectionType;
 
 @end
 
@@ -46,37 +39,16 @@ typedef NS_ENUM(NSUInteger, MPIconeSelectionType) {
 }
 
 - (void)viewDidLoad {
-  KPKNode *node = self.representedObject;
-  if(!node.iconUUID) {
-    self.selectionType = MPIconSelectionDefault;
-  }
-  else {
-    self.selectionType = MPIconSelectionCustom;
-  }
-  self.typeSelectionButton.selectedSegment = self.selectionType;
-  
   self.iconCollectionView.backgroundColors = @[NSColor.clearColor];
   self.iconCollectionView.selectable = YES;
   self.iconCollectionView.allowsMultipleSelection = NO;
   self.iconCollectionView.delegate = self;
-  [self.iconCollectionView registerForDraggedTypes:@[(NSString *)kUTTypeURL, (NSString *)kUTTypeFileURL]];
-  [self _updateContent];
-}
-
-- (void)_updateContent {
+  //[self.iconCollectionView registerForDraggedTypes:@[(NSString *)kUTTypeURL, (NSString *)kUTTypeFileURL]];
+  
   MPDocument *document = [NSDocumentController sharedDocumentController].currentDocument;
-  switch(self.selectionType) {
-    case MPIconSelectionCustom:
-      self.iconCollectionView.content = document.tree.metaData.customIcons;
-      break;
-    case MPIconSelectionDefault:
-    default:
-      self.iconCollectionView.content = [MPIconHelper databaseIcons];
-  }
-}
-- (IBAction)toggleIcons:(id)sender {
-  self.selectionType = self.typeSelectionButton.selectedSegment;
-  [self _updateContent];
+  self.iconCollectionView.content = document.tree.metaData.customIcons;
+  self.iconCollectionView.content = [[MPIconHelper databaseIcons] arrayByAddingObjectsFromArray:document.tree.metaData.customIcons];
+  
 }
 
 - (IBAction)useDefault:(id)sender {
@@ -101,19 +73,17 @@ typedef NS_ENUM(NSUInteger, MPIconeSelectionType) {
 
 - (void)_selectIcon:(KPKIcon *)icon {
   KPKNode *node = self.representedObject;
+  NSUInteger iconIndex = [self.iconCollectionView.content indexOfObject:icon];
+  
   [self.observer willChangeModelProperty];
-  switch(self.selectionType) {
-    case MPIconSelectionCustom:
-      node.iconUUID = icon.uuid;
-      break;
-    default:
-    case MPIconSelectionDefault: {
-      NSUInteger iconIndex = [self.iconCollectionView.content indexOfObject:icon];
-      NSInteger newIconId = ((NSNumber *)[MPIconHelper databaseIconTypes][iconIndex]).integerValue;
-      node.iconId = newIconId;
-      node.iconUUID = nil;
-      break;
-    }
+  /* Icon is Custom Icon */
+  if(iconIndex >= [MPIconHelper databaseIcons].count) {
+    node.iconUUID = icon.uuid;
+  }
+  else {
+    NSInteger newIconId = ((NSNumber *)[MPIconHelper databaseIconTypes][iconIndex]).integerValue;
+    node.iconId = newIconId;
+    node.iconUUID = nil;
   }
   [self.observer didChangeModelProperty];
   [self.view.window performClose:nil];
