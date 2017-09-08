@@ -28,6 +28,7 @@
 @property (nonatomic, weak) IBOutlet NSTextField *labelTextField;
 @property (nonatomic, weak) IBOutlet NSTextField *valueTextField;
 @property (nonatomic, weak) IBOutlet NSButton *removeButton;
+@property (nonatomic, weak) IBOutlet NSButton *protectedButton;
 
 @property (weak) id<MPModelChangeObserving> observer;
 
