@@ -29,7 +29,7 @@ typedef NS_ENUM(NSUInteger, MPIconeSelectionType) {
   MPIconSelectionCustom
 };
 
-@interface MPIconSelectViewController ()
+@interface MPIconSelectViewController () <NSCollectionViewDelegate>
 
 /* UI properties */
 @property (weak) IBOutlet NSCollectionView *iconCollectionView;
@@ -58,6 +58,8 @@ typedef NS_ENUM(NSUInteger, MPIconeSelectionType) {
   self.iconCollectionView.backgroundColors = @[NSColor.clearColor];
   self.iconCollectionView.selectable = YES;
   self.iconCollectionView.allowsMultipleSelection = NO;
+  self.iconCollectionView.delegate = self;
+  [self.iconCollectionView registerForDraggedTypes:@[(NSString *)kUTTypeURL, (NSString *)kUTTypeFileURL]];
   [self _updateContent];
 }
 
@@ -117,5 +119,14 @@ typedef NS_ENUM(NSUInteger, MPIconeSelectionType) {
   [self.view.window performClose:nil];
 }
 
+- (NSDragOperation)collectionView:(NSCollectionView *)collectionView validateDrop:(id <NSDraggingInfo>)draggingInfo proposedIndex:(NSInteger *)proposedDropIndex dropOperation:(NSCollectionViewDropOperation *)proposedDropOperation {
+  *proposedDropIndex = MAX(0,self.iconCollectionView.content.count - 1);
+  return NSDragOperationCopy;
+}
+
+- (BOOL)collectionView:(NSCollectionView *)collectionView acceptDrop:(id <NSDraggingInfo>)draggingInfo index:(NSInteger)index dropOperation:(NSCollectionViewDropOperation)dropOperation {
+  NSLog(@"Index:%ld", index);
+  return YES;
+}
 
 @end
