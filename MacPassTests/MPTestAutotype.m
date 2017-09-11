@@ -87,7 +87,7 @@
   
   MPAutotypeContext *context = [[MPAutotypeContext alloc] initWithDefaultSequenceForEntry:self.entry];
   NSString *result = [[NSString alloc] initWithFormat:@"%@%@%@%@", self.entry.username, lowerCaseAttribute.value, mixedCaseAttribute.value, upperCaseAttribute.value];
-  XCTAssertTrue([[context evaluatedCommand] isEqualToString:result]);
+  XCTAssertEqualObjects(context.evaluatedCommand, result);
 }
 
 - (void)testCustomAttributeRepetition {
