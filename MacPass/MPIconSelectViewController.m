@@ -43,7 +43,7 @@
   self.iconCollectionView.selectable = YES;
   self.iconCollectionView.allowsMultipleSelection = NO;
   self.iconCollectionView.delegate = self;
-  //[self.iconCollectionView registerForDraggedTypes:@[(NSString *)kUTTypeURL, (NSString *)kUTTypeFileURL]];
+  [self.iconCollectionView registerForDraggedTypes:@[(NSString *)kUTTypeURL, (NSString *)kUTTypeFileURL]];
   
   MPDocument *document = [NSDocumentController sharedDocumentController].currentDocument;
   self.iconCollectionView.content = document.tree.metaData.customIcons;
@@ -95,8 +95,26 @@
 }
 
 - (BOOL)collectionView:(NSCollectionView *)collectionView acceptDrop:(id <NSDraggingInfo>)draggingInfo index:(NSInteger)index dropOperation:(NSCollectionViewDropOperation)dropOperation {
-  NSLog(@"Index:%ld", index);
-  return YES;
+  NSPasteboard *pBoard = [draggingInfo draggingPasteboard];
+  NSArray *urls = [pBoard readObjectsForClasses:@[NSURL.class] options:@{ NSPasteboardURLReadingFileURLsOnlyKey : @YES }];
+  if(urls.count == 0) {
+    return NO;
+  }
+  BOOL success = NO;
+  MPDocument *document = [NSDocumentController sharedDocumentController].currentDocument;
+  for(NSURL *url in urls) {
+    KPKIcon *icon = [[KPKIcon alloc] initWithImageAtURL:url];
+    if(icon.image) {
+      NSLog(@"Added Icon at:%@", url);
+      [document.tree.metaData addCustomIcon:icon];
+      success = YES;
+    }
+  }
+  if(success) {
+    self.iconCollectionView.content = document.tree.metaData.customIcons;
+    self.iconCollectionView.content = [[MPIconHelper databaseIcons] arrayByAddingObjectsFromArray:document.tree.metaData.customIcons];
+  }
+  return success;
 }
 
 @end
