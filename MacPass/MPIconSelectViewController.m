@@ -23,6 +23,7 @@
 #import "MPIconSelectViewController.h"
 #import "MPIconHelper.h"
 #import "MPDocument.h"
+#import "MPCollectionViewItem.h"
 
 @interface MPIconSelectViewController () <NSCollectionViewDelegate>
 
@@ -45,10 +46,7 @@
   self.iconCollectionView.delegate = self;
   [self.iconCollectionView registerForDraggedTypes:@[(NSString *)kUTTypeURL, (NSString *)kUTTypeFileURL]];
   
-  MPDocument *document = [NSDocumentController sharedDocumentController].currentDocument;
-  self.iconCollectionView.content = document.tree.metaData.customIcons;
-  self.iconCollectionView.content = [[MPIconHelper databaseIcons] arrayByAddingObjectsFromArray:document.tree.metaData.customIcons];
-  
+  [self _updateCollectionViewContent];
 }
 
 - (IBAction)useDefault:(id)sender {
@@ -62,13 +60,62 @@
 
 - (IBAction)downloadIcon:(id)sender {
   KPKNode *node = self.representedObject;
-  [self.observer willChangeModelProperty];
-  [self.observer didChangeModelProperty];
-  [self.view.window performClose:sender];
+  if(!node.asEntry) {
+    return;
+  }
+  NSString *rawURL = node.asEntry.url;
+  if([rawURL hasPrefix:@"http://"] || ![rawURL hasPrefix:@"https://"]) {
+    rawURL = [@"https://" stringByAppendingString:rawURL];
+  }
+  
+  NSURL *url = [NSURL URLWithString:rawURL];
+  if(!url) {
+    return;
+  }
+  
+  NSString *urlString = [NSString stringWithFormat:@"%@://%@/favicon.ico", url.scheme, url.host ? url.host : @""];
+  NSURL *favIconURL = [NSURL URLWithString:urlString];
+  if(!favIconURL) {
+    return;
+  }
+  
+  KPKMetaData *metaData = ((MPDocument *)[NSDocumentController sharedDocumentController].currentDocument).tree.metaData;
+  NSURLSessionTask *task = [[NSURLSession sharedSession] dataTaskWithURL:favIconURL completionHandler:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
+    if(data) {
+      dispatch_async(dispatch_get_main_queue(), ^{
+        KPKIcon *newIcon = [[KPKIcon alloc] initWithImageData:data];
+        if(newIcon) {
+          [metaData addCustomIcon:newIcon];
+          [self _updateCollectionViewContent];
+        }
+      });
+    }
+  }];
+  [task resume];
+}
+
+- (void)_deleteIcon:(KPKIcon *)icon {
+  NSUInteger iconIndex = [self.iconCollectionView.content indexOfObject:icon];
+  
+  if(iconIndex < [MPIconHelper databaseIcons].count) {
+    return; // defautl icons cannot be delted
+  }
+  MPDocument *document = [NSDocumentController sharedDocumentController].currentDocument;
+  [document.tree.metaData removeCustomIcon:icon];
+  [self _updateCollectionViewContent];
 }
 
 - (IBAction)cancel:(id)sender {
   [self.view.window performClose:sender];
+}
+
+- (void)didSelectCollectionViewItem:(id)sender {
+  if(![sender isKindOfClass:[NSCollectionViewItem class]]) {
+    return;
+  }
+  NSCollectionViewItem *item = sender;
+  NSLog(@"selected item.frame: %@", NSStringFromRect(item.view.frame));
+  //[self _selectIcon:item.representedObject];
 }
 
 - (void)_selectIcon:(KPKIcon *)icon {
@@ -105,16 +152,45 @@
   for(NSURL *url in urls) {
     KPKIcon *icon = [[KPKIcon alloc] initWithImageAtURL:url];
     if(icon.image) {
-      NSLog(@"Added Icon at:%@", url);
       [document.tree.metaData addCustomIcon:icon];
       success = YES;
     }
   }
   if(success) {
-    self.iconCollectionView.content = document.tree.metaData.customIcons;
-    self.iconCollectionView.content = [[MPIconHelper databaseIcons] arrayByAddingObjectsFromArray:document.tree.metaData.customIcons];
+    [self _updateCollectionViewContent];
   }
   return success;
+}
+
+- (BOOL)collectionView:(NSCollectionView *)collectionView writeItemsAtIndexes:(NSIndexSet *)indexes toPasteboard:(NSPasteboard *)pasteboard {
+  NSLog(@"dragStart for indexes:%@", indexes);
+  [pasteboard declareTypes:@[(NSString *)kUTTypeText] owner:nil];
+  return YES;
+}
+
+- (void)collectionView:(NSCollectionView *)collectionView draggingSession:(NSDraggingSession *)session endedAtPoint:(NSPoint)screenPoint dragOperation:(NSDragOperation)operation {
+  
+  if(nil == [self.view hitTest:screenPoint]) {
+    NSLog(@"Delete Item!");
+  }
+  else {
+    NSLog(@"Keep Item!");
+  }
+}
+
+- (void)_updateCollectionViewContent {
+  MPDocument *document = [NSDocumentController sharedDocumentController].currentDocument;
+  self.iconCollectionView.content = [[MPIconHelper databaseIcons] arrayByAddingObjectsFromArray:document.tree.metaData.customIcons];
+}
+
+- (void)flagsChanged:(NSEvent *)theEvent {
+  BOOL altDown = (0 != (theEvent.modifierFlags & NSEventModifierFlagOption));
+  
+  for(NSUInteger index = 0; index < self.iconCollectionView.content.count; index++) {
+    MPCollectionViewItem *item = (MPCollectionViewItem *)[self.iconCollectionView itemAtIndex:index];
+    item.showDeleteIndicator = altDown;
+  }
+  
 }
 
 @end

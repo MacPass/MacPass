@@ -80,9 +80,9 @@ static void MPContextmenuHelperBeginSection(NSMutableArray *items) {
       NSMenuItem *emptyTrash = [[NSMenuItem alloc] initWithTitle:NSLocalizedString(@"EMPTY_TRASH", @"")
                                                           action:[MPActionHelper actionOfType:MPActionEmptyTrash]
                                                    keyEquivalent:@""];
-      [emptyTrash setKeyEquivalentModifierMask:(NSShiftKeyMask | NSCommandKeyMask)];
+      emptyTrash.keyEquivalentModifierMask = (NSShiftKeyMask | NSCommandKeyMask);
       unichar backSpace = NSBackspaceCharacter;
-      [emptyTrash setKeyEquivalent:[NSString stringWithCharacters:&backSpace length:1]];
+      emptyTrash.keyEquivalent = [NSString stringWithCharacters:&backSpace length:1];
       [items addObject:emptyTrash];
       
     }
@@ -95,12 +95,12 @@ static void MPContextmenuHelperBeginSection(NSMutableArray *items) {
     NSMenuItem *copyPassword = [[NSMenuItem alloc] initWithTitle:NSLocalizedString(@"COPY_PASSWORD", @"")
                                                           action:[MPActionHelper actionOfType:MPActionCopyPassword]
                                                    keyEquivalent:@"c"];
-    [copyPassword setKeyEquivalentModifierMask:[copyPassword keyEquivalentModifierMask] | NSAlternateKeyMask];
+    copyPassword.keyEquivalentModifierMask = (copyPassword.keyEquivalentModifierMask | NSAlternateKeyMask);
     NSMenu *urlMenu = [[NSMenu alloc] init];
     NSMenuItem *urlItem = [[NSMenuItem alloc] initWithTitle:NSLocalizedString(@"URL", @"")
                                                      action:0
                                               keyEquivalent:@""];
-    [urlItem setSubmenu:urlMenu];
+    urlItem.submenu = urlMenu;
     
     NSMenuItem *copyURL = [[NSMenuItem alloc] initWithTitle:NSLocalizedString(@"COPY_URL", @"")
                                                      action:[MPActionHelper actionOfType:MPActionCopyURL]

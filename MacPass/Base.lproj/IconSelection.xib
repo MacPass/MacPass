@@ -23,12 +23,13 @@
                         <rect key="frame" x="0.0" y="0.0" width="380" height="270"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <collectionView focusRingType="none" id="58">
+                            <collectionView focusRingType="none" selectable="YES" id="58">
                                 <rect key="frame" x="0.0" y="0.0" width="380" height="270"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 <color key="primaryBackgroundColor" name="windowBackgroundColor" catalog="System" colorSpace="catalog"/>
                                 <connections>
                                     <outlet property="itemPrototype" destination="61" id="63"/>
+                                    <outlet property="menu" destination="vS0-bP-ZyJ" id="nAW-cJ-Vzp"/>
                                 </connections>
                             </collectionView>
                         </subviews>
@@ -54,10 +55,13 @@
                 </button>
                 <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="8kv-BJ-IEk">
                     <rect key="frame" x="153" y="18" width="104" height="25"/>
-                    <buttonCell key="cell" type="roundTextured" title="Download Icon" bezelStyle="texturedRounded" alignment="center" lineBreakMode="truncatingTail" enabled="NO" state="on" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="iaf-XW-XUo">
+                    <buttonCell key="cell" type="roundTextured" title="Download Icon" bezelStyle="texturedRounded" alignment="center" lineBreakMode="truncatingTail" state="on" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="iaf-XW-XUo">
                         <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                         <font key="font" metaFont="system"/>
                     </buttonCell>
+                    <connections>
+                        <action selector="downloadIcon:" target="-2" id="VIQ-4U-K4z"/>
+                    </connections>
                 </button>
                 <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="His-4A-hcY">
                     <rect key="frame" x="89" y="18" width="56" height="25"/>
@@ -85,8 +89,9 @@
             </constraints>
             <point key="canvasLocation" x="-143" y="15"/>
         </customView>
-        <collectionViewItem id="61">
+        <collectionViewItem id="61" customClass="MPCollectionViewItem">
             <connections>
+                <outlet property="deleteImageButton" destination="MEC-x9-zrX" id="PSx-mD-G8C"/>
                 <outlet property="view" destination="113" id="128"/>
             </connections>
         </collectionViewItem>
@@ -94,6 +99,31 @@
             <rect key="frame" x="0.0" y="0.0" width="48" height="48"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
             <subviews>
+                <button translatesAutoresizingMaskIntoConstraints="NO" id="MEC-x9-zrX">
+                    <rect key="frame" x="32" y="32" width="16" height="16"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="16" id="cau-QV-8TQ"/>
+                        <constraint firstAttribute="height" constant="16" id="yHZ-qj-Rcy"/>
+                    </constraints>
+                    <buttonCell key="cell" type="square" bezelStyle="shadowlessSquare" image="NSRefreshFreestandingTemplate" imagePosition="overlaps" alignment="center" imageScaling="proportionallyUpOrDown" inset="2" id="zWZ-Wt-ThY">
+                        <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                        <font key="font" metaFont="system"/>
+                    </buttonCell>
+                    <connections>
+                        <binding destination="61" name="argument" keyPath="representedObject" id="rJw-Yy-JjZ">
+                            <dictionary key="options">
+                                <bool key="NSConditionallySetsEnabled" value="NO"/>
+                                <string key="NSSelectorName">_deleteIcon:</string>
+                            </dictionary>
+                        </binding>
+                        <binding destination="-2" name="target" keyPath="self" previousBinding="rJw-Yy-JjZ" id="j04-R4-qhO">
+                            <dictionary key="options">
+                                <bool key="NSConditionallySetsEnabled" value="NO"/>
+                                <string key="NSSelectorName">_deleteIcon:</string>
+                            </dictionary>
+                        </binding>
+                    </connections>
+                </button>
                 <button translatesAutoresizingMaskIntoConstraints="NO" id="114">
                     <rect key="frame" x="8" y="8" width="32" height="32"/>
                     <constraints>
@@ -124,10 +154,27 @@
             <constraints>
                 <constraint firstItem="114" firstAttribute="centerY" secondItem="113" secondAttribute="centerY" id="168"/>
                 <constraint firstItem="114" firstAttribute="centerX" secondItem="113" secondAttribute="centerX" id="169"/>
+                <constraint firstAttribute="trailing" secondItem="MEC-x9-zrX" secondAttribute="trailing" id="l85-hK-J0S"/>
+                <constraint firstItem="MEC-x9-zrX" firstAttribute="top" secondItem="113" secondAttribute="top" id="uEr-Jk-Jfa"/>
             </constraints>
         </customView>
+        <menu id="vS0-bP-ZyJ">
+            <items>
+                <menuItem title="Item 1" id="M2B-II-30N">
+                    <modifierMask key="keyEquivalentModifierMask"/>
+                </menuItem>
+                <menuItem title="Item 2" id="Vc1-gW-L1b">
+                    <modifierMask key="keyEquivalentModifierMask"/>
+                </menuItem>
+                <menuItem title="Item 3" id="cUN-GX-EWu">
+                    <modifierMask key="keyEquivalentModifierMask"/>
+                </menuItem>
+            </items>
+            <point key="canvasLocation" x="298" y="163"/>
+        </menu>
     </objects>
     <resources>
         <image name="NSAddTemplate" width="11" height="11"/>
+        <image name="NSRefreshFreestandingTemplate" width="14" height="14"/>
     </resources>
 </document>

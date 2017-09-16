@@ -54,8 +54,7 @@
         continue; // Skip all non-db Keys
       }
       MPIconType iconType = (MPIconType)iconNumber.integerValue;
-      KPKIcon *icon = [[KPKIcon alloc] init];
-      icon.image = [MPIconHelper icon:iconType];
+      KPKIcon *icon = [[KPKIcon alloc] initWithImage:[MPIconHelper icon:iconType]];
       [mutableIcons addObject:icon];
     }
     icons = [mutableIcons copy];

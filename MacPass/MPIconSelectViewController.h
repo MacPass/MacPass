@@ -23,9 +23,12 @@
 #import "MPViewController.h"
 
 @class MPDocument;
+@class MPCollectionViewItem;
 
 @interface MPIconSelectViewController : MPViewController <NSCollectionViewDelegate>
 
 @property (weak, nullable) NSPopover *popover;
+
+- (IBAction)didSelectCollectionViewItem:(id _Nullable)sender;
 
 @end
