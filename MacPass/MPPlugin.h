@@ -50,20 +50,6 @@ FOUNDATION_EXPORT NSString *const kMPPluginFileExtension;
 
 @class KPKTree;
 
-@protocol MPPluginExporting <NSObject>
-
-@required
-- (KPKTree *)importTreeAtURL:(NSURL *)url error:(NSError **)error;
-
-@end
-
-@protocol MPPluginImporting <NSObject>
-
-@required
-- (NSData *)dataForTree:(KPKTree *)tree error:(NSError **)error;
-
-@end
-
 @interface MPPlugin (Deprecated)
 
 - (instancetype)initWithPluginManager:(id)manager;
