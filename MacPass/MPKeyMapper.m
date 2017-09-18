@@ -121,7 +121,7 @@ uint16_t const kMPUnknownKeyCode = UINT16_MAX;
     
     /* Generate table of keycodes and characters. */
     /* Loop through every keycode (0 - 127) to find its current mapping. */
-    /* Loop throuhg every control key compbination for every virtual key */
+    /* Loop through every control key compbination for every virtual key */
     for(CGKeyCode keyCode = 0; keyCode < 128; ++keyCode) {
       for(int modifierIndex = 0; modifierIndex < MPArrayCount(modifierCombinations); modifierIndex++) {
         MPModifiedKey mKey = MPMakeModifiedKey(modifierCombinations[modifierIndex], keyCode);
