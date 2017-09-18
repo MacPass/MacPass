@@ -103,19 +103,19 @@ typedef NS_ENUM(NSUInteger, MPContentTab) {
   
   
   NSTabViewItem *entryTabItem = [self.tabView tabViewItemAtIndex:MPEntryTab];
-  NSView *entryTabView = [entryTabItem view];
+  NSView *entryTabView = entryTabItem.view;
   [entryTabView addSubview:entryView];
   NSDictionary *views = NSDictionaryOfVariableBindings(entryView, groupView);
   [entryTabView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|[entryView]|" options:0 metrics:nil views:views]];
   [entryTabView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|[entryView]|" options:0 metrics:nil views:views]];
-  [entryTabItem setInitialFirstResponder:entryTabView];
+  entryTabItem.initialFirstResponder = entryTabView;
   
   NSTabViewItem *groupTabItem = [self.tabView tabViewItemAtIndex:MPGroupTab];
-  NSView *groupTabView = [groupTabItem view];
+  NSView *groupTabView = groupTabItem.view;
   [groupTabView addSubview:groupView];
   [groupTabView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|[groupView]|" options:0 metrics:nil views:views]];
   [groupTabView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|[groupView]|" options:0 metrics:nil views:views]];
-  [groupTabItem setInitialFirstResponder:groupView];
+  groupTabItem.initialFirstResponder = groupView;
   
   [self.view layout];
   
