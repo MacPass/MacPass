@@ -235,7 +235,7 @@
 		4CE298EB1795FC2A00DF7BDB /* MPEntryContextMenuDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CE298EA1795FC2A00DF7BDB /* MPEntryContextMenuDelegate.m */; };
 		4CE30ACC1A312B7F0063FCC6 /* MPReferenceBuilderViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CE30ACB1A312B7F0063FCC6 /* MPReferenceBuilderViewController.m */; };
 		4CE39ABF16ECE34A000FE29D /* MPIconSelectViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CE39ABE16ECE34A000FE29D /* MPIconSelectViewController.m */; };
-		4CE39AC416ECE4F7000FE29D /* MPPopupImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CE39AC316ECE4F7000FE29D /* MPPopupImageView.m */; };
+		4CE39AC416ECE4F7000FE29D /* MPIconImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CE39AC316ECE4F7000FE29D /* MPIconImageView.m */; };
 		4CE3E62617AB0D2D00D9E4B4 /* MPAttachmentTableDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CE3E62517AB0D2D00D9E4B4 /* MPAttachmentTableDataSource.m */; };
 		4CE501341BBC47F500FB819D /* MPTagsTokenFieldDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CE501331BBC47F500FB819D /* MPTagsTokenFieldDelegate.m */; };
 		4CE5B54B173AFBA700207B39 /* MPDocument.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CE5B549173AFBA700207B39 /* MPDocument.m */; };
@@ -705,8 +705,8 @@
 		4CE30ACB1A312B7F0063FCC6 /* MPReferenceBuilderViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MPReferenceBuilderViewController.m; sourceTree = "<group>"; };
 		4CE39ABD16ECE34A000FE29D /* MPIconSelectViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MPIconSelectViewController.h; sourceTree = "<group>"; };
 		4CE39ABE16ECE34A000FE29D /* MPIconSelectViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MPIconSelectViewController.m; sourceTree = "<group>"; };
-		4CE39AC216ECE4F7000FE29D /* MPPopupImageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MPPopupImageView.h; sourceTree = "<group>"; };
-		4CE39AC316ECE4F7000FE29D /* MPPopupImageView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MPPopupImageView.m; sourceTree = "<group>"; };
+		4CE39AC216ECE4F7000FE29D /* MPIconImageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MPIconImageView.h; sourceTree = "<group>"; };
+		4CE39AC316ECE4F7000FE29D /* MPIconImageView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MPIconImageView.m; sourceTree = "<group>"; };
 		4CE3E62417AB0D2D00D9E4B4 /* MPAttachmentTableDataSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MPAttachmentTableDataSource.h; sourceTree = "<group>"; };
 		4CE3E62517AB0D2D00D9E4B4 /* MPAttachmentTableDataSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MPAttachmentTableDataSource.m; sourceTree = "<group>"; };
 		4CE501321BBC47F500FB819D /* MPTagsTokenFieldDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MPTagsTokenFieldDelegate.h; sourceTree = "<group>"; };
@@ -886,8 +886,8 @@
 				4CE8247416E2F2B900573141 /* MPOverlayView.m */,
 				4CFC53BD16E94729007396BE /* MPShadowBox.h */,
 				4CFC53BE16E94729007396BE /* MPShadowBox.m */,
-				4CE39AC216ECE4F7000FE29D /* MPPopupImageView.h */,
-				4CE39AC316ECE4F7000FE29D /* MPPopupImageView.m */,
+				4CE39AC216ECE4F7000FE29D /* MPIconImageView.h */,
+				4CE39AC316ECE4F7000FE29D /* MPIconImageView.m */,
 				4C4A100D176286FD00BBF2CA /* MPTableView.h */,
 				4C4A100E176286FD00BBF2CA /* MPTableView.m */,
 				4C4FCE13177CFE6B00BBF7AE /* MPCustomFieldTableCellView.h */,
@@ -1772,7 +1772,7 @@
 				4C811C8316ECD06E00C4BAC6 /* MPKeyfilePathControlDelegate.m in Sources */,
 				4CDA35751EBA0CF2003CD59F /* NSString+MPComposedCharacterAdditions.m in Sources */,
 				4CE39ABF16ECE34A000FE29D /* MPIconSelectViewController.m in Sources */,
-				4CE39AC416ECE4F7000FE29D /* MPPopupImageView.m in Sources */,
+				4CE39AC416ECE4F7000FE29D /* MPIconImageView.m in Sources */,
 				4C46B88517063A070046109A /* NSString+MPPasswordCreation.m in Sources */,
 				4C5A11FE1708DE8700223D8A /* MPPasswordCreatorViewController.m in Sources */,
 				4CE5B54B173AFBA700207B39 /* MPDocument.m in Sources */,

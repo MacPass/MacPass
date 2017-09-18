@@ -27,8 +27,8 @@
 #import "MPGroupInspectorViewController.h"
 #import "MPIconHelper.h"
 #import "MPIconSelectViewController.h"
+#import "MPIconImageView.h"
 #import "MPNotifications.h"
-#import "MPPopupImageView.h"
 #import "MPPluginDataViewController.h"
 
 #import "KeePassKit/KeePassKit.h"
@@ -135,6 +135,7 @@ typedef NS_ENUM(NSUInteger, MPContentTab) {
                                              object:document];
   
   self.entryViewController.observer = document;
+  self.itemImageView.modelChangeObserver = document;
   self.observer = document;
   
   [self.entryViewController registerNotificationsForDocument:document];
@@ -249,6 +250,7 @@ typedef NS_ENUM(NSUInteger, MPContentTab) {
   [self.groupViewController commitEditing];
   
   self.representedObject = node;
+  self.itemImageView.node = node;
   self.entryViewController.representedObject = node.asEntry;
   self.groupViewController.representedObject = node.asGroup;
   

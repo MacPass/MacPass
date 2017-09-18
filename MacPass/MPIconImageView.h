@@ -22,6 +22,12 @@
 
 #import <Cocoa/Cocoa.h>
 
-@interface MPPopupImageView : NSImageView
+@protocol MPModelChangeObserving;
+@class KPKNode;
+
+@interface MPIconImageView : NSImageView
+
+@property (weak, nullable) id<MPModelChangeObserving> modelChangeObserver;
+@property (weak, nullable) KPKNode *node;
 
 @end

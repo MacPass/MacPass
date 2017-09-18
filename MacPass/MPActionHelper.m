@@ -25,6 +25,7 @@
 #import "MPEntryInspectorViewController.h"
 #import "MPEntryViewController.h"
 #import "MPDocumentWindowController.h"
+#import "MPIconSelectViewController.h"
 
 @implementation MPActionHelper
 

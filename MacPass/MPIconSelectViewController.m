@@ -94,6 +94,11 @@
   [task resume];
 }
 
+- (void)deleteIcon:(id)sender {
+  
+}
+
+
 - (void)_deleteIcon:(KPKIcon *)icon {
   NSUInteger iconIndex = [self.iconCollectionView.content indexOfObject:icon];
   

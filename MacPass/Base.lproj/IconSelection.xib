@@ -29,7 +29,6 @@
                                 <color key="primaryBackgroundColor" name="windowBackgroundColor" catalog="System" colorSpace="catalog"/>
                                 <connections>
                                     <outlet property="itemPrototype" destination="61" id="63"/>
-                                    <outlet property="menu" destination="vS0-bP-ZyJ" id="nAW-cJ-Vzp"/>
                                 </connections>
                             </collectionView>
                         </subviews>
@@ -158,20 +157,6 @@
                 <constraint firstItem="MEC-x9-zrX" firstAttribute="top" secondItem="113" secondAttribute="top" id="uEr-Jk-Jfa"/>
             </constraints>
         </customView>
-        <menu id="vS0-bP-ZyJ">
-            <items>
-                <menuItem title="Item 1" id="M2B-II-30N">
-                    <modifierMask key="keyEquivalentModifierMask"/>
-                </menuItem>
-                <menuItem title="Item 2" id="Vc1-gW-L1b">
-                    <modifierMask key="keyEquivalentModifierMask"/>
-                </menuItem>
-                <menuItem title="Item 3" id="cUN-GX-EWu">
-                    <modifierMask key="keyEquivalentModifierMask"/>
-                </menuItem>
-            </items>
-            <point key="canvasLocation" x="298" y="163"/>
-        </menu>
     </objects>
     <resources>
         <image name="NSAddTemplate" width="11" height="11"/>
