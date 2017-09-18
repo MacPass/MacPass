@@ -65,7 +65,7 @@ static NSString *mergeWithoutDuplicates(NSString* baseCharacters, NSString* cust
 + (NSString *)passwordFromString:(NSString *)source length:(NSUInteger)length {
   NSMutableString *password = [[NSMutableString alloc] initWithCapacity:length];
   while(password.composedCharacterLength < length) {
-    [password appendString:[source randomCharacter]];
+    [password appendString:source.randomCharacter];
   }
   return password;
 }
@@ -78,7 +78,7 @@ static NSString *mergeWithoutDuplicates(NSString* baseCharacters, NSString* cust
                                                 allowedCharactersString(allowedCharacters),
                                                 customCharacters);
   while(password.composedCharacterLength < length) {
-    NSString *randomCharacter = [characters randomCharacter];
+    NSString *randomCharacter = characters.randomCharacter;
     if(randomCharacter.length > 0) {
       [password appendString:randomCharacter];
     }
