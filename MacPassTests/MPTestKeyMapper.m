@@ -24,8 +24,6 @@
    We could set certain keyboard layouts to run this test invariantly
    The simpler aproach is to go full circle to check if the desired character is the actual character we get
    */
-
-  /* Ì - has no key for US and DVORAK layout */
   NSString *test = @"aB(]©®@ﬂ~±»";
   
   [test enumerateSubstringsInRange:NSMakeRange(0, test.length) options:NSStringEnumerationByComposedCharacterSequences usingBlock:^(NSString * _Nullable substring, NSRange substringRange, NSRange enclosingRange, BOOL * _Nonnull stop) {
