@@ -46,8 +46,7 @@ typedef NS_ENUM(NSUInteger, MPActionType) {
   MPActionShowEntryHistory, // show history
   MPActionHideEntryHistory, // exit history
   MPActionPerformAutotypeForSelectedEntry, // Perform Autotype for selected Entry
-  MPActionRemoveAttachment, // Remove an attachment
-  MPActionDeleteCustomIcon // delte a custom icon
+  MPActionRemoveAttachment // Remove an attachment
 };
 /**
  *	Helper to retrieve commonly used actions

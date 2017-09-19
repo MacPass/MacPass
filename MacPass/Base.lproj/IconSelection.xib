@@ -23,7 +23,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="380" height="270"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <collectionView focusRingType="none" selectable="YES" id="58">
+                            <collectionView focusRingType="none" selectable="YES" id="58" customClass="MPCollectionView">
                                 <rect key="frame" x="0.0" y="0.0" width="380" height="270"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 <color key="primaryBackgroundColor" name="windowBackgroundColor" catalog="System" colorSpace="catalog"/>

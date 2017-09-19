@@ -23,12 +23,13 @@
 #import "MPIconSelectViewController.h"
 #import "MPIconHelper.h"
 #import "MPDocument.h"
+#import "MPCollectionView.h"
 #import "MPCollectionViewItem.h"
 
 @interface MPIconSelectViewController () <NSCollectionViewDelegate>
 
 /* UI properties */
-@property (weak) IBOutlet NSCollectionView *iconCollectionView;
+@property (weak) IBOutlet MPCollectionView *iconCollectionView;
 @property (weak) IBOutlet NSButton *imageButton;
 
 @end
@@ -45,6 +46,10 @@
   self.iconCollectionView.allowsMultipleSelection = NO;
   self.iconCollectionView.delegate = self;
   [self.iconCollectionView registerForDraggedTypes:@[(NSString *)kUTTypeURL, (NSString *)kUTTypeFileURL]];
+  
+  NSMenu *menu = [[NSMenu alloc] initWithTitle:@""];
+  [menu addItem:[[NSMenuItem alloc] initWithTitle:NSLocalizedString(@"DELETE", @"") action:@selector(deleteIcon:) keyEquivalent:@""]];
+  self.iconCollectionView.menu = menu;
   
   [self _updateCollectionViewContent];
 }
@@ -95,7 +100,15 @@
 }
 
 - (void)deleteIcon:(id)sender {
-  
+  NSUInteger index = self.iconCollectionView.contextMenuIndex;
+  NSUInteger firstCustomIndex = [MPIconHelper databaseIcons].count;
+  if(index < firstCustomIndex) {
+    return;
+  }
+  MPDocument *document = [NSDocumentController sharedDocumentController].currentDocument;
+  KPKIcon *icon = self.iconCollectionView.content[index];
+  [document.tree.metaData removeCustomIcon:icon];
+  [self _updateCollectionViewContent];
 }
 
 
