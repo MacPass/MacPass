@@ -1,9 +1,9 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="10117" systemVersion="15G31" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="12121" systemVersion="16G29" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
     <dependencies>
-        <deployment identifier="macosx"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="10117"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="12121"/>
         <capability name="box content view" minToolsVersion="7.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
         <customObject id="-2" userLabel="File's Owner" customClass="MPIntegrationSettingsController">
@@ -25,13 +25,13 @@
         <customView translatesAutoresizingMaskIntoConstraints="NO" id="1">
             <rect key="frame" x="0.0" y="0.0" width="400" height="366"/>
             <subviews>
-                <box autoresizesSubviews="NO" verticalHuggingPriority="500" title="Autotype" borderType="line" translatesAutoresizingMaskIntoConstraints="NO" id="P9N-HM-wER">
+                <box autoresizesSubviews="NO" verticalHuggingPriority="500" borderType="line" title="Autotype" translatesAutoresizingMaskIntoConstraints="NO" id="P9N-HM-wER">
                     <rect key="frame" x="17" y="115" width="366" height="231"/>
                     <view key="contentView" id="faU-Ok-HJ3">
                         <rect key="frame" x="1" y="1" width="364" height="215"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <textField verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="Kvg-he-3c8" customClass="DDHotKeyTextField">
+                            <textField verticalHuggingPriority="750" allowsCharacterPickerTouchBarItem="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Kvg-he-3c8" customClass="DDHotKeyTextField">
                                 <rect key="frame" x="79" y="161" width="89" height="22"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="89" id="Mia-b8-HCZ"/>
@@ -49,7 +49,7 @@
                                     <font key="font" metaFont="system"/>
                                 </buttonCell>
                             </button>
-                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="buI-Wb-o3V">
+                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" allowsCharacterPickerTouchBarItem="NO" translatesAutoresizingMaskIntoConstraints="NO" id="buI-Wb-o3V">
                                 <rect key="frame" x="16" y="164" width="57" height="17"/>
                                 <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Shortcut" id="6oN-CH-T0O">
                                     <font key="font" metaFont="system"/>
@@ -57,7 +57,7 @@
                                     <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                 </textFieldCell>
                             </textField>
-                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="f5q-EW-RHf">
+                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" allowsCharacterPickerTouchBarItem="NO" translatesAutoresizingMaskIntoConstraints="NO" id="f5q-EW-RHf">
                                 <rect key="frame" x="174" y="167" width="127" height="14"/>
                                 <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Shortcut is missing Key" id="Lxp-wI-yQy">
                                     <font key="font" metaFont="smallSystem"/>
@@ -66,22 +66,22 @@
                                 </textFieldCell>
                             </textField>
                             <button translatesAutoresizingMaskIntoConstraints="NO" id="DAX-V8-Say">
-                                <rect key="frame" x="16" y="133" width="172" height="18"/>
-                                <buttonCell key="cell" type="check" title="Include Title for matches" bezelStyle="regularSquare" imagePosition="left" state="on" inset="2" id="tmL-dT-D0G">
+                                <rect key="frame" x="16" y="133" width="208" height="18"/>
+                                <buttonCell key="cell" type="check" title="Include Entry Title for matches" bezelStyle="regularSquare" imagePosition="left" state="on" inset="2" id="tmL-dT-D0G">
                                     <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                                     <font key="font" metaFont="system"/>
                                 </buttonCell>
                             </button>
                             <button translatesAutoresizingMaskIntoConstraints="NO" id="TiO-ah-BlR">
-                                <rect key="frame" x="16" y="93" width="174" height="18"/>
-                                <buttonCell key="cell" type="check" title="Include Host for matches" bezelStyle="regularSquare" imagePosition="left" state="on" inset="2" id="B1D-j9-L8x">
+                                <rect key="frame" x="16" y="93" width="239" height="18"/>
+                                <buttonCell key="cell" type="check" title="Include Entry URL Host for matches" bezelStyle="regularSquare" imagePosition="left" state="on" inset="2" id="B1D-j9-L8x">
                                     <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                                     <font key="font" metaFont="system"/>
                                 </buttonCell>
                             </button>
                             <button translatesAutoresizingMaskIntoConstraints="NO" id="9MH-jx-GpG">
-                                <rect key="frame" x="16" y="73" width="175" height="18"/>
-                                <buttonCell key="cell" type="check" title="Include Tags for matches" bezelStyle="regularSquare" imagePosition="left" state="on" inset="2" id="rbu-G7-MT8">
+                                <rect key="frame" x="16" y="73" width="210" height="18"/>
+                                <buttonCell key="cell" type="check" title="Include Entry Tags for matches" bezelStyle="regularSquare" imagePosition="left" state="on" inset="2" id="rbu-G7-MT8">
                                     <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                                     <font key="font" metaFont="system"/>
                                 </buttonCell>
@@ -93,7 +93,7 @@
                                     <font key="font" metaFont="system"/>
                                 </buttonCell>
                             </button>
-                            <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" setsMaxLayoutWidthAtFirstLayout="YES" translatesAutoresizingMaskIntoConstraints="NO" id="wbP-A9-jpw">
+                            <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" setsMaxLayoutWidthAtFirstLayout="YES" allowsCharacterPickerTouchBarItem="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wbP-A9-jpw">
                                 <rect key="frame" x="18" y="19" width="330" height="28"/>
                                 <textFieldCell key="cell" sendsActionOnEndEditing="YES" title="If enabled, every {CONTROL} command will be sent as ⌘. Only disable this if you are sure you need to." id="QRy-CY-ENC">
                                     <font key="font" metaFont="smallSystem"/>
@@ -102,8 +102,8 @@
                                 </textFieldCell>
                             </textField>
                             <button translatesAutoresizingMaskIntoConstraints="NO" id="8Wz-lo-AXG">
-                                <rect key="frame" x="16" y="113" width="171" height="18"/>
-                                <buttonCell key="cell" type="check" title="Include URL for matches" bezelStyle="regularSquare" imagePosition="left" state="on" inset="2" id="TzR-00-Vp3">
+                                <rect key="frame" x="16" y="113" width="207" height="18"/>
+                                <buttonCell key="cell" type="check" title="Include Entry URL for matches" bezelStyle="regularSquare" imagePosition="left" state="on" inset="2" id="TzR-00-Vp3">
                                     <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                                     <font key="font" metaFont="system"/>
                                 </buttonCell>
@@ -138,10 +138,8 @@
                         <constraint firstItem="DAX-V8-Say" firstAttribute="leading" secondItem="tik-Ar-FJg" secondAttribute="leading" id="s2L-A8-WQ2"/>
                         <constraint firstItem="tik-Ar-FJg" firstAttribute="leading" secondItem="TiO-ah-BlR" secondAttribute="leading" id="uJP-4u-dr4"/>
                     </constraints>
-                    <color key="borderColor" white="0.0" alpha="0.41999999999999998" colorSpace="calibratedWhite"/>
-                    <color key="fillColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                 </box>
-                <box autoresizesSubviews="NO" verticalHuggingPriority="500" title="Preview" borderType="line" translatesAutoresizingMaskIntoConstraints="NO" id="VVs-b5-cX9">
+                <box autoresizesSubviews="NO" verticalHuggingPriority="500" borderType="line" title="Preview" translatesAutoresizingMaskIntoConstraints="NO" id="VVs-b5-cX9">
                     <rect key="frame" x="17" y="16" width="366" height="95"/>
                     <view key="contentView" id="ww4-uR-8gP">
                         <rect key="frame" x="1" y="1" width="364" height="79"/>
@@ -154,7 +152,7 @@
                                     <font key="font" metaFont="system"/>
                                 </buttonCell>
                             </button>
-                            <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" setsMaxLayoutWidthAtFirstLayout="YES" translatesAutoresizingMaskIntoConstraints="NO" id="V6l-R9-hIj">
+                            <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" setsMaxLayoutWidthAtFirstLayout="YES" allowsCharacterPickerTouchBarItem="NO" translatesAutoresizingMaskIntoConstraints="NO" id="V6l-R9-hIj">
                                 <rect key="frame" x="16" y="19" width="332" height="28"/>
                                 <textFieldCell key="cell" controlSize="small" sendsActionOnEndEditing="YES" title="If enabled attached files will be copied to a temporary location for preview and deleted after the preview is closed." id="WmI-IB-Aso">
                                     <font key="font" metaFont="smallSystem"/>
@@ -172,8 +170,6 @@
                         <constraint firstItem="LNw-5t-TS4" firstAttribute="leading" secondItem="VVs-b5-cX9" secondAttribute="leading" constant="16" id="NsS-Nl-Lso"/>
                         <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="V6l-R9-hIj" secondAttribute="trailing" constant="16" id="ivY-UD-QFJ"/>
                     </constraints>
-                    <color key="borderColor" white="0.0" alpha="0.41999999999999998" colorSpace="calibratedWhite"/>
-                    <color key="fillColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                 </box>
             </subviews>
             <constraints>
