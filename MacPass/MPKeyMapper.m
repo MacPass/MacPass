@@ -90,9 +90,7 @@ uint16_t const kMPUnknownKeyCode = UINT16_MAX;
                            sizeof(chars) / sizeof(chars[0]),
                            &realLength,
                            chars);
-  if(success != 0) {
-    return @"";
-  }
+  
   return CFBridgingRelease(CFStringCreateWithCharacters(kCFAllocatorDefault, chars, 1));
 }
 
