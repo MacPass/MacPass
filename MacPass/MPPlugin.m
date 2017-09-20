@@ -69,7 +69,10 @@ NSString *const kMPPluginFileExtension = @"mpplugin";
 
 - (instancetype)initWithPluginManager:(id)manager {
   NSLog(@"Deprecated initalizer. Use initWithPluginHost: instead!");
-  self = [self initWithPluginManager:nil];
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wnonnull"
+  self = [self initWithPluginHost:nil];
+#pragma cland diagnostic pop
   return self;
 }
 
