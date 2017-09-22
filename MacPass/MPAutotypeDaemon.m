@@ -218,7 +218,7 @@ static MPAutotypeDaemon *_sharedInstance;
     return nil;
   }
   if(candidates == 1 ) {
-    return  autotypeCandidates.lastObject;
+    return autotypeCandidates.lastObject;
   }
   [self _presentSelectionWindow:autotypeCandidates];
   return nil; // Nothing to do, we get called back by the window
