@@ -895,10 +895,10 @@ NSString *const MPDocumentGroupKey                            = @"MPDocumentGrou
 
 - (void)_emptyTrash {
   for(KPKEntry *entry in [self.trash childEntries]) {
-    [[self undoManager] removeAllActionsWithTarget:entry];
+    [self.undoManager removeAllActionsWithTarget:entry];
   }
   for(KPKGroup *group in [self.trash childGroups]) {
-    [[self undoManager] removeAllActionsWithTarget:group];
+    [self.undoManager removeAllActionsWithTarget:group];
   }
   [self.trash clear];
 }
