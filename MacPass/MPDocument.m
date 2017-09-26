@@ -258,7 +258,6 @@ NSString *const MPDocumentGroupKey                            = @"MPDocumentGrou
 }
 
 - (NSString *)fileTypeFromLastRunSavePanel {
-  /* TODO evaluate if this is still necessary! */
   if(self.savePanelViewController) {
     return [self.class fileTypeForVersion:self.savePanelViewController.selectedVersion];
   }

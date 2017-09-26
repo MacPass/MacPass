@@ -210,9 +210,10 @@ typedef void (^MPPasswordChangedBlock)(BOOL didChangePassword);
 #pragma mark Actions
 - (void)saveDocument:(id)sender {
   MPDocument *document = self.document;
+  /* did we open as legacy ?
+  
   NSString *fileType = document.fileType;
-  /* we did open as legacy */
-  if([fileType isEqualToString:MPKdbDocumentUTI]) {
+  if([fileType isEqualToString:MPKdbxDocumentUTI]) {
     if(document.tree.minimumVersion.format != KPKDatabaseFormatKdb) {
       NSAlert *alert = [[NSAlert alloc] init];
       alert.alertStyle = NSWarningAlertStyle;
@@ -225,7 +226,7 @@ typedef void (^MPPasswordChangedBlock)(BOOL didChangePassword);
       [alert beginSheetModalForWindow:((NSDocument *)self.document).windowForSheet completionHandler:^(NSModalResponse returnCode) {
         switch(returnCode) {
           case NSAlertFirstButtonReturn:
-            /* Save lossy */
+            // save lossy
             [self.document saveDocument:nil];
             return;
             
@@ -242,21 +243,19 @@ typedef void (^MPPasswordChangedBlock)(BOOL didChangePassword);
       return;
     }
   }
-  else if(!document.compositeKey) {
-    __weak MPDocument *weakDocument = self.document;
-    
+  else*/
+  if(!document.compositeKey) {
     [self editPasswordWithCompetionHandler:^(NSInteger result) {
       if(result == NSModalResponseOK) {
-        [weakDocument saveDocument:sender];
+        [self saveDocument:sender];
       }
     }];
     return;
   }
   else if(document.shouldEnforcePasswordChange) {
-    __weak MPDocument *weakDocument = [self document];
     [self editPasswordWithCompetionHandler:^(NSInteger result) {
       if(result == NSModalResponseOK) {
-        [weakDocument saveDocument:sender];
+        [self saveDocument:sender];
       }
     }];
     [self _presentPasswordIntervalAlerts];
@@ -272,10 +271,9 @@ typedef void (^MPPasswordChangedBlock)(BOOL didChangePassword);
     return;
   }
   /* we need to make sure that a password is set */
-  __weak MPDocument *weakDocument = self.document;
   [self editPasswordWithCompetionHandler:^(NSInteger result) {
     if(result == NSModalResponseOK) {
-      [weakDocument saveDocumentAs:sender];
+      [self saveDocumentAs:sender];
     }
   }];
 }
