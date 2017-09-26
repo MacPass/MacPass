@@ -61,15 +61,6 @@ NSString *const MPPasteBoardControllerDidClearClipboard = @"com.hicknhack.macpas
   }
 }
 
-- (void)_updateNotifications {
-  if(self.clearPasteboardOnShutdown) {
-    [NSNotificationCenter.defaultCenter addObserver:self selector:@selector(_clearPasteboardContents) name:NSApplicationWillTerminateNotification object:nil];
-  }
-  else {
-    [NSNotificationCenter.defaultCenter removeObserver:self];
-  }
-}
-
 - (void)setClearPasteboardOnShutdown:(BOOL)clearPasteboardOnShutdown {
   if(_clearPasteboardOnShutdown != clearPasteboardOnShutdown ) {
     _clearPasteboardOnShutdown = !_clearPasteboardOnShutdown;
@@ -79,7 +70,7 @@ NSString *const MPPasteBoardControllerDidClearClipboard = @"com.hicknhack.macpas
 
 - (void)stashObjects {
   self.stashedObjects = [NSMutableArray array];
-  for (NSPasteboardItem *item in [NSPasteboard generalPasteboard].pasteboardItems) {
+  for (NSPasteboardItem *item in NSPasteboard.generalPasteboard.pasteboardItems) {
     NSPasteboardItem *newItem = [[NSPasteboardItem alloc] init];
     for (NSString *type in item.types) {
       NSData *data = [[item dataForType:type] mutableCopy];
@@ -93,14 +84,14 @@ NSString *const MPPasteBoardControllerDidClearClipboard = @"com.hicknhack.macpas
 
 - (void)restoreObjects {
   if (self.stashedObjects) {
-    [[NSPasteboard generalPasteboard] clearContents];
-    [[NSPasteboard generalPasteboard] writeObjects:self.stashedObjects];
+    [NSPasteboard.generalPasteboard clearContents];
+    [NSPasteboard.generalPasteboard writeObjects:self.stashedObjects];
     self.stashedObjects = nil;
     self.isEmpty = YES;
   }
 }
 
-- (void)copyObjects:(NSArray *)objects {
+- (void)copyObjects:(NSArray<id<NSPasteboardWriting>> *)objects {
   [self copyObjectsWithoutTimeout:objects];
   if(self.clearTimeout != 0) {
     [NSNotificationCenter.defaultCenter postNotificationName:MPPasteBoardControllerDidCopyObjects object:self];
@@ -108,10 +99,9 @@ NSString *const MPPasteBoardControllerDidClearClipboard = @"com.hicknhack.macpas
   }
 }
 
-- (void)copyObjectsWithoutTimeout:(NSArray *)objects
-{
-  [[NSPasteboard generalPasteboard] clearContents];
-  [[NSPasteboard generalPasteboard] writeObjects:objects];
+- (void)copyObjectsWithoutTimeout:(NSArray<id<NSPasteboardWriting>> *)objects {
+  [NSPasteboard.generalPasteboard clearContents];
+  [NSPasteboard.generalPasteboard writeObjects:objects];
   self.isEmpty = NO;
 }
 
@@ -124,19 +114,24 @@ NSString *const MPPasteBoardControllerDidClearClipboard = @"com.hicknhack.macpas
   self.isEmpty = YES;
 }
 
+- (void)_updateNotifications {
+  if(self.clearPasteboardOnShutdown) {
+    [NSNotificationCenter.defaultCenter addObserver:self selector:@selector(_clearPasteboardContents) name:NSApplicationWillTerminateNotification object:nil];
+  }
+  else {
+    [NSNotificationCenter.defaultCenter removeObserver:self];
+  }
+}
+
 - (void)_setupBindings {
-  NSUserDefaultsController *userDefaultsController = [NSUserDefaultsController sharedUserDefaultsController];
-  NSString *clearOnShutdownKeyPath = [MPSettingsHelper defaultControllerPathForKey:kMPSettingsKeyClearPasteboardOnQuit];
-  NSString *clearTimoutKeyPath = [MPSettingsHelper defaultControllerPathForKey:kMPSettingsKeyPasteboardClearTimeout];
-  
   [self bind:NSStringFromSelector(@selector(clearPasteboardOnShutdown))
-    toObject:userDefaultsController
- withKeyPath:clearOnShutdownKeyPath
+    toObject:NSUserDefaultsController.sharedUserDefaultsController
+ withKeyPath:[MPSettingsHelper defaultControllerPathForKey:kMPSettingsKeyClearPasteboardOnQuit]
      options:nil];
   
   [self bind:NSStringFromSelector(@selector(clearTimeout))
-    toObject:userDefaultsController
- withKeyPath:clearTimoutKeyPath
+    toObject:NSUserDefaultsController.sharedUserDefaultsController
+ withKeyPath:[MPSettingsHelper defaultControllerPathForKey:kMPSettingsKeyPasteboardClearTimeout]
      options:nil];
 }
 
