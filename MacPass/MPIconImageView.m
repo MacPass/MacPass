@@ -54,9 +54,7 @@
   return self;
 }
 
-- (void)drawRect:(NSRect)dirtyRect
-{
-  
+- (void)drawRect:(NSRect)dirtyRect {
   if(self.showOverlay && self.enabled) {
     [[NSGraphicsContext currentContext] saveGraphicsState];
     
