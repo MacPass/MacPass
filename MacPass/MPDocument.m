@@ -412,11 +412,10 @@ NSString *const MPDocumentGroupKey                            = @"MPDocumentGrou
    [self saveDocument] is enqued so that dataOfType is called too late to actually save teh database.
    hence we need to get the ok from the NSDocument about the save, otherwise the lock fails!
    */
-  if(self.lockedForFileChange) {
-    // we have user interaction that cannot be dismissed, instead ignore locking!
-    return;
+  // only lock if we do not have user interaction that cannot be dismissed!
+  if(!self.lockedForFileChange) {
+    [self saveDocumentWithDelegate:self didSaveSelector:@selector(_lockDatabaseForDocument:didSave:contextInfo:) contextInfo:NULL];
   }
-  [self saveDocumentWithDelegate:self didSaveSelector:@selector(_lockDatabaseForDocument:didSave:contextInfo:) contextInfo:NULL];
 }
 
 - (void)_lockDatabaseForDocument:(NSDocument *)document didSave:(BOOL)didSave contextInfo:(void  *)contextInfo {
