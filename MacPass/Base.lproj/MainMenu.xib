@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="12121" systemVersion="16G29" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="13196" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="12121"/>
+        <deployment identifier="macosx"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="13196"/>
     </dependencies>
     <objects>
         <customObject id="-2" userLabel="File's Owner" customClass="NSApplication">
@@ -149,16 +150,30 @@
                                     <action selector="mergeWithOther:" target="-1" id="OyM-CZ-TDD"/>
                                 </connections>
                             </menuItem>
-                            <menuItem title="Import XML…" id="rW0-r1-QYL">
+                            <menuItem title="Import" id="aTb-sW-nUd">
                                 <modifierMask key="keyEquivalentModifierMask"/>
-                                <connections>
-                                    <action selector="importFromXML:" target="-1" id="ESL-Uw-7fk"/>
-                                </connections>
+                                <menu key="submenu" title="Import" id="4q9-u1-pcm">
+                                    <items>
+                                        <menuItem title="XML…" id="rW0-r1-QYL">
+                                            <modifierMask key="keyEquivalentModifierMask"/>
+                                            <connections>
+                                                <action selector="importFromXML:" target="-1" id="ESL-Uw-7fk"/>
+                                            </connections>
+                                        </menuItem>
+                                    </items>
+                                </menu>
                             </menuItem>
-                            <menuItem title="Export As XML…" keyEquivalent="E" id="1259">
-                                <connections>
-                                    <action selector="exportAsXML:" target="-1" id="NCG-gr-YI5"/>
-                                </connections>
+                            <menuItem title="Export" id="tz9-yK-pOf">
+                                <modifierMask key="keyEquivalentModifierMask"/>
+                                <menu key="submenu" title="Export" id="p8h-Fg-h1O">
+                                    <items>
+                                        <menuItem title="XML…" keyEquivalent="E" id="1259">
+                                            <connections>
+                                                <action selector="exportAsXML:" target="-1" id="NCG-gr-YI5"/>
+                                            </connections>
+                                        </menuItem>
+                                    </items>
+                                </menu>
                             </menuItem>
                             <menuItem isSeparatorItem="YES" id="74">
                                 <modifierMask key="keyEquivalentModifierMask" command="YES"/>
@@ -317,6 +332,7 @@
                     </menu>
                 </menuItem>
             </items>
+            <point key="canvasLocation" x="-175" y="101"/>
         </menu>
         <customObject id="494" customClass="MPAppDelegate">
             <connections>
