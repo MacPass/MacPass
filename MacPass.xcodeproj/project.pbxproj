@@ -38,7 +38,6 @@
 		4C26C33F18D8C92100CF1A1C /* MPTemporaryFileStorage.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C26C33E18D8C92100CF1A1C /* MPTemporaryFileStorage.m */; };
 		4C26C34B18D8D5A300CF1A1C /* MPPreviewViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C26C34918D8D5A300CF1A1C /* MPPreviewViewController.m */; };
 		4C26C34C18D8D5A300CF1A1C /* PreviewView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4C26C34A18D8D5A300CF1A1C /* PreviewView.xib */; };
-		4C2C8B341787500E009649F3 /* UnprotectedWarningView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4C2C8B331787500E009649F3 /* UnprotectedWarningView.xib */; };
 		4C2E381D16D11FF900037A9D /* 03_ServerTemplate.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 4C2E381A16D11FF900037A9D /* 03_ServerTemplate.pdf */; };
 		4C2E381E16D11FF900037A9D /* 04_KlipperTemplate.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 4C2E381B16D11FF900037A9D /* 04_KlipperTemplate.pdf */; };
 		4C2E381F16D11FF900037A9D /* 05_LanguagesTemplate.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 4C2E381C16D11FF900037A9D /* 05_LanguagesTemplate.pdf */; };
@@ -350,7 +349,6 @@
 		4C26C34918D8D5A300CF1A1C /* MPPreviewViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MPPreviewViewController.m; sourceTree = "<group>"; };
 		4C26C34A18D8D5A300CF1A1C /* PreviewView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PreviewView.xib; sourceTree = "<group>"; };
 		4C2B0B7419F66F6400E48913 /* MPTargetNodeResolving.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MPTargetNodeResolving.h; sourceTree = "<group>"; };
-		4C2C8B331787500E009649F3 /* UnprotectedWarningView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = UnprotectedWarningView.xib; sourceTree = "<group>"; };
 		4C2E381A16D11FF900037A9D /* 03_ServerTemplate.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = 03_ServerTemplate.pdf; sourceTree = "<group>"; };
 		4C2E381B16D11FF900037A9D /* 04_KlipperTemplate.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = 04_KlipperTemplate.pdf; sourceTree = "<group>"; };
 		4C2E381C16D11FF900037A9D /* 05_LanguagesTemplate.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = 05_LanguagesTemplate.pdf; sourceTree = "<group>"; };
@@ -884,7 +882,6 @@
 			children = (
 				4C6AEF041A0441F800CA2420 /* AccessoryViews */,
 				4C77E37B15B84A240093A587 /* MainMenu.xib */,
-				4C2C8B331787500E009649F3 /* UnprotectedWarningView.xib */,
 				4CE8247316E2F2B900573141 /* MPOverlayView.h */,
 				4CE8247416E2F2B900573141 /* MPOverlayView.m */,
 				4CFC53BD16E94729007396BE /* MPShadowBox.h */,
@@ -1668,7 +1665,6 @@
 				6021FE9818E1650F00C3BC51 /* DatabaseSettingsWindow.xib in Resources */,
 				4C6D1D25178579570014C5A5 /* 48_FolderTemplate.pdf in Resources */,
 				4C701CBC178618A000581B88 /* 12_RemoteTemplate.pdf in Resources */,
-				4C2C8B341787500E009649F3 /* UnprotectedWarningView.xib in Resources */,
 				4CF29BF417879D0000851B60 /* 26_FileSaveTemplate.pdf in Resources */,
 				4C7BD07619FE94C900C7AA5C /* MacPassImages.xcassets in Resources */,
 				4CB915941A0159A20089CE5B /* DuplicateEntryOptionsWindow.xib in Resources */,
