@@ -307,6 +307,8 @@ NSString *const _MPTableSecurCellView = @"PasswordCell";
   }
   else  {
     view = [tableView makeViewWithIdentifier:_MPTableStringCellView owner:self];
+    [view.textField unbind:NSValueBinding];
+    view.textField.stringValue = @"";
     if(!isModifedColumn) {
       /* clean up old formatter that might be left */
       view.textField.formatter = nil;
@@ -363,9 +365,6 @@ NSString *const _MPTableSecurCellView = @"PasswordCell";
                                        NSStringFromSelector(@selector(objectValue)),
                                        NSStringFromSelector(@selector(history))];
       [view.textField bind:NSValueBinding toObject:view withKeyPath:historyCountKeyPath options:nil];
-    }
-    else if(isIndexColumn) {
-      view.textField.stringValue = @"";
     }
   }
   return view;
