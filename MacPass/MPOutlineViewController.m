@@ -90,7 +90,7 @@ NSString *const _MPOutlinveViewHeaderViewIdentifier = @"HeaderCell";
   self.outlineView.floatsGroupRows = NO;
   self.outlineView.doubleAction = @selector(_doubleClickedGroup:);
   self.outlineView.allowsMultipleSelection = YES;
-  [self.outlineView setDelegate:self];
+  self.outlineView.delegate = self;
   [self.outlineView registerForDraggedTypes:@[ KPKGroupUTI, KPKEntryUTI ]];
   [self.outlineView setDraggingSourceOperationMask:NSDragOperationEvery forLocal:YES];
   
