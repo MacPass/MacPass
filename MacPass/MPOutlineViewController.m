@@ -269,12 +269,12 @@ NSString *const _MPOutlinveViewHeaderViewIdentifier = @"HeaderCell";
     
     NSString *iconImageKeyPath = [NSString stringWithFormat:@"%@.%@", NSStringFromSelector(@selector(representedObject)), NSStringFromSelector(@selector(iconImage))];
     NSString *titleKeyPath = [NSString stringWithFormat:@"%@.%@", NSStringFromSelector(@selector(representedObject)), NSStringFromSelector(@selector(title))];
-    [[view imageView] bind:NSValueBinding toObject:item withKeyPath:iconImageKeyPath options:nil];
-    [[view textField] bind:NSValueBinding toObject:item withKeyPath:titleKeyPath options:nil];
+    [view.imageView bind:NSValueBinding toObject:item withKeyPath:iconImageKeyPath options:nil];
+    [view.textField bind:NSValueBinding toObject:item withKeyPath:titleKeyPath options:nil];
     
     
-    NSString *entriesCountKeyPath = [[NSString alloc] initWithFormat:@"%@.%@.%@", NSStringFromSelector(@selector(representedObject)), NSStringFromSelector(@selector(entries)), @"@count"];
-    [[view textField] bind:NSStringFromSelector(@selector(count)) toObject:item withKeyPath:entriesCountKeyPath options:nil];
+    NSString *entriesCountKeyPath = [[NSString alloc] initWithFormat:@"%@.%@.%@", NSStringFromSelector(@selector(representedObject)), NSStringFromSelector(@selector(mutableEntries)), @"@count"];
+    [view.textField bind:NSStringFromSelector(@selector(count)) toObject:item withKeyPath:entriesCountKeyPath options:nil];
   }
   
   return view;
@@ -309,7 +309,7 @@ NSString *const _MPOutlinveViewHeaderViewIdentifier = @"HeaderCell";
   }
 }
 - (void)outlineViewItemDidCollapse:(NSNotification *)notification {
-  NSDictionary *userInfo = [notification userInfo];
+  NSDictionary *userInfo = notification.userInfo;
   id item = userInfo[NSStringFromClass([NSObject class])];
   id representedObject = [item representedObject];
   if([representedObject isKindOfClass:[KPKGroup class]]) {
@@ -328,7 +328,7 @@ NSString *const _MPOutlinveViewHeaderViewIdentifier = @"HeaderCell";
 
 #pragma mark Validation
 - (BOOL)validateMenuItem:(NSMenuItem *)menuItem {
-  MPDocument *document = [[self windowController] document];
+  MPDocument *document = self.windowController.document;
   if(![document validateUserInterfaceItem:menuItem]) {
     return NO;
   }
@@ -338,7 +338,7 @@ NSString *const _MPOutlinveViewHeaderViewIdentifier = @"HeaderCell";
 
 - (NSMenu *)_contextMenu {
   NSMenu *menu = [[NSMenu alloc] init];
-  [menu setDelegate:_menuDelegate];
+  menu.delegate = _menuDelegate;
   return menu;
 }
 
