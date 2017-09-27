@@ -112,8 +112,8 @@ NSString *const _MPTableSecurCellView = @"PasswordCell";
     _dataSource.viewController = self;
     _menuDelegate = [[MPEntryContextMenuDelegate alloc] init];
     _contextBarViewController = [[MPContextBarViewController alloc] init];
-    NSString *entriesKeyPath = [NSString stringWithFormat:@"%@.%@", NSStringFromSelector(@selector(representedObject)), NSStringFromSelector(@selector(entries))];
-    [_entryArrayController bind:NSContentBinding toObject:self withKeyPath:entriesKeyPath options:nil];
+    NSString *entriesKeyPath = [NSString stringWithFormat:@"%@.%@", NSStringFromSelector(@selector(representedObject)), NSStringFromSelector(@selector(mutableEntries))];
+    [_entryArrayController bind:NSContentArrayBinding toObject:self withKeyPath:entriesKeyPath options:@{NSNullPlaceholderBindingOption: @[]}];
   }
   return self;
 }
@@ -472,7 +472,7 @@ NSString *const _MPTableSecurCellView = @"PasswordCell";
   NSArray *result = notification.userInfo[kMPDocumentSearchResultsKey];
   NSAssert(result != nil, @"Resutls should never be nil");
   self.filteredEntries = result;
-  [self.entryArrayController bind:NSContentArrayBinding toObject:self withKeyPath:NSStringFromSelector(@selector(filteredEntries)) options:nil];
+  self.entryArrayController.content = self.filteredEntries;
   [self.entryTable tableColumnWithIdentifier:MPEntryTableParentColumnIdentifier].hidden = NO;
   [self _updateContextBar];
 }
@@ -480,7 +480,6 @@ NSString *const _MPTableSecurCellView = @"PasswordCell";
 
 - (void)_didExitSearch:(NSNotification *)notification {
   [self.entryTable tableColumnWithIdentifier:MPEntryTableParentColumnIdentifier].hidden = YES;
-  [self.entryArrayController unbind:NSContentArrayBinding];
   self.entryArrayController.content = nil;
   self.filteredEntries = nil;
   self.displayMode = MPDisplayModeEntries;
