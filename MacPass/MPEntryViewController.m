@@ -112,7 +112,7 @@ NSString *const _MPTableSecurCellView = @"PasswordCell";
     _dataSource.viewController = self;
     _menuDelegate = [[MPEntryContextMenuDelegate alloc] init];
     _contextBarViewController = [[MPContextBarViewController alloc] init];
-    NSString *entriesKeyPath = [NSString stringWithFormat:@"%@.%@", NSStringFromSelector(@selector(representedObject)), NSStringFromSelector(@selector(mutableEntries))];
+    NSString *entriesKeyPath = [NSString stringWithFormat:@"%@.%@", NSStringFromSelector(@selector(representedObject)), KPKEntriesArrayBinding];
     [_entryArrayController bind:NSContentArrayBinding toObject:self withKeyPath:entriesKeyPath options:@{NSNullPlaceholderBindingOption: @[]}];
   }
   return self;
