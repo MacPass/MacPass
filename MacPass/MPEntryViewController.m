@@ -326,12 +326,12 @@ NSString *const _MPTableSecurCellView = @"PasswordCell";
         });
         view.textField.formatter = formatter;
       }
-      NSString *modificatoinTimeKeyPath = [NSString stringWithFormat:@"%@.%@.%@",
+      NSString *modificationTimeKeyPath = [NSString stringWithFormat:@"%@.%@.%@",
                                            NSStringFromSelector(@selector(objectValue)),
                                            NSStringFromSelector(@selector(timeInfo)),
                                            NSStringFromSelector(@selector(modificationDate))];
       
-      [view.textField bind:NSValueBinding toObject:view withKeyPath:modificatoinTimeKeyPath options:nil];
+      [view.textField bind:NSValueBinding toObject:view withKeyPath:modificationTimeKeyPath options:nil];
       return view;
     }
     else if(isURLColumn) {
