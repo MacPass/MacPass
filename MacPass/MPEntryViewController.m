@@ -373,6 +373,7 @@ NSString *const _MPTableSecurCellView = @"PasswordCell";
 - (void)tableView:(NSTableView *)tableView didRemoveRowView:(NSTableRowView *)rowView forRow:(NSInteger)row {
   /* Rows being removed for data change should be checked here to clear selections */
   if(row == -1) {
+    /* post selection change notification since cocoa decides not to post them if a selected row is removed */
     [self tableViewSelectionDidChange:[NSNotification notificationWithName:NSTableViewSelectionDidChangeNotification object:tableView]];
   }
 }
