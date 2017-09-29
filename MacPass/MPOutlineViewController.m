@@ -273,7 +273,7 @@ NSString *const _MPOutlinveViewHeaderViewIdentifier = @"HeaderCell";
     [view.textField bind:NSValueBinding toObject:item withKeyPath:titleKeyPath options:nil];
     
     
-    NSString *entriesCountKeyPath = [[NSString alloc] initWithFormat:@"%@.%@.%@", NSStringFromSelector(@selector(representedObject)), NSStringFromSelector(@selector(mutableEntries)), @"@count"];
+    NSString *entriesCountKeyPath = [[NSString alloc] initWithFormat:@"%@.%@.%@", NSStringFromSelector(@selector(representedObject)), KPKEntriesArrayBinding, @"@count"];
     [view.textField bind:NSStringFromSelector(@selector(count)) toObject:item withKeyPath:entriesCountKeyPath options:nil];
   }
   
