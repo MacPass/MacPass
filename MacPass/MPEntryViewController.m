@@ -112,8 +112,7 @@ NSString *const _MPTableSecurCellView = @"PasswordCell";
     _dataSource.viewController = self;
     _menuDelegate = [[MPEntryContextMenuDelegate alloc] init];
     _contextBarViewController = [[MPContextBarViewController alloc] init];
-    NSString *entriesKeyPath = [NSString stringWithFormat:@"%@.%@", NSStringFromSelector(@selector(representedObject)), KPKEntriesArrayBinding];
-    [_entryArrayController bind:NSContentArrayBinding toObject:self withKeyPath:entriesKeyPath options:@{NSNullPlaceholderBindingOption: @[]}];
+    [self _setupEntryBindings];
   }
   return self;
 }
@@ -517,7 +516,7 @@ NSString *const _MPTableSecurCellView = @"PasswordCell";
 
 - (void)_hideEntryHistory:(NSNotification *)notification {
   self.displayMode = MPDisplayModeEntries;
-  [self.entryArrayController unbind:NSContentArrayBinding];
+  [self _setupEntryBindings];
   self.entryArrayController.content = nil;
   [self _updateContextBar];
   MPDocument *document = notification.object;
@@ -540,6 +539,11 @@ NSString *const _MPTableSecurCellView = @"PasswordCell";
       }
     }
   }
+}
+
+- (void)_setupEntryBindings {
+  NSString *entriesKeyPath = [NSString stringWithFormat:@"%@.%@", NSStringFromSelector(@selector(representedObject)), KPKEntriesArrayBinding];
+  [self.entryArrayController bind:NSContentArrayBinding toObject:self withKeyPath:entriesKeyPath options:@{NSNullPlaceholderBindingOption: @[]}];
 }
 
 - (void)_showContextBar {
