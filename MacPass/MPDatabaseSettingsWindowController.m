@@ -259,6 +259,8 @@
 - (void)_setupAdvancedTab:(KPKTree *)tree {
   HNHUISetStateFromBool(self.enableTrashCheckButton, tree.metaData.useTrash);
   self.selectTrashGoupPopUpButton.enabled = tree.metaData.useTrash;
+  self.historyMaximumItemsTextField.stringValue = [NSString stringWithFormat:@"%ld", tree.metaData.historyMaxItems];
+  self.historyMaxiumSizeTextField.stringValue = [NSString stringWithFormat:@"%ld", tree.metaData.historyMaxSize];
   [self.enableTrashCheckButton bind:NSValueBinding toObject:self.selectTrashGoupPopUpButton withKeyPath:NSEnabledBinding options:nil];
   [self _updateTrashFolders:tree];
   
