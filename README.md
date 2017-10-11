@@ -24,6 +24,7 @@ git clone https://github.com/mstarke/MacPass --recursive
 * Install [Carthage](https://github.com/Carthage/Carthage#installing-carthage)
 * Install all Dependencies
 ```bash
+cd MacPass
 carthage bootstrap --platform Mac
 ```
 After that you can build and run in Xcode. The following command will build and make the application available through Spotlight. If you run into signing issues take a look at [Issue #92](https://github.com/mstarke/MacPass/issues/92)
