@@ -218,15 +218,6 @@ typedef void (^MPPasswordChangedBlock)(BOOL didChangePassword);
     }];
     return;
   }
-  else if(document.shouldEnforcePasswordChange) {
-    [self editPasswordWithCompetionHandler:^(NSInteger result) {
-      if(result == NSModalResponseOK) {
-        [self saveDocument:sender];
-      }
-    }];
-    [self _presentPasswordIntervalAlerts];
-    return;
-  }
   /* All set and good ready to save */
   [self.document saveDocument:sender];
 }
@@ -515,7 +506,7 @@ typedef void (^MPPasswordChangedBlock)(BOOL didChangePassword);
 
 #pragma mark NSAlert handling
 - (void)_presentPasswordIntervalAlerts {
-  MPDocument *document = [self document];
+  MPDocument *document = self.document;
   if(document.shouldEnforcePasswordChange) {
     NSAlert *alert = [[NSAlert alloc] init];
     
@@ -524,15 +515,17 @@ typedef void (^MPPasswordChangedBlock)(BOOL didChangePassword);
     alert.informativeText = NSLocalizedString(@"ENFORCE_PASSWORD_CHANGE_ALERT_DESCRIPTION", "");
     
     [alert addButtonWithTitle:NSLocalizedString(@"CHANGE_PASSWORD_WITH_DOTS", "")];
-    [alert addButtonWithTitle:NSLocalizedString(@"CANCEL", "")];
-    alert.buttons[1].keyEquivalent = [NSString stringWithFormat:@"%c", 0x1b];
     
     [alert beginSheetModalForWindow:[self.document windowForSheet] completionHandler:^(NSModalResponse returnCode) {
-      if(NSAlertSecondButtonReturn == returnCode) {
-        return;
-      }
       dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.5 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-        [self editPassword:nil];
+        [self editPasswordWithCompetionHandler:^(NSInteger result) {
+          /* if password was changed, reset change key and dismiss */
+          if(NSModalResponseOK == result) {
+            document.tree.metaData.enforceMasterKeyChangeOnce = NO;
+          }
+          /* password was not changes, so keep nagging the user! */
+          [self _presentPasswordIntervalAlerts];
+        }];
       });
     }];
   }

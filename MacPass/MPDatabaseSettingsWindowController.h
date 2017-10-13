@@ -67,6 +67,7 @@ typedef NS_ENUM(NSUInteger, MPDatabaseSettingsTab) {
 
 @property (weak) IBOutlet NSButton *recommendKeyChangeCheckButton;
 @property (weak) IBOutlet NSButton *enforceKeyChangeCheckButton;
+@property (weak) IBOutlet NSButton *enforceKeyChangeOnceCheckButton;
 @property (weak) IBOutlet NSTextField *recommendKeyChangeIntervalTextField;
 @property (weak) IBOutlet NSTextField *enforceKeyChangeIntervalTextField;
 

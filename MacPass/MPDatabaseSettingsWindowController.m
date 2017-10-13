@@ -37,6 +37,8 @@
 @interface MPDatabaseSettingsWindowController () {
   NSString *_missingFeature;
 }
+@property (assign) BOOL enableHistory;
+
 @end
 
 @implementation MPDatabaseSettingsWindowController
@@ -57,10 +59,10 @@
   [super windowDidLoad];
   
   NSAssert(self.document != nil, @"Document needs to be present");
-    
+  
   self.sectionTabView.delegate = self;
   self.aesEncryptionRoundsTextField.formatter = [[MPNumericalInputFormatter alloc] init];
-
+  
   NSMenu *kdfMenu = [[NSMenu alloc] init];
   NSArray *keyderivations = [KPKKeyDerivation availableKeyDerivations];
   for(KPKKeyDerivation *kd in keyderivations) {
@@ -80,6 +82,9 @@
   self.cipherPopupButton.menu = cipherMenu;
   self.keyDerivationSettingsTabView.tabViewItems[0].identifier = [KPKAESKeyDerivation uuid];
   self.keyDerivationSettingsTabView.tabViewItems[1].identifier = [KPKArgon2KeyDerivation uuid];
+  
+  
+  
 }
 
 #pragma mark Actions
@@ -94,7 +99,7 @@
   KPKMetaData *metaData = ((MPDocument *)self.document).tree.metaData;
   metaData.databaseDescription = self.databaseDescriptionTextView.string;
   metaData.databaseName = self.databaseNameTextField.stringValue;
-
+  
   NSInteger compressionIndex = self.databaseCompressionPopupButton.indexOfSelectedItem;
   if(compressionIndex >= KPKCompressionNone && compressionIndex < KPKCompressionCount) {
     metaData.compressionAlgorithm = (uint32_t)compressionIndex;
@@ -106,17 +111,29 @@
   else {
     metaData.color = databaseColor;
   }
-    
+  
   /* Advanced */
   metaData.useTrash = HNHUIBoolForState(self.enableTrashCheckButton.state);
   NSMenuItem *trashMenuItem = self.selectTrashGoupPopUpButton.selectedItem;
   KPKGroup *trashGroup = trashMenuItem.representedObject;
   ((MPDocument *)self.document).tree.trash  = trashGroup;
   
+  BOOL requiresHistoryMaintainance = NO;
+  requiresHistoryMaintainance = (metaData.historyMaxSize > self.historyMaxiumSizeTextField.integerValue ||
+                                 metaData.historyMaxItems > self.historyMaximumItemsTextField.integerValue);
+  
+  metaData.historyMaxItems = self.historyMaximumItemsTextField.integerValue;
+  metaData.historyMaxSize = self.historyMaxiumSizeTextField.integerValue;
+  
+  /* only maintain history if actually needed */
+  if(requiresHistoryMaintainance) {
+    KPKTree *tree = ((MPDocument *)self.document).tree;
+    [tree maintainHistory];
+  }
+  
   NSMenuItem *templateMenuItem = self.templateGroupPopUpButton.selectedItem;
   KPKGroup *templateGroup = templateMenuItem.representedObject;
   ((MPDocument *)self.document).templates = templateGroup;
-  
   
   BOOL enforceMasterKeyChange = HNHUIBoolForState(self.enforceKeyChangeCheckButton.state);
   BOOL recommendMasterKeyChange = HNHUIBoolForState(self.recommendKeyChangeCheckButton.state);
@@ -126,9 +143,10 @@
   
   NSInteger enfoceInterval = self.enforceKeyChangeIntervalTextField.integerValue;
   NSInteger recommendInterval = self.recommendKeyChangeIntervalTextField.integerValue;
-
+  
   metaData.masterKeyChangeEnforcementInterval = enforceMasterKeyChange ? enfoceInterval : -1;
   metaData.masterKeyChangeRecommendationInterval = recommendMasterKeyChange ? recommendInterval : -1;
+  metaData.enforceMasterKeyChangeOnce = HNHUIBoolForState(self.enforceKeyChangeOnceCheckButton.state);
   
   metaData.defaultUserName = self.defaultUsernameTextField.stringValue;
   
@@ -257,22 +275,32 @@
 }
 
 - (void)_setupAdvancedTab:(KPKTree *)tree {
-  HNHUISetStateFromBool(self.enableTrashCheckButton, tree.metaData.useTrash);
-  self.selectTrashGoupPopUpButton.enabled = tree.metaData.useTrash;
+  /* history */
+  self.enableHistory = tree.metaData.isHistoryEnabled;
+  [self.enableHistoryCheckButton bind:NSValueBinding toObject:self withKeyPath:NSStringFromSelector(@selector(enableHistory)) options:nil];
   self.historyMaximumItemsTextField.stringValue = [NSString stringWithFormat:@"%ld", tree.metaData.historyMaxItems];
   self.historyMaxiumSizeTextField.stringValue = [NSString stringWithFormat:@"%ld", tree.metaData.historyMaxSize];
+  [self.historyMaximumItemsTextField bind:NSEnabledBinding toObject:self withKeyPath:NSStringFromSelector(@selector(enableHistory)) options:nil];
+  [self.historyMaxiumSizeTextField bind:NSEnabledBinding toObject:self withKeyPath:NSStringFromSelector(@selector(enableHistory)) options:nil];
+  
+  /* trash */
+  HNHUISetStateFromBool(self.enableTrashCheckButton, tree.metaData.useTrash);
+  self.selectTrashGoupPopUpButton.enabled = tree.metaData.useTrash;
   [self.enableTrashCheckButton bind:NSValueBinding toObject:self.selectTrashGoupPopUpButton withKeyPath:NSEnabledBinding options:nil];
   [self _updateTrashFolders:tree];
   
+  /* default username */
   self.defaultUsernameTextField.stringValue = tree.metaData.defaultUserName;
   self.defaultUsernameTextField.editable = YES;
   [self _updateTemplateGroup:tree];
   
+  /* key changes */
+  HNHUISetStateFromBool(self.enforceKeyChangeOnceCheckButton, tree.metaData.enforceMasterKeyChangeOnce);
   HNHUISetStateFromBool(self.enforceKeyChangeCheckButton, tree.metaData.enforceMasterKeyChange);
   HNHUISetStateFromBool(self.recommendKeyChangeCheckButton, tree.metaData.recommendMasterKeyChange);
   [self.enforceKeyChangeIntervalTextField setEnabled:tree.metaData.enforceMasterKeyChange];
   [self.recommendKeyChangeIntervalTextField setEnabled:tree.metaData.recommendMasterKeyChange];
-
+  
   self.enforceKeyChangeIntervalTextField.stringValue = @"";
   if(tree.metaData.enforceMasterKeyChange) {
     self.enforceKeyChangeIntervalTextField.integerValue = tree.metaData.masterKeyChangeEnforcementInterval;

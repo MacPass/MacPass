@@ -581,13 +581,20 @@ NSString *const MPDocumentGroupKey                            = @"MPDocumentGrou
 
 - (BOOL)shouldEnforcePasswordChange {
   KPKMetaData *metaData = self.tree.metaData;
-  if(!metaData.enforceMasterKeyChange) { return NO; }
-  return ( (24*60*60*metaData.masterKeyChangeEnforcementInterval) < -[metaData.masterKeyChanged timeIntervalSinceNow]);
+  if(metaData.enforceMasterKeyChangeOnce) {
+    return YES;
+  }
+  if(!metaData.enforceMasterKeyChange) {
+    return NO;
+  }
+  return ((24*60*60*metaData.masterKeyChangeEnforcementInterval) < -[metaData.masterKeyChanged timeIntervalSinceNow]);
 }
 
 - (BOOL)shouldRecommendPasswordChange {
   KPKMetaData *metaData = self.tree.metaData;
-  if(!metaData.recommendMasterKeyChange) { return NO; }
+  if(!metaData.recommendMasterKeyChange) {
+    return NO;
+  }
   return ( (24*60*60*metaData.masterKeyChangeRecommendationInterval) < -[metaData.masterKeyChanged timeIntervalSinceNow]);
 }
 
