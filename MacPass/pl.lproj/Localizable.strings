@@ -1,4 +1,4 @@
-﻿/* Formatted Times  */
+/* Formatted Times  */
 "%ld_DAYS_AGO" = "%ld days ago";
 "%ld_HOURS_AGO" = "about %ld hours ago";
 "%ld_MINUTES_AGO" = "%ld minutes ago";
@@ -22,23 +22,23 @@
 /*
  Actions
  */
-"ADD_ENTRY" = "Add Entry";
-"ADD_GROUP" = "Add Group";
+"ADD_ENTRY" = "Dodaj wpis";
+"ADD_GROUP" = "Dodaj grupę";
 "DUPLICATE_ENTRY" = "Duplicate Entry";
 "DUPLICATE_ENTRY_WITH_OPTIONS" = "Duplicate Entry…";
-"COPY_ENTRY" = "Copy Entry";
-"COPY_GROUP" = "Copy Group";
+"COPY_ENTRY" = "Kopiuj wpis";
+"COPY_GROUP" = "Kopiuj grupę";
 "ADD_TREMPLATE_ENTRY" = "Dodaj szablon wpisu";
 "DELETE_GROUP" = "Usuń grupę";
 "DELETE_ENTRY" = "Usuń wpis";
 "EDIT_TEMPLATE_GROUP" = "Edit Entry Template Group";
-"EMPTY_TRASH" = "Wyczyść kosz";
+"EMPTY_TRASH" = "Opróżnij kosz";
 "MOVE_ENTRY" = "Przenieś wpis";
 "MOVE_GROUP" = "Przenieś grupę";
 "NEW_ENTRY_WITH_TEMPLATE_%@" = "Dodaj wpis używając szablonu %@";
 "NEW_DATABASE" = "Database";
-"OPEN_URL" = "Open URL";
-"PERFORM_AUTOTYPE_FOR_ENTRY" = "Perform Autotype";
+"OPEN_URL" = "Otwórz URL";
+"PERFORM_AUTOTYPE_FOR_ENTRY" = "Wykonaj autouzupełnianie";
 "PREVIEW" = "Preview";
 "PASSWORD_GENERATOR_SET_DEFAULTS" = "Set Defaults";
 "PASSWORD_GENERATOR_RESET_ENTRY_DEFAULTS" = "Reset";
@@ -50,7 +50,7 @@
 "SET_PASSWORD" = "Edit Password";
 "SET_URL" = "Edit URL";
 "SET_NOTES" = "Edit Notes";
-"SHOW_HISTORY" = "SHOW_HISTORY";
+"SHOW_HISTORY" = "Pokaż historię";
 
 /*
  Search
@@ -107,8 +107,8 @@
 "COPY_CUSTOM_FIELDS" = "Copy Custom Fields";
 "COPY_FIELD_%@" = "Skopiuj %@";
 "COPY_PASSWORD" = "Skopiuj hasło";
-"COPY_URL" = "Copy URL";
-"COPY_USERNAME" = "Copy Username";
+"COPY_URL" = "Skopiuj URL";
+"COPY_USERNAME" = "Skopiuj nazwę użytkownika";
 
 /* Dock Badge */
 "CLEARING_PASTEBOARD" = "…";
@@ -173,7 +173,8 @@
 /* Autoype */
 /* Candiate dialog */
 "SELECT_AUTOTYPE_CANDIDATE" = "Dokonaj wyboru";
-"AUTOTYPE_OVERLAY_NO_MATCH" = "Brak dopasowania!";
+"AUTOTYPE_OVERLAY_NO_DOCUMENTS" = "Please open a file to use Global Autotype!";
+"AUTOTYPE_OVERLAY_NO_MATCH_FOR_%@" = "Brak dopasowania dla %@!";
 "AUTOTYPE_OVERLAY_SINGLE_MATCH" = "Znaleziono dopasowanie!";
 
 /* Alert Dialogs */
@@ -198,12 +199,19 @@
 "FILE_CHANGED_BY_OTHERS_MESSAGE_TEXT" = "Plik bazy danych został zmieniony!";
 /* Informative text displayed when the file was change form another application */
 "FILE_CHANGED_BY_OTHERS_INFO_TEXT" = "Załadowany plik różni się od pliku zapisanegona dysku. Co chcesz zrobić?";
+/* Set the selection as default file change strategy */
+"SET_AS_DEFAULT_FILE_CHANGE_STRATEGY" = "Use this method as default. You can change this at any time in the preferences.";
+/* Always show a dialog after an external file change */
+"FILE_CHANGE_STRATEGY_ASK" = "Pytaj";
+"SHORT_FILE_CHANGE_STRATEGY_ASK" = "Pytaj";
 /* Button to ignore the changes */
-"KEEP_MINE" = "Zachowaj obecną wersję i ignoruj zmiany!";
-/* BUtton to reload the changes form disk */
-"LOAD_CHANGES" = "Załaduj zmieniony plik!";
+"FILE_CHANGE_STRATEGY_KEEP_MINE" = "Zachowaj moją wersję i ignoruj inne zmiany";
+"KEEP_MINE_DISCARD_OTHER" = "Zachowaj moją, odrzuć inne";
+/* Button to reload the changes form disk */
+"FILE_CHANGE_STRATEGY_USE_OTHER" = "Załaduj zmodyfikowaną wersję i odrzuć moją";
+"KEEP_OTHER_DISCARD_MINE" = "Zachowaj inne, odrzuć moje";
 /* Merge changes into file! */
-"MERGE_CHANGES" = "Merge changes!";
+"FILE_CHANGE_STRATEGY_MERGE" = "Merge Changes";
 
 /* Password Input Messages, Errors and Warning */
 "PASSWORD_INPUT_NO_PASSWORD" = "Brak hasła";
