@@ -253,8 +253,6 @@ NSString *const _MPTableSecurCellView = @"PasswordCell";
 }
 
 - (NSView *)tableView:(NSTableView *)tableView viewForTableColumn:(NSTableColumn *)tableColumn row:(NSInteger)row {
-  
-  BOOL isIndexColumn = [tableColumn.identifier isEqualToString:MPEntryTableIndexColumnIdentifier];
   BOOL isTitleColumn = [tableColumn.identifier isEqualToString:MPEntryTableTitleColumnIdentifier];
   BOOL isGroupColumn = [tableColumn.identifier isEqualToString:MPEntryTableParentColumnIdentifier];
   BOOL isPasswordColum = [tableColumn.identifier isEqualToString:MPEntryTablePasswordColumnIdentifier];
