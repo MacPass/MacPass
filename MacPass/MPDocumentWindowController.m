@@ -210,40 +210,6 @@ typedef void (^MPPasswordChangedBlock)(BOOL didChangePassword);
 #pragma mark Actions
 - (void)saveDocument:(id)sender {
   MPDocument *document = self.document;
-  /* did we open as legacy ?
-  
-  NSString *fileType = document.fileType;
-  if([fileType isEqualToString:MPKdbxDocumentUTI]) {
-    if(document.tree.minimumVersion.format != KPKDatabaseFormatKdb) {
-      NSAlert *alert = [[NSAlert alloc] init];
-      alert.alertStyle = NSWarningAlertStyle;
-      alert.messageText = NSLocalizedString(@"WARNING_ON_LOSSY_SAVE", "");
-      alert.informativeText = NSLocalizedString(@"WARNING_ON_LOSSY_SAVE_DESCRIPTION", "Informative Text displayed when saving would yield data loss");
-      
-      [alert addButtonWithTitle:NSLocalizedString(@"SAVE_LOSSY", "Save lossy")];
-      [alert addButtonWithTitle:NSLocalizedString(@"CHANGE_FORMAT", "")];
-      [alert addButtonWithTitle:NSLocalizedString(@"CANCEL", "Cancel")];
-      [alert beginSheetModalForWindow:((NSDocument *)self.document).windowForSheet completionHandler:^(NSModalResponse returnCode) {
-        switch(returnCode) {
-          case NSAlertFirstButtonReturn:
-            // save lossy
-            [self.document saveDocument:nil];
-            return;
-            
-          case NSAlertSecondButtonReturn:
-            [alert.window orderOut:nil];
-            [self.document saveDocumentAs:nil];
-            return;
-            
-          case NSAlertThirdButtonReturn:
-          default:
-            return; // Cancel or unknown
-        }
-      }];
-      return;
-    }
-  }
-  else*/
   if(!document.compositeKey) {
     [self editPasswordWithCompetionHandler:^(NSInteger result) {
       if(result == NSModalResponseOK) {
