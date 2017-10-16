@@ -37,7 +37,15 @@
 @interface MPDatabaseSettingsWindowController () {
   NSString *_missingFeature;
 }
+
 @property (assign) BOOL enableHistory;
+@property (assign) NSInteger maxiumHistoryItems;
+@property (assign) NSInteger maxiumHistorySize;
+
+@property (assign) BOOL enforceKeyChange;
+@property (assign) BOOL recommendKeyChange;
+@property (assign) NSInteger enforceKeyChangeInterval;
+@property (assign) NSInteger recommendKeyChangeInterval;
 
 @end
 
@@ -82,9 +90,6 @@
   self.cipherPopupButton.menu = cipherMenu;
   self.keyDerivationSettingsTabView.tabViewItems[0].identifier = [KPKAESKeyDerivation uuid];
   self.keyDerivationSettingsTabView.tabViewItems[1].identifier = [KPKArgon2KeyDerivation uuid];
-  
-  
-  
 }
 
 #pragma mark Actions
@@ -119,11 +124,11 @@
   ((MPDocument *)self.document).tree.trash  = trashGroup;
   
   BOOL requiresHistoryMaintainance = NO;
-  requiresHistoryMaintainance = (metaData.historyMaxSize > self.historyMaxiumSizeTextField.integerValue ||
+  requiresHistoryMaintainance = (metaData.historyMaxSize > self.historyMaximumSizeTextField.integerValue ||
                                  metaData.historyMaxItems > self.historyMaximumItemsTextField.integerValue);
   
-  metaData.historyMaxItems = self.historyMaximumItemsTextField.integerValue;
-  metaData.historyMaxSize = self.historyMaxiumSizeTextField.integerValue;
+  metaData.historyMaxItems = self.enableHistory ? self.maxiumHistoryItems : -1;
+  metaData.historyMaxSize = self.maxiumHistorySize;
   
   /* only maintain history if actually needed */
   if(requiresHistoryMaintainance) {
@@ -277,11 +282,28 @@
 - (void)_setupAdvancedTab:(KPKTree *)tree {
   /* history */
   self.enableHistory = tree.metaData.isHistoryEnabled;
-  [self.enableHistoryCheckButton bind:NSValueBinding toObject:self withKeyPath:NSStringFromSelector(@selector(enableHistory)) options:nil];
-  self.historyMaximumItemsTextField.stringValue = [NSString stringWithFormat:@"%ld", tree.metaData.historyMaxItems];
-  self.historyMaxiumSizeTextField.stringValue = [NSString stringWithFormat:@"%ld", tree.metaData.historyMaxSize];
-  [self.historyMaximumItemsTextField bind:NSEnabledBinding toObject:self withKeyPath:NSStringFromSelector(@selector(enableHistory)) options:nil];
-  [self.historyMaxiumSizeTextField bind:NSEnabledBinding toObject:self withKeyPath:NSStringFromSelector(@selector(enableHistory)) options:nil];
+  [self.enableHistoryCheckButton bind:NSValueBinding
+                             toObject:self
+                          withKeyPath:NSStringFromSelector(@selector(enableHistory))
+                              options:nil];
+  
+  /* history size */
+  self.maxiumHistorySize = tree.metaData.historyMaxSize;
+  self.historyMaximumSizeStepper.minValue = 0;
+  self.historyMaximumSizeStepper.maxValue = NSIntegerMax;
+  self.historyMaximumSizeStepper.increment = 1024*1024; // 1MB
+  [self.historyMaximumSizeStepper bind:NSEnabledBinding toObject:self withKeyPath:NSStringFromSelector(@selector(enableHistory)) options:nil];
+  [self.historyMaximumSizeStepper bind:NSValueBinding toObject:self withKeyPath:NSStringFromSelector(@selector(maxiumHistorySize)) options:nil];
+  [self.historyMaximumSizeTextField bind:NSValueBinding toObject:self withKeyPath:NSStringFromSelector(@selector(maxiumHistorySize)) options:nil];
+  
+  /* history count */
+  self.maxiumHistoryItems = MAX(0,tree.metaData.historyMaxItems); // prevent -1 form showing up directly
+  self.historyMaximumItemsStepper.minValue = 0;
+  self.historyMaximumItemsStepper.maxValue = NSIntegerMax;
+  self.historyMaximumItemsStepper.increment = 1;
+  [self.historyMaximumItemsStepper bind:NSEnabledBinding toObject:self withKeyPath:NSStringFromSelector(@selector(enableHistory)) options:nil];
+  [self.historyMaximumItemsStepper bind:NSValueBinding toObject:self withKeyPath:NSStringFromSelector(@selector(maxiumHistoryItems)) options:nil];
+  [self.historyMaximumItemsTextField bind:NSValueBinding toObject:self withKeyPath:NSStringFromSelector(@selector(maxiumHistoryItems)) options:nil];
   
   /* trash */
   HNHUISetStateFromBool(self.enableTrashCheckButton, tree.metaData.useTrash);
@@ -295,22 +317,29 @@
   [self _updateTemplateGroup:tree];
   
   /* key changes */
+  self.enforceKeyChange = tree.metaData.enforceMasterKeyChange;
+  self.recommendKeyChange = tree.metaData.recommendMasterKeyChange;
   HNHUISetStateFromBool(self.enforceKeyChangeOnceCheckButton, tree.metaData.enforceMasterKeyChangeOnce);
-  HNHUISetStateFromBool(self.enforceKeyChangeCheckButton, tree.metaData.enforceMasterKeyChange);
-  HNHUISetStateFromBool(self.recommendKeyChangeCheckButton, tree.metaData.recommendMasterKeyChange);
-  [self.enforceKeyChangeIntervalTextField setEnabled:tree.metaData.enforceMasterKeyChange];
-  [self.recommendKeyChangeIntervalTextField setEnabled:tree.metaData.recommendMasterKeyChange];
+
+  [self.enforceKeyChangeCheckButton bind:NSValueBinding toObject:self withKeyPath:NSStringFromSelector(@selector(enforceKeyChange)) options:nil];
+  [self.recommendKeyChangeCheckButton bind:NSValueBinding toObject:self withKeyPath:NSStringFromSelector(@selector(recommendKeyChange)) options:nil];
   
-  self.enforceKeyChangeIntervalTextField.stringValue = @"";
-  if(tree.metaData.enforceMasterKeyChange) {
-    self.enforceKeyChangeIntervalTextField.integerValue = tree.metaData.masterKeyChangeEnforcementInterval;
-  }
-  self.recommendKeyChangeIntervalTextField.stringValue = @"";
-  if(tree.metaData.recommendMasterKeyChange) {
-    self.recommendKeyChangeIntervalTextField.integerValue = tree.metaData.masterKeyChangeRecommendationInterval;
-  }
-  [self.enforceKeyChangeCheckButton bind:NSValueBinding toObject:self.enforceKeyChangeIntervalTextField withKeyPath:NSEnabledBinding options:nil];
-  [self.recommendKeyChangeCheckButton bind:NSValueBinding toObject:self.recommendKeyChangeIntervalTextField withKeyPath:NSEnabledBinding options:nil];
+  /* intervals use -1 to encode disabled, do not show this in text fields! */
+  self.enforceKeyChangeInterval = MAX(0,tree.metaData.masterKeyChangeEnforcementInterval);
+  self.enforceKeyChangeIntervalStepper.minValue = 0;
+  self.enforceKeyChangeIntervalStepper.maxValue = NSIntegerMax;
+  self.enforceKeyChangeIntervalStepper.increment = 1; // 1 day steps
+  [self.enforceKeyChangeIntervalStepper bind:NSEnabledBinding toObject:self withKeyPath:NSStringFromSelector(@selector(enforceKeyChange)) options:nil];
+  [self.enforceKeyChangeIntervalStepper bind:NSValueBinding toObject:self withKeyPath:NSStringFromSelector(@selector(enforceKeyChangeInterval)) options:nil];
+  [self.enforceKeyChangeIntervalTextField bind:NSValueBinding toObject:self withKeyPath:NSStringFromSelector(@selector(enforceKeyChangeInterval)) options:nil];
+
+  self.recommendKeyChangeInterval = MAX(0,tree.metaData.masterKeyChangeRecommendationInterval);
+  self.recommendKeyChangeIntervalStepper.minValue = 0;
+  self.recommendKeyChangeIntervalStepper.maxValue = NSIntegerMax;
+  self.recommendKeyChangeIntervalStepper.increment = 1; // 1 day steps
+  [self.recommendKeyChangeIntervalStepper bind:NSEnabledBinding toObject:self withKeyPath:NSStringFromSelector(@selector(recommendKeyChange)) options:nil];
+  [self.recommendKeyChangeIntervalStepper bind:NSValueBinding toObject:self withKeyPath:NSStringFromSelector(@selector(recommendKeyChangeInterval)) options:nil];
+  [self.recommendKeyChangeIntervalTextField bind:NSValueBinding toObject:self withKeyPath:NSStringFromSelector(@selector(recommendKeyChangeInterval)) options:nil];
 }
 
 - (void)_updateFirstResponder {

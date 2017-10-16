@@ -523,8 +523,10 @@ typedef void (^MPPasswordChangedBlock)(BOOL didChangePassword);
           if(NSModalResponseOK == result) {
             document.tree.metaData.enforceMasterKeyChangeOnce = NO;
           }
-          /* password was not changes, so keep nagging the user! */
-          [self _presentPasswordIntervalAlerts];
+          else {
+            /* password was not changes, so keep nagging the user! */
+            [self _presentPasswordIntervalAlerts];  
+          }
         }];
       });
     }];

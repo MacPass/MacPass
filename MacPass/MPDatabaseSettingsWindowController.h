@@ -58,7 +58,11 @@ typedef NS_ENUM(NSUInteger, MPDatabaseSettingsTab) {
 /* Advanced Tab*/
 @property (weak) IBOutlet NSButton *enableHistoryCheckButton;
 @property (weak) IBOutlet NSTextField *historyMaximumItemsTextField;
-@property (weak) IBOutlet NSTextField *historyMaxiumSizeTextField;
+@property (weak) IBOutlet NSStepper *historyMaximumItemsStepper;
+
+@property (weak) IBOutlet NSTextField *historyMaximumSizeTextField;
+@property (weak) IBOutlet NSStepper *historyMaximumSizeStepper;
+
 @property (weak) IBOutlet NSButton *enableTrashCheckButton;
 @property (weak) IBOutlet NSButton *emptyTrashOnQuitCheckButton;
 @property (weak) IBOutlet NSPopUpButton *selectTrashGoupPopUpButton;
@@ -69,7 +73,9 @@ typedef NS_ENUM(NSUInteger, MPDatabaseSettingsTab) {
 @property (weak) IBOutlet NSButton *enforceKeyChangeCheckButton;
 @property (weak) IBOutlet NSButton *enforceKeyChangeOnceCheckButton;
 @property (weak) IBOutlet NSTextField *recommendKeyChangeIntervalTextField;
+@property (weak) IBOutlet NSStepper *recommendKeyChangeIntervalStepper;
 @property (weak) IBOutlet NSTextField *enforceKeyChangeIntervalTextField;
+@property (weak) IBOutlet NSStepper *enforceKeyChangeIntervalStepper;
 
 - (void)showSettingsTab:(MPDatabaseSettingsTab)tab;
 

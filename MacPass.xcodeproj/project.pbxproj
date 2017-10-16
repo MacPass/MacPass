@@ -93,6 +93,7 @@
 		4C3826CC1AD04D8E007D7D67 /* 65_WikiTemplate.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 4C3826A21AD04D8E007D7D67 /* 65_WikiTemplate.pdf */; };
 		4C3826CD1AD04D8E007D7D67 /* 66_MoneyTemplate.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 4C3826A31AD04D8E007D7D67 /* 66_MoneyTemplate.pdf */; };
 		4C3826CE1AD04D8E007D7D67 /* 67_CertificatTemplate.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 4C3826A41AD04D8E007D7D67 /* 67_CertificatTemplate.pdf */; };
+		4C3B42871F935316007B04FD /* MPDayCountFormatter.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C3B42861F935316007B04FD /* MPDayCountFormatter.m */; };
 		4C3BD51516D276F800389F1F /* MPToolbarDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C3BD51416D276F800389F1F /* MPToolbarDelegate.m */; };
 		4C3C4EAF18D7039300153127 /* MPValueTransformerHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C3C4EAE18D7039300153127 /* MPValueTransformerHelper.m */; };
 		4C3FFD9E16DAF60600DF9186 /* ContextBar.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4C3FFD9D16DAF60600DF9186 /* ContextBar.xib */; };
@@ -408,6 +409,8 @@
 		4C3826A21AD04D8E007D7D67 /* 65_WikiTemplate.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = 65_WikiTemplate.pdf; sourceTree = "<group>"; };
 		4C3826A31AD04D8E007D7D67 /* 66_MoneyTemplate.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = 66_MoneyTemplate.pdf; sourceTree = "<group>"; };
 		4C3826A41AD04D8E007D7D67 /* 67_CertificatTemplate.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = 67_CertificatTemplate.pdf; sourceTree = "<group>"; };
+		4C3B42851F935316007B04FD /* MPDayCountFormatter.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MPDayCountFormatter.h; sourceTree = "<group>"; };
+		4C3B42861F935316007B04FD /* MPDayCountFormatter.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MPDayCountFormatter.m; sourceTree = "<group>"; };
 		4C3BD51316D276F800389F1F /* MPToolbarDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MPToolbarDelegate.h; sourceTree = "<group>"; };
 		4C3BD51416D276F800389F1F /* MPToolbarDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MPToolbarDelegate.m; sourceTree = "<group>"; };
 		4C3C4EAD18D7039300153127 /* MPValueTransformerHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MPValueTransformerHelper.h; sourceTree = "<group>"; };
@@ -963,6 +966,8 @@
 				4C4B7EF717A4B335000234C7 /* MPUniqueCharactersFormatter.m */,
 				4C224B4017DFCB2300FF6AEE /* MPNumericalInputFormatter.h */,
 				4C224B4117DFCB2400FF6AEE /* MPNumericalInputFormatter.m */,
+				4C3B42851F935316007B04FD /* MPDayCountFormatter.h */,
+				4C3B42861F935316007B04FD /* MPDayCountFormatter.m */,
 				4C3C4EAD18D7039300153127 /* MPValueTransformerHelper.h */,
 				4C3C4EAE18D7039300153127 /* MPValueTransformerHelper.m */,
 				4C26C33D18D8C92100CF1A1C /* MPTemporaryFileStorage.h */,
@@ -1844,6 +1849,7 @@
 				4CE3E62617AB0D2D00D9E4B4 /* MPAttachmentTableDataSource.m in Sources */,
 				4C0728BD17B5B7F7005A7DD9 /* MPPasswordEditWindowController.m in Sources */,
 				4C0F647B17B6BC9C00D9522A /* MPSavePanelAccessoryViewController.m in Sources */,
+				4C3B42871F935316007B04FD /* MPDayCountFormatter.m in Sources */,
 				4C57AE1417BA422B00CA4F34 /* MPSegmentedContextCell.m in Sources */,
 				4CE2961518429AA5005F01CE /* MPAutotypeKeyPress.m in Sources */,
 				4C32B0E71A1D4436007E12F1 /* KPKFormat+MPUTIDetection.m in Sources */,
