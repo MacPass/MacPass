@@ -295,6 +295,7 @@
   self.historyMaximumSizeStepper.increment = 1024*1024; // 1MB
   [self.historyMaximumSizeStepper bind:NSEnabledBinding toObject:self withKeyPath:NSStringFromSelector(@selector(enableHistory)) options:nil];
   [self.historyMaximumSizeStepper bind:NSValueBinding toObject:self withKeyPath:NSStringFromSelector(@selector(maxiumHistorySize)) options:nil];
+  [self.historyMaximumSizeTextField bind:NSEnabledBinding toObject:self withKeyPath:NSStringFromSelector(@selector(enableHistory)) options:nil];
   [self.historyMaximumSizeTextField bind:NSValueBinding toObject:self withKeyPath:NSStringFromSelector(@selector(maxiumHistorySize)) options:nil];
   
   /* history count */
@@ -304,6 +305,7 @@
   self.historyMaximumItemsStepper.increment = 1;
   [self.historyMaximumItemsStepper bind:NSEnabledBinding toObject:self withKeyPath:NSStringFromSelector(@selector(enableHistory)) options:nil];
   [self.historyMaximumItemsStepper bind:NSValueBinding toObject:self withKeyPath:NSStringFromSelector(@selector(maxiumHistoryItems)) options:nil];
+  [self.historyMaximumItemsTextField bind:NSEnabledBinding toObject:self withKeyPath:NSStringFromSelector(@selector(enableHistory)) options:nil];
   [self.historyMaximumItemsTextField bind:NSValueBinding toObject:self withKeyPath:NSStringFromSelector(@selector(maxiumHistoryItems)) options:nil];
   
   /* trash */
@@ -321,7 +323,7 @@
   self.enforceKeyChange = tree.metaData.enforceMasterKeyChange;
   self.recommendKeyChange = tree.metaData.recommendMasterKeyChange;
   HNHUISetStateFromBool(self.enforceKeyChangeOnceCheckButton, tree.metaData.enforceMasterKeyChangeOnce);
-
+  
   [self.enforceKeyChangeCheckButton bind:NSValueBinding toObject:self withKeyPath:NSStringFromSelector(@selector(enforceKeyChange)) options:nil];
   [self.recommendKeyChangeCheckButton bind:NSValueBinding toObject:self withKeyPath:NSStringFromSelector(@selector(recommendKeyChange)) options:nil];
   
@@ -332,6 +334,7 @@
   self.enforceKeyChangeIntervalStepper.increment = 1; // 1 day steps
   [self.enforceKeyChangeIntervalStepper bind:NSEnabledBinding toObject:self withKeyPath:NSStringFromSelector(@selector(enforceKeyChange)) options:nil];
   [self.enforceKeyChangeIntervalStepper bind:NSValueBinding toObject:self withKeyPath:NSStringFromSelector(@selector(enforceKeyChangeInterval)) options:nil];
+  [self.enforceKeyChangeIntervalTextField bind:NSEnabledBinding toObject:self withKeyPath:NSStringFromSelector(@selector(enforceKeyChange)) options:nil];
   [self.enforceKeyChangeIntervalTextField bind:NSValueBinding toObject:self withKeyPath:NSStringFromSelector(@selector(enforceKeyChangeInterval)) options:nil];
   ((MPDayCountFormatter *)self.enforceKeyChangeIntervalTextField.formatter).valueFormat = NSLocalizedString(@"every %ld days", @"");
   ((MPDayCountFormatter *)self.enforceKeyChangeIntervalTextField.formatter).zeroFormat = NSLocalizedString(@"after each unlock", @"");
@@ -342,6 +345,7 @@
   self.recommendKeyChangeIntervalStepper.increment = 1; // 1 day steps
   [self.recommendKeyChangeIntervalStepper bind:NSEnabledBinding toObject:self withKeyPath:NSStringFromSelector(@selector(recommendKeyChange)) options:nil];
   [self.recommendKeyChangeIntervalStepper bind:NSValueBinding toObject:self withKeyPath:NSStringFromSelector(@selector(recommendKeyChangeInterval)) options:nil];
+  [self.recommendKeyChangeIntervalTextField bind:NSEnabledBinding toObject:self withKeyPath:NSStringFromSelector(@selector(recommendKeyChange)) options:nil];
   [self.recommendKeyChangeIntervalTextField bind:NSValueBinding toObject:self withKeyPath:NSStringFromSelector(@selector(recommendKeyChangeInterval)) options:nil];
   ((MPDayCountFormatter *)self.recommendKeyChangeIntervalTextField.formatter).valueFormat = NSLocalizedString(@"every %ld days", @"");
   ((MPDayCountFormatter *)self.recommendKeyChangeIntervalTextField.formatter).zeroFormat = NSLocalizedString(@"after each unlock", @"");
