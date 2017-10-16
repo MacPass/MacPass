@@ -27,6 +27,7 @@
 #import "MPIconHelper.h"
 #import "MPSettingsHelper.h"
 #import "MPNumericalInputFormatter.h"
+#import "MPDayCountFormatter.h"
 
 #import "KeePassKit/KeePassKit.h"
 
@@ -332,7 +333,9 @@
   [self.enforceKeyChangeIntervalStepper bind:NSEnabledBinding toObject:self withKeyPath:NSStringFromSelector(@selector(enforceKeyChange)) options:nil];
   [self.enforceKeyChangeIntervalStepper bind:NSValueBinding toObject:self withKeyPath:NSStringFromSelector(@selector(enforceKeyChangeInterval)) options:nil];
   [self.enforceKeyChangeIntervalTextField bind:NSValueBinding toObject:self withKeyPath:NSStringFromSelector(@selector(enforceKeyChangeInterval)) options:nil];
-
+  ((MPDayCountFormatter *)self.enforceKeyChangeIntervalTextField.formatter).valueFormat = NSLocalizedString(@"every %ld days", @"");
+  ((MPDayCountFormatter *)self.enforceKeyChangeIntervalTextField.formatter).zeroFormat = NSLocalizedString(@"after each unlock", @"");
+  
   self.recommendKeyChangeInterval = MAX(0,tree.metaData.masterKeyChangeRecommendationInterval);
   self.recommendKeyChangeIntervalStepper.minValue = 0;
   self.recommendKeyChangeIntervalStepper.maxValue = NSIntegerMax;
@@ -340,6 +343,8 @@
   [self.recommendKeyChangeIntervalStepper bind:NSEnabledBinding toObject:self withKeyPath:NSStringFromSelector(@selector(recommendKeyChange)) options:nil];
   [self.recommendKeyChangeIntervalStepper bind:NSValueBinding toObject:self withKeyPath:NSStringFromSelector(@selector(recommendKeyChangeInterval)) options:nil];
   [self.recommendKeyChangeIntervalTextField bind:NSValueBinding toObject:self withKeyPath:NSStringFromSelector(@selector(recommendKeyChangeInterval)) options:nil];
+  ((MPDayCountFormatter *)self.recommendKeyChangeIntervalTextField.formatter).valueFormat = NSLocalizedString(@"every %ld days", @"");
+  ((MPDayCountFormatter *)self.recommendKeyChangeIntervalTextField.formatter).zeroFormat = NSLocalizedString(@"after each unlock", @"");
 }
 
 - (void)_updateFirstResponder {
