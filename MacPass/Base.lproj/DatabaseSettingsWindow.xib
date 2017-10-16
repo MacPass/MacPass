@@ -546,15 +546,15 @@ Gw
                                             <stepperCell key="cell" continuous="YES" alignment="left" maxValue="100" id="qQV-3d-GpK"/>
                                         </stepper>
                                         <button verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Hqc-B0-xyz">
-                                            <rect key="frame" x="184" y="122" width="175" height="18"/>
-                                            <buttonCell key="cell" type="check" title="Recommend key change:" bezelStyle="regularSquare" imagePosition="left" state="on" inset="2" id="CtU-Eq-dgy">
+                                            <rect key="frame" x="184" y="122" width="171" height="18"/>
+                                            <buttonCell key="cell" type="check" title="Recommend key change" bezelStyle="regularSquare" imagePosition="left" state="on" inset="2" id="CtU-Eq-dgy">
                                                 <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                                                 <font key="font" metaFont="system"/>
                                             </buttonCell>
                                         </button>
                                         <button translatesAutoresizingMaskIntoConstraints="NO" id="upv-b3-vCc">
-                                            <rect key="frame" x="184" y="70" width="133" height="18"/>
-                                            <buttonCell key="cell" type="check" title="Force key change:" bezelStyle="regularSquare" imagePosition="left" state="on" inset="2" id="z6u-YT-7LE">
+                                            <rect key="frame" x="184" y="70" width="129" height="18"/>
+                                            <buttonCell key="cell" type="check" title="Force key change" bezelStyle="regularSquare" imagePosition="left" state="on" inset="2" id="z6u-YT-7LE">
                                                 <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                                                 <font key="font" metaFont="system"/>
                                             </buttonCell>
@@ -591,6 +591,22 @@ Gw
                                                 <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                             </textFieldCell>
                                         </textField>
+                                        <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="OmP-GD-2nA">
+                                            <rect key="frame" x="27" y="111" width="153" height="17"/>
+                                            <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Recommend key change" id="Xib-Fn-sqx">
+                                                <font key="font" metaFont="system"/>
+                                                <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                                <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                                            </textFieldCell>
+                                        </textField>
+                                        <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="S0c-4E-42z">
+                                            <rect key="frame" x="56" y="59" width="124" height="17"/>
+                                            <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Enforce key change" id="5QH-N1-FHK">
+                                                <font key="font" metaFont="system"/>
+                                                <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                                <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                                            </textFieldCell>
+                                        </textField>
                                         <button translatesAutoresizingMaskIntoConstraints="NO" id="VMc-Qg-eCr">
                                             <rect key="frame" x="184" y="18" width="257" height="18"/>
                                             <buttonCell key="cell" type="check" title="Force key change once after unlocking" bezelStyle="regularSquare" imagePosition="left" state="on" inset="2" id="pA1-aL-KjT">
@@ -615,6 +631,7 @@ Gw
                                         <constraint firstItem="upv-b3-vCc" firstAttribute="top" secondItem="19r-LE-7X5" secondAttribute="bottom" constant="8" symbolic="YES" id="9b8-i8-WsG"/>
                                         <constraint firstItem="593" firstAttribute="leading" secondItem="1273" secondAttribute="leading" id="BEV-US-Ovh"/>
                                         <constraint firstItem="19r-LE-7X5" firstAttribute="leading" secondItem="531" secondAttribute="leading" id="Bxq-DB-Mdf"/>
+                                        <constraint firstItem="OmP-GD-2nA" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="369" secondAttribute="leading" constant="20" symbolic="YES" id="Bxq-ck-lhy"/>
                                         <constraint firstItem="I0d-r2-ySf" firstAttribute="top" secondItem="1738" secondAttribute="bottom" constant="8" symbolic="YES" id="D8h-V2-rF2"/>
                                         <constraint firstItem="Hqc-B0-xyz" firstAttribute="leading" secondItem="531" secondAttribute="leading" id="DVO-fh-dB8"/>
                                         <constraint firstItem="531" firstAttribute="top" secondItem="369" secondAttribute="top" constant="20" symbolic="YES" id="DZt-k3-wht"/>
@@ -636,6 +653,7 @@ Gw
                                         <constraint firstItem="VMc-Qg-eCr" firstAttribute="leading" secondItem="531" secondAttribute="leading" id="SIP-kd-jaM"/>
                                         <constraint firstItem="1273" firstAttribute="top" secondItem="531" secondAttribute="bottom" constant="8" id="SjI-0M-mxU"/>
                                         <constraint firstItem="535" firstAttribute="leading" secondItem="531" secondAttribute="leading" id="TB6-AF-4H6"/>
+                                        <constraint firstItem="S0c-4E-42z" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="369" secondAttribute="leading" constant="20" symbolic="YES" id="Tuc-bZ-dwc"/>
                                         <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="upv-b3-vCc" secondAttribute="trailing" constant="20" symbolic="YES" id="U7O-Ai-LSM"/>
                                         <constraint firstItem="535" firstAttribute="top" secondItem="U7M-MH-EFw" secondAttribute="bottom" constant="8" symbolic="YES" id="Uvh-5Q-ELd"/>
                                         <constraint firstAttribute="trailing" secondItem="U7M-MH-EFw" secondAttribute="trailing" constant="20" symbolic="YES" id="V98-nM-gJb"/>
@@ -647,6 +665,7 @@ Gw
                                         <constraint firstItem="599" firstAttribute="leading" secondItem="593" secondAttribute="trailing" constant="8" symbolic="YES" id="bJC-wD-1tr"/>
                                         <constraint firstItem="557" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="369" secondAttribute="leading" constant="20" symbolic="YES" id="cS1-DC-wqY"/>
                                         <constraint firstItem="1582" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="369" secondAttribute="leading" constant="20" symbolic="YES" id="cwk-hq-VzW"/>
+                                        <constraint firstItem="VYh-cm-fix" firstAttribute="leading" secondItem="S0c-4E-42z" secondAttribute="trailing" constant="8" symbolic="YES" id="dT6-1H-A6Y"/>
                                         <constraint firstItem="NPm-5h-2Mz" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="369" secondAttribute="leading" constant="20" symbolic="YES" id="fET-L3-Q98"/>
                                         <constraint firstItem="593" firstAttribute="leading" secondItem="557" secondAttribute="trailing" constant="8" symbolic="YES" id="gRs-a5-bni"/>
                                         <constraint firstItem="1738" firstAttribute="baseline" secondItem="1584" secondAttribute="baseline" id="gqn-vB-VZp"/>
@@ -657,6 +676,7 @@ Gw
                                         <constraint firstItem="upv-b3-vCc" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="369" secondAttribute="leading" constant="20" symbolic="YES" id="hy0-Dk-mgY"/>
                                         <constraint firstItem="lH4-xp-5QF" firstAttribute="centerY" secondItem="VYh-cm-fix" secondAttribute="centerY" id="kBr-F4-JCu"/>
                                         <constraint firstItem="678" firstAttribute="baseline" secondItem="NPm-5h-2Mz" secondAttribute="baseline" id="lG3-Ah-hgg"/>
+                                        <constraint firstItem="19r-LE-7X5" firstAttribute="leading" secondItem="OmP-GD-2nA" secondAttribute="trailing" constant="8" symbolic="YES" id="my4-Br-O00"/>
                                         <constraint firstItem="1738" firstAttribute="leading" secondItem="1584" secondAttribute="trailing" constant="8" symbolic="YES" id="p8Q-8i-dgy"/>
                                         <constraint firstItem="678" firstAttribute="leading" secondItem="NPm-5h-2Mz" secondAttribute="trailing" constant="8" symbolic="YES" id="pLt-Cf-KAV"/>
                                         <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="VMc-Qg-eCr" secondAttribute="trailing" constant="20" symbolic="YES" id="qpu-zJ-eEc"/>
@@ -668,6 +688,8 @@ Gw
                                         <constraint firstItem="Hqc-B0-xyz" firstAttribute="top" secondItem="I0d-r2-ySf" secondAttribute="bottom" constant="8" symbolic="YES" id="t5k-Eh-ADF"/>
                                         <constraint firstItem="U7M-MH-EFw" firstAttribute="top" secondItem="599" secondAttribute="bottom" constant="8" symbolic="YES" id="t7y-8s-Nio"/>
                                         <constraint firstItem="VYh-cm-fix" firstAttribute="width" secondItem="19r-LE-7X5" secondAttribute="width" id="tg1-z9-11D"/>
+                                        <constraint firstItem="19r-LE-7X5" firstAttribute="baseline" secondItem="OmP-GD-2nA" secondAttribute="baseline" id="uXa-9r-cOg"/>
+                                        <constraint firstItem="VYh-cm-fix" firstAttribute="baseline" secondItem="S0c-4E-42z" secondAttribute="baseline" id="upv-Da-KSz"/>
                                         <constraint firstItem="1730" firstAttribute="baseline" secondItem="1582" secondAttribute="baseline" id="wvt-QO-HZ4"/>
                                         <constraint firstItem="GUO-6H-UI2" firstAttribute="centerY" secondItem="19r-LE-7X5" secondAttribute="centerY" id="yQu-gw-reJ"/>
                                         <constraint firstItem="593" firstAttribute="top" secondItem="1273" secondAttribute="bottom" constant="6" id="yTD-oa-Y1Q"/>
@@ -688,7 +710,7 @@ Gw
                     <constraint firstItem="956" firstAttribute="top" secondItem="357" secondAttribute="bottom" constant="10" id="1096"/>
                 </constraints>
             </view>
-            <point key="canvasLocation" x="-1440" y="-331"/>
+            <point key="canvasLocation" x="-1413" y="-351"/>
         </window>
     </objects>
 </document>
