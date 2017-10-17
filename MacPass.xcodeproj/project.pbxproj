@@ -196,6 +196,7 @@
 		4CA0F3ED1A3074B50067C0E5 /* MPWindowTitleComboBoxDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CA0F3EC1A3074B50067C0E5 /* MPWindowTitleComboBoxDelegate.m */; };
 		4CA182741F963FF600DD4A4A /* MPTitlebarColorAccessoryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CA182721F963FF600DD4A4A /* MPTitlebarColorAccessoryViewController.m */; };
 		4CA182751F963FF600DD4A4A /* TitlebarColorAccessoryViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4CA182731F963FF600DD4A4A /* TitlebarColorAccessoryViewController.xib */; };
+		4CA182781F96523600DD4A4A /* DuplicateEntryOptionsWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4CA1827A1F96523600DD4A4A /* DuplicateEntryOptionsWindow.xib */; };
 		4CA2335A176DBFE100F0B6AC /* MPLockDaemon.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CA23359176DBFE100F0B6AC /* MPLockDaemon.m */; };
 		4CA334CA18AD60D1008A3322 /* MPWindowAssociationsTableViewDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CA334C918AD60D1008A3322 /* MPWindowAssociationsTableViewDelegate.m */; };
 		4CA3530B18A53CB800839B0F /* MPKeyMapper.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CA3530A18A53CB800839B0F /* MPKeyMapper.m */; };
@@ -204,7 +205,6 @@
 		4CAD748C15B889B700104512 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4CAD748B15B889B700104512 /* Security.framework */; };
 		4CAD748E15B88AC100104512 /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 4CAD748D15B88AC100104512 /* libz.dylib */; };
 		4CB33F861EAF54A000C9341E /* KPKNode+MPIsHistory.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CB33F851EAF54A000C9341E /* KPKNode+MPIsHistory.m */; };
-		4CB915941A0159A20089CE5B /* DuplicateEntryOptionsWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4CB915931A0159A20089CE5B /* DuplicateEntryOptionsWindow.xib */; };
 		4CB9339916D3A0DD00A13B5D /* Credits.rtf in Resources */ = {isa = PBXBuildFile; fileRef = 4CB9339716D3A0DD00A13B5D /* Credits.rtf */; };
 		4CBA2ABA17074C07006D8139 /* MPSettingsHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CBA2AB917074C07006D8139 /* MPSettingsHelper.m */; };
 		4CC0D2CE17974A47000B4BDA /* MPCustomFieldTableViewDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CC0D2CD17974A47000B4BDA /* MPCustomFieldTableViewDelegate.m */; };
@@ -648,6 +648,16 @@
 		4CA182731F963FF600DD4A4A /* TitlebarColorAccessoryViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TitlebarColorAccessoryViewController.xib; sourceTree = "<group>"; };
 		4CA182761F96512800DD4A4A /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/PluginSettings.strings; sourceTree = "<group>"; };
 		4CA182771F96512800DD4A4A /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/ReferenceBuilderView.strings; sourceTree = "<group>"; };
+		4CA182791F96523600DD4A4A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/DuplicateEntryOptionsWindow.xib; sourceTree = "<group>"; };
+		4CA1827C1F96524100DD4A4A /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/DuplicateEntryOptionsWindow.strings; sourceTree = "<group>"; };
+		4CA1827E1F96524400DD4A4A /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/DuplicateEntryOptionsWindow.strings; sourceTree = "<group>"; };
+		4CA182801F96524600DD4A4A /* fr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fr; path = fr.lproj/DuplicateEntryOptionsWindow.strings; sourceTree = "<group>"; };
+		4CA182821F96524B00DD4A4A /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/DuplicateEntryOptionsWindow.strings"; sourceTree = "<group>"; };
+		4CA182841F96525100DD4A4A /* nl */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = nl; path = nl.lproj/DuplicateEntryOptionsWindow.strings; sourceTree = "<group>"; };
+		4CA182861F96525600DD4A4A /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/DuplicateEntryOptionsWindow.strings; sourceTree = "<group>"; };
+		4CA182881F96525800DD4A4A /* it */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = it; path = it.lproj/DuplicateEntryOptionsWindow.strings; sourceTree = "<group>"; };
+		4CA1828A1F96525900DD4A4A /* pl */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = pl; path = pl.lproj/DuplicateEntryOptionsWindow.strings; sourceTree = "<group>"; };
+		4CA1828C1F96525B00DD4A4A /* es */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = es; path = es.lproj/DuplicateEntryOptionsWindow.strings; sourceTree = "<group>"; };
 		4CA23358176DBFE100F0B6AC /* MPLockDaemon.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MPLockDaemon.h; sourceTree = "<group>"; };
 		4CA23359176DBFE100F0B6AC /* MPLockDaemon.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MPLockDaemon.m; sourceTree = "<group>"; };
 		4CA334C818AD60D1008A3322 /* MPWindowAssociationsTableViewDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MPWindowAssociationsTableViewDelegate.h; sourceTree = "<group>"; };
@@ -662,7 +672,6 @@
 		4CB33F841EAF54A000C9341E /* KPKNode+MPIsHistory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "KPKNode+MPIsHistory.h"; sourceTree = "<group>"; };
 		4CB33F851EAF54A000C9341E /* KPKNode+MPIsHistory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "KPKNode+MPIsHistory.m"; sourceTree = "<group>"; };
 		4CB63A6018986530002DEC4C /* MPFlagsHelper.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MPFlagsHelper.h; sourceTree = "<group>"; };
-		4CB915931A0159A20089CE5B /* DuplicateEntryOptionsWindow.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DuplicateEntryOptionsWindow.xib; sourceTree = "<group>"; };
 		4CB9339816D3A0DD00A13B5D /* en */ = {isa = PBXFileReference; lastKnownFileType = text.rtf; name = en; path = en.lproj/Credits.rtf; sourceTree = "<group>"; };
 		4CBA2AB617074B59006D8139 /* MPSettingsHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MPSettingsHelper.h; sourceTree = "<group>"; };
 		4CBA2AB917074C07006D8139 /* MPSettingsHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MPSettingsHelper.m; sourceTree = "<group>"; };
@@ -1455,7 +1464,7 @@
 				4C0B038B18E36DA400B9F9C9 /* FixAutotypeWindow.xib */,
 				4C8990F41EE978EB0043B48D /* MPDuplicateEntryOptionsWindowController.h */,
 				4C8990F51EE978EB0043B48D /* MPDuplicateEntryOptionsWindowController.m */,
-				4CB915931A0159A20089CE5B /* DuplicateEntryOptionsWindow.xib */,
+				4CA1827A1F96523600DD4A4A /* DuplicateEntryOptionsWindow.xib */,
 			);
 			name = "Window Controller";
 			sourceTree = "<group>";
@@ -1688,7 +1697,7 @@
 				4C701CBC178618A000581B88 /* 12_RemoteTemplate.pdf in Resources */,
 				4CF29BF417879D0000851B60 /* 26_FileSaveTemplate.pdf in Resources */,
 				4C7BD07619FE94C900C7AA5C /* MacPassImages.xcassets in Resources */,
-				4CB915941A0159A20089CE5B /* DuplicateEntryOptionsWindow.xib in Resources */,
+				4CA182781F96523600DD4A4A /* DuplicateEntryOptionsWindow.xib in Resources */,
 				4C52A88E1788628B00868229 /* 06_BlockDeviceTemplate.pdf in Resources */,
 				4C52A88F1788628B00868229 /* 13_KeysTemplate.pdf in Resources */,
 				4C3826C61AD04D8E007D7D67 /* 59_DevelopmentTemplate.pdf in Resources */,
@@ -2062,6 +2071,23 @@
 				4C4161131F50333C003BC0AF /* es */,
 			);
 			name = Localizable.strings;
+			sourceTree = "<group>";
+		};
+		4CA1827A1F96523600DD4A4A /* DuplicateEntryOptionsWindow.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				4CA182791F96523600DD4A4A /* Base */,
+				4CA1827C1F96524100DD4A4A /* en */,
+				4CA1827E1F96524400DD4A4A /* de */,
+				4CA182801F96524600DD4A4A /* fr */,
+				4CA182821F96524B00DD4A4A /* zh-Hans */,
+				4CA182841F96525100DD4A4A /* nl */,
+				4CA182861F96525600DD4A4A /* ru */,
+				4CA182881F96525800DD4A4A /* it */,
+				4CA1828A1F96525900DD4A4A /* pl */,
+				4CA1828C1F96525B00DD4A4A /* es */,
+			);
+			name = DuplicateEntryOptionsWindow.xib;
 			sourceTree = "<group>";
 		};
 		4CB9339716D3A0DD00A13B5D /* Credits.rtf */ = {
