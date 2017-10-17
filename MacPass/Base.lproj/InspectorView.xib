@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="12121" systemVersion="16G29" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="13196" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="12121"/>
+        <deployment identifier="macosx"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="13196"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
@@ -42,7 +43,7 @@
                         </binding>
                     </connections>
                 </imageView>
-                <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="249" allowsCharacterPickerTouchBarItem="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3013">
+                <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="249" translatesAutoresizingMaskIntoConstraints="NO" id="3013">
                     <rect key="frame" x="58" y="628" width="202" height="17"/>
                     <textFieldCell key="cell" lineBreakMode="truncatingTail" truncatesLastVisibleLine="YES" allowsUndo="NO" sendsActionOnEndEditing="YES" title="Label" usesSingleLineMode="YES" id="3014">
                         <font key="font" metaFont="system"/>
@@ -81,7 +82,7 @@
                                                 <rect key="frame" x="0.0" y="0.0" width="278" height="370"/>
                                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                 <subviews>
-                                                    <textField verticalHuggingPriority="750" allowsCharacterPickerTouchBarItem="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2985">
+                                                    <textField verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="2985">
                                                         <rect key="frame" x="81" y="194" width="118" height="24"/>
                                                         <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="No Selection" id="2986">
                                                             <font key="font" metaFont="system" size="20"/>
@@ -111,7 +112,7 @@
                             <rect key="frame" x="0.0" y="371" width="278" height="241"/>
                             <autoresizingMask key="autoresizingMask"/>
                             <subviews>
-                                <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" allowsCharacterPickerTouchBarItem="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PzR-P9-3al">
+                                <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="PzR-P9-3al">
                                     <rect key="frame" x="18" y="222" width="35" height="14"/>
                                     <textFieldCell key="cell" controlSize="small" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Notes" id="hwn-UY-9Cr">
                                         <font key="font" metaFont="smallSystem"/>
@@ -125,7 +126,7 @@
                                         <rect key="frame" x="1" y="1" width="236" height="192"/>
                                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                         <subviews>
-                                            <textView importsGraphics="NO" richText="NO" allowsNonContiguousLayout="YES" smartInsertDelete="YES" id="g24-gQ-foD">
+                                            <textView importsGraphics="NO" richText="NO" verticallyResizable="YES" allowsNonContiguousLayout="YES" smartInsertDelete="YES" id="g24-gQ-foD">
                                                 <rect key="frame" x="0.0" y="0.0" width="236" height="192"/>
                                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
