@@ -15,6 +15,10 @@ An unsigned build of the current contiuous tag can be found here: [Continuous Bu
 
 Due to the nature of the build it might be unstable, however this version contains all the latest changes and bug fixes!
 
+## How to Contribute
+
+If you want to contribute by fixing a bug, adding a feature or improving localization you're awesome!
+
 ## How to Build
 
 * Fetch the source of MacPass
@@ -36,15 +40,6 @@ There have been some changes in the submodule urls. Please consider re-syncing a
 	git submodule sync
 	git submodule init
 
-## Known Major Issues
-
-* Binary releases (0.5.x):
-  * KDBX History is only preserved. Editing doesn't create new history entries
-
-## How to Contribute
-
-If you want to contribute by fixing a bug, adding a feature or improving localization you're awesome. Please open a pull request!
-
 ## Help
 
 Some questions might be ansered in the [FAQ](https://github.com/mstarke/MacPass/wiki/FAQ)
@@ -55,7 +50,8 @@ Or follow the Twitter account [@MacPassApp](https://twitter.com/MacPassApp)
 
 ## System Requirement
 
-The minimum OS X version required for MacPass is currently 10.8 Mountain Lion.
+The minimum OS X version required for MacPass 0.6.2 is 10.8 Mountain Lion.
+The minimum macOS version required for MacPass (continuous) is 10.10 Yosemite.
 
 ## Status
 
@@ -105,7 +101,7 @@ For further details, take a look at the [explanation](https://www.fsf.org/news/2
 
 ## Contributions
 
-The following list might not be complete, please refer to [merged Pull Requests](https://github.com/mstarke/MacPass/pulls?utf8=✓&q=is%3Apr+is%3Aclosed+is%3Amerged) on GitHub for more details. Please report open an issue if you think someone is missing from this list!
+The following list might not be complete, please refer to [merged Pull Requests](https://github.com/mstarke/MacPass/pulls?utf8=✓&q=is%3Apr+is%3Aclosed+is%3Amerged) on GitHub for more details. Please open an issue if you think someone is missing from this list!
 
 ### Art
 
