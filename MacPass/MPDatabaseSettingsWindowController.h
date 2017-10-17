@@ -54,6 +54,7 @@ typedef NS_ENUM(NSUInteger, MPDatabaseSettingsTab) {
 @property (weak) IBOutlet NSTextField *argon2ThreadsTextField;
 @property (weak) IBOutlet NSTextField *argon2IterationsTextField;
 @property (weak) IBOutlet NSTextField *argon2MemoryTextField;
+@property (weak) IBOutlet NSStepper *argon2MemoryStepper;
 
 /* Advanced Tab*/
 @property (weak) IBOutlet NSButton *enableHistoryCheckButton;

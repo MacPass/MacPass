@@ -39,6 +39,8 @@
   NSString *_missingFeature;
 }
 
+@property (assign) NSInteger argon2Memory;
+
 @property (assign) BOOL enableHistory;
 @property (assign) NSInteger maxiumHistoryItems;
 @property (assign) NSInteger maxiumHistorySize;
@@ -170,7 +172,7 @@
   }
   else if([selectedKdfUUID isEqual:argon2Kdf.uuid]) {
     argon2Kdf.iterations = self.argon2IterationsTextField.integerValue;
-    argon2Kdf.memory = self.argon2MemoryTextField.integerValue;
+    argon2Kdf.memory = self.argon2Memory;
     argon2Kdf.threads = self.argon2ThreadsTextField.intValue;
     metaData.keyDerivationParameters = argon2Kdf.parameters;
   }
@@ -259,12 +261,12 @@
     /* fill defaults for Argon2 */
     KPKArgon2KeyDerivation *argon2Kdf = [[KPKArgon2KeyDerivation alloc] initWithParameters:[KPKArgon2KeyDerivation defaultParameters]];
     self.argon2IterationsTextField.integerValue = argon2Kdf.iterations;
-    self.argon2MemoryTextField.integerValue = argon2Kdf.memory;
+    self.argon2Memory = argon2Kdf.memory;
     self.argon2ThreadsTextField.integerValue = argon2Kdf.threads;
   }
   else if([keyDerivation isKindOfClass:[KPKArgon2KeyDerivation class]]) {
     KPKArgon2KeyDerivation *argon2Kdf = (KPKArgon2KeyDerivation *)keyDerivation;
-    self.argon2MemoryTextField.integerValue = argon2Kdf.memory;
+    self.argon2Memory = argon2Kdf.memory;
     self.argon2ThreadsTextField.integerValue = argon2Kdf.threads;
     self.argon2IterationsTextField.integerValue = argon2Kdf.iterations;
     
@@ -275,6 +277,13 @@
   else {
     NSAssert(NO, @"Unkown key derivation");
   }
+  
+  self.argon2MemoryStepper.minValue = 8*1024; // 8KB minimum
+  self.argon2MemoryStepper.maxValue = NSIntegerMax;
+  self.argon2MemoryStepper.increment = 1024*1024; // 1 megabytes steps
+  [self.argon2MemoryTextField bind:NSValueBinding toObject:self withKeyPath:NSStringFromSelector(@selector(argon2Memory)) options:nil];
+  [self.argon2MemoryStepper bind:NSValueBinding toObject:self withKeyPath:NSStringFromSelector(@selector(argon2Memory)) options:nil];
+  
   
   NSUInteger cipherIndex = [self.cipherPopupButton.menu indexOfItemWithRepresentedObject:metaData.cipherUUID];
   [self.cipherPopupButton selectItemAtIndex:cipherIndex];
