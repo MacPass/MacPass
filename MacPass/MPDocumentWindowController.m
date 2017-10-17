@@ -38,6 +38,7 @@
 #import "MPPasswordInputController.h"
 #import "MPSettingsHelper.h"
 #import "MPToolbarDelegate.h"
+#import "MPTitlebarColorAccessoryViewController.h"
 
 #import "KeePassKit/KeePassKit.h"
 
@@ -145,6 +146,13 @@ typedef void (^MPPasswordChangedBlock)(BOOL didChangePassword);
   }
   
   self.splitView.autosaveName = @"SplitView";
+  
+  /*
+   TODO: Add display for database color?
+   NSTitlebarAccessoryViewController *tbc = [[MPTitlebarColorAccessoryViewController alloc] init];
+   tbc.layoutAttribute = NSLayoutAttributeRight;
+   [self.window addTitlebarAccessoryViewController:tbc];
+   */
 }
 
 - (NSSearchField *)searchField {
@@ -525,7 +533,7 @@ typedef void (^MPPasswordChangedBlock)(BOOL didChangePassword);
           }
           else {
             /* password was not changes, so keep nagging the user! */
-            [self _presentPasswordIntervalAlerts];  
+            [self _presentPasswordIntervalAlerts];
           }
         }];
       });

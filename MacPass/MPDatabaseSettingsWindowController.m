@@ -336,8 +336,12 @@
   [self.enforceKeyChangeIntervalStepper bind:NSValueBinding toObject:self withKeyPath:NSStringFromSelector(@selector(enforceKeyChangeInterval)) options:nil];
   [self.enforceKeyChangeIntervalTextField bind:NSEnabledBinding toObject:self withKeyPath:NSStringFromSelector(@selector(enforceKeyChange)) options:nil];
   [self.enforceKeyChangeIntervalTextField bind:NSValueBinding toObject:self withKeyPath:NSStringFromSelector(@selector(enforceKeyChangeInterval)) options:nil];
-  ((MPDayCountFormatter *)self.enforceKeyChangeIntervalTextField.formatter).valueFormat = NSLocalizedString(@"every %ld days", @"");
-  ((MPDayCountFormatter *)self.enforceKeyChangeIntervalTextField.formatter).zeroFormat = NSLocalizedString(@"after each unlock", @"");
+  
+  NSString *valueFormat = NSLocalizedString(@"EVERY_%ld_DAYS", @"Recommend/Enforce key change intervall format");
+  NSString *zeroFormat = NSLocalizedString(@"AFTER_EACH_UNLOCK", @"Recommend/Enforce key change intervall format for 0-days");
+  
+  ((MPDayCountFormatter *)self.enforceKeyChangeIntervalTextField.formatter).valueFormat = valueFormat;
+  ((MPDayCountFormatter *)self.enforceKeyChangeIntervalTextField.formatter).zeroFormat = zeroFormat;
   
   self.recommendKeyChangeInterval = MAX(0,tree.metaData.masterKeyChangeRecommendationInterval);
   self.recommendKeyChangeIntervalStepper.minValue = 0;
@@ -347,8 +351,8 @@
   [self.recommendKeyChangeIntervalStepper bind:NSValueBinding toObject:self withKeyPath:NSStringFromSelector(@selector(recommendKeyChangeInterval)) options:nil];
   [self.recommendKeyChangeIntervalTextField bind:NSEnabledBinding toObject:self withKeyPath:NSStringFromSelector(@selector(recommendKeyChange)) options:nil];
   [self.recommendKeyChangeIntervalTextField bind:NSValueBinding toObject:self withKeyPath:NSStringFromSelector(@selector(recommendKeyChangeInterval)) options:nil];
-  ((MPDayCountFormatter *)self.recommendKeyChangeIntervalTextField.formatter).valueFormat = NSLocalizedString(@"every %ld days", @"");
-  ((MPDayCountFormatter *)self.recommendKeyChangeIntervalTextField.formatter).zeroFormat = NSLocalizedString(@"after each unlock", @"");
+  ((MPDayCountFormatter *)self.recommendKeyChangeIntervalTextField.formatter).valueFormat = valueFormat;
+  ((MPDayCountFormatter *)self.recommendKeyChangeIntervalTextField.formatter).zeroFormat = zeroFormat;
 }
 
 - (void)_updateFirstResponder {

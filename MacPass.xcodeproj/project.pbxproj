@@ -194,6 +194,8 @@
 		4CA0B2F915BCAF6700654E32 /* MPGeneralSettingsController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CA0B2F815BCAF6700654E32 /* MPGeneralSettingsController.m */; };
 		4CA0B2FC15BCAF8600654E32 /* MPSettingsWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CA0B2FB15BCAF8600654E32 /* MPSettingsWindowController.m */; };
 		4CA0F3ED1A3074B50067C0E5 /* MPWindowTitleComboBoxDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CA0F3EC1A3074B50067C0E5 /* MPWindowTitleComboBoxDelegate.m */; };
+		4CA182741F963FF600DD4A4A /* MPTitlebarColorAccessoryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CA182721F963FF600DD4A4A /* MPTitlebarColorAccessoryViewController.m */; };
+		4CA182751F963FF600DD4A4A /* TitlebarColorAccessoryViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4CA182731F963FF600DD4A4A /* TitlebarColorAccessoryViewController.xib */; };
 		4CA2335A176DBFE100F0B6AC /* MPLockDaemon.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CA23359176DBFE100F0B6AC /* MPLockDaemon.m */; };
 		4CA334CA18AD60D1008A3322 /* MPWindowAssociationsTableViewDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CA334C918AD60D1008A3322 /* MPWindowAssociationsTableViewDelegate.m */; };
 		4CA3530B18A53CB800839B0F /* MPKeyMapper.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CA3530A18A53CB800839B0F /* MPKeyMapper.m */; };
@@ -641,6 +643,11 @@
 		4CA0B30D15BCB6FD00654E32 /* MPSettingsTab.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MPSettingsTab.h; sourceTree = "<group>"; };
 		4CA0F3EB1A3074B50067C0E5 /* MPWindowTitleComboBoxDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MPWindowTitleComboBoxDelegate.h; sourceTree = "<group>"; };
 		4CA0F3EC1A3074B50067C0E5 /* MPWindowTitleComboBoxDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MPWindowTitleComboBoxDelegate.m; sourceTree = "<group>"; };
+		4CA182711F963FF600DD4A4A /* MPTitlebarColorAccessoryViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MPTitlebarColorAccessoryViewController.h; sourceTree = "<group>"; };
+		4CA182721F963FF600DD4A4A /* MPTitlebarColorAccessoryViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MPTitlebarColorAccessoryViewController.m; sourceTree = "<group>"; };
+		4CA182731F963FF600DD4A4A /* TitlebarColorAccessoryViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TitlebarColorAccessoryViewController.xib; sourceTree = "<group>"; };
+		4CA182761F96512800DD4A4A /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/PluginSettings.strings; sourceTree = "<group>"; };
+		4CA182771F96512800DD4A4A /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/ReferenceBuilderView.strings; sourceTree = "<group>"; };
 		4CA23358176DBFE100F0B6AC /* MPLockDaemon.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MPLockDaemon.h; sourceTree = "<group>"; };
 		4CA23359176DBFE100F0B6AC /* MPLockDaemon.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MPLockDaemon.m; sourceTree = "<group>"; };
 		4CA334C818AD60D1008A3322 /* MPWindowAssociationsTableViewDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MPWindowAssociationsTableViewDelegate.h; sourceTree = "<group>"; };
@@ -1382,6 +1389,9 @@
 				4C1BDF2A1E4392640012A3F0 /* PluginDataView.xib */,
 				4C50CC021F6C18830095629D /* MPCollectionViewItem.h */,
 				4C50CC031F6C18830095629D /* MPCollectionViewItem.m */,
+				4CA182711F963FF600DD4A4A /* MPTitlebarColorAccessoryViewController.h */,
+				4CA182721F963FF600DD4A4A /* MPTitlebarColorAccessoryViewController.m */,
+				4CA182731F963FF600DD4A4A /* TitlebarColorAccessoryViewController.xib */,
 			);
 			name = "View Controller";
 			sourceTree = "<group>";
@@ -1605,6 +1615,7 @@
 				4C3826BE1AD04D8E007D7D67 /* 51_DecryptedTemplate.pdf in Resources */,
 				4C3826BC1AD04D8E007D7D67 /* 49_FolderOpenTemplate.pdf in Resources */,
 				4C3826CE1AD04D8E007D7D67 /* 67_CertificatTemplate.pdf in Resources */,
+				4CA182751F963FF600DD4A4A /* TitlebarColorAccessoryViewController.xib in Resources */,
 				4C3826B71AD04D8E007D7D67 /* 42_MemoryTemplate.pdf in Resources */,
 				4C3826B41AD04D8E007D7D67 /* 39_HistoryTemplate.pdf in Resources */,
 				4C77E37D15B84A240093A587 /* MainMenu.xib in Resources */,
@@ -1779,6 +1790,7 @@
 				4C0AF62F195C1F2B009E658D /* MPEntrySearchContext.m in Sources */,
 				4C1F7FA21E3A12E600D6A40E /* MPModifiedKey.m in Sources */,
 				4C888C9316EB6F5E003D34A1 /* MPToolbarItem.m in Sources */,
+				4CA182741F963FF600DD4A4A /* MPTitlebarColorAccessoryViewController.m in Sources */,
 				4C888C9716EB754B003D34A1 /* MPActionHelper.m in Sources */,
 				4C811C8316ECD06E00C4BAC6 /* MPKeyfilePathControlDelegate.m in Sources */,
 				4CDA35751EBA0CF2003CD59F /* NSString+MPComposedCharacterAdditions.m in Sources */,
@@ -1884,6 +1896,7 @@
 				4C840C4B1D773E5E0081F605 /* pl */,
 				60ECAD221F12231B00EA9DB3 /* zh-Hans */,
 				4C4161081F50333B003BC0AF /* es */,
+				4CA182761F96512800DD4A4A /* de */,
 			);
 			name = PluginSettings.xib;
 			sourceTree = "<group>";
@@ -2075,6 +2088,7 @@
 				4825CC911C414D58003E37E9 /* it */,
 				4C840C541D773E5E0081F605 /* pl */,
 				4C4161101F50333C003BC0AF /* es */,
+				4CA182771F96512800DD4A4A /* de */,
 			);
 			name = ReferenceBuilderView.xib;
 			sourceTree = "<group>";
