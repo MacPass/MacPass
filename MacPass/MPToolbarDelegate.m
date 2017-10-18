@@ -143,7 +143,7 @@ NSString *const MPToolbarItemHistory = @"TOOLBAR_HISTORY";
       [button sizeToFit];
       
       NSMenu *menu = [NSMenu allocWithZone:[NSMenu menuZone]];
-      [menu addItemWithTitle:@"Dummy" action:NULL keyEquivalent:@""];
+      [menu addItemWithTitle:NSLocalizedString(@"UNKNOWN_TOOLBAR_ITEM", @"") action:NULL keyEquivalent:@""];
       menu.delegate = _entryMenuDelegate;
       [button setContextMenu:menu];
       

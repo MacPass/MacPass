@@ -193,19 +193,23 @@
 "RECOMMEND_PASSWORD_CHANGE_ALERT_DESCRIPTION" = "Sie sollten das Password und/oder den Schlüssel ändern.";
 "CHANGE_PASSWORD_WITH_DOTS" = "Password ändern …";
 
-"WARNING_ON_SAVE_NO_PASSWORD_OR_KEY_SET" = "No password or keyfile is set.";
-"WARNING_ON_SAVE_NO_PASSWORD_OR_KEY_SET_SUGGESTION" = "Please set a password and/or keyfile for this database. Aborting this will undo all changes and lock the document";
+"WARNING_ON_SAVE_NO_PASSWORD_OR_KEY_SET" = "Weder Password noch Schlüsseldatei sind festgelegt!";
+"WARNING_ON_SAVE_NO_PASSWORD_OR_KEY_SET_SUGGESTION" = "Bitte vergeben Sie ein Password und/oder einen Schlüssel. Sofern Sie abbrechen, werden Ihre Änderungen rückgängig gemacht und die Datei gesperrt.";
 
 /* Message displayed when an open file was changed from another application */
 "FILE_CHANGED_BY_OTHERS_MESSAGE_TEXT" = "Die Datei wurde verändert!";
 /* Informative text displayed when the file was change form another application */
 "FILE_CHANGED_BY_OTHERS_INFO_TEXT" = "Die geöffnete Datei wurde von einem anderen Programm verändert! Der Inhalt stimmt nicht mehr mit dem geladenen Inhalt überein.";
+/* Set the selection as default file change strategy */
+"SET_AS_DEFAULT_FILE_CHANGE_STRATEGY" = "Die gewählte Strategie immer verwenden. Sie können die Strategie jederzeit in den Einstellungen anpassen.";
+/* Always show a dialog after an external file change */
+"FILE_CHANGE_STRATEGY_ASK" = "Jedesmal fragen";
 /* Button to ignore the changes */
-"KEEP_MINE" = "Geladenen Inhalt behalten!";
-/* BUtton to reload the changes form disk */
-"LOAD_CHANGES" = "Veränderten Inhalt laden!";
+"FILE_CHANGE_STRATEGY_KEEP_MINE" = "Behalte meine Version ohne Änderungen";
+/* Button to reload the changes form disk */
+"FILE_CHANGE_STRATEGY_USE_OTHER" = "Lade die andere Version und verwerfe meine Änderungen";
 /* Merge changes into file! */
-"MERGE_CHANGES" = "Inhalte zusammenführen!";
+"FILE_CHANGE_STRATEGY_MERGE" = "Inhalte zusammenführen";
 
 /* Password Input Error and Warnings */
 "PASSWORD_INPUT_NO_PASSWORD" = "Kein Passwort";

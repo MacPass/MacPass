@@ -4,11 +4,11 @@ xcode_scheme: MacPass
 language: objective-c
 
 before_install:
-  - carthage bootstrap --platform Mac
+  - carthage bootstrap --platform macOS
 
 after_success:
   - cd ./build/Build/Products/Release
-  - zip -9r MacPass-continuous.zip MacPass.app
+  - zip -9ry MacPass-continuous.zip MacPass.app
   - cd -
   - mv ./build/Build/Products/Release/MacPass-continuous.zip .
 

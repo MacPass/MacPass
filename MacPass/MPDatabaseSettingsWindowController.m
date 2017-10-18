@@ -5,6 +5,20 @@
 //  Created by Michael Starke on 26.06.13.
 //  Copyright (c) 2013 HicknHack Software GmbH. All rights reserved.
 //
+//  This program is free software: you can redistribute it and/or modify
+//  it under the terms of the GNU General Public License as published by
+//  the Free Software Foundation, either version 3 of the License, or
+//  (at your option) any later version.
+//
+//  This program is distributed in the hope that it will be useful,
+//  but WITHOUT ANY WARRANTY; without even the implied warranty of
+//
+//  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+//  GNU General Public License for more details.
+//
+//  You should have received a copy of the GNU General Public License
+//  along with this program.  If not, see <http://www.gnu.org/licenses/>.
+//
 
 #import "MPDatabaseSettingsWindowController.h"
 #import "MPDocument.h"
@@ -13,6 +27,7 @@
 #import "MPIconHelper.h"
 #import "MPSettingsHelper.h"
 #import "MPNumericalInputFormatter.h"
+#import "MPDayCountFormatter.h"
 
 #import "KeePassKit/KeePassKit.h"
 
@@ -23,6 +38,16 @@
 @interface MPDatabaseSettingsWindowController () {
   NSString *_missingFeature;
 }
+
+@property (assign) BOOL enableHistory;
+@property (assign) NSInteger maxiumHistoryItems;
+@property (assign) NSInteger maxiumHistorySize;
+
+@property (assign) BOOL enforceKeyChange;
+@property (assign) BOOL recommendKeyChange;
+@property (assign) NSInteger enforceKeyChangeInterval;
+@property (assign) NSInteger recommendKeyChangeInterval;
+
 @end
 
 @implementation MPDatabaseSettingsWindowController
@@ -43,10 +68,10 @@
   [super windowDidLoad];
   
   NSAssert(self.document != nil, @"Document needs to be present");
-    
+  
   self.sectionTabView.delegate = self;
   self.aesEncryptionRoundsTextField.formatter = [[MPNumericalInputFormatter alloc] init];
-
+  
   NSMenu *kdfMenu = [[NSMenu alloc] init];
   NSArray *keyderivations = [KPKKeyDerivation availableKeyDerivations];
   for(KPKKeyDerivation *kd in keyderivations) {
@@ -80,7 +105,7 @@
   KPKMetaData *metaData = ((MPDocument *)self.document).tree.metaData;
   metaData.databaseDescription = self.databaseDescriptionTextView.string;
   metaData.databaseName = self.databaseNameTextField.stringValue;
-
+  
   NSInteger compressionIndex = self.databaseCompressionPopupButton.indexOfSelectedItem;
   if(compressionIndex >= KPKCompressionNone && compressionIndex < KPKCompressionCount) {
     metaData.compressionAlgorithm = (uint32_t)compressionIndex;
@@ -92,17 +117,29 @@
   else {
     metaData.color = databaseColor;
   }
-    
+  
   /* Advanced */
   metaData.useTrash = HNHUIBoolForState(self.enableTrashCheckButton.state);
   NSMenuItem *trashMenuItem = self.selectTrashGoupPopUpButton.selectedItem;
   KPKGroup *trashGroup = trashMenuItem.representedObject;
   ((MPDocument *)self.document).tree.trash  = trashGroup;
   
+  BOOL requiresHistoryMaintainance = NO;
+  requiresHistoryMaintainance = (metaData.historyMaxSize > self.historyMaximumSizeTextField.integerValue ||
+                                 metaData.historyMaxItems > self.historyMaximumItemsTextField.integerValue);
+  
+  metaData.historyMaxItems = self.enableHistory ? self.maxiumHistoryItems : -1;
+  metaData.historyMaxSize = self.maxiumHistorySize;
+  
+  /* only maintain history if actually needed */
+  if(requiresHistoryMaintainance) {
+    KPKTree *tree = ((MPDocument *)self.document).tree;
+    [tree maintainHistory];
+  }
+  
   NSMenuItem *templateMenuItem = self.templateGroupPopUpButton.selectedItem;
   KPKGroup *templateGroup = templateMenuItem.representedObject;
   ((MPDocument *)self.document).templates = templateGroup;
-  
   
   BOOL enforceMasterKeyChange = HNHUIBoolForState(self.enforceKeyChangeCheckButton.state);
   BOOL recommendMasterKeyChange = HNHUIBoolForState(self.recommendKeyChangeCheckButton.state);
@@ -112,9 +149,10 @@
   
   NSInteger enfoceInterval = self.enforceKeyChangeIntervalTextField.integerValue;
   NSInteger recommendInterval = self.recommendKeyChangeIntervalTextField.integerValue;
-
+  
   metaData.masterKeyChangeEnforcementInterval = enforceMasterKeyChange ? enfoceInterval : -1;
   metaData.masterKeyChangeRecommendationInterval = recommendMasterKeyChange ? recommendInterval : -1;
+  metaData.enforceMasterKeyChangeOnce = HNHUIBoolForState(self.enforceKeyChangeOnceCheckButton.state);
   
   metaData.defaultUserName = self.defaultUsernameTextField.stringValue;
   
@@ -243,30 +281,74 @@
 }
 
 - (void)_setupAdvancedTab:(KPKTree *)tree {
+  /* history */
+  self.enableHistory = tree.metaData.isHistoryEnabled;
+  [self.enableHistoryCheckButton bind:NSValueBinding
+                             toObject:self
+                          withKeyPath:NSStringFromSelector(@selector(enableHistory))
+                              options:nil];
+  
+  /* history size */
+  self.maxiumHistorySize = tree.metaData.historyMaxSize;
+  self.historyMaximumSizeStepper.minValue = 0;
+  self.historyMaximumSizeStepper.maxValue = NSIntegerMax;
+  self.historyMaximumSizeStepper.increment = 1024*1024; // 1MB
+  [self.historyMaximumSizeStepper bind:NSEnabledBinding toObject:self withKeyPath:NSStringFromSelector(@selector(enableHistory)) options:nil];
+  [self.historyMaximumSizeStepper bind:NSValueBinding toObject:self withKeyPath:NSStringFromSelector(@selector(maxiumHistorySize)) options:nil];
+  [self.historyMaximumSizeTextField bind:NSEnabledBinding toObject:self withKeyPath:NSStringFromSelector(@selector(enableHistory)) options:nil];
+  [self.historyMaximumSizeTextField bind:NSValueBinding toObject:self withKeyPath:NSStringFromSelector(@selector(maxiumHistorySize)) options:nil];
+  
+  /* history count */
+  self.maxiumHistoryItems = MAX(0,tree.metaData.historyMaxItems); // prevent -1 form showing up directly
+  self.historyMaximumItemsStepper.minValue = 0;
+  self.historyMaximumItemsStepper.maxValue = NSIntegerMax;
+  self.historyMaximumItemsStepper.increment = 1;
+  [self.historyMaximumItemsStepper bind:NSEnabledBinding toObject:self withKeyPath:NSStringFromSelector(@selector(enableHistory)) options:nil];
+  [self.historyMaximumItemsStepper bind:NSValueBinding toObject:self withKeyPath:NSStringFromSelector(@selector(maxiumHistoryItems)) options:nil];
+  [self.historyMaximumItemsTextField bind:NSEnabledBinding toObject:self withKeyPath:NSStringFromSelector(@selector(enableHistory)) options:nil];
+  [self.historyMaximumItemsTextField bind:NSValueBinding toObject:self withKeyPath:NSStringFromSelector(@selector(maxiumHistoryItems)) options:nil];
+  
+  /* trash */
   HNHUISetStateFromBool(self.enableTrashCheckButton, tree.metaData.useTrash);
   self.selectTrashGoupPopUpButton.enabled = tree.metaData.useTrash;
   [self.enableTrashCheckButton bind:NSValueBinding toObject:self.selectTrashGoupPopUpButton withKeyPath:NSEnabledBinding options:nil];
   [self _updateTrashFolders:tree];
   
+  /* default username */
   self.defaultUsernameTextField.stringValue = tree.metaData.defaultUserName;
   self.defaultUsernameTextField.editable = YES;
   [self _updateTemplateGroup:tree];
   
-  HNHUISetStateFromBool(self.enforceKeyChangeCheckButton, tree.metaData.enforceMasterKeyChange);
-  HNHUISetStateFromBool(self.recommendKeyChangeCheckButton, tree.metaData.recommendMasterKeyChange);
-  [self.enforceKeyChangeIntervalTextField setEnabled:tree.metaData.enforceMasterKeyChange];
-  [self.recommendKeyChangeIntervalTextField setEnabled:tree.metaData.recommendMasterKeyChange];
-
-  self.enforceKeyChangeIntervalTextField.stringValue = @"";
-  if(tree.metaData.enforceMasterKeyChange) {
-    self.enforceKeyChangeIntervalTextField.integerValue = tree.metaData.masterKeyChangeEnforcementInterval;
-  }
-  self.recommendKeyChangeIntervalTextField.stringValue = @"";
-  if(tree.metaData.recommendMasterKeyChange) {
-    self.recommendKeyChangeIntervalTextField.integerValue = tree.metaData.masterKeyChangeRecommendationInterval;
-  }
-  [self.enforceKeyChangeCheckButton bind:NSValueBinding toObject:self.enforceKeyChangeIntervalTextField withKeyPath:NSEnabledBinding options:nil];
-  [self.recommendKeyChangeCheckButton bind:NSValueBinding toObject:self.recommendKeyChangeIntervalTextField withKeyPath:NSEnabledBinding options:nil];
+  /* key changes */
+  self.enforceKeyChange = tree.metaData.enforceMasterKeyChange;
+  self.recommendKeyChange = tree.metaData.recommendMasterKeyChange;
+  HNHUISetStateFromBool(self.enforceKeyChangeOnceCheckButton, tree.metaData.enforceMasterKeyChangeOnce);
+  
+  [self.enforceKeyChangeCheckButton bind:NSValueBinding toObject:self withKeyPath:NSStringFromSelector(@selector(enforceKeyChange)) options:nil];
+  [self.recommendKeyChangeCheckButton bind:NSValueBinding toObject:self withKeyPath:NSStringFromSelector(@selector(recommendKeyChange)) options:nil];
+  
+  /* intervals use -1 to encode disabled, do not show this in text fields! */
+  self.enforceKeyChangeInterval = MAX(0,tree.metaData.masterKeyChangeEnforcementInterval);
+  self.enforceKeyChangeIntervalStepper.minValue = 0;
+  self.enforceKeyChangeIntervalStepper.maxValue = NSIntegerMax;
+  self.enforceKeyChangeIntervalStepper.increment = 1; // 1 day steps
+  [self.enforceKeyChangeIntervalStepper bind:NSEnabledBinding toObject:self withKeyPath:NSStringFromSelector(@selector(enforceKeyChange)) options:nil];
+  [self.enforceKeyChangeIntervalStepper bind:NSValueBinding toObject:self withKeyPath:NSStringFromSelector(@selector(enforceKeyChangeInterval)) options:nil];
+  [self.enforceKeyChangeIntervalTextField bind:NSEnabledBinding toObject:self withKeyPath:NSStringFromSelector(@selector(enforceKeyChange)) options:nil];
+  [self.enforceKeyChangeIntervalTextField bind:NSValueBinding toObject:self withKeyPath:NSStringFromSelector(@selector(enforceKeyChangeInterval)) options:nil];
+  ((MPDayCountFormatter *)self.enforceKeyChangeIntervalTextField.formatter).valueFormat = NSLocalizedString(@"every %ld days", @"");
+  ((MPDayCountFormatter *)self.enforceKeyChangeIntervalTextField.formatter).zeroFormat = NSLocalizedString(@"after each unlock", @"");
+  
+  self.recommendKeyChangeInterval = MAX(0,tree.metaData.masterKeyChangeRecommendationInterval);
+  self.recommendKeyChangeIntervalStepper.minValue = 0;
+  self.recommendKeyChangeIntervalStepper.maxValue = NSIntegerMax;
+  self.recommendKeyChangeIntervalStepper.increment = 1; // 1 day steps
+  [self.recommendKeyChangeIntervalStepper bind:NSEnabledBinding toObject:self withKeyPath:NSStringFromSelector(@selector(recommendKeyChange)) options:nil];
+  [self.recommendKeyChangeIntervalStepper bind:NSValueBinding toObject:self withKeyPath:NSStringFromSelector(@selector(recommendKeyChangeInterval)) options:nil];
+  [self.recommendKeyChangeIntervalTextField bind:NSEnabledBinding toObject:self withKeyPath:NSStringFromSelector(@selector(recommendKeyChange)) options:nil];
+  [self.recommendKeyChangeIntervalTextField bind:NSValueBinding toObject:self withKeyPath:NSStringFromSelector(@selector(recommendKeyChangeInterval)) options:nil];
+  ((MPDayCountFormatter *)self.recommendKeyChangeIntervalTextField.formatter).valueFormat = NSLocalizedString(@"every %ld days", @"");
+  ((MPDayCountFormatter *)self.recommendKeyChangeIntervalTextField.formatter).zeroFormat = NSLocalizedString(@"after each unlock", @"");
 }
 
 - (void)_updateFirstResponder {

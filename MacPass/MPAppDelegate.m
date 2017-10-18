@@ -198,7 +198,7 @@ NSString *const MPHelpURLKey = @"MPHelpURL";
   }
   if(!self.passwordCreatorController) {
     self.passwordCreatorController = [[MPPasswordCreatorViewController alloc] init];
-    self.passwordCreatorWindow.contentView = self.passwordCreatorController.view;
+    self.passwordCreatorWindow.contentViewController = self.passwordCreatorController;
   }
   [self.passwordCreatorController reset];
   [self.passwordCreatorWindow makeKeyAndOrderFront:self.passwordCreatorWindow];
@@ -236,9 +236,9 @@ NSString *const MPHelpURLKey = @"MPHelpURL";
 - (void)checkForUpdates:(id)sender {
 #if defined(DEBUG) || defined(NO_SPARKLE)
   NSAlert *alert = [[NSAlert alloc] init];
-  alert.messageText = @"Updates are disabled!";
+  alert.messageText = NSLocalizedString(@"Updates are disabled!", @"Message text for disabled updates alert!");
   alert.informativeText = [NSString stringWithFormat:@"Sparkle updates are disabled for this build of %@!", NSApp.applicationName];
-  [alert addButtonWithTitle:@"Ok"];
+  [alert addButtonWithTitle:NSLocalizedString(@"OK", @"Ok button")];
   [alert runModal];
 #else
   [[SUUpdater sharedUpdater] checkForUpdates:sender];

@@ -1,8 +1,8 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="9059" systemVersion="15B42" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="12121" systemVersion="16G29" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
     <dependencies>
-        <deployment identifier="macosx"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="9059"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="12121"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
         <customObject id="-2" userLabel="File's Owner" customClass="MPIconSelectViewController">
@@ -17,40 +17,33 @@
             <rect key="frame" x="0.0" y="0.0" width="400" height="340"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
             <subviews>
-                <scrollView focusRingType="none" borderType="none" autohidesScrollers="YES" horizontalLineScroll="10" horizontalPageScroll="10" verticalLineScroll="10" verticalPageScroll="10" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="57" customClass="HNHUIScrollView">
-                    <rect key="frame" x="10" y="50" width="380" height="280"/>
+                <scrollView wantsLayer="YES" focusRingType="none" borderType="none" autohidesScrollers="YES" horizontalLineScroll="10" horizontalPageScroll="10" verticalLineScroll="10" verticalPageScroll="10" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="57" customClass="HNHUIScrollView">
+                    <rect key="frame" x="10" y="50" width="380" height="270"/>
                     <clipView key="contentView" drawsBackground="NO" copiesOnScroll="NO" id="Gwf-zs-lPT">
-                        <rect key="frame" x="0.0" y="0.0" width="380" height="280"/>
+                        <rect key="frame" x="0.0" y="0.0" width="380" height="270"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <collectionView focusRingType="none" id="58">
-                                <rect key="frame" x="0.0" y="0.0" width="380" height="280"/>
+                            <collectionView focusRingType="none" selectable="YES" id="58" customClass="MPCollectionView">
+                                <rect key="frame" x="0.0" y="0.0" width="380" height="270"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                                <animations/>
                                 <color key="primaryBackgroundColor" name="windowBackgroundColor" catalog="System" colorSpace="catalog"/>
                                 <connections>
                                     <outlet property="itemPrototype" destination="61" id="63"/>
                                 </connections>
                             </collectionView>
                         </subviews>
-                        <animations/>
-                        <color key="backgroundColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
                     </clipView>
-                    <animations/>
                     <scroller key="horizontalScroller" hidden="YES" verticalHuggingPriority="750" horizontal="YES" id="59">
                         <rect key="frame" x="1" y="144" width="233" height="15"/>
                         <autoresizingMask key="autoresizingMask"/>
-                        <animations/>
                     </scroller>
                     <scroller key="verticalScroller" hidden="YES" verticalHuggingPriority="750" doubleValue="1" horizontal="NO" id="60">
-                        <rect key="frame" x="234" y="1" width="15" height="143"/>
+                        <rect key="frame" x="364" y="0.0" width="16" height="240"/>
                         <autoresizingMask key="autoresizingMask"/>
-                        <animations/>
                     </scroller>
                 </scrollView>
-                <button verticalHuggingPriority="750" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="101">
-                    <rect key="frame" x="263" y="18" width="117" height="25"/>
-                    <animations/>
+                <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="101">
+                    <rect key="frame" x="265" y="18" width="115" height="25"/>
                     <buttonCell key="cell" type="roundTextured" title="Use Default Icon" bezelStyle="texturedRounded" alignment="center" state="on" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="102">
                         <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                         <font key="font" metaFont="system"/>
@@ -59,9 +52,18 @@
                         <action selector="useDefault:" target="-2" id="129"/>
                     </connections>
                 </button>
-                <button verticalHuggingPriority="750" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="His-4A-hcY">
-                    <rect key="frame" x="198" y="18" width="57" height="25"/>
-                    <animations/>
+                <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="8kv-BJ-IEk">
+                    <rect key="frame" x="153" y="18" width="104" height="25"/>
+                    <buttonCell key="cell" type="roundTextured" title="Download Icon" bezelStyle="texturedRounded" alignment="center" lineBreakMode="truncatingTail" state="on" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="iaf-XW-XUo">
+                        <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                        <font key="font" metaFont="system"/>
+                    </buttonCell>
+                    <connections>
+                        <action selector="downloadIcon:" target="-2" id="VIQ-4U-K4z"/>
+                    </connections>
+                </button>
+                <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="His-4A-hcY">
+                    <rect key="frame" x="89" y="18" width="56" height="25"/>
                     <buttonCell key="cell" type="roundTextured" title="Cancel" bezelStyle="texturedRounded" alignment="center" state="on" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="1kM-cI-P1o">
                         <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                         <font key="font" metaFont="system"/>
@@ -72,21 +74,23 @@
                 </button>
             </subviews>
             <constraints>
-                <constraint firstItem="57" firstAttribute="top" secondItem="1" secondAttribute="top" constant="10" id="88"/>
                 <constraint firstAttribute="bottom" secondItem="101" secondAttribute="bottom" constant="20" symbolic="YES" id="107"/>
                 <constraint firstAttribute="trailing" secondItem="101" secondAttribute="trailing" constant="20" symbolic="YES" id="108"/>
                 <constraint firstAttribute="trailing" secondItem="57" secondAttribute="trailing" constant="10" id="110"/>
                 <constraint firstItem="57" firstAttribute="leading" secondItem="1" secondAttribute="leading" constant="10" id="111"/>
                 <constraint firstItem="101" firstAttribute="top" secondItem="57" secondAttribute="bottom" constant="8" symbolic="YES" id="112"/>
                 <constraint firstItem="His-4A-hcY" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="1" secondAttribute="leading" constant="20" symbolic="YES" id="69a-Sb-jSj"/>
-                <constraint firstItem="101" firstAttribute="leading" secondItem="His-4A-hcY" secondAttribute="trailing" constant="8" id="EHs-2w-CJq"/>
+                <constraint firstItem="8kv-BJ-IEk" firstAttribute="baseline" secondItem="101" secondAttribute="baseline" id="Knp-g8-7FQ"/>
+                <constraint firstItem="8kv-BJ-IEk" firstAttribute="leading" secondItem="His-4A-hcY" secondAttribute="trailing" constant="8" symbolic="YES" id="MZ0-p6-6MH"/>
                 <constraint firstItem="His-4A-hcY" firstAttribute="baseline" secondItem="101" secondAttribute="baseline" id="fq3-rS-gvQ"/>
+                <constraint firstItem="57" firstAttribute="top" secondItem="1" secondAttribute="top" constant="20" symbolic="YES" id="iuz-pK-yXC"/>
+                <constraint firstItem="101" firstAttribute="leading" secondItem="8kv-BJ-IEk" secondAttribute="trailing" constant="8" symbolic="YES" id="nvi-CZ-a6L"/>
             </constraints>
-            <animations/>
-            <point key="canvasLocation" x="370" y="95"/>
+            <point key="canvasLocation" x="-143" y="15"/>
         </customView>
-        <collectionViewItem id="61">
+        <collectionViewItem id="61" customClass="MPCollectionViewItem">
             <connections>
+                <outlet property="deleteImageButton" destination="MEC-x9-zrX" id="PSx-mD-G8C"/>
                 <outlet property="view" destination="113" id="128"/>
             </connections>
         </collectionViewItem>
@@ -94,31 +98,68 @@
             <rect key="frame" x="0.0" y="0.0" width="48" height="48"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
             <subviews>
+                <button translatesAutoresizingMaskIntoConstraints="NO" id="MEC-x9-zrX">
+                    <rect key="frame" x="32" y="32" width="16" height="16"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="16" id="cau-QV-8TQ"/>
+                        <constraint firstAttribute="height" constant="16" id="yHZ-qj-Rcy"/>
+                    </constraints>
+                    <buttonCell key="cell" type="square" bezelStyle="shadowlessSquare" image="NSRefreshFreestandingTemplate" imagePosition="overlaps" alignment="center" imageScaling="proportionallyUpOrDown" inset="2" id="zWZ-Wt-ThY">
+                        <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                        <font key="font" metaFont="system"/>
+                    </buttonCell>
+                    <connections>
+                        <binding destination="61" name="argument" keyPath="representedObject" id="rJw-Yy-JjZ">
+                            <dictionary key="options">
+                                <bool key="NSConditionallySetsEnabled" value="NO"/>
+                                <string key="NSSelectorName">_deleteIcon:</string>
+                            </dictionary>
+                        </binding>
+                        <binding destination="-2" name="target" keyPath="self" previousBinding="rJw-Yy-JjZ" id="j04-R4-qhO">
+                            <dictionary key="options">
+                                <bool key="NSConditionallySetsEnabled" value="NO"/>
+                                <string key="NSSelectorName">_deleteIcon:</string>
+                            </dictionary>
+                        </binding>
+                    </connections>
+                </button>
                 <button translatesAutoresizingMaskIntoConstraints="NO" id="114">
                     <rect key="frame" x="8" y="8" width="32" height="32"/>
                     <constraints>
                         <constraint firstAttribute="width" constant="32" id="161"/>
                         <constraint firstAttribute="height" constant="32" id="162"/>
                     </constraints>
-                    <animations/>
                     <buttonCell key="cell" type="bevel" bezelStyle="regularSquare" image="NSAddTemplate" imagePosition="only" alignment="center" imageScaling="proportionallyUpOrDown" inset="2" id="115">
                         <behavior key="behavior" lightByContents="YES"/>
                         <font key="font" metaFont="system"/>
                     </buttonCell>
                     <connections>
-                        <action selector="_selectImage:" target="-2" id="eFg-h5-9jy"/>
-                        <binding destination="61" name="image" keyPath="representedObject" id="139"/>
+                        <binding destination="61" name="argument" keyPath="representedObject" id="GTE-gb-8ra">
+                            <dictionary key="options">
+                                <bool key="NSConditionallySetsEnabled" value="NO"/>
+                                <string key="NSSelectorName">_selectIcon:</string>
+                            </dictionary>
+                        </binding>
+                        <binding destination="61" name="image" keyPath="representedObject.image" id="LKC-A5-b3U"/>
+                        <binding destination="-2" name="target" keyPath="self" previousBinding="GTE-gb-8ra" id="ujd-pu-j5v">
+                            <dictionary key="options">
+                                <bool key="NSConditionallySetsEnabled" value="NO"/>
+                                <string key="NSSelectorName">_selectIcon:</string>
+                            </dictionary>
+                        </binding>
                     </connections>
                 </button>
             </subviews>
             <constraints>
                 <constraint firstItem="114" firstAttribute="centerY" secondItem="113" secondAttribute="centerY" id="168"/>
                 <constraint firstItem="114" firstAttribute="centerX" secondItem="113" secondAttribute="centerX" id="169"/>
+                <constraint firstAttribute="trailing" secondItem="MEC-x9-zrX" secondAttribute="trailing" id="l85-hK-J0S"/>
+                <constraint firstItem="MEC-x9-zrX" firstAttribute="top" secondItem="113" secondAttribute="top" id="uEr-Jk-Jfa"/>
             </constraints>
-            <animations/>
         </customView>
     </objects>
     <resources>
         <image name="NSAddTemplate" width="11" height="11"/>
+        <image name="NSRefreshFreestandingTemplate" width="14" height="14"/>
     </resources>
 </document>

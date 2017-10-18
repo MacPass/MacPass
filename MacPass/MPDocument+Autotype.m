@@ -65,13 +65,18 @@
   MPAutotypeContext *context;
   for(KPKEntry *entry in autotypeEntries) {
     /* search in Autotype entries for match */
-    KPKWindowAssociation *association = [entry.autotype windowAssociationMatchingWindowTitle:windowTitle];
-    context = [[MPAutotypeContext alloc] initWithWindowAssociation:association];
-    if(context.valid) {
-      [contexts addObject:context];
-      continue; // association did match
-    }
     BOOL foundMatch = NO;
+    for(KPKWindowAssociation *association in [entry.autotype windowAssociationsMatchingWindowTitle:windowTitle]) {
+      context = [[MPAutotypeContext alloc] initWithWindowAssociation:association];
+      if(context.valid) {
+        foundMatch = YES;
+        [contexts addObject:context];
+      }
+    }
+    /* association match found, no need to use the default sequence! */
+    if(foundMatch) {
+      continue;
+    }
     /* Test for entry title in window title */
     if(matchTitle && !foundMatch) {
       foundMatch = [windowTitle rangeOfString:entry.title options:NSCaseInsensitiveSearch].length != 0 || [entry.title rangeOfString:windowTitle options:NSCaseInsensitiveSearch].length != 0;

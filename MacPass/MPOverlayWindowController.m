@@ -5,6 +5,20 @@
 //  Created by Michael Starke on 03.03.13.
 //  Copyright (c) 2013 HicknHack Software GmbH. All rights reserved.
 //
+//  This program is free software: you can redistribute it and/or modify
+//  it under the terms of the GNU General Public License as published by
+//  the Free Software Foundation, either version 3 of the License, or
+//  (at your option) any later version.
+//
+//  This program is distributed in the hope that it will be useful,
+//  but WITHOUT ANY WARRANTY; without even the implied warranty of
+//
+//  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+//  GNU General Public License for more details.
+//
+//  You should have received a copy of the GNU General Public License
+//  along with this program.  If not, see <http://www.gnu.org/licenses/>.
+//
 
 #import "MPOverlayWindowController.h"
 #import "MPOverlayView.h"
@@ -52,32 +66,27 @@
 }
 
 - (void)displayOverlayImage:(NSImage *)imageOrNil label:(NSString *)labelOrNil atView:(NSView *)view {
-  if(![NSThread currentThread].isMainThread) {  NSAssert(NO, @"Must be called on main thread"); }
-  /*
-  if(![NSThread currentThread].isMainThread) {
-    __weak MPOverlayWindowController *welf = self;
-    dispatch_async(dispatch_get_main_queue(), ^{
-      [welf displayOverlayImage:imageOrNil label:labelOrNil atView:view];
-    });
+  if(!NSThread.currentThread.isMainThread) {
+    NSAssert(NO, @"Must be called on main thread");
     return;
   }
-  */
+  
   if(self.isAnimating) {
     return;
   }
   self.isAnimating = YES;
   /* make window transparent */
   
-  [self.window setAlphaValue:0];
-  [self.window setIsVisible:YES];
+  self.window.alphaValue = 0;
+  self.window.isVisible = YES;
   
   /* setup any provided images and labels*/
-  [self.imageView setImage:imageOrNil];
+  self.imageView.image = imageOrNil;
   if(labelOrNil) {
-    [self.textField setStringValue:labelOrNil];
+    self.textField.stringValue = labelOrNil;
   }
   else {
-    [self.textField setStringValue:@""];
+    self.textField.stringValue = @"";
   }
   [self.textField sizeToFit];
   /*
@@ -105,7 +114,7 @@
   }
   [NSAnimationContext runAnimationGroup:^(NSAnimationContext *context) {
     context.duration = 0.2;
-    [[self.window animator]setAlphaValue:1];
+    [self.window animator].alphaValue = 1;
   } completionHandler:^{
     [self performSelector:@selector(_didEndAnimation) withObject:nil afterDelay:0.5];
   }];

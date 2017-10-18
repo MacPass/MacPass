@@ -87,7 +87,7 @@
   
   MPAutotypeContext *context = [[MPAutotypeContext alloc] initWithDefaultSequenceForEntry:self.entry];
   NSString *result = [[NSString alloc] initWithFormat:@"%@%@%@%@", self.entry.username, lowerCaseAttribute.value, mixedCaseAttribute.value, upperCaseAttribute.value];
-  XCTAssertTrue([[context evaluatedCommand] isEqualToString:result]);
+  XCTAssertEqualObjects(context.evaluatedCommand, result);
 }
 
 - (void)testCustomAttributeRepetition {
@@ -161,7 +161,7 @@
   MPAutotypeContext *context = [[MPAutotypeContext alloc] initWithEntry:self.entry andSequence:@"{USERNAME}{TAB}{PASSWORD}{ENTER}"];
   NSArray *commands = [MPAutotypeCommand commandsForContext:context];
   
-  XCTAssertTrue(commands.count == 4);
+  XCTAssertEqual(commands.count, 4);
   XCTAssertTrue([commands[0] isKindOfClass:[MPAutotypePaste class]]);
   XCTAssertTrue([commands[1] isKindOfClass:[MPAutotypeKeyPress class]]);
   XCTAssertTrue([commands[2] isKindOfClass:[MPAutotypePaste class]]);
@@ -169,7 +169,7 @@
   
   /* {USERNAME} */
   MPAutotypePaste *paste = commands[0];
-  XCTAssertTrue([paste.pasteData isEqualToString:self.entry.username]);
+  XCTAssertEqualObjects(paste.pasteData, self.entry.username);
   
   /* {TAB} */
   MPAutotypeKeyPress *keyPress = commands[1];
@@ -178,7 +178,7 @@
   
   /* {PASSWORD} */
   paste = commands[2];
-  XCTAssertTrue([self.entry.password isEqualToString:paste.pasteData]);
+  XCTAssertEqualObjects(self.entry.password, paste.pasteData);
   
   /* {ENTER} */
   keyPress = commands[3];
@@ -187,7 +187,7 @@
   /* Command 2 */
   context = [[MPAutotypeContext alloc] initWithEntry:self.entry andSequence:@"^T{USERNAME}%+^{TAB}Whoo{PASSWORD}{ENTER}"];
   commands = [MPAutotypeCommand commandsForContext:context];
-  XCTAssertTrue(commands.count == 5);
+  XCTAssertEqual(commands.count, 5);
   XCTAssertTrue([commands[0] isKindOfClass:[MPAutotypeKeyPress class]]);
   XCTAssertTrue([commands[1] isKindOfClass:[MPAutotypePaste class]]);
   XCTAssertTrue([commands[2] isKindOfClass:[MPAutotypeKeyPress class]]);
@@ -208,7 +208,7 @@
   
   /* {USERNAME} */
   paste = commands[1];
-  XCTAssertTrue([paste.pasteData isEqualToString:self.entry.username]);
+  XCTAssertEqualObjects(paste.pasteData, self.entry.username);
   
   /* %+^{TAB} */
   keyPress = commands[2];
@@ -223,7 +223,7 @@
   /* Whoo{PASSWORD} */
   paste = commands[3];
   NSString *pasteString = [[NSString alloc] initWithFormat:@"%@%@", @"Whoo", self.entry.password];
-  XCTAssertTrue([pasteString isEqualToString:paste.pasteData]);
+  XCTAssertEqualObjects(pasteString, paste.pasteData);
   
   /* {ENTER} */
   keyPress = commands[4];
@@ -234,20 +234,19 @@
   /* Command 3 */
   context = [[MPAutotypeContext alloc] initWithEntry:self.entry andSequence:@"^T"];
   commands = [MPAutotypeCommand commandsForContext:context];
-  XCTAssertTrue(commands.count == 1);
-  XCTAssertTrue([commands[0] isKindOfClass:[MPAutotypeKeyPress class]]);
+  XCTAssertEqual(commands.count, 1);
+  XCTAssertTrue([commands.firstObject isKindOfClass:[MPAutotypeKeyPress class]]);
   
   /*^T*/
-  keyPress = commands[0];
+  keyPress = commands.firstObject;
   XCTAssertEqualObjects(@"t", [MPKeyMapper stringForModifiedKey:keyPress.key]);
-  /* TODO - Respect user settings? */
+  
   if(useCommandInsteadOfControl) {
     XCTAssertEqual(keyPress.key.modifier, kCGEventFlagMaskCommand);
   }
   else {
     XCTAssertEqual(keyPress.key.modifier, kCGEventFlagMaskControl);
   }
-  /*XCTAssertEqual(keyPress.modifierMask, kCGEventFlagMaskControl);*/
   
 }
 

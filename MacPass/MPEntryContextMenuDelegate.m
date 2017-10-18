@@ -54,7 +54,7 @@ static NSUInteger const kMPAttachmentsMenuItem = 2000;
   if(entry.customAttributes.count > 0) {
     [menu addItem:[NSMenuItem separatorItem]];
     NSMenuItem *attributeItem = [[NSMenuItem alloc] init];
-    NSMenu *submenu = [[NSMenu alloc] initWithTitle:@"Fields"];
+    NSMenu *submenu = [[NSMenu alloc] initWithTitle:NSLocalizedString(@"COPY_CUSTOM_FIELDS_MENU", @"Context menu sub-menu to copy custom fields to clipboard")];
     attributeItem.title = NSLocalizedString(@"COPY_CUSTOM_FIELDS", "Submenu to Copy custom fields");
     attributeItem.tag = kMPCustomFieldMenuItem;
     for (KPKAttribute *attribute in entry.customAttributes) {

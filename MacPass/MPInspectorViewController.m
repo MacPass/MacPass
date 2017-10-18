@@ -5,6 +5,20 @@
 //  Created by Michael Starke on 05.03.13.
 //  Copyright (c) 2013 HicknHack Software GmbH. All rights reserved.
 //
+//  This program is free software: you can redistribute it and/or modify
+//  it under the terms of the GNU General Public License as published by
+//  the Free Software Foundation, either version 3 of the License, or
+//  (at your option) any later version.
+//
+//  This program is distributed in the hope that it will be useful,
+//  but WITHOUT ANY WARRANTY; without even the implied warranty of
+//
+//  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+//  GNU General Public License for more details.
+//
+//  You should have received a copy of the GNU General Public License
+//  along with this program.  If not, see <http://www.gnu.org/licenses/>.
+//
 
 #import "MPInspectorViewController.h"
 #import "MPDatePickingViewController.h"
@@ -13,8 +27,8 @@
 #import "MPGroupInspectorViewController.h"
 #import "MPIconHelper.h"
 #import "MPIconSelectViewController.h"
+#import "MPIconImageView.h"
 #import "MPNotifications.h"
-#import "MPPopupImageView.h"
 #import "MPPluginDataViewController.h"
 
 #import "KeePassKit/KeePassKit.h"
@@ -89,19 +103,19 @@ typedef NS_ENUM(NSUInteger, MPContentTab) {
   
   
   NSTabViewItem *entryTabItem = [self.tabView tabViewItemAtIndex:MPEntryTab];
-  NSView *entryTabView = [entryTabItem view];
+  NSView *entryTabView = entryTabItem.view;
   [entryTabView addSubview:entryView];
   NSDictionary *views = NSDictionaryOfVariableBindings(entryView, groupView);
   [entryTabView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|[entryView]|" options:0 metrics:nil views:views]];
   [entryTabView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|[entryView]|" options:0 metrics:nil views:views]];
-  [entryTabItem setInitialFirstResponder:entryTabView];
+  entryTabItem.initialFirstResponder = entryTabView;
   
   NSTabViewItem *groupTabItem = [self.tabView tabViewItemAtIndex:MPGroupTab];
-  NSView *groupTabView = [groupTabItem view];
+  NSView *groupTabView = groupTabItem.view;
   [groupTabView addSubview:groupView];
   [groupTabView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|[groupView]|" options:0 metrics:nil views:views]];
   [groupTabView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|[groupView]|" options:0 metrics:nil views:views]];
-  [groupTabItem setInitialFirstResponder:groupView];
+  groupTabItem.initialFirstResponder = groupView;
   
   [self.view layout];
   
@@ -121,6 +135,7 @@ typedef NS_ENUM(NSUInteger, MPContentTab) {
                                              object:document];
   
   self.entryViewController.observer = document;
+  self.itemImageView.modelChangeObserver = document;
   self.observer = document;
   
   [self.entryViewController registerNotificationsForDocument:document];
@@ -236,6 +251,7 @@ typedef NS_ENUM(NSUInteger, MPContentTab) {
   [self.groupViewController commitEditing];
   
   self.representedObject = node;
+  self.itemImageView.node = node;
   self.entryViewController.representedObject = node.asEntry;
   self.groupViewController.representedObject = node.asGroup;
   

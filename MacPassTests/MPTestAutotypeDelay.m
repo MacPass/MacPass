@@ -36,7 +36,7 @@
   MPAutotypeContext *context = [[MPAutotypeContext alloc] initWithEntry:self.entry andSequence:@"{DELAY 200}"];
   NSArray *commands = [MPAutotypeCommand commandsForContext:context];
   
-  XCTAssertTrue(commands.count == 1);
+  XCTAssertEqual(commands.count, 1);
   /* {DELAY 200} */
   XCTAssertTrue([commands.firstObject isKindOfClass:[MPAutotypeDelay class]], @"Command is Delay command");
   MPAutotypeDelay *delay = commands.firstObject;

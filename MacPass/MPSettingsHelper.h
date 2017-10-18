@@ -5,6 +5,20 @@
 //  Created by Michael Starke on 30.03.13.
 //  Copyright (c) 2013 HicknHack Software GmbH. All rights reserved.
 //
+//  This program is free software: you can redistribute it and/or modify
+//  it under the terms of the GNU General Public License as published by
+//  the Free Software Foundation, either version 3 of the License, or
+//  (at your option) any later version.
+//
+//  This program is distributed in the hope that it will be useful,
+//  but WITHOUT ANY WARRANTY; without even the implied warranty of
+//
+//  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+//  GNU General Public License for more details.
+//
+//  You should have received a copy of the GNU General Public License
+//  along with this program.  If not, see <http://www.gnu.org/licenses/>.
+//
 
 #import <Cocoa/Cocoa.h>
 
@@ -16,6 +30,7 @@ APPKIT_EXTERN NSString *const kMPSettingsKeyClearPasteboardOnQuit;
 APPKIT_EXTERN NSString *const kMPSettingsKeyPasswordEncoding;
 APPKIT_EXTERN NSString *const kMPSettingsKeyOpenEmptyDatabaseOnLaunch;
 APPKIT_EXTERN NSString *const kMPSettingsKeyReopenLastDatabaseOnLaunch;
+APPKIT_EXTERN NSString *const kMPSettingsKeyFileChangeStrategy;
 
 /* URL handling */
 APPKIT_EXTERN NSString *const kMPSettingsKeyBrowserBundleId;
@@ -65,6 +80,13 @@ APPKIT_EXTERN NSString *const kMPSettingsKeyUpdatePasswordOnTemplateEntries;
 /* Plugins */
 APPKIT_EXTERN NSString *const kMPSettingsKeyLoadUnsecurePlugins;            // If set to YES this will load all plugins regardless of their codesignature status
 
+typedef NS_ENUM(NSUInteger, MPFileChangeStrategy) {
+  MPFileChangeStrategyAsk,
+  MPFileChangeStrategyKeepMine,
+  MPFileChangeStrategyUseOther,
+  MPFileChangeStrategyMerge
+};
+
 typedef NS_ENUM(NSUInteger, MPDoubleClickURLAction) {
   MPDoubleClickURLActionCopy,
   MPDoubleClickURLActionOpen,
@@ -84,10 +106,6 @@ APPKIT_EXTERN NSString *const kMPSettingsKeyPasswordCustomString;
 
 APPKIT_EXTERN NSString *const kMPSettingsKeyPasswordDefaultsForEntry;
 
-typedef NS_ENUM(NSUInteger, MPPasswordEncoding) {
-  MPPasswordEncodingUTF8,
-  MPPasswordEncodingASCII,
-};
 
 @interface MPSettingsHelper : NSObject
 

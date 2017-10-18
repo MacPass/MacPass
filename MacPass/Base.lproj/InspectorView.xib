@@ -1,8 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="12120" systemVersion="16E195" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="12121" systemVersion="16G29" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
     <dependencies>
-        <deployment identifier="macosx"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="12120"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="12121"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
@@ -22,7 +21,7 @@
         <customView translatesAutoresizingMaskIntoConstraints="NO" id="2894">
             <rect key="frame" x="0.0" y="0.0" width="278" height="662"/>
             <subviews>
-                <imageView translatesAutoresizingMaskIntoConstraints="NO" id="2998" customClass="MPPopupImageView">
+                <imageView translatesAutoresizingMaskIntoConstraints="NO" id="2998" customClass="MPIconImageView">
                     <rect key="frame" x="20" y="620" width="32" height="32"/>
                     <constraints>
                         <constraint firstAttribute="width" constant="32" id="3027"/>
@@ -31,14 +30,14 @@
                     <imageCell key="cell" alignment="left" imageScaling="proportionallyUpOrDown" image="NSActionTemplate" id="2999"/>
                     <connections>
                         <action selector="pickIcon:" target="-2" id="6wh-Ka-Thl"/>
-                        <binding destination="-2" name="enabled" keyPath="representedObject.isHistory" id="7Z5-A7-aqg">
-                            <dictionary key="options">
-                                <string key="NSValueTransformerName">NSNegateBoolean</string>
-                            </dictionary>
-                        </binding>
                         <binding destination="-2" name="value" keyPath="representedObject.iconImage" id="agf-eg-okr">
                             <dictionary key="options">
                                 <bool key="NSConditionallySetsEnabled" value="NO"/>
+                            </dictionary>
+                        </binding>
+                        <binding destination="-2" name="enabled" keyPath="representedObject.isHistory" id="7Z5-A7-aqg">
+                            <dictionary key="options">
+                                <string key="NSValueTransformerName">NSNegateBoolean</string>
                             </dictionary>
                         </binding>
                     </connections>

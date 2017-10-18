@@ -5,6 +5,20 @@
 //  Created by Michael Starke on 07.02.14.
 //  Copyright (c) 2014 HicknHack Software GmbH. All rights reserved.
 //
+//  This program is free software: you can redistribute it and/or modify
+//  it under the terms of the GNU General Public License as published by
+//  the Free Software Foundation, either version 3 of the License, or
+//  (at your option) any later version.
+//
+//  This program is distributed in the hope that it will be useful,
+//  but WITHOUT ANY WARRANTY; without even the implied warranty of
+//
+//  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+//  GNU General Public License for more details.
+//
+//  You should have received a copy of the GNU General Public License
+//  along with this program.  If not, see <http://www.gnu.org/licenses/>.
+//
 //  Uses Code from:
 //  SRKeyCodeTransformer.h
 //  ShortcutRecorder
@@ -107,7 +121,7 @@ uint16_t const kMPUnknownKeyCode = UINT16_MAX;
     
     /* Generate table of keycodes and characters. */
     /* Loop through every keycode (0 - 127) to find its current mapping. */
-    /* Loop throuhg every control key compbination for every virtual key */
+    /* Loop through every control key compbination for every virtual key */
     for(CGKeyCode keyCode = 0; keyCode < 128; ++keyCode) {
       for(int modifierIndex = 0; modifierIndex < MPArrayCount(modifierCombinations); modifierIndex++) {
         MPModifiedKey mKey = MPMakeModifiedKey(modifierCombinations[modifierIndex], keyCode);
