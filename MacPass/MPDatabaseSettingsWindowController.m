@@ -246,7 +246,7 @@
 - (void)_setupSecurityTab:(KPKMetaData *)metaData {
   /*
    If kdf or cipher is not found, exceptions are thrown.
-   This should not happen since we should not be able to load a file with unkonw cipher/kdf
+   This should not happen since we should not be able to load a file with unknown cipher/kdf
    */
   KPKKeyDerivation *keyDerivation = [KPKKeyDerivation keyDerivationWithParameters:metaData.keyDerivationParameters];
   NSUInteger kdfIndex = [self.keyDerivationPopupButton.menu indexOfItemWithRepresentedObject:keyDerivation.uuid];
