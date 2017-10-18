@@ -216,7 +216,7 @@ NSString *const MPHelpURLKey = @"MPHelpURL";
 
 - (void)lockAllDocuments {
   for(NSDocument *document in ((NSDocumentController *)[NSDocumentController sharedDocumentController]).documents) {
-    for(id windowController in document.windowControllers) {
+    for(id windowController in [document.windowControllers reverseObjectEnumerator]) {
       if([windowController respondsToSelector:@selector(lock:)]) {
         [windowController lock:self];
       }

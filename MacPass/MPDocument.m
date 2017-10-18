@@ -661,7 +661,6 @@ NSString *const MPDocumentGroupKey                            = @"MPDocumentGrou
 - (KPKAttribute *)createCustomAttribute:(KPKEntry *)entry {
   NSString *title = NSLocalizedString(@"DEFAULT_CUSTOM_FIELD_TITLE", @"Default Titel for new Custom-Fields");
   NSString *value = NSLocalizedString(@"DEFAULT_CUSTOM_FIELD_VALUE", @"Default Value for new Custom-Fields");
-  title = [entry proposedKeyForAttributeKey:title];
   KPKAttribute *newAttribute = [[KPKAttribute alloc] initWithKey:title value:value];
   [entry addCustomAttribute:newAttribute];
   return newAttribute;

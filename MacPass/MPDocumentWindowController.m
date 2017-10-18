@@ -525,15 +525,22 @@ typedef void (^MPPasswordChangedBlock)(BOOL didChangePassword);
     [alert addButtonWithTitle:NSLocalizedString(@"CHANGE_PASSWORD_WITH_DOTS", "")];
     
     [alert beginSheetModalForWindow:[self.document windowForSheet] completionHandler:^(NSModalResponse returnCode) {
+      /* if sheet was stopped any other way, do nothing */
+      if(returnCode != NSAlertFirstButtonReturn) {
+        return;
+      }
       dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.5 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
         [self editPasswordWithCompetionHandler:^(NSInteger result) {
           /* if password was changed, reset change key and dismiss */
           if(NSModalResponseOK == result) {
             document.tree.metaData.enforceMasterKeyChangeOnce = NO;
           }
-          else {
+          else if(NSModalResponseCancel) {
             /* password was not changes, so keep nagging the user! */
             [self _presentPasswordIntervalAlerts];
+          }
+          else {
+            // We might have been killed by locking so do nothing!
           }
         }];
       });
