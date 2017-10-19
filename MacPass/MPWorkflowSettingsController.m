@@ -53,7 +53,7 @@
 }
 
 - (NSString *)label {
-  return NSLocalizedString(@"WORKFLOW_SETTINGS", "");
+  return NSLocalizedString(@"WORKFLOW_SETTINGS", "Label for the workflow settings tab");
 }
 
 - (void)willShowTab {

@@ -49,7 +49,7 @@
 }
 
 - (NSString *)label {
-  return NSLocalizedString(@"INTEGRATION_SETTINGS", "");
+  return NSLocalizedString(@"INTEGRATION_SETTINGS", "Label for the integration settings tab");
 }
 
 - (void)awakeFromNib {

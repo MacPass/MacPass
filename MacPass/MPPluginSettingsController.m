@@ -49,7 +49,7 @@
 }
 
 - (NSString *)label {
-  return NSLocalizedString(@"PLUGIN_SETTINGS", "");
+  return NSLocalizedString(@"PLUGIN_SETTINGS", "Label for plugin settings tab");
 }
 
 - (void)viewDidLoad {
