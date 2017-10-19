@@ -46,7 +46,7 @@ NSString *const MPDidChangeStoredKeyFilesSettings = @"com.hicknhack.macpass.MPDi
 NSString *const MPHelpURLKey = @"MPHelpURL";
 @interface MPAppDelegate () {
 @private
-  MPDockTileHelper *dockTileHelper;
+  MPDockTileHelper *_dockTileHelper;
   BOOL _shouldOpenFile; // YES if app was started to open a
 }
 
