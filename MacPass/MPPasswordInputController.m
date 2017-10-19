@@ -35,7 +35,6 @@
 
 @property (weak) IBOutlet HNHUIRoundedSecureTextField *passwordTextField;
 @property (weak) IBOutlet NSPathControl *keyPathControl;
-@property (strong) MPKeyfilePathControlDelegate *pathControlDelegate;
 @property (weak) IBOutlet NSImageView *errorImageView;
 @property (weak) IBOutlet NSTextField *errorInfoTextField;
 @property (weak) IBOutlet NSButton *togglePasswordButton;
@@ -71,7 +70,6 @@
 }
 
 - (void)viewDidLoad {
-  self.keyPathControl.delegate = self.pathControlDelegate = [[MPKeyfilePathControlDelegate alloc] init];
   self.errorImageView.image = [NSImage imageNamed:NSImageNameCaution];
   [self.passwordTextField bind:NSStringFromSelector(@selector(showPassword)) toObject:self withKeyPath:NSStringFromSelector(@selector(showPassword)) options:nil];
   [self.togglePasswordButton bind:NSValueBinding toObject:self withKeyPath:NSStringFromSelector(@selector(showPassword)) options:nil];
