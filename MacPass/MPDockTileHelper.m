@@ -25,9 +25,8 @@
 
 @interface MPDockTileHelper () {
   BOOL _pasteboardCleard;
+  NSTimeInterval _timeStamp;
 }
-
-@property (assign) NSTimeInterval timeStamp;
 
 @end
 
@@ -37,14 +36,14 @@
   self = [super init];
   if (self) {
     MPPasteBoardController *controller = [MPPasteBoardController defaultController];
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(didCopyToPastboard:) name:MPPasteBoardControllerDidCopyObjects object:controller];
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(didClearPasteboard:) name:MPPasteBoardControllerDidClearClipboard object:controller];
+    [NSNotificationCenter.defaultCenter addObserver:self selector:@selector(didCopyToPastboard:) name:MPPasteBoardControllerDidCopyObjects object:controller];
+    [NSNotificationCenter.defaultCenter addObserver:self selector:@selector(didClearPasteboard:) name:MPPasteBoardControllerDidClearClipboard object:controller];
   }
   return self;
 }
 
 - (void)didCopyToPastboard:(NSNotification *)notification {
-  self.timeStamp = [NSDate timeIntervalSinceReferenceDate];
+  _timeStamp = NSDate.timeIntervalSinceReferenceDate;
   _pasteboardCleard = NO;
   if([MPPasteBoardController defaultController].clearTimeout > 0) {
     [self updateBadge];
@@ -54,9 +53,11 @@
 - (void)didClearPasteboard:(NSNotification *)notification {
   _pasteboardCleard = YES;
   if([MPPasteBoardController defaultController].clearTimeout > 0) {
-    [[NSApp dockTile] setBadgeLabel:NSLocalizedString(@"CLEARING_PASTEBOARD","")];
+    NSApp.dockTile.badgeLabel = NSLocalizedString(@"CLEARING_PASTEBOARD", "String displayed at dock badge when clipboard is about to be cleared");
   }
-  [self performSelector:@selector(clearBadge) withObject:nil afterDelay:1];
+  dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+    [self clearBadge];
+  });
 }
 
 - (void)clearBadge {
@@ -68,10 +69,12 @@
     return;
   }
   NSTimeInterval timeOut = [MPPasteBoardController defaultController].clearTimeout;
-  NSTimeInterval countDown = timeOut - ([NSDate timeIntervalSinceReferenceDate] - self.timeStamp);
+  NSTimeInterval countDown = timeOut - (NSDate.timeIntervalSinceReferenceDate - _timeStamp);
   if(countDown > 0) {
-    [[NSApp dockTile] setBadgeLabel:[[NSString alloc] initWithFormat:@"%d", (int)countDown]];
-    [self performSelector:@selector(updateBadge) withObject:nil afterDelay:1];
+    NSApp.dockTile.badgeLabel = [[NSString alloc] initWithFormat:@"%d", (int)countDown];
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+      [self updateBadge];
+    });
   }
 }
 
