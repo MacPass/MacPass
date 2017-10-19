@@ -167,7 +167,7 @@ static MPAutotypeDaemon *_sharedInstance;
   if(documents.count == 0) {
     NSUserNotification *notification = [[NSUserNotification alloc] init];
     notification.title = NSApp.applicationName;
-    notification.informativeText = NSLocalizedString(@"AUTOTYPE_OVERLAY_NO_DOCUMENTS", "");
+    notification.informativeText = NSLocalizedString(@"AUTOTYPE_OVERLAY_NO_DOCUMENTS", "Notification: Autotype failed, no documents are open");
     [[NSUserNotificationCenter defaultUserNotificationCenter] deliverNotification:notification];
     return;
   }
@@ -191,10 +191,10 @@ static MPAutotypeDaemon *_sharedInstance;
     NSUserNotification *notification = [[NSUserNotification alloc] init];
     notification.title = NSApp.applicationName;
     if(context) {
-      notification.informativeText = NSLocalizedString(@"AUTOTYPE_OVERLAY_SINGLE_MATCH", "");
+      notification.informativeText = NSLocalizedString(@"AUTOTYPE_OVERLAY_SINGLE_MATCH", "Notification: Autotype found a single match.");
     }
     else {
-      notification.informativeText = [NSString stringWithFormat:NSLocalizedString(@"AUTOTYPE_OVERLAY_NO_MATCH_FOR_%@", ""), self.targetWindowTitle];
+      notification.informativeText = [NSString stringWithFormat:NSLocalizedString(@"AUTOTYPE_OVERLAY_NO_MATCH_FOR_%@", "Noticiation: Autotype failed to find a match for %@ (string placeholder)"), self.targetWindowTitle];
     }
     [[NSUserNotificationCenter defaultUserNotificationCenter] deliverNotification:notification];
   }
@@ -294,7 +294,7 @@ static MPAutotypeDaemon *_sharedInstance;
     self.matchSelectionWindow.level = NSFloatingWindowLevel;
   }
   NSMenu *associationMenu = [[NSMenu alloc] init];
-  [associationMenu addItemWithTitle:NSLocalizedString(@"SELECT_AUTOTYPE_CANDIDATE", "") action:NULL keyEquivalent:@""];
+  [associationMenu addItemWithTitle:NSLocalizedString(@"SELECT_AUTOTYPE_CANDIDATE", "Menu item for selection a single match from multiple Autotype matches") action:NULL keyEquivalent:@""];
   [associationMenu addItem:[NSMenuItem separatorItem]];
   associationMenu.autoenablesItems = NO;
   for(MPAutotypeContext *context in candidates) {
