@@ -78,7 +78,7 @@ NSString *const MPHelpURLKey = @"MPHelpURL";
 
 - (void)dealloc {
   [self unbind:NSStringFromSelector(@selector(isAllowedToStoreKeyFile))];
-  [[NSNotificationCenter defaultCenter] removeObserver:self];
+  [NSNotificationCenter.defaultCenter removeObserver:self];
 }
 
 #pragma mark Properties
