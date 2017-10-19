@@ -301,12 +301,12 @@ typedef NS_ENUM(NSUInteger, MPPasswordRating) {
 #pragma mark Helper
 - (void)_updateSetDefaultsButton:(BOOL)shouldDeleteEntryDefaults {
   if(shouldDeleteEntryDefaults) {
-    self.setDefaultButton.title = NSLocalizedString(@"PASSWORD_GENERATOR_RESET_ENTRY_DEFAULTS", "");
+    self.setDefaultButton.title = NSLocalizedString(@"PASSWORD_GENERATOR_RESET_ENTRY_DEFAULTS", "Button to reset the password defaults for a single entry");
     self.setDefaultButton.enabled = YES;
     self.setDefaultButton.action = @selector(_resetEntryDefaults:);
   }
   else {
-    self.setDefaultButton.title = NSLocalizedString(@"PASSWORD_GENERATOR_SET_DEFAULTS", "");
+    self.setDefaultButton.title = NSLocalizedString(@"PASSWORD_GENERATOR_SET_DEFAULTS", "Button to set the defaults of the password generator");
     self.setDefaultButton.action = @selector(_setDefault:);
   }
 }

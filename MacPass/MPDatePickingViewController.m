@@ -51,9 +51,13 @@ typedef NS_ENUM(NSUInteger, MPDatePreset) {
 - (void)awakeFromNib {
   NSMenu *presetMenu = [[NSMenu alloc] init];
   NSUInteger tags[] = { MPDatePresetTomorrow, MPDatePresetOneWeek, MPDatePresetOneMonth, MPDatePreset90Days, MPDatePresetOneYear };
-  NSArray *dateItems = @[ NSLocalizedString(@"TOMORROW", ""), NSLocalizedString(@"ONE_WEEK", ""), NSLocalizedString(@"ONE_MONTH", ""), NSLocalizedString(@"90_DAYS", ""), NSLocalizedString(@"ONE_YEAR", "") ];
+  NSArray *dateItems = @[ NSLocalizedString(@"TOMORROW", "preset to expire tomorrow"),
+                          NSLocalizedString(@"ONE_WEEK", "preset to expire after one week from now"),
+                          NSLocalizedString(@"ONE_MONTH", "preset to expire after one montch from now"),
+                          NSLocalizedString(@"90_DAYS", "preset to expire after 90 days from now"),
+                          NSLocalizedString(@"ONE_YEAR", "preset to expire after one year from now") ];
   
-  NSMenuItem *item = [[NSMenuItem alloc] initWithTitle:NSLocalizedString(@"SELECT_DATE_PRESET", "") action:NULL keyEquivalent:@""];
+  NSMenuItem *item = [[NSMenuItem alloc] initWithTitle:NSLocalizedString(@"SELECT_DATE_PRESET", "Menu item title for the expiry preset selection menu in the date picker") action:NULL keyEquivalent:@""];
   item.tag = MPDatePresetNone;
   [presetMenu addItem:item];
   [presetMenu addItem:[NSMenuItem separatorItem]];
