@@ -10,16 +10,16 @@
 @dynamic delegate;
 
 - (BOOL)canBecomeKeyView {
-  return TRUE;
+  return YES;
 }
 
 - (BOOL)acceptsFirstResponder {
-  return TRUE;
+  return YES;
 }
 
 - (BOOL)becomeFirstResponder {
   [self.delegate performSelector:@selector(pathControlDidBecomeKey:) withObject:self];
-  return TRUE;
+  return YES;
 }
 
 @end
