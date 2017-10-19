@@ -105,6 +105,8 @@
 - (IBAction)save:(id)sender {
   /* General */
   KPKMetaData *metaData = ((MPDocument *)self.document).tree.metaData;
+  /* TODO move settingsChanged updates to KeePassKit as it's the models responsibility */
+  metaData.settingsChanged = NSDate.date;
   metaData.databaseDescription = self.databaseDescriptionTextView.string;
   metaData.databaseName = self.databaseNameTextField.stringValue;
   
