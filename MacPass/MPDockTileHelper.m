@@ -61,7 +61,7 @@
 }
 
 - (void)clearBadge {
-  [[NSApp dockTile] setBadgeLabel:nil];
+  NSApp.dockTile.badgeLabel = nil;
 }
 
 - (void)updateBadge {
