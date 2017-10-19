@@ -21,26 +21,25 @@
 //
 
 #import "MPKeyfilePathControlDelegate.h"
-
 @implementation MPKeyfilePathControlDelegate
 
 - (NSDragOperation)pathControl:(NSPathControl *)pathControl validateDrop:(id<NSDraggingInfo>)info {
   return NSDragOperationNone;
 }
 
-- (void)pathControl:(NSPathControl *)pathControl willDisplayOpenPanel:(NSOpenPanel *)openPanel {
-}
-
 - (void)pathControlDidBecomeKey:(NSPathControl *)control {
-  if(control.URL) return;
-
-  dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.2 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-    NSOpenPanel *panel = [NSOpenPanel openPanel];
-    panel.allowedFileTypes = control.allowedTypes;
-    if([panel runModal] != NSModalResponseOK) return;
-
-    control.URL = panel.URL;
-  });
+//  if(control.URL) {
+//    return;
+//  }
+//
+//  dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.2 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+//    NSOpenPanel *panel = [NSOpenPanel openPanel];
+//    panel.allowedFileTypes = control.allowedTypes;
+//    if([panel runModal] != NSModalResponseOK) {
+//      return;
+//    }
+//    control.URL = panel.URL;
+//  });
 }
 
 @end
