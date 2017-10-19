@@ -65,6 +65,8 @@
 	<string>UNDEFINED</string>
 	<key>LSMinimumSystemVersion</key>
 	<string>${MACOSX_DEPLOYMENT_TARGET}</string>
+	<key>MPHelpURL</key>
+	<string>https://github.com/mstarke/MacPass</string>
 	<key>NSHumanReadableCopyright</key>
 	<string>Copyright © 2012-2016 HicknHack Software GmbH. All rights reserved.</string>
 	<key>NSMainNibFile</key>
@@ -75,8 +77,6 @@
 	<true/>
 	<key>SUFeedURL</key>
 	<string>https://raw.githubusercontent.com/MacPass/MacPassUpdates/master/appcast_macpass.xml</string>
-	<key>MPHelpURL</key>
-	<string>https://github.com/mstarke/MacPass</string>
 	<key>UTExportedTypeDeclarations</key>
 	<array>
 		<dict>
