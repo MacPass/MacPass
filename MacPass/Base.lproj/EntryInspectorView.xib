@@ -393,6 +393,7 @@
                         <font key="font" metaFont="system"/>
                     </buttonCell>
                     <connections>
+                        <action selector="toggleExpire:" target="-2" id="EBe-2q-ASh"/>
                         <outlet property="nextKeyView" destination="8" id="SbJ-ZA-mXZ"/>
                     </connections>
                 </button>
@@ -582,7 +583,7 @@
                     <rect key="frame" x="20" y="138" width="261" height="160"/>
                     <clipView key="contentView" id="aDE-WT-YIv">
                         <rect key="frame" x="1" y="1" width="259" height="158"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <autoresizingMask key="autoresizingMask"/>
                         <subviews>
                             <tableView verticalHuggingPriority="750" allowsExpansionToolTips="YES" columnAutoresizingStyle="lastColumnOnly" alternatingRowBackgroundColors="YES" columnReordering="NO" columnSelection="YES" columnResizing="NO" multipleSelection="NO" autosaveColumns="NO" rowSizeStyle="automatic" viewBased="YES" id="caM-L6-UHC">
                                 <rect key="frame" x="0.0" y="0.0" width="259" height="158"/>
@@ -784,7 +785,7 @@
             <rect key="frame" x="0.0" y="0.0" width="261" height="270"/>
             <clipView key="contentView" drawsBackground="NO" copiesOnScroll="NO" id="k8G-zp-BXZ">
                 <rect key="frame" x="1" y="1" width="259" height="268"/>
-                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <tableView focusRingType="none" verticalHuggingPriority="750" allowsExpansionToolTips="YES" columnAutoresizingStyle="lastColumnOnly" selectionHighlightStyle="none" columnSelection="YES" columnResizing="NO" multipleSelection="NO" autosaveColumns="NO" rowHeight="54" rowSizeStyle="automatic" viewBased="YES" id="193">
                         <rect key="frame" x="0.0" y="0.0" width="259" height="268"/>

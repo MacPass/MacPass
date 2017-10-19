@@ -1,8 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="11762" systemVersion="16D32" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="12121" systemVersion="16G29" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
     <dependencies>
-        <deployment identifier="macosx"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="11762"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="12121"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
@@ -11,6 +10,7 @@
                 <outlet property="autotypePopupButton" destination="240" id="285"/>
                 <outlet property="autotypeSequenceTextField" destination="Fnw-qz-IZU" id="a7M-zz-0ye"/>
                 <outlet property="contentView" destination="38" id="Dv7-1B-VeH"/>
+                <outlet property="expireDateSelectButton" destination="4" id="W6H-j5-GLf"/>
                 <outlet property="expiresCheckButton" destination="5" id="283"/>
                 <outlet property="searchPopupButton" destination="229" id="284"/>
                 <outlet property="titleTextField" destination="23" id="35"/>
@@ -28,7 +28,7 @@
                     <view translatesAutoresizingMaskIntoConstraints="NO" id="38" customClass="HNHUIScrollDocumentViewAdapter">
                         <rect key="frame" x="0.0" y="0.0" width="257" height="291"/>
                         <subviews>
-                            <textField verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="24">
+                            <textField verticalHuggingPriority="750" allowsCharacterPickerTouchBarItem="YES" translatesAutoresizingMaskIntoConstraints="NO" id="24">
                                 <rect key="frame" x="18" y="272" width="35" height="14"/>
                                 <textFieldCell key="cell" controlSize="small" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Name" id="25">
                                     <font key="font" metaFont="smallSystem"/>
@@ -36,7 +36,7 @@
                                     <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                 </textFieldCell>
                             </textField>
-                            <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="249" translatesAutoresizingMaskIntoConstraints="NO" id="23" customClass="HNHUIRoundedTextField">
+                            <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="249" allowsCharacterPickerTouchBarItem="YES" translatesAutoresizingMaskIntoConstraints="NO" id="23" customClass="HNHUIRoundedTextField">
                                 <rect key="frame" x="20" y="242" width="217" height="22"/>
                                 <textFieldCell key="cell" lineBreakMode="truncatingTail" truncatesLastVisibleLine="YES" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" drawsBackground="YES" usesSingleLineMode="YES" id="26">
                                     <font key="font" metaFont="system"/>
@@ -57,6 +57,7 @@
                                     <font key="font" metaFont="system"/>
                                 </buttonCell>
                                 <connections>
+                                    <action selector="toggleExpire:" target="-2" id="t1w-WN-Eud"/>
                                     <outlet property="nextKeyView" destination="4" id="Rem-Pk-yFJ"/>
                                 </connections>
                             </button>
@@ -96,7 +97,7 @@
                                     <outlet property="nextKeyView" destination="Fnw-qz-IZU" id="Q0q-HY-T34"/>
                                 </connections>
                             </popUpButton>
-                            <textField verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="264">
+                            <textField verticalHuggingPriority="750" allowsCharacterPickerTouchBarItem="YES" translatesAutoresizingMaskIntoConstraints="NO" id="264">
                                 <rect key="frame" x="18" y="190" width="41" height="14"/>
                                 <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Search" id="265">
                                     <font key="font" metaFont="smallSystem"/>
@@ -104,7 +105,7 @@
                                     <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                 </textFieldCell>
                             </textField>
-                            <textField verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="276">
+                            <textField verticalHuggingPriority="750" allowsCharacterPickerTouchBarItem="YES" translatesAutoresizingMaskIntoConstraints="NO" id="276">
                                 <rect key="frame" x="18" y="135" width="52" height="14"/>
                                 <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Autotype" id="277">
                                     <font key="font" metaFont="smallSystem"/>
@@ -112,7 +113,7 @@
                                     <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                 </textFieldCell>
                             </textField>
-                            <textField verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="Fnw-qz-IZU" customClass="HNHUIRoundedTextField">
+                            <textField verticalHuggingPriority="750" allowsCharacterPickerTouchBarItem="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Fnw-qz-IZU" customClass="HNHUIRoundedTextField">
                                 <rect key="frame" x="20" y="50" width="217" height="22"/>
                                 <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" drawsBackground="YES" id="VeF-V7-i2I">
                                     <font key="font" metaFont="system"/>
@@ -123,7 +124,7 @@
                                     <outlet property="nextKeyView" destination="1Uh-eo-H0j" id="zer-UH-73e"/>
                                 </connections>
                             </textField>
-                            <textField verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="6Lw-XW-x20">
+                            <textField verticalHuggingPriority="750" allowsCharacterPickerTouchBarItem="YES" translatesAutoresizingMaskIntoConstraints="NO" id="6Lw-XW-x20">
                                 <rect key="frame" x="18" y="80" width="107" height="14"/>
                                 <textFieldCell key="cell" controlSize="small" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Autotype Sequence" id="6FG-UZ-Adh">
                                     <font key="font" metaFont="smallSystem"/>

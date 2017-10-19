@@ -76,10 +76,27 @@
                 <menuItem title="File" id="83">
                     <menu key="submenu" title="File" id="81">
                         <items>
-                            <menuItem title="New" keyEquivalent="n" id="82">
-                                <connections>
-                                    <action selector="newDocument:" target="-1" id="373"/>
-                                </connections>
+                            <menuItem title="New" id="82">
+                                <menu key="submenu" id="Mjd-iK-MxC">
+                                    <items>
+                                        <menuItem title="Entry" keyEquivalent="n" id="5pt-iM-iQB">
+                                            <connections>
+                                                <action selector="createEntry:" target="-1" id="NRG-FC-HaO"/>
+                                            </connections>
+                                        </menuItem>
+                                        <menuItem title="Group" keyEquivalent="N" id="dMl-Ia-k8o">
+                                            <connections>
+                                                <action selector="createGroup:" target="-1" id="RtX-HO-Zdw"/>
+                                            </connections>
+                                        </menuItem>
+                                        <menuItem title="Database" id="Ame-Ou-khG">
+                                            <modifierMask key="keyEquivalentModifierMask"/>
+                                            <connections>
+                                                <action selector="newDocument:" target="-1" id="VEe-mh-brx"/>
+                                            </connections>
+                                        </menuItem>
+                                    </items>
+                                </menu>
                             </menuItem>
                             <menuItem title="Open…" keyEquivalent="o" id="72">
                                 <connections>
@@ -226,6 +243,9 @@
                                 </connections>
                             </menuItem>
                             <menuItem title="Delete" id="202">
+                                <string key="keyEquivalent" base64-UTF8="YES">
+CA
+</string>
                                 <connections>
                                     <action selector="delete:" target="-1" id="235"/>
                                 </connections>
@@ -240,7 +260,7 @@
                             </menuItem>
                             <menuItem title="Find…" tag="1" keyEquivalent="f" id="209">
                                 <connections>
-                                    <action selector="performFindPanelAction:" target="-1" id="241"/>
+                                    <action selector="perfromCustomSearch:" target="-1" id="RSR-PQ-TH1"/>
                                 </connections>
                             </menuItem>
                         </items>

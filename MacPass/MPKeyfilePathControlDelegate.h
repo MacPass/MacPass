@@ -21,7 +21,8 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "MPPathControl.h"
 
-@interface MPKeyfilePathControlDelegate : NSObject <NSPathControlDelegate>
+@interface MPKeyfilePathControlDelegate : NSObject <MPPathControlDelegate>
 
 @end

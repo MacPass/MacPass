@@ -89,5 +89,5 @@
 - (IBAction)removeWindowAssociation:(id)sender;
 
 - (IBAction)toggleQuicklookPreview:(id)sender;
-
+- (IBAction)toggleExpire:(NSButton*)sender;
 @end

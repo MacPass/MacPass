@@ -260,6 +260,7 @@
 		6021FE8218E160BC00C3BC51 /* PasswordEditWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6021FE8418E160BC00C3BC51 /* PasswordEditWindow.xib */; };
 		6021FE8D18E1617300C3BC51 /* PasswordCreatorView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6021FE8F18E1617300C3BC51 /* PasswordCreatorView.xib */; };
 		6021FE9818E1650F00C3BC51 /* DatabaseSettingsWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6021FE9A18E1650F00C3BC51 /* DatabaseSettingsWindow.xib */; };
+		8345D7291F39023E002B7B0F /* MPPathControl.m in Sources */ = {isa = PBXBuildFile; fileRef = 8345D7281F39023E002B7B0F /* MPPathControl.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -796,6 +797,8 @@
 		60ECAD271F12262400EA9DB3 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/IntegrationSettings.strings"; sourceTree = "<group>"; };
 		6E719715172058BA00E4C5FC /* MPDatabaseVersion.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MPDatabaseVersion.h; sourceTree = "<group>"; };
 		713F9B481C95CEA000605880 /* fr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fr; path = fr.lproj/PluginSettings.strings; sourceTree = "<group>"; };
+		8345D7271F39023E002B7B0F /* MPPathControl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MPPathControl.h; sourceTree = "<group>"; };
+		8345D7281F39023E002B7B0F /* MPPathControl.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MPPathControl.m; sourceTree = "<group>"; };
 		BD6C365619484CF40089EB37 /* nl */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = nl; path = nl.lproj/DatabaseSettingsWindow.strings; sourceTree = "<group>"; };
 		BD6C365719484CF40089EB37 /* nl */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = nl; path = nl.lproj/PasswordEditWindow.strings; sourceTree = "<group>"; };
 		BD6C365819484CF40089EB37 /* nl */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = nl; path = nl.lproj/GeneralSettings.strings; sourceTree = "<group>"; };
@@ -1413,6 +1416,8 @@
 				4C63B8FA17A3154D0091BD72 /* MPContextToolbarButton.m */,
 				4C57AE1217BA422B00CA4F34 /* MPSegmentedContextCell.h */,
 				4C57AE1317BA422B00CA4F34 /* MPSegmentedContextCell.m */,
+				8345D7271F39023E002B7B0F /* MPPathControl.h */,
+				8345D7281F39023E002B7B0F /* MPPathControl.m */,
 			);
 			name = Controls;
 			sourceTree = "<group>";
@@ -1844,6 +1849,7 @@
 				4C1BDF2B1E4392640012A3F0 /* MPPluginDataViewController.m in Sources */,
 				4C4B7EF817A4B335000234C7 /* MPUniqueCharactersFormatter.m in Sources */,
 				4C8B36AB17A6ED4B005E1FF1 /* MPOutlineContextMenuDelegate.m in Sources */,
+				8345D7291F39023E002B7B0F /* MPPathControl.m in Sources */,
 				4CD7223B17A7CB0700F5A1E1 /* MPWorkflowSettingsController.m in Sources */,
 				4CA08DA017A831B200A6544B /* MPAddEntryContextMenuDelegate.m in Sources */,
 				4CE3E62617AB0D2D00D9E4B4 /* MPAttachmentTableDataSource.m in Sources */,
