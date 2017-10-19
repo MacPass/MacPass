@@ -104,8 +104,12 @@
       self.passwordTextField.stringValue = @"";
     }
   }
-  NSString *placeHolderString = _enablePassword ? NSLocalizedString(@"PASSWORD_INPUT_ENTER_PASSWORD", "") : NSLocalizedString(@"PASSWORD_INPUT_NO_PASSWORD", "");
-  ((NSTextFieldCell *)self.passwordTextField.cell).placeholderString = placeHolderString;
+  if(_enablePassword) {
+    self.passwordTextField.placeholderString = NSLocalizedString(@"PASSWORD_INPUT_ENTER_PASSWORD", "Placeholder in the unlock-password input field if password is enabled");
+  }
+  else {
+   self.passwordTextField.placeholderString = NSLocalizedString(@"PASSWORD_INPUT_NO_PASSWORD", "Placeholder in the unlock-password input field if password is disabled");
+  }
 }
 
 
