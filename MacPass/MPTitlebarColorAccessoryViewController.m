@@ -14,7 +14,7 @@
 
 @implementation MPTitlebarColorAccessoryViewController
 
-- (NSNibName)nibName {
+- (NSString *)nibName {
   return @"TitlebarColorAccessoryViewController";
 }
 
