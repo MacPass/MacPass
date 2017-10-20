@@ -31,14 +31,9 @@ git clone https://github.com/mstarke/MacPass --recursive
 cd MacPass
 carthage bootstrap --platform Mac
 ```
-After that you can build and run in Xcode. The following command will build and make the application available through Spotlight. If you run into signing issues take a look at [Issue #92](https://github.com/mstarke/MacPass/issues/92)
+After that you can build and run in Xcode. The following command will build and make the application available through Spotlight. If you run into signing issues take a look at [Issue #92](https://github.com/mstarke/MacPass/issues/92). Since Sparkle is disabled only on the CI build and in Debug mode, you have to explicitly disable it in Release. Otherwise warnings on unsecure updates will appear.
 
-    xcodebuild -scheme MacPass -target MacPass -configuration Release
-
-There have been some changes in the submodule urls. Please consider re-syncing and initalizing all submodules.
-
-	git submodule sync
-	git submodule init
+    xcodebuild -scheme MacPass -target MacPass -configuration Release CODE_SIGNING_REQUIRED=NO NO_SPARKLE=NO_SPARKLE
 
 ## Help
 
