@@ -174,13 +174,15 @@ NSString *const MPHelpURLKey = @"MPHelpURL";
 #pragma mark -
 #pragma mark NSMenuDelegate
 - (void)menuNeedsUpdate:(NSMenu *)menu {
-  if([self.saveMenuItem menu] != menu) {
-    return; // wrong menu
+  if(menu == self.saveMenuItem.menu) {
+    MPDocument *document = [NSDocumentController sharedDocumentController].currentDocument;
+    BOOL displayDots = (document.fileURL == nil || !document.compositeKey.hasPasswordOrKeyFile);
+    NSString *saveTitle =  displayDots ? NSLocalizedString(@"SAVE_WITH_DOTS", "") : NSLocalizedString(@"SAVE", "");
+    self.saveMenuItem.title = saveTitle;
   }
-  MPDocument *document = [[NSDocumentController sharedDocumentController] currentDocument];
-  BOOL displayDots = (document.fileURL == nil || !document.compositeKey.hasPasswordOrKeyFile);
-  NSString *saveTitle =  displayDots ? NSLocalizedString(@"SAVE_WITH_DOTS", "") : NSLocalizedString(@"SAVE", "");
-  [self.saveMenuItem setTitle:saveTitle];
+  if(menu == self.fixAutotypeMenuItem.menu) {
+    self.fixAutotypeMenuItem.hidden = !(NSEvent.modifierFlags & NSAlternateKeyMask);
+  }
 }
 
 #pragma mark -
@@ -300,7 +302,7 @@ NSString *const MPHelpURLKey = @"MPHelpURL";
     [documentController openDocumentWithContentsOfURL:documentUrl
                                               display:YES
                                     completionHandler:^(NSDocument *document, BOOL documentWasAlreadyOpen, NSError *error) {
-                                    
+                                      
                                       if(error != nil){
                                         
                                         NSAlert *alert = [[NSAlert alloc] init];
@@ -313,7 +315,7 @@ NSString *const MPHelpURLKey = @"MPHelpURL";
                                       if(document == nil){
                                         [self _showWelcomeWindow];
                                       }
-                                    
+                                      
                                     }];
   }
   return isFileURL;

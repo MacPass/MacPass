@@ -115,7 +115,7 @@
                                 </menu>
                             </menuItem>
                             <menuItem isSeparatorItem="YES" id="FVA-Cn-g79"/>
-                            <menuItem title="Fix Autotype…" id="nx7-Vf-LiD">
+                            <menuItem title="Fix Autotype…" hidden="YES" id="nx7-Vf-LiD">
                                 <modifierMask key="keyEquivalentModifierMask"/>
                                 <connections>
                                     <action selector="fixAutotype:" target="-1" id="eVm-am-dL6"/>
@@ -356,6 +356,7 @@ CA
         </menu>
         <customObject id="494" customClass="MPAppDelegate">
             <connections>
+                <outlet property="fixAutotypeMenuItem" destination="nx7-Vf-LiD" id="5n1-bG-JxJ"/>
                 <outlet property="saveMenuItem" destination="75" id="dsN-Im-4eZ"/>
             </connections>
         </customObject>
