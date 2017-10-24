@@ -31,7 +31,6 @@
 
 @end
 
-
 @implementation MPTreeDelegate
 
 - (instancetype)initWithDocument:(MPDocument *)document {
@@ -54,4 +53,31 @@
   return self.document.undoManager;
 }
 
+- (NSString *)resolvePlaceholder:(NSString *)placeholder forTree:(KPKTree *)tree {
+  if([placeholder isEqualToString:kKPKPlaceholderDatabasePath]) {
+    return self.document.fileURL.path;
+  }
+  if([placeholder isEqualToString:kKPKPlaceholderDatabaseFolder]) {
+     return self.document.fileURL.path;
+  }
+  if([placeholder isEqualToString:kKPKPlaceholderDatabaseName]) {
+    return self.document.tree.metaData.databaseName;
+  }
+  if([placeholder isEqualToString:kKPKPlaceholderDatabaseBasename]) {
+    return @"";
+  }
+  if([placeholder isEqualToString:kKPKPlaceholderDatabaseFileExtension]) {
+    return self.document.fileURL.pathExtension;
+  }
+  if([placeholder isEqualToString:kKPKPlaceholderSelectedGroup]) {
+    return self.document.selectedGroups.firstObject.title;
+  }
+  if([placeholder isEqualToString:kKPKPlaceholderSelectedGroupPath]) {
+    return self.document.selectedGroups.firstObject.breadcrumb;
+  }
+  if([placeholder isEqualToString:kKPKPlaceholderSelectedGroupNotes]) {
+    return self.document.selectedGroups.firstObject.notes;
+  }
+  return @"";
+}
 @end
