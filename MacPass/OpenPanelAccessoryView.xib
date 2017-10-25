@@ -1,8 +1,9 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="7706" systemVersion="14E46" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" customObjectInstantitationMethod="direct">
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="13196" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" customObjectInstantitationMethod="direct">
     <dependencies>
         <deployment identifier="macosx"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="7706"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="13196"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
         <customObject id="-2" userLabel="File's Owner" customClass="MPDocumentController">
@@ -19,7 +20,7 @@
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
             <subviews>
                 <button translatesAutoresizingMaskIntoConstraints="NO" id="x9q-qY-Jy2">
-                    <rect key="frame" x="71" y="8" width="131" height="18"/>
+                    <rect key="frame" x="71" y="8" width="129" height="18"/>
                     <buttonCell key="cell" type="check" title="Show hidden files" bezelStyle="regularSquare" imagePosition="left" state="on" inset="2" id="FfY-KA-8IC">
                         <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                         <font key="font" metaFont="system"/>
@@ -29,7 +30,7 @@
                     </connections>
                 </button>
                 <button translatesAutoresizingMaskIntoConstraints="NO" id="I5Q-M2-Ha7">
-                    <rect key="frame" x="71" y="28" width="102" height="18"/>
+                    <rect key="frame" x="71" y="28" width="101" height="18"/>
                     <buttonCell key="cell" type="check" title="Allow all files" bezelStyle="regularSquare" imagePosition="left" inset="2" id="tvV-1s-Be3">
                         <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                         <font key="font" metaFont="system"/>
@@ -48,7 +49,7 @@
                 <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="x9q-qY-Jy2" secondAttribute="bottom" constant="10" id="f1c-Ha-7hR"/>
                 <constraint firstItem="I5Q-M2-Ha7" firstAttribute="leading" secondItem="x9q-qY-Jy2" secondAttribute="leading" id="sUu-Ol-LM0"/>
             </constraints>
-            <point key="canvasLocation" x="-534.5" y="-117"/>
+            <point key="canvasLocation" x="-239" y="-34"/>
         </customView>
     </objects>
 </document>
