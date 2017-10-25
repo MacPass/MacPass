@@ -364,7 +364,7 @@ NSString *const MPDocumentGroupKey                            = @"MPDocumentGrou
   }
   
   if(otherTree) {
-    [self.tree syncronizeWithTree:otherTree options:KPKSynchronizationSynchronizeOption];
+    [self.tree synchronizeWithTree:otherTree options:KPKSynchronizationSynchronizeOption];
     /* the key might have changed so update ours! */
     //self.compositeKey = key;
     NSUserNotification *notification = [[NSUserNotification alloc] init];
