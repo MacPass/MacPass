@@ -263,6 +263,7 @@
 		6021FE8D18E1617300C3BC51 /* PasswordCreatorView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6021FE8F18E1617300C3BC51 /* PasswordCreatorView.xib */; };
 		6021FE9818E1650F00C3BC51 /* DatabaseSettingsWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6021FE9A18E1650F00C3BC51 /* DatabaseSettingsWindow.xib */; };
 		8345D7291F39023E002B7B0F /* MPPathControl.m in Sources */ = {isa = PBXBuildFile; fileRef = 8345D7281F39023E002B7B0F /* MPPathControl.m */; };
+		FA13910C1F9CD9EB0033D256 /* Localizable.stringsdict in Resources */ = {isa = PBXBuildFile; fileRef = FA13910A1F9CD9EB0033D256 /* Localizable.stringsdict */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -835,6 +836,8 @@
 		BD6C366519484CF40089EB37 /* nl */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = nl; path = nl.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		BD6C366619484CF40089EB37 /* nl */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; lineEnding = 0; name = nl; path = nl.lproj/KPKLocalizable.strings; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.simpleColoring; };
 		BD6C366719484CF40089EB37 /* nl */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = nl; path = nl.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		FA13910B1F9CD9EB0033D256 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.stringsdict; name = en; path = MacPass/en.lproj/Localizable.stringsdict; sourceTree = "<group>"; };
+		FA13910E1F9CDB2D0033D256 /* pl */ = {isa = PBXFileReference; lastKnownFileType = text.plist.stringsdict; name = pl; path = MacPass/pl.lproj/Localizable.stringsdict; sourceTree = "<group>"; };
 		FA638D0E1C39BFCB00B10CC6 /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/DatabaseSettingsWindow.strings; sourceTree = "<group>"; };
 		FA638D0F1C39BFCB00B10CC6 /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/PasswordEditWindow.strings; sourceTree = "<group>"; };
 		FA638D101C39BFCB00B10CC6 /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/WelcomeWindow.strings; sourceTree = "<group>"; };
@@ -857,6 +860,8 @@
 		FA638D211C39BFCC00B10CC6 /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		FA638D221C39BFCC00B10CC6 /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/KPKLocalizable.strings; sourceTree = "<group>"; };
 		FA638D231C39BFCC00B10CC6 /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		FAA9109A1F9A95A500F7CB90 /* pl */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = pl; path = pl.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		FAA9109B1F9A95A500F7CB90 /* pl */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = pl; path = pl.lproj/KPKLocalizable.strings; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -1211,6 +1216,7 @@
 		4C77E35715B84A240093A587 = {
 			isa = PBXGroup;
 			children = (
+				FA13910A1F9CD9EB0033D256 /* Localizable.stringsdict */,
 				4CC281881C0F675B00B9174D /* HNHUi.framework */,
 				4C7B63791C0CB55600D7038C /* KeePassKit.framework */,
 				4C7B637A1C0CB55600D7038C /* Sparkle.framework */,
@@ -1640,6 +1646,7 @@
 				4C25D58716CF0FAA00F6806C /* EntryView.xib in Resources */,
 				4C3826CA1AD04D8E007D7D67 /* 63_FeatherTemplate.pdf in Resources */,
 				4C586F9E16D07ABD00E7DB57 /* 00_PasswordTemplate.pdf in Resources */,
+				FA13910C1F9CD9EB0033D256 /* Localizable.stringsdict in Resources */,
 				4C26C34C18D8D5A300CF1A1C /* PreviewView.xib in Resources */,
 				4C586FA016D07D7200E7DB57 /* 01_PackageNetworkTemplate.pdf in Resources */,
 				4C3826CB1AD04D8E007D7D67 /* 64_AppleTemplate.pdf in Resources */,
@@ -1939,6 +1946,7 @@
 				4825CC951C414D58003E37E9 /* it */,
 				4C4161161F50333C003BC0AF /* es */,
 				4CC6C39D1F98D94D0021E561 /* Base */,
+				FAA9109B1F9A95A500F7CB90 /* pl */,
 			);
 			name = KPKLocalizable.strings;
 			sourceTree = "<group>";
@@ -2022,6 +2030,7 @@
 				FA638D211C39BFCC00B10CC6 /* ru */,
 				4825CC941C414D58003E37E9 /* it */,
 				4C4161151F50333C003BC0AF /* es */,
+				FAA9109A1F9A95A500F7CB90 /* pl */,
 			);
 			name = InfoPlist.strings;
 			sourceTree = "<group>";
@@ -2274,6 +2283,15 @@
 				4C4161021F50333B003BC0AF /* es */,
 			);
 			name = DatabaseSettingsWindow.xib;
+			sourceTree = "<group>";
+		};
+		FA13910A1F9CD9EB0033D256 /* Localizable.stringsdict */ = {
+			isa = PBXVariantGroup;
+			children = (
+				FA13910B1F9CD9EB0033D256 /* en */,
+				FA13910E1F9CDB2D0033D256 /* pl */,
+			);
+			name = Localizable.stringsdict;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */

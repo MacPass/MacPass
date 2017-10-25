@@ -1,21 +1,29 @@
-
-/* Class = "NSButtonCell"; title = "Enable KeePassHttp server"; ObjectID = "3"; */
-"3.title" = "Włącz KeePassHttp server";
-
 /* Class = "NSButtonCell"; title = "Enable global Autotype"; ObjectID = "1qb-Rd-jYu"; */
 "1qb-Rd-jYu.title" = "Włącz wszędzie autouzupełnianie";
 
 /* Class = "NSTextFieldCell"; title = "Shortcut"; ObjectID = "6oN-CH-T0O"; */
 "6oN-CH-T0O.title" = "Skrót";
 
-/* Class = "NSButtonCell"; title = "Enabel Quicklook Preview"; ObjectID = "ERs-ct-Eyx"; */
+/* Class = "NSButtonCell"; title = "Include Entry URL Host for matches"; ObjectID = "B1D-j9-L8x"; */
+"B1D-j9-L8x.title" = "Uwzględnij URL Hosta wpisu w dopasowaniu";
+
+/* Class = "NSButtonCell"; title = "Enable Quicklook Preview"; ObjectID = "ERs-ct-Eyx"; */
 "ERs-ct-Eyx.title" = "Włącz szybki podgląd";
 
-/* Class = "NSBox"; title = "Keepass HTTP"; ObjectID = "KbH-0Q-5Tw"; */
-"KbH-0Q-5Tw.title" = "Keepass HTTP";
+/* Class = "NSTextFieldCell"; title = "Shortcut is missing Key"; ObjectID = "Lxp-wI-yQy"; */
+"Lxp-wI-yQy.title" = "Shortcut is missing Key";
 
 /* Class = "NSBox"; title = "Autotype"; ObjectID = "P9N-HM-wER"; */
 "P9N-HM-wER.title" = "Autouzupełnianie";
+
+/* Class = "NSTextFieldCell"; title = "If enabled, every {CONTROL} command will be sent as ⌘. Only disable this if you are sure you need to."; ObjectID = "QRy-CY-ENC"; */
+"QRy-CY-ENC.title" = "Przy włączonej funkcji, każda {CONTROL} komenda będzie wysłana jako ⌘. Wyłącz tę funkcję tylko jeżeli rozumiesz jej konsekwencji.";
+
+/* Class = "NSButtonCell"; title = "Interpret ⌃ as ⌘"; ObjectID = "QfO-yG-l3F"; */
+"QfO-yG-l3F.title" = "Interpretuj ⌃ jako ⌘";
+
+/* Class = "NSButtonCell"; title = "Include Entry URL for matches"; ObjectID = "TzR-00-Vp3"; */
+"TzR-00-Vp3.title" = "Uwzględnij URL wpisu w dopasowaniu";
 
 /* Class = "NSBox"; title = "Preview"; ObjectID = "VVs-b5-cX9"; */
 "VVs-b5-cX9.title" = "Podgląd";
@@ -23,8 +31,9 @@
 /* Class = "NSTextFieldCell"; title = "If enabled attached files will be copied to a temporary location for preview and deleted after the preview is closed."; ObjectID = "WmI-IB-Aso"; */
 "WmI-IB-Aso.title" = "Przy włączonej funkcji załączony plik będzie kopiowany do tymczasowego katalogu w celu pokazania podglądu i usunięty zaraz po zamknięciu podglądu. Taka funkcja jest potencjalnie niebezpieczna!";
 
-/* Class = "NSButtonCell"; title = "Interpret ⌃ as ⌘"; ObjectID = "QfO-yG-l3F"; */
-"QfO-yG-l3F.title" = "Interpretuj ⌃ jako ⌘";
+/* Class = "NSButtonCell"; title = "Include Entry Tags for matches"; ObjectID = "rbu-G7-MT8"; */
+"rbu-G7-MT8.title" = "Uwzględnij Tagi wpisu w dopasowaniu";
 
-/* Class = "NSTextFieldCell"; title = "If enabled, every {CONTROL} command will be sent as ⌘. Only disable this if you are sure you need to."; ObjectID = "QRy-CY-ENC"; */
-"QRy-CY-ENC.title" = "Przy włączonej funkcji, każda {CONTROL} komenda będzie wysłana jako ⌘. Wyłącz tę funkcję tylko jeżeli rozumiesz jej konsekwencji.";
+/* Class = "NSButtonCell"; title = "Include Entry Title for matches"; ObjectID = "tmL-dT-D0G"; */
+"tmL-dT-D0G.title" = "Uwzględnij Tytuł wpisu w dopasowaniu";
+
