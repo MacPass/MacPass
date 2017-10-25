@@ -534,6 +534,8 @@ NSString *const MPDocumentGroupKey                            = @"MPDocumentGrou
 
 - (void)setTree:(KPKTree *)tree {
   if(self.tree != tree) {
+    /* reseting the tree make undo a bit useless */
+    [self.undoManager removeAllActions];
     _tree = tree;
     if(nil == self.treeDelegate) {
       self.treeDelegate = [[MPTreeDelegate alloc] initWithDocument:self];
