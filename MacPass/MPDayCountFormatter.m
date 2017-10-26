@@ -27,16 +27,12 @@
 }
 
 - (void)_setupDefaults {
-  self.zeroFormat = NSLocalizedString(@"ZERO_DAYS", @"String to be displayed instead of valueformat with 0 days");
   self.valueFormat = NSLocalizedString(@"%ld_DAYS", @"Display format for days. Should contain a long decimal placeholder!");
 }
 
 - (NSString *)stringForObjectValue:(id)obj {
   NSAssert([obj isKindOfClass:NSNumber.class], @"Unsupporded object class. Only NSNumber objects are allowed!");
   NSNumber *number = obj;
-  if(number.integerValue == 0) {
-    return self.zeroFormat;
-  }
   return [NSString stringWithFormat:self.valueFormat, number.integerValue];
 }
 
