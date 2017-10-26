@@ -46,14 +46,14 @@
 - (NSMenu *)_allocateAttributeItemMenu:(BOOL)allowCustomAttributes withTitle:(NSString *)title {
   NSMenu *menu = [[NSMenu alloc] init];
   /* first item is button label */
-  [menu addItemWithTitle:NSLocalizedString(@"UUID","") action:NULL keyEquivalent:@""];
-  [menu addItemWithTitle:NSLocalizedString(@"TITLE","") action:NULL keyEquivalent:@""];
-  [menu addItemWithTitle:NSLocalizedString(@"USERNAME","") action:NULL keyEquivalent:@""];
-  [menu addItemWithTitle:NSLocalizedString(@"PASSWORD","") action:NULL keyEquivalent:@""];
-  [menu addItemWithTitle:NSLocalizedString(@"URL","") action:NULL keyEquivalent:@""];
-  [menu addItemWithTitle:NSLocalizedString(@"NOTES","") action:NULL keyEquivalent:@""];
+  [menu addItemWithTitle:NSLocalizedString(@"UUID","UUID reference item") action:NULL keyEquivalent:@""];
+  [menu addItemWithTitle:NSLocalizedString(@"TITLE","Title reference item") action:NULL keyEquivalent:@""];
+  [menu addItemWithTitle:NSLocalizedString(@"USERNAME","Username reference item") action:NULL keyEquivalent:@""];
+  [menu addItemWithTitle:NSLocalizedString(@"PASSWORD","Password reference item") action:NULL keyEquivalent:@""];
+  [menu addItemWithTitle:NSLocalizedString(@"URL","URL reference item") action:NULL keyEquivalent:@""];
+  [menu addItemWithTitle:NSLocalizedString(@"NOTES","Notes reference item") action:NULL keyEquivalent:@""];
   if(allowCustomAttributes) {
-    [menu addItemWithTitle:NSLocalizedString(@"CUSTOM_ATTRIBUTE","") action:NULL keyEquivalent:@""];
+    [menu addItemWithTitle:NSLocalizedString(@"CUSTOM_ATTRIBUTE","Curstom attribute reference item") action:NULL keyEquivalent:@""];
   }
   NSArray *keys = @[ kKPKReferenceUUIDKey, kKPKReferenceTitleKey, kKPKReferenceUsernameKey, kKPKReferencePasswordKey, kKPKReferenceURLKey, kKPKReferenceNotesKey, @"S" ];
   [menu.itemArray enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
