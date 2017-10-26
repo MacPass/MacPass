@@ -21,13 +21,13 @@
 //
 
 #import "MPViewController.h"
-
+#import "HNHUi/HNHUi.h"
 #import <Quartz/Quartz.h>
 
 @class HNHUIRoundedSecureTextField;
 @class MPDocument;
 
-@interface MPEntryInspectorViewController : MPViewController <NSPopoverDelegate, QLPreviewPanelDelegate>
+@interface MPEntryInspectorViewController : MPViewController <NSPopoverDelegate, QLPreviewPanelDelegate, HNHUITextFieldDelegate>
 
 @property (weak) IBOutlet NSSegmentedControl *infoTabControl;
 

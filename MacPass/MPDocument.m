@@ -445,6 +445,7 @@ NSString *const MPDocumentGroupKey                            = @"MPDocumentGrou
 
 
 - (BOOL)unlockWithPassword:(NSString *)password keyFileURL:(NSURL *)keyFileURL error:(NSError *__autoreleasing*)error{
+  // TODO: Make this API asynchronous
   self.compositeKey = [[KPKCompositeKey alloc] initWithPassword:password key:keyFileURL];
   self.tree = [[KPKTree alloc] initWithData:self.encryptedData key:self.compositeKey error:error];
   

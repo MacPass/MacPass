@@ -38,6 +38,7 @@
 #import "MPTemporaryFileStorageCenter.h"
 #import "MPActionHelper.h"
 #import "MPSettingsHelper.h"
+#import "MPPasteBoardController.h"
 
 #import "MPArrayController.h"
 
@@ -509,6 +510,41 @@ typedef NS_ENUM(NSUInteger, MPEntryTab) {
                                   options:nil];
   
   
+}
+
+#pragma mark -
+#pragma mark HNHUITextFieldDelegate
+- (NSMenu *)textField:(NSTextField *)textField textView:(NSTextView *)view menu:(NSMenu *)menu {
+  return menu;
+}
+
+- (BOOL)textField:(NSTextField *)textField textView:(NSTextView *)textView performAction:(SEL)action {
+  if(action == @selector(copy:)) {
+    MPPasteboardOverlayInfoType info = MPPasteboardOverlayInfoCustom;
+    NSString *value = textField.stringValue;
+    NSString *name = @"";
+    if(nil == value) {
+      return YES;
+    }
+    if(textField == self.usernameTextField) {
+      info = MPPasteboardOverlayInfoUsername;
+    }
+    else if(textField == self.passwordTextField) {
+      info = MPPasteboardOverlayInfoPassword;
+    }
+    else if(textField == self.URLTextField) {
+      info = MPPasteboardOverlayInfoURL;
+    }
+    else if(textField == self.uuidTextField) {
+      name = NSLocalizedString(@"UUID", "Displayed name when uuid field was copied");
+    }
+    else if(textField == self.titleTextField) {
+      name = NSLocalizedString(@"TITLE", "Displayed name when title field was copied");
+    }
+    [[MPPasteBoardController defaultController] copyObjects:@[value] overlayInfo:info name:name atView:self.view];
+    return NO;
+  }
+  return YES;
 }
 
 - (IBAction)toggleExpire:(NSButton*)sender {

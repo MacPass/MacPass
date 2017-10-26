@@ -22,6 +22,13 @@
 
 #import <Foundation/Foundation.h>
 
+typedef NS_ENUM(NSUInteger, MPPasteboardOverlayInfoType) {
+  MPPasteboardOverlayInfoPassword,
+  MPPasteboardOverlayInfoUsername,
+  MPPasteboardOverlayInfoURL,
+  MPPasteboardOverlayInfoCustom,
+};
+
 @interface MPPasteBoardController : NSObject
 
 /**
@@ -50,5 +57,7 @@ FOUNDATION_EXPORT NSString *const MPPasteBoardControllerDidClearClipboard;
 - (void)restoreObjects;
 - (void)copyObjects:(NSArray<id<NSPasteboardWriting>> *)objects;
 - (void)copyObjectsWithoutTimeout:(NSArray<id<NSPasteboardWriting>> *)objects;
+
+- (void)copyObjects:(NSArray<id<NSPasteboardWriting>> *)objects overlayInfo:(MPPasteboardOverlayInfoType)overlayInfoType name:(NSString *)name atView:(NSView *)view;
 
 @end

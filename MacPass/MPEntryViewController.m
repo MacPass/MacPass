@@ -52,13 +52,6 @@
 #define STATUS_BAR_ANIMATION_TIME 0.15
 #define EXPIRED_ENTRY_REFRESH_SECONDS 60
 
-typedef NS_ENUM(NSUInteger, MPOverlayInfoType) {
-  MPOverlayInfoPassword,
-  MPOverlayInfoUsername,
-  MPOverlayInfoURL,
-  MPOverlayInfoCustom,
-};
-
 NSString *const MPEntryTableIndexColumnIdentifier = @"MPEntryTableIndexColumnIdentifier";
 NSString *const MPEntryTableUserNameColumnIdentifier = @"MPUserNameColumnIdentifier";
 NSString *const MPEntryTableTitleColumnIdentifier = @"MPTitleColumnIdentifier";
@@ -597,37 +590,6 @@ NSString *const _MPTableSecurCellView = @"PasswordCell";
   }];
 }
 
-#pragma mark Copy/Paste Overlays
-- (void)_copyToPasteboard:(NSString *)data overlayInfo:(MPOverlayInfoType)overlayInfoType name:(NSString *)name{
-  if(data) {
-    [MPPasteBoardController.defaultController copyObjects:@[ data ]];
-  }
-  NSImage *infoImage = nil;
-  NSString *infoText = nil;
-  switch (overlayInfoType) {
-    case MPOverlayInfoPassword:
-      infoImage = [[NSBundle mainBundle] imageForResource:@"00_PasswordTemplate"];
-      infoText = NSLocalizedString(@"COPIED_PASSWORD", @"Password was copied to the pasteboard");
-      break;
-      
-    case MPOverlayInfoURL:
-      infoImage = [[NSBundle mainBundle] imageForResource:@"01_PackageNetworkTemplate"];
-      infoText = NSLocalizedString(@"COPIED_URL", @"URL was copied to the pasteboard");
-      break;
-      
-    case MPOverlayInfoUsername:
-      infoImage = [[NSBundle mainBundle] imageForResource:@"09_IdentityTemplate"];
-      infoText = NSLocalizedString(@"COPIED_USERNAME", @"Username was copied to the pasteboard");
-      break;
-      
-    case MPOverlayInfoCustom:
-      infoImage = [[NSBundle mainBundle] imageForResource:@"00_PasswordTemplate"];
-      infoText = [NSString stringWithFormat:NSLocalizedString(@"COPIED_FIELD_%@", "Field name that was copied to the pasteboard"), name];
-      break;
-  }
-  [[MPOverlayWindowController sharedController] displayOverlayImage:infoImage label:infoText atView:self.view];
-}
-
 #pragma mark Validation
 - (BOOL)validateMenuItem:(NSMenuItem *)menuItem {
   /* Validation is solely handled in the document */
@@ -679,16 +641,18 @@ NSString *const _MPTableSecurCellView = @"PasswordCell";
 - (void)copyPassword:(id)sender {
   NSArray *nodes = [self currentTargetNodes];
   KPKEntry *selectedEntry = nodes.count == 1 ? [nodes.firstObject asEntry] : nil;
-  if(selectedEntry) {
-    [self _copyToPasteboard:[selectedEntry.password kpk_finalValueForEntry:selectedEntry] overlayInfo:MPOverlayInfoPassword name:nil];
+  NSString *value = [selectedEntry.password kpk_finalValueForEntry:selectedEntry];
+  if(value) {
+    [[MPPasteBoardController defaultController] copyObjects:@[value] overlayInfo:MPPasteboardOverlayInfoPassword name:nil atView:self.view];
   }
 }
 
 - (void)copyUsername:(id)sender {
   NSArray *nodes = [self currentTargetNodes];
   KPKEntry *selectedEntry = nodes.count == 1 ? [nodes.firstObject asEntry] : nil;
-  if(selectedEntry) {
-    [self _copyToPasteboard:[selectedEntry.username kpk_finalValueForEntry:selectedEntry] overlayInfo:MPOverlayInfoUsername name:nil];
+  NSString *value = [selectedEntry.username kpk_finalValueForEntry:selectedEntry];
+  if(value) {
+    [[MPPasteBoardController defaultController] copyObjects:@[value] overlayInfo:MPPasteboardOverlayInfoUsername name:nil atView:self.view];
   }
 }
 
@@ -697,17 +661,21 @@ NSString *const _MPTableSecurCellView = @"PasswordCell";
   KPKEntry *selectedEntry = nodes.count == 1 ? [nodes.firstObject asEntry] : nil;
   if(selectedEntry && [selectedEntry isKindOfClass:[KPKEntry class]]) {
     NSUInteger index = [sender tag];
-    NSAssert((index >= 0)  && (index < [selectedEntry.customAttributes count]), @"Index for custom field needs to be valid");
+    NSAssert((index >= 0)  && (index < selectedEntry.customAttributes.count), @"Index for custom field needs to be valid");
     KPKAttribute *attribute = selectedEntry.customAttributes[index];
-    [self _copyToPasteboard:attribute.evaluatedValue overlayInfo:MPOverlayInfoCustom name:attribute.key];
+    NSString *value = attribute.evaluatedValue;
+    if(value) {
+      [[MPPasteBoardController defaultController] copyObjects:@[value] overlayInfo:MPPasteboardOverlayInfoCustom name:attribute.key atView:self.view];
+    }
   }
 }
 
 - (void)copyURL:(id)sender {
   NSArray *nodes = [self currentTargetNodes];
   KPKEntry *selectedEntry = nodes.count == 1 ? [nodes.firstObject asEntry] : nil;
-  if(selectedEntry) {
-    [self _copyToPasteboard:[selectedEntry.url kpk_finalValueForEntry:selectedEntry] overlayInfo:MPOverlayInfoURL name:nil];
+  NSString *value = [selectedEntry.url kpk_finalValueForEntry:selectedEntry];
+  if(value) {
+    [[MPPasteBoardController defaultController] copyObjects:@[value] overlayInfo:MPPasteboardOverlayInfoURL name:nil atView:self.view];
   }
 }
 

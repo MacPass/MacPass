@@ -33,19 +33,23 @@
   
   [view.labelTextField bind:NSValueBinding
                    toObject:view
-                withKeyPath:[NSString stringWithFormat:@"%@.%@", NSStringFromSelector(@selector(objectValue)), NSStringFromSelector(@selector(key))]
+                withKeyPath:@"objectValue.key"
                     options:@{ NSValidatesImmediatelyBindingOption: @YES }];
   [view.valueTextField bind:NSValueBinding
                    toObject:view
-                withKeyPath:[NSString stringWithFormat:@"%@.%@", NSStringFromSelector(@selector(objectValue)), NSStringFromSelector(@selector(value))]
+                withKeyPath:@"objectValue.value"
                     options:nil];
-    
-  // TODO: Move to public KeePassKit API!
-  for(NSControl *control in @[view.labelTextField, view.valueTextField, view.removeButton ]) {
+  [view.protectedButton bind:NSValueBinding
+                    toObject:view
+                 withKeyPath:@"objectValue.isProtected"
+                     options:nil];
+  
+  
+  for(NSControl *control in @[view.labelTextField, view.valueTextField, view.removeButton, view.protectedButton ]) {
     [control bind:NSEnabledBinding
          toObject:view
-      withKeyPath:[NSString stringWithFormat:@"%@.%@.%@", NSStringFromSelector(@selector(objectValue)), NSStringFromSelector(@selector(entry)), NSStringFromSelector(@selector(isHistory))]
-          options:@{NSConditionallySetsEditableBindingOption: @NO, NSValueTransformerNameBindingOption: NSNegateBooleanTransformerName}];
+      withKeyPath:@"objectValue.isEditable"
+          options:@{NSConditionallySetsEditableBindingOption: @NO }];
     
   }
   view.removeButton.target = self.viewController;

@@ -263,7 +263,7 @@ typedef void (^MPPasswordChangedBlock)(BOOL didChangePassword);
   openPanel.allowsMultipleSelection = NO;
   openPanel.canChooseDirectories = NO;
   openPanel.canChooseFiles = YES;
-  openPanel.allowedFileTypes = @[(id)kUTTypeXML];
+  openPanel.allowedFileTypes = @[(id)kUTTypeXML];  
   [openPanel beginSheetModalForWindow:self.window completionHandler:^(NSInteger result) {
     if(result == NSFileHandlingPanelOKButton) {
       [document readXMLfromURL:openPanel.URL];
