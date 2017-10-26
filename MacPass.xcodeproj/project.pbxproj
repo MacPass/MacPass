@@ -17,7 +17,6 @@
 		4C0B038D18E36DA400B9F9C9 /* FixAutotypeWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4C0B038B18E36DA400B9F9C9 /* FixAutotypeWindow.xib */; };
 		4C0C59F118B17F10009C7B76 /* DDHotKeyUtilities.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C0C59EF18B17F10009C7B76 /* DDHotKeyUtilities.m */; };
 		4C0DBEF51BF508DE00F9B287 /* PluginSettings.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4C0DBEF71BF508DE00F9B287 /* PluginSettings.xib */; };
-		4C0DD6C618B2A44700FCB193 /* AutotypeCandidateSelectionWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4C0DD6C518B2A44700FCB193 /* AutotypeCandidateSelectionWindow.xib */; };
 		4C0F647B17B6BC9C00D9522A /* MPSavePanelAccessoryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C0F647A17B6BC9C00D9522A /* MPSavePanelAccessoryViewController.m */; };
 		4C10207F1B750E2F00BFCD59 /* MPTestAutotype.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C10207E1B750E2F00BFCD59 /* MPTestAutotype.m */; };
 		4C10412C178CDD44001B5239 /* NSDate+Humanized.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C10412B178CDD44001B5239 /* NSDate+Humanized.m */; };
@@ -140,6 +139,9 @@
 		4C6BC6601A36717E00BDDF3D /* MPDatabaseSearch.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C6BC65F1A36717E00BDDF3D /* MPDatabaseSearch.m */; };
 		4C6D1D25178579570014C5A5 /* 48_FolderTemplate.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 4C6D1D24178579570014C5A5 /* 48_FolderTemplate.pdf */; };
 		4C6DCC451FA2457900C8AD3F /* ContextBar.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4C6DCC471FA2457900C8AD3F /* ContextBar.xib */; };
+		4C6DCC5B1FA24AC600C8AD3F /* AutotypeCandidateSelectionWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4C6DCC5D1FA24AC600C8AD3F /* AutotypeCandidateSelectionWindow.xib */; };
+		4C6DCC611FA24C2100C8AD3F /* MPAutotypeCandidateSelectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C6DCC5F1FA24C2100C8AD3F /* MPAutotypeCandidateSelectionViewController.m */; };
+		4C6DCC621FA24C2100C8AD3F /* AutotypeCandidateSelectionViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4C6DCC601FA24C2100C8AD3F /* AutotypeCandidateSelectionViewController.xib */; };
 		4C6F228919A4A7F90012310C /* MPAutotypeClear.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C6F228819A4A7F90012310C /* MPAutotypeClear.m */; };
 		4C6F228C19A4AA700012310C /* MPAutotypeDelay.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C6F228B19A4AA700012310C /* MPAutotypeDelay.m */; };
 		4C701CBC178618A000581B88 /* 12_RemoteTemplate.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 4C701CBB178618A000581B88 /* 12_RemoteTemplate.pdf */; };
@@ -320,7 +322,6 @@
 		4C0C59EF18B17F10009C7B76 /* DDHotKeyUtilities.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DDHotKeyUtilities.m; path = DDHotKey/DDHotKeyUtilities.m; sourceTree = "<group>"; };
 		4C0C59F018B17F10009C7B76 /* DDHotKeyUtilities.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; name = DDHotKeyUtilities.h; path = DDHotKey/DDHotKeyUtilities.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
 		4C0DBEF61BF508DE00F9B287 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/PluginSettings.xib; sourceTree = "<group>"; };
-		4C0DD6C518B2A44700FCB193 /* AutotypeCandidateSelectionWindow.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AutotypeCandidateSelectionWindow.xib; sourceTree = "<group>"; };
 		4C0F647917B6BC9C00D9522A /* MPSavePanelAccessoryViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MPSavePanelAccessoryViewController.h; sourceTree = "<group>"; };
 		4C0F647A17B6BC9C00D9522A /* MPSavePanelAccessoryViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MPSavePanelAccessoryViewController.m; sourceTree = "<group>"; };
 		4C10207E1B750E2F00BFCD59 /* MPTestAutotype.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MPTestAutotype.m; sourceTree = "<group>"; };
@@ -533,6 +534,10 @@
 		4C6DCC571FA2458200C8AD3F /* pl */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = pl; path = pl.lproj/ContextBar.strings; sourceTree = "<group>"; };
 		4C6DCC591FA2458300C8AD3F /* es */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = es; path = es.lproj/ContextBar.strings; sourceTree = "<group>"; };
 		4C6DCC5A1FA246ED00C8AD3F /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.stringsdict; name = de; path = de.lproj/Localizable.stringsdict; sourceTree = "<group>"; };
+		4C6DCC5C1FA24AC600C8AD3F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/AutotypeCandidateSelectionWindow.xib; sourceTree = "<group>"; };
+		4C6DCC5E1FA24C2100C8AD3F /* MPAutotypeCandidateSelectionViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MPAutotypeCandidateSelectionViewController.h; sourceTree = "<group>"; };
+		4C6DCC5F1FA24C2100C8AD3F /* MPAutotypeCandidateSelectionViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MPAutotypeCandidateSelectionViewController.m; sourceTree = "<group>"; };
+		4C6DCC601FA24C2100C8AD3F /* AutotypeCandidateSelectionViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AutotypeCandidateSelectionViewController.xib; sourceTree = "<group>"; };
 		4C6F228719A4A7F90012310C /* MPAutotypeClear.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MPAutotypeClear.h; sourceTree = "<group>"; };
 		4C6F228819A4A7F90012310C /* MPAutotypeClear.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MPAutotypeClear.m; sourceTree = "<group>"; };
 		4C6F228A19A4AA700012310C /* MPAutotypeDelay.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MPAutotypeDelay.h; sourceTree = "<group>"; };
@@ -1491,6 +1496,9 @@
 				4C8990F41EE978EB0043B48D /* MPDuplicateEntryOptionsWindowController.h */,
 				4C8990F51EE978EB0043B48D /* MPDuplicateEntryOptionsWindowController.m */,
 				4CA1827A1F96523600DD4A4A /* DuplicateEntryOptionsWindow.xib */,
+				4C6DCC5E1FA24C2100C8AD3F /* MPAutotypeCandidateSelectionViewController.h */,
+				4C6DCC5F1FA24C2100C8AD3F /* MPAutotypeCandidateSelectionViewController.m */,
+				4C6DCC601FA24C2100C8AD3F /* AutotypeCandidateSelectionViewController.xib */,
 			);
 			name = "Window Controller";
 			sourceTree = "<group>";
@@ -1511,9 +1519,9 @@
 		4CE8247216E2E99F00573141 /* Windows */ = {
 			isa = PBXGroup;
 			children = (
+				4C6DCC5D1FA24AC600C8AD3F /* AutotypeCandidateSelectionWindow.xib */,
 				4C1DDCDC1711ECEB00C98DA3 /* PasswordCreatorWindow.xib */,
 				4C7F8B6A1A10B68400CCB83D /* WelcomeWindow.xib */,
-				4C0DD6C518B2A44700FCB193 /* AutotypeCandidateSelectionWindow.xib */,
 			);
 			name = Windows;
 			sourceTree = "<group>";
@@ -1745,8 +1753,9 @@
 				4C7ABA4A17BAEC6700FF5799 /* 17_CDRomTemplate.pdf in Resources */,
 				4C7ABA4B17BAEC6700FF5799 /* 19_EmailTemplate.pdf in Resources */,
 				4C3826C81AD04D8E007D7D67 /* 61_ServicesTemplate.pdf in Resources */,
+				4C6DCC621FA24C2100C8AD3F /* AutotypeCandidateSelectionViewController.xib in Resources */,
 				4C0B038D18E36DA400B9F9C9 /* FixAutotypeWindow.xib in Resources */,
-				4C0DD6C618B2A44700FCB193 /* AutotypeCandidateSelectionWindow.xib in Resources */,
+				4C6DCC5B1FA24AC600C8AD3F /* AutotypeCandidateSelectionWindow.xib in Resources */,
 				4C38267A1AD04CC6007D7D67 /* downloadTemplate.pdf in Resources */,
 				4C7ABA4C17BAEC6700FF5799 /* 20_MiscTemplate.pdf in Resources */,
 				4C7ABA4E17BAEC7000FF5799 /* addEntryTemplate.pdf in Resources */,
@@ -1821,6 +1830,7 @@
 				4C7B63761C0CB51F00D7038C /* TTTJSONTransformer.m in Sources */,
 				4C77547516E55FE800970E02 /* MPInspectorViewController.m in Sources */,
 				4C89F524182FB4740069C73C /* MPAutotypeCommand.m in Sources */,
+				4C6DCC611FA24C2100C8AD3F /* MPAutotypeCandidateSelectionViewController.m in Sources */,
 				4CFC53BF16E94729007396BE /* MPShadowBox.m in Sources */,
 				4C0AF62F195C1F2B009E658D /* MPEntrySearchContext.m in Sources */,
 				4C1F7FA21E3A12E600D6A40E /* MPModifiedKey.m in Sources */,
@@ -1983,6 +1993,14 @@
 				4C6DCC591FA2458300C8AD3F /* es */,
 			);
 			name = ContextBar.xib;
+			sourceTree = "<group>";
+		};
+		4C6DCC5D1FA24AC600C8AD3F /* AutotypeCandidateSelectionWindow.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				4C6DCC5C1FA24AC600C8AD3F /* Base */,
+			);
+			name = AutotypeCandidateSelectionWindow.xib;
 			sourceTree = "<group>";
 		};
 		4C7155DA1A10DB6D00979307 /* IconSelection.xib */ = {

@@ -32,6 +32,8 @@
 
 #import "NSApplication+MPAdditions.h"
 
+#import "MPAutotypeCandidateSelectionViewController.h"
+
 #import "KeePassKit/KeePassKit.h"
 
 #import "DDHotKeyCenter.h"
@@ -142,11 +144,13 @@ static MPAutotypeDaemon *_sharedInstance;
   NSMenuItem *item = self.matchSelectionButton.selectedItem;
   MPAutotypeContext *context = item.representedObject;
   [self.matchSelectionWindow orderOut:self];
+  self.matchSelectionWindow = nil;
   [self _performAutotypeForContext:context];
 }
 
 - (void)cancelAutotypeSelection:(id)sender {
   [self.matchSelectionWindow orderOut:sender];
+  self.matchSelectionWindow = nil;
   if(self.targetPID) {
     [self _orderApplicationToFront:self.targetPID];
   }
@@ -187,6 +191,9 @@ static MPAutotypeDaemon *_sharedInstance;
   
   MPAutotypeContext *context = [self _autotypeContextForDocuments:documents forWindowTitle:self.targetWindowTitle preferredEntry:entryOrNil];
   /* TODO: that's popping up if the mulit selection dialog goes up! */
+  if(self.matchSelectionWindow) {
+    return; // we present the match selection window, just return
+  }
   if(!entryOrNil) {
     NSUserNotification *notification = [[NSUserNotification alloc] init];
     notification.title = NSApp.applicationName;
@@ -289,11 +296,18 @@ static MPAutotypeDaemon *_sharedInstance;
 }
 
 - (void)_presentSelectionWindow:(NSArray *)candidates {
+  
+  
   if(!self.matchSelectionWindow) {
-    [[NSBundle mainBundle] loadNibNamed:@"AutotypeCandidateSelectionWindow" owner:self topLevelObjects:nil];
-    self.matchSelectionWindow.level = NSFloatingWindowLevel;
+    //[[NSBundle mainBundle] loadNibNamed:@"AutotypeCandidateSelectionWindow" owner:self topLevelObjects:nil];
+    self.matchSelectionWindow = [[NSWindow alloc] initWithContentRect:NSMakeRect(0, 0, 100, 100) styleMask:NSWindowStyleMaskTitled backing:NSBackingStoreRetained defer:YES];
+    //self.matchSelectionWindow.level = NSFloatingWindowLevel;
+    MPAutotypeCandidateSelectionViewController *vc = [[MPAutotypeCandidateSelectionViewController alloc] init];
+    vc.candidates = candidates;
+    self.matchSelectionWindow.contentViewController = vc;
+    
   }
-  NSMenu *associationMenu = [[NSMenu alloc] init];
+  /*NSMenu *associationMenu = [[NSMenu alloc] init];
   [associationMenu addItemWithTitle:NSLocalizedString(@"SELECT_AUTOTYPE_CANDIDATE", "Menu item for selection a single match from multiple Autotype matches") action:NULL keyEquivalent:@""];
   [associationMenu addItem:[NSMenuItem separatorItem]];
   associationMenu.autoenablesItems = NO;
@@ -313,6 +327,8 @@ static MPAutotypeDaemon *_sharedInstance;
     }
   }
   self.matchSelectionButton.menu = associationMenu;
+   */
+  [self.matchSelectionWindow center];
   [self.matchSelectionWindow makeKeyAndOrderFront:self];
   [NSApp activateIgnoringOtherApps:YES];
 }
