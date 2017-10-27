@@ -45,6 +45,10 @@
  */
 @property (nonatomic, readonly, copy) NSString *evaluatedCommand;
 /**
+ @return command with placeholders and references resolved but masked password placeholder
+ */
+@property (nonatomic, readonly, copy) NSString *maskedEvaluatedCommand;
+/**
  *  @return YES if valid, NO otherwise
  */
 @property (nonatomic, readonly, assign) BOOL valid;
