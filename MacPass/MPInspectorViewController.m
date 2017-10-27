@@ -30,6 +30,7 @@
 #import "MPIconImageView.h"
 #import "MPNotifications.h"
 #import "MPPluginDataViewController.h"
+#import "MPReferenceBuilderViewController.h"
 
 #import "KeePassKit/KeePassKit.h"
 
@@ -182,17 +183,28 @@ typedef NS_ENUM(NSUInteger, MPContentTab) {
 #pragma mark Popup
 - (IBAction)pickIcon:(id)sender {
   NSAssert([sender isKindOfClass:NSView.class], @"");
-  [self _popupViewController:[[MPIconSelectViewController alloc] init] atView:(NSView *)sender];
+  [self _popupViewController:[[MPIconSelectViewController alloc] init] atView:sender];
 }
 
 - (IBAction)pickExpiryDate:(id)sender {
   NSAssert([sender isKindOfClass:NSView.class], @"");
-  [self _popupViewController:[[MPDatePickingViewController alloc] init] atView:(NSView *)sender];
+  [self _popupViewController:[[MPDatePickingViewController alloc] init] atView:sender];
 }
 
 - (IBAction)showPluginData:(id)sender {
-  NSAssert([sender isKindOfClass:[NSView class]], @"");
-  [self _popupViewController:[[MPPluginDataViewController alloc] init] atView:(NSView *)sender];
+  NSAssert([sender isKindOfClass:NSView.class], @"");
+  [self _popupViewController:[[MPPluginDataViewController alloc] init] atView:sender];
+}
+
+- (IBAction)showReferenceBuilder:(id)sender {
+  NSView *location;
+  if([sender isKindOfClass:NSView.class]) {
+    location = sender;
+  }
+  else if([sender isKindOfClass:NSMenuItem.class]) {
+    location = [sender representedObject];
+  }
+  [self _popupViewController:[[MPReferenceBuilderViewController alloc] init] atView:location];
 }
 
 - (void)_popupViewController:(MPViewController *)vc atView:(NSView *)view {
