@@ -12,4 +12,8 @@
 
 @property (copy) NSArray *candidates;
 
+- (IBAction)selectAutotypeContext:(id)sender;
+- (IBAction)cancelSelection:(id)sender;
+
+
 @end

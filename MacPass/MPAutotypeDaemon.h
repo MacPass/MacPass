@@ -24,6 +24,7 @@
 
 @class DDHotKey;
 @class KPKEntry;
+@class MPAutotypeContext;
 
 /**
  *  The autotype daemon is responsible for registering the global hotkey and to perform any autotype actions
@@ -38,7 +39,7 @@
 - (instancetype)init NS_UNAVAILABLE;
 
 - (void)performAutotypeForEntry:(KPKEntry *)entry;
-- (IBAction)performAutotypeWithSelectedMatch:(id)sender;
-- (IBAction)cancelAutotypeSelection:(id)sender;
+- (void)selectAutotypeCandiate:(MPAutotypeContext *)context;
+- (void)cancelAutotypeCandidateSelection;
 
 @end

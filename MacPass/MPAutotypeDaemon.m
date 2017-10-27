@@ -140,16 +140,14 @@ static MPAutotypeDaemon *_sharedInstance;
 
 #pragma mark -
 #pragma mark Actions
-- (void)performAutotypeWithSelectedMatch:(id)sender {
-  NSMenuItem *item = self.matchSelectionButton.selectedItem;
-  MPAutotypeContext *context = item.representedObject;
+- (void)selectAutotypeCandiate:(MPAutotypeContext *)context {
   [self.matchSelectionWindow orderOut:self];
   self.matchSelectionWindow = nil;
   [self _performAutotypeForContext:context];
 }
 
-- (void)cancelAutotypeSelection:(id)sender {
-  [self.matchSelectionWindow orderOut:sender];
+- (void)cancelAutotypeCandidateSelection {
+  [self.matchSelectionWindow orderOut:self];
   self.matchSelectionWindow = nil;
   if(self.targetPID) {
     [self _orderApplicationToFront:self.targetPID];
@@ -299,38 +297,18 @@ static MPAutotypeDaemon *_sharedInstance;
   
   
   if(!self.matchSelectionWindow) {
-    //[[NSBundle mainBundle] loadNibNamed:@"AutotypeCandidateSelectionWindow" owner:self topLevelObjects:nil];
-    self.matchSelectionWindow = [[NSWindow alloc] initWithContentRect:NSMakeRect(0, 0, 100, 100) styleMask:NSWindowStyleMaskTitled backing:NSBackingStoreRetained defer:YES];
-    //self.matchSelectionWindow.level = NSFloatingWindowLevel;
+    self.matchSelectionWindow = [[NSPanel alloc] initWithContentRect:NSMakeRect(0, 0, 100, 100)
+                                                           styleMask:NSWindowStyleMaskNonactivatingPanel|NSWindowStyleMaskTitled
+                                                             backing:NSBackingStoreRetained
+                                                               defer:YES];
+    self.matchSelectionWindow.level = NSScreenSaverWindowLevel;
     MPAutotypeCandidateSelectionViewController *vc = [[MPAutotypeCandidateSelectionViewController alloc] init];
     vc.candidates = candidates;
     self.matchSelectionWindow.contentViewController = vc;
     
   }
-  /*NSMenu *associationMenu = [[NSMenu alloc] init];
-  [associationMenu addItemWithTitle:NSLocalizedString(@"SELECT_AUTOTYPE_CANDIDATE", "Menu item for selection a single match from multiple Autotype matches") action:NULL keyEquivalent:@""];
-  [associationMenu addItem:[NSMenuItem separatorItem]];
-  associationMenu.autoenablesItems = NO;
-  for(MPAutotypeContext *context in candidates) {
-    NSMenuItem *item = [[NSMenuItem alloc] initWithTitle:context.entry.title action:0 keyEquivalent:@""];
-    [item setRepresentedObject:context];
-    [associationMenu addItem:item];
-    NSArray *attributes = (context.entry.username.length > 0 )
-    ? @[ context.entry.username, context.command ]
-    : @[ context.command ];
-    
-    for(NSString *value in attributes) {
-      NSMenuItem *valueItem  = [[NSMenuItem alloc] initWithTitle:value action:NULL keyEquivalent:@""];
-      valueItem.indentationLevel = 1;
-      valueItem.enabled = NO;
-      [associationMenu addItem:valueItem];
-    }
-  }
-  self.matchSelectionButton.menu = associationMenu;
-   */
   [self.matchSelectionWindow center];
   [self.matchSelectionWindow makeKeyAndOrderFront:self];
-  [NSApp activateIgnoringOtherApps:YES];
 }
 
 #pragma mark -
