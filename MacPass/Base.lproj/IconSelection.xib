@@ -1,12 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="12121" systemVersion="16G29" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="13196" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="12121"/>
+        <deployment identifier="macosx"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="13196"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
         <customObject id="-2" userLabel="File's Owner" customClass="MPIconSelectViewController">
             <connections>
+                <outlet property="downloadIconButton" destination="8kv-BJ-IEk" id="JH0-uV-F5k"/>
                 <outlet property="iconCollectionView" destination="58" id="77"/>
                 <outlet property="view" destination="1" id="56"/>
             </connections>
@@ -53,8 +55,8 @@
                     </connections>
                 </button>
                 <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="8kv-BJ-IEk">
-                    <rect key="frame" x="153" y="18" width="104" height="25"/>
-                    <buttonCell key="cell" type="roundTextured" title="Download Icon" bezelStyle="texturedRounded" alignment="center" lineBreakMode="truncatingTail" state="on" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="iaf-XW-XUo">
+                    <rect key="frame" x="149" y="18" width="108" height="25"/>
+                    <buttonCell key="cell" type="roundTextured" title="Download Icon" bezelStyle="texturedRounded" imagePosition="left" alignment="center" lineBreakMode="truncatingTail" state="on" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="iaf-XW-XUo">
                         <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                         <font key="font" metaFont="system"/>
                     </buttonCell>
@@ -63,7 +65,7 @@
                     </connections>
                 </button>
                 <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="His-4A-hcY">
-                    <rect key="frame" x="89" y="18" width="56" height="25"/>
+                    <rect key="frame" x="85" y="18" width="56" height="25"/>
                     <buttonCell key="cell" type="roundTextured" title="Cancel" bezelStyle="texturedRounded" alignment="center" state="on" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="1kM-cI-P1o">
                         <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                         <font key="font" metaFont="system"/>
@@ -86,7 +88,7 @@
                 <constraint firstItem="57" firstAttribute="top" secondItem="1" secondAttribute="top" constant="20" symbolic="YES" id="iuz-pK-yXC"/>
                 <constraint firstItem="101" firstAttribute="leading" secondItem="8kv-BJ-IEk" secondAttribute="trailing" constant="8" symbolic="YES" id="nvi-CZ-a6L"/>
             </constraints>
-            <point key="canvasLocation" x="-143" y="15"/>
+            <point key="canvasLocation" x="-447" y="15"/>
         </customView>
         <collectionViewItem id="61" customClass="MPCollectionViewItem">
             <connections>
