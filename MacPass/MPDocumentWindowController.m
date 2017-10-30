@@ -111,7 +111,7 @@ typedef void (^MPPasswordChangedBlock)(BOOL didChangePassword);
   
   [self.entryViewController registerNotificationsForDocument:document];
   [self.inspectorViewController registerNotificationsForDocument:document];
-  [self.outlineViewController regsiterNotificationsForDocument:document];
+  [self.outlineViewController registerNotificationsForDocument:document];
   [self.toolbarDelegate registerNotificationsForDocument:document];
   
   self.toolbar = [[NSToolbar alloc] initWithIdentifier:@"MainWindowToolbar"];

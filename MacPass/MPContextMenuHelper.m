@@ -46,10 +46,10 @@ static void MPContextmenuHelperBeginSection(NSMutableArray *items) {
   NSMutableArray *items = [NSMutableArray arrayWithCapacity:10];
   if(insertCreate) {
     
-    NSMenuItem *newGroup = [[NSMenuItem alloc] initWithTitle:NSLocalizedString(@"ADD_GROUP", @"")
+    NSMenuItem *newGroup = [[NSMenuItem alloc] initWithTitle:NSLocalizedString(@"NEW_GROUP", @"")
                                                       action:[MPActionHelper actionOfType:MPActionAddGroup]
                                                keyEquivalent:@"N"];
-    NSMenuItem *newEntry = [[NSMenuItem alloc] initWithTitle:NSLocalizedString(@"ADD_ENTRY", @"")
+    NSMenuItem *newEntry = [[NSMenuItem alloc] initWithTitle:NSLocalizedString(@"NEW_ENTRY", @"")
                                                       action:[MPActionHelper actionOfType:MPActionAddEntry]
                                                keyEquivalent:@"n"];
     

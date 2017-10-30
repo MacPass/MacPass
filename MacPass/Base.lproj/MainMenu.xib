@@ -76,27 +76,11 @@
                 <menuItem title="File" id="83">
                     <menu key="submenu" title="File" id="81">
                         <items>
-                            <menuItem title="New" id="82">
-                                <menu key="submenu" id="Mjd-iK-MxC">
-                                    <items>
-                                        <menuItem title="Entry" keyEquivalent="n" id="5pt-iM-iQB">
-                                            <connections>
-                                                <action selector="createEntry:" target="-1" id="NRG-FC-HaO"/>
-                                            </connections>
-                                        </menuItem>
-                                        <menuItem title="Group" keyEquivalent="N" id="dMl-Ia-k8o">
-                                            <connections>
-                                                <action selector="createGroup:" target="-1" id="RtX-HO-Zdw"/>
-                                            </connections>
-                                        </menuItem>
-                                        <menuItem title="Database" id="Ame-Ou-khG">
-                                            <modifierMask key="keyEquivalentModifierMask"/>
-                                            <connections>
-                                                <action selector="newDocument:" target="-1" id="VEe-mh-brx"/>
-                                            </connections>
-                                        </menuItem>
-                                    </items>
-                                </menu>
+                            <menuItem title="New Database" keyEquivalent="n" id="82">
+                                <modifierMask key="keyEquivalentModifierMask" option="YES" command="YES"/>
+                                <connections>
+                                    <action selector="newDocument:" target="-1" id="ju8-Y5-iJk"/>
+                                </connections>
                             </menuItem>
                             <menuItem title="Open…" keyEquivalent="o" id="72">
                                 <connections>
@@ -352,10 +336,11 @@ CA
                     </menu>
                 </menuItem>
             </items>
-            <point key="canvasLocation" x="-175" y="101"/>
+            <point key="canvasLocation" x="-452" y="80"/>
         </menu>
         <customObject id="494" customClass="MPAppDelegate">
             <connections>
+                <outlet property="fileNewMenuItem" destination="82" id="BUX-dy-HS2"/>
                 <outlet property="fixAutotypeMenuItem" destination="nx7-Vf-LiD" id="5n1-bG-JxJ"/>
                 <outlet property="saveMenuItem" destination="75" id="dsN-Im-4eZ"/>
             </connections>

@@ -612,6 +612,7 @@ NSString *const MPDocumentGroupKey                            = @"MPDocumentGrou
   if(parent.isTrash || parent.isTrashed) {
     return nil; // no new Groups in trash
   }
+  
   KPKEntry *newEntry = [self.tree createEntry:parent];
   /* setting properties on entries is undoable, but we do not want to record this so disable on creation */
   BOOL wasUndoEnabeld = self.undoManager.isUndoRegistrationEnabled;
@@ -629,7 +630,7 @@ NSString *const MPDocumentGroupKey                            = @"MPDocumentGrou
     [self.undoManager enableUndoRegistration];
   }
   [newEntry addToGroup:parent];
-  [newEntry.undoManager setActionName:NSLocalizedString(@"ADD_ENTRY", "")];
+  [newEntry.undoManager setActionName:NSLocalizedString(@"NEW_ENTRY", "")];
   [NSNotificationCenter.defaultCenter postNotificationName:MPDocumentDidAddEntryNotification
                                                    object:self
                                                  userInfo:@{ MPDocumentEntryKey: newEntry }];
@@ -654,7 +655,7 @@ NSString *const MPDocumentGroupKey                            = @"MPDocumentGrou
     [self.undoManager enableUndoRegistration];
   }
   [newGroup addToGroup:parent];
-  [newGroup.undoManager setActionName:NSLocalizedString(@"ADD_GROUP", "")];
+  [newGroup.undoManager setActionName:NSLocalizedString(@"NEW_GROUP", "")];
   [NSNotificationCenter.defaultCenter postNotificationName:MPDocumentDidAddGroupNotification
                                                     object:self
                                                   userInfo:@{ MPDocumentGroupKey : newGroup }];

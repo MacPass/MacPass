@@ -23,6 +23,7 @@
 #import "MPAppDelegate.h"
 
 #import "MPAutotypeDaemon.h"
+#import "MPContextMenuHelper.h"
 #import "MPDockTileHelper.h"
 #import "MPDocument.h"
 #import "MPDocumentController.h"
@@ -104,6 +105,13 @@ NSString *const MPHelpURLKey = @"MPHelpURL";
     toObject:NSUserDefaultsController.sharedUserDefaultsController
  withKeyPath:[MPSettingsHelper defaultControllerPathForKey:kMPSettingsKeyRememberKeyFilesForDatabases]
      options:nil];
+  
+  NSMenu *fileMenu = self.fileNewMenuItem.menu;
+  NSInteger insertIndex = [fileMenu indexOfItem:self.fileNewMenuItem]+1;
+  NSArray *items = [MPContextMenuHelper contextMenuItemsWithItems:MPContextMenuCreate];
+  for(NSMenuItem *item in items.reverseObjectEnumerator) {
+    [fileMenu insertItem:item atIndex:insertIndex];
+  }
 }
 
 #pragma mark -

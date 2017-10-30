@@ -230,8 +230,8 @@ NSString *const MPToolbarItemHistory = @"TOOLBAR_HISTORY";
   dispatch_once(&onceToken, ^{
     labelDict = @{ MPToolbarItemLock: NSLocalizedString(@"LOCK", @""),
                    MPToolbarItemAction: NSLocalizedString(@"ACTION", @""),
-                   MPToolbarItemAddEntry: NSLocalizedString(@"ADD_ENTRY", @""),
-                   MPToolbarItemAddGroup: NSLocalizedString(@"ADD_GROUP", @""),
+                   MPToolbarItemAddEntry: NSLocalizedString(@"NEW_ENTRY", @""),
+                   MPToolbarItemAddGroup: NSLocalizedString(@"NEW_GROUP", @""),
                    MPToolbarItemCopyPassword: NSLocalizedString(@"COPY_PASSWORD", @""),
                    MPToolbarItemCopyUsername: NSLocalizedString(@"COPY_USERNAME", @""),
                    MPToolbarItemDelete: NSLocalizedString(@"DELETE", @""),
