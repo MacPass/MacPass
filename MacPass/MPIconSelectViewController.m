@@ -76,7 +76,6 @@ typedef NS_ENUM(NSInteger, MPIconDownloadStatus) {
 }
 
 - (IBAction)downloadIcon:(id)sender {
-  //self.downloadStatus = MPIconDownloadStatusProgress;
   KPKNode *node = self.representedObject;
   if(!node.asEntry) {
     return;

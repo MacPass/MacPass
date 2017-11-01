@@ -433,7 +433,7 @@ NSString *const MPDocumentGroupKey                            = @"MPDocumentGrou
   [self.undoManager removeAllActions];
   NSError *error;
   /* TODO let the tree chose the encryption */
-  self.encryptedData = [self.tree encryptWithKey:self.compositeKey format:KPKDatabaseFormatKdbx error:&error];
+  self.encryptedData = [self.tree encryptWithKey:self.compositeKey format:[MPDocument formatForFileType:self.fileType] error:&error];
   if(nil == self.encryptedData && error ) {
     [self presentError:error];
     return;
@@ -611,6 +611,12 @@ NSString *const MPDocumentGroupKey                            = @"MPDocumentGrou
   }
   if(parent.isTrash || parent.isTrashed) {
     return nil; // no new Groups in trash
+  }
+  
+  if([self.fileType isEqualToString:MPKdbDocumentUTI]) {
+    if([self.tree minimumVersionForAddingEntryToGroup:parent].format == KPKDatabaseFormatKdbx) {
+      NSLog(@"Warning: Database format does not allow for adding entries to this group!");
+    }
   }
   
   KPKEntry *newEntry = [self.tree createEntry:parent];
