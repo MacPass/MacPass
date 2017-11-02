@@ -129,6 +129,14 @@ NSString *const _MPTableSecurCellView = @"PasswordCell";
                                            selector:@selector(_didBecomFirstResponder:)
                                                name:MPDidActivateViewNotification
                                              object:_entryTable];
+  /*
+  NSView *clipView = self.entryTable.enclosingScrollView.contentView;
+  [NSNotificationCenter.defaultCenter addObserver:self
+                                         selector:@selector(_tableDidScroll:)
+                                             name:NSViewBoundsDidChangeNotification
+                                           object:clipView];
+  */
+  
   [self _setupEntryMenu];
   
   NSTableColumn *parentColumn = self.entryTable.tableColumns[0];
@@ -239,10 +247,24 @@ NSString *const _MPTableSecurCellView = @"PasswordCell";
 
 #pragma mark NSTableViewDelgate
 
-- (void)tableView:(NSTableView *)tableView didAddRowView:(NSTableRowView *)rowView forRow:(NSInteger)row {
-  /*
-   bind background color to entry color
-   */
+- (void)_tableDidScroll:(NSNotification *)notification {
+  if(self.displayMode != MPDisplayModeEntries) {
+    return; // Only update on entry display
+  }
+  
+  NSView *clipView = notification.object;
+  if(nil == clipView || self.entryTable.enclosingScrollView.contentView != clipView) {
+    return; // Wrong view
+  }
+  /* padding to compensate for clipped items */
+  CGPoint point = CGPointMake(clipView.bounds.origin.x, clipView.bounds.origin.y + self.entryTable.headerView.frame.size.height);
+  NSInteger topRow = [self.entryTable rowAtPoint:point];
+  
+  if(topRow > -1) {
+    KPKEntry *entry = self.entryArrayController.arrangedObjects[topRow];
+    entry.parent.lastTopVisibleEntry = entry.uuid;
+  }
+  
 }
 
 - (NSView *)tableView:(NSTableView *)tableView viewForTableColumn:(NSTableColumn *)tableColumn row:(NSInteger)row {
