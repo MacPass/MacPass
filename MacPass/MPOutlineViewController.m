@@ -222,7 +222,6 @@ NSString *const _MPOutlinveViewHeaderViewIdentifier = @"HeaderCell";
   id item = [[self.outlineView itemAtRow:topRow] representedObject];
   if([item isKindOfClass:[KPKGroup class]]) {
     KPKGroup *group = item;
-    NSLog(@"%@", group.title);
     MPDocument *document = self.windowController.document;
     document.tree.metaData.lastTopVisibleGroup = group.uuid;
   }
