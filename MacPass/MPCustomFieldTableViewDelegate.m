@@ -23,7 +23,7 @@
 #import "MPCustomFieldTableViewDelegate.h"
 #import "MPCustomFieldTableCellView.h"
 #import "MPEntryInspectorViewController.h"
-
+#import "HNHUi/HNHUi.h"
 #import "KeePassKit/KeePassKit.h"
 
 @implementation MPCustomFieldTableViewDelegate
@@ -43,6 +43,11 @@
                     toObject:view
                  withKeyPath:@"objectValue.isProtected"
                      options:nil];
+  
+  [view.valueTextField bind:NSStringFromSelector(@selector(showPassword))
+                   toObject:view
+                withKeyPath:@"objectValue.isProtected"
+                    options:@{NSValueTransformerNameBindingOption: NSNegateBooleanTransformerName}];
   
   
   for(NSControl *control in @[view.labelTextField, view.valueTextField, view.removeButton, view.protectedButton ]) {
