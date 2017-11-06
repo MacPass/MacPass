@@ -29,6 +29,7 @@
 #import "MPWindowAssociationsTableViewDelegate.h"
 #import "MPWindowTitleComboBoxDelegate.h"
 #import "MPAutotypeBuilderViewController.h"
+#import "MPReferenceBuilderViewController.h"
 
 #import "NSString+MPPasswordCreation.h"
 
@@ -317,11 +318,29 @@ typedef NS_ENUM(NSUInteger, MPEntryTab) {
 #pragma mark -
 #pragma mark Popovers
 
+- (IBAction)showReferenceBuilder:(id)sender {
+  NSView *location;
+  if([sender isKindOfClass:NSView.class]) {
+    location = sender;
+  }
+  else if([sender isKindOfClass:NSMenuItem.class]) {
+    location = [sender representedObject];
+  }
+  [self _showPopopver:[[MPReferenceBuilderViewController alloc] init] atView:location onEdge:NSMinYEdge];
+}
+
 - (IBAction)showAutotypeBuilder:(id)sender {
-  [sender setEnabled:NO];
+  NSView *location;
+  if([sender isKindOfClass:NSButton.class]) {
+    location = sender;
+    [sender setEnabled:NO];
+  }
+  if([sender isKindOfClass:NSMenuItem.class]){
+    location = [sender representedObject];
+  }
   MPAutotypeBuilderViewController *autotypeBuilder = [[MPAutotypeBuilderViewController alloc] init];
   autotypeBuilder.representedObject = self.representedObject;
-  [self _showPopopver:autotypeBuilder atView:sender onEdge:NSMinYEdge];
+  [self _showPopopver:autotypeBuilder atView:location onEdge:NSMinYEdge];
 }
 
 - (IBAction)showPasswordGenerator:(id)sender {

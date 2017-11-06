@@ -77,6 +77,8 @@
 - (void)registerNotificationsForDocument:(MPDocument *)document;
 
 - (IBAction)showPasswordGenerator:(id)sender;
+- (IBAction)showReferenceBuilder:(id)sender;
+- (IBAction)showAutotypeBuilder:(id)sender;
 
 - (IBAction)saveAttachment:(id)sender;
 - (IBAction)addAttachment:(id)sender;

@@ -120,7 +120,7 @@ typedef NS_ENUM(NSInteger, MPIconDownloadStatus) {
     if(error) {
       dispatch_async(dispatch_get_main_queue(), ^{
         self.downloadStatus = MPIconDownloadStatusError;
-        [NSApp presentError:error];
+        //[NSApp presentError:error];
       });
     }
     if(data.length > 0) {

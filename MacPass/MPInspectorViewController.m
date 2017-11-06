@@ -30,7 +30,6 @@
 #import "MPIconImageView.h"
 #import "MPNotifications.h"
 #import "MPPluginDataViewController.h"
-#import "MPReferenceBuilderViewController.h"
 
 #import "KeePassKit/KeePassKit.h"
 
@@ -194,17 +193,6 @@ typedef NS_ENUM(NSUInteger, MPContentTab) {
 - (IBAction)showPluginData:(id)sender {
   NSAssert([sender isKindOfClass:NSView.class], @"");
   [self _popupViewController:[[MPPluginDataViewController alloc] init] atView:sender];
-}
-
-- (IBAction)showReferenceBuilder:(id)sender {
-  NSView *location;
-  if([sender isKindOfClass:NSView.class]) {
-    location = sender;
-  }
-  else if([sender isKindOfClass:NSMenuItem.class]) {
-    location = [sender representedObject];
-  }
-  [self _popupViewController:[[MPReferenceBuilderViewController alloc] init] atView:location];
 }
 
 - (void)_popupViewController:(MPViewController *)vc atView:(NSView *)view {

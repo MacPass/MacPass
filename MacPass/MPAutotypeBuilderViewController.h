@@ -24,6 +24,9 @@
 
 @interface MPAutotypeBuilderViewController : NSViewController
 
-- (void)presentBuilderWithSequence:(NSString *)sequence;
+/**
+ Populate the autotype builder with a sequence.
+ */
+@property (nonatomic,copy) NSString *sequence;
 
 @end
