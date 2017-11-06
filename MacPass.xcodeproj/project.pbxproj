@@ -575,6 +575,8 @@
 		4C77E37415B84A240093A587 /* MacPass-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "MacPass-Prefix.pch"; sourceTree = "<group>"; };
 		4C77E37815B84A240093A587 /* MPAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MPAppDelegate.h; sourceTree = "<group>"; };
 		4C77E37915B84A240093A587 /* MPAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MPAppDelegate.m; sourceTree = "<group>"; };
+		4C79B6401FB0562D008250D8 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/ReferenceBuilderView.strings; sourceTree = "<group>"; };
+		4C79B6411FB0562D008250D8 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/PluginSettings.strings; sourceTree = "<group>"; };
 		4C7ABA4317BAEC6700FF5799 /* 15_ScannerTemplate.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = 15_ScannerTemplate.pdf; sourceTree = "<group>"; };
 		4C7ABA4417BAEC6700FF5799 /* 16_BrowserTemplate.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = 16_BrowserTemplate.pdf; sourceTree = "<group>"; };
 		4C7ABA4517BAEC6700FF5799 /* 17_CDRomTemplate.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = 17_CDRomTemplate.pdf; sourceTree = "<group>"; };
@@ -694,8 +696,6 @@
 		4CC0D2CF17974A5A000B4BDA /* MPAttachmentTableViewDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MPAttachmentTableViewDelegate.h; sourceTree = "<group>"; };
 		4CC0D2D017974A5A000B4BDA /* MPAttachmentTableViewDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MPAttachmentTableViewDelegate.m; sourceTree = "<group>"; };
 		4CC281881C0F675B00B9174D /* HNHUi.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = HNHUi.framework; path = Carthage/Build/Mac/HNHUi.framework; sourceTree = "<group>"; };
-		4CC6C39C1F98D93B0021E561 /* Base */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = Base; path = Base.lproj/Localizable.strings; sourceTree = "<group>"; };
-		4CC6C39D1F98D94D0021E561 /* Base */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = Base; path = Base.lproj/KPKLocalizable.strings; sourceTree = "<group>"; };
 		4CC6DB7817D23719002C6091 /* KPKNode+IconImage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "KPKNode+IconImage.h"; sourceTree = "<group>"; };
 		4CC6DB7917D23719002C6091 /* KPKNode+IconImage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "KPKNode+IconImage.m"; sourceTree = "<group>"; };
 		4CCA7EEC1797866F00B0B55E /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/GeneralSettings.strings; sourceTree = "<group>"; };
@@ -1595,7 +1595,7 @@
 			isa = PBXProject;
 			attributes = {
 				CLASSPREFIX = MP;
-				LastUpgradeCheck = 0900;
+				LastUpgradeCheck = 0910;
 				ORGANIZATIONNAME = "HicknHack Software GmbH";
 				TargetAttributes = {
 					4C77E36115B84A240093A587 = {
@@ -1938,6 +1938,7 @@
 				60ECAD221F12231B00EA9DB3 /* zh-Hans */,
 				4C4161081F50333B003BC0AF /* es */,
 				4CA182761F96512800DD4A4A /* de */,
+				4C79B6411FB0562D008250D8 /* en */,
 			);
 			name = PluginSettings.xib;
 			sourceTree = "<group>";
@@ -1968,7 +1969,6 @@
 				FA638D221C39BFCC00B10CC6 /* ru */,
 				4825CC951C414D58003E37E9 /* it */,
 				4C4161161F50333C003BC0AF /* es */,
-				4CC6C39D1F98D94D0021E561 /* Base */,
 				FAA9109B1F9A95A500F7CB90 /* pl */,
 			);
 			name = KPKLocalizable.strings;
@@ -2120,7 +2120,6 @@
 				4825CC921C414D58003E37E9 /* it */,
 				4C43B02F1E266A3A000CB4D7 /* pl */,
 				4C4161131F50333C003BC0AF /* es */,
-				4CC6C39C1F98D93B0021E561 /* Base */,
 				4C97CCEF1FA727DC00E58F8C /* en */,
 			);
 			name = Localizable.strings;
@@ -2168,6 +2167,7 @@
 				4C840C541D773E5E0081F605 /* pl */,
 				4C4161101F50333C003BC0AF /* es */,
 				4CA182771F96512800DD4A4A /* de */,
+				4C79B6401FB0562D008250D8 /* en */,
 			);
 			name = ReferenceBuilderView.xib;
 			sourceTree = "<group>";

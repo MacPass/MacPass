@@ -1,37 +1,72 @@
-/* 
-  KPKLocalizable.strings
-  MacPass
-
-  Created by Michael Starke on 20/12/13.
-  Copyright (c) 2013 HicknHack Software GmbH. All rights reserved.
-*/
-
-/* Copy */
-"KPK_GROUP_COPY_%@" = "%@ copy";
-"KPK_ENTRY_COPY_%@" = "%@ copy";
-
-/* Validation Errors */
-"ERROR_WINDOW_TITLE_VALIDATION_FAILED" = "The Format of the Window Title is not valid!";
+/* (No Comment) */
 "ERROR_ATTRIBUTE_KEY_VALIDATION_FAILED" = "The Attribute Key is not unique!";
+
+/* (No Comment) */
 "ERROR_AUTOTYPE_SEQUENCE_VALIDATION_FAILED" = "The Autotype Sequence is not valid!";
 
-/* Errors */
+/* (No Comment) */
 "ERROR_CORRUPT_TREE" = "The internal file structure is corrupted!";
-"ERROR_INVALID_FIELD_SIZE" = "Incorrect size at data field. Password wrong?";
-"ERROR_INVALID_FIELD_TYPE" = "Unknown data field. Password wrong?";
-"ERROR_UNSUPPORTED_DATABASER_VERSION" = "The Database version is not supported";
-"ERROR_UNSUPPORTED_CHIPHER" = "Unsupported cipher algorithm";
-"ERROR_UNKNOWN_FILE_FORMAT" = "Unknown file format";
-"ERROR_HEADER_CORRUPTED" = "Header is corrupted";
-"ERROR_UNSUPPORTED_KDBX_COMPRESSION_ALGORITHM" = "Unsupported compression algorithm";
-"ERROR_UNSUPPORTED_KDBX_RANDOM_STREAM" = "Unsupported random stream type";
-"ERROR_INTEGRITY_CHECK_FAILED" = "The database integrity isn't ensured";
-"ERROR_PASSWORD_OR_KEYFILE_WRONG" = "The password and/or the keyfile is wrong";
-"ERROR_KEEPASSFILE_ELEMENT_MISSING" = "The XML file is missing the KeePassFile element";
-"ERROR_ROOT_ELEMENT_MISSING" = "The XML file contains no Root node";
+
+/* (No Comment) */
 "ERROR_GROUP_ELEMENT_MISSING" = "The XML file contains no Group node";
+
+/* (No Comment) */
+"ERROR_HEADER_CORRUPTED" = "Header is corrupted";
+
+/* (No Comment) */
 "ERROR_HEADER_HASH_MISSMATCH" = "The header hash doesn't match. File corrupted";
-"ERROR_XML_KEYFILE_WITHOUT_KEY_ELEMENT" = "The XML keyfile is missing the key element";
-"ERROR_XML_KEYFILE_WITHOUT_DATA_ELEMENT" = "The XML keyfile is missing the data element";
-"ERROR_XML_KEYFILE_DATA_PARSING_ERROR" = "Unable to read the data of the XML keyfile";
+
+/* (No Comment) */
 "ERROR_HEADER_HASH_VERIFICATION_FAILED" = "The database header hash is wrong. Data integrity might be broken!";
+
+/* (No Comment) */
+"ERROR_INTEGRITY_CHECK_FAILED" = "The database integrity isn't ensured";
+
+/* (No Comment) */
+"ERROR_INVALID_FIELD_SIZE" = "Incorrect size at data field. Password wrong?";
+
+/* (No Comment) */
+"ERROR_INVALID_FIELD_TYPE" = "Unknown data field. Password wrong?";
+
+/* (No Comment) */
+"ERROR_KEEPASSFILE_ELEMENT_MISSING" = "The XML file is missing the KeePassFile element";
+
+/* (No Comment) */
+"ERROR_PASSWORD_OR_KEYFILE_WRONG" = "The password and/or the keyfile is wrong";
+
+/* (No Comment) */
+"ERROR_ROOT_ELEMENT_MISSING" = "The XML file contains no Root node";
+
+/* (No Comment) */
+"ERROR_UNKNOWN_FILE_FORMAT" = "Unknown file format";
+
+/* (No Comment) */
+"ERROR_UNSUPPORTED_CHIPHER" = "Unsupported cipher algorithm";
+
+/* (No Comment) */
+"ERROR_UNSUPPORTED_DATABASER_VERSION" = "The Database version is not supported";
+
+/* (No Comment) */
+"ERROR_UNSUPPORTED_KDBX_COMPRESSION_ALGORITHM" = "Unsupported compression algorithm";
+
+/* (No Comment) */
+"ERROR_UNSUPPORTED_KDBX_RANDOM_STREAM" = "Unsupported random stream type";
+
+/* (No Comment) */
+"ERROR_WINDOW_TITLE_VALIDATION_FAILED" = "The Format of the Window Title is not valid!";
+
+/* (No Comment) */
+"ERROR_XML_KEYFILE_DATA_PARSING_ERROR" = "Unable to read the data of the XML keyfile";
+
+/* (No Comment) */
+"ERROR_XML_KEYFILE_WITHOUT_DATA_ELEMENT" = "The XML keyfile is missing the data element";
+
+/* (No Comment) */
+"ERROR_XML_KEYFILE_WITHOUT_KEY_ELEMENT" = "The XML keyfile is missing the key element";
+
+/* (No Comment) */
+"KPK_ENTRY_COPY_%@" = "%@ copy";
+
+/* (No Comment) */
+"KPK_GROUP_COPY_%@" = "%@ copy";
+
