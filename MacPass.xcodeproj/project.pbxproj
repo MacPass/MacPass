@@ -43,6 +43,7 @@
 		4C2E382316D1421B00037A9D /* MPIconHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C2E382216D1421B00037A9D /* MPIconHelper.m */; };
 		4C2E382616D1470200037A9D /* MPViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C2E382516D1470200037A9D /* MPViewController.m */; };
 		4C32B0E71A1D4436007E12F1 /* KPKFormat+MPUTIDetection.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C32B0E61A1D4436007E12F1 /* KPKFormat+MPUTIDetection.m */; };
+		4C34BF541FB20D09002384CB /* MPToken.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C34BF531FB20D09002384CB /* MPToken.m */; };
 		4C3666411787327E00B249F1 /* MPDocument+Attachments.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C3666401787327E00B249F1 /* MPDocument+Attachments.m */; };
 		4C37A84015B8B474005EF8EE /* MPOutlineDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C37A83F15B8B474005EF8EE /* MPOutlineDataSource.m */; };
 		4C3826721AD04B51007D7D67 /* addFolderTemplate.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 4C3826711AD04B51007D7D67 /* addFolderTemplate.pdf */; };
@@ -95,6 +96,7 @@
 		4C3B42871F935316007B04FD /* MPDayCountFormatter.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C3B42861F935316007B04FD /* MPDayCountFormatter.m */; };
 		4C3BD51516D276F800389F1F /* MPToolbarDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C3BD51416D276F800389F1F /* MPToolbarDelegate.m */; };
 		4C3C4EAF18D7039300153127 /* MPValueTransformerHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C3C4EAE18D7039300153127 /* MPValueTransformerHelper.m */; };
+		4C40DDBC1FB219EF00E0B2F6 /* MPTestToken.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C40DDBB1FB219EF00E0B2F6 /* MPTestToken.m */; };
 		4C431BCD16E2A82800700A81 /* MPPasteBoardController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C431BCC16E2A82700700A81 /* MPPasteBoardController.m */; };
 		4C431BCF16E2BAB000700A81 /* OverlayWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4C431BCE16E2BAB000700A81 /* OverlayWindow.xib */; };
 		4C45FB1D178E09ED0010007D /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4C77E36615B84A240093A587 /* Cocoa.framework */; };
@@ -363,6 +365,8 @@
 		4C2E382516D1470200037A9D /* MPViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MPViewController.m; sourceTree = "<group>"; };
 		4C32B0E51A1D4436007E12F1 /* KPKFormat+MPUTIDetection.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "KPKFormat+MPUTIDetection.h"; sourceTree = "<group>"; };
 		4C32B0E61A1D4436007E12F1 /* KPKFormat+MPUTIDetection.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "KPKFormat+MPUTIDetection.m"; sourceTree = "<group>"; };
+		4C34BF521FB20D09002384CB /* MPToken.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MPToken.h; sourceTree = "<group>"; };
+		4C34BF531FB20D09002384CB /* MPToken.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MPToken.m; sourceTree = "<group>"; };
 		4C3666401787327E00B249F1 /* MPDocument+Attachments.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "MPDocument+Attachments.m"; sourceTree = "<group>"; };
 		4C37A83E15B8B474005EF8EE /* MPOutlineDataSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MPOutlineDataSource.h; sourceTree = "<group>"; };
 		4C37A83F15B8B474005EF8EE /* MPOutlineDataSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MPOutlineDataSource.m; sourceTree = "<group>"; };
@@ -419,6 +423,7 @@
 		4C3BD51416D276F800389F1F /* MPToolbarDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MPToolbarDelegate.m; sourceTree = "<group>"; };
 		4C3C4EAD18D7039300153127 /* MPValueTransformerHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MPValueTransformerHelper.h; sourceTree = "<group>"; };
 		4C3C4EAE18D7039300153127 /* MPValueTransformerHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MPValueTransformerHelper.m; sourceTree = "<group>"; };
+		4C40DDBB1FB219EF00E0B2F6 /* MPTestToken.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MPTestToken.m; sourceTree = "<group>"; };
 		4C4161021F50333B003BC0AF /* es */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = es; path = es.lproj/DatabaseSettingsWindow.strings; sourceTree = "<group>"; };
 		4C4161031F50333B003BC0AF /* es */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = es; path = es.lproj/PasswordEditWindow.strings; sourceTree = "<group>"; };
 		4C4161041F50333B003BC0AF /* es */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = es; path = es.lproj/GeneralSettings.strings; sourceTree = "<group>"; };
@@ -1088,6 +1093,7 @@
 				4C45FB2F178E0CE20010007D /* MPTestDocument.m */,
 				4C6BC65F1A36717E00BDDF3D /* MPDatabaseSearch.m */,
 				4C8030491E2FBAA300133E4C /* MPTestKeyMapper.m */,
+				4C40DDBB1FB219EF00E0B2F6 /* MPTestToken.m */,
 				4C45FB1F178E09ED0010007D /* Supporting Files */,
 			);
 			path = MacPassTests;
@@ -1363,6 +1369,8 @@
 				4CA3530A18A53CB800839B0F /* MPKeyMapper.m */,
 				4C1F7FA01E3A12E600D6A40E /* MPModifiedKey.h */,
 				4C1F7FA11E3A12E600D6A40E /* MPModifiedKey.m */,
+				4C34BF521FB20D09002384CB /* MPToken.h */,
+				4C34BF531FB20D09002384CB /* MPToken.m */,
 			);
 			name = Autotype;
 			sourceTree = "<group>";
@@ -1792,6 +1800,7 @@
 				4C8DEAA21C314D2C00D24C32 /* MPTestAutotypeDelay.m in Sources */,
 				4C45FB30178E0CE20010007D /* MPTestDocument.m in Sources */,
 				4C6BC6601A36717E00BDDF3D /* MPDatabaseSearch.m in Sources */,
+				4C40DDBC1FB219EF00E0B2F6 /* MPTestToken.m in Sources */,
 				4C10207F1B750E2F00BFCD59 /* MPTestAutotype.m in Sources */,
 				4C80304A1E2FBAA300133E4C /* MPTestKeyMapper.m in Sources */,
 			);
@@ -1856,6 +1865,7 @@
 				4C88C66918D9F8D600F43852 /* MPTemporaryFileStorageCenter.m in Sources */,
 				4C7B63741C0CB51F00D7038C /* TTTDateTransformers.m in Sources */,
 				4CF5BE6D1BF33E3000048505 /* NSApplication+MPAdditions.m in Sources */,
+				4C34BF541FB20D09002384CB /* MPToken.m in Sources */,
 				4CE30ACC1A312B7F0063FCC6 /* MPReferenceBuilderViewController.m in Sources */,
 				4C6F228C19A4AA700012310C /* MPAutotypeDelay.m in Sources */,
 				4C3C4EAF18D7039300153127 /* MPValueTransformerHelper.m in Sources */,
