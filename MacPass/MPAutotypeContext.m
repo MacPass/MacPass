@@ -26,7 +26,6 @@
 
 @interface MPAutotypeContext () {
   NSString *_evaluatedCommand;
-  NSString *_maskedEvaluatedCommand;
 }
 
 @end
@@ -71,13 +70,10 @@
 }
 
 - (NSString *)maskedEvaluatedCommand {
-  if(!_maskedEvaluatedCommand) {
-    NSString *passwordPlaceholder = [NSString stringWithFormat:@"{%@}",kKPKPasswordKey];
-    NSString *normalized = self.normalizedCommand;
-    NSString *masked = [normalized stringByReplacingOccurrencesOfString:passwordPlaceholder withString:@"•••••" options:NSCaseInsensitiveSearch range:NSMakeRange(0, normalized.length)];
-    _maskedEvaluatedCommand = [[masked kpk_finalValueForEntry:self.entry] copy];
-  }
-  return _maskedEvaluatedCommand;
+  NSString *passwordPlaceholder = [NSString stringWithFormat:@"{%@}",kKPKPasswordKey];
+  NSString *normalized = self.normalizedCommand;
+  NSString *masked = [normalized stringByReplacingOccurrencesOfString:passwordPlaceholder withString:@"•••" options:NSCaseInsensitiveSearch range:NSMakeRange(0, normalized.length)];
+  return [[masked kpk_finalValueForEntry:self.entry] copy];
 }
 
 - (NSString *)description {
