@@ -109,10 +109,10 @@
 
 - (NSTokenStyle)tokenField:(NSTokenField *)tokenField styleForRepresentedObject:(id)representedObject {
   if(tokenField == self.availableCommandsTokenField) {
-    return NSTokenStyleDefault;
+    return NSTokenStyleSquared;
   }
   if([representedObject hasPrefix:@"{"] || [representedObject hasSuffix:@"}"]) {
-    return NSTokenStyleDefault;
+    return NSTokenStyleSquared;
   }
   return NSTokenStyleNone;
 }
