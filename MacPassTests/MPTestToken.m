@@ -24,8 +24,27 @@
 }
 
 - (void)testTokenizing {
-  NSArray *tokens =[MPToken tokenizeString:@"{^}{USERNAME}^S+H{SPACE}"];
+  NSArray <MPToken *> *tokens = [MPToken tokenizeString:@"{^}{USERNAME}^S+H{SPACE}"];
   XCTAssertEqual(7, tokens.count);
+  
+  XCTAssertEqual(7, tokens.count);
+  XCTAssertEqualObjects(@"{^}", tokens[0].value);
+  XCTAssertEqualObjects(@"{USERNAME}", tokens[1].value);
+  XCTAssertEqualObjects(@"^", tokens[2].value);
+  XCTAssertEqualObjects(@"S", tokens[3].value);
+  XCTAssertEqualObjects(@"+", tokens[4].value);
+  XCTAssertEqualObjects(@"H", tokens[5].value);
+  XCTAssertEqualObjects(@"{SPACE}", tokens[6].value);
+  
+  tokens = [MPToken tokenizeString:@"{^}{USERNAME 2}^S+H{SPACE 2}"];
+  XCTAssertEqual(7, tokens.count);
+  XCTAssertEqualObjects(@"{^}", tokens[0].value);
+  XCTAssertEqualObjects(@"{USERNAME 2}", tokens[1].value);
+  XCTAssertEqualObjects(@"^", tokens[2].value);
+  XCTAssertEqualObjects(@"S", tokens[3].value);
+  XCTAssertEqualObjects(@"+", tokens[4].value);
+  XCTAssertEqualObjects(@"H", tokens[5].value);
+  XCTAssertEqualObjects(@"{SPACE 2}", tokens[6].value);
 }
 
 
