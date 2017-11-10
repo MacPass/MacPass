@@ -535,7 +535,7 @@ typedef NS_ENUM(NSUInteger, MPEntryTab) {
 #pragma mark -
 #pragma mark HNHUITextFieldDelegate
 - (NSMenu *)textField:(NSTextField *)textField textView:(NSTextView *)view menu:(NSMenu *)menu {
-  for(NSMenuItem *item in [menu itemArray]) {
+  /*for(NSMenuItem *item in [menu itemArray]) {
     if(item.action == @selector(showReferenceBuilder:)) {
       return menu; // item is already contained!
     }
@@ -543,6 +543,7 @@ typedef NS_ENUM(NSUInteger, MPEntryTab) {
   NSMenuItem *item = [[NSMenuItem alloc] initWithTitle:NSLocalizedString(@"SHOW_REFERENCE_BUILDER", @"Menu item to show the reference builder in a text view's context menu")action:@selector(showReferenceBuilder:) keyEquivalent:@""];
   item.representedObject = textField;
   [menu addItem:item];
+   */
   return menu;
 }
 
