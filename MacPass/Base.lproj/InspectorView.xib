@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="13196" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="13529" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
     <dependencies>
         <deployment identifier="macosx"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="13196"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="13529"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
@@ -126,7 +126,7 @@
                                         <rect key="frame" x="1" y="1" width="236" height="192"/>
                                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                         <subviews>
-                                            <textView importsGraphics="NO" richText="NO" verticallyResizable="YES" allowsNonContiguousLayout="YES" smartInsertDelete="YES" id="g24-gQ-foD">
+                                            <textView importsGraphics="NO" richText="NO" verticallyResizable="YES" allowsNonContiguousLayout="YES" smartInsertDelete="YES" id="g24-gQ-foD" customClass="HNHUITextView">
                                                 <rect key="frame" x="0.0" y="0.0" width="236" height="192"/>
                                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -145,6 +145,7 @@
                                                             <string key="NSNoSelectionPlaceholder">No Selection</string>
                                                         </dictionary>
                                                     </binding>
+                                                    <outlet property="delegate" destination="-2" id="8oq-Ga-UQD"/>
                                                 </connections>
                                             </textView>
                                         </subviews>
@@ -167,6 +168,7 @@
                                 <constraint firstItem="PzR-P9-3al" firstAttribute="top" secondItem="3147" secondAttribute="top" constant="5" id="DqT-BF-ASp"/>
                                 <constraint firstItem="PzR-P9-3al" firstAttribute="leading" secondItem="3147" secondAttribute="leading" constant="20" symbolic="YES" id="F4y-8m-e41"/>
                                 <constraint firstAttribute="trailing" secondItem="0V7-UG-vEA" secondAttribute="trailing" constant="20" symbolic="YES" id="VyI-AI-Rmt"/>
+                                <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="PzR-P9-3al" secondAttribute="trailing" constant="20" symbolic="YES" id="WSm-cS-2N1"/>
                                 <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="100" id="gZ6-Vo-6rK"/>
                             </constraints>
                         </customView>
