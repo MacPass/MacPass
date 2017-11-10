@@ -35,6 +35,8 @@ typedef NS_ENUM(NSInteger, MPIconDownloadStatus) {
 @interface MPIconSelectViewController () <NSCollectionViewDelegate>
 
 /* UI properties */
+@property (weak) IBOutlet NSColorWell *foregroundColorWell;
+@property (weak) IBOutlet NSColorWell *backgroundColorWell;
 @property (weak) IBOutlet MPCollectionView *iconCollectionView;
 @property (weak) IBOutlet NSButton *imageButton;
 @property (weak) IBOutlet NSButton *downloadIconButton;
@@ -62,6 +64,18 @@ typedef NS_ENUM(NSInteger, MPIconDownloadStatus) {
   NSMenu *menu = [[NSMenu alloc] initWithTitle:@""];
   [menu addItem:[[NSMenuItem alloc] initWithTitle:NSLocalizedString(@"DELETE", @"") action:@selector(deleteIcon:) keyEquivalent:@""]];
   self.iconCollectionView.menu = menu;
+  
+  KPKEntry *entry = [self.representedObject asEntry];
+  if(entry) {
+    self.foregroundColorWell.enabled = YES;
+    self.foregroundColorWell.color = entry.foregroundColor ? entry.foregroundColor : NSColor.clearColor;
+    self.backgroundColorWell.enabled = YES;
+    self.backgroundColorWell.color = entry.backgroundColor ? entry.backgroundColor : NSColor.clearColor;
+  }
+  else {
+    self.foregroundColorWell.enabled = NO;
+    self.backgroundColorWell.enabled = NO;
+  }
   
   [self _updateCollectionViewContent];
 }

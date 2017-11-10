@@ -26,6 +26,24 @@
 
 #import "MPIconHelper.h"
 
+@interface NSImage (MPTintedImage)
+@end
+@implementation NSImage (MPTintedImage)
+- (NSImage *)imageWithTintColor:(NSColor *)tintColor {
+  /* only tint tempated images! */
+  if(NO == self.template) {
+    return self;
+  }
+  NSImage *image = [self copy];
+  [image lockFocus];
+  [tintColor set];
+  NSRectFillUsingOperation(NSMakeRect(0, 0, image.size.width, image.size.height), NSCompositingOperationSourceAtop);
+  [image unlockFocus];
+  image.template = NO;
+  return image;
+}
+@end
+
 @implementation KPKNode (IconImage)
 
 + (NSSet *)keyPathsForValuesAffectingIconImage {
@@ -36,6 +54,7 @@
   });
   return [NSSet setWithArray:@[NSStringFromSelector(@selector(iconUUID)),
                                NSStringFromSelector(@selector(iconId)),
+                               NSStringFromSelector(@selector(backgroundColor)),
                                expireDateKeyPath
                                ]];
 }
@@ -49,6 +68,10 @@
   if(self.icon) {
     return self.icon.image;
   }
+  if(self.asEntry.backgroundColor) {
+    return [[MPIconHelper icon:(MPIconType)self.iconId] imageWithTintColor:self.asEntry.backgroundColor];
+  }
   return [MPIconHelper icon:(MPIconType)self.iconId];
 }
+
 @end

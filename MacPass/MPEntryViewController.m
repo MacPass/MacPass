@@ -264,7 +264,6 @@ NSString *const _MPTableSecurCellView = @"PasswordCell";
     KPKEntry *entry = self.entryArrayController.arrangedObjects[topRow];
     entry.parent.lastTopVisibleEntry = entry.uuid;
   }
-  
 }
 
 - (NSView *)tableView:(NSTableView *)tableView viewForTableColumn:(NSTableColumn *)tableColumn row:(NSInteger)row {
