@@ -21,20 +21,14 @@
 //
 
 #import "MPViewController.h"
-
-@class HNHUIGradientView;
+#import <HNHUi/HNHUi.h>
 @class MPIconImageView;
 
-@interface MPInspectorViewController : MPViewController <NSPopoverDelegate>
+@interface MPInspectorViewController : MPViewController <NSPopoverDelegate, HNHUITextViewDelegate>
 
-@property (weak) IBOutlet HNHUIGradientView *bottomBar;
-@property (weak) IBOutlet NSTextField *createdTextField;
-@property (weak) IBOutlet NSTextField *modifiedTextField;
 @property (weak) IBOutlet NSTextField *noSelectionInfo;
 @property (weak) IBOutlet MPIconImageView *itemImageView;
 @property (weak) IBOutlet NSTextField *itemNameTextField;
-@property (weak) IBOutlet NSButton *saveChangesButton;
-@property (weak) IBOutlet NSButton *discardChangesButton;
 
 - (IBAction)pickIcon:(id)sender;
 - (IBAction)pickExpiryDate:(id)sender;
