@@ -1,12 +1,14 @@
 {
-	"EVERY_%ld_DAYS" = {
-		"NSStringLocalizedFormatKey" = "%#@variable@";
-		variable = {
-			"NSStringFormatSpecTypeKey" = "NSStringPluralRuleType";
-			"NSStringFormatValueTypeKey" = ld;
-			zero = "po ka\U017cdym odblokowaniu";
-			one = "co dzie\U0144";
-			other = "co %ld dni";
-		};
-	};
+    "EVERY_%ld_DAYS" =     {
+        NSStringLocalizedFormatKey = "%#@variable@";
+        variable =         {
+            NSStringFormatSpecTypeKey = NSStringPluralRuleType;
+            NSStringFormatValueTypeKey = ld;
+            few = "co %ld dni";
+            many = "co %ld dni";
+            one = "co dzie\U0144";
+            other = "co %ld dni";
+            zero = "po ka\U017cdym odblokowaniu";
+        };
+    };
 }
