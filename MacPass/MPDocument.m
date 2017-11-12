@@ -369,7 +369,7 @@ NSString *const MPDocumentGroupKey                            = @"MPDocumentGrou
     //self.compositeKey = key;
     NSUserNotification *notification = [[NSUserNotification alloc] init];
     notification.title = NSApp.applicationName;
-    notification.informativeText = NSLocalizedString(@"AUTO_MERGE_NOTIFICATION_TEXT", @"");
+    notification.informativeText = NSLocalizedString(@"AUTO_MERGE_NOTIFICATION_TEXT", @"Sucessfully merged external changes");
     notification.deliveryDate = NSDate.date;
     [NSUserNotificationCenter.defaultUserNotificationCenter scheduleNotification:notification];
   }
@@ -707,7 +707,7 @@ NSString *const MPDocumentGroupKey                            = @"MPDocumentGrou
 - (void)emptyTrash:(id)sender {
   NSAlert *alert = [[NSAlert alloc] init];
   alert.alertStyle = NSWarningAlertStyle;
-  alert.messageText = NSLocalizedString(@"WARNING_ON_EMPTY_TRASH_TITLE", "");
+  alert.messageText = NSLocalizedString(@"WARNING_ON_EMPTY_TRASH_TITLE", "Message text for the alert displayed when clearing the Trash");
   alert.informativeText = NSLocalizedString(@"WARNING_ON_EMPTY_TRASH_DESCRIPTION", "Informative Text displayed when clearing the Trash");
   
   [alert addButtonWithTitle:NSLocalizedString(@"EMPTY_TRASH", "Empty Trash")];
@@ -726,7 +726,7 @@ NSString *const MPDocumentGroupKey                            = @"MPDocumentGrou
   
   NSAlert *alert = [[NSAlert alloc] init];
   alert.alertStyle = NSWarningAlertStyle;
-  alert.messageText = NSLocalizedString(@"WARNING_ON_DELETE_TRASHED_NODE_TITLE", "");
+  alert.messageText = NSLocalizedString(@"WARNING_ON_DELETE_TRASHED_NODE_TITLE", "Message text for the alert displayed when deleting a node");
   alert.informativeText = NSLocalizedString(@"WARNING_ON_DELETE_TRASHED_NODE_DESCRIPTION", "Informative Text displayed when clearing the Trash");
   
   NSString *okButtonText = entry ? NSLocalizedString(@"DELETE_TRASHED_ENTRY", "Empty Trash") : NSLocalizedString(@"DELETE_TRASHED_GROUP", "Empty Trash");

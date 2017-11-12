@@ -519,10 +519,10 @@ typedef void (^MPPasswordChangedBlock)(BOOL didChangePassword);
     NSAlert *alert = [[NSAlert alloc] init];
     
     alert.alertStyle = NSCriticalAlertStyle;
-    alert.messageText = NSLocalizedString(@"ENFORCE_PASSWORD_CHANGE_ALERT_TITLE", "");
-    alert.informativeText = NSLocalizedString(@"ENFORCE_PASSWORD_CHANGE_ALERT_DESCRIPTION", "");
+    alert.messageText = NSLocalizedString(@"ENFORCE_PASSWORD_CHANGE_ALERT_TITLE", "Message text for the enforce password change alert");
+    alert.informativeText = NSLocalizedString(@"ENFORCE_PASSWORD_CHANGE_ALERT_DESCRIPTION", "Informative text for the enforce password change alert");
     
-    [alert addButtonWithTitle:NSLocalizedString(@"CHANGE_PASSWORD_WITH_DOTS", "")];
+    [alert addButtonWithTitle:NSLocalizedString(@"CHANGE_PASSWORD_WITH_DOTS", "Single button to show the password change dialog")];
     
     [alert beginSheetModalForWindow:[self.document windowForSheet] completionHandler:^(NSModalResponse returnCode) {
       /* if sheet was stopped any other way, do nothing */
@@ -550,11 +550,11 @@ typedef void (^MPPasswordChangedBlock)(BOOL didChangePassword);
     NSAlert *alert = [[NSAlert alloc] init];
     
     alert.alertStyle = NSInformationalAlertStyle;
-    alert.messageText = NSLocalizedString(@"RECOMMEND_PASSWORD_CHANGE_ALERT_TITLE", "");
-    alert.informativeText = NSLocalizedString(@"RECOMMEND_PASSWORD_CHANGE_ALERT_DESCRIPTION", "");
+    alert.messageText = NSLocalizedString(@"RECOMMEND_PASSWORD_CHANGE_ALERT_TITLE", "Message text for the recommend password change alert");
+    alert.informativeText = NSLocalizedString(@"RECOMMEND_PASSWORD_CHANGE_ALERT_DESCRIPTION", "Informative text for the recommend password change alert");
     
-    [alert addButtonWithTitle:NSLocalizedString(@"CHANGE_PASSWORD_WITH_DOTS", "")];
-    [alert addButtonWithTitle:NSLocalizedString(@"CANCEL", "")];
+    [alert addButtonWithTitle:NSLocalizedString(@"CHANGE_PASSWORD_WITH_DOTS", "Button to show the password change dialog")];
+    [alert addButtonWithTitle:NSLocalizedString(@"CANCEL", "Cancel button to postpone password change")];
     alert.buttons[1].keyEquivalent = [NSString stringWithFormat:@"%c", 0x1b];
     
     

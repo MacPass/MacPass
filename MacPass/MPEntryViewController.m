@@ -180,15 +180,15 @@ NSString *const _MPTableSecurCellView = @"PasswordCell";
   modifiedColumn.sortDescriptorPrototype = [NSSortDescriptor sortDescriptorWithKey:timeInfoModificationTimeKeyPath ascending:YES selector:@selector(compare:)];
   
   indexColumn.headerCell.stringValue = @"";
-  parentColumn.headerCell.stringValue = NSLocalizedString(@"GROUP", "");
-  titleColumn.headerCell.stringValue = NSLocalizedString(@"TITLE", "");
-  userNameColumn.headerCell.stringValue = NSLocalizedString(@"USERNAME", "");
-  passwordColumn.headerCell.stringValue = NSLocalizedString(@"PASSWORD", "");
-  urlColumn.headerCell.stringValue = NSLocalizedString(@"URL", "");
-  notesColumn.headerCell.stringValue = NSLocalizedString(@"NOTES", "");
-  attachmentsColumn.headerCell.stringValue = NSLocalizedString(@"ATTACHMENTS", "");
-  modifiedColumn.headerCell.stringValue = NSLocalizedString(@"MODIFIED", "");
-  historyColumn.headerCell.stringValue = NSLocalizedString(@"HISTORY", "");
+  parentColumn.headerCell.stringValue = NSLocalizedString(@"GROUP", "Group column title");
+  titleColumn.headerCell.stringValue = NSLocalizedString(@"TITLE", "Title column title");
+  userNameColumn.headerCell.stringValue = NSLocalizedString(@"USERNAME", "Username column title");
+  passwordColumn.headerCell.stringValue = NSLocalizedString(@"PASSWORD", "Password column title");
+  urlColumn.headerCell.stringValue = NSLocalizedString(@"URL", "Url column title");
+  notesColumn.headerCell.stringValue = NSLocalizedString(@"NOTES", "Notes column title");
+  attachmentsColumn.headerCell.stringValue = NSLocalizedString(@"ATTACHMENTS", "Attachments column title (shows counts)");
+  modifiedColumn.headerCell.stringValue = NSLocalizedString(@"MODIFIED", "Modification date column title");
+  historyColumn.headerCell.stringValue = NSLocalizedString(@"HISTORY", "History count column title");
   
   [self.entryTable bind:NSContentBinding toObject:self.entryArrayController withKeyPath:NSStringFromSelector(@selector(arrangedObjects)) options:nil];
   [self.entryTable bind:NSSortDescriptorsBinding toObject:self.entryArrayController withKeyPath:NSStringFromSelector(@selector(sortDescriptors)) options:nil];

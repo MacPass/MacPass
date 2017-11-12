@@ -185,7 +185,7 @@ NSString *const MPHelpURLKey = @"MPHelpURL";
   if(menu == self.saveMenuItem.menu) {
     MPDocument *document = [NSDocumentController sharedDocumentController].currentDocument;
     BOOL displayDots = (document.fileURL == nil || !document.compositeKey.hasPasswordOrKeyFile);
-    NSString *saveTitle =  displayDots ? NSLocalizedString(@"SAVE_WITH_DOTS", "") : NSLocalizedString(@"SAVE", "");
+    NSString *saveTitle =  displayDots ? NSLocalizedString(@"SAVE_WITH_DOTS", "Save file menu item title when save will prompt for a location to save or ask for a password/key") : NSLocalizedString(@"SAVE", "Save file menu item title when save will just save the file");
     self.saveMenuItem.title = saveTitle;
   }
   if(menu == self.fixAutotypeMenuItem.menu) {
