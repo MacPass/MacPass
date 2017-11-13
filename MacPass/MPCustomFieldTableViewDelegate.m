@@ -28,6 +28,22 @@
 
 @implementation MPCustomFieldTableViewDelegate
 
+
+/*
+- (CGFloat)tableView:(NSTableView *)tableView heightOfRow:(NSInteger)row {
+  static NSTextFieldCell *cell;
+  static dispatch_once_t onceToken;
+  dispatch_once(&onceToken, ^{
+     cell = [[NSTextFieldCell alloc] init];
+  });
+  
+  cell.stringValue = @"Mutli!";
+  NSTableColumn *column = tableView.tableColumns.firstObject;
+  NSRect frame = NSMakeRect(0, 0, column.width, CGFLOAT_MAX);
+  return [cell cellSizeForBounds:frame].height + 38;
+}
+*/
+
 - (NSView *)tableView:(NSTableView *)tableView viewForTableColumn:(NSTableColumn *)tableColumn row:(NSInteger)row {
   MPCustomFieldTableCellView *view = [tableView makeViewWithIdentifier:@"SelectedCell" owner:tableView];
   
