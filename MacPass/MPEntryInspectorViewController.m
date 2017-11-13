@@ -28,6 +28,7 @@
 #import "MPPasswordCreatorViewController.h"
 #import "MPWindowAssociationsTableViewDelegate.h"
 #import "MPWindowTitleComboBoxDelegate.h"
+#import "MPTagsTokenFieldDelegate.h"
 #import "MPAutotypeBuilderViewController.h"
 #import "MPReferenceBuilderViewController.h"
 
@@ -64,6 +65,7 @@ typedef NS_ENUM(NSUInteger, MPEntryTab) {
   MPAttachmentTableDataSource *_attachmentDataSource;
   MPWindowAssociationsTableViewDelegate *_windowAssociationsTableDelegate;
   MPWindowTitleComboBoxDelegate *_windowTitleMenuDelegate;
+  MPTagsTokenFieldDelegate *_tagTokenFieldDelegate;
 }
 
 @property (nonatomic, assign) BOOL showPassword;
@@ -93,6 +95,8 @@ typedef NS_ENUM(NSUInteger, MPEntryTab) {
     _attachmentDataSource = [[MPAttachmentTableDataSource alloc] init];
     _windowAssociationsTableDelegate = [[MPWindowAssociationsTableViewDelegate alloc] init];
     _windowTitleMenuDelegate = [[MPWindowTitleComboBoxDelegate alloc] init];
+    _tagTokenFieldDelegate = [[MPTagsTokenFieldDelegate alloc] init];
+    _tagTokenFieldDelegate.viewController = self;
     _attachmentTableDelegate.viewController = self;
     _customFieldTableDelegate.viewController = self;
     _activeTab = MPEntryTabGeneral;
@@ -158,6 +162,8 @@ typedef NS_ENUM(NSUInteger, MPEntryTab) {
   
   [self.passwordTextField bind:NSStringFromSelector(@selector(showPassword)) toObject:self withKeyPath:NSStringFromSelector(@selector(showPassword)) options:nil];
   [self.togglePassword bind:NSValueBinding toObject:self withKeyPath:NSStringFromSelector(@selector(showPassword)) options:nil];
+  
+  self.tagsTokenField.delegate = _tagTokenFieldDelegate;
   
   [self _setupViewBindings];
 }

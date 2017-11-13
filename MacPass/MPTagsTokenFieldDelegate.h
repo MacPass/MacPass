@@ -21,7 +21,10 @@
 //
 
 #import <Cocoa/Cocoa.h>
+#import "MPEntryInspectorViewController.h"
 
 @interface MPTagsTokenFieldDelegate : NSObject <NSTokenFieldDelegate>
+
+@property (weak) MPEntryInspectorViewController *viewController;
 
 @end
