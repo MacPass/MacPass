@@ -57,10 +57,10 @@ NSString *const MPGeneralSetingsIdentifier = @"GeneralSettingsTab";
   [self.createUntitledOnActivation setState:NSOffState]; //kMPSettingsKeyOpenEmptyDatabaseOnLaunch
 
   /* File Change Strategy Menu */
-  NSDictionary *fileChangeStragegyDict = @{ @(MPFileChangeStrategyAsk) : NSLocalizedString(@"FILE_CHANGE_STRATEGY_ASK", @""),
-                                            @(MPFileChangeStrategyUseOther) : NSLocalizedString(@"FILE_CHANGE_STRATEGY_USE_OTHER", @""),
-                                            @(MPFileChangeStrategyKeepMine) : NSLocalizedString(@"FILE_CHANGE_STRATEGY_KEEP_MINE", @""),
-                                            @(MPFileChangeStrategyMerge) : NSLocalizedString(@"FILE_CHANGE_STRATEGY_MERGE", @""),
+  NSDictionary *fileChangeStragegyDict = @{ @(MPFileChangeStrategyAsk) : NSLocalizedString(@"FILE_CHANGE_STRATEGY_ASK", @"External file change strategy option: ask what to do"),
+                                            @(MPFileChangeStrategyUseOther) : NSLocalizedString(@"FILE_CHANGE_STRATEGY_USE_OTHER", @"External file change strategy option: Use the changed file and discard local changes"),
+                                            @(MPFileChangeStrategyKeepMine) : NSLocalizedString(@"FILE_CHANGE_STRATEGY_KEEP_MINE", @"External file change strategy option: Keep local file an ignore external changes"),
+                                            @(MPFileChangeStrategyMerge) : NSLocalizedString(@"FILE_CHANGE_STRATEGY_MERGE", @"External file change strategy option: Merge external changes into local file."),
                                             };
   [self.fileChangeStrategyPopup.menu removeAllItems];
   for(NSNumber *key in fileChangeStragegyDict) {

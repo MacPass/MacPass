@@ -46,10 +46,10 @@ static void MPContextmenuHelperBeginSection(NSMutableArray *items) {
   NSMutableArray *items = [NSMutableArray arrayWithCapacity:10];
   if(insertCreate) {
     
-    NSMenuItem *newGroup = [[NSMenuItem alloc] initWithTitle:NSLocalizedString(@"NEW_GROUP", @"")
+    NSMenuItem *newGroup = [[NSMenuItem alloc] initWithTitle:NSLocalizedString(@"NEW_GROUP", @"Menu item to create a new group")
                                                       action:[MPActionHelper actionOfType:MPActionAddGroup]
                                                keyEquivalent:@"N"];
-    NSMenuItem *newEntry = [[NSMenuItem alloc] initWithTitle:NSLocalizedString(@"NEW_ENTRY", @"")
+    NSMenuItem *newEntry = [[NSMenuItem alloc] initWithTitle:NSLocalizedString(@"NEW_ENTRY", @"Menu item to create a new entry")
                                                       action:[MPActionHelper actionOfType:MPActionAddEntry]
                                                keyEquivalent:@"n"];
     
@@ -57,10 +57,10 @@ static void MPContextmenuHelperBeginSection(NSMutableArray *items) {
   }
   if(insertDuplicate) {
     MPContextmenuHelperBeginSection(items);
-    NSMenuItem *duplicateEntry = [[NSMenuItem alloc] initWithTitle:NSLocalizedString(@"DUPLICATE_ENTRY", @"")
+    NSMenuItem *duplicateEntry = [[NSMenuItem alloc] initWithTitle:NSLocalizedString(@"DUPLICATE_ENTRY", @"Menu item to directly diplicate an entry")
                                                             action:[MPActionHelper actionOfType:MPActionDuplicateEntry]
                                                      keyEquivalent:@"D"];
-    NSMenuItem *duplicateEntyWithOptions = [[NSMenuItem alloc] initWithTitle:NSLocalizedString(@"DUPLICATE_ENTRY_WITH_OPTIONS", @"")
+    NSMenuItem *duplicateEntyWithOptions = [[NSMenuItem alloc] initWithTitle:NSLocalizedString(@"DUPLICATE_ENTRY_WITH_OPTIONS", @"Menu item to duplicate an entry with options how to duplicate. Will present a dialog.")
                                                                       action:[MPActionHelper actionOfType:MPActionDuplicateEntryWithOptions]
                                                                keyEquivalent:@""];
     
@@ -70,14 +70,14 @@ static void MPContextmenuHelperBeginSection(NSMutableArray *items) {
   if(insertDelete || insertTrash) {
     MPContextmenuHelperBeginSection(items);
     if(insertDelete) {
-      NSMenuItem *delete = [[NSMenuItem alloc] initWithTitle:NSLocalizedString(@"DELETE", @"")
+      NSMenuItem *delete = [[NSMenuItem alloc] initWithTitle:NSLocalizedString(@"DELETE", @"Menu item to delete an entry")
                                                       action:[MPActionHelper actionOfType:MPActionDelete]
                                                keyEquivalent:[MPActionHelper keyEquivalentForAction:MPActionDelete]];
       [items addObject:delete];
       
     }
     if(insertTrash) {
-      NSMenuItem *emptyTrash = [[NSMenuItem alloc] initWithTitle:NSLocalizedString(@"EMPTY_TRASH", @"")
+      NSMenuItem *emptyTrash = [[NSMenuItem alloc] initWithTitle:NSLocalizedString(@"EMPTY_TRASH", @"Menu item to empty the trash")
                                                           action:[MPActionHelper actionOfType:MPActionEmptyTrash]
                                                    keyEquivalent:@""];
       emptyTrash.keyEquivalentModifierMask = (NSShiftKeyMask | NSCommandKeyMask);
@@ -89,23 +89,23 @@ static void MPContextmenuHelperBeginSection(NSMutableArray *items) {
   }
   if(insertCopy) {
     MPContextmenuHelperBeginSection(items);
-    NSMenuItem *copyUsername = [[NSMenuItem alloc] initWithTitle:NSLocalizedString(@"COPY_USERNAME", @"")
+    NSMenuItem *copyUsername = [[NSMenuItem alloc] initWithTitle:NSLocalizedString(@"COPY_USERNAME", @"Menu item to copy the username of an entry")
                                                           action:[MPActionHelper actionOfType:MPActionCopyUsername]
                                                    keyEquivalent:@"C"];
-    NSMenuItem *copyPassword = [[NSMenuItem alloc] initWithTitle:NSLocalizedString(@"COPY_PASSWORD", @"")
+    NSMenuItem *copyPassword = [[NSMenuItem alloc] initWithTitle:NSLocalizedString(@"COPY_PASSWORD", @"Menu item to copy the password of an entry")
                                                           action:[MPActionHelper actionOfType:MPActionCopyPassword]
                                                    keyEquivalent:@"c"];
     copyPassword.keyEquivalentModifierMask = (copyPassword.keyEquivalentModifierMask | NSAlternateKeyMask);
     NSMenu *urlMenu = [[NSMenu alloc] init];
-    NSMenuItem *urlItem = [[NSMenuItem alloc] initWithTitle:NSLocalizedString(@"URL", @"")
+    NSMenuItem *urlItem = [[NSMenuItem alloc] initWithTitle:NSLocalizedString(@"URL", @"Submenu with options what to do with the URL of an entry")
                                                      action:0
                                               keyEquivalent:@""];
     urlItem.submenu = urlMenu;
     
-    NSMenuItem *copyURL = [[NSMenuItem alloc] initWithTitle:NSLocalizedString(@"COPY_URL", @"")
+    NSMenuItem *copyURL = [[NSMenuItem alloc] initWithTitle:NSLocalizedString(@"COPY_URL", @"Menu item to copy the URL of an entry")
                                                      action:[MPActionHelper actionOfType:MPActionCopyURL]
                                               keyEquivalent:@"u"];
-    NSMenuItem *openURL = [[NSMenuItem alloc] initWithTitle:NSLocalizedString(@"OPEN_URL", @"")
+    NSMenuItem *openURL = [[NSMenuItem alloc] initWithTitle:NSLocalizedString(@"OPEN_URL", @"Menu item to open the URL with the default application")
                                                      action:[MPActionHelper actionOfType:MPActionOpenURL]
                                               keyEquivalent:@"U"];
     [urlMenu addItem:copyURL];
@@ -116,14 +116,14 @@ static void MPContextmenuHelperBeginSection(NSMutableArray *items) {
   if(insertAutotype || insertHistory) {
     MPContextmenuHelperBeginSection(items);
     if(insertAutotype) {
-      NSMenuItem *performAutotype = [[NSMenuItem alloc] initWithTitle:NSLocalizedString(@"PERFORM_AUTOTYPE_FOR_ENTRY", @"")
+      NSMenuItem *performAutotype = [[NSMenuItem alloc] initWithTitle:NSLocalizedString(@"PERFORM_AUTOTYPE_FOR_ENTRY", @"Menu item to perform autotype with the selected entry")
                                                                action:[MPActionHelper actionOfType:MPActionPerformAutotypeForSelectedEntry]
                                                         keyEquivalent:@"a"];
       performAutotype.keyEquivalentModifierMask = (performAutotype.keyEquivalentModifierMask | NSControlKeyMask);
       [items addObject:performAutotype];
     }
     if(insertHistory) {
-      NSMenuItem *showHistory = [[NSMenuItem alloc] initWithTitle:NSLocalizedString(@"SHOW_HISTORY", @"")
+      NSMenuItem *showHistory = [[NSMenuItem alloc] initWithTitle:NSLocalizedString(@"SHOW_HISTORY", @"Menu item to show the history of the selected entry")
                                                                action:[MPActionHelper actionOfType:MPActionShowEntryHistory]
                                                         keyEquivalent:@"h"];
       showHistory.keyEquivalentModifierMask = (showHistory.keyEquivalentModifierMask | NSCommandKeyMask | NSControlKeyMask);

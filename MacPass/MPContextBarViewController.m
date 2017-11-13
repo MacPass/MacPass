@@ -92,9 +92,9 @@ typedef NS_ENUM(NSUInteger, MPContextTab) {
     buttons[iIndex].tag = tags[iIndex];
   }
   NSInteger specialTags[] = { MPEntrySearchDoublePasswords, MPEntrySearchExpiredEntries };
-  NSArray *titles = @[ NSLocalizedString(@"SEARCH_DUPLICATE_PASSWORDS", ""), NSLocalizedString(@"SEARCH_EXPIRED_ENTRIES", "") ];
+  NSArray *titles = @[ NSLocalizedString(@"SEARCH_DUPLICATE_PASSWORDS", "Search option: Find duplicate passwords"), NSLocalizedString(@"SEARCH_EXPIRED_ENTRIES", "Search option: Find expired entries") ];
   NSMenu *specialMenu = [[NSMenu alloc] initWithTitle:NSLocalizedString(@"CUSTOM_SEARCH_FILTER_MENU", @"Title for menu for custom search filters")];
-  [specialMenu addItemWithTitle:NSLocalizedString(@"SELECT_FILTER_WITH_DOTS", "") action:NULL keyEquivalent:@""];
+  [specialMenu addItemWithTitle:NSLocalizedString(@"SELECT_FILTER_WITH_DOTS", "Menu displayed as popup selection for search options") action:NULL keyEquivalent:@""];
   [specialMenu itemAtIndex:0].enabled = NO;
   [specialMenu itemAtIndex:0].tag = MPEntrySearchNone;
   [specialMenu itemAtIndex:0].action = @selector(toggleSearchFlags:);

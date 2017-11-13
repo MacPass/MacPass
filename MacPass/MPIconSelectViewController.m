@@ -62,7 +62,7 @@ typedef NS_ENUM(NSInteger, MPIconDownloadStatus) {
   [self.iconCollectionView registerForDraggedTypes:@[(NSString *)kUTTypeURL, (NSString *)kUTTypeFileURL]];
   
   NSMenu *menu = [[NSMenu alloc] initWithTitle:@""];
-  [menu addItem:[[NSMenuItem alloc] initWithTitle:NSLocalizedString(@"DELETE", @"") action:@selector(deleteIcon:) keyEquivalent:@""]];
+  [menu addItem:[[NSMenuItem alloc] initWithTitle:NSLocalizedString(@"DELETE", @"Menu item to delete the selected custom icon") action:@selector(deleteIcon:) keyEquivalent:@""]];
   self.iconCollectionView.menu = menu;
   
   KPKEntry *entry = [self.representedObject asEntry];

@@ -240,7 +240,7 @@ typedef NS_ENUM(NSUInteger, MPEntryTab) {
 }
 
 - (void)addWindowAssociation:(id)sender {
-  KPKWindowAssociation *associtation = [[KPKWindowAssociation alloc] initWithWindowTitle:NSLocalizedString(@"DEFAULT_WINDOW_TITLE", "") keystrokeSequence:nil];
+  KPKWindowAssociation *associtation = [[KPKWindowAssociation alloc] initWithWindowTitle:NSLocalizedString(@"DEFAULT_WINDOW_TITLE", "Default window title for a new window association") keystrokeSequence:nil];
   [self.observer willChangeModelProperty];
   [self.representedEntry.autotype addAssociation:associtation];
   [self.observer didChangeModelProperty];
@@ -445,22 +445,23 @@ typedef NS_ENUM(NSUInteger, MPEntryTab) {
   }
   
   /* general */
+  NSDictionary *nullPlaceholderBindingOptionsDict = @{ NSNullPlaceholderBindingOption: NSLocalizedString(@"NONE", "Placeholder text for input fields if no entry or group is selected")};
   [self.titleTextField bind:NSValueBinding
                    toObject:self
                 withKeyPath:[NSString stringWithFormat:@"%@.%@", NSStringFromSelector(@selector(representedObject)), NSStringFromSelector(@selector(title))]
-                    options:@{ NSNullPlaceholderBindingOption: NSLocalizedString(@"NONE", "")} ];
+                    options:nullPlaceholderBindingOptionsDict];
   [self.passwordTextField bind:NSValueBinding
                       toObject:self
                    withKeyPath:[NSString stringWithFormat:@"%@.%@", NSStringFromSelector(@selector(representedObject)), NSStringFromSelector(@selector(password))]
-                       options:@{ NSNullPlaceholderBindingOption: NSLocalizedString(@"NONE", "") }];
+                       options:nullPlaceholderBindingOptionsDict];
   [self.usernameTextField bind:NSValueBinding
                       toObject:self
                    withKeyPath:[NSString stringWithFormat:@"%@.%@", NSStringFromSelector(@selector(representedObject)), NSStringFromSelector(@selector(username))]
-                       options:@{ NSNullPlaceholderBindingOption: NSLocalizedString(@"NONE", "") }];
+                       options:nullPlaceholderBindingOptionsDict];
   [self.URLTextField bind:NSValueBinding
                  toObject:self
               withKeyPath:[NSString stringWithFormat:@"%@.%@", NSStringFromSelector(@selector(representedObject)), NSStringFromSelector(@selector(url))]
-                  options:@{ NSNullPlaceholderBindingOption: NSLocalizedString(@"NONE", "")}];
+                  options:nullPlaceholderBindingOptionsDict];
   [self.expiresCheckButton bind:NSTitleBinding
                        toObject:self
                     withKeyPath:[NSString stringWithFormat:@"%@.%@.%@", NSStringFromSelector(@selector(representedObject)), NSStringFromSelector(@selector(timeInfo)), NSStringFromSelector(@selector(expirationDate))]
