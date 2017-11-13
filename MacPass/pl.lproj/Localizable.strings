@@ -22,17 +22,11 @@
 /* % Weeks ago */
 "%ld_WEEKS_AGO" = "%ld weeks ago";
 
-/* No comment provided by engineer. */
+/* preset to expire after 90 days from now */
 "90_DAYS" = "w ciągu 90 dni";
 
 /* No comment provided by engineer. */
 "ACTION" = "Akcja";
-
-/* No comment provided by engineer. */
-"NEW_ENTRY" = "Dodaj wpis";
-
-/* No comment provided by engineer. */
-"NEW_GROUP" = "Dodaj grupę";
 
 /* No comment provided by engineer. */
 "ADD_TREMPLATE_ENTRY" = "Dodaj szablon wpisu";
@@ -49,13 +43,13 @@
 /* No comment provided by engineer. */
 "AUTOTYPE_NO" = "Wyłącz autouzupełnianie";
 
-/* No comment provided by engineer. */
+/* Notification: Autotype failed, no documents are open */
 "AUTOTYPE_OVERLAY_NO_DOCUMENTS" = "Please open a file to use Global Autotype!";
 
-/* No comment provided by engineer. */
+/* Noticiation: Autotype failed to find a match for %@ (string placeholder) */
 "AUTOTYPE_OVERLAY_NO_MATCH_FOR_%@" = "Brak dopasowania dla %@!";
 
-/* No comment provided by engineer. */
+/* Notification: Autotype found a single match. */
 "AUTOTYPE_OVERLAY_SINGLE_MATCH" = "Znaleziono dopasowanie!";
 
 /* No comment provided by engineer. */
@@ -64,7 +58,7 @@
 /* Cancel */
 "CANCEL" = "Anuluj";
 
-/* No comment provided by engineer. */
+/* Menu item in the database outline context menu to change the database name */
 "CHANGE_DATABASE_NAME" = "Zmień nazwę bazy danych";
 
 /* (No Comment) */
@@ -73,10 +67,10 @@
 /* No comment provided by engineer. */
 "CHANGE_PASSWORD_WITH_DOTS" = "Zmień haslo…";
 
-/* No comment provided by engineer. */
+/* Menu item in the database outline context menu to change the trash group */
 "CHANGE_TRASH_GROUP" = "Change Trash Group";
 
-/* No comment provided by engineer. */
+/* String displayed at dock badge when clipboard is about to be cleared */
 "CLEARING_PASTEBOARD" = "…";
 
 /* No comment provided by engineer. */
@@ -115,7 +109,7 @@
 /* No comment provided by engineer. */
 "COPY_USERNAME" = "Skopiuj nazwę użytkownika";
 
-/* Created at template string. %@ is replaced by locaized date and time */
+/* (No Comment) */
 "CREATED_AT_%@" = "Utworzony: %@";
 
 /* Default name database */
@@ -139,7 +133,7 @@
 /* No comment provided by engineer. */
 "DEFAULT_WINDOW_TITLE" = "Tytuł okna";
 
-/* No comment provided by engineer. */
+/* Menu item in the database outline context menu to delete the node from the trash */
 "DELETE" = "Usuń";
 
 /* No comment provided by engineer. */
@@ -164,18 +158,21 @@
 "DUPLICATE_ENTRY_WITH_OPTIONS" = "Powiel wpis…";
 
 /* (No Comment) */
-"DUPLICTE_PASSWORDS" = "Duplicate Passwords";
+"DUPLICTE_PASSWORDS" = "Powielone hasła";
 
 /* (No Comment) */
 "EDIT" = "Edytuj";
 
-/* No comment provided by engineer. */
+/* Menu item in the database outline context menu to change the template group
+   Menu item on the add entry context menu to edit template groups */
 "EDIT_TEMPLATE_GROUP" = "Edit Entry Template Group";
 
 /* (No Comment) */
 "EMAIL" = "E-mail";
 
-/* Empty Trash */
+/* Empty Trash
+   Menu item in the database outline context menu to empyt the trash
+   Menu item in the database outline to empty the trash */
 "EMPTY_TRASH" = "Opróżnij kosz";
 
 /* No comment provided by engineer. */
@@ -193,7 +190,7 @@
 /* Passwords do not match, keyfile is invalid */
 "ERROR_PASSWORD_MISSMATCH_INVALID_KEYFILE" = "Hasła nie pasują do siebie a plik z kluczem jest nieprawidłowy!";
 
-/* No comment provided by engineer. */
+/* Format to returen the date an item expires. Includes %@ placehoder for date */
 "EXPIRES_AT_DATE_%@" = "Wygasa: %@";
 
 /* Informative text displayed when the file was change from another application */
@@ -235,7 +232,7 @@
 /* No comment provided by engineer. */
 "INSPECTOR" = "Inspektor";
 
-/* No comment provided by engineer. */
+/* Label for the integration settings tab */
 "INTEGRATION_SETTINGS" = "Integracje";
 
 /* (No Comment) */
@@ -259,7 +256,7 @@
 /* No comment provided by engineer. */
 "LOCK" = "Blokada";
 
-/* Modifed at template string. %@ is replaced by locaized date and time */
+/* (No Comment) */
 "MODIFED_AT_%@" = "Zmodyfikowany: %@";
 
 /* No comment provided by engineer. */
@@ -281,33 +278,43 @@
 "NEW_DATABASE" = "Database";
 
 /* No comment provided by engineer. */
+"NEW_ENTRY" = "Nowy wpis";
+
+/* Submenu to add an entry via template */
 "NEW_ENTRY_WITH_TEMPLATE_%@" = "Dodaj wpis używając szablonu %@";
+
+/* No comment provided by engineer. */
+"NEW_GROUP" = "Nowa grupa";
 
 /* No comment provided by engineer. */
 "NONE" = "Nic";
 
-/* No comment provided by engineer. */
+/* Displayed name when notes or part of notes was copied
+   Notes reference item */
 "NOTES" = "Notatki";
 
-/* No comment provided by engineer. */
+/* Expiration date format, when item does not expire */
 "NO_EXPIRE_DATE_SET" = "Nigdy nie wygasa.";
 
-/* No comment provided by engineer. */
+/* Menu item added to show that no templates are defined */
 "NO_TEMPLATES" = "Nie znaleziono szablonów";
 
 /* Menu item to reset the template groups */
 "NO_TEMPLATE_GROUP" = "Brak szablonów";
 
-/* No comment provided by engineer. */
+/* Ok button */
+"OK" = "OK";
+
+/* preset to expire after one montch from now */
 "ONE_MONTH" = "w ciągu miesiąca";
 
-/* No comment provided by engineer. */
+/* preset to expire after one week from now */
 "ONE_WEEK" = "w ciągu tygodnia";
 
 /* one week ago */
 "ONE_WEEK_AGO" = "One week ago";
 
-/* No comment provided by engineer. */
+/* preset to expire after one year from now */
 "ONE_YEAR" = "w ciągu roku";
 
 /* No comment provided by engineer. */
@@ -316,19 +323,19 @@
 /* Select Browser */
 "OTHER_BROWSER" = "Wybierz przeglądarke…";
 
-/* No comment provided by engineer. */
+/* Password reference item */
 "PASSWORD" = "Hasło";
 
-/* No comment provided by engineer. */
+/* Button to reset the password defaults for a single entry */
 "PASSWORD_GENERATOR_RESET_ENTRY_DEFAULTS" = "Reset";
 
-/* No comment provided by engineer. */
+/* Button to set the defaults of the password generator */
 "PASSWORD_GENERATOR_SET_DEFAULTS" = "Set Defaults";
 
-/* No comment provided by engineer. */
+/* Placeholder in the unlock-password input field if password is enabled */
 "PASSWORD_INPUT_ENTER_PASSWORD" = "Wprowadź hasło";
 
-/* No comment provided by engineer. */
+/* Placeholder in the unlock-password input field if password is disabled */
 "PASSWORD_INPUT_NO_PASSWORD" = "Brak hasła";
 
 /* No comment provided by engineer. */
@@ -337,7 +344,7 @@
 /* No comment provided by engineer. */
 "PERFORM_AUTOTYPE_FOR_ENTRY" = "Wykonaj autouzupełnianie";
 
-/* No comment provided by engineer. */
+/* Label for plugin settings tab */
 "PLUGIN_SETTINGS" = "Wtyczki";
 
 /* No comment provided by engineer. */
@@ -371,10 +378,10 @@
 "SEARCH" = "Wyszukaj";
 
 /* No comment provided by engineer. */
-"SEARCH_DUPLICATE_PASSWORDS" = "Duplicate Passwords";
+"SEARCH_DUPLICATE_PASSWORDS" = "Powielone hasła";
 
 /* No comment provided by engineer. */
-"SEARCH_EXPIRED_ENTRIES" = "Expired";
+"SEARCH_EXPIRED_ENTRIES" = "Wygasłe";
 
 /* No comment provided by engineer. */
 "SEARCH_INHERIT" = "Dziedzicz ustawienie wyszukiwarki";
@@ -385,14 +392,14 @@
 /* No comment provided by engineer. */
 "SEARCH_YES" = "Zawrzyj w wynikach wyszukiwania";
 
-/* No comment provided by engineer. */
+/* (No Comment) */
 "SELECT_AUTOTYPE_CANDIDATE" = "Dokonaj wyboru";
 
-/* No comment provided by engineer. */
+/* Menu item title for the expiry preset selection menu in the date picker */
 "SELECT_DATE_PRESET" = "Use preset…";
 
 /* No comment provided by engineer. */
-"SELECT_FILTER_WITH_DOTS" = "Select…";
+"SELECT_FILTER_WITH_DOTS" = "Wybierz…";
 
 /* Set the selection as default file change strategy! */
 "SET_AS_DEFAULT_FILE_CHANGE_STRATEGY" = "Use this method as default. You can change this at any time in the preferences.";
@@ -421,10 +428,11 @@
 /* No comment provided by engineer. */
 "SHOW_HISTORY" = "Pokaż historię";
 
-/* No comment provided by engineer. */
-"TITLE" = "Nazwa";
+/* Displayed name when title field was copied
+   Title reference item */
+"TITLE" = "Tytuł";
 
-/* No comment provided by engineer. */
+/* preset to expire tomorrow */
 "TOMORROW" = "jutro";
 
 /* (No Comment) */
@@ -439,11 +447,14 @@
 /* Update Settings Label */
 "UPDATE_SETTINGS" = "Uaktualnienia";
 
-/* No comment provided by engineer. */
+/* URL reference item */
 "URL" = "Link";
 
-/* No comment provided by engineer. */
+/* Username reference item */
 "USERNAME" = "Nazwa użytkownika";
+
+/* Message text for disabled updates alert! */
+"Updates are disabled!" = "Aktualizacje są wyłączone!";
 
 /* No Key or Password */
 "WARNING_NO_PASSWORD_OR_KEYFILE" = "Brak hasła lub pliku z kluczem!";
@@ -469,7 +480,7 @@
 /* (No Comment) */
 "WINDOWS" = "Okna";
 
-/* No comment provided by engineer. */
+/* Label for the workflow settings tab */
 "WORKFLOW_SETTINGS" = "Przepływ danych";
 
 /* Yesterday */
