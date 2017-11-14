@@ -466,7 +466,7 @@ typedef void (^MPPasswordChangedBlock)(BOOL didChangePassword);
    Add all needed constraints an then remove it again, if it was hidden
    */
   BOOL removeInspector = NO;
-  if(![inspectorView superview]) {
+  if(!inspectorView.superview) {
     [self.splitView addSubview:inspectorView];
     removeInspector = YES;
   }
