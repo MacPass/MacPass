@@ -26,6 +26,12 @@
 #import "HNHUi/HNHUi.h"
 #import "KeePassKit/KeePassKit.h"
 
+NSInteger MPCustomFieldTagOffset = 50000;
+
+NSInteger MPCustomFieldIndexFromTag(NSInteger tag) {
+  return MAX(-1, tag - MPCustomFieldTagOffset);
+}
+
 @implementation MPCustomFieldTableViewDelegate
 
 
@@ -73,11 +79,15 @@
           options:@{NSConditionallySetsEditableBindingOption: @NO }];
     
   }
+  view.valueTextField.tag = (MPCustomFieldTagOffset + row);
+  view.valueTextField.delegate = self.viewController;
+  
   view.removeButton.target = self.viewController;
   view.removeButton.action = @selector(removeCustomField:);
   view.removeButton.tag = row;
   
   view.observer = tableView.window.windowController.document;
+  
   
   return view;
 }

@@ -577,6 +577,12 @@ typedef NS_ENUM(NSUInteger, MPEntryTab) {
     else if(textField == self.titleTextField) {
       name = NSLocalizedString(@"TITLE", "Displayed name when title field was copied");
     }
+    else {
+      NSInteger index = MPCustomFieldIndexFromTag(textField.tag);
+      if(index > -1) {
+        name = [_customFieldsController.arrangedObjects[index] key];
+      }
+    }
     [[MPPasteBoardController defaultController] copyObjects:@[value] overlayInfo:info name:name atView:self.view];
     return NO;
   }
