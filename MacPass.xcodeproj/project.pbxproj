@@ -540,6 +540,7 @@
 		4C7155E81A10DB7700979307 /* fr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fr; path = fr.lproj/IconSelection.strings; sourceTree = "<group>"; };
 		4C7155EA1A10DB7800979307 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/IconSelection.strings; sourceTree = "<group>"; };
 		4C7155EC1A10DB7900979307 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/IconSelection.strings; sourceTree = "<group>"; };
+		4C73EB941FBB58730033000F /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/DatabaseSettingsWindow.strings; sourceTree = "<group>"; };
 		4C76155F1764C0590015A1A6 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/GeneralSettings.xib; sourceTree = "<group>"; };
 		4C7615601764C05A0015A1A6 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/MainMenu.xib; sourceTree = "<group>"; };
 		4C76156B1764C0C80015A1A6 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/PasswordInputView.xib; sourceTree = "<group>"; };
@@ -811,7 +812,6 @@
 		6021FE9518E1617D00C3BC51 /* fr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fr; path = fr.lproj/PasswordCreatorView.strings; sourceTree = "<group>"; };
 		6021FE9718E1617E00C3BC51 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/PasswordCreatorView.strings"; sourceTree = "<group>"; };
 		6021FE9918E1650F00C3BC51 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/DatabaseSettingsWindow.xib; sourceTree = "<group>"; };
-		6021FE9C18E1651A00C3BC51 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/DatabaseSettingsWindow.strings; sourceTree = "<group>"; };
 		6021FE9E18E1651C00C3BC51 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/DatabaseSettingsWindow.strings; sourceTree = "<group>"; };
 		6021FEA018E1651E00C3BC51 /* fr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fr; path = fr.lproj/DatabaseSettingsWindow.strings; sourceTree = "<group>"; };
 		6021FEA218E1652000C3BC51 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/DatabaseSettingsWindow.strings"; sourceTree = "<group>"; };
@@ -2286,7 +2286,6 @@
 			isa = PBXVariantGroup;
 			children = (
 				6021FE9918E1650F00C3BC51 /* Base */,
-				6021FE9C18E1651A00C3BC51 /* en */,
 				6021FE9E18E1651C00C3BC51 /* de */,
 				6021FEA018E1651E00C3BC51 /* fr */,
 				6021FEA218E1652000C3BC51 /* zh-Hans */,
@@ -2295,6 +2294,7 @@
 				4825CC811C414D57003E37E9 /* it */,
 				4C840C441D773E5D0081F605 /* pl */,
 				4C4161021F50333B003BC0AF /* es */,
+				4C73EB941FBB58730033000F /* en */,
 			);
 			name = DatabaseSettingsWindow.xib;
 			sourceTree = "<group>";
