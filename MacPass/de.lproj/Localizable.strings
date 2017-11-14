@@ -22,7 +22,7 @@
 /* % Weeks ago */
 "%ld_WEEKS_AGO" = "vor %ld Wochen";
 
-/* No comment provided by engineer. */
+/* preset to expire after 90 days from now */
 "90_DAYS" = "in 90 Tagen";
 
 /* Button label to abort a merge on a file with changed master key! */
@@ -32,18 +32,9 @@
 "ACTION" = "Aktion";
 
 /* No comment provided by engineer. */
-"NEW_ENTRY" = "Neuer Eintrag";
-
-/* No comment provided by engineer. */
-"NEW_GROUP" = "Neue Gruppe";
-
-/* No comment provided by engineer. */
 "ADD_TREMPLATE_ENTRY" = "Vorgabeeintrag erstellen";
 
-/* Recommend/Enforce key change intervall format for 0-days */
-"AFTER_EACH_UNLOCK" = "Nach jedem Entsperren";
-
-/* No comment provided by engineer. */
+/* Attachments column title (shows counts) */
 "ATTACHMENTS" = "Anhänge";
 
 /* Menu item for automatic trash creation */
@@ -55,34 +46,36 @@
 /* No comment provided by engineer. */
 "AUTOTYPE_NO" = "Autotype deaktiveren";
 
-/* No comment provided by engineer. */
+/* Notification: Autotype failed, no documents are open */
 "AUTOTYPE_OVERLAY_NO_DOCUMENTS" = "Bitte öffnen Sie eine Datei, um Global Autotype zu nutzen!";
 
-/* No comment provided by engineer. */
+/* Noticiation: Autotype failed to find a match for %@ (string placeholder) */
 "AUTOTYPE_OVERLAY_NO_MATCH_FOR_%@" = "Kein Treffer für %@!";
 
-/* No comment provided by engineer. */
+/* Notification: Autotype found a single match. */
 "AUTOTYPE_OVERLAY_SINGLE_MATCH" = "Treffer!";
 
 /* No comment provided by engineer. */
 "AUTOTYPE_YES" = "Autotype aktivieren";
 
-/* Cancel */
+/* Cancel
+   Cancel button to postpone password change */
 "CANCEL" = "Abbrechen";
 
-/* No comment provided by engineer. */
+/* Menu item in the database outline context menu to change the database name */
 "CHANGE_DATABASE_NAME" = "Name der Datenbank ändern";
 
 /* (No Comment) */
 "CHANGE_FORMAT" = "Als KDBX speichern";
 
-/* No comment provided by engineer. */
+/* Button to show the password change dialog
+   Single button to show the password change dialog */
 "CHANGE_PASSWORD_WITH_DOTS" = "Password ändern …";
 
-/* No comment provided by engineer. */
+/* Menu item in the database outline context menu to change the trash group */
 "CHANGE_TRASH_GROUP" = "Papierkorb-Gruppe ändern";
 
-/* No comment provided by engineer. */
+/* String displayed at dock badge when clipboard is about to be cleared */
 "CLEARING_PASTEBOARD" = "…";
 
 /* Clear Autotype Button */
@@ -106,25 +99,25 @@
 /* Submenu to Copy custom fields */
 "COPY_CUSTOM_FIELDS" = "Feld kopieren";
 
-/* No comment provided by engineer. */
+/* Action title for copying an entry via drag and drop */
 "COPY_ENTRY" = "Eintrag kopieren";
 
 /* Mask for title to copy field value */
 "COPY_FIELD_%@" = "%@ kopieren!";
 
-/* No comment provided by engineer. */
+/* Action title for copying a group via drag and drop */
 "COPY_GROUP" = "Gruppe kopieren";
 
-/* No comment provided by engineer. */
+/* Menu item to copy the password of an entry */
 "COPY_PASSWORD" = "Passwort kopieren";
 
-/* No comment provided by engineer. */
+/* Menu item to copy the URL of an entry */
 "COPY_URL" = "Adresse kopieren";
 
-/* No comment provided by engineer. */
+/* Menu item to copy the username of an entry */
 "COPY_USERNAME" = "Benutzername kopieren";
 
-/* Created at template string. %@ is replaced by locaized date and time */
+/* (No Comment) */
 "CREATED_AT_%@" = "erstellt: %@";
 
 /* Default name database */
@@ -145,10 +138,13 @@
 /* Title for a newly created group */
 "DEFAULT_GROUP_NAME" = "Neue Gruppe";
 
-/* No comment provided by engineer. */
+/* Default window title for a new window association */
 "DEFAULT_WINDOW_TITLE" = "Fenstertitle";
 
-/* No comment provided by engineer. */
+/* Menu item in the database outline context menu to delete the node from the trash
+   Menu item to delete an entry
+   Menu item to delete the selected attached file
+   Menu item to delete the selected custom icon */
 "DELETE" = "Löschen";
 
 /* No comment provided by engineer. */
@@ -169,10 +165,10 @@
 /* No comment provided by engineer. */
 "DUPLICATE_ENTRIES" = "Eintrag klonen";
 
-/* No comment provided by engineer. */
+/* Menu item to directly diplicate an entry */
 "DUPLICATE_ENTRY" = "Eintrag klonen";
 
-/* No comment provided by engineer. */
+/* Menu item to duplicate an entry with options how to duplicate. Will present a dialog. */
 "DUPLICATE_ENTRY_WITH_OPTIONS" = "Eintrag klonen …";
 
 /* (No Comment) */
@@ -181,19 +177,23 @@
 /* (No Comment) */
 "EDIT" = "Bearbeiten";
 
-/* No comment provided by engineer. */
+/* Menu item in the database outline context menu to change the template group
+   Menu item on the add entry context menu to edit template groups */
 "EDIT_TEMPLATE_GROUP" = "Vorlagengruppe bearbeiten";
 
 /* (No Comment) */
 "EMAIL" = "E-Mail";
 
-/* Empty Trash */
+/* Empty Trash
+   Menu item in the database outline context menu to empyt the trash
+   Menu item in the database outline to empty the trash
+   Menu item to empty the trash */
 "EMPTY_TRASH" = "Papierkorb leeren";
 
-/* No comment provided by engineer. */
+/* Informative text for the enforce password change alert */
 "ENFORCE_PASSWORD_CHANGE_ALERT_DESCRIPTION" = "Das Speichern der Datenbank ist erst wieder möglich, wenn das Password und/oder der Schlüssel geändert wurden.";
 
-/* No comment provided by engineer. */
+/* Message text for the enforce password change alert */
 "ENFORCE_PASSWORD_CHANGE_ALERT_TITLE" = "Das Password der Datenbank ist abgelaufen!";
 
 /* Keyfile not valid */
@@ -208,7 +208,7 @@
 /* Recommend/Enforce key change intervall format */
 "EVERY_%ld_DAYS" = "alle %ld Tage";
 
-/* No comment provided by engineer. */
+/* Format to returen the date an item expires. Includes %@ placehoder for date */
 "EXPIRES_AT_DATE_%@" = "verfällt: %@";
 
 /* The master key was changed by an extrenal programm! */
@@ -220,16 +220,17 @@
 /* Message displayed when an open file was changed from another application */
 "FILE_CHANGED_BY_OTHERS_MESSAGE_TEXT" = "Die Datei wurde verändert!";
 
-/* No comment provided by engineer. */
+/* External file change strategy option: ask what to do */
 "FILE_CHANGE_STRATEGY_ASK" = "Jedesmal fragen";
 
-/* No comment provided by engineer. */
+/* External file change strategy option: Keep local file an ignore external changes */
 "FILE_CHANGE_STRATEGY_KEEP_MINE" = "Behalte meine Version ohne Änderungen";
 
-/* Merge changes into file! */
+/* External file change strategy option: Merge external changes into local file.
+   Merge changes into file! */
 "FILE_CHANGE_STRATEGY_MERGE" = "Inhalte zusammenführen";
 
-/* No comment provided by engineer. */
+/* External file change strategy option: Use the changed file and discard local changes */
 "FILE_CHANGE_STRATEGY_USE_OTHER" = "Lade die andere Version und verwerfe meine Änderungen";
 
 /* No comment provided by engineer. */
@@ -241,19 +242,22 @@
 /* General Settings Label */
 "GENERAL_SETTINGS" = "Allgemein";
 
-/* No comment provided by engineer. */
+/* Group column title */
 "GROUP" = "Gruppe";
 
-/* No comment provided by engineer. */
+/* History count column title */
 "HISTORY" = "Historie";
 
 /* (No Comment) */
 "HOMEBANKING" = "Homebanking";
 
+/* Imports a dragged URL for a new entry */
+"IMPORT_URL" = "URL importieren";
+
 /* No comment provided by engineer. */
 "INSPECTOR" = "Inspektor";
 
-/* No comment provided by engineer. */
+/* Label for the integration settings tab */
 "INTEGRATION_SETTINGS" = "Integration";
 
 /* (No Comment) */
@@ -277,16 +281,16 @@
 /* No comment provided by engineer. */
 "LOCK" = "Sperren";
 
-/* Modifed at template string. %@ is replaced by locaized date and time */
+/* (No Comment) */
 "MODIFED_AT_%@" = "verändert: %@";
 
-/* No comment provided by engineer. */
+/* Modification date column title */
 "MODIFIED" = "Verändert";
 
-/* No comment provided by engineer. */
+/* Action title for moving an entry via drag and drop */
 "MOVE_ENTRY" = "Eintrage bewegen";
 
-/* No comment provided by engineer. */
+/* Action title for moving a group via drag and drop */
 "MOVE_GROUP" = "Gruppe bewegem";
 
 /* (No Comment) */
@@ -298,19 +302,27 @@
 /* Name for a newly created Database */
 "NEW_DATABASE" = "Datenbank";
 
-/* No comment provided by engineer. */
+/* Menu item to create a new entry */
+"NEW_ENTRY" = "Neuer Eintrag";
+
+/* Submenu to add an entry via template */
 "NEW_ENTRY_WITH_TEMPLATE_%@" = "Neuer Eintrag aus Vorlage %@";
 
-/* No comment provided by engineer. */
+/* Menu item to create a new group */
+"NEW_GROUP" = "Neue Gruppe";
+
+/* Placeholder text for input fields if no entry or group is selected */
 "NONE" = "Leer";
 
-/* No comment provided by engineer. */
+/* Displayed name when notes or part of notes was copied
+   Notes column title
+   Notes reference item */
 "NOTES" = "Notizen";
 
-/* No comment provided by engineer. */
+/* Expiration date format, when item does not expire */
 "NO_EXPIRE_DATE_SET" = "verfällt nie";
 
-/* No comment provided by engineer. */
+/* Menu item added to show that no templates are defined */
 "NO_TEMPLATES" = "Keine Vorlagen vorhanden";
 
 /* Menu item to reset the template groups */
@@ -319,82 +331,90 @@
 /* Ok button */
 "OK" = "Ok";
 
-/* No comment provided by engineer. */
+/* preset to expire after one montch from now */
 "ONE_MONTH" = "in einem Monat";
 
-/* No comment provided by engineer. */
+/* preset to expire after one week from now */
 "ONE_WEEK" = "in einer Woche";
 
 /* one week ago */
 "ONE_WEEK_AGO" = "Vor einer Woche";
 
-/* No comment provided by engineer. */
+/* preset to expire after one year from now */
 "ONE_YEAR" = "in enem Jahr";
 
-/* No comment provided by engineer. */
+/* Menu item to open the URL with the default application */
 "OPEN_URL" = "Adresse öffnen";
 
 /* Select Browser */
 "OTHER_BROWSER" = "Browser wählen …";
 
 /* No comment provided by engineer. */
+"OUTPUT_VALUE" = "Ausgabewert";
+
+/* Password column title
+   Password reference item */
 "PASSWORD" = "Passwort";
 
-/* No comment provided by engineer. */
+/* Button to reset the password defaults for a single entry */
 "PASSWORD_GENERATOR_RESET_ENTRY_DEFAULTS" = "Zurücksetzen";
 
-/* No comment provided by engineer. */
+/* Button to set the defaults of the password generator */
 "PASSWORD_GENERATOR_SET_DEFAULTS" = "Als Standard festelgen";
 
-/* No comment provided by engineer. */
+/* Placeholder for the password field to aks for password
+   Placeholder in the unlock-password input field if password is enabled */
 "PASSWORD_INPUT_ENTER_PASSWORD" = "Passwort eingeben";
 
-/* No comment provided by engineer. */
+/* Placeholder for the password input field if passwords are disabled
+   Placeholder for the repeat password input if passwords are disabled
+   Placeholder in the unlock-password input field if password is disabled */
 "PASSWORD_INPUT_NO_PASSWORD" = "Kein Passwort";
 
-/* No comment provided by engineer. */
+/* Placeholder for the repeat password field to aks for the repeated password */
 "PASSWORD_INPUT_REPEAT_PASSWORD" = "Passwort wiederholen";
 
-/* No comment provided by engineer. */
+/* Menu item to perform autotype with the selected entry */
 "PERFORM_AUTOTYPE_FOR_ENTRY" = "Autotype ausführen";
 
-/* No comment provided by engineer. */
+/* Label for plugin settings tab */
 "PLUGIN_SETTINGS" = "Plugins";
 
-/* No comment provided by engineer. */
+/* Menu item to preview the selected attached file. */
 "PREVIEW" = "Vorschau";
 
 /* No comment provided by engineer. */
 "RECENT_SEARCHES" = "Letze Suchanfragen";
 
-/* No comment provided by engineer. */
+/* Informative text for the recommend password change alert */
 "RECOMMEND_PASSWORD_CHANGE_ALERT_DESCRIPTION" = "Sie sollten das Password und/oder den Schlüssel ändern.";
 
-/* No comment provided by engineer. */
+/* Message text for the recommend password change alert */
 "RECOMMEND_PASSWORD_CHANGE_ALERT_TITLE" = "Bitte ändern sie das Password der Datenbank!";
 
 /* Action to restore and Entry to a previous state of it's history */
 "RESTORE_HISTORY_ENTRY" = "Eintrag wiederherstellen";
 
-/* No comment provided by engineer. */
+/* Menu item to save the selected attached file.
+   Save file menu item title when save will just save the file */
 "SAVE" = "Speichern";
 
-/* No comment provided by engineer. */
+/* Button title to save the generated key file */
 "SAVE_KEYFILE" = "Schlüsseldatei speichern";
 
 /* (No Comment) */
 "SAVE_LOSSY" = "Mit Datenverlust speichern";
 
-/* No comment provided by engineer. */
+/* Save file menu item title when save will prompt for a location to save or ask for a password/key */
 "SAVE_WITH_DOTS" = "Speichern …";
 
 /* No comment provided by engineer. */
 "SEARCH" = "Suche";
 
-/* No comment provided by engineer. */
+/* Search option: Find duplicate passwords */
 "SEARCH_DUPLICATE_PASSWORDS" = "Doppelte Passwörter";
 
-/* No comment provided by engineer. */
+/* Search option: Find expired entries */
 "SEARCH_EXPIRED_ENTRIES" = "Abgelaufen";
 
 /* No comment provided by engineer. */
@@ -409,16 +429,16 @@
 /* No comment provided by engineer. */
 "SEARCH_YES" = "Durchsuchbar";
 
-/* No comment provided by engineer. */
+/* (No Comment) */
 "SELECT_AUTOTYPE_CANDIDATE" = "Eintrag auswählen!";
 
-/* No comment provided by engineer. */
+/* Menu item title for the expiry preset selection menu in the date picker */
 "SELECT_DATE_PRESET" = "Datumvorgabe wählen …";
 
 /* Message for the dialog to open a file for merge */
 "SELECT_FILE_TO_MERGE" = "Datei für Synchronisation auswählen";
 
-/* No comment provided by engineer. */
+/* Menu displayed as popup selection for search options */
 "SELECT_FILTER_WITH_DOTS" = "Auswählen…";
 
 /* Set the selection as default file change strategy! */
@@ -445,13 +465,18 @@
 /* (No Comment) */
 "SHORT_FILE_CHANGE_STRATEGY_ASK" = "Nachfragen";
 
-/* No comment provided by engineer. */
+/* Menu item to show the history of the selected entry */
 "SHOW_HISTORY" = "Historie anzeigen";
 
-/* No comment provided by engineer. */
+/* Menu item to show the reference builder in a text view's context menu */
+"SHOW_REFERENCE_BUILDER" = "Referenz einfügen…";
+
+/* Displayed name when title field was copied
+   Title column title
+   Title reference item */
 "TITLE" = "Titel";
 
-/* No comment provided by engineer. */
+/* preset to expire tomorrow */
 "TOMORROW" = "Morgen";
 
 /* (No Comment) */
@@ -472,14 +497,21 @@
 /* Update Settings Label */
 "UPDATE_SETTINGS" = "Aktualisierung";
 
-/* No comment provided by engineer. */
+/* Submenu with options what to do with the URL of an entry
+   Url column title
+   URL reference item */
 "URL" = "Adresse";
 
-/* No comment provided by engineer. */
+/* Username column title
+   Username reference item */
 "USERNAME" = "Nutzername";
 
-/* No comment provided by engineer. */
+/* Displayed name when uuid field was copied
+   UUID reference item */
 "UUID" = "UUID";
+
+/* Message text for disabled updates alert! */
+"Updates are disabled!" = "Aktualisierung ist deaktiviert!";
 
 /* No Key or Password */
 "WARNING_NO_PASSWORD_OR_KEYFILE" = "Kein Password und/oder Schlüsseldatei festgelegt!";
@@ -487,7 +519,7 @@
 /* Informative Text displayed when clearing the Trash */
 "WARNING_ON_EMPTY_TRASH_DESCRIPTION" = "Das Leeren des Papierkorbs kann nicht rückgängig gemacht werdern.";
 
-/* No comment provided by engineer. */
+/* Message text for the alert displayed when clearing the Trash */
 "WARNING_ON_EMPTY_TRASH_TITLE" = "Papierkorb leeren?";
 
 /* (No Comment) */
@@ -505,12 +537,9 @@
 /* (No Comment) */
 "WINDOWS" = "Windows";
 
-/* No comment provided by engineer. */
+/* Label for the workflow settings tab */
 "WORKFLOW_SETTINGS" = "Arbeitsfluss";
 
 /* Yesterday */
 "YESTERDAY" = "Gestern";
-
-/* String to be displayed instead of valueformat with 0 days */
-"ZERO_DAYS" = "";
 

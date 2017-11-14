@@ -541,6 +541,8 @@
 		4C7155EA1A10DB7800979307 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/IconSelection.strings; sourceTree = "<group>"; };
 		4C7155EC1A10DB7900979307 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/IconSelection.strings; sourceTree = "<group>"; };
 		4C73EB941FBB58730033000F /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/DatabaseSettingsWindow.strings; sourceTree = "<group>"; };
+		4C73EB951FBB5A8F0033000F /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/AutotypeCandidateSelectionView.strings; sourceTree = "<group>"; };
+		4C73EB961FBB5A910033000F /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/AutotypeBuilderView.strings; sourceTree = "<group>"; };
 		4C76155F1764C0590015A1A6 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/GeneralSettings.xib; sourceTree = "<group>"; };
 		4C7615601764C05A0015A1A6 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/MainMenu.xib; sourceTree = "<group>"; };
 		4C76156B1764C0C80015A1A6 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/PasswordInputView.xib; sourceTree = "<group>"; };
@@ -2314,6 +2316,7 @@
 			children = (
 				FA9FD3281FB5E8F4003CEDD6 /* Base */,
 				FA9FD32B1FB5E8FD003CEDD6 /* pl */,
+				4C73EB951FBB5A8F0033000F /* de */,
 			);
 			name = AutotypeCandidateSelectionView.xib;
 			sourceTree = "<group>";
@@ -2323,6 +2326,7 @@
 			children = (
 				FA9FD32D1FB5EDD3003CEDD6 /* Base */,
 				FA9FD32F1FB5EDDE003CEDD6 /* pl */,
+				4C73EB961FBB5A910033000F /* de */,
 			);
 			name = AutotypeBuilderView.xib;
 			sourceTree = "<group>";

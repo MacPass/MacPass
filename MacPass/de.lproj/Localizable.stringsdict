@@ -1,24 +1,12 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
-<plist version="1.0">
-<dict>
-	<key>EVERY_%ld_DAYS</key>
-	<dict>
-		<key>NSStringLocalizedFormatKey</key>
-		<string>%#@variable@</string>
-		<key>variable</key>
-		<dict>
-			<key>NSStringFormatSpecTypeKey</key>
-			<string>NSStringPluralRuleType</string>
-			<key>NSStringFormatValueTypeKey</key>
-			<string>ld</string>
-			<key>zero</key>
-			<string>nach jedem Entsperren</string>
-			<key>one</key>
-			<string>jeden Tag</string>
-			<key>other</key>
-			<string>alle %ld Tage</string>
-		</dict>
-	</dict>
-</dict>
-</plist>
+{
+    "EVERY_%ld_DAYS" =     {
+        NSStringLocalizedFormatKey = "%#@variable@";
+        variable =         {
+            NSStringFormatSpecTypeKey = NSStringPluralRuleType;
+            NSStringFormatValueTypeKey = ld;
+            one = "jeden Tag";
+            other = "alle %ld Tage";
+            zero = "nach jedem Entsperren";
+        };
+    };
+}
