@@ -22,7 +22,7 @@
 
 @implementation MPAutotypeCandidateSelectionViewController
 
-- (NSNibName)nibName {
+- (NSString *)nibName {
   return @"AutotypeCandidateSelectionView";
 }
 
