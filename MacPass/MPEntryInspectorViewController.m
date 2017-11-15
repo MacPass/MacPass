@@ -480,7 +480,7 @@ typedef NS_ENUM(NSUInteger, MPEntryTab) {
   [self.tagsTokenField bind:NSValueBinding
                    toObject:self
                 withKeyPath:[NSString stringWithFormat:@"%@.%@", NSStringFromSelector(@selector(representedObject)), NSStringFromSelector(@selector(tags))]
-                    options:@{ NSValueTransformerNameBindingOption:MPTokenValueTransformerName }];
+                    options:nullPlaceholderBindingOptionsDict];
   
   
   [self.uuidTextField bind:NSValueBinding
