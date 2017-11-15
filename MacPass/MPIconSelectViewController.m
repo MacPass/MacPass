@@ -137,7 +137,9 @@ typedef NS_ENUM(NSInteger, MPIconDownloadStatus) {
         //[NSApp presentError:error];
       });
     }
-    if(data.length > 0) {
+    if([response respondsToSelector:@selector(statusCode)] &&
+       (200 == [(id)response statusCode])
+       && data.length > 0) {
       dispatch_async(dispatch_get_main_queue(), ^{
         KPKIcon *newIcon = [[KPKIcon alloc] initWithImageData:data];
         if(newIcon) {
