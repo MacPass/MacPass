@@ -1,17 +1,8 @@
-/* (No Comment) */
-"%@_COPY" = "%@ Copy";
-
 /* Display format for days. Should contain a long decimal placeholder! */
 "%ld_DAYS" = "%ld days";
 
 /* % days ago */
 "%ld_DAYS_AGO" = "%ld days ago";
-
-/* (No Comment) */
-"%ld_ENTRIES" = "%ld Entries";
-
-/* (No Comment) */
-"%ld_ENTRY" = "%ld Entry";
 
 /* % Hours ago */
 "%ld_HOURS_AGO" = "about %ld hours ago";
@@ -34,13 +25,20 @@
 /* No comment provided by engineer. */
 "ADD_TREMPLATE_ENTRY" = "Create Template Entry";
 
-/* Informartive text in alert when adding entry requires KDBX format */
-"ALERT_KDB_UNSUPPORTED_ADD_ENTRY_INFORMATIVE" = "ALERT_KDB_UNSUPPORTED_ADD_ENTRY_INFORMATIVE";
+/* ALert informative text when a plugin was sucessfully installed */
+"ALERT_INFORMATIVE_TEXT_PLUGIN_INSTALLED_SUGGEST_RESTART" = "Plugins can only be loaded at start up. To activate the installed pluing, please restart MacPass.";
 
-/* Message in alert to inform the user that adding an entry requires KDBX format */
-"ALERT_KDB_UNSUPPORTED_ADD_ENTRY_MESSAGE" = "ALERT_KDB_UNSUPPORTED_ADD_ENTRY_MESSAGE";
+/* (No Comment) */
+"ALERT_KDB_UNSUPPORTED_ADD_ENTRY_INFORMATIVE" = "The KDB format does not support entries inside this group. The entry will be moved when the file is saved.";
 
-/* No comment provided by engineer. */
+/* (No Comment) */
+"ALERT_KDB_UNSUPPORTED_ADD_ENTRY_MESSAGE" = "Adding entries not supported";
+
+/* Alert message text when a plugin was successfully installed */
+"ALERT_MESSAGE_TEXT_PLUGIN_INSTALLED_SUGGEST_RESTART" = "Sucessfully installed Plugin!";
+
+/* Attachments column title (shows counts)
+   Menu item to toggle display of attachment count column in entry table */
 "ATTACHMENTS" = "Attachments";
 
 /* Menu item for automatic trash creation */
@@ -64,10 +62,12 @@
 /* No comment provided by engineer. */
 "AUTOTYPE_YES" = "Enable Autotype";
 
-/* No comment provided by engineer. */
+/* Sucessfully merged external changes */
 "AUTO_MERGE_NOTIFICATION_TEXT" = "Auto merge successfull!";
 
-/* Cancel */
+/* Cancel
+   Cancel button in plugin installed, request restart alert
+   Cancel button to postpone password change */
 "CANCEL" = "Cancel";
 
 /* Menu item in the database outline context menu to change the database name */
@@ -76,7 +76,8 @@
 /* (No Comment) */
 "CHANGE_FORMAT" = "Change File Format to KDBX";
 
-/* No comment provided by engineer. */
+/* Button to show the password change dialog
+   Single button to show the password change dialog */
 "CHANGE_PASSWORD_WITH_DOTS" = "Change Password…";
 
 /* Menu item in the database outline context menu to change the trash group */
@@ -109,25 +110,25 @@
 /* Context menu sub-menu to copy custom fields to clipboard */
 "COPY_CUSTOM_FIELDS_MENU" = "Copy Custom Field…";
 
-/* No comment provided by engineer. */
+/* Action title for copying an entry via drag and drop */
 "COPY_ENTRY" = "Copy Entry";
 
 /* Mask for title to copy field value */
 "COPY_FIELD_%@" = "Copy %@";
 
-/* No comment provided by engineer. */
+/* Action title for copying a group via drag and drop */
 "COPY_GROUP" = "Copy Group";
 
-/* No comment provided by engineer. */
+/* Menu item to copy the password of an entry */
 "COPY_PASSWORD" = "Copy Password";
 
-/* No comment provided by engineer. */
+/* Menu item to copy the URL of an entry */
 "COPY_URL" = "Copy URL";
 
-/* No comment provided by engineer. */
+/* Menu item to copy the username of an entry */
 "COPY_USERNAME" = "Copy Username";
 
-/* Created at template string. %@ is replaced by locaized date and time */
+/* (No Comment) */
 "CREATED_AT_%@" = "Created: %@";
 
 /* Curstom attribute reference item */
@@ -154,10 +155,13 @@
 /* Title for a newly created group */
 "DEFAULT_GROUP_NAME" = "New Group";
 
-/* No comment provided by engineer. */
+/* Default window title for a new window association */
 "DEFAULT_WINDOW_TITLE" = "Window Title";
 
-/* Menu item in the database outline context menu to delete the node from the trash */
+/* Menu item in the database outline context menu to delete the node from the trash
+   Menu item to delete an entry
+   Menu item to delete the selected attached file
+   Menu item to delete the selected custom icon */
 "DELETE" = "Delete";
 
 /* No comment provided by engineer. */
@@ -175,13 +179,13 @@
 /* No comment provided by engineer. */
 "DOCUMENT_AUTOTYPE_CORRUPTION_WARNING" = "Please run Fix Autotype...";
 
-/* No comment provided by engineer. */
-"DUPLICATE_ENTRY" = "Duplicate Entry";
-
-/* No comment provided by engineer. */
+/* Action name for duplicating entries */
 "DUPLICATE_ENTRIES_%ld" = "Duplicate Entries %ld";
 
-/* No comment provided by engineer. */
+/* Menu item to directly diplicate an entry */
+"DUPLICATE_ENTRY" = "Duplicate Entry";
+
+/* Menu item to duplicate an entry with options how to duplicate. Will present a dialog. */
 "DUPLICATE_ENTRY_WITH_OPTIONS" = "Duplicate Entry…";
 
 /* (No Comment) */
@@ -194,22 +198,23 @@
    Menu item on the add entry context menu to edit template groups */
 "EDIT_TEMPLATE_GROUP" = "Edit Entry Template Group";
 
-/* (No Comment) */
-"EMAIL" = "EMail";
-
 /* Empty Trash
    Menu item in the database outline context menu to empyt the trash
-   Menu item in the database outline to empty the trash */
+   Menu item in the database outline to empty the trash
+   Menu item to empty the trash */
 "EMPTY_TRASH" = "Empty Trash";
 
-/* No comment provided by engineer. */
+/* Informative text for the enforce password change alert */
 "ENFORCE_PASSWORD_CHANGE_ALERT_DESCRIPTION" = "You will be unable to save until the password and/or keyfile has been changed.";
 
-/* No comment provided by engineer. */
+/* Message text for the enforce password change alert */
 "ENFORCE_PASSWORD_CHANGE_ALERT_TITLE" = "The database password expired!";
 
 /* Keyfile not valid */
 "ERROR_INVALID_KEYFILE" = "Keyfile is invalid!";
+
+/* Error description given when adding an invalid plugin */
+"ERROR_INVALID_PLUGIN" = "Invalid plugin";
 
 /* Passwords do not match */
 "ERROR_PASSWORD_MISSMATCH" = "Passwords do not match!";
@@ -218,7 +223,7 @@
 "ERROR_PASSWORD_MISSMATCH_INVALID_KEYFILE" = "Passwords do not match and keyfile is invalid!";
 
 /* Recommend/Enforce key change intervall format */
-"EVERY_%ld_DAYS" = "EVERY_%ld_DAYS";
+"EVERY_%ld_DAYS" = "Every %ld days";
 
 /* Format to returen the date an item expires. Includes %@ placehoder for date */
 "EXPIRES_AT_DATE_%@" = "Expires: %@";
@@ -232,35 +237,31 @@
 /* Message displayed when an open file was changed from another application */
 "FILE_CHANGED_BY_OTHERS_MESSAGE_TEXT" = "The database file was modified!";
 
-/* No comment provided by engineer. */
+/* External file change strategy option: ask what to do */
 "FILE_CHANGE_STRATEGY_ASK" = "Ask";
 
-/* No comment provided by engineer. */
+/* External file change strategy option: Keep local file an ignore external changes */
 "FILE_CHANGE_STRATEGY_KEEP_MINE" = "Keep My Version and Ignore Other Changes";
 
-/* Merge changes into file! */
+/* External file change strategy option: Merge external changes into local file.
+   Merge changes into file! */
 "FILE_CHANGE_STRATEGY_MERGE" = "Merge Changes";
 
-/* No comment provided by engineer. */
+/* External file change strategy option: Use the changed file and discard local changes */
 "FILE_CHANGE_STRATEGY_USE_OTHER" = "Load Changed Version and Discard Mine";
 
 /* No comment provided by engineer. */
 "FILE_OPEN_ERROR" = "Error opening file.";
 
-/* (No Comment) */
-"GENERAL" = "General";
-
 /* General Settings Label */
 "GENERAL_SETTINGS" = "General";
 
-/* No comment provided by engineer. */
+/* Group column title */
 "GROUP" = "Group";
 
-/* No comment provided by engineer. */
+/* History count column title
+   Menu item to toggle display of history count column in entry table */
 "HISTORY" = "History";
-
-/* (No Comment) */
-"HOMEBANKING" = "Homebanking";
 
 /* Imports a dragged URL for a new entry */
 "IMPORT_URL" = "Import URL";
@@ -270,9 +271,6 @@
 
 /* Label for the integration settings tab */
 "INTEGRATION_SETTINGS" = "Integration";
-
-/* (No Comment) */
-"INTERNET" = "Internet";
 
 /* Just now */
 "JUST_NOW" = "Just now";
@@ -292,37 +290,44 @@
 /* No comment provided by engineer. */
 "LOCK" = "Lock";
 
-/* No comment provided by engineer. */
+/* Message in the open panel to add attachments to an entry */
+"MESSAGE_ADD_ATTACHMENT_OPEN_PANEL" = "Select the file to attach";
+
+/* Message in the add plugin open panel */
+"MESSAGE_ADD_PLUGIN_OPEN_PANEL" = "Select the plugin to install";
+
+/* Message in the open panel to import an XML file */
+"MESSAGE_XML_OPEN_PANEL" = "Select the XML file to import";
+
+/* Menu item to toggle display of modified date column in entry table
+   Modification date column title */
 "MODIFIED" = "Modified";
 
-/* No comment provided by engineer. */
+/* Action title for moving an entry via drag and drop */
 "MOVE_ENTRY" = "Move Entry";
 
-/* No comment provided by engineer. */
+/* Action title for moving a group via drag and drop */
 "MOVE_GROUP" = "Move Group";
-
-/* (No Comment) */
-"NAME" = "Name";
-
-/* (No Comment) */
-"NETWORK" = "Network";
 
 /* Name for a newly created Database */
 "NEW_DATABASE" = "Database";
 
-/* No comment provided by engineer. */
+/* Menu item to create a new entry */
 "NEW_ENTRY" = "New Entry";
 
 /* Submenu to add an entry via template */
 "NEW_ENTRY_WITH_TEMPLATE_%@" = "Create Entry with Template %@";
 
-/* No comment provided by engineer. */
+/* Menu item to create a new group */
 "NEW_GROUP" = "New Group";
 
-/* No comment provided by engineer. */
+/* Placeholder text for input fields if no entry or group is selected */
 "NONE" = "None";
 
-/* Notes reference item */
+/* Displayed name when notes or part of notes was copied
+   Menu item to toggle display of notes column in entry table
+   Notes column title
+   Notes reference item */
 "NOTES" = "Notes";
 
 /* Expiration date format, when item does not expire */
@@ -349,7 +354,16 @@
 /* preset to expire after one year from now */
 "ONE_YEAR" = "in one year";
 
-/* No comment provided by engineer. */
+/* Open button in the open panel to add attachments to an entry */
+"OPEN_BUTTON_ADD_ATTACHMENT_OPEN_PANEL" = "Attach";
+
+/* Open button in the add plugin open panel */
+"OPEN_BUTTON_ADD_PLUGIN_OPEN_PANEL" = "Install";
+
+/* Open button in the open panel to import an XML file */
+"OPEN_BUTTON_IMPORT_XML_OPEN_PANEL" = "Import";
+
+/* Menu item to open the URL with the default application */
 "OPEN_URL" = "Open URL";
 
 /* Select Browser */
@@ -358,7 +372,9 @@
 /* No comment provided by engineer. */
 "OUTPUT_VALUE" = "Output Value";
 
-/* Password reference item */
+/* Menu item to toggle display of password column in entry table
+   Password column title
+   Password reference item */
 "PASSWORD" = "Password";
 
 /* Button to reset the password defaults for a single entry */
@@ -367,55 +383,62 @@
 /* Button to set the defaults of the password generator */
 "PASSWORD_GENERATOR_SET_DEFAULTS" = "Set Defaults";
 
-/* Placeholder in the unlock-password input field if password is enabled */
+/* Placeholder for the password field to aks for password
+   Placeholder in the unlock-password input field if password is enabled */
 "PASSWORD_INPUT_ENTER_PASSWORD" = "Enter Password";
 
-/* Placeholder in the unlock-password input field if password is disabled */
+/* Placeholder for the password input field if passwords are disabled
+   Placeholder for the repeat password input if passwords are disabled
+   Placeholder in the unlock-password input field if password is disabled */
 "PASSWORD_INPUT_NO_PASSWORD" = "No Password";
 
-/* No comment provided by engineer. */
+/* Placeholder for the repeat password field to aks for the repeated password */
 "PASSWORD_INPUT_REPEAT_PASSWORD" = "Repeat Password";
 
-/* No comment provided by engineer. */
+/* Menu item to perform autotype with the selected entry */
 "PERFORM_AUTOTYPE_FOR_ENTRY" = "Perform Autotype";
 
 /* Label for plugin settings tab */
 "PLUGIN_SETTINGS" = "Plugins";
 
-/* No comment provided by engineer. */
+/* Menu item to preview the selected attached file. */
 "PREVIEW" = "Preview";
 
 /* No comment provided by engineer. */
 "RECENT_SEARCHES" = "Recent searches";
 
-/* No comment provided by engineer. */
+/* Informative text for the recommend password change alert */
 "RECOMMEND_PASSWORD_CHANGE_ALERT_DESCRIPTION" = "It is recommended to change the password and/or keyfile.";
 
-/* No comment provided by engineer. */
+/* Message text for the recommend password change alert */
 "RECOMMEND_PASSWORD_CHANGE_ALERT_TITLE" = "Please change the database password!";
+
+/* Restart button in plugin installed, request restart alert */
+"RESTART" = "Restart";
 
 /* Action to restore and Entry to a previous state of it's history */
 "RESTORE_HISTORY_ENTRY" = "Restore History Entry";
 
-/* No comment provided by engineer. */
+/* Menu item to save the selected attached file.
+   Save file menu item title when save will just save the file */
 "SAVE" = "Save";
 
-/* No comment provided by engineer. */
+/* Button title to save the generated key file */
 "SAVE_KEYFILE" = "Save Keyfile";
 
 /* (No Comment) */
 "SAVE_LOSSY" = "Save and lose data";
 
-/* No comment provided by engineer. */
+/* Save file menu item title when save will prompt for a location to save or ask for a password/key */
 "SAVE_WITH_DOTS" = "Save…";
 
 /* No comment provided by engineer. */
 "SEARCH" = "Search";
 
-/* No comment provided by engineer. */
+/* Search option: Find duplicate passwords */
 "SEARCH_DUPLICATE_PASSWORDS" = "Duplicate Passwords";
 
-/* No comment provided by engineer. */
+/* Search option: Find expired entries */
 "SEARCH_EXPIRED_ENTRIES" = "Expired";
 
 /* No comment provided by engineer. */
@@ -436,10 +459,16 @@
 /* Menu item title for the expiry preset selection menu in the date picker */
 "SELECT_DATE_PRESET" = "Use preset…";
 
+/* Message on the open panel for selecting which browser to use for opening URLs */
+"SELECT_DEFAULT_BROWSER_OPEN_PANEL_MESSAGE" = "Select the Browser to open URL with.";
+
+/* Label for the select browser button on the open panel for selecting which browser to use for opening URLs */
+"SELECT_DEFAULT_BROWSER_OPEN_PANEL_SELECT_BUTTON" = "Choose";
+
 /* Message for the dialog to open a file for merge */
 "SELECT_FILE_TO_MERGE" = "Select file to merge";
 
-/* No comment provided by engineer. */
+/* Menu displayed as popup selection for search options */
 "SELECT_FILTER_WITH_DOTS" = "Select…";
 
 /* Set the selection as default file change strategy! */
@@ -448,21 +477,20 @@
 /* (No Comment) */
 "SHORT_FILE_CHANGE_STRATEGY_ASK" = "Ask";
 
-/* No comment provided by engineer. */
+/* Menu item to show the history of the selected entry */
 "SHOW_HISTORY" = "Show History";
 
 /* Menu item to show the reference builder in a text view's context menu */
 "SHOW_REFERENCE_BUILDER" = "Show Reference Builder";
 
 /* Displayed name when title field was copied
+   Menu item to toggle display of title column in entry table
+   Title column title
    Title reference item */
 "TITLE" = "Title";
 
 /* preset to expire tomorrow */
 "TOMORROW" = "Tomorrow";
-
-/* (No Comment) */
-"TRASH" = "Trash";
 
 /* Move Entry to Trash */
 "TRASH_ENTRY" = "Trash Entry";
@@ -479,10 +507,15 @@
 /* Update Settings Label */
 "UPDATE_SETTINGS" = "Updates";
 
-/* URL reference item */
+/* Menu item to toggle display of url column in entry table
+   Submenu with options what to do with the URL of an entry
+   Url column title
+   URL reference item */
 "URL" = "URL";
 
-/* Username reference item */
+/* Menu item to toggle display of username column in entry table
+   Username column title
+   Username reference item */
 "USERNAME" = "Username";
 
 /* Displayed name when uuid field was copied
@@ -498,13 +531,13 @@
 /* Informative Text displayed when clearing the Trash */
 "WARNING_ON_DELETE_TRASHED_NODE_DESCRIPTION" = "The Trashed item(s) will be deleted!";
 
-/* No comment provided by engineer. */
+/* Message text for the alert displayed when deleting a node */
 "WARNING_ON_DELETE_TRASHED_NODE_TITLE" = "Deleting Trashed Item";
 
 /* Informative Text displayed when clearing the Trash */
 "WARNING_ON_EMPTY_TRASH_DESCRIPTION" = "Emptying the Trash is not undoable.";
 
-/* No comment provided by engineer. */
+/* Message text for the alert displayed when clearing the Trash */
 "WARNING_ON_EMPTY_TRASH_TITLE" = "Empty Trash?";
 
 /* (No Comment) */

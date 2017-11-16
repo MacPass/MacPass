@@ -228,16 +228,16 @@ NSString *const MPToolbarItemHistory = @"TOOLBAR_HISTORY";
   static NSDictionary *labelDict;
   static dispatch_once_t onceToken;
   dispatch_once(&onceToken, ^{
-    labelDict = @{ MPToolbarItemLock: NSLocalizedString(@"LOCK", @""),
-                   MPToolbarItemAction: NSLocalizedString(@"ACTION", @""),
-                   MPToolbarItemAddEntry: NSLocalizedString(@"NEW_ENTRY", @""),
-                   MPToolbarItemAddGroup: NSLocalizedString(@"NEW_GROUP", @""),
-                   MPToolbarItemCopyPassword: NSLocalizedString(@"COPY_PASSWORD", @""),
-                   MPToolbarItemCopyUsername: NSLocalizedString(@"COPY_USERNAME", @""),
-                   MPToolbarItemDelete: NSLocalizedString(@"DELETE", @""),
-                   MPToolbarItemInspector: NSLocalizedString(@"INSPECTOR", @""),
-                   MPToolbarItemSearch: NSLocalizedString(@"SEARCH", @""),
-                   MPToolbarItemHistory: NSLocalizedString(@"SHOW_HISTORY", @""),
+    labelDict = @{ MPToolbarItemLock: NSLocalizedString(@"LOCK", @"Toolbar item to Lock the database"),
+                   MPToolbarItemAction: NSLocalizedString(@"ACTION", @"Toolbar item with action menu"),
+                   MPToolbarItemAddEntry: NSLocalizedString(@"NEW_ENTRY", @"Toolbar item new entry"),
+                   MPToolbarItemAddGroup: NSLocalizedString(@"NEW_GROUP", @"Toolbar item new group"),
+                   MPToolbarItemCopyPassword: NSLocalizedString(@"COPY_PASSWORD", @"Toolbar item copy password"),
+                   MPToolbarItemCopyUsername: NSLocalizedString(@"COPY_USERNAME", @"Toolbar item copy username"),
+                   MPToolbarItemDelete: NSLocalizedString(@"DELETE", @"Toolbar item delete item"),
+                   MPToolbarItemInspector: NSLocalizedString(@"INSPECTOR", @"Toolbar item toggle inspector"),
+                   MPToolbarItemSearch: NSLocalizedString(@"SEARCH", @"Search input in Toolbar "),
+                   MPToolbarItemHistory: NSLocalizedString(@"SHOW_HISTORY", @"Toolbar item to toggel history display"),
                    };
   });
   return labelDict[identifier];
@@ -263,13 +263,13 @@ NSString *const MPToolbarItemHistory = @"TOOLBAR_HISTORY";
 
 - (NSMenu *)_allocateSearchMenuTemplate {
   NSMenu *menu = [[NSMenu alloc] init];
-  NSMenuItem *item = [[NSMenuItem alloc] initWithTitle:NSLocalizedString(@"CLEAR_RECENT_SEARCHES", @"") action:NULL keyEquivalent:@""];
+  NSMenuItem *item = [[NSMenuItem alloc] initWithTitle:NSLocalizedString(@"CLEAR_RECENT_SEARCHES", @"Menu to clear recent searches") action:NULL keyEquivalent:@""];
   item.tag = NSSearchFieldClearRecentsMenuItemTag;
   [menu addItem:item];
   
   [menu addItem:[NSMenuItem separatorItem]];
 
-  item = [[NSMenuItem alloc] initWithTitle:NSLocalizedString(@"RECENT_SEARCHES", @"") action:NULL keyEquivalent:@""];
+  item = [[NSMenuItem alloc] initWithTitle:NSLocalizedString(@"RECENT_SEARCHES", @"Recent searches menu item") action:NULL keyEquivalent:@""];
   item.tag = NSSearchFieldRecentsTitleMenuItemTag;
   [menu addItem:item];
   

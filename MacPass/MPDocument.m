@@ -777,7 +777,7 @@ NSString *const MPDocumentGroupKey                            = @"MPDocumentGrou
         }
       }
       [copy addToGroup:group];
-      [self.undoManager setActionName:NSLocalizedString(@"ADD_TREMPLATE_ENTRY", "")];
+      [self.undoManager setActionName:NSLocalizedString(@"ADD_TREMPLATE_ENTRY", "Action to add an entry via template")];
     }
   }
 }

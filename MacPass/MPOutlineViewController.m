@@ -170,7 +170,7 @@ NSString *const _MPOutlinveViewHeaderViewIdentifier = @"HeaderCell";
 #pragma mark Custom Setter/Getter
 - (void)setDatabaseNameWrapper:(NSString *)databaseNameWrapper {
   if(![_databaseNameWrapper isEqualToString:databaseNameWrapper]) {
-    _databaseNameWrapper = (databaseNameWrapper.length == 0) ? NSLocalizedString(@"DATABASE", "Default name database") : [databaseNameWrapper copy];
+    _databaseNameWrapper = (databaseNameWrapper.length == 0) ? NSLocalizedString(@"DATABASE", "Default display name for KDB databases") : [databaseNameWrapper copy];
   }
 }
 
