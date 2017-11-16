@@ -111,7 +111,7 @@ typedef NS_ENUM(NSUInteger, MPPluginSegmentType) {
 - (void)tableViewSelectionDidChange:(NSNotification *)notification {
   NSTableView *table = notification.object;
   MPPlugin *plugin = [self pluginForRow:table.selectedRow];
-  [self.addRemovePluginsControl setEnabled:(nil != plugin) forSegment:MPRemovePluginSegment];
+  //[self.addRemovePluginsControl setEnabled:(nil != plugin) forSegment:MPRemovePluginSegment];
   [self showSettingsForPlugin:plugin];
 }
 
