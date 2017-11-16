@@ -632,13 +632,14 @@ NSString *const _MPTableSecurCellView = @"PasswordCell";
 - (void)_setupHeaderMenu {
   NSMenu *headerMenu = [[NSMenu allocWithZone:[NSMenu menuZone]] init];
   
-  [headerMenu addItemWithTitle:NSLocalizedString(@"TITLE", "") action:NULL keyEquivalent:@""];
-  [headerMenu addItemWithTitle:NSLocalizedString(@"USERNAME", "") action:NULL keyEquivalent:@""];
-  [headerMenu addItemWithTitle:NSLocalizedString(@"PASSWORD", "") action:NULL keyEquivalent:@""];
-  [headerMenu addItemWithTitle:NSLocalizedString(@"URL", "") action:NULL keyEquivalent:@""];
-  [headerMenu addItemWithTitle:NSLocalizedString(@"NOTES", "") action:NULL keyEquivalent:@""];
-  [headerMenu addItemWithTitle:NSLocalizedString(@"ATTACHMENTS", "") action:NULL keyEquivalent:@""];
-  [headerMenu addItemWithTitle:NSLocalizedString(@"MODIFIED", "") action:NULL keyEquivalent:@""];
+  [headerMenu addItemWithTitle:NSLocalizedString(@"TITLE", "Menu item to toggle display of title column in entry table") action:NULL keyEquivalent:@""];
+  [headerMenu addItemWithTitle:NSLocalizedString(@"USERNAME", "Menu item to toggle display of username column in entry table") action:NULL keyEquivalent:@""];
+  [headerMenu addItemWithTitle:NSLocalizedString(@"PASSWORD", "Menu item to toggle display of password column in entry table") action:NULL keyEquivalent:@""];
+  [headerMenu addItemWithTitle:NSLocalizedString(@"URL", "Menu item to toggle display of url column in entry table") action:NULL keyEquivalent:@""];
+  [headerMenu addItemWithTitle:NSLocalizedString(@"NOTES", "Menu item to toggle display of notes column in entry table") action:NULL keyEquivalent:@""];
+  [headerMenu addItemWithTitle:NSLocalizedString(@"ATTACHMENTS", "Menu item to toggle display of attachment count column in entry table") action:NULL keyEquivalent:@""];
+  [headerMenu addItemWithTitle:NSLocalizedString(@"MODIFIED", "Menu item to toggle display of modified date column in entry table") action:NULL keyEquivalent:@""];
+  [headerMenu addItemWithTitle:NSLocalizedString(@"HISTORY", "Menu item to toggle display of history count column in entry table") action:NULL keyEquivalent:@""];
   
   NSArray *identifier = @[ MPEntryTableTitleColumnIdentifier,
                            MPEntryTableUserNameColumnIdentifier,
@@ -646,7 +647,8 @@ NSString *const _MPTableSecurCellView = @"PasswordCell";
                            MPEntryTableURLColumnIdentifier,
                            MPEntryTableNotesColumnIdentifier,
                            MPEntryTableAttachmentColumnIdentifier,
-                           MPEntryTableModfiedColumnIdentifier ];
+                           MPEntryTableModfiedColumnIdentifier,
+                           MPEntryTableHistoryColumnIdentifier ];
   
   NSDictionary *options = @{ NSValueTransformerNameBindingOption : NSNegateBooleanTransformerName };
   for(NSMenuItem *item in headerMenu.itemArray) {
