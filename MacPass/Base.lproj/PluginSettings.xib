@@ -120,19 +120,33 @@
                         <action selector="addOrRemovePlugin:" target="-2" id="ywK-Vi-MR4"/>
                     </connections>
                 </segmentedControl>
+                <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="SNe-cc-CZs">
+                    <rect key="frame" x="383" y="18" width="117" height="25"/>
+                    <buttonCell key="cell" type="roundTextured" title="Browse Plugins…" bezelStyle="texturedRounded" alignment="center" lineBreakMode="truncatingTail" state="on" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="sqO-8H-n1y">
+                        <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                        <font key="font" metaFont="system"/>
+                    </buttonCell>
+                    <connections>
+                        <action selector="browsePlugins:" target="-2" id="16S-2u-Tmi"/>
+                    </connections>
+                </button>
             </subviews>
             <constraints>
                 <constraint firstItem="CqP-oK-S8k" firstAttribute="top" secondItem="Hz6-mo-xeY" secondAttribute="top" constant="20" id="1Rj-zS-7t2"/>
                 <constraint firstItem="vBs-Ga-aq0" firstAttribute="top" secondItem="fCk-fL-jU8" secondAttribute="top" id="2h6-C9-4N5"/>
                 <constraint firstItem="B9Q-hq-K4N" firstAttribute="top" secondItem="fCk-fL-jU8" secondAttribute="bottom" constant="8" symbolic="YES" id="3vA-Oh-cFO"/>
                 <constraint firstAttribute="bottom" secondItem="B9Q-hq-K4N" secondAttribute="bottom" constant="20" symbolic="YES" id="7HD-ji-Whc"/>
+                <constraint firstAttribute="trailing" secondItem="SNe-cc-CZs" secondAttribute="trailing" constant="20" symbolic="YES" id="8Je-yg-f1l"/>
                 <constraint firstAttribute="trailing" secondItem="aoG-FD-ds8" secondAttribute="trailing" constant="20" symbolic="YES" id="95O-Jh-0KG"/>
                 <constraint firstItem="vBs-Ga-aq0" firstAttribute="bottom" secondItem="fCk-fL-jU8" secondAttribute="bottom" id="BQ2-Wp-Fsh"/>
+                <constraint firstAttribute="bottom" secondItem="SNe-cc-CZs" secondAttribute="bottom" constant="20" symbolic="YES" id="Fqe-ch-vsS"/>
                 <constraint firstAttribute="trailing" secondItem="vBs-Ga-aq0" secondAttribute="trailing" constant="20" id="LUb-Un-azV"/>
                 <constraint firstItem="aoG-FD-ds8" firstAttribute="leading" secondItem="CqP-oK-S8k" secondAttribute="leading" id="NcW-ya-DPx"/>
                 <constraint firstItem="B9Q-hq-K4N" firstAttribute="leading" secondItem="Hz6-mo-xeY" secondAttribute="leading" constant="20" symbolic="YES" id="Rtj-Ad-zkg"/>
                 <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="CqP-oK-S8k" secondAttribute="trailing" constant="20" symbolic="YES" id="TXL-mf-nxu"/>
+                <constraint firstItem="SNe-cc-CZs" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="B9Q-hq-K4N" secondAttribute="trailing" constant="8" symbolic="YES" id="a62-en-kDA"/>
                 <constraint firstItem="fCk-fL-jU8" firstAttribute="leading" secondItem="Hz6-mo-xeY" secondAttribute="leading" constant="20" id="fzW-4b-L8S"/>
+                <constraint firstItem="SNe-cc-CZs" firstAttribute="top" secondItem="vBs-Ga-aq0" secondAttribute="bottom" constant="8" symbolic="YES" id="r4X-iM-iYU"/>
                 <constraint firstItem="CqP-oK-S8k" firstAttribute="leading" secondItem="Hz6-mo-xeY" secondAttribute="leading" constant="20" id="rN1-3Z-BBi"/>
                 <constraint firstItem="fCk-fL-jU8" firstAttribute="top" secondItem="aoG-FD-ds8" secondAttribute="bottom" constant="8" id="vl9-MY-WW1"/>
                 <constraint firstItem="vBs-Ga-aq0" firstAttribute="leading" secondItem="fCk-fL-jU8" secondAttribute="trailing" constant="8" id="xNu-Sj-xQO"/>

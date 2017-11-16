@@ -80,6 +80,8 @@
   openPanel.allowsMultipleSelection = NO;
   openPanel.canChooseDirectories = NO;
   openPanel.canChooseFiles = YES;
+  openPanel.prompt = NSLocalizedString(@"SELECT_DEFAULT_BROWSER_OPEN_PANEL_SELECT_BUTTON", "Label for the select browser button on the open panel for selecting which browser to use for opening URLs");
+  openPanel.message = NSLocalizedString(@"SELECT_DEFAULT_BROWSER_OPEN_PANEL_MESSAGE", "Message on the open panel for selecting which browser to use for opening URLs");
   openPanel.allowedFileTypes = @[@"app"];
   
   [openPanel beginSheetModalForWindow:self.view.window completionHandler:^(NSInteger result) {

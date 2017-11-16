@@ -115,6 +115,10 @@ typedef NS_ENUM(NSUInteger, MPPluginSegmentType) {
   [self showSettingsForPlugin:plugin];
 }
 
+- (IBAction)browsePlugins:(id)sender {
+  [NSWorkspace.sharedWorkspace openURL:[NSApp applicationSupportDirectoryURL:YES]];
+}
+
 - (IBAction)addOrRemovePlugin:(id)sender {
   if(sender != self.addRemovePluginsControl) {
     return;
@@ -136,6 +140,8 @@ typedef NS_ENUM(NSUInteger, MPPluginSegmentType) {
   openPanel.allowsMultipleSelection = NO;
   openPanel.canChooseFiles = YES;
   openPanel.canChooseDirectories = NO;
+  openPanel.prompt = NSLocalizedString(@"OPEN_BUTTON_ADD_PLUGIN_OPEN_PANEL", "Open button in the add plugin open panel");
+  openPanel.message = NSLocalizedString(@"MESSAGE_ADD_PLUGIN_OPEN_PANEL", "Message in the add plugin open panel");
   [openPanel beginSheetModalForWindow:self.view.window completionHandler:^(NSModalResponse result) {
     if(NSModalResponseOK) {
       if(openPanel.URLs.count == 1) {

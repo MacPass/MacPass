@@ -222,6 +222,8 @@ typedef NS_ENUM(NSUInteger, MPEntryTab) {
   openPanel.canChooseDirectories = NO;
   openPanel.canChooseFiles = YES;
   openPanel.allowsMultipleSelection = YES;
+  openPanel.prompt = NSLocalizedString(@"OPEN_BUTTON_ADD_ATTACHMENT_OPEN_PANEL", "Open button in the open panel to add attachments to an entry");
+  openPanel.message = NSLocalizedString(@"MESSAGE_ADD_ATTACHMENT_OPEN_PANEL", "Message in the open panel to add attachments to an entry");
   [openPanel beginSheetModalForWindow:self.windowController.window completionHandler:^(NSInteger result) {
     if(result == NSFileHandlingPanelOKButton) {
       for (NSURL *attachmentURL in openPanel.URLs) {

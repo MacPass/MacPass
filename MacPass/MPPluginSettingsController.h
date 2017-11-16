@@ -26,5 +26,6 @@
 @interface MPPluginSettingsController : MPViewController <MPSettingsTab>
 
 - (IBAction)addOrRemovePlugin:(id)sender;
+- (IBAction)browsePlugins:(id)sender;
 
 @end

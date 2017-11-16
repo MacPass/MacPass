@@ -263,7 +263,9 @@ typedef void (^MPPasswordChangedBlock)(BOOL didChangePassword);
   openPanel.allowsMultipleSelection = NO;
   openPanel.canChooseDirectories = NO;
   openPanel.canChooseFiles = YES;
-  openPanel.allowedFileTypes = @[(id)kUTTypeXML];  
+  openPanel.allowedFileTypes = @[(id)kUTTypeXML];
+  openPanel.prompt = NSLocalizedString(@"OPEN_BUTTON_IMPORT_XML_OPEN_PANEL", "Open button in the open panel to import an XML file");
+  openPanel.message = NSLocalizedString(@"MESSAGE_XML_OPEN_PANEL", "Message in the open panel to import an XML file");
   [openPanel beginSheetModalForWindow:self.window completionHandler:^(NSInteger result) {
     if(result == NSFileHandlingPanelOKButton) {
       [document readXMLfromURL:openPanel.URL];
