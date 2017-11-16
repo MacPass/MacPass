@@ -2,7 +2,7 @@
 "%@_COPY" = "%@ Copy";
 
 /* Display format for days. Should contain a long decimal placeholder! */
-"%ld_DAYS" = "%ld_DAYS";
+"%ld_DAYS" = "%ld days";
 
 /* % days ago */
 "%ld_DAYS_AGO" = "%ld days ago";
@@ -26,7 +26,7 @@
 "90_DAYS" = "in 90 days";
 
 /* Button label to abort a merge on a file with changed master key! */
-"ABORT_MERGE_KEEP_MINE" = "ABORT_MERGE_KEEP_MINE";
+"ABORT_MERGE_KEEP_MINE" = "Abort Merge. Keep Mine.";
 
 /* No comment provided by engineer. */
 "ACTION" = "Action";
@@ -65,7 +65,7 @@
 "AUTOTYPE_YES" = "Enable Autotype";
 
 /* No comment provided by engineer. */
-"AUTO_MERGE_NOTIFICATION_TEXT" = "AUTO_MERGE_NOTIFICATION_TEXT";
+"AUTO_MERGE_NOTIFICATION_TEXT" = "Auto merge successfull!";
 
 /* Cancel */
 "CANCEL" = "Cancel";
@@ -86,7 +86,7 @@
 "CLEARING_PASTEBOARD" = "Cleared";
 
 /* Clear Autotype Button */
-"CLEAR_AUTOTYPE" = "CLEAR_AUTOTYPE";
+"CLEAR_AUTOTYPE" = "Clear Autotype";
 
 /* No comment provided by engineer. */
 "CLEAR_RECENT_SEARCHES" = "Clear recent searches";
@@ -107,7 +107,7 @@
 "COPY_CUSTOM_FIELDS" = "Copy Custom Fields";
 
 /* Context menu sub-menu to copy custom fields to clipboard */
-"COPY_CUSTOM_FIELDS_MENU" = "COPY_CUSTOM_FIELDS_MENU";
+"COPY_CUSTOM_FIELDS_MENU" = "Copy Custom Field…";
 
 /* No comment provided by engineer. */
 "COPY_ENTRY" = "Copy Entry";
@@ -131,10 +131,10 @@
 "CREATED_AT_%@" = "Created: %@";
 
 /* Curstom attribute reference item */
-"CUSTOM_ATTRIBUTE" = "CUSTOM_ATTRIBUTE";
+"CUSTOM_ATTRIBUTE" = "Custom Attribute";
 
 /* Title for menu for custom search filters */
-"CUSTOM_SEARCH_FILTER_MENU" = "CUSTOM_SEARCH_FILTER_MENU";
+"CUSTOM_SEARCH_FILTER_MENU" = "Custom Search Filter…";
 
 /* Default name database */
 "DATABASE" = "Database";
@@ -167,16 +167,16 @@
 "DELETE_GROUP" = "Delete Group";
 
 /* Empty Trash */
-"DELETE_TRASHED_ENTRY" = "DELETE_TRASHED_ENTRY";
+"DELETE_TRASHED_ENTRY" = "Delete Trashed Entry";
 
 /* Empty Trash */
-"DELETE_TRASHED_GROUP" = "DELETE_TRASHED_GROUP";
+"DELETE_TRASHED_GROUP" = "Delete Trashed Group";
 
 /* No comment provided by engineer. */
 "DOCUMENT_AUTOTYPE_CORRUPTION_WARNING" = "Please run Fix Autotype...";
 
 /* No comment provided by engineer. */
-"DUPLICATE_ENTRIES" = "DUPLICATE_ENTRIES";
+"DUPLICATE_ENTRIES" = "Duplicate Entries";
 
 /* No comment provided by engineer. */
 "DUPLICATE_ENTRY" = "Duplicate Entry";
@@ -224,7 +224,7 @@
 "EXPIRES_AT_DATE_%@" = "Expires: %@";
 
 /* The master key was changed by an extrenal programm! */
-"EXTERN_CHANGE_OF_MASTERKEY" = "EXTERN_CHANGE_OF_MASTERKEY";
+"EXTERN_CHANGE_OF_MASTERKEY" = "Master key was changed by another programm";
 
 /* Informative text displayed when the file was change from another application */
 "FILE_CHANGED_BY_OTHERS_INFO_TEXT" = "The file loaded is not the same as the on on disk. How do you want to move on?";
@@ -257,13 +257,13 @@
 "GROUP" = "Group";
 
 /* No comment provided by engineer. */
-"HISTORY" = "HISTORY";
+"HISTORY" = "History";
 
 /* (No Comment) */
 "HOMEBANKING" = "Homebanking";
 
 /* Imports a dragged URL for a new entry */
-"IMPORT_URL" = "IMPORT_URL";
+"IMPORT_URL" = "Import URL";
 
 /* No comment provided by engineer. */
 "INSPECTOR" = "Inspector";
@@ -291,9 +291,6 @@
 
 /* No comment provided by engineer. */
 "LOCK" = "Lock";
-
-/* Modifed at template string. %@ is replaced by locaized date and time */
-"MODIFED_AT_%@" = "Modified: %@";
 
 /* No comment provided by engineer. */
 "MODIFIED" = "Modified";
@@ -359,7 +356,7 @@
 "OTHER_BROWSER" = "Select Browser…";
 
 /* No comment provided by engineer. */
-"OUTPUT_VALUE" = "OUTPUT_VALUE";
+"OUTPUT_VALUE" = "Output Value";
 
 /* Password reference item */
 "PASSWORD" = "Password";
@@ -398,7 +395,7 @@
 "RECOMMEND_PASSWORD_CHANGE_ALERT_TITLE" = "Please change the database password!";
 
 /* Action to restore and Entry to a previous state of it's history */
-"RESTORE_HISTORY_ENTRY" = "RESTORE_HISTORY_ENTRY";
+"RESTORE_HISTORY_ENTRY" = "Restore History Entry";
 
 /* No comment provided by engineer. */
 "SAVE" = "Save";
@@ -428,43 +425,25 @@
 "SEARCH_NO" = "Exclude from Search";
 
 /* No comment provided by engineer. */
-"SEARCH_VALUE" = "";
+"SEARCH_VALUE" = "Search Value";
 
 /* No comment provided by engineer. */
 "SEARCH_YES" = "Include in Search";
 
 /* (No Comment) */
-"SELECT_AUTOTYPE_CANDIDATE" = "Select candidate!";
+"SELECT_AUTOTYPE_CANDIDATE" = "Select Candidate!";
 
 /* Menu item title for the expiry preset selection menu in the date picker */
 "SELECT_DATE_PRESET" = "Use preset…";
 
 /* Message for the dialog to open a file for merge */
-"SELECT_FILE_TO_MERGE" = "";
+"SELECT_FILE_TO_MERGE" = "Select file to merge";
 
 /* No comment provided by engineer. */
 "SELECT_FILTER_WITH_DOTS" = "Select…";
 
 /* Set the selection as default file change strategy! */
 "SET_AS_DEFAULT_FILE_CHANGE_STRATEGY" = "Use this method as default. You can change this at any time in the preferences.";
-
-/* (No Comment) */
-"SET_NAME" = "Edit Name";
-
-/* (No Comment) */
-"SET_NOTES" = "Edit Notes";
-
-/* (No Comment) */
-"SET_PASSWORD" = "Edit Password";
-
-/* (No Comment) */
-"SET_TITLE" = "Edit Title";
-
-/* (No Comment) */
-"SET_URL" = "Edit URL";
-
-/* (No Comment) */
-"SET_USERNAME" = "Edit Username";
 
 /* (No Comment) */
 "SHORT_FILE_CHANGE_STRATEGY_ASK" = "Ask";
@@ -492,10 +471,10 @@
 "TRASH_GROUP" = "Trash Group";
 
 /* No comment provided by engineer. */
-"UNKNOWN_FILE_VERSION" = "";
+"UNKNOWN_FILE_VERSION" = "Unknown File Version";
 
 /* No comment provided by engineer. */
-"UNKNOWN_TOOLBAR_ITEM" = "";
+"UNKNOWN_TOOLBAR_ITEM" = "Unknown Toolbar Item";
 
 /* Update Settings Label */
 "UPDATE_SETTINGS" = "Updates";
@@ -517,10 +496,10 @@
 "WARNING_NO_PASSWORD_OR_KEYFILE" = "No password or keyfile supplied!";
 
 /* Informative Text displayed when clearing the Trash */
-"WARNING_ON_DELETE_TRASHED_NODE_DESCRIPTION" = "";
+"WARNING_ON_DELETE_TRASHED_NODE_DESCRIPTION" = "The Items in the Trash will be deleted permanentely. You cannot undo this action!";
 
 /* No comment provided by engineer. */
-"WARNING_ON_DELETE_TRASHED_NODE_TITLE" = "";
+"WARNING_ON_DELETE_TRASHED_NODE_TITLE" = "Deleting Item";
 
 /* Informative Text displayed when clearing the Trash */
 "WARNING_ON_EMPTY_TRASH_DESCRIPTION" = "Emptying the Trash is not undoable.";
