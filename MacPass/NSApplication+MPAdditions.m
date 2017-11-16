@@ -52,4 +52,12 @@
   return nil;
 }
 
+- (void)relaunchAfterDelay:(CGFloat)seconds {
+  NSTask *task = [[NSTask alloc] init];
+  task.launchPath = @"/bin/sh";
+  task.arguments = @[ @"-c", [NSString stringWithFormat:@"sleep %f; open \"%@\"", seconds, NSBundle.mainBundle.bundlePath] ];
+  [task launch];
+  [self terminate:nil];
+}
+
 @end

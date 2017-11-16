@@ -38,4 +38,6 @@ FOUNDATION_EXPORT NSString *const MPPluginHostPluginBundleIdentifiyerKey;
 
 - (instancetype)init NS_UNAVAILABLE;
 
+- (BOOL)installPluginAtURL:(NSURL *)url error:(NSError *__autoreleasing *)error;
+
 @end

@@ -26,6 +26,8 @@
 #import "NSApplication+MPAdditions.h"
 #import "MPSettingsHelper.h"
 
+#import "NSError+Messages.h"
+
 #import "KeePassKit/KeePassKit.h"
 
 
@@ -35,7 +37,7 @@ NSString *const MPPluginHostDidLoadPlugin = @"comt.hicknhack.macpass.MPPluginHos
 NSString *const MPPluginHostPluginBundleIdentifiyerKey = @"MPPluginHostPluginBundleIdentifiyerKey";
 
 
-@interface MPPluginHost ()
+@interface MPPluginHost () <NSFileManagerDelegate>
 
 @property (strong) NSMutableArray<MPPlugin __kindof *> *mutablePlugins;
 @property (nonatomic) BOOL loadUnsecurePlugins;
@@ -79,6 +81,31 @@ NSString *const MPPluginHostPluginBundleIdentifiyerKey = @"MPPluginHostPluginBun
 - (NSArray<MPPlugin *> *)plugins {
   return [self.mutablePlugins copy];
 }
+
+- (BOOL)installPluginAtURL:(NSURL *)url error:(NSError *__autoreleasing *)error {
+  if(![self _validURL:url]) {
+    if(error) {
+      *error = [NSError errorWithCode:MPErrorInvalidPlugin description:NSLocalizedString(@"ERROR_INVALID_PLUGIN", @"Error description given when adding an invalid plugin")];
+    }
+    return NO;
+  }
+  NSString *fileName;
+  if(![url getResourceValue:&fileName forKey:NSURLNameKey error:error]) {
+    return NO;
+  }
+  NSURL *appSupportURL = [NSApp applicationSupportDirectoryURL:YES];
+  NSURL *destinationURL = [appSupportURL URLByAppendingPathComponent:fileName];
+  NSFileManager.defaultManager.delegate = self;
+  return [NSFileManager.defaultManager moveItemAtURL:url toURL:destinationURL error:error];
+}
+
+#pragma mark - NSFileManagerDelegate
+
+- (BOOL)fileManager:(NSFileManager *)fileManager shouldProceedAfterError:(NSError *)error movingItemAtURL:(NSURL *)srcURL toURL:(NSURL *)dstURL {
+  return NO;
+}
+
+#pragma mark - Plugin Loading
 
 - (void)_loadPlugins {
   NSURL *appSupportDir = [NSApp applicationSupportDirectoryURL:YES];
@@ -131,7 +158,7 @@ NSString *const MPPluginHostPluginBundleIdentifiyerKey = @"MPPluginHostPluginBun
     }
     
     if(![pluginBundle loadAndReturnError:&error]) {
-      NSLog(@"Bunlde Loading Error %@ %@", error.localizedDescription, error.localizedFailureReason);
+      NSLog(@"Bundle Loading Error %@ %@", error.localizedDescription, error.localizedFailureReason);
       continue;
     }
     

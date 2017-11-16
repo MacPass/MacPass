@@ -26,11 +26,21 @@
 
 #import "MPSettingsHelper.h"
 
+#import "NSApplication+MPAdditions.h"
+
+#import <Foundation/Foundation.h>
+
+typedef NS_ENUM(NSUInteger, MPPluginSegmentType) {
+  MPAddPluginSegment = 0,
+  MPRemovePluginSegment = 1
+};
+
 @interface MPPluginSettingsController () <NSTableViewDataSource, NSTableViewDelegate>
 
 @property (weak) IBOutlet NSTableView *pluginTableView;
 @property (weak) IBOutlet NSView *settingsView;
 @property (weak) IBOutlet NSButton *loadInsecurePlugsinCheckButton;
+@property (weak) IBOutlet NSSegmentedControl *addRemovePluginsControl;
 
 @end
 
@@ -55,11 +65,13 @@
 - (void)viewDidLoad {
   self.pluginTableView.delegate = self;
   self.pluginTableView.dataSource = self;
+  [self.addRemovePluginsControl setEnabled:NO forSegment:MPRemovePluginSegment];
   
   [self.loadInsecurePlugsinCheckButton bind:NSValueBinding
                                    toObject:[NSUserDefaultsController sharedUserDefaultsController]
                                 withKeyPath:[MPSettingsHelper defaultControllerPathForKey:kMPSettingsKeyLoadUnsecurePlugins]
                                     options:nil];
+  
   
 }
 
@@ -98,7 +110,61 @@
 
 - (void)tableViewSelectionDidChange:(NSNotification *)notification {
   NSTableView *table = notification.object;
-  [self showSettingsForPlugin:[self pluginForRow:table.selectedRow]];
+  MPPlugin *plugin = [self pluginForRow:table.selectedRow];
+  [self.addRemovePluginsControl setEnabled:(nil != plugin) forSegment:MPRemovePluginSegment];
+  [self showSettingsForPlugin:plugin];
+}
+
+- (IBAction)addOrRemovePlugin:(id)sender {
+  if(sender != self.addRemovePluginsControl) {
+    return;
+  }
+  switch(self.addRemovePluginsControl.selectedSegment) {
+    case MPAddPluginSegment:
+      [self showAddPluginPanel];
+      break;
+    case MPRemovePluginSegment:
+      break;
+    default:
+      break;
+  }
+}
+
+- (void)showAddPluginPanel {
+  NSOpenPanel *openPanel = [NSOpenPanel openPanel];
+  openPanel.allowedFileTypes = @[kMPPluginFileExtension];
+  openPanel.allowsMultipleSelection = NO;
+  openPanel.canChooseFiles = YES;
+  openPanel.canChooseDirectories = NO;
+  [openPanel beginSheetModalForWindow:self.view.window completionHandler:^(NSModalResponse result) {
+    if(NSModalResponseOK) {
+      if(openPanel.URLs.count == 1) {
+        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.5 *  NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+        [self _addPlugin:openPanel.URLs.firstObject];
+        });
+      }
+    }
+  }];
+}
+
+- (void)_addPlugin:(NSURL *)bundleURL {
+  NSError *error;
+  if(![[MPPluginHost sharedHost] installPluginAtURL:bundleURL error:&error]) {
+    [NSApp presentError:error modalForWindow:self.view.window delegate:nil didPresentSelector:NULL contextInfo:NULL];
+  }
+  else {
+    NSAlert *alert = [[NSAlert alloc] init];
+    alert.alertStyle = NSAlertStyleInformational;
+    alert.messageText = NSLocalizedString(@"ALERT_MESSAGE_TEXT_PLUGIN_INSTALLED_SUGGEST_RESTART", "Alert message text when a plugin was successfully installed");
+    alert.informativeText = NSLocalizedString(@"ALERT_INFORMATIVE_TEXT_PLUGIN_INSTALLED_SUGGEST_RESTART", "ALert informative text when a plugin was sucessfully installed");
+    [alert addButtonWithTitle:NSLocalizedString(@"CANCEL", @"Cancel button in plugin installed, request restart alert")];
+    [alert addButtonWithTitle:NSLocalizedString(@"RESTART", @"Restart button in plugin installed, request restart alert")];
+    [alert beginSheetModalForWindow:self.view.window completionHandler:^(NSModalResponse returnCode) {
+      if(returnCode == NSAlertSecondButtonReturn) {
+        [NSApp relaunchAfterDelay:3];
+      }
+    }];
+  }
 }
 
 @end

@@ -29,8 +29,8 @@ NS_ASSUME_NONNULL_BEGIN
 @property (copy, readonly) NSString *applicationName;
 @property (copy, readonly, nullable) NSURL *applicationSupportDirectoryURL;
 
-- (NSURL  * _Nullable)applicationSupportDirectoryURL:(BOOL)create;
-
+- (NSURL *_Nullable)applicationSupportDirectoryURL:(BOOL)create;
+- (void)relaunchAfterDelay:(CGFloat)seconds;
 @end
 
 NS_ASSUME_NONNULL_END

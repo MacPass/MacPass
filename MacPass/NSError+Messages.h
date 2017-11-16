@@ -26,6 +26,7 @@ FOUNDATION_EXPORT NSString *const MPErrorDomain;
 
 typedef NS_ENUM(NSInteger, MPErrorCodes) {
   MPErrorNoPasswordOrKeyFile = 10000,
+  MPErrorInvalidPlugin
 };
 
 @interface NSError (Messages)
