@@ -134,7 +134,16 @@
                                                 <size key="maxSize" width="463" height="10000000"/>
                                                 <color key="insertionPointColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                                                 <connections>
-                                                    <binding destination="-2" name="editable" keyPath="representedObject.isHistory" id="zUB-H2-SkW">
+                                                    <binding destination="-2" name="editable2" keyPath="representedObject" previousBinding="3gj-Fz-0G8" id="unc-qC-MMH">
+                                                        <dictionary key="options">
+                                                            <integer key="NSMultipleValuesPlaceholder" value="-1"/>
+                                                            <integer key="NSNoSelectionPlaceholder" value="-1"/>
+                                                            <integer key="NSNotApplicablePlaceholder" value="-1"/>
+                                                            <integer key="NSNullPlaceholder" value="-1"/>
+                                                            <string key="NSValueTransformerName">NSIsNotNil</string>
+                                                        </dictionary>
+                                                    </binding>
+                                                    <binding destination="-2" name="editable" keyPath="representedObject.isHistory" id="3gj-Fz-0G8">
                                                         <dictionary key="options">
                                                             <string key="NSValueTransformerName">NSNegateBoolean</string>
                                                         </dictionary>
