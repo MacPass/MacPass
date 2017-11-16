@@ -786,13 +786,12 @@ NSString *const MPDocumentGroupKey                            = @"MPDocumentGrou
   [self duplicateEntryWithOptions:kKPKCopyOptionNone];
 }
 
-- (void)duplicateEntryWithOptions:(KPKCopyOptions)options {
-  BOOL plural = self.selectedEntries.count > 1;
+- (void)duplicateEntryWithOptions:(KPKCopyOptions)options { 
   for(KPKEntry *entry in self.selectedEntries) {
     KPKEntry *duplicate = [entry copyWithTitle:nil options:options];
     [duplicate addToGroup:entry.parent];
   }
-  [self.undoManager setActionName:plural ? NSLocalizedString(@"DUPLICATE_ENTRIES", "") : NSLocalizedString(@"DUPLICATE_ENTRY", "")];
+  [self.undoManager setActionName:[NSString stringWithFormat:NSLocalizedString(@"DUPLICATE_ENTRIES_%ld", @"Action name for duplicating entries"), self.selectedEntries.count]];
 }
 
 #pragma mark Validation
