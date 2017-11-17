@@ -38,13 +38,13 @@
 "NEW_ENTRY_WITH_TEMPLATE_%@" = "Crear Entrada con Plantilla %@";
 "NEW_DATABASE" = "Base de Datos";
 "OPEN_URL" = "Abrir URL";
-"PERFORM_AUTOTYPE_FOR_ENTRY" = "Generar Autotype";
+"PERFORM_AUTOTYPE_FOR_ENTRY" = "Generar Autollenado";
 "PREVIEW" = "Vista Previa";
 "PASSWORD_GENERATOR_SET_DEFAULTS" = "Configurar Predeterminados";
 "PASSWORD_GENERATOR_RESET_ENTRY_DEFAULTS" = "Reiniciar";
 "TRASH_ENTRY" = "Entrada de Papelera";
 "TRASH_GROUP" = "Grupo de Papelera";
-"SHOW_HISTORY" = "Show History";
+"SHOW_HISTORY" = "Mostrar Historial";
 
 /*
  Search
@@ -101,14 +101,14 @@
 
 /* Group Inspector */
 /* Autotype Combobox */
-"AUTOTYPE_NO" = "Deshabilitar Autotype";
-"AUTOTYPE_YES" = "Habilitar Autotype";
-"AUTOTYPE_INHERIT" = "Heredar Configuración de Autotype";
+"AUTOTYPE_NO" = "Deshabilitar Autollenado";
+"AUTOTYPE_YES" = "Habilitar Autollenado";
+"AUTOTYPE_INHERIT" = "Heredar Configuración de Autollenado";
 
 /* Search Combobox */
-"SEARCH_INHERIT" = "Inherit Search Settings";
-"SEARCH_YES" = "Include in Search";
-"SEARCH_NO" = "Exclude from Search";
+"SEARCH_INHERIT" = "Heredar Configuración de Búsqueda";
+"SEARCH_YES" = "Incluir en Búsqueda";
+"SEARCH_NO" = "Exluir de Búsqueda";
 
 /*
  Date/Time Displays
@@ -140,7 +140,7 @@
 "PLUGIN_SETTINGS" = "Plugins";
 
 /* Feature not supported in Version */
-"KDBX_ONLY_FEATURE" = "Caraterística no soportada en base de datos KDB";
+"KDBX_ONLY_FEATURE" = "Caraterística no soportada en archivos KDB";
 
 /* Template */
 "NO_TEMPLATE_GROUP" = "Sin plantillas";
@@ -152,7 +152,7 @@
 /* Autoype */
 /* Candiate dialog */
 "SELECT_AUTOTYPE_CANDIDATE" = "Seleccionar candidato";
-"AUTOTYPE_OVERLAY_NO_DOCUMENTS" = "Please open a file to use Global Autotype!";
+"AUTOTYPE_OVERLAY_NO_DOCUMENTS" = "Debes abrir un archivo para usar Autollenado Global";
 "AUTOTYPE_OVERLAY_NO_MATCH_FOR_%@" = "No hay registros para %@!";
 "AUTOTYPE_OVERLAY_SINGLE_MATCH" = "Encontrado";
 
@@ -179,15 +179,15 @@
 /* Informative text displayed when the file was change form another application */
 "FILE_CHANGED_BY_OTHERS_INFO_TEXT" = "El archivo cargado no coincide con el guardado en el disco. ¿Deseas continuar?";
 /* Set the selection as default file change strategy */
-"SET_AS_DEFAULT_FILE_CHANGE_STRATEGY" = "Use the selected strategy and do not ask me again!";
+"SET_AS_DEFAULT_FILE_CHANGE_STRATEGY" = "Utilizar la estrategia seleccionada y no volverme a preguntar.";
 /* Always show a dialog after an external file change */
-"FILE_CHANGE_STRATEGY_ASK" = "Ask Me What to Do";
+"FILE_CHANGE_STRATEGY_ASK" = "Preguntarme qué hacer";
 /* Button to ignore the changes */
 "KEEP_MINE" = "Conservar versión actual y descartar cambios";
 /* Button to reload the changes form disk */
 "LOAD_CHANGES" = "Cargar archivo modificado";
 /* Merge changes into file! */
-"MERGE_CHANGES" = "Merge changes!";
+"MERGE_CHANGES" = "Unir cambios";
 
 /* Password Input Messages, Errors and Warning */
 "PASSWORD_INPUT_NO_PASSWORD" = "Sin Contraseña";
@@ -199,5 +199,5 @@
 "ERROR_INVALID_KEYFILE" = "El Keyfile no es válido";
 
 /* Misc */
-"DOCUMENT_AUTOTYPE_CORRUPTION_WARNING" = "Por favor ejecuta Corregir Autotype...";
+"DOCUMENT_AUTOTYPE_CORRUPTION_WARNING" = "Por favor ejecuta Corregir Autollenado...";
 "FILE_OPEN_ERROR" = "Error al abrir el archivo.";
