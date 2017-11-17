@@ -28,6 +28,7 @@
 FOUNDATION_EXPORT NSString *const MPPasteBoardType;
 FOUNDATION_EXPORT NSString *const MPKdbDocumentUTI;
 FOUNDATION_EXPORT NSString *const MPKdbxDocumentUTI;
+FOUNDATION_EXPORT NSString *const MPPluginUTI;
 
 
 #endif

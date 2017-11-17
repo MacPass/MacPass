@@ -556,7 +556,7 @@ typedef void (^MPPasswordChangedBlock)(BOOL didChangePassword);
     alert.informativeText = NSLocalizedString(@"RECOMMEND_PASSWORD_CHANGE_ALERT_DESCRIPTION", "Informative text for the recommend password change alert");
     
     [alert addButtonWithTitle:NSLocalizedString(@"CHANGE_PASSWORD_WITH_DOTS", "Button to show the password change dialog")];
-    [alert addButtonWithTitle:NSLocalizedString(@"CANCEL", "Cancel button to postpone password change")];
+    [alert addButtonWithTitle:NSLocalizedString(@"CHANGE_LATER", "Button to postpone the password change")];
     alert.buttons[1].keyEquivalent = [NSString stringWithFormat:@"%c", 0x1b];
     
     

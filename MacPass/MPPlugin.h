@@ -48,8 +48,6 @@ FOUNDATION_EXPORT NSString *const kMPPluginFileExtension;
 
 @end
 
-@class KPKTree;
-
 @interface MPPlugin (Deprecated)
 
 - (instancetype)initWithPluginManager:(id)manager;

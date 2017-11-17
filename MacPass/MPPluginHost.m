@@ -37,10 +37,10 @@ NSString *const MPPluginHostDidLoadPlugin = @"comt.hicknhack.macpass.MPPluginHos
 NSString *const MPPluginHostPluginBundleIdentifiyerKey = @"MPPluginHostPluginBundleIdentifiyerKey";
 
 
-@interface MPPluginHost () <NSFileManagerDelegate>
-
+@interface MPPluginHost ()
 @property (strong) NSMutableArray<MPPlugin __kindof *> *mutablePlugins;
 @property (nonatomic) BOOL loadUnsecurePlugins;
+@property (copy) NSArray<NSString *> *disabledPlugins;
 
 @end
 
@@ -67,12 +67,17 @@ NSString *const MPPluginHostPluginBundleIdentifiyerKey = @"MPPluginHostPluginBun
   self = [super init];
   if(self) {
     _mutablePlugins = [[NSMutableArray alloc] init];
+    _disabledPlugins = [[NSUserDefaults standardUserDefaults] arrayForKey:kMPSettingsKeyLoadUnsecurePlugins];
     _loadUnsecurePlugins = [[NSUserDefaults standardUserDefaults] boolForKey:kMPSettingsKeyLoadUnsecurePlugins];
     [self _loadPlugins];
     
     [self bind:NSStringFromSelector(@selector(loadUnsecurePlugins))
-      toObject:[NSUserDefaultsController sharedUserDefaultsController]
+      toObject:NSUserDefaultsController.sharedUserDefaultsController
    withKeyPath:[MPSettingsHelper defaultControllerPathForKey:kMPSettingsKeyLoadUnsecurePlugins]
+       options:nil];
+    [self bind:NSStringFromSelector(@selector(disabledPlugins))
+     toObject:NSUserDefaultsController.sharedUserDefaultsController
+   withKeyPath:[MPSettingsHelper defaultControllerPathForKey:kMPSettingsKeyDisabledPlugins]
        options:nil];
   }
   return self;
@@ -95,15 +100,20 @@ NSString *const MPPluginHostPluginBundleIdentifiyerKey = @"MPPluginHostPluginBun
   }
   NSURL *appSupportURL = [NSApp applicationSupportDirectoryURL:YES];
   NSURL *destinationURL = [appSupportURL URLByAppendingPathComponent:fileName];
-  NSFileManager.defaultManager.delegate = self;
   return [NSFileManager.defaultManager moveItemAtURL:url toURL:destinationURL error:error];
 }
 
-#pragma mark - NSFileManagerDelegate
-
-- (BOOL)fileManager:(NSFileManager *)fileManager shouldProceedAfterError:(NSError *)error movingItemAtURL:(NSURL *)srcURL toURL:(NSURL *)dstURL {
-  return NO;
+- (BOOL)uninstallPlugin:(MPPlugin *)plugin error:(NSError *__autoreleasing *)error {
+  NSBundle *pluginBundle = [NSBundle bundleForClass:plugin.class];
+  return [NSFileManager.defaultManager trashItemAtURL:pluginBundle.bundleURL resultingItemURL:nil error:error];
 }
+
+- (void)disablePlugin:(MPPlugin *)plugin {
+}
+
+- (void)enablePlugin:(MPPlugin *)plugin {
+}
+
 
 #pragma mark - Plugin Loading
 
@@ -146,6 +156,12 @@ NSString *const MPPluginHostPluginBundleIdentifiyerKey = @"MPPluginHostPluginBun
       NSLog(@"Could not create bundle %@", pluginURL.path);
       continue;
     }
+    
+    if(pluginBundle.bundleIdentifier) {
+      
+    }
+    
+    
     NSError *error;
     if(![pluginBundle preflightAndReturnError:&error]) {
       NSLog(@"Preflight Error %@ %@", error.localizedDescription, error.localizedFailureReason );
@@ -166,11 +182,19 @@ NSString *const MPPluginHostPluginBundleIdentifiyerKey = @"MPPluginHostPluginBun
       NSLog(@"Wrong principal Class.");
       continue;
     }
-    if([pluginBundle.principalClass instancesRespondToSelector:NSSelectorFromString(@"initWithPluginManager:")]) {
-      NSLog(@"Plugin uses old interface. Update plugin to use initWithPluginHost: instead of initWithPluginManager:!");
-    }
     
-    MPPlugin *plugin = [[pluginBundle.principalClass alloc] initWithPluginHost:self];
+    IMP defaultImp = [MPPlugin.class instanceMethodForSelector:@selector(initWithPluginManager:)];
+    IMP pluginImp = [pluginBundle.principalClass instanceMethodForSelector:@selector(initWithPluginManager:)];
+    
+    MPPlugin *plugin;
+    if(defaultImp != pluginImp) {
+      NSLog(@"Plugin uses old interface. Update plugin to use initWithPluginHost: instead of initWithPluginManager:!");
+      plugin = [[pluginBundle.principalClass alloc] initWithPluginManager:self];
+    }
+    else {
+      plugin = [[pluginBundle.principalClass alloc] initWithPluginHost:self];
+    }
+
     if(plugin) {
       NSLog(@"Loaded plugin instance %@", pluginBundle.principalClass);
       [[NSNotificationCenter defaultCenter] postNotificationName:MPPluginHostWillLoadPlugin
@@ -251,6 +275,5 @@ NSString *const MPPluginHostPluginBundleIdentifiyerKey = @"MPPluginHostPluginBun
   
   return NO;
 }
-
 
 @end

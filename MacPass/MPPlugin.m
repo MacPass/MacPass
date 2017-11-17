@@ -48,10 +48,16 @@ NSString *const kMPPluginFileExtension = @"mpplugin";
 
 - (NSString *)version {
   NSBundle *bundle = [NSBundle bundleForClass:[self class]];
-  NSString *version;
   if(bundle) {
-    version = bundle.infoDictionary[(NSString *)kCFBundleVersionKey];
-    if(version) {
+    NSString *humanVersion = bundle.infoDictionary[@"CFBundleShortVersionString"];
+    NSString *version = bundle.infoDictionary[(NSString *)kCFBundleVersionKey];
+    if(humanVersion && version) {
+      return [NSString stringWithFormat:@"%@ (%@)", humanVersion, version];
+    }
+    else if(humanVersion) {
+      return humanVersion;
+    }
+    else if(version) {
       return version;
     }
   }
@@ -71,7 +77,7 @@ NSString *const kMPPluginFileExtension = @"mpplugin";
   NSLog(@"Deprecated initalizer. Use initWithPluginHost: instead!");
 #pragma clang diagnostic push
 #pragma clang diagnostic ignored "-Wnonnull"
-  self = [self initWithPluginHost:nil];
+  self = [self initWithPluginHost:manager];
 #pragma cland diagnostic pop
   return self;
 }

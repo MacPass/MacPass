@@ -39,5 +39,8 @@ FOUNDATION_EXPORT NSString *const MPPluginHostPluginBundleIdentifiyerKey;
 - (instancetype)init NS_UNAVAILABLE;
 
 - (BOOL)installPluginAtURL:(NSURL *)url error:(NSError *__autoreleasing *)error;
+- (BOOL)uninstallPlugin:(MPPlugin *)plugin error:(NSError *__autoreleasing *)error;
+- (void)disablePlugin:(MPPlugin *)plugin;
+- (void)enablePlugin:(MPPlugin *)plugin;
 
 @end

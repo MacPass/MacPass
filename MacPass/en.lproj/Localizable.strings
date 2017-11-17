@@ -19,23 +19,29 @@
 /* Button label to abort a merge on a file with changed master key! */
 "ABORT_MERGE_KEEP_MINE" = "Abort Merge. Keep Mine.";
 
-/* No comment provided by engineer. */
+/* Toolbar item with action menu */
 "ACTION" = "Action";
 
-/* No comment provided by engineer. */
+/* Action to add an entry via template */
 "ADD_TREMPLATE_ENTRY" = "Create Template Entry";
 
-/* ALert informative text when a plugin was sucessfully installed */
-"ALERT_INFORMATIVE_TEXT_PLUGIN_INSTALLED_SUGGEST_RESTART" = "Plugins can only be loaded at start up. To activate the installed pluing, please restart MacPass.";
+/* Alert informative text when a plugin was sucessfully installed */
+"ALERT_INFORMATIVE_TEXT_PLUGIN_INSTALLED_SUGGEST_RESTART" = "Plugins can only be loaded at start up. To activate the installed plugin, please restart MacPass.";
 
-/* (No Comment) */
-"ALERT_KDB_UNSUPPORTED_ADD_ENTRY_INFORMATIVE" = "The KDB format does not support entries inside this group. The entry will be moved when the file is saved.";
+/* Alert informative text when a plugin was sucessfully uninstalled */
+"ALERT_INFORMATIVE_TEXT_PLUGIN_UNINSTALLED_SUGGEST_RESTART" = "Plugins cannot be removed while MacPass is running. Please restart MacPass to unload the plugin.";
 
-/* (No Comment) */
-"ALERT_KDB_UNSUPPORTED_ADD_ENTRY_MESSAGE" = "Adding entries not supported";
+/* Alert informative text to ask the user if he really want to uninstall the plugin */
+"ALERT_INFORMATIVE_TEXT_REALLY_UNINSTALL_PLUGIN" = "The Plugin will be moved to the Trash.";
 
 /* Alert message text when a plugin was successfully installed */
 "ALERT_MESSAGE_TEXT_PLUGIN_INSTALLED_SUGGEST_RESTART" = "Sucessfully installed Plugin!";
+
+/* Alert message text when a plugin was successfully uninstalled. Include %@ placeholder for plugin name */
+"ALERT_MESSAGE_TEXT_PLUGIN_%@_UNINSTALLED_SUGGEST_RESTART" = "Plugin %@ uninstalled!";
+
+/* Alert message text to ask the user if he really want to uninstall the plugin. Include %@ placeholder for plugin name */
+"ALERT_MESSAGE_TEXT_REALLY_UNINSTALL_PLUGIN_%@" = "Should the Plugin %@ really be uninstalled?";
 
 /* Attachments column title (shows counts)
    Menu item to toggle display of attachment count column in entry table */
@@ -65,9 +71,7 @@
 /* Sucessfully merged external changes */
 "AUTO_MERGE_NOTIFICATION_TEXT" = "Auto merge successfull!";
 
-/* Cancel
-   Cancel button in plugin installed, request restart alert
-   Cancel button to postpone password change */
+/* Cancel */
 "CANCEL" = "Cancel";
 
 /* Menu item in the database outline context menu to change the database name */
@@ -75,6 +79,9 @@
 
 /* (No Comment) */
 "CHANGE_FORMAT" = "Change File Format to KDBX";
+
+/* Button to postpone the password change */
+"CHANGE_LATER" = "Change Later";
 
 /* Button to show the password change dialog
    Single button to show the password change dialog */
@@ -89,7 +96,7 @@
 /* Clear Autotype Button */
 "CLEAR_AUTOTYPE" = "Clear Autotype";
 
-/* No comment provided by engineer. */
+/* Menu to clear recent searches */
 "CLEAR_RECENT_SEARCHES" = "Clear recent searches";
 
 /* Field name that was copied to the pasteboard */
@@ -119,13 +126,15 @@
 /* Action title for copying a group via drag and drop */
 "COPY_GROUP" = "Copy Group";
 
-/* Menu item to copy the password of an entry */
+/* Menu item to copy the password of an entry
+   Toolbar item copy password */
 "COPY_PASSWORD" = "Copy Password";
 
 /* Menu item to copy the URL of an entry */
 "COPY_URL" = "Copy URL";
 
-/* Menu item to copy the username of an entry */
+/* Menu item to copy the username of an entry
+   Toolbar item copy username */
 "COPY_USERNAME" = "Copy Username";
 
 /* (No Comment) */
@@ -137,7 +146,7 @@
 /* Title for menu for custom search filters */
 "CUSTOM_SEARCH_FILTER_MENU" = "Custom Search Filter…";
 
-/* Default name database */
+/* Default display name for KDB databases */
 "DATABASE" = "Database";
 
 /* Default Browser */
@@ -161,7 +170,8 @@
 /* Menu item in the database outline context menu to delete the node from the trash
    Menu item to delete an entry
    Menu item to delete the selected attached file
-   Menu item to delete the selected custom icon */
+   Menu item to delete the selected custom icon
+   Toolbar item delete item */
 "DELETE" = "Delete";
 
 /* No comment provided by engineer. */
@@ -266,7 +276,7 @@
 /* Imports a dragged URL for a new entry */
 "IMPORT_URL" = "Import URL";
 
-/* No comment provided by engineer. */
+/* Toolbar item toggle inspector */
 "INSPECTOR" = "Inspector";
 
 /* Label for the integration settings tab */
@@ -284,10 +294,16 @@
 /* Reopen the file! */
 "KEEP_OTHER_DISCARD_MINE" = "Keep Other, Discard Mine";
 
+/* Do not install the plugin */
+"KEEP_PLUGIN" = "Keep Plugin";
+
+/* Do not restart MacPass */
+"KEEP_RUNNING" = "Keep Running";
+
 /* last week */
 "LAST_WEEK" = "Last week";
 
-/* No comment provided by engineer. */
+/* Toolbar item to Lock the database */
 "LOCK" = "Lock";
 
 /* Message in the open panel to add attachments to an entry */
@@ -312,13 +328,15 @@
 /* Name for a newly created Database */
 "NEW_DATABASE" = "Database";
 
-/* Menu item to create a new entry */
+/* Menu item to create a new entry
+   Toolbar item new entry */
 "NEW_ENTRY" = "New Entry";
 
 /* Submenu to add an entry via template */
 "NEW_ENTRY_WITH_TEMPLATE_%@" = "Create Entry with Template %@";
 
-/* Menu item to create a new group */
+/* Menu item to create a new group
+   Toolbar item new group */
 "NEW_GROUP" = "New Group";
 
 /* Placeholder text for input fields if no entry or group is selected */
@@ -401,10 +419,13 @@
 /* Label for plugin settings tab */
 "PLUGIN_SETTINGS" = "Plugins";
 
+/* Plugin version. Include a %@ placeholder for version string */
+"PLUGIN_VERSION_%@" = "Version: %@";
+
 /* Menu item to preview the selected attached file. */
 "PREVIEW" = "Preview";
 
-/* No comment provided by engineer. */
+/* Recent searches menu item */
 "RECENT_SEARCHES" = "Recent searches";
 
 /* Informative text for the recommend password change alert */
@@ -413,7 +434,7 @@
 /* Message text for the recommend password change alert */
 "RECOMMEND_PASSWORD_CHANGE_ALERT_TITLE" = "Please change the database password!";
 
-/* Restart button in plugin installed, request restart alert */
+/* Restart */
 "RESTART" = "Restart";
 
 /* Action to restore and Entry to a previous state of it's history */
@@ -432,7 +453,7 @@
 /* Save file menu item title when save will prompt for a location to save or ask for a password/key */
 "SAVE_WITH_DOTS" = "Save…";
 
-/* No comment provided by engineer. */
+/* Search input in Toolbar */
 "SEARCH" = "Search";
 
 /* Search option: Find duplicate passwords */
@@ -477,7 +498,8 @@
 /* (No Comment) */
 "SHORT_FILE_CHANGE_STRATEGY_ASK" = "Ask";
 
-/* Menu item to show the history of the selected entry */
+/* Menu item to show the history of the selected entry
+   Toolbar item to toggel history display */
 "SHOW_HISTORY" = "Show History";
 
 /* Menu item to show the reference builder in a text view's context menu */
@@ -497,6 +519,9 @@
 
 /* Move Group to Trash */
 "TRASH_GROUP" = "Trash Group";
+
+/* Uninstall plugin */
+"UNINSTALL" = "Uninstall";
 
 /* No comment provided by engineer. */
 "UNKNOWN_FILE_VERSION" = "Unknown File Version";
