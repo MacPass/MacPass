@@ -19,13 +19,32 @@
 /* Button label to abort a merge on a file with changed master key! */
 "ABORT_MERGE_KEEP_MINE" = "Synchronisation abbrechen. Meine Änderungen behalten.";
 
-/* No comment provided by engineer. */
+/* Toolbar item with action menu */
 "ACTION" = "Aktion";
 
-/* No comment provided by engineer. */
+/* Action to add an entry via template */
 "ADD_TREMPLATE_ENTRY" = "Vorgabeeintrag erstellen";
 
-/* Attachments column title (shows counts) */
+/* Alert informative text when a plugin was sucessfully installed */
+"ALERT_INFORMATIVE_TEXT_PLUGIN_INSTALLED_SUGGEST_RESTART" = "Plugins können nur beim Start geladen werden. Um das Plugin vollständig zu aktivieren, starten Sie bitte MacPass erneut.";
+
+/* Alert informative text when a plugin was sucessfully uninstalled */
+"ALERT_INFORMATIVE_TEXT_PLUGIN_UNINSTALLED_SUGGEST_RESTART" = "Plugins können nicht entfernt werden, währen MacPass aktiv ist. Bitte starten Sie MacPass neu, um das Plugin endgültig zu entfernen.";
+
+/* Alert informative text to ask the user if he really want to uninstall the plugin */
+"ALERT_INFORMATIVE_TEXT_REALLY_UNINSTALL_PLUGIN" = "Das Plugin wird in den Papierkorb verschoben";
+
+/* Alert message text when a plugin was successfully uninstalled. Include %@ placeholder for plugin name */
+"ALERT_MESSAGE_TEXT_PLUGIN_%@_UNINSTALLED_SUGGEST_RESTART" = "Plugin %@ wurde deinstalliert!";
+
+/* Alert message text when a plugin was successfully installed */
+"ALERT_MESSAGE_TEXT_PLUGIN_INSTALLED_SUGGEST_RESTART" = "Plugin erfolgreich installiert!";
+
+/* Alert message text to ask the user if he really want to uninstall the plugin. Include %@ placeholder for plugin name */
+"ALERT_MESSAGE_TEXT_REALLY_UNINSTALL_PLUGIN_%@" = "Möchten Sie das Plugin %@ wirklich deinstallieren?";
+
+/* Attachments column title (shows counts)
+   Menu item to toggle display of attachment count column in entry table */
 "ATTACHMENTS" = "Anhänge";
 
 /* Menu item for automatic trash creation */
@@ -49,8 +68,10 @@
 /* No comment provided by engineer. */
 "AUTOTYPE_YES" = "Autotype aktivieren";
 
-/* Cancel
-   Cancel button to postpone password change */
+/* Sucessfully merged external changes */
+"AUTO_MERGE_NOTIFICATION_TEXT" = "Daten wurden erfolgreich automatische synchronisiert";
+
+/* Cancel */
 "CANCEL" = "Abbrechen";
 
 /* Menu item in the database outline context menu to change the database name */
@@ -58,6 +79,9 @@
 
 /* (No Comment) */
 "CHANGE_FORMAT" = "Als KDBX speichern";
+
+/* Button to postpone the password change */
+"CHANGE_LATER" = "Später Ändern";
 
 /* Button to show the password change dialog
    Single button to show the password change dialog */
@@ -72,7 +96,7 @@
 /* Clear Autotype Button */
 "CLEAR_AUTOTYPE" = "Autotype Löschen";
 
-/* No comment provided by engineer. */
+/* Menu to clear recent searches */
 "CLEAR_RECENT_SEARCHES" = "Letzte Suchanfragen entfernen";
 
 /* Field name that was copied to the pasteboard */
@@ -90,6 +114,9 @@
 /* Submenu to Copy custom fields */
 "COPY_CUSTOM_FIELDS" = "Feld kopieren";
 
+/* Context menu sub-menu to copy custom fields to clipboard */
+"COPY_CUSTOM_FIELDS_MENU" = "Feld kopieren…";
+
 /* Action title for copying an entry via drag and drop */
 "COPY_ENTRY" = "Eintrag kopieren";
 
@@ -99,19 +126,27 @@
 /* Action title for copying a group via drag and drop */
 "COPY_GROUP" = "Gruppe kopieren";
 
-/* Menu item to copy the password of an entry */
+/* Menu item to copy the password of an entry
+   Toolbar item copy password */
 "COPY_PASSWORD" = "Passwort kopieren";
 
 /* Menu item to copy the URL of an entry */
 "COPY_URL" = "Adresse kopieren";
 
-/* Menu item to copy the username of an entry */
+/* Menu item to copy the username of an entry
+   Toolbar item copy username */
 "COPY_USERNAME" = "Benutzername kopieren";
 
 /* (No Comment) */
 "CREATED_AT_%@" = "erstellt: %@";
 
-/* Default name database */
+/* Curstom attribute reference item */
+"CUSTOM_ATTRIBUTE" = "Spezielle Eigenschaften";
+
+/* Title for menu for custom search filters */
+"CUSTOM_SEARCH_FILTER_MENU" = "Spezielle Suchefilter…";
+
+/* Default display name for KDB databases */
 "DATABASE" = "Datenbank";
 
 /* Default Browser */
@@ -135,7 +170,8 @@
 /* Menu item in the database outline context menu to delete the node from the trash
    Menu item to delete an entry
    Menu item to delete the selected attached file
-   Menu item to delete the selected custom icon */
+   Menu item to delete the selected custom icon
+   Toolbar item delete item */
 "DELETE" = "Löschen";
 
 /* No comment provided by engineer. */
@@ -153,10 +189,11 @@
 /* No comment provided by engineer. */
 "DOCUMENT_AUTOTYPE_CORRUPTION_WARNING" = "Bitte Autotypekorrektur durchführen!";
 
+/* Action name for duplicating entries */
+"DUPLICATE_ENTRIES_%ld" = "Einträge duplizieren %ld";
+
 /* Menu item to directly diplicate an entry */
 "DUPLICATE_ENTRY" = "Eintrag duplizieren";
-
-"DUPLICATE_ENTRIES_%ld" = "Einträge duplizieren %ld";
 
 /* Menu item to duplicate an entry with options how to duplicate. Will present a dialog. */
 "DUPLICATE_ENTRY_WITH_OPTIONS" = "Eintrag duplizieren…";
@@ -185,6 +222,9 @@
 
 /* Keyfile not valid */
 "ERROR_INVALID_KEYFILE" = "Schlüsseldatei ist ungültig";
+
+/* Error description given when adding an invalid plugin */
+"ERROR_INVALID_PLUGIN" = "Kein MacPass-Plugin";
 
 /* Passwords do not match */
 "ERROR_PASSWORD_MISSMATCH" = "Passwörter stimmen nicht überein";
@@ -229,13 +269,14 @@
 /* Group column title */
 "GROUP" = "Gruppe";
 
-/* History count column title */
+/* History count column title
+   Menu item to toggle display of history count column in entry table */
 "HISTORY" = "Historie";
 
 /* Imports a dragged URL for a new entry */
 "IMPORT_URL" = "URL importieren";
 
-/* No comment provided by engineer. */
+/* Toolbar item toggle inspector */
 "INSPECTOR" = "Inspektor";
 
 /* Label for the integration settings tab */
@@ -253,16 +294,29 @@
 /* Reopen the file! */
 "KEEP_OTHER_DISCARD_MINE" = "Behalte andere, verwerfe meine!";
 
+/* Do not install the plugin */
+"KEEP_PLUGIN" = "Plugin Behalten";
+
+/* Do not restart MacPass */
+"KEEP_RUNNING" = "Nicht Neustarten";
+
 /* last week */
 "LAST_WEEK" = "Letze Woche";
 
-/* No comment provided by engineer. */
+/* Toolbar item to Lock the database */
 "LOCK" = "Sperren";
 
-/* (No Comment) */
-"MODIFED_AT_%@" = "verändert: %@";
+/* Message in the open panel to add attachments to an entry */
+"MESSAGE_ADD_ATTACHMENT_OPEN_PANEL" = "Bitte wählen Sie die Datei aus, die hinzugefügt werden soll";
 
-/* Modification date column title */
+/* Message in the add plugin open panel */
+"MESSAGE_ADD_PLUGIN_OPEN_PANEL" = "Bitte wählen Sie das Plugin aus, welches installiert werden soll";
+
+/* Message in the open panel to import an XML file */
+"MESSAGE_XML_OPEN_PANEL" = "Bitte wählen Sie die XML-Datei aus, die importiert werden soll.";
+
+/* Menu item to toggle display of modified date column in entry table
+   Modification date column title */
 "MODIFIED" = "Verändert";
 
 /* Action title for moving an entry via drag and drop */
@@ -274,19 +328,22 @@
 /* Name for a newly created Database */
 "NEW_DATABASE" = "Datenbank";
 
-/* Menu item to create a new entry */
+/* Menu item to create a new entry
+   Toolbar item new entry */
 "NEW_ENTRY" = "Neuer Eintrag";
 
 /* Submenu to add an entry via template */
 "NEW_ENTRY_WITH_TEMPLATE_%@" = "Neuer Eintrag aus Vorlage %@";
 
-/* Menu item to create a new group */
+/* Menu item to create a new group
+   Toolbar item new group */
 "NEW_GROUP" = "Neue Gruppe";
 
 /* Placeholder text for input fields if no entry or group is selected */
 "NONE" = "Leer";
 
 /* Displayed name when notes or part of notes was copied
+   Menu item to toggle display of notes column in entry table
    Notes column title
    Notes reference item */
 "NOTES" = "Notizen";
@@ -315,6 +372,15 @@
 /* preset to expire after one year from now */
 "ONE_YEAR" = "in enem Jahr";
 
+/* Open button in the open panel to add attachments to an entry */
+"OPEN_BUTTON_ADD_ATTACHMENT_OPEN_PANEL" = "Hinzufügen";
+
+/* Open button in the add plugin open panel */
+"OPEN_BUTTON_ADD_PLUGIN_OPEN_PANEL" = "Installieren";
+
+/* Open button in the open panel to import an XML file */
+"OPEN_BUTTON_IMPORT_XML_OPEN_PANEL" = "Importieren";
+
 /* Menu item to open the URL with the default application */
 "OPEN_URL" = "Adresse öffnen";
 
@@ -324,7 +390,8 @@
 /* No comment provided by engineer. */
 "OUTPUT_VALUE" = "Ausgabewert";
 
-/* Password column title
+/* Menu item to toggle display of password column in entry table
+   Password column title
    Password reference item */
 "PASSWORD" = "Passwort";
 
@@ -347,7 +414,7 @@
 "PASSWORD_INPUT_REPEAT_PASSWORD" = "Passwort wiederholen";
 
 /* Menu item to perform autotype with the selected entry */
-"PERFORM_AUTOTYPE_FOR_ENTRY" = "Autotype ausführen";
+"PERFORM_AUTOTYPE_FOR_ENTRY" = "Auto-Type ausführen";
 
 /* Label for plugin settings tab */
 "PLUGIN_SETTINGS" = "Plugins";
@@ -358,7 +425,7 @@
 /* Menu item to preview the selected attached file. */
 "PREVIEW" = "Vorschau";
 
-/* No comment provided by engineer. */
+/* Recent searches menu item */
 "RECENT_SEARCHES" = "Letze Suchanfragen";
 
 /* Informative text for the recommend password change alert */
@@ -366,6 +433,9 @@
 
 /* Message text for the recommend password change alert */
 "RECOMMEND_PASSWORD_CHANGE_ALERT_TITLE" = "Bitte ändern sie das Password der Datenbank!";
+
+/* Restart */
+"RESTART" = "Neustarten";
 
 /* Action to restore and Entry to a previous state of it's history */
 "RESTORE_HISTORY_ENTRY" = "Eintrag wiederherstellen";
@@ -381,9 +451,9 @@
 "SAVE_LOSSY" = "Mit Datenverlust speichern";
 
 /* Save file menu item title when save will prompt for a location to save or ask for a password/key */
-"SAVE_WITH_DOTS" = "Speichern …";
+"SAVE_WITH_DOTS" = "Speichern…";
 
-/* No comment provided by engineer. */
+/* Search input in Toolbar */
 "SEARCH" = "Suche";
 
 /* Search option: Find duplicate passwords */
@@ -399,7 +469,7 @@
 "SEARCH_NO" = "Nicht durchsuchbar";
 
 /* No comment provided by engineer. */
-"SEARCH_VALUE" = "Suchwert";
+"SEARCH_VALUE" = "Suche nach";
 
 /* No comment provided by engineer. */
 "SEARCH_YES" = "Durchsuchbar";
@@ -409,6 +479,12 @@
 
 /* Menu item title for the expiry preset selection menu in the date picker */
 "SELECT_DATE_PRESET" = "Datumvorgabe wählen …";
+
+/* Message on the open panel for selecting which browser to use for opening URLs */
+"SELECT_DEFAULT_BROWSER_OPEN_PANEL_MESSAGE" = "Bitte wählen Sie einen Web-Browser, mit dem URLs geöffnet werden sollen";
+
+/* Label for the select browser button on the open panel for selecting which browser to use for opening URLs */
+"SELECT_DEFAULT_BROWSER_OPEN_PANEL_SELECT_BUTTON" = "Auswählen";
 
 /* Message for the dialog to open a file for merge */
 "SELECT_FILE_TO_MERGE" = "Datei für Synchronisation auswählen";
@@ -422,13 +498,15 @@
 /* (No Comment) */
 "SHORT_FILE_CHANGE_STRATEGY_ASK" = "Nachfragen";
 
-/* Menu item to show the history of the selected entry */
+/* Menu item to show the history of the selected entry
+   Toolbar item to toggel history display */
 "SHOW_HISTORY" = "Historie anzeigen";
 
 /* Menu item to show the reference builder in a text view's context menu */
 "SHOW_REFERENCE_BUILDER" = "Referenz einfügen…";
 
 /* Displayed name when title field was copied
+   Menu item to toggle display of title column in entry table
    Title column title
    Title reference item */
 "TITLE" = "Titel";
@@ -436,14 +514,14 @@
 /* preset to expire tomorrow */
 "TOMORROW" = "Morgen";
 
-/* (No Comment) */
-"TRASH" = "Papierkorb";
-
 /* Move Entry to Trash */
 "TRASH_ENTRY" = "Eintrag löschen";
 
 /* Move Group to Trash */
 "TRASH_GROUP" = "Gruppe löschen";
+
+/* Uninstall plugin */
+"UNINSTALL" = "Deinstallieren";
 
 /* No comment provided by engineer. */
 "UNKNOWN_FILE_VERSION" = "Unbekannte Dateiversion";
@@ -454,12 +532,14 @@
 /* Update Settings Label */
 "UPDATE_SETTINGS" = "Aktualisierung";
 
-/* Submenu with options what to do with the URL of an entry
+/* Menu item to toggle display of url column in entry table
+   Submenu with options what to do with the URL of an entry
    Url column title
    URL reference item */
 "URL" = "Adresse";
 
-/* Username column title
+/* Menu item to toggle display of username column in entry table
+   Username column title
    Username reference item */
 "USERNAME" = "Nutzername";
 
@@ -472,6 +552,12 @@
 
 /* No Key or Password */
 "WARNING_NO_PASSWORD_OR_KEYFILE" = "Kein Password und/oder Schlüsseldatei festgelegt!";
+
+/* Informative Text displayed when clearing the Trash */
+"WARNING_ON_DELETE_TRASHED_NODE_DESCRIPTION" = "Die gewählten Elemente werden dauerhauft aus dem Papierkorb entfernt.";
+
+/* Message text for the alert displayed when deleting a node */
+"WARNING_ON_DELETE_TRASHED_NODE_TITLE" = "Gelöschtes Element entferen.";
 
 /* Informative Text displayed when clearing the Trash */
 "WARNING_ON_EMPTY_TRASH_DESCRIPTION" = "Das Leeren des Papierkorbs kann nicht rückgängig gemacht werdern.";
