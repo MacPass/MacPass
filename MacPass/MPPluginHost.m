@@ -23,6 +23,7 @@
 #import "MPPluginHost.h"
 
 #import "MPPlugin.h"
+#import "MPPlugin_Private.h"
 #import "NSApplication+MPAdditions.h"
 #import "MPSettingsHelper.h"
 
@@ -88,7 +89,7 @@ NSString *const MPPluginHostPluginBundleIdentifiyerKey = @"MPPluginHostPluginBun
 }
 
 - (BOOL)installPluginAtURL:(NSURL *)url error:(NSError *__autoreleasing *)error {
-  if(![self _validURL:url]) {
+  if(![self _isValidPluginURL:url]) {
     if(error) {
       *error = [NSError errorWithCode:MPErrorInvalidPlugin description:NSLocalizedString(@"ERROR_INVALID_PLUGIN", @"Error description given when adding an invalid plugin")];
     }
@@ -104,8 +105,7 @@ NSString *const MPPluginHostPluginBundleIdentifiyerKey = @"MPPluginHostPluginBun
 }
 
 - (BOOL)uninstallPlugin:(MPPlugin *)plugin error:(NSError *__autoreleasing *)error {
-  NSBundle *pluginBundle = [NSBundle bundleForClass:plugin.class];
-  return [NSFileManager.defaultManager trashItemAtURL:pluginBundle.bundleURL resultingItemURL:nil error:error];
+  return [NSFileManager.defaultManager trashItemAtURL:plugin.bundle.bundleURL resultingItemURL:nil error:error];
 }
 
 - (void)disablePlugin:(MPPlugin *)plugin {
@@ -120,16 +120,17 @@ NSString *const MPPluginHostPluginBundleIdentifiyerKey = @"MPPluginHostPluginBun
 - (void)_loadPlugins {
   NSURL *appSupportDir = [NSApp applicationSupportDirectoryURL:YES];
   NSError *error;
+  NSLog(@"Looking for external plugins at %@.", appSupportDir.path);
   NSArray *externalPluginsURLs = [[NSFileManager defaultManager] contentsOfDirectoryAtURL:appSupportDir
                                                                includingPropertiesForKeys:@[]
                                                                                   options:NSDirectoryEnumerationSkipsHiddenFiles
                                                                                     error:&error];
   
+  NSLog(@"Looking for internal plugins");
   NSArray *internalPluginsURLs = [[NSFileManager defaultManager] contentsOfDirectoryAtURL:[NSBundle mainBundle].builtInPlugInsURL
                                                                includingPropertiesForKeys:@[]
                                                                                   options:NSDirectoryEnumerationSkipsHiddenFiles
                                                                                     error:&error];
-  
   
   if(!externalPluginsURLs) {
     // No external plugins
@@ -142,29 +143,31 @@ NSString *const MPPluginHostPluginBundleIdentifiyerKey = @"MPPluginHostPluginBun
   NSArray *pluginURLs = [externalPluginsURLs arrayByAddingObjectsFromArray:internalPluginsURLs];
   
   for(NSURL *pluginURL in pluginURLs) {
-    
-    if(![self _validURL:pluginURL]) {
+    if(![self _isValidPluginURL:pluginURL]) {
+      NSLog(@"Skipping %@. No valid plugin file.", pluginURL.path);
       continue;
     }
-    
-    if(![self _validSignature:pluginURL]) {
-      continue;
-    }
-    
+
     NSBundle *pluginBundle = [NSBundle bundleWithURL:pluginURL];
     if(!pluginBundle) {
-      NSLog(@"Could not create bundle %@", pluginURL.path);
+      NSLog(@"Could not access plugin bundle %@", pluginURL.path);
       continue;
     }
     
-    if(pluginBundle.bundleIdentifier) {
-      
+    if(![self _isSignedPluginURL:pluginURL]) {
+      if(self.loadUnsecurePlugins) {
+        NSLog(@"Loading unsecure Plugin at %@.", pluginURL.path);
+      }
+      else {
+        [self _addPluginForBundle:pluginBundle error:NSLocalizedString(@"PLUGIN_ERROR_UNSECURE_PLUGIN", "Error for a plugin that was not signed properly")];
+        continue;
+      }
     }
-    
     
     NSError *error;
     if(![pluginBundle preflightAndReturnError:&error]) {
       NSLog(@"Preflight Error %@ %@", error.localizedDescription, error.localizedFailureReason );
+      [self _addPluginForBundle:pluginBundle error:error.localizedDescription];
       continue;
     };
     
@@ -175,11 +178,13 @@ NSString *const MPPluginHostPluginBundleIdentifiyerKey = @"MPPluginHostPluginBun
     
     if(![pluginBundle loadAndReturnError:&error]) {
       NSLog(@"Bundle Loading Error %@ %@", error.localizedDescription, error.localizedFailureReason);
+      [self _addPluginForBundle:pluginBundle error:error.localizedDescription];
       continue;
     }
     
-    if(![self _validateClass:pluginBundle.principalClass]) {
+    if(![self _isValidPluginClass:pluginBundle.principalClass]) {
       NSLog(@"Wrong principal Class.");
+      [self _addPluginForBundle:pluginBundle error:NSLocalizedString(@"PLUGIN_ERROR_WRONG_PRINCIPAL_CLASS", "Plugin specifies the wrong principla class!".)];
       continue;
     }
     
@@ -207,8 +212,17 @@ NSString *const MPPluginHostPluginBundleIdentifiyerKey = @"MPPluginHostPluginBun
     }
     else {
       NSLog(@"Unable to create instance of plugin class %@", pluginBundle.principalClass);
+      [self _addPluginForBundle:pluginBundle error:NSLocalizedString(@"PLUGIN_ERROR_INTILIZATION_FAILED", "The plugin could not be initalized".)];
     }
   }
+}
+
+- (void)_addPluginForBundle:(NSBundle *)bundle error:(NSString *)errorMessage {
+  MPPlugin *plugin = [[MPPlugin alloc] initWithPluginHost:self];
+  plugin.bundle = bundle;
+  plugin.enabled = NO;
+  plugin.errorMessage = errorMessage;
+  [self.mutablePlugins addObject:plugin];
 }
 
 - (BOOL)_validateUniqueBundle:(NSBundle *)bundle {
@@ -221,22 +235,18 @@ NSString *const MPPluginHostPluginBundleIdentifiyerKey = @"MPPluginHostPluginBun
   return NO;
 }
 
-- (BOOL)_validURL:(NSURL *)url {
+- (BOOL)_isValidPluginURL:(NSURL *)url {
   return (NSOrderedSame == [url.pathExtension compare:kMPPluginFileExtension options:NSCaseInsensitiveSearch]);
 }
 
-- (BOOL)_validateClass:(Class)class {
+- (BOOL)_isValidPluginClass:(Class)class {
   return [class isSubclassOfClass:[MPPlugin class]];
 }
 
 /* Code by Jedda Wignall<jedda@jedda.me> http://jedda.me/2012/03/verifying-plugin-bundles-using-code-signing/ */
-- (BOOL)_validSignature:(NSURL *)url {
+- (BOOL)_isSignedPluginURL:(NSURL *)url {
   if(!url.path) {
     return NO;
-  }
-  
-  if(self.loadUnsecurePlugins) {
-    return YES;
   }
   
   NSTask * task = [[NSTask alloc] init];
@@ -258,16 +268,16 @@ NSString *const MPPluginHostPluginBundleIdentifiyerKey = @"MPPluginHostPluginBun
   NSString * taskString = [[NSString alloc] initWithData:pipe.fileHandleForReading.readDataToEndOfFile encoding:NSASCIIStringEncoding];
   if ([taskString rangeOfString:@"modified"].length > 0 || [taskString rangeOfString:@"a sealed resource is missing or invalid"].length > 0) {
     // The plugin has been modified or resources removed since being signed. You probably don't want to load this.
-    NSLog(@"Plugin %@ modified - not loaded", pluginPath); // log a real error here
+    NSLog(@"Plugin %@ modified", pluginPath); // log a real error here
   }
   else if ([taskString rangeOfString:@"failed to satisfy"].length > 0) {
     // The plugin is missing resources since being signed. Don't load.
     // throw an error
-    NSLog(@"Plugin %@ not signed by correct CA - not loaded", pluginPath); // log a real error here
+    NSLog(@"Plugin %@ not signed by correct CA", pluginPath); // log a real error here
   }
   else if ([taskString rangeOfString:@"not signed at all"].length > 0) {
     // The plugin was not code signed at all. Don't load.
-    NSLog(@"Plugin %@ not signed at all - don't load.", pluginPath); // log a real error here
+    NSLog(@"Plugin %@ not signed at all.", pluginPath); // log a real error here
   }
   else {
     NSLog(@"Unkown CodeSign Error!");

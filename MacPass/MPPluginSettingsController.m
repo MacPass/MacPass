@@ -24,6 +24,7 @@
 #import "MPPluginTabelCellView.h"
 #import "MPPluginHost.h"
 #import "MPPlugin.h"
+#import "MPPlugin_Private.h"
 
 #import "MPConstants.h"
 #import "MPSettingsHelper.h"
@@ -41,6 +42,8 @@ typedef NS_ENUM(NSUInteger, MPPluginSegmentType) {
 
 @property (weak) IBOutlet NSTableView *pluginTableView;
 @property (weak) IBOutlet NSView *settingsView;
+@property (strong) IBOutlet NSView *fallbackSettingsView;
+@property (weak) IBOutlet NSTextField *fallbackDescriptionTextField;
 @property (weak) IBOutlet NSButton *loadInsecurePlugsinCheckButton;
 @property (weak) IBOutlet NSSegmentedControl *addRemovePluginsControl;
 
@@ -68,7 +71,7 @@ typedef NS_ENUM(NSUInteger, MPPluginSegmentType) {
   self.pluginTableView.delegate = self;
   self.pluginTableView.dataSource = self;
   [self.addRemovePluginsControl setEnabled:NO forSegment:MPRemovePluginSegment];
-  
+  [self.fallbackSettingsView removeFromSuperview];
   [self.loadInsecurePlugsinCheckButton bind:NSValueBinding
                                    toObject:[NSUserDefaultsController sharedUserDefaultsController]
                                 withKeyPath:[MPSettingsHelper defaultControllerPathForKey:kMPSettingsKeyLoadUnsecurePlugins]
@@ -77,7 +80,6 @@ typedef NS_ENUM(NSUInteger, MPPluginSegmentType) {
 }
 
 # pragma mark - TableView
-
 - (NSInteger)numberOfRowsInTableView:(NSTableView *)tableView {
   return [MPPluginHost sharedHost].plugins.count;
 }
@@ -85,7 +87,14 @@ typedef NS_ENUM(NSUInteger, MPPluginSegmentType) {
 - (NSView *)tableView:(NSTableView *)tableView viewForTableColumn:(NSTableColumn *)tableColumn row:(NSInteger)row {
   MPPlugin *plugin = [self pluginForRow:row];
   MPPluginTabelCellView *view = [tableView makeViewWithIdentifier:tableColumn.identifier owner:nil];
-  view.textField.stringValue = [NSString stringWithFormat:@"%@", plugin.name];
+  if(plugin.enabled) {
+    view.textField.stringValue = plugin.name;
+  }
+  else {
+    view.textField.stringValue = (plugin.errorMessage.length > 0
+                                  ? [NSString stringWithFormat:NSLocalizedString(@"PLUGIN_NAME_ERROR_%@", "Name for unloaded plugin with errors"), plugin.name]
+                                  : [NSString stringWithFormat:NSLocalizedString(@"PLUGIN_NAME_DISABLED_%@", "name for disabled unloaded plugin"), plugin.name]);
+  }
   view.addionalTextField.stringValue = [NSString stringWithFormat:NSLocalizedString(@"PLUGIN_VERSION_%@", "Plugin version. Include a %@ placeholder for version string"), plugin.version];
   return view;
 }
@@ -93,14 +102,29 @@ typedef NS_ENUM(NSUInteger, MPPluginSegmentType) {
 - (void)showSettingsForPlugin:(MPPlugin *)plugin {
   /* move old one regardless */
   [self.settingsView.subviews.firstObject removeFromSuperview];
-  if([plugin conformsToProtocol:@protocol(MPPluginSettings)]) {
-    NSAssert([plugin respondsToSelector:@selector(settingsViewController)], @"Required getter for settings on plugins");
-    NSViewController *viewController = ((id<MPPluginSettings>)plugin).settingsViewController;
-    [self.settingsView addSubview:viewController.view];
-    NSDictionary *dict = @{ @"view" : viewController.view,
+  if(plugin.enabled) {
+    if([plugin conformsToProtocol:@protocol(MPPluginSettings)]) {
+      NSAssert([plugin respondsToSelector:@selector(settingsViewController)], @"Required getter for settings on plugins");
+      NSViewController *viewController = ((id<MPPluginSettings>)plugin).settingsViewController;
+      [self.settingsView addSubview:viewController.view];
+      NSDictionary *dict = @{ @"view" : viewController.view,
+                              @"table" : self.pluginTableView.enclosingScrollView };
+      [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|[view]|" options:0 metrics:nil views:dict]];
+      [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|[view]|" options:0 metrics:nil views:dict]];
+    }
+  }
+  else if(nil != plugin) {
+    [self.settingsView addSubview:self.fallbackSettingsView];
+    NSDictionary *dict = @{ @"view" : self.fallbackSettingsView,
                             @"table" : self.pluginTableView.enclosingScrollView };
     [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|[view]|" options:0 metrics:nil views:dict]];
     [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|[view]|" options:0 metrics:nil views:dict]];
+    if(plugin.errorMessage.length > 0) {
+      self.fallbackDescriptionTextField.stringValue = plugin.errorMessage;
+    }
+    else {
+      self.fallbackDescriptionTextField.stringValue = NSLocalizedString(@"PLUGIN_SETTINGS_GENERIC_ERROR_MESSAGE", "Generic message displayed if no details are know why a plugin was not loaded.");
+    }
   }
 }
 
@@ -188,7 +212,7 @@ typedef NS_ENUM(NSUInteger, MPPluginSegmentType) {
     if(NSModalResponseOK) {
       if(openPanel.URLs.count == 1) {
         dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.5 *  NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-        [self _addPlugin:openPanel.URLs.firstObject];
+          [self _addPlugin:openPanel.URLs.firstObject];
         });
       }
     }

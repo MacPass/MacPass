@@ -34,11 +34,11 @@
 /* Alert informative text to ask the user if he really want to uninstall the plugin */
 "ALERT_INFORMATIVE_TEXT_REALLY_UNINSTALL_PLUGIN" = "The Plugin will be moved to the Trash.";
 
-/* Alert message text when a plugin was successfully installed */
-"ALERT_MESSAGE_TEXT_PLUGIN_INSTALLED_SUGGEST_RESTART" = "Sucessfully installed Plugin!";
-
 /* Alert message text when a plugin was successfully uninstalled. Include %@ placeholder for plugin name */
 "ALERT_MESSAGE_TEXT_PLUGIN_%@_UNINSTALLED_SUGGEST_RESTART" = "Plugin %@ uninstalled!";
+
+/* Alert message text when a plugin was successfully installed */
+"ALERT_MESSAGE_TEXT_PLUGIN_INSTALLED_SUGGEST_RESTART" = "Sucessfully installed Plugin!";
 
 /* Alert message text to ask the user if he really want to uninstall the plugin. Include %@ placeholder for plugin name */
 "ALERT_MESSAGE_TEXT_REALLY_UNINSTALL_PLUGIN_%@" = "Should the Plugin %@ really be uninstalled?";
@@ -416,8 +416,26 @@
 /* Menu item to perform autotype with the selected entry */
 "PERFORM_AUTOTYPE_FOR_ENTRY" = "Perform Autotype";
 
+/* The plugin could not be initalized */
+"PLUGIN_ERROR_INTILIZATION_FAILED" = "Plugin could not be initalized";
+
+/* Error for a plugin that was not signed properly */
+"PLUGIN_ERROR_UNSECURE_PLUGIN" = "Plugin is not properly signed";
+
+/* Plugin specifies the wrong principla class! */
+"PLUGIN_ERROR_WRONG_PRINCIPAL_CLASS" = "Plugin principal class is wrong";
+
+/* name for disabled unloaded plugin */
+"PLUGIN_NAME_DISABLED_%@" = "🚫 %@";
+
+/* Name for unloaded plugin with errors */
+"PLUGIN_NAME_ERROR_%@" = "⚠️ %@";
+
 /* Label for plugin settings tab */
 "PLUGIN_SETTINGS" = "Plugins";
+
+/* Generic message displayed if no details are know why a plugin was not loaded. */
+"PLUGIN_SETTINGS_GENERIC_ERROR_MESSAGE" = "Plugin could not be loaded.";
 
 /* Plugin version. Include a %@ placeholder for version string */
 "PLUGIN_VERSION_%@" = "Version: %@";

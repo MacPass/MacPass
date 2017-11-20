@@ -33,6 +33,7 @@ FOUNDATION_EXPORT NSString *const kMPPluginFileExtension;
 @property (copy, readonly) NSString *identifier;
 @property (copy, readonly) NSString *name;
 @property (copy, readonly) NSString *version;
+@property (nonatomic, strong, readonly) NSBundle *bundle;
 
 - (instancetype)initWithPluginHost:(MPPluginHost *)host NS_DESIGNATED_INITIALIZER;
 - (instancetype)init NS_UNAVAILABLE;

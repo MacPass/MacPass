@@ -31,6 +31,7 @@ FOUNDATION_EXPORT NSString *const MPPluginHostPluginBundleIdentifiyerKey;
 
 @interface MPPluginHost : NSObject
 
+/* List of all plugins known to the plugin manager. Disabled plugins are also present! */
 @property (readonly, copy) NSArray <MPPlugin __kindof*> *plugins;
 @property (nonatomic, readonly) BOOL loadUnsecurePlugins;
 

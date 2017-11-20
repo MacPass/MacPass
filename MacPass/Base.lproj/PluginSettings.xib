@@ -10,6 +10,8 @@
         <customObject id="-2" userLabel="File's Owner" customClass="MPPluginSettingsController">
             <connections>
                 <outlet property="addRemovePluginsControl" destination="B9Q-hq-K4N" id="Oqj-Ko-8UR"/>
+                <outlet property="fallbackDescriptionTextField" destination="qPL-FR-ky7" id="xCb-ED-NIX"/>
+                <outlet property="fallbackSettingsView" destination="wIk-iw-Tcz" id="dHl-zW-0aI"/>
                 <outlet property="loadInsecurePlugsinCheckButton" destination="CqP-oK-S8k" id="YET-o6-7Cc"/>
                 <outlet property="pluginTableView" destination="Ocu-C0-03d" id="jbH-qr-bVT"/>
                 <outlet property="settingsView" destination="tD5-Na-7XI" id="Pa0-Tt-20U"/>
@@ -26,6 +28,33 @@
                     <view key="contentView" id="tD5-Na-7XI">
                         <rect key="frame" x="1" y="1" width="326" height="349"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <customView translatesAutoresizingMaskIntoConstraints="NO" id="wIk-iw-Tcz">
+                                <rect key="frame" x="20" y="20" width="286" height="309"/>
+                                <subviews>
+                                    <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="qPL-FR-ky7">
+                                        <rect key="frame" x="18" y="272" width="122" height="17"/>
+                                        <textFieldCell key="cell" controlSize="mini" sendsActionOnEndEditing="YES" title="Plugin Settings Info" id="OOr-SW-jZb">
+                                            <font key="font" metaFont="system"/>
+                                            <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                            <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                                        </textFieldCell>
+                                    </textField>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstItem="qPL-FR-ky7" firstAttribute="top" secondItem="wIk-iw-Tcz" secondAttribute="top" constant="20" symbolic="YES" id="BAH-sF-W03"/>
+                                    <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="qPL-FR-ky7" secondAttribute="trailing" constant="20" symbolic="YES" id="HKa-7h-OiN"/>
+                                    <constraint firstItem="qPL-FR-ky7" firstAttribute="leading" secondItem="wIk-iw-Tcz" secondAttribute="leading" constant="20" symbolic="YES" id="UTY-Lu-pvl"/>
+                                    <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="qPL-FR-ky7" secondAttribute="bottom" constant="20" symbolic="YES" id="wpb-76-pxa"/>
+                                </constraints>
+                            </customView>
+                        </subviews>
+                        <constraints>
+                            <constraint firstItem="wIk-iw-Tcz" firstAttribute="top" secondItem="tD5-Na-7XI" secondAttribute="top" constant="20" symbolic="YES" id="JEm-yQ-dbO"/>
+                            <constraint firstAttribute="trailing" secondItem="wIk-iw-Tcz" secondAttribute="trailing" constant="20" symbolic="YES" id="Zfc-6L-EPa"/>
+                            <constraint firstAttribute="bottom" secondItem="wIk-iw-Tcz" secondAttribute="bottom" constant="20" symbolic="YES" id="mGC-Qx-83s"/>
+                            <constraint firstItem="wIk-iw-Tcz" firstAttribute="leading" secondItem="tD5-Na-7XI" secondAttribute="leading" constant="20" symbolic="YES" id="phc-Nv-2hD"/>
+                        </constraints>
                     </view>
                 </box>
                 <button translatesAutoresizingMaskIntoConstraints="NO" id="CqP-oK-S8k">
@@ -115,8 +144,8 @@
                         <constraint firstAttribute="width" constant="150" id="ZpW-Bc-fSx"/>
                         <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="150" id="eXb-yq-O8y"/>
                     </constraints>
-                    <scroller key="horizontalScroller" hidden="YES" verticalHuggingPriority="750" horizontal="YES" id="UK5-gt-5o5">
-                        <rect key="frame" x="1" y="133" width="148" height="16"/>
+                    <scroller key="horizontalScroller" verticalHuggingPriority="750" horizontal="YES" id="UK5-gt-5o5">
+                        <rect key="frame" x="1" y="328" width="148" height="16"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </scroller>
                     <scroller key="verticalScroller" hidden="YES" verticalHuggingPriority="750" horizontal="NO" id="oqL-7I-4H1">
@@ -169,7 +198,7 @@
                 <constraint firstItem="vBs-Ga-aq0" firstAttribute="leading" secondItem="fCk-fL-jU8" secondAttribute="trailing" constant="8" id="xNu-Sj-xQO"/>
                 <constraint firstItem="aoG-FD-ds8" firstAttribute="top" secondItem="CqP-oK-S8k" secondAttribute="bottom" constant="8" symbolic="YES" id="zSW-h3-BrT"/>
             </constraints>
-            <point key="canvasLocation" x="96" y="-112"/>
+            <point key="canvasLocation" x="-344" y="-85"/>
         </customView>
     </objects>
     <resources>
