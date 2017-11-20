@@ -204,10 +204,10 @@
     return; // no document, just leave
   }
   /* Update all stuff that might have changed */
-  KPKMetaData *metaData = ((MPDocument *)self.document).tree.metaData;
-  [self _setupDatabaseTab:metaData];
-  [self _setupSecurityTab:metaData];
-  [self _setupAdvancedTab:((MPDocument *)self.document).tree];
+  KPKTree *tree = ((MPDocument *)self.document).tree;
+  [self _setupDatabaseTab:tree];
+  [self _setupSecurityTab:tree.metaData];
+  [self _setupAdvancedTab:tree];
   self.isDirty = NO;
 }
 
@@ -237,12 +237,25 @@
 }
 
 #pragma mark Private Helper
-- (void)_setupDatabaseTab:(KPKMetaData *)metaData {
-  self.databaseNameTextField.stringValue = metaData.databaseName;
-  self.databaseDescriptionTextView.string = metaData.databaseDescription;
-  [self.databaseCompressionPopupButton selectItemAtIndex:metaData.compressionAlgorithm];
-  NSColor *databaseColor = metaData.color ? metaData.color : [NSColor clearColor];
-  self.databaseColorColorWell.color = databaseColor;
+- (void)_setupDatabaseTab:(KPKTree *)tree {
+  self.databaseNameTextField.stringValue = tree.metaData.databaseName;
+  self.databaseDescriptionTextView.string = tree.metaData.databaseDescription;
+  [self.databaseCompressionPopupButton selectItemAtIndex:tree.metaData.compressionAlgorithm];
+  self.databaseColorColorWell.color = tree.metaData.color ? tree.metaData.color : NSColor.clearColor;
+  
+  
+  //MPDocument *document = self.document;
+  KPKFileVersion version = tree.minimumVersion;
+  NSDictionary *nameMappings = @{
+                                 @(KPKDatabaseFormatKdb): @"Kdb",
+                                 @(KPKDatabaseFormatKdbx): @"Kdbx",
+                                 @(KPKDatabaseFormatUnknown): NSLocalizedString(@"UNKNOWN_FORMAT", "Unknown databas format.")
+                                 };
+  
+  NSUInteger mayor = (version.version >> 16);
+  NSUInteger minor = (version.version & 0xFFFF);
+  
+  self.fileVersionTextField.stringValue = [NSString stringWithFormat:@"%@ (Version %ld.%ld)", nameMappings[@(version.format)], mayor, minor];
 }
 
 - (void)_setupSecurityTab:(KPKMetaData *)metaData {

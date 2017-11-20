@@ -41,6 +41,7 @@ typedef NS_ENUM(NSUInteger, MPDatabaseSettingsTab) {
 @property (weak) IBOutlet NSPopUpButton *databaseCompressionPopupButton;
 @property (unsafe_unretained) IBOutlet NSTextView *databaseDescriptionTextView;
 @property (weak) IBOutlet NSColorWell *databaseColorColorWell;
+@property (weak) IBOutlet NSTextField *fileVersionTextField;
 
 /* Security Tab */
 @property (weak) IBOutlet NSButton *createKeyDerivationParametersButton;
