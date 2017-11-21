@@ -293,7 +293,7 @@ typedef void (^MPPasswordChangedBlock)(BOOL didChangePassword);
   if(!self.fixAutotypeWindowController) {
     self.fixAutotypeWindowController = [[MPFixAutotypeWindowController alloc] init];
   }
-  [self.document addWindowController:self.fixAutotypeWindowController];
+  self.fixAutotypeWindowController.document = self.document;
   [self.fixAutotypeWindowController.window makeKeyAndOrderFront:sender];
 }
 

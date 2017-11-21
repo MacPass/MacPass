@@ -68,7 +68,7 @@ NSString *const kMPIconCell = @"IconCell";
 
 - (void)dealloc {
   [[NSNotificationCenter defaultCenter] removeObserver:self];
-  [self.window orderOut:self];
+  [self.window performClose:self];
 }
 
 
