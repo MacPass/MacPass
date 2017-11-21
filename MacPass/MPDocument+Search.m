@@ -42,9 +42,9 @@ NSString *const kMPDocumentSearchResultsKey           = @"kMPDocumentSearchResul
 - (void)enterSearchWithContext:(MPEntrySearchContext *)context {
   /* the search context is loaded via defaults */
   self.searchContext = context;
-  [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(updateSearch:) name:NSUndoManagerDidRedoChangeNotification object:self.undoManager];
-  [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(updateSearch:) name:NSUndoManagerDidUndoChangeNotification object:self.undoManager];
-  [[NSNotificationCenter defaultCenter] postNotificationName:MPDocumentDidEnterSearchNotification object:self];
+  [NSNotificationCenter.defaultCenter addObserver:self selector:@selector(updateSearch:) name:NSUndoManagerDidRedoChangeNotification object:self.undoManager];
+  [NSNotificationCenter.defaultCenter addObserver:self selector:@selector(updateSearch:) name:NSUndoManagerDidUndoChangeNotification object:self.undoManager];
+  [NSNotificationCenter.defaultCenter postNotificationName:MPDocumentDidEnterSearchNotification object:self];
   [self updateSearch:self];
 }
 

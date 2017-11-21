@@ -49,23 +49,22 @@ typedef NS_OPTIONS(NSUInteger, MPEntrySearchFlags) {
 
 /* Wrap search criteria to be able to store them */
 @interface MPEntrySearchContext : NSObject <NSSecureCoding,NSCopying>
-
 /**
  *  Returns a default search context initialized with sane values.
  *
  *  @return The default search context
  */
-+ (instancetype)defaultContext;
+@property (readonly, class) MPEntrySearchContext *defaultContext;
 /**
  *  Returns the search context using the users preferences. If none are found, a default context is created
  *
  *  @return Search context configured to the users data. If nothing is configures, defaultContext is used
  */
-+ (instancetype)userContext;
-
-- (instancetype)initWithString:(NSString *)searchString flags:(MPEntrySearchFlags)flags;
+@property (readonly, class) MPEntrySearchContext *userContext;
 
 @property (nonatomic, assign) NSInteger searchFlags;
 @property (nonatomic, copy) NSString *searchString;
+
+- (instancetype)initWithString:(NSString *)searchString flags:(MPEntrySearchFlags)flags;
 
 @end

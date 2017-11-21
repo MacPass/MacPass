@@ -638,7 +638,7 @@ NSString *const MPDocumentGroupKey                            = @"MPDocumentGrou
     [self.undoManager enableUndoRegistration];
   }
   [newEntry addToGroup:parent];
-  [newEntry.undoManager setActionName:NSLocalizedString(@"NEW_ENTRY", "")];
+  [newEntry.undoManager setActionName:NSLocalizedString(@"NEW_ENTRY", "Action name for a newly created entry")];
   [NSNotificationCenter.defaultCenter postNotificationName:MPDocumentDidAddEntryNotification
                                                     object:self
                                                   userInfo:@{ MPDocumentEntryKey: newEntry }];
@@ -663,7 +663,7 @@ NSString *const MPDocumentGroupKey                            = @"MPDocumentGrou
     [self.undoManager enableUndoRegistration];
   }
   [newGroup addToGroup:parent];
-  [newGroup.undoManager setActionName:NSLocalizedString(@"NEW_GROUP", "")];
+  [newGroup.undoManager setActionName:NSLocalizedString(@"NEW_GROUP", "Action name for a newly created group")];
   [NSNotificationCenter.defaultCenter postNotificationName:MPDocumentDidAddGroupNotification
                                                     object:self
                                                   userInfo:@{ MPDocumentGroupKey : newGroup }];
@@ -701,7 +701,7 @@ NSString *const MPDocumentGroupKey                            = @"MPDocumentGrou
     [self.undoManager setActionName:permanent ? NSLocalizedString(@"DELETE_GROUP", "Delete Group") : NSLocalizedString(@"TRASH_GROUP", "Move Group to Trash")];
   }
   else if(node.asEntry) {
-    [self.undoManager setActionName:permanent ? NSLocalizedString(@"DELETE_ENTRY", "") : NSLocalizedString(@"TRASH_ENTRY", "Move Entry to Trash")];
+    [self.undoManager setActionName:permanent ? NSLocalizedString(@"DELETE_ENTRY", "Delete Entry") : NSLocalizedString(@"TRASH_ENTRY", "Move Entry to Trash")];
   }
 }
 
