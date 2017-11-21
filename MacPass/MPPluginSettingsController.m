@@ -225,17 +225,7 @@ typedef NS_ENUM(NSUInteger, MPPluginSegmentType) {
     [NSApp presentError:error modalForWindow:self.view.window delegate:nil didPresentSelector:NULL contextInfo:NULL];
   }
   else {
-    NSAlert *alert = [[NSAlert alloc] init];
-    alert.alertStyle = NSAlertStyleInformational;
-    alert.messageText = NSLocalizedString(@"ALERT_MESSAGE_TEXT_PLUGIN_INSTALLED_SUGGEST_RESTART", "Alert message text when a plugin was successfully installed");
-    alert.informativeText = NSLocalizedString(@"ALERT_INFORMATIVE_TEXT_PLUGIN_INSTALLED_SUGGEST_RESTART", "Alert informative text when a plugin was sucessfully installed");
-    [alert addButtonWithTitle:NSLocalizedString(@"RESTART", @"Restart")];
-    [alert addButtonWithTitle:NSLocalizedString(@"KEEP_RUNNING", @"Do not restart MacPass")];
-    [alert beginSheetModalForWindow:self.view.window completionHandler:^(NSModalResponse returnCode) {
-      if(returnCode == NSAlertFirstButtonReturn) {
-        [NSApp relaunchAfterDelay:3];
-      }
-    }];
+    [self _showRestartAlert];
   }
 }
 
@@ -263,18 +253,22 @@ typedef NS_ENUM(NSUInteger, MPPluginSegmentType) {
     [NSApp presentError:error modalForWindow:self.view.window delegate:nil didPresentSelector:NULL contextInfo:NULL];
   }
   else {
-    NSAlert *alert = [[NSAlert alloc] init];
-    alert.alertStyle = NSAlertStyleInformational;
-    alert.messageText = [NSString stringWithFormat:NSLocalizedString(@"ALERT_MESSAGE_TEXT_PLUGIN_%@_UNINSTALLED_SUGGEST_RESTART", "Alert message text when a plugin was successfully uninstalled. Include %@ placeholder for plugin name"), plugin.name];
-    alert.informativeText = NSLocalizedString(@"ALERT_INFORMATIVE_TEXT_PLUGIN_UNINSTALLED_SUGGEST_RESTART", "Alert informative text when a plugin was sucessfully uninstalled");
-    [alert addButtonWithTitle:NSLocalizedString(@"RESTART", @"Restart")];
-    [alert addButtonWithTitle:NSLocalizedString(@"KEEP_RUNNING", @"Do not restart MacPass")];
-    [alert beginSheetModalForWindow:self.view.window completionHandler:^(NSModalResponse returnCode) {
-      if(returnCode == NSAlertFirstButtonReturn) {
-        [NSApp relaunchAfterDelay:3];
-      }
-    }];
+    [self _showRestartAlert];
   }
+}
+
+- (void)_showRestartAlert {
+  NSAlert *alert = [[NSAlert alloc] init];
+  alert.alertStyle = NSAlertStyleInformational;
+  alert.messageText = NSLocalizedString(@"ALERT_MESSAGE_PLUGINS_CHANGED_SUGGEST_RESTART", "Alert message text when plugins or their settings change and require a restart");
+  alert.informativeText = NSLocalizedString(@"ALERT_MESSAGE_PLUGINS_CHANGED_SUGGEST_RESTART", "Alert informative text when plugins or their settings change and require a restart");
+  [alert addButtonWithTitle:NSLocalizedString(@"RESTART", @"Restart")];
+  [alert addButtonWithTitle:NSLocalizedString(@"KEEP_RUNNING", @"Do not restart MacPass")];
+  [alert beginSheetModalForWindow:self.view.window completionHandler:^(NSModalResponse returnCode) {
+    if(returnCode == NSAlertFirstButtonReturn) {
+      [NSApp relaunchAfterDelay:3];
+    }
+  }];
 }
 
 @end
