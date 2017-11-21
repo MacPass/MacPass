@@ -343,8 +343,13 @@ typedef void (^MPPasswordChangedBlock)(BOOL didChangePassword);
 
 - (IBAction)lock:(id)sender {
   MPDocument *document = [self document];
-  if(!document.compositeKey.hasPasswordOrKeyFile) {
-    return; // Document needs a password/keyfile to be lockable
+  if(!document.compositeKey) {
+    [self editPasswordWithCompetionHandler:^(NSInteger result) {
+      if(result == NSModalResponseOK) {
+        [self lock:sender];
+      }
+    }];
+    return;
   }
   if(document.encrypted) {
     return; // Document already locked

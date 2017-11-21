@@ -358,7 +358,7 @@ NSString *const MPDocumentGroupKey                            = @"MPDocumentGrou
 - (void)mergeWithContentsFromURL:(NSURL *)url key:(KPKCompositeKey *)key {
   NSError *error;
   KPKTree *otherTree;
-
+  
   if(key) {
     otherTree = [[KPKTree alloc] initWithContentsOfUrl:url key:key error:&error];
   }
@@ -383,14 +383,14 @@ NSString *const MPDocumentGroupKey                            = @"MPDocumentGrou
       [passwordInputController requestPasswordWithMessage:NSLocalizedString(@"EXTERN_CHANGE_OF_MASTERKEY", @"The master key was changed by an extrenal programm!")
                                               cancelLabel:NSLocalizedString(@"ABORT_MERGE_KEEP_MINE", @"Button label to abort a merge on a file with changed master key!")
                                         completionHandler:^BOOL(NSString *password, NSURL *keyURL, BOOL didCancel, NSError *__autoreleasing *error) {
-        [self.windowForSheet endSheet:sheet returnCode:(didCancel ? NSModalResponseCancel : NSModalResponseOK)];
-        if(!didCancel) {
-          KPKCompositeKey *compositeKey = [[KPKCompositeKey alloc] initWithPassword:password key:keyURL];
-          [self mergeWithContentsFromURL:url key:compositeKey];
-        }
-        // just return yes regardless since we will display the sheet again if needed!
-        return YES;
-      }];
+                                          [self.windowForSheet endSheet:sheet returnCode:(didCancel ? NSModalResponseCancel : NSModalResponseOK)];
+                                          if(!didCancel) {
+                                            KPKCompositeKey *compositeKey = [[KPKCompositeKey alloc] initWithPassword:password key:keyURL];
+                                            [self mergeWithContentsFromURL:url key:compositeKey];
+                                          }
+                                          // just return yes regardless since we will display the sheet again if needed!
+                                          return YES;
+                                        }];
       sheet.contentViewController = passwordInputController;
       [self.windowForSheet beginSheet:sheet completionHandler:^(NSModalResponse returnCode) { /* nothing to do, rest is done in other handler! */ }];
     }
@@ -640,8 +640,8 @@ NSString *const MPDocumentGroupKey                            = @"MPDocumentGrou
   [newEntry addToGroup:parent];
   [newEntry.undoManager setActionName:NSLocalizedString(@"NEW_ENTRY", "")];
   [NSNotificationCenter.defaultCenter postNotificationName:MPDocumentDidAddEntryNotification
-                                                   object:self
-                                                 userInfo:@{ MPDocumentEntryKey: newEntry }];
+                                                    object:self
+                                                  userInfo:@{ MPDocumentEntryKey: newEntry }];
   return newEntry;
 }
 
@@ -856,10 +856,8 @@ NSString *const MPDocumentGroupKey                            = @"MPDocumentGrou
       break;
     case MPActionDatabaseSettings:
     case MPActionEditPassword:
-      valid &= !self.encrypted;
-      break;
     case MPActionLock:
-      valid &= self.compositeKey.hasPasswordOrKeyFile;
+      valid &= !self.encrypted;
       break;
     case MPActionShowEntryHistory:
       valid &= (nil != targetEntry);
