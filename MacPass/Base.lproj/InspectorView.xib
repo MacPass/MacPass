@@ -134,12 +134,12 @@
                                                 <size key="maxSize" width="463" height="10000000"/>
                                                 <color key="insertionPointColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                                                 <connections>
-                                                    <binding destination="-2" name="editable2" keyPath="representedObject" previousBinding="3gj-Fz-0G8" id="N0t-rS-Q1a">
+                                                    <binding destination="-2" name="editable2" keyPath="representedObject" previousBinding="3gj-Fz-0G8" id="AI9-fU-m4Z">
                                                         <dictionary key="options">
                                                             <integer key="NSMultipleValuesPlaceholder" value="-1"/>
                                                             <integer key="NSNoSelectionPlaceholder" value="-1"/>
                                                             <integer key="NSNotApplicablePlaceholder" value="-1"/>
-                                                            <integer key="NSNullPlaceholder" value="1"/>
+                                                            <integer key="NSNullPlaceholder" value="-1"/>
                                                             <string key="NSValueTransformerName">NSIsNotNil</string>
                                                         </dictionary>
                                                     </binding>
@@ -148,10 +148,11 @@
                                                             <string key="NSValueTransformerName">NSNegateBoolean</string>
                                                         </dictionary>
                                                     </binding>
-                                                    <binding destination="-2" name="value" keyPath="representedObject.notes" id="E0d-ZH-Wbc">
+                                                    <binding destination="-2" name="value" keyPath="representedObject.notes" id="Xpb-G8-gXl">
                                                         <dictionary key="options">
                                                             <bool key="NSConditionallySetsEditable" value="NO"/>
                                                             <string key="NSNoSelectionPlaceholder">No Selection</string>
+                                                            <string key="NSNullPlaceholder">None</string>
                                                         </dictionary>
                                                     </binding>
                                                     <outlet property="delegate" destination="-2" id="8oq-Ga-UQD"/>
