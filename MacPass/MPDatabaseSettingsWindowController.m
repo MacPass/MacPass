@@ -244,18 +244,23 @@
   self.databaseColorColorWell.color = tree.metaData.color ? tree.metaData.color : NSColor.clearColor;
   
   
-  //MPDocument *document = self.document;
-  KPKFileVersion version = tree.minimumVersion;
-  NSDictionary *nameMappings = @{
-                                 @(KPKDatabaseFormatKdb): @"Kdb",
-                                 @(KPKDatabaseFormatKdbx): @"Kdbx",
-                                 @(KPKDatabaseFormatUnknown): NSLocalizedString(@"UNKNOWN_FORMAT", "Unknown databas format.")
-                                 };
-  
-  NSUInteger mayor = (version.version >> 16);
-  NSUInteger minor = (version.version & 0xFFFF);
-  
-  self.fileVersionTextField.stringValue = [NSString stringWithFormat:@"%@ (Version %ld.%ld)", nameMappings[@(version.format)], mayor, minor];
+  NSData *fileData = [NSData dataWithContentsOfURL:((MPDocument *)self.document).fileURL];
+  if(!fileData) {
+    self.fileVersionTextField.stringValue = NSLocalizedString(@"UNKNOWN_FORMAT_FILE_NOT_SAVED_YET", "Database format is unknown since the file is not saved yet");
+  }
+  else {
+    KPKFileVersion version = [[KPKFormat sharedFormat] fileVersionForData:fileData];
+    NSDictionary *nameMappings = @{
+                                   @(KPKDatabaseFormatKdb): @"Kdb",
+                                   @(KPKDatabaseFormatKdbx): @"Kdbx",
+                                   @(KPKDatabaseFormatUnknown): NSLocalizedString(@"UNKNOWN_FORMAT", "Unknown databas format.")
+                                   };
+    
+    NSUInteger mayor = (version.version >> 16);
+    NSUInteger minor = (version.version & 0xFFFF);
+    
+    self.fileVersionTextField.stringValue = [NSString stringWithFormat:@"%@ (Version %ld.%ld)", nameMappings[@(version.format)], mayor, minor];
+  }
 }
 
 - (void)_setupSecurityTab:(KPKMetaData *)metaData {

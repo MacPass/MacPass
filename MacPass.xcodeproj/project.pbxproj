@@ -488,7 +488,6 @@
 		4C586FA116D07F6A00E7DB57 /* 02_MessageBoxWarningTemplate.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = 02_MessageBoxWarningTemplate.pdf; sourceTree = "<group>"; };
 		4C5A11FB1708DE8700223D8A /* MPPasswordCreatorViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MPPasswordCreatorViewController.h; sourceTree = "<group>"; };
 		4C5A11FC1708DE8700223D8A /* MPPasswordCreatorViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MPPasswordCreatorViewController.m; sourceTree = "<group>"; };
-		4C5ADC2E17830AFB004E1E8D /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InspectorView.strings; sourceTree = "<group>"; };
 		4C5ADC3017830B09004E1E8D /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/InspectorView.strings; sourceTree = "<group>"; };
 		4C5CD34017D158DE000B7F38 /* fr */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.strings; lineEnding = 0; name = fr; path = fr.lproj/Localizable.strings; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.simpleColoring; };
 		4C5CD34117D158DE000B7F38 /* fr */ = {isa = PBXFileReference; lastKnownFileType = text.rtf; name = fr; path = fr.lproj/Credits.rtf; sourceTree = "<group>"; };
@@ -498,6 +497,7 @@
 		4C5CD34617D15912000B7F38 /* fr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fr; path = fr.lproj/MainMenu.strings; sourceTree = "<group>"; };
 		4C5CD34717D1591A000B7F38 /* fr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fr; path = fr.lproj/PasswordInputView.strings; sourceTree = "<group>"; };
 		4C5CD34817D15920000B7F38 /* fr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fr; path = fr.lproj/InspectorView.strings; sourceTree = "<group>"; };
+		4C5F72831FC4344E00929153 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InspectorView.strings; sourceTree = "<group>"; };
 		4C5FE9AC17843CE20001D5A8 /* MPSelectedAttachmentTableCellView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MPSelectedAttachmentTableCellView.h; sourceTree = "<group>"; };
 		4C5FE9AD17843CE20001D5A8 /* MPSelectedAttachmentTableCellView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MPSelectedAttachmentTableCellView.m; sourceTree = "<group>"; };
 		4C61EA0116D2FD0800AC519E /* MPOutlineViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MPOutlineViewController.h; sourceTree = "<group>"; };
@@ -2032,7 +2032,6 @@
 			isa = PBXVariantGroup;
 			children = (
 				4C7615701764C0E80015A1A6 /* Base */,
-				4C5ADC2E17830AFB004E1E8D /* en */,
 				4C5ADC3017830B09004E1E8D /* de */,
 				4C5CD34817D15920000B7F38 /* fr */,
 				601F811418E016340028F3DE /* zh-Hans */,
@@ -2041,6 +2040,7 @@
 				4825CC8C1C414D58003E37E9 /* it */,
 				4C840C4F1D773E5E0081F605 /* pl */,
 				4C4161091F50333B003BC0AF /* es */,
+				4C5F72831FC4344E00929153 /* en */,
 			);
 			name = InspectorView.xib;
 			sourceTree = "<group>";

@@ -25,20 +25,12 @@
 /* Action to add an entry via template */
 "ADD_TREMPLATE_ENTRY" = "Create Template Entry";
 
-/* Alert informative text when a plugin was sucessfully installed */
-"ALERT_INFORMATIVE_TEXT_PLUGIN_INSTALLED_SUGGEST_RESTART" = "Plugins can only be loaded at start up. To activate the installed plugin, please restart MacPass.";
-
-/* Alert informative text when a plugin was sucessfully uninstalled */
-"ALERT_INFORMATIVE_TEXT_PLUGIN_UNINSTALLED_SUGGEST_RESTART" = "Plugins cannot be removed while MacPass is running. Please restart MacPass to unload the plugin.";
-
 /* Alert informative text to ask the user if he really want to uninstall the plugin */
 "ALERT_INFORMATIVE_TEXT_REALLY_UNINSTALL_PLUGIN" = "The Plugin will be moved to the Trash.";
 
-/* Alert message text when a plugin was successfully uninstalled. Include %@ placeholder for plugin name */
-"ALERT_MESSAGE_TEXT_PLUGIN_%@_UNINSTALLED_SUGGEST_RESTART" = "Plugin %@ uninstalled!";
-
-/* Alert message text when a plugin was successfully installed */
-"ALERT_MESSAGE_TEXT_PLUGIN_INSTALLED_SUGGEST_RESTART" = "Sucessfully installed Plugin!";
+/* Alert informative text when plugins or their settings change and require a restart
+   Alert message text when plugins or their settings change and require a restart */
+"ALERT_MESSAGE_PLUGINS_CHANGED_SUGGEST_RESTART" = "Changes to plugins take only effect after restart.";
 
 /* Alert message text to ask the user if he really want to uninstall the plugin. Include %@ placeholder for plugin name */
 "ALERT_MESSAGE_TEXT_REALLY_UNINSTALL_PLUGIN_%@" = "Should the Plugin %@ really be uninstalled?";
@@ -78,7 +70,7 @@
 "CHANGE_DATABASE_NAME" = "Change Database Name";
 
 /* (No Comment) */
-"CHANGE_FORMAT" = "Change File Format to KDBX";
+"CHANGE_FORMAT" = "Change File Format to Kdbx";
 
 /* Button to postpone the password change */
 "CHANGE_LATER" = "Change Later";
@@ -197,12 +189,6 @@
 
 /* Menu item to duplicate an entry with options how to duplicate. Will present a dialog. */
 "DUPLICATE_ENTRY_WITH_OPTIONS" = "Duplicate Entry…";
-
-/* (No Comment) */
-"DUPLICTE_PASSWORDS" = "Duplicate Passwords";
-
-/* (No Comment) */
-"EDIT" = "Edit";
 
 /* Menu item in the database outline context menu to change the template group
    Menu item on the add entry context menu to edit template groups */
@@ -542,7 +528,13 @@
 "UNINSTALL" = "Uninstall";
 
 /* No comment provided by engineer. */
-"UNKNOWN_FILE_VERSION" = "Unknown File Version";
+"UNKNOWN_FILE_VERSION" = "Unknown file version";
+
+/* Unknown databas format. */
+"UNKNOWN_FORMAT" = "Unknown file format";
+
+/* Database format is unknown since the file is not saved yet */
+"UNKNOWN_FORMAT_FILE_NOT_SAVED_YET" = "Unknown, file not saved yet";
 
 /* No comment provided by engineer. */
 "UNKNOWN_TOOLBAR_ITEM" = "Unknown Toolbar Item";
@@ -584,10 +576,10 @@
 "WARNING_ON_EMPTY_TRASH_TITLE" = "Empty Trash?";
 
 /* (No Comment) */
-"WARNING_ON_LOSSY_SAVE" = "Saving with KDB format, will lead to lost data.";
+"WARNING_ON_LOSSY_SAVE" = "Saving with Kdb format, will lead to lost data.";
 
 /* (No Comment) */
-"WARNING_ON_LOSSY_SAVE_DESCRIPTION" = "The KDB file format cannot hold all information.";
+"WARNING_ON_LOSSY_SAVE_DESCRIPTION" = "The Kdb file format cannot hold all information.";
 
 /* No comment provided by engineer. */
 "WARNING_ON_SAVE_NO_PASSWORD_OR_KEY_SET" = "No password or keyfile is set.";

@@ -314,7 +314,7 @@ NSString *const MPHelpURLKey = @"MPHelpURL";
                                       if(error != nil){
                                         
                                         NSAlert *alert = [[NSAlert alloc] init];
-                                        [alert setMessageText:   NSLocalizedString(@"FILE_OPEN_ERROR", nil)];
+                                        [alert setMessageText:   NSLocalizedString(@"FILE_OPEN_ERROR", "Error while reopening last known documents")];
                                         [alert setInformativeText: [error localizedDescription]];
                                         [alert setAlertStyle:NSCriticalAlertStyle ];
                                         [alert runModal];

@@ -75,11 +75,11 @@
   [self.view layoutSubtreeIfNeeded];
   
   NSMenu *autotypeMenu = self.autotypePopupButton.menu;
-  NSMenuItem *inheritAutotype = [[NSMenuItem alloc] initWithTitle:NSLocalizedString(@"AUTOTYPE_INHERIT", "") action:NULL keyEquivalent:@""];
+  NSMenuItem *inheritAutotype = [[NSMenuItem alloc] initWithTitle:NSLocalizedString(@"AUTOTYPE_INHERIT", "Inherit autotype settings menu item") action:NULL keyEquivalent:@""];
   inheritAutotype.tag = KPKInherit;
-  NSMenuItem *enableAutotype = [[NSMenuItem alloc] initWithTitle:NSLocalizedString(@"AUTOTYPE_YES", "") action:NULL keyEquivalent:@""];
+  NSMenuItem *enableAutotype = [[NSMenuItem alloc] initWithTitle:NSLocalizedString(@"AUTOTYPE_YES", "Enable autotype menu item") action:NULL keyEquivalent:@""];
   enableAutotype.tag = KPKInheritYES;
-  NSMenuItem *disableAutotype = [[NSMenuItem alloc] initWithTitle:NSLocalizedString(@"AUTOTYPE_NO", "") action:NULL keyEquivalent:@""];
+  NSMenuItem *disableAutotype = [[NSMenuItem alloc] initWithTitle:NSLocalizedString(@"AUTOTYPE_NO", "Disable autotype menu item") action:NULL keyEquivalent:@""];
   disableAutotype.tag = KPKInheritNO;
   
   [autotypeMenu addItem:inheritAutotype];
@@ -87,11 +87,11 @@
   [autotypeMenu addItem:disableAutotype];
   
   NSMenu *searchMenu = self.searchPopupButton.menu;
-  NSMenuItem *inheritSearch = [[NSMenuItem alloc] initWithTitle:NSLocalizedString(@"SEARCH_INHERIT", "") action:NULL keyEquivalent:@""];
+  NSMenuItem *inheritSearch = [[NSMenuItem alloc] initWithTitle:NSLocalizedString(@"SEARCH_INHERIT", "Inherit search settings menu item") action:NULL keyEquivalent:@""];
   inheritSearch.tag = KPKInherit;
-  NSMenuItem *includeInSearch = [[NSMenuItem alloc] initWithTitle:NSLocalizedString(@"SEARCH_YES", "") action:NULL keyEquivalent:@""];
+  NSMenuItem *includeInSearch = [[NSMenuItem alloc] initWithTitle:NSLocalizedString(@"SEARCH_YES", "Enable search menu item") action:NULL keyEquivalent:@""];
   includeInSearch.tag = KPKInheritYES;
-  NSMenuItem *excludeFromSearch = [[NSMenuItem alloc] initWithTitle:NSLocalizedString(@"SEARCH_NO", "") action:NULL keyEquivalent:@""];
+  NSMenuItem *excludeFromSearch = [[NSMenuItem alloc] initWithTitle:NSLocalizedString(@"SEARCH_NO", "Disable search menu item") action:NULL keyEquivalent:@""];
   excludeFromSearch.tag = KPKInheritNO;
   
   [searchMenu addItem:inheritSearch];
@@ -102,10 +102,11 @@
 }
 
 - (void)_establishBindings {
+  NSDictionary *nullPlaceholderOptionsDict = @ {NSNullPlaceholderBindingOption: NSLocalizedString(@"NONE", @"Null placeholder for item input field") };
   [self.titleTextField bind:NSValueBinding
                    toObject:self
                 withKeyPath:[NSString stringWithFormat:@"%@.%@", NSStringFromSelector(@selector(representedObject)), NSStringFromSelector(@selector(title))]
-                    options:@{NSNullPlaceholderBindingOption: NSLocalizedString(@"NONE", @"")}];
+                    options:nullPlaceholderOptionsDict];
   [self.expiresCheckButton bind:NSValueBinding
                        toObject:self
                     withKeyPath:[NSString stringWithFormat:@"%@.%@.%@", NSStringFromSelector(@selector(representedObject)), NSStringFromSelector(@selector(timeInfo)), NSStringFromSelector(@selector(expires))]
@@ -121,7 +122,7 @@
   [self.autotypeSequenceTextField bind:NSValueBinding
                               toObject:self
                            withKeyPath:[NSString stringWithFormat:@"%@.%@", NSStringFromSelector(@selector(representedObject)), NSStringFromSelector(@selector(defaultAutoTypeSequence))]
-                               options:@{NSNullPlaceholderBindingOption: NSLocalizedString(@"NONE", @"")}];
+                               options:nullPlaceholderOptionsDict];
   [self.searchPopupButton bind:NSSelectedTagBinding
                       toObject:self
                    withKeyPath:[NSString stringWithFormat:@"%@.%@", NSStringFromSelector(@selector(representedObject)), NSStringFromSelector(@selector(isSearchEnabled))]

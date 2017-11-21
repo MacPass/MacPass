@@ -134,12 +134,12 @@
                                                 <size key="maxSize" width="463" height="10000000"/>
                                                 <color key="insertionPointColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                                                 <connections>
-                                                    <binding destination="-2" name="editable2" keyPath="representedObject" previousBinding="3gj-Fz-0G8" id="unc-qC-MMH">
+                                                    <binding destination="-2" name="editable2" keyPath="representedObject" previousBinding="3gj-Fz-0G8" id="N0t-rS-Q1a">
                                                         <dictionary key="options">
                                                             <integer key="NSMultipleValuesPlaceholder" value="-1"/>
                                                             <integer key="NSNoSelectionPlaceholder" value="-1"/>
                                                             <integer key="NSNotApplicablePlaceholder" value="-1"/>
-                                                            <integer key="NSNullPlaceholder" value="-1"/>
+                                                            <integer key="NSNullPlaceholder" value="1"/>
                                                             <string key="NSValueTransformerName">NSIsNotNil</string>
                                                         </dictionary>
                                                     </binding>
