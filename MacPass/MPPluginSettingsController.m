@@ -261,7 +261,7 @@ typedef NS_ENUM(NSUInteger, MPPluginSegmentType) {
   NSAlert *alert = [[NSAlert alloc] init];
   alert.alertStyle = NSAlertStyleInformational;
   alert.messageText = NSLocalizedString(@"ALERT_MESSAGE_PLUGINS_CHANGED_SUGGEST_RESTART", "Alert message text when plugins or their settings change and require a restart");
-  alert.informativeText = NSLocalizedString(@"ALERT_MESSAGE_PLUGINS_CHANGED_SUGGEST_RESTART", "Alert informative text when plugins or their settings change and require a restart");
+  alert.informativeText = NSLocalizedString(@"ALERT_INFORMATIVE_TEXT_PLUGINS_CHANGED_SUGGEST_RESTART", "Alert informative text when plugins or their settings change and require a restart");
   [alert addButtonWithTitle:NSLocalizedString(@"RESTART", @"Restart")];
   [alert addButtonWithTitle:NSLocalizedString(@"KEEP_RUNNING", @"Do not restart MacPass")];
   [alert beginSheetModalForWindow:self.view.window completionHandler:^(NSModalResponse returnCode) {

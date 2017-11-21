@@ -25,20 +25,14 @@
 /* Action to add an entry via template */
 "ADD_TREMPLATE_ENTRY" = "Vorgabeeintrag erstellen";
 
-/* Alert informative text when a plugin was sucessfully installed */
-"ALERT_INFORMATIVE_TEXT_PLUGIN_INSTALLED_SUGGEST_RESTART" = "Plugins können nur beim Start geladen werden. Um das Plugin vollständig zu aktivieren, starten Sie bitte MacPass erneut.";
-
-/* Alert informative text when a plugin was sucessfully uninstalled */
-"ALERT_INFORMATIVE_TEXT_PLUGIN_UNINSTALLED_SUGGEST_RESTART" = "Plugins können nicht entfernt werden, währen MacPass aktiv ist. Bitte starten Sie MacPass neu, um das Plugin endgültig zu entfernen.";
+/* Alert informative text when plugins or their settings change and require a restart */
+"ALERT_INFORMATIVE_TEXT_PLUGINS_CHANGED_SUGGEST_RESTART" = "Änderungen zu den globalen Einstellungen von Plugins treten erst nach einem Neustadt in Kraft. Soll MacPass jetzt neu gestartet werden?";
 
 /* Alert informative text to ask the user if he really want to uninstall the plugin */
 "ALERT_INFORMATIVE_TEXT_REALLY_UNINSTALL_PLUGIN" = "Das Plugin wird in den Papierkorb verschoben";
 
-/* Alert message text when a plugin was successfully uninstalled. Include %@ placeholder for plugin name */
-"ALERT_MESSAGE_TEXT_PLUGIN_%@_UNINSTALLED_SUGGEST_RESTART" = "Plugin %@ wurde deinstalliert!";
-
-/* Alert message text when a plugin was successfully installed */
-"ALERT_MESSAGE_TEXT_PLUGIN_INSTALLED_SUGGEST_RESTART" = "Plugin erfolgreich installiert!";
+/* Alert message text when plugins or their settings change and require a restart */
+"ALERT_MESSAGE_PLUGINS_CHANGED_SUGGEST_RESTART" = "Die globalen Plugineinstellungen haben sich geändert.";
 
 /* Alert message text to ask the user if he really want to uninstall the plugin. Include %@ placeholder for plugin name */
 "ALERT_MESSAGE_TEXT_REALLY_UNINSTALL_PLUGIN_%@" = "Möchten Sie das Plugin %@ wirklich deinstallieren?";
@@ -50,10 +44,10 @@
 /* Menu item for automatic trash creation */
 "AUTOCREATE_TRASH_FOLDER" = "Automatisch erstellen";
 
-/* No comment provided by engineer. */
+/* Inherit autotype settings menu item */
 "AUTOTYPE_INHERIT" = "Autotype Einstellungen vererben";
 
-/* No comment provided by engineer. */
+/* Disable autotype menu item */
 "AUTOTYPE_NO" = "Autotype deaktiveren";
 
 /* Notification: Autotype failed, no documents are open */
@@ -65,7 +59,7 @@
 /* Notification: Autotype found a single match. */
 "AUTOTYPE_OVERLAY_SINGLE_MATCH" = "Treffer!";
 
-/* No comment provided by engineer. */
+/* Enable autotype menu item */
 "AUTOTYPE_YES" = "Autotype aktivieren";
 
 /* Sucessfully merged external changes */
@@ -198,12 +192,6 @@
 /* Menu item to duplicate an entry with options how to duplicate. Will present a dialog. */
 "DUPLICATE_ENTRY_WITH_OPTIONS" = "Eintrag duplizieren…";
 
-/* (No Comment) */
-"DUPLICTE_PASSWORDS" = "Doppelte Passwörter";
-
-/* (No Comment) */
-"EDIT" = "Bearbeiten";
-
 /* Menu item in the database outline context menu to change the template group
    Menu item on the add entry context menu to edit template groups */
 "EDIT_TEMPLATE_GROUP" = "Vorlagengruppe bearbeiten";
@@ -260,7 +248,7 @@
 /* External file change strategy option: Use the changed file and discard local changes */
 "FILE_CHANGE_STRATEGY_USE_OTHER" = "Lade die andere Version und verwerfe meine Änderungen";
 
-/* No comment provided by engineer. */
+/* Error while reopening last known documents */
 "FILE_OPEN_ERROR" = "Fehler beim Öffnen der Datei.";
 
 /* General Settings Label */
@@ -339,7 +327,8 @@
    Toolbar item new group */
 "NEW_GROUP" = "Neue Gruppe";
 
-/* Placeholder text for input fields if no entry or group is selected */
+/* Null placeholder for item input field
+   Placeholder text for input fields if no entry or group is selected */
 "NONE" = "Leer";
 
 /* Displayed name when notes or part of notes was copied
@@ -480,16 +469,16 @@
 /* Search option: Find expired entries */
 "SEARCH_EXPIRED_ENTRIES" = "Abgelaufen";
 
-/* No comment provided by engineer. */
+/* Inherit search settings menu item */
 "SEARCH_INHERIT" = "Sucheeinstellung vererben";
 
-/* No comment provided by engineer. */
+/* Disable search menu item */
 "SEARCH_NO" = "Nicht durchsuchbar";
 
 /* No comment provided by engineer. */
 "SEARCH_VALUE" = "Suche nach";
 
-/* No comment provided by engineer. */
+/* Enable search menu item */
 "SEARCH_YES" = "Durchsuchbar";
 
 /* (No Comment) */
@@ -543,6 +532,12 @@
 
 /* No comment provided by engineer. */
 "UNKNOWN_FILE_VERSION" = "Unbekannte Dateiversion";
+
+/* Unknown databas format. */
+"UNKNOWN_FORMAT" = "Unbekanntes Dateiformat";
+
+/* Database format is unknown since the file is not saved yet */
+"UNKNOWN_FORMAT_FILE_NOT_SAVED_YET" = "Unbekannt. Datei wurde noch nicht gespeichert.";
 
 /* No comment provided by engineer. */
 "UNKNOWN_TOOLBAR_ITEM" = "Unbekanntes Toolbar-Element";

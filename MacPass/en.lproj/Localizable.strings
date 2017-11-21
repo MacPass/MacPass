@@ -25,12 +25,14 @@
 /* Action to add an entry via template */
 "ADD_TREMPLATE_ENTRY" = "Create Template Entry";
 
+/* Alert informative text when plugins or their settings change and require a restart */
+"ALERT_INFORMATIVE_TEXT_PLUGINS_CHANGED_SUGGEST_RESTART" =  "Changes to plugins and global plugin settings take only effect after restart. Restart MacPass now?";
+
 /* Alert informative text to ask the user if he really want to uninstall the plugin */
 "ALERT_INFORMATIVE_TEXT_REALLY_UNINSTALL_PLUGIN" = "The Plugin will be moved to the Trash.";
 
-/* Alert informative text when plugins or their settings change and require a restart
-   Alert message text when plugins or their settings change and require a restart */
-"ALERT_MESSAGE_PLUGINS_CHANGED_SUGGEST_RESTART" = "Changes to plugins take only effect after restart.";
+/* Alert message text when plugins or their settings change and require a restart */
+"ALERT_MESSAGE_PLUGINS_CHANGED_SUGGEST_RESTART" = "Plugin settings changed. Please restart.";
 
 /* Alert message text to ask the user if he really want to uninstall the plugin. Include %@ placeholder for plugin name */
 "ALERT_MESSAGE_TEXT_REALLY_UNINSTALL_PLUGIN_%@" = "Should the Plugin %@ really be uninstalled?";
