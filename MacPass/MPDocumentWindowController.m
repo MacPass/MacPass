@@ -342,7 +342,10 @@ typedef void (^MPPasswordChangedBlock)(BOOL didChangePassword);
 }
 
 - (IBAction)lock:(id)sender {
-  MPDocument *document = [self document];
+  MPDocument *document = self.document;
+  if(document.encrypted) {
+    return; // Document already locked
+  }
   if(!document.compositeKey) {
     [self editPasswordWithCompetionHandler:^(NSInteger result) {
       if(result == NSModalResponseOK) {
@@ -350,9 +353,6 @@ typedef void (^MPPasswordChangedBlock)(BOOL didChangePassword);
       }
     }];
     return;
-  }
-  if(document.encrypted) {
-    return; // Document already locked
   }
   [document lockDatabase:sender];
 }
