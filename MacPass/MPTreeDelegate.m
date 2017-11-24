@@ -24,6 +24,7 @@
 
 #import "MPDocument.h"
 #import "MPSettingsHelper.h"
+#import "MPPickcharViewController.h"
 
 @interface MPTreeDelegate ();
 
@@ -53,15 +54,12 @@
   return self.document.undoManager;
 }
 
-- (NSString *)resolvePlaceholder:(NSString *)placeholder forTree:(KPKTree *)tree {
+- (NSString *)tree:(KPKTree *)tree resolvePlaceholder:(NSString *)placeholder forEntry:(KPKEntry *)entry {
   if([placeholder isEqualToString:kKPKPlaceholderDatabasePath]) {
     return self.document.fileURL.path;
   }
   if([placeholder isEqualToString:kKPKPlaceholderDatabaseFolder]) {
-     return self.document.fileURL.path;
-  }
-  if([placeholder isEqualToString:kKPKPlaceholderDatabaseName]) {
-    return self.document.tree.metaData.databaseName;
+    return self.document.fileURL.path;
   }
   if([placeholder isEqualToString:kKPKPlaceholderDatabaseBasename]) {
     return @"";
@@ -77,6 +75,37 @@
   }
   if([placeholder isEqualToString:kKPKPlaceholderSelectedGroupNotes]) {
     return self.document.selectedGroups.firstObject.notes;
+  }
+  return @"";
+}
+
+- (NSString *)tree:(KPKTree *)tree resolvePickFieldPlaceholderForEntry:(KPKEntry *)entry {
+  return @"";
+}
+
+- (NSString *)tree:(KPKTree *)tree resolvePickCharsPlaceholderForEntry:(KPKEntry *)entry field:(NSString *)field options:(NSString *)options {
+  
+  NSString *value = [[entry valueForAttributeWithKey:field] kpk_finalValueForEntry:entry];
+  if(value.length == 0) {
+    return @""; // error while retrieving source value
+  }
+  
+  MPPickcharViewController *pickCharViewController = [[MPPickcharViewController alloc] init];
+  
+  pickCharViewController.sourceValue = value;
+  pickCharViewController.countToPick = 10;
+  
+  
+  NSPanel *panel = [[NSPanel alloc] initWithContentRect:NSMakeRect(0, 0, 100, 100)
+                                              styleMask:NSWindowStyleMaskNonactivatingPanel|NSWindowStyleMaskTitled|NSWindowStyleMaskResizable
+                                                backing:NSBackingStoreRetained
+                                                  defer:YES];
+  panel.level = NSScreenSaverWindowLevel;
+  panel.contentViewController = pickCharViewController;
+  [panel center];
+  if(NSModalResponseOK == [NSApp runModalForWindow:panel]) {
+    /* add appropriate key press comamnds? or let the pick-char view-controller handel this? */
+    return pickCharViewController.pickedValue;
   }
   return @"";
 }

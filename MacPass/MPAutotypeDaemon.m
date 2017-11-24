@@ -239,8 +239,7 @@ static MPAutotypeDaemon *_sharedInstance;
     usleep(1 * NSEC_PER_MSEC);
   }
   dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
-    NSArray<MPAutotypeCommand *> *commands = [MPAutotypeCommand commandsForContext:context];
-    for(MPAutotypeCommand *command in commands) {
+    for(MPAutotypeCommand *command in [MPAutotypeCommand commandsForContext:context]) {
       [command execute];
     }
   });

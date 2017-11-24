@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="13196" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="13529" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
     <dependencies>
         <deployment identifier="macosx"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="13196"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="13529"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
@@ -532,7 +532,7 @@
                 <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="58" secondAttribute="trailing" constant="20" symbolic="YES" id="rbs-i7-bti"/>
                 <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="6" secondAttribute="trailing" constant="20" symbolic="YES" id="uuh-ba-z4h"/>
             </constraints>
-            <point key="canvasLocation" x="-525" y="-927"/>
+            <point key="canvasLocation" x="-679" y="-1054"/>
         </customView>
         <view translatesAutoresizingMaskIntoConstraints="NO" id="zv7-wE-Bmg" customClass="HNHUIScrollDocumentViewAdapter">
             <rect key="frame" x="0.0" y="0.0" width="301" height="424"/>
@@ -900,7 +900,7 @@
             <connections>
                 <outlet property="nextKeyView" destination="QSX-Xo-tcH" id="KP9-D4-4cC"/>
             </connections>
-            <point key="canvasLocation" x="-899" y="-949"/>
+            <point key="canvasLocation" x="-1015" y="-1275"/>
         </scrollView>
     </objects>
     <resources>
