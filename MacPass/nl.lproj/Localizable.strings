@@ -1,9 +1,9 @@
 /* Formatted Times  */
 "%ld_DAYS_AGO" = "%ld dagen geleden";
-"%ld_HOURS_AGO" = "ongeveer %ld uur geleden";
+"%ld_HOURS_AGO" = "ongeveer %ld uren geleden";
 "%ld_MINUTES_AGO" = "%ld minuten geleden";
 "%ld_WEEKS_AGO" = "%ld weken geleden";
-"JUST_NOW" = "Net";
+"JUST_NOW" = "Zojuist";
 "LAST_WEEK" = "Vorige week";
 "ONE_WEEK_AGO" = "Eén week geleden";
 "YESTERDAY" = "Gisteren";
@@ -17,34 +17,34 @@
 "SELECT_DATE_PRESET" = "Use preset…";
 
 /* Menu item for automatic trash creation */
-"AUTOCREATE_TRASH_FOLDER" = "Creëer Automatisch";
+"AUTOCREATE_TRASH_FOLDER" = "Creëer automatisch";
 
 /*
  Actions
  */
-"NEW_ENTRY" = "Voeg Item toe";
-"NEW_GROUP" = "Voeg Groep toe";
-"DUPLICATE_ENTRY" = "Dupliceer Item";
-"DUPLICATE_ENTRY_WITH_OPTIONS" = "Dupliceer Item…";
-"COPY_ENTRY" = "Kopieer Item";
+"NEW_ENTRY" = "Voeg item toe";
+"NEW_GROUP" = "Voeg groep toe";
+"DUPLICATE_ENTRY" = "Dupliceer item";
+"DUPLICATE_ENTRY_WITH_OPTIONS" = "Dupliceer item…";
+"COPY_ENTRY" = "Kopieer item";
 "COPY_GROUP" = "Kopieer Groep";
-"ADD_TREMPLATE_ENTRY" = "Creëer Item met Sjabloon";
-"DELETE_GROUP" = "Verwijder Groep";
-"DELETE_ENTRY" = "Verwijder Item";
-"EDIT_TEMPLATE_GROUP" = "Wijzig Item Groepsjabloon";
-"EMPTY_TRASH" = "Leeg Prullenmand";
-"MOVE_ENTRY" = "Verplaats Item";
-"MOVE_GROUP" = "Verplaats Groep";
-"NEW_ENTRY_WITH_TEMPLATE_%@" = "Creëer Item met Sjabloon %@";
-"NEW_DATABASE" = "Database";
+"ADD_TREMPLATE_ENTRY" = "Creëer item met sjabloon";
+"DELETE_GROUP" = "Verwijder groep";
+"DELETE_ENTRY" = "Verwijder item";
+"EDIT_TEMPLATE_GROUP" = "Wijzig item groepsjabloon";
+"EMPTY_TRASH" = "Leeg prullenmand";
+"MOVE_ENTRY" = "Verplaats item";
+"MOVE_GROUP" = "Verplaats groep";
+"NEW_ENTRY_WITH_TEMPLATE_%@" = "Creëer item met sjabloon %@";
+"NEW_DATABASE" = "Kluis";
 "OPEN_URL" = "Open URL";
-"PERFORM_AUTOTYPE_FOR_ENTRY" = "Perform Autotype";
+"PERFORM_AUTOTYPE_FOR_ENTRY" = "Perform autotype";
 "PREVIEW" = "Voorvertoning";
 "PASSWORD_GENERATOR_SET_DEFAULTS" = "Set Defaults";
 "PASSWORD_GENERATOR_RESET_ENTRY_DEFAULTS" = "Reset";
-"TRASH_ENTRY" = "Prullenmand Item";
-"TRASH_GROUP" = "Prullenmand Groep";
-"SHOW_HISTORY" = "SHOW_HISTORY";
+"TRASH_ENTRY" = "Prullenmand item";
+"TRASH_GROUP" = "Prullenmand groep";
+"SHOW_HISTORY" = "Geschiedenis weergeven";
 
 /*
  Search
@@ -52,8 +52,8 @@
 "CLEAR_RECENT_SEARCHES" = "Wis recente zoekopdrachten";
 "RECENT_SEARCHES" = "Recent zoekopdrachten";
 "SEARCH_DUPLICATE_PASSWORDS" = "Duplicate Passwords";
-"SEARCH_EXPIRED_ENTRIES" = "Expired";
-"SELECT_FILTER_WITH_DOTS" = "Select…";
+"SEARCH_EXPIRED_ENTRIES" = "Vervallen";
+"SELECT_FILTER_WITH_DOTS" = "Selecteer…";
 
 /*
  Direct Translations
@@ -61,54 +61,54 @@
 "ACTION" = "Actie";
 "ATTACHMENTS" = "Bijlagen";
 "CANCEL" = "Annuleer";
-"DATABASE" = "Database";
+"DATABASE" = "Kluis";
 "DELETE" = "Verwijder";
 "EDIT" = "Wijzig";
 "GROUP" = "Groep";
-"INSPECTOR" = "Inspector";
+"INSPECTOR" = "Infovenster";
 "LOCK" = "Vergrendel";
 "MODIFIED" = "Gewijzigd";
 "NOTES" = "Notities";
-"NONE" = "NONE";
+"NONE" = "Geen";
 "PASSWORD" = "Wachtwoord";
 "SAVE" = "Bewaar";
 "SAVE_WITH_DOTS" = "Bewaar…";
 "SEARCH" = "Zoeken";
-"TITLE" = "Titel";
+"TITLE" = "Trefwoord";
 "URL" = "URL";
 "USERNAME" = "Gebruikersnaam";
 "WINDOWS" = "Vensters";
 
 
-"CHANGE_DATABASE_NAME" = "Wijzig Databasenaam";
-"CHANGE_TRASH_GROUP" = "Wijzig Prullenmand Groep";
+"CHANGE_DATABASE_NAME" = "Wijzig kluisnaam";
+"CHANGE_TRASH_GROUP" = "Wijzig prullenmandgroep";
 
-"DUPLICTE_PASSWORDS" = "Dupliceer Wachtwoorden";
+"DUPLICTE_PASSWORDS" = "Dupliceer wachtwoorden";
 
 /* Field nam that was copied to the pasteboard */
 "COPIED_FIELD_%@" = "Gekopieerd %@";
 "COPIED_PASSWORD" = "Wachtwoord gekopieerd!";
 "COPIED_URL" = "URL gekopieerd!";
 "COPIED_USERNAME" = "Gebruikersnaam gekopieerd!";
-"COPY_CUSTOM_FIELDS" = "Kopieer Aangepaste Velden";
+"COPY_CUSTOM_FIELDS" = "Kopieer aangepaste velden";
 "COPY_FIELD_%@" = "Kopieer %@";
-"COPY_PASSWORD" = "Kopieer Wachtwoord";
+"COPY_PASSWORD" = "Kopieer wachtwoord";
 "COPY_URL" = "Kopieer URL";
-"COPY_USERNAME" = "Kopieer Gebruikersnaam";
+"COPY_USERNAME" = "Kopieer gebruikersnaam";
 
 /* Dock Badge */
 "CLEARING_PASTEBOARD" = "…";
 
 /* Group Inspector */
 /* Autotype Combobox */
-"AUTOTYPE_NO" = "Deactiveer Autotype";
-"AUTOTYPE_YES" = "Activeer Autotype";
-"AUTOTYPE_INHERIT" = "Erf Autotype Voorkeuren";
+"AUTOTYPE_NO" = "Deactiveer autotype";
+"AUTOTYPE_YES" = "Activeer autotype";
+"AUTOTYPE_INHERIT" = "Erf autotype-voorkeuren";
 
 /* Search Combobox */
-"SEARCH_INHERIT" = "Erf Zoekinstellingen";
-"SEARCH_YES" = "Insluiten in Zoeken";
-"SEARCH_NO" = "Uitsluiten van Zoeken";
+"SEARCH_INHERIT" = "Erf zoekinstellingen";
+"SEARCH_YES" = "Insluiten in zoeken";
+"SEARCH_NO" = "Uitsluiten van zoeken";
 
 /*
  Date/Time Displays
@@ -127,55 +127,55 @@
 "DEFAULT_CUSTOM_FIELD_TITLE" = "Aangepast";
 "DEFAULT_CUSTOM_FIELD_VALUE" = "Waarde";
 "DEFAULT_ENTRY_TITLE" = "Nieuw Item";
-"DEFAULT_GROUP_NAME" = "Nieuwe Groep";
-"DEFAULT_WINDOW_TITLE" = "Window Title";
+"DEFAULT_GROUP_NAME" = "Nieuwe groep";
+"DEFAULT_WINDOW_TITLE" = "Venstertitel";
 
 /* Settings */
 "GENERAL_SETTINGS" = "Algemeen";
 "INTEGRATION_SETTINGS" = "Integratie";
 "UPDATE_SETTINGS" = "Updates";
-"WORKFLOW_SETTINGS" = "Workflow";
-"DEFAULT_BROWSER" = "Standaard Browser";
-"OTHER_BROWSER" = "OTHER_BROWSER";
-"PLUGIN_SETTINGS" = "Plugins";
+"WORKFLOW_SETTINGS" = "Bewerken";
+"DEFAULT_BROWSER" = "Standaard browser";
+"OTHER_BROWSER" = "Andere…";
+"PLUGIN_SETTINGS" = "Extensies";
 
 /* Feature not supported in Version */
-"KDBX_ONLY_FEATURE" = "Feature niet ondersteund in KDB database";
+"KDBX_ONLY_FEATURE" = "Feature niet ondersteund in KDB-kluis";
 
 /* Template */
-"NO_TEMPLATE_GROUP" = "Geen Sjablonen";
-"NO_TEMPLATES" = "Geen Sjablonen gevonden";
+"NO_TEMPLATE_GROUP" = "Geen groepssjablonen";
+"NO_TEMPLATES" = "Geen sjablonen gevonden";
 
 /* Kefile */
-"SAVE_KEYFILE" = "Bewaar Keyfile";
+"SAVE_KEYFILE" = "Bewaar sleutelbestand";
 
 /* Autoype Dialog */
 /* Candiate dialog */
 "SELECT_AUTOTYPE_CANDIDATE" = "Selecteer kandidaat!";
 "AUTOTYPE_OVERLAY_NO_DOCUMENTS" = "AUTOTYPE_OVERLAY_NO_DOCUMENTS";
-"AUTOTYPE_OVERLAY_NO_MATCH_FOR_%@" = "No Match for %@!";
-"AUTOTYPE_OVERLAY_SINGLE_MATCH" = "Match!";
+"AUTOTYPE_OVERLAY_NO_MATCH_FOR_%@" = "Geen overeenkomst gevonden voor %@!";
+"AUTOTYPE_OVERLAY_SINGLE_MATCH" = "Gevonden!";
 
 /* Alert Dialogs */
-"WARNING_ON_EMPTY_TRASH_DESCRIPTION" = "De Prullenmand legen is niet omkeerbaar.";
-"WARNING_ON_EMPTY_TRASH_TITLE" = "Leeg Prullenmand?";
-"WARNING_ON_LOSSY_SAVE" = "Opslaan met KDB formaat zal zorgen voor verloren data.";
-"WARNING_ON_LOSSY_SAVE_DESCRIPTION" = "Het KDB bestandsformaat kan niet alle informatie bevatten.";
-"CHANGE_FORMAT" = "Wijzig Bestandsformaat in KDBX";
-"SAVE_LOSSY" = "Bewaar and verlies data";
+"WARNING_ON_EMPTY_TRASH_DESCRIPTION" = "Het legen van de prullenmand is onomkeerbaar.";
+"WARNING_ON_EMPTY_TRASH_TITLE" = "Leeg prullenmand?";
+"WARNING_ON_LOSSY_SAVE" = "U kunt gegevens kwijtraken door op te slaan in KDB-formaat.";
+"WARNING_ON_LOSSY_SAVE_DESCRIPTION" = "Niet alle soorten gegevens passen in het wachtwoordenkluisformaat KDB. U kunt gegevens kwijtraken als u doorgaat.";
+"CHANGE_FORMAT" = "Wijzig het wachtwoordenkluisformaat naar KDBX";
+"SAVE_LOSSY" = "Bewaar and verlies gegevens";
 
-"ENFORCE_PASSWORD_CHANGE_ALERT_TITLE" = "The database password expired!";
-"ENFORCE_PASSWORD_CHANGE_ALERT_DESCRIPTION" = "You will be unable to save until the password and/or keyfile has been changed.";
+"ENFORCE_PASSWORD_CHANGE_ALERT_TITLE" = "Het hoofdwachtwoord is vervallen!";
+"ENFORCE_PASSWORD_CHANGE_ALERT_DESCRIPTION" = "U kunt niet opslaan totdat u het hoofdwachtwoord of sleutelbestand heeft gewijzigd.";
 
-"RECOMMEND_PASSWORD_CHANGE_ALERT_TITLE" = "Please change the database password!";
-"RECOMMEND_PASSWORD_CHANGE_ALERT_DESCRIPTION" = "It is recommended to change the password and/or keyfile.";
-"CHANGE_PASSWORD_WITH_DOTS" = "Change Password…";
+"RECOMMEND_PASSWORD_CHANGE_ALERT_TITLE" = "Hoofdwachtwoord wijzigen.";
+"RECOMMEND_PASSWORD_CHANGE_ALERT_DESCRIPTION" = "Het wordt aangeraden om het hoofdwachtwoord of sleutelbestand te wijzigen.";
+"CHANGE_PASSWORD_WITH_DOTS" = "Wijzig wachtwoord…";
 
-"WARNING_ON_SAVE_NO_PASSWORD_OR_KEY_SET" = "No password or keyfile is set.";
-"WARNING_ON_SAVE_NO_PASSWORD_OR_KEY_SET_SUGGESTION" = "Please set a password and/or keyfile for this database. Aborting this will undo all changes and lock the document";
+"WARNING_ON_SAVE_NO_PASSWORD_OR_KEY_SET" = "Hoofdwachtwoord of sleutelbestand ontbreekt.";
+"WARNING_ON_SAVE_NO_PASSWORD_OR_KEY_SET_SUGGESTION" = "Stel een hoofdwachtwoord of sleutelbestand in voor deze wachtwoordenkluis. Als u dit niet doet, gaan alle wijzigingen verloren.";
 
 /* Message displayed when an open file was changed from another application */
-"FILE_CHANGED_BY_OTHERS_MESSAGE_TEXT" = "The database file was modified!";
+"FILE_CHANGED_BY_OTHERS_MESSAGE_TEXT" = "Het kluisbestand is gewijzigd!";
 /* Informative text displayed when the file was change form another application */
 "FILE_CHANGED_BY_OTHERS_INFO_TEXT" = "The file loaded is not the same as the on on disk. How do you want to move on?";
 /* Button to ignore the changes */
@@ -183,17 +183,17 @@
 /* BUtton to reload the changes form disk */
 "LOAD_CHANGES" = "LOAD_CHANGES";
 /* Merge changes into file! */
-"MERGE_CHANGES" = "Merge changes!";
+"MERGE_CHANGES" = "Wijzigingen samenvoegen!";
 
 /* Password Input Messagaes, Errors and Warning */
-"PASSWORD_INPUT_NO_PASSWORD" = "Geen Wachtwoord";
-"PASSWORD_INPUT_ENTER_PASSWORD" = "Voer Wachtwoord in";
-"PASSWORD_INPUT_REPEAT_PASSWORD" = "Herhaal Wachtwoord";
-"WARNING_NO_PASSWORD_OR_KEYFILE" = "Geen Wachtwoord of keyfile gegeven!";
-"ERROR_PASSWORD_MISSMATCH_INVALID_KEYFILE" = "Wachtwoorden komen niet overeen en de keyfile is ongeldig!";
+"PASSWORD_INPUT_NO_PASSWORD" = "Geen wachtwoord";
+"PASSWORD_INPUT_ENTER_PASSWORD" = "Voer wachtwoord in";
+"PASSWORD_INPUT_REPEAT_PASSWORD" = "Herhaal wachtwoord";
+"WARNING_NO_PASSWORD_OR_KEYFILE" = "Wachtwoord of sleutelbestand ontbreekt!";
+"ERROR_PASSWORD_MISSMATCH_INVALID_KEYFILE" = "Wachtwoorden komen niet overeen en het sleutelbestand is ongeldig!";
 "ERROR_PASSWORD_MISSMATCH" = "Wachtwoorden komen niet overeen!";
-"ERROR_INVALID_KEYFILE" = "Keyfile is ongeldig!";
+"ERROR_INVALID_KEYFILE" = "Sleutelbestand is ongeldig!";
 
 /* Misc */
-"DOCUMENT_AUTOTYPE_CORRUPTION_WARNING" = "Please run Fix Autotype...";
+"DOCUMENT_AUTOTYPE_CORRUPTION_WARNING" = "Please run fix autotype…";
 "FILE_OPEN_ERROR" = "Fout bij openen bestand.";
