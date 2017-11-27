@@ -1,3 +1,3 @@
 # MacPass
 
-This website has been moved to https://macpass.github.io
+This website has been moved to [macpass.github.io](https://macpass.github.io)
