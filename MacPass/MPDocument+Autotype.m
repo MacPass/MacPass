@@ -79,6 +79,7 @@
     }
     /* Test for entry title in window title */
     if(matchTitle && !foundMatch) {
+      /* TODO use kpk_finalValueForEntry */
       foundMatch = [windowTitle rangeOfString:entry.title options:NSCaseInsensitiveSearch].length != 0 || [entry.title rangeOfString:windowTitle options:NSCaseInsensitiveSearch].length != 0;
     }
     /* test for URL */
