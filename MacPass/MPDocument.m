@@ -367,6 +367,7 @@ NSString *const MPDocumentGroupKey                            = @"MPDocumentGrou
     [self.tree synchronizeWithTree:otherTree options:KPKSynchronizationSynchronizeOption];
     /* the key might have changed so update ours! */
     //self.compositeKey = key;
+    [self updateChangeCount:NSChangeDone];
     NSUserNotification *notification = [[NSUserNotification alloc] init];
     notification.title = NSApp.applicationName;
     notification.informativeText = NSLocalizedString(@"AUTO_MERGE_NOTIFICATION_TEXT", @"Sucessfully merged external changes");
