@@ -102,70 +102,63 @@ The following list might not be complete, please refer to [merged Pull Requests]
 
 [Joanna Olsen](https://github.com/JoannaOlsen) Database Icons
 
-### Translators
-
-[Alex Petkevich](mailto:alex@mrdoggy.info), 
-[Antoine Carrincazeaux](https://github.com/AntoineCa), 
-[Benjamin Steinwender](https://github.com/auge), 
-[binarious](https://github.com/binarious), 
-[Chester Liu](skyline75489@outlook.com), 
-[Florian Gouy](https://github.com/floriangouy), 
-[Francesco Servida](mailto:info@francescoservida.ch), 
-[Gaétan Ryckeboer](http://gaetan.ryckeboer.org), 
-[Gil André](mailto:gil@panix.com), 
-[Jannick Hemelhof](https://github.com/clone1612), 
-[Michał Jaglewicz](http://www.webii.pl), 
-[Michel Bibal](https://github.com/MBibal), 
-[Moises Perez](https://github.com/m0yP), 
-[Moises Perez](https://github.com/m0yP), 
-[neuroine](https://github.com/neuroine), 
-[Thorsten Jacoby](https://github.com/tjacoby), 
-[Volcyy](https://github.com/Volcyy), 
-[Zhao Peng](mailto:patchao2000@gmail.com)
-
 ### Contributors
 
-[Adam Doppelt](mailto:amd@gurge.com), 
-[Alex Borisov](http://alexborisov.org), 
-[Alex Seeholzer](https://github.com/flinz), 
-[Andrew Schleifer](mailto:me@andrewschleifer.name), 
-[Carlos Filipe Simões](https://github.com/ravemir), 
-[Chester Liu](skyline75489@outlook.com), 
-[Chhom Seng](https://github.com/cseng), 
-[Christoph Leimbrock](mailto:christoph.leimbrock@gmx.de), 
-[Daniele Polencic](https://github.com/danielepolencic), 
-[darnel](https://github.com/darnel), 
-[Deiwin Sarjas](https://github.com/deiwin), 
-[Dennis Bolio](https://github.com/dennisbolio), 
-[Dylan Smith](https://github.com/dylansmith), 
-[Filipe Farinha](https://github.com/ktorn), 
-[Frank Enderle](http://www.anamica.de/), 
-[James Hurst](https://github.com/jamesrhurst), 
-[Jeffrey Ying](https://github.com/Jefftree), 
-[Jellyfrog](https://github.com/Jellyfrog), 
-[Josh Halstead](jhalstead85@gmail.com), 
-[Josh Halstead](mailto:jhalstead85@gmail.com), 
-[Julian Geywitz](https://www.patreon.com/geigi), 
-[Kurt Legerlotz](https://github.com/lotz), 
-[lenucksi](https://github.com/lenucksi), 
-[Leonardo Faoro](https://cv.lfaoro.com), 
-[Liam Anderson](mailto:liam.anderson.91@gmail.com), 
-[Maarten Terpstra](https://github.com/mlterpstra92), 
-[Mario Sangiorgio](mailto:mariosangiorgio@gmail.com), 
-[Michael Belz](https://github.com/sub0ne), 
-[Nathan Landis](https://github.com/eouw0o83hf), 
-[Nathaniel Madura](mailto:nmadura@umich.edu), 
-[Patrik Thunström](https://github.com/magebarf), 
-[rdoering](https://github.com/rdoering), 
-[roasty](https://github.com/roasty), 
-[Ryan Rogers](ryan@timewasted.me), 
-[Sebastian Lövdahl](https://github.com/slovdahl), 
-[Sitsofe Wheeler](http://sucs.org/~sits/), 
-[Stephen Taylor](http://www.makegames.co.uk/), 
-[thomscode](https://github.com/thomscode), 
-[Thorsten Jacoby](https://github.com/tjacoby	), 
-[Yono Mittlefehldt](https://twitter.com/yonomitt), 
-[Zero King](https://github.com/l2dy)
+[ad](github.mnms@mamber.net)
+[Alex Borisov](alex@alexborisov.org)
+[Alex Seeholzer](seeholzer@gmail.com)
+[amd](amd@gurge.com)
+[Andrew Schleifer](me@andrewschleifer.name)
+[AntoineCa](antoine@carrincazeaux.fr)
+[Benjamin Steinwender](b@stbe.at)
+[binarious](bieder.martin@googlemail.com)
+[Carlos Filipe Simões](ravemir@users.noreply.github.com)
+[Chester Liu](skyline75489@outlook.com)
+[Chhom Seng](chhom.seng@gmail.com)
+[Christoph Leimbrock](christoph.leimbrock@gmx.de)
+[Cory Hutchison](cjhutchi@users.noreply.github.com)
+[Daniele Polencic](daniele.polencic@gmail.com)
+[darnel](vojta.j@gmail.com)
+[Deiwin Sarjas](deiwin.sarjas@gmail.com)
+[Dennis Bolio](git@bolio.nl)
+[Dylan Smith](dylansmith@gmail.com)
+[Filipe Farinha](filipe@ktorn.com)
+[floriangouy](florian.gouy@gmail.com)
+[Francesco Servida](info@francescoservida.ch)
+[Frank Enderle](frank.enderle@anamica.de)
+[Gaétan Ryckeboer](gryckeboer@jouve.com)
+[Geigi](git@geigi.de)
+[James Hurst](jamesrhurst@outlook.com)
+[Jannick Hemelhof](mister.jannick@gmail.com)
+[Jefftree](jeffrey.ying86@live.com)
+[Jellyfrog](Jellyfrog@users.noreply.github.com)
+[Joanna Olsen](jo4flash@gmail.com)
+[Josh Halstead](jhalstead85@gmail.com)
+[Kurt](kurt@soapbox-software.com)
+[Lenucksi](lenucksi@users.noreply.github.com)
+[Leonardo Faoro](lfaoro@users.noreply.github.com)
+[Liam Anderson](liam.anderson.91@gmail.com)
+[Maarten Terpstra](m.l.terpstra@student.rug.nl)
+[Mario Sangiorgio](mariosangiorgio@gmail.com)
+[MBibal](michel.bibal@gmail.com)
+[Michael Belz](mbelz@outlook.de)
+[Michal Jaglewicz](michalj@webii.pl)
+[Moises Perez](moises@perez.lt)
+[mrdoggy](mrdoggy.all@gmail.com)
+[Nathan Landis](nathanlandis@gmail.com)
+[Nathaniel Madura](nmadura@umich.edu)
+[neuroine](d.dzieduch@gmail.com)
+[Patrik Thunström](magebarf@gmail.com)
+[rdoering](rdoering.info@gmail.com)
+[Ryan Rogers](ryan@timewasted.me)
+[Sitsofe Wheeler](sitsofe@yahoo.com)
+[Stephen Taylor](schtee.taylor@gmail.com)
+[Thom](thomscode@gmail.com)
+[Thorsten Jacoby](tjacoby@gmail.com)
+[Volcyy](Volcyy@users.noreply.github.com)
+[Yonatan Mittlefehldt](yono@toojuice.com)
+[Zero King](l2dy@icloud.com)
+[Zhao Peng](patchao2000@gmail.com)
 
 ## Copyright
 
