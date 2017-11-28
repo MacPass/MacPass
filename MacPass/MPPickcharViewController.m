@@ -16,9 +16,14 @@
 @property (weak) IBOutlet NSTextField *pickedValueTextField;
 @property (weak) IBOutlet NSButton *togglePasswordDisplayButton;
 @property (weak) IBOutlet NSTextField *pickedStatusTextField;
+@property (nonatomic) NSInteger availableCountToPick;
 @end
 
 @implementation MPPickcharViewController
+
++ (NSSet<NSString *> *)keyPathsForValuesAffectingAvailableCountToPick {
+  return [NSSet setWithArray:@[NSStringFromSelector(@selector(countToPick)), NSStringFromSelector(@selector(pickedValue))]];
+}
 
 - (NSNibName)nibName {
   return @"PickcharView";
@@ -76,8 +81,12 @@
   [self _updatePickedStatus];
 }
 
+- (NSInteger)availableCountToPick {
+  return (self.countToPick - self.pickedValue.composedCharacterLength);
+}
+
 - (void)_updatePickedStatus {
-  self.pickedStatusTextField.stringValue = [NSString stringWithFormat:@"%ld characters remaining", self.pickedValue.composedCharacterLength];
+  self.pickedStatusTextField.stringValue = [NSString stringWithFormat:@"%ld characters remaining", self.availableCountToPick];
 }
 
 - (NSInteger)numberOfRowsInTableView:(NSTableView *)tableView {
@@ -98,6 +107,9 @@
 }
 
 - (void)tableView:(NSTableView *)tableView didClickTableColumn:(NSTableColumn *)tableColumn {
+  if(self.availableCountToPick <= 0) {
+    return;
+  }
   NSInteger index = [tableView.tableColumns indexOfObjectIdenticalTo:tableColumn];
   if(index == NSNotFound) {
     return;

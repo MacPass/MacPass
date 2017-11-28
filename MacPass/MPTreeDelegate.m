@@ -95,13 +95,13 @@
   pickCharViewController.sourceValue = value;
   pickCharViewController.countToPick = 10;
   
-  
   NSPanel *panel = [[NSPanel alloc] initWithContentRect:NSMakeRect(0, 0, 100, 100)
                                               styleMask:NSWindowStyleMaskNonactivatingPanel|NSWindowStyleMaskTitled|NSWindowStyleMaskResizable
                                                 backing:NSBackingStoreRetained
                                                   defer:YES];
   panel.level = NSScreenSaverWindowLevel;
   panel.contentViewController = pickCharViewController;
+  panel.title = NSLocalizedString(@"PICKCHAR_WINDOW_TITLE", @"Window displayed to the user to pick an amout of characters");
   [panel center];
   if(NSModalResponseOK == [NSApp runModalForWindow:panel]) {
     /* add appropriate key press comamnds? or let the pick-char view-controller handel this? */
