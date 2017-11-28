@@ -176,6 +176,9 @@
 		4C7F8B681A10B68400CCB83D /* WelcomeWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4C7F8B6A1A10B68400CCB83D /* WelcomeWindow.xib */; };
 		4C80304A1E2FBAA300133E4C /* MPTestKeyMapper.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C8030491E2FBAA300133E4C /* MPTestKeyMapper.m */; };
 		4C811C8316ECD06E00C4BAC6 /* MPKeyfilePathControlDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C811C8216ECD06E00C4BAC6 /* MPKeyfilePathControlDelegate.m */; };
+		4C82046A1FCDC07800EB24A4 /* MPPickfieldViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C8204681FCDC07800EB24A4 /* MPPickfieldViewController.m */; };
+		4C82046B1FCDC07800EB24A4 /* PickfieldView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4C8204691FCDC07800EB24A4 /* PickfieldView.xib */; };
+		4C82046E1FCDC8A100EB24A4 /* MPPickfieldTableModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C82046D1FCDC8A100EB24A4 /* MPPickfieldTableModel.m */; };
 		4C83814215BF4677001AE468 /* MPDocumentWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C83814115BF4677001AE468 /* MPDocumentWindowController.m */; };
 		4C888C9016EB6C91003D34A1 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 4C888C8E16EB6C91003D34A1 /* Localizable.strings */; };
 		4C888C9316EB6F5E003D34A1 /* MPToolbarItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C888C9216EB6F5E003D34A1 /* MPToolbarItem.m */; };
@@ -609,6 +612,11 @@
 		4C8030491E2FBAA300133E4C /* MPTestKeyMapper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MPTestKeyMapper.m; sourceTree = "<group>"; };
 		4C811C8116ECD06E00C4BAC6 /* MPKeyfilePathControlDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MPKeyfilePathControlDelegate.h; sourceTree = "<group>"; };
 		4C811C8216ECD06E00C4BAC6 /* MPKeyfilePathControlDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MPKeyfilePathControlDelegate.m; sourceTree = "<group>"; };
+		4C8204671FCDC07800EB24A4 /* MPPickfieldViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MPPickfieldViewController.h; sourceTree = "<group>"; };
+		4C8204681FCDC07800EB24A4 /* MPPickfieldViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MPPickfieldViewController.m; sourceTree = "<group>"; };
+		4C8204691FCDC07800EB24A4 /* PickfieldView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PickfieldView.xib; sourceTree = "<group>"; };
+		4C82046C1FCDC8A100EB24A4 /* MPPickfieldTableModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MPPickfieldTableModel.h; sourceTree = "<group>"; };
+		4C82046D1FCDC8A100EB24A4 /* MPPickfieldTableModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MPPickfieldTableModel.m; sourceTree = "<group>"; };
 		4C83814015BF4677001AE468 /* MPDocumentWindowController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MPDocumentWindowController.h; sourceTree = "<group>"; };
 		4C83814115BF4677001AE468 /* MPDocumentWindowController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MPDocumentWindowController.m; sourceTree = "<group>"; };
 		4C840C441D773E5D0081F605 /* pl */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = pl; path = pl.lproj/DatabaseSettingsWindow.strings; sourceTree = "<group>"; };
@@ -1082,6 +1090,8 @@
 				4C6B7C7C18BE7EB0001D5D77 /* MPDocument+History.m */,
 				4C0AF62D195C1F2B009E658D /* MPEntrySearchContext.h */,
 				4C0AF62E195C1F2B009E658D /* MPEntrySearchContext.m */,
+				4C82046C1FCDC8A100EB24A4 /* MPPickfieldTableModel.h */,
+				4C82046D1FCDC8A100EB24A4 /* MPPickfieldTableModel.m */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -1443,6 +1453,9 @@
 				4CD4EE101FC7284000EA6EB3 /* MPPickcharViewController.h */,
 				4CD4EE111FC7284000EA6EB3 /* MPPickcharViewController.m */,
 				4CA4B3451FC88339007DF507 /* PickcharView.xib */,
+				4C8204671FCDC07800EB24A4 /* MPPickfieldViewController.h */,
+				4C8204681FCDC07800EB24A4 /* MPPickfieldViewController.m */,
+				4C8204691FCDC07800EB24A4 /* PickfieldView.xib */,
 			);
 			name = "View Controller";
 			sourceTree = "<group>";
@@ -1701,6 +1714,7 @@
 				4C3826B51AD04D8E007D7D67 /* 40_FindMailTemplate.pdf in Resources */,
 				4C2E381F16D11FF900037A9D /* 05_LanguagesTemplate.pdf in Resources */,
 				4C3826721AD04B51007D7D67 /* addFolderTemplate.pdf in Resources */,
+				4C82046B1FCDC07800EB24A4 /* PickfieldView.xib in Resources */,
 				4C3826C21AD04D8E007D7D67 /* 55_ThumbnailTemplate.pdf in Resources */,
 				4C3826A61AD04D8E007D7D67 /* 22_ASCIITemplate.pdf in Resources */,
 				4CD78ABC16D155FF00768A1D /* 07_NotepadTemplate.pdf in Resources */,
@@ -1822,6 +1836,7 @@
 				4CA0B2FC15BCAF8600654E32 /* MPSettingsWindowController.m in Sources */,
 				4C4F72D118DF704400E8D378 /* DDHotKeyTextField.m in Sources */,
 				4C83814215BF4677001AE468 /* MPDocumentWindowController.m in Sources */,
+				4C82046A1FCDC07800EB24A4 /* MPPickfieldViewController.m in Sources */,
 				4C2E382316D1421B00037A9D /* MPIconHelper.m in Sources */,
 				4C2E382616D1470200037A9D /* MPViewController.m in Sources */,
 				4C65FAE916D16DDB006E0577 /* MPPasswordInputController.m in Sources */,
@@ -1870,6 +1885,7 @@
 				4CE30ACC1A312B7F0063FCC6 /* MPReferenceBuilderViewController.m in Sources */,
 				4C6F228C19A4AA700012310C /* MPAutotypeDelay.m in Sources */,
 				4C3C4EAF18D7039300153127 /* MPValueTransformerHelper.m in Sources */,
+				4C82046E1FCDC8A100EB24A4 /* MPPickfieldTableModel.m in Sources */,
 				4C978E0D19AE54AB003067DF /* MPFlagsHelper.m in Sources */,
 				4C6F228919A4A7F90012310C /* MPAutotypeClear.m in Sources */,
 				4C0B038C18E36DA400B9F9C9 /* MPFixAutotypeWindowController.m in Sources */,

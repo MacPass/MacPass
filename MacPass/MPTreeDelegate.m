@@ -25,6 +25,7 @@
 #import "MPDocument.h"
 #import "MPSettingsHelper.h"
 #import "MPPickcharViewController.h"
+#import "MPPickfieldViewController.h"
 
 @interface MPTreeDelegate ();
 
@@ -80,6 +81,22 @@
 }
 
 - (NSString *)tree:(KPKTree *)tree resolvePickFieldPlaceholderForEntry:(KPKEntry *)entry {
+  MPPickfieldViewController *pickFieldViewController = [[MPPickfieldViewController alloc] init];
+  
+  pickFieldViewController.representedObject = entry;
+  
+  NSPanel *panel = [[NSPanel alloc] initWithContentRect:NSMakeRect(0, 0, 100, 100)
+                                              styleMask:NSWindowStyleMaskNonactivatingPanel|NSWindowStyleMaskTitled|NSWindowStyleMaskResizable
+                                                backing:NSBackingStoreRetained
+                                                  defer:YES];
+  panel.level = NSScreenSaverWindowLevel;
+  panel.contentViewController = pickFieldViewController;
+  panel.title = NSLocalizedString(@"PICKFIELD_WINDOW_TITLE", @"Window displayed to the user to pick an amout of characters");
+  [panel center];
+  if(NSModalResponseOK == [NSApp runModalForWindow:panel]) {
+    /* add appropriate key press comamnds? or let the pick-char view-controller handel this? */
+    return pickFieldViewController.pickedValue;
+  }
   return @"";
 }
 
