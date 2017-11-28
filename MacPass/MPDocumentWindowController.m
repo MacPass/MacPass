@@ -539,10 +539,10 @@ typedef void (^MPPasswordChangedBlock)(BOOL didChangePassword);
       dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.5 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
         [self editPasswordWithCompetionHandler:^(NSInteger result) {
           /* if password was changed, reset change key and dismiss */
-          if(NSModalResponseOK == result) {
+          if(result == NSModalResponseOK) {
             document.tree.metaData.enforceMasterKeyChangeOnce = NO;
           }
-          else if(NSModalResponseCancel) {
+          else if(result == NSModalResponseCancel) {
             /* password was not changes, so keep nagging the user! */
             [self _presentPasswordIntervalAlerts];
           }
