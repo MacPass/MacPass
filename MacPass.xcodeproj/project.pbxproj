@@ -190,6 +190,7 @@
 		4C89F524182FB4740069C73C /* MPAutotypeCommand.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C89F523182FB4740069C73C /* MPAutotypeCommand.m */; };
 		4C8B36AB17A6ED4B005E1FF1 /* MPOutlineContextMenuDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C8B36AA17A6ED4B005E1FF1 /* MPOutlineContextMenuDelegate.m */; };
 		4C8DEAA21C314D2C00D24C32 /* MPTestAutotypeDelay.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C8DEAA11C314D2C00D24C32 /* MPTestAutotypeDelay.m */; };
+		4C8F0C6E1FCEE9B900BE157F /* MPPluginConstants.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C8F0C6D1FCEE9B900BE157F /* MPPluginConstants.m */; };
 		4C978E0D19AE54AB003067DF /* MPFlagsHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C978E0C19AE54AB003067DF /* MPFlagsHelper.m */; };
 		4CA08DA017A831B200A6544B /* MPAddEntryContextMenuDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CA08D9F17A831B200A6544B /* MPAddEntryContextMenuDelegate.m */; };
 		4CA0B2ED15BCADAC00654E32 /* SettingsWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4CA0B2EC15BCADAC00654E32 /* SettingsWindow.xib */; };
@@ -655,6 +656,8 @@
 		4C8B36AA17A6ED4B005E1FF1 /* MPOutlineContextMenuDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MPOutlineContextMenuDelegate.m; sourceTree = "<group>"; };
 		4C8C10061FC489D8003DDD5E /* nl */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = nl; path = nl.lproj/PluginSettings.strings; sourceTree = "<group>"; };
 		4C8DEAA11C314D2C00D24C32 /* MPTestAutotypeDelay.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MPTestAutotypeDelay.m; sourceTree = "<group>"; };
+		4C8F0C6C1FCEE98900BE157F /* MPPluginConstants.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MPPluginConstants.h; sourceTree = "<group>"; };
+		4C8F0C6D1FCEE9B900BE157F /* MPPluginConstants.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MPPluginConstants.m; sourceTree = "<group>"; };
 		4C8FB9FA1FC2D0EF003691AA /* MPPlugin_Private.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MPPlugin_Private.h; sourceTree = "<group>"; };
 		4C93C5701FBDFEF700F36855 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/AutotypeCandidateSelectionView.strings; sourceTree = "<group>"; };
 		4C93C5711FBDFEF900F36855 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/AutotypeBuilderView.strings; sourceTree = "<group>"; };
@@ -1568,6 +1571,8 @@
 				4CD034A51BFE113B003C002C /* MPPlugin.m */,
 				4CD034A81BFE113B003C002C /* MPPluginHost.h */,
 				4CD034A91BFE113B003C002C /* MPPluginHost.m */,
+				4C8F0C6C1FCEE98900BE157F /* MPPluginConstants.h */,
+				4C8F0C6D1FCEE9B900BE157F /* MPPluginConstants.m */,
 			);
 			name = Plugin;
 			path = MacPass;
@@ -1835,6 +1840,7 @@
 				4C6B7C7D18BE7EB0001D5D77 /* MPDocument+History.m in Sources */,
 				4CA0B2FC15BCAF8600654E32 /* MPSettingsWindowController.m in Sources */,
 				4C4F72D118DF704400E8D378 /* DDHotKeyTextField.m in Sources */,
+				4C8F0C6E1FCEE9B900BE157F /* MPPluginConstants.m in Sources */,
 				4C83814215BF4677001AE468 /* MPDocumentWindowController.m in Sources */,
 				4C82046A1FCDC07800EB24A4 /* MPPickfieldViewController.m in Sources */,
 				4C2E382316D1421B00037A9D /* MPIconHelper.m in Sources */,

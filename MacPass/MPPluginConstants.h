@@ -9,5 +9,11 @@
 #ifndef MPPluginConstants_h
 #define MPPluginConstants_h
 
+#import <Foundation/Foundation.h>
+
+FOUNDATION_EXPORT NSString *const MPPluginFileExtension;
+
+FOUNDATION_EXPORT NSString *const MPPluginMinimumHostVersionKey;
+FOUNDATION_EXPORT NSString *const MPPluginMaxiumHostVersoinKey;
 
 #endif /* MPPluginConstants_h */

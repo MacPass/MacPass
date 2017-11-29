@@ -25,6 +25,7 @@
 #import "MPPluginHost.h"
 #import "MPPlugin.h"
 #import "MPPlugin_Private.h"
+#import "MPPluginConstants.h"
 
 #import "MPConstants.h"
 #import "MPSettingsHelper.h"
@@ -155,7 +156,7 @@ typedef NS_ENUM(NSUInteger, MPPluginSegmentType) {
   if(!pluginURL.isFileURL) {
     return NO;
   }
-  if(![pluginURL.lastPathComponent.pathExtension isEqualToString:kMPPluginFileExtension]) {
+  if(![pluginURL.lastPathComponent.pathExtension isEqualToString:MPPluginFileExtension]) {
     return NO;
   }
   [tableView setDropRow:-1 dropOperation:NSTableViewDropOn];
@@ -202,7 +203,7 @@ typedef NS_ENUM(NSUInteger, MPPluginSegmentType) {
 
 - (void)showAddPluginPanel {
   NSOpenPanel *openPanel = [NSOpenPanel openPanel];
-  openPanel.allowedFileTypes = @[kMPPluginFileExtension];
+  openPanel.allowedFileTypes = @[MPPluginFileExtension];
   openPanel.allowsMultipleSelection = NO;
   openPanel.canChooseFiles = YES;
   openPanel.canChooseDirectories = NO;

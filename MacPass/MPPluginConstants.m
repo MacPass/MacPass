@@ -6,4 +6,6 @@
 //  Copyright © 2017 HicknHack Software GmbH. All rights reserved.
 //
 
-#import <Foundation/Foundation.h>
+#import "MPPluginConstants.h"
+
+NSString *const MPPluginFileExtension = @"mpplugin";

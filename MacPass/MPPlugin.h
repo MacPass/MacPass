@@ -28,14 +28,14 @@ NS_ASSUME_NONNULL_BEGIN
 @class MPAutotypeCommand;
 @class KPKEntry;
 
-FOUNDATION_EXPORT NSString *const kMPPluginFileExtension;
-
 @interface MPPlugin : NSObject
 
 @property (copy, readonly) NSString *identifier;
 @property (copy, readonly) NSString *name;
 @property (copy, readonly) NSString *version;
 @property (nonatomic, strong, readonly) NSBundle *bundle;
+
+@property (readonly) NSString *requiredHostVersion; // the host version required for running the plugin in mayor.minor.path format
 
 
 /**

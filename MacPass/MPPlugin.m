@@ -24,8 +24,7 @@
 #import "MPPlugin_Private.h"
 #import "MPPluginHost.h"
 #import "MPSettingsHelper.h"
-
-NSString *const kMPPluginFileExtension = @"mpplugin";
+#import "MPPluginConstants.h"
 
 @implementation MPPlugin
 
