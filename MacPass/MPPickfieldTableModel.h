@@ -11,7 +11,7 @@
 @class MPDocument;
 @class KPKEntry;
 
-@interface MPPickFieldTableModelRowItem : NSObject
+@interface MPPickfieldTableModelRowItem : NSObject
 
 @property (copy) NSString *name;
 @property (copy) NSString *value;
@@ -24,10 +24,10 @@
 
 @interface MPPickfieldTableModel : NSObject
 
-@property (copy) NSArray<MPPickFieldTableModelRowItem *> *items;
+@property (copy) NSArray<MPPickfieldTableModelRowItem *> *items;
 
 - (instancetype)initWithEntry:(KPKEntry *)entry inDocument:(MPDocument *)document;
-- (MPPickFieldTableModelRowItem *)itemAtIndex:(NSUInteger)index;
+- (MPPickfieldTableModelRowItem *)itemAtIndex:(NSUInteger)index;
 
 @end
 

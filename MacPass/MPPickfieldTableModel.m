@@ -9,7 +9,7 @@
 #import "MPPickfieldTableModel.h"
 #import <KeePassKit/KeePassKit.h>
 
-@implementation MPPickFieldTableModelRowItem
+@implementation MPPickfieldTableModelRowItem
 
 - (instancetype)init {
   self = [super init];
@@ -20,13 +20,13 @@
 }
 
 + (instancetype)groupItemWithName:(NSString *)name {
-  MPPickFieldTableModelRowItem *item =  [self itemWithName:name value:nil];
+  MPPickfieldTableModelRowItem *item =  [self itemWithName:name value:nil];
   item.isGroup = YES;
   return item;
 }
 
 + (instancetype)itemWithName:(NSString *)name value:(NSString *)value {
-  MPPickFieldTableModelRowItem *item = [[MPPickFieldTableModelRowItem alloc] init];
+  MPPickfieldTableModelRowItem *item = [[MPPickfieldTableModelRowItem alloc] init];
   item.name = name;
   item.value = value;
   return item;
@@ -47,22 +47,22 @@
 - (void)_setupItemsForEntry:(KPKEntry *)entry document:(MPDocument *)document {
   /* Default attributes */
   NSMutableArray *items = [[NSMutableArray alloc] init];
-  [items addObject:[MPPickFieldTableModelRowItem groupItemWithName:NSLocalizedString(@"ENTRY_DEFAULT_ATTRIBUTES", @"Group row for entry attributes")]];
+  [items addObject:[MPPickfieldTableModelRowItem groupItemWithName:NSLocalizedString(@"ENTRY_DEFAULT_ATTRIBUTES", @"Group row for entry attributes")]];
   
   for(KPKAttribute *attribute in entry.defaultAttributes) {
     /* TODO exclude protected values */
-    [items addObject:[MPPickFieldTableModelRowItem itemWithName:attribute.key value:attribute.value]];
+    [items addObject:[MPPickfieldTableModelRowItem itemWithName:attribute.key value:attribute.value]];
   }
 
-  [items addObject:[MPPickFieldTableModelRowItem groupItemWithName:NSLocalizedString(@"ENTRY_CUSTOM_ATTRIBUTES", @"Group row for entry attributes")]];
+  [items addObject:[MPPickfieldTableModelRowItem groupItemWithName:NSLocalizedString(@"ENTRY_CUSTOM_ATTRIBUTES", @"Group row for entry attributes")]];
   for(KPKAttribute *attribute in entry.customAttributes) {
     /* TODO exclude protected values */
-    [items addObject:[MPPickFieldTableModelRowItem itemWithName:attribute.key value:attribute.value]];
+    [items addObject:[MPPickfieldTableModelRowItem itemWithName:attribute.key value:attribute.value]];
   }
   self.items = items; // copy creates an immutable copy
 }
 
-- (MPPickFieldTableModelRowItem *)itemAtIndex:(NSUInteger)index {
+- (MPPickfieldTableModelRowItem *)itemAtIndex:(NSUInteger)index {
   if(index < _items.count) {
     return _items[index];
   }

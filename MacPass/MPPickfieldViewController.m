@@ -10,6 +10,12 @@
 #import "MPPickfieldTableModel.h"
 
 #import <KeePassKit/KeePassKit.h>
+
+typedef NS_ENUM(NSUInteger, MPPickfieldTableColumn) {
+  MPPickfieldNameTableColumn,
+  MPPIckfieldValueTableColumn
+};
+
 @interface MPPickfieldViewController () <NSTableViewDelegate, NSTableViewDataSource>
 
 @property (nonatomic, strong, readonly) KPKEntry *representedEntry;
@@ -30,6 +36,7 @@
 - (void)viewDidLoad {
   [super viewDidLoad];
   self.tableModel = [[MPPickfieldTableModel alloc] initWithEntry:self.representedEntry inDocument:nil];
+  
 }
 
 - (KPKEntry *)representedEntry {
@@ -55,25 +62,33 @@
   else {
     view = [tableView makeViewWithIdentifier:@"HeaderCell" owner:self];
   }
-  MPPickFieldTableModelRowItem *rowItem = [self.tableModel itemAtIndex:row];
+  MPPickfieldTableModelRowItem *rowItem = [self.tableModel itemAtIndex:row];
   view.textField.stringValue = @"";
 
   if(!rowItem) {
     return view;
   }
-  /* group view or first column */
-  if(tableColumn == nil || [tableColumn.identifier isEqualToString:@"AutomaticTableColumnIdentifier.0"]) {
-      view.textField.stringValue = rowItem.name;
-  }
-  else if([tableColumn.identifier isEqualToString:@"AutomaticTableColumnIdentifier.1"]) {
-    view.textField.stringValue = rowItem.value;
-  }
   
+  MPPickfieldTableColumn columnIndex = (tableColumn == nil
+                                        ? MPPickfieldNameTableColumn
+                                        : [tableView.tableColumns indexOfObjectIdenticalTo:tableColumn]);
+  
+  /* group view or first column */
+  switch (columnIndex) {
+    case MPPickfieldNameTableColumn:
+      view.textField.stringValue = rowItem.name;
+      break;
+    case MPPIckfieldValueTableColumn:
+      view.textField.stringValue = rowItem.value;
+      break;
+    default:
+      break;
+  }
   return view;
 }
 
 - (BOOL)tableView:(NSTableView *)tableView isGroupRow:(NSInteger)row {
-  MPPickFieldTableModelRowItem *rowItem = [self.tableModel itemAtIndex:row];
+  MPPickfieldTableModelRowItem *rowItem = [self.tableModel itemAtIndex:row];
   return rowItem.isGroup;
 }
 
@@ -87,7 +102,7 @@
     self.pickedValue = @"";
   }
   else {
-    MPPickFieldTableModelRowItem *item = [self.tableModel itemAtIndex:tableView.selectedRow];
+    MPPickfieldTableModelRowItem *item = [self.tableModel itemAtIndex:tableView.selectedRow];
     self.pickedValue = item ? item.value : @"";
   }
 }
