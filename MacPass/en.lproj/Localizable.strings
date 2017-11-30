@@ -13,6 +13,9 @@
 /* % Weeks ago */
 "%ld_WEEKS_AGO" = "%ld weeks ago";
 
+/* Count of characters remaining in Pickchars view */
+"%ld_CHARACTERS_TO_PICK_REMAINING" = "%ld characters to pick remaining";
+
 /* preset to expire after 90 days from now */
 "90_DAYS" = "in 90 days";
 
@@ -403,6 +406,12 @@
 
 /* Menu item to perform autotype with the selected entry */
 "PERFORM_AUTOTYPE_FOR_ENTRY" = "Perform Autotype";
+
+/* Count of picked characters in Pickchars view if no limit is set */
+"PICKED_%ld_CHARACTERS" = "Picked %ld characters";
+
+/* Comment */
+"PICKCHAR_INFO_MESSAGE_PICK_CHARACTERS_%ld" = "Please pick %ld characters";
 
 /* The plugin could not be initalized */
 "PLUGIN_ERROR_INTILIZATION_FAILED" = "Plugin could not be initalized";

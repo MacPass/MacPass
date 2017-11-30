@@ -13,10 +13,12 @@ NS_ASSUME_NONNULL_BEGIN
 
 @property (copy) NSString *sourceValue;
 @property (nonatomic, copy) NSString *pickedValue;
-@property NSInteger countToPick;
-@property (nonatomic) BOOL hideSource;
+@property NSInteger minimumCharacterCount;
+@property (nonatomic) BOOL hidePickedCharacters;
 
 - (IBAction)reset:(id)sender;
+- (IBAction)submitValue:(id)sender;
+
 
 @end
 

@@ -26,6 +26,7 @@
 #import "MPSettingsHelper.h"
 #import "MPPickcharViewController.h"
 #import "MPPickfieldViewController.h"
+#import "MPPickcharsParser.h"
 
 @interface MPTreeDelegate ();
 
@@ -106,11 +107,12 @@
   if(value.length == 0) {
     return @""; // error while retrieving source value
   }
-  
+  MPPickcharsParser *parser = [[MPPickcharsParser alloc] initWithOptions:options];
   MPPickcharViewController *pickCharViewController = [[MPPickcharViewController alloc] init];
   
   pickCharViewController.sourceValue = value;
-  pickCharViewController.countToPick = 10;
+  pickCharViewController.minimumCharacterCount = parser.pickCount;
+  pickCharViewController.hidePickedCharacters = parser.hideCharacters;
   
   NSPanel *panel = [[NSPanel alloc] initWithContentRect:NSMakeRect(0, 0, 100, 100)
                                               styleMask:NSWindowStyleMaskNonactivatingPanel|NSWindowStyleMaskTitled|NSWindowStyleMaskResizable
