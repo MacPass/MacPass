@@ -33,6 +33,7 @@
 #import "MPReferenceBuilderViewController.h"
 
 #import "NSString+MPPasswordCreation.h"
+#import "KPKEntry+MPAdditions.h"
 
 #import "MPDocument.h"
 #import "MPIconHelper.h"

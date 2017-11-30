@@ -7,6 +7,7 @@
 //
 
 #import "MPPickcharsParser.h"
+#import "NSString+MPComposedCharacterAdditions.h"
 #import <KeePassKit/KeePassKit.h>
 
 @interface MPPickcharsParser ()
@@ -39,7 +40,13 @@
 }
 
 - (NSString *)processPickedString:(NSString *)string {
-  return string;
+  if(!self.convertToDownArrows) {
+    return string;
+  }
+  for(NSString *character in string.composedCharacters) {
+    
+  }
+
 }
 
 /*

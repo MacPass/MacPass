@@ -26,6 +26,7 @@
 
 @property (nonatomic, readonly) NSUInteger composedCharacterLength;
 @property (nonatomic, readonly, copy) NSArray<NSValue *> *composedCharacterRanges; // NSArray of NSValues of NSRanges
+@property (nonatomic, readonly, copy) NSArray<NSString *> *composedCharacters; // NSArray of composed characters. For the most part those will be single character strings
 
 - (NSString *)composedCharacterAtIndex:(NSUInteger)index;
 
