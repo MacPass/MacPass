@@ -38,7 +38,6 @@ NSString *const MPPluginHostDidLoadPlugin = @"comt.hicknhack.macpass.MPPluginHos
 
 NSString *const MPPluginHostPluginBundleIdentifiyerKey = @"MPPluginHostPluginBundleIdentifiyerKey";
 
-
 @interface MPPluginHost ()
 @property (strong) NSMutableArray<MPPlugin __kindof *> *mutablePlugins;
 @property (nonatomic) BOOL loadUnsecurePlugins;

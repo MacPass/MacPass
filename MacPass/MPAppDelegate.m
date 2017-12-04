@@ -23,6 +23,7 @@
 #import "MPAppDelegate.h"
 
 #import "MPAutotypeDaemon.h"
+#import "MPConstants.h"
 #import "MPContextMenuHelper.h"
 #import "MPDockTileHelper.h"
 #import "MPDocument.h"
@@ -45,7 +46,7 @@
 #import <Sparkle/Sparkle.h>
 
 NSString *const MPDidChangeStoredKeyFilesSettings = @"com.hicknhack.macpass.MPDidChangeStoredKeyFilesSettings";
-NSString *const MPHelpURLKey = @"MPHelpURL";
+
 @interface MPAppDelegate () {
 @private
   MPDockTileHelper *_dockTileHelper;
@@ -241,7 +242,7 @@ NSString *const MPHelpURLKey = @"MPHelpURL";
 }
 
 - (void)showHelp:(id)sender {
-  NSString *urlString = [[NSBundle mainBundle] infoDictionary][MPHelpURLKey];
+  NSString *urlString = NSBundle.mainBundle.infoDictionary[MPBundleHelpURLKey];
   [[NSWorkspace sharedWorkspace] openURL:[NSURL URLWithString:urlString]];
 }
 
