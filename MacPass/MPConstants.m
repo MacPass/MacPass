@@ -27,6 +27,7 @@ NSString *const MPKdbDocumentUTI  = @"com.hicknhack.macpass.kdb";
 NSString *const MPKdbxDocumentUTI = @"com.hicknhack.macpass.kdbx";
 NSString *const MPPluginUTI       = @"com.hicknhack.macpass.plugin";
 
-NSString *const MPBundleHelpURLKey              = @"MPHelpURL";
-NSString *const MPBundlePluginRepositoryURLKey  = @"MPPluginRepositoryURL"
+NSString *const MPBundleHelpURLKey                = @"MPHelpURL";
+NSString *const MPBundlePluginRepositoryURLKey    = @"MPPluginRepositoryURL";
+NSString *const MPBundlePluginCompaibilityURLKey  = @"MPPluginCompaibilityURL";
 
