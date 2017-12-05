@@ -22,12 +22,10 @@
 
 #import <Cocoa/Cocoa.h>
 
-@interface MPContextToolbarButton : NSSegmentedControl
+@interface MPContextButton : NSSegmentedControl
+
+@property (nonatomic, strong) NSMenu *contextMenu;
 
 - (void)setImage:(NSImage *)image;
-- (void)setContextMenu:(NSMenu *)menu;
-
-- (NSControlSize)controlSize;
-- (void)setControlSize:(NSControlSize)controlSize;
 
 @end

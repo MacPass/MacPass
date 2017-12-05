@@ -46,7 +46,7 @@
   for(NSString *character in string.composedCharacters) {
     
   }
-
+  return nil;
 }
 
 /*

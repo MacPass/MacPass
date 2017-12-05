@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="13529" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="13771" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
     <dependencies>
         <deployment identifier="macosx"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="13529"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="13771"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
@@ -10,7 +10,7 @@
             <connections>
                 <outlet property="URLTextField" destination="56" id="262"/>
                 <outlet property="addAttachmentButton" destination="177" id="w3F-U0-Rpk"/>
-                <outlet property="addCustomFieldButton" destination="179" id="I3F-Sp-dbI"/>
+                <outlet property="addCustomFieldButton" destination="G9J-nn-2bu" id="vco-Lt-hkc"/>
                 <outlet property="addWindowAssociationButton" destination="Iy9-9L-Aev" id="kDA-Mm-lah"/>
                 <outlet property="associationSequenceTextField" destination="NjR-ea-Y7k" id="kTb-Y5-XrZ"/>
                 <outlet property="attachmentTableView" destination="137" id="265"/>
@@ -455,17 +455,6 @@
                         <outlet property="delegate" destination="-2" id="bJ5-Un-81o"/>
                     </connections>
                 </textField>
-                <button focusRingType="none" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="179">
-                    <rect key="frame" x="200" y="100" width="71" height="25"/>
-                    <buttonCell key="cell" type="roundTextured" title="Add Field" bezelStyle="texturedRounded" alignment="center" state="on" borderStyle="border" focusRingType="none" imageScaling="proportionallyDown" inset="2" id="232">
-                        <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
-                        <font key="font" metaFont="system"/>
-                    </buttonCell>
-                    <connections>
-                        <action selector="addCustomField:" target="-2" id="273"/>
-                        <outlet property="nextKeyView" destination="193" id="aWG-La-YP3"/>
-                    </connections>
-                </button>
                 <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="QSX-Xo-tcH">
                     <rect key="frame" x="20" y="18" width="251" height="25"/>
                     <buttonCell key="cell" type="roundTextured" title="Show Plugin Data" bezelStyle="texturedRounded" alignment="center" lineBreakMode="truncatingTail" state="on" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="X9y-K7-lix">
@@ -477,6 +466,20 @@
                         <outlet property="nextKeyView" destination="53" id="HTB-dl-8aH"/>
                     </connections>
                 </button>
+                <segmentedControl verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="G9J-nn-2bu" customClass="MPContextButton">
+                    <rect key="frame" x="220" y="100" width="51" height="25"/>
+                    <segmentedCell key="cell" borderStyle="border" alignment="left" style="texturedRounded" trackingMode="selectOne" id="POU-2t-8fl">
+                        <font key="font" metaFont="system"/>
+                        <segments>
+                            <segment image="NSAddTemplate" width="32"/>
+                            <segment/>
+                        </segments>
+                    </segmentedCell>
+                    <connections>
+                        <action selector="addCustomField:" target="-2" id="3sZ-a1-V2r"/>
+                        <outlet property="nextKeyView" destination="QSX-Xo-tcH" id="P9m-Wl-V3E"/>
+                    </connections>
+                </segmentedControl>
             </subviews>
             <constraints>
                 <constraint firstItem="52" firstAttribute="top" secondItem="4" secondAttribute="top" constant="5" id="11"/>
@@ -513,24 +516,24 @@
                 <constraint firstItem="QSX-Xo-tcH" firstAttribute="leading" secondItem="4" secondAttribute="leading" constant="20" symbolic="YES" id="2AA-hQ-mL7"/>
                 <constraint firstItem="IpW-b2-jWu" firstAttribute="leading" secondItem="4" secondAttribute="leading" constant="20" id="51R-pR-KLO"/>
                 <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="52" secondAttribute="trailing" constant="20" symbolic="YES" id="6P6-fW-kGx"/>
-                <constraint firstAttribute="trailing" secondItem="179" secondAttribute="trailing" constant="20" symbolic="YES" id="Bys-px-9xs"/>
                 <constraint firstAttribute="trailing" secondItem="IpW-b2-jWu" secondAttribute="trailing" constant="20" id="D0t-s7-2hT"/>
-                <constraint firstItem="0U8-TS-giU" firstAttribute="top" secondItem="179" secondAttribute="bottom" constant="8" symbolic="YES" id="GNj-yE-507"/>
                 <constraint firstItem="7" firstAttribute="top" secondItem="56" secondAttribute="bottom" constant="12" id="Gh9-Lg-kcm"/>
                 <constraint firstItem="IpW-b2-jWu" firstAttribute="top" secondItem="0U8-TS-giU" secondAttribute="bottom" constant="8" symbolic="YES" id="HSM-Aj-X9I"/>
                 <constraint firstItem="58" firstAttribute="top" secondItem="55" secondAttribute="bottom" constant="12" id="JiM-Dm-AG8"/>
                 <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="57" secondAttribute="trailing" constant="20" symbolic="YES" id="N4A-wg-PdS"/>
-                <constraint firstItem="179" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="4" secondAttribute="leading" constant="20" symbolic="YES" id="OUg-H1-uyM"/>
                 <constraint firstItem="QSX-Xo-tcH" firstAttribute="top" secondItem="IpW-b2-jWu" secondAttribute="bottom" constant="8" symbolic="YES" id="TPp-cx-48q"/>
                 <constraint firstItem="8" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="7" secondAttribute="trailing" constant="8" symbolic="YES" id="Xa5-Ir-XNC"/>
                 <constraint firstAttribute="bottom" secondItem="QSX-Xo-tcH" secondAttribute="bottom" constant="20" symbolic="YES" id="ZdF-5c-xDa"/>
                 <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="0U8-TS-giU" secondAttribute="trailing" constant="20" symbolic="YES" id="a5R-eI-VuV"/>
+                <constraint firstItem="0U8-TS-giU" firstAttribute="top" secondItem="G9J-nn-2bu" secondAttribute="bottom" constant="8" symbolic="YES" id="aes-tv-LHA"/>
                 <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="54" secondAttribute="trailing" constant="20" symbolic="YES" id="cYP-oK-dVP"/>
+                <constraint firstAttribute="trailing" secondItem="G9J-nn-2bu" secondAttribute="trailing" constant="20" symbolic="YES" id="ggu-f5-LtR"/>
                 <constraint firstAttribute="trailing" secondItem="QSX-Xo-tcH" secondAttribute="trailing" constant="20" symbolic="YES" id="hr2-Eb-g24"/>
                 <constraint firstItem="0U8-TS-giU" firstAttribute="leading" secondItem="4" secondAttribute="leading" constant="20" id="kLH-Bj-C5m"/>
                 <constraint firstItem="57" firstAttribute="top" secondItem="59" secondAttribute="bottom" constant="8" symbolic="YES" id="lYe-am-xJx"/>
                 <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="58" secondAttribute="trailing" constant="20" symbolic="YES" id="rbs-i7-bti"/>
                 <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="6" secondAttribute="trailing" constant="20" symbolic="YES" id="uuh-ba-z4h"/>
+                <constraint firstItem="G9J-nn-2bu" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="4" secondAttribute="leading" constant="20" symbolic="YES" id="z4K-PB-Qfb"/>
             </constraints>
             <point key="canvasLocation" x="-679" y="-1054"/>
         </customView>
@@ -898,7 +901,7 @@
                 <autoresizingMask key="autoresizingMask"/>
             </scroller>
             <connections>
-                <outlet property="nextKeyView" destination="QSX-Xo-tcH" id="KP9-D4-4cC"/>
+                <outlet property="nextKeyView" destination="G9J-nn-2bu" id="CZ9-f2-JDQ"/>
             </connections>
             <point key="canvasLocation" x="-1015" y="-1275"/>
         </scrollView>

@@ -18,4 +18,8 @@
   return self;
 }
 
+- (void)userNotificationCenter:(NSUserNotificationCenter *)center didActivateNotification:(NSUserNotification *)notification {
+  NSLog(@"%@", notification);
+}
+
 @end

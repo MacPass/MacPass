@@ -25,7 +25,7 @@
 #import "MPAppDelegate.h"
 #import "MPAutotypeDaemon.h"
 #import "MPConstants.h"
-#import "MPContextToolbarButton.h"
+#import "MPContextButton.h"
 #import "MPDatabaseSettingsWindowController.h"
 #import "MPDocument.h"
 #import "MPDocumentWindowDelegate.h"

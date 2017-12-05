@@ -38,6 +38,7 @@
 #import "MPPrettyPasswordTransformer.h"
 #import "MPTemporaryFileStorageCenter.h"
 #import "MPValueTransformerHelper.h"
+#import "MPUserNotificationCenterDelegate.h"
 
 #import "NSApplication+MPAdditions.h"
 
@@ -50,6 +51,7 @@ NSString *const MPDidChangeStoredKeyFilesSettings = @"com.hicknhack.macpass.MPDi
 @interface MPAppDelegate () {
 @private
   MPDockTileHelper *_dockTileHelper;
+  MPUserNotificationCenterDelegate *_userNotificationCenterDelegate;
   BOOL _shouldOpenFile; // YES if app was started to open a
 }
 
@@ -71,6 +73,7 @@ NSString *const MPDidChangeStoredKeyFilesSettings = @"com.hicknhack.macpass.MPDi
 - (instancetype)init {
   self = [super init];
   if(self) {
+    _userNotificationCenterDelegate = [[MPUserNotificationCenterDelegate alloc] init];
     /* We know that we do not use the variable after instantiation */
 #pragma clang diagnostic push
 #pragma clang diagnostic ignored "-Wunused-variable"

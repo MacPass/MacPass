@@ -95,7 +95,7 @@
   panel.title = NSLocalizedString(@"PICKFIELD_WINDOW_TITLE", @"Window displayed to the user to pick an amout of characters");
   [panel center];
   if(NSModalResponseOK == [NSApp runModalForWindow:panel]) {
-    /* add appropriate key press comamnds? or let the pick-char view-controller handel this? */
+    /* add appropriate key press commands? or let the pick-char view-controller handel this? */
     return pickFieldViewController.pickedValue;
   }
   return @"";

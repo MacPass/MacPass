@@ -43,6 +43,8 @@
 #import "MPActionHelper.h"
 #import "MPSettingsHelper.h"
 #import "MPPasteBoardController.h"
+#import "MPContextButton.h"
+#import "MPAddCustomFieldContextMenuDelegate.h"
 
 #import "MPArrayController.h"
 
@@ -67,6 +69,7 @@ typedef NS_ENUM(NSUInteger, MPEntryTab) {
   MPWindowAssociationsTableViewDelegate *_windowAssociationsTableDelegate;
   MPWindowTitleComboBoxDelegate *_windowTitleMenuDelegate;
   MPTagsTokenFieldDelegate *_tagTokenFieldDelegate;
+  MPAddCustomFieldContextMenuDelegate *_addCustomFieldContextMenuDelegate;
 }
 
 @property (nonatomic, assign) BOOL showPassword;
@@ -97,9 +100,12 @@ typedef NS_ENUM(NSUInteger, MPEntryTab) {
     _windowAssociationsTableDelegate = [[MPWindowAssociationsTableViewDelegate alloc] init];
     _windowTitleMenuDelegate = [[MPWindowTitleComboBoxDelegate alloc] init];
     _tagTokenFieldDelegate = [[MPTagsTokenFieldDelegate alloc] init];
+    _addCustomFieldContextMenuDelegate = [[MPAddCustomFieldContextMenuDelegate alloc] init];
     _tagTokenFieldDelegate.viewController = self;
     _attachmentTableDelegate.viewController = self;
     _customFieldTableDelegate.viewController = self;
+    _addCustomFieldContextMenuDelegate.viewController = self;
+    
     _activeTab = MPEntryTabGeneral;
   }
   return self;
@@ -166,6 +172,7 @@ typedef NS_ENUM(NSUInteger, MPEntryTab) {
   
   self.tagsTokenField.delegate = _tagTokenFieldDelegate;
   
+  [self _setupCustomFieldsButton];
   [self _setupViewBindings];
 }
 
@@ -540,6 +547,14 @@ typedef NS_ENUM(NSUInteger, MPEntryTab) {
                                   options:nil];
   
   
+}
+
+- (void)_setupCustomFieldsButton {
+  /* FIXME: this is a bug in MPContextButton preventing the image set in IB to be used */
+  [self.addCustomFieldButton setImage:[NSImage imageNamed:NSImageNameAddTemplate]];
+  NSMenu *customFieldMenu = [[NSMenu alloc] initWithTitle:NSLocalizedString(@"ADD_CUSTOM_FIELD_CONTEXT_MENU", @"Menu displayed for adding special custom keys")];
+  customFieldMenu.delegate = _addCustomFieldContextMenuDelegate;
+  self.addCustomFieldButton.contextMenu = customFieldMenu;
 }
 
 #pragma mark -

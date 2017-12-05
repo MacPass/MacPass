@@ -22,23 +22,20 @@
 
 #import "MPAutotypeDaemon.h"
 #import "MPDocument.h"
-
 #import "MPAutotypeCommand.h"
 #import "MPAutotypeContext.h"
 #import "MPAutotypePaste.h"
-
 #import "MPPasteBoardController.h"
 #import "MPSettingsHelper.h"
-
-#import "NSApplication+MPAdditions.h"
-
 #import "MPAutotypeCandidateSelectionViewController.h"
 
-#import "KeePassKit/KeePassKit.h"
+#import "NSApplication+MPAdditions.h"
+#import "NSUserNotification+MPAdditions.h"
 
 #import "DDHotKeyCenter.h"
 #import "DDHotKey+MacPassAdditions.h"
 
+#import "KeePassKit/KeePassKit.h"
 #import <Carbon/Carbon.h>
 
 NSString *const kMPWindowTitleKey = @"kMPWindowTitleKey";
@@ -170,7 +167,8 @@ static MPAutotypeDaemon *_sharedInstance;
     NSUserNotification *notification = [[NSUserNotification alloc] init];
     notification.title = NSApp.applicationName;
     notification.informativeText = NSLocalizedString(@"AUTOTYPE_OVERLAY_NO_DOCUMENTS", "Notification: Autotype failed, no documents are open");
-    
+    notification.actionButtonTitle = NSLocalizedString(@"OPEN_DOCUMENT", "Action button in Notification to open a document");
+    //notification.showsButtons = YES;
     [NSUserNotificationCenter.defaultUserNotificationCenter deliverNotification:notification];
     return;
   }

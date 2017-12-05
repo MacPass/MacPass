@@ -25,6 +25,7 @@
 #import <Quartz/Quartz.h>
 
 @class HNHUIRoundedSecureTextField;
+@class MPContextButton;
 @class MPDocument;
 
 @interface MPEntryInspectorViewController : MPViewController <NSPopoverDelegate, QLPreviewPanelDelegate, HNHUITextFieldDelegate>
@@ -48,7 +49,7 @@
 
 @property (weak) IBOutlet NSTextField *createdTextField;
 @property (weak) IBOutlet NSTextField *modifiedTextField;
-@property (weak) IBOutlet NSButton *addCustomFieldButton;
+@property (weak) IBOutlet MPContextButton *addCustomFieldButton;
 
 /* Attachments */
 @property (weak) IBOutlet NSButtonCell *addAttachmentButton;
