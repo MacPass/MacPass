@@ -12,6 +12,15 @@
 NSString *const MPHMACOTPSeedAttributeKey = @"HMACOTP-Seed";
 NSString *const MPHMACOTPConfigAttributeKey = @"HMACOTP-Config";
 
+/*
+HmacOtp-Secret (the UTF-8 representation of the value is the secret),
+HmacOtp-Secret-Hex (secret as hex string),
+HmacOtp-Secret-Base32 (secret as Base32 string)
+HmacOtp-Secret-Base64 (secret as Base64 string)
+ 
+HmacOtp-Counter field.
+*/
+
 @interface MPAddCustomFieldContextMenuDelegate ()
 @property (readonly, nonatomic) KPKEntry *entry;
 @end
@@ -32,7 +41,6 @@ NSString *const MPHMACOTPConfigAttributeKey = @"HMACOTP-Config";
 }
 
 - (void)_setupHOTPMenuItemsToMenu:(NSMenu *)menu {
-  
   BOOL hasConfigAttribute = nil != [self.entry customAttributeWithKey:MPHMACOTPConfigAttributeKey];
   if(!hasConfigAttribute) {
     NSMenuItem *item = [[NSMenuItem alloc] initWithTitle:@"Add config" action:@selector(_addHMACConfig:) keyEquivalent:@""];
