@@ -31,14 +31,14 @@
 "ADD_TREMPLATE_ENTRY" = "Creëer item met sjabloon";
 "DELETE_GROUP" = "Verwijder groep";
 "DELETE_ENTRY" = "Verwijder item";
-"EDIT_TEMPLATE_GROUP" = "Wijzig item groepsjabloon";
+"EDIT_TEMPLATE_GROUP" = "Wijzig groepsjabloon";
 "EMPTY_TRASH" = "Leeg prullenmand";
 "MOVE_ENTRY" = "Verplaats item";
 "MOVE_GROUP" = "Verplaats groep";
 "NEW_ENTRY_WITH_TEMPLATE_%@" = "Creëer item met sjabloon %@";
 "NEW_DATABASE" = "Kluis";
 "OPEN_URL" = "Open URL";
-"PERFORM_AUTOTYPE_FOR_ENTRY" = "Perform autotype";
+"PERFORM_AUTOTYPE_FOR_ENTRY" = "Log automatisch in";
 "PREVIEW" = "Voorvertoning";
 "PASSWORD_GENERATOR_SET_DEFAULTS" = "Set Defaults";
 "PASSWORD_GENERATOR_RESET_ENTRY_DEFAULTS" = "Reset";
@@ -74,8 +74,8 @@
 "SAVE" = "Bewaar";
 "SAVE_WITH_DOTS" = "Bewaar…";
 "SEARCH" = "Zoeken";
-"TITLE" = "Trefwoord";
-"URL" = "URL";
+"TITLE" = "Naam";
+"URL" = "Webpagina";
 "USERNAME" = "Gebruikersnaam";
 "WINDOWS" = "Vensters";
 
@@ -101,9 +101,9 @@
 
 /* Group Inspector */
 /* Autotype Combobox */
-"AUTOTYPE_NO" = "Deactiveer autotype";
-"AUTOTYPE_YES" = "Activeer autotype";
-"AUTOTYPE_INHERIT" = "Erf autotype-voorkeuren";
+"AUTOTYPE_NO" = "Deactiveer automatisch inloggen";
+"AUTOTYPE_YES" = "Activeer automatisch inloggen";
+"AUTOTYPE_INHERIT" = "Erf voorkeuren voor automatisch inloggen";
 
 /* Search Combobox */
 "SEARCH_INHERIT" = "Erf zoekinstellingen";
@@ -160,7 +160,7 @@
 "WARNING_ON_EMPTY_TRASH_DESCRIPTION" = "Het legen van de prullenmand is onomkeerbaar.";
 "WARNING_ON_EMPTY_TRASH_TITLE" = "Leeg prullenmand?";
 "WARNING_ON_LOSSY_SAVE" = "U kunt gegevens kwijtraken door op te slaan in KDB-formaat.";
-"WARNING_ON_LOSSY_SAVE_DESCRIPTION" = "Niet alle soorten gegevens passen in het wachtwoordenkluisformaat KDB. U kunt gegevens kwijtraken als u doorgaat.";
+"WARNING_ON_LOSSY_SAVE_DESCRIPTION" = "Niet alle soorten gegevens passen in het wachtwoordenkluisformaat KDB. Als u doorgaat kunt u gegevens kwijtraken.";
 "CHANGE_FORMAT" = "Wijzig het wachtwoordenkluisformaat naar KDBX";
 "SAVE_LOSSY" = "Bewaar and verlies gegevens";
 
@@ -174,16 +174,16 @@
 "WARNING_ON_SAVE_NO_PASSWORD_OR_KEY_SET" = "Hoofdwachtwoord of sleutelbestand ontbreekt.";
 "WARNING_ON_SAVE_NO_PASSWORD_OR_KEY_SET_SUGGESTION" = "Stel een hoofdwachtwoord of sleutelbestand in voor deze wachtwoordenkluis. Als u dit niet doet, gaan alle wijzigingen verloren.";
 
-/* Message displayed when an open file was changed from another application */
+/* Message displayed when an open file was changed by another application */
 "FILE_CHANGED_BY_OTHERS_MESSAGE_TEXT" = "Het kluisbestand is gewijzigd!";
-/* Informative text displayed when the file was change form another application */
-"FILE_CHANGED_BY_OTHERS_INFO_TEXT" = "The file loaded is not the same as the on on disk. How do you want to move on?";
+/* Informative text displayed when the file was changed by another application */
+"FILE_CHANGED_BY_OTHERS_INFO_TEXT" = "The file loaded is not the same as the one on disk. How do you want to move on?";
 /* Button to ignore the changes */
 "KEEP_MINE" = "KEEP_MINE";
 /* BUtton to reload the changes form disk */
-"LOAD_CHANGES" = "LOAD_CHANGES";
+"LOAD_CHANGES" = "Laad wijzigingen";
 /* Merge changes into file! */
-"MERGE_CHANGES" = "Wijzigingen samenvoegen!";
+"MERGE_CHANGES" = "Voeg wijzigingen samen!";
 
 /* Password Input Messagaes, Errors and Warning */
 "PASSWORD_INPUT_NO_PASSWORD" = "Geen wachtwoord";
