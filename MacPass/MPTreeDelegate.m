@@ -24,6 +24,9 @@
 
 #import "MPDocument.h"
 #import "MPSettingsHelper.h"
+#import "MPPickcharViewController.h"
+#import "MPPickfieldViewController.h"
+#import "MPPickcharsParser.h"
 
 @interface MPTreeDelegate ();
 
@@ -53,15 +56,12 @@
   return self.document.undoManager;
 }
 
-- (NSString *)resolvePlaceholder:(NSString *)placeholder forTree:(KPKTree *)tree {
+- (NSString *)tree:(KPKTree *)tree resolvePlaceholder:(NSString *)placeholder forEntry:(KPKEntry *)entry {
   if([placeholder isEqualToString:kKPKPlaceholderDatabasePath]) {
     return self.document.fileURL.path;
   }
   if([placeholder isEqualToString:kKPKPlaceholderDatabaseFolder]) {
-     return self.document.fileURL.path;
-  }
-  if([placeholder isEqualToString:kKPKPlaceholderDatabaseName]) {
-    return self.document.tree.metaData.databaseName;
+    return self.document.fileURL.path;
   }
   if([placeholder isEqualToString:kKPKPlaceholderDatabaseBasename]) {
     return @"";
@@ -77,6 +77,54 @@
   }
   if([placeholder isEqualToString:kKPKPlaceholderSelectedGroupNotes]) {
     return self.document.selectedGroups.firstObject.notes;
+  }
+  return @"";
+}
+
+- (NSString *)tree:(KPKTree *)tree resolvePickFieldPlaceholderForEntry:(KPKEntry *)entry {
+  MPPickfieldViewController *pickFieldViewController = [[MPPickfieldViewController alloc] init];
+  
+  pickFieldViewController.representedObject = entry;
+  
+  NSPanel *panel = [[NSPanel alloc] initWithContentRect:NSMakeRect(0, 0, 100, 100)
+                                              styleMask:NSWindowStyleMaskNonactivatingPanel|NSWindowStyleMaskTitled|NSWindowStyleMaskResizable
+                                                backing:NSBackingStoreRetained
+                                                  defer:YES];
+  panel.level = NSScreenSaverWindowLevel;
+  panel.contentViewController = pickFieldViewController;
+  panel.title = NSLocalizedString(@"PICKFIELD_WINDOW_TITLE", @"Window displayed to the user to pick an amout of characters");
+  [panel center];
+  if(NSModalResponseOK == [NSApp runModalForWindow:panel]) {
+    /* add appropriate key press comamnds? or let the pick-char view-controller handel this? */
+    return pickFieldViewController.pickedValue;
+  }
+  return @"";
+}
+
+- (NSString *)tree:(KPKTree *)tree resolvePickCharsPlaceholderForEntry:(KPKEntry *)entry field:(NSString *)field options:(NSString *)options {
+  
+  NSString *value = [[entry valueForAttributeWithKey:field] kpk_finalValueForEntry:entry];
+  if(value.length == 0) {
+    return @""; // error while retrieving source value
+  }
+  MPPickcharsParser *parser = [[MPPickcharsParser alloc] initWithOptions:options];
+  MPPickcharViewController *pickCharViewController = [[MPPickcharViewController alloc] init];
+  
+  pickCharViewController.sourceValue = value;
+  pickCharViewController.minimumCharacterCount = parser.pickCount;
+  pickCharViewController.hidePickedCharacters = parser.hideCharacters;
+  
+  NSPanel *panel = [[NSPanel alloc] initWithContentRect:NSMakeRect(0, 0, 100, 100)
+                                              styleMask:NSWindowStyleMaskNonactivatingPanel|NSWindowStyleMaskTitled|NSWindowStyleMaskResizable
+                                                backing:NSBackingStoreRetained
+                                                  defer:YES];
+  panel.level = NSScreenSaverWindowLevel;
+  panel.contentViewController = pickCharViewController;
+  panel.title = NSLocalizedString(@"PICKCHAR_WINDOW_TITLE", @"Window displayed to the user to pick an amout of characters");
+  [panel center];
+  if(NSModalResponseOK == [NSApp runModalForWindow:panel]) {
+    /* add appropriate key press comamnds? or let the pick-char view-controller handel this? */
+    return pickCharViewController.pickedValue;
   }
   return @"";
 }

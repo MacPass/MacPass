@@ -34,6 +34,7 @@
 #import "MPSettingsHelper.h"
 #import "MPSettingsWindowController.h"
 #import "MPStringLengthValueTransformer.h"
+#import "MPPrettyPasswordTransformer.h"
 #import "MPTemporaryFileStorageCenter.h"
 #import "MPValueTransformerHelper.h"
 
@@ -62,6 +63,7 @@ NSString *const MPHelpURLKey = @"MPHelpURL";
   [MPSettingsHelper setupDefaults];
   [MPSettingsHelper migrateDefaults];
   [MPStringLengthValueTransformer registerTransformer];
+  [MPPrettyPasswordTransformer registerTransformer];
   [MPValueTransformerHelper registerValueTransformer];
 }
 

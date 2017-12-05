@@ -96,6 +96,9 @@ NSString *const MPPasteBoardControllerDidClearClipboard = @"com.hicknhack.macpas
   [self copyObjectsWithoutTimeout:objects];
   if(self.clearTimeout != 0) {
     [NSNotificationCenter.defaultCenter postNotificationName:MPPasteBoardControllerDidCopyObjects object:self];
+    /* cancel old timer */
+    [NSObject cancelPreviousPerformRequestsWithTarget:self selector:@selector(_clearPasteboardContents) object:nil];
+    /* setup new timer */
     [self performSelector:@selector(_clearPasteboardContents) withObject:nil afterDelay:self.clearTimeout];
   }
 }
@@ -140,7 +143,7 @@ NSString *const MPPasteBoardControllerDidClearClipboard = @"com.hicknhack.macpas
 - (void)_clearPasteboardContents {
   /* Only clear stuff we might have put there */
   if(!self.isEmpty) {
-    [[NSPasteboard generalPasteboard] clearContents];
+    [NSPasteboard.generalPasteboard clearContents];
     [NSNotificationCenter.defaultCenter postNotificationName:MPPasteBoardControllerDidClearClipboard object:self];
   }
   self.isEmpty = YES;

@@ -50,4 +50,14 @@
   return nil;
 }
 
+- (NSArray<NSString *> *)composedCharacters {
+  __block NSMutableArray *characters = [[NSMutableArray alloc] init];
+  [self enumerateSubstringsInRange:NSMakeRange(0, self.length)
+                           options:NSStringEnumerationByComposedCharacterSequences usingBlock:^(NSString * _Nullable substring, NSRange substringRange, NSRange enclosingRange, BOOL * _Nonnull stop) {
+                             [characters addObject:substring];
+                           }];
+  return [characters copy];
+}
+
+
 @end

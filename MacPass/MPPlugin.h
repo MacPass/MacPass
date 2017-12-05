@@ -25,8 +25,8 @@
 NS_ASSUME_NONNULL_BEGIN
 
 @class MPPluginHost;
-
-FOUNDATION_EXPORT NSString *const kMPPluginFileExtension;
+@class MPAutotypeCommand;
+@class KPKEntry;
 
 @interface MPPlugin : NSObject
 
@@ -35,6 +35,16 @@ FOUNDATION_EXPORT NSString *const kMPPluginFileExtension;
 @property (copy, readonly) NSString *version;
 @property (nonatomic, strong, readonly) NSBundle *bundle;
 
+@property (readonly) NSString *requiredHostVersion; // the host version required for running the plugin in mayor.minor.path format
+
+
+/**
+ If your plugin needs initalization override this method but you have to call [super initWithPluginHost:]
+ Otherwise your plugin might not get registered correctly
+
+ @param host plugin host hosting the pluing - MacPass
+ @return the plugin instance ready for use
+ */
 - (instancetype)initWithPluginHost:(MPPluginHost *)host NS_DESIGNATED_INITIALIZER;
 - (instancetype)init NS_UNAVAILABLE;
 
@@ -47,6 +57,43 @@ FOUNDATION_EXPORT NSString *const kMPPluginFileExtension;
 @required
 @property (strong, readonly) NSViewController *settingsViewController;
 
+@end
+
+/* Adopt this protocoll if you plugin supplied additinal autotype commands */
+@protocol MPAutotypePlugin <NSObject>
+@required
+/**
+ Returns an array of string of commands supported by this pluing. Leave out enclosing curly brackets!
+ E.g. if you support {FOO} and {BAR} you will return @[ @"FOO", @"BAR" ]. The autotype system is case insenstivie.
+ */
+@property (nonatomic,copy) NSArray <NSString *> *commandStrings;
+/**
+ Will be called by the plugin host to generate autotype commands for the corresponding string.
+ Command strings are considered case insensitive but mostly will be used in upper case.
+ You should therefore compare case insensitive.
+
+ @param commandString The command string without any enclosing curly brackets. The string is normalized to upper cased.
+ @param entry The entry for which the command will be used
+ @return a command for the supplied string, return nil if parsing fails or an unsupported command is supplied
+ */
+- (MPAutotypeCommand * _Nullable)commandForString:(NSString *)commandString entry:(KPKEntry *)entry;
+@end
+
+/*
+ Adopt this protocoll if your plugin supports actions on entries.
+ Actions will get listed in various places in menues. You should shoudl supply a valid menu item
+ that is wired up with the correct target and action. Since there's responder chain resolving involved
+ as well as a
+ */
+@protocol MPEntryActionPlugin <NSObject>
+@optional
+- (NSMenuItem * _Nullable)menuItemForEntry;
+@end
+
+@protocol MPCustomAttributePlugin <NSObject>
+@optional
+/* Supply a list of attribute keys that will get suggested for autocompletion as well as added to the extend add for custom fields */
+@property (nonatomic,copy) NSArray<NSString *>* attributeKeys;
 @end
 
 @interface MPPlugin (Deprecated)

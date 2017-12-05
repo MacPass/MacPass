@@ -334,7 +334,20 @@ static CGKeyCode kMPNumpadKeyCodes[] = {
   }
   
   /* F1-16 */
-  NSRegularExpression *functionKeyRegExp = [[NSRegularExpression alloc] initWithPattern:kKPKAutotypeFunctionMaskRegularExpression options:NSRegularExpressionCaseInsensitive error:0];
+  static NSRegularExpression *functionKeyRegExp;
+  static NSRegularExpression *numpadKeyRegExp;
+  static NSRegularExpression *delayRegExp;
+  static dispatch_once_t onceToken;
+  dispatch_once(&onceToken, ^{
+    NSString *delayPattern = [[NSString alloc] initWithFormat:@"\\{(%@|%@)[ |=]+([0-9]+)\\}",
+                              kKPKAutotypeDelay,
+                              kKPKAutotypeVirtualKey/*,
+                                                     kKPKAutotypeVirtualExtendedKey,
+                                                     kKPKAutotypeVirtualNonExtendedKey*/];
+    functionKeyRegExp = [[NSRegularExpression alloc] initWithPattern:kKPKAutotypeFunctionMaskRegularExpression options:NSRegularExpressionCaseInsensitive error:0];
+    numpadKeyRegExp = [[NSRegularExpression alloc] initWithPattern:kKPKAutotypeKeypaddNumberMaskRegularExpression options:NSRegularExpressionCaseInsensitive error:0];
+    delayRegExp = [[NSRegularExpression alloc] initWithPattern:delayPattern options:NSRegularExpressionCaseInsensitive error:0];
+  });
   NSTextCheckingResult *functionResult = [functionKeyRegExp firstMatchInString:commandString options:0 range:NSMakeRange(0, commandString.length)];
   if(functionResult && functionResult.numberOfRanges == 2) {
     NSString *numberString = [commandString substringWithRange:[functionResult rangeAtIndex:1]];
@@ -350,7 +363,6 @@ static CGKeyCode kMPNumpadKeyCodes[] = {
   }
   
   /* Numpad0-9 */
-  NSRegularExpression *numpadKeyRegExp = [[NSRegularExpression alloc] initWithPattern:kKPKAutotypeKeypaddNumberMaskRegularExpression options:NSRegularExpressionCaseInsensitive error:0];
   NSTextCheckingResult *numpadResult = [numpadKeyRegExp firstMatchInString:commandString options:0 range:NSMakeRange(0, commandString.length)];
   if(numpadResult && numpadResult.numberOfRanges == 2) {
     NSString *numberString = [commandString substringWithRange:[numpadResult rangeAtIndex:1]];
@@ -372,13 +384,6 @@ static CGKeyCode kMPNumpadKeyCodes[] = {
   }
   // TODO: add {APPLICATION <appname>}
   /* Delay */
-  NSString *delayPattern = [[NSString alloc] initWithFormat:@"\\{(%@|%@)[ |=]+([0-9]+)\\}",
-                            kKPKAutotypeDelay,
-                            kKPKAutotypeVirtualKey/*,
-                                                   kKPKAutotypeVirtualExtendedKey,
-                                                   kKPKAutotypeVirtualNonExtendedKey*/];
-  NSRegularExpression *delayRegExp = [[NSRegularExpression alloc] initWithPattern:delayPattern options:NSRegularExpressionCaseInsensitive error:0];
-  NSAssert(delayRegExp, @"Regex for delay should work!");
   NSTextCheckingResult *result = [delayRegExp firstMatchInString:commandString options:0 range:NSMakeRange(0, commandString.length)];
   if(result && (result.numberOfRanges == 3)) {
     NSString *uppercaseCommand = [[commandString substringWithRange:[result rangeAtIndex:1]] uppercaseString];

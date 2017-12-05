@@ -24,6 +24,7 @@
 
 #import "MPPlugin.h"
 #import "MPPlugin_Private.h"
+#import "MPPluginConstants.h"
 #import "NSApplication+MPAdditions.h"
 #import "MPSettingsHelper.h"
 
@@ -236,7 +237,7 @@ NSString *const MPPluginHostPluginBundleIdentifiyerKey = @"MPPluginHostPluginBun
 }
 
 - (BOOL)_isValidPluginURL:(NSURL *)url {
-  return (NSOrderedSame == [url.pathExtension compare:kMPPluginFileExtension options:NSCaseInsensitiveSearch]);
+  return (NSOrderedSame == [url.pathExtension compare:MPPluginFileExtension options:NSCaseInsensitiveSearch]);
 }
 
 - (BOOL)_isValidPluginClass:(Class)class {

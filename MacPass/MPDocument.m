@@ -367,6 +367,7 @@ NSString *const MPDocumentGroupKey                            = @"MPDocumentGrou
     [self.tree synchronizeWithTree:otherTree options:KPKSynchronizationSynchronizeOption];
     /* the key might have changed so update ours! */
     //self.compositeKey = key;
+    [self updateChangeCount:NSChangeDone];
     NSUserNotification *notification = [[NSUserNotification alloc] init];
     notification.title = NSApp.applicationName;
     notification.informativeText = NSLocalizedString(@"AUTO_MERGE_NOTIFICATION_TEXT", @"Sucessfully merged external changes");
@@ -416,7 +417,12 @@ NSString *const MPDocumentGroupKey                            = @"MPDocumentGrou
     for(NSWindow *sheet in [self windowForSheet].sheets) {
       [[self windowForSheet] endSheet:sheet];
     }
-    [self saveDocumentWithDelegate:self didSaveSelector:@selector(_lockDatabaseForDocument:didSave:contextInfo:) contextInfo:NULL];
+    if(self.documentEdited) {
+      [self saveDocumentWithDelegate:self didSaveSelector:@selector(_lockDatabaseForDocument:didSave:contextInfo:) contextInfo:NULL];
+    }
+    else {
+      [self _lockDatabaseForDocument:self didSave:YES contextInfo:NULL];
+    }
   }
 }
 
@@ -432,8 +438,8 @@ NSString *const MPDocumentGroupKey                            = @"MPDocumentGrou
   [self exitSearch:self];
   [self.undoManager removeAllActions];
   NSError *error;
-  /* TODO let the tree chose the encryption */
-  self.encryptedData = [self.tree encryptWithKey:self.compositeKey format:[MPDocument formatForFileType:self.fileType] error:&error];
+  /* use data from disk since we wrote it*/
+  self.encryptedData = [NSData dataWithContentsOfURL:self.fileURL options:NSDataReadingUncached error:&error];
   if(nil == self.encryptedData && error ) {
     [self presentError:error];
     return;

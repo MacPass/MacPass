@@ -32,6 +32,7 @@
 #import "MPAutotypeBuilderViewController.h"
 #import "MPReferenceBuilderViewController.h"
 
+#import "MPPrettyPasswordTransformer.h"
 #import "NSString+MPPasswordCreation.h"
 
 #import "MPDocument.h"
@@ -136,13 +137,13 @@ typedef NS_ENUM(NSUInteger, MPEntryTab) {
   
   NSDictionary *dict = NSDictionaryOfVariableBindings(customFieldTableView, _tagsTokenField, _addCustomFieldButton);
   [self.generalView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-16-[customFieldTableView]-16-|"
-                                                                    options:0
-                                                                    metrics:nil
-                                                                      views:dict]];
+                                                                           options:0
+                                                                           metrics:nil
+                                                                             views:dict]];
   [self.generalView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:[_tagsTokenField]-[customFieldTableView]-[_addCustomFieldButton]"
-                                                                    options:0
-                                                                    metrics:nil
-                                                                      views:dict]];
+                                                                           options:0
+                                                                           metrics:nil
+                                                                             views:dict]];
   
   
   
@@ -478,7 +479,7 @@ typedef NS_ENUM(NSUInteger, MPEntryTab) {
                        toObject:self
                     withKeyPath:[NSString stringWithFormat:@"%@.%@.%@", NSStringFromSelector(@selector(representedObject)), NSStringFromSelector(@selector(timeInfo)), NSStringFromSelector(@selector(expires))]
                         options:nil];
-
+  
   [self.tagsTokenField bind:NSValueBinding
                    toObject:self
                 withKeyPath:[NSString stringWithFormat:@"%@.%@", NSStringFromSelector(@selector(representedObject)), NSStringFromSelector(@selector(tags))]
@@ -545,13 +546,13 @@ typedef NS_ENUM(NSUInteger, MPEntryTab) {
 #pragma mark HNHUITextFieldDelegate
 - (NSMenu *)textField:(NSTextField *)textField textView:(NSTextView *)view menu:(NSMenu *)menu {
   /*for(NSMenuItem *item in [menu itemArray]) {
-    if(item.action == @selector(showReferenceBuilder:)) {
-      return menu; // item is already contained!
-    }
-  }
-  NSMenuItem *item = [[NSMenuItem alloc] initWithTitle:NSLocalizedString(@"SHOW_REFERENCE_BUILDER", @"Menu item to show the reference builder in a text view's context menu")action:@selector(showReferenceBuilder:) keyEquivalent:@""];
-  item.representedObject = textField;
-  [menu addItem:item];
+   if(item.action == @selector(showReferenceBuilder:)) {
+   return menu; // item is already contained!
+   }
+   }
+   NSMenuItem *item = [[NSMenuItem alloc] initWithTitle:NSLocalizedString(@"SHOW_REFERENCE_BUILDER", @"Menu item to show the reference builder in a text view's context menu")action:@selector(showReferenceBuilder:) keyEquivalent:@""];
+   item.representedObject = textField;
+   [menu addItem:item];
    */
   return menu;
 }
