@@ -30,6 +30,7 @@ FOUNDATION_EXPORT NSString *const MPPluginHostDidLoadPlugin;
 FOUNDATION_EXPORT NSString *const MPPluginHostPluginBundleIdentifiyerKey;
 
 @class MPPlugin;
+@class KPKEntry;
 
 @interface MPPluginHost : NSObject
 
@@ -50,4 +51,5 @@ FOUNDATION_EXPORT NSString *const MPPluginHostPluginBundleIdentifiyerKey;
 - (NSArray <MPPlugin __kindof*>*)autotypePlugins;
 - (NSArray <MPPlugin __kindof*>*)entryContextMenuPlugins;
 */
+- (NSArray *)menuItemsForEntries:(NSArray <KPKEntry *>*)entries;
 @end

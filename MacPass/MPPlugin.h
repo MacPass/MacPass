@@ -65,13 +65,13 @@ NS_ASSUME_NONNULL_BEGIN
  MacPass will call you back via -[MPPlugin performActionFroMenuItem:withEntries:]
  */
 @protocol MPEntryActionPlugin <NSObject>
-@optional
-- (NSMenuItem * _Nullable)menuItemForEntry;
+@required
+- (NSArray<NSMenuItem *> *)menuItemsForEntries:(NSArray< KPKEntry *>*)entries;
 - (void)performActionForMenuItem:(NSMenuItem *)item withEntries:(NSArray <KPKEntry *>*)entries;
 @end
 
 @protocol MPCustomAttributePlugin <NSObject>
-@optional
+@required
 /* Supply a list of attribute keys that will get suggested for autocompletion as well as added to the extend add for custom fields */
 @property (nonatomic,copy) NSArray<NSString *>* attributeKeys;
 /*

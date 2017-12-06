@@ -40,6 +40,10 @@ NSString *const MPPluginHostPluginBundleIdentifiyerKey = @"MPPluginHostPluginBun
 
 @interface MPPluginHost ()
 @property (strong) NSMutableArray<MPPlugin __kindof *> *mutablePlugins;
+@property (strong) NSPointerArray *entryActionPlugins;
+@property (strong) NSPointerArray *customAttributePlugins;
+
+
 @property (nonatomic) BOOL loadUnsecurePlugins;
 @property (copy) NSArray<NSString *> *disabledPlugins;
 
@@ -70,6 +74,9 @@ NSString *const MPPluginHostPluginBundleIdentifiyerKey = @"MPPluginHostPluginBun
     _mutablePlugins = [[NSMutableArray alloc] init];
     _disabledPlugins = [[NSUserDefaults standardUserDefaults] arrayForKey:kMPSettingsKeyLoadUnsecurePlugins];
     _loadUnsecurePlugins = [[NSUserDefaults standardUserDefaults] boolForKey:kMPSettingsKeyLoadUnsecurePlugins];
+    _entryActionPlugins = [NSPointerArray weakObjectsPointerArray];
+    _customAttributePlugins = [NSPointerArray weakObjectsPointerArray];
+    
     [self _loadPlugins];
     
     [self bind:NSStringFromSelector(@selector(loadUnsecurePlugins))
@@ -205,7 +212,7 @@ NSString *const MPPluginHostPluginBundleIdentifiyerKey = @"MPPluginHostPluginBun
       [[NSNotificationCenter defaultCenter] postNotificationName:MPPluginHostWillLoadPlugin
                                                           object:self
                                                         userInfo:@{ MPPluginHostPluginBundleIdentifiyerKey : plugin.identifier }];
-      [self.mutablePlugins addObject:plugin];
+      [self _addPlugin:plugin];
       [[NSNotificationCenter defaultCenter] postNotificationName:MPPluginHostDidLoadPlugin
                                                           object:self
                                                         userInfo:@{ MPPluginHostPluginBundleIdentifiyerKey : plugin.identifier }];
@@ -222,7 +229,7 @@ NSString *const MPPluginHostPluginBundleIdentifiyerKey = @"MPPluginHostPluginBun
   plugin.bundle = bundle;
   plugin.enabled = NO;
   plugin.errorMessage = errorMessage;
-  [self.mutablePlugins addObject:plugin];
+  [self _addPlugin:plugin];
 }
 
 - (BOOL)_validateUniqueBundle:(NSBundle *)bundle {
@@ -285,5 +292,29 @@ NSString *const MPPluginHostPluginBundleIdentifiyerKey = @"MPPluginHostPluginBun
   
   return NO;
 }
+
+- (void)_addPlugin:(MPPlugin *)plugin {
+  [self.mutablePlugins addObject:plugin];
+  if([plugin conformsToProtocol:@protocol(MPEntryActionPlugin)]) {
+    [self.entryActionPlugins addPointer:(__bridge void * _Nullable)(plugin)];
+  }
+  if([plugin conformsToProtocol:@protocol(MPCustomAttributePlugin)]) {
+    [self.customAttributePlugins addPointer:(__bridge void * _Nullable)(plugin)];
+  }
+}
+
+#pragma mark Action Plugins
+
+- (NSArray *)menuItemsForEntries:(NSArray<KPKEntry *> *)entries {
+  NSMutableArray *items = [[NSMutableArray alloc] init];
+  for(id<MPEntryActionPlugin> plugin in self.entryActionPlugins) {
+    if(plugin) {
+      [items addObjectsFromArray:[plugin menuItemsForEntries:entries]];
+    }
+  }
+  return [items copy];
+}
+
+
 
 @end
