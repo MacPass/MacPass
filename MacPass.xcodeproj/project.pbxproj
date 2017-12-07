@@ -326,6 +326,7 @@
 		4C0728BB17B5B7F7005A7DD9 /* MPPasswordEditWindowController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MPPasswordEditWindowController.h; sourceTree = "<group>"; };
 		4C0728BC17B5B7F7005A7DD9 /* MPPasswordEditWindowController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MPPasswordEditWindowController.m; sourceTree = "<group>"; };
 		4C0728BE17B68ED0005A7DD9 /* SavePanelAccessoryView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SavePanelAccessoryView.xib; sourceTree = "<group>"; };
+		4C088C401FD9A42800F92502 /* MPPickcharsParser_Private.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MPPickcharsParser_Private.h; sourceTree = "<group>"; };
 		4C0949571FD6B89B004F2971 /* NSUserNotification+MPAdditions.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSUserNotification+MPAdditions.h"; sourceTree = "<group>"; };
 		4C0949581FD6B89B004F2971 /* NSUserNotification+MPAdditions.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSUserNotification+MPAdditions.m"; sourceTree = "<group>"; };
 		4C09495A1FD6E510004F2971 /* MPAddCustomFieldContextMenuDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MPAddCustomFieldContextMenuDelegate.h; sourceTree = "<group>"; };
@@ -1135,7 +1136,6 @@
 		4C45FB1E178E09ED0010007D /* MacPassTests */ = {
 			isa = PBXGroup;
 			children = (
-				4C8F0C721FCF1B7A00BE157F /* MPTestPickcharsParser.m */,
 				4CCFA12C1BF0CC7A0078E0A1 /* Databases */,
 				4C10207E1B750E2F00BFCD59 /* MPTestAutotype.m */,
 				4C8DEAA11C314D2C00D24C32 /* MPTestAutotypeDelay.m */,
@@ -1143,6 +1143,7 @@
 				4C45FB2F178E0CE20010007D /* MPTestDocument.m */,
 				4C6BC65F1A36717E00BDDF3D /* MPDatabaseSearch.m */,
 				4C8030491E2FBAA300133E4C /* MPTestKeyMapper.m */,
+				4C8F0C721FCF1B7A00BE157F /* MPTestPickcharsParser.m */,
 				4C45FB1F178E09ED0010007D /* Supporting Files */,
 			);
 			path = MacPassTests;
@@ -1418,6 +1419,7 @@
 				4C1F7FA01E3A12E600D6A40E /* MPModifiedKey.h */,
 				4C1F7FA11E3A12E600D6A40E /* MPModifiedKey.m */,
 				4C8F0C6F1FCEF91400BE157F /* MPPickcharsParser.h */,
+				4C088C401FD9A42800F92502 /* MPPickcharsParser_Private.h */,
 				4C8F0C701FCEF91400BE157F /* MPPickcharsParser.m */,
 			);
 			name = Autotype;

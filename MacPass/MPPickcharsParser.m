@@ -7,18 +7,49 @@
 //
 
 #import "MPPickcharsParser.h"
+#import "MPPickcharsParser_Private.h"
+
 #import "NSString+MPComposedCharacterAdditions.h"
+
 #import <KeePassKit/KeePassKit.h>
 
-@interface MPPickcharsParser ()
+typedef NS_ENUM(NSInteger, MPPickCharOffsetType) {
+  MPPickCharOffsetTypeNone,
+  MPPickCharOffsetTypeCharacter,
+  MPPickCharOffsetTypeNumber,
+};
 
-@property NSUInteger pickCount; // count to pick
-@property NSUInteger checkboxOffset;
-@property BOOL convertToDownArrows;
-@property BOOL hideCharacters;
-@property (copy) NSString *checkboxFormat;
+struct MPPickCharOffset {
+  MPPickCharOffsetType type;
+  NSUInteger offset;
+};
+typedef struct MPPickCharOffset MPPickCharOffset;
 
-@end
+MPPickCharOffset MPMakePickCharCharacterOffset(NSUInteger offset) {
+  MPPickCharOffset offsetStruct = {MPPickCharOffsetTypeCharacter, offset};
+  return offsetStruct;
+}
+MPPickCharOffset MPMakePickCharNumberOffset(NSUInteger offset) {
+  MPPickCharOffset offsetStruct = {MPPickCharOffsetTypeNumber, offset};
+  return offsetStruct;
+}
+
+MPPickCharOffset MPMakeInvalidPickCharOffset(void) {
+  MPPickCharOffset offset = {MPPickCharOffsetTypeNone,0};
+  return offset;
+}
+
+BOOL MPIsValidPickCharOffset(MPPickCharOffset offset) {
+  return (offset.type != MPPickCharOffsetTypeNone);
+}
+
+NSInteger numberOffset(MPPickCharOffset offset) {
+  return (offset.type == MPPickCharOffsetTypeNumber ? offset.offset : 0);
+}
+
+NSInteger characterOffset(MPPickCharOffset offset) {
+  return (offset.type == MPPickCharOffsetTypeCharacter ? offset.offset : 0);
+}
 
 @implementation MPPickcharsParser
 
@@ -43,15 +74,53 @@
   if(!self.convertToDownArrows) {
     return string;
   }
-  for(NSString *character in string.composedCharacters) {
-    
+  NSMutableString *mutableString = [[NSMutableString alloc] init];
+  BOOL isFirst = NO;
+  for(NSString *substring in string.composedCharacters) {
+    if(substring.length != 1) {
+      NSLog(@"Pickchars: Unsupported character %@ for conversion to down arrows, skipping!", substring);
+      continue;
+    }
+    MPPickCharOffset offset = MPMakeInvalidPickCharOffset();
+    unichar character = [substring characterAtIndex:0];
+    if(character >= '0' && character <= '9') {
+      offset = MPMakePickCharNumberOffset(character - '0');
+    }
+    else if(character >= 'a' && character <= 'z') {
+      offset = MPMakePickCharCharacterOffset(character - 'a');
+    }
+    else if(character >= 'A' && character <= 'Z') {
+      offset = MPMakePickCharCharacterOffset(character - 'A');
+    }
+    [self _appendKeyCommandsForOffset:offset toString:mutableString];
   }
-  return nil;
+  return [mutableString copy];
 }
 
+- (void)_appendKeyCommandsForOffset:(MPPickCharOffset)offset toString:(NSMutableString *)string {
+  if(!MPIsValidPickCharOffset(offset)) {
+    return;
+  }
+  NSUInteger actualOffset = self.checkboxOffset;
+  switch(offset.type) {
+    case MPPickCharOffsetTypeNumber:
+      actualOffset += offset.offset;
+      break;
+    case MPPickCharOffsetTypeCharacter:
+      actualOffset += offset.offset;
+      break;
+    case MPPickCharOffsetTypeNone:
+    default:
+      break;
+  }
+  /* todo respect format definition */
+  while (actualOffset--) {
+    [string appendString:kKPKAutotypeDown];
+  }
+}
 /*
  {PICKCHAR:Field:Options}
-
+ 
  Options allow to convert picked character to be typed into drop-down-boxes.
  E.g. select digits or letters
  Options:
@@ -62,11 +131,11 @@
  
  Conv-Fmt= Format of the check-box
  
-  0 - Numbers 0129456789
-  1 - NUmber 1234567890
-  a - lowercase characters
-  A - uppercase characters
-  ? - skip combobox item
+ 0 - Numbers 0129456789
+ 1 - NUmber 1234567890
+ a - lowercase characters
+ A - uppercase characters
+ ? - skip combobox item
  
  -> combine for layout e.g. 0a or 0aA 0?aA
  */
@@ -99,9 +168,9 @@
     }
     return NO;
   }
- /*
-  FOUNDATION_EXPORT NSString *const kKPKPlaceholderPickCharsOptionConvertFormat;
-  */
+  /*
+   FOUNDATION_EXPORT NSString *const kKPKPlaceholderPickCharsOptionConvertFormat;
+   */
   if(NSOrderedSame == [key compare:kKPKPlaceholderPickCharsOptionHide options:NSCaseInsensitiveSearch]) {
     if(NSOrderedSame == [option compare:@"false" options:NSCaseInsensitiveSearch]) {
       self.hideCharacters = NO;
