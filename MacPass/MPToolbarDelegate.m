@@ -171,7 +171,8 @@ NSString *const MPToolbarItemHistory = @"TOOLBAR_HISTORY";
       item.minSize = NSMakeSize(140, 32);
       item.maxSize = NSMakeSize(240, 32);
       NSMenu *templateMenu = [self _allocateSearchMenuTemplate];
-      [searchField.cell setSearchMenuTemplate:templateMenu];
+      searchField.searchMenuTemplate = templateMenu;
+      ((NSTextField *)searchField).delegate = self;
       self.searchField = searchField;
     }
     else {
@@ -224,6 +225,15 @@ NSString *const MPToolbarItemHistory = @"TOOLBAR_HISTORY";
   [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(_didEnterSearch:) name:MPDocumentDidEnterSearchNotification object:document];
 }
 
+#pragma mark - NSSearchFieldDelegate
+- (BOOL)control:(NSControl *)control textView:(NSTextView *)textView doCommandBySelector:(SEL)commandSelector {
+  if(commandSelector == @selector(moveDown:)) {
+    [[NSApp targetForAction:@selector(focusEntries:) to:nil from:self] focusEntries:self];
+  }
+  return NO;
+}
+
+#pragma mark - Private
 - (NSString *)_localizedLabelForToolbarItemIdentifier:(NSString *)identifier {
   static NSDictionary *labelDict;
   static dispatch_once_t onceToken;
