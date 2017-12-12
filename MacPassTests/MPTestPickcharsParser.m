@@ -30,7 +30,7 @@
 
 
 - (void)testInvalidOptionsParser {
-  MPPickcharsParser *parser = [[MPPickcharsParser alloc] initWithOptions:@"Count=-10,Hide=whatever,Con=D,Conv-Offset=20,Conv-Fmt=0A"];
+  MPPickcharsParser *parser = [[MPPickcharsParser alloc] initWithOptions:@"Count=-10,Hide=whatever,Con=D,Conv-Offset=20,Conv-Fmt=1A"];
   XCTAssertEqual(0, parser.pickCount); // negative count will result in 0-count
   XCTAssertEqual(YES, parser.hideCharacters); // option invalid, default is YES
   XCTAssertEqual(NO, parser.convertToDownArrows); // option was invalid, default is NO

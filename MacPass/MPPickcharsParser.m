@@ -172,9 +172,10 @@ typedef NSUInteger (^MPPickcharOffsetConverter)(NSInteger offset);
   if(optionPair.count != 2) {
     return NO;
   }
-  NSString *key = [optionPair.firstObject stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
-  NSString *option = [optionPair.lastObject stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
+  NSString *key = [optionPair.firstObject stringByTrimmingCharactersInSet:NSCharacterSet.whitespaceAndNewlineCharacterSet];
+  NSString *option = [optionPair.lastObject stringByTrimmingCharactersInSet:NSCharacterSet.whitespaceAndNewlineCharacterSet];
   
+  /* Character count option */
   if(NSOrderedSame == [key compare:kKPKPlaceholderPickCharsOptionCount options:NSCaseInsensitiveSearch]
      || NSOrderedSame == [key compare:kKPKPlaceholderPickCharsOptionCountShort options:NSCaseInsensitiveSearch]) {
     NSScanner *scanner = [[NSScanner alloc] initWithString:option];
@@ -187,9 +188,7 @@ typedef NSUInteger (^MPPickcharOffsetConverter)(NSInteger offset);
     }
     return NO;
   }
-  /*
-   FOUNDATION_EXPORT NSString *const kKPKPlaceholderPickCharsOptionConvertFormat;
-   */
+  /* Hide characters option */
   if(NSOrderedSame == [key compare:kKPKPlaceholderPickCharsOptionHide options:NSCaseInsensitiveSearch]) {
     if(NSOrderedSame == [option compare:@"false" options:NSCaseInsensitiveSearch]) {
       self.hideCharacters = NO;
@@ -201,6 +200,7 @@ typedef NSUInteger (^MPPickcharOffsetConverter)(NSInteger offset);
     }
     return NO;
   }
+  /* Convert to down arrows option */
   if(NSOrderedSame == [key compare:kKPKPlaceholderPickCharsOptionConvert options:NSCaseInsensitiveSearch]) {
     if(NSOrderedSame == [option compare:@"D" options:NSCaseInsensitiveSearch]) {
       self.convertToDownArrows = YES;
@@ -208,6 +208,7 @@ typedef NSUInteger (^MPPickcharOffsetConverter)(NSInteger offset);
     }
     return NO;
   }
+  /* Offset option for down arrow conversion */
   if(NSOrderedSame == [key compare:kKPKPlaceholderPickCharsOptionConvertOffset options:NSCaseInsensitiveSearch]) {
     NSScanner *scanner = [[NSScanner alloc] initWithString:option];
     NSInteger offset;
@@ -219,6 +220,7 @@ typedef NSUInteger (^MPPickcharOffsetConverter)(NSInteger offset);
     }
     return NO;
   }
+  /* Special checkbox format option */
   if(NSOrderedSame == [key compare:kKPKPlaceholderPickCharsOptionConvertFormat options:NSCaseInsensitiveSearch]) {
     if(option.length == 0) {
       /* interpret no optoins as default too*/
@@ -281,6 +283,17 @@ typedef NSUInteger (^MPPickcharOffsetConverter)(NSInteger offset);
       }
       index++;
     }
+    NSAssert(tmpOffsetMap.count > 0, @"Internal inconsistency. Offset format needs at least on valid format!");
+    /* default behaviour is to be case insesitive, make sure we use the same converter for both cases if only one is specifier */
+    MPPickcharOffsetConverter upperCaseConverter = tmpOffsetMap[@(MPPickCharOffsetTypeUpperCaseCharacter)];
+    MPPickcharOffsetConverter lowerCaseConverter = tmpOffsetMap[@(MPPickCharOffsetTypeLowerCaseCharacter)];
+    if(upperCaseConverter && !lowerCaseConverter) {
+      tmpOffsetMap[@(MPPickCharOffsetTypeLowerCaseCharacter)] = upperCaseConverter;
+    }
+    else if(!upperCaseConverter && lowerCaseConverter) {
+      tmpOffsetMap[@(MPPickCharOffsetTypeUpperCaseCharacter)] = lowerCaseConverter;
+    }
+
     _offsetConverter = [tmpOffsetMap copy];
     return YES;
   }
