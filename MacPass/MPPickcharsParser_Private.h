@@ -14,6 +14,5 @@
 @property NSUInteger checkboxOffset;
 @property BOOL convertToDownArrows;
 @property BOOL hideCharacters;
-@property (copy) NSString *checkboxFormat;
 
 @end

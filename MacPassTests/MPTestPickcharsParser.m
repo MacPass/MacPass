@@ -23,7 +23,9 @@
   XCTAssertEqual(NO, parser.hideCharacters);
   XCTAssertEqual(YES, parser.convertToDownArrows);
   XCTAssertEqual(11, parser.checkboxOffset);
-  XCTAssertEqualObjects(@"0?aA", parser.checkboxFormat);
+  
+  NSString *result = [parser processPickedString:@"1B0f"];
+  
 }
 
 
@@ -33,7 +35,6 @@
   XCTAssertEqual(YES, parser.hideCharacters); // option invalid, default is YES
   XCTAssertEqual(NO, parser.convertToDownArrows); // option was invalid, default is NO
   XCTAssertEqual(20, parser.checkboxOffset);
-  XCTAssertEqualObjects(@"0A", parser.checkboxFormat);
 }
 
 - (void)testConvertToDownArrows {

@@ -15,7 +15,8 @@
 
 typedef NS_ENUM(NSInteger, MPPickCharOffsetType) {
   MPPickCharOffsetTypeNone,
-  MPPickCharOffsetTypeCharacter,
+  MPPickCharOffsetTypeLowerCaseCharacter,
+  MPPickCharOffsetTypeUpperCaseCharacter,
   MPPickCharOffsetTypeNumber,
 };
 
@@ -25,18 +26,37 @@ struct MPPickCharOffset {
 };
 typedef struct MPPickCharOffset MPPickCharOffset;
 
-MPPickCharOffset MPMakePickCharCharacterOffset(NSUInteger offset) {
-  MPPickCharOffset offsetStruct = {MPPickCharOffsetTypeCharacter, offset};
+MPPickCharOffset MPMakePickCharUpperCaseCharacterOffset(unichar c) {
+  MPPickCharOffset offsetStruct = {MPPickCharOffsetTypeUpperCaseCharacter, c - 'A'};
   return offsetStruct;
 }
-MPPickCharOffset MPMakePickCharNumberOffset(NSUInteger offset) {
-  MPPickCharOffset offsetStruct = {MPPickCharOffsetTypeNumber, offset};
+
+MPPickCharOffset MPMakePickCharLowerCaseCharacterOffset(unichar c) {
+  MPPickCharOffset offsetStruct = {MPPickCharOffsetTypeLowerCaseCharacter, c - 'a'};
+  return offsetStruct;
+}
+
+MPPickCharOffset MPMakePickCharNumberOffset(unichar c) {
+  MPPickCharOffset offsetStruct = {MPPickCharOffsetTypeNumber, c - '0'};
   return offsetStruct;
 }
 
 MPPickCharOffset MPMakeInvalidPickCharOffset(void) {
   MPPickCharOffset offset = {MPPickCharOffsetTypeNone,0};
   return offset;
+}
+
+MPPickCharOffset MPMakePickCharOffset(unichar character) {
+  if(character >= '0' && character <= '9') {
+    return MPMakePickCharNumberOffset(character);
+  }
+  else if(character >= 'a' && character <= 'z') {
+    return MPMakePickCharLowerCaseCharacterOffset(character);
+  }
+  else if(character >= 'A' && character <= 'Z') {
+    return MPMakePickCharUpperCaseCharacterOffset(character);
+  }
+  return MPMakeInvalidPickCharOffset();
 }
 
 BOOL MPIsValidPickCharOffset(MPPickCharOffset offset) {
@@ -48,8 +68,21 @@ NSInteger numberOffset(MPPickCharOffset offset) {
 }
 
 NSInteger characterOffset(MPPickCharOffset offset) {
-  return (offset.type == MPPickCharOffsetTypeCharacter ? offset.offset : 0);
+  switch(offset.type) {
+    case MPPickCharOffsetTypeUpperCaseCharacter:
+    case MPPickCharOffsetTypeLowerCaseCharacter:
+      return offset.offset;
+    default:
+      return 0;
+  }
 }
+
+typedef NSUInteger (^MPPickcharOffsetConverter)(NSInteger offset);
+
+@interface MPPickcharsParser () {
+  NSDictionary <NSValue *, MPPickcharOffsetConverter> *_offsetConverter;
+}
+@end
 
 @implementation MPPickcharsParser
 
@@ -65,6 +98,7 @@ NSInteger characterOffset(MPPickCharOffset offset) {
     _checkboxOffset = 0;
     _convertToDownArrows = NO;
     _hideCharacters = YES;
+    _offsetConverter = nil;
     [self _parseOptions:options];
   }
   return self;
@@ -75,23 +109,13 @@ NSInteger characterOffset(MPPickCharOffset offset) {
     return string;
   }
   NSMutableString *mutableString = [[NSMutableString alloc] init];
-  BOOL isFirst = NO;
   for(NSString *substring in string.composedCharacters) {
     if(substring.length != 1) {
       NSLog(@"Pickchars: Unsupported character %@ for conversion to down arrows, skipping!", substring);
       continue;
     }
-    MPPickCharOffset offset = MPMakeInvalidPickCharOffset();
     unichar character = [substring characterAtIndex:0];
-    if(character >= '0' && character <= '9') {
-      offset = MPMakePickCharNumberOffset(character - '0');
-    }
-    else if(character >= 'a' && character <= 'z') {
-      offset = MPMakePickCharCharacterOffset(character - 'a');
-    }
-    else if(character >= 'A' && character <= 'Z') {
-      offset = MPMakePickCharCharacterOffset(character - 'A');
-    }
+    MPPickCharOffset offset = MPMakePickCharOffset(character);
     [self _appendKeyCommandsForOffset:offset toString:mutableString];
   }
   return [mutableString copy];
@@ -102,18 +126,13 @@ NSInteger characterOffset(MPPickCharOffset offset) {
     return;
   }
   NSUInteger actualOffset = self.checkboxOffset;
-  switch(offset.type) {
-    case MPPickCharOffsetTypeNumber:
-      actualOffset += offset.offset;
-      break;
-    case MPPickCharOffsetTypeCharacter:
-      actualOffset += offset.offset;
-      break;
-    case MPPickCharOffsetTypeNone:
-    default:
-      break;
+  MPPickcharOffsetConverter convertBlock = _offsetConverter[@(offset.type)];
+  if(convertBlock) {
+    actualOffset += convertBlock(offset.offset);
   }
-  /* todo respect format definition */
+  else {
+    actualOffset += offset.offset;
+  }
   while (actualOffset--) {
     [string appendString:kKPKAutotypeDown];
   }
@@ -201,7 +220,68 @@ NSInteger characterOffset(MPPickCharOffset offset) {
     return NO;
   }
   if(NSOrderedSame == [key compare:kKPKPlaceholderPickCharsOptionConvertFormat options:NSCaseInsensitiveSearch]) {
-    self.checkboxFormat = option;
+    if(option.length == 0) {
+      /* interpret no optoins as default too*/
+      return YES;
+    }
+    /* parse range format */
+    NSMutableDictionary *tmpOffsetMap = [[NSMutableDictionary alloc] init];
+    NSUInteger index = 0;
+    NSUInteger collectedOffset = 0;
+    while(index < option.length) {
+      NSString *formatOption = [option substringWithRange:NSMakeRange(index, 1)];
+      if([formatOption isEqualToString:@"0"]) {
+        if(tmpOffsetMap[@(MPPickCharOffsetTypeNumber)]) {
+          return NO; // double definition!
+        }
+        tmpOffsetMap[@(MPPickCharOffsetTypeNumber)] = ^NSInteger(NSUInteger offset) {
+          return offset + collectedOffset;
+        };
+        collectedOffset += 10;
+      }
+      else if([formatOption isEqualToString:@"1"]) {
+        if(tmpOffsetMap[@(MPPickCharOffsetTypeNumber)]) {
+          return NO; // double definition!
+        }
+        tmpOffsetMap[@(MPPickCharOffsetTypeNumber)] = ^NSInteger(NSUInteger offset) {
+          NSInteger tmpOffset = offset - 1;
+          if(tmpOffset < 0) {
+            tmpOffset += 10;
+          }
+          return tmpOffset + collectedOffset;
+        };
+        collectedOffset += 10;
+      }
+      else if([formatOption isEqualToString:@"a"]) {
+        if(tmpOffsetMap[@(MPPickCharOffsetTypeLowerCaseCharacter)]) {
+          return NO; // double definition!
+        }
+
+        tmpOffsetMap[@(MPPickCharOffsetTypeLowerCaseCharacter)] = ^NSInteger(NSUInteger offset) {
+          return offset + collectedOffset;
+        };
+        collectedOffset += 26;
+      }
+      else if([formatOption isEqualToString:@"A"]) {
+        if(tmpOffsetMap[@(MPPickCharOffsetTypeUpperCaseCharacter)]) {
+          return NO; // double definition!
+        }
+        
+        tmpOffsetMap[@(MPPickCharOffsetTypeUpperCaseCharacter)] = ^NSInteger(NSUInteger offset) {
+          return offset + collectedOffset;
+        };
+        collectedOffset += 26;
+      }
+      else if([formatOption isEqualToString:@"?"]) {
+        /* just collect skips */
+        collectedOffset++;
+      }
+      else {
+        return NO;
+      }
+      index++;
+    }
+    _offsetConverter = [tmpOffsetMap copy];
     return YES;
   }
   return NO;
