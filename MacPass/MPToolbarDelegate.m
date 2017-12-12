@@ -110,7 +110,7 @@ NSString *const MPToolbarItemHistory = @"TOOLBAR_HISTORY";
       popupButton.bezelStyle = NSTexturedRoundedBezelStyle;
       popupButton.focusRingType = NSFocusRingTypeNone;
       popupButton.title = @"";
-      [popupButton.cell setImageScaling:NSImageScaleProportionallyDown];
+      popupButton.imageScaling = NSImageScaleProportionallyUpOrDown;
       [popupButton sizeToFit];
       
       NSRect newFrame = popupButton.frame;
@@ -156,7 +156,7 @@ NSString *const MPToolbarItemHistory = @"TOOLBAR_HISTORY";
       NSMenuItem *menuRepresentation = [[NSMenuItem alloc] initWithTitle:itemLabel
                                                                   action:[self _actionForToolbarItemIdentifier:itemIdentifier]
                                                            keyEquivalent:@""];
-      [item setMenuFormRepresentation:menuRepresentation];
+      item.menuFormRepresentation = menuRepresentation;
       
     }
     else if( [itemIdentifier isEqualToString:MPToolbarItemSearch]){
@@ -221,13 +221,13 @@ NSString *const MPToolbarItemHistory = @"TOOLBAR_HISTORY";
 
 
 - (void)registerNotificationsForDocument:(MPDocument *)document {
-  [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(_didExitSearch:) name:MPDocumentDidExitSearchNotification object:document];
-  [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(_didEnterSearch:) name:MPDocumentDidEnterSearchNotification object:document];
+  [NSNotificationCenter.defaultCenter addObserver:self selector:@selector(_didExitSearch:) name:MPDocumentDidExitSearchNotification object:document];
+  [NSNotificationCenter.defaultCenter addObserver:self selector:@selector(_didEnterSearch:) name:MPDocumentDidEnterSearchNotification object:document];
 }
 
 #pragma mark - NSSearchFieldDelegate
 - (BOOL)control:(NSControl *)control textView:(NSTextView *)textView doCommandBySelector:(SEL)commandSelector {
-  if(commandSelector == @selector(moveDown:)) {
+  if(commandSelector == @selector(insertNewline:)) {
     [[NSApp targetForAction:@selector(focusEntries:) to:nil from:self] focusEntries:self];
   }
   return NO;
