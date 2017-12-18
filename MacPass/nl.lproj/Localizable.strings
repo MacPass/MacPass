@@ -44,16 +44,16 @@
 "PASSWORD_GENERATOR_RESET_ENTRY_DEFAULTS" = "Reset";
 "TRASH_ENTRY" = "Prullenmand Item";
 "TRASH_GROUP" = "Prullenmand Groep";
-"SHOW_HISTORY" = "SHOW_HISTORY";
+"SHOW_HISTORY" = "Toon geschiedenis";
 
 /*
  Search
  */
 "CLEAR_RECENT_SEARCHES" = "Wis recente zoekopdrachten";
 "RECENT_SEARCHES" = "Recent zoekopdrachten";
-"SEARCH_DUPLICATE_PASSWORDS" = "Duplicate Passwords";
-"SEARCH_EXPIRED_ENTRIES" = "Expired";
-"SELECT_FILTER_WITH_DOTS" = "Select…";
+"SEARCH_DUPLICATE_PASSWORDS" = "Dubbele wachtwoorden";
+"SEARCH_EXPIRED_ENTRIES" = "Verlopen";
+"SELECT_FILTER_WITH_DOTS" = "Selecteer…";
 
 /*
  Direct Translations
@@ -69,7 +69,7 @@
 "LOCK" = "Vergrendel";
 "MODIFIED" = "Gewijzigd";
 "NOTES" = "Notities";
-"NONE" = "NONE";
+"NONE" = "Geen";
 "PASSWORD" = "Wachtwoord";
 "SAVE" = "Bewaar";
 "SAVE_WITH_DOTS" = "Bewaar…";
@@ -135,8 +135,8 @@
 "INTEGRATION_SETTINGS" = "Integratie";
 "UPDATE_SETTINGS" = "Updates";
 "WORKFLOW_SETTINGS" = "Workflow";
-"DEFAULT_BROWSER" = "Standaard Browser";
-"OTHER_BROWSER" = "OTHER_BROWSER";
+"DEFAULT_BROWSER" = "Standaardbrowser";
+"OTHER_BROWSER" = "Andere browser";
 "PLUGIN_SETTINGS" = "Plugins";
 
 /* Feature not supported in Version */
@@ -164,20 +164,20 @@
 "CHANGE_FORMAT" = "Wijzig Bestandsformaat in KDBX";
 "SAVE_LOSSY" = "Bewaar and verlies data";
 
-"ENFORCE_PASSWORD_CHANGE_ALERT_TITLE" = "The database password expired!";
-"ENFORCE_PASSWORD_CHANGE_ALERT_DESCRIPTION" = "You will be unable to save until the password and/or keyfile has been changed.";
+"ENFORCE_PASSWORD_CHANGE_ALERT_TITLE" = "Het databasewachtwoord is verlopen!";
+"ENFORCE_PASSWORD_CHANGE_ALERT_DESCRIPTION" = "U kunt niet opslaan totdat het wachtwoord en/of de keyfile zijn gewijzigd.";
 
-"RECOMMEND_PASSWORD_CHANGE_ALERT_TITLE" = "Please change the database password!";
-"RECOMMEND_PASSWORD_CHANGE_ALERT_DESCRIPTION" = "It is recommended to change the password and/or keyfile.";
-"CHANGE_PASSWORD_WITH_DOTS" = "Change Password…";
+"RECOMMEND_PASSWORD_CHANGE_ALERT_TITLE" = "Wijzig het databasewachtwoord, alstublieft!";
+"RECOMMEND_PASSWORD_CHANGE_ALERT_DESCRIPTION" = "Het is aanbevolgen om het wachtwoord en/of de keyfile te wijzigen.";
+"CHANGE_PASSWORD_WITH_DOTS" = "Verander wachtwoord…";
 
-"WARNING_ON_SAVE_NO_PASSWORD_OR_KEY_SET" = "No password or keyfile is set.";
-"WARNING_ON_SAVE_NO_PASSWORD_OR_KEY_SET_SUGGESTION" = "Please set a password and/or keyfile for this database. Aborting this will undo all changes and lock the document";
+"WARNING_ON_SAVE_NO_PASSWORD_OR_KEY_SET" = "Er is geen wachtwoord of keyfile ingesteld.";
+"WARNING_ON_SAVE_NO_PASSWORD_OR_KEY_SET_SUGGESTION" = "Stel een wachtwoord en/of keyfile in voor deze database. Annuleren zal alle wijzigingen ongedaan maken en het bestand blokkeren";
 
 /* Message displayed when an open file was changed from another application */
-"FILE_CHANGED_BY_OTHERS_MESSAGE_TEXT" = "The database file was modified!";
+"FILE_CHANGED_BY_OTHERS_MESSAGE_TEXT" = "Het databasebestand is gewijzigd!";
 /* Informative text displayed when the file was change form another application */
-"FILE_CHANGED_BY_OTHERS_INFO_TEXT" = "The file loaded is not the same as the on on disk. How do you want to move on?";
+"FILE_CHANGED_BY_OTHERS_INFO_TEXT" = "Het geladen bestand is niet hetzelfde als op schijf. Hoe wilt u verder gaan??";
 /* Button to ignore the changes */
 "KEEP_MINE" = "KEEP_MINE";
 /* BUtton to reload the changes form disk */
