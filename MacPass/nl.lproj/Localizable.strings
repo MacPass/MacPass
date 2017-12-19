@@ -36,12 +36,12 @@
 "MOVE_ENTRY" = "Verplaats item";
 "MOVE_GROUP" = "Verplaats groep";
 "NEW_ENTRY_WITH_TEMPLATE_%@" = "Creëer item met sjabloon %@";
-"NEW_DATABASE" = "Kluis";
+"NEW_DATABASE" = "Wachtwoordenkluis";
 "OPEN_URL" = "Open URL";
 "PERFORM_AUTOTYPE_FOR_ENTRY" = "Log automatisch in";
 "PREVIEW" = "Voorvertoning";
-"PASSWORD_GENERATOR_SET_DEFAULTS" = "Set Defaults";
-"PASSWORD_GENERATOR_RESET_ENTRY_DEFAULTS" = "Reset";
+"PASSWORD_GENERATOR_SET_DEFAULTS" = "Stel standaardwaarden in";
+"PASSWORD_GENERATOR_RESET_ENTRY_DEFAULTS" = "Herstel";
 "TRASH_ENTRY" = "Prullenmand item";
 "TRASH_GROUP" = "Prullenmand groep";
 "SHOW_HISTORY" = "Geschiedenis weergeven";
@@ -61,7 +61,7 @@
 "ACTION" = "Actie";
 "ATTACHMENTS" = "Bijlagen";
 "CANCEL" = "Annuleer";
-"DATABASE" = "Kluis";
+"DATABASE" = "Wachtwoordenkluis";
 "DELETE" = "Verwijder";
 "EDIT" = "Wijzig";
 "GROUP" = "Groep";
@@ -80,7 +80,7 @@
 "WINDOWS" = "Vensters";
 
 
-"CHANGE_DATABASE_NAME" = "Wijzig kluisnaam";
+"CHANGE_DATABASE_NAME" = "Wijzig de naam van de wachtwoordenkluis";
 "CHANGE_TRASH_GROUP" = "Wijzig prullenmandgroep";
 
 "DUPLICTE_PASSWORDS" = "Dupliceer wachtwoorden";
@@ -113,20 +113,20 @@
 /*
  Date/Time Displays
  */
-/* Created at template string. %@ is replaced by locaized date and time */
+/* Created at template string. %@ is replaced by localized date and time */
 "CREATED_AT_%@" = "Gecreëerd: %@";
-/* Modifed at template string. %@ is replaced by locaized date and time */
+/* Modifed at template string. %@ is replaced by localized date and time */
 "MODIFED_AT_%@" = "Gewijzigd: %@";
 
-"EXPIRES_AT_DATE_%@" = "Vervalt: %@";
-"NO_EXPIRE_DATE_SET" = "verloopt niet";
+"EXPIRES_AT_DATE_%@" = "Verloopt: %@";
+"NO_EXPIRE_DATE_SET" = "Verloopt niet";
 
 /*
  Defaults for new objects
  */
 "DEFAULT_CUSTOM_FIELD_TITLE" = "Aangepast";
 "DEFAULT_CUSTOM_FIELD_VALUE" = "Waarde";
-"DEFAULT_ENTRY_TITLE" = "Nieuw Item";
+"DEFAULT_ENTRY_TITLE" = "Nieuw item";
 "DEFAULT_GROUP_NAME" = "Nieuwe groep";
 "DEFAULT_WINDOW_TITLE" = "Venstertitel";
 
@@ -135,12 +135,12 @@
 "INTEGRATION_SETTINGS" = "Integratie";
 "UPDATE_SETTINGS" = "Updates";
 "WORKFLOW_SETTINGS" = "Bewerken";
-"DEFAULT_BROWSER" = "Standaard browser";
+"DEFAULT_BROWSER" = "Standaardwebbrowser";
 "OTHER_BROWSER" = "Andere…";
 "PLUGIN_SETTINGS" = "Extensies";
 
 /* Feature not supported in Version */
-"KDBX_ONLY_FEATURE" = "Feature niet ondersteund in KDB-kluis";
+"KDBX_ONLY_FEATURE" = "Dit Feature is niet beschikbaar in een wachtwoordenkluis met de indeling KDB";
 
 /* Template */
 "NO_TEMPLATE_GROUP" = "Geen groepssjablonen";
@@ -159,41 +159,41 @@
 /* Alert Dialogs */
 "WARNING_ON_EMPTY_TRASH_DESCRIPTION" = "Het legen van de prullenmand is onomkeerbaar.";
 "WARNING_ON_EMPTY_TRASH_TITLE" = "Leeg prullenmand?";
-"WARNING_ON_LOSSY_SAVE" = "U kunt gegevens kwijtraken door op te slaan in KDB-formaat.";
-"WARNING_ON_LOSSY_SAVE_DESCRIPTION" = "Niet alle soorten gegevens passen in het wachtwoordenkluisformaat KDB. Als u doorgaat kunt u gegevens kwijtraken.";
-"CHANGE_FORMAT" = "Wijzig het wachtwoordenkluisformaat naar KDBX";
+"WARNING_ON_LOSSY_SAVE" = "U kunt gegevens kwijtraken door op te slaan met de indeling KDB.";
+"WARNING_ON_LOSSY_SAVE_DESCRIPTION" = "Niet alle soorten gegevens passen in een wachtwoordenkluis met de indeling KDB. Als u doorgaat kunt u gegevens kwijtraken.";
+"CHANGE_FORMAT" = "Wijzig de indeling van de wachtwoordenkluis naar KDBX";
 "SAVE_LOSSY" = "Bewaar and verlies gegevens";
 
 "ENFORCE_PASSWORD_CHANGE_ALERT_TITLE" = "Het hoofdwachtwoord is vervallen!";
 "ENFORCE_PASSWORD_CHANGE_ALERT_DESCRIPTION" = "U kunt niet opslaan totdat u het hoofdwachtwoord of sleutelbestand heeft gewijzigd.";
 
-"RECOMMEND_PASSWORD_CHANGE_ALERT_TITLE" = "Hoofdwachtwoord wijzigen.";
-"RECOMMEND_PASSWORD_CHANGE_ALERT_DESCRIPTION" = "Het wordt aangeraden om het hoofdwachtwoord of sleutelbestand te wijzigen.";
+"RECOMMEND_PASSWORD_CHANGE_ALERT_TITLE" = "Hoofdwachtwoord vernieuwen.";
+"RECOMMEND_PASSWORD_CHANGE_ALERT_DESCRIPTION" = "U wordt aangeraden om een nieuw hoofdwachtwoord of sleutelbestand in te stellen.";
 "CHANGE_PASSWORD_WITH_DOTS" = "Wijzig wachtwoord…";
 
-"WARNING_ON_SAVE_NO_PASSWORD_OR_KEY_SET" = "Hoofdwachtwoord of sleutelbestand ontbreekt.";
-"WARNING_ON_SAVE_NO_PASSWORD_OR_KEY_SET_SUGGESTION" = "Stel een hoofdwachtwoord of sleutelbestand in voor deze wachtwoordenkluis. Als u dit niet doet, gaan alle wijzigingen verloren.";
+"WARNING_ON_SAVE_NO_PASSWORD_OR_KEY_SET" = "Hoofdwachtwoord en sleutelbestand instellen:";
+"WARNING_ON_SAVE_NO_PASSWORD_OR_KEY_SET_SUGGESTION" = "Stel een hoofdwachtwoord of sleutelbestand in voor deze wachtwoordenkluis om uw wijzigingen te kunnen bewaren.";
 
 /* Message displayed when an open file was changed by another application */
-"FILE_CHANGED_BY_OTHERS_MESSAGE_TEXT" = "Het kluisbestand is gewijzigd!";
+"FILE_CHANGED_BY_OTHERS_MESSAGE_TEXT" = "De wachtwoordenkluis is gewijzigd!";
 /* Informative text displayed when the file was changed by another application */
-"FILE_CHANGED_BY_OTHERS_INFO_TEXT" = "The file loaded is not the same as the one on disk. How do you want to move on?";
+"FILE_CHANGED_BY_OTHERS_INFO_TEXT" = "De laatst opgeslagen versie van de wachtwoordenkluis is zojuist buiten MacPass om gewijzigd. Welke versie wilt u behouden?";
 /* Button to ignore the changes */
-"KEEP_MINE" = "KEEP_MINE";
+"KEEP_MINE" = "Behoud de geopende versie";
 /* BUtton to reload the changes form disk */
-"LOAD_CHANGES" = "Laad wijzigingen";
+"LOAD_CHANGES" = "Behoud de opgeslagen versie";
 /* Merge changes into file! */
-"MERGE_CHANGES" = "Voeg wijzigingen samen!";
+"MERGE_CHANGES" = "Voeg de wijzigingen samen";
 
 /* Password Input Messagaes, Errors and Warning */
-"PASSWORD_INPUT_NO_PASSWORD" = "Geen wachtwoord";
-"PASSWORD_INPUT_ENTER_PASSWORD" = "Voer wachtwoord in";
-"PASSWORD_INPUT_REPEAT_PASSWORD" = "Herhaal wachtwoord";
-"WARNING_NO_PASSWORD_OR_KEYFILE" = "Wachtwoord of sleutelbestand ontbreekt!";
-"ERROR_PASSWORD_MISSMATCH_INVALID_KEYFILE" = "Wachtwoorden komen niet overeen en het sleutelbestand is ongeldig!";
-"ERROR_PASSWORD_MISSMATCH" = "Wachtwoorden komen niet overeen!";
+"PASSWORD_INPUT_NO_PASSWORD" = "Geen hoofdwachtwoord";
+"PASSWORD_INPUT_ENTER_PASSWORD" = "Geef het hoofdwachtwoord op";
+"PASSWORD_INPUT_REPEAT_PASSWORD" = "Herhaal hoofdwachtwoord";
+"WARNING_NO_PASSWORD_OR_KEYFILE" = "Hoofdwachtwoord of sleutelbestand ontbreekt!";
+"ERROR_PASSWORD_MISSMATCH_INVALID_KEYFILE" = "Hoofdwachtwoord komt niet overeen en het sleutelbestand is ongeldig!";
+"ERROR_PASSWORD_MISSMATCH" = "Hoofdwachtwoord komt niet overeen!";
 "ERROR_INVALID_KEYFILE" = "Sleutelbestand is ongeldig!";
 
 /* Misc */
 "DOCUMENT_AUTOTYPE_CORRUPTION_WARNING" = "Please run fix autotype…";
-"FILE_OPEN_ERROR" = "Fout bij openen bestand.";
+"FILE_OPEN_ERROR" = "Fout bij openen van bestand.";
