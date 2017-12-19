@@ -25,10 +25,19 @@
 
 #import <Foundation/Foundation.h>
 
+
+/**
+ Common UTIs
+ */
 FOUNDATION_EXPORT NSString *const MPPasteBoardType;
 FOUNDATION_EXPORT NSString *const MPKdbDocumentUTI;
 FOUNDATION_EXPORT NSString *const MPKdbxDocumentUTI;
 FOUNDATION_EXPORT NSString *const MPPluginUTI;
 
-
+/**
+ Bundle keys
+ */
+FOUNDATION_EXPORT NSString *const MPBundleHelpURLKey; // MPHelpURL
+FOUNDATION_EXPORT NSString *const MPBundlePluginRepositoryURLKey; // MPPluginRepositoryURL
+FOUNDATION_EXPORT NSString *const MPBundlePluginCompaibilityURLKey; // MPPluginCompaibilityURL
 #endif

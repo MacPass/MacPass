@@ -14,8 +14,6 @@
 @property (readonly) BOOL convertToDownArrows;
 @property (readonly) NSUInteger pickCount; // count to pick - 0 if unlimted
 @property (readonly) NSUInteger checkboxOffset;
-@property (readonly, copy) NSString *checkboxFormat;
-
 
 /**
  Initializes the parser with the given option string.

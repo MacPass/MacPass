@@ -7,7 +7,9 @@
 //
 
 #import <XCTest/XCTest.h>
+
 #import "MPPickcharsParser.h"
+#import "MPPickcharsParser_Private.h"
 
 @interface MPTestPickcharsParser : XCTestCase
 
@@ -21,17 +23,36 @@
   XCTAssertEqual(NO, parser.hideCharacters);
   XCTAssertEqual(YES, parser.convertToDownArrows);
   XCTAssertEqual(11, parser.checkboxOffset);
-  XCTAssertEqualObjects(@"0?aA", parser.checkboxFormat);
+  
+  NSString *result = [parser processPickedString:@"1B0f"];
+  
 }
 
 
 - (void)testInvalidOptionsParser {
-  MPPickcharsParser *parser = [[MPPickcharsParser alloc] initWithOptions:@"Count=-10,Hide=whatever,Con=D,Conv-Offset=20,Conv-Fmt=0A"];
+  MPPickcharsParser *parser = [[MPPickcharsParser alloc] initWithOptions:@"Count=-10,Hide=whatever,Con=D,Conv-Offset=20,Conv-Fmt=1A"];
   XCTAssertEqual(0, parser.pickCount); // negative count will result in 0-count
   XCTAssertEqual(YES, parser.hideCharacters); // option invalid, default is YES
   XCTAssertEqual(NO, parser.convertToDownArrows); // option was invalid, default is NO
   XCTAssertEqual(20, parser.checkboxOffset);
-  XCTAssertEqualObjects(@"0A", parser.checkboxFormat);
 }
+
+- (void)testConvertToDownArrows {
+  MPPickcharsParser *parser = [[MPPickcharsParser alloc] init];
+  parser.convertToDownArrows = YES;
+  NSString *result = [parser processPickedString:@"105"];  // 1 + 0 + 5 = 6
+  XCTAssertEqualObjects(result, @"{DOWN}{DOWN}{DOWN}{DOWN}{DOWN}{DOWN}");
+  result = [parser processPickedString:@"ccb"]; // 2 + 2 + 1 = 5
+  XCTAssertEqualObjects(result, @"{DOWN}{DOWN}{DOWN}{DOWN}{DOWN}");
+  result = [parser processPickedString:@"CCB"]; // 2 + 2 + 1 = 5
+  XCTAssertEqualObjects(result, @"{DOWN}{DOWN}{DOWN}{DOWN}{DOWN}");
+  parser.checkboxOffset = 2;
+  result = [parser processPickedString:@"105"]; // 1 + 0 + 5 + (3 * 2) = 6 + 6 = 12
+  XCTAssertEqualObjects(result, @"{DOWN}{DOWN}{DOWN}{DOWN}{DOWN}{DOWN}{DOWN}{DOWN}{DOWN}{DOWN}{DOWN}{DOWN}");
+  result = [parser processPickedString:@"ccb"]; // 2 + 2 + 1 + (2 * 2) = 5 + 6 = 12
+  XCTAssertEqualObjects(result, @"{DOWN}{DOWN}{DOWN}{DOWN}{DOWN}{DOWN}{DOWN}{DOWN}{DOWN}{DOWN}{DOWN}");
+}
+
+
 
 @end

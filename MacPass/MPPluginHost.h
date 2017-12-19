@@ -22,12 +22,15 @@
 
 #import <Foundation/Foundation.h>
 
+/* Notifications for loading plugins */
 FOUNDATION_EXPORT NSString *const MPPluginHostWillLoadPlugin;
 FOUNDATION_EXPORT NSString *const MPPluginHostDidLoadPlugin;
 
+/* Keys used in info dictionary on notifications */
 FOUNDATION_EXPORT NSString *const MPPluginHostPluginBundleIdentifiyerKey;
 
 @class MPPlugin;
+@class KPKEntry;
 
 @interface MPPluginHost : NSObject
 
@@ -48,4 +51,5 @@ FOUNDATION_EXPORT NSString *const MPPluginHostPluginBundleIdentifiyerKey;
 - (NSArray <MPPlugin __kindof*>*)autotypePlugins;
 - (NSArray <MPPlugin __kindof*>*)entryContextMenuPlugins;
 */
+- (NSArray *)menuItemsForEntries:(NSArray <KPKEntry *>*)entries;
 @end

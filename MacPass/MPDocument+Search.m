@@ -59,8 +59,7 @@ NSString *const kMPDocumentSearchResultsKey           = @"kMPDocumentSearchResul
     return; // We get called back!
   }
   MPDocumentWindowController *windowController = [self windowControllers][0];
-  NSString *searchString = [windowController.searchField stringValue];
-  self.searchContext.searchString = searchString;
+  self.searchContext.searchString = windowController.searchField.stringValue;
   MPDocument __weak *weakSelf = self;
   dispatch_queue_t backgroundQueue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
   dispatch_async(backgroundQueue, ^{

@@ -25,7 +25,7 @@
 #import "MPAppDelegate.h"
 #import "MPAutotypeDaemon.h"
 #import "MPConstants.h"
-#import "MPContextToolbarButton.h"
+#import "MPContextButton.h"
 #import "MPDatabaseSettingsWindowController.h"
 #import "MPDocument.h"
 #import "MPDocumentWindowDelegate.h"
@@ -103,11 +103,11 @@ typedef void (^MPPasswordChangedBlock)(BOOL didChangePassword);
   
   MPDocument *document = self.document;
   
-  [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(_didRevertDocument:) name:MPDocumentDidRevertNotifiation object:document];
-  [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(_didUnlockDatabase:) name:MPDocumentDidUnlockDatabaseNotification object:document];
-  [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(_didAddEntry:) name:MPDocumentDidAddEntryNotification object:document];
-  [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(_didAddGroup:) name:MPDocumentDidAddGroupNotification object:document];
-  [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(_didLockDatabase:) name:MPDocumentDidLockDatabaseNotification object:document];
+  [NSNotificationCenter.defaultCenter addObserver:self selector:@selector(_didRevertDocument:) name:MPDocumentDidRevertNotifiation object:document];
+  [NSNotificationCenter.defaultCenter addObserver:self selector:@selector(_didUnlockDatabase:) name:MPDocumentDidUnlockDatabaseNotification object:document];
+  [NSNotificationCenter.defaultCenter addObserver:self selector:@selector(_didAddEntry:) name:MPDocumentDidAddEntryNotification object:document];
+  [NSNotificationCenter.defaultCenter addObserver:self selector:@selector(_didAddGroup:) name:MPDocumentDidAddGroupNotification object:document];
+  [NSNotificationCenter.defaultCenter addObserver:self selector:@selector(_didLockDatabase:) name:MPDocumentDidLockDatabaseNotification object:document];
   
   [self.entryViewController registerNotificationsForDocument:document];
   [self.inspectorViewController registerNotificationsForDocument:document];
@@ -444,7 +444,7 @@ typedef void (^MPPasswordChangedBlock)(BOOL didChangePassword);
 }
 
 - (void)focusEntries:(id)sender {
-  [[self window] makeFirstResponder:[self.entryViewController reconmendedFirstResponder]];
+  [self.window makeFirstResponder:[self.entryViewController reconmendedFirstResponder]];
 }
 
 - (void)focusGroups:(id)sender {

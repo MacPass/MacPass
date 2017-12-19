@@ -142,7 +142,7 @@ typedef NS_ENUM(NSInteger, MPIconDownloadStatus) {
        && data.length > 0) {
       dispatch_async(dispatch_get_main_queue(), ^{
         KPKIcon *newIcon = [[KPKIcon alloc] initWithImageData:data];
-        if(newIcon) {
+        if(newIcon && newIcon.image) {
           self.downloadStatus = MPIconDownloadStatusNone;
           [metaData addCustomIcon:newIcon];
           [self _updateCollectionViewContent];

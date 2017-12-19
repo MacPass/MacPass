@@ -22,23 +22,20 @@
 
 #import "MPAutotypeDaemon.h"
 #import "MPDocument.h"
-
 #import "MPAutotypeCommand.h"
 #import "MPAutotypeContext.h"
 #import "MPAutotypePaste.h"
-
 #import "MPPasteBoardController.h"
 #import "MPSettingsHelper.h"
-
-#import "NSApplication+MPAdditions.h"
-
 #import "MPAutotypeCandidateSelectionViewController.h"
 
-#import "KeePassKit/KeePassKit.h"
+#import "NSApplication+MPAdditions.h"
+#import "NSUserNotification+MPAdditions.h"
 
 #import "DDHotKeyCenter.h"
 #import "DDHotKey+MacPassAdditions.h"
 
+#import "KeePassKit/KeePassKit.h"
 #import <Carbon/Carbon.h>
 
 NSString *const kMPWindowTitleKey = @"kMPWindowTitleKey";
@@ -81,19 +78,19 @@ static MPAutotypeDaemon *_sharedInstance;
     _enabled = NO;
     _targetPID = -1;
     [self bind:NSStringFromSelector(@selector(enabled))
-      toObject:[NSUserDefaultsController sharedUserDefaultsController]
+      toObject:NSUserDefaultsController.sharedUserDefaultsController
    withKeyPath:[MPSettingsHelper defaultControllerPathForKey:kMPSettingsKeyEnableGlobalAutotype]
        options:nil];
     
     [self bind:NSStringFromSelector(@selector(hotKeyData))
-      toObject:[NSUserDefaultsController sharedUserDefaultsController]
+      toObject:NSUserDefaultsController.sharedUserDefaultsController
    withKeyPath:[MPSettingsHelper defaultControllerPathForKey:kMPSettingsKeyGlobalAutotypeKeyDataKey]
        options:nil];
     
-    [[[NSWorkspace sharedWorkspace] notificationCenter] addObserver:self
-                                                           selector:@selector(_didDeactivateApplication:)
-                                                               name:NSWorkspaceDidDeactivateApplicationNotification
-                                                             object:nil];
+    [NSWorkspace.sharedWorkspace.notificationCenter addObserver:self
+                                                       selector:@selector(_didDeactivateApplication:)
+                                                           name:NSWorkspaceDidDeactivateApplicationNotification
+                                                         object:nil];
   }
   return self;
 }
@@ -164,13 +161,15 @@ static MPAutotypeDaemon *_sharedInstance;
   }
   
   /* find autotype documents */
-  NSArray *documents = [NSApp orderedDocuments];
+  NSArray *documents = NSApp.orderedDocuments;
   /* No open document, inform the user and return without any action */
   if(documents.count == 0) {
     NSUserNotification *notification = [[NSUserNotification alloc] init];
     notification.title = NSApp.applicationName;
     notification.informativeText = NSLocalizedString(@"AUTOTYPE_OVERLAY_NO_DOCUMENTS", "Notification: Autotype failed, no documents are open");
-    [[NSUserNotificationCenter defaultUserNotificationCenter] deliverNotification:notification];
+    notification.actionButtonTitle = NSLocalizedString(@"OPEN_DOCUMENT", "Action button in Notification to open a document");
+    //notification.showsButtons = YES;
+    [NSUserNotificationCenter.defaultUserNotificationCenter deliverNotification:notification];
     return;
   }
   NSPredicate *filterPredicate = [NSPredicate predicateWithBlock:^BOOL(id  _Nonnull evaluatedObject, NSDictionary<NSString *,id> * _Nullable bindings) {
@@ -183,7 +182,7 @@ static MPAutotypeDaemon *_sharedInstance;
     [NSApp.mainWindow makeKeyAndOrderFront:self];
     /* show the actual document window to the user */
     [documents.firstObject showWindows];
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(_didUnlockDatabase:) name:MPDocumentDidUnlockDatabaseNotification object:nil];
+    [NSNotificationCenter.defaultCenter addObserver:self selector:@selector(_didUnlockDatabase:) name:MPDocumentDidUnlockDatabaseNotification object:nil];
     return; // wait for the unlock to happen
   }
   
@@ -201,7 +200,7 @@ static MPAutotypeDaemon *_sharedInstance;
     else {
       notification.informativeText = [NSString stringWithFormat:NSLocalizedString(@"AUTOTYPE_OVERLAY_NO_MATCH_FOR_%@", "Noticiation: Autotype failed to find a match for %@ (string placeholder)"), self.targetWindowTitle];
     }
-    [[NSUserNotificationCenter defaultUserNotificationCenter] deliverNotification:notification];
+    [NSUserNotificationCenter.defaultUserNotificationCenter deliverNotification:notification];
   }
   [self _performAutotypeForContext:context];
 }

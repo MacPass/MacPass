@@ -12,6 +12,8 @@
 		4C01C2421764D8980016D5D0 /* MPContextMenuHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C01C2411764D8980016D5D0 /* MPContextMenuHelper.m */; };
 		4C0728BD17B5B7F7005A7DD9 /* MPPasswordEditWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C0728BC17B5B7F7005A7DD9 /* MPPasswordEditWindowController.m */; };
 		4C0728BF17B68ED0005A7DD9 /* SavePanelAccessoryView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4C0728BE17B68ED0005A7DD9 /* SavePanelAccessoryView.xib */; };
+		4C0949591FD6B89B004F2971 /* NSUserNotification+MPAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C0949581FD6B89B004F2971 /* NSUserNotification+MPAdditions.m */; };
+		4C09495C1FD6E510004F2971 /* MPAddCustomFieldContextMenuDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C09495B1FD6E510004F2971 /* MPAddCustomFieldContextMenuDelegate.m */; };
 		4C0AF62F195C1F2B009E658D /* MPEntrySearchContext.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C0AF62E195C1F2B009E658D /* MPEntrySearchContext.m */; };
 		4C0B038C18E36DA400B9F9C9 /* MPFixAutotypeWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C0B038A18E36DA400B9F9C9 /* MPFixAutotypeWindowController.m */; };
 		4C0B038D18E36DA400B9F9C9 /* FixAutotypeWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4C0B038B18E36DA400B9F9C9 /* FixAutotypeWindow.xib */; };
@@ -42,6 +44,7 @@
 		4C2E381F16D11FF900037A9D /* 05_LanguagesTemplate.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 4C2E381C16D11FF900037A9D /* 05_LanguagesTemplate.pdf */; };
 		4C2E382316D1421B00037A9D /* MPIconHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C2E382216D1421B00037A9D /* MPIconHelper.m */; };
 		4C2E382616D1470200037A9D /* MPViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C2E382516D1470200037A9D /* MPViewController.m */; };
+		4C2F17A21FD69BCA0097418D /* MPUserNotificationCenterDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C2F17A11FD69BCA0097418D /* MPUserNotificationCenterDelegate.m */; };
 		4C32B0E71A1D4436007E12F1 /* KPKFormat+MPUTIDetection.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C32B0E61A1D4436007E12F1 /* KPKFormat+MPUTIDetection.m */; };
 		4C3666411787327E00B249F1 /* MPDocument+Attachments.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C3666401787327E00B249F1 /* MPDocument+Attachments.m */; };
 		4C37A84015B8B474005EF8EE /* MPOutlineDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C37A83F15B8B474005EF8EE /* MPOutlineDataSource.m */; };
@@ -128,7 +131,7 @@
 		4C5FE9AE17843CE20001D5A8 /* MPSelectedAttachmentTableCellView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C5FE9AD17843CE20001D5A8 /* MPSelectedAttachmentTableCellView.m */; };
 		4C61EA0316D2FD0800AC519E /* MPOutlineViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C61EA0216D2FD0800AC519E /* MPOutlineViewController.m */; };
 		4C61EA0516D2FFE200AC519E /* OutlineView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4C61EA0416D2FFE200AC519E /* OutlineView.xib */; };
-		4C63B8FB17A3154D0091BD72 /* MPContextToolbarButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C63B8FA17A3154D0091BD72 /* MPContextToolbarButton.m */; };
+		4C63B8FB17A3154D0091BD72 /* MPContextButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C63B8FA17A3154D0091BD72 /* MPContextButton.m */; };
 		4C65C79C16DD283900E32CFF /* MPToolbarButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C65C79B16DD283900E32CFF /* MPToolbarButton.m */; };
 		4C65FAE916D16DDB006E0577 /* MPPasswordInputController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C65FAE716D16DDB006E0577 /* MPPasswordInputController.m */; };
 		4C663D411D6D91A900CB6237 /* MPNumberFormatter.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C663D401D6D91A900CB6237 /* MPNumberFormatter.m */; };
@@ -208,6 +211,7 @@
 		4CA334CA18AD60D1008A3322 /* MPWindowAssociationsTableViewDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CA334C918AD60D1008A3322 /* MPWindowAssociationsTableViewDelegate.m */; };
 		4CA3530B18A53CB800839B0F /* MPKeyMapper.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CA3530A18A53CB800839B0F /* MPKeyMapper.m */; };
 		4CA4B3461FC8833A007DF507 /* PickcharView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4CA4B3451FC88339007DF507 /* PickcharView.xib */; };
+		4CA78C001FD58C92003C8560 /* MPPluginRepository.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CA78BFF1FD58C92003C8560 /* MPPluginRepository.m */; };
 		4CAAA8271D787B8B00CDE977 /* MPAutotypeBuilderViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CAAA8251D787B8B00CDE977 /* MPAutotypeBuilderViewController.m */; };
 		4CAD748C15B889B700104512 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4CAD748B15B889B700104512 /* Security.framework */; };
 		4CAD748E15B88AC100104512 /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 4CAD748D15B88AC100104512 /* libz.dylib */; };
@@ -322,6 +326,11 @@
 		4C0728BB17B5B7F7005A7DD9 /* MPPasswordEditWindowController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MPPasswordEditWindowController.h; sourceTree = "<group>"; };
 		4C0728BC17B5B7F7005A7DD9 /* MPPasswordEditWindowController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MPPasswordEditWindowController.m; sourceTree = "<group>"; };
 		4C0728BE17B68ED0005A7DD9 /* SavePanelAccessoryView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SavePanelAccessoryView.xib; sourceTree = "<group>"; };
+		4C088C401FD9A42800F92502 /* MPPickcharsParser_Private.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MPPickcharsParser_Private.h; sourceTree = "<group>"; };
+		4C0949571FD6B89B004F2971 /* NSUserNotification+MPAdditions.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSUserNotification+MPAdditions.h"; sourceTree = "<group>"; };
+		4C0949581FD6B89B004F2971 /* NSUserNotification+MPAdditions.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSUserNotification+MPAdditions.m"; sourceTree = "<group>"; };
+		4C09495A1FD6E510004F2971 /* MPAddCustomFieldContextMenuDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MPAddCustomFieldContextMenuDelegate.h; sourceTree = "<group>"; };
+		4C09495B1FD6E510004F2971 /* MPAddCustomFieldContextMenuDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MPAddCustomFieldContextMenuDelegate.m; sourceTree = "<group>"; };
 		4C0AF62D195C1F2B009E658D /* MPEntrySearchContext.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MPEntrySearchContext.h; sourceTree = "<group>"; };
 		4C0AF62E195C1F2B009E658D /* MPEntrySearchContext.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MPEntrySearchContext.m; sourceTree = "<group>"; };
 		4C0B038918E36DA400B9F9C9 /* MPFixAutotypeWindowController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MPFixAutotypeWindowController.h; sourceTree = "<group>"; };
@@ -370,6 +379,8 @@
 		4C2E382216D1421B00037A9D /* MPIconHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MPIconHelper.m; sourceTree = "<group>"; };
 		4C2E382416D1470200037A9D /* MPViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MPViewController.h; sourceTree = "<group>"; };
 		4C2E382516D1470200037A9D /* MPViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MPViewController.m; sourceTree = "<group>"; };
+		4C2F17A01FD69BCA0097418D /* MPUserNotificationCenterDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MPUserNotificationCenterDelegate.h; sourceTree = "<group>"; };
+		4C2F17A11FD69BCA0097418D /* MPUserNotificationCenterDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MPUserNotificationCenterDelegate.m; sourceTree = "<group>"; };
 		4C32B0E51A1D4436007E12F1 /* KPKFormat+MPUTIDetection.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "KPKFormat+MPUTIDetection.h"; sourceTree = "<group>"; };
 		4C32B0E61A1D4436007E12F1 /* KPKFormat+MPUTIDetection.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "KPKFormat+MPUTIDetection.m"; sourceTree = "<group>"; };
 		4C3666401787327E00B249F1 /* MPDocument+Attachments.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "MPDocument+Attachments.m"; sourceTree = "<group>"; };
@@ -513,8 +524,8 @@
 		4C61EA0116D2FD0800AC519E /* MPOutlineViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MPOutlineViewController.h; sourceTree = "<group>"; };
 		4C61EA0216D2FD0800AC519E /* MPOutlineViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MPOutlineViewController.m; sourceTree = "<group>"; };
 		4C61EA0416D2FFE200AC519E /* OutlineView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = OutlineView.xib; sourceTree = "<group>"; };
-		4C63B8F917A3154D0091BD72 /* MPContextToolbarButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MPContextToolbarButton.h; sourceTree = "<group>"; };
-		4C63B8FA17A3154D0091BD72 /* MPContextToolbarButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MPContextToolbarButton.m; sourceTree = "<group>"; };
+		4C63B8F917A3154D0091BD72 /* MPContextButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MPContextButton.h; sourceTree = "<group>"; };
+		4C63B8FA17A3154D0091BD72 /* MPContextButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MPContextButton.m; sourceTree = "<group>"; };
 		4C65C79A16DD283900E32CFF /* MPToolbarButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MPToolbarButton.h; sourceTree = "<group>"; };
 		4C65C79B16DD283900E32CFF /* MPToolbarButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MPToolbarButton.m; sourceTree = "<group>"; };
 		4C65FAE616D16DDB006E0577 /* MPPasswordInputController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MPPasswordInputController.h; sourceTree = "<group>"; };
@@ -706,6 +717,8 @@
 		4CA3530918A53CB800839B0F /* MPKeyMapper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MPKeyMapper.h; sourceTree = "<group>"; };
 		4CA3530A18A53CB800839B0F /* MPKeyMapper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MPKeyMapper.m; sourceTree = "<group>"; };
 		4CA4B3451FC88339007DF507 /* PickcharView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PickcharView.xib; sourceTree = "<group>"; };
+		4CA78BFE1FD58C92003C8560 /* MPPluginRepository.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MPPluginRepository.h; sourceTree = "<group>"; };
+		4CA78BFF1FD58C92003C8560 /* MPPluginRepository.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MPPluginRepository.m; sourceTree = "<group>"; };
 		4CAAA8241D787B8B00CDE977 /* MPAutotypeBuilderViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MPAutotypeBuilderViewController.h; sourceTree = "<group>"; };
 		4CAAA8251D787B8B00CDE977 /* MPAutotypeBuilderViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MPAutotypeBuilderViewController.m; sourceTree = "<group>"; };
 		4CAD748B15B889B700104512 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
@@ -999,6 +1012,8 @@
 				4CDA35741EBA0CF2003CD59F /* NSString+MPComposedCharacterAdditions.m */,
 				4C8F0C771FD05A6A00BE157F /* NSString+MPPrettyPasswordDisplay.h */,
 				4C8F0C781FD05A6A00BE157F /* NSString+MPPrettyPasswordDisplay.m */,
+				4C0949571FD6B89B004F2971 /* NSUserNotification+MPAdditions.h */,
+				4C0949581FD6B89B004F2971 /* NSUserNotification+MPAdditions.m */,
 			);
 			name = Categories;
 			sourceTree = "<group>";
@@ -1086,6 +1101,10 @@
 				4CA0F3EC1A3074B50067C0E5 /* MPWindowTitleComboBoxDelegate.m */,
 				4CE501321BBC47F500FB819D /* MPTagsTokenFieldDelegate.h */,
 				4CE501331BBC47F500FB819D /* MPTagsTokenFieldDelegate.m */,
+				4C2F17A01FD69BCA0097418D /* MPUserNotificationCenterDelegate.h */,
+				4C2F17A11FD69BCA0097418D /* MPUserNotificationCenterDelegate.m */,
+				4C09495A1FD6E510004F2971 /* MPAddCustomFieldContextMenuDelegate.h */,
+				4C09495B1FD6E510004F2971 /* MPAddCustomFieldContextMenuDelegate.m */,
 			);
 			name = Delegates;
 			sourceTree = "<group>";
@@ -1117,7 +1136,6 @@
 		4C45FB1E178E09ED0010007D /* MacPassTests */ = {
 			isa = PBXGroup;
 			children = (
-				4C8F0C721FCF1B7A00BE157F /* MPTestPickcharsParser.m */,
 				4CCFA12C1BF0CC7A0078E0A1 /* Databases */,
 				4C10207E1B750E2F00BFCD59 /* MPTestAutotype.m */,
 				4C8DEAA11C314D2C00D24C32 /* MPTestAutotypeDelay.m */,
@@ -1125,6 +1143,7 @@
 				4C45FB2F178E0CE20010007D /* MPTestDocument.m */,
 				4C6BC65F1A36717E00BDDF3D /* MPDatabaseSearch.m */,
 				4C8030491E2FBAA300133E4C /* MPTestKeyMapper.m */,
+				4C8F0C721FCF1B7A00BE157F /* MPTestPickcharsParser.m */,
 				4C45FB1F178E09ED0010007D /* Supporting Files */,
 			);
 			path = MacPassTests;
@@ -1400,6 +1419,7 @@
 				4C1F7FA01E3A12E600D6A40E /* MPModifiedKey.h */,
 				4C1F7FA11E3A12E600D6A40E /* MPModifiedKey.m */,
 				4C8F0C6F1FCEF91400BE157F /* MPPickcharsParser.h */,
+				4C088C401FD9A42800F92502 /* MPPickcharsParser_Private.h */,
 				4C8F0C701FCEF91400BE157F /* MPPickcharsParser.m */,
 			);
 			name = Autotype;
@@ -1507,8 +1527,8 @@
 				4C65C79B16DD283900E32CFF /* MPToolbarButton.m */,
 				4C888C9116EB6F5E003D34A1 /* MPToolbarItem.h */,
 				4C888C9216EB6F5E003D34A1 /* MPToolbarItem.m */,
-				4C63B8F917A3154D0091BD72 /* MPContextToolbarButton.h */,
-				4C63B8FA17A3154D0091BD72 /* MPContextToolbarButton.m */,
+				4C63B8F917A3154D0091BD72 /* MPContextButton.h */,
+				4C63B8FA17A3154D0091BD72 /* MPContextButton.m */,
 				4C57AE1217BA422B00CA4F34 /* MPSegmentedContextCell.h */,
 				4C57AE1317BA422B00CA4F34 /* MPSegmentedContextCell.m */,
 				8345D7271F39023E002B7B0F /* MPPathControl.h */,
@@ -1591,6 +1611,8 @@
 				4CD034A91BFE113B003C002C /* MPPluginHost.m */,
 				4C8F0C6C1FCEE98900BE157F /* MPPluginConstants.h */,
 				4C8F0C6D1FCEE9B900BE157F /* MPPluginConstants.m */,
+				4CA78BFE1FD58C92003C8560 /* MPPluginRepository.h */,
+				4CA78BFF1FD58C92003C8560 /* MPPluginRepository.m */,
 			);
 			name = Plugin;
 			path = MacPass;
@@ -1642,7 +1664,7 @@
 			isa = PBXProject;
 			attributes = {
 				CLASSPREFIX = MP;
-				LastUpgradeCheck = 0910;
+				LastUpgradeCheck = 0920;
 				ORGANIZATIONNAME = "HicknHack Software GmbH";
 				TargetAttributes = {
 					4C77E36115B84A240093A587 = {
@@ -1930,9 +1952,11 @@
 				4C3666411787327E00B249F1 /* MPDocument+Attachments.m in Sources */,
 				4CF6C3021FBF39BF0055AD03 /* MPPluginTabelCellView.m in Sources */,
 				4C10412C178CDD44001B5239 /* NSDate+Humanized.m in Sources */,
+				4C2F17A21FD69BCA0097418D /* MPUserNotificationCenterDelegate.m in Sources */,
 				4C0C59F118B17F10009C7B76 /* DDHotKeyUtilities.m in Sources */,
 				4CEE46DD181C301D006BF1E5 /* MPAutotypeDaemon.m in Sources */,
 				4C50CC041F6C18830095629D /* MPCollectionViewItem.m in Sources */,
+				4CA78C001FD58C92003C8560 /* MPPluginRepository.m in Sources */,
 				4C8990F71EE978EB0043B48D /* MPDuplicateEntryOptionsWindowController.m in Sources */,
 				4CA3530B18A53CB800839B0F /* MPKeyMapper.m in Sources */,
 				4CE298EB1795FC2A00DF7BDB /* MPEntryContextMenuDelegate.m in Sources */,
@@ -1949,7 +1973,7 @@
 				4CB33F861EAF54A000C9341E /* KPKNode+MPIsHistory.m in Sources */,
 				4CCEDE2E179F213B008402BE /* MPNotifications.m in Sources */,
 				4C17D8E517A1C780006C8C1E /* MPDocumentWindowDelegate.m in Sources */,
-				4C63B8FB17A3154D0091BD72 /* MPContextToolbarButton.m in Sources */,
+				4C63B8FB17A3154D0091BD72 /* MPContextButton.m in Sources */,
 				4C1E9885185F71A800943563 /* MPContextBarViewController.m in Sources */,
 				4C1FA07B18231900003A3F8C /* MPDocument+Autotype.m in Sources */,
 				4C4B7EE917A45EC6000234C7 /* MPDatePickingViewController.m in Sources */,
@@ -1962,9 +1986,11 @@
 				8345D7291F39023E002B7B0F /* MPPathControl.m in Sources */,
 				4CD7223B17A7CB0700F5A1E1 /* MPWorkflowSettingsController.m in Sources */,
 				4CA08DA017A831B200A6544B /* MPAddEntryContextMenuDelegate.m in Sources */,
+				4C09495C1FD6E510004F2971 /* MPAddCustomFieldContextMenuDelegate.m in Sources */,
 				4CE3E62617AB0D2D00D9E4B4 /* MPAttachmentTableDataSource.m in Sources */,
 				4C0728BD17B5B7F7005A7DD9 /* MPPasswordEditWindowController.m in Sources */,
 				4C0F647B17B6BC9C00D9522A /* MPSavePanelAccessoryViewController.m in Sources */,
+				4C0949591FD6B89B004F2971 /* NSUserNotification+MPAdditions.m in Sources */,
 				4C3B42871F935316007B04FD /* MPDayCountFormatter.m in Sources */,
 				4C57AE1417BA422B00CA4F34 /* MPSegmentedContextCell.m in Sources */,
 				4CE2961518429AA5005F01CE /* MPAutotypeKeyPress.m in Sources */,

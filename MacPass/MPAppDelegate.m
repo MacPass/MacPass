@@ -23,6 +23,7 @@
 #import "MPAppDelegate.h"
 
 #import "MPAutotypeDaemon.h"
+#import "MPConstants.h"
 #import "MPContextMenuHelper.h"
 #import "MPDockTileHelper.h"
 #import "MPDocument.h"
@@ -37,6 +38,7 @@
 #import "MPPrettyPasswordTransformer.h"
 #import "MPTemporaryFileStorageCenter.h"
 #import "MPValueTransformerHelper.h"
+#import "MPUserNotificationCenterDelegate.h"
 
 #import "NSApplication+MPAdditions.h"
 
@@ -45,10 +47,11 @@
 #import <Sparkle/Sparkle.h>
 
 NSString *const MPDidChangeStoredKeyFilesSettings = @"com.hicknhack.macpass.MPDidChangeStoredKeyFilesSettings";
-NSString *const MPHelpURLKey = @"MPHelpURL";
+
 @interface MPAppDelegate () {
 @private
   MPDockTileHelper *_dockTileHelper;
+  MPUserNotificationCenterDelegate *_userNotificationCenterDelegate;
   BOOL _shouldOpenFile; // YES if app was started to open a
 }
 
@@ -70,6 +73,7 @@ NSString *const MPHelpURLKey = @"MPHelpURL";
 - (instancetype)init {
   self = [super init];
   if(self) {
+    _userNotificationCenterDelegate = [[MPUserNotificationCenterDelegate alloc] init];
     /* We know that we do not use the variable after instantiation */
 #pragma clang diagnostic push
 #pragma clang diagnostic ignored "-Wunused-variable"
@@ -241,7 +245,7 @@ NSString *const MPHelpURLKey = @"MPHelpURL";
 }
 
 - (void)showHelp:(id)sender {
-  NSString *urlString = [[NSBundle mainBundle] infoDictionary][MPHelpURLKey];
+  NSString *urlString = NSBundle.mainBundle.infoDictionary[MPBundleHelpURLKey];
   [[NSWorkspace sharedWorkspace] openURL:[NSURL URLWithString:urlString]];
 }
 

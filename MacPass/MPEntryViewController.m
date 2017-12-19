@@ -125,17 +125,18 @@ NSString *const _MPTableSecurCellView = @"PasswordCell";
   self.entryTable.floatsGroupRows = NO;
   [self.entryTable registerForDraggedTypes:@[KPKEntryUTI]];
   /* First responder notifications */
-  [[NSNotificationCenter defaultCenter] addObserver:self
-                                           selector:@selector(_didBecomFirstResponder:)
-                                               name:MPDidActivateViewNotification
-                                             object:_entryTable];
-  /*
-  NSView *clipView = self.entryTable.enclosingScrollView.contentView;
   [NSNotificationCenter.defaultCenter addObserver:self
-                                         selector:@selector(_tableDidScroll:)
-                                             name:NSViewBoundsDidChangeNotification
-                                           object:clipView];
-  */
+                                         selector:@selector(_didBecomFirstResponder:)
+                                             name:MPDidActivateViewNotification
+                                           object:_entryTable];
+  
+  /*
+   NSView *clipView = self.entryTable.enclosingScrollView.contentView;
+   [NSNotificationCenter.defaultCenter addObserver:self
+   selector:@selector(_tableDidScroll:)
+   name:NSViewBoundsDidChangeNotification
+   object:clipView];
+   */
   
   [self _setupEntryMenu];
   

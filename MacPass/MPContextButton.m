@@ -20,40 +20,50 @@
 //  along with this program.  If not, see <http://www.gnu.org/licenses/>.
 //
 
-#import "MPContextToolbarButton.h"
+#import "MPContextButton.h"
 #import "MPSegmentedContextCell.h"
 
-@interface MPContextToolbarButton () {
-  @private
-  NSMenu *_contextMenu;
-}
+@interface MPContextButton ()
 
 @end
 
-@implementation MPContextToolbarButton
+@implementation MPContextButton
 
-- (id)initWithFrame:(NSRect)frame {
-  self = [super initWithFrame:frame];
-  if (self) {
-    NSData *data = [NSKeyedArchiver archivedDataWithRootObject:[self cell]];
-    NSKeyedUnarchiver *unarchiver = [[NSKeyedUnarchiver alloc] initForReadingWithData:data];
-    MPSegmentedContextCell *cell = [[MPSegmentedContextCell alloc] initWithCoder:unarchiver];
-    self.cell = cell;
-
-    self.focusRingType = NSFocusRingTypeNone;
-    self.segmentCount = 2;
-    cell.trackingMode = NSSegmentSwitchTrackingMomentary;
-    self.segmentStyle = NSSegmentStyleTexturedSquare;
-    [cell setWidth:31 forSegment:0];
-    [cell setWidth:17 forSegment:1];
-
-    NSImage *contextTriangle = [[NSBundle mainBundle] imageForResource:@"contextTriangleTemplate"];
-    [self setImage:contextTriangle forSegment:1];
-    
-    cell.contextMenuAction = @selector(showContextMenu:);
-    cell.contextMenuTarget = self;
+- (instancetype)initWithCoder:(NSCoder *)coder {
+  self = [super initWithCoder:coder];
+  if(self) {
+    [self _setup];
   }
   return self;
+}
+
+- (instancetype)initWithFrame:(NSRect)frame {
+  self = [super initWithFrame:frame];
+  if (self) {
+    [self _setup];
+  }
+  return self;
+}
+
+- (void)_setup {
+  NSData *data = [NSKeyedArchiver archivedDataWithRootObject:[self cell]];
+  NSKeyedUnarchiver *unarchiver = [[NSKeyedUnarchiver alloc] initForReadingWithData:data];
+  MPSegmentedContextCell *cell = [[MPSegmentedContextCell alloc] initWithCoder:unarchiver];
+  self.cell = cell;
+  
+  self.focusRingType = NSFocusRingTypeNone;
+  self.segmentStyle = NSSegmentStyleTexturedSquare;
+  self.segmentCount = 2;
+  cell.trackingMode = NSSegmentSwitchTrackingMomentary;
+  [cell setWidth:31 forSegment:0];
+  [cell setWidth:17 forSegment:1];
+  cell.trackingMode = NSSegmentSwitchTrackingMomentary;
+  
+  NSImage *contextTriangle = [NSBundle.mainBundle imageForResource:@"contextTriangleTemplate"];
+  [self setImage:contextTriangle forSegment:1];
+  
+  cell.contextMenuAction = @selector(showContextMenu:);
+  cell.contextMenuTarget = self;
 }
 
 - (void)setContextMenu:(NSMenu *)menu {
@@ -106,25 +116,11 @@
     default:
       break;
   }
-  if([self.superclass instancesRespondToSelector:@selector(setControlSize:)]) {
-#pragma clang diagnostic push
-#pragma clang diagnostic ignored "-Wunguarded-availability"
-    super.controlSize = controlSize;
-#pragma clang diagnostic pop
-  }
-  else {
-    self.cell.controlSize = controlSize;
-  }
+  super.controlSize = controlSize;
 }
 
 - (NSControlSize)controlSize {
-  if([self.superclass instancesRespondToSelector:@selector(controlSize)]) {
-#pragma clang diagnostic push
-#pragma clang diagnostic ignored "-Wunguarded-availability"
-    return super.controlSize;
-#pragma clang diagnostic pop
-  }
-  return self.cell.controlSize;
+  return super.controlSize;
 }
 
 @end

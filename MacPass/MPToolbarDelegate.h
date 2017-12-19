@@ -24,7 +24,7 @@
 
 @class MPDocument;
 
-@interface MPToolbarDelegate : NSObject <NSToolbarDelegate>
+@interface MPToolbarDelegate : NSObject <NSToolbarDelegate, NSTextFieldDelegate>
 
 @property (weak, readonly) NSSearchField *searchField;
 @property (weak) NSToolbar *toolbar;

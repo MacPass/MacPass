@@ -24,7 +24,7 @@
 
 #import "MPToolbarButton.h"
 #import "MPToolbarItem.h"
-#import "MPContextToolbarButton.h"
+#import "MPContextButton.h"
 #import "MPAddEntryContextMenuDelegate.h"
 
 #import "MPActionHelper.h"
@@ -103,14 +103,14 @@ NSString *const MPToolbarItemHistory = @"TOOLBAR_HISTORY";
   if(!item) {
     item = [[MPToolbarItem alloc] initWithItemIdentifier:itemIdentifier];
     NSString *itemLabel = [self _localizedLabelForToolbarItemIdentifier:itemIdentifier];
-    [item setLabel:itemLabel];
+    item.label = itemLabel;
     
     if([itemIdentifier isEqualToString:MPToolbarItemAction]) {
       NSPopUpButton *popupButton = [[NSPopUpButton alloc] initWithFrame:NSMakeRect(0, 0, 50, 32) pullsDown:YES];
       popupButton.bezelStyle = NSTexturedRoundedBezelStyle;
       popupButton.focusRingType = NSFocusRingTypeNone;
       popupButton.title = @"";
-      [popupButton.cell setImageScaling:NSImageScaleProportionallyDown];
+      popupButton.imageScaling = NSImageScaleProportionallyUpOrDown;
       [popupButton sizeToFit];
       
       NSRect newFrame = popupButton.frame;
@@ -135,8 +135,8 @@ NSString *const MPToolbarItemHistory = @"TOOLBAR_HISTORY";
       item.view = popupButton;
     }
     else if( [itemIdentifier isEqualToString:MPToolbarItemAddEntry]) {
-      MPContextToolbarButton *button = [[MPContextToolbarButton alloc] initWithFrame:NSMakeRect(0, 0, 32, 32)];
-      [button setAction:[self _actionForToolbarItemIdentifier:itemIdentifier]];
+      MPContextButton *button = [[MPContextButton alloc] initWithFrame:NSMakeRect(0, 0, 32, 32)];
+      button.action = [self _actionForToolbarItemIdentifier:itemIdentifier];
       NSImage *image = self.toolbarImages[itemIdentifier];
       image.size = NSMakeSize(16, 16);
       [button setImage:image];
@@ -145,7 +145,7 @@ NSString *const MPToolbarItemHistory = @"TOOLBAR_HISTORY";
       NSMenu *menu = [NSMenu allocWithZone:[NSMenu menuZone]];
       [menu addItemWithTitle:NSLocalizedString(@"UNKNOWN_TOOLBAR_ITEM", @"") action:NULL keyEquivalent:@""];
       menu.delegate = _entryMenuDelegate;
-      [button setContextMenu:menu];
+      button.contextMenu = menu;
       
       
       NSRect fittingRect = button.frame;
@@ -156,7 +156,7 @@ NSString *const MPToolbarItemHistory = @"TOOLBAR_HISTORY";
       NSMenuItem *menuRepresentation = [[NSMenuItem alloc] initWithTitle:itemLabel
                                                                   action:[self _actionForToolbarItemIdentifier:itemIdentifier]
                                                            keyEquivalent:@""];
-      [item setMenuFormRepresentation:menuRepresentation];
+      item.menuFormRepresentation = menuRepresentation;
       
     }
     else if( [itemIdentifier isEqualToString:MPToolbarItemSearch]){
@@ -171,7 +171,8 @@ NSString *const MPToolbarItemHistory = @"TOOLBAR_HISTORY";
       item.minSize = NSMakeSize(140, 32);
       item.maxSize = NSMakeSize(240, 32);
       NSMenu *templateMenu = [self _allocateSearchMenuTemplate];
-      [searchField.cell setSearchMenuTemplate:templateMenu];
+      searchField.searchMenuTemplate = templateMenu;
+      ((NSTextField *)searchField).delegate = self;
       self.searchField = searchField;
     }
     else {
@@ -220,10 +221,19 @@ NSString *const MPToolbarItemHistory = @"TOOLBAR_HISTORY";
 
 
 - (void)registerNotificationsForDocument:(MPDocument *)document {
-  [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(_didExitSearch:) name:MPDocumentDidExitSearchNotification object:document];
-  [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(_didEnterSearch:) name:MPDocumentDidEnterSearchNotification object:document];
+  [NSNotificationCenter.defaultCenter addObserver:self selector:@selector(_didExitSearch:) name:MPDocumentDidExitSearchNotification object:document];
+  [NSNotificationCenter.defaultCenter addObserver:self selector:@selector(_didEnterSearch:) name:MPDocumentDidEnterSearchNotification object:document];
 }
 
+#pragma mark - NSSearchFieldDelegate
+- (BOOL)control:(NSControl *)control textView:(NSTextView *)textView doCommandBySelector:(SEL)commandSelector {
+  if(commandSelector == @selector(insertNewline:)) {
+    [[NSApp targetForAction:@selector(focusEntries:) to:nil from:self] focusEntries:self];
+  }
+  return NO;
+}
+
+#pragma mark - Private
 - (NSString *)_localizedLabelForToolbarItemIdentifier:(NSString *)identifier {
   static NSDictionary *labelDict;
   static dispatch_once_t onceToken;
