@@ -6,7 +6,6 @@
             NSStringFormatValueTypeKey = ld;
             one = "Duplicate Entry";
             other = "Duplicate Entries";
-            zero = "Duplicate Entries";
         };
     };
     "EVERY_%ld_DAYS" =     {
@@ -14,9 +13,8 @@
         days =         {
             NSStringFormatSpecTypeKey = NSStringPluralRuleType;
             NSStringFormatValueTypeKey = ld;
-            one = "every day";
-            other = "every %ld days";
-            zero = "after each unlock";
+            one = "elke dag";
+            other = "elke %ld dagen";
         };
     };
 }

@@ -1,199 +1,464 @@
-/* Formatted Times  */
+/* % days ago */
 "%ld_DAYS_AGO" = "%ld dagen geleden";
-"%ld_HOURS_AGO" = "ongeveer %ld uren geleden";
-"%ld_MINUTES_AGO" = "%ld minuten geleden";
-"%ld_WEEKS_AGO" = "%ld weken geleden";
-"JUST_NOW" = "Zojuist";
-"LAST_WEEK" = "Vorige week";
-"ONE_WEEK_AGO" = "Eén week geleden";
-"YESTERDAY" = "Gisteren";
-"TOMORROW" = "Morgen";
-"ONE_WEEK" = "binnen één week";
-"ONE_MONTH" = "binnen één maand";
-"90_DAYS" = "binnen 90 dagen";
-"ONE_YEAR" = "binnen één jaar";
 
-/* Date Picker */
-"SELECT_DATE_PRESET" = "Gebruik voorinstelling…";
+/* % Hours ago */
+"%ld_HOURS_AGO" = "ongeveer %ld uren geleden";
+
+/* % Minutes ago */
+"%ld_MINUTES_AGO" = "%ld minuten geleden";
+
+/* % Weeks ago */
+"%ld_WEEKS_AGO" = "%ld weken geleden";
+
+/* preset to expire after 90 days from now */
+"90_DAYS" = "binnen 90 dagen";
+
+/* Button label to abort a merge on a file with changed master key! */
+"ABORT_MERGE_KEEP_MINE" = "Samenvoegen afbreken. Behoud huidige.";
+
+/* Toolbar item with action menu */
+"ACTION" = "Actie";
+
+/* Action to add an entry via template */
+"ADD_TREMPLATE_ENTRY" = "Creëer item met sjabloon";
+
+/* Attachments column title (shows counts)
+   Menu item to toggle display of attachment count column in entry table */
+"ATTACHMENTS" = "Bijlagen";
 
 /* Menu item for automatic trash creation */
 "AUTOCREATE_TRASH_FOLDER" = "Creëer automatisch";
 
-/*
- Actions
- */
-"NEW_ENTRY" = "Voeg item toe";
-"NEW_GROUP" = "Voeg groep toe";
-"DUPLICATE_ENTRY" = "Dupliceer item";
-"DUPLICATE_ENTRY_WITH_OPTIONS" = "Dupliceer item…";
-"COPY_ENTRY" = "Kopieer item";
-"COPY_GROUP" = "Kopieer Groep";
-"ADD_TREMPLATE_ENTRY" = "Creëer item met sjabloon";
-"DELETE_GROUP" = "Verwijder groep";
-"DELETE_ENTRY" = "Verwijder item";
-"EDIT_TEMPLATE_GROUP" = "Wijzig groepsjabloon";
-"EMPTY_TRASH" = "Leeg prullenmand";
-"MOVE_ENTRY" = "Verplaats item";
-"MOVE_GROUP" = "Verplaats groep";
-"NEW_ENTRY_WITH_TEMPLATE_%@" = "Creëer item met sjabloon %@";
-"NEW_DATABASE" = "Wachtwoordenkluis";
-"OPEN_URL" = "Open URL";
-"PERFORM_AUTOTYPE_FOR_ENTRY" = "Log automatisch in";
-"PREVIEW" = "Voorvertoning";
-"PASSWORD_GENERATOR_SET_DEFAULTS" = "Stel standaardwaarden in";
-"PASSWORD_GENERATOR_RESET_ENTRY_DEFAULTS" = "Herstel";
-"TRASH_ENTRY" = "Prullenmand item";
-"TRASH_GROUP" = "Prullenmand groep";
-"SHOW_HISTORY" = "Toon geschiedenis";
-
-/*
- Search
- */
-"CLEAR_RECENT_SEARCHES" = "Wis recente zoekopdrachten";
-"RECENT_SEARCHES" = "Recente zoekopdrachten";
-"SEARCH_DUPLICATE_PASSWORDS" = "Dubbele wachtwoorden";
-"SEARCH_EXPIRED_ENTRIES" = "Vervallen items";
-"SELECT_FILTER_WITH_DOTS" = "Selecteer…";
-
-/*
- Direct Translations
- */
-"ACTION" = "Actie";
-"ATTACHMENTS" = "Bijlagen";
-"CANCEL" = "Annuleer";
-"DATABASE" = "Wachtwoordenkluis";
-"DELETE" = "Verwijder";
-"EDIT" = "Wijzig";
-"GROUP" = "Groep";
-"INSPECTOR" = "Infovenster";
-"LOCK" = "Vergrendel";
-"MODIFIED" = "Gewijzigd";
-"NOTES" = "Notities";
-"NONE" = "Geen";
-"PASSWORD" = "Wachtwoord";
-"SAVE" = "Bewaar";
-"SAVE_WITH_DOTS" = "Bewaar…";
-"SEARCH" = "Zoeken";
-"TITLE" = "Naam";
-"URL" = "Webpagina";
-"USERNAME" = "Gebruikersnaam";
-"WINDOWS" = "Vensters";
-
-
-"CHANGE_DATABASE_NAME" = "Wijzig de naam van de wachtwoordenkluis";
-"CHANGE_TRASH_GROUP" = "Wijzig prullenmandgroep";
-
-"DUPLICTE_PASSWORDS" = "Dupliceer wachtwoorden";
-
-/* Field nam that was copied to the pasteboard */
-"COPIED_FIELD_%@" = "Gekopieerd %@";
-"COPIED_PASSWORD" = "Wachtwoord gekopieerd!";
-"COPIED_URL" = "URL gekopieerd!";
-"COPIED_USERNAME" = "Gebruikersnaam gekopieerd!";
-"COPY_CUSTOM_FIELDS" = "Kopieer aangepaste velden";
-"COPY_FIELD_%@" = "Kopieer %@";
-"COPY_PASSWORD" = "Kopieer wachtwoord";
-"COPY_URL" = "Kopieer URL";
-"COPY_USERNAME" = "Kopieer gebruikersnaam";
-
-/* Dock Badge */
-"CLEARING_PASTEBOARD" = "…";
-
-/* Group Inspector */
-/* Autotype Combobox */
-"AUTOTYPE_NO" = "Deactiveer automatisch inloggen";
-"AUTOTYPE_YES" = "Activeer automatisch inloggen";
+/* Inherit autotype settings menu item */
 "AUTOTYPE_INHERIT" = "Erf voorkeuren voor automatisch inloggen";
 
-/* Search Combobox */
-"SEARCH_INHERIT" = "Erf zoekinstellingen";
-"SEARCH_YES" = "Insluiten in zoeken";
-"SEARCH_NO" = "Uitsluiten van zoeken";
+/* Disable autotype menu item */
+"AUTOTYPE_NO" = "Deactiveer automatisch inloggen";
 
-/*
- Date/Time Displays
- */
-/* Created at template string. %@ is replaced by localized date and time */
-"CREATED_AT_%@" = "Gecreëerd: %@";
-/* Modifed at template string. %@ is replaced by localized date and time */
-"MODIFED_AT_%@" = "Gewijzigd: %@";
-
-"EXPIRES_AT_DATE_%@" = "Vervalt: %@";
-"NO_EXPIRE_DATE_SET" = "Vervalt niet";
-
-/*
- Defaults for new objects
- */
-"DEFAULT_CUSTOM_FIELD_TITLE" = "Aangepast";
-"DEFAULT_CUSTOM_FIELD_VALUE" = "Waarde";
-"DEFAULT_ENTRY_TITLE" = "Nieuw item";
-"DEFAULT_GROUP_NAME" = "Nieuwe groep";
-"DEFAULT_WINDOW_TITLE" = "Venstertitel";
-
-/* Settings */
-"GENERAL_SETTINGS" = "Algemeen";
-"INTEGRATION_SETTINGS" = "Integratie";
-"UPDATE_SETTINGS" = "Updates";
-"WORKFLOW_SETTINGS" = "Bewerken";
-"DEFAULT_BROWSER" = "Standaardwebbrowser";
-"OTHER_BROWSER" = "Andere…";
-"PLUGIN_SETTINGS" = "Extensies";
-
-/* Feature not supported in Version */
-"KDBX_ONLY_FEATURE" = "Dit Feature is niet beschikbaar in een wachtwoordenkluis met de indeling KDB";
-
-/* Template */
-"NO_TEMPLATE_GROUP" = "Geen groepssjablonen";
-"NO_TEMPLATES" = "Geen sjablonen gevonden";
-
-/* Kefile */
-"SAVE_KEYFILE" = "Bewaar sleutelbestand";
-
-/* Autoype Dialog */
-/* Candiate dialog */
-"SELECT_AUTOTYPE_CANDIDATE" = "Selecteer kandidaat!";
+/* Notification: Autotype failed, no documents are open */
 "AUTOTYPE_OVERLAY_NO_DOCUMENTS" = "AUTOTYPE_OVERLAY_NO_DOCUMENTS";
+
+/* Noticiation: Autotype failed to find a match for %@ (string placeholder) */
 "AUTOTYPE_OVERLAY_NO_MATCH_FOR_%@" = "Geen overeenkomst gevonden voor %@!";
+
+/* Notification: Autotype found a single match. */
 "AUTOTYPE_OVERLAY_SINGLE_MATCH" = "Gevonden!";
 
-/* Alert Dialogs */
-"WARNING_ON_EMPTY_TRASH_DESCRIPTION" = "Het legen van de prullenmand is onomkeerbaar.";
-"WARNING_ON_EMPTY_TRASH_TITLE" = "Leeg prullenmand?";
-"WARNING_ON_LOSSY_SAVE" = "U kunt gegevens kwijtraken door op te slaan met de indeling KDB.";
-"WARNING_ON_LOSSY_SAVE_DESCRIPTION" = "Niet alle soorten gegevens passen in een wachtwoordenkluis met de indeling KDB. Als u doorgaat kunt u gegevens kwijtraken.";
+/* Enable autotype menu item */
+"AUTOTYPE_YES" = "Activeer automatisch inloggen";
+
+/* Sucessfully merged external changes */
+"AUTO_MERGE_NOTIFICATION_TEXT" = "Automatisch samenvoegen gelukt!";
+
+/* Cancel */
+"CANCEL" = "Annuleer";
+
+/* Menu item in the database outline context menu to change the database name */
+"CHANGE_DATABASE_NAME" = "Wijzig de naam van de wachtwoordenkluis";
+
+/* (No Comment) */
 "CHANGE_FORMAT" = "Wijzig de indeling van de wachtwoordenkluis naar KDBX";
-"SAVE_LOSSY" = "Bewaar and verlies gegevens";
 
-"ENFORCE_PASSWORD_CHANGE_ALERT_TITLE" = "Het hoofdwachtwoord is vervallen!";
-"ENFORCE_PASSWORD_CHANGE_ALERT_DESCRIPTION" = "U kunt niet opslaan totdat u het hoofdwachtwoord of sleutelbestand heeft gewijzigd.";
-
-"RECOMMEND_PASSWORD_CHANGE_ALERT_TITLE" = "Hoofdwachtwoord vernieuwen.";
-"RECOMMEND_PASSWORD_CHANGE_ALERT_DESCRIPTION" = "U wordt aangeraden om een nieuw hoofdwachtwoord of sleutelbestand in te stellen.";
+/* Button to show the password change dialog
+   Single button to show the password change dialog */
 "CHANGE_PASSWORD_WITH_DOTS" = "Wijzig wachtwoord…";
 
-"WARNING_ON_SAVE_NO_PASSWORD_OR_KEY_SET" = "Hoofdwachtwoord en sleutelbestand instellen:";
-"WARNING_ON_SAVE_NO_PASSWORD_OR_KEY_SET_SUGGESTION" = "Stel een hoofdwachtwoord of sleutelbestand in voor deze wachtwoordenkluis om uw wijzigingen te kunnen bewaren.";
+/* Menu item in the database outline context menu to change the trash group */
+"CHANGE_TRASH_GROUP" = "Wijzig prullenmandgroep";
 
-/* Message displayed when an open file was changed by another application */
-"FILE_CHANGED_BY_OTHERS_MESSAGE_TEXT" = "De wachtwoordenkluis is gewijzigd!";
-/* Informative text displayed when the file was changed by another application */
-"FILE_CHANGED_BY_OTHERS_INFO_TEXT" = "De laatst opgeslagen versie van de wachtwoordenkluis is zojuist buiten MacPass om gewijzigd. Welke versie wilt u behouden?";
-/* Button to ignore the changes */
-"KEEP_MINE" = "Behoud de geopende versie";
-/* BUtton to reload the changes form disk */
-"LOAD_CHANGES" = "Behoud de opgeslagen versie";
-/* Merge changes into file! */
-"MERGE_CHANGES" = "Voeg de wijzigingen samen";
+/* String displayed at dock badge when clipboard is about to be cleared */
+"CLEARING_PASTEBOARD" = "…";
 
-/* Password Input Messagaes, Errors and Warning */
-"PASSWORD_INPUT_NO_PASSWORD" = "Geen hoofdwachtwoord";
-"PASSWORD_INPUT_ENTER_PASSWORD" = "Geef het hoofdwachtwoord op";
-"PASSWORD_INPUT_REPEAT_PASSWORD" = "Herhaal hoofdwachtwoord";
-"WARNING_NO_PASSWORD_OR_KEYFILE" = "Hoofdwachtwoord of sleutelbestand ontbreekt!";
-"ERROR_PASSWORD_MISSMATCH_INVALID_KEYFILE" = "Hoofdwachtwoord komt niet overeen en het sleutelbestand is ongeldig!";
-"ERROR_PASSWORD_MISSMATCH" = "Hoofdwachtwoord komt niet overeen!";
+/* Menu to clear recent searches */
+"CLEAR_RECENT_SEARCHES" = "Wis recente zoekopdrachten";
+
+/* Field name that was copied to the pasteboard */
+"COPIED_FIELD_%@" = "Gekopieerd %@";
+
+/* Password was copied to the pasteboard */
+"COPIED_PASSWORD" = "Wachtwoord gekopieerd!";
+
+/* URL was copied to the pasteboard */
+"COPIED_URL" = "URL gekopieerd!";
+
+/* Username was copied to the pasteboard */
+"COPIED_USERNAME" = "Gebruikersnaam gekopieerd!";
+
+/* Submenu to Copy custom fields */
+"COPY_CUSTOM_FIELDS" = "Kopieer aangepaste velden";
+
+/* Action title for copying an entry via drag and drop */
+"COPY_ENTRY" = "Kopieer item";
+
+/* Mask for title to copy field value */
+"COPY_FIELD_%@" = "Kopieer %@";
+
+/* Action title for copying a group via drag and drop */
+"COPY_GROUP" = "Kopieer Groep";
+
+/* Menu item to copy the password of an entry
+   Toolbar item copy password */
+"COPY_PASSWORD" = "Kopieer wachtwoord";
+
+/* Menu item to copy the URL of an entry */
+"COPY_URL" = "Kopieer URL";
+
+/* Menu item to copy the username of an entry
+   Toolbar item copy username */
+"COPY_USERNAME" = "Kopieer gebruikersnaam";
+
+/* (No Comment) */
+"CREATED_AT_%@" = "Gecreëerd: %@";
+
+/* Default display name for KDB databases */
+"DATABASE" = "Wachtwoordenkluis";
+
+/* Default Browser */
+"DEFAULT_BROWSER" = "Standaardwebbrowser";
+
+/* Default Titel for new Custom-Fields */
+"DEFAULT_CUSTOM_FIELD_TITLE" = "Aangepast";
+
+/* Default Value for new Custom-Fields */
+"DEFAULT_CUSTOM_FIELD_VALUE" = "Waarde";
+
+/* Title for a newly created entry */
+"DEFAULT_ENTRY_TITLE" = "Nieuw item";
+
+/* Title for a newly created group */
+"DEFAULT_GROUP_NAME" = "Nieuwe groep";
+
+/* Default window title for a new window association */
+"DEFAULT_WINDOW_TITLE" = "Venstertitel";
+
+/* Menu item in the database outline context menu to delete the node from the trash
+   Menu item to delete an entry
+   Menu item to delete the selected attached file
+   Menu item to delete the selected custom icon
+   Toolbar item delete item */
+"DELETE" = "Verwijder";
+
+/* Delete Entry */
+"DELETE_ENTRY" = "Verwijder item";
+
+/* Delete Group */
+"DELETE_GROUP" = "Verwijder groep";
+
+/* No comment provided by engineer. */
+"DOCUMENT_AUTOTYPE_CORRUPTION_WARNING" = "Laat automatisch inloggen repareren…";
+
+/* Menu item to directly diplicate an entry */
+"DUPLICATE_ENTRY" = "Dupliceer item";
+
+/* Menu item to duplicate an entry with options how to duplicate. Will present a dialog. */
+"DUPLICATE_ENTRY_WITH_OPTIONS" = "Dupliceer item…";
+
+/* Menu item in the database outline context menu to change the template group
+   Menu item on the add entry context menu to edit template groups */
+"EDIT_TEMPLATE_GROUP" = "Wijzig groepsjabloon";
+
+/* Empty Trash
+   Menu item in the database outline context menu to empyt the trash
+   Menu item in the database outline to empty the trash
+   Menu item to empty the trash */
+"EMPTY_TRASH" = "Leeg prullenmand";
+
+/* Informative text for the enforce password change alert */
+"ENFORCE_PASSWORD_CHANGE_ALERT_DESCRIPTION" = "U kunt niet opslaan totdat u het hoofdwachtwoord of sleutelbestand heeft gewijzigd.";
+
+/* Message text for the enforce password change alert */
+"ENFORCE_PASSWORD_CHANGE_ALERT_TITLE" = "Het hoofdwachtwoord is vervallen!";
+
+/* Keyfile not valid */
 "ERROR_INVALID_KEYFILE" = "Sleutelbestand is ongeldig!";
 
-/* Misc */
-"DOCUMENT_AUTOTYPE_CORRUPTION_WARNING" = "Laat automatisch inloggen repareren…";
+/* Passwords do not match */
+"ERROR_PASSWORD_MISSMATCH" = "Hoofdwachtwoord komt niet overeen!";
+
+/* Passwords do not match, keyfile is invalid */
+"ERROR_PASSWORD_MISSMATCH_INVALID_KEYFILE" = "Hoofdwachtwoord komt niet overeen en het sleutelbestand is ongeldig!";
+
+/* Recommend/Enforce key change intervall format */
+"EVERY_%ld_DAYS" = "Elke %ld dagen";
+
+/* Format to returen the date an item expires. Includes %@ placehoder for date */
+"EXPIRES_AT_DATE_%@" = "Vervalt: %@";
+
+/* The master key was changed by an extrenal programm! */
+"EXTERN_CHANGE_OF_MASTERKEY" = "Hoofdwachtwoord is gewijzigd door een ander programma!";
+
+/* Informative text displayed when the file was change from another application */
+"FILE_CHANGED_BY_OTHERS_INFO_TEXT" = "De laatst opgeslagen versie van de wachtwoordenkluis is zojuist buiten MacPass om gewijzigd. Welke versie wilt u behouden?";
+
+/* Message displayed when an open file was changed from another application */
+"FILE_CHANGED_BY_OTHERS_MESSAGE_TEXT" = "De wachtwoordenkluis is gewijzigd!";
+
+/* External file change strategy option: ask what to do */
+"FILE_CHANGE_STRATEGY_ASK" = "Vragen";
+
+/* External file change strategy option: Keep local file an ignore external changes */
+"FILE_CHANGE_STRATEGY_KEEP_MINE" = "Behoud mijn versie en negeer andere wijzigingen";
+
+/* External file change strategy option: Merge external changes into local file.
+   Merge changes into file! */
+"FILE_CHANGE_STRATEGY_MERGE" = "Samenvoegen";
+
+/* External file change strategy option: Use the changed file and discard local changes */
+"FILE_CHANGE_STRATEGY_USE_OTHER" = "Laad gewijzigde versie en negeer huidige";
+
+/* Error while reopening last known documents */
 "FILE_OPEN_ERROR" = "Openen mislukt.";
+
+/* General Settings Label */
+"GENERAL_SETTINGS" = "Algemeen";
+
+/* Group column title */
+"GROUP" = "Groep";
+
+/* History count column title
+   Menu item to toggle display of history count column in entry table */
+"HISTORY" = "Geschiedenis";
+
+/* Toolbar item toggle inspector */
+"INSPECTOR" = "Infovenster";
+
+/* Label for the integration settings tab */
+"INTEGRATION_SETTINGS" = "Integratie";
+
+/* Just now */
+"JUST_NOW" = "Zojuist";
+
+/* Feature only available in kdbx databases */
+"KDBX_ONLY_FEATURE" = "Dit Feature is niet beschikbaar in een wachtwoordenkluis met de indeling KDB";
+
+/* Ignore the changes to an open file! */
+"KEEP_MINE_DISCARD_OTHER" = "Behoud huidige, negeer andere";
+
+/* Reopen the file! */
+"KEEP_OTHER_DISCARD_MINE" = "Behoud andere, negeer huidige";
+
+/* last week */
+"LAST_WEEK" = "Vorige week";
+
+/* Toolbar item to Lock the database */
+"LOCK" = "Vergrendel";
+
+/* Message in the open panel to add attachments to an entry */
+"MESSAGE_ADD_ATTACHMENT_OPEN_PANEL" = "Selecteer het toe te voegen bestand";
+
+/* Menu item to toggle display of modified date column in entry table
+   Modification date column title */
+"MODIFIED" = "Gewijzigd";
+
+/* Action title for moving an entry via drag and drop */
+"MOVE_ENTRY" = "Verplaats item";
+
+/* Action title for moving a group via drag and drop */
+"MOVE_GROUP" = "Verplaats groep";
+
+/* Name for a newly created Database */
+"NEW_DATABASE" = "Wachtwoordenkluis";
+
+/* Action name for a newly created entry
+   Menu item to create a new entry
+   Toolbar item new entry */
+"NEW_ENTRY" = "Voeg item toe";
+
+/* Submenu to add an entry via template */
+"NEW_ENTRY_WITH_TEMPLATE_%@" = "Creëer item met sjabloon %@";
+
+/* Action name for a newly created group
+   Menu item to create a new group
+   Toolbar item new group */
+"NEW_GROUP" = "Voeg groep toe";
+
+/* Null placeholder for item input field
+   Placeholder text for input fields if no entry or group is selected */
+"NONE" = "Geen";
+
+/* Displayed name when notes or part of notes was copied
+   Menu item to toggle display of notes column in entry table
+   Notes column title
+   Notes reference item */
+"NOTES" = "Notities";
+
+/* Expiration date format, when item does not expire */
+"NO_EXPIRE_DATE_SET" = "Vervalt niet";
+
+/* Menu item added to show that no templates are defined */
+"NO_TEMPLATES" = "Geen sjablonen gevonden";
+
+/* Menu item to reset the template groups */
+"NO_TEMPLATE_GROUP" = "Geen groepssjablonen";
+
+/* preset to expire after one montch from now */
+"ONE_MONTH" = "binnen één maand";
+
+/* preset to expire after one week from now */
+"ONE_WEEK" = "binnen één week";
+
+/* one week ago */
+"ONE_WEEK_AGO" = "Eén week geleden";
+
+/* preset to expire after one year from now */
+"ONE_YEAR" = "binnen één jaar";
+
+/* Open button in the open panel to add attachments to an entry */
+"OPEN_BUTTON_ADD_ATTACHMENT_OPEN_PANEL" = "Toevoegen";
+
+/* Menu item to open the URL with the default application */
+"OPEN_URL" = "Open URL";
+
+/* Select Browser */
+"OTHER_BROWSER" = "Andere…";
+
+/* Menu item to toggle display of password column in entry table
+   Password column title
+   Password reference item */
+"PASSWORD" = "Wachtwoord";
+
+/* Button to reset the password defaults for a single entry */
+"PASSWORD_GENERATOR_RESET_ENTRY_DEFAULTS" = "Herstel";
+
+/* Button to set the defaults of the password generator */
+"PASSWORD_GENERATOR_SET_DEFAULTS" = "Stel standaardwaarden in";
+
+/* Placeholder for the password field to aks for password
+   Placeholder in the unlock-password input field if password is enabled */
+"PASSWORD_INPUT_ENTER_PASSWORD" = "Geef het hoofdwachtwoord op";
+
+/* Placeholder for the password input field if passwords are disabled
+   Placeholder for the repeat password input if passwords are disabled
+   Placeholder in the unlock-password input field if password is disabled */
+"PASSWORD_INPUT_NO_PASSWORD" = "Geen hoofdwachtwoord";
+
+/* Placeholder for the repeat password field to aks for the repeated password */
+"PASSWORD_INPUT_REPEAT_PASSWORD" = "Herhaal hoofdwachtwoord";
+
+/* Menu item to perform autotype with the selected entry */
+"PERFORM_AUTOTYPE_FOR_ENTRY" = "Log automatisch in";
+
+/* Label for plugin settings tab */
+"PLUGIN_SETTINGS" = "Extensies";
+
+/* Menu item to preview the selected attached file. */
+"PREVIEW" = "Voorvertoning";
+
+/* Recent searches menu item */
+"RECENT_SEARCHES" = "Recente zoekopdrachten";
+
+/* Informative text for the recommend password change alert */
+"RECOMMEND_PASSWORD_CHANGE_ALERT_DESCRIPTION" = "U wordt aangeraden om een nieuw hoofdwachtwoord of sleutelbestand in te stellen.";
+
+/* Message text for the recommend password change alert */
+"RECOMMEND_PASSWORD_CHANGE_ALERT_TITLE" = "Hoofdwachtwoord vernieuwen.";
+
+/* Action to restore and Entry to a previous state of it's history */
+"RESTORE_HISTORY_ENTRY" = "Herstel geschiedenisitem";
+
+/* Menu item to save the selected attached file.
+   Save file menu item title when save will just save the file */
+"SAVE" = "Bewaar";
+
+/* Button title to save the generated key file */
+"SAVE_KEYFILE" = "Bewaar sleutelbestand";
+
+/* (No Comment) */
+"SAVE_LOSSY" = "Bewaar and verlies gegevens";
+
+/* Save file menu item title when save will prompt for a location to save or ask for a password/key */
+"SAVE_WITH_DOTS" = "Bewaar…";
+
+/* Search input in Toolbar */
+"SEARCH" = "Zoeken";
+
+/* Search option: Find duplicate passwords */
+"SEARCH_DUPLICATE_PASSWORDS" = "Dubbele wachtwoorden";
+
+/* Search option: Find expired entries */
+"SEARCH_EXPIRED_ENTRIES" = "Vervallen items";
+
+/* Inherit search settings menu item */
+"SEARCH_INHERIT" = "Erf zoekinstellingen";
+
+/* Disable search menu item */
+"SEARCH_NO" = "Uitsluiten van zoeken";
+
+/* Enable search menu item */
+"SEARCH_YES" = "Insluiten in zoeken";
+
+/* (No Comment) */
+"SELECT_AUTOTYPE_CANDIDATE" = "Selecteer kandidaat!";
+
+/* Menu item title for the expiry preset selection menu in the date picker */
+"SELECT_DATE_PRESET" = "Gebruik voorinstelling…";
+
+/* Message for the dialog to open a file for merge */
+"SELECT_FILE_TO_MERGE" = "Selecteer bestand om samen te voegen";
+
+/* Menu displayed as popup selection for search options */
+"SELECT_FILTER_WITH_DOTS" = "Selecteer…";
+
+/* Menu item to show the history of the selected entry
+   Toolbar item to toggel history display */
+"SHOW_HISTORY" = "Toon geschiedenis";
+
+/* Displayed name when title field was copied
+   Menu item to toggle display of title column in entry table
+   Title column title
+   Title reference item */
+"TITLE" = "Naam";
+
+/* preset to expire tomorrow */
+"TOMORROW" = "Morgen";
+
+/* Move Entry to Trash */
+"TRASH_ENTRY" = "Prullenmand item";
+
+/* Move Group to Trash */
+"TRASH_GROUP" = "Prullenmand groep";
+
+/* Update Settings Label */
+"UPDATE_SETTINGS" = "Updates";
+
+/* Menu item to toggle display of url column in entry table
+   Submenu with options what to do with the URL of an entry
+   Url column title
+   URL reference item */
+"URL" = "Webpagina";
+
+/* Menu item to toggle display of username column in entry table
+   Username column title
+   Username reference item */
+"USERNAME" = "Gebruikersnaam";
+
+/* No Key or Password */
+"WARNING_NO_PASSWORD_OR_KEYFILE" = "Hoofdwachtwoord of sleutelbestand ontbreekt!";
+
+/* Informative Text displayed when clearing the Trash */
+"WARNING_ON_EMPTY_TRASH_DESCRIPTION" = "Het legen van de prullenmand is onomkeerbaar.";
+
+/* Message text for the alert displayed when clearing the Trash */
+"WARNING_ON_EMPTY_TRASH_TITLE" = "Leeg prullenmand?";
+
+/* (No Comment) */
+"WARNING_ON_LOSSY_SAVE" = "U kunt gegevens kwijtraken door op te slaan met de indeling KDB.";
+
+/* (No Comment) */
+"WARNING_ON_LOSSY_SAVE_DESCRIPTION" = "Niet alle soorten gegevens passen in een wachtwoordenkluis met de indeling KDB. Als u doorgaat kunt u gegevens kwijtraken.";
+
+/* No comment provided by engineer. */
+"WARNING_ON_SAVE_NO_PASSWORD_OR_KEY_SET" = "Hoofdwachtwoord en sleutelbestand instellen:";
+
+/* No comment provided by engineer. */
+"WARNING_ON_SAVE_NO_PASSWORD_OR_KEY_SET_SUGGESTION" = "Stel een hoofdwachtwoord of sleutelbestand in voor deze wachtwoordenkluis om uw wijzigingen te kunnen bewaren.";
+
+/* (No Comment) */
+"WINDOWS" = "Vensters";
+
+/* Label for the workflow settings tab */
+"WORKFLOW_SETTINGS" = "Bewerken";
+
+/* Yesterday */
+"YESTERDAY" = "Gisteren";
+
