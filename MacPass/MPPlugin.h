@@ -62,7 +62,7 @@ NS_ASSUME_NONNULL_BEGIN
  Adopt this protocoll if your plugin supports actions on entries.
  Actions will get listed in various places in menues.
  You should not set target nor actions since they will get stripped.
- MacPass will call you back via -[MPPlugin performActionFroMenuItem:withEntries:]
+ MacPass will call you back via -[MPPlugin performActionForMenuItem:withEntries:]
  */
 @protocol MPEntryActionPlugin <NSObject>
 @required
@@ -80,7 +80,7 @@ NS_ASSUME_NONNULL_BEGIN
 
  If nil is returned, an empty value will be used.
  */
-- (NSString *)valueForAttributeWithKey:(NSString *)key;
+- (NSString *)initialValueForAttributeWithKey:(NSString *)key;
 @end
 
 @interface MPPlugin (Deprecated)
