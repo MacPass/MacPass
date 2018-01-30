@@ -1,15 +1,26 @@
-
 /* Class = "NSWindow"; title = "Window"; ObjectID = "1"; */
-"1.title" = "Venster";
+"1.title" = "Wachtwoordenkluisvoorkeuren";
+
+/* Class = "NSTextFieldCell"; title = "Threads"; ObjectID = "2QI-ne-N5d"; */
+"2QI-ne-N5d.title" = "Threads";
+
+/* Class = "NSTextFieldCell"; title = "Iterations"; ObjectID = "2ZA-Gc-JdZ"; */
+"2ZA-Gc-JdZ.title" = "Iteraties";
+
+/* Class = "NSTextFieldCell"; title = "Enforce key change"; ObjectID = "5QH-N1-FHK"; */
+"5QH-N1-FHK.title" = "Dwing een sleutelwijziging af";
+
+/* Class = "NSTabViewItem"; label = "Argon2"; ObjectID = "6qB-sH-9FI"; */
+"6qB-sH-9FI.label" = "Argon2";
 
 /* Class = "NSTextFieldCell"; title = "Database name:"; ObjectID = "190"; */
-"190.title" = "Naam database:";
+"190.title" = "Naam van de wachtwoordenkluis:";
 
 /* Class = "NSTextFieldCell"; title = "Description:"; ObjectID = "257"; */
 "257.title" = "Beschrijving:";
 
 /* Class = "NSButtonCell"; title = "OK"; ObjectID = "289"; */
-"289.title" = "OK";
+"289.title" = "Bewaar";
 
 /* Class = "NSTabViewItem"; label = "General"; ObjectID = "358"; */
 "358.label" = "Algemeen";
@@ -21,28 +32,28 @@
 "370.label" = "Beveiliging";
 
 /* Class = "NSButtonCell"; title = "Enable Entry History"; ObjectID = "532"; */
-"532.title" = "Activeer Input Geschiedenis";
+"532.title" = "Houd invoergeschiedenis bij";
 
 /* Class = "NSButtonCell"; title = "Enable Recycle Bin"; ObjectID = "536"; */
-"536.title" = "Activeer Prullenmand";
+"536.title" = "Gebruik prullenmand";
 
 /* Class = "NSButtonCell"; title = "Empty Recycle Bin on Quit"; ObjectID = "540"; */
-"540.title" = "Leeg Prulleband bij Afsluiten";
+"540.title" = "Leeg prullenmand bij afsluiten";
 
-/* Class = "NSTextFieldCell"; title = "Maximum Items:"; ObjectID = "558"; */
-"558.title" = "Maximum Items:";
+/* Class = "NSTextFieldCell"; title = "Maximum items in history:"; ObjectID = "558"; */
+"558.title" = "Maximum aantal:";
 
 /* Class = "NSMenu"; title = "OtherViews"; ObjectID = "680"; */
-"680.title" = "OverigeViews";
+"680.title" = "Overige weergaven";
 
 /* Class = "NSButtonCell"; title = "Cancel"; ObjectID = "957"; */
 "957.title" = "Annuleer";
 
 /* Class = "NSTextFieldCell"; title = "Maximum Size:"; ObjectID = "1269"; */
-"1269.title" = "Maximum Grootte:";
+"1269.title" = "Maximale omvang:";
 
 /* Class = "NSMenu"; title = "OtherViews"; ObjectID = "1396"; */
-"1396.title" = "OverigeViews";
+"1396.title" = "Overige weergaven";
 
 /* Class = "NSMenuItem"; title = "None"; ObjectID = "1397"; */
 "1397.title" = "Geen";
@@ -57,16 +68,58 @@
 "1435.title" = "Kleur:";
 
 /* Class = "NSTextFieldCell"; title = "Template Group:"; ObjectID = "1588"; */
-"1588.title" = "Sjabloon Groep:";
+"1588.title" = "Sjabloongroep:";
 
 /* Class = "NSTextFieldCell"; title = "Default Username:"; ObjectID = "1591"; */
-"1591.title" = "Standaard Gebruikersnaam:";
+"1591.title" = "Standaardgebruikersnaam:";
 
 /* Class = "NSTextFieldCell"; title = "Key encryption rounds:"; ObjectID = "1644"; */
-"1644.title" = "Key encryptie rondes:";
+"1644.title" = "Versleutelingsrondes:";
 
 /* Class = "NSMenu"; title = "OtherViews"; ObjectID = "1740"; */
-"1740.title" = "OverigeViews";
+"1740.title" = "Overige weergaven";
 
 /* Class = "NSButtonCell"; title = "Benchmark"; ObjectID = "1775"; */
 "1775.title" = "Benchmark";
+
+/* Class = "NSButtonCell"; title = "Recommend key change"; ObjectID = "CtU-Eq-dgy"; */
+"CtU-Eq-dgy.title" = "Adviseer sleutelwijziging";
+
+/* Class = "NSTextFieldCell"; title = "Algorithm"; ObjectID = "GVd-KH-pHc"; */
+"GVd-KH-pHc.title" = "Algoritme";
+
+/* Class = "NSButtonCell"; title = "Generate Parameters"; ObjectID = "PoI-Er-Y8P"; */
+"PoI-Er-Y8P.title" = "Genereer parameters";
+
+/* Class = "NSTextFieldCell"; title = "VersionInfo"; ObjectID = "Ush-4r-A1A"; */
+"Ush-4r-A1A.title" = "Versie-informatie";
+
+/* Class = "NSTextFieldCell"; title = "Recommend key change"; ObjectID = "Xib-Fn-sqx"; */
+"Xib-Fn-sqx.title" = "Adviseer sleutelwijziging";
+
+/* Class = "NSTextFieldCell"; title = "File format:"; ObjectID = "bTk-YZ-x0G"; */
+"bTk-YZ-x0G.title" = "Indeling:";
+
+/* Class = "NSTabViewItem"; label = "Aes"; ObjectID = "ft1-pl-lpO"; */
+"ft1-pl-lpO.label" = "AES";
+
+/* Class = "NSTextFieldCell"; title = "Encryption:"; ObjectID = "gxY-UL-bEG"; */
+"gxY-UL-bEG.title" = "Versleuteling:";
+
+/* Class = "NSTextFieldCell"; title = "Memory"; ObjectID = "iRY-If-Kwn"; */
+"iRY-If-Kwn.title" = "Geheugen";
+
+/* Class = "NSTextFieldCell"; title = "Recyclebin Group:"; ObjectID = "kI5-Kp-byE"; */
+"kI5-Kp-byE.title" = "Prullenmandgroep:";
+
+/* Class = "NSButtonCell"; title = "Force key change once after unlocking"; ObjectID = "pA1-aL-KjT"; */
+"pA1-aL-KjT.title" = "Dwing na ontgrendeling eenmalig een sleutelwijziging af";
+
+/* Class = "NSBox"; title = "Key derivation"; ObjectID = "pbl-Mb-r8V"; */
+"pbl-Mb-r8V.title" = "Versleuteling";
+
+/* Class = "NSTextFieldCell"; title = "Rounds"; ObjectID = "uUQ-9s-M5E"; */
+"uUQ-9s-M5E.title" = "Rondes";
+
+/* Class = "NSButtonCell"; title = "Force key change"; ObjectID = "z6u-YT-7LE"; */
+"z6u-YT-7LE.title" = "Dwing sleutelwijziging af";
