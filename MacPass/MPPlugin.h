@@ -68,6 +68,8 @@ NS_ASSUME_NONNULL_BEGIN
 @required
 - (NSArray<NSMenuItem *> *)menuItemsForEntries:(NSArray< KPKEntry *>*)entries;
 - (void)performActionForMenuItem:(NSMenuItem *)item withEntries:(NSArray <KPKEntry *>*)entries;
+@optional
+- (BOOL)validateMenuItem:(NSMenuItem *)item forEntries:(NSArray<KPKEntry *>*)entries;
 @end
 
 @protocol MPCustomAttributePlugin <NSObject>

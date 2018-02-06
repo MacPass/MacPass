@@ -305,7 +305,7 @@ NSString *const MPPluginHostPluginBundleIdentifiyerKey = @"MPPluginHostPluginBun
 
 #pragma mark Action Plugins
 
-- (NSArray *)menuItemsForEntries:(NSArray<KPKEntry *> *)entries {
+- (NSArray *)avilableMenuItemsForEntries:(NSArray<KPKEntry *> *)entries {
   NSMutableArray *items = [[NSMutableArray alloc] init];
   for(id<MPEntryActionPlugin> plugin in self.entryActionPlugins) {
     if(plugin) {
