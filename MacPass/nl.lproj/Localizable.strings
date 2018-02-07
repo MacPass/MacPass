@@ -1,3 +1,6 @@
+/* Display format for days. Should contain a long decimal placeholder! */
+"%ld_DAYS" = "%ld dagen";
+
 /* % days ago */
 "%ld_DAYS_AGO" = "%ld dagen geleden";
 
@@ -21,6 +24,18 @@
 
 /* Action to add an entry via template */
 "ADD_TREMPLATE_ENTRY" = "Creëer item met sjabloon";
+
+/* Alert informative text when plugins or their settings change and require a restart */
+"ALERT_INFORMATIVE_TEXT_PLUGINS_CHANGED_SUGGEST_RESTART" = "Wijzigingen in extensies worden actief na een herstart. MacPass nu opnieuw starten?";
+
+/* Alert informative text to ask the user if he really want to uninstall the plugin */
+"ALERT_INFORMATIVE_TEXT_REALLY_UNINSTALL_PLUGIN" = "De extensie wordt verplaatst naar de prullenmand";
+
+/* Alert message text when plugins or their settings change and require a restart */
+"ALERT_MESSAGE_PLUGINS_CHANGED_SUGGEST_RESTART" = "Extensies zijn gewijzigd.";
+
+/* Alert message text to ask the user if he really want to uninstall the plugin. Include %@ placeholder for plugin name */
+"ALERT_MESSAGE_TEXT_REALLY_UNINSTALL_PLUGIN_%@" = "Extensie %@ verwijderen?";
 
 /* Attachments column title (shows counts)
    Menu item to toggle display of attachment count column in entry table */
@@ -144,6 +159,12 @@
 /* Delete Group */
 "DELETE_GROUP" = "Verwijder groep";
 
+/* Empty Trash */
+"DELETE_TRASHED_ENTRY" = "Verwijder";
+
+/* Empty Trash */
+"DELETE_TRASHED_GROUP" = "Verwijder";
+
 /* No comment provided by engineer. */
 "DOCUMENT_AUTOTYPE_CORRUPTION_WARNING" = "Laat automatisch inloggen repareren…";
 
@@ -171,6 +192,9 @@
 
 /* Keyfile not valid */
 "ERROR_INVALID_KEYFILE" = "Sleutelbestand is ongeldig!";
+
+/* Error description given when adding an invalid plugin */
+"ERROR_INVALID_PLUGIN" = "Ongeldige extensie";
 
 /* Passwords do not match */
 "ERROR_PASSWORD_MISSMATCH" = "Hoofdwachtwoord komt niet overeen!";
@@ -237,6 +261,12 @@
 /* Reopen the file! */
 "KEEP_OTHER_DISCARD_MINE" = "Behoud andere, negeer huidige";
 
+/* Do not install the plugin */
+"KEEP_PLUGIN" = "Bewaar extensie";
+
+/* Do not restart MacPass */
+"KEEP_RUNNING" = "Negeren";
+
 /* last week */
 "LAST_WEEK" = "Vorige week";
 
@@ -245,6 +275,12 @@
 
 /* Message in the open panel to add attachments to an entry */
 "MESSAGE_ADD_ATTACHMENT_OPEN_PANEL" = "Selecteer het toe te voegen bestand";
+
+/* Message in the add plugin open panel */
+"MESSAGE_ADD_PLUGIN_OPEN_PANEL" = "Selecteer de extensie";
+
+/* Message in the open panel to import an XML file */
+"MESSAGE_XML_OPEN_PANEL" = "Selecteer het te importeren XML-bestand";
 
 /* Menu item to toggle display of modified date column in entry table
    Modification date column title */
@@ -291,6 +327,9 @@
 /* Menu item to reset the template groups */
 "NO_TEMPLATE_GROUP" = "Geen groepssjablonen";
 
+/* Ok button */
+"OK" = "";
+
 /* preset to expire after one montch from now */
 "ONE_MONTH" = "binnen één maand";
 
@@ -305,6 +344,15 @@
 
 /* Open button in the open panel to add attachments to an entry */
 "OPEN_BUTTON_ADD_ATTACHMENT_OPEN_PANEL" = "Toevoegen";
+
+/* Open button in the add plugin open panel */
+"OPEN_BUTTON_ADD_PLUGIN_OPEN_PANEL" = "Installeer";
+
+/* Open button in the open panel to import an XML file */
+"OPEN_BUTTON_IMPORT_XML_OPEN_PANEL" = "Importeer";
+
+/* Action button in Notification to open a document */
+"OPEN_DOCUMENT" = "Bestand openen";
 
 /* Menu item to open the URL with the default application */
 "OPEN_URL" = "Open URL";
@@ -338,8 +386,26 @@
 /* Menu item to perform autotype with the selected entry */
 "PERFORM_AUTOTYPE_FOR_ENTRY" = "Log automatisch in";
 
+/* The plugin could not be initalized */
+"PLUGIN_ERROR_INTILIZATION_FAILED" = "Extensie kan niet worden geladen";
+
+/* Error for a plugin that was not signed properly */
+"PLUGIN_ERROR_UNSECURE_PLUGIN" = "Extensie heeft geen geldige handtekening";
+
+/* name for disabled unloaded plugin */
+"PLUGIN_NAME_DISABLED_%@" = "🚫 %@";
+
+/* Name for unloaded plugin with errors */
+"PLUGIN_NAME_ERROR_%@" = "⚠️ %@";
+
 /* Label for plugin settings tab */
 "PLUGIN_SETTINGS" = "Extensies";
+
+/* Generic message displayed if no details are know why a plugin was not loaded. */
+"PLUGIN_SETTINGS_GENERIC_ERROR_MESSAGE" = "Extensie kan niet worden geladen.";
+
+/* Plugin version. Include a %@ placeholder for version string */
+"PLUGIN_VERSION_%@" = "Versie: %@";
 
 /* Menu item to preview the selected attached file. */
 "PREVIEW" = "Snelle weergave";
@@ -352,6 +418,9 @@
 
 /* Message text for the recommend password change alert */
 "RECOMMEND_PASSWORD_CHANGE_ALERT_TITLE" = "Hoofdwachtwoord vernieuwen.";
+
+/* Restart */
+"RESTART" = "Herstarten";
 
 /* Action to restore and Entry to a previous state of it's history */
 "RESTORE_HISTORY_ENTRY" = "Herstel geschiedenisitem";
@@ -393,6 +462,12 @@
 /* Menu item title for the expiry preset selection menu in the date picker */
 "SELECT_DATE_PRESET" = "Gebruik voorinstelling…";
 
+/* Message on the open panel for selecting which browser to use for opening URLs */
+"SELECT_DEFAULT_BROWSER_OPEN_PANEL_MESSAGE" = "Selecteer de browser om URL mee te openen";
+
+/* Label for the select browser button on the open panel for selecting which browser to use for opening URLs */
+"SELECT_DEFAULT_BROWSER_OPEN_PANEL_SELECT_BUTTON" = "Kies";
+
 /* Message for the dialog to open a file for merge */
 "SELECT_FILE_TO_MERGE" = "Selecteer bestand om samen te voegen";
 
@@ -418,6 +493,12 @@
 /* Move Group to Trash */
 "TRASH_GROUP" = "Prullenmand groep";
 
+/* Uninstall plugin */
+"UNINSTALL" = "Verwijder";
+
+/* Unknown databas format. */
+"UNKNOWN_FORMAT" = "Onbekend bestandsformaat";
+
 /* Update Settings Label */
 "UPDATE_SETTINGS" = "Updates";
 
@@ -432,8 +513,17 @@
    Username reference item */
 "USERNAME" = "Gebruikersnaam";
 
+/* Message text for disabled updates alert! */
+"Updates are disabled!" = "Updates zijn uitgeschakeld!";
+
 /* No Key or Password */
 "WARNING_NO_PASSWORD_OR_KEYFILE" = "Hoofdwachtwoord of sleutelbestand ontbreekt!";
+
+/* Informative Text displayed when clearing the Trash */
+"WARNING_ON_DELETE_TRASHED_NODE_DESCRIPTION" = "Het geselecteerde item wordt definitief verwijderd!";
+
+/* Message text for the alert displayed when deleting a node */
+"WARNING_ON_DELETE_TRASHED_NODE_TITLE" = "Item wordt verwijderd";
 
 /* Informative Text displayed when clearing the Trash */
 "WARNING_ON_EMPTY_TRASH_DESCRIPTION" = "Het legen van de prullenmand is onomkeerbaar.";
