@@ -1,0 +1,20 @@
+{
+    "DUPLICATE_ENTRIES_%ld" =     {
+        NSStringLocalizedFormatKey = "%#@entries@";
+        entries =         {
+            NSStringFormatSpecTypeKey = NSStringPluralRuleType;
+            NSStringFormatValueTypeKey = ld;
+            one = "Duplicate Entry";
+            other = "Duplicate Entries";
+        };
+    };
+    "EVERY_%ld_DAYS" =     {
+        NSStringLocalizedFormatKey = "%#@days@";
+        days =         {
+            NSStringFormatSpecTypeKey = NSStringPluralRuleType;
+            NSStringFormatValueTypeKey = ld;
+            one = "elke dag";
+            other = "elke %ld dagen";
+        };
+    };
+}

@@ -871,6 +871,10 @@
 		713F9B481C95CEA000605880 /* fr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fr; path = fr.lproj/PluginSettings.strings; sourceTree = "<group>"; };
 		8345D7271F39023E002B7B0F /* MPPathControl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MPPathControl.h; sourceTree = "<group>"; };
 		8345D7281F39023E002B7B0F /* MPPathControl.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MPPathControl.m; sourceTree = "<group>"; };
+		BB3E050C1FE9D1CA00F0B46F /* nl */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = nl; path = nl.lproj/AutotypeCandidateSelectionView.strings; sourceTree = "<group>"; };
+		BB3E050D1FE9D1CB00F0B46F /* nl */ = {isa = PBXFileReference; lastKnownFileType = text.plist.stringsdict; name = nl; path = nl.lproj/Localizable.stringsdict; sourceTree = "<group>"; };
+		BB3E050E1FE9D1CC00F0B46F /* nl */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = nl; path = nl.lproj/ReferenceBuilderView.strings; sourceTree = "<group>"; };
+		BB3E050F1FE9D1CD00F0B46F /* nl */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = nl; path = nl.lproj/AutotypeBuilderView.strings; sourceTree = "<group>"; };
 		BD6C365619484CF40089EB37 /* nl */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = nl; path = nl.lproj/DatabaseSettingsWindow.strings; sourceTree = "<group>"; };
 		BD6C365719484CF40089EB37 /* nl */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = nl; path = nl.lproj/PasswordEditWindow.strings; sourceTree = "<group>"; };
 		BD6C365819484CF40089EB37 /* nl */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = nl; path = nl.lproj/GeneralSettings.strings; sourceTree = "<group>"; };
@@ -2236,6 +2240,7 @@
 				4C4161101F50333C003BC0AF /* es */,
 				4CA182771F96512800DD4A4A /* de */,
 				4C79B6401FB0562D008250D8 /* en */,
+				BB3E050E1FE9D1CC00F0B46F /* nl */,
 			);
 			name = ReferenceBuilderView.xib;
 			sourceTree = "<group>";
@@ -2399,6 +2404,7 @@
 				FA13910B1F9CD9EB0033D256 /* en */,
 				FA13910E1F9CDB2D0033D256 /* pl */,
 				4C6DCC5A1FA246ED00C8AD3F /* de */,
+				BB3E050D1FE9D1CB00F0B46F /* nl */,
 			);
 			name = Localizable.stringsdict;
 			sourceTree = "<group>";
@@ -2410,6 +2416,7 @@
 				FA9FD32B1FB5E8FD003CEDD6 /* pl */,
 				4C73EB951FBB5A8F0033000F /* de */,
 				4C93C5701FBDFEF700F36855 /* en */,
+				BB3E050C1FE9D1CA00F0B46F /* nl */,
 			);
 			name = AutotypeCandidateSelectionView.xib;
 			sourceTree = "<group>";
@@ -2421,6 +2428,7 @@
 				FA9FD32F1FB5EDDE003CEDD6 /* pl */,
 				4C73EB961FBB5A910033000F /* de */,
 				4C93C5711FBDFEF900F36855 /* en */,
+				BB3E050F1FE9D1CD00F0B46F /* nl */,
 			);
 			name = AutotypeBuilderView.xib;
 			sourceTree = "<group>";
