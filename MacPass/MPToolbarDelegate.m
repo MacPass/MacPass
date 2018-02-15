@@ -110,7 +110,7 @@ NSString *const MPToolbarItemHistory = @"TOOLBAR_HISTORY";
       popupButton.bezelStyle = NSTexturedRoundedBezelStyle;
       popupButton.focusRingType = NSFocusRingTypeNone;
       popupButton.title = @"";
-      popupButton.imageScaling = NSImageScaleProportionallyUpOrDown;
+      popupButton.imageScaling = NSImageScaleProportionallyDown;
       [popupButton sizeToFit];
       
       NSRect newFrame = popupButton.frame;
