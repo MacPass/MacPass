@@ -25,6 +25,8 @@
 #import "MPPlugin.h"
 #import "MPPlugin_Private.h"
 #import "MPPluginConstants.h"
+#import "MPPluginEntryActionContext.h"
+
 #import "NSApplication+MPAdditions.h"
 #import "MPSettingsHelper.h"
 
@@ -40,8 +42,8 @@ NSString *const MPPluginHostPluginBundleIdentifiyerKey = @"MPPluginHostPluginBun
 
 @interface MPPluginHost ()
 @property (strong) NSMutableArray<MPPlugin __kindof *> *mutablePlugins;
-@property (strong) NSPointerArray *entryActionPlugins;
-@property (strong) NSPointerArray *customAttributePlugins;
+@property (strong) NSMutableArray<NSString *> *entryActionPluginIdentifiers;
+@property (strong) NSMutableArray<NSString *> *customAttributePluginIdentifiers;
 
 
 @property (nonatomic) BOOL loadUnsecurePlugins;
@@ -74,8 +76,8 @@ NSString *const MPPluginHostPluginBundleIdentifiyerKey = @"MPPluginHostPluginBun
     _mutablePlugins = [[NSMutableArray alloc] init];
     _disabledPlugins = [[NSUserDefaults standardUserDefaults] arrayForKey:kMPSettingsKeyLoadUnsecurePlugins];
     _loadUnsecurePlugins = [[NSUserDefaults standardUserDefaults] boolForKey:kMPSettingsKeyLoadUnsecurePlugins];
-    _entryActionPlugins = [NSPointerArray weakObjectsPointerArray];
-    _customAttributePlugins = [NSPointerArray weakObjectsPointerArray];
+    _entryActionPluginIdentifiers = [[NSMutableArray alloc] init];
+    _customAttributePluginIdentifiers = [[NSMutableArray alloc] init];
     
     [self _loadPlugins];
     
@@ -296,23 +298,50 @@ NSString *const MPPluginHostPluginBundleIdentifiyerKey = @"MPPluginHostPluginBun
 - (void)_addPlugin:(MPPlugin *)plugin {
   [self.mutablePlugins addObject:plugin];
   if([plugin conformsToProtocol:@protocol(MPEntryActionPlugin)]) {
-    [self.entryActionPlugins addPointer:(__bridge void * _Nullable)(plugin)];
+    NSAssert(![self.entryActionPluginIdentifiers containsObject:plugin.identifier], @"Internal inconsitency. Duplicate bundle identifier used %@!", plugin.identifier);
+    [self.entryActionPluginIdentifiers addObject:plugin.identifier];
   }
   if([plugin conformsToProtocol:@protocol(MPCustomAttributePlugin)]) {
-    [self.customAttributePlugins addPointer:(__bridge void * _Nullable)(plugin)];
+    NSAssert(![self.customAttributePluginIdentifiers containsObject:plugin.identifier], @"Internal inconsitency. Duplicate bundle identifier used %@!", plugin.identifier);
+    [self.customAttributePluginIdentifiers addObject:plugin.identifier];
   }
+}
+
+- (MPPlugin *)_pluginWithIdentifier:(NSString *)bundleIdentifier {
+  for(MPPlugin *plugin in self.mutablePlugins) {
+    if([plugin.identifier isEqualToString:bundleIdentifier]) {
+      return plugin;
+    }
+  }
+  return nil;
 }
 
 #pragma mark Action Plugins
 
 - (NSArray *)avilableMenuItemsForEntries:(NSArray<KPKEntry *> *)entries {
   NSMutableArray *items = [[NSMutableArray alloc] init];
-  for(id<MPEntryActionPlugin> plugin in self.entryActionPlugins) {
+  for(NSString *identifier in self.entryActionPluginIdentifiers) {
+    MPPlugin<MPEntryActionPlugin> *plugin = (MPPlugin<MPEntryActionPlugin> *)[self _pluginWithIdentifier:identifier];
     if(plugin) {
-      [items addObjectsFromArray:[plugin menuItemsForEntries:entries]];
+      NSArray <NSMenuItem *> *tmpItems = [plugin menuItemsForEntries:entries];
+      for(NSMenuItem *item in tmpItems) {
+        item.representedObject = [[MPPluginEntryActionContext alloc] initWithPlugin:plugin entries:entries];
+        item.target = self;
+        item.action = @selector(_performEntryAction:);
+      }
+      [items addObjectsFromArray:tmpItems];
     }
   }
   return [items copy];
+}
+
+- (void)_performEntryAction:(id)sender {
+  if(![sender isKindOfClass:NSMenuItem.class]) {
+    return;
+  }
+  NSMenuItem *item = sender;
+  MPPluginEntryActionContext *context = item.representedObject;
+  [context.plugin performActionForMenuItem:item withEntries:context.entries];
 }
 
 

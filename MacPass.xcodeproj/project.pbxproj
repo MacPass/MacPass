@@ -146,6 +146,7 @@
 		4C6F228C19A4AA700012310C /* MPAutotypeDelay.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C6F228B19A4AA700012310C /* MPAutotypeDelay.m */; };
 		4C701CBC178618A000581B88 /* 12_RemoteTemplate.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 4C701CBB178618A000581B88 /* 12_RemoteTemplate.pdf */; };
 		4C7155D81A10DB6D00979307 /* IconSelection.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4C7155DA1A10DB6D00979307 /* IconSelection.xib */; };
+		4C735FC02035FCBF00708D53 /* MPPluginEntryActionContext.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C735FBF2035FCBF00708D53 /* MPPluginEntryActionContext.m */; };
 		4C76155C1764C04C0015A1A6 /* GeneralSettings.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4C76155E1764C04C0015A1A6 /* GeneralSettings.xib */; };
 		4C7615681764C0C40015A1A6 /* PasswordInputView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4C76156A1764C0C40015A1A6 /* PasswordInputView.xib */; };
 		4C76156D1764C0E20015A1A6 /* InspectorView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4C76156F1764C0E20015A1A6 /* InspectorView.xib */; };
@@ -562,6 +563,8 @@
 		4C7155E81A10DB7700979307 /* fr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fr; path = fr.lproj/IconSelection.strings; sourceTree = "<group>"; };
 		4C7155EA1A10DB7800979307 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/IconSelection.strings; sourceTree = "<group>"; };
 		4C7155EC1A10DB7900979307 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/IconSelection.strings; sourceTree = "<group>"; };
+		4C735FBE2035FCBF00708D53 /* MPPluginEntryActionContext.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MPPluginEntryActionContext.h; sourceTree = "<group>"; };
+		4C735FBF2035FCBF00708D53 /* MPPluginEntryActionContext.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MPPluginEntryActionContext.m; sourceTree = "<group>"; };
 		4C73EB941FBB58730033000F /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/DatabaseSettingsWindow.strings; sourceTree = "<group>"; };
 		4C73EB951FBB5A8F0033000F /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/AutotypeCandidateSelectionView.strings; sourceTree = "<group>"; };
 		4C73EB961FBB5A910033000F /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/AutotypeBuilderView.strings; sourceTree = "<group>"; };
@@ -1617,6 +1620,8 @@
 				4C8F0C6D1FCEE9B900BE157F /* MPPluginConstants.m */,
 				4CA78BFE1FD58C92003C8560 /* MPPluginRepository.h */,
 				4CA78BFF1FD58C92003C8560 /* MPPluginRepository.m */,
+				4C735FBE2035FCBF00708D53 /* MPPluginEntryActionContext.h */,
+				4C735FBF2035FCBF00708D53 /* MPPluginEntryActionContext.m */,
 			);
 			name = Plugin;
 			path = MacPass;
@@ -1896,6 +1901,7 @@
 				4C3BD51516D276F800389F1F /* MPToolbarDelegate.m in Sources */,
 				4C7B63731C0CB51F00D7038C /* TTTDataTransformer.m in Sources */,
 				4C8F0C711FCEF91400BE157F /* MPPickcharsParser.m in Sources */,
+				4C735FC02035FCBF00708D53 /* MPPluginEntryActionContext.m in Sources */,
 				4C61EA0316D2FD0800AC519E /* MPOutlineViewController.m in Sources */,
 				4C65C79C16DD283900E32CFF /* MPToolbarButton.m in Sources */,
 				4C431BCD16E2A82800700A81 /* MPPasteBoardController.m in Sources */,
