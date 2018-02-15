@@ -714,15 +714,17 @@ NSString *const _MPTableSecurCellView = @"PasswordCell";
       webURL = [NSURL URLWithString:[NSString stringWithFormat:@"http://%@", [expandedURL stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]]];
     }
     
-    NSString *browserBundleID = [[NSUserDefaults standardUserDefaults] objectForKey:kMPSettingsKeyBrowserBundleId];
+    NSString *browserBundleID = [NSUserDefaults.standardUserDefaults stringForKey:kMPSettingsKeyBrowserBundleId];
+    NSURL *browserApplicationURL = browserBundleID ? [NSWorkspace.sharedWorkspace URLForApplicationWithBundleIdentifier:browserBundleID] : nil;
     BOOL openedURL = NO;
     
-    if(browserBundleID) {
-      openedURL = [[NSWorkspace sharedWorkspace] openURLs:@[webURL] withAppBundleIdentifier:browserBundleID options:NSWorkspaceLaunchAsync additionalEventParamDescriptor:nil launchIdentifiers:NULL];
+    if(browserApplicationURL) {
+      NSRunningApplication *urlOpeningApplication = [NSWorkspace.sharedWorkspace openURLs:@[webURL] withApplicationAtURL:browserApplicationURL options:NSWorkspaceLaunchDefault configuration:@{} error:nil];
+      openedURL = nil != urlOpeningApplication;
     }
     
     if(!openedURL) {
-      openedURL = [[NSWorkspace sharedWorkspace] openURL:webURL];
+      openedURL = [NSWorkspace.sharedWorkspace openURL:webURL];
     }
     if(!openedURL) {
       NSLog(@"Unable to open URL %@", webURL);
