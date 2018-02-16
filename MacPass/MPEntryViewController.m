@@ -709,7 +709,7 @@ NSString *const _MPTableSecurCellView = @"PasswordCell";
   NSString *expandedURL = [selectedEntry.url kpk_finalValueForEntry:selectedEntry];
   if(expandedURL.length > 0) {
     NSURL *webURL = [NSURL URLWithString:[expandedURL stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]];
-    NSString *scheme = [webURL scheme];
+    NSString *scheme = webURL.scheme;
     if(!scheme) {
       webURL = [NSURL URLWithString:[NSString stringWithFormat:@"http://%@", [expandedURL stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]]];
     }
@@ -754,11 +754,11 @@ NSString *const _MPTableSecurCellView = @"PasswordCell";
     return; // No data available
   }
   NSInteger columnIndex = [self.entryTable clickedColumn];
-  if(columnIndex < 0 || columnIndex >= [[self.entryTable tableColumns] count]) {
+  if(columnIndex < 0 || columnIndex >= self.entryTable.tableColumns.count) {
     return; // No Column to use
   }
-  NSTableColumn *column = [self.entryTable tableColumns][[self.entryTable clickedColumn]];
-  NSString *identifier = [column identifier];
+  NSTableColumn *column = self.entryTable.tableColumns[self.entryTable.clickedColumn];
+  NSString *identifier = column.identifier;
   if([identifier isEqualToString:MPEntryTableTitleColumnIdentifier]) {
     [self _executeTitleColumnDoubleClick];
   }
@@ -775,7 +775,7 @@ NSString *const _MPTableSecurCellView = @"PasswordCell";
 }
 
 - (void)_executeTitleColumnDoubleClick {
-  MPDoubleClickTitleAction action = [[NSUserDefaults standardUserDefaults] integerForKey:kMPSettingsKeyDoubleClickTitleAction];
+  MPDoubleClickTitleAction action = [NSUserDefaults.standardUserDefaults integerForKey:kMPSettingsKeyDoubleClickTitleAction];
   switch(action) {
     case MPDoubleClickTitleActionInspect:
       [(MPDocumentWindowController *)self.windowController showInspector:nil];
@@ -788,7 +788,7 @@ NSString *const _MPTableSecurCellView = @"PasswordCell";
   }
 }
 - (void)_executeURLColumnDoubleClick {
-  MPDoubleClickURLAction action = [[NSUserDefaults standardUserDefaults] integerForKey:kMPSettingsKeyDoubleClickURLAction];
+  MPDoubleClickURLAction action = [NSUserDefaults.standardUserDefaults integerForKey:kMPSettingsKeyDoubleClickURLAction];
   switch (action) {
     case MPDoubleClickURLActionOpen:
       [self openURL:nil];
