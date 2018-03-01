@@ -94,7 +94,7 @@ NSString *const MPToolbarItemHistory = @"TOOLBAR_HISTORY";
 }
 
 - (void)dealloc {
-  [[NSNotificationCenter defaultCenter] removeObserver:self];
+  [NSNotificationCenter.defaultCenter removeObserver:self];
 }
 
 
@@ -227,7 +227,7 @@ NSString *const MPToolbarItemHistory = @"TOOLBAR_HISTORY";
 
 #pragma mark - NSSearchFieldDelegate
 - (BOOL)control:(NSControl *)control textView:(NSTextView *)textView doCommandBySelector:(SEL)commandSelector {
-  if(commandSelector == @selector(insertNewline:)) {
+  if(commandSelector == @selector(insertNewline:) || commandSelector == @selector(moveDown:)) {
     [[NSApp targetForAction:@selector(focusEntries:) to:nil from:self] focusEntries:self];
   }
   return NO;

@@ -212,37 +212,15 @@ NSString *const _MPTableSecurCellView = @"PasswordCell";
 }
 
 - (void)registerNotificationsForDocument:(MPDocument *)document {
-  [[NSNotificationCenter defaultCenter] addObserver:self
-                                           selector:@selector(_didChangeCurrentItem:)
-                                               name:MPDocumentCurrentItemChangedNotification
-                                             object:document];
-  
-  [[NSNotificationCenter defaultCenter] addObserver:self
-                                           selector:@selector(_didAddItem:)
-                                               name:MPDocumentDidAddEntryNotification
-                                             object:document];
-  
-  [[NSNotificationCenter defaultCenter] addObserver:self
-                                           selector:@selector(_didEnterSearch:)
-                                               name:MPDocumentDidEnterSearchNotification
-                                             object:document];
-  
-  [[NSNotificationCenter defaultCenter] addObserver:self
-                                           selector:@selector(_didExitSearch:)
-                                               name:MPDocumentDidExitSearchNotification
-                                             object:document];
-  
-  [[NSNotificationCenter defaultCenter] addObserver:self
-                                           selector:@selector(_didUpdateSearchResults:)
-                                               name:MPDocumentDidChangeSearchResults
-                                             object:document];
-  [[NSNotificationCenter defaultCenter] addObserver:self
-                                           selector:@selector(_didUnlockDatabase:)
-                                               name:MPDocumentDidUnlockDatabaseNotification
-                                             object:document];
-  [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(_showEntryHistory:) name:MPDocumentShowEntryHistoryNotification object:document];
-  [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(_hideEntryHistory:) name:MPDocumentHideEntryHistoryNotification object:document];
-  
+  [NSNotificationCenter.defaultCenter addObserver:self selector:@selector(_didChangeCurrentItem:) name:MPDocumentCurrentItemChangedNotification object:document];
+  [NSNotificationCenter.defaultCenter addObserver:self selector:@selector(_didAddItem:) name:MPDocumentDidAddEntryNotification object:document];
+  [NSNotificationCenter.defaultCenter addObserver:self selector:@selector(_didEnterSearch:) name:MPDocumentDidEnterSearchNotification object:document];
+  [NSNotificationCenter.defaultCenter addObserver:self selector:@selector(_didExitSearch:) name:MPDocumentDidExitSearchNotification object:document];
+  [NSNotificationCenter.defaultCenter addObserver:self selector:@selector(_didUpdateSearchResults:) name:MPDocumentDidChangeSearchResults object:document];
+  [NSNotificationCenter.defaultCenter addObserver:self selector:@selector(_didUnlockDatabase:) name:MPDocumentDidUnlockDatabaseNotification object:document];
+  [NSNotificationCenter.defaultCenter addObserver:self selector:@selector(_showEntryHistory:) name:MPDocumentShowEntryHistoryNotification object:document];
+  [NSNotificationCenter.defaultCenter addObserver:self selector:@selector(_hideEntryHistory:) name:MPDocumentHideEntryHistoryNotification object:document];
+    
   [self.contextBarViewController registerNotificationsForDocument:document];
 }
 
