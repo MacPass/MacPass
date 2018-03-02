@@ -33,7 +33,7 @@ static void MPContextmenuHelperBeginSection(NSMutableArray *items) {
 
 @implementation MPContextMenuHelper
 
-+ (NSArray *)contextMenuItemsWithItems:(MPContextMenuItemsFlags)flags {
++ (NSArray<NSMenuItem *> *)contextMenuItemsWithItems:(MPContextMenuItemsFlags)flags {
   
   BOOL const insertCreate = MPIsFlagSetInOptions(MPContextMenuCreate, flags);
   BOOL const insertDelete = MPIsFlagSetInOptions(MPContextMenuDelete, flags);
