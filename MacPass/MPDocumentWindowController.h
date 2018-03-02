@@ -44,9 +44,8 @@
 
 - (void)showEntries;
 - (void)showPasswordInput;
-
-
 - (void)editPasswordWithCompetionHandler:(void (^)(NSInteger result))handler;
+
 #pragma mark Actions
 - (IBAction)saveDocument:(id)sender;
 - (IBAction)saveDocumentAs:(id)sender;
@@ -70,6 +69,12 @@
 - (IBAction)pickExpiryDate:(id)sender;
 
 - (IBAction)performAutotypeForEntry:(id)sender;
+
+- (IBAction)copyUsername:(id)sender;
+- (IBAction)copyPassword:(id)sender;
+- (IBAction)copyCustomAttribute:(id)sender;
+- (IBAction)copyURL:(id)sender;
+- (IBAction)openURL:(id)sender;
 
 #pragma mark Helper
 - (IBAction)fixAutotype:(id)sender;

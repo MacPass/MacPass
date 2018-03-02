@@ -514,6 +514,28 @@ typedef void (^MPPasswordChangedBlock)(BOOL didChangePassword);
   [contentView layoutSubtreeIfNeeded];
 }
 
+- (void)copyUsername:(id)sender {
+  [self.entryViewController copyUsername:sender];
+}
+
+- (void)copyPassword:(id)sender {
+  [self.entryViewController copyPassword:sender];
+}
+
+- (void)copyCustomAttribute:(id)sender {
+  [self.entryViewController copyCustomAttribute:sender];
+}
+
+- (void)copyURL:(id)sender {
+  [self.entryViewController copyURL:sender];
+}
+
+- (void)openURL:(id)sender {
+  [self.entryViewController openURL:sender];
+}
+
+
+
 #pragma mark Validation
 - (BOOL)validateMenuItem:(NSMenuItem *)menuItem {
   return ([self.document validateMenuItem:menuItem]);

@@ -33,6 +33,7 @@ APPKIT_EXTERN NSString *const MPDidChangeStoredKeyFilesSettings;
 @property (weak) IBOutlet NSMenuItem *saveMenuItem;
 @property (weak) IBOutlet NSMenuItem *fixAutotypeMenuItem;
 @property (weak) IBOutlet NSMenuItem *fileNewMenuItem;
+@property (weak) IBOutlet NSMenu *itemMenu;
 
 @property (nonatomic, assign) BOOL isAllowedToStoreKeyFile;
 

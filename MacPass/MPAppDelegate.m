@@ -197,6 +197,12 @@ NSString *const MPDidChangeStoredKeyFilesSettings = @"com.hicknhack.macpass.MPDi
   if(menu == self.fixAutotypeMenuItem.menu) {
     self.fixAutotypeMenuItem.hidden = !(NSEvent.modifierFlags & NSAlternateKeyMask);
   }
+  if(menu == self.itemMenu) {
+    [menu removeAllItems];
+    for(NSMenuItem *item in [MPContextMenuHelper contextMenuItemsWithItems:MPContextMenuFull]) {
+      [menu addItem:item];
+    }
+  }
 }
 
 #pragma mark -
