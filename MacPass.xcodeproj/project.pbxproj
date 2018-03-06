@@ -12,6 +12,7 @@
 		4C01C2421764D8980016D5D0 /* MPContextMenuHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C01C2411764D8980016D5D0 /* MPContextMenuHelper.m */; };
 		4C0728BD17B5B7F7005A7DD9 /* MPPasswordEditWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C0728BC17B5B7F7005A7DD9 /* MPPasswordEditWindowController.m */; };
 		4C0728BF17B68ED0005A7DD9 /* SavePanelAccessoryView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4C0728BE17B68ED0005A7DD9 /* SavePanelAccessoryView.xib */; };
+		4C08ACEA204F01C700863D99 /* keyboardTemplate.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 4C08ACE9204F01C700863D99 /* keyboardTemplate.pdf */; };
 		4C0949591FD6B89B004F2971 /* NSUserNotification+MPAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C0949581FD6B89B004F2971 /* NSUserNotification+MPAdditions.m */; };
 		4C09495C1FD6E510004F2971 /* MPAddCustomFieldContextMenuDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C09495B1FD6E510004F2971 /* MPAddCustomFieldContextMenuDelegate.m */; };
 		4C0AF62F195C1F2B009E658D /* MPEntrySearchContext.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C0AF62E195C1F2B009E658D /* MPEntrySearchContext.m */; };
@@ -328,6 +329,7 @@
 		4C0728BC17B5B7F7005A7DD9 /* MPPasswordEditWindowController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MPPasswordEditWindowController.m; sourceTree = "<group>"; };
 		4C0728BE17B68ED0005A7DD9 /* SavePanelAccessoryView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SavePanelAccessoryView.xib; sourceTree = "<group>"; };
 		4C088C401FD9A42800F92502 /* MPPickcharsParser_Private.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MPPickcharsParser_Private.h; sourceTree = "<group>"; };
+		4C08ACE9204F01C700863D99 /* keyboardTemplate.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; name = keyboardTemplate.pdf; path = Icons/keyboardTemplate.pdf; sourceTree = "<group>"; };
 		4C0949571FD6B89B004F2971 /* NSUserNotification+MPAdditions.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSUserNotification+MPAdditions.h"; sourceTree = "<group>"; };
 		4C0949581FD6B89B004F2971 /* NSUserNotification+MPAdditions.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSUserNotification+MPAdditions.m"; sourceTree = "<group>"; };
 		4C09495A1FD6E510004F2971 /* MPAddCustomFieldContextMenuDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MPAddCustomFieldContextMenuDelegate.h; sourceTree = "<group>"; };
@@ -1604,6 +1606,7 @@
 				4C3826791AD04CC6007D7D67 /* downloadTemplate.pdf */,
 				4C3826751AD04C24007D7D67 /* harddiskTemplate.pdf */,
 				4C3826731AD04BA5007D7D67 /* infoTemplate.pdf */,
+				4C08ACE9204F01C700863D99 /* keyboardTemplate.pdf */,
 			);
 			name = Icons;
 			sourceTree = "<group>";
@@ -1781,6 +1784,7 @@
 				4C3826AB1AD04D8E007D7D67 /* 28_QuickTimeTemplate.pdf in Resources */,
 				4C3826B31AD04D8E007D7D67 /* 38_SambaUnmountTemplate.pdf in Resources */,
 				4CB9339916D3A0DD00A13B5D /* Credits.rtf in Resources */,
+				4C08ACEA204F01C700863D99 /* keyboardTemplate.pdf in Resources */,
 				4C6AEF031A04400E00CA2420 /* OpenPanelAccessoryView.xib in Resources */,
 				4C6DCC451FA2457900C8AD3F /* ContextBar.xib in Resources */,
 				4C431BCF16E2BAB000700A81 /* OverlayWindow.xib in Resources */,

@@ -109,6 +109,7 @@ typedef NS_ENUM(NSUInteger, MPIconType) {
   MPIconContextTriangle,
   MPIconExpiredEntry,
   MPIconExpiredGroup,
+  MPIconKeyboard
 };
 
 /**

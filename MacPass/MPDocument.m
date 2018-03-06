@@ -414,8 +414,8 @@ NSString *const MPDocumentGroupKey                            = @"MPDocumentGrou
    */
   // only lock if we do not have user interaction that cannot be dismissed!
   if(!self.lockedForFileChange) {
-    for(NSWindow *sheet in [self windowForSheet].sheets) {
-      [[self windowForSheet] endSheet:sheet];
+    for(NSWindow *sheet in self.windowForSheet.sheets) {
+      [self.windowForSheet endSheet:sheet];
     }
     if(self.documentEdited) {
       [self saveDocumentWithDelegate:self didSaveSelector:@selector(_lockDatabaseForDocument:didSave:contextInfo:) contextInfo:NULL];

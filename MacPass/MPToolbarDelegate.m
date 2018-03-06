@@ -44,6 +44,7 @@ NSString *const MPToolbarItemSearch = @"TOOLBAR_SEARCH";
 NSString *const MPToolbarItemCopyUsername = @"TOOLBAR_COPY_USERNAME";
 NSString *const MPToolbarItemCopyPassword = @"TOOLBAR_COPY_PASSWORD";
 NSString *const MPToolbarItemHistory = @"TOOLBAR_HISTORY";
+NSString *const MPToolbarItemAutotype = @"TOOLBAR_AUTOTYPE";
 
 @interface MPToolbarDelegate() {
   MPAddEntryContextMenuDelegate *_entryMenuDelegate;
@@ -77,10 +78,12 @@ NSString *const MPToolbarItemHistory = @"TOOLBAR_HISTORY";
                              MPToolbarItemSearch,
                              MPToolbarItemLock,
                              MPToolbarItemInspector,
-                             MPToolbarItemHistory ];
+                             MPToolbarItemHistory,
+                             MPToolbarItemAutotype ];
     _defaultToolbarIdentifiers = @[ MPToolbarItemAddEntry,
                                     MPToolbarItemDelete,
                                     MPToolbarItemAddGroup,
+                                    MPToolbarItemAutotype,
                                     MPToolbarItemAction,
                                     NSToolbarFlexibleSpaceItemIdentifier,
                                     MPToolbarItemSearch,
@@ -214,7 +217,8 @@ NSString *const MPToolbarItemHistory = @"TOOLBAR_HISTORY";
                                MPToolbarItemDelete: [MPIconHelper icon:MPIconTrash],
                                MPToolbarItemAction: [NSImage imageNamed:NSImageNameActionTemplate],
                                MPToolbarItemInspector: [MPIconHelper icon:MPIconInfo],
-                               MPToolbarItemHistory: [MPIconHelper icon:MPIconHistory]
+                               MPToolbarItemHistory: [MPIconHelper icon:MPIconHistory],
+                               MPToolbarItemAutotype : [MPIconHelper icon:MPIconKeyboard]
                                };
   return imageDict;
 }
@@ -247,7 +251,8 @@ NSString *const MPToolbarItemHistory = @"TOOLBAR_HISTORY";
                    MPToolbarItemDelete: NSLocalizedString(@"DELETE", @"Toolbar item delete item"),
                    MPToolbarItemInspector: NSLocalizedString(@"INSPECTOR", @"Toolbar item toggle inspector"),
                    MPToolbarItemSearch: NSLocalizedString(@"SEARCH", @"Search input in Toolbar "),
-                   MPToolbarItemHistory: NSLocalizedString(@"SHOW_HISTORY", @"Toolbar item to toggel history display"),
+                   MPToolbarItemHistory: NSLocalizedString(@"SHOW_HISTORY", @"Toolbar item to toggle history display"),
+                   MPToolbarItemAutotype: NSLocalizedString(@"TOOLBAR_PERFORM_AUTOTYPE_FOR_ENTRY", @"Toolbar item to perform autotype")
                    };
   });
   return labelDict[identifier];
@@ -265,6 +270,7 @@ NSString *const MPToolbarItemHistory = @"TOOLBAR_HISTORY";
                     MPToolbarItemCopyUsername: @(MPActionCopyUsername),
                     MPToolbarItemInspector: @(MPActionToggleInspector),
                     MPToolbarItemHistory: @(MPActionShowEntryHistory),
+                    MPToolbarItemAutotype: @(MPActionPerformAutotypeForSelectedEntry)
                     };
   });
   MPActionType actionType = (MPActionType)[actionDict[identifier] integerValue];

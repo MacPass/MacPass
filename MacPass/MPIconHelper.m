@@ -162,6 +162,7 @@
                    @(MPIconCreated): @"createdTemplate",
                    @(MPIconAddEntry): @"addEntryTemplate",
                    @(MPIconContextTriangle): @"contextTriangleTemplate",
+                   @(MPIconKeyboard): @"keyboardTemplate",
                    
                    @(MPIconExpiredEntry): NSImageNameCaution,
                    @(MPIconExpiredGroup): NSImageNameCaution
