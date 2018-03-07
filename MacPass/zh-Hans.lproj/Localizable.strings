@@ -162,7 +162,6 @@
 "WARNING_ON_LOSSY_SAVE" = "保存为 KDB 格式，将会损失数据";
 "WARNING_ON_LOSSY_SAVE_DESCRIPTION" = "KDB 格式无法保存所有信息";
 "CHANGE_FORMAT" = "更改文件格式为 KDBX";
-"SAVE_LOSSY" = "丢失数据并保存";
 
 "ENFORCE_PASSWORD_CHANGE_ALERT_TITLE" = "数据库密码已过期！";
 "ENFORCE_PASSWORD_CHANGE_ALERT_DESCRIPTION" = "更改密码/密钥文件之前，你将不能保存数据库";
@@ -180,8 +179,6 @@
 "FILE_CHANGED_BY_OTHERS_INFO_TEXT" = "加载的文件和磁盘上的文件不同，你想怎么处理？";
 /* Button to ignore the changes */
 "KEEP_MINE" = "不要加载修改过的数据库";
-/* Button to reload the changes form disk */
-"LOAD_CHANGES" = "丢弃我的更改并且加载修改过的数据库";
 /* Merge changes into file! */
 "MERGE_CHANGES" = "合并更改";
 

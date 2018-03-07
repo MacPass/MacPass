@@ -300,10 +300,10 @@ NSString *const MPDocumentGroupKey                            = @"MPDocumentGrou
       alert.messageText = NSLocalizedString(@"FILE_CHANGED_BY_OTHERS_MESSAGE_TEXT", @"Message displayed when an open file was changed from another application");
       alert.informativeText = NSLocalizedString(@"FILE_CHANGED_BY_OTHERS_INFO_TEXT", @"Informative text displayed when the file was change from another application");
       alert.showsSuppressionButton = YES;
-      alert.suppressionButton.title = NSLocalizedString(@"SET_AS_DEFAULT_FILE_CHANGE_STRATEGY", @"Set the selection as default file change strategy!");
-      [alert addButtonWithTitle:NSLocalizedString(@"FILE_CHANGE_STRATEGY_MERGE", @"Merge changes into file!")];
-      [alert addButtonWithTitle:NSLocalizedString(@"KEEP_OTHER_DISCARD_MINE", @"Reopen the file!")];
-      [alert addButtonWithTitle:NSLocalizedString(@"KEEP_MINE_DISCARD_OTHER", @"Ignore the changes to an open file!")];
+      alert.suppressionButton.title = NSLocalizedString(@"SET_AS_DEFAULT_FILE_CHANGE_STRATEGY", @"Checkbox in dialog to set the selection as default file change strategy!");
+      [alert addButtonWithTitle:NSLocalizedString(@"FILE_CHANGE_STRATEGY_MERGE", @"Button in dialog to merge changes into file!")];
+      [alert addButtonWithTitle:NSLocalizedString(@"KEEP_OTHER_DISCARD_MINE", @"Button in dialog to reopen the file!")];
+      [alert addButtonWithTitle:NSLocalizedString(@"KEEP_MINE_DISCARD_OTHER", @"Button in dialog to ignore the changes to an open file!")];
       [alert beginSheetModalForWindow:self.windowForSheet completionHandler:^(NSModalResponse returnCode) {
         BOOL useAsDefault = (alert.suppressionButton.state == NSOnState);
         switch(returnCode) {
