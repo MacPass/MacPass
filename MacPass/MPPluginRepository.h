@@ -6,26 +6,14 @@
 //  Copyright © 2017 HicknHack Software GmbH. All rights reserved.
 //
 
-#import <Foundation/Foundation.h>
+@import Foundation;
 
-@interface MPPluginRespositoryItem : NSObject
-
-@property (copy) NSString *name;
-@property (copy) NSString *version;
-@property (copy) NSString *descriptionText;
-@property (copy) NSURL *sourceURL;
-@property (copy) NSURL *downloadURL;
-@property (readonly, nonatomic, getter=isVaid) BOOL valid;
-
-+ (instancetype)pluginItemFromDictionary:(NSDictionary *)dict;
-- (instancetype)initWithDictionary:(NSDictionary *)dict;
-
-@end
+@class MPPluginRepositoryItem;
 
 @interface MPPluginRepository : NSObject
 
-@property (nonatomic, copy) NSArray<MPPluginRespositoryItem *> *availablePlugins;
+@property (class, strong, readonly) MPPluginRepository *sharedRespoitory;
+@property (nonatomic, copy) NSArray<MPPluginRepositoryItem *> *availablePlugins;
 
-+ (instancetype)sharedRespoitory;
 
 @end

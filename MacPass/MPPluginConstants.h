@@ -13,7 +13,4 @@
 
 FOUNDATION_EXPORT NSString *const MPPluginFileExtension;
 
-FOUNDATION_EXPORT NSString *const MPPluginMinimumHostVersionKey;
-FOUNDATION_EXPORT NSString *const MPPluginMaxiumHostVersoinKey;
-
 #endif /* MPPluginConstants_h */

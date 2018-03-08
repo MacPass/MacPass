@@ -215,6 +215,7 @@
 		4CA4B3461FC8833A007DF507 /* PickcharView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4CA4B3451FC88339007DF507 /* PickcharView.xib */; };
 		4CA78C001FD58C92003C8560 /* MPPluginRepository.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CA78BFF1FD58C92003C8560 /* MPPluginRepository.m */; };
 		4CAAA8271D787B8B00CDE977 /* MPAutotypeBuilderViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CAAA8251D787B8B00CDE977 /* MPAutotypeBuilderViewController.m */; };
+		4CAD338F205169D30068587E /* MPPluginRepositoryItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CAD338E205169D30068587E /* MPPluginRepositoryItem.m */; };
 		4CAD748C15B889B700104512 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4CAD748B15B889B700104512 /* Security.framework */; };
 		4CAD748E15B88AC100104512 /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 4CAD748D15B88AC100104512 /* libz.dylib */; };
 		4CB33F861EAF54A000C9341E /* KPKNode+MPIsHistory.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CB33F851EAF54A000C9341E /* KPKNode+MPIsHistory.m */; };
@@ -726,6 +727,8 @@
 		4CA78BFF1FD58C92003C8560 /* MPPluginRepository.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MPPluginRepository.m; sourceTree = "<group>"; };
 		4CAAA8241D787B8B00CDE977 /* MPAutotypeBuilderViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MPAutotypeBuilderViewController.h; sourceTree = "<group>"; };
 		4CAAA8251D787B8B00CDE977 /* MPAutotypeBuilderViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MPAutotypeBuilderViewController.m; sourceTree = "<group>"; };
+		4CAD338D205169D30068587E /* MPPluginRepositoryItem.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MPPluginRepositoryItem.h; sourceTree = "<group>"; };
+		4CAD338E205169D30068587E /* MPPluginRepositoryItem.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MPPluginRepositoryItem.m; sourceTree = "<group>"; };
 		4CAD748B15B889B700104512 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
 		4CAD748D15B88AC100104512 /* libz.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.dylib; path = usr/lib/libz.dylib; sourceTree = SDKROOT; };
 		4CB33F841EAF54A000C9341E /* KPKNode+MPIsHistory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "KPKNode+MPIsHistory.h"; sourceTree = "<group>"; };
@@ -1623,6 +1626,8 @@
 				4C8F0C6D1FCEE9B900BE157F /* MPPluginConstants.m */,
 				4CA78BFE1FD58C92003C8560 /* MPPluginRepository.h */,
 				4CA78BFF1FD58C92003C8560 /* MPPluginRepository.m */,
+				4CAD338D205169D30068587E /* MPPluginRepositoryItem.h */,
+				4CAD338E205169D30068587E /* MPPluginRepositoryItem.m */,
 				4C735FBE2035FCBF00708D53 /* MPPluginEntryActionContext.h */,
 				4C735FBF2035FCBF00708D53 /* MPPluginEntryActionContext.m */,
 			);
@@ -1953,6 +1958,7 @@
 				4C6F228919A4A7F90012310C /* MPAutotypeClear.m in Sources */,
 				4C0B038C18E36DA400B9F9C9 /* MPFixAutotypeWindowController.m in Sources */,
 				4C7679BF1D76D6D8001F33D6 /* MPErrorRecoveryAttempter.m in Sources */,
+				4CAD338F205169D30068587E /* MPPluginRepositoryItem.m in Sources */,
 				4C9BFFFB1FD19B5400264B16 /* MPPrettyPasswordTransformer.m in Sources */,
 				4CA0F3ED1A3074B50067C0E5 /* MPWindowTitleComboBoxDelegate.m in Sources */,
 				4CF78064176E75AD0032EE71 /* MPIntegrationSettingsController.m in Sources */,

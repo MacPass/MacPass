@@ -8,39 +8,7 @@
 
 #import "MPPluginRepository.h"
 #import "MPConstants.h"
-
-NSString *const MPPluginItemNameKey = @"name";
-NSString *const MPPluginItemDescriptionKey = @"description";
-NSString *const MPPluginItemDownloadURLKey = @"download";
-NSString *const MPPluginItemSourceURLKey = @"source";
-NSString *const MPPluginItemVersionKey = @"version";
-
-@implementation MPPluginRespositoryItem
-
-@dynamic valid;
-
-+ (instancetype)pluginItemFromDictionary:(NSDictionary *)dict {
-  return [[MPPluginRespositoryItem alloc] initWithDictionary:dict];
-}
-
-- (instancetype)initWithDictionary:(NSDictionary *)dict {
-  self = [super init];
-  if(self) {
-    self.name = dict[MPPluginItemNameKey];
-    self.descriptionText = dict[MPPluginItemDescriptionKey];
-    self.downloadURL = [NSURL URLWithString:dict[MPPluginItemDownloadURLKey]];
-    self.sourceURL = [NSURL URLWithString:dict[MPPluginItemSourceURLKey]];
-    self.version = dict[MPPluginItemVersionKey];
-  }
-  return self;
-}
-
-- (BOOL)isVaid {
-  /* name and download seems ok */
-  return (self.name.length > 0 && self.downloadURL);
-}
-
-@end
+#import "MPPluginRepositoryItem.h"
 
 @implementation MPPluginRepository
 
@@ -60,7 +28,7 @@ NSString *const MPPluginItemVersionKey = @"version";
   return self;
 }
 
-- (NSArray<MPPluginRespositoryItem *> *)availablePlugins {
+- (NSArray<MPPluginRepositoryItem *> *)availablePlugins {
   NSString *urlString = NSBundle.mainBundle.infoDictionary[MPBundlePluginRepositoryURLKey];
   if(!urlString) {
     return @[];
@@ -83,7 +51,7 @@ NSString *const MPPluginItemVersionKey = @"version";
     if(![item isKindOfClass:NSDictionary.class]) {
       continue;
     }
-    MPPluginRespositoryItem *pluginItem = [MPPluginRespositoryItem pluginItemFromDictionary:item];
+    MPPluginRepositoryItem *pluginItem = [MPPluginRepositoryItem pluginItemFromDictionary:item];
     if(pluginItem.isVaid) {
       [items addObject:pluginItem];
     }
