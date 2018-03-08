@@ -118,8 +118,7 @@ static void MPContextmenuHelperBeginSection(NSMutableArray *items) {
     if(insertAutotype) {
       NSMenuItem *performAutotype = [[NSMenuItem alloc] initWithTitle:NSLocalizedString(@"PERFORM_AUTOTYPE_FOR_ENTRY", @"Menu item to perform autotype with the selected entry")
                                                                action:[MPActionHelper actionOfType:MPActionPerformAutotypeForSelectedEntry]
-                                                        keyEquivalent:@"a"];
-      performAutotype.keyEquivalentModifierMask = (performAutotype.keyEquivalentModifierMask | NSControlKeyMask);
+                                                        keyEquivalent:@"t"];
       [items addObject:performAutotype];
     }
     if(insertHistory) {
