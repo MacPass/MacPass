@@ -35,6 +35,7 @@
 @property (weak) IBOutlet NSButton *notesButton;
 @property (weak) IBOutlet NSButton *duplicatePasswordsButton;
 @property (weak) IBOutlet NSPopUpButton *specialFilterPopUpButton;
+@property (weak) IBOutlet NSButton *everywhereButton;
 
 - (void)registerNotificationsForDocument:(MPDocument *)document;
 

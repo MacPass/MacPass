@@ -85,8 +85,8 @@ typedef NS_ENUM(NSUInteger, MPContextTab) {
   [self.view bind:NSSelectedIndexBinding toObject:self withKeyPath:NSStringFromSelector(@selector(activeTab)) options:nil];
   
   /* Setup Filter Bar buttons and menu */
-  NSInteger tags[] = { MPEntrySearchTitles, MPEntrySearchUsernames, MPEntrySearchPasswords, MPEntrySearchNotes, MPEntrySearchUrls };
-  NSArray<NSControl *> *buttons  = @[self.titleButton, self.usernameButton, self.passwordButton, self.notesButton, self.urlButton ];
+  NSInteger tags[] = { MPEntrySearchTitles, MPEntrySearchUsernames, MPEntrySearchPasswords, MPEntrySearchNotes, MPEntrySearchUrls, MPEntrySearchAllAttributes };
+  NSArray<NSControl *> *buttons  = @[self.titleButton, self.usernameButton, self.passwordButton, self.notesButton, self.urlButton, self.everywhereButton ];
   for(NSUInteger iIndex = 0; iIndex < buttons.count; iIndex++) {
     buttons[iIndex].action = @selector(toggleSearchFlags:);
     buttons[iIndex].tag = tags[iIndex];
@@ -103,7 +103,7 @@ typedef NS_ENUM(NSUInteger, MPContextTab) {
     item.tag = specialTags[iIndex];
     [specialMenu addItem:item];
   }
-  [self.specialFilterPopUpButton setMenu:specialMenu];
+  self.specialFilterPopUpButton.menu = specialMenu;
   [self _updateFilterButtons];
 }
 
@@ -154,8 +154,9 @@ typedef NS_ENUM(NSUInteger, MPContextTab) {
   self.titleButton.state = HNHUIStateForBool(MPIsFlagSetInOptions(MPEntrySearchTitles, currentFlags));
   self.urlButton.state = HNHUIStateForBool(MPIsFlagSetInOptions(MPEntrySearchUrls, currentFlags));
   self.usernameButton.state = HNHUIStateForBool(MPIsFlagSetInOptions(MPEntrySearchUsernames, currentFlags));
+  self.everywhereButton.state = HNHUIStateForBool(MPIsFlagSetInOptions(MPEntrySearchAllAttributes, currentFlags));
   NSInteger selectedTag = MPEntrySearchNone;
-  for(NSMenuItem *item in [[self.specialFilterPopUpButton menu] itemArray]) {
+  for(NSMenuItem *item in self.specialFilterPopUpButton.menu.itemArray) {
     MPEntrySearchFlags flag = item.tag;
     if(flag == MPEntrySearchNone) {
       item.state = NSOffState;

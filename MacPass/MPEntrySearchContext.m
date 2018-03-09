@@ -34,7 +34,7 @@
 }
 
 + (instancetype)userContext {
-  NSData *data = [[NSUserDefaults standardUserDefaults] dataForKey:kMPSettingsKeyEntrySearchFilterContext];
+  NSData *data = [NSUserDefaults.standardUserDefaults dataForKey:kMPSettingsKeyEntrySearchFilterContext];
   if(data) {
     return [NSKeyedUnarchiver unarchiveObjectWithData:data];
   }
@@ -64,7 +64,7 @@
 
 - (instancetype)initWithCoder:(NSCoder *)aDecoder {
   self = [self init];
-  self.searchString = [aDecoder decodeObjectOfClass:[NSString class] forKey:NSStringFromSelector(@selector(searchString))];
+  self.searchString = [aDecoder decodeObjectOfClass:NSString.class forKey:NSStringFromSelector(@selector(searchString))];
   self.searchFlags = [aDecoder decodeIntegerForKey:NSStringFromSelector(@selector(searchFlags))];
   return self;
 }
@@ -90,7 +90,7 @@
 
 - (void )_updatePreferences {
   NSData *myData = [NSKeyedArchiver archivedDataWithRootObject:self];
-  [[NSUserDefaults standardUserDefaults] setObject:myData forKey:kMPSettingsKeyEntrySearchFilterContext];
-  [[NSUserDefaults standardUserDefaults] synchronize];
+  [NSUserDefaults.standardUserDefaults setObject:myData forKey:kMPSettingsKeyEntrySearchFilterContext];
+  [NSUserDefaults.standardUserDefaults synchronize];
 }
 @end
