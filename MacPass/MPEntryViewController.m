@@ -686,10 +686,10 @@ NSString *const _MPTableSecurCellView = @"PasswordCell";
   KPKEntry *selectedEntry = nodes.count == 1 ? [nodes.firstObject asEntry] : nil;
   NSString *expandedURL = [selectedEntry.url kpk_finalValueForEntry:selectedEntry];
   if(expandedURL.length > 0) {
-    NSURL *webURL = [NSURL URLWithString:[expandedURL stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]];
+    NSURL *webURL = [NSURL URLWithString:expandedURL];
     NSString *scheme = webURL.scheme;
     if(!scheme) {
-      webURL = [NSURL URLWithString:[NSString stringWithFormat:@"http://%@", [expandedURL stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]]];
+      webURL = [NSURL URLWithString:[NSString stringWithFormat:@"http://%@", expandedURL]];
     }
     
     NSString *browserBundleID = [NSUserDefaults.standardUserDefaults stringForKey:kMPSettingsKeyBrowserBundleId];
