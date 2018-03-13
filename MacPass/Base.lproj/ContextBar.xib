@@ -181,6 +181,7 @@
                                     <constraint firstItem="Rf3-f0-SSx" firstAttribute="centerY" secondItem="DXf-SC-gVG" secondAttribute="centerY" id="rla-Pu-8db"/>
                                     <constraint firstItem="szx-Hx-OrV" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="DXf-SC-gVG" secondAttribute="leading" constant="20" symbolic="YES" id="s8f-1l-4Yy"/>
                                     <constraint firstAttribute="centerY" secondItem="szx-Hx-OrV" secondAttribute="centerY" id="sG5-pc-EzQ"/>
+                                    <constraint firstItem="szx-Hx-OrV" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="Rf3-f0-SSx" secondAttribute="trailing" constant="8" symbolic="YES" id="xBZ-7v-80d"/>
                                 </constraints>
                             </customView>
                         </subviews>
@@ -234,6 +235,7 @@
                                 </subviews>
                                 <constraints>
                                     <constraint firstAttribute="centerY" secondItem="pqx-su-vAh" secondAttribute="centerY" id="7T6-QP-uaM"/>
+                                    <constraint firstItem="JNP-Sd-Zh1" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="hMK-l1-qew" secondAttribute="trailing" constant="8" symbolic="YES" id="Kqm-pr-v9M"/>
                                     <constraint firstItem="pqx-su-vAh" firstAttribute="leading" secondItem="JNP-Sd-Zh1" secondAttribute="trailing" constant="8" symbolic="YES" id="M88-oZ-tNf"/>
                                     <constraint firstItem="JNP-Sd-Zh1" firstAttribute="centerY" secondItem="S8L-rB-h0h" secondAttribute="centerY" id="SpB-ks-AjH"/>
                                     <constraint firstItem="hMK-l1-qew" firstAttribute="centerY" secondItem="S8L-rB-h0h" secondAttribute="centerY" id="Yfd-x7-x9e"/>
