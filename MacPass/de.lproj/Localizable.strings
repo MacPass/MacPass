@@ -1,3 +1,6 @@
+/* Count of characters remaining in pickchars dialog */
+"%ld_CHARACTERS_TO_PICK_REMAINING" = "%ld Zeichen zur Auswahl übrig";
+
 /* Display format for days. Should contain a long decimal placeholder! */
 "%ld_DAYS" = "%ld Tage";
 
@@ -21,6 +24,9 @@
 
 /* Toolbar item with action menu */
 "ACTION" = "Aktion";
+
+/* Menu displayed for adding special custom keys */
+"ADD_CUSTOM_FIELD_CONTEXT_MENU" = "Feld hinzufügen Menü";
 
 /* Action to add an entry via template */
 "ADD_TREMPLATE_ENTRY" = "Vorgabeeintrag erstellen";
@@ -168,7 +174,7 @@
    Toolbar item delete item */
 "DELETE" = "Löschen";
 
-/* No comment provided by engineer. */
+/* Delete Entry */
 "DELETE_ENTRY" = "Eintrag löschen";
 
 /* Delete Group */
@@ -208,6 +214,12 @@
 /* Message text for the enforce password change alert */
 "ENFORCE_PASSWORD_CHANGE_ALERT_TITLE" = "Das Password der Datenbank ist abgelaufen!";
 
+/* Group row for entry attributes */
+"ENTRY_CUSTOM_ATTRIBUTES" = "Benutzerdefinierte Werte";
+
+/* Group row for entry attributes */
+"ENTRY_DEFAULT_ATTRIBUTES" = "Standardwerte";
+
 /* Keyfile not valid */
 "ERROR_INVALID_KEYFILE" = "Schlüsseldatei ist ungültig";
 
@@ -241,8 +253,8 @@
 /* External file change strategy option: Keep local file an ignore external changes */
 "FILE_CHANGE_STRATEGY_KEEP_MINE" = "Behalte meine Version ohne Änderungen";
 
-/* External file change strategy option: Merge external changes into local file.
-   Merge changes into file! */
+/* Button in dialog to merge changes into file!
+   External file change strategy option: Merge external changes into local file. */
 "FILE_CHANGE_STRATEGY_MERGE" = "Inhalte zusammenführen";
 
 /* External file change strategy option: Use the changed file and discard local changes */
@@ -276,10 +288,10 @@
 /* Feature only available in kdbx databases */
 "KDBX_ONLY_FEATURE" = "Funktion nur in KDBX-Datenbank verfügbar";
 
-/* Ignore the changes to an open file! */
+/* Button in dialog to ignore the changes to an open file! */
 "KEEP_MINE_DISCARD_OTHER" = "Behalte meine, verwerfe andere!";
 
-/* Reopen the file! */
+/* Button in dialog to reopen the file! */
 "KEEP_OTHER_DISCARD_MINE" = "Behalte andere, verwerfe meine!";
 
 /* Do not install the plugin */
@@ -316,14 +328,16 @@
 /* Name for a newly created Database */
 "NEW_DATABASE" = "Datenbank";
 
-/* Menu item to create a new entry
+/* Action name for a newly created entry
+   Menu item to create a new entry
    Toolbar item new entry */
 "NEW_ENTRY" = "Neuer Eintrag";
 
 /* Submenu to add an entry via template */
 "NEW_ENTRY_WITH_TEMPLATE_%@" = "Neuer Eintrag aus Vorlage %@";
 
-/* Menu item to create a new group
+/* Action name for a newly created group
+   Menu item to create a new group
    Toolbar item new group */
 "NEW_GROUP" = "Neue Gruppe";
 
@@ -370,6 +384,9 @@
 /* Open button in the open panel to import an XML file */
 "OPEN_BUTTON_IMPORT_XML_OPEN_PANEL" = "Importieren";
 
+/* Action button in Notification to open a document */
+"OPEN_DOCUMENT" = "Datei öffnen";
+
 /* Menu item to open the URL with the default application */
 "OPEN_URL" = "Adresse öffnen";
 
@@ -404,6 +421,18 @@
 
 /* Menu item to perform autotype with the selected entry */
 "PERFORM_AUTOTYPE_FOR_ENTRY" = "Auto-Type ausführen";
+
+/* Info about how many character has to pick in pickchar dialog */
+"PICKCHAR_INFO_MESSAGE_PICK_CHARACTERS_%ld" = "Bitte wählen Sie %ld Zeichen aus";
+
+/* Window displayed to the user to pick an amout of characters */
+"PICKCHAR_WINDOW_TITLE" = "Zeichen auswählen";
+
+/* Count of picked characters in pickchars dialog if no limit is set */
+"PICKED_%ld_CHARACTERS" = "%ld Zeichen ausgewählt";
+
+/* Window displayed to the user to pick an amout of characters */
+"PICKFIELD_WINDOW_TITLE" = "Wert auswählen";
 
 /* The plugin could not be initalized */
 "PLUGIN_ERROR_INTILIZATION_FAILED" = "Das Plugin konnten nicht korrekt initialisiert werden";
@@ -496,14 +525,14 @@
 /* Menu displayed as popup selection for search options */
 "SELECT_FILTER_WITH_DOTS" = "Auswählen…";
 
-/* Set the selection as default file change strategy! */
+/* Checkbox in dialog to set the selection as default file change strategy! */
 "SET_AS_DEFAULT_FILE_CHANGE_STRATEGY" = "Die gewählte Strategie immer verwenden. Sie können die Strategie jederzeit in den Einstellungen anpassen.";
 
 /* (No Comment) */
 "SHORT_FILE_CHANGE_STRATEGY_ASK" = "Nachfragen";
 
 /* Menu item to show the history of the selected entry
-   Toolbar item to toggel history display */
+   Toolbar item to toggle history display */
 "SHOW_HISTORY" = "Historie anzeigen";
 
 /* Menu item to show the reference builder in a text view's context menu */
@@ -517,6 +546,9 @@
 
 /* preset to expire tomorrow */
 "TOMORROW" = "Morgen";
+
+/* Toolbar item to perform autotype */
+"TOOLBAR_PERFORM_AUTOTYPE_FOR_ENTRY" = "Autotype";
 
 /* Move Entry to Trash */
 "TRASH_ENTRY" = "Eintrag löschen";
