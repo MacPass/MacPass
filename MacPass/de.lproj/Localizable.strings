@@ -32,7 +32,7 @@
 "ADD_TREMPLATE_ENTRY" = "Vorgabeeintrag erstellen";
 
 /* Alert informative text when plugins or their settings change and require a restart */
-"ALERT_INFORMATIVE_TEXT_PLUGINS_CHANGED_SUGGEST_RESTART" = "Änderungen zu den globalen Einstellungen von Plugins treten erst nach einem Neustadt in Kraft. Soll MacPass jetzt neu gestartet werden?";
+"ALERT_INFORMATIVE_TEXT_PLUGINS_CHANGED_SUGGEST_RESTART" = "Änderungen zu den globalen Einstellungen von Plugins treten erst nach einem Neustart in Kraft. Soll MacPass jetzt neu gestartet werden?";
 
 /* Alert informative text to ask the user if he really want to uninstall the plugin */
 "ALERT_INFORMATIVE_TEXT_REALLY_UNINSTALL_PLUGIN" = "Das Plugin wird in den Papierkorb verschoben";
@@ -54,10 +54,10 @@
 "AUTOTYPE_INHERIT" = "Autotype Einstellungen vererben";
 
 /* Disable autotype menu item */
-"AUTOTYPE_NO" = "Autotype deaktiveren";
+"AUTOTYPE_NO" = "Autotype deaktivieren";
 
 /* Notification: Autotype failed, no documents are open */
-"AUTOTYPE_OVERLAY_NO_DOCUMENTS" = "Bitte öffnen Sie eine Datei, um Global Autotype zu nutzen!";
+"AUTOTYPE_OVERLAY_NO_DOCUMENTS" = "Bitte öffnen Sie eine Datei, um Global-Autotype zu nutzen!";
 
 /* Noticiation: Autotype failed to find a match for %@ (string placeholder) */
 "AUTOTYPE_OVERLAY_NO_MATCH_FOR_%@" = "Kein Treffer für %@!";
@@ -69,23 +69,23 @@
 "AUTOTYPE_YES" = "Autotype aktivieren";
 
 /* Sucessfully merged external changes */
-"AUTO_MERGE_NOTIFICATION_TEXT" = "Daten wurden erfolgreich automatische synchronisiert";
+"AUTO_MERGE_NOTIFICATION_TEXT" = "Daten wurden erfolgreich automatisch synchronisiert";
 
 /* Cancel */
 "CANCEL" = "Abbrechen";
 
 /* Menu item in the database outline context menu to change the database name */
-"CHANGE_DATABASE_NAME" = "Name der Datenbank ändern";
+"CHANGE_DATABASE_NAME" = "Namen der Datenbank ändern";
 
 /* (No Comment) */
-"CHANGE_FORMAT" = "Als KDBX speichern";
+"CHANGE_FORMAT" = "Als .KDBX speichern";
 
 /* Button to postpone the password change */
 "CHANGE_LATER" = "Später Ändern";
 
 /* Button to show the password change dialog
    Single button to show the password change dialog */
-"CHANGE_PASSWORD_WITH_DOTS" = "Password ändern …";
+"CHANGE_PASSWORD_WITH_DOTS" = "Passwort ändern …";
 
 /* Menu item in the database outline context menu to change the trash group */
 "CHANGE_TRASH_GROUP" = "Papierkorb-Gruppe ändern";
@@ -103,7 +103,7 @@
 "COPIED_FIELD_%@" = "%@ kopiert!";
 
 /* Password was copied to the pasteboard */
-"COPIED_PASSWORD" = "Password kopiert!";
+"COPIED_PASSWORD" = "Passwort kopiert!";
 
 /* URL was copied to the pasteboard */
 "COPIED_URL" = "Adresse kopiert!";
@@ -144,7 +144,7 @@
 "CUSTOM_ATTRIBUTE" = "Spezielle Eigenschaften";
 
 /* Title for menu for custom search filters */
-"CUSTOM_SEARCH_FILTER_MENU" = "Spezielle Suchefilter…";
+"CUSTOM_SEARCH_FILTER_MENU" = "Spezielle Suchfilter…";
 
 /* Default display name for KDB databases */
 "DATABASE" = "Datenbank";
@@ -165,7 +165,7 @@
 "DEFAULT_GROUP_NAME" = "Neue Gruppe";
 
 /* Default window title for a new window association */
-"DEFAULT_WINDOW_TITLE" = "Fenstertitle";
+"DEFAULT_WINDOW_TITLE" = "Fenstertitel";
 
 /* Menu item in the database outline context menu to delete the node from the trash
    Menu item to delete an entry
@@ -187,7 +187,7 @@
 "DELETE_TRASHED_GROUP" = "Gelöschte Gruppe entfernen";
 
 /* No comment provided by engineer. */
-"DOCUMENT_AUTOTYPE_CORRUPTION_WARNING" = "Bitte Autotypekorrektur durchführen!";
+"DOCUMENT_AUTOTYPE_CORRUPTION_WARNING" = "Bitte Autotype-korrektur durchführen!";
 
 /* Action name for duplicating entries */
 "DUPLICATE_ENTRIES_%ld" = "Einträge duplizieren %ld";
@@ -209,10 +209,10 @@
 "EMPTY_TRASH" = "Papierkorb leeren";
 
 /* Informative text for the enforce password change alert */
-"ENFORCE_PASSWORD_CHANGE_ALERT_DESCRIPTION" = "Das Speichern der Datenbank ist erst wieder möglich, wenn das Password und/oder der Schlüssel geändert wurden.";
+"ENFORCE_PASSWORD_CHANGE_ALERT_DESCRIPTION" = "Das Speichern der Datenbank ist erst wieder möglich, wenn das Passwort und/oder der Schlüssel geändert wurden.";
 
 /* Message text for the enforce password change alert */
-"ENFORCE_PASSWORD_CHANGE_ALERT_TITLE" = "Das Password der Datenbank ist abgelaufen!";
+"ENFORCE_PASSWORD_CHANGE_ALERT_TITLE" = "Das Passwort der Datenbank ist abgelaufen!";
 
 /* Group row for entry attributes */
 "ENTRY_CUSTOM_ATTRIBUTES" = "Benutzerdefinierte Werte";
@@ -286,7 +286,7 @@
 "JUST_NOW" = "Gerade eben";
 
 /* Feature only available in kdbx databases */
-"KDBX_ONLY_FEATURE" = "Funktion nur in KDBX-Datenbank verfügbar";
+"KDBX_ONLY_FEATURE" = "Funktion nur in .KDBX-Datenbank verfügbar";
 
 /* Button in dialog to ignore the changes to an open file! */
 "KEEP_MINE_DISCARD_OTHER" = "Behalte meine, verwerfe andere!";
@@ -313,17 +313,17 @@
 "MESSAGE_ADD_PLUGIN_OPEN_PANEL" = "Bitte wählen Sie das Plugin aus, welches installiert werden soll";
 
 /* Message in the open panel to import an XML file */
-"MESSAGE_XML_OPEN_PANEL" = "Bitte wählen Sie die XML-Datei aus, die importiert werden soll.";
+"MESSAGE_XML_OPEN_PANEL" = "Bitte wählen Sie die .XML-Datei aus, die importiert werden soll.";
 
 /* Menu item to toggle display of modified date column in entry table
    Modification date column title */
 "MODIFIED" = "Verändert";
 
 /* Action title for moving an entry via drag and drop */
-"MOVE_ENTRY" = "Eintrage bewegen";
+"MOVE_ENTRY" = "Einträge bewegen";
 
 /* Action title for moving a group via drag and drop */
-"MOVE_GROUP" = "Gruppe bewegem";
+"MOVE_GROUP" = "Gruppe bewegen";
 
 /* Name for a newly created Database */
 "NEW_DATABASE" = "Datenbank";
@@ -361,7 +361,7 @@
 "NO_TEMPLATE_GROUP" = "Keine Vorlagen";
 
 /* Ok button */
-"OK" = "Ok";
+"OK" = "OK";
 
 /* preset to expire after one montch from now */
 "ONE_MONTH" = "in einem Monat";
@@ -373,7 +373,7 @@
 "ONE_WEEK_AGO" = "Vor einer Woche";
 
 /* preset to expire after one year from now */
-"ONE_YEAR" = "in enem Jahr";
+"ONE_YEAR" = "in einem Jahr";
 
 /* Open button in the open panel to add attachments to an entry */
 "OPEN_BUTTON_ADD_ATTACHMENT_OPEN_PANEL" = "Hinzufügen";
@@ -405,7 +405,7 @@
 "PASSWORD_GENERATOR_RESET_ENTRY_DEFAULTS" = "Zurücksetzen";
 
 /* Button to set the defaults of the password generator */
-"PASSWORD_GENERATOR_SET_DEFAULTS" = "Als Standard festelgen";
+"PASSWORD_GENERATOR_SET_DEFAULTS" = "Als Standard festlegen";
 
 /* Placeholder for the password field to aks for password
    Placeholder in the unlock-password input field if password is enabled */
@@ -420,7 +420,7 @@
 "PASSWORD_INPUT_REPEAT_PASSWORD" = "Passwort wiederholen";
 
 /* Menu item to perform autotype with the selected entry */
-"PERFORM_AUTOTYPE_FOR_ENTRY" = "Auto-Type ausführen";
+"PERFORM_AUTOTYPE_FOR_ENTRY" = "Autotype ausführen";
 
 /* Info about how many character has to pick in pickchar dialog */
 "PICKCHAR_INFO_MESSAGE_PICK_CHARACTERS_%ld" = "Bitte wählen Sie %ld Zeichen aus";
@@ -462,13 +462,13 @@
 "PREVIEW" = "Vorschau";
 
 /* Recent searches menu item */
-"RECENT_SEARCHES" = "Letze Suchanfragen";
+"RECENT_SEARCHES" = "Letzte Suchanfragen";
 
 /* Informative text for the recommend password change alert */
-"RECOMMEND_PASSWORD_CHANGE_ALERT_DESCRIPTION" = "Sie sollten das Password und/oder den Schlüssel ändern.";
+"RECOMMEND_PASSWORD_CHANGE_ALERT_DESCRIPTION" = "Sie sollten das Passwort und/oder den Schlüssel ändern.";
 
 /* Message text for the recommend password change alert */
-"RECOMMEND_PASSWORD_CHANGE_ALERT_TITLE" = "Bitte ändern sie das Password der Datenbank!";
+"RECOMMEND_PASSWORD_CHANGE_ALERT_TITLE" = "Bitte ändern sie das Passwort der Datenbank!";
 
 /* Restart */
 "RESTART" = "Neustarten";
@@ -484,7 +484,7 @@
 "SAVE_KEYFILE" = "Schlüsseldatei speichern";
 
 /* Save file menu item title when save will prompt for a location to save or ask for a password/key */
-"SAVE_WITH_DOTS" = "Speichern…";
+"SAVE_WITH_DOTS" = "Speichern …";
 
 /* Search input in Toolbar */
 "SEARCH" = "Suche";
@@ -496,7 +496,7 @@
 "SEARCH_EXPIRED_ENTRIES" = "Abgelaufen";
 
 /* Inherit search settings menu item */
-"SEARCH_INHERIT" = "Sucheeinstellung vererben";
+"SEARCH_INHERIT" = "Sucheinstellung vererben";
 
 /* Disable search menu item */
 "SEARCH_NO" = "Nicht durchsuchbar";
@@ -514,7 +514,7 @@
 "SELECT_DATE_PRESET" = "Datumvorgabe wählen …";
 
 /* Message on the open panel for selecting which browser to use for opening URLs */
-"SELECT_DEFAULT_BROWSER_OPEN_PANEL_MESSAGE" = "Bitte wählen Sie einen Web-Browser, mit dem URLs geöffnet werden sollen";
+"SELECT_DEFAULT_BROWSER_OPEN_PANEL_MESSAGE" = "Bitte wählen Sie einen Webbrowser, mit dem URLs geöffnet werden sollen";
 
 /* Label for the select browser button on the open panel for selecting which browser to use for opening URLs */
 "SELECT_DEFAULT_BROWSER_OPEN_PANEL_SELECT_BUTTON" = "Auswählen";
@@ -523,7 +523,7 @@
 "SELECT_FILE_TO_MERGE" = "Datei für Synchronisation auswählen";
 
 /* Menu displayed as popup selection for search options */
-"SELECT_FILTER_WITH_DOTS" = "Auswählen…";
+"SELECT_FILTER_WITH_DOTS" = "Auswählen …";
 
 /* Checkbox in dialog to set the selection as default file change strategy! */
 "SET_AS_DEFAULT_FILE_CHANGE_STRATEGY" = "Die gewählte Strategie immer verwenden. Sie können die Strategie jederzeit in den Einstellungen anpassen.";
@@ -536,7 +536,7 @@
 "SHOW_HISTORY" = "Historie anzeigen";
 
 /* Menu item to show the reference builder in a text view's context menu */
-"SHOW_REFERENCE_BUILDER" = "Referenz einfügen…";
+"SHOW_REFERENCE_BUILDER" = "Referenz einfügen …";
 
 /* Displayed name when title field was copied
    Menu item to toggle display of title column in entry table
@@ -596,28 +596,28 @@
 "WARNING_NO_PASSWORD_OR_KEYFILE" = "Kein Password und/oder Schlüsseldatei festgelegt!";
 
 /* Informative Text displayed when clearing the Trash */
-"WARNING_ON_DELETE_TRASHED_NODE_DESCRIPTION" = "Die gewählten Elemente werden dauerhauft aus dem Papierkorb entfernt.";
+"WARNING_ON_DELETE_TRASHED_NODE_DESCRIPTION" = "Die gewählten Elemente werden dauerhaft aus dem Papierkorb entfernt.";
 
 /* Message text for the alert displayed when deleting a node */
-"WARNING_ON_DELETE_TRASHED_NODE_TITLE" = "Gelöschtes Element entferen.";
+"WARNING_ON_DELETE_TRASHED_NODE_TITLE" = "Gelöschtes Element entfernen.";
 
 /* Informative Text displayed when clearing the Trash */
-"WARNING_ON_EMPTY_TRASH_DESCRIPTION" = "Das Leeren des Papierkorbs kann nicht rückgängig gemacht werdern.";
+"WARNING_ON_EMPTY_TRASH_DESCRIPTION" = "Das Leeren des Papierkorbs kann nicht rückgängig gemacht werden.";
 
 /* Message text for the alert displayed when clearing the Trash */
 "WARNING_ON_EMPTY_TRASH_TITLE" = "Papierkorb leeren?";
 
 /* (No Comment) */
-"WARNING_ON_LOSSY_SAVE" = "Speichern als KDB-Datei führt zu Datenverlust.";
+"WARNING_ON_LOSSY_SAVE" = "Speichern als .KDB-Datei führt zu Datenverlust.";
 
 /* (No Comment) */
-"WARNING_ON_LOSSY_SAVE_DESCRIPTION" = "Das KDB-Format kann nicht alle aktuellen Daten speichern";
+"WARNING_ON_LOSSY_SAVE_DESCRIPTION" = "Das .KDB-Format kann nicht alle aktuellen Daten speichern";
 
 /* No comment provided by engineer. */
-"WARNING_ON_SAVE_NO_PASSWORD_OR_KEY_SET" = "Weder Password noch Schlüsseldatei sind festgelegt!";
+"WARNING_ON_SAVE_NO_PASSWORD_OR_KEY_SET" = "Weder Passwort noch Schlüsseldatei sind festgelegt!";
 
 /* No comment provided by engineer. */
-"WARNING_ON_SAVE_NO_PASSWORD_OR_KEY_SET_SUGGESTION" = "Bitte vergeben Sie ein Password und/oder einen Schlüssel. Sofern Sie abbrechen, werden Ihre Änderungen rückgängig gemacht und die Datei gesperrt.";
+"WARNING_ON_SAVE_NO_PASSWORD_OR_KEY_SET_SUGGESTION" = "Bitte vergeben Sie ein Passwort und/oder einen Schlüssel. Sofern Sie abbrechen, werden Ihre Änderungen rückgängig gemacht und die Datei gesperrt.";
 
 /* (No Comment) */
 "WINDOWS" = "Windows";
