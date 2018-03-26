@@ -73,14 +73,14 @@
   item.image = [NSImage imageNamed:NSImageNameActionTemplate];
   [menu addItem:item];
   /* Quicklook */
-  [menu addItemWithTitle:NSLocalizedString(@"PREVIEW", "") action:@selector(toggleQuicklookPreview:) keyEquivalent:@""];
+  [menu addItemWithTitle:NSLocalizedString(@"PREVIEW", "Menu item to preview the selected attached file.") action:@selector(toggleQuicklookPreview:) keyEquivalent:@""];
   /* Save */
-  item = [[NSMenuItem alloc] initWithTitle:NSLocalizedString(@"SAVE", "") action:@selector(saveAttachment:) keyEquivalent:@""];
+  item = [[NSMenuItem alloc] initWithTitle:NSLocalizedString(@"SAVE", "Menu item to save the selected attached file.") action:@selector(saveAttachment:) keyEquivalent:@""];
   item.target = self.viewController;
   [menu addItem:item];
   /* Remove */
   [menu addItem:[NSMenuItem separatorItem]];
-  item = [[NSMenuItem alloc] initWithTitle:NSLocalizedString(@"DELETE", "") action:@selector(removeAttachment:) keyEquivalent:@""];
+  item = [[NSMenuItem alloc] initWithTitle:NSLocalizedString(@"DELETE", "Menu item to delete the selected attached file") action:@selector(removeAttachment:) keyEquivalent:@""];
   item.target = self.viewController;
   [menu addItem:item];
   

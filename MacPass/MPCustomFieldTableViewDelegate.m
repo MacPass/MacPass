@@ -23,36 +23,71 @@
 #import "MPCustomFieldTableViewDelegate.h"
 #import "MPCustomFieldTableCellView.h"
 #import "MPEntryInspectorViewController.h"
-
+#import "HNHUi/HNHUi.h"
 #import "KeePassKit/KeePassKit.h"
 
+NSInteger MPCustomFieldTagOffset = 50000;
+
+NSInteger MPCustomFieldIndexFromTag(NSInteger tag) {
+  return MAX(-1, tag - MPCustomFieldTagOffset);
+}
+
 @implementation MPCustomFieldTableViewDelegate
+
+
+/*
+- (CGFloat)tableView:(NSTableView *)tableView heightOfRow:(NSInteger)row {
+  static NSTextFieldCell *cell;
+  static dispatch_once_t onceToken;
+  dispatch_once(&onceToken, ^{
+     cell = [[NSTextFieldCell alloc] init];
+  });
+  
+  cell.stringValue = @"Mutli!";
+  NSTableColumn *column = tableView.tableColumns.firstObject;
+  NSRect frame = NSMakeRect(0, 0, column.width, CGFLOAT_MAX);
+  return [cell cellSizeForBounds:frame].height + 38;
+}
+*/
 
 - (NSView *)tableView:(NSTableView *)tableView viewForTableColumn:(NSTableColumn *)tableColumn row:(NSInteger)row {
   MPCustomFieldTableCellView *view = [tableView makeViewWithIdentifier:@"SelectedCell" owner:tableView];
   
   [view.labelTextField bind:NSValueBinding
                    toObject:view
-                withKeyPath:[NSString stringWithFormat:@"%@.%@", NSStringFromSelector(@selector(objectValue)), NSStringFromSelector(@selector(key))]
+                withKeyPath:@"objectValue.key"
                     options:@{ NSValidatesImmediatelyBindingOption: @YES }];
   [view.valueTextField bind:NSValueBinding
                    toObject:view
-                withKeyPath:[NSString stringWithFormat:@"%@.%@", NSStringFromSelector(@selector(objectValue)), NSStringFromSelector(@selector(value))]
+                withKeyPath:@"objectValue.value"
                     options:nil];
-    
-  // TODO: Move to public KeePassKit API!
-  for(NSControl *control in @[view.labelTextField, view.valueTextField, view.removeButton ]) {
+  [view.protectedButton bind:NSValueBinding
+                    toObject:view
+                 withKeyPath:@"objectValue.isProtected"
+                     options:nil];
+  
+  [view.valueTextField bind:NSStringFromSelector(@selector(showPassword))
+                   toObject:view
+                withKeyPath:@"objectValue.isProtected"
+                    options:@{NSValueTransformerNameBindingOption: NSNegateBooleanTransformerName}];
+  
+  
+  for(NSControl *control in @[view.labelTextField, view.valueTextField, view.removeButton, view.protectedButton ]) {
     [control bind:NSEnabledBinding
          toObject:view
-      withKeyPath:[NSString stringWithFormat:@"%@.%@.%@", NSStringFromSelector(@selector(objectValue)), NSStringFromSelector(@selector(entry)), NSStringFromSelector(@selector(isHistory))]
-          options:@{NSConditionallySetsEditableBindingOption: @NO, NSValueTransformerNameBindingOption: NSNegateBooleanTransformerName}];
+      withKeyPath:@"objectValue.isEditable"
+          options:@{NSConditionallySetsEditableBindingOption: @NO }];
     
   }
+  view.valueTextField.tag = (MPCustomFieldTagOffset + row);
+  view.valueTextField.delegate = self.viewController;
+  
   view.removeButton.target = self.viewController;
   view.removeButton.action = @selector(removeCustomField:);
   view.removeButton.tag = row;
   
   view.observer = tableView.window.windowController.document;
+  
   
   return view;
 }

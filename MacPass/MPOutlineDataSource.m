@@ -141,13 +141,13 @@
     if(copyItem || (nil == self.localDraggedGroup) ) {
       draggedGroup = [draggedGroup copyWithTitle:nil options:kKPKCopyOptionNone];
       [draggedGroup addToGroup:targetGroup atIndex:index];
-      [draggedGroup.undoManager setActionName:NSLocalizedString(@"COPY_GROUP", "")];
+      [draggedGroup.undoManager setActionName:NSLocalizedString(@"COPY_GROUP", "Action title for copying a group via drag and drop")];
       return YES;
     }
     else if(self.localDraggedGroup) {
       /* Simple move */
       [self.localDraggedGroup moveToGroup:targetGroup atIndex:index];
-      [self.localDraggedGroup.undoManager setActionName:NSLocalizedString(@"MOVE_GROUP", "")];
+      [self.localDraggedGroup.undoManager setActionName:NSLocalizedString(@"MOVE_GROUP", "Action title for moving a group via drag and drop")];
       return YES;
     }
     /* Nothing valid */
@@ -157,12 +157,12 @@
     if(copyItem || (nil == self.localDraggedEntry)) {
       draggedEntry = [draggedEntry copyWithTitle:nil options:kKPKCopyOptionNone];
       [draggedEntry addToGroup:targetGroup];
-      [draggedEntry.undoManager setActionName:NSLocalizedString(@"COPY_ENTRY", "")];
+      [draggedEntry.undoManager setActionName:NSLocalizedString(@"COPY_ENTRY", "Action title for copying an entry via drag and drop")];
       return YES;
     }
     else if(self.localDraggedEntry) {
       [self.localDraggedEntry moveToGroup:targetGroup];
-      [self.localDraggedEntry.undoManager setActionName:NSLocalizedString(@"MOVE_ENTRY", "")];
+      [self.localDraggedEntry.undoManager setActionName:NSLocalizedString(@"MOVE_ENTRY", "Action title for moving an entry via drag and drop")];
       return YES;
     }
   }

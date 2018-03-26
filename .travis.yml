@@ -4,22 +4,23 @@ xcode_scheme: MacPass
 language: objective-c
 
 before_install:
-  - carthage bootstrap --platform Mac
+  - carthage bootstrap --platform macOS
+  - gem install xcpretty --no-ri --no-rdoc --no-document --quiet
 
 after_success:
   - cd ./build/Build/Products/Release
-  - zip -9r MacPass-continuous.zip MacPass.app
+  - zip -9ry MacPass-continuous.zip MacPass.app
   - cd -
   - mv ./build/Build/Products/Release/MacPass-continuous.zip .
-
 
 branches:
   only:
     - /^(?i:continuous)$/
 script:
+  - set -o pipefail
   - xcodebuild clean
   - xcodebuild test -project MacPass.xcodeproj -scheme MacPass CODE_SIGNING_REQUIRED=NO -derivedDataPath ./build
-  - xcodebuild build -configuration release -project MacPass.xcodeproj -scheme MacPass CODE_SIGNING_REQUIRED=NO -derivedDataPath ./build
+  - xcodebuild build -configuration release -project MacPass.xcodeproj -scheme MacPass CODE_SIGNING_REQUIRED=NO -derivedDataPath ./build | xcpretty -c
 
 deploy:
   skip_cleanup: true
@@ -30,5 +31,5 @@ deploy:
   overwrite: true
   on:
     tags: true
-    repo: mstarke/MacPass
+    repo: MacPass/MacPass
     branch: continuous

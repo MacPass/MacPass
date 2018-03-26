@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="12120" systemVersion="16E195" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="13529" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
     <dependencies>
         <deployment identifier="macosx"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="12120"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="13529"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
@@ -22,7 +22,7 @@
         <customView translatesAutoresizingMaskIntoConstraints="NO" id="2894">
             <rect key="frame" x="0.0" y="0.0" width="278" height="662"/>
             <subviews>
-                <imageView translatesAutoresizingMaskIntoConstraints="NO" id="2998" customClass="MPPopupImageView">
+                <imageView translatesAutoresizingMaskIntoConstraints="NO" id="2998" customClass="MPIconImageView">
                     <rect key="frame" x="20" y="620" width="32" height="32"/>
                     <constraints>
                         <constraint firstAttribute="width" constant="32" id="3027"/>
@@ -31,19 +31,19 @@
                     <imageCell key="cell" alignment="left" imageScaling="proportionallyUpOrDown" image="NSActionTemplate" id="2999"/>
                     <connections>
                         <action selector="pickIcon:" target="-2" id="6wh-Ka-Thl"/>
-                        <binding destination="-2" name="enabled" keyPath="representedObject.isHistory" id="7Z5-A7-aqg">
-                            <dictionary key="options">
-                                <string key="NSValueTransformerName">NSNegateBoolean</string>
-                            </dictionary>
-                        </binding>
                         <binding destination="-2" name="value" keyPath="representedObject.iconImage" id="agf-eg-okr">
                             <dictionary key="options">
                                 <bool key="NSConditionallySetsEnabled" value="NO"/>
                             </dictionary>
                         </binding>
+                        <binding destination="-2" name="enabled" keyPath="representedObject.isHistory" id="7Z5-A7-aqg">
+                            <dictionary key="options">
+                                <string key="NSValueTransformerName">NSNegateBoolean</string>
+                            </dictionary>
+                        </binding>
                     </connections>
                 </imageView>
-                <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="249" allowsCharacterPickerTouchBarItem="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3013">
+                <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="249" translatesAutoresizingMaskIntoConstraints="NO" id="3013">
                     <rect key="frame" x="58" y="628" width="202" height="17"/>
                     <textFieldCell key="cell" lineBreakMode="truncatingTail" truncatesLastVisibleLine="YES" allowsUndo="NO" sendsActionOnEndEditing="YES" title="Label" usesSingleLineMode="YES" id="3014">
                         <font key="font" metaFont="system"/>
@@ -82,7 +82,7 @@
                                                 <rect key="frame" x="0.0" y="0.0" width="278" height="370"/>
                                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                 <subviews>
-                                                    <textField verticalHuggingPriority="750" allowsCharacterPickerTouchBarItem="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2985">
+                                                    <textField verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="2985">
                                                         <rect key="frame" x="81" y="194" width="118" height="24"/>
                                                         <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="No Selection" id="2986">
                                                             <font key="font" metaFont="system" size="20"/>
@@ -112,7 +112,7 @@
                             <rect key="frame" x="0.0" y="371" width="278" height="241"/>
                             <autoresizingMask key="autoresizingMask"/>
                             <subviews>
-                                <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" allowsCharacterPickerTouchBarItem="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PzR-P9-3al">
+                                <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="PzR-P9-3al">
                                     <rect key="frame" x="18" y="222" width="35" height="14"/>
                                     <textFieldCell key="cell" controlSize="small" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Notes" id="hwn-UY-9Cr">
                                         <font key="font" metaFont="smallSystem"/>
@@ -126,7 +126,7 @@
                                         <rect key="frame" x="1" y="1" width="236" height="192"/>
                                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                         <subviews>
-                                            <textView importsGraphics="NO" richText="NO" allowsNonContiguousLayout="YES" smartInsertDelete="YES" id="g24-gQ-foD">
+                                            <textView importsGraphics="NO" richText="NO" verticallyResizable="YES" allowsNonContiguousLayout="YES" smartInsertDelete="YES" id="g24-gQ-foD" customClass="HNHUITextView">
                                                 <rect key="frame" x="0.0" y="0.0" width="236" height="192"/>
                                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -134,17 +134,28 @@
                                                 <size key="maxSize" width="463" height="10000000"/>
                                                 <color key="insertionPointColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                                                 <connections>
-                                                    <binding destination="-2" name="editable" keyPath="representedObject.isHistory" id="zUB-H2-SkW">
+                                                    <binding destination="-2" name="editable2" keyPath="representedObject" previousBinding="3gj-Fz-0G8" id="AI9-fU-m4Z">
+                                                        <dictionary key="options">
+                                                            <integer key="NSMultipleValuesPlaceholder" value="-1"/>
+                                                            <integer key="NSNoSelectionPlaceholder" value="-1"/>
+                                                            <integer key="NSNotApplicablePlaceholder" value="-1"/>
+                                                            <integer key="NSNullPlaceholder" value="-1"/>
+                                                            <string key="NSValueTransformerName">NSIsNotNil</string>
+                                                        </dictionary>
+                                                    </binding>
+                                                    <binding destination="-2" name="editable" keyPath="representedObject.isHistory" id="3gj-Fz-0G8">
                                                         <dictionary key="options">
                                                             <string key="NSValueTransformerName">NSNegateBoolean</string>
                                                         </dictionary>
                                                     </binding>
-                                                    <binding destination="-2" name="value" keyPath="representedObject.notes" id="E0d-ZH-Wbc">
+                                                    <binding destination="-2" name="value" keyPath="representedObject.notes" id="Xpb-G8-gXl">
                                                         <dictionary key="options">
                                                             <bool key="NSConditionallySetsEditable" value="NO"/>
                                                             <string key="NSNoSelectionPlaceholder">No Selection</string>
+                                                            <string key="NSNullPlaceholder">None</string>
                                                         </dictionary>
                                                     </binding>
+                                                    <outlet property="delegate" destination="-2" id="8oq-Ga-UQD"/>
                                                 </connections>
                                             </textView>
                                         </subviews>
@@ -167,6 +178,7 @@
                                 <constraint firstItem="PzR-P9-3al" firstAttribute="top" secondItem="3147" secondAttribute="top" constant="5" id="DqT-BF-ASp"/>
                                 <constraint firstItem="PzR-P9-3al" firstAttribute="leading" secondItem="3147" secondAttribute="leading" constant="20" symbolic="YES" id="F4y-8m-e41"/>
                                 <constraint firstAttribute="trailing" secondItem="0V7-UG-vEA" secondAttribute="trailing" constant="20" symbolic="YES" id="VyI-AI-Rmt"/>
+                                <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="PzR-P9-3al" secondAttribute="trailing" constant="20" symbolic="YES" id="WSm-cS-2N1"/>
                                 <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="100" id="gZ6-Vo-6rK"/>
                             </constraints>
                         </customView>

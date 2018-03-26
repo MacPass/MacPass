@@ -5,6 +5,20 @@
 //  Created by michael starke on 18.02.13.
 //  Copyright (c) 2013 HicknHack Software GmbH. All rights reserved.
 //
+//  This program is free software: you can redistribute it and/or modify
+//  it under the terms of the GNU General Public License as published by
+//  the Free Software Foundation, either version 3 of the License, or
+//  (at your option) any later version.
+//
+//  This program is distributed in the hope that it will be useful,
+//  but WITHOUT ANY WARRANTY; without even the implied warranty of
+//
+//  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+//  GNU General Public License for more details.
+//
+//  You should have received a copy of the GNU General Public License
+//  along with this program.  If not, see <http://www.gnu.org/licenses/>.
+//
 
 #import "MPEntryViewController.h"
 #import "MPAppDelegate.h"
@@ -37,13 +51,6 @@
 
 #define STATUS_BAR_ANIMATION_TIME 0.15
 #define EXPIRED_ENTRY_REFRESH_SECONDS 60
-
-typedef NS_ENUM(NSUInteger, MPOverlayInfoType) {
-  MPOverlayInfoPassword,
-  MPOverlayInfoUsername,
-  MPOverlayInfoURL,
-  MPOverlayInfoCustom,
-};
 
 NSString *const MPEntryTableIndexColumnIdentifier = @"MPEntryTableIndexColumnIdentifier";
 NSString *const MPEntryTableUserNameColumnIdentifier = @"MPUserNameColumnIdentifier";
@@ -98,8 +105,7 @@ NSString *const _MPTableSecurCellView = @"PasswordCell";
     _dataSource.viewController = self;
     _menuDelegate = [[MPEntryContextMenuDelegate alloc] init];
     _contextBarViewController = [[MPContextBarViewController alloc] init];
-    NSString *entriesKeyPath = [NSString stringWithFormat:@"%@.%@", NSStringFromSelector(@selector(representedObject)), NSStringFromSelector(@selector(entries))];
-    [_entryArrayController bind:NSContentBinding toObject:self withKeyPath:entriesKeyPath options:nil];
+    [self _setupEntryBindings];
   }
   return self;
 }
@@ -119,10 +125,19 @@ NSString *const _MPTableSecurCellView = @"PasswordCell";
   self.entryTable.floatsGroupRows = NO;
   [self.entryTable registerForDraggedTypes:@[KPKEntryUTI]];
   /* First responder notifications */
-  [[NSNotificationCenter defaultCenter] addObserver:self
-                                           selector:@selector(_didBecomFirstResponder:)
-                                               name:MPDidActivateViewNotification
-                                             object:_entryTable];
+  [NSNotificationCenter.defaultCenter addObserver:self
+                                         selector:@selector(_didBecomFirstResponder:)
+                                             name:MPDidActivateViewNotification
+                                           object:_entryTable];
+  
+  /*
+   NSView *clipView = self.entryTable.enclosingScrollView.contentView;
+   [NSNotificationCenter.defaultCenter addObserver:self
+   selector:@selector(_tableDidScroll:)
+   name:NSViewBoundsDidChangeNotification
+   object:clipView];
+   */
+  
   [self _setupEntryMenu];
   
   NSTableColumn *parentColumn = self.entryTable.tableColumns[0];
@@ -166,15 +181,15 @@ NSString *const _MPTableSecurCellView = @"PasswordCell";
   modifiedColumn.sortDescriptorPrototype = [NSSortDescriptor sortDescriptorWithKey:timeInfoModificationTimeKeyPath ascending:YES selector:@selector(compare:)];
   
   indexColumn.headerCell.stringValue = @"";
-  parentColumn.headerCell.stringValue = NSLocalizedString(@"GROUP", "");
-  titleColumn.headerCell.stringValue = NSLocalizedString(@"TITLE", "");
-  userNameColumn.headerCell.stringValue = NSLocalizedString(@"USERNAME", "");
-  passwordColumn.headerCell.stringValue = NSLocalizedString(@"PASSWORD", "");
-  urlColumn.headerCell.stringValue = NSLocalizedString(@"URL", "");
-  notesColumn.headerCell.stringValue = NSLocalizedString(@"NOTES", "");
-  attachmentsColumn.headerCell.stringValue = NSLocalizedString(@"ATTACHMENTS", "");
-  modifiedColumn.headerCell.stringValue = NSLocalizedString(@"MODIFIED", "");
-  historyColumn.headerCell.stringValue = NSLocalizedString(@"HISTORY", "");
+  parentColumn.headerCell.stringValue = NSLocalizedString(@"GROUP", "Group column title");
+  titleColumn.headerCell.stringValue = NSLocalizedString(@"TITLE", "Title column title");
+  userNameColumn.headerCell.stringValue = NSLocalizedString(@"USERNAME", "Username column title");
+  passwordColumn.headerCell.stringValue = NSLocalizedString(@"PASSWORD", "Password column title");
+  urlColumn.headerCell.stringValue = NSLocalizedString(@"URL", "Url column title");
+  notesColumn.headerCell.stringValue = NSLocalizedString(@"NOTES", "Notes column title");
+  attachmentsColumn.headerCell.stringValue = NSLocalizedString(@"ATTACHMENTS", "Attachments column title (shows counts)");
+  modifiedColumn.headerCell.stringValue = NSLocalizedString(@"MODIFIED", "Modification date column title");
+  historyColumn.headerCell.stringValue = NSLocalizedString(@"HISTORY", "History count column title");
   
   [self.entryTable bind:NSContentBinding toObject:self.entryArrayController withKeyPath:NSStringFromSelector(@selector(arrangedObjects)) options:nil];
   [self.entryTable bind:NSSortDescriptorsBinding toObject:self.entryArrayController withKeyPath:NSStringFromSelector(@selector(sortDescriptors)) options:nil];
@@ -197,51 +212,40 @@ NSString *const _MPTableSecurCellView = @"PasswordCell";
 }
 
 - (void)registerNotificationsForDocument:(MPDocument *)document {
-  [[NSNotificationCenter defaultCenter] addObserver:self
-                                           selector:@selector(_didChangeCurrentItem:)
-                                               name:MPDocumentCurrentItemChangedNotification
-                                             object:document];
-  
-  [[NSNotificationCenter defaultCenter] addObserver:self
-                                           selector:@selector(_didAddItem:)
-                                               name:MPDocumentDidAddEntryNotification
-                                             object:document];
-  
-  [[NSNotificationCenter defaultCenter] addObserver:self
-                                           selector:@selector(_didEnterSearch:)
-                                               name:MPDocumentDidEnterSearchNotification
-                                             object:document];
-  
-  [[NSNotificationCenter defaultCenter] addObserver:self
-                                           selector:@selector(_didExitSearch:)
-                                               name:MPDocumentDidExitSearchNotification
-                                             object:document];
-  
-  [[NSNotificationCenter defaultCenter] addObserver:self
-                                           selector:@selector(_didUpdateSearchResults:)
-                                               name:MPDocumentDidChangeSearchResults
-                                             object:document];
-  [[NSNotificationCenter defaultCenter] addObserver:self
-                                           selector:@selector(_didUnlockDatabase:)
-                                               name:MPDocumentDidUnlockDatabaseNotification
-                                             object:document];
-  [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(_showEntryHistory:) name:MPDocumentShowEntryHistoryNotification object:document];
-  [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(_hideEntryHistory:) name:MPDocumentHideEntryHistoryNotification object:document];
-  
+  [NSNotificationCenter.defaultCenter addObserver:self selector:@selector(_didChangeCurrentItem:) name:MPDocumentCurrentItemChangedNotification object:document];
+  [NSNotificationCenter.defaultCenter addObserver:self selector:@selector(_didAddItem:) name:MPDocumentDidAddEntryNotification object:document];
+  [NSNotificationCenter.defaultCenter addObserver:self selector:@selector(_didEnterSearch:) name:MPDocumentDidEnterSearchNotification object:document];
+  [NSNotificationCenter.defaultCenter addObserver:self selector:@selector(_didExitSearch:) name:MPDocumentDidExitSearchNotification object:document];
+  [NSNotificationCenter.defaultCenter addObserver:self selector:@selector(_didUpdateSearchResults:) name:MPDocumentDidChangeSearchResults object:document];
+  [NSNotificationCenter.defaultCenter addObserver:self selector:@selector(_didUnlockDatabase:) name:MPDocumentDidUnlockDatabaseNotification object:document];
+  [NSNotificationCenter.defaultCenter addObserver:self selector:@selector(_showEntryHistory:) name:MPDocumentShowEntryHistoryNotification object:document];
+  [NSNotificationCenter.defaultCenter addObserver:self selector:@selector(_hideEntryHistory:) name:MPDocumentHideEntryHistoryNotification object:document];
+    
   [self.contextBarViewController registerNotificationsForDocument:document];
 }
 
 #pragma mark NSTableViewDelgate
 
-- (void)tableView:(NSTableView *)tableView didAddRowView:(NSTableRowView *)rowView forRow:(NSInteger)row {
-  /*
-   bind background color to entry color
-   */
+- (void)_tableDidScroll:(NSNotification *)notification {
+  if(self.displayMode != MPDisplayModeEntries) {
+    return; // Only update on entry display
+  }
+  
+  NSView *clipView = notification.object;
+  if(nil == clipView || self.entryTable.enclosingScrollView.contentView != clipView) {
+    return; // Wrong view
+  }
+  /* padding to compensate for clipped items */
+  CGPoint point = CGPointMake(clipView.bounds.origin.x, clipView.bounds.origin.y + self.entryTable.headerView.frame.size.height);
+  NSInteger topRow = [self.entryTable rowAtPoint:point];
+  
+  if(topRow > -1) {
+    KPKEntry *entry = self.entryArrayController.arrangedObjects[topRow];
+    entry.parent.lastTopVisibleEntry = entry.uuid;
+  }
 }
 
 - (NSView *)tableView:(NSTableView *)tableView viewForTableColumn:(NSTableColumn *)tableColumn row:(NSInteger)row {
-  
-  BOOL isIndexColumn = [tableColumn.identifier isEqualToString:MPEntryTableIndexColumnIdentifier];
   BOOL isTitleColumn = [tableColumn.identifier isEqualToString:MPEntryTableTitleColumnIdentifier];
   BOOL isGroupColumn = [tableColumn.identifier isEqualToString:MPEntryTableParentColumnIdentifier];
   BOOL isPasswordColum = [tableColumn.identifier isEqualToString:MPEntryTablePasswordColumnIdentifier];
@@ -293,6 +297,8 @@ NSString *const _MPTableSecurCellView = @"PasswordCell";
   }
   else  {
     view = [tableView makeViewWithIdentifier:_MPTableStringCellView owner:self];
+    [view.textField unbind:NSValueBinding];
+    view.textField.stringValue = @"";
     if(!isModifedColumn) {
       /* clean up old formatter that might be left */
       view.textField.formatter = nil;
@@ -310,12 +316,12 @@ NSString *const _MPTableSecurCellView = @"PasswordCell";
         });
         view.textField.formatter = formatter;
       }
-      NSString *modificatoinTimeKeyPath = [NSString stringWithFormat:@"%@.%@.%@",
+      NSString *modificationTimeKeyPath = [NSString stringWithFormat:@"%@.%@.%@",
                                            NSStringFromSelector(@selector(objectValue)),
                                            NSStringFromSelector(@selector(timeInfo)),
                                            NSStringFromSelector(@selector(modificationDate))];
       
-      [view.textField bind:NSValueBinding toObject:view withKeyPath:modificatoinTimeKeyPath options:nil];
+      [view.textField bind:NSValueBinding toObject:view withKeyPath:modificationTimeKeyPath options:nil];
       return view;
     }
     else if(isURLColumn) {
@@ -350,9 +356,6 @@ NSString *const _MPTableSecurCellView = @"PasswordCell";
                                        NSStringFromSelector(@selector(history))];
       [view.textField bind:NSValueBinding toObject:view withKeyPath:historyCountKeyPath options:nil];
     }
-    else if(isIndexColumn) {
-      view.textField.stringValue = @"";
-    }
   }
   return view;
 }
@@ -360,6 +363,7 @@ NSString *const _MPTableSecurCellView = @"PasswordCell";
 - (void)tableView:(NSTableView *)tableView didRemoveRowView:(NSTableRowView *)rowView forRow:(NSInteger)row {
   /* Rows being removed for data change should be checked here to clear selections */
   if(row == -1) {
+    /* post selection change notification since cocoa decides not to post them if a selected row is removed */
     [self tableViewSelectionDidChange:[NSNotification notificationWithName:NSTableViewSelectionDidChangeNotification object:tableView]];
   }
 }
@@ -377,7 +381,9 @@ NSString *const _MPTableSecurCellView = @"PasswordCell";
 - (NSArray<KPKEntry *> *)currentTargetEntries {
   NSInteger activeRow = self.entryTable.clickedRow;
   if(activeRow > -1 && activeRow < [self.entryArrayController.arrangedObjects count]) {
-    return @[ [self.entryArrayController arrangedObjects][activeRow] ];
+    if(![self.entryArrayController.selectionIndexes containsIndex:activeRow]) {
+      return @[ [self.entryArrayController arrangedObjects][activeRow] ];
+    }
   }
   return self.entryArrayController.selectedObjects;
 }
@@ -459,7 +465,7 @@ NSString *const _MPTableSecurCellView = @"PasswordCell";
   NSArray *result = notification.userInfo[kMPDocumentSearchResultsKey];
   NSAssert(result != nil, @"Resutls should never be nil");
   self.filteredEntries = result;
-  [self.entryArrayController bind:NSContentArrayBinding toObject:self withKeyPath:NSStringFromSelector(@selector(filteredEntries)) options:nil];
+  self.entryArrayController.content = self.filteredEntries;
   [self.entryTable tableColumnWithIdentifier:MPEntryTableParentColumnIdentifier].hidden = NO;
   [self _updateContextBar];
 }
@@ -467,7 +473,6 @@ NSString *const _MPTableSecurCellView = @"PasswordCell";
 
 - (void)_didExitSearch:(NSNotification *)notification {
   [self.entryTable tableColumnWithIdentifier:MPEntryTableParentColumnIdentifier].hidden = YES;
-  [self.entryArrayController unbind:NSContentArrayBinding];
   self.entryArrayController.content = nil;
   self.filteredEntries = nil;
   self.displayMode = MPDisplayModeEntries;
@@ -502,7 +507,7 @@ NSString *const _MPTableSecurCellView = @"PasswordCell";
 
 - (void)_hideEntryHistory:(NSNotification *)notification {
   self.displayMode = MPDisplayModeEntries;
-  [self.entryArrayController unbind:NSContentArrayBinding];
+  [self _setupEntryBindings];
   self.entryArrayController.content = nil;
   [self _updateContextBar];
   MPDocument *document = notification.object;
@@ -525,6 +530,11 @@ NSString *const _MPTableSecurCellView = @"PasswordCell";
       }
     }
   }
+}
+
+- (void)_setupEntryBindings {
+  NSString *entriesKeyPath = [NSString stringWithFormat:@"%@.%@", NSStringFromSelector(@selector(representedObject)), KPKEntriesArrayBinding];
+  [self.entryArrayController bind:NSContentArrayBinding toObject:self withKeyPath:entriesKeyPath options:@{NSNullPlaceholderBindingOption: @[]}];
 }
 
 - (void)_showContextBar {
@@ -580,37 +590,6 @@ NSString *const _MPTableSecurCellView = @"PasswordCell";
   }];
 }
 
-#pragma mark Copy/Paste Overlays
-- (void)_copyToPasteboard:(NSString *)data overlayInfo:(MPOverlayInfoType)overlayInfoType name:(NSString *)name{
-  if(data) {
-    [[MPPasteBoardController defaultController] copyObjects:@[ data ]];
-  }
-  NSImage *infoImage = nil;
-  NSString *infoText = nil;
-  switch (overlayInfoType) {
-    case MPOverlayInfoPassword:
-      infoImage = [[NSBundle mainBundle] imageForResource:@"00_PasswordTemplate"];
-      infoText = NSLocalizedString(@"COPIED_PASSWORD", @"Password was copied to the pasteboard");
-      break;
-      
-    case MPOverlayInfoURL:
-      infoImage = [[NSBundle mainBundle] imageForResource:@"01_PackageNetworkTemplate"];
-      infoText = NSLocalizedString(@"COPIED_URL", @"URL was copied to the pasteboard");
-      break;
-      
-    case MPOverlayInfoUsername:
-      infoImage = [[NSBundle mainBundle] imageForResource:@"09_IdentityTemplate"];
-      infoText = NSLocalizedString(@"COPIED_USERNAME", @"Username was copied to the pasteboard");
-      break;
-      
-    case MPOverlayInfoCustom:
-      infoImage = [[NSBundle mainBundle] imageForResource:@"00_PasswordTemplate"];
-      infoText = [NSString stringWithFormat:NSLocalizedString(@"COPIED_FIELD_%@", "Field name that was copied to the pasteboard"), name];
-      break;
-  }
-  [[MPOverlayWindowController sharedController] displayOverlayImage:infoImage label:infoText atView:self.view];
-}
-
 #pragma mark Validation
 - (BOOL)validateMenuItem:(NSMenuItem *)menuItem {
   /* Validation is solely handled in the document */
@@ -632,13 +611,14 @@ NSString *const _MPTableSecurCellView = @"PasswordCell";
 - (void)_setupHeaderMenu {
   NSMenu *headerMenu = [[NSMenu allocWithZone:[NSMenu menuZone]] init];
   
-  [headerMenu addItemWithTitle:NSLocalizedString(@"TITLE", "") action:NULL keyEquivalent:@""];
-  [headerMenu addItemWithTitle:NSLocalizedString(@"USERNAME", "") action:NULL keyEquivalent:@""];
-  [headerMenu addItemWithTitle:NSLocalizedString(@"PASSWORD", "") action:NULL keyEquivalent:@""];
-  [headerMenu addItemWithTitle:NSLocalizedString(@"URL", "") action:NULL keyEquivalent:@""];
-  [headerMenu addItemWithTitle:NSLocalizedString(@"NOTES", "") action:NULL keyEquivalent:@""];
-  [headerMenu addItemWithTitle:NSLocalizedString(@"ATTACHMENTS", "") action:NULL keyEquivalent:@""];
-  [headerMenu addItemWithTitle:NSLocalizedString(@"MODIFIED", "") action:NULL keyEquivalent:@""];
+  [headerMenu addItemWithTitle:NSLocalizedString(@"TITLE", "Menu item to toggle display of title column in entry table") action:NULL keyEquivalent:@""];
+  [headerMenu addItemWithTitle:NSLocalizedString(@"USERNAME", "Menu item to toggle display of username column in entry table") action:NULL keyEquivalent:@""];
+  [headerMenu addItemWithTitle:NSLocalizedString(@"PASSWORD", "Menu item to toggle display of password column in entry table") action:NULL keyEquivalent:@""];
+  [headerMenu addItemWithTitle:NSLocalizedString(@"URL", "Menu item to toggle display of url column in entry table") action:NULL keyEquivalent:@""];
+  [headerMenu addItemWithTitle:NSLocalizedString(@"NOTES", "Menu item to toggle display of notes column in entry table") action:NULL keyEquivalent:@""];
+  [headerMenu addItemWithTitle:NSLocalizedString(@"ATTACHMENTS", "Menu item to toggle display of attachment count column in entry table") action:NULL keyEquivalent:@""];
+  [headerMenu addItemWithTitle:NSLocalizedString(@"MODIFIED", "Menu item to toggle display of modified date column in entry table") action:NULL keyEquivalent:@""];
+  [headerMenu addItemWithTitle:NSLocalizedString(@"HISTORY", "Menu item to toggle display of history count column in entry table") action:NULL keyEquivalent:@""];
   
   NSArray *identifier = @[ MPEntryTableTitleColumnIdentifier,
                            MPEntryTableUserNameColumnIdentifier,
@@ -646,7 +626,8 @@ NSString *const _MPTableSecurCellView = @"PasswordCell";
                            MPEntryTableURLColumnIdentifier,
                            MPEntryTableNotesColumnIdentifier,
                            MPEntryTableAttachmentColumnIdentifier,
-                           MPEntryTableModfiedColumnIdentifier ];
+                           MPEntryTableModfiedColumnIdentifier,
+                           MPEntryTableHistoryColumnIdentifier ];
   
   NSDictionary *options = @{ NSValueTransformerNameBindingOption : NSNegateBooleanTransformerName };
   for(NSMenuItem *item in headerMenu.itemArray) {
@@ -662,16 +643,18 @@ NSString *const _MPTableSecurCellView = @"PasswordCell";
 - (void)copyPassword:(id)sender {
   NSArray *nodes = [self currentTargetNodes];
   KPKEntry *selectedEntry = nodes.count == 1 ? [nodes.firstObject asEntry] : nil;
-  if(selectedEntry) {
-    [self _copyToPasteboard:[selectedEntry.password kpk_finalValueForEntry:selectedEntry] overlayInfo:MPOverlayInfoPassword name:nil];
+  NSString *value = [selectedEntry.password kpk_finalValueForEntry:selectedEntry];
+  if(value) {
+    [[MPPasteBoardController defaultController] copyObjects:@[value] overlayInfo:MPPasteboardOverlayInfoPassword name:nil atView:self.view];
   }
 }
 
 - (void)copyUsername:(id)sender {
   NSArray *nodes = [self currentTargetNodes];
   KPKEntry *selectedEntry = nodes.count == 1 ? [nodes.firstObject asEntry] : nil;
-  if(selectedEntry) {
-    [self _copyToPasteboard:[selectedEntry.username kpk_finalValueForEntry:selectedEntry] overlayInfo:MPOverlayInfoUsername name:nil];
+  NSString *value = [selectedEntry.username kpk_finalValueForEntry:selectedEntry];
+  if(value) {
+    [[MPPasteBoardController defaultController] copyObjects:@[value] overlayInfo:MPPasteboardOverlayInfoUsername name:nil atView:self.view];
   }
 }
 
@@ -680,17 +663,21 @@ NSString *const _MPTableSecurCellView = @"PasswordCell";
   KPKEntry *selectedEntry = nodes.count == 1 ? [nodes.firstObject asEntry] : nil;
   if(selectedEntry && [selectedEntry isKindOfClass:[KPKEntry class]]) {
     NSUInteger index = [sender tag];
-    NSAssert((index >= 0)  && (index < [selectedEntry.customAttributes count]), @"Index for custom field needs to be valid");
+    NSAssert((index >= 0)  && (index < selectedEntry.customAttributes.count), @"Index for custom field needs to be valid");
     KPKAttribute *attribute = selectedEntry.customAttributes[index];
-    [self _copyToPasteboard:attribute.evaluatedValue overlayInfo:MPOverlayInfoCustom name:attribute.key];
+    NSString *value = attribute.evaluatedValue;
+    if(value) {
+      [[MPPasteBoardController defaultController] copyObjects:@[value] overlayInfo:MPPasteboardOverlayInfoCustom name:attribute.key atView:self.view];
+    }
   }
 }
 
 - (void)copyURL:(id)sender {
   NSArray *nodes = [self currentTargetNodes];
   KPKEntry *selectedEntry = nodes.count == 1 ? [nodes.firstObject asEntry] : nil;
-  if(selectedEntry) {
-    [self _copyToPasteboard:[selectedEntry.url kpk_finalValueForEntry:selectedEntry] overlayInfo:MPOverlayInfoURL name:nil];
+  NSString *value = [selectedEntry.url kpk_finalValueForEntry:selectedEntry];
+  if(value) {
+    [[MPPasteBoardController defaultController] copyObjects:@[value] overlayInfo:MPPasteboardOverlayInfoURL name:nil atView:self.view];
   }
 }
 
@@ -699,21 +686,23 @@ NSString *const _MPTableSecurCellView = @"PasswordCell";
   KPKEntry *selectedEntry = nodes.count == 1 ? [nodes.firstObject asEntry] : nil;
   NSString *expandedURL = [selectedEntry.url kpk_finalValueForEntry:selectedEntry];
   if(expandedURL.length > 0) {
-    NSURL *webURL = [NSURL URLWithString:[expandedURL stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]];
-    NSString *scheme = [webURL scheme];
+    NSURL *webURL = [NSURL URLWithString:expandedURL];
+    NSString *scheme = webURL.scheme;
     if(!scheme) {
-      webURL = [NSURL URLWithString:[NSString stringWithFormat:@"http://%@", [expandedURL stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]]];
+      webURL = [NSURL URLWithString:[NSString stringWithFormat:@"http://%@", expandedURL]];
     }
     
-    NSString *browserBundleID = [[NSUserDefaults standardUserDefaults] objectForKey:kMPSettingsKeyBrowserBundleId];
+    NSString *browserBundleID = [NSUserDefaults.standardUserDefaults stringForKey:kMPSettingsKeyBrowserBundleId];
+    NSURL *browserApplicationURL = browserBundleID ? [NSWorkspace.sharedWorkspace URLForApplicationWithBundleIdentifier:browserBundleID] : nil;
     BOOL openedURL = NO;
     
-    if(browserBundleID) {
-      openedURL = [[NSWorkspace sharedWorkspace] openURLs:@[webURL] withAppBundleIdentifier:browserBundleID options:NSWorkspaceLaunchAsync additionalEventParamDescriptor:nil launchIdentifiers:NULL];
+    if(browserApplicationURL) {
+      NSRunningApplication *urlOpeningApplication = [NSWorkspace.sharedWorkspace openURLs:@[webURL] withApplicationAtURL:browserApplicationURL options:NSWorkspaceLaunchDefault configuration:@{} error:nil];
+      openedURL = nil != urlOpeningApplication;
     }
     
     if(!openedURL) {
-      openedURL = [[NSWorkspace sharedWorkspace] openURL:webURL];
+      openedURL = [NSWorkspace.sharedWorkspace openURL:webURL];
     }
     if(!openedURL) {
       NSLog(@"Unable to open URL %@", webURL);
@@ -743,11 +732,11 @@ NSString *const _MPTableSecurCellView = @"PasswordCell";
     return; // No data available
   }
   NSInteger columnIndex = [self.entryTable clickedColumn];
-  if(columnIndex < 0 || columnIndex >= [[self.entryTable tableColumns] count]) {
+  if(columnIndex < 0 || columnIndex >= self.entryTable.tableColumns.count) {
     return; // No Column to use
   }
-  NSTableColumn *column = [self.entryTable tableColumns][[self.entryTable clickedColumn]];
-  NSString *identifier = [column identifier];
+  NSTableColumn *column = self.entryTable.tableColumns[self.entryTable.clickedColumn];
+  NSString *identifier = column.identifier;
   if([identifier isEqualToString:MPEntryTableTitleColumnIdentifier]) {
     [self _executeTitleColumnDoubleClick];
   }
@@ -764,7 +753,7 @@ NSString *const _MPTableSecurCellView = @"PasswordCell";
 }
 
 - (void)_executeTitleColumnDoubleClick {
-  MPDoubleClickTitleAction action = [[NSUserDefaults standardUserDefaults] integerForKey:kMPSettingsKeyDoubleClickTitleAction];
+  MPDoubleClickTitleAction action = [NSUserDefaults.standardUserDefaults integerForKey:kMPSettingsKeyDoubleClickTitleAction];
   switch(action) {
     case MPDoubleClickTitleActionInspect:
       [(MPDocumentWindowController *)self.windowController showInspector:nil];
@@ -777,7 +766,7 @@ NSString *const _MPTableSecurCellView = @"PasswordCell";
   }
 }
 - (void)_executeURLColumnDoubleClick {
-  MPDoubleClickURLAction action = [[NSUserDefaults standardUserDefaults] integerForKey:kMPSettingsKeyDoubleClickURLAction];
+  MPDoubleClickURLAction action = [NSUserDefaults.standardUserDefaults integerForKey:kMPSettingsKeyDoubleClickURLAction];
   switch (action) {
     case MPDoubleClickURLActionOpen:
       [self openURL:nil];

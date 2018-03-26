@@ -5,16 +5,34 @@
 //  Created by Michael Starke on 27.07.13.
 //  Copyright (c) 2013 HicknHack Software GmbH. All rights reserved.
 //
+//  This program is free software: you can redistribute it and/or modify
+//  it under the terms of the GNU General Public License as published by
+//  the Free Software Foundation, either version 3 of the License, or
+//  (at your option) any later version.
+//
+//  This program is distributed in the hope that it will be useful,
+//  but WITHOUT ANY WARRANTY; without even the implied warranty of
+//
+//  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+//  GNU General Public License for more details.
+//
+//  You should have received a copy of the GNU General Public License
+//  along with this program.  If not, see <http://www.gnu.org/licenses/>.
+//
 
 #import "MPEntryInspectorViewController.h"
+#import "MPInspectorViewController.h"
 #import "MPAttachmentTableDataSource.h"
 #import "MPAttachmentTableViewDelegate.h"
 #import "MPCustomFieldTableViewDelegate.h"
 #import "MPPasswordCreatorViewController.h"
 #import "MPWindowAssociationsTableViewDelegate.h"
 #import "MPWindowTitleComboBoxDelegate.h"
+#import "MPTagsTokenFieldDelegate.h"
 #import "MPAutotypeBuilderViewController.h"
+#import "MPReferenceBuilderViewController.h"
 
+#import "MPPrettyPasswordTransformer.h"
 #import "NSString+MPPasswordCreation.h"
 
 #import "MPDocument.h"
@@ -24,6 +42,9 @@
 #import "MPTemporaryFileStorageCenter.h"
 #import "MPActionHelper.h"
 #import "MPSettingsHelper.h"
+#import "MPPasteBoardController.h"
+#import "MPContextButton.h"
+#import "MPAddCustomFieldContextMenuDelegate.h"
 
 #import "MPArrayController.h"
 
@@ -47,6 +68,8 @@ typedef NS_ENUM(NSUInteger, MPEntryTab) {
   MPAttachmentTableDataSource *_attachmentDataSource;
   MPWindowAssociationsTableViewDelegate *_windowAssociationsTableDelegate;
   MPWindowTitleComboBoxDelegate *_windowTitleMenuDelegate;
+  MPTagsTokenFieldDelegate *_tagTokenFieldDelegate;
+  MPAddCustomFieldContextMenuDelegate *_addCustomFieldContextMenuDelegate;
 }
 
 @property (nonatomic, assign) BOOL showPassword;
@@ -76,8 +99,13 @@ typedef NS_ENUM(NSUInteger, MPEntryTab) {
     _attachmentDataSource = [[MPAttachmentTableDataSource alloc] init];
     _windowAssociationsTableDelegate = [[MPWindowAssociationsTableViewDelegate alloc] init];
     _windowTitleMenuDelegate = [[MPWindowTitleComboBoxDelegate alloc] init];
+    _tagTokenFieldDelegate = [[MPTagsTokenFieldDelegate alloc] init];
+    _addCustomFieldContextMenuDelegate = [[MPAddCustomFieldContextMenuDelegate alloc] init];
+    _tagTokenFieldDelegate.viewController = self;
     _attachmentTableDelegate.viewController = self;
     _customFieldTableDelegate.viewController = self;
+    _addCustomFieldContextMenuDelegate.viewController = self;
+    
     _activeTab = MPEntryTabGeneral;
   }
   return self;
@@ -115,13 +143,13 @@ typedef NS_ENUM(NSUInteger, MPEntryTab) {
   
   NSDictionary *dict = NSDictionaryOfVariableBindings(customFieldTableView, _tagsTokenField, _addCustomFieldButton);
   [self.generalView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-16-[customFieldTableView]-16-|"
-                                                                    options:0
-                                                                    metrics:nil
-                                                                      views:dict]];
+                                                                           options:0
+                                                                           metrics:nil
+                                                                             views:dict]];
   [self.generalView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:[_tagsTokenField]-[customFieldTableView]-[_addCustomFieldButton]"
-                                                                    options:0
-                                                                    metrics:nil
-                                                                      views:dict]];
+                                                                           options:0
+                                                                           metrics:nil
+                                                                             views:dict]];
   
   
   
@@ -142,6 +170,9 @@ typedef NS_ENUM(NSUInteger, MPEntryTab) {
   [self.passwordTextField bind:NSStringFromSelector(@selector(showPassword)) toObject:self withKeyPath:NSStringFromSelector(@selector(showPassword)) options:nil];
   [self.togglePassword bind:NSValueBinding toObject:self withKeyPath:NSStringFromSelector(@selector(showPassword)) options:nil];
   
+  self.tagsTokenField.delegate = _tagTokenFieldDelegate;
+  
+  [self _setupCustomFieldsButton];
   [self _setupViewBindings];
 }
 
@@ -199,6 +230,8 @@ typedef NS_ENUM(NSUInteger, MPEntryTab) {
   openPanel.canChooseDirectories = NO;
   openPanel.canChooseFiles = YES;
   openPanel.allowsMultipleSelection = YES;
+  openPanel.prompt = NSLocalizedString(@"OPEN_BUTTON_ADD_ATTACHMENT_OPEN_PANEL", "Open button in the open panel to add attachments to an entry");
+  openPanel.message = NSLocalizedString(@"MESSAGE_ADD_ATTACHMENT_OPEN_PANEL", "Message in the open panel to add attachments to an entry");
   [openPanel beginSheetModalForWindow:self.windowController.window completionHandler:^(NSInteger result) {
     if(result == NSFileHandlingPanelOKButton) {
       for (NSURL *attachmentURL in openPanel.URLs) {
@@ -223,7 +256,7 @@ typedef NS_ENUM(NSUInteger, MPEntryTab) {
 }
 
 - (void)addWindowAssociation:(id)sender {
-  KPKWindowAssociation *associtation = [[KPKWindowAssociation alloc] initWithWindowTitle:NSLocalizedString(@"DEFAULT_WINDOW_TITLE", "") keystrokeSequence:nil];
+  KPKWindowAssociation *associtation = [[KPKWindowAssociation alloc] initWithWindowTitle:NSLocalizedString(@"DEFAULT_WINDOW_TITLE", "Default window title for a new window association") keystrokeSequence:nil];
   [self.observer willChangeModelProperty];
   [self.representedEntry.autotype addAssociation:associtation];
   [self.observer didChangeModelProperty];
@@ -301,11 +334,29 @@ typedef NS_ENUM(NSUInteger, MPEntryTab) {
 #pragma mark -
 #pragma mark Popovers
 
+- (IBAction)showReferenceBuilder:(id)sender {
+  NSView *location;
+  if([sender isKindOfClass:NSView.class]) {
+    location = sender;
+  }
+  else if([sender isKindOfClass:NSMenuItem.class]) {
+    location = [sender representedObject];
+  }
+  [self _showPopopver:[[MPReferenceBuilderViewController alloc] init] atView:location onEdge:NSMinYEdge];
+}
+
 - (IBAction)showAutotypeBuilder:(id)sender {
-  [sender setEnabled:NO];
+  NSView *location;
+  if([sender isKindOfClass:NSButton.class]) {
+    location = sender;
+    [sender setEnabled:NO];
+  }
+  if([sender isKindOfClass:NSMenuItem.class]){
+    location = [sender representedObject];
+  }
   MPAutotypeBuilderViewController *autotypeBuilder = [[MPAutotypeBuilderViewController alloc] init];
   autotypeBuilder.representedObject = self.representedObject;
-  [self _showPopopver:autotypeBuilder atView:sender onEdge:NSMinYEdge];
+  [self _showPopopver:autotypeBuilder atView:location onEdge:NSMinYEdge];
 }
 
 - (IBAction)showPasswordGenerator:(id)sender {
@@ -410,22 +461,23 @@ typedef NS_ENUM(NSUInteger, MPEntryTab) {
   }
   
   /* general */
+  NSDictionary *nullPlaceholderBindingOptionsDict = @{ NSNullPlaceholderBindingOption: NSLocalizedString(@"NONE", "Placeholder text for input fields if no entry or group is selected")};
   [self.titleTextField bind:NSValueBinding
                    toObject:self
                 withKeyPath:[NSString stringWithFormat:@"%@.%@", NSStringFromSelector(@selector(representedObject)), NSStringFromSelector(@selector(title))]
-                    options:@{ NSNullPlaceholderBindingOption: NSLocalizedString(@"NONE", "")} ];
+                    options:nullPlaceholderBindingOptionsDict];
   [self.passwordTextField bind:NSValueBinding
                       toObject:self
                    withKeyPath:[NSString stringWithFormat:@"%@.%@", NSStringFromSelector(@selector(representedObject)), NSStringFromSelector(@selector(password))]
-                       options:@{ NSNullPlaceholderBindingOption: NSLocalizedString(@"NONE", "") }];
+                       options:nullPlaceholderBindingOptionsDict];
   [self.usernameTextField bind:NSValueBinding
                       toObject:self
                    withKeyPath:[NSString stringWithFormat:@"%@.%@", NSStringFromSelector(@selector(representedObject)), NSStringFromSelector(@selector(username))]
-                       options:@{ NSNullPlaceholderBindingOption: NSLocalizedString(@"NONE", "") }];
+                       options:nullPlaceholderBindingOptionsDict];
   [self.URLTextField bind:NSValueBinding
                  toObject:self
               withKeyPath:[NSString stringWithFormat:@"%@.%@", NSStringFromSelector(@selector(representedObject)), NSStringFromSelector(@selector(url))]
-                  options:@{ NSNullPlaceholderBindingOption: NSLocalizedString(@"NONE", "")}];
+                  options:nullPlaceholderBindingOptionsDict];
   [self.expiresCheckButton bind:NSTitleBinding
                        toObject:self
                     withKeyPath:[NSString stringWithFormat:@"%@.%@.%@", NSStringFromSelector(@selector(representedObject)), NSStringFromSelector(@selector(timeInfo)), NSStringFromSelector(@selector(expirationDate))]
@@ -434,10 +486,11 @@ typedef NS_ENUM(NSUInteger, MPEntryTab) {
                        toObject:self
                     withKeyPath:[NSString stringWithFormat:@"%@.%@.%@", NSStringFromSelector(@selector(representedObject)), NSStringFromSelector(@selector(timeInfo)), NSStringFromSelector(@selector(expires))]
                         options:nil];
+  
   [self.tagsTokenField bind:NSValueBinding
                    toObject:self
                 withKeyPath:[NSString stringWithFormat:@"%@.%@", NSStringFromSelector(@selector(representedObject)), NSStringFromSelector(@selector(tags))]
-                    options:nil];
+                    options:nullPlaceholderBindingOptionsDict];
   
   
   [self.uuidTextField bind:NSValueBinding
@@ -496,6 +549,69 @@ typedef NS_ENUM(NSUInteger, MPEntryTab) {
   
 }
 
+- (void)_setupCustomFieldsButton {
+  /* FIXME: this is a bug in MPContextButton preventing the image set in IB to be used */
+  [self.addCustomFieldButton setImage:[NSImage imageNamed:NSImageNameAddTemplate]];
+  NSMenu *customFieldMenu = [[NSMenu alloc] initWithTitle:NSLocalizedString(@"ADD_CUSTOM_FIELD_CONTEXT_MENU", @"Menu displayed for adding special custom keys")];
+  customFieldMenu.delegate = _addCustomFieldContextMenuDelegate;
+  self.addCustomFieldButton.contextMenu = customFieldMenu;
+}
+
+#pragma mark -
+#pragma mark HNHUITextFieldDelegate
+- (NSMenu *)textField:(NSTextField *)textField textView:(NSTextView *)view menu:(NSMenu *)menu {
+  /*for(NSMenuItem *item in [menu itemArray]) {
+   if(item.action == @selector(showReferenceBuilder:)) {
+   return menu; // item is already contained!
+   }
+   }
+   NSMenuItem *item = [[NSMenuItem alloc] initWithTitle:NSLocalizedString(@"SHOW_REFERENCE_BUILDER", @"Menu item to show the reference builder in a text view's context menu")action:@selector(showReferenceBuilder:) keyEquivalent:@""];
+   item.representedObject = textField;
+   [menu addItem:item];
+   */
+  return menu;
+}
+
+- (BOOL)textField:(NSTextField *)textField textView:(NSTextView *)textView performAction:(SEL)action {
+  if(action == @selector(copy:)) {
+    MPPasteboardOverlayInfoType info = MPPasteboardOverlayInfoCustom;
+    NSString *value = textField.stringValue;
+    NSString *name = @"";
+    if(nil == value) {
+      return YES;
+    }
+    if(textField == self.usernameTextField) {
+      info = MPPasteboardOverlayInfoUsername;
+    }
+    else if(textField == self.passwordTextField) {
+      info = MPPasteboardOverlayInfoPassword;
+    }
+    else if(textField == self.URLTextField) {
+      info = MPPasteboardOverlayInfoURL;
+    }
+    else if(textField == self.uuidTextField) {
+      name = NSLocalizedString(@"UUID", "Displayed name when uuid field was copied");
+    }
+    else if(textField == self.titleTextField) {
+      name = NSLocalizedString(@"TITLE", "Displayed name when title field was copied");
+    }
+    else {
+      NSInteger index = MPCustomFieldIndexFromTag(textField.tag);
+      if(index > -1) {
+        name = [_customFieldsController.arrangedObjects[index] key];
+      }
+    }
+    [[MPPasteBoardController defaultController] copyObjects:@[value] overlayInfo:info name:name atView:self.view];
+    return NO;
+  }
+  return YES;
+}
+
+- (IBAction)toggleExpire:(NSButton*)sender {
+  if([sender state] == NSOnState && [self.representedEntry.timeInfo.expirationDate isEqualToDate:[NSDate distantFuture]]) {
+    [NSApp sendAction:self.pickExpireDateButton.action to:nil from:self.pickExpireDateButton];
+  }
+}
 
 #pragma mark -
 #pragma mark MPDocument Notifications

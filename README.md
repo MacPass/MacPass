@@ -1,3 +1,5 @@
+[![Build Status](https://travis-ci.org/mstarke/MacPass.svg?branch=continuous)](https://travis-ci.org/mstarke/MacPass)
+
 # MacPass
 
 There are a lot of iOS KeePass tools around but a distinct lack of a good native macOS version.
@@ -13,6 +15,10 @@ An unsigned build of the current contiuous tag can be found here: [Continuous Bu
 
 Due to the nature of the build it might be unstable, however this version contains all the latest changes and bug fixes!
 
+## How to Contribute
+
+If you want to contribute by fixing a bug, adding a feature or improving localization you're awesome!
+
 ## How to Build
 
 * Fetch the source of MacPass
@@ -22,25 +28,12 @@ git clone https://github.com/mstarke/MacPass --recursive
 * Install [Carthage](https://github.com/Carthage/Carthage#installing-carthage)
 * Install all Dependencies
 ```bash
-carthage bootstrap --platform Mac
+cd MacPass
+carthage bootstrap --platform macOS
 ```
-After that you can build and run in Xcode. The following command will build and make the application available through Spotlight. If you run into signing issues take a look at [Issue #92](https://github.com/mstarke/MacPass/issues/92)
+After that you can build and run in Xcode. The following command will build and make the application available through Spotlight. If you run into signing issues take a look at [Issue #92](https://github.com/mstarke/MacPass/issues/92). Since Sparkle is disabled only on the CI build and in Debug mode, you have to explicitly disable it in Release. Otherwise warnings on unsecure updates will appear.
 
-    xcodebuild -scheme MacPass -target MacPass -configuration Release
-
-There have been some changes in the submodule urls. Please consider re-syncing and initalizing all submodules.
-
-	git submodule sync
-	git submodule init
-
-## Known Major Issues
-
-* Binary releases (0.5.x):
-  * KDBX History is only preserved. Editing doesn't create new history entries
-
-## How to Contribute
-
-If you want to contribute by fixing a bug, adding a feature or improving localization you're awesome. Please open a pull request!
+    xcodebuild -scheme MacPass -target MacPass -configuration Release CODE_SIGNING_REQUIRED=NO NO_SPARKLE=NO_SPARKLE
 
 ## Help
 
@@ -52,7 +45,8 @@ Or follow the Twitter account [@MacPassApp](https://twitter.com/MacPassApp)
 
 ## System Requirement
 
-The minimum OS X version required for MacPass is currently 10.8 Mountain Lion.
+The minimum macOS version required for MacPass 0.7 is 10.10 Yosemite.
+The minimum OS X version required for MacPass 0.6.2 is 10.8 Mountain Lion.
 
 ## Status
 
@@ -65,16 +59,12 @@ The Status can be found on the dedicated [Wiki page](https://github.com/mstarke/
 More Screenshots in the [Wiki](https://github.com/mstarke/MacPass/wiki/Screenshots)
 
 ## Alternatives
+ 
+[KeePassX](https://www.keepassx.org) and it's fork [KeePassXC](https://github.com/keepassxreboot/keepassxc). Qt based cross plattform port.
 
-[KeePassX](http://www.keepassx.org) is a Qt based KeePass port. It's in active development and open source. It fully supports all KDBX features and can import KDB into a KDBX file but is unable to safe as KDB. There's an older release that only handles KDB files. KDBX3.1 is fully supported, KDBX4.0 is currently unsupported.
+[KyPass Companion](http://www.kyuran.be/logiciels/kypass4mac/). Native macOS client.
 
-[KeePassXC](https://github.com/keepassxreboot/keepassxc) straight from the project's README:
->KeePassXC is a fork of KeePassX that aims to incorporate stalled pull requests, features, and bug fixes that have never made it into the main KeePassX repository.
-
-[KyPass Companion](http://www.kyuran.be/logiciels/kypass4mac/) is a native Cocoa port and offers KeePassHttp compatibility.
-Should be able to read and write KDB and KDBX files. It is closed source and currently available in the Mac App Store. It's rather expensive considering the bugs and missing features. Based on the user reviews it should work. Not all KDBX features are supported. It is unable to convert between database versions. KDBX4.0 support is in development.
-
-[KeeWeb](https://keeweb.info) is a cross platform web client in active development based on [electron](http://electron.atom.io) and thus also is available as an offline version for all major platforms. The project is open source. It supports all features of KDBX files but has no KDB support. Because of the technology its look is customizable, but the native one is quite pretty. Full KDBX 4 support is present. Performance for Argon2 requires WebAssembly.
+[KeeWeb](https://keeweb.info). Electron based cross plattform port. Since it's browser based you can pretty much run it anywhere.
 
 ## License
 
@@ -102,7 +92,7 @@ For further details, take a look at the [explanation](https://www.fsf.org/news/2
 
 ## Contributions
 
-The following list might not be complete, please refer to [merged Pull Requests](https://github.com/mstarke/MacPass/pulls?utf8=✓&q=is%3Apr+is%3Aclosed+is%3Amerged) on GitHub for more details. Please report open an issue if you think someone is missing from this list!
+The following list might not be complete, please refer to [merged Pull Requests](https://github.com/mstarke/MacPass/pulls?utf8=✓&q=is%3Apr+is%3Aclosed+is%3Amerged) on GitHub for more details. Please open an issue if you think someone is missing from this list!
 
 ### Art
 
@@ -112,53 +102,63 @@ The following list might not be complete, please refer to [merged Pull Requests]
 
 [Joanna Olsen](https://github.com/JoannaOlsen) Database Icons
 
-### Localization
+### Contributors
 
-[Gil André](mailto:gil@panix.com) and [Michel Bibal](https://github.com/MBibal) French localization
-
-[Jannick Hemelhof](https://github.com/clone1612) Dutch localization
-
-[Benjamin Steinwender](https://github.com/auge) German localization
-
-[Francesco Servida](mailto:info@francescoservida.ch) Italian localization
-
-[Michał Jaglewicz](http://www.webii.pl) Polish localization
-
-[Alex Petkevich](mailto:alex@mrdoggy.info) Russian localization
-
-[Zhao Peng](mailto:patchao2000@gmail.com) Simplified Chinese localization
-
-[Moises Perez](https://github.com/m0yP) Spanish localization
-
-### Other
-
-[Jellyfrog](https://github.com/Jellyfrog) Asset file size optimization
-
-[Nathaniel Madura](mailto:nmadura@umich.edu) Refacotrings, first create Database
-
-[Kurt Legerlotz](https://github.com/lotz) Settings to open or copy URL on double click
-
-[Adam Doppelt](mailto:amd@gurge.com) whitespace polish on EntryInspectorView, Autosave table sorting. Default to sort by title.
-
-[Stephen Taylor](http://www.makegames.co.uk/) Fixed tab ordering
-
-[Andrew Schleifer](mailto:me@andrewschleifer.name) Enable fullscreen option for document windows, Centralise the Validation, Only enable password entry fields when option is checked
-
-[Frank Enderle](http://www.anamica.de/) Cmd+F now marks the text of the search field if the filterbar is already visible and sets the focus. Set remaining password fields to fixed width font.
-
-[Josh Halstead](mailto:jhalstead85@gmail.com) and [Sebastian Lövdahl](https://github.com/slovdahl) Fixed typos in Readme
-
-[Chhom Seng](https://github.com/cseng) Fixed issue with blank outline and entry views if the inspector was hidden before unlocking the database. Implemented context menu validation for entry context menu.
-
-[James Hurst](https://github.com/jamesrhurst) Obfuscated autotyping and restoring of pasteboard objects. Fixed issues when exiting search. Implemented workflow double click settings. Make selected textfield end editing when a save will occur. Finished custom browser support for open URL action. Percent escape strings before creating URLs. Fixed issues with Autotype key events. Added missing characters for password generation. Improved "Add Entry" workflow. Fixed bug with icon resetting to default after closing popover. Added ability to set default password generation settings. Made autotype work in more situations. Fixed various issues with Sparkle.
-
-[Yono Mittlefehldt](https://twitter.com/yonomitt) Added 90 days expiration preset.
-
-[Dennis Bolio](https://github.com/dennisbolio) Fixes issues with icon selection
-
-[Mario Sangiorgio](mailto:mariosangiorgio@gmail.com) Improved password generation, Improved English localization
-
-[Michael Belz](https://github.com/sub0ne) Fixed MacPass not opening any window, when lastly opened Database is missing.
+[ad](github.mnms@mamber.net)
+[Alex Borisov](alex@alexborisov.org)
+[Alex Seeholzer](seeholzer@gmail.com)
+[amd](amd@gurge.com)
+[Andrew Schleifer](me@andrewschleifer.name)
+[AntoineCa](antoine@carrincazeaux.fr)
+[Benjamin Steinwender](b@stbe.at)
+[binarious](bieder.martin@googlemail.com)
+[Carlos Filipe Simões](ravemir@users.noreply.github.com)
+[Chester Liu](skyline75489@outlook.com)
+[Chhom Seng](chhom.seng@gmail.com)
+[Christoph Leimbrock](christoph.leimbrock@gmx.de)
+[Cory Hutchison](cjhutchi@users.noreply.github.com)
+[Daniele Polencic](daniele.polencic@gmail.com)
+[darnel](vojta.j@gmail.com)
+[Deiwin Sarjas](deiwin.sarjas@gmail.com)
+[Dennis Bolio](git@bolio.nl)
+[Dylan Smith](dylansmith@gmail.com)
+[Filipe Farinha](filipe@ktorn.com)
+[floriangouy](florian.gouy@gmail.com)
+[Francesco Servida](info@francescoservida.ch)
+[Frank Enderle](frank.enderle@anamica.de)
+[Gaétan Ryckeboer](gryckeboer@jouve.com)
+[Geigi](git@geigi.de)
+[James Hurst](jamesrhurst@outlook.com)
+[Jannick Hemelhof](mister.jannick@gmail.com)
+[Jefftree](jeffrey.ying86@live.com)
+[Jellyfrog](Jellyfrog@users.noreply.github.com)
+[Joanna Olsen](jo4flash@gmail.com)
+[Josh Halstead](jhalstead85@gmail.com)
+[Kurt](kurt@soapbox-software.com)
+[Lenucksi](lenucksi@users.noreply.github.com)
+[Leonardo Faoro](lfaoro@users.noreply.github.com)
+[Liam Anderson](liam.anderson.91@gmail.com)
+[Maarten Terpstra](m.l.terpstra@student.rug.nl)
+[Mario Sangiorgio](mariosangiorgio@gmail.com)
+[MBibal](michel.bibal@gmail.com)
+[Michael Belz](mbelz@outlook.de)
+[Michal Jaglewicz](michalj@webii.pl)
+[Moises Perez](moises@perez.lt)
+[mrdoggy](mrdoggy.all@gmail.com)
+[Nathan Landis](nathanlandis@gmail.com)
+[Nathaniel Madura](nmadura@umich.edu)
+[neuroine](d.dzieduch@gmail.com)
+[Patrik Thunström](magebarf@gmail.com)
+[rdoering](rdoering.info@gmail.com)
+[Ryan Rogers](ryan@timewasted.me)
+[Sitsofe Wheeler](sitsofe@yahoo.com)
+[Stephen Taylor](schtee.taylor@gmail.com)
+[Thom](thomscode@gmail.com)
+[Thorsten Jacoby](tjacoby@gmail.com)
+[Volcyy](Volcyy@users.noreply.github.com)
+[Yonatan Mittlefehldt](yono@toojuice.com)
+[Zero King](l2dy@icloud.com)
+[Zhao Peng](patchao2000@gmail.com)
 
 ## Copyright
 

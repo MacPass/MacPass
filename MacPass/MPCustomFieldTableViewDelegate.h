@@ -24,6 +24,15 @@
 
 @class MPInspectorViewController;
 
+
+/**
+ Determines the index of the custom Attribute from the a tag value
+
+ @param tag Tag value (e.g. from the input filed inside the table view row)
+ @return the row number of the custom attribute, if tag is no row then -1 is returned
+ */
+NSInteger MPCustomFieldIndexFromTag(NSInteger tag);
+
 @interface MPCustomFieldTableViewDelegate : NSObject <NSTableViewDelegate>
 
 @property (weak, nonatomic) id viewController;

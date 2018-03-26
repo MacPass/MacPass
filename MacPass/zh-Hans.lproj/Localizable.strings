@@ -22,8 +22,8 @@
 /*
  Actions
  */
-"ADD_ENTRY" = "添加项目";
-"ADD_GROUP" = "添加组";
+"NEW_ENTRY" = "添加项目";
+"NEW_GROUP" = "添加组";
 "DUPLICATE_ENTRY" = "克隆项目";
 "DUPLICATE_ENTRY_WITH_OPTIONS" = "克隆项目…";
 "COPY_ENTRY" = "拷贝项目";
@@ -44,12 +44,6 @@
 "PASSWORD_GENERATOR_RESET_ENTRY_DEFAULTS" = "重置";
 "TRASH_ENTRY" = "将项目移入废纸篓";
 "TRASH_GROUP" = "将组移入废纸篓";
-"SET_NAME" = "编辑名称";
-"SET_TITLE" = "编辑标题";
-"SET_USERNAME" = "编辑用户名";
-"SET_PASSWORD" = "编辑密码";
-"SET_URL" = "编辑 URL";
-"SET_NOTES" = "编辑注释";
 "SHOW_HISTORY" = "显示历史";
 
 /*
@@ -70,16 +64,10 @@
 "DATABASE" = "数据库";
 "DELETE" = "删除";
 "EDIT" = "编辑";
-"EMAIL" = "电子邮件";
 "GROUP" = "组";
-"GENERAL" = "通用";
-"HOMEBANKING" = "家庭银行";
 "INSPECTOR" = "检查器";
-"INTERNET" = "互联网";
 "LOCK" = "锁定";
 "MODIFIED" = "修改时间";
-"NAME" = "名称";
-"NETWORK" = "网络";
 "NONE" = "无";
 "NOTES" = "注释";
 "PASSWORD" = "密码";
@@ -87,7 +75,6 @@
 "SAVE_WITH_DOTS" = "保存…";
 "SEARCH" = "搜索";
 "TITLE" = "标题";
-"TRASH" = "废纸篓";
 "URL" = "URL";
 "USERNAME" = "用户名";
 "WINDOWS" = "Windows";
@@ -95,7 +82,6 @@
 
 "CHANGE_DATABASE_NAME" = "修改数据库名称";
 "CHANGE_TRASH_GROUP" = "修改废纸篓的项目组";
-"%@_COPY" = "%@ 拷贝";
 
 "DUPLICTE_PASSWORDS" = "重复的密码";
 
@@ -144,13 +130,6 @@
 "DEFAULT_GROUP_NAME" = "项目组";
 "DEFAULT_WINDOW_TITLE" = "Window Title";
 
-/* Number of Entries
- Plural (0, >1)
- Singular (1)
- */
-"%ld_ENTRIES" = "%ld 个项目";
-"%ld_ENTRY" = "%ld 个项目";
-
 /* Settings */
 "GENERAL_SETTINGS" = "通用";
 "INTEGRATION_SETTINGS" = "集成";
@@ -183,7 +162,6 @@
 "WARNING_ON_LOSSY_SAVE" = "保存为 KDB 格式，将会损失数据";
 "WARNING_ON_LOSSY_SAVE_DESCRIPTION" = "KDB 格式无法保存所有信息";
 "CHANGE_FORMAT" = "更改文件格式为 KDBX";
-"SAVE_LOSSY" = "丢失数据并保存";
 
 "ENFORCE_PASSWORD_CHANGE_ALERT_TITLE" = "数据库密码已过期！";
 "ENFORCE_PASSWORD_CHANGE_ALERT_DESCRIPTION" = "更改密码/密钥文件之前，你将不能保存数据库";
@@ -201,8 +179,6 @@
 "FILE_CHANGED_BY_OTHERS_INFO_TEXT" = "加载的文件和磁盘上的文件不同，你想怎么处理？";
 /* Button to ignore the changes */
 "KEEP_MINE" = "不要加载修改过的数据库";
-/* Button to reload the changes form disk */
-"LOAD_CHANGES" = "丢弃我的更改并且加载修改过的数据库";
 /* Merge changes into file! */
 "MERGE_CHANGES" = "合并更改";
 

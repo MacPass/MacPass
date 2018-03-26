@@ -5,6 +5,20 @@
 //  Created by michael starke on 19.02.13.
 //  Copyright (c) 2013 HicknHack Software GmbH. All rights reserved.
 //
+//  This program is free software: you can redistribute it and/or modify
+//  it under the terms of the GNU General Public License as published by
+//  the Free Software Foundation, either version 3 of the License, or
+//  (at your option) any later version.
+//
+//  This program is distributed in the hope that it will be useful,
+//  but WITHOUT ANY WARRANTY; without even the implied warranty of
+//
+//  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+//  GNU General Public License for more details.
+//
+//  You should have received a copy of the GNU General Public License
+//  along with this program.  If not, see <http://www.gnu.org/licenses/>.
+//
 
 #import "MPOutlineViewController.h"
 #import "MPActionHelper.h"
@@ -76,7 +90,7 @@ NSString *const _MPOutlinveViewHeaderViewIdentifier = @"HeaderCell";
   self.outlineView.floatsGroupRows = NO;
   self.outlineView.doubleAction = @selector(_doubleClickedGroup:);
   self.outlineView.allowsMultipleSelection = YES;
-  [self.outlineView setDelegate:self];
+  self.outlineView.delegate = self;
   [self.outlineView registerForDraggedTypes:@[ KPKGroupUTI, KPKEntryUTI ]];
   [self.outlineView setDraggingSourceOperationMask:NSDragOperationEvery forLocal:YES];
   
@@ -156,7 +170,7 @@ NSString *const _MPOutlinveViewHeaderViewIdentifier = @"HeaderCell";
 #pragma mark Custom Setter/Getter
 - (void)setDatabaseNameWrapper:(NSString *)databaseNameWrapper {
   if(![_databaseNameWrapper isEqualToString:databaseNameWrapper]) {
-    _databaseNameWrapper = (databaseNameWrapper.length == 0) ? NSLocalizedString(@"DATABASE", "Default name database") : [databaseNameWrapper copy];
+    _databaseNameWrapper = (databaseNameWrapper.length == 0) ? NSLocalizedString(@"DATABASE", "Default display name for KDB databases") : [databaseNameWrapper copy];
   }
 }
 
@@ -179,7 +193,7 @@ NSString *const _MPOutlinveViewHeaderViewIdentifier = @"HeaderCell";
 }
 
 #pragma mark Notifications
-- (void)regsiterNotificationsForDocument:(MPDocument *)document {
+- (void)registerNotificationsForDocument:(MPDocument *)document {
   [NSNotificationCenter.defaultCenter addObserver:self selector:@selector(_didAddGroup:) name:MPDocumentDidAddGroupNotification object:document];
 }
 
@@ -208,7 +222,6 @@ NSString *const _MPOutlinveViewHeaderViewIdentifier = @"HeaderCell";
   id item = [[self.outlineView itemAtRow:topRow] representedObject];
   if([item isKindOfClass:[KPKGroup class]]) {
     KPKGroup *group = item;
-    NSLog(@"%@", group.title);
     MPDocument *document = self.windowController.document;
     document.tree.metaData.lastTopVisibleGroup = group.uuid;
   }
@@ -255,12 +268,12 @@ NSString *const _MPOutlinveViewHeaderViewIdentifier = @"HeaderCell";
     
     NSString *iconImageKeyPath = [NSString stringWithFormat:@"%@.%@", NSStringFromSelector(@selector(representedObject)), NSStringFromSelector(@selector(iconImage))];
     NSString *titleKeyPath = [NSString stringWithFormat:@"%@.%@", NSStringFromSelector(@selector(representedObject)), NSStringFromSelector(@selector(title))];
-    [[view imageView] bind:NSValueBinding toObject:item withKeyPath:iconImageKeyPath options:nil];
-    [[view textField] bind:NSValueBinding toObject:item withKeyPath:titleKeyPath options:nil];
+    [view.imageView bind:NSValueBinding toObject:item withKeyPath:iconImageKeyPath options:nil];
+    [view.textField bind:NSValueBinding toObject:item withKeyPath:titleKeyPath options:nil];
     
     
-    NSString *entriesCountKeyPath = [[NSString alloc] initWithFormat:@"%@.%@.%@", NSStringFromSelector(@selector(representedObject)), NSStringFromSelector(@selector(entries)), @"@count"];
-    [[view textField] bind:NSStringFromSelector(@selector(count)) toObject:item withKeyPath:entriesCountKeyPath options:nil];
+    NSString *entriesCountKeyPath = [[NSString alloc] initWithFormat:@"%@.%@.%@", NSStringFromSelector(@selector(representedObject)), KPKEntriesArrayBinding, @"@count"];
+    [view.textField bind:NSStringFromSelector(@selector(count)) toObject:item withKeyPath:entriesCountKeyPath options:nil];
   }
   
   return view;
@@ -295,7 +308,7 @@ NSString *const _MPOutlinveViewHeaderViewIdentifier = @"HeaderCell";
   }
 }
 - (void)outlineViewItemDidCollapse:(NSNotification *)notification {
-  NSDictionary *userInfo = [notification userInfo];
+  NSDictionary *userInfo = notification.userInfo;
   id item = userInfo[NSStringFromClass([NSObject class])];
   id representedObject = [item representedObject];
   if([representedObject isKindOfClass:[KPKGroup class]]) {
@@ -314,7 +327,7 @@ NSString *const _MPOutlinveViewHeaderViewIdentifier = @"HeaderCell";
 
 #pragma mark Validation
 - (BOOL)validateMenuItem:(NSMenuItem *)menuItem {
-  MPDocument *document = [[self windowController] document];
+  MPDocument *document = self.windowController.document;
   if(![document validateUserInterfaceItem:menuItem]) {
     return NO;
   }
@@ -324,7 +337,7 @@ NSString *const _MPOutlinveViewHeaderViewIdentifier = @"HeaderCell";
 
 - (NSMenu *)_contextMenu {
   NSMenu *menu = [[NSMenu alloc] init];
-  [menu setDelegate:_menuDelegate];
+  menu.delegate = _menuDelegate;
   return menu;
 }
 

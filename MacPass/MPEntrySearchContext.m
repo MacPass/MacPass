@@ -5,6 +5,20 @@
 //  Created by Michael Starke on 26.06.14.
 //  Copyright (c) 2014 HicknHack Software GmbH. All rights reserved.
 //
+//  This program is free software: you can redistribute it and/or modify
+//  it under the terms of the GNU General Public License as published by
+//  the Free Software Foundation, either version 3 of the License, or
+//  (at your option) any later version.
+//
+//  This program is distributed in the hope that it will be useful,
+//  but WITHOUT ANY WARRANTY; without even the implied warranty of
+//
+//  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+//  GNU General Public License for more details.
+//
+//  You should have received a copy of the GNU General Public License
+//  along with this program.  If not, see <http://www.gnu.org/licenses/>.
+//
 
 #import "MPEntrySearchContext.h"
 #import "MPSettingsHelper.h"
@@ -20,7 +34,7 @@
 }
 
 + (instancetype)userContext {
-  NSData *data = [[NSUserDefaults standardUserDefaults] dataForKey:kMPSettingsKeyEntrySearchFilterContext];
+  NSData *data = [NSUserDefaults.standardUserDefaults dataForKey:kMPSettingsKeyEntrySearchFilterContext];
   if(data) {
     return [NSKeyedUnarchiver unarchiveObjectWithData:data];
   }
@@ -50,7 +64,7 @@
 
 - (instancetype)initWithCoder:(NSCoder *)aDecoder {
   self = [self init];
-  self.searchString = [aDecoder decodeObjectOfClass:[NSString class] forKey:NSStringFromSelector(@selector(searchString))];
+  self.searchString = [aDecoder decodeObjectOfClass:NSString.class forKey:NSStringFromSelector(@selector(searchString))];
   self.searchFlags = [aDecoder decodeIntegerForKey:NSStringFromSelector(@selector(searchFlags))];
   return self;
 }
@@ -76,7 +90,7 @@
 
 - (void )_updatePreferences {
   NSData *myData = [NSKeyedArchiver archivedDataWithRootObject:self];
-  [[NSUserDefaults standardUserDefaults] setObject:myData forKey:kMPSettingsKeyEntrySearchFilterContext];
-  [[NSUserDefaults standardUserDefaults] synchronize];
+  [NSUserDefaults.standardUserDefaults setObject:myData forKey:kMPSettingsKeyEntrySearchFilterContext];
+  [NSUserDefaults.standardUserDefaults synchronize];
 }
 @end

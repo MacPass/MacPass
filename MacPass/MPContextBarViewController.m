@@ -5,6 +5,20 @@
 //  Created by Michael Starke on 16/12/13.
 //  Copyright (c) 2013 HicknHack Software GmbH. All rights reserved.
 //
+//  This program is free software: you can redistribute it and/or modify
+//  it under the terms of the GNU General Public License as published by
+//  the Free Software Foundation, either version 3 of the License, or
+//  (at your option) any later version.
+//
+//  This program is distributed in the hope that it will be useful,
+//  but WITHOUT ANY WARRANTY; without even the implied warranty of
+//
+//  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+//  GNU General Public License for more details.
+//
+//  You should have received a copy of the GNU General Public License
+//  along with this program.  If not, see <http://www.gnu.org/licenses/>.
+//
 
 #import "MPContextBarViewController.h"
 
@@ -56,7 +70,7 @@ typedef NS_ENUM(NSUInteger, MPContextTab) {
 }
 
 - (void)awakeFromNib {
-  [[self.filterLabelTextField cell] setBackgroundStyle:NSBackgroundStyleRaised];
+  self.filterLabelTextField.cell.backgroundStyle = NSBackgroundStyleRaised;
   //self.historyBar.activeGradient = [[NSGradient alloc] initWithStartingColor:[[NSColor orangeColor] shadowWithLevel:0.2] endingColor:[[NSColor orangeColor] highlightWithLevel:0.2]];
   
   /* Setup Trash Bar color */
@@ -71,34 +85,34 @@ typedef NS_ENUM(NSUInteger, MPContextTab) {
   [self.view bind:NSSelectedIndexBinding toObject:self withKeyPath:NSStringFromSelector(@selector(activeTab)) options:nil];
   
   /* Setup Filter Bar buttons and menu */
-  NSInteger tags[] = { MPEntrySearchTitles, MPEntrySearchUsernames, MPEntrySearchPasswords, MPEntrySearchNotes, MPEntrySearchUrls };
-  NSArray *buttons  = @[self.titleButton, self.usernameButton, self.passwordButton, self.notesButton, self.urlButton ];
-  for(NSUInteger iIndex = 0; iIndex < [buttons count]; iIndex++) {
-    [buttons[iIndex] setAction:@selector(toggleSearchFlags:)];
-    [buttons[iIndex] setTag:tags[iIndex]];
+  NSInteger tags[] = { MPEntrySearchTitles, MPEntrySearchUsernames, MPEntrySearchPasswords, MPEntrySearchNotes, MPEntrySearchUrls, MPEntrySearchAllAttributes };
+  NSArray<NSControl *> *buttons  = @[self.titleButton, self.usernameButton, self.passwordButton, self.notesButton, self.urlButton, self.everywhereButton ];
+  for(NSUInteger iIndex = 0; iIndex < buttons.count; iIndex++) {
+    buttons[iIndex].action = @selector(toggleSearchFlags:);
+    buttons[iIndex].tag = tags[iIndex];
   }
   NSInteger specialTags[] = { MPEntrySearchDoublePasswords, MPEntrySearchExpiredEntries };
-  NSArray *titles = @[ NSLocalizedString(@"SEARCH_DUPLICATE_PASSWORDS", ""), NSLocalizedString(@"SEARCH_EXPIRED_ENTRIES", "") ];
-  NSMenu *specialMenu = [[NSMenu alloc] initWithTitle:@"Special Filters Menu"];
-  [specialMenu addItemWithTitle:NSLocalizedString(@"SELECT_FILTER_WITH_DOTS", "") action:NULL keyEquivalent:@""];
-  [[specialMenu itemAtIndex:0] setEnabled:NO];
-  [[specialMenu itemAtIndex:0] setTag:MPEntrySearchNone];
-  [[specialMenu itemAtIndex:0] setAction:@selector(toggleSearchFlags:)];
+  NSArray *titles = @[ NSLocalizedString(@"SEARCH_DUPLICATE_PASSWORDS", "Search option: Find duplicate passwords"), NSLocalizedString(@"SEARCH_EXPIRED_ENTRIES", "Search option: Find expired entries") ];
+  NSMenu *specialMenu = [[NSMenu alloc] initWithTitle:NSLocalizedString(@"CUSTOM_SEARCH_FILTER_MENU", @"Title for menu for custom search filters")];
+  [specialMenu addItemWithTitle:NSLocalizedString(@"SELECT_FILTER_WITH_DOTS", "Menu displayed as popup selection for search options") action:NULL keyEquivalent:@""];
+  [specialMenu itemAtIndex:0].enabled = NO;
+  [specialMenu itemAtIndex:0].tag = MPEntrySearchNone;
+  [specialMenu itemAtIndex:0].action = @selector(toggleSearchFlags:);
   for(NSInteger iIndex = 0; iIndex < (sizeof(specialTags)/sizeof(NSInteger)); iIndex++) {
     NSMenuItem *item = [[NSMenuItem alloc] initWithTitle:titles[iIndex] action:@selector(toggleSearchFlags:) keyEquivalent:@""];
     item.tag = specialTags[iIndex];
     [specialMenu addItem:item];
   }
-  [self.specialFilterPopUpButton setMenu:specialMenu];
+  self.specialFilterPopUpButton.menu = specialMenu;
   [self _updateFilterButtons];
 }
 
 #pragma mark MPDocument Notifications
 - (void)registerNotificationsForDocument:(MPDocument *)document {
-  [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(_updateFilterButtons) name:MPDocumentDidChangeSearchFlags object:document];
-  [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(_didEnterSearch:) name:MPDocumentDidEnterSearchNotification object:document];
-  [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(_showEntryHistory:) name:MPDocumentShowEntryHistoryNotification object:document];
-  [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(_didChangeCurrentItem:) name:MPDocumentCurrentItemChangedNotification object:document];
+  [NSNotificationCenter.defaultCenter addObserver:self selector:@selector(_updateFilterButtons) name:MPDocumentDidChangeSearchFlags object:document];
+  [NSNotificationCenter.defaultCenter addObserver:self selector:@selector(_didEnterSearch:) name:MPDocumentDidEnterSearchNotification object:document];
+  [NSNotificationCenter.defaultCenter addObserver:self selector:@selector(_showEntryHistory:) name:MPDocumentShowEntryHistoryNotification object:document];
+  [NSNotificationCenter.defaultCenter addObserver:self selector:@selector(_didChangeCurrentItem:) name:MPDocumentCurrentItemChangedNotification object:document];
 }
 
 - (void)_didEnterSearch:(NSNotification *)notification {
@@ -132,27 +146,28 @@ typedef NS_ENUM(NSUInteger, MPContextTab) {
 
 #pragma mark UI Helper
 - (void)_updateFilterButtons {
-  MPDocument *document = [[self windowController] document];
+  MPDocument *document = self.windowController.document;
   MPEntrySearchFlags currentFlags = document.searchContext.searchFlags;
-  [self.duplicatePasswordsButton setState:HNHUIStateForBool(MPIsFlagSetInOptions(MPEntrySearchDoublePasswords, currentFlags))];
-  [self.notesButton setState:HNHUIStateForBool(MPIsFlagSetInOptions(MPEntrySearchNotes, currentFlags))];
-  [self.passwordButton setState:HNHUIStateForBool(MPIsFlagSetInOptions(MPEntrySearchPasswords, currentFlags))];
-  [self.titleButton setState:HNHUIStateForBool(MPIsFlagSetInOptions(MPEntrySearchTitles, currentFlags))];
-  [self.urlButton setState:HNHUIStateForBool(MPIsFlagSetInOptions(MPEntrySearchUrls, currentFlags))];
-  [self.usernameButton setState:HNHUIStateForBool(MPIsFlagSetInOptions(MPEntrySearchUsernames, currentFlags))];
+  self.duplicatePasswordsButton.state = HNHUIStateForBool(MPIsFlagSetInOptions(MPEntrySearchDoublePasswords, currentFlags));
+  self.notesButton.state = HNHUIStateForBool(MPIsFlagSetInOptions(MPEntrySearchNotes, currentFlags));
+  self.passwordButton.state = HNHUIStateForBool(MPIsFlagSetInOptions(MPEntrySearchPasswords, currentFlags));
+  self.titleButton.state = HNHUIStateForBool(MPIsFlagSetInOptions(MPEntrySearchTitles, currentFlags));
+  self.urlButton.state = HNHUIStateForBool(MPIsFlagSetInOptions(MPEntrySearchUrls, currentFlags));
+  self.usernameButton.state = HNHUIStateForBool(MPIsFlagSetInOptions(MPEntrySearchUsernames, currentFlags));
+  self.everywhereButton.state = HNHUIStateForBool(MPIsFlagSetInOptions(MPEntrySearchAllAttributes, currentFlags));
   NSInteger selectedTag = MPEntrySearchNone;
-  for(NSMenuItem *item in [[self.specialFilterPopUpButton menu] itemArray]) {
-    MPEntrySearchFlags flag = [item tag];
+  for(NSMenuItem *item in self.specialFilterPopUpButton.menu.itemArray) {
+    MPEntrySearchFlags flag = item.tag;
     if(flag == MPEntrySearchNone) {
-      [item setState:NSOffState];
-      [item setEnabled:NO];
+      item.state = NSOffState;
+      item.enabled = NO;
     }
     else {
       BOOL isActive = MPIsFlagSetInOptions(flag, currentFlags);
       if(isActive) {
         selectedTag = flag;
       }
-      [item setState:HNHUIStateForBool(isActive)];
+      item.state = HNHUIStateForBool(isActive);
     }
   }
   [self.specialFilterPopUpButton selectItemWithTag:selectedTag];

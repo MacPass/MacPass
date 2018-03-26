@@ -146,12 +146,12 @@ FOUNDATION_EXPORT NSString *const MPDocumentGroupKey;
 - (NSArray *)allEntries;
 - (NSArray *)allGroups;
 
-- (BOOL)shouldRecommendPasswordChange;
 - (BOOL)shouldEnforcePasswordChange;
+- (BOOL)shouldRecommendPasswordChange;
 
 - (void)writeXMLToURL:(NSURL *)url;
 - (void)readXMLfromURL:(NSURL *)url;
-- (void)mergeWithContentsFromURL:(NSURL *)url;
+- (void)mergeWithContentsFromURL:(NSURL *)url key:(KPKCompositeKey *)key;
 
 /* Undoable Intiialization of elements */
 - (KPKGroup *)createGroup:(KPKGroup *)parent;
@@ -254,7 +254,7 @@ FOUNDATION_EXTERN NSString *const MPDocumentDidChangeSearchResults;
 FOUNDATION_EXTERN NSString *const kMPDocumentSearchResultsKey;
 
 @interface MPDocument (Search)
-
+- (IBAction)perfromCustomSearch:(id)sender;
 - (void)enterSearchWithContext:(MPEntrySearchContext *)context;
 
 /* Should be called by the NSSearchTextField to update the search string */

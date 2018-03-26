@@ -23,6 +23,8 @@
 #import "MPAppDelegate.h"
 
 #import "MPAutotypeDaemon.h"
+#import "MPConstants.h"
+#import "MPContextMenuHelper.h"
 #import "MPDockTileHelper.h"
 #import "MPDocument.h"
 #import "MPDocumentController.h"
@@ -33,8 +35,10 @@
 #import "MPSettingsHelper.h"
 #import "MPSettingsWindowController.h"
 #import "MPStringLengthValueTransformer.h"
+#import "MPPrettyPasswordTransformer.h"
 #import "MPTemporaryFileStorageCenter.h"
 #import "MPValueTransformerHelper.h"
+#import "MPUserNotificationCenterDelegate.h"
 
 #import "NSApplication+MPAdditions.h"
 
@@ -46,7 +50,8 @@ NSString *const MPDidChangeStoredKeyFilesSettings = @"com.hicknhack.macpass.MPDi
 
 @interface MPAppDelegate () {
 @private
-  MPDockTileHelper *dockTileHelper;
+  MPDockTileHelper *_dockTileHelper;
+  MPUserNotificationCenterDelegate *_userNotificationCenterDelegate;
   BOOL _shouldOpenFile; // YES if app was started to open a
 }
 
@@ -61,12 +66,14 @@ NSString *const MPDidChangeStoredKeyFilesSettings = @"com.hicknhack.macpass.MPDi
   [MPSettingsHelper setupDefaults];
   [MPSettingsHelper migrateDefaults];
   [MPStringLengthValueTransformer registerTransformer];
+  [MPPrettyPasswordTransformer registerTransformer];
   [MPValueTransformerHelper registerValueTransformer];
 }
 
 - (instancetype)init {
   self = [super init];
   if(self) {
+    _userNotificationCenterDelegate = [[MPUserNotificationCenterDelegate alloc] init];
     /* We know that we do not use the variable after instantiation */
 #pragma clang diagnostic push
 #pragma clang diagnostic ignored "-Wunused-variable"
@@ -78,7 +85,7 @@ NSString *const MPDidChangeStoredKeyFilesSettings = @"com.hicknhack.macpass.MPDi
 
 - (void)dealloc {
   [self unbind:NSStringFromSelector(@selector(isAllowedToStoreKeyFile))];
-  [[NSNotificationCenter defaultCenter] removeObserver:self];
+  [NSNotificationCenter.defaultCenter removeObserver:self];
 }
 
 #pragma mark Properties
@@ -104,6 +111,13 @@ NSString *const MPDidChangeStoredKeyFilesSettings = @"com.hicknhack.macpass.MPDi
     toObject:NSUserDefaultsController.sharedUserDefaultsController
  withKeyPath:[MPSettingsHelper defaultControllerPathForKey:kMPSettingsKeyRememberKeyFilesForDatabases]
      options:nil];
+  
+  NSMenu *fileMenu = self.fileNewMenuItem.menu;
+  NSInteger insertIndex = [fileMenu indexOfItem:self.fileNewMenuItem]+1;
+  NSArray *items = [MPContextMenuHelper contextMenuItemsWithItems:MPContextMenuCreate];
+  for(NSMenuItem *item in items.reverseObjectEnumerator) {
+    [fileMenu insertItem:item atIndex:insertIndex];
+  }
 }
 
 #pragma mark -
@@ -174,13 +188,21 @@ NSString *const MPDidChangeStoredKeyFilesSettings = @"com.hicknhack.macpass.MPDi
 #pragma mark -
 #pragma mark NSMenuDelegate
 - (void)menuNeedsUpdate:(NSMenu *)menu {
-  if([self.saveMenuItem menu] != menu) {
-    return; // wrong menu
+  if(menu == self.saveMenuItem.menu) {
+    MPDocument *document = [NSDocumentController sharedDocumentController].currentDocument;
+    BOOL displayDots = (document.fileURL == nil || !document.compositeKey.hasPasswordOrKeyFile);
+    NSString *saveTitle =  displayDots ? NSLocalizedString(@"SAVE_WITH_DOTS", "Save file menu item title when save will prompt for a location to save or ask for a password/key") : NSLocalizedString(@"SAVE", "Save file menu item title when save will just save the file");
+    self.saveMenuItem.title = saveTitle;
   }
-  MPDocument *document = [[NSDocumentController sharedDocumentController] currentDocument];
-  BOOL displayDots = (document.fileURL == nil || !document.compositeKey.hasPasswordOrKeyFile);
-  NSString *saveTitle =  displayDots ? NSLocalizedString(@"SAVE_WITH_DOTS", "") : NSLocalizedString(@"SAVE", "");
-  [self.saveMenuItem setTitle:saveTitle];
+  if(menu == self.fixAutotypeMenuItem.menu) {
+    self.fixAutotypeMenuItem.hidden = !(NSEvent.modifierFlags & NSAlternateKeyMask);
+  }
+  if(menu == self.itemMenu) {
+    [menu removeAllItems];
+    for(NSMenuItem *item in [MPContextMenuHelper contextMenuItemsWithItems:MPContextMenuFull]) {
+      [menu addItem:item];
+    }
+  }
 }
 
 #pragma mark -
@@ -198,7 +220,7 @@ NSString *const MPDidChangeStoredKeyFilesSettings = @"com.hicknhack.macpass.MPDi
   }
   if(!self.passwordCreatorController) {
     self.passwordCreatorController = [[MPPasswordCreatorViewController alloc] init];
-    self.passwordCreatorWindow.contentView = self.passwordCreatorController.view;
+    self.passwordCreatorWindow.contentViewController = self.passwordCreatorController;
   }
   [self.passwordCreatorController reset];
   [self.passwordCreatorWindow makeKeyAndOrderFront:self.passwordCreatorWindow];
@@ -216,7 +238,7 @@ NSString *const MPDidChangeStoredKeyFilesSettings = @"com.hicknhack.macpass.MPDi
 
 - (void)lockAllDocuments {
   for(NSDocument *document in ((NSDocumentController *)[NSDocumentController sharedDocumentController]).documents) {
-    for(id windowController in document.windowControllers) {
+    for(id windowController in [document.windowControllers reverseObjectEnumerator]) {
       if([windowController respondsToSelector:@selector(lock:)]) {
         [windowController lock:self];
       }
@@ -229,16 +251,16 @@ NSString *const MPDidChangeStoredKeyFilesSettings = @"com.hicknhack.macpass.MPDi
 }
 
 - (void)showHelp:(id)sender {
-  /* TODO: use Info.plist for URL */
-  [[NSWorkspace sharedWorkspace] openURL:[NSURL URLWithString:@"https://github.com/mstarke/MacPass"]];
+  NSString *urlString = NSBundle.mainBundle.infoDictionary[MPBundleHelpURLKey];
+  [[NSWorkspace sharedWorkspace] openURL:[NSURL URLWithString:urlString]];
 }
 
 - (void)checkForUpdates:(id)sender {
 #if defined(DEBUG) || defined(NO_SPARKLE)
   NSAlert *alert = [[NSAlert alloc] init];
-  alert.messageText = @"Updates are disabled!";
+  alert.messageText = NSLocalizedString(@"Updates are disabled!", @"Message text for disabled updates alert!");
   alert.informativeText = [NSString stringWithFormat:@"Sparkle updates are disabled for this build of %@!", NSApp.applicationName];
-  [alert addButtonWithTitle:@"Ok"];
+  [alert addButtonWithTitle:NSLocalizedString(@"OK", @"Ok button")];
   [alert runModal];
 #else
   [[SUUpdater sharedUpdater] checkForUpdates:sender];
@@ -300,11 +322,11 @@ NSString *const MPDidChangeStoredKeyFilesSettings = @"com.hicknhack.macpass.MPDi
     [documentController openDocumentWithContentsOfURL:documentUrl
                                               display:YES
                                     completionHandler:^(NSDocument *document, BOOL documentWasAlreadyOpen, NSError *error) {
-                                    
+                                      
                                       if(error != nil){
                                         
                                         NSAlert *alert = [[NSAlert alloc] init];
-                                        [alert setMessageText:   NSLocalizedString(@"FILE_OPEN_ERROR", nil)];
+                                        [alert setMessageText:   NSLocalizedString(@"FILE_OPEN_ERROR", "Error while reopening last known documents")];
                                         [alert setInformativeText: [error localizedDescription]];
                                         [alert setAlertStyle:NSCriticalAlertStyle ];
                                         [alert runModal];
@@ -313,7 +335,7 @@ NSString *const MPDidChangeStoredKeyFilesSettings = @"com.hicknhack.macpass.MPDi
                                       if(document == nil){
                                         [self _showWelcomeWindow];
                                       }
-                                    
+                                      
                                     }];
   }
   return isFileURL;

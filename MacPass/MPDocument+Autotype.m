@@ -32,13 +32,13 @@
 + (BOOL)isCandidateForMalformedAutotype:(id)item {
   
   NSString *keystrokeSequence = @"";
-  if([item isKindOfClass:[KPKEntry class]] && ![((KPKEntry *)item).autotype hasDefaultKeystrokeSequence]) {
+  if([item isKindOfClass:KPKEntry.class] && ![((KPKEntry *)item).autotype hasDefaultKeystrokeSequence]) {
     keystrokeSequence = ((KPKEntry *)item).autotype.defaultKeystrokeSequence;
   }
-  else if( [item isKindOfClass:[KPKGroup class]] && ![item hasDefaultAutotypeSequence]) {
+  else if( [item isKindOfClass:KPKGroup.class] && ![item hasDefaultAutotypeSequence]) {
     keystrokeSequence = ((KPKGroup *)item).defaultAutoTypeSequence;
   }
-  else if( [item isKindOfClass:[KPKWindowAssociation class]] && ![item hasDefaultKeystrokeSequence]){
+  else if( [item isKindOfClass:KPKWindowAssociation.class] && ![item hasDefaultKeystrokeSequence]){
     keystrokeSequence = ((KPKWindowAssociation *)item).keystrokeSequence;
   }
   /* if nothing is true, keystrokeSequence is nil an hence return is NO */
@@ -57,38 +57,45 @@
   NSArray *autotypeEntries = usePreferredEntry ? [[NSArray alloc] initWithObjects:entry, nil] : [self.root autotypeableChildEntries];
   NSMutableArray *contexts = [[NSMutableArray alloc] initWithCapacity:MAX(1,ceil(autotypeEntries.count / 4.0))];
   
-  BOOL matchTitle = [[NSUserDefaults standardUserDefaults] boolForKey:kMPSettingsKeyAutotypeMatchTitle];
-  BOOL matchURL = [[NSUserDefaults standardUserDefaults] boolForKey:kMPSettingsKeyAutotypeMatchURL];
-  BOOL matchHost = [[NSUserDefaults standardUserDefaults] boolForKey:kMPSettingsKeyAutotypeMatchHost];
-  BOOL matchTags = [[NSUserDefaults standardUserDefaults] boolForKey:kMPSettingsKeyAutotypeMatchTags];
+  BOOL matchTitle = [NSUserDefaults.standardUserDefaults boolForKey:kMPSettingsKeyAutotypeMatchTitle];
+  BOOL matchURL = [NSUserDefaults.standardUserDefaults boolForKey:kMPSettingsKeyAutotypeMatchURL];
+  BOOL matchHost = [NSUserDefaults.standardUserDefaults boolForKey:kMPSettingsKeyAutotypeMatchHost];
+  BOOL matchTags = [NSUserDefaults.standardUserDefaults boolForKey:kMPSettingsKeyAutotypeMatchTags];
   
   MPAutotypeContext *context;
   for(KPKEntry *entry in autotypeEntries) {
     /* search in Autotype entries for match */
-    KPKWindowAssociation *association = [entry.autotype windowAssociationMatchingWindowTitle:windowTitle];
-    context = [[MPAutotypeContext alloc] initWithWindowAssociation:association];
-    if(context.valid) {
-      [contexts addObject:context];
-      continue; // association did match
-    }
     BOOL foundMatch = NO;
+    for(KPKWindowAssociation *association in [entry.autotype windowAssociationsMatchingWindowTitle:windowTitle]) {
+      context = [[MPAutotypeContext alloc] initWithWindowAssociation:association];
+      if(context.valid) {
+        foundMatch = YES;
+        [contexts addObject:context];
+      }
+    }
+    /* association match found, no need to use the default sequence! */
+    if(foundMatch) {
+      continue;
+    }
     /* Test for entry title in window title */
     if(matchTitle && !foundMatch) {
-      foundMatch = [windowTitle rangeOfString:entry.title options:NSCaseInsensitiveSearch].length != 0 || [entry.title rangeOfString:windowTitle options:NSCaseInsensitiveSearch].length != 0;
+      /* TODO use kpk_finalValueForEntry */
+      foundMatch = ([windowTitle localizedCaseInsensitiveContainsString:entry.title]
+                    || [entry.title localizedCaseInsensitiveContainsString:windowTitle]);
     }
     /* test for URL */
     if(matchURL && !foundMatch) {
-      foundMatch = [windowTitle rangeOfString:entry.url options:NSCaseInsensitiveSearch].length != 0;
+      foundMatch = [windowTitle localizedCaseInsensitiveContainsString:entry.url];
     }
     /* test for host */
     if(matchHost && !foundMatch) {
       NSURL *url = [NSURL URLWithString:entry.url];
-      foundMatch = url.host != nil && [windowTitle rangeOfString:url.host options:NSCaseInsensitiveSearch].length != 0;
+      foundMatch = url.host != nil && [windowTitle localizedCaseInsensitiveContainsString:url.host];
     }
     /* test for tags */
     if(matchTags && !foundMatch) {
       for(NSString *tag in entry.tags) {
-        foundMatch = ([windowTitle rangeOfString:tag options:NSCaseInsensitiveSearch].length != 0);
+        foundMatch = [windowTitle localizedCaseInsensitiveContainsString:tag];
         if(foundMatch) {
           break;
         }

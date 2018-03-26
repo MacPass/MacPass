@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>%ld_CHARACTERS_TO_PICK_REMAINING</key>
+	<dict>
+		<key>NSStringLocalizedFormatKey</key>
+		<string>%#@characters@</string>
+		<key>characters</key>
+		<dict>
+			<key>NSStringFormatSpecTypeKey</key>
+			<string>NSStringPluralRuleType</string>
+			<key>NSStringFormatValueTypeKey</key>
+			<string>ld</string>
+			<key>one</key>
+			<string>ein Zeichen übrig</string>
+			<key>other</key>
+			<string>%ld Zeichen übrig</string>
+			<key>zero</key>
+			<string>alle Zeichen ausgewählt</string>
+		</dict>
+	</dict>
+	<key>DUPLICATE_ENTRIES_%ld</key>
+	<dict>
+		<key>NSStringLocalizedFormatKey</key>
+		<string>%#@entries@</string>
+		<key>entries</key>
+		<dict>
+			<key>NSStringFormatSpecTypeKey</key>
+			<string>NSStringPluralRuleType</string>
+			<key>NSStringFormatValueTypeKey</key>
+			<string>ld</string>
+			<key>one</key>
+			<string>Eintrag duplizieren</string>
+			<key>other</key>
+			<string>Einträge duplizieren</string>
+		</dict>
+	</dict>
+	<key>EVERY_%ld_DAYS</key>
+	<dict>
+		<key>NSStringLocalizedFormatKey</key>
+		<string>%#@days@</string>
+		<key>days</key>
+		<dict>
+			<key>NSStringFormatSpecTypeKey</key>
+			<string>NSStringPluralRuleType</string>
+			<key>NSStringFormatValueTypeKey</key>
+			<string>ld</string>
+			<key>one</key>
+			<string>jeden Tag</string>
+			<key>other</key>
+			<string>alle %ld Tage</string>
+			<key>zero</key>
+			<string>nach jedem Entsperren</string>
+		</dict>
+	</dict>
+	<key>PICKCHAR_INFO_MESSAGE_PICK_CHARACTERS_%ld</key>
+	<dict>
+		<key>NSStringLocalizedFormatKey</key>
+		<string>%#@characters@</string>
+		<key>characters</key>
+		<dict>
+			<key>NSStringFormatSpecTypeKey</key>
+			<string>NSStringPluralRuleType</string>
+			<key>NSStringFormatValueTypeKey</key>
+			<string>ld</string>
+			<key>one</key>
+			<string>Bitte wählen Sie ein Zeichen aus.</string>
+			<key>other</key>
+			<string>Bitte wählen Sie %ld Zeichen aus.</string>
+			<key>zero</key>
+			<string>Bitte wählen Sie Zeichen aus.</string>
+		</dict>
+	</dict>
+	<key>PICKED_%ld_CHARACTERS</key>
+	<dict>
+		<key>NSStringLocalizedFormatKey</key>
+		<string>%#@characters@</string>
+		<key>characters</key>
+		<dict>
+			<key>NSStringFormatSpecTypeKey</key>
+			<string>NSStringPluralRuleType</string>
+			<key>NSStringFormatValueTypeKey</key>
+			<string>ld</string>
+			<key>one</key>
+			<string>%ld Zeichen gewählt</string>
+			<key>other</key>
+			<string>%ld Zeichen gewählt</string>
+			<key>zero</key>
+			<string>Kein Zeichen ausgewählt</string>
+		</dict>
+	</dict>
+</dict>
+</plist>

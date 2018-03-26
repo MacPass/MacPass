@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="11201" systemVersion="16A323" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="13771" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
     <dependencies>
         <deployment identifier="macosx"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="11201"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="13771"/>
     </dependencies>
     <objects>
         <customObject id="-2" userLabel="File's Owner" customClass="NSApplication">
@@ -76,9 +76,10 @@
                 <menuItem title="File" id="83">
                     <menu key="submenu" title="File" id="81">
                         <items>
-                            <menuItem title="New" keyEquivalent="n" id="82">
+                            <menuItem title="New Database" keyEquivalent="n" id="82">
+                                <modifierMask key="keyEquivalentModifierMask" option="YES" command="YES"/>
                                 <connections>
-                                    <action selector="newDocument:" target="-1" id="373"/>
+                                    <action selector="newDocument:" target="-1" id="ju8-Y5-iJk"/>
                                 </connections>
                             </menuItem>
                             <menuItem title="Open…" keyEquivalent="o" id="72">
@@ -97,22 +98,8 @@
                                     </items>
                                 </menu>
                             </menuItem>
-                            <menuItem isSeparatorItem="YES" id="79">
-                                <modifierMask key="keyEquivalentModifierMask" command="YES"/>
-                            </menuItem>
-                            <menuItem title="Import XML…" id="rW0-r1-QYL">
-                                <modifierMask key="keyEquivalentModifierMask"/>
-                                <connections>
-                                    <action selector="importFromXML:" target="-1" id="ESL-Uw-7fk"/>
-                                </connections>
-                            </menuItem>
-                            <menuItem title="Export As XML…" keyEquivalent="E" id="1259">
-                                <connections>
-                                    <action selector="exportAsXML:" target="-1" id="NCG-gr-YI5"/>
-                                </connections>
-                            </menuItem>
                             <menuItem isSeparatorItem="YES" id="FVA-Cn-g79"/>
-                            <menuItem title="Fix Autotype…" id="nx7-Vf-LiD">
+                            <menuItem title="Fix Autotype…" hidden="YES" id="nx7-Vf-LiD">
                                 <modifierMask key="keyEquivalentModifierMask"/>
                                 <connections>
                                     <action selector="fixAutotype:" target="-1" id="eVm-am-dL6"/>
@@ -154,6 +141,40 @@
                                 <connections>
                                     <action selector="revertDocumentToSaved:" target="-1" id="364"/>
                                 </connections>
+                            </menuItem>
+                            <menuItem isSeparatorItem="YES" id="79">
+                                <modifierMask key="keyEquivalentModifierMask" command="YES"/>
+                            </menuItem>
+                            <menuItem title="Merge…" id="zvE-0h-UxI">
+                                <modifierMask key="keyEquivalentModifierMask"/>
+                                <connections>
+                                    <action selector="mergeWithOther:" target="-1" id="OyM-CZ-TDD"/>
+                                </connections>
+                            </menuItem>
+                            <menuItem title="Import" id="aTb-sW-nUd">
+                                <modifierMask key="keyEquivalentModifierMask"/>
+                                <menu key="submenu" title="Import" id="4q9-u1-pcm">
+                                    <items>
+                                        <menuItem title="XML…" id="rW0-r1-QYL">
+                                            <modifierMask key="keyEquivalentModifierMask"/>
+                                            <connections>
+                                                <action selector="importFromXML:" target="-1" id="ESL-Uw-7fk"/>
+                                            </connections>
+                                        </menuItem>
+                                    </items>
+                                </menu>
+                            </menuItem>
+                            <menuItem title="Export" id="tz9-yK-pOf">
+                                <modifierMask key="keyEquivalentModifierMask"/>
+                                <menu key="submenu" title="Export" id="p8h-Fg-h1O">
+                                    <items>
+                                        <menuItem title="XML…" keyEquivalent="E" id="1259">
+                                            <connections>
+                                                <action selector="exportAsXML:" target="-1" id="NCG-gr-YI5"/>
+                                            </connections>
+                                        </menuItem>
+                                    </items>
+                                </menu>
                             </menuItem>
                             <menuItem isSeparatorItem="YES" id="74">
                                 <modifierMask key="keyEquivalentModifierMask" command="YES"/>
@@ -206,6 +227,9 @@
                                 </connections>
                             </menuItem>
                             <menuItem title="Delete" id="202">
+                                <string key="keyEquivalent" base64-UTF8="YES">
+CA
+</string>
                                 <connections>
                                     <action selector="delete:" target="-1" id="235"/>
                                 </connections>
@@ -220,10 +244,18 @@
                             </menuItem>
                             <menuItem title="Find…" tag="1" keyEquivalent="f" id="209">
                                 <connections>
-                                    <action selector="performFindPanelAction:" target="-1" id="241"/>
+                                    <action selector="perfromCustomSearch:" target="-1" id="RSR-PQ-TH1"/>
                                 </connections>
                             </menuItem>
                         </items>
+                    </menu>
+                </menuItem>
+                <menuItem title="Item" id="3st-rv-EeQ">
+                    <modifierMask key="keyEquivalentModifierMask"/>
+                    <menu key="submenu" title="Item" id="Ttt-tR-emo">
+                        <connections>
+                            <outlet property="delegate" destination="494" id="8Tk-fd-paV"/>
+                        </connections>
                     </menu>
                 </menuItem>
                 <menuItem title="View" id="295">
@@ -312,9 +344,13 @@
                     </menu>
                 </menuItem>
             </items>
+            <point key="canvasLocation" x="-600" y="98"/>
         </menu>
         <customObject id="494" customClass="MPAppDelegate">
             <connections>
+                <outlet property="fileNewMenuItem" destination="82" id="BUX-dy-HS2"/>
+                <outlet property="fixAutotypeMenuItem" destination="nx7-Vf-LiD" id="5n1-bG-JxJ"/>
+                <outlet property="itemMenu" destination="Ttt-tR-emo" id="cdF-dt-2h9"/>
                 <outlet property="saveMenuItem" destination="75" id="dsN-Im-4eZ"/>
             </connections>
         </customObject>

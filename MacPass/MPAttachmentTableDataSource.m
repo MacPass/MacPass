@@ -27,11 +27,10 @@
 
 - (NSDragOperation)tableView:(NSTableView *)tableView validateDrop:(id<NSDraggingInfo>)info proposedRow:(NSInteger)row proposedDropOperation:(NSTableViewDropOperation)dropOperation {
   NSPasteboard *draggingPasteBoard = [info draggingPasteboard];
-  NSArray *classArray = [NSArray arrayWithObject:[NSURL class]];
-  NSArray *arrayOfURLs = [draggingPasteBoard readObjectsForClasses:classArray options:nil];
+  NSArray *arrayOfURLs = [draggingPasteBoard readObjectsForClasses:@[NSURL.class] options:nil];
   NSUInteger numberOfDirectories = 0;
   for(NSURL *url in arrayOfURLs) {
-    if([url isFileURL] || [url isFileReferenceURL]) {
+    if(url.fileURL || url.fileReferenceURL) {
       NSError *error = nil;
       NSDictionary *resourceKeys = [url resourceValuesForKeys:@[NSURLIsDirectoryKey] error:&error];
       if( [resourceKeys[ NSURLIsDirectoryKey ] boolValue] == YES ) {
@@ -41,7 +40,7 @@
     }
     return NSDragOperationNone;
   }
-  if(numberOfDirectories == [arrayOfURLs count]) {
+  if(numberOfDirectories == arrayOfURLs.count) {
     return NSDragOperationNone;
   }
   return NSDragOperationCopy;
@@ -52,7 +51,7 @@
   KPKEntry *entry = document.selectedEntries.count == 1 ? document.selectedEntries.lastObject : nil;
   
   NSPasteboard *draggingPasteBoard = [info draggingPasteboard];
-  NSArray *arrayOfURLs = [draggingPasteBoard readObjectsForClasses:@[[NSURL class]] options:nil];
+  NSArray *arrayOfURLs = [draggingPasteBoard readObjectsForClasses:@[NSURL.class] options:nil];
   
   for(NSURL *fileUrl in arrayOfURLs) {
     [document addAttachment:fileUrl toEntry:entry];

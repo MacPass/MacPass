@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="12121" systemVersion="16F73" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="13771" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="12121"/>
+        <deployment identifier="macosx"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="13771"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
@@ -23,7 +24,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="694" height="595"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <tableView verticalHuggingPriority="750" allowsExpansionToolTips="YES" columnAutoresizingStyle="lastColumnOnly" alternatingRowBackgroundColors="YES" typeSelect="NO" rowSizeStyle="automatic" headerView="676" viewBased="YES" id="55" customClass="MPTableView">
+                            <tableView verticalHuggingPriority="750" allowsExpansionToolTips="YES" columnAutoresizingStyle="lastColumnOnly" alternatingRowBackgroundColors="YES" rowSizeStyle="automatic" headerView="676" viewBased="YES" id="55" customClass="MPTableView">
                                 <rect key="frame" x="0.0" y="0.0" width="695" height="572"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <size key="intercellSpacing" width="3" height="2"/>
@@ -251,7 +252,7 @@
                 <constraint firstItem="54" firstAttribute="top" secondItem="336" secondAttribute="top" constant="-1" id="683"/>
                 <constraint firstAttribute="bottom" secondItem="54" secondAttribute="bottom" id="vfw-Ff-Ip8"/>
             </constraints>
-            <point key="canvasLocation" x="256" y="530"/>
+            <point key="canvasLocation" x="-28" y="434"/>
         </customView>
     </objects>
     <resources>

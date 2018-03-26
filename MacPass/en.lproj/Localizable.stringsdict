@@ -1,0 +1,52 @@
+{
+	"%ld_CHARACTERS_TO_PICK_REMAINING" = {
+		"NSStringLocalizedFormatKey" = "%#@characters@";
+		characters = {
+			"NSStringFormatSpecTypeKey" = "NSStringPluralRuleType";
+			"NSStringFormatValueTypeKey" = ld;
+			one = "One character remaining";
+			other = "%ld characters remaining";
+			zero = "All characters picked";
+		};
+	};
+	"DUPLICATE_ENTRIES_%ld" = {
+		"NSStringLocalizedFormatKey" = "%#@entries@";
+		entries = {
+			"NSStringFormatSpecTypeKey" = "NSStringPluralRuleType";
+			"NSStringFormatValueTypeKey" = ld;
+			one = "Duplicate Entry";
+			other = "Duplicate Entries";
+			zero = "Duplicate Entries";
+		};
+	};
+	"EVERY_%ld_DAYS" = {
+		"NSStringLocalizedFormatKey" = "%#@days@";
+		days = {
+			"NSStringFormatSpecTypeKey" = "NSStringPluralRuleType";
+			"NSStringFormatValueTypeKey" = ld;
+			one = "every day";
+			other = "every %ld days";
+			zero = "after each unlock";
+		};
+	};
+	"PICKCHAR_INFO_MESSAGE_PICK_CHARACTERS_%ld" = {
+		"NSStringLocalizedFormatKey" = "%#@characters@";
+		characters = {
+			"NSStringFormatSpecTypeKey" = "NSStringPluralRuleType";
+			"NSStringFormatValueTypeKey" = ld;
+			one = "Please pick a single character to use";
+			other = "Pleas pick %ld characters to use";
+			zero = "Please pick the characters to use";
+		};
+	};
+	"PICKED_%ld_CHARACTERS" = {
+		"NSStringLocalizedFormatKey" = "%#@characters@";
+		characters = {
+			"NSStringFormatSpecTypeKey" = "NSStringPluralRuleType";
+			"NSStringFormatValueTypeKey" = ld;
+			one = "%ld character picked";
+			other = "%ld characters picked";
+			zero = "No characters picked";
+		};
+	};
+}

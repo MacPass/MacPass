@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="12121" systemVersion="16F73" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="13771" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="12121"/>
+        <deployment identifier="macosx"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="13771"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
@@ -9,7 +10,7 @@
             <connections>
                 <outlet property="URLTextField" destination="56" id="262"/>
                 <outlet property="addAttachmentButton" destination="177" id="w3F-U0-Rpk"/>
-                <outlet property="addCustomFieldButton" destination="179" id="I3F-Sp-dbI"/>
+                <outlet property="addCustomFieldButton" destination="G9J-nn-2bu" id="vco-Lt-hkc"/>
                 <outlet property="addWindowAssociationButton" destination="Iy9-9L-Aev" id="kDA-Mm-lah"/>
                 <outlet property="associationSequenceTextField" destination="NjR-ea-Y7k" id="kTb-Y5-XrZ"/>
                 <outlet property="attachmentTableView" destination="137" id="265"/>
@@ -84,10 +85,7 @@
                                         </connections>
                                     </button>
                                     <textField verticalHuggingPriority="750" allowsCharacterPickerTouchBarItem="YES" translatesAutoresizingMaskIntoConstraints="NO" id="126">
-                                        <rect key="frame" x="18" y="433" width="77" height="14"/>
-                                        <constraints>
-                                            <constraint firstAttribute="width" constant="73" id="136"/>
-                                        </constraints>
+                                        <rect key="frame" x="18" y="433" width="71" height="14"/>
                                         <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Attachments" id="135">
                                             <font key="font" metaFont="smallSystem"/>
                                             <color key="textColor" name="disabledControlTextColor" catalog="System" colorSpace="catalog"/>
@@ -165,8 +163,8 @@
                                                                             </constraints>
                                                                             <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyDown" image="NSActionTemplate" id="170"/>
                                                                         </imageView>
-                                                                        <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" allowsCharacterPickerTouchBarItem="YES" translatesAutoresizingMaskIntoConstraints="NO" id="166">
-                                                                            <rect key="frame" x="41" y="10" width="160" height="17"/>
+                                                                        <textField horizontalHuggingPriority="249" verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" allowsCharacterPickerTouchBarItem="YES" translatesAutoresizingMaskIntoConstraints="NO" id="166">
+                                                                            <rect key="frame" x="41" y="10" width="158" height="17"/>
                                                                             <textFieldCell key="cell" lineBreakMode="truncatingTail" sendsActionOnEndEditing="YES" title="Table View Cell" id="171">
                                                                                 <font key="font" metaFont="system"/>
                                                                                 <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
@@ -174,10 +172,7 @@
                                                                             </textFieldCell>
                                                                         </textField>
                                                                         <popUpButton verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="42g-QS-XtW">
-                                                                            <rect key="frame" x="207" y="5" width="38" height="25"/>
-                                                                            <constraints>
-                                                                                <constraint firstAttribute="width" constant="38" id="2EY-Pv-ic4"/>
-                                                                            </constraints>
+                                                                            <rect key="frame" x="205" y="5" width="40" height="25"/>
                                                                             <popUpButtonCell key="cell" type="roundTextured" bezelStyle="texturedRounded" alignment="center" lineBreakMode="truncatingTail" borderStyle="border" imageScaling="proportionallyDown" inset="2" pullsDown="YES" altersStateOfSelectedItem="NO" id="nJc-UT-cas">
                                                                                 <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                                                                 <font key="font" metaFont="menu"/>
@@ -241,6 +236,7 @@
                                     <constraint firstAttribute="trailing" secondItem="124" secondAttribute="trailing" constant="20" symbolic="YES" id="133"/>
                                     <constraint firstItem="124" firstAttribute="baseline" secondItem="126" secondAttribute="baseline" id="134"/>
                                     <constraint firstAttribute="bottom" secondItem="125" secondAttribute="bottom" constant="26" id="281"/>
+                                    <constraint firstItem="124" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="126" secondAttribute="trailing" constant="8" symbolic="YES" id="D9J-rW-ffS"/>
                                 </constraints>
                             </view>
                         </tabViewItem>
@@ -263,7 +259,7 @@
                 <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="82" secondAttribute="trailing" constant="20" symbolic="YES" id="4df-0Y-ggz"/>
                 <constraint firstItem="82" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="3" secondAttribute="leading" constant="20" symbolic="YES" id="zU6-5h-Swa"/>
             </constraints>
-            <point key="canvasLocation" x="294" y="-838"/>
+            <point key="canvasLocation" x="391" y="-865"/>
         </view>
         <customView translatesAutoresizingMaskIntoConstraints="NO" id="4" customClass="HNHUIScrollDocumentViewAdapter">
             <rect key="frame" x="0.0" y="0.0" width="291" height="712"/>
@@ -287,6 +283,7 @@
                         <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                     </textFieldCell>
                     <connections>
+                        <outlet property="delegate" destination="-2" id="pQH-Xf-3pz"/>
                         <outlet property="nextKeyView" destination="55" id="FgE-cj-E5Z"/>
                     </connections>
                 </textField>
@@ -309,6 +306,7 @@
                         <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                     </textFieldCell>
                     <connections>
+                        <outlet property="delegate" destination="-2" id="22y-I8-aaG"/>
                         <outlet property="nextKeyView" destination="60" id="ZPp-lg-TBS"/>
                     </connections>
                 </textField>
@@ -323,6 +321,7 @@
                         <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                     </textFieldCell>
                     <connections>
+                        <outlet property="delegate" destination="-2" id="LzV-u6-mkP"/>
                         <outlet property="nextKeyView" destination="7" id="8Vo-ZR-aWE"/>
                     </connections>
                 </textField>
@@ -367,6 +366,7 @@
                         </allowedInputSourceLocales>
                     </secureTextFieldCell>
                     <connections>
+                        <outlet property="delegate" destination="-2" id="RBf-26-U9y"/>
                         <outlet property="nextKeyView" destination="61" id="5yc-GS-oVG"/>
                     </connections>
                 </secureTextField>
@@ -393,6 +393,7 @@
                         <font key="font" metaFont="system"/>
                     </buttonCell>
                     <connections>
+                        <action selector="toggleExpire:" target="-2" id="EBe-2q-ASh"/>
                         <outlet property="nextKeyView" destination="8" id="SbJ-ZA-mXZ"/>
                     </connections>
                 </button>
@@ -450,18 +451,10 @@
                         <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
                         <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                     </textFieldCell>
-                </textField>
-                <button focusRingType="none" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="179">
-                    <rect key="frame" x="200" y="100" width="71" height="25"/>
-                    <buttonCell key="cell" type="roundTextured" title="Add Field" bezelStyle="texturedRounded" alignment="center" state="on" borderStyle="border" focusRingType="none" imageScaling="proportionallyDown" inset="2" id="232">
-                        <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
-                        <font key="font" metaFont="system"/>
-                    </buttonCell>
                     <connections>
-                        <action selector="addCustomField:" target="-2" id="273"/>
-                        <outlet property="nextKeyView" destination="193" id="aWG-La-YP3"/>
+                        <outlet property="delegate" destination="-2" id="bJ5-Un-81o"/>
                     </connections>
-                </button>
+                </textField>
                 <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="QSX-Xo-tcH">
                     <rect key="frame" x="20" y="18" width="251" height="25"/>
                     <buttonCell key="cell" type="roundTextured" title="Show Plugin Data" bezelStyle="texturedRounded" alignment="center" lineBreakMode="truncatingTail" state="on" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="X9y-K7-lix">
@@ -473,6 +466,20 @@
                         <outlet property="nextKeyView" destination="53" id="HTB-dl-8aH"/>
                     </connections>
                 </button>
+                <segmentedControl verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="G9J-nn-2bu" customClass="MPContextButton">
+                    <rect key="frame" x="220" y="100" width="51" height="25"/>
+                    <segmentedCell key="cell" borderStyle="border" alignment="left" style="texturedRounded" trackingMode="selectOne" id="POU-2t-8fl">
+                        <font key="font" metaFont="system"/>
+                        <segments>
+                            <segment image="NSAddTemplate" width="32"/>
+                            <segment/>
+                        </segments>
+                    </segmentedCell>
+                    <connections>
+                        <action selector="addCustomField:" target="-2" id="3sZ-a1-V2r"/>
+                        <outlet property="nextKeyView" destination="QSX-Xo-tcH" id="P9m-Wl-V3E"/>
+                    </connections>
+                </segmentedControl>
             </subviews>
             <constraints>
                 <constraint firstItem="52" firstAttribute="top" secondItem="4" secondAttribute="top" constant="5" id="11"/>
@@ -508,22 +515,27 @@
                 <constraint firstAttribute="trailing" secondItem="5" secondAttribute="trailing" constant="20" symbolic="YES" id="50"/>
                 <constraint firstItem="QSX-Xo-tcH" firstAttribute="leading" secondItem="4" secondAttribute="leading" constant="20" symbolic="YES" id="2AA-hQ-mL7"/>
                 <constraint firstItem="IpW-b2-jWu" firstAttribute="leading" secondItem="4" secondAttribute="leading" constant="20" id="51R-pR-KLO"/>
-                <constraint firstAttribute="trailing" secondItem="179" secondAttribute="trailing" constant="20" symbolic="YES" id="Bys-px-9xs"/>
+                <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="52" secondAttribute="trailing" constant="20" symbolic="YES" id="6P6-fW-kGx"/>
                 <constraint firstAttribute="trailing" secondItem="IpW-b2-jWu" secondAttribute="trailing" constant="20" id="D0t-s7-2hT"/>
-                <constraint firstItem="0U8-TS-giU" firstAttribute="top" secondItem="179" secondAttribute="bottom" constant="8" symbolic="YES" id="GNj-yE-507"/>
                 <constraint firstItem="7" firstAttribute="top" secondItem="56" secondAttribute="bottom" constant="12" id="Gh9-Lg-kcm"/>
                 <constraint firstItem="IpW-b2-jWu" firstAttribute="top" secondItem="0U8-TS-giU" secondAttribute="bottom" constant="8" symbolic="YES" id="HSM-Aj-X9I"/>
                 <constraint firstItem="58" firstAttribute="top" secondItem="55" secondAttribute="bottom" constant="12" id="JiM-Dm-AG8"/>
-                <constraint firstItem="179" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="4" secondAttribute="leading" constant="20" symbolic="YES" id="OUg-H1-uyM"/>
+                <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="57" secondAttribute="trailing" constant="20" symbolic="YES" id="N4A-wg-PdS"/>
                 <constraint firstItem="QSX-Xo-tcH" firstAttribute="top" secondItem="IpW-b2-jWu" secondAttribute="bottom" constant="8" symbolic="YES" id="TPp-cx-48q"/>
                 <constraint firstItem="8" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="7" secondAttribute="trailing" constant="8" symbolic="YES" id="Xa5-Ir-XNC"/>
                 <constraint firstAttribute="bottom" secondItem="QSX-Xo-tcH" secondAttribute="bottom" constant="20" symbolic="YES" id="ZdF-5c-xDa"/>
                 <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="0U8-TS-giU" secondAttribute="trailing" constant="20" symbolic="YES" id="a5R-eI-VuV"/>
+                <constraint firstItem="0U8-TS-giU" firstAttribute="top" secondItem="G9J-nn-2bu" secondAttribute="bottom" constant="8" symbolic="YES" id="aes-tv-LHA"/>
+                <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="54" secondAttribute="trailing" constant="20" symbolic="YES" id="cYP-oK-dVP"/>
+                <constraint firstAttribute="trailing" secondItem="G9J-nn-2bu" secondAttribute="trailing" constant="20" symbolic="YES" id="ggu-f5-LtR"/>
                 <constraint firstAttribute="trailing" secondItem="QSX-Xo-tcH" secondAttribute="trailing" constant="20" symbolic="YES" id="hr2-Eb-g24"/>
                 <constraint firstItem="0U8-TS-giU" firstAttribute="leading" secondItem="4" secondAttribute="leading" constant="20" id="kLH-Bj-C5m"/>
                 <constraint firstItem="57" firstAttribute="top" secondItem="59" secondAttribute="bottom" constant="8" symbolic="YES" id="lYe-am-xJx"/>
+                <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="58" secondAttribute="trailing" constant="20" symbolic="YES" id="rbs-i7-bti"/>
+                <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="6" secondAttribute="trailing" constant="20" symbolic="YES" id="uuh-ba-z4h"/>
+                <constraint firstItem="G9J-nn-2bu" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="4" secondAttribute="leading" constant="20" symbolic="YES" id="z4K-PB-Qfb"/>
             </constraints>
-            <point key="canvasLocation" x="-400" y="-728"/>
+            <point key="canvasLocation" x="-679" y="-1054"/>
         </customView>
         <view translatesAutoresizingMaskIntoConstraints="NO" id="zv7-wE-Bmg" customClass="HNHUIScrollDocumentViewAdapter">
             <rect key="frame" x="0.0" y="0.0" width="301" height="424"/>
@@ -582,7 +594,7 @@
                     <rect key="frame" x="20" y="138" width="261" height="160"/>
                     <clipView key="contentView" id="aDE-WT-YIv">
                         <rect key="frame" x="1" y="1" width="259" height="158"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <autoresizingMask key="autoresizingMask"/>
                         <subviews>
                             <tableView verticalHuggingPriority="750" allowsExpansionToolTips="YES" columnAutoresizingStyle="lastColumnOnly" alternatingRowBackgroundColors="YES" columnReordering="NO" columnSelection="YES" columnResizing="NO" multipleSelection="NO" autosaveColumns="NO" rowSizeStyle="automatic" viewBased="YES" id="caM-L6-UHC">
                                 <rect key="frame" x="0.0" y="0.0" width="259" height="158"/>
@@ -778,7 +790,7 @@
                 <constraint firstAttribute="trailing" secondItem="45R-v4-ywl" secondAttribute="trailing" constant="20" symbolic="YES" id="uUm-S5-cxM"/>
                 <constraint firstAttribute="trailing" secondItem="z03-zW-GN3" secondAttribute="trailing" constant="20" symbolic="YES" id="wiq-pY-TG8"/>
             </constraints>
-            <point key="canvasLocation" x="-50" y="-872"/>
+            <point key="canvasLocation" x="39" y="-995"/>
         </view>
         <scrollView borderType="line" autohidesScrollers="YES" horizontalLineScroll="56" horizontalPageScroll="10" verticalLineScroll="56" verticalPageScroll="10" usesPredominantAxisScrolling="NO" horizontalScrollElasticity="none" translatesAutoresizingMaskIntoConstraints="NO" id="180" customClass="HNHUIScrollView">
             <rect key="frame" x="0.0" y="0.0" width="261" height="270"/>
@@ -810,13 +822,13 @@
                                         <rect key="frame" x="1" y="1" width="256" height="54"/>
                                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                         <subviews>
-                                            <textField verticalHuggingPriority="750" allowsCharacterPickerTouchBarItem="YES" translatesAutoresizingMaskIntoConstraints="NO" id="199">
-                                                <rect key="frame" x="3" y="10" width="179" height="22"/>
+                                            <textField verticalHuggingPriority="750" allowsCharacterPickerTouchBarItem="YES" translatesAutoresizingMaskIntoConstraints="NO" id="199" customClass="HNHUIRoundedSecureTextField">
+                                                <rect key="frame" x="3" y="10" width="139" height="22"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="22" id="212"/>
                                                     <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="50" id="213"/>
                                                 </constraints>
-                                                <textFieldCell key="cell" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" placeholderString="Value" drawsBackground="YES" id="214" customClass="HNHUIRoundedTextFieldCell">
+                                                <textFieldCell key="cell" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" placeholderString="Value" drawsBackground="YES" id="214">
                                                     <font key="font" metaFont="system"/>
                                                     <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
                                                     <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
@@ -836,10 +848,20 @@
                                             <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="198">
                                                 <rect key="frame" x="190" y="8" width="32" height="25"/>
                                                 <constraints>
-                                                    <constraint firstAttribute="width" constant="32" id="215"/>
+                                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="32" id="215"/>
                                                 </constraints>
                                                 <buttonCell key="cell" type="roundTextured" bezelStyle="texturedRounded" image="NSRemoveTemplate" imagePosition="overlaps" alignment="center" state="on" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="216">
                                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                                    <font key="font" metaFont="system"/>
+                                                </buttonCell>
+                                            </button>
+                                            <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="tDI-EL-JGB">
+                                                <rect key="frame" x="150" y="8" width="32" height="25"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="32" id="JGO-sl-fdM"/>
+                                                </constraints>
+                                                <buttonCell key="cell" type="roundTextured" bezelStyle="texturedRounded" image="52_EncryptedTemplate" imagePosition="overlaps" alignment="center" lineBreakMode="truncatingTail" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="fat-C5-dS2">
+                                                    <behavior key="behavior" pushIn="YES" changeContents="YES" lightByContents="YES"/>
                                                     <font key="font" metaFont="system"/>
                                                 </buttonCell>
                                             </button>
@@ -852,11 +874,14 @@
                                             <constraint firstItem="199" firstAttribute="top" secondItem="200" secondAttribute="bottom" constant="8" symbolic="YES" id="205"/>
                                             <constraint firstAttribute="bottom" secondItem="199" secondAttribute="bottom" constant="10" id="206"/>
                                             <constraint firstItem="198" firstAttribute="centerY" secondItem="199" secondAttribute="centerY" id="207"/>
-                                            <constraint firstItem="198" firstAttribute="leading" secondItem="199" secondAttribute="trailing" constant="8" symbolic="YES" id="208"/>
                                             <constraint firstAttribute="trailing" secondItem="198" secondAttribute="trailing" constant="34" id="209"/>
+                                            <constraint firstItem="tDI-EL-JGB" firstAttribute="centerY" secondItem="199" secondAttribute="centerY" id="FJe-JG-f4a"/>
+                                            <constraint firstItem="tDI-EL-JGB" firstAttribute="leading" secondItem="199" secondAttribute="trailing" constant="8" symbolic="YES" id="Wbg-bF-vD7"/>
+                                            <constraint firstItem="198" firstAttribute="leading" secondItem="tDI-EL-JGB" secondAttribute="trailing" constant="8" symbolic="YES" id="qSi-Hi-kM3"/>
                                         </constraints>
                                         <connections>
                                             <outlet property="labelTextField" destination="200" id="242"/>
+                                            <outlet property="protectedButton" destination="tDI-EL-JGB" id="2Im-zX-khQ"/>
                                             <outlet property="removeButton" destination="198" id="243"/>
                                             <outlet property="valueTextField" destination="199" id="241"/>
                                         </connections>
@@ -876,12 +901,13 @@
                 <autoresizingMask key="autoresizingMask"/>
             </scroller>
             <connections>
-                <outlet property="nextKeyView" destination="QSX-Xo-tcH" id="KP9-D4-4cC"/>
+                <outlet property="nextKeyView" destination="G9J-nn-2bu" id="CZ9-f2-JDQ"/>
             </connections>
-            <point key="canvasLocation" x="-725" y="-950"/>
+            <point key="canvasLocation" x="-1015" y="-1275"/>
         </scrollView>
     </objects>
     <resources>
+        <image name="52_EncryptedTemplate" width="16" height="16"/>
         <image name="NSActionTemplate" width="14" height="14"/>
         <image name="NSAddTemplate" width="11" height="11"/>
         <image name="NSQuickLookTemplate" width="19" height="12"/>

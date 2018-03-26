@@ -5,6 +5,20 @@
 //  Created by Michael Starke on 31.03.13.
 //  Copyright (c) 2013 HicknHack Software GmbH. All rights reserved.
 //
+//  This program is free software: you can redistribute it and/or modify
+//  it under the terms of the GNU General Public License as published by
+//  the Free Software Foundation, either version 3 of the License, or
+//  (at your option) any later version.
+//
+//  This program is distributed in the hope that it will be useful,
+//  but WITHOUT ANY WARRANTY; without even the implied warranty of
+//
+//  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+//  GNU General Public License for more details.
+//
+//  You should have received a copy of the GNU General Public License
+//  along with this program.  If not, see <http://www.gnu.org/licenses/>.
+//
 
 #import "MPPasswordCreatorViewController.h"
 #import "MPPasteBoardController.h"
@@ -287,12 +301,12 @@ typedef NS_ENUM(NSUInteger, MPPasswordRating) {
 #pragma mark Helper
 - (void)_updateSetDefaultsButton:(BOOL)shouldDeleteEntryDefaults {
   if(shouldDeleteEntryDefaults) {
-    self.setDefaultButton.title = NSLocalizedString(@"PASSWORD_GENERATOR_RESET_ENTRY_DEFAULTS", "");
+    self.setDefaultButton.title = NSLocalizedString(@"PASSWORD_GENERATOR_RESET_ENTRY_DEFAULTS", "Button to reset the password defaults for a single entry");
     self.setDefaultButton.enabled = YES;
     self.setDefaultButton.action = @selector(_resetEntryDefaults:);
   }
   else {
-    self.setDefaultButton.title = NSLocalizedString(@"PASSWORD_GENERATOR_SET_DEFAULTS", "");
+    self.setDefaultButton.title = NSLocalizedString(@"PASSWORD_GENERATOR_SET_DEFAULTS", "Button to set the defaults of the password generator");
     self.setDefaultButton.action = @selector(_setDefault:);
   }
 }

@@ -1,219 +1,437 @@
-﻿/* Formatted Times  */
-"%ld_DAYS_AGO" = "%ld days ago";
-"%ld_HOURS_AGO" = "about %ld hours ago";
-"%ld_MINUTES_AGO" = "%ld minutes ago";
-"%ld_WEEKS_AGO" = "%ld weeks ago";
-"JUST_NOW" = "Just now";
-"LAST_WEEK" = "Last week";
-"ONE_WEEK_AGO" = "One week ago";
-"YESTERDAY" = "Yesterday";
-"TOMORROW" = "Tomorrow";
-"ONE_WEEK" = "in one week";
-"ONE_MONTH" = "in one month";
-"90_DAYS" = "in 90 days";
-"ONE_YEAR" = "in one year";
+/* Display format for days. Should contain a long decimal placeholder! */
+"%ld_DAYS" = "%ld dni";
 
-/* Date Picker */
-"SELECT_DATE_PRESET" = "Use preset…";
+/* % days ago */
+"%ld_DAYS_AGO" = "%ld days ago";
+
+/* % Hours ago */
+"%ld_HOURS_AGO" = "about %ld hours ago";
+
+/* % Minutes ago */
+"%ld_MINUTES_AGO" = "%ld minutes ago";
+
+/* % Weeks ago */
+"%ld_WEEKS_AGO" = "%ld weeks ago";
+
+/* preset to expire after 90 days from now */
+"90_DAYS" = "w ciągu 90 dni";
+
+/* No comment provided by engineer. */
+"ACTION" = "Akcja";
+
+/* No comment provided by engineer. */
+"ADD_TREMPLATE_ENTRY" = "Dodaj szablon wpisu";
+
+/* No comment provided by engineer. */
+"ATTACHMENTS" = "Załączniki";
 
 /* Menu item for automatic trash creation */
 "AUTOCREATE_TRASH_FOLDER" = "Create Automatically";
 
-/*
- Actions
- */
-"ADD_ENTRY" = "Add Entry";
-"ADD_GROUP" = "Add Group";
-"DUPLICATE_ENTRY" = "Duplicate Entry";
-"DUPLICATE_ENTRY_WITH_OPTIONS" = "Duplicate Entry…";
-"COPY_ENTRY" = "Copy Entry";
-"COPY_GROUP" = "Copy Group";
-"ADD_TREMPLATE_ENTRY" = "Dodaj szablon wpisu";
-"DELETE_GROUP" = "Usuń grupę";
-"DELETE_ENTRY" = "Usuń wpis";
-"EDIT_TEMPLATE_GROUP" = "Edit Entry Template Group";
-"EMPTY_TRASH" = "Wyczyść kosz";
-"MOVE_ENTRY" = "Przenieś wpis";
-"MOVE_GROUP" = "Przenieś grupę";
-"NEW_ENTRY_WITH_TEMPLATE_%@" = "Dodaj wpis używając szablonu %@";
-"NEW_DATABASE" = "Database";
-"OPEN_URL" = "Open URL";
-"PERFORM_AUTOTYPE_FOR_ENTRY" = "Perform Autotype";
-"PREVIEW" = "Preview";
-"PASSWORD_GENERATOR_SET_DEFAULTS" = "Set Defaults";
-"PASSWORD_GENERATOR_RESET_ENTRY_DEFAULTS" = "Reset";
-"TRASH_ENTRY" = "Trash Entry";
-"TRASH_GROUP" = "Trash Group";
-"SET_NAME" = "Edit Name";
-"SET_TITLE" = "Edit Title";
-"SET_USERNAME" = "Edit Username";
-"SET_PASSWORD" = "Edit Password";
-"SET_URL" = "Edit URL";
-"SET_NOTES" = "Edit Notes";
-"SHOW_HISTORY" = "SHOW_HISTORY";
-
-/*
- Search
- */
-"CLEAR_RECENT_SEARCHES" = "Clear recent searches";
-"RECENT_SEARCHES" = "Recent searches";
-"SEARCH_DUPLICATE_PASSWORDS" = "Duplicate Passwords";
-"SEARCH_EXPIRED_ENTRIES" = "Expired";
-"SELECT_FILTER_WITH_DOTS" = "Select…";
-
-/*
- Direct Translations
- */
-"ACTION" = "Akcja";
-"ATTACHMENTS" = "Załączniki";
-"CANCEL" = "Anuluj";
-"DATABASE" = "Baza danych";
-"DELETE" = "Usuń";
-"EDIT" = "Edytuj";
-"EMAIL" = "E-mail";
-"GROUP" = "Grupa";
-"GENERAL" = "Ogólne";
-"HOMEBANKING" = "Homebanking";
-"INSPECTOR" = "Inspektor";
-"INTERNET" = "Internet";
-"LOCK" = "Blokada";
-"MODIFIED" = "Zmodyfikowany";
-"NAME" = "Nazwa";
-"NETWORK" = "Sieć";
-"NONE" = "Nic";
-"NOTES" = "Notatki";
-"PASSWORD" = "Hasło";
-"SAVE" = "Zapisz";
-"SAVE_WITH_DOTS" = "Zapisz…";
-"SEARCH" = "Wyszukaj";
-"TITLE" = "Nazwa";
-"TRASH" = "Kosz";
-"URL" = "Link";
-"USERNAME" = "Nazwa użytkownika";
-"WINDOWS" = "Okna";
-
-
-"CHANGE_DATABASE_NAME" = "Change Database Name";
-"CHANGE_TRASH_GROUP" = "Change Trash Group";
-"%@_COPY" = "%@ kopiuj";
-
-"DUPLICTE_PASSWORDS" = "Duplicate Passwords";
-
-/* Field nam that was copied to the pasteboard */
-"COPIED_FIELD_%@" = "Skopiowano %@";
-"COPIED_PASSWORD" = "Hasło zostało skopiowane!";
-"COPIED_URL" = "URL copied!";
-"COPIED_USERNAME" = "Skopiowano nazwę użytkownika!";
-"COPY_CUSTOM_FIELDS" = "Copy Custom Fields";
-"COPY_FIELD_%@" = "Skopiuj %@";
-"COPY_PASSWORD" = "Skopiuj hasło";
-"COPY_URL" = "Copy URL";
-"COPY_USERNAME" = "Copy Username";
-
-/* Dock Badge */
-"CLEARING_PASTEBOARD" = "…";
-
-/* Group Inspector */
-/* Autotype Combobox */
-"AUTOTYPE_NO" = "Wyłącz autouzupełnianie";
-"AUTOTYPE_YES" = "Włącz autouzupełnianie";
+/* No comment provided by engineer. */
 "AUTOTYPE_INHERIT" = "Dziedzicz ustawienie autouzupełniania";
 
-/* Search Combobox */
-"SEARCH_INHERIT" = "Dziedzicz ustawienie wyszukiwarki";
-"SEARCH_YES" = "Zawrzyj w wynikach wyszukiwania";
-"SEARCH_NO" = "Wyłącz z wyników wyszukiwania";
+/* No comment provided by engineer. */
+"AUTOTYPE_NO" = "Wyłącz autouzupełnianie";
 
-/*
- Date/Time Displays
- */
-/* Created at template string. %@ is replaced by localized date and time */
-"CREATED_AT_%@" = "Utworzony: %@";
-/* Modifed at template string. %@ is replaced by localized date and time */
-"MODIFED_AT_%@" = "Zmodyfikowany: %@";
+/* Notification: Autotype failed, no documents are open */
+"AUTOTYPE_OVERLAY_NO_DOCUMENTS" = "Please open a file to use Global Autotype!";
 
-"EXPIRES_AT_DATE_%@" = "Wygasa: %@";
-"NO_EXPIRE_DATE_SET" = "Nigdy nie wygasa.";
+/* Noticiation: Autotype failed to find a match for %@ (string placeholder) */
+"AUTOTYPE_OVERLAY_NO_MATCH_FOR_%@" = "Brak dopasowania dla %@!";
 
-/*
- Defaults for new objects
- */
-"DEFAULT_CUSTOM_FIELD_TITLE" = "Własne";
-"DEFAULT_CUSTOM_FIELD_VALUE" = "Wartość";
-"DEFAULT_ENTRY_TITLE" = "Nowy wpis";
-"DEFAULT_GROUP_NAME" = "Nowa grupa";
-"DEFAULT_WINDOW_TITLE" = "Tytuł okna";
-
-/* Number of Entries
- Plural (0, >1)
- Singular (1)
- */
-"%ld_ENTRIES" = "%ld wpisy/ów";
-"%ld_ENTRY" = "%ld wpis";
-
-/* Settings */
-"GENERAL_SETTINGS" = "Ogólne";
-"INTEGRATION_SETTINGS" = "Integracje";
-"UPDATE_SETTINGS" = "Uaktualnienia";
-"WORKFLOW_SETTINGS" = "Przepływ danych";
-"DEFAULT_BROWSER" = "Domyślna przeglądarka";
-"OTHER_BROWSER" = "Wybierz przeglądarke…";
-"PLUGIN_SETTINGS" = "Wtyczki";
-
-/* Feature not supported in Version */
-"KDBX_ONLY_FEATURE" = "Funkcjonalność nie dostępna w bazie danych KDB";
-
-/* Template */
-"NO_TEMPLATE_GROUP" = "Brak szablonów";
-"NO_TEMPLATES" = "Nie znaleziono szablonów";
-
-/* Kefile */
-"SAVE_KEYFILE" = "Zapisz plik z kluczem";
-
-/* Autoype */
-/* Candiate dialog */
-"SELECT_AUTOTYPE_CANDIDATE" = "Dokonaj wyboru";
-"AUTOTYPE_OVERLAY_NO_MATCH" = "Brak dopasowania!";
+/* Notification: Autotype found a single match. */
 "AUTOTYPE_OVERLAY_SINGLE_MATCH" = "Znaleziono dopasowanie!";
 
-/* Alert Dialogs */
-"WARNING_ON_EMPTY_TRASH_DESCRIPTION" = "Wyczyszczenie kosza jest nieodwracalne.";
-"WARNING_ON_EMPTY_TRASH_TITLE" = "Wyczyścić kosz?";
-"WARNING_ON_LOSSY_SAVE" = "Zapisanie w formacie KDB, doprowadzi do utraty danych.";
-"WARNING_ON_LOSSY_SAVE_DESCRIPTION" = "Format pliku KDB nie pozwala na zapisanie wszystkich informacji.";
+/* No comment provided by engineer. */
+"AUTOTYPE_YES" = "Włącz autouzupełnianie";
+
+/* Cancel */
+"CANCEL" = "Anuluj";
+
+/* Menu item in the database outline context menu to change the database name */
+"CHANGE_DATABASE_NAME" = "Zmień nazwę bazy danych";
+
+/* (No Comment) */
 "CHANGE_FORMAT" = "Czy zmienić format pliku na KDBX";
-"SAVE_LOSSY" = "Zapisz i strać dane";
 
-"ENFORCE_PASSWORD_CHANGE_ALERT_TITLE" = "Hasło bazy danych wygasło!";
-"ENFORCE_PASSWORD_CHANGE_ALERT_DESCRIPTION" = "Nie możesz zapisać dopóki nie dokonasz zmiany hasła i/lub zmiany pliku z kluczem.";
-
-"RECOMMEND_PASSWORD_CHANGE_ALERT_TITLE" = "Proszę zmienić hasło bazy danych!";
-"RECOMMEND_PASSWORD_CHANGE_ALERT_DESCRIPTION" = "Zaleca się zmianę hasła i/lub zmianę pliku z kluczem.";
+/* No comment provided by engineer. */
 "CHANGE_PASSWORD_WITH_DOTS" = "Zmień haslo…";
 
-"WARNING_ON_SAVE_NO_PASSWORD_OR_KEY_SET" = "No password or keyfile is set.";
-"WARNING_ON_SAVE_NO_PASSWORD_OR_KEY_SET_SUGGESTION" = "Please set a password and/or keyfile for this database. Aborting this will undo all changes and lock the document";
+/* Menu item in the database outline context menu to change the trash group */
+"CHANGE_TRASH_GROUP" = "Change Trash Group";
+
+/* String displayed at dock badge when clipboard is about to be cleared */
+"CLEARING_PASTEBOARD" = "…";
+
+/* No comment provided by engineer. */
+"CLEAR_RECENT_SEARCHES" = "Clear recent searches";
+
+/* Field name that was copied to the pasteboard */
+"COPIED_FIELD_%@" = "Skopiowano %@";
+
+/* Password was copied to the pasteboard */
+"COPIED_PASSWORD" = "Hasło zostało skopiowane!";
+
+/* URL was copied to the pasteboard */
+"COPIED_URL" = "URL copied!";
+
+/* Username was copied to the pasteboard */
+"COPIED_USERNAME" = "Skopiowano nazwę użytkownika!";
+
+/* Submenu to Copy custom fields */
+"COPY_CUSTOM_FIELDS" = "Copy Custom Fields";
+
+/* No comment provided by engineer. */
+"COPY_ENTRY" = "Kopiuj wpis";
+
+/* Mask for title to copy field value */
+"COPY_FIELD_%@" = "Skopiuj %@";
+
+/* No comment provided by engineer. */
+"COPY_GROUP" = "Kopiuj grupę";
+
+/* No comment provided by engineer. */
+"COPY_PASSWORD" = "Skopiuj hasło";
+
+/* No comment provided by engineer. */
+"COPY_URL" = "Skopiuj URL";
+
+/* No comment provided by engineer. */
+"COPY_USERNAME" = "Skopiuj nazwę użytkownika";
+
+/* (No Comment) */
+"CREATED_AT_%@" = "Utworzony: %@";
+
+/* Default name database */
+"DATABASE" = "Baza danych";
+
+/* Default Browser */
+"DEFAULT_BROWSER" = "Domyślna przeglądarka";
+
+/* Default Titel for new Custom-Fields */
+"DEFAULT_CUSTOM_FIELD_TITLE" = "Własne";
+
+/* Default Value for new Custom-Fields */
+"DEFAULT_CUSTOM_FIELD_VALUE" = "Wartość";
+
+/* Title for a newly created entry */
+"DEFAULT_ENTRY_TITLE" = "Nowy wpis";
+
+/* Title for a newly created group */
+"DEFAULT_GROUP_NAME" = "Nowa grupa";
+
+/* No comment provided by engineer. */
+"DEFAULT_WINDOW_TITLE" = "Tytuł okna";
+
+/* Menu item in the database outline context menu to delete the node from the trash */
+"DELETE" = "Usuń";
+
+/* No comment provided by engineer. */
+"DELETE_ENTRY" = "Usuń wpis";
+
+/* Delete Group */
+"DELETE_GROUP" = "Usuń grupę";
+
+/* Empty Trash */
+"DELETE_TRASHED_ENTRY" = "Usuń wpis";
+
+/* Empty Trash */
+"DELETE_TRASHED_GROUP" = "Usuń grupę";
+
+/* No comment provided by engineer. */
+"DOCUMENT_AUTOTYPE_CORRUPTION_WARNING" = "Proszę uruchomić naprawę autouzupełnienia...";
+
+/* No comment provided by engineer. */
+"DUPLICATE_ENTRY" = "Powiel wpis";
+
+/* No comment provided by engineer. */
+"DUPLICATE_ENTRY_WITH_OPTIONS" = "Powiel wpis…";
+
+/* (No Comment) */
+"DUPLICTE_PASSWORDS" = "Powielone hasła";
+
+/* (No Comment) */
+"EDIT" = "Edytuj";
+
+/* Menu item in the database outline context menu to change the template group
+   Menu item on the add entry context menu to edit template groups */
+"EDIT_TEMPLATE_GROUP" = "Edit Entry Template Group";
+
+/* Empty Trash
+   Menu item in the database outline context menu to empyt the trash
+   Menu item in the database outline to empty the trash */
+"EMPTY_TRASH" = "Opróżnij kosz";
+
+/* No comment provided by engineer. */
+"ENFORCE_PASSWORD_CHANGE_ALERT_DESCRIPTION" = "Nie możesz zapisać dopóki nie dokonasz zmiany hasła i/lub zmiany pliku z kluczem.";
+
+/* No comment provided by engineer. */
+"ENFORCE_PASSWORD_CHANGE_ALERT_TITLE" = "Hasło bazy danych wygasło!";
+
+/* Keyfile not valid */
+"ERROR_INVALID_KEYFILE" = "Plik z kluczem jest nieprawidłowy!";
+
+/* Passwords do not match */
+"ERROR_PASSWORD_MISSMATCH" = "Hasła nie pasują do siebie!";
+
+/* Passwords do not match, keyfile is invalid */
+"ERROR_PASSWORD_MISSMATCH_INVALID_KEYFILE" = "Hasła nie pasują do siebie a plik z kluczem jest nieprawidłowy!";
+
+/* Format to returen the date an item expires. Includes %@ placehoder for date */
+"EXPIRES_AT_DATE_%@" = "Wygasa: %@";
+
+/* Informative text displayed when the file was change from another application */
+"FILE_CHANGED_BY_OTHERS_INFO_TEXT" = "Załadowany plik różni się od pliku zapisanegona dysku. Co chcesz zrobić?";
 
 /* Message displayed when an open file was changed from another application */
 "FILE_CHANGED_BY_OTHERS_MESSAGE_TEXT" = "Plik bazy danych został zmieniony!";
-/* Informative text displayed when the file was change form another application */
-"FILE_CHANGED_BY_OTHERS_INFO_TEXT" = "Załadowany plik różni się od pliku zapisanegona dysku. Co chcesz zrobić?";
-/* Button to ignore the changes */
-"KEEP_MINE" = "Zachowaj obecną wersję i ignoruj zmiany!";
-/* BUtton to reload the changes form disk */
-"LOAD_CHANGES" = "Załaduj zmieniony plik!";
+
+/* No comment provided by engineer. */
+"FILE_CHANGE_STRATEGY_ASK" = "Pytaj";
+
+/* No comment provided by engineer. */
+"FILE_CHANGE_STRATEGY_KEEP_MINE" = "Zachowaj moją wersję i ignoruj inne zmiany";
+
 /* Merge changes into file! */
-"MERGE_CHANGES" = "Merge changes!";
+"FILE_CHANGE_STRATEGY_MERGE" = "Merge Changes";
 
-/* Password Input Messages, Errors and Warning */
-"PASSWORD_INPUT_NO_PASSWORD" = "Brak hasła";
-"PASSWORD_INPUT_ENTER_PASSWORD" = "Wprowadź hasło";
-"PASSWORD_INPUT_REPEAT_PASSWORD" = "Powtórz hasło";
-"WARNING_NO_PASSWORD_OR_KEYFILE" = "Brak hasła lub pliku z kluczem!";
-"ERROR_PASSWORD_MISSMATCH_INVALID_KEYFILE" = "Hasła nie pasują do siebie a plik z kluczem jest nieprawidłowy!";
-"ERROR_PASSWORD_MISSMATCH" = "Hasła nie pasują do siebie!";
-"ERROR_INVALID_KEYFILE" = "Plik z kluczem jest nieprawidłowy!";
+/* No comment provided by engineer. */
+"FILE_CHANGE_STRATEGY_USE_OTHER" = "Załaduj zmodyfikowaną wersję i odrzuć moją";
 
-/* Misc */
-"DOCUMENT_AUTOTYPE_CORRUPTION_WARNING" = "Proszę uruchomić naprawę autouzupełnienia...";
+/* No comment provided by engineer. */
 "FILE_OPEN_ERROR" = "Błąd! Nie można otworzyć pliku.";
+
+/* General Settings Label */
+"GENERAL_SETTINGS" = "Ogólne";
+
+/* No comment provided by engineer. */
+"GROUP" = "Grupa";
+
+/* No comment provided by engineer. */
+"HISTORY" = "Historia";
+
+/* No comment provided by engineer. */
+"INSPECTOR" = "Inspektor";
+
+/* Label for the integration settings tab */
+"INTEGRATION_SETTINGS" = "Integracje";
+
+/* Just now */
+"JUST_NOW" = "Just now";
+
+/* Feature only available in kdbx databases */
+"KDBX_ONLY_FEATURE" = "Funkcjonalność nie dostępna w bazie danych KDB";
+
+/* Ignore the changes to an open file! */
+"KEEP_MINE_DISCARD_OTHER" = "Zachowaj moją, odrzuć inne";
+
+/* Reopen the file! */
+"KEEP_OTHER_DISCARD_MINE" = "Zachowaj inne, odrzuć moje";
+
+/* last week */
+"LAST_WEEK" = "Last week";
+
+/* No comment provided by engineer. */
+"LOCK" = "Blokada";
+
+/* (No Comment) */
+"MODIFED_AT_%@" = "Zmodyfikowany: %@";
+
+/* No comment provided by engineer. */
+"MODIFIED" = "Zmodyfikowany";
+
+/* No comment provided by engineer. */
+"MOVE_ENTRY" = "Przenieś wpis";
+
+/* No comment provided by engineer. */
+"MOVE_GROUP" = "Przenieś grupę";
+
+/* Name for a newly created Database */
+"NEW_DATABASE" = "Database";
+
+/* No comment provided by engineer. */
+"NEW_ENTRY" = "Nowy wpis";
+
+/* Submenu to add an entry via template */
+"NEW_ENTRY_WITH_TEMPLATE_%@" = "Dodaj wpis używając szablonu %@";
+
+/* No comment provided by engineer. */
+"NEW_GROUP" = "Nowa grupa";
+
+/* No comment provided by engineer. */
+"NONE" = "Nic";
+
+/* Displayed name when notes or part of notes was copied
+   Notes reference item */
+"NOTES" = "Notatki";
+
+/* Expiration date format, when item does not expire */
+"NO_EXPIRE_DATE_SET" = "Nigdy nie wygasa.";
+
+/* Menu item added to show that no templates are defined */
+"NO_TEMPLATES" = "Nie znaleziono szablonów";
+
+/* Menu item to reset the template groups */
+"NO_TEMPLATE_GROUP" = "Brak szablonów";
+
+/* Ok button */
+"OK" = "OK";
+
+/* preset to expire after one montch from now */
+"ONE_MONTH" = "w ciągu miesiąca";
+
+/* preset to expire after one week from now */
+"ONE_WEEK" = "w ciągu tygodnia";
+
+/* one week ago */
+"ONE_WEEK_AGO" = "One week ago";
+
+/* preset to expire after one year from now */
+"ONE_YEAR" = "w ciągu roku";
+
+/* No comment provided by engineer. */
+"OPEN_URL" = "Otwórz URL";
+
+/* Select Browser */
+"OTHER_BROWSER" = "Wybierz przeglądarke…";
+
+/* Password reference item */
+"PASSWORD" = "Hasło";
+
+/* Button to reset the password defaults for a single entry */
+"PASSWORD_GENERATOR_RESET_ENTRY_DEFAULTS" = "Reset";
+
+/* Button to set the defaults of the password generator */
+"PASSWORD_GENERATOR_SET_DEFAULTS" = "Set Defaults";
+
+/* Placeholder in the unlock-password input field if password is enabled */
+"PASSWORD_INPUT_ENTER_PASSWORD" = "Wprowadź hasło";
+
+/* Placeholder in the unlock-password input field if password is disabled */
+"PASSWORD_INPUT_NO_PASSWORD" = "Brak hasła";
+
+/* No comment provided by engineer. */
+"PASSWORD_INPUT_REPEAT_PASSWORD" = "Powtórz hasło";
+
+/* No comment provided by engineer. */
+"PERFORM_AUTOTYPE_FOR_ENTRY" = "Wykonaj autouzupełnianie";
+
+/* Label for plugin settings tab */
+"PLUGIN_SETTINGS" = "Wtyczki";
+
+/* No comment provided by engineer. */
+"PREVIEW" = "Preview";
+
+/* No comment provided by engineer. */
+"RECENT_SEARCHES" = "Recent searches";
+
+/* No comment provided by engineer. */
+"RECOMMEND_PASSWORD_CHANGE_ALERT_DESCRIPTION" = "Zaleca się zmianę hasła i/lub zmianę pliku z kluczem.";
+
+/* No comment provided by engineer. */
+"RECOMMEND_PASSWORD_CHANGE_ALERT_TITLE" = "Proszę zmienić hasło bazy danych!";
+
+/* Action to restore and Entry to a previous state of it's history */
+"RESTORE_HISTORY_ENTRY" = "RESTORE_HISTORY_ENTRY";
+
+/* No comment provided by engineer. */
+"SAVE" = "Zapisz";
+
+/* No comment provided by engineer. */
+"SAVE_KEYFILE" = "Zapisz plik z kluczem";
+
+/* No comment provided by engineer. */
+"SAVE_WITH_DOTS" = "Zapisz…";
+
+/* No comment provided by engineer. */
+"SEARCH" = "Wyszukaj";
+
+/* No comment provided by engineer. */
+"SEARCH_DUPLICATE_PASSWORDS" = "Powielone hasła";
+
+/* No comment provided by engineer. */
+"SEARCH_EXPIRED_ENTRIES" = "Wygasłe";
+
+/* No comment provided by engineer. */
+"SEARCH_INHERIT" = "Dziedzicz ustawienie wyszukiwarki";
+
+/* No comment provided by engineer. */
+"SEARCH_NO" = "Wyłącz z wyników wyszukiwania";
+
+/* No comment provided by engineer. */
+"SEARCH_YES" = "Zawrzyj w wynikach wyszukiwania";
+
+/* (No Comment) */
+"SELECT_AUTOTYPE_CANDIDATE" = "Dokonaj wyboru";
+
+/* Menu item title for the expiry preset selection menu in the date picker */
+"SELECT_DATE_PRESET" = "Use preset…";
+
+/* No comment provided by engineer. */
+"SELECT_FILTER_WITH_DOTS" = "Wybierz…";
+
+/* Set the selection as default file change strategy! */
+"SET_AS_DEFAULT_FILE_CHANGE_STRATEGY" = "Use this method as default. You can change this at any time in the preferences.";
+
+/* (No Comment) */
+"SHORT_FILE_CHANGE_STRATEGY_ASK" = "Pytaj";
+
+/* No comment provided by engineer. */
+"SHOW_HISTORY" = "Pokaż historię";
+
+/* Displayed name when title field was copied
+   Title reference item */
+"TITLE" = "Tytuł";
+
+/* preset to expire tomorrow */
+"TOMORROW" = "jutro";
+
+/* Move Entry to Trash */
+"TRASH_ENTRY" = "Trash Entry";
+
+/* Move Group to Trash */
+"TRASH_GROUP" = "Trash Group";
+
+/* Update Settings Label */
+"UPDATE_SETTINGS" = "Uaktualnienia";
+
+/* URL reference item */
+"URL" = "Link";
+
+/* Username reference item */
+"USERNAME" = "Nazwa użytkownika";
+
+/* Message text for disabled updates alert! */
+"Updates are disabled!" = "Aktualizacje są wyłączone!";
+
+/* No Key or Password */
+"WARNING_NO_PASSWORD_OR_KEYFILE" = "Brak hasła lub pliku z kluczem!";
+
+/* Informative Text displayed when clearing the Trash */
+"WARNING_ON_EMPTY_TRASH_DESCRIPTION" = "Wyczyszczenie kosza jest nieodwracalne.";
+
+/* No comment provided by engineer. */
+"WARNING_ON_EMPTY_TRASH_TITLE" = "Opróżnić kosz?";
+
+/* (No Comment) */
+"WARNING_ON_LOSSY_SAVE" = "Zapisanie w formacie KDB, doprowadzi do utraty danych.";
+
+/* (No Comment) */
+"WARNING_ON_LOSSY_SAVE_DESCRIPTION" = "Format pliku KDB nie pozwala na zapisanie wszystkich informacji.";
+
+/* No comment provided by engineer. */
+"WARNING_ON_SAVE_NO_PASSWORD_OR_KEY_SET" = "No password or keyfile is set.";
+
+/* No comment provided by engineer. */
+"WARNING_ON_SAVE_NO_PASSWORD_OR_KEY_SET_SUGGESTION" = "Please set a password and/or keyfile for this database. Aborting this will undo all changes and lock the document";
+
+/* (No Comment) */
+"WINDOWS" = "Okna";
+
+/* Label for the workflow settings tab */
+"WORKFLOW_SETTINGS" = "Przepływ danych";
+
+/* Yesterday */
+"YESTERDAY" = "wczoraj";
+

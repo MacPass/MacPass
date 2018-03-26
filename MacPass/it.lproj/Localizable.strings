@@ -1,4 +1,4 @@
-﻿/* Formatted Times  */
+/* Formatted Times  */
 "%ld_DAYS_AGO" = "%ld giorni fa";
 "%ld_HOURS_AGO" = "circa %ld ore fa";
 "%ld_MINUTES_AGO" = "%ld minuti fa";
@@ -22,8 +22,8 @@
 /*
  Actions
  */
-"ADD_ENTRY" = "Aggiungi elemento";
-"ADD_GROUP" = "Aggiungi gruppo";
+"NEW_ENTRY" = "Aggiungi elemento";
+"NEW_GROUP" = "Aggiungi gruppo";
 "DUPLICATE_ENTRY" = "Duplica elemento";
 "DUPLICATE_ENTRY_WITH_OPTIONS" = "Duplica elemento…";
 "COPY_ENTRY" = "Copia elemento";
@@ -44,12 +44,6 @@
 "PASSWORD_GENERATOR_RESET_ENTRY_DEFAULTS" = "Reimposta";
 "TRASH_ENTRY" = "Cestina Elemento";
 "TRASH_GROUP" = "Cestina Gruppo";
-"SET_NAME" = "Modifica Nome";
-"SET_TITLE" = "Modifica Titolo";
-"SET_USERNAME" = "Modifica Nome Utente";
-"SET_PASSWORD" = "Modifica Password";
-"SET_URL" = "Modifica URL";
-"SET_NOTES" = "Modifica Note";
 "SHOW_HISTORY" = "SHOW_HISTORY";
 
 /*
@@ -70,16 +64,10 @@
 "DATABASE" = "Database";
 "DELETE" = "Elimina";
 "EDIT" = "Modifica";
-"EMAIL" = "EMail";
 "GROUP" = "Gruppo";
-"GENERAL" = "Generale";
-"HOMEBANKING" = "Homebanking";
 "INSPECTOR" = "Inspector";
-"INTERNET" = "Internet";
 "LOCK" = "Blocca";
 "MODIFIED" = "Modificato";
-"NAME" = "Nome";
-"NETWORK" = "Rete";
 "NONE" = "Nessun";
 "NOTES" = "Note";
 "PASSWORD" = "Password";
@@ -87,7 +75,6 @@
 "SAVE_WITH_DOTS" = "Salva…";
 "SEARCH" = "Cerca";
 "TITLE" = "Titolo";
-"TRASH" = "Cestino";
 "URL" = "URL";
 "USERNAME" = "Nome Utente";
 "WINDOWS" = "Windows";
@@ -95,7 +82,6 @@
 
 "CHANGE_DATABASE_NAME" = "Cambia Nome Database";
 "CHANGE_TRASH_GROUP" = "Cambia Gruppo Cestino";
-"%@_COPY" = "%@ Copia";
 
 "DUPLICTE_PASSWORDS" = "Duplica Passwords";
 
@@ -144,13 +130,6 @@
 "DEFAULT_GROUP_NAME" = "Nuovo Gruppo";
 "DEFAULT_WINDOW_TITLE" = "Titolo Finestra";
 
-/* Number of Entries
- Plural (0, >1)
- Singular (1)
- */
-"%ld_ENTRIES" = "%ld Elementi";
-"%ld_ENTRY" = "%ld Elemento";
-
 /* Settings */
 "GENERAL_SETTINGS" = "Generale";
 "INTEGRATION_SETTINGS" = "Integrazione";
@@ -183,7 +162,6 @@
 "WARNING_ON_LOSSY_SAVE" = "Salvare in formato KDB comporterà una perdita di dati.";
 "WARNING_ON_LOSSY_SAVE_DESCRIPTION" = "Il file KDB non può contenere tutte le informazioni.";
 "CHANGE_FORMAT" = "Cambia formato a KDBX";
-"SAVE_LOSSY" = "Salva perdendo informazioni";
 
 "ENFORCE_PASSWORD_CHANGE_ALERT_TITLE" = "La password del database é scaduta!";
 "ENFORCE_PASSWORD_CHANGE_ALERT_DESCRIPTION" = "Non sarà possibile salvare il database fintanto che la password e/o la chiave sono cambiate.";
@@ -201,8 +179,6 @@
 "FILE_CHANGED_BY_OTHERS_INFO_TEXT" = "Il file in uso é diverso da quello sul disco, come vuoi procedere?";
 /* Button to ignore the changes */
 "KEEP_MINE" = "Mantieni la versione corrente e ignora le modifiche.";
-/* BUtton to reload the changes form disk */
-"LOAD_CHANGES" = "Ricarica file modificato!";
 /* Merge changes into file! */
 "MERGE_CHANGES" = "Merge changes!";
 

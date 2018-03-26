@@ -1,220 +1,630 @@
-﻿/* Formatted Times  */
-"%ld_DAYS_AGO" = "%ld days ago";
-"%ld_HOURS_AGO" = "about %ld hours ago";
-"%ld_MINUTES_AGO" = "%ld minutes ago";
-"%ld_WEEKS_AGO" = "%ld weeks ago";
-"JUST_NOW" = "Just now";
-"LAST_WEEK" = "Last week";
-"ONE_WEEK_AGO" = "One week ago";
-"YESTERDAY" = "Yesterday";
-"TOMORROW" = "Tomorrow";
-"ONE_WEEK" = "in one week";
-"ONE_MONTH" = "in one month";
-"90_DAYS" = "in 90 days";
-"ONE_YEAR" = "in one year";
+/* Count of characters remaining in pickchars dialog */
+"%ld_CHARACTERS_TO_PICK_REMAINING" = "%ld characters to pick remaining";
 
-/* Date Picker */
-"SELECT_DATE_PRESET" = "Use preset…";
+/* Display format for days. Should contain a long decimal placeholder! */
+"%ld_DAYS" = "%ld days";
+
+/* % days ago */
+"%ld_DAYS_AGO" = "%ld days ago";
+
+/* % Hours ago */
+"%ld_HOURS_AGO" = "about %ld hours ago";
+
+/* % Minutes ago */
+"%ld_MINUTES_AGO" = "%ld minutes ago";
+
+/* % Weeks ago */
+"%ld_WEEKS_AGO" = "%ld weeks ago";
+
+/* preset to expire after 90 days from now */
+"90_DAYS" = "in 90 days";
+
+/* Button label to abort a merge on a file with changed master key! */
+"ABORT_MERGE_KEEP_MINE" = "Abort Merge. Keep Mine.";
+
+/* Toolbar item with action menu */
+"ACTION" = "Action";
+
+/* Menu displayed for adding special custom keys */
+"ADD_CUSTOM_FIELD_CONTEXT_MENU" = "Add Custom Field Menu";
+
+/* Action to add an entry via template */
+"ADD_TREMPLATE_ENTRY" = "Create Template Entry";
+
+/* Alert informative text when plugins or their settings change and require a restart */
+"ALERT_INFORMATIVE_TEXT_PLUGINS_CHANGED_SUGGEST_RESTART" = "Changes to plugins and global plugin settings take only effect after restart. Restart MacPass now?";
+
+/* Alert informative text to ask the user if he really want to uninstall the plugin */
+"ALERT_INFORMATIVE_TEXT_REALLY_UNINSTALL_PLUGIN" = "The Plugin will be moved to the Trash.";
+
+/* Alert message text when plugins or their settings change and require a restart */
+"ALERT_MESSAGE_PLUGINS_CHANGED_SUGGEST_RESTART" = "Plugin settings changed. Please restart.";
+
+/* Alert message text to ask the user if he really want to uninstall the plugin. Include %@ placeholder for plugin name */
+"ALERT_MESSAGE_TEXT_REALLY_UNINSTALL_PLUGIN_%@" = "Should the Plugin %@ really be uninstalled?";
+
+/* Attachments column title (shows counts)
+   Menu item to toggle display of attachment count column in entry table */
+"ATTACHMENTS" = "Attachments";
 
 /* Menu item for automatic trash creation */
 "AUTOCREATE_TRASH_FOLDER" = "Create Automatically";
 
-/*
- Actions
- */
-"ADD_ENTRY" = "Add Entry";
-"ADD_GROUP" = "Add Group";
-"DUPLICATE_ENTRY" = "Duplicate Entry";
-"DUPLICATE_ENTRY_WITH_OPTIONS" = "Duplicate Entry…";
-"COPY_ENTRY" = "Copy Entry";
-"COPY_GROUP" = "Copy Group";
-"ADD_TREMPLATE_ENTRY" = "Create Template Entry";
-"DELETE_GROUP" = "Delete Group";
-"DELETE_ENTRY" = "Delete Entry";
-"EDIT_TEMPLATE_GROUP" = "Edit Entry Template Group";
-"EMPTY_TRASH" = "Empty Trash";
-"MOVE_ENTRY" = "Move Entry";
-"MOVE_GROUP" = "Move Group";
-"NEW_ENTRY_WITH_TEMPLATE_%@" = "Create Entry with Template %@";
-"NEW_DATABASE" = "Database";
-"OPEN_URL" = "Open URL";
-"PERFORM_AUTOTYPE_FOR_ENTRY" = "Perform Autotype";
-"PREVIEW" = "Preview";
-"PASSWORD_GENERATOR_SET_DEFAULTS" = "Set Defaults";
-"PASSWORD_GENERATOR_RESET_ENTRY_DEFAULTS" = "Reset";
-"TRASH_ENTRY" = "Trash Entry";
-"TRASH_GROUP" = "Trash Group";
-"SET_NAME" = "Edit Name";
-"SET_TITLE" = "Edit Title";
-"SET_USERNAME" = "Edit Username";
-"SET_PASSWORD" = "Edit Password";
-"SET_URL" = "Edit URL";
-"SET_NOTES" = "Edit Notes";
-"SHOW_HISTORY" = "Show History";
-
-/*
- Search
- */
-"CLEAR_RECENT_SEARCHES" = "Clear recent searches";
-"RECENT_SEARCHES" = "Recent searches";
-"SEARCH_DUPLICATE_PASSWORDS" = "Duplicate Passwords";
-"SEARCH_EXPIRED_ENTRIES" = "Expired";
-"SELECT_FILTER_WITH_DOTS" = "Select…";
-
-/*
- Direct Translations
- */
-"ACTION" = "Action";
-"ATTACHMENTS" = "Attachments";
-"CANCEL" = "Cancel";
-"DATABASE" = "Database";
-"DELETE" = "Delete";
-"EDIT" = "Edit";
-"EMAIL" = "EMail";
-"GROUP" = "Group";
-"GENERAL" = "General";
-"HOMEBANKING" = "Homebanking";
-"INSPECTOR" = "Inspector";
-"INTERNET" = "Internet";
-"LOCK" = "Lock";
-"MODIFIED" = "Modified";
-"NAME" = "Name";
-"NETWORK" = "Network";
-"NONE" = "None";
-"NOTES" = "Notes";
-"PASSWORD" = "Password";
-"SAVE" = "Save";
-"SAVE_WITH_DOTS" = "Save…";
-"SEARCH" = "Search";
-"TITLE" = "Title";
-"TRASH" = "Trash";
-"URL" = "URL";
-"USERNAME" = "Username";
-"WINDOWS" = "Windows";
-
-
-"CHANGE_DATABASE_NAME" = "Change Database Name";
-"CHANGE_TRASH_GROUP" = "Change Trash Group";
-"%@_COPY" = "%@ Copy";
-
-"DUPLICTE_PASSWORDS" = "Duplicate Passwords";
-
-/* Field nam that was copied to the pasteboard */
-"COPIED_FIELD_%@" = "Copied %@";
-"COPIED_PASSWORD" = "Password copied!";
-"COPIED_URL" = "URL copied!";
-"COPIED_USERNAME" = "Username copied!";
-"COPY_CUSTOM_FIELDS" = "Copy Custom Fields";
-"COPY_FIELD_%@" = "Copy %@";
-"COPY_PASSWORD" = "Copy Password";
-"COPY_URL" = "Copy URL";
-"COPY_USERNAME" = "Copy Username";
-
-/* Dock Badge */
-"CLEARING_PASTEBOARD" = "…";
-
-/* Group Inspector */
-/* Autotype Combobox */
-"AUTOTYPE_NO" = "Disable Autotype";
-"AUTOTYPE_YES" = "Enable Autotype";
+/* Inherit autotype settings menu item */
 "AUTOTYPE_INHERIT" = "Inherit Autotype Settings";
 
-/* Search Combobox */
-"SEARCH_INHERIT" = "Inherit Search Settings";
-"SEARCH_YES" = "Include in Search";
-"SEARCH_NO" = "Exclude from Search";
+/* Disable autotype menu item */
+"AUTOTYPE_NO" = "Disable Autotype";
 
-/*
- Date/Time Displays
- */
-/* Created at template string. %@ is replaced by localized date and time */
-"CREATED_AT_%@" = "Created: %@";
-/* Modifed at template string. %@ is replaced by localized date and time */
-"MODIFED_AT_%@" = "Modified: %@";
-
-"EXPIRES_AT_DATE_%@" = "Expires: %@";
-"NO_EXPIRE_DATE_SET" = "Never expires.";
-
-/*
- Defaults for new objects
- */
-"DEFAULT_CUSTOM_FIELD_TITLE" = "Custom";
-"DEFAULT_CUSTOM_FIELD_VALUE" = "Value";
-"DEFAULT_ENTRY_TITLE" = "New Entry";
-"DEFAULT_GROUP_NAME" = "New Group";
-"DEFAULT_WINDOW_TITLE" = "Window Title";
-
-/* Number of Entries
- Plural (0, >1)
- Singular (1)
- */
-"%ld_ENTRIES" = "%ld Entries";
-"%ld_ENTRY" = "%ld Entry";
-
-/* Settings */
-"GENERAL_SETTINGS" = "General";
-"INTEGRATION_SETTINGS" = "Integration";
-"UPDATE_SETTINGS" = "Updates";
-"WORKFLOW_SETTINGS" = "Workflow";
-"DEFAULT_BROWSER" = "Default Browser";
-"OTHER_BROWSER" = "Select Browser…";
-"PLUGIN_SETTINGS" = "Plugins";
-
-/* Feature not supported in Version */
-"KDBX_ONLY_FEATURE" = "Feature not supported in KDB database";
-
-/* Template */
-"NO_TEMPLATE_GROUP" = "No Templates";
-"NO_TEMPLATES" = "No Templates found";
-
-/* Kefile */
-"SAVE_KEYFILE" = "Save Keyfile";
-
-/* Autoype */
-/* Candiate dialog */
-"SELECT_AUTOTYPE_CANDIDATE" = "Select candidate!";
+/* Notification: Autotype failed, no documents are open */
 "AUTOTYPE_OVERLAY_NO_DOCUMENTS" = "Please open a file to use Global Autotype!";
+
+/* Noticiation: Autotype failed to find a match for %@ (string placeholder) */
 "AUTOTYPE_OVERLAY_NO_MATCH_FOR_%@" = "No Match for %@!";
+
+/* Notification: Autotype found a single match. */
 "AUTOTYPE_OVERLAY_SINGLE_MATCH" = "Match!";
 
-/* Alert Dialogs */
-"WARNING_ON_EMPTY_TRASH_DESCRIPTION" = "Emptying the Trash is not undoable.";
-"WARNING_ON_EMPTY_TRASH_TITLE" = "Empty Trash?";
-"WARNING_ON_LOSSY_SAVE" = "Saving with KDB format, will lead to lost data.";
-"WARNING_ON_LOSSY_SAVE_DESCRIPTION" = "The KDB file format cannot hold all information.";
-"CHANGE_FORMAT" = "Change File Format to KDBX";
-"SAVE_LOSSY" = "Save and lose data";
+/* Enable autotype menu item */
+"AUTOTYPE_YES" = "Enable Autotype";
 
-"ENFORCE_PASSWORD_CHANGE_ALERT_TITLE" = "The database password expired!";
-"ENFORCE_PASSWORD_CHANGE_ALERT_DESCRIPTION" = "You will be unable to save until the password and/or keyfile has been changed.";
+/* Sucessfully merged external changes */
+"AUTO_MERGE_NOTIFICATION_TEXT" = "Auto merge successfull!";
 
-"RECOMMEND_PASSWORD_CHANGE_ALERT_TITLE" = "Please change the database password!";
-"RECOMMEND_PASSWORD_CHANGE_ALERT_DESCRIPTION" = "It is recommended to change the password and/or keyfile.";
+/* Cancel */
+"CANCEL" = "Cancel";
+
+/* Menu item in the database outline context menu to change the database name */
+"CHANGE_DATABASE_NAME" = "Change Database Name";
+
+/* (No Comment) */
+"CHANGE_FORMAT" = "Change File Format to Kdbx";
+
+/* Button to postpone the password change */
+"CHANGE_LATER" = "Change Later";
+
+/* Button to show the password change dialog
+   Single button to show the password change dialog */
 "CHANGE_PASSWORD_WITH_DOTS" = "Change Password…";
 
-"WARNING_ON_SAVE_NO_PASSWORD_OR_KEY_SET" = "No password or keyfile is set.";
-"WARNING_ON_SAVE_NO_PASSWORD_OR_KEY_SET_SUGGESTION" = "Please set a password and/or keyfile for this database. Aborting this will undo all changes and lock the document";
+/* Menu item in the database outline context menu to change the trash group */
+"CHANGE_TRASH_GROUP" = "Change Trash Group";
+
+/* String displayed at dock badge when clipboard is about to be cleared */
+"CLEARING_PASTEBOARD" = "Cleared";
+
+/* Clear Autotype Button */
+"CLEAR_AUTOTYPE" = "Clear Autotype";
+
+/* Menu to clear recent searches */
+"CLEAR_RECENT_SEARCHES" = "Clear recent searches";
+
+/* Field name that was copied to the pasteboard */
+"COPIED_FIELD_%@" = "Copied %@";
+
+/* Password was copied to the pasteboard */
+"COPIED_PASSWORD" = "Password copied!";
+
+/* URL was copied to the pasteboard */
+"COPIED_URL" = "URL copied!";
+
+/* Username was copied to the pasteboard */
+"COPIED_USERNAME" = "Username copied!";
+
+/* Submenu to Copy custom fields */
+"COPY_CUSTOM_FIELDS" = "Copy Custom Fields";
+
+/* Context menu sub-menu to copy custom fields to clipboard */
+"COPY_CUSTOM_FIELDS_MENU" = "Copy Custom Field…";
+
+/* Action title for copying an entry via drag and drop */
+"COPY_ENTRY" = "Copy Entry";
+
+/* Mask for title to copy field value */
+"COPY_FIELD_%@" = "Copy %@";
+
+/* Action title for copying a group via drag and drop */
+"COPY_GROUP" = "Copy Group";
+
+/* Menu item to copy the password of an entry
+   Toolbar item copy password */
+"COPY_PASSWORD" = "Copy Password";
+
+/* Menu item to copy the URL of an entry */
+"COPY_URL" = "Copy URL";
+
+/* Menu item to copy the username of an entry
+   Toolbar item copy username */
+"COPY_USERNAME" = "Copy Username";
+
+/* (No Comment) */
+"CREATED_AT_%@" = "Created: %@";
+
+/* Curstom attribute reference item */
+"CUSTOM_ATTRIBUTE" = "Custom Attribute";
+
+/* Title for menu for custom search filters */
+"CUSTOM_SEARCH_FILTER_MENU" = "Custom Search Filter…";
+
+/* Default display name for KDB databases */
+"DATABASE" = "Database";
+
+/* Default Browser */
+"DEFAULT_BROWSER" = "Default Browser";
+
+/* Default Titel for new Custom-Fields */
+"DEFAULT_CUSTOM_FIELD_TITLE" = "Custom";
+
+/* Default Value for new Custom-Fields */
+"DEFAULT_CUSTOM_FIELD_VALUE" = "Value";
+
+/* Title for a newly created entry */
+"DEFAULT_ENTRY_TITLE" = "New Entry";
+
+/* Title for a newly created group */
+"DEFAULT_GROUP_NAME" = "New Group";
+
+/* Default window title for a new window association */
+"DEFAULT_WINDOW_TITLE" = "Window Title";
+
+/* Menu item in the database outline context menu to delete the node from the trash
+   Menu item to delete an entry
+   Menu item to delete the selected attached file
+   Menu item to delete the selected custom icon
+   Toolbar item delete item */
+"DELETE" = "Delete";
+
+/* Delete Entry */
+"DELETE_ENTRY" = "Delete Entry";
+
+/* Delete Group */
+"DELETE_GROUP" = "Delete Group";
+
+/* Empty Trash */
+"DELETE_TRASHED_ENTRY" = "Delete Trashed Entry";
+
+/* Empty Trash */
+"DELETE_TRASHED_GROUP" = "Delete Trashed Group";
+
+/* No comment provided by engineer. */
+"DOCUMENT_AUTOTYPE_CORRUPTION_WARNING" = "Please run Fix Autotype...";
+
+/* Action name for duplicating entries */
+"DUPLICATE_ENTRIES_%ld" = "Duplicate Entries %ld";
+
+/* Menu item to directly diplicate an entry */
+"DUPLICATE_ENTRY" = "Duplicate Entry";
+
+/* Menu item to duplicate an entry with options how to duplicate. Will present a dialog. */
+"DUPLICATE_ENTRY_WITH_OPTIONS" = "Duplicate Entry…";
+
+/* Menu item in the database outline context menu to change the template group
+   Menu item on the add entry context menu to edit template groups */
+"EDIT_TEMPLATE_GROUP" = "Edit Entry Template Group";
+
+/* Empty Trash
+   Menu item in the database outline context menu to empyt the trash
+   Menu item in the database outline to empty the trash
+   Menu item to empty the trash */
+"EMPTY_TRASH" = "Empty Trash";
+
+/* Informative text for the enforce password change alert */
+"ENFORCE_PASSWORD_CHANGE_ALERT_DESCRIPTION" = "You will be unable to save until the password and/or keyfile has been changed.";
+
+/* Message text for the enforce password change alert */
+"ENFORCE_PASSWORD_CHANGE_ALERT_TITLE" = "The database password expired!";
+
+/* Group row for entry attributes */
+"ENTRY_CUSTOM_ATTRIBUTES" = "Custom Attributes";
+
+/* Group row for entry attributes */
+"ENTRY_DEFAULT_ATTRIBUTES" = "Default Attributes";
+
+/* Keyfile not valid */
+"ERROR_INVALID_KEYFILE" = "Keyfile is invalid!";
+
+/* Error description given when adding an invalid plugin */
+"ERROR_INVALID_PLUGIN" = "Invalid plugin";
+
+/* Passwords do not match */
+"ERROR_PASSWORD_MISSMATCH" = "Passwords do not match!";
+
+/* Passwords do not match, keyfile is invalid */
+"ERROR_PASSWORD_MISSMATCH_INVALID_KEYFILE" = "Passwords do not match and keyfile is invalid!";
+
+/* Recommend/Enforce key change intervall format */
+"EVERY_%ld_DAYS" = "Every %ld days";
+
+/* Format to returen the date an item expires. Includes %@ placehoder for date */
+"EXPIRES_AT_DATE_%@" = "Expires: %@";
+
+/* The master key was changed by an extrenal programm! */
+"EXTERN_CHANGE_OF_MASTERKEY" = "Master key was changed by another programm";
+
+/* Informative text displayed when the file was change from another application */
+"FILE_CHANGED_BY_OTHERS_INFO_TEXT" = "The file loaded is not the same as the on on disk. How do you want to move on?";
 
 /* Message displayed when an open file was changed from another application */
 "FILE_CHANGED_BY_OTHERS_MESSAGE_TEXT" = "The database file was modified!";
-/* Informative text displayed when the file was change form another application */
-"FILE_CHANGED_BY_OTHERS_INFO_TEXT" = "The file loaded is not the same as the on on disk. How do you want to move on?";
-/* Button to ignore the changes */
-"KEEP_MINE" = "Don't Load Modified Database";
-/* Button to reload the changes form disk */
-"LOAD_CHANGES" = "Load Modified Database and Discard Mine";
-/* Merge changes into file! */
-"MERGE_CHANGES" = "Merge Changes";
 
-/* Password Input Messages, Errors and Warning */
-"PASSWORD_INPUT_NO_PASSWORD" = "No Password";
-"PASSWORD_INPUT_ENTER_PASSWORD" = "Enter Password";
-"PASSWORD_INPUT_REPEAT_PASSWORD" = "Repeat Password";
-"WARNING_NO_PASSWORD_OR_KEYFILE" = "No password or keyfile supplied!";
-"ERROR_PASSWORD_MISSMATCH_INVALID_KEYFILE" = "Passwords do not match and keyfile is invalid!";
-"ERROR_PASSWORD_MISSMATCH" = "Passwords do not match!";
-"ERROR_INVALID_KEYFILE" = "Keyfile is invalid!";
+/* External file change strategy option: ask what to do */
+"FILE_CHANGE_STRATEGY_ASK" = "Ask";
 
-/* Misc */
-"DOCUMENT_AUTOTYPE_CORRUPTION_WARNING" = "Please run Fix Autotype...";
+/* External file change strategy option: Keep local file an ignore external changes */
+"FILE_CHANGE_STRATEGY_KEEP_MINE" = "Keep My Version and Ignore Other Changes";
+
+/* Button in dialog to merge changes into file!
+   External file change strategy option: Merge external changes into local file. */
+"FILE_CHANGE_STRATEGY_MERGE" = "Merge Changes";
+
+/* External file change strategy option: Use the changed file and discard local changes */
+"FILE_CHANGE_STRATEGY_USE_OTHER" = "Load Changed Version and Discard Mine";
+
+/* Error while reopening last known documents */
 "FILE_OPEN_ERROR" = "Error opening file.";
+
+/* General Settings Label */
+"GENERAL_SETTINGS" = "General";
+
+/* Group column title */
+"GROUP" = "Group";
+
+/* History count column title
+   Menu item to toggle display of history count column in entry table */
+"HISTORY" = "History";
+
+/* Imports a dragged URL for a new entry */
+"IMPORT_URL" = "Import URL";
+
+/* Toolbar item toggle inspector */
+"INSPECTOR" = "Inspector";
+
+/* Label for the integration settings tab */
+"INTEGRATION_SETTINGS" = "Integration";
+
+/* Just now */
+"JUST_NOW" = "Just now";
+
+/* Feature only available in kdbx databases */
+"KDBX_ONLY_FEATURE" = "Feature not supported in KDB database";
+
+/* Button in dialog to ignore the changes to an open file! */
+"KEEP_MINE_DISCARD_OTHER" = "Keep Mine, Discard Other";
+
+/* Button in dialog to reopen the file! */
+"KEEP_OTHER_DISCARD_MINE" = "Keep Other, Discard Mine";
+
+/* Do not install the plugin */
+"KEEP_PLUGIN" = "Keep Plugin";
+
+/* Do not restart MacPass */
+"KEEP_RUNNING" = "Keep Running";
+
+/* last week */
+"LAST_WEEK" = "Last week";
+
+/* Toolbar item to Lock the database */
+"LOCK" = "Lock";
+
+/* Message in the open panel to add attachments to an entry */
+"MESSAGE_ADD_ATTACHMENT_OPEN_PANEL" = "Select the file to attach";
+
+/* Message in the add plugin open panel */
+"MESSAGE_ADD_PLUGIN_OPEN_PANEL" = "Select the plugin to install";
+
+/* Message in the open panel to import an XML file */
+"MESSAGE_XML_OPEN_PANEL" = "Select the XML file to import";
+
+/* Menu item to toggle display of modified date column in entry table
+   Modification date column title */
+"MODIFIED" = "Modified";
+
+/* Action title for moving an entry via drag and drop */
+"MOVE_ENTRY" = "Move Entry";
+
+/* Action title for moving a group via drag and drop */
+"MOVE_GROUP" = "Move Group";
+
+/* Name for a newly created Database */
+"NEW_DATABASE" = "Database";
+
+/* Action name for a newly created entry
+   Menu item to create a new entry
+   Toolbar item new entry */
+"NEW_ENTRY" = "New Entry";
+
+/* Submenu to add an entry via template */
+"NEW_ENTRY_WITH_TEMPLATE_%@" = "Create Entry with Template %@";
+
+/* Action name for a newly created group
+   Menu item to create a new group
+   Toolbar item new group */
+"NEW_GROUP" = "New Group";
+
+/* Null placeholder for item input field
+   Placeholder text for input fields if no entry or group is selected */
+"NONE" = "None";
+
+/* Displayed name when notes or part of notes was copied
+   Menu item to toggle display of notes column in entry table
+   Notes column title
+   Notes reference item */
+"NOTES" = "Notes";
+
+/* Expiration date format, when item does not expire */
+"NO_EXPIRE_DATE_SET" = "Never expires.";
+
+/* Menu item added to show that no templates are defined */
+"NO_TEMPLATES" = "No Templates found";
+
+/* Menu item to reset the template groups */
+"NO_TEMPLATE_GROUP" = "No Templates";
+
+/* Ok button */
+"OK" = "OK";
+
+/* preset to expire after one montch from now */
+"ONE_MONTH" = "in one month";
+
+/* preset to expire after one week from now */
+"ONE_WEEK" = "in one week";
+
+/* one week ago */
+"ONE_WEEK_AGO" = "One week ago";
+
+/* preset to expire after one year from now */
+"ONE_YEAR" = "in one year";
+
+/* Open button in the open panel to add attachments to an entry */
+"OPEN_BUTTON_ADD_ATTACHMENT_OPEN_PANEL" = "Attach";
+
+/* Open button in the add plugin open panel */
+"OPEN_BUTTON_ADD_PLUGIN_OPEN_PANEL" = "Install";
+
+/* Open button in the open panel to import an XML file */
+"OPEN_BUTTON_IMPORT_XML_OPEN_PANEL" = "Import";
+
+/* Action button in Notification to open a document */
+"OPEN_DOCUMENT" = "Open Document";
+
+/* Menu item to open the URL with the default application */
+"OPEN_URL" = "Open URL";
+
+/* Select Browser */
+"OTHER_BROWSER" = "Select Browser…";
+
+/* No comment provided by engineer. */
+"OUTPUT_VALUE" = "Output Value";
+
+/* Menu item to toggle display of password column in entry table
+   Password column title
+   Password reference item */
+"PASSWORD" = "Password";
+
+/* Button to reset the password defaults for a single entry */
+"PASSWORD_GENERATOR_RESET_ENTRY_DEFAULTS" = "Reset";
+
+/* Button to set the defaults of the password generator */
+"PASSWORD_GENERATOR_SET_DEFAULTS" = "Set Defaults";
+
+/* Placeholder for the password field to aks for password
+   Placeholder in the unlock-password input field if password is enabled */
+"PASSWORD_INPUT_ENTER_PASSWORD" = "Enter Password";
+
+/* Placeholder for the password input field if passwords are disabled
+   Placeholder for the repeat password input if passwords are disabled
+   Placeholder in the unlock-password input field if password is disabled */
+"PASSWORD_INPUT_NO_PASSWORD" = "No Password";
+
+/* Placeholder for the repeat password field to aks for the repeated password */
+"PASSWORD_INPUT_REPEAT_PASSWORD" = "Repeat Password";
+
+/* Menu item to perform autotype with the selected entry */
+"PERFORM_AUTOTYPE_FOR_ENTRY" = "Perform Autotype";
+
+/* Info about how many character has to pick in pickchar dialog */
+"PICKCHAR_INFO_MESSAGE_PICK_CHARACTERS_%ld" = "Please pick %ld characters";
+
+/* Window displayed to the user to pick an amout of characters */
+"PICKCHAR_WINDOW_TITLE" = "Character Picker";
+
+/* Count of picked characters in pickchars dialog if no limit is set */
+"PICKED_%ld_CHARACTERS" = "Picked %ld characters";
+
+/* Window displayed to the user to pick an amout of characters */
+"PICKFIELD_WINDOW_TITLE" = "Field Picker";
+
+/* The plugin could not be initalized */
+"PLUGIN_ERROR_INTILIZATION_FAILED" = "Plugin could not be initalized";
+
+/* Error for a plugin that was not signed properly */
+"PLUGIN_ERROR_UNSECURE_PLUGIN" = "Plugin is not properly signed";
+
+/* Plugin specifies the wrong principla class! */
+"PLUGIN_ERROR_WRONG_PRINCIPAL_CLASS" = "Unexpected principal class in plugin";
+
+/* name for disabled unloaded plugin */
+"PLUGIN_NAME_DISABLED_%@" = "🚫 %@";
+
+/* Name for unloaded plugin with errors */
+"PLUGIN_NAME_ERROR_%@" = "⚠️ %@";
+
+/* Label for plugin settings tab */
+"PLUGIN_SETTINGS" = "Plugins";
+
+/* Generic message displayed if no details are know why a plugin was not loaded. */
+"PLUGIN_SETTINGS_GENERIC_ERROR_MESSAGE" = "Plugin could not be loaded.";
+
+/* Plugin version. Include a %@ placeholder for version string */
+"PLUGIN_VERSION_%@" = "Version: %@";
+
+/* Menu item to preview the selected attached file. */
+"PREVIEW" = "Preview";
+
+/* Recent searches menu item */
+"RECENT_SEARCHES" = "Recent searches";
+
+/* Informative text for the recommend password change alert */
+"RECOMMEND_PASSWORD_CHANGE_ALERT_DESCRIPTION" = "It is recommended to change the password and/or keyfile.";
+
+/* Message text for the recommend password change alert */
+"RECOMMEND_PASSWORD_CHANGE_ALERT_TITLE" = "Please change the database password!";
+
+/* Restart */
+"RESTART" = "Restart";
+
+/* Action to restore and Entry to a previous state of it's history */
+"RESTORE_HISTORY_ENTRY" = "Restore History Entry";
+
+/* Menu item to save the selected attached file.
+   Save file menu item title when save will just save the file */
+"SAVE" = "Save";
+
+/* Button title to save the generated key file */
+"SAVE_KEYFILE" = "Save Keyfile";
+
+/* Save file menu item title when save will prompt for a location to save or ask for a password/key */
+"SAVE_WITH_DOTS" = "Save…";
+
+/* Search input in Toolbar */
+"SEARCH" = "Search";
+
+/* Search option: Find duplicate passwords */
+"SEARCH_DUPLICATE_PASSWORDS" = "Duplicate Passwords";
+
+/* Search option: Find expired entries */
+"SEARCH_EXPIRED_ENTRIES" = "Expired";
+
+/* Inherit search settings menu item */
+"SEARCH_INHERIT" = "Inherit Search Settings";
+
+/* Disable search menu item */
+"SEARCH_NO" = "Exclude from Search";
+
+/* No comment provided by engineer. */
+"SEARCH_VALUE" = "Search Value";
+
+/* Enable search menu item */
+"SEARCH_YES" = "Include in Search";
+
+/* (No Comment) */
+"SELECT_AUTOTYPE_CANDIDATE" = "Select Candidate!";
+
+/* Menu item title for the expiry preset selection menu in the date picker */
+"SELECT_DATE_PRESET" = "Use preset…";
+
+/* Message on the open panel for selecting which browser to use for opening URLs */
+"SELECT_DEFAULT_BROWSER_OPEN_PANEL_MESSAGE" = "Select the Browser to open URL with.";
+
+/* Label for the select browser button on the open panel for selecting which browser to use for opening URLs */
+"SELECT_DEFAULT_BROWSER_OPEN_PANEL_SELECT_BUTTON" = "Choose";
+
+/* Message for the dialog to open a file for merge */
+"SELECT_FILE_TO_MERGE" = "Select file to merge";
+
+/* Menu displayed as popup selection for search options */
+"SELECT_FILTER_WITH_DOTS" = "Select…";
+
+/* Checkbox in dialog to set the selection as default file change strategy! */
+"SET_AS_DEFAULT_FILE_CHANGE_STRATEGY" = "Use this method as default. You can change this at any time in the preferences.";
+
+/* (No Comment) */
+"SHORT_FILE_CHANGE_STRATEGY_ASK" = "Ask";
+
+/* Menu item to show the history of the selected entry
+   Toolbar item to toggle history display */
+"SHOW_HISTORY" = "Show History";
+
+/* Menu item to show the reference builder in a text view's context menu */
+"SHOW_REFERENCE_BUILDER" = "Show Reference Builder";
+
+/* Displayed name when title field was copied
+   Menu item to toggle display of title column in entry table
+   Title column title
+   Title reference item */
+"TITLE" = "Title";
+
+/* preset to expire tomorrow */
+"TOMORROW" = "Tomorrow";
+
+/* Toolbar item to perform autotype */
+"TOOLBAR_PERFORM_AUTOTYPE_FOR_ENTRY" = "Autotype";
+
+/* Move Entry to Trash */
+"TRASH_ENTRY" = "Trash Entry";
+
+/* Move Group to Trash */
+"TRASH_GROUP" = "Trash Group";
+
+/* Uninstall plugin */
+"UNINSTALL" = "Uninstall";
+
+/* No comment provided by engineer. */
+"UNKNOWN_FILE_VERSION" = "Unknown file version";
+
+/* Unknown databas format. */
+"UNKNOWN_FORMAT" = "Unknown file format";
+
+/* Database format is unknown since the file is not saved yet */
+"UNKNOWN_FORMAT_FILE_NOT_SAVED_YET" = "Unknown, file not saved yet";
+
+/* No comment provided by engineer. */
+"UNKNOWN_TOOLBAR_ITEM" = "Unknown Toolbar Item";
+
+/* Update Settings Label */
+"UPDATE_SETTINGS" = "Updates";
+
+/* Menu item to toggle display of url column in entry table
+   Submenu with options what to do with the URL of an entry
+   Url column title
+   URL reference item */
+"URL" = "URL";
+
+/* Menu item to toggle display of username column in entry table
+   Username column title
+   Username reference item */
+"USERNAME" = "Username";
+
+/* Displayed name when uuid field was copied
+   UUID reference item */
+"UUID" = "UUID";
+
+/* Message text for disabled updates alert! */
+"Updates are disabled!" = "Updates are disabled!";
+
+/* No Key or Password */
+"WARNING_NO_PASSWORD_OR_KEYFILE" = "No password or keyfile supplied!";
+
+/* Informative Text displayed when clearing the Trash */
+"WARNING_ON_DELETE_TRASHED_NODE_DESCRIPTION" = "The Trashed item(s) will be deleted!";
+
+/* Message text for the alert displayed when deleting a node */
+"WARNING_ON_DELETE_TRASHED_NODE_TITLE" = "Deleting Trashed Item";
+
+/* Informative Text displayed when clearing the Trash */
+"WARNING_ON_EMPTY_TRASH_DESCRIPTION" = "Emptying the Trash is not undoable.";
+
+/* Message text for the alert displayed when clearing the Trash */
+"WARNING_ON_EMPTY_TRASH_TITLE" = "Empty Trash?";
+
+/* (No Comment) */
+"WARNING_ON_LOSSY_SAVE" = "Saving with Kdb format, will lead to lost data.";
+
+/* (No Comment) */
+"WARNING_ON_LOSSY_SAVE_DESCRIPTION" = "The Kdb file format cannot hold all information.";
+
+/* No comment provided by engineer. */
+"WARNING_ON_SAVE_NO_PASSWORD_OR_KEY_SET" = "No password or keyfile is set.";
+
+/* No comment provided by engineer. */
+"WARNING_ON_SAVE_NO_PASSWORD_OR_KEY_SET_SUGGESTION" = "Please set a password and/or keyfile for this database. Aborting this will undo all changes and lock the document";
+
+/* (No Comment) */
+"WINDOWS" = "Windows";
+
+/* Label for the workflow settings tab */
+"WORKFLOW_SETTINGS" = "Workflow";
+
+/* Yesterday */
+"YESTERDAY" = "Yesterday";
+

@@ -1,9 +1,23 @@
-//  MPDocument+Search.m
 //
+//  MPDocument+Search.m
 //  MacPass
 //
 //  Created by Michael Starke on 25.02.14.
 //  Copyright (c) 2014 HicknHack Software GmbH. All rights reserved.
+//
+//  This program is free software: you can redistribute it and/or modify
+//  it under the terms of the GNU General Public License as published by
+//  the Free Software Foundation, either version 3 of the License, or
+//  (at your option) any later version.
+//
+//  This program is distributed in the hope that it will be useful,
+//  but WITHOUT ANY WARRANTY; without even the implied warranty of
+//
+//  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+//  GNU General Public License for more details.
+//
+//  You should have received a copy of the GNU General Public License
+//  along with this program.  If not, see <http://www.gnu.org/licenses/>.
 //
 
 #import "MPDocument.h"
@@ -28,15 +42,14 @@ NSString *const kMPDocumentSearchResultsKey           = @"kMPDocumentSearchResul
 - (void)enterSearchWithContext:(MPEntrySearchContext *)context {
   /* the search context is loaded via defaults */
   self.searchContext = context;
-  [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(updateSearch:) name:NSUndoManagerDidRedoChangeNotification object:self.undoManager];
-  [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(updateSearch:) name:NSUndoManagerDidUndoChangeNotification object:self.undoManager];
-  [[NSNotificationCenter defaultCenter] postNotificationName:MPDocumentDidEnterSearchNotification object:self];
+  [NSNotificationCenter.defaultCenter addObserver:self selector:@selector(updateSearch:) name:NSUndoManagerDidRedoChangeNotification object:self.undoManager];
+  [NSNotificationCenter.defaultCenter addObserver:self selector:@selector(updateSearch:) name:NSUndoManagerDidUndoChangeNotification object:self.undoManager];
+  [NSNotificationCenter.defaultCenter postNotificationName:MPDocumentDidEnterSearchNotification object:self];
   [self updateSearch:self];
 }
 
 #pragma mark Actions
-
-- (void)performFindPanelAction:(id)sender {
+- (IBAction)perfromCustomSearch:(id)sender {
   [self enterSearchWithContext:[MPEntrySearchContext userContext]];
 }
 
@@ -46,23 +59,22 @@ NSString *const kMPDocumentSearchResultsKey           = @"kMPDocumentSearchResul
     return; // We get called back!
   }
   MPDocumentWindowController *windowController = [self windowControllers][0];
-  NSString *searchString = [windowController.searchField stringValue];
-  self.searchContext.searchString = searchString;
+  self.searchContext.searchString = windowController.searchField.stringValue;
   MPDocument __weak *weakSelf = self;
   dispatch_queue_t backgroundQueue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
   dispatch_async(backgroundQueue, ^{
     NSArray *results = [weakSelf _findEntriesMatchingCurrentSearch];
     dispatch_sync(dispatch_get_main_queue(), ^{
-      [[NSNotificationCenter defaultCenter] postNotificationName:MPDocumentDidChangeSearchResults object:weakSelf userInfo:@{ kMPDocumentSearchResultsKey: results }];
+      [NSNotificationCenter.defaultCenter postNotificationName:MPDocumentDidChangeSearchResults object:weakSelf userInfo:@{ kMPDocumentSearchResultsKey: results }];
     });
   });
 }
 
 - (void)exitSearch:(id)sender {
-  [[NSNotificationCenter defaultCenter] removeObserver:self name:NSUndoManagerDidUndoChangeNotification object:self.undoManager];
-  [[NSNotificationCenter defaultCenter] removeObserver:self name:NSUndoManagerDidRedoChangeNotification object:self.undoManager];
+  [NSNotificationCenter.defaultCenter removeObserver:self name:NSUndoManagerDidUndoChangeNotification object:self.undoManager];
+  [NSNotificationCenter.defaultCenter removeObserver:self name:NSUndoManagerDidRedoChangeNotification object:self.undoManager];
   self.searchContext = nil;
-  [[NSNotificationCenter defaultCenter] postNotificationName:MPDocumentDidExitSearchNotification object:self];
+  [NSNotificationCenter.defaultCenter postNotificationName:MPDocumentDidExitSearchNotification object:self];
 }
 
 - (void)toggleSearchFlags:(id)sender {
@@ -76,7 +88,7 @@ NSString *const kMPDocumentSearchResultsKey           = @"kMPDocumentSearchResul
   MPEntrySearchFlags newFlags = MPEntrySearchNone;
   BOOL isSingleFlag = toggleFlag & MPEntrySearchSingleFlags;
   NSButton *button = sender;
-  switch([button state]) {
+  switch(button.state) {
     case NSOffState:
       toggleFlag ^= MPEntrySearchAllCombineableFlags;
       newFlags = isSingleFlag ? MPEntrySearchNone : (self.searchContext.searchFlags & toggleFlag);
@@ -97,7 +109,7 @@ NSString *const kMPDocumentSearchResultsKey           = @"kMPDocumentSearchResul
   }
   if(newFlags != self.searchContext.searchFlags) {
     self.searchContext.searchFlags = (newFlags == MPEntrySearchNone) ? MPEntrySearchTitles : newFlags;
-    [[NSNotificationCenter defaultCenter] postNotificationName:MPDocumentDidChangeSearchFlags object:self];
+    [NSNotificationCenter.defaultCenter postNotificationName:MPDocumentDidChangeSearchFlags object:self];
     [self updateSearch:self];
   }
 }
@@ -154,6 +166,9 @@ NSString *const kMPDocumentSearchResultsKey           = @"kMPDocumentSearchResul
 - (NSArray *)_filterPredicatesWithString:(NSString *)string{
   NSMutableArray *prediactes = [[NSMutableArray alloc] initWithCapacity:4];
   
+  BOOL searchInAllAttributes = MPIsFlagSetInOptions(MPEntrySearchAllAttributes, self.searchContext.searchFlags);
+  
+  
   if(MPIsFlagSetInOptions(MPEntrySearchTitles, self.searchContext.searchFlags)) {
     [prediactes addObject:[NSPredicate predicateWithFormat:@"SELF.title CONTAINS[cd] %@", string]];
   }
@@ -169,6 +184,23 @@ NSString *const kMPDocumentSearchResultsKey           = @"kMPDocumentSearchResul
   if(MPIsFlagSetInOptions(MPEntrySearchNotes, self.searchContext.searchFlags)) {
     [prediactes addObject:[NSPredicate predicateWithFormat:@"SELF.notes CONTAINS[cd] %@", string]];
   }
+  if(searchInAllAttributes) {
+    [prediactes addObject:[NSPredicate predicateWithFormat:@"SELF.tags CONTAINS[cd] %@", string]];
+    [prediactes addObject:[NSPredicate predicateWithFormat:@"SELF.uuid.UUIDString CONTAINS[cd] %@", string]];
+
+    NSPredicate *allAttributesPredicate = [NSPredicate predicateWithBlock:^BOOL(id  _Nullable evaluatedObject, NSDictionary<NSString *,id> * _Nullable bindings) {
+      KPKEntry *entry = evaluatedObject;
+      for(KPKAttribute *attribute in entry.attributes) {
+        if([attribute.value rangeOfString:string options:NSCaseInsensitiveSearch].location != NSNotFound) {
+          return YES;
+        }
+      }
+      return NO;
+    }];
+    
+    [prediactes addObject:allAttributesPredicate];
+  }
+  
   return prediactes;
 }
 

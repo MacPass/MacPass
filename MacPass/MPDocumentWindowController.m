@@ -5,13 +5,27 @@
 //  Created by Michael Starke on 24.07.12.
 //  Copyright (c) 2012 HicknHack Software GmbH. All rights reserved.
 //
+//  This program is free software: you can redistribute it and/or modify
+//  it under the terms of the GNU General Public License as published by
+//  the Free Software Foundation, either version 3 of the License, or
+//  (at your option) any later version.
+//
+//  This program is distributed in the hope that it will be useful,
+//  but WITHOUT ANY WARRANTY; without even the implied warranty of
+//
+//  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+//  GNU General Public License for more details.
+//
+//  You should have received a copy of the GNU General Public License
+//  along with this program.  If not, see <http://www.gnu.org/licenses/>.
+//
 
 #import "MPDocumentWindowController.h"
 #import "MPActionHelper.h"
 #import "MPAppDelegate.h"
 #import "MPAutotypeDaemon.h"
 #import "MPConstants.h"
-#import "MPContextToolbarButton.h"
+#import "MPContextButton.h"
 #import "MPDatabaseSettingsWindowController.h"
 #import "MPDocument.h"
 #import "MPDocumentWindowDelegate.h"
@@ -24,6 +38,7 @@
 #import "MPPasswordInputController.h"
 #import "MPSettingsHelper.h"
 #import "MPToolbarDelegate.h"
+#import "MPTitlebarColorAccessoryViewController.h"
 
 #import "KeePassKit/KeePassKit.h"
 
@@ -88,15 +103,15 @@ typedef void (^MPPasswordChangedBlock)(BOOL didChangePassword);
   
   MPDocument *document = self.document;
   
-  [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(_didRevertDocument:) name:MPDocumentDidRevertNotifiation object:document];
-  [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(_didUnlockDatabase:) name:MPDocumentDidUnlockDatabaseNotification object:document];
-  [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(_didAddEntry:) name:MPDocumentDidAddEntryNotification object:document];
-  [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(_didAddGroup:) name:MPDocumentDidAddGroupNotification object:document];
-  [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(_didLockDatabase:) name:MPDocumentDidLockDatabaseNotification object:document];
+  [NSNotificationCenter.defaultCenter addObserver:self selector:@selector(_didRevertDocument:) name:MPDocumentDidRevertNotifiation object:document];
+  [NSNotificationCenter.defaultCenter addObserver:self selector:@selector(_didUnlockDatabase:) name:MPDocumentDidUnlockDatabaseNotification object:document];
+  [NSNotificationCenter.defaultCenter addObserver:self selector:@selector(_didAddEntry:) name:MPDocumentDidAddEntryNotification object:document];
+  [NSNotificationCenter.defaultCenter addObserver:self selector:@selector(_didAddGroup:) name:MPDocumentDidAddGroupNotification object:document];
+  [NSNotificationCenter.defaultCenter addObserver:self selector:@selector(_didLockDatabase:) name:MPDocumentDidLockDatabaseNotification object:document];
   
   [self.entryViewController registerNotificationsForDocument:document];
   [self.inspectorViewController registerNotificationsForDocument:document];
-  [self.outlineViewController regsiterNotificationsForDocument:document];
+  [self.outlineViewController registerNotificationsForDocument:document];
   [self.toolbarDelegate registerNotificationsForDocument:document];
   
   self.toolbar = [[NSToolbar alloc] initWithIdentifier:@"MainWindowToolbar"];
@@ -131,6 +146,13 @@ typedef void (^MPPasswordChangedBlock)(BOOL didChangePassword);
   }
   
   self.splitView.autosaveName = @"SplitView";
+  
+  /*
+   TODO: Add display for database color?
+   NSTitlebarAccessoryViewController *tbc = [[MPTitlebarColorAccessoryViewController alloc] init];
+   tbc.layoutAttribute = NSLayoutAttributeRight;
+   [self.window addTitlebarAccessoryViewController:tbc];
+   */
 }
 
 - (NSSearchField *)searchField {
@@ -196,57 +218,12 @@ typedef void (^MPPasswordChangedBlock)(BOOL didChangePassword);
 #pragma mark Actions
 - (void)saveDocument:(id)sender {
   MPDocument *document = self.document;
-  NSString *fileType = document.fileType;
-  /* we did open as legacy */
-  if([fileType isEqualToString:MPKdbDocumentUTI]) {
-    if(document.tree.minimumVersion.format != KPKDatabaseFormatKdb) {
-      NSAlert *alert = [[NSAlert alloc] init];
-      alert.alertStyle = NSWarningAlertStyle;
-      alert.messageText = NSLocalizedString(@"WARNING_ON_LOSSY_SAVE", "");
-      alert.informativeText = NSLocalizedString(@"WARNING_ON_LOSSY_SAVE_DESCRIPTION", "Informative Text displayed when saving would yield data loss");
-      
-      [alert addButtonWithTitle:NSLocalizedString(@"SAVE_LOSSY", "Save lossy")];
-      [alert addButtonWithTitle:NSLocalizedString(@"CHANGE_FORMAT", "")];
-      [alert addButtonWithTitle:NSLocalizedString(@"CANCEL", "Cancel")];
-      __weak MPDocumentWindowController *welf = self;
-      [alert beginSheetModalForWindow:[welf.document windowForSheet] completionHandler:^(NSModalResponse returnCode) {
-        switch(returnCode) {
-          case NSAlertFirstButtonReturn:
-            /* Save lossy */
-            [welf.document saveDocument:nil];
-            return;
-            
-          case NSAlertSecondButtonReturn:
-            [alert.window orderOut:nil];
-            [welf.document saveDocumentAs:nil];
-            return;
-            
-          case NSAlertThirdButtonReturn:
-          default:
-            return; // Cancel or unknown
-        }
-      }];
-      return;
-    }
-  }
-  else if(!document.compositeKey) {
-    __weak MPDocument *weakDocument = self.document;
-    
+  if(!document.compositeKey) {
     [self editPasswordWithCompetionHandler:^(NSInteger result) {
       if(result == NSModalResponseOK) {
-        [weakDocument saveDocument:sender];
+        [self saveDocument:sender];
       }
     }];
-    return;
-  }
-  else if(document.shouldEnforcePasswordChange) {
-    __weak MPDocument *weakDocument = [self document];
-    [self editPasswordWithCompetionHandler:^(NSInteger result) {
-      if(result == NSModalResponseOK) {
-        [weakDocument saveDocument:sender];
-      }
-    }];
-    [self _presentPasswordIntervalAlerts];
     return;
   }
   /* All set and good ready to save */
@@ -259,10 +236,9 @@ typedef void (^MPPasswordChangedBlock)(BOOL didChangePassword);
     return;
   }
   /* we need to make sure that a password is set */
-  __weak MPDocument *weakDocument = self.document;
   [self editPasswordWithCompetionHandler:^(NSInteger result) {
     if(result == NSModalResponseOK) {
-      [weakDocument saveDocumentAs:sender];
+      [self saveDocumentAs:sender];
     }
   }];
 }
@@ -288,6 +264,8 @@ typedef void (^MPPasswordChangedBlock)(BOOL didChangePassword);
   openPanel.canChooseDirectories = NO;
   openPanel.canChooseFiles = YES;
   openPanel.allowedFileTypes = @[(id)kUTTypeXML];
+  openPanel.prompt = NSLocalizedString(@"OPEN_BUTTON_IMPORT_XML_OPEN_PANEL", "Open button in the open panel to import an XML file");
+  openPanel.message = NSLocalizedString(@"MESSAGE_XML_OPEN_PANEL", "Message in the open panel to import an XML file");
   [openPanel beginSheetModalForWindow:self.window completionHandler:^(NSInteger result) {
     if(result == NSFileHandlingPanelOKButton) {
       [document readXMLfromURL:openPanel.URL];
@@ -302,10 +280,11 @@ typedef void (^MPPasswordChangedBlock)(BOOL didChangePassword);
   openPanel.allowsMultipleSelection = NO;
   openPanel.canChooseDirectories = NO;
   openPanel.canChooseFiles = YES;
+  openPanel.message = NSLocalizedString(@"SELECT_FILE_TO_MERGE", @"Message for the dialog to open a file for merge");
   //openPanel.allowedFileTypes = @[(id)kUTTypeXML];
   [openPanel beginSheetModalForWindow:self.window completionHandler:^(NSInteger result) {
     if(result == NSFileHandlingPanelOKButton) {
-      [document mergeWithContentsFromURL:openPanel.URL];
+      [document mergeWithContentsFromURL:openPanel.URL key:document.compositeKey];
     }
   }];
 }
@@ -314,7 +293,7 @@ typedef void (^MPPasswordChangedBlock)(BOOL didChangePassword);
   if(!self.fixAutotypeWindowController) {
     self.fixAutotypeWindowController = [[MPFixAutotypeWindowController alloc] init];
   }
-  [self.document addWindowController:self.fixAutotypeWindowController];
+  self.fixAutotypeWindowController.document = self.document;
   [self.fixAutotypeWindowController.window makeKeyAndOrderFront:sender];
 }
 
@@ -323,9 +302,11 @@ typedef void (^MPPasswordChangedBlock)(BOOL didChangePassword);
     self.passwordInputController = [[MPPasswordInputController alloc] init];
   }
   [self _setContentViewController:self.passwordInputController];
-  __weak MPDocumentWindowController *welf = self;
-  [self.passwordInputController requestPasswordWithCompletionHandler:^BOOL(NSString *password, NSURL *keyURL, NSError *__autoreleasing *error) {
-    return [((MPDocument *)welf.document) unlockWithPassword:password keyFileURL:keyURL error:error];
+  [self.passwordInputController requestPasswordWithCompletionHandler:^BOOL(NSString *password, NSURL *keyURL, BOOL cancel, NSError *__autoreleasing *error) {
+    if(cancel) {
+      return NO;
+    }
+    return [((MPDocument *)self.document) unlockWithPassword:password keyFileURL:keyURL error:error];
   }];
 }
 
@@ -361,12 +342,17 @@ typedef void (^MPPasswordChangedBlock)(BOOL didChangePassword);
 }
 
 - (IBAction)lock:(id)sender {
-  MPDocument *document = [self document];
-  if(!document.compositeKey.hasPasswordOrKeyFile) {
-    return; // Document needs a password/keyfile to be lockable
-  }
+  MPDocument *document = self.document;
   if(document.encrypted) {
     return; // Document already locked
+  }
+  if(!document.compositeKey) {
+    [self editPasswordWithCompetionHandler:^(NSInteger result) {
+      if(result == NSModalResponseOK) {
+        [self lock:sender];
+      }
+    }];
+    return;
   }
   [document lockDatabase:sender];
 }
@@ -400,7 +386,6 @@ typedef void (^MPPasswordChangedBlock)(BOOL didChangePassword);
 }
 - (void)duplicateEntryWithOptions:(id)sender {
   MPDuplicateEntryOptionsWindowController *wc = [[MPDuplicateEntryOptionsWindowController alloc] init];
-  __weak MPDocumentWindowController *welf = self;
   
   [self.window beginSheet:wc.window completionHandler:^(NSModalResponse returnCode) {
     if(returnCode == NSModalResponseOK) {
@@ -415,7 +400,7 @@ typedef void (^MPPasswordChangedBlock)(BOOL didChangePassword);
       if(wc.duplicateHistory) {
         options |= kKPKCopyOptionCopyHistory;
       }
-      [((MPDocument *)welf.document) duplicateEntryWithOptions:options];
+      [((MPDocument *)self.document) duplicateEntryWithOptions:options];
     }
   }];
 }
@@ -459,7 +444,7 @@ typedef void (^MPPasswordChangedBlock)(BOOL didChangePassword);
 }
 
 - (void)focusEntries:(id)sender {
-  [[self window] makeFirstResponder:[self.entryViewController reconmendedFirstResponder]];
+  [self.window makeFirstResponder:[self.entryViewController reconmendedFirstResponder]];
 }
 
 - (void)focusGroups:(id)sender {
@@ -488,7 +473,7 @@ typedef void (^MPPasswordChangedBlock)(BOOL didChangePassword);
    Add all needed constraints an then remove it again, if it was hidden
    */
   BOOL removeInspector = NO;
-  if(![inspectorView superview]) {
+  if(!inspectorView.superview) {
     [self.splitView addSubview:inspectorView];
     removeInspector = YES;
   }
@@ -529,6 +514,28 @@ typedef void (^MPPasswordChangedBlock)(BOOL didChangePassword);
   [contentView layoutSubtreeIfNeeded];
 }
 
+- (void)copyUsername:(id)sender {
+  [self.entryViewController copyUsername:sender];
+}
+
+- (void)copyPassword:(id)sender {
+  [self.entryViewController copyPassword:sender];
+}
+
+- (void)copyCustomAttribute:(id)sender {
+  [self.entryViewController copyCustomAttribute:sender];
+}
+
+- (void)copyURL:(id)sender {
+  [self.entryViewController copyURL:sender];
+}
+
+- (void)openURL:(id)sender {
+  [self.entryViewController openURL:sender];
+}
+
+
+
 #pragma mark Validation
 - (BOOL)validateMenuItem:(NSMenuItem *)menuItem {
   return ([self.document validateMenuItem:menuItem]);
@@ -536,25 +543,35 @@ typedef void (^MPPasswordChangedBlock)(BOOL didChangePassword);
 
 #pragma mark NSAlert handling
 - (void)_presentPasswordIntervalAlerts {
-  MPDocument *document = [self document];
+  MPDocument *document = self.document;
   if(document.shouldEnforcePasswordChange) {
     NSAlert *alert = [[NSAlert alloc] init];
     
     alert.alertStyle = NSCriticalAlertStyle;
-    alert.messageText = NSLocalizedString(@"ENFORCE_PASSWORD_CHANGE_ALERT_TITLE", "");
-    alert.informativeText = NSLocalizedString(@"ENFORCE_PASSWORD_CHANGE_ALERT_DESCRIPTION", "");
+    alert.messageText = NSLocalizedString(@"ENFORCE_PASSWORD_CHANGE_ALERT_TITLE", "Message text for the enforce password change alert");
+    alert.informativeText = NSLocalizedString(@"ENFORCE_PASSWORD_CHANGE_ALERT_DESCRIPTION", "Informative text for the enforce password change alert");
     
-    [alert addButtonWithTitle:NSLocalizedString(@"CHANGE_PASSWORD_WITH_DOTS", "")];
-    [alert addButtonWithTitle:NSLocalizedString(@"CANCEL", "")];
-    alert.buttons[1].keyEquivalent = [NSString stringWithFormat:@"%c", 0x1b];
+    [alert addButtonWithTitle:NSLocalizedString(@"CHANGE_PASSWORD_WITH_DOTS", "Single button to show the password change dialog")];
     
     [alert beginSheetModalForWindow:[self.document windowForSheet] completionHandler:^(NSModalResponse returnCode) {
-      if(NSAlertSecondButtonReturn == returnCode) {
+      /* if sheet was stopped any other way, do nothing */
+      if(returnCode != NSAlertFirstButtonReturn) {
         return;
       }
-      id __weak welf = self;
       dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.5 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-        [welf editPassword:nil];
+        [self editPasswordWithCompetionHandler:^(NSInteger result) {
+          /* if password was changed, reset change key and dismiss */
+          if(result == NSModalResponseOK) {
+            document.tree.metaData.enforceMasterKeyChangeOnce = NO;
+          }
+          else if(result == NSModalResponseCancel) {
+            /* password was not changes, so keep nagging the user! */
+            [self _presentPasswordIntervalAlerts];
+          }
+          else {
+            // We might have been killed by locking so do nothing!
+          }
+        }];
       });
     }];
   }
@@ -562,11 +579,11 @@ typedef void (^MPPasswordChangedBlock)(BOOL didChangePassword);
     NSAlert *alert = [[NSAlert alloc] init];
     
     alert.alertStyle = NSInformationalAlertStyle;
-    alert.messageText = NSLocalizedString(@"RECOMMEND_PASSWORD_CHANGE_ALERT_TITLE", "");
-    alert.informativeText = NSLocalizedString(@"RECOMMEND_PASSWORD_CHANGE_ALERT_DESCRIPTION", "");
+    alert.messageText = NSLocalizedString(@"RECOMMEND_PASSWORD_CHANGE_ALERT_TITLE", "Message text for the recommend password change alert");
+    alert.informativeText = NSLocalizedString(@"RECOMMEND_PASSWORD_CHANGE_ALERT_DESCRIPTION", "Informative text for the recommend password change alert");
     
-    [alert addButtonWithTitle:NSLocalizedString(@"CHANGE_PASSWORD_WITH_DOTS", "")];
-    [alert addButtonWithTitle:NSLocalizedString(@"CANCEL", "")];
+    [alert addButtonWithTitle:NSLocalizedString(@"CHANGE_PASSWORD_WITH_DOTS", "Button to show the password change dialog")];
+    [alert addButtonWithTitle:NSLocalizedString(@"CHANGE_LATER", "Button to postpone the password change")];
     alert.buttons[1].keyEquivalent = [NSString stringWithFormat:@"%c", 0x1b];
     
     
@@ -574,9 +591,8 @@ typedef void (^MPPasswordChangedBlock)(BOOL didChangePassword);
       if(returnCode == NSAlertSecondButtonReturn) {
         return;
       }
-      id __weak welf = self;
       dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.5 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-        [welf editPassword:nil];
+        [self editPassword:nil];
       });
     }];
   }

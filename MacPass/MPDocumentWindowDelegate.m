@@ -36,11 +36,10 @@
   
   NSPasteboard *draggingPasteBoard = [sender draggingPasteboard];
   
-  NSArray *classArray = [NSArray arrayWithObject:[NSURL class]];
-  NSArray *arrayOfURLs = [draggingPasteBoard readObjectsForClasses:classArray options:nil];
+  NSArray *arrayOfURLs = [draggingPasteBoard readObjectsForClasses:@[NSURL.class] options:nil];
   BOOL ok = YES;
   for(NSURL *url in arrayOfURLs) {
-    if([url isFileURL] || [url isFileReferenceURL]) {
+    if(url.fileURL || url.fileReferenceURL) {
       ok = NO;
       break; // OK stays NO;
     }
@@ -54,15 +53,14 @@
 
 - (BOOL)performDragOperation:(id<NSDraggingInfo>)sender {
   NSPasteboard *draggingPasteBoard = [sender draggingPasteboard];
-  NSArray *classArray = [NSArray arrayWithObject:[NSURL class]];
-  NSArray *arrayOfURLs = [draggingPasteBoard readObjectsForClasses:classArray options:nil];
+  NSArray *arrayOfURLs = [draggingPasteBoard readObjectsForClasses:@[NSURL.class] options:nil];
   
-  NSURL *url = [arrayOfURLs lastObject];
+  NSURL *url = arrayOfURLs.lastObject;
   if(!url) {
     return NO;
   }
-  /* Currently not working, as the underlying operations do not get the unomanager */
-  MPDocument *document = [[[sender draggingDestinationWindow] windowController] document];
+  /* Currently not working, as the underlying operations do not get the undomanager */
+  MPDocument *document = [sender draggingDestinationWindow].windowController.document;
   KPKGroup *parentGroup = document.selectedGroups.count == 1 ? document.selectedGroups.firstObject : document.root;
   [document.undoManager beginUndoGrouping];
   KPKEntry *entry = [document createEntry:parentGroup];

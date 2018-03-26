@@ -81,7 +81,7 @@ NSString *const _MPOutlineMenuTemplate = @"Template";
     return; // nothing to do, all fine
   }
   [menu removeAllItems];
-  [menu addItemWithTitle:NSLocalizedString(@"CHANGE_DATABASE_NAME", "")
+  [menu addItemWithTitle:NSLocalizedString(@"CHANGE_DATABASE_NAME", "Menu item in the database outline context menu to change the database name")
                   action:[MPActionHelper actionOfType:MPActionDatabaseSettings]
            keyEquivalent:@""];
   
@@ -93,11 +93,11 @@ NSString *const _MPOutlineMenuTemplate = @"Template";
     return; // nothing to do, all fine
   }
   [menu removeAllItems];
-  [menu addItemWithTitle:NSLocalizedString(@"CHANGE_TRASH_GROUP", "")
+  [menu addItemWithTitle:NSLocalizedString(@"CHANGE_TRASH_GROUP", "Menu item in the database outline context menu to change the trash group")
                   action:@selector(editTrashGroup:)
            keyEquivalent:@""];
   [menu addItem:[NSMenuItem separatorItem]];
-  [menu addItemWithTitle:NSLocalizedString(@"EMPTY_TRASH", "")
+  [menu addItemWithTitle:NSLocalizedString(@"EMPTY_TRASH", "Menu item in the database outline context menu to empyt the trash")
                   action:[MPActionHelper actionOfType:MPActionEmptyTrash]
            keyEquivalent:@""];
   
@@ -109,11 +109,11 @@ NSString *const _MPOutlineMenuTemplate = @"Template";
     return; // nothing to do, all fine
   }
   [menu removeAllItems];
-  [menu addItemWithTitle:NSLocalizedString(@"DELETE", "")
+  [menu addItemWithTitle:NSLocalizedString(@"DELETE", "Menu item in the database outline context menu to delete the node from the trash")
                   action:[MPActionHelper actionOfType:MPActionDelete]
            keyEquivalent:@""];
   [menu addItem:[NSMenuItem separatorItem]];
-  [menu addItemWithTitle:NSLocalizedString(@"EMPTY_TRASH", "")
+  [menu addItemWithTitle:NSLocalizedString(@"EMPTY_TRASH", "Menu item in the database outline to empty the trash")
                   action:[MPActionHelper actionOfType:MPActionEmptyTrash]
            keyEquivalent:@""];
   
@@ -125,7 +125,7 @@ NSString *const _MPOutlineMenuTemplate = @"Template";
     return; // nothing to do, all fine
   }
   [menu removeAllItems];
-  [menu addItemWithTitle:NSLocalizedString(@"EDIT_TEMPLATE_GROUP", "")
+  [menu addItemWithTitle:NSLocalizedString(@"EDIT_TEMPLATE_GROUP", "Menu item in the database outline context menu to change the template group")
                   action:[MPActionHelper actionOfType:MPActionEditTemplateGroup]
            keyEquivalent:@""];
   [menu addItem:[NSMenuItem separatorItem]];

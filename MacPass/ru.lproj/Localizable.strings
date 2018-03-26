@@ -1,4 +1,4 @@
-﻿/* Formatted Times  */
+/* Formatted Times  */
 "%ld_DAYS_AGO" = "%ld дней назад";
 "%ld_HOURS_AGO" = "около %ld часов назад";
 "%ld_MINUTES_AGO" = "%ld минут назад";
@@ -22,8 +22,8 @@
 /*
  Actions
  */
-"ADD_ENTRY" = "Добавить Запись";
-"ADD_GROUP" = "Добавить Группу";
+"NEW_ENTRY" = "Добавить Запись";
+"NEW_GROUP" = "Добавить Группу";
 "DUPLICATE_ENTRY" = "Скопировать Запись";
 "DUPLICATE_ENTRY_WITH_OPTIONS" = "Скопировать Запись…";
 "COPY_ENTRY" = "Копировать Запись";
@@ -44,12 +44,6 @@
 "PASSWORD_GENERATOR_RESET_ENTRY_DEFAULTS" = "Сброс";
 "TRASH_ENTRY" = "Удалить Запись";
 "TRASH_GROUP" = "Удалить Группу";
-"SET_NAME" = "Изменить Имя";
-"SET_TITLE" = "Изменить Заголовок";
-"SET_USERNAME" = "Изменить Имя пользователя";
-"SET_PASSWORD" = "Изменить Пароль";
-"SET_URL" = "Изменить URL";
-"SET_NOTES" = "Изменить Заметки";
 "SHOW_HISTORY" = "SHOW_HISTORY";
 
 /*
@@ -70,16 +64,10 @@
 "DATABASE" = "База данных";
 "DELETE" = "Удалить";
 "EDIT" = "Изменено";
-"EMAIL" = "EMail";
 "GROUP" = "Группа";
-"GENERAL" = "Общие";
-"HOMEBANKING" = "Домашний банк";
 "INSPECTOR" = "Инспектор";
-"INTERNET" = "Интернет";
 "LOCK" = "Блокировка";
 "MODIFIED" = "Изменить";
-"NAME" = "Имя";
-"NETWORK" = "Сеть";
 "NONE" = "Нет";
 "NOTES" = "Заметки";
 "PASSWORD" = "Пароль";
@@ -87,7 +75,6 @@
 "SAVE_WITH_DOTS" = "Сохранить…";
 "SEARCH" = "Поиск";
 "TITLE" = "Заголовок";
-"TRASH" = "Удалить";
 "URL" = "URL";
 "USERNAME" = "Имя пользователя";
 "WINDOWS" = "Окна";
@@ -95,7 +82,6 @@
 
 "CHANGE_DATABASE_NAME" = "Изменить Имя базы данных";
 "CHANGE_TRASH_GROUP" = "Изменить группу для мусора";
-"%@_COPY" = "%@ Копировать";
 
 "DUPLICTE_PASSWORDS" = "Дубли паролей";
 
@@ -144,13 +130,6 @@
 "DEFAULT_GROUP_NAME" = "Новая Группа";
 "DEFAULT_WINDOW_TITLE" = "Заголовок Окна";
 
-/* Number of Entries
- Plural (0, >1)
- Singular (1)
- */
-"%ld_ENTRIES" = "%ld записей";
-"%ld_ENTRY" = "%ld запись";
-
 /* Settings */
 "GENERAL_SETTINGS" = "Общие";
 "INTEGRATION_SETTINGS" = "Интеграция";
@@ -183,7 +162,6 @@
 "WARNING_ON_LOSSY_SAVE" = "Сохранение базы в KDB формате может вызвать потерю данных.";
 "WARNING_ON_LOSSY_SAVE_DESCRIPTION" = "Формат KDB не умеет хранить всю информацию.";
 "CHANGE_FORMAT" = "Изменить формат файла на KDBX";
-"SAVE_LOSSY" = "Сохранить и потерять данные";
 
 "ENFORCE_PASSWORD_CHANGE_ALERT_TITLE" = "Пароль базы данных истек!";
 "ENFORCE_PASSWORD_CHANGE_ALERT_DESCRIPTION" = "Вы не можете ничего сохранять, пока не поменяете пароль базы и/или файл ключа.";
@@ -201,8 +179,6 @@
 "FILE_CHANGED_BY_OTHERS_INFO_TEXT" = "Загруженный файл отличается от файла на диске. Что вы хотите делать дальше?";
 /* Button to ignore the changes */
 "KEEP_MINE" = "Сохранить текущую версию и игнорировать изменения на диске!";
-/* BUtton to reload the changes form disk */
-"LOAD_CHANGES" = "Загрузить соханенный файл!";
 /* Merge changes into file! */
 "MERGE_CHANGES" = "Merge changes!";
 
