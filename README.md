@@ -45,8 +45,8 @@ Or follow the Twitter account [@MacPassApp](https://twitter.com/MacPassApp)
 
 ## System Requirement
 
-The minimum macOS version required for MacPass 0.7 is 10.10 Yosemite.
-The minimum OS X version required for MacPass 0.6.2 is 10.8 Mountain Lion.
+MacPass 0.7 requires macOS 10.10 Yosemite or later.
+Earlier versions of MacPass require macOS 10.8 Mountain Lion or later.
 
 ## Status
 
