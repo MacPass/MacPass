@@ -1,0 +1,630 @@
+/* Count of characters remaining in pickchars dialog */
+"%ld_CHARACTERS_TO_PICK_REMAINING" = "%ld tecken kvar att välja";
+
+/* Display format for days. Should contain a long decimal placeholder! */
+"%ld_DAYS" = "%ld dagar";
+
+/* % days ago */
+"%ld_DAYS_AGO" = "%ld dagar sedan";
+
+/* % Hours ago */
+"%ld_HOURS_AGO" = "cirka %ld timmar sedan";
+
+/* % Minutes ago */
+"%ld_MINUTES_AGO" = "%ld minuter sedan";
+
+/* % Weeks ago */
+"%ld_WEEKS_AGO" = "%ld veckor sedan";
+
+/* preset to expire after 90 days from now */
+"90_DAYS" = "inom 90 dagar";
+
+/* Button label to abort a merge on a file with changed master key! */
+"ABORT_MERGE_KEEP_MINE" = "Avbryt ihopslagning. Behåll min.";
+
+/* Toolbar item with action menu */
+"ACTION" = "Åtgärder";
+
+/* Menu displayed for adding special custom keys */
+"ADD_CUSTOM_FIELD_CONTEXT_MENU" = "Lägg till anpassat fält meny";
+
+/* Action to add an entry via template */
+"ADD_TREMPLATE_ENTRY" = "Skapa konto från mall";
+
+/* Alert informative text when plugins or their settings change and require a restart */
+"ALERT_INFORMATIVE_TEXT_PLUGINS_CHANGED_SUGGEST_RESTART" = "Ändringar till plugin och globala plugin-inställningar slår igenom först efter programmet startats om. Starta om MacPass nu?";
+
+/* Alert informative text to ask the user if he really want to uninstall the plugin */
+"ALERT_INFORMATIVE_TEXT_REALLY_UNINSTALL_PLUGIN" = "Pluginet kommer flyttas till papperskorgen.";
+
+/* Alert message text when plugins or their settings change and require a restart */
+"ALERT_MESSAGE_PLUGINS_CHANGED_SUGGEST_RESTART" = "Plugin-inställningar ändrade. Var vänlig starta om.";
+
+/* Alert message text to ask the user if he really want to uninstall the plugin. Include %@ placeholder for plugin name */
+"ALERT_MESSAGE_TEXT_REALLY_UNINSTALL_PLUGIN_%@" = "Ska pluginet %@ verkligen avinstalleras?";
+
+/* Attachments column title (shows counts)
+   Menu item to toggle display of attachment count column in entry table */
+"ATTACHMENTS" = "Bilagor";
+
+/* Menu item for automatic trash creation */
+"AUTOCREATE_TRASH_FOLDER" = "Skapa automatiskt";
+
+/* Inherit autotype settings menu item */
+"AUTOTYPE_INHERIT" = "Ärv inställningar för auto-ifyllning";
+
+/* Disable autotype menu item */
+"AUTOTYPE_NO" = "Avaktivera auto-ifyllning";
+
+/* Notification: Autotype failed, no documents are open */
+"AUTOTYPE_OVERLAY_NO_DOCUMENTS" = "Var vänlig och öppna en databas för att använda auto-ifyllning!";
+
+/* Noticiation: Autotype failed to find a match for %@ (string placeholder) */
+"AUTOTYPE_OVERLAY_NO_MATCH_FOR_%@" = "Ingen matching för %@!";
+
+/* Notification: Autotype found a single match. */
+"AUTOTYPE_OVERLAY_SINGLE_MATCH" = "Användaruppgifter hittades!";
+
+/* Enable autotype menu item */
+"AUTOTYPE_YES" = "Aktivera auto-ifyllning";
+
+/* Sucessfully merged external changes */
+"AUTO_MERGE_NOTIFICATION_TEXT" = "Automatisk ihopslagning lyckades!";
+
+/* Cancel */
+"CANCEL" = "Avbryt";
+
+/* Menu item in the database outline context menu to change the database name */
+"CHANGE_DATABASE_NAME" = "Ändra databasnamn";
+
+/* (No Comment) */
+"CHANGE_FORMAT" = "Ändra filformat till Kdbx";
+
+/* Button to postpone the password change */
+"CHANGE_LATER" = "Ändra senare";
+
+/* Button to show the password change dialog
+   Single button to show the password change dialog */
+"CHANGE_PASSWORD_WITH_DOTS" = "Ändra lösenord…";
+
+/* Menu item in the database outline context menu to change the trash group */
+"CHANGE_TRASH_GROUP" = "Ändra grupp för skräp";
+
+/* String displayed at dock badge when clipboard is about to be cleared */
+"CLEARING_PASTEBOARD" = "Rensad";
+
+/* Clear Autotype Button */
+"CLEAR_AUTOTYPE" = "Rensa auto-ifyllning";
+
+/* Menu to clear recent searches */
+"CLEAR_RECENT_SEARCHES" = "Rensa senaste sökningar";
+
+/* Field name that was copied to the pasteboard */
+"COPIED_FIELD_%@" = "Kopierade %@";
+
+/* Password was copied to the pasteboard */
+"COPIED_PASSWORD" = "Lösenord kopierat!";
+
+/* URL was copied to the pasteboard */
+"COPIED_URL" = "URL kopierad!";
+
+/* Username was copied to the pasteboard */
+"COPIED_USERNAME" = "Användarnamn kopierat!";
+
+/* Submenu to Copy custom fields */
+"COPY_CUSTOM_FIELDS" = "Kopiera anpassade fält";
+
+/* Context menu sub-menu to copy custom fields to clipboard */
+"COPY_CUSTOM_FIELDS_MENU" = "Kopiera anpassade fält…";
+
+/* Action title for copying an entry via drag and drop */
+"COPY_ENTRY" = "Kopiera konto";
+
+/* Mask for title to copy field value */
+"COPY_FIELD_%@" = "Kopiera %@";
+
+/* Action title for copying a group via drag and drop */
+"COPY_GROUP" = "Kopiera grupp";
+
+/* Menu item to copy the password of an entry
+   Toolbar item copy password */
+"COPY_PASSWORD" = "Kopiera lösenord";
+
+/* Menu item to copy the URL of an entry */
+"COPY_URL" = "Kopiera URL";
+
+/* Menu item to copy the username of an entry
+   Toolbar item copy username */
+"COPY_USERNAME" = "Kopiera användarnamn";
+
+/* (No Comment) */
+"CREATED_AT_%@" = "Skapad: %@";
+
+/* Curstom attribute reference item */
+"CUSTOM_ATTRIBUTE" = "Anpassade attribut";
+
+/* Title for menu for custom search filters */
+"CUSTOM_SEARCH_FILTER_MENU" = "Anpassat sökfilter…";
+
+/* Default display name for KDB databases */
+"DATABASE" = "Databas";
+
+/* Default Browser */
+"DEFAULT_BROWSER" = "Förvald webbläsare";
+
+/* Default Titel for new Custom-Fields */
+"DEFAULT_CUSTOM_FIELD_TITLE" = "Anpassat";
+
+/* Default Value for new Custom-Fields */
+"DEFAULT_CUSTOM_FIELD_VALUE" = "Värde";
+
+/* Title for a newly created entry */
+"DEFAULT_ENTRY_TITLE" = "Nytt konto";
+
+/* Title for a newly created group */
+"DEFAULT_GROUP_NAME" = "Ny grupp";
+
+/* Default window title for a new window association */
+"DEFAULT_WINDOW_TITLE" = "Fönstertitel";
+
+/* Menu item in the database outline context menu to delete the node from the trash
+   Menu item to delete an entry
+   Menu item to delete the selected attached file
+   Menu item to delete the selected custom icon
+   Toolbar item delete item */
+"DELETE" = "Radera";
+
+/* Delete Entry */
+"DELETE_ENTRY" = "Radera konto";
+
+/* Delete Group */
+"DELETE_GROUP" = "Radera grupp";
+
+/* Empty Trash */
+"DELETE_TRASHED_ENTRY" = "Radera slängt konto";
+
+/* Empty Trash */
+"DELETE_TRASHED_GROUP" = "Radera slängd grupp";
+
+/* No comment provided by engineer. */
+"DOCUMENT_AUTOTYPE_CORRUPTION_WARNING" = "Var vänlig kör fixa auto-ifyllning…";
+
+/* Action name for duplicating entries */
+"DUPLICATE_ENTRIES_%ld" = "Duplicera konton %ld";
+
+/* Menu item to directly diplicate an entry */
+"DUPLICATE_ENTRY" = "Duplicera konto";
+
+/* Menu item to duplicate an entry with options how to duplicate. Will present a dialog. */
+"DUPLICATE_ENTRY_WITH_OPTIONS" = "Duplicera konto…";
+
+/* Menu item in the database outline context menu to change the template group
+   Menu item on the add entry context menu to edit template groups */
+"EDIT_TEMPLATE_GROUP" = "Välj grupp för mallar";
+
+/* Empty Trash
+   Menu item in the database outline context menu to empyt the trash
+   Menu item in the database outline to empty the trash
+   Menu item to empty the trash */
+"EMPTY_TRASH" = "Töm papperskorgen";
+
+/* Informative text for the enforce password change alert */
+"ENFORCE_PASSWORD_CHANGE_ALERT_DESCRIPTION" = "Du kommer inte kunna spara tills lösenordet och/eller nyckelfilen har ändrats.";
+
+/* Message text for the enforce password change alert */
+"ENFORCE_PASSWORD_CHANGE_ALERT_TITLE" = "Lösenordet för databasen har förfallit!";
+
+/* Group row for entry attributes */
+"ENTRY_CUSTOM_ATTRIBUTES" = "Anpassade attribut";
+
+/* Group row for entry attributes */
+"ENTRY_DEFAULT_ATTRIBUTES" = "Standardattribut";
+
+/* Keyfile not valid */
+"ERROR_INVALID_KEYFILE" = "Nyckelfilen är felaktig!";
+
+/* Error description given when adding an invalid plugin */
+"ERROR_INVALID_PLUGIN" = "Felaktigt plugin";
+
+/* Passwords do not match */
+"ERROR_PASSWORD_MISSMATCH" = "Lösenorden överensstämmer inte!";
+
+/* Passwords do not match, keyfile is invalid */
+"ERROR_PASSWORD_MISSMATCH_INVALID_KEYFILE" = "Lösenorden överensstämmer inte och nyckelfilen är felaktig!";
+
+/* Recommend/Enforce key change intervall format */
+"EVERY_%ld_DAYS" = "Var %ld:e dag";
+
+/* Format to returen the date an item expires. Includes %@ placehoder for date */
+"EXPIRES_AT_DATE_%@" = "Förfaller: %@";
+
+/* The master key was changed by an extrenal programm! */
+"EXTERN_CHANGE_OF_MASTERKEY" = "Huvudnyckeln har ändrats av ett annat program";
+
+/* Informative text displayed when the file was change from another application */
+"FILE_CHANGED_BY_OTHERS_INFO_TEXT" = "Den öppna databasen är inte samma som den på disk. Hur vill du fortsätta?";
+
+/* Message displayed when an open file was changed from another application */
+"FILE_CHANGED_BY_OTHERS_MESSAGE_TEXT" = "Databasfilen har modifierats!";
+
+/* External file change strategy option: ask what to do */
+"FILE_CHANGE_STRATEGY_ASK" = "Fråga";
+
+/* External file change strategy option: Keep local file an ignore external changes */
+"FILE_CHANGE_STRATEGY_KEEP_MINE" = "Behåll min version och ignorera andra ändringar";
+
+/* Button in dialog to merge changes into file!
+   External file change strategy option: Merge external changes into local file. */
+"FILE_CHANGE_STRATEGY_MERGE" = "Slå samman ändringar";
+
+/* External file change strategy option: Use the changed file and discard local changes */
+"FILE_CHANGE_STRATEGY_USE_OTHER" = "Ladda den ändrade filen från disk och kasta mina ändringar";
+
+/* Error while reopening last known documents */
+"FILE_OPEN_ERROR" = "Problem att öppna filen.";
+
+/* General Settings Label */
+"GENERAL_SETTINGS" = "Allmänt";
+
+/* Group column title */
+"GROUP" = "Grupp";
+
+/* History count column title
+   Menu item to toggle display of history count column in entry table */
+"HISTORY" = "Historik";
+
+/* Imports a dragged URL for a new entry */
+"IMPORT_URL" = "Importera URL";
+
+/* Toolbar item toggle inspector */
+"INSPECTOR" = "Inspektör";
+
+/* Label for the integration settings tab */
+"INTEGRATION_SETTINGS" = "Integration";
+
+/* Just now */
+"JUST_NOW" = "Just nu";
+
+/* Feature only available in kdbx databases */
+"KDBX_ONLY_FEATURE" = "Stöds ej för KDB-databaser";
+
+/* Button in dialog to ignore the changes to an open file! */
+"KEEP_MINE_DISCARD_OTHER" = "Behåll min, kasta andra";
+
+/* Button in dialog to reopen the file! */
+"KEEP_OTHER_DISCARD_MINE" = "Behåll andra, kasta min";
+
+/* Do not install the plugin */
+"KEEP_PLUGIN" = "Behåll plugin";
+
+/* Do not restart MacPass */
+"KEEP_RUNNING" = "Fortsätt köra";
+
+/* last week */
+"LAST_WEEK" = "Förra veckan";
+
+/* Toolbar item to Lock the database */
+"LOCK" = "Lås";
+
+/* Message in the open panel to add attachments to an entry */
+"MESSAGE_ADD_ATTACHMENT_OPEN_PANEL" = "Välj fil att bifoga";
+
+/* Message in the add plugin open panel */
+"MESSAGE_ADD_PLUGIN_OPEN_PANEL" = "Välj plugin att installera";
+
+/* Message in the open panel to import an XML file */
+"MESSAGE_XML_OPEN_PANEL" = "Välj XML-filen att importera";
+
+/* Menu item to toggle display of modified date column in entry table
+   Modification date column title */
+"MODIFIED" = "Modifierad";
+
+/* Action title for moving an entry via drag and drop */
+"MOVE_ENTRY" = "Flytta konto";
+
+/* Action title for moving a group via drag and drop */
+"MOVE_GROUP" = "Flytta grupp";
+
+/* Name for a newly created Database */
+"NEW_DATABASE" = "Databas";
+
+/* Action name for a newly created entry
+   Menu item to create a new entry
+   Toolbar item new entry */
+"NEW_ENTRY" = "Nytt konto";
+
+/* Submenu to add an entry via template */
+"NEW_ENTRY_WITH_TEMPLATE_%@" = "Skapa konto med mall %@";
+
+/* Action name for a newly created group
+   Menu item to create a new group
+   Toolbar item new group */
+"NEW_GROUP" = "Ny grupp";
+
+/* Null placeholder for item input field
+   Placeholder text for input fields if no entry or group is selected */
+"NONE" = "Ingen";
+
+/* Displayed name when notes or part of notes was copied
+   Menu item to toggle display of notes column in entry table
+   Notes column title
+   Notes reference item */
+"NOTES" = "Anteckningar";
+
+/* Expiration date format, when item does not expire */
+"NO_EXPIRE_DATE_SET" = "Förfaller aldrig.";
+
+/* Menu item added to show that no templates are defined */
+"NO_TEMPLATES" = "Inga mallar hittades";
+
+/* Menu item to reset the template groups */
+"NO_TEMPLATE_GROUP" = "Inga mallar";
+
+/* Ok button */
+"OK" = "OK";
+
+/* preset to expire after one montch from now */
+"ONE_MONTH" = "om en månad";
+
+/* preset to expire after one week from now */
+"ONE_WEEK" = "om en vecka";
+
+/* one week ago */
+"ONE_WEEK_AGO" = "En vecka sedan";
+
+/* preset to expire after one year from now */
+"ONE_YEAR" = "om ett år";
+
+/* Open button in the open panel to add attachments to an entry */
+"OPEN_BUTTON_ADD_ATTACHMENT_OPEN_PANEL" = "Bifoga";
+
+/* Open button in the add plugin open panel */
+"OPEN_BUTTON_ADD_PLUGIN_OPEN_PANEL" = "Installera";
+
+/* Open button in the open panel to import an XML file */
+"OPEN_BUTTON_IMPORT_XML_OPEN_PANEL" = "Importera";
+
+/* Action button in Notification to open a document */
+"OPEN_DOCUMENT" = "Öppna dokument";
+
+/* Menu item to open the URL with the default application */
+"OPEN_URL" = "Öppna URL";
+
+/* Select Browser */
+"OTHER_BROWSER" = "Välj webbläsare…";
+
+/* No comment provided by engineer. */
+"OUTPUT_VALUE" = "Ut-värde";
+
+/* Menu item to toggle display of password column in entry table
+   Password column title
+   Password reference item */
+"PASSWORD" = "Lösenord";
+
+/* Button to reset the password defaults for a single entry */
+"PASSWORD_GENERATOR_RESET_ENTRY_DEFAULTS" = "Återställ";
+
+/* Button to set the defaults of the password generator */
+"PASSWORD_GENERATOR_SET_DEFAULTS" = "Sätt som standardinställning";
+
+/* Placeholder for the password field to aks for password
+   Placeholder in the unlock-password input field if password is enabled */
+"PASSWORD_INPUT_ENTER_PASSWORD" = "Mata in lösenord";
+
+/* Placeholder for the password input field if passwords are disabled
+   Placeholder for the repeat password input if passwords are disabled
+   Placeholder in the unlock-password input field if password is disabled */
+"PASSWORD_INPUT_NO_PASSWORD" = "Inget lösenord";
+
+/* Placeholder for the repeat password field to aks for the repeated password */
+"PASSWORD_INPUT_REPEAT_PASSWORD" = "Repetera lösenord";
+
+/* Menu item to perform autotype with the selected entry */
+"PERFORM_AUTOTYPE_FOR_ENTRY" = "Utför auto-ifyllning";
+
+/* Info about how many character has to pick in pickchar dialog */
+"PICKCHAR_INFO_MESSAGE_PICK_CHARACTERS_%ld" = "Vänligen välj %ld tecken";
+
+/* Window displayed to the user to pick an amout of characters */
+"PICKCHAR_WINDOW_TITLE" = "Teckenväljare";
+
+/* Count of picked characters in pickchars dialog if no limit is set */
+"PICKED_%ld_CHARACTERS" = "Valt %ld tecken";
+
+/* Window displayed to the user to pick an amout of characters */
+"PICKFIELD_WINDOW_TITLE" = "Fältväljare";
+
+/* The plugin could not be initalized */
+"PLUGIN_ERROR_INTILIZATION_FAILED" = "Pluginet kunde inte initialiseras";
+
+/* Error for a plugin that was not signed properly */
+"PLUGIN_ERROR_UNSECURE_PLUGIN" = "Pluginet är inte korrekt signerat";
+
+/* Plugin specifies the wrong principla class! */
+"PLUGIN_ERROR_WRONG_PRINCIPAL_CLASS" = "Oväntad principal class i pluginet";
+
+/* name for disabled unloaded plugin */
+"PLUGIN_NAME_DISABLED_%@" = "🚫 %@";
+
+/* Name for unloaded plugin with errors */
+"PLUGIN_NAME_ERROR_%@" = "⚠️ %@";
+
+/* Label for plugin settings tab */
+"PLUGIN_SETTINGS" = "Plugin";
+
+/* Generic message displayed if no details are know why a plugin was not loaded. */
+"PLUGIN_SETTINGS_GENERIC_ERROR_MESSAGE" = "Pluginet kunde inte laddas.";
+
+/* Plugin version. Include a %@ placeholder for version string */
+"PLUGIN_VERSION_%@" = "Version: %@";
+
+/* Menu item to preview the selected attached file. */
+"PREVIEW" = "Förhandsgranska";
+
+/* Recent searches menu item */
+"RECENT_SEARCHES" = "Senaste sökningar";
+
+/* Informative text for the recommend password change alert */
+"RECOMMEND_PASSWORD_CHANGE_ALERT_DESCRIPTION" = "Det rekommenderas att byta lösenordet och/eller nyckelfilen.";
+
+/* Message text for the recommend password change alert */
+"RECOMMEND_PASSWORD_CHANGE_ALERT_TITLE" = "Var vänlig byt databaslösenord!";
+
+/* Restart */
+"RESTART" = "Starta om";
+
+/* Action to restore and Entry to a previous state of it's history */
+"RESTORE_HISTORY_ENTRY" = "Återställ historiskt konto";
+
+/* Menu item to save the selected attached file.
+   Save file menu item title when save will just save the file */
+"SAVE" = "Spara";
+
+/* Button title to save the generated key file */
+"SAVE_KEYFILE" = "Spara nyckelfil";
+
+/* Save file menu item title when save will prompt for a location to save or ask for a password/key */
+"SAVE_WITH_DOTS" = "Spara…";
+
+/* Search input in Toolbar */
+"SEARCH" = "Sök";
+
+/* Search option: Find duplicate passwords */
+"SEARCH_DUPLICATE_PASSWORDS" = "Duplicerade lösenord";
+
+/* Search option: Find expired entries */
+"SEARCH_EXPIRED_ENTRIES" = "Förfallna";
+
+/* Inherit search settings menu item */
+"SEARCH_INHERIT" = "Ärv sökinställningar";
+
+/* Disable search menu item */
+"SEARCH_NO" = "Exkludera från sökning";
+
+/* No comment provided by engineer. */
+"SEARCH_VALUE" = "Sök efter värde";
+
+/* Enable search menu item */
+"SEARCH_YES" = "Inkludera i sökning";
+
+/* (No Comment) */
+"SELECT_AUTOTYPE_CANDIDATE" = "Välj kandidat!";
+
+/* Menu item title for the expiry preset selection menu in the date picker */
+"SELECT_DATE_PRESET" = "Använd förval…";
+
+/* Message on the open panel for selecting which browser to use for opening URLs */
+"SELECT_DEFAULT_BROWSER_OPEN_PANEL_MESSAGE" = "Välj webbläsare att öppna URLen med.";
+
+/* Label for the select browser button on the open panel for selecting which browser to use for opening URLs */
+"SELECT_DEFAULT_BROWSER_OPEN_PANEL_SELECT_BUTTON" = "Välj";
+
+/* Message for the dialog to open a file for merge */
+"SELECT_FILE_TO_MERGE" = "Välj fil att slå samman med";
+
+/* Menu displayed as popup selection for search options */
+"SELECT_FILTER_WITH_DOTS" = "Välj…";
+
+/* Checkbox in dialog to set the selection as default file change strategy! */
+"SET_AS_DEFAULT_FILE_CHANGE_STRATEGY" = "Använd den här metoden som standard. Du kan ändra när som helst i inställningarna.";
+
+/* (No Comment) */
+"SHORT_FILE_CHANGE_STRATEGY_ASK" = "Fråga";
+
+/* Menu item to show the history of the selected entry
+   Toolbar item to toggle history display */
+"SHOW_HISTORY" = "Visa historik";
+
+/* Menu item to show the reference builder in a text view's context menu */
+"SHOW_REFERENCE_BUILDER" = "Visa referensbyggare";
+
+/* Displayed name when title field was copied
+   Menu item to toggle display of title column in entry table
+   Title column title
+   Title reference item */
+"TITLE" = "Titel";
+
+/* preset to expire tomorrow */
+"TOMORROW" = "Imorgon";
+
+/* Toolbar item to perform autotype */
+"TOOLBAR_PERFORM_AUTOTYPE_FOR_ENTRY" = "Auto-ifyllning";
+
+/* Move Entry to Trash */
+"TRASH_ENTRY" = "Släng konto";
+
+/* Move Group to Trash */
+"TRASH_GROUP" = "Släng Grupp";
+
+/* Uninstall plugin */
+"UNINSTALL" = "Avinstallera";
+
+/* No comment provided by engineer. */
+"UNKNOWN_FILE_VERSION" = "Okänd filversion";
+
+/* Unknown databas format. */
+"UNKNOWN_FORMAT" = "Okänt filformat";
+
+/* Database format is unknown since the file is not saved yet */
+"UNKNOWN_FORMAT_FILE_NOT_SAVED_YET" = "Okänt, databasen inte sparad än";
+
+/* No comment provided by engineer. */
+"UNKNOWN_TOOLBAR_ITEM" = "Okänt verktygsradsföremål";
+
+/* Update Settings Label */
+"UPDATE_SETTINGS" = "Uppdateringar";
+
+/* Menu item to toggle display of url column in entry table
+   Submenu with options what to do with the URL of an entry
+   Url column title
+   URL reference item */
+"URL" = "URL";
+
+/* Menu item to toggle display of username column in entry table
+   Username column title
+   Username reference item */
+"USERNAME" = "Användarnamn";
+
+/* Displayed name when uuid field was copied
+   UUID reference item */
+"UUID" = "UUID";
+
+/* Message text for disabled updates alert! */
+"Updates are disabled!" = "Uppdateringar är avstängda!";
+
+/* No Key or Password */
+"WARNING_NO_PASSWORD_OR_KEYFILE" = "Inget lösenord eller nyckelfil angiven!";
+
+/* Informative Text displayed when clearing the Trash */
+"WARNING_ON_DELETE_TRASHED_NODE_DESCRIPTION" = "Slängda föremål kommer raderas!";
+
+/* Message text for the alert displayed when deleting a node */
+"WARNING_ON_DELETE_TRASHED_NODE_TITLE" = "Radera slängt föremål";
+
+/* Informative Text displayed when clearing the Trash */
+"WARNING_ON_EMPTY_TRASH_DESCRIPTION" = "Att tömma skräpkorgen går inte att ångra.";
+
+/* Message text for the alert displayed when clearing the Trash */
+"WARNING_ON_EMPTY_TRASH_TITLE" = "Töm skräp?";
+
+/* (No Comment) */
+"WARNING_ON_LOSSY_SAVE" = "Sparning i KDB-format kommer leda till att viss data ej kommer sparas.";
+
+/* (No Comment) */
+"WARNING_ON_LOSSY_SAVE_DESCRIPTION" = "KDB-formatet kan ej hålla all information.";
+
+/* No comment provided by engineer. */
+"WARNING_ON_SAVE_NO_PASSWORD_OR_KEY_SET" = "Inget lösenord eller nyckelfil är inställd.";
+
+/* No comment provided by engineer. */
+"WARNING_ON_SAVE_NO_PASSWORD_OR_KEY_SET_SUGGESTION" = "Var vänlig och ställ in ett lösenord och/eller nyckelfil för denna databas. Att avbryta kommer återställa alla genomförda ändringar och låsa databasen";
+
+/* (No Comment) */
+"WINDOWS" = "Fönster";
+
+/* Label for the workflow settings tab */
+"WORKFLOW_SETTINGS" = "Arbetsflöde";
+
+/* Yesterday */
+"YESTERDAY" = "Igår";
+
