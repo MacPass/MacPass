@@ -25,9 +25,9 @@
 NS_ASSUME_NONNULL_BEGIN
 
 @class MPPluginHost;
-@class MPAutotypeCommand;
 @class KPKEntry;
 @class KPKAttribute;
+@class KPKTree;
 
 @interface MPPlugin : NSObject
 
@@ -84,6 +84,21 @@ NS_ASSUME_NONNULL_BEGIN
  */
 - (NSString *)initialValueForAttributeWithKey:(NSString *)key;
 @end
+
+@protocol MPExportPluginViewController <NSObject>
+@required
+@property (nonatomic, copy) NSDictionary *exportOptions;
+@end
+
+@protocol MPExportPlugin <NSObject>
+@required
+/* Ideally supply a list of Formats supported. This format specifier is used when being called */
+@property (nonatomic, copy) NSDictionary<NSString *, NSString *>* localizedSuportedFormats;
+- (NSData *)dataForTree:(KPKTree *)tree withFormat:(NSString *)format options:(NSDictionary *)options;
+@optional
+- (NSViewController<MPExportPluginViewController> *)exportViewControllerForTree:(KPKTree *)tree withFormat:(NSString *)format;
+@end
+
 
 @interface MPPlugin (Deprecated)
 
