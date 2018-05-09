@@ -37,7 +37,7 @@ HmacOtp-Counter field.
 
 - (void)menuNeedsUpdate:(NSMenu *)menu {
   [menu removeAllItems];
-  [self _setupHOTPMenuItemsToMenu:menu];
+  //[self _setupHOTPMenuItemsToMenu:menu];
 }
 
 - (void)_setupHOTPMenuItemsToMenu:(NSMenu *)menu {
