@@ -14,7 +14,7 @@
 
 @dynamic availablePlugins;
 
-+ (instancetype)sharedRespoitory {
++ (instancetype)defaultRepository {
   static MPPluginRepository *instance;
   static dispatch_once_t onceToken;
   dispatch_once(&onceToken, ^{

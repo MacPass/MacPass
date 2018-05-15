@@ -61,7 +61,7 @@ typedef NS_ENUM(NSUInteger, MPPluginSegmentType) {
 }
 
 - (NSImage *)image {
-  return [[NSWorkspace sharedWorkspace] iconForFileType:@"bundle"];
+  return [NSWorkspace.sharedWorkspace iconForFileType:@"bundle"];
 }
 
 - (NSString *)label {
