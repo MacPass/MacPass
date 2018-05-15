@@ -37,7 +37,7 @@ FOUNDATION_EXPORT NSString *const MPPluginUTI;
 /**
  Bundle keys
  */
-FOUNDATION_EXPORT NSString *const MPBundleHelpURLKey; // MPHelpURL
-FOUNDATION_EXPORT NSString *const MPBundlePluginRepositoryURLKey; // MPPluginRepositoryURL
-FOUNDATION_EXPORT NSString *const MPBundlePluginCompaibilityURLKey; // MPPluginCompaibilityURL
+FOUNDATION_EXPORT NSString *const MPBundleHelpURLKey;
+FOUNDATION_EXPORT NSString *const MPBundlePluginRepositoryURLKey;
+FOUNDATION_EXPORT NSString *const MPPluginCompatibilityURLKey;
 #endif
