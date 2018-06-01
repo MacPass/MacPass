@@ -65,4 +65,6 @@
 - (instancetype)initWithDefaultSequenceForEntry:(KPKEntry *)entry;
 - (instancetype)initWithWindowAssociation:(KPKWindowAssociation *)association;
 
+- (BOOL)isEqualToAutotypeContext:(MPAutotypeContext *)context;
+
 @end
