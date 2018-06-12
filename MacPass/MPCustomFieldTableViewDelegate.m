@@ -63,12 +63,12 @@ NSInteger MPCustomFieldIndexFromTag(NSInteger tag) {
                     options:nil];
   [view.protectedButton bind:NSValueBinding
                     toObject:view
-                 withKeyPath:@"objectValue.isProtected"
+                 withKeyPath:@"objectValue.protected"
                      options:nil];
   
   [view.valueTextField bind:NSStringFromSelector(@selector(showPassword))
                    toObject:view
-                withKeyPath:@"objectValue.isProtected"
+                withKeyPath:@"objectValue.protected"
                     options:@{NSValueTransformerNameBindingOption: NSNegateBooleanTransformerName}];
   
   
