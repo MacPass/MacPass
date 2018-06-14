@@ -1,4 +1,8 @@
+/* Count of characters remaining in pickchars dialog */
+"%ld_CHARACTERS_TO_PICK_REMAINING" = "%ld символ(ов) для выбора осталось";
+
 /* Formatted Times  */
+"%ld_DAYS" = "%ld дней";
 "%ld_DAYS_AGO" = "%ld дней назад";
 "%ld_HOURS_AGO" = "около %ld часов назад";
 "%ld_MINUTES_AGO" = "%ld минут назад";
@@ -13,11 +17,212 @@
 "90_DAYS" = "через 90 дней";
 "ONE_YEAR" = "через один год";
 
+/* Button label to abort a merge on a file with changed master key! */
+"ABORT_MERGE_KEEP_MINE" = "Отменить слияние. Оставить мою.";
+
 /* Date Picker */
 "SELECT_DATE_PRESET" = "Использовать установки…";
 
 /* Menu item for automatic trash creation */
 "AUTOCREATE_TRASH_FOLDER" = "Создать Автоматически";
+
+/* Menu displayed for adding special custom keys */
+"ADD_CUSTOM_FIELD_CONTEXT_MENU" = "Меню добавления пользовательских полей";
+
+/* Alert informative text when plugins or their settings change and require a restart */
+"ALERT_INFORMATIVE_TEXT_PLUGINS_CHANGED_SUGGEST_RESTART" = "Изменения плагинов и глобальных настроек плагинов, будут применены только после перезапуска. Перезапустить MacPass сейчас?";
+
+/* Alert informative text to ask the user if he really want to uninstall the plugin */
+"ALERT_INFORMATIVE_TEXT_REALLY_UNINSTALL_PLUGIN" = "Плагин будет перемещен в Корзину";
+
+/* Alert message text when plugins or their settings change and require a restart */
+"ALERT_MESSAGE_PLUGINS_CHANGED_SUGGEST_RESTART" = "Настройки плагина изменены. Пожалуйста, перезапустите программу.";
+
+/* Alert message text to ask the user if he really want to uninstall the plugin. Include %@ placeholder for plugin name */
+"ALERT_MESSAGE_TEXT_REALLY_UNINSTALL_PLUGIN_%@" = "Должен ли плагин %@ быть удален?";
+
+/* Sucessfully merged external changes */
+"AUTO_MERGE_NOTIFICATION_TEXT" = "Автоматическое слияние успешно завершено!";
+
+/* Button to postpone the password change */
+"CHANGE_LATER" = "Изменить позже";
+
+/* Clear Autotype Button */
+"CLEAR_AUTOTYPE" = "Очистить Авто-ввод";
+
+/* Context menu sub-menu to copy custom fields to clipboard */
+"COPY_CUSTOM_FIELDS_MENU" = "Копировать пользовательское поле…";
+
+/* Curstom attribute reference item */
+"CUSTOM_ATTRIBUTE" = "Пользовательский атрибут";
+
+/* Title for menu for custom search filters */
+"CUSTOM_SEARCH_FILTER_MENU" = "Пользовательский Поисковый фильтр…";
+
+/* Empty Trash */
+"DELETE_TRASHED_ENTRY" = "Удалить запись из корзины";
+
+/* Empty Trash */
+"DELETE_TRASHED_GROUP" = "Удалить группу из корзины";
+
+/* Action name for duplicating entries */
+"DUPLICATE_ENTRIES_%ld" = "Дублирующиеся записи %ld";
+
+/* Group row for entry attributes */
+"ENTRY_CUSTOM_ATTRIBUTES" = "Пользовательские атрибуты";
+
+/* Group row for entry attributes */
+"ENTRY_DEFAULT_ATTRIBUTES" = "Атрибуты по умолчанию";
+
+/* Error description given when adding an invalid plugin */
+"ERROR_INVALID_PLUGIN" = "Недействительный плагин";
+
+/* Recommend/Enforce key change intervall format */
+"EVERY_%ld_DAYS" = "Каждые %ld дней";
+
+/* The master key was changed by an external program! */
+"EXTERN_CHANGE_OF_MASTERKEY" = "Мастер-ключ был изменен другой программой";
+
+/* External file change strategy option: ask what to do */
+"FILE_CHANGE_STRATEGY_ASK" = "Спросить";
+
+/* External file change strategy option: Keep local file an ignore external changes */
+"FILE_CHANGE_STRATEGY_KEEP_MINE" = "Оставить Мою Версию и Игнорировать Другие Изменения";
+
+   External file change strategy option: Merge external changes into local file. */
+"FILE_CHANGE_STRATEGY_MERGE" = "Слить изменения";
+
+/* External file change strategy option: Use the changed file and discard local changes */
+"FILE_CHANGE_STRATEGY_USE_OTHER" = "Загрузить Измененную Версию и Отменить Мои Изменения";
+
+   Menu item to toggle display of history count column in entry table */
+"HISTORY" = "История";
+
+/* Imports a dragged URL for a new entry */
+"IMPORT_URL" = "Импорт по URL";
+
+/* Button in dialog to ignore the changes to an open file! */
+"KEEP_MINE_DISCARD_OTHER" = "Оставить Мои, Отменить Другие";
+
+/* Button in dialog to reopen the file! */
+"KEEP_OTHER_DISCARD_MINE" = "Оставить Другие, Отменить Мои";
+
+/* Do not install the plugin */
+"KEEP_PLUGIN" = "Оставить Плагин";
+
+/* Do not restart MacPass */
+"KEEP_RUNNING" = "Оставить Запущеным";
+
+/* Message in the open panel to add attachments to an entry */
+"MESSAGE_ADD_ATTACHMENT_OPEN_PANEL" = "Выберите файл для вложения";
+
+/* Message in the add plugin open panel */
+"MESSAGE_ADD_PLUGIN_OPEN_PANEL" = "Выберите плагин для установки";
+
+/* Message in the open panel to import an XML file */
+"MESSAGE_XML_OPEN_PANEL" = "Выберите XML файл для импорта";
+
+/* Ok button */
+"OK" = "OK";
+
+/* Open button in the open panel to add attachments to an entry */
+"OPEN_BUTTON_ADD_ATTACHMENT_OPEN_PANEL" = "Приложить";
+
+/* Open button in the add plugin open panel */
+"OPEN_BUTTON_ADD_PLUGIN_OPEN_PANEL" = "Установить";
+
+/* Open button in the open panel to import an XML file */
+"OPEN_BUTTON_IMPORT_XML_OPEN_PANEL" = "Импорт";
+
+/* Action button in Notification to open a document */
+"OPEN_DOCUMENT" = "Открыть Документ";
+
+/* No comment provided by engineer. */
+"OUTPUT_VALUE" = "Выходящее Значение";
+
+/* Info about how many character has to pick in pickchar dialog */
+"PICKCHAR_INFO_MESSAGE_PICK_CHARACTERS_%ld" = "Пожалуйста, выберите %ld символов";
+
+/* Window displayed to the user to pick an amout of characters */
+"PICKCHAR_WINDOW_TITLE" = "Выбор символов";
+
+/* Count of picked characters in pickchars dialog if no limit is set */
+"PICKED_%ld_CHARACTERS" = "Выбрано %ld символов";
+
+/* Window displayed to the user to pick an amout of characters */
+"PICKFIELD_WINDOW_TITLE" = "Выбор полей";
+
+/* The plugin could not be initalized */
+"PLUGIN_ERROR_INTILIZATION_FAILED" = "Плагин не может быть установлен";
+
+/* Error for a plugin that was not signed properly */
+"PLUGIN_ERROR_UNSECURE_PLUGIN" = "Плагин не подписан";
+
+/* Plugin specifies the wrong principla class! */
+"PLUGIN_ERROR_WRONG_PRINCIPAL_CLASS" = "Неподходящий основной класс в плагине";
+
+/* Generic message displayed if no details are know why a plugin was not loaded. */
+"PLUGIN_SETTINGS_GENERIC_ERROR_MESSAGE" = "Плагин не может быть загружен.";
+
+/* Plugin version. Include a %@ placeholder for version string */
+"PLUGIN_VERSION_%@" = "Версия: %@";
+
+/* Restart */
+"RESTART" = "Перезапустить";
+
+/* Action to restore and Entry to a previous state of it's history */
+"RESTORE_HISTORY_ENTRY" = "Восстановить Историческую Запись";
+
+/* No comment provided by engineer. */
+"SEARCH_VALUE" = "Поисковое значение";
+
+/* Message on the open panel for selecting which browser to use for opening URLs */
+"SELECT_DEFAULT_BROWSER_OPEN_PANEL_MESSAGE" = "Выберите браузер, которым нужно открывать URL.";
+
+/* Label for the select browser button on the open panel for selecting which browser to use for opening URLs */
+"SELECT_DEFAULT_BROWSER_OPEN_PANEL_SELECT_BUTTON" = "Выбор";
+
+/* Message for the dialog to open a file for merge */
+"SELECT_FILE_TO_MERGE" = "Выбор файла для слияния";
+
+/* Checkbox in dialog to set the selection as default file change strategy! */
+"SET_AS_DEFAULT_FILE_CHANGE_STRATEGY" = "Использовать этот способ по умолчанию. Вы сможете поменять это в любое время в настройках.";
+
+/* (No Comment) */
+"SHORT_FILE_CHANGE_STRATEGY_ASK" = "Спросить";
+
+/* Menu item to show the reference builder in a text view's context menu */
+"SHOW_REFERENCE_BUILDER" = "Показать конструктор связей";
+
+/* Toolbar item to perform autotype */
+"TOOLBAR_PERFORM_AUTOTYPE_FOR_ENTRY" = "Авто-ввод";
+
+/* Uninstall plugin */
+"UNINSTALL" = "Удалить";
+
+/* No comment provided by engineer. */
+"UNKNOWN_FILE_VERSION" = "Неизвестная версия базы";
+
+/* Unknown database format. */
+"UNKNOWN_FORMAT" = "Неизвестный формат файла";
+
+/* Database format is unknown since the file is not saved yet */
+"UNKNOWN_FORMAT_FILE_NOT_SAVED_YET" = "Неизвестно, база данных еще не сохранена";
+
+/* No comment provided by engineer. */
+"UNKNOWN_TOOLBAR_ITEM" = "Неизвестный элемент панели инструментов";
+
+   UUID reference item */
+"UUID" = "UUID";
+
+/* Message text for disabled updates alert! */
+"Updates are disabled!" = "Обновления отключены!";
+
+/* Informative Text displayed when clearing the Trash */
+"WARNING_ON_DELETE_TRASHED_NODE_DESCRIPTION" = "Все записи из корзины, будут удалены!";
+
+/* Message text for the alert displayed when deleting a node */
+"WARNING_ON_DELETE_TRASHED_NODE_TITLE" = "Удаление записей из корзины";
 
 /*
  Actions
@@ -44,7 +249,7 @@
 "PASSWORD_GENERATOR_RESET_ENTRY_DEFAULTS" = "Сброс";
 "TRASH_ENTRY" = "Удалить Запись";
 "TRASH_GROUP" = "Удалить Группу";
-"SHOW_HISTORY" = "SHOW_HISTORY";
+"SHOW_HISTORY" = "Показать историю";
 
 /*
  Search
@@ -152,9 +357,9 @@
 /* Autoype */
 /* Candiate dialog */
 "SELECT_AUTOTYPE_CANDIDATE" = "Выберите кандидата!";
-"AUTOTYPE_OVERLAY_NO_DOCUMENTS" = "AUTOTYPE_OVERLAY_NO_DOCUMENTS";
-"AUTOTYPE_OVERLAY_NO_MATCH_FOR_%@" = "Нет соотвествий %@!";
-"AUTOTYPE_OVERLAY_SINGLE_MATCH" = "Соотвествие!";
+"AUTOTYPE_OVERLAY_NO_DOCUMENTS" = "Откройте файл базы данных для использования глобального авто-ввода!";
+"AUTOTYPE_OVERLAY_NO_MATCH_FOR_%@" = "Нет соответствий %@!";
+"AUTOTYPE_OVERLAY_SINGLE_MATCH" = "Соответствие!";
 
 /* Alert Dialogs */
 "WARNING_ON_EMPTY_TRASH_DESCRIPTION" = "Очистку корзины отменить нельзя.";
@@ -166,12 +371,12 @@
 "ENFORCE_PASSWORD_CHANGE_ALERT_TITLE" = "Пароль базы данных истек!";
 "ENFORCE_PASSWORD_CHANGE_ALERT_DESCRIPTION" = "Вы не можете ничего сохранять, пока не поменяете пароль базы и/или файл ключа.";
 
-"RECOMMEND_PASSWORD_CHANGE_ALERT_TITLE" = "Пожалуйста измените пароль базы данных!";
-"RECOMMEND_PASSWORD_CHANGE_ALERT_DESCRIPTION" = "Рекомендуерся сменить пароль базы данных и/или файл ключа.";
+"RECOMMEND_PASSWORD_CHANGE_ALERT_TITLE" = "Пожалуйста, измените пароль базы данных!";
+"RECOMMEND_PASSWORD_CHANGE_ALERT_DESCRIPTION" = "Рекомендуется сменить пароль базы данных и/или файл ключа.";
 "CHANGE_PASSWORD_WITH_DOTS" = "Изменить пароль…";
 
-"WARNING_ON_SAVE_NO_PASSWORD_OR_KEY_SET" = "No password or keyfile is set.";
-"WARNING_ON_SAVE_NO_PASSWORD_OR_KEY_SET_SUGGESTION" = "Please set a password and/or keyfile for this database. Aborting this will undo all changes and lock the document";
+"WARNING_ON_SAVE_NO_PASSWORD_OR_KEY_SET" = "Не указан пароль или файл ключей.";
+"WARNING_ON_SAVE_NO_PASSWORD_OR_KEY_SET_SUGGESTION" = "Пожалуйста, укажите пароль и/или файл ключей для этой базы данных. Отмена этого приведет к отмене всех изменений и блокировке документа";
 
 /* Message displayed when an open file was changed from another application */
 "FILE_CHANGED_BY_OTHERS_MESSAGE_TEXT" = "Файл базы данных изменен!";
@@ -180,17 +385,17 @@
 /* Button to ignore the changes */
 "KEEP_MINE" = "Сохранить текущую версию и игнорировать изменения на диске!";
 /* Merge changes into file! */
-"MERGE_CHANGES" = "Merge changes!";
+"MERGE_CHANGES" = "Слияние изменений!";
 
 /* Password Input Messages, Errors and Warning */
 "PASSWORD_INPUT_NO_PASSWORD" = "Нет пароля";
 "PASSWORD_INPUT_ENTER_PASSWORD" = "Введите пароль";
 "PASSWORD_INPUT_REPEAT_PASSWORD" = "Повторите пароль";
 "WARNING_NO_PASSWORD_OR_KEYFILE" = "Не было применено ни пароля, ни файла ключа!";
-"ERROR_PASSWORD_MISSMATCH_INVALID_KEYFILE" = "Пароли не соотвествуют и файл ключа не верный!";
-"ERROR_PASSWORD_MISSMATCH" = "Пароли не соотвествуют!";
+"ERROR_PASSWORD_MISSMATCH_INVALID_KEYFILE" = "Пароли не соответствуют и файл ключа не верный!";
+"ERROR_PASSWORD_MISSMATCH" = "Пароли не соответствуют!";
 "ERROR_INVALID_KEYFILE" = "Неверный файл ключа!";
 
 /* Misc */
-"DOCUMENT_AUTOTYPE_CORRUPTION_WARNING" = "Пожалуйста запустите Исправление Автоввода...";
+"DOCUMENT_AUTOTYPE_CORRUPTION_WARNING" = "Пожалуйста, запустите Исправление Автоввода...";
 "FILE_OPEN_ERROR" = "Ошибка открытия файла.";
