@@ -7,6 +7,7 @@
 //
 
 #import "NSString+MPPrettyPasswordDisplay.h"
+#import "KeePassKit/KeePassKit.h"
 
 @implementation NSString (MPPrettyPasswordDisplay)
 
@@ -19,20 +20,33 @@
 }
 
 - (void)_setAttributesInString:(NSMutableAttributedString *)string {
+  static NSColor *blueColor;
+  static NSColor *orangeColor;
+  static NSColor *greenColor;
+  static NSColor *yellowColor;
+  
+  static dispatch_once_t onceToken;
+  dispatch_once(&onceToken, ^{
+    blueColor = [NSColor colorWithRed:0.3 green:0.7 blue:1 alpha:1];
+    orangeColor = [NSColor colorWithRed:0.3 green:0.7 blue:1 alpha:1];
+    greenColor = [NSColor colorWithRed:0.3 green:0.7 blue:1 alpha:1];
+    yellowColor = [NSColor colorWithRed:0.3 green:0.7 blue:1 alpha:1];
+  });
+  
   /* digits */
   NSArray <NSValue *> *digitRanges = [self rangesOfCharactersInSet:NSCharacterSet.decimalDigitCharacterSet];
   for(NSValue *rangeValue in digitRanges) {
-    [string addAttribute:NSForegroundColorAttributeName value:NSColor.redColor range:rangeValue.rangeValue];
+    [string addAttribute:NSForegroundColorAttributeName value:blueColor range:rangeValue.rangeValue];
   }
   /* symbols */
   NSArray <NSValue *> *symbolRanges = [self rangesOfCharactersInSet:NSCharacterSet.symbolCharacterSet];
   for(NSValue *rangeValue in symbolRanges) {
-    [string addAttribute:NSForegroundColorAttributeName value:NSColor.blueColor range:rangeValue.rangeValue];
+    [string addAttribute:NSForegroundColorAttributeName value:greenColor range:rangeValue.rangeValue];
   }
   /* punktuation */
   NSArray <NSValue *> *punctiationRanges = [self rangesOfCharactersInSet:NSCharacterSet.punctuationCharacterSet];
   for(NSValue *rangeValue in punctiationRanges) {
-    [string addAttribute:NSForegroundColorAttributeName value:NSColor.greenColor range:rangeValue.rangeValue];
+    [string addAttribute:NSForegroundColorAttributeName value:orangeColor range:rangeValue.rangeValue];
   }
 }
 
