@@ -438,15 +438,6 @@ NSString *const _MPTableSecurCellView = @"PasswordCell";
 - (void)_didBecomFirstResponder:(NSNotification *)notification {
   MPDocument *document =   self.windowController.document;
   document.selectedEntries = self.entryArrayController.selectedObjects;
-  
-  /*
-   if(document.selectedEntry.parent == document.selectedGroup || document.hasSearch) {
-   document.selectedItem = document.selectedEntry;
-   }
-   else {
-   document.selectedEntry = nil;
-   }
-   */
 }
 
 - (void)_didAddItem:(NSNotification *)notification {

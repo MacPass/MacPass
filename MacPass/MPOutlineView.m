@@ -45,9 +45,4 @@
   _didBecomeFirstResponder = YES;
   return YES;
 }
-
-- (BOOL)resignFirstResponder {
-  return [super resignFirstResponder];
-}
-
 @end
