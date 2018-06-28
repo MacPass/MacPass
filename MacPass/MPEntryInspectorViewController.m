@@ -561,9 +561,12 @@ typedef NS_ENUM(NSUInteger, MPEntryTab) {
 #pragma mark HNHUITextFieldDelegate
 - (NSMenu *)textField:(NSTextField *)textField textView:(NSTextView *)view menu:(NSMenu *)menu {
   for(NSMenuItem *item in menu.itemArray) {
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wundeclared-selector"
     if(item.action == @selector(_searchWithGoogleFromMenu:) || item.action == @selector(submenuAction:)) {
       [menu removeItem:item];
     }
+#pragma clang diagnostic pop
   }
   /*
   NSMenuItem *item = [[NSMenuItem alloc] initWithTitle:NSLocalizedString(@"SHOW_REFERENCE_BUILDER", @"Menu item to show the reference builder in a text view's context menu")action:@selector(showReferenceBuilder:) keyEquivalent:@""];
