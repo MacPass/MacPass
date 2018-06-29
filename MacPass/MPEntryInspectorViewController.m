@@ -568,11 +568,6 @@ typedef NS_ENUM(NSUInteger, MPEntryTab) {
     }
 #pragma clang diagnostic pop
   }
-  /*
-  NSMenuItem *item = [[NSMenuItem alloc] initWithTitle:NSLocalizedString(@"SHOW_REFERENCE_BUILDER", @"Menu item to show the reference builder in a text view's context menu")action:@selector(showReferenceBuilder:) keyEquivalent:@""];
-  item.representedObject = textField;
-  [menu addItem:item];
-   */
   return menu;
 }
 
