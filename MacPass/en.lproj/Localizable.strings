@@ -62,8 +62,8 @@
 /* Noticiation: Autotype failed to find a match for %@ (string placeholder) */
 "AUTOTYPE_OVERLAY_NO_MATCH_FOR_%@" = "No Match for %@!";
 
-/* Notification: Autotype found a single match. */
-"AUTOTYPE_OVERLAY_SINGLE_MATCH" = "Login found!";
+/* Notification: Autotype found a single match for %@ (string placeholder). */
+"AUTOTYPE_OVERLAY_SINGLE_MATCH_FOR_%@" = "Found Match for %@!";
 
 /* Enable autotype menu item */
 "AUTOTYPE_YES" = "Enable Autotype";
@@ -76,9 +76,6 @@
 
 /* Menu item in the database outline context menu to change the database name */
 "CHANGE_DATABASE_NAME" = "Change Database Name";
-
-/* (No Comment) */
-"CHANGE_FORMAT" = "Change File Format to Kdbx";
 
 /* Button to postpone the password change */
 "CHANGE_LATER" = "Change Later";
@@ -137,9 +134,6 @@
    Toolbar item copy username */
 "COPY_USERNAME" = "Copy Username";
 
-/* (No Comment) */
-"CREATED_AT_%@" = "Created: %@";
-
 /* Curstom attribute reference item */
 "CUSTOM_ATTRIBUTE" = "Custom Attribute";
 
@@ -185,9 +179,6 @@
 
 /* Empty Trash */
 "DELETE_TRASHED_GROUP" = "Delete Trashed Group";
-
-/* No comment provided by engineer. */
-"DOCUMENT_AUTOTYPE_CORRUPTION_WARNING" = "Please run Fix Autotype...";
 
 /* Action name for duplicating entries */
 "DUPLICATE_ENTRIES_%ld" = "Duplicate Entries %ld";
@@ -507,9 +498,6 @@
 /* Enable search menu item */
 "SEARCH_YES" = "Include in Search";
 
-/* (No Comment) */
-"SELECT_AUTOTYPE_CANDIDATE" = "Select Candidate!";
-
 /* Menu item title for the expiry preset selection menu in the date picker */
 "SELECT_DATE_PRESET" = "Use preset…";
 
@@ -528,15 +516,9 @@
 /* Checkbox in dialog to set the selection as default file change strategy! */
 "SET_AS_DEFAULT_FILE_CHANGE_STRATEGY" = "Use this method as default. You can change this at any time in the preferences.";
 
-/* (No Comment) */
-"SHORT_FILE_CHANGE_STRATEGY_ASK" = "Ask";
-
 /* Menu item to show the history of the selected entry
    Toolbar item to toggle history display */
 "SHOW_HISTORY" = "Show History";
-
-/* Menu item to show the reference builder in a text view's context menu */
-"SHOW_REFERENCE_BUILDER" = "Show Reference Builder";
 
 /* Displayed name when title field was copied
    Menu item to toggle display of title column in entry table
@@ -607,20 +589,11 @@
 /* Message text for the alert displayed when clearing the Trash */
 "WARNING_ON_EMPTY_TRASH_TITLE" = "Empty Trash?";
 
-/* (No Comment) */
-"WARNING_ON_LOSSY_SAVE" = "Saving with Kdb format, will lead to lost data.";
-
-/* (No Comment) */
-"WARNING_ON_LOSSY_SAVE_DESCRIPTION" = "The Kdb file format cannot hold all information.";
-
 /* No comment provided by engineer. */
 "WARNING_ON_SAVE_NO_PASSWORD_OR_KEY_SET" = "No password or keyfile is set.";
 
 /* No comment provided by engineer. */
 "WARNING_ON_SAVE_NO_PASSWORD_OR_KEY_SET_SUGGESTION" = "Please set a password and/or keyfile for this database. Aborting this will undo all changes and lock the document";
-
-/* (No Comment) */
-"WINDOWS" = "Windows";
 
 /* Label for the workflow settings tab */
 "WORKFLOW_SETTINGS" = "Workflow";

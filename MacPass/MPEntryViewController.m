@@ -217,7 +217,6 @@ NSString *const _MPTableSecurCellView = @"PasswordCell";
   [NSNotificationCenter.defaultCenter addObserver:self selector:@selector(_didEnterSearch:) name:MPDocumentDidEnterSearchNotification object:document];
   [NSNotificationCenter.defaultCenter addObserver:self selector:@selector(_didExitSearch:) name:MPDocumentDidExitSearchNotification object:document];
   [NSNotificationCenter.defaultCenter addObserver:self selector:@selector(_didUpdateSearchResults:) name:MPDocumentDidChangeSearchResults object:document];
-  [NSNotificationCenter.defaultCenter addObserver:self selector:@selector(_didUnlockDatabase:) name:MPDocumentDidUnlockDatabaseNotification object:document];
   [NSNotificationCenter.defaultCenter addObserver:self selector:@selector(_showEntryHistory:) name:MPDocumentShowEntryHistoryNotification object:document];
   [NSNotificationCenter.defaultCenter addObserver:self selector:@selector(_hideEntryHistory:) name:MPDocumentHideEntryHistoryNotification object:document];
     
@@ -475,17 +474,6 @@ NSString *const _MPTableSecurCellView = @"PasswordCell";
 - (void)_didEnterSearch:(NSNotification *)notification {
   self.displayMode = MPDisplayModeSearchResults;
   [self _updateContextBar];
-}
-
-- (void)_didUnlockDatabase:(NSNotification *)notificiation {
-  MPDocument *document = self.windowController.document;
-  /* If the document was locked and unlocked we do not need to recheck */
-  if(document.unlockCount != 1) {
-    /* TODO add another method to display this!
-     [self.footerInfoText setHidden:![document hasMalformedAutotypeItems]];
-     [self.footerInfoText setStringValue:NSLocalizedString(@"DOCUMENT_AUTOTYPE_CORRUPTION_WARNING", "")];
-     */
-  }
 }
 
 - (void)_showEntryHistory:(NSNotification *)notification {
