@@ -57,6 +57,19 @@
   return copy;
 }
 
+- (BOOL)isEqual:(id)object {
+  return [self isEqualToAutotypeContext:object];
+}
+
+- (BOOL)isEqualToAutotypeContext:(MPAutotypeContext *)context {
+  if(![context isKindOfClass:self.class]) {
+    return NO;
+  }
+  if(KPKComparsionDifferent == [self.entry compareToEntry:context.entry]) {
+    return NO;
+  }
+  return [self.normalizedCommand isEqualToString:context.normalizedCommand];
+}
 
 - (BOOL)valid {
   return (self.normalizedCommand != nil);

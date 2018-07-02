@@ -204,7 +204,7 @@ typedef NS_ENUM(NSUInteger, MPContentTab) {
     return;
   }
   KPKEntry *entry = [self.representedObject asEntry];
-  if( entry ) {
+  if(entry) {
     [entry pushHistory];
     self.didPushHistory = YES;
   }

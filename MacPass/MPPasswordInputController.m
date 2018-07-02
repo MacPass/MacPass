@@ -35,8 +35,8 @@
 
 @property (weak) IBOutlet HNHUIRoundedSecureTextField *passwordTextField;
 @property (weak) IBOutlet NSPathControl *keyPathControl;
-@property (weak) IBOutlet NSImageView *errorImageView;
-@property (weak) IBOutlet NSTextField *errorInfoTextField;
+@property (weak) IBOutlet NSImageView *messageImageView;
+@property (weak) IBOutlet NSTextField *messageInfoTextField;
 @property (weak) IBOutlet NSButton *togglePasswordButton;
 @property (weak) IBOutlet NSButton *enablePasswordCheckBox;
 @property (weak) IBOutlet NSButton *unlockButton;
@@ -70,7 +70,7 @@
 }
 
 - (void)viewDidLoad {
-  self.errorImageView.image = [NSImage imageNamed:NSImageNameCaution];
+  self.messageImageView.image = [NSImage imageNamed:NSImageNameCaution];
   [self.passwordTextField bind:NSStringFromSelector(@selector(showPassword)) toObject:self withKeyPath:NSStringFromSelector(@selector(showPassword)) options:nil];
   [self.togglePasswordButton bind:NSValueBinding toObject:self withKeyPath:NSStringFromSelector(@selector(showPassword)) options:nil];
   [self.enablePasswordCheckBox bind:NSValueBinding toObject:self withKeyPath:NSStringFromSelector(@selector(enablePassword)) options:nil];
@@ -151,11 +151,11 @@
   self.showPassword = NO;
   self.enablePassword = YES;
   self.passwordTextField.stringValue = @"";
-  self.errorInfoTextField.hidden = (nil == self.message);
+  self.messageInfoTextField.hidden = (nil == self.message);
   if(self.message) {
-    self.errorInfoTextField.stringValue = self.message;
+    self.messageInfoTextField.stringValue = self.message;
   }
-  self.errorImageView.hidden = (nil == self.message);;
+  self.messageImageView.hidden = (nil == self.message);;
   self.cancelButton.hidden = (nil == self.cancelLabel);
   if(self.cancelLabel) {
     self.cancelButton.stringValue = self.cancelLabel;
@@ -170,10 +170,10 @@
 
 - (void)_showError:(NSError *)error {
   if(error) {
-    self.errorInfoTextField.stringValue = error.descriptionForErrorCode;
+    self.messageInfoTextField.stringValue = error.descriptionForErrorCode;
   }
-  self.errorImageView.hidden = NO;
-  self.errorInfoTextField.hidden = NO;
+  self.messageImageView.hidden = NO;
+  self.messageInfoTextField.hidden = NO;
 }
 
 @end

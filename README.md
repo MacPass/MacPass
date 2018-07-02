@@ -45,8 +45,8 @@ Or follow the Twitter account [@MacPassApp](https://twitter.com/MacPassApp)
 
 ## System Requirement
 
-The minimum macOS version required for MacPass 0.7 is 10.10 Yosemite.
-The minimum OS X version required for MacPass 0.6.2 is 10.8 Mountain Lion.
+MacPass 0.7 requires macOS 10.10 Yosemite or later.
+Earlier versions of MacPass require macOS 10.8 Mountain Lion or later.
 
 ## Status
 
@@ -122,12 +122,15 @@ The following list might not be complete, please refer to [merged Pull Requests]
 [Deiwin Sarjas](deiwin.sarjas@gmail.com)
 [Dennis Bolio](git@bolio.nl)
 [Dylan Smith](dylansmith@gmail.com)
+[eiermaaaan](37532252+eiermaaaan@users.noreply.github.com)
 [Filipe Farinha](filipe@ktorn.com)
 [floriangouy](florian.gouy@gmail.com)
 [Francesco Servida](info@francescoservida.ch)
 [Frank Enderle](frank.enderle@anamica.de)
+[Frank Kooij](FrankKooij@users.noreply.github.com)
 [Gaétan Ryckeboer](gryckeboer@jouve.com)
 [Geigi](git@geigi.de)
+[Henri de Jong](henridejong@gmail.com)
 [James Hurst](jamesrhurst@outlook.com)
 [Jannick Hemelhof](mister.jannick@gmail.com)
 [Jefftree](jeffrey.ying86@live.com)
@@ -142,6 +145,7 @@ The following list might not be complete, please refer to [merged Pull Requests]
 [Mario Sangiorgio](mariosangiorgio@gmail.com)
 [MBibal](michel.bibal@gmail.com)
 [Michael Belz](mbelz@outlook.de)
+[MichaelKo](viacheslav.sychov@gmail.com)
 [Michal Jaglewicz](michalj@webii.pl)
 [Moises Perez](moises@perez.lt)
 [mrdoggy](mrdoggy.all@gmail.com)

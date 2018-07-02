@@ -115,7 +115,10 @@ uint16_t const kMPUnknownKeyCode = UINT16_MAX;
       0,
       kCGEventFlagMaskShift,
       kCGEventFlagMaskAlternate,
-      (kCGEventFlagMaskShift | kCGEventFlagMaskAlternate)
+      kCGEventFlagMaskCommand,
+      (kCGEventFlagMaskShift | kCGEventFlagMaskAlternate),
+      (kCGEventFlagMaskShift | kCGEventFlagMaskCommand),
+      (kCGEventFlagMaskShift | kCGEventFlagMaskCommand | kCGEventFlagMaskAlternate),
     };
     NSMutableDictionary *tempCharToCodeDict = [[NSMutableDictionary alloc] initWithCapacity:128];
     

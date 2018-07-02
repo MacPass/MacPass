@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>%ld_CHARACTERS_TO_PICK_REMAINING</key>
+	<dict>
+		<key>NSStringLocalizedFormatKey</key>
+		<string>%#@characters@</string>
+		<key>characters</key>
+		<dict>
+			<key>NSStringFormatSpecTypeKey</key>
+			<string>NSStringPluralRuleType</string>
+			<key>NSStringFormatValueTypeKey</key>
+			<string>ld</string>
+			<key>one</key>
+			<string>Ett tecken återstår</string>
+			<key>other</key>
+			<string>%ld tecken återstår</string>
+			<key>zero</key>
+			<string>Alla tecken valda</string>
+		</dict>
+	</dict>
+	<key>DUPLICATE_ENTRIES_%ld</key>
+	<dict>
+		<key>NSStringLocalizedFormatKey</key>
+		<string>%#@entries@</string>
+		<key>entries</key>
+		<dict>
+			<key>NSStringFormatSpecTypeKey</key>
+			<string>NSStringPluralRuleType</string>
+			<key>NSStringFormatValueTypeKey</key>
+			<string>ld</string>
+			<key>one</key>
+			<string>Duplicera konto</string>
+			<key>other</key>
+			<string>Duplicera konton</string>
+			<key>zero</key>
+			<string>Duplicera konton</string>
+		</dict>
+	</dict>
+	<key>EVERY_%ld_DAYS</key>
+	<dict>
+		<key>NSStringLocalizedFormatKey</key>
+		<string>%#@days@</string>
+		<key>days</key>
+		<dict>
+			<key>NSStringFormatSpecTypeKey</key>
+			<string>NSStringPluralRuleType</string>
+			<key>NSStringFormatValueTypeKey</key>
+			<string>ld</string>
+			<key>one</key>
+			<string>varje dag</string>
+			<key>other</key>
+			<string>var %ld:e dag</string>
+			<key>zero</key>
+			<string>efter varje upplåsning</string>
+		</dict>
+	</dict>
+	<key>PICKCHAR_INFO_MESSAGE_PICK_CHARACTERS_%ld</key>
+	<dict>
+		<key>NSStringLocalizedFormatKey</key>
+		<string>%#@characters@</string>
+		<key>characters</key>
+		<dict>
+			<key>NSStringFormatSpecTypeKey</key>
+			<string>NSStringPluralRuleType</string>
+			<key>NSStringFormatValueTypeKey</key>
+			<string>ld</string>
+			<key>one</key>
+			<string>Var vänlig och välj ett tecken att använda</string>
+			<key>other</key>
+			<string>Var vänlig och välj %ld tecken att använda</string>
+			<key>zero</key>
+			<string>Var vanlig och välj tecken att använda</string>
+		</dict>
+	</dict>
+	<key>PICKED_%ld_CHARACTERS</key>
+	<dict>
+		<key>NSStringLocalizedFormatKey</key>
+		<string>%#@characters@</string>
+		<key>characters</key>
+		<dict>
+			<key>NSStringFormatSpecTypeKey</key>
+			<string>NSStringPluralRuleType</string>
+			<key>NSStringFormatValueTypeKey</key>
+			<string>ld</string>
+			<key>one</key>
+			<string>%ld bokstav vald</string>
+			<key>other</key>
+			<string>%ld bokstäver valda</string>
+			<key>zero</key>
+			<string>Inga bokstäver valda</string>
+		</dict>
+	</dict>
+</dict>
+</plist>

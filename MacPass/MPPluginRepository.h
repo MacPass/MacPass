@@ -12,7 +12,7 @@
 
 @interface MPPluginRepository : NSObject
 
-@property (class, strong, readonly) MPPluginRepository *sharedRespoitory;
+@property (class, strong, readonly) MPPluginRepository *defaultRepository;
 @property (nonatomic, copy) NSArray<MPPluginRepositoryItem *> *availablePlugins;
 
 

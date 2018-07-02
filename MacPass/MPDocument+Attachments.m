@@ -34,7 +34,9 @@
   }
   KPKBinary *binary = [[KPKBinary alloc] initWithContentsOfURL:location];
   if(binary) {
+    [self willChangeModelProperty];
     [anEntry addBinary:binary];
+    [self didChangeModelProperty];
   }
 }
 

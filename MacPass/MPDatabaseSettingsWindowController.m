@@ -253,7 +253,7 @@
     NSDictionary *nameMappings = @{
                                    @(KPKDatabaseFormatKdb): @"Kdb",
                                    @(KPKDatabaseFormatKdbx): @"Kdbx",
-                                   @(KPKDatabaseFormatUnknown): NSLocalizedString(@"UNKNOWN_FORMAT", "Unknown databas format.")
+                                   @(KPKDatabaseFormatUnknown): NSLocalizedString(@"UNKNOWN_FORMAT", "Unknown database format.")
                                    };
     
     NSUInteger mayor = (version.version >> 16);

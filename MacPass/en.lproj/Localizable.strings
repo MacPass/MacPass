@@ -1,3 +1,6 @@
+/* Count of characters remaining in pickchars dialog */
+"%ld_CHARACTERS_TO_PICK_REMAINING" = "%ld characters to pick remaining";
+
 /* Display format for days. Should contain a long decimal placeholder! */
 "%ld_DAYS" = "%ld days";
 
@@ -13,9 +16,6 @@
 /* % Weeks ago */
 "%ld_WEEKS_AGO" = "%ld weeks ago";
 
-/* Count of characters remaining in Pickchars view */
-"%ld_CHARACTERS_TO_PICK_REMAINING" = "%ld characters to pick remaining";
-
 /* preset to expire after 90 days from now */
 "90_DAYS" = "in 90 days";
 
@@ -25,11 +25,14 @@
 /* Toolbar item with action menu */
 "ACTION" = "Action";
 
+/* Menu displayed for adding special custom keys */
+"ADD_CUSTOM_FIELD_CONTEXT_MENU" = "Add Custom Field Menu";
+
 /* Action to add an entry via template */
 "ADD_TREMPLATE_ENTRY" = "Create Template Entry";
 
 /* Alert informative text when plugins or their settings change and require a restart */
-"ALERT_INFORMATIVE_TEXT_PLUGINS_CHANGED_SUGGEST_RESTART" =  "Changes to plugins and global plugin settings take only effect after restart. Restart MacPass now?";
+"ALERT_INFORMATIVE_TEXT_PLUGINS_CHANGED_SUGGEST_RESTART" = "Changes to plugins and global plugin settings take only effect after restart. Restart MacPass now?";
 
 /* Alert informative text to ask the user if he really want to uninstall the plugin */
 "ALERT_INFORMATIVE_TEXT_REALLY_UNINSTALL_PLUGIN" = "The Plugin will be moved to the Trash.";
@@ -47,22 +50,22 @@
 /* Menu item for automatic trash creation */
 "AUTOCREATE_TRASH_FOLDER" = "Create Automatically";
 
-/* No comment provided by engineer. */
+/* Inherit autotype settings menu item */
 "AUTOTYPE_INHERIT" = "Inherit Autotype Settings";
 
-/* No comment provided by engineer. */
+/* Disable autotype menu item */
 "AUTOTYPE_NO" = "Disable Autotype";
 
 /* Notification: Autotype failed, no documents are open */
-"AUTOTYPE_OVERLAY_NO_DOCUMENTS" = "Please open a file to use Global Autotype!";
+"AUTOTYPE_OVERLAY_NO_DOCUMENTS" = "Please open a database file to use Global Autotype!";
 
 /* Noticiation: Autotype failed to find a match for %@ (string placeholder) */
 "AUTOTYPE_OVERLAY_NO_MATCH_FOR_%@" = "No Match for %@!";
 
 /* Notification: Autotype found a single match. */
-"AUTOTYPE_OVERLAY_SINGLE_MATCH" = "Match!";
+"AUTOTYPE_OVERLAY_SINGLE_MATCH" = "Login found!";
 
-/* No comment provided by engineer. */
+/* Enable autotype menu item */
 "AUTOTYPE_YES" = "Enable Autotype";
 
 /* Sucessfully merged external changes */
@@ -171,7 +174,7 @@
    Toolbar item delete item */
 "DELETE" = "Delete";
 
-/* No comment provided by engineer. */
+/* Delete Entry */
 "DELETE_ENTRY" = "Delete Entry";
 
 /* Delete Group */
@@ -211,6 +214,12 @@
 /* Message text for the enforce password change alert */
 "ENFORCE_PASSWORD_CHANGE_ALERT_TITLE" = "The database password expired!";
 
+/* Group row for entry attributes */
+"ENTRY_CUSTOM_ATTRIBUTES" = "Custom Attributes";
+
+/* Group row for entry attributes */
+"ENTRY_DEFAULT_ATTRIBUTES" = "Default Attributes";
+
 /* Keyfile not valid */
 "ERROR_INVALID_KEYFILE" = "Keyfile is invalid!";
 
@@ -229,11 +238,11 @@
 /* Format to returen the date an item expires. Includes %@ placehoder for date */
 "EXPIRES_AT_DATE_%@" = "Expires: %@";
 
-/* The master key was changed by an extrenal programm! */
-"EXTERN_CHANGE_OF_MASTERKEY" = "Master key was changed by another programm";
+/* The master key was changed by an external program! */
+"EXTERN_CHANGE_OF_MASTERKEY" = "Master key was changed by another program";
 
 /* Informative text displayed when the file was change from another application */
-"FILE_CHANGED_BY_OTHERS_INFO_TEXT" = "The file loaded is not the same as the on on disk. How do you want to move on?";
+"FILE_CHANGED_BY_OTHERS_INFO_TEXT" = "The database loaded is not the same as the one on disk. How do you want to move on?";
 
 /* Message displayed when an open file was changed from another application */
 "FILE_CHANGED_BY_OTHERS_MESSAGE_TEXT" = "The database file was modified!";
@@ -244,14 +253,14 @@
 /* External file change strategy option: Keep local file an ignore external changes */
 "FILE_CHANGE_STRATEGY_KEEP_MINE" = "Keep My Version and Ignore Other Changes";
 
-/* External file change strategy option: Merge external changes into local file.
-   Merge changes into file! */
+/* Button in dialog to merge changes into file!
+   External file change strategy option: Merge external changes into local file. */
 "FILE_CHANGE_STRATEGY_MERGE" = "Merge Changes";
 
 /* External file change strategy option: Use the changed file and discard local changes */
 "FILE_CHANGE_STRATEGY_USE_OTHER" = "Load Changed Version and Discard Mine";
 
-/* No comment provided by engineer. */
+/* Error while reopening last known documents */
 "FILE_OPEN_ERROR" = "Error opening file.";
 
 /* General Settings Label */
@@ -279,10 +288,10 @@
 /* Feature only available in kdbx databases */
 "KDBX_ONLY_FEATURE" = "Feature not supported in KDB database";
 
-/* Ignore the changes to an open file! */
+/* Button in dialog to ignore the changes to an open file! */
 "KEEP_MINE_DISCARD_OTHER" = "Keep Mine, Discard Other";
 
-/* Reopen the file! */
+/* Button in dialog to reopen the file! */
 "KEEP_OTHER_DISCARD_MINE" = "Keep Other, Discard Mine";
 
 /* Do not install the plugin */
@@ -319,18 +328,21 @@
 /* Name for a newly created Database */
 "NEW_DATABASE" = "Database";
 
-/* Menu item to create a new entry
+/* Action name for a newly created entry
+   Menu item to create a new entry
    Toolbar item new entry */
 "NEW_ENTRY" = "New Entry";
 
 /* Submenu to add an entry via template */
 "NEW_ENTRY_WITH_TEMPLATE_%@" = "Create Entry with Template %@";
 
-/* Menu item to create a new group
+/* Action name for a newly created group
+   Menu item to create a new group
    Toolbar item new group */
 "NEW_GROUP" = "New Group";
 
-/* Placeholder text for input fields if no entry or group is selected */
+/* Null placeholder for item input field
+   Placeholder text for input fields if no entry or group is selected */
 "NONE" = "None";
 
 /* Displayed name when notes or part of notes was copied
@@ -372,7 +384,7 @@
 /* Open button in the open panel to import an XML file */
 "OPEN_BUTTON_IMPORT_XML_OPEN_PANEL" = "Import";
 
-/* Notification Button */
+/* Action button in Notification to open a document */
 "OPEN_DOCUMENT" = "Open Document";
 
 /* Menu item to open the URL with the default application */
@@ -410,11 +422,17 @@
 /* Menu item to perform autotype with the selected entry */
 "PERFORM_AUTOTYPE_FOR_ENTRY" = "Perform Autotype";
 
-/* Count of picked characters in Pickchars view if no limit is set */
+/* Info about how many character has to pick in pickchar dialog */
+"PICKCHAR_INFO_MESSAGE_PICK_CHARACTERS_%ld" = "Please pick %ld characters";
+
+/* Window displayed to the user to pick an amout of characters */
+"PICKCHAR_WINDOW_TITLE" = "Character Picker";
+
+/* Count of picked characters in pickchars dialog if no limit is set */
 "PICKED_%ld_CHARACTERS" = "Picked %ld characters";
 
-/* Comment */
-"PICKCHAR_INFO_MESSAGE_PICK_CHARACTERS_%ld" = "Please pick %ld characters";
+/* Window displayed to the user to pick an amout of characters */
+"PICKFIELD_WINDOW_TITLE" = "Field Picker";
 
 /* The plugin could not be initalized */
 "PLUGIN_ERROR_INTILIZATION_FAILED" = "Plugin could not be initalized";
@@ -477,16 +495,16 @@
 /* Search option: Find expired entries */
 "SEARCH_EXPIRED_ENTRIES" = "Expired";
 
-/* No comment provided by engineer. */
+/* Inherit search settings menu item */
 "SEARCH_INHERIT" = "Inherit Search Settings";
 
-/* No comment provided by engineer. */
+/* Disable search menu item */
 "SEARCH_NO" = "Exclude from Search";
 
 /* No comment provided by engineer. */
 "SEARCH_VALUE" = "Search Value";
 
-/* No comment provided by engineer. */
+/* Enable search menu item */
 "SEARCH_YES" = "Include in Search";
 
 /* (No Comment) */
@@ -507,14 +525,14 @@
 /* Menu displayed as popup selection for search options */
 "SELECT_FILTER_WITH_DOTS" = "Select…";
 
-/* Set the selection as default file change strategy! */
+/* Checkbox in dialog to set the selection as default file change strategy! */
 "SET_AS_DEFAULT_FILE_CHANGE_STRATEGY" = "Use this method as default. You can change this at any time in the preferences.";
 
 /* (No Comment) */
 "SHORT_FILE_CHANGE_STRATEGY_ASK" = "Ask";
 
 /* Menu item to show the history of the selected entry
-   Toolbar item to toggel history display */
+   Toolbar item to toggle history display */
 "SHOW_HISTORY" = "Show History";
 
 /* Menu item to show the reference builder in a text view's context menu */
@@ -542,13 +560,13 @@
 "UNINSTALL" = "Uninstall";
 
 /* No comment provided by engineer. */
-"UNKNOWN_FILE_VERSION" = "Unknown file version";
+"UNKNOWN_FILE_VERSION" = "Unknown database version";
 
-/* Unknown databas format. */
+/* Unknown database format. */
 "UNKNOWN_FORMAT" = "Unknown file format";
 
 /* Database format is unknown since the file is not saved yet */
-"UNKNOWN_FORMAT_FILE_NOT_SAVED_YET" = "Unknown, file not saved yet";
+"UNKNOWN_FORMAT_FILE_NOT_SAVED_YET" = "Unknown, database not saved yet";
 
 /* No comment provided by engineer. */
 "UNKNOWN_TOOLBAR_ITEM" = "Unknown Toolbar Item";

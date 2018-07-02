@@ -52,7 +52,7 @@ NSInteger MPCustomFieldIndexFromTag(NSInteger tag) {
 
 - (NSView *)tableView:(NSTableView *)tableView viewForTableColumn:(NSTableColumn *)tableColumn row:(NSInteger)row {
   MPCustomFieldTableCellView *view = [tableView makeViewWithIdentifier:@"SelectedCell" owner:tableView];
-  
+    
   [view.labelTextField bind:NSValueBinding
                    toObject:view
                 withKeyPath:@"objectValue.key"
@@ -63,12 +63,12 @@ NSInteger MPCustomFieldIndexFromTag(NSInteger tag) {
                     options:nil];
   [view.protectedButton bind:NSValueBinding
                     toObject:view
-                 withKeyPath:@"objectValue.isProtected"
+                 withKeyPath:@"objectValue.protect"
                      options:nil];
   
   [view.valueTextField bind:NSStringFromSelector(@selector(showPassword))
                    toObject:view
-                withKeyPath:@"objectValue.isProtected"
+                withKeyPath:@"objectValue.protect"
                     options:@{NSValueTransformerNameBindingOption: NSNegateBooleanTransformerName}];
   
   
