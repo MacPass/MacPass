@@ -31,7 +31,6 @@
 		4C17F108184E6B6C00E85625 /* 31_PrintTemplate.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 4C17F106184E6B6C00E85625 /* 31_PrintTemplate.pdf */; };
 		4C17F109184E6B6C00E85625 /* 30_TerminalTemplate.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 4C17F107184E6B6C00E85625 /* 30_TerminalTemplate.pdf */; };
 		4C1BDF2B1E4392640012A3F0 /* MPPluginDataViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C1BDF291E4392640012A3F0 /* MPPluginDataViewController.m */; };
-		4C1BDF2C1E4392640012A3F0 /* PluginDataView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4C1BDF2A1E4392640012A3F0 /* PluginDataView.xib */; };
 		4C1DDCDD1711ECEB00C98DA3 /* PasswordCreatorWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4C1DDCDC1711ECEB00C98DA3 /* PasswordCreatorWindow.xib */; };
 		4C1E9885185F71A800943563 /* MPContextBarViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C1E9884185F71A800943563 /* MPContextBarViewController.m */; };
 		4C1F7FA21E3A12E600D6A40E /* MPModifiedKey.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C1F7FA11E3A12E600D6A40E /* MPModifiedKey.m */; };
@@ -264,6 +263,7 @@
 		4CEED1C617D7BD0E007180F1 /* NSError+Messages.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CEED1C517D7BD0E007180F1 /* NSError+Messages.m */; };
 		4CF29BF417879D0000851B60 /* 26_FileSaveTemplate.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 4CF29BF317879D0000851B60 /* 26_FileSaveTemplate.pdf */; };
 		4CF5BE6D1BF33E3000048505 /* NSApplication+MPAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CF5BE6C1BF33E3000048505 /* NSApplication+MPAdditions.m */; };
+		4CF6653820E67A140008A25C /* PluginDataView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4CF6653A20E67A140008A25C /* PluginDataView.xib */; };
 		4CF6C3021FBF39BF0055AD03 /* MPPluginTabelCellView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CF6C3011FBF39BF0055AD03 /* MPPluginTabelCellView.m */; };
 		4CF6C711176F4533007A811D /* MPStringLengthValueTransformer.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CF6C710176F4533007A811D /* MPStringLengthValueTransformer.m */; };
 		4CF78064176E75AD0032EE71 /* MPIntegrationSettingsController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CF78063176E75AD0032EE71 /* MPIntegrationSettingsController.m */; };
@@ -362,7 +362,6 @@
 		4C17F107184E6B6C00E85625 /* 30_TerminalTemplate.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = 30_TerminalTemplate.pdf; sourceTree = "<group>"; };
 		4C1BDF281E4392640012A3F0 /* MPPluginDataViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MPPluginDataViewController.h; sourceTree = "<group>"; };
 		4C1BDF291E4392640012A3F0 /* MPPluginDataViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MPPluginDataViewController.m; sourceTree = "<group>"; };
-		4C1BDF2A1E4392640012A3F0 /* PluginDataView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PluginDataView.xib; sourceTree = "<group>"; };
 		4C1DDCDC1711ECEB00C98DA3 /* PasswordCreatorWindow.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PasswordCreatorWindow.xib; sourceTree = "<group>"; };
 		4C1E9883185F71A800943563 /* MPContextBarViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MPContextBarViewController.h; sourceTree = "<group>"; };
 		4C1E9884185F71A800943563 /* MPContextBarViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MPContextBarViewController.m; sourceTree = "<group>"; };
@@ -816,6 +815,9 @@
 		4CF29BF317879D0000851B60 /* 26_FileSaveTemplate.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = 26_FileSaveTemplate.pdf; sourceTree = "<group>"; };
 		4CF5BE6B1BF33E3000048505 /* NSApplication+MPAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSApplication+MPAdditions.h"; sourceTree = "<group>"; };
 		4CF5BE6C1BF33E3000048505 /* NSApplication+MPAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSApplication+MPAdditions.m"; sourceTree = "<group>"; };
+		4CF6653920E67A140008A25C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/PluginDataView.xib; sourceTree = "<group>"; };
+		4CF6653C20E67A180008A25C /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/PluginDataView.strings; sourceTree = "<group>"; };
+		4CF6653E20E67A1A0008A25C /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/PluginDataView.strings; sourceTree = "<group>"; };
 		4CF6C3001FBF39BF0055AD03 /* MPPluginTabelCellView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MPPluginTabelCellView.h; sourceTree = "<group>"; };
 		4CF6C3011FBF39BF0055AD03 /* MPPluginTabelCellView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MPPluginTabelCellView.m; sourceTree = "<group>"; };
 		4CF6C70F176F4533007A811D /* MPStringLengthValueTransformer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MPStringLengthValueTransformer.h; sourceTree = "<group>"; };
@@ -1526,7 +1528,7 @@
 				FA9FD32E1FB5EDD3003CEDD6 /* AutotypeBuilderView.xib */,
 				4C1BDF281E4392640012A3F0 /* MPPluginDataViewController.h */,
 				4C1BDF291E4392640012A3F0 /* MPPluginDataViewController.m */,
-				4C1BDF2A1E4392640012A3F0 /* PluginDataView.xib */,
+				4CF6653A20E67A140008A25C /* PluginDataView.xib */,
 				4C50CC021F6C18830095629D /* MPCollectionViewItem.h */,
 				4C50CC031F6C18830095629D /* MPCollectionViewItem.m */,
 				4CA182711F963FF600DD4A4A /* MPTitlebarColorAccessoryViewController.h */,
@@ -1879,7 +1881,7 @@
 				4C7ABA4E17BAEC7000FF5799 /* addEntryTemplate.pdf in Resources */,
 				4C3826761AD04C24007D7D67 /* harddiskTemplate.pdf in Resources */,
 				4C0DBEF51BF508DE00F9B287 /* PluginSettings.xib in Resources */,
-				4C1BDF2C1E4392640012A3F0 /* PluginDataView.xib in Resources */,
+				4CF6653820E67A140008A25C /* PluginDataView.xib in Resources */,
 				4C7F8B681A10B68400CCB83D /* WelcomeWindow.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -2328,6 +2330,16 @@
 				6A74B0722076F4B50049BC29 /* sv-SE */,
 			);
 			name = ReferenceBuilderView.xib;
+			sourceTree = "<group>";
+		};
+		4CF6653A20E67A140008A25C /* PluginDataView.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				4CF6653920E67A140008A25C /* Base */,
+				4CF6653C20E67A180008A25C /* en */,
+				4CF6653E20E67A1A0008A25C /* de */,
+			);
+			name = PluginDataView.xib;
 			sourceTree = "<group>";
 		};
 		6021FE3D18E1341900C3BC51 /* EntryInspectorView.xib */ = {

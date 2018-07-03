@@ -182,6 +182,10 @@ typedef NS_ENUM(NSUInteger, MPEntryTab) {
                                                name:MPDocumentDidAddEntryNotification
                                              object:document];
   _windowAssociationsController.observer = document;
+  [NSNotificationCenter.defaultCenter addObserver:self
+                                         selector:@selector(_didChangeCurrentItem:)
+                                             name:MPDocumentCurrentItemChangedNotification
+                                           object:document];
 }
 
 - (void)dealloc {
@@ -561,15 +565,13 @@ typedef NS_ENUM(NSUInteger, MPEntryTab) {
 #pragma mark HNHUITextFieldDelegate
 - (NSMenu *)textField:(NSTextField *)textField textView:(NSTextView *)view menu:(NSMenu *)menu {
   for(NSMenuItem *item in menu.itemArray) {
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wundeclared-selector"
     if(item.action == @selector(_searchWithGoogleFromMenu:) || item.action == @selector(submenuAction:)) {
       [menu removeItem:item];
     }
+#pragma clang diagnostic pop
   }
-  /*
-  NSMenuItem *item = [[NSMenuItem alloc] initWithTitle:NSLocalizedString(@"SHOW_REFERENCE_BUILDER", @"Menu item to show the reference builder in a text view's context menu")action:@selector(showReferenceBuilder:) keyEquivalent:@""];
-  item.representedObject = textField;
-  [menu addItem:item];
-   */
   return menu;
 }
 
@@ -620,6 +622,10 @@ typedef NS_ENUM(NSUInteger, MPEntryTab) {
 - (void)_didAddEntry:(NSNotification *)notification {
   [self.tabView selectTabViewItemAtIndex:MPEntryTabGeneral];
   [self.titleTextField becomeFirstResponder];
+}
+
+- (void)_didChangeCurrentItem:(NSNotification *)notificiation {
+  self.showPassword = NO;
 }
 
 @end

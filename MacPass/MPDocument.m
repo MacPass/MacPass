@@ -381,7 +381,7 @@ NSString *const MPDocumentGroupKey                            = @"MPDocumentGrou
                                                       backing:NSBackingStoreBuffered
                                                         defer:NO];
       MPPasswordInputController *passwordInputController = [[MPPasswordInputController alloc] init];
-      [passwordInputController requestPasswordWithMessage:NSLocalizedString(@"EXTERN_CHANGE_OF_MASTERKEY", @"The master key was changed by an extrenal programm!")
+      [passwordInputController requestPasswordWithMessage:NSLocalizedString(@"EXTERN_CHANGE_OF_MASTERKEY", @"The master key was changed by an extrenal program!")
                                               cancelLabel:NSLocalizedString(@"ABORT_MERGE_KEEP_MINE", @"Button label to abort a merge on a file with changed master key!")
                                         completionHandler:^BOOL(NSString *password, NSURL *keyURL, BOOL didCancel, NSError *__autoreleasing *error) {
                                           [self.windowForSheet endSheet:sheet returnCode:(didCancel ? NSModalResponseCancel : NSModalResponseOK)];

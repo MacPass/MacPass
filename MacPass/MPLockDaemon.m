@@ -115,7 +115,6 @@ static MPLockDaemon *_sharedInstance;
 }
 
 - (void)_checkIdleTime:(NSTimer *)timer {
-  NSLog(@"Check Idle");
   if(timer != self.idleCheckTimer) {
     return; // Wrong timer?!
   }
