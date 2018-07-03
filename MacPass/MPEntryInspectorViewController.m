@@ -182,6 +182,10 @@ typedef NS_ENUM(NSUInteger, MPEntryTab) {
                                                name:MPDocumentDidAddEntryNotification
                                              object:document];
   _windowAssociationsController.observer = document;
+  [NSNotificationCenter.defaultCenter addObserver:self
+                                         selector:@selector(_didChangeCurrentItem:)
+                                             name:MPDocumentCurrentItemChangedNotification
+                                           object:document];
 }
 
 - (void)dealloc {
@@ -618,6 +622,10 @@ typedef NS_ENUM(NSUInteger, MPEntryTab) {
 - (void)_didAddEntry:(NSNotification *)notification {
   [self.tabView selectTabViewItemAtIndex:MPEntryTabGeneral];
   [self.titleTextField becomeFirstResponder];
+}
+
+- (void)_didChangeCurrentItem:(NSNotification *)notificiation {
+  self.showPassword = NO;
 }
 
 @end
