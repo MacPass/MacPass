@@ -62,8 +62,8 @@
 /* Noticiation: Autotype failed to find a match for %@ (string placeholder) */
 "AUTOTYPE_OVERLAY_NO_MATCH_FOR_%@" = "Kein Treffer für %@!";
 
-/* Notification: Autotype found a single match. */
-"AUTOTYPE_OVERLAY_SINGLE_MATCH" = "Treffer!";
+/* Notification: Autotype found a single match for %@ (string placeholder). */
+"AUTOTYPE_OVERLAY_SINGLE_MATCH_FOR_%@" = "Treffer für %@!";
 
 /* Enable autotype menu item */
 "AUTOTYPE_YES" = "Autotype aktivieren";
@@ -76,9 +76,6 @@
 
 /* Menu item in the database outline context menu to change the database name */
 "CHANGE_DATABASE_NAME" = "Name der Datenbank ändern";
-
-/* (No Comment) */
-"CHANGE_FORMAT" = "Als KDBX speichern";
 
 /* Button to postpone the password change */
 "CHANGE_LATER" = "Später Ändern";
@@ -136,9 +133,6 @@
 /* Menu item to copy the username of an entry
    Toolbar item copy username */
 "COPY_USERNAME" = "Benutzername kopieren";
-
-/* (No Comment) */
-"CREATED_AT_%@" = "erstellt: %@";
 
 /* Curstom attribute reference item */
 "CUSTOM_ATTRIBUTE" = "Spezielle Eigenschaften";
@@ -235,7 +229,7 @@
 /* Format to returen the date an item expires. Includes %@ placehoder for date */
 "EXPIRES_AT_DATE_%@" = "verfällt: %@";
 
-/* The master key was changed by an extrenal programm! */
+/* The master key was changed by an extrenal program! */
 "EXTERN_CHANGE_OF_MASTERKEY" = "Der Schlüssel wurde durch ein anderes Programm geändert!";
 
 /* Informative text displayed when the file was change from another application */
@@ -522,15 +516,9 @@
 /* Checkbox in dialog to set the selection as default file change strategy! */
 "SET_AS_DEFAULT_FILE_CHANGE_STRATEGY" = "Die gewählte Strategie immer verwenden. Sie können die Strategie jederzeit in den Einstellungen anpassen.";
 
-/* (No Comment) */
-"SHORT_FILE_CHANGE_STRATEGY_ASK" = "Nachfragen";
-
 /* Menu item to show the history of the selected entry
    Toolbar item to toggle history display */
 "SHOW_HISTORY" = "Historie anzeigen";
-
-/* Menu item to show the reference builder in a text view's context menu */
-"SHOW_REFERENCE_BUILDER" = "Referenz einfügen…";
 
 /* Displayed name when title field was copied
    Menu item to toggle display of title column in entry table
@@ -556,7 +544,7 @@
 /* No comment provided by engineer. */
 "UNKNOWN_FILE_VERSION" = "Unbekannte Dateiversion";
 
-/* Unknown databas format. */
+/* Unknown database format. */
 "UNKNOWN_FORMAT" = "Unbekanntes Dateiformat";
 
 /* Database format is unknown since the file is not saved yet */
