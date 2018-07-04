@@ -151,7 +151,7 @@ typedef NSUInteger (^MPPickcharOffsetConverter)(NSInteger offset);
  Conv-Fmt= Format of the check-box
  
  0 - Numbers 0129456789
- 1 - NUmber 1234567890
+ 1 - Number 1234567890
  a - lowercase characters
  A - uppercase characters
  ? - skip combobox item
@@ -284,7 +284,7 @@ typedef NSUInteger (^MPPickcharOffsetConverter)(NSInteger offset);
       index++;
     }
     NSAssert(tmpOffsetMap.count > 0, @"Internal inconsistency. Offset format needs at least on valid format!");
-    /* default behaviour is to be case insesitive, make sure we use the same converter for both cases if only one is specifier */
+    /* default behaviour is to be case insensitive, make sure we use the same converter for both cases if only one is specifier */
     MPPickcharOffsetConverter upperCaseConverter = tmpOffsetMap[@(MPPickCharOffsetTypeUpperCaseCharacter)];
     MPPickcharOffsetConverter lowerCaseConverter = tmpOffsetMap[@(MPPickCharOffsetTypeLowerCaseCharacter)];
     if(upperCaseConverter && !lowerCaseConverter) {
