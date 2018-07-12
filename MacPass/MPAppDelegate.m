@@ -155,7 +155,7 @@ NSString *const MPDidChangeStoredKeyFilesSettings = @"com.hicknhack.macpass.MPDi
 - (NSApplicationTerminateReply)applicationShouldTerminate:(NSApplication *)sender {
   if([[MPTemporaryFileStorageCenter defaultCenter] hasPendingStorages]) {
     dispatch_async(dispatch_get_main_queue(), ^{
-      [[MPTemporaryFileStorageCenter defaultCenter] cleanupStorages];
+      [MPTemporaryFileStorageCenter.defaultCenter cleanupStorages];
       [sender replyToApplicationShouldTerminate:YES];
     });
     return NSTerminateLater;
