@@ -8,6 +8,9 @@
 
 #import "MPUserNotificationCenterDelegate.h"
 
+NSString *const kMPUserNotificationInfoKeyNotificationType = @"kMPUserNotificationInfoKeyNotificationType";
+NSString *const kMPUserNotificationTypeAutotype = @"kMPUserNotificationTypeAutotype";
+
 @implementation MPUserNotificationCenterDelegate
 
 - (instancetype)init {
@@ -21,5 +24,15 @@
 - (void)userNotificationCenter:(NSUserNotificationCenter *)center didActivateNotification:(NSUserNotification *)notification {
   NSLog(@"%@", notification);
 }
+
+- (BOOL)userNotificationCenter:(NSUserNotificationCenter *)center shouldPresentNotification:(NSUserNotification *)notification {
+  NSDictionary *userInfo = notification.userInfo;
+  if(!userInfo) {
+    return NO;
+  }
+  NSString *value = userInfo[kMPUserNotificationInfoKeyNotificationType];
+  return [value isEqualToString:kMPUserNotificationTypeAutotype];
+}
+
 
 @end

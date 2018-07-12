@@ -8,6 +8,9 @@
 
 #import <Foundation/Foundation.h>
 
+FOUNDATION_EXTERN NSString *const kMPUserNotificationInfoKeyNotificationType;
+FOUNDATION_EXTERN NSString *const kMPUserNotificationTypeAutotype;
+
 @interface MPUserNotificationCenterDelegate : NSObject <NSUserNotificationCenterDelegate>
 
 @end

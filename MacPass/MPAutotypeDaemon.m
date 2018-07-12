@@ -28,6 +28,7 @@
 #import "MPPasteBoardController.h"
 #import "MPSettingsHelper.h"
 #import "MPAutotypeCandidateSelectionViewController.h"
+#import "MPUserNotificationCenterDelegate.h"
 
 #import "NSApplication+MPAdditions.h"
 #import "NSUserNotification+MPAdditions.h"
@@ -40,9 +41,6 @@
 
 NSString *const kMPWindowTitleKey = @"kMPWindowTitleKey";
 NSString *const kMPProcessIdentifierKey = @"kMPProcessIdentifierKey";
-
-NSString *const kMPUserNotificationInfoKeyNotificationType = @"kMPUserNotificationInfoKeyNotificationType";
-NSString *const kMPUserNotificationTypeAutotype = @"kMPUserNotificationTypeAutotype";
 
 @interface MPAutotypeDaemon ()
 
