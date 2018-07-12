@@ -97,7 +97,7 @@ NSString *const MPDidChangeStoredKeyFilesSettings = @"com.hicknhack.macpass.MPDi
       [self clearRememberdKeyFiles:nil];
     }
     /* Inform anyone that might be interested that we can now no longer/ or can use keyfiles */
-    [[NSNotificationCenter defaultCenter] postNotificationName:MPDidChangeStoredKeyFilesSettings object:self];
+    [NSNotificationCenter.defaultCenter postNotificationName:MPDidChangeStoredKeyFilesSettings object:self];
   }
 }
 
@@ -138,16 +138,16 @@ NSString *const MPDidChangeStoredKeyFilesSettings = @"com.hicknhack.macpass.MPDi
 }
 
 - (BOOL)applicationShouldOpenUntitledFile:(NSApplication *)sender {
-  return [[NSUserDefaults standardUserDefaults] boolForKey:kMPSettingsKeyOpenEmptyDatabaseOnLaunch];
+  return [NSUserDefaults.standardUserDefaults boolForKey:kMPSettingsKeyOpenEmptyDatabaseOnLaunch];
 }
 
 
 - (void)applicationWillFinishLaunching:(NSNotification *)notification {
   _shouldOpenFile = NO;
-  [[NSNotificationCenter defaultCenter] addObserver:self
-                                           selector:@selector(_applicationDidFinishRestoringWindows:)
-                                               name:NSApplicationDidFinishRestoringWindowsNotification
-                                             object:nil];
+  [NSNotificationCenter.defaultCenter addObserver:self
+                                         selector:@selector(_applicationDidFinishRestoringWindows:)
+                                             name:NSApplicationDidFinishRestoringWindowsNotification
+                                           object:nil];
   
   
 }
@@ -166,7 +166,9 @@ NSString *const MPDidChangeStoredKeyFilesSettings = @"com.hicknhack.macpass.MPDi
 - (BOOL)application:(NSApplication *)sender openFile:(NSString *)filename {
   _shouldOpenFile = YES;
   NSURL *fileURL = [NSURL fileURLWithPath:filename];
-  [[NSDocumentController sharedDocumentController] openDocumentWithContentsOfURL:fileURL display:YES completionHandler:^(NSDocument * _Nullable document, BOOL documentWasAlreadyOpen, NSError * _Nullable error){}];
+  [NSDocumentController.sharedDocumentController openDocumentWithContentsOfURL:fileURL
+                                                                       display:YES
+                                                             completionHandler:^(NSDocument * _Nullable document, BOOL documentWasAlreadyOpen, NSError * _Nullable error){}];
   return YES;
 }
 
@@ -189,7 +191,7 @@ NSString *const MPDidChangeStoredKeyFilesSettings = @"com.hicknhack.macpass.MPDi
 #pragma mark NSMenuDelegate
 - (void)menuNeedsUpdate:(NSMenu *)menu {
   if(menu == self.saveMenuItem.menu) {
-    MPDocument *document = [NSDocumentController sharedDocumentController].currentDocument;
+    MPDocument *document = NSDocumentController.sharedDocumentController.currentDocument;
     BOOL displayDots = (document.fileURL == nil || !document.compositeKey.hasPasswordOrKeyFile);
     NSString *saveTitle =  displayDots ? NSLocalizedString(@"SAVE_WITH_DOTS", "Save file menu item title when save will prompt for a location to save or ask for a password/key") : NSLocalizedString(@"SAVE", "Save file menu item title when save will just save the file");
     self.saveMenuItem.title = saveTitle;
@@ -216,7 +218,7 @@ NSString *const MPDidChangeStoredKeyFilesSettings = @"com.hicknhack.macpass.MPDi
 
 - (void)showPasswordCreator:(id)sender {
   if(!self.passwordCreatorWindow) {
-    [[NSBundle mainBundle] loadNibNamed:@"PasswordCreatorWindow"owner:self topLevelObjects:nil];
+    [NSBundle.mainBundle loadNibNamed:@"PasswordCreatorWindow"owner:self topLevelObjects:nil];
   }
   if(!self.passwordCreatorController) {
     self.passwordCreatorController = [[MPPasswordCreatorViewController alloc] init];
@@ -228,16 +230,16 @@ NSString *const MPDidChangeStoredKeyFilesSettings = @"com.hicknhack.macpass.MPDi
 
 - (void)createNewDatabase:(id)sender {
   [self.welcomeWindow orderOut:sender];
-  [[NSDocumentController sharedDocumentController] newDocument:sender];
+  [NSDocumentController.sharedDocumentController newDocument:sender];
 }
 
 - (void)openDatabase:(id)sender {
   [self.welcomeWindow orderOut:sender];
-  [[NSDocumentController sharedDocumentController] openDocument:sender];
+  [NSDocumentController.sharedDocumentController openDocument:sender];
 }
 
 - (void)lockAllDocuments {
-  for(NSDocument *document in ((NSDocumentController *)[NSDocumentController sharedDocumentController]).documents) {
+  for(NSDocument *document in NSDocumentController.sharedDocumentController.documents) {
     for(id windowController in [document.windowControllers reverseObjectEnumerator]) {
       if([windowController respondsToSelector:@selector(lock:)]) {
         [windowController lock:self];
@@ -247,12 +249,12 @@ NSString *const MPDidChangeStoredKeyFilesSettings = @"com.hicknhack.macpass.MPDi
 }
 
 - (void)clearRememberdKeyFiles:(id)sender {
-  [[NSUserDefaults standardUserDefaults] removeObjectForKey:kMPSettingsKeyRememeberdKeysForDatabases];
+  [NSUserDefaults.standardUserDefaults removeObjectForKey:kMPSettingsKeyRememeberdKeysForDatabases];
 }
 
 - (void)showHelp:(id)sender {
   NSString *urlString = NSBundle.mainBundle.infoDictionary[MPBundleHelpURLKey];
-  [[NSWorkspace sharedWorkspace] openURL:[NSURL URLWithString:urlString]];
+  [NSWorkspace.sharedWorkspace openURL:[NSURL URLWithString:urlString]];
 }
 
 - (void)checkForUpdates:(id)sender {
@@ -270,17 +272,16 @@ NSString *const MPDidChangeStoredKeyFilesSettings = @"com.hicknhack.macpass.MPDi
 #pragma mark -
 #pragma mark Private Helper
 - (void)_applicationDidFinishRestoringWindows:(NSNotification *)notification {
-  NSDocumentController *documentController = [NSDocumentController sharedDocumentController];
-  NSArray *documents = [documentController documents];
-  BOOL restoredWindows = [documents count] > 0;
+  NSArray *documents = NSDocumentController.sharedDocumentController.documents;
+  BOOL restoredWindows = documents.count > 0;
   
   for(NSDocument *document in documents) {
-    for(NSWindowController *windowController in [document windowControllers]) {
+    for(NSWindowController *windowController in document.windowControllers) {
       [windowController.window.contentView layout];
     }
   }
   
-  BOOL reopen = [[NSUserDefaults standardUserDefaults] boolForKey:kMPSettingsKeyReopenLastDatabaseOnLaunch];
+  BOOL reopen = [NSUserDefaults.standardUserDefaults boolForKey:kMPSettingsKeyReopenLastDatabaseOnLaunch];
   BOOL showWelcomeScreen = !restoredWindows && !_shouldOpenFile;
   if(reopen && !restoredWindows && !_shouldOpenFile) {
     showWelcomeScreen = ![self _reopenLastDocument];
@@ -298,45 +299,42 @@ NSString *const MPDidChangeStoredKeyFilesSettings = @"com.hicknhack.macpass.MPDi
 - (void)_loadWelcomeWindow {
   if(!_welcomeWindow) {
     NSArray *topLevelObject;
-    [[NSBundle mainBundle] loadNibNamed:@"WelcomeWindow" owner:self topLevelObjects:&topLevelObject];
+    [NSBundle.mainBundle loadNibNamed:@"WelcomeWindow" owner:self topLevelObjects:&topLevelObject];
   }
 }
 
 - (BOOL)_reopenLastDocument {
-  NSDocumentController *documentController = [NSDocumentController sharedDocumentController];
-  NSArray *documents = [documentController documents];
-  if([documents count] > 0) {
+  if(NSDocumentController.sharedDocumentController.documents.count > 0) {
     return YES; // The document is already open
   }
-  NSArray *recentDocuments = [[NSDocumentController sharedDocumentController] recentDocumentURLs];
+  NSArray *recentDocuments = NSDocumentController.sharedDocumentController.recentDocumentURLs;
   NSURL *documentUrl = nil;
-  if([recentDocuments count] > 0) {
-    documentUrl = recentDocuments[0];
+  if(recentDocuments.count > 0) {
+    documentUrl = recentDocuments.firstObject;
   }
   else {
-    NSString *lastPath = [[NSUserDefaults standardUserDefaults] stringForKey:kMPSettingsKeyLastDatabasePath];
+    NSString *lastPath = [NSUserDefaults.standardUserDefaults stringForKey:kMPSettingsKeyLastDatabasePath];
     documentUrl =[NSURL URLWithString:lastPath];
   }
-  BOOL isFileURL = [documentUrl isFileURL];
+  BOOL isFileURL = documentUrl.fileURL;
   if(isFileURL) {
-    [documentController openDocumentWithContentsOfURL:documentUrl
-                                              display:YES
-                                    completionHandler:^(NSDocument *document, BOOL documentWasAlreadyOpen, NSError *error) {
-                                      
-                                      if(error != nil){
-                                        
-                                        NSAlert *alert = [[NSAlert alloc] init];
-                                        [alert setMessageText:   NSLocalizedString(@"FILE_OPEN_ERROR", "Error while reopening last known documents")];
-                                        [alert setInformativeText: [error localizedDescription]];
-                                        [alert setAlertStyle:NSCriticalAlertStyle ];
-                                        [alert runModal];
-                                      }
-                                      
-                                      if(document == nil){
-                                        [self _showWelcomeWindow];
-                                      }
-                                      
-                                    }];
+    [NSDocumentController.sharedDocumentController openDocumentWithContentsOfURL:documentUrl
+                                                                         display:YES
+                                                               completionHandler:^(NSDocument *document, BOOL documentWasAlreadyOpen, NSError *error) {
+                                                                 
+                                                                 if(error != nil){
+                                                                   NSAlert *alert = [[NSAlert alloc] init];
+                                                                   alert.messageText = NSLocalizedString(@"FILE_OPEN_ERROR", "Error while reopening last known documents");
+                                                                   alert.informativeText = error.localizedDescription;
+                                                                   alert.alertStyle = NSCriticalAlertStyle;
+                                                                   [alert runModal];
+                                                                 }
+                                                                 
+                                                                 if(document == nil){
+                                                                   [self _showWelcomeWindow];
+                                                                 }
+                                                                 
+                                                               }];
   }
   return isFileURL;
 }

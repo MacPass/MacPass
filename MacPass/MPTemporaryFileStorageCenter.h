@@ -27,9 +27,8 @@
 
 @interface MPTemporaryFileStorageCenter : NSObject
 
-+ (instancetype)defaultCenter;
-
-- (BOOL)hasPendingStorages;
+@property (class, strong, readonly) MPTemporaryFileStorageCenter *defaultCenter;
+@property (readonly) BOOL hasPendingStorages;
 
 - (MPTemporaryFileStorage *)storageForBinary:(KPKBinary *)binary;
 - (void)registerStorage:(MPTemporaryFileStorage *)storage;
