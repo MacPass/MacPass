@@ -624,7 +624,7 @@ NSString *const _MPTableSecurCellView = @"PasswordCell";
   KPKEntry *selectedEntry = nodes.count == 1 ? [nodes.firstObject asEntry] : nil;
   NSString *value = [selectedEntry.password kpk_finalValueForEntry:selectedEntry];
   if(value) {
-    [[MPPasteBoardController defaultController] copyObjects:@[value] overlayInfo:MPPasteboardOverlayInfoPassword name:nil atView:self.view];
+    [MPPasteBoardController.defaultController copyObjects:@[value] overlayInfo:MPPasteboardOverlayInfoPassword name:nil atView:self.view];
   }
 }
 
@@ -633,7 +633,7 @@ NSString *const _MPTableSecurCellView = @"PasswordCell";
   KPKEntry *selectedEntry = nodes.count == 1 ? [nodes.firstObject asEntry] : nil;
   NSString *value = [selectedEntry.username kpk_finalValueForEntry:selectedEntry];
   if(value) {
-    [[MPPasteBoardController defaultController] copyObjects:@[value] overlayInfo:MPPasteboardOverlayInfoUsername name:nil atView:self.view];
+    [MPPasteBoardController.defaultController copyObjects:@[value] overlayInfo:MPPasteboardOverlayInfoUsername name:nil atView:self.view];
   }
 }
 
@@ -646,7 +646,7 @@ NSString *const _MPTableSecurCellView = @"PasswordCell";
     KPKAttribute *attribute = selectedEntry.customAttributes[index];
     NSString *value = attribute.evaluatedValue;
     if(value) {
-      [[MPPasteBoardController defaultController] copyObjects:@[value] overlayInfo:MPPasteboardOverlayInfoCustom name:attribute.key atView:self.view];
+      [MPPasteBoardController.defaultController copyObjects:@[value] overlayInfo:MPPasteboardOverlayInfoCustom name:attribute.key atView:self.view];
     }
   }
 }
@@ -656,7 +656,7 @@ NSString *const _MPTableSecurCellView = @"PasswordCell";
   KPKEntry *selectedEntry = nodes.count == 1 ? [nodes.firstObject asEntry] : nil;
   NSString *value = [selectedEntry.url kpk_finalValueForEntry:selectedEntry];
   if(value) {
-    [[MPPasteBoardController defaultController] copyObjects:@[value] overlayInfo:MPPasteboardOverlayInfoURL name:nil atView:self.view];
+    [MPPasteBoardController.defaultController copyObjects:@[value] overlayInfo:MPPasteboardOverlayInfoURL name:nil atView:self.view];
   }
 }
 

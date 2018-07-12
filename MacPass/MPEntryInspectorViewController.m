@@ -604,7 +604,7 @@ typedef NS_ENUM(NSUInteger, MPEntryTab) {
         name = [_customFieldsController.arrangedObjects[index] key];
       }
     }
-    [[MPPasteBoardController defaultController] copyObjects:@[value] overlayInfo:info name:name atView:self.view];
+    [MPPasteBoardController.defaultController copyObjects:@[value] overlayInfo:info name:name atView:self.view];
     return NO;
   }
   return YES;
