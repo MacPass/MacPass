@@ -41,6 +41,9 @@
 NSString *const kMPWindowTitleKey = @"kMPWindowTitleKey";
 NSString *const kMPProcessIdentifierKey = @"kMPProcessIdentifierKey";
 
+NSString *const kMPUserNotificationInfoKeyNotificationType = @"kMPUserNotificationInfoKeyNotificationType";
+NSString *const kMPUserNotificationTypeAutotype = @"kMPUserNotificationTypeAutotype";
+
 @interface MPAutotypeDaemon ()
 
 @property (nonatomic, assign) BOOL enabled;
@@ -194,6 +197,7 @@ static MPAutotypeDaemon *_sharedInstance;
   if(!entryOrNil) {
     NSUserNotification *notification = [[NSUserNotification alloc] init];
     notification.title = NSApp.applicationName;
+    notification.userInfo = @{ kMPUserNotificationInfoKeyNotificationType: kMPUserNotificationTypeAutotype };
     if(context) {
       notification.informativeText = [NSString stringWithFormat:NSLocalizedString(@"AUTOTYPE_OVERLAY_SINGLE_MATCH_FOR_%@", "Notification: Autotype found a single match for %@ (string placeholder)."), self.targetWindowTitle];
     }
@@ -313,7 +317,7 @@ static MPAutotypeDaemon *_sharedInstance;
 #pragma mark MPDocument Notifications
 - (void)_didUnlockDatabase:(NSNotification *)notification {
   /* Remove ourselves and call again to search matches */
-  [[NSNotificationCenter defaultCenter] removeObserver:self];
+  [NSNotificationCenter.defaultCenter removeObserver:self name:MPDocumentDidUnlockDatabaseNotification object:nil];
   [self _performAutotypeForEntry:nil];
 }
 
