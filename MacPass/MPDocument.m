@@ -923,6 +923,8 @@ NSString *const MPDocumentGroupKey                            = @"MPDocumentGrou
     [self.undoManager removeAllActionsWithTarget:group];
   }
   [self.trash clear];
+  /* Update the change count to mark the document state as changed */
+  [self updateChangeCount:NSChangeDone];
 }
 
 #pragma mark -
