@@ -565,7 +565,7 @@ NSString *const _MPTableSecurCellView = @"PasswordCell";
     context.allowsImplicitAnimation = YES;
     [self.view layoutSubtreeIfNeeded];
   } completionHandler:^{
-    _isDisplayingContextBar = NO;
+    self->_isDisplayingContextBar = NO;
   }];
 }
 

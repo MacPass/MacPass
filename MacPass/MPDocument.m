@@ -359,12 +359,14 @@ NSString *const MPDocumentGroupKey                            = @"MPDocumentGrou
   NSError *error;
   KPKTree *otherTree;
   
+  /* TODO determine KDB file format to set GroupByTitle options */
+  
   if(key) {
     otherTree = [[KPKTree alloc] initWithContentsOfUrl:url key:key error:&error];
   }
   
   if(otherTree) {
-    [self.tree synchronizeWithTree:otherTree options:KPKSynchronizationSynchronizeOption];
+    [self.tree synchronizeWithTree:otherTree mode:KPKSynchronizationModeSynchronize options:0];
     /* the key might have changed so update ours! */
     //self.compositeKey = key;
     [self updateChangeCount:NSChangeDone];
