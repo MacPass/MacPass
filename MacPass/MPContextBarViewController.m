@@ -134,21 +134,40 @@ typedef NS_ENUM(NSUInteger, MPContextTab) {
   }
 }
 
-/*
- - (BOOL)control:(NSControl*)control textView:(NSTextView*)textView doCommandBySelector:(SEL)commandSelector {
- if(commandSelector == @selector(insertNewline:)) {
- [self _didChangeFilter];
- }
- return NO;
- }
- */
+- (void)stackView:(NSStackView *)stackView willDetachViews:(NSArray<NSView *> *)views {
+  for(NSView *view in views) {
+    if([view isKindOfClass:NSButton.class]) {
+      NSButton *button = (NSButton *)view;
+      NSMenuItem *item = [self.specialFilterPopUpButton.menu itemWithTag:button.tag];
+      if(item) {
+        return; // no duplicates
+      }
+      item = [self _menuItemForButton:button];
+      if(item) {
+        [self.specialFilterPopUpButton.menu addItem:item];
+      }
+    }
+  }
+  [self _updateFilterButtons];
+}
 
+- (void)stackView:(NSStackView *)stackView didReattachViews:(NSArray<NSView *> *)views {
+  for(NSView *view in views) {
+    if([view isKindOfClass:NSButton.class]) {
+      NSButton *button = (NSButton *)view;
+      NSMenuItem *item = [self.specialFilterPopUpButton.menu itemWithTag:button.tag];
+      if(item) {
+        [self.specialFilterPopUpButton.menu removeItem:item];
+      }
+    }
+  }
+  [self _updateFilterButtons];
+}
 
 #pragma mark UI Helper
 - (void)_updateFilterButtons {
   MPDocument *document = self.windowController.document;
   MPEntrySearchFlags currentFlags = document.searchContext.searchFlags;
-  self.duplicatePasswordsButton.state = HNHUIStateForBool(MPIsFlagSetInOptions(MPEntrySearchDoublePasswords, currentFlags));
   self.notesButton.state = HNHUIStateForBool(MPIsFlagSetInOptions(MPEntrySearchNotes, currentFlags));
   self.passwordButton.state = HNHUIStateForBool(MPIsFlagSetInOptions(MPEntrySearchPasswords, currentFlags));
   self.titleButton.state = HNHUIStateForBool(MPIsFlagSetInOptions(MPEntrySearchTitles, currentFlags));
@@ -171,6 +190,12 @@ typedef NS_ENUM(NSUInteger, MPContextTab) {
     }
   }
   [self.specialFilterPopUpButton selectItemWithTag:selectedTag];
+}
+
+- (NSMenuItem *)_menuItemForButton:(NSButton *)button {
+  NSMenuItem *item = [[NSMenuItem alloc] initWithTitle:button.title action:@selector(toggleSearchFlags:) keyEquivalent:@""];
+  item.tag = button.tag;
+  return item;
 }
 
 @end

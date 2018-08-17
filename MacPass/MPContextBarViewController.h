@@ -26,14 +26,13 @@
 @class HNHUIGradientView;
 @class MPDocument;
 
-@interface MPContextBarViewController : MPViewController
+@interface MPContextBarViewController : MPViewController <NSStackViewDelegate>
 
 @property (weak) IBOutlet NSButton *titleButton;
 @property (weak) IBOutlet NSButton *usernameButton;
 @property (weak) IBOutlet NSButton *passwordButton;
 @property (weak) IBOutlet NSButton *urlButton;
 @property (weak) IBOutlet NSButton *notesButton;
-@property (weak) IBOutlet NSButton *duplicatePasswordsButton;
 @property (weak) IBOutlet NSPopUpButton *specialFilterPopUpButton;
 @property (weak) IBOutlet NSButton *everywhereButton;
 
