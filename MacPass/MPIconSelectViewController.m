@@ -117,48 +117,27 @@ typedef NS_ENUM(NSInteger, MPIconDownloadStatus) {
   }
   
   NSURL *url = [NSURL URLWithString:URLString];
-  if(!url) {
-    self.downloadStatus = MPIconDownloadStatusError;
-    return;
-  }
-  
-  NSString *urlString = [NSString stringWithFormat:@"%@://%@/favicon.ico", url.scheme, url.host ? url.host : @""];
-  NSURL *favIconURL = [NSURL URLWithString:urlString];
-  if(!favIconURL) {
-    self.downloadStatus = MPIconDownloadStatusError;
-    return;
-  }
-  
   KPKMetaData *metaData = ((MPDocument *)[NSDocumentController sharedDocumentController].currentDocument).tree.metaData;
-  NSURLSessionTask *task = [[NSURLSession sharedSession] dataTaskWithURL:favIconURL completionHandler:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
-    if(error) {
-      dispatch_async(dispatch_get_main_queue(), ^{
-        self.downloadStatus = MPIconDownloadStatusError;
-        //[NSApp presentError:error];
-      });
-    }
-    if([response respondsToSelector:@selector(statusCode)] &&
-       (200 == [(id)response statusCode])
-       && data.length > 0) {
-      dispatch_async(dispatch_get_main_queue(), ^{
-        KPKIcon *newIcon = [[KPKIcon alloc] initWithImageData:data];
-        if(newIcon && newIcon.image) {
-          self.downloadStatus = MPIconDownloadStatusNone;
-          [metaData addCustomIcon:newIcon];
-          [self _updateCollectionViewContent];
-        }
-        else {
-          self.downloadStatus = MPIconDownloadStatusError;
-        }
-      });
-    }
-    else {
+  
+  [MPIconHelper fetchIconDataForURL:url completionHandler:^(NSData *iconData) {
+     if(!iconData || iconData.length == 0) {
       dispatch_async(dispatch_get_main_queue(), ^{
         self.downloadStatus = MPIconDownloadStatusError;
       });
+       return;
     }
+    dispatch_async(dispatch_get_main_queue(), ^{
+      KPKIcon *newIcon = [[KPKIcon alloc] initWithImageData:iconData];
+      if(newIcon && newIcon.image) {
+        self.downloadStatus = MPIconDownloadStatusNone;
+        [metaData addCustomIcon:newIcon];
+        [self _updateCollectionViewContent];
+      }
+      else {
+        self.downloadStatus = MPIconDownloadStatusError;
+      }
+    });
   }];
-  [task resume];
 }
 
 - (void)deleteIcon:(id)sender {

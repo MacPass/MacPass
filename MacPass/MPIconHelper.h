@@ -144,4 +144,6 @@ typedef NS_ENUM(NSUInteger, MPIconType) {
  */
 + (NSArray *)databaseIconTypes;
 
++ (void)fetchIconDataForURL:(NSURL *)url completionHandler:(void (^)(NSData *iconData))handler;
+
 @end

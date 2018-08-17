@@ -167,13 +167,45 @@
                    @(MPIconExpiredEntry): NSImageNameCaution,
                    @(MPIconExpiredGroup): NSImageNameCaution
                    };
-
-    
-
-    
-
-    
   });
   return imageNames;
 }
+
++ (void)fetchIconDataForURL:(NSURL *)url completionHandler:(void (^)(NSData *iconData))handler {
+
+  if(!url || !handler) {
+    return; // no url, no handler so no need to do anything
+  }
+  
+  NSString *urlString = [NSString stringWithFormat:@"%@://%@/favicon.ico", url.scheme, url.host ? url.host : @""];
+  NSURL *favIconURL = [NSURL URLWithString:urlString];
+  if(!favIconURL) {
+    /* call the handler with nil data */
+    handler(nil);
+    return;
+  }
+  
+  NSURLSessionTask *task = [[NSURLSession sharedSession] dataTaskWithURL:favIconURL completionHandler:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
+    if(error) {
+      //dispatch_async(dispatch_get_main_queue(), ^{
+        handler(nil);
+      //});
+    }
+    else if([response respondsToSelector:@selector(statusCode)]
+            && (200 == [(id)response statusCode])
+            && data.length > 0) {
+      //dispatch_async(dispatch_get_main_queue(), ^{
+        handler(data);
+      //});
+    }
+    else {
+      //dispatch_async(dispatch_get_main_queue(), ^{
+        handler(nil);
+      //});
+    }
+  }];
+  [task resume];
+}
+
+
 @end
