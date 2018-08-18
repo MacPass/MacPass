@@ -913,6 +913,8 @@
 		713F9B481C95CEA000605880 /* fr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fr; path = fr.lproj/PluginSettings.strings; sourceTree = "<group>"; };
 		8345D7271F39023E002B7B0F /* MPPathControl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MPPathControl.h; sourceTree = "<group>"; };
 		8345D7281F39023E002B7B0F /* MPPathControl.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MPPathControl.m; sourceTree = "<group>"; };
+		A50AD5CF212884A0007C85EB /* pl */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = pl; path = pl.lproj/PluginDataView.strings; sourceTree = "<group>"; };
+		A50AD5D0212884A0007C85EB /* pl */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = pl; path = pl.lproj/PickfieldView.strings; sourceTree = "<group>"; };
 		BB3E050C1FE9D1CA00F0B46F /* nl */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = nl; path = nl.lproj/AutotypeCandidateSelectionView.strings; sourceTree = "<group>"; };
 		BB3E050D1FE9D1CB00F0B46F /* nl */ = {isa = PBXFileReference; lastKnownFileType = text.plist.stringsdict; name = nl; path = nl.lproj/Localizable.stringsdict; sourceTree = "<group>"; };
 		BB3E050E1FE9D1CC00F0B46F /* nl */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = nl; path = nl.lproj/ReferenceBuilderView.strings; sourceTree = "<group>"; };
@@ -2083,6 +2085,7 @@
 				4C0B5343205C1563003D277E /* en */,
 				4C0B5345205C1567003D277E /* de */,
 				6A74B0762076F4B50049BC29 /* sv-SE */,
+				A50AD5D0212884A0007C85EB /* pl */,
 			);
 			name = PickfieldView.xib;
 			sourceTree = "<group>";
@@ -2338,6 +2341,7 @@
 				4CF6653920E67A140008A25C /* Base */,
 				4CF6653C20E67A180008A25C /* en */,
 				4CF6653E20E67A1A0008A25C /* de */,
+				A50AD5CF212884A0007C85EB /* pl */,
 			);
 			name = PluginDataView.xib;
 			sourceTree = "<group>";
