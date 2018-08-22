@@ -175,6 +175,7 @@ NSString *const MPToolbarItemAutotype = @"TOOLBAR_AUTOTYPE";
       item.maxSize = NSMakeSize(240, 32);
       NSMenu *templateMenu = [self _allocateSearchMenuTemplate];
       searchField.searchMenuTemplate = templateMenu;
+      /* 10.10 does not support NSSearchFieldDelegate */
       ((NSTextField *)searchField).delegate = self;
       self.searchField = searchField;
     }
@@ -232,7 +233,10 @@ NSString *const MPToolbarItemAutotype = @"TOOLBAR_AUTOTYPE";
 #pragma mark - NSSearchFieldDelegate
 - (BOOL)control:(NSControl *)control textView:(NSTextView *)textView doCommandBySelector:(SEL)commandSelector {
   if(commandSelector == @selector(insertNewline:) || commandSelector == @selector(moveDown:)) {
-    [[NSApp targetForAction:@selector(focusEntries:) to:nil from:self] focusEntries:self];
+    /* Dispatch the focus loss since doing it now will break recent search storage */
+    dispatch_async(dispatch_get_main_queue(), ^{
+      [[NSApp targetForAction:@selector(focusEntries:) to:nil from:self] focusEntries:self];
+    });
   }
   return NO;
 }
