@@ -41,6 +41,9 @@ typedef NS_ENUM(NSUInteger, MPContextTab) {
 
 @interface MPContextBarViewController ()
 
+@property (strong) NSString *selectMenuItemTitle;
+@property (strong) NSString *multipleMenuItemTitle;
+
 @property (nonatomic, assign) MPContextTab activeTab;
 
 /* Filter */
@@ -70,8 +73,9 @@ typedef NS_ENUM(NSUInteger, MPContextTab) {
 }
 
 - (void)awakeFromNib {
+  self.selectMenuItemTitle = NSLocalizedString(@"SELECT_FILTER_WITH_DOTS", "Menu displayed as popup selection for search options if no filter is selected");
+  self.multipleMenuItemTitle = NSLocalizedString(@"MULTIPLE_FILTERS_ACTIVE_WITH_DOTS", "Menu displayed as popup selection for search options when multiple items are selected");
   self.filterLabelTextField.cell.backgroundStyle = NSBackgroundStyleRaised;
-  //self.historyBar.activeGradient = [[NSGradient alloc] initWithStartingColor:[[NSColor orangeColor] shadowWithLevel:0.2] endingColor:[[NSColor orangeColor] highlightWithLevel:0.2]];
   
   /* Setup Trash Bar color */
   if(!HNHUIIsRunningOnYosemiteOrNewer()) {
@@ -94,11 +98,10 @@ typedef NS_ENUM(NSUInteger, MPContextTab) {
   NSInteger specialTags[] = { MPEntrySearchDoublePasswords, MPEntrySearchExpiredEntries };
   NSArray *titles = @[ NSLocalizedString(@"SEARCH_DUPLICATE_PASSWORDS", "Search option: Find duplicate passwords"), NSLocalizedString(@"SEARCH_EXPIRED_ENTRIES", "Search option: Find expired entries") ];
   NSMenu *specialMenu = [[NSMenu alloc] initWithTitle:NSLocalizedString(@"CUSTOM_SEARCH_FILTER_MENU", @"Title for menu for custom search filters")];
-  [specialMenu addItemWithTitle:NSLocalizedString(@"SELECT_FILTER_WITH_DOTS", "Menu displayed as popup selection for search options") action:NULL keyEquivalent:@""];
+  [specialMenu addItemWithTitle:self.selectMenuItemTitle action:NULL keyEquivalent:@""];
   NSMenuItem *selectItem = specialMenu.itemArray.firstObject;
   selectItem.enabled = NO;
   selectItem.tag = MPEntrySearchNone;
-  selectItem.action = @selector(toggleSearchFlags:);
   for(NSInteger iIndex = 0; iIndex < (sizeof(specialTags)/sizeof(NSInteger)); iIndex++) {
     NSMenuItem *item = [[NSMenuItem alloc] initWithTitle:titles[iIndex] action:@selector(toggleSearchFlags:) keyEquivalent:@""];
     item.tag = specialTags[iIndex];
@@ -183,8 +186,7 @@ typedef NS_ENUM(NSUInteger, MPContextTab) {
   self.urlButton.state = HNHUIStateForBool(MPIsFlagSetInOptions(MPEntrySearchUrls, currentFlags));
   self.usernameButton.state = HNHUIStateForBool(MPIsFlagSetInOptions(MPEntrySearchUsernames, currentFlags));
   self.everywhereButton.state = HNHUIStateForBool(MPIsFlagSetInOptions(MPEntrySearchAllAttributes, currentFlags));
-  NSInteger selectedTag = MPEntrySearchNone;
-  NSMutableSet *selectedTags = [[NSMutableSet alloc] init];
+  NSMutableSet *activeTags = [[NSMutableSet alloc] init];
   for(NSMenuItem *item in self.specialFilterPopUpButton.menu.itemArray) {
     MPEntrySearchFlags flag = item.tag;
     if(flag == MPEntrySearchNone) {
@@ -195,13 +197,24 @@ typedef NS_ENUM(NSUInteger, MPContextTab) {
     
     BOOL isActive = MPIsFlagSetInOptions(flag, currentFlags);
     if(isActive) {
-      [selectedTags addObject:@(flag)];
-      selectedTag = flag;
+      [activeTags addObject:@(flag)];
     }
     item.state = HNHUIStateForBool(isActive);
   }
-  if(selectedTags.count == 1) {
-    [self.specialFilterPopUpButton selectItemWithTag:selectedTag];
+  NSMenuItem *item = [self.specialFilterPopUpButton.menu itemWithTag:MPEntrySearchNone];
+  if(activeTags.count > 1) {
+    item.title = self.multipleMenuItemTitle;
+    [self.specialFilterPopUpButton selectItemWithTag:MPEntrySearchNone];
+  }
+  else {
+    item.title = self.selectMenuItemTitle;
+    if(activeTags.count == 1) {
+      NSInteger tag = [activeTags.anyObject integerValue];
+      [self.specialFilterPopUpButton selectItemWithTag:tag];
+    }
+    else {
+      [self.specialFilterPopUpButton selectItemWithTag:MPEntrySearchNone];
+    }
   }
 }
 
