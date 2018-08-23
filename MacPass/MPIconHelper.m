@@ -187,21 +187,15 @@
   
   NSURLSessionTask *task = [[NSURLSession sharedSession] dataTaskWithURL:favIconURL completionHandler:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
     if(error) {
-      //dispatch_async(dispatch_get_main_queue(), ^{
         handler(nil);
-      //});
     }
     else if([response respondsToSelector:@selector(statusCode)]
             && (200 == [(id)response statusCode])
             && data.length > 0) {
-      //dispatch_async(dispatch_get_main_queue(), ^{
         handler(data);
-      //});
     }
     else {
-      //dispatch_async(dispatch_get_main_queue(), ^{
         handler(nil);
-      //});
     }
   }];
   [task resume];
