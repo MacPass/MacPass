@@ -95,9 +95,10 @@ typedef NS_ENUM(NSUInteger, MPContextTab) {
   NSArray *titles = @[ NSLocalizedString(@"SEARCH_DUPLICATE_PASSWORDS", "Search option: Find duplicate passwords"), NSLocalizedString(@"SEARCH_EXPIRED_ENTRIES", "Search option: Find expired entries") ];
   NSMenu *specialMenu = [[NSMenu alloc] initWithTitle:NSLocalizedString(@"CUSTOM_SEARCH_FILTER_MENU", @"Title for menu for custom search filters")];
   [specialMenu addItemWithTitle:NSLocalizedString(@"SELECT_FILTER_WITH_DOTS", "Menu displayed as popup selection for search options") action:NULL keyEquivalent:@""];
-  [specialMenu itemAtIndex:0].enabled = NO;
-  [specialMenu itemAtIndex:0].tag = MPEntrySearchNone;
-  [specialMenu itemAtIndex:0].action = @selector(toggleSearchFlags:);
+  NSMenuItem *selectItem = specialMenu.itemArray.firstObject;
+  selectItem.enabled = NO;
+  selectItem.tag = MPEntrySearchNone;
+  selectItem.action = @selector(toggleSearchFlags:);
   for(NSInteger iIndex = 0; iIndex < (sizeof(specialTags)/sizeof(NSInteger)); iIndex++) {
     NSMenuItem *item = [[NSMenuItem alloc] initWithTitle:titles[iIndex] action:@selector(toggleSearchFlags:) keyEquivalent:@""];
     item.tag = specialTags[iIndex];
@@ -138,13 +139,17 @@ typedef NS_ENUM(NSUInteger, MPContextTab) {
   for(NSView *view in views) {
     if([view isKindOfClass:NSButton.class]) {
       NSButton *button = (NSButton *)view;
-      NSMenuItem *item = [self.specialFilterPopUpButton.menu itemWithTag:button.tag];
+      NSMenu *menu = self.specialFilterPopUpButton.menu;
+      NSMenuItem *item = [menu itemWithTag:button.tag];
       if(item) {
         return; // no duplicates
       }
       item = [self _menuItemForButton:button];
       if(item) {
-        [self.specialFilterPopUpButton.menu addItem:item];
+        if(menu.itemArray.count == 3) {
+          [menu addItem:[NSMenuItem separatorItem]];
+        }
+        [menu addItem:item];
       }
     }
   }
@@ -155,9 +160,13 @@ typedef NS_ENUM(NSUInteger, MPContextTab) {
   for(NSView *view in views) {
     if([view isKindOfClass:NSButton.class]) {
       NSButton *button = (NSButton *)view;
-      NSMenuItem *item = [self.specialFilterPopUpButton.menu itemWithTag:button.tag];
+      NSMenu *menu = self.specialFilterPopUpButton.menu;
+      NSMenuItem *item = [menu itemWithTag:button.tag];
       if(item) {
-        [self.specialFilterPopUpButton.menu removeItem:item];
+        [menu removeItem:item];
+        if(menu.itemArray.count == 4) {
+          [menu removeItemAtIndex:3];
+        }
       }
     }
   }
@@ -175,21 +184,25 @@ typedef NS_ENUM(NSUInteger, MPContextTab) {
   self.usernameButton.state = HNHUIStateForBool(MPIsFlagSetInOptions(MPEntrySearchUsernames, currentFlags));
   self.everywhereButton.state = HNHUIStateForBool(MPIsFlagSetInOptions(MPEntrySearchAllAttributes, currentFlags));
   NSInteger selectedTag = MPEntrySearchNone;
+  NSMutableSet *selectedTags = [[NSMutableSet alloc] init];
   for(NSMenuItem *item in self.specialFilterPopUpButton.menu.itemArray) {
     MPEntrySearchFlags flag = item.tag;
     if(flag == MPEntrySearchNone) {
       item.state = NSOffState;
       item.enabled = NO;
+      continue;
     }
-    else {
-      BOOL isActive = MPIsFlagSetInOptions(flag, currentFlags);
-      if(isActive) {
-        selectedTag = flag;
-      }
-      item.state = HNHUIStateForBool(isActive);
+    
+    BOOL isActive = MPIsFlagSetInOptions(flag, currentFlags);
+    if(isActive) {
+      [selectedTags addObject:@(flag)];
+      selectedTag = flag;
     }
+    item.state = HNHUIStateForBool(isActive);
   }
-  [self.specialFilterPopUpButton selectItemWithTag:selectedTag];
+  if(selectedTags.count == 1) {
+    [self.specialFilterPopUpButton selectItemWithTag:selectedTag];
+  }
 }
 
 - (NSMenuItem *)_menuItemForButton:(NSButton *)button {

@@ -87,13 +87,24 @@ NSString *const kMPDocumentSearchResultsKey           = @"kMPDocumentSearchResul
   MPEntrySearchFlags toggleFlag = [sender tag];
   MPEntrySearchFlags newFlags = MPEntrySearchNone;
   BOOL isSingleFlag = toggleFlag & MPEntrySearchSingleFlags;
-  NSButton *button = sender;
-  switch(button.state) {
-    case NSOffState:
+  
+  NSControlStateValue state;
+  if([sender isKindOfClass:NSButton.class]) {
+    state = ((NSButton *)sender).state;
+  }
+  else {
+    NSAssert([sender isKindOfClass:NSMenuItem.class], @"Internal inconsitency. Did expect NSMenuItem expected, but got %@", [sender class]);
+    state = ((NSMenuItem *)sender).state;
+    /* Manually toggle the state since the popupbuttoncell doesn't do it like we want it to */
+    state = state == NSControlStateValueOn ? NSControlStateValueOff : NSControlStateValueOn;
+  }
+ 
+  switch(state) {
+    case NSControlStateValueOff:
       toggleFlag ^= MPEntrySearchAllCombineableFlags;
       newFlags = isSingleFlag ? MPEntrySearchNone : (self.searchContext.searchFlags & toggleFlag);
       break;
-    case NSOnState:
+    case NSControlStateValueOn:
       if(isSingleFlag ) {
         newFlags = toggleFlag; // This has to be either expired or double passwords
       }

@@ -109,12 +109,12 @@
                                         <endViews>
                                             <popUpButton verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="aPQ-t2-bgz">
                                                 <rect key="frame" x="766" y="5" width="64" height="19"/>
-                                                <popUpButtonCell key="cell" type="recessed" title="Item 1" bezelStyle="recessed" alignment="center" lineBreakMode="truncatingTail" state="on" borderStyle="border" imageScaling="proportionallyDown" inset="2" autoenablesItems="NO" selectedItem="LRm-iZ-XrA" id="faz-pC-uGX">
+                                                <popUpButtonCell key="cell" type="recessed" title="Item 1" bezelStyle="recessed" alignment="center" lineBreakMode="truncatingTail" borderStyle="border" imageScaling="proportionallyDown" inset="2" autoenablesItems="NO" altersStateOfSelectedItem="NO" selectedItem="LRm-iZ-XrA" id="faz-pC-uGX">
                                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES" changeBackground="YES" changeGray="YES"/>
                                                     <font key="font" metaFont="systemBold" size="12"/>
                                                     <menu key="menu" title="OtherViews" autoenablesItems="NO" id="wC4-fF-dLW">
                                                         <items>
-                                                            <menuItem title="Item 1" state="on" id="LRm-iZ-XrA"/>
+                                                            <menuItem title="Item 1" id="LRm-iZ-XrA"/>
                                                             <menuItem title="Item 2" id="cpr-p6-YAY"/>
                                                             <menuItem title="Item 3" id="CFk-71-NYQ"/>
                                                         </items>
