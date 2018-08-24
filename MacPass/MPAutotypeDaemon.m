@@ -125,6 +125,9 @@ static MPAutotypeDaemon *_sharedInstance;
 #pragma mark -
 #pragma mark Autotype Invocation
 - (void)performAutotypeForEntry:(KPKEntry *)entry {
+  [self performAutotypeForEntry:entry overrideSequence:nil];
+}
+- (void)performAutotypeForEntry:(KPKEntry *)entry overrideSequence:(NSString *)sequence {
   if(entry) {
     [self _updateTargeInformationForApplication:self.previousApplication];
     [self _performAutotypeForEntry:entry];
@@ -132,7 +135,7 @@ static MPAutotypeDaemon *_sharedInstance;
 }
 
 - (void)_didPressHotKey {
-  [self _updateTargetInfoForFrontMostApplication];
+  [self _updateTargetInformationForFrontMostApplication];
   [self _performAutotypeForEntry:nil];
 }
 
@@ -330,15 +333,15 @@ static MPAutotypeDaemon *_sharedInstance;
 #pragma mark Application information
 - (BOOL)_orderApplicationToFront:(pid_t)processIdentifier {
   NSRunningApplication *runingApplication = [NSRunningApplication runningApplicationWithProcessIdentifier:processIdentifier];
-  NSRunningApplication *frontApplication = [NSWorkspace sharedWorkspace].frontmostApplication;
+  NSRunningApplication *frontApplication = NSWorkspace.sharedWorkspace.frontmostApplication;
   if(frontApplication.processIdentifier == processIdentifier) {
     return NO;
   }
   [runingApplication activateWithOptions:NSApplicationActivateIgnoringOtherApps];
   return YES;
 }
-- (void)_updateTargetInfoForFrontMostApplication {
-  [self _updateTargeInformationForApplication:[NSWorkspace sharedWorkspace].frontmostApplication];
+- (void)_updateTargetInformationForFrontMostApplication {
+  [self _updateTargeInformationForApplication:NSWorkspace.sharedWorkspace.frontmostApplication];
 }
 
 - (void)_updateTargeInformationForApplication:(NSRunningApplication *)application {

@@ -39,6 +39,7 @@
 - (instancetype)init NS_UNAVAILABLE;
 
 - (void)performAutotypeForEntry:(KPKEntry *)entry;
+- (void)performAutotypeForEntry:(KPKEntry *)entry overrideSequence:(NSString *)sequence;
 - (void)selectAutotypeCandiate:(MPAutotypeContext *)context;
 - (void)cancelAutotypeCandidateSelection;
 
