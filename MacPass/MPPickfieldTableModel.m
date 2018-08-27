@@ -51,13 +51,12 @@
   
   for(KPKAttribute *attribute in entry.defaultAttributes) {
     /* TODO exclude protected values */
-    [items addObject:[MPPickfieldTableModelRowItem itemWithName:attribute.key value:attribute.value]];
+    [items addObject:[MPPickfieldTableModelRowItem itemWithName:attribute.key value:(attribute.protect ? @"•••" : attribute.value)]];
   }
 
   [items addObject:[MPPickfieldTableModelRowItem groupItemWithName:NSLocalizedString(@"ENTRY_CUSTOM_ATTRIBUTES", @"Group row for entry attributes")]];
   for(KPKAttribute *attribute in entry.customAttributes) {
-    /* TODO exclude protected values */
-    [items addObject:[MPPickfieldTableModelRowItem itemWithName:attribute.key value:attribute.value]];
+    [items addObject:[MPPickfieldTableModelRowItem itemWithName:attribute.key value:(attribute.protect ? @"•••" : attribute.value)]];
   }
   self.items = items; // copy creates an immutable copy
 }
