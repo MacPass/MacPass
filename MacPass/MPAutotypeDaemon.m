@@ -242,11 +242,13 @@ static MPAutotypeDaemon *_sharedInstance;
     /* TODO - we can use a saver way and use a notification to check if the app actally was activated */
     usleep(1 * NSEC_PER_MSEC);
   }
-  dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
-    for(MPAutotypeCommand *command in [MPAutotypeCommand commandsForContext:context]) {
+  
+  for(MPAutotypeCommand *command in [MPAutotypeCommand commandsForContext:context]) {
+    /* dispatch commands to main thread since most of them translate key events which is disallowed on background thread */
+    dispatch_async(dispatch_get_main_queue(), ^{
       [command execute];
-    }
-  });
+    });
+  }
 }
 
 #pragma mark -
