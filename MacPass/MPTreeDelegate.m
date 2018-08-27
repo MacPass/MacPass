@@ -94,15 +94,12 @@
   panel.contentViewController = pickFieldViewController;
   panel.title = NSLocalizedString(@"PICKFIELD_WINDOW_TITLE", @"Window displayed to the user to pick an amout of characters");
   [panel center];
-  if(NSModalResponseOK == [NSApp runModalForWindow:panel]) {
-    /* add appropriate key press commands? or let the pick-char view-controller handel this? */
-    return pickFieldViewController.pickedValue;
-  }
-  return @"";
+  NSModalResponse response = [NSApp runModalForWindow:panel];
+  [panel orderOut:nil];
+  return (response == NSModalResponseOK) ? pickFieldViewController.pickedValue : @"";
 }
 
 - (NSString *)tree:(KPKTree *)tree resolvePickCharsPlaceholderForEntry:(KPKEntry *)entry field:(NSString *)field options:(NSString *)options {
-  
   NSString *value = [[entry valueForAttributeWithKey:field] kpk_finalValueForEntry:entry];
   if(value.length == 0) {
     return @""; // error while retrieving source value
@@ -122,10 +119,8 @@
   panel.contentViewController = pickCharViewController;
   panel.title = NSLocalizedString(@"PICKCHAR_WINDOW_TITLE", @"Window displayed to the user to pick an amout of characters");
   [panel center];
-  if(NSModalResponseOK == [NSApp runModalForWindow:panel]) {
-    /* add appropriate key press comamnds? or let the pick-char view-controller handel this? */
-    return pickCharViewController.pickedValue;
-  }
-  return @"";
+  NSModalResponse response = [NSApp runModalForWindow:panel];
+  [panel orderOut:nil];
+  return (response == NSModalResponseOK) ? pickCharViewController.pickedValue : @"";
 }
 @end
