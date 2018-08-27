@@ -137,6 +137,11 @@ typedef NS_ENUM(NSUInteger, MPEntryTab) {
   self.customFieldsTableView.translatesAutoresizingMaskIntoConstraints = NO;
   NSView *customFieldTableView = self.customFieldsTableView;
   [self.customFieldsTableView.enclosingScrollView removeFromSuperviewWithoutNeedingDisplay];
+  if (@available(macOS 10.13, *)) {
+    self.customFieldsTableView.usesAutomaticRowHeights = YES;
+  } else {
+    // Fallback on earlier versions
+  }
   
   
   [self.generalView addSubview:customFieldTableView];
