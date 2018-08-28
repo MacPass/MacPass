@@ -873,10 +873,10 @@
                                             <constraint firstItem="199" firstAttribute="leading" secondItem="196" secondAttribute="leading" constant="3" id="204"/>
                                             <constraint firstItem="199" firstAttribute="top" secondItem="200" secondAttribute="bottom" constant="8" symbolic="YES" id="205"/>
                                             <constraint firstAttribute="bottom" secondItem="199" secondAttribute="bottom" constant="10" id="206"/>
-                                            <constraint firstItem="198" firstAttribute="centerY" secondItem="199" secondAttribute="centerY" id="207"/>
                                             <constraint firstAttribute="trailing" secondItem="198" secondAttribute="trailing" constant="34" id="209"/>
-                                            <constraint firstItem="tDI-EL-JGB" firstAttribute="centerY" secondItem="199" secondAttribute="centerY" id="FJe-JG-f4a"/>
                                             <constraint firstItem="tDI-EL-JGB" firstAttribute="leading" secondItem="199" secondAttribute="trailing" constant="8" symbolic="YES" id="Wbg-bF-vD7"/>
+                                            <constraint firstItem="tDI-EL-JGB" firstAttribute="top" secondItem="199" secondAttribute="top" id="bpI-VY-E7b"/>
+                                            <constraint firstItem="198" firstAttribute="top" secondItem="199" secondAttribute="top" id="lHD-b8-rRG"/>
                                             <constraint firstItem="198" firstAttribute="leading" secondItem="tDI-EL-JGB" secondAttribute="trailing" constant="8" symbolic="YES" id="qSi-Hi-kM3"/>
                                         </constraints>
                                         <connections>
