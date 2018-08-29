@@ -568,6 +568,19 @@ typedef NS_ENUM(NSUInteger, MPEntryTab) {
 
 #pragma mark -
 #pragma mark HNHUITextFieldDelegate
+- (BOOL)textField:(NSTextField *)textField allowServicesForTextView:(NSTextView *)textView {
+  /* disallow servies for password fields */
+  if(textField == self.passwordTextField) {
+    return NO;
+  }
+  NSInteger index = MPCustomFieldIndexFromTag(textField.tag);
+  if(index > -1) {
+    KPKAttribute *attribute = _customFieldsController.arrangedObjects[index];
+    return !attribute.protect;
+  }
+  return YES;
+}
+
 - (NSMenu *)textField:(NSTextField *)textField textView:(NSTextView *)view menu:(NSMenu *)menu {
   for(NSMenuItem *item in menu.itemArray) {
 #pragma clang diagnostic push
