@@ -176,7 +176,7 @@
   if(!url || !handler) {
     return; // no url, no handler so no need to do anything
   }
-  
+
   NSString *urlString = [NSString stringWithFormat:@"%@://%@/favicon.ico", url.scheme, url.host ? url.host : @""];
   NSURL *favIconURL = [NSURL URLWithString:urlString];
   if(!favIconURL) {
@@ -185,7 +185,7 @@
     return;
   }
   
-  NSURLSessionTask *task = [[NSURLSession sharedSession] dataTaskWithURL:favIconURL completionHandler:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
+  NSURLSessionTask *task = [NSURLSession.sharedSession dataTaskWithURL:favIconURL completionHandler:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
     if(error) {
         handler(nil);
     }
