@@ -145,7 +145,7 @@ NSString *const MPToolbarItemAutotype = @"TOOLBAR_AUTOTYPE";
       [button setImage:image];
       [button sizeToFit];
       
-      NSMenu *menu = [NSMenu allocWithZone:[NSMenu menuZone]];
+      NSMenu *menu = [[NSMenu alloc] init];
       [menu addItemWithTitle:NSLocalizedString(@"UNKNOWN_TOOLBAR_ITEM", @"") action:NULL keyEquivalent:@""];
       menu.delegate = _entryMenuDelegate;
       button.contextMenu = menu;

@@ -588,7 +588,7 @@ NSString *const _MPTableSecurCellView = @"PasswordCell";
 }
 
 - (void)_setupHeaderMenu {
-  NSMenu *headerMenu = [[NSMenu allocWithZone:[NSMenu menuZone]] init];
+  NSMenu *headerMenu = [[NSMenu alloc] init];
   
   [headerMenu addItemWithTitle:NSLocalizedString(@"TITLE", "Menu item to toggle display of title column in entry table") action:NULL keyEquivalent:@""];
   [headerMenu addItemWithTitle:NSLocalizedString(@"USERNAME", "Menu item to toggle display of username column in entry table") action:NULL keyEquivalent:@""];
