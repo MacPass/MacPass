@@ -37,17 +37,14 @@
    It's possible nicer to cache the entries and just update
    the menu entries, that actually need updating
    */
-  MPDocument *document = [[NSDocumentController sharedDocumentController] currentDocument];
-  if(!document) {
-    [menu removeAllItems];
-  }
+  MPDocument *document = NSDocumentController.sharedDocumentController.currentDocument;
   [menu removeAllItems];
   [menu addItemWithTitle:NSLocalizedString(@"EDIT_TEMPLATE_GROUP", "Menu item on the add entry context menu to edit template groups") action:[MPActionHelper actionOfType:MPActionEditTemplateGroup] keyEquivalent:@""];
 
   [menu addItem:[NSMenuItem separatorItem]];
-  for(KPKEntry *entry in [document.templates childEntries]) {
+  for(KPKEntry *entry in document.templates.childEntries) {
     NSString *templateMask = NSLocalizedString(@"NEW_ENTRY_WITH_TEMPLATE_%@", "Submenu to add an entry via template");
-    NSMenuItem *templateItem = [[NSMenuItem allocWithZone:[NSMenu menuZone]] initWithTitle:[NSString stringWithFormat:templateMask, entry.title]
+    NSMenuItem *templateItem = [[NSMenuItem alloc] initWithTitle:[NSString stringWithFormat:templateMask, entry.title]
                                                                                     action:@selector(createEntryFromTemplate:)
                                                                              keyEquivalent:@""];
     templateItem.representedObject = entry.uuid;

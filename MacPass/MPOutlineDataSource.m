@@ -39,8 +39,9 @@
   if(items.count != 1) {
     return NO;
   }
-  self.localDraggedGroup = nil;  id item = [items.lastObject representedObject];
-  if(![item isKindOfClass:[KPKGroup class]]) {
+  self.localDraggedGroup = nil;
+  id item = [items.lastObject representedObject];
+  if(![item isKindOfClass:KPKGroup.class]) {
     return NO;
   }
   KPKGroup *draggedGroup = item;
@@ -69,7 +70,7 @@
   
   /* Check if the Target is the root group */
   id targetItem = [item representedObject];
-  if( ![targetItem isKindOfClass:[KPKGroup class]] ) {
+  if( ![targetItem isKindOfClass:KPKGroup.class] ) {
     return NSDragOperationNone; // Block all unknown types
   }
   
@@ -122,7 +123,7 @@
   info.animatesToDestination = YES;
   
   id targetItem = [item representedObject];
-  if(![targetItem isKindOfClass:[KPKGroup class]]) {
+  if(![targetItem isKindOfClass:KPKGroup.class]) {
     return NO; // Wrong
   }
   
@@ -176,7 +177,7 @@
   }
   /* Cleanup old stuff */
   
-  NSArray *types = [pasteboard types];
+  NSArray *types = pasteboard.types;
   if(types.count > 1 || types.count == 0) {
     return NO;
   }
@@ -184,7 +185,7 @@
   NSString *draggedType = types.lastObject;
   if([draggedType isEqualToString:KPKGroupUTI]) {
     // dragging group
-    NSArray *groups = [pasteboard readObjectsForClasses:@[[KPKGroup class]] options:nil];
+    NSArray *groups = [pasteboard readObjectsForClasses:@[KPKGroup.class] options:nil];
     if(groups.count != 1) {
       return NO;
     }
@@ -192,7 +193,7 @@
     return YES;
   }
   else if([draggedType isEqualToString:KPKEntryUTI]) {
-    NSArray *entries = [pasteboard readObjectsForClasses:@[[KPKEntry class]] options:nil];
+    NSArray *entries = [pasteboard readObjectsForClasses:@[KPKEntry.class] options:nil];
     if([entries count] != 1) {
       return NO; // NO entry readable
     }
