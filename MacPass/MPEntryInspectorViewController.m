@@ -112,7 +112,7 @@ typedef NS_ENUM(NSUInteger, MPEntryTab) {
 }
 
 - (KPKEntry *)representedEntry {
-  if([self.representedObject isKindOfClass:[KPKEntry class]]) {
+  if([self.representedObject isKindOfClass:KPKEntry.class]) {
     return self.representedObject;
   }
   return nil;
@@ -127,7 +127,7 @@ typedef NS_ENUM(NSUInteger, MPEntryTab) {
   [self.tabView bind:NSSelectedIndexBinding toObject:self withKeyPath:NSStringFromSelector(@selector(activeTab)) options:nil];
   
   
-  self.attachmentTableView.backgroundColor = [NSColor clearColor];
+  self.attachmentTableView.backgroundColor = NSColor.clearColor;
   [self.attachmentTableView bind:NSContentBinding toObject:_attachmentsController withKeyPath:NSStringFromSelector(@selector(arrangedObjects)) options:nil];
   self.attachmentTableView.delegate = _attachmentTableDelegate;
   self.attachmentTableView.dataSource = _attachmentDataSource;
