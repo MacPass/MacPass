@@ -138,7 +138,7 @@ typedef NS_ENUM(NSUInteger, MPEntryTab) {
   NSView *customFieldTableView = self.customFieldsTableView;
   [self.customFieldsTableView.enclosingScrollView removeFromSuperviewWithoutNeedingDisplay];
   if (@available(macOS 10.13, *)) {
-    self.customFieldsTableView.usesAutomaticRowHeights = YES;
+    //self.customFieldsTableView.usesAutomaticRowHeights = YES;
   } else {
     // Fallback on earlier versions
   }
@@ -155,7 +155,6 @@ typedef NS_ENUM(NSUInteger, MPEntryTab) {
                                                                            options:0
                                                                            metrics:nil
                                                                              views:dict]];
-  
   
   
   
@@ -644,6 +643,7 @@ typedef NS_ENUM(NSUInteger, MPEntryTab) {
 
 - (void)_didChangeCurrentItem:(NSNotification *)notificiation {
   self.showPassword = NO;
+  //self.customFieldsTableView.needsDisplay = YES;
 }
 
 @end
