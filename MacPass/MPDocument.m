@@ -568,7 +568,7 @@ NSString *const MPDocumentGroupKey                            = @"MPDocumentGrou
 - (void)setSelectedNodes:(NSArray<KPKNode *> *)selectedNodes {
   if(![_selectedNodes isEqualToArray:selectedNodes]) {
     _selectedNodes = [selectedNodes copy];
-    [[NSNotificationCenter defaultCenter] postNotificationName:MPDocumentCurrentItemChangedNotification object:self];
+    [NSNotificationCenter.defaultCenter postNotificationName:MPDocumentCurrentItemChangedNotification object:self];
   }
 }
 
@@ -773,7 +773,7 @@ NSString *const MPDocumentGroupKey                            = @"MPDocumentGrou
     return; // sender cannot provide useful data
   }
   id obj = [sender representedObject];
-  if(![obj isKindOfClass:[NSUUID class]]) {
+  if(![obj isKindOfClass:NSUUID.class]) {
     return; // sender cannot provide NSUUID
   }
   NSUUID *entryUUID = [sender representedObject];
@@ -783,7 +783,7 @@ NSString *const MPDocumentGroupKey                            = @"MPDocumentGrou
     if(templateEntry && group) {
       KPKEntry *copy = [templateEntry copyWithTitle:templateEntry.title options:kKPKCopyOptionNone];
       
-      BOOL updatePassword = [[NSUserDefaults standardUserDefaults] boolForKey:kMPSettingsKeyUpdatePasswordOnTemplateEntries];
+      BOOL updatePassword = [NSUserDefaults.standardUserDefaults boolForKey:kMPSettingsKeyUpdatePasswordOnTemplateEntries];
       if( updatePassword ) {
         BOOL undoEnabled = self.undoManager.isUndoRegistrationEnabled;
         [self.undoManager disableUndoRegistration];
@@ -915,7 +915,7 @@ NSString *const MPDocumentGroupKey                            = @"MPDocumentGrou
     keysForFiles[self.fileURL.path.sha1HexDigest] = keyURL.path;
   }
   if(keysForFiles) {
-    [[NSUserDefaults standardUserDefaults] setObject:keysForFiles forKey:kMPSettingsKeyRememeberdKeysForDatabases];
+    [NSUserDefaults.standardUserDefaults setObject:keysForFiles forKey:kMPSettingsKeyRememeberdKeysForDatabases];
   }
 }
 
