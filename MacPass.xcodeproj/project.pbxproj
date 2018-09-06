@@ -153,6 +153,7 @@
 		4C7615681764C0C40015A1A6 /* PasswordInputView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4C76156A1764C0C40015A1A6 /* PasswordInputView.xib */; };
 		4C76156D1764C0E20015A1A6 /* InspectorView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4C76156F1764C0E20015A1A6 /* InspectorView.xib */; };
 		4C7679BF1D76D6D8001F33D6 /* MPErrorRecoveryAttempter.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C7679BE1D76D6D8001F33D6 /* MPErrorRecoveryAttempter.m */; };
+		4C769CA9213D59BF00A3F60A /* KPKEntry+MPCustomAttributeProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C769CA8213D59BF00A3F60A /* KPKEntry+MPCustomAttributeProperties.m */; };
 		4C7714AA176C998F00549F2A /* 43_TrashTemplate.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 4C7714A9176C998F00549F2A /* 43_TrashTemplate.pdf */; };
 		4C77547516E55FE800970E02 /* MPInspectorViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C77547416E55FE800970E02 /* MPInspectorViewController.m */; };
 		4C77C84118E240E000D1C42B /* DDHotKey+MacPassAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C77C84018E240E000D1C42B /* DDHotKey+MacPassAdditions.m */; };
@@ -588,6 +589,8 @@
 		4C7679BC1D75E690001F33D6 /* MPModelChangeObserving.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MPModelChangeObserving.h; sourceTree = "<group>"; };
 		4C7679BD1D76D6D8001F33D6 /* MPErrorRecoveryAttempter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MPErrorRecoveryAttempter.h; sourceTree = "<group>"; };
 		4C7679BE1D76D6D8001F33D6 /* MPErrorRecoveryAttempter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MPErrorRecoveryAttempter.m; sourceTree = "<group>"; };
+		4C769CA7213D59BF00A3F60A /* KPKEntry+MPCustomAttributeProperties.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "KPKEntry+MPCustomAttributeProperties.h"; sourceTree = "<group>"; };
+		4C769CA8213D59BF00A3F60A /* KPKEntry+MPCustomAttributeProperties.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "KPKEntry+MPCustomAttributeProperties.m"; sourceTree = "<group>"; };
 		4C7714A9176C998F00549F2A /* 43_TrashTemplate.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = 43_TrashTemplate.pdf; sourceTree = "<group>"; };
 		4C77547316E55FE800970E02 /* MPInspectorViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MPInspectorViewController.h; sourceTree = "<group>"; };
 		4C77547416E55FE800970E02 /* MPInspectorViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MPInspectorViewController.m; sourceTree = "<group>"; };
@@ -1062,6 +1065,8 @@
 				4C8F0C781FD05A6A00BE157F /* NSString+MPPrettyPasswordDisplay.m */,
 				4C0949571FD6B89B004F2971 /* NSUserNotification+MPAdditions.h */,
 				4C0949581FD6B89B004F2971 /* NSUserNotification+MPAdditions.m */,
+				4C769CA7213D59BF00A3F60A /* KPKEntry+MPCustomAttributeProperties.h */,
+				4C769CA8213D59BF00A3F60A /* KPKEntry+MPCustomAttributeProperties.m */,
 			);
 			name = Categories;
 			sourceTree = "<group>";
@@ -1943,6 +1948,7 @@
 				4C2E382316D1421B00037A9D /* MPIconHelper.m in Sources */,
 				4C2E382616D1470200037A9D /* MPViewController.m in Sources */,
 				4C65FAE916D16DDB006E0577 /* MPPasswordInputController.m in Sources */,
+				4C769CA9213D59BF00A3F60A /* KPKEntry+MPCustomAttributeProperties.m in Sources */,
 				4CDF01A316D1B76700D0AC08 /* MPEntryViewController.m in Sources */,
 				4C3BD51516D276F800389F1F /* MPToolbarDelegate.m in Sources */,
 				4C7B63731C0CB51F00D7038C /* TTTDataTransformer.m in Sources */,
