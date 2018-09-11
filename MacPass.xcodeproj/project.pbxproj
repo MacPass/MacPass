@@ -40,8 +40,6 @@
 		4C25703F1BF11C2300D39416 /* MPPluginSettingsController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C25703D1BF11C2300D39416 /* MPPluginSettingsController.m */; };
 		4C25D58716CF0FAA00F6806C /* EntryView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4C25D58616CF0FAA00F6806C /* EntryView.xib */; };
 		4C26C33F18D8C92100CF1A1C /* MPTemporaryFileStorage.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C26C33E18D8C92100CF1A1C /* MPTemporaryFileStorage.m */; };
-		4C26C34B18D8D5A300CF1A1C /* MPPreviewViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C26C34918D8D5A300CF1A1C /* MPPreviewViewController.m */; };
-		4C26C34C18D8D5A300CF1A1C /* PreviewView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4C26C34A18D8D5A300CF1A1C /* PreviewView.xib */; };
 		4C2E381D16D11FF900037A9D /* 03_ServerTemplate.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 4C2E381A16D11FF900037A9D /* 03_ServerTemplate.pdf */; };
 		4C2E381E16D11FF900037A9D /* 04_KlipperTemplate.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 4C2E381B16D11FF900037A9D /* 04_KlipperTemplate.pdf */; };
 		4C2E381F16D11FF900037A9D /* 05_LanguagesTemplate.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 4C2E381C16D11FF900037A9D /* 05_LanguagesTemplate.pdf */; };
@@ -378,9 +376,6 @@
 		4C25D58616CF0FAA00F6806C /* EntryView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = EntryView.xib; sourceTree = "<group>"; };
 		4C26C33D18D8C92100CF1A1C /* MPTemporaryFileStorage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MPTemporaryFileStorage.h; sourceTree = "<group>"; };
 		4C26C33E18D8C92100CF1A1C /* MPTemporaryFileStorage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MPTemporaryFileStorage.m; sourceTree = "<group>"; };
-		4C26C34818D8D5A300CF1A1C /* MPPreviewViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MPPreviewViewController.h; sourceTree = "<group>"; };
-		4C26C34918D8D5A300CF1A1C /* MPPreviewViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MPPreviewViewController.m; sourceTree = "<group>"; };
-		4C26C34A18D8D5A300CF1A1C /* PreviewView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PreviewView.xib; sourceTree = "<group>"; };
 		4C2B0B7419F66F6400E48913 /* MPTargetNodeResolving.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MPTargetNodeResolving.h; sourceTree = "<group>"; };
 		4C2E381A16D11FF900037A9D /* 03_ServerTemplate.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = 03_ServerTemplate.pdf; sourceTree = "<group>"; };
 		4C2E381B16D11FF900037A9D /* 04_KlipperTemplate.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = 04_KlipperTemplate.pdf; sourceTree = "<group>"; };
@@ -1516,9 +1511,6 @@
 				4C1E9883185F71A800943563 /* MPContextBarViewController.h */,
 				4C1E9884185F71A800943563 /* MPContextBarViewController.m */,
 				4C6DCC471FA2457900C8AD3F /* ContextBar.xib */,
-				4C26C34818D8D5A300CF1A1C /* MPPreviewViewController.h */,
-				4C26C34918D8D5A300CF1A1C /* MPPreviewViewController.m */,
-				4C26C34A18D8D5A300CF1A1C /* PreviewView.xib */,
 				4CE30ACA1A312B7F0063FCC6 /* MPReferenceBuilderViewController.h */,
 				4CE30ACB1A312B7F0063FCC6 /* MPReferenceBuilderViewController.m */,
 				4CD820231A32173100399DBB /* ReferenceBuilderView.xib */,
@@ -1787,7 +1779,6 @@
 				4C3826CA1AD04D8E007D7D67 /* 63_FeatherTemplate.pdf in Resources */,
 				4C586F9E16D07ABD00E7DB57 /* 00_PasswordTemplate.pdf in Resources */,
 				FA13910C1F9CD9EB0033D256 /* Localizable.stringsdict in Resources */,
-				4C26C34C18D8D5A300CF1A1C /* PreviewView.xib in Resources */,
 				4C586FA016D07D7200E7DB57 /* 01_PackageNetworkTemplate.pdf in Resources */,
 				4C3826CB1AD04D8E007D7D67 /* 64_AppleTemplate.pdf in Resources */,
 				4C3826AA1AD04D8E007D7D67 /* 27_NFSUnmountTemplate.pdf in Resources */,
@@ -1998,7 +1989,6 @@
 				4CF6C711176F4533007A811D /* MPStringLengthValueTransformer.m in Sources */,
 				4CD5D705177A5F3300100649 /* MPDatabaseSettingsWindowController.m in Sources */,
 				4C4FCE15177CFE6B00BBF7AE /* MPCustomFieldTableCellView.m in Sources */,
-				4C26C34B18D8D5A300CF1A1C /* MPPreviewViewController.m in Sources */,
 				4C4B728518E4B9B400A1A5D5 /* MPDockTileHelper.m in Sources */,
 				4C5FE9AE17843CE20001D5A8 /* MPSelectedAttachmentTableCellView.m in Sources */,
 				4C3666411787327E00B249F1 /* MPDocument+Attachments.m in Sources */,
