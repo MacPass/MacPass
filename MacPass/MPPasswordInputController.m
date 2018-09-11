@@ -25,7 +25,6 @@
 #import "MPDocumentWindowController.h"
 #import "MPDocument.h"
 #import "MPSettingsHelper.h"
-#import "MPKeyfilePathControlDelegate.h"
 
 #import "HNHUi/HNHUi.h"
 
