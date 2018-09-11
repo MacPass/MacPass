@@ -35,6 +35,24 @@ NSInteger MPCustomFieldIndexFromTag(NSInteger tag) {
 @implementation MPCustomFieldTableViewDelegate
 
 
+- (void)tableView:(NSTableView *)tableView didRemoveRowView:(NSTableRowView *)rowView forRow:(NSInteger)row {
+  if(@available(macOS 10.12, *)) {
+    // 10.12 and higher are working correctly
+  }
+  else {
+    [tableView invalidateIntrinsicContentSize];
+  }
+}
+
+- (void)tableView:(NSTableView *)tableView didAddRowView:(NSTableRowView *)rowView forRow:(NSInteger)row {
+  if(@available(macOS 10.12, *)) {
+    // 10.12 and higher are working correctly
+  }
+  else {
+    [tableView invalidateIntrinsicContentSize];
+  }
+}
+
 /*
 - (CGFloat)tableView:(NSTableView *)tableView heightOfRow:(NSInteger)row {
   static NSTextFieldCell *cell;

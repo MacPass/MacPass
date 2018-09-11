@@ -22,6 +22,7 @@
 		4C0B533F205C1561003D277E /* PickfieldView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4C0B5341205C1561003D277E /* PickfieldView.xib */; };
 		4C0C59F118B17F10009C7B76 /* DDHotKeyUtilities.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C0C59EF18B17F10009C7B76 /* DDHotKeyUtilities.m */; };
 		4C0DBEF51BF508DE00F9B287 /* PluginSettings.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4C0DBEF71BF508DE00F9B287 /* PluginSettings.xib */; };
+		4C0F04402147A6FA000B8568 /* MPCustomFieldTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C0F043F2147A6FA000B8568 /* MPCustomFieldTableView.m */; };
 		4C0F647B17B6BC9C00D9522A /* MPSavePanelAccessoryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C0F647A17B6BC9C00D9522A /* MPSavePanelAccessoryViewController.m */; };
 		4C10207F1B750E2F00BFCD59 /* MPTestAutotype.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C10207E1B750E2F00BFCD59 /* MPTestAutotype.m */; };
 		4C10412C178CDD44001B5239 /* NSDate+Humanized.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C10412B178CDD44001B5239 /* NSDate+Humanized.m */; };
@@ -350,6 +351,8 @@
 		4C0C59EF18B17F10009C7B76 /* DDHotKeyUtilities.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DDHotKeyUtilities.m; path = DDHotKey/DDHotKeyUtilities.m; sourceTree = "<group>"; };
 		4C0C59F018B17F10009C7B76 /* DDHotKeyUtilities.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; name = DDHotKeyUtilities.h; path = DDHotKey/DDHotKeyUtilities.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
 		4C0DBEF61BF508DE00F9B287 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/PluginSettings.xib; sourceTree = "<group>"; };
+		4C0F043E2147A6FA000B8568 /* MPCustomFieldTableView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MPCustomFieldTableView.h; sourceTree = "<group>"; };
+		4C0F043F2147A6FA000B8568 /* MPCustomFieldTableView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MPCustomFieldTableView.m; sourceTree = "<group>"; };
 		4C0F647917B6BC9C00D9522A /* MPSavePanelAccessoryViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MPSavePanelAccessoryViewController.h; sourceTree = "<group>"; };
 		4C0F647A17B6BC9C00D9522A /* MPSavePanelAccessoryViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MPSavePanelAccessoryViewController.m; sourceTree = "<group>"; };
 		4C10207E1B750E2F00BFCD59 /* MPTestAutotype.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MPTestAutotype.m; sourceTree = "<group>"; };
@@ -1034,6 +1037,8 @@
 				4CE082C21F6FCD2A0034FF56 /* MPCollectionView.m */,
 				4CF6C3001FBF39BF0055AD03 /* MPPluginTabelCellView.h */,
 				4CF6C3011FBF39BF0055AD03 /* MPPluginTabelCellView.m */,
+				4C0F043E2147A6FA000B8568 /* MPCustomFieldTableView.h */,
+				4C0F043F2147A6FA000B8568 /* MPCustomFieldTableView.m */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -1934,6 +1939,7 @@
 			files = (
 				4CD034AC1BFE113B003C002C /* MPPluginHost.m in Sources */,
 				4C77E37315B84A240093A587 /* main.m in Sources */,
+				4C0F04402147A6FA000B8568 /* MPCustomFieldTableView.m in Sources */,
 				4CBA2ABA17074C07006D8139 /* MPSettingsHelper.m in Sources */,
 				4C77E37A15B84A240093A587 /* MPAppDelegate.m in Sources */,
 				4C37A84015B8B474005EF8EE /* MPOutlineDataSource.m in Sources */,

@@ -134,15 +134,10 @@ typedef NS_ENUM(NSUInteger, MPEntryTab) {
   [self.attachmentTableView registerForDraggedTypes:@[NSFilenamesPboardType]];
   
   /* extract custom field table view */
-  self.customFieldsTableView.translatesAutoresizingMaskIntoConstraints = NO;
   NSView *customFieldTableView = self.customFieldsTableView;
+  self.customFieldsTableView.translatesAutoresizingMaskIntoConstraints = NO;
   [self.customFieldsTableView.enclosingScrollView removeFromSuperviewWithoutNeedingDisplay];
-  if (@available(macOS 10.13, *)) {
-    //self.customFieldsTableView.usesAutomaticRowHeights = YES;
-  } else {
-    // Fallback on earlier versions
-  }
-  
+  [self.customFieldsTableView removeFromSuperviewWithoutNeedingDisplay];
   
   [self.generalView addSubview:customFieldTableView];
   
