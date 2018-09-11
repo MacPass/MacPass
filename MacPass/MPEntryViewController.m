@@ -204,7 +204,16 @@ NSString *const _MPTableSecurCellView = @"PasswordCell";
                           options:@{ NSValueTransformerNameBindingOption: NSUnarchiveFromDataTransformerName }];
   
   [self _setupHeaderMenu];
+  /* Move index and parent column to dedicated places if it was moved by the user before */
   parentColumn.hidden = YES;
+  NSUInteger indexIndex = [self.entryTable columnWithIdentifier:MPEntryTableIndexColumnIdentifier];
+  if(indexIndex != 0) {
+    [self.entryTable moveColumn:indexIndex toColumn:0];
+  }
+  NSUInteger parentIndex = [self.entryTable columnWithIdentifier:MPEntryTableParentColumnIdentifier];
+  if(parentIndex != 1) {
+    [self.entryTable moveColumn:parentIndex toColumn:1];
+  }
 }
 
 - (NSResponder *)reconmendedFirstResponder {
@@ -374,6 +383,18 @@ NSString *const _MPTableSecurCellView = @"PasswordCell";
   }
   MPDocument *document = self.windowController.document;
   document.selectedEntries = self.entryArrayController.selectedObjects;
+}
+
+- (BOOL)tableView:(NSTableView *)tableView shouldReorderColumn:(NSInteger)columnIndex toColumn:(NSInteger)newColumnIndex {
+  NSTableColumn *column = tableView.tableColumns[columnIndex];
+  /* Do not allow to set as first column */
+  
+  if(newColumnIndex == 1 || newColumnIndex == 0) {
+    return NO;
+  }
+  BOOL isParentColumn = [column.identifier isEqualToString:MPEntryTableParentColumnIdentifier];
+  BOOL isIndexColumn = [column.identifier isEqualToString:MPEntryTableIndexColumnIdentifier];
+  return !(isParentColumn || isIndexColumn);
 }
 
 #pragma mark MPTargetItemResolving
