@@ -88,31 +88,6 @@ static CGKeyCode kMPNumpadKeyCodes[] = {
 
 @end
 
-@interface MPAutotypeParserContext : NSObject
-
-@property (strong) NSMutableArray *commands;
-@property (copy) NSString *commandString;
-@property (assign) CGEventFlags activeModifiers;
-@property (assign) BOOL obfuscate;
-
-- (instancetype)initWithString:(NSString *)commandString modifiers:(CGEventFlags)modifiers commands:(NSMutableArray *)commands;
-
-@end
-
-@implementation MPAutotypeParserContext
-
-- (instancetype)initWithString:(NSString *)commandString modifiers:(CGEventFlags)modifiers commands:(NSMutableArray *)commands {
-  self = [super init];
-  if(self) {
-    _commands = commands;
-    _commandString = [commandString copy];
-    _activeModifiers = modifiers;
-  }
-  return self;
-}
-
-@end
-
 @implementation MPAutotypeCommand
 
 + (NSDictionary *)_keypressCommands {
@@ -451,6 +426,7 @@ static CGKeyCode kMPNumpadKeyCodes[] = {
   CGEventPost(kCGHIDEventTap, pressKey);
   usleep(0.05 * NSEC_PER_MSEC);
   CGEventPost(kCGHIDEventTap, releaseKey);
+  usleep(0.05 * NSEC_PER_MSEC);
   
   CFRelease(pressKey);
   CFRelease(releaseKey);
