@@ -74,8 +74,8 @@ NSString *const MPPluginHostPluginBundleIdentifiyerKey = @"MPPluginHostPluginBun
   self = [super init];
   if(self) {
     _mutablePlugins = [[NSMutableArray alloc] init];
-    _disabledPlugins = [[NSUserDefaults standardUserDefaults] arrayForKey:kMPSettingsKeyLoadUnsecurePlugins];
-    _loadUnsecurePlugins = [[NSUserDefaults standardUserDefaults] boolForKey:kMPSettingsKeyLoadUnsecurePlugins];
+    _disabledPlugins = [NSUserDefaults.standardUserDefaults arrayForKey:kMPSettingsKeyLoadUnsecurePlugins];
+    _loadUnsecurePlugins = [NSUserDefaults.standardUserDefaults boolForKey:kMPSettingsKeyLoadUnsecurePlugins];
     _entryActionPluginIdentifiers = [[NSMutableArray alloc] init];
     _customAttributePluginIdentifiers = [[NSMutableArray alloc] init];
     
