@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="14113" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="14313.18" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
     <dependencies>
         <deployment identifier="macosx"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="14113"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="14313.18"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
@@ -105,7 +105,7 @@
                                                     <color key="backgroundColor" name="alternateSelectedControlTextColor" catalog="System" colorSpace="catalog"/>
                                                     <color key="gridColor" name="gridColor" catalog="System" colorSpace="catalog"/>
                                                     <tableColumns>
-                                                        <tableColumn identifier="" width="248" minWidth="40" maxWidth="1000" id="140">
+                                                        <tableColumn width="248" minWidth="40" maxWidth="1000" id="140">
                                                             <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border" alignment="left">
                                                                 <font key="font" metaFont="smallSystem"/>
                                                                 <color key="textColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>
@@ -272,14 +272,14 @@
                         <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                     </textFieldCell>
                 </textField>
-                <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="249" allowsCharacterPickerTouchBarItem="YES" translatesAutoresizingMaskIntoConstraints="NO" id="53" customClass="HNHUIRoundedTextField">
+                <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="249" allowsCharacterPickerTouchBarItem="YES" translatesAutoresizingMaskIntoConstraints="NO" id="53" customClass="HNHUITextField">
                     <rect key="frame" x="20" y="663" width="251" height="22"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="22" id="7Xj-3i-fBY"/>
                     </constraints>
                     <textFieldCell key="cell" lineBreakMode="truncatingTail" truncatesLastVisibleLine="YES" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" drawsBackground="YES" usesSingleLineMode="YES" id="70">
                         <font key="font" metaFont="system"/>
-                        <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
+                        <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
                         <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                     </textFieldCell>
                     <connections>
@@ -295,14 +295,14 @@
                         <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                     </textFieldCell>
                 </textField>
-                <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="249" allowsCharacterPickerTouchBarItem="YES" translatesAutoresizingMaskIntoConstraints="NO" id="55" customClass="HNHUIRoundedTextField">
+                <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="249" allowsCharacterPickerTouchBarItem="YES" translatesAutoresizingMaskIntoConstraints="NO" id="55" customClass="HNHUITextField">
                     <rect key="frame" x="20" y="607" width="251" height="22"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="22" id="0l5-fD-0eW"/>
                     </constraints>
                     <textFieldCell key="cell" lineBreakMode="truncatingTail" truncatesLastVisibleLine="YES" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" drawsBackground="YES" usesSingleLineMode="YES" id="68">
                         <font key="font" size="13" name="Menlo-Regular"/>
-                        <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
+                        <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
                         <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                     </textFieldCell>
                     <connections>
@@ -310,14 +310,14 @@
                         <outlet property="nextKeyView" destination="60" id="ZPp-lg-TBS"/>
                     </connections>
                 </textField>
-                <textField verticalHuggingPriority="750" allowsCharacterPickerTouchBarItem="YES" translatesAutoresizingMaskIntoConstraints="NO" id="56" customClass="HNHUIRoundedTextField">
+                <textField verticalHuggingPriority="750" allowsCharacterPickerTouchBarItem="YES" translatesAutoresizingMaskIntoConstraints="NO" id="56" customClass="HNHUITextField">
                     <rect key="frame" x="20" y="469" width="251" height="22"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="22" id="SoS-8e-rkN"/>
                     </constraints>
                     <textFieldCell key="cell" lineBreakMode="truncatingTail" truncatesLastVisibleLine="YES" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" drawsBackground="YES" usesSingleLineMode="YES" id="67">
                         <font key="font" metaFont="system"/>
-                        <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
+                        <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
                         <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                     </textFieldCell>
                     <connections>
@@ -352,14 +352,14 @@
                         <outlet property="nextKeyView" destination="56" id="rY0-PH-WBT"/>
                     </connections>
                 </button>
-                <secureTextField verticalHuggingPriority="750" horizontalCompressionResistancePriority="249" allowsCharacterPickerTouchBarItem="YES" translatesAutoresizingMaskIntoConstraints="NO" id="60" customClass="HNHUIRoundedSecureTextField">
+                <secureTextField verticalHuggingPriority="750" horizontalCompressionResistancePriority="249" allowsCharacterPickerTouchBarItem="YES" translatesAutoresizingMaskIntoConstraints="NO" id="60" customClass="HNHUISecureTextField">
                     <rect key="frame" x="20" y="551" width="211" height="22"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="22" id="VFI-jo-tOU"/>
                     </constraints>
                     <secureTextFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" borderStyle="bezel" drawsBackground="YES" usesSingleLineMode="YES" id="63">
                         <font key="font" size="13" name="Menlo-Regular"/>
-                        <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
+                        <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
                         <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                         <allowedInputSourceLocales>
                             <string>NSAllRomanInputSourcesLocaleIdentifier</string>
@@ -441,14 +441,14 @@
                         <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                     </textFieldCell>
                 </textField>
-                <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="249" allowsCharacterPickerTouchBarItem="YES" translatesAutoresizingMaskIntoConstraints="NO" id="IpW-b2-jWu" customClass="HNHUIRoundedTextField">
+                <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="249" allowsCharacterPickerTouchBarItem="YES" translatesAutoresizingMaskIntoConstraints="NO" id="IpW-b2-jWu" customClass="HNHUITextField">
                     <rect key="frame" x="20" y="50" width="251" height="22"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="22" id="Zfy-mh-1TF"/>
                     </constraints>
                     <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" drawsBackground="YES" id="Hml-NR-AeS">
                         <font key="font" metaFont="system"/>
-                        <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
+                        <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
                         <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                     </textFieldCell>
                     <connections>
@@ -568,14 +568,14 @@
                         <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                     </textFieldCell>
                 </textField>
-                <textField verticalHuggingPriority="750" allowsCharacterPickerTouchBarItem="YES" translatesAutoresizingMaskIntoConstraints="NO" id="cDK-DM-F5z" customClass="HNHUIRoundedTextField">
+                <textField verticalHuggingPriority="750" allowsCharacterPickerTouchBarItem="YES" translatesAutoresizingMaskIntoConstraints="NO" id="cDK-DM-F5z" customClass="HNHUITextField">
                     <rect key="frame" x="20" y="328" width="221" height="22"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="22" id="2hC-UP-Iie"/>
                     </constraints>
                     <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" placeholderString="Custom Entry Sequence" drawsBackground="YES" id="R2X-Ex-c6q">
                         <font key="font" metaFont="system"/>
-                        <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
+                        <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
                         <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                     </textFieldCell>
                 </textField>
@@ -603,7 +603,7 @@
                                 <color key="backgroundColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
                                 <color key="gridColor" name="gridColor" catalog="System" colorSpace="catalog"/>
                                 <tableColumns>
-                                    <tableColumn identifier="" width="256" minWidth="40" maxWidth="1000" id="Wdn-k1-39b">
+                                    <tableColumn width="256" minWidth="40" maxWidth="1000" id="Wdn-k1-39b">
                                         <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border" alignment="left">
                                             <font key="font" metaFont="smallSystem"/>
                                             <color key="textColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>
@@ -651,9 +651,8 @@
                     </scroller>
                 </scrollView>
                 <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="Iy9-9L-Aev">
-                    <rect key="frame" x="249" y="110" width="32" height="21"/>
+                    <rect key="frame" x="249" y="106" width="32" height="25"/>
                     <constraints>
-                        <constraint firstAttribute="height" constant="18" id="VeX-Jj-eA9"/>
                         <constraint firstAttribute="width" constant="32" id="mjs-Yf-Cb2"/>
                     </constraints>
                     <buttonCell key="cell" type="roundTextured" bezelStyle="texturedRounded" image="NSAddTemplate" imagePosition="only" alignment="center" state="on" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="5J6-uD-iK6">
@@ -665,10 +664,9 @@
                     </connections>
                 </button>
                 <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="AAj-Ak-z46">
-                    <rect key="frame" x="209" y="110" width="32" height="21"/>
+                    <rect key="frame" x="209" y="106" width="32" height="25"/>
                     <constraints>
                         <constraint firstAttribute="width" constant="32" id="vWY-ez-gy9"/>
-                        <constraint firstAttribute="height" constant="18" id="xwN-WB-cn2"/>
                     </constraints>
                     <buttonCell key="cell" type="roundTextured" bezelStyle="texturedRounded" image="NSRemoveTemplate" imagePosition="only" alignment="center" state="on" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="86n-d4-lOW">
                         <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
@@ -711,14 +709,14 @@
                         <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                     </textFieldCell>
                 </textField>
-                <textField verticalHuggingPriority="750" allowsCharacterPickerTouchBarItem="YES" translatesAutoresizingMaskIntoConstraints="NO" id="NjR-ea-Y7k" customClass="HNHUIRoundedTextField">
+                <textField verticalHuggingPriority="750" allowsCharacterPickerTouchBarItem="YES" translatesAutoresizingMaskIntoConstraints="NO" id="NjR-ea-Y7k" customClass="HNHUITextField">
                     <rect key="frame" x="20" y="10" width="221" height="22"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="22" id="oIA-8f-Jkf"/>
                     </constraints>
                     <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" placeholderString="Custom Window Sequence" drawsBackground="YES" id="fW9-9p-wwR">
                         <font key="font" metaFont="system"/>
-                        <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
+                        <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
                         <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                     </textFieldCell>
                 </textField>
@@ -805,7 +803,7 @@
                         <color key="backgroundColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
                         <color key="gridColor" name="gridColor" catalog="System" colorSpace="catalog"/>
                         <tableColumns>
-                            <tableColumn identifier="" width="256" minWidth="40" maxWidth="1000000" id="194">
+                            <tableColumn width="256" minWidth="40" maxWidth="1000000" id="194">
                                 <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border" alignment="left">
                                     <font key="font" metaFont="smallSystem"/>
                                     <color key="textColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>
@@ -822,7 +820,7 @@
                                         <rect key="frame" x="1" y="1" width="256" height="54"/>
                                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                         <subviews>
-                                            <textField verticalHuggingPriority="750" allowsCharacterPickerTouchBarItem="YES" translatesAutoresizingMaskIntoConstraints="NO" id="199" customClass="HNHUIRoundedSecureTextField">
+                                            <textField verticalHuggingPriority="750" allowsCharacterPickerTouchBarItem="YES" translatesAutoresizingMaskIntoConstraints="NO" id="199" customClass="HNHUISecureTextField">
                                                 <rect key="frame" x="3" y="10" width="139" height="22"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="22" id="212"/>
@@ -830,7 +828,7 @@
                                                 </constraints>
                                                 <textFieldCell key="cell" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" placeholderString="Value" drawsBackground="YES" id="214">
                                                     <font key="font" metaFont="system"/>
-                                                    <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
+                                                    <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
                                                     <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                                 </textFieldCell>
                                             </textField>

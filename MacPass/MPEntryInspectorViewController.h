@@ -24,7 +24,7 @@
 #import "HNHUi/HNHUi.h"
 #import <Quartz/Quartz.h>
 
-@class HNHUIRoundedSecureTextField;
+@class HNHUISecureTextField;
 @class MPContextButton;
 @class MPDocument;
 
@@ -39,7 +39,7 @@
 @property (weak) IBOutlet NSTextField *titleTextField;
 @property (weak) IBOutlet NSTextField *usernameTextField;
 @property (weak) IBOutlet NSTextField *URLTextField;
-@property (weak) IBOutlet HNHUIRoundedSecureTextField *passwordTextField;
+@property (weak) IBOutlet HNHUISecureTextField *passwordTextField;
 @property (weak) IBOutlet NSButton *generatePasswordButton;
 @property (weak) IBOutlet NSButton *togglePassword;
 @property (weak) IBOutlet NSButton *pickExpireDateButton;

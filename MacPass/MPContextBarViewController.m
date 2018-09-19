@@ -47,6 +47,7 @@ typedef NS_ENUM(NSUInteger, MPContextTab) {
 @property (nonatomic, assign) MPContextTab activeTab;
 
 /* Filter */
+@property (weak) IBOutlet HNHUIGradientView *searchBar;
 @property (weak) IBOutlet NSButton *filterDoneButton;
 @property (weak) IBOutlet NSTextField *filterLabelTextField;
 /* History */
@@ -78,12 +79,19 @@ typedef NS_ENUM(NSUInteger, MPContextTab) {
   self.filterLabelTextField.cell.backgroundStyle = NSBackgroundStyleRaised;
   
   /* Setup Trash Bar color */
-  if(!HNHUIIsRunningOnYosemiteOrNewer()) {
-    NSArray *activeColors = @[[NSColor colorWithCalibratedWhite:0.2 alpha:1],[NSColor colorWithCalibratedWhite:0.4 alpha:1]];
-    NSArray *inactiveColors = @[[NSColor colorWithCalibratedWhite:0.3 alpha:1],[NSColor colorWithCalibratedWhite:0.6 alpha:1]];
+  if(@available(macOS 10.13, *)) {
+    NSArray *activeColors = @[[NSColor colorNamed:@"Active Shadow"], [NSColor colorNamed:@"Active Highlight"], ];
+    NSArray *inactiveColors = @[[NSColor colorNamed:@"Inactive Shadow"], [NSColor colorNamed:@"Inactive Highlight"]];
+    self.historyBar.activeGradient = [[NSGradient alloc] initWithColors:activeColors];
+    self.searchBar.activeGradient = [[NSGradient alloc] initWithColors:activeColors];
     self.trashBar.activeGradient = [[NSGradient alloc] initWithColors:activeColors];
+
+    self.historyBar.inactiveGradient = [[NSGradient alloc] initWithColors:inactiveColors];
     self.trashBar.inactiveGradient = [[NSGradient alloc] initWithColors:inactiveColors];
-    //self.emptyTrashButton.textColor = [NSColor whiteColor];
+    self.searchBar.inactiveGradient = [[NSGradient alloc] initWithColors:inactiveColors];
+  }
+  else {
+    
   }
   
   [self.view bind:NSSelectedIndexBinding toObject:self withKeyPath:NSStringFromSelector(@selector(activeTab)) options:nil];

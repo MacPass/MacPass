@@ -1,8 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="14113" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" customObjectInstantitationMethod="direct">
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="14313.18" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" customObjectInstantitationMethod="direct">
     <dependencies>
-        <deployment identifier="macosx"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="14113"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="14313.18"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
@@ -23,7 +22,7 @@
             <rect key="frame" x="0.0" y="0.0" width="410" height="220"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
             <subviews>
-                <textField horizontalHuggingPriority="249" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="KQ1-tZ-qja" customClass="HNHUIRoundedSecureTextField">
+                <textField horizontalHuggingPriority="249" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="KQ1-tZ-qja" customClass="HNHUISecureTextField">
                     <rect key="frame" x="20" y="74" width="276" height="24"/>
                     <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" enabled="NO" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" drawsBackground="YES" id="Wi0-xp-KgI">
                         <font key="font" size="13" name="Menlo-Regular"/>
@@ -42,7 +41,7 @@
                     <rect key="frame" x="20" y="106" width="370" height="64"/>
                     <clipView key="contentView" drawsBackground="NO" id="8aa-cB-mUF">
                         <rect key="frame" x="1" y="0.0" width="368" height="63"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <autoresizingMask key="autoresizingMask"/>
                         <subviews>
                             <tableView verticalHuggingPriority="750" allowsExpansionToolTips="YES" columnAutoresizingStyle="lastColumnOnly" selectionHighlightStyle="none" columnReordering="NO" columnResizing="NO" multipleSelection="NO" emptySelection="NO" autosaveColumns="NO" typeSelect="NO" rowHeight="24" rowSizeStyle="systemDefault" headerView="GRO-H1-N4r" viewBased="YES" id="KJq-FZ-rAE">
                                 <rect key="frame" x="0.0" y="0.0" width="368" height="40"/>
@@ -51,7 +50,7 @@
                                 <color key="backgroundColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
                                 <color key="gridColor" name="gridColor" catalog="System" colorSpace="catalog"/>
                                 <tableColumns>
-                                    <tableColumn identifier="" width="365" minWidth="40" maxWidth="1000" id="Q1b-ir-hyW">
+                                    <tableColumn width="365" minWidth="40" maxWidth="1000" id="Q1b-ir-hyW">
                                         <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border">
                                             <font key="font" metaFont="smallSystem"/>
                                             <color key="textColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>

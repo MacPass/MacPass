@@ -306,9 +306,12 @@ static MPAutotypeDaemon *_sharedInstance;
                                                            styleMask:NSWindowStyleMaskNonactivatingPanel|NSWindowStyleMaskTitled
                                                              backing:NSBackingStoreRetained
                                                                defer:YES];
-    self.matchSelectionWindow.level = NSScreenSaverWindowLevel;
+    self.matchSelectionWindow.level = kCGAssistiveTechHighWindowLevel;
     MPAutotypeCandidateSelectionViewController *vc = [[MPAutotypeCandidateSelectionViewController alloc] init];
     vc.candidates = candidates;
+    self.matchSelectionWindow.collectionBehavior |= (NSWindowCollectionBehaviorFullScreenAuxiliary |
+                                                     NSWindowCollectionBehaviorMoveToActiveSpace |
+                                                     NSWindowCollectionBehaviorTransient );
     self.matchSelectionWindow.contentViewController = vc;
     
   }

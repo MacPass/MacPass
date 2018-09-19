@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="12120" systemVersion="16E195" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" customObjectInstantitationMethod="direct">
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="14313.18" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" customObjectInstantitationMethod="direct">
     <dependencies>
         <deployment identifier="macosx"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="12120"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="14313.18"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
@@ -54,7 +54,7 @@
                                                             <constraint firstAttribute="height" constant="22" id="QuX-qP-qVw"/>
                                                             <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="50" id="iEU-n3-paT"/>
                                                         </constraints>
-                                                        <textFieldCell key="cell" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" placeholderString="Value" drawsBackground="YES" id="mLw-O5-6D3" customClass="HNHUIRoundedTextFieldCell">
+                                                        <textFieldCell key="cell" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" placeholderString="Value" drawsBackground="YES" id="mLw-O5-6D3" customClass="HNHUITextFieldCell">
                                                             <font key="font" metaFont="system"/>
                                                             <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
                                                             <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>

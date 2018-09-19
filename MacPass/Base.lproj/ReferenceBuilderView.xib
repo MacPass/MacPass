@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="13196" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" customObjectInstantitationMethod="direct">
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="14313.18" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" customObjectInstantitationMethod="direct">
     <dependencies>
         <deployment identifier="macosx"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="13196"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="14313.18"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
@@ -25,7 +25,7 @@
                     <rect key="frame" x="13" y="152" width="82" height="25"/>
                     <popUpButtonCell key="cell" type="roundTextured" bezelStyle="texturedRounded" alignment="center" lineBreakMode="truncatingTail" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="KPf-xE-gde">
                         <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
-                        <font key="font" metaFont="system"/>
+                        <font key="font" metaFont="menu"/>
                         <menu key="menu" id="Vxk-eO-bbf">
                             <items>
                                 <menuItem title="Get" id="142-bE-IMZ"/>
@@ -36,14 +36,14 @@
                         <action selector="updateReference:" target="-2" id="GzJ-Sy-IP4"/>
                     </connections>
                 </popUpButton>
-                <textField verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="IFf-vC-3vk" customClass="HNHUIRoundedTextField">
+                <textField verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="IFf-vC-3vk" customClass="HNHUITextField">
                     <rect key="frame" x="13" y="102" width="172" height="22"/>
                     <constraints>
                         <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="100" id="Seu-01-P53"/>
                     </constraints>
                     <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" placeholderString="Value" drawsBackground="YES" id="fNP-ye-2bD">
                         <font key="font" metaFont="system"/>
-                        <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
+                        <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
                         <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                     </textFieldCell>
                 </textField>
@@ -74,7 +74,7 @@
                     <rect key="frame" x="103" y="152" width="82" height="25"/>
                     <popUpButtonCell key="cell" type="roundTextured" title="Matching" bezelStyle="texturedRounded" alignment="center" lineBreakMode="truncatingTail" state="on" borderStyle="border" imageScaling="proportionallyDown" inset="2" selectedItem="yT1-XL-k6a" id="Aob-tW-bUP">
                         <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
-                        <font key="font" metaFont="system"/>
+                        <font key="font" metaFont="menu"/>
                         <menu key="menu" id="j2A-qj-k7L">
                             <items>
                                 <menuItem title="Matching" state="on" id="yT1-XL-k6a">
@@ -103,7 +103,7 @@
                         <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                     </textFieldCell>
                 </textField>
-                <textField verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="b36-T7-1tO" customClass="HNHUIRoundedTextField">
+                <textField verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="b36-T7-1tO" customClass="HNHUITextField">
                     <rect key="frame" x="13" y="50" width="172" height="22"/>
                     <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" placeholderString="Reference" drawsBackground="YES" id="dr9-x8-kKk">
                         <font key="font" metaFont="system"/>

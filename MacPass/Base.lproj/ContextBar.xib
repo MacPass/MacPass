@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="14113" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="14313.18" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
     <dependencies>
         <deployment identifier="macosx"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="14113"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="14313.18"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
@@ -15,6 +15,7 @@
                 <outlet property="historyBar" destination="S8L-rB-h0h" id="6yZ-El-fVs"/>
                 <outlet property="notesButton" destination="SaV-5p-jIX" id="sQc-nE-BOP"/>
                 <outlet property="passwordButton" destination="Uhl-ck-vVQ" id="I35-Nv-6jK"/>
+                <outlet property="searchBar" destination="1" id="k2f-ao-7xx"/>
                 <outlet property="specialFilterPopUpButton" destination="aPQ-t2-bgz" id="5II-Ml-qg1"/>
                 <outlet property="titleButton" destination="O7W-cn-eUP" id="Vlg-KG-62R"/>
                 <outlet property="trashBar" destination="DXf-SC-gVG" id="3aZ-Xc-VDk"/>
