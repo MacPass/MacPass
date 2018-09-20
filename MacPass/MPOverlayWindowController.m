@@ -56,13 +56,14 @@
 
 - (void)windowDidLoad {
   [super windowDidLoad];
-  [self.window setStyleMask:NSBorderlessWindowMask];
-  [self.window setAlphaValue:0];
-  [self.window setOpaque:NO];
-  [self.window setHasShadow:YES];
-  [[self.textField cell] setBackgroundStyle:NSBackgroundStyleLowered];
-  [[self.imageView cell] setBackgroundStyle:NSBackgroundStyleDark];
-  [[self.imageView cell] setImageAlignment:NSImageAlignCenter];
+  self.window.styleMask = NSBorderlessWindowMask;
+  self.window.alphaValue = 0;
+  self.window.opaque = NO;
+  self.window.hasShadow = YES;
+  
+  self.textField.cell.backgroundStyle = NSBackgroundStyleLowered;
+  self.imageView.cell.backgroundStyle = NSBackgroundStyleDark;
+  ((NSImageCell *)self.imageView.cell).imageAlignment = NSImageAlignCenter;
 }
 
 - (void)displayOverlayImage:(NSImage *)imageOrNil label:(NSString *)labelOrNil atView:(NSView *)view {
