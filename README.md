@@ -1,4 +1,4 @@
-[![Build Status](https://travis-ci.org/mstarke/MacPass.svg?branch=continuous)](https://travis-ci.org/mstarke/MacPass)
+[![Build Status](https://travis-ci.org/MacPass/MacPass.svg?branch=continuous)](https://travis-ci.org/MacPass/MacPass)
 
 # MacPass
 
