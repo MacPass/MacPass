@@ -42,14 +42,14 @@
   if(self) {
     _binary = binary;
     _loadScheduled = NO;
-    [[MPTemporaryFileStorageCenter defaultCenter] registerStorage:self];
+    [MPTemporaryFileStorageCenter.defaultCenter registerStorage:self];
   }
   return self;
 }
 
 - (void)dealloc {
   [self cleanup];
-  [[MPTemporaryFileStorageCenter defaultCenter] unregisterStorage:self];
+  [MPTemporaryFileStorageCenter.defaultCenter unregisterStorage:self];
 }
 
 - (void)cleanupNow {
@@ -101,7 +101,7 @@
   if(!binary || !binary.data || !binary.name || [binary.name length] == 0) {
     return NO;
   }
-  NSString *fileName = [NSString stringWithFormat:@"%@_%@", [[NSProcessInfo processInfo] globallyUniqueString], binary.name];
+  NSString *fileName = [NSString stringWithFormat:@"%@_%@", NSProcessInfo.processInfo.globallyUniqueString, binary.name];
   self.temporaryFileURL = [NSURL fileURLWithPath:[NSTemporaryDirectory() stringByAppendingPathComponent:fileName]];
   
   BOOL success = [binary.data writeToURL:self.temporaryFileURL options:0 error:0];
@@ -117,7 +117,7 @@
   if(!self.temporaryFileURL) {
     return; // No URL to clean up
   }
-  NSString *path = [self.temporaryFileURL path];
+  NSString *path = self.temporaryFileURL.path;
   if(blockUntilDone) {
     [MPTemporaryFileStorage _runCleanupForPath:path];
   }

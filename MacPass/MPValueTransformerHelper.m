@@ -53,7 +53,7 @@ NSString *const MPExpiryDateValueTransformerName = @"com.hicknhack.macpass.MPExp
                         formatter.timeStyle = NSDateFormatterNoStyle;
                       }
 
-                      if([value isEqualToDate:[NSDate distantFuture]]) {
+                      if([value isEqualToDate:NSDate.distantFuture]) {
                         return noExpirationDateString;
                       }
 
