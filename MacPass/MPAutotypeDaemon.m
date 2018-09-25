@@ -55,6 +55,8 @@ NSString *const kMPProcessIdentifierKey = @"kMPProcessIdentifierKey";
 
 @implementation MPAutotypeDaemon
 
+@dynamic autotypeSupported;
+
 #pragma mark -
 #pragma mark Lifecylce
 
@@ -93,6 +95,7 @@ static MPAutotypeDaemon *_sharedInstance;
                                                            name:NSWorkspaceDidDeactivateApplicationNotification
                                                          object:nil];
   }
+  [self checkForAccessibiltyPermissions];
   return self;
 }
 
@@ -105,6 +108,14 @@ static MPAutotypeDaemon *_sharedInstance;
 
 #pragma mark -
 #pragma mark Properties
+- (BOOL)autotypeSupported {
+  if(@available(macOS 10.14, *)) {
+    return AXIsProcessTrusted();
+  }
+  /* macOS 10.13 and lower allows us to send key events regardless of accessibilty trust */
+  return YES;
+}
+
 - (void)setEnabled:(BOOL)enabled {
   if(_enabled != enabled) {
     _enabled = enabled;
@@ -119,6 +130,16 @@ static MPAutotypeDaemon *_sharedInstance;
     if(self.enabled) {
       [self _registerHotKey];
     }
+  }
+}
+
+- (void)checkForAccessibiltyPermissions {
+  if(@available(macOS 10.14, *)) {
+    CFStringRef keys[] = { kAXTrustedCheckOptionPrompt };
+    CFBooleanRef values[] = { kCFBooleanTrue };
+    CFDictionaryRef dictRef = CFDictionaryCreate(kCFAllocatorDefault, (const void **)keys, (const void **)values, 1, &kCFTypeDictionaryKeyCallBacks, &kCFTypeDictionaryValueCallBacks);
+    AXIsProcessTrustedWithOptions(dictRef);
+    CFRelease(dictRef);
   }
 }
 

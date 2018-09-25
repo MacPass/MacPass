@@ -34,9 +34,12 @@
 @property (strong) IBOutlet NSWindow *matchSelectionWindow;
 @property (weak) IBOutlet NSPopUpButton *matchSelectionButton;
 @property (readonly, strong) DDHotKey *registredHotKey;
+@property (readonly, strong, class) MPAutotypeDaemon *defaultDaemon;
+@property (nonatomic, readonly) BOOL autotypeSupported; // YES if the system allows for Autotype. NO if the user has denied this.
 
-+ (instancetype)defaultDaemon;
 - (instancetype)init NS_UNAVAILABLE;
+
+- (void)checkForAccessibiltyPermissions;
 
 - (void)performAutotypeForEntry:(KPKEntry *)entry;
 - (void)performAutotypeForEntry:(KPKEntry *)entry overrideSequence:(NSString *)sequence;
