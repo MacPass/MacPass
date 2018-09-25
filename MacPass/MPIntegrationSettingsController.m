@@ -53,7 +53,7 @@
 }
 
 - (void)awakeFromNib {
-  NSUserDefaultsController *defaultsController = [NSUserDefaultsController sharedUserDefaultsController];
+  NSUserDefaultsController *defaultsController = NSUserDefaultsController.sharedUserDefaultsController;
   NSString *enableGlobalAutotypeKeyPath = [MPSettingsHelper defaultControllerPathForKey:kMPSettingsKeyEnableGlobalAutotype];
   NSString *quicklookKeyPath = [MPSettingsHelper defaultControllerPathForKey:kMPSettingsKeyEnableQuicklookPreview];
   [self.enableGlobalAutotypeCheckBox bind:NSValueBinding toObject:defaultsController withKeyPath:enableGlobalAutotypeKeyPath options:nil];
