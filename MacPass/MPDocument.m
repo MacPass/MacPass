@@ -356,25 +356,43 @@ NSString *const MPDocumentGroupKey                            = @"MPDocumentGrou
 }
 
 - (void)mergeWithContentsFromURL:(NSURL *)url key:(KPKCompositeKey *)key {
+  BOOL mergeKDB;
+  
+  KPKFileVersion version = [KPKFormat.sharedFormat fileVersionForData:[NSData dataWithContentsOfURL:url]];
+  mergeKDB = (version.format == KPKDatabaseFormatKdb);
+  
+  if(mergeKDB) {
+    NSAlert *alert = [[NSAlert alloc] init];
+    alert.alertStyle = NSWarningAlertStyle;
+    alert.messageText = NSLocalizedString(@"ALERT_MERGE_KDB_FILE_MESSAGE", @"Alert message warning user about KDB file merge");
+    alert.informativeText = NSLocalizedString(@"ALERT_MERGE_KDB_FILE_INFO_TEXT", @"Informative text displayed when merging KDB files");
+    [alert addButtonWithTitle:NSLocalizedString(@"ALERT_MERGE_CONTINUE", @"Button in dialog to merge KDB changes into file!")];
+    [alert addButtonWithTitle:NSLocalizedString(@"ALERT_MERGE_CANCEL", @"Button in dialog to cancel merge of KDB file changes!")];
+    [alert beginSheetModalForWindow:self.windowForSheet completionHandler:^(NSModalResponse returnCode) {
+      switch(returnCode) {
+        case NSAlertFirstButtonReturn:
+          [self _mergeWithContentsFromURL:url key:key options:KPKSynchronizationOptionMatchGroupsByTitleOnly];
+          break;
+        case NSAlertSecondButtonReturn:
+        default:
+          break;
+      }
+    }];
+  }
+  else {
+    [self _mergeWithContentsFromURL:url key:key options:0];
+  }
+}
+- (void)_mergeWithContentsFromURL:(NSURL *)url key:(KPKCompositeKey *)key options:(KPKSynchronizationOptions)options {
   NSError *error;
   KPKTree *otherTree;
   
-  BOOL mergeKDB;
-  
-  /* TODO determine KDB file format to set GroupByTitle options */
-
-  KPKFileVersion version = [KPKFormat.sharedFormat fileVersionForData:[NSData dataWithContentsOfURL:url]];
-  mergeKDB = (version.format == KPKDatabaseFormatKdb);
   
   if(key) {
     otherTree = [[KPKTree alloc] initWithContentsOfUrl:url key:key error:&error];
   }
   
   if(otherTree) {
-    KPKSynchronizationOptions options = 0;
-    if(mergeKDB) {
-      options |= KPKSynchronizationOptionMatchGroupsByTitleOnly;
-    }
     [self.tree synchronizeWithTree:otherTree mode:KPKSynchronizationModeSynchronize options:options];
     /* the key might have changed so update ours! */
     //self.compositeKey = key;
@@ -398,7 +416,7 @@ NSString *const MPDocumentGroupKey                            = @"MPDocumentGrou
                                           [self.windowForSheet endSheet:sheet returnCode:(didCancel ? NSModalResponseCancel : NSModalResponseOK)];
                                           if(!didCancel) {
                                             KPKCompositeKey *compositeKey = [[KPKCompositeKey alloc] initWithPassword:password key:keyURL];
-                                            [self mergeWithContentsFromURL:url key:compositeKey];
+                                            [self _mergeWithContentsFromURL:url key:compositeKey options:options];
                                           }
                                           // just return yes regardless since we will display the sheet again if needed!
                                           return YES;
