@@ -49,6 +49,7 @@
 		4C2F17A21FD69BCA0097418D /* MPUserNotificationCenterDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C2F17A11FD69BCA0097418D /* MPUserNotificationCenterDelegate.m */; };
 		4C32B0E71A1D4436007E12F1 /* KPKFormat+MPUTIDetection.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C32B0E61A1D4436007E12F1 /* KPKFormat+MPUTIDetection.m */; };
 		4C3666411787327E00B249F1 /* MPDocument+Attachments.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C3666401787327E00B249F1 /* MPDocument+Attachments.m */; };
+		4C370EFE215B76CB00703AAE /* MPOutlineTableCellView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C370EFD215B76CB00703AAE /* MPOutlineTableCellView.m */; };
 		4C37A84015B8B474005EF8EE /* MPOutlineDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C37A83F15B8B474005EF8EE /* MPOutlineDataSource.m */; };
 		4C3826721AD04B51007D7D67 /* addFolderTemplate.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 4C3826711AD04B51007D7D67 /* addFolderTemplate.pdf */; };
 		4C3826741AD04BA5007D7D67 /* infoTemplate.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 4C3826731AD04BA5007D7D67 /* infoTemplate.pdf */; };
@@ -392,6 +393,8 @@
 		4C32B0E51A1D4436007E12F1 /* KPKFormat+MPUTIDetection.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "KPKFormat+MPUTIDetection.h"; sourceTree = "<group>"; };
 		4C32B0E61A1D4436007E12F1 /* KPKFormat+MPUTIDetection.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "KPKFormat+MPUTIDetection.m"; sourceTree = "<group>"; };
 		4C3666401787327E00B249F1 /* MPDocument+Attachments.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "MPDocument+Attachments.m"; sourceTree = "<group>"; };
+		4C370EFC215B76CB00703AAE /* MPOutlineTableCellView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MPOutlineTableCellView.h; sourceTree = "<group>"; };
+		4C370EFD215B76CB00703AAE /* MPOutlineTableCellView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MPOutlineTableCellView.m; sourceTree = "<group>"; };
 		4C37A83E15B8B474005EF8EE /* MPOutlineDataSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MPOutlineDataSource.h; sourceTree = "<group>"; };
 		4C37A83F15B8B474005EF8EE /* MPOutlineDataSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MPOutlineDataSource.m; sourceTree = "<group>"; };
 		4C3826711AD04B51007D7D67 /* addFolderTemplate.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; name = addFolderTemplate.pdf; path = Icons/addFolderTemplate.pdf; sourceTree = "<group>"; };
@@ -1027,6 +1030,8 @@
 				4CF6C3011FBF39BF0055AD03 /* MPPluginTabelCellView.m */,
 				4C0F043E2147A6FA000B8568 /* MPCustomFieldTableView.h */,
 				4C0F043F2147A6FA000B8568 /* MPCustomFieldTableView.m */,
+				4C370EFC215B76CB00703AAE /* MPOutlineTableCellView.h */,
+				4C370EFD215B76CB00703AAE /* MPOutlineTableCellView.m */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -1942,6 +1947,7 @@
 				4C65C79C16DD283900E32CFF /* MPToolbarButton.m in Sources */,
 				4C431BCD16E2A82800700A81 /* MPPasteBoardController.m in Sources */,
 				4C6AEEF91A043E2B00CA2420 /* MPDocumentController.m in Sources */,
+				4C370EFE215B76CB00703AAE /* MPOutlineTableCellView.m in Sources */,
 				4CE8246F16E2E93400573141 /* MPOverlayWindowController.m in Sources */,
 				4CE8247516E2F2B900573141 /* MPOverlayView.m in Sources */,
 				4C7B63761C0CB51F00D7038C /* TTTJSONTransformer.m in Sources */,

@@ -30,6 +30,7 @@
 #import "MPNotifications.h"
 #import "MPOutlineContextMenuDelegate.h"
 #import "MPOutlineDataSource.h"
+#import "MPOutlineTableCellView.h"
 
 #import "KeePassKit/KeePassKit.h"
 #import "KPKNode+IconImage.h"
@@ -258,7 +259,7 @@ NSString *const _MPOutlinveViewHeaderViewIdentifier = @"HeaderCell";
 
 #pragma mark NSOutlineViewDelegate
 - (NSView *)outlineView:(NSOutlineView *)outlineView viewForTableColumn:(NSTableColumn *)tableColumn item:(id)item {
-  NSTableCellView *view;
+  MPOutlineTableCellView *view;
   if( [self _itemIsRootNode:item] ) {
     view = [outlineView makeViewWithIdentifier:_MPOutlinveViewHeaderViewIdentifier owner:self];
     [view.textField bind:NSValueBinding toObject:self  withKeyPath:NSStringFromSelector(@selector(databaseNameWrapper)) options:nil];
@@ -273,7 +274,7 @@ NSString *const _MPOutlinveViewHeaderViewIdentifier = @"HeaderCell";
     
     
     NSString *entriesCountKeyPath = [[NSString alloc] initWithFormat:@"%@.%@.%@", NSStringFromSelector(@selector(representedObject)), KPKEntriesArrayBinding, @"@count"];
-    [view.textField bind:NSStringFromSelector(@selector(count)) toObject:item withKeyPath:entriesCountKeyPath options:nil];
+    [view bind:NSStringFromSelector(@selector(count)) toObject:item withKeyPath:entriesCountKeyPath options:nil];
   }
   
   return view;
