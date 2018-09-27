@@ -37,6 +37,18 @@
 /* Alert informative text to ask the user if he really want to uninstall the plugin */
 "ALERT_INFORMATIVE_TEXT_REALLY_UNINSTALL_PLUGIN" = "Das Plugin wird in den Papierkorb verschoben";
 
+/* Button in dialog to cancel merge of KDB file changes! */
+"ALERT_MERGE_CANCEL" = "Abbrechen";
+
+/* Button in dialog to merge KDB changes into file! */
+"ALERT_MERGE_CONTINUE" = "Daten synchronisieren.";
+
+/* Informative text displayed when merging KDB files */
+"ALERT_MERGE_KDB_FILE_INFO_TEXT" = "KDB Datenbanken enthalten nicht alle notwendigen Informationen für eine eindeutige Synchronisatione. Die Synchronisation der Daten von Einträgen erfolgt korrekt, jedoch können Gruppen nur anhand des Namens zugeordnet werden, was möglicherweise zu unerwarteten Ergebnissen führen kann. Soll mit der Synchronisation fortgefahren werden?";
+
+/* Alert message warning user about KDB file merge */
+"ALERT_MERGE_KDB_FILE_MESSAGE" = "Es werden KDB Datenbanken synchronisiert! ";
+
 /* Alert message text when plugins or their settings change and require a restart */
 "ALERT_MESSAGE_PLUGINS_CHANGED_SUGGEST_RESTART" = "Die globalen Plugineinstellungen haben sich geändert.";
 
@@ -46,6 +58,9 @@
 /* Attachments column title (shows counts)
    Menu item to toggle display of attachment count column in entry table */
 "ATTACHMENTS" = "Anhänge";
+
+/* Sucessfully merged external changes */
+"AUTO_MERGE_NOTIFICATION_TEXT" = "Daten wurden erfolgreich automatische synchronisiert";
 
 /* Menu item for automatic trash creation */
 "AUTOCREATE_TRASH_FOLDER" = "Automatisch erstellen";
@@ -68,9 +83,6 @@
 /* Enable autotype menu item */
 "AUTOTYPE_YES" = "Autotype aktivieren";
 
-/* Sucessfully merged external changes */
-"AUTO_MERGE_NOTIFICATION_TEXT" = "Daten wurden erfolgreich automatische synchronisiert";
-
 /* Cancel */
 "CANCEL" = "Abbrechen";
 
@@ -87,14 +99,14 @@
 /* Menu item in the database outline context menu to change the trash group */
 "CHANGE_TRASH_GROUP" = "Papierkorb-Gruppe ändern";
 
-/* String displayed at dock badge when clipboard is about to be cleared */
-"CLEARING_PASTEBOARD" = "…";
-
 /* Clear Autotype Button */
 "CLEAR_AUTOTYPE" = "Autotype Löschen";
 
 /* Menu to clear recent searches */
 "CLEAR_RECENT_SEARCHES" = "Letzte Suchanfragen entfernen";
+
+/* String displayed at dock badge when clipboard is about to be cleared */
+"CLEARING_PASTEBOARD" = "…";
 
 /* Field name that was copied to the pasteboard */
 "COPIED_FIELD_%@" = "%@ kopiert!";
@@ -229,14 +241,8 @@
 /* Format to returen the date an item expires. Includes %@ placehoder for date */
 "EXPIRES_AT_DATE_%@" = "verfällt: %@";
 
-/* The master key was changed by an extrenal program! */
+/* The master key was changed by an external program! */
 "EXTERN_CHANGE_OF_MASTERKEY" = "Der Schlüssel wurde durch ein anderes Programm geändert!";
-
-/* Informative text displayed when the file was change from another application */
-"FILE_CHANGED_BY_OTHERS_INFO_TEXT" = "Die geöffnete Datei wurde von einem anderen Programm verändert! Der Inhalt stimmt nicht mehr mit dem geladenen Inhalt überein.";
-
-/* Message displayed when an open file was changed from another application */
-"FILE_CHANGED_BY_OTHERS_MESSAGE_TEXT" = "Die Datei wurde verändert!";
 
 /* External file change strategy option: ask what to do */
 "FILE_CHANGE_STRATEGY_ASK" = "Jedesmal fragen";
@@ -250,6 +256,12 @@
 
 /* External file change strategy option: Use the changed file and discard local changes */
 "FILE_CHANGE_STRATEGY_USE_OTHER" = "Lade die andere Version und verwerfe meine Änderungen";
+
+/* Informative text displayed when the file was change from another application */
+"FILE_CHANGED_BY_OTHERS_INFO_TEXT" = "Die geöffnete Datei wurde von einem anderen Programm verändert! Der Inhalt stimmt nicht mehr mit dem geladenen Inhalt überein.";
+
+/* Message displayed when an open file was changed from another application */
+"FILE_CHANGED_BY_OTHERS_MESSAGE_TEXT" = "Die Datei wurde verändert!";
 
 /* Error while reopening last known documents */
 "FILE_OPEN_ERROR" = "Fehler beim Öffnen der Datei.";
@@ -332,6 +344,15 @@
    Toolbar item new group */
 "NEW_GROUP" = "Neue Gruppe";
 
+/* Expiration date format, when item does not expire */
+"NO_EXPIRE_DATE_SET" = "verfällt nie";
+
+/* Menu item to reset the template groups */
+"NO_TEMPLATE_GROUP" = "Keine Vorlagen";
+
+/* Menu item added to show that no templates are defined */
+"NO_TEMPLATES" = "Keine Vorlagen vorhanden";
+
 /* Null placeholder for item input field
    Placeholder text for input fields if no entry or group is selected */
 "NONE" = "Leer";
@@ -341,15 +362,6 @@
    Notes column title
    Notes reference item */
 "NOTES" = "Notizen";
-
-/* Expiration date format, when item does not expire */
-"NO_EXPIRE_DATE_SET" = "verfällt nie";
-
-/* Menu item added to show that no templates are defined */
-"NO_TEMPLATES" = "Keine Vorlagen vorhanden";
-
-/* Menu item to reset the template groups */
-"NO_TEMPLATE_GROUP" = "Keine Vorlagen";
 
 /* Ok button */
 "OK" = "Ok";
@@ -510,7 +522,7 @@
 /* Message for the dialog to open a file for merge */
 "SELECT_FILE_TO_MERGE" = "Datei für Synchronisation auswählen";
 
-/* Menu displayed as popup selection for search options */
+/* Menu displayed as popup selection for search options if no filter is selected */
 "SELECT_FILTER_WITH_DOTS" = "Auswählen…";
 
 /* Checkbox in dialog to set the selection as default file change strategy! */
@@ -556,6 +568,9 @@
 /* Update Settings Label */
 "UPDATE_SETTINGS" = "Aktualisierung";
 
+/* Message text for disabled updates alert! */
+"Updates are disabled!" = "Aktualisierung ist deaktiviert!";
+
 /* Menu item to toggle display of url column in entry table
    Submenu with options what to do with the URL of an entry
    Url column title
@@ -570,9 +585,6 @@
 /* Displayed name when uuid field was copied
    UUID reference item */
 "UUID" = "UUID";
-
-/* Message text for disabled updates alert! */
-"Updates are disabled!" = "Aktualisierung ist deaktiviert!";
 
 /* No Key or Password */
 "WARNING_NO_PASSWORD_OR_KEYFILE" = "Kein Password und/oder Schlüsseldatei festgelegt!";

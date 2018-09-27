@@ -133,7 +133,7 @@ typedef void (^MPPasswordChangedBlock)(BOOL didChangePassword);
   [self.splitView setHoldingPriority:NSLayoutPriorityDefaultLow+2 forSubviewAtIndex:0];
   [self.splitView setHoldingPriority:NSLayoutPriorityDefaultLow+1 forSubviewAtIndex:2];
   
-  BOOL showInspector = [[NSUserDefaults standardUserDefaults] boolForKey:kMPSettingsKeyShowInspector];
+  BOOL showInspector = [NSUserDefaults.standardUserDefaults boolForKey:kMPSettingsKeyShowInspector];
   if(!showInspector) {
     [inspectorView removeFromSuperview];
   }
