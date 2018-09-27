@@ -55,6 +55,9 @@
 /* Alert message text to ask the user if he really want to uninstall the plugin. Include %@ placeholder for plugin name */
 "ALERT_MESSAGE_TEXT_REALLY_UNINSTALL_PLUGIN_%@" = "Möchten Sie das Plugin %@ wirklich deinstallieren?";
 
+/* Message text for disabled updates alert! */
+"ALERT_UPDATES_DISABLED_MESSAGE_TEXT" = "Updates sind dekativiert.";
+
 /* Attachments column title (shows counts)
    Menu item to toggle display of attachment count column in entry table */
 "ATTACHMENTS" = "Anhänge";
@@ -366,7 +369,7 @@
    Notes reference item */
 "NOTES" = "Notizen";
 
-/* Ok button */
+/* Ok Button to dismiss disabled updates alert */
 "OK" = "Ok";
 
 /* preset to expire after one montch from now */
