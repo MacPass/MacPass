@@ -193,10 +193,12 @@ static MPAutotypeDaemon *_sharedInstance;
     notification.title = NSApp.applicationName;
     notification.informativeText = NSLocalizedString(@"AUTOTYPE_OVERLAY_NO_DOCUMENTS", "Notification: Autotype failed, no documents are open");
     notification.actionButtonTitle = NSLocalizedString(@"OPEN_DOCUMENT", "Action button in Notification to open a document");
-    //notification.showsButtons = YES;
+    notification.userInfo = @{ MPUserNotificationTypeKey: MPUserNotificationTypeAutotypeOpenDocumentRequest };
+    notification.showsButtons = YES;
     [NSUserNotificationCenter.defaultUserNotificationCenter deliverNotification:notification];
     return;
   }
+  
   NSPredicate *filterPredicate = [NSPredicate predicateWithBlock:^BOOL(id  _Nonnull evaluatedObject, NSDictionary<NSString *,id> * _Nullable bindings) {
     MPDocument *document = evaluatedObject;
     return !document.encrypted;}];
@@ -219,7 +221,7 @@ static MPAutotypeDaemon *_sharedInstance;
   if(!entryOrNil) {
     NSUserNotification *notification = [[NSUserNotification alloc] init];
     notification.title = NSApp.applicationName;
-    notification.userInfo = @{ kMPUserNotificationInfoKeyNotificationType: kMPUserNotificationTypeAutotype };
+    notification.userInfo = @{ MPUserNotificationTypeKey: MPUserNotificationTypeAutotypeFeedback };
     if(context) {
       notification.informativeText = [NSString stringWithFormat:NSLocalizedString(@"AUTOTYPE_OVERLAY_SINGLE_MATCH_FOR_%@", "Notification: Autotype found a single match for %@ (string placeholder)."), self.targetWindowTitle];
     }
@@ -320,8 +322,6 @@ static MPAutotypeDaemon *_sharedInstance;
 }
 
 - (void)_presentSelectionWindow:(NSArray *)candidates {
-  
-  
   if(!self.matchSelectionWindow) {
     self.matchSelectionWindow = [[NSPanel alloc] initWithContentRect:NSMakeRect(0, 0, 100, 100)
                                                            styleMask:NSWindowStyleMaskNonactivatingPanel|NSWindowStyleMaskTitled

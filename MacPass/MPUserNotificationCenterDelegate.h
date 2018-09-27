@@ -22,8 +22,9 @@
 
 #import <Foundation/Foundation.h>
 
-FOUNDATION_EXTERN NSString *const kMPUserNotificationInfoKeyNotificationType;
-FOUNDATION_EXTERN NSString *const kMPUserNotificationTypeAutotype;
+FOUNDATION_EXTERN NSString *const MPUserNotificationTypeKey;
+FOUNDATION_EXTERN NSString *const MPUserNotificationTypeAutotypeFeedback;
+FOUNDATION_EXTERN NSString *const MPUserNotificationTypeAutotypeOpenDocumentRequest;
 
 @interface MPUserNotificationCenterDelegate : NSObject <NSUserNotificationCenterDelegate>
 

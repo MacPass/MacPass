@@ -125,13 +125,13 @@ NSString *const MPDidChangeStoredKeyFilesSettings = @"com.hicknhack.macpass.MPDi
 
 - (BOOL)applicationShouldHandleReopen:(NSApplication *)sender hasVisibleWindows:(BOOL)flag {
   if(!flag) {
-    BOOL reopen = [[NSUserDefaults standardUserDefaults] boolForKey:kMPSettingsKeyReopenLastDatabaseOnLaunch];
+    BOOL reopen = [NSUserDefaults.standardUserDefaults boolForKey:kMPSettingsKeyReopenLastDatabaseOnLaunch];
     BOOL showWelcomeScreen = YES;
     if(reopen) {
-      showWelcomeScreen = ![self _reopenLastDocument];
+      showWelcomeScreen = ![((MPDocumentController *)NSDocumentController.sharedDocumentController) reopenLastDocument];
     }
     if(showWelcomeScreen) {
-      [self _showWelcomeWindow];
+      [self showWelcomeWindow];
     }
   }
   return YES;
@@ -248,6 +248,11 @@ NSString *const MPDidChangeStoredKeyFilesSettings = @"com.hicknhack.macpass.MPDi
   }
 }
 
+- (void)showWelcomeWindow {
+  [self _loadWelcomeWindow];
+  [self.welcomeWindow makeKeyAndOrderFront:nil];
+}
+
 - (void)clearRememberdKeyFiles:(id)sender {
   [NSUserDefaults.standardUserDefaults removeObjectForKey:kMPSettingsKeyRememeberdKeysForDatabases];
 }
@@ -284,16 +289,11 @@ NSString *const MPDidChangeStoredKeyFilesSettings = @"com.hicknhack.macpass.MPDi
   BOOL reopen = [NSUserDefaults.standardUserDefaults boolForKey:kMPSettingsKeyReopenLastDatabaseOnLaunch];
   BOOL showWelcomeScreen = !restoredWindows && !_shouldOpenFile;
   if(reopen && !restoredWindows && !_shouldOpenFile) {
-    showWelcomeScreen = ![self _reopenLastDocument];
+    showWelcomeScreen = ![((MPDocumentController *)NSDocumentController.sharedDocumentController) reopenLastDocument];
   }
   if(showWelcomeScreen) {
-    [self _showWelcomeWindow];
+    [self showWelcomeWindow];
   }
-}
-
-- (void)_showWelcomeWindow {
-  [self _loadWelcomeWindow];
-  [self.welcomeWindow makeKeyAndOrderFront:nil];
 }
 
 - (void)_loadWelcomeWindow {
@@ -301,42 +301,6 @@ NSString *const MPDidChangeStoredKeyFilesSettings = @"com.hicknhack.macpass.MPDi
     NSArray *topLevelObject;
     [NSBundle.mainBundle loadNibNamed:@"WelcomeWindow" owner:self topLevelObjects:&topLevelObject];
   }
-}
-
-- (BOOL)_reopenLastDocument {
-  if(NSDocumentController.sharedDocumentController.documents.count > 0) {
-    return YES; // The document is already open
-  }
-  NSArray *recentDocuments = NSDocumentController.sharedDocumentController.recentDocumentURLs;
-  NSURL *documentUrl = nil;
-  if(recentDocuments.count > 0) {
-    documentUrl = recentDocuments.firstObject;
-  }
-  else {
-    NSString *lastPath = [NSUserDefaults.standardUserDefaults stringForKey:kMPSettingsKeyLastDatabasePath];
-    documentUrl =[NSURL URLWithString:lastPath];
-  }
-  BOOL isFileURL = documentUrl.fileURL;
-  if(isFileURL) {
-    [NSDocumentController.sharedDocumentController openDocumentWithContentsOfURL:documentUrl
-                                                                         display:YES
-                                                               completionHandler:^(NSDocument *document, BOOL documentWasAlreadyOpen, NSError *error) {
-                                                                 
-                                                                 if(error != nil){
-                                                                   NSAlert *alert = [[NSAlert alloc] init];
-                                                                   alert.messageText = NSLocalizedString(@"FILE_OPEN_ERROR", "Error while reopening last known documents");
-                                                                   alert.informativeText = error.localizedDescription;
-                                                                   alert.alertStyle = NSCriticalAlertStyle;
-                                                                   [alert runModal];
-                                                                 }
-                                                                 
-                                                                 if(document == nil){
-                                                                   [self _showWelcomeWindow];
-                                                                 }
-                                                                 
-                                                               }];
-  }
-  return isFileURL;
 }
 
 @end

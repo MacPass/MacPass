@@ -21,9 +21,11 @@
 //
 
 #import "MPUserNotificationCenterDelegate.h"
+#import "MPDocumentController.h"
 
-NSString *const kMPUserNotificationInfoKeyNotificationType = @"kMPUserNotificationInfoKeyNotificationType";
-NSString *const kMPUserNotificationTypeAutotype = @"kMPUserNotificationTypeAutotype";
+NSString *const MPUserNotificationTypeKey = @"MPUserNotificationTypeKey";
+NSString *const MPUserNotificationTypeAutotypeFeedback = @"MPUserNotificationTypeAutotypeFeedback";
+NSString *const MPUserNotificationTypeAutotypeOpenDocumentRequest = @"MPUserNotificationTypeAutotypeOpenDocumentRequest";
 
 @implementation MPUserNotificationCenterDelegate
 
@@ -36,16 +38,14 @@ NSString *const kMPUserNotificationTypeAutotype = @"kMPUserNotificationTypeAutot
 }
 
 - (void)userNotificationCenter:(NSUserNotificationCenter *)center didActivateNotification:(NSUserNotification *)notification {
-  NSLog(@"%@", notification);
+  NSDictionary *userInfo = notification.userInfo;
+  if([userInfo[MPUserNotificationTypeKey] isEqualToString:MPUserNotificationTypeAutotypeOpenDocumentRequest]) {
+    [((MPDocumentController*)NSDocumentController.sharedDocumentController) reopenLastDocument];
+  }
 }
 
 - (BOOL)userNotificationCenter:(NSUserNotificationCenter *)center shouldPresentNotification:(NSUserNotification *)notification {
-  NSDictionary *userInfo = notification.userInfo;
-  if(!userInfo) {
-    return NO;
-  }
-  NSString *value = userInfo[kMPUserNotificationInfoKeyNotificationType];
-  return [value isEqualToString:kMPUserNotificationTypeAutotype];
+  return [notification.userInfo[MPUserNotificationTypeKey] isEqualToString:MPUserNotificationTypeAutotypeFeedback];
 }
 
 

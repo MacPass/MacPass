@@ -44,7 +44,7 @@
 "ALERT_MERGE_CONTINUE" = "Daten synchronisieren.";
 
 /* Informative text displayed when merging KDB files */
-"ALERT_MERGE_KDB_FILE_INFO_TEXT" = "KDB Datenbanken enthalten nicht alle notwendigen Informationen für eine eindeutige Synchronisatione. Die Synchronisation der Daten von Einträgen erfolgt korrekt, jedoch können Gruppen nur anhand des Namens zugeordnet werden, was möglicherweise zu unerwarteten Ergebnissen führen kann. Soll mit der Synchronisation fortgefahren werden?";
+"ALERT_MERGE_KDB_FILE_INFO_TEXT" = "KDB Datenbanken enthalten nicht alle notwendigen Informationen für eine eindeutige Synchronisation. Einzelne Einträgen werden korrekt synchronisiert. Gruppen werden jedoch nur durch den Namens zugeordnet werden, was zu unerwarteten Ergebnissen führen kann. Etwa können lokal bewegte Einträge wieder in alte Gruppen geschoben werden, unbenannte Gruppen können leer werden und die Einträge unter einer Gruppe mit dem vorherigen Namen wieder auftauchen. Weiterhin können gelöschte Einträge wieder auftauchen, da keine Informationen über diese gespeichert wird. Soll mit der Synchronisation fortgefahren werden?";
 
 /* Alert message warning user about KDB file merge */
 "ALERT_MERGE_KDB_FILE_MESSAGE" = "Es werden KDB Datenbanken synchronisiert! ";

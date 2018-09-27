@@ -51,4 +51,6 @@ APPKIT_EXTERN NSString *const MPDidChangeStoredKeyFilesSettings;
 
 - (void)lockAllDocuments;
 
+- (void)showWelcomeWindow;
+
 @end
