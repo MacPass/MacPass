@@ -39,6 +39,7 @@
 #import "MPTemporaryFileStorageCenter.h"
 #import "MPValueTransformerHelper.h"
 #import "MPUserNotificationCenterDelegate.h"
+#import "MPWelcomeViewController.h"
 
 #import "NSApplication+MPAdditions.h"
 
@@ -55,6 +56,8 @@ NSString *const MPDidChangeStoredKeyFilesSettings = @"com.hicknhack.macpass.MPDi
   BOOL _shouldOpenFile; // YES if app was started to open a
 }
 
+@property (strong) NSWindow *welcomeWindow;
+@property (strong) IBOutlet NSWindow *passwordCreatorWindow;
 @property (strong, nonatomic) MPSettingsWindowController *settingsController;
 @property (strong, nonatomic) MPPasswordCreatorViewController *passwordCreatorController;
 
@@ -249,8 +252,23 @@ NSString *const MPDidChangeStoredKeyFilesSettings = @"com.hicknhack.macpass.MPDi
 }
 
 - (void)showWelcomeWindow {
-  [self _loadWelcomeWindow];
+  if(!self.welcomeWindow) {
+    self.welcomeWindow = [[NSWindow alloc] initWithContentRect:NSMakeRect(0, 0, 100, 100)
+                                                     styleMask:NSWindowStyleMaskTitled|NSWindowStyleMaskClosable|NSWindowStyleMaskResizable
+                                                       backing:NSBackingStoreBuffered
+                                                         defer:NO];
+    self.welcomeWindow.releasedWhenClosed = NO;
+  }
+  if(!self.welcomeWindow.contentViewController) {
+    self.welcomeWindow.contentViewController = [[MPWelcomeViewController alloc] init];
+  }
+  
+  [self.welcomeWindow center];
   [self.welcomeWindow makeKeyAndOrderFront:nil];
+}
+
+- (void)hideWelcomeWindow {
+  [self.welcomeWindow orderOut:nil];
 }
 
 - (void)clearRememberdKeyFiles:(id)sender {
@@ -293,13 +311,6 @@ NSString *const MPDidChangeStoredKeyFilesSettings = @"com.hicknhack.macpass.MPDi
   }
   if(showWelcomeScreen) {
     [self showWelcomeWindow];
-  }
-}
-
-- (void)_loadWelcomeWindow {
-  if(!_welcomeWindow) {
-    NSArray *topLevelObject;
-    [NSBundle.mainBundle loadNibNamed:@"WelcomeWindow" owner:self topLevelObjects:&topLevelObject];
   }
 }
 

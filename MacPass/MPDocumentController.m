@@ -78,6 +78,11 @@
   return [super typeForContentsOfURL:url error:outError];
 }
 
+- (void)addDocument:(NSDocument *)document {
+  [((MPAppDelegate *)NSApp.delegate) hideWelcomeWindow];
+  [super addDocument:document];
+}
+
 - (BOOL)reopenLastDocument {
   if(self.documents.count > 0) {
     return YES; // The document is already open
