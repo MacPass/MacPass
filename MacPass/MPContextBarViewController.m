@@ -70,7 +70,7 @@ typedef NS_ENUM(NSUInteger, MPContextTab) {
 #pragma mark Livecycle
 
 - (void)dealloc {
-  [[NSNotificationCenter defaultCenter] removeObserver:self];
+  [NSNotificationCenter.defaultCenter removeObserver:self];
 }
 
 - (void)awakeFromNib {
