@@ -66,6 +66,7 @@
 }
 
 - (void)_updateCountDisplay {
+  [((NSButtonCell *)self.countButton.cell) setHighlightsBy:0];
   self.countButton.title = [NSString stringWithFormat:@"%ld", _count];
   self.countButton.hidden = (self.hideZeroCount && self.count == 0);
 }
