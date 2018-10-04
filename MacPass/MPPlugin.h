@@ -29,13 +29,14 @@ NS_ASSUME_NONNULL_BEGIN
 @class KPKAttribute;
 @class KPKTree;
 
+FOUNDATION_EXPORT NSString *const MPPluginUnkownVersion;
+
 @interface MPPlugin : NSObject
 
 @property (copy, readonly) NSString *identifier;
 @property (copy, readonly) NSString *name;
 @property (copy, readonly) NSString *version;
 @property (nonatomic, strong, readonly) NSBundle *bundle;
-
 
 /**
  If your plugin needs initalization override this method but you have to call [super initWithPluginHost:]

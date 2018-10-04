@@ -26,6 +26,8 @@
 #import "MPSettingsHelper.h"
 #import "MPPluginConstants.h"
 
+NSString *const MPPluginUnkownVersion = @"unkown.plugin.version";
+
 @implementation MPPlugin
 
 @synthesize bundle = _bundle;
@@ -80,7 +82,7 @@
       return version;
     }
   }
-  return @"unknown.version";
+  return MPPluginUnkownVersion;
 }
 
 
