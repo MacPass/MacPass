@@ -93,6 +93,11 @@ NSString *const MPPluginHostPluginBundleIdentifiyerKey = @"MPPluginHostPluginBun
   return self;
 }
 
+- (NSString *)version {
+  NSString *version = NSBundle.mainBundle.infoDictionary[(NSString *)kCFBundleVersionKey];
+  return version;
+}
+
 - (NSArray<MPPlugin *> *)plugins {
   return [self.mutablePlugins copy];
 }
