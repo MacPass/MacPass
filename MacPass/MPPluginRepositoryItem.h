@@ -22,18 +22,26 @@
 
 #import <Foundation/Foundation.h>
 
+NS_ASSUME_NONNULL_BEGIN
+
+@class MPPluginHost;
+
 @interface MPPluginRepositoryItem : NSObject
 
-@property (copy,readonly) NSString *name;
-@property (copy,readonly) NSString *currentVersion;
-@property (copy,readonly) NSString *descriptionText;
-@property (copy,readonly) NSURL *sourceURL;
-@property (copy,readonly) NSURL *downloadURL;
-@property (copy,readonly) NSURL *bundleIdentifier;
+
+@property (copy,readonly, nullable) NSString *name;
+@property (copy,readonly, nullable) NSString *currentVersion;
+@property (copy,readonly, nullable) NSString *descriptionText;
+@property (copy,readonly, nullable) NSURL *sourceURL;
+@property (copy,readonly, nullable) NSURL *downloadURL;
+@property (copy,readonly, nullable) NSString *bundleIdentifier;
 
 @property (readonly, nonatomic, getter=isVaid) BOOL valid;
 
 + (instancetype)pluginItemFromDictionary:(NSDictionary *)dict;
 - (instancetype)initWithDictionary:(NSDictionary *)dict;
+- (BOOL)isPluginVersion:(NSString * _Nullable )pluginVersionString compatibleWithHost:(MPPluginHost *)host;
 
 @end
+
+NS_ASSUME_NONNULL_END

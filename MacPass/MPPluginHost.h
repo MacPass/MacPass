@@ -48,6 +48,8 @@ FOUNDATION_EXPORT NSString *const MPPluginHostPluginBundleIdentifiyerKey;
 - (void)disablePlugin:(MPPlugin *)plugin;
 - (void)enablePlugin:(MPPlugin *)plugin;
 
+- (void)loadPlugins;
+
 /*
 - (NSArray <MPPlugin __kindof*>*)autotypePlugins;
 - (NSArray <MPPlugin __kindof*>*)entryContextMenuPlugins;

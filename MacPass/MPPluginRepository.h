@@ -20,6 +20,8 @@
 //  along with this program.  If not, see <http://www.gnu.org/licenses/>.
 //
 
+NS_ASSUME_NONNULL_BEGIN
+
 @import Foundation;
 
 @class MPPluginRepositoryItem;
@@ -27,7 +29,9 @@
 @interface MPPluginRepository : NSObject
 
 @property (class, strong, readonly) MPPluginRepository *defaultRepository;
-@property (nonatomic, copy) NSArray<MPPluginRepositoryItem *> *availablePlugins;
 
+- (void)fetchRepositoryDataCompletionHandler:(void (^)(NSArray<MPPluginRepositoryItem *> *availablePlugins))completionHandler;
 
 @end
+
+NS_ASSUME_NONNULL_END

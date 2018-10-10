@@ -196,17 +196,6 @@ NSString *const MPDocumentGroupKey                            = @"MPDocumentGrou
 }
 
 - (BOOL)readFromURL:(NSURL *)url ofType:(NSString *)typeName error:(NSError **)outError {
-  /* FIXME: Lockfile handling
-   self.lockFileURL = [url URLByAppendingPathExtension:@"lock"];
-   if([[NSFileManager defaultManager] fileExistsAtPath:[_lockFileURL path]]) {
-   self.readOnly = YES;
-   }
-   else {
-   [[NSFileManager defaultManager] createFileAtPath:[_lockFileURL path] contents:nil attributes:nil];
-   _didLockFile = YES;
-   self.readOnly = NO;
-   }
-   */
   /*
    Delete our old Tree, and just grab the data
    */
@@ -939,7 +928,7 @@ NSString *const MPDocumentGroupKey                            = @"MPDocumentGrou
 
 - (void)_cleanupLock {
   if(_didLockFile) {
-    [[NSFileManager defaultManager] removeItemAtURL:_lockFileURL error:nil];
+    [NSFileManager.defaultManager removeItemAtURL:_lockFileURL error:nil];
     _didLockFile = NO;
   }
 }
@@ -971,11 +960,11 @@ NSString *const MPDocumentGroupKey                            = @"MPDocumentGrou
 #pragma mark MPModelChangeObserving
 
 - (void)willChangeModelProperty {
-  [[NSNotificationCenter defaultCenter] postNotificationName:MPDocumentWillChangeModelPropertyNotification object:self];
+  [NSNotificationCenter.defaultCenter postNotificationName:MPDocumentWillChangeModelPropertyNotification object:self];
 }
 
 - (void)didChangeModelProperty {
-  [[NSNotificationCenter defaultCenter] postNotificationName:MPDocumentDidChangeModelPropertyNotification object:self];
+  [NSNotificationCenter.defaultCenter postNotificationName:MPDocumentDidChangeModelPropertyNotification object:self];
 }
 
 @end

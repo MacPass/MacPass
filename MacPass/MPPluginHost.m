@@ -26,6 +26,8 @@
 #import "MPPlugin_Private.h"
 #import "MPPluginConstants.h"
 #import "MPPluginEntryActionContext.h"
+#import "MPPluginRepository.h"
+#import "MPPluginRepositoryItem.h"
 
 #import "NSApplication+MPAdditions.h"
 #import "MPSettingsHelper.h"
@@ -79,8 +81,6 @@ NSString *const MPPluginHostPluginBundleIdentifiyerKey = @"MPPluginHostPluginBun
     _entryActionPluginIdentifiers = [[NSMutableArray alloc] init];
     _customAttributePluginIdentifiers = [[NSMutableArray alloc] init];
     
-    [self _loadPlugins];
-    
     [self bind:NSStringFromSelector(@selector(loadUnsecurePlugins))
       toObject:NSUserDefaultsController.sharedUserDefaultsController
    withKeyPath:[MPSettingsHelper defaultControllerPathForKey:kMPSettingsKeyLoadUnsecurePlugins]
@@ -94,7 +94,7 @@ NSString *const MPPluginHostPluginBundleIdentifiyerKey = @"MPPluginHostPluginBun
 }
 
 - (NSString *)version {
-  NSString *version = NSBundle.mainBundle.infoDictionary[(NSString *)kCFBundleVersionKey];
+  NSString *version = NSBundle.mainBundle.infoDictionary[@"CFBundleShortVersionString"];
   return version;
 }
 
@@ -131,7 +131,13 @@ NSString *const MPPluginHostPluginBundleIdentifiyerKey = @"MPPluginHostPluginBun
 
 #pragma mark - Plugin Loading
 
-- (void)_loadPlugins {
+- (void)loadPlugins {
+  [MPPluginRepository.defaultRepository fetchRepositoryDataCompletionHandler:^(NSArray<MPPluginRepositoryItem *> * _Nonnull availablePlugins) {
+    [self _loadPlugins:availablePlugins];
+  }];
+}
+
+- (void)_loadPlugins:(NSArray<MPPluginRepositoryItem *> *)availablePlugins {
   NSURL *appSupportDir = [NSApp applicationSupportDirectoryURL:YES];
   NSError *error;
   NSLog(@"Looking for external plugins at %@.", appSupportDir.path);
@@ -187,6 +193,11 @@ NSString *const MPPluginHostPluginBundleIdentifiyerKey = @"MPPluginHostPluginBun
     
     if([self _validateUniqueBundle:pluginBundle]) {
       NSLog(@"Plugin %@ already loaded!", pluginBundle.bundleIdentifier);
+      continue;
+    }
+    
+    if(![self _isCompatiblePluginBundle:pluginBundle avaiablePlugins:availablePlugins ]) {
+      [self _addPluginForBundle:pluginBundle error:NSLocalizedString(@"PLUGIN_ERROR_HOST_VERSION_NOT_SUPPORTED", "Plugin is not with this version of MacPass")];
       continue;
     }
     
@@ -247,6 +258,17 @@ NSString *const MPPluginHostPluginBundleIdentifiyerKey = @"MPPluginHostPluginBun
     }
   }
   return NO;
+}
+
+- (BOOL)_isCompatiblePluginBundle:(NSBundle *)bundle avaiablePlugins:(NSArray<MPPluginRepositoryItem *> *)availablePlugins {
+  MPPluginRepositoryItem *repoItem;
+  for(MPPluginRepositoryItem *item in availablePlugins) {
+    if([item.bundleIdentifier isEqualToString:bundle.bundleIdentifier]) {
+      repoItem = item;
+    }
+  }
+  NSString *shortVersion = bundle.infoDictionary[@"CFBundleShortVersionString"];
+  return [repoItem isPluginVersion:shortVersion compatibleWithHost:self];
 }
 
 - (BOOL)_isValidPluginURL:(NSURL *)url {

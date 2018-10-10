@@ -10,10 +10,18 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
+@class MPPluginVersion;
+
 @interface MPPluginRepositoryItemVersionInfo : NSObject
+
+@property (copy, readonly) MPPluginVersion *version;
+
++ (instancetype)versionInfoWithDict:(NSDictionary *)dict;
 
 - (instancetype)initWithDict:(NSDictionary *)dict NS_DESIGNATED_INITIALIZER;
 - (instancetype)init NS_UNAVAILABLE;
+
+- (BOOL)isCompatibleWithHostVersion:(MPPluginVersion *)hostVersion;
 
 @end
 

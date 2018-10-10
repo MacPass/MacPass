@@ -183,7 +183,7 @@ NSString *const MPDidChangeStoredKeyFilesSettings = @"com.hicknhack.macpass.MPDi
   [MPLockDaemon defaultDaemon];
   [MPAutotypeDaemon defaultDaemon];
   /* Create Plugin Manager */
-  [MPPluginHost sharedHost];
+  [MPPluginHost.sharedHost loadPlugins];
 #if !defined(DEBUG) && !defined(NO_SPARKLE)
   /* Disable updates if in debug or nosparkle  */
   [SUUpdater sharedUpdater];

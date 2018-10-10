@@ -26,6 +26,8 @@
 #import "MPPlugin.h"
 #import "MPPlugin_Private.h"
 #import "MPPluginConstants.h"
+#import "MPPluginRepository.h"
+#import "MPPluginRepositoryItem.h"
 
 #import "MPConstants.h"
 #import "MPSettingsHelper.h"
@@ -96,7 +98,7 @@ typedef NS_ENUM(NSUInteger, MPPluginSegmentType) {
                                   ? [NSString stringWithFormat:NSLocalizedString(@"PLUGIN_NAME_ERROR_%@", "Name for unloaded plugin with errors"), plugin.name]
                                   : [NSString stringWithFormat:NSLocalizedString(@"PLUGIN_NAME_DISABLED_%@", "name for disabled unloaded plugin"), plugin.name]);
   }
-  view.addionalTextField.stringValue = [NSString stringWithFormat:NSLocalizedString(@"PLUGIN_VERSION_%@", "Plugin version. Include a %@ placeholder for version string"), plugin.version];
+  view.addionalTextField.stringValue = [NSString stringWithFormat:NSLocalizedString(@"PLUGIN_VERSION_%@", "Plugin version. Include a %@ placeholder for version string"), plugin.versionString];
   return view;
 }
 

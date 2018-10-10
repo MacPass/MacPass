@@ -24,9 +24,16 @@
 #import "MPConstants.h"
 #import "MPPluginRepositoryItem.h"
 
-@implementation MPPluginRepository
+const NSTimeInterval MPPluginRepositoryCacheTimeOut = 60*3; // 1 Minute cache time
 
-@dynamic availablePlugins;
+@interface MPPluginRepository ()
+
+@property NSTimeInterval lastPluginCheckTime;
+@property BOOL didLoadData;
+
+@end
+
+@implementation MPPluginRepository
 
 + (instancetype)defaultRepository {
   static MPPluginRepository *instance;
@@ -39,38 +46,65 @@
 
 - (instancetype)init {
   self = [super init];
+  if(self) {
+    self.lastPluginCheckTime = NSDate.distantPast.timeIntervalSinceReferenceDate;
+  }
   return self;
 }
 
-- (NSArray<MPPluginRepositoryItem *> *)availablePlugins {
+- (void)fetchRepositoryDataCompletionHandler:(void (^)(NSArray<MPPluginRepositoryItem *> * _Nonnull))completionHandler {
   NSString *urlString = NSBundle.mainBundle.infoDictionary[MPBundlePluginRepositoryURLKey];
   if(!urlString) {
-    return @[];
+    if(completionHandler) {
+      completionHandler(@[]);
+    }
+    return;
   }
   NSURL *jsonURL = [NSURL URLWithString:urlString];
   if(!jsonURL) {
-    return @[];
-  }
-  NSError *error;
-  NSData *jsonData = [NSData dataWithContentsOfURL:jsonURL options:0 error:&error];
-  if(!jsonData) {
-    return @[];
-  }
-  id jsonRoot = [NSJSONSerialization JSONObjectWithData:jsonData options:0 error:&error];
-  if(!jsonRoot || ![jsonRoot isKindOfClass:NSArray.class]) {
-    return @[];
-  }
-  NSMutableArray *items = [[NSMutableArray alloc] init];
-  for(id item in jsonRoot) {
-    if(![item isKindOfClass:NSDictionary.class]) {
-      continue;
+    if(completionHandler) {
+      completionHandler(@[]);
     }
-    MPPluginRepositoryItem *pluginItem = [MPPluginRepositoryItem pluginItemFromDictionary:item];
-    if(pluginItem.isVaid) {
-      [items addObject:pluginItem];
-    }
+    return;
   }
-  return [items copy];
+  
+  NSURLSessionTask *downloadTask = [NSURLSession.sharedSession dataTaskWithURL:jsonURL completionHandler:^(NSData * _Nullable jsonData, NSURLResponse * _Nullable response, NSError * _Nullable error) {
+    if(![response isKindOfClass:NSHTTPURLResponse.class]) {
+      if(completionHandler) {
+        completionHandler(@[]);
+      }
+      return;
+    }
+    NSHTTPURLResponse *httpResponse = (NSHTTPURLResponse *)response;
+    if(httpResponse.statusCode != 200 || jsonData.length == 0) {
+      if(completionHandler) {
+        completionHandler(@[]);
+      }
+      return;
+    }
+    id jsonRoot = [NSJSONSerialization JSONObjectWithData:jsonData options:0 error:&error];
+    if(!jsonRoot || ![jsonRoot isKindOfClass:NSArray.class]) {
+      if(completionHandler) {
+        completionHandler(@[]);
+      }
+      return;
+    }
+    NSMutableArray *items = [[NSMutableArray alloc] init];
+    for(id item in jsonRoot) {
+      if(![item isKindOfClass:NSDictionary.class]) {
+        continue;
+      }
+      MPPluginRepositoryItem *pluginItem = [MPPluginRepositoryItem pluginItemFromDictionary:item];
+      if(pluginItem.isVaid) {
+        [items addObject:pluginItem];
+      }
+    }
+    if(completionHandler) {
+      completionHandler([items copy]);
+    }
+  }];
+  
+  [downloadTask resume];
 }
 
 @end

@@ -21,6 +21,11 @@
 //
 
 #import "MPPluginRepositoryItem.h"
+#import "MPPluginRepositoryItemVersionInfo.h"
+#import "MPPluginVersion.h"
+#import "MPPluginHost.h"
+#import "MPPlugin.h"
+#import "NSError+Messages.h"
 
 
 NSString *const MPPluginItemNameKey = @"name";
@@ -29,6 +34,7 @@ NSString *const MPPluginItemDownloadURLKey = @"download";
 NSString *const MPPluginItemSourceURLKey = @"source";
 NSString *const MPPluginItemCurrentVersionKey = @"currentVersion";
 NSString *const MPPluginItemBundleIdentifierKey = @"bundleIdentifier";
+NSString *const MPPluginItemCompatibiltyKey = @"compatibilty";
 
 @interface MPPluginRepositoryItem ()
 
@@ -37,7 +43,9 @@ NSString *const MPPluginItemBundleIdentifierKey = @"bundleIdentifier";
 @property (copy) NSString *descriptionText;
 @property (copy) NSURL *sourceURL;
 @property (copy) NSURL *downloadURL;
-@property (copy) NSURL *bundleIdentifier;
+@property (copy) NSString *bundleIdentifier;
+@property (copy) NSArray *compatibilty;
+
 
 @end
 
@@ -58,6 +66,8 @@ NSString *const MPPluginItemBundleIdentifierKey = @"bundleIdentifier";
     self.sourceURL = [NSURL URLWithString:dict[MPPluginItemSourceURLKey]];
     self.currentVersion = dict[MPPluginItemCurrentVersionKey];
     self.bundleIdentifier = dict[MPPluginItemBundleIdentifierKey];
+    [self _buildVersionInfos:dict[MPPluginItemCompatibiltyKey]];
+    
   }
   return self;
 }
@@ -65,6 +75,52 @@ NSString *const MPPluginItemBundleIdentifierKey = @"bundleIdentifier";
 - (BOOL)isVaid {
   /* name and download seems ok */
   return (self.name.length > 0 && self.downloadURL);
+}
+
+- (BOOL)isPluginVersion:(NSString *)pluginVersionString compatibleWithHost:(MPPluginHost *)host {
+  if(pluginVersionString.length == 0) {
+    return NO;
+  }
+  MPPluginVersion *pluginVersion = [MPPluginVersion versionWithVersionString:pluginVersionString];
+  if(!pluginVersion) {
+    return NO;
+  }
+  if(host.version.length == 0) {
+    return NO;
+  }
+
+  MPPluginVersion *hostVersion = [MPPluginVersion versionWithVersionString:host.version];
+  if(!hostVersion) {
+    return NO;
+  }
+  
+  NSMutableArray<MPPluginRepositoryItemVersionInfo *> *matches = [[NSMutableArray alloc] init];
+  for(MPPluginRepositoryItemVersionInfo *info in self.compatibilty) {
+    if(NSOrderedSame == [info.version compare:pluginVersion]) {
+      [matches addObject:info];
+    }
+  }
+  
+  if(matches.count != 1) {
+    return NO;
+  }
+  
+  MPPluginRepositoryItemVersionInfo *matchingInfo = matches.firstObject;
+  return [matchingInfo isCompatibleWithHostVersion:hostVersion];
+}
+
+- (void)_buildVersionInfos:(NSArray<NSDictionary *>*)infos {
+  NSMutableArray *tmp = [[NSMutableArray alloc] init];
+  for(NSDictionary *dict in infos) {
+    if(![dict isKindOfClass:NSDictionary.class]) {
+      continue;
+    }
+    MPPluginRepositoryItemVersionInfo *info = [MPPluginRepositoryItemVersionInfo versionInfoWithDict:dict];
+    if(info){
+     [tmp addObject:info];
+    }
+  }
+  self.compatibilty = [tmp copy];
 }
 
 @end

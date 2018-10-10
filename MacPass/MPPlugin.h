@@ -35,7 +35,8 @@ FOUNDATION_EXPORT NSString *const MPPluginUnkownVersion;
 
 @property (copy, readonly) NSString *identifier;
 @property (copy, readonly) NSString *name;
-@property (copy, readonly) NSString *version;
+@property (nonatomic, copy, readonly, nullable) NSString *humanVersionString;
+@property (nonatomic, copy, readonly) NSString *versionString;
 @property (nonatomic, strong, readonly) NSBundle *bundle;
 
 /**
