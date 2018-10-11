@@ -7,12 +7,11 @@
 //
 
 #import "MPPluginRepositoryBrowserViewController.h"
+#import "MPPlugin.h"
+#import "MPPluginHost.h"
 #import "MPPluginRepository.h"
 #import "MPPluginRepositoryItem.h"
-
-NSString *MPPluginBrowserColumnName = @"MPPluginBrowserColumnName";
-NSString *MPPluginBrowserColumnCurrentVersion = @"MPPluginBrowserColumnCurrentVersion";
-NSString *MPPluginBrowserColumnInstalledVersion = @"MPPluginBrowserColumnInstalledVersion";
+#import "MPPluginBrowserTableCellView.h"
 
 @interface MPPluginRepositoryBrowserViewController () <NSTableViewDelegate, NSTableViewDataSource>
 
@@ -28,11 +27,6 @@ NSString *MPPluginBrowserColumnInstalledVersion = @"MPPluginBrowserColumnInstall
 }
 
 - (void)viewDidLoad {
-  
-  self.itemTable.tableColumns[0].identifier = MPPluginBrowserColumnName;
-  self.itemTable.tableColumns[1].identifier = MPPluginBrowserColumnCurrentVersion;
-  self.itemTable.tableColumns[2].identifier = MPPluginBrowserColumnInstalledVersion;
-  
   [super viewDidLoad];
   [self _refreshRepository];
 }
@@ -50,20 +44,22 @@ NSString *MPPluginBrowserColumnInstalledVersion = @"MPPluginBrowserColumnInstall
 }
 
 - (NSView *)tableView:(NSTableView *)tableView viewForTableColumn:(NSTableColumn *)tableColumn row:(NSInteger)row {
-
+  MPPluginBrowserTableCellView *view = [tableView makeViewWithIdentifier:tableColumn.identifier owner:self];
   MPPluginRepositoryItem *item = self.repositoryItems.firstObject;
-  if([tableColumn.identifier isEqualToString:MPPluginBrowserColumnName]) {
-    NSTableCellView *view = [tableView makeViewWithIdentifier:@"NameCellView" owner:self];
-    view.textField.stringValue = item.name;
-    return view;
+  view.textField.stringValue = item.name;
+  
+  MPPlugin *plugin = [MPPluginHost.sharedHost pluginWithBundleIdentifier:item.bundleIdentifier];
+  if(plugin) {
+    if([plugin.humanVersionString isEqualToString:item.currentVersion]) {
+      view.statusTextField.stringValue = [NSString stringWithFormat:NSLocalizedString(@"INSTALLED_VERSION_%@_(UP_TO_DATE)", "Info displayed when an installed plugin is up to date"), plugin.humanVersionString];
+    }
+    else {
+      view.statusTextField.stringValue = [NSString stringWithFormat:NSLocalizedString(@"CURRENT_VERSION_%@_(INSTALLED_VERSION_%@)", "Info displayed when a plugin is loaded and "), item.currentVersion, plugin.humanVersionString];
+    }
   }
-  if([tableColumn.identifier isEqualToString:MPPluginBrowserColumnCurrentVersion]) {
-      NSTableCellView *view = [tableView makeViewWithIdentifier:@"CurrentVersionCellView" owner:self];
-    view.textField.stringValue = item.currentVersion;
-    return view;
+  else {
+    view.statusTextField.stringValue = [NSString stringWithFormat:NSLocalizedString(@"CURRENT_VERSION_%@_(NOT_INSTALLED)", "Info displayed when an plugin is not installed"), plugin.humanVersionString];
   }
-  NSTableCellView *view = [tableView makeViewWithIdentifier:@"InstalledVersionCellView" owner:self];
-  view.textField.stringValue = item.descriptionText;
   return view;
   
 }

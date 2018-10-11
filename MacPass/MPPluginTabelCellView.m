@@ -24,4 +24,9 @@
 
 @implementation MPPluginTabelCellView
 
+- (void)setBackgroundStyle:(NSBackgroundStyle)backgroundStyle {
+  super.backgroundStyle = backgroundStyle;
+  self.addionalTextField.cell.backgroundStyle = backgroundStyle;
+}
+
 @end

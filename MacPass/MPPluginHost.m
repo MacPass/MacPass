@@ -129,6 +129,16 @@ NSString *const MPPluginHostPluginBundleIdentifiyerKey = @"MPPluginHostPluginBun
 }
 
 
+- (MPPlugin *)pluginWithBundleIdentifier:(NSString *)identifer {
+  for(MPPlugin *plugin in self.mutablePlugins) {
+    if([plugin.bundle.bundleIdentifier isEqualToString:identifer]) {
+      return plugin;
+    }
+  }
+  return nil;
+
+}
+
 #pragma mark - Plugin Loading
 
 - (void)loadPlugins {
@@ -253,13 +263,7 @@ NSString *const MPPluginHostPluginBundleIdentifiyerKey = @"MPPluginHostPluginBun
 }
 
 - (BOOL)_validateUniqueBundle:(NSBundle *)bundle {
-  for(MPPlugin *plugin in self.mutablePlugins) {
-    NSBundle *pluginBundle = [NSBundle bundleForClass:plugin.class];
-    if([pluginBundle.bundleIdentifier isEqualToString:bundle.bundleIdentifier]) {
-      return YES;
-    }
-  }
-  return NO;
+  return ![self pluginWithBundleIdentifier:bundle.bundleIdentifier];
 }
 
 - (BOOL)_isCompatiblePluginBundle:(NSBundle *)bundle avaiablePlugins:(NSArray<MPPluginRepositoryItem *> *)availablePlugins {

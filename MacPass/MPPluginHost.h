@@ -50,9 +50,6 @@ FOUNDATION_EXPORT NSString *const MPPluginHostPluginBundleIdentifiyerKey;
 
 - (void)loadPlugins;
 
-/*
-- (NSArray <MPPlugin __kindof*>*)autotypePlugins;
-- (NSArray <MPPlugin __kindof*>*)entryContextMenuPlugins;
-*/
+- (MPPlugin *)pluginWithBundleIdentifier:(NSString *)identifer;
 - (NSArray *)avilableMenuItemsForEntries:(NSArray <KPKEntry *>*)entries;
 @end

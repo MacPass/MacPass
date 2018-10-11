@@ -24,6 +24,6 @@
 
 @interface MPPluginTabelCellView : NSTableCellView
 
-@property (weak) IBOutlet NSTextField *addionalTextField;
+@property (strong) IBOutlet NSTextField *addionalTextField;
 
 @end
