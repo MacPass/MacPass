@@ -226,6 +226,8 @@
 		4CC0D2CE17974A47000B4BDA /* MPCustomFieldTableViewDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CC0D2CD17974A47000B4BDA /* MPCustomFieldTableViewDelegate.m */; };
 		4CC0D2D117974A5A000B4BDA /* MPAttachmentTableViewDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CC0D2D017974A5A000B4BDA /* MPAttachmentTableViewDelegate.m */; };
 		4CC281891C0F675B00B9174D /* HNHUi.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4CC281881C0F675B00B9174D /* HNHUi.framework */; };
+		4CC663E7216F7A7100E33965 /* MPPluginRepositoryBrowserViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CC663E5216F7A7100E33965 /* MPPluginRepositoryBrowserViewController.m */; };
+		4CC663E8216F7A7100E33965 /* PluginRepositoryBrowserView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4CC663E6216F7A7100E33965 /* PluginRepositoryBrowserView.xib */; };
 		4CC6DB7A17D23719002C6091 /* KPKNode+IconImage.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CC6DB7917D23719002C6091 /* KPKNode+IconImage.m */; };
 		4CCA8E9B18D91ED9001A6754 /* Quartz.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4CCA8E9A18D91ED9001A6754 /* Quartz.framework */; };
 		4CCCE8011D75CA48006AA951 /* MPArrayController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CCCE8001D75CA48006AA951 /* MPArrayController.m */; };
@@ -755,6 +757,9 @@
 		4CC0D2CF17974A5A000B4BDA /* MPAttachmentTableViewDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MPAttachmentTableViewDelegate.h; sourceTree = "<group>"; };
 		4CC0D2D017974A5A000B4BDA /* MPAttachmentTableViewDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MPAttachmentTableViewDelegate.m; sourceTree = "<group>"; };
 		4CC281881C0F675B00B9174D /* HNHUi.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = HNHUi.framework; path = Carthage/Build/Mac/HNHUi.framework; sourceTree = "<group>"; };
+		4CC663E4216F7A7100E33965 /* MPPluginRepositoryBrowserViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MPPluginRepositoryBrowserViewController.h; sourceTree = "<group>"; };
+		4CC663E5216F7A7100E33965 /* MPPluginRepositoryBrowserViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MPPluginRepositoryBrowserViewController.m; sourceTree = "<group>"; };
+		4CC663E6216F7A7100E33965 /* PluginRepositoryBrowserView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PluginRepositoryBrowserView.xib; sourceTree = "<group>"; };
 		4CC6DB7817D23719002C6091 /* KPKNode+IconImage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "KPKNode+IconImage.h"; sourceTree = "<group>"; };
 		4CC6DB7917D23719002C6091 /* KPKNode+IconImage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "KPKNode+IconImage.m"; sourceTree = "<group>"; };
 		4CCA7EEC1797866F00B0B55E /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/GeneralSettings.strings; sourceTree = "<group>"; };
@@ -1556,6 +1561,9 @@
 				4C73B6EE215E64A7009787F7 /* MPWelcomeViewController.h */,
 				4C73B6EF215E64A7009787F7 /* MPWelcomeViewController.m */,
 				4C7F8B6A1A10B68400CCB83D /* WelcomeView.xib */,
+				4CC663E4216F7A7100E33965 /* MPPluginRepositoryBrowserViewController.h */,
+				4CC663E5216F7A7100E33965 /* MPPluginRepositoryBrowserViewController.m */,
+				4CC663E6216F7A7100E33965 /* PluginRepositoryBrowserView.xib */,
 			);
 			name = "View Controller";
 			sourceTree = "<group>";
@@ -1838,6 +1846,7 @@
 				4C3826B31AD04D8E007D7D67 /* 38_SambaUnmountTemplate.pdf in Resources */,
 				4CB9339916D3A0DD00A13B5D /* Credits.rtf in Resources */,
 				4C08ACEA204F01C700863D99 /* keyboardTemplate.pdf in Resources */,
+				4CC663E8216F7A7100E33965 /* PluginRepositoryBrowserView.xib in Resources */,
 				4C0F04412147FB49000B8568 /* OpenPanelAccessoryView.xib in Resources */,
 				4C6DCC451FA2457900C8AD3F /* ContextBar.xib in Resources */,
 				4C431BCF16E2BAB000700A81 /* OverlayWindow.xib in Resources */,
@@ -2024,6 +2033,7 @@
 				4CF6C3021FBF39BF0055AD03 /* MPPluginTabelCellView.m in Sources */,
 				4C10412C178CDD44001B5239 /* NSDate+Humanized.m in Sources */,
 				4C2F17A21FD69BCA0097418D /* MPUserNotificationCenterDelegate.m in Sources */,
+				4CC663E7216F7A7100E33965 /* MPPluginRepositoryBrowserViewController.m in Sources */,
 				4C0C59F118B17F10009C7B76 /* DDHotKeyUtilities.m in Sources */,
 				4CEE46DD181C301D006BF1E5 /* MPAutotypeDaemon.m in Sources */,
 				4C50CC041F6C18830095629D /* MPCollectionViewItem.m in Sources */,

@@ -133,7 +133,9 @@ NSString *const MPPluginHostPluginBundleIdentifiyerKey = @"MPPluginHostPluginBun
 
 - (void)loadPlugins {
   [MPPluginRepository.defaultRepository fetchRepositoryDataCompletionHandler:^(NSArray<MPPluginRepositoryItem *> * _Nonnull availablePlugins) {
-    [self _loadPlugins:availablePlugins];
+    dispatch_async(dispatch_get_main_queue(), ^{
+      [self _loadPlugins:availablePlugins];
+    });
   }];
 }
 

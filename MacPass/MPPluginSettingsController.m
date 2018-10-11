@@ -26,8 +26,7 @@
 #import "MPPlugin.h"
 #import "MPPlugin_Private.h"
 #import "MPPluginConstants.h"
-#import "MPPluginRepository.h"
-#import "MPPluginRepositoryItem.h"
+#import "MPPluginRepositoryBrowserViewController.h"
 
 #import "MPConstants.h"
 #import "MPSettingsHelper.h"
@@ -184,7 +183,8 @@ typedef NS_ENUM(NSUInteger, MPPluginSegmentType) {
 #pragma mark - Actions
 
 - (IBAction)browsePlugins:(id)sender {
-  [NSWorkspace.sharedWorkspace openURL:[NSApp applicationSupportDirectoryURL:YES]];
+  [self presentViewControllerAsSheet:[[MPPluginRepositoryBrowserViewController alloc] init]];
+  // [NSWorkspace.sharedWorkspace openURL:[NSApp applicationSupportDirectoryURL:YES]];
 }
 
 - (IBAction)addOrRemovePlugin:(id)sender {
@@ -224,7 +224,7 @@ typedef NS_ENUM(NSUInteger, MPPluginSegmentType) {
 
 - (void)_addPlugin:(NSURL *)bundleURL {
   NSError *error;
-  if(![[MPPluginHost sharedHost] installPluginAtURL:bundleURL error:&error]) {
+  if(![MPPluginHost.sharedHost installPluginAtURL:bundleURL error:&error]) {
     [NSApp presentError:error modalForWindow:self.view.window delegate:nil didPresentSelector:NULL contextInfo:NULL];
   }
   else {
@@ -252,7 +252,7 @@ typedef NS_ENUM(NSUInteger, MPPluginSegmentType) {
 
 - (void)_removePlugin:(MPPlugin *)plugin {
   NSError *error;
-  if(![[MPPluginHost sharedHost] uninstallPlugin:plugin error:&error]) {
+  if(![MPPluginHost.sharedHost uninstallPlugin:plugin error:&error]) {
     [NSApp presentError:error modalForWindow:self.view.window delegate:nil didPresentSelector:NULL contextInfo:NULL];
   }
   else {
