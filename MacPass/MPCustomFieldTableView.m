@@ -24,6 +24,9 @@
 
 @implementation MPCustomFieldTableView
 
+/*
+ on macOS 10.11 and lower, the height is not calculated correctly
+ */
 - (NSSize)intrinsicContentSize {
   if(@available(macOS 10.12, *)) {
     return [super intrinsicContentSize];
@@ -32,7 +35,6 @@
     return NSMakeSize(-1, self.numberOfRows * self.rowHeight);
   }
   return NSMakeSize(-1, -1);
-  
 }
 
 @end
