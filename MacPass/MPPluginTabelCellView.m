@@ -26,7 +26,16 @@
 
 - (void)setBackgroundStyle:(NSBackgroundStyle)backgroundStyle {
   super.backgroundStyle = backgroundStyle;
-  self.addionalTextField.cell.backgroundStyle = backgroundStyle;
+  switch(backgroundStyle) {
+    case NSBackgroundStyleNormal:
+    case NSBackgroundStyleLowered:
+      self.addionalTextField.textColor = NSColor.disabledControlTextColor;
+      break;
+    case NSBackgroundStyleRaised:
+    case NSBackgroundStyleEmphasized:
+      self.addionalTextField.textColor = NSColor.selectedControlTextColor;
+      break;
+  }
 }
 
 @end
