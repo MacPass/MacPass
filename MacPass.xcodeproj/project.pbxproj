@@ -264,7 +264,6 @@
 		4CE8246F16E2E93400573141 /* MPOverlayWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CE8246E16E2E93400573141 /* MPOverlayWindowController.m */; };
 		4CE8247516E2F2B900573141 /* MPOverlayView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CE8247416E2F2B900573141 /* MPOverlayView.m */; };
 		4CE88B9717BA651C0042E078 /* contextTriangleTemplate.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 4CE88B9617BA651C0042E078 /* contextTriangleTemplate.pdf */; };
-		4CE97BAA216FA968006BF25D /* MPPluginBrowserTableCellView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CE97BA9216FA968006BF25D /* MPPluginBrowserTableCellView.m */; };
 		4CEE46DD181C301D006BF1E5 /* MPAutotypeDaemon.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CEE46DC181C301D006BF1E5 /* MPAutotypeDaemon.m */; };
 		4CEED1C617D7BD0E007180F1 /* NSError+Messages.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CEED1C517D7BD0E007180F1 /* NSError+Messages.m */; };
 		4CF29BF417879D0000851B60 /* 26_FileSaveTemplate.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 4CF29BF317879D0000851B60 /* 26_FileSaveTemplate.pdf */; };
@@ -824,8 +823,6 @@
 		4CE88B9617BA651C0042E078 /* contextTriangleTemplate.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; name = contextTriangleTemplate.pdf; path = Icons/contextTriangleTemplate.pdf; sourceTree = "<group>"; };
 		4CE88C2417C163FE00BFD195 /* CoreFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreFoundation.framework; path = System/Library/Frameworks/CoreFoundation.framework; sourceTree = SDKROOT; };
 		4CE88C3317C1647400BFD195 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
-		4CE97BA8216FA968006BF25D /* MPPluginBrowserTableCellView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MPPluginBrowserTableCellView.h; sourceTree = "<group>"; };
-		4CE97BA9216FA968006BF25D /* MPPluginBrowserTableCellView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MPPluginBrowserTableCellView.m; sourceTree = "<group>"; };
 		4CEE46DB181C301D006BF1E5 /* MPAutotypeDaemon.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MPAutotypeDaemon.h; sourceTree = "<group>"; };
 		4CEE46DC181C301D006BF1E5 /* MPAutotypeDaemon.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MPAutotypeDaemon.m; sourceTree = "<group>"; };
 		4CEED1C417D7BD0E007180F1 /* NSError+Messages.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSError+Messages.h"; sourceTree = "<group>"; };
@@ -1051,8 +1048,6 @@
 				4C0F043F2147A6FA000B8568 /* MPCustomFieldTableView.m */,
 				4C370EFC215B76CB00703AAE /* MPOutlineTableCellView.h */,
 				4C370EFD215B76CB00703AAE /* MPOutlineTableCellView.m */,
-				4CE97BA8216FA968006BF25D /* MPPluginBrowserTableCellView.h */,
-				4CE97BA9216FA968006BF25D /* MPPluginBrowserTableCellView.m */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -1246,6 +1241,9 @@
 				4C25703C1BF11C2300D39416 /* MPPluginSettingsController.h */,
 				4C25703D1BF11C2300D39416 /* MPPluginSettingsController.m */,
 				4C0DBEF71BF508DE00F9B287 /* PluginSettings.xib */,
+				4CC663E4216F7A7100E33965 /* MPPluginRepositoryBrowserViewController.h */,
+				4CC663E5216F7A7100E33965 /* MPPluginRepositoryBrowserViewController.m */,
+				4CC663E6216F7A7100E33965 /* PluginRepositoryBrowserView.xib */,
 			);
 			name = Settings;
 			sourceTree = "<group>";
@@ -1566,9 +1564,6 @@
 				4C73B6EE215E64A7009787F7 /* MPWelcomeViewController.h */,
 				4C73B6EF215E64A7009787F7 /* MPWelcomeViewController.m */,
 				4C7F8B6A1A10B68400CCB83D /* WelcomeView.xib */,
-				4CC663E4216F7A7100E33965 /* MPPluginRepositoryBrowserViewController.h */,
-				4CC663E5216F7A7100E33965 /* MPPluginRepositoryBrowserViewController.m */,
-				4CC663E6216F7A7100E33965 /* PluginRepositoryBrowserView.xib */,
 			);
 			name = "View Controller";
 			sourceTree = "<group>";
@@ -1953,7 +1948,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				4CE97BAA216FA968006BF25D /* MPPluginBrowserTableCellView.m in Sources */,
 				4CD034AC1BFE113B003C002C /* MPPluginHost.m in Sources */,
 				4C77E37315B84A240093A587 /* main.m in Sources */,
 				4C0F04402147A6FA000B8568 /* MPCustomFieldTableView.m in Sources */,

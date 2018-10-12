@@ -24,7 +24,6 @@
 #import "MPPluginRepositoryItemVersionInfo.h"
 #import "MPPluginVersion.h"
 #import "MPPluginHost.h"
-#import "MPPlugin.h"
 #import "NSError+Messages.h"
 
 
@@ -39,7 +38,7 @@ NSString *const MPPluginItemCompatibiltyKey = @"compatibilty";
 @interface MPPluginRepositoryItem ()
 
 @property (copy) NSString *name;
-@property (copy) NSString *currentVersion;
+@property (copy) MPPluginVersion *currentVersion;
 @property (copy) NSString *descriptionText;
 @property (copy) NSURL *sourceURL;
 @property (copy) NSURL *downloadURL;
@@ -64,7 +63,7 @@ NSString *const MPPluginItemCompatibiltyKey = @"compatibilty";
     self.descriptionText = dict[MPPluginItemDescriptionKey];
     self.downloadURL = [NSURL URLWithString:dict[MPPluginItemDownloadURLKey]];
     self.sourceURL = [NSURL URLWithString:dict[MPPluginItemSourceURLKey]];
-    self.currentVersion = dict[MPPluginItemCurrentVersionKey];
+    self.currentVersion = [MPPluginVersion versionWithVersionString:dict[MPPluginItemCurrentVersionKey]];
     self.bundleIdentifier = dict[MPPluginItemBundleIdentifierKey];
     [self _buildVersionInfos:dict[MPPluginItemCompatibiltyKey]];
     
@@ -77,19 +76,12 @@ NSString *const MPPluginItemCompatibiltyKey = @"compatibilty";
   return (self.name.length > 0 && self.downloadURL);
 }
 
-- (BOOL)isPluginVersion:(NSString *)pluginVersionString compatibleWithHost:(MPPluginHost *)host {
-  if(pluginVersionString.length == 0) {
-    return NO;
-  }
-  MPPluginVersion *pluginVersion = [MPPluginVersion versionWithVersionString:pluginVersionString];
+- (BOOL)isPluginVersionCompatibleWithHost:(MPPluginVersion *)pluginVersion {
   if(!pluginVersion) {
     return NO;
   }
-  if(host.version.length == 0) {
-    return NO;
-  }
-
-  MPPluginVersion *hostVersion = [MPPluginVersion versionWithVersionString:host.version];
+  
+  MPPluginVersion *hostVersion = MPPluginHost.sharedHost.version;
   if(!hostVersion) {
     return NO;
   }

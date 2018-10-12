@@ -24,12 +24,7 @@
 #import "MPConstants.h"
 #import "MPPluginRepositoryItem.h"
 
-const NSTimeInterval MPPluginRepositoryCacheTimeOut = 60*3; // 1 Minute cache time
-
 @interface MPPluginRepository ()
-
-@property NSTimeInterval lastPluginCheckTime;
-@property BOOL didLoadData;
 
 @end
 
@@ -44,13 +39,6 @@ const NSTimeInterval MPPluginRepositoryCacheTimeOut = 60*3; // 1 Minute cache ti
   return instance;
 }
 
-- (instancetype)init {
-  self = [super init];
-  if(self) {
-    self.lastPluginCheckTime = NSDate.distantPast.timeIntervalSinceReferenceDate;
-  }
-  return self;
-}
 
 - (void)fetchRepositoryDataCompletionHandler:(void (^)(NSArray<MPPluginRepositoryItem *> * _Nonnull))completionHandler {
   NSString *urlString = NSBundle.mainBundle.infoDictionary[MPBundlePluginRepositoryURLKey];

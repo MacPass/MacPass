@@ -44,8 +44,7 @@
 "ALERT_MERGE_CONTINUE" = "Merge files!";
 
 /* Informative text displayed when merging KDB files */
-"ALERT_MERGE_KDB_FILE_INFO_TEXT" = "KDB databases do not contain enough information for a seamless merge. Entries will get merged and no data is lost. But due to groups only being matched by name unexpected changes might occur. Moved entries might get moved back to their old group, or renamed groups will not get merged. Also deleted entries might reappear due to no information regarding deleted objects being stored. Are you sure you want to proceed?
-";
+"ALERT_MERGE_KDB_FILE_INFO_TEXT" = "KDB databases do not contain enough information for a seamless merge. Entries will get merged and no data is lost. But due to groups only being matched by name unexpected changes might occur. Moved entries might get moved back to their old group, or renamed groups will not get merged. Also deleted entries might reappear due to no information regarding deleted objects being stored. Are you sure you want to proceed?";
 
 /* Alert message warning user about KDB file merge */
 "ALERT_MERGE_KDB_FILE_MESSAGE" = "You are merging a KDB database";
@@ -55,6 +54,12 @@
 
 /* Alert message text to ask the user if he really want to uninstall the plugin. Include %@ placeholder for plugin name */
 "ALERT_MESSAGE_TEXT_REALLY_UNINSTALL_PLUGIN_%@" = "Should the Plugin %@ really be uninstalled?";
+
+/* Infromative text of the disabled updates alert! */
+"ALERT_UPDATES_DISABLED_INFORMATIVE_TEXT_%@!" = "Updates for this build of %@ are disabled!";
+
+/* Message text for disabled updates alert! */
+"ALERT_UPDATES_DISABLED_MESSAGE_TEXT" = "Updates are Disabled!";
 
 /* Attachments column title (shows counts)
    Menu item to toggle display of attachment count column in entry table */
@@ -367,7 +372,7 @@
    Notes reference item */
 "NOTES" = "Notes";
 
-/* Ok button */
+/* Ok Button to dismiss disabled updates alert */
 "OK" = "OK";
 
 /* preset to expire after one montch from now */
@@ -440,6 +445,21 @@
 
 /* Window displayed to the user to pick an amout of characters */
 "PICKFIELD_WINDOW_TITLE" = "Field Picker";
+
+/* Status for an up-to-date plugin in the plugin browser */
+"PLUGIN_BROWSER_LATEST_VERSION_INSTALLED" = "Latest version installed";
+
+/* Status for an outdated plugin version in the plugin browser */
+"PLUGIN_BROWSER_NEWER_VERSION_%@_AVAILABLE" = "Newer version(%@) available.";
+
+/* Status for an uninstalled plugin in the plugin browser */
+"PLUGIN_BROWSER_PLUGIN_NOT_INSTALLED" = "Not installed";
+
+/* Status for an unkonw plugin version in the plugin browser */
+"PLUGIN_BROWSER_UNKNOWN_PLUGIN_VERSION_%@" = "Unknown version installed";
+
+/* Plugin is not with this version of MacPass */
+"PLUGIN_ERROR_HOST_VERSION_NOT_SUPPORTED" = "The plugin is not compatible with this version of MacPass";
 
 /* The plugin could not be initalized */
 "PLUGIN_ERROR_INTILIZATION_FAILED" = "Plugin could not be initalized";
@@ -571,9 +591,6 @@
 
 /* Update Settings Label */
 "UPDATE_SETTINGS" = "Updates";
-
-/* Message text for disabled updates alert! */
-"Updates are disabled!" = "Updates are disabled!";
 
 /* Menu item to toggle display of url column in entry table
    Submenu with options what to do with the URL of an entry

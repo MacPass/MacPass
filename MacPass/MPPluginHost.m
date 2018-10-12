@@ -28,6 +28,7 @@
 #import "MPPluginEntryActionContext.h"
 #import "MPPluginRepository.h"
 #import "MPPluginRepositoryItem.h"
+#import "MPPluginVersion.h"
 
 #import "NSApplication+MPAdditions.h"
 #import "MPSettingsHelper.h"
@@ -80,6 +81,7 @@ NSString *const MPPluginHostPluginBundleIdentifiyerKey = @"MPPluginHostPluginBun
     _loadUnsecurePlugins = [NSUserDefaults.standardUserDefaults boolForKey:kMPSettingsKeyLoadUnsecurePlugins];
     _entryActionPluginIdentifiers = [[NSMutableArray alloc] init];
     _customAttributePluginIdentifiers = [[NSMutableArray alloc] init];
+    _version = [[MPPluginVersion alloc] initWithVersionString:NSBundle.mainBundle.infoDictionary[@"CFBundleShortVersionString"]];
     
     [self bind:NSStringFromSelector(@selector(loadUnsecurePlugins))
       toObject:NSUserDefaultsController.sharedUserDefaultsController
@@ -91,11 +93,6 @@ NSString *const MPPluginHostPluginBundleIdentifiyerKey = @"MPPluginHostPluginBun
        options:nil];
   }
   return self;
-}
-
-- (NSString *)version {
-  NSString *version = NSBundle.mainBundle.infoDictionary[@"CFBundleShortVersionString"];
-  return version;
 }
 
 - (NSArray<MPPlugin *> *)plugins {
@@ -273,8 +270,8 @@ NSString *const MPPluginHostPluginBundleIdentifiyerKey = @"MPPluginHostPluginBun
       repoItem = item;
     }
   }
-  NSString *shortVersion = bundle.infoDictionary[@"CFBundleShortVersionString"];
-  return [repoItem isPluginVersion:shortVersion compatibleWithHost:self];
+  MPPluginVersion *version = [MPPluginVersion versionWithVersionString:bundle.infoDictionary[@"CFBundleShortVersionString"]];
+  return [repoItem isPluginVersionCompatibleWithHost:version];
 }
 
 - (BOOL)_isValidPluginURL:(NSURL *)url {

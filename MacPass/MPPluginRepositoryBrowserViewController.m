@@ -11,7 +11,14 @@
 #import "MPPluginHost.h"
 #import "MPPluginRepository.h"
 #import "MPPluginRepositoryItem.h"
-#import "MPPluginBrowserTableCellView.h"
+#import "MPPluginVersion.h"
+
+
+typedef NS_ENUM(NSUInteger, MPPluginTableColumn) {
+  MPPluginTableColumnName,
+  MPPluginTableColumnCurrentVersion,
+  MPPluginTableColumnStatus
+};
 
 @interface MPPluginRepositoryBrowserViewController () <NSTableViewDelegate, NSTableViewDataSource>
 
@@ -44,21 +51,38 @@
 }
 
 - (NSView *)tableView:(NSTableView *)tableView viewForTableColumn:(NSTableColumn *)tableColumn row:(NSInteger)row {
-  MPPluginBrowserTableCellView *view = [tableView makeViewWithIdentifier:tableColumn.identifier owner:self];
+  NSTableCellView *view = [tableView makeViewWithIdentifier:tableColumn.identifier owner:self];
   MPPluginRepositoryItem *item = self.repositoryItems.firstObject;
-  view.textField.stringValue = item.name;
   
-  MPPlugin *plugin = [MPPluginHost.sharedHost pluginWithBundleIdentifier:item.bundleIdentifier];
-  if(plugin) {
-    if([plugin.humanVersionString isEqualToString:item.currentVersion]) {
-      view.statusTextField.stringValue = [NSString stringWithFormat:NSLocalizedString(@"INSTALLED_VERSION_%@_(UP_TO_DATE)", "Info displayed when an installed plugin is up to date"), plugin.humanVersionString];
+  NSUInteger column = [tableView.tableColumns indexOfObjectIdenticalTo:tableColumn];
+
+  if(column == MPPluginTableColumnName) {
+    view.textField.stringValue = item.name;
+  }
+  else if(column == MPPluginTableColumnCurrentVersion) {
+    view.textField.stringValue = item.currentVersion.versionString;
+  }
+  else if(column == MPPluginTableColumnStatus) {
+    MPPlugin *plugin = [MPPluginHost.sharedHost pluginWithBundleIdentifier:item.bundleIdentifier];
+    if(!plugin) {
+      switch([plugin.version compare:item.currentVersion]) {
+        case NSOrderedSame:
+          view.textField.stringValue = [NSString stringWithFormat:NSLocalizedString(@"PLUGIN_BROWSER_LATEST_VERSION_INSTALLED", "Status for an up-to-date plugin in the plugin browser")];
+          break;
+        case NSOrderedAscending:
+          view.textField.stringValue = [NSString stringWithFormat:NSLocalizedString(@"PLUGIN_BROWSER_NEWER_VERSION_%@_AVAILABLE", "Status for an outdated plugin version in the plugin browser"), item.currentVersion.versionString];
+          break;
+        case NSOrderedDescending:
+          view.textField.stringValue = [NSString stringWithFormat:NSLocalizedString(@"PLUGIN_BROWSER_UNKNOWN_PLUGIN_VERSION", "Status for an unkonw plugin version in the plugin browser")];
+          break;
+      }
     }
     else {
-      view.statusTextField.stringValue = [NSString stringWithFormat:NSLocalizedString(@"CURRENT_VERSION_%@_(INSTALLED_VERSION_%@)", "Info displayed when a plugin is loaded and "), item.currentVersion, plugin.humanVersionString];
+      view.textField.stringValue = [NSString stringWithFormat:NSLocalizedString(@"PLUGIN_BROWSER_PLUGIN_NOT_INSTALLED", "Status for an uninstalled plugin in the plugin browser")];
     }
   }
   else {
-    view.statusTextField.stringValue = [NSString stringWithFormat:NSLocalizedString(@"CURRENT_VERSION_%@_(NOT_INSTALLED)", "Info displayed when an plugin is not installed"), plugin.humanVersionString];
+    view.textField.stringValue = @"-";
   }
   return view;
   

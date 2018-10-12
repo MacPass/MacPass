@@ -25,12 +25,14 @@
 #import "MPPluginHost.h"
 #import "MPSettingsHelper.h"
 #import "MPPluginConstants.h"
+#import "MPPluginVersion.h"
 
 NSString *const MPPluginUnkownVersion = @"unkown.plugin.version";
 
 @implementation MPPlugin
 
 @synthesize bundle = _bundle;
+@synthesize version = _version;
 
 - (instancetype)initWithPluginHost:(MPPluginHost *)host {
   self = [super init];
@@ -70,6 +72,14 @@ NSString *const MPPluginUnkownVersion = @"unkown.plugin.version";
 
 - (NSString *)humanVersionString {
   return self.bundle.infoDictionary[@"CFBundleShortVersionString"];
+}
+
+- (MPPluginVersion *)version {
+  if(!_versionInitialized) {
+    _version = [MPPluginVersion versionWithVersionString:self.humanVersionString];
+    _versionInitialized = YES;
+  }
+  return _version;
 }
 
 - (NSString *)versionString {

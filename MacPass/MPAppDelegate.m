@@ -284,7 +284,7 @@ NSString *const MPDidChangeStoredKeyFilesSettings = @"com.hicknhack.macpass.MPDi
 #if defined(DEBUG) || defined(NO_SPARKLE)
   NSAlert *alert = [[NSAlert alloc] init];
   alert.messageText = NSLocalizedString(@"ALERT_UPDATES_DISABLED_MESSAGE_TEXT", @"Message text for disabled updates alert!");
-  alert.informativeText = [NSString stringWithFormat:@"ALERT_UPDATED_DISABLED_INFORMATIVE_TEXT_%@!", NSApp.applicationName];
+  alert.informativeText = [NSString stringWithFormat:NSLocalizedString(@"ALERT_UPDATES_DISABLED_INFORMATIVE_TEXT_%@!", @"Infromative text of the disabled updates alert!"), NSApp.applicationName];
   [alert addButtonWithTitle:NSLocalizedString(@"OK", @"Ok Button to dismiss disabled updates alert")];
   [alert runModal];
 #else

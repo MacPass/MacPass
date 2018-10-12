@@ -28,6 +28,7 @@ NS_ASSUME_NONNULL_BEGIN
 @class KPKEntry;
 @class KPKAttribute;
 @class KPKTree;
+@class MPPluginVersion;
 
 FOUNDATION_EXPORT NSString *const MPPluginUnkownVersion;
 
@@ -36,6 +37,7 @@ FOUNDATION_EXPORT NSString *const MPPluginUnkownVersion;
 @property (copy, readonly) NSString *identifier;
 @property (copy, readonly) NSString *name;
 @property (nonatomic, copy, readonly, nullable) NSString *humanVersionString;
+@property (nonatomic, copy, readonly, nullable) MPPluginVersion *version;
 @property (nonatomic, copy, readonly) NSString *versionString;
 @property (nonatomic, strong, readonly) NSBundle *bundle;
 

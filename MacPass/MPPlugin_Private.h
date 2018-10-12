@@ -22,7 +22,9 @@
 
 #import "MPPlugin.h"
 
-@interface MPPlugin ()
+@interface MPPlugin () {
+  BOOL _versionInitialized;
+}
 
 @property (nonatomic, strong) NSBundle *bundle;
 @property (copy) NSString *errorMessage;
