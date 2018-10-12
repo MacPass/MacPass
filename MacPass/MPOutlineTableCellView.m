@@ -46,6 +46,11 @@
   [self _updateCountDisplay];
 }
 
+- (void)setBackgroundStyle:(NSBackgroundStyle)backgroundStyle {
+  super.backgroundStyle = backgroundStyle;
+  self.countButton.cell.backgroundStyle = backgroundStyle;
+}
+
 - (void)_setupDefaults {
   _count = 0;
   _hideZeroCount = YES;
