@@ -22,7 +22,7 @@
 
 #import "MPPluginRepositoryItem.h"
 #import "MPPluginRepositoryItemVersionInfo.h"
-#import "MPPluginVersion.h"
+#import "MPPluginVersionComparator.h"
 #import "MPPluginHost.h"
 #import "NSError+Messages.h"
 
@@ -38,7 +38,7 @@ NSString *const MPPluginItemCompatibiltyKey = @"compatibilty";
 @interface MPPluginRepositoryItem ()
 
 @property (copy) NSString *name;
-@property (copy) MPPluginVersion *currentVersion;
+@property (copy) NSString *currentVersion;
 @property (copy) NSString *descriptionText;
 @property (copy) NSURL *sourceURL;
 @property (copy) NSURL *downloadURL;
@@ -63,7 +63,7 @@ NSString *const MPPluginItemCompatibiltyKey = @"compatibilty";
     self.descriptionText = dict[MPPluginItemDescriptionKey];
     self.downloadURL = [NSURL URLWithString:dict[MPPluginItemDownloadURLKey]];
     self.sourceURL = [NSURL URLWithString:dict[MPPluginItemSourceURLKey]];
-    self.currentVersion = [MPPluginVersion versionWithVersionString:dict[MPPluginItemCurrentVersionKey]];
+    self.currentVersion = dict[MPPluginItemCurrentVersionKey];
     self.bundleIdentifier = dict[MPPluginItemBundleIdentifierKey];
     [self _buildVersionInfos:dict[MPPluginItemCompatibiltyKey]];
     
@@ -76,29 +76,29 @@ NSString *const MPPluginItemCompatibiltyKey = @"compatibilty";
   return (self.name.length > 0 && self.downloadURL);
 }
 
-- (BOOL)isPluginVersionCompatibleWithHost:(MPPluginVersion *)pluginVersion {
+- (BOOL)isPluginVersionCompatibleWithHost:(NSString *)pluginVersion {
   if(!pluginVersion) {
     return NO;
   }
   
-  MPPluginVersion *hostVersion = MPPluginHost.sharedHost.version;
-  if(!hostVersion) {
+  if(!MPPluginHost.sharedHost.version) {
     return NO;
   }
   
   NSMutableArray<MPPluginRepositoryItemVersionInfo *> *matches = [[NSMutableArray alloc] init];
   for(MPPluginRepositoryItemVersionInfo *info in self.compatibilty) {
-    if(NSOrderedSame == [info.version compare:pluginVersion]) {
+    if(NSOrderedSame == [MPPluginVersionComparator compareVersion:info.version toVersion:pluginVersion]) {
       [matches addObject:info];
     }
   }
   
   if(matches.count != 1) {
+    NSLog(@"No unique version match found.");
     return NO;
   }
   
   MPPluginRepositoryItemVersionInfo *matchingInfo = matches.firstObject;
-  return [matchingInfo isCompatibleWithHostVersion:hostVersion];
+  return [matchingInfo isCompatibleWithHostVersion:MPPluginHost.sharedHost.version];
 }
 
 - (void)_buildVersionInfos:(NSArray<NSDictionary *>*)infos {

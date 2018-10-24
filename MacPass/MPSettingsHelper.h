@@ -80,6 +80,7 @@ APPKIT_EXTERN NSString *const kMPSettingsKeyUpdatePasswordOnTemplateEntries;
 /* Plugins */
 APPKIT_EXTERN NSString *const kMPSettingsKeyLoadUnsecurePlugins;            // If set to YES this will load all plugins regardless of their codesignature status
 APPKIT_EXTERN NSString *const kMPSettingsKeyDisabledPlugins;                // NSArray of bundle identifiers of disabled plugins
+APPKIT_EXTERN NSString *const kMPSettingsKeyLoadIncompatiblePlugins;        // If set to YES incompatible plugins (no version info, marked as incompatible, etc) will be loaded regardless
 
 typedef NS_ENUM(NSUInteger, MPFileChangeStrategy) {
   MPFileChangeStrategyAsk,

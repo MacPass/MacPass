@@ -75,6 +75,7 @@ NSString *const kMPSettingsKeyDoubleClickTitleAction                  = @"Double
 NSString *const kMPSettingsKeyUpdatePasswordOnTemplateEntries         = @"UpdatePasswordOnTemplateEntries";
 
 NSString *const kMPSettingsKeyLoadUnsecurePlugins                     = @"LoadUnsecurePlugins";
+NSString *const kMPSettingsKeyLoadIncompatiblePlugins                 = @"LoadIncompatiblePlugins";
 NSString *const kMPSettingsKeyDisabledPlugins                         = @"DisabledPlugins";
 
 /* Deprecated */
@@ -147,7 +148,8 @@ NSString *const kMPDepricatedSettingsKeyLoadUnsecurePlugins               = @"MP
                          kMPSettingsKeyDoubleClickTitleAction: @(MPDoubleClickTitleActionInspect),
                          kMPSettingsKeyLoadUnsecurePlugins: @NO,
                          kMPSettingsKeyUpdatePasswordOnTemplateEntries: @YES,
-                         kMPSettingsKeyDisabledPlugins: @[]
+                         kMPSettingsKeyDisabledPlugins: @[],
+                         kMPSettingsKeyLoadIncompatiblePlugins: @NO
                          };
   });
   return standardDefaults;

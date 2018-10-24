@@ -24,13 +24,20 @@ NS_ASSUME_NONNULL_BEGIN
 
 @import Foundation;
 
+FOUNDATION_EXTERN NSString *const MPPluginRepositoryDidUpdateAvailablePluginsNotification;
+
 @class MPPluginRepositoryItem;
 
 @interface MPPluginRepository : NSObject
 
 @property (class, strong, readonly) MPPluginRepository *defaultRepository;
-
-- (void)fetchRepositoryDataCompletionHandler:(void (^)(NSArray<MPPluginRepositoryItem *> *availablePlugins))completionHandler;
+@property (readonly) BOOL isInitialized;
+/*
+ this property is set asynchronously, to make sure, you receive valid data,
+ register to MPPluginRepositoryDidUpdateAvailablePlugsinNotification and access
+ availablePlugins after you received at least on notification
+ */
+@property (nonatomic, copy, readonly) NSArray<MPPluginRepositoryItem *> *availablePlugins;
 
 @end
 

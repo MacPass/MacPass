@@ -28,7 +28,7 @@
 #import "MPPluginEntryActionContext.h"
 #import "MPPluginRepository.h"
 #import "MPPluginRepositoryItem.h"
-#import "MPPluginVersion.h"
+#import "MPPluginVersionComparator.h"
 
 #import "NSApplication+MPAdditions.h"
 #import "MPSettingsHelper.h"
@@ -47,10 +47,6 @@ NSString *const MPPluginHostPluginBundleIdentifiyerKey = @"MPPluginHostPluginBun
 @property (strong) NSMutableArray<MPPlugin __kindof *> *mutablePlugins;
 @property (strong) NSMutableArray<NSString *> *entryActionPluginIdentifiers;
 @property (strong) NSMutableArray<NSString *> *customAttributePluginIdentifiers;
-
-
-@property (nonatomic) BOOL loadUnsecurePlugins;
-@property (copy) NSArray<NSString *> *disabledPlugins;
 
 @end
 
@@ -77,26 +73,25 @@ NSString *const MPPluginHostPluginBundleIdentifiyerKey = @"MPPluginHostPluginBun
   self = [super init];
   if(self) {
     _mutablePlugins = [[NSMutableArray alloc] init];
-    _disabledPlugins = [NSUserDefaults.standardUserDefaults arrayForKey:kMPSettingsKeyLoadUnsecurePlugins];
-    _loadUnsecurePlugins = [NSUserDefaults.standardUserDefaults boolForKey:kMPSettingsKeyLoadUnsecurePlugins];
     _entryActionPluginIdentifiers = [[NSMutableArray alloc] init];
     _customAttributePluginIdentifiers = [[NSMutableArray alloc] init];
-    _version = [[MPPluginVersion alloc] initWithVersionString:NSBundle.mainBundle.infoDictionary[@"CFBundleShortVersionString"]];
-    
-    [self bind:NSStringFromSelector(@selector(loadUnsecurePlugins))
-      toObject:NSUserDefaultsController.sharedUserDefaultsController
-   withKeyPath:[MPSettingsHelper defaultControllerPathForKey:kMPSettingsKeyLoadUnsecurePlugins]
-       options:nil];
-    [self bind:NSStringFromSelector(@selector(disabledPlugins))
-     toObject:NSUserDefaultsController.sharedUserDefaultsController
-   withKeyPath:[MPSettingsHelper defaultControllerPathForKey:kMPSettingsKeyDisabledPlugins]
-       options:nil];
   }
   return self;
 }
 
+- (NSString *)version {
+  return NSBundle.mainBundle.infoDictionary[@"CFBundleShortVersionString"];
+}
+
 - (NSArray<MPPlugin *> *)plugins {
   return [self.mutablePlugins copy];
+}
+
+- (NSArray<MPPlugin *> *)importPlugins {
+  NSPredicate *filterPredicate = [NSPredicate predicateWithBlock:^BOOL(id  _Nullable evaluatedObject, NSDictionary<NSString *,id> * _Nullable bindings) {
+    return ([evaluatedObject conformsToProtocol:@protocol(MPImportPlugin)]);
+  }];
+  return [self.mutablePlugins filteredArrayUsingPredicate:filterPredicate];
 }
 
 - (BOOL)installPluginAtURL:(NSURL *)url error:(NSError *__autoreleasing *)error {
@@ -120,9 +115,25 @@ NSString *const MPPluginHostPluginBundleIdentifiyerKey = @"MPPluginHostPluginBun
 }
 
 - (void)disablePlugin:(MPPlugin *)plugin {
+  if(plugin.bundle.bundleIdentifier.length == 0) {
+    return;
+  }
+  NSArray<NSString *> *disabledPlugins = [NSUserDefaults.standardUserDefaults arrayForKey:kMPSettingsKeyDisabledPlugins];
+  if(NSNotFound == [disabledPlugins indexOfObject:plugin.bundle.bundleIdentifier]) {
+    disabledPlugins = [disabledPlugins arrayByAddingObject:plugin.bundle.bundleIdentifier];
+    [NSUserDefaults.standardUserDefaults setObject:disabledPlugins forKey:kMPSettingsKeyDisabledPlugins];
+  }
 }
 
 - (void)enablePlugin:(MPPlugin *)plugin {
+  if(plugin.bundle.bundleIdentifier.length == 0) {
+    return;
+  }
+  NSArray<NSString *> *disabledPlugins = [NSUserDefaults.standardUserDefaults arrayForKey:kMPSettingsKeyDisabledPlugins];
+  disabledPlugins = [disabledPlugins filteredArrayUsingPredicate:[NSPredicate predicateWithBlock:^BOOL(id  _Nullable evaluatedObject, NSDictionary<NSString *,id> * _Nullable bindings) {
+    return ![evaluatedObject isEqualToString:plugin.bundle.bundleIdentifier];
+  }]];
+  [NSUserDefaults.standardUserDefaults setValue:disabledPlugins forKey:kMPSettingsKeyDisabledPlugins];
 }
 
 
@@ -133,20 +144,34 @@ NSString *const MPPluginHostPluginBundleIdentifiyerKey = @"MPPluginHostPluginBun
     }
   }
   return nil;
-
+  
 }
 
 #pragma mark - Plugin Loading
 
 - (void)loadPlugins {
-  [MPPluginRepository.defaultRepository fetchRepositoryDataCompletionHandler:^(NSArray<MPPluginRepositoryItem *> * _Nonnull availablePlugins) {
-    dispatch_async(dispatch_get_main_queue(), ^{
-      [self _loadPlugins:availablePlugins];
-    });
-  }];
+  if(MPPluginRepository.defaultRepository.isInitialized) {
+    [self _loadPlugins];
+  }
+  else {
+    [NSNotificationCenter.defaultCenter addObserver:self
+                                           selector:@selector(_didUpdateAvailablePlugins:)
+                                               name:MPPluginRepositoryDidUpdateAvailablePluginsNotification
+                                             object:MPPluginRepository.defaultRepository];
+  }
 }
 
-- (void)_loadPlugins:(NSArray<MPPluginRepositoryItem *> *)availablePlugins {
+- (void)_didUpdateAvailablePlugins:(NSNotification *)notification {
+  [NSNotificationCenter.defaultCenter removeObserver:self
+                                                name:MPPluginRepositoryDidUpdateAvailablePluginsNotification
+                                              object:MPPluginRepository.defaultRepository];
+  /* load plugins on the main thread! */
+  dispatch_async(dispatch_get_main_queue(), ^{
+    [self _loadPlugins];
+  });
+}
+
+- (void)_loadPlugins {
   NSURL *appSupportDir = [NSApp applicationSupportDirectoryURL:YES];
   NSError *error;
   NSLog(@"Looking for external plugins at %@.", appSupportDir.path);
@@ -176,15 +201,20 @@ NSString *const MPPluginHostPluginBundleIdentifiyerKey = @"MPPluginHostPluginBun
       NSLog(@"Skipping %@. No valid plugin file.", pluginURL.path);
       continue;
     }
-
+    
     NSBundle *pluginBundle = [NSBundle bundleWithURL:pluginURL];
     if(!pluginBundle) {
       NSLog(@"Could not access plugin bundle %@", pluginURL.path);
       continue;
     }
     
+    if([self _isDisabledPluginBundle:pluginBundle]) {
+      [self _addPluginForBundle:pluginBundle error:NSLocalizedString(@"PLUGIN_ERROR_DISABLED_PLUGIN", "Error for a plugin that is disabled.")];
+    }
+    
     if(![self _isSignedPluginURL:pluginURL]) {
-      if(self.loadUnsecurePlugins) {
+      BOOL loadInsecurePlugins = [NSUserDefaults.standardUserDefaults boolForKey:kMPSettingsKeyLoadUnsecurePlugins];
+      if(loadInsecurePlugins) {
         NSLog(@"Loading unsecure Plugin at %@.", pluginURL.path);
       }
       else {
@@ -200,12 +230,13 @@ NSString *const MPPluginHostPluginBundleIdentifiyerKey = @"MPPluginHostPluginBun
       continue;
     };
     
-    if([self _validateUniqueBundle:pluginBundle]) {
+    if(![self _isUniqueBundle:pluginBundle]) {
       NSLog(@"Plugin %@ already loaded!", pluginBundle.bundleIdentifier);
       continue;
     }
     
-    if(![self _isCompatiblePluginBundle:pluginBundle avaiablePlugins:availablePlugins ]) {
+    if(![self _isCompatiblePluginBundle:pluginBundle error:&error]) {
+      NSLog(@"Plugin %@ is not compatible with host!", pluginBundle.bundleIdentifier);
       [self _addPluginForBundle:pluginBundle error:NSLocalizedString(@"PLUGIN_ERROR_HOST_VERSION_NOT_SUPPORTED", "Plugin is not with this version of MacPass")];
       continue;
     }
@@ -233,7 +264,7 @@ NSString *const MPPluginHostPluginBundleIdentifiyerKey = @"MPPluginHostPluginBun
     else {
       plugin = [[pluginBundle.principalClass alloc] initWithPluginHost:self];
     }
-
+    
     if(plugin) {
       NSLog(@"Loaded plugin instance %@", pluginBundle.principalClass);
       [[NSNotificationCenter defaultCenter] postNotificationName:MPPluginHostWillLoadPlugin
@@ -259,19 +290,20 @@ NSString *const MPPluginHostPluginBundleIdentifiyerKey = @"MPPluginHostPluginBun
   [self _addPlugin:plugin];
 }
 
-- (BOOL)_validateUniqueBundle:(NSBundle *)bundle {
-  return ![self pluginWithBundleIdentifier:bundle.bundleIdentifier];
+- (BOOL)_isUniqueBundle:(NSBundle *)bundle {
+  return (nil == [self pluginWithBundleIdentifier:bundle.bundleIdentifier]);
 }
 
-- (BOOL)_isCompatiblePluginBundle:(NSBundle *)bundle avaiablePlugins:(NSArray<MPPluginRepositoryItem *> *)availablePlugins {
+- (BOOL)_isCompatiblePluginBundle:(NSBundle *)bundle error:(NSError * __autoreleasing *)error {
   MPPluginRepositoryItem *repoItem;
-  for(MPPluginRepositoryItem *item in availablePlugins) {
+  for(MPPluginRepositoryItem *item in MPPluginRepository.defaultRepository.availablePlugins) {
     if([item.bundleIdentifier isEqualToString:bundle.bundleIdentifier]) {
       repoItem = item;
     }
   }
-  MPPluginVersion *version = [MPPluginVersion versionWithVersionString:bundle.infoDictionary[@"CFBundleShortVersionString"]];
-  return [repoItem isPluginVersionCompatibleWithHost:version];
+  BOOL isCompatible = [repoItem isPluginVersionCompatibleWithHost:bundle.infoDictionary[@"CFBundleShortVersionString"]];
+  BOOL loadIncompatible = [NSUserDefaults.standardUserDefaults boolForKey:kMPSettingsKeyLoadIncompatiblePlugins];
+  return (loadIncompatible || isCompatible);
 }
 
 - (BOOL)_isValidPluginURL:(NSURL *)url {
@@ -323,6 +355,14 @@ NSString *const MPPluginHostPluginBundleIdentifiyerKey = @"MPPluginHostPluginBun
   }
   
   return NO;
+}
+
+- (BOOL)_isDisabledPluginBundle:(NSBundle *)bundle {
+  if(bundle.bundleIdentifier.length == 0) {
+    return YES; // disbable by default if nothing is known
+  }
+  NSArray *disabledPlugins = [NSUserDefaults.standardUserDefaults arrayForKey:kMPSettingsKeyDisabledPlugins];
+  return (NSNotFound != [disabledPlugins indexOfObject:bundle.bundleIdentifier]);
 }
 
 - (void)_addPlugin:(MPPlugin *)plugin {

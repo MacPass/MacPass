@@ -42,12 +42,13 @@ typedef NS_ENUM(NSUInteger, MPPluginSegmentType) {
 
 @interface MPPluginSettingsController () <NSTableViewDataSource, NSTableViewDelegate>
 
-@property (weak) IBOutlet NSTableView *pluginTableView;
-@property (weak) IBOutlet NSView *settingsView;
+@property (strong) IBOutlet NSTableView *pluginTableView;
+@property (strong) IBOutlet NSView *settingsView;
 @property (strong) IBOutlet NSView *fallbackSettingsView;
-@property (weak) IBOutlet NSTextField *fallbackDescriptionTextField;
-@property (weak) IBOutlet NSButton *loadInsecurePlugsinCheckButton;
-@property (weak) IBOutlet NSSegmentedControl *addRemovePluginsControl;
+@property (strong) IBOutlet NSTextField *fallbackDescriptionTextField;
+@property (strong) IBOutlet NSButton *loadInsecurePlugsinCheckButton;
+@property (strong) IBOutlet NSSegmentedControl *addRemovePluginsControl;
+@property (strong) IBOutlet NSButton *forceIncompatiblePluginsCheckButton;
 
 @end
 
@@ -75,9 +76,13 @@ typedef NS_ENUM(NSUInteger, MPPluginSegmentType) {
   [self.addRemovePluginsControl setEnabled:NO forSegment:MPRemovePluginSegment];
   [self.fallbackSettingsView removeFromSuperview];
   [self.loadInsecurePlugsinCheckButton bind:NSValueBinding
-                                   toObject:[NSUserDefaultsController sharedUserDefaultsController]
+                                   toObject:NSUserDefaultsController.sharedUserDefaultsController
                                 withKeyPath:[MPSettingsHelper defaultControllerPathForKey:kMPSettingsKeyLoadUnsecurePlugins]
                                     options:nil];
+  [self.forceIncompatiblePluginsCheckButton bind:NSValueBinding
+                                        toObject:NSUserDefaultsController.sharedUserDefaultsController
+                                     withKeyPath:[MPSettingsHelper defaultControllerPathForKey:kMPSettingsKeyLoadIncompatiblePlugins]
+                                         options:nil];
   [self.pluginTableView registerForDraggedTypes:@[(NSString *)kUTTypeFileURL]];
 }
 

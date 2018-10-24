@@ -31,14 +31,14 @@ FOUNDATION_EXPORT NSString *const MPPluginHostPluginBundleIdentifiyerKey;
 
 @class MPPlugin;
 @class KPKEntry;
-@class MPPluginVersion;
+@protocol MPImportPlugin;
 
 @interface MPPluginHost : NSObject
 
 /* List of all plugins known to the plugin manager. Disabled plugins are also present! */
 @property (readonly, copy) NSArray <MPPlugin __kindof*> *plugins;
-@property (nonatomic, readonly) BOOL loadUnsecurePlugins;
-@property (readonly, copy) MPPluginVersion *version;
+@property (readonly, copy) NSArray <MPPlugin __kindof*> *importPlugins;
+@property (nonatomic, readonly, copy) NSString *version;
 
 + (instancetype)sharedHost;
 

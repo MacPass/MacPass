@@ -24,11 +24,19 @@
 #import "MPConstants.h"
 #import "MPPluginRepositoryItem.h"
 
+NSString *const MPPluginRepositoryDidUpdateAvailablePluginsNotification = @"com.hicknhack.macpass.MPPluginRepositoryDidInitializeAvailablePluginsNotification";
+
 @interface MPPluginRepository ()
+
+@property (nonatomic, copy) NSArray<MPPluginRepositoryItem *> *availablePlugins;
+@property NSTimeInterval lastDataFetchTime;
+@property BOOL isInitialized;
 
 @end
 
 @implementation MPPluginRepository
+
+@synthesize availablePlugins = _availablePlugins;
 
 + (instancetype)defaultRepository {
   static MPPluginRepository *instance;
@@ -39,6 +47,36 @@
   return instance;
 }
 
+- (instancetype)init {
+  self = [super init];
+  if(self) {
+    _isInitialized = NO;
+    [self fetchRepositoryDataCompletionHandler:^(NSArray<MPPluginRepositoryItem *> * _Nonnull availablePlugins) {
+      self.availablePlugins = availablePlugins;
+      self.isInitialized = YES;
+    }];
+  }
+  return self;
+}
+
+- (NSArray<MPPluginRepositoryItem *> *)availablePlugins {
+  /* update cache on every read if it's older than 5 minutes */
+  if((NSDate.timeIntervalSinceReferenceDate - self.lastDataFetchTime) > 60*5 ) {
+    NSLog(@"%@: updating available plugins cache.", self.className);
+    [self fetchRepositoryDataCompletionHandler:^(NSArray<MPPluginRepositoryItem *> * _Nonnull availablePlugins) {
+      self.availablePlugins = availablePlugins;
+    }];
+  }
+  return _availablePlugins;
+}
+
+- (void)setAvailablePlugins:(NSArray<MPPluginRepositoryItem *> *)availablePlugins {
+  @synchronized (self) {
+    _availablePlugins = [availablePlugins copy];
+    self.lastDataFetchTime = NSDate.timeIntervalSinceReferenceDate;
+    [NSNotificationCenter.defaultCenter postNotificationName:MPPluginRepositoryDidUpdateAvailablePluginsNotification object:self];
+  }
+}
 
 - (void)fetchRepositoryDataCompletionHandler:(void (^)(NSArray<MPPluginRepositoryItem *> * _Nonnull))completionHandler {
   NSString *urlString = NSBundle.mainBundle.infoDictionary[MPBundlePluginRepositoryURLKey];

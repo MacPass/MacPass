@@ -11,7 +11,7 @@
 #import "MPPluginHost.h"
 #import "MPPluginRepository.h"
 #import "MPPluginRepositoryItem.h"
-#import "MPPluginVersion.h"
+#import "MPPluginVersionComparator.h"
 
 
 typedef NS_ENUM(NSUInteger, MPPluginTableColumn) {
@@ -60,17 +60,17 @@ typedef NS_ENUM(NSUInteger, MPPluginTableColumn) {
     view.textField.stringValue = item.name;
   }
   else if(column == MPPluginTableColumnCurrentVersion) {
-    view.textField.stringValue = item.currentVersion.versionString;
+    view.textField.stringValue = item.currentVersion;
   }
   else if(column == MPPluginTableColumnStatus) {
     MPPlugin *plugin = [MPPluginHost.sharedHost pluginWithBundleIdentifier:item.bundleIdentifier];
     if(!plugin) {
-      switch([plugin.version compare:item.currentVersion]) {
+      switch([plugin.shortVersionString compare:item.currentVersion]) {
         case NSOrderedSame:
           view.textField.stringValue = [NSString stringWithFormat:NSLocalizedString(@"PLUGIN_BROWSER_LATEST_VERSION_INSTALLED", "Status for an up-to-date plugin in the plugin browser")];
           break;
         case NSOrderedAscending:
-          view.textField.stringValue = [NSString stringWithFormat:NSLocalizedString(@"PLUGIN_BROWSER_NEWER_VERSION_%@_AVAILABLE", "Status for an outdated plugin version in the plugin browser"), item.currentVersion.versionString];
+          view.textField.stringValue = [NSString stringWithFormat:NSLocalizedString(@"PLUGIN_BROWSER_NEWER_VERSION_%@_AVAILABLE", "Status for an outdated plugin version in the plugin browser"), item.currentVersion];
           break;
         case NSOrderedDescending:
           view.textField.stringValue = [NSString stringWithFormat:NSLocalizedString(@"PLUGIN_BROWSER_UNKNOWN_PLUGIN_VERSION", "Status for an unkonw plugin version in the plugin browser")];
@@ -89,12 +89,8 @@ typedef NS_ENUM(NSUInteger, MPPluginTableColumn) {
 }
 
 - (void)_refreshRepository {
-  [MPPluginRepository.defaultRepository fetchRepositoryDataCompletionHandler:^(NSArray<MPPluginRepositoryItem *> * _Nonnull availablePlugins) {
-    dispatch_async(dispatch_get_main_queue(), ^{
-      self.repositoryItems = availablePlugins;
-      [self.itemTable reloadData];
-    });
-  }];
+  self.repositoryItems = MPPluginRepository.defaultRepository.availablePlugins;
+  [self.itemTable reloadData];
 }
 
 

@@ -24,12 +24,12 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@class MPPluginVersion;
+@class MPPluginVersionComparator;
 
 @interface MPPluginRepositoryItem : NSObject
 
 @property (copy,readonly, nullable) NSString *name;
-@property (copy,readonly, nullable) MPPluginVersion *currentVersion;
+@property (copy,readonly, nullable) NSString *currentVersion;
 @property (copy,readonly, nullable) NSString *descriptionText;
 @property (copy,readonly, nullable) NSURL *sourceURL;
 @property (copy,readonly, nullable) NSURL *downloadURL;
@@ -39,7 +39,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 + (instancetype)pluginItemFromDictionary:(NSDictionary *)dict;
 - (instancetype)initWithDictionary:(NSDictionary *)dict;
-- (BOOL)isPluginVersionCompatibleWithHost:(MPPluginVersion *)pluginVersion;
+- (BOOL)isPluginVersionCompatibleWithHost:(NSString *)pluginVersion;
 
 @end
 

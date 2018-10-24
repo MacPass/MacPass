@@ -7,7 +7,7 @@
 //
 
 #import "MPPluginRepositoryItemVersionInfo.h"
-#import "MPPluginVersion.h"
+#import "MPPluginVersionComparator.h"
 
 NSString *const MPPluginItemCompatibiltyVersionKey = @"pluginVersion";
 NSString *const MPPluginItemCompatibiltyMinimumHostVersionKey = @"minimumHostVersion";
@@ -15,9 +15,9 @@ NSString *const MPPluginItemCompatibiltyMaxiumumHostVersionKey = @"maximumHostVe
 
 @interface MPPluginRepositoryItemVersionInfo ()
 
-@property (copy) MPPluginVersion *version;
-@property (copy) MPPluginVersion *minimumHostVersion;
-@property (copy) MPPluginVersion *maxiumHostVersion;
+@property (copy) NSString *version;
+@property (copy) NSString *minimumHostVersion;
+@property (copy) NSString *maxiumHostVersion;
 
 @end
 
@@ -30,51 +30,21 @@ NSString *const MPPluginItemCompatibiltyMaxiumumHostVersionKey = @"maximumHostVe
 - (instancetype)initWithDict:(NSDictionary *)dict {
   self = [super init];
   if(self) {
-    NSString *versionString = dict[MPPluginItemCompatibiltyVersionKey];
-    if(!versionString) {
-      NSLog(@"Version information is missing required %@ key.", MPPluginItemCompatibiltyVersionKey);
-      self = nil;
-      return self;
-    }
-    self.version = [MPPluginVersion versionWithVersionString:versionString];
-    if(!self.version) {
-      NSLog(@"Malformed plugin version information: %@.", versionString);
-      self = nil;
-      return self;
-    }
-    NSString *minimumHostVersionString = dict[MPPluginItemCompatibiltyMinimumHostVersionKey];
-    if(!minimumHostVersionString) {
-      NSLog(@"Version information is missing required %@ key.", MPPluginItemCompatibiltyMinimumHostVersionKey);
-      self = nil;
-      return self;
-    }
-    self.minimumHostVersion = [MPPluginVersion versionWithVersionString:minimumHostVersionString];
-    if(!self.minimumHostVersion) {
-      NSLog(@"Malformed minimum host version information: %@.", minimumHostVersionString);
-      self = nil;
-      return self;
-    }
-    NSString *maxiumHostVersionString = dict[MPPluginItemCompatibiltyMaxiumumHostVersionKey];
-    if(maxiumHostVersionString) {
-      self.maxiumHostVersion = [MPPluginVersion versionWithVersionString:maxiumHostVersionString];
-      if(!self.maxiumHostVersion) {
-        NSLog(@"Malformed maxium host version information: %@.", maxiumHostVersionString);
-        self = nil;
-        return self;
-      }
-    }
+    self.version = dict[MPPluginItemCompatibiltyVersionKey];
+    self.minimumHostVersion = dict[MPPluginItemCompatibiltyMinimumHostVersionKey];
+    self.maxiumHostVersion = dict[MPPluginItemCompatibiltyMaxiumumHostVersionKey];
   }
   return self;
 }
 
-- (BOOL)isCompatibleWithHostVersion:(MPPluginVersion *)hostVersion {
-  if(NSOrderedDescending == [self.minimumHostVersion compare:hostVersion]) {
+- (BOOL)isCompatibleWithHostVersion:(NSString *)hostVersion {
+  if(NSOrderedDescending == [MPPluginVersionComparator compareVersion:self.minimumHostVersion toVersion:hostVersion]) {
     return NO;
   }
   if(!self.maxiumHostVersion) {
     return YES;
   }
-  return (NSOrderedAscending != [self.maxiumHostVersion compare:hostVersion]);
+  return (NSOrderedAscending != [MPPluginVersionComparator compareVersion:self.maxiumHostVersion toVersion:hostVersion]);
 }
 
 

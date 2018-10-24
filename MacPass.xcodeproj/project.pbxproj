@@ -148,8 +148,8 @@
 		4C6F228C19A4AA700012310C /* MPAutotypeDelay.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C6F228B19A4AA700012310C /* MPAutotypeDelay.m */; };
 		4C701CBC178618A000581B88 /* 12_RemoteTemplate.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 4C701CBB178618A000581B88 /* 12_RemoteTemplate.pdf */; };
 		4C7155D81A10DB6D00979307 /* IconSelection.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4C7155DA1A10DB6D00979307 /* IconSelection.xib */; };
-		4C71BCB42167B75900B4CBDA /* MPTestPluginVersion.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C71BCB32167B75900B4CBDA /* MPTestPluginVersion.m */; };
-		4C71BCB72167B79C00B4CBDA /* MPPluginVersion.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C71BCB62167B79C00B4CBDA /* MPPluginVersion.m */; };
+		4C71BCB42167B75900B4CBDA /* MPTestPluginVersionComparator.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C71BCB32167B75900B4CBDA /* MPTestPluginVersionComparator.m */; };
+		4C71BCB72167B79C00B4CBDA /* MPPluginVersionComparator.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C71BCB62167B79C00B4CBDA /* MPPluginVersionComparator.m */; };
 		4C735FC02035FCBF00708D53 /* MPPluginEntryActionContext.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C735FBF2035FCBF00708D53 /* MPPluginEntryActionContext.m */; };
 		4C73B6F1215E64A7009787F7 /* MPWelcomeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C73B6EF215E64A7009787F7 /* MPWelcomeViewController.m */; };
 		4C76155C1764C04C0015A1A6 /* GeneralSettings.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4C76155E1764C04C0015A1A6 /* GeneralSettings.xib */; };
@@ -578,9 +578,9 @@
 		4C7155E81A10DB7700979307 /* fr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fr; path = fr.lproj/IconSelection.strings; sourceTree = "<group>"; };
 		4C7155EA1A10DB7800979307 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/IconSelection.strings; sourceTree = "<group>"; };
 		4C7155EC1A10DB7900979307 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/IconSelection.strings; sourceTree = "<group>"; };
-		4C71BCB32167B75900B4CBDA /* MPTestPluginVersion.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MPTestPluginVersion.m; sourceTree = "<group>"; };
-		4C71BCB52167B79C00B4CBDA /* MPPluginVersion.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MPPluginVersion.h; sourceTree = "<group>"; };
-		4C71BCB62167B79C00B4CBDA /* MPPluginVersion.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MPPluginVersion.m; sourceTree = "<group>"; };
+		4C71BCB32167B75900B4CBDA /* MPTestPluginVersionComparator.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MPTestPluginVersionComparator.m; sourceTree = "<group>"; };
+		4C71BCB52167B79C00B4CBDA /* MPPluginVersionComparator.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MPPluginVersionComparator.h; sourceTree = "<group>"; };
+		4C71BCB62167B79C00B4CBDA /* MPPluginVersionComparator.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MPPluginVersionComparator.m; sourceTree = "<group>"; };
 		4C735FBE2035FCBF00708D53 /* MPPluginEntryActionContext.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MPPluginEntryActionContext.h; sourceTree = "<group>"; };
 		4C735FBF2035FCBF00708D53 /* MPPluginEntryActionContext.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MPPluginEntryActionContext.m; sourceTree = "<group>"; };
 		4C73B6EE215E64A7009787F7 /* MPWelcomeViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MPWelcomeViewController.h; sourceTree = "<group>"; };
@@ -1207,7 +1207,7 @@
 				4C6BC65F1A36717E00BDDF3D /* MPDatabaseSearch.m */,
 				4C8030491E2FBAA300133E4C /* MPTestKeyMapper.m */,
 				4C8F0C721FCF1B7A00BE157F /* MPTestPickcharsParser.m */,
-				4C71BCB32167B75900B4CBDA /* MPTestPluginVersion.m */,
+				4C71BCB32167B75900B4CBDA /* MPTestPluginVersionComparator.m */,
 				4C45FB1F178E09ED0010007D /* Supporting Files */,
 			);
 			path = MacPassTests;
@@ -1684,8 +1684,8 @@
 				4C81867C216664C70068DAFB /* MPPluginRepositoryItemVersionInfo.m */,
 				4C735FBE2035FCBF00708D53 /* MPPluginEntryActionContext.h */,
 				4C735FBF2035FCBF00708D53 /* MPPluginEntryActionContext.m */,
-				4C71BCB52167B79C00B4CBDA /* MPPluginVersion.h */,
-				4C71BCB62167B79C00B4CBDA /* MPPluginVersion.m */,
+				4C71BCB52167B79C00B4CBDA /* MPPluginVersionComparator.h */,
+				4C71BCB62167B79C00B4CBDA /* MPPluginVersionComparator.m */,
 			);
 			name = Plugin;
 			path = MacPass;
@@ -1935,7 +1935,7 @@
 			files = (
 				4C45FB2D178E0BCB0010007D /* MPDatabaseLoading.m in Sources */,
 				4C8DEAA21C314D2C00D24C32 /* MPTestAutotypeDelay.m in Sources */,
-				4C71BCB42167B75900B4CBDA /* MPTestPluginVersion.m in Sources */,
+				4C71BCB42167B75900B4CBDA /* MPTestPluginVersionComparator.m in Sources */,
 				4C8F0C731FCF1B7A00BE157F /* MPTestPickcharsParser.m in Sources */,
 				4C45FB30178E0CE20010007D /* MPTestDocument.m in Sources */,
 				4C6BC6601A36717E00BDDF3D /* MPDatabaseSearch.m in Sources */,
@@ -2059,7 +2059,7 @@
 				4C1FA07B18231900003A3F8C /* MPDocument+Autotype.m in Sources */,
 				4C4B7EE917A45EC6000234C7 /* MPDatePickingViewController.m in Sources */,
 				4C4B7EEE17A467E1000234C7 /* MPGroupInspectorViewController.m in Sources */,
-				4C71BCB72167B79C00B4CBDA /* MPPluginVersion.m in Sources */,
+				4C71BCB72167B79C00B4CBDA /* MPPluginVersionComparator.m in Sources */,
 				4C7B63721C0CB51F00D7038C /* TTTCryptographyTransformers.m in Sources */,
 				4C4B7EF317A467FC000234C7 /* MPEntryInspectorViewController.m in Sources */,
 				4C1BDF2B1E4392640012A3F0 /* MPPluginDataViewController.m in Sources */,

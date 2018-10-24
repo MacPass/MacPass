@@ -28,7 +28,6 @@ NS_ASSUME_NONNULL_BEGIN
 @class KPKEntry;
 @class KPKAttribute;
 @class KPKTree;
-@class MPPluginVersion;
 
 FOUNDATION_EXPORT NSString *const MPPluginUnkownVersion;
 
@@ -36,8 +35,7 @@ FOUNDATION_EXPORT NSString *const MPPluginUnkownVersion;
 
 @property (copy, readonly) NSString *identifier;
 @property (copy, readonly) NSString *name;
-@property (nonatomic, copy, readonly, nullable) NSString *humanVersionString;
-@property (nonatomic, copy, readonly, nullable) MPPluginVersion *version;
+@property (nonatomic, copy, readonly, nullable) NSString *shortVersionString;
 @property (nonatomic, copy, readonly) NSString *versionString;
 @property (nonatomic, strong, readonly) NSBundle *bundle;
 
@@ -89,20 +87,11 @@ FOUNDATION_EXPORT NSString *const MPPluginUnkownVersion;
 - (NSString *)initialValueForAttributeWithKey:(NSString *)key;
 @end
 
-@protocol MPExportPluginViewController <NSObject>
+@protocol MPImportPlugin <NSObject>
 @required
-@property (nonatomic, copy) NSDictionary *exportOptions;
+@property (readonly, copy) NSArray<NSString *> *supportedUTIs;
+- (KPKTree *)importTreeWithContentsOfURL:(NSURL *)url;
 @end
-
-@protocol MPExportPlugin <NSObject>
-@required
-/* Ideally supply a list of Formats supported. This format specifier is used when being called */
-@property (nonatomic, copy) NSDictionary<NSString *, NSString *>* localizedSuportedFormats;
-- (NSData *)dataForTree:(KPKTree *)tree withFormat:(NSString *)format options:(NSDictionary *)options;
-@optional
-- (NSViewController<MPExportPluginViewController> *)exportViewControllerForTree:(KPKTree *)tree withFormat:(NSString *)format;
-@end
-
 
 @interface MPPlugin (Deprecated)
 
