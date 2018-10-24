@@ -47,12 +47,12 @@ typedef NS_ENUM(NSUInteger, MPPluginTableColumn) {
 }
 
 - (NSInteger)numberOfRowsInTableView:(NSTableView *)tableView {
-  return self.repositoryItems.count > 0 ? 100 : 0;
+  return self.repositoryItems.count;
 }
 
 - (NSView *)tableView:(NSTableView *)tableView viewForTableColumn:(NSTableColumn *)tableColumn row:(NSInteger)row {
   NSTableCellView *view = [tableView makeViewWithIdentifier:tableColumn.identifier owner:self];
-  MPPluginRepositoryItem *item = self.repositoryItems.firstObject;
+  MPPluginRepositoryItem *item = self.repositoryItems[row];
   
   NSUInteger column = [tableView.tableColumns indexOfObjectIdenticalTo:tableColumn];
 
@@ -64,8 +64,8 @@ typedef NS_ENUM(NSUInteger, MPPluginTableColumn) {
   }
   else if(column == MPPluginTableColumnStatus) {
     MPPlugin *plugin = [MPPluginHost.sharedHost pluginWithBundleIdentifier:item.bundleIdentifier];
-    if(!plugin) {
-      switch([plugin.shortVersionString compare:item.currentVersion]) {
+    if(plugin) {
+      switch([MPPluginVersionComparator compareVersion:plugin.shortVersionString toVersion:item.currentVersion]) {
         case NSOrderedSame:
           view.textField.stringValue = [NSString stringWithFormat:NSLocalizedString(@"PLUGIN_BROWSER_LATEST_VERSION_INSTALLED", "Status for an up-to-date plugin in the plugin browser")];
           break;

@@ -5,11 +5,15 @@
 //  Created by Michael Starke on 05.10.18.
 //  Copyright © 2018 HicknHack Software GmbH. All rights reserved.
 //
+//  Code is based upon SUStandardVersionComparator.h from Sparkle
+//  Changes include:
+//  * wildcard matching
+//  * correct handling of trailing parts (e.g. 3. == 3.0 == 3.0.0)
+//
 
 #import "MPPluginVersionComparator.h"
 
 @implementation MPPluginVersionComparator
-
 
 + (MPVersionCharacterType)typeOfCharacter:(NSString *)character {
   if([character isEqualToString:@"."]) {
@@ -114,7 +118,7 @@
       longerResult = NSOrderedAscending;
 
     }
-    /* check if wildcard was last part, then the rest does not matter */
+    /* check if wildcard was last part of shorter version, then the rest does not matter */
     if(lastShortType == kMPVersionCharacterTypeWildcard) {
       return NSOrderedSame;
     }
@@ -131,12 +135,11 @@
           return longerResult;
         }
       }
-      // versions are considered the same as long as 0, separators or wildcards follow
+      /* Any separator or widlcard that is in the longer version is skippes since we do not have to match components anymore */
     }
   }
   return NSOrderedSame;
 }
-
 
 + (NSArray<NSString *> *)splitVersionString:(NSString *)versionString {
   if(versionString.length == 0) {

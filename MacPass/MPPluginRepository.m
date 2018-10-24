@@ -51,6 +51,7 @@ NSString *const MPPluginRepositoryDidUpdateAvailablePluginsNotification = @"com.
   self = [super init];
   if(self) {
     _isInitialized = NO;
+    _lastDataFetchTime = NSDate.distantPast.timeIntervalSinceReferenceDate;
     [self fetchRepositoryDataCompletionHandler:^(NSArray<MPPluginRepositoryItem *> * _Nonnull availablePlugins) {
       self.availablePlugins = availablePlugins;
       self.isInitialized = YES;
