@@ -71,7 +71,6 @@ static CGEventFlags _updateModifierMaskForCurrentDefaults(CGEventFlags modifiers
   if(![self isValid]) {
     return; // no valid command. Stop.
   }
-  //CGKeyCode mappedKey = [self _transformKeyCode];
   [self sendPressKey:self.key];
 }
 
