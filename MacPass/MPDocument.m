@@ -329,6 +329,12 @@ NSString *const MPDocumentGroupKey                            = @"MPDocumentGrou
   // else do nothing!
 }
 
+- (void)importTree:(KPKTree *)tree {
+  self.tree = tree;
+  self.compositeKey = nil;
+  self.encryptedData = nil;
+}
+
 - (void)writeXMLToURL:(NSURL *)url {
   NSData *xmlData = [self.tree xmlData];
   NSError *error;
@@ -339,9 +345,8 @@ NSString *const MPDocumentGroupKey                            = @"MPDocumentGrou
 
 - (void)readXMLfromURL:(NSURL *)url {
   NSError *error;
-  self.tree = [[KPKTree alloc] initWithXmlContentsOfURL:url error:&error];
-  self.compositeKey = nil;
-  self.encryptedData = nil;
+  KPKTree *tree = [[KPKTree alloc] initWithXmlContentsOfURL:url error:&error];
+  [self importTree:tree];
 }
 
 - (void)mergeWithContentsFromURL:(NSURL *)url key:(KPKCompositeKey *)key {

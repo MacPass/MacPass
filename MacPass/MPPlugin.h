@@ -89,8 +89,33 @@ FOUNDATION_EXPORT NSString *const MPPluginUnkownVersion;
 
 @protocol MPImportPlugin <NSObject>
 @required
-@property (readonly, copy) NSArray<NSString *> *supportedUTIs;
-- (KPKTree *)importTreeWithContentsOfURL:(NSURL *)url;
+/**
+ Called by the Host to upate a menu item for importing.
+ You are supposed to update the title to something meaningfull.
+ target and action will get set by host, so do not rely on them
+ 
+ @param item MenuItem that will be used to import via the plugin
+ */
+- (void)prepareImportMenuItem:(NSMenuItem *)item;
+/**
+ Called by the host when an import is about to happen.
+ Update the panel to allow work for all the files and formats you can open.
+ 
+ Host will simply run the panel with - beginSheetModalForWindow:completionHandler:
+ and will call treeForRunningOpenPanel:withResponse: afterwards to handle the result.
+
+ @param panel The open panel that will be displayed to the user for importing files
+ */
+- (void)prepareOpenPanel:(NSOpenPanel *)panel;
+/**
+ This will get called when the open panel is closed by the user.
+ You should retrieve any results from the panel and act accordingly.
+ 
+ @param panel The open panel used for selecting what file(s) to import
+ @param response The response for of the user for running the panel
+ @return The tree constructed from the selected input file(s)
+ */
+- (KPKTree *)treeForRunningOpenPanel:(NSOpenPanel *)panel withResponse:(NSModalResponse)response;
 @end
 
 @interface MPPlugin (Deprecated)

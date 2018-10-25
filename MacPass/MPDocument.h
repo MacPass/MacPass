@@ -149,6 +149,7 @@ FOUNDATION_EXPORT NSString *const MPDocumentGroupKey;
 - (BOOL)shouldEnforcePasswordChange;
 - (BOOL)shouldRecommendPasswordChange;
 
+- (void)importTree:(KPKTree *)tree;
 - (void)writeXMLToURL:(NSURL *)url;
 - (void)readXMLfromURL:(NSURL *)url;
 - (void)mergeWithContentsFromURL:(NSURL *)url key:(KPKCompositeKey *)key;

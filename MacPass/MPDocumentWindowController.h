@@ -58,6 +58,7 @@
 - (IBAction)exportAsXML:(id)sender;
 - (IBAction)mergeWithOther:(id)sender;
 - (IBAction)importFromXML:(id)sender;
+- (IBAction)importFromPlugin:(id)sender;
 
 - (IBAction)lock:(id)sender;
 - (IBAction)createGroup:(id)sender;

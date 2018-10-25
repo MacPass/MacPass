@@ -38,8 +38,8 @@
 #import "KeePassKit/KeePassKit.h"
 
 
-NSString *const MPPluginHostWillLoadPlugin = @"com.hicknhack.macpass.MPPluginHostWillLoadPlugin";
-NSString *const MPPluginHostDidLoadPlugin = @"comt.hicknhack.macpass.MPPluginHostDidLoadPlugin";
+NSString *const MPPluginHostWillLoadPluginNotification = @"com.hicknhack.macpass.MPPluginHostWillLoadPlugin";
+NSString *const MPPluginHostDidLoadPluginNotification = @"comt.hicknhack.macpass.MPPluginHostDidLoadPlugin";
 
 NSString *const MPPluginHostPluginBundleIdentifiyerKey = @"MPPluginHostPluginBundleIdentifiyerKey";
 
@@ -85,13 +85,6 @@ NSString *const MPPluginHostPluginBundleIdentifiyerKey = @"MPPluginHostPluginBun
 
 - (NSArray<MPPlugin *> *)plugins {
   return [self.mutablePlugins copy];
-}
-
-- (NSArray<MPPlugin *> *)importPlugins {
-  NSPredicate *filterPredicate = [NSPredicate predicateWithBlock:^BOOL(id  _Nullable evaluatedObject, NSDictionary<NSString *,id> * _Nullable bindings) {
-    return ([evaluatedObject conformsToProtocol:@protocol(MPImportPlugin)]);
-  }];
-  return [self.mutablePlugins filteredArrayUsingPredicate:filterPredicate];
 }
 
 - (BOOL)installPluginAtURL:(NSURL *)url error:(NSError *__autoreleasing *)error {
@@ -267,11 +260,11 @@ NSString *const MPPluginHostPluginBundleIdentifiyerKey = @"MPPluginHostPluginBun
     
     if(plugin) {
       NSLog(@"Loaded plugin instance %@", pluginBundle.principalClass);
-      [[NSNotificationCenter defaultCenter] postNotificationName:MPPluginHostWillLoadPlugin
+      [[NSNotificationCenter defaultCenter] postNotificationName:MPPluginHostWillLoadPluginNotification
                                                           object:self
                                                         userInfo:@{ MPPluginHostPluginBundleIdentifiyerKey : plugin.identifier }];
       [self _addPlugin:plugin];
-      [[NSNotificationCenter defaultCenter] postNotificationName:MPPluginHostDidLoadPlugin
+      [[NSNotificationCenter defaultCenter] postNotificationName:MPPluginHostDidLoadPluginNotification
                                                           object:self
                                                         userInfo:@{ MPPluginHostPluginBundleIdentifiyerKey : plugin.identifier }];
     }
@@ -414,6 +407,18 @@ NSString *const MPPluginHostPluginBundleIdentifiyerKey = @"MPPluginHostPluginBun
   [context.plugin performActionForMenuItem:item withEntries:context.entries];
 }
 
-
-
 @end
+
+NSString *const MPPluginBundleIdentifierKey = @"MPPluginBundleIdentifierKey";
+NSString *const MPImportPluginUTIKey = @"MPImportPluginUTIKey";
+
+@implementation MPPluginHost (MPImportPluginSupport)
+
+- (NSArray<MPPlugin *> *)importPlugins {
+  NSPredicate *filterPredicate = [NSPredicate predicateWithBlock:^BOOL(id  _Nullable evaluatedObject, NSDictionary<NSString *,id> * _Nullable bindings) {
+    return ([evaluatedObject conformsToProtocol:@protocol(MPImportPlugin)]);
+  }];
+  return [self.mutablePlugins filteredArrayUsingPredicate:filterPredicate];
+}
+@end
+

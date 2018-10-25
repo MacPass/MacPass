@@ -40,6 +40,9 @@
 #import "MPToolbarDelegate.h"
 #import "MPTitlebarColorAccessoryViewController.h"
 
+#import "MPPluginHost.h"
+#import "MPPlugin.h"
+
 #import "KeePassKit/KeePassKit.h"
 
 typedef NS_ENUM(NSUInteger, MPAlertContext) {
@@ -271,6 +274,28 @@ typedef void (^MPPasswordChangedBlock)(BOOL didChangePassword);
       [document readXMLfromURL:openPanel.URL];
       [self.outlineViewController showOutline];
     }
+  }];
+}
+
+- (void)importFromPlugin:(id)sender {
+  if(![sender isKindOfClass:NSMenuItem.class]) {
+    return;
+  }
+  NSMenuItem *menuItem = sender;
+  if(![menuItem.representedObject isKindOfClass:NSDictionary.class]) {
+    return;
+  }
+
+  NSWindow *sheetWindow = ((MPDocument *)self.document).windowForSheet;
+  if(!sheetWindow) {
+    return;
+  }
+  MPPlugin<MPImportPlugin> *importPlugin;
+  NSOpenPanel *openPanel = NSOpenPanel.openPanel;
+  [importPlugin prepareOpenPanel:openPanel];
+  [openPanel beginSheetModalForWindow:sheetWindow completionHandler:^(NSModalResponse result) {
+    KPKTree *importedTree = [importPlugin treeForRunningOpenPanel:openPanel withResponse:result];
+    [self.document importTree:importedTree];
   }];
 }
 

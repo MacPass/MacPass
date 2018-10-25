@@ -40,6 +40,7 @@
 #import "MPValueTransformerHelper.h"
 #import "MPUserNotificationCenterDelegate.h"
 #import "MPWelcomeViewController.h"
+#import "MPPlugin.h"
 
 #import "NSApplication+MPAdditions.h"
 
@@ -207,6 +208,17 @@ NSString *const MPDidChangeStoredKeyFilesSettings = @"com.hicknhack.macpass.MPDi
     for(NSMenuItem *item in [MPContextMenuHelper contextMenuItemsWithItems:MPContextMenuFull]) {
       [menu addItem:item];
     }
+  }
+  if(menu == self.importMenu) {
+    NSMenuItem *exportXML = menu.itemArray.firstObject;
+    [menu removeAllItems];
+    for(MPPlugin<MPImportPlugin> * plugin in MPPluginHost.sharedHost.importPlugins) {
+      NSMenuItem *importItem = [[NSMenuItem alloc] init];
+      [plugin prepareImportMenuItem:importItem];
+      importItem.target = nil;
+      importItem.action = @selector(importFromPlugin:);
+    }
+    [menu insertItem:exportXML atIndex:0];
   }
 }
 
