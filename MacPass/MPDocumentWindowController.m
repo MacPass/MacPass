@@ -285,7 +285,7 @@ typedef void (^MPPasswordChangedBlock)(BOOL didChangePassword);
   if(![menuItem.representedObject isKindOfClass:NSDictionary.class]) {
     return;
   }
-
+  
   NSWindow *sheetWindow = ((MPDocument *)self.document).windowForSheet;
   if(!sheetWindow) {
     return;
@@ -323,15 +323,19 @@ typedef void (^MPPasswordChangedBlock)(BOOL didChangePassword);
 }
 
 - (void)showPasswordInput {
+  [self showPasswordInputWithMessage:nil];
+}
+- (void)showPasswordInputWithMessage:(NSString *)message {
   if(!self.passwordInputController) {
     self.passwordInputController = [[MPPasswordInputController alloc] init];
   }
   [self _setContentViewController:self.passwordInputController];
-  [self.passwordInputController requestPasswordWithCompletionHandler:^BOOL(NSString *password, NSURL *keyURL, BOOL cancel, NSError *__autoreleasing *error) {
-    if(cancel) {
+  [self.passwordInputController requestPasswordWithMessage:message cancelLabel:nil completionHandler:^BOOL(NSString *password, NSURL *keyURL, BOOL didCancel, NSError *__autoreleasing *error) {
+    if(didCancel) {
       return NO;
     }
     return [((MPDocument *)self.document) unlockWithPassword:password keyFileURL:keyURL error:error];
+    
   }];
 }
 

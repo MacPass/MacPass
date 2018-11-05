@@ -22,6 +22,7 @@
 
 #import "MPAutotypeDaemon.h"
 #import "MPDocument.h"
+#import "MPDocumentWindowController.h"
 #import "MPAutotypeCommand.h"
 #import "MPAutotypeContext.h"
 #import "MPAutotypePaste.h"
@@ -208,7 +209,10 @@ static MPAutotypeDaemon *_sharedInstance;
     [NSApp activateIgnoringOtherApps:YES];
     [NSApp.mainWindow makeKeyAndOrderFront:self];
     /* show the actual document window to the user */
-    [documents.firstObject showWindows];
+    MPDocument *document = documents.firstObject;
+    [document showWindows];
+    MPDocumentWindowController *wc = document.windowControllers.firstObject;
+    [wc showPasswordInputWithMessage:NSLocalizedString(@"AUTOTYPE_MESSAGE_UNLOCK_DATABASE", @"Message displayed to the user to unlock the database to perform global autotype")];
     [NSNotificationCenter.defaultCenter addObserver:self selector:@selector(_didUnlockDatabase:) name:MPDocumentDidUnlockDatabaseNotification object:nil];
     return; // wait for the unlock to happen
   }

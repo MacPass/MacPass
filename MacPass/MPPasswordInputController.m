@@ -153,8 +153,12 @@
   self.messageInfoTextField.hidden = (nil == self.message);
   if(self.message) {
     self.messageInfoTextField.stringValue = self.message;
+    self.messageImageView.image = [NSImage imageNamed:NSImageNameInfo];
   }
-  self.messageImageView.hidden = (nil == self.message);;
+  else {
+    self.messageImageView.image = [NSImage imageNamed:NSImageNameCaution];
+  }
+  self.messageImageView.hidden = (nil == self.message);
   self.cancelButton.hidden = (nil == self.cancelLabel);
   if(self.cancelLabel) {
     self.cancelButton.stringValue = self.cancelLabel;
@@ -172,6 +176,7 @@
     self.messageInfoTextField.stringValue = error.descriptionForErrorCode;
   }
   self.messageImageView.hidden = NO;
+  self.messageImageView.image = [NSImage imageNamed:NSImageNameCaution];
   self.messageInfoTextField.hidden = NO;
 }
 

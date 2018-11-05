@@ -44,6 +44,7 @@
 
 - (void)showEntries;
 - (void)showPasswordInput;
+- (void)showPasswordInputWithMessage:(NSString *)message;
 - (void)editPasswordWithCompetionHandler:(void (^)(NSInteger result))handler;
 
 #pragma mark Actions
