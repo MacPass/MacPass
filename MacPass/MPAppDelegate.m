@@ -233,13 +233,19 @@ NSString *const MPDidChangeStoredKeyFilesSettings = @"com.hicknhack.macpass.MPDi
 
 - (void)showPasswordCreator:(id)sender {
   if(!self.passwordCreatorWindow) {
-    [NSBundle.mainBundle loadNibNamed:@"PasswordCreatorWindow"owner:self topLevelObjects:nil];
+    self.passwordCreatorWindow = [[NSWindow alloc] initWithContentRect:NSMakeRect(0, 0, 100, 100)
+                                                             styleMask:NSWindowStyleMaskTitled|NSWindowStyleMaskClosable|NSWindowStyleMaskResizable
+                                                               backing:NSBackingStoreBuffered
+                                                                 defer:NO];
+    self.passwordCreatorWindow.releasedWhenClosed = NO;
+    self.passwordCreatorWindow.title = NSLocalizedString(@"PASSWORD_CREATOR_WINDOW_TITLE", @"Window title for the stand-alone password creator window");
   }
   if(!self.passwordCreatorController) {
     self.passwordCreatorController = [[MPPasswordCreatorViewController alloc] init];
     self.passwordCreatorWindow.contentViewController = self.passwordCreatorController;
   }
   [self.passwordCreatorController reset];
+  [self.passwordCreatorWindow center];
   [self.passwordCreatorWindow makeKeyAndOrderFront:self.passwordCreatorWindow];
 }
 

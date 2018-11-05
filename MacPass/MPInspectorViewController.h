@@ -24,7 +24,7 @@
 #import <HNHUi/HNHUi.h>
 @class MPIconImageView;
 
-@interface MPInspectorViewController : MPViewController <NSPopoverDelegate, HNHUITextViewDelegate>
+@interface MPInspectorViewController : MPViewController <HNHUITextViewDelegate>
 
 @property (weak) IBOutlet NSTextField *noSelectionInfo;
 @property (weak) IBOutlet MPIconImageView *itemImageView;

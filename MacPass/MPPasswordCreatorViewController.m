@@ -195,11 +195,21 @@ typedef NS_ENUM(NSUInteger, MPPasswordRating) {
     entry.password = self.password;
     [self.observer didChangeModelProperty];
   }
-  [self.view.window performClose:sender];
+  if(self.presentingViewController) {
+    [self dismissController:sender];
+  }
+  else {
+    [self.view.window performClose:sender];
+  }
 }
 
 - (IBAction)_cancel:(id)sender {
-  [self.view.window performClose:sender];
+  if(self.presentingViewController) {
+    [self dismissController:sender];
+  }
+  else {
+    [self.view.window performClose:sender];
+  }
 }
 
 - (IBAction)_setDefault:(id)sender {

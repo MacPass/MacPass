@@ -33,7 +33,6 @@
 		4C17F108184E6B6C00E85625 /* 31_PrintTemplate.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 4C17F106184E6B6C00E85625 /* 31_PrintTemplate.pdf */; };
 		4C17F109184E6B6C00E85625 /* 30_TerminalTemplate.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 4C17F107184E6B6C00E85625 /* 30_TerminalTemplate.pdf */; };
 		4C1BDF2B1E4392640012A3F0 /* MPPluginDataViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C1BDF291E4392640012A3F0 /* MPPluginDataViewController.m */; };
-		4C1DDCDD1711ECEB00C98DA3 /* PasswordCreatorWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4C1DDCDC1711ECEB00C98DA3 /* PasswordCreatorWindow.xib */; };
 		4C1E9885185F71A800943563 /* MPContextBarViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C1E9884185F71A800943563 /* MPContextBarViewController.m */; };
 		4C1F7FA21E3A12E600D6A40E /* MPModifiedKey.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C1F7FA11E3A12E600D6A40E /* MPModifiedKey.m */; };
 		4C1FA07B18231900003A3F8C /* MPDocument+Autotype.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C1FA07A18231900003A3F8C /* MPDocument+Autotype.m */; };
@@ -373,7 +372,6 @@
 		4C17F107184E6B6C00E85625 /* 30_TerminalTemplate.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = 30_TerminalTemplate.pdf; sourceTree = "<group>"; };
 		4C1BDF281E4392640012A3F0 /* MPPluginDataViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MPPluginDataViewController.h; sourceTree = "<group>"; };
 		4C1BDF291E4392640012A3F0 /* MPPluginDataViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MPPluginDataViewController.m; sourceTree = "<group>"; };
-		4C1DDCDC1711ECEB00C98DA3 /* PasswordCreatorWindow.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PasswordCreatorWindow.xib; sourceTree = "<group>"; };
 		4C1E9883185F71A800943563 /* MPContextBarViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MPContextBarViewController.h; sourceTree = "<group>"; };
 		4C1E9884185F71A800943563 /* MPContextBarViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MPContextBarViewController.m; sourceTree = "<group>"; };
 		4C1F7FA01E3A12E600D6A40E /* MPModifiedKey.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MPModifiedKey.h; sourceTree = "<group>"; };
@@ -1443,7 +1441,6 @@
 				4CE8247116E2E98200573141 /* Data Controller */,
 				4CE8247016E2E96500573141 /* Window Controller */,
 				4CA0B2F115BCAEE600654E32 /* View Controller */,
-				4CE8247216E2E99F00573141 /* Windows */,
 				4C06398C15B980480004DE27 /* Views */,
 				4CDB556616E29A8A00635918 /* Controls */,
 				4C37A84215B8B495005EF8EE /* Model */,
@@ -1661,14 +1658,6 @@
 			name = "Data Controller";
 			sourceTree = "<group>";
 		};
-		4CE8247216E2E99F00573141 /* Windows */ = {
-			isa = PBXGroup;
-			children = (
-				4C1DDCDC1711ECEB00C98DA3 /* PasswordCreatorWindow.xib */,
-			);
-			name = Windows;
-			sourceTree = "<group>";
-		};
 		4CE88B9317BA64DB0042E078 /* Icons */ = {
 			isa = PBXGroup;
 			children = (
@@ -1879,7 +1868,6 @@
 				4C3826BB1AD04D8E007D7D67 /* 47_PackageTemplate.pdf in Resources */,
 				6021FE8D18E1617300C3BC51 /* PasswordCreatorView.xib in Resources */,
 				4C3826AC1AD04D8E007D7D67 /* 29_SecureTerminalTemplate.pdf in Resources */,
-				4C1DDCDD1711ECEB00C98DA3 /* PasswordCreatorWindow.xib in Resources */,
 				4C3826741AD04BA5007D7D67 /* infoTemplate.pdf in Resources */,
 				4C3826B11AD04D8E007D7D67 /* 36_ArchiveTemplate.pdf in Resources */,
 				4C7714AA176C998F00549F2A /* 43_TrashTemplate.pdf in Resources */,

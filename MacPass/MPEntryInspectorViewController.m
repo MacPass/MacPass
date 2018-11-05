@@ -74,7 +74,6 @@ typedef NS_ENUM(NSUInteger, MPEntryTab) {
 
 @property (nonatomic, assign) BOOL showPassword;
 @property (nonatomic, assign) MPEntryTab activeTab;
-@property (strong) NSPopover *activePopover;
 @property (nonatomic, readonly) KPKEntry *representedEntry;
 
 @property (strong) MPTemporaryFileStorage *quicklookStorage;
@@ -371,24 +370,22 @@ typedef NS_ENUM(NSUInteger, MPEntryTab) {
   [self _showPopopver:viewController atView:sender onEdge:NSMinYEdge];
 }
 
-- (void)_showPopopver:(NSViewController *)viewController atView:(NSView *)view onEdge:(NSRectEdge)edge {
-  if(self.activePopover.contentViewController == viewController) {
-    return; // Do nothing, we already did show the controller
+- (void)dismissViewController:(NSViewController *)viewController {
+  if([viewController isKindOfClass:MPAutotypeBuilderViewController.class]) {
+    self.showCustomAssociationSequenceAutotypeBuilderButton.enabled = YES;
+    self.showCustomEntrySequenceAutotypeBuilderButton.enabled = YES;
   }
-  [self.activePopover close];
-  NSAssert(self.activePopover == nil, @"Popover hast to be niled out");
-  self.activePopover = [[NSPopover alloc] init];
-  self.activePopover.delegate = self;
-  self.activePopover.behavior = NSPopoverBehaviorTransient;
-  self.activePopover.contentViewController = viewController;
-  [self.activePopover showRelativeToRect:NSZeroRect ofView:view preferredEdge:edge];
+  else if([viewController isKindOfClass:MPPasswordCreatorViewController.class]) {
+    self.generatePasswordButton.enabled = YES;
+  }
+  [super dismissViewController:viewController];
 }
 
-- (void)popoverDidClose:(NSNotification *)notification {
-  self.generatePasswordButton.enabled = YES;
-  self.showCustomEntrySequenceAutotypeBuilderButton.enabled = YES;
-  self.showCustomAssociationSequenceAutotypeBuilderButton.enabled = YES;
-  self.activePopover = nil;
+- (void)_showPopopver:(NSViewController *)viewController atView:(NSView *)view onEdge:(NSRectEdge)edge {
+  if([self.presentedViewControllers containsObject:viewController]) {
+    return;
+  }
+  [self presentViewController:viewController asPopoverRelativeToRect:NSZeroRect ofView:view preferredEdge:edge behavior:NSPopoverBehaviorTransient];
 }
 
 #pragma mark -

@@ -86,7 +86,7 @@ typedef NS_ENUM(NSInteger, MPIconDownloadStatus) {
   node.iconId = [node.class defaultIcon];
   node.iconUUID = nil;
   [self.observer didChangeModelProperty];
-  [self.view.window performClose:sender];
+  [self dismissController:sender];
 }
 
 - (IBAction)downloadIcon:(id)sender {
@@ -168,7 +168,7 @@ typedef NS_ENUM(NSInteger, MPIconDownloadStatus) {
 }
 
 - (IBAction)cancel:(id)sender {
-  [self.view.window performClose:sender];
+  [self dismissController:sender];
 }
 
 - (BOOL)validateMenuItem:(NSMenuItem *)menuItem {
@@ -186,15 +186,6 @@ typedef NS_ENUM(NSInteger, MPIconDownloadStatus) {
   return NO;
 }
 
-- (void)didSelectCollectionViewItem:(id)sender {
-  if(![sender isKindOfClass:[NSCollectionViewItem class]]) {
-    return;
-  }
-  NSCollectionViewItem *item = sender;
-  NSLog(@"selected item.frame: %@", NSStringFromRect(item.view.frame));
-  //[self _selectIcon:item.representedObject];
-}
-
 - (void)_selectIcon:(KPKIcon *)icon {
   KPKNode *node = self.representedObject;
   NSUInteger iconIndex = [self.iconCollectionView.content indexOfObject:icon];
@@ -210,7 +201,7 @@ typedef NS_ENUM(NSInteger, MPIconDownloadStatus) {
     node.iconUUID = nil;
   }
   [self.observer didChangeModelProperty];
-  [self.view.window performClose:nil];
+  [self dismissController:nil];
 }
 
 - (NSDragOperation)collectionView:(NSCollectionView *)collectionView validateDrop:(id <NSDraggingInfo>)draggingInfo proposedIndex:(NSInteger *)proposedDropIndex dropOperation:(NSCollectionViewDropOperation *)proposedDropOperation {
@@ -225,7 +216,7 @@ typedef NS_ENUM(NSInteger, MPIconDownloadStatus) {
     return NO;
   }
   BOOL success = NO;
-  MPDocument *document = [NSDocumentController sharedDocumentController].currentDocument;
+  MPDocument *document = NSDocumentController.sharedDocumentController.currentDocument;
   for(NSURL *url in urls) {
     KPKIcon *icon = [[KPKIcon alloc] initWithImageAtURL:url];
     if(icon.image) {

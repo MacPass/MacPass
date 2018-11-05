@@ -47,7 +47,6 @@ typedef NS_ENUM(NSUInteger, MPContentTab) {
 @property (strong) MPEntryInspectorViewController *entryViewController;
 @property (strong) MPGroupInspectorViewController *groupViewController;
 
-@property (strong) NSPopover *popover;
 @property (copy) NSString *expiryDateText;
 
 @property (nonatomic, assign) NSUInteger activeTab;
@@ -177,24 +176,9 @@ typedef NS_ENUM(NSUInteger, MPContentTab) {
 }
 
 - (void)_popupViewController:(MPViewController *)vc atView:(NSView *)view {
-  if(self.popover) {
-    return; // Popover still active, abort
-  }
-  self.popover = [[NSPopover alloc] init];
-  self.popover.delegate = self;
-  self.popover.behavior = NSPopoverBehaviorTransient;
   vc.representedObject = self.representedObject;
   vc.observer = self.windowController.document;
-  self.popover.contentViewController = vc;
-  [self.popover showRelativeToRect:NSZeroRect ofView:view preferredEdge:NSMinYEdge];
-}
-
-
-#pragma mark - NSPopover Delegate
-
-- (void)popoverDidClose:(NSNotification *)notification {
-  /* clear out the popover */
-  self.popover = nil;
+  [self presentViewController:vc asPopoverRelativeToRect:NSZeroRect ofView:view preferredEdge:NSMinYEdge behavior:NSPopoverBehaviorTransient];
 }
 
 #pragma mark - MPDocument Notifications
