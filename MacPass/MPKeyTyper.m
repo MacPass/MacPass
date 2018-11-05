@@ -51,12 +51,9 @@
   /* Send the event */
   CGEventPost(kCGHIDEventTap, pressKey);
   /* TODO: Evaluate postToPid */
-  //CGEventPostToPid(0, pressKey);
   usleep(0.05 * NSEC_PER_MSEC);
   CGEventPost(kCGHIDEventTap, releaseKey);
   /* TODO: Evaluate postToPid */
-  //CGEventPostToPid(0, releaseKey);
-  usleep(0.05 * NSEC_PER_MSEC);
   
   CFRelease(pressKey);
   CFRelease(releaseKey);
