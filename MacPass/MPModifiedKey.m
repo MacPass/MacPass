@@ -22,11 +22,18 @@
 
 #import "MPModifiedKey.h"
 
+uint16_t const kMPUnknownKeyCode = UINT16_MAX;
+
 @implementation NSValue(NSValueMPModifiedKeyExtensions)
 
 - (MPModifiedKey)modifiedKeyValue {
   MPModifiedKey key;
-  [self getValue:&key];
+  if(@available(macOS 10.13, *)) {
+    [self getValue:&key size:sizeof(MPModifiedKey)];
+  }
+  else {
+    [self getValue:&key];
+  }
   return key;
 }
 

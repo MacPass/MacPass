@@ -28,8 +28,34 @@
 @interface MPAutotypeKeyPress : MPAutotypeCommand
 
 @property (readonly, assign) MPModifiedKey key;
+@property (readonly, copy) NSString *character;
 
+
+/**
+ Initializes a command with the given keycode and modifier mask
+ MacPass will update the modifiers according to user preferences to accomodate
+ for command-control differences between windows/linux and macOS
+ 
+ The virtual key code is used as-is without and re-mapping.
+ 
+ This will result in unexpected behaviour for keyboard layouts other tha us-ascii
+ 
+ use initWithModifierMask:character to initalized the key press command to ensurue the
+ correct character is typed regardless of the keyboard layout
+
+ @param key The modified key to be pressed
+ @return The press key command with the supplied argurments set
+ */
 - (instancetype)initWithModifiedKey:(MPModifiedKey)key;
+
+/**
+ Initalizes a command with the given modifier mask and the character to be typed.
+ A suitable keycode and modifier
+
+ @param modiferMask Modifiers mask to use when typing the character
+ @param character The character to be typed. It is ecnoureaded to use single characters
+ @return The type command to type the supplied character with the given modifiers
+ */
 - (instancetype)initWithModifierMask:(CGEventFlags)modiferMask character:(NSString *)character;
 
 @end

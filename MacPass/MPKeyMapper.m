@@ -38,8 +38,6 @@
 
 #define MPArrayCount(array) (sizeof(array) / sizeof(array[0]))
 
-uint16_t const kMPUnknownKeyCode = UINT16_MAX;
-
 @implementation MPKeyMapper
 
 + (NSString *)stringForKey:(CGKeyCode)keyCode {
@@ -90,8 +88,7 @@ uint16_t const kMPUnknownKeyCode = UINT16_MAX;
                            sizeof(chars) / sizeof(chars[0]),
                            &realLength,
                            chars);
-  
-  return CFBridgingRelease(CFStringCreateWithCharacters(kCFAllocatorDefault, chars, 1));
+  return CFBridgingRelease(CFStringCreateWithCharacters(kCFAllocatorDefault, chars, realLength));
 }
 
 + (MPModifiedKey)modifiedKeyForCharacter:(NSString *)character {
@@ -137,8 +134,7 @@ uint16_t const kMPUnknownKeyCode = UINT16_MAX;
     charToCodeDict = [[NSDictionary alloc] initWithDictionary:tempCharToCodeDict];
     keyboardCodeDictionary[localizedName] = charToCodeDict;
   }
-  NSString *singleCharacter = [character substringToIndex:1];
-  NSValue *result = charToCodeDict[singleCharacter];
+  NSValue *result = charToCodeDict[character];
   if(!result) {
     return MPMakeModifiedKey(0, kMPUnknownKeyCode);
   }

@@ -112,7 +112,7 @@ static NSString *mergeWithoutDuplicates(NSString* baseCharacters, NSString* cust
   if(self.length == 0) {
     return nil;
   }
-  return [self composedCharacterAtIndex:arc4random_uniform((int)[self length])];
+  return [self composedCharacterAtIndex:arc4random_uniform((int)self.length)];
 }
 
 - (CGFloat)entropyWhithPossibleCharacterSet:(MPPasswordCharacterFlags)allowedCharacters orCustomCharacters:(NSString *)customCharacters {

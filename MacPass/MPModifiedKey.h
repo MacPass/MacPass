@@ -22,6 +22,8 @@
 
 #import <Foundation/Foundation.h>
 
+FOUNDATION_EXTERN uint16_t const kMPUnknownKeyCode;
+
 typedef struct {
   CGEventFlags modifier;
   CGKeyCode keyCode;
@@ -32,6 +34,10 @@ NS_INLINE MPModifiedKey MPMakeModifiedKey(CGEventFlags modifier, CGKeyCode keyCo
   k.keyCode = keyCode;
   k.modifier = modifier;
   return k;
+}
+
+NS_INLINE BOOL MPIsValidModifiedKey(MPModifiedKey k) {
+  return (k.keyCode == kMPUnknownKeyCode);
 }
 
 @interface NSValue(NSValueMPModifiedKeyExtensions)

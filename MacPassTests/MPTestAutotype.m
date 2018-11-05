@@ -32,8 +32,8 @@
   self.entry = [[KPKEntry alloc] init];
   self.entry.title = @"Title";
   self.entry.url = @"www.myurl.com";
-  self.entry.username = @"Username";
-  self.entry.password = @"Password";
+  self.entry.username = @"User Name";
+  self.entry.password = @"Pass👩🏿‍🔧word";
 }
 
 - (void)tearDown {
@@ -98,62 +98,161 @@
   MPAutotypeContext *context = [[MPAutotypeContext alloc] initWithEntry:self.entry andSequence:autotypeSequence];
   
   NSArray *commands = [MPAutotypeCommand commandsForContext:context];
-  XCTAssertEqual(commands.count, 1);
-  MPAutotypePaste *paste = commands[0];
-  NSString *result = [[NSString alloc] initWithFormat:@"%@%@%@%@", numberAttribute.value, self.entry.username, self.entry.username, self.entry.username];
-  XCTAssertEqualObjects(paste.pasteData, result);
+  
+  /* NoRepeatValueUsernameUsernameUsername */
+  XCTAssertEqual(commands.count, 40);
+  MPAutotypeKeyPress *keyPress = commands.firstObject;
+  XCTAssertEqualObjects(keyPress.character, @"N");
+  keyPress = commands[1];
+  XCTAssertEqualObjects(keyPress.character, @"o");
+  keyPress = commands[2];
+  XCTAssertEqualObjects(keyPress.character, @"R");
+  keyPress = commands[3];
+  XCTAssertEqualObjects(keyPress.character, @"e");
+  keyPress = commands[4];
+  XCTAssertEqualObjects(keyPress.character, @"p");
+  keyPress = commands[5];
+  XCTAssertEqualObjects(keyPress.character, @"e");
+  keyPress = commands[6];
+  XCTAssertEqualObjects(keyPress.character, @"a");
+  keyPress = commands[7];
+  XCTAssertEqualObjects(keyPress.character, @"t");
+  keyPress = commands[8];
+  XCTAssertEqualObjects(keyPress.character, @"V");
+  keyPress = commands[9];
+  XCTAssertEqualObjects(keyPress.character, @"a");
+  keyPress = commands[10];
+  XCTAssertEqualObjects(keyPress.character, @"l");
+  keyPress = commands[11];
+  XCTAssertEqualObjects(keyPress.character, @"u");
+  keyPress = commands[12];
+  XCTAssertEqualObjects(keyPress.character, @"e");
+  keyPress = commands[13];
+  XCTAssertEqualObjects(keyPress.character, @"U");
+  keyPress = commands[14];
+  XCTAssertEqualObjects(keyPress.character, @"s");
+  keyPress = commands[15];
+  XCTAssertEqualObjects(keyPress.character, @"e");
+  keyPress = commands[16];
+  XCTAssertEqualObjects(keyPress.character, @"r");
+  keyPress = commands[17];
+  XCTAssertEqualObjects(keyPress.character, @" ");
+  keyPress = commands[18];
+  XCTAssertEqualObjects(keyPress.character, @"N");
+  keyPress = commands[19];
+  XCTAssertEqualObjects(keyPress.character, @"a");
+  keyPress = commands[20];
+  XCTAssertEqualObjects(keyPress.character, @"m");
+  keyPress = commands[21];
+  XCTAssertEqualObjects(keyPress.character, @"e");
+  keyPress = commands[22];
+  XCTAssertEqualObjects(keyPress.character, @"U");
+  keyPress = commands[23];
+  XCTAssertEqualObjects(keyPress.character, @"s");
+  keyPress = commands[24];
+  XCTAssertEqualObjects(keyPress.character, @"e");
+  keyPress = commands[25];
+  XCTAssertEqualObjects(keyPress.character, @"r");
+  keyPress = commands[26];
+  XCTAssertEqualObjects(keyPress.character, @" ");
+  keyPress = commands[27];
+  XCTAssertEqualObjects(keyPress.character, @"N");
+  keyPress = commands[28];
+  XCTAssertEqualObjects(keyPress.character, @"a");
+  keyPress = commands[29];
+  XCTAssertEqualObjects(keyPress.character, @"m");
+  keyPress = commands[30];
+  XCTAssertEqualObjects(keyPress.character, @"e");
+  keyPress = commands[31];
+  XCTAssertEqualObjects(keyPress.character, @"U");
+  keyPress = commands[32];
+  XCTAssertEqualObjects(keyPress.character, @"s");
+  keyPress = commands[33];
+  XCTAssertEqualObjects(keyPress.character, @"e");
+  keyPress = commands[34];
+  XCTAssertEqualObjects(keyPress.character, @"r");
+  keyPress = commands[35];
+  XCTAssertEqualObjects(keyPress.character, @" ");
+  keyPress = commands[36];
+  XCTAssertEqualObjects(keyPress.character, @"N");
+  keyPress = commands[37];
+  XCTAssertEqualObjects(keyPress.character, @"a");
+  keyPress = commands[38];
+  XCTAssertEqualObjects(keyPress.character, @"m");
+  keyPress = commands[39];
+  XCTAssertEqualObjects(keyPress.character, @"e");
 }
 
 - (void)testFunctionKeyCommand {
   MPAutotypeContext *context = [[MPAutotypeContext alloc] initWithEntry:self.entry andSequence:@"{F0}{F1}{F2}{F3}{F4}{F5}^%{F6}{F7}{F19}{F20}"];
   NSArray *commands = [MPAutotypeCommand commandsForContext:context];
-  XCTAssertEqual(commands.count, 10);
-  /* {F0} -> invalid, paste */
-  MPAutotypePaste *paste = commands[0];
-  XCTAssertEqualObjects(paste.pasteData, @"{F0}");
+  XCTAssertEqual(commands.count, 17);
+  /* {F0} -> invalid, type */
+  MPAutotypeKeyPress *key = commands[0];
+  XCTAssertEqualObjects(key.character, @"{");
+  key = commands[1];
+  XCTAssertEqualObjects(key.character, @"F");
+  key = commands[2];
+  XCTAssertEqualObjects(key.character, @"0");
+  key = commands[3];
+  XCTAssertEqualObjects(key.character, @"}");
   
   /* {F1} */
-  MPAutotypeKeyPress *key = commands[1];
+  key = commands[4];
   XCTAssertEqual(key.key.modifier, 0);
   XCTAssertEqual(key.key.keyCode, kVK_F1);
   
   /* {F2} */
-  key = commands[2];
+  key = commands[5];
   XCTAssertEqual(key.key.modifier, 0);
   XCTAssertEqual(key.key.keyCode, kVK_F2);
   
   /* {F3} */
-  key = commands[3];
+  key = commands[6];
   XCTAssertEqual(key.key.modifier, 0);
   XCTAssertEqual(key.key.keyCode, kVK_F3);
   
   /* {F4} */
-  key = commands[4];
+  key = commands[7];
   XCTAssertEqual(key.key.modifier, 0);
   XCTAssertEqual(key.key.keyCode, kVK_F4);
   
   /* {F5} */
-  key = commands[5];
+  key = commands[8];
   XCTAssertEqual(key.key.modifier, 0);
   XCTAssertEqual(key.key.keyCode, kVK_F5);
   
   /* ^%{F6} */
-  key = commands[6];
+  key = commands[9];
   XCTAssertEqual(key.key.modifier, (kCGEventFlagMaskCommand | kCGEventFlagMaskAlternate));
   XCTAssertEqual(key.key.keyCode, kVK_F6);
   
   /* {F7} */
-  key = commands[7];
+  key = commands[10];
   XCTAssertEqual(key.key.modifier, 0);
   XCTAssertEqual(key.key.keyCode, kVK_F7);
   
   /* {F19} */
-  key = commands[8];
+  key = commands[11];
   XCTAssertEqual(key.key.modifier, 0);
   XCTAssertEqual(key.key.keyCode, kVK_F19);
   
-  paste = commands[9];
-  XCTAssertEqualObjects(paste.pasteData, @"{F20}");
+  /* {F20} -> invalid, type */
+  key = commands[12];
+  XCTAssertEqualObjects(key.character, @"{");
+
+  key = commands[13];
+  XCTAssertEqualObjects(key.character, @"F");
+
+  key = commands[14];
+  XCTAssertEqualObjects(key.character, @"2");
+
+  key = commands[15];
+  XCTAssertEqualObjects(key.character, @"0");
+
+  key = commands[16];
+  XCTAssertEqualObjects(key.character, @"}");
+
 }
 
 - (void)testCommandCreation {
@@ -161,38 +260,117 @@
   MPAutotypeContext *context = [[MPAutotypeContext alloc] initWithEntry:self.entry andSequence:@"{USERNAME}{TAB}{PASSWORD}{ENTER}"];
   NSArray *commands = [MPAutotypeCommand commandsForContext:context];
   
-  XCTAssertEqual(commands.count, 4);
-  XCTAssertTrue([commands[0] isKindOfClass:[MPAutotypePaste class]]);
-  XCTAssertTrue([commands[1] isKindOfClass:[MPAutotypeKeyPress class]]);
-  XCTAssertTrue([commands[2] isKindOfClass:[MPAutotypePaste class]]);
-  XCTAssertTrue([commands[3] isKindOfClass:[MPAutotypeKeyPress class]]);
+  XCTAssertEqual(commands.count, 20);
   
-  /* {USERNAME} */
-  MPAutotypePaste *paste = commands[0];
-  XCTAssertEqualObjects(paste.pasteData, self.entry.username);
+  /* {USERNAME} -> type U s e r   N a m e*/
+  MPAutotypeKeyPress *keyPress = commands[0];
+  XCTAssertEqualObjects(keyPress.character, @"U");
+  XCTAssertEqual(keyPress.key.keyCode, 0);
+  XCTAssertEqual(keyPress.key.modifier, 0);
+
+  keyPress = commands[1];
+  XCTAssertEqualObjects(keyPress.character, @"s");
+  XCTAssertEqual(keyPress.key.keyCode, 0);
+  XCTAssertEqual(keyPress.key.modifier, 0);
+
+  keyPress = commands[2];
+  XCTAssertEqualObjects(keyPress.character, @"e");
+  XCTAssertEqual(keyPress.key.keyCode, 0);
+  XCTAssertEqual(keyPress.key.modifier, 0);
+
+  keyPress = commands[3];
+  XCTAssertEqualObjects(keyPress.character, @"r");
+  XCTAssertEqual(keyPress.key.keyCode, 0);
+  XCTAssertEqual(keyPress.key.modifier, 0);
+
+  keyPress = commands[4];
+  XCTAssertEqualObjects(keyPress.character, @" ");
+  XCTAssertEqual(keyPress.key.keyCode, 0);
+  XCTAssertEqual(keyPress.key.modifier, 0);
+
+  keyPress = commands[5];
+  XCTAssertEqualObjects(keyPress.character, @"N");
+  XCTAssertEqual(keyPress.key.keyCode, 0);
+  XCTAssertEqual(keyPress.key.modifier, 0);
+
+  keyPress = commands[6];
+  XCTAssertEqualObjects(keyPress.character, @"a");
+  XCTAssertEqual(keyPress.key.keyCode, 0);
+  XCTAssertEqual(keyPress.key.modifier, 0);
+
+  keyPress = commands[7];
+  XCTAssertEqualObjects(keyPress.character, @"m");
+  XCTAssertEqual(keyPress.key.keyCode, 0);
+  XCTAssertEqual(keyPress.key.modifier, 0);
+
+  keyPress = commands[8];
+  XCTAssertEqualObjects(keyPress.character, @"e");
+  XCTAssertEqual(keyPress.key.keyCode, 0);
+  XCTAssertEqual(keyPress.key.modifier, 0);
   
   /* {TAB} */
-  MPAutotypeKeyPress *keyPress = commands[1];
+  keyPress = commands[9];
+  XCTAssertNil(keyPress.character);
   XCTAssertEqual(keyPress.key.keyCode, kVK_Tab); // Tab is a fixed key, no mapping needed
   XCTAssertEqual(keyPress.key.modifier, 0);
   
-  /* {PASSWORD} */
-  paste = commands[2];
-  XCTAssertEqualObjects(self.entry.password, paste.pasteData);
+  /* {PASSWORD} -> type P a s s 👩🏿‍🔧 w o r d */
+  keyPress = commands[10];
+  XCTAssertEqualObjects(keyPress.character, @"P");
+  XCTAssertEqual(keyPress.key.keyCode, 0);
+  XCTAssertEqual(keyPress.key.modifier, 0);
+
+  keyPress = commands[11];
+  XCTAssertEqualObjects(keyPress.character, @"a");
+  XCTAssertEqual(keyPress.key.keyCode, 0);
+  XCTAssertEqual(keyPress.key.modifier, 0);
+
+  keyPress = commands[12];
+  XCTAssertEqualObjects(keyPress.character, @"s");
+  XCTAssertEqual(keyPress.key.keyCode, 0);
+  XCTAssertEqual(keyPress.key.modifier, 0);
+
+  keyPress = commands[13];
+  XCTAssertEqualObjects(keyPress.character, @"s");
+  XCTAssertEqual(keyPress.key.keyCode, 0);
+  XCTAssertEqual(keyPress.key.modifier, 0);
+
+  keyPress = commands[14];
+  XCTAssertEqualObjects(keyPress.character, @"👩🏿‍🔧");
+  XCTAssertEqual(keyPress.key.keyCode, 0);
+  XCTAssertEqual(keyPress.key.modifier, 0);
+
+  keyPress = commands[15];
+  XCTAssertEqualObjects(keyPress.character, @"w");
+  XCTAssertEqual(keyPress.key.keyCode, 0);
+  XCTAssertEqual(keyPress.key.modifier, 0);
+
+  keyPress = commands[16];
+  XCTAssertEqualObjects(keyPress.character, @"o");
+  XCTAssertEqual(keyPress.key.keyCode, 0);
+  XCTAssertEqual(keyPress.key.modifier, 0);
+  
+  keyPress = commands[17];
+  XCTAssertEqualObjects(keyPress.character, @"r");
+  XCTAssertEqual(keyPress.key.keyCode, 0);
+  XCTAssertEqual(keyPress.key.modifier, 0);
+  
+  keyPress = commands[18];
+  XCTAssertEqualObjects(keyPress.character, @"d");
+  XCTAssertEqual(keyPress.key.keyCode, 0);
+  XCTAssertEqual(keyPress.key.modifier, 0);
+
   
   /* {ENTER} */
-  keyPress = commands[3];
+  keyPress = commands[19];
+  XCTAssertNil(keyPress.character);
   XCTAssertEqual(keyPress.key.keyCode, kVK_Return);
+  XCTAssertEqual(keyPress.key.modifier, 0);
   
   /* Command 2 */
   context = [[MPAutotypeContext alloc] initWithEntry:self.entry andSequence:@"^T{USERNAME}%+^{TAB}Whoo{PASSWORD}{ENTER}"];
   commands = [MPAutotypeCommand commandsForContext:context];
-  XCTAssertEqual(commands.count, 5);
-  XCTAssertTrue([commands[0] isKindOfClass:[MPAutotypeKeyPress class]]);
-  XCTAssertTrue([commands[1] isKindOfClass:[MPAutotypePaste class]]);
-  XCTAssertTrue([commands[2] isKindOfClass:[MPAutotypeKeyPress class]]);
-  XCTAssertTrue([commands[3] isKindOfClass:[MPAutotypePaste class]]);
-  XCTAssertTrue([commands[4] isKindOfClass:[MPAutotypeKeyPress class]]);
+  XCTAssertEqual(commands.count, 25);
   
   /* ^T */
   keyPress = commands[0];
@@ -206,12 +384,54 @@
       XCTAssertEqual(keyPress.key.modifier, kCGEventFlagMaskControl);
   }
   
-  /* {USERNAME} */
-  paste = commands[1];
-  XCTAssertEqualObjects(paste.pasteData, self.entry.username);
+  /* {USERNAME} -> type U s e r   N a m e */
+  keyPress = commands[1];
+  XCTAssertEqualObjects(keyPress.character, @"U");
+  XCTAssertEqual(keyPress.key.keyCode, 0);
+  XCTAssertEqual(keyPress.key.modifier, 0);
+  
+  keyPress = commands[2];
+  XCTAssertEqualObjects(keyPress.character, @"s");
+  XCTAssertEqual(keyPress.key.keyCode, 0);
+  XCTAssertEqual(keyPress.key.modifier, 0);
+  
+  keyPress = commands[3];
+  XCTAssertEqualObjects(keyPress.character, @"e");
+  XCTAssertEqual(keyPress.key.keyCode, 0);
+  XCTAssertEqual(keyPress.key.modifier, 0);
+  
+  keyPress = commands[4];
+  XCTAssertEqualObjects(keyPress.character, @"r");
+  XCTAssertEqual(keyPress.key.keyCode, 0);
+  XCTAssertEqual(keyPress.key.modifier, 0);
+  
+  keyPress = commands[5];
+  XCTAssertEqualObjects(keyPress.character, @" ");
+  XCTAssertEqual(keyPress.key.keyCode, 0);
+  XCTAssertEqual(keyPress.key.modifier, 0);
+  
+  keyPress = commands[6];
+  XCTAssertEqualObjects(keyPress.character, @"N");
+  XCTAssertEqual(keyPress.key.keyCode, 0);
+  XCTAssertEqual(keyPress.key.modifier, 0);
+  
+  keyPress = commands[7];
+  XCTAssertEqualObjects(keyPress.character, @"a");
+  XCTAssertEqual(keyPress.key.keyCode, 0);
+  XCTAssertEqual(keyPress.key.modifier, 0);
+  
+  keyPress = commands[8];
+  XCTAssertEqualObjects(keyPress.character, @"m");
+  XCTAssertEqual(keyPress.key.keyCode, 0);
+  XCTAssertEqual(keyPress.key.modifier, 0);
+  
+  keyPress = commands[9];
+  XCTAssertEqualObjects(keyPress.character, @"e");
+  XCTAssertEqual(keyPress.key.keyCode, 0);
+  XCTAssertEqual(keyPress.key.modifier, 0);
   
   /* %+^{TAB} */
-  keyPress = commands[2];
+  keyPress = commands[10];
   XCTAssertEqual(keyPress.key.keyCode, kVK_Tab); // Tab is a fixed key, no mapping needed
   if(useCommandInsteadOfControl) {
     XCTAssertEqual(keyPress.key.modifier, (kCGEventFlagMaskCommand | kCGEventFlagMaskShift | kCGEventFlagMaskAlternate));
@@ -220,13 +440,75 @@
     XCTAssertEqual(keyPress.key.modifier, (kCGEventFlagMaskControl | kCGEventFlagMaskShift | kCGEventFlagMaskAlternate));
   }
   
-  /* Whoo{PASSWORD} */
-  paste = commands[3];
-  NSString *pasteString = [[NSString alloc] initWithFormat:@"%@%@", @"Whoo", self.entry.password];
-  XCTAssertEqualObjects(pasteString, paste.pasteData);
+  /* Whoo{PASSWORD} -> type W h o o P a s s w o r d */
+  keyPress = commands[11];
+  XCTAssertEqualObjects(keyPress.character, @"W");
+  XCTAssertEqual(keyPress.key.keyCode, 0);
+  XCTAssertEqual(keyPress.key.modifier, 0);
+
+  keyPress = commands[12];
+  XCTAssertEqualObjects(keyPress.character, @"h");
+  XCTAssertEqual(keyPress.key.keyCode, 0);
+  XCTAssertEqual(keyPress.key.modifier, 0);
+  
+  keyPress = commands[13];
+  XCTAssertEqualObjects(keyPress.character, @"o");
+  XCTAssertEqual(keyPress.key.keyCode, 0);
+  XCTAssertEqual(keyPress.key.modifier, 0);
+
+  keyPress = commands[14];
+  XCTAssertEqualObjects(keyPress.character, @"o");
+  XCTAssertEqual(keyPress.key.keyCode, 0);
+  XCTAssertEqual(keyPress.key.modifier, 0);
+  
+  keyPress = commands[15];
+  XCTAssertEqualObjects(keyPress.character, @"P");
+  XCTAssertEqual(keyPress.key.keyCode, 0);
+  XCTAssertEqual(keyPress.key.modifier, 0);
+  
+  keyPress = commands[16];
+  XCTAssertEqualObjects(keyPress.character, @"a");
+  XCTAssertEqual(keyPress.key.keyCode, 0);
+  XCTAssertEqual(keyPress.key.modifier, 0);
+  
+  keyPress = commands[17];
+  XCTAssertEqualObjects(keyPress.character, @"s");
+  XCTAssertEqual(keyPress.key.keyCode, 0);
+  XCTAssertEqual(keyPress.key.modifier, 0);
+  
+  keyPress = commands[18];
+  XCTAssertEqualObjects(keyPress.character, @"s");
+  XCTAssertEqual(keyPress.key.keyCode, 0);
+  XCTAssertEqual(keyPress.key.modifier, 0);
+  
+  keyPress = commands[19];
+  XCTAssertEqualObjects(keyPress.character, @"👩🏿‍🔧");
+  XCTAssertEqual(keyPress.key.keyCode, 0);
+  XCTAssertEqual(keyPress.key.modifier, 0);
+  
+  keyPress = commands[20];
+  XCTAssertEqualObjects(keyPress.character, @"w");
+  XCTAssertEqual(keyPress.key.keyCode, 0);
+  XCTAssertEqual(keyPress.key.modifier, 0);
+  
+  keyPress = commands[21];
+  XCTAssertEqualObjects(keyPress.character, @"o");
+  XCTAssertEqual(keyPress.key.keyCode, 0);
+  XCTAssertEqual(keyPress.key.modifier, 0);
+  
+  keyPress = commands[22];
+  XCTAssertEqualObjects(keyPress.character, @"r");
+  XCTAssertEqual(keyPress.key.keyCode, 0);
+  XCTAssertEqual(keyPress.key.modifier, 0);
+  
+  keyPress = commands[23];
+  XCTAssertEqualObjects(keyPress.character, @"d");
+  XCTAssertEqual(keyPress.key.keyCode, 0);
+  XCTAssertEqual(keyPress.key.modifier, 0);
   
   /* {ENTER} */
-  keyPress = commands[4];
+  keyPress = commands[24];
+  XCTAssertNil(keyPress.character);
   XCTAssertEqual(keyPress.key.keyCode, kVK_Return);
   XCTAssertEqual(keyPress.key.modifier, 0);
   
