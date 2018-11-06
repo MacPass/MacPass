@@ -31,18 +31,12 @@
 
 @implementation MPEntryTableDataSource
 
-- (BOOL)tableView:(NSTableView *)tableView writeRowsWithIndexes:(NSIndexSet *)rowIndexes toPasteboard:(NSPasteboard *)pboard {
-  NSMutableArray *entries = [[NSMutableArray alloc] initWithCapacity:rowIndexes.count];
-  [rowIndexes enumerateIndexesUsingBlock:^(NSUInteger idx, BOOL * _Nonnull stop) {
-    [entries addObject:self.viewController.entryArrayController.arrangedObjects[idx]];
-  }];
-  for(KPKEntry *entry in entries) {
-    if(![entry isKindOfClass:[KPKEntry class]]) {
-      return NO;
-    }
+- (id<NSPasteboardWriting>)tableView:(NSTableView *)tableView pasteboardWriterForRow:(NSInteger)row {
+  id item = self.viewController.entryArrayController.arrangedObjects[row];
+  if([item isKindOfClass:KPKEntry.class]) {
+    return item;
   }
-  [pboard writeObjects:entries];
-  return YES;
+  return nil;
 }
 
 @end

@@ -31,22 +31,20 @@
 @property (weak) KPKGroup *localDraggedGroup;
 @property (weak) KPKEntry *localDraggedEntry;
 
+@property (strong) NSArray<KPKGroup *> *draggedGroups;
+@property (strong) NSArray<KPKEntry *> *draggedEntries;
+
 @end
 
 @implementation MPOutlineDataSource
 
-- (BOOL)outlineView:(NSOutlineView *)outlineView writeItems:(NSArray *)items toPasteboard:(NSPasteboard *)pasteboard {
-  if(items.count != 1) {
-    return NO;
+- (id<NSPasteboardWriting>)outlineView:(NSOutlineView *)outlineView pasteboardWriterForItem:(id)item {
+  id representedObject = [item representedObject];
+  if([representedObject isKindOfClass:KPKGroup.class]) {
+    KPKGroup *group = representedObject;
+    return group;
   }
-  self.localDraggedGroup = nil;
-  id item = [items.lastObject representedObject];
-  if(![item isKindOfClass:KPKGroup.class]) {
-    return NO;
-  }
-  KPKGroup *draggedGroup = item;
-  [pasteboard writeObjects:@[draggedGroup]];
-  return (nil != draggedGroup.parent);
+  return nil;
 }
 
 - (NSDragOperation)outlineView:(NSOutlineView *)outlineView validateDrop:(id<NSDraggingInfo>)info proposedItem:(id)item proposedChildIndex:(NSInteger)index {
