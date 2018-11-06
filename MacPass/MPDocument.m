@@ -409,7 +409,8 @@ NSString *const MPDocumentGroupKey                            = @"MPDocumentGrou
                                         completionHandler:^BOOL(NSString *password, NSURL *keyURL, BOOL didCancel, NSError *__autoreleasing *error) {
                                           [self.windowForSheet endSheet:sheet returnCode:(didCancel ? NSModalResponseCancel : NSModalResponseOK)];
                                           if(!didCancel) {
-                                            KPKCompositeKey *compositeKey = [[KPKCompositeKey alloc] initWithPassword:password key:keyURL];
+                                            NSData *keyFileData = keyURL ? [NSData dataWithContentsOfURL:keyURL] : nil;
+                                            KPKCompositeKey *compositeKey = [[KPKCompositeKey alloc] initWithPassword:password keyFileData:keyFileData];
                                             [self _mergeWithContentsFromURL:url key:compositeKey options:options];
                                           }
                                           // just return yes regardless since we will display the sheet again if needed!
@@ -477,7 +478,8 @@ NSString *const MPDocumentGroupKey                            = @"MPDocumentGrou
 
 - (BOOL)unlockWithPassword:(NSString *)password keyFileURL:(NSURL *)keyFileURL error:(NSError *__autoreleasing*)error{
   // TODO: Make this API asynchronous
-  self.compositeKey = [[KPKCompositeKey alloc] initWithPassword:password key:keyFileURL];
+  NSData *keyFileData = keyFileURL ? [NSData dataWithContentsOfURL:keyFileURL] : nil;
+  self.compositeKey = [[KPKCompositeKey alloc] initWithPassword:password keyFileData:keyFileData];
   self.tree = [[KPKTree alloc] initWithData:self.encryptedData key:self.compositeKey error:error];
   
   BOOL isUnlocked = (nil != self.tree);
@@ -500,11 +502,12 @@ NSString *const MPDocumentGroupKey                            = @"MPDocumentGrou
   if([password length] == 0 && keyFileURL == nil) {
     return NO;
   }
+  NSData *keyFileData = keyFileURL ? [NSData dataWithContentsOfURL:keyFileURL] : nil;
   if(!self.compositeKey) {
-    self.compositeKey = [[KPKCompositeKey alloc] initWithPassword:password key:keyFileURL];
+    self.compositeKey = [[KPKCompositeKey alloc] initWithPassword:password keyFileData:keyFileData];
   }
   else {
-    [self.compositeKey setPassword:password andKeyfile:keyFileURL];
+    [self.compositeKey setPassword:password andKeyFileData:keyFileData];
   }
   self.tree.metaData.masterKeyChanged = [NSDate date];
   /* Key change is not undoable so just recored the change as done */
