@@ -92,7 +92,7 @@ NSString *const _MPOutlinveViewHeaderViewIdentifier = @"HeaderCell";
   self.outlineView.doubleAction = @selector(_doubleClickedGroup:);
   self.outlineView.allowsMultipleSelection = YES;
   self.outlineView.delegate = self;
-  [self.outlineView registerForDraggedTypes:@[ KPKGroupUTI, KPKEntryUTI ]];
+  [self.outlineView registerForDraggedTypes:@[ KPKGroupUTI, KPKGroupUUIDUTI, KPKEntryUTI, KPKEntryUUDIUTI ]];
   [self.outlineView setDraggingSourceOperationMask:NSDragOperationEvery forLocal:YES];
   
   [NSNotificationCenter.defaultCenter addObserver:self

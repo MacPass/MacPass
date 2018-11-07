@@ -123,7 +123,7 @@ NSString *const _MPTableSecurCellView = @"PasswordCell";
   self.entryTable.doubleAction = @selector(_columnDoubleClick:);
   self.entryTable.target = self;
   self.entryTable.floatsGroupRows = NO;
-  [self.entryTable registerForDraggedTypes:@[KPKEntryUTI]];
+  [self.entryTable registerForDraggedTypes:@[KPKEntryUTI, KPKEntryUUDIUTI]];
   /* First responder notifications */
   [NSNotificationCenter.defaultCenter addObserver:self
                                          selector:@selector(_didBecomFirstResponder:)

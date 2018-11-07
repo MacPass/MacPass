@@ -39,4 +39,8 @@
   return nil;
 }
 
+- (void)tableView:(NSTableView *)tableView draggingSession:(NSDraggingSession *)session willBeginAtPoint:(NSPoint)screenPoint forRowIndexes:(nonnull NSIndexSet *)rowIndexes {
+  session.draggingFormation = NSDraggingFormationList;
+}
+
 @end
