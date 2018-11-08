@@ -96,7 +96,6 @@ static MPAutotypeDaemon *_sharedInstance;
                                                            name:NSWorkspaceDidDeactivateApplicationNotification
                                                          object:nil];
   }
-  [self checkForAccessibiltyPermissions];
   return self;
 }
 
