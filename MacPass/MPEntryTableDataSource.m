@@ -31,12 +31,22 @@
 
 @implementation MPEntryTableDataSource
 
+// FIXME: change drag image to use only the first column regardless of drag start
+
 - (id<NSPasteboardWriting>)tableView:(NSTableView *)tableView pasteboardWriterForRow:(NSInteger)row {
   id item = self.viewController.entryArrayController.arrangedObjects[row];
   if([item isKindOfClass:KPKEntry.class]) {
     return item;
   }
   return nil;
+}
+
+- (NSDragOperation)tableView:(NSTableView *)tableView validateDrop:(id<NSDraggingInfo>)info proposedRow:(NSInteger)row proposedDropOperation:(NSTableViewDropOperation)dropOperation {
+  BOOL makeCopy = (info.draggingSourceOperationMask == NSDragOperationCopy);
+  if(dropOperation == NSTableViewDropOn) {
+    [tableView setDropRow:row+1 dropOperation:NSTableViewDropAbove];
+  }
+  return makeCopy ? NSDragOperationCopy : NSDragOperationMove;
 }
 
 - (void)tableView:(NSTableView *)tableView draggingSession:(NSDraggingSession *)session willBeginAtPoint:(NSPoint)screenPoint forRowIndexes:(nonnull NSIndexSet *)rowIndexes {

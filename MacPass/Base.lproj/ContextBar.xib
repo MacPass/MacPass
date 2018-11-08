@@ -11,14 +11,10 @@
                 <outlet property="emptyTrashButton" destination="szx-Hx-OrV" id="i1Y-qB-TW3"/>
                 <outlet property="everywhereButton" destination="RGg-wK-hz4" id="xIZ-YB-pkm"/>
                 <outlet property="exitHistoryButton" destination="pqx-su-vAh" id="JmV-vC-F48"/>
-                <outlet property="filterLabelTextField" destination="6" id="60"/>
-                <outlet property="historyBar" destination="S8L-rB-h0h" id="6yZ-El-fVs"/>
                 <outlet property="notesButton" destination="SaV-5p-jIX" id="sQc-nE-BOP"/>
                 <outlet property="passwordButton" destination="Uhl-ck-vVQ" id="I35-Nv-6jK"/>
-                <outlet property="searchBar" destination="1" id="k2f-ao-7xx"/>
                 <outlet property="specialFilterPopUpButton" destination="aPQ-t2-bgz" id="5II-Ml-qg1"/>
                 <outlet property="titleButton" destination="O7W-cn-eUP" id="Vlg-KG-62R"/>
-                <outlet property="trashBar" destination="DXf-SC-gVG" id="3aZ-Xc-VDk"/>
                 <outlet property="urlButton" destination="Bn2-iY-mQ3" id="PNG-kv-PQN"/>
                 <outlet property="usernameButton" destination="0R1-PX-dgn" id="TWQ-1y-9cl"/>
                 <outlet property="view" destination="8MB-fC-M2Q" id="wYX-Cc-yoV"/>
@@ -35,22 +31,22 @@
                         <rect key="frame" x="0.0" y="0.0" width="838" height="30"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <customView translatesAutoresizingMaskIntoConstraints="NO" id="1" customClass="HNHUIGradientView">
+                            <customView translatesAutoresizingMaskIntoConstraints="NO" id="1">
                                 <rect key="frame" x="0.0" y="0.0" width="838" height="30"/>
                                 <subviews>
                                     <stackView orientation="horizontal" alignment="centerY" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" horizontalClippingResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="AEr-b4-tMm">
                                         <rect key="frame" x="8" y="0.0" width="830" height="30"/>
                                         <beginningViews>
-                                            <textField verticalHuggingPriority="750" fixedFrame="YES" allowsCharacterPickerTouchBarItem="YES" translatesAutoresizingMaskIntoConstraints="NO" id="6">
-                                                <rect key="frame" x="-2" y="8" width="47" height="14"/>
-                                                <textFieldCell key="cell" controlSize="small" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Search:" id="7">
-                                                    <font key="font" metaFont="smallSystemBold"/>
+                                            <textField verticalHuggingPriority="750" fixedFrame="YES" textCompletion="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6">
+                                                <rect key="frame" x="-2" y="7" width="54" height="17"/>
+                                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Search:" id="7">
+                                                    <font key="font" metaFont="systemBold"/>
                                                     <color key="textColor" name="disabledControlTextColor" catalog="System" colorSpace="catalog"/>
                                                     <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                                 </textFieldCell>
                                             </textField>
                                             <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="O7W-cn-eUP">
-                                                <rect key="frame" x="51" y="6" width="41" height="17"/>
+                                                <rect key="frame" x="58" y="6" width="41" height="17"/>
                                                 <buttonCell key="cell" type="recessed" title="Title" bezelStyle="recessed" alignment="center" controlSize="small" state="on" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="53D-ne-nv6">
                                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES" changeBackground="YES" changeGray="YES"/>
                                                     <font key="font" metaFont="systemBold" size="12"/>
@@ -60,7 +56,7 @@
                                                 </connections>
                                             </button>
                                             <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="0R1-PX-dgn">
-                                                <rect key="frame" x="100" y="6" width="76" height="17"/>
+                                                <rect key="frame" x="107" y="6" width="76" height="17"/>
                                                 <buttonCell key="cell" type="recessed" title="Username" bezelStyle="recessed" alignment="center" controlSize="small" state="on" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="jfQ-Jh-2gl">
                                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES" changeBackground="YES" changeGray="YES"/>
                                                     <font key="font" metaFont="systemBold" size="12"/>
@@ -70,7 +66,7 @@
                                                 </connections>
                                             </button>
                                             <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Uhl-ck-vVQ">
-                                                <rect key="frame" x="184" y="6" width="73" height="17"/>
+                                                <rect key="frame" x="191" y="6" width="73" height="17"/>
                                                 <buttonCell key="cell" type="recessed" title="Password" bezelStyle="recessed" alignment="center" controlSize="small" state="on" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="rvQ-4V-SsS">
                                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES" changeBackground="YES" changeGray="YES"/>
                                                     <font key="font" metaFont="systemBold" size="12"/>
@@ -80,7 +76,7 @@
                                                 </connections>
                                             </button>
                                             <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Bn2-iY-mQ3">
-                                                <rect key="frame" x="265" y="6" width="39" height="17"/>
+                                                <rect key="frame" x="272" y="6" width="39" height="17"/>
                                                 <buttonCell key="cell" type="recessed" title="URL" bezelStyle="recessed" alignment="center" controlSize="small" state="on" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="92o-gN-Psj">
                                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES" changeBackground="YES" changeGray="YES"/>
                                                     <font key="font" metaFont="systemBold" size="12"/>
@@ -90,7 +86,7 @@
                                                 </connections>
                                             </button>
                                             <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="SaV-5p-jIX">
-                                                <rect key="frame" x="312" y="6" width="50" height="17"/>
+                                                <rect key="frame" x="319" y="6" width="50" height="17"/>
                                                 <buttonCell key="cell" type="recessed" title="Notes" bezelStyle="recessed" alignment="center" controlSize="small" state="on" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="iDN-2E-hwt">
                                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES" changeBackground="YES" changeGray="YES"/>
                                                     <font key="font" metaFont="systemBold" size="12"/>
@@ -100,7 +96,7 @@
                                                 </connections>
                                             </button>
                                             <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="RGg-wK-hz4">
-                                                <rect key="frame" x="370" y="6" width="86" height="17"/>
+                                                <rect key="frame" x="377" y="6" width="86" height="17"/>
                                                 <buttonCell key="cell" type="recessed" title="Everywhere" bezelStyle="recessed" alignment="center" controlSize="small" state="on" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="WMK-bb-ESj">
                                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES" changeBackground="YES" changeGray="YES"/>
                                                     <font key="font" metaFont="systemBold" size="12"/>
@@ -109,7 +105,7 @@
                                         </beginningViews>
                                         <endViews>
                                             <popUpButton verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="aPQ-t2-bgz">
-                                                <rect key="frame" x="766" y="5" width="64" height="19"/>
+                                                <rect key="frame" x="765" y="5" width="65" height="19"/>
                                                 <popUpButtonCell key="cell" type="recessed" title="Item 1" bezelStyle="recessed" alignment="center" lineBreakMode="truncatingTail" borderStyle="border" imageScaling="proportionallyDown" inset="2" autoenablesItems="NO" altersStateOfSelectedItem="NO" selectedItem="LRm-iZ-XrA" id="faz-pC-uGX">
                                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES" changeBackground="YES" changeGray="YES"/>
                                                     <font key="font" metaFont="systemBold" size="12"/>
@@ -171,11 +167,11 @@
                         <rect key="frame" x="0.0" y="0.0" width="838" height="30"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <customView translatesAutoresizingMaskIntoConstraints="NO" id="DXf-SC-gVG" customClass="HNHUIGradientView">
+                            <customView translatesAutoresizingMaskIntoConstraints="NO" id="DXf-SC-gVG">
                                 <rect key="frame" x="0.0" y="0.0" width="838" height="30"/>
                                 <subviews>
                                     <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="szx-Hx-OrV">
-                                        <rect key="frame" x="731" y="0.0" width="92" height="28"/>
+                                        <rect key="frame" x="731" y="0.0" width="92" height="27"/>
                                         <buttonCell key="cell" type="push" title="Empty Trash" bezelStyle="rounded" alignment="center" controlSize="small" state="on" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="8Ok-oe-6AB">
                                             <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                             <font key="font" metaFont="smallSystem"/>
@@ -184,9 +180,9 @@
                                             <action selector="emptyTrash:" target="-1" id="uIZ-CN-kXB"/>
                                         </connections>
                                     </button>
-                                    <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="Rf3-f0-SSx">
+                                    <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" textCompletion="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Rf3-f0-SSx">
                                         <rect key="frame" x="20" y="7" width="41" height="17"/>
-                                        <textFieldCell key="cell" controlSize="small" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Trash" id="8P1-Rp-sF4">
+                                        <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Trash" id="8P1-Rp-sF4">
                                             <font key="font" metaFont="systemBold"/>
                                             <color key="textColor" name="disabledControlTextColor" catalog="System" colorSpace="catalog"/>
                                             <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
@@ -219,11 +215,11 @@
                         <rect key="frame" x="0.0" y="0.0" width="838" height="30"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <customView translatesAutoresizingMaskIntoConstraints="NO" id="S8L-rB-h0h" customClass="HNHUIGradientView">
+                            <customView translatesAutoresizingMaskIntoConstraints="NO" id="S8L-rB-h0h">
                                 <rect key="frame" x="0.0" y="0.0" width="838" height="30"/>
                                 <subviews>
                                     <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="pqx-su-vAh">
-                                        <rect key="frame" x="736" y="0.0" width="87" height="28"/>
+                                        <rect key="frame" x="736" y="0.0" width="87" height="27"/>
                                         <buttonCell key="cell" type="push" title="Exit History" bezelStyle="rounded" alignment="center" controlSize="small" state="on" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="ewQ-8F-e1E">
                                             <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                             <font key="font" metaFont="smallSystem"/>
@@ -233,7 +229,7 @@
                                         </buttonCell>
                                     </button>
                                     <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="JNP-Sd-Zh1">
-                                        <rect key="frame" x="641" y="0.0" width="97" height="28"/>
+                                        <rect key="frame" x="641" y="0.0" width="97" height="27"/>
                                         <buttonCell key="cell" type="push" title="Restore Entry" bezelStyle="rounded" alignment="center" controlSize="small" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="UTg-y9-4DN">
                                             <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                             <font key="font" metaFont="smallSystem"/>
@@ -242,9 +238,9 @@
                                             <action selector="revertToHistoryEntry:" target="-1" id="n70-c5-0JJ"/>
                                         </connections>
                                     </button>
-                                    <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="hMK-l1-qew">
+                                    <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" textCompletion="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hMK-l1-qew">
                                         <rect key="frame" x="20" y="7" width="52" height="17"/>
-                                        <textFieldCell key="cell" controlSize="small" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="History" id="ER3-Ic-v0N">
+                                        <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="History" id="ER3-Ic-v0N">
                                             <font key="font" metaFont="systemBold"/>
                                             <color key="textColor" name="disabledControlTextColor" catalog="System" colorSpace="catalog"/>
                                             <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>

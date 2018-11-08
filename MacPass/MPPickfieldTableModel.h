@@ -27,12 +27,14 @@
 
 @interface MPPickfieldTableModelRowItem : NSObject
 
-@property (copy) NSString *name;
-@property (copy) NSString *value;
-@property BOOL isGroup;
+@property (copy, readonly) NSString *name;
+@property (copy, readonly) NSString *value;
+@property (readonly) BOOL isProtected;
+@property (readonly) BOOL isGroup;
 
 + (instancetype)groupItemWithName:(NSString *)name;
 + (instancetype)itemWithName:(NSString *)name value:(NSString *)value;
++ (instancetype)itemWithName:(NSString *)name protectedValue:(NSString *)value;
 
 @end
 

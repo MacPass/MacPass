@@ -92,7 +92,7 @@ typedef NS_ENUM(NSUInteger, MPPickfieldTableColumn) {
       view.textField.stringValue = rowItem.name;
       break;
     case MPPIckfieldValueTableColumn:
-      view.textField.stringValue = rowItem.value;
+      view.textField.stringValue = rowItem.isProtected ? @"•••" : rowItem.value;
       break;
     default:
       break;

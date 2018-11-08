@@ -23,12 +23,22 @@
 #import "MPPickfieldTableModel.h"
 #import <KeePassKit/KeePassKit.h>
 
+@interface MPPickfieldTableModelRowItem ()
+
+@property (copy) NSString *name;
+@property (copy) NSString *value;
+@property BOOL isProtected;
+@property BOOL isGroup;
+
+@end
+
 @implementation MPPickfieldTableModelRowItem
 
 - (instancetype)init {
   self = [super init];
   if(self) {
     _isGroup = NO;
+    _isProtected = NO;
   }
   return self;
 }
@@ -36,6 +46,14 @@
 + (instancetype)groupItemWithName:(NSString *)name {
   MPPickfieldTableModelRowItem *item =  [self itemWithName:name value:nil];
   item.isGroup = YES;
+  return item;
+}
+
++ (instancetype)itemWithName:(NSString *)name protectedValue:(NSString *)value {
+  MPPickfieldTableModelRowItem *item = [[MPPickfieldTableModelRowItem alloc] init];
+  item.name = name;
+  item.value = value;
+  item.isProtected = YES;
   return item;
 }
 
@@ -64,13 +82,22 @@
   [items addObject:[MPPickfieldTableModelRowItem groupItemWithName:NSLocalizedString(@"ENTRY_DEFAULT_ATTRIBUTES", @"Group row for entry attributes")]];
   
   for(KPKAttribute *attribute in entry.defaultAttributes) {
-    /* TODO exclude protected values */
-    [items addObject:[MPPickfieldTableModelRowItem itemWithName:attribute.key value:(attribute.protect ? @"•••" : attribute.value)]];
+    if(attribute.protect) {
+      [items addObject:[MPPickfieldTableModelRowItem itemWithName:attribute.key protectedValue:attribute.value]];
+    }
+    else {
+      [items addObject:[MPPickfieldTableModelRowItem itemWithName:attribute.key value:attribute.value]];
+    }
   }
 
   [items addObject:[MPPickfieldTableModelRowItem groupItemWithName:NSLocalizedString(@"ENTRY_CUSTOM_ATTRIBUTES", @"Group row for entry attributes")]];
   for(KPKAttribute *attribute in entry.customAttributes) {
-    [items addObject:[MPPickfieldTableModelRowItem itemWithName:attribute.key value:(attribute.protect ? @"•••" : attribute.value)]];
+    if(attribute.protect) {
+      [items addObject:[MPPickfieldTableModelRowItem itemWithName:attribute.key protectedValue:attribute.value]];
+    }
+    else {
+      [items addObject:[MPPickfieldTableModelRowItem itemWithName:attribute.key value:attribute.value]];
+    }
   }
   self.items = items; // copy creates an immutable copy
 }

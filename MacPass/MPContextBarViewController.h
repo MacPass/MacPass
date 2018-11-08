@@ -23,7 +23,6 @@
 #import "MPViewController.h"
 #import "MPDocument.h"
 
-@class HNHUIGradientView;
 @class MPDocument;
 
 @interface MPContextBarViewController : MPViewController <NSStackViewDelegate>

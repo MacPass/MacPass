@@ -47,15 +47,11 @@ typedef NS_ENUM(NSUInteger, MPContextTab) {
 @property (nonatomic, assign) MPContextTab activeTab;
 
 /* Filter */
-@property (weak) IBOutlet HNHUIGradientView *searchBar;
 @property (weak) IBOutlet NSButton *filterDoneButton;
-@property (weak) IBOutlet NSTextField *filterLabelTextField;
 /* History */
-@property (weak) IBOutlet HNHUIGradientView *historyBar;
 @property (weak) IBOutlet NSTextField *historyLabel;
 @property (weak) IBOutlet NSButton *exitHistoryButton;
 /* Trash*/
-@property (weak) IBOutlet HNHUIGradientView *trashBar;
 @property (weak) IBOutlet NSButton *emptyTrashButton;
 
 @end
@@ -76,23 +72,6 @@ typedef NS_ENUM(NSUInteger, MPContextTab) {
 - (void)awakeFromNib {
   self.selectMenuItemTitle = NSLocalizedString(@"SELECT_FILTER_WITH_DOTS", "Menu displayed as popup selection for search options if no filter is selected");
   self.multipleMenuItemTitle = NSLocalizedString(@"MULTIPLE_FILTERS_ACTIVE_WITH_DOTS", "Menu displayed as popup selection for search options when multiple items are selected");
-  self.filterLabelTextField.cell.backgroundStyle = NSBackgroundStyleRaised;
-  
-  /* Setup Trash Bar color */
-  if(@available(macOS 10.13, *)) {
-    NSArray *activeColors = @[[NSColor colorNamed:@"Active Shadow"], [NSColor colorNamed:@"Active Highlight"], ];
-    NSArray *inactiveColors = @[[NSColor colorNamed:@"Inactive Shadow"], [NSColor colorNamed:@"Inactive Highlight"]];
-    self.historyBar.activeGradient = [[NSGradient alloc] initWithColors:activeColors];
-    self.searchBar.activeGradient = [[NSGradient alloc] initWithColors:activeColors];
-    self.trashBar.activeGradient = [[NSGradient alloc] initWithColors:activeColors];
-
-    self.historyBar.inactiveGradient = [[NSGradient alloc] initWithColors:inactiveColors];
-    self.trashBar.inactiveGradient = [[NSGradient alloc] initWithColors:inactiveColors];
-    self.searchBar.inactiveGradient = [[NSGradient alloc] initWithColors:inactiveColors];
-  }
-  else {
-    
-  }
   
   [self.view bind:NSSelectedIndexBinding toObject:self withKeyPath:NSStringFromSelector(@selector(activeTab)) options:nil];
   
