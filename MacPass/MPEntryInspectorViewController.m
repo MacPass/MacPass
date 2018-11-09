@@ -131,6 +131,7 @@ typedef NS_ENUM(NSUInteger, MPEntryTab) {
   self.attachmentTableView.delegate = _attachmentTableDelegate;
   self.attachmentTableView.dataSource = _attachmentDataSource;
   [self.attachmentTableView registerForDraggedTypes:@[NSFilenamesPboardType]];
+  [self.attachmentTableView setDraggingSourceOperationMask:NSDragOperationCopy forLocal:NO];
   
   /* extract custom field table view */
   NSView *customFieldTableView = self.customFieldsTableView;
