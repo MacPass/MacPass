@@ -156,7 +156,7 @@
       for(KPKGroup *group in self.draggedGroups.reverseObjectEnumerator) {
         [group moveToGroup:targetGroup atIndex:insertIndex];
         insertIndex = group.index;
-        [group.undoManager setActionName:NSLocalizedString(@"MOVE_GROUP", "Action title for moving a group via drag and drop")];
+        [group.undoManager setActionName:NSLocalizedString(@"DRAG_GROUP", "Action title for moving a group via drag and drop")];
       }
       return YES;
     }
@@ -174,7 +174,7 @@
       for(NSUUID *entryUUID in entryUUIDs) {
         KPKEntry *draggedEntry = [document findEntry:entryUUID];
         [draggedEntry moveToGroup:targetGroup];
-        [draggedEntry.undoManager setActionName:NSLocalizedString(@"MOVE_ENTRY", "Action title for moving an entry via drag and drop")];
+        [draggedEntry.undoManager setActionName:NSLocalizedString(@"DRAG_ENTRY", "Action title for moving an entry via drag and drop")];
       }
     }
     return YES;

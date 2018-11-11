@@ -63,13 +63,16 @@
 }
 
 - (BOOL)tableView:(NSTableView *)tableView acceptDrop:(id<NSDraggingInfo>)info row:(NSInteger)row dropOperation:(NSTableViewDropOperation)dropOperation {
-  /* local drag */
+  if(dropOperation == NSTableViewDropAbove) {
+    row = MAX(0, row - 1); // decrement the row
+  }
   BOOL copyItems = info.draggingSourceOperationMask == NSDragOperationCopy;
   MPDocument *document = tableView.window.windowController.document;
   if(document.currentTargetGroups.count != 1) {
     return NO;
   }
   KPKGroup *targetGroup = document.currentTargetGroups.firstObject;
+  /* local drag */
   if(info.draggingSource == tableView) {
     if(copyItems) {
       for(NSUUID *entryUUID in [self _readEntryUUIDsFromPasterboard:info.draggingPasteboard].reverseObjectEnumerator) {

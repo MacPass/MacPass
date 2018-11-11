@@ -135,7 +135,8 @@
 /* Context menu sub-menu to copy custom fields to clipboard */
 "COPY_CUSTOM_FIELDS_MENU" = "Copy Custom Field…";
 
-/* Action title for copying an entry via drag and drop */
+/* Action name when an entry was moved
+   Action title for copying an entry via drag and drop */
 "COPY_ENTRY" = "Copy Entry";
 
 /* Mask for title to copy field value */
@@ -200,6 +201,14 @@
 
 /* Empty Trash */
 "DELETE_TRASHED_GROUP" = "Delete Trashed Group";
+
+/* Action title for copying an entry via drag and drop to another database
+   Action title for moving an entry via drag and drop */
+"DRAG_ENTRY" = "Drag Entry";
+
+/* Action title for moving a group via drag and drop
+   Actiontitle for copying groups via drag and drop to antother database */
+"DRAG_GROUP" = "Drag Group";
 
 /* Action name for duplicating entries */
 "DUPLICATE_ENTRIES_%ld" = "Duplicate Entries %ld";
@@ -331,11 +340,8 @@
    Modification date column title */
 "MODIFIED" = "Modified";
 
-/* Action title for moving an entry via drag and drop */
+/* Action name when an entry was moved */
 "MOVE_ENTRY" = "Move Entry";
-
-/* Action title for moving a group via drag and drop */
-"MOVE_GROUP" = "Move Group";
 
 /* Menu displayed as popup selection for search options when multiple items are selected */
 "MULTIPLE_FILTERS_ACTIVE_WITH_DOTS" = "Multiple…";

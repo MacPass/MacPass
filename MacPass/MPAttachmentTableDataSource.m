@@ -21,7 +21,6 @@
 //
 
 #import "MPAttachmentTableDataSource.h"
-#import "KPKBinary+MPAdditions.h"
 #import "MPDocument.h"
 
 @implementation MPAttachmentTableDataSource
