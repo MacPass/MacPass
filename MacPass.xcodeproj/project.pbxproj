@@ -138,6 +138,7 @@
 		4C61EA0316D2FD0800AC519E /* MPOutlineViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C61EA0216D2FD0800AC519E /* MPOutlineViewController.m */; };
 		4C61EA0516D2FFE200AC519E /* OutlineView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4C61EA0416D2FFE200AC519E /* OutlineView.xib */; };
 		4C63B8FB17A3154D0091BD72 /* MPContextButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C63B8FA17A3154D0091BD72 /* MPContextButton.m */; };
+		4C642AE92195E3B700689431 /* MPTestCustomAttributeGetter.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C642AE82195E3B700689431 /* MPTestCustomAttributeGetter.m */; };
 		4C65C79C16DD283900E32CFF /* MPToolbarButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C65C79B16DD283900E32CFF /* MPToolbarButton.m */; };
 		4C65FAE916D16DDB006E0577 /* MPPasswordInputController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C65FAE716D16DDB006E0577 /* MPPasswordInputController.m */; };
 		4C663D411D6D91A900CB6237 /* MPNumberFormatter.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C663D401D6D91A900CB6237 /* MPNumberFormatter.m */; };
@@ -552,6 +553,7 @@
 		4C61EA0416D2FFE200AC519E /* OutlineView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = OutlineView.xib; sourceTree = "<group>"; };
 		4C63B8F917A3154D0091BD72 /* MPContextButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MPContextButton.h; sourceTree = "<group>"; };
 		4C63B8FA17A3154D0091BD72 /* MPContextButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MPContextButton.m; sourceTree = "<group>"; };
+		4C642AE82195E3B700689431 /* MPTestCustomAttributeGetter.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MPTestCustomAttributeGetter.m; sourceTree = "<group>"; };
 		4C65C79A16DD283900E32CFF /* MPToolbarButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MPToolbarButton.h; sourceTree = "<group>"; };
 		4C65C79B16DD283900E32CFF /* MPToolbarButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MPToolbarButton.m; sourceTree = "<group>"; };
 		4C65FAE616D16DDB006E0577 /* MPPasswordInputController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MPPasswordInputController.h; sourceTree = "<group>"; };
@@ -1219,8 +1221,9 @@
 				4C8030491E2FBAA300133E4C /* MPTestKeyMapper.m */,
 				4C8F0C721FCF1B7A00BE157F /* MPTestPickcharsParser.m */,
 				4C71BCB32167B75900B4CBDA /* MPTestPluginVersionComparator.m */,
-				4C45FB1F178E09ED0010007D /* Supporting Files */,
 				4C58A4A72192EEBE00B13370 /* MPTestIndexPathAdditions.m */,
+				4C642AE82195E3B700689431 /* MPTestCustomAttributeGetter.m */,
+				4C45FB1F178E09ED0010007D /* Supporting Files */,
 			);
 			path = MacPassTests;
 			sourceTree = "<group>";
@@ -1952,6 +1955,7 @@
 				4C8DEAA21C314D2C00D24C32 /* MPTestAutotypeDelay.m in Sources */,
 				4C71BCB42167B75900B4CBDA /* MPTestPluginVersionComparator.m in Sources */,
 				4C8F0C731FCF1B7A00BE157F /* MPTestPickcharsParser.m in Sources */,
+				4C642AE92195E3B700689431 /* MPTestCustomAttributeGetter.m in Sources */,
 				4C45FB30178E0CE20010007D /* MPTestDocument.m in Sources */,
 				4C6BC6601A36717E00BDDF3D /* MPDatabaseSearch.m in Sources */,
 				4C10207F1B750E2F00BFCD59 /* MPTestAutotype.m in Sources */,

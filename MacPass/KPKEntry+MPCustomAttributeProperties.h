@@ -22,6 +22,8 @@
 
 #import <KeePassKit/KeePassKit.h>
 
+FOUNDATION_EXTERN NSString *const MPCustomAttributePropertyPrefix;
+
 @interface KPKEntry (MPCustomAttributeProperties)
 
 @end

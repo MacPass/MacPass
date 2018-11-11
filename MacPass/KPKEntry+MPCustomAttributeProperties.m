@@ -21,30 +21,25 @@
 //
 
 #import "KPKEntry+MPCustomAttributeProperties.h"
+#import <objc/runtime.h>
 
 NSString *const MPCustomAttributePropertyPrefix = @"valueForCustomAttribute";
 
 @implementation KPKEntry (MPCustomAttributeProperties)
 
-/*- (void)forwardInvocation:(NSInvocation *)anInvocation {
-  NSString *selector = NSStringFromSelector(anInvocation.selector);
-  if([selector hasPrefix:MPCustomAttributePropertyPrefix]) {
-    NSString *key = [selector substringFromIndex:MPCustomAttributePropertyPrefix.length];
-    KPKAttribute *attribute = [self attributeWithKey:key];
-    if(attribute) {
-      anInvocation.selector = @selector(value);
-      [anInvocation invokeWithTarget:attribute];
-    }
-    else {
-      anInvocation.selector = @selector(_unkownCustomAttributeValue);
-      [anInvocation invokeWithTarget:self];
-    }
-  }
-  else [super forwardInvocation:anInvocation];
-}*/
+// generic getter
+static id propertyIMP(id self, SEL _cmd) {
+  NSString *propertyKey = [NSStringFromSelector(_cmd) substringFromIndex:MPCustomAttributePropertyPrefix.length];
+  return [self valueForAttributeWithKey:propertyKey];
+}
 
-- (NSString *)_unkownCustomAttributeValue {
-  return @"";
+
++ (BOOL)resolveInstanceMethod:(SEL)aSEL {
+  if ([NSStringFromSelector(aSEL) hasPrefix:MPCustomAttributePropertyPrefix]) {
+    class_addMethod([self class], aSEL,(IMP)propertyIMP, "@@:");
+    return YES;
+  }
+  return [super resolveInstanceMethod:aSEL];
 }
 
 @end
