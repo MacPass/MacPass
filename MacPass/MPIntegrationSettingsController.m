@@ -115,19 +115,6 @@
     [self.autotypeStackView setVisibilityPriority:NSStackViewVisibilityPriorityMustHold forView:self.autotypeWarningTextField];
     [self.autotypeStackView setVisibilityPriority:NSStackViewVisibilityPriorityMustHold forView:self.openPreferencesButton];
   }
-  
-  /*
-  NSArray <NSControl *> *controls = @[ self.enableGlobalAutotypeCheckBox,
-     self.hotKeyTextField,
-     self.matchTitleCheckBox,
-     self.matchURLCheckBox,
-     self.matchHostCheckBox,
-     self.matchTagsCheckBox,
-     self.sendCommandForControlCheckBox ];
-  for(NSControl *control in controls) {
-    control.enabled = hasAutotypeSupport;
-  }
-   */
 }
 
 - (void)openAccessibiltyPreferences:(id)sender {
