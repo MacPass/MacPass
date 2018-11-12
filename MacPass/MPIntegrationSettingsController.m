@@ -116,6 +116,7 @@
     [self.autotypeStackView setVisibilityPriority:NSStackViewVisibilityPriorityMustHold forView:self.openPreferencesButton];
   }
   
+  /*
   NSArray <NSControl *> *controls = @[ self.enableGlobalAutotypeCheckBox,
      self.hotKeyTextField,
      self.matchTitleCheckBox,
@@ -126,10 +127,10 @@
   for(NSControl *control in controls) {
     control.enabled = hasAutotypeSupport;
   }
+   */
 }
 
 - (void)openAccessibiltyPreferences:(id)sender {
-  [NSWorkspace.sharedWorkspace openURL:[NSURL URLWithString:@"x-apple.systempreferences:com.apple.preference.security?Privacy_Accessibility"]];
-  
+  [MPAutotypeDaemon.defaultDaemon openAccessibiltyPreferences];
 }
 @end

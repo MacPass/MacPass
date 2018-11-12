@@ -25,6 +25,7 @@
 FOUNDATION_EXTERN NSString *const MPUserNotificationTypeKey;
 FOUNDATION_EXTERN NSString *const MPUserNotificationTypeAutotypeFeedback;
 FOUNDATION_EXTERN NSString *const MPUserNotificationTypeAutotypeOpenDocumentRequest;
+FOUNDATION_EXTERN NSString *const MPUserNotificationTypeShowAccessibiltyPreferences;
 
 @interface MPUserNotificationCenterDelegate : NSObject <NSUserNotificationCenterDelegate>
 

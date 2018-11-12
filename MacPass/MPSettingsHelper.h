@@ -50,8 +50,8 @@ APPKIT_EXTERN NSString *const kMPSettingsKeyLegacyHideUsername;
 APPKIT_EXTERN NSString *const kMPSettingsKeyLegacyHidePassword;
 APPKIT_EXTERN NSString *const kMPSettingsKeyLegacyHideNotes;
 APPKIT_EXTERN NSString *const kMPSettingsKeyLegacyHideURL;
-/* Document/Key Location store */
 
+/* Document/Key Location store */
 APPKIT_EXTERN NSString *const kMPSettingsKeyLastDatabasePath;                 // Path to the last opened Database. Workaround if users have disabled the feature in the OS
 APPKIT_EXTERN NSString *const kMPSettingsKeyRememeberdKeysForDatabases;       // NSDictionary of all db file urls and the corresponding key file url
 APPKIT_EXTERN NSString *const kMPSettingsKeyRememberKeyFilesForDatabases;     // YES if key files should be remembers
@@ -65,6 +65,7 @@ APPKIT_EXTERN NSString *const kMPSettingsKeyAutotypeMatchTitle;               //
 APPKIT_EXTERN NSString *const kMPSettingsKeyAutotypeMatchURL;                 // Autotype lookup includes entry URL
 APPKIT_EXTERN NSString *const kMPSettingsKeyAutotypeMatchHost;                // Autotype lookup includes host part of entry URL
 APPKIT_EXTERN NSString *const kMPSettingsKeyAutotypeMatchTags;                // Autotype lookup includes tags for entries
+APPKIT_EXTERN NSString *const kMPSettingsKeyAutotypeHideAccessibiltyWarning;  // Do not show an alert, when MacPass has no support for Autotype
 
 /* Search */
 APPKIT_EXTERN NSString *const kMPSettingsKeyEntrySearchFilterContext;

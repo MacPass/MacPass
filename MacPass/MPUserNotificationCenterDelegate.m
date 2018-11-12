@@ -22,10 +22,12 @@
 
 #import "MPUserNotificationCenterDelegate.h"
 #import "MPDocumentController.h"
+#import "MPAutotypeDaemon.h"
 
 NSString *const MPUserNotificationTypeKey = @"MPUserNotificationTypeKey";
 NSString *const MPUserNotificationTypeAutotypeFeedback = @"MPUserNotificationTypeAutotypeFeedback";
 NSString *const MPUserNotificationTypeAutotypeOpenDocumentRequest = @"MPUserNotificationTypeAutotypeOpenDocumentRequest";
+NSString *const MPUserNotificationTypeShowAccessibiltyPreferences = @"MPUserNotificationTypeShowAccessibiltyPreferences";
 
 @implementation MPUserNotificationCenterDelegate
 
@@ -39,13 +41,24 @@ NSString *const MPUserNotificationTypeAutotypeOpenDocumentRequest = @"MPUserNoti
 
 - (void)userNotificationCenter:(NSUserNotificationCenter *)center didActivateNotification:(NSUserNotification *)notification {
   NSDictionary *userInfo = notification.userInfo;
-  if([userInfo[MPUserNotificationTypeKey] isEqualToString:MPUserNotificationTypeAutotypeOpenDocumentRequest]) {
+  NSString *notificationType = userInfo[MPUserNotificationTypeKey];
+  if([notificationType isEqualToString:MPUserNotificationTypeAutotypeOpenDocumentRequest]) {
     [((MPDocumentController*)NSDocumentController.sharedDocumentController) reopenLastDocument];
+  }
+  else if([notificationType isEqualToString:MPUserNotificationTypeShowAccessibiltyPreferences]) {
+    [MPAutotypeDaemon.defaultDaemon openAccessibiltyPreferences];
   }
 }
 
 - (BOOL)userNotificationCenter:(NSUserNotificationCenter *)center shouldPresentNotification:(NSUserNotification *)notification {
-  return [notification.userInfo[MPUserNotificationTypeKey] isEqualToString:MPUserNotificationTypeAutotypeFeedback];
+  NSString *notificationType = notification.userInfo[MPUserNotificationTypeKey];
+  if([notificationType isEqualToString:MPUserNotificationTypeAutotypeFeedback]) {
+    return YES;
+  }
+  if([notificationType isEqualToString:MPUserNotificationTypeShowAccessibiltyPreferences]) {
+    return YES;
+  }
+  return NO;
 }
 
 

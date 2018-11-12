@@ -40,6 +40,7 @@
 - (instancetype)init NS_UNAVAILABLE;
 
 - (void)checkForAccessibiltyPermissions;
+- (void)openAccessibiltyPreferences;
 
 - (void)performAutotypeForEntry:(KPKEntry *)entry;
 - (void)performAutotypeForEntry:(KPKEntry *)entry overrideSequence:(NSString *)sequence;

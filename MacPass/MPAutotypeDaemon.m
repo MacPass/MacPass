@@ -134,13 +134,47 @@ static MPAutotypeDaemon *_sharedInstance;
 }
 
 - (void)checkForAccessibiltyPermissions {
-  if(@available(macOS 10.14, *)) {
-    CFStringRef keys[] = { kAXTrustedCheckOptionPrompt };
-    CFBooleanRef values[] = { kCFBooleanTrue };
-    CFDictionaryRef dictRef = CFDictionaryCreate(kCFAllocatorDefault, (const void **)keys, (const void **)values, 1, &kCFTypeDictionaryKeyCallBacks, &kCFTypeDictionaryValueCallBacks);
-    AXIsProcessTrustedWithOptions(dictRef);
-    CFRelease(dictRef);
+  if(!self.enabled) {
+    return;
   }
+  BOOL hideAlert = NO;
+  if(nil != [NSUserDefaults.standardUserDefaults objectForKey:kMPSettingsKeyAutotypeHideAccessibiltyWarning]) {
+    hideAlert = [NSUserDefaults.standardUserDefaults boolForKey:kMPSettingsKeyAutotypeHideAccessibiltyWarning];
+  }
+  if(hideAlert || self.autotypeSupported) {
+    return;
+  }
+  else {
+    NSAlert *alert = [[NSAlert alloc] init];
+    alert.alertStyle = NSWarningAlertStyle;
+    alert.messageText = NSLocalizedString(@"ALERT_AUTOTYPE_MISSING_ACCESSIBILTY_PERMISSIONS_MESSAGE_TEXT", @"Alert message displayed when Autotype performs self check and lacks accessibilty permissions");
+    alert.informativeText = NSLocalizedString(@"ALERT_AUTOTYPE_MISSING_ACCESSIBILTY_PERMISSIONS_INFORMATIVE_TEXT", @"Alert informative text displayed when Autotype performs self check and lacks accessibilty permissions");
+    alert.showsSuppressionButton = YES;
+    alert.suppressionButton.title = NSLocalizedString(@"ALERT_AUTOTYPE_MISSING_ACCESSIBILTY_PERMISSIONS_SUPPRESS_WARNING", @"Checkbox in dialog to set the selection as default file change strategy!");
+    [alert addButtonWithTitle:NSLocalizedString(@"ALERT_AUTOTYPE_MISSING_ACCESSIBILTY_PERMISSIONS_BUTTON_OK", @"Button in dialog to leave autotype disabled and continiue!")];
+    [alert addButtonWithTitle:NSLocalizedString(@"ALERT_AUTOTYPE_MISSING_ACCESSIBILTY_PERMISSIONS_BUTTON_OPEN_PREFERENCES", @"Button in dialog to open accessibilty preferences pane!")];
+    NSWindow *window = NSDocumentController.sharedDocumentController.currentDocument.windowForSheet;
+    [alert beginSheetModalForWindow:window completionHandler:^(NSModalResponse returnCode) {
+      BOOL suppressWarning = (alert.suppressionButton.state == NSOnState);
+      [NSUserDefaults.standardUserDefaults setBool:suppressWarning forKey:kMPSettingsKeyAutotypeHideAccessibiltyWarning];
+      switch(returnCode) {
+        case NSAlertFirstButtonReturn: {
+          /* ok, ignore */
+          break;
+        }
+        case NSAlertSecondButtonReturn:
+          /* open prefs */
+          [self openAccessibiltyPreferences];
+          break;
+        default:
+          break;
+      }
+    }];
+  }
+}
+
+- (void)openAccessibiltyPreferences {
+  [NSWorkspace.sharedWorkspace openURL:[NSURL URLWithString:@"x-apple.systempreferences:com.apple.preference.security?Privacy_Accessibility"]];
 }
 
 #pragma mark -
@@ -180,7 +214,17 @@ static MPAutotypeDaemon *_sharedInstance;
 #pragma mark Autotype Execution
 
 - (void)_performAutotypeForEntry:(KPKEntry *)entryOrNil {
-  NSInteger pid = [NSProcessInfo processInfo].processIdentifier;
+  if(!self.autotypeSupported) {
+    NSUserNotification *notification = [[NSUserNotification alloc] init];
+    notification.title = NSApp.applicationName;
+    notification.informativeText = NSLocalizedString(@"AUTOTYPE_NOTIFICATION_MACPASS_HAS_NO_ACCESSIBILTY_PERMISSIONS", "Notification: Autotype failed, MacPass has no permission to send key strokes");
+    notification.actionButtonTitle = NSLocalizedString(@"OPEN_PREFERENCES", "Action button in Notification to show the Accessibilty preferences");
+    notification.userInfo = @{ MPUserNotificationTypeKey: MPUserNotificationTypeShowAccessibiltyPreferences };
+    notification.showsButtons = YES;
+    [NSUserNotificationCenter.defaultUserNotificationCenter deliverNotification:notification];
+    return;
+  }
+  NSInteger pid = NSProcessInfo.processInfo.processIdentifier;
   if(self.targetPID == pid) {
     return; // We do not perform Autotype on ourselves
   }

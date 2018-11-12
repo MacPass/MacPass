@@ -56,6 +56,7 @@ NSString *const kMPSettingsKeyAutotypeMatchTitle                      = @"Autoty
 NSString *const kMPSettingsKeyAutotypeMatchURL                        = @"AutotypeMatchURL";
 NSString *const kMPSettingsKeyAutotypeMatchHost                       = @"AutotypeMatchHost";
 NSString *const kMPSettingsKeyAutotypeMatchTags                       = @"AutotypeMatchTags";
+NSString *const kMPSettingsKeyAutotypeHideAccessibiltyWarning         = @"AutotypeHideAccessibiltyWarning";
 
 NSString *const kMPSettingsKeyEntrySearchFilterContext                = @"EntrySearchFilterContext";
 
