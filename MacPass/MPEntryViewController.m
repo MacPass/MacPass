@@ -402,7 +402,7 @@ NSString *const _MPTableSecurCellView = @"PasswordCell";
   NSInteger activeRow = self.entryTable.clickedRow;
   if(activeRow > -1 && activeRow < [self.entryArrayController.arrangedObjects count]) {
     if(![self.entryArrayController.selectionIndexes containsIndex:activeRow]) {
-      return @[ [self.entryArrayController arrangedObjects][activeRow] ];
+      return @[ self.entryArrayController.arrangedObjects[activeRow] ];
     }
   }
   return self.entryArrayController.selectedObjects;
