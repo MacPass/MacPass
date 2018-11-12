@@ -68,7 +68,7 @@ typedef NS_ENUM(NSUInteger, MPDatePreset) {
     [presetMenu addItem:item];
   }
   
-  self.datePicker.dateValue = [NSDate date];
+  self.datePicker.dateValue = self.representedObject ? [self.representedObject timeInfo].expirationDate : NSDate.date;
   self.presetPopupButton.menu = presetMenu;
 }
 
