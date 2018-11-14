@@ -54,8 +54,16 @@
   if(MPDisplayModeEntries != self.viewController.displayMode) {
     return NSDragOperationNone;
   }
+  BOOL isLocalDrag = info.draggingSource == tableView;
+  if(isLocalDrag) {
+    /* local drag is not usefull if the table is displaying sorted */
+    NSArray<NSSortDescriptor *> * sortDescriptors = tableView.sortDescriptors;
+    if(sortDescriptors.count != 0 && sortDescriptors.firstObject.key != NSStringFromSelector(@selector(index))) {
+      return NSDragOperationNone;
+    }
+  }
+  BOOL makeCopy = !isLocalDrag || (info.draggingSourceOperationMask == NSDragOperationCopy);
   
-  BOOL makeCopy = (info.draggingSourceOperationMask == NSDragOperationCopy);
   if(dropOperation == NSTableViewDropOn) {
     [tableView setDropRow:row+1 dropOperation:NSTableViewDropAbove];
   }
@@ -88,6 +96,7 @@
         [entry.undoManager setActionName:NSLocalizedString(@"MOVE_ENTRY", @"Action name when an entry was moved")];
       }
     }
+    [self.viewController.entryArrayController rearrangeObjects];
     return YES;
   }
   else {
