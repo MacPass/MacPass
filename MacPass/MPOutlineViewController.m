@@ -310,7 +310,15 @@ NSString *const _MPOutlinveViewHeaderViewIdentifier = @"HeaderCell";
 - (void)outlineViewSelectionDidChange:(NSNotification *)notification {
   MPDocument *document = self.windowController.document;
   NSArray<KPKGroup *> *groups = [self currentTargetGroups];
-  document.tree.metaData.lastSelectedGroup = (groups.count == 1 ? groups.firstObject.uuid : [NSUUID kpk_nullUUID]);
+  /* only update state if binding is set up to prevent resetting on first show */
+  if(_bindingEstablished) {
+    NSUUID *oldValue = document.tree.metaData.lastSelectedGroup;
+    document.tree.metaData.lastSelectedGroup = (groups.count == 1 ? groups.firstObject.uuid : [NSUUID kpk_nullUUID]);
+    NSUUID *newVlaue = document.tree.metaData.lastSelectedGroup;
+    if(![oldValue isEqual:newVlaue]) {
+      [document updateChangeCount:NSChangeDone|NSChangeDiscardable];      
+    }
+  }
   document.selectedGroups = groups;
 }
 
