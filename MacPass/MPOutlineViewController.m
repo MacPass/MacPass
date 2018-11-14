@@ -116,8 +116,12 @@ NSString *const _MPOutlinveViewHeaderViewIdentifier = @"HeaderCell";
 #pragma mark Outline handling
 
 - (void)showOutline {
+  MPDocument *document = self.windowController.document;
+  
+  NSUUID *selectedUUID = document.tree.metaData.lastSelectedGroup;
+  NSUUID *visibleUUID = document.tree.metaData.lastTopVisibleGroup;
+  
   if(!_bindingEstablished) {
-    MPDocument *document = self.windowController.document;
     self.treeController.childrenKeyPath = NSStringFromSelector(@selector(groups));
     [self.treeController bind:NSContentBinding toObject:document withKeyPath:NSStringFromSelector(@selector(tree)) options:nil];
     [self.outlineView bind:NSContentBinding toObject:self.treeController withKeyPath:NSStringFromSelector(@selector(arrangedObjects)) options:nil];
@@ -126,21 +130,23 @@ NSString *const _MPOutlinveViewHeaderViewIdentifier = @"HeaderCell";
     self.outlineView.dataSource = self.datasource;
     _bindingEstablished = YES;
   }
-  NSTreeNode *node = [_outlineView itemAtRow:0];
-  NSInteger topRow = 0;
-  [self _expandItems:node topRow:&topRow];
-  if(topRow > 0) {
-    NSRect rowRect = [self.outlineView rectOfRow:topRow];
+  NSTreeNode *node = [self.outlineView itemAtRow:0];
+  [self _expandItems:node];
+  NSInteger selectRow = [self _rowForUUID:selectedUUID node:node];
+  NSInteger visibleRow = [self _rowForUUID:visibleUUID node:node];
+  if(selectRow > -1) {
+    [self.outlineView selectRowIndexes:[NSIndexSet indexSetWithIndex:selectRow] byExtendingSelection:NO];
+  }
+  if(visibleRow > -1) {
+    NSRect rowRect = [self.outlineView rectOfRow:visibleRow];
     [self.outlineView scrollPoint:rowRect.origin];
   }
 }
 
-- (void)_expandItems:(NSTreeNode *)node topRow:(NSInteger *)topRow {
-  NSAssert(NULL != topRow, @"Invalid paramter!");
+- (void)_expandItems:(NSTreeNode *)node {
   id nodeItem = node.representedObject;
-  if([nodeItem isKindOfClass:[KPKTree class]]) {
+  if([nodeItem isKindOfClass:KPKTree.class]) {
     [self.outlineView expandItem:node expandChildren:NO];
-    *topRow = -1;
   }
   else if([nodeItem respondsToSelector:@selector(isExpanded)]) {
     if([nodeItem isExpanded]) {
@@ -151,22 +157,28 @@ NSString *const _MPOutlinveViewHeaderViewIdentifier = @"HeaderCell";
     }
   }
   for(NSTreeNode *child in node.childNodes) {
-    [self _expandItems:child topRow:topRow];
-  }
-  if([nodeItem respondsToSelector:@selector(uuid)]) {
-    MPDocument *document = self.windowController.document;
-    NSUUID *uuid = [nodeItem uuid];
-    if(*topRow != 1 && [document.tree.metaData.lastTopVisibleGroup isEqual:uuid]) {
-      *topRow = [self.outlineView rowForItem:node];
-    }
-    if([uuid isEqual:document.tree.metaData.lastSelectedGroup]) {
-      NSInteger selectedRow = [self.outlineView rowForItem:node];
-      if(selectedRow >= 0) {
-        [self.outlineView selectRowIndexes:[NSIndexSet indexSetWithIndex:selectedRow] byExtendingSelection:NO];
-      }
-    }
+    [self _expandItems:child];
   }
 }
+
+- (NSInteger)_rowForUUID:(NSUUID *)uuid node:(NSTreeNode *)node {
+  NSInteger index = -1;
+  for(NSTreeNode *childNode in node.childNodes) {
+    index = [self _rowForUUID:uuid node:childNode];
+    if(-1 != index) {
+      return index;
+    }
+  }
+  if(![node.representedObject isKindOfClass:KPKGroup.class]) {
+    return index;
+  }
+  KPKGroup *group = node.representedObject;
+  if([group.uuid isEqual:uuid]) {
+    return [self.outlineView rowForItem:node];
+  }
+  return -1;
+}
+
 
 #pragma mark Custom Setter/Getter
 - (void)setDatabaseNameWrapper:(NSString *)databaseNameWrapper {
@@ -284,6 +296,13 @@ NSString *const _MPOutlinveViewHeaderViewIdentifier = @"HeaderCell";
   return [self _itemIsRootNode:item];
 }
 
+- (NSIndexSet *)outlineView:(NSOutlineView *)outlineView selectionIndexesForProposedSelection:(NSIndexSet *)proposedSelectionIndexes {
+  return [proposedSelectionIndexes indexesPassingTest:^BOOL(NSUInteger idx, BOOL * _Nonnull stop) {
+    NSTreeNode *node = [outlineView itemAtRow:idx];
+    return [node.representedObject isKindOfClass:KPKGroup.class];
+  }];
+}
+
 - (BOOL)outlineView:(NSOutlineView *)outlineView shouldSelectItem:(id)item {
   return ![self _itemIsRootNode:item];
 }
@@ -344,7 +363,7 @@ NSString *const _MPOutlinveViewHeaderViewIdentifier = @"HeaderCell";
 
 - (BOOL)_itemIsRootNode:(id)item {
   id node = [item representedObject];
-  return [node isKindOfClass:[KPKTree class]];
+  return [node isKindOfClass:KPKTree.class];
 }
 
 @end
