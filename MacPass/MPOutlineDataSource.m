@@ -140,6 +140,7 @@
   
   KPKGroup *targetGroup = targetItem;
   MPDocument *document = outlineView.window.windowController.document;
+  /* local drop */
   if(info.draggingSource == outlineView) {
     if(copyItem) {
       NSUInteger insertIndex = index;
@@ -179,13 +180,16 @@
     }
     return YES;
   }
+  /* external drop */
   for(KPKEntry *draggedEntry in [self _entriesFromPasteboard:info.draggingPasteboard]) {
-    [draggedEntry addToGroup:targetGroup];
-    [draggedEntry.undoManager setActionName:NSLocalizedString(@"DRAG_ENTRY", "Action title for copying an entry via drag and drop to another database")];
+    KPKEntry *entry = [draggedEntry copyWithTitle:nil options:kKPKCopyOptionCopyHistory];
+    [entry addToGroup:targetGroup];
+    [entry.undoManager setActionName:NSLocalizedString(@"DRAG_ENTRY", "Action title for copying an entry via drag and drop to another database")];
   }
   for(KPKGroup *draggedGroup in [self _normalizedGroupsFromPasterboard:info.draggingPasteboard]) {
-    [draggedGroup addToGroup:targetGroup];
-    [draggedGroup.undoManager setActionName:NSLocalizedString(@"DRAG_GROUP", "Actiontitle for copying groups via drag and drop to antother database")];
+    KPKGroup *group = [draggedGroup copyWithTitle:nil options:kKPKCopyOptionCopyHistory];
+    [group addToGroup:targetGroup];
+    [group.undoManager setActionName:NSLocalizedString(@"DRAG_GROUP", "Actiontitle for copying groups via drag and drop to antother database")];
   }
   return YES;
 }
