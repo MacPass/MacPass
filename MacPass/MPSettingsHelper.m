@@ -31,6 +31,7 @@ NSString *const kMPSettingsKeyClearPasteboardOnQuit                   = @"ClearC
 NSString *const kMPSettingsKeyBrowserBundleId                         = @"BrowserBundleId";
 NSString *const kMPSettingsKeyOpenEmptyDatabaseOnLaunch               = @"OpenEmptyDatabaseOnLaunch";
 NSString *const kMPSettingsKeyReopenLastDatabaseOnLaunch              = @"ReopenLastDatabaseOnLaunch";
+NSString *const kMPSettingsKeyQuitOnLastWindowClose                   = @"QuitOnLastWindowClose";
 NSString *const kMPSettingsKeyFileChangeStrategy                      = @"FileChangeStrategy";
 NSString *const kMPSettingsKeyLockOnSleep                             = @"LockOnSleep";
 NSString *const kMPSettingskeyLockOnLogout                            = @"LockOnLogout";
@@ -150,7 +151,8 @@ NSString *const kMPDepricatedSettingsKeyLoadUnsecurePlugins               = @"MP
                          kMPSettingsKeyLoadUnsecurePlugins: @NO,
                          kMPSettingsKeyUpdatePasswordOnTemplateEntries: @YES,
                          kMPSettingsKeyDisabledPlugins: @[],
-                         kMPSettingsKeyLoadIncompatiblePlugins: @NO
+                         kMPSettingsKeyLoadIncompatiblePlugins: @NO,
+                         kMPSettingsKeyQuitOnLastWindowClose: @NO
                          };
   });
   return standardDefaults;

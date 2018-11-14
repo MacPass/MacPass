@@ -30,6 +30,7 @@ APPKIT_EXTERN NSString *const kMPSettingsKeyClearPasteboardOnQuit;
 APPKIT_EXTERN NSString *const kMPSettingsKeyPasswordEncoding;
 APPKIT_EXTERN NSString *const kMPSettingsKeyOpenEmptyDatabaseOnLaunch;
 APPKIT_EXTERN NSString *const kMPSettingsKeyReopenLastDatabaseOnLaunch;
+APPKIT_EXTERN NSString *const kMPSettingsKeyQuitOnLastWindowClose;          // Quit MacPass when the user closes the last window
 APPKIT_EXTERN NSString *const kMPSettingsKeyFileChangeStrategy;
 
 /* URL handling */

@@ -156,6 +156,10 @@ NSString *const MPDidChangeStoredKeyFilesSettings = @"com.hicknhack.macpass.MPDi
   
 }
 
+- (BOOL)applicationShouldTerminateAfterLastWindowClosed:(NSApplication *)sender {
+  return [NSUserDefaults.standardUserDefaults boolForKey:kMPSettingsKeyQuitOnLastWindowClose];
+}
+
 - (NSApplicationTerminateReply)applicationShouldTerminate:(NSApplication *)sender {
   if([[MPTemporaryFileStorageCenter defaultCenter] hasPendingStorages]) {
     dispatch_async(dispatch_get_main_queue(), ^{
