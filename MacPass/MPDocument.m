@@ -843,9 +843,9 @@ NSString *const MPDocumentGroupKey                            = @"MPDocumentGrou
   id<MPTargetNodeResolving> nodeResolver = [NSApp targetForAction:@selector(currentTargetNodes)];
   
   
-  NSArray *targetNodes = [nodeResolver currentTargetNodes];
-  NSArray *targetGroups = [groupResolver currentTargetGroups];
-  NSArray *targetEntries = [entryResolver currentTargetEntries];
+  NSArray *targetNodes = nodeResolver.currentTargetNodes;
+  NSArray *targetGroups = groupResolver.currentTargetGroups;
+  NSArray *targetEntries = entryResolver.currentTargetEntries;
   
   KPKEntry *targetEntry = targetEntries.count == 1 ? targetEntries.firstObject : nil;
   KPKGroup *targetGroup = targetGroups.count == 1 ? targetGroups.firstObject : nil;

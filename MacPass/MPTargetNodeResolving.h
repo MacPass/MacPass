@@ -28,8 +28,8 @@
 @protocol MPTargetNodeResolving <NSObject>
 
 @optional
-- (NSArray<KPKNode *> *)currentTargetNodes;
-- (NSArray<KPKGroup *> *)currentTargetGroups;
-- (NSArray<KPKEntry *> *)currentTargetEntries;
+@property (nonatomic, readonly, copy) NSArray<KPKNode *> *currentTargetNodes;
+@property (nonatomic, readonly, copy) NSArray<KPKGroup *> *currentTargetGroups;
+@property (nonatomic, readonly, copy) NSArray<KPKEntry *> *currentTargetEntries;
 
 @end

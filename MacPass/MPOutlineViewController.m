@@ -197,7 +197,7 @@ NSString *const _MPOutlinveViewHeaderViewIdentifier = @"HeaderCell";
 }
 
 - (NSArray<KPKNode *> *)currentTargetNodes {
-  NSArray *groups = [self currentTargetGroups];
+  NSArray *groups = self.currentTargetGroups;
   if(groups.count > 0) {
     return groups;
   }
@@ -221,7 +221,7 @@ NSString *const _MPOutlinveViewHeaderViewIdentifier = @"HeaderCell";
     return; // Nothing we need to worry about
   }
   MPDocument *document = self.windowController.document;
-  document.selectedGroups = [self currentTargetGroups];
+  document.selectedGroups = self.currentTargetGroups;
 }
 
 - (void)_outlineDidScroll:(NSNotification *)notification {
@@ -233,7 +233,7 @@ NSString *const _MPOutlinveViewHeaderViewIdentifier = @"HeaderCell";
   CGPoint point = CGPointMake(clipView.bounds.origin.x, clipView.bounds.origin.y + 11);
   NSInteger topRow = [self.outlineView rowAtPoint:point];
   id item = [[self.outlineView itemAtRow:topRow] representedObject];
-  if([item isKindOfClass:[KPKGroup class]]) {
+  if([item isKindOfClass:KPKGroup.class]) {
     KPKGroup *group = item;
     MPDocument *document = self.windowController.document;
     document.tree.metaData.lastTopVisibleGroup = group.uuid;
@@ -309,14 +309,14 @@ NSString *const _MPOutlinveViewHeaderViewIdentifier = @"HeaderCell";
 
 - (void)outlineViewSelectionDidChange:(NSNotification *)notification {
   MPDocument *document = self.windowController.document;
-  NSArray<KPKGroup *> *groups = [self currentTargetGroups];
+  NSArray<KPKGroup *> *groups = self.currentTargetGroups;
   /* only update state if binding is set up to prevent resetting on first show */
   if(_bindingEstablished) {
     NSUUID *oldValue = document.tree.metaData.lastSelectedGroup;
     document.tree.metaData.lastSelectedGroup = (groups.count == 1 ? groups.firstObject.uuid : [NSUUID kpk_nullUUID]);
     NSUUID *newVlaue = document.tree.metaData.lastSelectedGroup;
     if(![oldValue isEqual:newVlaue]) {
-      [document updateChangeCount:NSChangeDone|NSChangeDiscardable];      
+      [document updateChangeCount:NSChangeDone|NSChangeDiscardable];
     }
   }
   document.selectedGroups = groups;
@@ -359,7 +359,7 @@ NSString *const _MPOutlinveViewHeaderViewIdentifier = @"HeaderCell";
   if(![document validateUserInterfaceItem:menuItem]) {
     return NO;
   }
-  KPKGroup *group = [self currentTargetNodes].firstObject.asGroup;
+  KPKGroup *group = self.currentTargetNodes.firstObject.asGroup;
   return group.isTrash && group.isTrashed;
 }
 

@@ -388,7 +388,7 @@ typedef void (^MPPasswordChangedBlock)(BOOL didChangePassword);
 
 - (void)createGroup:(id)sender {
   id<MPTargetNodeResolving> target = [NSApp targetForAction:@selector(currentTargetGroups)];
-  NSArray *groups = [target currentTargetGroups];
+  NSArray *groups = target.currentTargetGroups;
   MPDocument *document = self.document;
   if(groups.count == 1) {
     [document createGroup:groups.firstObject];
@@ -400,7 +400,7 @@ typedef void (^MPPasswordChangedBlock)(BOOL didChangePassword);
 
 - (void)createEntry:(id)sender {
   id<MPTargetNodeResolving> target = [NSApp targetForAction:@selector(currentTargetGroups)];
-  NSArray *groups = [target currentTargetGroups];
+  NSArray *groups = target.currentTargetGroups;
   if(groups.count == 1) {
     [(MPDocument *)self.document createEntry:groups.firstObject];
   }
@@ -408,7 +408,7 @@ typedef void (^MPPasswordChangedBlock)(BOOL didChangePassword);
 
 - (void)delete:(id)sender {
   id<MPTargetNodeResolving> target = [NSApp targetForAction:@selector(currentTargetNodes)];
-  NSArray *nodes = [target currentTargetNodes];
+  NSArray *nodes = target.currentTargetNodes;
   for(KPKNode *node in nodes) {
     [self.document deleteNode:node];
   }
@@ -460,7 +460,7 @@ typedef void (^MPPasswordChangedBlock)(BOOL didChangePassword);
 
 - (void)performAutotypeForEntry:(id)sender {
   id<MPTargetNodeResolving> entryResolver = [NSApp targetForAction:@selector(currentTargetEntries)];
-  NSArray *entries = [entryResolver currentTargetEntries];
+  NSArray *entries = entryResolver.currentTargetEntries;
   if(entries.count == 1) {
     [[MPAutotypeDaemon defaultDaemon] performAutotypeForEntry:entries.firstObject];
   }

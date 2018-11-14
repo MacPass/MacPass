@@ -409,7 +409,7 @@ NSString *const _MPTableSecurCellView = @"PasswordCell";
 }
 
 - (NSArray<KPKNode *> *)currentTargetNodes {
-  NSArray *entries = [self currentTargetEntries];
+  NSArray *entries = self.currentTargetEntries;
   if(entries.count > 0) {
     return entries;
   }
@@ -641,7 +641,7 @@ NSString *const _MPTableSecurCellView = @"PasswordCell";
 
 #pragma mark Actions
 - (void)copyPassword:(id)sender {
-  NSArray *nodes = [self currentTargetNodes];
+  NSArray *nodes = self.currentTargetNodes;
   KPKEntry *selectedEntry = nodes.count == 1 ? [nodes.firstObject asEntry] : nil;
   NSString *value = [selectedEntry.password kpk_finalValueForEntry:selectedEntry];
   if(value) {
@@ -650,7 +650,7 @@ NSString *const _MPTableSecurCellView = @"PasswordCell";
 }
 
 - (void)copyUsername:(id)sender {
-  NSArray *nodes = [self currentTargetNodes];
+  NSArray *nodes = self.currentTargetNodes;
   KPKEntry *selectedEntry = nodes.count == 1 ? [nodes.firstObject asEntry] : nil;
   NSString *value = [selectedEntry.username kpk_finalValueForEntry:selectedEntry];
   if(value) {
@@ -659,7 +659,7 @@ NSString *const _MPTableSecurCellView = @"PasswordCell";
 }
 
 - (void)copyCustomAttribute:(id)sender {
-  NSArray *nodes = [self currentTargetNodes];
+  NSArray *nodes = self.currentTargetNodes;
   KPKEntry *selectedEntry = nodes.count == 1 ? [nodes.firstObject asEntry] : nil;
   if(selectedEntry && [selectedEntry isKindOfClass:[KPKEntry class]]) {
     NSUInteger index = [sender tag];
@@ -673,7 +673,7 @@ NSString *const _MPTableSecurCellView = @"PasswordCell";
 }
 
 - (void)copyURL:(id)sender {
-  NSArray *nodes = [self currentTargetNodes];
+  NSArray *nodes = self.currentTargetNodes;
   KPKEntry *selectedEntry = nodes.count == 1 ? [nodes.firstObject asEntry] : nil;
   NSString *value = [selectedEntry.url kpk_finalValueForEntry:selectedEntry];
   if(value) {
@@ -711,7 +711,7 @@ NSString *const _MPTableSecurCellView = @"PasswordCell";
 }
 
 - (void)delete:(id)sender {
-  NSArray *entries = [self currentTargetEntries];
+  NSArray *entries = self.currentTargetEntries;
   MPDocument *document = self.windowController.document;
   for(KPKEntry *entry in entries) {
     [document deleteNode:entry];
@@ -720,7 +720,7 @@ NSString *const _MPTableSecurCellView = @"PasswordCell";
 
 - (void)revertToHistoryEntry:(id)sender {
   MPDocument *document = self.windowController.document;
-  NSArray<KPKEntry *> *historyEntries = [self currentTargetEntries];
+  NSArray<KPKEntry *> *historyEntries = self.currentTargetEntries;
   if(historyEntries.count != 1) {
     return;
   }
