@@ -134,9 +134,9 @@ NSString *const _MPOutlinveViewHeaderViewIdentifier = @"HeaderCell";
   [self _expandItems:node];
   NSInteger selectRow = [self _rowForUUID:selectedUUID node:node];
   NSInteger visibleRow = [self _rowForUUID:visibleUUID node:node];
-  if(selectRow > -1) {
-    [self.outlineView selectRowIndexes:[NSIndexSet indexSetWithIndex:selectRow] byExtendingSelection:NO];
-  }
+  selectRow = selectRow > -1 ? selectRow : 1;
+  [self.outlineView selectRowIndexes:[NSIndexSet indexSetWithIndex:selectRow] byExtendingSelection:NO];
+
   if(visibleRow > -1) {
     NSRect rowRect = [self.outlineView rectOfRow:visibleRow];
     [self.outlineView scrollPoint:rowRect.origin];
