@@ -102,12 +102,20 @@ typedef NS_ENUM(NSInteger, MPIconDownloadStatus) {
     case MPIconDownloadStatusNone:
       self.downloadIconButton.image = nil;
       break;
-    case MPIconDownloadStatusError:
-      self.downloadIconButton.image = [NSImage imageNamed:NSImageNameCaution];
+    case MPIconDownloadStatusError: {
+      NSImage *image = [NSImage imageNamed:NSImageNameCaution];
+      CGFloat scale = image.size.width / image.size.height;
+      image.size = NSMakeSize(16 * scale, 16);
+      self.downloadIconButton.image = image;
       break;
-    case MPIconDownloadStatusProgress:
-      self.downloadIconButton.image = [NSImage imageNamed:NSImageNameRefreshTemplate];
+    }
+    case MPIconDownloadStatusProgress: {
+      NSImage *image = [NSImage imageNamed:NSImageNameRefreshTemplate];
+      CGFloat scale = image.size.width / image.size.height;
+      image.size = NSMakeSize(16 * scale, 16);
+      self.downloadIconButton.image = image;
       break;
+    }
   }
 }
 
