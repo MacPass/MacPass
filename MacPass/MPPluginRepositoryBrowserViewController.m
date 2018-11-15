@@ -73,7 +73,7 @@ typedef NS_ENUM(NSUInteger, MPPluginTableColumn) {
           view.textField.stringValue = [NSString stringWithFormat:NSLocalizedString(@"PLUGIN_BROWSER_NEWER_VERSION_%@_AVAILABLE", "Status for an outdated plugin version in the plugin browser"), item.currentVersion];
           break;
         case NSOrderedDescending:
-          view.textField.stringValue = [NSString stringWithFormat:NSLocalizedString(@"PLUGIN_BROWSER_UNKNOWN_PLUGIN_VERSION", "Status for an unkonw plugin version in the plugin browser")];
+          view.textField.stringValue = [NSString stringWithFormat:NSLocalizedString(@"PLUGIN_BROWSER_UNKNOWN_PLUGIN_VERSION_INSTALLED_%@", "Status for an unkonw plugin version in the plugin browser"), plugin.shortVersionString];
           break;
       }
     }

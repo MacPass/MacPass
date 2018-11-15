@@ -31,6 +31,21 @@
 /* Action to add an entry via template */
 "ADD_TREMPLATE_ENTRY" = "Vorgabeeintrag erstellen";
 
+/* Button in dialog to leave autotype disabled and continiue! */
+"ALERT_AUTOTYPE_MISSING_ACCESSIBILTY_PERMISSIONS_BUTTON_OK" = "Autotype deaktiviert lassen.";
+
+/* Button in dialog to open accessibilty preferences pane! */
+"ALERT_AUTOTYPE_MISSING_ACCESSIBILTY_PERMISSIONS_BUTTON_OPEN_PREFERENCES" = "Systemeinstellung Bedienungshilfen öffnen…";
+
+/* Alert informative text displayed when Autotype performs self check and lacks accessibilty permissions */
+"ALERT_AUTOTYPE_MISSING_ACCESSIBILTY_PERMISSIONS_INFORMATIVE_TEXT" = "Das System erlaubt MacPass nicht, Autotype-Tastenbefehle an andere Anwendungen zu schicken. Um Autotype zu ermöglichen fügen Sie MacPass zu den Bedienungshilfen in den Datenschutzeinstellung hinzu. ";
+
+/* Alert message displayed when Autotype performs self check and lacks accessibilty permissions */
+"ALERT_AUTOTYPE_MISSING_ACCESSIBILTY_PERMISSIONS_MESSAGE_TEXT" = "MacPass kann Autotype nicht ausführen.";
+
+/* Checkbox in dialog to set the selection as default file change strategy! */
+"ALERT_AUTOTYPE_MISSING_ACCESSIBILTY_PERMISSIONS_SUPPRESS_WARNING" = "Diesen Warnhinweis nicht mehr anzeigen.";
+
 /* Alert informative text when plugins or their settings change and require a restart */
 "ALERT_INFORMATIVE_TEXT_PLUGINS_CHANGED_SUGGEST_RESTART" = "Änderungen zu den globalen Einstellungen von Plugins treten erst nach einem Neustadt in Kraft. Soll MacPass jetzt neu gestartet werden?";
 
@@ -55,6 +70,9 @@
 /* Alert message text to ask the user if he really want to uninstall the plugin. Include %@ placeholder for plugin name */
 "ALERT_MESSAGE_TEXT_REALLY_UNINSTALL_PLUGIN_%@" = "Möchten Sie das Plugin %@ wirklich deinstallieren?";
 
+/* Infromative text of the disabled updates alert! */
+"ALERT_UPDATES_DISABLED_INFORMATIVE_TEXT_%@!" = "Aktualisierungen von %@ sind für diese Version deaktivert!";
+
 /* Message text for disabled updates alert! */
 "ALERT_UPDATES_DISABLED_MESSAGE_TEXT" = "Updates sind dekativiert.";
 
@@ -71,8 +89,14 @@
 /* Inherit autotype settings menu item */
 "AUTOTYPE_INHERIT" = "Autotype Einstellungen vererben";
 
+/* Message displayed to the user to unlock the database to perform global autotype */
+"AUTOTYPE_MESSAGE_UNLOCK_DATABASE" = "Bitte entsperren Sie die Datenbank um Global-Autotype nutzen zu können.";
+
 /* Disable autotype menu item */
 "AUTOTYPE_NO" = "Autotype deaktiveren";
+
+/* Notification: Autotype failed, MacPass has no permission to send key strokes */
+"AUTOTYPE_NOTIFICATION_MACPASS_HAS_NO_ACCESSIBILTY_PERMISSIONS" = "Autotype ist deaktivert, weil keine Rechte zum Steuern des Computers vorhanden sind.";
 
 /* Notification: Autotype failed, no documents are open */
 "AUTOTYPE_OVERLAY_NO_DOCUMENTS" = "Bitte öffnen Sie eine Datei, um Global Autotype zu nutzen!";
@@ -129,7 +153,8 @@
 /* Context menu sub-menu to copy custom fields to clipboard */
 "COPY_CUSTOM_FIELDS_MENU" = "Feld kopieren…";
 
-/* Action title for copying an entry via drag and drop */
+/* Action name when an entry was moved
+   Action title for copying an entry via drag and drop */
 "COPY_ENTRY" = "Eintrag kopieren";
 
 /* Mask for title to copy field value */
@@ -194,6 +219,14 @@
 
 /* Empty Trash */
 "DELETE_TRASHED_GROUP" = "Gelöschte Gruppe entfernen";
+
+/* Action title for copying an entry via drag and drop to another database
+   Action title for moving an entry via drag and drop */
+"DRAG_ENTRY" = "Eintrag verschieben";
+
+/* Action title for moving a group via drag and drop
+   Actiontitle for copying groups via drag and drop to antother database */
+"DRAG_GROUP" = "Gruppe verschieben";
 
 /* Action name for duplicating entries */
 "DUPLICATE_ENTRIES_%ld" = "Einträge duplizieren %ld";
@@ -325,11 +358,8 @@
    Modification date column title */
 "MODIFIED" = "Verändert";
 
-/* Action title for moving an entry via drag and drop */
+/* Action name when an entry was moved */
 "MOVE_ENTRY" = "Eintrage bewegen";
-
-/* Action title for moving a group via drag and drop */
-"MOVE_GROUP" = "Gruppe bewegem";
 
 /* Menu displayed as popup selection for search options when multiple items are selected */
 "MULTIPLE_FILTERS_ACTIVE_WITH_DOTS" = "Mehrere…";
@@ -396,6 +426,9 @@
 /* Action button in Notification to open a document */
 "OPEN_DOCUMENT" = "Datei öffnen";
 
+/* Action button in Notification to show the Accessibilty preferences */
+"OPEN_PREFERENCES" = "Systemeinstellung Bedienungshilfen öffnen…";
+
 /* Menu item to open the URL with the default application */
 "OPEN_URL" = "Adresse öffnen";
 
@@ -409,6 +442,9 @@
    Password column title
    Password reference item */
 "PASSWORD" = "Passwort";
+
+/* Window title for the stand-alone password creator window */
+"PASSWORD_CREATOR_WINDOW_TITLE" = "Passwortgenerator";
 
 /* Button to reset the password defaults for a single entry */
 "PASSWORD_GENERATOR_RESET_ENTRY_DEFAULTS" = "Zurücksetzen";
@@ -442,6 +478,24 @@
 
 /* Window displayed to the user to pick an amout of characters */
 "PICKFIELD_WINDOW_TITLE" = "Wert auswählen";
+
+/* Status for an up-to-date plugin in the plugin browser */
+"PLUGIN_BROWSER_LATEST_VERSION_INSTALLED" = "Aktuelle Version ist installiert";
+
+/* Status for an outdated plugin version in the plugin browser */
+"PLUGIN_BROWSER_NEWER_VERSION_%@_AVAILABLE" = "Es steht eine neue Version (%@) zur Verfügung.";
+
+/* Status for an uninstalled plugin in the plugin browser */
+"PLUGIN_BROWSER_PLUGIN_NOT_INSTALLED" = "Nicht installiert";
+
+/* Status for an unkonw plugin version in the plugin browser */
+"PLUGIN_BROWSER_UNKNOWN_PLUGIN_VERSION_INSTALLED_%@" = "Unbekannte Version %@ installiert";
+
+/* Error for a plugin that is disabled. */
+"PLUGIN_ERROR_DISABLED_PLUGIN" = "Das Plugin ist vom Nutzer deaktiviert worden.";
+
+/* Plugin is not with this version of MacPass */
+"PLUGIN_ERROR_HOST_VERSION_NOT_SUPPORTED" = "Das Plugin ist nicht mit diese Version von MacPass kompatibel.";
 
 /* The plugin could not be initalized */
 "PLUGIN_ERROR_INTILIZATION_FAILED" = "Das Plugin konnten nicht korrekt initialisiert werden";
@@ -573,9 +627,6 @@
 
 /* Update Settings Label */
 "UPDATE_SETTINGS" = "Aktualisierung";
-
-/* Message text for disabled updates alert! */
-"Updates are disabled!" = "Aktualisierung ist deaktiviert!";
 
 /* Menu item to toggle display of url column in entry table
    Submenu with options what to do with the URL of an entry
