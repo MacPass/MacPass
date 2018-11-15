@@ -34,7 +34,7 @@
 // FIXME: change drag image to use only the first column regardless of drag start
 
 - (id<NSPasteboardWriting>)tableView:(NSTableView *)tableView pasteboardWriterForRow:(NSInteger)row {
-  if(MPDisplayModeEntries != self.viewController.displayMode) {
+  if(MPDisplayModeHistory == self.viewController.displayMode) {
     return nil;
   }
   
@@ -51,7 +51,7 @@
 
 - (NSDragOperation)tableView:(NSTableView *)tableView validateDrop:(id<NSDraggingInfo>)info proposedRow:(NSInteger)row proposedDropOperation:(NSTableViewDropOperation)dropOperation {
   /* we do not accept drops if we are in history or search display mode */
-  if(MPDisplayModeEntries != self.viewController.displayMode) {
+  if(self.viewController.displayMode != MPDisplayModeEntries) {
     return NSDragOperationNone;
   }
   BOOL isLocalDrag = info.draggingSource == tableView;
