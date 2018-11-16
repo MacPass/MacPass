@@ -32,6 +32,10 @@ NSInteger MPCustomFieldIndexFromTag(NSInteger tag) {
   return MAX(-1, tag - MPCustomFieldTagOffset);
 }
 
+NSInteger MPCustomFieldTagFromIndex(NSInteger index) {
+  return (index + MPCustomFieldTagOffset);
+}
+
 @implementation MPCustomFieldTableViewDelegate
 
 
@@ -82,7 +86,7 @@ NSInteger MPCustomFieldIndexFromTag(NSInteger tag) {
           options:@{NSConditionallySetsEditableBindingOption: @NO }];
     
   }
-  view.valueTextField.tag = (MPCustomFieldTagOffset + row);
+  view.valueTextField.tag = MPCustomFieldTagFromIndex(row);
   view.valueTextField.delegate = self.viewController;
   
   view.removeButton.target = self.viewController;
