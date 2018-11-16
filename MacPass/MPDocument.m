@@ -430,7 +430,6 @@ NSString *const MPDocumentGroupKey                            = @"MPDocumentGrou
 }
 
 #pragma mark Lock/Unlock/Decrypt
-
 - (void)lockDatabase:(id)sender {
   /*
    [self saveDocument] is enqued so that dataOfType is called too late to actually save teh database.

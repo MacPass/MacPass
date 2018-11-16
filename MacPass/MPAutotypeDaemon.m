@@ -51,6 +51,7 @@ NSString *const kMPProcessIdentifierKey = @"kMPProcessIdentifierKey";
 @property (assign) pid_t targetPID; // The pid of the process we want to sent commands to
 @property (copy) NSString *targetWindowTitle; // The title of the window that we are targeting
 @property (strong) NSRunningApplication *previousApplication; // The application that was active before we got invoked
+@property (assign) NSTimeInterval userActionRequested;
 
 @end
 
@@ -81,6 +82,7 @@ static MPAutotypeDaemon *_sharedInstance;
   if (self) {
     _enabled = NO;
     _targetPID = -1;
+    _userActionRequested = NSDate.distantPast.timeIntervalSinceReferenceDate;
     [self bind:NSStringFromSelector(@selector(enabled))
       toObject:NSUserDefaultsController.sharedUserDefaultsController
    withKeyPath:[MPSettingsHelper defaultControllerPathForKey:kMPSettingsKeyEnableGlobalAutotype]
@@ -214,7 +216,7 @@ static MPAutotypeDaemon *_sharedInstance;
 #pragma mark Autotype Execution
 
 - (void)_performAutotypeForEntry:(KPKEntry *)entryOrNil {
-  if(!self.autotypeSupported) {
+  /*if(!self.autotypeSupported) {
     NSUserNotification *notification = [[NSUserNotification alloc] init];
     notification.title = NSApp.applicationName;
     notification.informativeText = NSLocalizedString(@"AUTOTYPE_NOTIFICATION_MACPASS_HAS_NO_ACCESSIBILTY_PERMISSIONS", "Notification: Autotype failed, MacPass has no permission to send key strokes");
@@ -223,7 +225,7 @@ static MPAutotypeDaemon *_sharedInstance;
     notification.showsButtons = YES;
     [NSUserNotificationCenter.defaultUserNotificationCenter deliverNotification:notification];
     return;
-  }
+  }*/
   NSInteger pid = NSProcessInfo.processInfo.processIdentifier;
   if(self.targetPID == pid) {
     return; // We do not perform Autotype on ourselves
@@ -240,7 +242,9 @@ static MPAutotypeDaemon *_sharedInstance;
     notification.userInfo = @{ MPUserNotificationTypeKey: MPUserNotificationTypeAutotypeOpenDocumentRequest };
     notification.showsButtons = YES;
     [NSUserNotificationCenter.defaultUserNotificationCenter deliverNotification:notification];
-    return;
+    self.userActionRequested = NSDate.date.timeIntervalSinceReferenceDate;
+    [NSNotificationCenter.defaultCenter addObserver:self selector:@selector(_didUnlockDatabase:) name:MPDocumentDidUnlockDatabaseNotification object:nil];
+    return; // Unlock should trigger autotype
   }
   
   NSPredicate *filterPredicate = [NSPredicate predicateWithBlock:^BOOL(id  _Nonnull evaluatedObject, NSDictionary<NSString *,id> * _Nullable bindings) {
@@ -256,6 +260,7 @@ static MPAutotypeDaemon *_sharedInstance;
     [document showWindows];
     MPDocumentWindowController *wc = document.windowControllers.firstObject;
     [wc showPasswordInputWithMessage:NSLocalizedString(@"AUTOTYPE_MESSAGE_UNLOCK_DATABASE", @"Message displayed to the user to unlock the database to perform global autotype")];
+    self.userActionRequested = NSDate.date.timeIntervalSinceReferenceDate;
     [NSNotificationCenter.defaultCenter addObserver:self selector:@selector(_didUnlockDatabase:) name:MPDocumentDidUnlockDatabaseNotification object:nil];
     return; // wait for the unlock to happen
   }
@@ -392,7 +397,17 @@ static MPAutotypeDaemon *_sharedInstance;
 - (void)_didUnlockDatabase:(NSNotification *)notification {
   /* Remove ourselves and call again to search matches */
   [NSNotificationCenter.defaultCenter removeObserver:self name:MPDocumentDidUnlockDatabaseNotification object:nil];
-  [self _performAutotypeForEntry:nil];
+  NSTimeInterval now = NSDate.date.timeIntervalSinceReferenceDate;
+  if(now - self.userActionRequested > 30) {
+    NSUserNotification *notification = [[NSUserNotification alloc] init];
+    notification.title = NSApp.applicationName;
+    notification.informativeText = NSLocalizedString(@"AUTOTYPE_TIMED_OUT", "Notficication: Autotype timed out");
+    notification.userInfo = @{ MPUserNotificationTypeKey: MPUserNotificationTypeAutotypeFeedback };
+    [NSUserNotificationCenter.defaultUserNotificationCenter deliverNotification:notification];
+  }
+  else {
+    [self _performAutotypeForEntry:nil];
+  }
 }
 
 #pragma mark -

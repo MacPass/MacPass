@@ -211,7 +211,7 @@ typedef void (^MPPasswordChangedBlock)(BOOL didChangePassword);
   [self showPasswordInput];
 }
 
-- (void)_didUnlockDatabase:(NSNotification *)notification {
+- (void)_didUnlockDatabase:(NSNotification *)notification {  
   [self showEntries];
   /* Show password reminders */
   [self _presentPasswordIntervalAlerts];
