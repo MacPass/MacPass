@@ -386,7 +386,7 @@ typedef NS_ENUM(NSUInteger, MPEntryTab) {
   if([self.presentedViewControllers containsObject:viewController]) {
     return;
   }
-  [self presentViewController:viewController asPopoverRelativeToRect:NSZeroRect ofView:view preferredEdge:edge behavior:NSPopoverBehaviorTransient];
+  [self presentViewController:viewController asPopoverRelativeToRect:NSZeroRect ofView:view preferredEdge:edge behavior:NSPopoverBehaviorSemitransient];
 }
 
 #pragma mark -

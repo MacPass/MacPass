@@ -178,7 +178,7 @@ typedef NS_ENUM(NSUInteger, MPContentTab) {
 - (void)_popupViewController:(MPViewController *)vc atView:(NSView *)view {
   vc.representedObject = self.representedObject;
   vc.observer = self.windowController.document;
-  [self presentViewController:vc asPopoverRelativeToRect:NSZeroRect ofView:view preferredEdge:NSMinYEdge behavior:NSPopoverBehaviorTransient];
+  [self presentViewController:vc asPopoverRelativeToRect:NSZeroRect ofView:view preferredEdge:NSMinYEdge behavior:NSPopoverBehaviorSemitransient];
 }
 
 #pragma mark - MPDocument Notifications
