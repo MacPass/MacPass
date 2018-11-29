@@ -25,15 +25,16 @@
 #import "MPDocumentWindowController.h"
 #import "MPDocument.h"
 #import "MPSettingsHelper.h"
+#import "MPPathControl.h"
 
 #import "HNHUi/HNHUi.h"
 
 #import "NSError+Messages.h"
 
-@interface MPPasswordInputController ()
+@interface MPPasswordInputController () <NSPathControlDelegate>
 
 @property (weak) IBOutlet HNHUISecureTextField *passwordTextField;
-@property (weak) IBOutlet NSPathControl *keyPathControl;
+@property (weak) IBOutlet MPPathControl *keyPathControl;
 @property (weak) IBOutlet NSImageView *messageImageView;
 @property (weak) IBOutlet NSTextField *messageInfoTextField;
 @property (weak) IBOutlet NSButton *togglePasswordButton;
@@ -75,8 +76,7 @@
   [self.enablePasswordCheckBox bind:NSValueBinding toObject:self withKeyPath:NSStringFromSelector(@selector(enablePassword)) options:nil];
   [self.togglePasswordButton bind:NSEnabledBinding toObject:self withKeyPath:NSStringFromSelector(@selector(enablePassword)) options:nil];
   [self.passwordTextField bind:NSEnabledBinding toObject:self withKeyPath:NSStringFromSelector(@selector(enablePassword)) options:nil];
-
-  [self.passwordTextField setNextKeyView:self.keyPathControl];
+  self.keyPathControl.delegate = self;
   [self _reset];
 }
 
@@ -111,11 +111,29 @@
   }
 }
 
+#pragma mark NSPathControlDelegate
+-(void)pathControl:(NSPathControl *)pathControl willPopUpMenu:(NSMenu *)menu {
+  if(pathControl != self.keyPathControl) {
+    return;
+  }
+  if(!self.keyPathControl.URL) {
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(50 * NSEC_PER_MSEC)), dispatch_get_main_queue(), ^{
+      [menu cancelTracking];
+    });
+    [self.keyPathControl showOpenPanel:self];
+  }
+  return;
+}
+- (void)pathControl:(NSPathControl *)pathControl willDisplayOpenPanel:(NSOpenPanel *)openPanel {
+  openPanel.animationBehavior = NSWindowAnimationBehaviorDocumentWindow;
+  openPanel.canChooseDirectories = NO;
+  openPanel.allowsMultipleSelection = NO;
+  openPanel.prompt = NSLocalizedString(@"CHOOSE_FILE_BUTTON_TITLE", @"Button title in the key file selection dialog for selecting a key");
+}
 
 #pragma mark -
 #pragma mark Private
 - (IBAction)_submit:(id)sender {
-  
   if(!self.completionHandler) {
     return;
   }

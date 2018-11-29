@@ -230,6 +230,7 @@
 		4CC0D2CE17974A47000B4BDA /* MPCustomFieldTableViewDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CC0D2CD17974A47000B4BDA /* MPCustomFieldTableViewDelegate.m */; };
 		4CC0D2D117974A5A000B4BDA /* MPAttachmentTableViewDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CC0D2D017974A5A000B4BDA /* MPAttachmentTableViewDelegate.m */; };
 		4CC281891C0F675B00B9174D /* HNHUi.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4CC281881C0F675B00B9174D /* HNHUi.framework */; };
+		4CC59C2721AF0893005E8D6B /* MPPathControl.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CC59C2621AF0893005E8D6B /* MPPathControl.m */; };
 		4CC663E7216F7A7100E33965 /* MPPluginRepositoryBrowserViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CC663E5216F7A7100E33965 /* MPPluginRepositoryBrowserViewController.m */; };
 		4CC663E8216F7A7100E33965 /* PluginRepositoryBrowserView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4CC663E6216F7A7100E33965 /* PluginRepositoryBrowserView.xib */; };
 		4CC6DB7A17D23719002C6091 /* KPKNode+IconImage.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CC6DB7917D23719002C6091 /* KPKNode+IconImage.m */; };
@@ -768,6 +769,8 @@
 		4CC0D2CF17974A5A000B4BDA /* MPAttachmentTableViewDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MPAttachmentTableViewDelegate.h; sourceTree = "<group>"; };
 		4CC0D2D017974A5A000B4BDA /* MPAttachmentTableViewDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MPAttachmentTableViewDelegate.m; sourceTree = "<group>"; };
 		4CC281881C0F675B00B9174D /* HNHUi.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = HNHUi.framework; path = Carthage/Build/Mac/HNHUi.framework; sourceTree = "<group>"; };
+		4CC59C2521AF0893005E8D6B /* MPPathControl.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MPPathControl.h; sourceTree = "<group>"; };
+		4CC59C2621AF0893005E8D6B /* MPPathControl.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MPPathControl.m; sourceTree = "<group>"; };
 		4CC663E4216F7A7100E33965 /* MPPluginRepositoryBrowserViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MPPluginRepositoryBrowserViewController.h; sourceTree = "<group>"; };
 		4CC663E5216F7A7100E33965 /* MPPluginRepositoryBrowserViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MPPluginRepositoryBrowserViewController.m; sourceTree = "<group>"; };
 		4CC663E6216F7A7100E33965 /* PluginRepositoryBrowserView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PluginRepositoryBrowserView.xib; sourceTree = "<group>"; };
@@ -1624,6 +1627,8 @@
 				4C63B8FA17A3154D0091BD72 /* MPContextButton.m */,
 				4C57AE1217BA422B00CA4F34 /* MPSegmentedContextCell.h */,
 				4C57AE1317BA422B00CA4F34 /* MPSegmentedContextCell.m */,
+				4CC59C2521AF0893005E8D6B /* MPPathControl.h */,
+				4CC59C2621AF0893005E8D6B /* MPPathControl.m */,
 			);
 			name = Controls;
 			sourceTree = "<group>";
@@ -2049,6 +2054,7 @@
 				4C4FCE15177CFE6B00BBF7AE /* MPCustomFieldTableCellView.m in Sources */,
 				4C4B728518E4B9B400A1A5D5 /* MPDockTileHelper.m in Sources */,
 				4C5FE9AE17843CE20001D5A8 /* MPSelectedAttachmentTableCellView.m in Sources */,
+				4CC59C2721AF0893005E8D6B /* MPPathControl.m in Sources */,
 				4C3666411787327E00B249F1 /* MPDocument+Attachments.m in Sources */,
 				4CF6C3021FBF39BF0055AD03 /* MPPluginTabelCellView.m in Sources */,
 				4C10412C178CDD44001B5239 /* NSDate+Humanized.m in Sources */,
