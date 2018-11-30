@@ -10,14 +10,25 @@
 
 @implementation MPPathControl
 
-/*- (void)willOpenMenu:(NSMenu *)menu withEvent:(NSEvent *)event  {
+- (instancetype)initWithFrame:(NSRect)frameRect {
+  self = [super initWithFrame:frameRect];
+  self.delegate = self;
+  return self;
+}
+
+- (instancetype)initWithCoder:(NSCoder *)coder {
+  self = [super initWithCoder:coder];
+  self.delegate = self;
+  return self;
+}
+
+- (void)willOpenMenu:(NSMenu *)menu withEvent:(NSEvent *)event  {
   if(!self.URL) {
     [menu cancelTracking];
-    [self _showOpenPanel];
+    [self showOpenPanel:nil];
   };
   return;
 }
-*/
 
 - (void)showOpenPanel:(id)sender {
   NSOpenPanel *panel = [NSOpenPanel openPanel];
@@ -29,6 +40,30 @@
       self.URL = panel.URLs.firstObject;
     }
   }];
+}
+
+- (void)pathControl:(NSPathControl *)pathControl willPopUpMenu:(NSMenu *)menu {
+  if(pathControl != self) {
+    return;
+  }
+  if(@available(macOS 10.11, *)) {
+    NSLog(@"Skipping 10.10 pathControl:willPopUpMenu");
+  }
+  else {
+    if(!self.URL) {
+      dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(50 * NSEC_PER_MSEC)), dispatch_get_main_queue(), ^{
+        [menu cancelTracking];
+      });
+      [self showOpenPanel:self];
+    }
+  }
+}
+
+- (void)pathControl:(NSPathControl *)pathControl willDisplayOpenPanel:(NSOpenPanel *)openPanel {
+  openPanel.animationBehavior = NSWindowAnimationBehaviorDocumentWindow;
+  openPanel.canChooseDirectories = NO;
+  openPanel.allowsMultipleSelection = NO;
+  openPanel.prompt = NSLocalizedString(@"CHOOSE_FILE_BUTTON_TITLE", @"Button title in the key file selection dialog for selecting a key");
 }
 
 @end

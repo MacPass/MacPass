@@ -31,7 +31,7 @@
 
 #import "NSError+Messages.h"
 
-@interface MPPasswordInputController () <NSPathControlDelegate>
+@interface MPPasswordInputController ()
 
 @property (weak) IBOutlet HNHUISecureTextField *passwordTextField;
 @property (weak) IBOutlet MPPathControl *keyPathControl;
@@ -76,7 +76,6 @@
   [self.enablePasswordCheckBox bind:NSValueBinding toObject:self withKeyPath:NSStringFromSelector(@selector(enablePassword)) options:nil];
   [self.togglePasswordButton bind:NSEnabledBinding toObject:self withKeyPath:NSStringFromSelector(@selector(enablePassword)) options:nil];
   [self.passwordTextField bind:NSEnabledBinding toObject:self withKeyPath:NSStringFromSelector(@selector(enablePassword)) options:nil];
-  self.keyPathControl.delegate = self;
   [self _reset];
 }
 
@@ -109,26 +108,6 @@
   else {
    self.passwordTextField.placeholderString = NSLocalizedString(@"PASSWORD_INPUT_NO_PASSWORD", "Placeholder in the unlock-password input field if password is disabled");
   }
-}
-
-#pragma mark NSPathControlDelegate
--(void)pathControl:(NSPathControl *)pathControl willPopUpMenu:(NSMenu *)menu {
-  if(pathControl != self.keyPathControl) {
-    return;
-  }
-  if(!self.keyPathControl.URL) {
-    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(50 * NSEC_PER_MSEC)), dispatch_get_main_queue(), ^{
-      [menu cancelTracking];
-    });
-    [self.keyPathControl showOpenPanel:self];
-  }
-  return;
-}
-- (void)pathControl:(NSPathControl *)pathControl willDisplayOpenPanel:(NSOpenPanel *)openPanel {
-  openPanel.animationBehavior = NSWindowAnimationBehaviorDocumentWindow;
-  openPanel.canChooseDirectories = NO;
-  openPanel.allowsMultipleSelection = NO;
-  openPanel.prompt = NSLocalizedString(@"CHOOSE_FILE_BUTTON_TITLE", @"Button title in the key file selection dialog for selecting a key");
 }
 
 #pragma mark -

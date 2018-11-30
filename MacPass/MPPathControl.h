@@ -10,7 +10,7 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface MPPathControl : NSPathControl
+@interface MPPathControl : NSPathControl <NSPathControlDelegate>
 
 - (IBAction)showOpenPanel:(id _Nullable)sender;
 
