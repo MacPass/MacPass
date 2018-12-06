@@ -508,7 +508,7 @@ typedef void (^MPPasswordChangedBlock)(BOOL didChangePassword);
   }
   /* Maybe we should consider not double adding constraints */
   NSDictionary *views = NSDictionaryOfVariableBindings(outlineView, inspectorView, entryView, _splitView);
-  [self.splitView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|[outlineView(>=150)]-1-[entryView(>=350)]-1-[inspectorView(>=200)]|"
+  [self.splitView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|[outlineView(>=150)]-1-[entryView(>=150)]-1-[inspectorView(>=200)]|"
                                                                          options:0
                                                                          metrics:nil
                                                                            views:views]];
@@ -516,7 +516,7 @@ typedef void (^MPPasswordChangedBlock)(BOOL didChangePassword);
                                                                          options:0
                                                                          metrics:nil
                                                                            views:views]];
-  [self.splitView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|[entryView(>=300)]|"
+  [self.splitView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|[entryView(>=200)]|"
                                                                          options:0
                                                                          metrics:nil
                                                                            views:views]];
