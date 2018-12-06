@@ -78,6 +78,7 @@ FOUNDATION_EXPORT NSString *const MPDocumentGroupKey;
 @property (nonatomic, strong, readonly) KPKCompositeKey *compositeKey;
 
 @property (assign, readonly, getter = isReadOnly) BOOL readOnly;
+@property (atomic, assign) BOOL shouldSaveOnLock;
 @property (nonatomic, readonly, assign) KPKDatabaseFormat formatForFileType;
 
 /*
@@ -161,6 +162,7 @@ FOUNDATION_EXPORT NSString *const MPDocumentGroupKey;
 
 - (void)deleteNode:(KPKNode *)node;
 - (void)duplicateEntryWithOptions:(KPKCopyOptions)options;
+
 
 #pragma mark Actions
 /**

@@ -316,7 +316,7 @@ NSString *const _MPOutlinveViewHeaderViewIdentifier = @"HeaderCell";
     document.tree.metaData.lastSelectedGroup = (groups.count == 1 ? groups.firstObject.uuid : [NSUUID kpk_nullUUID]);
     NSUUID *newVlaue = document.tree.metaData.lastSelectedGroup;
     if(![oldValue isEqual:newVlaue]) {
-      [document updateChangeCount:NSChangeDone|NSChangeDiscardable];
+      document.shouldSaveOnLock = YES;
     }
   }
   document.selectedGroups = groups;

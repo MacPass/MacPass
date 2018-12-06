@@ -8,6 +8,8 @@
 
 #import "MPKeyTyper.h"
 #import "MPKeyMapper.h"
+#import "MPAutotypeDaemon.h"
+#import "MPAutotypeExecutionContext.h"
 
 @implementation MPKeyTyper
 
@@ -53,7 +55,6 @@
   /* TODO: Evaluate postToPid */
   usleep(0.05 * NSEC_PER_MSEC);
   CGEventPost(kCGHIDEventTap, releaseKey);
-  /* TODO: Evaluate postToPid */
   
   CFRelease(pressKey);
   CFRelease(releaseKey);

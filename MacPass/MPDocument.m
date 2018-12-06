@@ -61,6 +61,7 @@ NSString *const MPDocumentGroupKey                            = @"MPDocumentGrou
 @interface MPDocument () {
 @private
   BOOL _didLockFile;
+  BOOL _shoudlSaveOnLock;
 }
 
 @property (nonatomic, assign) NSUInteger unlockCount;
@@ -124,6 +125,7 @@ NSString *const MPDocumentGroupKey                            = @"MPDocumentGrou
     _didLockFile = NO;
     _readOnly = NO;
     _lockedForFileChange = NO;
+    self.shouldSaveOnLock = NO;
   }
   return self;
 }
@@ -173,8 +175,8 @@ NSString *const MPDocumentGroupKey                            = @"MPDocumentGrou
 
 - (NSData *)dataOfType:(NSString *)typeName error:(NSError * _Nullable __autoreleasing *)outError {
   if(self.encrypted) {
-    NSAssert(!self.encrypted, @"%@ should not be called on locked databases!", NSStringFromSelector(_cmd));
-    //return self.encryptedData;
+    NSLog(@"%@ should not be called on locked databases!", NSStringFromSelector(_cmd));
+    return self.encryptedData;
   }
   if(!self.compositeKey.hasPasswordOrKeyFile) {
     if(outError != NULL) {
@@ -324,6 +326,8 @@ NSString *const MPDocumentGroupKey                            = @"MPDocumentGrou
     [self mergeWithContentsFromURL:self.fileURL key:self.compositeKey];
   }
   else if(strategy == MPFileChangeStrategyUseOther) {
+    /* dispatch? */
+    
     [self revertToContentsOfURL:self.fileURL ofType:self.fileType error:nil];
   }
   // else do nothing!
@@ -389,7 +393,6 @@ NSString *const MPDocumentGroupKey                            = @"MPDocumentGrou
   if(otherTree) {
     [self.tree synchronizeWithTree:otherTree mode:KPKSynchronizationModeSynchronize options:options];
     /* the key might have changed so update ours! */
-    //self.compositeKey = key;
     [self updateChangeCount:NSChangeDone];
     NSUserNotification *notification = [[NSUserNotification alloc] init];
     notification.title = NSApp.applicationName;
@@ -432,7 +435,7 @@ NSString *const MPDocumentGroupKey                            = @"MPDocumentGrou
 #pragma mark Lock/Unlock/Decrypt
 - (void)lockDatabase:(id)sender {
   /*
-   [self saveDocument] is enqued so that dataOfType is called too late to actually save teh database.
+   [self saveDocument] is enqued so that dataOfType is called too late to actually save the database.
    hence we need to get the ok from the NSDocument about the save, otherwise the lock fails!
    */
   // only lock if we do not have user interaction that cannot be dismissed!
@@ -440,8 +443,9 @@ NSString *const MPDocumentGroupKey                            = @"MPDocumentGrou
     for(NSWindow *sheet in self.windowForSheet.sheets) {
       [self.windowForSheet endSheet:sheet];
     }
-    if(self.documentEdited) {
+    if(self.documentEdited || self.shouldSaveOnLock) {
       [self saveDocumentWithDelegate:self didSaveSelector:@selector(_lockDatabaseForDocument:didSave:contextInfo:) contextInfo:NULL];
+      self.shouldSaveOnLock = NO;
     }
     else {
       [self _lockDatabaseForDocument:self didSave:YES contextInfo:NULL];
@@ -455,7 +459,7 @@ NSString *const MPDocumentGroupKey                            = @"MPDocumentGrou
     return; // wrong parameters
   }
   if(!didSave) {
-    return; // not saved!
+    return; // not saved we need to be sure it happend!
   }
   /* FIXME: User feedback is ignored */
   [self exitSearch:self];

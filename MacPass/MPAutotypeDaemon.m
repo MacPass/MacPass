@@ -25,6 +25,7 @@
 #import "MPDocumentWindowController.h"
 #import "MPAutotypeCommand.h"
 #import "MPAutotypeContext.h"
+#import "MPAutotypeExecutionContext.h"
 #import "MPAutotypePaste.h"
 #import "MPPasteBoardController.h"
 #import "MPSettingsHelper.h"
@@ -52,6 +53,7 @@ NSString *const kMPProcessIdentifierKey = @"kMPProcessIdentifierKey";
 @property (copy) NSString *targetWindowTitle; // The title of the window that we are targeting
 @property (strong) NSRunningApplication *previousApplication; // The application that was active before we got invoked
 @property (assign) NSTimeInterval userActionRequested;
+@property (strong, readwrite) MPAutotypeExecutionContext *executionContext;
 
 @end
 
@@ -312,18 +314,20 @@ static MPAutotypeDaemon *_sharedInstance;
   if(nil == context) {
     return; // No context to work with
   }
+
   if([self _orderApplicationToFront:self.targetPID]) {
     /* Sleep a bit after the app was activated */
     /* TODO - we can use a saver way and use a notification to check if the app actally was activated */
     usleep(1 * NSEC_PER_MSEC);
   }
-  
+  self.executionContext = [[MPAutotypeExecutionContext alloc] initWithTargetPid:self.targetPID];
   for(MPAutotypeCommand *command in [MPAutotypeCommand commandsForContext:context]) {
     /* dispatch commands to main thread since most of them translate key events which is disallowed on background thread */
     dispatch_async(dispatch_get_main_queue(), ^{
       [command execute];
     });
   }
+  self.executionContext = nil;
 }
 
 #pragma mark -
