@@ -31,7 +31,6 @@
  */
 @interface MPAutotypeDaemon : NSObject
 
-@property (strong, readonly) MPAutotypeExecutionContext *executionContext;
 @property (strong) IBOutlet NSWindow *matchSelectionWindow;
 @property (weak) IBOutlet NSPopUpButton *matchSelectionButton;
 @property (readonly, strong) DDHotKey *registredHotKey;

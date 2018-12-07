@@ -9,7 +9,6 @@
 #import "MPKeyTyper.h"
 #import "MPKeyMapper.h"
 #import "MPAutotypeDaemon.h"
-#import "MPAutotypeExecutionContext.h"
 
 @implementation MPKeyTyper
 

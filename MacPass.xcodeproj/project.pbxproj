@@ -135,7 +135,6 @@
 		4C5A11FE1708DE8700223D8A /* MPPasswordCreatorViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C5A11FC1708DE8700223D8A /* MPPasswordCreatorViewController.m */; };
 		4C5EF816218CA03F0003C00E /* MPAutotypeParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C5EF815218CA03F0003C00E /* MPAutotypeParser.m */; };
 		4C5FE9AE17843CE20001D5A8 /* MPSelectedAttachmentTableCellView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C5FE9AD17843CE20001D5A8 /* MPSelectedAttachmentTableCellView.m */; };
-		4C61251C21B94BDD00A93924 /* MPAutotypeExecutionContext.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C61251B21B94BDD00A93924 /* MPAutotypeExecutionContext.m */; };
 		4C61EA0316D2FD0800AC519E /* MPOutlineViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C61EA0216D2FD0800AC519E /* MPOutlineViewController.m */; };
 		4C61EA0516D2FFE200AC519E /* OutlineView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4C61EA0416D2FFE200AC519E /* OutlineView.xib */; };
 		4C63B8FB17A3154D0091BD72 /* MPContextButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C63B8FA17A3154D0091BD72 /* MPContextButton.m */; };
@@ -550,8 +549,6 @@
 		4C5F72851FC4351E00929153 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InspectorView.strings; sourceTree = "<group>"; };
 		4C5FE9AC17843CE20001D5A8 /* MPSelectedAttachmentTableCellView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MPSelectedAttachmentTableCellView.h; sourceTree = "<group>"; };
 		4C5FE9AD17843CE20001D5A8 /* MPSelectedAttachmentTableCellView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MPSelectedAttachmentTableCellView.m; sourceTree = "<group>"; };
-		4C61251A21B94BDD00A93924 /* MPAutotypeExecutionContext.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MPAutotypeExecutionContext.h; sourceTree = "<group>"; };
-		4C61251B21B94BDD00A93924 /* MPAutotypeExecutionContext.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MPAutotypeExecutionContext.m; sourceTree = "<group>"; };
 		4C61EA0116D2FD0800AC519E /* MPOutlineViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MPOutlineViewController.h; sourceTree = "<group>"; };
 		4C61EA0216D2FD0800AC519E /* MPOutlineViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MPOutlineViewController.m; sourceTree = "<group>"; };
 		4C61EA0416D2FFE200AC519E /* OutlineView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = OutlineView.xib; sourceTree = "<group>"; };
@@ -1512,8 +1509,6 @@
 				4C90757B18A42E7A00E598DA /* Commands */,
 				4CEE46DB181C301D006BF1E5 /* MPAutotypeDaemon.h */,
 				4CEE46DC181C301D006BF1E5 /* MPAutotypeDaemon.m */,
-				4C61251A21B94BDD00A93924 /* MPAutotypeExecutionContext.h */,
-				4C61251B21B94BDD00A93924 /* MPAutotypeExecutionContext.m */,
 				4CD2B9041849424B0051B395 /* MPAutotypeContext.h */,
 				4CD2B9051849424B0051B395 /* MPAutotypeContext.m */,
 				4CA3530918A53CB800839B0F /* MPKeyMapper.h */,
@@ -2028,7 +2023,6 @@
 				4CE082C31F6FCD2A0034FF56 /* MPCollectionView.m in Sources */,
 				4C4A100F176286FD00BBF2CA /* MPTableView.m in Sources */,
 				4CA334CA18AD60D1008A3322 /* MPWindowAssociationsTableViewDelegate.m in Sources */,
-				4C61251C21B94BDD00A93924 /* MPAutotypeExecutionContext.m in Sources */,
 				4C01C2421764D8980016D5D0 /* MPContextMenuHelper.m in Sources */,
 				4CE296191842A166005F01CE /* MPAutotypePaste.m in Sources */,
 				4C569D9E17652B0600595B62 /* MPConstants.m in Sources */,

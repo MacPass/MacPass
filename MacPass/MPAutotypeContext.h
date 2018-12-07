@@ -57,7 +57,7 @@
  *  Designated initializer
  *
  *  @param entry    Entry to use
- *  @param sequence Keystroke Sequence to use
+ *  @param sequence Keystroke Sequence to use, this is usefull to override any sequences stored in the entry
  *
  *  @return AutotypeSequnce with the entry and keystroke in places
  */

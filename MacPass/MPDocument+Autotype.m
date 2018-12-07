@@ -111,7 +111,7 @@
   
   /* Fall back to preferred Entry if no match was found */
   if(usePreferredEntry && contexts.count == 0 ) {
-    context = [[MPAutotypeContext alloc] initWithEntry:entry andSequence:entry.autotype.defaultKeystrokeSequence];
+    context = [[MPAutotypeContext alloc] initWithDefaultSequenceForEntry:entry];
     if(context.valid) {
       [contexts addObject:context];
     }
