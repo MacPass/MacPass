@@ -38,6 +38,10 @@ NSString *const MPPluginRepositoryDidUpdateAvailablePluginsNotification = @"com.
 
 @synthesize availablePlugins = _availablePlugins;
 
++ (NSSet<NSString *> *)keyPathsForValuesAffectingUpdatedAt {
+  return [NSSet setWithObject:NSStringFromSelector(@selector(lastDataFetchTime))];
+}
+
 + (instancetype)defaultRepository {
   static MPPluginRepository *instance;
   static dispatch_once_t onceToken;
@@ -69,6 +73,10 @@ NSString *const MPPluginRepositoryDidUpdateAvailablePluginsNotification = @"com.
     }];
   }
   return _availablePlugins;
+}
+
+- (NSDate *)updatedAt {
+  return [NSDate dateWithTimeIntervalSinceReferenceDate:self.lastDataFetchTime];
 }
 
 - (void)setAvailablePlugins:(NSArray<MPPluginRepositoryItem *> *)availablePlugins {

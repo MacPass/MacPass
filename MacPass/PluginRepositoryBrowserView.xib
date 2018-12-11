@@ -9,6 +9,7 @@
         <customObject id="-2" userLabel="File's Owner" customClass="MPPluginRepositoryBrowserViewController">
             <connections>
                 <outlet property="itemTable" destination="gDR-Fx-c0h" id="yYx-qm-i7K"/>
+                <outlet property="updatedAtTextField" destination="d2Q-7O-ilP" id="uiZ-VA-MQv"/>
                 <outlet property="view" destination="Hz6-mo-xeY" id="0bl-1N-x8E"/>
             </connections>
         </customObject>
@@ -19,13 +20,13 @@
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
             <subviews>
                 <scrollView autohidesScrollers="YES" horizontalLineScroll="26" horizontalPageScroll="10" verticalLineScroll="26" verticalPageScroll="10" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="V1g-KK-vjw">
-                    <rect key="frame" x="20" y="141" width="598" height="352"/>
+                    <rect key="frame" x="20" y="74" width="598" height="419"/>
                     <clipView key="contentView" id="Sqy-VI-iH4">
-                        <rect key="frame" x="1" y="0.0" width="596" height="351"/>
+                        <rect key="frame" x="1" y="0.0" width="596" height="418"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView verticalHuggingPriority="750" allowsExpansionToolTips="YES" columnAutoresizingStyle="sequential" alternatingRowBackgroundColors="YES" columnReordering="NO" columnResizing="NO" multipleSelection="NO" autosaveColumns="NO" rowHeight="24" rowSizeStyle="systemDefault" headerView="uVe-04-Now" viewBased="YES" id="gDR-Fx-c0h">
-                                <rect key="frame" x="0.0" y="0.0" width="599" height="328"/>
+                                <rect key="frame" x="0.0" y="0.0" width="599" height="395"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <size key="intercellSpacing" width="3" height="2"/>
                                 <color key="backgroundColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
@@ -142,7 +143,7 @@
                         <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="400" id="gYM-eK-y5v"/>
                     </constraints>
                     <scroller key="horizontalScroller" wantsLayer="YES" verticalHuggingPriority="750" horizontal="YES" id="ajb-Vb-WhY">
-                        <rect key="frame" x="1" y="335" width="596" height="16"/>
+                        <rect key="frame" x="1" y="402" width="596" height="16"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </scroller>
                     <scroller key="verticalScroller" hidden="YES" wantsLayer="YES" verticalHuggingPriority="750" horizontal="NO" id="3eJ-oK-GNt">
@@ -174,10 +175,10 @@
                         <action selector="closeBrowser:" target="-2" id="FVU-rJ-Pxm"/>
                     </connections>
                 </button>
-                <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="d2Q-7O-ilP">
-                    <rect key="frame" x="20" y="116" width="111" height="17"/>
-                    <autoresizingMask key="autoresizingMask"/>
-                    <textFieldCell key="cell" lineBreakMode="clipping" title="last.time.checked" id="DhR-ED-6gV">
+                <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="d2Q-7O-ilP">
+                    <rect key="frame" x="18" y="49" width="72" height="17"/>
+                    <textFieldCell key="cell" lineBreakMode="clipping" title="Updated at" id="DhR-ED-6gV">
+                        <dateFormatter key="formatter" dateStyle="short" timeStyle="medium" doesRelativeDateFormatting="YES" id="0Ll-SA-lFN"/>
                         <font key="font" metaFont="system"/>
                         <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
                         <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
@@ -185,18 +186,21 @@
                 </textField>
             </subviews>
             <constraints>
-                <constraint firstItem="Pkh-la-7FU" firstAttribute="top" secondItem="V1g-KK-vjw" secondAttribute="bottom" constant="100" id="30X-fR-rks"/>
+                <constraint firstItem="d2Q-7O-ilP" firstAttribute="top" secondItem="V1g-KK-vjw" secondAttribute="bottom" constant="8" symbolic="YES" id="0Pm-R2-Jb4"/>
+                <constraint firstItem="Pkh-la-7FU" firstAttribute="top" secondItem="d2Q-7O-ilP" secondAttribute="bottom" constant="8" symbolic="YES" id="30X-fR-rks"/>
                 <constraint firstItem="V1g-KK-vjw" firstAttribute="top" secondItem="Hz6-mo-xeY" secondAttribute="top" constant="20" symbolic="YES" id="3jQ-NX-W3e"/>
                 <constraint firstAttribute="bottom" secondItem="Pkh-la-7FU" secondAttribute="bottom" constant="20" symbolic="YES" id="AwW-xp-Lps"/>
                 <constraint firstAttribute="trailing" secondItem="V1g-KK-vjw" secondAttribute="trailing" constant="20" symbolic="YES" id="DVA-MO-e4e"/>
                 <constraint firstItem="bGv-Zc-Vrk" firstAttribute="centerY" secondItem="Pkh-la-7FU" secondAttribute="centerY" id="J68-4H-1yJ"/>
+                <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="d2Q-7O-ilP" secondAttribute="trailing" constant="20" symbolic="YES" id="LAb-xb-eeR"/>
                 <constraint firstItem="V1g-KK-vjw" firstAttribute="leading" secondItem="Hz6-mo-xeY" secondAttribute="leading" constant="20" symbolic="YES" id="SQs-j2-6HH"/>
                 <constraint firstAttribute="bottom" secondItem="bGv-Zc-Vrk" secondAttribute="bottom" constant="20" symbolic="YES" id="hyU-hm-uRL"/>
                 <constraint firstAttribute="trailing" secondItem="Pkh-la-7FU" secondAttribute="trailing" constant="20" symbolic="YES" id="iTm-72-HFD"/>
                 <constraint firstItem="Pkh-la-7FU" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="bGv-Zc-Vrk" secondAttribute="trailing" constant="12" symbolic="YES" id="lUQ-jf-KWR"/>
+                <constraint firstItem="d2Q-7O-ilP" firstAttribute="leading" secondItem="Hz6-mo-xeY" secondAttribute="leading" constant="20" symbolic="YES" id="s9m-Ls-EeX"/>
                 <constraint firstItem="bGv-Zc-Vrk" firstAttribute="leading" secondItem="Hz6-mo-xeY" secondAttribute="leading" constant="20" id="tk3-kF-k22"/>
             </constraints>
-            <point key="canvasLocation" x="-41" y="87"/>
+            <point key="canvasLocation" x="263" y="32"/>
         </customView>
     </objects>
 </document>

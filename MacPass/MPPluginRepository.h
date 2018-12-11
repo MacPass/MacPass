@@ -31,6 +31,7 @@ FOUNDATION_EXTERN NSString *const MPPluginRepositoryDidUpdateAvailablePluginsNot
 @interface MPPluginRepository : NSObject
 
 @property (class, strong, readonly) MPPluginRepository *defaultRepository;
+@property (readonly, copy) NSDate *updatedAt;
 @property (readonly) BOOL isInitialized;
 /*
  this property is set asynchronously, to make sure, you receive valid data,

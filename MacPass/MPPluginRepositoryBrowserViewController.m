@@ -24,6 +24,7 @@ typedef NS_ENUM(NSUInteger, MPPluginTableColumn) {
 
 @property (copy) NSArray<MPPluginRepositoryItem *>* repositoryItems;
 @property (strong) IBOutlet NSTableView *itemTable;
+@property (strong) IBOutlet NSTextField *updatedAtTextField;
 
 @end
 
@@ -35,6 +36,7 @@ typedef NS_ENUM(NSUInteger, MPPluginTableColumn) {
 
 - (void)viewDidLoad {
   [super viewDidLoad];
+  [self.updatedAtTextField bind:NSValueBinding toObject:MPPluginRepository.defaultRepository withKeyPath:NSStringFromSelector(@selector(updatedAt)) options:nil];
   [self _refreshRepository];
 }
 
