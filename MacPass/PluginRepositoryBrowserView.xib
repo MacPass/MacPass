@@ -176,9 +176,18 @@
                     </connections>
                 </button>
                 <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="d2Q-7O-ilP">
-                    <rect key="frame" x="18" y="49" width="72" height="17"/>
+                    <rect key="frame" x="110" y="49" width="72" height="17"/>
                     <textFieldCell key="cell" lineBreakMode="clipping" title="Updated at" id="DhR-ED-6gV">
                         <dateFormatter key="formatter" dateStyle="short" timeStyle="medium" doesRelativeDateFormatting="YES" id="0Ll-SA-lFN"/>
+                        <font key="font" metaFont="system"/>
+                        <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                        <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                    </textFieldCell>
+                </textField>
+                <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="fjQ-ni-Ayx">
+                    <rect key="frame" x="18" y="49" width="88" height="17"/>
+                    <textFieldCell key="cell" lineBreakMode="clipping" title="Last updated:" id="ntD-sJ-NRw">
+                        <dateFormatter key="formatter" dateStyle="short" timeStyle="medium" doesRelativeDateFormatting="YES" id="fJu-2Q-skm"/>
                         <font key="font" metaFont="system"/>
                         <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
                         <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
@@ -191,16 +200,18 @@
                 <constraint firstItem="V1g-KK-vjw" firstAttribute="top" secondItem="Hz6-mo-xeY" secondAttribute="top" constant="20" symbolic="YES" id="3jQ-NX-W3e"/>
                 <constraint firstAttribute="bottom" secondItem="Pkh-la-7FU" secondAttribute="bottom" constant="20" symbolic="YES" id="AwW-xp-Lps"/>
                 <constraint firstAttribute="trailing" secondItem="V1g-KK-vjw" secondAttribute="trailing" constant="20" symbolic="YES" id="DVA-MO-e4e"/>
+                <constraint firstItem="fjQ-ni-Ayx" firstAttribute="leading" secondItem="Hz6-mo-xeY" secondAttribute="leading" constant="20" symbolic="YES" id="Ftg-vZ-sS7"/>
                 <constraint firstItem="bGv-Zc-Vrk" firstAttribute="centerY" secondItem="Pkh-la-7FU" secondAttribute="centerY" id="J68-4H-1yJ"/>
                 <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="d2Q-7O-ilP" secondAttribute="trailing" constant="20" symbolic="YES" id="LAb-xb-eeR"/>
                 <constraint firstItem="V1g-KK-vjw" firstAttribute="leading" secondItem="Hz6-mo-xeY" secondAttribute="leading" constant="20" symbolic="YES" id="SQs-j2-6HH"/>
+                <constraint firstItem="fjQ-ni-Ayx" firstAttribute="top" secondItem="V1g-KK-vjw" secondAttribute="bottom" constant="8" symbolic="YES" id="gPb-YD-MaI"/>
                 <constraint firstAttribute="bottom" secondItem="bGv-Zc-Vrk" secondAttribute="bottom" constant="20" symbolic="YES" id="hyU-hm-uRL"/>
                 <constraint firstAttribute="trailing" secondItem="Pkh-la-7FU" secondAttribute="trailing" constant="20" symbolic="YES" id="iTm-72-HFD"/>
                 <constraint firstItem="Pkh-la-7FU" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="bGv-Zc-Vrk" secondAttribute="trailing" constant="12" symbolic="YES" id="lUQ-jf-KWR"/>
-                <constraint firstItem="d2Q-7O-ilP" firstAttribute="leading" secondItem="Hz6-mo-xeY" secondAttribute="leading" constant="20" symbolic="YES" id="s9m-Ls-EeX"/>
                 <constraint firstItem="bGv-Zc-Vrk" firstAttribute="leading" secondItem="Hz6-mo-xeY" secondAttribute="leading" constant="20" id="tk3-kF-k22"/>
+                <constraint firstItem="d2Q-7O-ilP" firstAttribute="leading" secondItem="fjQ-ni-Ayx" secondAttribute="trailing" constant="8" symbolic="YES" id="wHQ-Lk-2fv"/>
             </constraints>
-            <point key="canvasLocation" x="263" y="32"/>
+            <point key="canvasLocation" x="-36" y="116"/>
         </customView>
     </objects>
 </document>
