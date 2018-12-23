@@ -156,6 +156,12 @@ typedef void (^MPPasswordChangedBlock)(BOOL didChangePassword);
    tbc.layoutAttribute = NSLayoutAttributeRight;
    [self.window addTitlebarAccessoryViewController:tbc];
    */
+  
+  touchBarIdentifier = @"com.hicknhacksoftware.MacPass.TouchBar";
+  touchBarCopyUsernameIdentifier = @"com.hicknhacksoftware.MacPass.TouchBar.copyUsername";
+  touchBarCopyPasswordIdentifier = @"com.hicknhacksoftware.MacPass.TouchBar.copyPassword";
+  touchBarPerfromAutotypeIdentifier = @"com.hicknhacksoftware.MacPass.TouchBar.perfromAutotype";
+  touchBarLockIdentifier = @"com.hicknhacksoftware.MacPass.TouchBar.lock";
 }
 
 - (NSSearchField *)searchField {
@@ -650,6 +656,46 @@ typedef void (^MPPasswordChangedBlock)(BOOL didChangePassword);
 - (BOOL)_isInspectorVisible {
   NSView *inspectorView = self.inspectorViewController.view;
   return (nil != inspectorView.superview);
+}
+
+- (NSTouchBar *)makeTouchBar {
+  NSTouchBar *touchBar = [[NSTouchBar alloc] init];
+  touchBar.delegate = self;
+  touchBar.defaultItemIdentifiers = @[touchBarCopyUsernameIdentifier,touchBarCopyPasswordIdentifier,  touchBarPerfromAutotypeIdentifier, NSTouchBarItemIdentifierFlexibleSpace, touchBarLockIdentifier];
+  return touchBar;
+}
+
+- (NSTouchBarItem *)touchBar:(NSTouchBar *)touchBar makeItemForIdentifier:(NSTouchBarItemIdentifier)identifier  API_AVAILABLE(macos(10.12.2)) {
+  if (identifier == touchBarCopyUsernameIdentifier) {
+    NSCustomTouchBarItem *item = [[NSCustomTouchBarItem alloc] initWithIdentifier:touchBarCopyUsernameIdentifier];
+    NSButton *button = [NSButton buttonWithTitle:@"Copy Username" target:self action:@selector(copyUsername:)];
+    item.view = button;
+    return item;
+  } else if (identifier == touchBarCopyPasswordIdentifier) {
+    NSCustomTouchBarItem *item = [[NSCustomTouchBarItem alloc] initWithIdentifier:touchBarCopyPasswordIdentifier];
+    NSButton *button = [NSButton buttonWithTitle:@"Copy Password" target:self action:@selector(copyPassword:)];
+    item.view = button;
+    return item;
+  } else if (identifier == touchBarPerfromAutotypeIdentifier) {
+    NSCustomTouchBarItem *item = [[NSCustomTouchBarItem alloc] initWithIdentifier:touchBarPerfromAutotypeIdentifier];
+    NSButton *button = [NSButton buttonWithTitle:@"Perform Autotype" target:self action:@selector(performAutotypeForEntry:)];
+    item.view = button;
+    return item;
+  } else if (identifier == touchBarLockIdentifier) {
+    NSCustomTouchBarItem *item = [[NSCustomTouchBarItem alloc] initWithIdentifier:touchBarLockIdentifier];
+    NSImage *image = [NSImage imageNamed:NSImageNameLockUnlockedTemplate];
+    NSButton *button = [NSButton buttonWithImage:image target:self action:@selector(lock:)];
+    // TODO: update color if the appearence changes
+    if (@available(macOS 10.14, *)) {
+      [button setBezelColor:NSColor.controlAccentColor];
+    } else {
+      [button setBezelColor:NSColor.systemBlueColor];
+    }
+    item.view = button;
+    return item;
+  } else {
+    return nil;
+  }
 }
 
 @end

@@ -31,7 +31,13 @@
 @class MPOutlineViewController;
 @class MPToolbarDelegate;
 
-@interface MPDocumentWindowController : NSWindowController
+@interface MPDocumentWindowController : NSWindowController <NSTouchBarDelegate> {
+  @private NSTouchBarCustomizationIdentifier touchBarIdentifier;
+  @private NSTouchBarItemIdentifier touchBarCopyUsernameIdentifier;
+  @private NSTouchBarItemIdentifier touchBarCopyPasswordIdentifier;
+  @private NSTouchBarItemIdentifier touchBarPerfromAutotypeIdentifier;
+  @private NSTouchBarItemIdentifier touchBarLockIdentifier;
+}
 
 @property (readonly, strong) MPPasswordInputController *passwordInputController;
 @property (readonly, strong) MPEntryViewController *entryViewController;
