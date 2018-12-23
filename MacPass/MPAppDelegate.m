@@ -44,6 +44,7 @@
 #import "MPEntryContextMenuDelegate.h"
 
 #import "NSApplication+MPAdditions.h"
+#import "NSTextView+MPTouchBarExtension.h"
 
 #import "KeePassKit/KeePassKit.h"
 

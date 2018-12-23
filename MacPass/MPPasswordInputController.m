@@ -77,6 +77,11 @@
   [self.togglePasswordButton bind:NSEnabledBinding toObject:self withKeyPath:NSStringFromSelector(@selector(enablePassword)) options:nil];
   [self.passwordTextField bind:NSEnabledBinding toObject:self withKeyPath:NSStringFromSelector(@selector(enablePassword)) options:nil];
   [self _reset];
+  
+  touchBarIdentifier = @"com.hicknhacksoftware.MacPass.TouchBar";
+  touchBarChooseKeyfileIdentifier = @"com.hicknhacksoftware.MacPass.TouchBar.chooseKeyfile";
+  touchBarShowPasswordIdentifier = @"com.hicknhacksoftware.MacPass.TouchBar.showPassword";
+  touchBarUnlockIdentifier = @"com.hicknhacksoftware.MacPass.TouchBar.unlock";
 }
 
 - (NSResponder *)reconmendedFirstResponder {
@@ -175,6 +180,50 @@
   self.messageImageView.hidden = NO;
   self.messageImageView.image = [NSImage imageNamed:NSImageNameCaution];
   self.messageInfoTextField.hidden = NO;
+}
+
+
+- (NSTouchBar *)makeTouchBar {
+  NSTouchBar *touchBar = [[NSTouchBar alloc] init];
+  touchBar.delegate = self;
+  touchBar.defaultItemIdentifiers = @[touchBarShowPasswordIdentifier, touchBarChooseKeyfileIdentifier, NSTouchBarItemIdentifierFlexibleSpace,touchBarUnlockIdentifier];
+  return touchBar;
+}
+
+- (NSTouchBarItem *)touchBar:(NSTouchBar *)touchBar makeItemForIdentifier:(NSTouchBarItemIdentifier)identifier  API_AVAILABLE(macos(10.12.2)) {
+  if (identifier == touchBarChooseKeyfileIdentifier) {
+    NSCustomTouchBarItem *item = [[NSCustomTouchBarItem alloc] initWithIdentifier:touchBarChooseKeyfileIdentifier];
+    NSImage *image = [NSImage imageNamed:NSImageNameTouchBarFolderTemplate];
+    NSButton *button = [NSButton buttonWithTitle:@"Choose Keyfile" image:image target:self.keyPathControl action:@selector(showOpenPanel:)];
+    item.view = button;
+    return item;
+  } else if (identifier == touchBarShowPasswordIdentifier) {
+    NSCustomTouchBarItem *item = [[NSCustomTouchBarItem alloc] initWithIdentifier:touchBarShowPasswordIdentifier];
+    NSImage *image = [NSImage imageNamed:NSImageNameTouchBarQuickLookTemplate];
+    NSButton *button = [NSButton buttonWithTitle:@"Show Password" image:image target:self action:@selector(toggleShowPassword)];
+    // TODO: Set active when toggled with
+    // [button highlight:true];
+    item.view = button;
+    return item;
+  } else if (identifier == touchBarUnlockIdentifier) {
+    NSCustomTouchBarItem *item = [[NSCustomTouchBarItem alloc] initWithIdentifier:touchBarUnlockIdentifier];
+    NSImage *image = [NSImage imageNamed:NSImageNameLockUnlockedTemplate];
+    NSButton *button = [NSButton buttonWithImage:image target:self action:@selector(_submit:)];
+    // TODO: update color if the appearence changes
+    if (@available(macOS 10.14, *)) {
+      [button setBezelColor:NSColor.controlAccentColor];
+    } else {
+      [button setBezelColor:NSColor.systemBlueColor];
+    }
+    item.view = button;
+    return item;
+  } else {
+    return nil;
+  }
+}
+
+- (void)toggleShowPassword {
+  self.showPassword = !self.showPassword;
 }
 
 @end
