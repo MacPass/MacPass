@@ -685,12 +685,6 @@ typedef void (^MPPasswordChangedBlock)(BOOL didChangePassword);
     NSCustomTouchBarItem *item = [[NSCustomTouchBarItem alloc] initWithIdentifier:touchBarLockIdentifier];
     NSImage *image = [NSImage imageNamed:NSImageNameLockUnlockedTemplate];
     NSButton *button = [NSButton buttonWithImage:image target:self action:@selector(lock:)];
-    // TODO: update color if the appearence changes
-    if (@available(macOS 10.14, *)) {
-      [button setBezelColor:NSColor.controlAccentColor];
-    } else {
-      [button setBezelColor:NSColor.systemBlueColor];
-    }
     item.view = button;
     return item;
   } else {

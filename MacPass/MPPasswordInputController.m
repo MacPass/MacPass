@@ -208,12 +208,6 @@ static NSTouchBarItemIdentifier touchBarUnlockIdentifier = @"com.hicknhacksoftwa
     NSCustomTouchBarItem *item = [[NSCustomTouchBarItem alloc] initWithIdentifier:touchBarUnlockIdentifier];
     NSImage *image = [NSImage imageNamed:NSImageNameLockUnlockedTemplate];
     NSButton *button = [NSButton buttonWithImage:image target:self action:@selector(_submit:)];
-    // TODO: update color if the appearence changes
-    if (@available(macOS 10.14, *)) {
-      [button setBezelColor:NSColor.controlAccentColor];
-    } else {
-      [button setBezelColor:NSColor.systemBlueColor];
-    }
     item.view = button;
     return item;
   } else {
