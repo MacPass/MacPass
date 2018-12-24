@@ -31,6 +31,10 @@
 
 #import "NSError+Messages.h"
 
+static NSTouchBarItemIdentifier touchBarChooseKeyfileIdentifier = @"com.hicknhacksoftware.MacPass.TouchBar.chooseKeyfile";
+static NSTouchBarItemIdentifier touchBarShowPasswordIdentifier = @"com.hicknhacksoftware.MacPass.TouchBar.showPassword";
+static NSTouchBarItemIdentifier touchBarUnlockIdentifier = @"com.hicknhacksoftware.MacPass.TouchBar.unlock";
+
 @interface MPPasswordInputController ()
 
 @property (weak) IBOutlet HNHUISecureTextField *passwordTextField;
@@ -77,11 +81,6 @@
   [self.togglePasswordButton bind:NSEnabledBinding toObject:self withKeyPath:NSStringFromSelector(@selector(enablePassword)) options:nil];
   [self.passwordTextField bind:NSEnabledBinding toObject:self withKeyPath:NSStringFromSelector(@selector(enablePassword)) options:nil];
   [self _reset];
-  
-  touchBarIdentifier = @"com.hicknhacksoftware.MacPass.TouchBar";
-  touchBarChooseKeyfileIdentifier = @"com.hicknhacksoftware.MacPass.TouchBar.chooseKeyfile";
-  touchBarShowPasswordIdentifier = @"com.hicknhacksoftware.MacPass.TouchBar.showPassword";
-  touchBarUnlockIdentifier = @"com.hicknhacksoftware.MacPass.TouchBar.unlock";
 }
 
 - (NSResponder *)reconmendedFirstResponder {

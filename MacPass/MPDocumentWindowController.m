@@ -45,6 +45,12 @@
 
 #import "KeePassKit/KeePassKit.h"
 
+static NSTouchBarItemIdentifier touchBarSearchIdentifier = @"com.hicknhacksoftware.MacPass.TouchBar.search";
+static NSTouchBarItemIdentifier touchBarCopyUsernameIdentifier = @"com.hicknhacksoftware.MacPass.TouchBar.copyUsername";
+static NSTouchBarItemIdentifier touchBarCopyPasswordIdentifier = @"com.hicknhacksoftware.MacPass.TouchBar.copyPassword";
+static NSTouchBarItemIdentifier touchBarPerfromAutotypeIdentifier = @"com.hicknhacksoftware.MacPass.TouchBar.perfromAutotype";
+static NSTouchBarItemIdentifier touchBarLockIdentifier = @"com.hicknhacksoftware.MacPass.TouchBar.lock";
+
 typedef NS_ENUM(NSUInteger, MPAlertContext) {
   MPAlertLossySaveWarning,
 };
@@ -156,12 +162,6 @@ typedef void (^MPPasswordChangedBlock)(BOOL didChangePassword);
    tbc.layoutAttribute = NSLayoutAttributeRight;
    [self.window addTitlebarAccessoryViewController:tbc];
    */
-  
-  touchBarIdentifier = @"com.hicknhacksoftware.MacPass.TouchBar";
-  touchBarCopyUsernameIdentifier = @"com.hicknhacksoftware.MacPass.TouchBar.copyUsername";
-  touchBarCopyPasswordIdentifier = @"com.hicknhacksoftware.MacPass.TouchBar.copyPassword";
-  touchBarPerfromAutotypeIdentifier = @"com.hicknhacksoftware.MacPass.TouchBar.perfromAutotype";
-  touchBarLockIdentifier = @"com.hicknhacksoftware.MacPass.TouchBar.lock";
 }
 
 - (NSSearchField *)searchField {
