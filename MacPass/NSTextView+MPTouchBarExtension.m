@@ -11,9 +11,7 @@
 @implementation NSTextView (TouchBarExtension)
 
 - (NSTouchBar *) makeTouchBar {
-  NSWindow *window = [self window];
-  NSTouchBar *touchBar = [window makeTouchBar];
-  return touchBar;
+  return [self.window makeTouchBar];
 }
 
 @end
