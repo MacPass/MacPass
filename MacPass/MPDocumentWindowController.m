@@ -661,12 +661,18 @@ typedef void (^MPPasswordChangedBlock)(BOOL didChangePassword);
 - (NSTouchBar *)makeTouchBar {
   NSTouchBar *touchBar = [[NSTouchBar alloc] init];
   touchBar.delegate = self;
-  touchBar.defaultItemIdentifiers = @[touchBarCopyUsernameIdentifier,touchBarCopyPasswordIdentifier,  touchBarPerfromAutotypeIdentifier, NSTouchBarItemIdentifierFlexibleSpace, touchBarLockIdentifier];
+  touchBar.defaultItemIdentifiers = @[touchBarSearchIdentifier,touchBarCopyUsernameIdentifier,touchBarCopyPasswordIdentifier,  touchBarPerfromAutotypeIdentifier, NSTouchBarItemIdentifierFlexibleSpace, touchBarLockIdentifier];
   return touchBar;
 }
 
 - (NSTouchBarItem *)touchBar:(NSTouchBar *)touchBar makeItemForIdentifier:(NSTouchBarItemIdentifier)identifier  API_AVAILABLE(macos(10.12.2)) {
-  if (identifier == touchBarCopyUsernameIdentifier) {
+  if (identifier == touchBarSearchIdentifier) {
+      NSCustomTouchBarItem *item = [[NSCustomTouchBarItem alloc] initWithIdentifier:touchBarSearchIdentifier];
+      NSImage *image = [NSImage imageNamed:NSImageNameTouchBarSearchTemplate];
+      NSButton *button = [NSButton buttonWithImage:image target:self action:@selector(focusSearchField)];
+      item.view = button;
+      return item;
+  } else if (identifier == touchBarCopyUsernameIdentifier) {
     NSCustomTouchBarItem *item = [[NSCustomTouchBarItem alloc] initWithIdentifier:touchBarCopyUsernameIdentifier];
     NSButton *button = [NSButton buttonWithTitle:@"Copy Username" target:self action:@selector(copyUsername:)];
     item.view = button;
@@ -690,6 +696,10 @@ typedef void (^MPPasswordChangedBlock)(BOOL didChangePassword);
   } else {
     return nil;
   }
+}
+
+- (void)focusSearchField {
+  [self.window makeFirstResponder:[self searchField]];
 }
 
 @end
