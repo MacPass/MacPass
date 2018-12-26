@@ -55,8 +55,8 @@
 - (NSView *)tableView:(NSTableView *)tableView viewForTableColumn:(NSTableColumn *)tableColumn row:(NSInteger)row {
   NSTableCellView *view = [tableView makeViewWithIdentifier:tableColumn.identifier owner:self];
   MPAutotypeContext *context = self.candidates[row];
-  NSMutableAttributedString *string = [[NSMutableAttributedString alloc] initWithString:[NSString stringWithFormat:@"%@\n%@", context.entry.title, context.maskedEvaluatedCommand]];
-  [string setAttributes:@{NSForegroundColorAttributeName: NSColor.disabledControlTextColor} range:NSMakeRange(context.entry.title.length + 1, context.maskedEvaluatedCommand.length)];
+  NSMutableAttributedString *string = [[NSMutableAttributedString alloc] initWithString:[NSString stringWithFormat:@"%@\n%@", context.entry.title, context.command]];
+  [string setAttributes:@{NSForegroundColorAttributeName: NSColor.disabledControlTextColor} range:NSMakeRange(context.entry.title.length + 1, context.command.length)];
   view.textField.attributedStringValue = string;
   view.imageView.image = context.entry.iconImage;
   return view;
@@ -74,7 +74,7 @@
 - (void)selectAutotypeContext:(id)sender {
   NSInteger selectedRow = self.contextTableView.selectedRow;
   if(selectedRow >= 0 && selectedRow < self.candidates.count) {
-    [[MPAutotypeDaemon defaultDaemon] selectAutotypeCandiate:self.candidates[selectedRow]];
+    [MPAutotypeDaemon.defaultDaemon selectAutotypeCandiate:self.candidates[selectedRow]];
   }
   else {
     [self cancelSelection:sender]; // cancel since the selection was invalid!
