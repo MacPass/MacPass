@@ -1,11 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="14313.18" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" customObjectInstantitationMethod="direct">
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" customObjectInstantitationMethod="direct">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="14313.18"/>
+        <deployment identifier="macosx"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="14460.31"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
-        <customObject id="-2" userLabel="File's Owner" customClass="MPPickcharViewController">
+        <customObject id="-2" userLabel="File's Owner" customClass="MPPickcharsViewController">
             <connections>
                 <outlet property="characterTableView" destination="KJq-FZ-rAE" id="H5Y-kG-Mvm"/>
                 <outlet property="messageTextField" destination="wAr-f2-ZUQ" id="kaZ-v7-6UW"/>
@@ -23,7 +24,7 @@
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
             <subviews>
                 <textField horizontalHuggingPriority="249" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="KQ1-tZ-qja" customClass="HNHUISecureTextField">
-                    <rect key="frame" x="20" y="74" width="276" height="24"/>
+                    <rect key="frame" x="20" y="74" width="278" height="24"/>
                     <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" enabled="NO" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" drawsBackground="YES" id="Wi0-xp-KgI">
                         <font key="font" size="13" name="Menlo-Regular"/>
                         <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
@@ -31,7 +32,7 @@
                     </textFieldCell>
                 </textField>
                 <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="hKI-WP-N93">
-                    <rect key="frame" x="361" y="73" width="29" height="25"/>
+                    <rect key="frame" x="361.5" y="74" width="29" height="23"/>
                     <buttonCell key="cell" type="roundTextured" bezelStyle="texturedRounded" image="NSQuickLookTemplate" imagePosition="only" alignment="center" lineBreakMode="truncatingTail" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="95g-dp-50Q">
                         <behavior key="behavior" pushIn="YES" changeContents="YES" lightByContents="YES"/>
                         <font key="font" metaFont="system"/>
@@ -41,7 +42,7 @@
                     <rect key="frame" x="20" y="106" width="370" height="64"/>
                     <clipView key="contentView" drawsBackground="NO" id="8aa-cB-mUF">
                         <rect key="frame" x="1" y="0.0" width="368" height="63"/>
-                        <autoresizingMask key="autoresizingMask"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView verticalHuggingPriority="750" allowsExpansionToolTips="YES" columnAutoresizingStyle="lastColumnOnly" selectionHighlightStyle="none" columnReordering="NO" columnResizing="NO" multipleSelection="NO" emptySelection="NO" autosaveColumns="NO" typeSelect="NO" rowHeight="24" rowSizeStyle="systemDefault" headerView="GRO-H1-N4r" viewBased="YES" id="KJq-FZ-rAE">
                                 <rect key="frame" x="0.0" y="0.0" width="368" height="40"/>
@@ -95,11 +96,11 @@
                     <constraints>
                         <constraint firstAttribute="height" constant="64" id="AIX-Tc-QJA"/>
                     </constraints>
-                    <scroller key="horizontalScroller" verticalHuggingPriority="750" horizontal="YES" id="sA9-kc-O5g">
+                    <scroller key="horizontalScroller" wantsLayer="YES" verticalHuggingPriority="750" horizontal="YES" id="sA9-kc-O5g">
                         <rect key="frame" x="1" y="47" width="368" height="16"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </scroller>
-                    <scroller key="verticalScroller" hidden="YES" verticalHuggingPriority="750" horizontal="NO" id="mSX-pm-wrh">
+                    <scroller key="verticalScroller" hidden="YES" wantsLayer="YES" verticalHuggingPriority="750" horizontal="NO" id="mSX-pm-wrh">
                         <rect key="frame" x="-100" y="-100" width="15" height="102"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </scroller>
@@ -119,7 +120,7 @@
                     </connections>
                 </button>
                 <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="Y8X-Bm-qLt">
-                    <rect key="frame" x="304" y="73" width="49" height="25"/>
+                    <rect key="frame" x="305.5" y="74" width="49" height="23"/>
                     <buttonCell key="cell" type="roundTextured" title="Reset" bezelStyle="texturedRounded" alignment="center" lineBreakMode="truncatingTail" state="on" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="Emo-pg-Mfe">
                         <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                         <font key="font" metaFont="system"/>

@@ -18,7 +18,7 @@
 		4C0AF62F195C1F2B009E658D /* MPEntrySearchContext.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C0AF62E195C1F2B009E658D /* MPEntrySearchContext.m */; };
 		4C0B038C18E36DA400B9F9C9 /* MPFixAutotypeWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C0B038A18E36DA400B9F9C9 /* MPFixAutotypeWindowController.m */; };
 		4C0B038D18E36DA400B9F9C9 /* FixAutotypeWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4C0B038B18E36DA400B9F9C9 /* FixAutotypeWindow.xib */; };
-		4C0B5338205C1516003D277E /* PickcharView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4C0B533A205C1516003D277E /* PickcharView.xib */; };
+		4C0B5338205C1516003D277E /* PickcharsView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4C0B533A205C1516003D277E /* PickcharsView.xib */; };
 		4C0B533F205C1561003D277E /* PickfieldView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4C0B5341205C1561003D277E /* PickfieldView.xib */; };
 		4C0C59F118B17F10009C7B76 /* DDHotKeyUtilities.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C0C59EF18B17F10009C7B76 /* DDHotKeyUtilities.m */; };
 		4C0DBEF51BF508DE00F9B287 /* PluginSettings.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4C0DBEF71BF508DE00F9B287 /* PluginSettings.xib */; };
@@ -243,7 +243,7 @@
 		4CD034AA1BFE113B003C002C /* MPPlugin.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CD034A51BFE113B003C002C /* MPPlugin.m */; };
 		4CD034AC1BFE113B003C002C /* MPPluginHost.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CD034A91BFE113B003C002C /* MPPluginHost.m */; };
 		4CD2B9061849424B0051B395 /* MPAutotypeContext.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CD2B9051849424B0051B395 /* MPAutotypeContext.m */; };
-		4CD4EE131FC7284000EA6EB3 /* MPPickcharViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CD4EE111FC7284000EA6EB3 /* MPPickcharViewController.m */; };
+		4CD4EE131FC7284000EA6EB3 /* MPPickcharsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CD4EE111FC7284000EA6EB3 /* MPPickcharsViewController.m */; };
 		4CD5D705177A5F3300100649 /* MPDatabaseSettingsWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CD5D704177A5F3300100649 /* MPDatabaseSettingsWindowController.m */; };
 		4CD60C131C104AD4005BE5F8 /* HNHUi.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 4CC281881C0F675B00B9174D /* HNHUi.framework */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		4CD7223B17A7CB0700F5A1E1 /* MPWorkflowSettingsController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CD7223A17A7CB0700F5A1E1 /* MPWorkflowSettingsController.m */; };
@@ -349,9 +349,9 @@
 		4C0B038918E36DA400B9F9C9 /* MPFixAutotypeWindowController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MPFixAutotypeWindowController.h; sourceTree = "<group>"; };
 		4C0B038A18E36DA400B9F9C9 /* MPFixAutotypeWindowController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MPFixAutotypeWindowController.m; sourceTree = "<group>"; };
 		4C0B038B18E36DA400B9F9C9 /* FixAutotypeWindow.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FixAutotypeWindow.xib; sourceTree = "<group>"; };
-		4C0B5339205C1516003D277E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/PickcharView.xib; sourceTree = "<group>"; };
-		4C0B533C205C151D003D277E /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/PickcharView.strings; sourceTree = "<group>"; };
-		4C0B533E205C1526003D277E /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/PickcharView.strings; sourceTree = "<group>"; };
+		4C0B5339205C1516003D277E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/PickcharsView.xib; sourceTree = "<group>"; };
+		4C0B533C205C151D003D277E /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/PickcharsView.strings; sourceTree = "<group>"; };
+		4C0B533E205C1526003D277E /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/PickcharsView.strings; sourceTree = "<group>"; };
 		4C0B5340205C1561003D277E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/PickfieldView.xib; sourceTree = "<group>"; };
 		4C0B5343205C1563003D277E /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/PickfieldView.strings; sourceTree = "<group>"; };
 		4C0B5345205C1567003D277E /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/PickfieldView.strings; sourceTree = "<group>"; };
@@ -793,8 +793,8 @@
 		4CD034A91BFE113B003C002C /* MPPluginHost.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MPPluginHost.m; path = MacPass/MPPluginHost.m; sourceTree = SOURCE_ROOT; };
 		4CD2B9041849424B0051B395 /* MPAutotypeContext.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MPAutotypeContext.h; sourceTree = "<group>"; };
 		4CD2B9051849424B0051B395 /* MPAutotypeContext.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MPAutotypeContext.m; sourceTree = "<group>"; };
-		4CD4EE101FC7284000EA6EB3 /* MPPickcharViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MPPickcharViewController.h; sourceTree = "<group>"; };
-		4CD4EE111FC7284000EA6EB3 /* MPPickcharViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MPPickcharViewController.m; sourceTree = "<group>"; };
+		4CD4EE101FC7284000EA6EB3 /* MPPickcharsViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MPPickcharsViewController.h; sourceTree = "<group>"; };
+		4CD4EE111FC7284000EA6EB3 /* MPPickcharsViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MPPickcharsViewController.m; sourceTree = "<group>"; };
 		4CD5D703177A5F3300100649 /* MPDatabaseSettingsWindowController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MPDatabaseSettingsWindowController.h; sourceTree = "<group>"; };
 		4CD5D704177A5F3300100649 /* MPDatabaseSettingsWindowController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MPDatabaseSettingsWindowController.m; sourceTree = "<group>"; };
 		4CD7223917A7CB0700F5A1E1 /* MPWorkflowSettingsController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MPWorkflowSettingsController.h; sourceTree = "<group>"; };
@@ -929,7 +929,7 @@
 		6A74B0722076F4B50049BC29 /* sv-SE */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "sv-SE"; path = "sv-SE.lproj/ReferenceBuilderView.strings"; sourceTree = "<group>"; };
 		6A74B0732076F4B50049BC29 /* sv-SE */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "sv-SE"; path = "sv-SE.lproj/AutotypeBuilderView.strings"; sourceTree = "<group>"; };
 		6A74B0742076F4B50049BC29 /* sv-SE */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "sv-SE"; path = "sv-SE.lproj/AutotypeCandidateSelectionView.strings"; sourceTree = "<group>"; };
-		6A74B0752076F4B50049BC29 /* sv-SE */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "sv-SE"; path = "sv-SE.lproj/PickcharView.strings"; sourceTree = "<group>"; };
+		6A74B0752076F4B50049BC29 /* sv-SE */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "sv-SE"; path = "sv-SE.lproj/PickcharsView.strings"; sourceTree = "<group>"; };
 		6A74B0762076F4B50049BC29 /* sv-SE */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "sv-SE"; path = "sv-SE.lproj/PickfieldView.strings"; sourceTree = "<group>"; };
 		6A74B0772076F4B50049BC29 /* sv-SE */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "sv-SE"; path = "sv-SE.lproj/WelcomeView.strings"; sourceTree = "<group>"; };
 		6A74B0782076F4B50049BC29 /* sv-SE */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "sv-SE"; path = "sv-SE.lproj/MainMenu.strings"; sourceTree = "<group>"; };
@@ -1584,9 +1584,9 @@
 				4C6DCC5E1FA24C2100C8AD3F /* MPAutotypeCandidateSelectionViewController.h */,
 				4C6DCC5F1FA24C2100C8AD3F /* MPAutotypeCandidateSelectionViewController.m */,
 				FA9FD3291FB5E8F4003CEDD6 /* AutotypeCandidateSelectionView.xib */,
-				4CD4EE101FC7284000EA6EB3 /* MPPickcharViewController.h */,
-				4CD4EE111FC7284000EA6EB3 /* MPPickcharViewController.m */,
-				4C0B533A205C1516003D277E /* PickcharView.xib */,
+				4CD4EE101FC7284000EA6EB3 /* MPPickcharsViewController.h */,
+				4CD4EE111FC7284000EA6EB3 /* MPPickcharsViewController.m */,
+				4C0B533A205C1516003D277E /* PickcharsView.xib */,
 				4C8204671FCDC07800EB24A4 /* MPPickfieldViewController.h */,
 				4C8204681FCDC07800EB24A4 /* MPPickfieldViewController.m */,
 				4C0B5341205C1561003D277E /* PickfieldView.xib */,
@@ -1875,7 +1875,7 @@
 				4C431BCF16E2BAB000700A81 /* OverlayWindow.xib in Resources */,
 				4C3826B61AD04D8E007D7D67 /* 41_VectorTemplate.pdf in Resources */,
 				4C17F105184E630200E85625 /* 14_BatteryTemplate.pdf in Resources */,
-				4C0B5338205C1516003D277E /* PickcharView.xib in Resources */,
+				4C0B5338205C1516003D277E /* PickcharsView.xib in Resources */,
 				4C76156D1764C0E20015A1A6 /* InspectorView.xib in Resources */,
 				4C888C9016EB6C91003D34A1 /* Localizable.strings in Resources */,
 				4C3826B01AD04D8E007D7D67 /* 35_BrowserWindowTemplate.pdf in Resources */,
@@ -2076,7 +2076,7 @@
 				4CD2B9061849424B0051B395 /* MPAutotypeContext.m in Sources */,
 				4CFB18E418A17FA20097A34B /* MPUpdateSettingsController.m in Sources */,
 				4C7B63771C0CB51F00D7038C /* TTTStringTransformers.m in Sources */,
-				4CD4EE131FC7284000EA6EB3 /* MPPickcharViewController.m in Sources */,
+				4CD4EE131FC7284000EA6EB3 /* MPPickcharsViewController.m in Sources */,
 				4CCEDE2A179F203B008402BE /* MPOutlineView.m in Sources */,
 				4CB33F861EAF54A000C9341E /* KPKNode+MPIsHistory.m in Sources */,
 				4CCEDE2E179F213B008402BE /* MPNotifications.m in Sources */,
@@ -2119,7 +2119,7 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXVariantGroup section */
-		4C0B533A205C1516003D277E /* PickcharView.xib */ = {
+		4C0B533A205C1516003D277E /* PickcharsView.xib */ = {
 			isa = PBXVariantGroup;
 			children = (
 				4C0B5339205C1516003D277E /* Base */,
@@ -2127,7 +2127,7 @@
 				4C0B533E205C1526003D277E /* de */,
 				6A74B0752076F4B50049BC29 /* sv-SE */,
 			);
-			name = PickcharView.xib;
+			name = PickcharsView.xib;
 			sourceTree = "<group>";
 		};
 		4C0B5341205C1561003D277E /* PickfieldView.xib */ = {

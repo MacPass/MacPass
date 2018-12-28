@@ -24,7 +24,7 @@
 
 #import "MPDocument.h"
 #import "MPSettingsHelper.h"
-#import "MPPickcharViewController.h"
+#import "MPPickcharsViewController.h"
 #import "MPPickfieldViewController.h"
 #import "MPPickcharsParser.h"
 
@@ -105,7 +105,7 @@
     return @""; // error while retrieving source value
   }
   MPPickcharsParser *parser = [[MPPickcharsParser alloc] initWithOptions:options];
-  MPPickcharViewController *pickCharViewController = [[MPPickcharViewController alloc] init];
+  MPPickcharsViewController *pickCharViewController = [[MPPickcharsViewController alloc] init];
   
   pickCharViewController.sourceValue = value;
   pickCharViewController.minimumCharacterCount = parser.pickCount;

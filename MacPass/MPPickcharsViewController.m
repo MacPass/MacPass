@@ -20,12 +20,12 @@
 //  along with this program.  If not, see <http://www.gnu.org/licenses/>.
 //
 
-#import "MPPickcharViewController.h"
+#import "MPPickcharsViewController.h"
 #import "NSString+MPComposedCharacterAdditions.h"
 
 #import <HNHUi/HNHUi.h>
 
-@interface MPPickcharViewController () <NSTableViewDelegate, NSTableViewDataSource>
+@interface MPPickcharsViewController () <NSTableViewDelegate, NSTableViewDataSource>
 
 @property (weak) IBOutlet NSTableView *characterTableView;
 @property (weak) IBOutlet NSTextField *pickedValueTextField;
@@ -38,20 +38,21 @@
 
 @end
 
-@implementation MPPickcharViewController
+@implementation MPPickcharsViewController
 
 + (NSSet<NSString *> *)keyPathsForValuesAffectingAvailableCountToPick {
   return [NSSet setWithArray:@[NSStringFromSelector(@selector(minimumCharacterCount)), NSStringFromSelector(@selector(pickedValue))]];
 }
 
 - (NSString *)nibName {
-  return @"PickcharView";
+  return @"PickcharsView";
 }
 
 - (instancetype)initWithCoder:(NSCoder *)coder {
   self = [super initWithCoder:coder];
   if(self) {
     self.hidePickedCharacters = NO;
+    self.minimumCharacterCount = 0;
   }
   return self;
 }
@@ -60,6 +61,7 @@
   self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
   if(self) {
     self.hidePickedCharacters = NO;
+    self.minimumCharacterCount = 0;
   }
   return self;
 }
@@ -71,7 +73,7 @@
   }
   for(NSUInteger count = 0; count < self.sourceValue.composedCharacterLength; count++) {
     
-    NSString *columnTitle = [NSString stringWithFormat:@"%ld", count];
+    NSString *columnTitle = [NSString stringWithFormat:@"%ld", count+1];
     NSTableColumn *column = [[NSTableColumn alloc] initWithIdentifier:columnTitle];
     column.maxWidth = 32.0;
     column.minWidth = column.maxWidth;
@@ -110,6 +112,9 @@
     self.pickedStatusTextField.stringValue = [NSString stringWithFormat:NSLocalizedString(@"%ld_CHARACTERS_TO_PICK_REMAINING", @"Count of characters remaining in pickchars dialog"), self.availableCountToPick];
   }
   self.submitButton.enabled = (self.availableCountToPick == 0 || self.minimumCharacterCount == 0);
+  if(self.availableCountToPick == 0 && self.minimumCharacterCount > 0) {
+    [self submitValue:self];
+  }
 }
 
 - (NSInteger)numberOfRowsInTableView:(NSTableView *)tableView {
