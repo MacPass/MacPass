@@ -111,21 +111,35 @@
                                         </textFieldCell>
                                         <tableColumnResizingMask key="resizingMask" resizeWithTable="YES" userResizable="YES"/>
                                         <prototypeCellViews>
-                                            <tableCellView id="RMm-PO-UNp">
+                                            <tableCellView id="RMm-PO-UNp" customClass="MPPluginStatusTableCellView">
                                                 <rect key="frame" x="240" y="1" width="357" height="17"/>
                                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                 <subviews>
-                                                    <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="RBa-0B-xVt">
-                                                        <rect key="frame" x="0.0" y="0.0" width="357" height="17"/>
-                                                        <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
+                                                    <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="RBa-0B-xVt">
+                                                        <rect key="frame" x="0.0" y="0.0" width="96" height="17"/>
                                                         <textFieldCell key="cell" lineBreakMode="truncatingTail" sendsActionOnEndEditing="YES" title="Table View Cell" id="ZIf-CU-gh7">
                                                             <font key="font" metaFont="system"/>
                                                             <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
                                                             <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                                         </textFieldCell>
                                                     </textField>
+                                                    <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="tVV-rz-Aff">
+                                                        <rect key="frame" x="289" y="0.0" width="48" height="17"/>
+                                                        <buttonCell key="cell" type="roundRect" title="Action" bezelStyle="roundedRect" alignment="center" controlSize="small" state="on" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="6jQ-Uk-uqD">
+                                                            <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                                            <font key="font" metaFont="smallSystem"/>
+                                                        </buttonCell>
+                                                    </button>
                                                 </subviews>
+                                                <constraints>
+                                                    <constraint firstItem="tVV-rz-Aff" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="RBa-0B-xVt" secondAttribute="trailing" constant="8" symbolic="YES" id="KPq-aq-5m6"/>
+                                                    <constraint firstAttribute="trailing" secondItem="tVV-rz-Aff" secondAttribute="trailing" constant="20" symbolic="YES" id="MRd-Ov-adP"/>
+                                                    <constraint firstItem="RBa-0B-xVt" firstAttribute="centerY" secondItem="RMm-PO-UNp" secondAttribute="centerY" id="V1D-iD-NGv"/>
+                                                    <constraint firstItem="RBa-0B-xVt" firstAttribute="leading" secondItem="RMm-PO-UNp" secondAttribute="leading" constant="2" id="kE3-bd-GY0"/>
+                                                    <constraint firstItem="tVV-rz-Aff" firstAttribute="centerY" secondItem="RMm-PO-UNp" secondAttribute="centerY" id="uxx-BA-DzR"/>
+                                                </constraints>
                                                 <connections>
+                                                    <outlet property="actionButton" destination="tVV-rz-Aff" id="ikh-RO-wMJ"/>
                                                     <outlet property="textField" destination="RBa-0B-xVt" id="d6i-pV-UrO"/>
                                                 </connections>
                                             </tableCellView>
@@ -142,7 +156,7 @@
                     <constraints>
                         <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="400" id="gYM-eK-y5v"/>
                     </constraints>
-                    <scroller key="horizontalScroller" wantsLayer="YES" verticalHuggingPriority="750" horizontal="YES" id="ajb-Vb-WhY">
+                    <scroller key="horizontalScroller" wantsLayer="YES" verticalHuggingPriority="750" doubleValue="0.33333333333333331" horizontal="YES" id="ajb-Vb-WhY">
                         <rect key="frame" x="1" y="402" width="596" height="16"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </scroller>
@@ -211,7 +225,7 @@
                 <constraint firstItem="bGv-Zc-Vrk" firstAttribute="leading" secondItem="Hz6-mo-xeY" secondAttribute="leading" constant="20" id="tk3-kF-k22"/>
                 <constraint firstItem="d2Q-7O-ilP" firstAttribute="leading" secondItem="fjQ-ni-Ayx" secondAttribute="trailing" constant="8" symbolic="YES" id="wHQ-Lk-2fv"/>
             </constraints>
-            <point key="canvasLocation" x="-36" y="116"/>
+            <point key="canvasLocation" x="242" y="57"/>
         </customView>
     </objects>
 </document>
