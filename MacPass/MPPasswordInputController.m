@@ -32,9 +32,10 @@
 
 #import "NSError+Messages.h"
 
-static NSTouchBarItemIdentifier touchBarChooseKeyfileIdentifier = @"com.hicknhacksoftware.MacPass.TouchBar.chooseKeyfile";
-static NSTouchBarItemIdentifier touchBarShowPasswordIdentifier = @"com.hicknhacksoftware.MacPass.TouchBar.showPassword";
-static NSTouchBarItemIdentifier touchBarUnlockIdentifier = @"com.hicknhacksoftware.MacPass.TouchBar.unlock";
+static NSTouchBarCustomizationIdentifier touchBarIdentifier = @"com.hicknhacksoftware.MacPass.TouchBar.passwordInput";
+static NSTouchBarItemIdentifier touchBarChooseKeyfileIdentifier = @"com.hicknhacksoftware.MacPass.TouchBar.passwordInput.chooseKeyfile";
+static NSTouchBarItemIdentifier touchBarShowPasswordIdentifier = @"com.hicknhacksoftware.MacPass.TouchBar.passwordInput.showPassword";
+static NSTouchBarItemIdentifier touchBarUnlockIdentifier = @"com.hicknhacksoftware.MacPass.TouchBar.passwordInput.unlock";
 
 @interface MPPasswordInputController ()
 
@@ -186,7 +187,10 @@ static NSTouchBarItemIdentifier touchBarUnlockIdentifier = @"com.hicknhacksoftwa
 - (NSTouchBar *)makeTouchBar {
   NSTouchBar *touchBar = [[NSTouchBar alloc] init];
   touchBar.delegate = self;
-  touchBar.defaultItemIdentifiers = @[touchBarShowPasswordIdentifier, touchBarChooseKeyfileIdentifier, NSTouchBarItemIdentifierFlexibleSpace,touchBarUnlockIdentifier];
+  touchBar.customizationIdentifier = touchBarIdentifier;
+  NSArray<NSTouchBarItemIdentifier> *defaultItemIdentifiers = @[touchBarShowPasswordIdentifier, touchBarChooseKeyfileIdentifier, NSTouchBarItemIdentifierFlexibleSpace,touchBarUnlockIdentifier];
+  touchBar.defaultItemIdentifiers = defaultItemIdentifiers;
+  touchBar.customizationAllowedItemIdentifiers = defaultItemIdentifiers;
   return touchBar;
 }
 

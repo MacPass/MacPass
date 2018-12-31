@@ -46,11 +46,12 @@
 
 #import "KeePassKit/KeePassKit.h"
 
-static NSTouchBarItemIdentifier touchBarSearchIdentifier = @"com.hicknhacksoftware.MacPass.TouchBar.search";
-static NSTouchBarItemIdentifier touchBarCopyUsernameIdentifier = @"com.hicknhacksoftware.MacPass.TouchBar.copyUsername";
-static NSTouchBarItemIdentifier touchBarCopyPasswordIdentifier = @"com.hicknhacksoftware.MacPass.TouchBar.copyPassword";
-static NSTouchBarItemIdentifier touchBarPerfromAutotypeIdentifier = @"com.hicknhacksoftware.MacPass.TouchBar.perfromAutotype";
-static NSTouchBarItemIdentifier touchBarLockIdentifier = @"com.hicknhacksoftware.MacPass.TouchBar.lock";
+static NSTouchBarCustomizationIdentifier touchBarIdentifier = @"com.hicknhacksoftware.MacPass.TouchBar.documentWindow";
+static NSTouchBarItemIdentifier touchBarSearchIdentifier = @"com.hicknhacksoftware.MacPass.TouchBar.documentWindow.search";
+static NSTouchBarItemIdentifier touchBarCopyUsernameIdentifier = @"com.hicknhacksoftware.MacPass.TouchBar.documentWindow.copyUsername";
+static NSTouchBarItemIdentifier touchBarCopyPasswordIdentifier = @"com.hicknhacksoftware.MacPass.TouchBar.documentWindow.copyPassword";
+static NSTouchBarItemIdentifier touchBarPerfromAutotypeIdentifier = @"com.hicknhacksoftware.MacPass.TouchBar.documentWindow.perfromAutotype";
+static NSTouchBarItemIdentifier touchBarLockIdentifier = @"com.hicknhacksoftware.MacPass.TouchBar.documentWindow.lock";
 
 typedef NS_ENUM(NSUInteger, MPAlertContext) {
   MPAlertLossySaveWarning,
@@ -662,7 +663,10 @@ typedef void (^MPPasswordChangedBlock)(BOOL didChangePassword);
 - (NSTouchBar *)makeTouchBar {
   NSTouchBar *touchBar = [[NSTouchBar alloc] init];
   touchBar.delegate = self;
-  touchBar.defaultItemIdentifiers = @[touchBarSearchIdentifier,touchBarCopyUsernameIdentifier,touchBarCopyPasswordIdentifier,  touchBarPerfromAutotypeIdentifier, NSTouchBarItemIdentifierFlexibleSpace, touchBarLockIdentifier];
+  touchBar.customizationIdentifier = touchBarIdentifier;
+  NSArray<NSTouchBarItemIdentifier> *defaultItemIdentifiers = @[touchBarSearchIdentifier,touchBarCopyUsernameIdentifier,touchBarCopyPasswordIdentifier,  touchBarPerfromAutotypeIdentifier, NSTouchBarItemIdentifierFlexibleSpace, touchBarLockIdentifier];
+  touchBar.defaultItemIdentifiers = defaultItemIdentifiers;
+  touchBar.customizationAllowedItemIdentifiers = defaultItemIdentifiers;
   return touchBar;
 }
 
