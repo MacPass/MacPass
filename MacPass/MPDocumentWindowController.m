@@ -672,15 +672,15 @@ typedef void (^MPPasswordChangedBlock)(BOOL didChangePassword);
 
 - (NSTouchBarItem *)touchBar:(NSTouchBar *)touchBar makeItemForIdentifier:(NSTouchBarItemIdentifier)identifier  API_AVAILABLE(macos(10.12.2)) {
   if (identifier == touchBarSearchIdentifier) {
-    return [MPTouchBarButtonCreator touchBarButtonWithImage:[NSImage imageNamed:NSImageNameTouchBarSearchTemplate] identifier:touchBarSearchIdentifier target:self selector:@selector(focusSearchField)];
+    return [MPTouchBarButtonCreator touchBarButtonWithImage:[NSImage imageNamed:NSImageNameTouchBarSearchTemplate] identifier:touchBarSearchIdentifier target:self selector:@selector(focusSearchField) customizationLabel:@"Search"];
   } else if (identifier == touchBarCopyUsernameIdentifier) {
-    return [MPTouchBarButtonCreator touchBarButtonWithTitle:@"Copy Username" identifier:touchBarCopyUsernameIdentifier target:self selector:@selector(copyUsername:)];
+    return [MPTouchBarButtonCreator touchBarButtonWithTitle:@"Copy Username" identifier:touchBarCopyUsernameIdentifier target:self selector:@selector(copyUsername:) customizationLabel:@"Copy Username"];
   } else if (identifier == touchBarCopyPasswordIdentifier) {
-    return [MPTouchBarButtonCreator touchBarButtonWithTitle:@"Copy Password" identifier:touchBarCopyPasswordIdentifier target:self selector:@selector(copyPassword:)];
+    return [MPTouchBarButtonCreator touchBarButtonWithTitle:@"Copy Password" identifier:touchBarCopyPasswordIdentifier target:self selector:@selector(copyPassword:) customizationLabel:@"Copy Password"];
   } else if (identifier == touchBarPerformAutotypeIdentifier) {
-    return [MPTouchBarButtonCreator touchBarButtonWithTitle:@"Perform Autotype" identifier:touchBarPerformAutotypeIdentifier target:self selector:@selector(performAutotypeForEntry:)];
+    return [MPTouchBarButtonCreator touchBarButtonWithTitle:@"Perform Autotype" identifier:touchBarPerformAutotypeIdentifier target:self selector:@selector(performAutotypeForEntry:) customizationLabel:@"Perform Autotype"];
   } else if (identifier == touchBarLockIdentifier) {
-    return [MPTouchBarButtonCreator touchBarButtonWithImage:[NSImage imageNamed:NSImageNameLockUnlockedTemplate] identifier:touchBarLockIdentifier target:self selector:@selector(lock:)];
+    return [MPTouchBarButtonCreator touchBarButtonWithImage:[NSImage imageNamed:NSImageNameLockUnlockedTemplate] identifier:touchBarLockIdentifier target:self selector:@selector(lock:) customizationLabel:@"Lock"];
   } else {
     return nil;
   }

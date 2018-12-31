@@ -196,11 +196,11 @@ static NSTouchBarItemIdentifier touchBarUnlockIdentifier = @"com.hicknhacksoftwa
 
 - (NSTouchBarItem *)touchBar:(NSTouchBar *)touchBar makeItemForIdentifier:(NSTouchBarItemIdentifier)identifier  API_AVAILABLE(macos(10.12.2)) {
   if (identifier == touchBarChooseKeyfileIdentifier) {
-    return [MPTouchBarButtonCreator touchBarButtonWithTitleAndImage:@"Choose Keyfile" identifier:touchBarChooseKeyfileIdentifier image:[NSImage imageNamed:NSImageNameTouchBarFolderTemplate] target:self.keyPathControl selector:@selector(showOpenPanel:)];
+    return [MPTouchBarButtonCreator touchBarButtonWithTitleAndImage:@"Choose Keyfile" identifier:touchBarChooseKeyfileIdentifier image:[NSImage imageNamed:NSImageNameTouchBarFolderTemplate] target:self.keyPathControl selector:@selector(showOpenPanel:) customizationLabel:@"Choose Keyfile"];
   } else if (identifier == touchBarShowPasswordIdentifier) {
-    return [MPTouchBarButtonCreator touchBarButtonWithTitleAndImage:@"Show Password" identifier:touchBarShowPasswordIdentifier image:[NSImage imageNamed:NSImageNameTouchBarQuickLookTemplate] target:self selector:@selector(toggleShowPassword)];
+    return [MPTouchBarButtonCreator touchBarButtonWithTitleAndImage:@"Show Password" identifier:touchBarShowPasswordIdentifier image:[NSImage imageNamed:NSImageNameTouchBarQuickLookTemplate] target:self selector:@selector(toggleShowPassword) customizationLabel:@"Show Password"];
   } else if (identifier == touchBarUnlockIdentifier) {
-    return [MPTouchBarButtonCreator touchBarButtonWithImage:[NSImage imageNamed:NSImageNameLockUnlockedTemplate] identifier:touchBarUnlockIdentifier target:self selector:@selector(_submit:)];
+    return [MPTouchBarButtonCreator touchBarButtonWithImage:[NSImage imageNamed:NSImageNameLockUnlockedTemplate] identifier:touchBarUnlockIdentifier target:self selector:@selector(_submit:) customizationLabel:@"Unlock"];
   } else {
     return nil;
   }
