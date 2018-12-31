@@ -39,6 +39,7 @@
 #import "MPSettingsHelper.h"
 #import "MPToolbarDelegate.h"
 #import "MPTitlebarColorAccessoryViewController.h"
+#import "MPTouchBarButtonCreator.h"
 
 #import "MPPluginHost.h"
 #import "MPPlugin.h"
@@ -667,32 +668,15 @@ typedef void (^MPPasswordChangedBlock)(BOOL didChangePassword);
 
 - (NSTouchBarItem *)touchBar:(NSTouchBar *)touchBar makeItemForIdentifier:(NSTouchBarItemIdentifier)identifier  API_AVAILABLE(macos(10.12.2)) {
   if (identifier == touchBarSearchIdentifier) {
-      NSCustomTouchBarItem *item = [[NSCustomTouchBarItem alloc] initWithIdentifier:touchBarSearchIdentifier];
-      NSImage *image = [NSImage imageNamed:NSImageNameTouchBarSearchTemplate];
-      NSButton *button = [NSButton buttonWithImage:image target:self action:@selector(focusSearchField)];
-      item.view = button;
-      return item;
+    return [MPTouchBarButtonCreator touchBarButtonWithImage:[NSImage imageNamed:NSImageNameTouchBarSearchTemplate] identifier:touchBarSearchIdentifier target:self selector:@selector(focusSearchField)];
   } else if (identifier == touchBarCopyUsernameIdentifier) {
-    NSCustomTouchBarItem *item = [[NSCustomTouchBarItem alloc] initWithIdentifier:touchBarCopyUsernameIdentifier];
-    NSButton *button = [NSButton buttonWithTitle:@"Copy Username" target:self action:@selector(copyUsername:)];
-    item.view = button;
-    return item;
+    return [MPTouchBarButtonCreator touchBarButtonWithTitle:@"Copy Username" identifier:touchBarCopyUsernameIdentifier target:self selector:@selector(copyUsername:)];
   } else if (identifier == touchBarCopyPasswordIdentifier) {
-    NSCustomTouchBarItem *item = [[NSCustomTouchBarItem alloc] initWithIdentifier:touchBarCopyPasswordIdentifier];
-    NSButton *button = [NSButton buttonWithTitle:@"Copy Password" target:self action:@selector(copyPassword:)];
-    item.view = button;
-    return item;
+    return [MPTouchBarButtonCreator touchBarButtonWithTitle:@"Copy Password" identifier:touchBarCopyPasswordIdentifier target:self selector:@selector(copyPassword:)];
   } else if (identifier == touchBarPerfromAutotypeIdentifier) {
-    NSCustomTouchBarItem *item = [[NSCustomTouchBarItem alloc] initWithIdentifier:touchBarPerfromAutotypeIdentifier];
-    NSButton *button = [NSButton buttonWithTitle:@"Perform Autotype" target:self action:@selector(performAutotypeForEntry:)];
-    item.view = button;
-    return item;
+    return [MPTouchBarButtonCreator touchBarButtonWithTitle:@"Perform Autotype" identifier:touchBarPerfromAutotypeIdentifier target:self selector:@selector(performAutotypeForEntry:)];
   } else if (identifier == touchBarLockIdentifier) {
-    NSCustomTouchBarItem *item = [[NSCustomTouchBarItem alloc] initWithIdentifier:touchBarLockIdentifier];
-    NSImage *image = [NSImage imageNamed:NSImageNameLockUnlockedTemplate];
-    NSButton *button = [NSButton buttonWithImage:image target:self action:@selector(lock:)];
-    item.view = button;
-    return item;
+    return [MPTouchBarButtonCreator touchBarButtonWithImage:[NSImage imageNamed:NSImageNameLockUnlockedTemplate] identifier:touchBarLockIdentifier target:self selector:@selector(lock:)];
   } else {
     return nil;
   }

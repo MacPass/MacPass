@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		3C0CDECF21CFEDD200B2A10B /* NSTextView+MPTouchBarExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 3C0CDECE21CFEDD200B2A10B /* NSTextView+MPTouchBarExtension.m */; };
+		3C0CDED821D28BF700B2A10B /* MPTouchBarButtonCreator.m in Sources */ = {isa = PBXBuildFile; fileRef = 3C0CDED721D28BF700B2A10B /* MPTouchBarButtonCreator.m */; };
 		4C00E33817D8FA3500F37192 /* DDHotKeyCenter.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C00E33717D8FA3500F37192 /* DDHotKeyCenter.m */; };
 		4C00E33B17D8FAC100F37192 /* Carbon.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4C00E33A17D8FAC100F37192 /* Carbon.framework */; };
 		4C01C2421764D8980016D5D0 /* MPContextMenuHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C01C2411764D8980016D5D0 /* MPContextMenuHelper.m */; };
@@ -313,6 +314,8 @@
 /* Begin PBXFileReference section */
 		3C0CDECD21CFED9000B2A10B /* NSTextView+MPTouchBarExtension.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSTextView+MPTouchBarExtension.h"; sourceTree = "<group>"; };
 		3C0CDECE21CFEDD200B2A10B /* NSTextView+MPTouchBarExtension.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSTextView+MPTouchBarExtension.m"; sourceTree = "<group>"; };
+		3C0CDED921D28C0E00B2A10B /* MPTouchBarButtonCreator.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MPTouchBarButtonCreator.h; sourceTree = "<group>"; };
+		3C0CDED721D28BF700B2A10B /* MPTouchBarButtonCreator.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MPTouchBarButtonCreator.m; sourceTree = "<group>"; };
 		4825CC811C414D57003E37E9 /* it */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = it; path = it.lproj/DatabaseSettingsWindow.strings; sourceTree = "<group>"; };
 		4825CC821C414D57003E37E9 /* it */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = it; path = it.lproj/PasswordEditWindow.strings; sourceTree = "<group>"; };
 		4825CC831C414D57003E37E9 /* it */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = it; path = it.lproj/WelcomeView.strings; sourceTree = "<group>"; };
@@ -1171,6 +1174,8 @@
 				4C4B728418E4B9B400A1A5D5 /* MPDockTileHelper.m */,
 				4CB63A6018986530002DEC4C /* MPFlagsHelper.h */,
 				4C978E0C19AE54AB003067DF /* MPFlagsHelper.m */,
+				3C0CDED921D28C0E00B2A10B /* MPTouchBarButtonCreator.h */,
+				3C0CDED721D28BF700B2A10B /* MPTouchBarButtonCreator.m */,
 			);
 			name = Helper;
 			sourceTree = "<group>";
@@ -2000,6 +2005,7 @@
 				4C0F04402147A6FA000B8568 /* MPCustomFieldTableView.m in Sources */,
 				4CBA2ABA17074C07006D8139 /* MPSettingsHelper.m in Sources */,
 				4C77E37A15B84A240093A587 /* MPAppDelegate.m in Sources */,
+				3C0CDED821D28BF700B2A10B /* MPTouchBarButtonCreator.m in Sources */,
 				4C37A84015B8B474005EF8EE /* MPOutlineDataSource.m in Sources */,
 				4CA0B2F915BCAF6700654E32 /* MPGeneralPreferencesController.m in Sources */,
 				4C8F0C791FD05A6A00BE157F /* NSString+MPPrettyPasswordDisplay.m in Sources */,

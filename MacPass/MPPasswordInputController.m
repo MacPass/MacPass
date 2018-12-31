@@ -26,6 +26,7 @@
 #import "MPDocument.h"
 #import "MPSettingsHelper.h"
 #import "MPPathControl.h"
+#import "MPTouchBarButtonCreator.h"
 
 #import "HNHUi/HNHUi.h"
 
@@ -191,25 +192,11 @@ static NSTouchBarItemIdentifier touchBarUnlockIdentifier = @"com.hicknhacksoftwa
 
 - (NSTouchBarItem *)touchBar:(NSTouchBar *)touchBar makeItemForIdentifier:(NSTouchBarItemIdentifier)identifier  API_AVAILABLE(macos(10.12.2)) {
   if (identifier == touchBarChooseKeyfileIdentifier) {
-    NSCustomTouchBarItem *item = [[NSCustomTouchBarItem alloc] initWithIdentifier:touchBarChooseKeyfileIdentifier];
-    NSImage *image = [NSImage imageNamed:NSImageNameTouchBarFolderTemplate];
-    NSButton *button = [NSButton buttonWithTitle:@"Choose Keyfile" image:image target:self.keyPathControl action:@selector(showOpenPanel:)];
-    item.view = button;
-    return item;
+    return [MPTouchBarButtonCreator touchBarButtonWithTitleAndImage:@"Choose Keyfile" identifier:touchBarChooseKeyfileIdentifier image:[NSImage imageNamed:NSImageNameTouchBarFolderTemplate] target:self.keyPathControl selector:@selector(showOpenPanel:)];
   } else if (identifier == touchBarShowPasswordIdentifier) {
-    NSCustomTouchBarItem *item = [[NSCustomTouchBarItem alloc] initWithIdentifier:touchBarShowPasswordIdentifier];
-    NSImage *image = [NSImage imageNamed:NSImageNameTouchBarQuickLookTemplate];
-    NSButton *button = [NSButton buttonWithTitle:@"Show Password" image:image target:self action:@selector(toggleShowPassword)];
-    // TODO: Set active when toggled with
-    // [button highlight:true];
-    item.view = button;
-    return item;
+    return [MPTouchBarButtonCreator touchBarButtonWithTitleAndImage:@"Show Password" identifier:touchBarShowPasswordIdentifier image:[NSImage imageNamed:NSImageNameTouchBarQuickLookTemplate] target:self selector:@selector(toggleShowPassword)];
   } else if (identifier == touchBarUnlockIdentifier) {
-    NSCustomTouchBarItem *item = [[NSCustomTouchBarItem alloc] initWithIdentifier:touchBarUnlockIdentifier];
-    NSImage *image = [NSImage imageNamed:NSImageNameLockUnlockedTemplate];
-    NSButton *button = [NSButton buttonWithImage:image target:self action:@selector(_submit:)];
-    item.view = button;
-    return item;
+    return [MPTouchBarButtonCreator touchBarButtonWithImage:[NSImage imageNamed:NSImageNameLockUnlockedTemplate] identifier:touchBarUnlockIdentifier target:self selector:@selector(_submit:)];
   } else {
     return nil;
   }
