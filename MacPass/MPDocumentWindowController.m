@@ -50,7 +50,7 @@ static NSTouchBarCustomizationIdentifier touchBarIdentifier = @"com.hicknhacksof
 static NSTouchBarItemIdentifier touchBarSearchIdentifier = @"com.hicknhacksoftware.MacPass.TouchBar.documentWindow.search";
 static NSTouchBarItemIdentifier touchBarCopyUsernameIdentifier = @"com.hicknhacksoftware.MacPass.TouchBar.documentWindow.copyUsername";
 static NSTouchBarItemIdentifier touchBarCopyPasswordIdentifier = @"com.hicknhacksoftware.MacPass.TouchBar.documentWindow.copyPassword";
-static NSTouchBarItemIdentifier touchBarPerfromAutotypeIdentifier = @"com.hicknhacksoftware.MacPass.TouchBar.documentWindow.perfromAutotype";
+static NSTouchBarItemIdentifier touchBarPerformAutotypeIdentifier = @"com.hicknhacksoftware.MacPass.TouchBar.documentWindow.performAutotype";
 static NSTouchBarItemIdentifier touchBarLockIdentifier = @"com.hicknhacksoftware.MacPass.TouchBar.documentWindow.lock";
 
 typedef NS_ENUM(NSUInteger, MPAlertContext) {
@@ -664,7 +664,7 @@ typedef void (^MPPasswordChangedBlock)(BOOL didChangePassword);
   NSTouchBar *touchBar = [[NSTouchBar alloc] init];
   touchBar.delegate = self;
   touchBar.customizationIdentifier = touchBarIdentifier;
-  NSArray<NSTouchBarItemIdentifier> *defaultItemIdentifiers = @[touchBarSearchIdentifier,touchBarCopyUsernameIdentifier,touchBarCopyPasswordIdentifier,  touchBarPerfromAutotypeIdentifier, NSTouchBarItemIdentifierFlexibleSpace, touchBarLockIdentifier];
+  NSArray<NSTouchBarItemIdentifier> *defaultItemIdentifiers = @[touchBarSearchIdentifier,touchBarCopyUsernameIdentifier,touchBarCopyPasswordIdentifier,  touchBarPerformAutotypeIdentifier, NSTouchBarItemIdentifierFlexibleSpace, touchBarLockIdentifier];
   touchBar.defaultItemIdentifiers = defaultItemIdentifiers;
   touchBar.customizationAllowedItemIdentifiers = defaultItemIdentifiers;
   return touchBar;
@@ -677,8 +677,8 @@ typedef void (^MPPasswordChangedBlock)(BOOL didChangePassword);
     return [MPTouchBarButtonCreator touchBarButtonWithTitle:@"Copy Username" identifier:touchBarCopyUsernameIdentifier target:self selector:@selector(copyUsername:)];
   } else if (identifier == touchBarCopyPasswordIdentifier) {
     return [MPTouchBarButtonCreator touchBarButtonWithTitle:@"Copy Password" identifier:touchBarCopyPasswordIdentifier target:self selector:@selector(copyPassword:)];
-  } else if (identifier == touchBarPerfromAutotypeIdentifier) {
-    return [MPTouchBarButtonCreator touchBarButtonWithTitle:@"Perform Autotype" identifier:touchBarPerfromAutotypeIdentifier target:self selector:@selector(performAutotypeForEntry:)];
+  } else if (identifier == touchBarPerformAutotypeIdentifier) {
+    return [MPTouchBarButtonCreator touchBarButtonWithTitle:@"Perform Autotype" identifier:touchBarPerformAutotypeIdentifier target:self selector:@selector(performAutotypeForEntry:)];
   } else if (identifier == touchBarLockIdentifier) {
     return [MPTouchBarButtonCreator touchBarButtonWithImage:[NSImage imageNamed:NSImageNameLockUnlockedTemplate] identifier:touchBarLockIdentifier target:self selector:@selector(lock:)];
   } else {
