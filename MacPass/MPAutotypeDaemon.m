@@ -155,23 +155,21 @@ static MPAutotypeDaemon *_sharedInstance;
     alert.suppressionButton.title = NSLocalizedString(@"ALERT_AUTOTYPE_MISSING_ACCESSIBILTY_PERMISSIONS_SUPPRESS_WARNING", @"Checkbox in dialog to set the selection as default file change strategy!");
     [alert addButtonWithTitle:NSLocalizedString(@"ALERT_AUTOTYPE_MISSING_ACCESSIBILTY_PERMISSIONS_BUTTON_OK", @"Button in dialog to leave autotype disabled and continiue!")];
     [alert addButtonWithTitle:NSLocalizedString(@"ALERT_AUTOTYPE_MISSING_ACCESSIBILTY_PERMISSIONS_BUTTON_OPEN_PREFERENCES", @"Button in dialog to open accessibilty preferences pane!")];
-    NSWindow *window = NSDocumentController.sharedDocumentController.currentDocument.windowForSheet;
-    [alert beginSheetModalForWindow:window completionHandler:^(NSModalResponse returnCode) {
-      BOOL suppressWarning = (alert.suppressionButton.state == NSOnState);
-      [NSUserDefaults.standardUserDefaults setBool:suppressWarning forKey:kMPSettingsKeyAutotypeHideAccessibiltyWarning];
-      switch(returnCode) {
-        case NSAlertFirstButtonReturn: {
-          /* ok, ignore */
-          break;
-        }
-        case NSAlertSecondButtonReturn:
-          /* open prefs */
-          [self openAccessibiltyPreferences];
-          break;
-        default:
-          break;
+    NSModalResponse returnCode = [alert runModal];
+    BOOL suppressWarning = (alert.suppressionButton.state == NSOnState);
+    [NSUserDefaults.standardUserDefaults setBool:suppressWarning forKey:kMPSettingsKeyAutotypeHideAccessibiltyWarning];
+    switch(returnCode) {
+      case NSAlertFirstButtonReturn: {
+        /* ok, ignore */
+        break;
       }
-    }];
+      case NSAlertSecondButtonReturn:
+        /* open prefs */
+        [self openAccessibiltyPreferences];
+        break;
+      default:
+        break;
+    }
   }
 }
 
@@ -217,15 +215,15 @@ static MPAutotypeDaemon *_sharedInstance;
 
 - (void)_performAutotypeForEntry:(KPKEntry *)entryOrNil {
   /*if(!self.autotypeSupported) {
-    NSUserNotification *notification = [[NSUserNotification alloc] init];
-    notification.title = NSApp.applicationName;
-    notification.informativeText = NSLocalizedString(@"AUTOTYPE_NOTIFICATION_MACPASS_HAS_NO_ACCESSIBILTY_PERMISSIONS", "Notification: Autotype failed, MacPass has no permission to send key strokes");
-    notification.actionButtonTitle = NSLocalizedString(@"OPEN_PREFERENCES", "Action button in Notification to show the Accessibilty preferences");
-    notification.userInfo = @{ MPUserNotificationTypeKey: MPUserNotificationTypeShowAccessibiltyPreferences };
-    notification.showsButtons = YES;
-    [NSUserNotificationCenter.defaultUserNotificationCenter deliverNotification:notification];
-    return;
-  }*/
+   NSUserNotification *notification = [[NSUserNotification alloc] init];
+   notification.title = NSApp.applicationName;
+   notification.informativeText = NSLocalizedString(@"AUTOTYPE_NOTIFICATION_MACPASS_HAS_NO_ACCESSIBILTY_PERMISSIONS", "Notification: Autotype failed, MacPass has no permission to send key strokes");
+   notification.actionButtonTitle = NSLocalizedString(@"OPEN_PREFERENCES", "Action button in Notification to show the Accessibilty preferences");
+   notification.userInfo = @{ MPUserNotificationTypeKey: MPUserNotificationTypeShowAccessibiltyPreferences };
+   notification.showsButtons = YES;
+   [NSUserNotificationCenter.defaultUserNotificationCenter deliverNotification:notification];
+   return;
+   }*/
   NSInteger pid = NSProcessInfo.processInfo.processIdentifier;
   if(self.targetPID == pid) {
     return; // We do not perform Autotype on ourselves
@@ -312,7 +310,7 @@ static MPAutotypeDaemon *_sharedInstance;
   if(nil == context) {
     return; // No context to work with
   }
-
+  
   if([self _orderApplicationToFront:self.targetPID]) {
     /* Sleep a bit after the app was activated */
     /* TODO - we might be able to a notification to check if the app actally was activated instead of guessing a waiting time */
