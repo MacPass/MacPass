@@ -45,7 +45,7 @@
   NSTableCellView *view;
   if([selectedIndexes containsIndex:row]) {
     MPSelectedAttachmentTableCellView *cellView  = [tableView makeViewWithIdentifier:@"SelectedCell" owner:tableView];
-    [cellView.actionButton setMenu:[self allocateActionMenu]];
+    cellView.actionButton.menu = [self allocateActionMenu];
     view = cellView;
   }
   else {

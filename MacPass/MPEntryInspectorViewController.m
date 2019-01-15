@@ -200,17 +200,16 @@ typedef NS_ENUM(NSUInteger, MPEntryTab) {
   [self.observer didChangeModelProperty];
 }
 - (void)removeCustomField:(id)sender {
-  NSUInteger index = [sender tag];
-  NSUInteger viewIndex = [self.customFieldsTableView rowForView:sender];
-  NSLog(@"index:%ld viewIndex:%ld", index, viewIndex);
-  KPKAttribute *attribute = self.representedEntry.customAttributes[index];
+  NSInteger rowIndex = [self.customFieldsTableView rowForView:sender];
+  NSAssert(rowIndex > 0 && rowIndex < self.representedEntry.customAttributes.count, @"Invalid custom attribute index.");
+  KPKAttribute *attribute = self.representedEntry.customAttributes[rowIndex];
   [self.observer willChangeModelProperty];
   [self.representedEntry removeCustomAttribute:attribute];
   [self.observer didChangeModelProperty];
 }
 
 - (void)saveAttachment:(id)sender {
-  NSInteger row = [self.attachmentTableView selectedRow];
+  NSInteger row = self.attachmentTableView.selectedRow;
   if(row < 0) {
     return; // No selection
   }
