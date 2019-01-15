@@ -201,6 +201,8 @@ typedef NS_ENUM(NSUInteger, MPEntryTab) {
 }
 - (void)removeCustomField:(id)sender {
   NSUInteger index = [sender tag];
+  NSUInteger viewIndex = [self.customFieldsTableView rowForView:sender];
+  NSLog(@"index:%ld viewIndex:%ld", index, viewIndex);
   KPKAttribute *attribute = self.representedEntry.customAttributes[index];
   [self.observer willChangeModelProperty];
   [self.representedEntry removeCustomAttribute:attribute];

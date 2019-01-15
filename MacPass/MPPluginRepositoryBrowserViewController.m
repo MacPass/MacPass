@@ -68,17 +68,16 @@ typedef NS_ENUM(NSUInteger, MPPluginTableColumn) {
   else if(column == MPPluginTableColumnStatus) {
     MPPluginStatusTableCellView *statusView = (MPPluginStatusTableCellView *)view;
     statusView.actionButton.hidden = NO;
+    statusView.actionButton.title = NSLocalizedString(@"PLUGIN_BROWSER_DOWNLOAD_PLUGIN_BUTTON", "Button to download the Plugin");
     MPPlugin *plugin = [MPPluginHost.sharedHost pluginWithBundleIdentifier:item.bundleIdentifier];
     if(plugin) {
       switch([MPPluginVersionComparator compareVersion:plugin.shortVersionString toVersion:item.currentVersion]) {
         case NSOrderedSame:
           view.textField.stringValue = [NSString stringWithFormat:NSLocalizedString(@"PLUGIN_BROWSER_LATEST_VERSION_INSTALLED", "Status for an up-to-date plugin in the plugin browser")];
           statusView.actionButton.hidden = YES;
-          statusView.actionButton.title = @"";
           break;
         case NSOrderedAscending:
           view.textField.stringValue = [NSString stringWithFormat:NSLocalizedString(@"PLUGIN_BROWSER_NEWER_VERSION_%@_AVAILABLE", "Status for an outdated plugin version in the plugin browser"), item.currentVersion];
-          statusView.actionButton.title = NSLocalizedString(@"PLUGIN_BROWSER_UPDATE_VERSION_BUTTON", "Button to update the Plugin to the current version");
           break;
         case NSOrderedDescending:
           view.textField.stringValue = [NSString stringWithFormat:NSLocalizedString(@"PLUGIN_BROWSER_UNKNOWN_PLUGIN_VERSION_INSTALLED_%@", "Status for an unkonw plugin version in the plugin browser"), plugin.shortVersionString];
@@ -88,7 +87,6 @@ typedef NS_ENUM(NSUInteger, MPPluginTableColumn) {
     else {
       MPPluginStatusTableCellView *statusView = (MPPluginStatusTableCellView *)view;
       statusView.actionButton.hidden = NO;
-      statusView.actionButton.title = NSLocalizedString(@"PLUGIN_BROWSER_INSTALL_PLUGIN_BUTTON", "Install plugin");
       view.textField.stringValue = [NSString stringWithFormat:NSLocalizedString(@"PLUGIN_BROWSER_PLUGIN_NOT_INSTALLED", "Status for an uninstalled plugin in the plugin browser")];
     }
   }
