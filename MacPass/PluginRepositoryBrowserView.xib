@@ -124,8 +124,8 @@
                                                         </textFieldCell>
                                                     </textField>
                                                     <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="tVV-rz-Aff">
-                                                        <rect key="frame" x="289" y="0.0" width="48" height="17"/>
-                                                        <buttonCell key="cell" type="roundRect" title="Action" bezelStyle="roundedRect" alignment="center" controlSize="small" state="on" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="6jQ-Uk-uqD">
+                                                        <rect key="frame" x="291" y="-1" width="46" height="19"/>
+                                                        <buttonCell key="cell" type="roundTextured" title="Action" bezelStyle="texturedRounded" alignment="center" controlSize="small" state="on" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="6jQ-Uk-uqD">
                                                             <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                                             <font key="font" metaFont="smallSystem"/>
                                                         </buttonCell>
@@ -156,7 +156,7 @@
                     <constraints>
                         <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="400" id="gYM-eK-y5v"/>
                     </constraints>
-                    <scroller key="horizontalScroller" wantsLayer="YES" verticalHuggingPriority="750" doubleValue="0.33333333333333331" horizontal="YES" id="ajb-Vb-WhY">
+                    <scroller key="horizontalScroller" wantsLayer="YES" verticalHuggingPriority="750" horizontal="YES" id="ajb-Vb-WhY">
                         <rect key="frame" x="1" y="402" width="596" height="16"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </scroller>
@@ -225,7 +225,7 @@
                 <constraint firstItem="bGv-Zc-Vrk" firstAttribute="leading" secondItem="Hz6-mo-xeY" secondAttribute="leading" constant="20" id="tk3-kF-k22"/>
                 <constraint firstItem="d2Q-7O-ilP" firstAttribute="leading" secondItem="fjQ-ni-Ayx" secondAttribute="trailing" constant="8" symbolic="YES" id="wHQ-Lk-2fv"/>
             </constraints>
-            <point key="canvasLocation" x="242" y="57"/>
+            <point key="canvasLocation" x="128" y="-118"/>
         </customView>
     </objects>
 </document>
