@@ -36,7 +36,7 @@ static NSString *allowedCharactersString(MPPasswordCharacterFlags flags) {
     [characterString appendString:kMPLowercaseLetterCharacters];
   }
   if(flags & MPPasswordCharactersUpperCase) {
-    [characterString appendString:[kMPLowercaseLetterCharacters uppercaseString]];
+    [characterString appendString:kMPLowercaseLetterCharacters.uppercaseString];
   }
   if(flags & MPPasswordCharactersNumbers) {
     [characterString appendString:kMPNumberCharacters];

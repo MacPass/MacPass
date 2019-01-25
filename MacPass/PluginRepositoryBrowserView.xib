@@ -129,6 +129,9 @@
                                                             <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                                             <font key="font" metaFont="smallSystem"/>
                                                         </buttonCell>
+                                                        <connections>
+                                                            <action selector="executePluginAction:" target="-2" id="F6d-ns-ats"/>
+                                                        </connections>
                                                     </button>
                                                 </subviews>
                                                 <constraints>
@@ -186,7 +189,7 @@
                         <font key="font" metaFont="system"/>
                     </buttonCell>
                     <connections>
-                        <action selector="closeBrowser:" target="-2" id="FVU-rJ-Pxm"/>
+                        <action selector="dismissController:" target="-2" id="oAU-cX-l8e"/>
                     </connections>
                 </button>
                 <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="d2Q-7O-ilP">
@@ -225,7 +228,7 @@
                 <constraint firstItem="bGv-Zc-Vrk" firstAttribute="leading" secondItem="Hz6-mo-xeY" secondAttribute="leading" constant="20" id="tk3-kF-k22"/>
                 <constraint firstItem="d2Q-7O-ilP" firstAttribute="leading" secondItem="fjQ-ni-Ayx" secondAttribute="trailing" constant="8" symbolic="YES" id="wHQ-Lk-2fv"/>
             </constraints>
-            <point key="canvasLocation" x="128" y="-118"/>
+            <point key="canvasLocation" x="-130" y="-66"/>
         </customView>
     </objects>
 </document>

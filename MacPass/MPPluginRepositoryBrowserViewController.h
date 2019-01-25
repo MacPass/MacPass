@@ -13,7 +13,7 @@ NS_ASSUME_NONNULL_BEGIN
 @interface MPPluginRepositoryBrowserViewController : NSViewController
 
 - (IBAction)refresh:(id)sender;
-- (IBAction)closeBrowser:(id)sender;
+- (IBAction)executePluginAction:(id)sender;
 
 @end
 

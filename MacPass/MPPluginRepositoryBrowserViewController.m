@@ -45,8 +45,11 @@ typedef NS_ENUM(NSUInteger, MPPluginTableColumn) {
   [self _refreshRepository];
 }
 
-- (IBAction)closeBrowser:(id)sender {
-  [self.presentingViewController dismissViewController:self];
+- (void)executePluginAction:(id)sender {
+  NSInteger tableRow = [self.itemTable rowForView:sender];
+  if(tableRow < -1 && tableRow < self.repositoryItems.count) {
+    MPPluginRepositoryItem *actionItem = self.repositoryItems[tableRow];
+  }
 }
 
 - (NSInteger)numberOfRowsInTableView:(NSTableView *)tableView {
@@ -67,14 +70,12 @@ typedef NS_ENUM(NSUInteger, MPPluginTableColumn) {
   }
   else if(column == MPPluginTableColumnStatus) {
     MPPluginStatusTableCellView *statusView = (MPPluginStatusTableCellView *)view;
-    statusView.actionButton.hidden = NO;
     statusView.actionButton.title = NSLocalizedString(@"PLUGIN_BROWSER_DOWNLOAD_PLUGIN_BUTTON", "Button to download the Plugin");
     MPPlugin *plugin = [MPPluginHost.sharedHost pluginWithBundleIdentifier:item.bundleIdentifier];
     if(plugin) {
       switch([MPPluginVersionComparator compareVersion:plugin.shortVersionString toVersion:item.currentVersion]) {
         case NSOrderedSame:
           view.textField.stringValue = [NSString stringWithFormat:NSLocalizedString(@"PLUGIN_BROWSER_LATEST_VERSION_INSTALLED", "Status for an up-to-date plugin in the plugin browser")];
-          statusView.actionButton.hidden = YES;
           break;
         case NSOrderedAscending:
           view.textField.stringValue = [NSString stringWithFormat:NSLocalizedString(@"PLUGIN_BROWSER_NEWER_VERSION_%@_AVAILABLE", "Status for an outdated plugin version in the plugin browser"), item.currentVersion];
@@ -85,8 +86,6 @@ typedef NS_ENUM(NSUInteger, MPPluginTableColumn) {
       }
     }
     else {
-      MPPluginStatusTableCellView *statusView = (MPPluginStatusTableCellView *)view;
-      statusView.actionButton.hidden = NO;
       view.textField.stringValue = [NSString stringWithFormat:NSLocalizedString(@"PLUGIN_BROWSER_PLUGIN_NOT_INSTALLED", "Status for an uninstalled plugin in the plugin browser")];
     }
   }
@@ -94,7 +93,19 @@ typedef NS_ENUM(NSUInteger, MPPluginTableColumn) {
     view.textField.stringValue = @"-";
   }
   return view;
-  
+}
+
+- (BOOL)tableView:(NSTableView *)tableView shouldSelectRow:(NSInteger)row {
+  NSLog(@"%@", NSStringFromSelector(_cmd));
+  return YES;
+}
+
+- (void)tableViewSelectionIsChanging:(NSNotification *)notification {
+  NSLog(@"%@", NSStringFromSelector(_cmd));
+}
+
+- (void)tableViewSelectionDidChange:(NSNotification *)notification {
+  NSLog(@"%@", NSStringFromSelector(_cmd));
 }
 
 - (void)_refreshRepository {
@@ -102,5 +113,8 @@ typedef NS_ENUM(NSUInteger, MPPluginTableColumn) {
   [self.itemTable reloadData];
 }
 
-
+- (void)_downloadPluginAtURL:(NSURL *)url {
+  NSURLSessionDownloadTask *taks = [NSURLSession.sharedSession downloadTaskWithURL:url];
+  
+}
 @end
