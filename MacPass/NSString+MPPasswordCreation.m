@@ -71,7 +71,8 @@ static NSString *mergeWithoutDuplicates(NSString* baseCharacters, NSString* cust
 }
 
 + (NSString *)passwordWithCharactersets:(MPPasswordCharacterFlags)allowedCharacters
-                   withCustomCharacters:(NSString*)customCharacters
+                   withCustomCharacters:(NSString *)customCharacters
+                        ensureOccurence:(BOOL)ensureOccurence
                                  length:(NSUInteger)length {
   NSMutableString *password = [NSMutableString stringWithCapacity:length];
   NSString *characters = mergeWithoutDuplicates(
@@ -99,9 +100,7 @@ static NSString *mergeWithoutDuplicates(NSString* baseCharacters, NSString* cust
   if(useCustomString && customString.length > 0) {
     return [customString passwordWithLength:passwordLength];
   }
-  return [NSString passwordWithCharactersets:characterFlags
-                        withCustomCharacters:@""
-                                      length:passwordLength];
+  return [NSString passwordWithCharactersets:characterFlags withCustomCharacters:@"" ensureOccurence:NO length:passwordLength];
 }
 
 - (NSString *)passwordWithLength:(NSUInteger)length {
@@ -112,7 +111,7 @@ static NSString *mergeWithoutDuplicates(NSString* baseCharacters, NSString* cust
   if(self.length == 0) {
     return nil;
   }
-  return [self composedCharacterAtIndex:arc4random_uniform((int)self.length)];
+  return [self composedCharacterAtIndex:arc4random_uniform((int)self.composedCharacterLength)];
 }
 
 - (CGFloat)entropyWhithPossibleCharacterSet:(MPPasswordCharacterFlags)allowedCharacters orCustomCharacters:(NSString *)customCharacters {
@@ -127,4 +126,17 @@ static NSString *mergeWithoutDuplicates(NSString* baseCharacters, NSString* cust
   CGFloat passwordLength = self.composedCharacterLength;
   return passwordLength * ( log10(alphabetCount) / log10(2) );
 }
+
+- (NSString *)shuffledString {
+  NSMutableArray *characters = [self.composedCharacters mutableCopy];
+  NSMutableString *shuffled = [[NSMutableString alloc] init];
+  while(characters.count > 0) {
+    NSUInteger index = arc4random_uniform((int)characters.count);
+    [shuffled appendString:characters[index]];
+    [characters removeObjectAtIndex:index];
+  }
+  return [shuffled copy];
+}
+
+
 @end

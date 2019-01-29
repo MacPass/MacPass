@@ -166,11 +166,12 @@ typedef NS_ENUM(NSUInteger, MPPasswordRating) {
 - (IBAction)_generatePassword:(id)sender {
   self.password = [NSString passwordWithCharactersets:self.characterFlags
                                  withCustomCharacters:self._customCharacters
+                                      ensureOccurence:NO
                                                length:self.passwordLength];
 }
 
 - (NSString*)_customCharacters{
-  if(self.useCustomString && [[self.customCharactersTextField stringValue] length] > 0) {
+  if(self.useCustomString && self.customCharactersTextField.stringValue.length > 0) {
       return self.customCharactersTextField.stringValue;
     }
     else{
@@ -187,7 +188,7 @@ typedef NS_ENUM(NSUInteger, MPPasswordRating) {
 
 - (IBAction)_usePassword:(id)sender {
   if(self.shouldCopyPasswordToPasteboardButton.state == NSOnState) {
-    [[MPPasteBoardController defaultController] copyObjects:@[self.password]];
+    [MPPasteBoardController.defaultController copyObjects:@[self.password]];
   }
   KPKEntry *entry = self.representedObject;
   if(entry && self.password.length > 0) {
@@ -227,13 +228,13 @@ typedef NS_ENUM(NSUInteger, MPPasswordRating) {
       availableDefaults = [[NSMutableDictionary alloc] initWithCapacity:1];
     }
     availableDefaults[[self.representedObject uuid].UUIDString] = entryDefaults;
-    [[NSUserDefaults standardUserDefaults] setObject:availableDefaults forKey:kMPSettingsKeyPasswordDefaultsForEntry];
+    [NSUserDefaults.standardUserDefaults setObject:availableDefaults forKey:kMPSettingsKeyPasswordDefaultsForEntry];
   }
   else if(!self.useEntryDefaults) {
-    [[NSUserDefaults standardUserDefaults] setInteger:self.passwordLength forKey:kMPSettingsKeyDefaultPasswordLength];
-    [[NSUserDefaults standardUserDefaults] setInteger:self.characterFlags forKey:kMPSettingsKeyPasswordCharacterFlags];
-    [[NSUserDefaults standardUserDefaults] setBool:self.useCustomString forKey:kMPSettingsKeyPasswordUseCustomString];
-    [[NSUserDefaults standardUserDefaults] setObject:[self.customCharactersTextField stringValue] forKey:kMPSettingsKeyPasswordCustomString];
+    [NSUserDefaults.standardUserDefaults setInteger:self.passwordLength forKey:kMPSettingsKeyDefaultPasswordLength];
+    [NSUserDefaults.standardUserDefaults setInteger:self.characterFlags forKey:kMPSettingsKeyPasswordCharacterFlags];
+    [NSUserDefaults.standardUserDefaults setBool:self.useCustomString forKey:kMPSettingsKeyPasswordUseCustomString];
+    [NSUserDefaults.standardUserDefaults setObject:[self.customCharactersTextField stringValue] forKey:kMPSettingsKeyPasswordCustomString];
   }
   else {
     NSLog(@"Cannot set password generator defaults. Inconsistent state. Aborting.");
@@ -249,7 +250,7 @@ typedef NS_ENUM(NSUInteger, MPPasswordRating) {
   NSMutableDictionary *availableDefaults = [[self _availableEntryDefaults] mutableCopy];
   NSAssert(availableDefaults, @"Password generator defaults for should be present!");
   [availableDefaults removeObjectForKey:[self.representedObject uuid].UUIDString];
-  [[NSUserDefaults standardUserDefaults] setObject:availableDefaults forKey:kMPSettingsKeyPasswordDefaultsForEntry];
+  [NSUserDefaults.standardUserDefaults setObject:availableDefaults forKey:kMPSettingsKeyPasswordDefaultsForEntry];
   self.useEntryDefaults = NO; /* Resetting the UI and Defaults is handled via the setter */
   [self _updateSetDefaultsButton:NO];
 }
@@ -322,12 +323,12 @@ typedef NS_ENUM(NSUInteger, MPPasswordRating) {
 }
 
 - (NSDictionary *)_availableEntryDefaults {
-  return [[NSUserDefaults standardUserDefaults] dictionaryForKey:kMPSettingsKeyPasswordDefaultsForEntry];
+  return [NSUserDefaults.standardUserDefaults dictionaryForKey:kMPSettingsKeyPasswordDefaultsForEntry];
 }
 
 - (NSDictionary *)_currentEntryDefaults {
   if(self.representedObject) {
-    NSAssert([self.representedObject isKindOfClass:[KPKEntry class]], @"Only KPKEntry as represented object supported!");
+    NSAssert([self.representedObject isKindOfClass:KPKEntry.class], @"Only KPKEntry as represented object supported!");
     return [self _availableEntryDefaults][[self.representedObject uuid].UUIDString];
   }
   return nil;

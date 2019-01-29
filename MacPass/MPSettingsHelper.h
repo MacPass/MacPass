@@ -105,6 +105,7 @@ typedef NS_ENUM(NSUInteger, MPDoubleClickTitleAction) {
 APPKIT_EXTERN NSString *const kMPSettingsKeyCopyGeneratedPasswordToClipboard;
 APPKIT_EXTERN NSString *const kMPSettingsKeyDefaultPasswordLength;
 APPKIT_EXTERN NSString *const kMPSettingsKeyPasswordCharacterFlags;
+APPKIT_EXTERN NSString *const kMPSettingsKeyPasswordEnsureOccurance;
 APPKIT_EXTERN NSString *const kMPSettingsKeyPasswordUseCustomString;
 APPKIT_EXTERN NSString *const kMPSettingsKeyPasswordCustomString;
 

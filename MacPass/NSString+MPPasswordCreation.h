@@ -42,7 +42,8 @@ typedef NS_OPTIONS(NSUInteger, MPPasswordCharacterFlags) {
 */
 + (NSString *)passwordWithCharactersets:(MPPasswordCharacterFlags)allowedCharacters
                    withCustomCharacters:(NSString*)customCharacters
-                                 length:(NSUInteger)theLength;
+                            ensureOccurence:(BOOL)ensureOccurence
+                                 length:(NSUInteger)length;
 /**
  *  Creats a password based on the supplied string
  *
@@ -59,6 +60,10 @@ typedef NS_OPTIONS(NSUInteger, MPPasswordCharacterFlags) {
  *  @return returns a random character from the string
  */
 @property (nonatomic, readonly, copy) NSString *randomCharacter;
+/**
+ * @return returns a shuffled copy of the receiving string
+ */
+@property (nonatomic, readonly, copy) NSString *shuffledString;
 
 /**
  *

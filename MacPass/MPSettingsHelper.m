@@ -67,6 +67,7 @@ NSString *const kMPSettingsKeyCopyGeneratedPasswordToClipboard        = @"CopyGe
 
 NSString *const kMPSettingsKeyDefaultPasswordLength                   = @"DefaultPasswordLength";
 NSString *const kMPSettingsKeyPasswordCharacterFlags                  = @"PasswordCharacterFlags";
+NSString *const kMPSettingsKeyPasswordEnsureOccurance                 = @"PasswordEnsureOccurance";
 NSString *const kMPSettingsKeyPasswordUseCustomString                 = @"PasswordUseCustomString";
 NSString *const kMPSettingsKeyPasswordCustomString                    = @"PasswordCustomString";
 
@@ -134,7 +135,7 @@ NSString *const kMPDepricatedSettingsKeyLoadUnsecurePlugins               = @"MP
                          kMPSettingsKeyRememberKeyFilesForDatabases: @NO,
                          kMPSettingsKeySendCommandForControlKey: @YES,
                          kMPSettingsKeyEnableGlobalAutotype: @NO,
-                         kMPSettingsKeyGlobalAutotypeKeyDataKey: [DDHotKey defaultHotKeyData],
+                         kMPSettingsKeyGlobalAutotypeKeyDataKey: DDHotKey.defaultHotKeyData,
                          kMPSettingsKeyDefaultGlobalAutotypeSequence: @"{USERNAME}{TAB}{PASSWORD}{ENTER}",
                          kMPSettingsKeyAutotypeMatchTitle: @YES,
                          kMPSettingsKeyAutotypeMatchURL: @NO,
@@ -146,6 +147,7 @@ NSString *const kMPDepricatedSettingsKeyLoadUnsecurePlugins               = @"MP
                          kMPSettingsKeyPasswordCharacterFlags: @(MPPasswordCharactersAll),
                          kMPSettingsKeyPasswordUseCustomString: @NO,
                          kMPSettingsKeyPasswordCustomString: @"",
+                         kMPSettingsKeyPasswordEnsureOccurance: @NO,
                          kMPSettingsKeyDoubleClickURLAction: @(MPDoubleClickURLActionCopy),
                          kMPSettingsKeyDoubleClickTitleAction: @(MPDoubleClickTitleActionInspect),
                          kMPSettingsKeyLoadUnsecurePlugins: @NO,
