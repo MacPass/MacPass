@@ -77,13 +77,13 @@ typedef NS_OPTIONS(NSUInteger, MPPasswordCharacterFlags) {
 /**
  *  Calculates the entropy of the receiver based on the allowed characters. The calculation considers the characters chosen randomly.
  *  If the password supplied was not created randomly based on the full character set, the calculated entropy is NOT correct.
- *  Do NOT use this method to estimate unknown passwords
+ *  Do NOT use this method to estimate passwords with unknown alphabet
  *
  *  @param allowedCharacters set of allowed Characters
- *  @param customCharacters  alternative string of unique allowed characters (String is not stripped of duplicates!)
+ *  @param customCharacters  additional custom string of allowed characters.
  *
  *  @return entropy of the receiver as bits
  */
-- (CGFloat)entropyWhithPossibleCharacterSet:(MPPasswordCharacterFlags)allowedCharacters orCustomCharacters:(NSString *)customCharacters;
+- (CGFloat)entropyWhithPossibleCharacterSet:(MPPasswordCharacterFlags)allowedCharacters andCustomCharacters:(NSString *)customCharacters;
 
 @end

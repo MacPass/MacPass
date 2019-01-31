@@ -58,23 +58,25 @@ typedef NS_ENUM(NSUInteger, MPPasswordRating) {
 @property (nonatomic, copy) NSString *password;
 @property (copy) NSString *generatedPassword;
 
-@property (weak) IBOutlet NSTextField *passwordTextField;
-@property (weak) IBOutlet NSTextField *passwordLengthTextField;
-@property (weak) IBOutlet NSTextField *customCharactersTextField;
-@property (weak) IBOutlet NSSlider *passwordLengthSlider;
-@property (weak) IBOutlet NSButton *shouldCopyPasswordToPasteboardButton;
-@property (weak) IBOutlet NSButton *upperCaseButton;
-@property (weak) IBOutlet NSButton *lowerCaseButton;
-@property (weak) IBOutlet NSButton *numbersButton;
-@property (weak) IBOutlet NSButton *symbolsButton;
-@property (weak) IBOutlet NSButton *customButton;
-@property (weak) IBOutlet NSButton *setDefaultButton;
-@property (weak) IBOutlet NSTextField *entropyTextField;
-@property (weak) IBOutlet NSLevelIndicator *entropyIndicator;
-@property (weak) IBOutlet NSButton *useEntryDefaultsButton;
+@property (strong) IBOutlet NSTextField *passwordTextField;
+@property (strong) IBOutlet NSTextField *passwordLengthTextField;
+@property (strong) IBOutlet NSTextField *customCharactersTextField;
+@property (strong) IBOutlet NSSlider *passwordLengthSlider;
+@property (strong) IBOutlet NSButton *shouldCopyPasswordToPasteboardButton;
+@property (strong) IBOutlet NSButton *upperCaseButton;
+@property (strong) IBOutlet NSButton *lowerCaseButton;
+@property (strong) IBOutlet NSButton *numbersButton;
+@property (strong) IBOutlet NSButton *symbolsButton;
+@property (strong) IBOutlet NSButton *customButton;
+@property (strong) IBOutlet NSButton *ensureCharacterFromEachGroupButton;
+@property (strong) IBOutlet NSButton *setDefaultButton;
+@property (strong) IBOutlet NSTextField *entropyTextField;
+@property (strong) IBOutlet NSLevelIndicator *entropyIndicator;
+@property (strong) IBOutlet NSButton *useEntryDefaultsButton;
 
 @property (nonatomic, copy) NSString *customString;
 @property (nonatomic, assign) BOOL useCustomString;
+@property (nonatomic, assign) BOOL useCharacterFromEachGroup;
 @property (nonatomic, assign) NSUInteger passwordLength;
 @property (nonatomic, assign) CGFloat entropy;
 
@@ -96,6 +98,7 @@ typedef NS_ENUM(NSUInteger, MPPasswordRating) {
     _entropy = 0.0;
     _useEntryDefaults = NO;
     _allowsEntryDefaults = NO;
+    _useCharacterFromEachGroup = NO;
     [self _setupDefaults];
   }
   return self;
@@ -122,18 +125,20 @@ typedef NS_ENUM(NSUInteger, MPPasswordRating) {
   [self.entropyIndicator bind:NSValueBinding toObject:self withKeyPath:NSStringFromSelector(@selector(entropy)) options:nil];
   [self.entropyTextField bind:NSValueBinding toObject:self withKeyPath:NSStringFromSelector(@selector(entropy)) options:nil];
   
-  [self.customCharactersTextField setDelegate:self];
+  self.customCharactersTextField.delegate = self;
   [self.customButton bind:NSValueBinding toObject:self withKeyPath:NSStringFromSelector(@selector(useCustomString)) options:nil];
   
+  [self.ensureCharacterFromEachGroupButton bind:NSValueBinding toObject:self withKeyPath:NSStringFromSelector(@selector(useCharacterFromEachGroup)) options:nil];
+  
   NSString *copyToPasteBoardKeyPath = [MPSettingsHelper defaultControllerPathForKey:kMPSettingsKeyCopyGeneratedPasswordToClipboard];
-  NSUserDefaultsController *defaultsController = [NSUserDefaultsController sharedUserDefaultsController];
+  NSUserDefaultsController *defaultsController = NSUserDefaultsController.sharedUserDefaultsController;
   [self.shouldCopyPasswordToPasteboardButton bind:NSValueBinding toObject:defaultsController withKeyPath:copyToPasteBoardKeyPath options:nil];
   
   if(self.allowsEntryDefaults) {
     [self.useEntryDefaultsButton bind:NSValueBinding toObject:self withKeyPath:NSStringFromSelector(@selector(useEntryDefaults)) options:nil];
   }
   else {
-    [self.useEntryDefaultsButton setEnabled:self.allowsEntryDefaults];
+    self.useEntryDefaultsButton.enabled = self.allowsEntryDefaults;
   }
   
   self.numbersButton.tag = MPPasswordCharactersNumbers;
@@ -166,17 +171,17 @@ typedef NS_ENUM(NSUInteger, MPPasswordRating) {
 - (IBAction)_generatePassword:(id)sender {
   self.password = [NSString passwordWithCharactersets:self.characterFlags
                                  withCustomCharacters:self._customCharacters
-                                      ensureOccurence:NO
+                                      ensureOccurence:self.useCharacterFromEachGroup
                                                length:self.passwordLength];
 }
 
 - (NSString*)_customCharacters{
   if(self.useCustomString && self.customCharactersTextField.stringValue.length > 0) {
-      return self.customCharactersTextField.stringValue;
-    }
-    else{
-      return @"";
-    }
+    return self.customCharactersTextField.stringValue;
+  }
+  else{
+    return @"";
+  }
   
 }
 
@@ -222,7 +227,8 @@ typedef NS_ENUM(NSUInteger, MPPasswordRating) {
     entryDefaults[kMPSettingsKeyDefaultPasswordLength] = @(self.passwordLength);
     entryDefaults[kMPSettingsKeyPasswordCharacterFlags] = @(self.characterFlags);
     entryDefaults[kMPSettingsKeyPasswordUseCustomString] = @(self.useCustomString);
-    entryDefaults[kMPSettingsKeyPasswordCustomString] = [self.customCharactersTextField stringValue];
+    entryDefaults[kMPSettingsKeyPasswordCustomString] = self.customCharactersTextField.stringValue;
+    entryDefaults[kMPSettingsKeyPasswordEnsureOccurance] = @(self.useCharacterFromEachGroup);
     NSMutableDictionary *availableDefaults = [[self _availableEntryDefaults] mutableCopy];
     if(!availableDefaults) {
       availableDefaults = [[NSMutableDictionary alloc] initWithCapacity:1];
@@ -234,7 +240,7 @@ typedef NS_ENUM(NSUInteger, MPPasswordRating) {
     [NSUserDefaults.standardUserDefaults setInteger:self.passwordLength forKey:kMPSettingsKeyDefaultPasswordLength];
     [NSUserDefaults.standardUserDefaults setInteger:self.characterFlags forKey:kMPSettingsKeyPasswordCharacterFlags];
     [NSUserDefaults.standardUserDefaults setBool:self.useCustomString forKey:kMPSettingsKeyPasswordUseCustomString];
-    [NSUserDefaults.standardUserDefaults setObject:[self.customCharactersTextField stringValue] forKey:kMPSettingsKeyPasswordCustomString];
+    [NSUserDefaults.standardUserDefaults setObject:self.customCharactersTextField.stringValue forKey:kMPSettingsKeyPasswordCustomString];
   }
   else {
     NSLog(@"Cannot set password generator defaults. Inconsistent state. Aborting.");
@@ -278,7 +284,7 @@ typedef NS_ENUM(NSUInteger, MPPasswordRating) {
   if(![_password isEqualToString:password]) {
     _password = [password copy];
     NSString *customString = self.useCustomString ? self.customCharactersTextField.stringValue : nil;
-    self.entropy = [password entropyWhithPossibleCharacterSet:self.characterFlags orCustomCharacters:customString];
+    self.entropy = [password entropyWhithPossibleCharacterSet:self.characterFlags andCustomCharacters:customString];
   }
 }
 
@@ -294,6 +300,15 @@ typedef NS_ENUM(NSUInteger, MPPasswordRating) {
   if(self.passwordLength != passwordLength) {
     self.setDefaultButton.enabled = YES;
     _passwordLength = passwordLength;
+    [self _resetCharacters];
+    [self _generatePassword:nil];
+  }
+}
+
+- (void)setUseCharacterFromEachGroup:(BOOL)useCharacterFromEachGroup {
+  if(self.useCharacterFromEachGroup != useCharacterFromEachGroup) {
+    _useCharacterFromEachGroup = useCharacterFromEachGroup;
+    [self _resetCharacters];
     [self _generatePassword:nil];
   }
 }
@@ -341,12 +356,14 @@ typedef NS_ENUM(NSUInteger, MPPasswordRating) {
     self.characterFlags = [entryDefaults[kMPSettingsKeyPasswordCharacterFlags] integerValue];
     self.useCustomString = [entryDefaults[kMPSettingsKeyPasswordUseCustomString] boolValue];
     self.customString = entryDefaults[kMPSettingsKeyPasswordCustomString];
+    self.useCharacterFromEachGroup = [entryDefaults[kMPSettingsKeyPasswordEnsureOccurance] boolValue];
   }
   else {
-    self.passwordLength = [[NSUserDefaults standardUserDefaults] integerForKey:kMPSettingsKeyDefaultPasswordLength];
-    self.characterFlags = [[NSUserDefaults standardUserDefaults] integerForKey:kMPSettingsKeyPasswordCharacterFlags];
-    self.useCustomString = [[NSUserDefaults standardUserDefaults] boolForKey:kMPSettingsKeyPasswordUseCustomString];
-    self.customString = [[NSUserDefaults standardUserDefaults] stringForKey:kMPSettingsKeyPasswordCustomString];
+    self.passwordLength = [NSUserDefaults.standardUserDefaults integerForKey:kMPSettingsKeyDefaultPasswordLength];
+    self.characterFlags = [NSUserDefaults.standardUserDefaults integerForKey:kMPSettingsKeyPasswordCharacterFlags];
+    self.useCustomString = [NSUserDefaults.standardUserDefaults boolForKey:kMPSettingsKeyPasswordUseCustomString];
+    self.customString = [NSUserDefaults.standardUserDefaults stringForKey:kMPSettingsKeyPasswordCustomString];
+    self.useCharacterFromEachGroup = [NSUserDefaults.standardUserDefaults boolForKey:kMPSettingsKeyPasswordEnsureOccurance];
   }
 }
 
@@ -374,5 +391,22 @@ typedef NS_ENUM(NSUInteger, MPPasswordRating) {
   self.lowerCaseButton.state = (userLowercase ? NSOnState : NSOffState);
   self.numbersButton.state = (useNumbers ? NSOnState : NSOffState);
   self.symbolsButton.state = (useSymbols ? NSOnState : NSOffState);
+
+  // ensure minimum character lenght
+  if(self.useCharacterFromEachGroup) {
+    NSUInteger minimumPasswordLength = 0;
+    NSUInteger activeFlags = self.characterFlags;
+    while(activeFlags > 0) {
+      if(activeFlags & 1) {
+        minimumPasswordLength++;
+      }
+      activeFlags >>= 1;
+    }
+    
+    if(self.passwordLength < minimumPasswordLength) {
+      self.passwordLength = minimumPasswordLength;
+    }
+  }
+  
 }
 @end

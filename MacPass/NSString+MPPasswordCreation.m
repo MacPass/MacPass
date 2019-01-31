@@ -114,14 +114,9 @@ static NSString *mergeWithoutDuplicates(NSString* baseCharacters, NSString* cust
   return [self composedCharacterAtIndex:arc4random_uniform((int)self.composedCharacterLength)];
 }
 
-- (CGFloat)entropyWhithPossibleCharacterSet:(MPPasswordCharacterFlags)allowedCharacters orCustomCharacters:(NSString *)customCharacters {
+- (CGFloat)entropyWhithPossibleCharacterSet:(MPPasswordCharacterFlags)allowedCharacters andCustomCharacters:(NSString *)customCharacters {
   NSString *characters = nil;
-  if([NSUserDefaults.standardUserDefaults boolForKey:kMPSettingsKeyPasswordUseCustomString] && nil != customCharacters) {
-    characters = mergeWithoutDuplicates(allowedCharactersString(allowedCharacters), customCharacters);
-  }
-  else {
-    characters = allowedCharactersString(allowedCharacters);
-  }
+  characters = mergeWithoutDuplicates(allowedCharactersString(allowedCharacters), customCharacters);
   CGFloat alphabetCount = characters.composedCharacterLength;
   CGFloat passwordLength = self.composedCharacterLength;
   return passwordLength * ( log10(alphabetCount) / log10(2) );
