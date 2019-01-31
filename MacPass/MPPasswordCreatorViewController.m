@@ -175,7 +175,7 @@ typedef NS_ENUM(NSUInteger, MPPasswordRating) {
                                                length:self.passwordLength];
 }
 
-- (NSString*)_customCharacters{
+- (NSString *)_customCharacters{
   if(self.useCustomString && self.customCharactersTextField.stringValue.length > 0) {
     return self.customCharactersTextField.stringValue;
   }
@@ -319,6 +319,7 @@ typedef NS_ENUM(NSUInteger, MPPasswordRating) {
 - (void)controlTextDidChange:(NSNotification *)obj {
   if([obj object] == self.customCharactersTextField) {
     self.setDefaultButton.enabled = YES;
+    [self _resetCharacters];
     [self _generatePassword:nil];
   }
 }
@@ -394,7 +395,10 @@ typedef NS_ENUM(NSUInteger, MPPasswordRating) {
 
   // ensure minimum character lenght
   if(self.ensureOccurance) {
-    
+    NSUInteger minimumLength = [NSString minimumPasswordLengthWithCharacterSet:self.characterFlags customCharacters:[self _customCharacters] ensureOccurance:self.ensureOccurance];
+    if(self.passwordLength < minimumLength) {
+      self.passwordLength = minimumLength;
+    }
   }
   
 }
