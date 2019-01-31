@@ -68,7 +68,7 @@ typedef NS_ENUM(NSUInteger, MPPasswordRating) {
 @property (strong) IBOutlet NSButton *numbersButton;
 @property (strong) IBOutlet NSButton *symbolsButton;
 @property (strong) IBOutlet NSButton *customButton;
-@property (strong) IBOutlet NSButton *ensureCharacterFromEachGroupButton;
+@property (strong) IBOutlet NSButton *ensureOccuranceButton;
 @property (strong) IBOutlet NSButton *setDefaultButton;
 @property (strong) IBOutlet NSTextField *entropyTextField;
 @property (strong) IBOutlet NSLevelIndicator *entropyIndicator;
@@ -76,7 +76,7 @@ typedef NS_ENUM(NSUInteger, MPPasswordRating) {
 
 @property (nonatomic, copy) NSString *customString;
 @property (nonatomic, assign) BOOL useCustomString;
-@property (nonatomic, assign) BOOL useCharacterFromEachGroup;
+@property (nonatomic, assign) BOOL ensureOccurance;
 @property (nonatomic, assign) NSUInteger passwordLength;
 @property (nonatomic, assign) CGFloat entropy;
 
@@ -98,7 +98,7 @@ typedef NS_ENUM(NSUInteger, MPPasswordRating) {
     _entropy = 0.0;
     _useEntryDefaults = NO;
     _allowsEntryDefaults = NO;
-    _useCharacterFromEachGroup = NO;
+    _ensureOccurance = NO;
     [self _setupDefaults];
   }
   return self;
@@ -128,7 +128,7 @@ typedef NS_ENUM(NSUInteger, MPPasswordRating) {
   self.customCharactersTextField.delegate = self;
   [self.customButton bind:NSValueBinding toObject:self withKeyPath:NSStringFromSelector(@selector(useCustomString)) options:nil];
   
-  [self.ensureCharacterFromEachGroupButton bind:NSValueBinding toObject:self withKeyPath:NSStringFromSelector(@selector(useCharacterFromEachGroup)) options:nil];
+  [self.ensureOccuranceButton bind:NSValueBinding toObject:self withKeyPath:NSStringFromSelector(@selector(ensureOccurance)) options:nil];
   
   NSString *copyToPasteBoardKeyPath = [MPSettingsHelper defaultControllerPathForKey:kMPSettingsKeyCopyGeneratedPasswordToClipboard];
   NSUserDefaultsController *defaultsController = NSUserDefaultsController.sharedUserDefaultsController;
@@ -171,7 +171,7 @@ typedef NS_ENUM(NSUInteger, MPPasswordRating) {
 - (IBAction)_generatePassword:(id)sender {
   self.password = [NSString passwordWithCharactersets:self.characterFlags
                                  withCustomCharacters:self._customCharacters
-                                      ensureOccurence:self.useCharacterFromEachGroup
+                                      ensureOccurence:self.ensureOccurance
                                                length:self.passwordLength];
 }
 
@@ -228,7 +228,7 @@ typedef NS_ENUM(NSUInteger, MPPasswordRating) {
     entryDefaults[kMPSettingsKeyPasswordCharacterFlags] = @(self.characterFlags);
     entryDefaults[kMPSettingsKeyPasswordUseCustomString] = @(self.useCustomString);
     entryDefaults[kMPSettingsKeyPasswordCustomString] = self.customCharactersTextField.stringValue;
-    entryDefaults[kMPSettingsKeyPasswordEnsureOccurance] = @(self.useCharacterFromEachGroup);
+    entryDefaults[kMPSettingsKeyPasswordEnsureOccurance] = @(self.ensureOccurance);
     NSMutableDictionary *availableDefaults = [[self _availableEntryDefaults] mutableCopy];
     if(!availableDefaults) {
       availableDefaults = [[NSMutableDictionary alloc] initWithCapacity:1];
@@ -284,7 +284,7 @@ typedef NS_ENUM(NSUInteger, MPPasswordRating) {
   if(![_password isEqualToString:password]) {
     _password = [password copy];
     NSString *customString = self.useCustomString ? self.customCharactersTextField.stringValue : nil;
-    self.entropy = [password entropyWhithPossibleCharacterSet:self.characterFlags andCustomCharacters:customString];
+    self.entropy = [password entropyWhithCharacterSet:self.characterFlags customCharacters:customString ensureOccurance:self.ensureOccurance];
   }
 }
 
@@ -305,9 +305,9 @@ typedef NS_ENUM(NSUInteger, MPPasswordRating) {
   }
 }
 
-- (void)setUseCharacterFromEachGroup:(BOOL)useCharacterFromEachGroup {
-  if(self.useCharacterFromEachGroup != useCharacterFromEachGroup) {
-    _useCharacterFromEachGroup = useCharacterFromEachGroup;
+- (void)setEnsureOccurance:(BOOL)useCharacterFromEachGroup {
+  if(self.ensureOccurance != useCharacterFromEachGroup) {
+    _ensureOccurance = useCharacterFromEachGroup;
     [self _resetCharacters];
     [self _generatePassword:nil];
   }
@@ -356,14 +356,14 @@ typedef NS_ENUM(NSUInteger, MPPasswordRating) {
     self.characterFlags = [entryDefaults[kMPSettingsKeyPasswordCharacterFlags] integerValue];
     self.useCustomString = [entryDefaults[kMPSettingsKeyPasswordUseCustomString] boolValue];
     self.customString = entryDefaults[kMPSettingsKeyPasswordCustomString];
-    self.useCharacterFromEachGroup = [entryDefaults[kMPSettingsKeyPasswordEnsureOccurance] boolValue];
+    self.ensureOccurance = [entryDefaults[kMPSettingsKeyPasswordEnsureOccurance] boolValue];
   }
   else {
     self.passwordLength = [NSUserDefaults.standardUserDefaults integerForKey:kMPSettingsKeyDefaultPasswordLength];
     self.characterFlags = [NSUserDefaults.standardUserDefaults integerForKey:kMPSettingsKeyPasswordCharacterFlags];
     self.useCustomString = [NSUserDefaults.standardUserDefaults boolForKey:kMPSettingsKeyPasswordUseCustomString];
     self.customString = [NSUserDefaults.standardUserDefaults stringForKey:kMPSettingsKeyPasswordCustomString];
-    self.useCharacterFromEachGroup = [NSUserDefaults.standardUserDefaults boolForKey:kMPSettingsKeyPasswordEnsureOccurance];
+    self.ensureOccurance = [NSUserDefaults.standardUserDefaults boolForKey:kMPSettingsKeyPasswordEnsureOccurance];
   }
 }
 
@@ -393,19 +393,8 @@ typedef NS_ENUM(NSUInteger, MPPasswordRating) {
   self.symbolsButton.state = (useSymbols ? NSOnState : NSOffState);
 
   // ensure minimum character lenght
-  if(self.useCharacterFromEachGroup) {
-    NSUInteger minimumPasswordLength = 0;
-    NSUInteger activeFlags = self.characterFlags;
-    while(activeFlags > 0) {
-      if(activeFlags & 1) {
-        minimumPasswordLength++;
-      }
-      activeFlags >>= 1;
-    }
+  if(self.ensureOccurance) {
     
-    if(self.passwordLength < minimumPasswordLength) {
-      self.passwordLength = minimumPasswordLength;
-    }
   }
   
 }

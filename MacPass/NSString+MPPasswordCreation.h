@@ -56,6 +56,7 @@ typedef NS_OPTIONS(NSUInteger, MPPasswordCharacterFlags) {
 
 + (NSString *)passwordWithDefaultSettings;
 
++ (NSUInteger)minimumPasswordLengthWithCharacterSet:(MPPasswordCharacterFlags)characterSet customCharacters:(NSString *)customCharacter ensureOccurance:(BOOL)ensureOccurance;
 /**
  *  @return returns a random character from the string
  */
@@ -84,6 +85,6 @@ typedef NS_OPTIONS(NSUInteger, MPPasswordCharacterFlags) {
  *
  *  @return entropy of the receiver as bits
  */
-- (CGFloat)entropyWhithPossibleCharacterSet:(MPPasswordCharacterFlags)allowedCharacters andCustomCharacters:(NSString *)customCharacters;
+- (CGFloat)entropyWhithCharacterSet:(MPPasswordCharacterFlags)characterSet customCharacters:(NSString *)customCharacters ensureOccurance:(BOOL)ensureOccurance;
 
 @end

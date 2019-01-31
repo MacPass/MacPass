@@ -26,23 +26,32 @@
 #import "NSString+MPComposedCharacterAdditions.h"
 #import "MPSettingsHelper.h"
 
-NSString *const kMPLowercaseLetterCharacters = @"abcdefghijklmnopqrstuvwxyz";
-NSString *const kMPNumberCharacters = @"1234567890";
-NSString *const kMPSymbolCharacters = @"!$%&\\|/<>(){}[]=?*'+#-_.:,;";
+static NSDictionary<NSNumber *, NSString *> *characterClassMap () {
+  static dispatch_once_t onceToken;
+  static NSDictionary *characterClassMap;
+  dispatch_once(&onceToken, ^{
+    characterClassMap = @{ @(MPPasswordCharactersLowerCase) : @"abcdefghijklmnopqrstuvwxyz",
+                           @(MPPasswordCharactersUpperCase) : @"abcdefghijklmnopqrstuvwxyz".uppercaseString,
+                           @(MPPasswordCharactersNumbers) : @"1234567890",
+                           @(MPPasswordCharactersSymbols) : @"!$%&\\|/<>(){}[]=?*'+#-_.:,;"
+                           };
+  });
+  return characterClassMap;
+}
 
 static NSString *allowedCharactersString(MPPasswordCharacterFlags flags) {
   NSMutableString *characterString = [NSMutableString stringWithCapacity:30];
   if(flags & MPPasswordCharactersLowerCase) {
-    [characterString appendString:kMPLowercaseLetterCharacters];
+    [characterString appendString:characterClassMap()[@(MPPasswordCharactersLowerCase)]];
   }
   if(flags & MPPasswordCharactersUpperCase) {
-    [characterString appendString:kMPLowercaseLetterCharacters.uppercaseString];
+    [characterString appendString:characterClassMap()[@(MPPasswordCharactersUpperCase)]];
   }
   if(flags & MPPasswordCharactersNumbers) {
-    [characterString appendString:kMPNumberCharacters];
+    [characterString appendString:characterClassMap()[@(MPPasswordCharactersNumbers)]];
   }
   if(flags & MPPasswordCharactersSymbols){
-    [characterString appendString:kMPSymbolCharacters];
+    [characterString appendString:characterClassMap()[@(MPPasswordCharactersSymbols)]];
   }
   return characterString;
 }
@@ -74,10 +83,30 @@ static NSString *mergeWithoutDuplicates(NSString* baseCharacters, NSString* cust
                    withCustomCharacters:(NSString *)customCharacters
                         ensureOccurence:(BOOL)ensureOccurence
                                  length:(NSUInteger)length {
+  if(ensureOccurence) {
+    length = MAX(length, [NSString minimumPasswordLengthWithCharacterSet:allowedCharacters customCharacters:customCharacters ensureOccurance:ensureOccurence]);    
+  }
   NSMutableString *password = [NSMutableString stringWithCapacity:length];
   NSString *characters = mergeWithoutDuplicates(
                                                 allowedCharactersString(allowedCharacters),
                                                 customCharacters);
+  if(ensureOccurence) {
+    if(allowedCharacters & MPPasswordCharactersLowerCase) {
+      [password appendString:characterClassMap()[@(MPPasswordCharactersLowerCase)].randomCharacter];
+    }
+    if(allowedCharacters & MPPasswordCharactersUpperCase) {
+      [password appendString:characterClassMap()[@(MPPasswordCharactersUpperCase)].randomCharacter];
+    }
+    if(allowedCharacters & MPPasswordCharactersNumbers) {
+      [password appendString:characterClassMap()[@(MPPasswordCharactersNumbers)].randomCharacter];
+    }
+    if(allowedCharacters & MPPasswordCharactersSymbols){
+      [password appendString:characterClassMap()[@(MPPasswordCharactersSymbols)].randomCharacter];
+    }
+    if(customCharacters.length > 0) {
+      [password appendString:customCharacters.randomCharacter];
+    }
+  }
   while(password.composedCharacterLength < length) {
     NSString *randomCharacter = characters.randomCharacter;
     if(randomCharacter.length > 0) {
@@ -87,7 +116,7 @@ static NSString *mergeWithoutDuplicates(NSString* baseCharacters, NSString* cust
       break;
     }
   }
-  return password;
+  return ensureOccurence ? password.shuffledString : password;
 }
 
 + (NSString *)passwordWithDefaultSettings {
@@ -103,6 +132,21 @@ static NSString *mergeWithoutDuplicates(NSString* baseCharacters, NSString* cust
   return [NSString passwordWithCharactersets:characterFlags withCustomCharacters:@"" ensureOccurence:NO length:passwordLength];
 }
 
++ (NSUInteger)minimumPasswordLengthWithCharacterSet:(MPPasswordCharacterFlags)characterSet customCharacters:(NSString *)customCharacter ensureOccurance:(BOOL)ensureOccurance {
+  NSUInteger minimumPasswordLength = 0;
+  NSUInteger activeFlags = characterSet;
+  while(activeFlags > 0) {
+    if(activeFlags & 1) {
+      minimumPasswordLength++;
+    }
+    activeFlags >>= 1;
+  }
+  if(customCharacter.length > 0) {
+    minimumPasswordLength++;
+  }
+  return minimumPasswordLength;
+}
+
 - (NSString *)passwordWithLength:(NSUInteger)length {
   return [NSString passwordFromString:self length:length];
 }
@@ -114,12 +158,18 @@ static NSString *mergeWithoutDuplicates(NSString* baseCharacters, NSString* cust
   return [self composedCharacterAtIndex:arc4random_uniform((int)self.composedCharacterLength)];
 }
 
-- (CGFloat)entropyWhithPossibleCharacterSet:(MPPasswordCharacterFlags)allowedCharacters andCustomCharacters:(NSString *)customCharacters {
-  NSString *characters = nil;
-  characters = mergeWithoutDuplicates(allowedCharactersString(allowedCharacters), customCharacters);
-  CGFloat alphabetCount = characters.composedCharacterLength;
-  CGFloat passwordLength = self.composedCharacterLength;
-  return passwordLength * ( log10(alphabetCount) / log10(2) );
+
+- (CGFloat)entropyWhithCharacterSet:(MPPasswordCharacterFlags)characterSet customCharacters:(NSString *)customCharacters ensureOccurance:(BOOL)ensureOccurance {
+  if(ensureOccurance) {
+    return 0;
+  }
+  else {
+    NSString *characters = nil;
+    characters = mergeWithoutDuplicates(allowedCharactersString(characterSet), customCharacters);
+    CGFloat alphabetCount = characters.composedCharacterLength;
+    CGFloat passwordLength = self.composedCharacterLength;
+    return passwordLength * ( log10(alphabetCount) / log10(2) );
+  }
 }
 
 - (NSString *)shuffledString {
