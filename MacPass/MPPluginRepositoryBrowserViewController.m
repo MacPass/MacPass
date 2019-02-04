@@ -47,8 +47,9 @@ typedef NS_ENUM(NSUInteger, MPPluginTableColumn) {
 
 - (void)executePluginAction:(id)sender {
   NSInteger tableRow = [self.itemTable rowForView:sender];
-  if(tableRow < -1 && tableRow < self.repositoryItems.count) {
+  if(tableRow > -1 && tableRow < self.repositoryItems.count) {
     MPPluginRepositoryItem *actionItem = self.repositoryItems[tableRow];
+    [self _downloadPluginForItem:actionItem];
   }
 }
 
@@ -58,6 +59,7 @@ typedef NS_ENUM(NSUInteger, MPPluginTableColumn) {
 
 - (NSView *)tableView:(NSTableView *)tableView viewForTableColumn:(NSTableColumn *)tableColumn row:(NSInteger)row {
   NSTableCellView *view = [tableView makeViewWithIdentifier:tableColumn.identifier owner:self];
+  
   MPPluginRepositoryItem *item = self.repositoryItems[row];
   
   NSUInteger column = [tableView.tableColumns indexOfObjectIdenticalTo:tableColumn];
@@ -71,6 +73,7 @@ typedef NS_ENUM(NSUInteger, MPPluginTableColumn) {
   else if(column == MPPluginTableColumnStatus) {
     MPPluginStatusTableCellView *statusView = (MPPluginStatusTableCellView *)view;
     statusView.actionButton.title = NSLocalizedString(@"PLUGIN_BROWSER_DOWNLOAD_PLUGIN_BUTTON", "Button to download the Plugin");
+    
     MPPlugin *plugin = [MPPluginHost.sharedHost pluginWithBundleIdentifier:item.bundleIdentifier];
     if(plugin) {
       switch([MPPluginVersionComparator compareVersion:plugin.shortVersionString toVersion:item.currentVersion]) {
@@ -95,26 +98,24 @@ typedef NS_ENUM(NSUInteger, MPPluginTableColumn) {
   return view;
 }
 
-- (BOOL)tableView:(NSTableView *)tableView shouldSelectRow:(NSInteger)row {
-  NSLog(@"%@", NSStringFromSelector(_cmd));
-  return YES;
-}
-
-- (void)tableViewSelectionIsChanging:(NSNotification *)notification {
-  NSLog(@"%@", NSStringFromSelector(_cmd));
-}
-
-- (void)tableViewSelectionDidChange:(NSNotification *)notification {
-  NSLog(@"%@", NSStringFromSelector(_cmd));
-}
-
 - (void)_refreshRepository {
   self.repositoryItems = MPPluginRepository.defaultRepository.availablePlugins;
   [self.itemTable reloadData];
 }
 
-- (void)_downloadPluginAtURL:(NSURL *)url {
-  NSURLSessionDownloadTask *taks = [NSURLSession.sharedSession downloadTaskWithURL:url];
-  
+- (void)_downloadPluginForItem:(MPPluginRepositoryItem *)item {
+  NSURL *url = item.downloadURL;
+  NSURLSessionDownloadTask *task = [NSURLSession.sharedSession downloadTaskWithURL:url completionHandler:^(NSURL * _Nullable location, NSURLResponse * _Nullable response, NSError * _Nullable error) {
+    NSHTTPURLResponse *httpResponse = (NSHTTPURLResponse*)response;
+    if(httpResponse.statusCode == 200) {
+      if(location) {
+        NSError *error;
+        NSURL *downloadFolderURL = [NSFileManager.defaultManager URLsForDirectory:NSDownloadsDirectory inDomains:NSUserDomainMask].firstObject;
+        NSURL *fileURL = [downloadFolderURL URLByAppendingPathComponent:httpResponse.suggestedFilename];
+        [NSFileManager.defaultManager moveItemAtURL:location toURL:fileURL error:&error];
+      }
+    }
+  }];
+  [task resume];
 }
 @end
