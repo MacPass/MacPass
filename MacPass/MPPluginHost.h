@@ -48,8 +48,6 @@ FOUNDATION_EXPORT NSString *const MPPluginHostPluginBundleIdentifiyerKey;
 - (void)disablePlugin:(MPPlugin *)plugin;
 - (void)enablePlugin:(MPPlugin *)plugin;
 
-- (void)loadPlugins;
-
 - (MPPlugin *)pluginWithBundleIdentifier:(NSString *)identifer;
 - (NSArray *)avilableMenuItemsForEntries:(NSArray <KPKEntry *>*)entries;
 @end

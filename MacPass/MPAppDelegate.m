@@ -184,11 +184,10 @@ NSString *const MPDidChangeStoredKeyFilesSettings = @"com.hicknhack.macpass.MPDi
 #if defined(NO_SPARKLE)
   NSLog(@"Sparkle explicitly disabled!!!");
 #endif
-  /* Daemon instanziieren */
+  /* Initalizes Global Daemons */
   [MPLockDaemon defaultDaemon];
   [MPAutotypeDaemon defaultDaemon];
-  /* Create Plugin Manager */
-  [MPPluginHost.sharedHost loadPlugins];
+  [MPPluginHost sharedHost];
 #if !defined(DEBUG) && !defined(NO_SPARKLE)
   /* Disable updates if in debug or nosparkle  */
   [SUUpdater sharedUpdater];
