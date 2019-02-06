@@ -42,6 +42,7 @@
 - (void)viewDidLoad {
   [super viewDidLoad];
   self.selectAutotypeContextButton.enabled = NO;
+  [self.contextTableView selectRowIndexes:[NSIndexSet indexSetWithIndex:0] byExtendingSelection:NO];
 }
 
 #pragma mark NSTableViewDataSource
