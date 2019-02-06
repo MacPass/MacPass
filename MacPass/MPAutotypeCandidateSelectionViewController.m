@@ -55,8 +55,8 @@
 - (NSView *)tableView:(NSTableView *)tableView viewForTableColumn:(NSTableColumn *)tableColumn row:(NSInteger)row {
   NSTableCellView *view = [tableView makeViewWithIdentifier:tableColumn.identifier owner:self];
   MPAutotypeContext *context = self.candidates[row];
-  NSMutableAttributedString *string = [[NSMutableAttributedString alloc] initWithString:[NSString stringWithFormat:@"%@\n%@", context.entry.title, context.command]];
-  [string setAttributes:@{NSForegroundColorAttributeName: NSColor.disabledControlTextColor} range:NSMakeRange(context.entry.title.length + 1, context.command.length)];
+  NSMutableAttributedString *string = [[NSMutableAttributedString alloc] initWithString:[NSString stringWithFormat:@"%@ (%@)\n%@", context.entry.title, context.entry.username, context.command]];
+  [string setAttributes:@{NSForegroundColorAttributeName: NSColor.disabledControlTextColor} range:NSMakeRange((string.length - context.command.length), context.command.length)];
   view.textField.attributedStringValue = string;
   view.imageView.image = context.entry.iconImage;
   return view;
