@@ -152,7 +152,6 @@ static MPAutotypeDaemon *_sharedInstance;
     alert.messageText = NSLocalizedString(@"ALERT_AUTOTYPE_MISSING_ACCESSIBILTY_PERMISSIONS_MESSAGE_TEXT", @"Alert message displayed when Autotype performs self check and lacks accessibilty permissions");
     alert.informativeText = NSLocalizedString(@"ALERT_AUTOTYPE_MISSING_ACCESSIBILTY_PERMISSIONS_INFORMATIVE_TEXT", @"Alert informative text displayed when Autotype performs self check and lacks accessibilty permissions");
     alert.showsSuppressionButton = YES;
-    alert.suppressionButton.title = NSLocalizedString(@"ALERT_AUTOTYPE_MISSING_ACCESSIBILTY_PERMISSIONS_SUPPRESS_WARNING", @"Checkbox in dialog to set the selection as default file change strategy!");
     [alert addButtonWithTitle:NSLocalizedString(@"ALERT_AUTOTYPE_MISSING_ACCESSIBILTY_PERMISSIONS_BUTTON_OK", @"Button in dialog to leave autotype disabled and continiue!")];
     [alert addButtonWithTitle:NSLocalizedString(@"ALERT_AUTOTYPE_MISSING_ACCESSIBILTY_PERMISSIONS_BUTTON_OPEN_PREFERENCES", @"Button in dialog to open accessibilty preferences pane!")];
     NSModalResponse returnCode = [alert runModal];
