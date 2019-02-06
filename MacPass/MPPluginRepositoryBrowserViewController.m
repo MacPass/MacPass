@@ -21,9 +21,17 @@ typedef NS_ENUM(NSUInteger, MPPluginTableColumn) {
   MPPluginTableColumnStatus
 };
 
+typedef NS_ENUM(NSUInteger, MPPluginActionState) {
+  MPPluginActionStateStartDownload,
+  MPPluginActionStateDownloadInProgress,
+  MPPluginActionStateDownloadFinished,
+  MPPluginActionStateDownloadFailed
+};
+
 @interface MPPluginRepositoryBrowserViewController () <NSTableViewDelegate, NSTableViewDataSource>
 
 @property (copy) NSArray<MPPluginRepositoryItem *>* repositoryItems;
+@property (copy) NSMutableDictionary<NSString *, NSNumber *> *itemStatus;
 @property (strong) IBOutlet NSTableView *itemTable;
 @property (strong) IBOutlet NSTextField *updatedAtTextField;
 
@@ -37,6 +45,7 @@ typedef NS_ENUM(NSUInteger, MPPluginTableColumn) {
 
 - (void)viewDidLoad {
   [super viewDidLoad];
+  self.itemStatus = [[NSMutableDictionary alloc] init];
   [self.updatedAtTextField bind:NSValueBinding toObject:MPPluginRepository.defaultRepository withKeyPath:NSStringFromSelector(@selector(updatedAt)) options:nil];
   [self _refreshRepository];
 }
@@ -48,8 +57,7 @@ typedef NS_ENUM(NSUInteger, MPPluginTableColumn) {
 - (void)executePluginAction:(id)sender {
   NSInteger tableRow = [self.itemTable rowForView:sender];
   if(tableRow > -1 && tableRow < self.repositoryItems.count) {
-    MPPluginRepositoryItem *actionItem = self.repositoryItems[tableRow];
-    [self _downloadPluginForItem:actionItem];
+    [self _downloadPluginForRow:tableRow];
   }
 }
 
@@ -59,11 +67,10 @@ typedef NS_ENUM(NSUInteger, MPPluginTableColumn) {
 
 - (NSView *)tableView:(NSTableView *)tableView viewForTableColumn:(NSTableColumn *)tableColumn row:(NSInteger)row {
   NSTableCellView *view = [tableView makeViewWithIdentifier:tableColumn.identifier owner:self];
-  
   MPPluginRepositoryItem *item = self.repositoryItems[row];
   
   NSUInteger column = [tableView.tableColumns indexOfObjectIdenticalTo:tableColumn];
-
+  
   if(column == MPPluginTableColumnName) {
     view.textField.stringValue = item.name;
   }
@@ -71,8 +78,10 @@ typedef NS_ENUM(NSUInteger, MPPluginTableColumn) {
     view.textField.stringValue = item.currentVersion;
   }
   else if(column == MPPluginTableColumnStatus) {
+    
     MPPluginStatusTableCellView *statusView = (MPPluginStatusTableCellView *)view;
     statusView.actionButton.title = NSLocalizedString(@"PLUGIN_BROWSER_DOWNLOAD_PLUGIN_BUTTON", "Button to download the Plugin");
+    statusView.actionButton.enabled = YES;
     
     MPPlugin *plugin = [MPPluginHost.sharedHost pluginWithBundleIdentifier:item.bundleIdentifier];
     if(plugin) {
@@ -91,9 +100,12 @@ typedef NS_ENUM(NSUInteger, MPPluginTableColumn) {
     else {
       view.textField.stringValue = [NSString stringWithFormat:NSLocalizedString(@"PLUGIN_BROWSER_PLUGIN_NOT_INSTALLED", "Status for an uninstalled plugin in the plugin browser")];
     }
+    
+    // update action button
+    
   }
   else {
-    view.textField.stringValue = @"-";
+    view.textField.stringValue = @"";
   }
   return view;
 }
@@ -103,18 +115,34 @@ typedef NS_ENUM(NSUInteger, MPPluginTableColumn) {
   [self.itemTable reloadData];
 }
 
-- (void)_downloadPluginForItem:(MPPluginRepositoryItem *)item {
+- (NSButton *)_actionButtonForRow:(NSUInteger)row {
+  MPPluginStatusTableCellView *view = [self.itemTable viewAtColumn:MPPluginTableColumnStatus row:row makeIfNecessary:NO];
+  return view.actionButton;
+}
+
+- (void)_downloadPluginForRow:(NSInteger)row {
+  NSButton *actionButton = [self _actionButtonForRow:row];
+  actionButton.enabled = NO;
+  actionButton.title = NSLocalizedString(@"PLUGIN_BROWSER_ACTION_DOWNLOAD_IN_PROGRESS", "Label for the button when a download is in progress!");
+  
+  MPPluginRepositoryItem *item = self.repositoryItems[row];
   NSURL *url = item.downloadURL;
   NSURLSessionDownloadTask *task = [NSURLSession.sharedSession downloadTaskWithURL:url completionHandler:^(NSURL * _Nullable location, NSURLResponse * _Nullable response, NSError * _Nullable error) {
     NSHTTPURLResponse *httpResponse = (NSHTTPURLResponse*)response;
-    if(httpResponse.statusCode == 200) {
-      if(location) {
-        NSError *error;
-        NSURL *downloadFolderURL = [NSFileManager.defaultManager URLsForDirectory:NSDownloadsDirectory inDomains:NSUserDomainMask].firstObject;
-        NSURL *fileURL = [downloadFolderURL URLByAppendingPathComponent:httpResponse.suggestedFilename];
-        [NSFileManager.defaultManager moveItemAtURL:location toURL:fileURL error:&error];
+    NSString *title = NSLocalizedString(@"PLUGIN_BROWSER_ACTION_RETRY_FAILED_DOWNLOAD", "Label for the button when a download did not succeed");
+    if(httpResponse.statusCode == 200 && location != nil) {
+      NSURL *downloadFolderURL = [NSFileManager.defaultManager URLsForDirectory:NSDownloadsDirectory inDomains:NSUserDomainMask].firstObject;
+      NSURL *fileURL = [downloadFolderURL URLByAppendingPathComponent:httpResponse.suggestedFilename];
+      BOOL movedFile = [NSFileManager.defaultManager moveItemAtURL:location toURL:fileURL error:&error];
+      if(movedFile) {
+        title = NSLocalizedString(@"PLUGIN_BROWSER_ACTION_SHOW_DOWNLOADED_FILE", "Label for the button to show a downloaded file");
       }
     }
+    dispatch_async(dispatch_get_main_queue(), ^{
+      NSButton *actionButton = [self _actionButtonForRow:row];
+      actionButton.title = title;
+      actionButton.enabled = YES;
+    });
   }];
   [task resume];
 }

@@ -43,8 +43,11 @@
 /* Alert message displayed when Autotype performs self check and lacks accessibilty permissions */
 "ALERT_AUTOTYPE_MISSING_ACCESSIBILTY_PERMISSIONS_MESSAGE_TEXT" = "MacPass cannot perform Autotype";
 
-/* Checkbox in dialog to set the selection as default file change strategy! */
-"ALERT_AUTOTYPE_MISSING_ACCESSIBILTY_PERMISSIONS_SUPPRESS_WARNING" = "Do not show this warning again.";
+/* Informative text of the alert displayed when plugins where disabled due to incompatibilty */
+"ALERT_INCOMPATIBLE_PLUGINS_ENCOUNTERED_INFORMATIVE_TEXT" = "Some plugins where disabled, because they are not compatible with this version of MacPass. Open the plugin settings for details.";
+
+/* Message text of the alert displayed when plugins where disabled due to incompatibilty */
+"ALERT_INCOMPATIBLE_PLUGINS_ENCOUNTERED_MESSAGE" = "Incompatible Plugins deteced.";
 
 /* Alert informative text when plugins or their settings change and require a restart */
 "ALERT_INFORMATIVE_TEXT_PLUGINS_CHANGED_SUGGEST_RESTART" = "Changes to plugins and global plugin settings take only effect after restart. Restart MacPass now?";
@@ -484,6 +487,15 @@
 
 /* Window displayed to the user to pick an amout of characters */
 "PICKFIELD_WINDOW_TITLE" = "Field Picker";
+
+/* Label for the button when a download is in progress! */
+"PLUGIN_BROWSER_ACTION_DOWNLOAD_IN_PROGRESS" = "Downloading…";
+
+/* Label for the button when a download did not succeed */
+"PLUGIN_BROWSER_ACTION_RETRY_FAILED_DOWNLOAD" = "Failed. Re-Download";
+
+/* Label for the button to show a downloaded file */
+"PLUGIN_BROWSER_ACTION_SHOW_DOWNLOADED_FILE" = "Show in Finder…";
 
 /* Button to download the Plugin */
 "PLUGIN_BROWSER_DOWNLOAD_PLUGIN_BUTTON" = "Download";
