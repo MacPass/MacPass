@@ -21,17 +21,10 @@ typedef NS_ENUM(NSUInteger, MPPluginTableColumn) {
   MPPluginTableColumnStatus
 };
 
-typedef NS_ENUM(NSUInteger, MPPluginActionState) {
-  MPPluginActionStateStartDownload,
-  MPPluginActionStateDownloadInProgress,
-  MPPluginActionStateDownloadFinished,
-  MPPluginActionStateDownloadFailed
-};
-
 @interface MPPluginRepositoryBrowserViewController () <NSTableViewDelegate, NSTableViewDataSource>
 
 @property (copy) NSArray<MPPluginRepositoryItem *>* repositoryItems;
-@property (copy) NSMutableDictionary<NSString *, NSNumber *> *itemStatus;
+@property (strong) NSMutableSet<NSString *> *downloadedItems;
 @property (strong) IBOutlet NSTableView *itemTable;
 @property (strong) IBOutlet NSTextField *updatedAtTextField;
 
@@ -45,7 +38,7 @@ typedef NS_ENUM(NSUInteger, MPPluginActionState) {
 
 - (void)viewDidLoad {
   [super viewDidLoad];
-  self.itemStatus = [[NSMutableDictionary alloc] init];
+  self.downloadedItems = [[NSMutableSet alloc] init];
   [self.updatedAtTextField bind:NSValueBinding toObject:MPPluginRepository.defaultRepository withKeyPath:NSStringFromSelector(@selector(updatedAt)) options:nil];
   [self _refreshRepository];
 }
@@ -57,7 +50,14 @@ typedef NS_ENUM(NSUInteger, MPPluginActionState) {
 - (void)executePluginAction:(id)sender {
   NSInteger tableRow = [self.itemTable rowForView:sender];
   if(tableRow > -1 && tableRow < self.repositoryItems.count) {
-    [self _downloadPluginForRow:tableRow];
+    MPPluginRepositoryItem *item = self.repositoryItems[tableRow];
+    if([self.downloadedItems containsObject:item.bundleIdentifier]) {
+      NSURL *downloadsURL = [NSFileManager.defaultManager URLsForDirectory:NSDownloadsDirectory inDomains:NSUserDomainMask].firstObject;
+      [NSWorkspace.sharedWorkspace openURL:downloadsURL];
+    }
+    else {
+      [self _downloadPluginForRow:tableRow];
+    }
   }
 }
 
@@ -133,9 +133,16 @@ typedef NS_ENUM(NSUInteger, MPPluginActionState) {
     if(httpResponse.statusCode == 200 && location != nil) {
       NSURL *downloadFolderURL = [NSFileManager.defaultManager URLsForDirectory:NSDownloadsDirectory inDomains:NSUserDomainMask].firstObject;
       NSURL *fileURL = [downloadFolderURL URLByAppendingPathComponent:httpResponse.suggestedFilename];
-      BOOL movedFile = [NSFileManager.defaultManager moveItemAtURL:location toURL:fileURL error:&error];
-      if(movedFile) {
+      if([fileURL checkResourceIsReachableAndReturnError:&error]) {
         title = NSLocalizedString(@"PLUGIN_BROWSER_ACTION_SHOW_DOWNLOADED_FILE", "Label for the button to show a downloaded file");
+        [self.downloadedItems addObject:item.bundleIdentifier];
+      }
+      else if([NSFileManager.defaultManager moveItemAtURL:location toURL:fileURL error:&error]) {
+        title = NSLocalizedString(@"PLUGIN_BROWSER_ACTION_SHOW_DOWNLOADED_FILE", "Label for the button to show a downloaded file");
+        [self.downloadedItems addObject:item.bundleIdentifier];
+      }
+      else {
+        // more error handling
       }
     }
     dispatch_async(dispatch_get_main_queue(), ^{
