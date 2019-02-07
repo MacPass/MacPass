@@ -113,7 +113,7 @@ NSString *const _MPTableSecurCellView = @"PasswordCell";
 - (void)dealloc {
   [self.entryTable unbind:NSContentArrayBinding];
   [self.entryArrayController unbind:NSContentArrayBinding];
-  [[NSNotificationCenter defaultCenter] removeObserver:self];
+  [NSNotificationCenter.defaultCenter removeObserver:self];
 }
 
 - (void)viewDidLoad {
