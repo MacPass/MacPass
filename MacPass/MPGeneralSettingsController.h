@@ -22,9 +22,9 @@
 
 #import <Cocoa/Cocoa.h>
 #import "MPViewController.h"
-#import "MPSettingsTab.h"
+#import "MPPreferencesTab.h"
 
-@interface MPGeneralSettingsController : MPViewController <MPSettingsTab>
+@interface MPGeneralSettingsController : MPViewController <MPPreferencesTab>
 
 @property (weak) IBOutlet NSButton *clearPasteboardOnQuitCheckButton;
 @property (weak) IBOutlet NSPopUpButton *clearPasteboardTimeoutPopup;

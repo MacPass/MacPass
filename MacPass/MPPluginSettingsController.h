@@ -21,9 +21,9 @@
 //
 
 #import "MPViewController.h"
-#import "MPSettingsTab.h"
+#import "MPPreferencesTab.h"
 
-@interface MPPluginSettingsController : MPViewController <MPSettingsTab>
+@interface MPPluginSettingsController : MPViewController <MPPreferencesTab>
 
 - (IBAction)addOrRemovePlugin:(id)sender;
 - (IBAction)browsePlugins:(id)sender;

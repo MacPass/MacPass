@@ -20,40 +20,43 @@
 //  along with this program.  If not, see <http://www.gnu.org/licenses/>.
 //
 
-#import "MPSettingsWindowController.h"
+#import "MPPreferencesWindowController.h"
+
+#import "MPPreferencesTab.h"
+
 #import "MPGeneralSettingsController.h"
 #import "MPIntegrationSettingsController.h"
 #import "MPWorkflowSettingsController.h"
 #import "MPUpdateSettingsController.h"
 #import "MPPluginSettingsController.h"
 
-@interface MPSettingsWindowController () {
+@interface MPPreferencesWindowController () {
   NSString *lastIdentifier;
 }
 
-@property (strong, nonatomic) NSMutableDictionary *settingsController;
+@property (strong, nonatomic) NSMutableDictionary *preferencesController;
 @property (strong, nonatomic) NSMutableDictionary *toolbarItems;
 @property (strong) NSArray *defaultToolbarItems;
 
 @end
 
-@implementation MPSettingsWindowController
+@implementation MPPreferencesWindowController
 
 - (NSString *)windowNibName {
-  return @"SettingsWindow";
+  return @"PreferencesWindow";
 }
 
 -(id)init {
   self = [super initWithWindow:nil];
   if(self) {
-    NSToolbar *tb = [[NSToolbar alloc] initWithIdentifier:@"SettingsToolBar"];
+    NSToolbar *tb = [[NSToolbar alloc] initWithIdentifier:@"PreferencesToolBar"];
     tb.allowsUserCustomization = NO;
     tb.displayMode = NSToolbarDisplayModeIconAndLabel;
-    _settingsController = [[NSMutableDictionary alloc] initWithCapacity:5];
+    _preferencesController = [[NSMutableDictionary alloc] initWithCapacity:5];
     _toolbarItems = [[NSMutableDictionary alloc] initWithCapacity:5];
     lastIdentifier = nil;
     
-    [self _setupDefaultSettingsTabs];
+    [self _setupDefaultPreferencesTabs];
     
     tb.delegate = self;
     self.window.toolbar = tb;
@@ -62,17 +65,17 @@
 }
 
 
-- (void)showSettings {
+- (void)showPreferences {
   if(self.defaultToolbarItems.count > 0) {
-    [self showSettingsTabWithIdentifier:self.defaultToolbarItems[0]];
+    [self _showPreferencesTabWithIdentifier:self.defaultToolbarItems[0]];
   }
 }
 
-- (void)showSettingsTabWithIdentifier:(NSString *)identifier {
+- (void)_showPreferencesTabWithIdentifier:(NSString *)identifier {
   if(nil == identifier) {
     @throw [NSException exceptionWithName:NSInvalidArgumentException reason:@"Identifier cannot be nil" userInfo:nil];
   }
-  id<MPSettingsTab> tab = self.settingsController[identifier];
+  id<MPPreferencesTab> tab = self.preferencesController[identifier];
   if(tab == nil){
     NSLog(@"Warning. Unknown settingscontroller for identifier: %@. Did you miss to add the controller?", identifier);
     return;
@@ -111,8 +114,35 @@
   [self.window makeKeyAndOrderFront:nil];
 }
 
-- (void)_addSettingsTab:(id<MPSettingsTab>)tabController {
-  if(NO == [tabController conformsToProtocol:@protocol(MPSettingsTab)]) {
+- (void)showPreferencesTab:(MPPreferencesTab)tab {
+  Class tabClass;
+  switch(tab) {
+    case MPPreferencesTabPlugins:
+      tabClass = MPPluginSettingsController.class;
+      break;
+    case MPPreferencesTabUpdate:
+      tabClass = MPUpdateSettingsController.class;
+      break;
+    case MPPreferencesTabWorkflow:
+      tabClass = MPWorkflowSettingsController.class;
+      break;
+    case MPPreferencesTabGeneral:
+    default:
+      tabClass = MPGeneralSettingsController.class;
+      break;
+  }
+  NSString *identifier;
+  for(id<MPPreferencesTab> tab in self.preferencesController) {
+    if([tab isKindOfClass:tabClass]) {
+      identifier = tab.identifier;
+      break;
+    }
+  }
+  [self _showPreferencesTabWithIdentifier:identifier];
+}
+
+- (void)_addSettingsTab:(id<MPPreferencesTab>)tabController {
+  if(NO == [tabController conformsToProtocol:@protocol(MPPreferencesTab)]) {
     NSException *protocollException = [NSException exceptionWithName:NSInvalidArgumentException
                                                               reason:@"Controller must conform to MPSettingsTabProtrocoll"
                                                             userInfo:nil];
@@ -125,22 +155,22 @@
     @throw controllerException;
   }
   NSString *identifier = tabController.identifier;
-  if(nil != self.settingsController[identifier]) {
+  if(nil != self.preferencesController[identifier]) {
     NSLog(@"Warning: Settingscontroller with identifier %@ already present!", identifier);
   }
   else {
-    self.settingsController[identifier] = tabController;
+    self.preferencesController[identifier] = tabController;
   }
 }
 
-- (void)_setupDefaultSettingsTabs {
+- (void)_setupDefaultPreferencesTabs {
   NSArray *controllers = @[ [[MPGeneralSettingsController alloc] init],
-                         [[MPIntegrationSettingsController alloc] init],
-                         [[MPWorkflowSettingsController alloc] init],
-                         [[MPUpdateSettingsController alloc] init],
-                         [[MPPluginSettingsController alloc] init] ];
+                            [[MPIntegrationSettingsController alloc] init],
+                            [[MPWorkflowSettingsController alloc] init],
+                            [[MPUpdateSettingsController alloc] init],
+                            [[MPPluginSettingsController alloc] init] ];
   NSMutableArray *identifier = [[NSMutableArray alloc] initWithCapacity:controllers.count];
-  for(id<MPSettingsTab> controller in controllers) {
+  for(id<MPPreferencesTab> controller in controllers) {
     [self _addSettingsTab:controller];
     [identifier addObject:controller.identifier];
   }
@@ -150,14 +180,14 @@
 - (void)_showSettingsTab:(id)sender {
   if([sender respondsToSelector:@selector(itemIdentifier)]) {
     NSString *identfier = [sender itemIdentifier];
-    [self showSettingsTabWithIdentifier:identfier];
+    [self _showPreferencesTabWithIdentifier:identfier];
   }
 }
 
 #pragma mark NSToolbarDelegate
 
 - (NSArray *)toolbarAllowedItemIdentifiers:(NSToolbar *)toolbar {
-  return self.settingsController.allKeys;
+  return self.preferencesController.allKeys;
 }
 
 - (NSArray *)toolbarDefaultItemIdentifiers:(NSToolbar *)toolbar {
@@ -165,7 +195,7 @@
 }
 
 - (NSArray *)toolbarSelectableItemIdentifiers:(NSToolbar *)toolbar {
-  return self.settingsController.allKeys;
+  return self.preferencesController.allKeys;
 }
 
 - (NSToolbarItem *)toolbar:(NSToolbar *)toolbar itemForItemIdentifier:(NSString *)itemIdentifier willBeInsertedIntoToolbar:(BOOL)flag {
@@ -176,7 +206,7 @@
      Setup the item to use the controllers label if one is present
      and supports the appropriate @optional protocol messages
      */
-    id<MPSettingsTab> tab = self.settingsController[itemIdentifier];
+    id<MPPreferencesTab> tab = self.preferencesController[itemIdentifier];
     if([tab respondsToSelector:@selector(label)]) {
       item.label = [tab label];
     }

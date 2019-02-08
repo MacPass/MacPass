@@ -21,11 +21,11 @@
 //
 
 #import "MPViewController.h"
-#import "MPSettingsTab.h"
+#import "MPPreferencesTab.h"
 
 @class DDHotKeyTextField;
 
-@interface MPIntegrationSettingsController : MPViewController <MPSettingsTab, NSTextFieldDelegate>
+@interface MPIntegrationSettingsController : MPViewController <MPPreferencesTab, NSTextFieldDelegate>
 /* Autotype */
 @property (strong) IBOutlet NSButton *enableGlobalAutotypeCheckBox;
 @property (strong) IBOutlet DDHotKeyTextField *hotKeyTextField;

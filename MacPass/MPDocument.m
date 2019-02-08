@@ -523,7 +523,7 @@ NSString *const MPDocumentGroupKey                            = @"MPDocumentGrou
 }
 
 - (NSURL *)suggestedKeyURL {
-  MPAppDelegate *delegate = (MPAppDelegate *)[NSApp delegate];
+  MPAppDelegate *delegate = (MPAppDelegate *)NSApp.delegate;
   if(!delegate.isAllowedToStoreKeyFile) {
     return nil;
   }
@@ -630,7 +630,7 @@ NSString *const MPDocumentGroupKey                            = @"MPDocumentGrou
   if(!metaData.enforceMasterKeyChange) {
     return NO;
   }
-  return ((24*60*60*metaData.masterKeyChangeEnforcementInterval) < -[metaData.masterKeyChanged timeIntervalSinceNow]);
+  return ((24*60*60*metaData.masterKeyChangeEnforcementInterval) < - metaData.masterKeyChanged.timeIntervalSinceNow);
 }
 
 - (BOOL)shouldRecommendPasswordChange {
@@ -638,7 +638,7 @@ NSString *const MPDocumentGroupKey                            = @"MPDocumentGrou
   if(!metaData.recommendMasterKeyChange) {
     return NO;
   }
-  return ( (24*60*60*metaData.masterKeyChangeRecommendationInterval) < -[metaData.masterKeyChanged timeIntervalSinceNow]);
+  return ( (24*60*60*metaData.masterKeyChangeRecommendationInterval) < - metaData.masterKeyChanged.timeIntervalSinceNow);
 }
 
 #pragma mark Data manipulation

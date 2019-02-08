@@ -31,6 +31,7 @@
 #import "MPPluginVersionComparator.h"
 
 #import "NSApplication+MPAdditions.h"
+#import "MPAppDelegate.h"
 #import "MPSettingsHelper.h"
 
 #import "NSError+Messages.h"
@@ -286,7 +287,25 @@ NSString *const MPPluginHostPluginBundleIdentifiyerKey = @"MPPluginHostPluginBun
     alert.informativeText = NSLocalizedString(@"ALERT_INCOMPATIBLE_PLUGINS_ENCOUNTERED_INFORMATIVE_TEXT", "Informative text of the alert displayed when plugins where disabled due to incompatibilty");
     alert.alertStyle = NSAlertStyleWarning;
     alert.showsSuppressionButton = YES;
-    [alert runModal];
+    [alert addButtonWithTitle:NSLocalizedString(@"ALERT_INCOMPATIBLE_PLUGINS_ENCOUNTERED_BUTTON_OK", @"Button in dialog to leave plugin ds disabled and continiue!")];
+    [alert addButtonWithTitle:NSLocalizedString(@"ALERT_INCOMPATIBLE_PLUGINS_ENCOUNTERED_BUTTON_OPEN_PREFERENCES", @"Button in dialog to open plugin preferences pane!")];
+    NSModalResponse returnCode = [alert runModal];
+    //BOOL suppressWarning = (alert.suppressionButton.state == NSOnState);
+    //[NSUserDefaults.standardUserDefaults setBool:suppressWarning forKey:kMPSettingsKeyAutotypeHideAccessibiltyWarning];
+    switch(returnCode) {
+      case NSAlertFirstButtonReturn: {
+        /* ok, ignore */
+        break;
+      }
+      case NSAlertSecondButtonReturn:
+        /* open prefs */
+        [((MPAppDelegate *)NSApp.delegate) showPreferences:nil];
+        break;
+      default:
+        break;
+    }
+
+    
   }
 }
 

@@ -33,7 +33,7 @@
 #import "MPPasswordCreatorViewController.h"
 #import "MPPluginHost.h"
 #import "MPSettingsHelper.h"
-#import "MPSettingsWindowController.h"
+#import "MPPreferencesWindowController.h"
 #import "MPStringLengthValueTransformer.h"
 #import "MPPrettyPasswordTransformer.h"
 #import "MPTemporaryFileStorageCenter.h"
@@ -59,7 +59,7 @@ NSString *const MPDidChangeStoredKeyFilesSettings = @"com.hicknhack.macpass.MPDi
 
 @property (strong) NSWindow *welcomeWindow;
 @property (strong) IBOutlet NSWindow *passwordCreatorWindow;
-@property (strong, nonatomic) MPSettingsWindowController *settingsController;
+@property (strong, nonatomic) MPPreferencesWindowController *preferencesController;
 @property (strong, nonatomic) MPPasswordCreatorViewController *passwordCreatorController;
 
 @end
@@ -228,10 +228,10 @@ NSString *const MPDidChangeStoredKeyFilesSettings = @"com.hicknhack.macpass.MPDi
 #pragma mark -
 #pragma mark Actions
 - (void)showPreferences:(id)sender {
-  if(self.settingsController == nil) {
-    self.settingsController = [[MPSettingsWindowController alloc] init];
+  if(self.preferencesController == nil) {
+    self.preferencesController = [[MPPreferencesWindowController alloc] init];
   }
-  [self.settingsController showSettings];
+  [self.preferencesController showPreferences];
 }
 
 - (void)showPasswordCreator:(id)sender {

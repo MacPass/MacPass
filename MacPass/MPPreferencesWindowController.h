@@ -1,5 +1,5 @@
 //
-//  MPSettingsTabProtocoll.h
+//  MPSettingsController.h
 //  MacPass
 //
 //  Created by Michael Starke on 23.07.12.
@@ -20,23 +20,20 @@
 //  along with this program.  If not, see <http://www.gnu.org/licenses/>.
 //
 
-#import <Foundation/Foundation.h>
+#import <Cocoa/Cocoa.h>
 
-/*
- Protrocoll to be implemented by ViewControllers that can be added to
- the settings windows. Tabs are ordered as the controllers are included.
- */
-@protocol MPSettingsTab <NSObject>
+@protocol MPPreferencesTab;
 
-@required
-@property (readonly, copy) NSString *identifier;
+typedef NS_ENUM(NSUInteger, MPPreferencesTab) {
+  MPPreferencesTabGeneral,
+  MPPreferencesTabWorkflow,
+  MPPreferencesTabUpdate,
+  MPPreferencesTabPlugins
+};
 
-@optional
-- (NSString *)label;
-- (NSImage *)image;
-/* Called when the tab is about to be selected and displayed */
-- (void)willShowTab;
-/* Called when the tab was selected and is being displayed */
-- (void)didShowTab;
+@interface MPPreferencesWindowController : NSWindowController <NSToolbarDelegate>
+
+- (void)showPreferences;
+- (void)showPreferencesTab:(MPPreferencesTab)tab;
 
 @end

@@ -21,9 +21,9 @@
 //
 
 #import "MPViewController.h"
-#import "MPSettingsTab.h"
+#import "MPPreferencesTab.h"
 
-@interface MPWorkflowSettingsController : MPViewController <MPSettingsTab>
+@interface MPWorkflowSettingsController : MPViewController <MPPreferencesTab>
 
 @property (weak) IBOutlet NSPopUpButton *browserPopup;
 @property (weak) IBOutlet NSPopUpButton *doubleClickURLPopup;

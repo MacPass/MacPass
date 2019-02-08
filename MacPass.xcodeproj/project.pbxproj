@@ -210,9 +210,9 @@
 		4C978E0D19AE54AB003067DF /* MPFlagsHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C978E0C19AE54AB003067DF /* MPFlagsHelper.m */; };
 		4C9BFFFB1FD19B5400264B16 /* MPPrettyPasswordTransformer.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C9BFFFA1FD19B5400264B16 /* MPPrettyPasswordTransformer.m */; };
 		4CA08DA017A831B200A6544B /* MPAddEntryContextMenuDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CA08D9F17A831B200A6544B /* MPAddEntryContextMenuDelegate.m */; };
-		4CA0B2ED15BCADAC00654E32 /* SettingsWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4CA0B2EC15BCADAC00654E32 /* SettingsWindow.xib */; };
+		4CA0B2ED15BCADAC00654E32 /* PreferencesWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4CA0B2EC15BCADAC00654E32 /* PreferencesWindow.xib */; };
 		4CA0B2F915BCAF6700654E32 /* MPGeneralSettingsController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CA0B2F815BCAF6700654E32 /* MPGeneralSettingsController.m */; };
-		4CA0B2FC15BCAF8600654E32 /* MPSettingsWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CA0B2FB15BCAF8600654E32 /* MPSettingsWindowController.m */; };
+		4CA0B2FC15BCAF8600654E32 /* MPPreferencesWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CA0B2FB15BCAF8600654E32 /* MPPreferencesWindowController.m */; };
 		4CA0F3ED1A3074B50067C0E5 /* MPWindowTitleComboBoxDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CA0F3EC1A3074B50067C0E5 /* MPWindowTitleComboBoxDelegate.m */; };
 		4CA182741F963FF600DD4A4A /* MPTitlebarColorAccessoryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CA182721F963FF600DD4A4A /* MPTitlebarColorAccessoryViewController.m */; };
 		4CA182751F963FF600DD4A4A /* TitlebarColorAccessoryViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4CA182731F963FF600DD4A4A /* TitlebarColorAccessoryViewController.xib */; };
@@ -724,12 +724,12 @@
 		4C9BFFFA1FD19B5400264B16 /* MPPrettyPasswordTransformer.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MPPrettyPasswordTransformer.m; sourceTree = "<group>"; };
 		4CA08D9E17A831B200A6544B /* MPAddEntryContextMenuDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MPAddEntryContextMenuDelegate.h; sourceTree = "<group>"; };
 		4CA08D9F17A831B200A6544B /* MPAddEntryContextMenuDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MPAddEntryContextMenuDelegate.m; sourceTree = "<group>"; };
-		4CA0B2EC15BCADAC00654E32 /* SettingsWindow.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SettingsWindow.xib; sourceTree = "<group>"; };
+		4CA0B2EC15BCADAC00654E32 /* PreferencesWindow.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PreferencesWindow.xib; sourceTree = "<group>"; };
 		4CA0B2F715BCAF6700654E32 /* MPGeneralSettingsController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MPGeneralSettingsController.h; sourceTree = "<group>"; };
 		4CA0B2F815BCAF6700654E32 /* MPGeneralSettingsController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MPGeneralSettingsController.m; sourceTree = "<group>"; };
-		4CA0B2FA15BCAF8600654E32 /* MPSettingsWindowController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MPSettingsWindowController.h; sourceTree = "<group>"; };
-		4CA0B2FB15BCAF8600654E32 /* MPSettingsWindowController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MPSettingsWindowController.m; sourceTree = "<group>"; };
-		4CA0B30D15BCB6FD00654E32 /* MPSettingsTab.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MPSettingsTab.h; sourceTree = "<group>"; };
+		4CA0B2FA15BCAF8600654E32 /* MPPreferencesWindowController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MPPreferencesWindowController.h; sourceTree = "<group>"; };
+		4CA0B2FB15BCAF8600654E32 /* MPPreferencesWindowController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MPPreferencesWindowController.m; sourceTree = "<group>"; };
+		4CA0B30D15BCB6FD00654E32 /* MPPreferencesTab.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MPPreferencesTab.h; sourceTree = "<group>"; };
 		4CA0F3EB1A3074B50067C0E5 /* MPWindowTitleComboBoxDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MPWindowTitleComboBoxDelegate.h; sourceTree = "<group>"; };
 		4CA0F3EC1A3074B50067C0E5 /* MPWindowTitleComboBoxDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MPWindowTitleComboBoxDelegate.m; sourceTree = "<group>"; };
 		4CA182711F963FF600DD4A4A /* MPTitlebarColorAccessoryViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MPTitlebarColorAccessoryViewController.h; sourceTree = "<group>"; };
@@ -1246,7 +1246,7 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
-		4C47D77718B37911002755E4 /* Settings */ = {
+		4C47D77718B37911002755E4 /* Preferences */ = {
 			isa = PBXGroup;
 			children = (
 				4CA0B2F715BCAF6700654E32 /* MPGeneralSettingsController.h */,
@@ -1268,7 +1268,7 @@
 				4CC663E5216F7A7100E33965 /* MPPluginRepositoryBrowserViewController.m */,
 				4CC663E6216F7A7100E33965 /* PluginRepositoryBrowserView.xib */,
 			);
-			name = Settings;
+			name = Preferences;
 			sourceTree = "<group>";
 		};
 		4C4B7EF517A46815000234C7 /* Inspector */ = {
@@ -1547,7 +1547,7 @@
 			isa = PBXGroup;
 			children = (
 				4C5133861FA0C32C00C94C73 /* Accessory */,
-				4C47D77718B37911002755E4 /* Settings */,
+				4C47D77718B37911002755E4 /* Preferences */,
 				4C4B7EF517A46815000234C7 /* Inspector */,
 				4C2E382416D1470200037A9D /* MPViewController.h */,
 				4C2E382516D1470200037A9D /* MPViewController.m */,
@@ -1605,7 +1605,7 @@
 		4CA0B30E15BCB70200654E32 /* Protocolls */ = {
 			isa = PBXGroup;
 			children = (
-				4CA0B30D15BCB6FD00654E32 /* MPSettingsTab.h */,
+				4CA0B30D15BCB6FD00654E32 /* MPPreferencesTab.h */,
 				4C2B0B7419F66F6400E48913 /* MPTargetNodeResolving.h */,
 				4C7679BC1D75E690001F33D6 /* MPModelChangeObserving.h */,
 			);
@@ -1641,9 +1641,9 @@
 		4CE8247016E2E96500573141 /* Window Controller */ = {
 			isa = PBXGroup;
 			children = (
-				4CA0B2FA15BCAF8600654E32 /* MPSettingsWindowController.h */,
-				4CA0B2FB15BCAF8600654E32 /* MPSettingsWindowController.m */,
-				4CA0B2EC15BCADAC00654E32 /* SettingsWindow.xib */,
+				4CA0B2FA15BCAF8600654E32 /* MPPreferencesWindowController.h */,
+				4CA0B2FB15BCAF8600654E32 /* MPPreferencesWindowController.m */,
+				4CA0B2EC15BCADAC00654E32 /* PreferencesWindow.xib */,
 				4C83814015BF4677001AE468 /* MPDocumentWindowController.h */,
 				4C83814115BF4677001AE468 /* MPDocumentWindowController.m */,
 				4CD884B615BD47080042BBF8 /* DocumentWindow.xib */,
@@ -1830,7 +1830,7 @@
 				4C3826B41AD04D8E007D7D67 /* 39_HistoryTemplate.pdf in Resources */,
 				4C77E37D15B84A240093A587 /* MainMenu.xib in Resources */,
 				4C3826CD1AD04D8E007D7D67 /* 66_MoneyTemplate.pdf in Resources */,
-				4CA0B2ED15BCADAC00654E32 /* SettingsWindow.xib in Resources */,
+				4CA0B2ED15BCADAC00654E32 /* PreferencesWindow.xib in Resources */,
 				4C76155C1764C04C0015A1A6 /* GeneralSettings.xib in Resources */,
 				4CD884B715BD47080042BBF8 /* DocumentWindow.xib in Resources */,
 				4C17F109184E6B6C00E85625 /* 30_TerminalTemplate.pdf in Resources */,
@@ -1987,7 +1987,7 @@
 				4C8F0C791FD05A6A00BE157F /* NSString+MPPrettyPasswordDisplay.m in Sources */,
 				4C73B6F1215E64A7009787F7 /* MPWelcomeViewController.m in Sources */,
 				4C6B7C7D18BE7EB0001D5D77 /* MPDocument+History.m in Sources */,
-				4CA0B2FC15BCAF8600654E32 /* MPSettingsWindowController.m in Sources */,
+				4CA0B2FC15BCAF8600654E32 /* MPPreferencesWindowController.m in Sources */,
 				4C4F72D118DF704400E8D378 /* DDHotKeyTextField.m in Sources */,
 				4C8F0C6E1FCEE9B900BE157F /* MPPluginConstants.m in Sources */,
 				4C83814215BF4677001AE468 /* MPDocumentWindowController.m in Sources */,
