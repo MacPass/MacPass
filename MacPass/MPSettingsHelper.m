@@ -80,6 +80,7 @@ NSString *const kMPSettingsKeyUpdatePasswordOnTemplateEntries         = @"Update
 NSString *const kMPSettingsKeyLoadUnsecurePlugins                     = @"LoadUnsecurePlugins";
 NSString *const kMPSettingsKeyLoadIncompatiblePlugins                 = @"LoadIncompatiblePlugins";
 NSString *const kMPSettingsKeyDisabledPlugins                         = @"DisabledPlugins";
+NSString *const kMPSettingsKeyHideIncopatiblePluginsWarning           = @"HideIncopatiblePluginsWarning";
 
 /* Deprecated */
 NSString *const kMPDeprecatedSettingsKeyRememberKeyFilesForDatabases      = @"kMPSettingsKeyRememberKeyFilesForDatabases";

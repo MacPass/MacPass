@@ -36,6 +36,7 @@ APPKIT_EXTERN NSString *const MPDidChangeStoredKeyFilesSettings;
 
 - (IBAction)checkForUpdates:(id)sender;
 - (IBAction)showPreferences:(id)sender;
+- (IBAction)showPluginPrefences:(id)sender;
 - (IBAction)showPasswordCreator:(id)sender;
 - (IBAction)createNewDatabase:(id)sender;
 - (IBAction)openDatabase:(id)sender;

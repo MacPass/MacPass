@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="14313.18" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
     <dependencies>
         <deployment identifier="macosx"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="14313.18"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="14460.31"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
@@ -31,14 +31,14 @@
                 <box autoresizesSubviews="NO" verticalHuggingPriority="500" borderType="line" title="Autotype" translatesAutoresizingMaskIntoConstraints="NO" id="P9N-HM-wER">
                     <rect key="frame" x="17" y="115" width="366" height="328"/>
                     <view key="contentView" id="faU-Ok-HJ3">
-                        <rect key="frame" x="1" y="1" width="364" height="312"/>
+                        <rect key="frame" x="3" y="3" width="360" height="310"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <stackView orientation="vertical" alignment="leading" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" translatesAutoresizingMaskIntoConstraints="NO" id="j52-9L-k7c">
-                                <rect key="frame" x="18" y="19" width="328" height="283"/>
+                                <rect key="frame" x="16" y="17" width="328" height="283"/>
                                 <beginningViews>
                                     <textField verticalHuggingPriority="750" fixedFrame="YES" preferredMaxLayoutWidth="328" translatesAutoresizingMaskIntoConstraints="NO" id="hMJ-Mo-xOM">
-                                        <rect key="frame" x="-2" y="227" width="331" height="56"/>
+                                        <rect key="frame" x="-2" y="227" width="332" height="56"/>
                                         <textFieldCell key="cell" controlSize="small" id="H37-ku-aTc">
                                             <font key="font" metaFont="smallSystem"/>
                                             <string key="title">Autotype is not available, because MacPass is not allowed to control your computer. To enable Autotype, go to the Security and Privacy Preferences and add MacPass to the Accessibilty group. Changes require a restart of MacPass.</string>
@@ -47,8 +47,8 @@
                                         </textFieldCell>
                                     </textField>
                                     <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="jai-b6-Qv4">
-                                        <rect key="frame" x="-6" y="191" width="153" height="32"/>
-                                        <buttonCell key="cell" type="push" title="Open Preference…" bezelStyle="rounded" alignment="center" borderStyle="border" inset="2" id="NP0-R3-m6n">
+                                        <rect key="frame" x="-6" y="191" width="160" height="32"/>
+                                        <buttonCell key="cell" type="push" title="Open Preferences…" bezelStyle="rounded" alignment="center" borderStyle="border" inset="2" id="NP0-R3-m6n">
                                             <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                             <font key="font" metaFont="system"/>
                                         </buttonCell>
@@ -113,7 +113,7 @@
                                         </buttonCell>
                                     </button>
                                     <button fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="8Wz-lo-AXG">
-                                        <rect key="frame" x="-2" y="100" width="207" height="18"/>
+                                        <rect key="frame" x="-2" y="100" width="206" height="18"/>
                                         <buttonCell key="cell" type="check" title="Include Entry URL for matches" bezelStyle="regularSquare" imagePosition="left" state="on" inset="2" id="TzR-00-Vp3">
                                             <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                                             <font key="font" metaFont="system"/>
@@ -134,14 +134,14 @@
                                         </buttonCell>
                                     </button>
                                     <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="VK8-z4-2ci">
-                                        <rect key="frame" x="-2" y="34" width="123" height="18"/>
+                                        <rect key="frame" x="-2" y="34" width="122" height="18"/>
                                         <buttonCell key="cell" type="check" title="Interpret ⌃ as ⌘" bezelStyle="regularSquare" imagePosition="left" state="on" inset="2" id="QfO-yG-l3F">
                                             <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                                             <font key="font" metaFont="system"/>
                                         </buttonCell>
                                     </button>
                                     <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" fixedFrame="YES" setsMaxLayoutWidthAtFirstLayout="YES" translatesAutoresizingMaskIntoConstraints="NO" id="wbP-A9-jpw">
-                                        <rect key="frame" x="-2" y="0.0" width="310" height="28"/>
+                                        <rect key="frame" x="-2" y="0.0" width="332" height="28"/>
                                         <textFieldCell key="cell" sendsActionOnEndEditing="YES" title="If enabled, every {CONTROL} command will be sent as ⌘. Only disable this if you are sure you need to." id="QRy-CY-ENC">
                                             <font key="font" metaFont="smallSystem"/>
                                             <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
@@ -186,18 +186,18 @@
                 <box autoresizesSubviews="NO" verticalHuggingPriority="500" borderType="line" title="Preview" translatesAutoresizingMaskIntoConstraints="NO" id="VVs-b5-cX9">
                     <rect key="frame" x="17" y="16" width="366" height="95"/>
                     <view key="contentView" id="ww4-uR-8gP">
-                        <rect key="frame" x="1" y="1" width="364" height="79"/>
+                        <rect key="frame" x="3" y="3" width="360" height="77"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <button translatesAutoresizingMaskIntoConstraints="NO" id="LNw-5t-TS4">
-                                <rect key="frame" x="16" y="53" width="178" height="18"/>
+                                <rect key="frame" x="14" y="51" width="178" height="18"/>
                                 <buttonCell key="cell" type="check" title="Enable Quicklook Preview" bezelStyle="regularSquare" imagePosition="left" state="on" inset="2" id="ERs-ct-Eyx">
                                     <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                                     <font key="font" metaFont="system"/>
                                 </buttonCell>
                             </button>
                             <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" setsMaxLayoutWidthAtFirstLayout="YES" translatesAutoresizingMaskIntoConstraints="NO" id="V6l-R9-hIj">
-                                <rect key="frame" x="16" y="19" width="332" height="28"/>
+                                <rect key="frame" x="14" y="17" width="332" height="28"/>
                                 <textFieldCell key="cell" controlSize="small" sendsActionOnEndEditing="YES" title="If enabled attached files will be copied to a temporary location for preview and deleted after the preview is closed." id="WmI-IB-Aso">
                                     <font key="font" metaFont="smallSystem"/>
                                     <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>

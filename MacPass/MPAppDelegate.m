@@ -227,11 +227,20 @@ NSString *const MPDidChangeStoredKeyFilesSettings = @"com.hicknhack.macpass.MPDi
 
 #pragma mark -
 #pragma mark Actions
+
+- (void)showPluginPrefences:(id)sender {
+  [self _showPreferencesTab:MPPreferencesTabPlugins];
+}
+
 - (void)showPreferences:(id)sender {
+  [self _showPreferencesTab:MPPreferencesTabGeneral];
+}
+
+- (void)_showPreferencesTab:(MPPreferencesTab)tab {
   if(self.preferencesController == nil) {
     self.preferencesController = [[MPPreferencesWindowController alloc] init];
   }
-  [self.preferencesController showPreferences];
+  [self.preferencesController showPreferencesTab:tab];
 }
 
 - (void)showPasswordCreator:(id)sender {

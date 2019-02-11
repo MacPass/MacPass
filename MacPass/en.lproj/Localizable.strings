@@ -43,6 +43,12 @@
 /* Alert message displayed when Autotype performs self check and lacks accessibilty permissions */
 "ALERT_AUTOTYPE_MISSING_ACCESSIBILTY_PERMISSIONS_MESSAGE_TEXT" = "MacPass cannot perform Autotype";
 
+/* Button in dialog to leave plugin ds disabled and continiue! */
+"ALERT_INCOMPATIBLE_PLUGINS_ENCOUNTERED_BUTTON_OK" = "OK";
+
+/* Button in dialog to open plugin preferences pane! */
+"ALERT_INCOMPATIBLE_PLUGINS_ENCOUNTERED_BUTTON_OPEN_PREFERENCES" = "Show Plugin Preferences…";
+
 /* Informative text of the alert displayed when plugins where disabled due to incompatibilty */
 "ALERT_INCOMPATIBLE_PLUGINS_ENCOUNTERED_INFORMATIVE_TEXT" = "Some plugins where disabled, because they are not compatible with this version of MacPass. Open the plugin settings for details.";
 

@@ -132,7 +132,7 @@
       break;
   }
   NSString *identifier;
-  for(id<MPPreferencesTab> tab in self.preferencesController) {
+  for(id<MPPreferencesTab> tab in self.preferencesController.allValues) {
     if([tab isKindOfClass:tabClass]) {
       identifier = tab.identifier;
       break;
