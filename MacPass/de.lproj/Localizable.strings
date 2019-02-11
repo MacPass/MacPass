@@ -43,8 +43,17 @@
 /* Alert message displayed when Autotype performs self check and lacks accessibilty permissions */
 "ALERT_AUTOTYPE_MISSING_ACCESSIBILTY_PERMISSIONS_MESSAGE_TEXT" = "MacPass kann Autotype nicht ausführen.";
 
-/* Checkbox in dialog to set the selection as default file change strategy! */
-"ALERT_AUTOTYPE_MISSING_ACCESSIBILTY_PERMISSIONS_SUPPRESS_WARNING" = "Diesen Warnhinweis nicht mehr anzeigen.";
+/* Button in dialog to leave plugin ds disabled and continiue! */
+"ALERT_INCOMPATIBLE_PLUGINS_ENCOUNTERED_BUTTON_OK" = "OK";
+
+/* Button in dialog to open plugin preferences pane! */
+"ALERT_INCOMPATIBLE_PLUGINS_ENCOUNTERED_BUTTON_OPEN_PREFERENCES" = "Plugin-Einstellungen öffnen …";
+
+/* Informative text of the alert displayed when plugins where disabled due to incompatibilty */
+"ALERT_INCOMPATIBLE_PLUGINS_ENCOUNTERED_INFORMATIVE_TEXT" = "Es wurden Plugins deaktiviert, da sie nicht kompatibel mit dieser Version von MacPass sind. Bitte öffnen Sie die Plugin-Einstellungen für mehr Informationen.";
+
+/* Message text of the alert displayed when plugins where disabled due to incompatibilty */
+"ALERT_INCOMPATIBLE_PLUGINS_ENCOUNTERED_MESSAGE" = "Es wurden inkompatible Plugins gefunden.";
 
 /* Alert informative text when plugins or their settings change and require a restart */
 "ALERT_INFORMATIVE_TEXT_PLUGINS_CHANGED_SUGGEST_RESTART" = "Änderungen zu den globalen Einstellungen von Plugins treten erst nach einem Neustart in Kraft. Soll MacPass jetzt neu gestartet werden?";
@@ -128,6 +137,9 @@
 
 /* Menu item in the database outline context menu to change the trash group */
 "CHANGE_TRASH_GROUP" = "Papierkorb-Gruppe ändern";
+
+/* Button title in the key file selection dialog for selecting a key */
+"CHOOSE_FILE_BUTTON_TITLE" = "Öffnen";
 
 /* Clear Autotype Button */
 "CLEAR_AUTOTYPE" = "Autotype Löschen";
@@ -481,6 +493,18 @@
 
 /* Window displayed to the user to pick an amout of characters */
 "PICKFIELD_WINDOW_TITLE" = "Wert auswählen";
+
+/* Label for the button when a download is in progress! */
+"PLUGIN_BROWSER_ACTION_DOWNLOAD_IN_PROGRESS" = "Wird heruntergeladen…";
+
+/* Label for the button when a download did not succeed */
+"PLUGIN_BROWSER_ACTION_RETRY_FAILED_DOWNLOAD" = "Fehler. Erneut herunterladen.";
+
+/* Label for the button to show a downloaded file */
+"PLUGIN_BROWSER_ACTION_SHOW_DOWNLOADED_FILE" = "Im Finder anzeigen …";
+
+/* Button to download the Plugin */
+"PLUGIN_BROWSER_DOWNLOAD_PLUGIN_BUTTON" = "Herunterladen";
 
 /* Status for an up-to-date plugin in the plugin browser */
 "PLUGIN_BROWSER_LATEST_VERSION_INSTALLED" = "Aktuelle Version ist installiert";
