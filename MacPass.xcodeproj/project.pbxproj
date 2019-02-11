@@ -22,7 +22,7 @@
 		4C0B5338205C1516003D277E /* PickcharsView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4C0B533A205C1516003D277E /* PickcharsView.xib */; };
 		4C0B533F205C1561003D277E /* PickfieldView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4C0B5341205C1561003D277E /* PickfieldView.xib */; };
 		4C0C59F118B17F10009C7B76 /* DDHotKeyUtilities.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C0C59EF18B17F10009C7B76 /* DDHotKeyUtilities.m */; };
-		4C0DBEF51BF508DE00F9B287 /* PluginSettings.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4C0DBEF71BF508DE00F9B287 /* PluginSettings.xib */; };
+		4C0DBEF51BF508DE00F9B287 /* PluginPreferences.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4C0DBEF71BF508DE00F9B287 /* PluginPreferences.xib */; };
 		4C0F04402147A6FA000B8568 /* MPCustomFieldTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C0F043F2147A6FA000B8568 /* MPCustomFieldTableView.m */; };
 		4C0F04412147FB49000B8568 /* OpenPanelAccessoryView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4C0F04432147FB49000B8568 /* OpenPanelAccessoryView.xib */; };
 		4C0F647B17B6BC9C00D9522A /* MPSavePanelAccessoryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C0F647A17B6BC9C00D9522A /* MPSavePanelAccessoryViewController.m */; };
@@ -38,7 +38,7 @@
 		4C1F7FA21E3A12E600D6A40E /* MPModifiedKey.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C1F7FA11E3A12E600D6A40E /* MPModifiedKey.m */; };
 		4C1FA07B18231900003A3F8C /* MPDocument+Autotype.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C1FA07A18231900003A3F8C /* MPDocument+Autotype.m */; };
 		4C224B4217DFCB2400FF6AEE /* MPNumericalInputFormatter.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C224B4117DFCB2400FF6AEE /* MPNumericalInputFormatter.m */; };
-		4C25703F1BF11C2300D39416 /* MPPluginSettingsController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C25703D1BF11C2300D39416 /* MPPluginSettingsController.m */; };
+		4C25703F1BF11C2300D39416 /* MPPluginPreferencesController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C25703D1BF11C2300D39416 /* MPPluginPreferencesController.m */; };
 		4C25D58716CF0FAA00F6806C /* EntryView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4C25D58616CF0FAA00F6806C /* EntryView.xib */; };
 		4C26C33F18D8C92100CF1A1C /* MPTemporaryFileStorage.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C26C33E18D8C92100CF1A1C /* MPTemporaryFileStorage.m */; };
 		4C2E381D16D11FF900037A9D /* 03_ServerTemplate.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 4C2E381A16D11FF900037A9D /* 03_ServerTemplate.pdf */; };
@@ -317,7 +317,7 @@
 		4825CC851C414D57003E37E9 /* it */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = it; path = it.lproj/IntegrationSettings.strings; sourceTree = "<group>"; };
 		4825CC861C414D57003E37E9 /* it */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = it; path = it.lproj/WorkflowSettings.strings; sourceTree = "<group>"; };
 		4825CC871C414D57003E37E9 /* it */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = it; path = it.lproj/UpdateSettings.strings; sourceTree = "<group>"; };
-		4825CC881C414D57003E37E9 /* it */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = it; path = it.lproj/PluginSettings.strings; sourceTree = "<group>"; };
+		4825CC881C414D57003E37E9 /* it */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = it; path = it.lproj/PluginPreferences.strings; sourceTree = "<group>"; };
 		4825CC891C414D57003E37E9 /* it */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = it; path = it.lproj/MainMenu.strings; sourceTree = "<group>"; };
 		4825CC8A1C414D57003E37E9 /* it */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = it; path = it.lproj/PasswordInputView.strings; sourceTree = "<group>"; };
 		4825CC8B1C414D57003E37E9 /* it */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = it; path = it.lproj/PasswordCreatorView.strings; sourceTree = "<group>"; };
@@ -360,7 +360,7 @@
 		4C0B5345205C1567003D277E /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/PickfieldView.strings; sourceTree = "<group>"; };
 		4C0C59EF18B17F10009C7B76 /* DDHotKeyUtilities.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DDHotKeyUtilities.m; path = DDHotKey/DDHotKeyUtilities.m; sourceTree = "<group>"; };
 		4C0C59F018B17F10009C7B76 /* DDHotKeyUtilities.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; name = DDHotKeyUtilities.h; path = DDHotKey/DDHotKeyUtilities.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
-		4C0DBEF61BF508DE00F9B287 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/PluginSettings.xib; sourceTree = "<group>"; };
+		4C0DBEF61BF508DE00F9B287 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/PluginPreferences.xib; sourceTree = "<group>"; };
 		4C0F043E2147A6FA000B8568 /* MPCustomFieldTableView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MPCustomFieldTableView.h; sourceTree = "<group>"; };
 		4C0F043F2147A6FA000B8568 /* MPCustomFieldTableView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MPCustomFieldTableView.m; sourceTree = "<group>"; };
 		4C0F04422147FB49000B8568 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/OpenPanelAccessoryView.xib; sourceTree = "<group>"; };
@@ -388,8 +388,8 @@
 		4C21F29F195B3A48002D610D /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/MainMenu.strings; sourceTree = "<group>"; };
 		4C224B4017DFCB2300FF6AEE /* MPNumericalInputFormatter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MPNumericalInputFormatter.h; sourceTree = "<group>"; };
 		4C224B4117DFCB2400FF6AEE /* MPNumericalInputFormatter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MPNumericalInputFormatter.m; sourceTree = "<group>"; };
-		4C25703C1BF11C2300D39416 /* MPPluginSettingsController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MPPluginSettingsController.h; sourceTree = "<group>"; };
-		4C25703D1BF11C2300D39416 /* MPPluginSettingsController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MPPluginSettingsController.m; sourceTree = "<group>"; };
+		4C25703C1BF11C2300D39416 /* MPPluginPreferencesController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MPPluginPreferencesController.h; sourceTree = "<group>"; };
+		4C25703D1BF11C2300D39416 /* MPPluginPreferencesController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MPPluginPreferencesController.m; sourceTree = "<group>"; };
 		4C25D58616CF0FAA00F6806C /* EntryView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = EntryView.xib; sourceTree = "<group>"; };
 		4C26C33D18D8C92100CF1A1C /* MPTemporaryFileStorage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MPTemporaryFileStorage.h; sourceTree = "<group>"; };
 		4C26C33E18D8C92100CF1A1C /* MPTemporaryFileStorage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MPTemporaryFileStorage.m; sourceTree = "<group>"; };
@@ -471,7 +471,7 @@
 		4C4161051F50333B003BC0AF /* es */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = es; path = es.lproj/IntegrationSettings.strings; sourceTree = "<group>"; };
 		4C4161061F50333B003BC0AF /* es */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = es; path = es.lproj/WorkflowSettings.strings; sourceTree = "<group>"; };
 		4C4161071F50333B003BC0AF /* es */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = es; path = es.lproj/UpdateSettings.strings; sourceTree = "<group>"; };
-		4C4161081F50333B003BC0AF /* es */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = es; path = es.lproj/PluginSettings.strings; sourceTree = "<group>"; };
+		4C4161081F50333B003BC0AF /* es */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = es; path = es.lproj/PluginPreferences.strings; sourceTree = "<group>"; };
 		4C4161091F50333B003BC0AF /* es */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = es; path = es.lproj/InspectorView.strings; sourceTree = "<group>"; };
 		4C41610A1F50333B003BC0AF /* es */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = es; path = es.lproj/GroupInspectorView.strings; sourceTree = "<group>"; };
 		4C41610B1F50333C003BC0AF /* es */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = es; path = es.lproj/EntryInspectorView.strings; sourceTree = "<group>"; };
@@ -634,7 +634,6 @@
 		4C77E37815B84A240093A587 /* MPAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MPAppDelegate.h; sourceTree = "<group>"; };
 		4C77E37915B84A240093A587 /* MPAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MPAppDelegate.m; sourceTree = "<group>"; };
 		4C79B6401FB0562D008250D8 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/ReferenceBuilderView.strings; sourceTree = "<group>"; };
-		4C79B6411FB0562D008250D8 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/PluginSettings.strings; sourceTree = "<group>"; };
 		4C7ABA4317BAEC6700FF5799 /* 15_ScannerTemplate.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = 15_ScannerTemplate.pdf; sourceTree = "<group>"; };
 		4C7ABA4417BAEC6700FF5799 /* 16_BrowserTemplate.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = 16_BrowserTemplate.pdf; sourceTree = "<group>"; };
 		4C7ABA4517BAEC6700FF5799 /* 17_CDRomTemplate.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = 17_CDRomTemplate.pdf; sourceTree = "<group>"; };
@@ -681,7 +680,7 @@
 		4C840C481D773E5D0081F605 /* pl */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = pl; path = pl.lproj/IntegrationSettings.strings; sourceTree = "<group>"; };
 		4C840C491D773E5D0081F605 /* pl */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = pl; path = pl.lproj/WorkflowSettings.strings; sourceTree = "<group>"; };
 		4C840C4A1D773E5D0081F605 /* pl */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = pl; path = pl.lproj/UpdateSettings.strings; sourceTree = "<group>"; };
-		4C840C4B1D773E5E0081F605 /* pl */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = pl; path = pl.lproj/PluginSettings.strings; sourceTree = "<group>"; };
+		4C840C4B1D773E5E0081F605 /* pl */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = pl; path = pl.lproj/PluginPreferences.strings; sourceTree = "<group>"; };
 		4C840C4C1D773E5E0081F605 /* pl */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = pl; path = pl.lproj/MainMenu.strings; sourceTree = "<group>"; };
 		4C840C4D1D773E5E0081F605 /* pl */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = pl; path = pl.lproj/PasswordInputView.strings; sourceTree = "<group>"; };
 		4C840C4E1D773E5E0081F605 /* pl */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = pl; path = pl.lproj/PasswordCreatorView.strings; sourceTree = "<group>"; };
@@ -706,7 +705,7 @@
 		4C89F523182FB4740069C73C /* MPAutotypeCommand.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MPAutotypeCommand.m; sourceTree = "<group>"; };
 		4C8B36A917A6ED4B005E1FF1 /* MPOutlineContextMenuDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MPOutlineContextMenuDelegate.h; sourceTree = "<group>"; };
 		4C8B36AA17A6ED4B005E1FF1 /* MPOutlineContextMenuDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MPOutlineContextMenuDelegate.m; sourceTree = "<group>"; };
-		4C8C10061FC489D8003DDD5E /* nl */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = nl; path = nl.lproj/PluginSettings.strings; sourceTree = "<group>"; };
+		4C8C10061FC489D8003DDD5E /* nl */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = nl; path = nl.lproj/PluginPreferences.strings; sourceTree = "<group>"; };
 		4C8DEAA11C314D2C00D24C32 /* MPTestAutotypeDelay.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MPTestAutotypeDelay.m; sourceTree = "<group>"; };
 		4C8F0C6C1FCEE98900BE157F /* MPPluginConstants.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MPPluginConstants.h; sourceTree = "<group>"; };
 		4C8F0C6D1FCEE9B900BE157F /* MPPluginConstants.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MPPluginConstants.m; sourceTree = "<group>"; };
@@ -735,7 +734,7 @@
 		4CA182711F963FF600DD4A4A /* MPTitlebarColorAccessoryViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MPTitlebarColorAccessoryViewController.h; sourceTree = "<group>"; };
 		4CA182721F963FF600DD4A4A /* MPTitlebarColorAccessoryViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MPTitlebarColorAccessoryViewController.m; sourceTree = "<group>"; };
 		4CA182731F963FF600DD4A4A /* TitlebarColorAccessoryViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TitlebarColorAccessoryViewController.xib; sourceTree = "<group>"; };
-		4CA182761F96512800DD4A4A /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/PluginSettings.strings; sourceTree = "<group>"; };
+		4CA182761F96512800DD4A4A /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/PluginPreferences.strings; sourceTree = "<group>"; };
 		4CA182771F96512800DD4A4A /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/ReferenceBuilderView.strings; sourceTree = "<group>"; };
 		4CA182791F96523600DD4A4A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/DuplicateEntryOptionsWindow.xib; sourceTree = "<group>"; };
 		4CA1827C1F96524100DD4A4A /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/DuplicateEntryOptionsWindow.strings; sourceTree = "<group>"; };
@@ -856,6 +855,7 @@
 		4CF6C710176F4533007A811D /* MPStringLengthValueTransformer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MPStringLengthValueTransformer.m; sourceTree = "<group>"; };
 		4CF78062176E75AD0032EE71 /* MPIntegrationSettingsController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MPIntegrationSettingsController.h; sourceTree = "<group>"; };
 		4CF78063176E75AD0032EE71 /* MPIntegrationSettingsController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MPIntegrationSettingsController.m; sourceTree = "<group>"; };
+		4CF7CCA12211AFD400F6D5A0 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/PluginPreferences.strings; sourceTree = "<group>"; };
 		4CFB18E218A17FA20097A34B /* MPUpdateSettingsController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MPUpdateSettingsController.h; sourceTree = "<group>"; };
 		4CFB18E318A17FA20097A34B /* MPUpdateSettingsController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MPUpdateSettingsController.m; sourceTree = "<group>"; };
 		4CFC53BD16E94729007396BE /* MPShadowBox.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MPShadowBox.h; sourceTree = "<group>"; };
@@ -910,7 +910,7 @@
 		6021FE9E18E1651C00C3BC51 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/DatabaseSettingsWindow.strings; sourceTree = "<group>"; };
 		6021FEA018E1651E00C3BC51 /* fr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fr; path = fr.lproj/DatabaseSettingsWindow.strings; sourceTree = "<group>"; };
 		6021FEA218E1652000C3BC51 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/DatabaseSettingsWindow.strings"; sourceTree = "<group>"; };
-		60ECAD221F12231B00EA9DB3 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/PluginSettings.strings"; sourceTree = "<group>"; };
+		60ECAD221F12231B00EA9DB3 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/PluginPreferences.strings"; sourceTree = "<group>"; };
 		60ECAD251F12253C00EA9DB3 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/WorkflowSettings.strings"; sourceTree = "<group>"; };
 		60ECAD271F12262400EA9DB3 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/IntegrationSettings.strings"; sourceTree = "<group>"; };
 		6A74B0622076F4B30049BC29 /* sv-SE */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "sv-SE"; path = "sv-SE.lproj/DatabaseSettingsWindow.strings"; sourceTree = "<group>"; };
@@ -920,7 +920,7 @@
 		6A74B0662076F4B40049BC29 /* sv-SE */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "sv-SE"; path = "sv-SE.lproj/IntegrationSettings.strings"; sourceTree = "<group>"; };
 		6A74B0672076F4B40049BC29 /* sv-SE */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "sv-SE"; path = "sv-SE.lproj/WorkflowSettings.strings"; sourceTree = "<group>"; };
 		6A74B0682076F4B40049BC29 /* sv-SE */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "sv-SE"; path = "sv-SE.lproj/UpdateSettings.strings"; sourceTree = "<group>"; };
-		6A74B0692076F4B40049BC29 /* sv-SE */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "sv-SE"; path = "sv-SE.lproj/PluginSettings.strings"; sourceTree = "<group>"; };
+		6A74B0692076F4B40049BC29 /* sv-SE */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "sv-SE"; path = "sv-SE.lproj/PluginPreferences.strings"; sourceTree = "<group>"; };
 		6A74B06A2076F4B40049BC29 /* sv-SE */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "sv-SE"; path = "sv-SE.lproj/InspectorView.strings"; sourceTree = "<group>"; };
 		6A74B06B2076F4B40049BC29 /* sv-SE */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "sv-SE"; path = "sv-SE.lproj/GroupInspectorView.strings"; sourceTree = "<group>"; };
 		6A74B06C2076F4B40049BC29 /* sv-SE */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "sv-SE"; path = "sv-SE.lproj/EntryInspectorView.strings"; sourceTree = "<group>"; };
@@ -942,7 +942,7 @@
 		6A74B07C2076F4B60049BC29 /* sv-SE */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "sv-SE"; path = "sv-SE.lproj/InfoPlist.strings"; sourceTree = "<group>"; };
 		6A74B07D2076F4B60049BC29 /* sv-SE */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "sv-SE"; path = "sv-SE.lproj/InfoPlist.strings"; sourceTree = "<group>"; };
 		6E719715172058BA00E4C5FC /* MPDatabaseVersion.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MPDatabaseVersion.h; sourceTree = "<group>"; };
-		713F9B481C95CEA000605880 /* fr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fr; path = fr.lproj/PluginSettings.strings; sourceTree = "<group>"; };
+		713F9B481C95CEA000605880 /* fr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fr; path = fr.lproj/PluginPreferences.strings; sourceTree = "<group>"; };
 		A50AD5CF212884A0007C85EB /* pl */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = pl; path = pl.lproj/PluginDataView.strings; sourceTree = "<group>"; };
 		A50AD5D0212884A0007C85EB /* pl */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = pl; path = pl.lproj/PickfieldView.strings; sourceTree = "<group>"; };
 		BB3E050C1FE9D1CA00F0B46F /* nl */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = nl; path = nl.lproj/AutotypeCandidateSelectionView.strings; sourceTree = "<group>"; };
@@ -975,7 +975,7 @@
 		FA638D121C39BFCB00B10CC6 /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/IntegrationSettings.strings; sourceTree = "<group>"; };
 		FA638D131C39BFCC00B10CC6 /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/WorkflowSettings.strings; sourceTree = "<group>"; };
 		FA638D141C39BFCC00B10CC6 /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/UpdateSettings.strings; sourceTree = "<group>"; };
-		FA638D151C39BFCC00B10CC6 /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/PluginSettings.strings; sourceTree = "<group>"; };
+		FA638D151C39BFCC00B10CC6 /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/PluginPreferences.strings; sourceTree = "<group>"; };
 		FA638D161C39BFCC00B10CC6 /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/MainMenu.strings; sourceTree = "<group>"; };
 		FA638D171C39BFCC00B10CC6 /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/PasswordInputView.strings; sourceTree = "<group>"; };
 		FA638D181C39BFCC00B10CC6 /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/PasswordCreatorView.strings; sourceTree = "<group>"; };
@@ -1261,9 +1261,9 @@
 				4CFB18E218A17FA20097A34B /* MPUpdateSettingsController.h */,
 				4CFB18E318A17FA20097A34B /* MPUpdateSettingsController.m */,
 				6021FE6E18E15E6D00C3BC51 /* UpdateSettings.xib */,
-				4C25703C1BF11C2300D39416 /* MPPluginSettingsController.h */,
-				4C25703D1BF11C2300D39416 /* MPPluginSettingsController.m */,
-				4C0DBEF71BF508DE00F9B287 /* PluginSettings.xib */,
+				4C25703C1BF11C2300D39416 /* MPPluginPreferencesController.h */,
+				4C25703D1BF11C2300D39416 /* MPPluginPreferencesController.m */,
+				4C0DBEF71BF508DE00F9B287 /* PluginPreferences.xib */,
 				4CC663E4216F7A7100E33965 /* MPPluginRepositoryBrowserViewController.h */,
 				4CC663E5216F7A7100E33965 /* MPPluginRepositoryBrowserViewController.m */,
 				4CC663E6216F7A7100E33965 /* PluginRepositoryBrowserView.xib */,
@@ -1929,7 +1929,7 @@
 				4C7ABA4C17BAEC6700FF5799 /* 20_MiscTemplate.pdf in Resources */,
 				4C7ABA4E17BAEC7000FF5799 /* addEntryTemplate.pdf in Resources */,
 				4C3826761AD04C24007D7D67 /* harddiskTemplate.pdf in Resources */,
-				4C0DBEF51BF508DE00F9B287 /* PluginSettings.xib in Resources */,
+				4C0DBEF51BF508DE00F9B287 /* PluginPreferences.xib in Resources */,
 				4CF6653820E67A140008A25C /* PluginDataView.xib in Resources */,
 				4C7F8B681A10B68400CCB83D /* WelcomeView.xib in Resources */,
 			);
@@ -2053,7 +2053,7 @@
 				4CA0F3ED1A3074B50067C0E5 /* MPWindowTitleComboBoxDelegate.m in Sources */,
 				4CF78064176E75AD0032EE71 /* MPIntegrationSettingsController.m in Sources */,
 				4C06B17F21D9691F00CD4BBC /* MPPluginStatusTableCellView.m in Sources */,
-				4C25703F1BF11C2300D39416 /* MPPluginSettingsController.m in Sources */,
+				4C25703F1BF11C2300D39416 /* MPPluginPreferencesController.m in Sources */,
 				4CF6C711176F4533007A811D /* MPStringLengthValueTransformer.m in Sources */,
 				4C349A00218852160055AF45 /* MPKeyTyper.m in Sources */,
 				4CD5D705177A5F3300100649 /* MPDatabaseSettingsWindowController.m in Sources */,
@@ -2148,7 +2148,7 @@
 			name = PickfieldView.xib;
 			sourceTree = "<group>";
 		};
-		4C0DBEF71BF508DE00F9B287 /* PluginSettings.xib */ = {
+		4C0DBEF71BF508DE00F9B287 /* PluginPreferences.xib */ = {
 			isa = PBXVariantGroup;
 			children = (
 				4C0DBEF61BF508DE00F9B287 /* Base */,
@@ -2159,11 +2159,11 @@
 				60ECAD221F12231B00EA9DB3 /* zh-Hans */,
 				4C4161081F50333B003BC0AF /* es */,
 				4CA182761F96512800DD4A4A /* de */,
-				4C79B6411FB0562D008250D8 /* en */,
 				4C8C10061FC489D8003DDD5E /* nl */,
 				6A74B0692076F4B40049BC29 /* sv-SE */,
+				4CF7CCA12211AFD400F6D5A0 /* en */,
 			);
-			name = PluginSettings.xib;
+			name = PluginPreferences.xib;
 			sourceTree = "<group>";
 		};
 		4C0F04432147FB49000B8568 /* OpenPanelAccessoryView.xib */ = {

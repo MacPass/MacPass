@@ -28,7 +28,7 @@
 #import "MPIntegrationSettingsController.h"
 #import "MPWorkflowSettingsController.h"
 #import "MPUpdateSettingsController.h"
-#import "MPPluginSettingsController.h"
+#import "MPPluginPreferencesController.h"
 
 @interface MPPreferencesWindowController () {
   NSString *lastIdentifier;
@@ -118,7 +118,7 @@
   Class tabClass;
   switch(tab) {
     case MPPreferencesTabPlugins:
-      tabClass = MPPluginSettingsController.class;
+      tabClass = MPPluginPreferencesController.class;
       break;
     case MPPreferencesTabUpdate:
       tabClass = MPUpdateSettingsController.class;
@@ -168,7 +168,7 @@
                             [[MPIntegrationSettingsController alloc] init],
                             [[MPWorkflowSettingsController alloc] init],
                             [[MPUpdateSettingsController alloc] init],
-                            [[MPPluginSettingsController alloc] init] ];
+                            [[MPPluginPreferencesController alloc] init] ];
   NSMutableArray *identifier = [[NSMutableArray alloc] initWithCapacity:controllers.count];
   for(id<MPPreferencesTab> controller in controllers) {
     [self _addSettingsTab:controller];

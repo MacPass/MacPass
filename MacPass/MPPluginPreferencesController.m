@@ -20,7 +20,7 @@
 //  along with this program.  If not, see <http://www.gnu.org/licenses/>.
 //
 
-#import "MPPluginSettingsController.h"
+#import "MPPluginPreferencesController.h"
 #import "MPPluginTabelCellView.h"
 #import "MPPluginHost.h"
 #import "MPPlugin.h"
@@ -40,7 +40,7 @@ typedef NS_ENUM(NSUInteger, MPPluginSegmentType) {
   MPRemovePluginSegment = 1
 };
 
-@interface MPPluginSettingsController () <NSTableViewDataSource, NSTableViewDelegate>
+@interface MPPluginPreferencesController () <NSTableViewDataSource, NSTableViewDelegate>
 
 @property (strong) IBOutlet NSTableView *pluginTableView;
 @property (strong) IBOutlet NSView *settingsView;
@@ -52,10 +52,10 @@ typedef NS_ENUM(NSUInteger, MPPluginSegmentType) {
 
 @end
 
-@implementation MPPluginSettingsController
+@implementation MPPluginPreferencesController
 
 - (NSString *)nibName {
-  return @"PluginSettings";
+  return @"PluginPreferences";
 }
 
 - (NSString *)identifier {
