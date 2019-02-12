@@ -31,11 +31,41 @@
 /* Action to add an entry via template */
 "ADD_TREMPLATE_ENTRY" = "Create Template Entry";
 
+/* Button in dialog to leave autotype disabled and continiue! */
+"ALERT_AUTOTYPE_MISSING_ACCESSIBILTY_PERMISSIONS_BUTTON_OK" = "Keep Autotype disabled.";
+
+/* Button in dialog to open accessibilty preferences pane! */
+"ALERT_AUTOTYPE_MISSING_ACCESSIBILTY_PERMISSIONS_BUTTON_OPEN_PREFERENCES" = "Open Accessibilty Preferences…";
+
+/* Alert informative text displayed when Autotype performs self check and lacks accessibilty permissions */
+"ALERT_AUTOTYPE_MISSING_ACCESSIBILTY_PERMISSIONS_INFORMATIVE_TEXT" = "The system prevents MacPass from sending key strokes to other Applications. To enable Autotype please grant MacPass Accessibilty rights in the privacy preferences.";
+
+/* Alert message displayed when Autotype performs self check and lacks accessibilty permissions */
+"ALERT_AUTOTYPE_MISSING_ACCESSIBILTY_PERMISSIONS_MESSAGE_TEXT" = "MacPass cannot perform Autotype";
+
+/* Informative text of the alert displayed when plugins where disabled due to incompatibilty */
+"ALERT_INCOMPATIBLE_PLUGINS_ENCOUNTERED_INFORMATIVE_TEXT" = "Some plugins where disabled, because they are not compatible with this version of MacPass. Open the plugin settings for details.";
+
+/* Message text of the alert displayed when plugins where disabled due to incompatibilty */
+"ALERT_INCOMPATIBLE_PLUGINS_ENCOUNTERED_MESSAGE" = "Incompatible Plugins deteced.";
+
 /* Alert informative text when plugins or their settings change and require a restart */
 "ALERT_INFORMATIVE_TEXT_PLUGINS_CHANGED_SUGGEST_RESTART" = "Changes to plugins and global plugin settings take only effect after restart. Restart MacPass now?";
 
 /* Alert informative text to ask the user if he really want to uninstall the plugin */
 "ALERT_INFORMATIVE_TEXT_REALLY_UNINSTALL_PLUGIN" = "The Plugin will be moved to the Trash.";
+
+/* Button in dialog to cancel merge of KDB file changes! */
+"ALERT_MERGE_CANCEL" = "Cancel";
+
+/* Button in dialog to merge KDB changes into file! */
+"ALERT_MERGE_CONTINUE" = "Merge files!";
+
+/* Informative text displayed when merging KDB files */
+"ALERT_MERGE_KDB_FILE_INFO_TEXT" = "KDB databases do not contain enough information for a seamless merge. Entries will get merged and no data is lost. But due to groups only being matched by name unexpected changes might occur. Moved entries might get moved back to their old group, or renamed groups will not get merged. Also deleted entries might reappear due to no information regarding deleted objects being stored. Are you sure you want to proceed?";
+
+/* Alert message warning user about KDB file merge */
+"ALERT_MERGE_KDB_FILE_MESSAGE" = "You are merging a KDB database";
 
 /* Alert message text when plugins or their settings change and require a restart */
 "ALERT_MESSAGE_PLUGINS_CHANGED_SUGGEST_RESTART" = "Plugin settings changed. Please restart.";
@@ -43,9 +73,18 @@
 /* Alert message text to ask the user if he really want to uninstall the plugin. Include %@ placeholder for plugin name */
 "ALERT_MESSAGE_TEXT_REALLY_UNINSTALL_PLUGIN_%@" = "Should the Plugin %@ really be uninstalled?";
 
+/* Infromative text of the disabled updates alert! */
+"ALERT_UPDATES_DISABLED_INFORMATIVE_TEXT_%@!" = "Updates for this build of %@ are disabled!";
+
+/* Message text for disabled updates alert! */
+"ALERT_UPDATES_DISABLED_MESSAGE_TEXT" = "Updates are Disabled!";
+
 /* Attachments column title (shows counts)
    Menu item to toggle display of attachment count column in entry table */
 "ATTACHMENTS" = "Attachments";
+
+/* Sucessfully merged external changes */
+"AUTO_MERGE_NOTIFICATION_TEXT" = "Auto merge successfull!";
 
 /* Menu item for automatic trash creation */
 "AUTOCREATE_TRASH_FOLDER" = "Create Automatically";
@@ -53,8 +92,14 @@
 /* Inherit autotype settings menu item */
 "AUTOTYPE_INHERIT" = "Inherit Autotype Settings";
 
+/* Message displayed to the user to unlock the database to perform global autotype */
+"AUTOTYPE_MESSAGE_UNLOCK_DATABASE" = "Please unlock the database to use Global Autotype";
+
 /* Disable autotype menu item */
 "AUTOTYPE_NO" = "Disable Autotype";
+
+/* Notification: Autotype failed, MacPass has no permission to send key strokes */
+"AUTOTYPE_NOTIFICATION_MACPASS_HAS_NO_ACCESSIBILTY_PERMISSIONS" = "Autotype disabled because of missing accessibilty access.";
 
 /* Notification: Autotype failed, no documents are open */
 "AUTOTYPE_OVERLAY_NO_DOCUMENTS" = "Please open a database file to use Global Autotype!";
@@ -65,11 +110,11 @@
 /* Notification: Autotype found a single match for %@ (string placeholder). */
 "AUTOTYPE_OVERLAY_SINGLE_MATCH_FOR_%@" = "Found Match for %@!";
 
+/* Notficication: Autotype timed out */
+"AUTOTYPE_TIMED_OUT" = "Autotype timed out.";
+
 /* Enable autotype menu item */
 "AUTOTYPE_YES" = "Enable Autotype";
-
-/* Sucessfully merged external changes */
-"AUTO_MERGE_NOTIFICATION_TEXT" = "Auto merge successfull!";
 
 /* Cancel */
 "CANCEL" = "Cancel";
@@ -87,14 +132,17 @@
 /* Menu item in the database outline context menu to change the trash group */
 "CHANGE_TRASH_GROUP" = "Change Trash Group";
 
-/* String displayed at dock badge when clipboard is about to be cleared */
-"CLEARING_PASTEBOARD" = "Cleared";
+/* Button title in the key file selection dialog for selecting a key */
+"CHOOSE_FILE_BUTTON_TITLE" = "Open";
 
 /* Clear Autotype Button */
 "CLEAR_AUTOTYPE" = "Clear Autotype";
 
 /* Menu to clear recent searches */
 "CLEAR_RECENT_SEARCHES" = "Clear recent searches";
+
+/* String displayed at dock badge when clipboard is about to be cleared */
+"CLEARING_PASTEBOARD" = "Cleared";
 
 /* Field name that was copied to the pasteboard */
 "COPIED_FIELD_%@" = "Copied %@";
@@ -114,7 +162,8 @@
 /* Context menu sub-menu to copy custom fields to clipboard */
 "COPY_CUSTOM_FIELDS_MENU" = "Copy Custom Field…";
 
-/* Action title for copying an entry via drag and drop */
+/* Action name when an entry was moved
+   Action title for copying an entry via drag and drop */
 "COPY_ENTRY" = "Copy Entry";
 
 /* Mask for title to copy field value */
@@ -180,6 +229,14 @@
 /* Empty Trash */
 "DELETE_TRASHED_GROUP" = "Delete Trashed Group";
 
+/* Action title for copying an entry via drag and drop to another database
+   Action title for moving an entry via drag and drop */
+"DRAG_ENTRY" = "Drag Entry";
+
+/* Action title for moving a group via drag and drop
+   Actiontitle for copying groups via drag and drop to antother database */
+"DRAG_GROUP" = "Drag Group";
+
 /* Action name for duplicating entries */
 "DUPLICATE_ENTRIES_%ld" = "Duplicate Entries %ld";
 
@@ -232,12 +289,6 @@
 /* The master key was changed by an external program! */
 "EXTERN_CHANGE_OF_MASTERKEY" = "Master key was changed by another program";
 
-/* Informative text displayed when the file was change from another application */
-"FILE_CHANGED_BY_OTHERS_INFO_TEXT" = "The database loaded is not the same as the one on disk. How do you want to move on?";
-
-/* Message displayed when an open file was changed from another application */
-"FILE_CHANGED_BY_OTHERS_MESSAGE_TEXT" = "The database file was modified!";
-
 /* External file change strategy option: ask what to do */
 "FILE_CHANGE_STRATEGY_ASK" = "Ask";
 
@@ -250,6 +301,12 @@
 
 /* External file change strategy option: Use the changed file and discard local changes */
 "FILE_CHANGE_STRATEGY_USE_OTHER" = "Load Changed Version and Discard Mine";
+
+/* Informative text displayed when the file was change from another application */
+"FILE_CHANGED_BY_OTHERS_INFO_TEXT" = "The database loaded is not the same as the one on disk. How do you want to move on?";
+
+/* Message displayed when an open file was changed from another application */
+"FILE_CHANGED_BY_OTHERS_MESSAGE_TEXT" = "The database file was modified!";
 
 /* Error while reopening last known documents */
 "FILE_OPEN_ERROR" = "Error opening file.";
@@ -310,11 +367,11 @@
    Modification date column title */
 "MODIFIED" = "Modified";
 
-/* Action title for moving an entry via drag and drop */
+/* Action name when an entry was moved */
 "MOVE_ENTRY" = "Move Entry";
 
-/* Action title for moving a group via drag and drop */
-"MOVE_GROUP" = "Move Group";
+/* Menu displayed as popup selection for search options when multiple items are selected */
+"MULTIPLE_FILTERS_ACTIVE_WITH_DOTS" = "Multiple…";
 
 /* Name for a newly created Database */
 "NEW_DATABASE" = "Database";
@@ -332,6 +389,15 @@
    Toolbar item new group */
 "NEW_GROUP" = "New Group";
 
+/* Expiration date format, when item does not expire */
+"NO_EXPIRE_DATE_SET" = "Never expires.";
+
+/* Menu item to reset the template groups */
+"NO_TEMPLATE_GROUP" = "No Templates";
+
+/* Menu item added to show that no templates are defined */
+"NO_TEMPLATES" = "No Templates found";
+
 /* Null placeholder for item input field
    Placeholder text for input fields if no entry or group is selected */
 "NONE" = "None";
@@ -342,16 +408,7 @@
    Notes reference item */
 "NOTES" = "Notes";
 
-/* Expiration date format, when item does not expire */
-"NO_EXPIRE_DATE_SET" = "Never expires.";
-
-/* Menu item added to show that no templates are defined */
-"NO_TEMPLATES" = "No Templates found";
-
-/* Menu item to reset the template groups */
-"NO_TEMPLATE_GROUP" = "No Templates";
-
-/* Ok button */
+/* Ok Button to dismiss disabled updates alert */
 "OK" = "OK";
 
 /* preset to expire after one montch from now */
@@ -378,6 +435,9 @@
 /* Action button in Notification to open a document */
 "OPEN_DOCUMENT" = "Open Document";
 
+/* Action button in Notification to show the Accessibilty preferences */
+"OPEN_PREFERENCES" = "Open Accessiblity Preferences…";
+
 /* Menu item to open the URL with the default application */
 "OPEN_URL" = "Open URL";
 
@@ -391,6 +451,9 @@
    Password column title
    Password reference item */
 "PASSWORD" = "Password";
+
+/* Window title for the stand-alone password creator window */
+"PASSWORD_CREATOR_WINDOW_TITLE" = "Password Generator";
 
 /* Button to reset the password defaults for a single entry */
 "PASSWORD_GENERATOR_RESET_ENTRY_DEFAULTS" = "Reset";
@@ -424,6 +487,36 @@
 
 /* Window displayed to the user to pick an amout of characters */
 "PICKFIELD_WINDOW_TITLE" = "Field Picker";
+
+/* Label for the button when a download is in progress! */
+"PLUGIN_BROWSER_ACTION_DOWNLOAD_IN_PROGRESS" = "Downloading…";
+
+/* Label for the button when a download did not succeed */
+"PLUGIN_BROWSER_ACTION_RETRY_FAILED_DOWNLOAD" = "Failed. Re-Download";
+
+/* Label for the button to show a downloaded file */
+"PLUGIN_BROWSER_ACTION_SHOW_DOWNLOADED_FILE" = "Show in Finder…";
+
+/* Button to download the Plugin */
+"PLUGIN_BROWSER_DOWNLOAD_PLUGIN_BUTTON" = "Download";
+
+/* Status for an up-to-date plugin in the plugin browser */
+"PLUGIN_BROWSER_LATEST_VERSION_INSTALLED" = "Latest version installed";
+
+/* Status for an outdated plugin version in the plugin browser */
+"PLUGIN_BROWSER_NEWER_VERSION_%@_AVAILABLE" = "Newer version(%@) available.";
+
+/* Status for an uninstalled plugin in the plugin browser */
+"PLUGIN_BROWSER_PLUGIN_NOT_INSTALLED" = "Not installed";
+
+/* Status for an unkonw plugin version in the plugin browser */
+"PLUGIN_BROWSER_UNKNOWN_PLUGIN_VERSION_INSTALLED_%@" = "Unknown version %@ installed";
+
+/* Error for a plugin that is disabled. */
+"PLUGIN_ERROR_DISABLED_PLUGIN" = "The plugin is disabled by the user";
+
+/* Plugin is not with this version of MacPass */
+"PLUGIN_ERROR_HOST_VERSION_NOT_SUPPORTED" = "The plugin is not compatible with this version of MacPass";
 
 /* The plugin could not be initalized */
 "PLUGIN_ERROR_INTILIZATION_FAILED" = "Plugin could not be initalized";
@@ -510,7 +603,7 @@
 /* Message for the dialog to open a file for merge */
 "SELECT_FILE_TO_MERGE" = "Select file to merge";
 
-/* Menu displayed as popup selection for search options */
+/* Menu displayed as popup selection for search options if no filter is selected */
 "SELECT_FILTER_WITH_DOTS" = "Select…";
 
 /* Checkbox in dialog to set the selection as default file change strategy! */
@@ -570,9 +663,6 @@
 /* Displayed name when uuid field was copied
    UUID reference item */
 "UUID" = "UUID";
-
-/* Message text for disabled updates alert! */
-"Updates are disabled!" = "Updates are disabled!";
 
 /* No Key or Password */
 "WARNING_NO_PASSWORD_OR_KEYFILE" = "No password or keyfile supplied!";

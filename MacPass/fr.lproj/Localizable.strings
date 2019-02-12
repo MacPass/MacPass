@@ -39,12 +39,13 @@
 "NEW_DATABASE" = "Base de données";
 "OPEN_URL" = "Ouvrir URL";
 "PERFORM_AUTOTYPE_FOR_ENTRY" = "Saisie automatique";
+"TOOLBAR_PERFORM_AUTOTYPE_FOR_ENTRY" = "Saisie automatique";
 "PREVIEW" = "Aperçu";
 "PASSWORD_GENERATOR_SET_DEFAULTS" = "Utiliser par défaut";
 "PASSWORD_GENERATOR_RESET_ENTRY_DEFAULTS" = "Réinitialiser";
 "TRASH_ENTRY" = "Effacer entrée";
 "TRASH_GROUP" = "Effacer groupe";
-"SHOW_HISTORY" = "SHOW_HISTORY";
+"SHOW_HISTORY" = "Afficher l'historique";
 
 
 /*
@@ -97,6 +98,9 @@
 
 /* Dock Badge */
 "CLEARING_PASTEBOARD" = "…";
+
+/* Notification: Autotype failed, MacPass has no permission to send key strokes */
+"AUTOTYPE_NOTIFICATION_MACPASS_HAS_NO_ACCESSIBILTY_PERMISSIONS" = "Autorisation accessibilité manquant, saisie automatique désactivé.";
 
 /* Group Inspector */
 /* Autotype Combobox */

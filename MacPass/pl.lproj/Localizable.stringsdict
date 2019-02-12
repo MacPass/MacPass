@@ -1,14 +1,116 @@
-{
-	"EVERY_%ld_DAYS" = {
-		"NSStringLocalizedFormatKey" = "%#@days@";
-		days = {
-			"NSStringFormatSpecTypeKey" = "NSStringPluralRuleType";
-			"NSStringFormatValueTypeKey" = ld;
-			few = "co %ld dni";
-			many = "co %ld dni";
-			one = "co dzie\U0144";
-			other = "co %ld dni";
-			zero = "po ka\U017cdym odblokowaniu";
-		};
-	};
-}
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>%ld_CHARACTERS_TO_PICK_REMAINING</key>
+	<dict>
+		<key>NSStringLocalizedFormatKey</key>
+		<string>%#@znaków@</string>
+		<key>characters</key>
+		<dict>
+			<key>NSStringFormatSpecTypeKey</key>
+			<string>NSStringPluralRuleType</string>
+			<key>NSStringFormatValueTypeKey</key>
+			<string>ld</string>
+			<key>few</key>
+			<string>Pozostały %ld znaki</string>
+			<key>many</key>
+			<string>Pozostało %ld znaków</string>
+			<key>one</key>
+			<string>Pozostał jeden znak</string>
+			<key>other</key>
+			<string>Pozostało %ld znaków</string>
+			<key>zero</key>
+			<string>Wybrano wszystkie znaki</string>
+		</dict>
+	</dict>
+	<key>DUPLICATE_ENTRIES_%ld</key>
+	<dict>
+		<key>NSStringLocalizedFormatKey</key>
+		<string>%#@wpisów@</string>
+		<key>entries</key>
+		<dict>
+			<key>NSStringFormatSpecTypeKey</key>
+			<string>NSStringPluralRuleType</string>
+			<key>NSStringFormatValueTypeKey</key>
+			<string>ld</string>
+			<key>few</key>
+			<string>Powielone wpisy</string>
+			<key>many</key>
+			<string>Powielone wpisy</string>
+			<key>one</key>
+			<string>Powielony wpis</string>
+			<key>other</key>
+			<string>Powielone wpisy</string>
+			<key>zero</key>
+			<string>Powielone wpisy</string>
+		</dict>
+	</dict>
+	<key>EVERY_%ld_DAYS</key>
+	<dict>
+		<key>NSStringLocalizedFormatKey</key>
+		<string>%#@days@</string>
+		<key>days</key>
+		<dict>
+			<key>NSStringFormatSpecTypeKey</key>
+			<string>NSStringPluralRuleType</string>
+			<key>NSStringFormatValueTypeKey</key>
+			<string>ld</string>
+			<key>few</key>
+			<string>co %ld dni</string>
+			<key>many</key>
+			<string>co %ld dni</string>
+			<key>one</key>
+			<string>codziennie</string>
+			<key>other</key>
+			<string>co %ld dni</string>
+			<key>zero</key>
+			<string>po każdym odblokowaniu</string>
+		</dict>
+	</dict>
+	<key>PICKCHAR_INFO_MESSAGE_PICK_CHARACTERS_%ld</key>
+	<dict>
+		<key>NSStringLocalizedFormatKey</key>
+		<string>%#@znaków@</string>
+		<key>characters</key>
+		<dict>
+			<key>NSStringFormatSpecTypeKey</key>
+			<string>NSStringPluralRuleType</string>
+			<key>NSStringFormatValueTypeKey</key>
+			<string>ld</string>
+			<key>few</key>
+			<string>Wybierz %ld znaki</string>
+			<key>many</key>
+			<string>Wybierz %ld znaków</string>
+			<key>one</key>
+			<string>Wybierz jeden znak</string>
+			<key>other</key>
+			<string>Wybierz %ld znaków</string>
+			<key>zero</key>
+			<string>Wybierz znaki</string>
+		</dict>
+	</dict>
+	<key>PICKED_%ld_CHARACTERS</key>
+	<dict>
+		<key>NSStringLocalizedFormatKey</key>
+		<string>%#@znaków@</string>
+		<key>characters</key>
+		<dict>
+			<key>NSStringFormatSpecTypeKey</key>
+			<string>NSStringPluralRuleType</string>
+			<key>NSStringFormatValueTypeKey</key>
+			<string>ld</string>
+			<key>few</key>
+			<string>Wybrano %ld znaki</string>
+			<key>many</key>
+			<string>Wybrano %ld znaków</string>
+			<key>one</key>
+			<string>Wybrano %ld znak</string>
+			<key>other</key>
+			<string>Wybrano %ld znaków</string>
+			<key>zero</key>
+			<string>Nie wybrano znaków</string>
+		</dict>
+	</dict>
+</dict>
+</plist>

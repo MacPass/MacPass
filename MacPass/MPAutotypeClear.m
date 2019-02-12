@@ -22,12 +22,14 @@
 
 #import "MPAutotypeClear.h"
 #import "MPKeyMapper.h"
+#import "MPKeyTyper.h"
+
 #import <Carbon/Carbon.h>
 
 @implementation MPAutotypeClear
 
 - (NSString *)description {
-  return [[self class] description];
+  return self.class.description;
 }
 
 - (void)execute {
@@ -36,8 +38,8 @@
     NSLog(@"Unable to generate key code for 'A'");
     return;
   }
-  [self sendPressKey:key.keyCode modifierFlags:kCGEventFlagMaskCommand];
-  [self sendPressKey:kVK_Delete modifierFlags:0];
+  [MPKeyTyper sendKey:MPMakeModifiedKey(kCGEventFlagMaskCommand, key.keyCode)];
+  [MPKeyTyper sendKey:MPMakeModifiedKey(0, kVK_Delete)];
 }
 
 @end

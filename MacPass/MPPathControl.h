@@ -2,15 +2,18 @@
 //  MPPathControl.h
 //  MacPass
 //
-//  Created by Christoph Leimbrock on 8/7/17.
+//  Created by Michael Starke on 28.11.18.
+//  Copyright © 2018 HicknHack Software GmbH. All rights reserved.
 //
 
 #import <Cocoa/Cocoa.h>
 
-@protocol MPPathControlDelegate <NSPathControlDelegate>
-- (void)pathControlDidBecomeKey:(NSPathControl *_Nullable)control;
+NS_ASSUME_NONNULL_BEGIN
+
+@interface MPPathControl : NSPathControl <NSPathControlDelegate>
+
+- (IBAction)showOpenPanel:(id _Nullable)sender;
+
 @end
 
-@interface MPPathControl : NSPathControl
-@property (nullable, weak) id <MPPathControlDelegate> delegate;
-@end
+NS_ASSUME_NONNULL_END

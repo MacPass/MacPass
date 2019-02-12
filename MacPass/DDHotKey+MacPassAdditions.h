@@ -25,14 +25,14 @@
 @interface DDHotKey (MPKeydata)
 
 @property (readonly, copy) NSData *keyData;
-
+@property (readonly, copy, class) NSData *defaultHotKeyData;
 
 /**
  Use this method to retrieve the data, since deallocation of a hotkey unregisters it, this could yield unwanted behaviour!
  @return data for the default hot key.
 */
 + (NSData *)hotKeyDataWithKeyCode:(unsigned short)keyCode modifierFlags:(NSUInteger)flags;
-+ (NSData *)defaultHotKeyData;
+
 + (instancetype)defaultHotKey;
 + (instancetype)defaultHotKeyWithTask:(DDHotKeyTask)task;
 + (instancetype)hotKeyWithKeyData:(NSData *)data task:(DDHotKeyTask)task;

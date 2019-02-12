@@ -23,6 +23,8 @@
 
 #import "MPDocumentController.h"
 #import "MPConstants.h"
+#import "MPSettingsHelper.h"
+#import "MPAppDelegate.h"
 
 #import "HNHUi/HNHUi.h"
 
@@ -74,6 +76,45 @@
     return detectedType;
   }
   return [super typeForContentsOfURL:url error:outError];
+}
+
+- (void)addDocument:(NSDocument *)document {
+  [((MPAppDelegate *)NSApp.delegate) hideWelcomeWindow];
+  [super addDocument:document];
+}
+
+- (BOOL)reopenLastDocument {
+  if(self.documents.count > 0) {
+    return YES; // The document is already open
+  }
+  NSURL *documentUrl = nil;
+  if(self.recentDocumentURLs.count > 0) {
+    documentUrl = self.recentDocumentURLs.firstObject;
+  }
+  else {
+    NSString *lastPath = [NSUserDefaults.standardUserDefaults stringForKey:kMPSettingsKeyLastDatabasePath];
+    documentUrl =[NSURL URLWithString:lastPath];
+  }
+  BOOL isFileURL = documentUrl.fileURL;
+  if(isFileURL) {
+    [self openDocumentWithContentsOfURL:documentUrl
+                                display:YES
+                      completionHandler:^(NSDocument *document, BOOL documentWasAlreadyOpen, NSError *error) {
+                        
+                        if(error != nil){
+                          NSAlert *alert = [[NSAlert alloc] init];
+                          alert.messageText = NSLocalizedString(@"FILE_OPEN_ERROR", "Error while reopening last known documents");
+                          alert.informativeText = error.localizedDescription;
+                          alert.alertStyle = NSCriticalAlertStyle;
+                          [alert runModal];
+                        }
+                        
+                        if(document == nil){
+                          [(MPAppDelegate *)NSApp.delegate showWelcomeWindow];
+                        }
+                      }];
+  }
+  return isFileURL;
 }
 
 @end

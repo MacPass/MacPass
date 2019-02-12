@@ -51,11 +51,11 @@ NSString *const _MPOutlineMenuTemplate = @"Template";
    */
   
   id item = [self.viewController itemUnderMouse];
-  if( [item isKindOfClass:[KPKTree class]]) {
+  if( [item isKindOfClass:KPKTree.class]) {
     [self _updateRootMenu:menu];
   }
   
-  if( [item isKindOfClass:[KPKGroup class]]) {
+  if( [item isKindOfClass:KPKGroup.class]) {
     KPKGroup *group = (KPKGroup *)item;
     MPDocument *document = [NSDocumentController sharedDocumentController].currentDocument;
     if(group && document.root == group ) {

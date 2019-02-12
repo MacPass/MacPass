@@ -24,7 +24,7 @@
 
 #import "MPDocument.h"
 #import "MPSettingsHelper.h"
-#import "MPPickcharViewController.h"
+#import "MPPickcharsViewController.h"
 #import "MPPickfieldViewController.h"
 #import "MPPickcharsParser.h"
 
@@ -94,21 +94,18 @@
   panel.contentViewController = pickFieldViewController;
   panel.title = NSLocalizedString(@"PICKFIELD_WINDOW_TITLE", @"Window displayed to the user to pick an amout of characters");
   [panel center];
-  if(NSModalResponseOK == [NSApp runModalForWindow:panel]) {
-    /* add appropriate key press commands? or let the pick-char view-controller handel this? */
-    return pickFieldViewController.pickedValue;
-  }
-  return @"";
+  NSModalResponse response = [NSApp runModalForWindow:panel];
+  [panel orderOut:nil];
+  return (response == NSModalResponseOK) ? pickFieldViewController.pickedValue : @"";
 }
 
 - (NSString *)tree:(KPKTree *)tree resolvePickCharsPlaceholderForEntry:(KPKEntry *)entry field:(NSString *)field options:(NSString *)options {
-  
   NSString *value = [[entry valueForAttributeWithKey:field] kpk_finalValueForEntry:entry];
   if(value.length == 0) {
     return @""; // error while retrieving source value
   }
   MPPickcharsParser *parser = [[MPPickcharsParser alloc] initWithOptions:options];
-  MPPickcharViewController *pickCharViewController = [[MPPickcharViewController alloc] init];
+  MPPickcharsViewController *pickCharViewController = [[MPPickcharsViewController alloc] init];
   
   pickCharViewController.sourceValue = value;
   pickCharViewController.minimumCharacterCount = parser.pickCount;
@@ -122,10 +119,8 @@
   panel.contentViewController = pickCharViewController;
   panel.title = NSLocalizedString(@"PICKCHAR_WINDOW_TITLE", @"Window displayed to the user to pick an amout of characters");
   [panel center];
-  if(NSModalResponseOK == [NSApp runModalForWindow:panel]) {
-    /* add appropriate key press comamnds? or let the pick-char view-controller handel this? */
-    return pickCharViewController.pickedValue;
-  }
-  return @"";
+  NSModalResponse response = [NSApp runModalForWindow:panel];
+  [panel orderOut:nil];
+  return (response == NSModalResponseOK) ? pickCharViewController.pickedValue : @"";
 }
 @end

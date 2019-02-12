@@ -24,7 +24,7 @@
 
 @interface MPLockDaemon : NSObject
 
-+ (instancetype)defaultDaemon;
+@property (class, strong, readonly) MPLockDaemon *defaultDaemon;
 + (instancetype)init NS_UNAVAILABLE;
 
 @end

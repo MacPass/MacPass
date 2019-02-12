@@ -30,20 +30,20 @@ static NSCharacterSet *_characterSet = nil;
 {
   self = [super init];
   if (self) {
-    _characterSet = [[NSCharacterSet characterSetWithCharactersInString:@"1234567890"] invertedSet];
+    _characterSet = [NSCharacterSet characterSetWithCharactersInString:@"1234567890"].invertedSet;
   }
   return self;
 }
 
 - (NSString *)stringForObjectValue:(id)obj {
-  if([obj isKindOfClass:[NSNumber class]]) {
-    return [[NSString alloc] initWithFormat:@"%ld",[obj integerValue]];
+  if([obj isKindOfClass:NSNumber.class]) {
+    return [[NSString alloc] initWithFormat:@"%ld",((NSNumber *)obj).integerValue];
   }
   return nil;
 }
 
 - (BOOL)getObjectValue:(out id *)obj forString:(NSString *)string errorDescription:(out NSString **)error {
-  NSNumber *number = [[NSNumber alloc] initWithInteger:[string integerValue]];
+  NSNumber *number = [[NSNumber alloc] initWithInteger:string.integerValue];
   *obj = number;
   return YES;
 }

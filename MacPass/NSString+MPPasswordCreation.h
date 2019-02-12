@@ -42,7 +42,8 @@ typedef NS_OPTIONS(NSUInteger, MPPasswordCharacterFlags) {
 */
 + (NSString *)passwordWithCharactersets:(MPPasswordCharacterFlags)allowedCharacters
                    withCustomCharacters:(NSString*)customCharacters
-                                 length:(NSUInteger)theLength;
+                            ensureOccurence:(BOOL)ensureOccurence
+                                 length:(NSUInteger)length;
 /**
  *  Creats a password based on the supplied string
  *
@@ -55,10 +56,15 @@ typedef NS_OPTIONS(NSUInteger, MPPasswordCharacterFlags) {
 
 + (NSString *)passwordWithDefaultSettings;
 
++ (NSUInteger)minimumPasswordLengthWithCharacterSet:(MPPasswordCharacterFlags)characterSet customCharacters:(NSString *)customCharacter ensureOccurance:(BOOL)ensureOccurance;
 /**
  *  @return returns a random character from the string
  */
 @property (nonatomic, readonly, copy) NSString *randomCharacter;
+/**
+ * @return returns a shuffled copy of the receiving string
+ */
+@property (nonatomic, readonly, copy) NSString *shuffledString;
 
 /**
  *
@@ -72,13 +78,13 @@ typedef NS_OPTIONS(NSUInteger, MPPasswordCharacterFlags) {
 /**
  *  Calculates the entropy of the receiver based on the allowed characters. The calculation considers the characters chosen randomly.
  *  If the password supplied was not created randomly based on the full character set, the calculated entropy is NOT correct.
- *  Do NOT use this method to estimate unknown passwords
+ *  Do NOT use this method to estimate passwords with unknown alphabet
  *
  *  @param allowedCharacters set of allowed Characters
- *  @param customCharacters  alternative string of unique allowed characters (String is not stripped of duplicates!)
+ *  @param customCharacters  additional custom string of allowed characters.
  *
  *  @return entropy of the receiver as bits
  */
-- (CGFloat)entropyWhithPossibleCharacterSet:(MPPasswordCharacterFlags)allowedCharacters orCustomCharacters:(NSString *)customCharacters;
+- (CGFloat)entropyWhithCharacterSet:(MPPasswordCharacterFlags)characterSet customCharacters:(NSString *)customCharacters ensureOccurance:(BOOL)ensureOccurance;
 
 @end

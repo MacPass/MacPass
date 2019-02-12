@@ -5,6 +5,20 @@
 //  Created by Michael Starke on 29.11.17.
 //  Copyright © 2017 HicknHack Software GmbH. All rights reserved.
 //
+//  This program is free software: you can redistribute it and/or modify
+//  it under the terms of the GNU General Public License as published by
+//  the Free Software Foundation, either version 3 of the License, or
+//  (at your option) any later version.
+//
+//  This program is distributed in the hope that it will be useful,
+//  but WITHOUT ANY WARRANTY; without even the implied warranty of
+//
+//  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+//  GNU General Public License for more details.
+//
+//  You should have received a copy of the GNU General Public License
+//  along with this program.  If not, see <http://www.gnu.org/licenses/>.
+//
 
 #import "MPPickcharsParser.h"
 #import "MPPickcharsParser_Private.h"
@@ -151,7 +165,7 @@ typedef NSUInteger (^MPPickcharOffsetConverter)(NSInteger offset);
  Conv-Fmt= Format of the check-box
  
  0 - Numbers 0129456789
- 1 - NUmber 1234567890
+ 1 - Number 1234567890
  a - lowercase characters
  A - uppercase characters
  ? - skip combobox item
@@ -284,7 +298,7 @@ typedef NSUInteger (^MPPickcharOffsetConverter)(NSInteger offset);
       index++;
     }
     NSAssert(tmpOffsetMap.count > 0, @"Internal inconsistency. Offset format needs at least on valid format!");
-    /* default behaviour is to be case insesitive, make sure we use the same converter for both cases if only one is specifier */
+    /* default behaviour is to be case insensitive, make sure we use the same converter for both cases if only one is specifier */
     MPPickcharOffsetConverter upperCaseConverter = tmpOffsetMap[@(MPPickCharOffsetTypeUpperCaseCharacter)];
     MPPickcharOffsetConverter lowerCaseConverter = tmpOffsetMap[@(MPPickCharOffsetTypeLowerCaseCharacter)];
     if(upperCaseConverter && !lowerCaseConverter) {

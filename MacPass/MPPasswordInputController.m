@@ -25,7 +25,7 @@
 #import "MPDocumentWindowController.h"
 #import "MPDocument.h"
 #import "MPSettingsHelper.h"
-#import "MPKeyfilePathControlDelegate.h"
+#import "MPPathControl.h"
 
 #import "HNHUi/HNHUi.h"
 
@@ -33,8 +33,8 @@
 
 @interface MPPasswordInputController ()
 
-@property (weak) IBOutlet HNHUIRoundedSecureTextField *passwordTextField;
-@property (weak) IBOutlet NSPathControl *keyPathControl;
+@property (weak) IBOutlet HNHUISecureTextField *passwordTextField;
+@property (weak) IBOutlet MPPathControl *keyPathControl;
 @property (weak) IBOutlet NSImageView *messageImageView;
 @property (weak) IBOutlet NSTextField *messageInfoTextField;
 @property (weak) IBOutlet NSButton *togglePasswordButton;
@@ -76,8 +76,6 @@
   [self.enablePasswordCheckBox bind:NSValueBinding toObject:self withKeyPath:NSStringFromSelector(@selector(enablePassword)) options:nil];
   [self.togglePasswordButton bind:NSEnabledBinding toObject:self withKeyPath:NSStringFromSelector(@selector(enablePassword)) options:nil];
   [self.passwordTextField bind:NSEnabledBinding toObject:self withKeyPath:NSStringFromSelector(@selector(enablePassword)) options:nil];
-
-  [self.passwordTextField setNextKeyView:self.keyPathControl];
   [self _reset];
 }
 
@@ -112,11 +110,9 @@
   }
 }
 
-
 #pragma mark -
 #pragma mark Private
 - (IBAction)_submit:(id)sender {
-  
   if(!self.completionHandler) {
     return;
   }
@@ -154,8 +150,12 @@
   self.messageInfoTextField.hidden = (nil == self.message);
   if(self.message) {
     self.messageInfoTextField.stringValue = self.message;
+    self.messageImageView.image = [NSImage imageNamed:NSImageNameInfo];
   }
-  self.messageImageView.hidden = (nil == self.message);;
+  else {
+    self.messageImageView.image = [NSImage imageNamed:NSImageNameCaution];
+  }
+  self.messageImageView.hidden = (nil == self.message);
   self.cancelButton.hidden = (nil == self.cancelLabel);
   if(self.cancelLabel) {
     self.cancelButton.stringValue = self.cancelLabel;
@@ -173,6 +173,7 @@
     self.messageInfoTextField.stringValue = error.descriptionForErrorCode;
   }
   self.messageImageView.hidden = NO;
+  self.messageImageView.image = [NSImage imageNamed:NSImageNameCaution];
   self.messageInfoTextField.hidden = NO;
 }
 

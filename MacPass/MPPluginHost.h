@@ -23,20 +23,21 @@
 #import <Foundation/Foundation.h>
 
 /* Notifications for loading plugins */
-FOUNDATION_EXPORT NSString *const MPPluginHostWillLoadPlugin;
-FOUNDATION_EXPORT NSString *const MPPluginHostDidLoadPlugin;
+FOUNDATION_EXPORT NSString *const MPPluginHostWillLoadPluginNotification;
+FOUNDATION_EXPORT NSString *const MPPluginHostDidLoadPluginNotification;
 
 /* Keys used in info dictionary on notifications */
 FOUNDATION_EXPORT NSString *const MPPluginHostPluginBundleIdentifiyerKey;
 
 @class MPPlugin;
 @class KPKEntry;
+@protocol MPImportPlugin;
 
 @interface MPPluginHost : NSObject
 
 /* List of all plugins known to the plugin manager. Disabled plugins are also present! */
 @property (readonly, copy) NSArray <MPPlugin __kindof*> *plugins;
-@property (nonatomic, readonly) BOOL loadUnsecurePlugins;
+@property (nonatomic, readonly, copy) NSString *version;
 
 + (instancetype)sharedHost;
 
@@ -47,9 +48,12 @@ FOUNDATION_EXPORT NSString *const MPPluginHostPluginBundleIdentifiyerKey;
 - (void)disablePlugin:(MPPlugin *)plugin;
 - (void)enablePlugin:(MPPlugin *)plugin;
 
-/*
-- (NSArray <MPPlugin __kindof*>*)autotypePlugins;
-- (NSArray <MPPlugin __kindof*>*)entryContextMenuPlugins;
-*/
+- (MPPlugin *)pluginWithBundleIdentifier:(NSString *)identifer;
 - (NSArray *)avilableMenuItemsForEntries:(NSArray <KPKEntry *>*)entries;
+@end
+
+@interface MPPluginHost (MPImportPluginSupport)
+
+@property (readonly, copy) NSArray <MPPlugin<MPImportPlugin> __kindof*> *importPlugins;
+
 @end

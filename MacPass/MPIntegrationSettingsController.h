@@ -27,18 +27,23 @@
 
 @interface MPIntegrationSettingsController : MPViewController <MPSettingsTab, NSTextFieldDelegate>
 /* Autotype */
-@property (weak) IBOutlet NSButton *enableGlobalAutotypeCheckBox;
-@property (weak) IBOutlet DDHotKeyTextField *hotKeyTextField;
-@property (weak) IBOutlet NSTextField *hotkeyWarningTextField;
+@property (strong) IBOutlet NSButton *enableGlobalAutotypeCheckBox;
+@property (strong) IBOutlet DDHotKeyTextField *hotKeyTextField;
+@property (strong) IBOutlet NSTextField *hotkeyWarningTextField;
 
-@property (weak) IBOutlet NSButton *matchTitleCheckBox;
-@property (weak) IBOutlet NSButton *matchURLCheckBox;
-@property (weak) IBOutlet NSButton *matchHostCheckBox;
-@property (weak) IBOutlet NSButton *matchTagsCheckBox;
+@property (strong) IBOutlet NSTextField *autotypeWarningTextField;
+@property (strong) IBOutlet NSStackView *autotypeStackView;
+@property (strong) IBOutlet NSButton *openPreferencesButton;
+@property (strong) IBOutlet NSButton *matchTitleCheckBox;
+@property (strong) IBOutlet NSButton *matchURLCheckBox;
+@property (strong) IBOutlet NSButton *matchHostCheckBox;
+@property (strong) IBOutlet NSButton *matchTagsCheckBox;
 
-@property (weak) IBOutlet NSButton *sendCommandForControlCheckBox;
+@property (strong) IBOutlet NSButton *sendCommandForControlCheckBox;
 
 /* Preview */
-@property (weak) IBOutlet NSButton *enableQuicklookCheckBox;
+@property (strong) IBOutlet NSButton *enableQuicklookCheckBox;
+
+- (IBAction)openAccessibiltyPreferences:(id)sender;
 
 @end

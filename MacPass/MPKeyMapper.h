@@ -23,8 +23,6 @@
 #import <Foundation/Foundation.h>
 #import "MPModifiedKey.h"
 
-FOUNDATION_EXTERN uint16_t const kMPUnknownKeyCode;
-
 @interface MPKeyMapper : NSObject
 
 /**

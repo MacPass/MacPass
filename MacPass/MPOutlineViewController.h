@@ -25,7 +25,6 @@
 
 APPKIT_EXTERN NSString *const MPOutlineViewDidChangeGroupSelection;
 
-@class HNHUIGradientView;
 @class MPDocument;
 
 @interface MPOutlineViewController : MPViewController <MPTargetNodeResolving, NSOutlineViewDelegate, NSMenuDelegate>

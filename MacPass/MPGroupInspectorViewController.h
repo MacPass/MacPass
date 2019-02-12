@@ -22,19 +22,19 @@
 
 #import "MPViewController.h"
 @class MPDocument;
-@class HNHUIRoundedTextField;
+@class HNHUITextField;
 
 @interface MPGroupInspectorViewController : MPViewController
 
 @property (strong) IBOutlet NSView *contentView;
-@property (weak) IBOutlet HNHUIRoundedTextField *titleTextField;
+@property (weak) IBOutlet HNHUITextField *titleTextField;
 
 @property (weak) IBOutlet NSButton *expiresCheckButton;
 @property (weak) IBOutlet NSButton *expireDateSelectButton;
 
 @property (weak) IBOutlet NSPopUpButton *searchPopupButton;
 @property (weak) IBOutlet NSPopUpButton *autotypePopupButton;
-@property (weak) IBOutlet HNHUIRoundedTextField *autotypeSequenceTextField;
+@property (weak) IBOutlet HNHUITextField *autotypeSequenceTextField;
 
 - (void)registerNotificationsForDocument:(MPDocument *)document;
 @end

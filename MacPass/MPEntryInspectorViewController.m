@@ -74,7 +74,6 @@ typedef NS_ENUM(NSUInteger, MPEntryTab) {
 
 @property (nonatomic, assign) BOOL showPassword;
 @property (nonatomic, assign) MPEntryTab activeTab;
-@property (strong) NSPopover *activePopover;
 @property (nonatomic, readonly) KPKEntry *representedEntry;
 
 @property (strong) MPTemporaryFileStorage *quicklookStorage;
@@ -112,7 +111,7 @@ typedef NS_ENUM(NSUInteger, MPEntryTab) {
 }
 
 - (KPKEntry *)representedEntry {
-  if([self.representedObject isKindOfClass:[KPKEntry class]]) {
+  if([self.representedObject isKindOfClass:KPKEntry.class]) {
     return self.representedObject;
   }
   return nil;
@@ -127,17 +126,18 @@ typedef NS_ENUM(NSUInteger, MPEntryTab) {
   [self.tabView bind:NSSelectedIndexBinding toObject:self withKeyPath:NSStringFromSelector(@selector(activeTab)) options:nil];
   
   
-  self.attachmentTableView.backgroundColor = [NSColor clearColor];
+  self.attachmentTableView.backgroundColor = NSColor.clearColor;
   [self.attachmentTableView bind:NSContentBinding toObject:_attachmentsController withKeyPath:NSStringFromSelector(@selector(arrangedObjects)) options:nil];
   self.attachmentTableView.delegate = _attachmentTableDelegate;
   self.attachmentTableView.dataSource = _attachmentDataSource;
   [self.attachmentTableView registerForDraggedTypes:@[NSFilenamesPboardType]];
+  [self.attachmentTableView setDraggingSourceOperationMask:NSDragOperationCopy forLocal:NO];
   
   /* extract custom field table view */
-  self.customFieldsTableView.translatesAutoresizingMaskIntoConstraints = NO;
   NSView *customFieldTableView = self.customFieldsTableView;
+  self.customFieldsTableView.translatesAutoresizingMaskIntoConstraints = NO;
   [self.customFieldsTableView.enclosingScrollView removeFromSuperviewWithoutNeedingDisplay];
-  
+  [self.customFieldsTableView removeFromSuperviewWithoutNeedingDisplay];
   
   [self.generalView addSubview:customFieldTableView];
   
@@ -150,7 +150,6 @@ typedef NS_ENUM(NSUInteger, MPEntryTab) {
                                                                            options:0
                                                                            metrics:nil
                                                                              views:dict]];
-  
   
   
   
@@ -201,15 +200,16 @@ typedef NS_ENUM(NSUInteger, MPEntryTab) {
   [self.observer didChangeModelProperty];
 }
 - (void)removeCustomField:(id)sender {
-  NSUInteger index = [sender tag];
-  KPKAttribute *attribute = self.representedEntry.customAttributes[index];
+  NSInteger rowIndex = [self.customFieldsTableView rowForView:sender];
+  NSAssert(rowIndex > 0 && rowIndex < self.representedEntry.customAttributes.count, @"Invalid custom attribute index.");
+  KPKAttribute *attribute = self.representedEntry.customAttributes[rowIndex];
   [self.observer willChangeModelProperty];
   [self.representedEntry removeCustomAttribute:attribute];
   [self.observer didChangeModelProperty];
 }
 
 - (void)saveAttachment:(id)sender {
-  NSInteger row = [self.attachmentTableView selectedRow];
+  NSInteger row = self.attachmentTableView.selectedRow;
   if(row < 0) {
     return; // No selection
   }
@@ -372,24 +372,22 @@ typedef NS_ENUM(NSUInteger, MPEntryTab) {
   [self _showPopopver:viewController atView:sender onEdge:NSMinYEdge];
 }
 
-- (void)_showPopopver:(NSViewController *)viewController atView:(NSView *)view onEdge:(NSRectEdge)edge {
-  if(self.activePopover.contentViewController == viewController) {
-    return; // Do nothing, we already did show the controller
+- (void)dismissViewController:(NSViewController *)viewController {
+  if([viewController isKindOfClass:MPAutotypeBuilderViewController.class]) {
+    self.showCustomAssociationSequenceAutotypeBuilderButton.enabled = YES;
+    self.showCustomEntrySequenceAutotypeBuilderButton.enabled = YES;
   }
-  [self.activePopover close];
-  NSAssert(self.activePopover == nil, @"Popover hast to be niled out");
-  self.activePopover = [[NSPopover alloc] init];
-  self.activePopover.delegate = self;
-  self.activePopover.behavior = NSPopoverBehaviorTransient;
-  self.activePopover.contentViewController = viewController;
-  [self.activePopover showRelativeToRect:NSZeroRect ofView:view preferredEdge:edge];
+  else if([viewController isKindOfClass:MPPasswordCreatorViewController.class]) {
+    self.generatePasswordButton.enabled = YES;
+  }
+  [super dismissViewController:viewController];
 }
 
-- (void)popoverDidClose:(NSNotification *)notification {
-  self.generatePasswordButton.enabled = YES;
-  self.showCustomEntrySequenceAutotypeBuilderButton.enabled = YES;
-  self.showCustomAssociationSequenceAutotypeBuilderButton.enabled = YES;
-  self.activePopover = nil;
+- (void)_showPopopver:(NSViewController *)viewController atView:(NSView *)view onEdge:(NSRectEdge)edge {
+  if([self.presentedViewControllers containsObject:viewController]) {
+    return;
+  }
+  [self presentViewController:viewController asPopoverRelativeToRect:NSZeroRect ofView:view preferredEdge:edge behavior:NSPopoverBehaviorSemitransient];
 }
 
 #pragma mark -
@@ -563,6 +561,19 @@ typedef NS_ENUM(NSUInteger, MPEntryTab) {
 
 #pragma mark -
 #pragma mark HNHUITextFieldDelegate
+- (BOOL)textField:(NSTextField *)textField allowServicesForTextView:(NSTextView *)textView {
+  /* disallow servies for password fields */
+  if(textField == self.passwordTextField) {
+    return NO;
+  }
+  NSInteger index = MPCustomFieldIndexFromTag(textField.tag);
+  if(index > -1) {
+    KPKAttribute *attribute = _customFieldsController.arrangedObjects[index];
+    return !attribute.protect;
+  }
+  return YES;
+}
+
 - (NSMenu *)textField:(NSTextField *)textField textView:(NSTextView *)view menu:(NSMenu *)menu {
   for(NSMenuItem *item in menu.itemArray) {
 #pragma clang diagnostic push
@@ -604,7 +615,7 @@ typedef NS_ENUM(NSUInteger, MPEntryTab) {
         name = [_customFieldsController.arrangedObjects[index] key];
       }
     }
-    [[MPPasteBoardController defaultController] copyObjects:@[value] overlayInfo:info name:name atView:self.view];
+    [MPPasteBoardController.defaultController copyObjects:@[value] overlayInfo:info name:name atView:self.view];
     return NO;
   }
   return YES;
@@ -626,6 +637,7 @@ typedef NS_ENUM(NSUInteger, MPEntryTab) {
 
 - (void)_didChangeCurrentItem:(NSNotification *)notificiation {
   self.showPassword = NO;
+  //self.customFieldsTableView.needsDisplay = YES;
 }
 
 @end

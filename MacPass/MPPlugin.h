@@ -29,13 +29,15 @@ NS_ASSUME_NONNULL_BEGIN
 @class KPKAttribute;
 @class KPKTree;
 
+FOUNDATION_EXPORT NSString *const MPPluginUnkownVersion;
+
 @interface MPPlugin : NSObject
 
 @property (copy, readonly) NSString *identifier;
 @property (copy, readonly) NSString *name;
-@property (copy, readonly) NSString *version;
+@property (nonatomic, copy, readonly, nullable) NSString *shortVersionString;
+@property (nonatomic, copy, readonly) NSString *versionString;
 @property (nonatomic, strong, readonly) NSBundle *bundle;
-
 
 /**
  If your plugin needs initalization override this method but you have to call [super initWithPluginHost:]
@@ -85,20 +87,36 @@ NS_ASSUME_NONNULL_BEGIN
 - (NSString *)initialValueForAttributeWithKey:(NSString *)key;
 @end
 
-@protocol MPExportPluginViewController <NSObject>
+@protocol MPImportPlugin <NSObject>
 @required
-@property (nonatomic, copy) NSDictionary *exportOptions;
-@end
+/**
+ Called by the Host to upate a menu item for importing.
+ You are supposed to update the title to something meaningfull.
+ target and action will get set by host, so do not rely on them
+ 
+ @param item MenuItem that will be used to import via the plugin
+ */
+- (void)prepareImportMenuItem:(NSMenuItem *)item;
+/**
+ Called by the host when an import is about to happen.
+ Update the panel to allow work for all the files and formats you can open.
+ 
+ Host will simply run the panel with - beginSheetModalForWindow:completionHandler:
+ and will call treeForRunningOpenPanel:withResponse: afterwards to handle the result.
 
-@protocol MPExportPlugin <NSObject>
-@required
-/* Ideally supply a list of Formats supported. This format specifier is used when being called */
-@property (nonatomic, copy) NSDictionary<NSString *, NSString *>* localizedSuportedFormats;
-- (NSData *)dataForTree:(KPKTree *)tree withFormat:(NSString *)format options:(NSDictionary *)options;
-@optional
-- (NSViewController<MPExportPluginViewController> *)exportViewControllerForTree:(KPKTree *)tree withFormat:(NSString *)format;
+ @param panel The open panel that will be displayed to the user for importing files
+ */
+- (void)prepareOpenPanel:(NSOpenPanel *)panel;
+/**
+ This will get called when the open panel is closed by the user.
+ You should retrieve any results from the panel and act accordingly.
+ 
+ @param panel The open panel used for selecting what file(s) to import
+ @param response The response for of the user for running the panel
+ @return The tree constructed from the selected input file(s)
+ */
+- (KPKTree *)treeForRunningOpenPanel:(NSOpenPanel *)panel withResponse:(NSModalResponse)response;
 @end
-
 
 @interface MPPlugin (Deprecated)
 

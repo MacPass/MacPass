@@ -23,183 +23,216 @@
 #import "MPOutlineDataSource.h"
 #import "MPDocument.h"
 #import "MPConstants.h"
+#import "NSIndexPath+MPAdditions.h"
 
 #import "KeePassKit/KeePassKit.h"
 
 @interface MPOutlineDataSource ()
 
-@property (weak) KPKGroup *localDraggedGroup;
-@property (weak) KPKEntry *localDraggedEntry;
+@property (strong) NSArray<KPKGroup *> *draggedGroups;
 
 @end
 
 @implementation MPOutlineDataSource
 
-- (BOOL)outlineView:(NSOutlineView *)outlineView writeItems:(NSArray *)items toPasteboard:(NSPasteboard *)pasteboard {
-  if(items.count != 1) {
-    return NO;
+- (id<NSPasteboardWriting>)outlineView:(NSOutlineView *)outlineView pasteboardWriterForItem:(id)item {
+  id representedObject = [item representedObject];
+  if([representedObject isKindOfClass:KPKGroup.class]) {
+    KPKGroup *group = representedObject;
+    return group;
   }
-  self.localDraggedGroup = nil;  id item = [items.lastObject representedObject];
-  if(![item isKindOfClass:[KPKGroup class]]) {
-    return NO;
+  return nil;
+}
+
+- (void)outlineView:(NSOutlineView *)outlineView draggingSession:(NSDraggingSession *)session willBeginAtPoint:(NSPoint)screenPoint forItems:(NSArray *)draggedItems {
+  session.draggingFormation = NSDraggingFormationList;
+  self.draggedGroups = @[];
+  NSMutableArray *localDraggedGroups = [[NSMutableArray alloc] init];
+  for(NSTreeNode *node in draggedItems) {
+    BOOL addNode = YES;
+    for(NSTreeNode *otherNode in draggedItems) {
+      if(node == otherNode) {
+        continue;
+      }
+      addNode &= ![otherNode.indexPath containsIndexPath:node.indexPath];
+    }
+    if(addNode) {
+      KPKGroup *group = node.representedObject;
+      [localDraggedGroups addObject:group];
+    }
   }
-  KPKGroup *draggedGroup = item;
-  [pasteboard writeObjects:@[draggedGroup]];
-  return (nil != draggedGroup.parent);
+  self.draggedGroups = [localDraggedGroups copy];
 }
 
 - (NSDragOperation)outlineView:(NSOutlineView *)outlineView validateDrop:(id<NSDraggingInfo>)info proposedItem:(id)item proposedChildIndex:(NSInteger)index {
-  
-  /* Clean up our local search */
-  self.localDraggedEntry = nil;
-  self.localDraggedGroup = nil;
-  
   info.animatesToDestination = YES;
-  NSDragOperation operationMask = NSDragOperationMove;
-  /*
-   If we can support copy on drag, this can be used
-   to obtain the dragging modifier mask the user presses
-   */
-  BOOL localCopy = NO;
-  if([info draggingSourceOperationMask] == NSDragOperationCopy) {
-    operationMask = NSDragOperationCopy;
-    localCopy = YES;
-  }
   
-  
-  /* Check if the Target is the root group */
   id targetItem = [item representedObject];
-  if( ![targetItem isKindOfClass:[KPKGroup class]] ) {
+  if( ![targetItem isKindOfClass:KPKGroup.class] ) {
     return NSDragOperationNone; // Block all unknown types
   }
   
-  NSPasteboard *pasteBoard = [info draggingPasteboard];
-  KPKGroup *draggedGroup = nil;
-  KPKEntry *draggedEntry = nil;
-  BOOL couldReadPasteboard = [self _readDataFromPasteboard:pasteBoard group:&draggedGroup entry:&draggedEntry];
-  if(!couldReadPasteboard) {
-    return NSDragOperationNone;
-  }
+  BOOL copyDrag = (info.draggingSourceOperationMask == NSDragOperationCopy);
   
   KPKGroup *targetGroup = targetItem;
-  BOOL validTarget = YES;
-  MPDocument *document = outlineView.window.windowController.document;
-  /* Dragging Groups */
-  if(draggedGroup) {
-    self.localDraggedGroup = [document findGroup:draggedGroup.uuid];
-    if( [draggedGroup.uuid isEqual:targetGroup.uuid] ) {
-      return NSDragOperationNone; // Groups cannot be moved inside themselves
-    }
-    if(self.localDraggedGroup) {
-      if( self.localDraggedGroup.parent == targetGroup ) {
-        validTarget &= index != NSOutlineViewDropOnItemIndex;
-        validTarget &= index != [self.localDraggedGroup.parent.groups indexOfObject:self.localDraggedGroup];
+  BOOL isGroupDrop = (info.draggingSource == outlineView);
+  BOOL isEntryDrop = (!isGroupDrop && [info.draggingSource window] == outlineView.window);
+  if(isGroupDrop) {
+    /* local group drop */
+    for(KPKGroup *draggedGroup in self.draggedGroups) {
+      BOOL validTarget = YES;
+      if(targetGroup == draggedGroup) {
+        return copyDrag ? NSDragOperationCopy : NSDragOperationNone;
       }
-      BOOL isAnchesor = [self.localDraggedGroup isAnchestorOf:targetGroup];
+      
+      if(draggedGroup.parent == targetGroup) {
+        if(index == NSOutlineViewDropOnItemIndex) {
+          return copyDrag ? NSDragOperationCopy : NSDragOperationNone;
+        }
+        validTarget &= index != draggedGroup.index;
+      }
+      BOOL isAnchesor = [draggedGroup isAnchestorOf:targetGroup];
       validTarget &= !isAnchesor;
+      if(!validTarget) {
+        return NSDragOperationNone;
+      }
+    }
+    return copyDrag ? NSDragOperationCopy : NSDragOperationMove;
+  }
+  else if(isEntryDrop) {
+    /* local entry drop */
+    MPDocument *document = outlineView.window.windowController.document;
+    NSUUID *entryUUID = [self _entryUUIDsFromPasteboard:info.draggingPasteboard].firstObject;
+    KPKEntry *entry = [document findEntry:entryUUID];
+    // FIXME: set correct item when drop is proposed between items
+    if(index != NSOutlineViewDropOnItemIndex) {
+      NSTreeNode *node = item;
+      NSUInteger dropIndex = MIN(node.childNodes.count-1, index);
+      id dropItem = node.childNodes[dropIndex];
+      [outlineView setDropItem:dropItem dropChildIndex:NSOutlineViewDropOnItemIndex];
     }
     else {
-      /* Copy can always work in this case */
-      operationMask = NSDragOperationCopy;
-    }
-  }
-  else if(draggedEntry) {
-    self.localDraggedEntry = [document findEntry:draggedEntry.uuid];
-    if(self.localDraggedEntry) {
-      /* local Copy is always valid regardless of parent */
-      validTarget = localCopy ? YES : self.localDraggedEntry.parent != targetGroup;
       [outlineView setDropItem:item dropChildIndex:NSOutlineViewDropOnItemIndex];
     }
-    else {
-      /* Entry copy is always valid */
-      operationMask = NSDragOperationCopy;
+    if(entry.parent == targetItem) {
+      return copyDrag ? NSDragOperationCopy : NSDragOperationNone;
     }
+    return copyDrag ? NSDragOperationCopy : NSDragOperationMove;
   }
-  return validTarget ? operationMask : NSDragOperationNone;
+  else {
+    /* extern drop */
+    if([info.draggingPasteboard.types containsObject:KPKEntryUUDIUTI]) {
+      [outlineView setDropItem:item dropChildIndex:NSOutlineViewDropOnItemIndex];
+    }
+    return NSDragOperationCopy;
+  }
 }
 
 - (BOOL)outlineView:(NSOutlineView *)outlineView acceptDrop:(id<NSDraggingInfo>)info item:(id)item childIndex:(NSInteger)index {
   info.animatesToDestination = YES;
   
   id targetItem = [item representedObject];
-  if(![targetItem isKindOfClass:[KPKGroup class]]) {
+  if(![targetItem isKindOfClass:KPKGroup.class]) {
     return NO; // Wrong
   }
   
-  NSPasteboard *pasteBoard = [info draggingPasteboard];
-  KPKGroup *draggedGroup = nil;
-  KPKEntry *draggedEntry = nil;
-  BOOL validPateboard = [self _readDataFromPasteboard:pasteBoard group:&draggedGroup entry:&draggedEntry];
-  if(!validPateboard) {
-    return NO;
-  }
+  BOOL copyItem = (info.draggingSourceOperationMask == NSDragOperationCopy);
   
-  BOOL copyItem = ([info draggingSourceOperationMask] == NSDragOperationCopy);
-  
-  KPKGroup *targetGroup = (KPKGroup *)targetItem;
-  if(draggedGroup) {
-    if(copyItem || (nil == self.localDraggedGroup) ) {
-      draggedGroup = [draggedGroup copyWithTitle:nil options:kKPKCopyOptionNone];
-      [draggedGroup addToGroup:targetGroup atIndex:index];
-      [draggedGroup.undoManager setActionName:NSLocalizedString(@"COPY_GROUP", "Action title for copying a group via drag and drop")];
+  KPKGroup *targetGroup = targetItem;
+  MPDocument *document = outlineView.window.windowController.document;
+  /* local drop */
+  if(info.draggingSource == outlineView) {
+    if(copyItem) {
+      NSUInteger insertIndex = index;
+      for(KPKGroup *group in self.draggedGroups.reverseObjectEnumerator) {
+        KPKGroup *groupCopy = [group copyWithTitle:nil options:kKPKCopyOptionNone];
+        [groupCopy addToGroup:targetGroup atIndex:insertIndex];
+        insertIndex = groupCopy.index;
+        [groupCopy.undoManager setActionName:NSLocalizedString(@"COPY_GROUP", "Action title for copying a group via drag and drop")];
+      }
       return YES;
     }
-    else if(self.localDraggedGroup) {
-      /* Simple move */
-      [self.localDraggedGroup moveToGroup:targetGroup atIndex:index];
-      [self.localDraggedGroup.undoManager setActionName:NSLocalizedString(@"MOVE_GROUP", "Action title for moving a group via drag and drop")];
-      return YES;
-    }
-    /* Nothing valid */
-    return NO;
-  }
-  else if(draggedEntry) {
-    if(copyItem || (nil == self.localDraggedEntry)) {
-      draggedEntry = [draggedEntry copyWithTitle:nil options:kKPKCopyOptionNone];
-      [draggedEntry addToGroup:targetGroup];
-      [draggedEntry.undoManager setActionName:NSLocalizedString(@"COPY_ENTRY", "Action title for copying an entry via drag and drop")];
-      return YES;
-    }
-    else if(self.localDraggedEntry) {
-      [self.localDraggedEntry moveToGroup:targetGroup];
-      [self.localDraggedEntry.undoManager setActionName:NSLocalizedString(@"MOVE_ENTRY", "Action title for moving an entry via drag and drop")];
+    else {
+      NSUInteger insertIndex = index;
+      for(KPKGroup *group in self.draggedGroups.reverseObjectEnumerator) {
+        [group moveToGroup:targetGroup atIndex:insertIndex];
+        insertIndex = group.index;
+        [group.undoManager setActionName:NSLocalizedString(@"DRAG_GROUP", "Action title for moving a group via drag and drop")];
+      }
       return YES;
     }
   }
-  return NO;
+  else if([info.draggingSource window] == outlineView.window) {
+    NSArray<NSUUID *> *entryUUIDs = [self _entryUUIDsFromPasteboard:info.draggingPasteboard];
+    if(copyItem) {
+      for(NSUUID *entryUUID in entryUUIDs) {
+        KPKEntry *draggedEntry = [[document findEntry:entryUUID] copyWithTitle:nil options:kKPKCopyOptionNone];
+        [draggedEntry addToGroup:targetGroup];
+        [draggedEntry.undoManager setActionName:NSLocalizedString(@"COPY_ENTRY", "Action title for copying an entry via drag and drop")];
+      }
+    }
+    else {
+      for(NSUUID *entryUUID in entryUUIDs) {
+        KPKEntry *draggedEntry = [document findEntry:entryUUID];
+        [draggedEntry moveToGroup:targetGroup];
+        [draggedEntry.undoManager setActionName:NSLocalizedString(@"DRAG_ENTRY", "Action title for moving an entry via drag and drop")];
+      }
+    }
+    return YES;
+  }
+  /* external drop */
+  for(KPKEntry *draggedEntry in [self _entriesFromPasteboard:info.draggingPasteboard]) {
+    KPKEntry *entry = [draggedEntry copyWithTitle:nil options:kKPKCopyOptionCopyHistory];
+    [entry addToGroup:targetGroup];
+    [entry.undoManager setActionName:NSLocalizedString(@"DRAG_ENTRY", "Action title for copying an entry via drag and drop to another database")];
+  }
+  for(KPKGroup *draggedGroup in [self _normalizedGroupsFromPasterboard:info.draggingPasteboard]) {
+    KPKGroup *group = [draggedGroup copyWithTitle:nil options:kKPKCopyOptionCopyHistory];
+    [group addToGroup:targetGroup];
+    [group.undoManager setActionName:NSLocalizedString(@"DRAG_GROUP", "Actiontitle for copying groups via drag and drop to antother database")];
+  }
+  return YES;
 }
 
-- (BOOL)_readDataFromPasteboard:(NSPasteboard *)pasteboard group:(KPKGroup **)group entry:(KPKEntry **)entry;{
-  
-  if(entry == NULL || group == NULL) {
-    return NO; // Need valid pointers
-  }
-  /* Cleanup old stuff */
-  
-  NSArray *types = [pasteboard types];
-  if(types.count > 1 || types.count == 0) {
-    return NO;
-  }
-  
-  NSString *draggedType = types.lastObject;
-  if([draggedType isEqualToString:KPKGroupUTI]) {
-    // dragging group
-    NSArray *groups = [pasteboard readObjectsForClasses:@[[KPKGroup class]] options:nil];
-    if(groups.count != 1) {
-      return NO;
+- (NSArray<NSUUID *> *)_entryUUIDsFromPasteboard:(NSPasteboard *)pBoard {
+  if([pBoard.types containsObject:KPKEntryUUDIUTI]) {
+    if([pBoard canReadObjectForClasses:@[NSUUID.class] options:nil]) {
+      return [pBoard readObjectsForClasses:@[NSUUID.class] options:nil];
     }
-    *group = groups.lastObject;
-    return YES;
   }
-  else if([draggedType isEqualToString:KPKEntryUTI]) {
-    NSArray *entries = [pasteboard readObjectsForClasses:@[[KPKEntry class]] options:nil];
-    if([entries count] != 1) {
-      return NO; // NO entry readable
+  return @[];
+}
+
+- (NSArray<KPKGroup *> *)_normalizedGroupsFromPasterboard:(NSPasteboard *)pBoard {
+  if([pBoard.types containsObject:KPKGroupUTI]) {
+    if([pBoard canReadObjectForClasses:@[KPKGroup.class] options:nil]) {
+      NSArray<KPKGroup *> *groups = [pBoard readObjectsForClasses:@[KPKGroup.class] options:nil];
+      return [groups filteredArrayUsingPredicate:[NSPredicate predicateWithBlock:^BOOL(id  _Nullable evaluatedObject, NSDictionary<NSString *,id> * _Nullable bindings) {
+        KPKGroup *group = evaluatedObject;
+        BOOL isValid = YES;
+        for(KPKGroup *otherGroup in groups) {
+          if(otherGroup == group) {
+            continue;
+          }
+          if(nil != [otherGroup groupForUUID:group.uuid]) {
+            isValid = NO;
+            break;
+          }
+        }
+        return isValid;
+      }]];
     }
-    *entry = entries.lastObject;
-    return YES;
   }
-  return NO;
+  return @[];
+}
+
+- (NSArray<KPKEntry *> *)_entriesFromPasteboard:(NSPasteboard *)pBoard {
+  if([pBoard.types containsObject:KPKEntryUTI]) {
+    if([pBoard canReadObjectForClasses:@[KPKEntry.class] options:nil]) {
+      return [pBoard readObjectsForClasses:@[KPKEntry.class] options:nil];
+    }
+  }
+  return @[];
 }
 
 @end

@@ -86,7 +86,7 @@ typedef NS_ENUM(NSInteger, MPIconDownloadStatus) {
   node.iconId = [node.class defaultIcon];
   node.iconUUID = nil;
   [self.observer didChangeModelProperty];
-  [self.view.window performClose:sender];
+  [self dismissController:sender];
 }
 
 - (IBAction)downloadIcon:(id)sender {
@@ -102,12 +102,20 @@ typedef NS_ENUM(NSInteger, MPIconDownloadStatus) {
     case MPIconDownloadStatusNone:
       self.downloadIconButton.image = nil;
       break;
-    case MPIconDownloadStatusError:
-      self.downloadIconButton.image = [NSImage imageNamed:NSImageNameCaution];
+    case MPIconDownloadStatusError: {
+      NSImage *image = [NSImage imageNamed:NSImageNameCaution];
+      CGFloat scale = image.size.width / image.size.height;
+      image.size = NSMakeSize(16 * scale, 16);
+      self.downloadIconButton.image = image;
       break;
-    case MPIconDownloadStatusProgress:
-      self.downloadIconButton.image = [NSImage imageNamed:NSImageNameRefreshTemplate];
+    }
+    case MPIconDownloadStatusProgress: {
+      NSImage *image = [NSImage imageNamed:NSImageNameRefreshTemplate];
+      CGFloat scale = image.size.width / image.size.height;
+      image.size = NSMakeSize(16 * scale, 16);
+      self.downloadIconButton.image = image;
       break;
+    }
   }
 }
 
@@ -117,48 +125,27 @@ typedef NS_ENUM(NSInteger, MPIconDownloadStatus) {
   }
   
   NSURL *url = [NSURL URLWithString:URLString];
-  if(!url) {
-    self.downloadStatus = MPIconDownloadStatusError;
-    return;
-  }
-  
-  NSString *urlString = [NSString stringWithFormat:@"%@://%@/favicon.ico", url.scheme, url.host ? url.host : @""];
-  NSURL *favIconURL = [NSURL URLWithString:urlString];
-  if(!favIconURL) {
-    self.downloadStatus = MPIconDownloadStatusError;
-    return;
-  }
-  
   KPKMetaData *metaData = ((MPDocument *)[NSDocumentController sharedDocumentController].currentDocument).tree.metaData;
-  NSURLSessionTask *task = [[NSURLSession sharedSession] dataTaskWithURL:favIconURL completionHandler:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
-    if(error) {
-      dispatch_async(dispatch_get_main_queue(), ^{
-        self.downloadStatus = MPIconDownloadStatusError;
-        //[NSApp presentError:error];
-      });
-    }
-    if([response respondsToSelector:@selector(statusCode)] &&
-       (200 == [(id)response statusCode])
-       && data.length > 0) {
-      dispatch_async(dispatch_get_main_queue(), ^{
-        KPKIcon *newIcon = [[KPKIcon alloc] initWithImageData:data];
-        if(newIcon && newIcon.image) {
-          self.downloadStatus = MPIconDownloadStatusNone;
-          [metaData addCustomIcon:newIcon];
-          [self _updateCollectionViewContent];
-        }
-        else {
-          self.downloadStatus = MPIconDownloadStatusError;
-        }
-      });
-    }
-    else {
+  
+  [MPIconHelper fetchIconDataForURL:url completionHandler:^(NSData *iconData) {
+     if(!iconData || iconData.length == 0) {
       dispatch_async(dispatch_get_main_queue(), ^{
         self.downloadStatus = MPIconDownloadStatusError;
       });
+       return;
     }
+    dispatch_async(dispatch_get_main_queue(), ^{
+      KPKIcon *newIcon = [[KPKIcon alloc] initWithImageData:iconData];
+      if(newIcon && newIcon.image) {
+        self.downloadStatus = MPIconDownloadStatusNone;
+        [metaData addCustomIcon:newIcon];
+        [self _updateCollectionViewContent];
+      }
+      else {
+        self.downloadStatus = MPIconDownloadStatusError;
+      }
+    });
   }];
-  [task resume];
 }
 
 - (void)deleteIcon:(id)sender {
@@ -189,7 +176,7 @@ typedef NS_ENUM(NSInteger, MPIconDownloadStatus) {
 }
 
 - (IBAction)cancel:(id)sender {
-  [self.view.window performClose:sender];
+  [self dismissController:sender];
 }
 
 - (BOOL)validateMenuItem:(NSMenuItem *)menuItem {
@@ -207,15 +194,6 @@ typedef NS_ENUM(NSInteger, MPIconDownloadStatus) {
   return NO;
 }
 
-- (void)didSelectCollectionViewItem:(id)sender {
-  if(![sender isKindOfClass:[NSCollectionViewItem class]]) {
-    return;
-  }
-  NSCollectionViewItem *item = sender;
-  NSLog(@"selected item.frame: %@", NSStringFromRect(item.view.frame));
-  //[self _selectIcon:item.representedObject];
-}
-
 - (void)_selectIcon:(KPKIcon *)icon {
   KPKNode *node = self.representedObject;
   NSUInteger iconIndex = [self.iconCollectionView.content indexOfObject:icon];
@@ -231,7 +209,7 @@ typedef NS_ENUM(NSInteger, MPIconDownloadStatus) {
     node.iconUUID = nil;
   }
   [self.observer didChangeModelProperty];
-  [self.view.window performClose:nil];
+  [self dismissController:nil];
 }
 
 - (NSDragOperation)collectionView:(NSCollectionView *)collectionView validateDrop:(id <NSDraggingInfo>)draggingInfo proposedIndex:(NSInteger *)proposedDropIndex dropOperation:(NSCollectionViewDropOperation *)proposedDropOperation {
@@ -246,7 +224,7 @@ typedef NS_ENUM(NSInteger, MPIconDownloadStatus) {
     return NO;
   }
   BOOL success = NO;
-  MPDocument *document = [NSDocumentController sharedDocumentController].currentDocument;
+  MPDocument *document = NSDocumentController.sharedDocumentController.currentDocument;
   for(NSURL *url in urls) {
     KPKIcon *icon = [[KPKIcon alloc] initWithImageAtURL:url];
     if(icon.image) {

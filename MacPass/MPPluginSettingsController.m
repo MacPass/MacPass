@@ -26,6 +26,7 @@
 #import "MPPlugin.h"
 #import "MPPlugin_Private.h"
 #import "MPPluginConstants.h"
+#import "MPPluginRepositoryBrowserViewController.h"
 
 #import "MPConstants.h"
 #import "MPSettingsHelper.h"
@@ -41,12 +42,13 @@ typedef NS_ENUM(NSUInteger, MPPluginSegmentType) {
 
 @interface MPPluginSettingsController () <NSTableViewDataSource, NSTableViewDelegate>
 
-@property (weak) IBOutlet NSTableView *pluginTableView;
-@property (weak) IBOutlet NSView *settingsView;
+@property (strong) IBOutlet NSTableView *pluginTableView;
+@property (strong) IBOutlet NSView *settingsView;
 @property (strong) IBOutlet NSView *fallbackSettingsView;
-@property (weak) IBOutlet NSTextField *fallbackDescriptionTextField;
-@property (weak) IBOutlet NSButton *loadInsecurePlugsinCheckButton;
-@property (weak) IBOutlet NSSegmentedControl *addRemovePluginsControl;
+@property (strong) IBOutlet NSTextField *fallbackDescriptionTextField;
+@property (strong) IBOutlet NSButton *loadInsecurePlugsinCheckButton;
+@property (strong) IBOutlet NSSegmentedControl *addRemovePluginsControl;
+@property (strong) IBOutlet NSButton *forceIncompatiblePluginsCheckButton;
 
 @end
 
@@ -74,9 +76,13 @@ typedef NS_ENUM(NSUInteger, MPPluginSegmentType) {
   [self.addRemovePluginsControl setEnabled:NO forSegment:MPRemovePluginSegment];
   [self.fallbackSettingsView removeFromSuperview];
   [self.loadInsecurePlugsinCheckButton bind:NSValueBinding
-                                   toObject:[NSUserDefaultsController sharedUserDefaultsController]
+                                   toObject:NSUserDefaultsController.sharedUserDefaultsController
                                 withKeyPath:[MPSettingsHelper defaultControllerPathForKey:kMPSettingsKeyLoadUnsecurePlugins]
                                     options:nil];
+  [self.forceIncompatiblePluginsCheckButton bind:NSValueBinding
+                                        toObject:NSUserDefaultsController.sharedUserDefaultsController
+                                     withKeyPath:[MPSettingsHelper defaultControllerPathForKey:kMPSettingsKeyLoadIncompatiblePlugins]
+                                         options:nil];
   [self.pluginTableView registerForDraggedTypes:@[(NSString *)kUTTypeFileURL]];
 }
 
@@ -96,7 +102,7 @@ typedef NS_ENUM(NSUInteger, MPPluginSegmentType) {
                                   ? [NSString stringWithFormat:NSLocalizedString(@"PLUGIN_NAME_ERROR_%@", "Name for unloaded plugin with errors"), plugin.name]
                                   : [NSString stringWithFormat:NSLocalizedString(@"PLUGIN_NAME_DISABLED_%@", "name for disabled unloaded plugin"), plugin.name]);
   }
-  view.addionalTextField.stringValue = [NSString stringWithFormat:NSLocalizedString(@"PLUGIN_VERSION_%@", "Plugin version. Include a %@ placeholder for version string"), plugin.version];
+  view.addionalTextField.stringValue = [NSString stringWithFormat:NSLocalizedString(@"PLUGIN_VERSION_%@", "Plugin version. Include a %@ placeholder for version string"), plugin.versionString];
   return view;
 }
 
@@ -182,7 +188,8 @@ typedef NS_ENUM(NSUInteger, MPPluginSegmentType) {
 #pragma mark - Actions
 
 - (IBAction)browsePlugins:(id)sender {
-  [NSWorkspace.sharedWorkspace openURL:[NSApp applicationSupportDirectoryURL:YES]];
+  [self presentViewControllerAsSheet:[[MPPluginRepositoryBrowserViewController alloc] init]];
+  // [NSWorkspace.sharedWorkspace openURL:[NSApp applicationSupportDirectoryURL:YES]];
 }
 
 - (IBAction)addOrRemovePlugin:(id)sender {
@@ -222,7 +229,7 @@ typedef NS_ENUM(NSUInteger, MPPluginSegmentType) {
 
 - (void)_addPlugin:(NSURL *)bundleURL {
   NSError *error;
-  if(![[MPPluginHost sharedHost] installPluginAtURL:bundleURL error:&error]) {
+  if(![MPPluginHost.sharedHost installPluginAtURL:bundleURL error:&error]) {
     [NSApp presentError:error modalForWindow:self.view.window delegate:nil didPresentSelector:NULL contextInfo:NULL];
   }
   else {
@@ -250,7 +257,7 @@ typedef NS_ENUM(NSUInteger, MPPluginSegmentType) {
 
 - (void)_removePlugin:(MPPlugin *)plugin {
   NSError *error;
-  if(![[MPPluginHost sharedHost] uninstallPlugin:plugin error:&error]) {
+  if(![MPPluginHost.sharedHost uninstallPlugin:plugin error:&error]) {
     [NSApp presentError:error modalForWindow:self.view.window delegate:nil didPresentSelector:NULL contextInfo:NULL];
   }
   else {

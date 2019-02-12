@@ -30,6 +30,7 @@ APPKIT_EXTERN NSString *const kMPSettingsKeyClearPasteboardOnQuit;
 APPKIT_EXTERN NSString *const kMPSettingsKeyPasswordEncoding;
 APPKIT_EXTERN NSString *const kMPSettingsKeyOpenEmptyDatabaseOnLaunch;
 APPKIT_EXTERN NSString *const kMPSettingsKeyReopenLastDatabaseOnLaunch;
+APPKIT_EXTERN NSString *const kMPSettingsKeyQuitOnLastWindowClose;          // Quit MacPass when the user closes the last window
 APPKIT_EXTERN NSString *const kMPSettingsKeyFileChangeStrategy;
 
 /* URL handling */
@@ -50,8 +51,8 @@ APPKIT_EXTERN NSString *const kMPSettingsKeyLegacyHideUsername;
 APPKIT_EXTERN NSString *const kMPSettingsKeyLegacyHidePassword;
 APPKIT_EXTERN NSString *const kMPSettingsKeyLegacyHideNotes;
 APPKIT_EXTERN NSString *const kMPSettingsKeyLegacyHideURL;
-/* Document/Key Location store */
 
+/* Document/Key Location store */
 APPKIT_EXTERN NSString *const kMPSettingsKeyLastDatabasePath;                 // Path to the last opened Database. Workaround if users have disabled the feature in the OS
 APPKIT_EXTERN NSString *const kMPSettingsKeyRememeberdKeysForDatabases;       // NSDictionary of all db file urls and the corresponding key file url
 APPKIT_EXTERN NSString *const kMPSettingsKeyRememberKeyFilesForDatabases;     // YES if key files should be remembers
@@ -65,6 +66,7 @@ APPKIT_EXTERN NSString *const kMPSettingsKeyAutotypeMatchTitle;               //
 APPKIT_EXTERN NSString *const kMPSettingsKeyAutotypeMatchURL;                 // Autotype lookup includes entry URL
 APPKIT_EXTERN NSString *const kMPSettingsKeyAutotypeMatchHost;                // Autotype lookup includes host part of entry URL
 APPKIT_EXTERN NSString *const kMPSettingsKeyAutotypeMatchTags;                // Autotype lookup includes tags for entries
+APPKIT_EXTERN NSString *const kMPSettingsKeyAutotypeHideAccessibiltyWarning;  // Do not show an alert, when MacPass has no support for Autotype
 
 /* Search */
 APPKIT_EXTERN NSString *const kMPSettingsKeyEntrySearchFilterContext;
@@ -80,6 +82,7 @@ APPKIT_EXTERN NSString *const kMPSettingsKeyUpdatePasswordOnTemplateEntries;
 /* Plugins */
 APPKIT_EXTERN NSString *const kMPSettingsKeyLoadUnsecurePlugins;            // If set to YES this will load all plugins regardless of their codesignature status
 APPKIT_EXTERN NSString *const kMPSettingsKeyDisabledPlugins;                // NSArray of bundle identifiers of disabled plugins
+APPKIT_EXTERN NSString *const kMPSettingsKeyLoadIncompatiblePlugins;        // If set to YES incompatible plugins (no version info, marked as incompatible, etc) will be loaded regardless
 
 typedef NS_ENUM(NSUInteger, MPFileChangeStrategy) {
   MPFileChangeStrategyAsk,
@@ -102,6 +105,7 @@ typedef NS_ENUM(NSUInteger, MPDoubleClickTitleAction) {
 APPKIT_EXTERN NSString *const kMPSettingsKeyCopyGeneratedPasswordToClipboard;
 APPKIT_EXTERN NSString *const kMPSettingsKeyDefaultPasswordLength;
 APPKIT_EXTERN NSString *const kMPSettingsKeyPasswordCharacterFlags;
+APPKIT_EXTERN NSString *const kMPSettingsKeyPasswordEnsureOccurance;
 APPKIT_EXTERN NSString *const kMPSettingsKeyPasswordUseCustomString;
 APPKIT_EXTERN NSString *const kMPSettingsKeyPasswordCustomString;
 

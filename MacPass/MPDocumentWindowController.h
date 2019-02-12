@@ -44,6 +44,7 @@
 
 - (void)showEntries;
 - (void)showPasswordInput;
+- (void)showPasswordInputWithMessage:(NSString *)message;
 - (void)editPasswordWithCompetionHandler:(void (^)(NSInteger result))handler;
 
 #pragma mark Actions
@@ -58,6 +59,7 @@
 - (IBAction)exportAsXML:(id)sender;
 - (IBAction)mergeWithOther:(id)sender;
 - (IBAction)importFromXML:(id)sender;
+- (IBAction)importFromPlugin:(id)sender;
 
 - (IBAction)lock:(id)sender;
 - (IBAction)createGroup:(id)sender;

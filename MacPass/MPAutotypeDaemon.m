@@ -22,12 +22,14 @@
 
 #import "MPAutotypeDaemon.h"
 #import "MPDocument.h"
+#import "MPDocumentWindowController.h"
 #import "MPAutotypeCommand.h"
 #import "MPAutotypeContext.h"
 #import "MPAutotypePaste.h"
 #import "MPPasteBoardController.h"
 #import "MPSettingsHelper.h"
 #import "MPAutotypeCandidateSelectionViewController.h"
+#import "MPUserNotificationCenterDelegate.h"
 
 #import "NSApplication+MPAdditions.h"
 #import "NSUserNotification+MPAdditions.h"
@@ -49,10 +51,13 @@ NSString *const kMPProcessIdentifierKey = @"kMPProcessIdentifierKey";
 @property (assign) pid_t targetPID; // The pid of the process we want to sent commands to
 @property (copy) NSString *targetWindowTitle; // The title of the window that we are targeting
 @property (strong) NSRunningApplication *previousApplication; // The application that was active before we got invoked
+@property (assign) NSTimeInterval userActionRequested;
 
 @end
 
 @implementation MPAutotypeDaemon
+
+@dynamic autotypeSupported;
 
 #pragma mark -
 #pragma mark Lifecylce
@@ -77,6 +82,7 @@ static MPAutotypeDaemon *_sharedInstance;
   if (self) {
     _enabled = NO;
     _targetPID = -1;
+    _userActionRequested = NSDate.distantPast.timeIntervalSinceReferenceDate;
     [self bind:NSStringFromSelector(@selector(enabled))
       toObject:NSUserDefaultsController.sharedUserDefaultsController
    withKeyPath:[MPSettingsHelper defaultControllerPathForKey:kMPSettingsKeyEnableGlobalAutotype]
@@ -96,14 +102,22 @@ static MPAutotypeDaemon *_sharedInstance;
 }
 
 - (void)dealloc {
-  [[NSNotificationCenter defaultCenter] removeObserver:self];
-  [[[NSWorkspace sharedWorkspace] notificationCenter] removeObserver:self];
+  [NSNotificationCenter.defaultCenter removeObserver:self];
+  [NSWorkspace.sharedWorkspace.notificationCenter removeObserver:self];
   [self unbind:NSStringFromSelector(@selector(enabled))];
   [self unbind:NSStringFromSelector(@selector(hotKeyData))];
 }
 
 #pragma mark -
 #pragma mark Properties
+- (BOOL)autotypeSupported {
+  if(@available(macOS 10.14, *)) {
+    return AXIsProcessTrusted();
+  }
+  /* macOS 10.13 and lower allows us to send key events regardless of accessibilty trust */
+  return YES;
+}
+
 - (void)setEnabled:(BOOL)enabled {
   if(_enabled != enabled) {
     _enabled = enabled;
@@ -121,9 +135,53 @@ static MPAutotypeDaemon *_sharedInstance;
   }
 }
 
+- (void)checkForAccessibiltyPermissions {
+  if(!self.enabled) {
+    return;
+  }
+  BOOL hideAlert = NO;
+  if(nil != [NSUserDefaults.standardUserDefaults objectForKey:kMPSettingsKeyAutotypeHideAccessibiltyWarning]) {
+    hideAlert = [NSUserDefaults.standardUserDefaults boolForKey:kMPSettingsKeyAutotypeHideAccessibiltyWarning];
+  }
+  if(hideAlert || self.autotypeSupported) {
+    return;
+  }
+  else {
+    NSAlert *alert = [[NSAlert alloc] init];
+    alert.alertStyle = NSWarningAlertStyle;
+    alert.messageText = NSLocalizedString(@"ALERT_AUTOTYPE_MISSING_ACCESSIBILTY_PERMISSIONS_MESSAGE_TEXT", @"Alert message displayed when Autotype performs self check and lacks accessibilty permissions");
+    alert.informativeText = NSLocalizedString(@"ALERT_AUTOTYPE_MISSING_ACCESSIBILTY_PERMISSIONS_INFORMATIVE_TEXT", @"Alert informative text displayed when Autotype performs self check and lacks accessibilty permissions");
+    alert.showsSuppressionButton = YES;
+    [alert addButtonWithTitle:NSLocalizedString(@"ALERT_AUTOTYPE_MISSING_ACCESSIBILTY_PERMISSIONS_BUTTON_OK", @"Button in dialog to leave autotype disabled and continiue!")];
+    [alert addButtonWithTitle:NSLocalizedString(@"ALERT_AUTOTYPE_MISSING_ACCESSIBILTY_PERMISSIONS_BUTTON_OPEN_PREFERENCES", @"Button in dialog to open accessibilty preferences pane!")];
+    NSModalResponse returnCode = [alert runModal];
+    BOOL suppressWarning = (alert.suppressionButton.state == NSOnState);
+    [NSUserDefaults.standardUserDefaults setBool:suppressWarning forKey:kMPSettingsKeyAutotypeHideAccessibiltyWarning];
+    switch(returnCode) {
+      case NSAlertFirstButtonReturn: {
+        /* ok, ignore */
+        break;
+      }
+      case NSAlertSecondButtonReturn:
+        /* open prefs */
+        [self openAccessibiltyPreferences];
+        break;
+      default:
+        break;
+    }
+  }
+}
+
+- (void)openAccessibiltyPreferences {
+  [NSWorkspace.sharedWorkspace openURL:[NSURL URLWithString:@"x-apple.systempreferences:com.apple.preference.security?Privacy_Accessibility"]];
+}
+
 #pragma mark -
 #pragma mark Autotype Invocation
 - (void)performAutotypeForEntry:(KPKEntry *)entry {
+  [self performAutotypeForEntry:entry overrideSequence:nil];
+}
+- (void)performAutotypeForEntry:(KPKEntry *)entry overrideSequence:(NSString *)sequence {
   if(entry) {
     [self _updateTargeInformationForApplication:self.previousApplication];
     [self _performAutotypeForEntry:entry];
@@ -131,7 +189,7 @@ static MPAutotypeDaemon *_sharedInstance;
 }
 
 - (void)_didPressHotKey {
-  [self _updateTargetInfoForFrontMostApplication];
+  [self _updateTargetInformationForFrontMostApplication];
   [self _performAutotypeForEntry:nil];
 }
 
@@ -155,7 +213,17 @@ static MPAutotypeDaemon *_sharedInstance;
 #pragma mark Autotype Execution
 
 - (void)_performAutotypeForEntry:(KPKEntry *)entryOrNil {
-  NSInteger pid = [NSProcessInfo processInfo].processIdentifier;
+  /*if(!self.autotypeSupported) {
+   NSUserNotification *notification = [[NSUserNotification alloc] init];
+   notification.title = NSApp.applicationName;
+   notification.informativeText = NSLocalizedString(@"AUTOTYPE_NOTIFICATION_MACPASS_HAS_NO_ACCESSIBILTY_PERMISSIONS", "Notification: Autotype failed, MacPass has no permission to send key strokes");
+   notification.actionButtonTitle = NSLocalizedString(@"OPEN_PREFERENCES", "Action button in Notification to show the Accessibilty preferences");
+   notification.userInfo = @{ MPUserNotificationTypeKey: MPUserNotificationTypeShowAccessibiltyPreferences };
+   notification.showsButtons = YES;
+   [NSUserNotificationCenter.defaultUserNotificationCenter deliverNotification:notification];
+   return;
+   }*/
+  NSInteger pid = NSProcessInfo.processInfo.processIdentifier;
   if(self.targetPID == pid) {
     return; // We do not perform Autotype on ourselves
   }
@@ -168,10 +236,14 @@ static MPAutotypeDaemon *_sharedInstance;
     notification.title = NSApp.applicationName;
     notification.informativeText = NSLocalizedString(@"AUTOTYPE_OVERLAY_NO_DOCUMENTS", "Notification: Autotype failed, no documents are open");
     notification.actionButtonTitle = NSLocalizedString(@"OPEN_DOCUMENT", "Action button in Notification to open a document");
-    //notification.showsButtons = YES;
+    notification.userInfo = @{ MPUserNotificationTypeKey: MPUserNotificationTypeAutotypeOpenDocumentRequest };
+    notification.showsButtons = YES;
     [NSUserNotificationCenter.defaultUserNotificationCenter deliverNotification:notification];
-    return;
+    self.userActionRequested = NSDate.date.timeIntervalSinceReferenceDate;
+    [NSNotificationCenter.defaultCenter addObserver:self selector:@selector(_didUnlockDatabase:) name:MPDocumentDidUnlockDatabaseNotification object:nil];
+    return; // Unlock should trigger autotype
   }
+  
   NSPredicate *filterPredicate = [NSPredicate predicateWithBlock:^BOOL(id  _Nonnull evaluatedObject, NSDictionary<NSString *,id> * _Nullable bindings) {
     MPDocument *document = evaluatedObject;
     return !document.encrypted;}];
@@ -181,7 +253,11 @@ static MPAutotypeDaemon *_sharedInstance;
     [NSApp activateIgnoringOtherApps:YES];
     [NSApp.mainWindow makeKeyAndOrderFront:self];
     /* show the actual document window to the user */
-    [documents.firstObject showWindows];
+    MPDocument *document = documents.firstObject;
+    [document showWindows];
+    MPDocumentWindowController *wc = document.windowControllers.firstObject;
+    [wc showPasswordInputWithMessage:NSLocalizedString(@"AUTOTYPE_MESSAGE_UNLOCK_DATABASE", @"Message displayed to the user to unlock the database to perform global autotype")];
+    self.userActionRequested = NSDate.date.timeIntervalSinceReferenceDate;
     [NSNotificationCenter.defaultCenter addObserver:self selector:@selector(_didUnlockDatabase:) name:MPDocumentDidUnlockDatabaseNotification object:nil];
     return; // wait for the unlock to happen
   }
@@ -194,8 +270,9 @@ static MPAutotypeDaemon *_sharedInstance;
   if(!entryOrNil) {
     NSUserNotification *notification = [[NSUserNotification alloc] init];
     notification.title = NSApp.applicationName;
+    notification.userInfo = @{ MPUserNotificationTypeKey: MPUserNotificationTypeAutotypeFeedback };
     if(context) {
-      notification.informativeText = NSLocalizedString(@"AUTOTYPE_OVERLAY_SINGLE_MATCH_FOR_%@", "Notification: Autotype found a single match for %@ (string placeholder).");
+      notification.informativeText = [NSString stringWithFormat:NSLocalizedString(@"AUTOTYPE_OVERLAY_SINGLE_MATCH_FOR_%@", "Notification: Autotype found a single match for %@ (string placeholder)."), self.targetWindowTitle];
     }
     else {
       notification.informativeText = [NSString stringWithFormat:NSLocalizedString(@"AUTOTYPE_OVERLAY_NO_MATCH_FOR_%@", "Noticiation: Autotype failed to find a match for %@ (string placeholder)"), self.targetWindowTitle];
@@ -232,16 +309,18 @@ static MPAutotypeDaemon *_sharedInstance;
   if(nil == context) {
     return; // No context to work with
   }
+  
   if([self _orderApplicationToFront:self.targetPID]) {
     /* Sleep a bit after the app was activated */
-    /* TODO - we can use a saver way and use a notification to check if the app actally was activated */
+    /* TODO - we might be able to a notification to check if the app actally was activated instead of guessing a waiting time */
     usleep(1 * NSEC_PER_MSEC);
   }
-  dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
-    for(MPAutotypeCommand *command in [MPAutotypeCommand commandsForContext:context]) {
+  for(MPAutotypeCommand *command in [MPAutotypeCommand commandsForContext:context]) {
+    /* dispatch commands to main thread since most of them translate key events which is disallowed on background thread */
+    dispatch_async(dispatch_get_main_queue(), ^{
       [command execute];
-    }
-  });
+    });
+  }
 }
 
 #pragma mark -
@@ -292,16 +371,17 @@ static MPAutotypeDaemon *_sharedInstance;
 }
 
 - (void)_presentSelectionWindow:(NSArray *)candidates {
-  
-  
   if(!self.matchSelectionWindow) {
     self.matchSelectionWindow = [[NSPanel alloc] initWithContentRect:NSMakeRect(0, 0, 100, 100)
                                                            styleMask:NSWindowStyleMaskNonactivatingPanel|NSWindowStyleMaskTitled
                                                              backing:NSBackingStoreRetained
                                                                defer:YES];
-    self.matchSelectionWindow.level = NSScreenSaverWindowLevel;
+    self.matchSelectionWindow.level = kCGAssistiveTechHighWindowLevel;
     MPAutotypeCandidateSelectionViewController *vc = [[MPAutotypeCandidateSelectionViewController alloc] init];
     vc.candidates = candidates;
+    self.matchSelectionWindow.collectionBehavior |= (NSWindowCollectionBehaviorFullScreenAuxiliary |
+                                                     NSWindowCollectionBehaviorMoveToActiveSpace |
+                                                     NSWindowCollectionBehaviorTransient );
     self.matchSelectionWindow.contentViewController = vc;
     
   }
@@ -313,8 +393,18 @@ static MPAutotypeDaemon *_sharedInstance;
 #pragma mark MPDocument Notifications
 - (void)_didUnlockDatabase:(NSNotification *)notification {
   /* Remove ourselves and call again to search matches */
-  [[NSNotificationCenter defaultCenter] removeObserver:self];
-  [self _performAutotypeForEntry:nil];
+  [NSNotificationCenter.defaultCenter removeObserver:self name:MPDocumentDidUnlockDatabaseNotification object:nil];
+  NSTimeInterval now = NSDate.date.timeIntervalSinceReferenceDate;
+  if(now - self.userActionRequested > 30) {
+    NSUserNotification *notification = [[NSUserNotification alloc] init];
+    notification.title = NSApp.applicationName;
+    notification.informativeText = NSLocalizedString(@"AUTOTYPE_TIMED_OUT", "Notficication: Autotype timed out");
+    notification.userInfo = @{ MPUserNotificationTypeKey: MPUserNotificationTypeAutotypeFeedback };
+    [NSUserNotificationCenter.defaultUserNotificationCenter deliverNotification:notification];
+  }
+  else {
+    [self _performAutotypeForEntry:nil];
+  }
 }
 
 #pragma mark -
@@ -328,15 +418,15 @@ static MPAutotypeDaemon *_sharedInstance;
 #pragma mark Application information
 - (BOOL)_orderApplicationToFront:(pid_t)processIdentifier {
   NSRunningApplication *runingApplication = [NSRunningApplication runningApplicationWithProcessIdentifier:processIdentifier];
-  NSRunningApplication *frontApplication = [NSWorkspace sharedWorkspace].frontmostApplication;
+  NSRunningApplication *frontApplication = NSWorkspace.sharedWorkspace.frontmostApplication;
   if(frontApplication.processIdentifier == processIdentifier) {
     return NO;
   }
   [runingApplication activateWithOptions:NSApplicationActivateIgnoringOtherApps];
   return YES;
 }
-- (void)_updateTargetInfoForFrontMostApplication {
-  [self _updateTargeInformationForApplication:[NSWorkspace sharedWorkspace].frontmostApplication];
+- (void)_updateTargetInformationForFrontMostApplication {
+  [self _updateTargeInformationForApplication:NSWorkspace.sharedWorkspace.frontmostApplication];
 }
 
 - (void)_updateTargeInformationForApplication:(NSRunningApplication *)application {

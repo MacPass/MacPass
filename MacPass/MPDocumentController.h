@@ -27,4 +27,6 @@
 - (IBAction)toggleAllowAllFiles:(id)sender;
 - (IBAction)toggleShowHiddenFiles:(id)sender;
 
+- (BOOL)reopenLastDocument;
+
 @end

@@ -25,6 +25,9 @@
 #import "MPPluginHost.h"
 #import "MPSettingsHelper.h"
 #import "MPPluginConstants.h"
+#import "MPPluginVersionComparator.h"
+
+NSString *const MPPluginUnkownVersion = @"unkown.plugin.version";
 
 @implementation MPPlugin
 
@@ -66,9 +69,13 @@
   return nil == name ? @"Unkown Plugin" : name;
 }
 
-- (NSString *)version {
+- (NSString *)shortVersionString {
+  return self.bundle.infoDictionary[@"CFBundleShortVersionString"];
+}
+
+- (NSString *)versionString {
   if(self.bundle) {
-    NSString *humanVersion = self.bundle.infoDictionary[@"CFBundleShortVersionString"];
+    NSString *humanVersion = self.shortVersionString;
     NSString *version = self.bundle.infoDictionary[(NSString *)kCFBundleVersionKey];
     if(humanVersion && version) {
       return [NSString stringWithFormat:@"%@ (%@)", humanVersion, version];
@@ -80,7 +87,7 @@
       return version;
     }
   }
-  return @"unknown.version";
+  return MPPluginUnkownVersion;
 }
 
 

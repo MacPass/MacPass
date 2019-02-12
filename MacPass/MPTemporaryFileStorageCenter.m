@@ -49,7 +49,7 @@
 }
 
 - (BOOL)hasPendingStorages {
-  return  [_storages count] > 0;
+  return  _storages.count > 0;
 }
 
 - (MPTemporaryFileStorage *)storageForBinary:(KPKBinary *)binary {

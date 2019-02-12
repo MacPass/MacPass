@@ -32,23 +32,30 @@ NSInteger MPCustomFieldIndexFromTag(NSInteger tag) {
   return MAX(-1, tag - MPCustomFieldTagOffset);
 }
 
+NSInteger MPCustomFieldTagFromIndex(NSInteger index) {
+  return (index + MPCustomFieldTagOffset);
+}
+
 @implementation MPCustomFieldTableViewDelegate
 
 
-/*
-- (CGFloat)tableView:(NSTableView *)tableView heightOfRow:(NSInteger)row {
-  static NSTextFieldCell *cell;
-  static dispatch_once_t onceToken;
-  dispatch_once(&onceToken, ^{
-     cell = [[NSTextFieldCell alloc] init];
-  });
-  
-  cell.stringValue = @"Mutli!";
-  NSTableColumn *column = tableView.tableColumns.firstObject;
-  NSRect frame = NSMakeRect(0, 0, column.width, CGFLOAT_MAX);
-  return [cell cellSizeForBounds:frame].height + 38;
+- (void)tableView:(NSTableView *)tableView didRemoveRowView:(NSTableRowView *)rowView forRow:(NSInteger)row {
+  if(@available(macOS 10.12, *)) {
+    // 10.12 and higher are working correctly
+  }
+  else {
+    [tableView invalidateIntrinsicContentSize];
+  }
 }
-*/
+
+- (void)tableView:(NSTableView *)tableView didAddRowView:(NSTableRowView *)rowView forRow:(NSInteger)row {
+  if(@available(macOS 10.12, *)) {
+    // 10.12 and higher are working correctly
+  }
+  else {
+    [tableView invalidateIntrinsicContentSize];
+  }
+}
 
 - (NSView *)tableView:(NSTableView *)tableView viewForTableColumn:(NSTableColumn *)tableColumn row:(NSInteger)row {
   MPCustomFieldTableCellView *view = [tableView makeViewWithIdentifier:@"SelectedCell" owner:tableView];
@@ -79,7 +86,7 @@ NSInteger MPCustomFieldIndexFromTag(NSInteger tag) {
           options:@{NSConditionallySetsEditableBindingOption: @NO }];
     
   }
-  view.valueTextField.tag = (MPCustomFieldTagOffset + row);
+  view.valueTextField.tag = MPCustomFieldTagFromIndex(row);
   view.valueTextField.delegate = self.viewController;
   
   view.removeButton.target = self.viewController;

@@ -31,11 +31,38 @@
 /* Action to add an entry via template */
 "ADD_TREMPLATE_ENTRY" = "Vorgabeeintrag erstellen";
 
+/* Button in dialog to leave autotype disabled and continiue! */
+"ALERT_AUTOTYPE_MISSING_ACCESSIBILTY_PERMISSIONS_BUTTON_OK" = "Autotype deaktiviert lassen.";
+
+/* Button in dialog to open accessibilty preferences pane! */
+"ALERT_AUTOTYPE_MISSING_ACCESSIBILTY_PERMISSIONS_BUTTON_OPEN_PREFERENCES" = "Systemeinstellung Bedienungshilfen öffnen …";
+
+/* Alert informative text displayed when Autotype performs self check and lacks accessibilty permissions */
+"ALERT_AUTOTYPE_MISSING_ACCESSIBILTY_PERMISSIONS_INFORMATIVE_TEXT" = "Das System erlaubt MacPass nicht, Autotype-Tastenbefehle an andere Anwendungen zu schicken. Um Autotype zu ermöglichen fügen Sie MacPass zu den Bedienungshilfen in den Datenschutzeinstellung hinzu. ";
+
+/* Alert message displayed when Autotype performs self check and lacks accessibilty permissions */
+"ALERT_AUTOTYPE_MISSING_ACCESSIBILTY_PERMISSIONS_MESSAGE_TEXT" = "MacPass kann Autotype nicht ausführen.";
+
+/* Checkbox in dialog to set the selection as default file change strategy! */
+"ALERT_AUTOTYPE_MISSING_ACCESSIBILTY_PERMISSIONS_SUPPRESS_WARNING" = "Diesen Warnhinweis nicht mehr anzeigen.";
+
 /* Alert informative text when plugins or their settings change and require a restart */
-"ALERT_INFORMATIVE_TEXT_PLUGINS_CHANGED_SUGGEST_RESTART" = "Änderungen zu den globalen Einstellungen von Plugins treten erst nach einem Neustadt in Kraft. Soll MacPass jetzt neu gestartet werden?";
+"ALERT_INFORMATIVE_TEXT_PLUGINS_CHANGED_SUGGEST_RESTART" = "Änderungen zu den globalen Einstellungen von Plugins treten erst nach einem Neustart in Kraft. Soll MacPass jetzt neu gestartet werden?";
 
 /* Alert informative text to ask the user if he really want to uninstall the plugin */
 "ALERT_INFORMATIVE_TEXT_REALLY_UNINSTALL_PLUGIN" = "Das Plugin wird in den Papierkorb verschoben";
+
+/* Button in dialog to cancel merge of KDB file changes! */
+"ALERT_MERGE_CANCEL" = "Abbrechen";
+
+/* Button in dialog to merge KDB changes into file! */
+"ALERT_MERGE_CONTINUE" = "Daten synchronisieren.";
+
+/* Informative text displayed when merging KDB files */
+"ALERT_MERGE_KDB_FILE_INFO_TEXT" = "KDB Datenbanken enthalten nicht alle notwendigen Informationen für eine eindeutige Synchronisation. Einzelne Einträgen werden korrekt synchronisiert. Gruppen werden jedoch nur durch den Namens zugeordnet werden, was zu unerwarteten Ergebnissen führen kann. Etwa können lokal bewegte Einträge wieder in alte Gruppen geschoben werden, unbenannte Gruppen können leer werden und die Einträge unter einer Gruppe mit dem vorherigen Namen wieder auftauchen. Weiterhin können gelöschte Einträge wieder auftauchen, da keine Informationen über diese gespeichert wird. Soll mit der Synchronisation fortgefahren werden?";
+
+/* Alert message warning user about KDB file merge */
+"ALERT_MERGE_KDB_FILE_MESSAGE" = "Es werden KDB Datenbanken synchronisiert! ";
 
 /* Alert message text when plugins or their settings change and require a restart */
 "ALERT_MESSAGE_PLUGINS_CHANGED_SUGGEST_RESTART" = "Die globalen Plugineinstellungen haben sich geändert.";
@@ -43,9 +70,18 @@
 /* Alert message text to ask the user if he really want to uninstall the plugin. Include %@ placeholder for plugin name */
 "ALERT_MESSAGE_TEXT_REALLY_UNINSTALL_PLUGIN_%@" = "Möchten Sie das Plugin %@ wirklich deinstallieren?";
 
+/* Infromative text of the disabled updates alert! */
+"ALERT_UPDATES_DISABLED_INFORMATIVE_TEXT_%@!" = "Aktualisierungen von %@ sind für diese Version deaktivert!";
+
+/* Message text for disabled updates alert! */
+"ALERT_UPDATES_DISABLED_MESSAGE_TEXT" = "Updates sind dekativiert.";
+
 /* Attachments column title (shows counts)
    Menu item to toggle display of attachment count column in entry table */
 "ATTACHMENTS" = "Anhänge";
+
+/* Sucessfully merged external changes */
+"AUTO_MERGE_NOTIFICATION_TEXT" = "Daten wurden erfolgreich automatisch synchronisiert";
 
 /* Menu item for automatic trash creation */
 "AUTOCREATE_TRASH_FOLDER" = "Automatisch erstellen";
@@ -53,23 +89,29 @@
 /* Inherit autotype settings menu item */
 "AUTOTYPE_INHERIT" = "Autotype Einstellungen vererben";
 
+/* Message displayed to the user to unlock the database to perform global autotype */
+"AUTOTYPE_MESSAGE_UNLOCK_DATABASE" = "Bitte entsperren Sie die Datenbank um Global-Autotype nutzen zu können.";
+
 /* Disable autotype menu item */
-"AUTOTYPE_NO" = "Autotype deaktiveren";
+"AUTOTYPE_NO" = "Autotype deaktivieren";
+
+/* Notification: Autotype failed, MacPass has no permission to send key strokes */
+"AUTOTYPE_NOTIFICATION_MACPASS_HAS_NO_ACCESSIBILTY_PERMISSIONS" = "Autotype ist deaktivert, weil keine Rechte zum Steuern des Computers vorhanden sind.";
 
 /* Notification: Autotype failed, no documents are open */
-"AUTOTYPE_OVERLAY_NO_DOCUMENTS" = "Bitte öffnen Sie eine Datei, um Global Autotype zu nutzen!";
+"AUTOTYPE_OVERLAY_NO_DOCUMENTS" = "Bitte öffnen Sie eine Datei, um Global-Autotype zu nutzen!";
 
 /* Noticiation: Autotype failed to find a match for %@ (string placeholder) */
 "AUTOTYPE_OVERLAY_NO_MATCH_FOR_%@" = "Kein Treffer für %@!";
 
-/* Notification: Autotype found a single match. */
-"AUTOTYPE_OVERLAY_SINGLE_MATCH" = "Treffer!";
+/* Notification: Autotype found a single match for %@ (string placeholder). */
+"AUTOTYPE_OVERLAY_SINGLE_MATCH_FOR_%@" = "Treffer für %@!";
+
+/* Notficication: Autotype timed out */
+"AUTOTYPE_TIMED_OUT" = "Autotype wegen zu langer Wartezeit abgebrochen";
 
 /* Enable autotype menu item */
 "AUTOTYPE_YES" = "Autotype aktivieren";
-
-/* Sucessfully merged external changes */
-"AUTO_MERGE_NOTIFICATION_TEXT" = "Daten wurden erfolgreich automatische synchronisiert";
 
 /* Cancel */
 "CANCEL" = "Abbrechen";
@@ -77,21 +119,15 @@
 /* Menu item in the database outline context menu to change the database name */
 "CHANGE_DATABASE_NAME" = "Name der Datenbank ändern";
 
-/* (No Comment) */
-"CHANGE_FORMAT" = "Als KDBX speichern";
-
 /* Button to postpone the password change */
 "CHANGE_LATER" = "Später Ändern";
 
 /* Button to show the password change dialog
    Single button to show the password change dialog */
-"CHANGE_PASSWORD_WITH_DOTS" = "Password ändern …";
+"CHANGE_PASSWORD_WITH_DOTS" = "Passwort ändern …";
 
 /* Menu item in the database outline context menu to change the trash group */
 "CHANGE_TRASH_GROUP" = "Papierkorb-Gruppe ändern";
-
-/* String displayed at dock badge when clipboard is about to be cleared */
-"CLEARING_PASTEBOARD" = "…";
 
 /* Clear Autotype Button */
 "CLEAR_AUTOTYPE" = "Autotype Löschen";
@@ -99,11 +135,14 @@
 /* Menu to clear recent searches */
 "CLEAR_RECENT_SEARCHES" = "Letzte Suchanfragen entfernen";
 
+/* String displayed at dock badge when clipboard is about to be cleared */
+"CLEARING_PASTEBOARD" = "…";
+
 /* Field name that was copied to the pasteboard */
 "COPIED_FIELD_%@" = "%@ kopiert!";
 
 /* Password was copied to the pasteboard */
-"COPIED_PASSWORD" = "Password kopiert!";
+"COPIED_PASSWORD" = "Passwort kopiert!";
 
 /* URL was copied to the pasteboard */
 "COPIED_URL" = "Adresse kopiert!";
@@ -115,9 +154,10 @@
 "COPY_CUSTOM_FIELDS" = "Feld kopieren";
 
 /* Context menu sub-menu to copy custom fields to clipboard */
-"COPY_CUSTOM_FIELDS_MENU" = "Feld kopieren…";
+"COPY_CUSTOM_FIELDS_MENU" = "Feld kopieren …";
 
-/* Action title for copying an entry via drag and drop */
+/* Action name when an entry was moved
+   Action title for copying an entry via drag and drop */
 "COPY_ENTRY" = "Eintrag kopieren";
 
 /* Mask for title to copy field value */
@@ -137,14 +177,11 @@
    Toolbar item copy username */
 "COPY_USERNAME" = "Benutzername kopieren";
 
-/* (No Comment) */
-"CREATED_AT_%@" = "erstellt: %@";
-
 /* Curstom attribute reference item */
 "CUSTOM_ATTRIBUTE" = "Spezielle Eigenschaften";
 
 /* Title for menu for custom search filters */
-"CUSTOM_SEARCH_FILTER_MENU" = "Spezielle Suchefilter…";
+"CUSTOM_SEARCH_FILTER_MENU" = "Spezielle Suchefilter …";
 
 /* Default display name for KDB databases */
 "DATABASE" = "Datenbank";
@@ -165,7 +202,7 @@
 "DEFAULT_GROUP_NAME" = "Neue Gruppe";
 
 /* Default window title for a new window association */
-"DEFAULT_WINDOW_TITLE" = "Fenstertitle";
+"DEFAULT_WINDOW_TITLE" = "Fenstertitel";
 
 /* Menu item in the database outline context menu to delete the node from the trash
    Menu item to delete an entry
@@ -186,6 +223,14 @@
 /* Empty Trash */
 "DELETE_TRASHED_GROUP" = "Gelöschte Gruppe entfernen";
 
+/* Action title for copying an entry via drag and drop to another database
+   Action title for moving an entry via drag and drop */
+"DRAG_ENTRY" = "Eintrag verschieben";
+
+/* Action title for moving a group via drag and drop
+   Actiontitle for copying groups via drag and drop to antother database */
+"DRAG_GROUP" = "Gruppe verschieben";
+
 /* Action name for duplicating entries */
 "DUPLICATE_ENTRIES_%ld" = "Einträge duplizieren %ld";
 
@@ -193,7 +238,7 @@
 "DUPLICATE_ENTRY" = "Eintrag duplizieren";
 
 /* Menu item to duplicate an entry with options how to duplicate. Will present a dialog. */
-"DUPLICATE_ENTRY_WITH_OPTIONS" = "Eintrag duplizieren…";
+"DUPLICATE_ENTRY_WITH_OPTIONS" = "Eintrag duplizieren …";
 
 /* Menu item in the database outline context menu to change the template group
    Menu item on the add entry context menu to edit template groups */
@@ -206,10 +251,10 @@
 "EMPTY_TRASH" = "Papierkorb leeren";
 
 /* Informative text for the enforce password change alert */
-"ENFORCE_PASSWORD_CHANGE_ALERT_DESCRIPTION" = "Das Speichern der Datenbank ist erst wieder möglich, wenn das Password und/oder der Schlüssel geändert wurden.";
+"ENFORCE_PASSWORD_CHANGE_ALERT_DESCRIPTION" = "Das Speichern der Datenbank ist erst wieder möglich, wenn das Passwort und/oder der Schlüssel geändert wurden.";
 
 /* Message text for the enforce password change alert */
-"ENFORCE_PASSWORD_CHANGE_ALERT_TITLE" = "Das Password der Datenbank ist abgelaufen!";
+"ENFORCE_PASSWORD_CHANGE_ALERT_TITLE" = "Das Passwort der Datenbank ist abgelaufen!";
 
 /* Group row for entry attributes */
 "ENTRY_CUSTOM_ATTRIBUTES" = "Benutzerdefinierte Werte";
@@ -235,14 +280,8 @@
 /* Format to returen the date an item expires. Includes %@ placehoder for date */
 "EXPIRES_AT_DATE_%@" = "verfällt: %@";
 
-/* The master key was changed by an extrenal programm! */
+/* The master key was changed by an external program! */
 "EXTERN_CHANGE_OF_MASTERKEY" = "Der Schlüssel wurde durch ein anderes Programm geändert!";
-
-/* Informative text displayed when the file was change from another application */
-"FILE_CHANGED_BY_OTHERS_INFO_TEXT" = "Die geöffnete Datei wurde von einem anderen Programm verändert! Der Inhalt stimmt nicht mehr mit dem geladenen Inhalt überein.";
-
-/* Message displayed when an open file was changed from another application */
-"FILE_CHANGED_BY_OTHERS_MESSAGE_TEXT" = "Die Datei wurde verändert!";
 
 /* External file change strategy option: ask what to do */
 "FILE_CHANGE_STRATEGY_ASK" = "Jedesmal fragen";
@@ -256,6 +295,12 @@
 
 /* External file change strategy option: Use the changed file and discard local changes */
 "FILE_CHANGE_STRATEGY_USE_OTHER" = "Lade die andere Version und verwerfe meine Änderungen";
+
+/* Informative text displayed when the file was change from another application */
+"FILE_CHANGED_BY_OTHERS_INFO_TEXT" = "Die geöffnete Datei wurde von einem anderen Programm verändert! Der Inhalt stimmt nicht mehr mit dem geladenen Inhalt überein.";
+
+/* Message displayed when an open file was changed from another application */
+"FILE_CHANGED_BY_OTHERS_MESSAGE_TEXT" = "Die Datei wurde verändert!";
 
 /* Error while reopening last known documents */
 "FILE_OPEN_ERROR" = "Fehler beim Öffnen der Datei.";
@@ -316,11 +361,11 @@
    Modification date column title */
 "MODIFIED" = "Verändert";
 
-/* Action title for moving an entry via drag and drop */
-"MOVE_ENTRY" = "Eintrage bewegen";
+/* Action name when an entry was moved */
+"MOVE_ENTRY" = "Eintrag bewegen";
 
-/* Action title for moving a group via drag and drop */
-"MOVE_GROUP" = "Gruppe bewegem";
+/* Menu displayed as popup selection for search options when multiple items are selected */
+"MULTIPLE_FILTERS_ACTIVE_WITH_DOTS" = "Mehrere …";
 
 /* Name for a newly created Database */
 "NEW_DATABASE" = "Datenbank";
@@ -338,6 +383,15 @@
    Toolbar item new group */
 "NEW_GROUP" = "Neue Gruppe";
 
+/* Expiration date format, when item does not expire */
+"NO_EXPIRE_DATE_SET" = "verfällt nie";
+
+/* Menu item to reset the template groups */
+"NO_TEMPLATE_GROUP" = "Keine Vorlagen";
+
+/* Menu item added to show that no templates are defined */
+"NO_TEMPLATES" = "Keine Vorlagen vorhanden";
+
 /* Null placeholder for item input field
    Placeholder text for input fields if no entry or group is selected */
 "NONE" = "Leer";
@@ -348,16 +402,7 @@
    Notes reference item */
 "NOTES" = "Notizen";
 
-/* Expiration date format, when item does not expire */
-"NO_EXPIRE_DATE_SET" = "verfällt nie";
-
-/* Menu item added to show that no templates are defined */
-"NO_TEMPLATES" = "Keine Vorlagen vorhanden";
-
-/* Menu item to reset the template groups */
-"NO_TEMPLATE_GROUP" = "Keine Vorlagen";
-
-/* Ok button */
+/* Ok Button to dismiss disabled updates alert */
 "OK" = "Ok";
 
 /* preset to expire after one montch from now */
@@ -370,7 +415,7 @@
 "ONE_WEEK_AGO" = "Vor einer Woche";
 
 /* preset to expire after one year from now */
-"ONE_YEAR" = "in enem Jahr";
+"ONE_YEAR" = "in einem Jahr";
 
 /* Open button in the open panel to add attachments to an entry */
 "OPEN_BUTTON_ADD_ATTACHMENT_OPEN_PANEL" = "Hinzufügen";
@@ -383,6 +428,9 @@
 
 /* Action button in Notification to open a document */
 "OPEN_DOCUMENT" = "Datei öffnen";
+
+/* Action button in Notification to show the Accessibilty preferences */
+"OPEN_PREFERENCES" = "Systemeinstellung Bedienungshilfen öffnen …";
 
 /* Menu item to open the URL with the default application */
 "OPEN_URL" = "Adresse öffnen";
@@ -398,11 +446,14 @@
    Password reference item */
 "PASSWORD" = "Passwort";
 
+/* Window title for the stand-alone password creator window */
+"PASSWORD_CREATOR_WINDOW_TITLE" = "Passwortgenerator";
+
 /* Button to reset the password defaults for a single entry */
 "PASSWORD_GENERATOR_RESET_ENTRY_DEFAULTS" = "Zurücksetzen";
 
 /* Button to set the defaults of the password generator */
-"PASSWORD_GENERATOR_SET_DEFAULTS" = "Als Standard festelgen";
+"PASSWORD_GENERATOR_SET_DEFAULTS" = "Als Standard festelegen";
 
 /* Placeholder for the password field to aks for password
    Placeholder in the unlock-password input field if password is enabled */
@@ -430,6 +481,24 @@
 
 /* Window displayed to the user to pick an amout of characters */
 "PICKFIELD_WINDOW_TITLE" = "Wert auswählen";
+
+/* Status for an up-to-date plugin in the plugin browser */
+"PLUGIN_BROWSER_LATEST_VERSION_INSTALLED" = "Aktuelle Version ist installiert";
+
+/* Status for an outdated plugin version in the plugin browser */
+"PLUGIN_BROWSER_NEWER_VERSION_%@_AVAILABLE" = "Es steht eine neue Version (%@) zur Verfügung.";
+
+/* Status for an uninstalled plugin in the plugin browser */
+"PLUGIN_BROWSER_PLUGIN_NOT_INSTALLED" = "Nicht installiert";
+
+/* Status for an unkonw plugin version in the plugin browser */
+"PLUGIN_BROWSER_UNKNOWN_PLUGIN_VERSION_INSTALLED_%@" = "Unbekannte Version %@ installiert";
+
+/* Error for a plugin that is disabled. */
+"PLUGIN_ERROR_DISABLED_PLUGIN" = "Das Plugin ist vom Nutzer deaktiviert worden.";
+
+/* Plugin is not with this version of MacPass */
+"PLUGIN_ERROR_HOST_VERSION_NOT_SUPPORTED" = "Das Plugin ist nicht mit diese Version von MacPass kompatibel.";
 
 /* The plugin could not be initalized */
 "PLUGIN_ERROR_INTILIZATION_FAILED" = "Das Plugin konnten nicht korrekt initialisiert werden";
@@ -459,13 +528,13 @@
 "PREVIEW" = "Vorschau";
 
 /* Recent searches menu item */
-"RECENT_SEARCHES" = "Letze Suchanfragen";
+"RECENT_SEARCHES" = "Letzte Suchanfragen";
 
 /* Informative text for the recommend password change alert */
-"RECOMMEND_PASSWORD_CHANGE_ALERT_DESCRIPTION" = "Sie sollten das Password und/oder den Schlüssel ändern.";
+"RECOMMEND_PASSWORD_CHANGE_ALERT_DESCRIPTION" = "Sie sollten das Passwort und/oder den Schlüssel ändern.";
 
 /* Message text for the recommend password change alert */
-"RECOMMEND_PASSWORD_CHANGE_ALERT_TITLE" = "Bitte ändern sie das Password der Datenbank!";
+"RECOMMEND_PASSWORD_CHANGE_ALERT_TITLE" = "Bitte ändern sie das Passwort der Datenbank!";
 
 /* Restart */
 "RESTART" = "Neustarten";
@@ -481,7 +550,7 @@
 "SAVE_KEYFILE" = "Schlüsseldatei speichern";
 
 /* Save file menu item title when save will prompt for a location to save or ask for a password/key */
-"SAVE_WITH_DOTS" = "Speichern…";
+"SAVE_WITH_DOTS" = "Speichern …";
 
 /* Search input in Toolbar */
 "SEARCH" = "Suche";
@@ -493,7 +562,7 @@
 "SEARCH_EXPIRED_ENTRIES" = "Abgelaufen";
 
 /* Inherit search settings menu item */
-"SEARCH_INHERIT" = "Sucheeinstellung vererben";
+"SEARCH_INHERIT" = "Sucheinstellung vererben";
 
 /* Disable search menu item */
 "SEARCH_NO" = "Nicht durchsuchbar";
@@ -508,7 +577,7 @@
 "SELECT_DATE_PRESET" = "Datumvorgabe wählen …";
 
 /* Message on the open panel for selecting which browser to use for opening URLs */
-"SELECT_DEFAULT_BROWSER_OPEN_PANEL_MESSAGE" = "Bitte wählen Sie einen Web-Browser, mit dem URLs geöffnet werden sollen";
+"SELECT_DEFAULT_BROWSER_OPEN_PANEL_MESSAGE" = "Bitte wählen Sie einen Webbrowser, mit dem URLs geöffnet werden sollen";
 
 /* Label for the select browser button on the open panel for selecting which browser to use for opening URLs */
 "SELECT_DEFAULT_BROWSER_OPEN_PANEL_SELECT_BUTTON" = "Auswählen";
@@ -516,21 +585,15 @@
 /* Message for the dialog to open a file for merge */
 "SELECT_FILE_TO_MERGE" = "Datei für Synchronisation auswählen";
 
-/* Menu displayed as popup selection for search options */
-"SELECT_FILTER_WITH_DOTS" = "Auswählen…";
+/* Menu displayed as popup selection for search options if no filter is selected */
+"SELECT_FILTER_WITH_DOTS" = "Auswählen …";
 
 /* Checkbox in dialog to set the selection as default file change strategy! */
 "SET_AS_DEFAULT_FILE_CHANGE_STRATEGY" = "Die gewählte Strategie immer verwenden. Sie können die Strategie jederzeit in den Einstellungen anpassen.";
 
-/* (No Comment) */
-"SHORT_FILE_CHANGE_STRATEGY_ASK" = "Nachfragen";
-
 /* Menu item to show the history of the selected entry
    Toolbar item to toggle history display */
 "SHOW_HISTORY" = "Historie anzeigen";
-
-/* Menu item to show the reference builder in a text view's context menu */
-"SHOW_REFERENCE_BUILDER" = "Referenz einfügen…";
 
 /* Displayed name when title field was copied
    Menu item to toggle display of title column in entry table
@@ -556,7 +619,7 @@
 /* No comment provided by engineer. */
 "UNKNOWN_FILE_VERSION" = "Unbekannte Dateiversion";
 
-/* Unknown databas format. */
+/* Unknown database format. */
 "UNKNOWN_FORMAT" = "Unbekanntes Dateiformat";
 
 /* Database format is unknown since the file is not saved yet */
@@ -583,29 +646,26 @@
    UUID reference item */
 "UUID" = "UUID";
 
-/* Message text for disabled updates alert! */
-"Updates are disabled!" = "Aktualisierung ist deaktiviert!";
-
 /* No Key or Password */
-"WARNING_NO_PASSWORD_OR_KEYFILE" = "Kein Password und/oder Schlüsseldatei festgelegt!";
+"WARNING_NO_PASSWORD_OR_KEYFILE" = "Kein Passwort und/oder Schlüsseldatei festgelegt!";
 
 /* Informative Text displayed when clearing the Trash */
-"WARNING_ON_DELETE_TRASHED_NODE_DESCRIPTION" = "Die gewählten Elemente werden dauerhauft aus dem Papierkorb entfernt.";
+"WARNING_ON_DELETE_TRASHED_NODE_DESCRIPTION" = "Die gewählten Elemente werden dauerhaft aus dem Papierkorb entfernt.";
 
 /* Message text for the alert displayed when deleting a node */
-"WARNING_ON_DELETE_TRASHED_NODE_TITLE" = "Gelöschtes Element entferen.";
+"WARNING_ON_DELETE_TRASHED_NODE_TITLE" = "Gelöschtes Element entfernen.";
 
 /* Informative Text displayed when clearing the Trash */
-"WARNING_ON_EMPTY_TRASH_DESCRIPTION" = "Das Leeren des Papierkorbs kann nicht rückgängig gemacht werdern.";
+"WARNING_ON_EMPTY_TRASH_DESCRIPTION" = "Das Leeren des Papierkorbs kann nicht rückgängig gemacht werden.";
 
 /* Message text for the alert displayed when clearing the Trash */
 "WARNING_ON_EMPTY_TRASH_TITLE" = "Papierkorb leeren?";
 
 /* No comment provided by engineer. */
-"WARNING_ON_SAVE_NO_PASSWORD_OR_KEY_SET" = "Weder Password noch Schlüsseldatei sind festgelegt!";
+"WARNING_ON_SAVE_NO_PASSWORD_OR_KEY_SET" = "Weder Passwort noch Schlüsseldatei sind festgelegt!";
 
 /* No comment provided by engineer. */
-"WARNING_ON_SAVE_NO_PASSWORD_OR_KEY_SET_SUGGESTION" = "Bitte vergeben Sie ein Password und/oder einen Schlüssel. Sofern Sie abbrechen, werden Ihre Änderungen rückgängig gemacht und die Datei gesperrt.";
+"WARNING_ON_SAVE_NO_PASSWORD_OR_KEY_SET_SUGGESTION" = "Bitte vergeben Sie ein Passwort und/oder einen Schlüssel. Sofern Sie abbrechen, werden Ihre Änderungen rückgängig gemacht und die Datei gesperrt.";
 
 /* Label for the workflow settings tab */
 "WORKFLOW_SETTINGS" = "Arbeitsfluss";

@@ -23,6 +23,7 @@
 #import "MPIntegrationSettingsController.h"
 #import "MPSettingsHelper.h"
 #import "MPIconHelper.h"
+#import "MPAutotypeDaemon.h"
 
 #import "DDHotKeyCenter.h"
 #import "DDHotKey+MacPassAdditions.h"
@@ -53,7 +54,7 @@
 }
 
 - (void)awakeFromNib {
-  NSUserDefaultsController *defaultsController = [NSUserDefaultsController sharedUserDefaultsController];
+  NSUserDefaultsController *defaultsController = NSUserDefaultsController.sharedUserDefaultsController;
   NSString *enableGlobalAutotypeKeyPath = [MPSettingsHelper defaultControllerPathForKey:kMPSettingsKeyEnableGlobalAutotype];
   NSString *quicklookKeyPath = [MPSettingsHelper defaultControllerPathForKey:kMPSettingsKeyEnableQuicklookPreview];
   [self.enableGlobalAutotypeCheckBox bind:NSValueBinding toObject:defaultsController withKeyPath:enableGlobalAutotypeKeyPath options:nil];
@@ -67,8 +68,9 @@
   [self.matchTagsCheckBox bind:NSValueBinding toObject:defaultsController withKeyPath:[MPSettingsHelper defaultControllerPathForKey:kMPSettingsKeyAutotypeMatchTags] options:nil];
   
   [self.sendCommandForControlCheckBox bind:NSValueBinding toObject:defaultsController withKeyPath:[MPSettingsHelper defaultControllerPathForKey:kMPSettingsKeySendCommandForControlKey] options:nil];
-  
-  [self _showWarning:NO];
+    
+  [self _showKeyCodeMissingKeyWarning:NO];
+  [self _updateAccessabilityWarning];
 }
 
 - (void)willShowTab {
@@ -92,14 +94,30 @@
 
 - (void)controlTextDidChange:(NSNotification *)obj {
   BOOL validHotKey = self.hotKeyTextField.hotKey.valid;
-  [self _showWarning:!validHotKey];
+  [self _showKeyCodeMissingKeyWarning:!validHotKey];
   if(validHotKey) {
     self.hotKey = self.hotKeyTextField.hotKey;
   }
 }
 
-- (void)_showWarning:(BOOL)show {
+- (void)_showKeyCodeMissingKeyWarning:(BOOL)show {
   self.hotkeyWarningTextField.hidden = !show;
 }
 
+- (void)_updateAccessabilityWarning {
+  BOOL hasAutotypeSupport = MPAutotypeDaemon.defaultDaemon.autotypeSupported;
+  
+  if(hasAutotypeSupport) {
+    [self.autotypeStackView setVisibilityPriority:NSStackViewVisibilityPriorityNotVisible forView:self.autotypeWarningTextField];
+    [self.autotypeStackView setVisibilityPriority:NSStackViewVisibilityPriorityNotVisible forView:self.openPreferencesButton];
+  }
+  else {
+    [self.autotypeStackView setVisibilityPriority:NSStackViewVisibilityPriorityMustHold forView:self.autotypeWarningTextField];
+    [self.autotypeStackView setVisibilityPriority:NSStackViewVisibilityPriorityMustHold forView:self.openPreferencesButton];
+  }
+}
+
+- (void)openAccessibiltyPreferences:(id)sender {
+  [MPAutotypeDaemon.defaultDaemon openAccessibiltyPreferences];
+}
 @end

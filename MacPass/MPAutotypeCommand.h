@@ -21,7 +21,6 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "MPModifiedKey.h"
 @class MPAutotypeContext;
 
 /**
@@ -30,7 +29,6 @@
  *  entry point for creating AutotypeCommands. You should never need to build a command on your own.
  */
 @interface MPAutotypeCommand : NSObject
-
 @property (readonly, strong) MPAutotypeContext *context;
 
 /**
@@ -43,22 +41,6 @@
  *  @return NSArray of MPAutotypeCommand
  */
 + (NSArray *)commandsForContext:(MPAutotypeContext *)context;
-
-/**
- *  Sends a KeyPress Event with the supplied modifier flags and Keycode
- *  Any existing modifiers will be disabled for this event. If the user
- *  presses any key, those will be ignored during this event
- *
- *  @param keyCode virtual KeyCode to be sent
- *  @param flags   modifier flags for the key press event
- */
-- (void)sendPressKey:(CGKeyCode)keyCode modifierFlags:(CGEventFlags)flags;
-- (void)sendPressKey:(MPModifiedKey)key;
-
-/**
- *  Convenience message to be sent for executing a simple paste command
- */
-- (void)sendPasteKeyCode;
 
 /**
  *  Executes the Autotype Command.

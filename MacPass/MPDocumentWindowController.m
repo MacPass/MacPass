@@ -40,6 +40,9 @@
 #import "MPToolbarDelegate.h"
 #import "MPTitlebarColorAccessoryViewController.h"
 
+#import "MPPluginHost.h"
+#import "MPPlugin.h"
+
 #import "KeePassKit/KeePassKit.h"
 
 typedef NS_ENUM(NSUInteger, MPAlertContext) {
@@ -133,7 +136,7 @@ typedef void (^MPPasswordChangedBlock)(BOOL didChangePassword);
   [self.splitView setHoldingPriority:NSLayoutPriorityDefaultLow+2 forSubviewAtIndex:0];
   [self.splitView setHoldingPriority:NSLayoutPriorityDefaultLow+1 forSubviewAtIndex:2];
   
-  BOOL showInspector = [[NSUserDefaults standardUserDefaults] boolForKey:kMPSettingsKeyShowInspector];
+  BOOL showInspector = [NSUserDefaults.standardUserDefaults boolForKey:kMPSettingsKeyShowInspector];
   if(!showInspector) {
     [inspectorView removeFromSuperview];
   }
@@ -208,7 +211,7 @@ typedef void (^MPPasswordChangedBlock)(BOOL didChangePassword);
   [self showPasswordInput];
 }
 
-- (void)_didUnlockDatabase:(NSNotification *)notification {
+- (void)_didUnlockDatabase:(NSNotification *)notification {  
   [self showEntries];
   /* Show password reminders */
   [self _presentPasswordIntervalAlerts];
@@ -274,6 +277,28 @@ typedef void (^MPPasswordChangedBlock)(BOOL didChangePassword);
   }];
 }
 
+- (void)importFromPlugin:(id)sender {
+  if(![sender isKindOfClass:NSMenuItem.class]) {
+    return;
+  }
+  NSMenuItem *menuItem = sender;
+  if(![menuItem.representedObject isKindOfClass:NSDictionary.class]) {
+    return;
+  }
+  
+  NSWindow *sheetWindow = ((MPDocument *)self.document).windowForSheet;
+  if(!sheetWindow) {
+    return;
+  }
+  MPPlugin<MPImportPlugin> *importPlugin;
+  NSOpenPanel *openPanel = NSOpenPanel.openPanel;
+  [importPlugin prepareOpenPanel:openPanel];
+  [openPanel beginSheetModalForWindow:sheetWindow completionHandler:^(NSModalResponse result) {
+    KPKTree *importedTree = [importPlugin treeForRunningOpenPanel:openPanel withResponse:result];
+    [self.document importTree:importedTree];
+  }];
+}
+
 - (void)mergeWithOther:(id)sender {
   NSOpenPanel *openPanel = [NSOpenPanel openPanel];
   MPDocument *document = self.document;
@@ -298,15 +323,19 @@ typedef void (^MPPasswordChangedBlock)(BOOL didChangePassword);
 }
 
 - (void)showPasswordInput {
+  [self showPasswordInputWithMessage:nil];
+}
+- (void)showPasswordInputWithMessage:(NSString *)message {
   if(!self.passwordInputController) {
     self.passwordInputController = [[MPPasswordInputController alloc] init];
   }
   [self _setContentViewController:self.passwordInputController];
-  [self.passwordInputController requestPasswordWithCompletionHandler:^BOOL(NSString *password, NSURL *keyURL, BOOL cancel, NSError *__autoreleasing *error) {
-    if(cancel) {
+  [self.passwordInputController requestPasswordWithMessage:message cancelLabel:nil completionHandler:^BOOL(NSString *password, NSURL *keyURL, BOOL didCancel, NSError *__autoreleasing *error) {
+    if(didCancel) {
       return NO;
     }
     return [((MPDocument *)self.document) unlockWithPassword:password keyFileURL:keyURL error:error];
+    
   }];
 }
 
@@ -359,7 +388,7 @@ typedef void (^MPPasswordChangedBlock)(BOOL didChangePassword);
 
 - (void)createGroup:(id)sender {
   id<MPTargetNodeResolving> target = [NSApp targetForAction:@selector(currentTargetGroups)];
-  NSArray *groups = [target currentTargetGroups];
+  NSArray *groups = target.currentTargetGroups;
   MPDocument *document = self.document;
   if(groups.count == 1) {
     [document createGroup:groups.firstObject];
@@ -371,7 +400,7 @@ typedef void (^MPPasswordChangedBlock)(BOOL didChangePassword);
 
 - (void)createEntry:(id)sender {
   id<MPTargetNodeResolving> target = [NSApp targetForAction:@selector(currentTargetGroups)];
-  NSArray *groups = [target currentTargetGroups];
+  NSArray *groups = target.currentTargetGroups;
   if(groups.count == 1) {
     [(MPDocument *)self.document createEntry:groups.firstObject];
   }
@@ -379,7 +408,7 @@ typedef void (^MPPasswordChangedBlock)(BOOL didChangePassword);
 
 - (void)delete:(id)sender {
   id<MPTargetNodeResolving> target = [NSApp targetForAction:@selector(currentTargetNodes)];
-  NSArray *nodes = [target currentTargetNodes];
+  NSArray *nodes = target.currentTargetNodes;
   for(KPKNode *node in nodes) {
     [self.document deleteNode:node];
   }
@@ -431,7 +460,7 @@ typedef void (^MPPasswordChangedBlock)(BOOL didChangePassword);
 
 - (void)performAutotypeForEntry:(id)sender {
   id<MPTargetNodeResolving> entryResolver = [NSApp targetForAction:@selector(currentTargetEntries)];
-  NSArray *entries = [entryResolver currentTargetEntries];
+  NSArray *entries = entryResolver.currentTargetEntries;
   if(entries.count == 1) {
     [[MPAutotypeDaemon defaultDaemon] performAutotypeForEntry:entries.firstObject];
   }
@@ -479,7 +508,7 @@ typedef void (^MPPasswordChangedBlock)(BOOL didChangePassword);
   }
   /* Maybe we should consider not double adding constraints */
   NSDictionary *views = NSDictionaryOfVariableBindings(outlineView, inspectorView, entryView, _splitView);
-  [self.splitView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|[outlineView(>=150)]-1-[entryView(>=350)]-1-[inspectorView(>=200)]|"
+  [self.splitView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|[outlineView(>=150)]-1-[entryView(>=150)]-1-[inspectorView(>=200)]|"
                                                                          options:0
                                                                          metrics:nil
                                                                            views:views]];
@@ -487,7 +516,7 @@ typedef void (^MPPasswordChangedBlock)(BOOL didChangePassword);
                                                                          options:0
                                                                          metrics:nil
                                                                            views:views]];
-  [self.splitView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|[entryView(>=300)]|"
+  [self.splitView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|[entryView(>=200)]|"
                                                                          options:0
                                                                          metrics:nil
                                                                            views:views]];

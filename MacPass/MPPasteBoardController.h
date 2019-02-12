@@ -50,8 +50,7 @@ FOUNDATION_EXPORT NSString *const MPPasteBoardControllerDidClearClipboard;
  *  If set to YES, MacPass will clear the pastboard when it quits.
  */
 @property (assign, nonatomic) BOOL clearPasteboardOnShutdown;
-
-+ (MPPasteBoardController *)defaultController;
+@property (class, strong, readonly) MPPasteBoardController *defaultController;
 
 - (void)stashObjects;
 - (void)restoreObjects;

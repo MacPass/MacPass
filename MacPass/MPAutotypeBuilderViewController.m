@@ -41,7 +41,7 @@
   static dispatch_once_t onceToken;
   dispatch_once(&onceToken, ^{
     NSMutableArray *fields = [[NSMutableArray alloc] init];
-    for(NSString *attribute in [KPKFormat sharedFormat].entryDefaultKeys) {
+    for(NSString *attribute in KPKFormat.sharedFormat.entryDefaultKeys) {
       [fields addObject:[NSString stringWithFormat:@"{%@}", attribute]];
     }
     [fields addObject:@"{S:Custom}"];
@@ -54,7 +54,7 @@
 }
 
 - (void)dealloc {
-  [[NSNotificationCenter defaultCenter] removeObserver:self];
+  [NSNotificationCenter.defaultCenter removeObserver:self];
 }
 
 - (NSString *)nibName {

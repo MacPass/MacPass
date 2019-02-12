@@ -17,3 +17,5 @@ MacPass has translations for a few languages. If you can translate to another la
   - Select the language you want to translate
 - Now use your XLIFF editor and save the file if you are done with your translations
 - Go back to XCode and use `Editor -> Import Localization` to import the changes
+
+Alternatively, you can open an issue to ask a dev to create the XLIFF file for you and send it back after you've finished localising.

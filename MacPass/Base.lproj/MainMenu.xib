@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="13771" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="14313.18" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
     <dependencies>
         <deployment identifier="macosx"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="13771"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="14313.18"/>
     </dependencies>
     <objects>
         <customObject id="-2" userLabel="File's Owner" customClass="NSApplication">
@@ -145,7 +145,7 @@
                             <menuItem isSeparatorItem="YES" id="79">
                                 <modifierMask key="keyEquivalentModifierMask" command="YES"/>
                             </menuItem>
-                            <menuItem title="Merge…" id="zvE-0h-UxI">
+                            <menuItem title="Merge With…" id="zvE-0h-UxI">
                                 <modifierMask key="keyEquivalentModifierMask"/>
                                 <connections>
                                     <action selector="mergeWithOther:" target="-1" id="OyM-CZ-TDD"/>
@@ -162,6 +162,9 @@
                                             </connections>
                                         </menuItem>
                                     </items>
+                                    <connections>
+                                        <outlet property="delegate" destination="494" id="gzA-SE-HKO"/>
+                                    </connections>
                                 </menu>
                             </menuItem>
                             <menuItem title="Export" id="tz9-yK-pOf">
@@ -314,7 +317,7 @@ CA
                                 </connections>
                             </menuItem>
                             <menuItem isSeparatorItem="YES" id="1176"/>
-                            <menuItem title="Show Password Creator" keyEquivalent="p" id="1200">
+                            <menuItem title="Show Password Generator" keyEquivalent="p" id="1200">
                                 <modifierMask key="keyEquivalentModifierMask" option="YES" command="YES"/>
                                 <connections>
                                     <action selector="showPasswordCreator:" target="494" id="1202"/>
@@ -350,6 +353,7 @@ CA
             <connections>
                 <outlet property="fileNewMenuItem" destination="82" id="BUX-dy-HS2"/>
                 <outlet property="fixAutotypeMenuItem" destination="nx7-Vf-LiD" id="5n1-bG-JxJ"/>
+                <outlet property="importMenu" destination="4q9-u1-pcm" id="0XM-fS-Vyy"/>
                 <outlet property="itemMenu" destination="Ttt-tR-emo" id="cdF-dt-2h9"/>
                 <outlet property="saveMenuItem" destination="75" id="dsN-Im-4eZ"/>
             </connections>

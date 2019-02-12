@@ -31,18 +31,91 @@
 
 @implementation MPEntryTableDataSource
 
-- (BOOL)tableView:(NSTableView *)tableView writeRowsWithIndexes:(NSIndexSet *)rowIndexes toPasteboard:(NSPasteboard *)pboard {
-  NSMutableArray *entries = [[NSMutableArray alloc] initWithCapacity:rowIndexes.count];
-  [rowIndexes enumerateIndexesUsingBlock:^(NSUInteger idx, BOOL * _Nonnull stop) {
-    [entries addObject:self.viewController.entryArrayController.arrangedObjects[idx]];
-  }];
-  for(KPKEntry *entry in entries) {
-    if(![entry isKindOfClass:[KPKEntry class]]) {
-      return NO;
+// FIXME: change drag image to use only the first column regardless of drag start
+
+- (id<NSPasteboardWriting>)tableView:(NSTableView *)tableView pasteboardWriterForRow:(NSInteger)row {
+  if(MPDisplayModeHistory == self.viewController.displayMode) {
+    return nil;
+  }
+  
+  id item = self.viewController.entryArrayController.arrangedObjects[row];
+  if([item isKindOfClass:KPKEntry.class]) {
+    return item;
+  }
+  return nil;
+}
+
+- (void)tableView:(NSTableView *)tableView draggingSession:(NSDraggingSession *)session willBeginAtPoint:(NSPoint)screenPoint forRowIndexes:(nonnull NSIndexSet *)rowIndexes {
+  session.draggingFormation = NSDraggingFormationList;
+}
+
+- (NSDragOperation)tableView:(NSTableView *)tableView validateDrop:(id<NSDraggingInfo>)info proposedRow:(NSInteger)row proposedDropOperation:(NSTableViewDropOperation)dropOperation {
+  /* we do not accept drops if we are in history or search display mode */
+  if(self.viewController.displayMode != MPDisplayModeEntries) {
+    return NSDragOperationNone;
+  }
+  BOOL isLocalDrag = info.draggingSource == tableView;
+  if(isLocalDrag) {
+    /* local drag is not usefull if the table is displaying sorted */
+    NSArray<NSSortDescriptor *> * sortDescriptors = tableView.sortDescriptors;
+    if(sortDescriptors.count != 0 && sortDescriptors.firstObject.key != NSStringFromSelector(@selector(index))) {
+      return NSDragOperationNone;
     }
   }
-  [pboard writeObjects:entries];
-  return YES;
+  BOOL makeCopy = !isLocalDrag || (info.draggingSourceOperationMask == NSDragOperationCopy);
+  
+  if(dropOperation == NSTableViewDropOn) {
+    [tableView setDropRow:row+1 dropOperation:NSTableViewDropAbove];
+  }
+  return makeCopy ? NSDragOperationCopy : NSDragOperationMove;
+}
+
+- (BOOL)tableView:(NSTableView *)tableView acceptDrop:(id<NSDraggingInfo>)info row:(NSInteger)row dropOperation:(NSTableViewDropOperation)dropOperation {
+  if(dropOperation == NSTableViewDropAbove) {
+    row = MAX(0, row - 1); // decrement the row
+  }
+  BOOL copyItems = info.draggingSourceOperationMask == NSDragOperationCopy;
+  MPDocument *document = tableView.window.windowController.document;
+  if(document.currentTargetGroups.count != 1) {
+    return NO;
+  }
+  KPKGroup *targetGroup = document.currentTargetGroups.firstObject;
+  /* local drag */
+  if(info.draggingSource == tableView) {
+    if(copyItems) {
+      for(NSUUID *entryUUID in [self _readEntryUUIDsFromPasterboard:info.draggingPasteboard].reverseObjectEnumerator) {
+        KPKEntry *entry = [[document findEntry:entryUUID] copyWithTitle:nil options:kKPKCopyOptionNone];
+        [entry addToGroup:targetGroup atIndex:row];
+        [entry.undoManager setActionName:NSLocalizedString(@"COPY_ENTRY", @"Action name when an entry was moved")];
+      }
+    }
+    else {
+      for(NSUUID *entryUUID in [self _readEntryUUIDsFromPasterboard:info.draggingPasteboard].reverseObjectEnumerator) {
+        KPKEntry *entry = [document findEntry:entryUUID];
+        [entry moveToGroup:entry.parent atIndex:row];
+        [entry.undoManager setActionName:NSLocalizedString(@"MOVE_ENTRY", @"Action name when an entry was moved")];
+      }
+    }
+    [self.viewController.entryArrayController rearrangeObjects];
+    return YES;
+  }
+  else {
+    // external drop
+  }
+  return NO;
+}
+
+- (NSArray<NSUUID *> *)_readEntryUUIDsFromPasterboard:(NSPasteboard *)pasteboard {
+  if([pasteboard.types containsObject:KPKEntryUUDIUTI]) {
+    if([pasteboard canReadObjectForClasses:@[NSUUID.class] options:nil]) {
+      return [pasteboard readObjectsForClasses:@[NSUUID.class] options:nil];
+    }
+  }
+  return @[];
+}
+
+- (NSArray<KPKEntry *> *)_readEntriesFromPasteboard:(NSPasteboard *)pasteboard {
+  return @[];
 }
 
 @end

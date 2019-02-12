@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="13771" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="14313.18" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
     <dependencies>
         <deployment identifier="macosx"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="13771"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="14313.18"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
@@ -65,7 +65,7 @@
                                                     <outlet property="textField" destination="238" id="245"/>
                                                 </connections>
                                             </tableCellView>
-                                            <tableCellView identifier="DataCell" id="240">
+                                            <tableCellView identifier="DataCell" id="240" customClass="MPOutlineTableCellView">
                                                 <rect key="frame" x="1" y="17" width="269" height="24"/>
                                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                 <subviews>
@@ -77,14 +77,21 @@
                                                         </constraints>
                                                         <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyDown" image="NSActionTemplate" id="242"/>
                                                     </imageView>
-                                                    <textField verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="243" customClass="HNHUIBadgedTextField">
-                                                        <rect key="frame" x="26" y="4" width="242" height="17"/>
-                                                        <textFieldCell key="cell" lineBreakMode="truncatingTail" sendsActionOnEndEditing="YES" title="Table View Cell" id="244" customClass="HNHUIBadgedTextFieldCell">
+                                                    <textField horizontalHuggingPriority="249" verticalHuggingPriority="750" horizontalCompressionResistancePriority="749" translatesAutoresizingMaskIntoConstraints="NO" id="243">
+                                                        <rect key="frame" x="26" y="4" width="214" height="17"/>
+                                                        <textFieldCell key="cell" lineBreakMode="truncatingTail" sendsActionOnEndEditing="YES" title="Table View Cell" id="244">
                                                             <font key="font" metaFont="system"/>
                                                             <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
                                                             <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                                         </textFieldCell>
                                                     </textField>
+                                                    <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="mX2-wv-qML">
+                                                        <rect key="frame" x="246" y="3" width="20" height="17"/>
+                                                        <buttonCell key="cell" type="inline" title="0" bezelStyle="inline" alignment="center" refusesFirstResponder="YES" borderStyle="border" inset="2" id="gnA-JK-kZz">
+                                                            <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                                            <font key="font" metaFont="smallSystemBold"/>
+                                                        </buttonCell>
+                                                    </button>
                                                 </subviews>
                                                 <constraints>
                                                     <constraint firstItem="241" firstAttribute="top" secondItem="243" secondAttribute="top" id="258"/>
@@ -92,9 +99,12 @@
                                                     <constraint firstItem="243" firstAttribute="leading" secondItem="241" secondAttribute="trailing" constant="8" symbolic="YES" id="260"/>
                                                     <constraint firstItem="241" firstAttribute="centerY" secondItem="240" secondAttribute="centerY" id="349"/>
                                                     <constraint firstItem="243" firstAttribute="bottom" secondItem="241" secondAttribute="bottom" id="388"/>
-                                                    <constraint firstAttribute="trailing" secondItem="243" secondAttribute="trailing" constant="3" id="389"/>
+                                                    <constraint firstAttribute="trailing" secondItem="mX2-wv-qML" secondAttribute="trailing" constant="3" id="QVK-iI-TAI"/>
+                                                    <constraint firstItem="mX2-wv-qML" firstAttribute="leading" secondItem="243" secondAttribute="trailing" constant="8" symbolic="YES" id="c8g-bX-Xvj"/>
+                                                    <constraint firstItem="mX2-wv-qML" firstAttribute="centerY" secondItem="243" secondAttribute="centerY" id="cQH-fE-J5j"/>
                                                 </constraints>
                                                 <connections>
+                                                    <outlet property="countButton" destination="mX2-wv-qML" id="mGA-jF-HO3"/>
                                                     <outlet property="imageView" destination="241" id="247"/>
                                                     <outlet property="textField" destination="243" id="246"/>
                                                 </connections>
@@ -122,7 +132,7 @@
                 <constraint firstItem="227" firstAttribute="trailing" secondItem="196" secondAttribute="trailing" id="269"/>
                 <constraint firstAttribute="bottom" secondItem="227" secondAttribute="bottom" id="NQ5-NK-jdK"/>
             </constraints>
-            <point key="canvasLocation" x="-288" y="-139"/>
+            <point key="canvasLocation" x="-288" y="-139.5"/>
         </customView>
     </objects>
     <resources>

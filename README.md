@@ -1,4 +1,4 @@
-[![Build Status](https://travis-ci.org/mstarke/MacPass.svg?branch=continuous)](https://travis-ci.org/mstarke/MacPass)
+[![Build Status](https://travis-ci.org/MacPass/MacPass.svg?branch=continuous)](https://travis-ci.org/MacPass/MacPass)
 
 # MacPass
 
@@ -60,7 +60,7 @@ More Screenshots in the [Wiki](https://github.com/mstarke/MacPass/wiki/Screensho
 
 ## Alternatives
  
-[KeePassX](https://www.keepassx.org) and it's fork [KeePassXC](https://github.com/keepassxreboot/keepassxc). Qt based cross plattform port.
+[KeePassX](https://www.keepassx.org) and its fork [KeePassXC](https://github.com/keepassxreboot/keepassxc). Qt based cross plattform port.
 
 [KyPass Companion](http://www.kyuran.be/logiciels/kypass4mac/). Native macOS client.
 

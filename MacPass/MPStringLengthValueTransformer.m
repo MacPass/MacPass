@@ -28,7 +28,7 @@ NSString *const MPStringLengthValueTransformerName = @"com.hicknhack.macpass.MPM
 @implementation MPStringLengthValueTransformer
 
 + (Class)transformedValueClass {
-  return [NSString class];
+  return NSString.class;
 }
 
 + (BOOL)allowsReverseTransformation {
@@ -43,8 +43,8 @@ NSString *const MPStringLengthValueTransformerName = @"com.hicknhack.macpass.MPM
 
 - (id)transformedValue:(id)value {
   NSUInteger length = 0;
-  if([value isKindOfClass:[NSString class]]) {
-    length = [value length];
+  if([value isKindOfClass:NSString.class]) {
+    length = ((NSString *)value).length;
   }
   return (length > 0) ? @"12345678" : @"";
 }

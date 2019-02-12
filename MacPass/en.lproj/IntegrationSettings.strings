@@ -1,9 +1,6 @@
 /* Class = "NSButtonCell"; title = "Enable global Autotype"; ObjectID = "1qb-Rd-jYu"; */
 "1qb-Rd-jYu.title" = "Enable global Autotype";
 
-/* (No Comment) */
-"3.title" = "Enable KeePassHttp server";
-
 /* Class = "NSTextFieldCell"; title = "Shortcut"; ObjectID = "6oN-CH-T0O"; */
 "6oN-CH-T0O.title" = "Shortcut";
 
@@ -13,20 +10,29 @@
 /* Class = "NSButtonCell"; title = "Enable Quicklook Preview"; ObjectID = "ERs-ct-Eyx"; */
 "ERs-ct-Eyx.title" = "Enable Quicklook Preview";
 
-/* (No Comment) */
-"KbH-0Q-5Tw.title" = "Keepass HTTP";
+/* Class = "NSTextFieldCell"; title = "Autotype is not available, because MacPass is not allowed to control your computer. To enable Autotype, go to the Security and Privacy Preferences and add MacPass to the Accessibilty group. Changes require a restart of MacPass."; ObjectID = "H37-ku-aTc"; */
+"H37-ku-aTc.title" = "Autotype is not available, because MacPass is not allowed to control your computer. To enable Autotype, go to the Security and Privacy Preferences and add MacPass to the Accessibilty group. Changes require a restart of MacPass.";
 
 /* Class = "NSTextFieldCell"; title = "Shortcut is missing Key"; ObjectID = "Lxp-wI-yQy"; */
 "Lxp-wI-yQy.title" = "Shortcut is missing Key";
 
+/* Class = "NSButtonCell"; title = "Open Preference…"; ObjectID = "NP0-R3-m6n"; */
+"NP0-R3-m6n.title" = "Open Preference…";
+
 /* Class = "NSBox"; title = "Autotype"; ObjectID = "P9N-HM-wER"; */
 "P9N-HM-wER.title" = "Autotype";
+
+/* Class = "NSButtonCell"; title = "Interpret ⌃ as ⌘"; ObjectID = "QfO-yG-l3F"; */
+"QfO-yG-l3F.title" = "Interpret ⌃ as ⌘";
 
 /* Class = "NSTextFieldCell"; title = "If enabled, every {CONTROL} command will be sent as ⌘. Only disable this if you are sure you need to."; ObjectID = "QRy-CY-ENC"; */
 "QRy-CY-ENC.title" = "If enabled, every {CONTROL} command will be sent as ⌘. Only disable this if you are sure you need to.";
 
-/* Class = "NSButtonCell"; title = "Interpret ⌃ as ⌘"; ObjectID = "QfO-yG-l3F"; */
-"QfO-yG-l3F.title" = "Interpret ⌃ as ⌘";
+/* Class = "NSButtonCell"; title = "Include Entry Tags for matches"; ObjectID = "rbu-G7-MT8"; */
+"rbu-G7-MT8.title" = "Include Entry Tags for matches";
+
+/* Class = "NSButtonCell"; title = "Include Entry Title for matches"; ObjectID = "tmL-dT-D0G"; */
+"tmL-dT-D0G.title" = "Include Entry Title for matches";
 
 /* Class = "NSButtonCell"; title = "Include Entry URL for matches"; ObjectID = "TzR-00-Vp3"; */
 "TzR-00-Vp3.title" = "Include Entry URL for matches";
@@ -35,11 +41,5 @@
 "VVs-b5-cX9.title" = "Preview";
 
 /* Class = "NSTextFieldCell"; title = "If enabled attached files will be copied to a temporary location for preview and deleted after the preview is closed."; ObjectID = "WmI-IB-Aso"; */
-"WmI-IB-Aso.title" = "If enabled attached files will be copied to a temporary location for preview and deleted after the preview is closed. This is a potential security risk!";
-
-/* Class = "NSButtonCell"; title = "Include Entry Tags for matches"; ObjectID = "rbu-G7-MT8"; */
-"rbu-G7-MT8.title" = "Include Entry Tags for matches";
-
-/* Class = "NSButtonCell"; title = "Include Entry Title for matches"; ObjectID = "tmL-dT-D0G"; */
-"tmL-dT-D0G.title" = "Include Entry Title for matches";
+"WmI-IB-Aso.title" = "If enabled attached files will be copied to a temporary location for preview and deleted after the preview is closed.";
 

@@ -24,7 +24,7 @@
 
 @interface MPOverlayWindowController : NSWindowController
 
-+ (MPOverlayWindowController *)sharedController;
+@property (nonatomic, strong, readonly, class) MPOverlayWindowController *sharedController;
 
 /**
  *  Displays an overlay HUD style image with the given text, image centered at the given view.

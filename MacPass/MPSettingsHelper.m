@@ -31,6 +31,7 @@ NSString *const kMPSettingsKeyClearPasteboardOnQuit                   = @"ClearC
 NSString *const kMPSettingsKeyBrowserBundleId                         = @"BrowserBundleId";
 NSString *const kMPSettingsKeyOpenEmptyDatabaseOnLaunch               = @"OpenEmptyDatabaseOnLaunch";
 NSString *const kMPSettingsKeyReopenLastDatabaseOnLaunch              = @"ReopenLastDatabaseOnLaunch";
+NSString *const kMPSettingsKeyQuitOnLastWindowClose                   = @"QuitOnLastWindowClose";
 NSString *const kMPSettingsKeyFileChangeStrategy                      = @"FileChangeStrategy";
 NSString *const kMPSettingsKeyLockOnSleep                             = @"LockOnSleep";
 NSString *const kMPSettingskeyLockOnLogout                            = @"LockOnLogout";
@@ -56,6 +57,7 @@ NSString *const kMPSettingsKeyAutotypeMatchTitle                      = @"Autoty
 NSString *const kMPSettingsKeyAutotypeMatchURL                        = @"AutotypeMatchURL";
 NSString *const kMPSettingsKeyAutotypeMatchHost                       = @"AutotypeMatchHost";
 NSString *const kMPSettingsKeyAutotypeMatchTags                       = @"AutotypeMatchTags";
+NSString *const kMPSettingsKeyAutotypeHideAccessibiltyWarning         = @"AutotypeHideAccessibiltyWarning";
 
 NSString *const kMPSettingsKeyEntrySearchFilterContext                = @"EntrySearchFilterContext";
 
@@ -65,6 +67,7 @@ NSString *const kMPSettingsKeyCopyGeneratedPasswordToClipboard        = @"CopyGe
 
 NSString *const kMPSettingsKeyDefaultPasswordLength                   = @"DefaultPasswordLength";
 NSString *const kMPSettingsKeyPasswordCharacterFlags                  = @"PasswordCharacterFlags";
+NSString *const kMPSettingsKeyPasswordEnsureOccurance                 = @"PasswordEnsureOccurance";
 NSString *const kMPSettingsKeyPasswordUseCustomString                 = @"PasswordUseCustomString";
 NSString *const kMPSettingsKeyPasswordCustomString                    = @"PasswordCustomString";
 
@@ -75,6 +78,7 @@ NSString *const kMPSettingsKeyDoubleClickTitleAction                  = @"Double
 NSString *const kMPSettingsKeyUpdatePasswordOnTemplateEntries         = @"UpdatePasswordOnTemplateEntries";
 
 NSString *const kMPSettingsKeyLoadUnsecurePlugins                     = @"LoadUnsecurePlugins";
+NSString *const kMPSettingsKeyLoadIncompatiblePlugins                 = @"LoadIncompatiblePlugins";
 NSString *const kMPSettingsKeyDisabledPlugins                         = @"DisabledPlugins";
 
 /* Deprecated */
@@ -131,7 +135,7 @@ NSString *const kMPDepricatedSettingsKeyLoadUnsecurePlugins               = @"MP
                          kMPSettingsKeyRememberKeyFilesForDatabases: @NO,
                          kMPSettingsKeySendCommandForControlKey: @YES,
                          kMPSettingsKeyEnableGlobalAutotype: @NO,
-                         kMPSettingsKeyGlobalAutotypeKeyDataKey: [DDHotKey defaultHotKeyData],
+                         kMPSettingsKeyGlobalAutotypeKeyDataKey: DDHotKey.defaultHotKeyData,
                          kMPSettingsKeyDefaultGlobalAutotypeSequence: @"{USERNAME}{TAB}{PASSWORD}{ENTER}",
                          kMPSettingsKeyAutotypeMatchTitle: @YES,
                          kMPSettingsKeyAutotypeMatchURL: @NO,
@@ -143,11 +147,14 @@ NSString *const kMPDepricatedSettingsKeyLoadUnsecurePlugins               = @"MP
                          kMPSettingsKeyPasswordCharacterFlags: @(MPPasswordCharactersAll),
                          kMPSettingsKeyPasswordUseCustomString: @NO,
                          kMPSettingsKeyPasswordCustomString: @"",
+                         kMPSettingsKeyPasswordEnsureOccurance: @NO,
                          kMPSettingsKeyDoubleClickURLAction: @(MPDoubleClickURLActionCopy),
                          kMPSettingsKeyDoubleClickTitleAction: @(MPDoubleClickTitleActionInspect),
                          kMPSettingsKeyLoadUnsecurePlugins: @NO,
                          kMPSettingsKeyUpdatePasswordOnTemplateEntries: @YES,
-                         kMPSettingsKeyDisabledPlugins: @[]
+                         kMPSettingsKeyDisabledPlugins: @[],
+                         kMPSettingsKeyLoadIncompatiblePlugins: @NO,
+                         kMPSettingsKeyQuitOnLastWindowClose: @NO
                          };
   });
   return standardDefaults;

@@ -26,6 +26,7 @@
 @implementation MPAttachmentTableDataSource
 
 - (NSDragOperation)tableView:(NSTableView *)tableView validateDrop:(id<NSDraggingInfo>)info proposedRow:(NSInteger)row proposedDropOperation:(NSTableViewDropOperation)dropOperation {
+  /* allow drag between databases? */
   NSPasteboard *draggingPasteBoard = [info draggingPasteboard];
   NSArray *arrayOfURLs = [draggingPasteBoard readObjectsForClasses:@[NSURL.class] options:nil];
   NSUInteger numberOfDirectories = 0;
@@ -33,7 +34,7 @@
     if(url.fileURL || url.fileReferenceURL) {
       NSError *error = nil;
       NSDictionary *resourceKeys = [url resourceValuesForKeys:@[NSURLIsDirectoryKey] error:&error];
-      if( [resourceKeys[ NSURLIsDirectoryKey ] boolValue] == YES ) {
+      if([resourceKeys[NSURLIsDirectoryKey] boolValue] == YES) {
         numberOfDirectories++;
       }
       continue;
@@ -43,6 +44,10 @@
   if(numberOfDirectories == arrayOfURLs.count) {
     return NSDragOperationNone;
   }
+  
+  if(dropOperation == NSTableViewDropOn) {
+    [tableView setDropRow:row+1 dropOperation:NSTableViewDropAbove];
+  }
   return NSDragOperationCopy;
 }
 
@@ -50,40 +55,67 @@
   MPDocument *document = tableView.window.windowController.document;
   KPKEntry *entry = document.selectedEntries.count == 1 ? document.selectedEntries.lastObject : nil;
   
-  NSPasteboard *draggingPasteBoard = [info draggingPasteboard];
-  NSArray *arrayOfURLs = [draggingPasteBoard readObjectsForClasses:@[NSURL.class] options:nil];
+  NSArray *arrayOfURLs = [info.draggingPasteboard readObjectsForClasses:@[NSURL.class] options:nil];
   
   for(NSURL *fileUrl in arrayOfURLs) {
     [document addAttachment:fileUrl toEntry:entry];
   }
   return YES;
 }
+
 - (BOOL)tableView:(NSTableView *)tableView writeRowsWithIndexes:(NSIndexSet *)rowIndexes toPasteboard:(NSPasteboard *)pboard {
-  return NO;
-  
-  /*
-  NSString *extension;
-  
-  if([rowIndexes count] != 1) {
-    return NO; // We only work with one file at a time
+  [pboard declareTypes:@[NSFilesPromisePboardType] owner:nil];
+  MPDocument *document = tableView.window.windowController.document;
+  KPKEntry *entry = document.selectedEntries.count == 1 ? document.selectedEntries.lastObject : nil;
+  NSMutableArray *fileNames = [[NSMutableArray alloc] init];
+  for(KPKBinary *binary in [entry.binaries objectsAtIndexes:rowIndexes]) {
+    if(binary.name) {
+      [fileNames addObject:binary.name];
+    }
   }
-  MPDocument *document = [[[tableView window] windowController] document];
-  id entry = document.selectedEntry;
-  NSUInteger row = [rowIndexes lastIndex];
-  if([entry isKindOfClass:[Kdb3Entry class]]) {
-    Kdb3Entry *entryV3 = (Kdb3Entry *)entry;
-    extension = [entryV3.binaryDesc pathExtension];
-  }
-  else if([entry isKindOfClass:[Kdb4Entry class]]) {
-    Kdb4Entry *entryV4 = (Kdb4Entry *)entry;
-    BinaryRef *binaryRef = entryV4.binaries[row];
-    extension = [binaryRef.key pathExtension];
-  }
-  NSString *uti = CFBridgingRelease(UTTypeCreatePreferredIdentifierForTag( kUTTagClassFilenameExtension, (__bridge CFStringRef)(extension), NULL ));
-  
-  [pboard setPropertyList:@[uti] forType:(NSString *)kPasteboardTypeFilePromiseContent];
-  [pboard setPropertyList:@[uti] forType:(NSString *)kPasteboardTypeFileURLPromise ];
-  return YES;*/
+  [pboard setPropertyList:fileNames forType:NSFilesPromisePboardType];
+  return YES;
 }
+
+- (NSArray<NSString *> *)tableView:(NSTableView *)tableView namesOfPromisedFilesDroppedAtDestination:(NSURL *)dropDestination forDraggedRowsWithIndexes:(NSIndexSet *)indexSet {
+  MPDocument *document = tableView.window.windowController.document;
+  KPKEntry *entry = document.selectedEntries.count == 1 ? document.selectedEntries.lastObject : nil;
+  NSMutableArray<NSString *> *fileNames = [[NSMutableArray alloc] init];
+  NSArray<KPKBinary *> *draggedBinaries = [entry.binaries objectsAtIndexes:indexSet];
+  for(KPKBinary *binary in draggedBinaries) {
+    if(binary.name) {
+      [fileNames addObject:binary.name];
+      dispatch_queue_t queue = dispatch_get_global_queue(QOS_CLASS_USER_INITIATED, 0);
+      dispatch_async(queue, ^{
+        NSError *error;
+        NSURL *saveLocation = [dropDestination URLByAppendingPathComponent:binary.name];
+        BOOL success = [binary saveToLocation:saveLocation error:&error];
+        if(!success && error) {
+          dispatch_async(dispatch_get_main_queue(), ^{
+            [NSApp presentError:error];
+          });
+        }
+      });
+    }
+  }
+  return [fileNames copy];
+}
+
+/*
+ - (id<NSPasteboardWriting>)tableView:(NSTableView *)tableView pasteboardWriterForRow:(NSInteger)row {
+  MPDocument *document = tableView.window.windowController.document;
+  KPKEntry *entry = document.selectedEntries.count == 1 ? document.selectedEntries.lastObject : nil;
+
+  if(!entry) {
+    return nil;
+  }
+  if (@available(macOS 10.12, *)) {
+    KPKBinary *binary = entry.binaries[row];
+    NSFilePromiseProvider *provider = [[NSFilePromiseProvider alloc] initWithFileType:(NSString *)kUTTypeXML delegate:binary];
+    return provider;
+  }
+  return nil;
+}
+ */
 
 @end

@@ -22,6 +22,7 @@
 
 #import "MPAutotypePaste.h"
 #import "MPPasteBoardController.h"
+#import "MPKeyTyper.h"
 
 #import "KeePassKit/KeePassKit.h"
 
@@ -51,12 +52,11 @@
 
 - (void)execute {
   if([self.pasteData length] > 0) {
-    MPPasteBoardController *controller = [MPPasteBoardController defaultController];
-    [controller stashObjects];
-    [controller copyObjectsWithoutTimeout:@[self.pasteData]];
-    [self sendPasteKeyCode];
-    usleep(0.1 * NSEC_PER_MSEC); // on 10.10 we need to wait a bit before restoring the pasteboard contents
-    [controller restoreObjects];
+    [MPPasteBoardController.defaultController stashObjects];
+    [MPPasteBoardController.defaultController copyObjectsWithoutTimeout:@[self.pasteData]];
+    [MPKeyTyper sendPaste];
+    usleep(0.2 * NSEC_PER_MSEC); // on 10.10 we need to wait a bit before restoring the pasteboard contents
+    [MPPasteBoardController.defaultController restoreObjects];
   }
 }
 

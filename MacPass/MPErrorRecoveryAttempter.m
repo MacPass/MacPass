@@ -37,7 +37,7 @@
   NSInvocation *invocation = [NSInvocation invocationWithMethodSignature:[delegate methodSignatureForSelector:didRecoverSelector]];
   __block void *contextInfoCopy = contextInfo;
   if(error.code == MPErrorNoPasswordOrKeyFile) {
-    if([delegate isKindOfClass:[MPDocument class]]) {
+    if([delegate isKindOfClass:MPDocument.class]) {
       MPDocument *document = delegate;
       BOOL didRecover = NO;
       if(recoveryOptionIndex == 0) {
@@ -59,7 +59,6 @@
       }
     }
   }
-  
 }
 
 /* Given that an error alert has been presented applicaton-modally to the user, and the user has chosen one of the error's recovery options, attempt recovery from the error, and return YES if error recovery was completely successful, NO otherwise. The recovery option index is an index into the error's array of localized recovery options.

@@ -23,42 +23,44 @@
 #import "MPAutotypeKeyPress.h"
 #import "MPFlagsHelper.h"
 #import "MPKeyMapper.h"
+#import "MPKeyTyper.h"
 
 #import "MPSettingsHelper.h"
 
+@interface MPAutotypeKeyPress ()
+@property (copy) NSString *character;
+@end
+
 @implementation MPAutotypeKeyPress
 
-static CGEventFlags _updateModifierMaskForCurrentDefaults(CGEventFlags modifiers) {
-  BOOL sendCommand = [[NSUserDefaults standardUserDefaults] boolForKey:kMPSettingsKeySendCommandForControlKey];
-  if(sendCommand && MPIsFlagSetInOptions(kCGEventFlagMaskControl, modifiers)) {
-    return (modifiers ^ kCGEventFlagMaskControl) | kCGEventFlagMaskCommand;
-  }
-  return modifiers;
+- (instancetype)initWithModifiedKey:(MPModifiedKey)key {
+  return [self _initWithModifiedKey:key text:nil];
 }
 
-- (instancetype)initWithModifiedKey:(MPModifiedKey)key {
+- (instancetype)_initWithModifiedKey:(MPModifiedKey)key text:(NSString *)text {
   self = [super init];
   if(self) {
+    _character = [text copy];
     _key = key;
-    _key.modifier = _updateModifierMaskForCurrentDefaults(_key.modifier);
   }
-  return self;
-}
-- (instancetype)initWithModifierMask:(CGEventFlags)modiferMask keyCode:(CGKeyCode)code {
-  self = [self initWithModifiedKey:MPMakeModifiedKey(modiferMask, code)];
   return self;
 }
 
 - (instancetype)initWithModifierMask:(CGEventFlags)modiferMask character:(NSString *)character {
-  MPModifiedKey mappedKey = [MPKeyMapper modifiedKeyForCharacter:character];
-  if(mappedKey.keyCode == kMPUnknownKeyCode) {
-    self = nil;
+  /* try to map the character */
+  if(modiferMask) {
+    MPModifiedKey mappedKey = [MPKeyMapper modifiedKeyForCharacter:character];
+    if(mappedKey.keyCode == kMPUnknownKeyCode) {
+      NSLog(@"Error. Unable to determine virtual key for character %@ to send with modifiers %llu.", character, modiferMask);
+      self = nil;
+    }
+    else {
+      mappedKey.modifier = modiferMask;
+      self = [self _initWithModifiedKey:mappedKey text:nil];
+    }
   }
   else {
-    if(mappedKey.modifier && (modiferMask != mappedKey.modifier)) {
-      NSLog(@"Supplied modifiers for character %@ do not match required modifiers", character);
-    }
-    self = [self initWithModifierMask:modiferMask keyCode:mappedKey.keyCode];
+    self = [self _initWithModifiedKey:MPMakeModifiedKey(0, 0) text:character];
   }
   return self;
 }
@@ -71,8 +73,12 @@ static CGEventFlags _updateModifierMaskForCurrentDefaults(CGEventFlags modifiers
   if(![self isValid]) {
     return; // no valid command. Stop.
   }
-  //CGKeyCode mappedKey = [self _transformKeyCode];
-  [self sendPressKey:self.key];
+  if(self.character) {
+    [MPKeyTyper sendText:self.character];
+  }
+  else {
+    [MPKeyTyper sendKey:self.key];
+  }
 }
 
 - (BOOL)isValid {
@@ -82,3 +88,4 @@ static CGEventFlags _updateModifierMaskForCurrentDefaults(CGEventFlags modifiers
 }
 
 @end
+

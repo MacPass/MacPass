@@ -42,10 +42,10 @@
 
 
 - (void)registerNotificationsForDocument:(MPDocument *)document {
-  [[NSNotificationCenter defaultCenter] addObserver:self
-                                           selector:@selector(_didAddGroup:)
-                                               name:MPDocumentDidAddGroupNotification
-                                             object:document];
+  [NSNotificationCenter.defaultCenter addObserver:self
+                                         selector:@selector(_didAddGroup:)
+                                             name:MPDocumentDidAddGroupNotification
+                                           object:document];
 }
 
 - (void)viewDidAppear {
@@ -129,8 +129,8 @@
                        options:nil];
 }
 - (IBAction)toggleExpire:(NSButton*)sender {
-  KPKGroup *group = [self representedObject];
-  if([sender state] == NSOnState && [group.timeInfo.expirationDate isEqualToDate:[NSDate distantFuture]]) {
+  KPKGroup *group = self.representedObject;
+  if(sender.state == NSOnState && [group.timeInfo.expirationDate isEqualToDate:NSDate.distantFuture]) {
     [NSApp sendAction:self.expireDateSelectButton.action to:nil from:self.expireDateSelectButton];
   }
 }
@@ -139,7 +139,8 @@
 - (void)_didAddGroup:(NSNotification *)notification {
   if(!self.titleTextField.window) {
     self.focusTitleOnceViewAppears = true;
-  } else {
+  }
+  else {
     [self.titleTextField becomeFirstResponder];
   }
 }

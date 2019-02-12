@@ -45,7 +45,7 @@
 - (void)didCopyToPastboard:(NSNotification *)notification {
   _timeStamp = NSDate.timeIntervalSinceReferenceDate;
   _pasteboardCleard = NO;
-  if([MPPasteBoardController defaultController].clearTimeout > 0) {
+  if(MPPasteBoardController.defaultController.clearTimeout > 0) {
     [self updateBadge];
   }
 }
@@ -68,7 +68,7 @@
   if(_pasteboardCleard) {
     return;
   }
-  NSTimeInterval timeOut = [MPPasteBoardController defaultController].clearTimeout;
+  NSTimeInterval timeOut = MPPasteBoardController.defaultController.clearTimeout;
   NSTimeInterval countDown = timeOut - (NSDate.timeIntervalSinceReferenceDate - _timeStamp);
   if(countDown > 0) {
     NSApp.dockTile.badgeLabel = [[NSString alloc] initWithFormat:@"%d", (int)countDown];

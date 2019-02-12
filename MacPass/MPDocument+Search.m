@@ -87,8 +87,19 @@ NSString *const kMPDocumentSearchResultsKey           = @"kMPDocumentSearchResul
   MPEntrySearchFlags toggleFlag = [sender tag];
   MPEntrySearchFlags newFlags = MPEntrySearchNone;
   BOOL isSingleFlag = toggleFlag & MPEntrySearchSingleFlags;
-  NSButton *button = sender;
-  switch(button.state) {
+  
+  NSControlStateValue state;
+  if([sender isKindOfClass:NSButton.class]) {
+    state = ((NSButton *)sender).state;
+  }
+  else {
+    NSAssert([sender isKindOfClass:NSMenuItem.class], @"Internal inconsitency. Did expect NSMenuItem expected, but got %@", [sender class]);
+    state = ((NSMenuItem *)sender).state;
+    /* Manually toggle the state since the popupbuttoncell doesn't do it like we want it to */
+    state = state == NSOnState ? NSOffState : NSOnState;
+  }
+ 
+  switch(state) {
     case NSOffState:
       toggleFlag ^= MPEntrySearchAllCombineableFlags;
       newFlags = isSingleFlag ? MPEntrySearchNone : (self.searchContext.searchFlags & toggleFlag);

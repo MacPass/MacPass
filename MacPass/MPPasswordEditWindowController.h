@@ -24,7 +24,7 @@
 #import <HNHUi/HNHUi.h>
 
 @class MPDocument;
-@class HNHUIRoundedSecureTextField;
+@class HNHUISecureTextField;
 
 @protocol MPPasswordEditWindowDelegate <NSObject>
 
@@ -39,8 +39,8 @@
 
 @interface MPPasswordEditWindowController : HNHUISheetWindowController <NSTextFieldDelegate>
 
-@property (weak) IBOutlet HNHUIRoundedSecureTextField *passwordTextField;
-@property (weak) IBOutlet HNHUIRoundedSecureTextField *passwordRepeatTextField;
+@property (weak) IBOutlet HNHUISecureTextField *passwordTextField;
+@property (weak) IBOutlet HNHUISecureTextField *passwordRepeatTextField;
 @property (weak) IBOutlet NSPathControl *keyfilePathControl;
 @property (weak) IBOutlet NSButton *togglePasswordButton;
 @property (weak) IBOutlet NSTextField *errorTextField;

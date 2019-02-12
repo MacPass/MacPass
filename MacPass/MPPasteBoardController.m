@@ -74,6 +74,7 @@ NSString *const MPPasteBoardControllerDidClearClipboard = @"com.hicknhack.macpas
   for (NSPasteboardItem *item in NSPasteboard.generalPasteboard.pasteboardItems) {
     NSPasteboardItem *newItem = [[NSPasteboardItem alloc] init];
     for (NSString *type in item.types) {
+      /* mutable copy to ensure actual deep copy */
       NSData *data = [[item dataForType:type] mutableCopy];
       if (data) {
         [newItem setData:data forType:type];
@@ -104,7 +105,12 @@ NSString *const MPPasteBoardControllerDidClearClipboard = @"com.hicknhack.macpas
 }
 
 - (void)copyObjectsWithoutTimeout:(NSArray<id<NSPasteboardWriting>> *)objects {
-  [NSPasteboard.generalPasteboard clearContents];
+  if(@available(macOS 10.12, *)) {
+    [NSPasteboard.generalPasteboard prepareForNewContentsWithOptions:NSPasteboardContentsCurrentHostOnly];
+  }
+  else {
+    [NSPasteboard.generalPasteboard clearContents];
+  }
   [NSPasteboard.generalPasteboard writeObjects:objects];
   self.isEmpty = NO;
 }
@@ -118,26 +124,26 @@ NSString *const MPPasteBoardControllerDidClearClipboard = @"com.hicknhack.macpas
   NSString *infoText = nil;
   switch(overlayInfoType) {
     case MPPasteboardOverlayInfoPassword:
-      infoImage = [[NSBundle mainBundle] imageForResource:@"00_PasswordTemplate"];
+      infoImage = [NSBundle.mainBundle imageForResource:@"00_PasswordTemplate"];
       infoText = NSLocalizedString(@"COPIED_PASSWORD", @"Password was copied to the pasteboard");
       break;
       
     case MPPasteboardOverlayInfoURL:
-      infoImage = [[NSBundle mainBundle] imageForResource:@"01_PackageNetworkTemplate"];
+      infoImage = [NSBundle.mainBundle imageForResource:@"01_PackageNetworkTemplate"];
       infoText = NSLocalizedString(@"COPIED_URL", @"URL was copied to the pasteboard");
       break;
       
     case MPPasteboardOverlayInfoUsername:
-      infoImage = [[NSBundle mainBundle] imageForResource:@"09_IdentityTemplate"];
+      infoImage = [NSBundle.mainBundle imageForResource:@"09_IdentityTemplate"];
       infoText = NSLocalizedString(@"COPIED_USERNAME", @"Username was copied to the pasteboard");
       break;
       
     case MPPasteboardOverlayInfoCustom:
-      infoImage = [[NSBundle mainBundle] imageForResource:@"00_PasswordTemplate"];
+      infoImage = [NSBundle.mainBundle imageForResource:@"00_PasswordTemplate"];
       infoText = [NSString stringWithFormat:NSLocalizedString(@"COPIED_FIELD_%@", "Field name that was copied to the pasteboard"), name];
       break;
   }
-  [[MPOverlayWindowController sharedController] displayOverlayImage:infoImage label:infoText atView:view];
+  [MPOverlayWindowController.sharedController displayOverlayImage:infoImage label:infoText atView:view];
 }
 
 - (void)_clearPasteboardContents {

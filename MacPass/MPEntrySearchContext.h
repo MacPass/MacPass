@@ -34,9 +34,7 @@ typedef NS_OPTIONS(NSUInteger, MPEntrySearchFlags) {
   MPEntrySearchExpiredEntries       = (1<<7), // do not combine with others. Exclusive flag
 
   /* All combine-able search flags combined */
-  MPEntrySearchAllCombineableFlags  = (MPEntrySearchDoublePasswords |
-                                       MPEntrySearchExpiredEntries |
-                                       MPEntrySearchNotes |
+  MPEntrySearchAllCombineableFlags  = (MPEntrySearchNotes |
                                        MPEntrySearchPasswords |
                                        MPEntrySearchTitles |
                                        MPEntrySearchUrls |
