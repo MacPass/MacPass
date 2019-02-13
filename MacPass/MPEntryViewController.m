@@ -710,6 +710,25 @@ NSString *const _MPTableSecurCellView = @"PasswordCell";
   }
 }
 
+- (void)copyAsReference:(id)sender {
+  NSDictionary *references = @{  kKPKReferenceURLKey: NSLocalizedString(@"COPIED_URL_REFERENCE", "Context menu that copies reference to URL"),
+                                 kKPKReferenceNotesKey: NSLocalizedString(@"COPIED_NOTES_REFERENCE", "Context menu that copies reference to note"),
+                                 kKPKReferenceTitleKey: NSLocalizedString(@"COPIED_TITLE_REFERENCE", "Context menu that copies reference to title"),
+                                 kKPKReferencePasswordKey: NSLocalizedString(@"COPIED_PASSWORD_REFERENCE", "Context menu that copies reference to password"),
+                                 kKPKReferenceUsernameKey: NSLocalizedString(@"COPIED_USERNAME_REFERENCE", "Context menu that copies reference to username"),
+                                 };
+  if(![sender isKindOfClass:NSMenuItem.class]) {
+    return;
+  }
+  NSString *referencesField = [sender representedObject];
+  NSArray *nodes = [self currentTargetNodes];
+  KPKEntry *selectedEntry = nodes.count == 1 ? [nodes.firstObject asEntry] : nil;
+  if(referencesField && selectedEntry) {
+    NSString *value = [NSString stringWithFormat:@"{%@%@@%@:%@}", kKPKReferencePrefix, referencesField, kKPKReferenceUUIDKey, selectedEntry.uuid.UUIDString];
+    [MPPasteBoardController.defaultController copyObjects:@[value] overlayInfo:MPPasteboardOverlayInfoReference name:references[referencesField] atView:self.view];
+  }
+}
+
 - (void)delete:(id)sender {
   NSArray *entries = self.currentTargetEntries;
   MPDocument *document = self.windowController.document;

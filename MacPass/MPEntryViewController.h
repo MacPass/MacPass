@@ -60,6 +60,7 @@ typedef NS_ENUM(NSUInteger, MPDisplayMode) {
 - (IBAction)copyCustomAttribute:(id)sender;
 - (IBAction)copyURL:(id)sender;
 - (IBAction)openURL:(id)sender;
+- (IBAction)copyAsReference:(id)sender;
 
 /* More Actions */
 - (IBAction)delete:(id)sender;

@@ -586,6 +586,11 @@ typedef NS_ENUM(NSUInteger, MPEntryTab) {
   return menu;
 }
 
+/*- (NSArray<NSString *> *)control:(NSControl *)control textView:(NSTextView *)textView completions:(NSArray<NSString *> *)words forPartialWordRange:(NSRange)charRange indexOfSelectedItem:(NSInteger *)index {
+  return @[ @"{USERNAME}", @"{PASSWORD}", @"{URL}", @"{TITLE}" ];
+}
+*/
+
 - (BOOL)textField:(NSTextField *)textField textView:(NSTextView *)textView performAction:(SEL)action {
   if(action == @selector(copy:)) {
     MPPasteboardOverlayInfoType info = MPPasteboardOverlayInfoCustom;

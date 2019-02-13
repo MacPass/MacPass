@@ -142,6 +142,12 @@ NSString *const MPPasteBoardControllerDidClearClipboard = @"com.hicknhack.macpas
       infoImage = [NSBundle.mainBundle imageForResource:@"00_PasswordTemplate"];
       infoText = [NSString stringWithFormat:NSLocalizedString(@"COPIED_FIELD_%@", "Field name that was copied to the pasteboard"), name];
       break;
+    
+    case MPPasteboardOverlayInfoReference:
+      infoImage = [NSBundle.mainBundle imageForResource:@"04_KlipperTemplate"];
+      infoText = name;
+      break;
+      
   }
   [MPOverlayWindowController.sharedController displayOverlayImage:infoImage label:infoText atView:view];
 }

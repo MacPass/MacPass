@@ -26,7 +26,8 @@ typedef NS_ENUM(NSUInteger, MPPasteboardOverlayInfoType) {
   MPPasteboardOverlayInfoPassword,
   MPPasteboardOverlayInfoUsername,
   MPPasteboardOverlayInfoURL,
-  MPPasteboardOverlayInfoCustom,
+  MPPasteboardOverlayInfoCustom, // overlay info that a custom field was copied
+  MPPasteboardOverlayInfoReference // overlay info that a reference that was copied
 };
 
 @interface MPPasteBoardController : NSObject
