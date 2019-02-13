@@ -26,6 +26,7 @@
 #import "MPToolbarItem.h"
 #import "MPContextButton.h"
 #import "MPAddEntryContextMenuDelegate.h"
+#import "MPEntryContextMenuDelegate.h"
 
 #import "MPActionHelper.h"
 #import "MPContextMenuHelper.h"
@@ -47,7 +48,8 @@ NSString *const MPToolbarItemHistory = @"TOOLBAR_HISTORY";
 NSString *const MPToolbarItemAutotype = @"TOOLBAR_AUTOTYPE";
 
 @interface MPToolbarDelegate() {
-  MPAddEntryContextMenuDelegate *_entryMenuDelegate;
+  MPAddEntryContextMenuDelegate *_addEntryMenuDelegate;
+  MPEntryContextMenuDelegate * _entryActionContextMenuDelegate;
   BOOL _didShowToolbarForSearch;
   BOOL _didAddSearchfieldForSearch;
   NSToolbarDisplayMode _displayModeBeforeSearch;
@@ -91,7 +93,8 @@ NSString *const MPToolbarItemAutotype = @"TOOLBAR_AUTOTYPE";
                                     MPToolbarItemInspector ];
     _toolbarImages = [self createToolbarImages];
     _toolbarItems = [[NSMutableDictionary alloc] initWithCapacity:[self.toolbarIdentifiers count]];
-    _entryMenuDelegate = [[MPAddEntryContextMenuDelegate alloc] init];
+    _addEntryMenuDelegate = [[MPAddEntryContextMenuDelegate alloc] init];
+    _entryActionContextMenuDelegate = [[MPEntryContextMenuDelegate alloc] init];
   }
   return self;
 }
@@ -134,6 +137,7 @@ NSString *const MPToolbarItemAutotype = @"TOOLBAR_AUTOTYPE";
       
       popupButton.frame = newFrame;
       popupButton.menu = menu;
+      menu.delegate = _entryActionContextMenuDelegate;
       item.menuFormRepresentation = menuRepresentation;
       item.view = popupButton;
     }
@@ -147,7 +151,7 @@ NSString *const MPToolbarItemAutotype = @"TOOLBAR_AUTOTYPE";
       
       NSMenu *menu = [[NSMenu alloc] init];
       [menu addItemWithTitle:NSLocalizedString(@"UNKNOWN_TOOLBAR_ITEM", @"") action:NULL keyEquivalent:@""];
-      menu.delegate = _entryMenuDelegate;
+      menu.delegate = _addEntryMenuDelegate;
       button.contextMenu = menu;
       
       
