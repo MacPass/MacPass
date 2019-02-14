@@ -594,9 +594,12 @@ typedef NS_ENUM(NSUInteger, MPEntryTab) {
 - (BOOL)textField:(NSTextField *)textField textView:(NSTextView *)textView performAction:(SEL)action {
   if(action == @selector(copy:)) {
     MPPasteboardOverlayInfoType info = MPPasteboardOverlayInfoCustom;
-    NSString *value = textField.stringValue;
+    NSMutableString *selectedValue = [[NSMutableString alloc] init];
+    for(NSValue *rangeValue in textView.selectedRanges) {
+      [selectedValue appendString:[textView.string substringWithRange:rangeValue.rangeValue]];
+    }
     NSString *name = @"";
-    if(nil == value) {
+    if(selectedValue.length == 0) {
       return YES;
     }
     if(textField == self.usernameTextField) {
@@ -620,7 +623,7 @@ typedef NS_ENUM(NSUInteger, MPEntryTab) {
         name = [_customFieldsController.arrangedObjects[index] key];
       }
     }
-    [MPPasteBoardController.defaultController copyObjects:@[value] overlayInfo:info name:name atView:self.view];
+    [MPPasteBoardController.defaultController copyObjects:@[selectedValue] overlayInfo:info name:name atView:self.view];
     return NO;
   }
   return YES;
