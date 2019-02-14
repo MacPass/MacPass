@@ -41,6 +41,7 @@
 #import "MPUserNotificationCenterDelegate.h"
 #import "MPWelcomeViewController.h"
 #import "MPPlugin.h"
+#import "MPEntryContextMenuDelegate.h"
 
 #import "NSApplication+MPAdditions.h"
 
@@ -54,6 +55,8 @@ NSString *const MPDidChangeStoredKeyFilesSettings = @"com.hicknhack.macpass.MPDi
 @private
   MPDockTileHelper *_dockTileHelper;
   MPUserNotificationCenterDelegate *_userNotificationCenterDelegate;
+  MPEntryContextMenuDelegate *_entryContextMenuDelegate;
+  
   BOOL _shouldOpenFile; // YES if app was started to open a
 }
 
@@ -78,6 +81,7 @@ NSString *const MPDidChangeStoredKeyFilesSettings = @"com.hicknhack.macpass.MPDi
   self = [super init];
   if(self) {
     _userNotificationCenterDelegate = [[MPUserNotificationCenterDelegate alloc] init];
+    _entryContextMenuDelegate = [[MPEntryContextMenuDelegate alloc] init];
     /* We know that we do not use the variable after instantiation */
 #pragma clang diagnostic push
 #pragma clang diagnostic ignored "-Wunused-variable"
@@ -122,6 +126,11 @@ NSString *const MPDidChangeStoredKeyFilesSettings = @"com.hicknhack.macpass.MPDi
   for(NSMenuItem *item in items.reverseObjectEnumerator) {
     [fileMenu insertItem:item atIndex:insertIndex];
   }
+  [self.itemMenu removeAllItems];
+  for(NSMenuItem *item in [MPContextMenuHelper contextMenuItemsWithItems:MPContextMenuFull]) {
+    [self.itemMenu addItem:item];
+  }
+  self.itemMenu.delegate = _entryContextMenuDelegate;
 }
 
 #pragma mark -
@@ -205,12 +214,6 @@ NSString *const MPDidChangeStoredKeyFilesSettings = @"com.hicknhack.macpass.MPDi
   }
   if(menu == self.fixAutotypeMenuItem.menu) {
     self.fixAutotypeMenuItem.hidden = !(NSEvent.modifierFlags & NSAlternateKeyMask);
-  }
-  if(menu == self.itemMenu) {
-    [menu removeAllItems];
-    for(NSMenuItem *item in [MPContextMenuHelper contextMenuItemsWithItems:MPContextMenuFull]) {
-      [menu addItem:item];
-    }
   }
   if(menu == self.importMenu) {
     NSMenuItem *exportXML = menu.itemArray.firstObject;
