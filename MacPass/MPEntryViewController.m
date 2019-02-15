@@ -42,6 +42,8 @@
 #import "MPValueTransformerHelper.h"
 #import "MPEntryContextMenuDelegate.h"
 
+#import "NSApplication+MPAdditions.h"
+
 #import "KeePassKit/KeePassKit.h"
 #import "KPKNode+IconImage.h"
 
@@ -68,8 +70,6 @@ NSString *const _MPTableStringCellView = @"StringCell";
 NSString *const _MPTableSecurCellView = @"PasswordCell";
 
 @interface MPEntryViewController () {
-  /* TODO unify delegation */
-  MPEntryContextMenuDelegate *_menuDelegate;
   BOOL _isDisplayingContextBar;
   BOOL _didUnlock;
 }
@@ -103,7 +103,6 @@ NSString *const _MPTableSecurCellView = @"PasswordCell";
     _entryArrayController = [[NSArrayController alloc] init];
     _dataSource = [[MPEntryTableDataSource alloc] init];
     _dataSource.viewController = self;
-    _menuDelegate = [[MPEntryContextMenuDelegate alloc] init];
     _contextBarViewController = [[MPContextBarViewController alloc] init];
     [self _setupEntryBindings];
   }
@@ -604,7 +603,7 @@ NSString *const _MPTableSecurCellView = @"PasswordCell";
   for(NSMenuItem *item in items) {
     [menu addItem:item];
   }
-  menu.delegate = _menuDelegate;
+  menu.delegate = NSApp.mp_delegate.itemActionMenuDelegate;
   self.entryTable.menu = menu;
 }
 

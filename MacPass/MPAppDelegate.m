@@ -55,8 +55,6 @@ NSString *const MPDidChangeStoredKeyFilesSettings = @"com.hicknhack.macpass.MPDi
 @private
   MPDockTileHelper *_dockTileHelper;
   MPUserNotificationCenterDelegate *_userNotificationCenterDelegate;
-  MPEntryContextMenuDelegate *_entryContextMenuDelegate;
-  
   BOOL _shouldOpenFile; // YES if app was started to open a
 }
 
@@ -64,6 +62,8 @@ NSString *const MPDidChangeStoredKeyFilesSettings = @"com.hicknhack.macpass.MPDi
 @property (strong) IBOutlet NSWindow *passwordCreatorWindow;
 @property (strong, nonatomic) MPPreferencesWindowController *preferencesController;
 @property (strong, nonatomic) MPPasswordCreatorViewController *passwordCreatorController;
+
+@property (strong) MPEntryContextMenuDelegate *itemActionMenuDelegate;
 
 @end
 
@@ -81,7 +81,7 @@ NSString *const MPDidChangeStoredKeyFilesSettings = @"com.hicknhack.macpass.MPDi
   self = [super init];
   if(self) {
     _userNotificationCenterDelegate = [[MPUserNotificationCenterDelegate alloc] init];
-    _entryContextMenuDelegate = [[MPEntryContextMenuDelegate alloc] init];
+    self.itemActionMenuDelegate = [[MPEntryContextMenuDelegate alloc] init];
     /* We know that we do not use the variable after instantiation */
 #pragma clang diagnostic push
 #pragma clang diagnostic ignored "-Wunused-variable"
@@ -130,7 +130,7 @@ NSString *const MPDidChangeStoredKeyFilesSettings = @"com.hicknhack.macpass.MPDi
   for(NSMenuItem *item in [MPContextMenuHelper contextMenuItemsWithItems:MPContextMenuFull]) {
     [self.itemMenu addItem:item];
   }
-  self.itemMenu.delegate = _entryContextMenuDelegate;
+  self.itemMenu.delegate = self.itemActionMenuDelegate;
 }
 
 #pragma mark -

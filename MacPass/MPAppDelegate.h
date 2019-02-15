@@ -24,6 +24,8 @@
 
 APPKIT_EXTERN NSString *const MPDidChangeStoredKeyFilesSettings;
 
+@class MPEntryContextMenuDelegate;
+
 @interface MPAppDelegate : NSObject <NSApplicationDelegate, NSMenuDelegate>
 
 @property (strong) IBOutlet NSMenuItem *saveMenuItem;
@@ -31,6 +33,8 @@ APPKIT_EXTERN NSString *const MPDidChangeStoredKeyFilesSettings;
 @property (strong) IBOutlet NSMenuItem *fileNewMenuItem;
 @property (strong) IBOutlet NSMenu *itemMenu;
 @property (strong) IBOutlet NSMenu *importMenu;
+
+@property (strong, readonly) MPEntryContextMenuDelegate *itemActionMenuDelegate;
 
 @property (nonatomic, assign) BOOL isAllowedToStoreKeyFile;
 
