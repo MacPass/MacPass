@@ -28,6 +28,7 @@
 
 NSString *const kMPSettingsKeyPasteboardClearTimeout                  = @"ClipboardClearTimeout";
 NSString *const kMPSettingsKeyClearPasteboardOnQuit                   = @"ClearClipboardOnQuit";
+NSString *const kMPSettingsKeyPreventUniversalClipboard               = @"PreventUniversalClipboard";
 NSString *const kMPSettingsKeyBrowserBundleId                         = @"BrowserBundleId";
 NSString *const kMPSettingsKeyOpenEmptyDatabaseOnLaunch               = @"OpenEmptyDatabaseOnLaunch";
 NSString *const kMPSettingsKeyReopenLastDatabaseOnLaunch              = @"ReopenLastDatabaseOnLaunch";
@@ -122,6 +123,7 @@ NSString *const kMPDepricatedSettingsKeyLoadUnsecurePlugins               = @"MP
                          kMPSettingsKeyShowInspector: @YES, // Show the Inspector by default
                          kMPSettingsKeyPasteboardClearTimeout: @30, // 30 seconds
                          kMPSettingsKeyClearPasteboardOnQuit: @YES,
+                         kMPSettingsKeyPreventUniversalClipboard: @YES, // Disable Universal Clipboard by default
                          kMPSettingsKeyOpenEmptyDatabaseOnLaunch: @NO,
                          kMPSettingsKeyReopenLastDatabaseOnLaunch: @YES,
                          kMPSettingsKeyFileChangeStrategy: @(MPFileChangeStrategyAsk), // Ask what to do on a file change!

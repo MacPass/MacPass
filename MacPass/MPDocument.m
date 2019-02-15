@@ -911,6 +911,8 @@ NSString *const MPDocumentGroupKey                            = @"MPDocumentGrou
       valid &= (nil != targetEntry ) && (targetEntry.url.length > 0);
       break;
     case MPActionPerformAutotypeForSelectedEntry:
+    case MPActionCopyCustomAttribute:
+    case MPActionCopyAsReference:
       valid &= (nil != targetEntry);
       break;
     default:

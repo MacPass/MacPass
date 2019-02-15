@@ -42,6 +42,8 @@
                    @(MPActionCopyPassword):                     NSStringFromSelector(@selector(copyPassword:)),
                    @(MPActionCopyURL):                          NSStringFromSelector(@selector(copyURL:)),
                    @(MPActionCopyUsername):                     NSStringFromSelector(@selector(copyUsername:)),
+                   @(MPActionCopyCustomAttribute):              NSStringFromSelector(@selector(copyCustomAttribute:)),
+                   @(MPActionCopyAsReference):                  NSStringFromSelector(@selector(copyAsReference:)),
                    @(MPActionDelete):                           NSStringFromSelector(@selector(delete:)),
                    @(MPActionEditPassword):                     NSStringFromSelector(@selector(editPassword:)),
                    @(MPActionOpenURL):                          NSStringFromSelector(@selector(openURL:)),

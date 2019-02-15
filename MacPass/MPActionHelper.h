@@ -32,6 +32,8 @@ typedef NS_ENUM(NSUInteger, MPActionType) {
   MPActionDelete, // Delete entry or group
   MPActionCopyUsername, // copy username to pasteboard
   MPActionCopyPassword, // copy password to pasteboard
+  MPActionCopyCustomAttribute, // copy a custom attribute to the pasteboard
+  MPActionCopyAsReference, // copy a reference to the attribute {REF:…} to the pasteboard
   MPActionCopyURL, // copy url to pasteboard
   MPActionOpenURL, // open url in default browser
   MPActionToggleInspector,

@@ -106,7 +106,8 @@ NSString *const MPPasteBoardControllerDidClearClipboard = @"com.hicknhack.macpas
 
 - (void)copyObjectsWithoutTimeout:(NSArray<id<NSPasteboardWriting>> *)objects {
   if(@available(macOS 10.12, *)) {
-    [NSPasteboard.generalPasteboard prepareForNewContentsWithOptions:NSPasteboardContentsCurrentHostOnly];
+    NSPasteboardContentsOptions options = [NSUserDefaults.standardUserDefaults boolForKey:kMPSettingsKeyPreventUniversalClipboard] ? NSPasteboardContentsCurrentHostOnly : 0;
+    [NSPasteboard.generalPasteboard prepareForNewContentsWithOptions:options];
   }
   else {
     [NSPasteboard.generalPasteboard clearContents];

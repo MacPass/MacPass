@@ -543,6 +543,8 @@ typedef void (^MPPasswordChangedBlock)(BOOL didChangePassword);
   [contentView layoutSubtreeIfNeeded];
 }
 
+#pragma mark -
+#pragma mark Actions forwarded to MPEntryViewController
 - (void)copyUsername:(id)sender {
   [self.entryViewController copyUsername:sender];
 }
@@ -555,6 +557,10 @@ typedef void (^MPPasswordChangedBlock)(BOOL didChangePassword);
   [self.entryViewController copyCustomAttribute:sender];
 }
 
+- (void)copyAsReference:(id)sender {
+  [self.entryViewController copyAsReference:sender];
+}
+
 - (void)copyURL:(id)sender {
   [self.entryViewController copyURL:sender];
 }
@@ -562,8 +568,6 @@ typedef void (^MPPasswordChangedBlock)(BOOL didChangePassword);
 - (void)openURL:(id)sender {
   [self.entryViewController openURL:sender];
 }
-
-
 
 #pragma mark Validation
 - (BOOL)validateMenuItem:(NSMenuItem *)menuItem {

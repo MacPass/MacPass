@@ -25,6 +25,7 @@
 /* Clipboard */
 APPKIT_EXTERN NSString *const kMPSettingsKeyPasteboardClearTimeout;
 APPKIT_EXTERN NSString *const kMPSettingsKeyClearPasteboardOnQuit;
+APPKIT_EXTERN NSString *const kMPSettingsKeyPreventUniversalClipboard;
 
 /* Behaviour */
 APPKIT_EXTERN NSString *const kMPSettingsKeyPasswordEncoding;

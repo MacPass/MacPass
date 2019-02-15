@@ -372,6 +372,7 @@
 		4C10412A178CDD44001B5239 /* NSDate+Humanized.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDate+Humanized.h"; sourceTree = "<group>"; };
 		4C10412B178CDD44001B5239 /* NSDate+Humanized.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDate+Humanized.m"; sourceTree = "<group>"; };
 		4C15B74518BCA3B1003F8008 /* MPDocument+Search.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "MPDocument+Search.m"; sourceTree = "<group>"; };
+		4C168CB02216CEC300BB1EB0 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/GeneralSettings.strings; sourceTree = "<group>"; };
 		4C17D8E317A1C780006C8C1E /* MPDocumentWindowDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MPDocumentWindowDelegate.h; sourceTree = "<group>"; };
 		4C17D8E417A1C780006C8C1E /* MPDocumentWindowDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MPDocumentWindowDelegate.m; sourceTree = "<group>"; };
 		4C17F104184E630200E85625 /* 14_BatteryTemplate.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = 14_BatteryTemplate.pdf; sourceTree = "<group>"; };
@@ -779,7 +780,6 @@
 		4CC6DB7817D23719002C6091 /* KPKNode+IconImage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "KPKNode+IconImage.h"; sourceTree = "<group>"; };
 		4CC6DB7917D23719002C6091 /* KPKNode+IconImage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "KPKNode+IconImage.m"; sourceTree = "<group>"; };
 		4CCA7EEC1797866F00B0B55E /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/GeneralSettings.strings; sourceTree = "<group>"; };
-		4CCA7EEE1797867200B0B55E /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/GeneralSettings.strings; sourceTree = "<group>"; };
 		4CCA8E9A18D91ED9001A6754 /* Quartz.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Quartz.framework; path = System/Library/Frameworks/Quartz.framework; sourceTree = SDKROOT; };
 		4CCCE7FF1D75CA48006AA951 /* MPArrayController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MPArrayController.h; sourceTree = "<group>"; };
 		4CCCE8001D75CA48006AA951 /* MPArrayController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MPArrayController.m; sourceTree = "<group>"; };
@@ -2233,7 +2233,6 @@
 			children = (
 				4C76155F1764C0590015A1A6 /* Base */,
 				4CCA7EEC1797866F00B0B55E /* de */,
-				4CCA7EEE1797867200B0B55E /* en */,
 				4C5CD34517D158F5000B7F38 /* fr */,
 				601F811118E016340028F3DE /* zh-Hans */,
 				BD6C365819484CF40089EB37 /* nl */,
@@ -2242,6 +2241,7 @@
 				4C840C471D773E5D0081F605 /* pl */,
 				4C4161041F50333B003BC0AF /* es */,
 				6A74B0652076F4B40049BC29 /* sv-SE */,
+				4C168CB02216CEC300BB1EB0 /* en */,
 			);
 			name = GeneralSettings.xib;
 			sourceTree = "<group>";

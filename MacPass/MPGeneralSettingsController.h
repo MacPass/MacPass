@@ -28,6 +28,7 @@
 
 @property (weak) IBOutlet NSButton *clearPasteboardOnQuitCheckButton;
 @property (weak) IBOutlet NSPopUpButton *clearPasteboardTimeoutPopup;
+@property (strong) IBOutlet NSButton *preventUniversalClipboardSupportCheckButton;
 @property (weak) IBOutlet NSPopUpButton *idleTimeOutPopup;
 @property (weak) IBOutlet NSButton *lockOnSleepCheckButton;
 @property (weak) IBOutlet NSButton *lockOnLogoutCheckButton;
