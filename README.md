@@ -37,7 +37,7 @@ After that you can build and run in Xcode. The following command will build and 
 
 ## Help
 
-Some questions might be ansered in the [FAQ](https://github.com/mstarke/MacPass/wiki/FAQ)
+Some questions might be answered in the [FAQ](https://github.com/mstarke/MacPass/wiki/FAQ)
 
 Another place to look is the IRC channel [#macpass](irc://irc.freenode.org/macpass) on [irc.freenode.org](irc://irc.freenode.org)
 
