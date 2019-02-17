@@ -196,11 +196,11 @@ static NSTouchBarItemIdentifier touchBarUnlockIdentifier = @"com.hicknhacksoftwa
 
 - (NSTouchBarItem *)touchBar:(NSTouchBar *)touchBar makeItemForIdentifier:(NSTouchBarItemIdentifier)identifier  API_AVAILABLE(macos(10.12.2)) {
   if (identifier == touchBarChooseKeyfileIdentifier) {
-    return [MPTouchBarButtonCreator touchBarButtonWithTitleAndImage:@"Choose Keyfile" identifier:touchBarChooseKeyfileIdentifier image:[NSImage imageNamed:NSImageNameTouchBarFolderTemplate] target:self.keyPathControl selector:@selector(showOpenPanel:) customizationLabel:@"Choose Keyfile"];
+    return [MPTouchBarButtonCreator touchBarButtonWithTitleAndImage:NSLocalizedString(@"TOUCHBAR_CHOOSE_KEYFILE","Touchbar button label for choosing the keyfile") identifier:touchBarChooseKeyfileIdentifier image:[NSImage imageNamed:NSImageNameTouchBarFolderTemplate] target:self.keyPathControl selector:@selector(showOpenPanel:) customizationLabel:NSLocalizedString(@"TOUCHBAR_CHOOSE_KEYFILE","Touchbar button label for choosing the keyfile")];
   } else if (identifier == touchBarShowPasswordIdentifier) {
-    return [MPTouchBarButtonCreator touchBarButtonWithTitleAndImage:@"Show Password" identifier:touchBarShowPasswordIdentifier image:[NSImage imageNamed:NSImageNameTouchBarQuickLookTemplate] target:self selector:@selector(toggleShowPassword) customizationLabel:@"Show Password"];
+    return [MPTouchBarButtonCreator touchBarButtonWithTitleAndImage:NSLocalizedString(@"TOUCHBAR_SHOW_PASSWORD","Touchbar button label for showing the password") identifier:touchBarShowPasswordIdentifier image:[NSImage imageNamed:NSImageNameTouchBarQuickLookTemplate] target:self selector:@selector(toggleShowPassword) customizationLabel:NSLocalizedString(@"TOUCHBAR_SHOW_PASSWORD","Touchbar button label for showing the password")];
   } else if (identifier == touchBarUnlockIdentifier) {
-    return [MPTouchBarButtonCreator touchBarButtonWithImage:[NSImage imageNamed:NSImageNameLockUnlockedTemplate] identifier:touchBarUnlockIdentifier target:self selector:@selector(_submit:) customizationLabel:@"Unlock"];
+    return [MPTouchBarButtonCreator touchBarButtonWithImage:[NSImage imageNamed:NSImageNameLockUnlockedTemplate] identifier:touchBarUnlockIdentifier target:self selector:@selector(_submit:) customizationLabel:NSLocalizedString(@"TOUCHBAR_UNLOCK_DATABASE","Touchbar button label for unlocking the database")];
   } else {
     return nil;
   }
