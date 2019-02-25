@@ -394,6 +394,10 @@
 		4C25D58616CF0FAA00F6806C /* EntryView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = EntryView.xib; sourceTree = "<group>"; };
 		4C26C33D18D8C92100CF1A1C /* MPTemporaryFileStorage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MPTemporaryFileStorage.h; sourceTree = "<group>"; };
 		4C26C33E18D8C92100CF1A1C /* MPTemporaryFileStorage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MPTemporaryFileStorage.m; sourceTree = "<group>"; };
+		4C272A282224871900186EEC /* nl */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = nl; path = nl.lproj/PickcharsView.strings; sourceTree = "<group>"; };
+		4C272A292224871900186EEC /* nl */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = nl; path = nl.lproj/PluginDataView.strings; sourceTree = "<group>"; };
+		4C272A2A2224871900186EEC /* nl */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = nl; path = nl.lproj/OpenPanelAccessoryView.strings; sourceTree = "<group>"; };
+		4C272A2B2224871900186EEC /* nl */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = nl; path = nl.lproj/PickfieldView.strings; sourceTree = "<group>"; };
 		4C2B0B7419F66F6400E48913 /* MPTargetNodeResolving.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MPTargetNodeResolving.h; sourceTree = "<group>"; };
 		4C2E381A16D11FF900037A9D /* 03_ServerTemplate.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = 03_ServerTemplate.pdf; sourceTree = "<group>"; };
 		4C2E381B16D11FF900037A9D /* 04_KlipperTemplate.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = 04_KlipperTemplate.pdf; sourceTree = "<group>"; };
@@ -2132,6 +2136,7 @@
 				4C0B533C205C151D003D277E /* en */,
 				4C0B533E205C1526003D277E /* de */,
 				6A74B0752076F4B50049BC29 /* sv-SE */,
+				4C272A282224871900186EEC /* nl */,
 			);
 			name = PickcharsView.xib;
 			sourceTree = "<group>";
@@ -2144,6 +2149,7 @@
 				4C0B5345205C1567003D277E /* de */,
 				6A74B0762076F4B50049BC29 /* sv-SE */,
 				A50AD5D0212884A0007C85EB /* pl */,
+				4C272A2B2224871900186EEC /* nl */,
 			);
 			name = PickfieldView.xib;
 			sourceTree = "<group>";
@@ -2172,6 +2178,7 @@
 				4C0F04422147FB49000B8568 /* Base */,
 				4C0F04452147FB4D000B8568 /* en */,
 				4C0F04472147FB4E000B8568 /* de */,
+				4C272A2A2224871900186EEC /* nl */,
 			);
 			name = OpenPanelAccessoryView.xib;
 			sourceTree = "<group>";
@@ -2410,6 +2417,7 @@
 				4CF6653C20E67A180008A25C /* en */,
 				4CF6653E20E67A1A0008A25C /* de */,
 				A50AD5CF212884A0007C85EB /* pl */,
+				4C272A292224871900186EEC /* nl */,
 			);
 			name = PluginDataView.xib;
 			sourceTree = "<group>";

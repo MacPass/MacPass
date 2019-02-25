@@ -1,24 +1,27 @@
-/* Class = "NSTextFieldCell"; title = "If enabled, only properly signed Plugins will be loaded. Keep in mind, that Plugins have full access to your data! Changes take affect on restart."; ObjectID = "2bX-8S-9XM"; */
-"2bX-8S-9XM.title" = "Er worden alleen extensies met een geldige handtekening geladen. Belangrijk: extensies hebben volledige toegang tot uw wachtwoordenkluis! Wijzigingen worden van kracht wanneer u MacPass opnieuw start.";
+/* Class = "NSTextFieldCell"; title = "If enabled, Plugins without proper signatures will be allowed to load. Keep in mind, that Plugins have full access to your data! Changes take affect on restart."; ObjectID = "2bX-8S-9XM"; */
+"2bX-8S-9XM.title" = "MacPass laadt alleen extensies met een geldige handtekening. Belangrijk: extensies hebben volledige toegang tot uw wachtwoordenkluis! Sluit MacPass en open deze opnieuw om de wijziging door te voeren.";
 
 /* Class = "NSButtonCell"; title = "Load unsecure Plugins"; ObjectID = "C4B-6z-ZqX"; */
 "C4B-6z-ZqX.title" = "Laad onveilige extensies";
 
+/* Class = "NSTextFieldCell"; title = "Table View Cell"; ObjectID = "fug-79-n9g"; */
+"fug-79-n9g.title" = "";
+
 /* Class = "NSTextFieldCell"; title = "Plugin Settings Info"; ObjectID = "OOr-SW-jZb"; */
 "OOr-SW-jZb.title" = "Extensievoorkeuren";
 
-/* Class = "NSTextFieldCell"; title = "Text Cell"; ObjectID = "STt-PQ-Szr"; */
-"STt-PQ-Szr.title" = "Tekstcel";
-
-/* Class = "NSTextFieldCell"; title = "Table View Cell"; ObjectID = "fug-79-n9g"; */
-"fug-79-n9g.title" = "Tabelweergavecel";
-
-/* Class = "NSButtonCell"; title = "Browse Plugins…"; ObjectID = "sqO-8H-n1y"; */
+/* Class = "NSButtonCell"; title = "Browse Available Plugins…"; ObjectID = "sqO-8H-n1y"; */
 "sqO-8H-n1y.title" = "Blader door extensies…";
+
+/* Class = "NSTextFieldCell"; title = "Text Cell"; ObjectID = "STt-PQ-Szr"; */
+"STt-PQ-Szr.title" = "";
 
 /* Class = "NSBox"; title = "Box"; ObjectID = "vBs-Ga-aq0"; */
 "vBs-Ga-aq0.title" = "Vak";
 
+/* Class = "NSButtonCell"; title = "Force loading of incompatible Plugins"; ObjectID = "yak-fS-jtA"; */
+"yak-fS-jtA.title" = "Laad incompatibele extensies";
+
 /* Class = "NSTextFieldCell"; title = "Label"; ObjectID = "yuK-qH-jxx"; */
-"yuK-qH-jxx.title" = "Label";
+"yuK-qH-jxx.title" = "";
 

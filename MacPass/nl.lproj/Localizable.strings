@@ -23,7 +23,25 @@
 "ACTION" = "Actie";
 
 /* Action to add an entry via template */
-"ADD_TREMPLATE_ENTRY" = "Creëer item met sjabloon";
+"ADD_TREMPLATE_ENTRY" = "Creëer onderdeel met sjabloon";
+
+/* Button in dialog to open accessibilty preferences pane! */
+"ALERT_AUTOTYPE_MISSING_ACCESSIBILTY_PERMISSIONS_BUTTON_OPEN_PREFERENCES" = "Open toegankelijkheidsopties…";
+
+/* Alert informative text displayed when Autotype performs self check and lacks accessibilty permissions */
+"ALERT_AUTOTYPE_MISSING_ACCESSIBILTY_PERMISSIONS_INFORMATIVE_TEXT" = "Automatisch inloggen is niet beschikbaar, omdat MacPass geen toestemming heeft om je computer te besturen. Kies Apple-menu >'Systeemvoorkeuren', klik op 'Beveiliging en privacy', klik vervolgens op 'Privacy' en voeg MacPass toe aan de groep Toegankelijkheid om automatisch inloggen aan te zetten. Sluit MacPass en open deze opnieuw om de wijziging door te voeren.";
+
+/* Alert message displayed when Autotype performs self check and lacks accessibilty permissions */
+"ALERT_AUTOTYPE_MISSING_ACCESSIBILTY_PERMISSIONS_MESSAGE_TEXT" = "Bevoegdheid om automatisch in te loggen ontbreekt";
+
+/* Button in dialog to open plugin preferences pane! */
+"ALERT_INCOMPATIBLE_PLUGINS_ENCOUNTERED_BUTTON_OPEN_PREFERENCES" = "Toon extensievoorkeuren…";
+
+/* Informative text of the alert displayed when plugins where disabled due to incompatibilty */
+"ALERT_INCOMPATIBLE_PLUGINS_ENCOUNTERED_INFORMATIVE_TEXT" = "Sommige extensies zijn uitgeschakeld omdat ze niet compatibel zijn met deze versie van MacPass. Kijk bij de extensievoorkeuren voor details.";
+
+/* Message text of the alert displayed when plugins where disabled due to incompatibilty */
+"ALERT_INCOMPATIBLE_PLUGINS_ENCOUNTERED_MESSAGE" = "Incompatibele extensies";
 
 /* Alert informative text when plugins or their settings change and require a restart */
 "ALERT_INFORMATIVE_TEXT_PLUGINS_CHANGED_SUGGEST_RESTART" = "Wijzigingen in extensies worden actief na een herstart. MacPass nu opnieuw starten?";
@@ -31,8 +49,20 @@
 /* Alert informative text to ask the user if he really want to uninstall the plugin */
 "ALERT_INFORMATIVE_TEXT_REALLY_UNINSTALL_PLUGIN" = "De extensie wordt verplaatst naar de prullenmand";
 
+/* Button in dialog to cancel merge of KDB file changes! */
+"ALERT_MERGE_CANCEL" = "Annuleer";
+
+/* Button in dialog to merge KDB changes into file! */
+"ALERT_MERGE_CONTINUE" = "Voeg samen";
+
+/* Informative text displayed when merging KDB files */
+"ALERT_MERGE_KDB_FILE_INFO_TEXT" = "Wachtwoordenkluizen met de indeling KDB bevatten niet altijd genoeg informatie om ze zorgvuldig te kunnen samenvoegen. Er gaat geen informatie verloren, maar omdat groepen alleen worden herkend aan hun naam, kunnen er onverwachte veranderingen optreden. Onderdelen die waren verplaatst, komen misschien terecht in de oude groep of groepen die waren hernoemd, worden niet samengevoegd. Ook kunnen onderdelen terugkeren die waren verwijderd. Weet je zeker dat je wilt samenvoegen?";
+
+/* Alert message warning user about KDB file merge */
+"ALERT_MERGE_KDB_FILE_MESSAGE" = "Je voegt een wachtwoordenkluis met de indeling KDB samen";
+
 /* Alert message text when plugins or their settings change and require a restart */
-"ALERT_MESSAGE_PLUGINS_CHANGED_SUGGEST_RESTART" = "Extensies zijn gewijzigd.";
+"ALERT_MESSAGE_PLUGINS_CHANGED_SUGGEST_RESTART" = "Gewijzigde extensie-instellingen. Sluit MacPass en open deze opnieuw om de wijziging door te voeren.";
 
 /* Alert message text to ask the user if he really want to uninstall the plugin. Include %@ placeholder for plugin name */
 "ALERT_MESSAGE_TEXT_REALLY_UNINSTALL_PLUGIN_%@" = "Extensie %@ verwijderen?";
@@ -41,35 +71,41 @@
    Menu item to toggle display of attachment count column in entry table */
 "ATTACHMENTS" = "Bijlagen";
 
+/* Sucessfully merged external changes */
+"AUTO_MERGE_NOTIFICATION_TEXT" = "Automatisch samenvoegen gelukt!";
+
 /* Menu item for automatic trash creation */
 "AUTOCREATE_TRASH_FOLDER" = "automatisch";
 
 /* Inherit autotype settings menu item */
 "AUTOTYPE_INHERIT" = "Erf voorkeuren voor automatisch inloggen";
 
+/* Message displayed to the user to unlock the database to perform global autotype */
+"AUTOTYPE_MESSAGE_UNLOCK_DATABASE" = "Ontgrendel de wachtwoordenkluis om automatisch in te loggen";
+
 /* Disable autotype menu item */
 "AUTOTYPE_NO" = "Deactiveer automatisch inloggen";
 
+/* Notification: Autotype failed, MacPass has no permission to send key strokes */
+"AUTOTYPE_NOTIFICATION_MACPASS_HAS_NO_ACCESSIBILTY_PERMISSIONS" = "Automatisch inloggen is niet beschikbaar, omdat MacPass geen toestemming heeft om je computer te besturen. Kies Apple-menu >'Systeemvoorkeuren', klik op 'Beveiliging en privacy', klik vervolgens op 'Privacy' en voeg MacPass toe aan de groep Toegankelijkheid om automatisch inloggen aan te zetten. Sluit MacPass en open deze opnieuw om de wijziging door te voeren.";
+
 /* Notification: Autotype failed, no documents are open */
-"AUTOTYPE_OVERLAY_NO_DOCUMENTS" = "AUTOTYPE_OVERLAY_NO_DOCUMENTS";
+"AUTOTYPE_OVERLAY_NO_DOCUMENTS" = "Open een wachtwoordenkluis om automatisch in te kunnen loggen";
 
 /* Noticiation: Autotype failed to find a match for %@ (string placeholder) */
 "AUTOTYPE_OVERLAY_NO_MATCH_FOR_%@" = "Geen overeenkomst gevonden voor %@!";
 
-/* Notification: Autotype found a single match. */
-"AUTOTYPE_OVERLAY_SINGLE_MATCH" = "Automatisch inloggen gelukt!";
-
 /* Enable autotype menu item */
 "AUTOTYPE_YES" = "Activeer automatisch inloggen";
-
-/* Sucessfully merged external changes */
-"AUTO_MERGE_NOTIFICATION_TEXT" = "Automatisch samenvoegen gelukt!";
 
 /* Cancel */
 "CANCEL" = "Annuleer";
 
 /* Menu item in the database outline context menu to change the database name */
 "CHANGE_DATABASE_NAME" = "Wijzig de naam van de wachtwoordenkluis";
+
+/* Button to postpone the password change */
+"CHANGE_LATER" = "Wijzig later";
 
 /* Button to show the password change dialog
    Single button to show the password change dialog */
@@ -78,11 +114,11 @@
 /* Menu item in the database outline context menu to change the trash group */
 "CHANGE_TRASH_GROUP" = "Wijzig prullenmandgroep";
 
-/* String displayed at dock badge when clipboard is about to be cleared */
-"CLEARING_PASTEBOARD" = "…";
-
 /* Menu to clear recent searches */
 "CLEAR_RECENT_SEARCHES" = "Wis recente zoekopdrachten";
+
+/* String displayed at dock badge when clipboard is about to be cleared */
+"CLEARING_PASTEBOARD" = "";
 
 /* Field name that was copied to the pasteboard */
 "COPIED_FIELD_%@" = "Gekopieerd %@";
@@ -91,7 +127,7 @@
 "COPIED_PASSWORD" = "Wachtwoord gekopieerd!";
 
 /* URL was copied to the pasteboard */
-"COPIED_URL" = "URL gekopieerd!";
+"COPIED_URL" = "Koppeling met webpagina gekopieerd!";
 
 /* Username was copied to the pasteboard */
 "COPIED_USERNAME" = "Gebruikersnaam gekopieerd!";
@@ -99,25 +135,32 @@
 /* Submenu to Copy custom fields */
 "COPY_CUSTOM_FIELDS" = "Kopieer aangepaste velden";
 
-/* Action title for copying an entry via drag and drop */
-"COPY_ENTRY" = "Kopieer item";
+/* Context menu sub-menu to copy custom fields to clipboard */
+"COPY_CUSTOM_FIELDS_MENU" = "Kopieer aangepast veld…";
+
+/* Action name when an entry was moved
+   Action title for copying an entry via drag and drop */
+"COPY_ENTRY" = "Kopieer onderdeel";
 
 /* Mask for title to copy field value */
 "COPY_FIELD_%@" = "Kopieer %@";
 
 /* Action title for copying a group via drag and drop */
-"COPY_GROUP" = "Kopieer Groep";
+"COPY_GROUP" = "Kopieer groep";
 
 /* Menu item to copy the password of an entry
    Toolbar item copy password */
 "COPY_PASSWORD" = "Kopieer wachtwoord";
 
 /* Menu item to copy the URL of an entry */
-"COPY_URL" = "Kopieer URL";
+"COPY_URL" = "Kopieer koppeling";
 
 /* Menu item to copy the username of an entry
    Toolbar item copy username */
 "COPY_USERNAME" = "Kopieer gebruikersnaam";
+
+/* Title for menu for custom search filters */
+"CUSTOM_SEARCH_FILTER_MENU" = "Aangepast zoekfilter…";
 
 /* Default display name for KDB databases */
 "DATABASE" = "Wachtwoordenkluis";
@@ -132,7 +175,7 @@
 "DEFAULT_CUSTOM_FIELD_VALUE" = "Waarde";
 
 /* Title for a newly created entry */
-"DEFAULT_ENTRY_TITLE" = "Nieuw item";
+"DEFAULT_ENTRY_TITLE" = "Nieuw onderdeel";
 
 /* Title for a newly created group */
 "DEFAULT_GROUP_NAME" = "Nieuwe groep";
@@ -148,7 +191,7 @@
 "DELETE" = "Verwijder";
 
 /* Delete Entry */
-"DELETE_ENTRY" = "Verwijder item";
+"DELETE_ENTRY" = "Verwijder onderdeel";
 
 /* Delete Group */
 "DELETE_GROUP" = "Verwijder groep";
@@ -159,14 +202,15 @@
 /* Empty Trash */
 "DELETE_TRASHED_GROUP" = "Verwijder";
 
-/* No comment provided by engineer. */
-"DOCUMENT_AUTOTYPE_CORRUPTION_WARNING" = "Laat automatisch inloggen repareren…";
+/* Action title for moving a group via drag and drop
+   Actiontitle for copying groups via drag and drop to antother database */
+"DRAG_GROUP" = "Sleep groep";
 
 /* Menu item to directly diplicate an entry */
-"DUPLICATE_ENTRY" = "Dupliceer item";
+"DUPLICATE_ENTRY" = "Dupliceer onderdeel";
 
 /* Menu item to duplicate an entry with options how to duplicate. Will present a dialog. */
-"DUPLICATE_ENTRY_WITH_OPTIONS" = "Dupliceer item…";
+"DUPLICATE_ENTRY_WITH_OPTIONS" = "Dupliceer onderdeel…";
 
 /* Menu item in the database outline context menu to change the template group
    Menu item on the add entry context menu to edit template groups */
@@ -179,10 +223,13 @@
 "EMPTY_TRASH" = "Leeg prullenmand";
 
 /* Informative text for the enforce password change alert */
-"ENFORCE_PASSWORD_CHANGE_ALERT_DESCRIPTION" = "U kunt niet opslaan totdat u het kluiswachtwoord of sleutelbestand heeft gewijzigd.";
+"ENFORCE_PASSWORD_CHANGE_ALERT_DESCRIPTION" = "Je kunt niet opslaan totdat je het hoofdwachtwoord of sleutelbestand hebt gewijzigd.";
 
 /* Message text for the enforce password change alert */
-"ENFORCE_PASSWORD_CHANGE_ALERT_TITLE" = "Het kluiswachtwoord is vervallen!";
+"ENFORCE_PASSWORD_CHANGE_ALERT_TITLE" = "Het hoofdwachtwoord is vervallen!";
+
+/* Group row for entry attributes */
+"ENTRY_DEFAULT_ATTRIBUTES" = "Standaardattributen";
 
 /* Keyfile not valid */
 "ERROR_INVALID_KEYFILE" = "Sleutelbestand is ongeldig!";
@@ -191,25 +238,19 @@
 "ERROR_INVALID_PLUGIN" = "Ongeldige extensie";
 
 /* Passwords do not match */
-"ERROR_PASSWORD_MISSMATCH" = "Het kluiswachtwoord komt niet overeen!";
+"ERROR_PASSWORD_MISSMATCH" = "Hoofdwachtwoord komt niet overeen!";
 
 /* Passwords do not match, keyfile is invalid */
-"ERROR_PASSWORD_MISSMATCH_INVALID_KEYFILE" = "Het kluiswachtwoord komt niet overeen en het sleutelbestand is ongeldig!";
+"ERROR_PASSWORD_MISSMATCH_INVALID_KEYFILE" = "Hoofdwachtwoord komt niet overeen en het sleutelbestand is ongeldig!";
 
 /* Recommend/Enforce key change intervall format */
 "EVERY_%ld_DAYS" = "Elke %ld dagen";
 
 /* Format to returen the date an item expires. Includes %@ placehoder for date */
-"EXPIRES_AT_DATE_%@" = "Vervalt: %@";
+"EXPIRES_AT_DATE_%@" = "Verloopt: %@";
 
-/* The master key was changed by an extrenal programm! */
-"EXTERN_CHANGE_OF_MASTERKEY" = "Het kluiswachtwoord is gewijzigd door een ander programma!";
-
-/* Informative text displayed when the file was change from another application */
-"FILE_CHANGED_BY_OTHERS_INFO_TEXT" = "De laatst opgeslagen versie van de wachtwoordenkluis is zojuist buiten MacPass om gewijzigd. Welke versie wilt u behouden?";
-
-/* Message displayed when an open file was changed from another application */
-"FILE_CHANGED_BY_OTHERS_MESSAGE_TEXT" = "De wachtwoordenkluis is gewijzigd!";
+/* The master key was changed by an external program! */
+"EXTERN_CHANGE_OF_MASTERKEY" = "Hoofdwachtwoord is gewijzigd door een ander programma!";
 
 /* External file change strategy option: ask what to do */
 "FILE_CHANGE_STRATEGY_ASK" = "vragen";
@@ -217,12 +258,18 @@
 /* External file change strategy option: Keep local file an ignore external changes */
 "FILE_CHANGE_STRATEGY_KEEP_MINE" = "behoud de geopende en negeer de opgeslagen versie";
 
-/* External file change strategy option: Merge external changes into local file.
-   Merge changes into file! */
+/* Button in dialog to merge changes into file!
+   External file change strategy option: Merge external changes into local file. */
 "FILE_CHANGE_STRATEGY_MERGE" = "samenvoegen";
 
 /* External file change strategy option: Use the changed file and discard local changes */
 "FILE_CHANGE_STRATEGY_USE_OTHER" = "laad de opgeslagen versie en negeer de geopende";
+
+/* Informative text displayed when the file was change from another application */
+"FILE_CHANGED_BY_OTHERS_INFO_TEXT" = "De laatst opgeslagen versie van de wachtwoordenkluis is zojuist buiten MacPass om gewijzigd. Welke versie wil je behouden?";
+
+/* Message displayed when an open file was changed from another application */
+"FILE_CHANGED_BY_OTHERS_MESSAGE_TEXT" = "De wachtwoordenkluis is gewijzigd!";
 
 /* Error while reopening last known documents */
 "FILE_OPEN_ERROR" = "Openen mislukt.";
@@ -237,6 +284,9 @@
    Menu item to toggle display of history count column in entry table */
 "HISTORY" = "Geschiedenis";
 
+/* Imports a dragged URL for a new entry */
+"IMPORT_URL" = "Importeer koppeling met webpagina";
+
 /* Toolbar item toggle inspector */
 "INSPECTOR" = "Infovenster";
 
@@ -247,12 +297,12 @@
 "JUST_NOW" = "Zojuist";
 
 /* Feature only available in kdbx databases */
-"KDBX_ONLY_FEATURE" = "Dit Feature is niet beschikbaar in een wachtwoordenkluis met de indeling KDB";
+"KDBX_ONLY_FEATURE" = "Niet beschikbaar in een wachtwoordenkluis met de indeling KDB";
 
-/* Ignore the changes to an open file! */
+/* Button in dialog to ignore the changes to an open file! */
 "KEEP_MINE_DISCARD_OTHER" = "Behoud huidige, negeer andere";
 
-/* Reopen the file! */
+/* Button in dialog to reopen the file! */
 "KEEP_OTHER_DISCARD_MINE" = "Behoud andere, negeer huidige";
 
 /* Do not install the plugin */
@@ -280,11 +330,11 @@
    Modification date column title */
 "MODIFIED" = "Gewijzigd";
 
-/* Action title for moving an entry via drag and drop */
-"MOVE_ENTRY" = "Verplaats item";
+/* Action name when an entry was moved */
+"MOVE_ENTRY" = "Verplaats onderdeel";
 
-/* Action title for moving a group via drag and drop */
-"MOVE_GROUP" = "Verplaats groep";
+/* Menu displayed as popup selection for search options when multiple items are selected */
+"MULTIPLE_FILTERS_ACTIVE_WITH_DOTS" = "Meerdere…";
 
 /* Name for a newly created Database */
 "NEW_DATABASE" = "Wachtwoordenkluis";
@@ -292,15 +342,24 @@
 /* Action name for a newly created entry
    Menu item to create a new entry
    Toolbar item new entry */
-"NEW_ENTRY" = "Voeg item toe";
+"NEW_ENTRY" = "Voeg onderdeel toe";
 
 /* Submenu to add an entry via template */
-"NEW_ENTRY_WITH_TEMPLATE_%@" = "Creëer item met sjabloon %@";
+"NEW_ENTRY_WITH_TEMPLATE_%@" = "Creëer onderdeel met sjabloon %@";
 
 /* Action name for a newly created group
    Menu item to create a new group
    Toolbar item new group */
 "NEW_GROUP" = "Voeg groep toe";
+
+/* Expiration date format, when item does not expire */
+"NO_EXPIRE_DATE_SET" = "Verloopt niet";
+
+/* Menu item to reset the template groups */
+"NO_TEMPLATE_GROUP" = "geen groep als sjabloon";
+
+/* Menu item added to show that no templates are defined */
+"NO_TEMPLATES" = "Geen sjablonen gevonden";
 
 /* Null placeholder for item input field
    Placeholder text for input fields if no entry or group is selected */
@@ -312,16 +371,7 @@
    Notes reference item */
 "NOTES" = "Notities";
 
-/* Expiration date format, when item does not expire */
-"NO_EXPIRE_DATE_SET" = "Vervalt niet";
-
-/* Menu item added to show that no templates are defined */
-"NO_TEMPLATES" = "Geen sjablonen gevonden";
-
-/* Menu item to reset the template groups */
-"NO_TEMPLATE_GROUP" = "geen groep als sjabloon";
-
-/* Ok button */
+/* Ok Button to dismiss disabled updates alert */
 "OK" = "";
 
 /* preset to expire after one montch from now */
@@ -346,10 +396,13 @@
 "OPEN_BUTTON_IMPORT_XML_OPEN_PANEL" = "Importeer";
 
 /* Action button in Notification to open a document */
-"OPEN_DOCUMENT" = "Bestand openen";
+"OPEN_DOCUMENT" = "Open bestand";
+
+/* Action button in Notification to show the Accessibilty preferences */
+"OPEN_PREFERENCES" = "Open toegankelijkheidsopties…";
 
 /* Menu item to open the URL with the default application */
-"OPEN_URL" = "Open URL";
+"OPEN_URL" = "Open webpagina";
 
 /* Select Browser */
 "OTHER_BROWSER" = "Andere…";
@@ -359,6 +412,9 @@
    Password reference item */
 "PASSWORD" = "Wachtwoord";
 
+/* Window title for the stand-alone password creator window */
+"PASSWORD_CREATOR_WINDOW_TITLE" = "Wachtwoordgenerator";
+
 /* Button to reset the password defaults for a single entry */
 "PASSWORD_GENERATOR_RESET_ENTRY_DEFAULTS" = "Herstel";
 
@@ -367,18 +423,27 @@
 
 /* Placeholder for the password field to aks for password
    Placeholder in the unlock-password input field if password is enabled */
-"PASSWORD_INPUT_ENTER_PASSWORD" = "Wachtwoord";
+"PASSWORD_INPUT_ENTER_PASSWORD" = "Hoofdwachtwoord";
 
 /* Placeholder for the password input field if passwords are disabled
    Placeholder for the repeat password input if passwords are disabled
    Placeholder in the unlock-password input field if password is disabled */
-"PASSWORD_INPUT_NO_PASSWORD" = "Zonder kluiswachtwoord";
+"PASSWORD_INPUT_NO_PASSWORD" = "Geen hoofdwachtwoord";
 
 /* Placeholder for the repeat password field to aks for the repeated password */
-"PASSWORD_INPUT_REPEAT_PASSWORD" = "Herhaal kluiswachtwoord";
+"PASSWORD_INPUT_REPEAT_PASSWORD" = "Herhaal hoofdwachtwoord";
 
 /* Menu item to perform autotype with the selected entry */
 "PERFORM_AUTOTYPE_FOR_ENTRY" = "Log automatisch in";
+
+/* Label for the button to show a downloaded file */
+"PLUGIN_BROWSER_ACTION_SHOW_DOWNLOADED_FILE" = "Toon in Finder…";
+
+/* Status for an uninstalled plugin in the plugin browser */
+"PLUGIN_BROWSER_PLUGIN_NOT_INSTALLED" = "Niet geïnstalleerd";
+
+/* Plugin is not with this version of MacPass */
+"PLUGIN_ERROR_HOST_VERSION_NOT_SUPPORTED" = "De extensie is niet compatibel met deze versie van MacPass";
 
 /* The plugin could not be initalized */
 "PLUGIN_ERROR_INTILIZATION_FAILED" = "Extensie kan niet worden geladen";
@@ -387,10 +452,10 @@
 "PLUGIN_ERROR_UNSECURE_PLUGIN" = "Extensie heeft geen geldige handtekening";
 
 /* name for disabled unloaded plugin */
-"PLUGIN_NAME_DISABLED_%@" = "🚫 %@";
+"PLUGIN_NAME_DISABLED_%@" = "";
 
 /* Name for unloaded plugin with errors */
-"PLUGIN_NAME_ERROR_%@" = "⚠️ %@";
+"PLUGIN_NAME_ERROR_%@" = "";
 
 /* Label for plugin settings tab */
 "PLUGIN_SETTINGS" = "Extensies";
@@ -408,16 +473,16 @@
 "RECENT_SEARCHES" = "Recente zoekopdrachten";
 
 /* Informative text for the recommend password change alert */
-"RECOMMEND_PASSWORD_CHANGE_ALERT_DESCRIPTION" = "U wordt aangeraden om een nieuw kluiswachtwoord of sleutelbestand in te stellen.";
+"RECOMMEND_PASSWORD_CHANGE_ALERT_DESCRIPTION" = "Je wordt aangeraden om een nieuw hoofdwachtwoord en/of sleutelbestand in te stellen.";
 
 /* Message text for the recommend password change alert */
-"RECOMMEND_PASSWORD_CHANGE_ALERT_TITLE" = "Kluiswachtwoord vernieuwen.";
+"RECOMMEND_PASSWORD_CHANGE_ALERT_TITLE" = "Hoofdwachtwoord vernieuwen.";
 
 /* Restart */
 "RESTART" = "Herstarten";
 
 /* Action to restore and Entry to a previous state of it's history */
-"RESTORE_HISTORY_ENTRY" = "Herstel geschiedenisitem";
+"RESTORE_HISTORY_ENTRY" = "Herstel geschiedenisonderdeel";
 
 /* Menu item to save the selected attached file.
    Save file menu item title when save will just save the file */
@@ -430,13 +495,13 @@
 "SAVE_WITH_DOTS" = "Bewaar…";
 
 /* Search input in Toolbar */
-"SEARCH" = "Zoeken";
+"SEARCH" = "Zoek";
 
 /* Search option: Find duplicate passwords */
 "SEARCH_DUPLICATE_PASSWORDS" = "Dubbele wachtwoorden";
 
 /* Search option: Find expired entries */
-"SEARCH_EXPIRED_ENTRIES" = "Vervallen items";
+"SEARCH_EXPIRED_ENTRIES" = "Vervallen onderdelen";
 
 /* Inherit search settings menu item */
 "SEARCH_INHERIT" = "Erf zoekinstellingen";
@@ -451,19 +516,19 @@
 "SELECT_DATE_PRESET" = "Gebruik voorinstelling…";
 
 /* Message on the open panel for selecting which browser to use for opening URLs */
-"SELECT_DEFAULT_BROWSER_OPEN_PANEL_MESSAGE" = "Selecteer de browser om URL mee te openen";
+"SELECT_DEFAULT_BROWSER_OPEN_PANEL_MESSAGE" = "Selecteer de browser om een webpagina mee te openen";
 
 /* Label for the select browser button on the open panel for selecting which browser to use for opening URLs */
 "SELECT_DEFAULT_BROWSER_OPEN_PANEL_SELECT_BUTTON" = "Kies";
 
 /* Message for the dialog to open a file for merge */
-"SELECT_FILE_TO_MERGE" = "Selecteer bestand om samen te voegen";
+"SELECT_FILE_TO_MERGE" = "Kies een wachtwoordenkluis om mee samen te voegen";
 
-/* Menu displayed as popup selection for search options */
+/* Menu displayed as popup selection for search options if no filter is selected */
 "SELECT_FILTER_WITH_DOTS" = "Selecteer…";
 
 /* Menu item to show the history of the selected entry
-   Toolbar item to toggel history display */
+   Toolbar item to toggle history display */
 "SHOW_HISTORY" = "Toon geschiedenis";
 
 /* Displayed name when title field was copied
@@ -475,16 +540,19 @@
 /* preset to expire tomorrow */
 "TOMORROW" = "Morgen";
 
+/* Toolbar item to perform autotype */
+"TOOLBAR_PERFORM_AUTOTYPE_FOR_ENTRY" = "Log automatisch in";
+
 /* Move Entry to Trash */
-"TRASH_ENTRY" = "Prullenmand item";
+"TRASH_ENTRY" = "Verplaats onderdeel naar prullenmand";
 
 /* Move Group to Trash */
-"TRASH_GROUP" = "Prullenmand groep";
+"TRASH_GROUP" = "Verplaats groep naar prullenmand";
 
 /* Uninstall plugin */
 "UNINSTALL" = "Verwijder";
 
-/* Unknown databas format. */
+/* Unknown database format. */
 "UNKNOWN_FORMAT" = "Onbekend bestandsformaat";
 
 /* Update Settings Label */
@@ -501,29 +569,26 @@
    Username reference item */
 "USERNAME" = "Gebruikersnaam";
 
-/* Message text for disabled updates alert! */
-"Updates are disabled!" = "Updates zijn uitgeschakeld!";
-
 /* No Key or Password */
-"WARNING_NO_PASSWORD_OR_KEYFILE" = "Kluiswachtwoord of sleutelbestand ontbreekt!";
+"WARNING_NO_PASSWORD_OR_KEYFILE" = "Stel een hoofdwachtwoord en/of sleutelbestand in";
 
 /* Informative Text displayed when clearing the Trash */
-"WARNING_ON_DELETE_TRASHED_NODE_DESCRIPTION" = "Het geselecteerde item wordt definitief verwijderd!";
+"WARNING_ON_DELETE_TRASHED_NODE_DESCRIPTION" = "Dit onderdeel wordt onmiddellijk verwijderd. Dit kun je niet ongedaan maken.";
 
 /* Message text for the alert displayed when deleting a node */
-"WARNING_ON_DELETE_TRASHED_NODE_TITLE" = "Item wordt verwijderd";
+"WARNING_ON_DELETE_TRASHED_NODE_TITLE" = "Weet je zeker dat je het geselecteerde onderdeel in de prullenmand defintief wilt verwijderen?";
 
 /* Informative Text displayed when clearing the Trash */
-"WARNING_ON_EMPTY_TRASH_DESCRIPTION" = "Het legen van de prullenmand is onomkeerbaar.";
+"WARNING_ON_EMPTY_TRASH_DESCRIPTION" = "Je kunt deze bewerking niet ongedaan maken.";
 
 /* Message text for the alert displayed when clearing the Trash */
-"WARNING_ON_EMPTY_TRASH_TITLE" = "Leeg prullenmand?";
+"WARNING_ON_EMPTY_TRASH_TITLE" = "Weet je zeker dat je alle onderdelen in de prullenmand defintief wilt verwijderen?";
 
 /* No comment provided by engineer. */
-"WARNING_ON_SAVE_NO_PASSWORD_OR_KEY_SET" = "Kluiswachtwoord en sleutelbestand instellen:";
+"WARNING_ON_SAVE_NO_PASSWORD_OR_KEY_SET" = "Beveilig de wachtwoordenkluis";
 
 /* No comment provided by engineer. */
-"WARNING_ON_SAVE_NO_PASSWORD_OR_KEY_SET_SUGGESTION" = "Stel een Kluiswachtwoord of sleutelbestand in voor deze wachtwoordenkluis om uw wijzigingen te kunnen bewaren.";
+"WARNING_ON_SAVE_NO_PASSWORD_OR_KEY_SET_SUGGESTION" = "Stel een hoofdwachtwoord en/of sleutelbestand in voor deze wachtwoordenkluis om de wijzigingen te kunnen bewaren.";
 
 /* Label for the workflow settings tab */
 "WORKFLOW_SETTINGS" = "Bewerken";
