@@ -57,7 +57,7 @@
 "AUTOTYPE_OVERLAY_NO_MATCH_FOR_%@" = "Geen overeenkomst gevonden voor %@!";
 
 /* Notification: Autotype found a single match. */
-"AUTOTYPE_OVERLAY_SINGLE_MATCH" = "Gevonden!";
+"AUTOTYPE_OVERLAY_SINGLE_MATCH" = "Automatisch inloggen gelukt!";
 
 /* Enable autotype menu item */
 "AUTOTYPE_YES" = "Activeer automatisch inloggen";
@@ -179,10 +179,10 @@
 "EMPTY_TRASH" = "Leeg prullenmand";
 
 /* Informative text for the enforce password change alert */
-"ENFORCE_PASSWORD_CHANGE_ALERT_DESCRIPTION" = "U kunt niet opslaan totdat u het hoofdwachtwoord of sleutelbestand heeft gewijzigd.";
+"ENFORCE_PASSWORD_CHANGE_ALERT_DESCRIPTION" = "U kunt niet opslaan totdat u het kluiswachtwoord of sleutelbestand heeft gewijzigd.";
 
 /* Message text for the enforce password change alert */
-"ENFORCE_PASSWORD_CHANGE_ALERT_TITLE" = "Het hoofdwachtwoord is vervallen!";
+"ENFORCE_PASSWORD_CHANGE_ALERT_TITLE" = "Het kluiswachtwoord is vervallen!";
 
 /* Keyfile not valid */
 "ERROR_INVALID_KEYFILE" = "Sleutelbestand is ongeldig!";
@@ -191,10 +191,10 @@
 "ERROR_INVALID_PLUGIN" = "Ongeldige extensie";
 
 /* Passwords do not match */
-"ERROR_PASSWORD_MISSMATCH" = "Hoofdwachtwoord komt niet overeen!";
+"ERROR_PASSWORD_MISSMATCH" = "Het kluiswachtwoord komt niet overeen!";
 
 /* Passwords do not match, keyfile is invalid */
-"ERROR_PASSWORD_MISSMATCH_INVALID_KEYFILE" = "Hoofdwachtwoord komt niet overeen en het sleutelbestand is ongeldig!";
+"ERROR_PASSWORD_MISSMATCH_INVALID_KEYFILE" = "Het kluiswachtwoord komt niet overeen en het sleutelbestand is ongeldig!";
 
 /* Recommend/Enforce key change intervall format */
 "EVERY_%ld_DAYS" = "Elke %ld dagen";
@@ -203,7 +203,7 @@
 "EXPIRES_AT_DATE_%@" = "Vervalt: %@";
 
 /* The master key was changed by an extrenal programm! */
-"EXTERN_CHANGE_OF_MASTERKEY" = "Hoofdwachtwoord is gewijzigd door een ander programma!";
+"EXTERN_CHANGE_OF_MASTERKEY" = "Het kluiswachtwoord is gewijzigd door een ander programma!";
 
 /* Informative text displayed when the file was change from another application */
 "FILE_CHANGED_BY_OTHERS_INFO_TEXT" = "De laatst opgeslagen versie van de wachtwoordenkluis is zojuist buiten MacPass om gewijzigd. Welke versie wilt u behouden?";
@@ -367,15 +367,15 @@
 
 /* Placeholder for the password field to aks for password
    Placeholder in the unlock-password input field if password is enabled */
-"PASSWORD_INPUT_ENTER_PASSWORD" = "Hoofdwachtwoord";
+"PASSWORD_INPUT_ENTER_PASSWORD" = "Wachtwoord";
 
 /* Placeholder for the password input field if passwords are disabled
    Placeholder for the repeat password input if passwords are disabled
    Placeholder in the unlock-password input field if password is disabled */
-"PASSWORD_INPUT_NO_PASSWORD" = "Geen hoofdwachtwoord";
+"PASSWORD_INPUT_NO_PASSWORD" = "Zonder kluiswachtwoord";
 
 /* Placeholder for the repeat password field to aks for the repeated password */
-"PASSWORD_INPUT_REPEAT_PASSWORD" = "Herhaal hoofdwachtwoord";
+"PASSWORD_INPUT_REPEAT_PASSWORD" = "Herhaal kluiswachtwoord";
 
 /* Menu item to perform autotype with the selected entry */
 "PERFORM_AUTOTYPE_FOR_ENTRY" = "Log automatisch in";
@@ -408,10 +408,10 @@
 "RECENT_SEARCHES" = "Recente zoekopdrachten";
 
 /* Informative text for the recommend password change alert */
-"RECOMMEND_PASSWORD_CHANGE_ALERT_DESCRIPTION" = "U wordt aangeraden om een nieuw hoofdwachtwoord of sleutelbestand in te stellen.";
+"RECOMMEND_PASSWORD_CHANGE_ALERT_DESCRIPTION" = "U wordt aangeraden om een nieuw kluiswachtwoord of sleutelbestand in te stellen.";
 
 /* Message text for the recommend password change alert */
-"RECOMMEND_PASSWORD_CHANGE_ALERT_TITLE" = "Hoofdwachtwoord vernieuwen.";
+"RECOMMEND_PASSWORD_CHANGE_ALERT_TITLE" = "Kluiswachtwoord vernieuwen.";
 
 /* Restart */
 "RESTART" = "Herstarten";
@@ -505,7 +505,7 @@
 "Updates are disabled!" = "Updates zijn uitgeschakeld!";
 
 /* No Key or Password */
-"WARNING_NO_PASSWORD_OR_KEYFILE" = "Hoofdwachtwoord of sleutelbestand ontbreekt!";
+"WARNING_NO_PASSWORD_OR_KEYFILE" = "Kluiswachtwoord of sleutelbestand ontbreekt!";
 
 /* Informative Text displayed when clearing the Trash */
 "WARNING_ON_DELETE_TRASHED_NODE_DESCRIPTION" = "Het geselecteerde item wordt definitief verwijderd!";
@@ -520,10 +520,10 @@
 "WARNING_ON_EMPTY_TRASH_TITLE" = "Leeg prullenmand?";
 
 /* No comment provided by engineer. */
-"WARNING_ON_SAVE_NO_PASSWORD_OR_KEY_SET" = "Hoofdwachtwoord en sleutelbestand instellen:";
+"WARNING_ON_SAVE_NO_PASSWORD_OR_KEY_SET" = "Kluiswachtwoord en sleutelbestand instellen:";
 
 /* No comment provided by engineer. */
-"WARNING_ON_SAVE_NO_PASSWORD_OR_KEY_SET_SUGGESTION" = "Stel een hoofdwachtwoord of sleutelbestand in voor deze wachtwoordenkluis om uw wijzigingen te kunnen bewaren.";
+"WARNING_ON_SAVE_NO_PASSWORD_OR_KEY_SET_SUGGESTION" = "Stel een Kluiswachtwoord of sleutelbestand in voor deze wachtwoordenkluis om uw wijzigingen te kunnen bewaren.";
 
 /* Label for the workflow settings tab */
 "WORKFLOW_SETTINGS" = "Bewerken";
