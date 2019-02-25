@@ -74,7 +74,7 @@
 }
 
 - (void)willShowTab {
-  _hotKey = [DDHotKey hotKeyWithKeyData:[[NSUserDefaults standardUserDefaults] dataForKey:kMPSettingsKeyGlobalAutotypeKeyDataKey]];
+  _hotKey = [DDHotKey hotKeyWithKeyData:[NSUserDefaults.standardUserDefaults dataForKey:kMPSettingsKeyGlobalAutotypeKeyDataKey]];
   /* Change any invalid hotkeys to valid ones? */
   self.hotKeyTextField.hotKey = self.hotKey;
 }
@@ -86,7 +86,7 @@
     return; // Nothing of interest has changed;
   }
   _hotKey = hotKey;
-  [[NSUserDefaults standardUserDefaults] setObject:self.hotKey.keyData forKey:kMPSettingsKeyGlobalAutotypeKeyDataKey];
+  [NSUserDefaults.standardUserDefaults setObject:self.hotKey.keyData forKey:kMPSettingsKeyGlobalAutotypeKeyDataKey];
 }
 
 #pragma mark -
