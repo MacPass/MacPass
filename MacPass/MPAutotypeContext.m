@@ -86,7 +86,7 @@
   NSString *passwordPlaceholder = [NSString stringWithFormat:@"{%@}",kKPKPasswordKey];
   NSString *normalized = self.normalizedCommand;
   NSString *masked = [normalized stringByReplacingOccurrencesOfString:passwordPlaceholder withString:@"•••" options:NSCaseInsensitiveSearch range:NSMakeRange(0, normalized.length)];
-  return [[masked kpk_finalValueForEntry:self.entry] copy];
+  return [[masked kpk_finalValueForEntry:self.entry options:KPKCommandEvaluationOptionSkipUserInteraction|KPKCommandEvaluationOptionReadOnly] copy];
 }
 
 - (NSString *)description {

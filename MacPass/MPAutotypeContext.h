@@ -41,11 +41,16 @@
 @property (nonatomic, readonly, copy) NSString *command;
 @property (nonatomic, readonly, copy) NSString *normalizedCommand;
 /**
- *  Command with placeholders and references resolved
+ *  Command with placeholders and references resolved.
+ *  This will evaluate any placeholder regardless of side-effects.
+ *  If you need to evaluat the command without interaction, you should call kpk_finalValueForEntry:options: directly on the normalizedCommand.
  */
 @property (nonatomic, readonly, copy) NSString *evaluatedCommand;
 /**
- @return command with placeholders and references resolved but masked password placeholder
+ @return command with placeholders and references resolved but masked password placeholder.
+ 
+ This will call kpk_finalValueForEntry:options on the normalizedCommand with options set to KPKCommandEvaluationOptionSkipUserInteraction and KPKCommandEvaluationOptionReadOnly.
+ This way it is ensured that the value can be used in UI without any intereference or data changes!
  */
 @property (nonatomic, readonly, copy) NSString *maskedEvaluatedCommand;
 /**
