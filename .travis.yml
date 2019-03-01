@@ -5,7 +5,7 @@ language: objective-c
 
 before_install:
   - carthage bootstrap --platform macOS
-  - gem install xcpretty --no-ri --no-rdoc --no-document --quiet
+  - gem install xcpretty --no-document --quiet
 
 after_success:
   - cd ./build/Build/Products/Release
