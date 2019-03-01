@@ -49,7 +49,7 @@ typedef NS_ENUM(NSUInteger, MPPickfieldTableColumn) {
 
 - (void)viewDidLoad {
   [super viewDidLoad];
-  self.tableModel = [[MPPickfieldTableModel alloc] initWithEntry:self.representedEntry inDocument:nil];
+  self.tableModel = [[MPPickfieldTableModel alloc] initWithEntry:self.representedEntry];
 }
 
 - (KPKEntry *)representedEntry {

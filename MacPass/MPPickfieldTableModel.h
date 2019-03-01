@@ -42,7 +42,7 @@
 
 @property (copy) NSArray<MPPickfieldTableModelRowItem *> *items;
 
-- (instancetype)initWithEntry:(KPKEntry *)entry inDocument:(MPDocument *)document;
+- (instancetype)initWithEntry:(KPKEntry *)entry;
 - (MPPickfieldTableModelRowItem *)itemAtIndex:(NSUInteger)index;
 
 @end

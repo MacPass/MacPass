@@ -68,15 +68,15 @@
 
 @implementation MPPickfieldTableModel
 
-- (instancetype)initWithEntry:(KPKEntry *)entry inDocument:(MPDocument *)document {
+- (instancetype)initWithEntry:(KPKEntry *)entry {
   self = [super init];
   if(self) {
-    [self _setupItemsForEntry:entry document:document];
+    [self _setupItemsForEntry:entry];
   }
   return self;
 }
 
-- (void)_setupItemsForEntry:(KPKEntry *)entry document:(MPDocument *)document {
+- (void)_setupItemsForEntry:(KPKEntry *)entry {
   /* Default attributes */
   NSMutableArray *items = [[NSMutableArray alloc] init];
   [items addObject:[MPPickfieldTableModelRowItem groupItemWithName:NSLocalizedString(@"ENTRY_DEFAULT_ATTRIBUTES", @"Group row for entry attributes")]];
