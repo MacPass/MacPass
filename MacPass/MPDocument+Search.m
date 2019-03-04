@@ -44,6 +44,7 @@ NSString *const kMPDocumentSearchResultsKey           = @"kMPDocumentSearchResul
   self.searchContext = context;
   [NSNotificationCenter.defaultCenter addObserver:self selector:@selector(updateSearch:) name:NSUndoManagerDidRedoChangeNotification object:self.undoManager];
   [NSNotificationCenter.defaultCenter addObserver:self selector:@selector(updateSearch:) name:NSUndoManagerDidUndoChangeNotification object:self.undoManager];
+  [NSNotificationCenter.defaultCenter addObserver:self selector:@selector(updateSearch:) name:NSUndoManagerDidCloseUndoGroupNotification object:self.undoManager];
   [NSNotificationCenter.defaultCenter postNotificationName:MPDocumentDidEnterSearchNotification object:self];
   [self updateSearch:self];
 }
@@ -58,7 +59,7 @@ NSString *const kMPDocumentSearchResultsKey           = @"kMPDocumentSearchResul
     [self enterSearchWithContext:[MPEntrySearchContext userContext]];
     return; // We get called back!
   }
-  MPDocumentWindowController *windowController = [self windowControllers][0];
+  MPDocumentWindowController *windowController = self.windowControllers.firstObject;
   self.searchContext.searchString = windowController.searchField.stringValue;
   MPDocument __weak *weakSelf = self;
   dispatch_queue_t backgroundQueue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
@@ -73,6 +74,7 @@ NSString *const kMPDocumentSearchResultsKey           = @"kMPDocumentSearchResul
 - (void)exitSearch:(id)sender {
   [NSNotificationCenter.defaultCenter removeObserver:self name:NSUndoManagerDidUndoChangeNotification object:self.undoManager];
   [NSNotificationCenter.defaultCenter removeObserver:self name:NSUndoManagerDidRedoChangeNotification object:self.undoManager];
+  [NSNotificationCenter.defaultCenter removeObserver:self name:NSUndoManagerDidCloseUndoGroupNotification object:self.undoManager];
   self.searchContext = nil;
   [NSNotificationCenter.defaultCenter postNotificationName:MPDocumentDidExitSearchNotification object:self];
 }
@@ -123,10 +125,6 @@ NSString *const kMPDocumentSearchResultsKey           = @"kMPDocumentSearchResul
     [NSNotificationCenter.defaultCenter postNotificationName:MPDocumentDidChangeSearchFlags object:self];
     [self updateSearch:self];
   }
-}
-
-- (NSArray *)entriesMatchingSearch:(MPEntrySearchContext *)search {
-  return nil;
 }
 
 #pragma mark Search
