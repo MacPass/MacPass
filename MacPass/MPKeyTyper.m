@@ -41,7 +41,7 @@
   CGEventSetFlags(pressKey, key.modifier);
   CGEventSetFlags(releaseKey, key.modifier);
   
-  unichar *charBuffer;
+  unichar *charBuffer = 0;
   if(text.length > 0) {
     charBuffer = malloc(sizeof(unichar) * text.length);
     [text getCharacters:charBuffer range:NSMakeRange(0, text.length)];
@@ -59,9 +59,7 @@
   CFRelease(releaseKey);
   CFRelease(eventSource);
   
-  if(text.length > 0) {
-    free(charBuffer);
-  }
+  free(charBuffer);
 }
 
 + (void)sendPaste {
