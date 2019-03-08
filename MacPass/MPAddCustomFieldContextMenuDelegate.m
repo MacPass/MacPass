@@ -57,13 +57,13 @@ HmacOtp-Counter field.
 - (void)_setupHOTPMenuItemsToMenu:(NSMenu *)menu {
   BOOL hasConfigAttribute = nil != [self.entry customAttributeWithKey:MPHMACOTPConfigAttributeKey];
   if(!hasConfigAttribute) {
-    NSMenuItem *item = [[NSMenuItem alloc] initWithTitle:@"Add config" action:@selector(_addHMACConfig:) keyEquivalent:@""];
+    NSMenuItem *item = [[NSMenuItem alloc] initWithTitle:NSLocalizedString(@"ADD_CUSTOM_ATTRIBUTE_HMACOTP_CONFIG", @"Menu item title for adding an hmacotp config attribute") action:@selector(_addHMACConfig:) keyEquivalent:@""];
     item.target = self;
     [menu addItem:item];
   }
   BOOL hasSeedAttribute = nil != [self.entry customAttributeWithKey:MPHMACOTPSeedAttributeKey];
   if(!hasSeedAttribute) {
-    NSMenuItem *item = [[NSMenuItem alloc] initWithTitle:@"Add seed" action:@selector(_addHMACSeed:) keyEquivalent:@""];
+    NSMenuItem *item = [[NSMenuItem alloc] initWithTitle:NSLocalizedString(@"ADD_CUSTOM_ATTRIBUTE_HMACOTP_SEED", @"Menu item title for adding an hmacotp seed attribute") action:@selector(_addHMACSeed:) keyEquivalent:@""];
     item.target = self;
     [menu addItem:item];
   }
