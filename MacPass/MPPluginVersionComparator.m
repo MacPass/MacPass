@@ -43,6 +43,12 @@
   MPVersionCharacterType typeB;
   
   NSUInteger minPartsCount = MIN(partsA.count, partsB.count);
+  if(minPartsCount == 0) {
+    if(partsA.count == 0) {
+      return NSOrderedAscending;
+    }
+    return NSOrderedDescending;
+  }
   for(NSUInteger index = 0; index < minPartsCount; index++) {
     
     NSString *partA = partsA[index];
