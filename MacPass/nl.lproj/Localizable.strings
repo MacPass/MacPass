@@ -14,7 +14,7 @@
 "%ld_WEEKS_AGO" = "%ld weken geleden";
 
 /* preset to expire after 90 days from now */
-"90_DAYS" = "binnen 90 dagen";
+"90_DAYS" = "90 dagen";
 
 /* Button label to abort a merge on a file with changed master key! */
 "ABORT_MERGE_KEEP_MINE" = "Samenvoegen afbreken. Behoud huidige.";
@@ -29,7 +29,7 @@
 "ALERT_AUTOTYPE_MISSING_ACCESSIBILTY_PERMISSIONS_BUTTON_OPEN_PREFERENCES" = "Open toegankelijkheidsopties…";
 
 /* Alert informative text displayed when Autotype performs self check and lacks accessibilty permissions */
-"ALERT_AUTOTYPE_MISSING_ACCESSIBILTY_PERMISSIONS_INFORMATIVE_TEXT" = "Automatisch inloggen is niet beschikbaar, omdat MacPass geen toestemming heeft om je computer te besturen. Kies Apple-menu >'Systeemvoorkeuren', klik op 'Beveiliging en privacy', klik vervolgens op 'Privacy' en voeg MacPass toe aan de groep Toegankelijkheid om automatisch inloggen aan te zetten. Sluit MacPass en open deze opnieuw om de wijziging door te voeren.";
+"ALERT_AUTOTYPE_MISSING_ACCESSIBILTY_PERMISSIONS_INFORMATIVE_TEXT" = "Automatisch inloggen is niet beschikbaar, omdat MacPass geen toestemming heeft om je computer te besturen. Kies Apple-menu >'Systeemvoorkeuren', klik op 'Beveiliging en privacy', klik vervolgens op 'Privacy' en voeg MacPass toe aan de groep Toegankelijkheid om automatisch inloggen aan te zetten. Stop en open MacPass opnieuw om de wijziging door te voeren.";
 
 /* Alert message displayed when Autotype performs self check and lacks accessibilty permissions */
 "ALERT_AUTOTYPE_MISSING_ACCESSIBILTY_PERMISSIONS_MESSAGE_TEXT" = "Bevoegdheid om automatisch in te loggen ontbreekt";
@@ -44,7 +44,7 @@
 "ALERT_INCOMPATIBLE_PLUGINS_ENCOUNTERED_MESSAGE" = "Incompatibele extensies";
 
 /* Alert informative text when plugins or their settings change and require a restart */
-"ALERT_INFORMATIVE_TEXT_PLUGINS_CHANGED_SUGGEST_RESTART" = "Wijzigingen in extensies worden actief na een herstart. MacPass nu opnieuw starten?";
+"ALERT_INFORMATIVE_TEXT_PLUGINS_CHANGED_SUGGEST_RESTART" = "Extensies worden geladen bij het openen van MacPass. De wijziging wordt daarom pas actief wanneer je MacPass de volgende keer opent. Klik op 'Ga door' om MacPass te stoppen en opnieuw te openen.";
 
 /* Alert informative text to ask the user if he really want to uninstall the plugin */
 "ALERT_INFORMATIVE_TEXT_REALLY_UNINSTALL_PLUGIN" = "De extensie wordt verplaatst naar de prullenmand";
@@ -62,17 +62,20 @@
 "ALERT_MERGE_KDB_FILE_MESSAGE" = "Je voegt een wachtwoordenkluis met de indeling KDB samen";
 
 /* Alert message text when plugins or their settings change and require a restart */
-"ALERT_MESSAGE_PLUGINS_CHANGED_SUGGEST_RESTART" = "Gewijzigde extensie-instellingen. Sluit MacPass en open deze opnieuw om de wijziging door te voeren.";
+"ALERT_MESSAGE_PLUGINS_CHANGED_SUGGEST_RESTART" = "Wil je MacPass nu stoppen en opnieuw openen om de wijziging door te voeren?";
 
 /* Alert message text to ask the user if he really want to uninstall the plugin. Include %@ placeholder for plugin name */
-"ALERT_MESSAGE_TEXT_REALLY_UNINSTALL_PLUGIN_%@" = "Extensie %@ verwijderen?";
+"ALERT_MESSAGE_TEXT_REALLY_UNINSTALL_PLUGIN_%@" = "Wil je de extensie %@ verwijderen?";
+
+/* Message text for disabled updates alert! */
+"ALERT_UPDATES_DISABLED_MESSAGE_TEXT" = "Automatisch bijwerken uitgeschakeld";
 
 /* Attachments column title (shows counts)
    Menu item to toggle display of attachment count column in entry table */
 "ATTACHMENTS" = "Bijlagen";
 
 /* Sucessfully merged external changes */
-"AUTO_MERGE_NOTIFICATION_TEXT" = "Automatisch samenvoegen gelukt!";
+"AUTO_MERGE_NOTIFICATION_TEXT" = "Automatisch samenvoegen gelukt";
 
 /* Menu item for automatic trash creation */
 "AUTOCREATE_TRASH_FOLDER" = "automatisch";
@@ -87,13 +90,13 @@
 "AUTOTYPE_NO" = "Deactiveer automatisch inloggen";
 
 /* Notification: Autotype failed, MacPass has no permission to send key strokes */
-"AUTOTYPE_NOTIFICATION_MACPASS_HAS_NO_ACCESSIBILTY_PERMISSIONS" = "Automatisch inloggen is niet beschikbaar, omdat MacPass geen toestemming heeft om je computer te besturen. Kies Apple-menu >'Systeemvoorkeuren', klik op 'Beveiliging en privacy', klik vervolgens op 'Privacy' en voeg MacPass toe aan de groep Toegankelijkheid om automatisch inloggen aan te zetten. Sluit MacPass en open deze opnieuw om de wijziging door te voeren.";
+"AUTOTYPE_NOTIFICATION_MACPASS_HAS_NO_ACCESSIBILTY_PERMISSIONS" = "Automatisch inloggen is niet beschikbaar, omdat MacPass geen toestemming heeft om je computer te besturen. Kies Apple-menu >'Systeemvoorkeuren', klik op 'Beveiliging en privacy', klik vervolgens op 'Privacy' en voeg MacPass toe aan de groep Toegankelijkheid om automatisch inloggen aan te zetten. Stop en open MacPass opnieuw om de wijziging door te voeren.";
 
 /* Notification: Autotype failed, no documents are open */
 "AUTOTYPE_OVERLAY_NO_DOCUMENTS" = "Open een wachtwoordenkluis om automatisch in te kunnen loggen";
 
 /* Noticiation: Autotype failed to find a match for %@ (string placeholder) */
-"AUTOTYPE_OVERLAY_NO_MATCH_FOR_%@" = "Geen overeenkomst gevonden voor %@!";
+"AUTOTYPE_OVERLAY_NO_MATCH_FOR_%@" = "Geen overeenkomst gevonden voor %@";
 
 /* Enable autotype menu item */
 "AUTOTYPE_YES" = "Activeer automatisch inloggen";
@@ -114,23 +117,29 @@
 /* Menu item in the database outline context menu to change the trash group */
 "CHANGE_TRASH_GROUP" = "Wijzig prullenmandgroep";
 
+/* Button title in the key file selection dialog for selecting a key */
+"CHOOSE_FILE_BUTTON_TITLE" = "Open";
+
+/* Clear Autotype Button */
+"CLEAR_AUTOTYPE" = "Wis automatisch inloggen";
+
 /* Menu to clear recent searches */
 "CLEAR_RECENT_SEARCHES" = "Wis recente zoekopdrachten";
 
 /* String displayed at dock badge when clipboard is about to be cleared */
-"CLEARING_PASTEBOARD" = "";
+"CLEARING_PASTEBOARD" = "Gewist";
 
 /* Field name that was copied to the pasteboard */
-"COPIED_FIELD_%@" = "Gekopieerd %@";
+"COPIED_FIELD_%@" = "%@ gekopieerd";
 
 /* Password was copied to the pasteboard */
-"COPIED_PASSWORD" = "Wachtwoord gekopieerd!";
+"COPIED_PASSWORD" = "Wachtwoord gekopieerd";
 
 /* URL was copied to the pasteboard */
-"COPIED_URL" = "Koppeling met webpagina gekopieerd!";
+"COPIED_URL" = "Koppeling met webpagina gekopieerd";
 
 /* Username was copied to the pasteboard */
-"COPIED_USERNAME" = "Gebruikersnaam gekopieerd!";
+"COPIED_USERNAME" = "Gebruikersnaam gekopieerd";
 
 /* Submenu to Copy custom fields */
 "COPY_CUSTOM_FIELDS" = "Kopieer aangepaste velden";
@@ -159,6 +168,9 @@
    Toolbar item copy username */
 "COPY_USERNAME" = "Kopieer gebruikersnaam";
 
+/* Curstom attribute reference item */
+"CUSTOM_ATTRIBUTE" = "";
+
 /* Title for menu for custom search filters */
 "CUSTOM_SEARCH_FILTER_MENU" = "Aangepast zoekfilter…";
 
@@ -169,7 +181,7 @@
 "DEFAULT_BROWSER" = "standaardwebbrowser";
 
 /* Default Titel for new Custom-Fields */
-"DEFAULT_CUSTOM_FIELD_TITLE" = "Aangepast";
+"DEFAULT_CUSTOM_FIELD_TITLE" = "Eigenschap";
 
 /* Default Value for new Custom-Fields */
 "DEFAULT_CUSTOM_FIELD_VALUE" = "Waarde";
@@ -202,6 +214,10 @@
 /* Empty Trash */
 "DELETE_TRASHED_GROUP" = "Verwijder";
 
+/* Action title for copying an entry via drag and drop to another database
+   Action title for moving an entry via drag and drop */
+"DRAG_ENTRY" = "Sleep onderdeel";
+
 /* Action title for moving a group via drag and drop
    Actiontitle for copying groups via drag and drop to antother database */
 "DRAG_GROUP" = "Sleep groep";
@@ -226,31 +242,31 @@
 "ENFORCE_PASSWORD_CHANGE_ALERT_DESCRIPTION" = "Je kunt niet opslaan totdat je het hoofdwachtwoord of sleutelbestand hebt gewijzigd.";
 
 /* Message text for the enforce password change alert */
-"ENFORCE_PASSWORD_CHANGE_ALERT_TITLE" = "Het hoofdwachtwoord is vervallen!";
+"ENFORCE_PASSWORD_CHANGE_ALERT_TITLE" = "Het hoofdwachtwoord is verlopen";
 
 /* Group row for entry attributes */
 "ENTRY_DEFAULT_ATTRIBUTES" = "Standaardattributen";
 
 /* Keyfile not valid */
-"ERROR_INVALID_KEYFILE" = "Sleutelbestand is ongeldig!";
+"ERROR_INVALID_KEYFILE" = "Sleutelbestand is ongeldig";
 
 /* Error description given when adding an invalid plugin */
 "ERROR_INVALID_PLUGIN" = "Ongeldige extensie";
 
 /* Passwords do not match */
-"ERROR_PASSWORD_MISSMATCH" = "Hoofdwachtwoord komt niet overeen!";
+"ERROR_PASSWORD_MISSMATCH" = "Hoofdwachtwoord komt niet overeen";
 
 /* Passwords do not match, keyfile is invalid */
-"ERROR_PASSWORD_MISSMATCH_INVALID_KEYFILE" = "Hoofdwachtwoord komt niet overeen en het sleutelbestand is ongeldig!";
+"ERROR_PASSWORD_MISSMATCH_INVALID_KEYFILE" = "Hoofdwachtwoord komt niet overeen en het sleutelbestand is ongeldig";
 
 /* Recommend/Enforce key change intervall format */
 "EVERY_%ld_DAYS" = "Elke %ld dagen";
 
 /* Format to returen the date an item expires. Includes %@ placehoder for date */
-"EXPIRES_AT_DATE_%@" = "Verloopt: %@";
+"EXPIRES_AT_DATE_%@" = "Verloopt op: %@";
 
 /* The master key was changed by an external program! */
-"EXTERN_CHANGE_OF_MASTERKEY" = "Hoofdwachtwoord is gewijzigd door een ander programma!";
+"EXTERN_CHANGE_OF_MASTERKEY" = "Hoofdwachtwoord is gewijzigd door een ander programma";
 
 /* External file change strategy option: ask what to do */
 "FILE_CHANGE_STRATEGY_ASK" = "vragen";
@@ -260,7 +276,7 @@
 
 /* Button in dialog to merge changes into file!
    External file change strategy option: Merge external changes into local file. */
-"FILE_CHANGE_STRATEGY_MERGE" = "samenvoegen";
+"FILE_CHANGE_STRATEGY_MERGE" = "wijzigingen samenvoegen";
 
 /* External file change strategy option: Use the changed file and discard local changes */
 "FILE_CHANGE_STRATEGY_USE_OTHER" = "laad de opgeslagen versie en negeer de geopende";
@@ -269,7 +285,7 @@
 "FILE_CHANGED_BY_OTHERS_INFO_TEXT" = "De laatst opgeslagen versie van de wachtwoordenkluis is zojuist buiten MacPass om gewijzigd. Welke versie wil je behouden?";
 
 /* Message displayed when an open file was changed from another application */
-"FILE_CHANGED_BY_OTHERS_MESSAGE_TEXT" = "De wachtwoordenkluis is gewijzigd!";
+"FILE_CHANGED_BY_OTHERS_MESSAGE_TEXT" = "De wachtwoordenkluis is gewijzigd";
 
 /* Error while reopening last known documents */
 "FILE_OPEN_ERROR" = "Openen mislukt.";
@@ -306,10 +322,10 @@
 "KEEP_OTHER_DISCARD_MINE" = "Behoud andere, negeer huidige";
 
 /* Do not install the plugin */
-"KEEP_PLUGIN" = "Bewaar extensie";
+"KEEP_PLUGIN" = "Negeer";
 
 /* Do not restart MacPass */
-"KEEP_RUNNING" = "Negeren";
+"KEEP_RUNNING" = "Annuleer";
 
 /* last week */
 "LAST_WEEK" = "Vorige week";
@@ -321,7 +337,7 @@
 "MESSAGE_ADD_ATTACHMENT_OPEN_PANEL" = "Selecteer het toe te voegen bestand";
 
 /* Message in the add plugin open panel */
-"MESSAGE_ADD_PLUGIN_OPEN_PANEL" = "Selecteer de extensie";
+"MESSAGE_ADD_PLUGIN_OPEN_PANEL" = "Selecteer de extensie die je wilt installeren";
 
 /* Message in the open panel to import an XML file */
 "MESSAGE_XML_OPEN_PANEL" = "Selecteer het te importeren XML-bestand";
@@ -353,7 +369,7 @@
 "NEW_GROUP" = "Voeg groep toe";
 
 /* Expiration date format, when item does not expire */
-"NO_EXPIRE_DATE_SET" = "Verloopt niet";
+"NO_EXPIRE_DATE_SET" = "Verloopt nooit";
 
 /* Menu item to reset the template groups */
 "NO_TEMPLATE_GROUP" = "geen groep als sjabloon";
@@ -375,16 +391,16 @@
 "OK" = "";
 
 /* preset to expire after one montch from now */
-"ONE_MONTH" = "binnen één maand";
+"ONE_MONTH" = "één maand";
 
 /* preset to expire after one week from now */
-"ONE_WEEK" = "binnen één week";
+"ONE_WEEK" = "één week";
 
 /* one week ago */
 "ONE_WEEK_AGO" = "Eén week geleden";
 
 /* preset to expire after one year from now */
-"ONE_YEAR" = "binnen één jaar";
+"ONE_YEAR" = "één jaar";
 
 /* Open button in the open panel to add attachments to an entry */
 "OPEN_BUTTON_ADD_ATTACHMENT_OPEN_PANEL" = "Toevoegen";
@@ -428,7 +444,7 @@
 /* Placeholder for the password input field if passwords are disabled
    Placeholder for the repeat password input if passwords are disabled
    Placeholder in the unlock-password input field if password is disabled */
-"PASSWORD_INPUT_NO_PASSWORD" = "Geen hoofdwachtwoord";
+"PASSWORD_INPUT_NO_PASSWORD" = "Zonder hoofdwachtwoord";
 
 /* Placeholder for the repeat password field to aks for the repeated password */
 "PASSWORD_INPUT_REPEAT_PASSWORD" = "Herhaal hoofdwachtwoord";
@@ -436,8 +452,20 @@
 /* Menu item to perform autotype with the selected entry */
 "PERFORM_AUTOTYPE_FOR_ENTRY" = "Log automatisch in";
 
+/* Label for the button when a download did not succeed */
+"PLUGIN_BROWSER_ACTION_RETRY_FAILED_DOWNLOAD" = "Mislukt. Probeer opnieuw.";
+
 /* Label for the button to show a downloaded file */
 "PLUGIN_BROWSER_ACTION_SHOW_DOWNLOADED_FILE" = "Toon in Finder…";
+
+/* Button to download the Plugin */
+"PLUGIN_BROWSER_DOWNLOAD_PLUGIN_BUTTON" = "Download";
+
+/* Status for an up-to-date plugin in the plugin browser */
+"PLUGIN_BROWSER_LATEST_VERSION_INSTALLED" = "Bijgewerkt";
+
+/* Status for an outdated plugin version in the plugin browser */
+"PLUGIN_BROWSER_NEWER_VERSION_%@_AVAILABLE" = "Nieuwe versie van %@ beschikbaar.";
 
 /* Status for an uninstalled plugin in the plugin browser */
 "PLUGIN_BROWSER_PLUGIN_NOT_INSTALLED" = "Niet geïnstalleerd";
@@ -479,7 +507,7 @@
 "RECOMMEND_PASSWORD_CHANGE_ALERT_TITLE" = "Hoofdwachtwoord vernieuwen.";
 
 /* Restart */
-"RESTART" = "Herstarten";
+"RESTART" = "Ga door";
 
 /* Action to restore and Entry to a previous state of it's history */
 "RESTORE_HISTORY_ENTRY" = "Herstel geschiedenisonderdeel";
@@ -501,7 +529,7 @@
 "SEARCH_DUPLICATE_PASSWORDS" = "Dubbele wachtwoorden";
 
 /* Search option: Find expired entries */
-"SEARCH_EXPIRED_ENTRIES" = "Vervallen onderdelen";
+"SEARCH_EXPIRED_ENTRIES" = "Verlopen onderdelen";
 
 /* Inherit search settings menu item */
 "SEARCH_INHERIT" = "Erf zoekinstellingen";
@@ -513,7 +541,7 @@
 "SEARCH_YES" = "Insluiten in zoeken";
 
 /* Menu item title for the expiry preset selection menu in the date picker */
-"SELECT_DATE_PRESET" = "Gebruik voorinstelling…";
+"SELECT_DATE_PRESET" = "Verloopt over…";
 
 /* Message on the open panel for selecting which browser to use for opening URLs */
 "SELECT_DEFAULT_BROWSER_OPEN_PANEL_MESSAGE" = "Selecteer de browser om een webpagina mee te openen";
@@ -538,7 +566,7 @@
 "TITLE" = "Naam";
 
 /* preset to expire tomorrow */
-"TOMORROW" = "Morgen";
+"TOMORROW" = "één dag";
 
 /* Toolbar item to perform autotype */
 "TOOLBAR_PERFORM_AUTOTYPE_FOR_ENTRY" = "Log automatisch in";
@@ -552,8 +580,17 @@
 /* Uninstall plugin */
 "UNINSTALL" = "Verwijder";
 
+/* No comment provided by engineer. */
+"UNKNOWN_FILE_VERSION" = "Wachtwoordenkluis met onbekende indeling";
+
 /* Unknown database format. */
 "UNKNOWN_FORMAT" = "Onbekend bestandsformaat";
+
+/* Database format is unknown since the file is not saved yet */
+"UNKNOWN_FORMAT_FILE_NOT_SAVED_YET" = "Indeling nog onbekend, sla de wachtwoordenkluis eerst op";
+
+/* No comment provided by engineer. */
+"UNKNOWN_TOOLBAR_ITEM" = "Onbekend knoppenbalkonderdeel";
 
 /* Update Settings Label */
 "UPDATE_SETTINGS" = "Updates";
@@ -568,6 +605,10 @@
    Username column title
    Username reference item */
 "USERNAME" = "Gebruikersnaam";
+
+/* Displayed name when uuid field was copied
+   UUID reference item */
+"UUID" = "Identificatie";
 
 /* No Key or Password */
 "WARNING_NO_PASSWORD_OR_KEYFILE" = "Stel een hoofdwachtwoord en/of sleutelbestand in";
@@ -591,7 +632,7 @@
 "WARNING_ON_SAVE_NO_PASSWORD_OR_KEY_SET_SUGGESTION" = "Stel een hoofdwachtwoord en/of sleutelbestand in voor deze wachtwoordenkluis om de wijzigingen te kunnen bewaren.";
 
 /* Label for the workflow settings tab */
-"WORKFLOW_SETTINGS" = "Bewerken";
+"WORKFLOW_SETTINGS" = "Geavanceerd";
 
 /* Yesterday */
 "YESTERDAY" = "Gisteren";
