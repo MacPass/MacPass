@@ -44,7 +44,7 @@ NSString *const kMPDocumentSearchResultsKey           = @"kMPDocumentSearchResul
   self.searchContext = context;
   [NSNotificationCenter.defaultCenter addObserver:self selector:@selector(updateSearch:) name:NSUndoManagerDidRedoChangeNotification object:self.undoManager];
   [NSNotificationCenter.defaultCenter addObserver:self selector:@selector(updateSearch:) name:NSUndoManagerDidUndoChangeNotification object:self.undoManager];
-  [NSNotificationCenter.defaultCenter addObserver:self selector:@selector(updateSearch:) name:NSUndoManagerDidCloseUndoGroupNotification object:self.undoManager];
+  //[NSNotificationCenter.defaultCenter addObserver:self selector:@selector(updateSearch:) name:NSUndoManagerDidCloseUndoGroupNotification object:self.undoManager];
   [NSNotificationCenter.defaultCenter postNotificationName:MPDocumentDidEnterSearchNotification object:self];
   [self updateSearch:self];
 }
@@ -74,7 +74,7 @@ NSString *const kMPDocumentSearchResultsKey           = @"kMPDocumentSearchResul
 - (void)exitSearch:(id)sender {
   [NSNotificationCenter.defaultCenter removeObserver:self name:NSUndoManagerDidUndoChangeNotification object:self.undoManager];
   [NSNotificationCenter.defaultCenter removeObserver:self name:NSUndoManagerDidRedoChangeNotification object:self.undoManager];
-  [NSNotificationCenter.defaultCenter removeObserver:self name:NSUndoManagerDidCloseUndoGroupNotification object:self.undoManager];
+  //[NSNotificationCenter.defaultCenter removeObserver:self name:NSUndoManagerDidCloseUndoGroupNotification object:self.undoManager];
   self.searchContext = nil;
   [NSNotificationCenter.defaultCenter postNotificationName:MPDocumentDidExitSearchNotification object:self];
 }
