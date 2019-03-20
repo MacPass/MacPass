@@ -40,7 +40,7 @@
 - (IBAction)openRecentURL:(id)sender {
   NSInteger clicked = self.tableView.clickedRow;
   NSArray <NSURL *> *recentURLS = NSDocumentController.sharedDocumentController.recentDocumentURLs;
-  if(clicked > 0 && clicked < recentURLS.count) {
+  if(clicked > -1 && clicked < recentURLS.count) {
     [NSDocumentController.sharedDocumentController openDocumentWithContentsOfURL:recentURLS[clicked]
                                                                          display:YES
                                                                completionHandler:^(NSDocument * _Nullable document, BOOL documentWasAlreadyOpen, NSError * _Nullable error) {}];
