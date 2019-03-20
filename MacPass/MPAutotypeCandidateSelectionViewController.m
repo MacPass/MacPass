@@ -42,6 +42,8 @@
 - (void)viewDidLoad {
   [super viewDidLoad];
   self.selectAutotypeContextButton.enabled = NO;
+  NSNotification *notification = [NSNotification notificationWithName:NSTableViewSelectionDidChangeNotification object:self.contextTableView];
+  [self tableViewSelectionDidChange:notification];
 }
 
 #pragma mark NSTableViewDataSource
