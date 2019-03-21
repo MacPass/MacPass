@@ -25,6 +25,12 @@
 /* Toolbar item with action menu */
 "ACTION" = "Action";
 
+/* Menu item title for adding an hmacotp config attribute */
+"ADD_CUSTOM_ATTRIBUTE_HMACOTP_CONFIG" = "Add HMACOTP Configuration";
+
+/* Menu item title for adding an hmacotp seed attribute */
+"ADD_CUSTOM_ATTRIBUTE_HMACOTP_SEED" = "Add HMACOTP Seed";
+
 /* Menu displayed for adding special custom keys */
 "ADD_CUSTOM_FIELD_CONTEXT_MENU" = "Add Custom Field Menu";
 
@@ -309,6 +315,9 @@
 
 /* Group row for entry attributes */
 "ENTRY_DEFAULT_ATTRIBUTES" = "Default Attributes";
+
+/* Tooltip displayed on the index header cell */
+"ENTRY_INDEX_COLUMN_TOOLTIP" = "Column to sort by user defined order";
 
 /* Keyfile not valid */
 "ERROR_INVALID_KEYFILE" = "Keyfile is invalid!";
