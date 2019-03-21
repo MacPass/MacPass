@@ -181,6 +181,7 @@ NSString *const _MPTableSecurCellView = @"PasswordCell";
   modifiedColumn.sortDescriptorPrototype = [NSSortDescriptor sortDescriptorWithKey:timeInfoModificationTimeKeyPath ascending:YES selector:@selector(compare:)];
   
   indexColumn.headerCell.stringValue = @"";
+  indexColumn.headerToolTip = NSLocalizedString(@"ENTRY_INDEX_COLUMN_TOOLTIP", "Tooltip displayed on the index header cell");
   parentColumn.headerCell.stringValue = NSLocalizedString(@"GROUP", "Group column title");
   titleColumn.headerCell.stringValue = NSLocalizedString(@"TITLE", "Title column title");
   userNameColumn.headerCell.stringValue = NSLocalizedString(@"USERNAME", "Username column title");
