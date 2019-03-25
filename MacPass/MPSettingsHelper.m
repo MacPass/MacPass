@@ -34,6 +34,7 @@ NSString *const kMPSettingsKeyOpenEmptyDatabaseOnLaunch               = @"OpenEm
 NSString *const kMPSettingsKeyReopenLastDatabaseOnLaunch              = @"ReopenLastDatabaseOnLaunch";
 NSString *const kMPSettingsKeyQuitOnLastWindowClose                   = @"QuitOnLastWindowClose";
 NSString *const kMPSettingsKeyFileChangeStrategy                      = @"FileChangeStrategy";
+NSString *const kMPSettingsKeyEnableAutosave                          = @"EnableAutosave";
 NSString *const kMPSettingsKeyLockOnSleep                             = @"LockOnSleep";
 NSString *const kMPSettingskeyLockOnLogout                            = @"LockOnLogout";
 NSString *const kMPSettingsKeyIdleLockTimeOut                         = @"IdleLockTimeOut";
@@ -157,7 +158,8 @@ NSString *const kMPDepricatedSettingsKeyLoadUnsecurePlugins               = @"MP
                          kMPSettingsKeyUpdatePasswordOnTemplateEntries: @YES,
                          kMPSettingsKeyDisabledPlugins: @[],
                          kMPSettingsKeyLoadIncompatiblePlugins: @NO,
-                         kMPSettingsKeyQuitOnLastWindowClose: @NO
+                         kMPSettingsKeyQuitOnLastWindowClose: @NO,
+                         kMPSettingsKeyEnableAutosave: @YES
                          };
   });
   return standardDefaults;
