@@ -116,7 +116,7 @@ NSString *const MPDocumentGroupKey                            = @"MPDocumentGrou
 }
 
 + (BOOL)autosavesInPlace {
-  return YES;
+  return [NSUserDefaults.standardUserDefaults boolForKey:kMPSettingsKeyEnableAutosave];
 }
 
 - (instancetype)init {

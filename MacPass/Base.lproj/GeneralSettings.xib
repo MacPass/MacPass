@@ -10,6 +10,7 @@
             <connections>
                 <outlet property="clearPasteboardOnQuitCheckButton" destination="447" id="520"/>
                 <outlet property="clearPasteboardTimeoutPopup" destination="419" id="521"/>
+                <outlet property="enableAutosaveCheckButton" destination="lz3-4U-UMI" id="L5y-58-IgH"/>
                 <outlet property="fileChangeStrategyPopup" destination="wIu-Sh-2a2" id="oJo-dA-lEE"/>
                 <outlet property="idleTimeOutPopup" destination="584" id="809"/>
                 <outlet property="lockOnLogoutCheckButton" destination="5SP-Vi-1sn" id="yaI-LH-R5A"/>
@@ -23,7 +24,7 @@
         <customObject id="-1" userLabel="First Responder" customClass="FirstResponder"/>
         <customObject id="-3" userLabel="Application" customClass="NSObject"/>
         <customView translatesAutoresizingMaskIntoConstraints="NO" id="1">
-            <rect key="frame" x="0.0" y="0.0" width="400" height="482"/>
+            <rect key="frame" x="0.0" y="0.0" width="400" height="524"/>
             <subviews>
                 <box autoresizesSubviews="NO" verticalHuggingPriority="500" borderType="line" title="Security" translatesAutoresizingMaskIntoConstraints="NO" id="465">
                     <rect key="frame" x="17" y="16" width="366" height="357"/>
@@ -157,11 +158,18 @@
                         </subviews>
                         <constraints>
                             <constraint firstItem="5cV-xX-SUU" firstAttribute="leading" secondItem="mNh-3L-Z6E" secondAttribute="leading" constant="20" symbolic="YES" id="1jw-nb-bAB"/>
+                            <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="630" secondAttribute="trailing" constant="20" symbolic="YES" id="7cd-1e-eRD"/>
+                            <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="nqZ-rB-mFS" secondAttribute="trailing" constant="20" symbolic="YES" id="CL9-fA-GTJ"/>
                             <constraint firstItem="584" firstAttribute="top" secondItem="hy4-RL-dAa" secondAttribute="bottom" constant="8" symbolic="YES" id="SV7-PD-nId"/>
+                            <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="bSt-Wf-FNZ" secondAttribute="trailing" constant="20" symbolic="YES" id="VQY-eq-fCM"/>
                             <constraint firstItem="bSt-Wf-FNZ" firstAttribute="top" secondItem="5SP-Vi-1sn" secondAttribute="bottom" constant="11" id="WUG-Uf-FCO"/>
                             <constraint firstItem="5SP-Vi-1sn" firstAttribute="leading" secondItem="447" secondAttribute="leading" id="Ylr-aA-jaD"/>
                             <constraint firstItem="hy4-RL-dAa" firstAttribute="top" secondItem="nqZ-rB-mFS" secondAttribute="bottom" constant="8" symbolic="YES" id="a3i-tc-gUU"/>
                             <constraint firstItem="5SP-Vi-1sn" firstAttribute="top" secondItem="630" secondAttribute="bottom" constant="6" symbolic="YES" id="acg-vp-LeB"/>
+                            <constraint firstItem="584" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="805" secondAttribute="trailing" constant="8" symbolic="YES" id="aoz-sS-O0n"/>
+                            <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="447" secondAttribute="trailing" constant="20" symbolic="YES" id="i8H-ad-IKb"/>
+                            <constraint firstItem="419" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="431" secondAttribute="trailing" constant="8" symbolic="YES" id="pN3-pB-Z5I"/>
+                            <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="5SP-Vi-1sn" secondAttribute="trailing" constant="20" symbolic="YES" id="q0v-Wo-mHx"/>
                             <constraint firstItem="nqZ-rB-mFS" firstAttribute="top" secondItem="447" secondAttribute="bottom" constant="11" id="qLm-ih-A04"/>
                             <constraint firstAttribute="trailing" secondItem="5cV-xX-SUU" secondAttribute="trailing" constant="20" symbolic="YES" id="qY0-io-RZ0"/>
                             <constraint firstAttribute="trailing" secondItem="hy4-RL-dAa" secondAttribute="trailing" constant="20" symbolic="YES" id="r5c-KT-eh0"/>
@@ -193,18 +201,33 @@
                     </constraints>
                 </box>
                 <box autoresizesSubviews="NO" verticalHuggingPriority="500" borderType="line" title="File Handling" translatesAutoresizingMaskIntoConstraints="NO" id="888">
-                    <rect key="frame" x="17" y="375" width="366" height="87"/>
+                    <rect key="frame" x="17" y="375" width="366" height="129"/>
                     <view key="contentView" id="cpg-tt-SHE">
-                        <rect key="frame" x="3" y="3" width="360" height="69"/>
+                        <rect key="frame" x="3" y="3" width="360" height="111"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <button verticalHuggingPriority="252" translatesAutoresizingMaskIntoConstraints="NO" id="530">
-                                <rect key="frame" x="14" y="43" width="234" height="18"/>
+                                <rect key="frame" x="14" y="85" width="234" height="18"/>
                                 <buttonCell key="cell" type="check" title="Reopen last Database after Launch" bezelStyle="regularSquare" imagePosition="left" state="on" inset="2" id="531">
                                     <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                                     <font key="font" metaFont="system"/>
                                 </buttonCell>
                             </button>
+                            <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="lz3-4U-UMI">
+                                <rect key="frame" x="14" y="65" width="123" height="18"/>
+                                <buttonCell key="cell" type="check" title="Enable Autosave" bezelStyle="regularSquare" imagePosition="left" state="on" inset="2" id="wG7-bi-2fi">
+                                    <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                                    <font key="font" metaFont="system"/>
+                                </buttonCell>
+                            </button>
+                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="3Bo-Ml-1KB">
+                                <rect key="frame" x="18" y="45" width="324" height="14"/>
+                                <textFieldCell key="cell" controlSize="small" lineBreakMode="clipping" title="Close and open all documents for changes to take effect" id="ya5-ps-c4W">
+                                    <font key="font" metaFont="smallSystem"/>
+                                    <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                    <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                </textFieldCell>
+                            </textField>
                             <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="h3w-Ms-ohK">
                                 <rect key="frame" x="14" y="20" width="93" height="17"/>
                                 <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="If file changes:" id="QrK-hM-Xt1">
@@ -223,12 +246,19 @@
                             </popUpButton>
                         </subviews>
                         <constraints>
+                            <constraint firstItem="3Bo-Ml-1KB" firstAttribute="leading" secondItem="cpg-tt-SHE" secondAttribute="leading" constant="20" symbolic="YES" id="2Jh-pk-bN7"/>
                             <constraint firstAttribute="trailing" secondItem="wIu-Sh-2a2" secondAttribute="trailing" constant="20" id="2Qw-fT-Dd8"/>
+                            <constraint firstAttribute="trailing" secondItem="3Bo-Ml-1KB" secondAttribute="trailing" constant="20" symbolic="YES" id="2UW-ao-hrC"/>
                             <constraint firstAttribute="bottom" secondItem="h3w-Ms-ohK" secondAttribute="bottom" constant="20" symbolic="YES" id="3KB-kR-5d6"/>
                             <constraint firstItem="h3w-Ms-ohK" firstAttribute="leading" secondItem="530" secondAttribute="leading" id="4Fi-rX-8e0"/>
+                            <constraint firstItem="lz3-4U-UMI" firstAttribute="top" secondItem="530" secondAttribute="bottom" constant="6" symbolic="YES" id="BQf-9P-8Y8"/>
+                            <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="lz3-4U-UMI" secondAttribute="trailing" constant="20" symbolic="YES" id="Kaj-GT-zpd"/>
                             <constraint firstItem="wIu-Sh-2a2" firstAttribute="leading" secondItem="h3w-Ms-ohK" secondAttribute="trailing" constant="8" id="LYK-Na-Md1"/>
+                            <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="530" secondAttribute="trailing" constant="20" symbolic="YES" id="QEp-Zq-u24"/>
                             <constraint firstItem="wIu-Sh-2a2" firstAttribute="baseline" secondItem="h3w-Ms-ohK" secondAttribute="baseline" id="Zqx-cl-oal"/>
-                            <constraint firstItem="h3w-Ms-ohK" firstAttribute="top" secondItem="530" secondAttribute="bottom" constant="8" id="kIs-yJ-F2K"/>
+                            <constraint firstItem="h3w-Ms-ohK" firstAttribute="top" secondItem="3Bo-Ml-1KB" secondAttribute="bottom" constant="8" symbolic="YES" id="emA-Z1-LCv"/>
+                            <constraint firstItem="lz3-4U-UMI" firstAttribute="leading" secondItem="cpg-tt-SHE" secondAttribute="leading" constant="16" id="pm7-O1-afa"/>
+                            <constraint firstItem="3Bo-Ml-1KB" firstAttribute="top" secondItem="lz3-4U-UMI" secondAttribute="bottom" constant="8" symbolic="YES" id="xkU-ut-P9X"/>
                         </constraints>
                     </view>
                     <constraints>
@@ -247,7 +277,7 @@
                 <constraint firstAttribute="bottom" secondItem="465" secondAttribute="bottom" constant="20" symbolic="YES" id="uwq-az-XwJ"/>
                 <constraint firstItem="465" firstAttribute="top" secondItem="cpg-tt-SHE" secondAttribute="bottom" constant="5" id="wyH-HB-i2U"/>
             </constraints>
-            <point key="canvasLocation" x="-363" y="-54"/>
+            <point key="canvasLocation" x="-131" y="-93"/>
         </customView>
     </objects>
 </document>

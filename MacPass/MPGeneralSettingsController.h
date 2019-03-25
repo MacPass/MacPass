@@ -26,15 +26,15 @@
 
 @interface MPGeneralSettingsController : MPViewController <MPPreferencesTab>
 
-@property (weak) IBOutlet NSButton *clearPasteboardOnQuitCheckButton;
-@property (weak) IBOutlet NSPopUpButton *clearPasteboardTimeoutPopup;
+@property (strong) IBOutlet NSButton *clearPasteboardOnQuitCheckButton;
+@property (strong) IBOutlet NSPopUpButton *clearPasteboardTimeoutPopup;
 @property (strong) IBOutlet NSButton *preventUniversalClipboardSupportCheckButton;
-@property (weak) IBOutlet NSPopUpButton *idleTimeOutPopup;
-@property (weak) IBOutlet NSButton *lockOnSleepCheckButton;
-@property (weak) IBOutlet NSButton *lockOnLogoutCheckButton;
-@property (weak) IBOutlet NSButton *reopenLastDatabase;
-@property (weak) IBOutlet NSButton *createUntitledOnActivation;
-@property (weak) IBOutlet NSButton *rememberKeyFileCheckButton;
-@property (weak) IBOutlet NSPopUpButton *fileChangeStrategyPopup;
+@property (strong) IBOutlet NSPopUpButton *idleTimeOutPopup;
+@property (strong) IBOutlet NSButton *lockOnSleepCheckButton;
+@property (strong) IBOutlet NSButton *lockOnLogoutCheckButton;
+@property (strong) IBOutlet NSButton *reopenLastDatabase;
+@property (strong) IBOutlet NSButton *enableAutosaveCheckButton;
+@property (strong) IBOutlet NSButton *rememberKeyFileCheckButton;
+@property (strong) IBOutlet NSPopUpButton *fileChangeStrategyPopup;
 
 @end

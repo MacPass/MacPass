@@ -54,8 +54,8 @@ NSString *const MPGeneralSetingsIdentifier = @"GeneralSettingsTab";
   [self.lockOnLogoutCheckButton bind:NSValueBinding toObject:defaultsController withKeyPath:[MPSettingsHelper defaultControllerPathForKey:kMPSettingskeyLockOnLogout] options:nil];
   [self.idleTimeOutPopup bind:NSSelectedTagBinding toObject:defaultsController withKeyPath:[MPSettingsHelper defaultControllerPathForKey:kMPSettingsKeyIdleLockTimeOut] options:nil];
   [self.reopenLastDatabase bind:NSValueBinding toObject:defaultsController withKeyPath:[MPSettingsHelper defaultControllerPathForKey:kMPSettingsKeyReopenLastDatabaseOnLaunch] options:nil];
+  [self.enableAutosaveCheckButton bind:NSValueBinding toObject:defaultsController withKeyPath:[MPSettingsHelper defaultControllerPathForKey:kMPSettingsKeyEnableAutosave] options:nil];
   [self.rememberKeyFileCheckButton bind:NSValueBinding toObject:defaultsController withKeyPath:[MPSettingsHelper defaultControllerPathForKey:kMPSettingsKeyRememberKeyFilesForDatabases] options:nil];
-  [self.createUntitledOnActivation setState:NSOffState]; //kMPSettingsKeyOpenEmptyDatabaseOnLaunch
 
   /* File Change Strategy Menu */
   NSDictionary *fileChangeStragegyDict = @{ @(MPFileChangeStrategyAsk) : NSLocalizedString(@"FILE_CHANGE_STRATEGY_ASK", @"External file change strategy option: ask what to do"),
