@@ -10,6 +10,10 @@
 
 @implementation MPPathControl
 
+- (BOOL)canBecomeKeyView {
+  return YES;
+}
+
 - (instancetype)initWithFrame:(NSRect)frameRect {
   self = [super initWithFrame:frameRect];
   self.delegate = self;
