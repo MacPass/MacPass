@@ -39,11 +39,10 @@
   if([self.delegate respondsToSelector:@selector(pathControl:willDisplayOpenPanel:)]) {
     [self.delegate pathControl:self willDisplayOpenPanel:panel];
   }
-  [panel beginWithCompletionHandler:^(NSModalResponse result) {
-    if(result == NSModalResponseOK) {
-      self.URL = panel.URLs.firstObject;
-    }
-  }];
+  NSModalResponse result = [panel runModal];
+  if(result == NSModalResponseOK) {
+    self.URL = panel.URLs.firstObject;
+  }
 }
 
 - (void)pathControl:(NSPathControl *)pathControl willPopUpMenu:(NSMenu *)menu {
