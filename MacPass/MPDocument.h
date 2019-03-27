@@ -92,6 +92,8 @@ FOUNDATION_EXPORT NSString *const MPDocumentGroupKey;
 
 /*
  Search - see MPDocument+Search for further details
+ 
+ FIXME: Document is pinned to mode bases search. Wrong design!
  */
 @property (nonatomic, readonly) BOOL hasSearch;
 @property (nonatomic, copy) MPEntrySearchContext *searchContext;

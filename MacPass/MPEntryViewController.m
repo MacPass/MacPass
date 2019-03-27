@@ -463,6 +463,7 @@ NSString *const _MPTableSecurCellView = @"PasswordCell";
 
 - (void)_didAddItem:(NSNotification *)notification {
   MPDocument *document = notification.object;
+  // FIXME: UI should know search state not document!
   if(document.hasSearch) {
     return; // Search should not react to new Entries as it's displaying search results
   }
