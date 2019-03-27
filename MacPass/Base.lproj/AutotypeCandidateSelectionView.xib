@@ -82,6 +82,7 @@
                                     </tableColumn>
                                 </tableColumns>
                                 <connections>
+                                    <action trigger="doubleAction" selector="selectAutotypeContext:" target="-2" id="NoK-fa-xIL"/>
                                     <outlet property="dataSource" destination="-2" id="4ld-qs-eNP"/>
                                     <outlet property="delegate" destination="-2" id="ibb-G8-tPQ"/>
                                 </connections>
