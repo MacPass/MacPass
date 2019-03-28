@@ -112,6 +112,7 @@ The following list might not be complete, please refer to [merged Pull Requests]
 [AntoineCa](antoine@carrincazeaux.fr)
 [Benjamin Steinwender](b@stbe.at)
 [binarious](bieder.martin@googlemail.com)
+[Can Rau](cansrau@gmail.com)
 [Carlos Filipe Simões](ravemir@users.noreply.github.com)
 [Chester Liu](skyline75489@outlook.com)
 [Chhom Seng](chhom.seng@gmail.com)
@@ -123,6 +124,7 @@ The following list might not be complete, please refer to [merged Pull Requests]
 [Dennis Bolio](git@bolio.nl)
 [Dylan Smith](dylansmith@gmail.com)
 [eiermaaaan](37532252+eiermaaaan@users.noreply.github.com)
+[Erwann Mest](m+github@kud.io)
 [Filipe Farinha](filipe@ktorn.com)
 [floriangouy](florian.gouy@gmail.com)
 [Francesco Servida](info@francescoservida.ch)
@@ -138,9 +140,11 @@ The following list might not be complete, please refer to [merged Pull Requests]
 [Joanna Olsen](jo4flash@gmail.com)
 [Josh Halstead](jhalstead85@gmail.com)
 [Kurt](kurt@soapbox-software.com)
+[Laurent Cozic](laurent22@users.noreply.github.com)
 [Lenucksi](lenucksi@users.noreply.github.com)
 [Leonardo Faoro](lfaoro@users.noreply.github.com)
 [Liam Anderson](liam.anderson.91@gmail.com)
+[m0yP](moises@perez.lt)
 [Maarten Terpstra](m.l.terpstra@student.rug.nl)
 [Mario Sangiorgio](mariosangiorgio@gmail.com)
 [MBibal](michel.bibal@gmail.com)
@@ -154,15 +158,20 @@ The following list might not be complete, please refer to [merged Pull Requests]
 [neuroine](d.dzieduch@gmail.com)
 [Patrik Thunström](magebarf@gmail.com)
 [rdoering](rdoering.info@gmail.com)
+[remi6397](remi6397@gmail.com)
+[Roman Verchikov](roman-verchikov@users.noreply.github.com)
 [Ryan Rogers](ryan@timewasted.me)
 [Sitsofe Wheeler](sitsofe@yahoo.com)
 [Stephen Taylor](schtee.taylor@gmail.com)
+[thesoundofom](45923716+thesoundofom@users.noreply.github.com)
 [Thom](thomscode@gmail.com)
 [Thorsten Jacoby](tjacoby@gmail.com)
 [Volcyy](Volcyy@users.noreply.github.com)
 [Yonatan Mittlefehldt](yono@toojuice.com)
 [Zero King](l2dy@icloud.com)
 [Zhao Peng](patchao2000@gmail.com)
+
+
 
 ## Copyright
 
