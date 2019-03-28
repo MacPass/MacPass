@@ -1,3 +1,6 @@
+/* Count of characters remaining in pickchars dialog */
+"%ld_CHARACTERS_TO_PICK_REMAINING" = "%ld tekens over om te kiezen";
+
 /* Display format for days. Should contain a long decimal placeholder! */
 "%ld_DAYS" = "%ld dagen";
 
@@ -33,6 +36,9 @@
 
 /* Alert message displayed when Autotype performs self check and lacks accessibilty permissions */
 "ALERT_AUTOTYPE_MISSING_ACCESSIBILTY_PERMISSIONS_MESSAGE_TEXT" = "Bevoegdheid om automatisch in te loggen ontbreekt";
+
+/* Button in dialog to leave plugin ds disabled and continiue! */
+"ALERT_INCOMPATIBLE_PLUGINS_ENCOUNTERED_BUTTON_OK" = "OK";
 
 /* Button in dialog to open plugin preferences pane! */
 "ALERT_INCOMPATIBLE_PLUGINS_ENCOUNTERED_BUTTON_OPEN_PREFERENCES" = "Toon extensievoorkeuren…";
@@ -84,7 +90,7 @@
 "AUTOTYPE_INHERIT" = "Erf voorkeuren voor automatisch inloggen";
 
 /* Message displayed to the user to unlock the database to perform global autotype */
-"AUTOTYPE_MESSAGE_UNLOCK_DATABASE" = "Ontgrendel de wachtwoordenkluis om automatisch in te loggen";
+"AUTOTYPE_MESSAGE_UNLOCK_DATABASE" = "Ontgrendel de wachtwoordenkluis om in te loggen.";
 
 /* Disable autotype menu item */
 "AUTOTYPE_NO" = "Deactiveer automatisch inloggen";
@@ -93,10 +99,13 @@
 "AUTOTYPE_NOTIFICATION_MACPASS_HAS_NO_ACCESSIBILTY_PERMISSIONS" = "Automatisch inloggen is niet beschikbaar, omdat MacPass geen toestemming heeft om je computer te besturen. Kies Apple-menu >'Systeemvoorkeuren', klik op 'Beveiliging en privacy', klik vervolgens op 'Privacy' en voeg MacPass toe aan de groep Toegankelijkheid om automatisch inloggen aan te zetten. Stop en open MacPass opnieuw om de wijziging door te voeren.";
 
 /* Notification: Autotype failed, no documents are open */
-"AUTOTYPE_OVERLAY_NO_DOCUMENTS" = "Open een wachtwoordenkluis om automatisch in te kunnen loggen";
+"AUTOTYPE_OVERLAY_NO_DOCUMENTS" = "Open een wachtwoordenkluis om automatisch te kunnen inloggen.";
 
 /* Noticiation: Autotype failed to find a match for %@ (string placeholder) */
 "AUTOTYPE_OVERLAY_NO_MATCH_FOR_%@" = "Geen overeenkomst gevonden voor %@";
+
+/* Notification: Autotype found a single match for %@ (string placeholder). */
+"AUTOTYPE_OVERLAY_SINGLE_MATCH_FOR_%@" = "Automatisch ingelogd op %@.";
 
 /* Enable autotype menu item */
 "AUTOTYPE_YES" = "Activeer automatisch inloggen";
@@ -388,7 +397,7 @@
 "NOTES" = "Notities";
 
 /* Ok Button to dismiss disabled updates alert */
-"OK" = "";
+"OK" = "OK";
 
 /* preset to expire after one montch from now */
 "ONE_MONTH" = "één maand";
@@ -452,6 +461,15 @@
 /* Menu item to perform autotype with the selected entry */
 "PERFORM_AUTOTYPE_FOR_ENTRY" = "Log automatisch in";
 
+/* Info about how many character has to pick in pickchar dialog */
+"PICKCHAR_INFO_MESSAGE_PICK_CHARACTERS_%ld" = "Kies %ld tekens";
+
+/* Window displayed to the user to pick an amout of characters */
+"PICKCHAR_WINDOW_TITLE" = "Tekenkeuze";
+
+/* Count of picked characters in pickchars dialog if no limit is set */
+"PICKED_%ld_CHARACTERS" = "%ld tekens gekozen";
+
 /* Label for the button when a download did not succeed */
 "PLUGIN_BROWSER_ACTION_RETRY_FAILED_DOWNLOAD" = "Mislukt. Probeer opnieuw.";
 
@@ -469,6 +487,12 @@
 
 /* Status for an uninstalled plugin in the plugin browser */
 "PLUGIN_BROWSER_PLUGIN_NOT_INSTALLED" = "Niet geïnstalleerd";
+
+/* Status for an unkonw plugin version in the plugin browser */
+"PLUGIN_BROWSER_UNKNOWN_PLUGIN_VERSION_INSTALLED_%@" = "Onbekende versie %@ geïnstalleerd";
+
+/* Error for a plugin that is disabled. */
+"PLUGIN_ERROR_DISABLED_PLUGIN" = "De extensie is uitgeschakeld door de gebruiker";
 
 /* Plugin is not with this version of MacPass */
 "PLUGIN_ERROR_HOST_VERSION_NOT_SUPPORTED" = "De extensie is niet compatibel met deze versie van MacPass";
@@ -553,7 +577,7 @@
 "SELECT_FILE_TO_MERGE" = "Kies een wachtwoordenkluis om mee samen te voegen";
 
 /* Menu displayed as popup selection for search options if no filter is selected */
-"SELECT_FILTER_WITH_DOTS" = "Selecteer…";
+"SELECT_FILTER_WITH_DOTS" = "Filter…";
 
 /* Menu item to show the history of the selected entry
    Toolbar item to toggle history display */
