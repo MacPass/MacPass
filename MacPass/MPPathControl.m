@@ -10,9 +10,14 @@
 
 @implementation MPPathControl
 
-- (BOOL)canBecomeKeyView {
+/*- (BOOL)canBecomeKeyView {
   return YES;
 }
+
+- (BOOL)acceptsFirstResponder {
+  return YES;
+}
+*/
 
 - (instancetype)initWithFrame:(NSRect)frameRect {
   self = [super initWithFrame:frameRect];
