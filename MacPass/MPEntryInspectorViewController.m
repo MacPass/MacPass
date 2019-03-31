@@ -201,7 +201,7 @@ typedef NS_ENUM(NSUInteger, MPEntryTab) {
 }
 - (void)removeCustomField:(id)sender {
   NSInteger rowIndex = [self.customFieldsTableView rowForView:sender];
-  NSAssert(rowIndex > 0 && rowIndex < self.representedEntry.customAttributes.count, @"Invalid custom attribute index.");
+  NSAssert(rowIndex >= 0 && rowIndex < self.representedEntry.customAttributes.count, @"Invalid custom attribute index.");
   KPKAttribute *attribute = self.representedEntry.customAttributes[rowIndex];
   [self.observer willChangeModelProperty];
   [self.representedEntry removeCustomAttribute:attribute];
