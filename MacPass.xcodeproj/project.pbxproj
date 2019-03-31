@@ -12,7 +12,6 @@
 		4C01C2421764D8980016D5D0 /* MPContextMenuHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C01C2411764D8980016D5D0 /* MPContextMenuHelper.m */; };
 		4C06B17F21D9691F00CD4BBC /* MPPluginStatusTableCellView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C06B17E21D9691F00CD4BBC /* MPPluginStatusTableCellView.m */; };
 		4C0728BD17B5B7F7005A7DD9 /* MPPasswordEditWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C0728BC17B5B7F7005A7DD9 /* MPPasswordEditWindowController.m */; };
-		4C0728BF17B68ED0005A7DD9 /* SavePanelAccessoryView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4C0728BE17B68ED0005A7DD9 /* SavePanelAccessoryView.xib */; };
 		4C08ACEA204F01C700863D99 /* keyboardTemplate.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 4C08ACE9204F01C700863D99 /* keyboardTemplate.pdf */; };
 		4C0949591FD6B89B004F2971 /* NSUserNotification+MPAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C0949581FD6B89B004F2971 /* NSUserNotification+MPAdditions.m */; };
 		4C09495C1FD6E510004F2971 /* MPAddCustomFieldContextMenuDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C09495B1FD6E510004F2971 /* MPAddCustomFieldContextMenuDelegate.m */; };
@@ -29,6 +28,7 @@
 		4C10207F1B750E2F00BFCD59 /* MPTestAutotype.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C10207E1B750E2F00BFCD59 /* MPTestAutotype.m */; };
 		4C10412C178CDD44001B5239 /* NSDate+Humanized.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C10412B178CDD44001B5239 /* NSDate+Humanized.m */; };
 		4C15B74618BCA3B1003F8008 /* MPDocument+Search.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C15B74518BCA3B1003F8008 /* MPDocument+Search.m */; };
+		4C17D11E2250EFBC00C650C4 /* SavePanelAccessoryView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4C17D1202250EFBC00C650C4 /* SavePanelAccessoryView.xib */; };
 		4C17D8E517A1C780006C8C1E /* MPDocumentWindowDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C17D8E417A1C780006C8C1E /* MPDocumentWindowDelegate.m */; };
 		4C17F105184E630200E85625 /* 14_BatteryTemplate.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 4C17F104184E630200E85625 /* 14_BatteryTemplate.pdf */; };
 		4C17F108184E6B6C00E85625 /* 31_PrintTemplate.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 4C17F106184E6B6C00E85625 /* 31_PrintTemplate.pdf */; };
@@ -339,7 +339,6 @@
 		4C06B17E21D9691F00CD4BBC /* MPPluginStatusTableCellView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MPPluginStatusTableCellView.m; sourceTree = "<group>"; };
 		4C0728BB17B5B7F7005A7DD9 /* MPPasswordEditWindowController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MPPasswordEditWindowController.h; sourceTree = "<group>"; };
 		4C0728BC17B5B7F7005A7DD9 /* MPPasswordEditWindowController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MPPasswordEditWindowController.m; sourceTree = "<group>"; };
-		4C0728BE17B68ED0005A7DD9 /* SavePanelAccessoryView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SavePanelAccessoryView.xib; sourceTree = "<group>"; };
 		4C088C401FD9A42800F92502 /* MPPickcharsParser_Private.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MPPickcharsParser_Private.h; sourceTree = "<group>"; };
 		4C08ACE9204F01C700863D99 /* keyboardTemplate.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; name = keyboardTemplate.pdf; path = Icons/keyboardTemplate.pdf; sourceTree = "<group>"; };
 		4C0949571FD6B89B004F2971 /* NSUserNotification+MPAdditions.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSUserNotification+MPAdditions.h"; sourceTree = "<group>"; };
@@ -372,6 +371,10 @@
 		4C10412B178CDD44001B5239 /* NSDate+Humanized.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDate+Humanized.m"; sourceTree = "<group>"; };
 		4C15B74518BCA3B1003F8008 /* MPDocument+Search.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "MPDocument+Search.m"; sourceTree = "<group>"; };
 		4C168CB02216CEC300BB1EB0 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/GeneralSettings.strings; sourceTree = "<group>"; };
+		4C17D11F2250EFBC00C650C4 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/SavePanelAccessoryView.xib; sourceTree = "<group>"; };
+		4C17D1222250EFBF00C650C4 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/SavePanelAccessoryView.strings; sourceTree = "<group>"; };
+		4C17D1242250EFC500C650C4 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/SavePanelAccessoryView.strings; sourceTree = "<group>"; };
+		4C17D1262250EFC900C650C4 /* nl */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = nl; path = nl.lproj/SavePanelAccessoryView.strings; sourceTree = "<group>"; };
 		4C17D8E317A1C780006C8C1E /* MPDocumentWindowDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MPDocumentWindowDelegate.h; sourceTree = "<group>"; };
 		4C17D8E417A1C780006C8C1E /* MPDocumentWindowDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MPDocumentWindowDelegate.m; sourceTree = "<group>"; };
 		4C17F104184E630200E85625 /* 14_BatteryTemplate.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = 14_BatteryTemplate.pdf; sourceTree = "<group>"; };
@@ -1287,7 +1290,7 @@
 			children = (
 				4C0F647917B6BC9C00D9522A /* MPSavePanelAccessoryViewController.h */,
 				4C0F647A17B6BC9C00D9522A /* MPSavePanelAccessoryViewController.m */,
-				4C0728BE17B68ED0005A7DD9 /* SavePanelAccessoryView.xib */,
+				4C17D1202250EFBC00C650C4 /* SavePanelAccessoryView.xib */,
 			);
 			name = Accessory;
 			sourceTree = "<group>";
@@ -1911,7 +1914,7 @@
 				4C3826AD1AD04D8E007D7D67 /* 32_FileSystemViewTemplate.pdf in Resources */,
 				6021FE6118E15D9100C3BC51 /* WorkflowSettings.xib in Resources */,
 				6021FE8218E160BC00C3BC51 /* PasswordEditWindow.xib in Resources */,
-				4C0728BF17B68ED0005A7DD9 /* SavePanelAccessoryView.xib in Resources */,
+				4C17D11E2250EFBC00C650C4 /* SavePanelAccessoryView.xib in Resources */,
 				4CE88B9717BA651C0042E078 /* contextTriangleTemplate.pdf in Resources */,
 				4C7ABA4817BAEC6700FF5799 /* 15_ScannerTemplate.pdf in Resources */,
 				4C7ABA4917BAEC6700FF5799 /* 16_BrowserTemplate.pdf in Resources */,
@@ -2172,6 +2175,17 @@
 				4C272A2A2224871900186EEC /* nl */,
 			);
 			name = OpenPanelAccessoryView.xib;
+			sourceTree = "<group>";
+		};
+		4C17D1202250EFBC00C650C4 /* SavePanelAccessoryView.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				4C17D11F2250EFBC00C650C4 /* Base */,
+				4C17D1222250EFBF00C650C4 /* de */,
+				4C17D1242250EFC500C650C4 /* en */,
+				4C17D1262250EFC900C650C4 /* nl */,
+			);
+			name = SavePanelAccessoryView.xib;
 			sourceTree = "<group>";
 		};
 		4C45FB21178E09ED0010007D /* InfoPlist.strings */ = {
