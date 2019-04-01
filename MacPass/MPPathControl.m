@@ -10,14 +10,17 @@
 
 @implementation MPPathControl
 
-/*- (BOOL)canBecomeKeyView {
+- (BOOL)canBecomeKeyView {
   return YES;
 }
 
 - (BOOL)acceptsFirstResponder {
-  return YES;
+  /*
+   documentation state YES is required when canBecomeKeyView is YES but setting to YES
+   causes NSWindow to use this as first responder when closing the password generator popover
+   */
+  return NO;
 }
-*/
 
 - (instancetype)initWithFrame:(NSRect)frameRect {
   self = [super initWithFrame:frameRect];
