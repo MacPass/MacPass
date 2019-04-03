@@ -1,33 +1,65 @@
 /* Count of characters remaining in pickchars dialog */
 "%ld_CHARACTERS_TO_PICK_REMAINING" = "%ld символ(ов) для выбора осталось";
 
-/* Formatted Times  */
+/* Display format for days. Should contain a long decimal placeholder! */
 "%ld_DAYS" = "%ld дней";
+
+/* % days ago */
 "%ld_DAYS_AGO" = "%ld дней назад";
+
+/* % Hours ago */
 "%ld_HOURS_AGO" = "около %ld часов назад";
+
+/* % Minutes ago */
 "%ld_MINUTES_AGO" = "%ld минут назад";
+
+/* % Weeks ago */
 "%ld_WEEKS_AGO" = "%ld недель назад";
-"JUST_NOW" = "Прямо сейчас";
-"LAST_WEEK" = "Прошлая неделя";
-"ONE_WEEK_AGO" = "Одна неделя назад";
-"YESTERDAY" = "Вчера";
-"TOMORROW" = "Завтра";
-"ONE_WEEK" = "Через одну неделю";
-"ONE_MONTH" = "через один месяц";
+
+/* preset to expire after 90 days from now */
 "90_DAYS" = "через 90 дней";
-"ONE_YEAR" = "через один год";
 
 /* Button label to abort a merge on a file with changed master key! */
 "ABORT_MERGE_KEEP_MINE" = "Отменить слияние. Оставить мою.";
 
-/* Date Picker */
-"SELECT_DATE_PRESET" = "Использовать установки…";
+/* Toolbar item with action menu */
+"ACTION" = "Действие";
 
-/* Menu item for automatic trash creation */
-"AUTOCREATE_TRASH_FOLDER" = "Создать Автоматически";
+/* Menu item title for adding an hmacotp config attribute */
+"ADD_CUSTOM_ATTRIBUTE_HMACOTP_CONFIG" = "Добавить конфигурацию OTP";
+
+/* Menu item title for adding an hmacotp seed attribute */
+"ADD_CUSTOM_ATTRIBUTE_HMACOTP_SEED" = "Добавить сид OTP";
 
 /* Menu displayed for adding special custom keys */
 "ADD_CUSTOM_FIELD_CONTEXT_MENU" = "Меню добавления пользовательских полей";
+
+/* Action to add an entry via template */
+"ADD_TREMPLATE_ENTRY" = "Создать шаблонную запись";
+
+/* Button in dialog to leave autotype disabled and continiue! */
+"ALERT_AUTOTYPE_MISSING_ACCESSIBILTY_PERMISSIONS_BUTTON_OK" = "Оставить отключенным";
+
+/* Button in dialog to open accessibilty preferences pane! */
+"ALERT_AUTOTYPE_MISSING_ACCESSIBILTY_PERMISSIONS_BUTTON_OPEN_PREFERENCES" = "Открыть настройки универсального доступа";
+
+/* Alert informative text displayed when Autotype performs self check and lacks accessibilty permissions */
+"ALERT_AUTOTYPE_MISSING_ACCESSIBILTY_PERMISSIONS_INFORMATIVE_TEXT" = "Система запрещает MacPass отправлять нажатия клавиш в другие приложения. Для включения автоввода, пожалуйста, предоставьте универсальный доступ для MacPass в настройках безопасности системы.";
+
+/* Alert message displayed when Autotype performs self check and lacks accessibilty permissions */
+"ALERT_AUTOTYPE_MISSING_ACCESSIBILTY_PERMISSIONS_MESSAGE_TEXT" = "MacPass не может выполнить автоввод";
+
+/* Button in dialog to leave plugin ds disabled and continiue! */
+"ALERT_INCOMPATIBLE_PLUGINS_ENCOUNTERED_BUTTON_OK" = "ОК";
+
+/* Button in dialog to open plugin preferences pane! */
+"ALERT_INCOMPATIBLE_PLUGINS_ENCOUNTERED_BUTTON_OPEN_PREFERENCES" = "Открыть настройки";
+
+/* Informative text of the alert displayed when plugins where disabled due to incompatibilty */
+"ALERT_INCOMPATIBLE_PLUGINS_ENCOUNTERED_INFORMATIVE_TEXT" = "Некоторые плагины были отключены, так как они не совместимы с текущей версией MacPass. Перейдите в настройки для подробностей.";
+
+/* Message text of the alert displayed when plugins where disabled due to incompatibilty */
+"ALERT_INCOMPATIBLE_PLUGINS_ENCOUNTERED_MESSAGE" = "Обнаружены несовместимые плагины";
 
 /* Alert informative text when plugins or their settings change and require a restart */
 "ALERT_INFORMATIVE_TEXT_PLUGINS_CHANGED_SUGGEST_RESTART" = "Изменения плагинов и глобальных настроек плагинов, будут применены только после перезапуска. Перезапустить MacPass сейчас?";
@@ -35,29 +67,209 @@
 /* Alert informative text to ask the user if he really want to uninstall the plugin */
 "ALERT_INFORMATIVE_TEXT_REALLY_UNINSTALL_PLUGIN" = "Плагин будет перемещен в Корзину";
 
+/* Button in dialog to cancel merge of KDB file changes! */
+"ALERT_MERGE_CANCEL" = "Отмена";
+
+/* Button in dialog to merge KDB changes into file! */
+"ALERT_MERGE_CONTINUE" = "Объединить файлы";
+
+/* Informative text displayed when merging KDB files */
+"ALERT_MERGE_KDB_FILE_INFO_TEXT" = "KDB базы не содержат достаточной информации для бесшовного объединения. Записи будут объединены и данные не будут потеряны, но из-за того что группы сравниваются только по имени, могут произойти неожиданные изменения. Перемещённые записи могут быть возвращены обратно в их старую группу, или переименованные группы не будут объединены. Также удалённые записи могут появиться снова из-за того что информация о удалённых объектах не зранится в базе. Вы уверены, что хотите продолжить?";
+
+/* Alert message warning user about KDB file merge */
+"ALERT_MERGE_KDB_FILE_MESSAGE" = "Необходимо объединение KDB файлов";
+
 /* Alert message text when plugins or their settings change and require a restart */
 "ALERT_MESSAGE_PLUGINS_CHANGED_SUGGEST_RESTART" = "Настройки плагина изменены. Пожалуйста, перезапустите программу.";
 
 /* Alert message text to ask the user if he really want to uninstall the plugin. Include %@ placeholder for plugin name */
 "ALERT_MESSAGE_TEXT_REALLY_UNINSTALL_PLUGIN_%@" = "Должен ли плагин %@ быть удален?";
 
+/* Infromative text of the disabled updates alert! */
+"ALERT_UPDATES_DISABLED_INFORMATIVE_TEXT_%@!" = "Обновления для текущей сборки %@ отключены!";
+
+/* Message text for disabled updates alert! */
+"ALERT_UPDATES_DISABLED_MESSAGE_TEXT" = "Обновления отключены";
+
+/* Attachments column title (shows counts)
+   Menu item to toggle display of attachment count column in entry table */
+"ATTACHMENTS" = "Файлы";
+
 /* Sucessfully merged external changes */
 "AUTO_MERGE_NOTIFICATION_TEXT" = "Автоматическое слияние успешно завершено!";
+
+/* Menu item for automatic trash creation */
+"AUTOCREATE_TRASH_FOLDER" = "Создать Автоматически";
+
+/* Inherit autotype settings menu item */
+"AUTOTYPE_INHERIT" = "Наследовать Настройки Автоввода";
+
+/* Message displayed to the user to unlock the database to perform global autotype */
+"AUTOTYPE_MESSAGE_UNLOCK_DATABASE" = "Пожалуйста разблокируйте базу для использования глобального автоввода";
+
+/* Disable autotype menu item */
+"AUTOTYPE_NO" = "Отключить Автоввод";
+
+/* Notification: Autotype failed, MacPass has no permission to send key strokes */
+"AUTOTYPE_NOTIFICATION_MACPASS_HAS_NO_ACCESSIBILTY_PERMISSIONS" = "Автоввод отключен, так как MacPass не имеет разрешений универсального доступа";
+
+/* Notification: Autotype failed, no documents are open */
+"AUTOTYPE_OVERLAY_NO_DOCUMENTS" = "Откройте файл базы данных для использования глобального автоввода!";
+
+/* Noticiation: Autotype failed to find a match for %@ (string placeholder) */
+"AUTOTYPE_OVERLAY_NO_MATCH_FOR_%@" = "Нет соответствий %@!";
+
+/* Notification: Autotype found a single match for %@ (string placeholder). */
+"AUTOTYPE_OVERLAY_SINGLE_MATCH_FOR_%@" = "Найдено совпадение с %@";
+
+/* Notficication: Autotype timed out */
+"AUTOTYPE_TIMED_OUT" = "Истекло время автоввода";
+
+/* Enable autotype menu item */
+"AUTOTYPE_YES" = "Включить Автоввод";
+
+/* Cancel */
+"CANCEL" = "Отмена";
+
+/* Menu item in the database outline context menu to change the database name */
+"CHANGE_DATABASE_NAME" = "Изменить Имя базы данных";
 
 /* Button to postpone the password change */
 "CHANGE_LATER" = "Изменить позже";
 
+/* Button to show the password change dialog
+   Single button to show the password change dialog */
+"CHANGE_PASSWORD_WITH_DOTS" = "Изменить пароль…";
+
+/* Menu item in the database outline context menu to change the trash group */
+"CHANGE_TRASH_GROUP" = "Изменить группу для мусора";
+
+/* Button title in the key file selection dialog for selecting a key */
+"CHOOSE_FILE_BUTTON_TITLE" = "Открыть";
+
 /* Clear Autotype Button */
-"CLEAR_AUTOTYPE" = "Очистить Авто-ввод";
+"CLEAR_AUTOTYPE" = "Очистить Автоввод";
+
+/* Menu to clear recent searches */
+"CLEAR_RECENT_SEARCHES" = "Очистить последние запросы";
+
+/* String displayed at dock badge when clipboard is about to be cleared */
+"CLEARING_PASTEBOARD" = "…";
+
+/* Field name that was copied to the pasteboard */
+"COPIED_FIELD_%@" = "Скопировано %@";
+
+/* Context menu that copies reference to note */
+"COPIED_NOTES_REFERENCE" = "Ссылка на заметку скопирована!";
+
+/* Password was copied to the pasteboard */
+"COPIED_PASSWORD" = "Пароль скопирован!";
+
+/* Context menu that copies reference to password */
+"COPIED_PASSWORD_REFERENCE" = "Ссылка на пароль скопирована!";
+
+/* Context menu that copies reference to title */
+"COPIED_TITLE_REFERENCE" = "Ссылка на заголовок скопирована!";
+
+/* URL was copied to the pasteboard */
+"COPIED_URL" = "URL скопирован!";
+
+/* Context menu that copies reference to URL */
+"COPIED_URL_REFERENCE" = "Ссылка на URL скопирована!";
+
+/* Username was copied to the pasteboard */
+"COPIED_USERNAME" = "Имя пользователя скопировано!";
+
+/* Context menu that copies reference to username */
+"COPIED_USERNAME_REFERENCE" = "Ссылка на имя пользователя скопирована!";
+
+/* Submenu to copy attributes as reference */
+"COPY_AS_REFERENCE" = "Скопировать ссылку на...";
+
+/* Context menu sub-menu to copy attributes as reference */
+"COPY_AS_REFERENCE_MENU" = "Скопировать ссылку на...";
+
+/* Submenu to Copy custom fields */
+"COPY_CUSTOM_FIELDS" = "Копировать поля";
 
 /* Context menu sub-menu to copy custom fields to clipboard */
 "COPY_CUSTOM_FIELDS_MENU" = "Копировать пользовательское поле…";
+
+/* Action name when an entry was moved
+   Action title for copying an entry via drag and drop */
+"COPY_ENTRY" = "Копировать Запись";
+
+/* Mask for title to copy field value */
+"COPY_FIELD_%@" = "Копировать %@";
+
+/* Action title for copying a group via drag and drop */
+"COPY_GROUP" = "Копировать Группу";
+
+/* Context menu that copies reference to note */
+"COPY_NOTES_REFERENCE" = "Заметки";
+
+/* Menu item to copy the password of an entry
+   Toolbar item copy password */
+"COPY_PASSWORD" = "Копировать Пароль";
+
+/* Context menu that copies reference to password */
+"COPY_PASSWORD_REFERENCE" = "Пароль";
+
+/* Context menu that copies reference to title */
+"COPY_TITLE_REFERENCE" = "Заголовок";
+
+/* Menu item to copy the URL of an entry */
+"COPY_URL" = "Копировать URL";
+
+/* Context menu that copies reference to URL */
+"COPY_URL_REFERENCE" = "URL";
+
+/* Menu item to copy the username of an entry
+   Toolbar item copy username */
+"COPY_USERNAME" = "Копировать Имя пользователя";
+
+/* Context menu that copies reference to username */
+"COPY_USERNAME_REFERENCE" = "Имя пользователя";
 
 /* Curstom attribute reference item */
 "CUSTOM_ATTRIBUTE" = "Пользовательский атрибут";
 
 /* Title for menu for custom search filters */
 "CUSTOM_SEARCH_FILTER_MENU" = "Пользовательский Поисковый фильтр…";
+
+/* Default display name for KDB databases */
+"DATABASE" = "База данных";
+
+/* Default Browser */
+"DEFAULT_BROWSER" = "Браузер по умолчанию";
+
+/* Default Titel for new Custom-Fields */
+"DEFAULT_CUSTOM_FIELD_TITLE" = "Поле";
+
+/* Default Value for new Custom-Fields */
+"DEFAULT_CUSTOM_FIELD_VALUE" = "Значение";
+
+/* Title for a newly created entry */
+"DEFAULT_ENTRY_TITLE" = "Новая Запись";
+
+/* Title for a newly created group */
+"DEFAULT_GROUP_NAME" = "Новая Группа";
+
+/* Default window title for a new window association */
+"DEFAULT_WINDOW_TITLE" = "Заголовок Окна";
+
+/* Menu item in the database outline context menu to delete the node from the trash
+   Menu item to delete an entry
+   Menu item to delete the selected attached file
+   Menu item to delete the selected custom icon
+   Toolbar item delete item */
+"DELETE" = "Удалить";
+
+/* Delete Entry */
+"DELETE_ENTRY" = "Удалить Запись";
+
+/* Delete Group */
+"DELETE_GROUP" = "Удалить Группу";
 
 /* Empty Trash */
 "DELETE_TRASHED_ENTRY" = "Удалить запись из корзины";
@@ -68,17 +280,54 @@
 /* Action name for duplicating entries */
 "DUPLICATE_ENTRIES_%ld" = "Дублирующиеся записи %ld";
 
+/* Menu item to directly diplicate an entry */
+"DUPLICATE_ENTRY" = "Скопировать Запись";
+
+/* Menu item to duplicate an entry with options how to duplicate. Will present a dialog. */
+"DUPLICATE_ENTRY_WITH_OPTIONS" = "Скопировать Запись…";
+
+/* Menu item in the database outline context menu to change the template group
+   Menu item on the add entry context menu to edit template groups */
+"EDIT_TEMPLATE_GROUP" = "Изменить группу шаблона";
+
+/* Empty Trash
+   Menu item in the database outline context menu to empyt the trash
+   Menu item in the database outline to empty the trash
+   Menu item to empty the trash */
+"EMPTY_TRASH" = "Очистить Корзину";
+
+/* Informative text for the enforce password change alert */
+"ENFORCE_PASSWORD_CHANGE_ALERT_DESCRIPTION" = "Вы не можете ничего сохранять, пока не поменяете пароль базы и/или файл ключа.";
+
+/* Message text for the enforce password change alert */
+"ENFORCE_PASSWORD_CHANGE_ALERT_TITLE" = "Пароль базы данных истек!";
+
 /* Group row for entry attributes */
 "ENTRY_CUSTOM_ATTRIBUTES" = "Пользовательские атрибуты";
 
 /* Group row for entry attributes */
 "ENTRY_DEFAULT_ATTRIBUTES" = "Атрибуты по умолчанию";
 
+/* Tooltip displayed on the index header cell */
+"ENTRY_INDEX_COLUMN_TOOLTIP" = "Колонка для сортировки по предпочтению пользователя";
+
+/* Keyfile not valid */
+"ERROR_INVALID_KEYFILE" = "Неверный файл ключа!";
+
 /* Error description given when adding an invalid plugin */
 "ERROR_INVALID_PLUGIN" = "Недействительный плагин";
 
+/* Passwords do not match */
+"ERROR_PASSWORD_MISSMATCH" = "Пароли не соответствуют!";
+
+/* Passwords do not match, keyfile is invalid */
+"ERROR_PASSWORD_MISSMATCH_INVALID_KEYFILE" = "Пароли не соответствуют и файл ключа не верный!";
+
 /* Recommend/Enforce key change intervall format */
 "EVERY_%ld_DAYS" = "Каждые %ld дней";
+
+/* Format to returen the date an item expires. Includes %@ placehoder for date */
+"EXPIRES_AT_DATE_%@" = "Истекает: %@";
 
 /* The master key was changed by an external program! */
 "EXTERN_CHANGE_OF_MASTERKEY" = "Мастер-ключ был изменен другой программой";
@@ -89,17 +338,46 @@
 /* External file change strategy option: Keep local file an ignore external changes */
 "FILE_CHANGE_STRATEGY_KEEP_MINE" = "Оставить Мою Версию и Игнорировать Другие Изменения";
 
-/*   External file change strategy option: Merge external changes into local file. */
+/* Button in dialog to merge changes into file!
+   External file change strategy option: Merge external changes into local file. */
 "FILE_CHANGE_STRATEGY_MERGE" = "Слить изменения";
 
 /* External file change strategy option: Use the changed file and discard local changes */
 "FILE_CHANGE_STRATEGY_USE_OTHER" = "Загрузить Измененную Версию и Отменить Мои Изменения";
 
-/*   Menu item to toggle display of history count column in entry table */
+/* Informative text displayed when the file was change from another application */
+"FILE_CHANGED_BY_OTHERS_INFO_TEXT" = "Загруженный файл отличается от файла на диске. Что вы хотите делать дальше?";
+
+/* Message displayed when an open file was changed from another application */
+"FILE_CHANGED_BY_OTHERS_MESSAGE_TEXT" = "Файл базы данных изменен!";
+
+/* Error while reopening last known documents */
+"FILE_OPEN_ERROR" = "Ошибка открытия файла.";
+
+/* General Settings Label */
+"GENERAL_SETTINGS" = "Общие";
+
+/* Group column title */
+"GROUP" = "Группа";
+
+/* History count column title
+   Menu item to toggle display of history count column in entry table */
 "HISTORY" = "История";
 
 /* Imports a dragged URL for a new entry */
 "IMPORT_URL" = "Импорт по URL";
+
+/* Toolbar item toggle inspector */
+"INSPECTOR" = "Инспектор";
+
+/* Label for the integration settings tab */
+"INTEGRATION_SETTINGS" = "Интеграция";
+
+/* Just now */
+"JUST_NOW" = "Прямо сейчас";
+
+/* Feature only available in kdbx databases */
+"KDBX_ONLY_FEATURE" = "Функция не поддерживается в KDB базе";
 
 /* Button in dialog to ignore the changes to an open file! */
 "KEEP_MINE_DISCARD_OTHER" = "Оставить Мои, Отменить Другие";
@@ -113,6 +391,12 @@
 /* Do not restart MacPass */
 "KEEP_RUNNING" = "Оставить Запущеным";
 
+/* last week */
+"LAST_WEEK" = "Прошлая неделя";
+
+/* Toolbar item to Lock the database */
+"LOCK" = "Блокировка";
+
 /* Message in the open panel to add attachments to an entry */
 "MESSAGE_ADD_ATTACHMENT_OPEN_PANEL" = "Выберите файл для вложения";
 
@@ -122,8 +406,65 @@
 /* Message in the open panel to import an XML file */
 "MESSAGE_XML_OPEN_PANEL" = "Выберите XML файл для импорта";
 
-/* Ok button */
+/* Menu item to toggle display of modified date column in entry table
+   Modification date column title */
+"MODIFIED" = "Дата изменения";
+
+/* Action name when an entry was moved */
+"MOVE_ENTRY" = "Переместить Запись";
+
+/* Menu displayed as popup selection for search options when multiple items are selected */
+"MULTIPLE_FILTERS_ACTIVE_WITH_DOTS" = "Multiple…";
+
+/* Name for a newly created Database */
+"NEW_DATABASE" = "База данных";
+
+/* Action name for a newly created entry
+   Menu item to create a new entry
+   Toolbar item new entry */
+"NEW_ENTRY" = "Добавить Запись";
+
+/* Submenu to add an entry via template */
+"NEW_ENTRY_WITH_TEMPLATE_%@" = "Создать запись из шаблона %@";
+
+/* Action name for a newly created group
+   Menu item to create a new group
+   Toolbar item new group */
+"NEW_GROUP" = "Добавить Группу";
+
+/* Expiration date format, when item does not expire */
+"NO_EXPIRE_DATE_SET" = "Никогда не истекает.";
+
+/* Menu item to reset the template groups */
+"NO_TEMPLATE_GROUP" = "Нет шаблонов";
+
+/* Menu item added to show that no templates are defined */
+"NO_TEMPLATES" = "Шаблоны не найдены";
+
+/* Null placeholder for item input field
+   Placeholder text for input fields if no entry or group is selected */
+"NONE" = "Нет";
+
+/* Displayed name when notes or part of notes was copied
+   Menu item to toggle display of notes column in entry table
+   Notes column title
+   Notes reference item */
+"NOTES" = "Заметки";
+
+/* Ok Button to dismiss disabled updates alert */
 "OK" = "OK";
+
+/* preset to expire after one montch from now */
+"ONE_MONTH" = "через один месяц";
+
+/* preset to expire after one week from now */
+"ONE_WEEK" = "Через одну неделю";
+
+/* one week ago */
+"ONE_WEEK_AGO" = "Одна неделя назад";
+
+/* preset to expire after one year from now */
+"ONE_YEAR" = "через один год";
 
 /* Open button in the open panel to add attachments to an entry */
 "OPEN_BUTTON_ADD_ATTACHMENT_OPEN_PANEL" = "Приложить";
@@ -137,8 +478,46 @@
 /* Action button in Notification to open a document */
 "OPEN_DOCUMENT" = "Открыть Документ";
 
+/* Action button in Notification to show the Accessibilty preferences */
+"OPEN_PREFERENCES" = "Открыть настройки";
+
+/* Menu item to open the URL with the default application */
+"OPEN_URL" = "Открыть URL";
+
+/* Select Browser */
+"OTHER_BROWSER" = "Выберите браузер…";
+
 /* No comment provided by engineer. */
 "OUTPUT_VALUE" = "Выходящее Значение";
+
+/* Menu item to toggle display of password column in entry table
+   Password column title
+   Password reference item */
+"PASSWORD" = "Пароль";
+
+/* Window title for the stand-alone password creator window */
+"PASSWORD_CREATOR_WINDOW_TITLE" = "Генератор паролей";
+
+/* Button to reset the password defaults for a single entry */
+"PASSWORD_GENERATOR_RESET_ENTRY_DEFAULTS" = "Сброс";
+
+/* Button to set the defaults of the password generator */
+"PASSWORD_GENERATOR_SET_DEFAULTS" = "По умолчанию";
+
+/* Placeholder for the password field to aks for password
+   Placeholder in the unlock-password input field if password is enabled */
+"PASSWORD_INPUT_ENTER_PASSWORD" = "Введите пароль";
+
+/* Placeholder for the password input field if passwords are disabled
+   Placeholder for the repeat password input if passwords are disabled
+   Placeholder in the unlock-password input field if password is disabled */
+"PASSWORD_INPUT_NO_PASSWORD" = "Нет пароля";
+
+/* Placeholder for the repeat password field to aks for the repeated password */
+"PASSWORD_INPUT_REPEAT_PASSWORD" = "Повторите пароль";
+
+/* Menu item to perform autotype with the selected entry */
+"PERFORM_AUTOTYPE_FOR_ENTRY" = "Осуществить автоввод";
 
 /* Info about how many character has to pick in pickchar dialog */
 "PICKCHAR_INFO_MESSAGE_PICK_CHARACTERS_%ld" = "Пожалуйста, выберите %ld символов";
@@ -152,6 +531,36 @@
 /* Window displayed to the user to pick an amout of characters */
 "PICKFIELD_WINDOW_TITLE" = "Выбор полей";
 
+/* Label for the button when a download is in progress! */
+"PLUGIN_BROWSER_ACTION_DOWNLOAD_IN_PROGRESS" = "Загрузка";
+
+/* Label for the button when a download did not succeed */
+"PLUGIN_BROWSER_ACTION_RETRY_FAILED_DOWNLOAD" = "Повторить загрузку";
+
+/* Label for the button to show a downloaded file */
+"PLUGIN_BROWSER_ACTION_SHOW_DOWNLOADED_FILE" = "Показать загруженный файл";
+
+/* Button to download the Plugin */
+"PLUGIN_BROWSER_DOWNLOAD_PLUGIN_BUTTON" = "Скачать";
+
+/* Status for an up-to-date plugin in the plugin browser */
+"PLUGIN_BROWSER_LATEST_VERSION_INSTALLED" = "Установлена последняя версия";
+
+/* Status for an outdated plugin version in the plugin browser */
+"PLUGIN_BROWSER_NEWER_VERSION_%@_AVAILABLE" = "Доступна версия %@";
+
+/* Status for an uninstalled plugin in the plugin browser */
+"PLUGIN_BROWSER_PLUGIN_NOT_INSTALLED" = "Не установлен";
+
+/* Status for an unkonw plugin version in the plugin browser */
+"PLUGIN_BROWSER_UNKNOWN_PLUGIN_VERSION_INSTALLED_%@" = "Неизвестная версия";
+
+/* Error for a plugin that is disabled. */
+"PLUGIN_ERROR_DISABLED_PLUGIN" = "Этот плагин отключен пользователем";
+
+/* Plugin is not with this version of MacPass */
+"PLUGIN_ERROR_HOST_VERSION_NOT_SUPPORTED" = "Плагин не совместим с текущей версией MacPass";
+
 /* The plugin could not be initalized */
 "PLUGIN_ERROR_INTILIZATION_FAILED" = "Плагин не может быть установлен";
 
@@ -161,11 +570,32 @@
 /* Plugin specifies the wrong principla class! */
 "PLUGIN_ERROR_WRONG_PRINCIPAL_CLASS" = "Неподходящий основной класс в плагине";
 
+/* name for disabled unloaded plugin */
+"PLUGIN_NAME_DISABLED_%@" = "🚫 %@";
+
+/* Name for unloaded plugin with errors */
+"PLUGIN_NAME_ERROR_%@" = "⚠️ %@";
+
+/* Label for plugin settings tab */
+"PLUGIN_SETTINGS" = "Плагины";
+
 /* Generic message displayed if no details are know why a plugin was not loaded. */
 "PLUGIN_SETTINGS_GENERIC_ERROR_MESSAGE" = "Плагин не может быть загружен.";
 
 /* Plugin version. Include a %@ placeholder for version string */
 "PLUGIN_VERSION_%@" = "Версия: %@";
+
+/* Menu item to preview the selected attached file. */
+"PREVIEW" = "Предпросмотр";
+
+/* Recent searches menu item */
+"RECENT_SEARCHES" = "Последние запросы";
+
+/* Informative text for the recommend password change alert */
+"RECOMMEND_PASSWORD_CHANGE_ALERT_DESCRIPTION" = "Рекомендуется сменить пароль базы данных и/или файл ключа.";
+
+/* Message text for the recommend password change alert */
+"RECOMMEND_PASSWORD_CHANGE_ALERT_TITLE" = "Пожалуйста, измените пароль базы данных!";
 
 /* Restart */
 "RESTART" = "Перезапустить";
@@ -173,8 +603,39 @@
 /* Action to restore and Entry to a previous state of it's history */
 "RESTORE_HISTORY_ENTRY" = "Восстановить Историческую Запись";
 
+/* Menu item to save the selected attached file.
+   Save file menu item title when save will just save the file */
+"SAVE" = "Сохранить";
+
+/* Button title to save the generated key file */
+"SAVE_KEYFILE" = "Сохранить файл ключа";
+
+/* Save file menu item title when save will prompt for a location to save or ask for a password/key */
+"SAVE_WITH_DOTS" = "Сохранить…";
+
+/* Search input in Toolbar */
+"SEARCH" = "Поиск";
+
+/* Search option: Find duplicate passwords */
+"SEARCH_DUPLICATE_PASSWORDS" = "Дубли паролей";
+
+/* Search option: Find expired entries */
+"SEARCH_EXPIRED_ENTRIES" = "Истекло";
+
+/* Inherit search settings menu item */
+"SEARCH_INHERIT" = "Наследовать Настройки Поиска";
+
+/* Disable search menu item */
+"SEARCH_NO" = "Исключить из Поиска";
+
 /* No comment provided by engineer. */
 "SEARCH_VALUE" = "Поисковое значение";
+
+/* Enable search menu item */
+"SEARCH_YES" = "Включить в Поиск";
+
+/* Menu item title for the expiry preset selection menu in the date picker */
+"SELECT_DATE_PRESET" = "Использовать установки…";
 
 /* Message on the open panel for selecting which browser to use for opening URLs */
 "SELECT_DEFAULT_BROWSER_OPEN_PANEL_MESSAGE" = "Выберите браузер, которым нужно открывать URL.";
@@ -185,14 +646,33 @@
 /* Message for the dialog to open a file for merge */
 "SELECT_FILE_TO_MERGE" = "Выбор файла для слияния";
 
+/* Menu displayed as popup selection for search options if no filter is selected */
+"SELECT_FILTER_WITH_DOTS" = "Выбрать…";
+
 /* Checkbox in dialog to set the selection as default file change strategy! */
 "SET_AS_DEFAULT_FILE_CHANGE_STRATEGY" = "Использовать этот способ по умолчанию. Вы сможете поменять это в любое время в настройках.";
 
-/* Menu item to show the reference builder in a text view's context menu */
-"SHOW_REFERENCE_BUILDER" = "Показать конструктор связей";
+/* Menu item to show the history of the selected entry
+   Toolbar item to toggle history display */
+"SHOW_HISTORY" = "Показать историю";
+
+/* Displayed name when title field was copied
+   Menu item to toggle display of title column in entry table
+   Title column title
+   Title reference item */
+"TITLE" = "Заголовок";
+
+/* preset to expire tomorrow */
+"TOMORROW" = "Завтра";
 
 /* Toolbar item to perform autotype */
-"TOOLBAR_PERFORM_AUTOTYPE_FOR_ENTRY" = "Авто-ввод";
+"TOOLBAR_PERFORM_AUTOTYPE_FOR_ENTRY" = "Автоввод";
+
+/* Move Entry to Trash */
+"TRASH_ENTRY" = "Удалить Запись";
+
+/* Move Group to Trash */
+"TRASH_GROUP" = "Удалить Группу";
 
 /* Uninstall plugin */
 "UNINSTALL" = "Удалить";
@@ -209,11 +689,26 @@
 /* No comment provided by engineer. */
 "UNKNOWN_TOOLBAR_ITEM" = "Неизвестный элемент панели инструментов";
 
-/*   UUID reference item */
+/* Update Settings Label */
+"UPDATE_SETTINGS" = "Обновления";
+
+/* Menu item to toggle display of url column in entry table
+   Submenu with options what to do with the URL of an entry
+   Url column title
+   URL reference item */
+"URL" = "URL";
+
+/* Menu item to toggle display of username column in entry table
+   Username column title
+   Username reference item */
+"USERNAME" = "Имя пользователя";
+
+/* Displayed name when uuid field was copied
+   UUID reference item */
 "UUID" = "UUID";
 
-/* Message text for disabled updates alert! */
-"Updates are disabled!" = "Обновления отключены!";
+/* No Key or Password */
+"WARNING_NO_PASSWORD_OR_KEYFILE" = "Не было применено ни пароля, ни файла ключа!";
 
 /* Informative Text displayed when clearing the Trash */
 "WARNING_ON_DELETE_TRASHED_NODE_DESCRIPTION" = "Все записи из корзины, будут удалены!";
@@ -221,176 +716,21 @@
 /* Message text for the alert displayed when deleting a node */
 "WARNING_ON_DELETE_TRASHED_NODE_TITLE" = "Удаление записей из корзины";
 
-/*
- Actions
- */
-"NEW_ENTRY" = "Добавить Запись";
-"NEW_GROUP" = "Добавить Группу";
-"DUPLICATE_ENTRY" = "Скопировать Запись";
-"DUPLICATE_ENTRY_WITH_OPTIONS" = "Скопировать Запись…";
-"COPY_ENTRY" = "Копировать Запись";
-"COPY_GROUP" = "Копировать Группу";
-"ADD_TREMPLATE_ENTRY" = "Создать шаблонную запись";
-"DELETE_GROUP" = "Удалить Группу";
-"DELETE_ENTRY" = "Удалить Запись";
-"EDIT_TEMPLATE_GROUP" = "Изменить группу шаблона";
-"EMPTY_TRASH" = "Очистить Корзину";
-"MOVE_ENTRY" = "Переместить Запись";
-"MOVE_GROUP" = "Переместить Группу";
-"NEW_ENTRY_WITH_TEMPLATE_%@" = "Создать запись из шаблона %@";
-"NEW_DATABASE" = "База данных";
-"OPEN_URL" = "Открыть URL";
-"PERFORM_AUTOTYPE_FOR_ENTRY" = "Осуществить автоввод";
-"PREVIEW" = "Предпросмотр";
-"PASSWORD_GENERATOR_SET_DEFAULTS" = "По умолчанию";
-"PASSWORD_GENERATOR_RESET_ENTRY_DEFAULTS" = "Сброс";
-"TRASH_ENTRY" = "Удалить Запись";
-"TRASH_GROUP" = "Удалить Группу";
-"SHOW_HISTORY" = "Показать историю";
-
-/*
- Search
- */
-"CLEAR_RECENT_SEARCHES" = "Очистить последние запросы";
-"RECENT_SEARCHES" = "Последние запросы";
-"SEARCH_DUPLICATE_PASSWORDS" = "Дубли паролей";
-"SEARCH_EXPIRED_ENTRIES" = "Истекло";
-"SELECT_FILTER_WITH_DOTS" = "Выбрать…";
-
-/*
- Direct Translations
- */
-"ACTION" = "Действие";
-"ATTACHMENTS" = "Файлы";
-"CANCEL" = "Отмена";
-"DATABASE" = "База данных";
-"DELETE" = "Удалить";
-"EDIT" = "Изменено";
-"GROUP" = "Группа";
-"INSPECTOR" = "Инспектор";
-"LOCK" = "Блокировка";
-"MODIFIED" = "Изменить";
-"NONE" = "Нет";
-"NOTES" = "Заметки";
-"PASSWORD" = "Пароль";
-"SAVE" = "Сохранить";
-"SAVE_WITH_DOTS" = "Сохранить…";
-"SEARCH" = "Поиск";
-"TITLE" = "Заголовок";
-"URL" = "URL";
-"USERNAME" = "Имя пользователя";
-"WINDOWS" = "Окна";
-
-
-"CHANGE_DATABASE_NAME" = "Изменить Имя базы данных";
-"CHANGE_TRASH_GROUP" = "Изменить группу для мусора";
-
-/* Field nam that was copied to the pasteboard */
-"COPIED_FIELD_%@" = "Скопировано %@";
-"COPIED_PASSWORD" = "Пароль скопирован!";
-"COPIED_URL" = "URL скопирован!";
-"COPIED_USERNAME" = "Имя пользователя скопировано!";
-"COPY_CUSTOM_FIELDS" = "Копировать поля";
-"COPY_FIELD_%@" = "Копировать %@";
-"COPY_PASSWORD" = "Копировать Пароль";
-"COPY_URL" = "Копировать URL";
-"COPY_USERNAME" = "Копировать Имя пользователя";
-
-/* Dock Badge */
-"CLEARING_PASTEBOARD" = "…";
-
-/* Group Inspector */
-/* Autotype Combobox */
-"AUTOTYPE_NO" = "Отключить Автоввод";
-"AUTOTYPE_YES" = "Включить Автоввод";
-"AUTOTYPE_INHERIT" = "Наследовать Настройки Автоввода";
-
-/* Search Combobox */
-"SEARCH_INHERIT" = "Наследовать Настройки Поиска";
-"SEARCH_YES" = "Включить в Поиск";
-"SEARCH_NO" = "Исключить из Поиска";
-
-/*
- Date/Time Displays
- */
-/* Created at template string. %@ is replaced by localized date and time */
-"CREATED_AT_%@" = "Создано: %@";
-/* Modifed at template string. %@ is replaced by localized date and time */
-"MODIFED_AT_%@" = "Изменено: %@";
-
-"EXPIRES_AT_DATE_%@" = "Истекает: %@";
-"NO_EXPIRE_DATE_SET" = "Никогда не истекает.";
-
-/*
- Defaults for new objects
- */
-"DEFAULT_CUSTOM_FIELD_TITLE" = "Поле";
-"DEFAULT_CUSTOM_FIELD_VALUE" = "Значение";
-"DEFAULT_ENTRY_TITLE" = "Новая Запись";
-"DEFAULT_GROUP_NAME" = "Новая Группа";
-"DEFAULT_WINDOW_TITLE" = "Заголовок Окна";
-
-/* Settings */
-"GENERAL_SETTINGS" = "Общие";
-"INTEGRATION_SETTINGS" = "Интеграция";
-"UPDATE_SETTINGS" = "Обновления";
-"WORKFLOW_SETTINGS" = "Рабочие настройки";
-"DEFAULT_BROWSER" = "Браузер по умолчанию";
-"OTHER_BROWSER" = "Выберите браузер…";
-"PLUGIN_SETTINGS" = "Плагины";
-
-/* Feature not supported in Version */
-"KDBX_ONLY_FEATURE" = "Функция не поддерживается в KDB базе";
-
-/* Template */
-"NO_TEMPLATE_GROUP" = "Нет шаблонов";
-"NO_TEMPLATES" = "Шаблоны не найдены";
-
-/* Kefile */
-"SAVE_KEYFILE" = "Сохранить файл ключа";
-
-/* Autoype */
-/* Candiate dialog */
-"SELECT_AUTOTYPE_CANDIDATE" = "Выберите кандидата!";
-"AUTOTYPE_OVERLAY_NO_DOCUMENTS" = "Откройте файл базы данных для использования глобального авто-ввода!";
-"AUTOTYPE_OVERLAY_NO_MATCH_FOR_%@" = "Нет соответствий %@!";
-"AUTOTYPE_OVERLAY_SINGLE_MATCH" = "Соответствие!";
-
-/* Alert Dialogs */
+/* Informative Text displayed when clearing the Trash */
 "WARNING_ON_EMPTY_TRASH_DESCRIPTION" = "Очистку корзины отменить нельзя.";
+
+/* Message text for the alert displayed when clearing the Trash */
 "WARNING_ON_EMPTY_TRASH_TITLE" = "Очистить корзину?";
-"WARNING_ON_LOSSY_SAVE" = "Сохранение базы в KDB формате может вызвать потерю данных.";
-"WARNING_ON_LOSSY_SAVE_DESCRIPTION" = "Формат KDB не умеет хранить всю информацию.";
-"CHANGE_FORMAT" = "Изменить формат файла на KDBX";
 
-"ENFORCE_PASSWORD_CHANGE_ALERT_TITLE" = "Пароль базы данных истек!";
-"ENFORCE_PASSWORD_CHANGE_ALERT_DESCRIPTION" = "Вы не можете ничего сохранять, пока не поменяете пароль базы и/или файл ключа.";
-
-"RECOMMEND_PASSWORD_CHANGE_ALERT_TITLE" = "Пожалуйста, измените пароль базы данных!";
-"RECOMMEND_PASSWORD_CHANGE_ALERT_DESCRIPTION" = "Рекомендуется сменить пароль базы данных и/или файл ключа.";
-"CHANGE_PASSWORD_WITH_DOTS" = "Изменить пароль…";
-
+/* No comment provided by engineer. */
 "WARNING_ON_SAVE_NO_PASSWORD_OR_KEY_SET" = "Не указан пароль или файл ключей.";
+
+/* No comment provided by engineer. */
 "WARNING_ON_SAVE_NO_PASSWORD_OR_KEY_SET_SUGGESTION" = "Пожалуйста, укажите пароль и/или файл ключей для этой базы данных. Отмена этого приведет к отмене всех изменений и блокировке документа";
 
-/* Message displayed when an open file was changed from another application */
-"FILE_CHANGED_BY_OTHERS_MESSAGE_TEXT" = "Файл базы данных изменен!";
-/* Informative text displayed when the file was change form another application */
-"FILE_CHANGED_BY_OTHERS_INFO_TEXT" = "Загруженный файл отличается от файла на диске. Что вы хотите делать дальше?";
-/* Button to ignore the changes */
-"KEEP_MINE" = "Сохранить текущую версию и игнорировать изменения на диске!";
-/* Merge changes into file! */
-"MERGE_CHANGES" = "Слияние изменений!";
+/* Label for the workflow settings tab */
+"WORKFLOW_SETTINGS" = "Рабочие настройки";
 
-/* Password Input Messages, Errors and Warning */
-"PASSWORD_INPUT_NO_PASSWORD" = "Нет пароля";
-"PASSWORD_INPUT_ENTER_PASSWORD" = "Введите пароль";
-"PASSWORD_INPUT_REPEAT_PASSWORD" = "Повторите пароль";
-"WARNING_NO_PASSWORD_OR_KEYFILE" = "Не было применено ни пароля, ни файла ключа!";
-"ERROR_PASSWORD_MISSMATCH_INVALID_KEYFILE" = "Пароли не соответствуют и файл ключа не верный!";
-"ERROR_PASSWORD_MISSMATCH" = "Пароли не соответствуют!";
-"ERROR_INVALID_KEYFILE" = "Неверный файл ключа!";
+/* Yesterday */
+"YESTERDAY" = "Вчера";
 
-/* Misc */
-"DOCUMENT_AUTOTYPE_CORRUPTION_WARNING" = "Пожалуйста, запустите Исправление Автоввода...";
-"FILE_OPEN_ERROR" = "Ошибка открытия файла.";

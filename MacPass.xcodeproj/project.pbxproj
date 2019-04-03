@@ -233,7 +233,6 @@
 		4CC281891C0F675B00B9174D /* HNHUi.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4CC281881C0F675B00B9174D /* HNHUi.framework */; };
 		4CC59C2721AF0893005E8D6B /* MPPathControl.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CC59C2621AF0893005E8D6B /* MPPathControl.m */; };
 		4CC663E7216F7A7100E33965 /* MPPluginRepositoryBrowserViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CC663E5216F7A7100E33965 /* MPPluginRepositoryBrowserViewController.m */; };
-		4CC663E8216F7A7100E33965 /* PluginRepositoryBrowserView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4CC663E6216F7A7100E33965 /* PluginRepositoryBrowserView.xib */; };
 		4CC6DB7A17D23719002C6091 /* KPKNode+IconImage.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CC6DB7917D23719002C6091 /* KPKNode+IconImage.m */; };
 		4CCA8E9B18D91ED9001A6754 /* Quartz.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4CCA8E9A18D91ED9001A6754 /* Quartz.framework */; };
 		4CCCE8011D75CA48006AA951 /* MPArrayController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CCCE8001D75CA48006AA951 /* MPArrayController.m */; };
@@ -289,6 +288,7 @@
 		6021FE8218E160BC00C3BC51 /* PasswordEditWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6021FE8418E160BC00C3BC51 /* PasswordEditWindow.xib */; };
 		6021FE8D18E1617300C3BC51 /* PasswordCreatorView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6021FE8F18E1617300C3BC51 /* PasswordCreatorView.xib */; };
 		6021FE9818E1650F00C3BC51 /* DatabaseSettingsWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6021FE9A18E1650F00C3BC51 /* DatabaseSettingsWindow.xib */; };
+		7837112C225540D1009BD28D /* PluginRepositoryBrowserView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7837112E225540D1009BD28D /* PluginRepositoryBrowserView.xib */; };
 		FA13910C1F9CD9EB0033D256 /* Localizable.stringsdict in Resources */ = {isa = PBXBuildFile; fileRef = FA13910A1F9CD9EB0033D256 /* Localizable.stringsdict */; };
 		FA9FD3271FB5E8F4003CEDD6 /* AutotypeCandidateSelectionView.xib in Resources */ = {isa = PBXBuildFile; fileRef = FA9FD3291FB5E8F4003CEDD6 /* AutotypeCandidateSelectionView.xib */; };
 		FA9FD32C1FB5EDD3003CEDD6 /* AutotypeBuilderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = FA9FD32E1FB5EDD3003CEDD6 /* AutotypeBuilderView.xib */; };
@@ -777,7 +777,6 @@
 		4CC59C2621AF0893005E8D6B /* MPPathControl.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MPPathControl.m; sourceTree = "<group>"; };
 		4CC663E4216F7A7100E33965 /* MPPluginRepositoryBrowserViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MPPluginRepositoryBrowserViewController.h; sourceTree = "<group>"; };
 		4CC663E5216F7A7100E33965 /* MPPluginRepositoryBrowserViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MPPluginRepositoryBrowserViewController.m; sourceTree = "<group>"; };
-		4CC663E6216F7A7100E33965 /* PluginRepositoryBrowserView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PluginRepositoryBrowserView.xib; sourceTree = "<group>"; };
 		4CC6DB7817D23719002C6091 /* KPKNode+IconImage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "KPKNode+IconImage.h"; sourceTree = "<group>"; };
 		4CC6DB7917D23719002C6091 /* KPKNode+IconImage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "KPKNode+IconImage.m"; sourceTree = "<group>"; };
 		4CCA7EEC1797866F00B0B55E /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/GeneralSettings.strings; sourceTree = "<group>"; };
@@ -943,6 +942,11 @@
 		6A74B07D2076F4B60049BC29 /* sv-SE */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "sv-SE"; path = "sv-SE.lproj/InfoPlist.strings"; sourceTree = "<group>"; };
 		6E719715172058BA00E4C5FC /* MPDatabaseVersion.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MPDatabaseVersion.h; sourceTree = "<group>"; };
 		713F9B481C95CEA000605880 /* fr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fr; path = fr.lproj/PluginPreferences.strings; sourceTree = "<group>"; };
+		7837112922553A74009BD28D /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/SavePanelAccessoryView.strings; sourceTree = "<group>"; };
+		7837112B22553B1D009BD28D /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/AutotypeBuilderView.strings; sourceTree = "<group>"; };
+		7837112D225540D1009BD28D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/PluginRepositoryBrowserView.xib; sourceTree = "<group>"; };
+		78371130225540D8009BD28D /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/PluginRepositoryBrowserView.strings; sourceTree = "<group>"; };
+		78371132225540DE009BD28D /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/PluginRepositoryBrowserView.strings; sourceTree = "<group>"; };
 		A50AD5CF212884A0007C85EB /* pl */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = pl; path = pl.lproj/PluginDataView.strings; sourceTree = "<group>"; };
 		A50AD5D0212884A0007C85EB /* pl */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = pl; path = pl.lproj/PickfieldView.strings; sourceTree = "<group>"; };
 		BB3E050C1FE9D1CA00F0B46F /* nl */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = nl; path = nl.lproj/AutotypeCandidateSelectionView.strings; sourceTree = "<group>"; };
@@ -1264,7 +1268,7 @@
 				4C0DBEF71BF508DE00F9B287 /* PluginPreferences.xib */,
 				4CC663E4216F7A7100E33965 /* MPPluginRepositoryBrowserViewController.h */,
 				4CC663E5216F7A7100E33965 /* MPPluginRepositoryBrowserViewController.m */,
-				4CC663E6216F7A7100E33965 /* PluginRepositoryBrowserView.xib */,
+				7837112E225540D1009BD28D /* PluginRepositoryBrowserView.xib */,
 			);
 			name = Preferences;
 			sourceTree = "<group>";
@@ -1776,6 +1780,7 @@
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
 			knownRegions = (
+				English,
 				en,
 				de,
 				Base,
@@ -1872,7 +1877,7 @@
 				4C3826B31AD04D8E007D7D67 /* 38_SambaUnmountTemplate.pdf in Resources */,
 				4CB9339916D3A0DD00A13B5D /* Credits.rtf in Resources */,
 				4C08ACEA204F01C700863D99 /* keyboardTemplate.pdf in Resources */,
-				4CC663E8216F7A7100E33965 /* PluginRepositoryBrowserView.xib in Resources */,
+				7837112C225540D1009BD28D /* PluginRepositoryBrowserView.xib in Resources */,
 				4C0F04412147FB49000B8568 /* OpenPanelAccessoryView.xib in Resources */,
 				4C6DCC451FA2457900C8AD3F /* ContextBar.xib in Resources */,
 				4C431BCF16E2BAB000700A81 /* OverlayWindow.xib in Resources */,
@@ -2184,6 +2189,7 @@
 				4C17D1222250EFBF00C650C4 /* de */,
 				4C17D1242250EFC500C650C4 /* en */,
 				4C17D1262250EFC900C650C4 /* nl */,
+				7837112922553A74009BD28D /* ru */,
 			);
 			name = SavePanelAccessoryView.xib;
 			sourceTree = "<group>";
@@ -2580,6 +2586,16 @@
 			name = DatabaseSettingsWindow.xib;
 			sourceTree = "<group>";
 		};
+		7837112E225540D1009BD28D /* PluginRepositoryBrowserView.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				7837112D225540D1009BD28D /* Base */,
+				78371130225540D8009BD28D /* ru */,
+				78371132225540DE009BD28D /* en */,
+			);
+			name = PluginRepositoryBrowserView.xib;
+			sourceTree = "<group>";
+		};
 		FA13910A1F9CD9EB0033D256 /* Localizable.stringsdict */ = {
 			isa = PBXVariantGroup;
 			children = (
@@ -2614,6 +2630,7 @@
 				4C93C5711FBDFEF900F36855 /* en */,
 				BB3E050F1FE9D1CD00F0B46F /* nl */,
 				6A74B0732076F4B50049BC29 /* sv-SE */,
+				7837112B22553B1D009BD28D /* ru */,
 			);
 			name = AutotypeBuilderView.xib;
 			sourceTree = "<group>";
