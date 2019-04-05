@@ -25,10 +25,11 @@
 
 @interface MPWorkflowSettingsController : MPViewController <MPPreferencesTab>
 
-@property (weak) IBOutlet NSPopUpButton *browserPopup;
-@property (weak) IBOutlet NSPopUpButton *doubleClickURLPopup;
-@property (weak) IBOutlet NSPopUpButton *doubleClickTitlePopup;
-@property (weak) IBOutlet NSButton *updatePasswordOnTemplateEntriesCheckButton;
+@property (strong) IBOutlet NSPopUpButton *browserPopup;
+@property (strong) IBOutlet NSPopUpButton *doubleClickURLPopup;
+@property (strong) IBOutlet NSPopUpButton *doubleClickTitlePopup;
+@property (strong) IBOutlet NSButton *updatePasswordOnTemplateEntriesCheckButton;
+@property (strong) IBOutlet NSButton *hideAfterCopyToClipboardCheckButton;
 
 - (IBAction)_showCustomBrowserSelection:(id)sender;
 

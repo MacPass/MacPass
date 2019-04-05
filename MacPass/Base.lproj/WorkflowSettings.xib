@@ -11,6 +11,7 @@
                 <outlet property="browserPopup" destination="ehI-gq-lsb" id="YMy-L1-pQw"/>
                 <outlet property="doubleClickTitlePopup" destination="40" id="aKJ-q9-xjb"/>
                 <outlet property="doubleClickURLPopup" destination="13" id="fGP-5I-0XK"/>
+                <outlet property="hideAfterCopyToClipboardCheckButton" destination="vT4-wF-ned" id="d7e-vc-cAQ"/>
                 <outlet property="updatePasswordOnTemplateEntriesCheckButton" destination="LPY-sM-hjS" id="wav-op-uck"/>
                 <outlet property="view" destination="1" id="52"/>
             </connections>
@@ -139,8 +140,8 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="vT4-wF-ned">
-                                <rect key="frame" x="18" y="18" width="307" height="18"/>
-                                <buttonCell key="cell" type="check" title="Hide application after copying to the clipboard " bezelStyle="regularSquare" imagePosition="left" enabled="NO" inset="2" id="1Vr-nY-Ogv">
+                                <rect key="frame" x="18" y="18" width="283" height="18"/>
+                                <buttonCell key="cell" type="check" title="Hide application after copying to clipboard " bezelStyle="regularSquare" imagePosition="left" inset="2" id="1Vr-nY-Ogv">
                                     <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                                     <font key="font" metaFont="system"/>
                                 </buttonCell>

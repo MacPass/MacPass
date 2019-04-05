@@ -749,7 +749,7 @@ NSString *const _MPTableSecurCellView = @"PasswordCell";
 }
 
 - (void)_columnDoubleClick:(id)sender {
-  if(0 == [[self.entryArrayController arrangedObjects] count]) {
+  if(0 == [self.entryArrayController.arrangedObjects count]) {
     return; // No data available
   }
   NSInteger columnIndex = [self.entryTable clickedColumn];
@@ -800,4 +800,5 @@ NSString *const _MPTableSecurCellView = @"PasswordCell";
       break;
   }
 }
+
 @end

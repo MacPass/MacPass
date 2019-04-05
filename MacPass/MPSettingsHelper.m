@@ -78,6 +78,7 @@ NSString *const kMPSettingsKeyPasswordDefaultsForEntry                = @"Passwo
 NSString *const kMPSettingsKeyDoubleClickURLAction                    = @"DoubleClickURLAction";
 NSString *const kMPSettingsKeyDoubleClickTitleAction                  = @"DoubleClickTitleAction";
 NSString *const kMPSettingsKeyUpdatePasswordOnTemplateEntries         = @"UpdatePasswordOnTemplateEntries";
+NSString *const kMPSettingsKeyHideAfterCopyToClipboard                = @"HideAfterCopyToClipboard";
 
 NSString *const kMPSettingsKeyLoadUnsecurePlugins                     = @"LoadUnsecurePlugins";
 NSString *const kMPSettingsKeyLoadIncompatiblePlugins                 = @"LoadIncompatiblePlugins";
@@ -159,7 +160,8 @@ NSString *const kMPDepricatedSettingsKeyLoadUnsecurePlugins               = @"MP
                          kMPSettingsKeyDisabledPlugins: @[],
                          kMPSettingsKeyLoadIncompatiblePlugins: @NO,
                          kMPSettingsKeyQuitOnLastWindowClose: @NO,
-                         kMPSettingsKeyEnableAutosave: @YES
+                         kMPSettingsKeyEnableAutosave: @YES,
+                         kMPSettingsKeyHideAfterCopyToClipboard: @NO
                          };
   });
   return standardDefaults;
