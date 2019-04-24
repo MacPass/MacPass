@@ -51,11 +51,10 @@
 
 NSString *const MPDidChangeStoredKeyFilesSettings = @"com.hicknhack.macpass.MPDidChangeStoredKeyFilesSettings";
 
-typedef NS_OPTIONS(NSInteger, MPAppDelegateNotifcationState) {
-  MPAppDelegateDidReceiveNoNotification = 0,
-  MPAppDelegateDidReceiveApplicationDidRestoreWindowsNotification = 1,
-  MPAppDelegateDidReceiveApplicationDidFinsishLaunchinNotification = 2,
-  MPAppdelegateDidReceiveAllNotifications = (MPAppDelegateDidReceiveApplicationDidRestoreWindowsNotification | MPAppDelegateDidReceiveApplicationDidFinsishLaunchinNotification)
+typedef NS_OPTIONS(NSInteger, MPAppStartupState) {
+  MPAppStartupStateNone = 0,
+  MPAppStartupStateRestoredWindows = 1,
+  MPAppStartupStateFinishedLaunch = 2
 };
 
 @interface MPAppDelegate () {
@@ -69,7 +68,7 @@ typedef NS_OPTIONS(NSInteger, MPAppDelegateNotifcationState) {
 @property (strong) IBOutlet NSWindow *passwordCreatorWindow;
 @property (strong, nonatomic) MPPreferencesWindowController *preferencesController;
 @property (strong, nonatomic) MPPasswordCreatorViewController *passwordCreatorController;
-@property (assign, nonatomic) MPAppDelegateNotifcationState notificationState;
+@property (assign, nonatomic) MPAppStartupState startupState;
 
 @property (strong) MPEntryContextMenuDelegate *itemActionMenuDelegate;
 
@@ -91,7 +90,7 @@ typedef NS_OPTIONS(NSInteger, MPAppDelegateNotifcationState) {
     _userNotificationCenterDelegate = [[MPUserNotificationCenterDelegate alloc] init];
     self.itemActionMenuDelegate = [[MPEntryContextMenuDelegate alloc] init];
     _shouldOpenFile = NO;
-    self.notificationState = MPAppDelegateDidReceiveNoNotification;
+    self.startupState = MPAppStartupStateNone;
     
     [NSNotificationCenter.defaultCenter addObserver:self
                                            selector:@selector(_applicationDidFinishRestoringWindows:)
@@ -128,10 +127,12 @@ typedef NS_OPTIONS(NSInteger, MPAppDelegateNotifcationState) {
   }
 }
 
-- (void)setNotificationState:(MPAppDelegateNotifcationState)notificationState {
-  if(notificationState != self.notificationState) {
-    _notificationState = notificationState;
-    if(MPAppdelegateDidReceiveAllNotifications == (self.notificationState & MPAppdelegateDidReceiveAllNotifications)) {
+- (void)setStartupState:(MPAppStartupState)notificationState {
+  if(notificationState != self.startupState) {
+    _startupState = notificationState;
+    BOOL restored = self.startupState & MPAppStartupStateRestoredWindows;
+    BOOL launched = self.startupState & MPAppStartupStateFinishedLaunch;
+    if(restored && launched ) {
       [self _applicationDidFinishLaunchingAndDidRestoreWindows];
     }
   }
@@ -188,7 +189,7 @@ typedef NS_OPTIONS(NSInteger, MPAppDelegateNotifcationState) {
 
 - (NSApplicationTerminateReply)applicationShouldTerminate:(NSApplication *)sender {
   [self hideWelcomeWindow];
-  if([[MPTemporaryFileStorageCenter defaultCenter] hasPendingStorages]) {
+  if(MPTemporaryFileStorageCenter.defaultCenter.hasPendingStorages) {
     dispatch_async(dispatch_get_main_queue(), ^{
       [MPTemporaryFileStorageCenter.defaultCenter cleanupStorages];
       [sender replyToApplicationShouldTerminate:YES];
@@ -219,7 +220,7 @@ typedef NS_OPTIONS(NSInteger, MPAppDelegateNotifcationState) {
   /* Disable updates if in debug or nosparkle  */
   [SUUpdater sharedUpdater];
 #endif
-  self.notificationState |= MPAppDelegateDidReceiveApplicationDidFinsishLaunchinNotification;
+  self.startupState |= MPAppStartupStateFinishedLaunch;
 }
 
 #pragma mark -
@@ -348,7 +349,7 @@ typedef NS_OPTIONS(NSInteger, MPAppDelegateNotifcationState) {
 #pragma mark -
 #pragma mark Private Helper
 - (void)_applicationDidFinishRestoringWindows:(NSNotification *)notification {
-  self.notificationState |= MPAppDelegateDidReceiveApplicationDidRestoreWindowsNotification;
+  self.startupState |= MPAppStartupStateRestoredWindows;
 }
 
 - (void)_applicationDidFinishLaunchingAndDidRestoreWindows {
