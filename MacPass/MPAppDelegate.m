@@ -51,6 +51,13 @@
 
 NSString *const MPDidChangeStoredKeyFilesSettings = @"com.hicknhack.macpass.MPDidChangeStoredKeyFilesSettings";
 
+typedef NS_OPTIONS(NSInteger, MPAppDelegateNotifcationState) {
+  MPAppDelegateDidReceiveNoNotification = 0,
+  MPAppDelegateDidReceiveApplicationDidRestoreWindowsNotification = 1,
+  MPAppDelegateDidReceiveApplicationDidFinsishLaunchinNotification = 2,
+  MPAppdelegateDidReceiveAllNotifications = (MPAppDelegateDidReceiveApplicationDidRestoreWindowsNotification | MPAppDelegateDidReceiveApplicationDidFinsishLaunchinNotification)
+};
+
 @interface MPAppDelegate () {
 @private
   MPDockTileHelper *_dockTileHelper;
@@ -62,6 +69,7 @@ NSString *const MPDidChangeStoredKeyFilesSettings = @"com.hicknhack.macpass.MPDi
 @property (strong) IBOutlet NSWindow *passwordCreatorWindow;
 @property (strong, nonatomic) MPPreferencesWindowController *preferencesController;
 @property (strong, nonatomic) MPPasswordCreatorViewController *passwordCreatorController;
+@property (assign, nonatomic) MPAppDelegateNotifcationState notificationState;
 
 @property (strong) MPEntryContextMenuDelegate *itemActionMenuDelegate;
 
@@ -82,11 +90,22 @@ NSString *const MPDidChangeStoredKeyFilesSettings = @"com.hicknhack.macpass.MPDi
   if(self) {
     _userNotificationCenterDelegate = [[MPUserNotificationCenterDelegate alloc] init];
     self.itemActionMenuDelegate = [[MPEntryContextMenuDelegate alloc] init];
+    _shouldOpenFile = NO;
+    self.notificationState = MPAppDelegateDidReceiveNoNotification;
+    
+    [NSNotificationCenter.defaultCenter addObserver:self
+                                           selector:@selector(_applicationDidFinishRestoringWindows:)
+                                               name:NSApplicationDidFinishRestoringWindowsNotification
+                                             object:nil];
+    
     /* We know that we do not use the variable after instantiation */
 #pragma clang diagnostic push
 #pragma clang diagnostic ignored "-Wunused-variable"
     MPDocumentController *documentController = [[MPDocumentController alloc] init];
 #pragma clang diagnostic pop
+    
+    
+    
   }
   return self;
 }
@@ -106,6 +125,15 @@ NSString *const MPDidChangeStoredKeyFilesSettings = @"com.hicknhack.macpass.MPDi
     }
     /* Inform anyone that might be interested that we can now no longer/ or can use keyfiles */
     [NSNotificationCenter.defaultCenter postNotificationName:MPDidChangeStoredKeyFilesSettings object:self];
+  }
+}
+
+- (void)setNotificationState:(MPAppDelegateNotifcationState)notificationState {
+  if(notificationState != self.notificationState) {
+    _notificationState = notificationState;
+    if(MPAppdelegateDidReceiveAllNotifications == (self.notificationState & MPAppdelegateDidReceiveAllNotifications)) {
+      [self _applicationDidFinishLaunchingAndDidRestoreWindows];
+    }
   }
 }
 
@@ -154,22 +182,12 @@ NSString *const MPDidChangeStoredKeyFilesSettings = @"com.hicknhack.macpass.MPDi
   return [NSUserDefaults.standardUserDefaults boolForKey:kMPSettingsKeyOpenEmptyDatabaseOnLaunch];
 }
 
-
-- (void)applicationWillFinishLaunching:(NSNotification *)notification {
-  _shouldOpenFile = NO;
-  [NSNotificationCenter.defaultCenter addObserver:self
-                                         selector:@selector(_applicationDidFinishRestoringWindows:)
-                                             name:NSApplicationDidFinishRestoringWindowsNotification
-                                           object:nil];
-  
-  
-}
-
 - (BOOL)applicationShouldTerminateAfterLastWindowClosed:(NSApplication *)sender {
   return [NSUserDefaults.standardUserDefaults boolForKey:kMPSettingsKeyQuitOnLastWindowClose];
 }
 
 - (NSApplicationTerminateReply)applicationShouldTerminate:(NSApplication *)sender {
+  [self hideWelcomeWindow];
   if([[MPTemporaryFileStorageCenter defaultCenter] hasPendingStorages]) {
     dispatch_async(dispatch_get_main_queue(), ^{
       [MPTemporaryFileStorageCenter.defaultCenter cleanupStorages];
@@ -201,6 +219,7 @@ NSString *const MPDidChangeStoredKeyFilesSettings = @"com.hicknhack.macpass.MPDi
   /* Disable updates if in debug or nosparkle  */
   [SUUpdater sharedUpdater];
 #endif
+  self.notificationState |= MPAppDelegateDidReceiveApplicationDidFinsishLaunchinNotification;
 }
 
 #pragma mark -
@@ -290,6 +309,7 @@ NSString *const MPDidChangeStoredKeyFilesSettings = @"com.hicknhack.macpass.MPDi
                                                      styleMask:NSWindowStyleMaskTitled|NSWindowStyleMaskClosable|NSWindowStyleMaskResizable
                                                        backing:NSBackingStoreBuffered
                                                          defer:NO];
+    self.welcomeWindow.restorable = NO; // do not restore the welcome window!
     self.welcomeWindow.releasedWhenClosed = NO;
   }
   if(!self.welcomeWindow.contentViewController) {
@@ -328,8 +348,12 @@ NSString *const MPDidChangeStoredKeyFilesSettings = @"com.hicknhack.macpass.MPDi
 #pragma mark -
 #pragma mark Private Helper
 - (void)_applicationDidFinishRestoringWindows:(NSNotification *)notification {
+  self.notificationState |= MPAppDelegateDidReceiveApplicationDidRestoreWindowsNotification;
+}
+
+- (void)_applicationDidFinishLaunchingAndDidRestoreWindows {
   NSArray *documents = NSDocumentController.sharedDocumentController.documents;
-  BOOL restoredWindows = documents.count > 0;
+  BOOL hasOpenDocuments = documents.count > 0;
   
   for(NSDocument *document in documents) {
     for(NSWindowController *windowController in document.windowControllers) {
@@ -338,8 +362,8 @@ NSString *const MPDidChangeStoredKeyFilesSettings = @"com.hicknhack.macpass.MPDi
   }
   
   BOOL reopen = [NSUserDefaults.standardUserDefaults boolForKey:kMPSettingsKeyReopenLastDatabaseOnLaunch];
-  BOOL showWelcomeScreen = !restoredWindows && !_shouldOpenFile;
-  if(reopen && !restoredWindows && !_shouldOpenFile) {
+  BOOL showWelcomeScreen = !hasOpenDocuments && !_shouldOpenFile;
+  if(reopen && !hasOpenDocuments && !_shouldOpenFile) {
     showWelcomeScreen = ![((MPDocumentController *)NSDocumentController.sharedDocumentController) reopenLastDocument];
   }
   if(showWelcomeScreen) {
