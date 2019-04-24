@@ -82,11 +82,21 @@ NSString *const MPDidChangeStoredKeyFilesSettings = @"com.hicknhack.macpass.MPDi
   if(self) {
     _userNotificationCenterDelegate = [[MPUserNotificationCenterDelegate alloc] init];
     self.itemActionMenuDelegate = [[MPEntryContextMenuDelegate alloc] init];
+    _shouldOpenFile = NO;
+    
+    [NSNotificationCenter.defaultCenter addObserver:self
+                                           selector:@selector(_applicationDidFinishRestoringWindows:)
+                                               name:NSApplicationDidFinishRestoringWindowsNotification
+                                             object:nil];
+    
     /* We know that we do not use the variable after instantiation */
 #pragma clang diagnostic push
 #pragma clang diagnostic ignored "-Wunused-variable"
     MPDocumentController *documentController = [[MPDocumentController alloc] init];
 #pragma clang diagnostic pop
+    
+    
+    
   }
   return self;
 }
@@ -156,12 +166,6 @@ NSString *const MPDidChangeStoredKeyFilesSettings = @"com.hicknhack.macpass.MPDi
 
 
 - (void)applicationWillFinishLaunching:(NSNotification *)notification {
-  _shouldOpenFile = NO;
-  [NSNotificationCenter.defaultCenter addObserver:self
-                                         selector:@selector(_applicationDidFinishRestoringWindows:)
-                                             name:NSApplicationDidFinishRestoringWindowsNotification
-                                           object:nil];
-  
   
 }
 
@@ -170,6 +174,7 @@ NSString *const MPDidChangeStoredKeyFilesSettings = @"com.hicknhack.macpass.MPDi
 }
 
 - (NSApplicationTerminateReply)applicationShouldTerminate:(NSApplication *)sender {
+  [self hideWelcomeWindow];
   if([[MPTemporaryFileStorageCenter defaultCenter] hasPendingStorages]) {
     dispatch_async(dispatch_get_main_queue(), ^{
       [MPTemporaryFileStorageCenter.defaultCenter cleanupStorages];
@@ -285,11 +290,13 @@ NSString *const MPDidChangeStoredKeyFilesSettings = @"com.hicknhack.macpass.MPDi
 }
 
 - (void)showWelcomeWindow {
+  NSApp.dockTile.badgeLabel = @"WELCOME";
   if(!self.welcomeWindow) {
     self.welcomeWindow = [[NSWindow alloc] initWithContentRect:NSMakeRect(0, 0, 100, 100)
                                                      styleMask:NSWindowStyleMaskTitled|NSWindowStyleMaskClosable|NSWindowStyleMaskResizable
                                                        backing:NSBackingStoreBuffered
                                                          defer:NO];
+    self.welcomeWindow.restorable = NO; // do not restore the welcome window!
     self.welcomeWindow.releasedWhenClosed = NO;
   }
   if(!self.welcomeWindow.contentViewController) {
