@@ -51,6 +51,13 @@
 
 NSString *const MPDidChangeStoredKeyFilesSettings = @"com.hicknhack.macpass.MPDidChangeStoredKeyFilesSettings";
 
+typedef NS_OPTIONS(NSInteger, MPAppDelegateNotifcationState) {
+  MPAppDelegateDidReceiveNoNotification = 0,
+  MPAppDelegateDidReceiveApplicationDidRestoreWindowsNotification = 1,
+  MPAppDelegateDidReceiveApplicationDidFinsishLaunchinNotification = 2,
+  MPAppdelegateDidReceiveAllNotifications = (MPAppDelegateDidReceiveApplicationDidRestoreWindowsNotification | MPAppDelegateDidReceiveApplicationDidFinsishLaunchinNotification)
+};
+
 @interface MPAppDelegate () {
 @private
   MPDockTileHelper *_dockTileHelper;
@@ -62,6 +69,7 @@ NSString *const MPDidChangeStoredKeyFilesSettings = @"com.hicknhack.macpass.MPDi
 @property (strong) IBOutlet NSWindow *passwordCreatorWindow;
 @property (strong, nonatomic) MPPreferencesWindowController *preferencesController;
 @property (strong, nonatomic) MPPasswordCreatorViewController *passwordCreatorController;
+@property (assign, nonatomic) MPAppDelegateNotifcationState notificationState;
 
 @property (strong) MPEntryContextMenuDelegate *itemActionMenuDelegate;
 
@@ -83,6 +91,7 @@ NSString *const MPDidChangeStoredKeyFilesSettings = @"com.hicknhack.macpass.MPDi
     _userNotificationCenterDelegate = [[MPUserNotificationCenterDelegate alloc] init];
     self.itemActionMenuDelegate = [[MPEntryContextMenuDelegate alloc] init];
     _shouldOpenFile = NO;
+    self.notificationState = MPAppDelegateDidReceiveNoNotification;
     
     [NSNotificationCenter.defaultCenter addObserver:self
                                            selector:@selector(_applicationDidFinishRestoringWindows:)
@@ -116,6 +125,15 @@ NSString *const MPDidChangeStoredKeyFilesSettings = @"com.hicknhack.macpass.MPDi
     }
     /* Inform anyone that might be interested that we can now no longer/ or can use keyfiles */
     [NSNotificationCenter.defaultCenter postNotificationName:MPDidChangeStoredKeyFilesSettings object:self];
+  }
+}
+
+- (void)setNotificationState:(MPAppDelegateNotifcationState)notificationState {
+  if(notificationState != self.notificationState) {
+    _notificationState = notificationState;
+    if(MPAppdelegateDidReceiveAllNotifications == (self.notificationState & MPAppdelegateDidReceiveAllNotifications)) {
+      [self _applicationDidFinishLaunchingAndDidRestoreWindows];
+    }
   }
 }
 
@@ -164,11 +182,6 @@ NSString *const MPDidChangeStoredKeyFilesSettings = @"com.hicknhack.macpass.MPDi
   return [NSUserDefaults.standardUserDefaults boolForKey:kMPSettingsKeyOpenEmptyDatabaseOnLaunch];
 }
 
-
-- (void)applicationWillFinishLaunching:(NSNotification *)notification {
-  
-}
-
 - (BOOL)applicationShouldTerminateAfterLastWindowClosed:(NSApplication *)sender {
   return [NSUserDefaults.standardUserDefaults boolForKey:kMPSettingsKeyQuitOnLastWindowClose];
 }
@@ -206,6 +219,7 @@ NSString *const MPDidChangeStoredKeyFilesSettings = @"com.hicknhack.macpass.MPDi
   /* Disable updates if in debug or nosparkle  */
   [SUUpdater sharedUpdater];
 #endif
+  self.notificationState |= MPAppDelegateDidReceiveApplicationDidFinsishLaunchinNotification;
 }
 
 #pragma mark -
@@ -290,7 +304,6 @@ NSString *const MPDidChangeStoredKeyFilesSettings = @"com.hicknhack.macpass.MPDi
 }
 
 - (void)showWelcomeWindow {
-  NSApp.dockTile.badgeLabel = @"WELCOME";
   if(!self.welcomeWindow) {
     self.welcomeWindow = [[NSWindow alloc] initWithContentRect:NSMakeRect(0, 0, 100, 100)
                                                      styleMask:NSWindowStyleMaskTitled|NSWindowStyleMaskClosable|NSWindowStyleMaskResizable
@@ -335,8 +348,12 @@ NSString *const MPDidChangeStoredKeyFilesSettings = @"com.hicknhack.macpass.MPDi
 #pragma mark -
 #pragma mark Private Helper
 - (void)_applicationDidFinishRestoringWindows:(NSNotification *)notification {
+  self.notificationState |= MPAppDelegateDidReceiveApplicationDidRestoreWindowsNotification;
+}
+
+- (void)_applicationDidFinishLaunchingAndDidRestoreWindows {
   NSArray *documents = NSDocumentController.sharedDocumentController.documents;
-  BOOL restoredWindows = documents.count > 0;
+  BOOL hasOpenDocuments = documents.count > 0;
   
   for(NSDocument *document in documents) {
     for(NSWindowController *windowController in document.windowControllers) {
@@ -345,8 +362,8 @@ NSString *const MPDidChangeStoredKeyFilesSettings = @"com.hicknhack.macpass.MPDi
   }
   
   BOOL reopen = [NSUserDefaults.standardUserDefaults boolForKey:kMPSettingsKeyReopenLastDatabaseOnLaunch];
-  BOOL showWelcomeScreen = !restoredWindows && !_shouldOpenFile;
-  if(reopen && !restoredWindows && !_shouldOpenFile) {
+  BOOL showWelcomeScreen = !hasOpenDocuments && !_shouldOpenFile;
+  if(reopen && !hasOpenDocuments && !_shouldOpenFile) {
     showWelcomeScreen = ![((MPDocumentController *)NSDocumentController.sharedDocumentController) reopenLastDocument];
   }
   if(showWelcomeScreen) {
