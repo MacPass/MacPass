@@ -382,6 +382,16 @@
 		4C17F107184E6B6C00E85625 /* 30_TerminalTemplate.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = 30_TerminalTemplate.pdf; sourceTree = "<group>"; };
 		4C1BDF281E4392640012A3F0 /* MPPluginDataViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MPPluginDataViewController.h; sourceTree = "<group>"; };
 		4C1BDF291E4392640012A3F0 /* MPPluginDataViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MPPluginDataViewController.m; sourceTree = "<group>"; };
+		4C1D562F2271F4BC00C3E594 /* fr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.stringsdict; name = fr; path = fr.lproj/Localizable.stringsdict; sourceTree = "<group>"; };
+		4C1D56302271F4BC00C3E594 /* fr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fr; path = fr.lproj/PickcharsView.strings; sourceTree = "<group>"; };
+		4C1D56312271F4BC00C3E594 /* fr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fr; path = fr.lproj/PluginDataView.strings; sourceTree = "<group>"; };
+		4C1D56322271F4BC00C3E594 /* fr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fr; path = fr.lproj/AutotypeCandidateSelectionView.strings; sourceTree = "<group>"; };
+		4C1D56332271F4BC00C3E594 /* fr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fr; path = fr.lproj/OpenPanelAccessoryView.strings; sourceTree = "<group>"; };
+		4C1D56342271F4BC00C3E594 /* fr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fr; path = fr.lproj/SavePanelAccessoryView.strings; sourceTree = "<group>"; };
+		4C1D56352271F4BC00C3E594 /* fr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fr; path = fr.lproj/AutotypeBuilderView.strings; sourceTree = "<group>"; };
+		4C1D56362271F4BC00C3E594 /* fr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fr; path = fr.lproj/ReferenceBuilderView.strings; sourceTree = "<group>"; };
+		4C1D56372271F4BC00C3E594 /* fr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fr; path = fr.lproj/PickfieldView.strings; sourceTree = "<group>"; };
+		4C1D56382271F4BC00C3E594 /* fr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fr; path = fr.lproj/PluginRepositoryBrowserView.strings; sourceTree = "<group>"; };
 		4C1E9883185F71A800943563 /* MPContextBarViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MPContextBarViewController.h; sourceTree = "<group>"; };
 		4C1E9884185F71A800943563 /* MPContextBarViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MPContextBarViewController.m; sourceTree = "<group>"; };
 		4C1F7FA01E3A12E600D6A40E /* MPModifiedKey.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MPModifiedKey.h; sourceTree = "<group>"; };
@@ -2135,6 +2145,7 @@
 				4C0B533E205C1526003D277E /* de */,
 				6A74B0752076F4B50049BC29 /* sv-SE */,
 				4C272A282224871900186EEC /* nl */,
+				4C1D56302271F4BC00C3E594 /* fr */,
 			);
 			name = PickcharsView.xib;
 			sourceTree = "<group>";
@@ -2148,6 +2159,7 @@
 				6A74B0762076F4B50049BC29 /* sv-SE */,
 				A50AD5D0212884A0007C85EB /* pl */,
 				4C272A2B2224871900186EEC /* nl */,
+				4C1D56372271F4BC00C3E594 /* fr */,
 			);
 			name = PickfieldView.xib;
 			sourceTree = "<group>";
@@ -2177,6 +2189,7 @@
 				4C0F04452147FB4D000B8568 /* en */,
 				4C0F04472147FB4E000B8568 /* de */,
 				4C272A2A2224871900186EEC /* nl */,
+				4C1D56332271F4BC00C3E594 /* fr */,
 			);
 			name = OpenPanelAccessoryView.xib;
 			sourceTree = "<group>";
@@ -2189,6 +2202,7 @@
 				4C17D1242250EFC500C650C4 /* en */,
 				4C17D1262250EFC900C650C4 /* nl */,
 				7837112922553A74009BD28D /* ru */,
+				4C1D56342271F4BC00C3E594 /* fr */,
 			);
 			name = SavePanelAccessoryView.xib;
 			sourceTree = "<group>";
@@ -2407,6 +2421,7 @@
 				4C79B6401FB0562D008250D8 /* en */,
 				BB3E050E1FE9D1CC00F0B46F /* nl */,
 				6A74B0722076F4B50049BC29 /* sv-SE */,
+				4C1D56362271F4BC00C3E594 /* fr */,
 			);
 			name = ReferenceBuilderView.xib;
 			sourceTree = "<group>";
@@ -2419,6 +2434,7 @@
 				4CF6653E20E67A1A0008A25C /* de */,
 				A50AD5CF212884A0007C85EB /* pl */,
 				4C272A292224871900186EEC /* nl */,
+				4C1D56312271F4BC00C3E594 /* fr */,
 			);
 			name = PluginDataView.xib;
 			sourceTree = "<group>";
@@ -2591,6 +2607,7 @@
 				7837112D225540D1009BD28D /* Base */,
 				78371130225540D8009BD28D /* ru */,
 				78371132225540DE009BD28D /* en */,
+				4C1D56382271F4BC00C3E594 /* fr */,
 			);
 			name = PluginRepositoryBrowserView.xib;
 			sourceTree = "<group>";
@@ -2603,6 +2620,7 @@
 				4C6DCC5A1FA246ED00C8AD3F /* de */,
 				BB3E050D1FE9D1CB00F0B46F /* nl */,
 				6A74B0792076F4B50049BC29 /* sv-SE */,
+				4C1D562F2271F4BC00C3E594 /* fr */,
 			);
 			name = Localizable.stringsdict;
 			sourceTree = "<group>";
@@ -2616,6 +2634,7 @@
 				4C93C5701FBDFEF700F36855 /* en */,
 				BB3E050C1FE9D1CA00F0B46F /* nl */,
 				6A74B0742076F4B50049BC29 /* sv-SE */,
+				4C1D56322271F4BC00C3E594 /* fr */,
 			);
 			name = AutotypeCandidateSelectionView.xib;
 			sourceTree = "<group>";
@@ -2630,6 +2649,7 @@
 				BB3E050F1FE9D1CD00F0B46F /* nl */,
 				6A74B0732076F4B50049BC29 /* sv-SE */,
 				7837112B22553B1D009BD28D /* ru */,
+				4C1D56352271F4BC00C3E594 /* fr */,
 			);
 			name = AutotypeBuilderView.xib;
 			sourceTree = "<group>";

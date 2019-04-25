@@ -13,6 +13,9 @@
 /* preset to expire after 90 days from now */
 "90_DAYS" = "dans 90 jours";
 
+/* Button label to abort a merge on a file with changed master key! */
+"ABORT_MERGE_KEEP_MINE" = "Annuler la fusion";
+
 /* Toolbar item with action menu */
 "ACTION" = "Action";
 
@@ -35,6 +38,9 @@
 /* Notification: Autotype failed, MacPass has no permission to send key strokes */
 "AUTOTYPE_NOTIFICATION_MACPASS_HAS_NO_ACCESSIBILTY_PERMISSIONS" = "Autorisation accessibilité manquant, saisie automatique désactivé.";
 
+/* Notification: Autotype failed, no documents are open */
+"AUTOTYPE_OVERLAY_NO_DOCUMENTS" = "Aucun document n'est ouvert";
+
 /* Noticiation: Autotype failed to find a match for %@ (string placeholder) */
 "AUTOTYPE_OVERLAY_NO_MATCH_FOR_%@" = "Pas de correspondance %@ !";
 
@@ -45,7 +51,7 @@
 "CANCEL" = "Annuler";
 
 /* Menu item in the database outline context menu to change the database name */
-"CHANGE_DATABASE_NAME" = "Modifier nom base de données";
+"CHANGE_DATABASE_NAME" = "Modifier le nom de la base de données";
 
 /* Button to show the password change dialog
    Single button to show the password change dialog */
@@ -53,6 +59,9 @@
 
 /* Menu item in the database outline context menu to change the trash group */
 "CHANGE_TRASH_GROUP" = "Modifier le groupe corbeille";
+
+/* Button title in the key file selection dialog for selecting a key */
+"CHOOSE_FILE_BUTTON_TITLE" = "Sélectionner";
 
 /* Menu to clear recent searches */
 "CLEAR_RECENT_SEARCHES" = "Effacer les recherches récentes";
@@ -63,21 +72,45 @@
 /* Field name that was copied to the pasteboard */
 "COPIED_FIELD_%@" = "Copie de %@";
 
+/* Context menu that copies reference to note */
+"COPIED_NOTES_REFERENCE" = "Copier les notes en tant que référence";
+
 /* Password was copied to the pasteboard */
 "COPIED_PASSWORD" = "Mot de passe copié !";
+
+/* Context menu that copies reference to password */
+"COPIED_PASSWORD_REFERENCE" = "Copier le mot de passe en tant que référence";
+
+/* Context menu that copies reference to title */
+"COPIED_TITLE_REFERENCE" = "Copier le titre en tant que référence";
 
 /* URL was copied to the pasteboard */
 "COPIED_URL" = "URL copiée !";
 
+/* Context menu that copies reference to URL */
+"COPIED_URL_REFERENCE" = "Copier l'URL en tant que référence";
+
 /* Username was copied to the pasteboard */
 "COPIED_USERNAME" = "Nom d'utilisateur copié !";
+
+/* Context menu that copies reference to username */
+"COPIED_USERNAME_REFERENCE" = "Copier l'utilisateur en tant que référence";
+
+/* Submenu to copy attributes as reference */
+"COPY_AS_REFERENCE" = "Copier en tant que référence";
+
+/* Context menu sub-menu to copy attributes as reference */
+"COPY_AS_REFERENCE_MENU" = "Copier en tant que référence";
 
 /* Submenu to Copy custom fields */
 "COPY_CUSTOM_FIELDS" = "Copier les champs personnalisés";
 
+/* Context menu sub-menu to copy custom fields to clipboard */
+"COPY_CUSTOM_FIELDS_MENU" = "Copier les champs personnalisés dans le presse-papiers";
+
 /* Action name when an entry was moved
    Action title for copying an entry via drag and drop */
-"COPY_ENTRY" = "Copier entrée";
+"COPY_ENTRY" = "Copier l'entrée";
 
 /* Mask for title to copy field value */
 "COPY_FIELD_%@" = "Copier %@";
@@ -85,16 +118,37 @@
 /* Action title for copying a group via drag and drop */
 "COPY_GROUP" = "Copier groupe";
 
+/* Context menu that copies reference to note */
+"COPY_NOTES_REFERENCE" = "Copier la référence des notes";
+
 /* Menu item to copy the password of an entry
    Toolbar item copy password */
-"COPY_PASSWORD" = "Copier mot de passe";
+"COPY_PASSWORD" = "Copier le mot de passe";
+
+/* Context menu that copies reference to password */
+"COPY_PASSWORD_REFERENCE" = "Copier la référence du mot de passe";
+
+/* Context menu that copies reference to title */
+"COPY_TITLE_REFERENCE" = "Copier la référence du titre";
 
 /* Menu item to copy the URL of an entry */
-"COPY_URL" = "Copier URL";
+"COPY_URL" = "Copier l'URL";
+
+/* Context menu that copies reference to URL */
+"COPY_URL_REFERENCE" = "Copier la référence de l'URL";
 
 /* Menu item to copy the username of an entry
    Toolbar item copy username */
-"COPY_USERNAME" = "Copier nom d'utilisateur";
+"COPY_USERNAME" = "Copier le nom d'utilisateur";
+
+/* Context menu that copies reference to username */
+"COPY_USERNAME_REFERENCE" = "Copier la référence du nom d'utilisateur";
+
+/* Curstom attribute reference item */
+"CUSTOM_ATTRIBUTE" = "Attribut personnalisé";
+
+/* Title for menu for custom search filters */
+"CUSTOM_SEARCH_FILTER_MENU" = "Filtre de recherche personnalisé";
 
 /* Default display name for KDB databases */
 "DATABASE" = "Base de données";
@@ -125,16 +179,33 @@
 "DELETE" = "Effacer";
 
 /* Delete Entry */
-"DELETE_ENTRY" = "Effacer entrée";
+"DELETE_ENTRY" = "Effacer l'entrée";
 
 /* Delete Group */
-"DELETE_GROUP" = "Effacer groupe";
+"DELETE_GROUP" = "Effacer le groupe";
+
+/* Empty Trash */
+"DELETE_TRASHED_ENTRY" = "Supprimer définitivement l'entrée";
+
+/* Empty Trash */
+"DELETE_TRASHED_GROUP" = "Supprimer définitivement le groupe";
+
+/* Action title for copying an entry via drag and drop to another database
+   Action title for moving an entry via drag and drop */
+"DRAG_ENTRY" = "Glisser-déposer l'entrée";
+
+/* Action title for moving a group via drag and drop
+   Actiontitle for copying groups via drag and drop to antother database */
+"DRAG_GROUP" = "Glisser-déposer le groupe";
+
+/* Action name for duplicating entries */
+"DUPLICATE_ENTRIES_%ld" = "Entrées dupliquées %ld";
 
 /* Menu item to directly diplicate an entry */
-"DUPLICATE_ENTRY" = "Dupliquer entrée";
+"DUPLICATE_ENTRY" = "Dupliquer l'entrée";
 
 /* Menu item to duplicate an entry with options how to duplicate. Will present a dialog. */
-"DUPLICATE_ENTRY_WITH_OPTIONS" = "Dupliquer entrée…";
+"DUPLICATE_ENTRY_WITH_OPTIONS" = "Dupliquer l'entrée…";
 
 /* Menu item in the database outline context menu to change the template group
    Menu item on the add entry context menu to edit template groups */
@@ -152,8 +223,20 @@
 /* Message text for the enforce password change alert */
 "ENFORCE_PASSWORD_CHANGE_ALERT_TITLE" = "Le mot de passe de la base de données a expiré !";
 
+/* Group row for entry attributes */
+"ENTRY_CUSTOM_ATTRIBUTES" = "Attributs personnalisés de l'entrée";
+
+/* Group row for entry attributes */
+"ENTRY_DEFAULT_ATTRIBUTES" = "Attributs personnalisés de l'entrée";
+
+/* Tooltip displayed on the index header cell */
+"ENTRY_INDEX_COLUMN_TOOLTIP" = "Index de l'entrée";
+
 /* Keyfile not valid */
 "ERROR_INVALID_KEYFILE" = "Clé incorrecte !";
+
+/* Error description given when adding an invalid plugin */
+"ERROR_INVALID_PLUGIN" = "Plugin invalide";
 
 /* Passwords do not match */
 "ERROR_PASSWORD_MISSMATCH" = "Mot de passe incorrect !";
@@ -161,8 +244,14 @@
 /* Passwords do not match, keyfile is invalid */
 "ERROR_PASSWORD_MISSMATCH_INVALID_KEYFILE" = "Mot de passe ou clé incorrect(e) !";
 
+/* Recommend/Enforce key change intervall format */
+"EVERY_%ld_DAYS" = "Tous les %ld jours";
+
 /* Format to returen the date an item expires. Includes %@ placehoder for date */
 "EXPIRES_AT_DATE_%@" = "Expiration : %@";
+
+/* The master key was changed by an external program! */
+"EXTERN_CHANGE_OF_MASTERKEY" = "La clé principale a été changée par un programme externe";
 
 /* Informative text displayed when the file was change from another application */
 "FILE_CHANGED_BY_OTHERS_INFO_TEXT" = "Le fichier chargé n'est pas le même que celui sur le disque. Comment voulez-vous continuer ?";
@@ -179,6 +268,13 @@
 /* Group column title */
 "GROUP" = "Groupe";
 
+/* History count column title
+   Menu item to toggle display of history count column in entry table */
+"HISTORY" = "Historique";
+
+/* Imports a dragged URL for a new entry */
+"IMPORT_URL" = "Importation de l'URL";
+
 /* Toolbar item toggle inspector */
 "INSPECTOR" = "Inspecteur";
 
@@ -191,11 +287,32 @@
 /* Feature only available in kdbx databases */
 "KDBX_ONLY_FEATURE" = "Fonction non supportée par la base KDB";
 
+/* Button in dialog to ignore the changes to an open file! */
+"KEEP_MINE_DISCARD_OTHER" = "Conserver mon fichier, ignorer les autres";
+
+/* Button in dialog to reopen the file! */
+"KEEP_OTHER_DISCARD_MINE" = "Conserver le nouveau fichier, ignorer le mien";
+
+/* Do not install the plugin */
+"KEEP_PLUGIN" = "Ne pas installer le plugin";
+
+/* Do not restart MacPass */
+"KEEP_RUNNING" = "Ne pas redémarrer MacPass";
+
 /* last week */
 "LAST_WEEK" = "La semaine dernière";
 
 /* Toolbar item to Lock the database */
 "LOCK" = "Verrouiller";
+
+/* Message in the open panel to add attachments to an entry */
+"MESSAGE_ADD_ATTACHMENT_OPEN_PANEL" = "Ajouter le fichier sélectionné";
+
+/* Message in the add plugin open panel */
+"MESSAGE_ADD_PLUGIN_OPEN_PANEL" = "Ajouter le plugin sélectionné";
+
+/* Message in the open panel to import an XML file */
+"MESSAGE_XML_OPEN_PANEL" = "Importer le fichier sélectionné";
 
 /* Menu item to toggle display of modified date column in entry table
    Modification date column title */
@@ -213,12 +330,12 @@
 "NEW_ENTRY" = "Ajouter entrée";
 
 /* Submenu to add an entry via template */
-"NEW_ENTRY_WITH_TEMPLATE_%@" = "Créer entrée depuis modèle %@";
+"NEW_ENTRY_WITH_TEMPLATE_%@" = "Créer l'entrée depuis le modèle %@";
 
 /* Action name for a newly created group
    Menu item to create a new group
    Toolbar item new group */
-"NEW_GROUP" = "Ajouter groupe";
+"NEW_GROUP" = "Ajouter un groupe";
 
 /* Expiration date format, when item does not expire */
 "NO_EXPIRE_DATE_SET" = "N'expire jamais.";
@@ -231,7 +348,7 @@
 
 /* Null placeholder for item input field
    Placeholder text for input fields if no entry or group is selected */
-"NONE" = "NONE";
+"NONE" = "Aucun";
 
 /* Displayed name when notes or part of notes was copied
    Menu item to toggle display of notes column in entry table
@@ -251,8 +368,23 @@
 /* preset to expire after one year from now */
 "ONE_YEAR" = "dans un an";
 
+/* Open button in the open panel to add attachments to an entry */
+"OPEN_BUTTON_ADD_ATTACHMENT_OPEN_PANEL" = "Ajouter le fichier sélectionné";
+
+/* Open button in the add plugin open panel */
+"OPEN_BUTTON_ADD_PLUGIN_OPEN_PANEL" = "Ajouter le plugin sélectionné";
+
+/* Open button in the open panel to import an XML file */
+"OPEN_BUTTON_IMPORT_XML_OPEN_PANEL" = "Ajouter le fichier sélectionné";
+
+/* Action button in Notification to open a document */
+"OPEN_DOCUMENT" = "Ouvrir";
+
+/* Action button in Notification to show the Accessibilty preferences */
+"OPEN_PREFERENCES" = "Ouvrir les préférences";
+
 /* Menu item to open the URL with the default application */
-"OPEN_URL" = "Ouvrir URL";
+"OPEN_URL" = "Ouvrir l'URL";
 
 /* Select Browser */
 "OTHER_BROWSER" = "Sélectionner le navigateur";
@@ -261,6 +393,9 @@
    Password column title
    Password reference item */
 "PASSWORD" = "Mot de passe";
+
+/* Window title for the stand-alone password creator window */
+"PASSWORD_CREATOR_WINDOW_TITLE" = "Générateur de mot de passe";
 
 /* Button to reset the password defaults for a single entry */
 "PASSWORD_GENERATOR_RESET_ENTRY_DEFAULTS" = "Réinitialiser";
@@ -283,8 +418,65 @@
 /* Menu item to perform autotype with the selected entry */
 "PERFORM_AUTOTYPE_FOR_ENTRY" = "Saisie automatique";
 
+/* Window displayed to the user to pick an amout of characters */
+"PICKCHAR_WINDOW_TITLE" = "Choix du nombre de caractères";
+
+/* Count of picked characters in pickchars dialog if no limit is set */
+"PICKED_%ld_CHARACTERS" = "%ld caractères sélectionnés";
+
+/* Window displayed to the user to pick an amout of characters */
+"PICKFIELD_WINDOW_TITLE" = "Choix du nombre de caractères";
+
+/* Label for the button when a download is in progress! */
+"PLUGIN_BROWSER_ACTION_DOWNLOAD_IN_PROGRESS" = "Téléchargement en cours";
+
+/* Label for the button when a download did not succeed */
+"PLUGIN_BROWSER_ACTION_RETRY_FAILED_DOWNLOAD" = "Le téléchargement a échoué";
+
+/* Label for the button to show a downloaded file */
+"PLUGIN_BROWSER_ACTION_SHOW_DOWNLOADED_FILE" = "Fichier téléchargé";
+
+/* Button to download the Plugin */
+"PLUGIN_BROWSER_DOWNLOAD_PLUGIN_BUTTON" = "Téléchargement du plugin";
+
+/* Status for an up-to-date plugin in the plugin browser */
+"PLUGIN_BROWSER_LATEST_VERSION_INSTALLED" = "Plugin à jour";
+
+/* Status for an outdated plugin version in the plugin browser */
+"PLUGIN_BROWSER_NEWER_VERSION_%@_AVAILABLE" = "Nouvelle version du plugin disponible : %@";
+
+/* Status for an uninstalled plugin in the plugin browser */
+"PLUGIN_BROWSER_PLUGIN_NOT_INSTALLED" = "Plugin désinstallé";
+
+/* Status for an unkonw plugin version in the plugin browser */
+"PLUGIN_BROWSER_UNKNOWN_PLUGIN_VERSION_INSTALLED_%@" = "Version du plugin %@ inconnue";
+
+/* Error for a plugin that is disabled. */
+"PLUGIN_ERROR_DISABLED_PLUGIN" = "Plugin désactivé";
+
+/* Plugin is not with this version of MacPass */
+"PLUGIN_ERROR_HOST_VERSION_NOT_SUPPORTED" = "Version courant de MacPass incompatible avec ce plugin";
+
+/* The plugin could not be initalized */
+"PLUGIN_ERROR_INTILIZATION_FAILED" = "Le plugin n'a pas pu être initialisé";
+
+/* Error for a plugin that was not signed properly */
+"PLUGIN_ERROR_UNSECURE_PLUGIN" = "Ce plugin n'est pas fiable";
+
+/* Plugin specifies the wrong principla class! */
+"PLUGIN_ERROR_WRONG_PRINCIPAL_CLASS" = "Classe principale du plugin incorrecte";
+
+/* name for disabled unloaded plugin */
+"PLUGIN_NAME_DISABLED_%@" = "Plugin %@ désactivé";
+
+/* Name for unloaded plugin with errors */
+"PLUGIN_NAME_ERROR_%@" = "Plugin %@ désactivé avec des erreurs";
+
 /* Label for plugin settings tab */
 "PLUGIN_SETTINGS" = "Plugins";
+
+/* Plugin version. Include a %@ placeholder for version string */
+"PLUGIN_VERSION_%@" = "Version du plugin : %@";
 
 /* Menu item to preview the selected attached file. */
 "PREVIEW" = "Aperçu";
@@ -298,12 +490,18 @@
 /* Message text for the recommend password change alert */
 "RECOMMEND_PASSWORD_CHANGE_ALERT_TITLE" = "Changez le mot de passe de la base de données !";
 
+/* Restart */
+"RESTART" = "Redémarrage";
+
+/* Action to restore and Entry to a previous state of it's history */
+"RESTORE_HISTORY_ENTRY" = "Rétablir l'historique de l'entrée";
+
 /* Menu item to save the selected attached file.
    Save file menu item title when save will just save the file */
 "SAVE" = "Enregistrer";
 
 /* Button title to save the generated key file */
-"SAVE_KEYFILE" = "Sauver la clé";
+"SAVE_KEYFILE" = "Sauvegarder la clé";
 
 /* Save file menu item title when save will prompt for a location to save or ask for a password/key */
 "SAVE_WITH_DOTS" = "Enregistrer…";
@@ -328,6 +526,15 @@
 
 /* Menu item title for the expiry preset selection menu in the date picker */
 "SELECT_DATE_PRESET" = "Date relative…";
+
+/* Message on the open panel for selecting which browser to use for opening URLs */
+"SELECT_DEFAULT_BROWSER_OPEN_PANEL_MESSAGE" = "Navigateur par défaut";
+
+/* Label for the select browser button on the open panel for selecting which browser to use for opening URLs */
+"SELECT_DEFAULT_BROWSER_OPEN_PANEL_SELECT_BUTTON" = "Choix du navigateur";
+
+/* Message for the dialog to open a file for merge */
+"SELECT_FILE_TO_MERGE" = "Fichier à fusionner";
 
 /* Menu displayed as popup selection for search options if no filter is selected */
 "SELECT_FILTER_WITH_DOTS" = "Sélectionner…";
@@ -354,6 +561,15 @@
 /* Move Group to Trash */
 "TRASH_GROUP" = "Effacer groupe";
 
+/* Uninstall plugin */
+"UNINSTALL" = "Désinstaller le plugin";
+
+/* No comment provided by engineer. */
+"UNKNOWN_FILE_VERSION" = "Version du fichier inconnue";
+
+/* Unknown database format. */
+"UNKNOWN_FORMAT" = "Format inconnu";
+
 /* Update Settings Label */
 "UPDATE_SETTINGS" = "Mises à jour";
 
@@ -378,10 +594,10 @@
 "WARNING_ON_EMPTY_TRASH_TITLE" = "Vider la corbeille ?";
 
 /* No comment provided by engineer. */
-"WARNING_ON_SAVE_NO_PASSWORD_OR_KEY_SET" = "No password or keyfile is set.";
+"WARNING_ON_SAVE_NO_PASSWORD_OR_KEY_SET" = "Aucun mot de passe ou clé n'est défini.";
 
 /* No comment provided by engineer. */
-"WARNING_ON_SAVE_NO_PASSWORD_OR_KEY_SET_SUGGESTION" = "Please set a password and/or keyfile for this database. Aborting this will undo all changes and lock the document";
+"WARNING_ON_SAVE_NO_PASSWORD_OR_KEY_SET_SUGGESTION" = "Veuillez définir un mot de passe ou une clé pour cette base de données. Quitter cette opération va annuler tous les changements et verrouiller le document";
 
 /* Label for the workflow settings tab */
 "WORKFLOW_SETTINGS" = "Workflow";
