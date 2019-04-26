@@ -28,6 +28,9 @@
 /* Action to add an entry via template */
 "ADD_TREMPLATE_ENTRY" = "Creëer onderdeel met sjabloon";
 
+/* Button in dialog to leave autotype disabled and continiue! */
+"ALERT_AUTOTYPE_MISSING_ACCESSIBILTY_PERMISSIONS_BUTTON_OK" = "Log niet automatisch in";
+
 /* Button in dialog to open accessibilty preferences pane! */
 "ALERT_AUTOTYPE_MISSING_ACCESSIBILTY_PERMISSIONS_BUTTON_OPEN_PREFERENCES" = "Open toegankelijkheidsopties…";
 
@@ -62,10 +65,10 @@
 "ALERT_MERGE_CONTINUE" = "Voeg samen";
 
 /* Informative text displayed when merging KDB files */
-"ALERT_MERGE_KDB_FILE_INFO_TEXT" = "Wachtwoordenkluizen met de indeling KDB bevatten niet altijd genoeg informatie om ze zorgvuldig te kunnen samenvoegen. Er gaat geen informatie verloren, maar omdat groepen alleen worden herkend aan hun naam, kunnen er onverwachte veranderingen optreden. Onderdelen die waren verplaatst, komen misschien terecht in de oude groep of groepen die waren hernoemd, worden niet samengevoegd. Ook kunnen onderdelen terugkeren die waren verwijderd. Weet je zeker dat je wilt samenvoegen?";
+"ALERT_MERGE_KDB_FILE_INFO_TEXT" = "Wachtwoordenkluizen met de indeling .kdb bevatten niet altijd genoeg informatie om ze naadloos te kunnen samenvoegen. Er gaat geen informatie verloren, maar omdat groepen alleen worden herkend aan hun naam, kunnen er onverwachte veranderingen optreden. Onderdelen die waren verplaatst, komen misschien terecht in de oude groep of groepen die waren hernoemd, worden niet samengevoegd. Ook kunnen onderdelen terugkeren die waren verwijderd. Weet je zeker dat je wilt samenvoegen?";
 
 /* Alert message warning user about KDB file merge */
-"ALERT_MERGE_KDB_FILE_MESSAGE" = "Je voegt een wachtwoordenkluis met de indeling KDB samen";
+"ALERT_MERGE_KDB_FILE_MESSAGE" = "Je voegt een wachtwoordenkluis met de indeling .kdb samen";
 
 /* Alert message text when plugins or their settings change and require a restart */
 "ALERT_MESSAGE_PLUGINS_CHANGED_SUGGEST_RESTART" = "Wil je MacPass nu stoppen en opnieuw openen om de wijziging door te voeren?";
@@ -73,8 +76,11 @@
 /* Alert message text to ask the user if he really want to uninstall the plugin. Include %@ placeholder for plugin name */
 "ALERT_MESSAGE_TEXT_REALLY_UNINSTALL_PLUGIN_%@" = "Wil je de extensie %@ verwijderen?";
 
+/* Infromative text of the disabled updates alert! */
+"ALERT_UPDATES_DISABLED_INFORMATIVE_TEXT_%@!" = "Bijwerken is uitgeschakeld voor deze versie van %@";
+
 /* Message text for disabled updates alert! */
-"ALERT_UPDATES_DISABLED_MESSAGE_TEXT" = "Automatisch bijwerken uitgeschakeld";
+"ALERT_UPDATES_DISABLED_MESSAGE_TEXT" = "Automatisch bijwerken is uitgeschakeld";
 
 /* Attachments column title (shows counts)
    Menu item to toggle display of attachment count column in entry table */
@@ -106,6 +112,9 @@
 
 /* Notification: Autotype found a single match for %@ (string placeholder). */
 "AUTOTYPE_OVERLAY_SINGLE_MATCH_FOR_%@" = "Automatisch ingelogd op %@.";
+
+/* Notficication: Autotype timed out */
+"AUTOTYPE_TIMED_OUT" = "Automatisch inloggen mislukt door te lang wachten.";
 
 /* Enable autotype menu item */
 "AUTOTYPE_YES" = "Activeer automatisch inloggen";
@@ -141,14 +150,32 @@
 /* Field name that was copied to the pasteboard */
 "COPIED_FIELD_%@" = "%@ gekopieerd";
 
+/* Context menu that copies reference to note */
+"COPIED_NOTES_REFERENCE" = "Verwijzing naar notities gekopieerd";
+
 /* Password was copied to the pasteboard */
 "COPIED_PASSWORD" = "Wachtwoord gekopieerd";
+
+/* Context menu that copies reference to password */
+"COPIED_PASSWORD_REFERENCE" = "Verwijzing naar wachtwoord gekopieerd";
+
+/* Context menu that copies reference to title */
+"COPIED_TITLE_REFERENCE" = "Verwijzing naar naam gekopieerd";
 
 /* URL was copied to the pasteboard */
 "COPIED_URL" = "Koppeling met webpagina gekopieerd";
 
+/* Context menu that copies reference to URL */
+"COPIED_URL_REFERENCE" = "Verwijzing naar koppeling met webpagina gekopieerd";
+
 /* Username was copied to the pasteboard */
 "COPIED_USERNAME" = "Gebruikersnaam gekopieerd";
+
+/* Context menu that copies reference to username */
+"COPIED_USERNAME_REFERENCE" = "Verwijzing naar gebruikersnaam gekopieerd";
+
+/* Submenu to copy attributes as reference */
+"COPY_AS_REFERENCE" = "Kopieer verwijzing…";
 
 /* Submenu to Copy custom fields */
 "COPY_CUSTOM_FIELDS" = "Kopieer aangepaste velden";
@@ -166,19 +193,34 @@
 /* Action title for copying a group via drag and drop */
 "COPY_GROUP" = "Kopieer groep";
 
+/* Context menu that copies reference to note */
+"COPY_NOTES_REFERENCE" = "notities";
+
 /* Menu item to copy the password of an entry
    Toolbar item copy password */
 "COPY_PASSWORD" = "Kopieer wachtwoord";
 
+/* Context menu that copies reference to password */
+"COPY_PASSWORD_REFERENCE" = "wachtwoord";
+
+/* Context menu that copies reference to title */
+"COPY_TITLE_REFERENCE" = "naam";
+
 /* Menu item to copy the URL of an entry */
 "COPY_URL" = "Kopieer koppeling";
+
+/* Context menu that copies reference to URL */
+"COPY_URL_REFERENCE" = "webpagina";
 
 /* Menu item to copy the username of an entry
    Toolbar item copy username */
 "COPY_USERNAME" = "Kopieer gebruikersnaam";
 
+/* Context menu that copies reference to username */
+"COPY_USERNAME_REFERENCE" = "gebruikersnaam";
+
 /* Curstom attribute reference item */
-"CUSTOM_ATTRIBUTE" = "";
+"CUSTOM_ATTRIBUTE" = "aangepast veld";
 
 /* Title for menu for custom search filters */
 "CUSTOM_SEARCH_FILTER_MENU" = "Aangepast zoekfilter…";
@@ -254,6 +296,9 @@
 "ENFORCE_PASSWORD_CHANGE_ALERT_TITLE" = "Het hoofdwachtwoord is verlopen";
 
 /* Group row for entry attributes */
+"ENTRY_CUSTOM_ATTRIBUTES" = "Aangepaste velden";
+
+/* Group row for entry attributes */
 "ENTRY_DEFAULT_ATTRIBUTES" = "Standaardattributen";
 
 /* Keyfile not valid */
@@ -322,7 +367,7 @@
 "JUST_NOW" = "Zojuist";
 
 /* Feature only available in kdbx databases */
-"KDBX_ONLY_FEATURE" = "Niet beschikbaar in een wachtwoordenkluis met de indeling KDB";
+"KDBX_ONLY_FEATURE" = "Niet beschikbaar in een wachtwoordenkluis met de indeling .kdb";
 
 /* Button in dialog to ignore the changes to an open file! */
 "KEEP_MINE_DISCARD_OTHER" = "Behoud huidige, negeer andere";
@@ -343,13 +388,13 @@
 "LOCK" = "Vergrendel";
 
 /* Message in the open panel to add attachments to an entry */
-"MESSAGE_ADD_ATTACHMENT_OPEN_PANEL" = "Selecteer het toe te voegen bestand";
+"MESSAGE_ADD_ATTACHMENT_OPEN_PANEL" = "Kies het toe te voegen bestand";
 
 /* Message in the add plugin open panel */
-"MESSAGE_ADD_PLUGIN_OPEN_PANEL" = "Selecteer de extensie die je wilt installeren";
+"MESSAGE_ADD_PLUGIN_OPEN_PANEL" = "Kies de extensie die je wilt installeren";
 
 /* Message in the open panel to import an XML file */
-"MESSAGE_XML_OPEN_PANEL" = "Selecteer het te importeren XML-bestand";
+"MESSAGE_XML_OPEN_PANEL" = "Kies het te importeren XML-bestand";
 
 /* Menu item to toggle display of modified date column in entry table
    Modification date column title */
@@ -465,7 +510,7 @@
 "PICKCHAR_INFO_MESSAGE_PICK_CHARACTERS_%ld" = "Kies %ld tekens";
 
 /* Window displayed to the user to pick an amout of characters */
-"PICKCHAR_WINDOW_TITLE" = "Tekenkeuze";
+"PICKCHAR_WINDOW_TITLE" = "Tekens";
 
 /* Count of picked characters in pickchars dialog if no limit is set */
 "PICKED_%ld_CHARACTERS" = "%ld tekens gekozen";
@@ -568,7 +613,7 @@
 "SELECT_DATE_PRESET" = "Verloopt over…";
 
 /* Message on the open panel for selecting which browser to use for opening URLs */
-"SELECT_DEFAULT_BROWSER_OPEN_PANEL_MESSAGE" = "Selecteer de browser om een webpagina mee te openen";
+"SELECT_DEFAULT_BROWSER_OPEN_PANEL_MESSAGE" = "Kies de browser om een webpagina mee te openen";
 
 /* Label for the select browser button on the open panel for selecting which browser to use for opening URLs */
 "SELECT_DEFAULT_BROWSER_OPEN_PANEL_SELECT_BUTTON" = "Kies";
@@ -632,7 +677,7 @@
 
 /* Displayed name when uuid field was copied
    UUID reference item */
-"UUID" = "Identificatie";
+"UUID" = "Identificatiesleutel";
 
 /* No Key or Password */
 "WARNING_NO_PASSWORD_OR_KEYFILE" = "Stel een hoofdwachtwoord en/of sleutelbestand in";
