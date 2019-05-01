@@ -59,12 +59,5 @@
 }
 
 
-- (void)testDelayLimit {
-  XCTFail(@"Missing Test");
-}
-
-- (void)testMalformedDelay {
-  XCTFail(@"Missing Test");
-}
 
 @end

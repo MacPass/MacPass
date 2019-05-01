@@ -294,6 +294,16 @@
 		FA9FD32C1FB5EDD3003CEDD6 /* AutotypeBuilderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = FA9FD32E1FB5EDD3003CEDD6 /* AutotypeBuilderView.xib */; };
 /* End PBXBuildFile section */
 
+/* Begin PBXContainerItemProxy section */
+		0850B8F91F44360700C960D1 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 4C77E35915B84A240093A587 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 4C77E36115B84A240093A587;
+			remoteInfo = MacPass;
+		};
+/* End PBXContainerItemProxy section */
+
 /* Begin PBXCopyFilesBuildPhase section */
 		4CC5D36618A1332000AF7FA8 /* CopyFiles */ = {
 			isa = PBXCopyFilesBuildPhase;
@@ -1745,6 +1755,7 @@
 			buildRules = (
 			);
 			dependencies = (
+				0850B8FA1F44360700C960D1 /* PBXTargetDependency */,
 			);
 			name = MacPassTests;
 			productName = MacPassTests;
@@ -1780,6 +1791,9 @@
 				LastUpgradeCheck = 1020;
 				ORGANIZATIONNAME = "HicknHack Software GmbH";
 				TargetAttributes = {
+					4C45FB19178E09ED0010007D = {
+						TestTargetID = 4C77E36115B84A240093A587;
+					};
 					4C77E36115B84A240093A587 = {
 						DevelopmentTeam = 55SM4L4Z97;
 					};
@@ -2135,6 +2149,14 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		0850B8FA1F44360700C960D1 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 4C77E36115B84A240093A587 /* MacPass */;
+			targetProxy = 0850B8F91F44360700C960D1 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		4C0B533A205C1516003D277E /* PickcharsView.xib */ = {
@@ -2660,7 +2682,7 @@
 		4C45FB28178E09ED0010007D /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/MacPass.app/Contents/MacOS/MacPass";
+				BUNDLE_LOADER = "$(TEST_HOST)";
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;
@@ -2678,14 +2700,14 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "com.hicknhacksoftware.${PRODUCT_NAME:rfc1034identifier}";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = macosx;
-				TEST_HOST = "$(BUNDLE_LOADER)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/MacPass.app/Contents/MacOS/MacPass";
 			};
 			name = Debug;
 		};
 		4C45FB29178E09ED0010007D /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/MacPass.app/Contents/MacOS/MacPass";
+				BUNDLE_LOADER = "$(TEST_HOST)";
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;
@@ -2703,7 +2725,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "com.hicknhacksoftware.${PRODUCT_NAME:rfc1034identifier}";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = macosx;
-				TEST_HOST = "$(BUNDLE_LOADER)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/MacPass.app/Contents/MacOS/MacPass";
 			};
 			name = Release;
 		};
