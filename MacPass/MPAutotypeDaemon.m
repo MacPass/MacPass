@@ -39,6 +39,7 @@
 
 #import "KeePassKit/KeePassKit.h"
 #import <Carbon/Carbon.h>
+#import "MPDocumentController.h"
 
 NSString *const kMPWindowTitleKey = @"kMPWindowTitleKey";
 NSString *const kMPProcessIdentifierKey = @"kMPProcessIdentifierKey";
@@ -241,6 +242,10 @@ static MPAutotypeDaemon *_sharedInstance;
     [NSUserNotificationCenter.defaultUserNotificationCenter deliverNotification:notification];
     self.userActionRequested = NSDate.date.timeIntervalSinceReferenceDate;
     [NSNotificationCenter.defaultCenter addObserver:self selector:@selector(_didUnlockDatabase:) name:MPDocumentDidUnlockDatabaseNotification object:nil];
+    if (!NSApp.isActive) {
+      [((MPDocumentController*)NSDocumentController.sharedDocumentController) reopenLastDocument];
+      [NSApp activateIgnoringOtherApps:YES];
+    }
     return; // Unlock should trigger autotype
   }
   
@@ -384,6 +389,9 @@ static MPAutotypeDaemon *_sharedInstance;
                                                      NSWindowCollectionBehaviorTransient );
     self.matchSelectionWindow.contentViewController = vc;
     
+  }
+  if(self.targetPID) {
+    [self _orderApplicationToFront:self.targetPID];
   }
   [self.matchSelectionWindow center];
   [self.matchSelectionWindow makeKeyAndOrderFront:self];
