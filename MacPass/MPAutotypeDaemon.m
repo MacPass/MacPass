@@ -39,6 +39,7 @@
 
 #import "KeePassKit/KeePassKit.h"
 #import <Carbon/Carbon.h>
+#import "MPDocumentController.h"
 
 NSString *const kMPWindowTitleKey = @"kMPWindowTitleKey";
 NSString *const kMPProcessIdentifierKey = @"kMPProcessIdentifierKey";
@@ -241,6 +242,10 @@ static MPAutotypeDaemon *_sharedInstance;
     [NSUserNotificationCenter.defaultUserNotificationCenter deliverNotification:notification];
     self.userActionRequested = NSDate.date.timeIntervalSinceReferenceDate;
     [NSNotificationCenter.defaultCenter addObserver:self selector:@selector(_didUnlockDatabase:) name:MPDocumentDidUnlockDatabaseNotification object:nil];
+    if (!NSApp.isActive) {
+      [((MPDocumentController*)NSDocumentController.sharedDocumentController) reopenLastDocument];
+      [NSApp activateIgnoringOtherApps:YES];
+    }
     return; // Unlock should trigger autotype
   }
   
@@ -267,18 +272,7 @@ static MPAutotypeDaemon *_sharedInstance;
   if(self.matchSelectionWindow) {
     return; // we present the match selection window, just return
   }
-  if(!entryOrNil) {
-    NSUserNotification *notification = [[NSUserNotification alloc] init];
-    notification.title = NSApp.applicationName;
-    notification.userInfo = @{ MPUserNotificationTypeKey: MPUserNotificationTypeAutotypeFeedback };
-    if(context) {
-      notification.informativeText = [NSString stringWithFormat:NSLocalizedString(@"AUTOTYPE_OVERLAY_SINGLE_MATCH_FOR_%@", "Notification: Autotype found a single match for %@ (string placeholder)."), self.targetWindowTitle];
-    }
-    else {
-      notification.informativeText = [NSString stringWithFormat:NSLocalizedString(@"AUTOTYPE_OVERLAY_NO_MATCH_FOR_%@", "Noticiation: Autotype failed to find a match for %@ (string placeholder)"), self.targetWindowTitle];
-    }
-    [NSUserNotificationCenter.defaultUserNotificationCenter deliverNotification:notification];
-  }
+
   [self _performAutotypeForContext:context];
 }
 
@@ -315,6 +309,18 @@ static MPAutotypeDaemon *_sharedInstance;
     /* TODO - we might be able to a notification to check if the app actally was activated instead of guessing a waiting time */
     usleep(1 * NSEC_PER_MSEC);
   }
+  
+  NSUserNotification *notification = [[NSUserNotification alloc] init];
+  notification.title = NSApp.applicationName;
+  notification.userInfo = @{ MPUserNotificationTypeKey: MPUserNotificationTypeAutotypeFeedback };
+  if(context) {
+    notification.informativeText = [NSString stringWithFormat:NSLocalizedString(@"AUTOTYPE_OVERLAY_SINGLE_MATCH_FOR_%@", "Notification: Autotype found a single match for %@ (string placeholder)."), self.targetWindowTitle];
+  } else {
+    notification.informativeText = [NSString stringWithFormat:NSLocalizedString(@"AUTOTYPE_OVERLAY_NO_MATCH_FOR_%@", "Noticiation: Autotype failed to find a match for %@ (string placeholder)"), self.targetWindowTitle];
+  }
+  [NSUserNotificationCenter.defaultUserNotificationCenter deliverNotification:notification];
+
+  
   for(MPAutotypeCommand *command in [MPAutotypeCommand commandsForContext:context]) {
     /* dispatch commands to main thread since most of them translate key events which is disallowed on background thread */
     dispatch_async(dispatch_get_main_queue(), ^{
@@ -384,6 +390,9 @@ static MPAutotypeDaemon *_sharedInstance;
                                                      NSWindowCollectionBehaviorTransient );
     self.matchSelectionWindow.contentViewController = vc;
     
+  }
+  if(self.targetPID) {
+    [self _orderApplicationToFront:self.targetPID];
   }
   [self.matchSelectionWindow center];
   [self.matchSelectionWindow makeKeyAndOrderFront:self];
