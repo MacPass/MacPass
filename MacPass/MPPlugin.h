@@ -118,6 +118,13 @@ FOUNDATION_EXPORT NSString *const MPPluginUnkownVersion;
 - (KPKTree *)treeForRunningOpenPanel:(NSOpenPanel *)panel withResponse:(NSModalResponse)response;
 @end
 
+@protocol MPAutotypeWindowTitleResolverPlugin <NSObject>
+@required
+
+- (BOOL)acceptsRunningApplication:(NSRunningApplication *)runningApplication;
+- (NSString *)windowTitleForRunningApplication:(NSRunningApplication *)runningApplication;
+@end
+
 @interface MPPlugin (Deprecated)
 
 - (instancetype)initWithPluginManager:(id)manager;

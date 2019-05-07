@@ -447,6 +447,13 @@ NSString *const MPPluginHostPluginBundleIdentifiyerKey = @"MPPluginHostPluginBun
   [context.plugin performActionForMenuItem:item withEntries:context.entries];
 }
 
+- (NSArray *)_pluginsConformingToProtocoll:(Protocol *)protocol {
+  NSPredicate *filterPredicate = [NSPredicate predicateWithBlock:^BOOL(id  _Nullable evaluatedObject, NSDictionary<NSString *,id> * _Nullable bindings) {
+    return ([evaluatedObject conformsToProtocol:protocol]);
+  }];
+  return [self.mutablePlugins filteredArrayUsingPredicate:filterPredicate];
+}
+
 @end
 
 NSString *const MPPluginBundleIdentifierKey = @"MPPluginBundleIdentifierKey";
@@ -455,10 +462,22 @@ NSString *const MPImportPluginUTIKey = @"MPImportPluginUTIKey";
 @implementation MPPluginHost (MPImportPluginSupport)
 
 - (NSArray<MPPlugin *> *)importPlugins {
-  NSPredicate *filterPredicate = [NSPredicate predicateWithBlock:^BOOL(id  _Nullable evaluatedObject, NSDictionary<NSString *,id> * _Nullable bindings) {
-    return ([evaluatedObject conformsToProtocol:@protocol(MPImportPlugin)]);
-  }];
-  return [self.mutablePlugins filteredArrayUsingPredicate:filterPredicate];
+  return [self _pluginsConformingToProtocoll:@protocol(MPImportPlugin)];
 }
 @end
 
+@implementation MPPluginHost (MPWindowTitleResolverSupport)
+
+- (NSArray<MPPlugin *> *)windowTitleResolverForRunningApplication:(NSRunningApplication *)runningApplication {
+  NSArray<MPPlugin<MPAutotypeWindowTitleResolverPlugin> *> *plugins = [self _pluginsConformingToProtocoll:@protocol(MPAutotypeWindowTitleResolverPlugin)];
+  NSMutableArray *resolver = [[NSMutableArray alloc] init];
+  for(MPPlugin<MPAutotypeWindowTitleResolverPlugin> *plugin in plugins) {
+    if([plugin acceptsRunningApplication:runningApplication]) {
+      [resolver addObject:plugin];
+    }
+  }
+  return [resolver copy];
+}
+
+
+@end

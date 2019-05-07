@@ -32,6 +32,7 @@ FOUNDATION_EXPORT NSString *const MPPluginHostPluginBundleIdentifiyerKey;
 @class MPPlugin;
 @class KPKEntry;
 @protocol MPImportPlugin;
+@protocol MPAutotypeWindowTitleResolverPlugin;
 
 @interface MPPluginHost : NSObject
 
@@ -55,5 +56,11 @@ FOUNDATION_EXPORT NSString *const MPPluginHostPluginBundleIdentifiyerKey;
 @interface MPPluginHost (MPImportPluginSupport)
 
 @property (readonly, copy) NSArray <MPPlugin<MPImportPlugin> __kindof*> *importPlugins;
+
+@end
+
+@interface MPPluginHost (MPWindowTitleResolverSupport)
+
+- (NSArray<MPPlugin<MPAutotypeWindowTitleResolverPlugin> __kindof*> *)windowTitleResolverForRunningApplication:(NSRunningApplication *)runningApplication;
 
 @end
