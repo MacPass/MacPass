@@ -31,6 +31,9 @@
 #import "MPAutotypeCandidateSelectionViewController.h"
 #import "MPUserNotificationCenterDelegate.h"
 
+#import "MPPluginHost.h"
+#import "MPPlugin.h"
+
 #import "NSApplication+MPAdditions.h"
 #import "NSUserNotification+MPAdditions.h"
 
@@ -436,6 +439,16 @@ static MPAutotypeDaemon *_sharedInstance;
   }
   else {
     NSDictionary *frontApplicationInfoDict = [self _infoDictionaryForApplication:application];
+    
+    NSArray *resolvers = [MPPluginHost.sharedHost windowTitleResolverForRunningApplication:application];
+    for(MPPlugin<MPAutotypeWindowTitleResolverPlugin> *resolver in resolvers) {
+      NSString *windowTitle = [resolver windowTitleForRunningApplication:application];
+      if(windowTitle.length > 0) {
+        NSLog(@"%@ windowTitle: %@", application.localizedName, windowTitle);
+        break;
+      }
+    }
+    
     self.targetPID = [frontApplicationInfoDict[kMPProcessIdentifierKey] intValue];
     self.targetWindowTitle = frontApplicationInfoDict[kMPWindowTitleKey];
   }
