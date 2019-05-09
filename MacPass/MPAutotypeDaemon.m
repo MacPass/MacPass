@@ -440,17 +440,18 @@ static MPAutotypeDaemon *_sharedInstance;
   else {
     NSDictionary *frontApplicationInfoDict = [self _infoDictionaryForApplication:application];
     
+    self.targetPID = [frontApplicationInfoDict[kMPProcessIdentifierKey] intValue];
+    self.targetWindowTitle = frontApplicationInfoDict[kMPWindowTitleKey];
+    
+    /* if we have any resolvers, let them provide the window title */
     NSArray *resolvers = [MPPluginHost.sharedHost windowTitleResolverForRunningApplication:application];
     for(MPPlugin<MPAutotypeWindowTitleResolverPlugin> *resolver in resolvers) {
       NSString *windowTitle = [resolver windowTitleForRunningApplication:application];
       if(windowTitle.length > 0) {
-        NSLog(@"%@ windowTitle: %@", application.localizedName, windowTitle);
+        self.targetWindowTitle = frontApplicationInfoDict[kMPWindowTitleKey];
         break;
       }
     }
-    
-    self.targetPID = [frontApplicationInfoDict[kMPProcessIdentifierKey] intValue];
-    self.targetWindowTitle = frontApplicationInfoDict[kMPWindowTitleKey];
   }
 }
 
