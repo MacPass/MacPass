@@ -448,7 +448,7 @@ static MPAutotypeDaemon *_sharedInstance;
     for(MPPlugin<MPAutotypeWindowTitleResolverPlugin> *resolver in resolvers) {
       NSString *windowTitle = [resolver windowTitleForRunningApplication:application];
       if(windowTitle.length > 0) {
-        self.targetWindowTitle = frontApplicationInfoDict[kMPWindowTitleKey];
+        self.targetWindowTitle = windowTitle;
         break;
       }
     }
