@@ -315,7 +315,7 @@ static MPAutotypeDaemon *_sharedInstance;
   
   if([self _orderApplicationToFront:self.targetPID]) {
     /* Sleep a bit after the app was activated */
-    /* TODO - we might be able to a notification to check if the app actally was activated instead of guessing a waiting time */
+    /* TODO - we might be able to get a notification to check if the app actually was activated instead of guessing a waiting time */
     usleep(1 * NSEC_PER_MSEC);
   }
   for(MPAutotypeCommand *command in [MPAutotypeCommand commandsForContext:context]) {
