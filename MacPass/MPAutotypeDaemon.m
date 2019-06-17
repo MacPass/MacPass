@@ -318,9 +318,20 @@ static MPAutotypeDaemon *_sharedInstance;
     /* TODO - we might be able to get a notification to check if the app actually was activated instead of guessing a waiting time */
     usleep(1 * NSEC_PER_MSEC);
   }
+  
+  useconds_t delay = 0;
+  if(nil != [NSUserDefaults.standardUserDefaults objectForKey:kMPSettingsKeyGlobalAutotypeDelay]) {
+    /* limit the delay to 1000 ms */
+    delay = (useconds_t)MIN([NSUserDefaults.standardUserDefaults integerForKey:kMPSettingsKeyGlobalAutotypeDelay], 1000);
+  }
+  
+  
   for(MPAutotypeCommand *command in [MPAutotypeCommand commandsForContext:context]) {
     /* dispatch commands to main thread since most of them translate key events which is disallowed on background thread */
     dispatch_async(dispatch_get_main_queue(), ^{
+      if(delay > 0) {
+        usleep(delay * NSEC_PER_MSEC);
+      }
       [command execute];
     });
   }

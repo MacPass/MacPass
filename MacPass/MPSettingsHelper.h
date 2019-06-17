@@ -69,6 +69,7 @@ APPKIT_EXTERN NSString *const kMPSettingsKeyAutotypeMatchURL;                 //
 APPKIT_EXTERN NSString *const kMPSettingsKeyAutotypeMatchHost;                // Autotype lookup includes host part of entry URL
 APPKIT_EXTERN NSString *const kMPSettingsKeyAutotypeMatchTags;                // Autotype lookup includes tags for entries
 APPKIT_EXTERN NSString *const kMPSettingsKeyAutotypeHideAccessibiltyWarning;  // Do not show an alert, when MacPass has no support for Autotype
+APPKIT_EXTERN NSString *const kMPSettingsKeyGlobalAutotypeDelay;              // A global delay in milliseconds for every autotype command to allow for workarounds for broken autotype on some applications (e.g. Steam)
 
 /* Search */
 APPKIT_EXTERN NSString *const kMPSettingsKeyEntrySearchFilterContext;
