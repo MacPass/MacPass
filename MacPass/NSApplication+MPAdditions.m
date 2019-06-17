@@ -66,4 +66,13 @@
   return (MPAppDelegate *)self.delegate;
 }
 
+- (BOOL)isRunningTests {
+  NSProcessInfo *processInfo = [NSProcessInfo processInfo];
+  NSString *testEnv = processInfo.environment[@"MPIsRunningTests"];
+  if(testEnv) {
+    return [testEnv isEqualToString:@"YES"];
+  }
+  return NO;
+}
+
 @end

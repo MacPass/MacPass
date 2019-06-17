@@ -143,6 +143,11 @@ static MPAutotypeDaemon *_sharedInstance;
   if(!self.enabled) {
     return;
   }
+  
+  if(NSApplication.sharedApplication.isRunningTests) {
+    return; // Do not display pop-up when running tests
+  }
+  
   BOOL hideAlert = NO;
   if(nil != [NSUserDefaults.standardUserDefaults objectForKey:kMPSettingsKeyAutotypeHideAccessibiltyWarning]) {
     hideAlert = [NSUserDefaults.standardUserDefaults boolForKey:kMPSettingsKeyAutotypeHideAccessibiltyWarning];
