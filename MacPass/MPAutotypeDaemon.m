@@ -26,6 +26,7 @@
 #import "MPAutotypeCommand.h"
 #import "MPAutotypeContext.h"
 #import "MPAutotypePaste.h"
+#import "MPAutotypeDelay.h"
 #import "MPPasteBoardController.h"
 #import "MPSettingsHelper.h"
 #import "MPAutotypeCandidateSelectionViewController.h"
@@ -319,18 +320,24 @@ static MPAutotypeDaemon *_sharedInstance;
     usleep(1 * NSEC_PER_MSEC);
   }
   
-  useconds_t delay = 0;
-  if(nil != [NSUserDefaults.standardUserDefaults objectForKey:kMPSettingsKeyGlobalAutotypeDelay]) {
-    /* limit the delay to 1000 ms */
-    delay = (useconds_t)MIN([NSUserDefaults.standardUserDefaults integerForKey:kMPSettingsKeyGlobalAutotypeDelay], 1000);
-  }
-  
-  
+  useconds_t globalDelay = 0;
   for(MPAutotypeCommand *command in [MPAutotypeCommand commandsForContext:context]) {
+    /*
+     FIXME: Introduce a global state for execution to allow command to set state value
+     e.g. [command executeWithContext:(MPCommandExectionContext *)context]
+     and inside the command set the sate e.g. context.delay = myDelay
+     then use this state in the command scheduling to set the global delay
+     */
+    if([command isKindOfClass:MPAutotypeDelay.class]) {
+      MPAutotypeDelay *delayCommand = (MPAutotypeDelay *)command;
+      if(delayCommand.isGlobal) {
+        globalDelay = (useconds_t)delayCommand.delay;
+      }
+    }
     /* dispatch commands to main thread since most of them translate key events which is disallowed on background thread */
     dispatch_async(dispatch_get_main_queue(), ^{
-      if(delay > 0) {
-        usleep(delay * NSEC_PER_MSEC);
+      if(globalDelay > 0) {
+        usleep(globalDelay*NSEC_PER_USEC);
       }
       [command execute];
     });

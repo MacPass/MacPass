@@ -29,7 +29,7 @@
 @implementation MPAutotypeDelay
 
 - (id)init {
-  self = [self initWithDelay:0];
+  self = [self _initWithDelay:0 global:NO];
   return self;
 }
 
@@ -38,17 +38,32 @@
 }
 
 - (instancetype)initWithDelay:(NSUInteger)delay {
+  self = [self _initWithDelay:delay global:NO];
+  return self;
+}
+
+- (instancetype)initWithGlobalDelay:(NSUInteger)delay {
+  self = [self _initWithDelay:delay global:YES];
+  return self;
+}
+
+- (instancetype)_initWithDelay:(NSUInteger)delay global:(BOOL)global {
   self = [super init];
   if(self) {
+    _isGlobal = global;
     /* Delays longer than a minute are a bit long */
-    _delay = MIN(60*1000,delay);
+    _delay = MIN(60*NSEC_PER_USEC,delay);
   }
   return self;
+
 }
 
 - (void)execute {
   /* milliseconds * 10000 = microseconds */
-  usleep((useconds_t)(self.delay*1000));
+  if(self.isGlobal) {
+    return; // global delays should not be executed locally
+  }
+  usleep((useconds_t)(self.delay*NSEC_PER_USEC));
 }
 
 @end

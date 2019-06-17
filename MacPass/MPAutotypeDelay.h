@@ -25,6 +25,7 @@
 @interface MPAutotypeDelay : MPAutotypeCommand
 
 @property (readonly) NSUInteger delay;
+@property (readonly) BOOL isGlobal;
 /**
  *  Creates an DelayCommand that delays the execution for n milliseconds
  *
@@ -33,5 +34,6 @@
  *  @return <#return value description#>
  */
 - (instancetype)initWithDelay:(NSUInteger)delay;
+- (instancetype)initWithGlobalDelay:(NSUInteger)delay;
 
 @end
