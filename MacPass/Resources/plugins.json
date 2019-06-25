@@ -1,0 +1,26 @@
+[
+  {
+    "name": "MacPassHTTP",
+    "description": "KeePassHTTP support for MacPass",
+    "download": "https://github.com/MacPass/MacPassHTTP/releases/download/0.3.1/MacPassHTTP.mpplugin-0.3.1.zip",
+    "source": "https://github.com/MacPass/MacPassHTTP",
+    "currentVersion": "0.3.1",
+    "bundleIdentifier": "com.hicknhacksoftware.MacPassHTTP",
+    "compatibilty" : [
+      {
+        "pluginVersion": "0.2.*",
+        "minimumHostVersion" : "0.6.1",
+        "maximumHostVersion" : "0.6.2"
+      },
+      { 
+        "pluginVersion": "0.3",
+        "minimumHostVersion" : "0.7",
+        "maximumHostVersion" : "0.7.3"
+      },
+      { 
+        "pluginVersion": "0.3.1",
+        "minimumHostVersion" : "0.7.4"
+      }
+    ]
+  }
+]

@@ -84,6 +84,7 @@ NSString *const kMPSettingsKeyLoadUnsecurePlugins                     = @"LoadUn
 NSString *const kMPSettingsKeyLoadIncompatiblePlugins                 = @"LoadIncompatiblePlugins";
 NSString *const kMPSettingsKeyDisabledPlugins                         = @"DisabledPlugins";
 NSString *const kMPSettingsKeyHideIncopatiblePluginsWarning           = @"HideIncopatiblePluginsWarning";
+NSString *const kMPSettingsKeyAllowRemoteFetchOfPluginRepository      = @"AllowRemoteFetchOfPluginRepository";
 
 /* Deprecated */
 NSString *const kMPDeprecatedSettingsKeyRememberKeyFilesForDatabases      = @"kMPSettingsKeyRememberKeyFilesForDatabases";

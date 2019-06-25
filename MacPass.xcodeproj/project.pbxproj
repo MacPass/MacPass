@@ -203,6 +203,7 @@
 		4C8B36AB17A6ED4B005E1FF1 /* MPOutlineContextMenuDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C8B36AA17A6ED4B005E1FF1 /* MPOutlineContextMenuDelegate.m */; };
 		4C8DEAA21C314D2C00D24C32 /* MPTestAutotypeDelay.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C8DEAA11C314D2C00D24C32 /* MPTestAutotypeDelay.m */; };
 		4C8E889222C223620002C7C8 /* createdTemplate.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 4C8E889122C223620002C7C8 /* createdTemplate.pdf */; };
+		4C8E889422C227270002C7C8 /* plugins.json in Resources */ = {isa = PBXBuildFile; fileRef = 4C8E889322C227270002C7C8 /* plugins.json */; };
 		4C8F0C6E1FCEE9B900BE157F /* MPPluginConstants.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C8F0C6D1FCEE9B900BE157F /* MPPluginConstants.m */; };
 		4C8F0C711FCEF91400BE157F /* MPPickcharsParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C8F0C701FCEF91400BE157F /* MPPickcharsParser.m */; };
 		4C8F0C731FCF1B7A00BE157F /* MPTestPickcharsParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C8F0C721FCF1B7A00BE157F /* MPTestPickcharsParser.m */; };
@@ -720,6 +721,7 @@
 		4C8C10061FC489D8003DDD5E /* nl */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = nl; path = nl.lproj/PluginPreferences.strings; sourceTree = "<group>"; };
 		4C8DEAA11C314D2C00D24C32 /* MPTestAutotypeDelay.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MPTestAutotypeDelay.m; sourceTree = "<group>"; };
 		4C8E889122C223620002C7C8 /* createdTemplate.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = createdTemplate.pdf; sourceTree = "<group>"; };
+		4C8E889322C227270002C7C8 /* plugins.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = plugins.json; path = Resources/plugins.json; sourceTree = "<group>"; };
 		4C8F0C6C1FCEE98900BE157F /* MPPluginConstants.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MPPluginConstants.h; sourceTree = "<group>"; };
 		4C8F0C6D1FCEE9B900BE157F /* MPPluginConstants.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MPPluginConstants.m; sourceTree = "<group>"; };
 		4C8F0C6F1FCEF91400BE157F /* MPPickcharsParser.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MPPickcharsParser.h; sourceTree = "<group>"; };
@@ -1485,6 +1487,7 @@
 		4C77E36D15B84A240093A587 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				4C8E889322C227270002C7C8 /* plugins.json */,
 				FA13910A1F9CD9EB0033D256 /* Localizable.stringsdict */,
 				4C888C8E16EB6C91003D34A1 /* Localizable.strings */,
 				4CB9339716D3A0DD00A13B5D /* Credits.rtf */,
@@ -1924,6 +1927,7 @@
 				6021FE4B18E13F1D00C3BC51 /* GroupInspectorView.xib in Resources */,
 				4C3826BF1AD04D8E007D7D67 /* 52_EncryptedTemplate.pdf in Resources */,
 				4C3826BD1AD04D8E007D7D67 /* 50_FolderTarTemplate.pdf in Resources */,
+				4C8E889422C227270002C7C8 /* plugins.json in Resources */,
 				6021FE3B18E1341900C3BC51 /* EntryInspectorView.xib in Resources */,
 				4C3826AD1AD04D8E007D7D67 /* 32_FileSystemViewTemplate.pdf in Resources */,
 				6021FE6118E15D9100C3BC51 /* WorkflowPreferences.xib in Resources */,
