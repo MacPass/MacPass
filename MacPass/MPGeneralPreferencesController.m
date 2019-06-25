@@ -20,20 +20,18 @@
 //  along with this program.  If not, see <http://www.gnu.org/licenses/>.
 //
 
-#import "MPGeneralSettingsController.h"
+#import "MPGeneralPreferencesController.h"
 #import "MPSettingsHelper.h"
 #import "MPIconHelper.h"
 
-NSString *const MPGeneralSetingsIdentifier = @"GeneralSettingsTab";
-
-@implementation MPGeneralSettingsController
+@implementation MPGeneralPreferencesController
 
 - (NSString *)nibName {
-  return @"GeneralSettings";
+  return @"GeneralPreferences";
 }
 
 - (NSString *)identifier {
-  return MPGeneralSetingsIdentifier;
+  return @"GeneralPreferences";
 }
 
 - (NSImage *)image {
@@ -41,7 +39,7 @@ NSString *const MPGeneralSetingsIdentifier = @"GeneralSettingsTab";
 }
 
 - (NSString *)label {
-  return NSLocalizedString(@"GENERAL_SETTINGS", @"General Settings Label");
+  return NSLocalizedString(@"GENERAL_PREFERENCES", @"General Settings Label");
 }
 
 - (void)viewDidLoad {

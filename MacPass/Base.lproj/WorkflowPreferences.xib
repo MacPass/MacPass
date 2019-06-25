@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
     <dependencies>
         <deployment identifier="macosx"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="14460.31"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="14490.70"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
-        <customObject id="-2" userLabel="File's Owner" customClass="MPWorkflowSettingsController">
+        <customObject id="-2" userLabel="File's Owner" customClass="MPWorkflowPreferencesController">
             <connections>
                 <outlet property="browserPopup" destination="ehI-gq-lsb" id="YMy-L1-pQw"/>
                 <outlet property="doubleClickTitlePopup" destination="40" id="aKJ-q9-xjb"/>
@@ -175,7 +175,7 @@
                 <constraint firstItem="lOo-NI-b07" firstAttribute="leading" secondItem="1" secondAttribute="leading" constant="20" symbolic="YES" id="kaP-lB-tDY"/>
                 <constraint firstItem="2" firstAttribute="top" secondItem="lOo-NI-b07" secondAttribute="bottom" constant="8" symbolic="YES" id="xlS-Dj-cOt"/>
             </constraints>
-            <point key="canvasLocation" x="280" y="528"/>
+            <point key="canvasLocation" x="-2" y="125"/>
         </customView>
     </objects>
 </document>

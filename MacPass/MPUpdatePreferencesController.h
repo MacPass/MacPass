@@ -23,6 +23,6 @@
 #import "MPViewController.h"
 #import "MPPreferencesTab.h"
 
-@interface MPUpdateSettingsController : MPViewController <MPPreferencesTab>
+@interface MPUpdatePreferencesController : MPViewController <MPPreferencesTab>
 
 @end

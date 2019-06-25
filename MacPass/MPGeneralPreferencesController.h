@@ -24,7 +24,7 @@
 #import "MPViewController.h"
 #import "MPPreferencesTab.h"
 
-@interface MPGeneralSettingsController : MPViewController <MPPreferencesTab>
+@interface MPGeneralPreferencesController : MPViewController <MPPreferencesTab>
 
 @property (strong) IBOutlet NSButton *clearPasteboardOnQuitCheckButton;
 @property (strong) IBOutlet NSPopUpButton *clearPasteboardTimeoutPopup;

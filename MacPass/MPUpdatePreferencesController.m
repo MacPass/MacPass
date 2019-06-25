@@ -20,23 +20,23 @@
 //  along with this program.  If not, see <http://www.gnu.org/licenses/>.
 //
 
-#import "MPUpdateSettingsController.h"
+#import "MPUpdatePreferencesController.h"
 #import <Sparkle/Sparkle.h>
 
-@interface MPUpdateSettingsController ()
+@interface MPUpdatePreferencesController ()
 @property (weak) IBOutlet NSButton *automaticallyCheckForUpdatesCheckButton;
 @property (weak) IBOutlet NSPopUpButton *checkIntervallPopupButton;
 
 @end
 
-@implementation MPUpdateSettingsController
+@implementation MPUpdatePreferencesController
 
 - (NSString *)nibName {
-  return @"UpdateSettings";
+  return @"UpdatePreferences";
 }
 
 - (NSString *)identifier {
-  return @"UpdateSettings";
+  return @"UpdatePreferences";
 }
 
 - (NSImage *)image {
@@ -44,7 +44,7 @@
 }
 
 - (NSString *)label {
-  return NSLocalizedString(@"UPDATE_SETTINGS", @"Update Settings Label");
+  return NSLocalizedString(@"UPDATE_PREFERENCES", @"Update Settings Label");
 }
 
 - (void)awakeFromNib {

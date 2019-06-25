@@ -20,7 +20,7 @@
 //  along with this program.  If not, see <http://www.gnu.org/licenses/>.
 //
 
-#import "MPIntegrationSettingsController.h"
+#import "MPIntegrationPreferencesController.h"
 #import "MPSettingsHelper.h"
 #import "MPIconHelper.h"
 #import "MPAutotypeDaemon.h"
@@ -29,16 +29,16 @@
 #import "DDHotKey+MacPassAdditions.h"
 #import "DDHotKeyTextField.h"
 
-@interface MPIntegrationSettingsController ()
+@interface MPIntegrationPreferencesController ()
 
 @property (nonatomic, strong) DDHotKey *hotKey;
 
 @end
 
-@implementation MPIntegrationSettingsController
+@implementation MPIntegrationPreferencesController
 
 - (NSString *)nibName {
-  return @"IntegrationSettings";
+  return @"IntegrationPreferences";
 }
 
 - (NSString *)identifier {

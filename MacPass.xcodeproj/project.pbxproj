@@ -55,7 +55,6 @@
 		4C3826721AD04B51007D7D67 /* addFolderTemplate.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 4C3826711AD04B51007D7D67 /* addFolderTemplate.pdf */; };
 		4C3826741AD04BA5007D7D67 /* infoTemplate.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 4C3826731AD04BA5007D7D67 /* infoTemplate.pdf */; };
 		4C3826761AD04C24007D7D67 /* harddiskTemplate.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 4C3826751AD04C24007D7D67 /* harddiskTemplate.pdf */; };
-		4C3826781AD04C8A007D7D67 /* createdTemplate.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 4C3826771AD04C8A007D7D67 /* createdTemplate.pdf */; };
 		4C38267A1AD04CC6007D7D67 /* downloadTemplate.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 4C3826791AD04CC6007D7D67 /* downloadTemplate.pdf */; };
 		4C3826A51AD04D8E007D7D67 /* 21_OrganizerTemplate.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 4C38267B1AD04D8E007D7D67 /* 21_OrganizerTemplate.pdf */; };
 		4C3826A61AD04D8E007D7D67 /* 22_ASCIITemplate.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 4C38267C1AD04D8E007D7D67 /* 22_ASCIITemplate.pdf */; };
@@ -157,7 +156,7 @@
 		4C71BCB72167B79C00B4CBDA /* MPPluginVersionComparator.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C71BCB62167B79C00B4CBDA /* MPPluginVersionComparator.m */; };
 		4C735FC02035FCBF00708D53 /* MPPluginEntryActionContext.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C735FBF2035FCBF00708D53 /* MPPluginEntryActionContext.m */; };
 		4C73B6F1215E64A7009787F7 /* MPWelcomeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C73B6EF215E64A7009787F7 /* MPWelcomeViewController.m */; };
-		4C76155C1764C04C0015A1A6 /* GeneralSettings.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4C76155E1764C04C0015A1A6 /* GeneralSettings.xib */; };
+		4C76155C1764C04C0015A1A6 /* GeneralPreferences.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4C76155E1764C04C0015A1A6 /* GeneralPreferences.xib */; };
 		4C7615681764C0C40015A1A6 /* PasswordInputView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4C76156A1764C0C40015A1A6 /* PasswordInputView.xib */; };
 		4C76156D1764C0E20015A1A6 /* InspectorView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4C76156F1764C0E20015A1A6 /* InspectorView.xib */; };
 		4C7679BF1D76D6D8001F33D6 /* MPErrorRecoveryAttempter.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C7679BE1D76D6D8001F33D6 /* MPErrorRecoveryAttempter.m */; };
@@ -203,6 +202,7 @@
 		4C89F524182FB4740069C73C /* MPAutotypeCommand.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C89F523182FB4740069C73C /* MPAutotypeCommand.m */; };
 		4C8B36AB17A6ED4B005E1FF1 /* MPOutlineContextMenuDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C8B36AA17A6ED4B005E1FF1 /* MPOutlineContextMenuDelegate.m */; };
 		4C8DEAA21C314D2C00D24C32 /* MPTestAutotypeDelay.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C8DEAA11C314D2C00D24C32 /* MPTestAutotypeDelay.m */; };
+		4C8E889222C223620002C7C8 /* createdTemplate.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 4C8E889122C223620002C7C8 /* createdTemplate.pdf */; };
 		4C8F0C6E1FCEE9B900BE157F /* MPPluginConstants.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C8F0C6D1FCEE9B900BE157F /* MPPluginConstants.m */; };
 		4C8F0C711FCEF91400BE157F /* MPPickcharsParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C8F0C701FCEF91400BE157F /* MPPickcharsParser.m */; };
 		4C8F0C731FCF1B7A00BE157F /* MPTestPickcharsParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C8F0C721FCF1B7A00BE157F /* MPTestPickcharsParser.m */; };
@@ -211,7 +211,7 @@
 		4C9BFFFB1FD19B5400264B16 /* MPPrettyPasswordTransformer.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C9BFFFA1FD19B5400264B16 /* MPPrettyPasswordTransformer.m */; };
 		4CA08DA017A831B200A6544B /* MPAddEntryContextMenuDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CA08D9F17A831B200A6544B /* MPAddEntryContextMenuDelegate.m */; };
 		4CA0B2ED15BCADAC00654E32 /* PreferencesWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4CA0B2EC15BCADAC00654E32 /* PreferencesWindow.xib */; };
-		4CA0B2F915BCAF6700654E32 /* MPGeneralSettingsController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CA0B2F815BCAF6700654E32 /* MPGeneralSettingsController.m */; };
+		4CA0B2F915BCAF6700654E32 /* MPGeneralPreferencesController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CA0B2F815BCAF6700654E32 /* MPGeneralPreferencesController.m */; };
 		4CA0B2FC15BCAF8600654E32 /* MPPreferencesWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CA0B2FB15BCAF8600654E32 /* MPPreferencesWindowController.m */; };
 		4CA0F3ED1A3074B50067C0E5 /* MPWindowTitleComboBoxDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CA0F3EC1A3074B50067C0E5 /* MPWindowTitleComboBoxDelegate.m */; };
 		4CA182741F963FF600DD4A4A /* MPTitlebarColorAccessoryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CA182721F963FF600DD4A4A /* MPTitlebarColorAccessoryViewController.m */; };
@@ -246,7 +246,7 @@
 		4CD4EE131FC7284000EA6EB3 /* MPPickcharsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CD4EE111FC7284000EA6EB3 /* MPPickcharsViewController.m */; };
 		4CD5D705177A5F3300100649 /* MPDatabaseSettingsWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CD5D704177A5F3300100649 /* MPDatabaseSettingsWindowController.m */; };
 		4CD60C131C104AD4005BE5F8 /* HNHUi.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 4CC281881C0F675B00B9174D /* HNHUi.framework */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
-		4CD7223B17A7CB0700F5A1E1 /* MPWorkflowSettingsController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CD7223A17A7CB0700F5A1E1 /* MPWorkflowSettingsController.m */; };
+		4CD7223B17A7CB0700F5A1E1 /* MPWorkflowPreferencesController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CD7223A17A7CB0700F5A1E1 /* MPWorkflowPreferencesController.m */; };
 		4CD78ABC16D155FF00768A1D /* 07_NotepadTemplate.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 4CD78AB716D155FF00768A1D /* 07_NotepadTemplate.pdf */; };
 		4CD78ABD16D155FF00768A1D /* 08_SocketTemplate.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 4CD78AB816D155FF00768A1D /* 08_SocketTemplate.pdf */; };
 		4CD78ABE16D155FF00768A1D /* 09_IdentityTemplate.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 4CD78AB916D155FF00768A1D /* 09_IdentityTemplate.pdf */; };
@@ -276,14 +276,14 @@
 		4CF6653820E67A140008A25C /* PluginDataView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4CF6653A20E67A140008A25C /* PluginDataView.xib */; };
 		4CF6C3021FBF39BF0055AD03 /* MPPluginTabelCellView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CF6C3011FBF39BF0055AD03 /* MPPluginTabelCellView.m */; };
 		4CF6C711176F4533007A811D /* MPStringLengthValueTransformer.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CF6C710176F4533007A811D /* MPStringLengthValueTransformer.m */; };
-		4CF78064176E75AD0032EE71 /* MPIntegrationSettingsController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CF78063176E75AD0032EE71 /* MPIntegrationSettingsController.m */; };
-		4CFB18E418A17FA20097A34B /* MPUpdateSettingsController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CFB18E318A17FA20097A34B /* MPUpdateSettingsController.m */; };
+		4CF78064176E75AD0032EE71 /* MPIntegrationPreferencesController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CF78063176E75AD0032EE71 /* MPIntegrationPreferencesController.m */; };
+		4CFB18E418A17FA20097A34B /* MPUpdatePreferencesController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CFB18E318A17FA20097A34B /* MPUpdatePreferencesController.m */; };
 		4CFC53BF16E94729007396BE /* MPShadowBox.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CFC53BE16E94729007396BE /* MPShadowBox.m */; };
 		6021FE3B18E1341900C3BC51 /* EntryInspectorView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6021FE3D18E1341900C3BC51 /* EntryInspectorView.xib */; };
 		6021FE4B18E13F1D00C3BC51 /* GroupInspectorView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6021FE4D18E13F1D00C3BC51 /* GroupInspectorView.xib */; };
-		6021FE5618E1429500C3BC51 /* IntegrationSettings.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6021FE5818E1429500C3BC51 /* IntegrationSettings.xib */; };
-		6021FE6118E15D9100C3BC51 /* WorkflowSettings.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6021FE6318E15D9100C3BC51 /* WorkflowSettings.xib */; };
-		6021FE6C18E15E6D00C3BC51 /* UpdateSettings.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6021FE6E18E15E6D00C3BC51 /* UpdateSettings.xib */; };
+		6021FE5618E1429500C3BC51 /* IntegrationPreferences.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6021FE5818E1429500C3BC51 /* IntegrationPreferences.xib */; };
+		6021FE6118E15D9100C3BC51 /* WorkflowPreferences.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6021FE6318E15D9100C3BC51 /* WorkflowPreferences.xib */; };
+		6021FE6C18E15E6D00C3BC51 /* UpdatePreferences.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6021FE6E18E15E6D00C3BC51 /* UpdatePreferences.xib */; };
 		6021FE7718E15FF300C3BC51 /* DatePickingView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6021FE7918E15FF300C3BC51 /* DatePickingView.xib */; };
 		6021FE8218E160BC00C3BC51 /* PasswordEditWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6021FE8418E160BC00C3BC51 /* PasswordEditWindow.xib */; };
 		6021FE8D18E1617300C3BC51 /* PasswordCreatorView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6021FE8F18E1617300C3BC51 /* PasswordCreatorView.xib */; };
@@ -313,10 +313,10 @@
 		4825CC811C414D57003E37E9 /* it */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = it; path = it.lproj/DatabaseSettingsWindow.strings; sourceTree = "<group>"; };
 		4825CC821C414D57003E37E9 /* it */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = it; path = it.lproj/PasswordEditWindow.strings; sourceTree = "<group>"; };
 		4825CC831C414D57003E37E9 /* it */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = it; path = it.lproj/WelcomeView.strings; sourceTree = "<group>"; };
-		4825CC841C414D57003E37E9 /* it */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = it; path = it.lproj/GeneralSettings.strings; sourceTree = "<group>"; };
-		4825CC851C414D57003E37E9 /* it */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = it; path = it.lproj/IntegrationSettings.strings; sourceTree = "<group>"; };
-		4825CC861C414D57003E37E9 /* it */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = it; path = it.lproj/WorkflowSettings.strings; sourceTree = "<group>"; };
-		4825CC871C414D57003E37E9 /* it */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = it; path = it.lproj/UpdateSettings.strings; sourceTree = "<group>"; };
+		4825CC841C414D57003E37E9 /* it */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = it; path = it.lproj/GeneralPreferences.strings; sourceTree = "<group>"; };
+		4825CC851C414D57003E37E9 /* it */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = it; path = it.lproj/IntegrationPreferences.strings; sourceTree = "<group>"; };
+		4825CC861C414D57003E37E9 /* it */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = it; path = it.lproj/WorkflowPreferences.strings; sourceTree = "<group>"; };
+		4825CC871C414D57003E37E9 /* it */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = it; path = it.lproj/UpdatePreferences.strings; sourceTree = "<group>"; };
 		4825CC881C414D57003E37E9 /* it */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = it; path = it.lproj/PluginPreferences.strings; sourceTree = "<group>"; };
 		4825CC891C414D57003E37E9 /* it */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = it; path = it.lproj/MainMenu.strings; sourceTree = "<group>"; };
 		4825CC8A1C414D57003E37E9 /* it */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = it; path = it.lproj/PasswordInputView.strings; sourceTree = "<group>"; };
@@ -340,7 +340,7 @@
 		4C0728BB17B5B7F7005A7DD9 /* MPPasswordEditWindowController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MPPasswordEditWindowController.h; sourceTree = "<group>"; };
 		4C0728BC17B5B7F7005A7DD9 /* MPPasswordEditWindowController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MPPasswordEditWindowController.m; sourceTree = "<group>"; };
 		4C088C401FD9A42800F92502 /* MPPickcharsParser_Private.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MPPickcharsParser_Private.h; sourceTree = "<group>"; };
-		4C08ACE9204F01C700863D99 /* keyboardTemplate.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; name = keyboardTemplate.pdf; path = Icons/keyboardTemplate.pdf; sourceTree = "<group>"; };
+		4C08ACE9204F01C700863D99 /* keyboardTemplate.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = keyboardTemplate.pdf; sourceTree = "<group>"; };
 		4C0949571FD6B89B004F2971 /* NSUserNotification+MPAdditions.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSUserNotification+MPAdditions.h"; sourceTree = "<group>"; };
 		4C0949581FD6B89B004F2971 /* NSUserNotification+MPAdditions.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSUserNotification+MPAdditions.m"; sourceTree = "<group>"; };
 		4C09495A1FD6E510004F2971 /* MPAddCustomFieldContextMenuDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MPAddCustomFieldContextMenuDelegate.h; sourceTree = "<group>"; };
@@ -370,7 +370,7 @@
 		4C10412A178CDD44001B5239 /* NSDate+Humanized.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDate+Humanized.h"; sourceTree = "<group>"; };
 		4C10412B178CDD44001B5239 /* NSDate+Humanized.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDate+Humanized.m"; sourceTree = "<group>"; };
 		4C15B74518BCA3B1003F8008 /* MPDocument+Search.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "MPDocument+Search.m"; sourceTree = "<group>"; };
-		4C168CB02216CEC300BB1EB0 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/GeneralSettings.strings; sourceTree = "<group>"; };
+		4C168CB02216CEC300BB1EB0 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/GeneralPreferences.strings; sourceTree = "<group>"; };
 		4C17D11F2250EFBC00C650C4 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/SavePanelAccessoryView.xib; sourceTree = "<group>"; };
 		4C17D1222250EFBF00C650C4 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/SavePanelAccessoryView.strings; sourceTree = "<group>"; };
 		4C17D1242250EFC500C650C4 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/SavePanelAccessoryView.strings; sourceTree = "<group>"; };
@@ -429,11 +429,10 @@
 		4C370EFD215B76CB00703AAE /* MPOutlineTableCellView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MPOutlineTableCellView.m; sourceTree = "<group>"; };
 		4C37A83E15B8B474005EF8EE /* MPOutlineDataSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MPOutlineDataSource.h; sourceTree = "<group>"; };
 		4C37A83F15B8B474005EF8EE /* MPOutlineDataSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MPOutlineDataSource.m; sourceTree = "<group>"; };
-		4C3826711AD04B51007D7D67 /* addFolderTemplate.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; name = addFolderTemplate.pdf; path = Icons/addFolderTemplate.pdf; sourceTree = "<group>"; };
-		4C3826731AD04BA5007D7D67 /* infoTemplate.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; name = infoTemplate.pdf; path = Icons/infoTemplate.pdf; sourceTree = "<group>"; };
-		4C3826751AD04C24007D7D67 /* harddiskTemplate.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; name = harddiskTemplate.pdf; path = Icons/harddiskTemplate.pdf; sourceTree = "<group>"; };
-		4C3826771AD04C8A007D7D67 /* createdTemplate.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; name = createdTemplate.pdf; path = Icons/createdTemplate.pdf; sourceTree = "<group>"; };
-		4C3826791AD04CC6007D7D67 /* downloadTemplate.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; name = downloadTemplate.pdf; path = Icons/downloadTemplate.pdf; sourceTree = "<group>"; };
+		4C3826711AD04B51007D7D67 /* addFolderTemplate.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = addFolderTemplate.pdf; sourceTree = "<group>"; };
+		4C3826731AD04BA5007D7D67 /* infoTemplate.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = infoTemplate.pdf; sourceTree = "<group>"; };
+		4C3826751AD04C24007D7D67 /* harddiskTemplate.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = harddiskTemplate.pdf; sourceTree = "<group>"; };
+		4C3826791AD04CC6007D7D67 /* downloadTemplate.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = downloadTemplate.pdf; sourceTree = "<group>"; };
 		4C38267B1AD04D8E007D7D67 /* 21_OrganizerTemplate.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = 21_OrganizerTemplate.pdf; sourceTree = "<group>"; };
 		4C38267C1AD04D8E007D7D67 /* 22_ASCIITemplate.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = 22_ASCIITemplate.pdf; sourceTree = "<group>"; };
 		4C38267D1AD04D8E007D7D67 /* 23_IconsTemplate.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = 23_IconsTemplate.pdf; sourceTree = "<group>"; };
@@ -484,10 +483,10 @@
 		4C3C4EAE18D7039300153127 /* MPValueTransformerHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MPValueTransformerHelper.m; sourceTree = "<group>"; };
 		4C4161021F50333B003BC0AF /* es */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = es; path = es.lproj/DatabaseSettingsWindow.strings; sourceTree = "<group>"; };
 		4C4161031F50333B003BC0AF /* es */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = es; path = es.lproj/PasswordEditWindow.strings; sourceTree = "<group>"; };
-		4C4161041F50333B003BC0AF /* es */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = es; path = es.lproj/GeneralSettings.strings; sourceTree = "<group>"; };
-		4C4161051F50333B003BC0AF /* es */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = es; path = es.lproj/IntegrationSettings.strings; sourceTree = "<group>"; };
-		4C4161061F50333B003BC0AF /* es */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = es; path = es.lproj/WorkflowSettings.strings; sourceTree = "<group>"; };
-		4C4161071F50333B003BC0AF /* es */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = es; path = es.lproj/UpdateSettings.strings; sourceTree = "<group>"; };
+		4C4161041F50333B003BC0AF /* es */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = es; path = es.lproj/GeneralPreferences.strings; sourceTree = "<group>"; };
+		4C4161051F50333B003BC0AF /* es */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = es; path = es.lproj/IntegrationPreferences.strings; sourceTree = "<group>"; };
+		4C4161061F50333B003BC0AF /* es */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = es; path = es.lproj/WorkflowPreferences.strings; sourceTree = "<group>"; };
+		4C4161071F50333B003BC0AF /* es */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = es; path = es.lproj/UpdatePreferences.strings; sourceTree = "<group>"; };
 		4C4161081F50333B003BC0AF /* es */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = es; path = es.lproj/PluginPreferences.strings; sourceTree = "<group>"; };
 		4C4161091F50333B003BC0AF /* es */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = es; path = es.lproj/InspectorView.strings; sourceTree = "<group>"; };
 		4C41610A1F50333B003BC0AF /* es */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = es; path = es.lproj/GroupInspectorView.strings; sourceTree = "<group>"; };
@@ -557,7 +556,7 @@
 		4C5CD34017D158DE000B7F38 /* fr */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.strings; lineEnding = 0; name = fr; path = fr.lproj/Localizable.strings; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.simpleColoring; };
 		4C5CD34217D158DE000B7F38 /* fr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fr; path = fr.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		4C5CD34417D158DE000B7F38 /* fr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fr; path = fr.lproj/InfoPlist.strings; sourceTree = "<group>"; };
-		4C5CD34517D158F5000B7F38 /* fr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fr; path = fr.lproj/GeneralSettings.strings; sourceTree = "<group>"; };
+		4C5CD34517D158F5000B7F38 /* fr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fr; path = fr.lproj/GeneralPreferences.strings; sourceTree = "<group>"; };
 		4C5CD34617D15912000B7F38 /* fr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fr; path = fr.lproj/MainMenu.strings; sourceTree = "<group>"; };
 		4C5CD34717D1591A000B7F38 /* fr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fr; path = fr.lproj/PasswordInputView.strings; sourceTree = "<group>"; };
 		4C5CD34817D15920000B7F38 /* fr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fr; path = fr.lproj/InspectorView.strings; sourceTree = "<group>"; };
@@ -617,7 +616,7 @@
 		4C73EB941FBB58730033000F /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/DatabaseSettingsWindow.strings; sourceTree = "<group>"; };
 		4C73EB951FBB5A8F0033000F /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/AutotypeCandidateSelectionView.strings; sourceTree = "<group>"; };
 		4C73EB961FBB5A910033000F /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/AutotypeBuilderView.strings; sourceTree = "<group>"; };
-		4C76155F1764C0590015A1A6 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/GeneralSettings.xib; sourceTree = "<group>"; };
+		4C76155F1764C0590015A1A6 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/GeneralPreferences.xib; sourceTree = "<group>"; };
 		4C7615601764C05A0015A1A6 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/MainMenu.xib; sourceTree = "<group>"; };
 		4C76156B1764C0C80015A1A6 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/PasswordInputView.xib; sourceTree = "<group>"; };
 		4C76156C1764C0CC0015A1A6 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/PasswordInputView.strings; sourceTree = "<group>"; };
@@ -652,7 +651,7 @@
 		4C7ABA4517BAEC6700FF5799 /* 17_CDRomTemplate.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = 17_CDRomTemplate.pdf; sourceTree = "<group>"; };
 		4C7ABA4617BAEC6700FF5799 /* 19_EmailTemplate.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = 19_EmailTemplate.pdf; sourceTree = "<group>"; };
 		4C7ABA4717BAEC6700FF5799 /* 20_MiscTemplate.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = 20_MiscTemplate.pdf; sourceTree = "<group>"; };
-		4C7ABA4D17BAEC7000FF5799 /* addEntryTemplate.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; name = addEntryTemplate.pdf; path = Icons/addEntryTemplate.pdf; sourceTree = "<group>"; };
+		4C7ABA4D17BAEC7000FF5799 /* addEntryTemplate.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = addEntryTemplate.pdf; sourceTree = "<group>"; };
 		4C7B63621C0CB51F00D7038C /* NSValueTransformer+TransformerKit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSValueTransformer+TransformerKit.h"; sourceTree = "<group>"; };
 		4C7B63631C0CB51F00D7038C /* NSValueTransformer+TransformerKit.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSValueTransformer+TransformerKit.m"; sourceTree = "<group>"; };
 		4C7B63641C0CB51F00D7038C /* TransformerKit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TransformerKit.h; sourceTree = "<group>"; };
@@ -689,10 +688,10 @@
 		4C840C441D773E5D0081F605 /* pl */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = pl; path = pl.lproj/DatabaseSettingsWindow.strings; sourceTree = "<group>"; };
 		4C840C451D773E5D0081F605 /* pl */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = pl; path = pl.lproj/PasswordEditWindow.strings; sourceTree = "<group>"; };
 		4C840C461D773E5D0081F605 /* pl */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = pl; path = pl.lproj/WelcomeView.strings; sourceTree = "<group>"; };
-		4C840C471D773E5D0081F605 /* pl */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = pl; path = pl.lproj/GeneralSettings.strings; sourceTree = "<group>"; };
-		4C840C481D773E5D0081F605 /* pl */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = pl; path = pl.lproj/IntegrationSettings.strings; sourceTree = "<group>"; };
-		4C840C491D773E5D0081F605 /* pl */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = pl; path = pl.lproj/WorkflowSettings.strings; sourceTree = "<group>"; };
-		4C840C4A1D773E5D0081F605 /* pl */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = pl; path = pl.lproj/UpdateSettings.strings; sourceTree = "<group>"; };
+		4C840C471D773E5D0081F605 /* pl */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = pl; path = pl.lproj/GeneralPreferences.strings; sourceTree = "<group>"; };
+		4C840C481D773E5D0081F605 /* pl */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = pl; path = pl.lproj/IntegrationPreferences.strings; sourceTree = "<group>"; };
+		4C840C491D773E5D0081F605 /* pl */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = pl; path = pl.lproj/WorkflowPreferences.strings; sourceTree = "<group>"; };
+		4C840C4A1D773E5D0081F605 /* pl */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = pl; path = pl.lproj/UpdatePreferences.strings; sourceTree = "<group>"; };
 		4C840C4B1D773E5E0081F605 /* pl */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = pl; path = pl.lproj/PluginPreferences.strings; sourceTree = "<group>"; };
 		4C840C4C1D773E5E0081F605 /* pl */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = pl; path = pl.lproj/MainMenu.strings; sourceTree = "<group>"; };
 		4C840C4D1D773E5E0081F605 /* pl */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = pl; path = pl.lproj/PasswordInputView.strings; sourceTree = "<group>"; };
@@ -720,6 +719,7 @@
 		4C8B36AA17A6ED4B005E1FF1 /* MPOutlineContextMenuDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MPOutlineContextMenuDelegate.m; sourceTree = "<group>"; };
 		4C8C10061FC489D8003DDD5E /* nl */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = nl; path = nl.lproj/PluginPreferences.strings; sourceTree = "<group>"; };
 		4C8DEAA11C314D2C00D24C32 /* MPTestAutotypeDelay.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MPTestAutotypeDelay.m; sourceTree = "<group>"; };
+		4C8E889122C223620002C7C8 /* createdTemplate.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = createdTemplate.pdf; sourceTree = "<group>"; };
 		4C8F0C6C1FCEE98900BE157F /* MPPluginConstants.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MPPluginConstants.h; sourceTree = "<group>"; };
 		4C8F0C6D1FCEE9B900BE157F /* MPPluginConstants.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MPPluginConstants.m; sourceTree = "<group>"; };
 		4C8F0C6F1FCEF91400BE157F /* MPPickcharsParser.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MPPickcharsParser.h; sourceTree = "<group>"; };
@@ -737,8 +737,8 @@
 		4CA08D9E17A831B200A6544B /* MPAddEntryContextMenuDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MPAddEntryContextMenuDelegate.h; sourceTree = "<group>"; };
 		4CA08D9F17A831B200A6544B /* MPAddEntryContextMenuDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MPAddEntryContextMenuDelegate.m; sourceTree = "<group>"; };
 		4CA0B2EC15BCADAC00654E32 /* PreferencesWindow.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PreferencesWindow.xib; sourceTree = "<group>"; };
-		4CA0B2F715BCAF6700654E32 /* MPGeneralSettingsController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MPGeneralSettingsController.h; sourceTree = "<group>"; };
-		4CA0B2F815BCAF6700654E32 /* MPGeneralSettingsController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MPGeneralSettingsController.m; sourceTree = "<group>"; };
+		4CA0B2F715BCAF6700654E32 /* MPGeneralPreferencesController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MPGeneralPreferencesController.h; sourceTree = "<group>"; };
+		4CA0B2F815BCAF6700654E32 /* MPGeneralPreferencesController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MPGeneralPreferencesController.m; sourceTree = "<group>"; };
 		4CA0B2FA15BCAF8600654E32 /* MPPreferencesWindowController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MPPreferencesWindowController.h; sourceTree = "<group>"; };
 		4CA0B2FB15BCAF8600654E32 /* MPPreferencesWindowController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MPPreferencesWindowController.m; sourceTree = "<group>"; };
 		4CA0B30D15BCB6FD00654E32 /* MPPreferencesTab.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MPPreferencesTab.h; sourceTree = "<group>"; };
@@ -789,7 +789,7 @@
 		4CC663E5216F7A7100E33965 /* MPPluginRepositoryBrowserViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MPPluginRepositoryBrowserViewController.m; sourceTree = "<group>"; };
 		4CC6DB7817D23719002C6091 /* KPKNode+IconImage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "KPKNode+IconImage.h"; sourceTree = "<group>"; };
 		4CC6DB7917D23719002C6091 /* KPKNode+IconImage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "KPKNode+IconImage.m"; sourceTree = "<group>"; };
-		4CCA7EEC1797866F00B0B55E /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/GeneralSettings.strings; sourceTree = "<group>"; };
+		4CCA7EEC1797866F00B0B55E /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/GeneralPreferences.strings; sourceTree = "<group>"; };
 		4CCA8E9A18D91ED9001A6754 /* Quartz.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Quartz.framework; path = System/Library/Frameworks/Quartz.framework; sourceTree = SDKROOT; };
 		4CCCE7FF1D75CA48006AA951 /* MPArrayController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MPArrayController.h; sourceTree = "<group>"; };
 		4CCCE8001D75CA48006AA951 /* MPArrayController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MPArrayController.m; sourceTree = "<group>"; };
@@ -809,8 +809,8 @@
 		4CD4EE111FC7284000EA6EB3 /* MPPickcharsViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MPPickcharsViewController.m; sourceTree = "<group>"; };
 		4CD5D703177A5F3300100649 /* MPDatabaseSettingsWindowController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MPDatabaseSettingsWindowController.h; sourceTree = "<group>"; };
 		4CD5D704177A5F3300100649 /* MPDatabaseSettingsWindowController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MPDatabaseSettingsWindowController.m; sourceTree = "<group>"; };
-		4CD7223917A7CB0700F5A1E1 /* MPWorkflowSettingsController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MPWorkflowSettingsController.h; sourceTree = "<group>"; };
-		4CD7223A17A7CB0700F5A1E1 /* MPWorkflowSettingsController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MPWorkflowSettingsController.m; sourceTree = "<group>"; };
+		4CD7223917A7CB0700F5A1E1 /* MPWorkflowPreferencesController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MPWorkflowPreferencesController.h; sourceTree = "<group>"; };
+		4CD7223A17A7CB0700F5A1E1 /* MPWorkflowPreferencesController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MPWorkflowPreferencesController.m; sourceTree = "<group>"; };
 		4CD78AB716D155FF00768A1D /* 07_NotepadTemplate.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = 07_NotepadTemplate.pdf; sourceTree = "<group>"; };
 		4CD78AB816D155FF00768A1D /* 08_SocketTemplate.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = 08_SocketTemplate.pdf; sourceTree = "<group>"; };
 		4CD78AB916D155FF00768A1D /* 09_IdentityTemplate.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = 09_IdentityTemplate.pdf; sourceTree = "<group>"; };
@@ -846,7 +846,7 @@
 		4CE8246E16E2E93400573141 /* MPOverlayWindowController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MPOverlayWindowController.m; sourceTree = "<group>"; };
 		4CE8247316E2F2B900573141 /* MPOverlayView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MPOverlayView.h; sourceTree = "<group>"; };
 		4CE8247416E2F2B900573141 /* MPOverlayView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MPOverlayView.m; sourceTree = "<group>"; };
-		4CE88B9617BA651C0042E078 /* contextTriangleTemplate.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; name = contextTriangleTemplate.pdf; path = Icons/contextTriangleTemplate.pdf; sourceTree = "<group>"; };
+		4CE88B9617BA651C0042E078 /* contextTriangleTemplate.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = contextTriangleTemplate.pdf; sourceTree = "<group>"; };
 		4CE88C2417C163FE00BFD195 /* CoreFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreFoundation.framework; path = System/Library/Frameworks/CoreFoundation.framework; sourceTree = SDKROOT; };
 		4CE88C3317C1647400BFD195 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		4CEE46DB181C301D006BF1E5 /* MPAutotypeDaemon.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MPAutotypeDaemon.h; sourceTree = "<group>"; };
@@ -864,14 +864,14 @@
 		4CF6C3011FBF39BF0055AD03 /* MPPluginTabelCellView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MPPluginTabelCellView.m; sourceTree = "<group>"; };
 		4CF6C70F176F4533007A811D /* MPStringLengthValueTransformer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MPStringLengthValueTransformer.h; sourceTree = "<group>"; };
 		4CF6C710176F4533007A811D /* MPStringLengthValueTransformer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MPStringLengthValueTransformer.m; sourceTree = "<group>"; };
-		4CF78062176E75AD0032EE71 /* MPIntegrationSettingsController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MPIntegrationSettingsController.h; sourceTree = "<group>"; };
-		4CF78063176E75AD0032EE71 /* MPIntegrationSettingsController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MPIntegrationSettingsController.m; sourceTree = "<group>"; };
+		4CF78062176E75AD0032EE71 /* MPIntegrationPreferencesController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MPIntegrationPreferencesController.h; sourceTree = "<group>"; };
+		4CF78063176E75AD0032EE71 /* MPIntegrationPreferencesController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MPIntegrationPreferencesController.m; sourceTree = "<group>"; };
 		4CF7CCA12211AFD400F6D5A0 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/PluginPreferences.strings; sourceTree = "<group>"; };
-		4CFB18E218A17FA20097A34B /* MPUpdateSettingsController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MPUpdateSettingsController.h; sourceTree = "<group>"; };
-		4CFB18E318A17FA20097A34B /* MPUpdateSettingsController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MPUpdateSettingsController.m; sourceTree = "<group>"; };
+		4CFB18E218A17FA20097A34B /* MPUpdatePreferencesController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MPUpdatePreferencesController.h; sourceTree = "<group>"; };
+		4CFB18E318A17FA20097A34B /* MPUpdatePreferencesController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MPUpdatePreferencesController.m; sourceTree = "<group>"; };
 		4CFC53BD16E94729007396BE /* MPShadowBox.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MPShadowBox.h; sourceTree = "<group>"; };
 		4CFC53BE16E94729007396BE /* MPShadowBox.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MPShadowBox.m; sourceTree = "<group>"; };
-		601F811118E016340028F3DE /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/GeneralSettings.strings"; sourceTree = "<group>"; };
+		601F811118E016340028F3DE /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/GeneralPreferences.strings"; sourceTree = "<group>"; };
 		601F811218E016340028F3DE /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/MainMenu.strings"; sourceTree = "<group>"; };
 		601F811318E016340028F3DE /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/PasswordInputView.strings"; sourceTree = "<group>"; };
 		601F811418E016340028F3DE /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/InspectorView.strings"; sourceTree = "<group>"; };
@@ -888,19 +888,19 @@
 		6021FE5118E13F2700C3BC51 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/GroupInspectorView.strings; sourceTree = "<group>"; };
 		6021FE5318E13F2900C3BC51 /* fr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fr; path = fr.lproj/GroupInspectorView.strings; sourceTree = "<group>"; };
 		6021FE5518E13F2A00C3BC51 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/GroupInspectorView.strings"; sourceTree = "<group>"; };
-		6021FE5718E1429500C3BC51 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/IntegrationSettings.xib; sourceTree = "<group>"; };
-		6021FE5A18E142A000C3BC51 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/IntegrationSettings.strings; sourceTree = "<group>"; };
-		6021FE5C18E142A200C3BC51 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/IntegrationSettings.strings; sourceTree = "<group>"; };
-		6021FE5E18E142A300C3BC51 /* fr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fr; path = fr.lproj/IntegrationSettings.strings; sourceTree = "<group>"; };
-		6021FE6218E15D9100C3BC51 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/WorkflowSettings.xib; sourceTree = "<group>"; };
-		6021FE6518E15D9800C3BC51 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/WorkflowSettings.strings; sourceTree = "<group>"; };
-		6021FE6718E15D9A00C3BC51 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/WorkflowSettings.strings; sourceTree = "<group>"; };
-		6021FE6918E15D9B00C3BC51 /* fr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fr; path = fr.lproj/WorkflowSettings.strings; sourceTree = "<group>"; };
-		6021FE6D18E15E6D00C3BC51 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/UpdateSettings.xib; sourceTree = "<group>"; };
-		6021FE7018E15E7400C3BC51 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/UpdateSettings.strings; sourceTree = "<group>"; };
-		6021FE7218E15E7700C3BC51 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/UpdateSettings.strings; sourceTree = "<group>"; };
-		6021FE7418E15E7900C3BC51 /* fr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fr; path = fr.lproj/UpdateSettings.strings; sourceTree = "<group>"; };
-		6021FE7618E15E7B00C3BC51 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/UpdateSettings.strings"; sourceTree = "<group>"; };
+		6021FE5718E1429500C3BC51 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/IntegrationPreferences.xib; sourceTree = "<group>"; };
+		6021FE5A18E142A000C3BC51 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/IntegrationPreferences.strings; sourceTree = "<group>"; };
+		6021FE5C18E142A200C3BC51 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/IntegrationPreferences.strings; sourceTree = "<group>"; };
+		6021FE5E18E142A300C3BC51 /* fr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fr; path = fr.lproj/IntegrationPreferences.strings; sourceTree = "<group>"; };
+		6021FE6218E15D9100C3BC51 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/WorkflowPreferences.xib; sourceTree = "<group>"; };
+		6021FE6518E15D9800C3BC51 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/WorkflowPreferences.strings; sourceTree = "<group>"; };
+		6021FE6718E15D9A00C3BC51 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/WorkflowPreferences.strings; sourceTree = "<group>"; };
+		6021FE6918E15D9B00C3BC51 /* fr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fr; path = fr.lproj/WorkflowPreferences.strings; sourceTree = "<group>"; };
+		6021FE6D18E15E6D00C3BC51 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/UpdatePreferences.xib; sourceTree = "<group>"; };
+		6021FE7018E15E7400C3BC51 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/UpdatePreferences.strings; sourceTree = "<group>"; };
+		6021FE7218E15E7700C3BC51 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/UpdatePreferences.strings; sourceTree = "<group>"; };
+		6021FE7418E15E7900C3BC51 /* fr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fr; path = fr.lproj/UpdatePreferences.strings; sourceTree = "<group>"; };
+		6021FE7618E15E7B00C3BC51 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/UpdatePreferences.strings"; sourceTree = "<group>"; };
 		6021FE7818E15FF300C3BC51 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/DatePickingView.xib; sourceTree = "<group>"; };
 		6021FE7B18E15FFD00C3BC51 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/DatePickingView.strings; sourceTree = "<group>"; };
 		6021FE7D18E15FFF00C3BC51 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/DatePickingView.strings; sourceTree = "<group>"; };
@@ -921,15 +921,15 @@
 		6021FEA018E1651E00C3BC51 /* fr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fr; path = fr.lproj/DatabaseSettingsWindow.strings; sourceTree = "<group>"; };
 		6021FEA218E1652000C3BC51 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/DatabaseSettingsWindow.strings"; sourceTree = "<group>"; };
 		60ECAD221F12231B00EA9DB3 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/PluginPreferences.strings"; sourceTree = "<group>"; };
-		60ECAD251F12253C00EA9DB3 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/WorkflowSettings.strings"; sourceTree = "<group>"; };
-		60ECAD271F12262400EA9DB3 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/IntegrationSettings.strings"; sourceTree = "<group>"; };
+		60ECAD251F12253C00EA9DB3 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/WorkflowPreferences.strings"; sourceTree = "<group>"; };
+		60ECAD271F12262400EA9DB3 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/IntegrationPreferences.strings"; sourceTree = "<group>"; };
 		6A74B0622076F4B30049BC29 /* sv-SE */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "sv-SE"; path = "sv-SE.lproj/DatabaseSettingsWindow.strings"; sourceTree = "<group>"; };
 		6A74B0632076F4B30049BC29 /* sv-SE */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "sv-SE"; path = "sv-SE.lproj/PasswordEditWindow.strings"; sourceTree = "<group>"; };
 		6A74B0642076F4B40049BC29 /* sv-SE */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "sv-SE"; path = "sv-SE.lproj/DuplicateEntryOptionsWindow.strings"; sourceTree = "<group>"; };
-		6A74B0652076F4B40049BC29 /* sv-SE */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "sv-SE"; path = "sv-SE.lproj/GeneralSettings.strings"; sourceTree = "<group>"; };
-		6A74B0662076F4B40049BC29 /* sv-SE */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "sv-SE"; path = "sv-SE.lproj/IntegrationSettings.strings"; sourceTree = "<group>"; };
-		6A74B0672076F4B40049BC29 /* sv-SE */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "sv-SE"; path = "sv-SE.lproj/WorkflowSettings.strings"; sourceTree = "<group>"; };
-		6A74B0682076F4B40049BC29 /* sv-SE */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "sv-SE"; path = "sv-SE.lproj/UpdateSettings.strings"; sourceTree = "<group>"; };
+		6A74B0652076F4B40049BC29 /* sv-SE */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "sv-SE"; path = "sv-SE.lproj/GeneralPreferences.strings"; sourceTree = "<group>"; };
+		6A74B0662076F4B40049BC29 /* sv-SE */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "sv-SE"; path = "sv-SE.lproj/IntegrationPreferences.strings"; sourceTree = "<group>"; };
+		6A74B0672076F4B40049BC29 /* sv-SE */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "sv-SE"; path = "sv-SE.lproj/WorkflowPreferences.strings"; sourceTree = "<group>"; };
+		6A74B0682076F4B40049BC29 /* sv-SE */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "sv-SE"; path = "sv-SE.lproj/UpdatePreferences.strings"; sourceTree = "<group>"; };
 		6A74B0692076F4B40049BC29 /* sv-SE */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "sv-SE"; path = "sv-SE.lproj/PluginPreferences.strings"; sourceTree = "<group>"; };
 		6A74B06A2076F4B40049BC29 /* sv-SE */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "sv-SE"; path = "sv-SE.lproj/InspectorView.strings"; sourceTree = "<group>"; };
 		6A74B06B2076F4B40049BC29 /* sv-SE */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "sv-SE"; path = "sv-SE.lproj/GroupInspectorView.strings"; sourceTree = "<group>"; };
@@ -965,10 +965,10 @@
 		BB3E050F1FE9D1CD00F0B46F /* nl */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = nl; path = nl.lproj/AutotypeBuilderView.strings; sourceTree = "<group>"; };
 		BD6C365619484CF40089EB37 /* nl */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = nl; path = nl.lproj/DatabaseSettingsWindow.strings; sourceTree = "<group>"; };
 		BD6C365719484CF40089EB37 /* nl */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = nl; path = nl.lproj/PasswordEditWindow.strings; sourceTree = "<group>"; };
-		BD6C365819484CF40089EB37 /* nl */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = nl; path = nl.lproj/GeneralSettings.strings; sourceTree = "<group>"; };
-		BD6C365919484CF40089EB37 /* nl */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = nl; path = nl.lproj/IntegrationSettings.strings; sourceTree = "<group>"; };
-		BD6C365A19484CF40089EB37 /* nl */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = nl; path = nl.lproj/WorkflowSettings.strings; sourceTree = "<group>"; };
-		BD6C365B19484CF40089EB37 /* nl */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = nl; path = nl.lproj/UpdateSettings.strings; sourceTree = "<group>"; };
+		BD6C365819484CF40089EB37 /* nl */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = nl; path = nl.lproj/GeneralPreferences.strings; sourceTree = "<group>"; };
+		BD6C365919484CF40089EB37 /* nl */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = nl; path = nl.lproj/IntegrationPreferences.strings; sourceTree = "<group>"; };
+		BD6C365A19484CF40089EB37 /* nl */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = nl; path = nl.lproj/WorkflowPreferences.strings; sourceTree = "<group>"; };
+		BD6C365B19484CF40089EB37 /* nl */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = nl; path = nl.lproj/UpdatePreferences.strings; sourceTree = "<group>"; };
 		BD6C365C19484CF40089EB37 /* nl */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = nl; path = nl.lproj/MainMenu.strings; sourceTree = "<group>"; };
 		BD6C365D19484CF40089EB37 /* nl */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = nl; path = nl.lproj/PasswordInputView.strings; sourceTree = "<group>"; };
 		BD6C365E19484CF40089EB37 /* nl */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = nl; path = nl.lproj/PasswordCreatorView.strings; sourceTree = "<group>"; };
@@ -984,10 +984,10 @@
 		FA638D0E1C39BFCB00B10CC6 /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/DatabaseSettingsWindow.strings; sourceTree = "<group>"; };
 		FA638D0F1C39BFCB00B10CC6 /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/PasswordEditWindow.strings; sourceTree = "<group>"; };
 		FA638D101C39BFCB00B10CC6 /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/WelcomeView.strings; sourceTree = "<group>"; };
-		FA638D111C39BFCB00B10CC6 /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/GeneralSettings.strings; sourceTree = "<group>"; };
-		FA638D121C39BFCB00B10CC6 /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/IntegrationSettings.strings; sourceTree = "<group>"; };
-		FA638D131C39BFCC00B10CC6 /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/WorkflowSettings.strings; sourceTree = "<group>"; };
-		FA638D141C39BFCC00B10CC6 /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/UpdateSettings.strings; sourceTree = "<group>"; };
+		FA638D111C39BFCB00B10CC6 /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/GeneralPreferences.strings; sourceTree = "<group>"; };
+		FA638D121C39BFCB00B10CC6 /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/IntegrationPreferences.strings; sourceTree = "<group>"; };
+		FA638D131C39BFCC00B10CC6 /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/WorkflowPreferences.strings; sourceTree = "<group>"; };
+		FA638D141C39BFCC00B10CC6 /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/UpdatePreferences.strings; sourceTree = "<group>"; };
 		FA638D151C39BFCC00B10CC6 /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/PluginPreferences.strings; sourceTree = "<group>"; };
 		FA638D161C39BFCC00B10CC6 /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/MainMenu.strings; sourceTree = "<group>"; };
 		FA638D171C39BFCC00B10CC6 /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/PasswordInputView.strings; sourceTree = "<group>"; };
@@ -1261,18 +1261,18 @@
 		4C47D77718B37911002755E4 /* Preferences */ = {
 			isa = PBXGroup;
 			children = (
-				4CA0B2F715BCAF6700654E32 /* MPGeneralSettingsController.h */,
-				4CA0B2F815BCAF6700654E32 /* MPGeneralSettingsController.m */,
-				4C76155E1764C04C0015A1A6 /* GeneralSettings.xib */,
-				4CF78062176E75AD0032EE71 /* MPIntegrationSettingsController.h */,
-				4CF78063176E75AD0032EE71 /* MPIntegrationSettingsController.m */,
-				6021FE5818E1429500C3BC51 /* IntegrationSettings.xib */,
-				4CD7223917A7CB0700F5A1E1 /* MPWorkflowSettingsController.h */,
-				4CD7223A17A7CB0700F5A1E1 /* MPWorkflowSettingsController.m */,
-				6021FE6318E15D9100C3BC51 /* WorkflowSettings.xib */,
-				4CFB18E218A17FA20097A34B /* MPUpdateSettingsController.h */,
-				4CFB18E318A17FA20097A34B /* MPUpdateSettingsController.m */,
-				6021FE6E18E15E6D00C3BC51 /* UpdateSettings.xib */,
+				4CA0B2F715BCAF6700654E32 /* MPGeneralPreferencesController.h */,
+				4CA0B2F815BCAF6700654E32 /* MPGeneralPreferencesController.m */,
+				4C76155E1764C04C0015A1A6 /* GeneralPreferences.xib */,
+				4CF78062176E75AD0032EE71 /* MPIntegrationPreferencesController.h */,
+				4CF78063176E75AD0032EE71 /* MPIntegrationPreferencesController.m */,
+				6021FE5818E1429500C3BC51 /* IntegrationPreferences.xib */,
+				4CD7223917A7CB0700F5A1E1 /* MPWorkflowPreferencesController.h */,
+				4CD7223A17A7CB0700F5A1E1 /* MPWorkflowPreferencesController.m */,
+				6021FE6318E15D9100C3BC51 /* WorkflowPreferences.xib */,
+				4CFB18E218A17FA20097A34B /* MPUpdatePreferencesController.h */,
+				4CFB18E318A17FA20097A34B /* MPUpdatePreferencesController.m */,
+				6021FE6E18E15E6D00C3BC51 /* UpdatePreferences.xib */,
 				4C25703C1BF11C2300D39416 /* MPPluginPreferencesController.h */,
 				4C25703D1BF11C2300D39416 /* MPPluginPreferencesController.m */,
 				4C0DBEF71BF508DE00F9B287 /* PluginPreferences.xib */,
@@ -1383,7 +1383,7 @@
 				4C52A891178863B000868229 /* 68_PhoneTemplate.pdf */,
 			);
 			name = "Database Icons";
-			path = Icons;
+			path = Resources/Icons;
 			sourceTree = "<group>";
 		};
 		4C5EF817218CA0470003C00E /* Parser */ = {
@@ -1697,13 +1697,14 @@
 				4C7ABA4D17BAEC7000FF5799 /* addEntryTemplate.pdf */,
 				4C3826711AD04B51007D7D67 /* addFolderTemplate.pdf */,
 				4CE88B9617BA651C0042E078 /* contextTriangleTemplate.pdf */,
-				4C3826771AD04C8A007D7D67 /* createdTemplate.pdf */,
+				4C8E889122C223620002C7C8 /* createdTemplate.pdf */,
 				4C3826791AD04CC6007D7D67 /* downloadTemplate.pdf */,
 				4C3826751AD04C24007D7D67 /* harddiskTemplate.pdf */,
 				4C3826731AD04BA5007D7D67 /* infoTemplate.pdf */,
 				4C08ACE9204F01C700863D99 /* keyboardTemplate.pdf */,
 			);
 			name = Icons;
+			path = Resources/Icons;
 			sourceTree = "<group>";
 		};
 		4CF9ECAE1BFDEC5700C58E99 /* Plugin */ = {
@@ -1833,7 +1834,6 @@
 				FA9FD32C1FB5EDD3003CEDD6 /* AutotypeBuilderView.xib in Resources */,
 				4C17F108184E6B6C00E85625 /* 31_PrintTemplate.pdf in Resources */,
 				4C77E37115B84A240093A587 /* InfoPlist.strings in Resources */,
-				4C3826781AD04C8A007D7D67 /* createdTemplate.pdf in Resources */,
 				4C3826BE1AD04D8E007D7D67 /* 51_DecryptedTemplate.pdf in Resources */,
 				4C3826BC1AD04D8E007D7D67 /* 49_FolderOpenTemplate.pdf in Resources */,
 				4C3826CE1AD04D8E007D7D67 /* 67_CertificatTemplate.pdf in Resources */,
@@ -1843,7 +1843,7 @@
 				4C77E37D15B84A240093A587 /* MainMenu.xib in Resources */,
 				4C3826CD1AD04D8E007D7D67 /* 66_MoneyTemplate.pdf in Resources */,
 				4CA0B2ED15BCADAC00654E32 /* PreferencesWindow.xib in Resources */,
-				4C76155C1764C04C0015A1A6 /* GeneralSettings.xib in Resources */,
+				4C76155C1764C04C0015A1A6 /* GeneralPreferences.xib in Resources */,
 				4CD884B715BD47080042BBF8 /* DocumentWindow.xib in Resources */,
 				4C17F109184E6B6C00E85625 /* 30_TerminalTemplate.pdf in Resources */,
 				4C7615681764C0C40015A1A6 /* PasswordInputView.xib in Resources */,
@@ -1861,7 +1861,7 @@
 				4C586FA216D07F6A00E7DB57 /* 02_MessageBoxWarningTemplate.pdf in Resources */,
 				4C3826B91AD04D8E007D7D67 /* 45_CancelTemplate.pdf in Resources */,
 				4C2E381D16D11FF900037A9D /* 03_ServerTemplate.pdf in Resources */,
-				6021FE6C18E15E6D00C3BC51 /* UpdateSettings.xib in Resources */,
+				6021FE6C18E15E6D00C3BC51 /* UpdatePreferences.xib in Resources */,
 				4C3826B21AD04D8E007D7D67 /* 37_PercentageTemplate.pdf in Resources */,
 				4C3826C51AD04D8E007D7D67 /* 58_SecureAccountTemplate.pdf in Resources */,
 				4C3826A71AD04D8E007D7D67 /* 23_IconsTemplate.pdf in Resources */,
@@ -1905,7 +1905,7 @@
 				4C3826B11AD04D8E007D7D67 /* 36_ArchiveTemplate.pdf in Resources */,
 				4C7714AA176C998F00549F2A /* 43_TrashTemplate.pdf in Resources */,
 				4CD820211A32173100399DBB /* ReferenceBuilderView.xib in Resources */,
-				6021FE5618E1429500C3BC51 /* IntegrationSettings.xib in Resources */,
+				6021FE5618E1429500C3BC51 /* IntegrationPreferences.xib in Resources */,
 				4C3826B81AD04D8E007D7D67 /* 44_NotesTemplate.pdf in Resources */,
 				4C3826C41AD04D8E007D7D67 /* 57_TextViewTemplate.pdf in Resources */,
 				6021FE9818E1650F00C3BC51 /* DatabaseSettingsWindow.xib in Resources */,
@@ -1926,7 +1926,7 @@
 				4C3826BD1AD04D8E007D7D67 /* 50_FolderTarTemplate.pdf in Resources */,
 				6021FE3B18E1341900C3BC51 /* EntryInspectorView.xib in Resources */,
 				4C3826AD1AD04D8E007D7D67 /* 32_FileSystemViewTemplate.pdf in Resources */,
-				6021FE6118E15D9100C3BC51 /* WorkflowSettings.xib in Resources */,
+				6021FE6118E15D9100C3BC51 /* WorkflowPreferences.xib in Resources */,
 				6021FE8218E160BC00C3BC51 /* PasswordEditWindow.xib in Resources */,
 				4C17D11E2250EFBC00C650C4 /* SavePanelAccessoryView.xib in Resources */,
 				4CE88B9717BA651C0042E078 /* contextTriangleTemplate.pdf in Resources */,
@@ -1936,6 +1936,7 @@
 				4C7ABA4B17BAEC6700FF5799 /* 19_EmailTemplate.pdf in Resources */,
 				4C3826C81AD04D8E007D7D67 /* 61_ServicesTemplate.pdf in Resources */,
 				FA9FD3271FB5E8F4003CEDD6 /* AutotypeCandidateSelectionView.xib in Resources */,
+				4C8E889222C223620002C7C8 /* createdTemplate.pdf in Resources */,
 				4C0B038D18E36DA400B9F9C9 /* FixAutotypeWindow.xib in Resources */,
 				4C38267A1AD04CC6007D7D67 /* downloadTemplate.pdf in Resources */,
 				4C7ABA4C17BAEC6700FF5799 /* 20_MiscTemplate.pdf in Resources */,
@@ -1995,7 +1996,7 @@
 				4CBA2ABA17074C07006D8139 /* MPSettingsHelper.m in Sources */,
 				4C77E37A15B84A240093A587 /* MPAppDelegate.m in Sources */,
 				4C37A84015B8B474005EF8EE /* MPOutlineDataSource.m in Sources */,
-				4CA0B2F915BCAF6700654E32 /* MPGeneralSettingsController.m in Sources */,
+				4CA0B2F915BCAF6700654E32 /* MPGeneralPreferencesController.m in Sources */,
 				4C8F0C791FD05A6A00BE157F /* NSString+MPPrettyPasswordDisplay.m in Sources */,
 				4C73B6F1215E64A7009787F7 /* MPWelcomeViewController.m in Sources */,
 				4C6B7C7D18BE7EB0001D5D77 /* MPDocument+History.m in Sources */,
@@ -2063,7 +2064,7 @@
 				4CAD338F205169D30068587E /* MPPluginRepositoryItem.m in Sources */,
 				4C9BFFFB1FD19B5400264B16 /* MPPrettyPasswordTransformer.m in Sources */,
 				4CA0F3ED1A3074B50067C0E5 /* MPWindowTitleComboBoxDelegate.m in Sources */,
-				4CF78064176E75AD0032EE71 /* MPIntegrationSettingsController.m in Sources */,
+				4CF78064176E75AD0032EE71 /* MPIntegrationPreferencesController.m in Sources */,
 				4C06B17F21D9691F00CD4BBC /* MPPluginStatusTableCellView.m in Sources */,
 				4C25703F1BF11C2300D39416 /* MPPluginPreferencesController.m in Sources */,
 				4CF6C711176F4533007A811D /* MPStringLengthValueTransformer.m in Sources */,
@@ -2092,7 +2093,7 @@
 				4C26C33F18D8C92100CF1A1C /* MPTemporaryFileStorage.m in Sources */,
 				4C663D411D6D91A900CB6237 /* MPNumberFormatter.m in Sources */,
 				4CD2B9061849424B0051B395 /* MPAutotypeContext.m in Sources */,
-				4CFB18E418A17FA20097A34B /* MPUpdateSettingsController.m in Sources */,
+				4CFB18E418A17FA20097A34B /* MPUpdatePreferencesController.m in Sources */,
 				4C7B63771C0CB51F00D7038C /* TTTStringTransformers.m in Sources */,
 				4CD4EE131FC7284000EA6EB3 /* MPPickcharsViewController.m in Sources */,
 				4CCEDE2A179F203B008402BE /* MPOutlineView.m in Sources */,
@@ -2110,7 +2111,7 @@
 				4C1BDF2B1E4392640012A3F0 /* MPPluginDataViewController.m in Sources */,
 				4C4B7EF817A4B335000234C7 /* MPUniqueCharactersFormatter.m in Sources */,
 				4C8B36AB17A6ED4B005E1FF1 /* MPOutlineContextMenuDelegate.m in Sources */,
-				4CD7223B17A7CB0700F5A1E1 /* MPWorkflowSettingsController.m in Sources */,
+				4CD7223B17A7CB0700F5A1E1 /* MPWorkflowPreferencesController.m in Sources */,
 				4CA08DA017A831B200A6544B /* MPAddEntryContextMenuDelegate.m in Sources */,
 				4C09495C1FD6E510004F2971 /* MPAddCustomFieldContextMenuDelegate.m in Sources */,
 				4CE3E62617AB0D2D00D9E4B4 /* MPAttachmentTableDataSource.m in Sources */,
@@ -2259,7 +2260,7 @@
 			name = IconSelection.xib;
 			sourceTree = "<group>";
 		};
-		4C76155E1764C04C0015A1A6 /* GeneralSettings.xib */ = {
+		4C76155E1764C04C0015A1A6 /* GeneralPreferences.xib */ = {
 			isa = PBXVariantGroup;
 			children = (
 				4C76155F1764C0590015A1A6 /* Base */,
@@ -2274,7 +2275,7 @@
 				6A74B0652076F4B40049BC29 /* sv-SE */,
 				4C168CB02216CEC300BB1EB0 /* en */,
 			);
-			name = GeneralSettings.xib;
+			name = GeneralPreferences.xib;
 			sourceTree = "<group>";
 		};
 		4C76156A1764C0C40015A1A6 /* PasswordInputView.xib */ = {
@@ -2475,7 +2476,7 @@
 			name = GroupInspectorView.xib;
 			sourceTree = "<group>";
 		};
-		6021FE5818E1429500C3BC51 /* IntegrationSettings.xib */ = {
+		6021FE5818E1429500C3BC51 /* IntegrationPreferences.xib */ = {
 			isa = PBXVariantGroup;
 			children = (
 				6021FE5718E1429500C3BC51 /* Base */,
@@ -2490,10 +2491,10 @@
 				4C4161051F50333B003BC0AF /* es */,
 				6A74B0662076F4B40049BC29 /* sv-SE */,
 			);
-			name = IntegrationSettings.xib;
+			name = IntegrationPreferences.xib;
 			sourceTree = "<group>";
 		};
-		6021FE6318E15D9100C3BC51 /* WorkflowSettings.xib */ = {
+		6021FE6318E15D9100C3BC51 /* WorkflowPreferences.xib */ = {
 			isa = PBXVariantGroup;
 			children = (
 				6021FE6218E15D9100C3BC51 /* Base */,
@@ -2508,10 +2509,10 @@
 				4C4161061F50333B003BC0AF /* es */,
 				6A74B0672076F4B40049BC29 /* sv-SE */,
 			);
-			name = WorkflowSettings.xib;
+			name = WorkflowPreferences.xib;
 			sourceTree = "<group>";
 		};
-		6021FE6E18E15E6D00C3BC51 /* UpdateSettings.xib */ = {
+		6021FE6E18E15E6D00C3BC51 /* UpdatePreferences.xib */ = {
 			isa = PBXVariantGroup;
 			children = (
 				6021FE6D18E15E6D00C3BC51 /* Base */,
@@ -2526,7 +2527,7 @@
 				4C4161071F50333B003BC0AF /* es */,
 				6A74B0682076F4B40049BC29 /* sv-SE */,
 			);
-			name = UpdateSettings.xib;
+			name = UpdatePreferences.xib;
 			sourceTree = "<group>";
 		};
 		6021FE7918E15FF300C3BC51 /* DatePickingView.xib */ = {

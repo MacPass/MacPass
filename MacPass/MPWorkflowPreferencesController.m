@@ -20,18 +20,18 @@
 //  along with this program.  If not, see <http://www.gnu.org/licenses/>.
 //
 
-#import "MPWorkflowSettingsController.h"
+#import "MPWorkflowPreferencesController.h"
 
 #import "MPSettingsHelper.h"
 
-@interface MPWorkflowSettingsController ()
+@interface MPWorkflowPreferencesController ()
 
 @end
 
-@implementation MPWorkflowSettingsController
+@implementation MPWorkflowPreferencesController
 
 - (NSString *)nibName {
-  return @"WorkflowSettings";
+  return @"WorkflowPreferences";
 }
 
 - (void)viewDidLoad {

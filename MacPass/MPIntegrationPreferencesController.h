@@ -25,7 +25,7 @@
 
 @class DDHotKeyTextField;
 
-@interface MPIntegrationSettingsController : MPViewController <MPPreferencesTab, NSTextFieldDelegate>
+@interface MPIntegrationPreferencesController : MPViewController <MPPreferencesTab, NSTextFieldDelegate>
 /* Autotype */
 @property (strong) IBOutlet NSButton *enableGlobalAutotypeCheckBox;
 @property (strong) IBOutlet DDHotKeyTextField *hotKeyTextField;
