@@ -221,7 +221,9 @@ NSString *const _MPOutlinveViewHeaderViewIdentifier = @"HeaderCell";
     return; // Nothing we need to worry about
   }
   MPDocument *document = self.windowController.document;
-  document.selectedGroups = self.currentTargetGroups;
+  if (document.selectedGroups != self.currentTargetGroups) {
+    document.selectedGroups = self.currentTargetGroups;
+  }
 }
 
 - (void)_outlineDidScroll:(NSNotification *)notification {
