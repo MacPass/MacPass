@@ -243,6 +243,12 @@ NSString *const MPToolbarItemAutotype = @"TOOLBAR_AUTOTYPE";
       [[NSApp targetForAction:@selector(focusEntries:) to:nil from:self] focusEntries:self];
     });
   }
+  if(commandSelector == @selector(cancel:) && control == self.searchField) {
+    dispatch_async(dispatch_get_main_queue(), ^{
+      NSSearchFieldCell *cell = self.searchField.cell;
+      [[NSApp targetForAction:cell.cancelButtonCell.action to:nil from:self] exitSearch:nil];
+    });
+  }
   return NO;
 }
 
