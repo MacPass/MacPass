@@ -57,7 +57,7 @@ NSString *const MPPluginRepositoryDidUpdateAvailablePluginsNotification = @"com.
   if(self) {
     _isInitialized = NO;
     _lastDataFetchTime = NSDate.distantPast.timeIntervalSinceReferenceDate;
-    [self _fetchRepositoryDataCompletionHandler:^(NSArray<MPPluginRepositoryItem *> * _Nonnull availablePlugins) {
+    [self _fetchAppropriateRepositoryDataCompletionHandler:^(NSArray<MPPluginRepositoryItem *> * _Nonnull availablePlugins) {
       self.availablePlugins = availablePlugins;
       self.isInitialized = YES;
     }];
@@ -69,7 +69,7 @@ NSString *const MPPluginRepositoryDidUpdateAvailablePluginsNotification = @"com.
   /* update cache on every read if it's older than 5 minutes */
   if((NSDate.timeIntervalSinceReferenceDate - self.lastDataFetchTime) > 60*5 ) {
     NSLog(@"%@: updating available plugins cache.", self.className);
-    [self _fetchRepositoryDataCompletionHandler:^(NSArray<MPPluginRepositoryItem *> * _Nonnull availablePlugins) {
+    [self _fetchAppropriateRepositoryDataCompletionHandler:^(NSArray<MPPluginRepositoryItem *> * _Nonnull availablePlugins) {
       self.availablePlugins = availablePlugins;
     }];
   }
@@ -88,12 +88,18 @@ NSString *const MPPluginRepositoryDidUpdateAvailablePluginsNotification = @"com.
   }
 }
 
+- (void)_fetchAppropriateRepositoryDataCompletionHandler:(void (^)(NSArray<MPPluginRepositoryItem *> * _Nonnull))completionHandler {
+  /* dispatch the call to allow for direct return and handle resutl later on */
+  dispatch_async(dispatch_get_main_queue(), ^{
+    BOOL allowRemoteConnection = [self _askForPluginRepositoryPermission];
+    if(!allowRemoteConnection) {
+      [self _fetchLocalFallbackRepositoryData:completionHandler];
+    }
+    [self _fetchRepositoryDataCompletionHandler:completionHandler];
+  });
+}
+
 - (void)_fetchRepositoryDataCompletionHandler:(void (^)(NSArray<MPPluginRepositoryItem *> * _Nonnull))completionHandler {
-  BOOL allowRemoteConnection = [self _askForPluginRepositoryPermission];
-  if(!allowRemoteConnection) {
-    [self _fetchLocalFallbackRepositoryData:completionHandler];
-    return;
-  }
   NSString *urlString = NSBundle.mainBundle.infoDictionary[MPBundlePluginRepositoryURLKey];
   if(!urlString) {
     [self _fetchLocalFallbackRepositoryData:completionHandler];

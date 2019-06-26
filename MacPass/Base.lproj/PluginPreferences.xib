@@ -9,6 +9,7 @@
         <customObject id="-2" userLabel="File's Owner" customClass="MPPluginPreferencesController">
             <connections>
                 <outlet property="addRemovePluginsControl" destination="B9Q-hq-K4N" id="Oqj-Ko-8UR"/>
+                <outlet property="allowRemoteConnectionCheckButton" destination="K0z-aD-K2P" id="VDW-fd-evK"/>
                 <outlet property="fallbackDescriptionTextField" destination="qPL-FR-ky7" id="xCb-ED-NIX"/>
                 <outlet property="fallbackSettingsView" destination="wIk-iw-Tcz" id="dHl-zW-0aI"/>
                 <outlet property="forceIncompatiblePluginsCheckButton" destination="XIl-03-JZP" id="Aj4-rc-Ao0"/>
@@ -229,7 +230,7 @@
                 <constraint firstItem="vBs-Ga-aq0" firstAttribute="leading" secondItem="fCk-fL-jU8" secondAttribute="trailing" constant="8" id="xNu-Sj-xQO"/>
                 <constraint firstItem="aoG-FD-ds8" firstAttribute="top" secondItem="CqP-oK-S8k" secondAttribute="bottom" constant="8" symbolic="YES" id="zSW-h3-BrT"/>
             </constraints>
-            <point key="canvasLocation" x="-111.5" y="71"/>
+            <point key="canvasLocation" x="179" y="115"/>
         </customView>
     </objects>
     <resources>
