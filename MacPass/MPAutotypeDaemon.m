@@ -56,7 +56,7 @@ NSString *const kMPProcessIdentifierKey = @"kMPProcessIdentifierKey";
 @property (copy) NSString *targetWindowTitle; // The title of the window that we are targeting
 @property (strong) NSRunningApplication *previousApplication; // The application that was active before we got invoked
 @property (assign) NSTimeInterval userActionRequested;
-
+@property (strong) id applicationActivationObserver;
 @end
 
 @implementation MPAutotypeDaemon
@@ -108,6 +108,9 @@ static MPAutotypeDaemon *_sharedInstance;
 - (void)dealloc {
   [NSNotificationCenter.defaultCenter removeObserver:self];
   [NSWorkspace.sharedWorkspace.notificationCenter removeObserver:self];
+  if(self.applicationActivationObserver) {
+    [NSWorkspace.sharedWorkspace.notificationCenter removeObserver:self.applicationActivationObserver name:NSWorkspaceDidActivateApplicationNotification object:nil];
+  }
   [self unbind:NSStringFromSelector(@selector(enabled))];
   [self unbind:NSStringFromSelector(@selector(hotKeyData))];
 }
@@ -214,7 +217,7 @@ static MPAutotypeDaemon *_sharedInstance;
   [self.matchSelectionWindow orderOut:self];
   self.matchSelectionWindow = nil;
   if(self.targetPID) {
-    [self _orderApplicationToFront:self.targetPID];
+    [self _orderApplicationToFront:self.targetPID forContext:nil];
   }
 }
 
@@ -319,7 +322,9 @@ static MPAutotypeDaemon *_sharedInstance;
     return; // No context to work with
   }
   
-  [self _orderApplicationToFront:self.targetPID];
+  if(NO == [self _orderApplicationToFront:self.targetPID forContext:(MPAutotypeContext *)context]) {
+    return; // We will get called back when the application is in front - hopfully
+  }
   
   useconds_t globalDelay = 0;
   for(MPAutotypeCommand *command in [MPAutotypeCommand commandsForContext:context]) {
@@ -438,19 +443,28 @@ static MPAutotypeDaemon *_sharedInstance;
 
 #pragma mark -
 #pragma mark Application information
-- (void)_orderApplicationToFront:(pid_t)processIdentifier {
-  NSUInteger maxiumumWaitTime = 10; //ms
-  NSUInteger waitTime = 0;
-  while(waitTime < maxiumumWaitTime) {
-    NSRunningApplication *runingApplication = [NSRunningApplication runningApplicationWithProcessIdentifier:processIdentifier];
-    NSRunningApplication *frontApplication = NSWorkspace.sharedWorkspace.frontmostApplication;
-    if(frontApplication.processIdentifier == processIdentifier) {
-      return;
-    }
-    [runingApplication activateWithOptions:NSApplicationActivateIgnoringOtherApps];
-    usleep(1 * NSEC_PER_MSEC);
-    waitTime += 1;
+- (BOOL)_orderApplicationToFront:(pid_t)processIdentifier forContext:(MPAutotypeContext *)context {
+  NSRunningApplication *runingApplication = [NSRunningApplication runningApplicationWithProcessIdentifier:processIdentifier];
+  NSRunningApplication *frontApplication = NSWorkspace.sharedWorkspace.frontmostApplication;
+  if(frontApplication.processIdentifier == processIdentifier) {
+    return YES;
   }
+  
+  /* cleanup before to make sure everything is top notch */
+  if(self.applicationActivationObserver) {
+    [NSWorkspace.sharedWorkspace.notificationCenter removeObserver:self.applicationActivationObserver name:NSWorkspaceDidActivateApplicationNotification object:nil];
+    self.applicationActivationObserver = nil;
+  }
+  
+  self.applicationActivationObserver = [NSWorkspace.sharedWorkspace.notificationCenter addObserverForName:NSWorkspaceDidActivateApplicationNotification object:nil queue:nil usingBlock:^(NSNotification * _Nonnull note) {
+    if(self.applicationActivationObserver) {
+      [NSWorkspace.sharedWorkspace.notificationCenter removeObserver:self.applicationActivationObserver name:NSWorkspaceDidActivateApplicationNotification object:nil];
+    }
+    [self _performAutotypeForContext:context];
+  }];
+  
+  [runingApplication activateWithOptions:NSApplicationActivateIgnoringOtherApps];
+  return NO;
 }
 
 - (void)_updateTargetInformationForFrontMostApplication {
