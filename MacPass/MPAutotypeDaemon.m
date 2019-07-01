@@ -393,6 +393,10 @@ static MPAutotypeDaemon *_sharedInstance;
       }
     }
   }
+  if(currentWindows.count > 0 && infoDict.count == 0) {
+    // show some information about not being able to determine any windows
+    NSLog(@"Unable to retrieve any window names. If you encounter this issue you might be running 10.15 and MacPass has no permission for screen recording.");
+  }
   return infoDict;
 }
 
