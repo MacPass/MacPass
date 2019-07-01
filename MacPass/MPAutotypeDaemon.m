@@ -319,11 +319,7 @@ static MPAutotypeDaemon *_sharedInstance;
     return; // No context to work with
   }
   
-  if([self _orderApplicationToFront:self.targetPID]) {
-    /* Sleep a bit after the app was activated */
-    /* TODO - we might be able to get a notification to check if the app actually was activated instead of guessing a waiting time */
-    usleep(1 * NSEC_PER_MSEC);
-  }
+  [self _orderApplicationToFront:self.targetPID];
   
   useconds_t globalDelay = 0;
   for(MPAutotypeCommand *command in [MPAutotypeCommand commandsForContext:context]) {
@@ -442,15 +438,21 @@ static MPAutotypeDaemon *_sharedInstance;
 
 #pragma mark -
 #pragma mark Application information
-- (BOOL)_orderApplicationToFront:(pid_t)processIdentifier {
-  NSRunningApplication *runingApplication = [NSRunningApplication runningApplicationWithProcessIdentifier:processIdentifier];
-  NSRunningApplication *frontApplication = NSWorkspace.sharedWorkspace.frontmostApplication;
-  if(frontApplication.processIdentifier == processIdentifier) {
-    return NO;
+- (void)_orderApplicationToFront:(pid_t)processIdentifier {
+  NSUInteger maxiumumWaitTime = 10; //ms
+  NSUInteger waitTime = 0;
+  while(waitTime < maxiumumWaitTime) {
+    NSRunningApplication *runingApplication = [NSRunningApplication runningApplicationWithProcessIdentifier:processIdentifier];
+    NSRunningApplication *frontApplication = NSWorkspace.sharedWorkspace.frontmostApplication;
+    if(frontApplication.processIdentifier == processIdentifier) {
+      return;
+    }
+    [runingApplication activateWithOptions:NSApplicationActivateIgnoringOtherApps];
+    usleep(1 * NSEC_PER_MSEC);
+    waitTime += 1;
   }
-  [runingApplication activateWithOptions:NSApplicationActivateIgnoringOtherApps];
-  return YES;
 }
+
 - (void)_updateTargetInformationForFrontMostApplication {
   [self _updateTargeInformationForApplication:NSWorkspace.sharedWorkspace.frontmostApplication];
 }
