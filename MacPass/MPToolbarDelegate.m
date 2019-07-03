@@ -111,6 +111,7 @@ NSString *const MPToolbarItemAutotype = @"TOOLBAR_AUTOTYPE";
     item = [[MPToolbarItem alloc] initWithItemIdentifier:itemIdentifier];
     NSString *itemLabel = [self _localizedLabelForToolbarItemIdentifier:itemIdentifier];
     item.label = itemLabel;
+    item.paletteLabel = itemLabel;
     
     if([itemIdentifier isEqualToString:MPToolbarItemAction]) {
       NSPopUpButton *popupButton = [[NSPopUpButton alloc] initWithFrame:NSMakeRect(0, 0, 50, 32) pullsDown:YES];
