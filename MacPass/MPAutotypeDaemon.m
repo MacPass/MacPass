@@ -31,6 +31,7 @@
 #import "MPSettingsHelper.h"
 #import "MPAutotypeCandidateSelectionViewController.h"
 #import "MPUserNotificationCenterDelegate.h"
+#import "MPAutotypeDoctor.h"
 
 #import "MPPluginHost.h"
 #import "MPPlugin.h"
@@ -57,11 +58,10 @@ NSString *const kMPProcessIdentifierKey = @"kMPProcessIdentifierKey";
 @property (strong) NSRunningApplication *previousApplication; // The application that was active before we got invoked
 @property (assign) NSTimeInterval userActionRequested;
 @property (strong) id applicationActivationObserver;
+@property BOOL shouldRunAutotypeDoctor;
 @end
 
 @implementation MPAutotypeDaemon
-
-@dynamic autotypeSupported;
 
 #pragma mark -
 #pragma mark Lifecylce
@@ -87,6 +87,8 @@ static MPAutotypeDaemon *_sharedInstance;
     _enabled = NO;
     _targetPID = -1;
     _userActionRequested = NSDate.distantPast.timeIntervalSinceReferenceDate;
+    _shouldRunAutotypeDoctor = NO;
+    BOOL test = MPAutotypeDoctor.defaultDoctor.hasScreenRecordingPermissions;
     [self bind:NSStringFromSelector(@selector(enabled))
       toObject:NSUserDefaultsController.sharedUserDefaultsController
    withKeyPath:[MPSettingsHelper defaultControllerPathForKey:kMPSettingsKeyEnableGlobalAutotype]
@@ -117,13 +119,6 @@ static MPAutotypeDaemon *_sharedInstance;
 
 #pragma mark -
 #pragma mark Properties
-- (BOOL)autotypeSupported {
-  if(@available(macOS 10.14, *)) {
-    return AXIsProcessTrusted();
-  }
-  /* macOS 10.13 and lower allows us to send key events regardless of accessibilty trust */
-  return YES;
-}
 
 - (void)setEnabled:(BOOL)enabled {
   if(_enabled != enabled) {
@@ -140,52 +135,6 @@ static MPAutotypeDaemon *_sharedInstance;
       [self _registerHotKey];
     }
   }
-}
-
-- (void)checkForAccessibiltyPermissions {
-  if(!self.enabled) {
-    return;
-  }
-  
-  if(NSApplication.sharedApplication.isRunningTests) {
-    return; // Do not display pop-up when running tests
-  }
-  
-  BOOL hideAlert = NO;
-  if(nil != [NSUserDefaults.standardUserDefaults objectForKey:kMPSettingsKeyAutotypeHideAccessibiltyWarning]) {
-    hideAlert = [NSUserDefaults.standardUserDefaults boolForKey:kMPSettingsKeyAutotypeHideAccessibiltyWarning];
-  }
-  if(hideAlert || self.autotypeSupported) {
-    return;
-  }
-  else {
-    NSAlert *alert = [[NSAlert alloc] init];
-    alert.alertStyle = NSWarningAlertStyle;
-    alert.messageText = NSLocalizedString(@"ALERT_AUTOTYPE_MISSING_ACCESSIBILTY_PERMISSIONS_MESSAGE_TEXT", @"Alert message displayed when Autotype performs self check and lacks accessibilty permissions");
-    alert.informativeText = NSLocalizedString(@"ALERT_AUTOTYPE_MISSING_ACCESSIBILTY_PERMISSIONS_INFORMATIVE_TEXT", @"Alert informative text displayed when Autotype performs self check and lacks accessibilty permissions");
-    alert.showsSuppressionButton = YES;
-    [alert addButtonWithTitle:NSLocalizedString(@"ALERT_AUTOTYPE_MISSING_ACCESSIBILTY_PERMISSIONS_BUTTON_OK", @"Button in dialog to leave autotype disabled and continiue!")];
-    [alert addButtonWithTitle:NSLocalizedString(@"ALERT_AUTOTYPE_MISSING_ACCESSIBILTY_PERMISSIONS_BUTTON_OPEN_PREFERENCES", @"Button in dialog to open accessibilty preferences pane!")];
-    NSModalResponse returnCode = [alert runModal];
-    BOOL suppressWarning = (alert.suppressionButton.state == NSOnState);
-    [NSUserDefaults.standardUserDefaults setBool:suppressWarning forKey:kMPSettingsKeyAutotypeHideAccessibiltyWarning];
-    switch(returnCode) {
-      case NSAlertFirstButtonReturn: {
-        /* ok, ignore */
-        break;
-      }
-      case NSAlertSecondButtonReturn:
-        /* open prefs */
-        [self openAccessibiltyPreferences];
-        break;
-      default:
-        break;
-    }
-  }
-}
-
-- (void)openAccessibiltyPreferences {
-  [NSWorkspace.sharedWorkspace openURL:[NSURL URLWithString:@"x-apple.systempreferences:com.apple.preference.security?Privacy_Accessibility"]];
 }
 
 #pragma mark -
@@ -225,6 +174,10 @@ static MPAutotypeDaemon *_sharedInstance;
 #pragma mark Autotype Execution
 
 - (void)_performAutotypeForEntry:(KPKEntry *)entryOrNil {
+  if(self.shouldRunAutotypeDoctor) {
+    [MPAutotypeDoctor.defaultDoctor showPermissionCheckReport];
+  }
+  
   /*if(!self.autotypeSupported) {
    NSUserNotification *notification = [[NSUserNotification alloc] init];
    notification.title = NSApp.applicationName;

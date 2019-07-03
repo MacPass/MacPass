@@ -370,10 +370,6 @@ typedef NS_OPTIONS(NSInteger, MPAppStartupState) {
   if(showWelcomeScreen) {
     [self showWelcomeWindow];
   }
-  /* run check for accessibilty after the windowserver should have presented the UI */
-  dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.25 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-    [MPAutotypeDaemon.defaultDaemon checkForAccessibiltyPermissions];
-  });
 }
 
 @end

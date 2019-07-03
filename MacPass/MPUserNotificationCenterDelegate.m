@@ -22,7 +22,7 @@
 
 #import "MPUserNotificationCenterDelegate.h"
 #import "MPDocumentController.h"
-#import "MPAutotypeDaemon.h"
+#import "MPAutotypeDoctor.h"
 
 NSString *const MPUserNotificationTypeKey = @"MPUserNotificationTypeKey";
 NSString *const MPUserNotificationTypeAutotypeFeedback = @"MPUserNotificationTypeAutotypeFeedback";
@@ -46,7 +46,7 @@ NSString *const MPUserNotificationTypeShowAccessibiltyPreferences = @"MPUserNoti
     [((MPDocumentController*)NSDocumentController.sharedDocumentController) reopenLastDocument];
   }
   else if([notificationType isEqualToString:MPUserNotificationTypeShowAccessibiltyPreferences]) {
-    [MPAutotypeDaemon.defaultDaemon openAccessibiltyPreferences];
+    [MPAutotypeDoctor.defaultDoctor showPermissionCheckReport];
   }
 }
 

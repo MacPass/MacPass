@@ -26,29 +26,28 @@
         <customObject id="-1" userLabel="First Responder" customClass="FirstResponder"/>
         <customObject id="-3" userLabel="Application" customClass="NSObject"/>
         <customView translatesAutoresizingMaskIntoConstraints="NO" id="1">
-            <rect key="frame" x="0.0" y="0.0" width="400" height="463"/>
+            <rect key="frame" x="0.0" y="0.0" width="400" height="421"/>
             <subviews>
                 <box autoresizesSubviews="NO" verticalHuggingPriority="500" borderType="line" title="Autotype" translatesAutoresizingMaskIntoConstraints="NO" id="P9N-HM-wER">
-                    <rect key="frame" x="17" y="115" width="366" height="328"/>
+                    <rect key="frame" x="17" y="115" width="366" height="286"/>
                     <view key="contentView" id="faU-Ok-HJ3">
-                        <rect key="frame" x="3" y="3" width="360" height="310"/>
+                        <rect key="frame" x="3" y="3" width="360" height="268"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <stackView orientation="vertical" alignment="leading" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" translatesAutoresizingMaskIntoConstraints="NO" id="j52-9L-k7c">
-                                <rect key="frame" x="16" y="17" width="328" height="283"/>
+                                <rect key="frame" x="16" y="17" width="328" height="241"/>
                                 <beginningViews>
                                     <textField verticalHuggingPriority="750" fixedFrame="YES" preferredMaxLayoutWidth="328" translatesAutoresizingMaskIntoConstraints="NO" id="hMJ-Mo-xOM">
-                                        <rect key="frame" x="-2" y="227" width="332" height="56"/>
-                                        <textFieldCell key="cell" controlSize="small" id="H37-ku-aTc">
+                                        <rect key="frame" x="-2" y="227" width="150" height="14"/>
+                                        <textFieldCell key="cell" controlSize="small" title="ReportFromAutotypeDoctor" id="H37-ku-aTc">
                                             <font key="font" metaFont="smallSystem"/>
-                                            <string key="title">Autotype is not available, because MacPass is not allowed to control your computer. To enable Autotype, go to the Security and Privacy Preferences and add MacPass to the Accessibilty group. Changes require a restart of MacPass.</string>
                                             <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
                                             <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                         </textFieldCell>
                                     </textField>
                                     <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="jai-b6-Qv4">
-                                        <rect key="frame" x="-6" y="191" width="160" height="32"/>
-                                        <buttonCell key="cell" type="push" title="Open Preferences…" bezelStyle="rounded" alignment="center" borderStyle="border" inset="2" id="NP0-R3-m6n">
+                                        <rect key="frame" x="-6" y="191" width="177" height="32"/>
+                                        <buttonCell key="cell" type="push" title="Run Autotype Doctor…" bezelStyle="rounded" alignment="center" borderStyle="border" inset="2" id="NP0-R3-m6n">
                                             <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                             <font key="font" metaFont="system"/>
                                         </buttonCell>
