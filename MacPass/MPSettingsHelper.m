@@ -59,7 +59,7 @@ NSString *const kMPSettingsKeyAutotypeMatchTitle                      = @"Autoty
 NSString *const kMPSettingsKeyAutotypeMatchURL                        = @"AutotypeMatchURL";
 NSString *const kMPSettingsKeyAutotypeMatchHost                       = @"AutotypeMatchHost";
 NSString *const kMPSettingsKeyAutotypeMatchTags                       = @"AutotypeMatchTags";
-NSString *const kMPSettingsKeyAutotypeHideAccessibiltyWarning         = @"AutotypeHideAccessibiltyWarning";
+NSString *const kMPSettingsKeyAutotpyeHideMissingPermissionsWarning   = @"AutotpyeHideMissingPermissionsWarning";
 
 NSString *const kMPSettingsKeyEntrySearchFilterContext                = @"EntrySearchFilterContext";
 
@@ -96,7 +96,7 @@ NSString *const kMPDeprecatedSettingsKeyEnableHttpServer                  = @"En
 NSString *const kMPDeprecatedSettingsKeyShowMenuItem                      = @"ShowMenuItem";
 NSString *const kMPDeprecatedSettingsKeyDefaultPasswordRounds             = @"KeyDefaultPasswordRounds";
 NSString *const kMPDepricatedSettingsKeyLoadUnsecurePlugins               = @"MPLoadUnsecurePlugins";
-
+NSString *const kMPDepricatedSettingsKeyAutotypeHideAccessibiltyWarning   = @"AutotypeHideAccessibiltyWarning";
 
 @implementation MPSettingsHelper
 
@@ -181,7 +181,8 @@ NSString *const kMPDepricatedSettingsKeyLoadUnsecurePlugins               = @"MP
                             kMPDeprecatedSettingsKeyHttpPort,
                             kMPDeprecatedSettingsKeyEnableHttpServer,
                             kMPDeprecatedSettingsKeyShowMenuItem,
-                            kMPDepricatedSettingsKeyLoadUnsecurePlugins
+                            kMPDepricatedSettingsKeyLoadUnsecurePlugins,
+                            kMPDepricatedSettingsKeyAutotypeHideAccessibiltyWarning
                             ];
   });
   return deprecatedSettings;

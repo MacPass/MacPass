@@ -35,6 +35,7 @@
 		4C17F109184E6B6C00E85625 /* 30_TerminalTemplate.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 4C17F107184E6B6C00E85625 /* 30_TerminalTemplate.pdf */; };
 		4C1BDF2B1E4392640012A3F0 /* MPPluginDataViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C1BDF291E4392640012A3F0 /* MPPluginDataViewController.m */; };
 		4C1E9885185F71A800943563 /* MPContextBarViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C1E9884185F71A800943563 /* MPContextBarViewController.m */; };
+		4C1ECAE322CCD30F00F46069 /* MPAutotypeDoctor.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C1ECAE222CCD30F00F46069 /* MPAutotypeDoctor.m */; };
 		4C1F7FA21E3A12E600D6A40E /* MPModifiedKey.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C1F7FA11E3A12E600D6A40E /* MPModifiedKey.m */; };
 		4C1FA07B18231900003A3F8C /* MPDocument+Autotype.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C1FA07A18231900003A3F8C /* MPDocument+Autotype.m */; };
 		4C224B4217DFCB2400FF6AEE /* MPNumericalInputFormatter.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C224B4117DFCB2400FF6AEE /* MPNumericalInputFormatter.m */; };
@@ -225,6 +226,8 @@
 		4CAD338F205169D30068587E /* MPPluginRepositoryItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CAD338E205169D30068587E /* MPPluginRepositoryItem.m */; };
 		4CAD748C15B889B700104512 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4CAD748B15B889B700104512 /* Security.framework */; };
 		4CAD748E15B88AC100104512 /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 4CAD748D15B88AC100104512 /* libz.dylib */; };
+		4CAD8AA622CF397B0090B2DD /* MPAutotypeDoctorReportViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CAD8AA422CF397B0090B2DD /* MPAutotypeDoctorReportViewController.m */; };
+		4CAD8AA722CF397B0090B2DD /* AutotypeDoctorReportViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4CAD8AA522CF397B0090B2DD /* AutotypeDoctorReportViewController.xib */; };
 		4CB33F861EAF54A000C9341E /* KPKNode+MPIsHistory.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CB33F851EAF54A000C9341E /* KPKNode+MPIsHistory.m */; };
 		4CB9339916D3A0DD00A13B5D /* Credits.rtf in Resources */ = {isa = PBXBuildFile; fileRef = 4CB9339716D3A0DD00A13B5D /* Credits.rtf */; };
 		4CBA2ABA17074C07006D8139 /* MPSettingsHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CBA2AB917074C07006D8139 /* MPSettingsHelper.m */; };
@@ -394,6 +397,8 @@
 		4C1D56382271F4BC00C3E594 /* fr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fr; path = fr.lproj/PluginRepositoryBrowserView.strings; sourceTree = "<group>"; };
 		4C1E9883185F71A800943563 /* MPContextBarViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MPContextBarViewController.h; sourceTree = "<group>"; };
 		4C1E9884185F71A800943563 /* MPContextBarViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MPContextBarViewController.m; sourceTree = "<group>"; };
+		4C1ECAE122CCD30F00F46069 /* MPAutotypeDoctor.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MPAutotypeDoctor.h; sourceTree = "<group>"; };
+		4C1ECAE222CCD30F00F46069 /* MPAutotypeDoctor.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MPAutotypeDoctor.m; sourceTree = "<group>"; };
 		4C1F7FA01E3A12E600D6A40E /* MPModifiedKey.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MPModifiedKey.h; sourceTree = "<group>"; };
 		4C1F7FA11E3A12E600D6A40E /* MPModifiedKey.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MPModifiedKey.m; sourceTree = "<group>"; };
 		4C1FA07A18231900003A3F8C /* MPDocument+Autotype.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "MPDocument+Autotype.m"; sourceTree = "<group>"; };
@@ -773,6 +778,9 @@
 		4CAD338E205169D30068587E /* MPPluginRepositoryItem.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MPPluginRepositoryItem.m; sourceTree = "<group>"; };
 		4CAD748B15B889B700104512 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
 		4CAD748D15B88AC100104512 /* libz.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.dylib; path = usr/lib/libz.dylib; sourceTree = SDKROOT; };
+		4CAD8AA322CF397B0090B2DD /* MPAutotypeDoctorReportViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MPAutotypeDoctorReportViewController.h; sourceTree = "<group>"; };
+		4CAD8AA422CF397B0090B2DD /* MPAutotypeDoctorReportViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MPAutotypeDoctorReportViewController.m; sourceTree = "<group>"; };
+		4CAD8AA522CF397B0090B2DD /* AutotypeDoctorReportViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AutotypeDoctorReportViewController.xib; sourceTree = "<group>"; };
 		4CB33F841EAF54A000C9341E /* KPKNode+MPIsHistory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "KPKNode+MPIsHistory.h"; sourceTree = "<group>"; };
 		4CB33F851EAF54A000C9341E /* KPKNode+MPIsHistory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "KPKNode+MPIsHistory.m"; sourceTree = "<group>"; };
 		4CB63A6018986530002DEC4C /* MPFlagsHelper.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MPFlagsHelper.h; sourceTree = "<group>"; };
@@ -1534,6 +1542,8 @@
 				4C3499FF218852160055AF45 /* MPKeyTyper.m */,
 				4C1F7FA01E3A12E600D6A40E /* MPModifiedKey.h */,
 				4C1F7FA11E3A12E600D6A40E /* MPModifiedKey.m */,
+				4C1ECAE122CCD30F00F46069 /* MPAutotypeDoctor.h */,
+				4C1ECAE222CCD30F00F46069 /* MPAutotypeDoctor.m */,
 			);
 			name = Autotype;
 			sourceTree = "<group>";
@@ -1610,6 +1620,9 @@
 				4C73B6EE215E64A7009787F7 /* MPWelcomeViewController.h */,
 				4C73B6EF215E64A7009787F7 /* MPWelcomeViewController.m */,
 				4C7F8B6A1A10B68400CCB83D /* WelcomeView.xib */,
+				4CAD8AA322CF397B0090B2DD /* MPAutotypeDoctorReportViewController.h */,
+				4CAD8AA422CF397B0090B2DD /* MPAutotypeDoctorReportViewController.m */,
+				4CAD8AA522CF397B0090B2DD /* AutotypeDoctorReportViewController.xib */,
 			);
 			name = "View Controller";
 			sourceTree = "<group>";
@@ -1842,6 +1855,7 @@
 				4C3826B41AD04D8E007D7D67 /* 39_HistoryTemplate.pdf in Resources */,
 				4C77E37D15B84A240093A587 /* MainMenu.xib in Resources */,
 				4C3826CD1AD04D8E007D7D67 /* 66_MoneyTemplate.pdf in Resources */,
+				4CAD8AA722CF397B0090B2DD /* AutotypeDoctorReportViewController.xib in Resources */,
 				4CA0B2ED15BCADAC00654E32 /* PreferencesWindow.xib in Resources */,
 				4C76155C1764C04C0015A1A6 /* GeneralPreferences.xib in Resources */,
 				4CD884B715BD47080042BBF8 /* DocumentWindow.xib in Resources */,
@@ -1990,6 +2004,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4C1ECAE322CCD30F00F46069 /* MPAutotypeDoctor.m in Sources */,
 				4CD034AC1BFE113B003C002C /* MPPluginHost.m in Sources */,
 				4C77E37315B84A240093A587 /* main.m in Sources */,
 				4C0F04402147A6FA000B8568 /* MPCustomFieldTableView.m in Sources */,
@@ -2084,6 +2099,7 @@
 				4CEE46DD181C301D006BF1E5 /* MPAutotypeDaemon.m in Sources */,
 				4C50CC041F6C18830095629D /* MPCollectionViewItem.m in Sources */,
 				4CA78C001FD58C92003C8560 /* MPPluginRepository.m in Sources */,
+				4CAD8AA622CF397B0090B2DD /* MPAutotypeDoctorReportViewController.m in Sources */,
 				4C8990F71EE978EB0043B48D /* MPDuplicateEntryOptionsWindowController.m in Sources */,
 				4CA3530B18A53CB800839B0F /* MPKeyMapper.m in Sources */,
 				4CE298EB1795FC2A00DF7BDB /* MPEntryContextMenuDelegate.m in Sources */,

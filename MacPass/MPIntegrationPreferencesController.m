@@ -23,7 +23,7 @@
 #import "MPIntegrationPreferencesController.h"
 #import "MPSettingsHelper.h"
 #import "MPIconHelper.h"
-#import "MPAutotypeDaemon.h"
+#import "MPAutotypeDoctor.h"
 
 #import "DDHotKeyCenter.h"
 #import "DDHotKey+MacPassAdditions.h"
@@ -105,7 +105,8 @@
 }
 
 - (void)_updateAccessabilityWarning {
-  BOOL hasAutotypeSupport = MPAutotypeDaemon.defaultDaemon.autotypeSupported;
+  
+  BOOL hasAutotypeSupport = MPAutotypeDoctor.defaultDoctor.hasNecessaryAutotypePermissions;
   
   if(hasAutotypeSupport) {
     [self.autotypeStackView setVisibilityPriority:NSStackViewVisibilityPriorityNotVisible forView:self.autotypeWarningTextField];
@@ -117,7 +118,7 @@
   }
 }
 
-- (void)openAccessibiltyPreferences:(id)sender {
-  [MPAutotypeDaemon.defaultDaemon openAccessibiltyPreferences];
+- (void)runAutotypeDoctor:(id)sender {
+  [MPAutotypeDoctor.defaultDoctor runChecksAndPresentResults];
 }
 @end

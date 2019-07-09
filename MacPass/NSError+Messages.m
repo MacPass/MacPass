@@ -22,7 +22,8 @@
 
 #import "NSError+Messages.h"
 
-NSString *const MPErrorDomain       = @"com.hicknhack.macpass.error";
+NSString *const MPDefaultErrorDomain       = @"com.hicknhack.macpass.error";
+NSString *const MPAutotypeErrorDomain      = @"com.hicknhack.macpass.error.autotype";
 
 @implementation NSError (Messages)
 
@@ -30,7 +31,12 @@ NSString *const MPErrorDomain       = @"com.hicknhack.macpass.error";
   return [NSString stringWithFormat:@"%@ (%ld)", self.localizedDescription, self.code ];
 }
 
++ (NSError *)errorInDomain:(NSString *)domain withCode:(NSInteger)code description:(NSString *)description {
+  return [[NSError alloc] initWithDomain:domain code:code userInfo:@{ NSLocalizedDescriptionKey: description }];
+}
+
 + (NSError *)errorWithCode:(NSInteger)code description:(NSString *)description {
-  return [[NSError alloc] initWithDomain:MPErrorDomain code:code userInfo:@{ NSLocalizedDescriptionKey: description }];
+  return [NSError errorInDomain:MPDefaultErrorDomain withCode:code description:description];
+
 }
 @end

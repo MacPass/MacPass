@@ -44,6 +44,6 @@
 /* Preview */
 @property (strong) IBOutlet NSButton *enableQuicklookCheckBox;
 
-- (IBAction)openAccessibiltyPreferences:(id)sender;
+- (IBAction)runAutotypeDoctor:(id)sender;
 
 @end

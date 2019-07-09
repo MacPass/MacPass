@@ -31,6 +31,7 @@
 #import "MPSettingsHelper.h"
 #import "MPAutotypeCandidateSelectionViewController.h"
 #import "MPUserNotificationCenterDelegate.h"
+#import "MPAutotypeDoctor.h"
 
 #import "MPPluginHost.h"
 #import "MPPlugin.h"
@@ -57,11 +58,10 @@ NSString *const kMPProcessIdentifierKey = @"kMPProcessIdentifierKey";
 @property (strong) NSRunningApplication *previousApplication; // The application that was active before we got invoked
 @property (assign) NSTimeInterval userActionRequested;
 @property (strong) id applicationActivationObserver;
+@property (nonatomic, readonly) BOOL hasNecessaryAutotypePermissions;
 @end
 
 @implementation MPAutotypeDaemon
-
-@dynamic autotypeSupported;
 
 #pragma mark -
 #pragma mark Lifecylce
@@ -117,13 +117,6 @@ static MPAutotypeDaemon *_sharedInstance;
 
 #pragma mark -
 #pragma mark Properties
-- (BOOL)autotypeSupported {
-  if(@available(macOS 10.14, *)) {
-    return AXIsProcessTrusted();
-  }
-  /* macOS 10.13 and lower allows us to send key events regardless of accessibilty trust */
-  return YES;
-}
 
 - (void)setEnabled:(BOOL)enabled {
   if(_enabled != enabled) {
@@ -142,50 +135,8 @@ static MPAutotypeDaemon *_sharedInstance;
   }
 }
 
-- (void)checkForAccessibiltyPermissions {
-  if(!self.enabled) {
-    return;
-  }
-  
-  if(NSApplication.sharedApplication.isRunningTests) {
-    return; // Do not display pop-up when running tests
-  }
-  
-  BOOL hideAlert = NO;
-  if(nil != [NSUserDefaults.standardUserDefaults objectForKey:kMPSettingsKeyAutotypeHideAccessibiltyWarning]) {
-    hideAlert = [NSUserDefaults.standardUserDefaults boolForKey:kMPSettingsKeyAutotypeHideAccessibiltyWarning];
-  }
-  if(hideAlert || self.autotypeSupported) {
-    return;
-  }
-  else {
-    NSAlert *alert = [[NSAlert alloc] init];
-    alert.alertStyle = NSWarningAlertStyle;
-    alert.messageText = NSLocalizedString(@"ALERT_AUTOTYPE_MISSING_ACCESSIBILTY_PERMISSIONS_MESSAGE_TEXT", @"Alert message displayed when Autotype performs self check and lacks accessibilty permissions");
-    alert.informativeText = NSLocalizedString(@"ALERT_AUTOTYPE_MISSING_ACCESSIBILTY_PERMISSIONS_INFORMATIVE_TEXT", @"Alert informative text displayed when Autotype performs self check and lacks accessibilty permissions");
-    alert.showsSuppressionButton = YES;
-    [alert addButtonWithTitle:NSLocalizedString(@"ALERT_AUTOTYPE_MISSING_ACCESSIBILTY_PERMISSIONS_BUTTON_OK", @"Button in dialog to leave autotype disabled and continiue!")];
-    [alert addButtonWithTitle:NSLocalizedString(@"ALERT_AUTOTYPE_MISSING_ACCESSIBILTY_PERMISSIONS_BUTTON_OPEN_PREFERENCES", @"Button in dialog to open accessibilty preferences pane!")];
-    NSModalResponse returnCode = [alert runModal];
-    BOOL suppressWarning = (alert.suppressionButton.state == NSOnState);
-    [NSUserDefaults.standardUserDefaults setBool:suppressWarning forKey:kMPSettingsKeyAutotypeHideAccessibiltyWarning];
-    switch(returnCode) {
-      case NSAlertFirstButtonReturn: {
-        /* ok, ignore */
-        break;
-      }
-      case NSAlertSecondButtonReturn:
-        /* open prefs */
-        [self openAccessibiltyPreferences];
-        break;
-      default:
-        break;
-    }
-  }
-}
-
-- (void)openAccessibiltyPreferences {
-  [NSWorkspace.sharedWorkspace openURL:[NSURL URLWithString:@"x-apple.systempreferences:com.apple.preference.security?Privacy_Accessibility"]];
+- (BOOL)hasNecessaryAutotypePermissions {
+  return MPAutotypeDoctor.defaultDoctor.hasNecessaryAutotypePermissions;
 }
 
 #pragma mark -
@@ -225,16 +176,16 @@ static MPAutotypeDaemon *_sharedInstance;
 #pragma mark Autotype Execution
 
 - (void)_performAutotypeForEntry:(KPKEntry *)entryOrNil {
-  /*if(!self.autotypeSupported) {
-   NSUserNotification *notification = [[NSUserNotification alloc] init];
-   notification.title = NSApp.applicationName;
-   notification.informativeText = NSLocalizedString(@"AUTOTYPE_NOTIFICATION_MACPASS_HAS_NO_ACCESSIBILTY_PERMISSIONS", "Notification: Autotype failed, MacPass has no permission to send key strokes");
-   notification.actionButtonTitle = NSLocalizedString(@"OPEN_PREFERENCES", "Action button in Notification to show the Accessibilty preferences");
-   notification.userInfo = @{ MPUserNotificationTypeKey: MPUserNotificationTypeShowAccessibiltyPreferences };
-   notification.showsButtons = YES;
-   [NSUserNotificationCenter.defaultUserNotificationCenter deliverNotification:notification];
-   return;
-   }*/
+  if(!self.hasNecessaryAutotypePermissions) {
+    NSUserNotification *notification = [[NSUserNotification alloc] init];
+    notification.title = NSApp.applicationName;
+    notification.informativeText = NSLocalizedString(@"AUTOTYPE_NOTIFICATION_MACPASS_IS_MISSING_PERMISSIONS", "Notification: Autotype failed, MacPass has not enough permissions to perform autotype");
+    notification.actionButtonTitle = NSLocalizedString(@"SHOW_AUTOTYPE_DOCTOR", "Action button in Notification to show the Autotype Doctor");
+    notification.userInfo = @{ MPUserNotificationTypeKey: MPUserNotificationTypeRunAutotypeDoctor };
+    notification.showsButtons = YES;
+    [NSUserNotificationCenter.defaultUserNotificationCenter deliverNotification:notification];
+    return;
+  }
   NSInteger pid = NSProcessInfo.processInfo.processIdentifier;
   if(self.targetPID == pid) {
     return; // We do not perform Autotype on ourselves
@@ -275,7 +226,7 @@ static MPAutotypeDaemon *_sharedInstance;
   }
   
   MPAutotypeContext *context = [self _autotypeContextForDocuments:documents forWindowTitle:self.targetWindowTitle preferredEntry:entryOrNil];
-  /* TODO: that's popping up if the mulit selection dialog goes up! */
+  /* TODO: that's popping up if the multi selection dialog goes up! */
   if(self.matchSelectionWindow) {
     return; // we present the match selection window, just return
   }
@@ -393,6 +344,10 @@ static MPAutotypeDaemon *_sharedInstance;
                      };
       }
     }
+  }
+  if(currentWindows.count > 0 && infoDict.count == 0) {
+    // show some information about not being able to determine any windows
+    NSLog(@"Unable to retrieve any window names. If you encounter this issue you might be running 10.15 and MacPass has no permission for screen recording.");
   }
   return infoDict;
 }

@@ -42,6 +42,7 @@
 #import "MPWelcomeViewController.h"
 #import "MPPlugin.h"
 #import "MPEntryContextMenuDelegate.h"
+#import "MPAutotypeDoctor.h"
 
 #import "NSApplication+MPAdditions.h"
 
@@ -334,6 +335,10 @@ typedef NS_OPTIONS(NSInteger, MPAppStartupState) {
   [NSWorkspace.sharedWorkspace openURL:[NSURL URLWithString:urlString]];
 }
 
+- (void)showAutotypeDoctor:(id)sender {
+  [MPAutotypeDoctor.defaultDoctor runChecksAndPresentResults];
+}
+
 - (void)checkForUpdates:(id)sender {
 #if defined(DEBUG) || defined(NO_SPARKLE)
   NSAlert *alert = [[NSAlert alloc] init];
@@ -370,10 +375,6 @@ typedef NS_OPTIONS(NSInteger, MPAppStartupState) {
   if(showWelcomeScreen) {
     [self showWelcomeWindow];
   }
-  /* run check for accessibilty after the windowserver should have presented the UI */
-  dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.25 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-    [MPAutotypeDaemon.defaultDaemon checkForAccessibiltyPermissions];
-  });
 }
 
 @end

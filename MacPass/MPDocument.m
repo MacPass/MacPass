@@ -168,7 +168,7 @@ NSString *const MPDocumentGroupKey                            = @"MPDocumentGrou
                               NSRecoveryAttempterErrorKey : recovery
                               };
   if(outError != NULL) {
-    *outError = [NSError errorWithDomain:MPErrorDomain code:MPErrorNoPasswordOrKeyFile userInfo:userInfo];
+    *outError = [NSError errorWithDomain:MPDefaultErrorDomain code:MPErrorNoPasswordOrKeyFile userInfo:userInfo];
   }
   return NO;
 }
@@ -181,7 +181,7 @@ NSString *const MPDocumentGroupKey                            = @"MPDocumentGrou
   if(!self.compositeKey.hasPasswordOrKeyFile) {
     if(outError != NULL) {
       NSDictionary *userInfo = @{ NSLocalizedDescriptionKey: NSLocalizedString(@"WARNING_ON_SAVE_NO_PASSWORD_OR_KEY_SET", "") };
-      *outError = [NSError errorWithDomain:MPErrorDomain code:0 userInfo:userInfo];
+      *outError = [NSError errorWithDomain:MPDefaultErrorDomain code:0 userInfo:userInfo];
     }
     return nil; // Saving without a password/key is not possible
   }
@@ -190,7 +190,7 @@ NSString *const MPDocumentGroupKey                            = @"MPDocumentGrou
   if(format == KPKDatabaseFormatUnknown) {
     if(outError != NULL) {
       NSDictionary *userInfo = @{ NSLocalizedDescriptionKey: NSLocalizedString(@"UNKNOWN_FILE_VERSION", "") };
-      *outError = [NSError errorWithDomain:MPErrorDomain code:0 userInfo:userInfo];
+      *outError = [NSError errorWithDomain:MPDefaultErrorDomain code:0 userInfo:userInfo];
     }
     return nil; // We do not know what version to save!
   }
