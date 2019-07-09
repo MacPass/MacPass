@@ -42,6 +42,7 @@
 #import "MPWelcomeViewController.h"
 #import "MPPlugin.h"
 #import "MPEntryContextMenuDelegate.h"
+#import "MPAutotypeDoctor.h"
 
 #import "NSApplication+MPAdditions.h"
 
@@ -332,6 +333,10 @@ typedef NS_OPTIONS(NSInteger, MPAppStartupState) {
 - (void)showHelp:(id)sender {
   NSString *urlString = NSBundle.mainBundle.infoDictionary[MPBundleHelpURLKey];
   [NSWorkspace.sharedWorkspace openURL:[NSURL URLWithString:urlString]];
+}
+
+- (void)showAutotypeDoctor:(id)sender {
+  [MPAutotypeDoctor.defaultDoctor runChecksAndPresentResults];
 }
 
 - (void)checkForUpdates:(id)sender {

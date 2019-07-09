@@ -37,18 +37,6 @@
 /* Action to add an entry via template */
 "ADD_TREMPLATE_ENTRY" = "Create Template Entry";
 
-/* Button in dialog to leave autotype disabled and continiue! */
-"ALERT_AUTOTYPE_MISSING_ACCESSIBILTY_PERMISSIONS_BUTTON_OK" = "Keep Autotype disabled.";
-
-/* Button in dialog to open accessibilty preferences pane! */
-"ALERT_AUTOTYPE_MISSING_ACCESSIBILTY_PERMISSIONS_BUTTON_OPEN_PREFERENCES" = "Open Accessibilty Preferences…";
-
-/* Alert informative text displayed when Autotype performs self check and lacks accessibilty permissions */
-"ALERT_AUTOTYPE_MISSING_ACCESSIBILTY_PERMISSIONS_INFORMATIVE_TEXT" = "The system prevents MacPass from sending key strokes to other Applications. To enable Autotype please grant MacPass Accessibilty rights in the privacy preferences.";
-
-/* Alert message displayed when Autotype performs self check and lacks accessibilty permissions */
-"ALERT_AUTOTYPE_MISSING_ACCESSIBILTY_PERMISSIONS_MESSAGE_TEXT" = "MacPass cannot perform Autotype";
-
 /* Button in dialog to leave plugin ds disabled and continiue! */
 "ALERT_INCOMPATIBLE_PLUGINS_ENCOUNTERED_BUTTON_OK" = "OK";
 
@@ -101,6 +89,9 @@
 /* Menu item for automatic trash creation */
 "AUTOCREATE_TRASH_FOLDER" = "Create Automatically";
 
+/* Window title for the stand-alone password creator window */
+"AUTOTYPE_DOCTOR_RESULTS_WINDOW_TITLE" = "Autotype Doctor";
+
 /* Inherit autotype settings menu item */
 "AUTOTYPE_INHERIT" = "Inherit Autotype Settings";
 
@@ -121,6 +112,18 @@
 
 /* Notification: Autotype found a single match for %@ (string placeholder). */
 "AUTOTYPE_OVERLAY_SINGLE_MATCH_FOR_%@" = "Found Match for %@!";
+
+/* Status lable when no issue were found in accessibilty */
+"AUTOTYPE_STATUS_ACCESSIBILTY_PERMISSIONS_OK" = "MacPass has permission to control your computer (Accessibilty)";
+
+/* Status MacPass has no accessibilty permissions */
+"AUTOTYPE_STATUS_NO_ACCESSIBILTY_PERMISSIONS" = "MacPass has no permission to control your computer (Accessibilty)";
+
+/* Status MacPass has no screen recording permissions */
+"AUTOTYPE_STATUS_NO_SCREEN_RECORDING_PERMISSIONS" = "MacPass has no permission to record your screen";
+
+/* Status lable when no issue were found in screen recording permissions */
+"AUTOTYPE_STATUS_SCREEN_RECORDING_PERMISSIONS_OK" = "MacPass has permission to record your screen";
 
 /* Notficication: Autotype timed out */
 "AUTOTYPE_TIMED_OUT" = "Autotype timed out.";
@@ -325,6 +328,12 @@
 /* Error description given when adding an invalid plugin */
 "ERROR_INVALID_PLUGIN" = "Invalid plugin";
 
+/* Error description for missing accessibilty permissions */
+"ERROR_NO_ACCESSIBILTY_PERMISSIONS" = "MacPass has no permission to control your computer (Accessibilty)";
+
+/* Error description for missing screen recording permissions */
+"ERROR_NO_PERMISSION_TO_RECORD_SCREEN" = "MacPass has no permission to record your screen";
+
 /* Passwords do not match */
 "ERROR_PASSWORD_MISSMATCH" = "Passwords do not match!";
 
@@ -485,9 +494,6 @@
 
 /* Action button in Notification to open a document */
 "OPEN_DOCUMENT" = "Open Document";
-
-/* Action button in Notification to show the Accessibilty preferences */
-"OPEN_PREFERENCES" = "Open Accessiblity Preferences…";
 
 /* Menu item to open the URL with the default application */
 "OPEN_URL" = "Open URL";
@@ -659,6 +665,9 @@
 
 /* Checkbox in dialog to set the selection as default file change strategy! */
 "SET_AS_DEFAULT_FILE_CHANGE_STRATEGY" = "Use this method as default. You can change this at any time in the preferences.";
+
+/* Action button in Notification to show the Autotype Doctor */
+"SHOW_AUTOTYPE_DOCTOR" = "SHOW_AUTOTYPE_DOCTOR";
 
 /* Menu item to show the history of the selected entry
    Toolbar item to toggle history display */

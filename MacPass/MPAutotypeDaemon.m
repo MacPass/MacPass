@@ -58,7 +58,7 @@ NSString *const kMPProcessIdentifierKey = @"kMPProcessIdentifierKey";
 @property (strong) NSRunningApplication *previousApplication; // The application that was active before we got invoked
 @property (assign) NSTimeInterval userActionRequested;
 @property (strong) id applicationActivationObserver;
-@property BOOL shouldRunAutotypeDoctor;
+@property (nonatomic, readonly) BOOL hasNecessaryAutotypePermissions;
 @end
 
 @implementation MPAutotypeDaemon
@@ -87,8 +87,6 @@ static MPAutotypeDaemon *_sharedInstance;
     _enabled = NO;
     _targetPID = -1;
     _userActionRequested = NSDate.distantPast.timeIntervalSinceReferenceDate;
-    _shouldRunAutotypeDoctor = NO;
-    BOOL test = MPAutotypeDoctor.defaultDoctor.hasScreenRecordingPermissions;
     [self bind:NSStringFromSelector(@selector(enabled))
       toObject:NSUserDefaultsController.sharedUserDefaultsController
    withKeyPath:[MPSettingsHelper defaultControllerPathForKey:kMPSettingsKeyEnableGlobalAutotype]
@@ -137,6 +135,10 @@ static MPAutotypeDaemon *_sharedInstance;
   }
 }
 
+- (BOOL)hasNecessaryAutotypePermissions {
+  return MPAutotypeDoctor.defaultDoctor.hasNecessaryAutotypePermissions;
+}
+
 #pragma mark -
 #pragma mark Autotype Invocation
 - (void)performAutotypeForEntry:(KPKEntry *)entry {
@@ -174,20 +176,16 @@ static MPAutotypeDaemon *_sharedInstance;
 #pragma mark Autotype Execution
 
 - (void)_performAutotypeForEntry:(KPKEntry *)entryOrNil {
-  if(self.shouldRunAutotypeDoctor) {
-    [MPAutotypeDoctor.defaultDoctor showPermissionCheckReport];
+  if(!self.hasNecessaryAutotypePermissions) {
+    NSUserNotification *notification = [[NSUserNotification alloc] init];
+    notification.title = NSApp.applicationName;
+    notification.informativeText = NSLocalizedString(@"AUTOTYPE_NOTIFICATION_MACPASS_IS_MISSING_PERMISSIONS", "Notification: Autotype failed, MacPass has not enough permissions to perform autotype");
+    notification.actionButtonTitle = NSLocalizedString(@"SHOW_AUTOTYPE_DOCTOR", "Action button in Notification to show the Autotype Doctor");
+    notification.userInfo = @{ MPUserNotificationTypeKey: MPUserNotificationTypeRunAutotypeDoctor };
+    notification.showsButtons = YES;
+    [NSUserNotificationCenter.defaultUserNotificationCenter deliverNotification:notification];
+    return;
   }
-  
-  /*if(!self.autotypeSupported) {
-   NSUserNotification *notification = [[NSUserNotification alloc] init];
-   notification.title = NSApp.applicationName;
-   notification.informativeText = NSLocalizedString(@"AUTOTYPE_NOTIFICATION_MACPASS_HAS_NO_ACCESSIBILTY_PERMISSIONS", "Notification: Autotype failed, MacPass has no permission to send key strokes");
-   notification.actionButtonTitle = NSLocalizedString(@"OPEN_PREFERENCES", "Action button in Notification to show the Accessibilty preferences");
-   notification.userInfo = @{ MPUserNotificationTypeKey: MPUserNotificationTypeShowAccessibiltyPreferences };
-   notification.showsButtons = YES;
-   [NSUserNotificationCenter.defaultUserNotificationCenter deliverNotification:notification];
-   return;
-   }*/
   NSInteger pid = NSProcessInfo.processInfo.processIdentifier;
   if(self.targetPID == pid) {
     return; // We do not perform Autotype on ourselves
@@ -228,7 +226,7 @@ static MPAutotypeDaemon *_sharedInstance;
   }
   
   MPAutotypeContext *context = [self _autotypeContextForDocuments:documents forWindowTitle:self.targetWindowTitle preferredEntry:entryOrNil];
-  /* TODO: that's popping up if the mulit selection dialog goes up! */
+  /* TODO: that's popping up if the multi selection dialog goes up! */
   if(self.matchSelectionWindow) {
     return; // we present the match selection window, just return
   }

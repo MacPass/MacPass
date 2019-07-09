@@ -22,16 +22,20 @@
 
 #import <Foundation/Foundation.h>
 
-FOUNDATION_EXPORT NSString *const MPErrorDomain;
+FOUNDATION_EXPORT NSString *const MPDefaultErrorDomain;
+FOUNDATION_EXPORT NSString *const MPAutotypeErrorDomain;
 
 typedef NS_ENUM(NSInteger, MPErrorCodes) {
   MPErrorNoPasswordOrKeyFile = 10000,
-  MPErrorInvalidPlugin
+  MPErrorInvalidPlugin,
+  MPErrorAutotypeIsMissingAccessibiltyPermissions,
+  MPErrorAutotypeIsMissingScreenRecordingPermissions
 };
 
 @interface NSError (Messages)
 
 + (NSError *)errorWithCode:(NSInteger)code description:(NSString *)description;
++ (NSError *)errorInDomain:(NSString *)domain withCode:(NSInteger)code description:(NSString *)description;
 
 @property (nonatomic, readonly, copy) NSString *descriptionForErrorCode;
 
