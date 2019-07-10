@@ -39,8 +39,7 @@
 @property (readonly, strong) MPInspectorViewController *inspectorViewController;
 @property (readonly, strong) MPToolbarDelegate *toolbarDelegate;
 
-#pragma mark Search
-- (NSSearchField *)searchField;
+@property (readonly, nonatomic, strong) NSSearchField *searchField;
 
 - (void)showEntries;
 - (void)showPasswordInput;
