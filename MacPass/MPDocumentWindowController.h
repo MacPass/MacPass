@@ -31,7 +31,7 @@
 @class MPOutlineViewController;
 @class MPToolbarDelegate;
 
-@interface MPDocumentWindowController : NSWindowController
+@interface MPDocumentWindowController : NSWindowController <NSTouchBarDelegate>
 
 @property (readonly, strong) MPPasswordInputController *passwordInputController;
 @property (readonly, strong) MPEntryViewController *entryViewController;
