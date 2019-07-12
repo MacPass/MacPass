@@ -720,7 +720,7 @@ typedef void (^MPPasswordChangedBlock)(BOOL didChangePassword);
                                          customizationLabel:NSLocalizedString(@"TOUCHBAR_PERFORM_AUTOTYPE","Touchbar button label for performing autotype")];
   }
   else if (identifier == touchBarLockIdentifier) {
-    return [MPTouchBarButtonCreator touchBarButtonWithImage:[NSImage imageNamed:NSImageNameLockUnlockedTemplate]
+    return [MPTouchBarButtonCreator touchBarButtonWithImage:[NSImage imageNamed:NSImageNameLockLockedTemplate]
                                                  identifier:touchBarLockIdentifier
                                                      target:self
                                                    selector:@selector(lock:)
