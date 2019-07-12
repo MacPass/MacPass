@@ -8,6 +8,24 @@
 
 #import "MPTouchBarButtonCreator.h"
 
+NSTouchBarCustomizationIdentifier MPTouchBarCustomizationIdentifierPasswordInput = @"com.hicknhacksoftware.MacPass.TouchBar.passwordInput";
+NSTouchBarItemIdentifier MPTouchBarItemIdentifierChooseKeyfile = @"com.hicknhacksoftware.MacPass.TouchBar.passwordInput.chooseKeyfile";
+NSTouchBarItemIdentifier MPTouchBarItemIdentifierShowPassword = @"com.hicknhacksoftware.MacPass.TouchBar.passwordInput.showPassword";
+NSTouchBarItemIdentifier MPTouchBarItemIdentifierUnlock = @"com.hicknhacksoftware.MacPass.TouchBar.passwordInput.unlock";
+
+NSTouchBarCustomizationIdentifier MPTouchBarCustomizationIdentifierDocument = @"com.hicknhacksoftware.MacPass.TouchBar.documentWindow";
+NSTouchBarItemIdentifier MPTouchBarItemIdentifierSearch = @"com.hicknhacksoftware.MacPass.TouchBar.documentWindow.search";
+NSTouchBarItemIdentifier MPTouchBarItemIdentifierEditPopover = @"com.hicknhacksoftware.MacPass.TouchBar.documentWindow.editPopover";
+NSTouchBarItemIdentifier MPTouchBarItemIdentifierCopyUsername = @"com.hicknhacksoftware.MacPass.TouchBar.documentWindow.copyUsername";
+NSTouchBarItemIdentifier MPTouchBarItemIdentifierCopyPassword = @"com.hicknhacksoftware.MacPass.TouchBar.documentWindow.copyPassword";
+NSTouchBarItemIdentifier MPTouchBarItemIdentifierPerformAutotype = @"com.hicknhacksoftware.MacPass.TouchBar.documentWindow.performAutotype";
+NSTouchBarItemIdentifier MPTouchBarItemIdentifierLock = @"com.hicknhacksoftware.MacPass.TouchBar.documentWindow.lock";
+
+NSTouchBarItemIdentifier MPTouchBarItemIdentifierNewEntry = @"com.hicknhacksoftware.MacPass.TouchBar.documentWindow.newEntry";
+NSTouchBarItemIdentifier MPTouchBarItemIdentifierNewGroup = @"com.hicknhacksoftware.MacPass.TouchBar.documentWindow.newGroup";
+NSTouchBarItemIdentifier MPTouchBarItemIdentifierDelete = @"com.hicknhacksoftware.MacPass.TouchBar.documentWindow.delete";
+
+
 @implementation MPTouchBarButtonCreator
 
 + (NSTouchBarItem *)touchBarButtonWithTitle:(NSString *)title identifier:(NSTouchBarItemIdentifier)identifier target:(id)target selector:(SEL)selector customizationLabel:(NSString *)customizationLabel API_AVAILABLE(macos(10.12.2)){
