@@ -89,7 +89,7 @@ NSString *const MPPluginRepositoryDidUpdateAvailablePluginsNotification = @"com.
 }
 
 - (void)_fetchAppropriateRepositoryDataCompletionHandler:(void (^)(NSArray<MPPluginRepositoryItem *> * _Nonnull))completionHandler {
-  /* dispatch the call to allow for direct return and handle resutl later on */
+  /* dispatch the call to allow for direct return and handle result later on */
   dispatch_async(dispatch_get_main_queue(), ^{
     BOOL allowRemoteConnection = [self _askForPluginRepositoryPermission];
     if(!allowRemoteConnection) {
