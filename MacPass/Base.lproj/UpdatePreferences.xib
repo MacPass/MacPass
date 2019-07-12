@@ -18,8 +18,8 @@
         <customView translatesAutoresizingMaskIntoConstraints="NO" id="1">
             <rect key="frame" x="0.0" y="0.0" width="400" height="95"/>
             <subviews>
-                <button verticalHuggingPriority="500" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Z6x-oU-NC5">
-                    <rect key="frame" x="21" y="59" width="228" height="18"/>
+                <button verticalHuggingPriority="500" translatesAutoresizingMaskIntoConstraints="NO" id="Z6x-oU-NC5">
+                    <rect key="frame" x="22" y="59" width="221" height="18"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="14" id="ppB-Ka-SVN"/>
                     </constraints>
@@ -28,8 +28,8 @@
                         <font key="font" metaFont="system"/>
                     </buttonCell>
                 </button>
-                <popUpButton verticalHuggingPriority="750" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="pWJ-eJ-MBf">
-                    <rect key="frame" x="145" y="17" width="112" height="26"/>
+                <popUpButton verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="pWJ-eJ-MBf">
+                    <rect key="frame" x="144" y="17" width="114" height="25"/>
                     <popUpButtonCell key="cell" type="push" bezelStyle="rounded" alignment="left" lineBreakMode="truncatingTail" borderStyle="borderAndBezel" imageScaling="proportionallyDown" inset="2" id="Hl5-gO-B1c">
                         <behavior key="behavior" lightByBackground="YES" lightByGray="YES"/>
                         <font key="font" metaFont="menu"/>
@@ -45,8 +45,8 @@
                         </menu>
                     </popUpButtonCell>
                 </popUpButton>
-                <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ckg-9t-MDS">
-                    <rect key="frame" x="21" y="23" width="120" height="17"/>
+                <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="ckg-9t-MDS">
+                    <rect key="frame" x="22" y="22" width="118" height="17"/>
                     <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Check for Updates" id="9tL-CA-Vdg">
                         <font key="font" metaFont="system"/>
                         <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
@@ -62,10 +62,11 @@
                 <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="pWJ-eJ-MBf" secondAttribute="trailing" constant="20" symbolic="YES" id="QsU-uT-lfo"/>
                 <constraint firstItem="ckg-9t-MDS" firstAttribute="leading" secondItem="Z6x-oU-NC5" secondAttribute="leading" id="W0y-Rp-Ucq"/>
                 <constraint firstItem="pWJ-eJ-MBf" firstAttribute="top" secondItem="Z6x-oU-NC5" secondAttribute="bottom" constant="20" symbolic="YES" id="fhM-Ri-Op9"/>
+                <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="Z6x-oU-NC5" secondAttribute="trailing" constant="20" symbolic="YES" id="mpe-6b-p3W"/>
                 <constraint firstItem="ckg-9t-MDS" firstAttribute="baseline" secondItem="pWJ-eJ-MBf" secondAttribute="baseline" id="ozZ-bW-f7y"/>
                 <constraint firstAttribute="bottom" secondItem="pWJ-eJ-MBf" secondAttribute="bottom" constant="20" symbolic="YES" id="pHW-e8-EU6"/>
             </constraints>
-            <point key="canvasLocation" x="504" y="511.5"/>
+            <point key="canvasLocation" x="21" y="2"/>
         </customView>
     </objects>
 </document>
