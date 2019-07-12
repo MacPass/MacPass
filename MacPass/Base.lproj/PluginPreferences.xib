@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
     <dependencies>
         <deployment identifier="macosx"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="14460.31"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="14490.70"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
@@ -104,7 +104,7 @@
                                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                 <subviews>
                                                     <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" setsMaxLayoutWidthAtFirstLayout="YES" translatesAutoresizingMaskIntoConstraints="NO" id="q1P-PD-0LW">
-                                                        <rect key="frame" x="0.0" y="18" width="127" height="17"/>
+                                                        <rect key="frame" x="0.0" y="18" width="145" height="17"/>
                                                         <textFieldCell key="cell" sendsActionOnEndEditing="YES" title="Table View Cell" id="fug-79-n9g">
                                                             <font key="font" metaFont="system"/>
                                                             <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
@@ -125,7 +125,7 @@
                                                     <constraint firstAttribute="trailing" secondItem="fQy-Sz-4VA" secondAttribute="trailing" constant="2" id="Iy0-iV-Mbx"/>
                                                     <constraint firstItem="fQy-Sz-4VA" firstAttribute="top" secondItem="q1P-PD-0LW" secondAttribute="bottom" constant="2" id="RZb-58-Zwr"/>
                                                     <constraint firstItem="q1P-PD-0LW" firstAttribute="leading" secondItem="vVt-P3-yLp" secondAttribute="leading" constant="2" id="bTc-2c-BYB"/>
-                                                    <constraint firstAttribute="trailing" secondItem="q1P-PD-0LW" secondAttribute="trailing" constant="20" symbolic="YES" id="gSi-vN-xzX"/>
+                                                    <constraint firstAttribute="trailing" secondItem="q1P-PD-0LW" secondAttribute="trailing" constant="2" id="gSi-vN-xzX"/>
                                                     <constraint firstItem="q1P-PD-0LW" firstAttribute="top" secondItem="vVt-P3-yLp" secondAttribute="top" id="tTs-2E-33f"/>
                                                     <constraint firstItem="fQy-Sz-4VA" firstAttribute="leading" secondItem="vVt-P3-yLp" secondAttribute="leading" constant="2" id="zLP-Ci-nUM"/>
                                                 </constraints>
