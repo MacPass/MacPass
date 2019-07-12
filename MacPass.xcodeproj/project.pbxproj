@@ -529,6 +529,8 @@
 		4C4B2ED022D8C9B400EB6BFD /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/GeneralPreferences.strings; sourceTree = "<group>"; };
 		4C4B2ED122D8CA6100EB6BFD /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/PluginRepositoryBrowserView.strings; sourceTree = "<group>"; };
 		4C4B2ED322D8D31F00EB6BFD /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/DatabaseSettingsWindow.strings; sourceTree = "<group>"; };
+		4C4B2ED522D8D3B100EB6BFD /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/IntegrationPreferences.strings; sourceTree = "<group>"; };
+		4C4B2ED822D8D40200EB6BFD /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/WorkflowPreferences.strings; sourceTree = "<group>"; };
 		4C4B728318E4B9B400A1A5D5 /* MPDockTileHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MPDockTileHelper.h; sourceTree = "<group>"; };
 		4C4B728418E4B9B400A1A5D5 /* MPDockTileHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MPDockTileHelper.m; sourceTree = "<group>"; };
 		4C4B7EE617A45EC5000234C7 /* MPDatePickingViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MPDatePickingViewController.h; sourceTree = "<group>"; };
@@ -904,11 +906,9 @@
 		6021FE5318E13F2900C3BC51 /* fr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fr; path = fr.lproj/GroupInspectorView.strings; sourceTree = "<group>"; };
 		6021FE5518E13F2A00C3BC51 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/GroupInspectorView.strings"; sourceTree = "<group>"; };
 		6021FE5718E1429500C3BC51 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/IntegrationPreferences.xib; sourceTree = "<group>"; };
-		6021FE5A18E142A000C3BC51 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/IntegrationPreferences.strings; sourceTree = "<group>"; };
 		6021FE5C18E142A200C3BC51 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/IntegrationPreferences.strings; sourceTree = "<group>"; };
 		6021FE5E18E142A300C3BC51 /* fr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fr; path = fr.lproj/IntegrationPreferences.strings; sourceTree = "<group>"; };
 		6021FE6218E15D9100C3BC51 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/WorkflowPreferences.xib; sourceTree = "<group>"; };
-		6021FE6518E15D9800C3BC51 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/WorkflowPreferences.strings; sourceTree = "<group>"; };
 		6021FE6718E15D9A00C3BC51 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/WorkflowPreferences.strings; sourceTree = "<group>"; };
 		6021FE6918E15D9B00C3BC51 /* fr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fr; path = fr.lproj/WorkflowPreferences.strings; sourceTree = "<group>"; };
 		6021FE6D18E15E6D00C3BC51 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/UpdatePreferences.xib; sourceTree = "<group>"; };
@@ -2509,7 +2509,6 @@
 			isa = PBXVariantGroup;
 			children = (
 				6021FE5718E1429500C3BC51 /* Base */,
-				6021FE5A18E142A000C3BC51 /* en */,
 				6021FE5C18E142A200C3BC51 /* de */,
 				6021FE5E18E142A300C3BC51 /* fr */,
 				BD6C365919484CF40089EB37 /* nl */,
@@ -2519,6 +2518,7 @@
 				60ECAD271F12262400EA9DB3 /* zh-Hans */,
 				4C4161051F50333B003BC0AF /* es */,
 				6A74B0662076F4B40049BC29 /* sv-SE */,
+				4C4B2ED522D8D3B100EB6BFD /* en */,
 			);
 			name = IntegrationPreferences.xib;
 			sourceTree = "<group>";
@@ -2527,7 +2527,6 @@
 			isa = PBXVariantGroup;
 			children = (
 				6021FE6218E15D9100C3BC51 /* Base */,
-				6021FE6518E15D9800C3BC51 /* en */,
 				6021FE6718E15D9A00C3BC51 /* de */,
 				6021FE6918E15D9B00C3BC51 /* fr */,
 				BD6C365A19484CF40089EB37 /* nl */,
@@ -2537,6 +2536,7 @@
 				60ECAD251F12253C00EA9DB3 /* zh-Hans */,
 				4C4161061F50333B003BC0AF /* es */,
 				6A74B0672076F4B40049BC29 /* sv-SE */,
+				4C4B2ED822D8D40200EB6BFD /* en */,
 			);
 			name = WorkflowPreferences.xib;
 			sourceTree = "<group>";
