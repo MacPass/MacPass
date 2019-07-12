@@ -28,8 +28,9 @@
 #import <KeePassKit/KeePassKit.h>
 
 @interface MPAutotypeCandidateSelectionViewController () <NSTableViewDataSource, NSTableViewDelegate>
-@property (weak) IBOutlet NSButton *selectAutotypeContextButton;
-@property (weak) IBOutlet NSTableView *contextTableView;
+@property (strong) IBOutlet NSButton *selectAutotypeContextButton;
+@property (strong) IBOutlet NSTableView *contextTableView;
+@property (strong) IBOutlet NSTextField *messageTextField;
 
 @end
 
@@ -41,6 +42,8 @@
 
 - (void)viewDidLoad {
   [super viewDidLoad];
+  NSString *template = NSLocalizedString(@"AUTOTYPE_CANDIDATE_SELECTION_WINDOW_MESSAGE_%@", "Message text in the autotype selection window. Placeholder is %1 - windowTitle");
+  self.messageTextField.stringValue = [NSString stringWithFormat:template, self.windowTitle];
   self.selectAutotypeContextButton.enabled = NO;
   NSNotification *notification = [NSNotification notificationWithName:NSTableViewSelectionDidChangeNotification object:self.contextTableView];
   [self tableViewSelectionDidChange:notification];
