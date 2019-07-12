@@ -528,6 +528,7 @@
 		4C4A100E176286FD00BBF2CA /* MPTableView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MPTableView.m; sourceTree = "<group>"; };
 		4C4B2ED022D8C9B400EB6BFD /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/GeneralPreferences.strings; sourceTree = "<group>"; };
 		4C4B2ED122D8CA6100EB6BFD /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/PluginRepositoryBrowserView.strings; sourceTree = "<group>"; };
+		4C4B2ED322D8D31F00EB6BFD /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/DatabaseSettingsWindow.strings; sourceTree = "<group>"; };
 		4C4B728318E4B9B400A1A5D5 /* MPDockTileHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MPDockTileHelper.h; sourceTree = "<group>"; };
 		4C4B728418E4B9B400A1A5D5 /* MPDockTileHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MPDockTileHelper.m; sourceTree = "<group>"; };
 		4C4B7EE617A45EC5000234C7 /* MPDatePickingViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MPDatePickingViewController.h; sourceTree = "<group>"; };
@@ -625,7 +626,6 @@
 		4C735FBF2035FCBF00708D53 /* MPPluginEntryActionContext.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MPPluginEntryActionContext.m; sourceTree = "<group>"; };
 		4C73B6EE215E64A7009787F7 /* MPWelcomeViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MPWelcomeViewController.h; sourceTree = "<group>"; };
 		4C73B6EF215E64A7009787F7 /* MPWelcomeViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MPWelcomeViewController.m; sourceTree = "<group>"; };
-		4C73EB941FBB58730033000F /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/DatabaseSettingsWindow.strings; sourceTree = "<group>"; };
 		4C73EB951FBB5A8F0033000F /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/AutotypeCandidateSelectionView.strings; sourceTree = "<group>"; };
 		4C73EB961FBB5A910033000F /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/AutotypeBuilderView.strings; sourceTree = "<group>"; };
 		4C76155F1764C0590015A1A6 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/GeneralPreferences.xib; sourceTree = "<group>"; };
@@ -2625,8 +2625,8 @@
 				4825CC811C414D57003E37E9 /* it */,
 				4C840C441D773E5D0081F605 /* pl */,
 				4C4161021F50333B003BC0AF /* es */,
-				4C73EB941FBB58730033000F /* en */,
 				6A74B0622076F4B30049BC29 /* sv-SE */,
+				4C4B2ED322D8D31F00EB6BFD /* en */,
 			);
 			name = DatabaseSettingsWindow.xib;
 			sourceTree = "<group>";
