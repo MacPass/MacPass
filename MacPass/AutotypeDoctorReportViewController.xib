@@ -1,0 +1,138 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" customObjectInstantitationMethod="direct">
+    <dependencies>
+        <deployment identifier="macosx"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="14490.70"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <customObject id="-2" userLabel="File's Owner" customClass="MPAutotypeDoctorReportViewController">
+            <connections>
+                <outlet property="accessibiltyStatusImageView" destination="Xzw-kJ-WoH" id="jEb-0z-dNB"/>
+                <outlet property="accessibiltyStatusTextField" destination="Pqa-Ff-7cc" id="h5M-ZN-GhR"/>
+                <outlet property="screenRecordingStatusImageView" destination="vvZ-Lj-v22" id="7h0-cF-Mxt"/>
+                <outlet property="screenRecordingStatusTextField" destination="IP0-CP-tlA" id="AfL-XZ-KRk"/>
+                <outlet property="view" destination="Hz6-mo-xeY" id="0bl-1N-x8E"/>
+            </connections>
+        </customObject>
+        <customObject id="-1" userLabel="First Responder" customClass="FirstResponder"/>
+        <customObject id="-3" userLabel="Application" customClass="NSObject"/>
+        <customView id="Hz6-mo-xeY">
+            <rect key="frame" x="0.0" y="0.0" width="400" height="375"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+            <subviews>
+                <stackView orientation="horizontal" alignment="top" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" translatesAutoresizingMaskIntoConstraints="NO" id="T2c-ZD-ioV">
+                    <rect key="frame" x="20" y="20" width="360" height="0.0"/>
+                    <beginningViews>
+                        <stackView orientation="vertical" alignment="leading" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ErP-eL-yKu"/>
+                    </beginningViews>
+                    <visibilityPriorities>
+                        <integer value="1000"/>
+                    </visibilityPriorities>
+                    <customSpacing>
+                        <real value="3.4028234663852886e+38"/>
+                    </customSpacing>
+                </stackView>
+                <imageView horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Xzw-kJ-WoH">
+                    <rect key="frame" x="20" y="339" width="16" height="16"/>
+                    <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyDown" image="NSStatusAvailable" id="DWu-HI-z3k"/>
+                </imageView>
+                <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="Pqa-Ff-7cc">
+                    <rect key="frame" x="42" y="338" width="80" height="17"/>
+                    <textFieldCell key="cell" lineBreakMode="clipping" title="Accessibility" id="aIL-8W-63g">
+                        <font key="font" metaFont="system"/>
+                        <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                        <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                    </textFieldCell>
+                </textField>
+                <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" verticalCompressionResistancePriority="751" setsMaxLayoutWidthAtFirstLayout="YES" translatesAutoresizingMaskIntoConstraints="NO" id="hY9-T0-hke">
+                    <rect key="frame" x="42" y="274" width="340" height="56"/>
+                    <textFieldCell key="cell" controlSize="small" selectable="YES" id="6GI-KJ-Xue">
+                        <font key="font" metaFont="smallSystem"/>
+                        <string key="title">MacPass will send key press events to the system when Autotype or Global Autotype is executed. Since macOS 10.14 Mojave this is only possible, if Accessibility permissions are granted to the application.</string>
+                        <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                        <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                    </textFieldCell>
+                </textField>
+                <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="x9d-0h-hyJ">
+                    <rect key="frame" x="38" y="226" width="236" height="32"/>
+                    <buttonCell key="cell" type="push" title="Open Accessibilty Preferences…" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="8m1-vs-pd5">
+                        <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                        <font key="font" metaFont="system"/>
+                    </buttonCell>
+                    <connections>
+                        <action selector="openAccessibiltyPreferences:" target="-2" id="aZf-xi-w73"/>
+                    </connections>
+                </button>
+                <imageView horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="vvZ-Lj-v22">
+                    <rect key="frame" x="20" y="188" width="16" height="16"/>
+                    <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyDown" image="NSStatusAvailable" id="kCX-CB-5vQ"/>
+                </imageView>
+                <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" verticalCompressionResistancePriority="751" setsMaxLayoutWidthAtFirstLayout="YES" translatesAutoresizingMaskIntoConstraints="NO" id="6vq-iM-inn">
+                    <rect key="frame" x="42" y="81" width="340" height="98"/>
+                    <textFieldCell key="cell" controlSize="small" selectable="YES" id="7of-1z-Nfk">
+                        <font key="font" metaFont="smallSystem"/>
+                        <string key="title">MacPass will read every window title when Global Autotype is executed to find a match. Since macOS 10.15 Catalina it is not possible to read any window title, if the user has not granted permissions to record the screen. If you are running macOS 10.15 or higher, MacPass will try to capture the left top most pixel on your screen to initate a request to record the screen. This pixel will not be stored and processed in any way.</string>
+                        <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                        <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                    </textFieldCell>
+                </textField>
+                <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="dek-ho-dPm">
+                    <rect key="frame" x="38" y="33" width="256" height="32"/>
+                    <buttonCell key="cell" type="push" title="Open Screen Sharing Preferences…" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="lgB-Ys-L9R">
+                        <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                        <font key="font" metaFont="system"/>
+                    </buttonCell>
+                    <connections>
+                        <action selector="openScreenRecordingPreferences:" target="-2" id="rvE-ff-sR2"/>
+                    </connections>
+                </button>
+                <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="IP0-CP-tlA">
+                    <rect key="frame" x="42" y="187" width="112" height="17"/>
+                    <textFieldCell key="cell" lineBreakMode="clipping" title="Screen Recording" id="9gr-mz-2I4">
+                        <font key="font" metaFont="system"/>
+                        <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                        <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                    </textFieldCell>
+                </textField>
+                <box verticalHuggingPriority="750" boxType="separator" translatesAutoresizingMaskIntoConstraints="NO" id="BHb-cd-Q0r">
+                    <rect key="frame" x="20" y="210" width="360" height="5"/>
+                </box>
+            </subviews>
+            <constraints>
+                <constraint firstItem="IP0-CP-tlA" firstAttribute="top" secondItem="BHb-cd-Q0r" secondAttribute="bottom" constant="8" symbolic="YES" id="0sS-li-mx4"/>
+                <constraint firstAttribute="trailing" secondItem="hY9-T0-hke" secondAttribute="trailing" constant="20" symbolic="YES" id="1lC-Hg-bzq"/>
+                <constraint firstItem="vvZ-Lj-v22" firstAttribute="leading" secondItem="Xzw-kJ-WoH" secondAttribute="leading" id="2ZC-Uf-Pe3"/>
+                <constraint firstItem="vvZ-Lj-v22" firstAttribute="centerY" secondItem="IP0-CP-tlA" secondAttribute="centerY" id="2t3-9h-RIf"/>
+                <constraint firstItem="Pqa-Ff-7cc" firstAttribute="leading" secondItem="Xzw-kJ-WoH" secondAttribute="trailing" constant="8" symbolic="YES" id="57a-U7-goz"/>
+                <constraint firstItem="6vq-iM-inn" firstAttribute="top" secondItem="IP0-CP-tlA" secondAttribute="bottom" constant="8" symbolic="YES" id="5ag-ah-YEW"/>
+                <constraint firstItem="x9d-0h-hyJ" firstAttribute="top" secondItem="hY9-T0-hke" secondAttribute="bottom" constant="20" symbolic="YES" id="Avt-sj-8GL"/>
+                <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="Pqa-Ff-7cc" secondAttribute="trailing" constant="20" symbolic="YES" id="Bmg-tH-M7Q"/>
+                <constraint firstAttribute="trailing" secondItem="6vq-iM-inn" secondAttribute="trailing" constant="20" symbolic="YES" id="Cga-EU-fSf"/>
+                <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="x9d-0h-hyJ" secondAttribute="trailing" constant="20" symbolic="YES" id="D8o-Gu-s2Y"/>
+                <constraint firstItem="T2c-ZD-ioV" firstAttribute="leading" secondItem="Hz6-mo-xeY" secondAttribute="leading" constant="20" symbolic="YES" id="G27-G3-ORS"/>
+                <constraint firstItem="T2c-ZD-ioV" firstAttribute="top" relation="greaterThanOrEqual" secondItem="dek-ho-dPm" secondAttribute="bottom" constant="20" symbolic="YES" id="GL8-gK-2fL"/>
+                <constraint firstItem="x9d-0h-hyJ" firstAttribute="leading" secondItem="Pqa-Ff-7cc" secondAttribute="leading" id="J4Y-VM-MZt"/>
+                <constraint firstAttribute="trailing" secondItem="T2c-ZD-ioV" secondAttribute="trailing" constant="20" symbolic="YES" id="M4d-KM-mLN"/>
+                <constraint firstItem="dek-ho-dPm" firstAttribute="leading" secondItem="6vq-iM-inn" secondAttribute="leading" id="TaR-vo-kBx"/>
+                <constraint firstItem="BHb-cd-Q0r" firstAttribute="top" secondItem="x9d-0h-hyJ" secondAttribute="bottom" constant="20" symbolic="YES" id="TlD-dn-LEm"/>
+                <constraint firstItem="BHb-cd-Q0r" firstAttribute="leading" secondItem="Hz6-mo-xeY" secondAttribute="leading" constant="20" symbolic="YES" id="YdV-6E-JaO"/>
+                <constraint firstItem="IP0-CP-tlA" firstAttribute="leading" secondItem="Pqa-Ff-7cc" secondAttribute="leading" id="c76-Ak-WXw"/>
+                <constraint firstItem="Xzw-kJ-WoH" firstAttribute="centerY" secondItem="Pqa-Ff-7cc" secondAttribute="centerY" id="dF3-uj-K2q"/>
+                <constraint firstItem="Pqa-Ff-7cc" firstAttribute="top" secondItem="Hz6-mo-xeY" secondAttribute="top" constant="20" symbolic="YES" id="eyJ-B0-kI3"/>
+                <constraint firstItem="dek-ho-dPm" firstAttribute="top" secondItem="6vq-iM-inn" secondAttribute="bottom" constant="20" symbolic="YES" id="i0R-gb-coZ"/>
+                <constraint firstItem="hY9-T0-hke" firstAttribute="leading" secondItem="Pqa-Ff-7cc" secondAttribute="leading" id="kLD-8A-d1Y"/>
+                <constraint firstItem="6vq-iM-inn" firstAttribute="leading" secondItem="IP0-CP-tlA" secondAttribute="leading" id="nby-S7-orD"/>
+                <constraint firstItem="Xzw-kJ-WoH" firstAttribute="leading" secondItem="Hz6-mo-xeY" secondAttribute="leading" constant="20" symbolic="YES" id="oAi-Zl-LCI"/>
+                <constraint firstItem="hY9-T0-hke" firstAttribute="top" secondItem="Pqa-Ff-7cc" secondAttribute="bottom" constant="8" symbolic="YES" id="oK3-FK-r0S"/>
+                <constraint firstAttribute="bottom" secondItem="T2c-ZD-ioV" secondAttribute="bottom" constant="20" symbolic="YES" id="pm7-eL-q1F"/>
+                <constraint firstAttribute="trailing" secondItem="BHb-cd-Q0r" secondAttribute="trailing" constant="20" symbolic="YES" id="ryW-3O-g6b"/>
+                <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="dek-ho-dPm" secondAttribute="trailing" constant="20" symbolic="YES" id="xcq-hp-Ay9"/>
+            </constraints>
+            <point key="canvasLocation" x="-409" y="-124"/>
+        </customView>
+    </objects>
+    <resources>
+        <image name="NSStatusAvailable" width="16" height="16"/>
+    </resources>
+</document>

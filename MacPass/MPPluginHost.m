@@ -282,7 +282,7 @@ NSString *const MPPluginHostPluginBundleIdentifiyerKey = @"MPPluginHostPluginBun
     }
   }
   if(incompatiblePlugins.count > 0) {
-    BOOL hideAlert = NO;
+    BOOL hideAlert = NSApplication.sharedApplication.isRunningTests ? YES : NO;
     if(nil != [NSUserDefaults.standardUserDefaults objectForKey:kMPSettingsKeyHideIncopatiblePluginsWarning]) {
       hideAlert = [NSUserDefaults.standardUserDefaults boolForKey:kMPSettingsKeyHideIncopatiblePluginsWarning];
     }

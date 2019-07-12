@@ -31,7 +31,7 @@
 @class MPOutlineViewController;
 @class MPToolbarDelegate;
 
-@interface MPDocumentWindowController : NSWindowController
+@interface MPDocumentWindowController : NSWindowController <NSTouchBarDelegate>
 
 @property (readonly, strong) MPPasswordInputController *passwordInputController;
 @property (readonly, strong) MPEntryViewController *entryViewController;
@@ -39,8 +39,7 @@
 @property (readonly, strong) MPInspectorViewController *inspectorViewController;
 @property (readonly, strong) MPToolbarDelegate *toolbarDelegate;
 
-#pragma mark Search
-- (NSSearchField *)searchField;
+@property (readonly, nonatomic, strong) NSSearchField *searchField;
 
 - (void)showEntries;
 - (void)showPasswordInput;

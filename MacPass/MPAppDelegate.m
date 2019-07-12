@@ -42,8 +42,10 @@
 #import "MPWelcomeViewController.h"
 #import "MPPlugin.h"
 #import "MPEntryContextMenuDelegate.h"
+#import "MPAutotypeDoctor.h"
 
 #import "NSApplication+MPAdditions.h"
+#import "NSTextView+MPTouchBarExtension.h"
 
 #import "KeePassKit/KeePassKit.h"
 
@@ -221,6 +223,12 @@ typedef NS_OPTIONS(NSInteger, MPAppStartupState) {
   [SUUpdater sharedUpdater];
 #endif
   self.startupState |= MPAppStartupStateFinishedLaunch;
+  // Here we just opt-in for allowing our bar to be customized throughout the app.
+  if([NSApplication.sharedApplication respondsToSelector:@selector(isAutomaticCustomizeTouchBarMenuItemEnabled)]) {
+    if(@available(macOS 10.12.2, *)) {
+      NSApplication.sharedApplication.automaticCustomizeTouchBarMenuItemEnabled = YES;
+    }
+  }
 }
 
 #pragma mark -
@@ -334,6 +342,10 @@ typedef NS_OPTIONS(NSInteger, MPAppStartupState) {
   [NSWorkspace.sharedWorkspace openURL:[NSURL URLWithString:urlString]];
 }
 
+- (void)showAutotypeDoctor:(id)sender {
+  [MPAutotypeDoctor.defaultDoctor runChecksAndPresentResults];
+}
+
 - (void)checkForUpdates:(id)sender {
 #if defined(DEBUG) || defined(NO_SPARKLE)
   NSAlert *alert = [[NSAlert alloc] init];
@@ -370,10 +382,6 @@ typedef NS_OPTIONS(NSInteger, MPAppStartupState) {
   if(showWelcomeScreen) {
     [self showWelcomeWindow];
   }
-  /* run check for accessibilty after the windowserver should have presented the UI */
-  dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.25 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-    [MPAutotypeDaemon.defaultDaemon checkForAccessibiltyPermissions];
-  });
 }
 
 @end
