@@ -25,6 +25,7 @@
 @interface MPAutotypeCandidateSelectionViewController : NSViewController
 
 @property (copy) NSArray *candidates;
+@property (copy) NSString *windowTitle;
 
 - (IBAction)selectAutotypeContext:(id)sender;
 - (IBAction)cancelSelection:(id)sender;

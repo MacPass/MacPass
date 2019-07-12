@@ -37,18 +37,6 @@
 /* Action to add an entry via template */
 "ADD_TREMPLATE_ENTRY" = "Vorgabeeintrag erstellen";
 
-/* Button in dialog to leave autotype disabled and continiue! */
-"ALERT_AUTOTYPE_MISSING_ACCESSIBILTY_PERMISSIONS_BUTTON_OK" = "Autotype deaktiviert lassen.";
-
-/* Button in dialog to open accessibilty preferences pane! */
-"ALERT_AUTOTYPE_MISSING_ACCESSIBILTY_PERMISSIONS_BUTTON_OPEN_PREFERENCES" = "Systemeinstellung Bedienungshilfen öffnen …";
-
-/* Alert informative text displayed when Autotype performs self check and lacks accessibilty permissions */
-"ALERT_AUTOTYPE_MISSING_ACCESSIBILTY_PERMISSIONS_INFORMATIVE_TEXT" = "Das System erlaubt MacPass nicht, Autotype-Tastenbefehle an andere Anwendungen zu schicken. Um Autotype zu ermöglichen fügen Sie MacPass zu den Bedienungshilfen in den Datenschutzeinstellung hinzu. ";
-
-/* Alert message displayed when Autotype performs self check and lacks accessibilty permissions */
-"ALERT_AUTOTYPE_MISSING_ACCESSIBILTY_PERMISSIONS_MESSAGE_TEXT" = "MacPass kann Autotype nicht ausführen.";
-
 /* Button in dialog to leave plugin ds disabled and continiue! */
 "ALERT_INCOMPATIBLE_PLUGINS_ENCOUNTERED_BUTTON_OK" = "OK";
 
@@ -101,6 +89,12 @@
 /* Menu item for automatic trash creation */
 "AUTOCREATE_TRASH_FOLDER" = "Automatisch erstellen";
 
+/* Message text in the autotype selection window. Placeholder is %1 - windowTitle */
+"AUTOTYPE_CANDIDATE_SELECTION_WINDOW_MESSAGE_%@" = "Es gibt mehrere Treffer für den aktuellen Fenstertitel: %@. Bitte wählen Sie den Eintrag aus der Liste aus, welcher verwendet werden soll.";
+
+/* Window title for the stand-alone password creator window */
+"AUTOTYPE_DOCTOR_RESULTS_WINDOW_TITLE" = "Autotype Doktor";
+
 /* Inherit autotype settings menu item */
 "AUTOTYPE_INHERIT" = "Autotype Einstellungen vererben";
 
@@ -110,8 +104,8 @@
 /* Disable autotype menu item */
 "AUTOTYPE_NO" = "Autotype deaktivieren";
 
-/* Notification: Autotype failed, MacPass has no permission to send key strokes */
-"AUTOTYPE_NOTIFICATION_MACPASS_HAS_NO_ACCESSIBILTY_PERMISSIONS" = "Autotype ist deaktivert, weil keine Rechte zum Steuern des Computers vorhanden sind.";
+/* Notification: Autotype failed, MacPass has not enough permissions to perform autotype */
+"AUTOTYPE_NOTIFICATION_MACPASS_IS_MISSING_PERMISSIONS" = "MacPass hat nicht alle notwendigen Berechtigungen um Autotype ausführen zu können";
 
 /* Notification: Autotype failed, no documents are open */
 "AUTOTYPE_OVERLAY_NO_DOCUMENTS" = "Bitte öffnen Sie eine Datei, um Global-Autotype zu nutzen!";
@@ -121,6 +115,18 @@
 
 /* Notification: Autotype found a single match for %@ (string placeholder). */
 "AUTOTYPE_OVERLAY_SINGLE_MATCH_FOR_%@" = "Treffer für %@!";
+
+/* Status lable when no issue were found in accessibilty */
+"AUTOTYPE_STATUS_ACCESSIBILTY_PERMISSIONS_OK" = "MacPass hat die Berechtigung den Computer zu steuern (Eingabehilfe)";
+
+/* Status MacPass has no accessibilty permissions */
+"AUTOTYPE_STATUS_NO_ACCESSIBILTY_PERMISSIONS" = "MacPass hat keine Berechtigung den Computer zu steuern (Eingabehilfe)";
+
+/* Status MacPass has no screen recording permissions */
+"AUTOTYPE_STATUS_NO_SCREEN_RECORDING_PERMISSIONS" = "MacPass hat keine Berechtigung den Bildschirminhalt aufzuzeichnen";
+
+/* Status lable when no issue were found in screen recording permissions */
+"AUTOTYPE_STATUS_SCREEN_RECORDING_PERMISSIONS_OK" = "MacPass hat die Berechtigung den Bildschirminhalt aufzuzeichnen";
 
 /* Notficication: Autotype timed out */
 "AUTOTYPE_TIMED_OUT" = "Autotype wegen zu langer Wartezeit abgebrochen";
@@ -325,6 +331,12 @@
 /* Error description given when adding an invalid plugin */
 "ERROR_INVALID_PLUGIN" = "Kein MacPass-Plugin";
 
+/* Error description for missing accessibilty permissions */
+"ERROR_NO_ACCESSIBILTY_PERMISSIONS" = "MacPass hat keine Berechtigung den Bildschirminhalt aufzuzeichen.";
+
+/* Error description for missing screen recording permissions */
+"ERROR_NO_PERMISSION_TO_RECORD_SCREEN" = "MacPass hat keine Berechtigungen den Bildschirminhalt aufzuzeichnen";
+
 /* Passwords do not match */
 "ERROR_PASSWORD_MISSMATCH" = "Passwörter stimmen nicht überein";
 
@@ -485,9 +497,6 @@
 
 /* Action button in Notification to open a document */
 "OPEN_DOCUMENT" = "Datei öffnen";
-
-/* Action button in Notification to show the Accessibilty preferences */
-"OPEN_PREFERENCES" = "Systemeinstellung Bedienungshilfen öffnen …";
 
 /* Menu item to open the URL with the default application */
 "OPEN_URL" = "Adresse öffnen";
@@ -659,6 +668,9 @@
 
 /* Checkbox in dialog to set the selection as default file change strategy! */
 "SET_AS_DEFAULT_FILE_CHANGE_STRATEGY" = "Die gewählte Strategie immer verwenden. Sie können die Strategie jederzeit in den Einstellungen anpassen.";
+
+/* Action button in Notification to show the Autotype Doctor */
+"SHOW_AUTOTYPE_DOCTOR" = "Autotype Doktor anzeigen";
 
 /* Menu item to show the history of the selected entry
    Toolbar item to toggle history display */

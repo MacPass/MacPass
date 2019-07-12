@@ -216,7 +216,7 @@ NSString *const MPToolbarItemAutotype = @"TOOLBAR_AUTOTYPE";
 }
 
 - (NSDictionary *)createToolbarImages {
-  NSDictionary *imageDict = @{ MPToolbarItemLock: [NSImage imageNamed:NSImageNameLockUnlockedTemplate],
+  NSDictionary *imageDict = @{ MPToolbarItemLock: [NSImage imageNamed:NSImageNameLockLockedTemplate],
                                MPToolbarItemAddEntry: [MPIconHelper icon:MPIconAddEntry],
                                MPToolbarItemAddGroup: [MPIconHelper icon:MPIconAddFolder],
                                MPToolbarItemCopyUsername : [MPIconHelper icon:MPIconIdentity],
