@@ -95,7 +95,9 @@ NSString *const MPPluginRepositoryDidUpdateAvailablePluginsNotification = @"com.
     if(!allowRemoteConnection) {
       [self _fetchLocalFallbackRepositoryData:completionHandler];
     }
-    [self _fetchRepositoryDataCompletionHandler:completionHandler];
+    else {
+      [self _fetchRepositoryDataCompletionHandler:completionHandler];      
+    }
   });
 }
 
