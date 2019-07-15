@@ -66,7 +66,9 @@ NSString *const MPPluginRepositoryDidUpdateAvailablePluginsNotification = @"com.
 }
 
 - (NSArray<MPPluginRepositoryItem *> *)availablePlugins {
-  /* update cache on every read if it's older than 5 minutes */
+  /* FIXME: Invalidate fetch when settings have changed!
+   update cache on every read if it's older than 5 minutes
+   */
   if((NSDate.timeIntervalSinceReferenceDate - self.lastDataFetchTime) > 60*5 ) {
     NSLog(@"%@: updating available plugins cache.", self.className);
     [self _fetchAppropriateRepositoryDataCompletionHandler:^(NSArray<MPPluginRepositoryItem *> * _Nonnull availablePlugins) {

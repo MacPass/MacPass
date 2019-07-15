@@ -464,6 +464,7 @@ NSString *const MPImportPluginUTIKey = @"MPImportPluginUTIKey";
 - (NSArray<MPPlugin *> *)importPlugins {
   return [self _pluginsConformingToProtocoll:@protocol(MPImportPlugin)];
 }
+
 @end
 
 @implementation MPPluginHost (MPWindowTitleResolverSupport)
