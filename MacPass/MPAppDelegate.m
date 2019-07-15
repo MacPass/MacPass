@@ -249,8 +249,11 @@ typedef NS_OPTIONS(NSInteger, MPAppStartupState) {
     for(MPPlugin<MPImportPlugin> * plugin in MPPluginHost.sharedHost.importPlugins) {
       NSMenuItem *importItem = [[NSMenuItem alloc] init];
       [plugin prepareImportMenuItem:importItem];
+      importItem.submenu = nil; // kill any potential submenu!
+      importItem.representedObject = plugin.identifier;
       importItem.target = nil;
       importItem.action = @selector(importFromPlugin:);
+      [menu addItem:importItem];
     }
     [menu insertItem:exportXML atIndex:0];
   }

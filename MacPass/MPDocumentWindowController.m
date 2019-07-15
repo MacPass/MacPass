@@ -284,7 +284,7 @@ typedef void (^MPPasswordChangedBlock)(BOOL didChangePassword);
     return;
   }
   NSMenuItem *menuItem = sender;
-  if(![menuItem.representedObject isKindOfClass:NSDictionary.class]) {
+  if(![menuItem.representedObject isKindOfClass:NSString.class]) {
     return;
   }
   
@@ -292,7 +292,8 @@ typedef void (^MPPasswordChangedBlock)(BOOL didChangePassword);
   if(!sheetWindow) {
     return;
   }
-  MPPlugin<MPImportPlugin> *importPlugin;
+  NSString *bundleIdentifier = menuItem.representedObject;
+  MPPlugin<MPImportPlugin> *importPlugin = (MPPlugin<MPImportPlugin> *)[MPPluginHost.sharedHost pluginWithBundleIdentifier:bundleIdentifier];
   NSOpenPanel *openPanel = NSOpenPanel.openPanel;
   [importPlugin prepareOpenPanel:openPanel];
   [openPanel beginSheetModalForWindow:sheetWindow completionHandler:^(NSModalResponse result) {
