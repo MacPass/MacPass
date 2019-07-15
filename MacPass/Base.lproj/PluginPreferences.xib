@@ -9,6 +9,7 @@
         <customObject id="-2" userLabel="File's Owner" customClass="MPPluginPreferencesController">
             <connections>
                 <outlet property="addRemovePluginsControl" destination="B9Q-hq-K4N" id="Oqj-Ko-8UR"/>
+                <outlet property="allowRemoteConnectionCheckButton" destination="K0z-aD-K2P" id="VDW-fd-evK"/>
                 <outlet property="fallbackDescriptionTextField" destination="qPL-FR-ky7" id="xCb-ED-NIX"/>
                 <outlet property="fallbackSettingsView" destination="wIk-iw-Tcz" id="dHl-zW-0aI"/>
                 <outlet property="forceIncompatiblePluginsCheckButton" destination="XIl-03-JZP" id="Aj4-rc-Ao0"/>
@@ -21,19 +22,19 @@
         <customObject id="-1" userLabel="First Responder" customClass="FirstResponder"/>
         <customObject id="-3" userLabel="Application" customClass="NSObject"/>
         <customView translatesAutoresizingMaskIntoConstraints="NO" id="Hz6-mo-xeY">
-            <rect key="frame" x="0.0" y="0.0" width="600" height="473"/>
+            <rect key="frame" x="0.0" y="0.0" width="607" height="502"/>
             <subviews>
                 <box borderType="line" title="Box" titlePosition="noTitle" translatesAutoresizingMaskIntoConstraints="NO" id="vBs-Ga-aq0">
-                    <rect key="frame" x="175" y="46" width="408" height="321"/>
+                    <rect key="frame" x="175" y="46" width="415" height="306"/>
                     <view key="contentView" id="tD5-Na-7XI">
-                        <rect key="frame" x="3" y="3" width="402" height="315"/>
+                        <rect key="frame" x="3" y="3" width="409" height="300"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <customView translatesAutoresizingMaskIntoConstraints="NO" id="wIk-iw-Tcz">
-                                <rect key="frame" x="20" y="20" width="362" height="275"/>
+                                <rect key="frame" x="20" y="20" width="369" height="260"/>
                                 <subviews>
                                     <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" setsMaxLayoutWidthAtFirstLayout="YES" translatesAutoresizingMaskIntoConstraints="NO" id="qPL-FR-ky7">
-                                        <rect key="frame" x="18" y="238" width="326" height="17"/>
+                                        <rect key="frame" x="18" y="223" width="333" height="17"/>
                                         <textFieldCell key="cell" controlSize="mini" sendsActionOnEndEditing="YES" title="Plugin Settings Info" id="OOr-SW-jZb">
                                             <font key="font" metaFont="system"/>
                                             <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
@@ -58,14 +59,14 @@
                     </view>
                 </box>
                 <button translatesAutoresizingMaskIntoConstraints="NO" id="CqP-oK-S8k">
-                    <rect key="frame" x="18" y="437" width="159" height="18"/>
+                    <rect key="frame" x="18" y="422" width="159" height="18"/>
                     <buttonCell key="cell" type="check" title="Load unsecure Plugins" bezelStyle="regularSquare" imagePosition="left" state="on" inset="2" id="C4B-6z-ZqX">
                         <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                         <font key="font" metaFont="system"/>
                     </buttonCell>
                 </button>
                 <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" setsMaxLayoutWidthAtFirstLayout="YES" translatesAutoresizingMaskIntoConstraints="NO" id="aoG-FD-ds8">
-                    <rect key="frame" x="18" y="403" width="564" height="28"/>
+                    <rect key="frame" x="18" y="388" width="571" height="28"/>
                     <textFieldCell key="cell" controlSize="small" sendsActionOnEndEditing="YES" id="2bX-8S-9XM">
                         <font key="font" metaFont="smallSystem"/>
                         <string key="title">If enabled, Plugins without proper signatures will be allowed to load. Keep in mind, that Plugins have full access to your data! Changes take affect on restart.</string>
@@ -74,13 +75,13 @@
                     </textFieldCell>
                 </textField>
                 <scrollView autohidesScrollers="YES" horizontalLineScroll="37" horizontalPageScroll="10" verticalLineScroll="37" verticalPageScroll="10" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fCk-fL-jU8">
-                    <rect key="frame" x="20" y="50" width="150" height="315"/>
+                    <rect key="frame" x="20" y="50" width="150" height="300"/>
                     <clipView key="contentView" id="lTL-Q2-k45">
-                        <rect key="frame" x="1" y="1" width="148" height="313"/>
+                        <rect key="frame" x="1" y="1" width="148" height="298"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView verticalHuggingPriority="750" allowsExpansionToolTips="YES" columnAutoresizingStyle="lastColumnOnly" columnReordering="NO" columnSelection="YES" columnResizing="NO" multipleSelection="NO" autosaveColumns="NO" rowHeight="35" rowSizeStyle="automatic" viewBased="YES" id="Ocu-C0-03d">
-                                <rect key="frame" x="0.0" y="0.0" width="148" height="313"/>
+                                <rect key="frame" x="0.0" y="0.0" width="148" height="298"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <size key="intercellSpacing" width="3" height="2"/>
                                 <color key="backgroundColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
@@ -167,7 +168,7 @@
                     </connections>
                 </segmentedControl>
                 <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="SNe-cc-CZs">
-                    <rect key="frame" x="406" y="19" width="174" height="23"/>
+                    <rect key="frame" x="413" y="19" width="174" height="23"/>
                     <buttonCell key="cell" type="roundTextured" title="Browse Available Plugins…" bezelStyle="texturedRounded" alignment="center" lineBreakMode="truncatingTail" state="on" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="sqO-8H-n1y">
                         <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                         <font key="font" metaFont="system"/>
@@ -177,30 +178,51 @@
                     </connections>
                 </button>
                 <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="XIl-03-JZP">
-                    <rect key="frame" x="18" y="371" width="250" height="18"/>
+                    <rect key="frame" x="18" y="356" width="250" height="18"/>
                     <buttonCell key="cell" type="check" title="Force loading of incompatible Plugins" bezelStyle="regularSquare" imagePosition="left" state="on" inset="2" id="yak-fS-jtA">
                         <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                         <font key="font" metaFont="system"/>
                     </buttonCell>
                 </button>
+                <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="K0z-aD-K2P">
+                    <rect key="frame" x="18" y="466" width="243" height="18"/>
+                    <buttonCell key="cell" type="check" title="Download current plugin information" bezelStyle="regularSquare" imagePosition="left" state="on" inset="2" id="uHR-uL-Ddm">
+                        <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                        <font key="font" metaFont="system"/>
+                    </buttonCell>
+                </button>
+                <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" setsMaxLayoutWidthAtFirstLayout="YES" translatesAutoresizingMaskIntoConstraints="NO" id="nrf-Hz-0vB">
+                    <rect key="frame" x="18" y="446" width="349" height="14"/>
+                    <textFieldCell key="cell" controlSize="small" selectable="YES" title="If enabled, a remote connection is established to macpassapp.org" id="i3S-9b-Bpf">
+                        <font key="font" metaFont="smallSystem"/>
+                        <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                        <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                    </textFieldCell>
+                </textField>
             </subviews>
             <constraints>
-                <constraint firstItem="CqP-oK-S8k" firstAttribute="top" secondItem="Hz6-mo-xeY" secondAttribute="top" constant="20" id="1Rj-zS-7t2"/>
+                <constraint firstItem="CqP-oK-S8k" firstAttribute="top" secondItem="nrf-Hz-0vB" secondAttribute="bottom" constant="8" symbolic="YES" id="1Rj-zS-7t2"/>
                 <constraint firstItem="XIl-03-JZP" firstAttribute="top" secondItem="aoG-FD-ds8" secondAttribute="bottom" constant="16" id="2Wk-4D-AHu"/>
                 <constraint firstItem="vBs-Ga-aq0" firstAttribute="top" secondItem="fCk-fL-jU8" secondAttribute="top" id="2h6-C9-4N5"/>
+                <constraint firstItem="nrf-Hz-0vB" firstAttribute="leading" secondItem="Hz6-mo-xeY" secondAttribute="leading" constant="20" symbolic="YES" id="2hE-FW-30g"/>
                 <constraint firstItem="B9Q-hq-K4N" firstAttribute="top" secondItem="fCk-fL-jU8" secondAttribute="bottom" constant="8" symbolic="YES" id="3vA-Oh-cFO"/>
                 <constraint firstAttribute="bottom" secondItem="B9Q-hq-K4N" secondAttribute="bottom" constant="20" symbolic="YES" id="7HD-ji-Whc"/>
                 <constraint firstAttribute="trailing" secondItem="SNe-cc-CZs" secondAttribute="trailing" constant="20" symbolic="YES" id="8Je-yg-f1l"/>
                 <constraint firstAttribute="trailing" secondItem="aoG-FD-ds8" secondAttribute="trailing" constant="20" symbolic="YES" id="95O-Jh-0KG"/>
                 <constraint firstItem="vBs-Ga-aq0" firstAttribute="bottom" secondItem="fCk-fL-jU8" secondAttribute="bottom" id="BQ2-Wp-Fsh"/>
+                <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="K0z-aD-K2P" secondAttribute="trailing" constant="20" symbolic="YES" id="CFf-LD-G7q"/>
                 <constraint firstAttribute="bottom" secondItem="SNe-cc-CZs" secondAttribute="bottom" constant="20" symbolic="YES" id="Fqe-ch-vsS"/>
                 <constraint firstAttribute="trailing" secondItem="vBs-Ga-aq0" secondAttribute="trailing" constant="20" id="LUb-Un-azV"/>
                 <constraint firstItem="aoG-FD-ds8" firstAttribute="leading" secondItem="CqP-oK-S8k" secondAttribute="leading" id="NcW-ya-DPx"/>
                 <constraint firstItem="B9Q-hq-K4N" firstAttribute="leading" secondItem="Hz6-mo-xeY" secondAttribute="leading" constant="20" symbolic="YES" id="Rtj-Ad-zkg"/>
                 <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="CqP-oK-S8k" secondAttribute="trailing" constant="20" symbolic="YES" id="TXL-mf-nxu"/>
+                <constraint firstItem="K0z-aD-K2P" firstAttribute="leading" secondItem="Hz6-mo-xeY" secondAttribute="leading" constant="20" symbolic="YES" id="XzM-3L-OgP"/>
                 <constraint firstItem="SNe-cc-CZs" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="B9Q-hq-K4N" secondAttribute="trailing" constant="8" symbolic="YES" id="a62-en-kDA"/>
                 <constraint firstItem="fCk-fL-jU8" firstAttribute="leading" secondItem="Hz6-mo-xeY" secondAttribute="leading" constant="20" id="fzW-4b-L8S"/>
+                <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="nrf-Hz-0vB" secondAttribute="trailing" constant="20" symbolic="YES" id="hMs-HE-d8h"/>
+                <constraint firstItem="nrf-Hz-0vB" firstAttribute="top" secondItem="K0z-aD-K2P" secondAttribute="bottom" constant="8" symbolic="YES" id="ohE-9y-xO4"/>
                 <constraint firstItem="XIl-03-JZP" firstAttribute="leading" secondItem="CqP-oK-S8k" secondAttribute="leading" id="oqX-wa-jm0"/>
+                <constraint firstItem="K0z-aD-K2P" firstAttribute="top" secondItem="Hz6-mo-xeY" secondAttribute="top" constant="20" symbolic="YES" id="q4N-Jc-F3L"/>
                 <constraint firstItem="SNe-cc-CZs" firstAttribute="top" secondItem="vBs-Ga-aq0" secondAttribute="bottom" constant="8" symbolic="YES" id="r4X-iM-iYU"/>
                 <constraint firstItem="CqP-oK-S8k" firstAttribute="leading" secondItem="Hz6-mo-xeY" secondAttribute="leading" constant="20" id="rN1-3Z-BBi"/>
                 <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="XIl-03-JZP" secondAttribute="trailing" constant="20" symbolic="YES" id="rkN-ew-RtP"/>
@@ -208,7 +230,7 @@
                 <constraint firstItem="vBs-Ga-aq0" firstAttribute="leading" secondItem="fCk-fL-jU8" secondAttribute="trailing" constant="8" id="xNu-Sj-xQO"/>
                 <constraint firstItem="aoG-FD-ds8" firstAttribute="top" secondItem="CqP-oK-S8k" secondAttribute="bottom" constant="8" symbolic="YES" id="zSW-h3-BrT"/>
             </constraints>
-            <point key="canvasLocation" x="110" y="-97"/>
+            <point key="canvasLocation" x="179" y="115"/>
         </customView>
     </objects>
     <resources>

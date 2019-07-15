@@ -87,6 +87,8 @@ APPKIT_EXTERN NSString *const kMPSettingsKeyLoadUnsecurePlugins;            // I
 APPKIT_EXTERN NSString *const kMPSettingsKeyDisabledPlugins;                // NSArray of bundle identifiers of disabled plugins
 APPKIT_EXTERN NSString *const kMPSettingsKeyLoadIncompatiblePlugins;        // If set to YES incompatible plugins (no version info, marked as incompatible, etc) will be loaded regardless
 APPKIT_EXTERN NSString *const kMPSettingsKeyHideIncopatiblePluginsWarning;  // Do not show an alert, when MacPass encounteres incompatible plugins
+APPKIT_EXTERN NSString *const kMPSettingsKeyAllowRemoteFetchOfPluginRepository; // Allow the download of the plugin repository file
+APPKIT_EXTERN NSString *const kMPSettingsKeyPluginHideAksForRemoveConnectionPermission;
 
 typedef NS_ENUM(NSUInteger, MPFileChangeStrategy) {
   MPFileChangeStrategyAsk,
