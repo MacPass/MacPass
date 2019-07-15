@@ -28,6 +28,7 @@
 #import "MPPluginVersionComparator.h"
 
 NSString *const MPPluginUnkownVersion = @"unkown.plugin.version";
+NSString *const MPPluginDescriptionInfoDictionaryKey = @"MPPluginDescription";
 
 @implementation MPPlugin
 
@@ -88,6 +89,16 @@ NSString *const MPPluginUnkownVersion = @"unkown.plugin.version";
     }
   }
   return MPPluginUnkownVersion;
+}
+
+- (NSString *)localizedDescription {
+  if([self.bundle.localizedInfoDictionary objectForKey:MPPluginDescriptionInfoDictionaryKey]) {
+    return self.bundle.localizedInfoDictionary[MPPluginDescriptionInfoDictionaryKey];
+  }
+  if([self.bundle.infoDictionary objectForKey:MPPluginDescriptionInfoDictionaryKey]) {
+    return self.bundle.infoDictionary[MPPluginDescriptionInfoDictionaryKey];
+  }
+  return @"";
 }
 
 
