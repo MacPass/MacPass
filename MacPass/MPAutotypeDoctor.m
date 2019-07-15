@@ -75,6 +75,9 @@
                                                     kCGNullWindowID,
                                                     kCGWindowImageDefault);
     BOOL canRecordScreen = !screenshot;
+    if(!canRecordScreen) {
+      CFRelease(screenshot);
+    }
     if(!canRecordScreen && error) {
       *error = [NSError errorInDomain:MPAutotypeErrorDomain withCode:MPErrorAutotypeIsMissingScreenRecordingPermissions description:NSLocalizedString(@"ERROR_NO_PERMISSION_TO_RECORD_SCREEN", "Error description for missing screen recording permissions")];
     }

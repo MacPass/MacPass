@@ -264,7 +264,7 @@ static MPAutotypeDaemon *_sharedInstance;
   if(candidates == 1 ) {
     return autotypeCandidates.lastObject;
   }
-  [self _presentSelectionWindow:autotypeCandidates];
+  [self _presentCandiadates:autotypeCandidates forWindowTitle:windowTitle];
   return nil; // Nothing to do, we get called back by the window
 }
 
@@ -352,7 +352,7 @@ static MPAutotypeDaemon *_sharedInstance;
   return infoDict;
 }
 
-- (void)_presentSelectionWindow:(NSArray *)candidates {
+- (void)_presentCandiadates:(NSArray *)candidates forWindowTitle:(NSString *)windowTitle {
   if(!self.matchSelectionWindow) {
     self.matchSelectionWindow = [[NSPanel alloc] initWithContentRect:NSMakeRect(0, 0, 100, 100)
                                                            styleMask:NSWindowStyleMaskNonactivatingPanel|NSWindowStyleMaskTitled
@@ -361,6 +361,7 @@ static MPAutotypeDaemon *_sharedInstance;
     self.matchSelectionWindow.level = kCGAssistiveTechHighWindowLevel;
     MPAutotypeCandidateSelectionViewController *vc = [[MPAutotypeCandidateSelectionViewController alloc] init];
     vc.candidates = candidates;
+    vc.windowTitle = windowTitle;
     self.matchSelectionWindow.collectionBehavior |= (NSWindowCollectionBehaviorFullScreenAuxiliary |
                                                      NSWindowCollectionBehaviorMoveToActiveSpace |
                                                      NSWindowCollectionBehaviorTransient );

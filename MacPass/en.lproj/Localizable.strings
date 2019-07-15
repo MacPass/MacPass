@@ -89,6 +89,9 @@
 /* Menu item for automatic trash creation */
 "AUTOCREATE_TRASH_FOLDER" = "Create Automatically";
 
+/* Message text in the autotype selection window. Placeholder is %1 - windowTitle */
+"AUTOTYPE_CANDIDATE_SELECTION_WINDOW_MESSAGE_%@" = "There are multiple matches for the current window: %@. Please select which match should be used.";
+
 /* Window title for the stand-alone password creator window */
 "AUTOTYPE_DOCTOR_RESULTS_WINDOW_TITLE" = "Autotype Doctor";
 
@@ -101,8 +104,8 @@
 /* Disable autotype menu item */
 "AUTOTYPE_NO" = "Disable Autotype";
 
-/* Notification: Autotype failed, MacPass has no permission to send key strokes */
-"AUTOTYPE_NOTIFICATION_MACPASS_HAS_NO_ACCESSIBILTY_PERMISSIONS" = "Autotype disabled because of missing accessibilty access.";
+/* Notification: Autotype failed, MacPass has not enough permissions to perform autotype */
+"AUTOTYPE_NOTIFICATION_MACPASS_IS_MISSING_PERMISSIONS" = "MacPass does not have all necessary permissions to perform Autotype.";
 
 /* Notification: Autotype failed, no documents are open */
 "AUTOTYPE_OVERLAY_NO_DOCUMENTS" = "Please open a database file to use Global Autotype!";
@@ -667,7 +670,7 @@
 "SET_AS_DEFAULT_FILE_CHANGE_STRATEGY" = "Use this method as default. You can change this at any time in the preferences.";
 
 /* Action button in Notification to show the Autotype Doctor */
-"SHOW_AUTOTYPE_DOCTOR" = "SHOW_AUTOTYPE_DOCTOR";
+"SHOW_AUTOTYPE_DOCTOR" = "Show Autotype Doctor";
 
 /* Menu item to show the history of the selected entry
    Toolbar item to toggle history display */
