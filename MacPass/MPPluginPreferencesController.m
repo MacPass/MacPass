@@ -42,6 +42,7 @@ typedef NS_ENUM(NSUInteger, MPPluginSegmentType) {
 
 @interface MPPluginPreferencesController () <NSTableViewDataSource, NSTableViewDelegate>
 
+@property (strong) IBOutlet NSButton *allowRemoteConnectionCheckButton;
 @property (strong) IBOutlet NSTableView *pluginTableView;
 @property (strong) IBOutlet NSView *settingsView;
 @property (strong) IBOutlet NSView *fallbackSettingsView;
@@ -83,6 +84,10 @@ typedef NS_ENUM(NSUInteger, MPPluginSegmentType) {
                                         toObject:NSUserDefaultsController.sharedUserDefaultsController
                                      withKeyPath:[MPSettingsHelper defaultControllerPathForKey:kMPSettingsKeyLoadIncompatiblePlugins]
                                          options:nil];
+  [self.allowRemoteConnectionCheckButton bind:NSValueBinding
+                                     toObject:NSUserDefaultsController.sharedUserDefaultsController
+                                  withKeyPath:[MPSettingsHelper defaultControllerPathForKey:kMPSettingsKeyAllowRemoteFetchOfPluginRepository]
+                                      options:nil];
   [self.pluginTableView registerForDraggedTypes:@[(NSString *)kUTTypeFileURL]];
 }
 
@@ -119,20 +124,27 @@ typedef NS_ENUM(NSUInteger, MPPluginSegmentType) {
       [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|[view]|" options:0 metrics:nil views:dict]];
       [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|[view]|" options:0 metrics:nil views:dict]];
     }
+    else {
+      [self _showInfoMessageForPlugin:plugin.localizedDescription];
+    }
   }
   else if(nil != plugin) {
-    [self.settingsView addSubview:self.fallbackSettingsView];
-    NSDictionary *dict = @{ @"view" : self.fallbackSettingsView,
-                            @"table" : self.pluginTableView.enclosingScrollView };
-    [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|[view]|" options:0 metrics:nil views:dict]];
-    [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|[view]|" options:0 metrics:nil views:dict]];
     if(plugin.errorMessage.length > 0) {
-      self.fallbackDescriptionTextField.stringValue = plugin.errorMessage;
+      [self _showInfoMessageForPlugin:plugin.errorMessage];
     }
     else {
-      self.fallbackDescriptionTextField.stringValue = NSLocalizedString(@"PLUGIN_SETTINGS_GENERIC_ERROR_MESSAGE", "Generic message displayed if no details are know why a plugin was not loaded.");
+      [self _showInfoMessageForPlugin:NSLocalizedString(@"PLUGIN_SETTINGS_GENERIC_ERROR_MESSAGE", "Generic message displayed if no details are know why a plugin was not loaded.")];
     }
   }
+}
+
+- (void)_showInfoMessageForPlugin:(NSString *)message {
+  [self.settingsView addSubview:self.fallbackSettingsView];
+  NSDictionary *dict = @{ @"view" : self.fallbackSettingsView,
+                          @"table" : self.pluginTableView.enclosingScrollView };
+  [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|[view]|" options:0 metrics:nil views:dict]];
+  [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|[view]|" options:0 metrics:nil views:dict]];
+  self.fallbackDescriptionTextField.stringValue = message.length > 0 ? message : @"";
 }
 
 - (MPPlugin *)pluginForRow:(NSInteger)row {
