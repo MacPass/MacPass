@@ -37,6 +37,30 @@
 /* Action to add an entry via template */
 "ADD_TREMPLATE_ENTRY" = "Crear Plantilla de Entrada";
 
+/* Allow the download of the plugin repository file */
+"ALERT_ASK_FOR_PLUGIN_REPOSITORY_ALLOW_DOWNLOAD" = "No actualizar definiciones";
+
+/* Informative text displayed on the alert that shows up when MacPass asks for permssion to download the plugin repository JSON file */
+"ALERT_ASK_FOR_PLUGIN_REPOSITORY_CONNECTION_PERMISSION_INFORMATIVE_TEXT" = "Las definiciones de los plugin están almacenadas online en https://macpassapp.org. A MacPass le gustaría descargar los archivos para asegurar que los datos están actualizados";
+
+/* Message displayed on the alert that asks for permission to download the plugin repository JSON file */
+"ALERT_ASK_FOR_PLUGIN_REPOSITORY_CONNECTION_PERMISSION_MESSAGE" = "A MacPass le gustaría comprobar las actualizaciones de las definiciones de los plugin online";
+
+/* Disallow the download of the plugin repository file */
+"ALERT_ASK_FOR_PLUGIN_REPOSITORY_DISALLOW_DOWNLOAD" = "Actualizar las definiciones online";
+
+/* Button in dialog to leave autotype disabled and continiue! */
+"ALERT_AUTOTYPE_MISSING_ACCESSIBILTY_PERMISSIONS_BUTTON_OK" = "Mantener Autotecleo deshabilitado.";
+
+/* Button in dialog to open accessibilty preferences pane! */
+"ALERT_AUTOTYPE_MISSING_ACCESSIBILTY_PERMISSIONS_BUTTON_OPEN_PREFERENCES" = "Abrir las preferencias de accesibilidad...";
+
+/* Alert informative text displayed when Autotype performs self check and lacks accessibilty permissions */
+"ALERT_AUTOTYPE_MISSING_ACCESSIBILTY_PERMISSIONS_INFORMATIVE_TEXT" = "El sistema evita que MacPass envíe las pulsaciones de las teclas a otras aplicaciones. Para habilitar el Autotecleo por favor concede permisos de accesibilidad a MacPass en las preferencias de privacidad.";
+
+/* Alert message displayed when Autotype performs self check and lacks accessibilty permissions */
+"ALERT_AUTOTYPE_MISSING_ACCESSIBILTY_PERMISSIONS_MESSAGE_TEXT" = "MacPass no puede realizar el Autotecleo";
+
 /* Button in dialog to leave plugin ds disabled and continiue! */
 "ALERT_INCOMPATIBLE_PLUGINS_ENCOUNTERED_BUTTON_OK" = "OK";
 
@@ -80,7 +104,7 @@
 "ALERT_UPDATES_DISABLED_MESSAGE_TEXT" = "¡Las actualizaciones están deshabilitadas!";
 
 /* Attachments column title (shows counts)
- Menu item to toggle display of attachment count column in entry table */
+   Menu item to toggle display of attachment count column in entry table */
 "ATTACHMENTS" = "Adjuntos";
 
 /* Sucessfully merged external changes */
@@ -88,6 +112,9 @@
 
 /* Menu item for automatic trash creation */
 "AUTOCREATE_TRASH_FOLDER" = "Crear automáticamente";
+
+/* Message text in the autotype selection window. Placeholder is %1 - windowTitle */
+"AUTOTYPE_CANDIDATE_SELECTION_WINDOW_MESSAGE_%@" = "Hay coincidencias múltiples para la ventana actual: %@. Por favor selecciona cual usar.";
 
 /* Window title for the stand-alone password creator window */
 "AUTOTYPE_DOCTOR_RESULTS_WINDOW_TITLE" = "Doctor de Autotecleo";
@@ -101,9 +128,7 @@
 /* Disable autotype menu item */
 "AUTOTYPE_NO" = "Deshabilitar Autotecleo";
 
-/* Notification: Autotype failed, MacPass has no permission to send key strokes */
-"AUTOTYPE_NOTIFICATION_MACPASS_HAS_NO_ACCESSIBILTY_PERMISSIONS" = "Autotecleo deshabilitado porque falta el permiso de accesibilidad.";
-
+/* Notification: Autotype failed, MacPass has not enough permissions to perform autotype */
 "AUTOTYPE_NOTIFICATION_MACPASS_IS_MISSING_PERMISSIONS" = "Autotecleo no tiene los permisos necesarios";
 
 /* Notification: Autotype failed, no documents are open */
@@ -115,7 +140,7 @@
 /* Notification: Autotype found a single match for %@ (string placeholder). */
 "AUTOTYPE_OVERLAY_SINGLE_MATCH_FOR_%@" = "¡%@ Encontrado!";
 
-/* Status label when no issue were found in accessibilty */
+/* Status lable when no issue were found in accessibilty */
 "AUTOTYPE_STATUS_ACCESSIBILTY_PERMISSIONS_OK" = "MacPass tiene permiso para controlar su ordenador (Accesibilidad)";
 
 /* Status MacPass has no accessibilty permissions */
@@ -143,7 +168,7 @@
 "CHANGE_LATER" = "Cambiar más tarde";
 
 /* Button to show the password change dialog
- Single button to show the password change dialog */
+   Single button to show the password change dialog */
 "CHANGE_PASSWORD_WITH_DOTS" = "Cambiar Contraseña…";
 
 /* Menu item in the database outline context menu to change the trash group */
@@ -201,7 +226,7 @@
 "COPY_CUSTOM_FIELDS_MENU" = "Copiar Campo Personalizado…";
 
 /* Action name when an entry was moved
- Action title for copying an entry via drag and drop */
+   Action title for copying an entry via drag and drop */
 "COPY_ENTRY" = "Copiar Entrada";
 
 /* Mask for title to copy field value */
@@ -214,7 +239,7 @@
 "COPY_NOTES_REFERENCE" = "Notas";
 
 /* Menu item to copy the password of an entry
- Toolbar item copy password */
+   Toolbar item copy password */
 "COPY_PASSWORD" = "Copiar Contraseña";
 
 /* Context menu that copies reference to password */
@@ -230,13 +255,13 @@
 "COPY_URL_REFERENCE" = "URL";
 
 /* Menu item to copy the username of an entry
- Toolbar item copy username */
+   Toolbar item copy username */
 "COPY_USERNAME" = "Copiar Nombre de Usuario";
 
 /* Context menu that copies reference to username */
 "COPY_USERNAME_REFERENCE" = "Nombre de usuario";
 
-/* Custom attribute reference item */
+/* Curstom attribute reference item */
 "CUSTOM_ATTRIBUTE" = "Atributo personalizado";
 
 /* Title for menu for custom search filters */
@@ -264,10 +289,10 @@
 "DEFAULT_WINDOW_TITLE" = "Título de Ventana";
 
 /* Menu item in the database outline context menu to delete the node from the trash
- Menu item to delete an entry
- Menu item to delete the selected attached file
- Menu item to delete the selected custom icon
- Toolbar item delete item */
+   Menu item to delete an entry
+   Menu item to delete the selected attached file
+   Menu item to delete the selected custom icon
+   Toolbar item delete item */
 "DELETE" = "Eliminar";
 
 /* Delete Entry */
@@ -283,11 +308,11 @@
 "DELETE_TRASHED_GROUP" = "Eliminar grupo definitivamente";
 
 /* Action title for copying an entry via drag and drop to another database
- Action title for moving an entry via drag and drop */
+   Action title for moving an entry via drag and drop */
 "DRAG_ENTRY" = "Arrastrar entrada";
 
 /* Action title for moving a group via drag and drop
- Actiontitle for copying groups via drag and drop to antother database */
+   Actiontitle for copying groups via drag and drop to antother database */
 "DRAG_GROUP" = "Arrastrar grupo";
 
 /* Action name for duplicating entries */
@@ -300,13 +325,13 @@
 "DUPLICATE_ENTRY_WITH_OPTIONS" = "Duplicar Entrada…";
 
 /* Menu item in the database outline context menu to change the template group
- Menu item on the add entry context menu to edit template groups */
+   Menu item on the add entry context menu to edit template groups */
 "EDIT_TEMPLATE_GROUP" = "Editar Grupo de Plantilla";
 
 /* Empty Trash
- Menu item in the database outline context menu to empyt the trash
- Menu item in the database outline to empty the trash
- Menu item to empty the trash */
+   Menu item in the database outline context menu to empyt the trash
+   Menu item in the database outline to empty the trash
+   Menu item to empty the trash */
 "EMPTY_TRASH" = "Vaciar Papelera";
 
 /* Informative text for the enforce password change alert */
@@ -330,7 +355,7 @@
 /* Error description given when adding an invalid plugin */
 "ERROR_INVALID_PLUGIN" = "Plugin inválido";
 
-/* Error description for missing accessibility permissions */
+/* Error description for missing accessibilty permissions */
 "ERROR_NO_ACCESSIBILTY_PERMISSIONS" = "MacPass no tiene permiso para controlar su ordenador (Accesibilidad)";
 
 /* Error description for missing screen recording permissions */
@@ -358,7 +383,7 @@
 "FILE_CHANGE_STRATEGY_KEEP_MINE" = "Mantener mi versión e ignorar otros cambios";
 
 /* Button in dialog to merge changes into file!
- External file change strategy option: Merge external changes into local file. */
+   External file change strategy option: Merge external changes into local file. */
 "FILE_CHANGE_STRATEGY_MERGE" = "Fusionar cambios";
 
 /* External file change strategy option: Use the changed file and discard local changes */
@@ -380,7 +405,7 @@
 "GROUP" = "Grupo";
 
 /* History count column title
- Menu item to toggle display of history count column in entry table */
+   Menu item to toggle display of history count column in entry table */
 "HISTORY" = "Historial";
 
 /* Imports a dragged URL for a new entry */
@@ -426,7 +451,7 @@
 "MESSAGE_XML_OPEN_PANEL" = "Seleccionar el archivo XML a importar";
 
 /* Menu item to toggle display of modified date column in entry table
- Modification date column title */
+   Modification date column title */
 "MODIFIED" = "Modificado";
 
 /* Action name when an entry was moved */
@@ -439,16 +464,16 @@
 "NEW_DATABASE" = "Base de Datos";
 
 /* Action name for a newly created entry
- Menu item to create a new entry
- Toolbar item new entry */
+   Menu item to create a new entry
+   Toolbar item new entry */
 "NEW_ENTRY" = "Agregar Entrada";
 
 /* Submenu to add an entry via template */
 "NEW_ENTRY_WITH_TEMPLATE_%@" = "Crear Entrada con Plantilla %@";
 
 /* Action name for a newly created group
- Menu item to create a new group
- Toolbar item new group */
+   Menu item to create a new group
+   Toolbar item new group */
 "NEW_GROUP" = "Agregar Grupo";
 
 /* Expiration date format, when item does not expire */
@@ -461,13 +486,13 @@
 "NO_TEMPLATES" = "No se han encontrado Plantillas";
 
 /* Null placeholder for item input field
- Placeholder text for input fields if no entry or group is selected */
+   Placeholder text for input fields if no entry or group is selected */
 "NONE" = "Ninguno";
 
 /* Displayed name when notes or part of notes was copied
- Menu item to toggle display of notes column in entry table
- Notes column title
- Notes reference item */
+   Menu item to toggle display of notes column in entry table
+   Notes column title
+   Notes reference item */
 "NOTES" = "Notas";
 
 /* Ok Button to dismiss disabled updates alert */
@@ -507,8 +532,8 @@
 "OUTPUT_VALUE" = "Valor de salida";
 
 /* Menu item to toggle display of password column in entry table
- Password column title
- Password reference item */
+   Password column title
+   Password reference item */
 "PASSWORD" = "Contraseña";
 
 /* Window title for the stand-alone password creator window */
@@ -521,12 +546,12 @@
 "PASSWORD_GENERATOR_SET_DEFAULTS" = "Configurar Predeterminados";
 
 /* Placeholder for the password field to aks for password
- Placeholder in the unlock-password input field if password is enabled */
+   Placeholder in the unlock-password input field if password is enabled */
 "PASSWORD_INPUT_ENTER_PASSWORD" = "Introducir Contraseña";
 
 /* Placeholder for the password input field if passwords are disabled
- Placeholder for the repeat password input if passwords are disabled
- Placeholder in the unlock-password input field if password is disabled */
+   Placeholder for the repeat password input if passwords are disabled
+   Placeholder in the unlock-password input field if password is disabled */
 "PASSWORD_INPUT_NO_PASSWORD" = "Sin Contraseña";
 
 /* Placeholder for the repeat password field to aks for the repeated password */
@@ -616,11 +641,11 @@
 /* Restart */
 "RESTART" = "Reiniciar";
 
-/* Action to restore an Entry to a previous state of its history */
+/* Action to restore and Entry to a previous state of it's history */
 "RESTORE_HISTORY_ENTRY" = "Restablecer entrada de historial";
 
 /* Menu item to save the selected attached file.
- Save file menu item title when save will just save the file */
+   Save file menu item title when save will just save the file */
 "SAVE" = "Guardar";
 
 /* Button title to save the generated key file */
@@ -672,13 +697,13 @@
 "SHOW_AUTOTYPE_DOCTOR" = "Mostrar Doctor de Autotecleo";
 
 /* Menu item to show the history of the selected entry
- Toolbar item to toggle history display */
+   Toolbar item to toggle history display */
 "SHOW_HISTORY" = "Mostrar Historial";
 
 /* Displayed name when title field was copied
- Menu item to toggle display of title column in entry table
- Title column title
- Title reference item */
+   Menu item to toggle display of title column in entry table
+   Title column title
+   Title reference item */
 "TITLE" = "Título";
 
 /* preset to expire tomorrow */
@@ -748,18 +773,18 @@
 "UPDATE_PREFERENCES" = "Actualizaciones";
 
 /* Menu item to toggle display of url column in entry table
- Submenu with options what to do with the URL of an entry
- Url column title
- URL reference item */
+   Submenu with options what to do with the URL of an entry
+   Url column title
+   URL reference item */
 "URL" = "URL";
 
 /* Menu item to toggle display of username column in entry table
- Username column title
- Username reference item */
+   Username column title
+   Username reference item */
 "USERNAME" = "Nombre de usuario";
 
 /* Displayed name when uuid field was copied
- UUID reference item */
+   UUID reference item */
 "UUID" = "UUID";
 
 /* No Key or Password */
@@ -788,3 +813,4 @@
 
 /* Yesterday */
 "YESTERDAY" = "Ayer";
+
