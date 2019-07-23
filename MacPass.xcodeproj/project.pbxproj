@@ -230,7 +230,6 @@
 		4CAD748C15B889B700104512 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4CAD748B15B889B700104512 /* Security.framework */; };
 		4CAD748E15B88AC100104512 /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 4CAD748D15B88AC100104512 /* libz.dylib */; };
 		4CAD8AA622CF397B0090B2DD /* MPAutotypeDoctorReportViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CAD8AA422CF397B0090B2DD /* MPAutotypeDoctorReportViewController.m */; };
-		4CAD8AA722CF397B0090B2DD /* AutotypeDoctorReportViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4CAD8AA522CF397B0090B2DD /* AutotypeDoctorReportViewController.xib */; };
 		4CB33F861EAF54A000C9341E /* KPKNode+MPIsHistory.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CB33F851EAF54A000C9341E /* KPKNode+MPIsHistory.m */; };
 		4CB9339916D3A0DD00A13B5D /* Credits.rtf in Resources */ = {isa = PBXBuildFile; fileRef = 4CB9339716D3A0DD00A13B5D /* Credits.rtf */; };
 		4CBA2ABA17074C07006D8139 /* MPSettingsHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CBA2AB917074C07006D8139 /* MPSettingsHelper.m */; };
@@ -295,6 +294,7 @@
 		6021FE8D18E1617300C3BC51 /* PasswordCreatorView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6021FE8F18E1617300C3BC51 /* PasswordCreatorView.xib */; };
 		6021FE9818E1650F00C3BC51 /* DatabaseSettingsWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6021FE9A18E1650F00C3BC51 /* DatabaseSettingsWindow.xib */; };
 		7837112C225540D1009BD28D /* PluginRepositoryBrowserView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7837112E225540D1009BD28D /* PluginRepositoryBrowserView.xib */; };
+		78E1F8B022E3A5D600E738AE /* AutotypeDoctorReportViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 78E1F8B222E3A5D600E738AE /* AutotypeDoctorReportViewController.xib */; };
 		FA13910C1F9CD9EB0033D256 /* Localizable.stringsdict in Resources */ = {isa = PBXBuildFile; fileRef = FA13910A1F9CD9EB0033D256 /* Localizable.stringsdict */; };
 		FA9FD3271FB5E8F4003CEDD6 /* AutotypeCandidateSelectionView.xib in Resources */ = {isa = PBXBuildFile; fileRef = FA9FD3291FB5E8F4003CEDD6 /* AutotypeCandidateSelectionView.xib */; };
 		FA9FD32C1FB5EDD3003CEDD6 /* AutotypeBuilderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = FA9FD32E1FB5EDD3003CEDD6 /* AutotypeBuilderView.xib */; };
@@ -791,7 +791,6 @@
 		4CAD748D15B88AC100104512 /* libz.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.dylib; path = usr/lib/libz.dylib; sourceTree = SDKROOT; };
 		4CAD8AA322CF397B0090B2DD /* MPAutotypeDoctorReportViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MPAutotypeDoctorReportViewController.h; sourceTree = "<group>"; };
 		4CAD8AA422CF397B0090B2DD /* MPAutotypeDoctorReportViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MPAutotypeDoctorReportViewController.m; sourceTree = "<group>"; };
-		4CAD8AA522CF397B0090B2DD /* AutotypeDoctorReportViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AutotypeDoctorReportViewController.xib; sourceTree = "<group>"; };
 		4CB33F841EAF54A000C9341E /* KPKNode+MPIsHistory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "KPKNode+MPIsHistory.h"; sourceTree = "<group>"; };
 		4CB33F851EAF54A000C9341E /* KPKNode+MPIsHistory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "KPKNode+MPIsHistory.m"; sourceTree = "<group>"; };
 		4CB63A6018986530002DEC4C /* MPFlagsHelper.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MPFlagsHelper.h; sourceTree = "<group>"; };
@@ -974,6 +973,16 @@
 		7837112D225540D1009BD28D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/PluginRepositoryBrowserView.xib; sourceTree = "<group>"; };
 		78371130225540D8009BD28D /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/PluginRepositoryBrowserView.strings; sourceTree = "<group>"; };
 		78371132225540DE009BD28D /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/PluginRepositoryBrowserView.strings; sourceTree = "<group>"; };
+		78E1F8AF22E3A3DF00E738AE /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/IntegrationPreferences.strings; sourceTree = "<group>"; };
+		78E1F8B122E3A5D600E738AE /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/AutotypeDoctorReportViewController.xib; sourceTree = "<group>"; };
+		78E1F8B422E3A5DB00E738AE /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/AutotypeDoctorReportViewController.strings; sourceTree = "<group>"; };
+		78E1F8B622E3A5E900E738AE /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/AutotypeDoctorReportViewController.strings; sourceTree = "<group>"; };
+		78E1F8B822E3B06700E738AE /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/PickcharsView.strings; sourceTree = "<group>"; };
+		78E1F8BA22E3B0B700E738AE /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/PickfieldView.strings; sourceTree = "<group>"; };
+		78E1F8BC22E3B12300E738AE /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/OpenPanelAccessoryView.strings; sourceTree = "<group>"; };
+		78E1F8BE22E3B1BF00E738AE /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/AutotypeCandidateSelectionView.strings; sourceTree = "<group>"; };
+		78E1F8C022E3B22500E738AE /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/PluginDataView.strings; sourceTree = "<group>"; };
+		78E1F8C122E3B32D00E738AE /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.stringsdict; name = ru; path = ru.lproj/Localizable.stringsdict; sourceTree = "<group>"; };
 		A019D80F22DC6B3C0085FD54 /* es */ = {isa = PBXFileReference; lastKnownFileType = text.plist.stringsdict; name = es; path = es.lproj/Localizable.stringsdict; sourceTree = "<group>"; };
 		A083E27922DF467B0020E0D5 /* es */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = es; path = es.lproj/PickcharsView.strings; sourceTree = "<group>"; };
 		A083E27A22DF467B0020E0D5 /* es */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = es; path = es.lproj/PluginDataView.strings; sourceTree = "<group>"; };
@@ -1011,7 +1020,6 @@
 		FA638D0F1C39BFCB00B10CC6 /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/PasswordEditWindow.strings; sourceTree = "<group>"; };
 		FA638D101C39BFCB00B10CC6 /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/WelcomeView.strings; sourceTree = "<group>"; };
 		FA638D111C39BFCB00B10CC6 /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/GeneralPreferences.strings; sourceTree = "<group>"; };
-		FA638D121C39BFCB00B10CC6 /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/IntegrationPreferences.strings; sourceTree = "<group>"; };
 		FA638D131C39BFCC00B10CC6 /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/WorkflowPreferences.strings; sourceTree = "<group>"; };
 		FA638D141C39BFCC00B10CC6 /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/UpdatePreferences.strings; sourceTree = "<group>"; };
 		FA638D151C39BFCC00B10CC6 /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/PluginPreferences.strings; sourceTree = "<group>"; };
@@ -1645,7 +1653,7 @@
 				4C7F8B6A1A10B68400CCB83D /* WelcomeView.xib */,
 				4CAD8AA322CF397B0090B2DD /* MPAutotypeDoctorReportViewController.h */,
 				4CAD8AA422CF397B0090B2DD /* MPAutotypeDoctorReportViewController.m */,
-				4CAD8AA522CF397B0090B2DD /* AutotypeDoctorReportViewController.xib */,
+				78E1F8B222E3A5D600E738AE /* AutotypeDoctorReportViewController.xib */,
 			);
 			name = "View Controller";
 			sourceTree = "<group>";
@@ -1878,7 +1886,7 @@
 				4C3826B41AD04D8E007D7D67 /* 39_HistoryTemplate.pdf in Resources */,
 				4C77E37D15B84A240093A587 /* MainMenu.xib in Resources */,
 				4C3826CD1AD04D8E007D7D67 /* 66_MoneyTemplate.pdf in Resources */,
-				4CAD8AA722CF397B0090B2DD /* AutotypeDoctorReportViewController.xib in Resources */,
+				78E1F8B022E3A5D600E738AE /* AutotypeDoctorReportViewController.xib in Resources */,
 				4CA0B2ED15BCADAC00654E32 /* PreferencesWindow.xib in Resources */,
 				4C76155C1764C04C0015A1A6 /* GeneralPreferences.xib in Resources */,
 				4CD884B715BD47080042BBF8 /* DocumentWindow.xib in Resources */,
@@ -2190,6 +2198,7 @@
 				4C272A282224871900186EEC /* nl */,
 				4C1D56302271F4BC00C3E594 /* fr */,
 				A083E27922DF467B0020E0D5 /* es */,
+				78E1F8B822E3B06700E738AE /* ru */,
 			);
 			name = PickcharsView.xib;
 			sourceTree = "<group>";
@@ -2205,6 +2214,7 @@
 				4C272A2B2224871900186EEC /* nl */,
 				4C1D56372271F4BC00C3E594 /* fr */,
 				A083E27F22DF467B0020E0D5 /* es */,
+				78E1F8BA22E3B0B700E738AE /* ru */,
 			);
 			name = PickfieldView.xib;
 			sourceTree = "<group>";
@@ -2236,6 +2246,7 @@
 				4C272A2A2224871900186EEC /* nl */,
 				4C1D56332271F4BC00C3E594 /* fr */,
 				A083E27C22DF467B0020E0D5 /* es */,
+				78E1F8BC22E3B12300E738AE /* ru */,
 			);
 			name = OpenPanelAccessoryView.xib;
 			sourceTree = "<group>";
@@ -2483,6 +2494,7 @@
 				4C272A292224871900186EEC /* nl */,
 				4C1D56312271F4BC00C3E594 /* fr */,
 				A083E27A22DF467B0020E0D5 /* es */,
+				78E1F8C022E3B22500E738AE /* ru */,
 			);
 			name = PluginDataView.xib;
 			sourceTree = "<group>";
@@ -2530,13 +2542,13 @@
 				6021FE5C18E142A200C3BC51 /* de */,
 				6021FE5E18E142A300C3BC51 /* fr */,
 				BD6C365919484CF40089EB37 /* nl */,
-				FA638D121C39BFCB00B10CC6 /* ru */,
 				4825CC851C414D57003E37E9 /* it */,
 				4C840C481D773E5D0081F605 /* pl */,
 				60ECAD271F12262400EA9DB3 /* zh-Hans */,
 				4C4161051F50333B003BC0AF /* es */,
 				6A74B0662076F4B40049BC29 /* sv-SE */,
 				4C4B2ED522D8D3B100EB6BFD /* en */,
+				78E1F8AF22E3A3DF00E738AE /* ru */,
 			);
 			name = IntegrationPreferences.xib;
 			sourceTree = "<group>";
@@ -2662,6 +2674,16 @@
 			name = PluginRepositoryBrowserView.xib;
 			sourceTree = "<group>";
 		};
+		78E1F8B222E3A5D600E738AE /* AutotypeDoctorReportViewController.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				78E1F8B122E3A5D600E738AE /* Base */,
+				78E1F8B422E3A5DB00E738AE /* ru */,
+				78E1F8B622E3A5E900E738AE /* en */,
+			);
+			name = AutotypeDoctorReportViewController.xib;
+			sourceTree = "<group>";
+		};
 		FA13910A1F9CD9EB0033D256 /* Localizable.stringsdict */ = {
 			isa = PBXVariantGroup;
 			children = (
@@ -2672,6 +2694,7 @@
 				6A74B0792076F4B50049BC29 /* sv-SE */,
 				4C1D562F2271F4BC00C3E594 /* fr */,
 				A019D80F22DC6B3C0085FD54 /* es */,
+				78E1F8C122E3B32D00E738AE /* ru */,
 			);
 			name = Localizable.stringsdict;
 			sourceTree = "<group>";
@@ -2687,6 +2710,7 @@
 				6A74B0742076F4B50049BC29 /* sv-SE */,
 				4C1D56322271F4BC00C3E594 /* fr */,
 				A083E27B22DF467B0020E0D5 /* es */,
+				78E1F8BE22E3B1BF00E738AE /* ru */,
 			);
 			name = AutotypeCandidateSelectionView.xib;
 			sourceTree = "<group>";
