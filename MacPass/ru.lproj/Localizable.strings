@@ -37,6 +37,18 @@
 /* Action to add an entry via template */
 "ADD_TREMPLATE_ENTRY" = "Создать шаблонную запись";
 
+/* Allow the download of the plugin repository file */
+"ALERT_ASK_FOR_PLUGIN_REPOSITORY_ALLOW_DOWNLOAD" = "Разрешить обновление";
+
+/* Informative text displayed on the alert that shows up when MacPass asks for permssion to download the plugin repository JSON file */
+"ALERT_ASK_FOR_PLUGIN_REPOSITORY_CONNECTION_PERMISSION_INFORMATIVE_TEXT" = "Информация о плагинах находится на сайте https://macpassapp.org. MacPass скачает файлы чтобы проверить наличие обновлений.";
+
+/* Message displayed on the alert that asks for permission to download the plugin repository JSON file */
+"ALERT_ASK_FOR_PLUGIN_REPOSITORY_CONNECTION_PERMISSION_MESSAGE" = "Проверять обновления плагинов?";
+
+/* Disallow the download of the plugin repository file */
+"ALERT_ASK_FOR_PLUGIN_REPOSITORY_DISALLOW_DOWNLOAD" = "Запретить обновление";
+
 /* Button in dialog to leave autotype disabled and continiue! */
 "ALERT_AUTOTYPE_MISSING_ACCESSIBILTY_PERMISSIONS_BUTTON_OK" = "Оставить отключенным";
 
@@ -101,6 +113,12 @@
 /* Menu item for automatic trash creation */
 "AUTOCREATE_TRASH_FOLDER" = "Создать Автоматически";
 
+/* Message text in the autotype selection window. Placeholder is %1 - windowTitle */
+"AUTOTYPE_CANDIDATE_SELECTION_WINDOW_MESSAGE_%@" = "Найдено несколько совпадений для текущего окна: %@. Выберите какое совпадение следует использовать.";
+
+/* Window title for the stand-alone password creator window */
+"AUTOTYPE_DOCTOR_RESULTS_WINDOW_TITLE" = "Помощник автоввода";
+
 /* Inherit autotype settings menu item */
 "AUTOTYPE_INHERIT" = "Наследовать Настройки Автоввода";
 
@@ -110,8 +128,8 @@
 /* Disable autotype menu item */
 "AUTOTYPE_NO" = "Отключить Автоввод";
 
-/* Notification: Autotype failed, MacPass has no permission to send key strokes */
-"AUTOTYPE_NOTIFICATION_MACPASS_HAS_NO_ACCESSIBILTY_PERMISSIONS" = "Автоввод отключен, так как MacPass не имеет разрешений универсального доступа";
+/* Notification: Autotype failed, MacPass has not enough permissions to perform autotype */
+"AUTOTYPE_NOTIFICATION_MACPASS_IS_MISSING_PERMISSIONS" = "MacPass не имеет необходимых разрешений для выполнения автоввода";
 
 /* Notification: Autotype failed, no documents are open */
 "AUTOTYPE_OVERLAY_NO_DOCUMENTS" = "Откройте файл базы данных для использования глобального автоввода!";
@@ -121,6 +139,18 @@
 
 /* Notification: Autotype found a single match for %@ (string placeholder). */
 "AUTOTYPE_OVERLAY_SINGLE_MATCH_FOR_%@" = "Найдено совпадение с %@";
+
+/* Status lable when no issue were found in accessibilty */
+"AUTOTYPE_STATUS_ACCESSIBILTY_PERMISSIONS_OK" = "MacPass имеет разрешение на управление компьютером";
+
+/* Status MacPass has no accessibilty permissions */
+"AUTOTYPE_STATUS_NO_ACCESSIBILTY_PERMISSIONS" = "MacPass не имеет разрешения на управление компьютером";
+
+/* Status MacPass has no screen recording permissions */
+"AUTOTYPE_STATUS_NO_SCREEN_RECORDING_PERMISSIONS" = "MacPass не имеет разрешения на запись экрана";
+
+/* Status lable when no issue were found in screen recording permissions */
+"AUTOTYPE_STATUS_SCREEN_RECORDING_PERMISSIONS_OK" = "MacPass имеет разрешение на запись экрана";
 
 /* Notficication: Autotype timed out */
 "AUTOTYPE_TIMED_OUT" = "Истекло время автоввода";
@@ -277,6 +307,14 @@
 /* Empty Trash */
 "DELETE_TRASHED_GROUP" = "Удалить группу из корзины";
 
+/* Action title for copying an entry via drag and drop to another database
+   Action title for moving an entry via drag and drop */
+"DRAG_ENTRY" = "Перетащить запись";
+
+/* Action title for moving a group via drag and drop
+   Actiontitle for copying groups via drag and drop to antother database */
+"DRAG_GROUP" = "Перетащить группу";
+
 /* Action name for duplicating entries */
 "DUPLICATE_ENTRIES_%ld" = "Дублирующиеся записи %ld";
 
@@ -316,6 +354,12 @@
 
 /* Error description given when adding an invalid plugin */
 "ERROR_INVALID_PLUGIN" = "Недействительный плагин";
+
+/* Error description for missing accessibilty permissions */
+"ERROR_NO_ACCESSIBILTY_PERMISSIONS" = "MacPass не имеет разрешения на управление компьютером (Универсальный доступ)";
+
+/* Error description for missing screen recording permissions */
+"ERROR_NO_PERMISSION_TO_RECORD_SCREEN" = "MacPass не имеет разрешения на запись экрана";
 
 /* Passwords do not match */
 "ERROR_PASSWORD_MISSMATCH" = "Пароли не соответствуют!";
@@ -477,9 +521,6 @@
 
 /* Action button in Notification to open a document */
 "OPEN_DOCUMENT" = "Открыть Документ";
-
-/* Action button in Notification to show the Accessibilty preferences */
-"OPEN_PREFERENCES" = "Открыть настройки";
 
 /* Menu item to open the URL with the default application */
 "OPEN_URL" = "Открыть URL";
@@ -652,6 +693,9 @@
 /* Checkbox in dialog to set the selection as default file change strategy! */
 "SET_AS_DEFAULT_FILE_CHANGE_STRATEGY" = "Использовать этот способ по умолчанию. Вы сможете поменять это в любое время в настройках.";
 
+/* Action button in Notification to show the Autotype Doctor */
+"SHOW_AUTOTYPE_DOCTOR" = "Показать помощник автоввода";
+
 /* Menu item to show the history of the selected entry
    Toolbar item to toggle history display */
 "SHOW_HISTORY" = "Показать историю";
@@ -668,11 +712,47 @@
 /* Toolbar item to perform autotype */
 "TOOLBAR_PERFORM_AUTOTYPE_FOR_ENTRY" = "Автоввод";
 
+/* Touchbar button label for choosing the keyfile */
+"TOUCHBAR_CHOOSE_KEYFILE" = "Выбрать файл ключа";
+
+/* Touchbar button label for copying the password */
+"TOUCHBAR_COPY_PASSWORD" = "Копировать пароль";
+
+/* Touchbar button label for copying the username */
+"TOUCHBAR_COPY_USERNAME" = "Копировать имя пользователя";
+
+/* Touchbar button label for deleting elements */
+"TOUCHBAR_DELETE" = "Удалить";
+
+/* Touchbar button label for opening the popover to edit */
+"TOUCHBAR_EDIT" = "Редактировать";
+
+/* Touchbar button label for locking the database */
+"TOUCHBAR_LOCK_DATABASE" = "Заблокировать базу данных";
+
+/* Touchbar button label for creating a new item */
+"TOUCHBAR_NEW_ENTRY" = "Новая запись";
+
+/* Touchbar button label for creating a new group */
+"TOUCHBAR_NEW_GROUP" = "Новая группа";
+
+/* Touchbar button label for performing autotype */
+"TOUCHBAR_PERFORM_AUTOTYPE" = "Автоввод";
+
+/* Touchbar button label for searching the database */
+"TOUCHBAR_SEARCH" = "Поиск базы данных";
+
+/* Touchbar button label for showing the password */
+"TOUCHBAR_SHOW_PASSWORD" = "Показать пароль";
+
+/* Touchbar button label for unlocking the database */
+"TOUCHBAR_UNLOCK_DATABASE" = "Разблокировать базу данных";
+
 /* Move Entry to Trash */
-"TRASH_ENTRY" = "Удалить Запись";
+"TRASH_ENTRY" = "Удалить запись";
 
 /* Move Group to Trash */
-"TRASH_GROUP" = "Удалить Группу";
+"TRASH_GROUP" = "Удалить группу";
 
 /* Uninstall plugin */
 "UNINSTALL" = "Удалить";
