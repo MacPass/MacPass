@@ -175,8 +175,8 @@ NSString *const MPPluginRepositoryDidUpdateAvailablePluginsNotification = @"com.
     alert.informativeText = NSLocalizedString(@"ALERT_ASK_FOR_PLUGIN_REPOSITORY_CONNECTION_PERMISSION_INFORMATIVE_TEXT", @"Informative text displayed on the alert that shows up when MacPass asks for permssion to download the plugin repository JSON file");
     alert.messageText = NSLocalizedString(@"ALERT_ASK_FOR_PLUGIN_REPOSITORY_CONNECTION_PERMISSION_MESSAGE", @"Message displayed on the alert that asks for permission to download the plugin repository JSON file");
     alert.showsSuppressionButton = YES;
-    [alert addButtonWithTitle:NSLocalizedString(@"ALERT_ASK_FOR_PLUGIN_REPOSITORY_DISALLOW_DOWNLOAD", @"Disallow the download of the plugin repository file")];
     [alert addButtonWithTitle:NSLocalizedString(@"ALERT_ASK_FOR_PLUGIN_REPOSITORY_ALLOW_DOWNLOAD", @"Allow the download of the plugin repository file")];
+    [alert addButtonWithTitle:NSLocalizedString(@"ALERT_ASK_FOR_PLUGIN_REPOSITORY_DISALLOW_DOWNLOAD", @"Disallow the download of the plugin repository file")];
     NSModalResponse repsonse = [alert runModal];
     BOOL allow = (repsonse == NSAlertFirstButtonReturn);
     [NSUserDefaults.standardUserDefaults setBool:allow forKey:kMPSettingsKeyAllowRemoteFetchOfPluginRepository];
