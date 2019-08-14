@@ -26,12 +26,14 @@
 APPKIT_EXTERN NSString *const MPOutlineViewDidChangeGroupSelection;
 
 @class MPDocument;
+@class KPKGroup;
 
 @interface MPOutlineViewController : MPViewController <MPTargetNodeResolving, NSOutlineViewDelegate, NSMenuDelegate>
 
 - (void)clearSelection;
 - (void)showOutline;
 - (void)registerNotificationsForDocument:(MPDocument *)document;
+- (void)selectGroup:(KPKGroup *)group;
 
 /**
  *	Retrieves the current item for the current mouse location
