@@ -49,18 +49,6 @@
 /* Disallow the download of the plugin repository file */
 "ALERT_ASK_FOR_PLUGIN_REPOSITORY_DISALLOW_DOWNLOAD" = "Do not update defintions";
 
-/* Button in dialog to leave autotype disabled and continiue! */
-"ALERT_AUTOTYPE_MISSING_ACCESSIBILTY_PERMISSIONS_BUTTON_OK" = "Keep Autotype disabled.";
-
-/* Button in dialog to open accessibilty preferences pane! */
-"ALERT_AUTOTYPE_MISSING_ACCESSIBILTY_PERMISSIONS_BUTTON_OPEN_PREFERENCES" = "Open Accessibilty Preferences…";
-
-/* Alert informative text displayed when Autotype performs self check and lacks accessibilty permissions */
-"ALERT_AUTOTYPE_MISSING_ACCESSIBILTY_PERMISSIONS_INFORMATIVE_TEXT" = "The system prevents MacPass from sending key strokes to other Applications. To enable Autotype please grant MacPass Accessibilty rights in the privacy preferences.";
-
-/* Alert message displayed when Autotype performs self check and lacks accessibilty permissions */
-"ALERT_AUTOTYPE_MISSING_ACCESSIBILTY_PERMISSIONS_MESSAGE_TEXT" = "MacPass cannot perform Autotype";
-
 /* Button in dialog to leave plugin ds disabled and continiue! */
 "ALERT_INCOMPATIBLE_PLUGINS_ENCOUNTERED_BUTTON_OK" = "OK";
 
@@ -695,6 +683,9 @@
 
 /* Action button in Notification to show the Autotype Doctor */
 "SHOW_AUTOTYPE_DOCTOR" = "Show Autotype Doctor";
+
+/* Menu item to show the entries group in the outline view */
+"SHOW_GROUP_IN_OUTLINE" = "Show Group in Outline";
 
 /* Menu item to show the history of the selected entry
    Toolbar item to toggle history display */
