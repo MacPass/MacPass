@@ -157,6 +157,7 @@ NSString *const _MPOutlinveViewHeaderViewIdentifier = @"HeaderCell";
   }
   NSUInteger rowToSelect = [self _rowForUUID:groupUUID node:node];
   [self.outlineView selectRowIndexes:[NSIndexSet indexSetWithIndex:rowToSelect] byExtendingSelection:NO];
+  [self.outlineView scrollRowToVisible:rowToSelect];
 }
 
 - (void)_expandItems:(NSTreeNode *)node {

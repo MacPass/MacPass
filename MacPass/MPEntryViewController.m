@@ -602,7 +602,7 @@ NSString *const _MPTableSecurCellView = @"PasswordCell";
 - (void)_setupEntryMenu {
   
   NSMenu *menu = [[NSMenu alloc] init];
-  NSArray *items = [MPContextMenuHelper contextMenuItemsWithItems:MPContextMenuFull];
+  NSArray *items = [MPContextMenuHelper contextMenuItemsWithItems:MPContextMenuFull|MPContextMenuShowGroupInOutline];
   for(NSMenuItem *item in items) {
     [menu addItem:item];
   }
@@ -777,12 +777,8 @@ NSString *const _MPTableSecurCellView = @"PasswordCell";
 }
 
 - (void)_executeGroupColumnDoubleClick {
-  NSUInteger clickedRow = self.entryTable.clickedRow;
-  if(clickedRow < 0 || clickedRow > [self.entryArrayController.arrangedObjects count]) {
-    return;
-  }
-  KPKEntry *entry = self.entryArrayController.arrangedObjects[clickedRow];
-  [((MPDocumentWindowController *)self.windowController).outlineViewController selectGroup:entry.parent];
+  id target = [NSApp targetForAction:@selector(showGroupInOutline:)];
+  [target showGroupInOutline:self];
 }
 
 - (void)_executeTitleColumnDoubleClick {

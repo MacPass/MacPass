@@ -158,7 +158,7 @@ typedef NS_OPTIONS(NSInteger, MPAppStartupState) {
     [fileMenu insertItem:item atIndex:insertIndex];
   }
   [self.itemMenu removeAllItems];
-  for(NSMenuItem *item in [MPContextMenuHelper contextMenuItemsWithItems:MPContextMenuFull]) {
+  for(NSMenuItem *item in [MPContextMenuHelper contextMenuItemsWithItems:MPContextMenuFull|MPContextMenuShowGroupInOutline]) {
     [self.itemMenu addItem:item];
   }
   self.itemMenu.delegate = self.itemActionMenuDelegate;

@@ -23,7 +23,7 @@
 #import <Foundation/Foundation.h>
 
 /**
- Delegate is used for context menus that are show in the entries table
+ Delegate is used for context menus that are show in the entries table as well as the items menu in the main menu
  */
 @interface MPEntryContextMenuDelegate : NSObject <NSMenuDelegate>
 

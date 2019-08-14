@@ -57,6 +57,7 @@
                    @(MPActionToggleQuicklook):                  NSStringFromSelector(@selector(toggleQuicklookPreview:)),
                    @(MPActionShowEntryHistory):                 NSStringFromSelector(@selector(showEntryHistory:)),
                    @(MPActionHideEntryHistory):                 NSStringFromSelector(@selector(hideEntryHistory:)),
+                   @(MPActionShowGroupInOutline):               NSStringFromSelector(@selector(showGroupInOutline:)),
                    @(MPActionPerformAutotypeForSelectedEntry):  NSStringFromSelector(@selector(performAutotypeForEntry:)),
                    @(MPActionRemoveAttachment):                 NSStringFromSelector(@selector(removeAttachment:))
                    };

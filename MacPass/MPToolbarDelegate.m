@@ -128,7 +128,7 @@ NSString *const MPToolbarItemAutotype = @"TOOLBAR_AUTOTYPE";
       NSMenuItem *actionImageItem = [[NSMenuItem alloc] initWithTitle:@"" action:NULL keyEquivalent:@""];
       actionImageItem.image = self.toolbarImages[MPToolbarItemAction];
       [menu addItem:actionImageItem];
-      NSArray *menuItems = [MPContextMenuHelper contextMenuItemsWithItems:MPContextMenuExtended];
+      NSArray *menuItems = [MPContextMenuHelper contextMenuItemsWithItems:MPContextMenuExtended|MPContextMenuShowGroupInOutline];
       for(NSMenuItem *item in menuItems) {
         [menu addItem:item];
       }
