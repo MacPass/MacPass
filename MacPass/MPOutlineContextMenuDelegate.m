@@ -57,7 +57,7 @@ NSString *const _MPOutlineMenuTemplate = @"Template";
   
   if( [item isKindOfClass:KPKGroup.class]) {
     KPKGroup *group = (KPKGroup *)item;
-    MPDocument *document = [NSDocumentController sharedDocumentController].currentDocument;
+    MPDocument *document = NSDocumentController.sharedDocumentController.currentDocument;
     if(group && document.root == group ) {
       
     }

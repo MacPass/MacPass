@@ -64,8 +64,11 @@ static void MPContextmenuHelperBeginSection(NSMutableArray *items) {
     NSMenuItem *duplicateEntyWithOptions = [[NSMenuItem alloc] initWithTitle:NSLocalizedString(@"DUPLICATE_ENTRY_WITH_OPTIONS", @"Menu item to duplicate an entry with options how to duplicate. Will present a dialog.")
                                                                       action:[MPActionHelper actionOfType:MPActionDuplicateEntryWithOptions]
                                                                keyEquivalent:@""];
-    
-    [items addObjectsFromArray:@[ duplicateEntry, duplicateEntyWithOptions ]];
+    NSMenuItem *duplicateGroup = [[NSMenuItem alloc] initWithTitle:NSLocalizedString(@"DUPLICATE_GROUP", @"Menu item to directly diplicate a group")
+                                                            action:[MPActionHelper actionOfType:MPActionDuplicateGroup]
+                                                     keyEquivalent:@""];
+
+    [items addObjectsFromArray:@[ duplicateEntry, duplicateEntyWithOptions, duplicateGroup ]];
     
   }
   if(insertDelete || insertTrash) {
