@@ -23,7 +23,7 @@
 #import "KPKEntry+MPCustomAttributeProperties.h"
 #import <objc/runtime.h>
 
-NSString *const MPCustomAttributePropertyPrefix = @"valueForCustomAttribute";
+NSString *const MPCustomAttributePropertyPrefix = @"mp_valueForCustomAttribute";
 
 @implementation KPKEntry (MPCustomAttributeProperties)
 
