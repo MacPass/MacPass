@@ -914,6 +914,7 @@ NSString *const MPDocumentGroupKey                            = @"MPDocumentGrou
     case MPActionCopyCustomAttribute:
     case MPActionCopyAsReference:
       valid &= (nil != targetEntry);
+      break;
     case MPActionShowGroupInOutline:
       valid &= (nil != targetEntry);
       valid &= self.hasSearch;
