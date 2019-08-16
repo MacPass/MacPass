@@ -36,7 +36,7 @@ static id propertyIMP(id self, SEL _cmd) {
 
 + (BOOL)resolveInstanceMethod:(SEL)aSEL {
   if ([NSStringFromSelector(aSEL) hasPrefix:MPCustomAttributePropertyPrefix]) {
-    class_addMethod([self class], aSEL,(IMP)propertyIMP, "@@:");
+    class_addMethod(self.class, aSEL,(IMP)propertyIMP, "@@:");
     return YES;
   }
   return [super resolveInstanceMethod:aSEL];
