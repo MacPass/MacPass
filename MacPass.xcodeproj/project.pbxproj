@@ -809,6 +809,7 @@
 		4CC6DB7917D23719002C6091 /* KPKNode+IconImage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "KPKNode+IconImage.m"; sourceTree = "<group>"; };
 		4CCA7EEC1797866F00B0B55E /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/GeneralPreferences.strings; sourceTree = "<group>"; };
 		4CCA8E9A18D91ED9001A6754 /* Quartz.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Quartz.framework; path = System/Library/Frameworks/Quartz.framework; sourceTree = SDKROOT; };
+		4CCCE532230ACB73009B3D4D /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/AutotypeDoctorReportViewController.strings; sourceTree = "<group>"; };
 		4CCCE7FF1D75CA48006AA951 /* MPArrayController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MPArrayController.h; sourceTree = "<group>"; };
 		4CCCE8001D75CA48006AA951 /* MPArrayController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MPArrayController.m; sourceTree = "<group>"; };
 		4CCEDE28179F203B008402BE /* MPOutlineView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MPOutlineView.h; sourceTree = "<group>"; };
@@ -976,7 +977,6 @@
 		78E1F8AF22E3A3DF00E738AE /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/IntegrationPreferences.strings; sourceTree = "<group>"; };
 		78E1F8B122E3A5D600E738AE /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/AutotypeDoctorReportViewController.xib; sourceTree = "<group>"; };
 		78E1F8B422E3A5DB00E738AE /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/AutotypeDoctorReportViewController.strings; sourceTree = "<group>"; };
-		78E1F8B622E3A5E900E738AE /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/AutotypeDoctorReportViewController.strings; sourceTree = "<group>"; };
 		78E1F8B822E3B06700E738AE /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/PickcharsView.strings; sourceTree = "<group>"; };
 		78E1F8BA22E3B0B700E738AE /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/PickfieldView.strings; sourceTree = "<group>"; };
 		78E1F8BC22E3B12300E738AE /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/OpenPanelAccessoryView.strings; sourceTree = "<group>"; };
@@ -2679,7 +2679,7 @@
 			children = (
 				78E1F8B122E3A5D600E738AE /* Base */,
 				78E1F8B422E3A5DB00E738AE /* ru */,
-				78E1F8B622E3A5E900E738AE /* en */,
+				4CCCE532230ACB73009B3D4D /* en */,
 			);
 			name = AutotypeDoctorReportViewController.xib;
 			sourceTree = "<group>";

@@ -62,27 +62,29 @@
 }
 
 - (BOOL)hasScreenRecordingPermissions:(NSError *__autoreleasing*)error {
-  BOOL canRecordScreen = YES;
   /* macos 10.14 and lower do not require screen recording permission to get window titles */
-  if(@available(macos 10.15, *)) {
-    /*
-     To minimize the intrusion just make a 1px image of the upper left corner
-     This way there is no real possibilty to access any private data
-     */
-    CGImageRef screenshot = CGWindowListCreateImage(
-                                                    CGRectMake(0, 0, 1, 1),
-                                                    kCGWindowListOptionOnScreenOnly,
-                                                    kCGNullWindowID,
-                                                    kCGWindowImageDefault);
-    BOOL canRecordScreen = !screenshot;
-    if(!canRecordScreen) {
-      CFRelease(screenshot);
+  if (@available(macOS 10.15, *)) {
+    CFArrayRef windowList = CGWindowListCopyWindowInfo(kCGWindowListOptionOnScreenOnly, kCGNullWindowID);
+    NSUInteger numberOfWindows = CFArrayGetCount(windowList);
+    NSUInteger numberOfWindowsWithName = 0;
+    for(int idx = 0; idx < numberOfWindows; idx++) {
+      NSDictionary *windowInfo = (NSDictionary *)CFArrayGetValueAtIndex(windowList, idx);
+      NSString *windowName = windowInfo[(id)kCGWindowName];
+      if(windowName) {
+        numberOfWindowsWithName++;
+      }
+      else {
+        break; //breaking early, numberOfWindowsWithName not increased
+      }
     }
+    CFRelease(windowList);
+    BOOL canRecordScreen = (numberOfWindows == numberOfWindowsWithName);
     if(!canRecordScreen && error) {
       *error = [NSError errorInDomain:MPAutotypeErrorDomain withCode:MPErrorAutotypeIsMissingScreenRecordingPermissions description:NSLocalizedString(@"ERROR_NO_PERMISSION_TO_RECORD_SCREEN", "Error description for missing screen recording permissions")];
     }
+    return canRecordScreen;
   }
-  return canRecordScreen;
+  return YES;
 }
 
 - (BOOL)hasAccessibiltyPermissions:(NSError *__autoreleasing*)error {
@@ -122,7 +124,7 @@
   }
   MPAutotypeDoctorReportViewController *vc = [[MPAutotypeDoctorReportViewController alloc] init];
   self.reportWindow.contentViewController = vc;
-
+  
   [self.reportWindow center];
   [self.reportWindow makeKeyAndOrderFront:vc];
 }
