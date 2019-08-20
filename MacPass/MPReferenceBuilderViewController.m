@@ -37,8 +37,8 @@
 }
 
 - (void)viewDidLoad {
-  self.searchKeyPopUpButton.menu = [self _allocateAttributeItemMenu:YES withTitle:NSLocalizedString(@"SEARCH_VALUE", "")];
-  self.valuePopUpButton.menu = [self _allocateAttributeItemMenu:NO withTitle:NSLocalizedString(@"OUTPUT_VALUE", "")];
+  self.searchKeyPopUpButton.menu = [self _allocateAttributeItemMenu:YES withTitle:NSLocalizedString(@"SEARCH_VALUE", "Search field for references lookup")];
+  self.valuePopUpButton.menu = [self _allocateAttributeItemMenu:NO withTitle:NSLocalizedString(@"OUTPUT_VALUE", "Value field for reference lookup")];
   [self.searchStringTextField bind:NSValueBinding toObject:self withKeyPath:NSStringFromSelector(@selector(searchString)) options:nil];
   [self _updateReferenceString];
 }
