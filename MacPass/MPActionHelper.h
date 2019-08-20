@@ -47,6 +47,7 @@ typedef NS_ENUM(NSUInteger, MPActionType) {
   MPActionToggleQuicklook,
   MPActionShowEntryHistory, // show history
   MPActionHideEntryHistory, // exit history
+  MPActionShowGroupInOutline, // show the group (of the entry) in the outline view
   MPActionPerformAutotypeForSelectedEntry, // Perform Autotype for selected Entry
   MPActionRemoveAttachment // Remove an attachment
 };

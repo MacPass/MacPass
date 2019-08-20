@@ -37,15 +37,21 @@
   NSString *(*func2)(id, SEL, NSString*) = (void *)imp2;
   NSString *value2 = func2(entry, selector2, attribute2.key);
   XCTAssertEqualObjects(value2, attribute2.value);
-
-  SEL selector3 = NSSelectorFromString([MPCustomAttributePropertyPrefix stringByAppendingString:@"novalidkey"]);
-  IMP imp3 = [entry methodForSelector:selector3];
-  NSString *(*func3)(id, SEL, NSString*) = (void *)imp3;
-  NSString *value3 = func3(entry, selector3, @"novalidkey");
-  XCTAssertNil(value3);
 }
 
 - (void)testInvalidCustomAttribute {
+  KPKEntry *entry = [[KPKEntry alloc] init];
+  KPKAttribute *attribute1 = [[KPKAttribute alloc] initWithKey:@"custom1" value:@"value1"];
+  KPKAttribute *attribute2 = [[KPKAttribute alloc] initWithKey:@"custom2" value:@"value2"];
+  [entry addCustomAttribute:attribute1];
+  [entry addCustomAttribute:attribute2];
+  
+  SEL selector = NSSelectorFromString([MPCustomAttributePropertyPrefix stringByAppendingString:@"novalidkey"]);
+  IMP imp = [entry methodForSelector:selector];
+  NSString *(*func)(id, SEL, NSString*) = (void *)imp;
+  NSString *value = func(entry, selector, @"novalidkey");
+  XCTAssertNil(value);
+
 }
 
 

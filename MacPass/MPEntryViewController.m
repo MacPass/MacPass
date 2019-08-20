@@ -602,7 +602,7 @@ NSString *const _MPTableSecurCellView = @"PasswordCell";
 - (void)_setupEntryMenu {
   
   NSMenu *menu = [[NSMenu alloc] init];
-  NSArray *items = [MPContextMenuHelper contextMenuItemsWithItems:MPContextMenuFull];
+  NSArray *items = [MPContextMenuHelper contextMenuItemsWithItems:MPContextMenuFull|MPContextMenuShowGroupInOutline];
   for(NSMenuItem *item in items) {
     [menu addItem:item];
   }
@@ -752,11 +752,11 @@ NSString *const _MPTableSecurCellView = @"PasswordCell";
   if(0 == [self.entryArrayController.arrangedObjects count]) {
     return; // No data available
   }
-  NSInteger columnIndex = [self.entryTable clickedColumn];
+  NSInteger columnIndex = self.entryTable.clickedColumn;
   if(columnIndex < 0 || columnIndex >= self.entryTable.tableColumns.count) {
     return; // No Column to use
   }
-  NSTableColumn *column = self.entryTable.tableColumns[self.entryTable.clickedColumn];
+  NSTableColumn *column = self.entryTable.tableColumns[columnIndex];
   NSString *identifier = column.identifier;
   if([identifier isEqualToString:MPEntryTableTitleColumnIdentifier]) {
     [self _executeTitleColumnDoubleClick];
@@ -770,7 +770,15 @@ NSString *const _MPTableSecurCellView = @"PasswordCell";
   else if([identifier isEqualToString:MPEntryTableURLColumnIdentifier]) {
     [self _executeURLColumnDoubleClick];
   }
+  else if([identifier isEqualToString:MPEntryTableParentColumnIdentifier]) {
+    [self _executeGroupColumnDoubleClick];
+  }
   // TODO: Add more actions for new columns
+}
+
+- (void)_executeGroupColumnDoubleClick {
+  id target = [NSApp targetForAction:@selector(showGroupInOutline:)];
+  [target showGroupInOutline:self];
 }
 
 - (void)_executeTitleColumnDoubleClick {

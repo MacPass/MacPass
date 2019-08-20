@@ -1,6 +1,15 @@
 /* Class = "NSWindow"; title = "Window"; ObjectID = "1"; */
 "1.title" = "Окно";
 
+/* Class = "NSTextFieldCell"; title = "Threads"; ObjectID = "2QI-ne-N5d"; */
+"2QI-ne-N5d.title" = "Потоков";
+
+/* Class = "NSTextFieldCell"; title = "Iterations"; ObjectID = "2ZA-Gc-JdZ"; */
+"2ZA-Gc-JdZ.title" = "Повторений";
+
+/* Class = "NSTextFieldCell"; title = "Enforce key change"; ObjectID = "5QH-N1-FHK"; */
+"5QH-N1-FHK.title" = "Смена ключа:";
+
 /* Class = "NSTextFieldCell"; title = "Database name:"; ObjectID = "190"; */
 "190.title" = "Имя базы данных:";
 
@@ -61,14 +70,36 @@
 /* Class = "NSMenu"; title = "OtherViews"; ObjectID = "1740"; */
 "1740.title" = "OtherViews";
 
-/* Class = "NSButtonCell"; title = "Recommend key change"; ObjectID = "CtU-Eq-dgy"; */
-"CtU-Eq-dgy.title" = "Рекомендовать сменую ключа каждые:";
-
-/* Class = "NSButtonCell"; title = "Force key change"; ObjectID = "z6u-YT-7LE"; */
-"z6u-YT-7LE.title" = "Требовать сменую ключа каждые:";
-
 /* Class = "NSTextFieldCell"; title = "File format:"; ObjectID = "bTk-YZ-x0G"; */
 "bTk-YZ-x0G.title" = "Формат файла";
 
+/* Class = "NSButtonCell"; title = "Recommend key change"; ObjectID = "CtU-Eq-dgy"; */
+"CtU-Eq-dgy.title" = "Рекомендовать смену ключа";
+
+/* Class = "NSTextFieldCell"; title = "Algorithm"; ObjectID = "GVd-KH-pHc"; */
+"GVd-KH-pHc.title" = "Алгоритм";
+
+/* Class = "NSTextFieldCell"; title = "Encryption:"; ObjectID = "gxY-UL-bEG"; */
+"gxY-UL-bEG.title" = "Шифрование:";
+
+/* Class = "NSTextFieldCell"; title = "Memory"; ObjectID = "iRY-If-Kwn"; */
+"iRY-If-Kwn.title" = "Память";
+
+/* Class = "NSTextFieldCell"; title = "Recyclebin Group:"; ObjectID = "kI5-Kp-byE"; */
+"kI5-Kp-byE.title" = "Группа для корзины:";
+
 /* Class = "NSButtonCell"; title = "Force key change once after unlocking"; ObjectID = "pA1-aL-KjT"; */
 "pA1-aL-KjT.title" = "Принудительная смена ключа после разблокировки";
+
+/* Class = "NSBox"; title = "Key derivation"; ObjectID = "pbl-Mb-r8V"; */
+"pbl-Mb-r8V.title" = "Функция формирования ключа";
+
+/* Class = "NSTextFieldCell"; title = "Rounds"; ObjectID = "uUQ-9s-M5E"; */
+"uUQ-9s-M5E.title" = "Раунды";
+
+/* Class = "NSTextFieldCell"; title = "Recommend key change"; ObjectID = "Xib-Fn-sqx"; */
+"Xib-Fn-sqx.title" = "Рекомендация смены ключа:";
+
+/* Class = "NSButtonCell"; title = "Force key change"; ObjectID = "z6u-YT-7LE"; */
+"z6u-YT-7LE.title" = "Требовать смену ключа";
+

@@ -38,28 +38,16 @@
 "ADD_TREMPLATE_ENTRY" = "Create Template Entry";
 
 /* Allow the download of the plugin repository file */
-"ALERT_ASK_FOR_PLUGIN_REPOSITORY_ALLOW_DOWNLOAD" = "Do not update defintions";
+"ALERT_ASK_FOR_PLUGIN_REPOSITORY_ALLOW_DOWNLOAD" = "Update definitions online";
 
 /* Informative text displayed on the alert that shows up when MacPass asks for permssion to download the plugin repository JSON file */
 "ALERT_ASK_FOR_PLUGIN_REPOSITORY_CONNECTION_PERMISSION_INFORMATIVE_TEXT" = "The plugin defintions are hosted online at https://macpassapp.org. MacPass would like to download those files to ensure the data is up to date.";
 
 /* Message displayed on the alert that askf for permission to download the plugin repository JSON file */
-"ALERT_ASK_FOR_PLUGIN_REPOSITORY_CONNECTION_PERMISSION_MESSAGE" = "MacPass would like to check for updates of plugin defintions online";
+"ALERT_ASK_FOR_PLUGIN_REPOSITORY_CONNECTION_PERMISSION_MESSAGE" = "MacPass would like to check for updates of plugin definitions online";
 
 /* Disallow the download of the plugin repository file */
-"ALERT_ASK_FOR_PLUGIN_REPOSITORY_DISALLOW_DOWNLOAD" = "Update definitions online";
-
-/* Button in dialog to leave autotype disabled and continiue! */
-"ALERT_AUTOTYPE_MISSING_ACCESSIBILTY_PERMISSIONS_BUTTON_OK" = "Keep Autotype disabled.";
-
-/* Button in dialog to open accessibilty preferences pane! */
-"ALERT_AUTOTYPE_MISSING_ACCESSIBILTY_PERMISSIONS_BUTTON_OPEN_PREFERENCES" = "Open Accessibilty Preferences…";
-
-/* Alert informative text displayed when Autotype performs self check and lacks accessibilty permissions */
-"ALERT_AUTOTYPE_MISSING_ACCESSIBILTY_PERMISSIONS_INFORMATIVE_TEXT" = "The system prevents MacPass from sending key strokes to other Applications. To enable Autotype please grant MacPass Accessibilty rights in the privacy preferences.";
-
-/* Alert message displayed when Autotype performs self check and lacks accessibilty permissions */
-"ALERT_AUTOTYPE_MISSING_ACCESSIBILTY_PERMISSIONS_MESSAGE_TEXT" = "MacPass cannot perform Autotype";
+"ALERT_ASK_FOR_PLUGIN_REPOSITORY_DISALLOW_DOWNLOAD" = "Do not update defintions";
 
 /* Button in dialog to leave plugin ds disabled and continiue! */
 "ALERT_INCOMPATIBLE_PLUGINS_ENCOUNTERED_BUTTON_OK" = "OK";
@@ -68,10 +56,10 @@
 "ALERT_INCOMPATIBLE_PLUGINS_ENCOUNTERED_BUTTON_OPEN_PREFERENCES" = "Show Plugin Preferences…";
 
 /* Informative text of the alert displayed when plugins where disabled due to incompatibilty */
-"ALERT_INCOMPATIBLE_PLUGINS_ENCOUNTERED_INFORMATIVE_TEXT" = "Some plugins where disabled, because they are not compatible with this version of MacPass. Open the plugin settings for details.";
+"ALERT_INCOMPATIBLE_PLUGINS_ENCOUNTERED_INFORMATIVE_TEXT" = "Some plugins were disabled, because they are not compatible with this version of MacPass. Open the plugin settings for details.";
 
 /* Message text of the alert displayed when plugins where disabled due to incompatibilty */
-"ALERT_INCOMPATIBLE_PLUGINS_ENCOUNTERED_MESSAGE" = "Incompatible Plugins deteced.";
+"ALERT_INCOMPATIBLE_PLUGINS_ENCOUNTERED_MESSAGE" = "Incompatible Plugins detected.";
 
 /* Alert informative text when plugins or their settings change and require a restart */
 "ALERT_INFORMATIVE_TEXT_PLUGINS_CHANGED_SUGGEST_RESTART" = "Changes to plugins and global plugin settings take only effect after restart. Restart MacPass now?";
@@ -97,7 +85,7 @@
 /* Alert message text to ask the user if he really want to uninstall the plugin. Include %@ placeholder for plugin name */
 "ALERT_MESSAGE_TEXT_REALLY_UNINSTALL_PLUGIN_%@" = "Should the Plugin %@ really be uninstalled?";
 
-/* Infromative text of the disabled updates alert! */
+/* Informative text of the disabled updates alert! */
 "ALERT_UPDATES_DISABLED_INFORMATIVE_TEXT_%@!" = "Updates for this build of %@ are disabled!";
 
 /* Message text for disabled updates alert! */
@@ -140,11 +128,11 @@
 /* Notification: Autotype found a single match for %@ (string placeholder). */
 "AUTOTYPE_OVERLAY_SINGLE_MATCH_FOR_%@" = "Found Match for %@!";
 
-/* Status lable when no issue were found in accessibilty */
-"AUTOTYPE_STATUS_ACCESSIBILTY_PERMISSIONS_OK" = "MacPass has permission to control your computer (Accessibilty)";
+/* Status label when no issue were found in accessibilty */
+"AUTOTYPE_STATUS_ACCESSIBILTY_PERMISSIONS_OK" = "MacPass has permission to control your computer (Accessibility)";
 
 /* Status MacPass has no accessibilty permissions */
-"AUTOTYPE_STATUS_NO_ACCESSIBILTY_PERMISSIONS" = "MacPass has no permission to control your computer (Accessibilty)";
+"AUTOTYPE_STATUS_NO_ACCESSIBILTY_PERMISSIONS" = "MacPass has no permission to control your computer (Accessibility)";
 
 /* Status MacPass has no screen recording permissions */
 "AUTOTYPE_STATUS_NO_SCREEN_RECORDING_PERMISSIONS" = "MacPass has no permission to record your screen";
@@ -261,7 +249,7 @@
 /* Context menu that copies reference to username */
 "COPY_USERNAME_REFERENCE" = "Username";
 
-/* Curstom attribute reference item */
+/* Custom attribute reference item */
 "CUSTOM_ATTRIBUTE" = "Custom Attribute";
 
 /* Title for menu for custom search filters */
@@ -355,8 +343,8 @@
 /* Error description given when adding an invalid plugin */
 "ERROR_INVALID_PLUGIN" = "Invalid plugin";
 
-/* Error description for missing accessibilty permissions */
-"ERROR_NO_ACCESSIBILTY_PERMISSIONS" = "MacPass has no permission to control your computer (Accessibilty)";
+/* Error description for missing accessibility permissions */
+"ERROR_NO_ACCESSIBILTY_PERMISSIONS" = "MacPass has no permission to control your computer (Accessibility)";
 
 /* Error description for missing screen recording permissions */
 "ERROR_NO_PERMISSION_TO_RECORD_SCREEN" = "MacPass has no permission to record your screen";
@@ -608,7 +596,7 @@
 /* Error for a plugin that was not signed properly */
 "PLUGIN_ERROR_UNSECURE_PLUGIN" = "Plugin is not properly signed";
 
-/* Plugin specifies the wrong principla class! */
+/* Plugin specifies the wrong principal class! */
 "PLUGIN_ERROR_WRONG_PRINCIPAL_CLASS" = "Unexpected principal class in plugin";
 
 /* name for disabled unloaded plugin */
@@ -641,7 +629,7 @@
 /* Restart */
 "RESTART" = "Restart";
 
-/* Action to restore and Entry to a previous state of it's history */
+/* Action to restore an Entry to a previous state of its history */
 "RESTORE_HISTORY_ENTRY" = "Restore History Entry";
 
 /* Menu item to save the selected attached file.
@@ -695,6 +683,9 @@
 
 /* Action button in Notification to show the Autotype Doctor */
 "SHOW_AUTOTYPE_DOCTOR" = "Show Autotype Doctor";
+
+/* Menu item to show the entries group in the outline view */
+"SHOW_GROUP_IN_OUTLINE" = "Show Group in Outline";
 
 /* Menu item to show the history of the selected entry
    Toolbar item to toggle history display */

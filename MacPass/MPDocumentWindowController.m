@@ -546,6 +546,14 @@ typedef void (^MPPasswordChangedBlock)(BOOL didChangePassword);
   [contentView layoutSubtreeIfNeeded];
 }
 
+- (void)showGroupInOutline:(id)sender {
+  NSArray<KPKEntry *> *targetEntries = self.entryViewController.currentTargetEntries;
+  if(targetEntries.count != 1) {
+    return;
+  }
+  [self.outlineViewController selectGroup:targetEntries.lastObject.parent];
+}
+
 #pragma mark -
 #pragma mark Actions forwarded to MPEntryViewController
 - (void)copyUsername:(id)sender {

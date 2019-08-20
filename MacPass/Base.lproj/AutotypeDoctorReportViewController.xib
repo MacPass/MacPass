@@ -72,14 +72,14 @@
                     <rect key="frame" x="42" y="81" width="340" height="98"/>
                     <textFieldCell key="cell" controlSize="small" selectable="YES" id="7of-1z-Nfk">
                         <font key="font" metaFont="smallSystem"/>
-                        <string key="title">MacPass will read every window title when Global Autotype is executed to find a match. Since macOS 10.15 Catalina it is not possible to read any window title, if the user has not granted permissions to record the screen. If you are running macOS 10.15 or higher, MacPass will try to capture the left top most pixel on your screen to initate a request to record the screen. This pixel will not be stored and processed in any way.</string>
+                        <string key="title">MacPass will read every window title when Global Autotype is executed to find a match. Since macOS 10.15 Catalina it is not possible to read any window title, if the user has not granted permissions to record the screen. If you are running macOS 10.15 or higher, MacPass will check if it can read every window title of currently visible windows. This test will not read the actual title. The titles aren't stored or processed in any way.</string>
                         <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
                         <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                     </textFieldCell>
                 </textField>
                 <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="dek-ho-dPm">
-                    <rect key="frame" x="38" y="33" width="256" height="32"/>
-                    <buttonCell key="cell" type="push" title="Open Screen Sharing Preferences…" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="lgB-Ys-L9R">
+                    <rect key="frame" x="38" y="33" width="271" height="32"/>
+                    <buttonCell key="cell" type="push" title="Open Screen Recording Preferences…" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="lgB-Ys-L9R">
                         <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                         <font key="font" metaFont="system"/>
                     </buttonCell>

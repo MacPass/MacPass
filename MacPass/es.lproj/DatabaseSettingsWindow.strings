@@ -1,6 +1,17 @@
-
 /* Class = "NSWindow"; title = "Window"; ObjectID = "1"; */
 "1.title" = "Ventana";
+
+/* Class = "NSTextFieldCell"; title = "Threads"; ObjectID = "2QI-ne-N5d"; */
+"2QI-ne-N5d.title" = "Hilos";
+
+/* Class = "NSTextFieldCell"; title = "Iterations"; ObjectID = "2ZA-Gc-JdZ"; */
+"2ZA-Gc-JdZ.title" = "Iteraciones";
+
+/* Class = "NSTextFieldCell"; title = "Enforce key change"; ObjectID = "5QH-N1-FHK"; */
+"5QH-N1-FHK.title" = "Obligar a cambiar de contraseña";
+
+/* Class = "NSTabViewItem"; label = "Argon2"; ObjectID = "6qB-sH-9FI"; */
+"6qB-sH-9FI.label" = "Argon2";
 
 /* Class = "NSTextFieldCell"; title = "Database name:"; ObjectID = "190"; */
 "190.title" = "Base:";
@@ -26,10 +37,7 @@
 /* Class = "NSButtonCell"; title = "Enable Recycle Bin"; ObjectID = "536"; */
 "536.title" = "Habilitar Papelera de Reciclaje";
 
-/* Class = "NSButtonCell"; title = "Empty Recycle Bin on Quit"; ObjectID = "540"; */
-"540.title" = "Vaciar Papelera de Reciclaje al Salir";
-
-/* Class = "NSTextFieldCell"; title = "Maximum Items:"; ObjectID = "558"; */
+/* Class = "NSTextFieldCell"; title = "Maximum items in history:"; ObjectID = "558"; */
 "558.title" = "Entradas Máximas:";
 
 /* Class = "NSMenu"; title = "OtherViews"; ObjectID = "680"; */
@@ -38,7 +46,7 @@
 /* Class = "NSButtonCell"; title = "Cancel"; ObjectID = "957"; */
 "957.title" = "Cancelar";
 
-/* Class = "NSTextFieldCell"; title = "Maximum Size:"; ObjectID = "1269"; */
+/* Class = "NSTextFieldCell"; title = "Maximum history size:"; ObjectID = "1269"; */
 "1269.title" = "Tamaño Máximo:";
 
 /* Class = "NSMenu"; title = "OtherViews"; ObjectID = "1396"; */
@@ -62,11 +70,48 @@
 /* Class = "NSTextFieldCell"; title = "Default Username:"; ObjectID = "1591"; */
 "1591.title" = "Usuario por Defecto:";
 
-/* Class = "NSTextFieldCell"; title = "Key encryption rounds:"; ObjectID = "1644"; */
-"1644.title" = "Rondas de Clave de Cifrado:";
-
 /* Class = "NSMenu"; title = "OtherViews"; ObjectID = "1740"; */
 "1740.title" = "Otras Vistas";
 
-/* Class = "NSButtonCell"; title = "Benchmark"; ObjectID = "1775"; */
-"1775.title" = "Referencia";
+/* Class = "NSTextFieldCell"; title = "File format:"; ObjectID = "bTk-YZ-x0G"; */
+"bTk-YZ-x0G.title" = "Formato de archivo:";
+
+/* Class = "NSButtonCell"; title = "Recommend key change"; ObjectID = "CtU-Eq-dgy"; */
+"CtU-Eq-dgy.title" = "Recomendar cambio de contraseña";
+
+/* Class = "NSTabViewItem"; label = "Aes"; ObjectID = "ft1-pl-lpO"; */
+"ft1-pl-lpO.label" = "AES";
+
+/* Class = "NSTextFieldCell"; title = "Algorithm"; ObjectID = "GVd-KH-pHc"; */
+"GVd-KH-pHc.title" = "Algoritmo";
+
+/* Class = "NSTextFieldCell"; title = "Encryption:"; ObjectID = "gxY-UL-bEG"; */
+"gxY-UL-bEG.title" = "Cifrado:";
+
+/* Class = "NSTextFieldCell"; title = "Memory"; ObjectID = "iRY-If-Kwn"; */
+"iRY-If-Kwn.title" = "Memoria";
+
+/* Class = "NSTextFieldCell"; title = "Recyclebin Group:"; ObjectID = "kI5-Kp-byE"; */
+"kI5-Kp-byE.title" = "Grupo de papelera:";
+
+/* Class = "NSButtonCell"; title = "Force key change once after unlocking"; ObjectID = "pA1-aL-KjT"; */
+"pA1-aL-KjT.title" = "Obligar a cambiar de contraseña una vez desbloqueado";
+
+/* Class = "NSBox"; title = "Key derivation"; ObjectID = "pbl-Mb-r8V"; */
+"pbl-Mb-r8V.title" = "Derivación de contraseña";
+
+/* Class = "NSButtonCell"; title = "Generate Parameters"; ObjectID = "PoI-Er-Y8P"; */
+"PoI-Er-Y8P.title" = "Generar parámetros";
+
+/* Class = "NSTextFieldCell"; title = "VersionInfo"; ObjectID = "Ush-4r-A1A"; */
+"Ush-4r-A1A.title" = "Información de versión";
+
+/* Class = "NSTextFieldCell"; title = "Rounds"; ObjectID = "uUQ-9s-M5E"; */
+"uUQ-9s-M5E.title" = "Rondas";
+
+/* Class = "NSTextFieldCell"; title = "Recommend key change"; ObjectID = "Xib-Fn-sqx"; */
+"Xib-Fn-sqx.title" = "Recomendar cambio de contraseña";
+
+/* Class = "NSButtonCell"; title = "Force key change"; ObjectID = "z6u-YT-7LE"; */
+"z6u-YT-7LE.title" = "Obligar a cambiar de contraseña";
+

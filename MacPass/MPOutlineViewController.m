@@ -143,6 +143,23 @@ NSString *const _MPOutlinveViewHeaderViewIdentifier = @"HeaderCell";
   }
 }
 
+- (void)selectGroup:(KPKGroup *)group {
+  NSMutableArray *parents = [[NSMutableArray alloc] init];
+  NSUUID *groupUUID = group.uuid;
+  while(group.parent) {
+    [parents insertObject:group.parent atIndex:0];
+    group = group.parent;
+  }
+  NSTreeNode *node = [self.outlineView itemAtRow:0];
+  for(KPKGroup *group in parents) {
+    NSUInteger row = [self _rowForUUID:group.uuid node:node];
+    [self.outlineView expandItem:[self.outlineView itemAtRow:row]];
+  }
+  NSUInteger rowToSelect = [self _rowForUUID:groupUUID node:node];
+  [self.outlineView selectRowIndexes:[NSIndexSet indexSetWithIndex:rowToSelect] byExtendingSelection:NO];
+  [self.outlineView scrollRowToVisible:rowToSelect];
+}
+
 - (void)_expandItems:(NSTreeNode *)node {
   id nodeItem = node.representedObject;
   if([nodeItem isKindOfClass:KPKTree.class]) {
