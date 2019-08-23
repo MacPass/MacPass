@@ -214,7 +214,7 @@
 "COPY_CUSTOM_FIELDS_MENU" = "Copia Campo Personalizzato…";
 
 /* Action name when an entry was moved
- Action title for copying an entry via drag and drop */
+   Action title for copying an entry via drag and drop */
 "COPY_ENTRY" = "Copia Voce";
 
 /* Mask for title to copy field value */
@@ -227,7 +227,7 @@
 "COPY_NOTES_REFERENCE" = "Appunti";
 
 /* Menu item to copy the password of an entry
- Toolbar item copy password */
+   Toolbar item copy password */
 "COPY_PASSWORD" = "Copia Password";
 
 /* Context menu that copies reference to password */
@@ -243,8 +243,8 @@
 "COPY_URL_REFERENCE" = "URL";
 
 /* Menu item to copy the username of an entry
- Toolbar item copy username */
-"COPY_USERNAME" = "Copia nome utente;
+   Toolbar item copy username */
+"COPY_USERNAME" = "Copia nome utente";
 
 /* Context menu that copies reference to username */
 "COPY_USERNAME_REFERENCE" = "Nome utente";
@@ -277,10 +277,10 @@
 "DEFAULT_WINDOW_TITLE" = "Titolo Finestra";
 
 /* Menu item in the database outline context menu to delete the node from the trash
- Menu item to delete an entry
- Menu item to delete the selected attached file
- Menu item to delete the selected custom icon
- Toolbar item delete item */
+   Menu item to delete an entry
+   Menu item to delete the selected attached file
+   Menu item to delete the selected custom icon
+   Toolbar item delete item */
 "DELETE" = "Elimina";
 
 /* Delete Entry */
@@ -296,11 +296,11 @@
 "DELETE_TRASHED_GROUP" = "Elimina Gruppo Cestino";
 
 /* Action title for copying an entry via drag and drop to another database
- Action title for moving an entry via drag and drop */
+   Action title for moving an entry via drag and drop */
 "DRAG_ENTRY" = "Trascina Voce";
 
 /* Action title for moving a group via drag and drop
- Actiontitle for copying groups via drag and drop to antother database */
+   Actiontitle for copying groups via drag and drop to antother database */
 "DRAG_GROUP" = "Trascina Gruppo";
 
 /* Action name for duplicating entries */
@@ -319,13 +319,13 @@
 "DUPLICATE_GROUPS_ACTION_NAME" = "Duplica Gruppo";
 
 /* Menu item in the database outline context menu to change the template group
- Menu item on the add entry context menu to edit template groups */
+   Menu item on the add entry context menu to edit template groups */
 "EDIT_TEMPLATE_GROUP" = "Modifica Gruppo Modello";
 
 /* Empty Trash
- Menu item in the database outline context menu to empyt the trash
- Menu item in the database outline to empty the trash
- Menu item to empty the trash */
+   Menu item in the database outline context menu to empyt the trash
+   Menu item in the database outline to empty the trash
+   Menu item to empty the trash */
 "EMPTY_TRASH" = "Svuota Cestino";
 
 /* Informative text for the enforce password change alert */
@@ -377,7 +377,7 @@
 "FILE_CHANGE_STRATEGY_KEEP_MINE" = "Tenere La Mia Versione e Scartare Altri Cambiamenti";
 
 /* Button in dialog to merge changes into file!
- External file change strategy option: Merge external changes into local file. */
+   External file change strategy option: Merge external changes into local file. */
 "FILE_CHANGE_STRATEGY_MERGE" = "Unire Cambiamenti";
 
 /* External file change strategy option: Use the changed file and discard local changes */
@@ -399,7 +399,7 @@
 "GROUP" = "Gruppo";
 
 /* History count column title
- Menu item to toggle display of history count column in entry table */
+   Menu item to toggle display of history count column in entry table */
 "HISTORY" = "Cronologia";
 
 /* Imports a dragged URL for a new entry */
@@ -445,7 +445,7 @@
 "MESSAGE_XML_OPEN_PANEL" = "Scegliere il documento XML da caricare";
 
 /* Menu item to toggle display of modified date column in entry table
- Modification date column title */
+   Modification date column title */
 "MODIFIED" = "Modificato";
 
 /* Action name when an entry was moved */
@@ -458,16 +458,16 @@
 "NEW_DATABASE" = "Database";
 
 /* Action name for a newly created entry
- Menu item to create a new entry
- Toolbar item new entry */
+   Menu item to create a new entry
+   Toolbar item new entry */
 "NEW_ENTRY" = "Nuova Voce";
 
 /* Submenu to add an entry via template */
 "NEW_ENTRY_WITH_TEMPLATE_%@" = "da %@";
 
 /* Action name for a newly created group
- Menu item to create a new group
- Toolbar item new group */
+   Menu item to create a new group
+   Toolbar item new group */
 "NEW_GROUP" = "Nuovo Gruppo";
 
 /* Expiration date format, when item does not expire */
@@ -480,13 +480,13 @@
 "NO_TEMPLATES" = "Nessun Template Trovato";
 
 /* Null placeholder for item input field
- Placeholder text for input fields if no entry or group is selected */
+   Placeholder text for input fields if no entry or group is selected */
 "NONE" = "Nessuno";
 
 /* Displayed name when notes or part of notes was copied
- Menu item to toggle display of notes column in entry table
- Notes column title
- Notes reference item */
+   Menu item to toggle display of notes column in entry table
+   Notes column title
+   Notes reference item */
 "NOTES" = "Appunti";
 
 /* Ok Button to dismiss disabled updates alert */
@@ -526,8 +526,8 @@
 "OUTPUT_VALUE" = "Valore Uscita";
 
 /* Menu item to toggle display of password column in entry table
- Password column title
- Password reference item */
+   Password column title
+   Password reference item */
 "PASSWORD" = "Password";
 
 /* Window title for the stand-alone password creator window */
@@ -540,12 +540,12 @@
 "PASSWORD_GENERATOR_SET_DEFAULTS" = "Imposta Defaults";
 
 /* Placeholder for the password field to aks for password
- Placeholder in the unlock-password input field if password is enabled */
+   Placeholder in the unlock-password input field if password is enabled */
 "PASSWORD_INPUT_ENTER_PASSWORD" = "Inserisci Password";
 
 /* Placeholder for the password input field if passwords are disabled
- Placeholder for the repeat password input if passwords are disabled
- Placeholder in the unlock-password input field if password is disabled */
+   Placeholder for the repeat password input if passwords are disabled
+   Placeholder in the unlock-password input field if password is disabled */
 "PASSWORD_INPUT_NO_PASSWORD" = "Nessuna Password";
 
 /* Placeholder for the repeat password field to aks for the repeated password */
@@ -639,7 +639,7 @@
 "RESTORE_HISTORY_ENTRY" = "Ripristina Voce Cronologia";
 
 /* Menu item to save the selected attached file.
- Save file menu item title when save will just save the file */
+   Save file menu item title when save will just save the file */
 "SAVE" = "Salva";
 
 /* Button title to save the generated key file */
@@ -694,13 +694,13 @@
 "SHOW_GROUP_IN_OUTLINE" = "Mostra Gruppo nello Schema";
 
 /* Menu item to show the history of the selected entry
- Toolbar item to toggle history display */
+   Toolbar item to toggle history display */
 "SHOW_HISTORY" = "Mostra Cronologia";
 
 /* Displayed name when title field was copied
- Menu item to toggle display of title column in entry table
- Title column title
- Title reference item */
+   Menu item to toggle display of title column in entry table
+   Title column title
+   Title reference item */
 "TITLE" = "Titolo";
 
 /* preset to expire tomorrow */
@@ -770,18 +770,18 @@
 "UPDATE_PREFERENCES" = "Aggiornamenti";
 
 /* Menu item to toggle display of url column in entry table
- Submenu with options what to do with the URL of an entry
- Url column title
- URL reference item */
+   Submenu with options what to do with the URL of an entry
+   Url column title
+   URL reference item */
 "URL" = "URL";
 
 /* Menu item to toggle display of username column in entry table
- Username column title
- Username reference item */
+   Username column title
+   Username reference item */
 "USERNAME" = "Nome Utente";
 
 /* Displayed name when uuid field was copied
- UUID reference item */
+   UUID reference item */
 "UUID" = "UUID";
 
 /* No Key or Password */
