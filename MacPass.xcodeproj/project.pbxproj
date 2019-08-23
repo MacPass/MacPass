@@ -643,7 +643,6 @@
 		4C77E36A15B84A240093A587 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
 		4C77E36B15B84A240093A587 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		4C77E36E15B84A240093A587 /* MacPass-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "MacPass-Info.plist"; sourceTree = "<group>"; };
-		4C77E37015B84A240093A587 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		4C77E37215B84A240093A587 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		4C77E37415B84A240093A587 /* MacPass-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "MacPass-Prefix.pch"; sourceTree = "<group>"; };
 		4C77E37815B84A240093A587 /* MPAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MPAppDelegate.h; sourceTree = "<group>"; };
@@ -2350,7 +2349,6 @@
 		4C77E36F15B84A240093A587 /* InfoPlist.strings */ = {
 			isa = PBXVariantGroup;
 			children = (
-				4C77E37015B84A240093A587 /* en */,
 				4C7615791764C4A50015A1A6 /* de */,
 				4C5CD34217D158DE000B7F38 /* fr */,
 				601F811A18E016340028F3DE /* zh-Hans */,
