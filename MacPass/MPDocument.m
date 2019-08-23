@@ -828,7 +828,16 @@ NSString *const MPDocumentGroupKey                            = @"MPDocumentGrou
     KPKEntry *duplicate = [entry copyWithTitle:nil options:options];
     [duplicate addToGroup:entry.parent];
   }
-  [self.undoManager setActionName:[NSString stringWithFormat:NSLocalizedString(@"DUPLICATE_ENTRIES_%ld", @"Action name for duplicating entries"), self.selectedEntries.count]];
+  [self.undoManager setActionName:[NSString stringWithFormat:NSLocalizedString(@"DUPLICATE_ENTRIES_ACTION_NAME", @"Action name for duplicating entries"), self.selectedEntries.count]];
+}
+
+- (void)duplicateGroup:(id)sender {
+  for(KPKGroup *group in self.selectedGroups) {
+    KPKGroup *duplicate = [group copyWithTitle:nil options:kKPKCopyOptionNone];
+    /* if group is root group, add the duplicate below */
+    [duplicate addToGroup:(group.parent ? group.parent : group)];
+  }
+  [self.undoManager setActionName:[NSString stringWithFormat:NSLocalizedString(@"DUPLICATE_GROUPS_ACTION_NAME", @"Action name for duplicating groups"), self.selectedGroups.count]];
 }
 
 #pragma mark Validation
@@ -885,6 +894,9 @@ NSString *const MPDocumentGroupKey                            = @"MPDocumentGrou
     case MPActionDuplicateEntryWithOptions:
       valid &= targetEntries.count > 0;
       valid &= !self.historyEntry;
+      break;
+    case MPActionDuplicateGroup:
+      valid &= targetGroups.count > 0;
       break;
     case MPActionEmptyTrash:
       valid &= (self.trash.groups.count + self.trash.entries.count) > 0;

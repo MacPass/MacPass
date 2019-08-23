@@ -165,7 +165,6 @@ FOUNDATION_EXPORT NSString *const MPDocumentGroupKey;
 - (void)deleteNode:(KPKNode *)node;
 - (void)duplicateEntryWithOptions:(KPKCopyOptions)options;
 
-
 #pragma mark Actions
 /**
  *  Empties the Trash group. Removing all Groups and Entries inside. This action is not undo-able
@@ -179,6 +178,7 @@ FOUNDATION_EXPORT NSString *const MPDocumentGroupKey;
  */
 - (IBAction)createEntryFromTemplate:(id)sender;
 - (IBAction)duplicateEntry:(id)sender;
+- (IBAction)duplicateGroup:(id)sender;
 
 @end
 

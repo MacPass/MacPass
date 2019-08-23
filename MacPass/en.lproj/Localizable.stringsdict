@@ -2,6 +2,22 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
+	<key>DUPLICATE_GROUPS_ACTION_NAME</key>
+	<dict>
+		<key>NSStringLocalizedFormatKey</key>
+		<string>%#@groups@</string>
+		<key>groups</key>
+		<dict>
+			<key>NSStringFormatValueTypeKey</key>
+			<string>ld</string>
+			<key>NSStringFormatSpecTypeKey</key>
+			<string>NSStringPluralRuleType</string>
+			<key>one</key>
+			<string>Duplicate Group</string>
+			<key>other</key>
+			<string>Duplicate Groups</string>
+		</dict>
+	</dict>
 	<key>%ld_CHARACTERS_TO_PICK_REMAINING</key>
 	<dict>
 		<key>NSStringLocalizedFormatKey</key>
@@ -20,7 +36,7 @@
 			<string>All characters picked</string>
 		</dict>
 	</dict>
-	<key>DUPLICATE_ENTRIES_%ld</key>
+	<key>DUPLICATE_ENTRIES_ACTION_NAME</key>
 	<dict>
 		<key>NSStringLocalizedFormatKey</key>
 		<string>%#@entries@</string>
