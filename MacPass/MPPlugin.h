@@ -141,8 +141,19 @@ FOUNDATION_EXPORT NSString *const MPPluginDescriptionInfoDictionaryKey;
  @param panel The open panel used for selecting what file(s) to import
  @return The KPKTree constructed from the selected input file(s)
  */
-- (KPKTree *)treeForRunningOpenPanel:(NSOpenPanel *)panel;
+- (nullable KPKTree *)treeForRunningOpenPanel:(NSOpenPanel *)panel;
 @end
+
+@protocol MPExportPlugin <NSObject>
+
+@required
+
+- (void)prepareExportMenuItem:(NSMenuItem *)item;
+- (void)prepareSavePanel:(NSSavePanel *)panel;
+- (void)exportTree:(KPKTree *)tree forRunningSavePanel:(NSSavePanel *)panel;
+
+@end
+
 
 #pragma mark Deprecated
 

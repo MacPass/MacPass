@@ -279,7 +279,7 @@ typedef void (^MPPasswordChangedBlock)(BOOL didChangePassword);
   }];
 }
 
-- (void)importFromPlugin:(id)sender {
+- (void)importWithPlugin:(id)sender {
   if(![sender isKindOfClass:NSMenuItem.class]) {
     return;
   }
@@ -300,6 +300,30 @@ typedef void (^MPPasswordChangedBlock)(BOOL didChangePassword);
     if(result == NSModalResponseOK) {
       KPKTree *importedTree = [importPlugin treeForRunningOpenPanel:openPanel];
       [self.document importTree:importedTree];
+    }
+  }];
+}
+
+- (void)exportWithPlugin:(id)sender {
+  if(![sender isKindOfClass:NSMenuItem.class]) {
+    return;
+  }
+  NSMenuItem *menuItem = sender;
+  if(![menuItem.representedObject isKindOfClass:NSString.class]) {
+    return;
+  }
+  
+  NSWindow *sheetWindow = ((MPDocument *)self.document).windowForSheet;
+  if(!sheetWindow) {
+    return;
+  }
+  NSString *bundleIdentifier = menuItem.representedObject;
+  MPPlugin<MPExportPlugin> *exportPlugin = (MPPlugin<MPExportPlugin> *)[MPPluginHost.sharedHost pluginWithBundleIdentifier:bundleIdentifier];
+  NSSavePanel *savePanel = NSSavePanel.savePanel;
+  [exportPlugin prepareSavePanel:savePanel];
+  [savePanel beginSheetModalForWindow:sheetWindow completionHandler:^(NSModalResponse result) {
+    if(result == NSModalResponseOK) {
+      [exportPlugin exportTree:((MPDocument *)self.document).tree forRunningSavePanel:savePanel];
     }
   }];
 }

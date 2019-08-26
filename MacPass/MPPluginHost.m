@@ -459,10 +459,13 @@ NSString *const MPPluginHostPluginBundleIdentifiyerKey = @"MPPluginHostPluginBun
 NSString *const MPPluginBundleIdentifierKey = @"MPPluginBundleIdentifierKey";
 NSString *const MPImportPluginUTIKey = @"MPImportPluginUTIKey";
 
-@implementation MPPluginHost (MPImportPluginSupport)
+@implementation MPPluginHost (MPImportExportPluginSupport)
 
 - (NSArray<MPPlugin *> *)importPlugins {
   return [self _pluginsConformingToProtocoll:@protocol(MPImportPlugin)];
+}
+- (NSArray<MPPlugin<MPImportPlugin> *> *)exportPlugins {
+  return [self _pluginsConformingToProtocoll:@protocol(MPExportPlugin)];
 }
 
 @end

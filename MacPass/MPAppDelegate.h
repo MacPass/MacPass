@@ -33,6 +33,7 @@ APPKIT_EXTERN NSString *const MPDidChangeStoredKeyFilesSettings;
 @property (strong) IBOutlet NSMenuItem *fileNewMenuItem;
 @property (strong) IBOutlet NSMenu *itemMenu;
 @property (strong) IBOutlet NSMenu *importMenu;
+@property (strong) IBOutlet NSMenu *exportMenu;
 
 @property (strong, readonly) MPEntryContextMenuDelegate *itemActionMenuDelegate;
 
