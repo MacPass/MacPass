@@ -139,10 +139,9 @@ FOUNDATION_EXPORT NSString *const MPPluginDescriptionInfoDictionaryKey;
  For example, if a CVS import might need user input on how to handle the parsed files this is the place to show it.
 
  @param panel The open panel used for selecting what file(s) to import
- @param response The response for of the user for running the panel
  @return The KPKTree constructed from the selected input file(s)
  */
-- (KPKTree *)treeForRunningOpenPanel:(NSOpenPanel *)panel withResponse:(NSModalResponse)response;
+- (KPKTree *)treeForRunningOpenPanel:(NSOpenPanel *)panel;
 @end
 
 #pragma mark Deprecated

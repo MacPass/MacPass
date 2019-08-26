@@ -297,8 +297,10 @@ typedef void (^MPPasswordChangedBlock)(BOOL didChangePassword);
   NSOpenPanel *openPanel = NSOpenPanel.openPanel;
   [importPlugin prepareOpenPanel:openPanel];
   [openPanel beginSheetModalForWindow:sheetWindow completionHandler:^(NSModalResponse result) {
-    KPKTree *importedTree = [importPlugin treeForRunningOpenPanel:openPanel withResponse:result];
-    [self.document importTree:importedTree];
+    if(result == NSModalResponseOK) {
+      KPKTree *importedTree = [importPlugin treeForRunningOpenPanel:openPanel];
+      [self.document importTree:importedTree];
+    }
   }];
 }
 
