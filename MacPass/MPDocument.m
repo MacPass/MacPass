@@ -178,8 +178,7 @@ NSString *const MPDocumentGroupKey                            = @"MPDocumentGrou
   if(!self.fileURL) {
     return proposedExtension;
   }
-  NSString *actualExtension = self.fileURL.pathExtension;
-  return actualExtension;
+  return self.fileURL.pathExtension;
 }
 
 - (NSData *)dataOfType:(NSString *)typeName error:(NSError * _Nullable __autoreleasing *)outError {
