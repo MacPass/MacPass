@@ -173,6 +173,18 @@ NSString *const MPDocumentGroupKey                            = @"MPDocumentGrou
   return NO;
 }
 
+- (NSString *)fileNameExtensionForType:(NSString *)typeName saveOperation:(NSSaveOperationType)saveOperation {
+  NSString *proposedExtension = [super fileNameExtensionForType:typeName saveOperation:saveOperation];
+  if(!self.fileURL) {
+    return proposedExtension;
+  }
+  NSString *actualExtension = self.fileURL.pathExtension;
+  if(![actualExtension isEqualToString:proposedExtension]) {
+    NSLog(@"Extension missmatch.");
+  }
+  return actualExtension;
+}
+
 - (NSData *)dataOfType:(NSString *)typeName error:(NSError * _Nullable __autoreleasing *)outError {
   if(self.encrypted) {
     NSLog(@"%@ should not be called on locked databases!", NSStringFromSelector(_cmd));
