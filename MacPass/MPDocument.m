@@ -179,9 +179,6 @@ NSString *const MPDocumentGroupKey                            = @"MPDocumentGrou
     return proposedExtension;
   }
   NSString *actualExtension = self.fileURL.pathExtension;
-  if(![actualExtension isEqualToString:proposedExtension]) {
-    NSLog(@"Extension missmatch.");
-  }
   return actualExtension;
 }
 
