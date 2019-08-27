@@ -975,6 +975,11 @@
 		A083E28022DF467B0020E0D5 /* es */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = es; path = es.lproj/PluginRepositoryBrowserView.strings; sourceTree = "<group>"; };
 		A50AD5CF212884A0007C85EB /* pl */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = pl; path = pl.lproj/PluginDataView.strings; sourceTree = "<group>"; };
 		A50AD5D0212884A0007C85EB /* pl */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = pl; path = pl.lproj/PickfieldView.strings; sourceTree = "<group>"; };
+		ABAA99A4231519150095D78E /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/SavePanelAccessoryView.strings"; sourceTree = "<group>"; };
+		ABAA99A523151BE70095D78E /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/ReferenceBuilderView.strings"; sourceTree = "<group>"; };
+		ABAA99A623151BE70095D78E /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/PluginRepositoryBrowserView.strings"; sourceTree = "<group>"; };
+		ABE506D522EFF97400B9F8DA /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/AutotypeCandidateSelectionView.strings"; sourceTree = "<group>"; };
+		ABE506D622EFF97400B9F8DA /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/AutotypeBuilderView.strings"; sourceTree = "<group>"; };
 		BB3E050C1FE9D1CA00F0B46F /* nl */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = nl; path = nl.lproj/AutotypeCandidateSelectionView.strings; sourceTree = "<group>"; };
 		BB3E050D1FE9D1CB00F0B46F /* nl */ = {isa = PBXFileReference; lastKnownFileType = text.plist.stringsdict; name = nl; path = nl.lproj/Localizable.stringsdict; sourceTree = "<group>"; };
 		BB3E050E1FE9D1CC00F0B46F /* nl */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = nl; path = nl.lproj/ReferenceBuilderView.strings; sourceTree = "<group>"; };
@@ -2241,6 +2246,7 @@
 				4C1D56342271F4BC00C3E594 /* fr */,
 				A083E27D22DF467B0020E0D5 /* es */,
 				71FF7A19230FEA24002F488F /* it */,
+				ABAA99A4231519150095D78E /* zh-Hans */,
 			);
 			name = SavePanelAccessoryView.xib;
 			sourceTree = "<group>";
@@ -2450,6 +2456,7 @@
 				BB3E050E1FE9D1CC00F0B46F /* nl */,
 				6A74B0722076F4B50049BC29 /* sv-SE */,
 				4C1D56362271F4BC00C3E594 /* fr */,
+				ABAA99A523151BE70095D78E /* zh-Hans */,
 			);
 			name = ReferenceBuilderView.xib;
 			sourceTree = "<group>";
@@ -2631,6 +2638,7 @@
 				4C4B2ED122D8CA6100EB6BFD /* de */,
 				A083E28022DF467B0020E0D5 /* es */,
 				71FF7A1B230FED35002F488F /* it */,
+				ABAA99A623151BE70095D78E /* zh-Hans */,
 			);
 			name = PluginRepositoryBrowserView.xib;
 			sourceTree = "<group>";
@@ -2673,6 +2681,7 @@
 				A083E27B22DF467B0020E0D5 /* es */,
 				78E1F8BE22E3B1BF00E738AE /* ru */,
 				71FF7A21230FEEE2002F488F /* it */,
+				ABE506D522EFF97400B9F8DA /* zh-Hans */,
 			);
 			name = AutotypeCandidateSelectionView.xib;
 			sourceTree = "<group>";
@@ -2689,6 +2698,7 @@
 				4C1D56352271F4BC00C3E594 /* fr */,
 				A083E27E22DF467B0020E0D5 /* es */,
 				71FF7A1D230FEE7B002F488F /* it */,
+				ABE506D622EFF97400B9F8DA /* zh-Hans */,
 			);
 			name = AutotypeBuilderView.xib;
 			sourceTree = "<group>";

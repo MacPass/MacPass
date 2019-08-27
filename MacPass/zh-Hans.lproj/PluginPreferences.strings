@@ -1,15 +1,27 @@
-
-/* Class = "NSTextFieldCell"; title = "If enabled, only properly signed Plugins will be loaded. Keep in mind, that Plugins have full access to your data! Changes take affect on restart."; ObjectID = "2bX-8S-9XM"; */
+/* Class = "NSTextFieldCell"; title = "If enabled, Plugins without proper signatures will be allowed to load. Keep in mind, that Plugins have full access to your data! Changes take affect on restart."; ObjectID = "2bX-8S-9XM"; */
 "2bX-8S-9XM.title" = "不勾选将仅加载正确签名过的插件。注意：插件可以完全访问您的数据信息！重新启动程序后生效。";
 
 /* Class = "NSButtonCell"; title = "Load unsecure Plugins"; ObjectID = "C4B-6z-ZqX"; */
 "C4B-6z-ZqX.title" = "加载不安全的插件";
 
-/* Class = "NSTextFieldCell"; title = "Text Cell"; ObjectID = "STt-PQ-Szr"; */
-"STt-PQ-Szr.title" = "Text Cell";
-
 /* Class = "NSTextFieldCell"; title = "Table View Cell"; ObjectID = "fug-79-n9g"; */
 "fug-79-n9g.title" = "Table View Cell";
 
+/* Class = "NSTextFieldCell"; title = "If enabled, a remote connection is established to macpassapp.org"; ObjectID = "i3S-9b-Bpf"; */
+"i3S-9b-Bpf.title" = "如果允许，将建立同 macpassapp.org 的远程连接";
+
+/* Class = "NSButtonCell"; title = "Browse Available Plugins…"; ObjectID = "sqO-8H-n1y"; */
+"sqO-8H-n1y.title" = "浏览可用插件...";
+
+/* Class = "NSTextFieldCell"; title = "Text Cell"; ObjectID = "STt-PQ-Szr"; */
+"STt-PQ-Szr.title" = "Text Cell";
+
+/* Class = "NSButtonCell"; title = "Download current plugin information"; ObjectID = "uHR-uL-Ddm"; */
+"uHR-uL-Ddm.title" = "下载当前插件信息";
+
 /* Class = "NSBox"; title = "Box"; ObjectID = "vBs-Ga-aq0"; */
 "vBs-Ga-aq0.title" = "Box";
+
+/* Class = "NSButtonCell"; title = "Force loading of incompatible Plugins"; ObjectID = "yak-fS-jtA"; */
+"yak-fS-jtA.title" = "强制加载不兼容的插件";
+
