@@ -13,9 +13,9 @@
 			<key>NSStringFormatValueTypeKey</key>
 			<string>ld</string>
 			<key>other</key>
-			<string>%ld characters remaining</string>
+			<string>剩余 %ld 字符</string>
 			<key>zero</key>
-			<string>All characters picked</string>
+			<string>已选择全部字符</string>
 		</dict>
 	</dict>
 	<key>DUPLICATE_ENTRIES_ACTION_NAME</key>
@@ -75,9 +75,9 @@
 			<key>NSStringFormatValueTypeKey</key>
 			<string>ld</string>
 			<key>other</key>
-			<string>Please pick %ld characters to use</string>
+			<string>请选择要使用的 %ld 个字符</string>
 			<key>zero</key>
-			<string>Please pick the characters to use</string>
+			<string>请选择要使用的字符</string>
 		</dict>
 	</dict>
 	<key>PICKED_%ld_CHARACTERS</key>
@@ -91,9 +91,9 @@
 			<key>NSStringFormatValueTypeKey</key>
 			<string>ld</string>
 			<key>other</key>
-			<string>%ld characters picked</string>
+			<string>选择了 %ld 个字符</string>
 			<key>zero</key>
-			<string>No characters picked</string>
+			<string>未选择任何字符</string>
 		</dict>
 	</dict>
 </dict>
