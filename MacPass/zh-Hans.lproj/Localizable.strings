@@ -22,18 +22,6 @@
 /* Action to add an entry via template */
 "ADD_TREMPLATE_ENTRY" = "创建模板项目";
 
-/* Button in dialog to leave autotype disabled and continiue! */
-"ALERT_AUTOTYPE_MISSING_ACCESSIBILTY_PERMISSIONS_BUTTON_OK" = "保持关闭自动键入状态";
-
-/* Button in dialog to open accessibilty preferences pane! */
-"ALERT_AUTOTYPE_MISSING_ACCESSIBILTY_PERMISSIONS_BUTTON_OPEN_PREFERENCES" = "打开辅助功能设置...";
-
-/* Alert informative text displayed when Autotype performs self check and lacks accessibilty permissions */
-"ALERT_AUTOTYPE_MISSING_ACCESSIBILTY_PERMISSIONS_INFORMATIVE_TEXT" = "系统阻止了 MacPass 向其他应用发送键盘输入。要使用自动键入，请在隐私设置中授予 MacPass 辅助功能权限。";
-
-/* Alert message displayed when Autotype performs self check and lacks accessibilty permissions */
-"ALERT_AUTOTYPE_MISSING_ACCESSIBILTY_PERMISSIONS_MESSAGE_TEXT" = "MacPass 不能执行自动键入";
-
 /* Button in dialog to leave plugin ds disabled and continiue! */
 "ALERT_INCOMPATIBLE_PLUGINS_ENCOUNTERED_BUTTON_OK" = "好";
 
@@ -241,11 +229,20 @@
 /* Delete Group */
 "DELETE_GROUP" = "删除组";
 
+/* Action name for duplicating entries */
+"DUPLICATE_ENTRIES_ACTION_NAME" = "克隆项目";
+
 /* Menu item to directly diplicate an entry */
 "DUPLICATE_ENTRY" = "克隆项目";
 
 /* Menu item to duplicate an entry with options how to duplicate. Will present a dialog. */
 "DUPLICATE_ENTRY_WITH_OPTIONS" = "克隆项目…";
+
+/* Menu item to directly diplicate a group */
+"DUPLICATE_GROUP" = "克隆组";
+
+/* Action name for duplicating groups */
+"DUPLICATE_GROUPS_ACTION_NAME" = "克隆组";
 
 /* Menu item in the database outline context menu to change the template group
    Menu item on the add entry context menu to edit template groups */
@@ -534,6 +531,9 @@
 
 /* Action button in Notification to show the Autotype Doctor */
 "SHOW_AUTOTYPE_DOCTOR" = "打开自动键入诊断";
+
+/* Menu item to show the entries group in the outline view */
+"SHOW_GROUP_IN_OUTLINE" = "在大纲视图中显示项目组";
 
 /* Menu item to show the history of the selected entry
    Toolbar item to toggle history display */
