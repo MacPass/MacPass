@@ -37,6 +37,12 @@
 /* Button in dialog to merge KDB changes into file! */
 "ALERT_MERGE_CONTINUE" = "合并文件";
 
+/* Informative text displayed when merging KDB files */
+"ALERT_MERGE_KDB_FILE_INFO_TEXT" = "KDB 数据库没有包含足以进行无缝合并的信息。所有的项目将会被合并，不会有数据丢失。但是由于项目组仅通过名称来进行匹配，可能会有非预期的改变出现。项目可能会被还原到之前的组当中，重命名的组可能不会被合并，被删除的项目可能会重新出现。你确定想继续吗？";
+
+/* Alert message warning user about KDB file merge */
+"ALERT_MERGE_KDB_FILE_MESSAGE" = "你正在合并一个 KDB 数据库";
+
 /* Attachments column title (shows counts)
    Menu item to toggle display of attachment count column in entry table */
 "ATTACHMENTS" = "附件";
@@ -199,7 +205,7 @@
 "DATABASE" = "数据库";
 
 /* Default Browser */
-"DEFAULT_BROWSER" = "缺省浏览器";
+"DEFAULT_BROWSER" = "默认浏览器";
 
 /* Default Titel for new Custom-Fields */
 "DEFAULT_CUSTOM_FIELD_TITLE" = "自定义";
@@ -228,6 +234,12 @@
 
 /* Delete Group */
 "DELETE_GROUP" = "删除组";
+
+/* Empty Trash */
+"DELETE_TRASHED_ENTRY" = "删除被移入废纸篓的项目";
+
+/* Empty Trash */
+"DELETE_TRASHED_GROUP" = "删除被移入废纸篓的组";
 
 /* Action name for duplicating entries */
 "DUPLICATE_ENTRIES_ACTION_NAME" = "克隆项目";
@@ -622,6 +634,12 @@
 
 /* No Key or Password */
 "WARNING_NO_PASSWORD_OR_KEYFILE" = "未提供密码或密钥文件！";
+
+/* Informative Text displayed when clearing the Trash */
+"WARNING_ON_DELETE_TRASHED_NODE_DESCRIPTION" = "被移入废纸篓的项目将被彻底删除！";
+
+/* Message text for the alert displayed when deleting a node */
+"WARNING_ON_DELETE_TRASHED_NODE_TITLE" = "正在删除被移入废纸篓中的项目";
 
 /* Informative Text displayed when clearing the Trash */
 "WARNING_ON_EMPTY_TRASH_DESCRIPTION" = "清空废纸篓无法撤销";

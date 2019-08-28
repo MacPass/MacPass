@@ -1,0 +1,18 @@
+/* Class = "NSTextFieldCell"; title = "MacPass will send key press events to the system when Autotype or Global Autotype is executed. Since macOS 10.14 Mojave this is only possible, if Accessibility permissions are granted to the application."; ObjectID = "6GI-KJ-Xue"; */
+"6GI-KJ-Xue.title" = "当自动键入执行时，MacPass 将会向系统发送按键事件。从 macOS 10.14 Mojave 开始，需要应用有辅助功能的权限，才能进行此操作。";
+
+/* Class = "NSTextFieldCell"; title = "MacPass will read every window title when Global Autotype is executed to find a match. Since macOS 10.15 Catalina it is not possible to read any window title, if the user has not granted permissions to record the screen. If you are running macOS 10.15 or higher, MacPass will check if it can read every window title of currently visible windows. This test will not read the actual title. The titles aren't stored or processed in any way."; ObjectID = "7of-1z-Nfk"; */
+"7of-1z-Nfk.title" = "当全局自动键入执行时，MacPass 会试图读取每个窗口的标题来找到匹配的窗口。从 macOS 10.15 Catalina 开始，只有用户赋予应用屏幕录制权限，应用才能读取窗口标题。如果你正在使用 macOS 10.15 或以上，MacPass 将会检查自己是否能够读取当前可见的窗口的标题。这项检查不会读取或者存储真实的标题。";
+
+/* Class = "NSButtonCell"; title = "Open Accessibilty Preferences…"; ObjectID = "8m1-vs-pd5"; */
+"8m1-vs-pd5.title" = "打开辅助功能选项...";
+
+/* Class = "NSTextFieldCell"; title = "Screen Recording"; ObjectID = "9gr-mz-2I4"; */
+"9gr-mz-2I4.title" = "屏幕录制";
+
+/* Class = "NSTextFieldCell"; title = "Accessibility"; ObjectID = "aIL-8W-63g"; */
+"aIL-8W-63g.title" = "辅助功能";
+
+/* Class = "NSButtonCell"; title = "Open Screen Recording Preferences…"; ObjectID = "lgB-Ys-L9R"; */
+"lgB-Ys-L9R.title" = "打开屏幕录制选项...";
+
