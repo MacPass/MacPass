@@ -99,10 +99,9 @@
   return (response == NSModalResponseOK) ? pickFieldViewController.pickedValue : @"";
 }
 
-- (NSString *)tree:(KPKTree *)tree resolvePickCharsPlaceholderForEntry:(KPKEntry *)entry field:(NSString *)field options:(NSString *)options {
-  NSString *value = [[entry valueForAttributeWithKey:field] kpk_finalValueForEntry:entry];
+- (NSString *)tree:(KPKTree *)tree resolvePickCharsPlaceholderForValue:(NSString *)value options:(NSString *)options {
   if(value.length == 0) {
-    return @""; // error while retrieving source value
+    return @"";
   }
   MPPickcharsParser *parser = [[MPPickcharsParser alloc] initWithOptions:options];
   MPPickcharsViewController *pickCharViewController = [[MPPickcharsViewController alloc] init];
