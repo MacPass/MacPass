@@ -8,6 +8,8 @@ before_install:
   - gem install xcpretty --no-document --quiet
 
 after_success:
+  - xcodebuild -project MacPass.xcodeproj -exportLocalizations -localizationPath Localisations -exportLanguage de -exportLanguage en -exportLanguage es -exportLanguage fr -exportLanguage it -exportLanguage nl -exportLanguage pl -exportLanguage ru -exportLanguage sv-SE -exportLanguage zh-Hans
+  - zip -9ry Localisations.zip Localisaions
   - cd ./build/Build/Products/Release
   - zip -9ry MacPass-continuous.zip MacPass.app
   - shasum -a 256 MacPass-continuous.zip > MacPass-continuous.zip.sha256
@@ -30,6 +32,7 @@ deploy:
   api_key:
     secure: AEb7fgi29S3aXFt5bXz+lq1KHISumny6bf4j06JBC5gUrSs+dW0/tmVFq68XRAqigeOQU31wwv20f7OHiy+GRYDXM2xBsX9ZBQ2IilnaXlDy/mPsNcJJJsZ2gyodi3KnU0rZtTb93me2YyU86H4Na/gtaZZUKjLwCFtGGziExD8=
   file: 
+    - Localisations.zip
     - MacPass-continuous.zip
     - MacPass-continuous.zip.sha256
   overwrite: true
