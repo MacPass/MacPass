@@ -28,14 +28,29 @@
 /* Button in dialog to open plugin preferences pane! */
 "ALERT_INCOMPATIBLE_PLUGINS_ENCOUNTERED_BUTTON_OPEN_PREFERENCES" = "打开插件设置...";
 
+/* Informative text of the alert displayed when plugins where disabled due to incompatibilty */
+"ALERT_INCOMPATIBLE_PLUGINS_ENCOUNTERED_INFORMATIVE_TEXT" = "";
+
 /* Message text of the alert displayed when plugins where disabled due to incompatibilty */
 "ALERT_INCOMPATIBLE_PLUGINS_ENCOUNTERED_MESSAGE" = "检测到不兼容的插件";
+
+/* Alert informative text when plugins or their settings change and require a restart */
+"ALERT_INFORMATIVE_TEXT_PLUGINS_CHANGED_SUGGEST_RESTART" = "对于插件和全局的插件设置改动，需要重启 MacPass 才能有效。现在重启 MacPass 吗？";
+
+/* Alert informative text to ask the user if he really want to uninstall the plugin */
+"ALERT_INFORMATIVE_TEXT_REALLY_UNINSTALL_PLUGIN" = "这个插件将会被移动到废纸篓。";
 
 /* Button in dialog to cancel merge of KDB file changes! */
 "ALERT_MERGE_CANCEL" = "取消";
 
 /* Button in dialog to merge KDB changes into file! */
 "ALERT_MERGE_CONTINUE" = "合并文件";
+
+/* Informative text displayed when merging KDB files */
+"ALERT_MERGE_KDB_FILE_INFO_TEXT" = "KDB 数据库没有包含足以进行无缝合并的信息。所有的项目将会被合并，不会有数据丢失。但是由于项目组仅通过名称来进行匹配，可能会有非预期的改变出现。项目可能会被还原到之前的组当中，重命名的组可能不会被合并，被删除的项目可能会重新出现。你确定想继续吗？";
+
+/* Alert message warning user about KDB file merge */
+"ALERT_MERGE_KDB_FILE_MESSAGE" = "你正在合并一个 KDB 数据库";
 
 /* Attachments column title (shows counts)
    Menu item to toggle display of attachment count column in entry table */
@@ -199,7 +214,7 @@
 "DATABASE" = "数据库";
 
 /* Default Browser */
-"DEFAULT_BROWSER" = "缺省浏览器";
+"DEFAULT_BROWSER" = "默认浏览器";
 
 /* Default Titel for new Custom-Fields */
 "DEFAULT_CUSTOM_FIELD_TITLE" = "自定义";
@@ -228,6 +243,12 @@
 
 /* Delete Group */
 "DELETE_GROUP" = "删除组";
+
+/* Empty Trash */
+"DELETE_TRASHED_ENTRY" = "删除被移入废纸篓的项目";
+
+/* Empty Trash */
+"DELETE_TRASHED_GROUP" = "删除被移入废纸篓的组";
 
 /* Action name for duplicating entries */
 "DUPLICATE_ENTRIES_ACTION_NAME" = "克隆项目";
@@ -284,6 +305,9 @@
 /* Format to returen the date an item expires. Includes %@ placehoder for date */
 "EXPIRES_AT_DATE_%@" = "失效时间: %@";
 
+/* The master key was changed by an external program! */
+"EXTERN_CHANGE_OF_MASTERKEY" = "主密钥被其他程序修改";
+
 /* External file change strategy option: ask what to do */
 "FILE_CHANGE_STRATEGY_ASK" = "询问";
 
@@ -331,14 +355,23 @@
 /* Feature only available in kdbx databases */
 "KDBX_ONLY_FEATURE" = "KDB 数据库不支持此特性";
 
+/* Button in dialog to ignore the changes to an open file! */
+"KEEP_MINE_DISCARD_OTHER" = "保留我的，丢弃他人的改动";
+
 /* Button in dialog to reopen the file! */
-"KEEP_OTHER_DISCARD_MINE" = "";
+"KEEP_OTHER_DISCARD_MINE" = "保留他人的，丢弃我的改动";
+
+/* Do not restart MacPass */
+"KEEP_RUNNING" = "保持运行";
 
 /* last week */
 "LAST_WEEK" = "上周";
 
 /* Toolbar item to Lock the database */
 "LOCK" = "锁定";
+
+/* Message in the open panel to add attachments to an entry */
+"MESSAGE_ADD_ATTACHMENT_OPEN_PANEL" = "选择要添加的附件";
 
 /* Message in the add plugin open panel */
 "MESSAGE_ADD_PLUGIN_OPEN_PANEL" = "选择要安装的插件";
@@ -385,6 +418,9 @@
    Notes reference item */
 "NOTES" = "备注";
 
+/* Ok Button to dismiss disabled updates alert */
+"OK" = "好";
+
 /* preset to expire after one montch from now */
 "ONE_MONTH" = "一月之后";
 
@@ -396,6 +432,9 @@
 
 /* preset to expire after one year from now */
 "ONE_YEAR" = "一年之后";
+
+/* Open button in the open panel to add attachments to an entry */
+"OPEN_BUTTON_ADD_ATTACHMENT_OPEN_PANEL" = "添加";
 
 /* Open button in the add plugin open panel */
 "OPEN_BUTTON_ADD_PLUGIN_OPEN_PANEL" = "安装";
@@ -486,6 +525,9 @@
 /* Message text for the recommend password change alert */
 "RECOMMEND_PASSWORD_CHANGE_ALERT_TITLE" = "请更改数据库密码！";
 
+/* Restart */
+"RESTART" = "重启";
+
 /* Menu item to save the selected attached file.
    Save file menu item title when save will just save the file */
 "SAVE" = "保存";
@@ -516,6 +558,9 @@
 
 /* Menu item title for the expiry preset selection menu in the date picker */
 "SELECT_DATE_PRESET" = "使用预设值…";
+
+/* Message on the open panel for selecting which browser to use for opening URLs */
+"SELECT_DEFAULT_BROWSER_OPEN_PANEL_MESSAGE" = "选择要使用的浏览器";
 
 /* Label for the select browser button on the open panel for selecting which browser to use for opening URLs */
 "SELECT_DEFAULT_BROWSER_OPEN_PANEL_SELECT_BUTTON" = "选择";
@@ -622,6 +667,12 @@
 
 /* No Key or Password */
 "WARNING_NO_PASSWORD_OR_KEYFILE" = "未提供密码或密钥文件！";
+
+/* Informative Text displayed when clearing the Trash */
+"WARNING_ON_DELETE_TRASHED_NODE_DESCRIPTION" = "被移入废纸篓的项目将被彻底删除！";
+
+/* Message text for the alert displayed when deleting a node */
+"WARNING_ON_DELETE_TRASHED_NODE_TITLE" = "正在删除被移入废纸篓中的项目";
 
 /* Informative Text displayed when clearing the Trash */
 "WARNING_ON_EMPTY_TRASH_DESCRIPTION" = "清空废纸篓无法撤销";

@@ -980,6 +980,9 @@
 		ABAA99A623151BE70095D78E /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/PluginRepositoryBrowserView.strings"; sourceTree = "<group>"; };
 		ABE506D522EFF97400B9F8DA /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/AutotypeCandidateSelectionView.strings"; sourceTree = "<group>"; };
 		ABE506D622EFF97400B9F8DA /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/AutotypeBuilderView.strings"; sourceTree = "<group>"; };
+		ABE8662E2316617500201125 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.stringsdict; name = "zh-Hans"; path = "zh-Hans.lproj/Localizable.stringsdict"; sourceTree = "<group>"; };
+		ABE8662F2316617500201125 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/AutotypeDoctorReportViewController.strings"; sourceTree = "<group>"; };
+		ABE86630231662D200201125 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/PluginDataView.strings"; sourceTree = "<group>"; };
 		BB3E050C1FE9D1CA00F0B46F /* nl */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = nl; path = nl.lproj/AutotypeCandidateSelectionView.strings; sourceTree = "<group>"; };
 		BB3E050D1FE9D1CB00F0B46F /* nl */ = {isa = PBXFileReference; lastKnownFileType = text.plist.stringsdict; name = nl; path = nl.lproj/Localizable.stringsdict; sourceTree = "<group>"; };
 		BB3E050E1FE9D1CC00F0B46F /* nl */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = nl; path = nl.lproj/ReferenceBuilderView.strings; sourceTree = "<group>"; };
@@ -2472,6 +2475,7 @@
 				A083E27A22DF467B0020E0D5 /* es */,
 				78E1F8C022E3B22500E738AE /* ru */,
 				71FF7A1F230FEEC7002F488F /* it */,
+				ABE86630231662D200201125 /* zh-Hans */,
 			);
 			name = PluginDataView.xib;
 			sourceTree = "<group>";
@@ -2650,6 +2654,7 @@
 				78E1F8B422E3A5DB00E738AE /* ru */,
 				4C1888CF230FBC080054A38F /* de */,
 				71FF7A27230FEF6B002F488F /* it */,
+				ABE8662F2316617500201125 /* zh-Hans */,
 			);
 			name = AutotypeDoctorReportViewController.xib;
 			sourceTree = "<group>";
@@ -2665,6 +2670,7 @@
 				4C1D562F2271F4BC00C3E594 /* fr */,
 				A019D80F22DC6B3C0085FD54 /* es */,
 				78E1F8C122E3B32D00E738AE /* ru */,
+				ABE8662E2316617500201125 /* zh-Hans */,
 			);
 			name = Localizable.stringsdict;
 			sourceTree = "<group>";
