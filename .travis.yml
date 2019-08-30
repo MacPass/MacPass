@@ -8,7 +8,15 @@ before_install:
   - gem install xcpretty --no-document --quiet
 
 after_success:
-  - xcodebuild -project MacPass.xcodeproj -exportLocalizations -localizationPath Localisations -exportLanguage de -exportLanguage en -exportLanguage es -exportLanguage fr -exportLanguage it -exportLanguage nl -exportLanguage pl -exportLanguage ru -exportLanguage sv-SE -exportLanguage zh-Hans
+  - xcodebuild -project MacPass.xcodeproj -exportLocalizations -localizationPath Localisations -exportLanguage de 
+  - xcodebuild -project MacPass.xcodeproj -exportLocalizations -localizationPath Localisations -exportLanguage en
+  - xcodebuild -project MacPass.xcodeproj -exportLocalizations -localizationPath Localisations -exportLanguage es
+  - xcodebuild -project MacPass.xcodeproj -exportLocalizations -localizationPath Localisations -exportLanguage fr
+  - xcodebuild -project MacPass.xcodeproj -exportLocalizations -localizationPath Localisations -exportLanguage it
+  - xcodebuild -project MacPass.xcodeproj -exportLocalizations -localizationPath Localisations -exportLanguage nl
+  - xcodebuild -project MacPass.xcodeproj -exportLocalizations -localizationPath Localisations -exportLanguage ru
+  - xcodebuild -project MacPass.xcodeproj -exportLocalizations -localizationPath Localisations -exportLanguage sv-SE
+  - xcodebuild -project MacPass.xcodeproj -exportLocalizations -localizationPath Localisations -exportLanguage zh-Hans
   - zip -9ry Localisations.zip Localisations
   - cd ./build/Build/Products/Release
   - zip -9ry MacPass-continuous.zip MacPass.app
