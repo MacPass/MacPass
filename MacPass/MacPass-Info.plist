@@ -2,8 +2,6 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
-	<key>NSAppleEventsUsageDescription</key>
-	<string>MacPass might use AppleEvents to perform Autotype functionality</string>
 	<key>CFBundleDevelopmentRegion</key>
 	<string>en</string>
 	<key>CFBundleDocumentTypes</key>
@@ -71,6 +69,8 @@
 	<string>https://github.com/MacPass/MacPass</string>
 	<key>MPPluginRepositoryURL</key>
 	<string>https://macpassapp.org/data/plugins.json</string>
+	<key>NSAppleEventsUsageDescription</key>
+	<string>MacPass might use AppleEvents to perform Autotype functionality</string>
 	<key>NSHumanReadableCopyright</key>
 	<string>Copyright © 2012-2019 HicknHack Software GmbH. All rights reserved.</string>
 	<key>NSMainNibFile</key>
@@ -92,6 +92,8 @@
 			</array>
 			<key>UTTypeDescription</key>
 			<string>KDBX Database</string>
+			<key>UTTypeIconFile</key>
+			<string>FileTypeIcon</string>
 			<key>UTTypeIdentifier</key>
 			<string>com.hicknhack.macpass.kdbx</string>
 			<key>UTTypeTagSpecification</key>
@@ -109,6 +111,8 @@
 			</array>
 			<key>UTTypeDescription</key>
 			<string>KDB Database</string>
+			<key>UTTypeIconFile</key>
+			<string>FileTypeIcon</string>
 			<key>UTTypeIdentifier</key>
 			<string>com.hicknhack.macpass.kdb</string>
 			<key>UTTypeTagSpecification</key>
