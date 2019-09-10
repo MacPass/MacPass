@@ -29,6 +29,10 @@
   [MPAutotypeDoctor.defaultDoctor openScreenRecordingPreferences];
 }
 
+- (IBAction)requestScreenRecordingPermissions:(id)sender {
+  [MPAutotypeDoctor.defaultDoctor requestScreenRecordingPermission];
+}
+
 - (void)openAutomationPreferences:(id)sender {
   [MPAutotypeDoctor.defaultDoctor openAutomationPreferences];
 }
@@ -38,7 +42,7 @@
   NSError *error;
   if([MPAutotypeDoctor.defaultDoctor hasAccessibiltyPermissions:&error]) {
     self.accessibiltyStatusImageView.image = [NSImage imageNamed:NSImageNameStatusAvailable];
-    self.accessibiltyStatusTextField.stringValue = NSLocalizedString(@"AUTOTYPE_STATUS_ACCESSIBILTY_PERMISSIONS_OK", "Status lable when no issue were found in accessibilty");
+    self.accessibiltyStatusTextField.stringValue = NSLocalizedString(@"AUTOTYPE_STATUS_ACCESSIBILTY_PERMISSIONS_OK", "Status label when no issue were found in accessibilty");
   }
   else {
     self.accessibiltyStatusImageView.image = [NSImage imageNamed:NSImageNameStatusUnavailable];
@@ -50,10 +54,12 @@
     }
   }
   if([MPAutotypeDoctor.defaultDoctor hasScreenRecordingPermissions:&error]) {
+    self.requestScreenRecordingButton.enabled = NO;
     self.screenRecordingStatusImageView.image = [NSImage imageNamed:NSImageNameStatusAvailable];
-    self.screenRecordingStatusTextField.stringValue = NSLocalizedString(@"AUTOTYPE_STATUS_SCREEN_RECORDING_PERMISSIONS_OK", "Status lable when no issue were found in screen recording permissions");
+    self.screenRecordingStatusTextField.stringValue = NSLocalizedString(@"AUTOTYPE_STATUS_SCREEN_RECORDING_PERMISSIONS_OK", "Status label when no issue were found in screen recording permissions");
   }
   else {
+    self.requestScreenRecordingButton.enabled = YES;
     self.screenRecordingStatusImageView.image = [NSImage imageNamed:NSImageNameStatusUnavailable];
     if(error && error.localizedDescription) {
       self.screenRecordingStatusTextField.stringValue = error.localizedDescription;

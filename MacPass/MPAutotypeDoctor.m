@@ -107,6 +107,22 @@
   [NSWorkspace.sharedWorkspace openURL:[NSURL URLWithString:@"x-apple.systempreferences:com.apple.preference.security?Privacy_ScreenCapture"]];
 }
 
+- (void)requestScreenRecordingPermission {
+  /* macos 10.14 and lower do not require screen recording permission to get window titles */
+  if(@available(macos 10.15, *)) {
+    /*
+     To minimize the intrusion just make a 1px image of the upper left corner
+     This way there is no real possibilty to access any private data
+     */
+    CGImageRef screenshot = CGWindowListCreateImage(
+                                                    CGRectMake(0, 0, 1, 1),
+                                                    kCGWindowListOptionOnScreenOnly,
+                                                    kCGNullWindowID,
+                                                    kCGWindowImageDefault);
+    CFRelease(screenshot);
+  }
+}
+
 - (void)openAutomationPreferences {
   [NSWorkspace.sharedWorkspace openURL:[NSURL URLWithString:@"x-apple.systempreferences:com.apple.preference.security?Privacy_Automation"]];
 }
