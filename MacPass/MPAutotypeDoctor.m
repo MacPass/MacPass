@@ -104,8 +104,7 @@
 }
 
 - (void)openScreenRecordingPreferences {
-  //TODO fix this in macOS 10.15 to use the correct URL
-  [NSWorkspace.sharedWorkspace openURL:[NSURL URLWithString:@"x-apple.systempreferences:com.apple.preference.security"]];
+  [NSWorkspace.sharedWorkspace openURL:[NSURL URLWithString:@"x-apple.systempreferences:com.apple.preference.security?Privacy_ScreenCapture"]];
 }
 
 - (void)openAutomationPreferences {
