@@ -83,6 +83,9 @@
                         <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                         <font key="font" metaFont="system"/>
                     </buttonCell>
+                    <connections>
+                        <action selector="requestScreenRecordingPermissions:" target="-2" id="dvF-Aw-j5Q"/>
+                    </connections>
                 </button>
                 <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" preferredMaxLayoutWidth="336" translatesAutoresizingMaskIntoConstraints="NO" id="cu4-Jq-eaS">
                     <rect key="frame" x="42" y="84" width="340" height="42"/>
