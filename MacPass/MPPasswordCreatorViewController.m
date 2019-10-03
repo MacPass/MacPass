@@ -241,6 +241,7 @@ typedef NS_ENUM(NSUInteger, MPPasswordRating) {
     [NSUserDefaults.standardUserDefaults setInteger:self.characterFlags forKey:kMPSettingsKeyPasswordCharacterFlags];
     [NSUserDefaults.standardUserDefaults setBool:self.useCustomString forKey:kMPSettingsKeyPasswordUseCustomString];
     [NSUserDefaults.standardUserDefaults setObject:self.customCharactersTextField.stringValue forKey:kMPSettingsKeyPasswordCustomString];
+    [NSUserDefaults.standardUserDefaults setBool:self.ensureOccurance forKey:kMPSettingsKeyPasswordEnsureOccurance];
   }
   else {
     NSLog(@"Cannot set password generator defaults. Inconsistent state. Aborting.");
@@ -274,10 +275,8 @@ typedef NS_ENUM(NSUInteger, MPPasswordRating) {
 }
 
 - (void)setRepresentedObject:(id)representedObject {
-  if(self.representedObject != representedObject) {
-    self.useEntryDefaults = [self _hasValidDefaultsForCurrentEntry];
-  }
   [super setRepresentedObject:representedObject];
+  self.useEntryDefaults = [self _hasValidDefaultsForCurrentEntry];
 }
 
 - (void)setPassword:(NSString *)password {
@@ -307,6 +306,7 @@ typedef NS_ENUM(NSUInteger, MPPasswordRating) {
 
 - (void)setEnsureOccurance:(BOOL)useCharacterFromEachGroup {
   if(self.ensureOccurance != useCharacterFromEachGroup) {
+    self.setDefaultButton.enabled = YES;
     _ensureOccurance = useCharacterFromEachGroup;
     [self _resetCharacters];
     [self _generatePassword:nil];

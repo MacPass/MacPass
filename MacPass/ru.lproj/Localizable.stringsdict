@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>%ld_CHARACTERS_TO_PICK_REMAINING</key>
+	<dict>
+		<key>NSStringLocalizedFormatKey</key>
+		<string>%#@characters@</string>
+		<key>characters</key>
+		<dict>
+			<key>NSStringFormatSpecTypeKey</key>
+			<string>NSStringPluralRuleType</string>
+			<key>NSStringFormatValueTypeKey</key>
+			<string>ld</string>
+			<key>few</key>
+			<string>%ld символа осталось</string>
+			<key>many</key>
+			<string>%ld символов осталось</string>
+			<key>one</key>
+			<string>Остался один символ</string>
+			<key>other</key>
+			<string>%ld символов осталось</string>
+			<key>zero</key>
+			<string>Выбраны все символы</string>
+		</dict>
+	</dict>
+	<key>DUPLICATE_ENTRIES_ACTION_NAME</key>
+	<dict>
+		<key>NSStringLocalizedFormatKey</key>
+		<string>%#@entries@</string>
+		<key>entries</key>
+		<dict>
+			<key>NSStringFormatSpecTypeKey</key>
+			<string>NSStringPluralRuleType</string>
+			<key>NSStringFormatValueTypeKey</key>
+			<string>ld</string>
+			<key>few</key>
+			<string>копирование записей</string>
+			<key>many</key>
+			<string>копирование записей</string>
+			<key>one</key>
+			<string>копирование записи</string>
+			<key>other</key>
+			<string>копирование записей</string>
+			<key>zero</key>
+			<string>копирование записей</string>
+		</dict>
+	</dict>
+	<key>EVERY_%ld_DAYS</key>
+	<dict>
+		<key>NSStringLocalizedFormatKey</key>
+		<string>%#@days@</string>
+		<key>days</key>
+		<dict>
+			<key>NSStringFormatSpecTypeKey</key>
+			<string>NSStringPluralRuleType</string>
+			<key>NSStringFormatValueTypeKey</key>
+			<string>ld</string>
+			<key>few</key>
+			<string>каждые %ld дня</string>
+			<key>many</key>
+			<string>каждые %ld дней</string>
+			<key>one</key>
+			<string>каждый день</string>
+			<key>other</key>
+			<string>каждые %ld дней</string>
+			<key>zero</key>
+			<string>после каждого открытия</string>
+		</dict>
+	</dict>
+	<key>PICKCHAR_INFO_MESSAGE_PICK_CHARACTERS_%ld</key>
+	<dict>
+		<key>NSStringLocalizedFormatKey</key>
+		<string>%#@characters@</string>
+		<key>characters</key>
+		<dict>
+			<key>NSStringFormatSpecTypeKey</key>
+			<string>NSStringPluralRuleType</string>
+			<key>NSStringFormatValueTypeKey</key>
+			<string>ld</string>
+			<key>few</key>
+			<string>Выберите %ld символа</string>
+			<key>many</key>
+			<string>Выберите %ld символов</string>
+			<key>one</key>
+			<string>Выберите %ld символ</string>
+			<key>other</key>
+			<string>Выберите %ld символов</string>
+			<key>zero</key>
+			<string>Выберите символы</string>
+		</dict>
+	</dict>
+	<key>PICKED_%ld_CHARACTERS</key>
+	<dict>
+		<key>NSStringLocalizedFormatKey</key>
+		<string>%#@characters@</string>
+		<key>characters</key>
+		<dict>
+			<key>NSStringFormatSpecTypeKey</key>
+			<string>NSStringPluralRuleType</string>
+			<key>NSStringFormatValueTypeKey</key>
+			<string>ld</string>
+			<key>few</key>
+			<string>%ld символов выбрано</string>
+			<key>many</key>
+			<string>%ld символов выбрано</string>
+			<key>one</key>
+			<string>%ld символ выбран</string>
+			<key>other</key>
+			<string>%ld символов выбрано</string>
+			<key>zero</key>
+			<string>Не выбрано ни одного символа</string>
+		</dict>
+	</dict>
+</dict>
+</plist>

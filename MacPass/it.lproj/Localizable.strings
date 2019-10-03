@@ -1,194 +1,813 @@
-/* Formatted Times  */
-"%ld_DAYS_AGO" = "%ld giorni fa";
-"%ld_HOURS_AGO" = "circa %ld ore fa";
-"%ld_MINUTES_AGO" = "%ld minuti fa";
-"%ld_WEEKS_AGO" = "%ld settimane fa";
-"JUST_NOW" = "Ora";
-"LAST_WEEK" = "Settimana scorsa";
-"ONE_WEEK_AGO" = "Una settimana fa";
-"YESTERDAY" = "Ieri";
-"TOMORROW" = "Domani";
-"ONE_WEEK" = "tra una settimana";
-"ONE_MONTH" = "tra un mese";
-"90_DAYS" = "tra 90 giorni";
-"ONE_YEAR" = "tra un anno";
+/* Count of characters remaining in pickchars dialog */
+"%ld_CHARACTERS_TO_PICK_REMAINING" = "%ld caratteri rimanenti da scegliere";
 
-/* Date Picker */
-"SELECT_DATE_PRESET" = "Usa data predefinita…";
+/* Display format for days. Should contain a long decimal placeholder! */
+"%ld_DAYS" = "%ld giorni";
+
+/* % days ago */
+"%ld_DAYS_AGO" = "%ld giorni fa";
+
+/* % Hours ago */
+"%ld_HOURS_AGO" = "circa %ld ore fa";
+
+/* % Minutes ago */
+"%ld_MINUTES_AGO" = "%ld minuti fa";
+
+/* % Weeks ago */
+"%ld_WEEKS_AGO" = "%ld settimane fa";
+
+/* preset to expire after 90 days from now */
+"90_DAYS" = "in 90 giorni";
+
+/* Button label to abort a merge on a file with changed master key! */
+"ABORT_MERGE_KEEP_MINE" = "Annulla incorporamento. Tenere la mia versione.";
+
+/* Toolbar item with action menu */
+"ACTION" = "Azione";
+
+/* Menu item title for adding an hmacotp config attribute */
+"ADD_CUSTOM_ATTRIBUTE_HMACOTP_CONFIG" = "Aggiungere Configurazione HMACOTP";
+
+/* Menu item title for adding an hmacotp seed attribute */
+"ADD_CUSTOM_ATTRIBUTE_HMACOTP_SEED" = "Impostare Seme HMACOTP";
+
+/* Menu displayed for adding special custom keys */
+"ADD_CUSTOM_FIELD_CONTEXT_MENU" = "Aggiungere Menù Campo Personalizzato";
+
+/* Action to add an entry via template */
+"ADD_TREMPLATE_ENTRY" = "Aggiungi Modello";
+
+/* Allow the download of the plugin repository file */
+"ALERT_ASK_FOR_PLUGIN_REPOSITORY_ALLOW_DOWNLOAD" = "Aggiornare definizioni in linea";
+
+/* Informative text displayed on the alert that shows up when MacPass asks for permssion to download the plugin repository JSON file */
+"ALERT_ASK_FOR_PLUGIN_REPOSITORY_CONNECTION_PERMISSION_INFORMATIVE_TEXT" = "Le definizioni plugin si trovano in linea a https://macpassapp.org. MacPass vorebbe scaricare questi documenti per assicurare che i dati siano aggiornati.";
+
+/* Message displayed on the alert that askf for permission to download the plugin repository JSON file */
+"ALERT_ASK_FOR_PLUGIN_REPOSITORY_CONNECTION_PERMISSION_MESSAGE" = "MacPass vorebbe controllare la disponibilità di aggiornamenti per definizioni plugin in linea";
+
+/* Disallow the download of the plugin repository file */
+"ALERT_ASK_FOR_PLUGIN_REPOSITORY_DISALLOW_DOWNLOAD" = "Non aggiornare definizioni";
+
+/* Button in dialog to leave plugin ds disabled and continiue! */
+"ALERT_INCOMPATIBLE_PLUGINS_ENCOUNTERED_BUTTON_OK" = "OK";
+
+/* Button in dialog to open plugin preferences pane! */
+"ALERT_INCOMPATIBLE_PLUGINS_ENCOUNTERED_BUTTON_OPEN_PREFERENCES" = "Mostra Impostazioni Plugin…";
+
+/* Informative text of the alert displayed when plugins where disabled due to incompatibilty */
+"ALERT_INCOMPATIBLE_PLUGINS_ENCOUNTERED_INFORMATIVE_TEXT" = "Alcuni plugin sono stati disattivati perché non sono compatibili con questa versione di MacPass. Aprire le impostazioni plugin per ulteriori dettagli.";
+
+/* Message text of the alert displayed when plugins where disabled due to incompatibilty */
+"ALERT_INCOMPATIBLE_PLUGINS_ENCOUNTERED_MESSAGE" = "Plugin Incompatibili trovati.";
+
+/* Alert informative text when plugins or their settings change and require a restart */
+"ALERT_INFORMATIVE_TEXT_PLUGINS_CHANGED_SUGGEST_RESTART" = "Cambiamenti ai plugin e alle impostazioni globali plugin entrano in vigore solo dopo un riavvio. Riavviare adesso MacPass?";
+
+/* Alert informative text to ask the user if he really want to uninstall the plugin */
+"ALERT_INFORMATIVE_TEXT_REALLY_UNINSTALL_PLUGIN" = "Il plugin verrà messo nel cestino.";
+
+/* Button in dialog to cancel merge of KDB file changes! */
+"ALERT_MERGE_CANCEL" = "Annulla";
+
+/* Button in dialog to merge KDB changes into file! */
+"ALERT_MERGE_CONTINUE" = "Unire documenti!";
+
+/* Informative text displayed when merging KDB files */
+"ALERT_MERGE_KDB_FILE_INFO_TEXT" = "I database KDB non contengono abbastanza informazioni per unirli facilmente. Le voci verranno unite e non vengono persi i dati. Però, visto che vengono controllati solo i nomi dei gruppi, potrebbero esserci dei cambiamenti inaspettati. Voci spostati potrebbero essere spostati nel loro gruppo precedente o gruppi renominati potrebbero non essere uniti. Inoltre, voci eliminate potrebbero riapparire a causa di mancanza di dati riguardo oggetti eliminati. Vuole sicuramente procedere?";
+
+/* Alert message warning user about KDB file merge */
+"ALERT_MERGE_KDB_FILE_MESSAGE" = "Sta per unire un database KDB";
+
+/* Alert message text when plugins or their settings change and require a restart */
+"ALERT_MESSAGE_PLUGINS_CHANGED_SUGGEST_RESTART" = "Sono stati cambiate la impostazioni plugin. Prego riavviare.";
+
+/* Alert message text to ask the user if he really want to uninstall the plugin. Include %@ placeholder for plugin name */
+"ALERT_MESSAGE_TEXT_REALLY_UNINSTALL_PLUGIN_%@" = "Il plugin %@ deve veramente essere deinstallato?";
+
+/* Informative text of the disabled updates alert! */
+"ALERT_UPDATES_DISABLED_INFORMATIVE_TEXT_%@!" = "Aggiornamenti per questa versione di %@ sono disattivate!";
+
+/* Message text for disabled updates alert! */
+"ALERT_UPDATES_DISABLED_MESSAGE_TEXT" = "Aggiornamenti Disattivati!";
+
+/* Attachments column title (shows counts)
+ Menu item to toggle display of attachment count column in entry table */
+"ATTACHMENTS" = "Allegati";
+
+/* Sucessfully merged external changes */
+"AUTO_MERGE_NOTIFICATION_TEXT" = "Unione automatica riuscita!";
 
 /* Menu item for automatic trash creation */
 "AUTOCREATE_TRASH_FOLDER" = "Crea Automaticamente";
 
-/*
- Actions
- */
-"NEW_ENTRY" = "Aggiungi elemento";
-"NEW_GROUP" = "Aggiungi gruppo";
-"DUPLICATE_ENTRY" = "Duplica elemento";
-"DUPLICATE_ENTRY_WITH_OPTIONS" = "Duplica elemento…";
-"COPY_ENTRY" = "Copia elemento";
-"COPY_GROUP" = "Copia gruppo";
-"ADD_TREMPLATE_ENTRY" = "Aggiungi Modello";
-"DELETE_GROUP" = "Elimina Gruppo";
-"DELETE_ENTRY" = "Elimina elemento";
-"EDIT_TEMPLATE_GROUP" = "Modifica Gruppo Modello";
-"EMPTY_TRASH" = "Svuota Cestino";
-"MOVE_ENTRY" = "Sposta Elemento";
-"MOVE_GROUP" = "Sposta Gruppo";
-"NEW_ENTRY_WITH_TEMPLATE_%@" = "Crea Elemento con Template %@";
-"NEW_DATABASE" = "Database";
-"OPEN_URL" = "Apri URL";
-"PERFORM_AUTOTYPE_FOR_ENTRY" = "Esegui Autotype";
-"PREVIEW" = "Anteprima";
-"PASSWORD_GENERATOR_SET_DEFAULTS" = "Imposta Default";
-"PASSWORD_GENERATOR_RESET_ENTRY_DEFAULTS" = "Reimposta";
-"TRASH_ENTRY" = "Cestina Elemento";
-"TRASH_GROUP" = "Cestina Gruppo";
-"SHOW_HISTORY" = "SHOW_HISTORY";
+/* Message text in the autotype selection window. Placeholder is %1 - windowTitle */
+"AUTOTYPE_CANDIDATE_SELECTION_WINDOW_MESSAGE_%@" = "Ci sono più risultati per la finestra attuale: %@. Prego scegliere quale deve essere utilizzata.";
 
-/*
- Search
- */
-"CLEAR_RECENT_SEARCHES" = "Svuota ricerche recenti";
-"RECENT_SEARCHES" = "Ricerche recenti";
-"SEARCH_DUPLICATE_PASSWORDS" = "Password Duplicate";
-"SEARCH_EXPIRED_ENTRIES" = "Scaduto";
-"SELECT_FILTER_WITH_DOTS" = "Seleziona…";
+/* Window title for the stand-alone password creator window */
+"AUTOTYPE_DOCTOR_RESULTS_WINDOW_TITLE" = "Dottore Autotype";
 
-/*
- Direct Translations
- */
-"ACTION" = "Azione";
-"ATTACHMENTS" = "Allegato";
-"CANCEL" = "Annulla";
-"DATABASE" = "Database";
-"DELETE" = "Elimina";
-"EDIT" = "Modifica";
-"GROUP" = "Gruppo";
-"INSPECTOR" = "Inspector";
-"LOCK" = "Blocca";
-"MODIFIED" = "Modificato";
-"NONE" = "Nessun";
-"NOTES" = "Note";
-"PASSWORD" = "Password";
-"SAVE" = "Salva";
-"SAVE_WITH_DOTS" = "Salva…";
-"SEARCH" = "Cerca";
-"TITLE" = "Titolo";
-"URL" = "URL";
-"USERNAME" = "Nome Utente";
-"WINDOWS" = "Windows";
-
-
-"CHANGE_DATABASE_NAME" = "Cambia Nome Database";
-"CHANGE_TRASH_GROUP" = "Cambia Gruppo Cestino";
-
-/* Field nam that was copied to the pasteboard */
-"COPIED_FIELD_%@" = "Copiato %@";
-"COPIED_PASSWORD" = "Password copiata!";
-"COPIED_URL" = "URL copiata!";
-"COPIED_USERNAME" = "Nome utente copiato!";
-"COPY_CUSTOM_FIELDS" = "Copia Campo Personalizzato";
-"COPY_FIELD_%@" = "Copia %@";
-"COPY_PASSWORD" = "Copia Password";
-"COPY_URL" = "Copia URL";
-"COPY_USERNAME" = "Copia Nome Utente";
-
-/* Dock Badge */
-"CLEARING_PASTEBOARD" = "…";
-
-/* Group Inspector */
-/* Autotype Combobox */
-"AUTOTYPE_NO" = "Disabilita Autotype";
-"AUTOTYPE_YES" = "Abilita Autotype";
+/* Inherit autotype settings menu item */
 "AUTOTYPE_INHERIT" = "Eredita Impostazioni Autotype";
 
-/* Search Combobox */
-"SEARCH_INHERIT" = "Eredita Impostazioni Ricerca";
-"SEARCH_YES" = "Includi nella Ricerca";
-"SEARCH_NO" = "Escludi dalla Ricerca";
+/* Message displayed to the user to unlock the database to perform global autotype */
+"AUTOTYPE_MESSAGE_UNLOCK_DATABASE" = "Prego sbloccare il database per utilizzare Autotype Globale";
 
-/*
- Date/Time Displays
- */
-/* Created at template string. %@ is replaced by localized date and time */
-"CREATED_AT_%@" = "Creato: %@";
-/* Modifed at template string. %@ is replaced by localized date and time */
-"MODIFED_AT_%@" = "Modificato: %@";
+/* Disable autotype menu item */
+"AUTOTYPE_NO" = "Disabilita Autotype";
 
-"EXPIRES_AT_DATE_%@" = "Scade: %@";
-"NO_EXPIRE_DATE_SET" = "Nessuna scadenza.";
+/* Notification: Autotype failed, MacPass has not enough permissions to perform autotype */
+"AUTOTYPE_NOTIFICATION_MACPASS_IS_MISSING_PERMISSIONS" = "MacPass non possiede tutti i permessi necessari per eseguire Autotype.";
 
-/*
- Defaults for new objects
- */
+/* Notification: Autotype failed, no documents are open */
+"AUTOTYPE_OVERLAY_NO_DOCUMENTS" = "Prego aprire un database per utilizzare Autotype Globale!";
+
+/* Noticiation: Autotype failed to find a match for %@ (string placeholder) */
+"AUTOTYPE_OVERLAY_NO_MATCH_FOR_%@" = "Nessuna corrispondenza %@!";
+
+/* Notification: Autotype found a single match for %@ (string placeholder). */
+"AUTOTYPE_OVERLAY_SINGLE_MATCH_FOR_%@" = "Trovato corrispondenza per %@!";
+
+/* Status label when no issue were found in accessibilty */
+"AUTOTYPE_STATUS_ACCESSIBILTY_PERMISSIONS_OK" = "MacPass ha il permesso per controllare il suo computer (Accessibilità)";
+
+/* Status MacPass has no accessibilty permissions */
+"AUTOTYPE_STATUS_NO_ACCESSIBILTY_PERMISSIONS" = "MacPass non ha il permesso per controllare il suo computer (Accessibilità)";
+
+/* Status MacPass has no screen recording permissions */
+"AUTOTYPE_STATUS_NO_SCREEN_RECORDING_PERMISSIONS" = "MacPass non ha il permesso per registrare lo schermo";
+
+/* Status lable when no issue were found in screen recording permissions */
+"AUTOTYPE_STATUS_SCREEN_RECORDING_PERMISSIONS_OK" = "MacPass ha il permesso per registrare lo schermo";
+
+/* Notficication: Autotype timed out */
+"AUTOTYPE_TIMED_OUT" = "È scaduto il tempo per Autotype.";
+
+/* Enable autotype menu item */
+"AUTOTYPE_YES" = "Abilita Autotype";
+
+/* Cancel */
+"CANCEL" = "Annulla";
+
+/* Menu item in the database outline context menu to change the database name */
+"CHANGE_DATABASE_NAME" = "Rinomina Database";
+
+/* Button to postpone the password change */
+"CHANGE_LATER" = "Cambiare più tardi";
+
+/* Button to show the password change dialog
+ Single button to show the password change dialog */
+"CHANGE_PASSWORD_WITH_DOTS" = "Cambiare Password…";
+
+/* Menu item in the database outline context menu to change the trash group */
+"CHANGE_TRASH_GROUP" = "Cambiare Gruppo Cestino";
+
+/* Button title in the key file selection dialog for selecting a key */
+"CHOOSE_FILE_BUTTON_TITLE" = "Aprire";
+
+/* Clear Autotype Button */
+"CLEAR_AUTOTYPE" = "Elimina Autotype";
+
+/* Menu to clear recent searches */
+"CLEAR_RECENT_SEARCHES" = "Svuota ricerche recenti";
+
+/* String displayed at dock badge when clipboard is about to be cleared */
+"CLEARING_PASTEBOARD" = "Cancellato";
+
+/* Field name that was copied to the pasteboard */
+"COPIED_FIELD_%@" = "Copiato %@";
+
+/* Context menu that copies reference to note */
+"COPIED_NOTES_REFERENCE" = "Copiato riferimento agli appunti!";
+
+/* Password was copied to the pasteboard */
+"COPIED_PASSWORD" = "Password copiata!";
+
+/* Context menu that copies reference to password */
+"COPIED_PASSWORD_REFERENCE" = "Copiato riferimento alla password!";
+
+/* Context menu that copies reference to title */
+"COPIED_TITLE_REFERENCE" = "Copiato riferimento al titolo!";
+
+/* URL was copied to the pasteboard */
+"COPIED_URL" = "URL copiato!";
+
+/* Context menu that copies reference to URL */
+"COPIED_URL_REFERENCE" = "Copiato riferimento al URL!";
+
+/* Username was copied to the pasteboard */
+"COPIED_USERNAME" = "Nome utente copiato!";
+
+/* Context menu that copies reference to username */
+"COPIED_USERNAME_REFERENCE" = "Copiato riferimento al nome utente!";
+
+/* Submenu to copy attributes as reference */
+"COPY_AS_REFERENCE" = "Copiare riferimento a…";
+
+/* Context menu sub-menu to copy attributes as reference */
+"COPY_AS_REFERENCE_MENU" = "Menu Copia come Riferimento";
+
+/* Submenu to Copy custom fields */
+"COPY_CUSTOM_FIELDS" = "Copia Campi Personalizzati";
+
+/* Context menu sub-menu to copy custom fields to clipboard */
+"COPY_CUSTOM_FIELDS_MENU" = "Copia Campo Personalizzato…";
+
+/* Action name when an entry was moved
+   Action title for copying an entry via drag and drop */
+"COPY_ENTRY" = "Copia Voce";
+
+/* Mask for title to copy field value */
+"COPY_FIELD_%@" = "Copia %@";
+
+/* Action title for copying a group via drag and drop */
+"COPY_GROUP" = "Copia Gruppo";
+
+/* Context menu that copies reference to note */
+"COPY_NOTES_REFERENCE" = "Appunti";
+
+/* Menu item to copy the password of an entry
+   Toolbar item copy password */
+"COPY_PASSWORD" = "Copia Password";
+
+/* Context menu that copies reference to password */
+"COPY_PASSWORD_REFERENCE" = "Password";
+
+/* Context menu that copies reference to title */
+"COPY_TITLE_REFERENCE" = "Titolo";
+
+/* Menu item to copy the URL of an entry */
+"COPY_URL" = "Copia URL";
+
+/* Context menu that copies reference to URL */
+"COPY_URL_REFERENCE" = "URL";
+
+/* Menu item to copy the username of an entry
+   Toolbar item copy username */
+"COPY_USERNAME" = "Copia nome utente";
+
+/* Context menu that copies reference to username */
+"COPY_USERNAME_REFERENCE" = "Nome utente";
+
+/* Custom attribute reference item */
+"CUSTOM_ATTRIBUTE" = "Attributo Personalizzato";
+
+/* Title for menu for custom search filters */
+"CUSTOM_SEARCH_FILTER_MENU" = "Filtro di ricerca personalizzato…";
+
+/* Default display name for KDB databases */
+"DATABASE" = "Database";
+
+/* Default Browser */
+"DEFAULT_BROWSER" = "Browser Predefinito";
+
+/* Default Titel for new Custom-Fields */
 "DEFAULT_CUSTOM_FIELD_TITLE" = "Personalizzato";
+
+/* Default Value for new Custom-Fields */
 "DEFAULT_CUSTOM_FIELD_VALUE" = "Valore";
-"DEFAULT_ENTRY_TITLE" = "Nuovo Elemento";
+
+/* Title for a newly created entry */
+"DEFAULT_ENTRY_TITLE" = "Nuova Voce";
+
+/* Title for a newly created group */
 "DEFAULT_GROUP_NAME" = "Nuovo Gruppo";
+
+/* Default window title for a new window association */
 "DEFAULT_WINDOW_TITLE" = "Titolo Finestra";
 
-/* Settings */
-"GENERAL_SETTINGS" = "Generale";
-"INTEGRATION_SETTINGS" = "Integrazione";
-"UPDATE_SETTINGS" = "Aggiornamenti";
-"WORKFLOW_SETTINGS" = "Flusso di Lavoro";
-"DEFAULT_BROWSER" = "Browser Predefinito";
-"OTHER_BROWSER" = "Seleziona Browser…";
-"PLUGIN_SETTINGS" = "Plugins";
+/* Menu item in the database outline context menu to delete the node from the trash
+   Menu item to delete an entry
+   Menu item to delete the selected attached file
+   Menu item to delete the selected custom icon
+   Toolbar item delete item */
+"DELETE" = "Elimina";
 
-/* Feature not supported in Version */
-"KDBX_ONLY_FEATURE" = "Funzionalità non supportata da database KDB";
+/* Delete Entry */
+"DELETE_ENTRY" = "Elimina Voce";
 
-/* Template */
-"NO_TEMPLATE_GROUP" = "Nessun Template";
-"NO_TEMPLATES" = "Nessun Template Trovato";
+/* Delete Group */
+"DELETE_GROUP" = "Elimina Gruppo";
 
-/* Kefile */
-"SAVE_KEYFILE" = "Salva chiave";
+/* Empty Trash */
+"DELETE_TRASHED_ENTRY" = "Elimina Voce nel Cestino";
 
-/* Autoype */
-/* Candiate dialog */
-"SELECT_AUTOTYPE_CANDIDATE" = "Seleziona candidato!";
-"AUTOTYPE_OVERLAY_NO_DOCUMENTS" = "AUTOTYPE_OVERLAY_NO_DOCUMENTS";
-"AUTOTYPE_OVERLAY_NO_MATCH_FOR_%@" = "Nessuna corrispondenza %@!";
-"AUTOTYPE_OVERLAY_SINGLE_MATCH" = "Corrispondenza!";
+/* Empty Trash */
+"DELETE_TRASHED_GROUP" = "Elimina Gruppo Cestino";
 
-/* Alert Dialogs */
-"WARNING_ON_EMPTY_TRASH_DESCRIPTION" = "Svuotare il cestino é definitivo.";
-"WARNING_ON_EMPTY_TRASH_TITLE" = "Svuota il cestino?";
-"WARNING_ON_LOSSY_SAVE" = "Salvare in formato KDB comporterà una perdita di dati.";
-"WARNING_ON_LOSSY_SAVE_DESCRIPTION" = "Il file KDB non può contenere tutte le informazioni.";
-"CHANGE_FORMAT" = "Cambia formato a KDBX";
+/* Action title for copying an entry via drag and drop to another database
+   Action title for moving an entry via drag and drop */
+"DRAG_ENTRY" = "Trascina Voce";
 
-"ENFORCE_PASSWORD_CHANGE_ALERT_TITLE" = "La password del database é scaduta!";
+/* Action title for moving a group via drag and drop
+   Actiontitle for copying groups via drag and drop to antother database */
+"DRAG_GROUP" = "Trascina Gruppo";
+
+/* Action name for duplicating entries */
+"DUPLICATE_ENTRIES_ACTION_NAME" = "Duplica Voci";
+
+/* Menu item to directly diplicate an entry */
+"DUPLICATE_ENTRY" = "Duplica Voce";
+
+/* Menu item to duplicate an entry with options how to duplicate. Will present a dialog. */
+"DUPLICATE_ENTRY_WITH_OPTIONS" = "Duplica Voce…";
+
+/* Menu item to directly diplicate a group */
+"DUPLICATE_GROUP" = "Duplica Gruppo";
+
+/* Action name for duplicating groups */
+"DUPLICATE_GROUPS_ACTION_NAME" = "Duplica Gruppo";
+
+/* Menu item in the database outline context menu to change the template group
+   Menu item on the add entry context menu to edit template groups */
+"EDIT_TEMPLATE_GROUP" = "Modifica Gruppo Modello";
+
+/* Empty Trash
+   Menu item in the database outline context menu to empyt the trash
+   Menu item in the database outline to empty the trash
+   Menu item to empty the trash */
+"EMPTY_TRASH" = "Svuota Cestino";
+
+/* Informative text for the enforce password change alert */
 "ENFORCE_PASSWORD_CHANGE_ALERT_DESCRIPTION" = "Non sarà possibile salvare il database fintanto che la password e/o la chiave sono cambiate.";
 
-"RECOMMEND_PASSWORD_CHANGE_ALERT_TITLE" = "Cambiare la password del database!";
-"RECOMMEND_PASSWORD_CHANGE_ALERT_DESCRIPTION" = "É raccomandato cambiare la password e/o la chiave.";
-"CHANGE_PASSWORD_WITH_DOTS" = "Cambia Password…";
+/* Message text for the enforce password change alert */
+"ENFORCE_PASSWORD_CHANGE_ALERT_TITLE" = "La password del database è scaduta!";
 
-"WARNING_ON_SAVE_NO_PASSWORD_OR_KEY_SET" = "No password or keyfile is set.";
-"WARNING_ON_SAVE_NO_PASSWORD_OR_KEY_SET_SUGGESTION" = "Please set a password and/or keyfile for this database. Aborting this will undo all changes and lock the document";
+/* Group row for entry attributes */
+"ENTRY_CUSTOM_ATTRIBUTES" = "Attributi Personalizzati";
+
+/* Group row for entry attributes */
+"ENTRY_DEFAULT_ATTRIBUTES" = "Attributi Predefiniti";
+
+/* Tooltip displayed on the index header cell */
+"ENTRY_INDEX_COLUMN_TOOLTIP" = "Colonna da ordinare per ordine definito dall'utente";
+
+/* Keyfile not valid */
+"ERROR_INVALID_KEYFILE" = "Chiave invalida!";
+
+/* Error description given when adding an invalid plugin */
+"ERROR_INVALID_PLUGIN" = "Plugin invalido";
+
+/* Error description for missing accessibility permissions */
+"ERROR_NO_ACCESSIBILTY_PERMISSIONS" = "MacPass non ha il permesso per controllare il suo computer (Accessibilità)";
+
+/* Error description for missing screen recording permissions */
+"ERROR_NO_PERMISSION_TO_RECORD_SCREEN" = "MacPass non ha il permesso per registrare lo schermo";
+
+/* Passwords do not match */
+"ERROR_PASSWORD_MISSMATCH" = "Le password non corrispondono!";
+
+/* Passwords do not match, keyfile is invalid */
+"ERROR_PASSWORD_MISSMATCH_INVALID_KEYFILE" = "Le password non corrispondono e la chiave non é valida!";
+
+/* Recommend/Enforce key change intervall format */
+"EVERY_%ld_DAYS" = "Ogni %ld giorni";
+
+/* Format to returen the date an item expires. Includes %@ placehoder for date */
+"EXPIRES_AT_DATE_%@" = "Scade: %@";
+
+/* The master key was changed by an external program! */
+"EXTERN_CHANGE_OF_MASTERKEY" = "La chiave principale è stata cambiata da un'altro programma";
+
+/* External file change strategy option: ask what to do */
+"FILE_CHANGE_STRATEGY_ASK" = "Chiedere";
+
+/* External file change strategy option: Keep local file an ignore external changes */
+"FILE_CHANGE_STRATEGY_KEEP_MINE" = "Tenere La Mia Versione e Scartare Altri Cambiamenti";
+
+/* Button in dialog to merge changes into file!
+   External file change strategy option: Merge external changes into local file. */
+"FILE_CHANGE_STRATEGY_MERGE" = "Unire Cambiamenti";
+
+/* External file change strategy option: Use the changed file and discard local changes */
+"FILE_CHANGE_STRATEGY_USE_OTHER" = "Caricare la Versione Cambiata e Scartare la Mia";
+
+/* Informative text displayed when the file was change from another application */
+"FILE_CHANGED_BY_OTHERS_INFO_TEXT" = "Il file in uso è diverso da quello sul disco, come vuole procedere?";
 
 /* Message displayed when an open file was changed from another application */
-"FILE_CHANGED_BY_OTHERS_MESSAGE_TEXT" = "Il file del database é stato modificato!";
-/* Informative text displayed when the file was change form another application */
-"FILE_CHANGED_BY_OTHERS_INFO_TEXT" = "Il file in uso é diverso da quello sul disco, come vuoi procedere?";
-/* Button to ignore the changes */
-"KEEP_MINE" = "Mantieni la versione corrente e ignora le modifiche.";
-/* Merge changes into file! */
-"MERGE_CHANGES" = "Merge changes!";
+"FILE_CHANGED_BY_OTHERS_MESSAGE_TEXT" = "Il file del database è stato modificato!";
 
-/* Password Input Messages, Errors and Warning */
-"PASSWORD_INPUT_NO_PASSWORD" = "Nessuna Password";
-"PASSWORD_INPUT_ENTER_PASSWORD" = "Inserisci Password";
-"PASSWORD_INPUT_REPEAT_PASSWORD" = "Ripeti Password";
-"WARNING_NO_PASSWORD_OR_KEYFILE" = "Nessuna password o chiave fornita!";
-"ERROR_PASSWORD_MISSMATCH_INVALID_KEYFILE" = "Le password non corrispondono e la chiave non é valida!";
-"ERROR_PASSWORD_MISSMATCH" = "Le password non corrispondono!";
-"ERROR_INVALID_KEYFILE" = "Chiave non valida!";
-
-/* Misc */
-"DOCUMENT_AUTOTYPE_CORRUPTION_WARNING" = "Eseguire Fix Autotype...";
+/* Error while reopening last known documents */
 "FILE_OPEN_ERROR" = "Errore durante l'apertura del file.";
+
+/* General Settings Label */
+"GENERAL_PREFERENCES" = "Generale";
+
+/* Group column title */
+"GROUP" = "Gruppo";
+
+/* History count column title
+   Menu item to toggle display of history count column in entry table */
+"HISTORY" = "Cronologia";
+
+/* Imports a dragged URL for a new entry */
+"IMPORT_URL" = "Carica URL";
+
+/* Toolbar item toggle inspector */
+"INSPECTOR" = "Ispettore";
+
+/* Label for the integration settings tab */
+"INTEGRATION_SETTINGS" = "Integrazione";
+
+/* Just now */
+"JUST_NOW" = "Ora";
+
+/* Feature only available in kdbx databases */
+"KDBX_ONLY_FEATURE" = "Funzionalità non supportata da database KDB";
+
+/* Button in dialog to ignore the changes to an open file! */
+"KEEP_MINE_DISCARD_OTHER" = "Tenere la Mia Versione, Scartare l'Altra";
+
+/* Button in dialog to reopen the file! */
+"KEEP_OTHER_DISCARD_MINE" = "Tenere l'Altra Versione, Scartare la Mia";
+
+/* Do not install the plugin */
+"KEEP_PLUGIN" = "Tenere Plugin";
+
+/* Do not restart MacPass */
+"KEEP_RUNNING" = "Non Riavviare";
+
+/* last week */
+"LAST_WEEK" = "Settimana scorsa";
+
+/* Toolbar item to Lock the database */
+"LOCK" = "Bloccare";
+
+/* Message in the open panel to add attachments to an entry */
+"MESSAGE_ADD_ATTACHMENT_OPEN_PANEL" = "Scegliere il documento da allegare";
+
+/* Message in the add plugin open panel */
+"MESSAGE_ADD_PLUGIN_OPEN_PANEL" = "Scegliere il plugin da installare";
+
+/* Message in the open panel to import an XML file */
+"MESSAGE_XML_OPEN_PANEL" = "Scegliere il documento XML da caricare";
+
+/* Menu item to toggle display of modified date column in entry table
+   Modification date column title */
+"MODIFIED" = "Modificato";
+
+/* Action name when an entry was moved */
+"MOVE_ENTRY" = "Sposta Voce";
+
+/* Menu displayed as popup selection for search options when multiple items are selected */
+"MULTIPLE_FILTERS_ACTIVE_WITH_DOTS" = "Più di uno…";
+
+/* Name for a newly created Database */
+"NEW_DATABASE" = "Database";
+
+/* Action name for a newly created entry
+   Menu item to create a new entry
+   Toolbar item new entry */
+"NEW_ENTRY" = "Nuova Voce";
+
+/* Submenu to add an entry via template */
+"NEW_ENTRY_WITH_TEMPLATE_%@" = "da %@";
+
+/* Action name for a newly created group
+   Menu item to create a new group
+   Toolbar item new group */
+"NEW_GROUP" = "Nuovo Gruppo";
+
+/* Expiration date format, when item does not expire */
+"NO_EXPIRE_DATE_SET" = "Non scade mai.";
+
+/* Menu item to reset the template groups */
+"NO_TEMPLATE_GROUP" = "Nessun Template";
+
+/* Menu item added to show that no templates are defined */
+"NO_TEMPLATES" = "Nessun Template Trovato";
+
+/* Null placeholder for item input field
+   Placeholder text for input fields if no entry or group is selected */
+"NONE" = "Nessuno";
+
+/* Displayed name when notes or part of notes was copied
+   Menu item to toggle display of notes column in entry table
+   Notes column title
+   Notes reference item */
+"NOTES" = "Appunti";
+
+/* Ok Button to dismiss disabled updates alert */
+"OK" = "OK";
+
+/* preset to expire after one montch from now */
+"ONE_MONTH" = "in un mese";
+
+/* preset to expire after one week from now */
+"ONE_WEEK" = "in una settimana";
+
+/* one week ago */
+"ONE_WEEK_AGO" = "Una settimana fa";
+
+/* preset to expire after one year from now */
+"ONE_YEAR" = "in un anno";
+
+/* Open button in the open panel to add attachments to an entry */
+"OPEN_BUTTON_ADD_ATTACHMENT_OPEN_PANEL" = "Allega";
+
+/* Open button in the add plugin open panel */
+"OPEN_BUTTON_ADD_PLUGIN_OPEN_PANEL" = "Installa";
+
+/* Open button in the open panel to import an XML file */
+"OPEN_BUTTON_IMPORT_XML_OPEN_PANEL" = "Carica";
+
+/* Action button in Notification to open a document */
+"OPEN_DOCUMENT" = "Apri Documento";
+
+/* Menu item to open the URL with the default application */
+"OPEN_URL" = "Apri URL";
+
+/* Select Browser */
+"OTHER_BROWSER" = "Selezionare Browser…";
+
+/* No comment provided by engineer. */
+"OUTPUT_VALUE" = "Valore Uscita";
+
+/* Menu item to toggle display of password column in entry table
+   Password column title
+   Password reference item */
+"PASSWORD" = "Password";
+
+/* Window title for the stand-alone password creator window */
+"PASSWORD_CREATOR_WINDOW_TITLE" = "Generatore Password";
+
+/* Button to reset the password defaults for a single entry */
+"PASSWORD_GENERATOR_RESET_ENTRY_DEFAULTS" = "Ripristina";
+
+/* Button to set the defaults of the password generator */
+"PASSWORD_GENERATOR_SET_DEFAULTS" = "Imposta Defaults";
+
+/* Placeholder for the password field to aks for password
+   Placeholder in the unlock-password input field if password is enabled */
+"PASSWORD_INPUT_ENTER_PASSWORD" = "Inserisci Password";
+
+/* Placeholder for the password input field if passwords are disabled
+   Placeholder for the repeat password input if passwords are disabled
+   Placeholder in the unlock-password input field if password is disabled */
+"PASSWORD_INPUT_NO_PASSWORD" = "Nessuna Password";
+
+/* Placeholder for the repeat password field to aks for the repeated password */
+"PASSWORD_INPUT_REPEAT_PASSWORD" = "Ripeti Password";
+
+/* Menu item to perform autotype with the selected entry */
+"PERFORM_AUTOTYPE_FOR_ENTRY" = "Eseguire Autotype";
+
+/* Info about how many character has to pick in pickchar dialog */
+"PICKCHAR_INFO_MESSAGE_PICK_CHARACTERS_%ld" = "Prego scegliere %ld caratteri";
+
+/* Window displayed to the user to pick an amout of characters */
+"PICKCHAR_WINDOW_TITLE" = "Selezionamento Caratteri";
+
+/* Count of picked characters in pickchars dialog if no limit is set */
+"PICKED_%ld_CHARACTERS" = "Selezionato %ld caratteri";
+
+/* Window displayed to the user to pick an amout of characters */
+"PICKFIELD_WINDOW_TITLE" = "Selezionamento Campo";
+
+/* Label for the button when a download is in progress! */
+"PLUGIN_BROWSER_ACTION_DOWNLOAD_IN_PROGRESS" = "Scaricando…";
+
+/* Label for the button when a download did not succeed */
+"PLUGIN_BROWSER_ACTION_RETRY_FAILED_DOWNLOAD" = "Errore. Scaricare di nuovo.";
+
+/* Label for the button to show a downloaded file */
+"PLUGIN_BROWSER_ACTION_SHOW_DOWNLOADED_FILE" = "Mostra in Finder…";
+
+/* Button to download the Plugin */
+"PLUGIN_BROWSER_DOWNLOAD_PLUGIN_BUTTON" = "Scarica";
+
+/* Status for an up-to-date plugin in the plugin browser */
+"PLUGIN_BROWSER_LATEST_VERSION_INSTALLED" = "Installata la versione attuale";
+
+/* Status for an outdated plugin version in the plugin browser */
+"PLUGIN_BROWSER_NEWER_VERSION_%@_AVAILABLE" = "Versiona più nuova (%@) disponibile.";
+
+/* Status for an uninstalled plugin in the plugin browser */
+"PLUGIN_BROWSER_PLUGIN_NOT_INSTALLED" = "Non installato";
+
+/* Status for an unkonw plugin version in the plugin browser */
+"PLUGIN_BROWSER_UNKNOWN_PLUGIN_VERSION_INSTALLED_%@" = "Versione sconosciuta %@ installata";
+
+/* Error for a plugin that is disabled. */
+"PLUGIN_ERROR_DISABLED_PLUGIN" = "Il plugin è disattivato dall'utente";
+
+/* Plugin is not with this version of MacPass */
+"PLUGIN_ERROR_HOST_VERSION_NOT_SUPPORTED" = "Il plugin non è compatibile con questa versione di MacPass";
+
+/* The plugin could not be initalized */
+"PLUGIN_ERROR_INTILIZATION_FAILED" = "Non è riuscito l'inizializzazione del plugin";
+
+/* Error for a plugin that was not signed properly */
+"PLUGIN_ERROR_UNSECURE_PLUGIN" = "Il plugin non è correttamente firmato";
+
+/* Plugin specifies the wrong principal class! */
+"PLUGIN_ERROR_WRONG_PRINCIPAL_CLASS" = "Classe principale inaspettata nel plugin";
+
+/* name for disabled unloaded plugin */
+"PLUGIN_NAME_DISABLED_%@" = "🚫 %@";
+
+/* Name for unloaded plugin with errors */
+"PLUGIN_NAME_ERROR_%@" = "⚠️ %@";
+
+/* Label for plugin settings tab */
+"PLUGIN_SETTINGS" = "Plugin";
+
+/* Generic message displayed if no details are know why a plugin was not loaded. */
+"PLUGIN_SETTINGS_GENERIC_ERROR_MESSAGE" = "Non è riuscito il caricamento del plugin.";
+
+/* Plugin version. Include a %@ placeholder for version string */
+"PLUGIN_VERSION_%@" = "Versione: %@";
+
+/* Menu item to preview the selected attached file. */
+"PREVIEW" = "Anteprima";
+
+/* Recent searches menu item */
+"RECENT_SEARCHES" = "Ricerche recenti";
+
+/* Informative text for the recommend password change alert */
+"RECOMMEND_PASSWORD_CHANGE_ALERT_DESCRIPTION" = "È consigliato cambiare la password e/o la chiave.";
+
+/* Message text for the recommend password change alert */
+"RECOMMEND_PASSWORD_CHANGE_ALERT_TITLE" = "Cambiare la password del database!";
+
+/* Restart */
+"RESTART" = "Riavviare";
+
+/* Action to restore an Entry to a previous state of its history */
+"RESTORE_HISTORY_ENTRY" = "Ripristina Voce Cronologia";
+
+/* Menu item to save the selected attached file.
+   Save file menu item title when save will just save the file */
+"SAVE" = "Salva";
+
+/* Button title to save the generated key file */
+"SAVE_KEYFILE" = "Salva Chiave";
+
+/* Save file menu item title when save will prompt for a location to save or ask for a password/key */
+"SAVE_WITH_DOTS" = "Salva…";
+
+/* Search input in Toolbar */
+"SEARCH" = "Cerca";
+
+/* Search option: Find duplicate passwords */
+"SEARCH_DUPLICATE_PASSWORDS" = "Password Duplicate";
+
+/* Search option: Find expired entries */
+"SEARCH_EXPIRED_ENTRIES" = "Scaduto";
+
+/* Inherit search settings menu item */
+"SEARCH_INHERIT" = "Eredita Impostazioni Ricerca";
+
+/* Disable search menu item */
+"SEARCH_NO" = "Escludi dalla Ricerca";
+
+/* No comment provided by engineer. */
+"SEARCH_VALUE" = "Risultato della Ricerca";
+
+/* Enable search menu item */
+"SEARCH_YES" = "Includi nella Ricerca";
+
+/* Menu item title for the expiry preset selection menu in the date picker */
+"SELECT_DATE_PRESET" = "Usa data predefinita…";
+
+/* Message on the open panel for selecting which browser to use for opening URLs */
+"SELECT_DEFAULT_BROWSER_OPEN_PANEL_MESSAGE" = "Selezionare il browser con quale aprire il URL.";
+
+/* Label for the select browser button on the open panel for selecting which browser to use for opening URLs */
+"SELECT_DEFAULT_BROWSER_OPEN_PANEL_SELECT_BUTTON" = "Seleziona";
+
+/* Message for the dialog to open a file for merge */
+"SELECT_FILE_TO_MERGE" = "Selezionare il documento da unire";
+
+/* Menu displayed as popup selection for search options if no filter is selected */
+"SELECT_FILTER_WITH_DOTS" = "Seleziona…";
+
+/* Checkbox in dialog to set the selection as default file change strategy! */
+"SET_AS_DEFAULT_FILE_CHANGE_STRATEGY" = "Utilizzare questo metodo come il default. Questo può essere modificato a qualsiasi punto nelle impostazioni.";
+
+/* Action button in Notification to show the Autotype Doctor */
+"SHOW_AUTOTYPE_DOCTOR" = "Mostra Dottore Autotype";
+
+/* Menu item to show the entries group in the outline view */
+"SHOW_GROUP_IN_OUTLINE" = "Mostra Gruppo nello Schema";
+
+/* Menu item to show the history of the selected entry
+   Toolbar item to toggle history display */
+"SHOW_HISTORY" = "Mostra Cronologia";
+
+/* Displayed name when title field was copied
+   Menu item to toggle display of title column in entry table
+   Title column title
+   Title reference item */
+"TITLE" = "Titolo";
+
+/* preset to expire tomorrow */
+"TOMORROW" = "Domani";
+
+/* Toolbar item to perform autotype */
+"TOOLBAR_PERFORM_AUTOTYPE_FOR_ENTRY" = "Autotype";
+
+/* Touchbar button label for choosing the keyfile */
+"TOUCHBAR_CHOOSE_KEYFILE" = "Seleziona Chiave";
+
+/* Touchbar button label for copying the password */
+"TOUCHBAR_COPY_PASSWORD" = "Copia Password";
+
+/* Touchbar button label for copying the username */
+"TOUCHBAR_COPY_USERNAME" = "Copia Nome Utente";
+
+/* Touchbar button label for deleting elements */
+"TOUCHBAR_DELETE" = "Elimina";
+
+/* Touchbar button label for opening the popover to edit */
+"TOUCHBAR_EDIT" = "Modifica";
+
+/* Touchbar button label for locking the database */
+"TOUCHBAR_LOCK_DATABASE" = "Bloccare Database";
+
+/* Touchbar button label for creating a new item */
+"TOUCHBAR_NEW_ENTRY" = "Nuova Voce";
+
+/* Touchbar button label for creating a new group */
+"TOUCHBAR_NEW_GROUP" = "Nuovo Gruppo";
+
+/* Touchbar button label for performing autotype */
+"TOUCHBAR_PERFORM_AUTOTYPE" = "Esegui Autotype";
+
+/* Touchbar button label for searching the database */
+"TOUCHBAR_SEARCH" = "Ricerca nel Database";
+
+/* Touchbar button label for showing the password */
+"TOUCHBAR_SHOW_PASSWORD" = "Mostra Password";
+
+/* Touchbar button label for unlocking the database */
+"TOUCHBAR_UNLOCK_DATABASE" = "Sbloccare Database";
+
+/* Move Entry to Trash */
+"TRASH_ENTRY" = "Cestinare Voce";
+
+/* Move Group to Trash */
+"TRASH_GROUP" = "Cestinare il Gruppo";
+
+/* Uninstall plugin */
+"UNINSTALL" = "Deinstalla";
+
+/* No comment provided by engineer. */
+"UNKNOWN_FILE_VERSION" = "Versione database sconosciuta";
+
+/* Unknown database format. */
+"UNKNOWN_FORMAT" = "Formato documento sconosciuto";
+
+/* Database format is unknown since the file is not saved yet */
+"UNKNOWN_FORMAT_FILE_NOT_SAVED_YET" = "Sconosciuto, il database non è ancora stato salvato";
+
+/* No comment provided by engineer. */
+"UNKNOWN_TOOLBAR_ITEM" = "Elemento Toolbar Sconosciuto";
+
+/* Update Settings Label */
+"UPDATE_PREFERENCES" = "Aggiornamenti";
+
+/* Menu item to toggle display of url column in entry table
+   Submenu with options what to do with the URL of an entry
+   Url column title
+   URL reference item */
+"URL" = "URL";
+
+/* Menu item to toggle display of username column in entry table
+   Username column title
+   Username reference item */
+"USERNAME" = "Nome Utente";
+
+/* Displayed name when uuid field was copied
+   UUID reference item */
+"UUID" = "UUID";
+
+/* No Key or Password */
+"WARNING_NO_PASSWORD_OR_KEYFILE" = "Nessuna password o chiave fornita!";
+
+/* Informative Text displayed when clearing the Trash */
+"WARNING_ON_DELETE_TRASHED_NODE_DESCRIPTION" = "L'elemento/Gli elemnti nel cestino verranno eliminati!";
+
+/* Message text for the alert displayed when deleting a node */
+"WARNING_ON_DELETE_TRASHED_NODE_TITLE" = "Eliminando Elemento nel Cestino";
+
+/* Informative Text displayed when clearing the Trash */
+"WARNING_ON_EMPTY_TRASH_DESCRIPTION" = "Svuotare il cestino é definitivo.";
+
+/* Message text for the alert displayed when clearing the Trash */
+"WARNING_ON_EMPTY_TRASH_TITLE" = "Svuota cestino?";
+
+/* No comment provided by engineer. */
+"WARNING_ON_SAVE_NO_PASSWORD_OR_KEY_SET" = "Non è impostata nessuna password o chiave.";
+
+/* No comment provided by engineer. */
+"WARNING_ON_SAVE_NO_PASSWORD_OR_KEY_SET_SUGGESTION" = "Prego impostare una password e/o una chiave per questo database. Annullare questa operatione annullerà tutti i cambiamenti e bloccherà il documento";
+
+/* Label for the workflow settings tab */
+"WORKFLOW_SETTINGS" = "Flusso di Lavoro";
+
+/* Yesterday */
+"YESTERDAY" = "Ieri";
+

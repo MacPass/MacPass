@@ -31,6 +31,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (copy, readonly) NSString *applicationName;
 @property (copy, readonly, nullable) NSURL *applicationSupportDirectoryURL;
 @property (nullable, readonly, weak) MPAppDelegate *mp_delegate;
+@property (readonly, nonatomic) BOOL isRunningTests;
 
 - (NSURL *_Nullable)applicationSupportDirectoryURL:(BOOL)create;
 - (void)relaunchAfterDelay:(CGFloat)seconds;

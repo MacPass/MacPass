@@ -37,17 +37,17 @@
 /* Action to add an entry via template */
 "ADD_TREMPLATE_ENTRY" = "Vorgabeeintrag erstellen";
 
-/* Button in dialog to leave autotype disabled and continiue! */
-"ALERT_AUTOTYPE_MISSING_ACCESSIBILTY_PERMISSIONS_BUTTON_OK" = "Autotype deaktiviert lassen.";
+/* Allow the download of the plugin repository file */
+"ALERT_ASK_FOR_PLUGIN_REPOSITORY_ALLOW_DOWNLOAD" = "Aktualisiere Daten online.";
 
-/* Button in dialog to open accessibilty preferences pane! */
-"ALERT_AUTOTYPE_MISSING_ACCESSIBILTY_PERMISSIONS_BUTTON_OPEN_PREFERENCES" = "Systemeinstellung Bedienungshilfen öffnen …";
+/* Informative text displayed on the alert that shows up when MacPass asks for permssion to download the plugin repository JSON file */
+"ALERT_ASK_FOR_PLUGIN_REPOSITORY_CONNECTION_PERMISSION_INFORMATIVE_TEXT" = "Das Verzeichnis ist auf https://macpassapp.org hinterlegt. MacPass lädt die Definitionen herunter, um sicher zu stellen, dass alle Daten auf dem neusten Stand sind.";
 
-/* Alert informative text displayed when Autotype performs self check and lacks accessibilty permissions */
-"ALERT_AUTOTYPE_MISSING_ACCESSIBILTY_PERMISSIONS_INFORMATIVE_TEXT" = "Das System erlaubt MacPass nicht, Autotype-Tastenbefehle an andere Anwendungen zu schicken. Um Autotype zu ermöglichen fügen Sie MacPass zu den Bedienungshilfen in den Datenschutzeinstellung hinzu. ";
+/* Message displayed on the alert that asks for permission to download the plugin repository JSON file */
+"ALERT_ASK_FOR_PLUGIN_REPOSITORY_CONNECTION_PERMISSION_MESSAGE" = "MacPass möchte das Pluginverzeichnis aktualisieren.";
 
-/* Alert message displayed when Autotype performs self check and lacks accessibilty permissions */
-"ALERT_AUTOTYPE_MISSING_ACCESSIBILTY_PERMISSIONS_MESSAGE_TEXT" = "MacPass kann Autotype nicht ausführen.";
+/* Disallow the download of the plugin repository file */
+"ALERT_ASK_FOR_PLUGIN_REPOSITORY_DISALLOW_DOWNLOAD" = "Keine Daten herunterladen.";
 
 /* Button in dialog to leave plugin ds disabled and continiue! */
 "ALERT_INCOMPATIBLE_PLUGINS_ENCOUNTERED_BUTTON_OK" = "OK";
@@ -77,7 +77,7 @@
 "ALERT_MERGE_KDB_FILE_INFO_TEXT" = "KDB Datenbanken enthalten nicht alle notwendigen Informationen für eine eindeutige Synchronisation. Einzelne Einträgen werden korrekt synchronisiert. Gruppen werden jedoch nur durch den Namens zugeordnet werden, was zu unerwarteten Ergebnissen führen kann. Etwa können lokal bewegte Einträge wieder in alte Gruppen geschoben werden, unbenannte Gruppen können leer werden und die Einträge unter einer Gruppe mit dem vorherigen Namen wieder auftauchen. Weiterhin können gelöschte Einträge wieder auftauchen, da keine Informationen über diese gespeichert wird. Soll mit der Synchronisation fortgefahren werden?";
 
 /* Alert message warning user about KDB file merge */
-"ALERT_MERGE_KDB_FILE_MESSAGE" = "Es werden KDB Datenbanken synchronisiert! ";
+"ALERT_MERGE_KDB_FILE_MESSAGE" = "Es werden KDB Datenbanken synchronisiert!";
 
 /* Alert message text when plugins or their settings change and require a restart */
 "ALERT_MESSAGE_PLUGINS_CHANGED_SUGGEST_RESTART" = "Die globalen Plugineinstellungen haben sich geändert.";
@@ -85,7 +85,7 @@
 /* Alert message text to ask the user if he really want to uninstall the plugin. Include %@ placeholder for plugin name */
 "ALERT_MESSAGE_TEXT_REALLY_UNINSTALL_PLUGIN_%@" = "Möchten Sie das Plugin %@ wirklich deinstallieren?";
 
-/* Infromative text of the disabled updates alert! */
+/* Informative text of the disabled updates alert! */
 "ALERT_UPDATES_DISABLED_INFORMATIVE_TEXT_%@!" = "Aktualisierungen von %@ sind für diese Version deaktivert!";
 
 /* Message text for disabled updates alert! */
@@ -101,6 +101,12 @@
 /* Menu item for automatic trash creation */
 "AUTOCREATE_TRASH_FOLDER" = "Automatisch erstellen";
 
+/* Message text in the autotype selection window. Placeholder is %1 - windowTitle */
+"AUTOTYPE_CANDIDATE_SELECTION_WINDOW_MESSAGE_%@" = "Es gibt mehrere Treffer für den aktuellen Fenstertitel: %@. Bitte wählen Sie den Eintrag aus der Liste aus, welcher verwendet werden soll.";
+
+/* Window title for the stand-alone password creator window */
+"AUTOTYPE_DOCTOR_RESULTS_WINDOW_TITLE" = "Autotype Doktor";
+
 /* Inherit autotype settings menu item */
 "AUTOTYPE_INHERIT" = "Autotype Einstellungen vererben";
 
@@ -110,8 +116,8 @@
 /* Disable autotype menu item */
 "AUTOTYPE_NO" = "Autotype deaktivieren";
 
-/* Notification: Autotype failed, MacPass has no permission to send key strokes */
-"AUTOTYPE_NOTIFICATION_MACPASS_HAS_NO_ACCESSIBILTY_PERMISSIONS" = "Autotype ist deaktivert, weil keine Rechte zum Steuern des Computers vorhanden sind.";
+/* Notification: Autotype failed, MacPass has not enough permissions to perform autotype */
+"AUTOTYPE_NOTIFICATION_MACPASS_IS_MISSING_PERMISSIONS" = "MacPass hat nicht alle notwendigen Berechtigungen um Autotype ausführen zu können";
 
 /* Notification: Autotype failed, no documents are open */
 "AUTOTYPE_OVERLAY_NO_DOCUMENTS" = "Bitte öffnen Sie eine Datei, um Global-Autotype zu nutzen!";
@@ -121,6 +127,18 @@
 
 /* Notification: Autotype found a single match for %@ (string placeholder). */
 "AUTOTYPE_OVERLAY_SINGLE_MATCH_FOR_%@" = "Treffer für %@!";
+
+/* Status lable when no issue were found in accessibilty */
+"AUTOTYPE_STATUS_ACCESSIBILTY_PERMISSIONS_OK" = "MacPass hat die Berechtigung den Computer zu steuern (Eingabehilfe)";
+
+/* Status MacPass has no accessibilty permissions */
+"AUTOTYPE_STATUS_NO_ACCESSIBILTY_PERMISSIONS" = "MacPass hat keine Berechtigung den Computer zu steuern (Eingabehilfe)";
+
+/* Status MacPass has no screen recording permissions */
+"AUTOTYPE_STATUS_NO_SCREEN_RECORDING_PERMISSIONS" = "MacPass hat keine Berechtigung den Bildschirminhalt aufzuzeichnen";
+
+/* Status lable when no issue were found in screen recording permissions */
+"AUTOTYPE_STATUS_SCREEN_RECORDING_PERMISSIONS_OK" = "MacPass hat die Berechtigung den Bildschirminhalt aufzuzeichnen";
 
 /* Notficication: Autotype timed out */
 "AUTOTYPE_TIMED_OUT" = "Autotype wegen zu langer Wartezeit abgebrochen";
@@ -285,14 +303,14 @@
    Actiontitle for copying groups via drag and drop to antother database */
 "DRAG_GROUP" = "Gruppe verschieben";
 
-/* Action name for duplicating entries */
-"DUPLICATE_ENTRIES_%ld" = "Einträge duplizieren %ld";
-
 /* Menu item to directly diplicate an entry */
 "DUPLICATE_ENTRY" = "Eintrag duplizieren";
 
 /* Menu item to duplicate an entry with options how to duplicate. Will present a dialog. */
 "DUPLICATE_ENTRY_WITH_OPTIONS" = "Eintrag duplizieren …";
+
+/* Menu item to directly diplicate a group */
+"DUPLICATE_GROUP" = "Gruppe duplizieren";
 
 /* Menu item in the database outline context menu to change the template group
    Menu item on the add entry context menu to edit template groups */
@@ -325,14 +343,17 @@
 /* Error description given when adding an invalid plugin */
 "ERROR_INVALID_PLUGIN" = "Kein MacPass-Plugin";
 
+/* Error description for missing accessibilty permissions */
+"ERROR_NO_ACCESSIBILTY_PERMISSIONS" = "MacPass hat keine Berechtigung den Bildschirminhalt aufzuzeichnen.";
+
+/* Error description for missing screen recording permissions */
+"ERROR_NO_PERMISSION_TO_RECORD_SCREEN" = "MacPass hat keine Berechtigungen den Bildschirminhalt aufzuzeichnen";
+
 /* Passwords do not match */
 "ERROR_PASSWORD_MISSMATCH" = "Passwörter stimmen nicht überein";
 
 /* Passwords do not match, keyfile is invalid */
 "ERROR_PASSWORD_MISSMATCH_INVALID_KEYFILE" = "Passwörter stimmen nicht überein oder die Schlüsseldatei ist ungültig!";
-
-/* Recommend/Enforce key change intervall format */
-"EVERY_%ld_DAYS" = "alle %ld Tage";
 
 /* Format to returen the date an item expires. Includes %@ placehoder for date */
 "EXPIRES_AT_DATE_%@" = "verfällt: %@";
@@ -363,7 +384,7 @@
 "FILE_OPEN_ERROR" = "Fehler beim Öffnen der Datei.";
 
 /* General Settings Label */
-"GENERAL_SETTINGS" = "Allgemein";
+"GENERAL_PREFERENCES" = "Allgemein";
 
 /* Group column title */
 "GROUP" = "Gruppe";
@@ -433,7 +454,7 @@
 "NEW_ENTRY" = "Neuer Eintrag";
 
 /* Submenu to add an entry via template */
-"NEW_ENTRY_WITH_TEMPLATE_%@" = "Neuer Eintrag aus Vorlage %@";
+"NEW_ENTRY_WITH_TEMPLATE_%@" = "mit %@";
 
 /* Action name for a newly created group
    Menu item to create a new group
@@ -486,16 +507,13 @@
 /* Action button in Notification to open a document */
 "OPEN_DOCUMENT" = "Datei öffnen";
 
-/* Action button in Notification to show the Accessibilty preferences */
-"OPEN_PREFERENCES" = "Systemeinstellung Bedienungshilfen öffnen …";
-
 /* Menu item to open the URL with the default application */
 "OPEN_URL" = "Adresse öffnen";
 
 /* Select Browser */
 "OTHER_BROWSER" = "Browser wählen …";
 
-/* No comment provided by engineer. */
+/* Value field for reference lookup */
 "OUTPUT_VALUE" = "Ausgabewert";
 
 /* Menu item to toggle display of password column in entry table
@@ -527,20 +545,14 @@
 /* Menu item to perform autotype with the selected entry */
 "PERFORM_AUTOTYPE_FOR_ENTRY" = "Auto-Type ausführen";
 
-/* Info about how many character has to pick in pickchar dialog */
-"PICKCHAR_INFO_MESSAGE_PICK_CHARACTERS_%ld" = "Bitte wählen Sie %ld Zeichen aus";
-
 /* Window displayed to the user to pick an amout of characters */
 "PICKCHAR_WINDOW_TITLE" = "Zeichen auswählen";
-
-/* Count of picked characters in pickchars dialog if no limit is set */
-"PICKED_%ld_CHARACTERS" = "%ld Zeichen ausgewählt";
 
 /* Window displayed to the user to pick an amout of characters */
 "PICKFIELD_WINDOW_TITLE" = "Wert auswählen";
 
 /* Label for the button when a download is in progress! */
-"PLUGIN_BROWSER_ACTION_DOWNLOAD_IN_PROGRESS" = "Wird heruntergeladen…";
+"PLUGIN_BROWSER_ACTION_DOWNLOAD_IN_PROGRESS" = "Wird heruntergeladen …";
 
 /* Label for the button when a download did not succeed */
 "PLUGIN_BROWSER_ACTION_RETRY_FAILED_DOWNLOAD" = "Fehler. Erneut herunterladen.";
@@ -636,7 +648,7 @@
 /* Disable search menu item */
 "SEARCH_NO" = "Nicht durchsuchbar";
 
-/* No comment provided by engineer. */
+/* Search field for references lookup */
 "SEARCH_VALUE" = "Suche nach";
 
 /* Enable search menu item */
@@ -660,6 +672,12 @@
 /* Checkbox in dialog to set the selection as default file change strategy! */
 "SET_AS_DEFAULT_FILE_CHANGE_STRATEGY" = "Die gewählte Strategie immer verwenden. Sie können die Strategie jederzeit in den Einstellungen anpassen.";
 
+/* Action button in Notification to show the Autotype Doctor */
+"SHOW_AUTOTYPE_DOCTOR" = "Autotype Doktor anzeigen";
+
+/* Menu item to show the entries group in the outline view */
+"SHOW_GROUP_IN_OUTLINE" = "Gruppe in Übersicht anzeigen";
+
 /* Menu item to show the history of the selected entry
    Toolbar item to toggle history display */
 "SHOW_HISTORY" = "Historie anzeigen";
@@ -675,6 +693,42 @@
 
 /* Toolbar item to perform autotype */
 "TOOLBAR_PERFORM_AUTOTYPE_FOR_ENTRY" = "Autotype";
+
+/* Touchbar button label for choosing the keyfile */
+"TOUCHBAR_CHOOSE_KEYFILE" = "Schlüsseldatei wählen";
+
+/* Touchbar button label for copying the password */
+"TOUCHBAR_COPY_PASSWORD" = "Passwort kopieren";
+
+/* Touchbar button label for copying the username */
+"TOUCHBAR_COPY_USERNAME" = "Benutzername kopieren";
+
+/* Touchbar button label for deleting elements */
+"TOUCHBAR_DELETE" = "Löschen";
+
+/* Touchbar button label for opening the popover to edit */
+"TOUCHBAR_EDIT" = "Bearbeiten";
+
+/* Touchbar button label for locking the database */
+"TOUCHBAR_LOCK_DATABASE" = "Datenbank sperren";
+
+/* Touchbar button label for creating a new item */
+"TOUCHBAR_NEW_ENTRY" = "Neuer Eintrag";
+
+/* Touchbar button label for creating a new group */
+"TOUCHBAR_NEW_GROUP" = "Neue Gruppe";
+
+/* Touchbar button label for performing autotype */
+"TOUCHBAR_PERFORM_AUTOTYPE" = "Autotype ausführen";
+
+/* Touchbar button label for searching the database */
+"TOUCHBAR_SEARCH" = "Datenbank durchsuchen";
+
+/* Touchbar button label for showing the password */
+"TOUCHBAR_SHOW_PASSWORD" = "Passwort anzeigen";
+
+/* Touchbar button label for unlocking the database */
+"TOUCHBAR_UNLOCK_DATABASE" = "Datenbank entsperren";
 
 /* Move Entry to Trash */
 "TRASH_ENTRY" = "Eintrag löschen";
@@ -698,7 +752,7 @@
 "UNKNOWN_TOOLBAR_ITEM" = "Unbekanntes Toolbar-Element";
 
 /* Update Settings Label */
-"UPDATE_SETTINGS" = "Aktualisierung";
+"UPDATE_PREFERENCES" = "Aktualisierung";
 
 /* Menu item to toggle display of url column in entry table
    Submenu with options what to do with the URL of an entry

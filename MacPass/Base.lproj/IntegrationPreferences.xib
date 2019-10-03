@@ -1,0 +1,235 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
+    <dependencies>
+        <deployment identifier="macosx"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="14490.70"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <customObject id="-2" userLabel="File's Owner" customClass="MPIntegrationPreferencesController">
+            <connections>
+                <outlet property="autotypeStackView" destination="j52-9L-k7c" id="Mxw-aa-elx"/>
+                <outlet property="autotypeWarningTextField" destination="hMJ-Mo-xOM" id="LcH-X2-TAm"/>
+                <outlet property="enableGlobalAutotypeCheckBox" destination="tik-Ar-FJg" id="yVA-bM-sSh"/>
+                <outlet property="enableQuicklookCheckBox" destination="LNw-5t-TS4" id="YiZ-Kk-0dF"/>
+                <outlet property="hotKeyTextField" destination="Kvg-he-3c8" id="c7p-1F-zth"/>
+                <outlet property="hotkeyWarningTextField" destination="f5q-EW-RHf" id="Z2Q-Sb-HCS"/>
+                <outlet property="matchHostCheckBox" destination="TiO-ah-BlR" id="MWr-Uh-TRB"/>
+                <outlet property="matchTagsCheckBox" destination="9MH-jx-GpG" id="j1Y-BT-J81"/>
+                <outlet property="matchTitleCheckBox" destination="DAX-V8-Say" id="rbc-nA-1bQ"/>
+                <outlet property="matchURLCheckBox" destination="8Wz-lo-AXG" id="jTp-2n-oO7"/>
+                <outlet property="openPreferencesButton" destination="jai-b6-Qv4" id="Uq1-un-Dga"/>
+                <outlet property="sendCommandForControlCheckBox" destination="VK8-z4-2ci" id="nIa-ap-QfD"/>
+                <outlet property="view" destination="1" id="18"/>
+            </connections>
+        </customObject>
+        <customObject id="-1" userLabel="First Responder" customClass="FirstResponder"/>
+        <customObject id="-3" userLabel="Application" customClass="NSObject"/>
+        <customView translatesAutoresizingMaskIntoConstraints="NO" id="1">
+            <rect key="frame" x="0.0" y="0.0" width="400" height="449"/>
+            <subviews>
+                <box autoresizesSubviews="NO" verticalHuggingPriority="500" borderType="line" title="Autotype" translatesAutoresizingMaskIntoConstraints="NO" id="P9N-HM-wER">
+                    <rect key="frame" x="17" y="115" width="366" height="314"/>
+                    <view key="contentView" id="faU-Ok-HJ3">
+                        <rect key="frame" x="3" y="3" width="360" height="296"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <stackView orientation="vertical" alignment="leading" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" translatesAutoresizingMaskIntoConstraints="NO" id="j52-9L-k7c">
+                                <rect key="frame" x="16" y="17" width="328" height="269"/>
+                                <beginningViews>
+                                    <textField verticalHuggingPriority="750" fixedFrame="YES" preferredMaxLayoutWidth="328" translatesAutoresizingMaskIntoConstraints="NO" id="hMJ-Mo-xOM">
+                                        <rect key="frame" x="-2" y="227" width="332" height="42"/>
+                                        <textFieldCell key="cell" controlSize="small" id="H37-ku-aTc">
+                                            <font key="font" metaFont="smallSystem"/>
+                                            <string key="title">Autotype might not work properly. Some issues where found that prevent Autotype or Global Autotype to work. Please run the Autotype Doctor to fix those issues.</string>
+                                            <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                            <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                        </textFieldCell>
+                                    </textField>
+                                    <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="jai-b6-Qv4">
+                                        <rect key="frame" x="-6" y="191" width="177" height="32"/>
+                                        <buttonCell key="cell" type="push" title="Run Autotype Doctor…" bezelStyle="rounded" alignment="center" borderStyle="border" inset="2" id="NP0-R3-m6n">
+                                            <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                            <font key="font" metaFont="system"/>
+                                        </buttonCell>
+                                        <connections>
+                                            <action selector="runAutotypeDoctor:" target="-2" id="u2q-ab-rQY"/>
+                                        </connections>
+                                    </button>
+                                    <button fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="tik-Ar-FJg">
+                                        <rect key="frame" x="-2" y="174" width="162" height="18"/>
+                                        <buttonCell key="cell" type="check" title="Enable global Autotype" bezelStyle="regularSquare" imagePosition="left" state="on" inset="2" id="1qb-Rd-jYu">
+                                            <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                                            <font key="font" metaFont="system"/>
+                                        </buttonCell>
+                                    </button>
+                                    <stackView orientation="horizontal" alignment="centerY" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="d6A-Vb-CMt">
+                                        <rect key="frame" x="0.0" y="146" width="328" height="22"/>
+                                        <beginningViews>
+                                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="buI-Wb-o3V">
+                                                <rect key="frame" x="-2" y="3" width="57" height="17"/>
+                                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Shortcut" id="6oN-CH-T0O">
+                                                    <font key="font" metaFont="system"/>
+                                                    <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
+                                                    <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                                                </textFieldCell>
+                                            </textField>
+                                            <textField verticalHuggingPriority="750" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Kvg-he-3c8" customClass="DDHotKeyTextField">
+                                                <rect key="frame" x="61" y="0.0" width="136" height="22"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="width" constant="89" id="Mia-b8-HCZ"/>
+                                                </constraints>
+                                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" placeholderString="" drawsBackground="YES" id="sW8-rh-bhD" customClass="DDHotKeyTextFieldCell">
+                                                    <font key="font" metaFont="system"/>
+                                                    <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
+                                                    <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                                </textFieldCell>
+                                            </textField>
+                                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="f5q-EW-RHf">
+                                                <rect key="frame" x="203" y="4" width="127" height="14"/>
+                                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Shortcut is missing Key" id="Lxp-wI-yQy">
+                                                    <font key="font" metaFont="smallSystem"/>
+                                                    <color key="textColor" name="disabledControlTextColor" catalog="System" colorSpace="catalog"/>
+                                                    <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                                                </textFieldCell>
+                                            </textField>
+                                        </beginningViews>
+                                        <visibilityPriorities>
+                                            <integer value="1000"/>
+                                            <integer value="1000"/>
+                                            <integer value="1000"/>
+                                        </visibilityPriorities>
+                                        <customSpacing>
+                                            <real value="3.4028234663852886e+38"/>
+                                            <real value="3.4028234663852886e+38"/>
+                                            <real value="3.4028234663852886e+38"/>
+                                        </customSpacing>
+                                    </stackView>
+                                    <button fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="DAX-V8-Say">
+                                        <rect key="frame" x="-2" y="122" width="208" height="18"/>
+                                        <buttonCell key="cell" type="check" title="Include Entry Title for matches" bezelStyle="regularSquare" imagePosition="left" state="on" inset="2" id="tmL-dT-D0G">
+                                            <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                                            <font key="font" metaFont="system"/>
+                                        </buttonCell>
+                                    </button>
+                                    <button fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="8Wz-lo-AXG">
+                                        <rect key="frame" x="-2" y="100" width="206" height="18"/>
+                                        <buttonCell key="cell" type="check" title="Include Entry URL for matches" bezelStyle="regularSquare" imagePosition="left" state="on" inset="2" id="TzR-00-Vp3">
+                                            <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                                            <font key="font" metaFont="system"/>
+                                        </buttonCell>
+                                    </button>
+                                    <button fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="TiO-ah-BlR">
+                                        <rect key="frame" x="-2" y="78" width="239" height="18"/>
+                                        <buttonCell key="cell" type="check" title="Include Entry URL Host for matches" bezelStyle="regularSquare" imagePosition="left" state="on" inset="2" id="B1D-j9-L8x">
+                                            <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                                            <font key="font" metaFont="system"/>
+                                        </buttonCell>
+                                    </button>
+                                    <button fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="9MH-jx-GpG">
+                                        <rect key="frame" x="-2" y="56" width="210" height="18"/>
+                                        <buttonCell key="cell" type="check" title="Include Entry Tags for matches" bezelStyle="regularSquare" imagePosition="left" state="on" inset="2" id="rbu-G7-MT8">
+                                            <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                                            <font key="font" metaFont="system"/>
+                                        </buttonCell>
+                                    </button>
+                                    <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="VK8-z4-2ci">
+                                        <rect key="frame" x="-2" y="34" width="122" height="18"/>
+                                        <buttonCell key="cell" type="check" title="Interpret ⌃ as ⌘" bezelStyle="regularSquare" imagePosition="left" state="on" inset="2" id="QfO-yG-l3F">
+                                            <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                                            <font key="font" metaFont="system"/>
+                                        </buttonCell>
+                                    </button>
+                                    <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" fixedFrame="YES" setsMaxLayoutWidthAtFirstLayout="YES" translatesAutoresizingMaskIntoConstraints="NO" id="wbP-A9-jpw">
+                                        <rect key="frame" x="-2" y="0.0" width="332" height="28"/>
+                                        <textFieldCell key="cell" sendsActionOnEndEditing="YES" title="If enabled, every {CONTROL} command will be sent as ⌘. Only disable this if you are sure you need to." id="QRy-CY-ENC">
+                                            <font key="font" metaFont="smallSystem"/>
+                                            <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
+                                            <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                                        </textFieldCell>
+                                    </textField>
+                                </beginningViews>
+                                <visibilityPriorities>
+                                    <integer value="1000"/>
+                                    <integer value="1000"/>
+                                    <integer value="1000"/>
+                                    <integer value="1000"/>
+                                    <integer value="1000"/>
+                                    <integer value="1000"/>
+                                    <integer value="1000"/>
+                                    <integer value="1000"/>
+                                    <integer value="1000"/>
+                                    <integer value="1000"/>
+                                </visibilityPriorities>
+                                <customSpacing>
+                                    <real value="3.4028234663852886e+38"/>
+                                    <real value="3.4028234663852886e+38"/>
+                                    <real value="3.4028234663852886e+38"/>
+                                    <real value="3.4028234663852886e+38"/>
+                                    <real value="3.4028234663852886e+38"/>
+                                    <real value="3.4028234663852886e+38"/>
+                                    <real value="3.4028234663852886e+38"/>
+                                    <real value="3.4028234663852886e+38"/>
+                                    <real value="3.4028234663852886e+38"/>
+                                    <real value="3.4028234663852886e+38"/>
+                                </customSpacing>
+                            </stackView>
+                        </subviews>
+                    </view>
+                    <constraints>
+                        <constraint firstAttribute="trailing" secondItem="j52-9L-k7c" secondAttribute="trailing" constant="16" id="DbO-uU-dBc"/>
+                        <constraint firstItem="j52-9L-k7c" firstAttribute="top" secondItem="P9N-HM-wER" secondAttribute="top" constant="25" id="GW1-NJ-TjL"/>
+                        <constraint firstItem="j52-9L-k7c" firstAttribute="leading" secondItem="P9N-HM-wER" secondAttribute="leading" constant="16" id="I0o-Ef-GNj"/>
+                        <constraint firstAttribute="bottom" secondItem="j52-9L-k7c" secondAttribute="bottom" constant="16" id="stS-Jr-dyi"/>
+                    </constraints>
+                </box>
+                <box autoresizesSubviews="NO" verticalHuggingPriority="500" borderType="line" title="Preview" translatesAutoresizingMaskIntoConstraints="NO" id="VVs-b5-cX9">
+                    <rect key="frame" x="17" y="16" width="366" height="95"/>
+                    <view key="contentView" id="ww4-uR-8gP">
+                        <rect key="frame" x="3" y="3" width="360" height="77"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button translatesAutoresizingMaskIntoConstraints="NO" id="LNw-5t-TS4">
+                                <rect key="frame" x="14" y="51" width="178" height="18"/>
+                                <buttonCell key="cell" type="check" title="Enable Quicklook Preview" bezelStyle="regularSquare" imagePosition="left" state="on" inset="2" id="ERs-ct-Eyx">
+                                    <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                                    <font key="font" metaFont="system"/>
+                                </buttonCell>
+                            </button>
+                            <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" setsMaxLayoutWidthAtFirstLayout="YES" translatesAutoresizingMaskIntoConstraints="NO" id="V6l-R9-hIj">
+                                <rect key="frame" x="14" y="17" width="332" height="28"/>
+                                <textFieldCell key="cell" controlSize="small" sendsActionOnEndEditing="YES" title="If enabled attached files will be copied to a temporary location for preview and deleted after the preview is closed." id="WmI-IB-Aso">
+                                    <font key="font" metaFont="smallSystem"/>
+                                    <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
+                                    <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                                </textFieldCell>
+                            </textField>
+                        </subviews>
+                        <constraints>
+                            <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="LNw-5t-TS4" secondAttribute="trailing" constant="20" symbolic="YES" id="5bd-ta-CgC"/>
+                        </constraints>
+                    </view>
+                    <constraints>
+                        <constraint firstItem="V6l-R9-hIj" firstAttribute="leading" secondItem="VVs-b5-cX9" secondAttribute="leading" constant="16" id="4UQ-7R-4C6"/>
+                        <constraint firstItem="V6l-R9-hIj" firstAttribute="top" secondItem="LNw-5t-TS4" secondAttribute="bottom" constant="8" id="DJD-D7-pAx"/>
+                        <constraint firstAttribute="bottom" secondItem="V6l-R9-hIj" secondAttribute="bottom" constant="16" id="GEG-HY-C2F"/>
+                        <constraint firstItem="LNw-5t-TS4" firstAttribute="top" secondItem="VVs-b5-cX9" secondAttribute="top" constant="25" id="IhZ-TA-uHR"/>
+                        <constraint firstItem="LNw-5t-TS4" firstAttribute="leading" secondItem="VVs-b5-cX9" secondAttribute="leading" constant="16" id="NsS-Nl-Lso"/>
+                        <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="V6l-R9-hIj" secondAttribute="trailing" constant="16" id="ivY-UD-QFJ"/>
+                    </constraints>
+                </box>
+            </subviews>
+            <constraints>
+                <constraint firstAttribute="width" constant="400" id="19"/>
+                <constraint firstItem="P9N-HM-wER" firstAttribute="top" secondItem="1" secondAttribute="top" constant="20" symbolic="YES" id="8fy-q5-VJy"/>
+                <constraint firstAttribute="bottom" secondItem="VVs-b5-cX9" secondAttribute="bottom" constant="20" symbolic="YES" id="TZB-qe-7eg"/>
+                <constraint firstItem="VVs-b5-cX9" firstAttribute="top" secondItem="P9N-HM-wER" secondAttribute="bottom" constant="8" id="VCX-JW-cBe"/>
+                <constraint firstItem="VVs-b5-cX9" firstAttribute="trailing" secondItem="P9N-HM-wER" secondAttribute="trailing" id="k9i-4T-WY0"/>
+                <constraint firstAttribute="trailing" secondItem="P9N-HM-wER" secondAttribute="trailing" constant="20" id="n5w-Cw-Bbt"/>
+                <constraint firstItem="P9N-HM-wER" firstAttribute="leading" secondItem="1" secondAttribute="leading" constant="20" id="ulV-xL-ldJ"/>
+                <constraint firstItem="VVs-b5-cX9" firstAttribute="leading" secondItem="P9N-HM-wER" secondAttribute="leading" id="z4a-9C-78h"/>
+            </constraints>
+            <point key="canvasLocation" x="-558" y="-1123"/>
+        </customView>
+    </objects>
+</document>

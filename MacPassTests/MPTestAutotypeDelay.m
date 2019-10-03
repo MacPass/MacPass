@@ -31,7 +31,7 @@
   [super tearDown];
 }
 
-- (void)testValidDelayCommands {
+- (void)testLocalDelayCommands {
   /* Command 1 */
   MPAutotypeContext *context = [[MPAutotypeContext alloc] initWithEntry:self.entry andSequence:@"{DELAY 200}"];
   NSArray *commands = [MPAutotypeCommand commandsForContext:context];
@@ -41,7 +41,22 @@
   XCTAssertTrue([commands.firstObject isKindOfClass:[MPAutotypeDelay class]], @"Command is Delay command");
   MPAutotypeDelay *delay = commands.firstObject;
   XCTAssertEqual(delay.delay, 200, @"Delay is 200 ms");
+  XCTAssertFalse(delay.isGlobal, @"Delay is no global delay");
 }
+
+- (void)testGlobalDelayCommands {
+  /* Command 1 */
+  MPAutotypeContext *context = [[MPAutotypeContext alloc] initWithEntry:self.entry andSequence:@"{DELAY=200}"];
+  NSArray *commands = [MPAutotypeCommand commandsForContext:context];
+  
+  XCTAssertEqual(commands.count, 1);
+  /* {DELAY=200} */
+  XCTAssertTrue([commands.firstObject isKindOfClass:MPAutotypeDelay.class], @"Command is Delay command");
+  MPAutotypeDelay *delay = commands.firstObject;
+  XCTAssertEqual(delay.delay, 200, @"Delay is 200 ms");
+  XCTAssertTrue(delay.isGlobal, @"Delay is global delay");
+}
+
 
 - (void)testDelayExecution {
   MPAutotypeDelay *delay = [[MPAutotypeDelay alloc] initWithDelay:200];
@@ -56,15 +71,6 @@
       NSLog(@"Error: %@", error.localizedDescription);
     }
   }];
-}
-
-
-- (void)testDelayLimit {
-  XCTFail(@"Missing Test");
-}
-
-- (void)testMalformedDelay {
-  XCTFail(@"Missing Test");
 }
 
 @end

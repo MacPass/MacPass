@@ -39,6 +39,8 @@
 #import "MPSettingsHelper.h"
 #import "MPToolbarDelegate.h"
 #import "MPTitlebarColorAccessoryViewController.h"
+#import "MPTouchBarButtonCreator.h"
+#import "MPIconHelper.h"
 
 #import "MPPluginHost.h"
 #import "MPPlugin.h"
@@ -543,6 +545,14 @@ typedef void (^MPPasswordChangedBlock)(BOOL didChangePassword);
   [contentView layoutSubtreeIfNeeded];
 }
 
+- (void)showGroupInOutline:(id)sender {
+  NSArray<KPKEntry *> *targetEntries = self.entryViewController.currentTargetEntries;
+  if(targetEntries.count != 1) {
+    return;
+  }
+  [self.outlineViewController selectGroup:targetEntries.lastObject.parent];
+}
+
 #pragma mark -
 #pragma mark Actions forwarded to MPEntryViewController
 - (void)copyUsername:(id)sender {
@@ -650,6 +660,99 @@ typedef void (^MPPasswordChangedBlock)(BOOL didChangePassword);
 - (BOOL)_isInspectorVisible {
   NSView *inspectorView = self.inspectorViewController.view;
   return (nil != inspectorView.superview);
+}
+
+- (NSTouchBar *)makeTouchBar {
+  NSTouchBar *touchBar = [[NSTouchBar alloc] init];
+  touchBar.delegate = self;
+  touchBar.customizationIdentifier = MPTouchBarCustomizationIdentifierDocument;
+  NSArray<NSTouchBarItemIdentifier> *defaultItemIdentifiers = @[MPTouchBarItemIdentifierSearch, MPTouchBarItemIdentifierEditPopover, MPTouchBarItemIdentifierCopyUsername, MPTouchBarItemIdentifierCopyPassword,  MPTouchBarItemIdentifierPerformAutotype, NSTouchBarItemIdentifierFlexibleSpace, MPTouchBarItemIdentifierLock];
+  touchBar.defaultItemIdentifiers = defaultItemIdentifiers;
+  touchBar.customizationAllowedItemIdentifiers = defaultItemIdentifiers;
+  return touchBar;
+}
+
+- (NSTouchBarItem *)touchBar:(NSTouchBar *)touchBar makeItemForIdentifier:(NSTouchBarItemIdentifier)identifier  API_AVAILABLE(macos(10.12.2)) {
+#pragma mark primary touchbar elements
+  if([identifier isEqualToString:MPTouchBarItemIdentifierSearch]) {
+    return [MPTouchBarButtonCreator touchBarButtonWithImage:[NSImage imageNamed:NSImageNameTouchBarSearchTemplate]
+                                                 identifier:MPTouchBarItemIdentifierSearch
+                                                     target:self
+                                                   selector:@selector(focusSearchField)
+                                         customizationLabel:NSLocalizedString(@"TOUCHBAR_SEARCH","Touchbar button label for searching the database")];
+  }
+  
+  if([identifier isEqualToString:MPTouchBarItemIdentifierEditPopover]) {
+    NSTouchBar *secondaryTouchBar = [[NSTouchBar alloc] init];
+    secondaryTouchBar.delegate = self;
+    secondaryTouchBar.defaultItemIdentifiers = @[MPTouchBarItemIdentifierNewEntry, MPTouchBarItemIdentifierNewGroup, MPTouchBarItemIdentifierDelete];
+    return [MPTouchBarButtonCreator popoverTouchBarButton:NSLocalizedString(@"TOUCHBAR_EDIT","Touchbar button label for opening the popover to edit")
+                                               identifier:MPTouchBarItemIdentifierEditPopover
+                                          popoverTouchBar:secondaryTouchBar
+                                       customizationLabel:NSLocalizedString(@"TOUCHBAR_EDIT","Touchbar button label for opening the popover to edit")];
+  }
+  
+  if([identifier isEqualToString:MPTouchBarItemIdentifierCopyUsername]) {
+    return [MPTouchBarButtonCreator touchBarButtonWithTitle:NSLocalizedString(@"TOUCHBAR_COPY_USERNAME","Touchbar button label for copying the username")
+                                                 identifier:MPTouchBarItemIdentifierCopyUsername
+                                                     target:self
+                                                   selector:@selector(copyUsername:)
+                                         customizationLabel:NSLocalizedString(@"TOUCHBAR_COPY_USERNAME","Touchbar button label for copying the username")];
+  }
+  
+  if([identifier isEqualToString:MPTouchBarItemIdentifierCopyPassword]) {
+    return [MPTouchBarButtonCreator touchBarButtonWithTitle:NSLocalizedString(@"TOUCHBAR_COPY_PASSWORD","Touchbar button label for copying the password")
+                                                 identifier:MPTouchBarItemIdentifierCopyPassword
+                                                     target:self
+                                                   selector:@selector(copyPassword:)
+                                         customizationLabel:NSLocalizedString(@"TOUCHBAR_COPY_PASSWORD","Touchbar button label for copying the password")];
+  }
+  
+  if([identifier isEqualToString:MPTouchBarItemIdentifierPerformAutotype]) {
+    return [MPTouchBarButtonCreator touchBarButtonWithTitle:NSLocalizedString(@"TOUCHBAR_PERFORM_AUTOTYPE","Touchbar button label for performing autotype")
+                                                 identifier:MPTouchBarItemIdentifierPerformAutotype
+                                                     target:self
+                                                   selector:@selector(performAutotypeForEntry:)
+                                         customizationLabel:NSLocalizedString(@"TOUCHBAR_PERFORM_AUTOTYPE","Touchbar button label for performing autotype")];
+  }
+  if([identifier isEqualToString:MPTouchBarItemIdentifierLock]) {
+    return [MPTouchBarButtonCreator touchBarButtonWithImage:[NSImage imageNamed:NSImageNameLockLockedTemplate]
+                                                 identifier:MPTouchBarItemIdentifierLock
+                                                     target:self
+                                                   selector:@selector(lock:)
+                                         customizationLabel:NSLocalizedString(@"TOUCHBAR_LOCK_DATABASE","Touchbar button label for locking the database")];
+  }
+#pragma mark secondary/popover touchbar elements
+  if([identifier isEqualToString:MPTouchBarItemIdentifierNewEntry]) {
+    return [MPTouchBarButtonCreator touchBarButtonWithTitleAndImage:NSLocalizedString(@"TOUCHBAR_NEW_ENTRY","Touchbar button label for creating a new item")
+                                                         identifier:MPTouchBarItemIdentifierNewEntry
+                                                              image:[MPIconHelper icon:MPIconAddEntry]
+                                                             target:self
+                                                           selector:@selector(createEntry:)
+                                                 customizationLabel:NSLocalizedString(@"TOUCHBAR_NEW_ENTRY","Touchbar button label for creating a new item")];
+  }
+  if([identifier isEqualToString:MPTouchBarItemIdentifierNewGroup]) {
+    return [MPTouchBarButtonCreator touchBarButtonWithTitleAndImage:NSLocalizedString(@"TOUCHBAR_NEW_GROUP","Touchbar button label for creating a new group")
+                                                         identifier:MPTouchBarItemIdentifierNewGroup
+                                                              image:[MPIconHelper icon:MPIconAddFolder]
+                                                             target:self
+                                                           selector:@selector(createGroup:)
+                                                 customizationLabel:NSLocalizedString(@"TOUCHBAR_NEW_GROUP","Touchbar button label for creating a new group")];
+  }
+  if([identifier isEqualToString:MPTouchBarItemIdentifierDelete]) {
+    return [MPTouchBarButtonCreator touchBarButtonWithTitleAndImageAndColor:NSLocalizedString(@"TOUCHBAR_DELETE","Touchbar button label for deleting elements")
+                                                                 identifier:MPTouchBarItemIdentifierDelete
+                                                                      image:[MPIconHelper icon:MPIconTrash]
+                                                                      color:NSColor.systemRedColor
+                                                                     target:self
+                                                                   selector:@selector(delete:)
+                                                         customizationLabel:NSLocalizedString(@"TOUCHBAR_DELETE","Touchbar button label for deleting elements")];
+  }
+  return nil;
+}
+
+- (void)focusSearchField {
+  [self.window makeFirstResponder:self.searchField];
 }
 
 @end

@@ -1,3 +1,8 @@
+/* Class = "NSMenuItem"; title = "Save"; ObjectID = "0ok-MC-QMP"; */
+"0ok-MC-QMP.title" = "Sauvegarder";
+
+/* Class = "NSButtonCell"; title = "Enable Autotype"; ObjectID = "9Nx-mE-DK3"; */
+"9Nx-mE-DK3.title" = "Activer la saisie automatique";
 
 /* Class = "NSButtonCell"; title = "Generate"; ObjectID = "64"; */
 "64.title" = "Générer";
@@ -20,9 +25,6 @@
 /* Class = "NSTextFieldCell"; title = "Tags"; ObjectID = "79"; */
 "79.title" = "Tags";
 
-/* Class = "NSTabViewItem"; label = "Fields"; ObjectID = "108"; */
-"108.label" = "Champs";
-
 /* Class = "NSTabViewItem"; label = "Attachments"; ObjectID = "109"; */
 "109.label" = "Fichiers joints";
 
@@ -33,19 +35,16 @@
 "135.title" = "Fichiers joints";
 
 /* Class = "NSTextFieldCell"; title = "Text Cell"; ObjectID = "142"; */
-"142.title" = "Text Cell";
+"142.title" = "Libellé de la cellule";
 
 /* Class = "NSTextFieldCell"; title = "Table View Cell"; ObjectID = "151"; */
-"151.title" = "Table View Cell";
+"151.title" = "Vue en tableau";
 
 /* Class = "NSTextFieldCell"; title = "Table View Cell"; ObjectID = "171"; */
-"171.title" = "Table View Cell";
-
-/* Class = "NSTextFieldCell"; title = "Custom Fields"; ObjectID = "190"; */
-"190.title" = "Champs personnalisés";
+"171.title" = "Vue en tableau";
 
 /* Class = "NSTextFieldCell"; title = "Text Cell"; ObjectID = "197"; */
-"197.title" = "Text Cell";
+"197.title" = "Libellé de la cellule";
 
 /* Class = "NSTextFieldCell"; placeholderString = "Title"; ObjectID = "211"; */
 "211.placeholderString" = "Titre";
@@ -53,50 +52,29 @@
 /* Class = "NSTextFieldCell"; placeholderString = "Value"; ObjectID = "214"; */
 "214.placeholderString" = "Valeur";
 
-/* Class = "NSTextFieldCell"; placeholderString = "Value"; ObjectID = "225"; */
-"225.placeholderString" = "Valeur";
-
-/* Class = "NSTextFieldCell"; placeholderString = "Title"; ObjectID = "228"; */
-"228.placeholderString" = "Titre";
-
 /* Class = "NSSegmentedCell"; 238.ibShadowedLabels[0] = "General"; ObjectID = "238"; */
 "238.ibShadowedLabels[0]" = "Général";
 
 /* Class = "NSSegmentedCell"; 238.ibShadowedLabels[1] = "Files"; ObjectID = "238"; */
 "238.ibShadowedLabels[1]" = "Fichiers";
 
-/* Class = "NSSegmentedCell"; 238.ibShadowedLabels[3] = "Autotype"; ObjectID = "238"; */
+/* Class = "NSSegmentedCell"; 238.ibShadowedLabels[2] = "Autotype"; ObjectID = "238"; */
 "238.ibShadowedLabels[2]" = "Saisie automatique";
-
-/* Class = "NSMenuItem"; title = "Save"; ObjectID = "0ok-MC-QMP"; */
-"0ok-MC-QMP.title" = "Sauvegarder";
-
-/* Class = "NSButtonCell"; title = "Enable Autotype"; ObjectID = "9Nx-mE-DK3"; */
-"9Nx-mE-DK3.title" = "Activer la saisie automatique";
-
-/* Class = "NSMenuItem"; title = "Quicklook"; ObjectID = "NtM-y3-l4D"; */
-"NtM-y3-l4D.title" = "Coup d'œil";
-
-/* Class = "NSTextFieldCell"; placeholderString = "Custom Entry Sequence"; ObjectID = "R2X-Ex-c6q"; */
-"R2X-Ex-c6q.placeholderString" = "Séquence personnalisée";
-
-/* Class = "NSTextFieldCell"; title = "Window Sequence"; ObjectID = "RQB-bR-MC0"; */
-"RQB-bR-MC0.title" = "Séquence personnalisée pour cette fenêtre";
-
-/* Class = "NSTextFieldCell"; title = "Autotype Sequence"; ObjectID = "bQ5-0E-h3O"; */
-"bQ5-0E-h3O.title" = "Séquence de saisie automatique";
-
-/* Class = "NSTextFieldCell"; title = "Window Title"; ObjectID = "bkO-Bk-AuX"; */
-"bkO-Bk-AuX.title" = "Titre de la fenêtre";
 
 /* Class = "NSMenuItem"; title = "Delete"; ObjectID = "bke-G2-oEf"; */
 "bke-G2-oEf.title" = "Supprimer";
 
+/* Class = "NSTextFieldCell"; title = "Window Title"; ObjectID = "bkO-Bk-AuX"; */
+"bkO-Bk-AuX.title" = "Titre de la fenêtre";
+
+/* Class = "NSTextFieldCell"; title = "Autotype Sequence"; ObjectID = "bQ5-0E-h3O"; */
+"bQ5-0E-h3O.title" = "Séquence de saisie automatique";
+
 /* Class = "NSTextFieldCell"; title = "Table View Cell"; ObjectID = "dyA-lo-PGa"; */
-"dyA-lo-PGa.title" = "Table View Cell";
+"dyA-lo-PGa.title" = "Vue en tableau";
 
 /* Class = "NSTextFieldCell"; title = "Text Cell"; ObjectID = "ep5-bQ-cfZ"; */
-"ep5-bQ-cfZ.title" = "Text Cell";
+"ep5-bQ-cfZ.title" = "Libellé de la cellule";
 
 /* Class = "NSTextFieldCell"; placeholderString = "Custom Window Sequence"; ObjectID = "fW9-9p-wwR"; */
 "fW9-9p-wwR.placeholderString" = "Séquence personnalisée pour cette fenêtre";
@@ -107,8 +85,21 @@
 /* Class = "NSTextFieldCell"; title = "Window Associations"; ObjectID = "ned-1Q-FXA"; */
 "ned-1Q-FXA.title" = "Séquences personnalisées";
 
-/* Class = "NSMenu"; title = "OtherViews"; ObjectID = "sNS-o1-pD7"; */
-"sNS-o1-pD7.title" = "OtherViews";
+/* Class = "NSMenuItem"; title = "Quicklook"; ObjectID = "NtM-y3-l4D"; */
+"NtM-y3-l4D.title" = "Coup d'œil";
 
 /* Class = "NSButtonCell"; title = "Obfuscate Autotype"; ObjectID = "oNq-kB-3eb"; */
 "oNq-kB-3eb.title" = "Dissimuler la saisie automatique (simule une saisie humaine)";
+
+/* Class = "NSTextFieldCell"; placeholderString = "Custom Entry Sequence"; ObjectID = "R2X-Ex-c6q"; */
+"R2X-Ex-c6q.placeholderString" = "Séquence personnalisée";
+
+/* Class = "NSTextFieldCell"; title = "Window Sequence"; ObjectID = "RQB-bR-MC0"; */
+"RQB-bR-MC0.title" = "Séquence personnalisée pour cette fenêtre";
+
+/* Class = "NSMenu"; title = "OtherViews"; ObjectID = "sNS-o1-pD7"; */
+"sNS-o1-pD7.title" = "Autres vues";
+
+/* Class = "NSButtonCell"; title = "Show Plugin Data"; ObjectID = "X9y-K7-lix"; */
+"X9y-K7-lix.title" = "Afficher les données du plugin";
+

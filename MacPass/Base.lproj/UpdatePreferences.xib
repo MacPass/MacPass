@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
+    <dependencies>
+        <deployment identifier="macosx"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="14490.70"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <customObject id="-2" userLabel="File's Owner" customClass="MPUpdatePreferencesController">
+            <connections>
+                <outlet property="automaticallyCheckForUpdatesCheckButton" destination="Z6x-oU-NC5" id="xHU-Lt-PmA"/>
+                <outlet property="checkIntervallPopupButton" destination="pWJ-eJ-MBf" id="znu-Me-2Me"/>
+                <outlet property="view" destination="1" id="0Ig-r5-x8L"/>
+            </connections>
+        </customObject>
+        <customObject id="-1" userLabel="First Responder" customClass="FirstResponder"/>
+        <customObject id="-3" userLabel="Application" customClass="NSObject"/>
+        <customView translatesAutoresizingMaskIntoConstraints="NO" id="1">
+            <rect key="frame" x="0.0" y="0.0" width="400" height="95"/>
+            <subviews>
+                <button verticalHuggingPriority="500" translatesAutoresizingMaskIntoConstraints="NO" id="Z6x-oU-NC5">
+                    <rect key="frame" x="22" y="59" width="221" height="18"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="14" id="ppB-Ka-SVN"/>
+                    </constraints>
+                    <buttonCell key="cell" type="check" title="Automatically Check for Updates" bezelStyle="regularSquare" imagePosition="left" state="on" inset="2" id="RFg-q1-AwJ">
+                        <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                        <font key="font" metaFont="system"/>
+                    </buttonCell>
+                </button>
+                <popUpButton verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="pWJ-eJ-MBf">
+                    <rect key="frame" x="144" y="17" width="114" height="25"/>
+                    <popUpButtonCell key="cell" type="push" bezelStyle="rounded" alignment="left" lineBreakMode="truncatingTail" borderStyle="borderAndBezel" imageScaling="proportionallyDown" inset="2" id="Hl5-gO-B1c">
+                        <behavior key="behavior" lightByBackground="YES" lightByGray="YES"/>
+                        <font key="font" metaFont="menu"/>
+                        <menu key="menu" title="OtherViews" id="RKd-H8-eCF">
+                            <items>
+                                <menuItem title="every Hour" tag="3600" id="DjF-1I-6Nq"/>
+                                <menuItem title="every Day" tag="86400" id="o9E-hk-H1T"/>
+                                <menuItem title="every Week" tag="604800" id="3FR-Va-iau"/>
+                                <menuItem title="every Month" tag="2629800" id="Uo3-kv-1ro">
+                                    <modifierMask key="keyEquivalentModifierMask"/>
+                                </menuItem>
+                            </items>
+                        </menu>
+                    </popUpButtonCell>
+                </popUpButton>
+                <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="ckg-9t-MDS">
+                    <rect key="frame" x="22" y="22" width="118" height="17"/>
+                    <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Check for Updates" id="9tL-CA-Vdg">
+                        <font key="font" metaFont="system"/>
+                        <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
+                        <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                    </textFieldCell>
+                </textField>
+            </subviews>
+            <constraints>
+                <constraint firstItem="pWJ-eJ-MBf" firstAttribute="leading" secondItem="ckg-9t-MDS" secondAttribute="trailing" constant="8" symbolic="YES" id="0dv-eU-4AK"/>
+                <constraint firstItem="ckg-9t-MDS" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="1" secondAttribute="leading" constant="20" symbolic="YES" id="C4W-zL-15M"/>
+                <constraint firstAttribute="centerX" secondItem="pWJ-eJ-MBf" secondAttribute="centerX" id="E7P-SY-suG"/>
+                <constraint firstItem="Z6x-oU-NC5" firstAttribute="top" secondItem="1" secondAttribute="top" constant="20" symbolic="YES" id="Njn-tR-NbV"/>
+                <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="pWJ-eJ-MBf" secondAttribute="trailing" constant="20" symbolic="YES" id="QsU-uT-lfo"/>
+                <constraint firstItem="ckg-9t-MDS" firstAttribute="leading" secondItem="Z6x-oU-NC5" secondAttribute="leading" id="W0y-Rp-Ucq"/>
+                <constraint firstItem="pWJ-eJ-MBf" firstAttribute="top" secondItem="Z6x-oU-NC5" secondAttribute="bottom" constant="20" symbolic="YES" id="fhM-Ri-Op9"/>
+                <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="Z6x-oU-NC5" secondAttribute="trailing" constant="20" symbolic="YES" id="mpe-6b-p3W"/>
+                <constraint firstItem="ckg-9t-MDS" firstAttribute="baseline" secondItem="pWJ-eJ-MBf" secondAttribute="baseline" id="ozZ-bW-f7y"/>
+                <constraint firstAttribute="bottom" secondItem="pWJ-eJ-MBf" secondAttribute="bottom" constant="20" symbolic="YES" id="pHW-e8-EU6"/>
+            </constraints>
+            <point key="canvasLocation" x="21" y="2"/>
+        </customView>
+    </objects>
+</document>

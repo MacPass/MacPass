@@ -37,17 +37,17 @@
 /* Action to add an entry via template */
 "ADD_TREMPLATE_ENTRY" = "Create Template Entry";
 
-/* Button in dialog to leave autotype disabled and continiue! */
-"ALERT_AUTOTYPE_MISSING_ACCESSIBILTY_PERMISSIONS_BUTTON_OK" = "Keep Autotype disabled.";
+/* Allow the download of the plugin repository file */
+"ALERT_ASK_FOR_PLUGIN_REPOSITORY_ALLOW_DOWNLOAD" = "Update definitions online";
 
-/* Button in dialog to open accessibilty preferences pane! */
-"ALERT_AUTOTYPE_MISSING_ACCESSIBILTY_PERMISSIONS_BUTTON_OPEN_PREFERENCES" = "Open Accessibilty Preferences…";
+/* Informative text displayed on the alert that shows up when MacPass asks for permssion to download the plugin repository JSON file */
+"ALERT_ASK_FOR_PLUGIN_REPOSITORY_CONNECTION_PERMISSION_INFORMATIVE_TEXT" = "The plugin defintions are hosted online at https://macpassapp.org. MacPass would like to download those files to ensure the data is up to date.";
 
-/* Alert informative text displayed when Autotype performs self check and lacks accessibilty permissions */
-"ALERT_AUTOTYPE_MISSING_ACCESSIBILTY_PERMISSIONS_INFORMATIVE_TEXT" = "The system prevents MacPass from sending key strokes to other Applications. To enable Autotype please grant MacPass Accessibilty rights in the privacy preferences.";
+/* Message displayed on the alert that askf for permission to download the plugin repository JSON file */
+"ALERT_ASK_FOR_PLUGIN_REPOSITORY_CONNECTION_PERMISSION_MESSAGE" = "MacPass would like to check for updates of plugin definitions online";
 
-/* Alert message displayed when Autotype performs self check and lacks accessibilty permissions */
-"ALERT_AUTOTYPE_MISSING_ACCESSIBILTY_PERMISSIONS_MESSAGE_TEXT" = "MacPass cannot perform Autotype";
+/* Disallow the download of the plugin repository file */
+"ALERT_ASK_FOR_PLUGIN_REPOSITORY_DISALLOW_DOWNLOAD" = "Do not update defintions";
 
 /* Button in dialog to leave plugin ds disabled and continiue! */
 "ALERT_INCOMPATIBLE_PLUGINS_ENCOUNTERED_BUTTON_OK" = "OK";
@@ -56,10 +56,10 @@
 "ALERT_INCOMPATIBLE_PLUGINS_ENCOUNTERED_BUTTON_OPEN_PREFERENCES" = "Show Plugin Preferences…";
 
 /* Informative text of the alert displayed when plugins where disabled due to incompatibilty */
-"ALERT_INCOMPATIBLE_PLUGINS_ENCOUNTERED_INFORMATIVE_TEXT" = "Some plugins where disabled, because they are not compatible with this version of MacPass. Open the plugin settings for details.";
+"ALERT_INCOMPATIBLE_PLUGINS_ENCOUNTERED_INFORMATIVE_TEXT" = "Some plugins were disabled, because they are not compatible with this version of MacPass. Open the plugin settings for details.";
 
 /* Message text of the alert displayed when plugins where disabled due to incompatibilty */
-"ALERT_INCOMPATIBLE_PLUGINS_ENCOUNTERED_MESSAGE" = "Incompatible Plugins deteced.";
+"ALERT_INCOMPATIBLE_PLUGINS_ENCOUNTERED_MESSAGE" = "Incompatible Plugins detected.";
 
 /* Alert informative text when plugins or their settings change and require a restart */
 "ALERT_INFORMATIVE_TEXT_PLUGINS_CHANGED_SUGGEST_RESTART" = "Changes to plugins and global plugin settings take only effect after restart. Restart MacPass now?";
@@ -85,7 +85,7 @@
 /* Alert message text to ask the user if he really want to uninstall the plugin. Include %@ placeholder for plugin name */
 "ALERT_MESSAGE_TEXT_REALLY_UNINSTALL_PLUGIN_%@" = "Should the Plugin %@ really be uninstalled?";
 
-/* Infromative text of the disabled updates alert! */
+/* Informative text of the disabled updates alert! */
 "ALERT_UPDATES_DISABLED_INFORMATIVE_TEXT_%@!" = "Updates for this build of %@ are disabled!";
 
 /* Message text for disabled updates alert! */
@@ -101,6 +101,12 @@
 /* Menu item for automatic trash creation */
 "AUTOCREATE_TRASH_FOLDER" = "Create Automatically";
 
+/* Message text in the autotype selection window. Placeholder is %1 - windowTitle */
+"AUTOTYPE_CANDIDATE_SELECTION_WINDOW_MESSAGE_%@" = "There are multiple matches for the current window: %@. Please select which match should be used.";
+
+/* Window title for the stand-alone password creator window */
+"AUTOTYPE_DOCTOR_RESULTS_WINDOW_TITLE" = "Autotype Doctor";
+
 /* Inherit autotype settings menu item */
 "AUTOTYPE_INHERIT" = "Inherit Autotype Settings";
 
@@ -110,8 +116,8 @@
 /* Disable autotype menu item */
 "AUTOTYPE_NO" = "Disable Autotype";
 
-/* Notification: Autotype failed, MacPass has no permission to send key strokes */
-"AUTOTYPE_NOTIFICATION_MACPASS_HAS_NO_ACCESSIBILTY_PERMISSIONS" = "Autotype disabled because of missing accessibilty access.";
+/* Notification: Autotype failed, MacPass has not enough permissions to perform autotype */
+"AUTOTYPE_NOTIFICATION_MACPASS_IS_MISSING_PERMISSIONS" = "MacPass does not have all necessary permissions to perform Autotype.";
 
 /* Notification: Autotype failed, no documents are open */
 "AUTOTYPE_OVERLAY_NO_DOCUMENTS" = "Please open a database file to use Global Autotype!";
@@ -121,6 +127,18 @@
 
 /* Notification: Autotype found a single match for %@ (string placeholder). */
 "AUTOTYPE_OVERLAY_SINGLE_MATCH_FOR_%@" = "Found Match for %@!";
+
+/* Status label when no issue were found in accessibilty */
+"AUTOTYPE_STATUS_ACCESSIBILTY_PERMISSIONS_OK" = "MacPass has permission to control your computer (Accessibility)";
+
+/* Status MacPass has no accessibilty permissions */
+"AUTOTYPE_STATUS_NO_ACCESSIBILTY_PERMISSIONS" = "MacPass has no permission to control your computer (Accessibility)";
+
+/* Status MacPass has no screen recording permissions */
+"AUTOTYPE_STATUS_NO_SCREEN_RECORDING_PERMISSIONS" = "MacPass has no permission to record your screen";
+
+/* Status lable when no issue were found in screen recording permissions */
+"AUTOTYPE_STATUS_SCREEN_RECORDING_PERMISSIONS_OK" = "MacPass has permission to record your screen";
 
 /* Notficication: Autotype timed out */
 "AUTOTYPE_TIMED_OUT" = "Autotype timed out.";
@@ -231,7 +249,7 @@
 /* Context menu that copies reference to username */
 "COPY_USERNAME_REFERENCE" = "Username";
 
-/* Curstom attribute reference item */
+/* Custom attribute reference item */
 "CUSTOM_ATTRIBUTE" = "Custom Attribute";
 
 /* Title for menu for custom search filters */
@@ -286,13 +304,19 @@
 "DRAG_GROUP" = "Drag Group";
 
 /* Action name for duplicating entries */
-"DUPLICATE_ENTRIES_%ld" = "Duplicate Entries %ld";
+"DUPLICATE_ENTRIES_ACTION_NAME" = "Duplicate Entries";
 
 /* Menu item to directly diplicate an entry */
 "DUPLICATE_ENTRY" = "Duplicate Entry";
 
 /* Menu item to duplicate an entry with options how to duplicate. Will present a dialog. */
 "DUPLICATE_ENTRY_WITH_OPTIONS" = "Duplicate Entry…";
+
+/* Menu item to directly diplicate a group */
+"DUPLICATE_GROUP" = "Duplicate Group";
+
+/* Action name for duplicating groups */
+"DUPLICATE_GROUPS_ACTION_NAME" = "Duplicate Group";
 
 /* Menu item in the database outline context menu to change the template group
    Menu item on the add entry context menu to edit template groups */
@@ -324,6 +348,12 @@
 
 /* Error description given when adding an invalid plugin */
 "ERROR_INVALID_PLUGIN" = "Invalid plugin";
+
+/* Error description for missing accessibility permissions */
+"ERROR_NO_ACCESSIBILTY_PERMISSIONS" = "MacPass has no permission to control your computer (Accessibility)";
+
+/* Error description for missing screen recording permissions */
+"ERROR_NO_PERMISSION_TO_RECORD_SCREEN" = "MacPass has no permission to record your screen";
 
 /* Passwords do not match */
 "ERROR_PASSWORD_MISSMATCH" = "Passwords do not match!";
@@ -363,7 +393,7 @@
 "FILE_OPEN_ERROR" = "Error opening file.";
 
 /* General Settings Label */
-"GENERAL_SETTINGS" = "General";
+"GENERAL_PREFERENCES" = "General";
 
 /* Group column title */
 "GROUP" = "Group";
@@ -433,7 +463,7 @@
 "NEW_ENTRY" = "New Entry";
 
 /* Submenu to add an entry via template */
-"NEW_ENTRY_WITH_TEMPLATE_%@" = "Create Entry with Template %@";
+"NEW_ENTRY_WITH_TEMPLATE_%@" = "from %@";
 
 /* Action name for a newly created group
    Menu item to create a new group
@@ -485,9 +515,6 @@
 
 /* Action button in Notification to open a document */
 "OPEN_DOCUMENT" = "Open Document";
-
-/* Action button in Notification to show the Accessibilty preferences */
-"OPEN_PREFERENCES" = "Open Accessiblity Preferences…";
 
 /* Menu item to open the URL with the default application */
 "OPEN_URL" = "Open URL";
@@ -575,7 +602,7 @@
 /* Error for a plugin that was not signed properly */
 "PLUGIN_ERROR_UNSECURE_PLUGIN" = "Plugin is not properly signed";
 
-/* Plugin specifies the wrong principla class! */
+/* Plugin specifies the wrong principal class! */
 "PLUGIN_ERROR_WRONG_PRINCIPAL_CLASS" = "Unexpected principal class in plugin";
 
 /* name for disabled unloaded plugin */
@@ -608,7 +635,7 @@
 /* Restart */
 "RESTART" = "Restart";
 
-/* Action to restore and Entry to a previous state of it's history */
+/* Action to restore an Entry to a previous state of its history */
 "RESTORE_HISTORY_ENTRY" = "Restore History Entry";
 
 /* Menu item to save the selected attached file.
@@ -660,6 +687,12 @@
 /* Checkbox in dialog to set the selection as default file change strategy! */
 "SET_AS_DEFAULT_FILE_CHANGE_STRATEGY" = "Use this method as default. You can change this at any time in the preferences.";
 
+/* Action button in Notification to show the Autotype Doctor */
+"SHOW_AUTOTYPE_DOCTOR" = "Show Autotype Doctor";
+
+/* Menu item to show the entries group in the outline view */
+"SHOW_GROUP_IN_OUTLINE" = "Show Group in Outline";
+
 /* Menu item to show the history of the selected entry
    Toolbar item to toggle history display */
 "SHOW_HISTORY" = "Show History";
@@ -675,6 +708,42 @@
 
 /* Toolbar item to perform autotype */
 "TOOLBAR_PERFORM_AUTOTYPE_FOR_ENTRY" = "Autotype";
+
+/* Touchbar button label for choosing the keyfile */
+"TOUCHBAR_CHOOSE_KEYFILE" = "Choose Keyfile";
+
+/* Touchbar button label for copying the password */
+"TOUCHBAR_COPY_PASSWORD" = "Copy Password";
+
+/* Touchbar button label for copying the username */
+"TOUCHBAR_COPY_USERNAME" = "Copy Username";
+
+/* Touchbar button label for deleting elements */
+"TOUCHBAR_DELETE" = "Delete";
+
+/* Touchbar button label for opening the popover to edit */
+"TOUCHBAR_EDIT" = "Edit";
+
+/* Touchbar button label for locking the database */
+"TOUCHBAR_LOCK_DATABASE" = "Lock Database";
+
+/* Touchbar button label for creating a new item */
+"TOUCHBAR_NEW_ENTRY" = "New Entry";
+
+/* Touchbar button label for creating a new group */
+"TOUCHBAR_NEW_GROUP" = "New Group";
+
+/* Touchbar button label for performing autotype */
+"TOUCHBAR_PERFORM_AUTOTYPE" = "Perform Autotype";
+
+/* Touchbar button label for searching the database */
+"TOUCHBAR_SEARCH" = "Search Database";
+
+/* Touchbar button label for showing the password */
+"TOUCHBAR_SHOW_PASSWORD" = "Show Password";
+
+/* Touchbar button label for unlocking the database */
+"TOUCHBAR_UNLOCK_DATABASE" = "Unlock Database";
 
 /* Move Entry to Trash */
 "TRASH_ENTRY" = "Trash Entry";
@@ -698,7 +767,7 @@
 "UNKNOWN_TOOLBAR_ITEM" = "Unknown Toolbar Item";
 
 /* Update Settings Label */
-"UPDATE_SETTINGS" = "Updates";
+"UPDATE_PREFERENCES" = "Updates";
 
 /* Menu item to toggle display of url column in entry table
    Submenu with options what to do with the URL of an entry

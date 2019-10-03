@@ -58,6 +58,18 @@ FOUNDATION_EXPORT NSString *const MPPasteBoardControllerDidClearClipboard;
 - (void)copyObjects:(NSArray<id<NSPasteboardWriting>> *)objects;
 - (void)copyObjectsWithoutTimeout:(NSArray<id<NSPasteboardWriting>> *)objects;
 
+/**
+ The pastboard controller will copy the object to the clipboard, display an appropriate overlay image
+ and text and will set the clear time out if any is set. Additinally it will hide the application if
+ the user has set this option. This call should always be used when a user is directly copying anything
+ to the clipboard. If the clipboard is used internally (e.g. for autotype) you should call copyObjects:
+ or even copyObjectsWithoutTimeout:
+ 
+ @param objects object so be copied
+ @param overlayInfoType infotype discribing what is copied
+ @param name a custom name
+ @param view the view that initiated the copy action
+ */
 - (void)copyObjects:(NSArray<id<NSPasteboardWriting>> *)objects overlayInfo:(MPPasteboardOverlayInfoType)overlayInfoType name:(NSString *)name atView:(NSView *)view;
 
 @end

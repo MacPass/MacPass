@@ -143,7 +143,7 @@ NSString *const MPPasteBoardControllerDidClearClipboard = @"com.hicknhack.macpas
       infoImage = [NSBundle.mainBundle imageForResource:@"00_PasswordTemplate"];
       infoText = [NSString stringWithFormat:NSLocalizedString(@"COPIED_FIELD_%@", "Field name that was copied to the pasteboard"), name];
       break;
-    
+      
     case MPPasteboardOverlayInfoReference:
       infoImage = [NSBundle.mainBundle imageForResource:@"04_KlipperTemplate"];
       infoText = name;
@@ -151,6 +151,13 @@ NSString *const MPPasteBoardControllerDidClearClipboard = @"com.hicknhack.macpas
       
   }
   [MPOverlayWindowController.sharedController displayOverlayImage:infoImage label:infoText atView:view];
+  
+  BOOL hide = [NSUserDefaults.standardUserDefaults boolForKey:kMPSettingsKeyHideAfterCopyToClipboard];
+  if(hide) {
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(400 * NSEC_PER_MSEC)), dispatch_get_main_queue(), ^{
+      [NSApplication.sharedApplication hide:nil];
+    });
+  }
 }
 
 - (void)_clearPasteboardContents {

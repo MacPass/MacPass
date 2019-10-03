@@ -1,194 +1,694 @@
-/* Formatted Times  */
+/* % days ago */
 "%ld_DAYS_AGO" = "%ld 天以前";
-"%ld_HOURS_AGO" = "大约 %ld 小时以前";
-"%ld_MINUTES_AGO" = "%ld 分钟以前";
-"%ld_WEEKS_AGO" = "%ld 周以前";
-"JUST_NOW" = "现在";
-"LAST_WEEK" = "上周";
-"ONE_WEEK_AGO" = "一周以前";
-"YESTERDAY" = "昨天";
-"TOMORROW" = "明天";
-"ONE_WEEK" = "一周之后";
-"ONE_MONTH" = "一月之后";
-"90_DAYS" = "90 天之后";
-"ONE_YEAR" = "一年之后";
 
-/* Date Picker */
-"SELECT_DATE_PRESET" = "使用预设值…";
+/* % Hours ago */
+"%ld_HOURS_AGO" = "大约 %ld 小时以前";
+
+/* % Minutes ago */
+"%ld_MINUTES_AGO" = "%ld 分钟以前";
+
+/* % Weeks ago */
+"%ld_WEEKS_AGO" = "%ld 周以前";
+
+/* preset to expire after 90 days from now */
+"90_DAYS" = "90 天之后";
+
+/* Button label to abort a merge on a file with changed master key! */
+"ABORT_MERGE_KEEP_MINE" = "终止合并，保留我的文件。";
+
+/* Toolbar item with action menu */
+"ACTION" = "动作";
+
+/* Action to add an entry via template */
+"ADD_TREMPLATE_ENTRY" = "创建模板项目";
+
+/* Button in dialog to leave plugin ds disabled and continiue! */
+"ALERT_INCOMPATIBLE_PLUGINS_ENCOUNTERED_BUTTON_OK" = "好";
+
+/* Button in dialog to open plugin preferences pane! */
+"ALERT_INCOMPATIBLE_PLUGINS_ENCOUNTERED_BUTTON_OPEN_PREFERENCES" = "打开插件设置...";
+
+/* Informative text of the alert displayed when plugins where disabled due to incompatibilty */
+"ALERT_INCOMPATIBLE_PLUGINS_ENCOUNTERED_INFORMATIVE_TEXT" = "";
+
+/* Message text of the alert displayed when plugins where disabled due to incompatibilty */
+"ALERT_INCOMPATIBLE_PLUGINS_ENCOUNTERED_MESSAGE" = "检测到不兼容的插件";
+
+/* Alert informative text when plugins or their settings change and require a restart */
+"ALERT_INFORMATIVE_TEXT_PLUGINS_CHANGED_SUGGEST_RESTART" = "对于插件和全局的插件设置改动，需要重启 MacPass 才能有效。现在重启 MacPass 吗？";
+
+/* Alert informative text to ask the user if he really want to uninstall the plugin */
+"ALERT_INFORMATIVE_TEXT_REALLY_UNINSTALL_PLUGIN" = "这个插件将会被移动到废纸篓。";
+
+/* Button in dialog to cancel merge of KDB file changes! */
+"ALERT_MERGE_CANCEL" = "取消";
+
+/* Button in dialog to merge KDB changes into file! */
+"ALERT_MERGE_CONTINUE" = "合并文件";
+
+/* Informative text displayed when merging KDB files */
+"ALERT_MERGE_KDB_FILE_INFO_TEXT" = "KDB 数据库没有包含足以进行无缝合并的信息。所有的项目将会被合并，不会有数据丢失。但是由于项目组仅通过名称来进行匹配，可能会有非预期的改变出现。项目可能会被还原到之前的组当中，重命名的组可能不会被合并，被删除的项目可能会重新出现。你确定想继续吗？";
+
+/* Alert message warning user about KDB file merge */
+"ALERT_MERGE_KDB_FILE_MESSAGE" = "你正在合并一个 KDB 数据库";
+
+/* Attachments column title (shows counts)
+   Menu item to toggle display of attachment count column in entry table */
+"ATTACHMENTS" = "附件";
+
+/* Sucessfully merged external changes */
+"AUTO_MERGE_NOTIFICATION_TEXT" = "自动合并成功！";
 
 /* Menu item for automatic trash creation */
 "AUTOCREATE_TRASH_FOLDER" = "自动创建";
 
-/*
- Actions
- */
-"NEW_ENTRY" = "添加项目";
-"NEW_GROUP" = "添加组";
-"DUPLICATE_ENTRY" = "克隆项目";
-"DUPLICATE_ENTRY_WITH_OPTIONS" = "克隆项目…";
-"COPY_ENTRY" = "拷贝项目";
-"COPY_GROUP" = "拷贝组";
-"ADD_TREMPLATE_ENTRY" = "创建模板项目";
-"DELETE_GROUP" = "删除组";
-"DELETE_ENTRY" = "删除项目";
-"EDIT_TEMPLATE_GROUP" = "编辑项目模板组";
-"EMPTY_TRASH" = "清空废纸篓";
-"MOVE_ENTRY" = "移动项目";
-"MOVE_GROUP" = "移动组";
-"NEW_ENTRY_WITH_TEMPLATE_%@" = "从模板 %@ 创建项目";
-"NEW_DATABASE" = "数据库";
-"OPEN_URL" = "打开 URL";
-"PERFORM_AUTOTYPE_FOR_ENTRY" = "执行自动键入";
-"PREVIEW" = "预览";
-"PASSWORD_GENERATOR_SET_DEFAULTS" = "设为默认值";
-"PASSWORD_GENERATOR_RESET_ENTRY_DEFAULTS" = "重置";
-"TRASH_ENTRY" = "将项目移入废纸篓";
-"TRASH_GROUP" = "将组移入废纸篓";
-"SHOW_HISTORY" = "显示历史";
+/* Message text in the autotype selection window. Placeholder is %1 - windowTitle */
+"AUTOTYPE_CANDIDATE_SELECTION_WINDOW_MESSAGE_%@" = "在当前窗口 %@ 中发现了多个匹配，请选择要使用的匹配。";
 
-/*
- Search
- */
-"CLEAR_RECENT_SEARCHES" = "清除最近的搜索";
-"RECENT_SEARCHES" = "最近的搜索";
-"SEARCH_DUPLICATE_PASSWORDS" = "重复的密码";
-"SEARCH_EXPIRED_ENTRIES" = "已过期";
-"SELECT_FILTER_WITH_DOTS" = "筛选…";
+/* Window title for the stand-alone password creator window */
+"AUTOTYPE_DOCTOR_RESULTS_WINDOW_TITLE" = "自动键入诊断";
 
-/*
- Direct Translations
- */
-"ACTION" = "动作";
-"ATTACHMENTS" = "附件";
-"CANCEL" = "取消";
-"DATABASE" = "数据库";
-"DELETE" = "删除";
-"EDIT" = "编辑";
-"GROUP" = "组";
-"INSPECTOR" = "检查器";
-"LOCK" = "锁定";
-"MODIFIED" = "修改时间";
-"NONE" = "无";
-"NOTES" = "注释";
-"PASSWORD" = "密码";
-"SAVE" = "保存";
-"SAVE_WITH_DOTS" = "保存…";
-"SEARCH" = "搜索";
-"TITLE" = "标题";
-"URL" = "URL";
-"USERNAME" = "用户名";
-"WINDOWS" = "Windows";
-
-
-"CHANGE_DATABASE_NAME" = "修改数据库名称";
-"CHANGE_TRASH_GROUP" = "修改废纸篓的项目组";
-
-/* Field nam that was copied to the pasteboard */
-"COPIED_FIELD_%@" = "%@ 已拷贝到剪贴板";
-"COPIED_PASSWORD" = "密码已拷贝到剪贴板！";
-"COPIED_URL" = "URL 已拷贝到剪贴板!";
-"COPIED_USERNAME" = "用户名已拷贝到剪贴板!";
-"COPY_CUSTOM_FIELDS" = "拷贝自定义字段";
-"COPY_FIELD_%@" = "拷贝 %@";
-"COPY_PASSWORD" = "拷贝密码";
-"COPY_URL" = "拷贝 URL";
-"COPY_USERNAME" = "拷贝用户名";
-
-/* Dock Badge */
-"CLEARING_PASTEBOARD" = "…";
-
-/* Group Inspector */
-/* Autotype Combobox */
-"AUTOTYPE_NO" = "禁用自动键入";
-"AUTOTYPE_YES" = "打开自动键入";
+/* Inherit autotype settings menu item */
 "AUTOTYPE_INHERIT" = "继承自动键入设置";
 
-/* Search Combobox */
-"SEARCH_INHERIT" = "继承搜索设置";
-"SEARCH_YES" = "包含在搜索中";
-"SEARCH_NO" = "排除在搜索外";
+/* Message displayed to the user to unlock the database to perform global autotype */
+"AUTOTYPE_MESSAGE_UNLOCK_DATABASE" = "使用全局自动键入前请先解锁数据库";
 
-/*
- Date/Time Displays
- */
-/* Created at template string. %@ is replaced by locaized date and time */
-"CREATED_AT_%@" = "创建时间: %@";
-/* Modifed at template string. %@ is replaced by locaized date and time */
-"MODIFED_AT_%@" = "修改时间: %@";
+/* Disable autotype menu item */
+"AUTOTYPE_NO" = "禁用自动键入";
 
-"EXPIRES_AT_DATE_%@" = "失效时间: %@";
-"NO_EXPIRE_DATE_SET" = "永不失效";
+/* Notification: Autotype failed, MacPass has not enough permissions to perform autotype */
+"AUTOTYPE_NOTIFICATION_MACPASS_IS_MISSING_PERMISSIONS" = "MacPass 没有执行自动键入的权限。";
 
-/*
- Defaults for new objects
- */
-"DEFAULT_CUSTOM_FIELD_TITLE" = "自定义";
-"DEFAULT_CUSTOM_FIELD_VALUE" = "值";
-"DEFAULT_ENTRY_TITLE" = "新项目";
-"DEFAULT_GROUP_NAME" = "项目组";
-"DEFAULT_WINDOW_TITLE" = "Window Title";
+/* Notification: Autotype failed, no documents are open */
+"AUTOTYPE_OVERLAY_NO_DOCUMENTS" = "请打开一个数据库文件以使用全局自动键入！";
 
-/* Settings */
-"GENERAL_SETTINGS" = "通用";
-"INTEGRATION_SETTINGS" = "集成";
-"UPDATE_SETTINGS" = "更新";
-"WORKFLOW_SETTINGS" = "工作流";
-"DEFAULT_BROWSER" = "缺省浏览器";
-"OTHER_BROWSER" = "选择浏览器…";
-"PLUGIN_SETTINGS" = "插件";
-
-/* Feature not supported in Version */
-"KDBX_ONLY_FEATURE" = "KDB 数据库不支持此特性";
-
-/* Template */
-"NO_TEMPLATE_GROUP" = "无模板";
-"NO_TEMPLATES" = "未找到模板";
-
-/* Kefile */
-"SAVE_KEYFILE" = "保存密钥文件";
-
-/* Autoype Dialog */
-/* Candiate dialog */
-"SELECT_AUTOTYPE_CANDIDATE" = "选择候选！";
-"AUTOTYPE_OVERLAY_NO_DOCUMENTS" = "请打开一个文件以使用全局自动键入!";
+/* Noticiation: Autotype failed to find a match for %@ (string placeholder) */
 "AUTOTYPE_OVERLAY_NO_MATCH_FOR_%@" = "没有找到匹配 %@！";
-"AUTOTYPE_OVERLAY_SINGLE_MATCH" = "找到匹配！";
 
-/* Alert Dialogs */
-"WARNING_ON_EMPTY_TRASH_DESCRIPTION" = "清空废纸篓无法撤销";
-"WARNING_ON_EMPTY_TRASH_TITLE" = "清空废纸篓?";
-"WARNING_ON_LOSSY_SAVE" = "保存为 KDB 格式，将会损失数据";
-"WARNING_ON_LOSSY_SAVE_DESCRIPTION" = "KDB 格式无法保存所有信息";
-"CHANGE_FORMAT" = "更改文件格式为 KDBX";
+/* Notification: Autotype found a single match for %@ (string placeholder). */
+"AUTOTYPE_OVERLAY_SINGLE_MATCH_FOR_%@" = "找到匹配 %@！";
 
-"ENFORCE_PASSWORD_CHANGE_ALERT_TITLE" = "数据库密码已过期！";
-"ENFORCE_PASSWORD_CHANGE_ALERT_DESCRIPTION" = "更改密码/密钥文件之前，你将不能保存数据库";
+/* Status lable when no issue were found in accessibilty */
+"AUTOTYPE_STATUS_ACCESSIBILTY_PERMISSIONS_OK" = "MacPass 有权限控制您的计算机（辅助功能）";
 
-"RECOMMEND_PASSWORD_CHANGE_ALERT_TITLE" = "请更改数据库密码！";
-"RECOMMEND_PASSWORD_CHANGE_ALERT_DESCRIPTION" = "建议你更改数据库密码/密钥文件";
+/* Status MacPass has no accessibilty permissions */
+"AUTOTYPE_STATUS_NO_ACCESSIBILTY_PERMISSIONS" = "MacPass 没有权限控制您的计算机（辅助功能）";
+
+/* Status MacPass has no screen recording permissions */
+"AUTOTYPE_STATUS_NO_SCREEN_RECORDING_PERMISSIONS" = "MacPass 没有权限录制您的屏幕";
+
+/* Status lable when no issue were found in screen recording permissions */
+"AUTOTYPE_STATUS_SCREEN_RECORDING_PERMISSIONS_OK" = "MacPass 有权限录制您的屏幕";
+
+/* Notficication: Autotype timed out */
+"AUTOTYPE_TIMED_OUT" = "自动键入超时";
+
+/* Enable autotype menu item */
+"AUTOTYPE_YES" = "打开自动键入";
+
+/* Cancel */
+"CANCEL" = "取消";
+
+/* Menu item in the database outline context menu to change the database name */
+"CHANGE_DATABASE_NAME" = "修改数据库名称";
+
+/* Button to postpone the password change */
+"CHANGE_LATER" = "稍后修改";
+
+/* Button to show the password change dialog
+   Single button to show the password change dialog */
 "CHANGE_PASSWORD_WITH_DOTS" = "更改密码…";
 
-"WARNING_ON_SAVE_NO_PASSWORD_OR_KEY_SET" = "没有设置密码/密钥文件";
-"WARNING_ON_SAVE_NO_PASSWORD_OR_KEY_SET_SUGGESTION" = "请给这个数据库设置密码/密钥文件，终止操作将会撤销所有更改并锁定数据库。";
+/* Menu item in the database outline context menu to change the trash group */
+"CHANGE_TRASH_GROUP" = "修改废纸篓的项目组";
+
+/* Button title in the key file selection dialog for selecting a key */
+"CHOOSE_FILE_BUTTON_TITLE" = "打开";
+
+/* Clear Autotype Button */
+"CLEAR_AUTOTYPE" = "清空自动键入";
+
+/* Menu to clear recent searches */
+"CLEAR_RECENT_SEARCHES" = "清除最近的搜索";
+
+/* String displayed at dock badge when clipboard is about to be cleared */
+"CLEARING_PASTEBOARD" = "…";
+
+/* Field name that was copied to the pasteboard */
+"COPIED_FIELD_%@" = "%@ 已拷贝到剪贴板";
+
+/* Context menu that copies reference to note */
+"COPIED_NOTES_REFERENCE" = "备注引用已拷贝";
+
+/* Password was copied to the pasteboard */
+"COPIED_PASSWORD" = "密码已拷贝到剪贴板！";
+
+/* Context menu that copies reference to password */
+"COPIED_PASSWORD_REFERENCE" = "密码引用已拷贝！";
+
+/* Context menu that copies reference to title */
+"COPIED_TITLE_REFERENCE" = "标题引用已拷贝！";
+
+/* URL was copied to the pasteboard */
+"COPIED_URL" = "URL 已拷贝到剪贴板!";
+
+/* Context menu that copies reference to URL */
+"COPIED_URL_REFERENCE" = "URL 引用已拷贝！";
+
+/* Username was copied to the pasteboard */
+"COPIED_USERNAME" = "用户名已拷贝到剪贴板!";
+
+/* Context menu that copies reference to username */
+"COPIED_USERNAME_REFERENCE" = "用户名引用已拷贝！";
+
+/* Submenu to copy attributes as reference */
+"COPY_AS_REFERENCE" = "拷贝引用到...";
+
+/* Context menu sub-menu to copy attributes as reference */
+"COPY_AS_REFERENCE_MENU" = "复制为引用";
+
+/* Submenu to Copy custom fields */
+"COPY_CUSTOM_FIELDS" = "拷贝自定义字段";
+
+/* Action name when an entry was moved
+   Action title for copying an entry via drag and drop */
+"COPY_ENTRY" = "拷贝项目";
+
+/* Mask for title to copy field value */
+"COPY_FIELD_%@" = "拷贝 %@";
+
+/* Action title for copying a group via drag and drop */
+"COPY_GROUP" = "拷贝组";
+
+/* Context menu that copies reference to note */
+"COPY_NOTES_REFERENCE" = "备注";
+
+/* Menu item to copy the password of an entry
+   Toolbar item copy password */
+"COPY_PASSWORD" = "拷贝密码";
+
+/* Context menu that copies reference to password */
+"COPY_PASSWORD_REFERENCE" = "密码";
+
+/* Context menu that copies reference to title */
+"COPY_TITLE_REFERENCE" = "标题";
+
+/* Menu item to copy the URL of an entry */
+"COPY_URL" = "拷贝 URL";
+
+/* Context menu that copies reference to URL */
+"COPY_URL_REFERENCE" = "URL";
+
+/* Menu item to copy the username of an entry
+   Toolbar item copy username */
+"COPY_USERNAME" = "拷贝用户名";
+
+/* Context menu that copies reference to username */
+"COPY_USERNAME_REFERENCE" = "用户名";
+
+/* Curstom attribute reference item */
+"CUSTOM_ATTRIBUTE" = "自定义属性";
+
+/* Default display name for KDB databases */
+"DATABASE" = "数据库";
+
+/* Default Browser */
+"DEFAULT_BROWSER" = "默认浏览器";
+
+/* Default Titel for new Custom-Fields */
+"DEFAULT_CUSTOM_FIELD_TITLE" = "自定义";
+
+/* Default Value for new Custom-Fields */
+"DEFAULT_CUSTOM_FIELD_VALUE" = "值";
+
+/* Title for a newly created entry */
+"DEFAULT_ENTRY_TITLE" = "新项目";
+
+/* Title for a newly created group */
+"DEFAULT_GROUP_NAME" = "项目组";
+
+/* Default window title for a new window association */
+"DEFAULT_WINDOW_TITLE" = "Window Title";
+
+/* Menu item in the database outline context menu to delete the node from the trash
+   Menu item to delete an entry
+   Menu item to delete the selected attached file
+   Menu item to delete the selected custom icon
+   Toolbar item delete item */
+"DELETE" = "删除";
+
+/* Delete Entry */
+"DELETE_ENTRY" = "删除项目";
+
+/* Delete Group */
+"DELETE_GROUP" = "删除组";
+
+/* Empty Trash */
+"DELETE_TRASHED_ENTRY" = "删除被移入废纸篓的项目";
+
+/* Empty Trash */
+"DELETE_TRASHED_GROUP" = "删除被移入废纸篓的组";
+
+/* Action name for duplicating entries */
+"DUPLICATE_ENTRIES_ACTION_NAME" = "克隆项目";
+
+/* Menu item to directly diplicate an entry */
+"DUPLICATE_ENTRY" = "克隆项目";
+
+/* Menu item to duplicate an entry with options how to duplicate. Will present a dialog. */
+"DUPLICATE_ENTRY_WITH_OPTIONS" = "克隆项目…";
+
+/* Menu item to directly diplicate a group */
+"DUPLICATE_GROUP" = "克隆组";
+
+/* Action name for duplicating groups */
+"DUPLICATE_GROUPS_ACTION_NAME" = "克隆组";
+
+/* Menu item in the database outline context menu to change the template group
+   Menu item on the add entry context menu to edit template groups */
+"EDIT_TEMPLATE_GROUP" = "编辑项目模板组";
+
+/* Empty Trash
+   Menu item in the database outline context menu to empyt the trash
+   Menu item in the database outline to empty the trash
+   Menu item to empty the trash */
+"EMPTY_TRASH" = "清空废纸篓";
+
+/* Informative text for the enforce password change alert */
+"ENFORCE_PASSWORD_CHANGE_ALERT_DESCRIPTION" = "更改密码/密钥文件之前，你将不能保存数据库";
+
+/* Message text for the enforce password change alert */
+"ENFORCE_PASSWORD_CHANGE_ALERT_TITLE" = "数据库密码已过期！";
+
+/* Keyfile not valid */
+"ERROR_INVALID_KEYFILE" = "密钥文件不正确！";
+
+/* Error description given when adding an invalid plugin */
+"ERROR_INVALID_PLUGIN" = "无效插件";
+
+/* Error description for missing accessibilty permissions */
+"ERROR_NO_ACCESSIBILTY_PERMISSIONS" = "MacPass 没有权限控制您的计算机（辅助功能）";
+
+/* Error description for missing screen recording permissions */
+"ERROR_NO_PERMISSION_TO_RECORD_SCREEN" = "MacPass 没有权限录制您的屏幕";
+
+/* Passwords do not match */
+"ERROR_PASSWORD_MISSMATCH" = "密码不正确！";
+
+/* Passwords do not match, keyfile is invalid */
+"ERROR_PASSWORD_MISSMATCH_INVALID_KEYFILE" = "密码和密钥文件不正确！";
+
+/* Recommend/Enforce key change intervall format */
+"EVERY_%ld_DAYS" = "每 %ld 天";
+
+/* Format to returen the date an item expires. Includes %@ placehoder for date */
+"EXPIRES_AT_DATE_%@" = "失效时间: %@";
+
+/* The master key was changed by an external program! */
+"EXTERN_CHANGE_OF_MASTERKEY" = "主密钥被其他程序修改";
+
+/* External file change strategy option: ask what to do */
+"FILE_CHANGE_STRATEGY_ASK" = "询问";
+
+/* External file change strategy option: Keep local file an ignore external changes */
+"FILE_CHANGE_STRATEGY_KEEP_MINE" = "保留我的版本，忽略其他修改";
+
+/* Button in dialog to merge changes into file!
+   External file change strategy option: Merge external changes into local file. */
+"FILE_CHANGE_STRATEGY_MERGE" = "合并修改";
+
+/* External file change strategy option: Use the changed file and discard local changes */
+"FILE_CHANGE_STRATEGY_USE_OTHER" = "加载修改的版本，放弃我的版本";
+
+/* Informative text displayed when the file was change from another application */
+"FILE_CHANGED_BY_OTHERS_INFO_TEXT" = "加载的文件和磁盘上的文件不同，你想怎么处理？";
 
 /* Message displayed when an open file was changed from another application */
 "FILE_CHANGED_BY_OTHERS_MESSAGE_TEXT" = "数据库文件被修改！";
-/* Informative text displayed when the file was change form another application */
-"FILE_CHANGED_BY_OTHERS_INFO_TEXT" = "加载的文件和磁盘上的文件不同，你想怎么处理？";
-/* Button to ignore the changes */
-"KEEP_MINE" = "不要加载修改过的数据库";
-/* Merge changes into file! */
-"MERGE_CHANGES" = "合并更改";
 
-/* Password Input Messagaes, Errors and Warning */
-"PASSWORD_INPUT_NO_PASSWORD" = "无密码";
-"PASSWORD_INPUT_ENTER_PASSWORD" = "输入密码";
-"PASSWORD_INPUT_REPEAT_PASSWORD" = "重复密码";
-"WARNING_NO_PASSWORD_OR_KEYFILE" = "未提供密码或密钥文件！";
-"ERROR_PASSWORD_MISSMATCH_INVALID_KEYFILE" = "密码和密钥文件不正确！";
-"ERROR_PASSWORD_MISSMATCH" = "密码不正确！";
-"ERROR_INVALID_KEYFILE" = "密钥文件不正确！";
-
-/* Misc */
-"DOCUMENT_AUTOTYPE_CORRUPTION_WARNING" = "请执行修复自动键入";
+/* Error while reopening last known documents */
 "FILE_OPEN_ERROR" = "打开文件错误";
+
+/* General Settings Label */
+"GENERAL_PREFERENCES" = "通用";
+
+/* Group column title */
+"GROUP" = "组";
+
+/* History count column title
+   Menu item to toggle display of history count column in entry table */
+"HISTORY" = "历史";
+
+/* Imports a dragged URL for a new entry */
+"IMPORT_URL" = "导入 URL";
+
+/* Toolbar item toggle inspector */
+"INSPECTOR" = "检查器";
+
+/* Label for the integration settings tab */
+"INTEGRATION_SETTINGS" = "集成";
+
+/* Just now */
+"JUST_NOW" = "现在";
+
+/* Feature only available in kdbx databases */
+"KDBX_ONLY_FEATURE" = "KDB 数据库不支持此特性";
+
+/* Button in dialog to ignore the changes to an open file! */
+"KEEP_MINE_DISCARD_OTHER" = "保留我的，丢弃他人的改动";
+
+/* Button in dialog to reopen the file! */
+"KEEP_OTHER_DISCARD_MINE" = "保留他人的，丢弃我的改动";
+
+/* Do not restart MacPass */
+"KEEP_RUNNING" = "保持运行";
+
+/* last week */
+"LAST_WEEK" = "上周";
+
+/* Toolbar item to Lock the database */
+"LOCK" = "锁定";
+
+/* Message in the open panel to add attachments to an entry */
+"MESSAGE_ADD_ATTACHMENT_OPEN_PANEL" = "选择要添加的附件";
+
+/* Message in the add plugin open panel */
+"MESSAGE_ADD_PLUGIN_OPEN_PANEL" = "选择要安装的插件";
+
+/* Menu item to toggle display of modified date column in entry table
+   Modification date column title */
+"MODIFIED" = "修改时间";
+
+/* Action name when an entry was moved */
+"MOVE_ENTRY" = "移动项目";
+
+/* Name for a newly created Database */
+"NEW_DATABASE" = "数据库";
+
+/* Action name for a newly created entry
+   Menu item to create a new entry
+   Toolbar item new entry */
+"NEW_ENTRY" = "添加项目";
+
+/* Submenu to add an entry via template */
+"NEW_ENTRY_WITH_TEMPLATE_%@" = "从模板 %@ 创建项目";
+
+/* Action name for a newly created group
+   Menu item to create a new group
+   Toolbar item new group */
+"NEW_GROUP" = "添加组";
+
+/* Expiration date format, when item does not expire */
+"NO_EXPIRE_DATE_SET" = "永不失效";
+
+/* Menu item to reset the template groups */
+"NO_TEMPLATE_GROUP" = "无模板";
+
+/* Menu item added to show that no templates are defined */
+"NO_TEMPLATES" = "未找到模板";
+
+/* Null placeholder for item input field
+   Placeholder text for input fields if no entry or group is selected */
+"NONE" = "无";
+
+/* Displayed name when notes or part of notes was copied
+   Menu item to toggle display of notes column in entry table
+   Notes column title
+   Notes reference item */
+"NOTES" = "备注";
+
+/* Ok Button to dismiss disabled updates alert */
+"OK" = "好";
+
+/* preset to expire after one montch from now */
+"ONE_MONTH" = "一月之后";
+
+/* preset to expire after one week from now */
+"ONE_WEEK" = "一周之后";
+
+/* one week ago */
+"ONE_WEEK_AGO" = "一周以前";
+
+/* preset to expire after one year from now */
+"ONE_YEAR" = "一年之后";
+
+/* Open button in the open panel to add attachments to an entry */
+"OPEN_BUTTON_ADD_ATTACHMENT_OPEN_PANEL" = "添加";
+
+/* Open button in the add plugin open panel */
+"OPEN_BUTTON_ADD_PLUGIN_OPEN_PANEL" = "安装";
+
+/* Open button in the open panel to import an XML file */
+"OPEN_BUTTON_IMPORT_XML_OPEN_PANEL" = "导入";
+
+/* Action button in Notification to open a document */
+"OPEN_DOCUMENT" = "打开文档";
+
+/* Menu item to open the URL with the default application */
+"OPEN_URL" = "打开 URL";
+
+/* Select Browser */
+"OTHER_BROWSER" = "选择浏览器…";
+
+/* Menu item to toggle display of password column in entry table
+   Password column title
+   Password reference item */
+"PASSWORD" = "密码";
+
+/* Window title for the stand-alone password creator window */
+"PASSWORD_CREATOR_WINDOW_TITLE" = "密码生成器";
+
+/* Button to reset the password defaults for a single entry */
+"PASSWORD_GENERATOR_RESET_ENTRY_DEFAULTS" = "重置";
+
+/* Button to set the defaults of the password generator */
+"PASSWORD_GENERATOR_SET_DEFAULTS" = "设为默认值";
+
+/* Placeholder for the password field to aks for password
+   Placeholder in the unlock-password input field if password is enabled */
+"PASSWORD_INPUT_ENTER_PASSWORD" = "输入密码";
+
+/* Placeholder for the password input field if passwords are disabled
+   Placeholder for the repeat password input if passwords are disabled
+   Placeholder in the unlock-password input field if password is disabled */
+"PASSWORD_INPUT_NO_PASSWORD" = "无密码";
+
+/* Placeholder for the repeat password field to aks for the repeated password */
+"PASSWORD_INPUT_REPEAT_PASSWORD" = "重复密码";
+
+/* Menu item to perform autotype with the selected entry */
+"PERFORM_AUTOTYPE_FOR_ENTRY" = "执行自动键入";
+
+/* Label for the button when a download is in progress! */
+"PLUGIN_BROWSER_ACTION_DOWNLOAD_IN_PROGRESS" = "正在下载...";
+
+/* Label for the button when a download did not succeed */
+"PLUGIN_BROWSER_ACTION_RETRY_FAILED_DOWNLOAD" = "失败，重试下载";
+
+/* Label for the button to show a downloaded file */
+"PLUGIN_BROWSER_ACTION_SHOW_DOWNLOADED_FILE" = "在“访达”中显示...";
+
+/* Button to download the Plugin */
+"PLUGIN_BROWSER_DOWNLOAD_PLUGIN_BUTTON" = "下载";
+
+/* Status for an up-to-date plugin in the plugin browser */
+"PLUGIN_BROWSER_LATEST_VERSION_INSTALLED" = "已安装最新版本";
+
+/* Status for an uninstalled plugin in the plugin browser */
+"PLUGIN_BROWSER_PLUGIN_NOT_INSTALLED" = "未安装";
+
+/* Error for a plugin that is disabled. */
+"PLUGIN_ERROR_DISABLED_PLUGIN" = "插件被用户禁用";
+
+/* Plugin is not with this version of MacPass */
+"PLUGIN_ERROR_HOST_VERSION_NOT_SUPPORTED" = "插件不支持此版本的 MacPass";
+
+/* The plugin could not be initalized */
+"PLUGIN_ERROR_INTILIZATION_FAILED" = "插件不能被初始化";
+
+/* Error for a plugin that was not signed properly */
+"PLUGIN_ERROR_UNSECURE_PLUGIN" = "插件签名不合法";
+
+/* Label for plugin settings tab */
+"PLUGIN_SETTINGS" = "插件";
+
+/* Menu item to preview the selected attached file. */
+"PREVIEW" = "预览";
+
+/* Recent searches menu item */
+"RECENT_SEARCHES" = "最近的搜索";
+
+/* Informative text for the recommend password change alert */
+"RECOMMEND_PASSWORD_CHANGE_ALERT_DESCRIPTION" = "建议你更改数据库密码/密钥文件";
+
+/* Message text for the recommend password change alert */
+"RECOMMEND_PASSWORD_CHANGE_ALERT_TITLE" = "请更改数据库密码！";
+
+/* Restart */
+"RESTART" = "重启";
+
+/* Menu item to save the selected attached file.
+   Save file menu item title when save will just save the file */
+"SAVE" = "保存";
+
+/* Button title to save the generated key file */
+"SAVE_KEYFILE" = "保存密钥文件";
+
+/* Save file menu item title when save will prompt for a location to save or ask for a password/key */
+"SAVE_WITH_DOTS" = "保存…";
+
+/* Search input in Toolbar */
+"SEARCH" = "搜索";
+
+/* Search option: Find duplicate passwords */
+"SEARCH_DUPLICATE_PASSWORDS" = "重复的密码";
+
+/* Search option: Find expired entries */
+"SEARCH_EXPIRED_ENTRIES" = "已过期";
+
+/* Inherit search settings menu item */
+"SEARCH_INHERIT" = "继承搜索设置";
+
+/* Disable search menu item */
+"SEARCH_NO" = "排除在搜索外";
+
+/* Enable search menu item */
+"SEARCH_YES" = "包含在搜索中";
+
+/* Menu item title for the expiry preset selection menu in the date picker */
+"SELECT_DATE_PRESET" = "使用预设值…";
+
+/* Message on the open panel for selecting which browser to use for opening URLs */
+"SELECT_DEFAULT_BROWSER_OPEN_PANEL_MESSAGE" = "选择要使用的浏览器";
+
+/* Label for the select browser button on the open panel for selecting which browser to use for opening URLs */
+"SELECT_DEFAULT_BROWSER_OPEN_PANEL_SELECT_BUTTON" = "选择";
+
+/* Message for the dialog to open a file for merge */
+"SELECT_FILE_TO_MERGE" = "选择要合并的文件";
+
+/* Menu displayed as popup selection for search options if no filter is selected */
+"SELECT_FILTER_WITH_DOTS" = "筛选…";
+
+/* Checkbox in dialog to set the selection as default file change strategy! */
+"SET_AS_DEFAULT_FILE_CHANGE_STRATEGY" = "默认使用这个方法。您可以随时在设置中修改这个配置。";
+
+/* Action button in Notification to show the Autotype Doctor */
+"SHOW_AUTOTYPE_DOCTOR" = "打开自动键入诊断";
+
+/* Menu item to show the entries group in the outline view */
+"SHOW_GROUP_IN_OUTLINE" = "在大纲视图中显示项目组";
+
+/* Menu item to show the history of the selected entry
+   Toolbar item to toggle history display */
+"SHOW_HISTORY" = "显示历史";
+
+/* Displayed name when title field was copied
+   Menu item to toggle display of title column in entry table
+   Title column title
+   Title reference item */
+"TITLE" = "标题";
+
+/* preset to expire tomorrow */
+"TOMORROW" = "明天";
+
+/* Toolbar item to perform autotype */
+"TOOLBAR_PERFORM_AUTOTYPE_FOR_ENTRY" = "自动键入";
+
+/* Touchbar button label for choosing the keyfile */
+"TOUCHBAR_CHOOSE_KEYFILE" = "选择密钥文件";
+
+/* Touchbar button label for copying the password */
+"TOUCHBAR_COPY_PASSWORD" = "复制密码";
+
+/* Touchbar button label for copying the username */
+"TOUCHBAR_COPY_USERNAME" = "复制用户名";
+
+/* Touchbar button label for deleting elements */
+"TOUCHBAR_DELETE" = "删除";
+
+/* Touchbar button label for opening the popover to edit */
+"TOUCHBAR_EDIT" = "编辑";
+
+/* Touchbar button label for locking the database */
+"TOUCHBAR_LOCK_DATABASE" = "锁定数据库";
+
+/* Touchbar button label for creating a new item */
+"TOUCHBAR_NEW_ENTRY" = "添加项目";
+
+/* Touchbar button label for creating a new group */
+"TOUCHBAR_NEW_GROUP" = "添加组";
+
+/* Touchbar button label for performing autotype */
+"TOUCHBAR_PERFORM_AUTOTYPE" = "执行自动键入";
+
+/* Touchbar button label for searching the database */
+"TOUCHBAR_SEARCH" = "搜索数据库";
+
+/* Touchbar button label for showing the password */
+"TOUCHBAR_SHOW_PASSWORD" = "显示密码";
+
+/* Touchbar button label for unlocking the database */
+"TOUCHBAR_UNLOCK_DATABASE" = "解锁数据库";
+
+/* Move Entry to Trash */
+"TRASH_ENTRY" = "将项目移入废纸篓";
+
+/* Move Group to Trash */
+"TRASH_GROUP" = "将组移入废纸篓";
+
+/* Uninstall plugin */
+"UNINSTALL" = "卸载";
+
+/* No comment provided by engineer. */
+"UNKNOWN_FILE_VERSION" = "未知数据库版本";
+
+/* Unknown database format. */
+"UNKNOWN_FORMAT" = "未知文件格式";
+
+/* Update Settings Label */
+"UPDATE_PREFERENCES" = "更新";
+
+/* Menu item to toggle display of url column in entry table
+   Submenu with options what to do with the URL of an entry
+   Url column title
+   URL reference item */
+"URL" = "URL";
+
+/* Menu item to toggle display of username column in entry table
+   Username column title
+   Username reference item */
+"USERNAME" = "用户名";
+
+/* Displayed name when uuid field was copied
+   UUID reference item */
+"UUID" = "UUID";
+
+/* No Key or Password */
+"WARNING_NO_PASSWORD_OR_KEYFILE" = "未提供密码或密钥文件！";
+
+/* Informative Text displayed when clearing the Trash */
+"WARNING_ON_DELETE_TRASHED_NODE_DESCRIPTION" = "被移入废纸篓的项目将被彻底删除！";
+
+/* Message text for the alert displayed when deleting a node */
+"WARNING_ON_DELETE_TRASHED_NODE_TITLE" = "正在删除被移入废纸篓中的项目";
+
+/* Informative Text displayed when clearing the Trash */
+"WARNING_ON_EMPTY_TRASH_DESCRIPTION" = "清空废纸篓无法撤销";
+
+/* Message text for the alert displayed when clearing the Trash */
+"WARNING_ON_EMPTY_TRASH_TITLE" = "清空废纸篓?";
+
+/* No comment provided by engineer. */
+"WARNING_ON_SAVE_NO_PASSWORD_OR_KEY_SET" = "没有设置密码/密钥文件";
+
+/* No comment provided by engineer. */
+"WARNING_ON_SAVE_NO_PASSWORD_OR_KEY_SET_SUGGESTION" = "请给这个数据库设置密码/密钥文件，终止操作将会撤销所有更改并锁定数据库。";
+
+/* Label for the workflow settings tab */
+"WORKFLOW_SETTINGS" = "工作流";
+
+/* Yesterday */
+"YESTERDAY" = "昨天";
+

@@ -24,7 +24,7 @@
 
 @class KPKCompositeKey;
 
-@interface MPPasswordInputController : MPViewController
+@interface MPPasswordInputController : MPViewController <NSTouchBarDelegate>
 
 typedef BOOL (^passwordInputCompletionBlock)(NSString *password, NSURL *keyURL, BOOL didCancel, NSError *__autoreleasing*error);
 

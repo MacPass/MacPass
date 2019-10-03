@@ -1,15 +1,33 @@
-
-/* Class = "NSTextFieldCell"; title = "If enabled, only properly signed Plugins will be loaded. Keep in mind, that Plugins have full access to your data! Changes take affect on restart."; ObjectID = "2bX-8S-9XM"; */
+/* Class = "NSTextFieldCell"; title = "If enabled, Plugins without proper signatures will be allowed to load. Keep in mind, that Plugins have full access to your data! Changes take affect on restart."; ObjectID = "2bX-8S-9XM"; */
 "2bX-8S-9XM.title" = "Si se habilita, solo los Plugins propiamente firmados serán cargados. Ten en mente que los Plugins tenrán acceso a tu información. Es necesario reiniciar para aplicar los cambios.";
 
 /* Class = "NSButtonCell"; title = "Load unsecure Plugins"; ObjectID = "C4B-6z-ZqX"; */
 "C4B-6z-ZqX.title" = "Cargar Plugins no seguros";
 
-/* Class = "NSTextFieldCell"; title = "Text Cell"; ObjectID = "STt-PQ-Szr"; */
-"STt-PQ-Szr.title" = "Campo de Texto";
-
 /* Class = "NSTextFieldCell"; title = "Table View Cell"; ObjectID = "fug-79-n9g"; */
 "fug-79-n9g.title" = "Vista de tabla de campos";
 
+/* Class = "NSTextFieldCell"; title = "If enabled, a remote connection is established to macpassapp.org"; ObjectID = "i3S-9b-Bpf"; */
+"i3S-9b-Bpf.title" = "Si se habilita, se establece una conexión a macpassapp.org";
+
+/* Class = "NSTextFieldCell"; title = "Plugin Settings Info"; ObjectID = "OOr-SW-jZb"; */
+"OOr-SW-jZb.title" = "Información de configuración del plugin";
+
+/* Class = "NSButtonCell"; title = "Browse Available Plugins…"; ObjectID = "sqO-8H-n1y"; */
+"sqO-8H-n1y.title" = "Navegar por los plugins disponibles...";
+
+/* Class = "NSTextFieldCell"; title = "Text Cell"; ObjectID = "STt-PQ-Szr"; */
+"STt-PQ-Szr.title" = "Campo de Texto";
+
+/* Class = "NSButtonCell"; title = "Download current plugin information"; ObjectID = "uHR-uL-Ddm"; */
+"uHR-uL-Ddm.title" = "Descargar la información del plugin actual";
+
 /* Class = "NSBox"; title = "Box"; ObjectID = "vBs-Ga-aq0"; */
 "vBs-Ga-aq0.title" = "Caja";
+
+/* Class = "NSButtonCell"; title = "Force loading of incompatible Plugins"; ObjectID = "yak-fS-jtA"; */
+"yak-fS-jtA.title" = "Forzar la carga de los plugins incompatibles";
+
+/* Class = "NSTextFieldCell"; title = "Label"; ObjectID = "yuK-qH-jxx"; */
+"yuK-qH-jxx.title" = "Etiqueta";
+

@@ -24,10 +24,10 @@
 
 #import "MPPreferencesTab.h"
 
-#import "MPGeneralSettingsController.h"
-#import "MPIntegrationSettingsController.h"
-#import "MPWorkflowSettingsController.h"
-#import "MPUpdateSettingsController.h"
+#import "MPGeneralPreferencesController.h"
+#import "MPIntegrationPreferencesController.h"
+#import "MPWorkflowPreferencesController.h"
+#import "MPUpdatePreferencesController.h"
 #import "MPPluginPreferencesController.h"
 
 @interface MPPreferencesWindowController () {
@@ -121,14 +121,14 @@
       tabClass = MPPluginPreferencesController.class;
       break;
     case MPPreferencesTabUpdate:
-      tabClass = MPUpdateSettingsController.class;
+      tabClass = MPUpdatePreferencesController.class;
       break;
     case MPPreferencesTabWorkflow:
-      tabClass = MPWorkflowSettingsController.class;
+      tabClass = MPWorkflowPreferencesController.class;
       break;
     case MPPreferencesTabGeneral:
     default:
-      tabClass = MPGeneralSettingsController.class;
+      tabClass = MPGeneralPreferencesController.class;
       break;
   }
   NSString *identifier;
@@ -164,10 +164,10 @@
 }
 
 - (void)_setupDefaultPreferencesTabs {
-  NSArray *controllers = @[ [[MPGeneralSettingsController alloc] init],
-                            [[MPIntegrationSettingsController alloc] init],
-                            [[MPWorkflowSettingsController alloc] init],
-                            [[MPUpdateSettingsController alloc] init],
+  NSArray *controllers = @[ [[MPGeneralPreferencesController alloc] init],
+                            [[MPIntegrationPreferencesController alloc] init],
+                            [[MPWorkflowPreferencesController alloc] init],
+                            [[MPUpdatePreferencesController alloc] init],
                             [[MPPluginPreferencesController alloc] init] ];
   NSMutableArray *identifier = [[NSMutableArray alloc] initWithCapacity:controllers.count];
   for(id<MPPreferencesTab> controller in controllers) {

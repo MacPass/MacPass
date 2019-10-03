@@ -281,7 +281,7 @@ static CGKeyCode kMPNumpadKeyCodes[] = {
   static NSRegularExpression *delayRegExp;
   static dispatch_once_t onceToken;
   dispatch_once(&onceToken, ^{
-    NSString *delayPattern = [[NSString alloc] initWithFormat:@"\\{(%@|%@)[ |=]+([0-9]+)\\}",
+    NSString *delayPattern = [[NSString alloc] initWithFormat:@"\\{(%@|%@)([ |=])+([0-9]+)\\}",
                               kKPKAutotypeDelay,
                               kKPKAutotypeVirtualKey/*,
                                                      kKPKAutotypeVirtualExtendedKey,
@@ -327,9 +327,10 @@ static CGKeyCode kMPNumpadKeyCodes[] = {
   // TODO: add {APPLICATION <appname>}
   /* Delay */
   NSTextCheckingResult *result = [delayRegExp firstMatchInString:commandString options:0 range:NSMakeRange(0, commandString.length)];
-  if(result && (result.numberOfRanges == 3)) {
+  if(result && (result.numberOfRanges == 4)) {
     NSString *uppercaseCommand = [[commandString substringWithRange:[result rangeAtIndex:1]] uppercaseString];
-    NSString *valueString = [commandString substringWithRange:[result rangeAtIndex:2]];
+    NSString *assignOrNot = [commandString substringWithRange:[result rangeAtIndex:2]];
+    NSString *valueString = [commandString substringWithRange:[result rangeAtIndex:3]];
     NSScanner *numberScanner = [[NSScanner alloc] initWithString:valueString];
     NSInteger value;
     if([numberScanner scanInteger:&value]) {
@@ -337,7 +338,12 @@ static CGKeyCode kMPNumpadKeyCodes[] = {
         if(MAX(0, value) <= 0) {
           return; // Value too low, just skipp
         }
-        [self.mutableCommands addObject:[[MPAutotypeDelay alloc] initWithDelay:value]];
+        if([assignOrNot isEqualToString:@"="]) {
+          [self.mutableCommands addObject:[[MPAutotypeDelay alloc] initWithGlobalDelay:value]];
+        }
+        else {
+          [self.mutableCommands addObject:[[MPAutotypeDelay alloc] initWithDelay:value]];
+        }
         return; // Done
       }
       else if([kKPKAutotypeVirtualKey isEqualToString:uppercaseCommand]) {

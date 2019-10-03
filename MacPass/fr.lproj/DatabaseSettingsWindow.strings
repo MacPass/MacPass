@@ -1,6 +1,14 @@
-
 /* Class = "NSWindow"; title = "Window"; ObjectID = "1"; */
-"1.title" = "Window";
+"1.title" = "Fenêtre";
+
+/* Class = "NSTextFieldCell"; title = "Threads"; ObjectID = "2QI-ne-N5d"; */
+"2QI-ne-N5d.title" = "Fils";
+
+/* Class = "NSTextFieldCell"; title = "Iterations"; ObjectID = "2ZA-Gc-JdZ"; */
+"2ZA-Gc-JdZ.title" = "Itérations";
+
+/* Class = "NSTextFieldCell"; title = "Enforce key change"; ObjectID = "5QH-N1-FHK"; */
+"5QH-N1-FHK.title" = "Forcer le changement de clé";
 
 /* Class = "NSTextFieldCell"; title = "Database name:"; ObjectID = "190"; */
 "190.title" = "Nom de la base de données :";
@@ -26,23 +34,20 @@
 /* Class = "NSButtonCell"; title = "Enable Recycle Bin"; ObjectID = "536"; */
 "536.title" = "Activer la corbeille";
 
-/* Class = "NSButtonCell"; title = "Empty Recycle Bin on Quit"; ObjectID = "540"; */
-"540.title" = "Vider la corbeille à la fermeture";
-
-/* Class = "NSTextFieldCell"; title = "Maximum Items:"; ObjectID = "558"; */
-"558.title" = "Nombre maximum d'items :";
+/* Class = "NSTextFieldCell"; title = "Maximum items in history:"; ObjectID = "558"; */
+"558.title" = "Nombre maximum d'éléments :";
 
 /* Class = "NSMenu"; title = "OtherViews"; ObjectID = "680"; */
-"680.title" = "OtherViews";
+"680.title" = "Autres vues";
 
 /* Class = "NSButtonCell"; title = "Cancel"; ObjectID = "957"; */
 "957.title" = "Annuler";
 
-/* Class = "NSTextFieldCell"; title = "Maximum Size:"; ObjectID = "1269"; */
+/* Class = "NSTextFieldCell"; title = "Maximum history size:"; ObjectID = "1269"; */
 "1269.title" = "Taille maximum :";
 
 /* Class = "NSMenu"; title = "OtherViews"; ObjectID = "1396"; */
-"1396.title" = "OtherViews";
+"1396.title" = "Autres vues";
 
 /* Class = "NSMenuItem"; title = "None"; ObjectID = "1397"; */
 "1397.title" = "Aucune";
@@ -62,26 +67,42 @@
 /* Class = "NSTextFieldCell"; title = "Default Username:"; ObjectID = "1591"; */
 "1591.title" = "Nom d'utilisateur par défaut :";
 
-/* Class = "NSTextFieldCell"; title = "Key encryption rounds:"; ObjectID = "1644"; */
-"1644.title" = "Tours de chiffrement :";
-
 /* Class = "NSMenu"; title = "OtherViews"; ObjectID = "1740"; */
-"1740.title" = "OtherViews";
+"1740.title" = "Autres vues";
 
-/* Class = "NSButtonCell"; title = "Benchmark"; ObjectID = "1775"; */
-"1775.title" = "Benchmark";
+/* Class = "NSTextFieldCell"; title = "File format:"; ObjectID = "bTk-YZ-x0G"; */
+"bTk-YZ-x0G.title" = "Format de fichier :";
 
-/* Class = "NSButtonCell"; title = "Recommend key change every:"; ObjectID = "CtU-Eq-dgy"; */
+/* Class = "NSButtonCell"; title = "Recommend key change"; ObjectID = "CtU-Eq-dgy"; */
 "CtU-Eq-dgy.title" = "Recommander le changement de la clé tous les :";
 
-/* Class = "NSTextFieldCell"; placeholderString = "days"; ObjectID = "M9G-Yy-1s4"; */
-"M9G-Yy-1s4.placeholderString" = "jours";
+/* Class = "NSTextFieldCell"; title = "Algorithm"; ObjectID = "GVd-KH-pHc"; */
+"GVd-KH-pHc.title" = "Algorithme";
 
-/* Class = "NSTextFieldCell"; placeholderString = "days"; ObjectID = "Nca-aw-6rR"; */
-"Nca-aw-6rR.placeholderString" = "jours";
+/* Class = "NSTextFieldCell"; title = "Encryption:"; ObjectID = "gxY-UL-bEG"; */
+"gxY-UL-bEG.title" = "Chiffrement :";
 
-/* Class = "NSTextFieldCell"; title = "Disabling password protection will remove unallowed characters in passwords. This will cause data loss after saving."; ObjectID = "iZR-sj-MHg"; */
-"iZR-sj-MHg.title" = "Désactiver la protection du mot de passe va supprimer les caractères non autorisés dans les mots de passe. Ceci va causer une perte de données après la sauvegarde.";
+/* Class = "NSTextFieldCell"; title = "Memory"; ObjectID = "iRY-If-Kwn"; */
+"iRY-If-Kwn.title" = "Mémoire";
 
-/* Class = "NSButtonCell"; title = "Force key change every:"; ObjectID = "z6u-YT-7LE"; */
+/* Class = "NSTextFieldCell"; title = "Recyclebin Group:"; ObjectID = "kI5-Kp-byE"; */
+"kI5-Kp-byE.title" = "Groupe corbeille";
+
+/* Class = "NSButtonCell"; title = "Force key change once after unlocking"; ObjectID = "pA1-aL-KjT"; */
+"pA1-aL-KjT.title" = "Forcer le changement de clé une fois déverrouillé";
+
+/* Class = "NSBox"; title = "Key derivation"; ObjectID = "pbl-Mb-r8V"; */
+"pbl-Mb-r8V.title" = "Dérivation de clé";
+
+/* Class = "NSButtonCell"; title = "Generate Parameters"; ObjectID = "PoI-Er-Y8P"; */
+"PoI-Er-Y8P.title" = "Générer les paramètres";
+
+/* Class = "NSTextFieldCell"; title = "VersionInfo"; ObjectID = "Ush-4r-A1A"; */
+"Ush-4r-A1A.title" = "Information de version";
+
+/* Class = "NSTextFieldCell"; title = "Recommend key change"; ObjectID = "Xib-Fn-sqx"; */
+"Xib-Fn-sqx.title" = "Recommander le changement de clé";
+
+/* Class = "NSButtonCell"; title = "Force key change"; ObjectID = "z6u-YT-7LE"; */
 "z6u-YT-7LE.title" = "Forcer le changement de la clé tous les :";
+

@@ -30,7 +30,7 @@
   if(self) {
     self.focusRingType = NSFocusRingTypeNone;
     self.bezelStyle = NSTexturedRoundedBezelStyle;
-    [self.cell setImageScaling:NSImageScaleProportionallyDown];
+    ((NSButtonCell *)(self.cell)).imageScaling = NSImageScaleProportionallyDown;
     [self setButtonType:NSMomentaryPushInButton];
     self.imagePosition = NSImageOnly;
   }

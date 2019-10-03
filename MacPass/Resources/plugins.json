@@ -1,0 +1,45 @@
+[
+  {
+    "name": "AutotypeURL",
+    "description": "Extract URLs from Browsers to enhance Global Autotype",
+    "download": "https://github.com/MacPass/AutotypeURL/releases/download/1.0/AutotypeURL-1.0.mpplugin.zip",
+    "source": "https://github.com/MacPass/AutotypeURL",
+    "currentVersion": "1.0",
+    "bundleIdentifier": "com.hicknhacksoftware.AutotypeURL",
+    "compatibilty" : [
+      {
+        "pluginVersion": "1.0",
+        "minimumHostVersion" : "0.7.10"
+      }
+    ]
+  },
+  {
+    "name": "MacPassHTTP",
+    "description": "KeePassHTTP support for MacPass",
+    "download": "https://github.com/MacPass/MacPassHTTP/releases/download/0.3.1/MacPassHTTP.mpplugin-0.3.2.zip",
+    "source": "https://github.com/MacPass/MacPassHTTP",
+    "currentVersion": "0.3.2",
+    "bundleIdentifier": "com.hicknhacksoftware.MacPassHTTP",
+    "compatibilty" : [
+      {
+        "pluginVersion": "0.2.*",
+        "minimumHostVersion" : "0.6.1",
+        "maximumHostVersion" : "0.6.2"
+      },
+      { 
+        "pluginVersion": "0.3",
+        "minimumHostVersion" : "0.7",
+        "maximumHostVersion" : "0.7.3"
+      },
+      { 
+        "pluginVersion": "0.3.1",
+        "minimumHostVersion" : "0.7.4"
+      },
+      { 
+        "pluginVersion": "0.3.2",
+        "minimumHostVersion" : "0.7.4"
+      }
+
+    ]
+  }
+]

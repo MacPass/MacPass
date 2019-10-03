@@ -34,6 +34,7 @@ NSString *const kMPSettingsKeyOpenEmptyDatabaseOnLaunch               = @"OpenEm
 NSString *const kMPSettingsKeyReopenLastDatabaseOnLaunch              = @"ReopenLastDatabaseOnLaunch";
 NSString *const kMPSettingsKeyQuitOnLastWindowClose                   = @"QuitOnLastWindowClose";
 NSString *const kMPSettingsKeyFileChangeStrategy                      = @"FileChangeStrategy";
+NSString *const kMPSettingsKeyEnableAutosave                          = @"EnableAutosave";
 NSString *const kMPSettingsKeyLockOnSleep                             = @"LockOnSleep";
 NSString *const kMPSettingskeyLockOnLogout                            = @"LockOnLogout";
 NSString *const kMPSettingsKeyIdleLockTimeOut                         = @"IdleLockTimeOut";
@@ -58,7 +59,7 @@ NSString *const kMPSettingsKeyAutotypeMatchTitle                      = @"Autoty
 NSString *const kMPSettingsKeyAutotypeMatchURL                        = @"AutotypeMatchURL";
 NSString *const kMPSettingsKeyAutotypeMatchHost                       = @"AutotypeMatchHost";
 NSString *const kMPSettingsKeyAutotypeMatchTags                       = @"AutotypeMatchTags";
-NSString *const kMPSettingsKeyAutotypeHideAccessibiltyWarning         = @"AutotypeHideAccessibiltyWarning";
+NSString *const kMPSettingsKeyAutotpyeHideMissingPermissionsWarning   = @"AutotpyeHideMissingPermissionsWarning";
 
 NSString *const kMPSettingsKeyEntrySearchFilterContext                = @"EntrySearchFilterContext";
 
@@ -77,11 +78,13 @@ NSString *const kMPSettingsKeyPasswordDefaultsForEntry                = @"Passwo
 NSString *const kMPSettingsKeyDoubleClickURLAction                    = @"DoubleClickURLAction";
 NSString *const kMPSettingsKeyDoubleClickTitleAction                  = @"DoubleClickTitleAction";
 NSString *const kMPSettingsKeyUpdatePasswordOnTemplateEntries         = @"UpdatePasswordOnTemplateEntries";
+NSString *const kMPSettingsKeyHideAfterCopyToClipboard                = @"HideAfterCopyToClipboard";
 
 NSString *const kMPSettingsKeyLoadUnsecurePlugins                     = @"LoadUnsecurePlugins";
 NSString *const kMPSettingsKeyLoadIncompatiblePlugins                 = @"LoadIncompatiblePlugins";
 NSString *const kMPSettingsKeyDisabledPlugins                         = @"DisabledPlugins";
 NSString *const kMPSettingsKeyHideIncopatiblePluginsWarning           = @"HideIncopatiblePluginsWarning";
+NSString *const kMPSettingsKeyAllowRemoteFetchOfPluginRepository      = @"AllowRemoteFetchOfPluginRepository";
 
 /* Deprecated */
 NSString *const kMPDeprecatedSettingsKeyRememberKeyFilesForDatabases      = @"kMPSettingsKeyRememberKeyFilesForDatabases";
@@ -94,7 +97,7 @@ NSString *const kMPDeprecatedSettingsKeyEnableHttpServer                  = @"En
 NSString *const kMPDeprecatedSettingsKeyShowMenuItem                      = @"ShowMenuItem";
 NSString *const kMPDeprecatedSettingsKeyDefaultPasswordRounds             = @"KeyDefaultPasswordRounds";
 NSString *const kMPDepricatedSettingsKeyLoadUnsecurePlugins               = @"MPLoadUnsecurePlugins";
-
+NSString *const kMPDepricatedSettingsKeyAutotypeHideAccessibiltyWarning   = @"AutotypeHideAccessibiltyWarning";
 
 @implementation MPSettingsHelper
 
@@ -157,7 +160,9 @@ NSString *const kMPDepricatedSettingsKeyLoadUnsecurePlugins               = @"MP
                          kMPSettingsKeyUpdatePasswordOnTemplateEntries: @YES,
                          kMPSettingsKeyDisabledPlugins: @[],
                          kMPSettingsKeyLoadIncompatiblePlugins: @NO,
-                         kMPSettingsKeyQuitOnLastWindowClose: @NO
+                         kMPSettingsKeyQuitOnLastWindowClose: @NO,
+                         kMPSettingsKeyEnableAutosave: @YES,
+                         kMPSettingsKeyHideAfterCopyToClipboard: @NO
                          };
   });
   return standardDefaults;
@@ -177,7 +182,8 @@ NSString *const kMPDepricatedSettingsKeyLoadUnsecurePlugins               = @"MP
                             kMPDeprecatedSettingsKeyHttpPort,
                             kMPDeprecatedSettingsKeyEnableHttpServer,
                             kMPDeprecatedSettingsKeyShowMenuItem,
-                            kMPDepricatedSettingsKeyLoadUnsecurePlugins
+                            kMPDepricatedSettingsKeyLoadUnsecurePlugins,
+                            kMPDepricatedSettingsKeyAutotypeHideAccessibiltyWarning
                             ];
   });
   return deprecatedSettings;

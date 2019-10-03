@@ -111,6 +111,7 @@ NSString *const MPToolbarItemAutotype = @"TOOLBAR_AUTOTYPE";
     item = [[MPToolbarItem alloc] initWithItemIdentifier:itemIdentifier];
     NSString *itemLabel = [self _localizedLabelForToolbarItemIdentifier:itemIdentifier];
     item.label = itemLabel;
+    item.paletteLabel = itemLabel;
     
     if([itemIdentifier isEqualToString:MPToolbarItemAction]) {
       NSPopUpButton *popupButton = [[NSPopUpButton alloc] initWithFrame:NSMakeRect(0, 0, 50, 32) pullsDown:YES];
@@ -127,7 +128,7 @@ NSString *const MPToolbarItemAutotype = @"TOOLBAR_AUTOTYPE";
       NSMenuItem *actionImageItem = [[NSMenuItem alloc] initWithTitle:@"" action:NULL keyEquivalent:@""];
       actionImageItem.image = self.toolbarImages[MPToolbarItemAction];
       [menu addItem:actionImageItem];
-      NSArray *menuItems = [MPContextMenuHelper contextMenuItemsWithItems:MPContextMenuExtended];
+      NSArray *menuItems = [MPContextMenuHelper contextMenuItemsWithItems:MPContextMenuExtended|MPContextMenuShowGroupInOutline];
       for(NSMenuItem *item in menuItems) {
         [menu addItem:item];
       }
@@ -215,7 +216,7 @@ NSString *const MPToolbarItemAutotype = @"TOOLBAR_AUTOTYPE";
 }
 
 - (NSDictionary *)createToolbarImages {
-  NSDictionary *imageDict = @{ MPToolbarItemLock: [NSImage imageNamed:NSImageNameLockUnlockedTemplate],
+  NSDictionary *imageDict = @{ MPToolbarItemLock: [NSImage imageNamed:NSImageNameLockLockedTemplate],
                                MPToolbarItemAddEntry: [MPIconHelper icon:MPIconAddEntry],
                                MPToolbarItemAddGroup: [MPIconHelper icon:MPIconAddFolder],
                                MPToolbarItemCopyUsername : [MPIconHelper icon:MPIconIdentity],

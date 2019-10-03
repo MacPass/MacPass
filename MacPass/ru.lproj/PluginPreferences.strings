@@ -1,15 +1,27 @@
-
-/* Class = "NSTextFieldCell"; title = "If enabled, only properly signed Plugins will be loaded. Keep in mind, that Plugins have full access to your data! Changes take affect on restart."; ObjectID = "2bX-8S-9XM"; */
+/* Class = "NSTextFieldCell"; title = "If enabled, Plugins without proper signatures will be allowed to load. Keep in mind, that Plugins have full access to your data! Changes take affect on restart."; ObjectID = "2bX-8S-9XM"; */
 "2bX-8S-9XM.title" = "Если включено, будут загружены только правильно подписанные Плагины. Пожалуйста, помните, что Плагины имеют полный доступ к вашим данным! Изменения вступят в силу после перезагрузки.";
 
 /* Class = "NSButtonCell"; title = "Load unsecure Plugins"; ObjectID = "C4B-6z-ZqX"; */
 "C4B-6z-ZqX.title" = "Загружать небезопасные Плагины";
 
-/* Class = "NSTextFieldCell"; title = "Text Cell"; ObjectID = "STt-PQ-Szr"; */
-"STt-PQ-Szr.title" = "Текстовая Ячейка";
-
 /* Class = "NSTextFieldCell"; title = "Table View Cell"; ObjectID = "fug-79-n9g"; */
 "fug-79-n9g.title" = "Табличная ячейка";
 
+/* Class = "NSTextFieldCell"; title = "If enabled, a remote connection is established to macpassapp.org"; ObjectID = "i3S-9b-Bpf"; */
+"i3S-9b-Bpf.title" = "Если включено, будет установлено подключение к macpassapp.org";
+
+/* Class = "NSButtonCell"; title = "Browse Available Plugins…"; ObjectID = "sqO-8H-n1y"; */
+"sqO-8H-n1y.title" = "Обзор доступных плагинов";
+
+/* Class = "NSTextFieldCell"; title = "Text Cell"; ObjectID = "STt-PQ-Szr"; */
+"STt-PQ-Szr.title" = "Текстовая Ячейка";
+
+/* Class = "NSButtonCell"; title = "Download current plugin information"; ObjectID = "uHR-uL-Ddm"; */
+"uHR-uL-Ddm.title" = "Скачивать информацию об обновлениях плагинов";
+
 /* Class = "NSBox"; title = "Box"; ObjectID = "vBs-Ga-aq0"; */
 "vBs-Ga-aq0.title" = "Блок";
+
+/* Class = "NSButtonCell"; title = "Force loading of incompatible Plugins"; ObjectID = "yak-fS-jtA"; */
+"yak-fS-jtA.title" = "Принудительно загружать несовместимые плагины";
+

@@ -24,6 +24,7 @@
 #import "MPDocument.h"
 #import "MPDocumentWindowController.h"
 #import "MPActionHelper.h"
+#import "KPKNode+IconImage.h"
 
 #import "KeePassKit/KeePassKit.h"
 
@@ -47,6 +48,8 @@
     NSMenuItem *templateItem = [[NSMenuItem alloc] initWithTitle:[NSString stringWithFormat:templateMask, entry.title]
                                                                                     action:@selector(createEntryFromTemplate:)
                                                                              keyEquivalent:@""];
+    templateItem.image = [entry.iconImage copy];
+    templateItem.image.size = NSMakeSize(14, 14);
     templateItem.representedObject = entry.uuid;
     [menu addItem:templateItem];
   }

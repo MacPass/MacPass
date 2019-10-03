@@ -10,6 +10,18 @@
 
 @implementation MPPathControl
 
+- (BOOL)canBecomeKeyView {
+  return YES;
+}
+
+- (BOOL)acceptsFirstResponder {
+  /*
+   documentation state YES is required when canBecomeKeyView is YES but setting to YES
+   causes NSWindow to use this as first responder when closing the password generator popover
+   */
+  return NO;
+}
+
 - (instancetype)initWithFrame:(NSRect)frameRect {
   self = [super initWithFrame:frameRect];
   self.delegate = self;
@@ -35,11 +47,10 @@
   if([self.delegate respondsToSelector:@selector(pathControl:willDisplayOpenPanel:)]) {
     [self.delegate pathControl:self willDisplayOpenPanel:panel];
   }
-  [panel beginWithCompletionHandler:^(NSModalResponse result) {
-    if(result == NSModalResponseOK) {
-      self.URL = panel.URLs.firstObject;
-    }
-  }];
+  NSModalResponse result = [panel runModal];
+  if(result == NSModalResponseOK) {
+    self.URL = panel.URLs.firstObject;
+  }
 }
 
 - (void)pathControl:(NSPathControl *)pathControl willPopUpMenu:(NSMenu *)menu {

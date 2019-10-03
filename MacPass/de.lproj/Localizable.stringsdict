@@ -20,7 +20,7 @@
 			<string>alle Zeichen ausgewählt</string>
 		</dict>
 	</dict>
-	<key>DUPLICATE_ENTRIES_%ld</key>
+	<key>DUPLICATE_ENTRIES_ACTION_NAME</key>
 	<dict>
 		<key>NSStringLocalizedFormatKey</key>
 		<string>%#@entries@</string>
@@ -36,6 +36,22 @@
 			<string>Einträge duplizieren</string>
 			<key>zero</key>
 			<string>Einträge duplizieren</string>
+		</dict>
+	</dict>
+	<key>DUPLICATE_GROUPS_ACTION_NAME</key>
+	<dict>
+		<key>NSStringLocalizedFormatKey</key>
+		<string>%#@groups@</string>
+		<key>groups</key>
+		<dict>
+			<key>NSStringFormatSpecTypeKey</key>
+			<string>NSStringPluralRuleType</string>
+			<key>NSStringFormatValueTypeKey</key>
+			<string>ld</string>
+			<key>one</key>
+			<string>Gruppe duplizieren</string>
+			<key>other</key>
+			<string>Gruppen duplizieren</string>
 		</dict>
 	</dict>
 	<key>EVERY_%ld_DAYS</key>
