@@ -721,6 +721,7 @@
 		4C8DEAA11C314D2C00D24C32 /* MPTestAutotypeDelay.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MPTestAutotypeDelay.m; sourceTree = "<group>"; };
 		4C8E889122C223620002C7C8 /* createdTemplate.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = createdTemplate.pdf; sourceTree = "<group>"; };
 		4C8E889322C227270002C7C8 /* plugins.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = plugins.json; path = Resources/plugins.json; sourceTree = "<group>"; };
+		4C8EAF20236720090025CC00 /* MacPass.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = MacPass.entitlements; sourceTree = "<group>"; };
 		4C8F0C6C1FCEE98900BE157F /* MPPluginConstants.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MPPluginConstants.h; sourceTree = "<group>"; };
 		4C8F0C6D1FCEE9B900BE157F /* MPPluginConstants.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MPPluginConstants.m; sourceTree = "<group>"; };
 		4C8F0C6F1FCEF91400BE157F /* MPPickcharsParser.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MPPickcharsParser.h; sourceTree = "<group>"; };
@@ -1512,6 +1513,7 @@
 		4C77E36D15B84A240093A587 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				4C8EAF20236720090025CC00 /* MacPass.entitlements */,
 				4C8E889322C227270002C7C8 /* plugins.json */,
 				FA13910A1F9CD9EB0033D256 /* Localizable.stringsdict */,
 				4C888C8E16EB6C91003D34A1 /* Localizable.strings */,
