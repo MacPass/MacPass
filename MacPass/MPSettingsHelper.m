@@ -206,7 +206,7 @@ NSString *const kMPDepricatedSettingsKeyAutotypeHideAccessibiltyWarning   = @"Au
    this was changed in 0.6. to parent.title
    
    */
-  NSData *descriptorData = [[NSUserDefaults standardUserDefaults] dataForKey:kMPSettingsKeyEntryTableSortDescriptors];
+  NSData *descriptorData = [NSUserDefaults.standardUserDefaults dataForKey:kMPSettingsKeyEntryTableSortDescriptors];
   if(!descriptorData) {
     return; // No user defaults
   }
@@ -217,7 +217,7 @@ NSString *const kMPDepricatedSettingsKeyAutotypeHideAccessibiltyWarning   = @"Au
     if(descriptor.selector == @selector(compare:)
        || [descriptor.key isEqualToString:@"timeInfo.modificationDate"]
        || [descriptor.key isEqualToString:@"parent.name"] ) {
-      [[NSUserDefaults standardUserDefaults] removeObjectForKey:kMPSettingsKeyEntryTableSortDescriptors];
+      [NSUserDefaults.standardUserDefaults removeObjectForKey:kMPSettingsKeyEntryTableSortDescriptors];
       break;
     }
   }
@@ -241,11 +241,11 @@ NSString *const kMPDepricatedSettingsKeyAutotypeHideAccessibiltyWarning   = @"Au
 
 + (void)_migrateEntrySearchFlags {
   /* Entry filters are now stored as archivd search context not just flags */
-  NSInteger flags = [[NSUserDefaults standardUserDefaults] integerForKey:kMPDeprecatedSettingsKeyEntrySearchFilterMode];
+  NSInteger flags = [NSUserDefaults.standardUserDefaults integerForKey:kMPDeprecatedSettingsKeyEntrySearchFilterMode];
   if(flags != 0) {
     MPEntrySearchContext *context = [[MPEntrySearchContext alloc] initWithString:nil flags:flags];
     NSData *contextData = [NSKeyedArchiver archivedDataWithRootObject:context];
-    [[NSUserDefaults standardUserDefaults] setObject:contextData forKey:kMPSettingsKeyEntrySearchFilterContext];
+    [NSUserDefaults.standardUserDefaults setObject:contextData forKey:kMPSettingsKeyEntrySearchFilterContext];
   }
 }
 
@@ -254,7 +254,7 @@ NSString *const kMPDepricatedSettingsKeyAutotypeHideAccessibiltyWarning   = @"Au
    Database file paths was stored as plain text in keyfile mapping.
    We only need to store the key file url in plain text, thus hashing the path is sufficent
    */
-  NSDictionary<NSString *, NSString *> *currentMapping = [[NSUserDefaults standardUserDefaults] dictionaryForKey:kMPSettingsKeyRememeberdKeysForDatabases];
+  NSDictionary<NSString *, NSString *> *currentMapping = [NSUserDefaults.standardUserDefaults dictionaryForKey:kMPSettingsKeyRememeberdKeysForDatabases];
   if(!currentMapping) {
     return;
   }
@@ -276,7 +276,7 @@ NSString *const kMPDepricatedSettingsKeyAutotypeHideAccessibiltyWarning   = @"Au
     }
   }
   if(didHash) {
-    [[NSUserDefaults standardUserDefaults] setObject:hashedDict forKey:kMPSettingsKeyRememeberdKeysForDatabases];
+    [NSUserDefaults.standardUserDefaults setObject:hashedDict forKey:kMPSettingsKeyRememeberdKeysForDatabases];
   }
 }
 
