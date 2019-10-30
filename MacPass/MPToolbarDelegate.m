@@ -238,16 +238,18 @@ NSString *const MPToolbarItemAutotype = @"TOOLBAR_AUTOTYPE";
 
 #pragma mark - NSSearchFieldDelegate
 - (BOOL)control:(NSControl *)control textView:(NSTextView *)textView doCommandBySelector:(SEL)commandSelector {
+  if(control != self.searchField) {
+    return NO;
+  }
   if(commandSelector == @selector(insertNewline:) || commandSelector == @selector(moveDown:)) {
     /* Dispatch the focus loss since doing it now will break recent search storage */
     dispatch_async(dispatch_get_main_queue(), ^{
       [[NSApp targetForAction:@selector(focusEntries:) to:nil from:self] focusEntries:self];
     });
   }
-  if(commandSelector == @selector(cancel:) && control == self.searchField) {
+  if(commandSelector == @selector(cancelOperation:) ) {
     dispatch_async(dispatch_get_main_queue(), ^{
-      NSSearchFieldCell *cell = self.searchField.cell;
-      [[NSApp targetForAction:cell.cancelButtonCell.action to:nil from:self] exitSearch:nil];
+      [[NSApp targetForAction:@selector(exitSearch:) to:nil from:self] exitSearch:nil];
     });
   }
   return NO;
