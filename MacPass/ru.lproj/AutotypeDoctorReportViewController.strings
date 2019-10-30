@@ -1,8 +1,12 @@
+
+/* Class = "NSButtonCell"; title = "Request Permissions…"; ObjectID = "1Nx-Cg-TCn"; */
+"1Nx-Cg-TCn.title" = "Запросить разрешения…";
+
 /* Class = "NSTextFieldCell"; title = "MacPass will send key press events to the system when Autotype or Global Autotype is executed. Since macOS 10.14 Mojave this is only possible, if Accessibility permissions are granted to the application."; ObjectID = "6GI-KJ-Xue"; */
 "6GI-KJ-Xue.title" = "MacPass будет отправлять события нажатия клавиш в систему при выполнении Автоввода или Глобального Автоввода. Начиная с macOS 10.14 Mojave это возможно только в том случае, если приложению разрешено управление копьютером через универсальный доступ.";
 
-/* Class = "NSTextFieldCell"; title = "MacPass will read every window title when Global Autotype is executed to find a match. Since macOS 10.15 Catalina it is not possible to read any window title, if the user has not granted permissions to record the screen. If you are running macOS 10.15 or higher, MacPass will try to capture the left top most pixel on your screen to initate a request to record the screen. This pixel will not be stored and processed in any way."; ObjectID = "7of-1z-Nfk"; */
-"7of-1z-Nfk.title" = "MacPass будет читать заголовки окон чтобы найти совпадения при выполнении Глобального Автоввода. Начиная с macOS 10.15 Catalina невозможно прочитать заголовок окна, если пользователь не предоставил разрешения на запись экрана. Если вы используете MacOS 10.15 или выше, MacPass попытается захватить левый верхний пиксель на вашем экране, чтобы инициировать запрос на запись экрана. Этот пиксель не будет сохранен и обработан каким-либо образом.";
+/* Class = "NSTextFieldCell"; title = "MacPass will read every window title when Global Autotype is executed to find a match. Since macOS 10.15 Catalina it is not possible to read any window title, if the user has not granted permissions to record the screen. If you are running macOS 10.15 or higher, MacPass will check if it can read every window title of currently visible windows. This test will not read the actual title. The titles aren't stored or processed in any way."; ObjectID = "7of-1z-Nfk"; */
+"7of-1z-Nfk.title" = "MacPass будет читать заголовки окон чтобы найти совпадения при выполнении Глобального Автоввода. Начиная с macOS 10.15 Catalina невозможно прочитать заголовок окна, если пользователь не предоставил разрешения на запись экрана. Если вы используете MacOS 10.15 или выше, MacPass проверит, возможно ли получить заголовки видимых окон. Заголовки не сохраняются и не обрабатываются каким-либо образом.";
 
 /* Class = "NSButtonCell"; title = "Open Accessibilty Preferences…"; ObjectID = "8m1-vs-pd5"; */
 "8m1-vs-pd5.title" = "Открыть настройки универсального доступа…";
@@ -10,9 +14,11 @@
 /* Class = "NSTextFieldCell"; title = "Screen Recording"; ObjectID = "9gr-mz-2I4"; */
 "9gr-mz-2I4.title" = "Запись экрана";
 
+/* Class = "NSTextFieldCell"; title = "To request Screen Recording permissions, MacPass will try to capture a 1 by 1 Pixel sized screenshot of the top left part of your screen. The data is not stored nor processed in any way."; ObjectID = "Mhg-rd-1hK"; */
+"Mhg-rd-1hK.title" = "Чтобы запросить разрешения на запись экрана, MacPass попытается сделать снимок экрана размером 1 на 1 пиксель в верхней левой части экрана. Эти данные не хранятся и не обрабатываются каким-либо образом.";
+
 /* Class = "NSTextFieldCell"; title = "Accessibility"; ObjectID = "aIL-8W-63g"; */
 "aIL-8W-63g.title" = "Универсальный доступ";
 
-/* Class = "NSButtonCell"; title = "Open Screen Sharing Preferences…"; ObjectID = "lgB-Ys-L9R"; */
+/* Class = "NSButtonCell"; title = "Open Screen Recording Preferences…"; ObjectID = "lgB-Ys-L9R"; */
 "lgB-Ys-L9R.title" = "Открыть настройки безопасности…";
-
