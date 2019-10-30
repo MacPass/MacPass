@@ -300,7 +300,7 @@ NSString *const MPToolbarItemAutotype = @"TOOLBAR_AUTOTYPE";
   [menu addItem:item];
   
   [menu addItem:[NSMenuItem separatorItem]];
-
+  
   item = [[NSMenuItem alloc] initWithTitle:NSLocalizedString(@"RECENT_SEARCHES", @"Recent searches menu item") action:NULL keyEquivalent:@""];
   item.tag = NSSearchFieldRecentsTitleMenuItemTag;
   [menu addItem:item];
@@ -341,7 +341,7 @@ NSString *const MPToolbarItemAutotype = @"TOOLBAR_AUTOTYPE";
 }
 
 - (void)_didExitSearch:(NSNotification *)notification {
-  [self.searchField setStringValue:@""];
+  self.searchField.stringValue = @"";
   NSWindow *window = [self.searchField window];
   /* Resign first responder form search field only if it was the first responder */
   if(window.firstResponder == [self.searchField currentEditor]) {
