@@ -24,6 +24,12 @@
 
 @interface MPContextButton : NSSegmentedControl
 
+typedef NS_ENUM(NSUInteger, MPContextButtonSegment) {
+  MPContextButtonSegmentButton,
+  MPContextButtonSegmentContextButton,
+  MPContextButtonSegmentCount // do not use
+};
+
 @property (nonatomic, strong) NSMenu *contextMenu;
 
 - (void)setImage:(NSImage *)image;
