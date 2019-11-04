@@ -73,12 +73,9 @@
       if(windowName) {
         numberOfWindowsWithName++;
       }
-      else {
-        break; //breaking early, numberOfWindowsWithName not increased
-      }
     }
     CFRelease(windowList);
-    BOOL canRecordScreen = (numberOfWindows == numberOfWindowsWithName);
+    BOOL canRecordScreen = (numberOfWindows == 0) || (numberOfWindowsWithName > 0);
     if(!canRecordScreen && error) {
       *error = [NSError errorInDomain:MPAutotypeErrorDomain withCode:MPErrorAutotypeIsMissingScreenRecordingPermissions description:NSLocalizedString(@"ERROR_NO_PERMISSION_TO_RECORD_SCREEN", "Error description for missing screen recording permissions")];
     }
