@@ -69,3 +69,4 @@ ditto -c -k --keepParent "${APP_BUNDLE}" "${APP_BUNDLE_ZIP}"
 echo "Requesting Notarization..."
 xcrun altool --notarize-app --primary-bundle-id "com.hicknhacksoftware.MacPass.zip" --username "${USERNAME}" --password "${PASSWORD}" --file "${APP_BUNDLE_ZIP}"
 #xcrun stapler staple "${APP_BUNDLE}"
+#xmllint --xpath "/plist/dict/key[contains(text(),'success-message')]::following-sibling" status.xml
