@@ -721,6 +721,7 @@
 		4C8DEAA11C314D2C00D24C32 /* MPTestAutotypeDelay.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MPTestAutotypeDelay.m; sourceTree = "<group>"; };
 		4C8E889122C223620002C7C8 /* createdTemplate.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = createdTemplate.pdf; sourceTree = "<group>"; };
 		4C8E889322C227270002C7C8 /* plugins.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = plugins.json; path = Resources/plugins.json; sourceTree = "<group>"; };
+		4C8EAF20236720090025CC00 /* MacPass.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = MacPass.entitlements; sourceTree = "<group>"; };
 		4C8F0C6C1FCEE98900BE157F /* MPPluginConstants.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MPPluginConstants.h; sourceTree = "<group>"; };
 		4C8F0C6D1FCEE9B900BE157F /* MPPluginConstants.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MPPluginConstants.m; sourceTree = "<group>"; };
 		4C8F0C6F1FCEF91400BE157F /* MPPickcharsParser.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MPPickcharsParser.h; sourceTree = "<group>"; };
@@ -733,6 +734,7 @@
 		4C97CCEF1FA727DC00E58F8C /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		4C9BFFF91FD19B5400264B16 /* MPPrettyPasswordTransformer.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MPPrettyPasswordTransformer.h; sourceTree = "<group>"; };
 		4C9BFFFA1FD19B5400264B16 /* MPPrettyPasswordTransformer.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MPPrettyPasswordTransformer.m; sourceTree = "<group>"; };
+		4C9FE47423703DA50096A5EA /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		4CA08D9E17A831B200A6544B /* MPAddEntryContextMenuDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MPAddEntryContextMenuDelegate.h; sourceTree = "<group>"; };
 		4CA08D9F17A831B200A6544B /* MPAddEntryContextMenuDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MPAddEntryContextMenuDelegate.m; sourceTree = "<group>"; };
 		4CA0B2EC15BCADAC00654E32 /* PreferencesWindow.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PreferencesWindow.xib; sourceTree = "<group>"; };
@@ -955,9 +957,9 @@
 		7837112B22553B1D009BD28D /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/AutotypeBuilderView.strings; sourceTree = "<group>"; };
 		7837112D225540D1009BD28D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/PluginRepositoryBrowserView.xib; sourceTree = "<group>"; };
 		78371130225540D8009BD28D /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/PluginRepositoryBrowserView.strings; sourceTree = "<group>"; };
+		78C093DB236A18560008577C /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/AutotypeDoctorReportViewController.strings; sourceTree = "<group>"; };
 		78E1F8AF22E3A3DF00E738AE /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/IntegrationPreferences.strings; sourceTree = "<group>"; };
 		78E1F8B122E3A5D600E738AE /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/AutotypeDoctorReportViewController.xib; sourceTree = "<group>"; };
-		78E1F8B422E3A5DB00E738AE /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/AutotypeDoctorReportViewController.strings; sourceTree = "<group>"; };
 		78E1F8B822E3B06700E738AE /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/PickcharsView.strings; sourceTree = "<group>"; };
 		78E1F8BA22E3B0B700E738AE /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/PickfieldView.strings; sourceTree = "<group>"; };
 		78E1F8BC22E3B12300E738AE /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/OpenPanelAccessoryView.strings; sourceTree = "<group>"; };
@@ -1512,6 +1514,7 @@
 		4C77E36D15B84A240093A587 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				4C8EAF20236720090025CC00 /* MacPass.entitlements */,
 				4C8E889322C227270002C7C8 /* plugins.json */,
 				FA13910A1F9CD9EB0033D256 /* Localizable.stringsdict */,
 				4C888C8E16EB6C91003D34A1 /* Localizable.strings */,
@@ -1992,13 +1995,15 @@
 			files = (
 			);
 			inputPaths = (
+				"${BUILT_PRODUCTS_DIR}/${INFOPLIST_PATH}",
+				"${TARGET_BUILD_DIR}/${INFOPLIST_PATH}",
 			);
 			name = Versioning;
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "git=`sh /etc/profile; which git`\n#branch_name=`$git symbolic-ref HEAD | sed -e 's,refs/heads/\\\\(.*\\\\),\\\\1,'`\nbranch_name=`$git rev-parse --abbrev-ref HEAD`\n#simple_branch_name=`$git rev-parse --abbrev-ref HEAD`\ngit_count=`$git rev-list $branch_name |wc -l | sed 's/^ *//;s/ *$//'`\n\nbuild_number=\"${git_count}0\"\nif [ $CONFIGURATION != \"Release\" ] || [ $branch_name != \"master\" ]; then\nbuild_number+=\"-$branch_name\"\nfi\nif [ \"$CI\" = \"true\" ]; then\nbuild_date=`date +\"%Y%m%d%H%m%S\"`\nbuild_number=\"$build_date-continuous\"\nfi\n\nplist=\"${TARGET_BUILD_DIR}/${INFOPLIST_PATH}\"\ndsym_plist=\"${DWARF_DSYM_FOLDER_PATH}/${DWARF_DSYM_FILE_NAME}/Contents/Info.plist\"\n\n/usr/libexec/PlistBuddy -c \"Set :CFBundleVersion $build_number\" \"$plist\"\nif [ -f \"$DSYM_INFO_PLIST\" ] ; then\n/usr/libexec/PlistBuddy -c \"Set :CFBundleVersion $build_number\" \"$dsym_plist\"\nfi\n";
+			shellScript = "git=`sh /etc/profile; which git`\nbranch_name=`$git rev-parse --abbrev-ref HEAD`\ngit_count=`$git rev-list $branch_name |wc -l | sed 's/^ *//;s/ *$//'`\n\nbuild_number=\"${git_count}0\"\nif [ $CONFIGURATION != \"Release\" ] || [ $branch_name != \"master\" ]; then\nbuild_number+=\"-$branch_name\"\nfi\nif [ \"$CI\" = \"true\" ]; then\nbuild_date=`date +\"%Y%m%d%H%m%S\"`\nbuild_number=\"$build_date-continuous\"\nfi\n\nplist=\"${TARGET_BUILD_DIR}/${INFOPLIST_PATH}\"\ndsym_plist=\"${DWARF_DSYM_FOLDER_PATH}/${DWARF_DSYM_FILE_NAME}/Contents/Info.plist\"\n\n/usr/libexec/PlistBuddy -c \"Set :CFBundleVersion $build_number\" \"$plist\"\nif [ -f \"$DSYM_INFO_PLIST\" ] ; then\n/usr/libexec/PlistBuddy -c \"Set :CFBundleVersion $build_number\" \"$dsym_plist\"\nfi\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
@@ -2367,6 +2372,7 @@
 				4C4161151F50333C003BC0AF /* es */,
 				FAA9109A1F9A95A500F7CB90 /* pl */,
 				6A74B07C2076F4B60049BC29 /* sv-SE */,
+				4C9FE47423703DA50096A5EA /* en */,
 			);
 			name = InfoPlist.strings;
 			sourceTree = "<group>";
@@ -2651,10 +2657,10 @@
 			isa = PBXVariantGroup;
 			children = (
 				78E1F8B122E3A5D600E738AE /* Base */,
-				78E1F8B422E3A5DB00E738AE /* ru */,
 				4C1888CF230FBC080054A38F /* de */,
 				71FF7A27230FEF6B002F488F /* it */,
 				ABE8662F2316617500201125 /* zh-Hans */,
+				78C093DB236A18560008577C /* ru */,
 			);
 			name = AutotypeDoctorReportViewController.xib;
 			sourceTree = "<group>";
@@ -2787,7 +2793,7 @@
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				CODE_SIGN_IDENTITY = "";
 				COPY_PHASE_STRIP = NO;
-				CURRENT_PROJECT_VERSION = 0.7.9;
+				CURRENT_PROJECT_VERSION = 0.7.11;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
@@ -2842,7 +2848,7 @@
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				CODE_SIGN_IDENTITY = "";
 				COPY_PHASE_STRIP = YES;
-				CURRENT_PROJECT_VERSION = 0.7.9;
+				CURRENT_PROJECT_VERSION = 0.7.11;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;

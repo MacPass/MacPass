@@ -53,14 +53,14 @@
   
   self.focusRingType = NSFocusRingTypeNone;
   self.segmentStyle = NSSegmentStyleTexturedSquare;
-  self.segmentCount = 2;
+  self.segmentCount = MPContextButtonSegmentCount;
   cell.trackingMode = NSSegmentSwitchTrackingMomentary;
-  [cell setWidth:31 forSegment:0];
-  [cell setWidth:17 forSegment:1];
+  [cell setWidth:31 forSegment:MPContextButtonSegmentButton];
+  [cell setWidth:17 forSegment:MPContextButtonSegmentContextButton];
   cell.trackingMode = NSSegmentSwitchTrackingMomentary;
   
   NSImage *contextTriangle = [NSBundle.mainBundle imageForResource:@"contextTriangleTemplate"];
-  [self setImage:contextTriangle forSegment:1];
+  [self setImage:contextTriangle forSegment:MPContextButtonSegmentContextButton];
   
   cell.contextMenuAction = @selector(showContextMenu:);
   cell.contextMenuTarget = self;
@@ -76,42 +76,42 @@
  Block the segment setter to prevent accidental settings
  */
 - (void)setImage:(NSImage *)image forSegment:(NSInteger)segment {
-  if(segment < 2) {
+  if(segment < MPContextButtonSegmentCount) {
     [super setImage:image forSegment:segment];
   }
 }
 
 - (void)setSegmentCount:(NSInteger)count {
-  if(count == 2) {
+  if(count == MPContextButtonSegmentCount) {
     super.segmentCount = count;
   }
 }
 
 - (void)setImage:(NSImage *)image {
-  [self setImage:image forSegment:0];
+  [self setImage:image forSegment:MPContextButtonSegmentButton];
 }
 
 - (void)showContextMenu:(id)sender {
   NSPoint point = self.frame.origin;
-  point.x = [self.cell widthForSegment:0];
+  point.x = [self.cell widthForSegment:MPContextButtonSegmentButton];
   point.y = NSHeight(self.frame) + 3;
   [_contextMenu popUpMenuPositioningItem:nil atLocation:point inView:self];
 }
 
 - (void)setControlSize:(NSControlSize)controlSize {
-  NSImageRep *rep = [[self imageForSegment:0] bestRepresentationForRect:NSMakeRect(0, 0, 100, 100) context:nil hints:nil];
+  NSImageRep *rep = [[self imageForSegment:MPContextButtonSegmentButton] bestRepresentationForRect:NSMakeRect(0, 0, 100, 100) context:nil hints:nil];
   CGFloat scale = rep.size.width / rep.size.height;
   switch (controlSize) {
     case NSRegularControlSize:
-      [self imageForSegment:0].size = NSMakeSize(16 * scale, 16);
+      [self imageForSegment:MPContextButtonSegmentButton].size = NSMakeSize(16 * scale, 16);
       break;
       
     case NSSmallControlSize:
-      [self imageForSegment:0].size = NSMakeSize(14 * scale, 14);
+      [self imageForSegment:MPContextButtonSegmentButton].size = NSMakeSize(14 * scale, 14);
       break;
       
     case NSMiniControlSize:
-      [self imageForSegment:0].size = NSMakeSize(8 * scale, 8);
+      [self imageForSegment:MPContextButtonSegmentButton].size = NSMakeSize(8 * scale, 8);
       
     default:
       break;
@@ -121,6 +121,11 @@
 
 - (NSControlSize)controlSize {
   return super.controlSize;
+}
+
+- (void)_updateContextButtonState {
+  BOOL hasContextMenu = (self.contextMenu != nil);
+  [self setEnabled:hasContextMenu forSegment:MPContextButtonSegmentContextButton];
 }
 
 @end
