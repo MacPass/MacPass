@@ -7,6 +7,7 @@
 //
 
 #import "MPWelcomeViewController.h"
+#import "MPConstants.h"
 
 @interface MPWelcomeViewController ()
 
@@ -26,15 +27,30 @@
 }
 
 - (NSInteger)numberOfRowsInTableView:(NSTableView *)tableView {
-  return NSDocumentController.sharedDocumentController.recentDocumentURLs.count;
+  return MAX(1, NSDocumentController.sharedDocumentController.recentDocumentURLs.count);
 }
 
 - (nullable NSView *)tableView:(NSTableView *)tableView viewForTableColumn:(nullable NSTableColumn *)tableColumn row:(NSInteger)row {
   NSTableCellView *view = [tableView makeViewWithIdentifier:tableColumn.identifier owner:self];
-  NSURL *url = NSDocumentController.sharedDocumentController.recentDocumentURLs[row];
-  view.textField.stringValue = url.lastPathComponent;
-  view.imageView.image = [NSWorkspace.sharedWorkspace iconForFile:url.path];
+  NSArray<NSURL *> *recentURLS = NSDocumentController.sharedDocumentController.recentDocumentURLs;
+  if(row > -1 && row < recentURLS.count) {
+    NSURL *url = recentURLS[row];
+    view.textField.enabled = YES;
+    view.imageView.enabled = YES;
+    view.textField.stringValue = url.lastPathComponent;
+    view.imageView.image = [NSWorkspace.sharedWorkspace iconForFile:url.path];
+  }
+  else {
+    view.textField.enabled = NO;
+    view.imageView.enabled = NO;
+    view.textField.stringValue = NSLocalizedString(@"WELCOME_WINDOW_NO_RECENT_DOCUMENTS", "Text displayed when no recent documents can be displayed in");
+    view.imageView.image = [NSWorkspace.sharedWorkspace iconForFileType:MPKdbxDocumentUTI];
+  }
   return view;
+}
+
+- (BOOL)tableView:(NSTableView *)tableView shouldSelectRow:(NSInteger)row {
+  return (NSDocumentController.sharedDocumentController.recentDocumentURLs.count > 0);
 }
 
 - (IBAction)openRecentURL:(id)sender {
