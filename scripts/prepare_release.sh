@@ -52,13 +52,20 @@ if [[ -z "${PASSWORD}" ]]; then
     exit -1
 fi
 
-BUILD_FOLDER="${TMPDIR}"
+DERIVED_DATA_FOLDER="${TMPDIR}"
+BUILD_FOLDER="${DERIVED_DATA_FOLDER}"/Build/Products/Release
 APP_BUNDLE=MacPass.app
 APP_BUNDLE_ZIP="${APP_BUNDLE}".zip
 cd ..
-xcodebuild build -configuration Release -project MacPass.xcodeproj -scheme MacPass CODE_SIGNING_REQUIRED=NO -derivedDataPath "${BUILD_FOLDER}"
+echo "Building..."
+xcodebuild build -configuration Release -project MacPass.xcodeproj -scheme MacPass CODE_SIGNING_REQUIRED=NO -derivedDataPath "${DERIVED_DATA_FOLDER}"
 cd "${BUILD_FOLDER}"
-echo codesign --sign "${IDENTITY}" --options runtime --deep --force --entitlements "${ENTITLEMENTS}" "${APP_BUNDLE}"
-echo ditto -c -k --keepParent "${APP_BUNDLE}" "${APP_BUNDLE_ZIP}"
+echo ""
+echo "Signing..."
+codesign --sign "${IDENTITY}" --options runtime --deep --force --entitlements "${ENTITLEMENTS}" "${APP_BUNDLE}"
+echo ""
+echo "Archiving..."
+ditto -c -k --keepParent "${APP_BUNDLE}" "${APP_BUNDLE_ZIP}"
+echo "Requesting Notarization..."
 xcrun altool --notarize-app --primary-bundle-id "com.hicknhacksoftware.MacPass.zip" --username "${USERNAME}" --password "${PASSWORD}" --file "${APP_BUNDLE_ZIP}"
 #xcrun stapler staple "${APP_BUNDLE}"
