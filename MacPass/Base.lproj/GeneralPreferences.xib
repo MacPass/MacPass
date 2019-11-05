@@ -14,6 +14,7 @@
                 <outlet property="fileChangeStrategyPopup" destination="wIu-Sh-2a2" id="oJo-dA-lEE"/>
                 <outlet property="idleTimeOutPopup" destination="584" id="809"/>
                 <outlet property="lockOnLogoutCheckButton" destination="5SP-Vi-1sn" id="yaI-LH-R5A"/>
+                <outlet property="lockOnScreenSleep" destination="nRe-7S-HwK" id="pl4-Aw-PVa"/>
                 <outlet property="lockOnSleepCheckButton" destination="630" id="810"/>
                 <outlet property="preventUniversalClipboardSupportCheckButton" destination="nqZ-rB-mFS" id="sbx-rl-reT"/>
                 <outlet property="rememberKeyFileCheckButton" destination="bSt-Wf-FNZ" id="aQm-EA-yAN"/>
@@ -47,7 +48,7 @@
                                 <rect key="frame" x="138" y="308" width="143" height="21"/>
                                 <popUpButtonCell key="cell" type="push" title="Never" bezelStyle="rounded" alignment="left" lineBreakMode="truncatingTail" state="on" borderStyle="borderAndBezel" imageScaling="proportionallyDown" inset="2" selectedItem="429" id="420">
                                     <behavior key="behavior" lightByBackground="YES" lightByGray="YES"/>
-                                    <font key="font" metaFont="menu"/>
+                                    <font key="font" metaFont="system"/>
                                     <menu key="menu" title="ClipboardClearInterval" id="421">
                                         <items>
                                             <menuItem title="Never" state="on" id="429">
@@ -75,7 +76,7 @@
                                 <rect key="frame" x="111" y="168" width="125" height="25"/>
                                 <popUpButtonCell key="cell" type="push" bezelStyle="rounded" alignment="left" lineBreakMode="truncatingTail" borderStyle="borderAndBezel" imageScaling="proportionallyDown" inset="2" id="585">
                                     <behavior key="behavior" lightByBackground="YES" lightByGray="YES"/>
-                                    <font key="font" metaFont="menu"/>
+                                    <font key="font" metaFont="system"/>
                                     <menu key="menu" title="LockTimes" id="586">
                                         <items>
                                             <menuItem title="Never" id="804"/>
@@ -113,7 +114,7 @@
                             <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" setsMaxLayoutWidthAtFirstLayout="YES" translatesAutoresizingMaskIntoConstraints="NO" id="5cV-xX-SUU">
                                 <rect key="frame" x="18" y="41" width="335" height="56"/>
                                 <textFieldCell key="cell" sendsActionOnEndEditing="YES" id="ACh-7H-42N">
-                                    <font key="font" metaFont="smallSystem"/>
+                                    <font key="font" metaFont="controlContent" size="11"/>
                                     <string key="title">Enabling this compromises security. If enabled, your preferences will contain mappings from database to keyfile. Key locations for databases without a password will not be saved.</string>
                                     <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
                                     <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
@@ -146,12 +147,20 @@
                             <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" setsMaxLayoutWidthAtFirstLayout="YES" translatesAutoresizingMaskIntoConstraints="NO" id="hy4-RL-dAa">
                                 <rect key="frame" x="18" y="200" width="335" height="56"/>
                                 <textFieldCell key="cell" sendsActionOnEndEditing="YES" id="JGX-Tp-KJk">
-                                    <font key="font" metaFont="smallSystem"/>
+                                    <font key="font" metaFont="controlContent" size="11"/>
                                     <string key="title">Disabling this compromises security. If enabled, anything copied to the Clipboard in MacPass will be available on your connected iOS devices. You should clear the clipboard on those devices manually.</string>
                                     <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
                                     <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                 </textFieldCell>
                             </textField>
+                            <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="nRe-7S-HwK">
+                                <rect key="frame" x="179" y="129" width="164" height="18"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMinY="YES" flexibleMaxY="YES"/>
+                                <buttonCell key="cell" type="check" title="Lock after screen sleep" bezelStyle="regularSquare" imagePosition="left" state="on" inset="2" id="l3t-og-mJd">
+                                    <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                                    <font key="font" metaFont="system"/>
+                                </buttonCell>
+                            </button>
                         </subviews>
                         <constraints>
                             <constraint firstItem="5cV-xX-SUU" firstAttribute="leading" secondItem="mNh-3L-Z6E" secondAttribute="leading" constant="20" symbolic="YES" id="1jw-nb-bAB"/>
@@ -219,7 +228,7 @@
                             <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" setsMaxLayoutWidthAtFirstLayout="YES" translatesAutoresizingMaskIntoConstraints="NO" id="3Bo-Ml-1KB">
                                 <rect key="frame" x="18" y="45" width="335" height="14"/>
                                 <textFieldCell key="cell" controlSize="small" title="Close and open all documents for changes to take effect" id="ya5-ps-c4W">
-                                    <font key="font" metaFont="smallSystem"/>
+                                    <font key="font" metaFont="message" size="11"/>
                                     <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
                                     <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                 </textFieldCell>
@@ -236,7 +245,7 @@
                                 <rect key="frame" x="111" y="14" width="38" height="25"/>
                                 <popUpButtonCell key="cell" type="push" bezelStyle="rounded" alignment="left" lineBreakMode="truncatingTail" borderStyle="borderAndBezel" imageScaling="proportionallyDown" inset="2" id="1R2-5t-LWk">
                                     <behavior key="behavior" lightByBackground="YES" lightByGray="YES"/>
-                                    <font key="font" metaFont="menu"/>
+                                    <font key="font" metaFont="system"/>
                                     <menu key="menu" id="DQY-17-yKP"/>
                                 </popUpButtonCell>
                             </popUpButton>
