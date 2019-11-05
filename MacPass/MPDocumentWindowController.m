@@ -159,9 +159,6 @@ typedef void (^MPPasswordChangedBlock)(BOOL didChangePassword);
    [self.window addTitlebarAccessoryViewController:tbc];
    */
 }
-- (NSResponder *)reconmendedFirstResponder {
-  return self.toolbarDelegate.searchField;
-}
 
 - (NSSearchField *)searchField {
   return self.toolbarDelegate.searchField;
@@ -219,7 +216,6 @@ typedef void (^MPPasswordChangedBlock)(BOOL didChangePassword);
 - (void)_didUnlockDatabase:(NSNotification *)notification {  
   [self showEntries];
   /* Show password reminders */
-  [self reconmendedFirstResponder];
   [self _presentPasswordIntervalAlerts];
 }
 
