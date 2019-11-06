@@ -104,7 +104,7 @@ static MPLockDaemon *_sharedInstance;
       [NSWorkspace.sharedWorkspace.notificationCenter addObserver:self selector:@selector(_willScreenSleepNotification:) name:NSWorkspaceScreensDidSleepNotification object:nil];
     }
     else {
-      [NSWorkspace.sharedWorkspace.notificationCenter removeObserver:self name:NSWorkspaceWillSleepNotification object:nil];
+      [NSWorkspace.sharedWorkspace.notificationCenter removeObserver:self name:NSWorkspaceScreensDidSleepNotification object:nil];
     }
   }
 }
