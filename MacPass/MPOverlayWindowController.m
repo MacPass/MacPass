@@ -60,7 +60,7 @@
   self.window.alphaValue = 0;
   self.window.opaque = NO;
   self.window.hasShadow = YES;
-  self.window.backgroundColor = [NSColor clearColor];
+  self.window.backgroundColor = NSColor.clearColor;
   
   self.textField.cell.backgroundStyle = NSBackgroundStyleLowered;
   self.imageView.cell.backgroundStyle = NSBackgroundStyleEmphasized;
