@@ -17,11 +17,12 @@ NS_ASSUME_NONNULL_BEGIN
 
 @property (strong) IBOutlet NSImageView *screenRecordingStatusImageView;
 @property (strong) IBOutlet NSTextField *screenRecordingStatusTextField;
+@property (strong) IBOutlet NSButton *requestScreenRecordingButton;
 
 - (IBAction)openAccessibiltyPreferences:(id)sender;
 - (IBAction)openScreenRecordingPreferences:(id)sender;
+- (IBAction)requestScreenRecordingPermissions:(id)sender;
 - (IBAction)openAutomationPreferences:(id)sender;
-
 
 @end
 

@@ -238,10 +238,18 @@ NSString *const MPToolbarItemAutotype = @"TOOLBAR_AUTOTYPE";
 
 #pragma mark - NSSearchFieldDelegate
 - (BOOL)control:(NSControl *)control textView:(NSTextView *)textView doCommandBySelector:(SEL)commandSelector {
+  if(control != self.searchField) {
+    return NO;
+  }
   if(commandSelector == @selector(insertNewline:) || commandSelector == @selector(moveDown:)) {
     /* Dispatch the focus loss since doing it now will break recent search storage */
     dispatch_async(dispatch_get_main_queue(), ^{
       [[NSApp targetForAction:@selector(focusEntries:) to:nil from:self] focusEntries:self];
+    });
+  }
+  if(commandSelector == @selector(cancelOperation:) ) {
+    dispatch_async(dispatch_get_main_queue(), ^{
+      [[NSApp targetForAction:@selector(exitSearch:) to:nil from:self] exitSearch:nil];
     });
   }
   return NO;
@@ -294,7 +302,7 @@ NSString *const MPToolbarItemAutotype = @"TOOLBAR_AUTOTYPE";
   [menu addItem:item];
   
   [menu addItem:[NSMenuItem separatorItem]];
-
+  
   item = [[NSMenuItem alloc] initWithTitle:NSLocalizedString(@"RECENT_SEARCHES", @"Recent searches menu item") action:NULL keyEquivalent:@""];
   item.tag = NSSearchFieldRecentsTitleMenuItemTag;
   [menu addItem:item];
@@ -335,7 +343,7 @@ NSString *const MPToolbarItemAutotype = @"TOOLBAR_AUTOTYPE";
 }
 
 - (void)_didExitSearch:(NSNotification *)notification {
-  [self.searchField setStringValue:@""];
+  self.searchField.stringValue = @"";
   NSWindow *window = [self.searchField window];
   /* Resign first responder form search field only if it was the first responder */
   if(window.firstResponder == [self.searchField currentEditor]) {

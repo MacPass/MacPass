@@ -102,7 +102,7 @@ NSString *const kMPDepricatedSettingsKeyAutotypeHideAccessibiltyWarning   = @"Au
 @implementation MPSettingsHelper
 
 + (void)setupDefaults {
-  [[NSUserDefaults standardUserDefaults] registerDefaults:[self _standardDefaults]];
+  [NSUserDefaults.standardUserDefaults registerDefaults:[self _standardDefaults]];
 }
 
 + (void)migrateDefaults {
@@ -193,7 +193,7 @@ NSString *const kMPDepricatedSettingsKeyAutotypeHideAccessibiltyWarning   = @"Au
 + (void)_removeDeprecatedValues {
   /* Clear old style values */
   for(NSString *key in [self _deprecatedSettingsKeys]) {
-    [[NSUserDefaults standardUserDefaults] removeObjectForKey:key];
+    [NSUserDefaults.standardUserDefaults removeObjectForKey:key];
   }
 }
 
@@ -206,7 +206,7 @@ NSString *const kMPDepricatedSettingsKeyAutotypeHideAccessibiltyWarning   = @"Au
    this was changed in 0.6. to parent.title
    
    */
-  NSData *descriptorData = [[NSUserDefaults standardUserDefaults] dataForKey:kMPSettingsKeyEntryTableSortDescriptors];
+  NSData *descriptorData = [NSUserDefaults.standardUserDefaults dataForKey:kMPSettingsKeyEntryTableSortDescriptors];
   if(!descriptorData) {
     return; // No user defaults
   }
@@ -217,27 +217,35 @@ NSString *const kMPDepricatedSettingsKeyAutotypeHideAccessibiltyWarning   = @"Au
     if(descriptor.selector == @selector(compare:)
        || [descriptor.key isEqualToString:@"timeInfo.modificationDate"]
        || [descriptor.key isEqualToString:@"parent.name"] ) {
-      [[NSUserDefaults standardUserDefaults] removeObjectForKey:kMPSettingsKeyEntryTableSortDescriptors];
+      [NSUserDefaults.standardUserDefaults removeObjectForKey:kMPSettingsKeyEntryTableSortDescriptors];
       break;
     }
   }
 }
 
 + (void)_migrateURLDoubleClickPreferences {
-  /* Default was NO so if the key was not set, we also get NO, which is what we want */
-  BOOL openURL = [[NSUserDefaults standardUserDefaults] boolForKey:kMPDeprecatedSettingsKeyDoubleClickURLToLaunch];
-  if(NO == openURL) {
-    [[NSUserDefaults standardUserDefaults] setInteger:MPDoubleClickURLActionOpen forKey:kMPSettingsKeyDoubleClickURLAction];
+  /*
+   Default was NO so if the key was not set the correct action now should be MPDoubleClickURLActionCopy
+   But MPDoubleClickURLActionCopy is the default we cannot simply add this value.
+   Hence we chose to only migrate a changed default and let the "old" default silenty be updated
+   This is a worth trade-off since the other solution will always re-set the default
+   */
+  if(nil == [NSUserDefaults.standardUserDefaults objectForKey:kMPDeprecatedSettingsKeyDoubleClickURLToLaunch]) {
+    return; // the value was not set, do nothing since we cannot determine what to do
+  }
+  /* only update the settings if the defaults return an explicit set value */
+  if([NSUserDefaults.standardUserDefaults boolForKey:kMPDeprecatedSettingsKeyDoubleClickURLToLaunch]) {
+    [NSUserDefaults.standardUserDefaults setInteger:MPDoubleClickURLActionOpen forKey:kMPSettingsKeyDoubleClickURLAction];
   }
 }
 
 + (void)_migrateEntrySearchFlags {
   /* Entry filters are now stored as archivd search context not just flags */
-  NSInteger flags = [[NSUserDefaults standardUserDefaults] integerForKey:kMPDeprecatedSettingsKeyEntrySearchFilterMode];
+  NSInteger flags = [NSUserDefaults.standardUserDefaults integerForKey:kMPDeprecatedSettingsKeyEntrySearchFilterMode];
   if(flags != 0) {
     MPEntrySearchContext *context = [[MPEntrySearchContext alloc] initWithString:nil flags:flags];
     NSData *contextData = [NSKeyedArchiver archivedDataWithRootObject:context];
-    [[NSUserDefaults standardUserDefaults] setObject:contextData forKey:kMPSettingsKeyEntrySearchFilterContext];
+    [NSUserDefaults.standardUserDefaults setObject:contextData forKey:kMPSettingsKeyEntrySearchFilterContext];
   }
 }
 
@@ -246,7 +254,7 @@ NSString *const kMPDepricatedSettingsKeyAutotypeHideAccessibiltyWarning   = @"Au
    Database file paths was stored as plain text in keyfile mapping.
    We only need to store the key file url in plain text, thus hashing the path is sufficent
    */
-  NSDictionary<NSString *, NSString *> *currentMapping = [[NSUserDefaults standardUserDefaults] dictionaryForKey:kMPSettingsKeyRememeberdKeysForDatabases];
+  NSDictionary<NSString *, NSString *> *currentMapping = [NSUserDefaults.standardUserDefaults dictionaryForKey:kMPSettingsKeyRememeberdKeysForDatabases];
   if(!currentMapping) {
     return;
   }
@@ -268,7 +276,7 @@ NSString *const kMPDepricatedSettingsKeyAutotypeHideAccessibiltyWarning   = @"Au
     }
   }
   if(didHash) {
-    [[NSUserDefaults standardUserDefaults] setObject:hashedDict forKey:kMPSettingsKeyRememeberdKeysForDatabases];
+    [NSUserDefaults.standardUserDefaults setObject:hashedDict forKey:kMPSettingsKeyRememeberdKeysForDatabases];
   }
 }
 

@@ -557,6 +557,7 @@ typedef NS_ENUM(NSUInteger, MPEntryTab) {
   NSMenu *customFieldMenu = [[NSMenu alloc] initWithTitle:NSLocalizedString(@"ADD_CUSTOM_FIELD_CONTEXT_MENU", @"Menu displayed for adding special custom keys")];
   customFieldMenu.delegate = _addCustomFieldContextMenuDelegate;
   self.addCustomFieldButton.contextMenu = customFieldMenu;
+  [self.addCustomFieldButton setEnabled:NO forSegment:MPContextButtonSegmentContextButton];
 }
 
 #pragma mark -

@@ -63,22 +63,41 @@
 
 - (BOOL)hasScreenRecordingPermissions:(NSError *__autoreleasing*)error {
   /* macos 10.14 and lower do not require screen recording permission to get window titles */
-  if (@available(macOS 10.15, *)) {
+  
+  /*
+   Solution is heavily inspired by Craig Hockenberry's
+   https://stackoverflow.com/questions/56597221/detecting-screen-recording-settings-on-macos-catalina/58985069#58985069
+   */
+  if(@available(macOS 10.15, *)) {
     CFArrayRef windowList = CGWindowListCopyWindowInfo(kCGWindowListOptionOnScreenOnly, kCGNullWindowID);
     NSUInteger numberOfWindows = CFArrayGetCount(windowList);
-    NSUInteger numberOfWindowsWithName = 0;
+    BOOL canRecordScreen = NO;
     for(int idx = 0; idx < numberOfWindows; idx++) {
       NSDictionary *windowInfo = (NSDictionary *)CFArrayGetValueAtIndex(windowList, idx);
+      NSNumber *ownerPid = windowInfo[(id)kCGWindowOwnerPID];
+      /*
+       Skip over our own windows
+       */
+      if(ownerPid.intValue == NSProcessInfo.processInfo.processIdentifier) {
+        continue;
+      }
+      /*
+       Skip applications we aren't allowed to access anyway
+       */
+      NSRunningApplication *ownerApp = [NSRunningApplication runningApplicationWithProcessIdentifier:ownerPid.intValue];
+      if(!ownerApp) {
+        continue;
+      }
       NSString *windowName = windowInfo[(id)kCGWindowName];
       if(windowName) {
-        numberOfWindowsWithName++;
-      }
-      else {
-        break; //breaking early, numberOfWindowsWithName not increased
+        if([ownerApp.executableURL.lastPathComponent isEqualToString:@"Dock"]) {
+          continue;
+        }
+        canRecordScreen = YES;
+        break;
       }
     }
     CFRelease(windowList);
-    BOOL canRecordScreen = (numberOfWindows == numberOfWindowsWithName);
     if(!canRecordScreen && error) {
       *error = [NSError errorInDomain:MPAutotypeErrorDomain withCode:MPErrorAutotypeIsMissingScreenRecordingPermissions description:NSLocalizedString(@"ERROR_NO_PERMISSION_TO_RECORD_SCREEN", "Error description for missing screen recording permissions")];
     }
@@ -104,8 +123,23 @@
 }
 
 - (void)openScreenRecordingPreferences {
-  //TODO fix this in macOS 10.15 to use the correct URL
-  [NSWorkspace.sharedWorkspace openURL:[NSURL URLWithString:@"x-apple.systempreferences:com.apple.preference.security"]];
+  [NSWorkspace.sharedWorkspace openURL:[NSURL URLWithString:@"x-apple.systempreferences:com.apple.preference.security?Privacy_ScreenCapture"]];
+}
+
+- (void)requestScreenRecordingPermission {
+  /* macos 10.14 and lower do not require screen recording permission to get window titles */
+  if(@available(macos 10.15, *)) {
+    /*
+     To minimize the intrusion just make a 1px image of the upper left corner
+     This way there is no real possibilty to access any private data
+     */
+    CGImageRef screenshot = CGWindowListCreateImage(
+                                                    CGRectMake(0, 0, 1, 1),
+                                                    kCGWindowListOptionOnScreenOnly,
+                                                    kCGNullWindowID,
+                                                    kCGWindowImageDefault);
+    CFRelease(screenshot);
+  }
 }
 
 - (void)openAutomationPreferences {
