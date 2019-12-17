@@ -114,7 +114,7 @@
                             <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" setsMaxLayoutWidthAtFirstLayout="YES" translatesAutoresizingMaskIntoConstraints="NO" id="5cV-xX-SUU">
                                 <rect key="frame" x="18" y="41" width="335" height="56"/>
                                 <textFieldCell key="cell" sendsActionOnEndEditing="YES" id="ACh-7H-42N">
-                                    <font key="font" metaFont="message" size="11"/>
+                                    <font key="font" metaFont="controlContent" size="11"/>
                                     <string key="title">Enabling this compromises security. If enabled, your preferences will contain mappings from database to keyfile. Key locations for databases without a password will not be saved.</string>
                                     <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
                                     <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
@@ -147,7 +147,7 @@
                             <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" setsMaxLayoutWidthAtFirstLayout="YES" translatesAutoresizingMaskIntoConstraints="NO" id="hy4-RL-dAa">
                                 <rect key="frame" x="18" y="224" width="335" height="56"/>
                                 <textFieldCell key="cell" sendsActionOnEndEditing="YES" id="JGX-Tp-KJk">
-                                    <font key="font" metaFont="message" size="11"/>
+                                    <font key="font" metaFont="controlContent" size="11"/>
                                     <string key="title">Disabling this compromises security. If enabled, anything copied to the Clipboard in MacPass will be available on your connected iOS devices. You should clear the clipboard on those devices manually.</string>
                                     <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
                                     <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
@@ -169,7 +169,7 @@
                             <constraint firstItem="nRe-7S-HwK" firstAttribute="leading" secondItem="447" secondAttribute="leading" id="Mrg-k2-soG"/>
                             <constraint firstItem="584" firstAttribute="top" secondItem="hy4-RL-dAa" secondAttribute="bottom" constant="8" symbolic="YES" id="SV7-PD-nId"/>
                             <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="bSt-Wf-FNZ" secondAttribute="trailing" constant="20" symbolic="YES" id="VQY-eq-fCM"/>
-                            <constraint firstItem="bSt-Wf-FNZ" firstAttribute="top" secondItem="nRe-7S-HwK" secondAttribute="bottom" constant="-25" id="WUG-Uf-FCO"/>
+                            <constraint firstItem="bSt-Wf-FNZ" firstAttribute="top" secondItem="nRe-7S-HwK" secondAttribute="bottom" constant="11" id="WUG-Uf-FCO"/>
                             <constraint firstItem="nRe-7S-HwK" firstAttribute="top" secondItem="5SP-Vi-1sn" secondAttribute="bottom" constant="8" id="YZv-Dp-CrZ"/>
                             <constraint firstItem="5SP-Vi-1sn" firstAttribute="leading" secondItem="447" secondAttribute="leading" id="Ylr-aA-jaD"/>
                             <constraint firstItem="hy4-RL-dAa" firstAttribute="top" secondItem="nqZ-rB-mFS" secondAttribute="bottom" constant="8" symbolic="YES" id="a3i-tc-gUU"/>
