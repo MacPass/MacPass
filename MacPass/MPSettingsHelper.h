@@ -42,6 +42,7 @@ APPKIT_EXTERN NSString *const kMPSettingsKeyBrowserBundleId;
 APPKIT_EXTERN NSString *const kMPSettingsKeyLockOnSleep;
 APPKIT_EXTERN NSString *const kMPSettingskeyLockOnLogout;
 APPKIT_EXTERN NSString *const kMPSettingsKeyIdleLockTimeOut;
+APPKIT_EXTERN NSString *const kMPSettingskeyLockOnScreenSleep;
 
 /* Autosaving states */
 APPKIT_EXTERN NSString *const kMPSettingsKeyShowInspector;
