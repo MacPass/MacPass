@@ -102,7 +102,18 @@
     return NO;
   }
   NSString *fileName = [NSString stringWithFormat:@"%@_%@", NSProcessInfo.processInfo.globallyUniqueString, binary.name];
-  self.temporaryFileURL = [NSURL fileURLWithPath:[NSTemporaryDirectory() stringByAppendingPathComponent:fileName]];
+  
+  NSURL *userDesktop = [NSFileManager.defaultManager URLsForDirectory:NSDesktopDirectory inDomains:NSUserDomainMask].firstObject;
+  if(!userDesktop) {
+    return NO;
+  }
+  NSError *error;
+  NSURL *tempURL = [NSFileManager.defaultManager URLForDirectory:NSItemReplacementDirectory inDomain:NSUserDomainMask appropriateForURL:userDesktop create:YES error:&error];
+  if(!tempURL) {
+    NSLog(@"Unable to create temporary directory for file preview: %@", error.description);
+    return NO;
+  }
+  self.temporaryFileURL = [tempURL URLByAppendingPathComponent:fileName isDirectory:NO];
   
   BOOL success = [binary.data writeToURL:self.temporaryFileURL options:0 error:0];
   if(!success) {
