@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" customObjectInstantitationMethod="direct">
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="15702" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" customObjectInstantitationMethod="direct">
     <dependencies>
         <deployment identifier="macosx"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="14490.70"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="15702"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
@@ -27,7 +27,7 @@
                     <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyDown" image="NSStatusAvailable" id="DWu-HI-z3k"/>
                 </imageView>
                 <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="Pqa-Ff-7cc">
-                    <rect key="frame" x="42" y="432" width="80" height="17"/>
+                    <rect key="frame" x="42" y="433" width="80" height="16"/>
                     <textFieldCell key="cell" lineBreakMode="clipping" title="Accessibility" id="aIL-8W-63g">
                         <font key="font" metaFont="system"/>
                         <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
@@ -35,7 +35,7 @@
                     </textFieldCell>
                 </textField>
                 <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" verticalCompressionResistancePriority="751" setsMaxLayoutWidthAtFirstLayout="YES" translatesAutoresizingMaskIntoConstraints="NO" id="hY9-T0-hke">
-                    <rect key="frame" x="42" y="368" width="340" height="56"/>
+                    <rect key="frame" x="42" y="369" width="340" height="56"/>
                     <textFieldCell key="cell" controlSize="small" selectable="YES" id="6GI-KJ-Xue">
                         <font key="font" metaFont="smallSystem"/>
                         <string key="title">MacPass will send key press events to the system when Autotype or Global Autotype is executed. Since macOS 10.14 Mojave this is only possible, if Accessibility permissions are granted to the application.</string>
@@ -44,7 +44,7 @@
                     </textFieldCell>
                 </textField>
                 <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="x9d-0h-hyJ">
-                    <rect key="frame" x="38" y="320" width="236" height="32"/>
+                    <rect key="frame" x="38" y="321" width="236" height="32"/>
                     <buttonCell key="cell" type="push" title="Open Accessibilty Preferences…" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="8m1-vs-pd5">
                         <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                         <font key="font" metaFont="system"/>
@@ -54,11 +54,11 @@
                     </connections>
                 </button>
                 <imageView horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="vvZ-Lj-v22">
-                    <rect key="frame" x="20" y="282" width="16" height="16"/>
+                    <rect key="frame" x="20" y="283" width="16" height="16"/>
                     <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyDown" image="NSStatusAvailable" id="kCX-CB-5vQ"/>
                 </imageView>
                 <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" verticalCompressionResistancePriority="751" setsMaxLayoutWidthAtFirstLayout="YES" translatesAutoresizingMaskIntoConstraints="NO" id="6vq-iM-inn">
-                    <rect key="frame" x="42" y="175" width="340" height="98"/>
+                    <rect key="frame" x="42" y="177" width="340" height="98"/>
                     <textFieldCell key="cell" controlSize="small" selectable="YES" id="7of-1z-Nfk">
                         <font key="font" metaFont="smallSystem"/>
                         <string key="title">MacPass will read every window title when Global Autotype is executed to find a match. Since macOS 10.15 Catalina it is not possible to read any window title, if the user has not granted permissions to record the screen. If you are running macOS 10.15 or higher, MacPass will check if it can read every window title of currently visible windows. This test will not read the actual title. The titles aren't stored or processed in any way.</string>
@@ -67,7 +67,7 @@
                     </textFieldCell>
                 </textField>
                 <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="IP0-CP-tlA">
-                    <rect key="frame" x="42" y="281" width="112" height="17"/>
+                    <rect key="frame" x="42" y="283" width="112" height="16"/>
                     <textFieldCell key="cell" lineBreakMode="clipping" title="Screen Recording" id="9gr-mz-2I4">
                         <font key="font" metaFont="system"/>
                         <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
@@ -75,10 +75,10 @@
                     </textFieldCell>
                 </textField>
                 <box verticalHuggingPriority="750" boxType="separator" translatesAutoresizingMaskIntoConstraints="NO" id="BHb-cd-Q0r">
-                    <rect key="frame" x="20" y="304" width="360" height="5"/>
+                    <rect key="frame" x="20" y="305" width="360" height="5"/>
                 </box>
                 <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="d5Z-hD-bpr">
-                    <rect key="frame" x="38" y="127" width="177" height="32"/>
+                    <rect key="frame" x="38" y="129" width="177" height="32"/>
                     <buttonCell key="cell" type="push" title="Request Permissions…" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="1Nx-Cg-TCn">
                         <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                         <font key="font" metaFont="system"/>
@@ -88,7 +88,7 @@
                     </connections>
                 </button>
                 <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" preferredMaxLayoutWidth="336" translatesAutoresizingMaskIntoConstraints="NO" id="cu4-Jq-eaS">
-                    <rect key="frame" x="42" y="84" width="340" height="42"/>
+                    <rect key="frame" x="42" y="86" width="340" height="42"/>
                     <textFieldCell key="cell" selectable="YES" id="Mhg-rd-1hK">
                         <font key="font" metaFont="smallSystem"/>
                         <string key="title">To request Screen Recording permissions, MacPass will try to capture a 1 by 1 Pixel sized screenshot of the top left part of your screen. The data is not stored nor processed in any way.</string>
@@ -97,7 +97,7 @@
                     </textFieldCell>
                 </textField>
                 <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="dek-ho-dPm">
-                    <rect key="frame" x="38" y="48" width="271" height="32"/>
+                    <rect key="frame" x="38" y="50" width="271" height="32"/>
                     <buttonCell key="cell" type="push" title="Open Screen Recording Preferences…" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="lgB-Ys-L9R">
                         <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                         <font key="font" metaFont="system"/>

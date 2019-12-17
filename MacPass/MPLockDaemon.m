@@ -28,6 +28,7 @@
 
 @property (nonatomic,assign) BOOL lockOnSleep;
 @property (nonatomic,assign) BOOL lockOnLogout;
+@property (nonatomic,assign) BOOL lockOnScreenSleep;
 @property (nonatomic,assign) NSUInteger idleLockTime;
 @property (nonatomic,strong) id localEventHandler;
 @property (nonatomic,strong) NSTimer *idleCheckTimer;
@@ -59,6 +60,7 @@ static MPLockDaemon *_sharedInstance;
     [self bind:NSStringFromSelector(@selector(lockOnSleep)) toObject:defaultsController withKeyPath:[MPSettingsHelper defaultControllerPathForKey:kMPSettingsKeyLockOnSleep] options:nil];
     [self bind:NSStringFromSelector(@selector(idleLockTime)) toObject:defaultsController withKeyPath:[MPSettingsHelper defaultControllerPathForKey:kMPSettingsKeyIdleLockTimeOut] options:nil];
     [self bind:NSStringFromSelector(@selector(lockOnLogout)) toObject:defaultsController withKeyPath:[MPSettingsHelper defaultControllerPathForKey:kMPSettingskeyLockOnLogout] options:nil];
+    [self bind:NSStringFromSelector(@selector(lockOnScreenSleep)) toObject:defaultsController withKeyPath:[MPSettingsHelper defaultControllerPathForKey:kMPSettingskeyLockOnScreenSleep] options:nil];
   }
   return self;
 }
@@ -95,6 +97,18 @@ static MPLockDaemon *_sharedInstance;
   }
 }
 
+- (void)setLockOnScreenSleep:(BOOL)lockOnScreenSleep {
+  if(_lockOnScreenSleep != lockOnScreenSleep) {
+    _lockOnScreenSleep = lockOnScreenSleep;
+    if(_lockOnScreenSleep) {
+      [NSWorkspace.sharedWorkspace.notificationCenter addObserver:self selector:@selector(_willScreenSleepNotification:) name:NSWorkspaceScreensDidSleepNotification object:nil];
+    }
+    else {
+      [NSWorkspace.sharedWorkspace.notificationCenter removeObserver:self name:NSWorkspaceScreensDidSleepNotification object:nil];
+    }
+  }
+}
+
 - (void)setIdleLockTime:(NSUInteger)idleLockTime {
   if(_idleLockTime != idleLockTime) {
     _idleLockTime = idleLockTime;
@@ -111,6 +125,9 @@ static MPLockDaemon *_sharedInstance;
   [((MPAppDelegate *)NSApp.delegate) lockAllDocuments];
 }
 - (void)_willSleepNotification:(NSNotification *)notification {
+  [((MPAppDelegate *)NSApp.delegate) lockAllDocuments];
+}
+- (void)_willScreenSleepNotification:(NSNotification *)notification {
   [((MPAppDelegate *)NSApp.delegate) lockAllDocuments];
 }
 

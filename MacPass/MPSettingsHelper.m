@@ -37,6 +37,7 @@ NSString *const kMPSettingsKeyFileChangeStrategy                      = @"FileCh
 NSString *const kMPSettingsKeyEnableAutosave                          = @"EnableAutosave";
 NSString *const kMPSettingsKeyLockOnSleep                             = @"LockOnSleep";
 NSString *const kMPSettingskeyLockOnLogout                            = @"LockOnLogout";
+NSString *const kMPSettingskeyLockOnScreenSleep                       = @"LockOnScreenSleep";
 NSString *const kMPSettingsKeyIdleLockTimeOut                         = @"IdleLockTimeOut";
 NSString *const kMPSettingsKeyShowInspector                           = @"ShowInspector";
 NSString *const kMPSettingsKeyEntryTableSortDescriptors               = @"EntryTableSortDescriptors";
@@ -132,6 +133,7 @@ NSString *const kMPDepricatedSettingsKeyAutotypeHideAccessibiltyWarning   = @"Au
                          kMPSettingsKeyFileChangeStrategy: @(MPFileChangeStrategyAsk), // Ask what to do on a file change!
                          kMPSettingsKeyLockOnSleep: @YES,
                          kMPSettingskeyLockOnLogout: @NO,
+                         kMPSettingskeyLockOnScreenSleep: @NO,
                          kMPSettingsKeyIdleLockTimeOut: @0, // 5 minutes
                          kMPSettingsKeyLegacyHideNotes: @NO,
                          kMPSettingsKeyLegacyHidePassword: @YES,

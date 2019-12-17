@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="15702" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
     <dependencies>
         <deployment identifier="macosx"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="14490.70"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="15702"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
@@ -14,6 +14,7 @@
                 <outlet property="fileChangeStrategyPopup" destination="wIu-Sh-2a2" id="oJo-dA-lEE"/>
                 <outlet property="idleTimeOutPopup" destination="584" id="809"/>
                 <outlet property="lockOnLogoutCheckButton" destination="5SP-Vi-1sn" id="yaI-LH-R5A"/>
+                <outlet property="lockOnScreenSleepCheckButton" destination="nRe-7S-HwK" id="0IB-5B-pfw"/>
                 <outlet property="lockOnSleepCheckButton" destination="630" id="810"/>
                 <outlet property="preventUniversalClipboardSupportCheckButton" destination="nqZ-rB-mFS" id="sbx-rl-reT"/>
                 <outlet property="rememberKeyFileCheckButton" destination="bSt-Wf-FNZ" id="aQm-EA-yAN"/>
@@ -24,16 +25,16 @@
         <customObject id="-1" userLabel="First Responder" customClass="FirstResponder"/>
         <customObject id="-3" userLabel="Application" customClass="NSObject"/>
         <customView translatesAutoresizingMaskIntoConstraints="NO" id="1">
-            <rect key="frame" x="0.0" y="0.0" width="411" height="524"/>
+            <rect key="frame" x="0.0" y="0.0" width="411" height="547"/>
             <subviews>
                 <box autoresizesSubviews="NO" verticalHuggingPriority="500" borderType="line" title="Security" translatesAutoresizingMaskIntoConstraints="NO" id="465">
-                    <rect key="frame" x="17" y="16" width="377" height="357"/>
+                    <rect key="frame" x="17" y="16" width="377" height="381"/>
                     <view key="contentView" id="mNh-3L-Z6E">
-                        <rect key="frame" x="3" y="3" width="371" height="339"/>
+                        <rect key="frame" x="3" y="3" width="371" height="363"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <textField verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="431">
-                                <rect key="frame" x="14" y="311" width="120" height="17"/>
+                                <rect key="frame" x="14" y="335" width="120" height="17"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="17" id="803"/>
                                 </constraints>
@@ -44,10 +45,10 @@
                                 </textFieldCell>
                             </textField>
                             <popUpButton verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="419">
-                                <rect key="frame" x="138" y="308" width="143" height="21"/>
+                                <rect key="frame" x="138" y="332" width="143" height="21"/>
                                 <popUpButtonCell key="cell" type="push" title="Never" bezelStyle="rounded" alignment="left" lineBreakMode="truncatingTail" state="on" borderStyle="borderAndBezel" imageScaling="proportionallyDown" inset="2" selectedItem="429" id="420">
                                     <behavior key="behavior" lightByBackground="YES" lightByGray="YES"/>
-                                    <font key="font" metaFont="menu"/>
+                                    <font key="font" metaFont="system"/>
                                     <menu key="menu" title="ClipboardClearInterval" id="421">
                                         <items>
                                             <menuItem title="Never" state="on" id="429">
@@ -62,7 +63,7 @@
                                 </popUpButtonCell>
                             </popUpButton>
                             <button verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="447">
-                                <rect key="frame" x="29" y="287" width="164" height="18"/>
+                                <rect key="frame" x="29" y="311" width="164" height="18"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="14" id="773"/>
                                 </constraints>
@@ -72,10 +73,10 @@
                                 </buttonCell>
                             </button>
                             <popUpButton verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="584">
-                                <rect key="frame" x="111" y="168" width="125" height="25"/>
+                                <rect key="frame" x="111" y="192" width="125" height="25"/>
                                 <popUpButtonCell key="cell" type="push" bezelStyle="rounded" alignment="left" lineBreakMode="truncatingTail" borderStyle="borderAndBezel" imageScaling="proportionallyDown" inset="2" id="585">
                                     <behavior key="behavior" lightByBackground="YES" lightByGray="YES"/>
-                                    <font key="font" metaFont="menu"/>
+                                    <font key="font" metaFont="system"/>
                                     <menu key="menu" title="LockTimes" id="586">
                                         <items>
                                             <menuItem title="Never" id="804"/>
@@ -89,14 +90,14 @@
                                 </popUpButtonCell>
                             </popUpButton>
                             <button translatesAutoresizingMaskIntoConstraints="NO" id="630">
-                                <rect key="frame" x="29" y="149" width="119" height="18"/>
+                                <rect key="frame" x="29" y="173" width="119" height="18"/>
                                 <buttonCell key="cell" type="check" title="Lock after sleep" bezelStyle="regularSquare" imagePosition="left" state="on" inset="2" id="631">
                                     <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                                     <font key="font" metaFont="system"/>
                                 </buttonCell>
                             </button>
                             <textField verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="805">
-                                <rect key="frame" x="14" y="173" width="93" height="17"/>
+                                <rect key="frame" x="14" y="197" width="93" height="16"/>
                                 <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Lock while idle" id="806">
                                     <font key="font" metaFont="system"/>
                                     <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
@@ -130,21 +131,21 @@
                                 </connections>
                             </button>
                             <button translatesAutoresizingMaskIntoConstraints="NO" id="5SP-Vi-1sn">
-                                <rect key="frame" x="29" y="129" width="129" height="18"/>
+                                <rect key="frame" x="29" y="151" width="129" height="18"/>
                                 <buttonCell key="cell" type="check" title="Lock after log out" bezelStyle="regularSquare" imagePosition="left" state="on" inset="2" id="Dzn-9R-JjE">
                                     <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                                     <font key="font" metaFont="system"/>
                                 </buttonCell>
                             </button>
                             <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="nqZ-rB-mFS">
-                                <rect key="frame" x="14" y="262" width="242" height="18"/>
+                                <rect key="frame" x="14" y="286" width="242" height="18"/>
                                 <buttonCell key="cell" type="check" title="Prevent Universal Clipboard support" bezelStyle="regularSquare" imagePosition="left" state="on" inset="2" id="fNy-mS-phi">
                                     <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                                     <font key="font" metaFont="system"/>
                                 </buttonCell>
                             </button>
                             <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" setsMaxLayoutWidthAtFirstLayout="YES" translatesAutoresizingMaskIntoConstraints="NO" id="hy4-RL-dAa">
-                                <rect key="frame" x="18" y="200" width="335" height="56"/>
+                                <rect key="frame" x="18" y="224" width="335" height="56"/>
                                 <textFieldCell key="cell" sendsActionOnEndEditing="YES" id="JGX-Tp-KJk">
                                     <font key="font" metaFont="smallSystem"/>
                                     <string key="title">Disabling this compromises security. If enabled, anything copied to the Clipboard in MacPass will be available on your connected iOS devices. You should clear the clipboard on those devices manually.</string>
@@ -152,20 +153,30 @@
                                     <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                 </textFieldCell>
                             </textField>
+                            <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="nRe-7S-HwK">
+                                <rect key="frame" x="29" y="129" width="164" height="18"/>
+                                <buttonCell key="cell" type="check" title="Lock after screen sleep" bezelStyle="regularSquare" imagePosition="left" state="on" inset="2" id="l3t-og-mJd">
+                                    <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                                    <font key="font" metaFont="system"/>
+                                </buttonCell>
+                            </button>
                         </subviews>
                         <constraints>
                             <constraint firstItem="5cV-xX-SUU" firstAttribute="leading" secondItem="mNh-3L-Z6E" secondAttribute="leading" constant="20" symbolic="YES" id="1jw-nb-bAB"/>
                             <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="630" secondAttribute="trailing" constant="20" symbolic="YES" id="7cd-1e-eRD"/>
                             <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="nqZ-rB-mFS" secondAttribute="trailing" constant="20" symbolic="YES" id="CL9-fA-GTJ"/>
+                            <constraint firstItem="bSt-Wf-FNZ" firstAttribute="top" secondItem="nRe-7S-HwK" secondAttribute="bottom" constant="11" id="MkJ-O0-qYd"/>
+                            <constraint firstItem="nRe-7S-HwK" firstAttribute="leading" secondItem="447" secondAttribute="leading" id="Mrg-k2-soG"/>
                             <constraint firstItem="584" firstAttribute="top" secondItem="hy4-RL-dAa" secondAttribute="bottom" constant="8" symbolic="YES" id="SV7-PD-nId"/>
                             <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="bSt-Wf-FNZ" secondAttribute="trailing" constant="20" symbolic="YES" id="VQY-eq-fCM"/>
-                            <constraint firstItem="bSt-Wf-FNZ" firstAttribute="top" secondItem="5SP-Vi-1sn" secondAttribute="bottom" constant="11" id="WUG-Uf-FCO"/>
+                            <constraint firstItem="nRe-7S-HwK" firstAttribute="top" secondItem="5SP-Vi-1sn" secondAttribute="bottom" constant="8" id="YZv-Dp-CrZ"/>
                             <constraint firstItem="5SP-Vi-1sn" firstAttribute="leading" secondItem="447" secondAttribute="leading" id="Ylr-aA-jaD"/>
                             <constraint firstItem="hy4-RL-dAa" firstAttribute="top" secondItem="nqZ-rB-mFS" secondAttribute="bottom" constant="8" symbolic="YES" id="a3i-tc-gUU"/>
-                            <constraint firstItem="5SP-Vi-1sn" firstAttribute="top" secondItem="630" secondAttribute="bottom" constant="6" symbolic="YES" id="acg-vp-LeB"/>
+                            <constraint firstItem="5SP-Vi-1sn" firstAttribute="top" secondItem="630" secondAttribute="bottom" constant="8" id="acg-vp-LeB"/>
                             <constraint firstItem="584" firstAttribute="leading" secondItem="805" secondAttribute="trailing" constant="8" symbolic="YES" id="aoz-sS-O0n"/>
                             <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="447" secondAttribute="trailing" constant="20" symbolic="YES" id="i8H-ad-IKb"/>
                             <constraint firstItem="419" firstAttribute="leading" secondItem="431" secondAttribute="trailing" constant="8" symbolic="YES" id="pN3-pB-Z5I"/>
+                            <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="nRe-7S-HwK" secondAttribute="trailing" constant="20" symbolic="YES" id="pgB-km-W16"/>
                             <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="5SP-Vi-1sn" secondAttribute="trailing" constant="20" symbolic="YES" id="q0v-Wo-mHx"/>
                             <constraint firstItem="nqZ-rB-mFS" firstAttribute="top" secondItem="447" secondAttribute="bottom" constant="11" id="qLm-ih-A04"/>
                             <constraint firstAttribute="trailing" secondItem="5cV-xX-SUU" secondAttribute="trailing" constant="20" symbolic="YES" id="qY0-io-RZ0"/>
@@ -197,27 +208,27 @@
                     </constraints>
                 </box>
                 <box autoresizesSubviews="NO" verticalHuggingPriority="500" borderType="line" title="File Handling" translatesAutoresizingMaskIntoConstraints="NO" id="888">
-                    <rect key="frame" x="17" y="375" width="377" height="129"/>
+                    <rect key="frame" x="17" y="399" width="377" height="128"/>
                     <view key="contentView" id="cpg-tt-SHE">
-                        <rect key="frame" x="3" y="3" width="371" height="111"/>
+                        <rect key="frame" x="3" y="3" width="371" height="110"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <button verticalHuggingPriority="252" translatesAutoresizingMaskIntoConstraints="NO" id="530">
-                                <rect key="frame" x="14" y="85" width="234" height="18"/>
+                                <rect key="frame" x="14" y="84" width="234" height="18"/>
                                 <buttonCell key="cell" type="check" title="Reopen last Database after Launch" bezelStyle="regularSquare" imagePosition="left" state="on" inset="2" id="531">
                                     <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                                     <font key="font" metaFont="system"/>
                                 </buttonCell>
                             </button>
                             <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="lz3-4U-UMI">
-                                <rect key="frame" x="14" y="65" width="123" height="18"/>
+                                <rect key="frame" x="14" y="64" width="123" height="18"/>
                                 <buttonCell key="cell" type="check" title="Enable Autosave" bezelStyle="regularSquare" imagePosition="left" state="on" inset="2" id="wG7-bi-2fi">
                                     <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                                     <font key="font" metaFont="system"/>
                                 </buttonCell>
                             </button>
                             <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" setsMaxLayoutWidthAtFirstLayout="YES" translatesAutoresizingMaskIntoConstraints="NO" id="3Bo-Ml-1KB">
-                                <rect key="frame" x="18" y="45" width="335" height="14"/>
+                                <rect key="frame" x="18" y="44" width="335" height="14"/>
                                 <textFieldCell key="cell" controlSize="small" title="Close and open all documents for changes to take effect" id="ya5-ps-c4W">
                                     <font key="font" metaFont="smallSystem"/>
                                     <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
@@ -225,7 +236,7 @@
                                 </textFieldCell>
                             </textField>
                             <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="h3w-Ms-ohK">
-                                <rect key="frame" x="14" y="20" width="93" height="17"/>
+                                <rect key="frame" x="14" y="20" width="93" height="16"/>
                                 <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="If file changes:" id="QrK-hM-Xt1">
                                     <font key="font" metaFont="system"/>
                                     <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
@@ -233,10 +244,10 @@
                                 </textFieldCell>
                             </textField>
                             <popUpButton verticalHuggingPriority="750" horizontalCompressionResistancePriority="749" translatesAutoresizingMaskIntoConstraints="NO" id="wIu-Sh-2a2">
-                                <rect key="frame" x="111" y="14" width="38" height="25"/>
+                                <rect key="frame" x="111" y="13" width="38" height="25"/>
                                 <popUpButtonCell key="cell" type="push" bezelStyle="rounded" alignment="left" lineBreakMode="truncatingTail" borderStyle="borderAndBezel" imageScaling="proportionallyDown" inset="2" id="1R2-5t-LWk">
                                     <behavior key="behavior" lightByBackground="YES" lightByGray="YES"/>
-                                    <font key="font" metaFont="menu"/>
+                                    <font key="font" metaFont="system"/>
                                     <menu key="menu" id="DQY-17-yKP"/>
                                 </popUpButtonCell>
                             </popUpButton>
@@ -273,7 +284,7 @@
                 <constraint firstAttribute="bottom" secondItem="465" secondAttribute="bottom" constant="20" symbolic="YES" id="uwq-az-XwJ"/>
                 <constraint firstItem="465" firstAttribute="top" secondItem="cpg-tt-SHE" secondAttribute="bottom" constant="5" id="wyH-HB-i2U"/>
             </constraints>
-            <point key="canvasLocation" x="-136.5" y="-93"/>
+            <point key="canvasLocation" x="-458" y="-295"/>
         </customView>
     </objects>
 </document>
