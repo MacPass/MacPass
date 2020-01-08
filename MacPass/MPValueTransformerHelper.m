@@ -21,7 +21,7 @@
 //
 
 #import "MPValueTransformerHelper.h"
-#import "NSValueTransformer+TransformerKit.h"
+#import <TransformerKit/NSValueTransformer+TransformerKit.h>
 
 NSString *const MPStripLineBreaksTransformerName = @"com.hicknhack.macpass.MPStripLineBreaksTransformerName";
 NSString *const MPExpiryDateValueTransformerName = @"com.hicknhack.macpass.MPExpiryDateValueTransformer";
