@@ -297,7 +297,7 @@ typedef NS_ENUM(NSUInteger, MPEntryTab) {
 - (BOOL)validateMenuItem:(NSMenuItem *)menuItem {
   switch([MPActionHelper typeForAction:menuItem.action]) {
     case MPActionToggleQuicklook: {
-      BOOL enabled = [[NSUserDefaults standardUserDefaults] boolForKey:kMPSettingsKeyEnableQuicklookPreview];
+      BOOL enabled = [NSUserDefaults.standardUserDefaults boolForKey:kMPSettingsKeyEnableQuicklookPreview];
       return enabled ? [self acceptsPreviewPanelControl:nil] : NO;
     case MPActionRemoveAttachment:
       return !self.representedEntry.isHistory;
@@ -331,8 +331,8 @@ typedef NS_ENUM(NSUInteger, MPEntryTab) {
   NSAssert(row > -1, @"Row needs to be selected");
   KPKBinary *binary = self.representedEntry.binaries[row];
   MPTemporaryFileStorage *oldStorage = (MPTemporaryFileStorage *)panel.dataSource;
-  [[MPTemporaryFileStorageCenter defaultCenter] unregisterStorage:oldStorage];
-  panel.dataSource = [[MPTemporaryFileStorageCenter defaultCenter] storageForBinary:binary];
+  [MPTemporaryFileStorageCenter.defaultCenter unregisterStorage:oldStorage];
+  panel.dataSource = [MPTemporaryFileStorageCenter.defaultCenter storageForBinary:binary];
 }
 
 #pragma mark -
