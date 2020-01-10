@@ -126,7 +126,7 @@ NSString *const kMPDepricatedSettingsKeyAutotypeHideAccessibiltyWarning   = @"Au
     standardDefaults = @{
                          kMPSettingsKeyShowInspector: @YES, // Show the Inspector by default
                          kMPSettingsKeyPasteboardClearTimeout: @30, // 30 seconds
-                         kMPSettingsKeyClearPasteboardOnQuit: @YES,
+                         kMPSettingsKeyClearPasteboardOnQuit: @YES, // Clear Clipboard on quit
                          kMPSettingsKeyPreventUniversalClipboard: @YES, // Disable Universal Clipboard by default
                          kMPSettingsKeyOpenEmptyDatabaseOnLaunch: @NO,
                          kMPSettingsKeyReopenLastDatabaseOnLaunch: @YES,
@@ -134,16 +134,16 @@ NSString *const kMPDepricatedSettingsKeyAutotypeHideAccessibiltyWarning   = @"Au
                          kMPSettingsKeyLockOnSleep: @YES,
                          kMPSettingskeyLockOnLogout: @NO,
                          kMPSettingskeyLockOnScreenSleep: @NO,
-                         kMPSettingsKeyIdleLockTimeOut: @0, // 5 minutes
+                         kMPSettingsKeyIdleLockTimeOut: @0, // Do not lock while idle by default
                          kMPSettingsKeyLegacyHideNotes: @NO,
                          kMPSettingsKeyLegacyHidePassword: @YES,
                          kMPSettingsKeyLegacyHideTitle: @NO,
                          kMPSettingsKeyLegacyHideURL: @NO,
                          kMPSettingsKeyLegacyHideUsername: @NO,
                          kMPSettingsKeyRememberKeyFilesForDatabases: @NO,
-                         kMPSettingsKeySendCommandForControlKey: @YES,
-                         kMPSettingsKeyEnableGlobalAutotype: @NO,
-                         kMPSettingsKeyGlobalAutotypeKeyDataKey: DDHotKey.defaultHotKeyData,
+                         kMPSettingsKeySendCommandForControlKey: @YES, // translate Ctrl to Cmd by default
+                         kMPSettingsKeyEnableGlobalAutotype: @NO, // Keep global autotype disabled by default
+                         kMPSettingsKeyGlobalAutotypeKeyDataKey: DDHotKey.defaultHotKeyData, // Cmd + Alt + M
                          kMPSettingsKeyDefaultGlobalAutotypeSequence: @"{USERNAME}{TAB}{PASSWORD}{ENTER}",
                          kMPSettingsKeyAutotypeMatchTitle: @YES,
                          kMPSettingsKeyAutotypeMatchURL: @NO,
@@ -242,7 +242,7 @@ NSString *const kMPDepricatedSettingsKeyAutotypeHideAccessibiltyWarning   = @"Au
 }
 
 + (void)_migrateEntrySearchFlags {
-  /* Entry filters are now stored as archivd search context not just flags */
+  /* Entry filters are now stored as archived search context not just flags */
   NSInteger flags = [NSUserDefaults.standardUserDefaults integerForKey:kMPDeprecatedSettingsKeyEntrySearchFilterMode];
   if(flags != 0) {
     MPEntrySearchContext *context = [[MPEntrySearchContext alloc] initWithString:nil flags:flags];
