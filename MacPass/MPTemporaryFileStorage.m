@@ -41,7 +41,6 @@
   self = [super init];
   if(self) {
     _binary = binary;
-    _loadScheduled = NO;
     [MPTemporaryFileStorageCenter.defaultCenter registerStorage:self];
   }
   return self;
@@ -64,17 +63,8 @@
 #pragma mark QLPreviewPanelDataSource
 
 - (id<QLPreviewItem>)previewPanel:(QLPreviewPanel *)panel previewItemAtIndex:(NSInteger)index {
-  if(!self.temporaryFileURL && !self.loadScheduled) {
-    self.loadScheduled = YES;
-    dispatch_queue_t defaultQueue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
-    dispatch_async(defaultQueue, ^{
-      BOOL success = [self _saveBinary:self.binary];
-      if(success){
-        dispatch_async(dispatch_get_main_queue(), ^{
-          [panel refreshCurrentPreviewItem];
-        });
-      }
-    });
+  if(!self.temporaryFileURL) {
+    [self _saveBinary:self.binary];
   }
   return self;
 }
@@ -98,11 +88,22 @@
 #pragma mark Private
 
 - (BOOL)_saveBinary:(KPKBinary *)binary {
-  if(!binary || !binary.data || !binary.name || [binary.name length] == 0) {
+  if(!binary || !binary.data || !binary.name || binary.name.length == 0) {
     return NO;
   }
   NSString *fileName = [NSString stringWithFormat:@"%@_%@", NSProcessInfo.processInfo.globallyUniqueString, binary.name];
-  self.temporaryFileURL = [NSURL fileURLWithPath:[NSTemporaryDirectory() stringByAppendingPathComponent:fileName]];
+  
+  NSURL *userDesktop = [NSFileManager.defaultManager URLsForDirectory:NSDesktopDirectory inDomains:NSUserDomainMask].firstObject;
+  if(!userDesktop) {
+    return NO;
+  }
+  NSError *error;
+  NSURL *tempURL = [NSFileManager.defaultManager URLForDirectory:NSItemReplacementDirectory inDomain:NSUserDomainMask appropriateForURL:userDesktop create:YES error:&error];
+  if(!tempURL) {
+    NSLog(@"Unable to create temporary directory for file preview: %@", error.description);
+    return NO;
+  }
+  self.temporaryFileURL = [tempURL URLByAppendingPathComponent:fileName isDirectory:NO];
   
   BOOL success = [binary.data writeToURL:self.temporaryFileURL options:0 error:0];
   if(!success) {
@@ -131,7 +132,9 @@
 }
 
 + (void)_runCleanupForPath:(NSString *)path {
-	NSTask *task = [[NSTask alloc] init];
+  NSTask *task = [[NSTask alloc] init];
+  
+  // FIXME: Remove when moving to 10.12 as deploy target
   
   NSURL *srmURL = [NSURL fileURLWithPath:@"/usr/bin/srm"];
   NSURL *rmURL = [NSURL fileURLWithPath:@"/bin/rm"];

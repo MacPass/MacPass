@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="15702" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
     <dependencies>
         <deployment identifier="macosx"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="14490.70"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="15702"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
@@ -19,16 +19,16 @@
         <customObject id="-1" userLabel="First Responder" customClass="FirstResponder"/>
         <customObject id="-3" userLabel="Application" customClass="NSObject"/>
         <customView translatesAutoresizingMaskIntoConstraints="NO" id="1">
-            <rect key="frame" x="0.0" y="0.0" width="400" height="315"/>
+            <rect key="frame" x="0.0" y="0.0" width="400" height="314"/>
             <subviews>
                 <box autoresizesSubviews="NO" verticalHuggingPriority="500" borderType="line" title="Entry Table" translatesAutoresizingMaskIntoConstraints="NO" id="2">
-                    <rect key="frame" x="17" y="166" width="366" height="100"/>
+                    <rect key="frame" x="17" y="166" width="366" height="99"/>
                     <view key="contentView" id="cfa-nq-Kzt">
-                        <rect key="frame" x="3" y="3" width="360" height="82"/>
+                        <rect key="frame" x="3" y="3" width="360" height="81"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <textField verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="9">
-                                <rect key="frame" x="18" y="53" width="134" height="17"/>
+                                <rect key="frame" x="18" y="53" width="134" height="16"/>
                                 <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Double-click on URL:" id="10">
                                     <font key="font" metaFont="system"/>
                                     <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
@@ -36,10 +36,10 @@
                                 </textFieldCell>
                             </textField>
                             <popUpButton verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="13">
-                                <rect key="frame" x="156" y="48" width="109" height="25"/>
+                                <rect key="frame" x="156" y="47" width="109" height="25"/>
                                 <popUpButtonCell key="cell" type="push" bezelStyle="rounded" alignment="left" lineBreakMode="truncatingTail" borderStyle="borderAndBezel" imageScaling="proportionallyDown" inset="2" id="14">
                                     <behavior key="behavior" lightByBackground="YES" lightByGray="YES"/>
-                                    <font key="font" metaFont="menu"/>
+                                    <font key="font" metaFont="system"/>
                                     <menu key="menu" title="OtherViews" id="15">
                                         <items>
                                             <menuItem title="Copies URL" id="16"/>
@@ -49,7 +49,7 @@
                                 </popUpButtonCell>
                             </popUpButton>
                             <textField verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="36">
-                                <rect key="frame" x="18" y="22" width="134" height="17"/>
+                                <rect key="frame" x="18" y="22" width="134" height="16"/>
                                 <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" enabled="NO" sendsActionOnEndEditing="YES" title="Double-click on Title:" id="37">
                                     <font key="font" metaFont="system"/>
                                     <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
@@ -57,10 +57,10 @@
                                 </textFieldCell>
                             </textField>
                             <popUpButton verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="40">
-                                <rect key="frame" x="156" y="17" width="139" height="25"/>
+                                <rect key="frame" x="156" y="17" width="139" height="24"/>
                                 <popUpButtonCell key="cell" type="push" title="Opens Inspector" bezelStyle="rounded" alignment="left" lineBreakMode="truncatingTail" state="on" borderStyle="borderAndBezel" imageScaling="proportionallyDown" inset="2" selectedItem="44" id="41">
                                     <behavior key="behavior" lightByBackground="YES" lightByGray="YES"/>
-                                    <font key="font" metaFont="menu"/>
+                                    <font key="font" metaFont="system"/>
                                     <menu key="menu" title="OtherViews" id="42">
                                         <items>
                                             <menuItem title="Opens Inspector" state="on" id="44"/>
@@ -90,10 +90,10 @@
                     </constraints>
                 </box>
                 <popUpButton verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="ehI-gq-lsb">
-                    <rect key="frame" x="113" y="271" width="135" height="25"/>
+                    <rect key="frame" x="113" y="270" width="135" height="25"/>
                     <popUpButtonCell key="cell" type="push" title="Default Browser" bezelStyle="rounded" alignment="left" lineBreakMode="truncatingTail" state="on" borderStyle="borderAndBezel" imageScaling="proportionallyDown" inset="2" selectedItem="7YX-EA-9KA" id="7Ip-sU-sAK">
                         <behavior key="behavior" lightByBackground="YES" lightByGray="YES"/>
-                        <font key="font" metaFont="menu"/>
+                        <font key="font" metaFont="system"/>
                         <menu key="menu" title="OtherViews" id="XgO-Tj-QjO">
                             <items>
                                 <menuItem title="Default Browser" state="on" id="7YX-EA-9KA"/>
@@ -104,7 +104,7 @@
                     </popUpButtonCell>
                 </popUpButton>
                 <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="lOo-NI-b07">
-                    <rect key="frame" x="18" y="274" width="91" height="19"/>
+                    <rect key="frame" x="18" y="273" width="91" height="19"/>
                     <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" enabled="NO" sendsActionOnEndEditing="YES" title="Open URLs in:" id="soD-wI-YOH">
                         <font key="font" metaFont="system"/>
                         <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>

@@ -151,9 +151,9 @@
                                     <action selector="mergeWithOther:" target="-1" id="OyM-CZ-TDD"/>
                                 </connections>
                             </menuItem>
-                            <menuItem title="Import" id="aTb-sW-nUd">
+                            <menuItem title="Import From" id="aTb-sW-nUd">
                                 <modifierMask key="keyEquivalentModifierMask"/>
-                                <menu key="submenu" title="Import" id="4q9-u1-pcm">
+                                <menu key="submenu" title="Import From" id="4q9-u1-pcm">
                                     <items>
                                         <menuItem title="XML…" id="rW0-r1-QYL">
                                             <modifierMask key="keyEquivalentModifierMask"/>
@@ -167,16 +167,20 @@
                                     </connections>
                                 </menu>
                             </menuItem>
-                            <menuItem title="Export" id="tz9-yK-pOf">
+                            <menuItem title="Export To" id="tz9-yK-pOf">
                                 <modifierMask key="keyEquivalentModifierMask"/>
-                                <menu key="submenu" title="Export" id="p8h-Fg-h1O">
+                                <menu key="submenu" title="Export To" id="p8h-Fg-h1O">
                                     <items>
-                                        <menuItem title="XML…" keyEquivalent="E" id="1259">
+                                        <menuItem title="XML…" id="1259">
+                                            <modifierMask key="keyEquivalentModifierMask"/>
                                             <connections>
                                                 <action selector="exportAsXML:" target="-1" id="NCG-gr-YI5"/>
                                             </connections>
                                         </menuItem>
                                     </items>
+                                    <connections>
+                                        <outlet property="delegate" destination="494" id="ALY-P3-PzW"/>
+                                    </connections>
                                 </menu>
                             </menuItem>
                             <menuItem isSeparatorItem="YES" id="74">
@@ -357,6 +361,7 @@ CA
         </menu>
         <customObject id="494" customClass="MPAppDelegate">
             <connections>
+                <outlet property="exportMenu" destination="p8h-Fg-h1O" id="elV-BC-ZZt"/>
                 <outlet property="fileNewMenuItem" destination="82" id="BUX-dy-HS2"/>
                 <outlet property="fixAutotypeMenuItem" destination="nx7-Vf-LiD" id="5n1-bG-JxJ"/>
                 <outlet property="importMenu" destination="4q9-u1-pcm" id="0XM-fS-Vyy"/>

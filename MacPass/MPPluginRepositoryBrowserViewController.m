@@ -13,6 +13,7 @@
 #import "MPPluginRepositoryItem.h"
 #import "MPPluginVersionComparator.h"
 #import "MPPluginStatusTableCellView.h"
+#import "MPSettingsHelper.h"
 
 
 typedef NS_ENUM(NSUInteger, MPPluginTableColumn) {
@@ -39,7 +40,13 @@ typedef NS_ENUM(NSUInteger, MPPluginTableColumn) {
 - (void)viewDidLoad {
   [super viewDidLoad];
   self.downloadedItems = [[NSMutableSet alloc] init];
-  [self.updatedAtTextField bind:NSValueBinding toObject:MPPluginRepository.defaultRepository withKeyPath:NSStringFromSelector(@selector(updatedAt)) options:nil];
+  BOOL allowRemoteData = [NSUserDefaults.standardUserDefaults boolForKey:kMPSettingsKeyAllowRemoteFetchOfPluginRepository];
+  if(allowRemoteData) {
+    [self.updatedAtTextField bind:NSValueBinding toObject:MPPluginRepository.defaultRepository withKeyPath:NSStringFromSelector(@selector(updatedAt)) options:nil];
+  }
+  else {
+    self.updatedAtTextField.stringValue = NSLocalizedString(@"REPOSITORY_UPDATED_AT_LOCAL", @"Updated at text when the local plugin defintino is used");
+  }
   [self _refreshRepository];
 }
 

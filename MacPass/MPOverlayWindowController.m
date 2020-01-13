@@ -60,10 +60,14 @@
   self.window.alphaValue = 0;
   self.window.opaque = NO;
   self.window.hasShadow = YES;
+  self.window.backgroundColor = NSColor.clearColor;
   
   self.textField.cell.backgroundStyle = NSBackgroundStyleLowered;
-  self.imageView.cell.backgroundStyle = NSBackgroundStyleDark;
+  self.imageView.cell.backgroundStyle = NSBackgroundStyleEmphasized;
   ((NSImageCell *)self.imageView.cell).imageAlignment = NSImageAlignCenter;
+  if (@available(macOS 10.14, *)) {
+    self.imageView.contentTintColor = NSColor.textColor;
+  }
 }
 
 - (void)displayOverlayImage:(NSImage *)imageOrNil label:(NSString *)labelOrNil atView:(NSView *)view {

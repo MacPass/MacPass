@@ -115,7 +115,7 @@ typedef NS_ENUM(NSUInteger, MPDatePreset) {
     default:
       return; // Nothing to do;
   }
-  self.datePicker.dateValue = [gregorian dateByAddingComponents:offsetComponents toDate:[NSDate date] options:0];
+  self.datePicker.dateValue = [gregorian dateByAddingComponents:offsetComponents toDate:NSDate.date options:0];
 }
 
 @end

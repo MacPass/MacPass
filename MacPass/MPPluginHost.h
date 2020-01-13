@@ -32,6 +32,7 @@ FOUNDATION_EXPORT NSString *const MPPluginHostPluginBundleIdentifiyerKey;
 @class MPPlugin;
 @class KPKEntry;
 @protocol MPImportPlugin;
+@protocol MPExportPlugin;
 @protocol MPAutotypeWindowTitleResolverPlugin;
 
 @interface MPPluginHost : NSObject
@@ -53,9 +54,10 @@ FOUNDATION_EXPORT NSString *const MPPluginHostPluginBundleIdentifiyerKey;
 - (NSArray *)avilableMenuItemsForEntries:(NSArray <KPKEntry *>*)entries;
 @end
 
-@interface MPPluginHost (MPImportPluginSupport)
+@interface MPPluginHost (MPImportExportPluginSupport)
 
 @property (readonly, copy) NSArray <MPPlugin<MPImportPlugin> __kindof*> *importPlugins;
+@property (readonly, copy) NSArray <MPPlugin<MPExportPlugin> __kindof*> *exportPlugins;
 
 @end
 

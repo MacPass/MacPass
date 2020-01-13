@@ -240,19 +240,36 @@ typedef NS_OPTIONS(NSInteger, MPAppStartupState) {
     NSString *saveTitle =  displayDots ? NSLocalizedString(@"SAVE_WITH_DOTS", "Save file menu item title when save will prompt for a location to save or ask for a password/key") : NSLocalizedString(@"SAVE", "Save file menu item title when save will just save the file");
     self.saveMenuItem.title = saveTitle;
   }
-  if(menu == self.fixAutotypeMenuItem.menu) {
+  else if(menu == self.fixAutotypeMenuItem.menu) {
     self.fixAutotypeMenuItem.hidden = !(NSEvent.modifierFlags & NSAlternateKeyMask);
   }
-  if(menu == self.importMenu) {
+  else if(menu == self.importMenu) {
     NSMenuItem *exportXML = menu.itemArray.firstObject;
     [menu removeAllItems];
+    [menu addItem:exportXML];
     for(MPPlugin<MPImportPlugin> * plugin in MPPluginHost.sharedHost.importPlugins) {
       NSMenuItem *importItem = [[NSMenuItem alloc] init];
       [plugin prepareImportMenuItem:importItem];
+      importItem.submenu = nil; // kill any potential submenu!
+      importItem.representedObject = plugin.identifier;
       importItem.target = nil;
-      importItem.action = @selector(importFromPlugin:);
+      importItem.action = @selector(importWithPlugin:);
+      [menu addItem:importItem];
     }
-    [menu insertItem:exportXML atIndex:0];
+  }
+  else if(menu == self.exportMenu) {
+    NSMenuItem *importXML = menu.itemArray.firstObject;
+    [menu removeAllItems];
+    [menu addItem:importXML];
+    for(MPPlugin<MPExportPlugin> * plugin in MPPluginHost.sharedHost.exportPlugins) {
+      NSMenuItem *exportItem = [[NSMenuItem alloc] init];
+      [plugin prepareExportMenuItem:exportItem];
+      exportItem.submenu = nil; // kill any potential submenu!
+      exportItem.representedObject = plugin.identifier;
+      exportItem.target = nil;
+      exportItem.action = @selector(exportWithPlugin:);
+      [menu addItem:exportItem];
+    }
   }
 }
 

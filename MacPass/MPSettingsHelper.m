@@ -103,195 +103,195 @@ NSString *const kMPDepricatedSettingsKeyAutotypeHideAccessibiltyWarning   = @"Au
 @implementation MPSettingsHelper
 
 + (void)setupDefaults {
-  [NSUserDefaults.standardUserDefaults registerDefaults:[self _standardDefaults]];
+    [NSUserDefaults.standardUserDefaults registerDefaults:[self _standardDefaults]];
 }
 
 + (void)migrateDefaults {
-  [self _fixEntryTableSortDescriptors];
-  [self _migrateURLDoubleClickPreferences];
-  [self _migrateEntrySearchFlags];
-  [self _migrateRememberedKeyFiles];
-  [self _migrateLoadUnsecurePlugins];
-  [self _removeDeprecatedValues];
+    [self _fixEntryTableSortDescriptors];
+    [self _migrateURLDoubleClickPreferences];
+    [self _migrateEntrySearchFlags];
+    [self _migrateRememberedKeyFiles];
+    [self _migrateLoadUnsecurePlugins];
+    [self _removeDeprecatedValues];
 }
 
 + (NSString *)defaultControllerPathForKey:(NSString *)key {
-  return [NSString stringWithFormat:@"values.%@", key];
+    return [NSString stringWithFormat:@"values.%@", key];
 }
 
 + (NSDictionary *)_standardDefaults {
-  static NSDictionary *standardDefaults;
-  static dispatch_once_t onceToken;
-  dispatch_once(&onceToken, ^{
-    standardDefaults = @{
-                         kMPSettingsKeyShowInspector: @YES, // Show the Inspector by default
-                         kMPSettingsKeyPasteboardClearTimeout: @30, // 30 seconds
-                         kMPSettingsKeyClearPasteboardOnQuit: @YES,
-                         kMPSettingsKeyPreventUniversalClipboard: @YES, // Disable Universal Clipboard by default
-                         kMPSettingsKeyOpenEmptyDatabaseOnLaunch: @NO,
-                         kMPSettingsKeyReopenLastDatabaseOnLaunch: @YES,
-                         kMPSettingsKeyFileChangeStrategy: @(MPFileChangeStrategyAsk), // Ask what to do on a file change!
-                         kMPSettingsKeyLockOnSleep: @YES,
-                         kMPSettingskeyLockOnLogout: @NO,
-                         kMPSettingskeyLockOnScreenSleep: @NO,
-                         kMPSettingsKeyIdleLockTimeOut: @0, // 5 minutes
-                         kMPSettingsKeyLegacyHideNotes: @NO,
-                         kMPSettingsKeyLegacyHidePassword: @YES,
-                         kMPSettingsKeyLegacyHideTitle: @NO,
-                         kMPSettingsKeyLegacyHideURL: @NO,
-                         kMPSettingsKeyLegacyHideUsername: @NO,
-                         kMPSettingsKeyRememberKeyFilesForDatabases: @NO,
-                         kMPSettingsKeySendCommandForControlKey: @YES,
-                         kMPSettingsKeyEnableGlobalAutotype: @NO,
-                         kMPSettingsKeyGlobalAutotypeKeyDataKey: DDHotKey.defaultHotKeyData,
-                         kMPSettingsKeyDefaultGlobalAutotypeSequence: @"{USERNAME}{TAB}{PASSWORD}{ENTER}",
-                         kMPSettingsKeyAutotypeMatchTitle: @YES,
-                         kMPSettingsKeyAutotypeMatchURL: @NO,
-                         kMPSettingsKeyAutotypeMatchHost: @NO,
-                         kMPSettingsKeyAutotypeMatchTags: @NO,
-                         kMPSettingsKeyEnableQuicklookPreview: @NO,
-                         kMPSettingsKeyCopyGeneratedPasswordToClipboard: @NO,
-                         kMPSettingsKeyDefaultPasswordLength: @12,
-                         kMPSettingsKeyPasswordCharacterFlags: @(MPPasswordCharactersAll),
-                         kMPSettingsKeyPasswordUseCustomString: @NO,
-                         kMPSettingsKeyPasswordCustomString: @"",
-                         kMPSettingsKeyPasswordEnsureOccurance: @NO,
-                         kMPSettingsKeyDoubleClickURLAction: @(MPDoubleClickURLActionCopy),
-                         kMPSettingsKeyDoubleClickTitleAction: @(MPDoubleClickTitleActionInspect),
-                         kMPSettingsKeyLoadUnsecurePlugins: @NO,
-                         kMPSettingsKeyUpdatePasswordOnTemplateEntries: @YES,
-                         kMPSettingsKeyDisabledPlugins: @[],
-                         kMPSettingsKeyLoadIncompatiblePlugins: @NO,
-                         kMPSettingsKeyQuitOnLastWindowClose: @NO,
-                         kMPSettingsKeyEnableAutosave: @YES,
-                         kMPSettingsKeyHideAfterCopyToClipboard: @NO
-                         };
-  });
-  return standardDefaults;
+    static NSDictionary *standardDefaults;
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
+        standardDefaults = @{
+                             kMPSettingsKeyShowInspector: @YES, // Show the Inspector by default
+                             kMPSettingsKeyPasteboardClearTimeout: @30, // 30 seconds
+                             kMPSettingsKeyClearPasteboardOnQuit: @YES, // Clear Clipboard on quit
+                             kMPSettingsKeyPreventUniversalClipboard: @YES, // Disable Universal Clipboard by default
+                             kMPSettingsKeyOpenEmptyDatabaseOnLaunch: @NO,
+                             kMPSettingsKeyReopenLastDatabaseOnLaunch: @YES,
+                             kMPSettingsKeyFileChangeStrategy: @(MPFileChangeStrategyAsk), // Ask what to do on a file change!
+                             kMPSettingsKeyLockOnSleep: @YES,
+                             kMPSettingskeyLockOnLogout: @NO,
+                             kMPSettingskeyLockOnScreenSleep: @NO,
+                             kMPSettingsKeyIdleLockTimeOut: @0, // Do not lock while idle by default
+                             kMPSettingsKeyLegacyHideNotes: @NO,
+                             kMPSettingsKeyLegacyHidePassword: @YES,
+                             kMPSettingsKeyLegacyHideTitle: @NO,
+                             kMPSettingsKeyLegacyHideURL: @NO,
+                             kMPSettingsKeyLegacyHideUsername: @NO,
+                             kMPSettingsKeyRememberKeyFilesForDatabases: @NO,
+                             kMPSettingsKeySendCommandForControlKey: @YES, // translate Ctrl to Cmd by default
+                             kMPSettingsKeyEnableGlobalAutotype: @NO, // Keep global autotype disabled by default
+                             kMPSettingsKeyGlobalAutotypeKeyDataKey: DDHotKey.defaultHotKeyData, // Cmd + Alt + M
+                             kMPSettingsKeyDefaultGlobalAutotypeSequence: @"{USERNAME}{TAB}{PASSWORD}{ENTER}",
+                             kMPSettingsKeyAutotypeMatchTitle: @YES,
+                             kMPSettingsKeyAutotypeMatchURL: @NO,
+                             kMPSettingsKeyAutotypeMatchHost: @NO,
+                             kMPSettingsKeyAutotypeMatchTags: @NO,
+                             kMPSettingsKeyEnableQuicklookPreview: @NO,
+                             kMPSettingsKeyCopyGeneratedPasswordToClipboard: @NO,
+                             kMPSettingsKeyDefaultPasswordLength: @12,
+                             kMPSettingsKeyPasswordCharacterFlags: @(MPPasswordCharactersAll),
+                             kMPSettingsKeyPasswordUseCustomString: @NO,
+                             kMPSettingsKeyPasswordCustomString: @"",
+                             kMPSettingsKeyPasswordEnsureOccurance: @NO,
+                             kMPSettingsKeyDoubleClickURLAction: @(MPDoubleClickURLActionCopy),
+                             kMPSettingsKeyDoubleClickTitleAction: @(MPDoubleClickTitleActionInspect),
+                             kMPSettingsKeyLoadUnsecurePlugins: @NO,
+                             kMPSettingsKeyUpdatePasswordOnTemplateEntries: @YES,
+                             kMPSettingsKeyDisabledPlugins: @[],
+                             kMPSettingsKeyLoadIncompatiblePlugins: @NO,
+                             kMPSettingsKeyQuitOnLastWindowClose: @NO,
+                             kMPSettingsKeyEnableAutosave: @YES,
+                             kMPSettingsKeyHideAfterCopyToClipboard: @NO
+                             };
+    });
+    return standardDefaults;
 }
 
 + (NSArray *)_deprecatedSettingsKeys {
-  static NSArray *deprecatedSettings;
-  static dispatch_once_t onceToken;
-  dispatch_once(&onceToken, ^{
-    deprecatedSettings = @[ kMPDeprecatedSettingsKeyRememberKeyFilesForDatabases,
-                            kMPDeprecatedSettingsKeyLastDatabasePath,
-                            kMPDeprecatedSettingsKeyDocumentsAutotypeFixNoteWasShown,
-                            kMPDeprecatedSettingsKeyDoubleClickURLToLaunch,
-                            kMPDeprecatedSettingsKeyEntrySearchFilterMode,
-                            kMPDeprecatedSettingsKeyDefaultPasswordRounds,
-                            /* Moved to KeePassHttp Plugin */
-                            kMPDeprecatedSettingsKeyHttpPort,
-                            kMPDeprecatedSettingsKeyEnableHttpServer,
-                            kMPDeprecatedSettingsKeyShowMenuItem,
-                            kMPDepricatedSettingsKeyLoadUnsecurePlugins,
-                            kMPDepricatedSettingsKeyAutotypeHideAccessibiltyWarning
-                            ];
-  });
-  return deprecatedSettings;
+    static NSArray *deprecatedSettings;
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
+        deprecatedSettings = @[ kMPDeprecatedSettingsKeyRememberKeyFilesForDatabases,
+                                kMPDeprecatedSettingsKeyLastDatabasePath,
+                                kMPDeprecatedSettingsKeyDocumentsAutotypeFixNoteWasShown,
+                                kMPDeprecatedSettingsKeyDoubleClickURLToLaunch,
+                                kMPDeprecatedSettingsKeyEntrySearchFilterMode,
+                                kMPDeprecatedSettingsKeyDefaultPasswordRounds,
+                                /* Moved to KeePassHttp Plugin */
+                                kMPDeprecatedSettingsKeyHttpPort,
+                                kMPDeprecatedSettingsKeyEnableHttpServer,
+                                kMPDeprecatedSettingsKeyShowMenuItem,
+                                kMPDepricatedSettingsKeyLoadUnsecurePlugins,
+                                kMPDepricatedSettingsKeyAutotypeHideAccessibiltyWarning
+                                ];
+    });
+    return deprecatedSettings;
 }
 
 
 + (void)_removeDeprecatedValues {
-  /* Clear old style values */
-  for(NSString *key in [self _deprecatedSettingsKeys]) {
-    [NSUserDefaults.standardUserDefaults removeObjectForKey:key];
-  }
+    /* Clear old style values */
+    for(NSString *key in [self _deprecatedSettingsKeys]) {
+        [NSUserDefaults.standardUserDefaults removeObjectForKey:key];
+    }
 }
 
 + (void)_fixEntryTableSortDescriptors {
-  /*
-   MacPass < 0.4 did use compare: for the entry table view,
-   this was changed in 0.4 to localizedCaseInsensitiveCompare:
-   
-   MacPass < 0.5.2 did use parent.name for group names,
-   this was changed in 0.6. to parent.title
-   
-   */
-  NSData *descriptorData = [NSUserDefaults.standardUserDefaults dataForKey:kMPSettingsKeyEntryTableSortDescriptors];
-  if(!descriptorData) {
-    return; // No user defaults
-  }
-  NSArray *sortDescriptors = [NSUnarchiver unarchiveObjectWithData:descriptorData];
-  
-  for(NSSortDescriptor *descriptor in sortDescriptors) {
-    /* Brute force, just kill the settings if they might cause trouble */
-    if(descriptor.selector == @selector(compare:)
-       || [descriptor.key isEqualToString:@"timeInfo.modificationDate"]
-       || [descriptor.key isEqualToString:@"parent.name"] ) {
-      [NSUserDefaults.standardUserDefaults removeObjectForKey:kMPSettingsKeyEntryTableSortDescriptors];
-      break;
+    /*
+     MacPass < 0.4 did use compare: for the entry table view,
+     this was changed in 0.4 to localizedCaseInsensitiveCompare:
+     
+     MacPass < 0.5.2 did use parent.name for group names,
+     this was changed in 0.6. to parent.title
+     
+     */
+    NSData *descriptorData = [NSUserDefaults.standardUserDefaults dataForKey:kMPSettingsKeyEntryTableSortDescriptors];
+    if(!descriptorData) {
+        return; // No user defaults
     }
-  }
+    NSArray *sortDescriptors = [NSUnarchiver unarchiveObjectWithData:descriptorData];
+    
+    for(NSSortDescriptor *descriptor in sortDescriptors) {
+        /* Brute force, just kill the settings if they might cause trouble */
+        if(descriptor.selector == @selector(compare:)
+           || [descriptor.key isEqualToString:@"timeInfo.modificationDate"]
+           || [descriptor.key isEqualToString:@"parent.name"] ) {
+            [NSUserDefaults.standardUserDefaults removeObjectForKey:kMPSettingsKeyEntryTableSortDescriptors];
+            break;
+        }
+    }
 }
 
 + (void)_migrateURLDoubleClickPreferences {
-  /*
-   Default was NO so if the key was not set the correct action now should be MPDoubleClickURLActionCopy
-   But MPDoubleClickURLActionCopy is the default we cannot simply add this value.
-   Hence we chose to only migrate a changed default and let the "old" default silenty be updated
-   This is a worth trade-off since the other solution will always re-set the default
-   */
-  if(nil == [NSUserDefaults.standardUserDefaults objectForKey:kMPDeprecatedSettingsKeyDoubleClickURLToLaunch]) {
-    return; // the value was not set, do nothing since we cannot determine what to do
-  }
-  /* only update the settings if the defaults return an explicit set value */
-  if([NSUserDefaults.standardUserDefaults boolForKey:kMPDeprecatedSettingsKeyDoubleClickURLToLaunch]) {
-    [NSUserDefaults.standardUserDefaults setInteger:MPDoubleClickURLActionOpen forKey:kMPSettingsKeyDoubleClickURLAction];
-  }
+    /*
+     Default was NO so if the key was not set the correct action now should be MPDoubleClickURLActionCopy
+     But MPDoubleClickURLActionCopy is the default we cannot simply add this value.
+     Hence we chose to only migrate a changed default and let the "old" default silenty be updated
+     This is a worth trade-off since the other solution will always re-set the default
+     */
+    if(nil == [NSUserDefaults.standardUserDefaults objectForKey:kMPDeprecatedSettingsKeyDoubleClickURLToLaunch]) {
+        return; // the value was not set, do nothing since we cannot determine what to do
+    }
+    /* only update the settings if the defaults return an explicit set value */
+    if([NSUserDefaults.standardUserDefaults boolForKey:kMPDeprecatedSettingsKeyDoubleClickURLToLaunch]) {
+        [NSUserDefaults.standardUserDefaults setInteger:MPDoubleClickURLActionOpen forKey:kMPSettingsKeyDoubleClickURLAction];
+    }
 }
 
 + (void)_migrateEntrySearchFlags {
-  /* Entry filters are now stored as archivd search context not just flags */
-  NSInteger flags = [NSUserDefaults.standardUserDefaults integerForKey:kMPDeprecatedSettingsKeyEntrySearchFilterMode];
-  if(flags != 0) {
-    MPEntrySearchContext *context = [[MPEntrySearchContext alloc] initWithString:nil flags:flags];
-    NSData *contextData = [NSKeyedArchiver archivedDataWithRootObject:context];
-    [NSUserDefaults.standardUserDefaults setObject:contextData forKey:kMPSettingsKeyEntrySearchFilterContext];
-  }
+    /* Entry filters are now stored as archived search context not just flags */
+    NSInteger flags = [NSUserDefaults.standardUserDefaults integerForKey:kMPDeprecatedSettingsKeyEntrySearchFilterMode];
+    if(flags != 0) {
+        MPEntrySearchContext *context = [[MPEntrySearchContext alloc] initWithString:nil flags:flags];
+        NSData *contextData = [NSKeyedArchiver archivedDataWithRootObject:context];
+        [NSUserDefaults.standardUserDefaults setObject:contextData forKey:kMPSettingsKeyEntrySearchFilterContext];
+    }
 }
 
 + (void)_migrateRememberedKeyFiles {
-  /*
-   Database file paths was stored as plain text in keyfile mapping.
-   We only need to store the key file url in plain text, thus hashing the path is sufficent
-   */
-  NSDictionary<NSString *, NSString *> *currentMapping = [NSUserDefaults.standardUserDefaults dictionaryForKey:kMPSettingsKeyRememeberdKeysForDatabases];
-  if(!currentMapping) {
-    return;
-  }
-  NSMutableDictionary *hashedDict = [[NSMutableDictionary alloc] initWithCapacity:MAX(1,currentMapping.count)];
-  BOOL didHash = NO;
-  for(NSString *key in currentMapping) {
-    NSURL *fileURL = [NSURL URLWithString:key];
-    /* Only hash file paths */
-    if(fileURL.isFileURL) {
-      NSString *digest = key.sha1HexDigest;
-      if(digest) {
-        hashedDict[key.sha1HexDigest] = currentMapping[key];
-        didHash = YES;
-      }
+    /*
+     Database file paths was stored as plain text in keyfile mapping.
+     We only need to store the key file url in plain text, thus hashing the path is sufficent
+     */
+    NSDictionary<NSString *, NSString *> *currentMapping = [NSUserDefaults.standardUserDefaults dictionaryForKey:kMPSettingsKeyRememeberdKeysForDatabases];
+    if(!currentMapping) {
+        return;
     }
-    /* keep all hashed or unknown data */
-    else {
-      hashedDict[key] = currentMapping[key];
+    NSMutableDictionary *hashedDict = [[NSMutableDictionary alloc] initWithCapacity:MAX(1,currentMapping.count)];
+    BOOL didHash = NO;
+    for(NSString *key in currentMapping) {
+        NSURL *fileURL = [NSURL URLWithString:key];
+        /* Only hash file paths */
+        if(fileURL.isFileURL) {
+            NSString *digest = key.sha1HexDigest;
+            if(digest) {
+                hashedDict[key.sha1HexDigest] = currentMapping[key];
+                didHash = YES;
+            }
+        }
+        /* keep all hashed or unknown data */
+        else {
+            hashedDict[key] = currentMapping[key];
+        }
     }
-  }
-  if(didHash) {
-    [NSUserDefaults.standardUserDefaults setObject:hashedDict forKey:kMPSettingsKeyRememeberdKeysForDatabases];
-  }
+    if(didHash) {
+        [NSUserDefaults.standardUserDefaults setObject:hashedDict forKey:kMPSettingsKeyRememeberdKeysForDatabases];
+    }
 }
 
 + (void)_migrateLoadUnsecurePlugins {
-  id value = [NSUserDefaults.standardUserDefaults objectForKey:kMPDepricatedSettingsKeyLoadUnsecurePlugins];
-  if(!value) {
-    return; // value already migrated or was set to default value
-  }
-  BOOL oldValue = [NSUserDefaults.standardUserDefaults boolForKey:kMPDepricatedSettingsKeyLoadUnsecurePlugins];
-  if(oldValue != [[self _standardDefaults][kMPDepricatedSettingsKeyLoadUnsecurePlugins] boolValue]) {
-    [NSUserDefaults.standardUserDefaults setBool:oldValue forKey:kMPSettingsKeyLoadUnsecurePlugins];
-  }
-  
+    id value = [NSUserDefaults.standardUserDefaults objectForKey:kMPDepricatedSettingsKeyLoadUnsecurePlugins];
+    if(!value) {
+        return; // value already migrated or was set to default value
+    }
+    BOOL oldValue = [NSUserDefaults.standardUserDefaults boolForKey:kMPDepricatedSettingsKeyLoadUnsecurePlugins];
+    if(oldValue != [[self _standardDefaults][kMPDepricatedSettingsKeyLoadUnsecurePlugins] boolValue]) {
+        [NSUserDefaults.standardUserDefaults setBool:oldValue forKey:kMPSettingsKeyLoadUnsecurePlugins];
+    }
+    
 }
 
 @end
