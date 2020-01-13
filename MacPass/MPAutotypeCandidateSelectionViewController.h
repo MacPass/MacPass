@@ -22,13 +22,17 @@
 
 #import <Cocoa/Cocoa.h>
 
+NS_ASSUME_NONNULL_BEGIN
+
 @interface MPAutotypeCandidateSelectionViewController : NSViewController
 
 @property (copy) NSArray *candidates;
 @property (copy) NSString *windowTitle;
-
+@property (nonatomic, copy, nullable) void (^completionHandler)(void);
+ 
 - (IBAction)selectAutotypeContext:(id)sender;
 - (IBAction)cancelSelection:(id)sender;
 
-
 @end
+
+NS_ASSUME_NONNULL_END

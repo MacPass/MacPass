@@ -258,13 +258,11 @@ static MPAutotypeDaemon *_sharedInstance;
       [autotypeCandidates addObjectsFromArray:contexts];
     }
   }
-  NSUInteger candidates = autotypeCandidates.count;
-  if(candidates == 0) {
-    return nil;
-  }
-  if(candidates == 1 ) {
+  
+  if(autotypeCandidates.count <= 1) {
     return autotypeCandidates.lastObject;
   }
+  
   [self _presentCandiadates:autotypeCandidates forWindowTitle:windowTitle];
   return nil; // Nothing to do, we get called back by the window
 }
@@ -340,9 +338,9 @@ static MPAutotypeDaemon *_sharedInstance;
       if(zIndex < minZIndex) {
         minZIndex = zIndex;
         infoDict = @{
-                     kMPWindowTitleKey: windowTitle,
-                     kMPProcessIdentifierKey : processId
-                     };
+          kMPWindowTitleKey: windowTitle,
+          kMPProcessIdentifierKey : processId
+        };
       }
     }
   }
@@ -363,6 +361,11 @@ static MPAutotypeDaemon *_sharedInstance;
     MPAutotypeCandidateSelectionViewController *vc = [[MPAutotypeCandidateSelectionViewController alloc] init];
     vc.candidates = candidates;
     vc.windowTitle = windowTitle;
+    if(NSRunningApplication.currentApplication.isHidden) {
+      vc.completionHandler = ^{
+        [NSRunningApplication.currentApplication hide];
+      };
+    }
     self.matchSelectionWindow.collectionBehavior |= (NSWindowCollectionBehaviorFullScreenAuxiliary |
                                                      NSWindowCollectionBehaviorMoveToActiveSpace |
                                                      NSWindowCollectionBehaviorTransient );
