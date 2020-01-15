@@ -53,7 +53,7 @@
   [menu addItemWithTitle:NSLocalizedString(@"URL","URL reference item") action:NULL keyEquivalent:@""];
   [menu addItemWithTitle:NSLocalizedString(@"NOTES","Notes reference item") action:NULL keyEquivalent:@""];
   if(allowCustomAttributes) {
-    [menu addItemWithTitle:NSLocalizedString(@"CUSTOM_ATTRIBUTE","Curstom attribute reference item") action:NULL keyEquivalent:@""];
+    [menu addItemWithTitle:NSLocalizedString(@"CUSTOM_ATTRIBUTE","Custom attribute reference item") action:NULL keyEquivalent:@""];
   }
   NSArray *keys = @[ kKPKReferenceUUIDKey, kKPKReferenceTitleKey, kKPKReferenceUsernameKey, kKPKReferencePasswordKey, kKPKReferenceURLKey, kKPKReferenceNotesKey, @"S" ];
   [menu.itemArray enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
