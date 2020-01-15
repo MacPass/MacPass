@@ -152,7 +152,7 @@ static MPAutotypeDaemon *_sharedInstance;
 }
 
 - (void)_didPressHotKey {
-  [self _updateTargetInformationForFrontMostApplication];
+  [self _updateTargeInformationForApplication:NSWorkspace.sharedWorkspace.frontmostApplication];
   [self _performAutotypeForEntry:nil];
 }
 
@@ -425,10 +425,6 @@ static MPAutotypeDaemon *_sharedInstance;
   
   [runingApplication activateWithOptions:NSApplicationActivateIgnoringOtherApps];
   return NO;
-}
-
-- (void)_updateTargetInformationForFrontMostApplication {
-  [self _updateTargeInformationForApplication:NSWorkspace.sharedWorkspace.frontmostApplication];
 }
 
 - (void)_updateTargeInformationForApplication:(NSRunningApplication *)application {
