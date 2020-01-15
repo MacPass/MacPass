@@ -224,11 +224,11 @@
   BOOL isKdbDatabaseFile = (keyFileVersion.format != KPKDatabaseFormatUnknown);
   if(isKdbDatabaseFile) {
     if([document.fileURL isEqual:self.keyPathControl.URL]) {
-      self.keyFileWarningTextField.stringValue = NSLocalizedString(@"ERROR_CURRENT_DATABASE_FILE_SELECTED_AS_KEY_FILE", "Error message displayed when the current database file is also set as the key file");
+      self.keyFileWarningTextField.stringValue = NSLocalizedString(@"WARNING_CURRENT_DATABASE_FILE_SELECTED_AS_KEY_FILE", "Error message displayed when the current database file is also set as the key file");
       self.keyFileWarningTextField.hidden = NO;
     }
     else {
-      self.keyFileWarningTextField.stringValue = NSLocalizedString(@"ERROR_DATABASE_FILE_SELECTED_AS_KEY_FILE", "Error message displayed when a keepass database file is set as the key file");
+      self.keyFileWarningTextField.stringValue = NSLocalizedString(@"WARNING_DATABASE_FILE_SELECTED_AS_KEY_FILE", "Error message displayed when a keepass database file is set as the key file");
       self.keyFileWarningTextField.hidden = NO;
     }
   }

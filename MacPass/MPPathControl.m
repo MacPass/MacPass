@@ -15,6 +15,10 @@ NSString *const MPPathControlDidSetURLNotification = @"MPPathControlDidSetURLNot
 
 @implementation MPPathControl
 
++ (Class)cellClass{
+  return MPPathCell.class;
+}
+
 - (BOOL)canBecomeKeyView {
   return YES;
 }
