@@ -491,7 +491,7 @@ typedef void (^MPPasswordChangedBlock)(BOOL didChangePassword);
   id<MPTargetNodeResolving> entryResolver = [NSApp targetForAction:@selector(currentTargetEntries)];
   NSArray *entries = entryResolver.currentTargetEntries;
   if(entries.count == 1) {
-    [[MPAutotypeDaemon defaultDaemon] performAutotypeForEntry:entries.firstObject];
+    [MPAutotypeDaemon.defaultDaemon performAutotypeForEntry:entries.firstObject];
   }
 }
 
