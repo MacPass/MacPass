@@ -41,6 +41,8 @@
 		4C1F7FA21E3A12E600D6A40E /* MPModifiedKey.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C1F7FA11E3A12E600D6A40E /* MPModifiedKey.m */; };
 		4C1FA07B18231900003A3F8C /* MPDocument+Autotype.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C1FA07A18231900003A3F8C /* MPDocument+Autotype.m */; };
 		4C2057EE23CDF6F900C731EC /* MPPathCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C2057ED23CDF6F900C731EC /* MPPathCell.m */; };
+		4C2057F423CF3BA600C731EC /* MPAutotypeEnvironment.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C2057F323CF3BA600C731EC /* MPAutotypeEnvironment.m */; };
+		4C2057F723CF3E9A00C731EC /* NSRunningApplication+MPAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C2057F623CF3E9A00C731EC /* NSRunningApplication+MPAdditions.m */; };
 		4C224B4217DFCB2400FF6AEE /* MPNumericalInputFormatter.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C224B4117DFCB2400FF6AEE /* MPNumericalInputFormatter.m */; };
 		4C25703F1BF11C2300D39416 /* MPPluginPreferencesController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C25703D1BF11C2300D39416 /* MPPluginPreferencesController.m */; };
 		4C25D58716CF0FAA00F6806C /* EntryView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4C25D58616CF0FAA00F6806C /* EntryView.xib */; };
@@ -405,6 +407,10 @@
 		4C2057EC23CDF6F900C731EC /* MPPathCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MPPathCell.h; sourceTree = "<group>"; };
 		4C2057ED23CDF6F900C731EC /* MPPathCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MPPathCell.m; sourceTree = "<group>"; };
 		4C2057EF23CDFC2000C731EC /* MPPathControl+Private.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "MPPathControl+Private.h"; sourceTree = "<group>"; };
+		4C2057F223CF3BA600C731EC /* MPAutotypeEnvironment.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MPAutotypeEnvironment.h; sourceTree = "<group>"; };
+		4C2057F323CF3BA600C731EC /* MPAutotypeEnvironment.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MPAutotypeEnvironment.m; sourceTree = "<group>"; };
+		4C2057F523CF3E9A00C731EC /* NSRunningApplication+MPAdditions.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSRunningApplication+MPAdditions.h"; sourceTree = "<group>"; };
+		4C2057F623CF3E9A00C731EC /* NSRunningApplication+MPAdditions.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSRunningApplication+MPAdditions.m"; sourceTree = "<group>"; };
 		4C21F29F195B3A48002D610D /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/MainMenu.strings; sourceTree = "<group>"; };
 		4C224B4017DFCB2300FF6AEE /* MPNumericalInputFormatter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MPNumericalInputFormatter.h; sourceTree = "<group>"; };
 		4C224B4117DFCB2400FF6AEE /* MPNumericalInputFormatter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MPNumericalInputFormatter.m; sourceTree = "<group>"; };
@@ -1128,6 +1134,8 @@
 				4C58A4A22192EC1600B13370 /* NSIndexPath+MPAdditions.m */,
 				3C0CDECD21CFED9000B2A10B /* NSTextView+MPTouchBarExtension.h */,
 				3C0CDECE21CFEDD200B2A10B /* NSTextView+MPTouchBarExtension.m */,
+				4C2057F523CF3E9A00C731EC /* NSRunningApplication+MPAdditions.h */,
+				4C2057F623CF3E9A00C731EC /* NSRunningApplication+MPAdditions.m */,
 			);
 			name = Categories;
 			sourceTree = "<group>";
@@ -1521,6 +1529,8 @@
 				4C90757B18A42E7A00E598DA /* Commands */,
 				4CEE46DB181C301D006BF1E5 /* MPAutotypeDaemon.h */,
 				4CEE46DC181C301D006BF1E5 /* MPAutotypeDaemon.m */,
+				4C2057F223CF3BA600C731EC /* MPAutotypeEnvironment.h */,
+				4C2057F323CF3BA600C731EC /* MPAutotypeEnvironment.m */,
 				4CD2B9041849424B0051B395 /* MPAutotypeContext.h */,
 				4CD2B9051849424B0051B395 /* MPAutotypeContext.m */,
 				4CA3530918A53CB800839B0F /* MPKeyMapper.h */,
@@ -2044,6 +2054,7 @@
 				4CE39AC416ECE4F7000FE29D /* MPIconImageView.m in Sources */,
 				4C46B88517063A070046109A /* NSString+MPPasswordCreation.m in Sources */,
 				4C5A11FE1708DE8700223D8A /* MPPasswordCreatorViewController.m in Sources */,
+				4C2057F423CF3BA600C731EC /* MPAutotypeEnvironment.m in Sources */,
 				4CE5B54B173AFBA700207B39 /* MPDocument.m in Sources */,
 				4CE082C31F6FCD2A0034FF56 /* MPCollectionView.m in Sources */,
 				4C4A100F176286FD00BBF2CA /* MPTableView.m in Sources */,
@@ -2092,6 +2103,7 @@
 				4CAD8AA622CF397B0090B2DD /* MPAutotypeDoctorReportViewController.m in Sources */,
 				4C8990F71EE978EB0043B48D /* MPDuplicateEntryOptionsWindowController.m in Sources */,
 				4CA3530B18A53CB800839B0F /* MPKeyMapper.m in Sources */,
+				4C2057F723CF3E9A00C731EC /* NSRunningApplication+MPAdditions.m in Sources */,
 				4CE298EB1795FC2A00DF7BDB /* MPEntryContextMenuDelegate.m in Sources */,
 				4CCCE8011D75CA48006AA951 /* MPArrayController.m in Sources */,
 				4CC0D2CE17974A47000B4BDA /* MPCustomFieldTableViewDelegate.m in Sources */,

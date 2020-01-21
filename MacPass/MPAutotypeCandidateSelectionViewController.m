@@ -80,9 +80,6 @@
 - (void)selectAutotypeContext:(id)sender {
   NSInteger selectedRow = self.contextTableView.selectedRow;
   if(selectedRow >= 0 && selectedRow < self.candidates.count) {
-    if(self.completionHandler) {
-      self.completionHandler();
-    }
     [MPAutotypeDaemon.defaultDaemon selectAutotypeCandiate:self.candidates[selectedRow]];
   }
   else {
@@ -91,9 +88,6 @@
 }
 
 - (void)cancelSelection:(id)sender {
-  if(self.completionHandler) {
-    self.completionHandler();
-  }
   [MPAutotypeDaemon.defaultDaemon cancelAutotypeCandidateSelection];
 }
 
