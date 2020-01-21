@@ -22,6 +22,18 @@
 
 #import <AppKit/AppKit.h>
 
+APPKIT_EXTERN NSString *const MPToolbarItemIdentifierLock;
+APPKIT_EXTERN NSString *const MPToolbarItemIdentifierAddGroup;
+APPKIT_EXTERN NSString *const MPToolbarItemIdentifierAddEntry;
+APPKIT_EXTERN NSString *const MPToolbarItemIdentifierDelete;
+APPKIT_EXTERN NSString *const MPToolbarItemIdentifierAction;
+APPKIT_EXTERN NSString *const MPToolbarItemIdentifierInspector;
+APPKIT_EXTERN NSString *const MPToolbarItemIdentifierSearch;
+APPKIT_EXTERN NSString *const MPToolbarItemIdentifierCopyUsername;
+APPKIT_EXTERN NSString *const MPToolbarItemIdentifierCopyPassword;
+APPKIT_EXTERN NSString *const MPToolbarItemIdentifierHistory;
+APPKIT_EXTERN NSString *const MPToolbarItemIdentifierAutotype;
+
 @class MPDocument;
 
 @interface MPToolbarDelegate : NSObject <NSToolbarDelegate, NSTextFieldDelegate>
