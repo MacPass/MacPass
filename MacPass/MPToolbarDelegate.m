@@ -179,9 +179,10 @@ NSString *const MPToolbarItemIdentifierAutotype     = @"TOOLBAR_AUTOTYPE";
       item.view = searchField;
       /* Use default size base on documentation */
       item.minSize = NSMakeSize(140, 32);
-      item.maxSize = NSMakeSize(240, 32);
+      item.maxSize = NSMakeSize(400, 32);
       NSMenu *templateMenu = [self _allocateSearchMenuTemplate];
       searchField.searchMenuTemplate = templateMenu;
+      searchField.placeholderString = NSLocalizedString(@"SEARCH_EVERYWHERE", @"Placeholder string displayed in the search field in the toolbar");
       /* 10.10 does not support NSSearchFieldDelegate */
       ((NSTextField *)searchField).delegate = self;
       self.searchField = searchField;
