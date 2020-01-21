@@ -7,8 +7,17 @@
 //
 
 #import "MPPathControl.h"
+#import "MPPathControl+Private.h"
+
+#import "MPPathCell.h"
+
+NSString *const MPPathControlDidSetURLNotification = @"MPPathControlDidSetURLNotification";
 
 @implementation MPPathControl
+
++ (Class)cellClass{
+  return MPPathCell.class;
+}
 
 - (BOOL)canBecomeKeyView {
   return YES;
@@ -25,13 +34,24 @@
 - (instancetype)initWithFrame:(NSRect)frameRect {
   self = [super initWithFrame:frameRect];
   self.delegate = self;
+  [self _setupCell];
   return self;
 }
 
 - (instancetype)initWithCoder:(NSCoder *)coder {
   self = [super initWithCoder:coder];
-  self.delegate = self;
+    self.delegate = self;
+  [self _setupCell];
   return self;
+}
+
+- (void)_setupCell {
+  if([self.cell isKindOfClass:MPPathCell.class]) {
+    return;
+  }
+  NSData *archive = [NSKeyedArchiver archivedDataWithRootObject:self.cell];
+  NSKeyedUnarchiver *unarchiver = [[NSKeyedUnarchiver alloc] initForReadingWithData:archive];
+  self.cell = [[MPPathCell alloc] initWithCoder:unarchiver];
 }
 
 - (void)willOpenMenu:(NSMenu *)menu withEvent:(NSEvent *)event  {
@@ -59,7 +79,7 @@
     return;
   }
   if(@available(macOS 10.11, *)) {
-    NSLog(@"Skipping 10.10 pathControl:willPopUpMenu");
+    // skip
   }
   else {
     if(!self.URL) {
@@ -76,6 +96,10 @@
   openPanel.canChooseDirectories = NO;
   openPanel.allowsMultipleSelection = NO;
   openPanel.prompt = NSLocalizedString(@"CHOOSE_FILE_BUTTON_TITLE", @"Button title in the key file selection dialog for selecting a key");
+}
+
+- (void)_postDidSetURLNotification {
+  [NSNotificationCenter.defaultCenter postNotificationName:MPPathControlDidSetURLNotification object:self];
 }
 
 @end

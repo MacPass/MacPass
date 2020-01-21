@@ -53,7 +53,7 @@ NSString *const MPDocumentHideEntryHistoryNotification  = @"MPDocumentHideEntryH
 - (void)revertEntry:(KPKEntry *)entry toEntry:(KPKEntry *)historyEntry {
   [entry pushHistory];
   [entry revertToEntry:historyEntry];
-  [self.undoManager setActionName:NSLocalizedString(@"RESTORE_HISTORY_ENTRY", "Action to restore and Entry to a previous state of it's history")];
+  [self.undoManager setActionName:NSLocalizedString(@"RESTORE_HISTORY_ENTRY", "Action to restore an Entry to its previous state of it's history")];
 }
 
 @end

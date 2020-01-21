@@ -38,17 +38,17 @@
 #import "NSApplication+MPAdditions.h"
 #import "MPAppDelegate.h"
 
-NSString *const MPToolbarItemLock = @"TOOLBAR_LOCK";
-NSString *const MPToolbarItemAddGroup = @"TOOLBAR_ADD_GROUP";
-NSString *const MPToolbarItemAddEntry = @"TOOLBAR_ADD_ENTRY";
-NSString *const MPToolbarItemDelete =@"TOOLBAR_DELETE";
-NSString *const MPToolbarItemAction = @"TOOLBAR_ACTION";
-NSString *const MPToolbarItemInspector = @"TOOLBAR_INSPECTOR";
-NSString *const MPToolbarItemSearch = @"TOOLBAR_SEARCH";
-NSString *const MPToolbarItemCopyUsername = @"TOOLBAR_COPY_USERNAME";
-NSString *const MPToolbarItemCopyPassword = @"TOOLBAR_COPY_PASSWORD";
-NSString *const MPToolbarItemHistory = @"TOOLBAR_HISTORY";
-NSString *const MPToolbarItemAutotype = @"TOOLBAR_AUTOTYPE";
+NSString *const MPToolbarItemIdentifierLock         = @"TOOLBAR_LOCK";
+NSString *const MPToolbarItemIdentifierAddGroup     = @"TOOLBAR_ADD_GROUP";
+NSString *const MPToolbarItemIdentifierAddEntry     = @"TOOLBAR_ADD_ENTRY";
+NSString *const MPToolbarItemIdentifierDelete       = @"TOOLBAR_DELETE";
+NSString *const MPToolbarItemIdentifierAction       = @"TOOLBAR_ACTION";
+NSString *const MPToolbarItemIdentifierInspector    = @"TOOLBAR_INSPECTOR";
+NSString *const MPToolbarItemIdentifierSearch       = @"TOOLBAR_SEARCH";
+NSString *const MPToolbarItemIdentifierCopyUsername = @"TOOLBAR_COPY_USERNAME";
+NSString *const MPToolbarItemIdentifierCopyPassword = @"TOOLBAR_COPY_PASSWORD";
+NSString *const MPToolbarItemIdentifierHistory      = @"TOOLBAR_HISTORY";
+NSString *const MPToolbarItemIdentifierAutotype     = @"TOOLBAR_AUTOTYPE";
 
 @interface MPToolbarDelegate() {
   MPAddEntryContextMenuDelegate *_addEntryMenuDelegate;
@@ -72,27 +72,28 @@ NSString *const MPToolbarItemAutotype = @"TOOLBAR_AUTOTYPE";
   if (self) {
     _didShowToolbarForSearch = NO;
     _didAddSearchfieldForSearch = NO;
-    _toolbarIdentifiers = @[ MPToolbarItemAddEntry,
-                             MPToolbarItemDelete,
-                             MPToolbarItemAddGroup,
-                             MPToolbarItemAction,
-                             MPToolbarItemCopyPassword,
-                             MPToolbarItemCopyUsername,
+    _toolbarIdentifiers = @[ MPToolbarItemIdentifierAddEntry,
+                             MPToolbarItemIdentifierDelete,
+                             MPToolbarItemIdentifierAddGroup,
+                             MPToolbarItemIdentifierAction,
+                             MPToolbarItemIdentifierCopyPassword,
+                             MPToolbarItemIdentifierCopyUsername,
                              NSToolbarFlexibleSpaceItemIdentifier,
-                             MPToolbarItemSearch,
-                             MPToolbarItemLock,
-                             MPToolbarItemInspector,
-                             MPToolbarItemHistory,
-                             MPToolbarItemAutotype ];
-    _defaultToolbarIdentifiers = @[ MPToolbarItemAddEntry,
-                                    MPToolbarItemDelete,
-                                    MPToolbarItemAddGroup,
-                                    MPToolbarItemAutotype,
-                                    MPToolbarItemAction,
+                             MPToolbarItemIdentifierSearch,
+                             MPToolbarItemIdentifierLock,
+                             MPToolbarItemIdentifierInspector,
+                             MPToolbarItemIdentifierHistory,
+                             MPToolbarItemIdentifierAutotype ];
+    _defaultToolbarIdentifiers = @[ MPToolbarItemIdentifierAddEntry,
+                                    MPToolbarItemIdentifierDelete,
+                                    MPToolbarItemIdentifierAddGroup,
+                                    MPToolbarItemIdentifierAutotype,
+                                    MPToolbarItemIdentifierAction,
                                     NSToolbarFlexibleSpaceItemIdentifier,
-                                    MPToolbarItemSearch,
-                                    MPToolbarItemLock,
-                                    MPToolbarItemInspector ];
+                                    MPToolbarItemIdentifierSearch,
+                                    NSToolbarFlexibleSpaceItemIdentifier,
+                                    MPToolbarItemIdentifierLock,
+                                    MPToolbarItemIdentifierInspector ];
     _toolbarImages = [self createToolbarImages];
     _toolbarItems = [[NSMutableDictionary alloc] initWithCapacity:[self.toolbarIdentifiers count]];
     _addEntryMenuDelegate = [[MPAddEntryContextMenuDelegate alloc] init];
@@ -113,7 +114,7 @@ NSString *const MPToolbarItemAutotype = @"TOOLBAR_AUTOTYPE";
     item.label = itemLabel;
     item.paletteLabel = itemLabel;
     
-    if([itemIdentifier isEqualToString:MPToolbarItemAction]) {
+    if([itemIdentifier isEqualToString:MPToolbarItemIdentifierAction]) {
       NSPopUpButton *popupButton = [[NSPopUpButton alloc] initWithFrame:NSMakeRect(0, 0, 50, 32) pullsDown:YES];
       popupButton.bezelStyle = NSTexturedRoundedBezelStyle;
       popupButton.focusRingType = NSFocusRingTypeNone;
@@ -126,7 +127,7 @@ NSString *const MPToolbarItemAutotype = @"TOOLBAR_AUTOTYPE";
       
       NSMenu *menu = [[NSMenu alloc] init];
       NSMenuItem *actionImageItem = [[NSMenuItem alloc] initWithTitle:@"" action:NULL keyEquivalent:@""];
-      actionImageItem.image = self.toolbarImages[MPToolbarItemAction];
+      actionImageItem.image = self.toolbarImages[MPToolbarItemIdentifierAction];
       [menu addItem:actionImageItem];
       NSArray *menuItems = [MPContextMenuHelper contextMenuItemsWithItems:MPContextMenuExtended|MPContextMenuShowGroupInOutline];
       for(NSMenuItem *item in menuItems) {
@@ -143,7 +144,7 @@ NSString *const MPToolbarItemAutotype = @"TOOLBAR_AUTOTYPE";
       item.menuFormRepresentation = menuRepresentation;
       item.view = popupButton;
     }
-    else if( [itemIdentifier isEqualToString:MPToolbarItemAddEntry]) {
+    else if( [itemIdentifier isEqualToString:MPToolbarItemIdentifierAddEntry]) {
       MPContextButton *button = [[MPContextButton alloc] initWithFrame:NSMakeRect(0, 0, 32, 32)];
       button.action = [self _actionForToolbarItemIdentifier:itemIdentifier];
       NSImage *image = self.toolbarImages[itemIdentifier];
@@ -168,7 +169,7 @@ NSString *const MPToolbarItemAutotype = @"TOOLBAR_AUTOTYPE";
       item.menuFormRepresentation = menuRepresentation;
       
     }
-    else if( [itemIdentifier isEqualToString:MPToolbarItemSearch]){
+    else if( [itemIdentifier isEqualToString:MPToolbarItemIdentifierSearch]){
       NSSearchField *searchField = [[NSSearchField alloc] init];
       searchField.action = @selector(updateSearch:);
       NSSearchFieldCell *cell = searchField.cell;
@@ -178,9 +179,10 @@ NSString *const MPToolbarItemAutotype = @"TOOLBAR_AUTOTYPE";
       item.view = searchField;
       /* Use default size base on documentation */
       item.minSize = NSMakeSize(140, 32);
-      item.maxSize = NSMakeSize(240, 32);
+      item.maxSize = NSMakeSize(400, 32);
       NSMenu *templateMenu = [self _allocateSearchMenuTemplate];
       searchField.searchMenuTemplate = templateMenu;
+      searchField.placeholderString = NSLocalizedString(@"SEARCH_EVERYWHERE", @"Placeholder string displayed in the search field in the toolbar");
       /* 10.10 does not support NSSearchFieldDelegate */
       ((NSTextField *)searchField).delegate = self;
       self.searchField = searchField;
@@ -216,16 +218,16 @@ NSString *const MPToolbarItemAutotype = @"TOOLBAR_AUTOTYPE";
 }
 
 - (NSDictionary *)createToolbarImages {
-  NSDictionary *imageDict = @{ MPToolbarItemLock: [NSImage imageNamed:NSImageNameLockLockedTemplate],
-                               MPToolbarItemAddEntry: [MPIconHelper icon:MPIconAddEntry],
-                               MPToolbarItemAddGroup: [MPIconHelper icon:MPIconAddFolder],
-                               MPToolbarItemCopyUsername : [MPIconHelper icon:MPIconIdentity],
-                               MPToolbarItemCopyPassword : [MPIconHelper icon:MPIconPassword],
-                               MPToolbarItemDelete: [MPIconHelper icon:MPIconTrash],
-                               MPToolbarItemAction: [NSImage imageNamed:NSImageNameActionTemplate],
-                               MPToolbarItemInspector: [MPIconHelper icon:MPIconInfo],
-                               MPToolbarItemHistory: [MPIconHelper icon:MPIconHistory],
-                               MPToolbarItemAutotype : [MPIconHelper icon:MPIconKeyboard]
+  NSDictionary *imageDict = @{ MPToolbarItemIdentifierLock: [NSImage imageNamed:NSImageNameLockLockedTemplate],
+                               MPToolbarItemIdentifierAddEntry: [MPIconHelper icon:MPIconAddEntry],
+                               MPToolbarItemIdentifierAddGroup: [MPIconHelper icon:MPIconAddFolder],
+                               MPToolbarItemIdentifierCopyUsername : [MPIconHelper icon:MPIconIdentity],
+                               MPToolbarItemIdentifierCopyPassword : [MPIconHelper icon:MPIconPassword],
+                               MPToolbarItemIdentifierDelete: [MPIconHelper icon:MPIconTrash],
+                               MPToolbarItemIdentifierAction: [NSImage imageNamed:NSImageNameActionTemplate],
+                               MPToolbarItemIdentifierInspector: [MPIconHelper icon:MPIconInfo],
+                               MPToolbarItemIdentifierHistory: [MPIconHelper icon:MPIconHistory],
+                               MPToolbarItemIdentifierAutotype : [MPIconHelper icon:MPIconKeyboard]
                                };
   return imageDict;
 }
@@ -260,17 +262,17 @@ NSString *const MPToolbarItemAutotype = @"TOOLBAR_AUTOTYPE";
   static NSDictionary *labelDict;
   static dispatch_once_t onceToken;
   dispatch_once(&onceToken, ^{
-    labelDict = @{ MPToolbarItemLock: NSLocalizedString(@"LOCK", @"Toolbar item to Lock the database"),
-                   MPToolbarItemAction: NSLocalizedString(@"ACTION", @"Toolbar item with action menu"),
-                   MPToolbarItemAddEntry: NSLocalizedString(@"NEW_ENTRY", @"Toolbar item new entry"),
-                   MPToolbarItemAddGroup: NSLocalizedString(@"NEW_GROUP", @"Toolbar item new group"),
-                   MPToolbarItemCopyPassword: NSLocalizedString(@"COPY_PASSWORD", @"Toolbar item copy password"),
-                   MPToolbarItemCopyUsername: NSLocalizedString(@"COPY_USERNAME", @"Toolbar item copy username"),
-                   MPToolbarItemDelete: NSLocalizedString(@"DELETE", @"Toolbar item delete item"),
-                   MPToolbarItemInspector: NSLocalizedString(@"INSPECTOR", @"Toolbar item toggle inspector"),
-                   MPToolbarItemSearch: NSLocalizedString(@"SEARCH", @"Search input in Toolbar "),
-                   MPToolbarItemHistory: NSLocalizedString(@"SHOW_HISTORY", @"Toolbar item to toggle history display"),
-                   MPToolbarItemAutotype: NSLocalizedString(@"TOOLBAR_PERFORM_AUTOTYPE_FOR_ENTRY", @"Toolbar item to perform autotype")
+    labelDict = @{ MPToolbarItemIdentifierLock: NSLocalizedString(@"LOCK", @"Toolbar item to Lock the database"),
+                   MPToolbarItemIdentifierAction: NSLocalizedString(@"ACTION", @"Toolbar item with action menu"),
+                   MPToolbarItemIdentifierAddEntry: NSLocalizedString(@"NEW_ENTRY", @"Toolbar item new entry"),
+                   MPToolbarItemIdentifierAddGroup: NSLocalizedString(@"NEW_GROUP", @"Toolbar item new group"),
+                   MPToolbarItemIdentifierCopyPassword: NSLocalizedString(@"COPY_PASSWORD", @"Toolbar item copy password"),
+                   MPToolbarItemIdentifierCopyUsername: NSLocalizedString(@"COPY_USERNAME", @"Toolbar item copy username"),
+                   MPToolbarItemIdentifierDelete: NSLocalizedString(@"DELETE", @"Toolbar item delete item"),
+                   MPToolbarItemIdentifierInspector: NSLocalizedString(@"INSPECTOR", @"Toolbar item toggle inspector"),
+                   MPToolbarItemIdentifierSearch: NSLocalizedString(@"SEARCH", @"Search input in Toolbar "),
+                   MPToolbarItemIdentifierHistory: NSLocalizedString(@"SHOW_HISTORY", @"Toolbar item to toggle history display"),
+                   MPToolbarItemIdentifierAutotype: NSLocalizedString(@"TOOLBAR_PERFORM_AUTOTYPE_FOR_ENTRY", @"Toolbar item to perform autotype")
                    };
   });
   return labelDict[identifier];
@@ -280,15 +282,15 @@ NSString *const MPToolbarItemAutotype = @"TOOLBAR_AUTOTYPE";
   static NSDictionary *actionDict;
   static dispatch_once_t onceToken;
   dispatch_once(&onceToken, ^{
-    actionDict = @{ MPToolbarItemLock: @(MPActionLock),
-                    MPToolbarItemAddEntry: @(MPActionAddEntry),
-                    MPToolbarItemAddGroup: @(MPActionAddGroup),
-                    MPToolbarItemDelete: @(MPActionDelete),
-                    MPToolbarItemCopyPassword: @(MPActionCopyPassword),
-                    MPToolbarItemCopyUsername: @(MPActionCopyUsername),
-                    MPToolbarItemInspector: @(MPActionToggleInspector),
-                    MPToolbarItemHistory: @(MPActionShowEntryHistory),
-                    MPToolbarItemAutotype: @(MPActionPerformAutotypeForSelectedEntry)
+    actionDict = @{ MPToolbarItemIdentifierLock: @(MPActionLock),
+                    MPToolbarItemIdentifierAddEntry: @(MPActionAddEntry),
+                    MPToolbarItemIdentifierAddGroup: @(MPActionAddGroup),
+                    MPToolbarItemIdentifierDelete: @(MPActionDelete),
+                    MPToolbarItemIdentifierCopyPassword: @(MPActionCopyPassword),
+                    MPToolbarItemIdentifierCopyUsername: @(MPActionCopyUsername),
+                    MPToolbarItemIdentifierInspector: @(MPActionToggleInspector),
+                    MPToolbarItemIdentifierHistory: @(MPActionShowEntryHistory),
+                    MPToolbarItemIdentifierAutotype: @(MPActionPerformAutotypeForSelectedEntry)
                     };
   });
   MPActionType actionType = (MPActionType)[actionDict[identifier] integerValue];
@@ -321,9 +323,9 @@ NSString *const MPToolbarItemAutotype = @"TOOLBAR_AUTOTYPE";
 - (void)_didEnterSearch:(NSNotification *)notification {
   /* We enter search. If there is no Item to search in the toolbar, we need to add it */
   NSArray *currentItems = self.toolbar.items;
-  NSToolbarItem *searchItem = self.toolbarItems[MPToolbarItemSearch];
+  NSToolbarItem *searchItem = self.toolbarItems[MPToolbarItemIdentifierSearch];
   if(!searchItem || ![currentItems containsObject:searchItem]) {
-    [self.toolbar insertItemWithItemIdentifier:MPToolbarItemSearch atIndex:[currentItems count]];
+    [self.toolbar insertItemWithItemIdentifier:MPToolbarItemIdentifierSearch atIndex:[currentItems count]];
     _didAddSearchfieldForSearch = YES;
   }
   /* Then we should make sure the toolbar is visible. Just to make life easier */
@@ -350,7 +352,7 @@ NSString *const MPToolbarItemAutotype = @"TOOLBAR_AUTOTYPE";
     [window makeFirstResponder:nil];
   }
   if(_didAddSearchfieldForSearch) {
-    NSToolbarItem *searchItem = self.toolbarItems[MPToolbarItemSearch];
+    NSToolbarItem *searchItem = self.toolbarItems[MPToolbarItemIdentifierSearch];
     NSUInteger index = [self.toolbar.items indexOfObject:searchItem];
     if(index != NSNotFound) {
       [self.toolbar removeItemAtIndex:index];

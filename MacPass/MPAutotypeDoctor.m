@@ -112,7 +112,7 @@
   if(@available(macOS 10.14, *)) {
     isTrusted = AXIsProcessTrusted();
     if(!isTrusted && error) {
-      *error = [NSError errorInDomain:MPAutotypeErrorDomain withCode:MPErrorAutotypeIsMissingAccessibiltyPermissions description:NSLocalizedString(@"ERROR_NO_ACCESSIBILTY_PERMISSIONS", "Error description for missing accessibilty permissions")];
+      *error = [NSError errorInDomain:MPAutotypeErrorDomain withCode:MPErrorAutotypeIsMissingAccessibiltyPermissions description:NSLocalizedString(@"ERROR_NO_ACCESSIBILITY_PERMISSIONS", "Error description for missing accessibility permissions")];
     }
   }
   return isTrusted;

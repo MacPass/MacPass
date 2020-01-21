@@ -40,6 +40,7 @@
 		4C1ECAE322CCD30F00F46069 /* MPAutotypeDoctor.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C1ECAE222CCD30F00F46069 /* MPAutotypeDoctor.m */; };
 		4C1F7FA21E3A12E600D6A40E /* MPModifiedKey.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C1F7FA11E3A12E600D6A40E /* MPModifiedKey.m */; };
 		4C1FA07B18231900003A3F8C /* MPDocument+Autotype.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C1FA07A18231900003A3F8C /* MPDocument+Autotype.m */; };
+		4C2057EE23CDF6F900C731EC /* MPPathCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C2057ED23CDF6F900C731EC /* MPPathCell.m */; };
 		4C224B4217DFCB2400FF6AEE /* MPNumericalInputFormatter.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C224B4117DFCB2400FF6AEE /* MPNumericalInputFormatter.m */; };
 		4C25703F1BF11C2300D39416 /* MPPluginPreferencesController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C25703D1BF11C2300D39416 /* MPPluginPreferencesController.m */; };
 		4C25D58716CF0FAA00F6806C /* EntryView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4C25D58616CF0FAA00F6806C /* EntryView.xib */; };
@@ -401,6 +402,9 @@
 		4C1F7FA01E3A12E600D6A40E /* MPModifiedKey.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MPModifiedKey.h; sourceTree = "<group>"; };
 		4C1F7FA11E3A12E600D6A40E /* MPModifiedKey.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MPModifiedKey.m; sourceTree = "<group>"; };
 		4C1FA07A18231900003A3F8C /* MPDocument+Autotype.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "MPDocument+Autotype.m"; sourceTree = "<group>"; };
+		4C2057EC23CDF6F900C731EC /* MPPathCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MPPathCell.h; sourceTree = "<group>"; };
+		4C2057ED23CDF6F900C731EC /* MPPathCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MPPathCell.m; sourceTree = "<group>"; };
+		4C2057EF23CDFC2000C731EC /* MPPathControl+Private.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "MPPathControl+Private.h"; sourceTree = "<group>"; };
 		4C21F29F195B3A48002D610D /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/MainMenu.strings; sourceTree = "<group>"; };
 		4C224B4017DFCB2300FF6AEE /* MPNumericalInputFormatter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MPNumericalInputFormatter.h; sourceTree = "<group>"; };
 		4C224B4117DFCB2400FF6AEE /* MPNumericalInputFormatter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MPNumericalInputFormatter.m; sourceTree = "<group>"; };
@@ -1641,7 +1645,10 @@
 				4C57AE1217BA422B00CA4F34 /* MPSegmentedContextCell.h */,
 				4C57AE1317BA422B00CA4F34 /* MPSegmentedContextCell.m */,
 				4CC59C2521AF0893005E8D6B /* MPPathControl.h */,
+				4C2057EF23CDFC2000C731EC /* MPPathControl+Private.h */,
 				4CC59C2621AF0893005E8D6B /* MPPathControl.m */,
+				4C2057EC23CDF6F900C731EC /* MPPathCell.h */,
+				4C2057ED23CDF6F900C731EC /* MPPathCell.m */,
 			);
 			name = Controls;
 			sourceTree = "<group>";
@@ -2115,6 +2122,7 @@
 				4C0728BD17B5B7F7005A7DD9 /* MPPasswordEditWindowController.m in Sources */,
 				4C0F647B17B6BC9C00D9522A /* MPSavePanelAccessoryViewController.m in Sources */,
 				4C0949591FD6B89B004F2971 /* NSUserNotification+MPAdditions.m in Sources */,
+				4C2057EE23CDF6F900C731EC /* MPPathCell.m in Sources */,
 				4C3B42871F935316007B04FD /* MPDayCountFormatter.m in Sources */,
 				3C0CDECF21CFEDD200B2A10B /* NSTextView+MPTouchBarExtension.m in Sources */,
 				4C57AE1417BA422B00CA4F34 /* MPSegmentedContextCell.m in Sources */,

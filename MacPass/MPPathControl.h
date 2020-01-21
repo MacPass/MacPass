@@ -10,6 +10,8 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
+APPKIT_EXTERN NSString *const MPPathControlDidSetURLNotification;
+
 @interface MPPathControl : NSPathControl <NSPathControlDelegate>
 
 - (IBAction)showOpenPanel:(id _Nullable)sender;

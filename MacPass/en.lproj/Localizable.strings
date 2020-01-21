@@ -43,7 +43,7 @@
 /* Informative text displayed on the alert that shows up when MacPass asks for permssion to download the plugin repository JSON file */
 "ALERT_ASK_FOR_PLUGIN_REPOSITORY_CONNECTION_PERMISSION_INFORMATIVE_TEXT" = "The plugin defintions are hosted online at https://macpassapp.org. MacPass would like to download those files to ensure the data is up to date.";
 
-/* Message displayed on the alert that askf for permission to download the plugin repository JSON file */
+/* Message displayed on the alert that asks for permission to download the plugin repository JSON file */
 "ALERT_ASK_FOR_PLUGIN_REPOSITORY_CONNECTION_PERMISSION_MESSAGE" = "MacPass would like to check for updates of plugin definitions online";
 
 /* Disallow the download of the plugin repository file */
@@ -137,7 +137,7 @@
 /* Status MacPass has no screen recording permissions */
 "AUTOTYPE_STATUS_NO_SCREEN_RECORDING_PERMISSIONS" = "MacPass has no permission to record your screen";
 
-/* Status lable when no issue were found in screen recording permissions */
+/* Status label when no issue were found in screen recording permissions */
 "AUTOTYPE_STATUS_SCREEN_RECORDING_PERMISSIONS_OK" = "MacPass has permission to record your screen";
 
 /* Notficication: Autotype timed out */
@@ -350,7 +350,7 @@
 "ERROR_INVALID_PLUGIN" = "Invalid plugin";
 
 /* Error description for missing accessibility permissions */
-"ERROR_NO_ACCESSIBILTY_PERMISSIONS" = "MacPass has no permission to control your computer (Accessibility)";
+"ERROR_NO_ACCESSIBILITY_PERMISSIONS" = "MacPass has no permission to control your computer (Accessibility)";
 
 /* Error description for missing screen recording permissions */
 "ERROR_NO_PERMISSION_TO_RECORD_SCREEN" = "MacPass has no permission to record your screen";
@@ -522,7 +522,7 @@
 /* Select Browser */
 "OTHER_BROWSER" = "Select Browser…";
 
-/* No comment provided by engineer. */
+/* Value field for reference lookup */
 "OUTPUT_VALUE" = "Output Value";
 
 /* Menu item to toggle display of password column in entry table
@@ -666,7 +666,7 @@
 /* Disable search menu item */
 "SEARCH_NO" = "Exclude from Search";
 
-/* No comment provided by engineer. */
+/* Search field for references lookup */
 "SEARCH_VALUE" = "Search Value";
 
 /* Enable search menu item */
@@ -787,6 +787,12 @@
    UUID reference item */
 "UUID" = "UUID";
 
+/* Error message displayed when the current database file is also set as the key file */
+"WARNING_CURRENT_DATABASE_FILE_SELECTED_AS_KEY_FILE" = "You cannot select the current database file as the key file.";
+
+/* Error message displayed when a keepass database file is set as the key file */
+"WARNING_DATABASE_FILE_SELECTED_AS_KEY_FILE" = "You should not use another database file as a key file since it might change and prevent you from reopening the current file.";
+
 /* No Key or Password */
 "WARNING_NO_PASSWORD_OR_KEYFILE" = "No password or keyfile supplied!";
 
@@ -807,6 +813,9 @@
 
 /* No comment provided by engineer. */
 "WARNING_ON_SAVE_NO_PASSWORD_OR_KEY_SET_SUGGESTION" = "Please set a password and/or keyfile for this database. Aborting this will undo all changes and lock the document";
+
+/* Text displayed when no recent documents can be displayed in */
+"WELCOME_WINDOW_NO_RECENT_DOCUMENTS" = "No recent Documents";
 
 /* Label for the workflow settings tab */
 "WORKFLOW_SETTINGS" = "Workflow";
