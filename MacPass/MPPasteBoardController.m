@@ -111,7 +111,7 @@ NSString *const MPPasteBoardControllerDidClearClipboard = @"com.hicknhack.macpas
   }
   else {
     [NSPasteboard.generalPasteboard clearContents];
-    [NSPasteboard.generalPasteboard setString:@"" forType:NSPasteboardTypeString];
+//    [NSPasteboard.generalPasteboard setString:@"" forType:NSPasteboardTypeString];
   }
   [NSPasteboard.generalPasteboard writeObjects:objects];
   self.isEmpty = NO;
@@ -165,7 +165,7 @@ NSString *const MPPasteBoardControllerDidClearClipboard = @"com.hicknhack.macpas
   /* Only clear stuff we might have put there */
   if(!self.isEmpty) {
     [NSPasteboard.generalPasteboard clearContents];
-    [NSPasteboard.generalPasteboard setString:@"" forType:NSPasteboardTypeString];
+//    [NSPasteboard.generalPasteboard setString:@"" forType:NSPasteboardTypeString];
     [NSNotificationCenter.defaultCenter postNotificationName:MPPasteBoardControllerDidClearClipboard object:self];
   }
   self.isEmpty = YES;
