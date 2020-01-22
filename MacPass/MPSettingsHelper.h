@@ -71,6 +71,9 @@ APPKIT_EXTERN NSString *const kMPSettingsKeyAutotypeMatchHost;                //
 APPKIT_EXTERN NSString *const kMPSettingsKeyAutotypeMatchTags;                // Autotype lookup includes tags for entries
 APPKIT_EXTERN NSString *const kMPSettingsKeyAutotpyeHideMissingPermissionsWarning;
 
+/* Interface */
+APPKIT_EXTERN NSString *const kMPSettingsKeyLaunchOnLogin;
+
 /* Search */
 APPKIT_EXTERN NSString *const kMPSettingsKeyEntrySearchFilterContext;
 

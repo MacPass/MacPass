@@ -62,6 +62,8 @@ NSString *const kMPSettingsKeyAutotypeMatchHost                       = @"Autoty
 NSString *const kMPSettingsKeyAutotypeMatchTags                       = @"AutotypeMatchTags";
 NSString *const kMPSettingsKeyAutotpyeHideMissingPermissionsWarning   = @"AutotpyeHideMissingPermissionsWarning";
 
+NSString *const kMPSettingsKeyLaunchOnLogin                           =@"LaunchOnLogin";
+
 NSString *const kMPSettingsKeyEntrySearchFilterContext                = @"EntrySearchFilterContext";
 
 NSString *const kMPSettingsKeyEnableQuicklookPreview                  = @"EnableQuicklookPreview";
@@ -164,7 +166,8 @@ NSString *const kMPDepricatedSettingsKeyAutotypeHideAccessibiltyWarning   = @"Au
                          kMPSettingsKeyLoadIncompatiblePlugins: @NO,
                          kMPSettingsKeyQuitOnLastWindowClose: @NO,
                          kMPSettingsKeyEnableAutosave: @YES,
-                         kMPSettingsKeyHideAfterCopyToClipboard: @NO
+                         kMPSettingsKeyHideAfterCopyToClipboard: @NO,
+                         kMPSettingsKeyLaunchOnLogin: @NO
                          };
   });
   return standardDefaults;

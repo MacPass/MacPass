@@ -29,6 +29,8 @@
 #import "DDHotKey+MacPassAdditions.h"
 #import "DDHotKeyTextField.h"
 
+#import <ServiceManagement/ServiceManagement.h>
+
 @interface MPIntegrationPreferencesController ()
 
 @property (nonatomic, strong) DDHotKey *hotKey;
@@ -68,7 +70,10 @@
   [self.matchTagsCheckBox bind:NSValueBinding toObject:defaultsController withKeyPath:[MPSettingsHelper defaultControllerPathForKey:kMPSettingsKeyAutotypeMatchTags] options:nil];
   
   [self.sendCommandForControlCheckBox bind:NSValueBinding toObject:defaultsController withKeyPath:[MPSettingsHelper defaultControllerPathForKey:kMPSettingsKeySendCommandForControlKey] options:nil];
-    
+  
+  self.launchOnLoginCheckBox.state = [NSUserDefaults.standardUserDefaults boolForKey:@"LoginEnabled"];
+  [self.launchOnLoginCheckBox bind:NSValueBinding toObject:defaultsController withKeyPath:[MPSettingsHelper defaultControllerPathForKey:kMPSettingsKeyLaunchOnLogin] options:nil];
+  
   [self _showKeyCodeMissingKeyWarning:NO];
   [self _updateAccessabilityWarning];
 }
@@ -121,4 +126,14 @@
 - (void)runAutotypeDoctor:(id)sender {
   [MPAutotypeDoctor.defaultDoctor runChecksAndPresentResults];
 }
+- (IBAction)loginButtonCheckBox:(id)sender {
+  if (!SMLoginItemSetEnabled((__bridge CFStringRef)@"com.hicknhacksoftware.MacPassHelper", [sender state])) {
+    NSLog(@"Login Item Was Not Successful");
+  }
+  
+//  [NSUserDefaults.standardUserDefaults setBool:[sender state] forKey:@"LoginEnabled"];
+  [[NSUserDefaults standardUserDefaults] setBool:[sender state] forKey:kMPSettingsKeyLaunchOnLogin];
+}
+
+
 @end

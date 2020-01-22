@@ -291,6 +291,12 @@
 		6021FE9818E1650F00C3BC51 /* DatabaseSettingsWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6021FE9A18E1650F00C3BC51 /* DatabaseSettingsWindow.xib */; };
 		7837112C225540D1009BD28D /* PluginRepositoryBrowserView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7837112E225540D1009BD28D /* PluginRepositoryBrowserView.xib */; };
 		78E1F8B022E3A5D600E738AE /* AutotypeDoctorReportViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 78E1F8B222E3A5D600E738AE /* AutotypeDoctorReportViewController.xib */; };
+		7E834B6D23D8962000F3999E /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E834B6C23D8962000F3999E /* AppDelegate.m */; };
+		7E834B6F23D8962100F3999E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7E834B6E23D8962100F3999E /* Assets.xcassets */; };
+		7E834B7223D8962100F3999E /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7E834B7023D8962100F3999E /* MainMenu.xib */; };
+		7E834B7523D8962100F3999E /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E834B7423D8962100F3999E /* main.m */; };
+		7E834B9723D8966E00F3999E /* ServiceManagement.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7E834B9623D8966E00F3999E /* ServiceManagement.framework */; };
+		7E834B9A23D8971200F3999E /* MacPassHelper.app in CopyFiles */ = {isa = PBXBuildFile; fileRef = 7E834B6923D8961F00F3999E /* MacPassHelper.app */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		FA13910C1F9CD9EB0033D256 /* Localizable.stringsdict in Resources */ = {isa = PBXBuildFile; fileRef = FA13910A1F9CD9EB0033D256 /* Localizable.stringsdict */; };
 		FA9FD3271FB5E8F4003CEDD6 /* AutotypeCandidateSelectionView.xib in Resources */ = {isa = PBXBuildFile; fileRef = FA9FD3291FB5E8F4003CEDD6 /* AutotypeCandidateSelectionView.xib */; };
 		FA9FD32C1FB5EDD3003CEDD6 /* AutotypeBuilderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = FA9FD32E1FB5EDD3003CEDD6 /* AutotypeBuilderView.xib */; };
@@ -307,6 +313,16 @@
 				4C7B637F1C0CB57300D7038C /* KeePassKit.framework in CopyFiles */,
 				4C7B63801C0CB57300D7038C /* Sparkle.framework in CopyFiles */,
 				4CBC5DDE23C61C8900D14B92 /* TransformerKit.framework in CopyFiles */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		7E834B9923D896DA00F3999E /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = Contents/Library/LoginItems;
+			dstSubfolderSpec = 1;
+			files = (
+				7E834B9A23D8971200F3999E /* MacPassHelper.app in CopyFiles */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -952,6 +968,19 @@
 		78E1F8BE22E3B1BF00E738AE /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/AutotypeCandidateSelectionView.strings; sourceTree = "<group>"; };
 		78E1F8C022E3B22500E738AE /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/PluginDataView.strings; sourceTree = "<group>"; };
 		78E1F8C122E3B32D00E738AE /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.stringsdict; name = ru; path = ru.lproj/Localizable.stringsdict; sourceTree = "<group>"; };
+		7E834B6923D8961F00F3999E /* MacPassHelper.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MacPassHelper.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		7E834B6B23D8962000F3999E /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
+		7E834B6C23D8962000F3999E /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		7E834B6E23D8962100F3999E /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		7E834B7123D8962100F3999E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/MainMenu.xib; sourceTree = "<group>"; };
+		7E834B7323D8962100F3999E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		7E834B7423D8962100F3999E /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		7E834B7623D8962100F3999E /* MacPassHelper.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = MacPassHelper.entitlements; sourceTree = "<group>"; };
+		7E834B7F23D8962100F3999E /* MacPassHelperTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MacPassHelperTests.m; sourceTree = "<group>"; };
+		7E834B8123D8962100F3999E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		7E834B8A23D8962100F3999E /* MacPassHelperUITests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MacPassHelperUITests.m; sourceTree = "<group>"; };
+		7E834B8C23D8962100F3999E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		7E834B9623D8966E00F3999E /* ServiceManagement.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ServiceManagement.framework; path = System/Library/Frameworks/ServiceManagement.framework; sourceTree = SDKROOT; };
 		A019D80F22DC6B3C0085FD54 /* es */ = {isa = PBXFileReference; lastKnownFileType = text.plist.stringsdict; name = es; path = es.lproj/Localizable.stringsdict; sourceTree = "<group>"; };
 		A083E27922DF467B0020E0D5 /* es */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = es; path = es.lproj/PickcharsView.strings; sourceTree = "<group>"; };
 		A083E27A22DF467B0020E0D5 /* es */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = es; path = es.lproj/PluginDataView.strings; sourceTree = "<group>"; };
@@ -1034,6 +1063,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7E834B9723D8966E00F3999E /* ServiceManagement.framework in Frameworks */,
 				4CCA8E9B18D91ED9001A6754 /* Quartz.framework in Frameworks */,
 				4C00E33B17D8FAC100F37192 /* Carbon.framework in Frameworks */,
 				4CAD748E15B88AC100104512 /* libz.dylib in Frameworks */,
@@ -1043,6 +1073,13 @@
 				4C77E36715B84A240093A587 /* Cocoa.framework in Frameworks */,
 				4C7B637D1C0CB55600D7038C /* Sparkle.framework in Frameworks */,
 				4CC281891C0F675B00B9174D /* HNHUi.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		7E834B6623D8961F00F3999E /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1432,6 +1469,9 @@
 				4C00E33917D8FA3B00F37192 /* DDHotKey */,
 				4C77E36C15B84A240093A587 /* MacPass */,
 				4C45FB1E178E09ED0010007D /* MacPassTests */,
+				7E834B6A23D8962000F3999E /* MacPassHelper */,
+				7E834B7E23D8962100F3999E /* MacPassHelperTests */,
+				7E834B8923D8962100F3999E /* MacPassHelperUITests */,
 				4C77E36515B84A240093A587 /* Frameworks */,
 				4C77E36315B84A240093A587 /* Products */,
 			);
@@ -1444,6 +1484,7 @@
 			children = (
 				4C77E36215B84A240093A587 /* MacPass.app */,
 				4C45FB1A178E09ED0010007D /* MacPassTests.xctest */,
+				7E834B6923D8961F00F3999E /* MacPassHelper.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -1451,6 +1492,7 @@
 		4C77E36515B84A240093A587 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				7E834B9623D8966E00F3999E /* ServiceManagement.framework */,
 				4CCA8E9A18D91ED9001A6754 /* Quartz.framework */,
 				4C473A8518AFD7250073FD2E /* XCTest.framework */,
 				4CAD748D15B88AC100104512 /* libz.dylib */,
@@ -1735,6 +1777,38 @@
 			path = MacPass;
 			sourceTree = SOURCE_ROOT;
 		};
+		7E834B6A23D8962000F3999E /* MacPassHelper */ = {
+			isa = PBXGroup;
+			children = (
+				7E834B6B23D8962000F3999E /* AppDelegate.h */,
+				7E834B6C23D8962000F3999E /* AppDelegate.m */,
+				7E834B6E23D8962100F3999E /* Assets.xcassets */,
+				7E834B7023D8962100F3999E /* MainMenu.xib */,
+				7E834B7323D8962100F3999E /* Info.plist */,
+				7E834B7423D8962100F3999E /* main.m */,
+				7E834B7623D8962100F3999E /* MacPassHelper.entitlements */,
+			);
+			path = MacPassHelper;
+			sourceTree = "<group>";
+		};
+		7E834B7E23D8962100F3999E /* MacPassHelperTests */ = {
+			isa = PBXGroup;
+			children = (
+				7E834B7F23D8962100F3999E /* MacPassHelperTests.m */,
+				7E834B8123D8962100F3999E /* Info.plist */,
+			);
+			path = MacPassHelperTests;
+			sourceTree = "<group>";
+		};
+		7E834B8923D8962100F3999E /* MacPassHelperUITests */ = {
+			isa = PBXGroup;
+			children = (
+				7E834B8A23D8962100F3999E /* MacPassHelperUITests.m */,
+				7E834B8C23D8962100F3999E /* Info.plist */,
+			);
+			path = MacPassHelperUITests;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -1764,6 +1838,7 @@
 				4C77E36015B84A240093A587 /* Resources */,
 				4C44DB1B1C08999F00774EB3 /* Versioning */,
 				4CC5D36618A1332000AF7FA8 /* CopyFiles */,
+				7E834B9923D896DA00F3999E /* CopyFiles */,
 			);
 			buildRules = (
 			);
@@ -1772,6 +1847,23 @@
 			name = MacPass;
 			productName = MacPass;
 			productReference = 4C77E36215B84A240093A587 /* MacPass.app */;
+			productType = "com.apple.product-type.application";
+		};
+		7E834B6823D8961F00F3999E /* MacPassHelper */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 7E834B9323D8962100F3999E /* Build configuration list for PBXNativeTarget "MacPassHelper" */;
+			buildPhases = (
+				7E834B6523D8961F00F3999E /* Sources */,
+				7E834B6623D8961F00F3999E /* Frameworks */,
+				7E834B6723D8961F00F3999E /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = MacPassHelper;
+			productName = MacPassHelper;
+			productReference = 7E834B6923D8961F00F3999E /* MacPassHelper.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -1786,6 +1878,10 @@
 				TargetAttributes = {
 					4C77E36115B84A240093A587 = {
 						DevelopmentTeam = 55SM4L4Z97;
+					};
+					7E834B6823D8961F00F3999E = {
+						CreatedOnToolsVersion = 10.3;
+						ProvisioningStyle = Automatic;
 					};
 				};
 			};
@@ -1813,6 +1909,7 @@
 			targets = (
 				4C77E36115B84A240093A587 /* MacPass */,
 				4C45FB19178E09ED0010007D /* MacPassTests */,
+				7E834B6823D8961F00F3999E /* MacPassHelper */,
 			);
 		};
 /* End PBXProject section */
@@ -1950,6 +2047,15 @@
 				4C0DBEF51BF508DE00F9B287 /* PluginPreferences.xib in Resources */,
 				4CF6653820E67A140008A25C /* PluginDataView.xib in Resources */,
 				4C7F8B681A10B68400CCB83D /* WelcomeView.xib in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		7E834B6723D8961F00F3999E /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				7E834B6F23D8962100F3999E /* Assets.xcassets in Resources */,
+				7E834B7223D8962100F3999E /* MainMenu.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2137,6 +2243,15 @@
 				4C00E33817D8FA3500F37192 /* DDHotKeyCenter.m in Sources */,
 				4C5EF816218CA03F0003C00E /* MPAutotypeParser.m in Sources */,
 				4C224B4217DFCB2400FF6AEE /* MPNumericalInputFormatter.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		7E834B6523D8961F00F3999E /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				7E834B7523D8962100F3999E /* main.m in Sources */,
+				7E834B6D23D8962000F3999E /* AppDelegate.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2626,6 +2741,14 @@
 			name = AutotypeDoctorReportViewController.xib;
 			sourceTree = "<group>";
 		};
+		7E834B7023D8962100F3999E /* MainMenu.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				7E834B7123D8962100F3999E /* Base */,
+			);
+			name = MainMenu.xib;
+			sourceTree = "<group>";
+		};
 		FA13910A1F9CD9EB0033D256 /* Localizable.stringsdict */ = {
 			isa = PBXVariantGroup;
 			children = (
@@ -2857,6 +2980,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				SDKROOT = macosx;
+				STRIP_INSTALLED_PRODUCT = NO;
 				STRIP_STYLE = debugging;
 				WRAPPER_EXTENSION = app;
 			};
@@ -2889,8 +3013,82 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				SDKROOT = macosx;
+				STRIP_INSTALLED_PRODUCT = NO;
 				STRIP_STYLE = debugging;
 				WRAPPER_EXTENSION = app;
+			};
+			name = Release;
+		};
+		7E834B8D23D8962100F3999E /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CODE_SIGN_ENTITLEMENTS = MacPassHelper/MacPassHelper.entitlements;
+				CODE_SIGN_IDENTITY = "-";
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				INFOPLIST_FILE = MacPassHelper/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
+				MACOSX_DEPLOYMENT_TARGET = 10.15;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				PRODUCT_BUNDLE_IDENTIFIER = com.hicknhacksoftware.MacPassHelper;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+			};
+			name = Debug;
+		};
+		7E834B8E23D8962100F3999E /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CODE_SIGN_ENTITLEMENTS = MacPassHelper/MacPassHelper.entitlements;
+				CODE_SIGN_IDENTITY = "-";
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				COPY_PHASE_STRIP = NO;
+				ENABLE_NS_ASSERTIONS = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				INFOPLIST_FILE = MacPassHelper/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
+				MACOSX_DEPLOYMENT_TARGET = 10.15;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				PRODUCT_BUNDLE_IDENTIFIER = com.hicknhacksoftware.MacPassHelper;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
 			};
 			name = Release;
 		};
@@ -2920,6 +3118,15 @@
 			buildConfigurations = (
 				4C77E38115B84A240093A587 /* Debug */,
 				4C77E38215B84A240093A587 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		7E834B9323D8962100F3999E /* Build configuration list for PBXNativeTarget "MacPassHelper" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				7E834B8D23D8962100F3999E /* Debug */,
+				7E834B8E23D8962100F3999E /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
