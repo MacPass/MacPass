@@ -167,7 +167,7 @@ NSString *const kMPDepricatedSettingsKeyAutotypeHideAccessibiltyWarning   = @"Au
                          kMPSettingsKeyQuitOnLastWindowClose: @NO,
                          kMPSettingsKeyEnableAutosave: @YES,
                          kMPSettingsKeyHideAfterCopyToClipboard: @NO,
-                         kMPSettingsKeyLaunchOnLogin: @NO
+                         kMPSettingsKeyLaunchOnLogin: @NO //By default off when turned on it registers the mprhelper.app with launchservices
                          };
   });
   return standardDefaults;

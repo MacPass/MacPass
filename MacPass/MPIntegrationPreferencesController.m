@@ -71,7 +71,6 @@
   
   [self.sendCommandForControlCheckBox bind:NSValueBinding toObject:defaultsController withKeyPath:[MPSettingsHelper defaultControllerPathForKey:kMPSettingsKeySendCommandForControlKey] options:nil];
   
-  self.launchOnLoginCheckBox.state = [NSUserDefaults.standardUserDefaults boolForKey:@"LoginEnabled"];
   [self.launchOnLoginCheckBox bind:NSValueBinding toObject:defaultsController withKeyPath:[MPSettingsHelper defaultControllerPathForKey:kMPSettingsKeyLaunchOnLogin] options:nil];
   
   [self _showKeyCodeMissingKeyWarning:NO];
@@ -130,9 +129,7 @@
   if (!SMLoginItemSetEnabled((__bridge CFStringRef)@"com.hicknhacksoftware.MacPassHelper", [sender state])) {
     NSLog(@"Login Item Was Not Successful");
   }
-  
-//  [NSUserDefaults.standardUserDefaults setBool:[sender state] forKey:@"LoginEnabled"];
-  [[NSUserDefaults standardUserDefaults] setBool:[sender state] forKey:kMPSettingsKeyLaunchOnLogin];
+  [NSUserDefaults.standardUserDefaults setBool:[sender state] forKey:kMPSettingsKeyLaunchOnLogin];
 }
 
 
