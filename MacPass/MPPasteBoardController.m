@@ -71,7 +71,7 @@ NSString *const MPPasteBoardControllerDidClearClipboard = @"com.hicknhack.macpas
 
 - (void)stashObjects {
   self.stashedObjects = [NSMutableArray array];
-  for (NSPasteboardItem *item in NSPasteboard.generalPasteboard.pasteboardItems) {
+  for(NSPasteboardItem *item in NSPasteboard.generalPasteboard.pasteboardItems) {
     NSPasteboardItem *newItem = [[NSPasteboardItem alloc] init];
     for (NSString *type in item.types) {
       /* mutable copy to ensure actual deep copy */
@@ -85,7 +85,7 @@ NSString *const MPPasteBoardControllerDidClearClipboard = @"com.hicknhack.macpas
 }
 
 - (void)restoreObjects {
-  if (self.stashedObjects) {
+  if(self.stashedObjects) {
     [NSPasteboard.generalPasteboard clearContents];
     [NSPasteboard.generalPasteboard writeObjects:self.stashedObjects];
     self.stashedObjects = nil;
