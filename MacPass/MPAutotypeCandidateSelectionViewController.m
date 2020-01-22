@@ -22,6 +22,7 @@
 #import "MPAutotypeCandidateSelectionViewController.h"
 #import "MPAutotypeContext.h"
 #import "MPAutotypeDaemon.h"
+#import "MPAutotypeEnvironment.h"
 
 #import "KPKNode+IconImage.h"
 
@@ -43,7 +44,7 @@
 - (void)viewDidLoad {
   [super viewDidLoad];
   NSString *template = NSLocalizedString(@"AUTOTYPE_CANDIDATE_SELECTION_WINDOW_MESSAGE_%@", "Message text in the autotype selection window. Placeholder is %1 - windowTitle");
-  self.messageTextField.stringValue = [NSString stringWithFormat:template, self.windowTitle];
+  self.messageTextField.stringValue = [NSString stringWithFormat:template, self.environment.windowTitle];
   self.selectAutotypeContextButton.enabled = NO;
   NSNotification *notification = [NSNotification notificationWithName:NSTableViewSelectionDidChangeNotification object:self.contextTableView];
   [self tableViewSelectionDidChange:notification];
@@ -80,7 +81,7 @@
 - (void)selectAutotypeContext:(id)sender {
   NSInteger selectedRow = self.contextTableView.selectedRow;
   if(selectedRow >= 0 && selectedRow < self.candidates.count) {
-    [MPAutotypeDaemon.defaultDaemon selectAutotypeCandiate:self.candidates[selectedRow]];
+    [MPAutotypeDaemon.defaultDaemon selectAutotypeContext:self.candidates[selectedRow] forEnvironment:self.environment];
   }
   else {
     [self cancelSelection:sender]; // cancel since the selection was invalid!
@@ -88,7 +89,7 @@
 }
 
 - (void)cancelSelection:(id)sender {
-  [MPAutotypeDaemon.defaultDaemon cancelAutotypeCandidateSelection];
+  [MPAutotypeDaemon.defaultDaemon cancelAutotypeContextSelectionForEnvironment:self.environment];
 }
 
 

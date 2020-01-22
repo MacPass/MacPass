@@ -20,7 +20,7 @@
 - (instancetype)initWithTargetApplication:(NSRunningApplication *)targetApplication entry:(KPKEntry *)entry {
   self = [super init];
   if(self) {
-    _entry = entry;
+    _preferredEntry = entry;
     if(!targetApplication) {
       _pid = -1;
       _windowTitle = @"";

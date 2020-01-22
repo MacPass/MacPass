@@ -15,11 +15,15 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface MPAutotypeEnvironment : NSObject
 
-@property (readonly, weak) KPKEntry *entry;
-@property (readonly) pid_t pid;
-@property (readonly, copy) NSString *windowTitle;
-@property (readonly) BOOL hidden;
-@property (readonly) BOOL isSelfTargeting;
+/**
+ The selected entry, if Autotype is run only for a single entry.
+ If autotype should search for entries, set this to nil.
+ */
+@property (readonly, weak, nullable) KPKEntry *preferredEntry;
+@property (readonly) pid_t pid; // the PID of the target application to which the key strokes should be sent
+@property (readonly, copy) NSString *windowTitle; /// The window title of the target application.
+@property (readonly) BOOL hidden; /// If set to YES, MacPass was hidden when autotype was initiated
+@property (readonly) BOOL isSelfTargeting; /// If MacPass should autotype to itself, YES, otherwise NO
 
 + (instancetype)environmentWithTargetApplication:(NSRunningApplication *)targetApplication entry:(KPKEntry * _Nullable)entry;
 - (instancetype)initWithTargetApplication:(NSRunningApplication *)targetApplication entry:(KPKEntry * _Nullable)entry NS_DESIGNATED_INITIALIZER;

@@ -154,23 +154,25 @@ static MPAutotypeDaemon *_sharedInstance;
 }
 
 #pragma mark -
-#pragma mark Actions
-- (void)selectAutotypeCandiate:(MPAutotypeContext *)context forEnvironment:(MPAutotypeEnvironment *)environment {
+#pragma mark Autotype Execution
+- (void)selectAutotypeContext:(MPAutotypeContext *)context forEnvironment:(MPAutotypeEnvironment *)environment {
   [self.matchSelectionWindow orderOut:self];
   self.matchSelectionWindow = nil;
-  [self _runAutotypeWithEnvirnment:environment forContext:context];
-}
-
-- (void)cancelAutotypeCandidateSelectionForEnvironment:(MPAutotypeEnvironment *)environment {
-  [self.matchSelectionWindow orderOut:self];
-  self.matchSelectionWindow = nil;
-  if(self.targetPID) {
-    [self _orderApplicationToFront:self.targetPID forContext:nil];
+  [self _runAutotypeWithEnvironment:environment forContext:context];
+  if(environment.hidden) {
+    [NSApplication.sharedApplication hide:nil];
   }
 }
 
-#pragma mark -
-#pragma mark Autotype Execution
+- (void)cancelAutotypeContextSelectionForEnvironment:(MPAutotypeEnvironment *)environment {
+  [self.matchSelectionWindow orderOut:self];
+  self.matchSelectionWindow = nil;
+  [NSApplication.sharedApplication hide:nil];
+  if(environment.pid) {
+    [self _orderApplicationToFront:environment.pid completionHandler:nil];
+  }
+}
+
 - (void)_runAutotypeAfterDatabaseUnlockWithEnvironment:(MPAutotypeEnvironment *)environment requestedAt:(NSTimeInterval)requestTime {
   NSTimeInterval now = NSDate.date.timeIntervalSinceReferenceDate;
   if(now - requestTime > 30) {
@@ -249,12 +251,12 @@ static MPAutotypeDaemon *_sharedInstance;
     return; // wait for the unlock to happen
   }
   
-  MPAutotypeContext *context = [self _autotypeContextForDocuments:documents forWindowTitle:env.windowTitle preferredEntry:env.entry];
+  MPAutotypeContext *context = [self _autotypeContextForDocuments:documents withEnvironment:env];
   /* TODO: that's popping up if the multi selection dialog goes up! */
   if(self.matchSelectionWindow) {
     return; // we present the match selection window, just return
   }
-  if(!env.entry) {
+  if(!env.preferredEntry) {
     NSUserNotification *notification = [[NSUserNotification alloc] init];
     notification.title = NSApp.applicationName;
     notification.userInfo = @{ MPUserNotificationTypeKey: MPUserNotificationTypeAutotypeFeedback };
@@ -266,17 +268,17 @@ static MPAutotypeDaemon *_sharedInstance;
     }
     [NSUserNotificationCenter.defaultUserNotificationCenter deliverNotification:notification];
   }
-  [self _performAutotypeForContext:context];
+  [self _runAutotypeWithEnvironment:env forContext:context];
 }
 
-- (MPAutotypeContext *)_autotypeContextForDocuments:(NSArray<MPDocument *> *)documents forWindowTitle:(NSString *)windowTitle preferredEntry:(KPKEntry *)entry {
+- (MPAutotypeContext *)_autotypeContextForDocuments:(NSArray<MPDocument *> *)documents withEnvironment:(MPAutotypeEnvironment *)environment {
   /*
    Query the document to generate a autotype command list for the window title
    We do not care where this came form, just get the autotype commands
    */
   NSMutableArray *autotypeCandidates = [[NSMutableArray alloc] init];
   for(MPDocument *document in documents) {
-    NSArray *contexts = [document autotypContextsForWindowTitle:windowTitle preferredEntry:entry];
+    NSArray *contexts = [document autotypContextsForWindowTitle:environment.windowTitle preferredEntry:environment.preferredEntry];
     if(contexts ) {
       [autotypeCandidates addObjectsFromArray:contexts];
     }
@@ -285,20 +287,22 @@ static MPAutotypeDaemon *_sharedInstance;
   if(autotypeCandidates.count <= 1) {
     return autotypeCandidates.lastObject;
   }
-  
-  [self _presentCandiadates:autotypeCandidates forWindowTitle:windowTitle];
+  [self _presentCandiadates:autotypeCandidates forEnvironment:environment];
   return nil; // Nothing to do, we get called back by the window
 }
 
-- (void)_runAutotypeWithEnvirnment:(MPAutotypeEnvironment *)environment forContext:(MPAutotypeContext *)context {
+- (void)_runAutotypeWithEnvironment:(MPAutotypeEnvironment *)environment forContext:(MPAutotypeContext *)context {
   if(nil == environment) {
     return; // no Environment to work in
   }
   if(nil == context) {
     return; // No context to work with
   }
-  
-  if(NO == [self _orderApplicationToFront:self.targetPID forContext:(MPAutotypeContext *)context]) {
+  __weak MPAutotypeDaemon *welf = self;
+  BOOL appIsFrontmost = [self _orderApplicationToFront:environment.pid completionHandler:^{
+    [welf _runAutotypeWithEnvironment:environment forContext:context];
+  }];
+  if(!appIsFrontmost) {
     return; // We will get called back when the application is in front - hopfully
   }
   
@@ -346,7 +350,7 @@ static MPAutotypeDaemon *_sharedInstance;
   }
 }
 
-- (void)_presentCandiadates:(NSArray *)candidates forWindowTitle:(NSString *)windowTitle {
+- (void)_presentCandiadates:(NSArray *)candidates forEnvironment:(MPAutotypeEnvironment *)environment {
   if(!self.matchSelectionWindow) {
     self.matchSelectionWindow = [[NSPanel alloc] initWithContentRect:NSMakeRect(0, 0, 100, 100)
                                                            styleMask:NSWindowStyleMaskNonactivatingPanel|NSWindowStyleMaskTitled
@@ -355,12 +359,7 @@ static MPAutotypeDaemon *_sharedInstance;
     self.matchSelectionWindow.level = kCGAssistiveTechHighWindowLevel;
     MPAutotypeCandidateSelectionViewController *vc = [[MPAutotypeCandidateSelectionViewController alloc] init];
     vc.candidates = candidates;
-    vc.windowTitle = windowTitle;
-    if(NSRunningApplication.currentApplication.isHidden) {
-      vc.completionHandler = ^{
-        [NSRunningApplication.currentApplication hide];
-      };
-    }
+    vc.environment = environment;
     self.matchSelectionWindow.collectionBehavior |= (NSWindowCollectionBehaviorFullScreenAuxiliary |
                                                      NSWindowCollectionBehaviorMoveToActiveSpace |
                                                      NSWindowCollectionBehaviorTransient );
@@ -380,27 +379,24 @@ static MPAutotypeDaemon *_sharedInstance;
 
 #pragma mark -
 #pragma mark Application information
-- (BOOL)_orderApplicationToFront:(pid_t)processIdentifier inEnvironment:(MPAutotypeEnvironment *) environment {
-- (BOOL)_orderApplicationToFront:(pid_t)processIdentifier forContext:(MPAutotypeContext *)context {
+//- (BOOL)_orderApplicationToFront:(pid_t)processIdentifier inEnvironment:(MPAutotypeEnvironment *) environment {
+- (BOOL)_orderApplicationToFront:(pid_t)processIdentifier completionHandler:(void (^_Nullable)(void))completionHandler {
   NSRunningApplication *runingApplication = [NSRunningApplication runningApplicationWithProcessIdentifier:processIdentifier];
   NSRunningApplication *frontApplication = NSWorkspace.sharedWorkspace.frontmostApplication;
   if(frontApplication.processIdentifier == processIdentifier) {
     return YES;
   }
-  
-  /* cleanup before to make sure everything is top notch */
-  if(self.applicationActivationObserver) {
-    [NSWorkspace.sharedWorkspace.notificationCenter removeObserver:self.applicationActivationObserver name:NSWorkspaceDidActivateApplicationNotification object:nil];
-    self.applicationActivationObserver = nil;
-  }
-  
-  self.applicationActivationObserver = [NSWorkspace.sharedWorkspace.notificationCenter addObserverForName:NSWorkspaceDidActivateApplicationNotification object:nil queue:nil usingBlock:^(NSNotification * _Nonnull note) {
-    if(self.applicationActivationObserver) {
-      [NSWorkspace.sharedWorkspace.notificationCenter removeObserver:self.applicationActivationObserver name:NSWorkspaceDidActivateApplicationNotification object:nil];
+
+  NSNotificationCenter * __weak nc = NSWorkspace.sharedWorkspace.notificationCenter;
+  id __block didActivateToken = [nc addObserverForName:NSWorkspaceDidActivateApplicationNotification
+                                           object:nil
+                                            queue:NSOperationQueue.mainQueue
+                                       usingBlock:^(NSNotification *notification) {
+    [nc removeObserver:didActivateToken];
+    if(completionHandler) {
+      completionHandler();
     }
-    [self _performAutotypeForContext:context];
   }];
-  
   [runingApplication activateWithOptions:NSApplicationActivateIgnoringOtherApps];
   return NO;
 }

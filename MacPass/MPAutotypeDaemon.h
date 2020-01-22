@@ -40,7 +40,7 @@
 
 - (void)performAutotypeForEntry:(KPKEntry *)entry;
 - (void)performAutotypeForEntry:(KPKEntry *)entry overrideSequence:(NSString *)sequence;
-- (void)selectAutotypeCandiate:(MPAutotypeContext *)context forEnvironment:(MPAutotypeEnvironment *)environment;
-- (void)cancelAutotypeCandidateSelectionForEnvironment:(MPAutotypeEnvironment *)environment;
+- (void)selectAutotypeContext:(MPAutotypeContext *)context forEnvironment:(MPAutotypeEnvironment *)environment;
+- (void)cancelAutotypeContextSelectionForEnvironment:(MPAutotypeEnvironment *)environment;
 
 @end
