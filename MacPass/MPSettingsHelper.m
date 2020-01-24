@@ -62,7 +62,7 @@ NSString *const kMPSettingsKeyAutotypeMatchHost                       = @"Autoty
 NSString *const kMPSettingsKeyAutotypeMatchTags                       = @"AutotypeMatchTags";
 NSString *const kMPSettingsKeyAutotpyeHideMissingPermissionsWarning   = @"AutotpyeHideMissingPermissionsWarning";
 
-NSString *const kMPSettingsKeyLaunchOnLogin                           =@"LaunchOnLogin";
+NSString *const kMPSettingsKeyLaunchOnLogin                           = @"LaunchOnLogin";
 
 NSString *const kMPSettingsKeyEntrySearchFilterContext                = @"EntrySearchFilterContext";
 
@@ -167,7 +167,7 @@ NSString *const kMPDepricatedSettingsKeyAutotypeHideAccessibiltyWarning   = @"Au
                          kMPSettingsKeyQuitOnLastWindowClose: @NO,
                          kMPSettingsKeyEnableAutosave: @YES,
                          kMPSettingsKeyHideAfterCopyToClipboard: @NO,
-                         kMPSettingsKeyLaunchOnLogin: @NO //By default off when turned on it registers the mprhelper.app with launchservices
+                         kMPSettingsKeyLaunchOnLogin: @NO
                          };
   });
   return standardDefaults;
