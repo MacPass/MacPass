@@ -20,8 +20,16 @@
   NSArray *pathComponents = [[[NSBundle mainBundle] bundlePath] pathComponents];
   pathComponents = [pathComponents subarrayWithRange:NSMakeRange(0, [pathComponents count] - 4)];
   NSString *path = [NSString pathWithComponents:pathComponents];
-  [[NSWorkspace sharedWorkspace] launchApplication:path];
-  [NSApp terminate:nil];
+  NSArray *apps = [[NSWorkspace sharedWorkspace] runningApplications];
+  NSLog(@"apps list: %@", apps);
+  NSLog(@"bundleId: %@", [NSBundle mainBundle].bundleIdentifier);
+  if([apps containsObject:[NSBundle mainBundle].bundleIdentifier]) {
+  	[NSApp terminate:nil];
+  }
+  else {
+    [[NSWorkspace sharedWorkspace] launchApplication:path];
+    [NSApp terminate:nil];
+  }
 }
 
 

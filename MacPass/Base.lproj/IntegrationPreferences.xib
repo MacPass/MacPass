@@ -14,6 +14,8 @@
                 <outlet property="enableQuicklookCheckBox" destination="LNw-5t-TS4" id="YiZ-Kk-0dF"/>
                 <outlet property="hotKeyTextField" destination="Kvg-he-3c8" id="c7p-1F-zth"/>
                 <outlet property="hotkeyWarningTextField" destination="f5q-EW-RHf" id="Z2Q-Sb-HCS"/>
+                <outlet property="launchOnLoginCheckBox" destination="xiR-Ic-N26" id="8Li-h7-VYu"/>
+                <outlet property="launchOnLoginCheckBoxValue" destination="xiR-Ic-N26" id="R2V-H5-1Wk"/>
                 <outlet property="matchHostCheckBox" destination="TiO-ah-BlR" id="MWr-Uh-TRB"/>
                 <outlet property="matchTagsCheckBox" destination="9MH-jx-GpG" id="j1Y-BT-J81"/>
                 <outlet property="matchTitleCheckBox" destination="DAX-V8-Say" id="rbc-nA-1bQ"/>
@@ -230,7 +232,7 @@
                         <subviews>
                             <button translatesAutoresizingMaskIntoConstraints="NO" id="xiR-Ic-N26">
                                 <rect key="frame" x="16" y="44" width="176" height="18"/>
-                                <buttonCell key="cell" type="check" title="Launch MacPass on login" bezelStyle="regularSquare" imagePosition="left" state="on" inset="2" id="8ZY-0N-2jE">
+                                <buttonCell key="cell" type="check" title="Launch MacPass on login" bezelStyle="regularSquare" imagePosition="left" inset="2" id="8ZY-0N-2jE">
                                     <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                                     <font key="font" metaFont="system"/>
                                 </buttonCell>
