@@ -119,14 +119,26 @@
 /* Notification: Autotype failed, MacPass has not enough permissions to perform autotype */
 "AUTOTYPE_NOTIFICATION_MACPASS_IS_MISSING_PERMISSIONS" = "MacPass does not have all necessary permissions to perform Autotype.";
 
+/* Notification: Title for autotype feedback */
+"AUTOTYPE_NOTIFICATION_MATCH_TITLE" = "Autotype";
+
 /* Notification: Autotype failed, no documents are open */
 "AUTOTYPE_NOTIFICATION_NO_DOCUMENTS_INFORMATIVE_TEXT" = "Please open a database file to use Global Autotype!";
+
+/* Notification: Title for autotype feedback */
+"AUTOTYPE_NOTIFICATION_NO_DOCUMENTS_TITLE" = "No database is open!";
 
 /* Noticiation: Autotype failed to find a match for %@ (string placeholder) */
 "AUTOTYPE_NOTIFICATION_NO_MATCH_FOR_%@" = "No Match for %@!";
 
+/* Title for autotype feedback on missing permissions */
+"AUTOTYPE_NOTIFICATION_PERMISSIONS_MISSING_TITLE" = "Missing permissions";
+
 /* Notification: Autotype found a single match for %@ (string placeholder). */
 "AUTOTYPE_NOTIFICATION_SINGLE_MATCH_FOR_%@" = "Found Match for %@!";
+
+/* Title for the notification when the Autotype operation timed out */
+"AUTOTYPE_NOTIFICATION_TIMED_OUT_TITLE" = "Autotype timed out!";
 
 /* Status label when no issue were found in accessibilty */
 "AUTOTYPE_STATUS_ACCESSIBILTY_PERMISSIONS_OK" = "MacPass has permission to control your computer (Accessibility)";
@@ -141,7 +153,7 @@
 "AUTOTYPE_STATUS_SCREEN_RECORDING_PERMISSIONS_OK" = "MacPass has permission to record your screen";
 
 /* Notficication: Autotype timed out */
-"AUTOTYPE_TIMED_OUT" = "Autotype timed out.";
+"AUTOTYPE_TIMED_OUT" = "You did start Autotype too long ago. MacPass did not perform it anymore to prevent any wrong input!";
 
 /* Enable autotype menu item */
 "AUTOTYPE_YES" = "Enable Autotype";
