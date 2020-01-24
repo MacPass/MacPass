@@ -119,16 +119,28 @@
 /* Notification: Autotype failed, MacPass has not enough permissions to perform autotype */
 "AUTOTYPE_NOTIFICATION_MACPASS_IS_MISSING_PERMISSIONS" = "MacPass hat nicht alle notwendigen Berechtigungen um Autotype ausführen zu können";
 
+/* Notification: Title for autotype feedback */
+"AUTOTYPE_NOTIFICATION_MATCH_TITLE" = "Autotype";
+
 /* Notification: Autotype failed, no documents are open */
 "AUTOTYPE_NOTIFICATION_NO_DOCUMENTS_INFORMATIVE_TEXT" = "Bitte öffnen Sie eine Datei, um Global-Autotype zu nutzen!";
+
+/* Notification: Title for autotype feedback */
+"AUTOTYPE_NOTIFICATION_NO_DOCUMENTS_TITLE" = "Keine Datenbank offen.";
 
 /* Noticiation: Autotype failed to find a match for %@ (string placeholder) */
 "AUTOTYPE_NOTIFICATION_NO_MATCH_FOR_%@" = "Kein Treffer für %@!";
 
+/* Title for autotype feedback on missing permissions */
+"AUTOTYPE_NOTIFICATION_PERMISSIONS_MISSING_TITLE" = "Berechtigungen fehlen.";
+
 /* Notification: Autotype found a single match for %@ (string placeholder). */
 "AUTOTYPE_NOTIFICATION_SINGLE_MATCH_FOR_%@" = "Treffer für %@!";
 
-/* Status lable when no issue were found in accessibilty */
+/* Title for the notification when the Autotype operation timed out */
+"AUTOTYPE_NOTIFICATION_TIMED_OUT_TITLE" = "Autotype abgebrochen.";
+
+/* Status label when no issue were found in accessibilty */
 "AUTOTYPE_STATUS_ACCESSIBILTY_PERMISSIONS_OK" = "MacPass hat die Berechtigung den Computer zu steuern (Eingabehilfe)";
 
 /* Status MacPass has no accessibilty permissions */
@@ -137,7 +149,7 @@
 /* Status MacPass has no screen recording permissions */
 "AUTOTYPE_STATUS_NO_SCREEN_RECORDING_PERMISSIONS" = "MacPass hat keine Berechtigung den Bildschirminhalt aufzuzeichnen";
 
-/* Status lable when no issue were found in screen recording permissions */
+/* Status label when no issue were found in screen recording permissions */
 "AUTOTYPE_STATUS_SCREEN_RECORDING_PERMISSIONS_OK" = "MacPass hat die Berechtigung den Bildschirminhalt aufzuzeichnen";
 
 /* Notficication: Autotype timed out */
@@ -249,7 +261,7 @@
 /* Context menu that copies reference to username */
 "COPY_USERNAME_REFERENCE" = "Nutzername";
 
-/* Curstom attribute reference item */
+/* Custom attribute reference item */
 "CUSTOM_ATTRIBUTE" = "Spezielle Eigenschaften";
 
 /* Title for menu for custom search filters */
@@ -303,6 +315,9 @@
    Actiontitle for copying groups via drag and drop to antother database */
 "DRAG_GROUP" = "Gruppe verschieben";
 
+/* Action name for duplicating entries */
+"DUPLICATE_ENTRIES_ACTION_NAME" = "Einträge duplizieren";
+
 /* Menu item to directly diplicate an entry */
 "DUPLICATE_ENTRY" = "Eintrag duplizieren";
 
@@ -311,6 +326,9 @@
 
 /* Menu item to directly diplicate a group */
 "DUPLICATE_GROUP" = "Gruppe duplizieren";
+
+/* Action name for duplicating groups */
+"DUPLICATE_GROUPS_ACTION_NAME" = "Gruppe duplizieren";
 
 /* Menu item in the database outline context menu to change the template group
    Menu item on the add entry context menu to edit template groups */
@@ -343,7 +361,7 @@
 /* Error description given when adding an invalid plugin */
 "ERROR_INVALID_PLUGIN" = "Kein MacPass-Plugin";
 
-/* Error description for missing accessibilty permissions */
+/* Error description for missing accessibility permissions */
 "ERROR_NO_ACCESSIBILITY_PERMISSIONS" = "MacPass hat keine Berechtigung den Bildschirminhalt aufzuzeichnen.";
 
 /* Error description for missing screen recording permissions */
@@ -354,6 +372,9 @@
 
 /* Passwords do not match, keyfile is invalid */
 "ERROR_PASSWORD_MISSMATCH_INVALID_KEYFILE" = "Passwörter stimmen nicht überein oder die Schlüsseldatei ist ungültig!";
+
+/* Recommend/Enforce key change intervall format */
+"EVERY_%ld_DAYS" = "Alle %ld Tage";
 
 /* Format to returen the date an item expires. Includes %@ placehoder for date */
 "EXPIRES_AT_DATE_%@" = "verfällt: %@";
@@ -545,8 +566,14 @@
 /* Menu item to perform autotype with the selected entry */
 "PERFORM_AUTOTYPE_FOR_ENTRY" = "Auto-Type ausführen";
 
+/* Info about how many character has to pick in pickchar dialog */
+"PICKCHAR_INFO_MESSAGE_PICK_CHARACTERS_%ld" = "Bitte %ld Zeichen wählen";
+
 /* Window displayed to the user to pick an amout of characters */
 "PICKCHAR_WINDOW_TITLE" = "Zeichen auswählen";
+
+/* Count of picked characters in pickchars dialog if no limit is set */
+"PICKED_%ld_CHARACTERS" = "%ld Zeichen gewählt";
 
 /* Window displayed to the user to pick an amout of characters */
 "PICKFIELD_WINDOW_TITLE" = "Wert auswählen";
@@ -617,10 +644,13 @@
 /* Message text for the recommend password change alert */
 "RECOMMEND_PASSWORD_CHANGE_ALERT_TITLE" = "Bitte ändern sie das Passwort der Datenbank!";
 
+/* Updated at text when the local plugin defintino is used */
+"REPOSITORY_UPDATED_AT_LOCAL" = "Niemals (mitgelieferte Version nutzen)";
+
 /* Restart */
 "RESTART" = "Neustarten";
 
-/* Action to restore and Entry to a previous state of it's history */
+/* Action to restore an Entry to its previous state of it's history */
 "RESTORE_HISTORY_ENTRY" = "Eintrag wiederherstellen";
 
 /* Menu item to save the selected attached file.
@@ -638,6 +668,9 @@
 
 /* Search option: Find duplicate passwords */
 "SEARCH_DUPLICATE_PASSWORDS" = "Doppelte Passwörter";
+
+/* Placeholder string displayed in the search field in the toolbar */
+"SEARCH_EVERYWHERE" = "Überall suchen";
 
 /* Search option: Find expired entries */
 "SEARCH_EXPIRED_ENTRIES" = "Abgelaufen";
@@ -769,6 +802,12 @@
    UUID reference item */
 "UUID" = "UUID";
 
+/* Error message displayed when the current database file is also set as the key file */
+"WARNING_CURRENT_DATABASE_FILE_SELECTED_AS_KEY_FILE" = "Die Datenbank kann nicht gleichzeitig als Schlüsseldatei verwendet werden.";
+
+/* Error message displayed when a keepass database file is set as the key file */
+"WARNING_DATABASE_FILE_SELECTED_AS_KEY_FILE" = "Eine andere KeePass Datenbank sollte nicht als Schlüsseldatei verwendet werden. Die Datei kann sich ändern und damit kann die aktuelle Datenbank nicht mehr geöffnet werden.";
+
 /* No Key or Password */
 "WARNING_NO_PASSWORD_OR_KEYFILE" = "Kein Passwort und/oder Schlüsseldatei festgelegt!";
 
@@ -789,6 +828,9 @@
 
 /* No comment provided by engineer. */
 "WARNING_ON_SAVE_NO_PASSWORD_OR_KEY_SET_SUGGESTION" = "Bitte vergeben Sie ein Passwort und/oder einen Schlüssel. Sofern Sie abbrechen, werden Ihre Änderungen rückgängig gemacht und die Datei gesperrt.";
+
+/* Text displayed when no recent documents can be displayed in */
+"WELCOME_WINDOW_NO_RECENT_DOCUMENTS" = "Keine bisherigen Dokumente";
 
 /* Label for the workflow settings tab */
 "WORKFLOW_SETTINGS" = "Arbeitsfluss";
