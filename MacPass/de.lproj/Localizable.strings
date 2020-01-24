@@ -120,13 +120,13 @@
 "AUTOTYPE_NOTIFICATION_MACPASS_IS_MISSING_PERMISSIONS" = "MacPass hat nicht alle notwendigen Berechtigungen um Autotype ausführen zu können";
 
 /* Notification: Autotype failed, no documents are open */
-"AUTOTYPE_OVERLAY_NO_DOCUMENTS" = "Bitte öffnen Sie eine Datei, um Global-Autotype zu nutzen!";
+"AUTOTYPE_NOTIFICATION_NO_DOCUMENTS_INFORMATIVE_TEXT" = "Bitte öffnen Sie eine Datei, um Global-Autotype zu nutzen!";
 
 /* Noticiation: Autotype failed to find a match for %@ (string placeholder) */
-"AUTOTYPE_OVERLAY_NO_MATCH_FOR_%@" = "Kein Treffer für %@!";
+"AUTOTYPE_NOTIFICATION_NO_MATCH_FOR_%@" = "Kein Treffer für %@!";
 
 /* Notification: Autotype found a single match for %@ (string placeholder). */
-"AUTOTYPE_OVERLAY_SINGLE_MATCH_FOR_%@" = "Treffer für %@!";
+"AUTOTYPE_NOTIFICATION_SINGLE_MATCH_FOR_%@" = "Treffer für %@!";
 
 /* Status lable when no issue were found in accessibilty */
 "AUTOTYPE_STATUS_ACCESSIBILTY_PERMISSIONS_OK" = "MacPass hat die Berechtigung den Computer zu steuern (Eingabehilfe)";

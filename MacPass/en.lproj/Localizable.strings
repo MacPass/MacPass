@@ -120,13 +120,13 @@
 "AUTOTYPE_NOTIFICATION_MACPASS_IS_MISSING_PERMISSIONS" = "MacPass does not have all necessary permissions to perform Autotype.";
 
 /* Notification: Autotype failed, no documents are open */
-"AUTOTYPE_OVERLAY_NO_DOCUMENTS" = "Please open a database file to use Global Autotype!";
+"AUTOTYPE_NOTIFICATION_NO_DOCUMENTS_INFORMATIVE_TEXT" = "Please open a database file to use Global Autotype!";
 
 /* Noticiation: Autotype failed to find a match for %@ (string placeholder) */
-"AUTOTYPE_OVERLAY_NO_MATCH_FOR_%@" = "No Match for %@!";
+"AUTOTYPE_NOTIFICATION_NO_MATCH_FOR_%@" = "No Match for %@!";
 
 /* Notification: Autotype found a single match for %@ (string placeholder). */
-"AUTOTYPE_OVERLAY_SINGLE_MATCH_FOR_%@" = "Found Match for %@!";
+"AUTOTYPE_NOTIFICATION_SINGLE_MATCH_FOR_%@" = "Found Match for %@!";
 
 /* Status label when no issue were found in accessibilty */
 "AUTOTYPE_STATUS_ACCESSIBILTY_PERMISSIONS_OK" = "MacPass has permission to control your computer (Accessibility)";

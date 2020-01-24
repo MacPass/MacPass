@@ -81,13 +81,13 @@
 "AUTOTYPE_NOTIFICATION_MACPASS_IS_MISSING_PERMISSIONS" = "MacPass 没有执行自动键入的权限。";
 
 /* Notification: Autotype failed, no documents are open */
-"AUTOTYPE_OVERLAY_NO_DOCUMENTS" = "请打开一个数据库文件以使用全局自动键入！";
+"AUTOTYPE_NOTIFICATION_NO_DOCUMENTS_INFORMATIVE_TEXT" = "请打开一个数据库文件以使用全局自动键入！";
 
 /* Noticiation: Autotype failed to find a match for %@ (string placeholder) */
-"AUTOTYPE_OVERLAY_NO_MATCH_FOR_%@" = "没有找到匹配 %@！";
+"AUTOTYPE_NOTIFICATION_NO_MATCH_FOR_%@" = "没有找到匹配 %@！";
 
 /* Notification: Autotype found a single match for %@ (string placeholder). */
-"AUTOTYPE_OVERLAY_SINGLE_MATCH_FOR_%@" = "找到匹配 %@！";
+"AUTOTYPE_NOTIFICATION_SINGLE_MATCH_FOR_%@" = "找到匹配 %@！";
 
 /* Status lable when no issue were found in accessibilty */
 "AUTOTYPE_STATUS_ACCESSIBILTY_PERMISSIONS_OK" = "MacPass 有权限控制您的计算机（辅助功能）";

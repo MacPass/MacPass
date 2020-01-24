@@ -167,7 +167,9 @@ static MPAutotypeDaemon *_sharedInstance;
 - (void)cancelAutotypeContextSelectionForEnvironment:(MPAutotypeEnvironment *)environment {
   [self.matchSelectionWindow orderOut:self];
   self.matchSelectionWindow = nil;
-  [NSApplication.sharedApplication hide:nil];
+  if(environment.hidden) {
+    [NSApplication.sharedApplication hide:nil];
+  }
   if(environment.pid) {
     [self _orderApplicationToFront:environment.pid completionHandler:nil];
   }
@@ -177,7 +179,7 @@ static MPAutotypeDaemon *_sharedInstance;
   NSTimeInterval now = NSDate.date.timeIntervalSinceReferenceDate;
   if(now - requestTime > 30) {
     NSUserNotification *notification = [[NSUserNotification alloc] init];
-    notification.title = NSApp.applicationName;
+    notification.title = NSLocalizedString(@"AUTOTYPE_NOTIFICATION_TIMED_OUT_TITLE", "Title for the notification when the Autotype operation timed out");
     notification.informativeText = NSLocalizedString(@"AUTOTYPE_TIMED_OUT", "Notficication: Autotype timed out");
     notification.userInfo = @{ MPUserNotificationTypeKey: MPUserNotificationTypeAutotypeFeedback };
     [NSUserNotificationCenter.defaultUserNotificationCenter deliverNotification:notification];
@@ -191,7 +193,7 @@ static MPAutotypeDaemon *_sharedInstance;
 
   if(!self.hasNecessaryAutotypePermissions) {
     NSUserNotification *notification = [[NSUserNotification alloc] init];
-    notification.title = NSApp.applicationName;
+    notification.title = NSLocalizedString(@"AUTOTYPE_NOTIFICATION_PERMISSIONS_MISSING_TITLE", "Title for autotype feedback on missing permissions");
     notification.informativeText = NSLocalizedString(@"AUTOTYPE_NOTIFICATION_MACPASS_IS_MISSING_PERMISSIONS", "Notification: Autotype failed, MacPass has not enough permissions to perform autotype");
     notification.actionButtonTitle = NSLocalizedString(@"SHOW_AUTOTYPE_DOCTOR", "Action button in Notification to show the Autotype Doctor");
     notification.userInfo = @{ MPUserNotificationTypeKey: MPUserNotificationTypeRunAutotypeDoctor };
@@ -205,8 +207,8 @@ static MPAutotypeDaemon *_sharedInstance;
   /* No open document, inform the user and return without any action */
   if(documents.count == 0) {
     NSUserNotification *notification = [[NSUserNotification alloc] init];
-    notification.title = NSApp.applicationName;
-    notification.informativeText = NSLocalizedString(@"AUTOTYPE_OVERLAY_NO_DOCUMENTS", "Notification: Autotype failed, no documents are open");
+    notification.title = NSLocalizedString(@"AUTOTYPE_NOTIFICATION_NO_DOCUMENTS_TITLE", "Notification: Title for autotype feedback");
+    notification.informativeText = NSLocalizedString(@"AUTOTYPE_NOTIFICATION_NO_DOCUMENTS_INFORMATIVE_TEXT", "Notification: Autotype failed, no documents are open");
     notification.actionButtonTitle = NSLocalizedString(@"OPEN_DOCUMENT", "Action button in Notification to open a document");
     notification.userInfo = @{ MPUserNotificationTypeKey: MPUserNotificationTypeAutotypeOpenDocumentRequest };
     notification.showsButtons = YES;
@@ -252,19 +254,18 @@ static MPAutotypeDaemon *_sharedInstance;
   }
   
   MPAutotypeContext *context = [self _autotypeContextForDocuments:documents withEnvironment:env];
-  /* TODO: that's popping up if the multi selection dialog goes up! */
   if(self.matchSelectionWindow) {
     return; // we present the match selection window, just return
   }
   if(!env.preferredEntry) {
     NSUserNotification *notification = [[NSUserNotification alloc] init];
-    notification.title = NSApp.applicationName;
+    notification.title = NSLocalizedString(@"AUTOTYPE_NOTIFICATION_MATCH_TITLE", "Notification: Title for autotype feedback");
     notification.userInfo = @{ MPUserNotificationTypeKey: MPUserNotificationTypeAutotypeFeedback };
     if(context) {
-      notification.informativeText = [NSString stringWithFormat:NSLocalizedString(@"AUTOTYPE_OVERLAY_SINGLE_MATCH_FOR_%@", "Notification: Autotype found a single match for %@ (string placeholder)."), env.windowTitle];
+      notification.informativeText = [NSString stringWithFormat:NSLocalizedString(@"AUTOTYPE_NOTIFICATION_SINGLE_MATCH_FOR_%@", "Notification: Autotype found a single match for %@ (string placeholder)."), env.windowTitle];
     }
     else {
-      notification.informativeText = [NSString stringWithFormat:NSLocalizedString(@"AUTOTYPE_OVERLAY_NO_MATCH_FOR_%@", "Noticiation: Autotype failed to find a match for %@ (string placeholder)"), env.windowTitle];
+      notification.informativeText = [NSString stringWithFormat:NSLocalizedString(@"AUTOTYPE_NOTIFICATION_NO_MATCH_FOR_%@", "Noticiation: Autotype failed to find a match for %@ (string placeholder)"), env.windowTitle];
     }
     [NSUserNotificationCenter.defaultUserNotificationCenter deliverNotification:notification];
   }
