@@ -215,11 +215,12 @@ static MPAutotypeDaemon *_sharedInstance;
     [NSUserNotificationCenter.defaultUserNotificationCenter deliverNotification:notification];
     NSNotificationCenter * __weak nc = [NSNotificationCenter defaultCenter];
     MPAutotypeDaemon * __weak welf = self;
+    NSTimeInterval requestTime = NSDate.date.timeIntervalSinceReferenceDate;
     id __block unlockToken = [nc addObserverForName:MPDocumentDidUnlockDatabaseNotification
                                              object:nil
                                               queue:NSOperationQueue.mainQueue
                                          usingBlock:^(NSNotification *notification) {
-      [welf _runAutotypeAfterDatabaseUnlockWithEnvironment:env requestedAt:NSDate.date.timeIntervalSinceReferenceDate];
+      [welf _runAutotypeAfterDatabaseUnlockWithEnvironment:env requestedAt:requestTime];
       [nc removeObserver:unlockToken];
     }];
     return; // Unlock should trigger autotype
@@ -242,11 +243,12 @@ static MPAutotypeDaemon *_sharedInstance;
     [wc showPasswordInputWithMessage:NSLocalizedString(@"AUTOTYPE_MESSAGE_UNLOCK_DATABASE", @"Message displayed to the user to unlock the database to perform global autotype")];
     NSNotificationCenter * __weak nc = [NSNotificationCenter defaultCenter];
     MPAutotypeDaemon * __weak welf = self;
+    NSTimeInterval requestTime = NSDate.date.timeIntervalSinceReferenceDate;
     id __block unlockToken = [nc addObserverForName:MPDocumentDidUnlockDatabaseNotification
                                              object:nil
                                               queue:NSOperationQueue.mainQueue
                                          usingBlock:^(NSNotification *notification) {
-      [welf _runAutotypeAfterDatabaseUnlockWithEnvironment:env requestedAt:NSDate.date.timeIntervalSinceReferenceDate];
+      [welf _runAutotypeAfterDatabaseUnlockWithEnvironment:env requestedAt:requestTime];
       
       [nc removeObserver:unlockToken];
     }];
