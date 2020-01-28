@@ -47,7 +47,7 @@
 }
 
 - (BOOL)isSelfTargeting {
-  return NSRunningApplication.currentApplication.processIdentifier != _pid;
+  return NSRunningApplication.currentApplication.processIdentifier == _pid;
 }
 
 - (NSDictionary *)_infoDictionaryForApplication:(NSRunningApplication *)application {

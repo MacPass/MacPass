@@ -190,7 +190,10 @@ static MPAutotypeDaemon *_sharedInstance;
 }
 
 - (void)_runAutotypeWithEnvironment:(MPAutotypeEnvironment *)env {
-
+  if(env.isSelfTargeting) {
+    return; // we do not want to target ourselves
+  }
+  
   if(!self.hasNecessaryAutotypePermissions) {
     NSUserNotification *notification = [[NSUserNotification alloc] init];
     notification.title = NSLocalizedString(@"AUTOTYPE_NOTIFICATION_PERMISSIONS_MISSING_TITLE", "Title for autotype feedback on missing permissions");
@@ -329,6 +332,10 @@ static MPAutotypeDaemon *_sharedInstance;
         usleep(globalDelay*NSEC_PER_USEC);
       }
       [command execute];
+      /* re-hide after every command since this might have put us back up front */
+      if(environment.hidden) {
+        [NSApplication.sharedApplication hide:nil];
+      }
     });
   }
 }
