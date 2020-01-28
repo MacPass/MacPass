@@ -71,6 +71,16 @@
 	<string>https://macpassapp.org/data/plugins.json</string>
 	<key>NSAppleEventsUsageDescription</key>
 	<string>MacPass might use AppleEvents to perform Autotype functionality</string>
+	<key>NSDesktopFolderUsageDescription</key>
+	<string>MacPass accesses the Desktop to load and save your databases and/or key files there</string>
+	<key>NSDocumentsFolderUsageDescription</key>
+	<string>MacPass accesses the Documents folder to load and save your databases and/or key files there</string>
+	<key>NSDownloadsFolderUsageDescription</key>
+	<string>MacPass accesses the Downloads folder to load and save your databases and/or key files there</string>
+	<key>NSNetworkVolumesUsageDescription</key>
+	<string>MacPass need access to Network Volumes to load and save your databases and/or key files there</string>
+	<key>NSRemovableVolumesUsageDescription</key>
+	<string>MacPass need access to Removable lumes to load and save your databases and/or key files there</string>
 	<key>NSHumanReadableCopyright</key>
 	<string>Copyright © 2012-2020 HicknHack Software GmbH. All rights reserved.</string>
 	<key>NSMainNibFile</key>
