@@ -43,6 +43,8 @@
 		4C2057EE23CDF6F900C731EC /* MPPathCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C2057ED23CDF6F900C731EC /* MPPathCell.m */; };
 		4C2057F423CF3BA600C731EC /* MPAutotypeEnvironment.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C2057F323CF3BA600C731EC /* MPAutotypeEnvironment.m */; };
 		4C2057F723CF3E9A00C731EC /* NSRunningApplication+MPAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C2057F623CF3E9A00C731EC /* NSRunningApplication+MPAdditions.m */; };
+		4C20E4C123E4753A00807FAE /* MPDocumentSplitViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C20E4BF23E4753A00807FAE /* MPDocumentSplitViewController.m */; };
+		4C20E4C223E4753A00807FAE /* DocumentSplitView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4C20E4C023E4753A00807FAE /* DocumentSplitView.xib */; };
 		4C224B4217DFCB2400FF6AEE /* MPNumericalInputFormatter.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C224B4117DFCB2400FF6AEE /* MPNumericalInputFormatter.m */; };
 		4C25703F1BF11C2300D39416 /* MPPluginPreferencesController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C25703D1BF11C2300D39416 /* MPPluginPreferencesController.m */; };
 		4C25D58716CF0FAA00F6806C /* EntryView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4C25D58616CF0FAA00F6806C /* EntryView.xib */; };
@@ -411,6 +413,9 @@
 		4C2057F323CF3BA600C731EC /* MPAutotypeEnvironment.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MPAutotypeEnvironment.m; sourceTree = "<group>"; };
 		4C2057F523CF3E9A00C731EC /* NSRunningApplication+MPAdditions.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSRunningApplication+MPAdditions.h"; sourceTree = "<group>"; };
 		4C2057F623CF3E9A00C731EC /* NSRunningApplication+MPAdditions.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSRunningApplication+MPAdditions.m"; sourceTree = "<group>"; };
+		4C20E4BE23E4753A00807FAE /* MPDocumentSplitViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MPDocumentSplitViewController.h; sourceTree = "<group>"; };
+		4C20E4BF23E4753A00807FAE /* MPDocumentSplitViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MPDocumentSplitViewController.m; sourceTree = "<group>"; };
+		4C20E4C023E4753A00807FAE /* DocumentSplitView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DocumentSplitView.xib; sourceTree = "<group>"; };
 		4C21F29F195B3A48002D610D /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/MainMenu.strings; sourceTree = "<group>"; };
 		4C224B4017DFCB2300FF6AEE /* MPNumericalInputFormatter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MPNumericalInputFormatter.h; sourceTree = "<group>"; };
 		4C224B4117DFCB2400FF6AEE /* MPNumericalInputFormatter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MPNumericalInputFormatter.m; sourceTree = "<group>"; };
@@ -1620,6 +1625,9 @@
 				4CAD8AA322CF397B0090B2DD /* MPAutotypeDoctorReportViewController.h */,
 				4CAD8AA422CF397B0090B2DD /* MPAutotypeDoctorReportViewController.m */,
 				78E1F8B222E3A5D600E738AE /* AutotypeDoctorReportViewController.xib */,
+				4C20E4BE23E4753A00807FAE /* MPDocumentSplitViewController.h */,
+				4C20E4BF23E4753A00807FAE /* MPDocumentSplitViewController.m */,
+				4C20E4C023E4753A00807FAE /* DocumentSplitView.xib */,
 			);
 			name = "View Controller";
 			sourceTree = "<group>";
@@ -1914,6 +1922,7 @@
 				4C3826AF1AD04D8E007D7D67 /* 34_ConfigureTemplate.pdf in Resources */,
 				4C3826BB1AD04D8E007D7D67 /* 47_PackageTemplate.pdf in Resources */,
 				6021FE8D18E1617300C3BC51 /* PasswordCreatorView.xib in Resources */,
+				4C20E4C223E4753A00807FAE /* DocumentSplitView.xib in Resources */,
 				4C3826AC1AD04D8E007D7D67 /* 29_SecureTerminalTemplate.pdf in Resources */,
 				4C3826741AD04BA5007D7D67 /* infoTemplate.pdf in Resources */,
 				4C3826B11AD04D8E007D7D67 /* 36_ArchiveTemplate.pdf in Resources */,
@@ -2051,6 +2060,7 @@
 				4C81867D216664C70068DAFB /* MPPluginRepositoryItemVersionInfo.m in Sources */,
 				4CDA35751EBA0CF2003CD59F /* NSString+MPComposedCharacterAdditions.m in Sources */,
 				4CE39ABF16ECE34A000FE29D /* MPIconSelectViewController.m in Sources */,
+				4C20E4C123E4753A00807FAE /* MPDocumentSplitViewController.m in Sources */,
 				4CE39AC416ECE4F7000FE29D /* MPIconImageView.m in Sources */,
 				4C46B88517063A070046109A /* NSString+MPPasswordCreation.m in Sources */,
 				4C5A11FE1708DE8700223D8A /* MPPasswordCreatorViewController.m in Sources */,
@@ -2766,7 +2776,7 @@
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				CODE_SIGN_IDENTITY = "";
 				COPY_PHASE_STRIP = NO;
-				CURRENT_PROJECT_VERSION = 0.7.11;
+				CURRENT_PROJECT_VERSION = "0.8-beta";
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
@@ -2788,7 +2798,7 @@
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				HEADER_SEARCH_PATHS = "$(SDKROOT)/usr/include/libxml2/**";
-				MACOSX_DEPLOYMENT_TARGET = 10.10;
+				MACOSX_DEPLOYMENT_TARGET = 10.13;
 				ONLY_ACTIVE_ARCH = YES;
 				OTHER_LDFLAGS = "-lxml2";
 				SDKROOT = macosx;
@@ -2821,7 +2831,7 @@
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				CODE_SIGN_IDENTITY = "";
 				COPY_PHASE_STRIP = YES;
-				CURRENT_PROJECT_VERSION = 0.7.11;
+				CURRENT_PROJECT_VERSION = "0.8-beta";
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
@@ -2836,7 +2846,7 @@
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				HEADER_SEARCH_PATHS = "$(SDKROOT)/usr/include/libxml2/**";
-				MACOSX_DEPLOYMENT_TARGET = 10.10;
+				MACOSX_DEPLOYMENT_TARGET = 10.13;
 				OTHER_LDFLAGS = "-lxml2";
 				SDKROOT = macosx;
 				WARNING_CFLAGS = "-Wpartial-availability";
