@@ -364,7 +364,7 @@ static MPAutotypeDaemon *_sharedInstance;
   if(!self.matchSelectionWindow) {
     self.matchSelectionWindow = [[NSPanel alloc] initWithContentRect:NSMakeRect(0, 0, 100, 100)
                                                            styleMask:NSWindowStyleMaskNonactivatingPanel|NSWindowStyleMaskTitled
-                                                             backing:NSBackingStoreRetained
+                                                             backing:NSBackingStoreBuffered
                                                                defer:YES];
     self.matchSelectionWindow.level = kCGAssistiveTechHighWindowLevel;
     MPAutotypeCandidateSelectionViewController *vc = [[MPAutotypeCandidateSelectionViewController alloc] init];

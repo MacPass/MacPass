@@ -165,7 +165,7 @@ static MPLockDaemon *_sharedInstance;
   }
   /* Create event handler if necessary */
   if(!self.localEventHandler) {
-    self.localEventHandler = [NSEvent addLocalMonitorForEventsMatchingMask:NSAnyEventMask handler:^NSEvent *(NSEvent *theEvent) {
+    self.localEventHandler = [NSEvent addLocalMonitorForEventsMatchingMask:NSEventMaskAny handler:^NSEvent *(NSEvent *theEvent) {
       self.lastLocalEventTime = NSDate.timeIntervalSinceReferenceDate;
       return theEvent;
     }];

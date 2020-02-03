@@ -161,7 +161,7 @@ typedef NS_ENUM(NSUInteger, MPPasswordRating) {
   if(!self.allowsEntryDefaults || (nil == [self _currentEntryDefaults])) {
     return; // We aren't using entry so just leave;
   }
-  BOOL deleteEntryDefaults = MPIsFlagSetInOptions(NSAlternateKeyMask, [NSEvent modifierFlags]);
+  BOOL deleteEntryDefaults = MPIsFlagSetInOptions(NSEventModifierFlagOption, NSEvent.modifierFlags);
   [self _updateSetDefaultsButton:deleteEntryDefaults];
 }
 

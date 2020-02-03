@@ -102,15 +102,15 @@
   NSImageRep *rep = [[self imageForSegment:MPContextButtonSegmentButton] bestRepresentationForRect:NSMakeRect(0, 0, 100, 100) context:nil hints:nil];
   CGFloat scale = rep.size.width / rep.size.height;
   switch (controlSize) {
-    case NSRegularControlSize:
+    case NSControlSizeRegular:
       [self imageForSegment:MPContextButtonSegmentButton].size = NSMakeSize(16 * scale, 16);
       break;
       
-    case NSSmallControlSize:
+    case NSControlSizeSmall:
       [self imageForSegment:MPContextButtonSegmentButton].size = NSMakeSize(14 * scale, 14);
       break;
       
-    case NSMiniControlSize:
+    case NSControlSizeMini:
       [self imageForSegment:MPContextButtonSegmentButton].size = NSMakeSize(8 * scale, 8);
       
     default:

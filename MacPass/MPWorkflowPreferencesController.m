@@ -86,7 +86,7 @@
   openPanel.allowedFileTypes = @[@"app"];
   
   [openPanel beginSheetModalForWindow:self.view.window completionHandler:^(NSInteger result) {
-    if(result == NSFileHandlingPanelOKButton) {
+    if(result == NSModalResponseOK) {
       // TODO: Autorelease pool?
       NSMenuItem *customBrowser = [[NSMenuItem alloc] init];
       customBrowser.representedObject = [NSBundle bundleWithPath:openPanel.URL.path].bundleIdentifier;

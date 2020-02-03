@@ -86,19 +86,19 @@
   NSEventModifierFlags flags = 0;
   switch(self.keyCode) {
     case  kVK_Command:
-      flags = NSCommandKeyMask;
+      flags = NSEventModifierFlagCommand;
       break;
     case kVK_Shift:
     case kVK_RightShift:
-      flags = NSShiftKeyMask;
+      flags = NSEventModifierFlagShift;
       break;
     case kVK_Option:
     case kVK_RightOption:
-      flags = NSAlternateKeyMask;
+      flags = NSEventModifierFlagOption;
       break;
     case kVK_Control:
     case kVK_RightControl:
-      flags = NSControlKeyMask;
+      flags = NSEventModifierFlagControl;
       break;
   }
   BOOL missingModifier = self.modifierFlags == 0;
