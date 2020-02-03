@@ -212,7 +212,7 @@ NSString *const kMPDepricatedSettingsKeyAutotypeHideAccessibiltyWarning   = @"Au
   if(!descriptorData) {
     return; // No user defaults
   }
-  NSArray *sortDescriptors = [NSUnarchiver unarchiveObjectWithData:descriptorData];
+  NSArray *sortDescriptors = [NSKeyedUnarchiver unarchiveObjectWithData:descriptorData];
   
   for(NSSortDescriptor *descriptor in sortDescriptors) {
     /* Brute force, just kill the settings if they might cause trouble */

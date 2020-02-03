@@ -84,7 +84,7 @@ static void MPContextmenuHelperBeginSection(NSMutableArray *items) {
       NSMenuItem *emptyTrash = [[NSMenuItem alloc] initWithTitle:NSLocalizedString(@"EMPTY_TRASH", @"Menu item to empty the trash")
                                                           action:[MPActionHelper actionOfType:MPActionEmptyTrash]
                                                    keyEquivalent:@""];
-      emptyTrash.keyEquivalentModifierMask = (NSShiftKeyMask | NSCommandKeyMask);
+      emptyTrash.keyEquivalentModifierMask = (NSEventModifierFlagShift | NSEventModifierFlagCommand);
       unichar backSpace = NSBackspaceCharacter;
       emptyTrash.keyEquivalent = [NSString stringWithCharacters:&backSpace length:1];
       [items addObject:emptyTrash];
@@ -99,7 +99,7 @@ static void MPContextmenuHelperBeginSection(NSMutableArray *items) {
     NSMenuItem *copyPassword = [[NSMenuItem alloc] initWithTitle:NSLocalizedString(@"COPY_PASSWORD", @"Menu item to copy the password of an entry")
                                                           action:[MPActionHelper actionOfType:MPActionCopyPassword]
                                                    keyEquivalent:@"c"];
-    copyPassword.keyEquivalentModifierMask = (copyPassword.keyEquivalentModifierMask | NSAlternateKeyMask);
+    copyPassword.keyEquivalentModifierMask = (copyPassword.keyEquivalentModifierMask | NSEventModifierFlagOption);
     NSMenu *urlMenu = [[NSMenu alloc] init];
     NSMenuItem *urlItem = [[NSMenuItem alloc] initWithTitle:NSLocalizedString(@"URL", @"Submenu with options what to do with the URL of an entry")
                                                      action:0
@@ -129,7 +129,7 @@ static void MPContextmenuHelperBeginSection(NSMutableArray *items) {
       NSMenuItem *showHistory = [[NSMenuItem alloc] initWithTitle:NSLocalizedString(@"SHOW_HISTORY", @"Menu item to show the history of the selected entry")
                                                                action:[MPActionHelper actionOfType:MPActionShowEntryHistory]
                                                         keyEquivalent:@"h"];
-      showHistory.keyEquivalentModifierMask = (showHistory.keyEquivalentModifierMask | NSCommandKeyMask | NSControlKeyMask);
+      showHistory.keyEquivalentModifierMask = (showHistory.keyEquivalentModifierMask | NSEventModifierFlagCommand | NSEventModifierFlagControl);
       [items addObject:showHistory];
     }
     if(insertShowGroupInOutline) {

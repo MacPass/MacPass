@@ -241,7 +241,7 @@ typedef NS_OPTIONS(NSInteger, MPAppStartupState) {
     self.saveMenuItem.title = saveTitle;
   }
   else if(menu == self.fixAutotypeMenuItem.menu) {
-    self.fixAutotypeMenuItem.hidden = !(NSEvent.modifierFlags & NSAlternateKeyMask);
+    self.fixAutotypeMenuItem.hidden = !(NSEvent.modifierFlags & NSEventModifierFlagOption);
   }
   else if(menu == self.importMenu) {
     NSMenuItem *exportXML = menu.itemArray.firstObject;

@@ -41,15 +41,15 @@
   NSImageRep *rep = [self.image bestRepresentationForRect:NSMakeRect(0, 0, 100, 100) context:nil hints:nil];
   CGFloat scale = rep.size.width / rep.size.height;
   switch (controlSize) {
-    case NSRegularControlSize:
+    case NSControlSizeRegular:
       self.image.size = NSMakeSize(16 * scale, 16);
       break;
       
-    case NSSmallControlSize:
+    case NSControlSizeSmall:
       self.image.size = NSMakeSize(14 * scale, 14);
       break;
       
-    case NSMiniControlSize:
+    case NSControlSizeMini:
       self.image.size = NSMakeSize(8 * scale, 8);
       
     default:
