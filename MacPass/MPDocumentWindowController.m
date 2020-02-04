@@ -143,6 +143,11 @@ typedef void (^MPPasswordChangedBlock)(BOOL didChangePassword);
   return self.toolbarDelegate.searchField;
 }
 
+- (void)setContentViewController:(NSViewController *)contentViewController {
+  contentViewController.view.frame = self.window.contentView.frame;
+  [super setContentViewController:contentViewController];
+}
+
 #pragma mark MPDocument notifications
 - (void)_didRevertDocument:(NSNotification *)notification {
   [self showPasswordInput];
