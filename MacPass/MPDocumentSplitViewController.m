@@ -37,11 +37,15 @@
   return self;
 }
 
+- (void)viewWillLayout {
+  self.splitView.autosaveName = @"SplitView";
+  self.splitView.identifier = @"MainSplitView";
+}
+
 - (void)viewDidLoad {
   [super viewDidLoad];
   
   self.splitView.translatesAutoresizingMaskIntoConstraints = NO;
-  self.splitView.autosaveName = @"SplitView";
   
   NSSplitViewItem *outlineItem = [NSSplitViewItem sidebarWithViewController:self.outlineViewController];
   outlineItem.holdingPriority = NSLayoutPriorityDefaultLow + 2;
