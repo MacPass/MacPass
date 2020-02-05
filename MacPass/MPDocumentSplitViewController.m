@@ -39,7 +39,6 @@
 
 - (void)viewWillLayout {
   self.splitView.autosaveName = @"SplitView";
-  self.splitView.identifier = @"MainSplitView";
 }
 
 - (void)viewDidLoad {
