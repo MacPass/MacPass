@@ -31,11 +31,27 @@
 			<key>NSStringFormatValueTypeKey</key>
 			<string>ld</string>
 			<key>one</key>
-			<string>Dupliquer l&apos;entrée</string>
+			<string>Dupliquer l'entrée</string>
 			<key>other</key>
 			<string>Dupliquer les entrées</string>
 			<key>zero</key>
 			<string>Dupliquer les entrées</string>
+		</dict>
+	</dict>
+	<key>DUPLICATE_GROUPS_ACTION_NAME</key>
+	<dict>
+		<key>NSStringLocalizedFormatKey</key>
+		<string>%#@groupes@</string>
+		<key>groups</key>
+		<dict>
+			<key>NSStringFormatSpecTypeKey</key>
+			<string>NSStringPluralRuleType</string>
+			<key>NSStringFormatValueTypeKey</key>
+			<string>ld</string>
+			<key>one</key>
+			<string>Groupe dupliqué</string>
+			<key>other</key>
+			<string>Groupes dupliqués</string>
 		</dict>
 	</dict>
 	<key>EVERY_%ld_DAYS</key>
