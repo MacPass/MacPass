@@ -225,6 +225,7 @@ NSString *const _MPOutlinveViewHeaderViewIdentifier = @"HeaderCell";
 #pragma mark Notifications
 - (void)registerNotificationsForDocument:(MPDocument *)document {
   [NSNotificationCenter.defaultCenter addObserver:self selector:@selector(_didAddGroup:) name:MPDocumentDidAddGroupNotification object:document];
+    [NSNotificationCenter.defaultCenter addObserver:self selector:@selector(_didRevertDocument:) name:MPDocumentDidRevertNotifiation object:document];
 }
 
 - (void)clearSelection {
@@ -267,6 +268,9 @@ NSString *const _MPOutlinveViewHeaderViewIdentifier = @"HeaderCell";
   NSInteger groupRow = [self.outlineView rowForItem:groupNode];
   [self.outlineView selectRowIndexes:[NSIndexSet indexSetWithIndex:groupRow] byExtendingSelection:NO];
   [self.outlineView scrollRowToVisible:groupRow];
+}
+- (void)_didRevertDocument:(NSNotification *)notification {
+  [self clearSelection];
 }
 
 - (id)itemUnderMouse {

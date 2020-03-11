@@ -295,7 +295,7 @@ NSString *const MPDocumentGroupKey                            = @"MPDocumentGrou
         return;
       }
       NSAlert *alert = [[NSAlert alloc] init];
-      alert.alertStyle = NSWarningAlertStyle;
+      alert.alertStyle = NSAlertStyleWarning;
       alert.messageText = NSLocalizedString(@"FILE_CHANGED_BY_OTHERS_MESSAGE_TEXT", @"Message displayed when an open file was changed from another application");
       alert.informativeText = NSLocalizedString(@"FILE_CHANGED_BY_OTHERS_INFO_TEXT", @"Informative text displayed when the file was change from another application");
       alert.showsSuppressionButton = YES;
@@ -369,7 +369,7 @@ NSString *const MPDocumentGroupKey                            = @"MPDocumentGrou
   
   if(mergeKDB) {
     NSAlert *alert = [[NSAlert alloc] init];
-    alert.alertStyle = NSWarningAlertStyle;
+    alert.alertStyle = NSAlertStyleWarning;
     alert.messageText = NSLocalizedString(@"ALERT_MERGE_KDB_FILE_MESSAGE", @"Alert message warning user about KDB file merge");
     alert.informativeText = NSLocalizedString(@"ALERT_MERGE_KDB_FILE_INFO_TEXT", @"Informative text displayed when merging KDB files");
     [alert addButtonWithTitle:NSLocalizedString(@"ALERT_MERGE_CONTINUE", @"Button in dialog to merge KDB changes into file!")];
@@ -751,7 +751,7 @@ NSString *const MPDocumentGroupKey                            = @"MPDocumentGrou
 #pragma mark Actions
 - (void)emptyTrash:(id)sender {
   NSAlert *alert = [[NSAlert alloc] init];
-  alert.alertStyle = NSWarningAlertStyle;
+  alert.alertStyle = NSAlertStyleWarning;
   alert.messageText = NSLocalizedString(@"WARNING_ON_EMPTY_TRASH_TITLE", "Message text for the alert displayed when clearing the Trash");
   alert.informativeText = NSLocalizedString(@"WARNING_ON_EMPTY_TRASH_DESCRIPTION", "Informative Text displayed when clearing the Trash");
   
@@ -770,7 +770,7 @@ NSString *const MPDocumentGroupKey                            = @"MPDocumentGrou
   KPKEntry *entry = node.asEntry;
   
   NSAlert *alert = [[NSAlert alloc] init];
-  alert.alertStyle = NSWarningAlertStyle;
+  alert.alertStyle = NSAlertStyleWarning;
   alert.messageText = NSLocalizedString(@"WARNING_ON_DELETE_TRASHED_NODE_TITLE", "Message text for the alert displayed when deleting a node");
   alert.informativeText = NSLocalizedString(@"WARNING_ON_DELETE_TRASHED_NODE_DESCRIPTION", "Informative Text displayed when clearing the Trash");
   

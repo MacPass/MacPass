@@ -219,7 +219,7 @@ typedef NS_ENUM(NSUInteger, MPEntryTab) {
   savePanel.nameFieldStringValue = binary.name;
   
   [savePanel beginSheetModalForWindow:self.windowController.window completionHandler:^(NSInteger result) {
-    if(result == NSFileHandlingPanelOKButton) {
+    if(result == NSModalResponseOK) {
       NSError *error;
       BOOL sucess = [binary saveToLocation:savePanel.URL error:&error];
       if(!sucess && error) {
@@ -237,7 +237,7 @@ typedef NS_ENUM(NSUInteger, MPEntryTab) {
   openPanel.prompt = NSLocalizedString(@"OPEN_BUTTON_ADD_ATTACHMENT_OPEN_PANEL", "Open button in the open panel to add attachments to an entry");
   openPanel.message = NSLocalizedString(@"MESSAGE_ADD_ATTACHMENT_OPEN_PANEL", "Message in the open panel to add attachments to an entry");
   [openPanel beginSheetModalForWindow:self.windowController.window completionHandler:^(NSInteger result) {
-    if(result == NSFileHandlingPanelOKButton) {
+    if(result == NSModalResponseOK) {
       for (NSURL *attachmentURL in openPanel.URLs) {
         KPKBinary *binary = [[KPKBinary alloc] initWithContentsOfURL:attachmentURL];
         [self.observer willChangeModelProperty];

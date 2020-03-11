@@ -105,7 +105,7 @@
                           NSAlert *alert = [[NSAlert alloc] init];
                           alert.messageText = NSLocalizedString(@"FILE_OPEN_ERROR", "Error while reopening last known documents");
                           alert.informativeText = error.localizedDescription;
-                          alert.alertStyle = NSCriticalAlertStyle;
+                          alert.alertStyle = NSAlertStyleCritical;
                           [alert runModal];
                         }
                         

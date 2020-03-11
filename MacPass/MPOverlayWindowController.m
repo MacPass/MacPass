@@ -56,7 +56,7 @@
 
 - (void)windowDidLoad {
   [super windowDidLoad];
-  self.window.styleMask = NSBorderlessWindowMask;
+  self.window.styleMask = NSWindowStyleMaskBorderless;
   self.window.alphaValue = 0;
   self.window.opaque = NO;
   self.window.hasShadow = YES;

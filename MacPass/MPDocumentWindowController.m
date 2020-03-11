@@ -29,6 +29,7 @@
 #import "MPDatabaseSettingsWindowController.h"
 #import "MPDocument.h"
 #import "MPDocumentWindowDelegate.h"
+#import "MPDocumentSplitViewController.h"
 #import "MPDuplicateEntryOptionsWindowController.h"
 #import "MPEntryViewController.h"
 #import "MPFixAutotypeWindowController.h"
@@ -58,14 +59,11 @@ typedef void (^MPPasswordChangedBlock)(BOOL didChangePassword);
   id _firstResponder;
 }
 
-@property (strong) IBOutlet NSSplitView *splitView;
-
 @property (strong) NSToolbar *toolbar;
 
 @property (strong) MPPasswordInputController *passwordInputController;
-@property (strong) MPEntryViewController *entryViewController;
-@property (strong) MPOutlineViewController *outlineViewController;
-@property (strong) MPInspectorViewController *inspectorViewController;
+@property (strong) MPDocumentSplitViewController *splitViewController;
+
 @property (strong) MPDatabaseSettingsWindowController *documentSettingsWindowController;
 @property (strong) MPDocumentWindowDelegate *documentWindowDelegate;
 @property (strong) MPPasswordEditWindowController *passwordEditWindowController;
@@ -87,9 +85,7 @@ typedef void (^MPPasswordChangedBlock)(BOOL didChangePassword);
   if( self ) {
     _firstResponder = nil;
     _toolbarDelegate = [[MPToolbarDelegate alloc] init];
-    _outlineViewController = [[MPOutlineViewController alloc] init];
-    _entryViewController = [[MPEntryViewController alloc] init];
-    _inspectorViewController = [[MPInspectorViewController alloc] init];
+    _splitViewController = [[MPDocumentSplitViewController alloc] init];
     _documentWindowDelegate = [[MPDocumentWindowDelegate alloc] init];
   }
   return self;
@@ -108,15 +104,12 @@ typedef void (^MPPasswordChangedBlock)(BOOL didChangePassword);
   
   MPDocument *document = self.document;
   
-  [NSNotificationCenter.defaultCenter addObserver:self selector:@selector(_didRevertDocument:) name:MPDocumentDidRevertNotifiation object:document];
   [NSNotificationCenter.defaultCenter addObserver:self selector:@selector(_didUnlockDatabase:) name:MPDocumentDidUnlockDatabaseNotification object:document];
   [NSNotificationCenter.defaultCenter addObserver:self selector:@selector(_didAddEntry:) name:MPDocumentDidAddEntryNotification object:document];
   [NSNotificationCenter.defaultCenter addObserver:self selector:@selector(_didAddGroup:) name:MPDocumentDidAddGroupNotification object:document];
   [NSNotificationCenter.defaultCenter addObserver:self selector:@selector(_didLockDatabase:) name:MPDocumentDidLockDatabaseNotification object:document];
   
-  [self.entryViewController registerNotificationsForDocument:document];
-  [self.inspectorViewController registerNotificationsForDocument:document];
-  [self.outlineViewController registerNotificationsForDocument:document];
+  [self.splitViewController registerNotificationsForDocument:document];
   [self.toolbarDelegate registerNotificationsForDocument:document];
   
   self.toolbar = [[NSToolbar alloc] initWithIdentifier:@"MainWindowToolbar"];
@@ -131,31 +124,12 @@ typedef void (^MPPasswordChangedBlock)(BOOL didChangePassword);
   self.window.toolbar = self.toolbar;
   self.toolbarDelegate.toolbar = self.toolbar;
   
-  self.splitView.translatesAutoresizingMaskIntoConstraints = NO;
-  
-  NSView *outlineView = self.outlineViewController.view;
-  NSView *inspectorView = self.inspectorViewController.view;
-  NSView *entryView = self.entryViewController.view;
-  [self.splitView addSubview:outlineView];
-  [self.splitView addSubview:entryView];
-  [self.splitView addSubview:inspectorView];
-  
-  [self.splitView setHoldingPriority:NSLayoutPriorityDefaultLow+2 forSubviewAtIndex:0];
-  [self.splitView setHoldingPriority:NSLayoutPriorityDefaultLow+1 forSubviewAtIndex:2];
-  
-  BOOL showInspector = [NSUserDefaults.standardUserDefaults boolForKey:kMPSettingsKeyShowInspector];
-  if(!showInspector) {
-    [inspectorView removeFromSuperview];
-  }
-  
   if(document.encrypted) {
     [self showPasswordInput];
   }
   else {
     [self showEntries];
   }
-  
-  self.splitView.autosaveName = @"SplitView";
   
   /*
    TODO: Add display for database color?
@@ -169,40 +143,13 @@ typedef void (^MPPasswordChangedBlock)(BOOL didChangePassword);
   return self.toolbarDelegate.searchField;
 }
 
-- (void)_setContentViewController:(MPViewController *)viewController {
-  
-  NSView *newContentView = nil;
-  if(viewController && viewController.view) {
-    newContentView = viewController.view;
-  }
-  NSView *contentView = self.window.contentView;
-  NSView *oldSubView = nil;
-  if(contentView.subviews.count == 1) {
-    oldSubView = contentView.subviews.firstObject;
-  }
-  if(oldSubView == newContentView) {
-    return; // View is already present
-  }
-  [oldSubView removeFromSuperviewWithoutNeedingDisplay];
-  [contentView addSubview:newContentView];
-  [contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|[newContentView]|"
-                                                                      options:0
-                                                                      metrics:nil
-                                                                        views:NSDictionaryOfVariableBindings(newContentView)]];
-  
-  NSNumber *border = @([[self window] contentBorderThicknessForEdge:NSMinYEdge]);
-  [contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|[newContentView]-border-|"
-                                                                      options:0
-                                                                      metrics:NSDictionaryOfVariableBindings(border)
-                                                                        views:NSDictionaryOfVariableBindings(newContentView)]];
-  
-  [contentView layout];
-  [self.window makeFirstResponder:viewController.reconmendedFirstResponder];
+- (void)setContentViewController:(NSViewController *)contentViewController {
+  contentViewController.view.frame = self.window.contentView.frame;
+  [super setContentViewController:contentViewController];
 }
 
 #pragma mark MPDocument notifications
 - (void)_didRevertDocument:(NSNotification *)notification {
-  [self.outlineViewController clearSelection];
   [self showPasswordInput];
 }
 
@@ -261,7 +208,7 @@ typedef void (^MPPasswordChangedBlock)(BOOL didChangePassword);
   savePanel.allowedFileTypes = @[(id)kUTTypeXML];
   savePanel.canSelectHiddenExtension = YES;
   [savePanel beginSheetModalForWindow:self.window completionHandler:^(NSInteger result) {
-    if(result == NSFileHandlingPanelOKButton) {
+    if(result == NSModalResponseOK) {
       [document writeXMLToURL:savePanel.URL];
     }
   }];
@@ -277,9 +224,9 @@ typedef void (^MPPasswordChangedBlock)(BOOL didChangePassword);
   openPanel.prompt = NSLocalizedString(@"OPEN_BUTTON_IMPORT_XML_OPEN_PANEL", "Open button in the open panel to import an XML file");
   openPanel.message = NSLocalizedString(@"MESSAGE_XML_OPEN_PANEL", "Message in the open panel to import an XML file");
   [openPanel beginSheetModalForWindow:self.window completionHandler:^(NSInteger result) {
-    if(result == NSFileHandlingPanelOKButton) {
+    if(result == NSModalResponseOK) {
       [document readXMLfromURL:openPanel.URL];
-      [self.outlineViewController showOutline];
+      [self.splitViewController showOutline];
     }
   }];
 }
@@ -342,7 +289,7 @@ typedef void (^MPPasswordChangedBlock)(BOOL didChangePassword);
   openPanel.message = NSLocalizedString(@"SELECT_FILE_TO_MERGE", @"Message for the dialog to open a file for merge");
   //openPanel.allowedFileTypes = @[(id)kUTTypeXML];
   [openPanel beginSheetModalForWindow:self.window completionHandler:^(NSInteger result) {
-    if(result == NSFileHandlingPanelOKButton) {
+    if(result == NSModalResponseOK) {
       [document mergeWithContentsFromURL:openPanel.URL key:document.compositeKey];
     }
   }];
@@ -363,7 +310,7 @@ typedef void (^MPPasswordChangedBlock)(BOOL didChangePassword);
   if(!self.passwordInputController) {
     self.passwordInputController = [[MPPasswordInputController alloc] init];
   }
-  [self _setContentViewController:self.passwordInputController];
+  self.contentViewController = self.passwordInputController;
   [self.passwordInputController requestPasswordWithMessage:message cancelLabel:nil completionHandler:^BOOL(NSString *password, NSURL *keyURL, BOOL didCancel, NSError *__autoreleasing *error) {
     if(didCancel) {
       return NO;
@@ -469,27 +416,17 @@ typedef void (^MPPasswordChangedBlock)(BOOL didChangePassword);
 }
 
 - (void)pickExpiryDate:(id)sender {
-  [self.inspectorViewController pickExpiryDate:sender];
+  // FIXME: use propert responder chain
+   [self.splitViewController.inspectorViewController pickExpiryDate:sender];
 }
 
 - (void)showPluginData:(id)sender {
-  [self.inspectorViewController showPluginData:sender];
+  // FIXME: use propert responder chain
+  [self.splitViewController.inspectorViewController showPluginData:sender];
 }
 
 - (void)toggleInspector:(id)sender {
-  NSView *inspectorView = self.inspectorViewController.view;
-  BOOL inspectorWasVisible = [self _isInspectorVisible];
-  if(inspectorWasVisible) {
-    [inspectorView removeFromSuperview];
-  }
-  else {
-    [self.splitView addSubview:inspectorView];
-    [self.splitView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"[inspectorView(>=200)]"
-                                                                           options:0
-                                                                           metrics:nil
-                                                                             views:NSDictionaryOfVariableBindings(inspectorView)]];
-  }
-  [[NSUserDefaults standardUserDefaults] setBool:!inspectorWasVisible forKey:kMPSettingsKeyShowInspector];
+  [self.splitViewController toggleInspector:sender];
 }
 
 - (void)performAutotypeForEntry:(id)sender {
@@ -507,108 +444,58 @@ typedef void (^MPPasswordChangedBlock)(BOOL didChangePassword);
 }
 
 - (void)focusEntries:(id)sender {
-  [self.window makeFirstResponder:[self.entryViewController reconmendedFirstResponder]];
+  // FIXME: use propert responder chain
+  [self.window makeFirstResponder:[self.splitViewController.entryViewController reconmendedFirstResponder]];
 }
 
 - (void)focusGroups:(id)sender {
-  [self.window makeFirstResponder:[self.outlineViewController reconmendedFirstResponder]];
+  // FIXME: use propert responder chain
+  [self.window makeFirstResponder:[self.splitViewController.outlineViewController reconmendedFirstResponder]];
 }
 
 - (void)focusInspector:(id)sender {
-  [self.window makeFirstResponder:[self.inspectorViewController reconmendedFirstResponder]];
+  // FIXME: use propert responder chain
+  [self.window makeFirstResponder:[self.splitViewController.inspectorViewController reconmendedFirstResponder]];
 }
 
 - (void)showEntries {
-  NSView *contentView = self.window.contentView;
-  if(self.splitView == contentView) {
-    return; // We are displaying the entries already
-  }
-  if(contentView.subviews.count == 1) {
-    [contentView.subviews.firstObject removeFromSuperviewWithoutNeedingDisplay];
-  }
-  [contentView addSubview:self.splitView];
-  NSView *outlineView = self.outlineViewController.view;
-  NSView *inspectorView = self.inspectorViewController.view;
-  NSView *entryView = self.entryViewController.view;
-  
-  /*
-   The current easy way to prevent layout hiccups is to add the inspector
-   Add all needed constraints an then remove it again, if it was hidden
-   */
-  BOOL removeInspector = NO;
-  if(!inspectorView.superview) {
-    [self.splitView addSubview:inspectorView];
-    removeInspector = YES;
-  }
-  /* Maybe we should consider not double adding constraints */
-  NSDictionary *views = NSDictionaryOfVariableBindings(outlineView, inspectorView, entryView, _splitView);
-  [self.splitView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|[outlineView(>=150)]-1-[entryView(>=150)]-1-[inspectorView(>=200)]|"
-                                                                         options:0
-                                                                         metrics:nil
-                                                                           views:views]];
-  [self.splitView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|[outlineView]|"
-                                                                         options:0
-                                                                         metrics:nil
-                                                                           views:views]];
-  [self.splitView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|[entryView(>=200)]|"
-                                                                         options:0
-                                                                         metrics:nil
-                                                                           views:views]];
-  [self.splitView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|[inspectorView]|"
-                                                                         options:0
-                                                                         metrics:nil
-                                                                           views:views]];
-  
-  NSNumber *border = @([[self window] contentBorderThicknessForEdge:NSMinYEdge]);
-  [contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|[_splitView]-border-|"
-                                                                      options:0
-                                                                      metrics:NSDictionaryOfVariableBindings(border)
-                                                                        views:views]];
-  [contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|[_splitView]|"
-                                                                      options:0
-                                                                      metrics:nil
-                                                                        views:views]];
-  [self.outlineViewController showOutline];
-  
-  /* Restore the State the inspector view was in before the view change */
-  if(removeInspector) {
-    [inspectorView removeFromSuperview];
-  }
-  [contentView layoutSubtreeIfNeeded];
+  self.contentViewController = self.splitViewController;
+  [self.splitViewController showOutline];
+
 }
 
 - (void)showGroupInOutline:(id)sender {
-  NSArray<KPKEntry *> *targetEntries = self.entryViewController.currentTargetEntries;
+  NSArray<KPKEntry *> *targetEntries = self.splitViewController.entryViewController.currentTargetEntries;
   if(targetEntries.count != 1) {
     return;
   }
-  [self.outlineViewController selectGroup:targetEntries.lastObject.parent];
+  [self.splitViewController.outlineViewController selectGroup:targetEntries.lastObject.parent];
 }
 
 #pragma mark -
 #pragma mark Actions forwarded to MPEntryViewController
 - (void)copyUsername:(id)sender {
-  [self.entryViewController copyUsername:sender];
+  [self.splitViewController.entryViewController copyUsername:sender];
 }
 
 - (void)copyPassword:(id)sender {
-  [self.entryViewController copyPassword:sender];
+  [self.splitViewController.entryViewController copyPassword:sender];
 }
 
 - (void)copyCustomAttribute:(id)sender {
-  [self.entryViewController copyCustomAttribute:sender];
+  [self.splitViewController.entryViewController copyCustomAttribute:sender];
 }
 
 - (void)copyAsReference:(id)sender {
-  [self.entryViewController copyAsReference:sender];
+  [self.splitViewController.entryViewController copyAsReference:sender];
 }
 
 - (void)copyURL:(id)sender {
-  [self.entryViewController copyURL:sender];
+  [self.splitViewController.entryViewController copyURL:sender];
 }
 
 - (void)openURL:(id)sender {
-  [self.entryViewController openURL:sender];
+  [self.splitViewController.entryViewController openURL:sender];
 }
 
 #pragma mark Validation
@@ -622,7 +509,7 @@ typedef void (^MPPasswordChangedBlock)(BOOL didChangePassword);
   if(document.shouldEnforcePasswordChange) {
     NSAlert *alert = [[NSAlert alloc] init];
     
-    alert.alertStyle = NSCriticalAlertStyle;
+    alert.alertStyle = NSAlertStyleCritical;
     alert.messageText = NSLocalizedString(@"ENFORCE_PASSWORD_CHANGE_ALERT_TITLE", "Message text for the enforce password change alert");
     alert.informativeText = NSLocalizedString(@"ENFORCE_PASSWORD_CHANGE_ALERT_DESCRIPTION", "Informative text for the enforce password change alert");
     
@@ -653,7 +540,7 @@ typedef void (^MPPasswordChangedBlock)(BOOL didChangePassword);
   else if(document.shouldRecommendPasswordChange) {
     NSAlert *alert = [[NSAlert alloc] init];
     
-    alert.alertStyle = NSInformationalAlertStyle;
+    alert.alertStyle = NSAlertStyleInformational;
     alert.messageText = NSLocalizedString(@"RECOMMEND_PASSWORD_CHANGE_ALERT_TITLE", "Message text for the recommend password change alert");
     alert.informativeText = NSLocalizedString(@"RECOMMEND_PASSWORD_CHANGE_ALERT_DESCRIPTION", "Informative text for the recommend password change alert");
     
@@ -690,8 +577,8 @@ typedef void (^MPPasswordChangedBlock)(BOOL didChangePassword);
 #pragma mark UI Helper
 
 - (BOOL)_isInspectorVisible {
-  NSView *inspectorView = self.inspectorViewController.view;
-  return (nil != inspectorView.superview);
+  NSSplitViewItem *item = [self.splitViewController splitViewItemForViewController:self.splitViewController.inspectorViewController];
+  return !item.isCollapsed;
 }
 
 - (NSTouchBar *)makeTouchBar {

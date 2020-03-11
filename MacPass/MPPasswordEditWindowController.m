@@ -138,7 +138,7 @@
     savePanel.canCreateDirectories = YES;
     savePanel.title = NSLocalizedString(@"SAVE_KEYFILE", "Button title to save the generated key file");
     [savePanel beginWithCompletionHandler:^(NSInteger result) {
-      if(result == NSFileHandlingPanelOKButton) {
+      if(result == NSModalResponseOK) {
         NSURL *keyURL = [savePanel URL];
         NSError *error;
         BOOL saveOk = [data writeToURL:keyURL options:NSDataWritingAtomic error:&error];

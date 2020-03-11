@@ -88,7 +88,7 @@
   
   NSPanel *panel = [[NSPanel alloc] initWithContentRect:NSMakeRect(0, 0, 100, 100)
                                               styleMask:NSWindowStyleMaskNonactivatingPanel|NSWindowStyleMaskTitled|NSWindowStyleMaskResizable
-                                                backing:NSBackingStoreRetained
+                                                backing:NSBackingStoreBuffered
                                                   defer:YES];
   panel.level = NSScreenSaverWindowLevel;
   panel.contentViewController = pickFieldViewController;
@@ -112,7 +112,7 @@
   
   NSPanel *panel = [[NSPanel alloc] initWithContentRect:NSMakeRect(0, 0, 100, 100)
                                               styleMask:NSWindowStyleMaskNonactivatingPanel|NSWindowStyleMaskTitled|NSWindowStyleMaskResizable
-                                                backing:NSBackingStoreRetained
+                                                backing:NSBackingStoreBuffered
                                                   defer:YES];
   panel.level = NSScreenSaverWindowLevel;
   panel.contentViewController = pickCharViewController;
