@@ -998,6 +998,11 @@
 		BD6C366319484CF40089EB37 /* nl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.strings; lineEnding = 0; name = nl; path = nl.lproj/Localizable.strings; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.simpleColoring; };
 		BD6C366519484CF40089EB37 /* nl */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = nl; path = nl.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		BD6C366719484CF40089EB37 /* nl */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = nl; path = nl.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		D364AB1423FC104300AB1D8E /* pl */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = pl; path = pl.lproj/PickcharsView.strings; sourceTree = "<group>"; };
+		D364AB1523FC104300AB1D8E /* pl */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = pl; path = pl.lproj/OpenPanelAccessoryView.strings; sourceTree = "<group>"; };
+		D364AB1623FC104300AB1D8E /* pl */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = pl; path = pl.lproj/SavePanelAccessoryView.strings; sourceTree = "<group>"; };
+		D364AB1723FC104300AB1D8E /* pl */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = pl; path = pl.lproj/AutotypeDoctorReportViewController.strings; sourceTree = "<group>"; };
+		D364AB1823FC104300AB1D8E /* pl */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = pl; path = pl.lproj/PluginRepositoryBrowserView.strings; sourceTree = "<group>"; };
 		FA13910B1F9CD9EB0033D256 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.stringsdict; name = en; path = en.lproj/Localizable.stringsdict; sourceTree = "<group>"; };
 		FA13910E1F9CDB2D0033D256 /* pl */ = {isa = PBXFileReference; lastKnownFileType = text.plist.stringsdict; name = pl; path = pl.lproj/Localizable.stringsdict; sourceTree = "<group>"; };
 		FA638D0E1C39BFCB00B10CC6 /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/DatabaseSettingsWindow.strings; sourceTree = "<group>"; };
@@ -2167,6 +2172,7 @@
 				A083E27922DF467B0020E0D5 /* es */,
 				78E1F8B822E3B06700E738AE /* ru */,
 				71FF7A23230FEF11002F488F /* it */,
+				D364AB1423FC104300AB1D8E /* pl */,
 			);
 			name = PickcharsView.xib;
 			sourceTree = "<group>";
@@ -2214,6 +2220,7 @@
 				A083E27C22DF467B0020E0D5 /* es */,
 				78E1F8BC22E3B12300E738AE /* ru */,
 				71FF7A29230FF0E4002F488F /* it */,
+				D364AB1523FC104300AB1D8E /* pl */,
 			);
 			name = OpenPanelAccessoryView.xib;
 			sourceTree = "<group>";
@@ -2229,6 +2236,7 @@
 				A083E27D22DF467B0020E0D5 /* es */,
 				71FF7A19230FEA24002F488F /* it */,
 				ABAA99A4231519150095D78E /* zh-Hans */,
+				D364AB1623FC104300AB1D8E /* pl */,
 			);
 			name = SavePanelAccessoryView.xib;
 			sourceTree = "<group>";
@@ -2623,6 +2631,7 @@
 				A083E28022DF467B0020E0D5 /* es */,
 				71FF7A1B230FED35002F488F /* it */,
 				ABAA99A623151BE70095D78E /* zh-Hans */,
+				D364AB1823FC104300AB1D8E /* pl */,
 			);
 			name = PluginRepositoryBrowserView.xib;
 			sourceTree = "<group>";
@@ -2636,6 +2645,7 @@
 				ABE8662F2316617500201125 /* zh-Hans */,
 				78C093DB236A18560008577C /* ru */,
 				43B7080F240978E500F68426 /* fr */,
+				D364AB1723FC104300AB1D8E /* pl */,
 			);
 			name = AutotypeDoctorReportViewController.xib;
 			sourceTree = "<group>";
