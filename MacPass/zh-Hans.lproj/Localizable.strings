@@ -19,6 +19,12 @@
 /* Toolbar item with action menu */
 "ACTION" = "动作";
 
+/* Menu item title for adding an hmacotp config attribute */
+"ADD_CUSTOM_ATTRIBUTE_HMACOTP_CONFIG" = "添加 HMACOTP 配置";
+
+/* Menu item title for adding an hmacotp seed attribute */
+"ADD_CUSTOM_ATTRIBUTE_HMACOTP_SEED" = "新增 HMACOTP 种子";
+
 /* Action to add an entry via template */
 "ADD_TREMPLATE_ENTRY" = "创建模板项目";
 
@@ -44,7 +50,7 @@
 "ALERT_MERGE_CANCEL" = "取消";
 
 /* Button in dialog to merge KDB changes into file! */
-"ALERT_MERGE_CONTINUE" = "合并文件";
+"ALERT_MERGE_CONTINUE" = "合并文件！";
 
 /* Informative text displayed when merging KDB files */
 "ALERT_MERGE_KDB_FILE_INFO_TEXT" = "KDB 数据库没有包含足以进行无缝合并的信息。所有的项目将会被合并，不会有数据丢失。但是由于项目组仅通过名称来进行匹配，可能会有非预期的改变出现。项目可能会被还原到之前的组当中，重命名的组可能不会被合并，被删除的项目可能会重新出现。你确定想继续吗？";
@@ -83,13 +89,22 @@
 /* Notification: Autotype failed, no documents are open */
 "AUTOTYPE_NOTIFICATION_NO_DOCUMENTS_INFORMATIVE_TEXT" = "请打开一个数据库文件以使用全局自动键入！";
 
+/* Notification: Title for autotype feedback */
+"AUTOTYPE_NOTIFICATION_NO_DOCUMENTS_TITLE" = "没有打开的数据库！";
+
 /* Noticiation: Autotype failed to find a match for %@ (string placeholder) */
 "AUTOTYPE_NOTIFICATION_NO_MATCH_FOR_%@" = "没有找到匹配 %@！";
+
+/* Title for autotype feedback on missing permissions */
+"AUTOTYPE_NOTIFICATION_PERMISSIONS_MISSING_TITLE" = "缺失权限";
 
 /* Notification: Autotype found a single match for %@ (string placeholder). */
 "AUTOTYPE_NOTIFICATION_SINGLE_MATCH_FOR_%@" = "找到匹配 %@！";
 
-/* Status lable when no issue were found in accessibilty */
+/* Title for the notification when the Autotype operation timed out */
+"AUTOTYPE_NOTIFICATION_TIMED_OUT_TITLE" = "自动键入超时！";
+
+/* Status label when no issue were found in accessibilty */
 "AUTOTYPE_STATUS_ACCESSIBILTY_PERMISSIONS_OK" = "MacPass 有权限控制您的计算机（辅助功能）";
 
 /* Status MacPass has no accessibilty permissions */
@@ -98,7 +113,7 @@
 /* Status MacPass has no screen recording permissions */
 "AUTOTYPE_STATUS_NO_SCREEN_RECORDING_PERMISSIONS" = "MacPass 没有权限录制您的屏幕";
 
-/* Status lable when no issue were found in screen recording permissions */
+/* Status label when no issue were found in screen recording permissions */
 "AUTOTYPE_STATUS_SCREEN_RECORDING_PERMISSIONS_OK" = "MacPass 有权限录制您的屏幕";
 
 /* Notficication: Autotype timed out */
@@ -207,7 +222,7 @@
 /* Context menu that copies reference to username */
 "COPY_USERNAME_REFERENCE" = "用户名";
 
-/* Curstom attribute reference item */
+/* Custom attribute reference item */
 "CUSTOM_ATTRIBUTE" = "自定义属性";
 
 /* Default display name for KDB databases */
@@ -287,7 +302,7 @@
 /* Error description given when adding an invalid plugin */
 "ERROR_INVALID_PLUGIN" = "无效插件";
 
-/* Error description for missing accessibilty permissions */
+/* Error description for missing accessibility permissions */
 "ERROR_NO_ACCESSIBILITY_PERMISSIONS" = "MacPass 没有权限控制您的计算机（辅助功能）";
 
 /* Error description for missing screen recording permissions */
@@ -375,6 +390,9 @@
 
 /* Message in the add plugin open panel */
 "MESSAGE_ADD_PLUGIN_OPEN_PANEL" = "选择要安装的插件";
+
+/* Message in the open panel to import an XML file */
+"MESSAGE_XML_OPEN_PANEL" = "选择要导入的 XML 文件";
 
 /* Menu item to toggle display of modified date column in entry table
    Modification date column title */
@@ -544,6 +562,9 @@
 /* Search option: Find duplicate passwords */
 "SEARCH_DUPLICATE_PASSWORDS" = "重复的密码";
 
+/* Placeholder string displayed in the search field in the toolbar */
+"SEARCH_EVERYWHERE" = "全局搜索";
+
 /* Search option: Find expired entries */
 "SEARCH_EXPIRED_ENTRIES" = "已过期";
 
@@ -665,6 +686,12 @@
    UUID reference item */
 "UUID" = "UUID";
 
+/* Error message displayed when the current database file is also set as the key file */
+"WARNING_CURRENT_DATABASE_FILE_SELECTED_AS_KEY_FILE" = "不能使用当前的数据库文件作为密钥文件。";
+
+/* Error message displayed when a keepass database file is set as the key file */
+"WARNING_DATABASE_FILE_SELECTED_AS_KEY_FILE" = "不应使用另一个数据库文件作为密钥文件，因为它可能会发生变更，导致你无法使用该文件解锁当前数据库";
+
 /* No Key or Password */
 "WARNING_NO_PASSWORD_OR_KEYFILE" = "未提供密码或密钥文件！";
 
@@ -684,7 +711,10 @@
 "WARNING_ON_SAVE_NO_PASSWORD_OR_KEY_SET" = "没有设置密码/密钥文件";
 
 /* No comment provided by engineer. */
-"WARNING_ON_SAVE_NO_PASSWORD_OR_KEY_SET_SUGGESTION" = "请给这个数据库设置密码/密钥文件，终止操作将会撤销所有更改并锁定数据库。";
+"WARNING_ON_SAVE_NO_PASSWORD_OR_KEY_SET_SUGGESTION" = "请给这个数据库设置密码/密钥文件，终止操作将会撤销所有更改并锁定数据库";
+
+/* Text displayed when no recent documents can be displayed in */
+"WELCOME_WINDOW_NO_RECENT_DOCUMENTS" = "没有最近的文档";
 
 /* Label for the workflow settings tab */
 "WORKFLOW_SETTINGS" = "工作流";
