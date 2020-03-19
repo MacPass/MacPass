@@ -39,6 +39,7 @@ NSString *const MPPathControlDidSetURLNotification = @"MPPathControlDidSetURLNot
 }
 
 - (instancetype)initWithCoder:(NSCoder *)coder {
+  /* FIXME: this doesn't work well anymore. Need more work, see: https://www.mikeash.com/pyblog/custom-nscells-done-right.html */
   self = [super initWithCoder:coder];
     self.delegate = self;
   [self _setupCell];
