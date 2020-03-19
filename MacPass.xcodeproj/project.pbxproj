@@ -279,7 +279,7 @@
 		4CF29BF417879D0000851B60 /* 26_FileSaveTemplate.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 4CF29BF317879D0000851B60 /* 26_FileSaveTemplate.pdf */; };
 		4CF5BE6D1BF33E3000048505 /* NSApplication+MPAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CF5BE6C1BF33E3000048505 /* NSApplication+MPAdditions.m */; };
 		4CF6653820E67A140008A25C /* PluginDataView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4CF6653A20E67A140008A25C /* PluginDataView.xib */; };
-		4CF6C3021FBF39BF0055AD03 /* MPPluginTabelCellView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CF6C3011FBF39BF0055AD03 /* MPPluginTabelCellView.m */; };
+		4CF6C3021FBF39BF0055AD03 /* MPExtendedTableCellView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CF6C3011FBF39BF0055AD03 /* MPExtendedTableCellView.m */; };
 		4CF6C711176F4533007A811D /* MPStringLengthValueTransformer.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CF6C710176F4533007A811D /* MPStringLengthValueTransformer.m */; };
 		4CF78064176E75AD0032EE71 /* MPIntegrationPreferencesController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CF78063176E75AD0032EE71 /* MPIntegrationPreferencesController.m */; };
 		4CFB18E418A17FA20097A34B /* MPUpdatePreferencesController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CFB18E318A17FA20097A34B /* MPUpdatePreferencesController.m */; };
@@ -859,8 +859,8 @@
 		4CF5BE6C1BF33E3000048505 /* NSApplication+MPAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSApplication+MPAdditions.m"; sourceTree = "<group>"; };
 		4CF6653920E67A140008A25C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/PluginDataView.xib; sourceTree = "<group>"; };
 		4CF6653E20E67A1A0008A25C /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/PluginDataView.strings; sourceTree = "<group>"; };
-		4CF6C3001FBF39BF0055AD03 /* MPPluginTabelCellView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MPPluginTabelCellView.h; sourceTree = "<group>"; };
-		4CF6C3011FBF39BF0055AD03 /* MPPluginTabelCellView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MPPluginTabelCellView.m; sourceTree = "<group>"; };
+		4CF6C3001FBF39BF0055AD03 /* MPExtendedTableCellView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MPExtendedTableCellView.h; sourceTree = "<group>"; };
+		4CF6C3011FBF39BF0055AD03 /* MPExtendedTableCellView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MPExtendedTableCellView.m; sourceTree = "<group>"; };
 		4CF6C70F176F4533007A811D /* MPStringLengthValueTransformer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MPStringLengthValueTransformer.h; sourceTree = "<group>"; };
 		4CF6C710176F4533007A811D /* MPStringLengthValueTransformer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MPStringLengthValueTransformer.m; sourceTree = "<group>"; };
 		4CF78062176E75AD0032EE71 /* MPIntegrationPreferencesController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MPIntegrationPreferencesController.h; sourceTree = "<group>"; };
@@ -1100,8 +1100,8 @@
 				4CCEDE29179F203B008402BE /* MPOutlineView.m */,
 				4CE082C11F6FCD2A0034FF56 /* MPCollectionView.h */,
 				4CE082C21F6FCD2A0034FF56 /* MPCollectionView.m */,
-				4CF6C3001FBF39BF0055AD03 /* MPPluginTabelCellView.h */,
-				4CF6C3011FBF39BF0055AD03 /* MPPluginTabelCellView.m */,
+				4CF6C3001FBF39BF0055AD03 /* MPExtendedTableCellView.h */,
+				4CF6C3011FBF39BF0055AD03 /* MPExtendedTableCellView.m */,
 				4C0F043E2147A6FA000B8568 /* MPCustomFieldTableView.h */,
 				4C0F043F2147A6FA000B8568 /* MPCustomFieldTableView.m */,
 				4C370EFC215B76CB00703AAE /* MPOutlineTableCellView.h */,
@@ -2107,7 +2107,7 @@
 				4C5FE9AE17843CE20001D5A8 /* MPSelectedAttachmentTableCellView.m in Sources */,
 				4CC59C2721AF0893005E8D6B /* MPPathControl.m in Sources */,
 				4C3666411787327E00B249F1 /* MPDocument+Attachments.m in Sources */,
-				4CF6C3021FBF39BF0055AD03 /* MPPluginTabelCellView.m in Sources */,
+				4CF6C3021FBF39BF0055AD03 /* MPExtendedTableCellView.m in Sources */,
 				4C10412C178CDD44001B5239 /* NSDate+Humanized.m in Sources */,
 				4C58A4A32192EC1600B13370 /* NSIndexPath+MPAdditions.m in Sources */,
 				4C2F17A21FD69BCA0097418D /* MPUserNotificationCenterDelegate.m in Sources */,
