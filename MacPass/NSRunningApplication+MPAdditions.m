@@ -14,20 +14,19 @@
 NSString *const MPWindowTitleKey = @"MPWindowTitleKey";
 NSString *const MPProcessIdentifierKey = @"MPProcessIdentifierKey";
 
-NSSet<NSString *> *bogusWindowTitles() {
-  static NSSet<NSString *> *titles;
-  static dispatch_once_t onceToken;
-  dispatch_once(&onceToken, ^{
-    titles = [NSSet setWithArray:@[@"Item-0", @"Focus Proxy"]];
-  });
-  return titles;
-}
 
 BOOL skipWindowTitle(NSString *windowTitle) {
   if(windowTitle.length <= 0) {
     return YES;
   }
-  return [bogusWindowTitles() containsObject:windowTitle];
+  
+  static NSSet *titlesToSkip;
+  static dispatch_once_t onceToken;
+  dispatch_once(&onceToken, ^{
+    titlesToSkip = [NSSet setWithArray:@[@"Item-0", @"Focus Proxy"]];
+  });
+  
+  return [titlesToSkip containsObject:windowTitle];
 }
 
 @implementation NSRunningApplication (MPAdditions)
