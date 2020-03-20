@@ -117,6 +117,7 @@
 		4C45FB30178E0CE20010007D /* MPTestDocument.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C45FB2F178E0CE20010007D /* MPTestDocument.m */; };
 		4C46B88517063A070046109A /* NSString+MPPasswordCreation.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C46B88417063A070046109A /* NSString+MPPasswordCreation.m */; };
 		4C473A8718AFD85B0073FD2E /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4C473A8518AFD7250073FD2E /* XCTest.framework */; };
+		4C49CFD624252389004092E7 /* KPKEntry+MPTags.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C49CFD524252389004092E7 /* KPKEntry+MPTags.m */; };
 		4C4A100F176286FD00BBF2CA /* MPTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C4A100E176286FD00BBF2CA /* MPTableView.m */; };
 		4C4B728518E4B9B400A1A5D5 /* MPDockTileHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C4B728418E4B9B400A1A5D5 /* MPDockTileHelper.m */; };
 		4C4B7EE917A45EC6000234C7 /* MPDatePickingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C4B7EE717A45EC5000234C7 /* MPDatePickingViewController.m */; };
@@ -533,6 +534,8 @@
 		4C46B88317063A070046109A /* NSString+MPPasswordCreation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+MPPasswordCreation.h"; sourceTree = "<group>"; };
 		4C46B88417063A070046109A /* NSString+MPPasswordCreation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+MPPasswordCreation.m"; sourceTree = "<group>"; };
 		4C473A8518AFD7250073FD2E /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
+		4C49CFD424252389004092E7 /* KPKEntry+MPTags.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "KPKEntry+MPTags.h"; sourceTree = "<group>"; };
+		4C49CFD524252389004092E7 /* KPKEntry+MPTags.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "KPKEntry+MPTags.m"; sourceTree = "<group>"; };
 		4C4A100D176286FD00BBF2CA /* MPTableView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MPTableView.h; sourceTree = "<group>"; };
 		4C4A100E176286FD00BBF2CA /* MPTableView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MPTableView.m; sourceTree = "<group>"; };
 		4C4B2ED122D8CA6100EB6BFD /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/PluginRepositoryBrowserView.strings; sourceTree = "<group>"; };
@@ -1147,6 +1150,8 @@
 				3C0CDECE21CFEDD200B2A10B /* NSTextView+MPTouchBarExtension.m */,
 				4C2057F523CF3E9A00C731EC /* NSRunningApplication+MPAdditions.h */,
 				4C2057F623CF3E9A00C731EC /* NSRunningApplication+MPAdditions.m */,
+				4C49CFD424252389004092E7 /* KPKEntry+MPTags.h */,
+				4C49CFD524252389004092E7 /* KPKEntry+MPTags.m */,
 			);
 			name = Categories;
 			sourceTree = "<group>";
@@ -2049,6 +2054,7 @@
 				4C735FC02035FCBF00708D53 /* MPPluginEntryActionContext.m in Sources */,
 				4C61EA0316D2FD0800AC519E /* MPOutlineViewController.m in Sources */,
 				4C65C79C16DD283900E32CFF /* MPToolbarButton.m in Sources */,
+				4C49CFD624252389004092E7 /* KPKEntry+MPTags.m in Sources */,
 				4C431BCD16E2A82800700A81 /* MPPasteBoardController.m in Sources */,
 				4C6AEEF91A043E2B00CA2420 /* MPDocumentController.m in Sources */,
 				4C370EFE215B76CB00703AAE /* MPOutlineTableCellView.m in Sources */,
