@@ -18,7 +18,7 @@ NSSet<NSString *> *bogusWindowTitles() {
   static NSSet<NSString *> *titles;
   static dispatch_once_t onceToken;
   dispatch_once(&onceToken, ^{
-    titles = [NSSet setWithArray:@[@"Item-0"]];
+    titles = [NSSet setWithArray:@[@"Item-0", @"Focus Proxy"]];
   });
   return titles;
 }
