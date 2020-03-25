@@ -14,6 +14,21 @@
 NSString *const MPWindowTitleKey = @"MPWindowTitleKey";
 NSString *const MPProcessIdentifierKey = @"MPProcessIdentifierKey";
 
+
+BOOL skipWindowTitle(NSString *windowTitle) {
+  if(windowTitle.length <= 0) {
+    return YES;
+  }
+  
+  static NSSet *titlesToSkip;
+  static dispatch_once_t onceToken;
+  dispatch_once(&onceToken, ^{
+    titlesToSkip = [NSSet setWithArray:@[@"Item-0", @"Focus Proxy"]];
+  });
+  
+  return [titlesToSkip containsObject:windowTitle];
+}
+
 @implementation NSRunningApplication (MPAdditions)
 
 - (NSDictionary *)mp_infoDictionary {
@@ -23,7 +38,8 @@ NSString *const MPProcessIdentifierKey = @"MPProcessIdentifierKey";
   NSDictionary *infoDict = nil;
   for(NSDictionary *windowDict in currentWindows) {
     NSString *windowTitle = windowDict[(NSString *)kCGWindowName];
-    if(windowTitle.length <= 0) {
+    /* skip a list of well know useless window-titles */
+    if(skipWindowTitle(windowTitle)) {
       continue;
     }
     NSNumber *processId = windowDict[(NSString *)kCGWindowOwnerPID];

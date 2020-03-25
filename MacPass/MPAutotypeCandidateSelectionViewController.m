@@ -23,6 +23,7 @@
 #import "MPAutotypeContext.h"
 #import "MPAutotypeDaemon.h"
 #import "MPAutotypeEnvironment.h"
+#import "MPExtendedTableCellView.h"
 
 #import "KPKNode+IconImage.h"
 
@@ -59,12 +60,10 @@
 #pragma mark NSTableViewDelegate
 
 - (NSView *)tableView:(NSTableView *)tableView viewForTableColumn:(NSTableColumn *)tableColumn row:(NSInteger)row {
-  NSTableCellView *view = [tableView makeViewWithIdentifier:tableColumn.identifier owner:self];
+  MPExtendedTableCellView *view = [tableView makeViewWithIdentifier:tableColumn.identifier owner:self];
   MPAutotypeContext *context = self.candidates[row];
-  NSString *maskedEvaluatedCommand = context.maskedEvaluatedCommand;
-  NSMutableAttributedString *string = [[NSMutableAttributedString alloc] initWithString:[NSString stringWithFormat:@"%@\n%@", context.entry.title, maskedEvaluatedCommand]];
-  [string setAttributes:@{NSForegroundColorAttributeName: NSColor.disabledControlTextColor} range:NSMakeRange((string.length - maskedEvaluatedCommand.length), maskedEvaluatedCommand.length)];
-  view.textField.attributedStringValue = string;
+  view.addionalTextField.stringValue = context.maskedEvaluatedCommand;
+  view.textField.stringValue = context.entry.title;
   view.imageView.image = context.entry.iconImage;
   return view;
 }

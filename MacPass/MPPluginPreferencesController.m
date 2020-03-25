@@ -21,7 +21,7 @@
 //
 
 #import "MPPluginPreferencesController.h"
-#import "MPPluginTabelCellView.h"
+#import "MPExtendedTableCellView.h"
 #import "MPPluginHost.h"
 #import "MPPlugin.h"
 #import "MPPlugin_Private.h"
@@ -98,7 +98,7 @@ typedef NS_ENUM(NSUInteger, MPPluginSegmentType) {
 
 - (NSView *)tableView:(NSTableView *)tableView viewForTableColumn:(NSTableColumn *)tableColumn row:(NSInteger)row {
   MPPlugin *plugin = [self pluginForRow:row];
-  MPPluginTabelCellView *view = [tableView makeViewWithIdentifier:tableColumn.identifier owner:nil];
+  MPExtendedTableCellView *view = [tableView makeViewWithIdentifier:tableColumn.identifier owner:nil];
   if(plugin.enabled) {
     view.textField.stringValue = plugin.name;
   }
