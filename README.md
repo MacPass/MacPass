@@ -11,7 +11,7 @@ MacPass is an attempt to create a native macOS port of KeePass on a solid open s
 
 All pre-built releases can be found at [Github](https://github.com/mstarke/MacPass/releases).
 
-An unsigned build of the current contiuous tag can be found here: [Continuous Build](https://github.com/mstarke/MacPass/releases/tag/continuous)
+An unsigned build of the current continuous tag can be found here: [Continuous Build](https://github.com/mstarke/MacPass/releases/tag/continuous)
 
 Due to the nature of the build it might be unstable, however this version contains all the latest changes and bug fixes!
 
