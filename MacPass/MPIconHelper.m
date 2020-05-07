@@ -177,7 +177,7 @@
     return; // no url, no handler so no need to do anything
   }
 
-  NSString *urlString = [NSString stringWithFormat:@"%@://%@/favicon.ico", url.scheme, url.host ? url.host : @""];
+  NSString *urlString = [NSString stringWithFormat:@"https://icons.duckduckgo.com/ip3/%@.ico", url.host ? url.host : @""];
   NSURL *favIconURL = [NSURL URLWithString:urlString];
   if(!favIconURL) {
     /* call the handler with nil data */
