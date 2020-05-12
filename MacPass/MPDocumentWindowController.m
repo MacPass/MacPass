@@ -146,6 +146,14 @@ typedef void (^MPPasswordChangedBlock)(BOOL didChangePassword);
 - (void)setContentViewController:(NSViewController *)contentViewController {
   contentViewController.view.frame = self.window.contentView.frame;
   [super setContentViewController:contentViewController];
+  if([contentViewController isKindOfClass:MPViewController.class]) {
+    /* enqueue async into main to catch some cases, where the UI would not set the responder correctly */
+    MPDocumentWindowController * __weak welf = self;
+    dispatch_async(dispatch_get_main_queue(), ^{
+        NSResponder *responder = ((MPViewController *)contentViewController).reconmendedFirstResponder;
+        [welf.window makeFirstResponder:responder];
+    });
+  }
 }
 
 #pragma mark MPDocument notifications
