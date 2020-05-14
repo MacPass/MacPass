@@ -91,11 +91,14 @@ APPKIT_EXTERN NSString *const kMPSettingsKeyHideIncopatiblePluginsWarning;  // D
 APPKIT_EXTERN NSString *const kMPSettingsKeyAllowRemoteFetchOfPluginRepository; // Allow the download of the plugin repository file
 APPKIT_EXTERN NSString *const kMPSettingsKeyPluginHideAksForRemoveConnectionPermission;
 
+/* Network */
+APPKIT_EXTERN NSString *const kMPSettingsKeyFaviconDownloadMethod;
+
 typedef NS_ENUM(NSUInteger, MPFileChangeStrategy) {
   MPFileChangeStrategyAsk,
   MPFileChangeStrategyKeepMine,
   MPFileChangeStrategyUseOther,
-  MPFileChangeStrategyMerge
+  MPFileChangeStrategyMerge,
 };
 
 typedef NS_ENUM(NSUInteger, MPDoubleClickURLAction) {
@@ -106,6 +109,12 @@ typedef NS_ENUM(NSUInteger, MPDoubleClickURLAction) {
 typedef NS_ENUM(NSUInteger, MPDoubleClickTitleAction) {
   MPDoubleClickTitleActionInspect,
   MPDoubleClickTitleActionIgnore,
+};
+
+typedef NS_ENUM(NSUInteger, MPFaviconDownloadMethod) {
+  MPFaviconDownloadMethodDirect,
+  MPFaviconDownloadMethodDuckDuckGo,
+  MPFaviconDownloadMethodGoogle,
 };
 
 /* Password Generation */

@@ -19,6 +19,7 @@
                 <outlet property="preventUniversalClipboardSupportCheckButton" destination="nqZ-rB-mFS" id="sbx-rl-reT"/>
                 <outlet property="rememberKeyFileCheckButton" destination="bSt-Wf-FNZ" id="aQm-EA-yAN"/>
                 <outlet property="reopenLastDatabase" destination="530" id="878"/>
+                <outlet property="faviconDownloadMethodPopup" destination="OfU-6f-oTU" id="OfU-6f-oTU-outlet"/>
                 <outlet property="view" destination="1" id="82"/>
             </connections>
         </customObject>
@@ -299,18 +300,12 @@
                                     <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                 </textFieldCell>
                             </textField>
-                            <popUpButton autoresizesSubviews="NO" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="OfU-6f-oTU">
+                            <popUpButton verticalHuggingPriority="750" horizontalCompressionResistancePriority="749" translatesAutoresizingMaskIntoConstraints="NO" id="OfU-6f-oTU">
                                 <rect key="frame" x="131" y="76" width="147" height="25"/>
-                                <popUpButtonCell key="cell" type="push" title="Directly from host" bezelStyle="rounded" alignment="left" lineBreakMode="truncatingTail" state="on" borderStyle="borderAndBezel" imageScaling="proportionallyDown" inset="2" selectedItem="XTu-8S-WEL" id="mdi-Go-1bJ">
+                                <popUpButtonCell key="cell" type="push" bezelStyle="rounded" alignment="left" lineBreakMode="truncatingTail" borderStyle="borderAndBezel" imageScaling="proportionallyDown" inset="2" id="mdi-Go-1bJ">
                                     <behavior key="behavior" lightByBackground="YES" lightByGray="YES"/>
                                     <font key="font" metaFont="system"/>
-                                    <menu key="menu" id="Xnp-a8-ePw">
-                                        <items>
-                                            <menuItem title="Directly from host" state="on" id="XTu-8S-WEL"/>
-                                            <menuItem title="DuckDuckGo" id="njR-79-0Tj"/>
-                                            <menuItem title="Google" id="rld-jD-gNm"/>
-                                        </items>
-                                    </menu>
+                                    <menu key="menu" id="Xnp-a8-ePw"/>
                                 </popUpButtonCell>
                             </popUpButton>
                         </subviews>
