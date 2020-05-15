@@ -56,6 +56,19 @@
   [self.enableAutosaveCheckButton bind:NSValueBinding toObject:defaultsController withKeyPath:[MPSettingsHelper defaultControllerPathForKey:kMPSettingsKeyEnableAutosave] options:nil];
   [self.rememberKeyFileCheckButton bind:NSValueBinding toObject:defaultsController withKeyPath:[MPSettingsHelper defaultControllerPathForKey:kMPSettingsKeyRememberKeyFilesForDatabases] options:nil];
 
+  /* Favicon download method menu */
+  NSDictionary *faviconDownloadMethodDict = @{ @(MPFaviconDownloadMethodDirect) : NSLocalizedString(@"FAVICON_DOWNLOAD_METHOD_DIRECT", @"Favicon download method: directly download from the host"),
+                                               @(MPFaviconDownloadMethodDuckDuckGo) : NSLocalizedString(@"FAVICON_DOWNLOAD_METHOD_DUCKDUCKGO", @"Favicon download method: use DuckDuckGo's favicon fetching service"),
+                                               @(MPFaviconDownloadMethodGoogle) : NSLocalizedString(@"FAVICON_DOWNLOAD_METHOD_GOOGLE", @"Favicon download method: use Google's favicon fetching service"),
+                                               };
+  [self.faviconDownloadMethodPopup.menu removeAllItems];
+  for(NSNumber *key in faviconDownloadMethodDict) {
+    NSMenuItem *item = [[NSMenuItem alloc] initWithTitle:faviconDownloadMethodDict[key] action:NULL keyEquivalent:@""];
+    item.tag = key.integerValue;
+    [self.faviconDownloadMethodPopup.menu addItem:item];
+  }
+  [self.faviconDownloadMethodPopup bind:NSSelectedTagBinding toObject:defaultsController withKeyPath:[MPSettingsHelper defaultControllerPathForKey:kMPSettingsKeyFaviconDownloadMethod] options:nil];
+
   /* File Change Strategy Menu */
   NSDictionary *fileChangeStragegyDict = @{ @(MPFileChangeStrategyAsk) : NSLocalizedString(@"FILE_CHANGE_STRATEGY_ASK", @"External file change strategy option: ask what to do"),
                                             @(MPFileChangeStrategyUseOther) : NSLocalizedString(@"FILE_CHANGE_STRATEGY_USE_OTHER", @"External file change strategy option: Use the changed file and discard local changes"),
@@ -69,6 +82,6 @@
     [self.fileChangeStrategyPopup.menu addItem:item];
   }
   [self.fileChangeStrategyPopup bind:NSSelectedTagBinding toObject:defaultsController withKeyPath:[MPSettingsHelper defaultControllerPathForKey:kMPSettingsKeyFileChangeStrategy] options:nil];
-  
+
 }
 @end

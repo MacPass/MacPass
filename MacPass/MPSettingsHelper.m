@@ -87,6 +87,8 @@ NSString *const kMPSettingsKeyDisabledPlugins                         = @"Disabl
 NSString *const kMPSettingsKeyHideIncopatiblePluginsWarning           = @"HideIncopatiblePluginsWarning";
 NSString *const kMPSettingsKeyAllowRemoteFetchOfPluginRepository      = @"AllowRemoteFetchOfPluginRepository";
 
+NSString *const kMPSettingsKeyFaviconDownloadMethod                   = @"FaviconDownloadMethod";
+
 /* Deprecated */
 NSString *const kMPDeprecatedSettingsKeyRememberKeyFilesForDatabases      = @"kMPSettingsKeyRememberKeyFilesForDatabases";
 NSString *const kMPDeprecatedSettingsKeyLastDatabasePath                  = @"MPLastDatabasePath";
@@ -164,7 +166,8 @@ NSString *const kMPDepricatedSettingsKeyAutotypeHideAccessibiltyWarning   = @"Au
                          kMPSettingsKeyLoadIncompatiblePlugins: @NO,
                          kMPSettingsKeyQuitOnLastWindowClose: @NO,
                          kMPSettingsKeyEnableAutosave: @YES,
-                         kMPSettingsKeyHideAfterCopyToClipboard: @NO
+                         kMPSettingsKeyHideAfterCopyToClipboard: @NO,
+                         kMPSettingsKeyFaviconDownloadMethod: @(MPFaviconDownloadMethodDirect) // Download directly from host
                          };
   });
   return standardDefaults;
@@ -203,17 +206,17 @@ NSString *const kMPDepricatedSettingsKeyAutotypeHideAccessibiltyWarning   = @"Au
   /*
    MacPass < 0.4 did use compare: for the entry table view,
    this was changed in 0.4 to localizedCaseInsensitiveCompare:
-   
+
    MacPass < 0.5.2 did use parent.name for group names,
    this was changed in 0.6. to parent.title
-   
+
    */
   NSData *descriptorData = [NSUserDefaults.standardUserDefaults dataForKey:kMPSettingsKeyEntryTableSortDescriptors];
   if(!descriptorData) {
     return; // No user defaults
   }
   NSArray *sortDescriptors = [NSKeyedUnarchiver unarchiveObjectWithData:descriptorData];
-  
+
   for(NSSortDescriptor *descriptor in sortDescriptors) {
     /* Brute force, just kill the settings if they might cause trouble */
     if(descriptor.selector == @selector(compare:)
@@ -291,7 +294,7 @@ NSString *const kMPDepricatedSettingsKeyAutotypeHideAccessibiltyWarning   = @"Au
   if(oldValue != [[self _standardDefaults][kMPDepricatedSettingsKeyLoadUnsecurePlugins] boolValue]) {
     [NSUserDefaults.standardUserDefaults setBool:oldValue forKey:kMPSettingsKeyLoadUnsecurePlugins];
   }
-  
+
 }
 
 @end
