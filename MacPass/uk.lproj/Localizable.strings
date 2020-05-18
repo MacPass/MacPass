@@ -38,7 +38,7 @@
 "ADD_TREMPLATE_ENTRY" = "Створити шаблонний запис";
 
 /* Allow the download of the plugin repository file */
-"ALERT_ASK_FOR_PLUGIN_REPOSITORY_ALLOW_DOWNLOAD" = "Дозволити оновлення сниску";
+"ALERT_ASK_FOR_PLUGIN_REPOSITORY_ALLOW_DOWNLOAD" = "Дозволити оновлення списку";
 
 /* Informative text displayed on the alert that shows up when MacPass asks for permssion to download the plugin repository JSON file */
 "ALERT_ASK_FOR_PLUGIN_REPOSITORY_CONNECTION_PERMISSION_INFORMATIVE_TEXT" = "Інформація про плагіни знаходиться на сайті https://macpassapp.org. MacPass скачає файли для перевірки наявності оновлень.";
@@ -56,7 +56,7 @@
 "ALERT_INCOMPATIBLE_PLUGINS_ENCOUNTERED_BUTTON_OPEN_PREFERENCES" = "Відкрити налаштування";
 
 /* Informative text of the alert displayed when plugins where disabled due to incompatibilty */
-"ALERT_INCOMPATIBLE_PLUGINS_ENCOUNTERED_INFORMATIVE_TEXT" = "Деякі плагіни було відключено, сокільки вони не сумісні з цією версією MacPass. Відкрийте налаштування плагіна для деталей.";
+"ALERT_INCOMPATIBLE_PLUGINS_ENCOUNTERED_INFORMATIVE_TEXT" = "Деякі плагіни було відключено, оскільки вони не сумісні з цією версією MacPass. Відкрийте налаштування плагіна для деталей.";
 
 /* Message text of the alert displayed when plugins where disabled due to incompatibilty */
 "ALERT_INCOMPATIBLE_PLUGINS_ENCOUNTERED_MESSAGE" = "Incompatible Plugins detected.";
@@ -80,7 +80,7 @@
 "ALERT_MERGE_KDB_FILE_MESSAGE" = "Необхідне злиття KDB файлів";
 
 /* Alert message text when plugins or their settings change and require a restart */
-"ALERT_MESSAGE_PLUGINS_CHANGED_SUGGEST_RESTART" = "Змінились налаштування глагіна. Перезапустіть програму, будь ласка.";
+"ALERT_MESSAGE_PLUGINS_CHANGED_SUGGEST_RESTART" = "Змінились налаштування плагіна. Перезапустіть програму, будь ласка.";
 
 /* Alert message text to ask the user if he really want to uninstall the plugin. Include %@ placeholder for plugin name */
 "ALERT_MESSAGE_TEXT_REALLY_UNINSTALL_PLUGIN_%@" = "Плагін %@ справді треба видалити?";
