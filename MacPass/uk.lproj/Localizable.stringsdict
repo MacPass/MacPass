@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>DUPLICATE_GROUPS_ACTION_NAME</key>
+	<dict>
+		<key>NSStringLocalizedFormatKey</key>
+		<string>%#@groups@</string>
+		<key>groups</key>
+		<dict>
+			<key>NSStringFormatValueTypeKey</key>
+			<string>ld</string>
+			<key>NSStringFormatSpecTypeKey</key>
+			<string>NSStringPluralRuleType</string>
+			<key>one</key>
+			<string>Duplicate Group</string>
+			<key>other</key>
+			<string>Duplicate Groups</string>
+		</dict>
+	</dict>
+	<key>%ld_CHARACTERS_TO_PICK_REMAINING</key>
+	<dict>
+		<key>NSStringLocalizedFormatKey</key>
+		<string>%#@characters@</string>
+		<key>characters</key>
+		<dict>
+			<key>NSStringFormatSpecTypeKey</key>
+			<string>NSStringPluralRuleType</string>
+			<key>NSStringFormatValueTypeKey</key>
+			<string>ld</string>
+			<key>one</key>
+			<string>One character remaining</string>
+			<key>other</key>
+			<string>%ld characters remaining</string>
+			<key>zero</key>
+			<string>All characters picked</string>
+		</dict>
+	</dict>
+	<key>DUPLICATE_ENTRIES_ACTION_NAME</key>
+	<dict>
+		<key>NSStringLocalizedFormatKey</key>
+		<string>%#@entries@</string>
+		<key>entries</key>
+		<dict>
+			<key>NSStringFormatSpecTypeKey</key>
+			<string>NSStringPluralRuleType</string>
+			<key>NSStringFormatValueTypeKey</key>
+			<string>ld</string>
+			<key>one</key>
+			<string>Duplicate Entry</string>
+			<key>other</key>
+			<string>Duplicate Entries</string>
+			<key>zero</key>
+			<string>Duplicate Entries</string>
+		</dict>
+	</dict>
+	<key>EVERY_%ld_DAYS</key>
+	<dict>
+		<key>NSStringLocalizedFormatKey</key>
+		<string>%#@days@</string>
+		<key>days</key>
+		<dict>
+			<key>NSStringFormatSpecTypeKey</key>
+			<string>NSStringPluralRuleType</string>
+			<key>NSStringFormatValueTypeKey</key>
+			<string>ld</string>
+			<key>one</key>
+			<string>every day</string>
+			<key>other</key>
+			<string>every %ld days</string>
+			<key>zero</key>
+			<string>after each unlock</string>
+		</dict>
+	</dict>
+	<key>PICKCHAR_INFO_MESSAGE_PICK_CHARACTERS_%ld</key>
+	<dict>
+		<key>NSStringLocalizedFormatKey</key>
+		<string>%#@characters@</string>
+		<key>characters</key>
+		<dict>
+			<key>NSStringFormatSpecTypeKey</key>
+			<string>NSStringPluralRuleType</string>
+			<key>NSStringFormatValueTypeKey</key>
+			<string>ld</string>
+			<key>one</key>
+			<string>Please pick a single character to use</string>
+			<key>other</key>
+			<string>Please pick %ld characters to use</string>
+			<key>zero</key>
+			<string>Please pick the characters to use</string>
+		</dict>
+	</dict>
+	<key>PICKED_%ld_CHARACTERS</key>
+	<dict>
+		<key>NSStringLocalizedFormatKey</key>
+		<string>%#@characters@</string>
+		<key>characters</key>
+		<dict>
+			<key>NSStringFormatSpecTypeKey</key>
+			<string>NSStringPluralRuleType</string>
+			<key>NSStringFormatValueTypeKey</key>
+			<string>ld</string>
+			<key>one</key>
+			<string>%ld character picked</string>
+			<key>other</key>
+			<string>%ld characters picked</string>
+			<key>zero</key>
+			<string>No characters picked</string>
+		</dict>
+	</dict>
+</dict>
+</plist>
