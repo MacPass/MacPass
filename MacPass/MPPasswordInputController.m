@@ -32,6 +32,8 @@
 
 #import "NSError+Messages.h"
 
+static NSMutableDictionary* touchIDSecuredPasswords;
+
 @interface MPPasswordInputController ()
 
 @property (strong) NSButton *showPasswordButton;
@@ -44,6 +46,7 @@
 @property (weak) IBOutlet NSButton *enablePasswordCheckBox;
 @property (weak) IBOutlet NSButton *unlockButton;
 @property (weak) IBOutlet NSButton *cancelButton;
+@property (weak) IBOutlet NSButton *touchIdButton;
 
 @property (copy) NSString *message;
 @property (copy) NSString *cancelLabel;
@@ -64,6 +67,9 @@
   self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
   if(self) {
     _enablePassword = YES;
+    if(touchIDSecuredPasswords == NULL) {
+      touchIDSecuredPasswords = [[NSMutableDictionary alloc]init];
+    }
     [NSNotificationCenter.defaultCenter addObserver:self selector:@selector(_selectKeyURL) name:MPDidChangeStoredKeyFilesSettings object:nil];
   }
   return self;
@@ -129,6 +135,9 @@
   BOOL cancel = (sender == self.cancelButton);
   BOOL result = self.completionHandler(password, self.keyPathControl.URL, cancel, &error);
   if(cancel || result) {
+    if(result && self.keyPathControl.URL == nil) {
+      [self _storePasswordForTouchIDUnlock:password forDatabase:@"DatabaseID"];
+    }
     return;
   }
   [self _showError:error];
@@ -136,6 +145,150 @@
   if(!self.view.window.isSheet) {
     [self.view.window shakeWindow:nil];
   }
+}
+
+- (void) _createAndAddRSAKeyPair {
+  CFErrorRef error = NULL;
+  NSString* publicKeyLabel =  @"MacPass TouchID Feature Public Key";
+  NSString* privateKeyLabel = @"MacPass TouchID Feature Private Key";
+  NSData* publicKeyTag =  [@"com.hicknhacksoftware.macpass.publickey"  dataUsingEncoding:NSUTF8StringEncoding];
+  NSData* privateKeyTag = [@"com.hicknhacksoftware.macpass.privatekey" dataUsingEncoding:NSUTF8StringEncoding];
+  SecAccessControlRef access = NULL;
+  if (@available(macOS 10.13.4, *)) {
+    access = SecAccessControlCreateWithFlags(kCFAllocatorDefault,
+                                             kSecAttrAccessibleWhenUnlockedThisDeviceOnly,
+                                             kSecAccessControlBiometryCurrentSet,
+                                             &error);
+    if(access == NULL) {
+      NSError *err = CFBridgingRelease(error);
+      NSLog(@"Error while trying to create AccessControl for TouchID unlock feature: %@", [err description]);
+      return;
+    }
+    NSDictionary* attributes = @{
+      (id)kSecAttrKeyType:        (id)kSecAttrKeyTypeRSA,
+      (id)kSecAttrKeySizeInBits:  @2048,
+      (id)kSecAttrSynchronizable: @NO,
+      (id)kSecPrivateKeyAttrs:
+           @{ (id)kSecAttrIsPermanent:    @YES,
+              (id)kSecAttrApplicationTag: privateKeyTag,
+              (id)kSecAttrLabel: privateKeyLabel,
+              (id)kSecAttrAccessControl:  (__bridge id)access
+            },
+      (id)kSecPublicKeyAttrs:
+           @{ (id)kSecAttrIsPermanent:    @YES,
+              (id)kSecAttrApplicationTag: publicKeyTag,
+              (id)kSecAttrLabel: publicKeyLabel,
+            },
+    };
+    SecKeyRef privateKey = NULL;
+    SecKeyRef publicKey = NULL;
+    OSStatus result = SecKeyGeneratePair((__bridge CFDictionaryRef)attributes, &privateKey, &publicKey);
+    if(result == errSecSuccess) {
+      CFRelease(publicKey);
+      CFRelease(privateKey);
+    }
+    else {
+      NSString* description = (__bridge NSString*)SecCopyErrorMessageString(result, NULL);
+      NSLog(@"Error while trying to create a RSA keypair for TouchID unlock feature: %@", description);
+    }
+  }
+  else {
+    return;
+  }
+}
+
+- (void) _storePasswordForTouchIDUnlock: (NSString*) password forDatabase: (NSString*) databaseId {
+  NSData* passwordData = [password dataUsingEncoding:NSUTF8StringEncoding];
+  NSData* tag = [@"com.hicknhacksoftware.macpass.publickey" dataUsingEncoding:NSUTF8StringEncoding];
+  NSDictionary *getquery = @{
+    (id)kSecClass: (id)kSecClassKey,
+    (id)kSecAttrApplicationTag: tag,
+    (id)kSecReturnRef: @YES,
+  };
+  SecKeyRef publicKey = NULL;
+  OSStatus status = SecItemCopyMatching((__bridge CFDictionaryRef)getquery, (CFTypeRef *)&publicKey);
+  if (status != errSecSuccess) {
+    [self _createAndAddRSAKeyPair];
+    OSStatus status = SecItemCopyMatching((__bridge CFDictionaryRef)getquery, (CFTypeRef *)&publicKey);
+    if (status != errSecSuccess) {
+      NSString* description = (__bridge NSString*)SecCopyErrorMessageString(status, NULL);
+      NSLog(@"Error while trying to query public key from Keychain: %@", description);
+      return;
+    }
+  }
+  SecKeyAlgorithm algorithm = kSecKeyAlgorithmRSAEncryptionOAEPSHA512;
+  BOOL canEncrypt = SecKeyIsAlgorithmSupported(publicKey, kSecKeyOperationTypeEncrypt, algorithm);
+  if(canEncrypt) {
+    int k = (int)SecKeyGetBlockSize(publicKey);
+    int hlen = 512 / 8;
+    int maxMessageLengthInByte = k - 2 * hlen - 2;
+    if([passwordData length] <= maxMessageLengthInByte) {
+      CFErrorRef error = NULL;
+      NSData* cipherText = (NSData*)CFBridgingRelease(SecKeyCreateEncryptedData(publicKey, algorithm, (__bridge CFDataRef)passwordData, &error));
+      if (cipherText) {
+        [touchIDSecuredPasswords setObject:cipherText forKey:databaseId];
+      }
+      else {
+        NSError *err = CFBridgingRelease(error);
+        NSLog(@"Error while trying decrypt password for TouchID unlock: %@", [err description]);
+      }
+    }
+    else {
+      NSLog(@"The password is to large to be encrypted");
+      return;
+    }
+  }
+  else {
+      NSLog(@"The key retreived from the Keychain is unable to encrypt data");
+  }
+  if (publicKey)  { CFRelease(publicKey);  }
+}
+
+- (NSString*) _loadPasswordForTochIDUnlock: (NSString*) databaseId {
+  NSString* result = nil;
+  NSData* cipherText = [touchIDSecuredPasswords valueForKey:databaseId];
+  if(cipherText != nil) {
+    NSData* tag = [@"com.hicknhacksoftware.macpass.privatekey" dataUsingEncoding:NSUTF8StringEncoding];
+    NSDictionary *queryPrivateKey = @{
+      (id)kSecClass: (id)kSecClassKey,
+      (id)kSecAttrApplicationTag: tag,
+      (id)kSecAttrKeyType: (id)kSecAttrKeyTypeRSA,
+      (id)kSecReturnRef: @YES,
+    };
+    SecKeyRef privateKey = NULL;
+    OSStatus status = SecItemCopyMatching((__bridge CFDictionaryRef)queryPrivateKey, (CFTypeRef *)&privateKey);
+    if (status == errSecSuccess) {
+      SecKeyAlgorithm algorithm = kSecKeyAlgorithmRSAEncryptionOAEPSHA512;
+      BOOL canDecrypt = SecKeyIsAlgorithmSupported(privateKey, kSecKeyOperationTypeDecrypt, algorithm);
+      if(canDecrypt) {
+        if([cipherText length] == SecKeyGetBlockSize(privateKey)) {
+          CFErrorRef error = NULL;
+          NSData* clearText = (NSData*)CFBridgingRelease(SecKeyCreateDecryptedData(privateKey, algorithm, (__bridge CFDataRef)cipherText, &error));
+          if (clearText) {
+            result = [[NSString alloc]initWithData:clearText encoding:NSUTF8StringEncoding];
+          }
+          else {
+            NSError *err = CFBridgingRelease(error);
+            NSLog(@"Error while trying decrypt password for TouchID unlock: %@", [err description]);
+          }
+        }
+        else {
+          NSLog(@"Block size of the cipher text has a unexpected value: %lu", (unsigned long)[cipherText length]);
+        }
+      }
+      else {
+        NSLog(@"Key does not support decryption");
+      }
+    }
+    else {
+      NSString* description = (__bridge NSString*)SecCopyErrorMessageString(status, NULL);
+      NSLog(@"Error while trying to retrive private key for decryption: %@", description);
+    }
+    if (privateKey) {
+      CFRelease(privateKey);
+    }
+  }
+  return result;
 }
 
 - (IBAction)resetKeyFile:(id)sender {
@@ -153,6 +306,8 @@
   self.enablePassword = YES;
   self.passwordTextField.stringValue = @"";
   self.messageInfoTextField.hidden = (nil == self.message);
+  self.touchIdButton.hidden = [touchIDSecuredPasswords valueForKey:@"DatabaseID"] == nil;
+    
   if(self.message) {
     self.messageInfoTextField.stringValue = self.message;
     self.messageImageView.image = [NSImage imageNamed:NSImageNameInfo];
@@ -233,6 +388,15 @@
   else {
     self.keyFileWarningTextField.stringValue = @"";
     self.keyFileWarningTextField.hidden = YES;
+  }
+}
+
+- (IBAction)unlockWithTouchID:(id)sender {
+  NSString* password = [self _loadPasswordForTochIDUnlock:@"DatabaseID"];
+  if(password != nil) {
+    NSError* error;
+    self.completionHandler(password, nil, false, &error);
+    [self _showError:error];
   }
 }
 
