@@ -29,10 +29,11 @@
 #import "MPWorkflowPreferencesController.h"
 #import "MPUpdatePreferencesController.h"
 #import "MPPluginPreferencesController.h"
+#import "MPTabViewController.h"
 
 @interface MPPreferencesWindowController ()
 
-@property (strong) NSTabViewController *tabViewController;
+@property (strong) MPTabViewController *tabViewController;
 
 @end
 
@@ -45,7 +46,7 @@
 -(id)init {
   self = [super initWithWindow:nil];
   if(self) {
-    _tabViewController = [[NSTabViewController alloc] init];
+    _tabViewController = [[MPTabViewController alloc] init];
     _tabViewController.tabStyle = NSTabViewControllerTabStyleToolbar;
     _tabViewController.transitionOptions = NSViewControllerTransitionNone | NSViewControllerTransitionAllowUserInteraction;
 
@@ -84,6 +85,7 @@
     [(id<MPPreferencesTab>)item.viewController willShowTab];
   }
   self.tabViewController.selectedTabViewItemIndex = index;
+  
   if([item.viewController respondsToSelector:@selector(didShowTab)]) {
     [(id<MPPreferencesTab>)item.viewController didShowTab];
   }
@@ -146,4 +148,6 @@
     [self.tabViewController addTabViewItem:item];
   }
 }
+
+
 @end
