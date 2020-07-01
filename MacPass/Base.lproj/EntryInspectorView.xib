@@ -569,10 +569,7 @@
                     </textFieldCell>
                 </textField>
                 <textField verticalHuggingPriority="750" allowsCharacterPickerTouchBarItem="YES" translatesAutoresizingMaskIntoConstraints="NO" id="cDK-DM-F5z" customClass="HNHUITextField">
-                    <rect key="frame" x="20" y="328" width="221" height="22"/>
-                    <constraints>
-                        <constraint firstAttribute="height" constant="22" id="2hC-UP-Iie"/>
-                    </constraints>
+                    <rect key="frame" x="20" y="329" width="229" height="21"/>
                     <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" placeholderString="Custom Entry Sequence" drawsBackground="YES" id="R2X-Ex-c6q">
                         <font key="font" metaFont="system"/>
                         <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
@@ -580,7 +577,7 @@
                     </textFieldCell>
                 </textField>
                 <textField verticalHuggingPriority="750" allowsCharacterPickerTouchBarItem="YES" translatesAutoresizingMaskIntoConstraints="NO" id="iR3-FU-MYu">
-                    <rect key="frame" x="18" y="306" width="265" height="14"/>
+                    <rect key="frame" x="18" y="307" width="265" height="14"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="14" id="xvF-LU-XNu"/>
                     </constraints>
@@ -591,13 +588,13 @@
                     </textFieldCell>
                 </textField>
                 <scrollView autohidesScrollers="YES" horizontalLineScroll="19" horizontalPageScroll="10" verticalLineScroll="19" verticalPageScroll="10" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2YH-c2-Cwc">
-                    <rect key="frame" x="20" y="138" width="261" height="160"/>
+                    <rect key="frame" x="20" y="136" width="261" height="163"/>
                     <clipView key="contentView" id="aDE-WT-YIv">
-                        <rect key="frame" x="1" y="1" width="259" height="158"/>
+                        <rect key="frame" x="1" y="1" width="259" height="161"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView verticalHuggingPriority="750" allowsExpansionToolTips="YES" columnAutoresizingStyle="lastColumnOnly" alternatingRowBackgroundColors="YES" columnReordering="NO" columnSelection="YES" columnResizing="NO" multipleSelection="NO" autosaveColumns="NO" rowSizeStyle="automatic" viewBased="YES" id="caM-L6-UHC">
-                                <rect key="frame" x="0.0" y="0.0" width="259" height="158"/>
+                                <rect key="frame" x="0.0" y="0.0" width="259" height="161"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <size key="intercellSpacing" width="3" height="2"/>
                                 <color key="backgroundColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
@@ -651,10 +648,7 @@
                     </scroller>
                 </scrollView>
                 <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="Iy9-9L-Aev">
-                    <rect key="frame" x="249" y="107" width="32" height="23"/>
-                    <constraints>
-                        <constraint firstAttribute="width" constant="32" id="mjs-Yf-Cb2"/>
-                    </constraints>
+                    <rect key="frame" x="260" y="105" width="21" height="23"/>
                     <buttonCell key="cell" type="roundTextured" bezelStyle="texturedRounded" image="NSAddTemplate" imagePosition="only" alignment="center" state="on" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="5J6-uD-iK6">
                         <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                         <font key="font" metaFont="system"/>
@@ -664,10 +658,7 @@
                     </connections>
                 </button>
                 <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="AAj-Ak-z46">
-                    <rect key="frame" x="209" y="107" width="32" height="23"/>
-                    <constraints>
-                        <constraint firstAttribute="width" constant="32" id="vWY-ez-gy9"/>
-                    </constraints>
+                    <rect key="frame" x="231" y="105" width="21" height="23"/>
                     <buttonCell key="cell" type="roundTextured" bezelStyle="texturedRounded" image="NSRemoveTemplate" imagePosition="only" alignment="center" state="on" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="86n-d4-lOW">
                         <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                         <font key="font" metaFont="system"/>
@@ -677,7 +668,7 @@
                     </connections>
                 </button>
                 <textField verticalHuggingPriority="750" allowsCharacterPickerTouchBarItem="YES" translatesAutoresizingMaskIntoConstraints="NO" id="HQa-of-iwh">
-                    <rect key="frame" x="18" y="90" width="265" height="14"/>
+                    <rect key="frame" x="18" y="88" width="265" height="14"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="14" id="GF5-sR-zdR"/>
                     </constraints>
@@ -688,10 +679,7 @@
                     </textFieldCell>
                 </textField>
                 <comboBox verticalHuggingPriority="750" allowsCharacterPickerTouchBarItem="YES" translatesAutoresizingMaskIntoConstraints="NO" id="rD3-Wn-ZFX">
-                    <rect key="frame" x="20" y="58" width="264" height="26"/>
-                    <constraints>
-                        <constraint firstAttribute="height" constant="20" id="rXS-QE-6cW"/>
-                    </constraints>
+                    <rect key="frame" x="20" y="57" width="264" height="25"/>
                     <comboBoxCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" borderStyle="bezel" drawsBackground="YES" completes="NO" id="VLq-Hn-aei">
                         <font key="font" metaFont="system"/>
                         <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
@@ -699,7 +687,7 @@
                     </comboBoxCell>
                 </comboBox>
                 <textField verticalHuggingPriority="750" allowsCharacterPickerTouchBarItem="YES" translatesAutoresizingMaskIntoConstraints="NO" id="z03-zW-GN3">
-                    <rect key="frame" x="18" y="40" width="265" height="14"/>
+                    <rect key="frame" x="18" y="39" width="265" height="14"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="14" id="MPq-gU-72D"/>
                     </constraints>
@@ -710,10 +698,7 @@
                     </textFieldCell>
                 </textField>
                 <textField verticalHuggingPriority="750" allowsCharacterPickerTouchBarItem="YES" translatesAutoresizingMaskIntoConstraints="NO" id="NjR-ea-Y7k" customClass="HNHUITextField">
-                    <rect key="frame" x="20" y="10" width="221" height="22"/>
-                    <constraints>
-                        <constraint firstAttribute="height" constant="22" id="oIA-8f-Jkf"/>
-                    </constraints>
+                    <rect key="frame" x="20" y="10" width="229" height="21"/>
                     <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" placeholderString="Custom Window Sequence" drawsBackground="YES" id="fW9-9p-wwR">
                         <font key="font" metaFont="system"/>
                         <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
@@ -721,10 +706,7 @@
                     </textFieldCell>
                 </textField>
                 <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="m1C-m8-BKR">
-                    <rect key="frame" x="249" y="9" width="32" height="23"/>
-                    <constraints>
-                        <constraint firstAttribute="width" constant="32" id="Ek5-IH-qGo"/>
-                    </constraints>
+                    <rect key="frame" x="257" y="9" width="24" height="23"/>
                     <buttonCell key="cell" type="roundTextured" bezelStyle="texturedRounded" image="NSActionTemplate" imagePosition="only" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="HIC-T9-j9G">
                         <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                         <font key="font" metaFont="system"/>
@@ -734,10 +716,7 @@
                     </connections>
                 </button>
                 <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="HDS-Bz-jrr">
-                    <rect key="frame" x="249" y="326" width="32" height="23"/>
-                    <constraints>
-                        <constraint firstAttribute="width" constant="32" id="CbR-2P-dZH"/>
-                    </constraints>
+                    <rect key="frame" x="257" y="327" width="24" height="23"/>
                     <buttonCell key="cell" type="roundTextured" bezelStyle="texturedRounded" image="NSActionTemplate" imagePosition="only" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="V5Z-qf-FVH">
                         <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                         <font key="font" metaFont="system"/>
@@ -816,14 +795,13 @@
                                 </textFieldCell>
                                 <tableColumnResizingMask key="resizingMask" resizeWithTable="YES"/>
                                 <prototypeCellViews>
-                                    <tableCellView identifier="SelectedCell" id="196" customClass="MPCustomFieldTableCellView">
+                                    <tableCellView identifier="SelectedCell" misplaced="YES" id="196" customClass="MPCustomFieldTableCellView">
                                         <rect key="frame" x="1" y="1" width="256" height="54"/>
                                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                         <subviews>
                                             <textField verticalHuggingPriority="750" allowsCharacterPickerTouchBarItem="YES" translatesAutoresizingMaskIntoConstraints="NO" id="199" customClass="HNHUISecureTextField">
-                                                <rect key="frame" x="3" y="10" width="139" height="22"/>
+                                                <rect key="frame" x="3" y="10" width="156" height="21"/>
                                                 <constraints>
-                                                    <constraint firstAttribute="height" constant="22" id="212"/>
                                                     <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="50" id="213"/>
                                                 </constraints>
                                                 <textFieldCell key="cell" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" placeholderString="Value" drawsBackground="YES" id="214">
@@ -833,7 +811,7 @@
                                                 </textFieldCell>
                                             </textField>
                                             <textField verticalHuggingPriority="750" allowsCharacterPickerTouchBarItem="YES" translatesAutoresizingMaskIntoConstraints="NO" id="200">
-                                                <rect key="frame" x="1" y="40" width="223" height="14"/>
+                                                <rect key="frame" x="1" y="39" width="223" height="14"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="14" id="210"/>
                                                 </constraints>
@@ -844,20 +822,14 @@
                                                 </textFieldCell>
                                             </textField>
                                             <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="198">
-                                                <rect key="frame" x="190" y="9" width="32" height="23"/>
-                                                <constraints>
-                                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="32" id="215"/>
-                                                </constraints>
+                                                <rect key="frame" x="201" y="8" width="21" height="23"/>
                                                 <buttonCell key="cell" type="roundTextured" bezelStyle="texturedRounded" image="NSRemoveTemplate" imagePosition="overlaps" alignment="center" state="on" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="216">
                                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                                     <font key="font" metaFont="system"/>
                                                 </buttonCell>
                                             </button>
                                             <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="tDI-EL-JGB">
-                                                <rect key="frame" x="150" y="9" width="32" height="23"/>
-                                                <constraints>
-                                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="32" id="JGO-sl-fdM"/>
-                                                </constraints>
+                                                <rect key="frame" x="167" y="8" width="26" height="23"/>
                                                 <buttonCell key="cell" type="roundTextured" bezelStyle="texturedRounded" image="52_EncryptedTemplate" imagePosition="overlaps" alignment="center" lineBreakMode="truncatingTail" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="fat-C5-dS2">
                                                     <behavior key="behavior" pushIn="YES" changeContents="YES" lightByContents="YES"/>
                                                     <font key="font" metaFont="system"/>
