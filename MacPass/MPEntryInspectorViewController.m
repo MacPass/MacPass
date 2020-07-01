@@ -58,6 +58,10 @@ typedef NS_ENUM(NSUInteger, MPEntryTab) {
   MPEntryTabAutotype
 };
 
+@interface NSObject (MPAppKitPrivateAPI)
+- (void)_searchWithGoogleFromMenu:(id)obj;
+@end
+
 @interface MPEntryInspectorViewController () {
 @private
   NSArrayController *_attachmentsController;
@@ -141,12 +145,12 @@ typedef NS_ENUM(NSUInteger, MPEntryTab) {
   
   [self.generalView addSubview:customFieldTableView];
   
-  NSDictionary *dict = NSDictionaryOfVariableBindings(customFieldTableView, _tagsTokenField, _addCustomFieldButton);
+  NSDictionary *dict = NSDictionaryOfVariableBindings(customFieldTableView, _fieldsStackView, _addCustomFieldButton);
   [self.generalView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-16-[customFieldTableView]-16-|"
                                                                            options:0
                                                                            metrics:nil
                                                                              views:dict]];
-  [self.generalView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:[_tagsTokenField]-[customFieldTableView]-[_addCustomFieldButton]"
+  [self.generalView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:[_fieldsStackView]-[customFieldTableView]-[_addCustomFieldButton]"
                                                                            options:0
                                                                            metrics:nil
                                                                              views:dict]];

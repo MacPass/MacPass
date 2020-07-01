@@ -47,9 +47,8 @@
 @property (weak) IBOutlet NSTokenField *tagsTokenField;
 @property (weak) IBOutlet NSTextField *uuidTextField;
 
-@property (weak) IBOutlet NSTextField *createdTextField;
-@property (weak) IBOutlet NSTextField *modifiedTextField;
 @property (weak) IBOutlet MPContextButton *addCustomFieldButton;
+@property (strong) IBOutlet NSStackView *fieldsStackView;
 
 /* Attachments */
 @property (weak) IBOutlet NSButtonCell *addAttachmentButton;
