@@ -100,13 +100,8 @@ typedef NS_OPTIONS(NSInteger, MPAppStartupState) {
                                              object:nil];
     
     /* We know that we do not use the variable after instantiation */
-#pragma clang diagnostic push
-#pragma clang diagnostic ignored "-Wunused-variable"
     MPDocumentController *documentController = [[MPDocumentController alloc] init];
-#pragma clang diagnostic pop
-    
-    
-    
+    NSAssert(documentController, @"Custom document controller cannot be nil");    
   }
   return self;
 }
