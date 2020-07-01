@@ -35,7 +35,7 @@ BOOL skipWindowTitle(NSString *windowTitle) {
   NSArray *currentWindows = CFBridgingRelease(CGWindowListCopyWindowInfo(kCGWindowListExcludeDesktopElements, kCGNullWindowID));
   NSArray *windowNumbers = [NSWindow windowNumbersWithOptions:NSWindowNumberListAllApplications];
   NSUInteger minZIndex = NSNotFound;
-  NSDictionary *infoDict = nil;
+  NSDictionary *infoDict = @{};
   for(NSDictionary *windowDict in currentWindows) {
     NSString *windowTitle = windowDict[(NSString *)kCGWindowName];
     /* skip a list of well know useless window-titles */
