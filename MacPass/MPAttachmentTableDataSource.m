@@ -64,6 +64,7 @@
 }
 
 - (BOOL)tableView:(NSTableView *)tableView writeRowsWithIndexes:(NSIndexSet *)rowIndexes toPasteboard:(NSPasteboard *)pboard {
+  //FIXME: move to tableView:pasteboardWriterForRow:
   [pboard declareTypes:@[NSFilesPromisePboardType] owner:nil];
   MPDocument *document = tableView.window.windowController.document;
   KPKEntry *entry = document.selectedEntries.count == 1 ? document.selectedEntries.lastObject : nil;

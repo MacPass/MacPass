@@ -219,11 +219,7 @@ typedef NS_OPTIONS(NSInteger, MPAppStartupState) {
 #endif
   self.startupState |= MPAppStartupStateFinishedLaunch;
   // Here we just opt-in for allowing our bar to be customized throughout the app.
-  if([NSApplication.sharedApplication respondsToSelector:@selector(isAutomaticCustomizeTouchBarMenuItemEnabled)]) {
-    if(@available(macOS 10.12.2, *)) {
-      NSApplication.sharedApplication.automaticCustomizeTouchBarMenuItemEnabled = YES;
-    }
-  }
+    NSApplication.sharedApplication.automaticCustomizeTouchBarMenuItemEnabled = YES;
 }
 
 #pragma mark -
