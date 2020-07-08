@@ -115,6 +115,7 @@ typedef void (^MPPasswordChangedBlock)(BOOL didChangePassword);
   self.toolbar = [[NSToolbar alloc] initWithIdentifier:@"MainWindowToolbar"];
   self.toolbar.autosavesConfiguration = YES;
   self.toolbar.allowsUserCustomization = YES;
+  /* center search in toolbar */
   if (@available(macOS 10.14, *)) {
     self.toolbar.centeredItemIdentifier = MPToolbarItemIdentifierSearch;
   } else {
