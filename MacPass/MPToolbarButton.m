@@ -55,25 +55,7 @@
     default:
       break;
   }
-  if([self.superclass instancesRespondToSelector:@selector(setControlSize:)]) {
-#pragma clang diagnostic push
-#pragma clang diagnostic ignored "-Wunguarded-availability"
-    super.controlSize = controlSize;
-#pragma clang diagnostic pop
-  }
-  else {
-    self.cell.controlSize = controlSize;
-  }
-}
-
-- (NSControlSize)controlSize {
-  if([self.superclass instancesRespondToSelector:@selector(controlSize)]) {
-#pragma clang diagnostic push
-#pragma clang diagnostic ignored "-Wunguarded-availability"
-    return super.controlSize;
-#pragma clang pop
-  }
-  return self.cell.controlSize;
+  super.controlSize = controlSize;
 }
 
 @end
