@@ -57,7 +57,7 @@
   for(NSValue *rangeValue in symbolRanges) {
     [string addAttribute:NSForegroundColorAttributeName value:greenColor range:rangeValue.rangeValue];
   }
-  /* punktuation */
+  /* punctuation */
   NSArray <NSValue *> *punctiationRanges = [self rangesOfCharactersInSet:NSCharacterSet.punctuationCharacterSet];
   for(NSValue *rangeValue in punctiationRanges) {
     [string addAttribute:NSForegroundColorAttributeName value:orangeColor range:rangeValue.rangeValue];
