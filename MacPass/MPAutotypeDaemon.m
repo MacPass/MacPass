@@ -143,13 +143,13 @@ static MPAutotypeDaemon *_sharedInstance;
 
 - (void)performAutotypeForEntry:(KPKEntry *)entry overrideSequence:(NSString *)sequence {
   if(entry) {
-    MPAutotypeEnvironment *env = [MPAutotypeEnvironment environmentWithTargetApplication:self.previousApplication entry:entry];
+    MPAutotypeEnvironment *env = [MPAutotypeEnvironment environmentWithTargetApplication:self.previousApplication entry:entry overrideSequence:sequence];
     [self _runAutotypeWithEnvironment:env];
   }
 }
 
 - (void)_didPressHotKey {
-  MPAutotypeEnvironment *env = [MPAutotypeEnvironment environmentWithTargetApplication:NSWorkspace.sharedWorkspace.frontmostApplication entry:nil];
+  MPAutotypeEnvironment *env = [MPAutotypeEnvironment environmentWithTargetApplication:NSWorkspace.sharedWorkspace.frontmostApplication entry:nil overrideSequence:nil];
   [self _runAutotypeWithEnvironment:env];
 }
 

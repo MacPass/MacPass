@@ -24,9 +24,10 @@ NS_ASSUME_NONNULL_BEGIN
 @property (readonly, copy) NSString *windowTitle; /// The window title of the target application.
 @property (readonly) BOOL hidden; /// If set to YES, MacPass was hidden when autotype was initiated
 @property (readonly) BOOL isSelfTargeting; /// If MacPass should autotype to itself, YES, otherwise NO
+@property (readonly) NSString *overrideSequence; /// If set, this sequence is used for running the command regardless of the matched one
 
-+ (instancetype)environmentWithTargetApplication:(NSRunningApplication *)targetApplication entry:(KPKEntry * _Nullable)entry;
-- (instancetype)initWithTargetApplication:(NSRunningApplication *)targetApplication entry:(KPKEntry * _Nullable)entry NS_DESIGNATED_INITIALIZER;
++ (instancetype)environmentWithTargetApplication:(NSRunningApplication *)targetApplication entry:(KPKEntry * _Nullable)entry overrideSequence:(NSString * _Nullable)overrideSequence;
+- (instancetype)initWithTargetApplication:(NSRunningApplication *)targetApplication entry:(KPKEntry * _Nullable)entry overrideSequence:(NSString * _Nullable)overrdieSequence NS_DESIGNATED_INITIALIZER;
 - (instancetype)init NS_UNAVAILABLE;
 
 @end

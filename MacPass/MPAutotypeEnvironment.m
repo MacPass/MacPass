@@ -13,14 +13,16 @@
 
 @implementation MPAutotypeEnvironment
 
-+ (instancetype)environmentWithTargetApplication:(NSRunningApplication *)targetApplication entry:(KPKEntry *)entry {
-  return [[MPAutotypeEnvironment alloc] initWithTargetApplication:targetApplication entry:entry];
++ (instancetype)environmentWithTargetApplication:(NSRunningApplication *)targetApplication entry:(KPKEntry *)entry overrideSequence:(NSString *)overrideSequence {
+  return [[MPAutotypeEnvironment alloc] initWithTargetApplication:targetApplication entry:entry overrideSequence:overrideSequence];
 }
 
-- (instancetype)initWithTargetApplication:(NSRunningApplication *)targetApplication entry:(KPKEntry *)entry {
+- (instancetype)initWithTargetApplication:(NSRunningApplication *)targetApplication entry:(KPKEntry *)entry overrideSequence:(NSString *)overrdieSequence {
   self = [super init];
   if(self) {
     _preferredEntry = entry;
+    _hidden = NSRunningApplication.currentApplication.isHidden;
+    _overrideSequence = [overrdieSequence copy];
     if(!targetApplication) {
       _pid = -1;
       _windowTitle = @"";
@@ -41,7 +43,7 @@
         }
       }
     }
-    _hidden = NSRunningApplication.currentApplication.isHidden;
+    
   }
   return self;
 }
