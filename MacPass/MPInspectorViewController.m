@@ -154,7 +154,7 @@ typedef NS_ENUM(NSUInteger, MPContentTab) {
     if(textView == self.notesTextView) {
       name = NSLocalizedString(@"NOTES", "Displayed name when notes or part of notes was copied");
     }
-    [[MPPasteBoardController defaultController] copyObjects:@[selectedString] overlayInfo:info name:name atView:self.view];
+    [MPPasteBoardController.defaultController copyObject:selectedString overlayInfo:info name:name atView:self.view];
     return NO;
   }
   return YES;

@@ -55,8 +55,8 @@ FOUNDATION_EXPORT NSString *const MPPasteBoardControllerDidClearClipboard;
 
 - (void)stashObjects;
 - (void)restoreObjects;
-- (void)copyObjects:(NSArray<id<NSPasteboardWriting>> *)objects;
-- (void)copyObjectsWithoutTimeout:(NSArray<id<NSPasteboardWriting>> *)objects;
+- (void)copyObject:(id<NSPasteboardWriting>)objects;
+- (void)copyObjectWithoutTimeout:(id<NSPasteboardWriting>)objects;
 
 /**
  The pastboard controller will copy the object to the clipboard, display an appropriate overlay image
@@ -65,11 +65,11 @@ FOUNDATION_EXPORT NSString *const MPPasteBoardControllerDidClearClipboard;
  to the clipboard. If the clipboard is used internally (e.g. for autotype) you should call copyObjects:
  or even copyObjectsWithoutTimeout:
  
- @param objects object so be copied
+ @param object object so be copied
  @param overlayInfoType infotype discribing what is copied
  @param name a custom name
  @param view the view that initiated the copy action
  */
-- (void)copyObjects:(NSArray<id<NSPasteboardWriting>> *)objects overlayInfo:(MPPasteboardOverlayInfoType)overlayInfoType name:(NSString *)name atView:(NSView *)view;
+- (void)copyObject:(id<NSPasteboardWriting>)object overlayInfo:(MPPasteboardOverlayInfoType)overlayInfoType name:(NSString *)name atView:(NSView *)view;
 
 @end

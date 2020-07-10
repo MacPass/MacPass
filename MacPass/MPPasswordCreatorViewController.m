@@ -193,7 +193,7 @@ typedef NS_ENUM(NSUInteger, MPPasswordRating) {
 
 - (IBAction)_usePassword:(id)sender {
   if(self.shouldCopyPasswordToPasteboardButton.state == NSOnState) {
-    [MPPasteBoardController.defaultController copyObjects:@[self.password]];
+    [MPPasteBoardController.defaultController copyObject:self.password];
   }
   KPKEntry *entry = self.representedObject;
   if(entry && self.password.length > 0) {
