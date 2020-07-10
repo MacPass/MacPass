@@ -26,7 +26,7 @@
         <customObject id="-1" userLabel="First Responder" customClass="FirstResponder"/>
         <customObject id="-3" userLabel="Application" customClass="NSObject"/>
         <customView translatesAutoresizingMaskIntoConstraints="NO" id="1">
-            <rect key="frame" x="0.0" y="0.0" width="406" height="669"/>
+            <rect key="frame" x="0.0" y="0.0" width="406" height="679"/>
             <subviews>
                 <box autoresizesSubviews="NO" verticalHuggingPriority="500" borderType="line" title="Security" translatesAutoresizingMaskIntoConstraints="NO" id="465">
                     <rect key="frame" x="17" y="146" width="372" height="381"/>
@@ -112,7 +112,7 @@
                                     <font key="font" metaFont="system"/>
                                 </buttonCell>
                             </button>
-                            <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" setsMaxLayoutWidthAtFirstLayout="YES" translatesAutoresizingMaskIntoConstraints="NO" id="5cV-xX-SUU">
+                            <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="5cV-xX-SUU">
                                 <rect key="frame" x="18" y="41" width="330" height="56"/>
                                 <textFieldCell key="cell" sendsActionOnEndEditing="YES" id="ACh-7H-42N">
                                     <font key="font" metaFont="smallSystem"/>
@@ -145,7 +145,7 @@
                                     <font key="font" metaFont="system"/>
                                 </buttonCell>
                             </button>
-                            <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" setsMaxLayoutWidthAtFirstLayout="YES" translatesAutoresizingMaskIntoConstraints="NO" id="hy4-RL-dAa">
+                            <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="hy4-RL-dAa">
                                 <rect key="frame" x="18" y="224" width="330" height="56"/>
                                 <textFieldCell key="cell" sendsActionOnEndEditing="YES" id="JGX-Tp-KJk">
                                     <font key="font" metaFont="smallSystem"/>
@@ -209,7 +209,7 @@
                     </constraints>
                 </box>
                 <box autoresizesSubviews="NO" verticalHuggingPriority="500" borderType="line" title="File Handling" translatesAutoresizingMaskIntoConstraints="NO" id="888">
-                    <rect key="frame" x="17" y="529" width="372" height="128"/>
+                    <rect key="frame" x="17" y="531" width="372" height="128"/>
                     <view key="contentView" id="cpg-tt-SHE">
                         <rect key="frame" x="3" y="3" width="366" height="110"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -228,7 +228,7 @@
                                     <font key="font" metaFont="system"/>
                                 </buttonCell>
                             </button>
-                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" setsMaxLayoutWidthAtFirstLayout="YES" translatesAutoresizingMaskIntoConstraints="NO" id="3Bo-Ml-1KB">
+                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="3Bo-Ml-1KB">
                                 <rect key="frame" x="18" y="44" width="330" height="14"/>
                                 <textFieldCell key="cell" controlSize="small" title="Close and open all documents for changes to take effect" id="ya5-ps-c4W">
                                     <font key="font" metaFont="smallSystem"/>
@@ -291,7 +291,7 @@
                                     <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                 </textFieldCell>
                             </textField>
-                            <textField autoresizesSubviews="NO" verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" setsMaxLayoutWidthAtFirstLayout="YES" translatesAutoresizingMaskIntoConstraints="NO" id="MWj-9m-uGk">
+                            <textField autoresizesSubviews="NO" verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="MWj-9m-uGk">
                                 <rect key="frame" x="18" y="13" width="330" height="56"/>
                                 <textFieldCell key="cell" sendsActionOnEndEditing="YES" id="DaG-1a-SET">
                                     <font key="font" metaFont="message" size="11"/>
@@ -333,10 +333,10 @@
                 <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="400" id="918"/>
                 <constraint firstItem="wD1-ag-7V5" firstAttribute="leading" secondItem="1" secondAttribute="leading" constant="20" id="3kp-Uf-fyC"/>
                 <constraint firstItem="wD1-ag-7V5" firstAttribute="bottom" secondItem="1" secondAttribute="bottom" constant="-20" id="EeW-K0-jec"/>
-                <constraint firstItem="wD1-ag-7V5" firstAttribute="top" secondItem="465" secondAttribute="bottom" constant="8" id="FsW-LX-Drs"/>
-                <constraint firstItem="888" firstAttribute="top" secondItem="1" secondAttribute="top" constant="12" id="ZMP-Lv-rQh"/>
+                <constraint firstItem="wD1-ag-7V5" firstAttribute="top" secondItem="465" secondAttribute="bottom" constant="8" symbolic="YES" id="FsW-LX-Drs"/>
+                <constraint firstItem="888" firstAttribute="top" secondItem="1" secondAttribute="top" constant="20" symbolic="YES" id="ZMP-Lv-rQh"/>
                 <constraint firstAttribute="trailing" secondItem="wD1-ag-7V5" secondAttribute="trailing" constant="20" id="ccK-FL-7Wx"/>
-                <constraint firstItem="465" firstAttribute="top" secondItem="888" secondAttribute="bottom" constant="6" id="wyH-HB-i2U"/>
+                <constraint firstItem="465" firstAttribute="top" secondItem="888" secondAttribute="bottom" constant="8" symbolic="YES" id="wyH-HB-i2U"/>
             </constraints>
             <point key="canvasLocation" x="-535" y="-327.5"/>
         </customView>

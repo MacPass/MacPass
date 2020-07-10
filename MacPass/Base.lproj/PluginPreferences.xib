@@ -65,7 +65,7 @@
                         <font key="font" metaFont="system"/>
                     </buttonCell>
                 </button>
-                <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" setsMaxLayoutWidthAtFirstLayout="YES" translatesAutoresizingMaskIntoConstraints="NO" id="aoG-FD-ds8">
+                <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="aoG-FD-ds8">
                     <rect key="frame" x="18" y="388" width="571" height="28"/>
                     <textFieldCell key="cell" controlSize="small" sendsActionOnEndEditing="YES" id="2bX-8S-9XM">
                         <font key="font" metaFont="smallSystem"/>
@@ -155,7 +155,7 @@
                     </scroller>
                 </scrollView>
                 <segmentedControl verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="B9Q-hq-K4N">
-                    <rect key="frame" x="19.5" y="19" width="71" height="23"/>
+                    <rect key="frame" x="20" y="19" width="71" height="23"/>
                     <segmentedCell key="cell" borderStyle="border" alignment="left" style="texturedSquare" trackingMode="momentary" id="cj3-R6-g1E">
                         <font key="font" metaFont="system"/>
                         <segments>
@@ -168,7 +168,7 @@
                     </connections>
                 </segmentedControl>
                 <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="SNe-cc-CZs">
-                    <rect key="frame" x="413.5" y="19" width="174" height="23"/>
+                    <rect key="frame" x="413" y="19" width="174" height="23"/>
                     <buttonCell key="cell" type="roundTextured" title="Browse Available Plugins…" bezelStyle="texturedRounded" alignment="center" lineBreakMode="truncatingTail" state="on" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="sqO-8H-n1y">
                         <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                         <font key="font" metaFont="system"/>
@@ -191,7 +191,7 @@
                         <font key="font" metaFont="system"/>
                     </buttonCell>
                 </button>
-                <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" setsMaxLayoutWidthAtFirstLayout="YES" translatesAutoresizingMaskIntoConstraints="NO" id="nrf-Hz-0vB">
+                <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="nrf-Hz-0vB">
                     <rect key="frame" x="18" y="446" width="349" height="14"/>
                     <textFieldCell key="cell" controlSize="small" selectable="YES" title="If enabled, a remote connection is established to macpassapp.org" id="i3S-9b-Bpf">
                         <font key="font" metaFont="smallSystem"/>
