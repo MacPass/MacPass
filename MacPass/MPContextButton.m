@@ -91,6 +91,10 @@
   [self setImage:image forSegment:MPContextButtonSegmentButton];
 }
 
+- (NSImage *)image {
+  return [self imageForSegment:MPContextButtonSegmentButton];
+}
+
 - (void)showContextMenu:(id)sender {
   NSPoint point = self.frame.origin;
   point.x = [self.cell widthForSegment:MPContextButtonSegmentButton];
