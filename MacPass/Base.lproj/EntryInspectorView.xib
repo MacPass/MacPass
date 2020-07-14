@@ -47,7 +47,7 @@
             <rect key="frame" x="0.0" y="0.0" width="293" height="493"/>
             <subviews>
                 <segmentedControl verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="82">
-                    <rect key="frame" x="57.5" y="469" width="179" height="19"/>
+                    <rect key="frame" x="56.5" y="469" width="180" height="19"/>
                     <segmentedCell key="cell" controlSize="small" borderStyle="border" alignment="left" style="texturedSquare" trackingMode="selectOne" id="238">
                         <font key="font" metaFont="smallSystem"/>
                         <segments>
@@ -285,7 +285,7 @@
                     </connections>
                 </textField>
                 <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="QSX-Xo-tcH">
-                    <rect key="frame" x="19.5" y="19" width="252" height="23"/>
+                    <rect key="frame" x="20" y="19" width="251" height="23"/>
                     <buttonCell key="cell" type="roundTextured" title="Show Plugin Data" bezelStyle="texturedRounded" alignment="center" lineBreakMode="truncatingTail" state="on" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="X9y-K7-lix">
                         <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                         <font key="font" metaFont="system"/>
@@ -296,7 +296,7 @@
                     </connections>
                 </button>
                 <segmentedControl verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="G9J-nn-2bu" customClass="MPContextButton">
-                    <rect key="frame" x="216.5" y="100" width="55" height="23"/>
+                    <rect key="frame" x="216" y="100" width="55" height="23"/>
                     <segmentedCell key="cell" borderStyle="border" alignment="left" style="texturedRounded" trackingMode="selectOne" id="POU-2t-8fl">
                         <font key="font" metaFont="system"/>
                         <segments>
@@ -364,7 +364,7 @@
                             <rect key="frame" x="0.0" y="188" width="251" height="22"/>
                             <subviews>
                                 <secureTextField horizontalHuggingPriority="249" verticalHuggingPriority="750" horizontalCompressionResistancePriority="249" allowsCharacterPickerTouchBarItem="YES" translatesAutoresizingMaskIntoConstraints="NO" id="60" customClass="HNHUISecureTextField">
-                                    <rect key="frame" x="0.0" y="1" width="138" height="20"/>
+                                    <rect key="frame" x="0.0" y="1" width="136" height="20"/>
                                     <secureTextFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" borderStyle="bezel" drawsBackground="YES" usesSingleLineMode="YES" id="63">
                                         <font key="font" size="13" name="Menlo-Regular"/>
                                         <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
@@ -379,7 +379,7 @@
                                     </connections>
                                 </secureTextField>
                                 <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="61">
-                                    <rect key="frame" x="145.5" y="-1" width="29" height="23"/>
+                                    <rect key="frame" x="144" y="-1" width="29" height="23"/>
                                     <buttonCell key="cell" type="roundTextured" bezelStyle="texturedRounded" image="NSQuickLookTemplate" imagePosition="only" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="62">
                                         <behavior key="behavior" pushIn="YES" changeContents="YES" lightByContents="YES"/>
                                         <font key="font" metaFont="system"/>
@@ -389,7 +389,7 @@
                                     </connections>
                                 </button>
                                 <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="59">
-                                    <rect key="frame" x="181.5" y="-1" width="70" height="23"/>
+                                    <rect key="frame" x="181" y="-1" width="70" height="23"/>
                                     <buttonCell key="cell" type="roundTextured" title="Generate" bezelStyle="texturedRounded" alignment="center" state="on" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="64">
                                         <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                         <font key="font" metaFont="system"/>
@@ -435,7 +435,7 @@
                             <rect key="frame" x="0.0" y="107" width="251" height="22"/>
                             <subviews>
                                 <button horizontalHuggingPriority="249" horizontalCompressionResistancePriority="249" translatesAutoresizingMaskIntoConstraints="NO" id="7">
-                                    <rect key="frame" x="-2" y="2" width="224" height="18"/>
+                                    <rect key="frame" x="-2" y="2" width="223" height="18"/>
                                     <buttonCell key="cell" type="check" title="Expires" bezelStyle="regularSquare" imagePosition="left" lineBreakMode="truncatingMiddle" state="on" inset="2" id="78">
                                         <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                                         <font key="font" metaFont="system"/>
@@ -446,7 +446,7 @@
                                     </connections>
                                 </button>
                                 <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="8">
-                                    <rect key="frame" x="227.5" y="-1" width="24" height="23"/>
+                                    <rect key="frame" x="227" y="-1" width="24" height="23"/>
                                     <buttonCell key="cell" type="roundTextured" bezelStyle="texturedRounded" image="NSActionTemplate" imagePosition="only" alignment="center" state="on" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="77">
                                         <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                         <font key="font" metaFont="system"/>
@@ -568,7 +568,7 @@
                     </textFieldCell>
                 </textField>
                 <textField verticalHuggingPriority="750" allowsCharacterPickerTouchBarItem="YES" translatesAutoresizingMaskIntoConstraints="NO" id="cDK-DM-F5z" customClass="HNHUITextField">
-                    <rect key="frame" x="20" y="329" width="230" height="21"/>
+                    <rect key="frame" x="20" y="329" width="229" height="21"/>
                     <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" placeholderString="Custom Entry Sequence" drawsBackground="YES" id="R2X-Ex-c6q">
                         <font key="font" metaFont="system"/>
                         <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
@@ -647,7 +647,7 @@
                     </scroller>
                 </scrollView>
                 <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="Iy9-9L-Aev">
-                    <rect key="frame" x="260.5" y="105" width="21" height="23"/>
+                    <rect key="frame" x="260" y="105" width="21" height="23"/>
                     <buttonCell key="cell" type="roundTextured" bezelStyle="texturedRounded" image="NSAddTemplate" imagePosition="only" alignment="center" state="on" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="5J6-uD-iK6">
                         <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                         <font key="font" metaFont="system"/>
@@ -657,7 +657,7 @@
                     </connections>
                 </button>
                 <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="AAj-Ak-z46">
-                    <rect key="frame" x="232.5" y="105" width="21" height="23"/>
+                    <rect key="frame" x="231" y="105" width="21" height="23"/>
                     <buttonCell key="cell" type="roundTextured" bezelStyle="texturedRounded" image="NSRemoveTemplate" imagePosition="only" alignment="center" state="on" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="86n-d4-lOW">
                         <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                         <font key="font" metaFont="system"/>
@@ -697,7 +697,7 @@
                     </textFieldCell>
                 </textField>
                 <textField verticalHuggingPriority="750" allowsCharacterPickerTouchBarItem="YES" translatesAutoresizingMaskIntoConstraints="NO" id="NjR-ea-Y7k" customClass="HNHUITextField">
-                    <rect key="frame" x="20" y="10" width="230" height="21"/>
+                    <rect key="frame" x="20" y="10" width="229" height="21"/>
                     <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" placeholderString="Custom Window Sequence" drawsBackground="YES" id="fW9-9p-wwR">
                         <font key="font" metaFont="system"/>
                         <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
@@ -705,7 +705,7 @@
                     </textFieldCell>
                 </textField>
                 <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="m1C-m8-BKR">
-                    <rect key="frame" x="257.5" y="9" width="24" height="23"/>
+                    <rect key="frame" x="257" y="9" width="24" height="23"/>
                     <buttonCell key="cell" type="roundTextured" bezelStyle="texturedRounded" image="NSActionTemplate" imagePosition="only" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="HIC-T9-j9G">
                         <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                         <font key="font" metaFont="system"/>
@@ -715,7 +715,7 @@
                     </connections>
                 </button>
                 <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="HDS-Bz-jrr">
-                    <rect key="frame" x="257.5" y="327" width="24" height="23"/>
+                    <rect key="frame" x="257" y="327" width="24" height="23"/>
                     <buttonCell key="cell" type="roundTextured" bezelStyle="texturedRounded" image="NSActionTemplate" imagePosition="only" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="V5Z-qf-FVH">
                         <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                         <font key="font" metaFont="system"/>
@@ -799,7 +799,7 @@
                                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                         <subviews>
                                             <textField verticalHuggingPriority="750" allowsCharacterPickerTouchBarItem="YES" translatesAutoresizingMaskIntoConstraints="NO" id="199" customClass="HNHUISecureTextField">
-                                                <rect key="frame" x="3" y="10" width="158" height="21"/>
+                                                <rect key="frame" x="3" y="10" width="156" height="21"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="50" id="213"/>
                                                 </constraints>
@@ -821,14 +821,14 @@
                                                 </textFieldCell>
                                             </textField>
                                             <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="198">
-                                                <rect key="frame" x="201.5" y="8" width="21" height="23"/>
+                                                <rect key="frame" x="201" y="8" width="21" height="23"/>
                                                 <buttonCell key="cell" type="roundTextured" bezelStyle="texturedRounded" image="NSRemoveTemplate" imagePosition="overlaps" alignment="center" state="on" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="216">
                                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                                     <font key="font" metaFont="system"/>
                                                 </buttonCell>
                                             </button>
                                             <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="tDI-EL-JGB">
-                                                <rect key="frame" x="168.5" y="8" width="26" height="23"/>
+                                                <rect key="frame" x="167" y="8" width="26" height="23"/>
                                                 <buttonCell key="cell" type="roundTextured" bezelStyle="texturedRounded" image="52_EncryptedTemplate" imagePosition="overlaps" alignment="center" lineBreakMode="truncatingTail" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="fat-C5-dS2">
                                                     <behavior key="behavior" pushIn="YES" changeContents="YES" lightByContents="YES"/>
                                                     <font key="font" metaFont="system"/>
