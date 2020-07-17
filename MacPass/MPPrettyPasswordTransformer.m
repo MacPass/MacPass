@@ -41,6 +41,16 @@ NSString *const MPPrettyPasswordTransformerName = @"com.hicknhack.macpass.MPPret
                                   forName:MPPrettyPasswordTransformerName];
 }
 
+- (id)reverseTransformedValue:(id)value {
+  if([value isKindOfClass:NSString.class]) {
+    return value;
+  }
+  if([value isKindOfClass:NSAttributedString.class]) {
+    return ((NSAttributedString *)value).string;
+  }
+  return nil;
+}
+
 - (id)transformedValue:(id)value {
   if([value isKindOfClass:NSString.class]) {
     return ((NSString *)value).passwordPrettified;

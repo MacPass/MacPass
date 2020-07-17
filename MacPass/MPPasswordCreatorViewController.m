@@ -27,6 +27,8 @@
 #import "MPSettingsHelper.h"
 #import "MPDocument.h"
 #import "MPModelChangeObserving.h"
+#import "MPPrettyPasswordTransformer.h"
+
 
 #import "MPFlagsHelper.h"
 
@@ -56,7 +58,6 @@ typedef NS_ENUM(NSUInteger, MPPasswordRating) {
 @interface MPPasswordCreatorViewController ()
 
 @property (nonatomic, copy) NSString *password;
-@property (copy) NSString *generatedPassword;
 
 @property (strong) IBOutlet NSTextField *passwordTextField;
 @property (strong) IBOutlet NSTextField *passwordLengthTextField;
@@ -120,7 +121,7 @@ typedef NS_ENUM(NSUInteger, MPPasswordRating) {
   
   [self.passwordLengthSlider bind:NSValueBinding toObject:self withKeyPath:NSStringFromSelector(@selector(passwordLength)) options:nil];
   [self.passwordLengthTextField bind:NSValueBinding toObject:self withKeyPath:NSStringFromSelector(@selector(passwordLength)) options:nil];
-  [self.passwordTextField bind:NSValueBinding toObject:self withKeyPath:NSStringFromSelector(@selector(password)) options:nil];
+  [self.passwordTextField bind:NSValueBinding toObject:self withKeyPath:NSStringFromSelector(@selector(password)) options:@{ NSValueTransformerNameBindingOption: MPPrettyPasswordTransformerName }];
   
   [self.entropyIndicator bind:NSValueBinding toObject:self withKeyPath:NSStringFromSelector(@selector(entropy)) options:nil];
   [self.entropyTextField bind:NSValueBinding toObject:self withKeyPath:NSStringFromSelector(@selector(entropy)) options:nil];

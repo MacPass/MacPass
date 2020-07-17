@@ -469,6 +469,8 @@ typedef NS_ENUM(NSUInteger, MPEntryTab) {
   
   /* general */
   NSDictionary *nullPlaceholderBindingOptionsDict = @{ NSNullPlaceholderBindingOption: NSLocalizedString(@"NONE", "Placeholder text for input fields if no entry or group is selected")};
+  NSDictionary *prettyPasswordBindingOptionsDict = @{ NSNullPlaceholderBindingOption: nullPlaceholderBindingOptionsDict[NSNullPlaceholderBindingOption], NSValueTransformerNameBindingOption : MPPrettyPasswordTransformerName };
+  
   [self.titleTextField bind:NSValueBinding
                    toObject:self
                 withKeyPath:[NSString stringWithFormat:@"%@.%@", NSStringFromSelector(@selector(representedObject)), NSStringFromSelector(@selector(title))]
@@ -476,7 +478,8 @@ typedef NS_ENUM(NSUInteger, MPEntryTab) {
   [self.passwordTextField bind:NSValueBinding
                       toObject:self
                    withKeyPath:[NSString stringWithFormat:@"%@.%@", NSStringFromSelector(@selector(representedObject)), NSStringFromSelector(@selector(password))]
-                       options:nullPlaceholderBindingOptionsDict];
+                       options:prettyPasswordBindingOptionsDict];
+  
   [self.usernameTextField bind:NSValueBinding
                       toObject:self
                    withKeyPath:[NSString stringWithFormat:@"%@.%@", NSStringFromSelector(@selector(representedObject)), NSStringFromSelector(@selector(username))]
@@ -636,7 +639,7 @@ typedef NS_ENUM(NSUInteger, MPEntryTab) {
 }
 
 - (IBAction)toggleExpire:(NSButton*)sender {
-  if([sender state] == NSOnState && [self.representedEntry.timeInfo.expirationDate isEqualToDate:[NSDate distantFuture]]) {
+  if([sender state] == NSOnState && [self.representedEntry.timeInfo.expirationDate isEqualToDate:NSDate.distantFuture]) {
     [NSApp sendAction:self.pickExpireDateButton.action to:nil from:self.pickExpireDateButton];
   }
 }
@@ -651,7 +654,6 @@ typedef NS_ENUM(NSUInteger, MPEntryTab) {
 
 - (void)_didChangeCurrentItem:(NSNotification *)notificiation {
   self.showPassword = NO;
-  //self.customFieldsTableView.needsDisplay = YES;
 }
 
 @end
