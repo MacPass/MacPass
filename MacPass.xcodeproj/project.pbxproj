@@ -1904,6 +1904,7 @@
 				4C77E35F15B84A240093A587 /* Frameworks */,
 				4C77E36015B84A240093A587 /* Resources */,
 				4C44DB1B1C08999F00774EB3 /* Versioning */,
+				AF786C6F24D327A400240320 /* ShellScript */,
 				4CC5D36618A1332000AF7FA8 /* CopyFiles */,
 			);
 			buildRules = (
@@ -2119,6 +2120,23 @@
 			shellPath = /bin/sh;
 			shellScript = "git=`sh /etc/profile; which git`\nbranch_name=`$git rev-parse --abbrev-ref HEAD`\ngit_count=`$git rev-list $branch_name |wc -l | sed 's/^ *//;s/ *$//'`\n\nbuild_number=\"${git_count}0\"\nif [ $CONFIGURATION != \"Release\" ]; then\n  if [ $branch_name != \"master\" ] && [ $branch_name != release* ]; then\n    build_number+=\"-$branch_name\"\n  fi\nfi\nif [ \"$CI\" = \"true\" ]; then\nbuild_date=`date +\"%Y%m%d%H%m%S\"`\nbuild_number=\"$build_date-continuous\"\nfi\n\nplist=\"${TARGET_BUILD_DIR}/${INFOPLIST_PATH}\"\ndsym_plist=\"${DWARF_DSYM_FOLDER_PATH}/${DWARF_DSYM_FILE_NAME}/Contents/Info.plist\"\n\n/usr/libexec/PlistBuddy -c \"Set :CFBundleVersion $build_number\" \"$plist\"\nif [ -f \"$DSYM_INFO_PLIST\" ] ; then\n/usr/libexec/PlistBuddy -c \"Set :CFBundleVersion $build_number\" \"$dsym_plist\"\nfi\n";
 			showEnvVarsInLog = 0;
+		};
+		AF786C6F24D327A400240320 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "# Type a script or drag a script file from your workspace to insert its path.\nif [ \"$CODE_SIGNING_REQUIRED\" = \"NO\" ]\nthen\n    exit 0\nfi\n/usr/bin/codesign --force --sign \"${EXPANDED_CODE_SIGN_IDENTITY}\" --timestamp=none --preserve-metadata=identifier,entitlements,flags ./Carthage/Build/Mac/KeePassKit.framework/Versions/A/Frameworks/KissXML.framework\nexit $?\n";
 		};
 /* End PBXShellScriptBuildPhase section */
 
@@ -3064,6 +3082,7 @@
 				CLANG_ENABLE_MODULES = YES;
 				CLANG_ENABLE_OBJC_ARC = YES;
 				CODE_SIGN_IDENTITY = "-";
+				CODE_SIGN_ENTITLEMENTS = MacPass/MacPass.entitlements;
 				COMBINE_HIDPI_IMAGES = YES;
 				CURRENT_PROJECT_VERSION = "${CURRENT_PROJECT_VERSION}";
 				FRAMEWORK_SEARCH_PATHS = (
@@ -3094,6 +3113,7 @@
 				CLANG_ENABLE_MODULES = YES;
 				CLANG_ENABLE_OBJC_ARC = YES;
 				CODE_SIGN_IDENTITY = "-";
+				CODE_SIGN_ENTITLEMENTS = MacPass/MacPass.entitlements;
 				COMBINE_HIDPI_IMAGES = YES;
 				CURRENT_PROJECT_VERSION = "${CURRENT_PROJECT_VERSION}";
 				FRAMEWORK_SEARCH_PATHS = (
