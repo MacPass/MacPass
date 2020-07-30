@@ -234,7 +234,7 @@ static NSMutableDictionary* touchIDSecuredPasswords;
       }
     }
     else {
-      NSLog(@"The password is to large to be encrypted");
+      NSLog(@"The password is too large to be encrypted");
       return;
     }
   }
@@ -269,7 +269,7 @@ static NSMutableDictionary* touchIDSecuredPasswords;
           }
           else {
             NSError *err = CFBridgingRelease(error);
-            NSLog(@"Error while trying decrypt password for TouchID unlock: %@", [err description]);
+            NSLog(@"Error while trying to decrypt password for TouchID unlock: %@", [err description]);
           }
         }
         else {
