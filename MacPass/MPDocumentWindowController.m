@@ -325,13 +325,17 @@ typedef void (^MPPasswordChangedBlock)(BOOL didChangePassword);
     self.passwordInputController = [[MPPasswordInputController alloc] init];
   }
   self.contentViewController = self.passwordInputController;
+  NSURL* fileURL = nil;
+  if(self.document != nil) {
+    fileURL = [self.document fileURL];
+  }
   [self.passwordInputController requestPasswordWithMessage:message cancelLabel:nil completionHandler:^BOOL(NSString *password, NSURL *keyURL, BOOL didCancel, NSError *__autoreleasing *error) {
     if(didCancel) {
       return NO;
     }
     return [((MPDocument *)self.document) unlockWithPassword:password keyFileURL:keyURL error:error];
     
-  }];
+  } forFile:fileURL];
 }
 
 - (void)editPassword:(id)sender {

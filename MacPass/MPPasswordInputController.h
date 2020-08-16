@@ -28,8 +28,7 @@
 
 typedef BOOL (^passwordInputCompletionBlock)(NSString *password, NSURL *keyURL, BOOL didCancel, NSError *__autoreleasing*error);
 
-- (void)requestPasswordWithCompletionHandler:(passwordInputCompletionBlock)completionHandler;
-- (void)requestPasswordWithMessage:(NSString *)message cancelLabel:(NSString *)cancelLabel completionHandler:(passwordInputCompletionBlock)completionHandler;
+- (void)requestPasswordWithMessage:(NSString *)message cancelLabel:(NSString *)cancelLabel completionHandler:(passwordInputCompletionBlock)completionHandler forFile:(NSURL*) fileURL;
 
 
 @end

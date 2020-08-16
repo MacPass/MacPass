@@ -50,6 +50,7 @@ static NSMutableDictionary* touchIDSecuredPasswords;
 
 @property (copy) NSString *message;
 @property (copy) NSString *cancelLabel;
+@property (copy) NSString *absoluteURLString;
 
 @property (assign) BOOL showPassword;
 @property (nonatomic, assign) BOOL enablePassword;
@@ -94,15 +95,21 @@ static NSMutableDictionary* touchIDSecuredPasswords;
   return self.passwordTextField;
 }
 
-- (void)requestPasswordWithMessage:(NSString *)message cancelLabel:(NSString *)cancelLabel completionHandler:(passwordInputCompletionBlock)completionHandler {
+- (void)requestPasswordWithMessage:(NSString *)message cancelLabel:(NSString *)cancelLabel completionHandler:(passwordInputCompletionBlock)completionHandler forFile:(NSURL*) fileURL{
   self.completionHandler = completionHandler;
   self.message = message;
   self.cancelLabel = cancelLabel;
+  if(fileURL) {
+      self.absoluteURLString = [fileURL absoluteString];
+  }
+  else {
+    self.absoluteURLString = nil;
+  }
   [self _reset];
 }
 
 - (void)requestPasswordWithCompletionHandler:(passwordInputCompletionBlock)completionHandler {
-  [self requestPasswordWithMessage:nil cancelLabel:nil completionHandler:completionHandler];
+  [self requestPasswordWithMessage:nil cancelLabel:nil completionHandler:completionHandler forFile:nil];
 }
 
 #pragma mark Properties
@@ -136,7 +143,7 @@ static NSMutableDictionary* touchIDSecuredPasswords;
   BOOL result = self.completionHandler(password, self.keyPathControl.URL, cancel, &error);
   if(cancel || result) {
     if(result && self.keyPathControl.URL == nil) {
-      [self _storePasswordForTouchIDUnlock:password forDatabase:@"DatabaseID"];
+      [self _storePasswordForTouchIDUnlock:password forDatabase:self.absoluteURLString];
     }
     return;
   }
@@ -306,7 +313,7 @@ static NSMutableDictionary* touchIDSecuredPasswords;
   self.enablePassword = YES;
   self.passwordTextField.stringValue = @"";
   self.messageInfoTextField.hidden = (nil == self.message);
-  self.touchIdButton.hidden = [touchIDSecuredPasswords valueForKey:@"DatabaseID"] == nil;
+  self.touchIdButton.hidden = [touchIDSecuredPasswords valueForKey:self.absoluteURLString] == nil;
     
   if(self.message) {
     self.messageInfoTextField.stringValue = self.message;
@@ -392,7 +399,7 @@ static NSMutableDictionary* touchIDSecuredPasswords;
 }
 
 - (IBAction)unlockWithTouchID:(id)sender {
-  NSString* password = [self _loadPasswordForTochIDUnlock:@"DatabaseID"];
+  NSString* password = [self _loadPasswordForTochIDUnlock:self.absoluteURLString];
   if(password != nil) {
     NSError* error;
     self.completionHandler(password, nil, false, &error);
