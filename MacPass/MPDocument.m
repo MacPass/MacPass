@@ -429,7 +429,7 @@ NSString *const MPDocumentGroupKey                            = @"MPDocumentGrou
       MPPasswordInputController *passwordInputController = [[MPPasswordInputController alloc] init];
       [passwordInputController requestPasswordWithMessage:NSLocalizedString(@"EXTERN_CHANGE_OF_MASTERKEY", @"The master key was changed by an external program!")
                                               cancelLabel:NSLocalizedString(@"ABORT_MERGE_KEEP_MINE", @"Button label to abort a merge on a file with changed master key!")
-                                        completionHandler:^BOOL(NSString *password, NSURL *keyURL, BOOL didCancel, NSError *__autoreleasing *error) {
+                                        completionHandler:^BOOL(KPKCompositeKey *compositeKey, NSURL* keyURL, BOOL didCancel, NSError *__autoreleasing *error) {
                                           [self.windowForSheet endSheet:sheet returnCode:(didCancel ? NSModalResponseCancel : NSModalResponseOK)];
                                           if(!didCancel) {
                                             NSData *keyFileData = keyURL ? [NSData dataWithContentsOfURL:keyURL] : nil;
@@ -501,7 +501,7 @@ NSString *const MPDocumentGroupKey                            = @"MPDocumentGrou
 }
 
 
-- (BOOL)unlockWithPassword:(NSString *)password keyFileURL:(NSURL *)keyFileURL error:(NSError *__autoreleasing*)error{
+- (BOOL)unlockWithPassword:(KPKCompositeKey *)compositeKey keyFileURL:(NSURL *)keyFileURL error:(NSError *__autoreleasing*)error{
   // TODO: Make this API asynchronous
   NSData *keyFileData = keyFileURL ? [NSData dataWithContentsOfURL:keyFileURL] : nil;
   

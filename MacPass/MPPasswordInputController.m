@@ -115,10 +115,6 @@ static NSMutableDictionary* touchIDSecuredPasswords;
   [self _reset];
 }
 
-- (void)requestPasswordWithCompletionHandler:(passwordInputCompletionBlock)completionHandler {
-  [self requestPasswordWithMessage:nil cancelLabel:nil completionHandler:completionHandler forFile:nil];
-}
-
 #pragma mark Properties
 - (void)setEnablePassword:(BOOL)enablePassword {
   if(_enablePassword != enablePassword) {
@@ -147,7 +143,10 @@ static NSMutableDictionary* touchIDSecuredPasswords;
   NSString *password = self.enablePassword ? self.passwordTextField.stringValue : nil;
   
   BOOL cancel = (sender == self.cancelButton);
-  BOOL result = self.completionHandler(password, self.keyPathControl.URL, cancel, &error);
+  NSURL* keyURL = self.keyPathControl.URL;
+  NSData *keyFileData = keyURL ? [NSData dataWithContentsOfURL:keyURL] : nil;
+  KPKCompositeKey *compositeKey = [[KPKCompositeKey alloc] initWithPassword:password keyFileData:keyFileData];
+  BOOL result = self.completionHandler(compositeKey, keyURL, cancel, &error);
   if(cancel || result) {
     if(result && self.keyPathControl.URL == nil && self.touchIdEnabled.state) {
       [self _storePasswordForTouchIDUnlock:password forDatabase:self.absoluteURLString];
@@ -412,10 +411,10 @@ static NSMutableDictionary* touchIDSecuredPasswords;
   NSString* password = [self _loadPasswordForTochIDUnlock:self.absoluteURLString];
   if(password != nil) {
     NSError* error;
-    self.completionHandler(password, nil, false, &error);
+    KPKCompositeKey *compositeKey = [[KPKCompositeKey alloc] initWithPassword:password keyFileData:nil];
+    self.completionHandler(compositeKey, nil, false, &error);
     [self _showError:error];
   }
 }
-
 
 @end

@@ -329,12 +329,11 @@ typedef void (^MPPasswordChangedBlock)(BOOL didChangePassword);
   if(self.document != nil) {
     fileURL = [self.document fileURL];
   }
-  [self.passwordInputController requestPasswordWithMessage:message cancelLabel:nil completionHandler:^BOOL(NSString *password, NSURL *keyURL, BOOL didCancel, NSError *__autoreleasing *error) {
+  [self.passwordInputController requestPasswordWithMessage:message cancelLabel:nil completionHandler:^BOOL(KPKCompositeKey* compositeKey, NSURL* keyURL, BOOL didCancel, NSError *__autoreleasing *error) {
     if(didCancel) {
       return NO;
     }
-    return [((MPDocument *)self.document) unlockWithPassword:password keyFileURL:keyURL error:error];
-    
+    return [((MPDocument *)self.document) unlockWithPassword:compositeKey keyFileURL:keyURL error:error ];
   } forFile:fileURL];
 }
 
