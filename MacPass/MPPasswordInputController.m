@@ -149,7 +149,7 @@ static NSMutableDictionary* touchIDSecuredPasswords;
   BOOL result = self.completionHandler(compositeKey, keyURL, cancel, &error);
   if(cancel || result) {
     if(result && self.keyPathControl.URL == nil && self.touchIdEnabled.state) {
-      [self _storePasswordForTouchIDUnlock:password forDatabase:self.absoluteURLString];
+      [self _storePasswordForTouchIDUnlock:compositeKey forDatabase:self.absoluteURLString];
     }
     return;
   }
@@ -210,8 +210,8 @@ static NSMutableDictionary* touchIDSecuredPasswords;
   }
 }
 
-- (void) _storePasswordForTouchIDUnlock: (NSString*) password forDatabase: (NSString*) databaseId {
-  NSData* passwordData = [password dataUsingEncoding:NSUTF8StringEncoding];
+- (void) _storePasswordForTouchIDUnlock: (KPKCompositeKey*) compositeKey forDatabase: (NSString*) databaseId {
+  NSData* keyData = [NSKeyedArchiver archivedDataWithRootObject:compositeKey];
   NSData* tag = [@"com.hicknhacksoftware.macpass.publickey" dataUsingEncoding:NSUTF8StringEncoding];
   NSDictionary *getquery = @{
     (id)kSecClass: (id)kSecClassKey,
@@ -235,9 +235,9 @@ static NSMutableDictionary* touchIDSecuredPasswords;
     int k = (int)SecKeyGetBlockSize(publicKey);
     int hlen = 512 / 8;
     int maxMessageLengthInByte = k - 2 * hlen - 2;
-    if([passwordData length] <= maxMessageLengthInByte) {
+    if([keyData length] <= maxMessageLengthInByte) {
       CFErrorRef error = NULL;
-      NSData* cipherText = (NSData*)CFBridgingRelease(SecKeyCreateEncryptedData(publicKey, algorithm, (__bridge CFDataRef)passwordData, &error));
+      NSData* cipherText = (NSData*)CFBridgingRelease(SecKeyCreateEncryptedData(publicKey, algorithm, (__bridge CFDataRef)keyData, &error));
       if (cipherText) {
         [touchIDSecuredPasswords setObject:cipherText forKey:databaseId];
       }
@@ -257,8 +257,8 @@ static NSMutableDictionary* touchIDSecuredPasswords;
   if (publicKey)  { CFRelease(publicKey);  }
 }
 
-- (NSString*) _loadPasswordForTochIDUnlock: (NSString*) databaseId {
-  NSString* result = nil;
+- (KPKCompositeKey*) _loadPasswordForTochIDUnlock: (NSString*) databaseId {
+  KPKCompositeKey* result = nil;
   NSData* cipherText = [touchIDSecuredPasswords valueForKey:databaseId];
   if(cipherText != nil) {
     NSData* tag = [@"com.hicknhacksoftware.macpass.privatekey" dataUsingEncoding:NSUTF8StringEncoding];
@@ -278,7 +278,7 @@ static NSMutableDictionary* touchIDSecuredPasswords;
           CFErrorRef error = NULL;
           NSData* clearText = (NSData*)CFBridgingRelease(SecKeyCreateDecryptedData(privateKey, algorithm, (__bridge CFDataRef)cipherText, &error));
           if (clearText) {
-            result = [[NSString alloc]initWithData:clearText encoding:NSUTF8StringEncoding];
+            result = [NSKeyedUnarchiver unarchiveObjectWithData:clearText];
           }
           else {
             NSError *err = CFBridgingRelease(error);
@@ -408,10 +408,9 @@ static NSMutableDictionary* touchIDSecuredPasswords;
 }
 
 - (IBAction)unlockWithTouchID:(id)sender {
-  NSString* password = [self _loadPasswordForTochIDUnlock:self.absoluteURLString];
-  if(password != nil) {
+  KPKCompositeKey* compositeKey = [self _loadPasswordForTochIDUnlock:self.absoluteURLString];
+  if(compositeKey != nil) {
     NSError* error;
-    KPKCompositeKey *compositeKey = [[KPKCompositeKey alloc] initWithPassword:password keyFileData:nil];
     self.completionHandler(compositeKey, nil, false, &error);
     [self _showError:error];
   }
