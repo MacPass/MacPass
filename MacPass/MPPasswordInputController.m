@@ -148,7 +148,7 @@ static NSMutableDictionary* touchIDSecuredPasswords;
   KPKCompositeKey *compositeKey = [[KPKCompositeKey alloc] initWithPassword:password keyFileData:keyFileData];
   BOOL result = self.completionHandler(compositeKey, keyURL, cancel, &error);
   if(cancel || result) {
-    if(result && self.keyPathControl.URL == nil && self.touchIdEnabled.state) {
+    if(result && self.touchIdEnabled.state) {
       [self _storePasswordForTouchIDUnlock:compositeKey forDatabase:self.absoluteURLString];
     }
     return;
@@ -229,26 +229,17 @@ static NSMutableDictionary* touchIDSecuredPasswords;
       return;
     }
   }
-  SecKeyAlgorithm algorithm = kSecKeyAlgorithmRSAEncryptionOAEPSHA512;
+  SecKeyAlgorithm algorithm = kSecKeyAlgorithmRSAEncryptionOAEPSHA256AESGCM;
   BOOL canEncrypt = SecKeyIsAlgorithmSupported(publicKey, kSecKeyOperationTypeEncrypt, algorithm);
   if(canEncrypt) {
-    int k = (int)SecKeyGetBlockSize(publicKey);
-    int hlen = 512 / 8;
-    int maxMessageLengthInByte = k - 2 * hlen - 2;
-    if([keyData length] <= maxMessageLengthInByte) {
-      CFErrorRef error = NULL;
-      NSData* cipherText = (NSData*)CFBridgingRelease(SecKeyCreateEncryptedData(publicKey, algorithm, (__bridge CFDataRef)keyData, &error));
-      if (cipherText) {
-        [touchIDSecuredPasswords setObject:cipherText forKey:databaseId];
-      }
-      else {
-        NSError *err = CFBridgingRelease(error);
-        NSLog(@"Error while trying decrypt password for TouchID unlock: %@", [err description]);
-      }
+    CFErrorRef error = NULL;
+    NSData* cipherText = (NSData*)CFBridgingRelease(SecKeyCreateEncryptedData(publicKey, algorithm, (__bridge CFDataRef)keyData, &error));
+    if (cipherText) {
+      [touchIDSecuredPasswords setObject:cipherText forKey:databaseId];
     }
     else {
-      NSLog(@"The password is too large to be encrypted");
-      return;
+      NSError *err = CFBridgingRelease(error);
+      NSLog(@"Error while trying decrypt password for TouchID unlock: %@", [err description]);
     }
   }
   else {
@@ -271,22 +262,17 @@ static NSMutableDictionary* touchIDSecuredPasswords;
     SecKeyRef privateKey = NULL;
     OSStatus status = SecItemCopyMatching((__bridge CFDictionaryRef)queryPrivateKey, (CFTypeRef *)&privateKey);
     if (status == errSecSuccess) {
-      SecKeyAlgorithm algorithm = kSecKeyAlgorithmRSAEncryptionOAEPSHA512;
+      SecKeyAlgorithm algorithm = kSecKeyAlgorithmRSAEncryptionOAEPSHA256AESGCM;
       BOOL canDecrypt = SecKeyIsAlgorithmSupported(privateKey, kSecKeyOperationTypeDecrypt, algorithm);
       if(canDecrypt) {
-        if([cipherText length] == SecKeyGetBlockSize(privateKey)) {
-          CFErrorRef error = NULL;
-          NSData* clearText = (NSData*)CFBridgingRelease(SecKeyCreateDecryptedData(privateKey, algorithm, (__bridge CFDataRef)cipherText, &error));
-          if (clearText) {
-            result = [NSKeyedUnarchiver unarchiveObjectWithData:clearText];
-          }
-          else {
-            NSError *err = CFBridgingRelease(error);
-            NSLog(@"Error while trying to decrypt password for TouchID unlock: %@", [err description]);
-          }
+        CFErrorRef error = NULL;
+        NSData* clearText = (NSData*)CFBridgingRelease(SecKeyCreateDecryptedData(privateKey, algorithm, (__bridge CFDataRef)cipherText, &error));
+        if (clearText) {
+          result = [NSKeyedUnarchiver unarchiveObjectWithData:clearText];
         }
         else {
-          NSLog(@"Block size of the cipher text has a unexpected value: %lu", (unsigned long)[cipherText length]);
+          NSError *err = CFBridgingRelease(error);
+          NSLog(@"Error while trying to decrypt password for TouchID unlock: %@", [err description]);
         }
       }
       else {
