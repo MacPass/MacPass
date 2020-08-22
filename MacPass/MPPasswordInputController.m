@@ -27,6 +27,7 @@
 #import "MPSettingsHelper.h"
 #import "MPPathControl.h"
 #import "MPTouchBarButtonCreator.h"
+#import "MPSettingsHelper.h"
 
 #import "HNHUi/HNHUi.h"
 
@@ -47,6 +48,7 @@ static NSMutableDictionary* touchIDSecuredPasswords;
 @property (weak) IBOutlet NSButton *unlockButton;
 @property (weak) IBOutlet NSButton *cancelButton;
 @property (weak) IBOutlet NSButton *touchIdButton;
+@property (weak) IBOutlet NSButton *touchIdEnabled;
 
 @property (copy) NSString *message;
 @property (copy) NSString *cancelLabel;
@@ -88,6 +90,11 @@ static NSMutableDictionary* touchIDSecuredPasswords;
   [self.enablePasswordCheckBox bind:NSValueBinding toObject:self withKeyPath:NSStringFromSelector(@selector(enablePassword)) options:nil];
   [self.togglePasswordButton bind:NSEnabledBinding toObject:self withKeyPath:NSStringFromSelector(@selector(enablePassword)) options:nil];
   [self.passwordTextField bind:NSEnabledBinding toObject:self withKeyPath:NSStringFromSelector(@selector(enablePassword)) options:nil];
+  self.touchIdEnabled.hidden = true;
+  if (@available(macOS 10.13.4, *)) {
+    self.touchIdEnabled.hidden = false;
+    self.touchIdEnabled.state = [NSUserDefaults.standardUserDefaults boolForKey:kMPSettingsKeyEntryTouchIdEnabled];
+  }
   [self _reset];
 }
 
@@ -142,7 +149,7 @@ static NSMutableDictionary* touchIDSecuredPasswords;
   BOOL cancel = (sender == self.cancelButton);
   BOOL result = self.completionHandler(password, self.keyPathControl.URL, cancel, &error);
   if(cancel || result) {
-    if(result && self.keyPathControl.URL == nil) {
+    if(result && self.keyPathControl.URL == nil && self.touchIdEnabled.state) {
       [self _storePasswordForTouchIDUnlock:password forDatabase:self.absoluteURLString];
     }
     return;
@@ -306,6 +313,9 @@ static NSMutableDictionary* touchIDSecuredPasswords;
   else {
     self.keyPathControl.URL = nil;
   }
+}
+- (IBAction)touchIdEnabledChanged:(id)sender {
+    [NSUserDefaults.standardUserDefaults setBool:self.touchIdEnabled.state forKey:kMPSettingsKeyEntryTouchIdEnabled];
 }
 
 - (void)_reset {

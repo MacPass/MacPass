@@ -22,6 +22,9 @@
 
 #import <Cocoa/Cocoa.h>
 
+/* TouchID */
+APPKIT_EXTERN NSString *const kMPSettingsKeyEntryTouchIdEnabled;
+
 /* Clipboard */
 APPKIT_EXTERN NSString *const kMPSettingsKeyPasteboardClearTimeout;
 APPKIT_EXTERN NSString *const kMPSettingsKeyClearPasteboardOnQuit;
