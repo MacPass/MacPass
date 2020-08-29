@@ -52,7 +52,7 @@ static NSMutableDictionary* touchIDSecuredPasswords;
 
 @property (copy) NSString *message;
 @property (copy) NSString *cancelLabel;
-@property (copy) NSString *absoluteURLString;
+@property (copy) NSURL *databaseFileURL;
 
 @property (assign) BOOL showPassword;
 @property (nonatomic, assign) BOOL enablePassword;
@@ -93,7 +93,7 @@ static NSMutableDictionary* touchIDSecuredPasswords;
   self.touchIdEnabled.hidden = true;
   if (@available(macOS 10.13.4, *)) {
     self.touchIdEnabled.hidden = false;
-    self.touchIdEnabled.state = [NSUserDefaults.standardUserDefaults boolForKey:kMPSettingsKeyEntryTouchIdEnabled];
+    self.touchIdEnabled.state = [NSUserDefaults.standardUserDefaults integerForKey:kMPSettingsKeyEntryTouchIdEnabled];
   }
   [self _reset];
 }
@@ -106,12 +106,7 @@ static NSMutableDictionary* touchIDSecuredPasswords;
   self.completionHandler = completionHandler;
   self.message = message;
   self.cancelLabel = cancelLabel;
-  if(fileURL) {
-      self.absoluteURLString = [fileURL absoluteString];
-  }
-  else {
-    self.absoluteURLString = nil;
-  }
+  self.databaseFileURL = fileURL;
   [self _reset];
 }
 
@@ -147,10 +142,8 @@ static NSMutableDictionary* touchIDSecuredPasswords;
   NSData *keyFileData = keyURL ? [NSData dataWithContentsOfURL:keyURL] : nil;
   KPKCompositeKey *compositeKey = [[KPKCompositeKey alloc] initWithPassword:password keyFileData:keyFileData];
   BOOL result = self.completionHandler(compositeKey, keyURL, cancel, &error);
+  [self _touchIdHandleUnlockAttempt:compositeKey withResult:result];
   if(cancel || result) {
-    if(result && self.touchIdEnabled.state) {
-      [self _storePasswordForTouchIDUnlock:compositeKey forDatabase:self.absoluteURLString];
-    }
     return;
   }
   [self _showError:error];
@@ -160,7 +153,21 @@ static NSMutableDictionary* touchIDSecuredPasswords;
   }
 }
 
-- (void) _createAndAddRSAKeyPair {
+- (void) _touchIdHandleUnlockAttempt: (KPKCompositeKey*)compositeKey withResult:(bool)success {
+  if(success && self.databaseFileURL && self.databaseFileURL.lastPathComponent) {
+    NSData* encryptedKey = [self _touchIdEncryptCompositeKey:compositeKey];
+    if(encryptedKey) {
+      if (self.touchIdEnabled.state == NSControlStateValueMixed) {
+        [touchIDSecuredPasswords setObject:encryptedKey forKey:self.databaseFileURL.lastPathComponent];
+      }
+      else if(self.touchIdEnabled.state == NSControlStateValueOn) {
+        [NSUserDefaults.standardUserDefaults setObject:encryptedKey forKey:[self _userDefaultsKeyForEncryptedCompositeKey]];
+      }
+    }
+  }
+}
+
+- (void) _touchIdCreateAndAddRSAKeyPair {
   CFErrorRef error = NULL;
   NSString* publicKeyLabel =  @"MacPass TouchID Feature Public Key";
   NSString* privateKeyLabel = @"MacPass TouchID Feature Private Key";
@@ -210,7 +217,8 @@ static NSMutableDictionary* touchIDSecuredPasswords;
   }
 }
 
-- (void) _storePasswordForTouchIDUnlock: (KPKCompositeKey*) compositeKey forDatabase: (NSString*) databaseId {
+- (NSData*) _touchIdEncryptCompositeKey: (KPKCompositeKey*) compositeKey {
+  NSData* encryptedKey = nil;
   NSData* keyData = [NSKeyedArchiver archivedDataWithRootObject:compositeKey];
   NSData* tag = [@"com.hicknhacksoftware.macpass.publickey" dataUsingEncoding:NSUTF8StringEncoding];
   NSDictionary *getquery = @{
@@ -221,23 +229,20 @@ static NSMutableDictionary* touchIDSecuredPasswords;
   SecKeyRef publicKey = NULL;
   OSStatus status = SecItemCopyMatching((__bridge CFDictionaryRef)getquery, (CFTypeRef *)&publicKey);
   if (status != errSecSuccess) {
-    [self _createAndAddRSAKeyPair];
+    [self _touchIdCreateAndAddRSAKeyPair];
     OSStatus status = SecItemCopyMatching((__bridge CFDictionaryRef)getquery, (CFTypeRef *)&publicKey);
     if (status != errSecSuccess) {
       NSString* description = (__bridge NSString*)SecCopyErrorMessageString(status, NULL);
       NSLog(@"Error while trying to query public key from Keychain: %@", description);
-      return;
+      return nil;
     }
   }
   SecKeyAlgorithm algorithm = kSecKeyAlgorithmRSAEncryptionOAEPSHA256AESGCM;
   BOOL canEncrypt = SecKeyIsAlgorithmSupported(publicKey, kSecKeyOperationTypeEncrypt, algorithm);
   if(canEncrypt) {
     CFErrorRef error = NULL;
-    NSData* cipherText = (NSData*)CFBridgingRelease(SecKeyCreateEncryptedData(publicKey, algorithm, (__bridge CFDataRef)keyData, &error));
-    if (cipherText) {
-      [touchIDSecuredPasswords setObject:cipherText forKey:databaseId];
-    }
-    else {
+    encryptedKey = (NSData*)CFBridgingRelease(SecKeyCreateEncryptedData(publicKey, algorithm, (__bridge CFDataRef)keyData, &error));
+    if (!encryptedKey) {
       NSError *err = CFBridgingRelease(error);
       NSLog(@"Error while trying decrypt password for TouchID unlock: %@", [err description]);
     }
@@ -246,12 +251,12 @@ static NSMutableDictionary* touchIDSecuredPasswords;
       NSLog(@"The key retreived from the Keychain is unable to encrypt data");
   }
   if (publicKey)  { CFRelease(publicKey);  }
+  return encryptedKey;
 }
 
-- (KPKCompositeKey*) _loadPasswordForTochIDUnlock: (NSString*) databaseId {
+- (KPKCompositeKey*) _touchIdDecryptCompositeKey: (NSData*) encryptedKey {
   KPKCompositeKey* result = nil;
-  NSData* cipherText = [touchIDSecuredPasswords valueForKey:databaseId];
-  if(cipherText != nil) {
+  if(encryptedKey != nil) {
     NSData* tag = [@"com.hicknhacksoftware.macpass.privatekey" dataUsingEncoding:NSUTF8StringEncoding];
     NSDictionary *queryPrivateKey = @{
       (id)kSecClass: (id)kSecClassKey,
@@ -266,7 +271,7 @@ static NSMutableDictionary* touchIDSecuredPasswords;
       BOOL canDecrypt = SecKeyIsAlgorithmSupported(privateKey, kSecKeyOperationTypeDecrypt, algorithm);
       if(canDecrypt) {
         CFErrorRef error = NULL;
-        NSData* clearText = (NSData*)CFBridgingRelease(SecKeyCreateDecryptedData(privateKey, algorithm, (__bridge CFDataRef)cipherText, &error));
+        NSData* clearText = (NSData*)CFBridgingRelease(SecKeyCreateDecryptedData(privateKey, algorithm, (__bridge CFDataRef)encryptedKey, &error));
         if (clearText) {
           result = [NSKeyedUnarchiver unarchiveObjectWithData:clearText];
         }
@@ -290,6 +295,42 @@ static NSMutableDictionary* touchIDSecuredPasswords;
   return result;
 }
 
+- (NSString*) _userDefaultsKeyForEncryptedCompositeKey {
+  NSString* result = [NSString stringWithFormat:kMPSettingsKeyEntryTouchIdDatabaseEncryptedKeyFormat, self.databaseFileURL.lastPathComponent];
+  return result;
+}
+
+- (bool) _touchIdIsUnlockAvailable {
+  bool result = false;
+  if(self.databaseFileURL != nil && self.databaseFileURL.lastPathComponent != nil)
+  {
+    if ([touchIDSecuredPasswords valueForKey:self.databaseFileURL.lastPathComponent] != nil) {
+      result = true;
+    }
+    else if([NSUserDefaults.standardUserDefaults dataForKey:[self _userDefaultsKeyForEncryptedCompositeKey]] != nil) {
+      result = true;
+    }
+  }
+  return result;
+}
+
+- (IBAction)unlockWithTouchID:(id)sender {
+  NSData* encryptedKey = [touchIDSecuredPasswords valueForKey:self.databaseFileURL.lastPathComponent];
+  if(!encryptedKey) {
+    encryptedKey = [NSUserDefaults.standardUserDefaults dataForKey:[self _userDefaultsKeyForEncryptedCompositeKey]];
+  }
+  KPKCompositeKey* compositeKey = [self _touchIdDecryptCompositeKey:encryptedKey];
+  if(compositeKey != nil) {
+    NSError* error;
+    self.completionHandler(compositeKey, nil, false, &error);
+    [self _showError:error];
+  }
+}
+
+- (IBAction)touchIdEnabledChanged:(id)sender {
+    [NSUserDefaults.standardUserDefaults setInteger: self.touchIdEnabled.state forKey:kMPSettingsKeyEntryTouchIdEnabled];
+}
+
 - (IBAction)resetKeyFile:(id)sender {
   /* If the reset was triggered by ourselves we want to preselect the keyfile */
   if(sender == self) {
@@ -299,17 +340,14 @@ static NSMutableDictionary* touchIDSecuredPasswords;
     self.keyPathControl.URL = nil;
   }
 }
-- (IBAction)touchIdEnabledChanged:(id)sender {
-    [NSUserDefaults.standardUserDefaults setBool:self.touchIdEnabled.state forKey:kMPSettingsKeyEntryTouchIdEnabled];
-}
 
 - (void)_reset {
   self.showPassword = NO;
   self.enablePassword = YES;
   self.passwordTextField.stringValue = @"";
   self.messageInfoTextField.hidden = (nil == self.message);
-  self.touchIdButton.hidden = [touchIDSecuredPasswords valueForKey:self.absoluteURLString] == nil;
-    
+  self.touchIdButton.hidden = ![self _touchIdIsUnlockAvailable];
+
   if(self.message) {
     self.messageInfoTextField.stringValue = self.message;
     self.messageImageView.image = [NSImage imageNamed:NSImageNameInfo];
@@ -390,15 +428,6 @@ static NSMutableDictionary* touchIDSecuredPasswords;
   else {
     self.keyFileWarningTextField.stringValue = @"";
     self.keyFileWarningTextField.hidden = YES;
-  }
-}
-
-- (IBAction)unlockWithTouchID:(id)sender {
-  KPKCompositeKey* compositeKey = [self _loadPasswordForTochIDUnlock:self.absoluteURLString];
-  if(compositeKey != nil) {
-    NSError* error;
-    self.completionHandler(compositeKey, nil, false, &error);
-    [self _showError:error];
   }
 }
 
