@@ -244,7 +244,7 @@ static NSMutableDictionary* touchIDSecuredPasswords;
     encryptedKey = (NSData*)CFBridgingRelease(SecKeyCreateEncryptedData(publicKey, algorithm, (__bridge CFDataRef)keyData, &error));
     if (!encryptedKey) {
       NSError *err = CFBridgingRelease(error);
-      NSLog(@"Error while trying decrypt password for TouchID unlock: %@", [err description]);
+      NSLog(@"Error while trying to decrypt the CompositeKey for TouchID unlock: %@", [err description]);
     }
   }
   else {
