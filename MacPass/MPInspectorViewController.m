@@ -77,7 +77,7 @@ typedef NS_ENUM(NSUInteger, MPContentTab) {
 }
 
 - (void)dealloc {
-  [[NSNotificationCenter defaultCenter] removeObserver:self];
+  [NSNotificationCenter.defaultCenter removeObserver:self];
 }
 
 - (NSResponder *)reconmendedFirstResponder {
@@ -111,15 +111,15 @@ typedef NS_ENUM(NSUInteger, MPContentTab) {
   [self.view layout];}
 
 - (void)registerNotificationsForDocument:(MPDocument *)document {
-  [[NSNotificationCenter defaultCenter] addObserver:self
-                                           selector:@selector(_didChangeCurrentItem:)
-                                               name:MPDocumentCurrentItemChangedNotification
-                                             object:document];
+  [NSNotificationCenter.defaultCenter addObserver:self
+                                         selector:@selector(_didChangeCurrentItem:)
+                                             name:MPDocumentCurrentItemChangedNotification
+                                           object:document];
   
-  [[NSNotificationCenter defaultCenter] addObserver:self
-                                           selector:@selector(_willChangeModelProperty:)
-                                               name:MPDocumentWillChangeModelPropertyNotification
-                                             object:document];
+  [NSNotificationCenter.defaultCenter addObserver:self
+                                         selector:@selector(_willChangeModelProperty:)
+                                             name:MPDocumentWillChangeModelPropertyNotification
+                                           object:document];
   
   self.entryViewController.observer = document;
   self.itemImageView.modelChangeObserver = document;
