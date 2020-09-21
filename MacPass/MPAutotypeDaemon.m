@@ -55,7 +55,6 @@
 @property (strong) NSRunningApplication *previousApplication; // The application that was active before we got invoked
 @property (assign) NSTimeInterval userActionRequested;
 @property (strong) id applicationActivationObserver;
-@property (nonatomic, readonly) BOOL hasNecessaryAutotypePermissions;
 @end
 
 @implementation MPAutotypeDaemon
@@ -131,10 +130,6 @@ static MPAutotypeDaemon *_sharedInstance;
   }
 }
 
-- (BOOL)hasNecessaryAutotypePermissions {
-  return MPAutotypeDoctor.defaultDoctor.hasNecessaryAutotypePermissions;
-}
-
 #pragma mark -
 #pragma mark Autotype Invocation
 - (void)performAutotypeForEntry:(KPKEntry *)entry {
@@ -149,7 +144,7 @@ static MPAutotypeDaemon *_sharedInstance;
 }
 
 - (void)_didPressHotKey {
-  MPAutotypeEnvironment *env = [MPAutotypeEnvironment environmentWithTargetApplication:NSWorkspace.sharedWorkspace.frontmostApplication entry:nil overrideSequence:nil];
+  MPAutotypeEnvironment *env = [MPAutotypeEnvironment environmentWithTargetApplication:nil entry:nil overrideSequence:nil];
   [self _runAutotypeWithEnvironment:env];
 }
 
@@ -193,8 +188,14 @@ static MPAutotypeDaemon *_sharedInstance;
   if(env.isSelfTargeting) {
     return; // we do not want to target ourselves
   }
-  
-  if(!self.hasNecessaryAutotypePermissions) {
+  BOOL hasNeededPermissions = NO;
+  if(env.globalAutotype) {
+    hasNeededPermissions = [MPAutotypeDoctor.defaultDoctor hasNecessaryPermissionForTask:MPAutotypeTaskGlobalAutotype];
+  }
+  else {
+    hasNeededPermissions = [MPAutotypeDoctor.defaultDoctor hasNecessaryPermissionForTask:MPAutotypeTaskAutotype];
+  }
+  if(!hasNeededPermissions) {
     NSUserNotification *notification = [[NSUserNotification alloc] init];
     notification.title = NSLocalizedString(@"AUTOTYPE_NOTIFICATION_PERMISSIONS_MISSING_TITLE", "Title for autotype feedback on missing permissions");
     notification.informativeText = NSLocalizedString(@"AUTOTYPE_NOTIFICATION_MACPASS_IS_MISSING_PERMISSIONS", "Notification: Autotype failed, MacPass has not enough permissions to perform autotype");

@@ -51,14 +51,17 @@
   return instance;
 }
 
-- (BOOL)hasNecessaryAutotypePermissions {
-  if(![self hasAccessibiltyPermissions:NULL]) {
-    return NO;
+- (BOOL)hasNecessaryPermissionForTask:(MPAutotypeTask)task {
+  BOOL permissionsOK = YES;
+  switch(task) {
+    case MPAutotypeTaskGlobalAutotype:
+      permissionsOK &= [self hasScreenRecordingPermissions:NULL];
+      // fallthrough!
+    case MPAutotypeTaskAutotype:
+      permissionsOK &= [self hasAccessibiltyPermissions:NULL];
+      break;
   }
-  if(![self hasScreenRecordingPermissions:NULL]) {
-    return NO;
-  }
-  return YES;
+  return permissionsOK;
 }
 
 - (BOOL)hasScreenRecordingPermissions:(NSError *__autoreleasing*)error {

@@ -23,6 +23,10 @@
     _preferredEntry = entry;
     _hidden = NSRunningApplication.currentApplication.isHidden;
     _overrideSequence = [overrdieSequence copy];
+    /* capture the front most application if no one was supplied */
+    if(nil == targetApplication) {
+      targetApplication = NSWorkspace.sharedWorkspace.frontmostApplication;
+    }
     if(!targetApplication) {
       _pid = -1;
       _windowTitle = @"";
