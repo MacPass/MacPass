@@ -175,9 +175,13 @@ static NSMutableDictionary* touchIDSecuredPasswords;
   NSData* privateKeyTag = [@"com.hicknhacksoftware.macpass.privatekey" dataUsingEncoding:NSUTF8StringEncoding];
   SecAccessControlRef access = NULL;
   if (@available(macOS 10.13.4, *)) {
+    SecAccessControlCreateFlags flags = kSecAccessControlBiometryCurrentSet;
+    if (@available(macOS 10.15, *)) {
+      flags |= kSecAccessControlWatch | kSecAccessControlOr;
+    }
     access = SecAccessControlCreateWithFlags(kCFAllocatorDefault,
                                              kSecAttrAccessibleWhenUnlockedThisDeviceOnly,
-                                             kSecAccessControlBiometryCurrentSet,
+                                             flags,
                                              &error);
     if(access == NULL) {
       NSError *err = CFBridgingRelease(error);
