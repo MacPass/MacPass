@@ -955,7 +955,7 @@ NSString *const MPDocumentGroupKey                            = @"MPDocumentGrou
     /* user has removed the keyfile or we should not safe it so remove it */
     [keysForFiles removeObjectForKey:self.fileURL.path.sha1HexDigest];
   }
-  else if(self.compositeKey.hasPassword && self.compositeKey.hasKeyFile) {
+  else if([self.compositeKey hasKeyOfClass:KPKPasswordKey.class] && [self.compositeKey hasKeyOfClass:KPKFileKey.class]) {
     if(nil == keysForFiles) {
       keysForFiles = [[NSMutableDictionary alloc] initWithCapacity:1];
     }
