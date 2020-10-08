@@ -25,7 +25,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (readonly) BOOL hidden; /// If set to YES, MacPass was hidden when autotype was initiated
 @property (readonly) BOOL isSelfTargeting; /// If MacPass should autotype to itself, YES, otherwise NO
 @property (readonly) NSString *overrideSequence; /// If set, this sequence is used for running the command regardless of the matched one
-@property (readonly) BOOL globalAutotype;
+@property (readonly) BOOL globalAutotype; /// YES, if autotype is run as global autotype, NO otherwise
 
 + (instancetype)environmentWithTargetApplication:(NSRunningApplication * _Nullable)targetApplication entry:(KPKEntry * _Nullable)entry overrideSequence:(NSString * _Nullable)overrideSequence;
 
