@@ -33,6 +33,7 @@
 @property (strong) IBOutlet NSButton *selectAutotypeContextButton;
 @property (strong) IBOutlet NSTableView *contextTableView;
 @property (strong) IBOutlet NSTextField *messageTextField;
+@property (strong) IBOutlet NSImageView *targetApplicationImageView;
 
 @end
 
@@ -47,6 +48,10 @@
   NSString *template = NSLocalizedString(@"AUTOTYPE_CANDIDATE_SELECTION_WINDOW_MESSAGE_%@", "Message text in the autotype selection window. Placeholder is %1 - windowTitle");
   self.messageTextField.stringValue = [NSString stringWithFormat:template, self.environment.windowTitle];
   self.selectAutotypeContextButton.enabled = NO;
+  NSRunningApplication *targetApplication = [NSRunningApplication runningApplicationWithProcessIdentifier:self.environment.pid];
+  if(nil != targetApplication) {
+    self.targetApplicationImageView.image = targetApplication.icon;
+  }
   NSNotification *notification = [NSNotification notificationWithName:NSTableViewSelectionDidChangeNotification object:self.contextTableView];
   [self tableViewSelectionDidChange:notification];
 }
