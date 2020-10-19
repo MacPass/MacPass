@@ -140,7 +140,11 @@ static NSMutableDictionary* touchIDSecuredPasswords;
   BOOL cancel = (sender == self.cancelButton);
   NSURL* keyURL = self.keyPathControl.URL;
   NSData *keyFileData = keyURL ? [NSData dataWithContentsOfURL:keyURL] : nil;
-  KPKCompositeKey *compositeKey = [[KPKCompositeKey alloc] initWithPassword:password keyFileData:keyFileData];
+  KPKKey* passwordKey = [KPKKey keyWithPassword:password];
+  KPKKey* fileKey = [KPKKey keyWithKeyFileData:keyFileData];
+  KPKCompositeKey* compositeKey = [[KPKCompositeKey alloc] init];
+  [compositeKey addKey:passwordKey];
+  [compositeKey addKey:fileKey];
   BOOL result = self.completionHandler(compositeKey, keyURL, cancel, &error);
   [self _touchIdHandleUnlockAttempt:compositeKey withResult:result];
   if(cancel || result) {

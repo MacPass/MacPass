@@ -432,10 +432,6 @@ NSString *const MPDocumentGroupKey                            = @"MPDocumentGrou
                                         completionHandler:^BOOL(KPKCompositeKey *compositeKey, NSURL* keyURL, BOOL didCancel, NSError *__autoreleasing *error) {
                                           [self.windowForSheet endSheet:sheet returnCode:(didCancel ? NSModalResponseCancel : NSModalResponseOK)];
                                           if(!didCancel) {
-                                            NSData *keyFileData = keyURL ? [NSData dataWithContentsOfURL:keyURL] : nil;
-                                            KPKCompositeKey *compositeKey = [[KPKCompositeKey alloc] init];
-                                            [compositeKey addKey:[KPKKey keyWithPassword:password]];
-                                            [compositeKey addKey:[KPKKey keyWithKeyFileData:keyFileData]];
                                             [self _mergeWithContentsFromURL:url key:compositeKey options:options];
                                           }
                                           // just return yes regardless since we will display the sheet again if needed!
@@ -503,11 +499,7 @@ NSString *const MPDocumentGroupKey                            = @"MPDocumentGrou
 
 - (BOOL)unlockWithPassword:(KPKCompositeKey *)compositeKey keyFileURL:(NSURL *)keyFileURL error:(NSError *__autoreleasing*)error{
   // TODO: Make this API asynchronous
-  NSData *keyFileData = keyFileURL ? [NSData dataWithContentsOfURL:keyFileURL] : nil;
-  
-  self.compositeKey = [[KPKCompositeKey alloc] init];
-  [self.compositeKey addKey:[KPKKey keyWithPassword:password]];
-  [self.compositeKey addKey:[KPKKey keyWithKeyFileData:keyFileData]];
+  self.compositeKey = compositeKey;
   self.tree = [[KPKTree alloc] initWithData:self.encryptedData key:self.compositeKey error:error];
   
   BOOL isUnlocked = (nil != self.tree);
