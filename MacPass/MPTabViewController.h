@@ -12,6 +12,9 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface MPTabViewController : NSTabViewController
 
+@property (nonatomic, copy, nullable) void (^willSelectTabHandler)(NSTabViewItem *item);
+@property (nonatomic, copy, nullable) void (^didSelectTabHandler)(NSTabViewItem *item);
+
 @end
 
 NS_ASSUME_NONNULL_END
