@@ -106,7 +106,7 @@
 
 - (void)_updateAccessabilityWarning {
   
-  BOOL hasAutotypeSupport = [MPAutotypeDoctor.defaultDoctor hasNecessaryPermissionForTask:MPAutotypeTaskGlobalAutotype];
+  BOOL hasAutotypeSupport = MPAutotypeDoctor.defaultDoctor.hasNecessaryAutotypePermissions;
   
   if(hasAutotypeSupport) {
     [self.autotypeStackView setVisibilityPriority:NSStackViewVisibilityPriorityNotVisible forView:self.autotypeWarningTextField];

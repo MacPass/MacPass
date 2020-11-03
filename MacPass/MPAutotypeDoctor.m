@@ -51,17 +51,14 @@
   return instance;
 }
 
-- (BOOL)hasNecessaryPermissionForTask:(MPAutotypeTask)task {
-  BOOL permissionsOK = YES;
-  switch(task) {
-    case MPAutotypeTaskGlobalAutotype:
-      permissionsOK &= [self hasScreenRecordingPermissions:NULL];
-      // fallthrough!
-    case MPAutotypeTaskAutotype:
-      permissionsOK &= [self hasAccessibiltyPermissions:NULL];
-      break;
+- (BOOL)hasNecessaryAutotypePermissions {
+  if(![self hasAccessibiltyPermissions:NULL]) {
+    return NO;
   }
-  return permissionsOK;
+  if(![self hasScreenRecordingPermissions:NULL]) {
+    return NO;
+  }
+  return YES;
 }
 
 - (BOOL)hasScreenRecordingPermissions:(NSError *__autoreleasing*)error {

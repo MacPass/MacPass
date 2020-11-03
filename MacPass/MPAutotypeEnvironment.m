@@ -20,16 +20,10 @@
 - (instancetype)initWithTargetApplication:(NSRunningApplication *)targetApplication entry:(KPKEntry *)entry overrideSequence:(NSString *)overrdieSequence {
   self = [super init];
   if(self) {
-    _globalAutotype = NO;
     _preferredEntry = entry;
     _hidden = NSRunningApplication.currentApplication.isHidden;
     _overrideSequence = [overrdieSequence copy];
-    /* capture the front most application if no one was supplied */
-    if(nil == targetApplication) {
-      _globalAutotype = YES;
-      targetApplication = NSWorkspace.sharedWorkspace.frontmostApplication;
-    }
-    if(nil == targetApplication) {
+    if(!targetApplication) {
       _pid = -1;
       _windowTitle = @"";
     }

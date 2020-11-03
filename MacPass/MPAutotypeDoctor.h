@@ -12,14 +12,10 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface MPAutotypeDoctor : NSObject
 
-typedef NS_ENUM(NSUInteger, MPAutotypeTask) {
-  MPAutotypeTaskAutotype,
-  MPAutotypeTaskGlobalAutotype
-};
 
 @property (class, readonly, strong) MPAutotypeDoctor *defaultDoctor;
+@property (nonatomic, readonly) BOOL hasNecessaryAutotypePermissions; // MacPass has all the permissions it needs to run autotype on the current system
 
-- (BOOL)hasNecessaryPermissionForTask:(MPAutotypeTask)task;
 - (BOOL)hasScreenRecordingPermissions:(NSError *__autoreleasing*)error;
 - (BOOL)hasAccessibiltyPermissions:(NSError *__autoreleasing*)error;
 
