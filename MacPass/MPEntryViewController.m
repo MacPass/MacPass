@@ -382,8 +382,11 @@ NSString *const _MPTableSecurCellView = @"PasswordCell";
   if(tableView != self.entryTable) {
     return; // Not the right table view
   }
-  MPDocument *document = self.windowController.document;
-  document.selectedEntries = self.entryArrayController.selectedObjects;
+  /* do not update the current item if we are not in focus! */
+  if(tableView.window.firstResponder == self.entryTable) {
+      MPDocument *document = self.windowController.document;
+      document.selectedEntries = self.entryArrayController.selectedObjects;
+  }
 }
 
 - (BOOL)tableView:(NSTableView *)tableView shouldReorderColumn:(NSInteger)columnIndex toColumn:(NSInteger)newColumnIndex {

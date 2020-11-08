@@ -63,6 +63,8 @@
 	<string>????</string>
 	<key>CFBundleVersion</key>
 	<string>UNDEFINED</string>
+	<key>LSApplicationCategoryType</key>
+	<string>public.app-category.productivity</string>
 	<key>LSMinimumSystemVersion</key>
 	<string>${MACOSX_DEPLOYMENT_TARGET}</string>
 	<key>MPHelpURL</key>
@@ -77,16 +79,16 @@
 	<string>MacPass accesses the Documents folder to load and save your databases and/or key files there</string>
 	<key>NSDownloadsFolderUsageDescription</key>
 	<string>MacPass accesses the Downloads folder to load and save your databases and/or key files there</string>
-	<key>NSNetworkVolumesUsageDescription</key>
-	<string>MacPass need access to Network Volumes to load and save your databases and/or key files there</string>
-	<key>NSRemovableVolumesUsageDescription</key>
-	<string>MacPass need access to Removable Volumes to load and save your databases and/or key files there</string>
 	<key>NSHumanReadableCopyright</key>
 	<string>Copyright © 2012-2020 HicknHack Software GmbH. All rights reserved.</string>
 	<key>NSMainNibFile</key>
 	<string>MainMenu</string>
+	<key>NSNetworkVolumesUsageDescription</key>
+	<string>MacPass need access to Network Volumes to load and save your databases and/or key files there</string>
 	<key>NSPrincipalClass</key>
 	<string>NSApplication</string>
+	<key>NSRemovableVolumesUsageDescription</key>
+	<string>MacPass need access to Removable Volumes to load and save your databases and/or key files there</string>
 	<key>NSSupportsAutomaticGraphicsSwitching</key>
 	<true/>
 	<key>NSUserNotificationAlertStyle</key>

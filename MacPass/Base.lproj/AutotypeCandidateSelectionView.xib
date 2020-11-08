@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="15705" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" customObjectInstantitationMethod="direct">
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="17156" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" customObjectInstantitationMethod="direct">
     <dependencies>
         <deployment identifier="macosx"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="15705"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="17156"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
@@ -11,30 +11,30 @@
                 <outlet property="contextTableView" destination="Ih2-lo-t2W" id="8uy-Mz-1vc"/>
                 <outlet property="messageTextField" destination="kDw-2l-7gQ" id="7bW-as-yGU"/>
                 <outlet property="selectAutotypeContextButton" destination="V5B-Qq-GN8" id="mqv-H3-N01"/>
+                <outlet property="targetApplicationImageView" destination="bWJ-Ub-c10" id="vTC-FO-QQO"/>
                 <outlet property="view" destination="Hz6-mo-xeY" id="0bl-1N-x8E"/>
             </connections>
         </customObject>
         <customObject id="-1" userLabel="First Responder" customClass="FirstResponder"/>
         <customObject id="-3" userLabel="Application" customClass="NSObject"/>
-        <customView translatesAutoresizingMaskIntoConstraints="NO" id="Hz6-mo-xeY">
-            <rect key="frame" x="0.0" y="0.0" width="480" height="241"/>
+        <customView misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Hz6-mo-xeY">
+            <rect key="frame" x="0.0" y="0.0" width="480" height="364"/>
             <subviews>
-                <scrollView wantsLayer="YES" autohidesScrollers="YES" horizontalLineScroll="38" horizontalPageScroll="10" verticalLineScroll="38" verticalPageScroll="10" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7cB-re-3ys">
-                    <rect key="frame" x="20" y="61" width="440" height="120"/>
+                <scrollView wantsLayer="YES" verticalCompressionResistancePriority="250" autohidesScrollers="YES" horizontalLineScroll="38" horizontalPageScroll="10" verticalLineScroll="38" verticalPageScroll="10" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7cB-re-3ys">
+                    <rect key="frame" x="20" y="61" width="440" height="211"/>
                     <clipView key="contentView" id="WSc-o2-GsZ">
-                        <rect key="frame" x="1" y="1" width="438" height="118"/>
+                        <rect key="frame" x="1" y="1" width="438" height="209"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <tableView verticalHuggingPriority="750" ambiguous="YES" allowsExpansionToolTips="YES" columnAutoresizingStyle="lastColumnOnly" alternatingRowBackgroundColors="YES" columnReordering="NO" multipleSelection="NO" emptySelection="NO" autosaveColumns="NO" typeSelect="NO" rowHeight="36" viewBased="YES" id="Ih2-lo-t2W">
-                                <rect key="frame" x="0.0" y="0.0" width="438" height="118"/>
-                                <autoresizingMask key="autoresizingMask"/>
+                            <tableView verticalHuggingPriority="750" allowsExpansionToolTips="YES" columnAutoresizingStyle="lastColumnOnly" alternatingRowBackgroundColors="YES" columnReordering="NO" multipleSelection="NO" emptySelection="NO" autosaveColumns="NO" typeSelect="NO" rowHeight="36" viewBased="YES" id="Ih2-lo-t2W">
+                                <rect key="frame" x="0.0" y="0.0" width="438" height="209"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 <size key="intercellSpacing" width="3" height="2"/>
                                 <color key="backgroundColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
                                 <color key="gridColor" name="gridColor" catalog="System" colorSpace="catalog"/>
                                 <tableColumns>
                                     <tableColumn width="435" minWidth="40" maxWidth="1000" id="wTy-0L-yzY">
                                         <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border">
-                                            <font key="font" metaFont="smallSystem"/>
                                             <color key="textColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>
                                             <color key="backgroundColor" name="headerColor" catalog="System" colorSpace="catalog"/>
                                         </tableHeaderCell>
@@ -111,14 +111,6 @@
                         <autoresizingMask key="autoresizingMask"/>
                     </scroller>
                 </scrollView>
-                <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" preferredMaxLayoutWidth="330" translatesAutoresizingMaskIntoConstraints="NO" id="kDw-2l-7gQ">
-                    <rect key="frame" x="18" y="189" width="444" height="32"/>
-                    <textFieldCell key="cell" sendsActionOnEndEditing="YES" title="There are multiple matches for the current window. Please select which match should be used." id="gcf-gb-ZsF">
-                        <font key="font" metaFont="system"/>
-                        <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
-                        <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
-                    </textFieldCell>
-                </textField>
                 <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="zBX-HB-tR7">
                     <rect key="frame" x="236" y="13" width="82" height="32"/>
                     <buttonCell key="cell" type="push" title="Cancel" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="60p-7v-Nje">
@@ -145,25 +137,55 @@ DQ
                         <action selector="selectAutotypeContext:" target="-2" id="a2F-ID-uOd"/>
                     </connections>
                 </button>
+                <stackView distribution="fill" orientation="horizontal" alignment="centerY" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="82Y-g7-4wV">
+                    <rect key="frame" x="20" y="280" width="440" height="64"/>
+                    <subviews>
+                        <imageView horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="bWJ-Ub-c10">
+                            <rect key="frame" x="0.0" y="0.0" width="64" height="64"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="64" id="Rzo-8n-W92"/>
+                                <constraint firstAttribute="width" constant="64" id="uhc-Ce-lb8"/>
+                            </constraints>
+                            <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyUpOrDown" image="NSApplicationIcon" id="d6x-JH-Lw2"/>
+                        </imageView>
+                        <textField verticalHuggingPriority="750" preferredMaxLayoutWidth="330" translatesAutoresizingMaskIntoConstraints="NO" id="kDw-2l-7gQ">
+                            <rect key="frame" x="70" y="16" width="372" height="32"/>
+                            <textFieldCell key="cell" sendsActionOnEndEditing="YES" title="There are multiple matches for the current window. Please select which match should be used." id="gcf-gb-ZsF">
+                                <font key="font" metaFont="system"/>
+                                <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
+                                <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                            </textFieldCell>
+                        </textField>
+                    </subviews>
+                    <visibilityPriorities>
+                        <integer value="1000"/>
+                        <integer value="1000"/>
+                    </visibilityPriorities>
+                    <customSpacing>
+                        <real value="3.4028234663852886e+38"/>
+                        <real value="3.4028234663852886e+38"/>
+                    </customSpacing>
+                </stackView>
             </subviews>
             <constraints>
                 <constraint firstAttribute="bottom" secondItem="V5B-Qq-GN8" secondAttribute="bottom" constant="20" id="FMz-e1-hOB"/>
-                <constraint firstItem="kDw-2l-7gQ" firstAttribute="leading" secondItem="Hz6-mo-xeY" secondAttribute="leading" constant="20" symbolic="YES" id="GcO-tk-i2z"/>
-                <constraint firstItem="kDw-2l-7gQ" firstAttribute="top" secondItem="Hz6-mo-xeY" secondAttribute="top" constant="20" symbolic="YES" id="OHm-6j-uPs"/>
+                <constraint firstAttribute="trailing" secondItem="82Y-g7-4wV" secondAttribute="trailing" constant="20" symbolic="YES" id="Fvf-rw-waQ"/>
                 <constraint firstAttribute="trailing" secondItem="V5B-Qq-GN8" secondAttribute="trailing" constant="20" symbolic="YES" id="SRs-hx-av7"/>
                 <constraint firstItem="V5B-Qq-GN8" firstAttribute="leading" secondItem="zBX-HB-tR7" secondAttribute="trailing" constant="12" symbolic="YES" id="UuF-Ba-HS5"/>
                 <constraint firstItem="zBX-HB-tR7" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="Hz6-mo-xeY" secondAttribute="leading" constant="20" symbolic="YES" id="ZNu-po-1u8"/>
                 <constraint firstItem="7cB-re-3ys" firstAttribute="leading" secondItem="Hz6-mo-xeY" secondAttribute="leading" constant="20" symbolic="YES" id="egY-ml-urP"/>
+                <constraint firstItem="7cB-re-3ys" firstAttribute="top" secondItem="82Y-g7-4wV" secondAttribute="bottom" constant="8" symbolic="YES" id="f0g-kf-N2j"/>
+                <constraint firstItem="82Y-g7-4wV" firstAttribute="top" secondItem="Hz6-mo-xeY" secondAttribute="top" constant="20" symbolic="YES" id="hDi-Va-2Mb"/>
                 <constraint firstAttribute="trailing" secondItem="7cB-re-3ys" secondAttribute="trailing" constant="20" symbolic="YES" id="hqW-Hz-bFN"/>
                 <constraint firstItem="V5B-Qq-GN8" firstAttribute="baseline" secondItem="zBX-HB-tR7" secondAttribute="baseline" id="iAg-1w-h25"/>
                 <constraint firstItem="zBX-HB-tR7" firstAttribute="top" secondItem="7cB-re-3ys" secondAttribute="bottom" constant="20" symbolic="YES" id="onA-YV-ezJ"/>
-                <constraint firstItem="7cB-re-3ys" firstAttribute="top" secondItem="kDw-2l-7gQ" secondAttribute="bottom" constant="8" symbolic="YES" id="ss6-Ku-XPY"/>
-                <constraint firstAttribute="trailing" secondItem="kDw-2l-7gQ" secondAttribute="trailing" constant="20" symbolic="YES" id="zSz-fH-fVn"/>
+                <constraint firstItem="82Y-g7-4wV" firstAttribute="leading" secondItem="Hz6-mo-xeY" secondAttribute="leading" constant="20" symbolic="YES" id="uoN-Et-pWh"/>
             </constraints>
-            <point key="canvasLocation" x="176" y="-39.5"/>
+            <point key="canvasLocation" x="-349" y="-1891"/>
         </customView>
     </objects>
     <resources>
         <image name="NSActionTemplate" width="14" height="14"/>
+        <image name="NSApplicationIcon" width="32" height="32"/>
     </resources>
 </document>

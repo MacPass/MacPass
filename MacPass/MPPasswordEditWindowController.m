@@ -56,7 +56,7 @@
   [self.togglePasswordButton bind:NSValueBinding toObject:self withKeyPath:NSStringFromSelector(@selector(showPassword)) options:nil];
   self.window.defaultButtonCell = self.changePasswordButton.cell;
   MPDocument *document = self.document;
-  self.enablePassword = document.compositeKey.hasPassword;
+  self.enablePassword = [document.compositeKey hasKeyOfClass:KPKPasswordKey.class];
 }
 
 - (void)updateView {

@@ -289,10 +289,15 @@ static MPAutotypeDaemon *_sharedInstance;
       [autotypeCandidates addObjectsFromArray:contexts];
     }
   }
+
+  BOOL isGlobalAutotype = (environment.preferredEntry == nil);
+  BOOL alwaysShowCandidateSelection = [NSUserDefaults.standardUserDefaults boolForKey:kMPSettingsKeyGloablAutotypeAlwaysShowCandidateSelection];
   
-  if(autotypeCandidates.count <= 1) {
-    return autotypeCandidates.lastObject;
+  /* if we have only one candidate and do not need to show the windows, return only the last candiadate */
+  if(autotypeCandidates.count <= 1 && !(isGlobalAutotype && alwaysShowCandidateSelection)) {
+      return autotypeCandidates.lastObject;
   }
+  /* otherwise show the candidate selection window */
   [self _presentCandiadates:autotypeCandidates forEnvironment:environment];
   return nil; // Nothing to do, we get called back by the window
 }

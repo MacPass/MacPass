@@ -155,7 +155,7 @@ NSString *const MPDocumentGroupKey                            = @"MPDocumentGrou
   if(self.encryptedData) {
     return YES;
   }
-  if(self.compositeKey.hasPasswordOrKeyFile) {
+  if(self.compositeKey.hasKeys) {
     return YES; // key is set, so autosave should be save
   }
   
@@ -186,7 +186,7 @@ NSString *const MPDocumentGroupKey                            = @"MPDocumentGrou
     NSLog(@"%@ should not be called on locked databases!", NSStringFromSelector(_cmd));
     return self.encryptedData;
   }
-  if(!self.compositeKey.hasPasswordOrKeyFile) {
+  if(!self.compositeKey.hasKeys) {
     if(outError != NULL) {
       NSDictionary *userInfo = @{ NSLocalizedDescriptionKey: NSLocalizedString(@"WARNING_ON_SAVE_NO_PASSWORD_OR_KEY_SET", "") };
       *outError = [NSError errorWithDomain:MPDefaultErrorDomain code:0 userInfo:userInfo];
@@ -421,7 +421,9 @@ NSString *const MPDocumentGroupKey                            = @"MPDocumentGrou
                                           [self.windowForSheet endSheet:sheet returnCode:(didCancel ? NSModalResponseCancel : NSModalResponseOK)];
                                           if(!didCancel) {
                                             NSData *keyFileData = keyURL ? [NSData dataWithContentsOfURL:keyURL] : nil;
-                                            KPKCompositeKey *compositeKey = [[KPKCompositeKey alloc] initWithPassword:password keyFileData:keyFileData];
+                                            KPKCompositeKey *compositeKey = [[KPKCompositeKey alloc] init];
+                                            [compositeKey addKey:[KPKKey keyWithPassword:password]];
+                                            [compositeKey addKey:[KPKKey keyWithKeyFileData:keyFileData]];
                                             [self _mergeWithContentsFromURL:url key:compositeKey options:options];
                                           }
                                           // just return yes regardless since we will display the sheet again if needed!
@@ -490,7 +492,10 @@ NSString *const MPDocumentGroupKey                            = @"MPDocumentGrou
 - (BOOL)unlockWithPassword:(NSString *)password keyFileURL:(NSURL *)keyFileURL error:(NSError *__autoreleasing*)error{
   // TODO: Make this API asynchronous
   NSData *keyFileData = keyFileURL ? [NSData dataWithContentsOfURL:keyFileURL] : nil;
-  self.compositeKey = [[KPKCompositeKey alloc] initWithPassword:password keyFileData:keyFileData];
+  
+  self.compositeKey = [[KPKCompositeKey alloc] init];
+  [self.compositeKey addKey:[KPKKey keyWithPassword:password]];
+  [self.compositeKey addKey:[KPKKey keyWithKeyFileData:keyFileData]];
   self.tree = [[KPKTree alloc] initWithData:self.encryptedData key:self.compositeKey error:error];
   
   BOOL isUnlocked = (nil != self.tree);
@@ -514,13 +519,11 @@ NSString *const MPDocumentGroupKey                            = @"MPDocumentGrou
     return NO;
   }
   NSData *keyFileData = keyFileURL ? [NSData dataWithContentsOfURL:keyFileURL] : nil;
-  if(!self.compositeKey) {
-    self.compositeKey = [[KPKCompositeKey alloc] initWithPassword:password keyFileData:keyFileData];
-  }
-  else {
-    [self.compositeKey setPassword:password andKeyFileData:keyFileData];
-  }
-  self.tree.metaData.masterKeyChanged = [NSDate date];
+  self.compositeKey = [[KPKCompositeKey alloc] init];
+  [self.compositeKey addKey:[KPKKey keyWithPassword:password]];
+  [self.compositeKey addKey:[KPKKey keyWithKeyFileData:keyFileData]];
+  
+  self.tree.metaData.masterKeyChanged = NSDate.date;
   /* Key change is not undoable so just recored the change as done */
   [self updateChangeCount:NSChangeDone];
   /*
@@ -952,7 +955,7 @@ NSString *const MPDocumentGroupKey                            = @"MPDocumentGrou
     /* user has removed the keyfile or we should not safe it so remove it */
     [keysForFiles removeObjectForKey:self.fileURL.path.sha1HexDigest];
   }
-  else if(self.compositeKey.hasPassword && self.compositeKey.hasKeyFile) {
+  else if([self.compositeKey hasKeyOfClass:KPKPasswordKey.class] && [self.compositeKey hasKeyOfClass:KPKFileKey.class]) {
     if(nil == keysForFiles) {
       keysForFiles = [[NSMutableDictionary alloc] initWithCapacity:1];
     }

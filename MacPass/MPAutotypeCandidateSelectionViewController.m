@@ -33,7 +33,7 @@
 @property (strong) IBOutlet NSButton *selectAutotypeContextButton;
 @property (strong) IBOutlet NSTableView *contextTableView;
 @property (strong) IBOutlet NSTextField *messageTextField;
-
+@property (strong) IBOutlet NSImageView *targetApplicationImageView;
 @end
 
 @implementation MPAutotypeCandidateSelectionViewController
@@ -44,9 +44,24 @@
 
 - (void)viewDidLoad {
   [super viewDidLoad];
-  NSString *template = NSLocalizedString(@"AUTOTYPE_CANDIDATE_SELECTION_WINDOW_MESSAGE_%@", "Message text in the autotype selection window. Placeholder is %1 - windowTitle");
-  self.messageTextField.stringValue = [NSString stringWithFormat:template, self.environment.windowTitle];
+
   self.selectAutotypeContextButton.enabled = NO;
+
+  NSRunningApplication *targetApplication = [NSRunningApplication runningApplicationWithProcessIdentifier:self.environment.pid];
+  if(nil != targetApplication) {
+    self.targetApplicationImageView.image = targetApplication.icon;
+  }
+  
+  NSString *template = @"";
+  if(self.candidates.count > 1) {
+    template = NSLocalizedString(@"AUTOTYPE_CANDIDATE_SELECTION_WINDOW_MESSAGE_%@_%@", "Message text in the autotype selection window. Placeholder is %1 - applicationName, %2 windowTitle");
+    self.messageTextField.stringValue = [NSString stringWithFormat:template, targetApplication.localizedName, self.environment.windowTitle];
+  }
+  else {
+    template = NSLocalizedString(@"AUTOTYPE_CANDIDATE_CONFIRMATION_WINDOW_MESSAGE_%@_%@", "Message text in the autotype confirmation window. Placeholder is %1 - applicationName, %2 windowTitle");
+    self.messageTextField.stringValue = [NSString stringWithFormat:template, targetApplication.localizedName, self.environment.windowTitle];
+  }
+
   NSNotification *notification = [NSNotification notificationWithName:NSTableViewSelectionDidChangeNotification object:self.contextTableView];
   [self tableViewSelectionDidChange:notification];
 }
@@ -90,6 +105,5 @@
 - (void)cancelSelection:(id)sender {
   [MPAutotypeDaemon.defaultDaemon cancelAutotypeContextSelectionForEnvironment:self.environment];
 }
-
 
 @end

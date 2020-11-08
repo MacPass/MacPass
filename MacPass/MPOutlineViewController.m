@@ -324,10 +324,6 @@ NSString *const _MPOutlinveViewHeaderViewIdentifier = @"HeaderCell";
   }];
 }
 
-- (BOOL)outlineView:(NSOutlineView *)outlineView shouldSelectItem:(id)item {
-  return ![self _itemIsRootNode:item];
-}
-
 - (void)outlineViewSelectionDidChange:(NSNotification *)notification {
   MPDocument *document = self.windowController.document;
   NSArray<KPKGroup *> *groups = self.currentTargetGroups;

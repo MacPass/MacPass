@@ -49,8 +49,20 @@
     _tabViewController = [[MPTabViewController alloc] init];
     _tabViewController.tabStyle = NSTabViewControllerTabStyleToolbar;
     _tabViewController.transitionOptions = NSViewControllerTransitionNone | NSViewControllerTransitionAllowUserInteraction;
-
+    
     self.contentViewController  = self.tabViewController;
+    
+    _tabViewController.willSelectTabHandler = ^void(NSTabViewItem *item) {
+      if([item.viewController respondsToSelector:@selector(willShowTab)]) {
+        [(id<MPPreferencesTab>)item.viewController willShowTab];
+      }
+    };
+    
+    _tabViewController.didSelectTabHandler = ^void(NSTabViewItem *item) {
+      if([item.viewController respondsToSelector:@selector(didShowTab)]) {
+        [(id<MPPreferencesTab>)item.viewController didShowTab];
+      }
+    };
     
     [self _setupDefaultPreferencesTabs];
   }
@@ -124,10 +136,10 @@
 
 - (void)_setupDefaultPreferencesTabs {
   NSArray<NSViewController<MPPreferencesTab>*> *controllers = @[ [[MPGeneralPreferencesController alloc] init],
-                            [[MPIntegrationPreferencesController alloc] init],
-                            [[MPWorkflowPreferencesController alloc] init],
-                            [[MPUpdatePreferencesController alloc] init],
-                            [[MPPluginPreferencesController alloc] init] ];
+                                                                 [[MPIntegrationPreferencesController alloc] init],
+                                                                 [[MPWorkflowPreferencesController alloc] init],
+                                                                 [[MPUpdatePreferencesController alloc] init],
+                                                                 [[MPPluginPreferencesController alloc] init] ];
   for(NSViewController<MPPreferencesTab> *controller in controllers) {
     NSString *identifier = controller.identifier;
     if([self.tabViewController tabViewItemForViewController:controller]) {
@@ -140,7 +152,7 @@
     NSTabViewItem *item = [NSTabViewItem tabViewItemWithViewController:controller];
     item.identifier = controller.identifier;
     if([controller respondsToSelector:@selector(label)]) {
-        item.label = controller.label;
+      item.label = controller.label;
     }
     if([controller respondsToSelector:@selector(image)]) {
       item.image = controller.image;

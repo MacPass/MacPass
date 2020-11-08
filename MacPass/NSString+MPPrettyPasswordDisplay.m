@@ -42,9 +42,9 @@
   static dispatch_once_t onceToken;
   dispatch_once(&onceToken, ^{
     blueColor = [NSColor colorWithRed:0.3 green:0.7 blue:1 alpha:1];
-    orangeColor = [NSColor colorWithRed:0.3 green:0.7 blue:1 alpha:1];
-    greenColor = [NSColor colorWithRed:0.3 green:0.7 blue:1 alpha:1];
-    yellowColor = [NSColor colorWithRed:0.3 green:0.7 blue:1 alpha:1];
+    orangeColor = [NSColor colorWithRed:1 green:0.7 blue:0.3 alpha:1];
+    greenColor = [NSColor colorWithRed:0.7 green:1 blue:0.3 alpha:1];
+    yellowColor = [NSColor colorWithRed:1 green:0.7 blue:0.3 alpha:1];
   });
   
   /* digits */
@@ -52,14 +52,11 @@
   for(NSValue *rangeValue in digitRanges) {
     [string addAttribute:NSForegroundColorAttributeName value:blueColor range:rangeValue.rangeValue];
   }
-  /* symbols */
-  NSArray <NSValue *> *symbolRanges = [self rangesOfCharactersInSet:NSCharacterSet.symbolCharacterSet];
+  /* symbols and punctuation */
+  NSMutableCharacterSet *symbolAndPunctuationSet = [NSCharacterSet.symbolCharacterSet mutableCopy];
+  [symbolAndPunctuationSet formUnionWithCharacterSet:NSCharacterSet.punctuationCharacterSet];
+  NSArray <NSValue *> *symbolRanges = [self rangesOfCharactersInSet:symbolAndPunctuationSet];
   for(NSValue *rangeValue in symbolRanges) {
-    [string addAttribute:NSForegroundColorAttributeName value:greenColor range:rangeValue.rangeValue];
-  }
-  /* punctuation */
-  NSArray <NSValue *> *punctiationRanges = [self rangesOfCharactersInSet:NSCharacterSet.punctuationCharacterSet];
-  for(NSValue *rangeValue in punctiationRanges) {
     [string addAttribute:NSForegroundColorAttributeName value:orangeColor range:rangeValue.rangeValue];
   }
 }

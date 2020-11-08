@@ -33,6 +33,9 @@
 - (void)tabView:(NSTabView *)tabView didSelectTabViewItem:(NSTabViewItem *)tabViewItem {
   [super tabView:tabView didSelectTabViewItem:tabViewItem];
   [self _resizeWindowToFitTabView:tabViewItem];
+  if(self.didSelectTabHandler) {
+    self.didSelectTabHandler(tabViewItem);
+  }
 }
 
 - (void)tabView:(NSTabView *)tabView willSelectTabViewItem:(NSTabViewItem *)tabViewItem {
@@ -40,6 +43,10 @@
   if(tabViewItem.view) {
     self.tabViewSizes[tabViewItem.identifier] = @(tabViewItem.view.frame.size);
   }
+  if(self.willSelectTabHandler) {
+    self.willSelectTabHandler(tabViewItem);
+  }
+
 }
 
 
