@@ -21,6 +21,7 @@
 //
 
 #import "MPAttachmentTableDataSource.h"
+#import "KPKBinary+MacPassAddtions.h"
 #import "MPDocument.h"
 
 @implementation MPAttachmentTableDataSource
@@ -63,60 +64,16 @@
   return YES;
 }
 
-- (BOOL)tableView:(NSTableView *)tableView writeRowsWithIndexes:(NSIndexSet *)rowIndexes toPasteboard:(NSPasteboard *)pboard {
-  //FIXME: move to tableView:pasteboardWriterForRow:
-  [pboard declareTypes:@[NSFilesPromisePboardType] owner:nil];
+- (id<NSPasteboardWriting>)tableView:(NSTableView *)tableView pasteboardWriterForRow:(NSInteger)row {
   MPDocument *document = tableView.window.windowController.document;
   KPKEntry *entry = document.selectedEntries.count == 1 ? document.selectedEntries.lastObject : nil;
-  NSMutableArray *fileNames = [[NSMutableArray alloc] init];
-  for(KPKBinary *binary in [entry.binaries objectsAtIndexes:rowIndexes]) {
-    if(binary.name) {
-      [fileNames addObject:binary.name];
-    }
-  }
-  [pboard setPropertyList:fileNames forType:NSFilesPromisePboardType];
-  return YES;
-}
-
-- (NSArray<NSString *> *)tableView:(NSTableView *)tableView namesOfPromisedFilesDroppedAtDestination:(NSURL *)dropDestination forDraggedRowsWithIndexes:(NSIndexSet *)indexSet {
-  MPDocument *document = tableView.window.windowController.document;
-  KPKEntry *entry = document.selectedEntries.count == 1 ? document.selectedEntries.lastObject : nil;
-  NSMutableArray<NSString *> *fileNames = [[NSMutableArray alloc] init];
-  NSArray<KPKBinary *> *draggedBinaries = [entry.binaries objectsAtIndexes:indexSet];
-  for(KPKBinary *binary in draggedBinaries) {
-    if(binary.name) {
-      [fileNames addObject:binary.name];
-      dispatch_queue_t queue = dispatch_get_global_queue(QOS_CLASS_USER_INITIATED, 0);
-      dispatch_async(queue, ^{
-        NSError *error;
-        NSURL *saveLocation = [dropDestination URLByAppendingPathComponent:binary.name];
-        BOOL success = [binary saveToLocation:saveLocation error:&error];
-        if(!success && error) {
-          dispatch_async(dispatch_get_main_queue(), ^{
-            [NSApp presentError:error];
-          });
-        }
-      });
-    }
-  }
-  return [fileNames copy];
-}
-
-/*
- - (id<NSPasteboardWriting>)tableView:(NSTableView *)tableView pasteboardWriterForRow:(NSInteger)row {
-  MPDocument *document = tableView.window.windowController.document;
-  KPKEntry *entry = document.selectedEntries.count == 1 ? document.selectedEntries.lastObject : nil;
-
+  
   if(!entry) {
     return nil;
   }
-  if (@available(macOS 10.12, *)) {
-    KPKBinary *binary = entry.binaries[row];
-    NSFilePromiseProvider *provider = [[NSFilePromiseProvider alloc] initWithFileType:(NSString *)kUTTypeXML delegate:binary];
-    return provider;
-  }
-  return nil;
+  KPKBinary *binary = entry.binaries[row];
+  NSFilePromiseProvider *provider = [[NSFilePromiseProvider alloc] initWithFileType:(NSString *)kUTTypeData delegate:binary];
+  return provider;
 }
- */
 
 @end

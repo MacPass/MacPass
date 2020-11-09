@@ -153,6 +153,7 @@
 		4C6AEEF91A043E2B00CA2420 /* MPDocumentController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C6AEEF81A043E2B00CA2420 /* MPDocumentController.m */; };
 		4C6B7C7D18BE7EB0001D5D77 /* MPDocument+History.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C6B7C7C18BE7EB0001D5D77 /* MPDocument+History.m */; };
 		4C6BC6601A36717E00BDDF3D /* MPDatabaseSearch.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C6BC65F1A36717E00BDDF3D /* MPDatabaseSearch.m */; };
+		4C6BF0762559BD4800E5812A /* KPKBinary+MacPassAddtions.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C6BF0752559BD4800E5812A /* KPKBinary+MacPassAddtions.m */; };
 		4C6D1D25178579570014C5A5 /* 48_FolderTemplate.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 4C6D1D24178579570014C5A5 /* 48_FolderTemplate.pdf */; };
 		4C6DCC451FA2457900C8AD3F /* ContextBar.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4C6DCC471FA2457900C8AD3F /* ContextBar.xib */; };
 		4C6DCC611FA24C2100C8AD3F /* MPAutotypeCandidateSelectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C6DCC5F1FA24C2100C8AD3F /* MPAutotypeCandidateSelectionViewController.m */; };
@@ -604,6 +605,8 @@
 		4C6AEEF81A043E2B00CA2420 /* MPDocumentController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MPDocumentController.m; sourceTree = "<group>"; };
 		4C6B7C7C18BE7EB0001D5D77 /* MPDocument+History.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "MPDocument+History.m"; sourceTree = "<group>"; };
 		4C6BC65F1A36717E00BDDF3D /* MPDatabaseSearch.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MPDatabaseSearch.m; sourceTree = "<group>"; };
+		4C6BF0742559BD4800E5812A /* KPKBinary+MacPassAddtions.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "KPKBinary+MacPassAddtions.h"; sourceTree = "<group>"; };
+		4C6BF0752559BD4800E5812A /* KPKBinary+MacPassAddtions.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "KPKBinary+MacPassAddtions.m"; sourceTree = "<group>"; };
 		4C6D1D24178579570014C5A5 /* 48_FolderTemplate.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = 48_FolderTemplate.pdf; sourceTree = "<group>"; };
 		4C6DCC461FA2457900C8AD3F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/ContextBar.xib; sourceTree = "<group>"; };
 		4C6DCC4B1FA2457D00C8AD3F /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/ContextBar.strings; sourceTree = "<group>"; };
@@ -1187,6 +1190,8 @@
 				3C0CDECE21CFEDD200B2A10B /* NSTextView+MPTouchBarExtension.m */,
 				4C0949571FD6B89B004F2971 /* NSUserNotification+MPAdditions.h */,
 				4C0949581FD6B89B004F2971 /* NSUserNotification+MPAdditions.m */,
+				4C6BF0742559BD4800E5812A /* KPKBinary+MacPassAddtions.h */,
+				4C6BF0752559BD4800E5812A /* KPKBinary+MacPassAddtions.m */,
 			);
 			name = Categories;
 			sourceTree = "<group>";
@@ -2172,6 +2177,7 @@
 				4C663D411D6D91A900CB6237 /* MPNumberFormatter.m in Sources */,
 				4CD2B9061849424B0051B395 /* MPAutotypeContext.m in Sources */,
 				4CFB18E418A17FA20097A34B /* MPUpdatePreferencesController.m in Sources */,
+				4C6BF0762559BD4800E5812A /* KPKBinary+MacPassAddtions.m in Sources */,
 				4CD4EE131FC7284000EA6EB3 /* MPPickcharsViewController.m in Sources */,
 				4CCEDE2A179F203B008402BE /* MPOutlineView.m in Sources */,
 				4CB33F861EAF54A000C9341E /* KPKNode+MPIsHistory.m in Sources */,
