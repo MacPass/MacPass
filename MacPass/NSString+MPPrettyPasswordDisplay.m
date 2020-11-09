@@ -36,15 +36,11 @@
 - (void)_setAttributesInString:(NSMutableAttributedString *)string {
   static NSColor *blueColor;
   static NSColor *orangeColor;
-  static NSColor *greenColor;
-  static NSColor *yellowColor;
   
   static dispatch_once_t onceToken;
   dispatch_once(&onceToken, ^{
-    blueColor = [NSColor colorWithRed:0.3 green:0.7 blue:1 alpha:1];
-    orangeColor = [NSColor colorWithRed:1 green:0.7 blue:0.3 alpha:1];
-    greenColor = [NSColor colorWithRed:0.7 green:1 blue:0.3 alpha:1];
-    yellowColor = [NSColor colorWithRed:1 green:0.7 blue:0.3 alpha:1];
+    blueColor = [NSColor colorWithRed:0.3 green:0.5 blue:0.75 alpha:1];
+    orangeColor = [NSColor colorWithRed:0.85 green:0.6 blue:0.25 alpha:1];
   });
   
   /* digits */
