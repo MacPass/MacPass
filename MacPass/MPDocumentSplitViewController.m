@@ -17,6 +17,7 @@
 @property (strong) MPEntryViewController *entryViewController;
 @property (strong) MPOutlineViewController *outlineViewController;
 @property (strong) MPInspectorViewController *inspectorViewController;
+@property (strong) NSLayoutConstraint *inspectorTopEdgeConstraint;
 
 @end
 
@@ -39,6 +40,28 @@
 
 - (void)viewWillLayout {
   self.splitView.autosaveName = @"SplitView";
+  [super viewWillLayout];
+}
+
+- (void)updateViewConstraints {
+  [super updateViewConstraints];
+  if(self.inspectorTopEdgeConstraint) {
+    if(!self.inspectorTopEdgeConstraint.isActive)  {
+      self.inspectorTopEdgeConstraint.active = YES;
+    }
+    return; // everything is set up.
+  }
+  /* setup the constraint if needed */
+  NSWindow *window = self.view.window;
+  if(!window) {
+    return;
+  }
+  NSSplitViewItem *inspector = [self splitViewItemForViewController:self.inspectorViewController];
+  if(inspector) {
+    self.inspectorTopEdgeConstraint = [NSLayoutConstraint constraintWithItem:inspector.viewController.view attribute:NSLayoutAttributeTop relatedBy:NSLayoutRelationEqual toItem:window.contentLayoutGuide attribute:NSLayoutAttributeTop multiplier:1 constant:0];
+    
+    self.inspectorTopEdgeConstraint.active = YES;
+  }
 }
 
 - (void)viewDidLoad {
@@ -61,7 +84,7 @@
   [self addSplitViewItem:outlineItem];
   [self addSplitViewItem:entries];
   [self addSplitViewItem:inspector];
-
+  
   BOOL showInspector = [NSUserDefaults.standardUserDefaults boolForKey:kMPSettingsKeyShowInspector];
   inspector.collapsed = !showInspector;
 }

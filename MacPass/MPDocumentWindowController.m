@@ -100,6 +100,7 @@ typedef void (^MPPasswordChangedBlock)(BOOL didChangePassword);
   [super windowDidLoad];
   
   self.window.delegate = self.documentWindowDelegate;
+  self.window.styleMask |= NSWindowStyleMaskFullSizeContentView;
   [self.window registerForDraggedTypes:@[NSURLPboardType]];
   
   MPDocument *document = self.document;
