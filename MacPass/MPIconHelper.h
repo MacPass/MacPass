@@ -130,19 +130,19 @@ typedef NS_ENUM(NSUInteger, MPIconType) {
  *	Available Icon names (all)
  *	@return	Dictionary with MPIconType keys and NSString values containing their names
  */
-+ (NSDictionary *)availableIconNames;
+@property (class, nonatomic, strong, readonly) NSDictionary *availableIconNames;
 
 /**
  *	List of all available DatabaseIcons as an array of Images. Sorted by IconIndex.
  *	@return	Array of Icons as NSImage objects
  */
-+ (NSArray<KPKIcon *> *)databaseIcons;
+@property (class, nonatomic, strong, readonly) NSArray<KPKIcon *> *databaseIcons;
 
 /**
  *	List of all available DatabaseIcons as an array of MPIconType. Sorted by IconIndex.
  *	@return	Array of MPIconType as NSNumber objects
  */
-+ (NSArray *)databaseIconTypes;
+@property (class, nonatomic, strong, readonly) NSArray *databaseIconTypes;
 
 + (void)fetchIconDataForURL:(NSURL *)url completionHandler:(void (^)(NSData *iconData))handler;
 
