@@ -76,10 +76,6 @@ typedef NS_ENUM(NSUInteger, MPContentTab) {
   return self;
 }
 
-- (void)dealloc {
-  [NSNotificationCenter.defaultCenter removeObserver:self];
-}
-
 - (NSResponder *)reconmendedFirstResponder {
   return self.view;
 }

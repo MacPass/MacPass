@@ -10,6 +10,12 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
+FOUNDATION_EXTERN NSString *const MPHMACOTPSeedAttributeKey;
+FOUNDATION_EXTERN NSString *const MPHMACOTPConfigAttributeKey;
+FOUNDATION_EXTERN NSString *const MPTOTPAuthAttributeKey;
+FOUNDATION_EXTERN NSString *const MPTOTPSeedAttributeKey;
+FOUNDATION_EXTERN NSString *const MPTOTPConfigAttributeKey;
+
 @interface KPKEntry (OTP)
 
 @property (readonly, assign, nonatomic) BOOL hasTOTP;

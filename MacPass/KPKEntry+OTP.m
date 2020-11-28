@@ -10,12 +10,22 @@
 
 @implementation KPKEntry (OTP)
 
+NSString *const MPHMACOTPSeedAttributeKey = @"HMACOTP-Seed";
+NSString *const MPHMACOTPConfigAttributeKey = @"HMACOTP-Config";
+NSString *const MPTOTPAuthAttributeKey = @"otp";
+NSString *const MPTOTPSeedAttributeKey = @"TOTP Seed";
+NSString *const MPTOTPConfigAttributeKey = @"OTP Settings";
+
 + (NSSet<NSString *> *)keyPathsForValuesAffectingHasTOTP {
   return [NSSet setWithObject:NSStringFromSelector(@selector(attributes))];
 }
 
 - (BOOL)hasTOTP {
-  return NO;
+  BOOL hasURLKey = [self hasAttributeWithKey:MPTOTPAuthAttributeKey];
+  BOOL hasSeedKey = [self hasAttributeWithKey:MPTOTPSeedAttributeKey];
+  BOOL hasSettingsKey = [self hasAttributeWithKey:MPTOTPConfigAttributeKey];
+  
+  return(hasURLKey || (hasSeedKey && hasSettingsKey));
 }
 
 @end

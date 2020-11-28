@@ -48,6 +48,8 @@
 		4C25703F1BF11C2300D39416 /* MPPluginPreferencesController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C25703D1BF11C2300D39416 /* MPPluginPreferencesController.m */; };
 		4C25D58716CF0FAA00F6806C /* EntryView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4C25D58616CF0FAA00F6806C /* EntryView.xib */; };
 		4C26C33F18D8C92100CF1A1C /* MPTemporaryFileStorage.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C26C33E18D8C92100CF1A1C /* MPTemporaryFileStorage.m */; };
+		4C2892A8257103F9003C7732 /* MPTOTPViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C2892A6257103F9003C7732 /* MPTOTPViewController.m */; };
+		4C2892A9257103F9003C7732 /* MPTOTPViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4C2892A7257103F9003C7732 /* MPTOTPViewController.xib */; };
 		4C2E381D16D11FF900037A9D /* 03_ServerTemplate.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 4C2E381A16D11FF900037A9D /* 03_ServerTemplate.pdf */; };
 		4C2E381E16D11FF900037A9D /* 04_KlipperTemplate.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 4C2E381B16D11FF900037A9D /* 04_KlipperTemplate.pdf */; };
 		4C2E381F16D11FF900037A9D /* 05_LanguagesTemplate.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 4C2E381C16D11FF900037A9D /* 05_LanguagesTemplate.pdf */; };
@@ -433,6 +435,9 @@
 		4C272A292224871900186EEC /* nl */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = nl; path = nl.lproj/PluginDataView.strings; sourceTree = "<group>"; };
 		4C272A2A2224871900186EEC /* nl */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = nl; path = nl.lproj/OpenPanelAccessoryView.strings; sourceTree = "<group>"; };
 		4C272A2B2224871900186EEC /* nl */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = nl; path = nl.lproj/PickfieldView.strings; sourceTree = "<group>"; };
+		4C2892A5257103F9003C7732 /* MPTOTPViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MPTOTPViewController.h; sourceTree = "<group>"; };
+		4C2892A6257103F9003C7732 /* MPTOTPViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MPTOTPViewController.m; sourceTree = "<group>"; };
+		4C2892A7257103F9003C7732 /* MPTOTPViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MPTOTPViewController.xib; sourceTree = "<group>"; };
 		4C2B0B7419F66F6400E48913 /* MPTargetNodeResolving.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MPTargetNodeResolving.h; sourceTree = "<group>"; };
 		4C2E381A16D11FF900037A9D /* 03_ServerTemplate.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = 03_ServerTemplate.pdf; sourceTree = "<group>"; };
 		4C2E381B16D11FF900037A9D /* 04_KlipperTemplate.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = 04_KlipperTemplate.pdf; sourceTree = "<group>"; };
@@ -1380,6 +1385,9 @@
 				4C77547316E55FE800970E02 /* MPInspectorViewController.h */,
 				4C77547416E55FE800970E02 /* MPInspectorViewController.m */,
 				4C76156F1764C0E20015A1A6 /* InspectorView.xib */,
+				4C2892A5257103F9003C7732 /* MPTOTPViewController.h */,
+				4C2892A6257103F9003C7732 /* MPTOTPViewController.m */,
+				4C2892A7257103F9003C7732 /* MPTOTPViewController.xib */,
 			);
 			name = Inspector;
 			sourceTree = "<group>";
@@ -2037,6 +2045,7 @@
 				4C0DBEF51BF508DE00F9B287 /* PluginPreferences.xib in Resources */,
 				4CF6653820E67A140008A25C /* PluginDataView.xib in Resources */,
 				4C7F8B681A10B68400CCB83D /* WelcomeView.xib in Resources */,
+				4C2892A9257103F9003C7732 /* MPTOTPViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2224,6 +2233,7 @@
 				4C5807781C64F67000E7171F /* NSString+MPHash.m in Sources */,
 				4CAAA8271D787B8B00CDE977 /* MPAutotypeBuilderViewController.m in Sources */,
 				4CE501341BBC47F500FB819D /* MPTagsTokenFieldDelegate.m in Sources */,
+				4C2892A8257103F9003C7732 /* MPTOTPViewController.m in Sources */,
 				4CC6DB7A17D23719002C6091 /* KPKNode+IconImage.m in Sources */,
 				4C15B74618BCA3B1003F8008 /* MPDocument+Search.m in Sources */,
 				4CEED1C617D7BD0E007180F1 /* NSError+Messages.m in Sources */,

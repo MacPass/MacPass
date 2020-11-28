@@ -31,6 +31,7 @@
 #import "MPTagsTokenFieldDelegate.h"
 #import "MPAutotypeBuilderViewController.h"
 #import "MPReferenceBuilderViewController.h"
+#import "MPTOTPViewController.h"
 
 #import "MPPrettyPasswordTransformer.h"
 #import "NSString+MPPasswordCreation.h"
@@ -48,8 +49,9 @@
 
 #import "MPArrayController.h"
 
-#import "KeePassKit/KeePassKit.h"
+#import "KPKEntry+OTP.h"
 
+#import "KeePassKit/KeePassKit.h"
 #import "HNHUi/HNHUi.h"
 
 typedef NS_ENUM(NSUInteger, MPEntryTab) {
@@ -79,6 +81,7 @@ typedef NS_ENUM(NSUInteger, MPEntryTab) {
 @property (nonatomic, assign) BOOL showPassword;
 @property (nonatomic, assign) MPEntryTab activeTab;
 @property (nonatomic, readonly) KPKEntry *representedEntry;
+@property (strong) MPTOTPViewController *totpViewController;
 
 @property (strong) MPTemporaryFileStorage *quicklookStorage;
 
@@ -119,6 +122,11 @@ typedef NS_ENUM(NSUInteger, MPEntryTab) {
     return self.representedObject;
   }
   return nil;
+}
+
+- (void)setRepresentedObject:(id)representedObject {
+  super.representedObject = representedObject;
+  self.totpViewController.representedObject = self.representedObject;
 }
 
 - (void)viewDidLoad {
@@ -176,6 +184,7 @@ typedef NS_ENUM(NSUInteger, MPEntryTab) {
   
   self.tagsTokenField.delegate = _tagTokenFieldDelegate;
   
+  [self _setupTOPTView];
   [self _setupCustomFieldsButton];
   [self _setupViewBindings];
 }
@@ -190,10 +199,6 @@ typedef NS_ENUM(NSUInteger, MPEntryTab) {
                                          selector:@selector(_didChangeCurrentItem:)
                                              name:MPDocumentCurrentItemChangedNotification
                                            object:document];
-}
-
-- (void)dealloc {
-  [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
 
 #pragma mark -
@@ -278,8 +283,8 @@ typedef NS_ENUM(NSUInteger, MPEntryTab) {
     KPKWindowAssociation *association = self.representedEntry.autotype.associations[row];
     if(association) {
       [self.representedEntry.autotype removeAssociation:association];
-      [self.observer didChangeModelProperty];
     }
+    [self.observer didChangeModelProperty];
   }
 }
 
@@ -436,7 +441,7 @@ typedef NS_ENUM(NSUInteger, MPEntryTab) {
                                                                    metrics:nil
                                                                      views:views]];
   
-  [[self view] layoutSubtreeIfNeeded];
+  [self.view layoutSubtreeIfNeeded];
 }
 
 #pragma mark -
@@ -508,7 +513,7 @@ typedef NS_ENUM(NSUInteger, MPEntryTab) {
                withKeyPath:[NSString stringWithFormat:@"%@.%@.%@", NSStringFromSelector(@selector(representedObject)), NSStringFromSelector(@selector(uuid)), NSStringFromSelector(@selector(UUIDString))]
                    options:@{ NSConditionallySetsEditableBindingOption: @NO }];
   self.uuidTextField.editable = NO;
-  
+    
   /* Attachments */
   [_attachmentsController bind:NSContentArrayBinding
                       toObject:self
@@ -565,7 +570,15 @@ typedef NS_ENUM(NSUInteger, MPEntryTab) {
   NSMenu *customFieldMenu = [[NSMenu alloc] initWithTitle:NSLocalizedString(@"ADD_CUSTOM_FIELD_CONTEXT_MENU", @"Menu displayed for adding special custom keys")];
   customFieldMenu.delegate = _addCustomFieldContextMenuDelegate;
   self.addCustomFieldButton.contextMenu = customFieldMenu;
-  [self.addCustomFieldButton setEnabled:NO forSegment:MPContextButtonSegmentContextButton];
+  //[self.addCustomFieldButton setEnabled:NO forSegment:MPContextButtonSegmentContextButton];
+}
+
+- (void)_setupTOPTView {
+  self.totpViewController = [[MPTOTPViewController alloc] init];
+  
+  NSInteger urlindex = [self.fieldsStackView.arrangedSubviews indexOfObject:self.URLTextField];
+  NSAssert(urlindex != NSNotFound, @"Missing reference view. This should not happen!");
+  [self.fieldsStackView insertArrangedSubview:self.totpViewController.view atIndex:urlindex - 1];
 }
 
 #pragma mark -
@@ -654,6 +667,12 @@ typedef NS_ENUM(NSUInteger, MPEntryTab) {
 
 - (void)_didChangeCurrentItem:(NSNotification *)notificiation {
   self.showPassword = NO;
+}
+
+#pragma mark -
+#pragma mark KPKEntry Notifications
+
+- (void)_didChangeAttribute:(NSNotification *)notification {
 }
 
 @end

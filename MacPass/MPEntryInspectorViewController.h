@@ -59,6 +59,11 @@
 @property (strong) IBOutlet NSTableView *customFieldsTableView;
 @property (weak) IBOutlet NSButton *showCustomDataButton;
 
+/* TOTP */
+@property (strong) IBOutlet NSProgressIndicator *totpProgressIndicator;
+@property (strong) IBOutlet NSTextField *totpLabelTextField;
+@property (strong) IBOutlet NSTextField *totpCodeTextField;
+
 /* Autotype */
 @property (strong) IBOutlet NSView *autotypView;
 @property (weak) IBOutlet NSButton *enableAutotypeCheckButton;
