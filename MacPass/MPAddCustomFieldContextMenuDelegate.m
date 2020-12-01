@@ -26,13 +26,13 @@
 #import "KPKEntry+OTP.h"
 
 /*
-HmacOtp-Secret (the UTF-8 representation of the value is the secret),
-HmacOtp-Secret-Hex (secret as hex string),
-HmacOtp-Secret-Base32 (secret as Base32 string)
-HmacOtp-Secret-Base64 (secret as Base64 string)
+ HmacOtp-Secret (the UTF-8 representation of the value is the secret),
+ HmacOtp-Secret-Hex (secret as hex string),
+ HmacOtp-Secret-Base32 (secret as Base32 string)
+ HmacOtp-Secret-Base64 (secret as Base64 string)
  
-HmacOtp-Counter field.
-*/
+ HmacOtp-Counter field.
+ */
 
 @interface MPAddCustomFieldContextMenuDelegate ()
 @property (readonly, nonatomic) KPKEntry *entry;
@@ -56,59 +56,23 @@ HmacOtp-Counter field.
 
 /* HMAC OTP */
 - (void)_setupHOTPMenuItemsToMenu:(NSMenu *)menu {
-  BOOL hasConfigAttribute = nil != [self.entry customAttributeWithKey:MPHMACOTPConfigAttributeKey];
-  if(!hasConfigAttribute) {
-    NSMenuItem *item = [[NSMenuItem alloc] initWithTitle:NSLocalizedString(@"ADD_CUSTOM_ATTRIBUTE_HMACOTP_CONFIG", @"Menu item title for adding an hmacotp config attribute") action:@selector(_addHMACConfig:) keyEquivalent:@""];
-    item.target = self;
-    [menu addItem:item];
-  }
-  BOOL hasSeedAttribute = nil != [self.entry customAttributeWithKey:MPHMACOTPSeedAttributeKey];
-  if(!hasSeedAttribute) {
-    NSMenuItem *item = [[NSMenuItem alloc] initWithTitle:NSLocalizedString(@"ADD_CUSTOM_ATTRIBUTE_HMACOTP_SEED", @"Menu item title for adding an hmacotp seed attribute") action:@selector(_addHMACSeed:) keyEquivalent:@""];
-    item.target = self;
-    [menu addItem:item];
-  }
+  
 }
-- (IBAction)_setupHMACConfig:(id)sender {}
-- (IBAction)_delteHMACConfig:(id)sender {}
-
-- (IBAction)_addHMACConfig:(id)sender {
-  [self.entry addCustomAttribute:[[KPKAttribute alloc] initWithKey:MPHMACOTPConfigAttributeKey value:@"<config>"]];
+- (IBAction)_setupHMACConfig:(id)sender {
+  
 }
-
-- (IBAction)_addHMACSeed:(id)sender {
-  [self.entry addCustomAttribute:[[KPKAttribute alloc] initWithKey:MPHMACOTPSeedAttributeKey value:@"<seed>"]];
+- (IBAction)_delteHMACConfig:(id)sender {
+  
 }
 
 /* Time OPT*/
 - (void)_setupTOTPMenuItemsToMenu:(NSMenu *)menu {
-  BOOL hasTOTPAuthAttribute = nil != [self.entry customAttributeWithKey:MPTOTPAuthAttributeKey];
-  BOOL hasTOTPSeedAttribute = nil != [self.entry customAttributeWithKey:MPTOTPSeedAttributeKey];
-  BOOL hasTOTPSettingsAttribute = nil != [self.entry customAttributeWithKey:MPTOTPSeedAttributeKey];
-  
-  
-  BOOL hasValidSettings = hasTOTPAuthAttribute || (hasTOTPSeedAttribute && hasTOTPSettingsAttribute);
-  if(hasValidSettings) {
-    // Edit
-    NSMenuItem *editItem = [[NSMenuItem alloc] initWithTitle:NSLocalizedString(@"EDIT_TOTP_SETTINGS", @"Menu item title editing TOTP settings") action:@selector(_editTOTPSettings:) keyEquivalent:@""];
-    editItem.target = self;
-    [menu addItem:editItem];
-    // Delete
-    NSMenuItem *deleteItem = [[NSMenuItem alloc] initWithTitle:NSLocalizedString(@"DELETE_TOTP_SETTINGS", @"Menu item title for deleting TOTP settings") action:@selector(_deleteTOTPSettings:) keyEquivalent:@""];
-    deleteItem.target = self;
-    [menu addItem:deleteItem];
-  }
-  else {
-    // Setup
-    NSMenuItem *setupItem = [[NSMenuItem alloc] initWithTitle:NSLocalizedString(@"SETUP_TOTP_SETTINGS", @"Menu item title editing TOTP settings") action:@selector(_setupTOTPSettings:) keyEquivalent:@""];
-    setupItem.target = self;
-    [menu addItem:setupItem];
-
-  }
+  NSMenuItem *setupItem = [[NSMenuItem alloc] initWithTitle:NSLocalizedString(@"SETUP_TOTP_SETTINGS", @"Menu item title editing TOTP settings") action:@selector(_setupTOTPSettings:) keyEquivalent:@""];
+  setupItem.target = self;
+  [menu addItem:setupItem];
 }
 
 - (IBAction)_setupTOTPSettings:(id)sender {}
-- (IBAction)_editTOTPSettings:(id)sender {}
 - (IBAction)_deleteTOTPSettings:(id)sender {}
 
 @end
