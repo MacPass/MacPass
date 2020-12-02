@@ -61,14 +61,14 @@ APPKIT_EXTERN NSString *const kMPSettingsKeyRememeberdKeysForDatabases;       //
 APPKIT_EXTERN NSString *const kMPSettingsKeyRememberKeyFilesForDatabases;     // YES if key files should be remembers
 
 /* Autotype */
-APPKIT_EXTERN NSString *const kMPSettingsKeySendCommandForControlKey;         // Should MacPass swap control for command. This is useful in a cross platform environment
-APPKIT_EXTERN NSString *const kMPSettingsKeyEnableGlobalAutotype;             // Is Global Autotype enabled?
-APPKIT_EXTERN NSString *const kMPSettingsKeyGlobalAutotypeKeyDataKey;         // The stored Data for the user defined global autotype key
-APPKIT_EXTERN NSString *const kMPSettingsKeyDefaultGlobalAutotypeSequence;    // Default sequence used for Autotype
-APPKIT_EXTERN NSString *const kMPSettingsKeyAutotypeMatchTitle;               // Autotype lookup includes entry title
-APPKIT_EXTERN NSString *const kMPSettingsKeyAutotypeMatchURL;                 // Autotype lookup includes entry URL
-APPKIT_EXTERN NSString *const kMPSettingsKeyAutotypeMatchHost;                // Autotype lookup includes host part of entry URL
-APPKIT_EXTERN NSString *const kMPSettingsKeyAutotypeMatchTags;                // Autotype lookup includes tags for entries
+APPKIT_EXTERN NSString *const kMPSettingsKeySendCommandForControlKey;                   // Should MacPass swap control for command. This is useful in a cross platform environment
+APPKIT_EXTERN NSString *const kMPSettingsKeyEnableGlobalAutotype;                       // Is Global Autotype enabled?
+APPKIT_EXTERN NSString *const kMPSettingsKeyGlobalAutotypeKeyDataKey;                   // The stored Data for the user defined global autotype key
+APPKIT_EXTERN NSString *const kMPSettingsKeyDefaultGlobalAutotypeSequence;              // Default sequence used for Autotype
+APPKIT_EXTERN NSString *const kMPSettingsKeyAutotypeMatchTitle;                         // Autotype lookup includes entry title
+APPKIT_EXTERN NSString *const kMPSettingsKeyAutotypeMatchURL;                           // Autotype lookup includes entry URL
+APPKIT_EXTERN NSString *const kMPSettingsKeyAutotypeMatchHost;                          // Autotype lookup includes host part of entry URL
+APPKIT_EXTERN NSString *const kMPSettingsKeyAutotypeMatchTags;                          // Autotype lookup includes tags for entries
 APPKIT_EXTERN NSString *const kMPSettingsKeyGloablAutotypeAlwaysShowCandidateSelection; // If YES, will always display then candidate selection window befor perfoming an Autotype
 
 /* Search */
@@ -89,7 +89,6 @@ APPKIT_EXTERN NSString *const kMPSettingsKeyDisabledPlugins;                // N
 APPKIT_EXTERN NSString *const kMPSettingsKeyLoadIncompatiblePlugins;        // If set to YES incompatible plugins (no version info, marked as incompatible, etc) will be loaded regardless
 APPKIT_EXTERN NSString *const kMPSettingsKeyHideIncopatiblePluginsWarning;  // Do not show an alert, when MacPass encounteres incompatible plugins
 APPKIT_EXTERN NSString *const kMPSettingsKeyAllowRemoteFetchOfPluginRepository; // Allow the download of the plugin repository file
-APPKIT_EXTERN NSString *const kMPSettingsKeyPluginHideAksForRemoveConnectionPermission;
 
 /* Network */
 APPKIT_EXTERN NSString *const kMPSettingsKeyFaviconDownloadMethod;
