@@ -13,8 +13,10 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
+APPKIT_EXTERN NSString *const MPWindowIDKey;
 APPKIT_EXTERN NSString *const MPWindowTitleKey;
 APPKIT_EXTERN NSString *const MPProcessIdentifierKey;
+
 
 @interface NSRunningApplication (MPAdditions)
 

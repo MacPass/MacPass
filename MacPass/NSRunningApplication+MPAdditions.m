@@ -10,10 +10,9 @@
 
 #import <AppKit/AppKit.h>
 
-
+NSString *const MPWindowIDKey = @"MPWindowIDKey";
 NSString *const MPWindowTitleKey = @"MPWindowTitleKey";
 NSString *const MPProcessIdentifierKey = @"MPProcessIdentifierKey";
-
 
 BOOL skipWindowTitle(NSString *windowTitle) {
   if(windowTitle.length <= 0) {
@@ -45,11 +44,12 @@ BOOL skipWindowTitle(NSString *windowTitle) {
     NSNumber *processId = windowDict[(NSString *)kCGWindowOwnerPID];
     if(processId && [processId isEqualToNumber:@(self.processIdentifier)]) {
       
-      NSNumber *number = (NSNumber *)windowDict[(NSString *)kCGWindowNumber];
-      NSUInteger zIndex = [windowNumbers indexOfObject:number];
+      NSNumber *windowId = (NSNumber *)windowDict[(NSString *)kCGWindowNumber];
+      NSUInteger zIndex = [windowNumbers indexOfObject:windowId];
       if(zIndex < minZIndex) {
         minZIndex = zIndex;
         infoDict = @{
+          MPWindowIDKey: windowId,
           MPWindowTitleKey: windowTitle,
           MPProcessIdentifierKey : processId
         };
