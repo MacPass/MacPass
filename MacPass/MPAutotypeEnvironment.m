@@ -26,12 +26,14 @@
     if(!targetApplication) {
       _pid = -1;
       _windowTitle = @"";
+      _windowId = -1;
     }
     else {
       NSDictionary *frontApplicationInfoDict = targetApplication.mp_infoDictionary;
       
       _pid = [frontApplicationInfoDict[MPProcessIdentifierKey] intValue];
       _windowTitle = frontApplicationInfoDict[MPWindowTitleKey];
+      _windowId = (CGWindowID)[frontApplicationInfoDict[MPWindowIDKey] integerValue];
       
       /* if we have any resolvers, let them provide the window title */
       NSArray *resolvers = [MPPluginHost.sharedHost windowTitleResolverForRunningApplication:targetApplication];

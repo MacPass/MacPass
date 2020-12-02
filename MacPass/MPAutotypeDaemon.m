@@ -368,7 +368,7 @@ static MPAutotypeDaemon *_sharedInstance;
 - (void)_presentCandiadates:(NSArray *)candidates forEnvironment:(MPAutotypeEnvironment *)environment {
   if(!self.matchSelectionWindow) {
     self.matchSelectionWindow = [[NSPanel alloc] initWithContentRect:NSMakeRect(0, 0, 100, 100)
-                                                           styleMask:NSWindowStyleMaskNonactivatingPanel|NSWindowStyleMaskTitled
+                                                           styleMask:NSWindowStyleMaskResizable|NSWindowStyleMaskNonactivatingPanel|NSWindowStyleMaskTitled
                                                              backing:NSBackingStoreBuffered
                                                                defer:YES];
     self.matchSelectionWindow.level = kCGAssistiveTechHighWindowLevel;

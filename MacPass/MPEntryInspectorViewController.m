@@ -187,6 +187,7 @@ typedef NS_ENUM(NSUInteger, MPEntryTab) {
   [self _setupTOPTView];
   [self _setupCustomFieldsButton];
   [self _setupViewBindings];
+  [self _updateFieldVisibilty];
 }
 
 - (void)registerNotificationsForDocument:(MPDocument *)document {
@@ -489,14 +490,17 @@ typedef NS_ENUM(NSUInteger, MPEntryTab) {
                       toObject:self
                    withKeyPath:[NSString stringWithFormat:@"%@.%@", NSStringFromSelector(@selector(representedObject)), NSStringFromSelector(@selector(username))]
                        options:nullPlaceholderBindingOptionsDict];
+  
   [self.URLTextField bind:NSValueBinding
                  toObject:self
               withKeyPath:[NSString stringWithFormat:@"%@.%@", NSStringFromSelector(@selector(representedObject)), NSStringFromSelector(@selector(url))]
                   options:nullPlaceholderBindingOptionsDict];
+
   [self.expiresCheckButton bind:NSTitleBinding
                        toObject:self
                     withKeyPath:[NSString stringWithFormat:@"%@.%@.%@", NSStringFromSelector(@selector(representedObject)), NSStringFromSelector(@selector(timeInfo)), NSStringFromSelector(@selector(expirationDate))]
                         options:@{ NSValueTransformerNameBindingOption:MPExpiryDateValueTransformerName }];
+
   [self.expiresCheckButton bind:NSValueBinding
                        toObject:self
                     withKeyPath:[NSString stringWithFormat:@"%@.%@.%@", NSStringFromSelector(@selector(representedObject)), NSStringFromSelector(@selector(timeInfo)), NSStringFromSelector(@selector(expires))]
@@ -571,6 +575,10 @@ typedef NS_ENUM(NSUInteger, MPEntryTab) {
   customFieldMenu.delegate = _addCustomFieldContextMenuDelegate;
   self.addCustomFieldButton.contextMenu = customFieldMenu;
   //[self.addCustomFieldButton setEnabled:NO forSegment:MPContextButtonSegmentContextButton];
+}
+
+- (void)_updateFieldVisibilty {
+  
 }
 
 - (void)_setupTOPTView {

@@ -21,7 +21,8 @@ NS_ASSUME_NONNULL_BEGIN
  */
 @property (readonly, weak, nullable) KPKEntry *preferredEntry;
 @property (readonly) pid_t pid; // the PID of the target application to which the key strokes should be sent
-@property (readonly, copy) NSString *windowTitle; /// The window title of the target application.
+@property (readonly) CGWindowID windowId; // the windowID of the target window of the target application
+@property (readonly, copy) NSString *windowTitle; /// The title of the target window of the target application.
 @property (readonly) BOOL hidden; /// If set to YES, MacPass was hidden when autotype was initiated
 @property (readonly) BOOL isSelfTargeting; /// If MacPass should autotype to itself, YES, otherwise NO
 @property (readonly) NSString *overrideSequence; /// If set, this sequence is used for running the command regardless of the matched one
