@@ -67,8 +67,16 @@
   [self.matchHostCheckBox bind:NSValueBinding toObject:defaultsController withKeyPath:[MPSettingsHelper defaultControllerPathForKey:kMPSettingsKeyAutotypeMatchHost] options:nil];
   [self.matchTagsCheckBox bind:NSValueBinding toObject:defaultsController withKeyPath:[MPSettingsHelper defaultControllerPathForKey:kMPSettingsKeyAutotypeMatchTags] options:nil];
   
-  [self.sendCommandForControlCheckBox bind:NSValueBinding toObject:defaultsController withKeyPath:[MPSettingsHelper defaultControllerPathForKey:kMPSettingsKeySendCommandForControlKey] options:nil];
-    
+  [self.sendCommandForControlCheckBox bind:NSValueBinding
+                                  toObject:defaultsController
+                               withKeyPath:[MPSettingsHelper defaultControllerPathForKey:kMPSettingsKeySendCommandForControlKey]
+                                   options:nil];
+  
+  [self.alwaysShowConfirmationBeforeAutotypeCheckBox bind:NSValueBinding
+                                                 toObject:defaultsController
+                                              withKeyPath:[MPSettingsHelper defaultControllerPathForKey:kMPSettingsKeyGloablAutotypeAlwaysShowCandidateSelection]
+                                                  options:nil];
+  
   [self _showKeyCodeMissingKeyWarning:NO];
   [self _updateAccessabilityWarning];
 }
