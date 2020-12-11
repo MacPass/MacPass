@@ -14,15 +14,13 @@
 
 @interface MPTOTPViewController ()
 
-@property (strong) KPKOTPGenerator *otpGenerator;
-
 @end
 
 @implementation MPTOTPViewController
 
 - (void)viewDidLoad {
-  self.otpGenerator = [[KPKOTPGenerator alloc] init];
-  [super viewDidLoad];
+  self.remainingTimeProgressIndicator.minValue = 0;
+  self.remainingTimeProgressIndicator.maxValue = 30;
 }
 
 - (void)setRepresentedObject:(id)representedObject {
@@ -42,15 +40,22 @@
 }
 
 - (void)_didChangeAttribute:(NSNotification *)notification {
+  [self _updateDisplay];
+}
+
+- (void)_updateDisplay {
   KPKEntry *entry = (KPKEntry *)self.representedObject;
   BOOL showTOTP = entry.hasTOTP;
   self.view.hidden = !showTOTP;
   if(showTOTP) {
     self.remainingTimeProgressIndicator.indeterminate = YES;
+    self.toptValueTextField.stringValue = entry.timeOTP;
+    self.remainingTimeProgressIndicator.doubleValue = 0;
+    [self performSelector:@selector(_updateDisplay) withObject:nil afterDelay:0.5];
   }
   else {
     self.remainingTimeProgressIndicator.indeterminate = NO;
+    self.toptValueTextField.stringValue = @"";
   }
 }
-
 @end
