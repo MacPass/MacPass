@@ -239,7 +239,6 @@
 		4CAD748C15B889B700104512 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4CAD748B15B889B700104512 /* Security.framework */; };
 		4CAD748E15B88AC100104512 /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 4CAD748D15B88AC100104512 /* libz.dylib */; };
 		4CAD8AA622CF397B0090B2DD /* MPAutotypeDoctorReportViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CAD8AA422CF397B0090B2DD /* MPAutotypeDoctorReportViewController.m */; };
-		4CB11241256EB77900204D1B /* KPKEntry+OTP.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CB11240256EB77900204D1B /* KPKEntry+OTP.m */; };
 		4CB33F861EAF54A000C9341E /* KPKNode+MPIsHistory.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CB33F851EAF54A000C9341E /* KPKNode+MPIsHistory.m */; };
 		4CB9339916D3A0DD00A13B5D /* Credits.rtf in Resources */ = {isa = PBXBuildFile; fileRef = 4CB9339716D3A0DD00A13B5D /* Credits.rtf */; };
 		4CBA2ABA17074C07006D8139 /* MPSettingsHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CBA2AB917074C07006D8139 /* MPSettingsHelper.m */; };
@@ -801,8 +800,6 @@
 		4CAD748D15B88AC100104512 /* libz.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.dylib; path = usr/lib/libz.dylib; sourceTree = SDKROOT; };
 		4CAD8AA322CF397B0090B2DD /* MPAutotypeDoctorReportViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MPAutotypeDoctorReportViewController.h; sourceTree = "<group>"; };
 		4CAD8AA422CF397B0090B2DD /* MPAutotypeDoctorReportViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MPAutotypeDoctorReportViewController.m; sourceTree = "<group>"; };
-		4CB1123F256EB77900204D1B /* KPKEntry+OTP.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "KPKEntry+OTP.h"; sourceTree = "<group>"; };
-		4CB11240256EB77900204D1B /* KPKEntry+OTP.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "KPKEntry+OTP.m"; sourceTree = "<group>"; };
 		4CB33F841EAF54A000C9341E /* KPKNode+MPIsHistory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "KPKNode+MPIsHistory.h"; sourceTree = "<group>"; };
 		4CB33F851EAF54A000C9341E /* KPKNode+MPIsHistory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "KPKNode+MPIsHistory.m"; sourceTree = "<group>"; };
 		4CB63A6018986530002DEC4C /* MPFlagsHelper.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MPFlagsHelper.h; sourceTree = "<group>"; };
@@ -1213,8 +1210,6 @@
 				4C0949581FD6B89B004F2971 /* NSUserNotification+MPAdditions.m */,
 				4C6BF0742559BD4800E5812A /* KPKBinary+MacPassAddtions.h */,
 				4C6BF0752559BD4800E5812A /* KPKBinary+MacPassAddtions.m */,
-				4CB1123F256EB77900204D1B /* KPKEntry+OTP.h */,
-				4CB11240256EB77900204D1B /* KPKEntry+OTP.m */,
 				4C35663E25824C0A00CAB95B /* NSImage+MPQRCode.h */,
 				4C35663F25824C0A00CAB95B /* NSImage+MPQRCode.m */,
 			);
@@ -2218,7 +2213,6 @@
 				4CE298EB1795FC2A00DF7BDB /* MPEntryContextMenuDelegate.m in Sources */,
 				4CCCE8011D75CA48006AA951 /* MPArrayController.m in Sources */,
 				4CC0D2CE17974A47000B4BDA /* MPCustomFieldTableViewDelegate.m in Sources */,
-				4CB11241256EB77900204D1B /* KPKEntry+OTP.m in Sources */,
 				4CC0D2D117974A5A000B4BDA /* MPAttachmentTableViewDelegate.m in Sources */,
 				4C26C33F18D8C92100CF1A1C /* MPTemporaryFileStorage.m in Sources */,
 				4C663D411D6D91A900CB6237 /* MPNumberFormatter.m in Sources */,

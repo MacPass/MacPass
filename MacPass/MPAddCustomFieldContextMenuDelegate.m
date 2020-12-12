@@ -23,7 +23,6 @@
 #import "MPAddCustomFieldContextMenuDelegate.h"
 #import "KeePassKit/KeePassKit.h"
 
-#import "KPKEntry+OTP.h"
 
 /*
  HmacOtp-Secret (the UTF-8 representation of the value is the secret),

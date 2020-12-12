@@ -49,8 +49,6 @@
 
 #import "MPArrayController.h"
 
-#import "KPKEntry+OTP.h"
-
 #import "KeePassKit/KeePassKit.h"
 #import "HNHUi/HNHUi.h"
 

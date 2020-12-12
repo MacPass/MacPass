@@ -8,8 +8,6 @@
 
 #import "MPTOTPViewController.h"
 
-#import "KPKEntry+OTP.h"
-
 #import <KeePassKit/KeePassKit.h>
 
 @interface MPTOTPViewController ()
@@ -45,7 +43,7 @@
 
 - (void)_updateDisplay {
   KPKEntry *entry = (KPKEntry *)self.representedObject;
-  BOOL showTOTP = entry.hasTOTP;
+  BOOL showTOTP = entry.hasTimeOTP;
   self.view.hidden = !showTOTP;
   if(showTOTP) {
     self.remainingTimeProgressIndicator.indeterminate = YES;
