@@ -13,7 +13,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface MPTOTPViewController : NSViewController
 @property (strong) IBOutlet HNHUITextField *toptValueTextField;
-@property (strong) IBOutlet NSProgressIndicator *remainingTimeProgressIndicator;
+@property (strong) IBOutlet NSButton *remainingTimeButton;
 
 @end
 

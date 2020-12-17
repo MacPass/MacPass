@@ -12,13 +12,14 @@
 
 @interface MPTOTPViewController ()
 
+@property (strong) KPKTimeOTPGenerator *generator;
+
 @end
 
 @implementation MPTOTPViewController
 
 - (void)viewDidLoad {
-  self.remainingTimeProgressIndicator.minValue = 0;
-  self.remainingTimeProgressIndicator.maxValue = 30;
+  self.remainingTimeButton.title = @"";
 }
 
 - (void)setRepresentedObject:(id)representedObject {
@@ -46,13 +47,18 @@
   BOOL showTOTP = entry.hasTimeOTP;
   self.view.hidden = !showTOTP;
   if(showTOTP) {
-    self.remainingTimeProgressIndicator.indeterminate = YES;
-    self.toptValueTextField.stringValue = entry.timeOTP;
-    self.remainingTimeProgressIndicator.doubleValue = 0;
+    self.generator = [[KPKTimeOTPGenerator alloc] initWithEntry:entry];
+    self.generator.time = NSDate.date.timeIntervalSince1970;
+    self.toptValueTextField.stringValue = self.generator.string;
+    
+    NSString *template = NSLocalizedString(@"TOTP_REMAINING_TIME_%ld_SECONDS", @"Time in seconds remaining for a valid TOTP string, format should be %ld");
+    template = @"%ld s";
+    
+    self.remainingTimeButton.title = [NSString stringWithFormat:template, (NSUInteger)self.generator.remainingTime];
     [self performSelector:@selector(_updateDisplay) withObject:nil afterDelay:0.5];
   }
   else {
-    self.remainingTimeProgressIndicator.indeterminate = NO;
+    self.remainingTimeButton.title = @"";
     self.toptValueTextField.stringValue = @"";
   }
 }
