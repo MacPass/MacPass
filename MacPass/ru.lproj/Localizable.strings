@@ -128,11 +128,23 @@
 /* Disable autotype menu item */
 "AUTOTYPE_NO" = "Отключить Автоввод";
 
+/* Title for autotype feedback on missing permissions */
+"AUTOTYPE_NOTIFICATION_PERMISSIONS_MISSING_TITLE" = "Недостаточно прав";
+
 /* Notification: Autotype failed, MacPass has not enough permissions to perform autotype */
 "AUTOTYPE_NOTIFICATION_MACPASS_IS_MISSING_PERMISSIONS" = "MacPass не имеет необходимых разрешений для выполнения автоввода";
 
 /* Notification: Autotype failed, no documents are open */
-"AUTOTYPE_NOTIFICATION_NO_DOCUMENTS_INFORMATIVE_TEXT" = "Откройте файл базы данных для использования глобального автоввода!";
+"AUTOTYPE_NOTIFICATION_NO_DOCUMENTS_INFORMATIVE_TEXT" = "Откройте файл базы паролей для использования глобального автоввода!";
+
+/* Notification: Title for autotype feedback */
+"AUTOTYPE_NOTIFICATION_MATCH_TITLE" = "Автоввод";
+
+/* Notification: Title for autotype feedback */
+"AUTOTYPE_NOTIFICATION_NO_DOCUMENTS_TITLE" = "База паролей закрыта!";
+
+/* Title for the notification when the Autotype operation timed out */
+"AUTOTYPE_NOTIFICATION_TIMED_OUT_TITLE" = "Время автоввода истекло!";
 
 /* Noticiation: Autotype failed to find a match for %@ (string placeholder) */
 "AUTOTYPE_NOTIFICATION_NO_MATCH_FOR_%@" = "Нет соответствий %@!";
@@ -666,6 +678,9 @@
 /* Search option: Find duplicate passwords */
 "SEARCH_DUPLICATE_PASSWORDS" = "Дубли паролей";
 
+/* Placeholder string displayed in the search field in the toolbar */
+"SEARCH_EVERYWHERE" = "Поиск";
+
 /* Search option: Find expired entries */
 "SEARCH_EXPIRED_ENTRIES" = "Истекло";
 
@@ -823,3 +838,11 @@
 /* Yesterday */
 "YESTERDAY" = "Вчера";
 
+/* Favicon download method: directly download from the host */
+"FAVICON_DOWNLOAD_METHOD_DIRECT" = "Прямая загрузка";
+
+/* Favicon download method: use DuckDuckGo's favicon fetching service */
+"FAVICON_DOWNLOAD_METHOD_DUCKDUCKGO" = "DuckDuckGo";
+
+/* Favicon download method: use Google's favicon fetching service */
+"FAVICON_DOWNLOAD_METHOD_GOOGLE" = "Google";
