@@ -34,7 +34,7 @@
                             <rect key="frame" x="0.0" y="0.0" width="480" height="21"/>
                             <subviews>
                                 <textField horizontalHuggingPriority="249" verticalHuggingPriority="750" allowsCharacterPickerTouchBarItem="YES" translatesAutoresizingMaskIntoConstraints="NO" id="xBL-Jz-VQO" customClass="HNHUITextField">
-                                    <rect key="frame" x="0.0" y="0.0" width="445" height="21"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="399" height="21"/>
                                     <textFieldCell key="cell" lineBreakMode="truncatingTail" truncatesLastVisibleLine="YES" selectable="YES" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" drawsBackground="YES" usesSingleLineMode="YES" id="Vuy-HC-UhI">
                                         <font key="font" metaFont="system"/>
                                         <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
@@ -42,18 +42,27 @@
                                     </textFieldCell>
                                 </textField>
                                 <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="Hxg-bd-l1O">
-                                    <rect key="frame" x="453" y="1" width="27" height="17"/>
+                                    <rect key="frame" x="407" y="1" width="27" height="17"/>
                                     <buttonCell key="cell" type="inline" title="30" bezelStyle="inline" alignment="center" enabled="NO" borderStyle="border" inset="2" id="roW-Uk-ff9">
                                         <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                         <font key="font" metaFont="smallSystemBold"/>
+                                    </buttonCell>
+                                </button>
+                                <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="xge-Jc-QnB">
+                                    <rect key="frame" x="436" y="-7" width="50" height="32"/>
+                                    <buttonCell key="cell" type="push" bezelStyle="rounded" image="NSActionTemplate" imagePosition="only" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="64a-Tn-vdd">
+                                        <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                        <font key="font" metaFont="system"/>
                                     </buttonCell>
                                 </button>
                             </subviews>
                             <visibilityPriorities>
                                 <integer value="1000"/>
                                 <integer value="1000"/>
+                                <integer value="1000"/>
                             </visibilityPriorities>
                             <customSpacing>
+                                <real value="3.4028234663852886e+38"/>
                                 <real value="3.4028234663852886e+38"/>
                                 <real value="3.4028234663852886e+38"/>
                             </customSpacing>
@@ -78,4 +87,7 @@
             <point key="canvasLocation" x="-180" y="74"/>
         </customView>
     </objects>
+    <resources>
+        <image name="NSActionTemplate" width="14" height="14"/>
+    </resources>
 </document>

@@ -25,12 +25,6 @@
 /* Toolbar item with action menu */
 "ACTION" = "Action";
 
-/* Menu item title for adding an hmacotp config attribute */
-"ADD_CUSTOM_ATTRIBUTE_HMACOTP_CONFIG" = "Add HMACOTP Configuration";
-
-/* Menu item title for adding an hmacotp seed attribute */
-"ADD_CUSTOM_ATTRIBUTE_HMACOTP_SEED" = "Add HMACOTP Seed";
-
 /* Menu displayed for adding special custom keys */
 "ADD_CUSTOM_FIELD_CONTEXT_MENU" = "Add Custom Field Menu";
 
@@ -101,8 +95,11 @@
 /* Menu item for automatic trash creation */
 "AUTOCREATE_TRASH_FOLDER" = "Create Automatically";
 
-/* Message text in the autotype selection window. Placeholder is %1 - windowTitle */
-"AUTOTYPE_CANDIDATE_SELECTION_WINDOW_MESSAGE_%@" = "There are multiple matches for the current window: %@. Please select which match should be used.";
+/* Message text in the autotype confirmation window. Placeholder is %1 - applicationName, %2 windowTitle */
+"AUTOTYPE_CANDIDATE_CONFIRMATION_WINDOW_MESSAGE_%@_%@" = "AUTOTYPE_CANDIDATE_CONFIRMATION_WINDOW_MESSAGE_%1$@_%2$@";
+
+/* Message text in the autotype selection window. Placeholder is %1 - applicationName, %2 windowTitle */
+"AUTOTYPE_CANDIDATE_SELECTION_WINDOW_MESSAGE_%@_%@" = "There are multiple matches for the window %2$@ of application %1$@. Please select which match should be used.";
 
 /* Window title for the stand-alone password creator window */
 "AUTOTYPE_DOCTOR_RESULTS_WINDOW_TITLE" = "Autotype Doctor";
@@ -714,6 +711,9 @@
 /* Checkbox in dialog to set the selection as default file change strategy! */
 "SET_AS_DEFAULT_FILE_CHANGE_STRATEGY" = "Use this method as default. You can change this at any time in the preferences.";
 
+/* Menu item title editing TOTP settings */
+"SETUP_TOTP_SETTINGS" = "Edit Time-One-Time-Password settings.";
+
 /* Action button in Notification to show the Autotype Doctor */
 "SHOW_AUTOTYPE_DOCTOR" = "Show Autotype Doctor";
 
@@ -735,6 +735,9 @@
 
 /* Toolbar item to perform autotype */
 "TOOLBAR_PERFORM_AUTOTYPE_FOR_ENTRY" = "Autotype";
+
+/* Time in seconds remaining for a valid TOTP string, format should be %ld */
+"TOTP_REMAINING_TIME_%ld_SECONDS" = "%ld s";
 
 /* Touchbar button label for choosing the keyfile */
 "TOUCHBAR_CHOOSE_KEYFILE" = "Choose Keyfile";

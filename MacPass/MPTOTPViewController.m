@@ -52,7 +52,6 @@
     self.toptValueTextField.stringValue = self.generator.string;
     
     NSString *template = NSLocalizedString(@"TOTP_REMAINING_TIME_%ld_SECONDS", @"Time in seconds remaining for a valid TOTP string, format should be %ld");
-    template = @"%ld s";
     
     self.remainingTimeButton.title = [NSString stringWithFormat:template, (NSUInteger)self.generator.remainingTime];
     [self performSelector:@selector(_updateDisplay) withObject:nil afterDelay:0.5];
