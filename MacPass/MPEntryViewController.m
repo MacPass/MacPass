@@ -70,20 +70,15 @@ NSString *const _MPTableStringCellView = @"StringCell";
 NSString *const _MPTableSecurCellView = @"PasswordCell";
 
 @interface MPEntryViewController () {
-  BOOL _isDisplayingContextBar;
   BOOL _didUnlock;
 }
 
 @property (strong) MPContextBarViewController *contextBarViewController;
 @property (strong) NSArray *filteredEntries;
 
+@property (strong) IBOutlet NSStackView *stackView;
 @property (weak) IBOutlet NSTableView *entryTable;
 @property (assign) MPDisplayMode displayMode;
-
-
-/* Constraints */
-@property (strong) IBOutlet NSLayoutConstraint *tableToTopConstraint;
-@property (strong) NSLayoutConstraint *contextBarTopConstraint;
 
 @property (nonatomic, strong) MPEntryTableDataSource *dataSource;
 
@@ -98,7 +93,6 @@ NSString *const _MPTableSecurCellView = @"PasswordCell";
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil {
   self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
   if(self) {
-    _isDisplayingContextBar = NO;
     _displayMode = MPDisplayModeEntries;
     _entryArrayController = [[NSArrayController alloc] init];
     _dataSource = [[MPEntryTableDataSource alloc] init];
@@ -543,56 +537,14 @@ NSString *const _MPTableSecurCellView = @"PasswordCell";
 }
 
 - (void)_showContextBar {
-  if(_isDisplayingContextBar) {
-    return;
+  if(self.stackView.views.count == 1) {
+    [self.stackView insertArrangedSubview:self.contextBarViewController.view atIndex:0];
   }
-  _isDisplayingContextBar = YES;
-  if(!self.contextBarViewController.view.superview) {
-    [self.view addSubview:self.contextBarViewController.view];
-    NSView *contextBar = self.contextBarViewController.view;
-    NSView *scrollView = self.entryTable.enclosingScrollView;
-    NSDictionary *views = NSDictionaryOfVariableBindings(scrollView, contextBar);
-    
-    /* Pin to the left */
-    [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|[contextBar]|" options:0 metrics:nil views:views]];
-    /* Pin height and to top of entry table */
-    [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:[contextBar(==30)]-0-[scrollView]" options:0 metrics:nil views:views]];
-    /* Create the top constraint for the filter bar where we can change the constant instead of removing/adding constraints all the time */
-    self.contextBarTopConstraint = [NSLayoutConstraint constraintWithItem:contextBar
-                                                                attribute:NSLayoutAttributeTop
-                                                                relatedBy:NSLayoutRelationEqual
-                                                                   toItem:self.view
-                                                                attribute:NSLayoutAttributeTop
-                                                               multiplier:1
-                                                                 constant:-31];
-  }
-  /* Add the view for the first time */
-  [self.view removeConstraint:self.tableToTopConstraint];
-  [self.view addConstraint:self.contextBarTopConstraint];
-  [self.view layout];
-  self.contextBarTopConstraint.constant = 0;
-  
-  [NSAnimationContext runAnimationGroup:^(NSAnimationContext* context) {
-    context.duration = STATUS_BAR_ANIMATION_TIME;
-    context.allowsImplicitAnimation = YES;
-    [self.view layoutSubtreeIfNeeded];
-  } completionHandler:nil];
+  self.contextBarViewController.view.hidden = NO;
 }
 
 - (void)_hideContextBar {
-  if(!_isDisplayingContextBar) {
-    return; // nothing to do;
-  }
-  self.contextBarTopConstraint.constant = -31;
-  [self.view addConstraint:self.tableToTopConstraint];
-  
-  [NSAnimationContext runAnimationGroup:^(NSAnimationContext* context) {
-    context.duration = STATUS_BAR_ANIMATION_TIME;
-    context.allowsImplicitAnimation = YES;
-    [self.view layoutSubtreeIfNeeded];
-  } completionHandler:^{
-    self->_isDisplayingContextBar = NO;
-  }];
+  self.contextBarViewController.view.hidden = YES;
 }
 
 #pragma mark Validation

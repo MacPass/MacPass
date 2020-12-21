@@ -1684,6 +1684,7 @@
 				4C5133861FA0C32C00C94C73 /* Accessory */,
 				4C4B7EF517A46815000234C7 /* Inspector */,
 				4C47D77718B37911002755E4 /* Preferences */,
+				4CD97D242591331B00E9C606 /* OTP */,
 				4CAAA8241D787B8B00CDE977 /* MPAutotypeBuilderViewController.h */,
 				4CAAA8251D787B8B00CDE977 /* MPAutotypeBuilderViewController.m */,
 				FA9FD32E1FB5EDD3003CEDD6 /* AutotypeBuilderView.xib */,
@@ -1741,9 +1742,6 @@
 				4C73B6EE215E64A7009787F7 /* MPWelcomeViewController.h */,
 				4C73B6EF215E64A7009787F7 /* MPWelcomeViewController.m */,
 				4C7F8B6A1A10B68400CCB83D /* WelcomeView.xib */,
-				4C356642258259AA00CAB95B /* MPTOTPSetupViewController.h */,
-				4C356643258259AA00CAB95B /* MPTOTPSetupViewController.m */,
-				4C356644258259AA00CAB95B /* MPTOTPSetupViewController.xib */,
 			);
 			name = "View Controller";
 			sourceTree = "<group>";
@@ -1772,6 +1770,16 @@
 				4CCFA1331BF0CC7A0078E0A1 /* Test_Password_1234.kdbx */,
 			);
 			path = Databases;
+			sourceTree = "<group>";
+		};
+		4CD97D242591331B00E9C606 /* OTP */ = {
+			isa = PBXGroup;
+			children = (
+				4C356642258259AA00CAB95B /* MPTOTPSetupViewController.h */,
+				4C356643258259AA00CAB95B /* MPTOTPSetupViewController.m */,
+				4C356644258259AA00CAB95B /* MPTOTPSetupViewController.xib */,
+			);
+			name = OTP;
 			sourceTree = "<group>";
 		};
 		4CDB556616E29A8A00635918 /* Controls */ = {
