@@ -56,10 +56,13 @@
   if(self.candidates.count > 1) {
     template = NSLocalizedString(@"AUTOTYPE_CANDIDATE_SELECTION_WINDOW_MESSAGE_%@_%@", "Message text in the autotype selection window. Placeholder is %1 - applicationName, %2 windowTitle");
     self.messageTextField.stringValue = [NSString stringWithFormat:template, targetApplication.localizedName, self.environment.windowTitle];
+    NSInteger rows = MIN(self.candidates.count, 5);
+    [self.contextTableView.enclosingScrollView.heightAnchor constraintGreaterThanOrEqualToConstant:39 * rows].active = YES;
   }
   else {
     template = NSLocalizedString(@"AUTOTYPE_CANDIDATE_CONFIRMATION_WINDOW_MESSAGE_%@_%@", "Message text in the autotype confirmation window. Placeholder is %1 - applicationName, %2 windowTitle");
     self.messageTextField.stringValue = [NSString stringWithFormat:template, targetApplication.localizedName, self.environment.windowTitle];
+    [self.contextTableView.enclosingScrollView.heightAnchor constraintEqualToConstant:39].active = YES;
   }
 
   NSNotification *notification = [NSNotification notificationWithName:NSTableViewSelectionDidChangeNotification object:self.contextTableView];

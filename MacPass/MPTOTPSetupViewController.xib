@@ -79,12 +79,12 @@
                                 <gridCell row="hS6-e9-JPg" column="Ecc-pj-MX9" id="6MO-n5-2Cu">
                                     <popUpButton key="contentView" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="caF-Au-ey8">
                                         <rect key="frame" x="107" y="53" width="95" height="25"/>
-                                        <popUpButtonCell key="cell" type="push" title="SHA-1" bezelStyle="rounded" alignment="left" lineBreakMode="truncatingTail" borderStyle="borderAndBezel" imageScaling="proportionallyDown" inset="2" selectedItem="4Bi-z2-2Oz" id="Rxs-11-LRy">
+                                        <popUpButtonCell key="cell" type="push" title="SHA-1" bezelStyle="rounded" alignment="left" lineBreakMode="truncatingTail" state="on" borderStyle="borderAndBezel" imageScaling="proportionallyDown" inset="2" selectedItem="4Bi-z2-2Oz" id="Rxs-11-LRy">
                                             <behavior key="behavior" lightByBackground="YES" lightByGray="YES"/>
                                             <font key="font" metaFont="menu"/>
                                             <menu key="menu" id="zev-8W-Uhl">
                                                 <items>
-                                                    <menuItem title="SHA-1" id="4Bi-z2-2Oz">
+                                                    <menuItem title="SHA-1" state="on" id="4Bi-z2-2Oz">
                                                         <modifierMask key="keyEquivalentModifierMask"/>
                                                     </menuItem>
                                                     <menuItem title="SHA-256" id="oW0-dE-qqs">
@@ -138,12 +138,12 @@
                                 <gridCell row="0Jy-aF-Wst" column="Ecc-pj-MX9" id="gil-83-ris">
                                     <popUpButton key="contentView" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="aa3-XV-Chc">
                                         <rect key="frame" x="107" y="-3" width="53" height="25"/>
-                                        <popUpButtonCell key="cell" type="push" title="6" bezelStyle="rounded" alignment="left" lineBreakMode="truncatingTail" borderStyle="borderAndBezel" imageScaling="proportionallyDown" inset="2" selectedItem="jz0-Sd-awx" id="rzY-5S-dIJ">
+                                        <popUpButtonCell key="cell" type="push" title="6" bezelStyle="rounded" alignment="left" lineBreakMode="truncatingTail" state="on" borderStyle="borderAndBezel" imageScaling="proportionallyDown" inset="2" selectedItem="jz0-Sd-awx" id="rzY-5S-dIJ">
                                             <behavior key="behavior" lightByBackground="YES" lightByGray="YES"/>
                                             <font key="font" metaFont="menu"/>
                                             <menu key="menu" id="XCv-uH-EcW">
                                                 <items>
-                                                    <menuItem title="6" id="jz0-Sd-awx">
+                                                    <menuItem title="6" state="on" id="jz0-Sd-awx">
                                                         <modifierMask key="keyEquivalentModifierMask"/>
                                                     </menuItem>
                                                     <menuItem title="7" id="hz5-72-opf">

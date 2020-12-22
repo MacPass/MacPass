@@ -96,10 +96,10 @@
 "AUTOCREATE_TRASH_FOLDER" = "Create Automatically";
 
 /* Message text in the autotype confirmation window. Placeholder is %1 - applicationName, %2 windowTitle */
-"AUTOTYPE_CANDIDATE_CONFIRMATION_WINDOW_MESSAGE_%@_%@" = "AUTOTYPE_CANDIDATE_CONFIRMATION_WINDOW_MESSAGE_%1$@_%2$@";
+"AUTOTYPE_CANDIDATE_CONFIRMATION_WINDOW_MESSAGE_%@_%@" = "Autotype has found a match for window \"%2$@\" of application \"%1$@\". Please confirm to continue the execution.";
 
 /* Message text in the autotype selection window. Placeholder is %1 - applicationName, %2 windowTitle */
-"AUTOTYPE_CANDIDATE_SELECTION_WINDOW_MESSAGE_%@_%@" = "There are multiple matches for the window %2$@ of application %1$@. Please select which match should be used.";
+"AUTOTYPE_CANDIDATE_SELECTION_WINDOW_MESSAGE_%@_%@" = "There are multiple matches for the window \"%2$@\" of application \"%1$@\". Please select which match should be used.";
 
 /* Window title for the stand-alone password creator window */
 "AUTOTYPE_DOCTOR_RESULTS_WINDOW_TITLE" = "Autotype Doctor";
