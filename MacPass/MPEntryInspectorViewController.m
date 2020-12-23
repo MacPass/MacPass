@@ -32,6 +32,7 @@
 #import "MPAutotypeBuilderViewController.h"
 #import "MPReferenceBuilderViewController.h"
 #import "MPTOTPViewController.h"
+#import "MPTOTPSetupViewController.h"
 
 #import "MPPrettyPasswordTransformer.h"
 #import "NSString+MPPasswordCreation.h"
@@ -379,6 +380,20 @@ typedef NS_ENUM(NSUInteger, MPEntryTab) {
   viewController.representedObject = self.representedObject;
   viewController.observer = self.windowController.document;
   [self _showPopopver:viewController atView:sender onEdge:NSMinYEdge];
+}
+
+- (IBAction)showOTPSetup:(id)sender {
+  NSView *location;
+  if([sender isKindOfClass:NSView.class]) {
+    location = sender;
+  }
+  else {
+    // we do not have anything to do!
+  }
+  MPTOTPSetupViewController *vc = [[MPTOTPSetupViewController alloc] init];
+  vc.representedObject = self.representedObject;
+  
+  [self _showPopopver:vc atView:location onEdge:NSMinYEdge];
 }
 
 - (void)dismissViewController:(NSViewController *)viewController {

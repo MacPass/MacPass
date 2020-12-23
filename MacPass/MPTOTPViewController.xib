@@ -54,6 +54,9 @@
                                         <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                         <font key="font" metaFont="system"/>
                                     </buttonCell>
+                                    <connections>
+                                        <action selector="showOTPSetup:" target="-1" id="mJ4-w0-CGo"/>
+                                    </connections>
                                 </button>
                             </subviews>
                             <visibilityPriorities>
