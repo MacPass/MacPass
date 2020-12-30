@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="17506" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="14313.18" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
     <dependencies>
         <deployment identifier="macosx"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="17506"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="14313.18"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
@@ -38,7 +38,7 @@
                                         <rect key="frame" x="8" y="0.0" width="830" height="30"/>
                                         <beginningViews>
                                             <textField verticalHuggingPriority="750" fixedFrame="YES" textCompletion="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6">
-                                                <rect key="frame" x="-2" y="7" width="54" height="16"/>
+                                                <rect key="frame" x="-2" y="7" width="54" height="17"/>
                                                 <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Search:" id="7">
                                                     <font key="font" metaFont="systemBold"/>
                                                     <color key="textColor" name="disabledControlTextColor" catalog="System" colorSpace="catalog"/>
@@ -46,7 +46,7 @@
                                                 </textFieldCell>
                                             </textField>
                                             <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="O7W-cn-eUP">
-                                                <rect key="frame" x="58" y="6" width="42" height="17"/>
+                                                <rect key="frame" x="58" y="6" width="41" height="17"/>
                                                 <buttonCell key="cell" type="recessed" title="Title" bezelStyle="recessed" alignment="center" controlSize="small" state="on" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="53D-ne-nv6">
                                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES" changeBackground="YES" changeGray="YES"/>
                                                     <font key="font" metaFont="systemBold" size="12"/>
@@ -56,7 +56,7 @@
                                                 </connections>
                                             </button>
                                             <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="0R1-PX-dgn">
-                                                <rect key="frame" x="108" y="6" width="76" height="17"/>
+                                                <rect key="frame" x="107" y="6" width="76" height="17"/>
                                                 <buttonCell key="cell" type="recessed" title="Username" bezelStyle="recessed" alignment="center" controlSize="small" state="on" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="jfQ-Jh-2gl">
                                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES" changeBackground="YES" changeGray="YES"/>
                                                     <font key="font" metaFont="systemBold" size="12"/>
@@ -66,7 +66,7 @@
                                                 </connections>
                                             </button>
                                             <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Uhl-ck-vVQ">
-                                                <rect key="frame" x="192" y="6" width="73" height="17"/>
+                                                <rect key="frame" x="191" y="6" width="73" height="17"/>
                                                 <buttonCell key="cell" type="recessed" title="Password" bezelStyle="recessed" alignment="center" controlSize="small" state="on" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="rvQ-4V-SsS">
                                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES" changeBackground="YES" changeGray="YES"/>
                                                     <font key="font" metaFont="systemBold" size="12"/>
@@ -76,7 +76,7 @@
                                                 </connections>
                                             </button>
                                             <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Bn2-iY-mQ3">
-                                                <rect key="frame" x="273" y="6" width="39" height="17"/>
+                                                <rect key="frame" x="272" y="6" width="39" height="17"/>
                                                 <buttonCell key="cell" type="recessed" title="URL" bezelStyle="recessed" alignment="center" controlSize="small" state="on" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="92o-gN-Psj">
                                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES" changeBackground="YES" changeGray="YES"/>
                                                     <font key="font" metaFont="systemBold" size="12"/>
@@ -86,7 +86,7 @@
                                                 </connections>
                                             </button>
                                             <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="SaV-5p-jIX">
-                                                <rect key="frame" x="320" y="6" width="50" height="17"/>
+                                                <rect key="frame" x="319" y="6" width="50" height="17"/>
                                                 <buttonCell key="cell" type="recessed" title="Notes" bezelStyle="recessed" alignment="center" controlSize="small" state="on" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="iDN-2E-hwt">
                                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES" changeBackground="YES" changeGray="YES"/>
                                                     <font key="font" metaFont="systemBold" size="12"/>
@@ -96,7 +96,7 @@
                                                 </connections>
                                             </button>
                                             <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="RGg-wK-hz4">
-                                                <rect key="frame" x="378" y="6" width="86" height="17"/>
+                                                <rect key="frame" x="377" y="6" width="86" height="17"/>
                                                 <buttonCell key="cell" type="recessed" title="Everywhere" bezelStyle="recessed" alignment="center" controlSize="small" state="on" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="WMK-bb-ESj">
                                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES" changeBackground="YES" changeGray="YES"/>
                                                     <font key="font" metaFont="systemBold" size="12"/>
@@ -145,7 +145,6 @@
                                     </stackView>
                                 </subviews>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="30" id="1kF-Fq-EWh"/>
                                     <constraint firstItem="AEr-b4-tMm" firstAttribute="leading" secondItem="1" secondAttribute="leading" constant="8" id="4Ca-JQ-6SM"/>
                                     <constraint firstAttribute="trailing" secondItem="AEr-b4-tMm" secondAttribute="trailing" id="8JE-jl-Ko3"/>
                                     <constraint firstItem="AEr-b4-tMm" firstAttribute="top" secondItem="1" secondAttribute="top" id="EHZ-ac-GsP"/>
@@ -182,7 +181,7 @@
                                         </connections>
                                     </button>
                                     <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" textCompletion="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Rf3-f0-SSx">
-                                        <rect key="frame" x="20" y="7" width="41" height="16"/>
+                                        <rect key="frame" x="20" y="7" width="41" height="17"/>
                                         <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Trash" id="8P1-Rp-sF4">
                                             <font key="font" metaFont="systemBold"/>
                                             <color key="textColor" name="disabledControlTextColor" catalog="System" colorSpace="catalog"/>
@@ -193,7 +192,6 @@
                                 <constraints>
                                     <constraint firstItem="Rf3-f0-SSx" firstAttribute="leading" secondItem="DXf-SC-gVG" secondAttribute="leading" constant="22" id="D1t-Yw-eiN"/>
                                     <constraint firstAttribute="trailing" secondItem="szx-Hx-OrV" secondAttribute="trailing" constant="20" symbolic="YES" id="J9z-j0-T14"/>
-                                    <constraint firstAttribute="height" constant="30" id="pu6-D5-1e1"/>
                                     <constraint firstItem="Rf3-f0-SSx" firstAttribute="centerY" secondItem="DXf-SC-gVG" secondAttribute="centerY" id="rla-Pu-8db"/>
                                     <constraint firstItem="szx-Hx-OrV" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="DXf-SC-gVG" secondAttribute="leading" constant="20" symbolic="YES" id="s8f-1l-4Yy"/>
                                     <constraint firstAttribute="centerY" secondItem="szx-Hx-OrV" secondAttribute="centerY" id="sG5-pc-EzQ"/>
@@ -241,7 +239,7 @@
                                         </connections>
                                     </button>
                                     <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" textCompletion="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hMK-l1-qew">
-                                        <rect key="frame" x="20" y="7" width="52" height="16"/>
+                                        <rect key="frame" x="20" y="7" width="52" height="17"/>
                                         <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="History" id="ER3-Ic-v0N">
                                             <font key="font" metaFont="systemBold"/>
                                             <color key="textColor" name="disabledControlTextColor" catalog="System" colorSpace="catalog"/>
@@ -251,7 +249,6 @@
                                 </subviews>
                                 <constraints>
                                     <constraint firstAttribute="centerY" secondItem="pqx-su-vAh" secondAttribute="centerY" id="7T6-QP-uaM"/>
-                                    <constraint firstAttribute="height" constant="30" id="IXw-Kf-3zN"/>
                                     <constraint firstItem="JNP-Sd-Zh1" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="hMK-l1-qew" secondAttribute="trailing" constant="8" symbolic="YES" id="Kqm-pr-v9M"/>
                                     <constraint firstItem="pqx-su-vAh" firstAttribute="leading" secondItem="JNP-Sd-Zh1" secondAttribute="trailing" constant="8" symbolic="YES" id="M88-oZ-tNf"/>
                                     <constraint firstItem="JNP-Sd-Zh1" firstAttribute="centerY" secondItem="S8L-rB-h0h" secondAttribute="centerY" id="SpB-ks-AjH"/>
@@ -273,7 +270,7 @@
                     </connections>
                 </tabViewItem>
             </tabViewItems>
-            <point key="canvasLocation" x="270" y="105"/>
+            <point key="canvasLocation" x="130" y="79"/>
         </tabView>
     </objects>
 </document>
