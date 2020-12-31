@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="17701" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" customObjectInstantitationMethod="direct">
     <dependencies>
-        <deployment identifier="macosx"/>
+        <deployment version="101304" identifier="macosx"/>
         <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="17701"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -20,14 +20,14 @@
         <customObject id="-1" userLabel="First Responder" customClass="FirstResponder"/>
         <customObject id="-3" userLabel="Application" customClass="NSObject"/>
         <customView id="Hz6-mo-xeY">
-            <rect key="frame" x="0.0" y="0.0" width="354" height="316"/>
+            <rect key="frame" x="0.0" y="0.0" width="354" height="264"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
             <subviews>
                 <stackView distribution="fill" orientation="vertical" alignment="centerX" spacing="20" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ene-iL-JT3">
-                    <rect key="frame" x="20" y="78" width="314" height="218"/>
+                    <rect key="frame" x="20" y="20" width="314" height="224"/>
                     <subviews>
                         <imageView horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="yS5-M0-RSB">
-                            <rect key="frame" x="122" y="151" width="70" height="70"/>
+                            <rect key="frame" x="122" y="157" width="70" height="70"/>
                             <constraints>
                                 <constraint firstAttribute="width" constant="64" id="EXM-vg-ehl"/>
                                 <constraint firstAttribute="height" constant="64" id="U2b-8Z-WPa"/>
@@ -38,9 +38,13 @@
                             </connections>
                         </imageView>
                         <gridView xPlacement="leading" yPlacement="center" rowAlignment="firstBaseline" translatesAutoresizingMaskIntoConstraints="NO" id="4gl-4p-0WY">
-                            <rect key="frame" x="0.0" y="0.0" width="314" height="134"/>
+                            <rect key="frame" x="0.0" y="0.0" width="314" height="140"/>
                             <constraints>
+                                <constraint firstItem="Bt8-9X-91R" firstAttribute="top" secondItem="GJN-85-eYH" secondAttribute="bottom" constant="7" id="2Gt-JL-aw7"/>
+                                <constraint firstItem="caF-Au-ey8" firstAttribute="top" secondItem="Bt8-9X-91R" secondAttribute="bottom" constant="8" id="atS-nb-KN9"/>
                                 <constraint firstItem="yiW-Wk-6YB" firstAttribute="leading" secondItem="4gl-4p-0WY" secondAttribute="leading" constant="9" id="jcX-sf-Qkm"/>
+                                <constraint firstItem="Bt8-9X-91R" firstAttribute="trailing" secondItem="GJN-85-eYH" secondAttribute="trailing" id="v0n-ek-B58"/>
+                                <constraint firstItem="Bt8-9X-91R" firstAttribute="trailing" secondItem="AdN-zI-C65" secondAttribute="trailing" id="y1X-Jr-6LQ"/>
                             </constraints>
                             <rows>
                                 <gridRow id="leK-j9-Cah"/>
@@ -57,7 +61,7 @@
                             <gridCells>
                                 <gridCell row="leK-j9-Cah" column="Ar1-qh-iHT" id="fgi-y3-z17">
                                     <textField key="contentView" horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="4Ic-Nt-YlL">
-                                        <rect key="frame" x="75" y="115" width="30" height="16"/>
+                                        <rect key="frame" x="75" y="121" width="30" height="16"/>
                                         <textFieldCell key="cell" lineBreakMode="clipping" title="URL" id="Kci-xp-mLu">
                                             <font key="font" usesAppearanceFont="YES"/>
                                             <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
@@ -65,9 +69,9 @@
                                         </textFieldCell>
                                     </textField>
                                 </gridCell>
-                                <gridCell row="leK-j9-Cah" column="Ecc-pj-MX9" id="q9e-Zx-LIY">
+                                <gridCell row="leK-j9-Cah" column="Ecc-pj-MX9" headOfMergedCell="q9e-Zx-LIY" yPlacement="center" id="q9e-Zx-LIY">
                                     <textField key="contentView" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="GJN-85-eYH">
-                                        <rect key="frame" x="109" y="113" width="100" height="21"/>
+                                        <rect key="frame" x="109" y="119" width="100" height="21"/>
                                         <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" borderStyle="bezel" drawsBackground="YES" id="ZpH-Ks-BBi">
                                             <font key="font" usesAppearanceFont="YES"/>
                                             <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
@@ -75,10 +79,10 @@
                                         </textFieldCell>
                                     </textField>
                                 </gridCell>
-                                <gridCell row="leK-j9-Cah" column="aZO-dP-SsW" id="gOO-ed-C7I"/>
+                                <gridCell row="leK-j9-Cah" column="aZO-dP-SsW" headOfMergedCell="q9e-Zx-LIY" id="gOO-ed-C7I"/>
                                 <gridCell row="GmF-7D-t30" column="Ar1-qh-iHT" id="Isd-CW-srQ">
                                     <textField key="contentView" horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="e3u-QK-K24">
-                                        <rect key="frame" x="61" y="87" width="44" height="16"/>
+                                        <rect key="frame" x="61" y="93" width="44" height="16"/>
                                         <textFieldCell key="cell" lineBreakMode="clipping" title="Secret" id="ufY-IN-5UY">
                                             <font key="font" usesAppearanceFont="YES"/>
                                             <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
@@ -86,9 +90,12 @@
                                         </textFieldCell>
                                     </textField>
                                 </gridCell>
-                                <gridCell row="GmF-7D-t30" column="Ecc-pj-MX9" id="Fpx-eQ-WAY">
+                                <gridCell row="GmF-7D-t30" column="Ecc-pj-MX9" headOfMergedCell="Fpx-eQ-WAY" id="Fpx-eQ-WAY">
                                     <textField key="contentView" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="Bt8-9X-91R">
-                                        <rect key="frame" x="109" y="85" width="100" height="21"/>
+                                        <rect key="frame" x="109" y="91" width="100" height="21"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="100" id="lvN-Df-TbT"/>
+                                        </constraints>
                                         <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" borderStyle="bezel" drawsBackground="YES" id="N3a-bO-6va">
                                             <font key="font" usesAppearanceFont="YES"/>
                                             <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
@@ -96,10 +103,10 @@
                                         </textFieldCell>
                                     </textField>
                                 </gridCell>
-                                <gridCell row="GmF-7D-t30" column="aZO-dP-SsW" id="ZXy-HZ-O3a"/>
+                                <gridCell row="GmF-7D-t30" column="aZO-dP-SsW" headOfMergedCell="Fpx-eQ-WAY" id="ZXy-HZ-O3a"/>
                                 <gridCell row="hS6-e9-JPg" column="Ar1-qh-iHT" id="5hJ-4K-a2d">
                                     <textField key="contentView" horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="yiW-Wk-6YB">
-                                        <rect key="frame" x="7" y="59" width="98" height="16"/>
+                                        <rect key="frame" x="7" y="65" width="98" height="16"/>
                                         <textFieldCell key="cell" lineBreakMode="clipping" title="Hash Algorithm" id="g3s-fk-k9Q">
                                             <font key="font" usesAppearanceFont="YES"/>
                                             <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
@@ -109,7 +116,7 @@
                                 </gridCell>
                                 <gridCell row="hS6-e9-JPg" column="Ecc-pj-MX9" id="6MO-n5-2Cu">
                                     <popUpButton key="contentView" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="caF-Au-ey8">
-                                        <rect key="frame" x="107" y="53" width="95" height="25"/>
+                                        <rect key="frame" x="107" y="59" width="95" height="25"/>
                                         <popUpButtonCell key="cell" type="push" title="SHA-1" bezelStyle="rounded" alignment="left" lineBreakMode="truncatingTail" state="on" borderStyle="borderAndBezel" imageScaling="proportionallyDown" inset="2" selectedItem="4Bi-z2-2Oz" id="Rxs-11-LRy">
                                             <behavior key="behavior" lightByBackground="YES" lightByGray="YES"/>
                                             <font key="font" metaFont="menu"/>
@@ -132,7 +139,7 @@
                                 <gridCell row="hS6-e9-JPg" column="aZO-dP-SsW" id="56r-vv-PhT"/>
                                 <gridCell row="QY3-TF-Rbs" column="Ar1-qh-iHT" id="jL5-XH-KYZ">
                                     <textField key="contentView" horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="JOR-bN-ZYC">
-                                        <rect key="frame" x="41" y="31" width="64" height="16"/>
+                                        <rect key="frame" x="41" y="37" width="64" height="16"/>
                                         <textFieldCell key="cell" lineBreakMode="clipping" title="Time step" id="hbT-mm-dIn">
                                             <font key="font" usesAppearanceFont="YES"/>
                                             <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
@@ -142,7 +149,7 @@
                                 </gridCell>
                                 <gridCell row="QY3-TF-Rbs" column="Ecc-pj-MX9" xPlacement="fill" id="bvB-9m-g1U">
                                     <textField key="contentView" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="AdN-zI-C65">
-                                        <rect key="frame" x="109" y="29" width="100" height="21"/>
+                                        <rect key="frame" x="109" y="35" width="100" height="21"/>
                                         <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" borderStyle="bezel" drawsBackground="YES" id="bHO-kq-GUf">
                                             <font key="font" usesAppearanceFont="YES"/>
                                             <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
@@ -152,13 +159,13 @@
                                 </gridCell>
                                 <gridCell row="QY3-TF-Rbs" column="aZO-dP-SsW" rowAlignment="none" id="oRW-3a-WxP">
                                     <stepper key="contentView" horizontalHuggingPriority="750" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="CgJ-Qt-NPu">
-                                        <rect key="frame" x="212" y="25" width="19" height="28"/>
+                                        <rect key="frame" x="212" y="31" width="19" height="28"/>
                                         <stepperCell key="cell" continuous="YES" alignment="left" maxValue="100" id="RPy-q9-wKy"/>
                                     </stepper>
                                 </gridCell>
                                 <gridCell row="0Jy-aF-Wst" column="Ar1-qh-iHT" id="hWa-nU-LpX">
                                     <textField key="contentView" horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="z5V-Af-Kpa">
-                                        <rect key="frame" x="-2" y="3" width="107" height="16"/>
+                                        <rect key="frame" x="-2" y="6" width="107" height="16"/>
                                         <textFieldCell key="cell" lineBreakMode="clipping" title="Number of Digits" id="iYF-F5-nMb">
                                             <font key="font" usesAppearanceFont="YES"/>
                                             <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
@@ -168,7 +175,7 @@
                                 </gridCell>
                                 <gridCell row="0Jy-aF-Wst" column="Ecc-pj-MX9" id="gil-83-ris">
                                     <popUpButton key="contentView" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="aa3-XV-Chc">
-                                        <rect key="frame" x="107" y="-3" width="53" height="25"/>
+                                        <rect key="frame" x="107" y="0.0" width="53" height="25"/>
                                         <popUpButtonCell key="cell" type="push" title="6" bezelStyle="rounded" alignment="left" lineBreakMode="truncatingTail" state="on" borderStyle="borderAndBezel" imageScaling="proportionallyDown" inset="2" selectedItem="jz0-Sd-awx" id="rzY-5S-dIJ">
                                             <behavior key="behavior" lightByBackground="YES" lightByGray="YES"/>
                                             <font key="font" metaFont="menu"/>
@@ -211,10 +218,10 @@
             <constraints>
                 <constraint firstItem="ene-iL-JT3" firstAttribute="leading" secondItem="Hz6-mo-xeY" secondAttribute="leading" constant="20" symbolic="YES" id="51M-r8-4kc"/>
                 <constraint firstItem="ene-iL-JT3" firstAttribute="top" secondItem="Hz6-mo-xeY" secondAttribute="top" constant="20" symbolic="YES" id="HNb-e5-VJF"/>
-                <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="ene-iL-JT3" secondAttribute="bottom" constant="20" symbolic="YES" id="OYl-ml-l0m"/>
+                <constraint firstAttribute="bottom" secondItem="ene-iL-JT3" secondAttribute="bottom" constant="20" symbolic="YES" id="OYl-ml-l0m"/>
                 <constraint firstAttribute="trailing" secondItem="ene-iL-JT3" secondAttribute="trailing" constant="20" symbolic="YES" id="sKp-EZ-uRv"/>
             </constraints>
-            <point key="canvasLocation" x="-435" y="-254"/>
+            <point key="canvasLocation" x="-435" y="-283"/>
         </customView>
     </objects>
 </document>
