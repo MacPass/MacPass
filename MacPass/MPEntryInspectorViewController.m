@@ -599,6 +599,7 @@ typedef NS_ENUM(NSUInteger, MPEntryTab) {
   
   NSInteger urlindex = [self.fieldsStackView.arrangedSubviews indexOfObject:self.URLTextField];
   NSAssert(urlindex != NSNotFound, @"Missing reference view. This should not happen!");
+  [self addChildViewController:self.totpViewController];
   [self.fieldsStackView insertArrangedSubview:self.totpViewController.view atIndex:urlindex - 1];
 }
 

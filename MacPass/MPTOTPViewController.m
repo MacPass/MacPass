@@ -9,6 +9,7 @@
 #import "MPTOTPViewController.h"
 
 #import <KeePassKit/KeePassKit.h>
+#import "MPEntryInspectorViewController.h"
 
 @interface MPTOTPViewController ()
 
@@ -21,6 +22,12 @@
 - (void)viewDidLoad {
   self.remainingTimeButton.title = @"";
 }
+
+- (IBAction)showOTPSetup:(id)sender {
+  MPEntryInspectorViewController *vs = (MPEntryInspectorViewController*)self.parentViewController;
+  [vs showOTPSetup:sender];
+}
+
 
 - (void)setRepresentedObject:(id)representedObject {
   NSArray *notificationNames = @[KPKWillAddAttributeNotification, KPKDidAddAttributeNotification, KPKWillChangeAttributeNotification, KPKDidChangeAttributeNotification, KPKWillRemoveAttributeNotification, KPKDidRemoveAttributeNotification];

@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="17506" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="17701" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
     <dependencies>
         <deployment identifier="macosx"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="17506"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="17701"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
@@ -97,7 +97,7 @@
                                         <rect key="frame" x="20" y="26" width="253" height="396"/>
                                         <clipView key="contentView" drawsBackground="NO" copiesOnScroll="NO" id="F3N-QI-Di5">
                                             <rect key="frame" x="1" y="1" width="251" height="394"/>
-                                            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                            <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <tableView verticalHuggingPriority="750" allowsExpansionToolTips="YES" columnAutoresizingStyle="lastColumnOnly" multipleSelection="NO" autosaveColumns="NO" rowHeight="36" rowSizeStyle="automatic" viewBased="YES" id="137">
                                                     <rect key="frame" x="0.0" y="0.0" width="251" height="394"/>
@@ -309,10 +309,10 @@
                     </connections>
                 </segmentedControl>
                 <stackView distribution="fill" orientation="vertical" alignment="leading" horizontalStackHuggingPriority="250" verticalStackHuggingPriority="250" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="dx3-E2-FFt">
-                    <rect key="frame" x="20" y="131" width="251" height="333"/>
+                    <rect key="frame" x="20" y="132" width="251" height="332"/>
                     <subviews>
                         <textField horizontalHuggingPriority="249" verticalHuggingPriority="750" allowsCharacterPickerTouchBarItem="YES" translatesAutoresizingMaskIntoConstraints="NO" id="52">
-                            <rect key="frame" x="-2" y="319" width="255" height="14"/>
+                            <rect key="frame" x="-2" y="318" width="255" height="14"/>
                             <textFieldCell key="cell" controlSize="small" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Title" id="71">
                                 <font key="font" metaFont="smallSystem"/>
                                 <color key="textColor" name="disabledControlTextColor" catalog="System" colorSpace="catalog"/>
@@ -320,7 +320,7 @@
                             </textFieldCell>
                         </textField>
                         <textField horizontalHuggingPriority="249" verticalHuggingPriority="750" horizontalCompressionResistancePriority="249" allowsCharacterPickerTouchBarItem="YES" translatesAutoresizingMaskIntoConstraints="NO" id="53" customClass="HNHUITextField">
-                            <rect key="frame" x="0.0" y="290" width="251" height="21"/>
+                            <rect key="frame" x="0.0" y="289" width="251" height="21"/>
                             <textFieldCell key="cell" lineBreakMode="truncatingTail" truncatesLastVisibleLine="YES" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" drawsBackground="YES" usesSingleLineMode="YES" id="70">
                                 <font key="font" metaFont="system"/>
                                 <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
@@ -332,7 +332,7 @@
                             </connections>
                         </textField>
                         <textField horizontalHuggingPriority="249" verticalHuggingPriority="750" allowsCharacterPickerTouchBarItem="YES" translatesAutoresizingMaskIntoConstraints="NO" id="54">
-                            <rect key="frame" x="-2" y="268" width="255" height="14"/>
+                            <rect key="frame" x="-2" y="267" width="255" height="14"/>
                             <textFieldCell key="cell" controlSize="small" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Username" id="69">
                                 <font key="font" metaFont="smallSystem"/>
                                 <color key="textColor" name="disabledControlTextColor" catalog="System" colorSpace="catalog"/>
@@ -340,7 +340,7 @@
                             </textFieldCell>
                         </textField>
                         <textField horizontalHuggingPriority="249" verticalHuggingPriority="750" horizontalCompressionResistancePriority="249" allowsCharacterPickerTouchBarItem="YES" translatesAutoresizingMaskIntoConstraints="NO" id="55" customClass="HNHUITextField">
-                            <rect key="frame" x="0.0" y="240" width="251" height="20"/>
+                            <rect key="frame" x="0.0" y="239" width="251" height="20"/>
                             <textFieldCell key="cell" lineBreakMode="truncatingTail" truncatesLastVisibleLine="YES" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" drawsBackground="YES" usesSingleLineMode="YES" id="68">
                                 <font key="font" size="13" name="Menlo-Regular"/>
                                 <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
@@ -352,7 +352,7 @@
                             </connections>
                         </textField>
                         <textField horizontalHuggingPriority="249" verticalHuggingPriority="750" allowsCharacterPickerTouchBarItem="YES" translatesAutoresizingMaskIntoConstraints="NO" id="58">
-                            <rect key="frame" x="-2" y="218" width="255" height="14"/>
+                            <rect key="frame" x="-2" y="217" width="255" height="14"/>
                             <textFieldCell key="cell" controlSize="small" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Password" id="65">
                                 <font key="font" metaFont="smallSystem"/>
                                 <color key="textColor" name="disabledControlTextColor" catalog="System" colorSpace="catalog"/>
@@ -360,7 +360,7 @@
                             </textFieldCell>
                         </textField>
                         <stackView distribution="fill" orientation="horizontal" alignment="centerY" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" horizontalHuggingPriority="249" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="C4J-K4-QBG">
-                            <rect key="frame" x="0.0" y="188" width="251" height="22"/>
+                            <rect key="frame" x="0.0" y="187" width="251" height="22"/>
                             <subviews>
                                 <secureTextField horizontalHuggingPriority="249" verticalHuggingPriority="750" horizontalCompressionResistancePriority="249" allowsCharacterPickerTouchBarItem="YES" translatesAutoresizingMaskIntoConstraints="NO" id="60" customClass="HNHUISecureTextField">
                                     <rect key="frame" x="0.0" y="1" width="136" height="20"/>
@@ -411,7 +411,7 @@
                             </customSpacing>
                         </stackView>
                         <textField horizontalHuggingPriority="249" verticalHuggingPriority="750" allowsCharacterPickerTouchBarItem="YES" translatesAutoresizingMaskIntoConstraints="NO" id="57">
-                            <rect key="frame" x="-2" y="166" width="255" height="14"/>
+                            <rect key="frame" x="-2" y="165" width="255" height="14"/>
                             <textFieldCell key="cell" controlSize="small" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="URL" id="66">
                                 <font key="font" metaFont="smallSystem"/>
                                 <color key="textColor" name="disabledControlTextColor" catalog="System" colorSpace="catalog"/>
@@ -419,7 +419,7 @@
                             </textFieldCell>
                         </textField>
                         <textField verticalHuggingPriority="750" allowsCharacterPickerTouchBarItem="YES" translatesAutoresizingMaskIntoConstraints="NO" id="56" customClass="HNHUITextField">
-                            <rect key="frame" x="0.0" y="137" width="251" height="21"/>
+                            <rect key="frame" x="0.0" y="136" width="251" height="21"/>
                             <textFieldCell key="cell" lineBreakMode="truncatingTail" truncatesLastVisibleLine="YES" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" drawsBackground="YES" usesSingleLineMode="YES" id="67">
                                 <font key="font" metaFont="system"/>
                                 <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
@@ -431,10 +431,10 @@
                             </connections>
                         </textField>
                         <stackView distribution="fill" orientation="horizontal" alignment="centerY" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" horizontalHuggingPriority="248" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="buA-UH-XId">
-                            <rect key="frame" x="0.0" y="107" width="251" height="22"/>
+                            <rect key="frame" x="0.0" y="107" width="251" height="21"/>
                             <subviews>
                                 <button horizontalHuggingPriority="249" horizontalCompressionResistancePriority="249" translatesAutoresizingMaskIntoConstraints="NO" id="7">
-                                    <rect key="frame" x="-2" y="2" width="223" height="18"/>
+                                    <rect key="frame" x="-2" y="2" width="209" height="18"/>
                                     <buttonCell key="cell" type="check" title="Expires" bezelStyle="regularSquare" imagePosition="left" lineBreakMode="truncatingMiddle" state="on" inset="2" id="78">
                                         <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                                         <font key="font" metaFont="system"/>
@@ -445,8 +445,8 @@
                                     </connections>
                                 </button>
                                 <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="8">
-                                    <rect key="frame" x="227" y="-1" width="24" height="23"/>
-                                    <buttonCell key="cell" type="roundTextured" bezelStyle="texturedRounded" image="NSActionTemplate" imagePosition="only" alignment="center" state="on" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="77">
+                                    <rect key="frame" x="207" y="-7" width="50" height="32"/>
+                                    <buttonCell key="cell" type="push" bezelStyle="rounded" image="NSActionTemplate" imagePosition="only" alignment="center" state="on" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="77">
                                         <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                         <font key="font" metaFont="system"/>
                                     </buttonCell>
@@ -770,7 +770,7 @@
             <rect key="frame" x="0.0" y="0.0" width="261" height="268"/>
             <clipView key="contentView" drawsBackground="NO" copiesOnScroll="NO" id="k8G-zp-BXZ">
                 <rect key="frame" x="1" y="1" width="259" height="266"/>
-                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <tableView focusRingType="none" verticalHuggingPriority="750" allowsExpansionToolTips="YES" columnAutoresizingStyle="lastColumnOnly" selectionHighlightStyle="none" columnSelection="YES" columnResizing="NO" multipleSelection="NO" autosaveColumns="NO" rowHeight="54" viewBased="YES" id="193">
                         <rect key="frame" x="0.0" y="0.0" width="259" height="266"/>

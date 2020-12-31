@@ -7,8 +7,16 @@
 //
 
 #import "MPTOTPSetupViewController.h"
+#import "NSImage+MPQRCode.h"
+#import <KeePassKit/KeePassKit.h>
 
 @interface MPTOTPSetupViewController ()
+@property (strong) IBOutlet NSTextField *urlTextField;
+@property (strong) IBOutlet NSTextField *secretTextField;
+@property (strong) IBOutlet NSPopUpButton *algorithmPopUpButton;
+@property (strong) IBOutlet NSTextField *timeStepTextField;
+@property (strong) IBOutlet NSPopUpButton *digitCountPopUpButton;
+@property (strong) IBOutlet NSImageView *qrCodeImageView;
 
 @end
 
@@ -17,6 +25,17 @@
 - (void)viewDidLoad {
   [super viewDidLoad];
   // Do view setup here.
+}
+- (IBAction)parseQRCode:(id)sender {
+  if(sender != self.qrCodeImageView) {
+    return; // wrong sender
+  }
+  NSString *qrCodeString = self.qrCodeImageView.image.QRCodeString;
+  NSURL *otpURL = [NSURL URLWithString:qrCodeString];
+  if(!otpURL.isTimeOTPURL) {
+    return; // no valid URL
+  }
+  self.urlTextField.stringValue = otpURL.absoluteString;
 }
 
 @end

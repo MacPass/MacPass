@@ -1,13 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="17506" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" customObjectInstantitationMethod="direct">
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="17701" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" customObjectInstantitationMethod="direct">
     <dependencies>
         <deployment identifier="macosx"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="17506"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="17701"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
         <customObject id="-2" userLabel="File's Owner" customClass="MPTOTPSetupViewController">
             <connections>
+                <outlet property="algorithmPopUpButton" destination="caF-Au-ey8" id="aZJ-ee-acD"/>
+                <outlet property="digitCountPopUpButton" destination="aa3-XV-Chc" id="Ghc-Mp-R8f"/>
+                <outlet property="qrCodeImageView" destination="yS5-M0-RSB" id="s9E-ID-WQz"/>
+                <outlet property="secretTextField" destination="Bt8-9X-91R" id="mtn-nj-3oO"/>
+                <outlet property="timeStepTextField" destination="AdN-zI-C65" id="ebN-x3-AIN"/>
+                <outlet property="urlTextField" destination="GJN-85-eYH" id="Y1F-zI-hLu"/>
                 <outlet property="view" destination="Hz6-mo-xeY" id="0bl-1N-x8E"/>
             </connections>
         </customObject>
@@ -18,22 +24,26 @@
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
             <subviews>
                 <stackView distribution="fill" orientation="vertical" alignment="centerX" spacing="20" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ene-iL-JT3">
-                    <rect key="frame" x="20" y="106" width="314" height="190"/>
+                    <rect key="frame" x="20" y="78" width="314" height="218"/>
                     <subviews>
                         <imageView horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="yS5-M0-RSB">
-                            <rect key="frame" x="122" y="123" width="70" height="70"/>
+                            <rect key="frame" x="122" y="151" width="70" height="70"/>
                             <constraints>
                                 <constraint firstAttribute="width" constant="64" id="EXM-vg-ehl"/>
                                 <constraint firstAttribute="height" constant="64" id="U2b-8Z-WPa"/>
                             </constraints>
-                            <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyDown" imageFrameStyle="grayBezel" id="BXB-xr-hqw"/>
+                            <imageCell key="cell" selectable="YES" editable="YES" alignment="left" imageScaling="proportionallyDown" imageFrameStyle="grayBezel" id="BXB-xr-hqw"/>
+                            <connections>
+                                <action selector="parseQRCode:" target="-2" id="5u9-xL-Haj"/>
+                            </connections>
                         </imageView>
                         <gridView xPlacement="leading" yPlacement="center" rowAlignment="firstBaseline" translatesAutoresizingMaskIntoConstraints="NO" id="4gl-4p-0WY">
-                            <rect key="frame" x="0.0" y="0.0" width="314" height="106"/>
+                            <rect key="frame" x="0.0" y="0.0" width="314" height="134"/>
                             <constraints>
                                 <constraint firstItem="yiW-Wk-6YB" firstAttribute="leading" secondItem="4gl-4p-0WY" secondAttribute="leading" constant="9" id="jcX-sf-Qkm"/>
                             </constraints>
                             <rows>
+                                <gridRow id="leK-j9-Cah"/>
                                 <gridRow id="GmF-7D-t30"/>
                                 <gridRow id="hS6-e9-JPg"/>
                                 <gridRow id="QY3-TF-Rbs"/>
@@ -45,6 +55,27 @@
                                 <gridColumn id="aZO-dP-SsW"/>
                             </columns>
                             <gridCells>
+                                <gridCell row="leK-j9-Cah" column="Ar1-qh-iHT" id="fgi-y3-z17">
+                                    <textField key="contentView" horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="4Ic-Nt-YlL">
+                                        <rect key="frame" x="75" y="115" width="30" height="16"/>
+                                        <textFieldCell key="cell" lineBreakMode="clipping" title="URL" id="Kci-xp-mLu">
+                                            <font key="font" usesAppearanceFont="YES"/>
+                                            <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                            <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                        </textFieldCell>
+                                    </textField>
+                                </gridCell>
+                                <gridCell row="leK-j9-Cah" column="Ecc-pj-MX9" id="q9e-Zx-LIY">
+                                    <textField key="contentView" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="GJN-85-eYH">
+                                        <rect key="frame" x="109" y="113" width="100" height="21"/>
+                                        <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" borderStyle="bezel" drawsBackground="YES" id="ZpH-Ks-BBi">
+                                            <font key="font" usesAppearanceFont="YES"/>
+                                            <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
+                                            <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                        </textFieldCell>
+                                    </textField>
+                                </gridCell>
+                                <gridCell row="leK-j9-Cah" column="aZO-dP-SsW" id="gOO-ed-C7I"/>
                                 <gridCell row="GmF-7D-t30" column="Ar1-qh-iHT" id="Isd-CW-srQ">
                                     <textField key="contentView" horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="e3u-QK-K24">
                                         <rect key="frame" x="61" y="87" width="44" height="16"/>
@@ -183,7 +214,7 @@
                 <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="ene-iL-JT3" secondAttribute="bottom" constant="20" symbolic="YES" id="OYl-ml-l0m"/>
                 <constraint firstAttribute="trailing" secondItem="ene-iL-JT3" secondAttribute="trailing" constant="20" symbolic="YES" id="sKp-EZ-uRv"/>
             </constraints>
-            <point key="canvasLocation" x="-407" y="-77"/>
+            <point key="canvasLocation" x="-435" y="-254"/>
         </customView>
     </objects>
 </document>
