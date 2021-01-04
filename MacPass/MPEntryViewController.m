@@ -475,6 +475,10 @@ NSString *const _MPTableSecurCellView = @"PasswordCell";
   NSUInteger row = [self.entryArrayController.arrangedObjects indexOfObject:entry];
   [self.entryTable scrollRowToVisible:row];
   [self.entryTable selectRowIndexes:[NSIndexSet indexSetWithIndex:row] byExtendingSelection:NO];
+  // since we do not update the current selection when the table view is not first responder, do it here manually
+  if(self.entryTable.window.firstResponder != self.entryTable) {
+    document.selectedEntries = self.entryArrayController.selectedObjects;
+  }
 }
 
 - (void)_didUpdateSearchResults:(NSNotification *)notification {
