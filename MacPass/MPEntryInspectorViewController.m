@@ -166,6 +166,9 @@ typedef NS_ENUM(NSUInteger, MPEntryTab) {
   
   self.customFieldsTableView.backgroundColor = NSColor.clearColor;
   self.customFieldsTableView.usesAutomaticRowHeights = YES;
+  if (@available(macOS 11.0, *)) {
+    self.customFieldsTableView.additionalSafeAreaInsets = NSEdgeInsetsZero;
+  }
   [self.customFieldsTableView bind:NSContentBinding toObject:_customFieldsController withKeyPath:NSStringFromSelector(@selector(arrangedObjects)) options:nil];
   self.customFieldsTableView.delegate = _customFieldTableDelegate;
   

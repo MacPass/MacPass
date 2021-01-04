@@ -101,6 +101,9 @@ typedef void (^MPPasswordChangedBlock)(BOOL didChangePassword);
   
   self.window.delegate = self.documentWindowDelegate;
   self.window.styleMask |= NSWindowStyleMaskFullSizeContentView;
+  if (@available(macOS 11.0, *)) {
+    self.window.toolbarStyle = NSWindowToolbarStyleExpanded;
+  }
   [self.window registerForDraggedTypes:@[NSURLPboardType]];
   
   MPDocument *document = self.document;

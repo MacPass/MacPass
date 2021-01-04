@@ -20,14 +20,14 @@
         <customObject id="-1" userLabel="First Responder" customClass="FirstResponder"/>
         <customObject id="-3" userLabel="Application" customClass="NSObject"/>
         <customView id="Hz6-mo-xeY">
-            <rect key="frame" x="0.0" y="0.0" width="354" height="264"/>
+            <rect key="frame" x="0.0" y="0.0" width="354" height="305"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
             <subviews>
                 <stackView distribution="fill" orientation="vertical" alignment="centerX" spacing="20" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ene-iL-JT3">
-                    <rect key="frame" x="20" y="20" width="314" height="224"/>
+                    <rect key="frame" x="20" y="20" width="314" height="265"/>
                     <subviews>
                         <imageView horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="yS5-M0-RSB">
-                            <rect key="frame" x="122" y="157" width="70" height="70"/>
+                            <rect key="frame" x="122" y="198" width="70" height="70"/>
                             <constraints>
                                 <constraint firstAttribute="width" constant="64" id="EXM-vg-ehl"/>
                                 <constraint firstAttribute="height" constant="64" id="U2b-8Z-WPa"/>
@@ -38,7 +38,7 @@
                             </connections>
                         </imageView>
                         <gridView xPlacement="leading" yPlacement="center" rowAlignment="firstBaseline" translatesAutoresizingMaskIntoConstraints="NO" id="4gl-4p-0WY">
-                            <rect key="frame" x="0.0" y="0.0" width="314" height="140"/>
+                            <rect key="frame" x="0.0" y="41" width="314" height="140"/>
                             <constraints>
                                 <constraint firstItem="Bt8-9X-91R" firstAttribute="top" secondItem="GJN-85-eYH" secondAttribute="bottom" constant="7" id="2Gt-JL-aw7"/>
                                 <constraint firstItem="caF-Au-ey8" firstAttribute="top" secondItem="Bt8-9X-91R" secondAttribute="bottom" constant="8" id="atS-nb-KN9"/>
@@ -204,12 +204,24 @@
                                 <gridCell row="0Jy-aF-Wst" column="aZO-dP-SsW" id="V48-br-lpl"/>
                             </gridCells>
                         </gridView>
+                        <button horizontalHuggingPriority="750" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="Lai-pT-5WL">
+                            <rect key="frame" x="271" y="-4" width="25" height="25"/>
+                            <buttonCell key="cell" type="help" bezelStyle="helpButton" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="kYx-LY-SfI">
+                                <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                <font key="font" metaFont="system"/>
+                            </buttonCell>
+                        </button>
                     </subviews>
+                    <constraints>
+                        <constraint firstAttribute="trailing" secondItem="Lai-pT-5WL" secondAttribute="trailing" constant="20" symbolic="YES" id="VX0-Dh-zBL"/>
+                    </constraints>
                     <visibilityPriorities>
+                        <integer value="1000"/>
                         <integer value="1000"/>
                         <integer value="1000"/>
                     </visibilityPriorities>
                     <customSpacing>
+                        <real value="3.4028234663852886e+38"/>
                         <real value="3.4028234663852886e+38"/>
                         <real value="3.4028234663852886e+38"/>
                     </customSpacing>
@@ -221,7 +233,7 @@
                 <constraint firstAttribute="bottom" secondItem="ene-iL-JT3" secondAttribute="bottom" constant="20" symbolic="YES" id="OYl-ml-l0m"/>
                 <constraint firstAttribute="trailing" secondItem="ene-iL-JT3" secondAttribute="trailing" constant="20" symbolic="YES" id="sKp-EZ-uRv"/>
             </constraints>
-            <point key="canvasLocation" x="-435" y="-283"/>
+            <point key="canvasLocation" x="-569" y="-346"/>
         </customView>
     </objects>
 </document>

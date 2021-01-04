@@ -770,7 +770,7 @@
             <rect key="frame" x="0.0" y="0.0" width="261" height="268"/>
             <clipView key="contentView" drawsBackground="NO" copiesOnScroll="NO" id="k8G-zp-BXZ">
                 <rect key="frame" x="1" y="1" width="259" height="266"/>
-                <autoresizingMask key="autoresizingMask"/>
+                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                 <subviews>
                     <tableView focusRingType="none" verticalHuggingPriority="750" allowsExpansionToolTips="YES" columnAutoresizingStyle="lastColumnOnly" selectionHighlightStyle="none" columnSelection="YES" columnResizing="NO" multipleSelection="NO" autosaveColumns="NO" rowHeight="54" viewBased="YES" id="193">
                         <rect key="frame" x="0.0" y="0.0" width="259" height="266"/>
@@ -818,14 +818,14 @@
                                                 </textFieldCell>
                                             </textField>
                                             <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="198">
-                                                <rect key="frame" x="201" y="8" width="21" height="23"/>
+                                                <rect key="frame" x="201" y="8" width="22" height="23"/>
                                                 <buttonCell key="cell" type="roundTextured" bezelStyle="texturedRounded" image="NSRemoveTemplate" imagePosition="overlaps" alignment="center" state="on" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="216">
                                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                                     <font key="font" metaFont="system"/>
                                                 </buttonCell>
                                             </button>
                                             <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="tDI-EL-JGB">
-                                                <rect key="frame" x="167" y="8" width="26" height="23"/>
+                                                <rect key="frame" x="167" y="8" width="27" height="23"/>
                                                 <buttonCell key="cell" type="roundTextured" bezelStyle="texturedRounded" image="52_EncryptedTemplate" imagePosition="overlaps" alignment="center" lineBreakMode="truncatingTail" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="fat-C5-dS2">
                                                     <behavior key="behavior" pushIn="YES" changeContents="YES" lightByContents="YES"/>
                                                     <font key="font" metaFont="system"/>
