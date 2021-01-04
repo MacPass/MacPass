@@ -13,7 +13,11 @@
 
 - (NSString *)QRCodeString {
   NSRect rect = NSMakeRect(0, 0, self.size.width, self.size.height);
-  NSBitmapImageRep *bitmapRep = (NSBitmapImageRep *)[self bestRepresentationForRect:rect context:nil hints:nil];
+  id imageRep = [self bestRepresentationForRect:rect context:nil hints:nil];
+  if([imageRep isKindOfClass:NSBitmapImageRep.class]) {
+    return @"";
+  }
+  NSBitmapImageRep *bitmapRep = (NSBitmapImageRep *)imageRep;
   CIImage *ciImage = [[CIImage alloc] initWithBitmapImageRep:bitmapRep];
   CIDetector *detector = [CIDetector detectorOfType:CIDetectorTypeQRCode context:nil options:nil];
   NSArray<CIFeature *> *features = [detector featuresInImage:ciImage];
