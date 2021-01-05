@@ -17,6 +17,7 @@
 @property (strong) IBOutlet NSTextField *timeStepTextField;
 @property (strong) IBOutlet NSPopUpButton *digitCountPopUpButton;
 @property (strong) IBOutlet NSImageView *qrCodeImageView;
+@property (strong) IBOutlet NSGridView *gridView;
 
 @end
 
@@ -26,6 +27,14 @@
   [super viewDidLoad];
   // Do view setup here.
 }
+
+- (IBAction)toggleDisclosure:(id)sender {
+  for(NSInteger row = 1; row < self.gridView.numberOfRows; row++) {
+    NSGridRow *gridRow = [self.gridView rowAtIndex:row];
+    gridRow.hidden = !gridRow.hidden;
+  }
+}
+
 - (IBAction)parseQRCode:(id)sender {
   if(sender != self.qrCodeImageView) {
     return; // wrong sender
