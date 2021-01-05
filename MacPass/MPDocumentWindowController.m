@@ -100,7 +100,7 @@ typedef void (^MPPasswordChangedBlock)(BOOL didChangePassword);
   [super windowDidLoad];
   
   self.window.delegate = self.documentWindowDelegate;
-  self.window.styleMask |= NSWindowStyleMaskFullSizeContentView;
+  //self.window.styleMask |= NSWindowStyleMaskFullSizeContentView;
   if (@available(macOS 11.0, *)) {
     self.window.toolbarStyle = NSWindowToolbarStyleExpanded;
   }
