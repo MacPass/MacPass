@@ -56,7 +56,8 @@
   if(showTOTP) {
     self.generator = [[KPKTimeOTPGenerator alloc] initWithEntry:entry];
     self.generator.time = NSDate.date.timeIntervalSince1970;
-    self.toptValueTextField.stringValue = self.generator.string;
+    NSString *stringValue = self.generator.string;
+    self.toptValueTextField.stringValue = stringValue ? stringValue : @"";
     
     NSString *template = NSLocalizedString(@"TOTP_REMAINING_TIME_%ld_SECONDS", @"Time in seconds remaining for a valid TOTP string, format should be %ld");
     
