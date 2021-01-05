@@ -278,10 +278,6 @@ static MPAutotypeDaemon *_sharedInstance;
 }
 
 - (MPAutotypeContext *)_autotypeContextForDocuments:(NSArray<MPDocument *> *)documents withEnvironment:(MPAutotypeEnvironment *)environment {
-  /*
-   Query the document to generate a autotype command list for the window title
-   We do not care where this came form, just get the autotype commands
-   */
   NSMutableArray *autotypeCandidates = [[NSMutableArray alloc] init];
   for(MPDocument *document in documents) {
     NSArray *contexts = [document autotypContextsForWindowTitle:environment.windowTitle preferredEntry:environment.preferredEntry];
@@ -290,21 +286,30 @@ static MPAutotypeDaemon *_sharedInstance;
     }
   }
 
+  if(autotypeCandidates.count == 0) {
+    return nil; // we do not have found anything
+  }
+  /* present selection and return if more than one hit */
+  if(autotypeCandidates.count > 1) {
+    [self _presentCandiadates:autotypeCandidates forEnvironment:environment];
+    return nil;
+  }
+  
   BOOL isGlobalAutotype = (environment.preferredEntry == nil);
   BOOL alwaysShowCandidateSelection = [NSUserDefaults.standardUserDefaults boolForKey:kMPSettingsKeyGloablAutotypeAlwaysShowCandidateSelection];
   
-  /* if we have only one candidate and do not need to show the windows, return only the last candiadate */
-  if(autotypeCandidates.count <= 1 && !(isGlobalAutotype && alwaysShowCandidateSelection)) {
-      return autotypeCandidates.lastObject;
+  /* present confirmation if set on global autotype */
+  if(isGlobalAutotype && alwaysShowCandidateSelection) {
+    [self _presentCandiadates:autotypeCandidates forEnvironment:environment];
+    return nil;
   }
-  /* otherwise show the candidate selection window */
-  [self _presentCandiadates:autotypeCandidates forEnvironment:environment];
-  return nil; // Nothing to do, we get called back by the window
+  /* return single hit */
+  return autotypeCandidates.firstObject;
 }
 
 - (void)_runAutotypeWithEnvironment:(MPAutotypeEnvironment *)environment forContext:(MPAutotypeContext *)context {
   if(nil == environment) {
-    return; // no Environment to work in
+    return; // no environment to work in
   }
   if(nil == context) {
     return; // No context to work with
@@ -314,7 +319,7 @@ static MPAutotypeDaemon *_sharedInstance;
     [welf _runAutotypeWithEnvironment:environment forContext:context];
   }];
   if(!appIsFrontmost) {
-    return; // We will get called back when the application is in front - hopfully
+    return; // We will get called back when the application is in front
   }
   
   useconds_t globalDelay = 0;
