@@ -390,8 +390,10 @@ typedef NS_ENUM(NSUInteger, MPEntryTab) {
   if([sender isKindOfClass:NSView.class]) {
     location = sender;
   }
-  else {
-    // we do not have anything to do!
+  if([sender isKindOfClass:NSMenuItem.class]) {
+    if([[sender representedObject] isKindOfClass:NSView.class]) {
+      location = [sender representedObject];
+    }
   }
   MPTOTPSetupViewController *vc = [[MPTOTPSetupViewController alloc] init];
   vc.representedObject = self.representedObject;

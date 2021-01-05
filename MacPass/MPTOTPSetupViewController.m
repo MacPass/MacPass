@@ -19,13 +19,49 @@
 @property (strong) IBOutlet NSImageView *qrCodeImageView;
 @property (strong) IBOutlet NSGridView *gridView;
 
+@property (strong) KPKTimeOTPGenerator *generator;
+
 @end
 
 @implementation MPTOTPSetupViewController
 
 - (void)viewDidLoad {
   [super viewDidLoad];
-  // Do view setup here.
+  NSAssert([self.representedObject isKindOfClass:KPKEntry.class], @"represented object needs to be a KPKEntry");
+  self.generator = [[KPKTimeOTPGenerator alloc] initWithEntry:((KPKEntry *)self.representedObject)];
+  
+  /**/
+  KPKEntry *entry = self.representedObject;
+  NSString *url = [entry attributeWithKey:kKPKAttributeKeyOTPOAuthURL].value;
+  self.urlTextField.stringValue = url ? url : @"";
+  
+  /* secret */
+  NSString *secret = [self.generator.key base32EncodedString];
+  self.secretTextField.stringValue = secret ? secret : @"";
+  
+  /* algorithm */
+  NSMenuItem *sha1Item = [[NSMenuItem alloc] initWithTitle:NSLocalizedString(@"HASH_SHA1", "SHA 1 hash algoritm menu item") action:NULL keyEquivalent:@""];
+  sha1Item.tag = KPKOTPHashAlgorithmSha1;
+  NSMenuItem *sha256Item = [[NSMenuItem alloc] initWithTitle:NSLocalizedString(@"HASH_SHA256", "SHA 256 hash algoritm menu item") action:NULL keyEquivalent:@""];
+  sha256Item.tag = KPKOTPHashAlgorithmSha256;
+  NSMenuItem *sha512Item = [[NSMenuItem alloc] initWithTitle:NSLocalizedString(@"HASH_SHA512", "SHA 512 hash algoritm menu item") action:NULL keyEquivalent:@""];
+  sha512Item.tag = KPKOTPHashAlgorithmSha512;
+  
+  [self.algorithmPopUpButton.menu removeAllItems];
+  [self.algorithmPopUpButton.menu addItem:sha1Item];
+  [self.algorithmPopUpButton.menu addItem:sha256Item];
+  [self.algorithmPopUpButton.menu addItem:sha512Item];
+  
+  [self.algorithmPopUpButton selectItemWithTag:self.generator.hashAlgorithm];
+  
+  /* digits */
+  [self.digitCountPopUpButton.menu removeAllItems];
+  for(NSUInteger digit = 6; digit <= 8; digit++) {
+    NSMenuItem *item = [[NSMenuItem alloc] initWithTitle:[NSString stringWithFormat:@"%ld", digit] action:NULL keyEquivalent:@""];
+    item.tag = digit;
+    [self.digitCountPopUpButton.menu addItem:item];
+  }
+  [self.digitCountPopUpButton selectItemWithTag:self.generator.numberOfDigits];
 }
 
 - (IBAction)toggleDisclosure:(id)sender {
