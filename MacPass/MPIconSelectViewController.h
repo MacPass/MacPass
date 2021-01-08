@@ -23,7 +23,6 @@
 #import "MPViewController.h"
 
 @class MPDocument;
-@class MPCollectionViewItem;
 
 @interface MPIconSelectViewController : MPViewController <NSCollectionViewDelegate>
 

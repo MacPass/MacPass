@@ -135,8 +135,7 @@ typedef NS_ENUM(NSUInteger, MPEntryTab) {
   
   [self.infoTabControl bind:NSSelectedIndexBinding toObject:self withKeyPath:NSStringFromSelector(@selector(activeTab)) options:nil];
   [self.tabView bind:NSSelectedIndexBinding toObject:self withKeyPath:NSStringFromSelector(@selector(activeTab)) options:nil];
-  
-  
+
   self.attachmentTableView.backgroundColor = NSColor.clearColor;
   [self.attachmentTableView bind:NSContentBinding toObject:_attachmentsController withKeyPath:NSStringFromSelector(@selector(arrangedObjects)) options:nil];
   self.attachmentTableView.delegate = _attachmentTableDelegate;
