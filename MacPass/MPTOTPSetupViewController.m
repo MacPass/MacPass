@@ -23,6 +23,14 @@
 
 @end
 
+typedef NS_ENUM(NSUInteger, MPOTPUpdateSource) {
+  MPOTPUpdateSourceQRImage,
+  MPOTPUpdateSourceURL,
+  MPOTPUpdateSourceSecret,
+  MPOTPUpdateSourceAlgorithm,
+  MPOTPUpdateSourceTimeSlice
+};
+
 @implementation MPTOTPSetupViewController
 
 - (void)viewDidLoad {
@@ -30,10 +38,19 @@
   NSAssert([self.representedObject isKindOfClass:KPKEntry.class], @"represented object needs to be a KPKEntry");
   self.generator = [[KPKTimeOTPGenerator alloc] initWithEntry:((KPKEntry *)self.representedObject)];
   
-  /**/
+  /* URL and QR code */
   KPKEntry *entry = self.representedObject;
   NSString *url = [entry attributeWithKey:kKPKAttributeKeyOTPOAuthURL].value;
-  self.urlTextField.stringValue = url ? url : @"";
+  
+  self.urlTextField.stringValue = @"";
+  
+  if(url) {
+    NSURL *authURL = [NSURL URLWithString:url];
+    if(authURL.isTimeOTPURL) {
+      self.urlTextField.stringValue = authURL.absoluteString;
+      self.qrCodeImageView.image = [NSImage QRCodeImageWithString:authURL.absoluteString];
+    }
+  }
   
   /* secret */
   NSString *secret = [self.generator.key base32EncodedString];
@@ -81,6 +98,10 @@
     return; // no valid URL
   }
   self.urlTextField.stringValue = otpURL.absoluteString;
+}
+
+- (void)_updateView:(MPOTPUpdateSource)source {
+  // TODO: implement update
 }
 
 @end

@@ -20,7 +20,7 @@
         </customObject>
         <customObject id="-1" userLabel="First Responder" customClass="FirstResponder"/>
         <customObject id="-3" userLabel="Application" customClass="NSObject"/>
-        <customView misplaced="YES" id="Hz6-mo-xeY">
+        <customView id="Hz6-mo-xeY">
             <rect key="frame" x="0.0" y="0.0" width="354" height="258"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
             <subviews>
@@ -64,13 +64,13 @@
                                     <constraint firstAttribute="width" constant="64" id="MhV-Ye-bQt"/>
                                     <constraint firstAttribute="height" constant="64" id="RRz-CV-k1H"/>
                                 </constraints>
-                                <imageCell key="cell" selectable="YES" editable="YES" enabled="NO" alignment="left" imageScaling="proportionallyDown" imageFrameStyle="grayBezel" id="BXB-xr-hqw"/>
+                                <imageCell key="cell" selectable="YES" editable="YES" alignment="left" imageScaling="proportionallyDown" imageFrameStyle="grayBezel" id="BXB-xr-hqw"/>
                                 <connections>
                                     <action selector="parseQRCode:" target="-2" id="5u9-xL-Haj"/>
                                 </connections>
                             </imageView>
                         </gridCell>
-                        <gridCell row="T2o-We-WjN" column="aZO-dP-SsW" id="0bn-HV-7V1">
+                        <gridCell row="T2o-We-WjN" column="aZO-dP-SsW" xPlacement="leading" id="0bn-HV-7V1">
                             <button key="contentView" horizontalHuggingPriority="750" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="rsG-zm-Myq">
                                 <rect key="frame" x="212" y="168" width="27" height="26"/>
                                 <buttonCell key="cell" type="disclosure" bezelStyle="roundedDisclosure" imagePosition="only" alignment="center" state="on" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="FzY-tZ-mVy">
