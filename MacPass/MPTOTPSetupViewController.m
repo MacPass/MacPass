@@ -28,7 +28,8 @@ typedef NS_ENUM(NSUInteger, MPOTPUpdateSource) {
   MPOTPUpdateSourceURL,
   MPOTPUpdateSourceSecret,
   MPOTPUpdateSourceAlgorithm,
-  MPOTPUpdateSourceTimeSlice
+  MPOTPUpdateSourceTimeSlice,
+  MPOTPUpdateSourceEntry
 };
 
 @implementation MPTOTPSetupViewController
