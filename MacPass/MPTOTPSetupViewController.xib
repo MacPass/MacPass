@@ -13,6 +13,7 @@
                 <outlet property="gridView" destination="4gl-4p-0WY" id="hvW-TB-Elg"/>
                 <outlet property="qrCodeImageView" destination="yS5-M0-RSB" id="s9E-ID-WQz"/>
                 <outlet property="secretTextField" destination="Bt8-9X-91R" id="mtn-nj-3oO"/>
+                <outlet property="timeStepStepper" destination="CgJ-Qt-NPu" id="JxC-E8-BXY"/>
                 <outlet property="timeStepTextField" destination="AdN-zI-C65" id="ebN-x3-AIN"/>
                 <outlet property="typePopUpButton" destination="ku7-YD-kkV" id="8zT-Y5-6Wa"/>
                 <outlet property="urlTextField" destination="GJN-85-eYH" id="Y1F-zI-hLu"/>
@@ -21,7 +22,7 @@
         </customObject>
         <customObject id="-1" userLabel="First Responder" customClass="FirstResponder"/>
         <customObject id="-3" userLabel="Application" customClass="NSObject"/>
-        <customView misplaced="YES" id="Hz6-mo-xeY">
+        <customView id="Hz6-mo-xeY">
             <rect key="frame" x="0.0" y="0.0" width="354" height="301"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
             <subviews>
@@ -170,7 +171,7 @@
                         <gridCell row="QY3-TF-Rbs" column="Ecc-pj-MX9" xPlacement="fill" id="bvB-9m-g1U">
                             <textField key="contentView" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="AdN-zI-C65">
                                 <rect key="frame" x="109" y="33" width="150" height="21"/>
-                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" borderStyle="bezel" drawsBackground="YES" id="bHO-kq-GUf">
+                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" sendsActionOnEndEditing="YES" borderStyle="bezel" drawsBackground="YES" id="bHO-kq-GUf">
                                     <font key="font" usesAppearanceFont="YES"/>
                                     <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
                                     <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>

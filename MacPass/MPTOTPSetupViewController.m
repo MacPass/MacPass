@@ -15,12 +15,14 @@
 @property (strong) IBOutlet NSTextField *secretTextField;
 @property (strong) IBOutlet NSPopUpButton *algorithmPopUpButton;
 @property (strong) IBOutlet NSTextField *timeStepTextField;
+@property (strong) IBOutlet NSStepper *timeStepStepper;
 @property (strong) IBOutlet NSPopUpButton *digitCountPopUpButton;
 @property (strong) IBOutlet NSImageView *qrCodeImageView;
 @property (strong) IBOutlet NSGridView *gridView;
 @property (strong) IBOutlet NSPopUpButton *typePopUpButton;
 
 @property (strong) KPKTimeOTPGenerator *generator;
+@property NSInteger timeSlice;
 
 @end
 
@@ -78,6 +80,9 @@ typedef NS_ENUM(NSUInteger, MPOTPType) {
   [self.typePopUpButton.menu addItem:steamItem];
   [self.typePopUpButton.menu addItem:customItem];
   
+  [self.timeStepTextField bind:NSValueBinding toObject:self withKeyPath:NSStringFromSelector(@selector(timeSlice)) options:nil];
+  [self.timeStepStepper bind:NSValueBinding toObject:self withKeyPath:NSStringFromSelector(@selector(timeSlice)) options:nil];
+  
   [self _updateView:MPOTPUpdateSourceEntry];
 }
 
@@ -131,9 +136,9 @@ typedef NS_ENUM(NSUInteger, MPOTPType) {
   [self.algorithmPopUpButton selectItemWithTag:self.generator.hashAlgorithm];
   
   [self.digitCountPopUpButton selectItemWithTag:self.generator.numberOfDigits];
-
-  
-  
+    
+  self.timeSlice = self.generator.timeSlice;
+ 
 }
 
 @end
