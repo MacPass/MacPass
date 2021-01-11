@@ -273,7 +273,7 @@
   [self.keyDerivationPopupButton selectItemAtIndex:kdfIndex];
   [self.keyDerivationSettingsTabView selectTabViewItemWithIdentifier:keyDerivation.uuid];
   
-  if([keyDerivation isKindOfClass:[KPKAESKeyDerivation class]]) {
+  if([keyDerivation isMemberOfClass:[KPKAESKeyDerivation class]]) {
     KPKAESKeyDerivation *aesKdf = (KPKAESKeyDerivation *)keyDerivation;
     self.aesEncryptionRoundsTextField.integerValue = aesKdf.rounds;
     self.createKeyDerivationParametersButton.enabled = YES;
@@ -284,7 +284,7 @@
     self.argon2Memory = argon2Kdf.memory;
     self.argon2ThreadsTextField.integerValue = argon2Kdf.threads;
   }
-  else if([keyDerivation isKindOfClass:[KPKArgon2KeyDerivation class]]) {
+  else if([keyDerivation isMemberOfClass:[KPKArgon2KeyDerivation class]]) {
     KPKArgon2KeyDerivation *argon2Kdf = (KPKArgon2KeyDerivation *)keyDerivation;
     self.argon2Memory = argon2Kdf.memory;
     self.argon2ThreadsTextField.integerValue = argon2Kdf.threads;
