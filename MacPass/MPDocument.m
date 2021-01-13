@@ -45,7 +45,7 @@
 NSString *const MPDocumentDidAddGroupNotification             = @"com.hicknhack.macpass.MPDocumentDidAddGroupNotification";
 NSString *const MPDocumentDidAddEntryNotification             = @"com.hicknhack.macpass.MPDocumentDidAddEntryNotification";
 
-NSString *const MPDocumentDidRevertNotifiation                = @"com.hicknhack.macpass.MPDocumentDidRevertNotifiation";
+NSString *const MPDocumentDidRevertNotification               = @"com.hicknhack.macpass.MPDocumentDidRevertNotification";
 
 NSString *const MPDocumentDidLockDatabaseNotification         = @"com.hicknhack.macpass.MPDocumentDidLockDatabaseNotification";
 NSString *const MPDocumentDidUnlockDatabaseNotification       = @"com.hicknhack.macpass.MPDocumentDidUnlockDatabaseNotification";
@@ -225,7 +225,7 @@ NSString *const MPDocumentGroupKey                            = @"MPDocumentGrou
 
 - (BOOL)revertToContentsOfURL:(NSURL *)absoluteURL ofType:(NSString *)typeName error:(NSError **)outError {
   if([super revertToContentsOfURL:absoluteURL ofType:typeName error:outError]) {
-    [[NSNotificationCenter defaultCenter] postNotificationName:MPDocumentDidRevertNotifiation object:self];
+    [[NSNotificationCenter defaultCenter] postNotificationName:MPDocumentDidRevertNotification object:self];
     return YES;
   }
   return NO;

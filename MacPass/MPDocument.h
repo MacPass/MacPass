@@ -39,7 +39,7 @@ FOUNDATION_EXPORT NSString *const MPDocumentDidAddGroupNotification;
  *  The userInfo dictionary contains the added entry at MPDocumentEntryKey
  */
 FOUNDATION_EXPORT NSString *const MPDocumentDidAddEntryNotification;
-FOUNDATION_EXPORT NSString *const MPDocumentDidRevertNotifiation;
+FOUNDATION_EXPORT NSString *const MPDocumentDidRevertNotification;
 
 FOUNDATION_EXPORT NSString *const MPDocumentDidLockDatabaseNotification;
 FOUNDATION_EXPORT NSString *const MPDocumentDidUnlockDatabaseNotification;
