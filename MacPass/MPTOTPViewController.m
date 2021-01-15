@@ -54,7 +54,7 @@
   BOOL showTOTP = entry.hasTimeOTP;
   self.view.hidden = !showTOTP;
   if(showTOTP) {
-    self.generator = [[KPKTimeOTPGenerator alloc] initWithEntry:entry];
+    self.generator = [[KPKTimeOTPGenerator alloc] initWithAttributes:entry.attributes];
     self.generator.time = NSDate.date.timeIntervalSince1970;
     NSString *stringValue = self.generator.string;
     self.toptValueTextField.stringValue = stringValue ? stringValue : @"";

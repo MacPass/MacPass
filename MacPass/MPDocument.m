@@ -147,11 +147,9 @@ NSString *const MPDocumentGroupKey                            = @"MPDocumentGrou
   [self addWindowController:windowController];
 }
 
-/*
 - (BOOL)canAsynchronouslyWriteToURL:(NSURL *)url ofType:(NSString *)typeName forSaveOperation:(NSSaveOperationType)saveOperation {
   return YES;
 }
- */
 
 - (BOOL)checkAutosavingSafetyAndReturnError:(NSError **)outError {
   if(![super checkAutosavingSafetyAndReturnError:outError]) {
@@ -208,10 +206,15 @@ NSString *const MPDocumentGroupKey                            = @"MPDocumentGrou
     }
     return nil; // We do not know what version to save!
   }
-  
-  // FIXME: add [self unblockUserInteraction] to enable async save in background!
-  // this requires a "snapshot" of the tree to be made and stored!
-  return [self.tree encryptWithKey:self.compositeKey format:format error:outError];
+  // create a copy to allow for unblocking user interaction
+  NSLog(@"Copying tree to save…");
+  KPKTree *copy = [self.tree copy];
+  NSLog(@"Created copy…");
+  [self unblockUserInteraction];
+  NSLog(@"Starting encryption…");
+  NSData *data = [copy encryptWithKey:self.compositeKey format:format error:outError];
+  NSLog(@"Finished encryption…");
+  return data;
 }
 
 - (BOOL)readFromURL:(NSURL *)url ofType:(NSString *)typeName error:(NSError **)outError {

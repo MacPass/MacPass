@@ -101,7 +101,7 @@ typedef NS_ENUM(NSUInteger, MPOTPType) {
 }
 
 - (void)_updateView:(MPOTPUpdateSource)source {
-  self.generator = [[KPKTimeOTPGenerator alloc] initWithEntry:((KPKEntry *)self.representedObject)];
+  self.generator = [[KPKTimeOTPGenerator alloc] initWithAttributes:((KPKEntry *)self.representedObject).attributes];
   
   if(source == MPOTPUpdateSourceQRImage) {
     NSString *qrCodeString = self.qrCodeImageView.image.QRCodeString;

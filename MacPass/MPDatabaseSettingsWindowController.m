@@ -92,7 +92,8 @@
   }
   self.cipherPopupButton.menu = cipherMenu;
   self.keyDerivationSettingsTabView.tabViewItems[0].identifier = [KPKAESKeyDerivation uuid];
-  self.keyDerivationSettingsTabView.tabViewItems[1].identifier = [KPKArgon2KeyDerivation uuid];
+  self.keyDerivationSettingsTabView.tabViewItems[1].identifier = [KPKArgon2DKeyDerivation uuid];
+  self.keyDerivationSettingsTabView.tabViewItems[2].identifier = [KPKArgon2IDKeyDerivation uuid];
 }
 
 #pragma mark Actions
@@ -164,7 +165,8 @@
   metaData.cipherUUID = self.cipherPopupButton.selectedItem.representedObject;
   
   KPKAESKeyDerivation *aesKdf = [[KPKAESKeyDerivation alloc] initWithParameters:[KPKAESKeyDerivation defaultParameters]];
-  KPKArgon2KeyDerivation *argon2Kdf = [[KPKArgon2KeyDerivation alloc] initWithParameters:[KPKArgon2KeyDerivation defaultParameters]];
+  KPKArgon2DKeyDerivation *argon2Kdf = [[KPKArgon2DKeyDerivation alloc] initWithParameters:[KPKArgon2DKeyDerivation defaultParameters]];
+  // FIXME: add Argon2id support!
   
   NSUUID *selectedKdfUUID = self.keyDerivationSettingsTabView.selectedTabViewItem.identifier;
   
@@ -273,19 +275,21 @@
   [self.keyDerivationPopupButton selectItemAtIndex:kdfIndex];
   [self.keyDerivationSettingsTabView selectTabViewItemWithIdentifier:keyDerivation.uuid];
   
-  if([keyDerivation isMemberOfClass:[KPKAESKeyDerivation class]]) {
+  if([keyDerivation isMemberOfClass:KPKAESKeyDerivation.class]) {
+    /* set to database values */
     KPKAESKeyDerivation *aesKdf = (KPKAESKeyDerivation *)keyDerivation;
     self.aesEncryptionRoundsTextField.integerValue = aesKdf.rounds;
     self.createKeyDerivationParametersButton.enabled = YES;
     
     /* fill defaults for Argon2 */
-    KPKArgon2KeyDerivation *argon2Kdf = [[KPKArgon2KeyDerivation alloc] initWithParameters:[KPKArgon2KeyDerivation defaultParameters]];
+    KPKArgon2DKeyDerivation *argon2Kdf = [[KPKArgon2DKeyDerivation alloc] initWithParameters:[KPKArgon2DKeyDerivation defaultParameters]];
     self.argon2IterationsTextField.integerValue = argon2Kdf.iterations;
     self.argon2Memory = argon2Kdf.memory;
     self.argon2ThreadsTextField.integerValue = argon2Kdf.threads;
   }
-  else if([keyDerivation isMemberOfClass:[KPKArgon2KeyDerivation class]]) {
-    KPKArgon2KeyDerivation *argon2Kdf = (KPKArgon2KeyDerivation *)keyDerivation;
+  else if([keyDerivation isMemberOfClass:KPKArgon2DKeyDerivation.class]) {
+    /* set to database value */
+    KPKArgon2DKeyDerivation *argon2Kdf = (KPKArgon2DKeyDerivation *)keyDerivation;
     self.argon2Memory = argon2Kdf.memory;
     self.argon2ThreadsTextField.integerValue = argon2Kdf.threads;
     self.argon2IterationsTextField.integerValue = argon2Kdf.iterations;
@@ -293,6 +297,9 @@
     /* fill defaults for AES */
     KPKAESKeyDerivation *aesKdf = [[KPKAESKeyDerivation alloc] initWithParameters:[KPKAESKeyDerivation defaultParameters]];
     self.aesEncryptionRoundsTextField.integerValue = aesKdf.rounds;
+  }
+  else if([keyDerivation isMemberOfClass:KPKArgon2IDKeyDerivation.class]) {
+    // TODO: implement setup!
   }
   else {
     NSAssert(NO, @"Unkown key derivation");
