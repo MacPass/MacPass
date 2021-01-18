@@ -21,7 +21,6 @@
 @property (strong) IBOutlet NSGridView *gridView;
 @property (strong) IBOutlet NSPopUpButton *typePopUpButton;
 
-@property (strong) KPKTimeOTPGenerator *generator;
 @property NSInteger timeSlice;
 
 @end
@@ -101,17 +100,38 @@ typedef NS_ENUM(NSUInteger, MPOTPType) {
 }
 
 - (void)_updateView:(MPOTPUpdateSource)source {
-  self.generator = [[KPKTimeOTPGenerator alloc] initWithAttributes:((KPKEntry *)self.representedObject).attributes];
-  
-  if(source == MPOTPUpdateSourceQRImage) {
-    NSString *qrCodeString = self.qrCodeImageView.image.QRCodeString;
-    NSURL *otpURL = [NSURL URLWithString:qrCodeString];
-    if(!otpURL.isTimeOTPURL) {
-      return; // no valid URL
-    }
-    self.urlTextField.stringValue = otpURL.absoluteString;
-  }
+  /*
+   MPOTPUpdateSourceQRImage,
+   MPOTPUpdateSourceURL,
+   MPOTPUpdateSourceSecret,
+   MPOTPUpdateSourceAlgorithm,
+   MPOTPUpdateSourceTimeSlice,
+   MPOTPUpdateSourceEntry
+   
+   */
+  KPKTimeOTPGenerator *generator = [[KPKTimeOTPGenerator alloc] initWithAttributes:((KPKEntry *)self.representedObject).attributes];
 
+  switch(source) {
+    case MPOTPUpdateSourceQRImage: {
+      NSString *qrCodeString = self.qrCodeImageView.image.QRCodeString;
+      NSURL *otpURL = [NSURL URLWithString:qrCodeString];
+      self.urlTextField.stringValue = otpURL.absoluteString;
+      // fallthroug
+    }
+    case MPOTPUpdateSourceURL:
+      generator = [[KPKTimeOTPGenerator alloc] initWithURL:self.urlTextField.stringValue];
+      break;
+    case MPOTPUpdateSourceSecret:
+      break;
+    case MPOTPUpdateSourceAlgorithm:
+      break;
+    case MPOTPUpdateSourceTimeSlice:
+      break;
+    case MPOTPUpdateSourceEntry:
+      break;
+    default:
+      return;
+  }
   
   /* FIXME: update correct values based on changes */
 
@@ -130,14 +150,14 @@ typedef NS_ENUM(NSUInteger, MPOTPType) {
   }
   
   /* secret */
-  NSString *secret = [self.generator.key base32EncodedString];
+  NSString *secret = [generator.key base32EncodedString];
   self.secretTextField.stringValue = secret ? secret : @"";
 
-  [self.algorithmPopUpButton selectItemWithTag:self.generator.hashAlgorithm];
+  [self.algorithmPopUpButton selectItemWithTag:generator.hashAlgorithm];
   
-  [self.digitCountPopUpButton selectItemWithTag:self.generator.numberOfDigits];
+  [self.digitCountPopUpButton selectItemWithTag:generator.numberOfDigits];
     
-  self.timeSlice = self.generator.timeSlice;
+  self.timeSlice = generator.timeSlice;
  
 }
 
