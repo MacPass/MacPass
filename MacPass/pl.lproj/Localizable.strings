@@ -1,3 +1,4 @@
+
 /* Count of characters remaining in pickchars dialog */
 "%ld_CHARACTERS_TO_PICK_REMAINING" = "pozostało %ld znaków do wybrania";
 
@@ -15,6 +16,9 @@
 
 /* % Weeks ago */
 "%ld_WEEKS_AGO" = "%ld tygodni temu";
+
+/* Class = "NSMenuItem"; title = "Default Browser"; ObjectID = "7YX-EA-9KA"; */
+"7YX-EA-9KA.title" = "Domyślna przeglądarka";
 
 /* preset to expire after 90 days from now */
 "90_DAYS" = "w ciągu 90 dni";
@@ -95,9 +99,6 @@
    Menu item to toggle display of attachment count column in entry table */
 "ATTACHMENTS" = "Załączniki";
 
-/* Sucessfully merged external changes */
-"AUTO_MERGE_NOTIFICATION_TEXT" = "Automatyczne scalanie udało się!";
-
 /* Menu item for automatic trash creation */
 "AUTOCREATE_TRASH_FOLDER" = "Utwórz Automatycznie";
 
@@ -158,6 +159,9 @@
 /* Enable autotype menu item */
 "AUTOTYPE_YES" = "Włącz autouzupełnianie";
 
+/* Sucessfully merged external changes */
+"AUTO_MERGE_NOTIFICATION_TEXT" = "Automatyczne scalanie udało się!";
+
 /* Cancel */
 "CANCEL" = "Anuluj";
 
@@ -177,14 +181,14 @@
 /* Button title in the key file selection dialog for selecting a key */
 "CHOOSE_FILE_BUTTON_TITLE" = "Otwórz";
 
+/* String displayed at dock badge when clipboard is about to be cleared */
+"CLEARING_PASTEBOARD" = "Wyczyszczono";
+
 /* Clear Autotype Button */
 "CLEAR_AUTOTYPE" = "Wyczyść autouzupełnianie";
 
 /* Menu to clear recent searches */
 "CLEAR_RECENT_SEARCHES" = "Wyczyść ostatnie wyszukiwania";
-
-/* String displayed at dock badge when clipboard is about to be cleared */
-"CLEARING_PASTEBOARD" = "Wyczyszczono";
 
 /* Field name that was copied to the pasteboard */
 "COPIED_FIELD_%@" = "Skopiowano %@";
@@ -382,6 +386,21 @@
 /* The master key was changed by an external program! */
 "EXTERN_CHANGE_OF_MASTERKEY" = "Klucz główny został zmieniony przez inny program";
 
+/* Direct download */
+"FAVICON_DOWNLOAD_METHOD_DIRECT" = "Bezpośrednio";
+
+/* DuckDuckGo */
+"FAVICON_DOWNLOAD_METHOD_DUCKDUCKGO" = "DuckDuckGo";
+
+/* Google */
+"FAVICON_DOWNLOAD_METHOD_GOOGLE" = "Google";
+
+/* Informative text displayed when the file was change from another application */
+"FILE_CHANGED_BY_OTHERS_INFO_TEXT" = "Załadowany plik różni się od pliku zapisanego na dysku. Co chcesz zrobić?";
+
+/* Message displayed when an open file was changed from another application */
+"FILE_CHANGED_BY_OTHERS_MESSAGE_TEXT" = "Plik bazy danych został zmieniony!";
+
 /* External file change strategy option: ask what to do */
 "FILE_CHANGE_STRATEGY_ASK" = "Pytaj";
 
@@ -395,12 +414,6 @@
 /* External file change strategy option: Use the changed file and discard local changes */
 "FILE_CHANGE_STRATEGY_USE_OTHER" = "Załaduj zmodyfikowaną wersję i odrzuć moją";
 
-/* Informative text displayed when the file was change from another application */
-"FILE_CHANGED_BY_OTHERS_INFO_TEXT" = "Załadowany plik różni się od pliku zapisanego na dysku. Co chcesz zrobić?";
-
-/* Message displayed when an open file was changed from another application */
-"FILE_CHANGED_BY_OTHERS_MESSAGE_TEXT" = "Plik bazy danych został zmieniony!";
-
 /* Error while reopening last known documents */
 "FILE_OPEN_ERROR" = "Błąd! Nie można otworzyć pliku.";
 
@@ -409,6 +422,15 @@
 
 /* Group column title */
 "GROUP" = "Grupa";
+
+/*  */
+"HASH_SHA1" = "SHA-1";
+
+/*  */
+"HASH_SHA256" = "SHA-256";
+
+/*  */
+"HASH_SHA512" = "SHA-512";
 
 /* History count column title
    Menu item to toggle display of history count column in entry table */
@@ -482,15 +504,6 @@
    Toolbar item new group */
 "NEW_GROUP" = "Nowa grupa";
 
-/* Expiration date format, when item does not expire */
-"NO_EXPIRE_DATE_SET" = "Nigdy nie wygasa.";
-
-/* Menu item to reset the template groups */
-"NO_TEMPLATE_GROUP" = "Brak szablonów";
-
-/* Menu item added to show that no templates are defined */
-"NO_TEMPLATES" = "Nie znaleziono szablonów";
-
 /* Null placeholder for item input field
    Placeholder text for input fields if no entry or group is selected */
 "NONE" = "Nic";
@@ -500,6 +513,18 @@
    Notes column title
    Notes reference item */
 "NOTES" = "Notatki";
+
+/* Expiration date format, when item does not expire */
+"NO_EXPIRE_DATE_SET" = "Nigdy nie wygasa.";
+
+/* Menu item added to show that no templates are defined */
+"NO_TEMPLATES" = "Nie znaleziono szablonów";
+
+/* Menu item to reset the template groups */
+"NO_TEMPLATE_GROUP" = "Brak szablonów";
+
+/* Class = "NSButtonCell"; title = "Run Autotype Doctor…"; ObjectID = "NP0-R3-m6n"; */
+"NP0-R3-m6n.title" = "Uruchom Inspekcję Autouzupełniania…";
 
 /* Ok Button to dismiss disabled updates alert */
 "OK" = "OK";
@@ -533,6 +558,9 @@
 
 /* Select Browser */
 "OTHER_BROWSER" = "Wybierz przeglądarkę…";
+
+/*  */
+"OTP_CUSTOM" = "Własne ustawienia";
 
 /* Value field for reference lookup */
 "OUTPUT_VALUE" = "Wartość wyjściowa";
@@ -702,6 +730,9 @@
 /* Menu displayed as popup selection for search options if no filter is selected */
 "SELECT_FILTER_WITH_DOTS" = "Wybierz…";
 
+/*  */
+"SETUP_TOTP_SETTINGS" = "Edytuj ustawienia TOTP (kodów jednorazowych)";
+
 /* Checkbox in dialog to set the selection as default file change strategy! */
 "SET_AS_DEFAULT_FILE_CHANGE_STRATEGY" = "Użyj tej metody jako domyślnej. Możesz to zmienić w każdej chwili w Ustawieniach.";
 
@@ -833,8 +864,7 @@
 "WELCOME_WINDOW_NO_RECENT_DOCUMENTS" = "Brak najnowszych dokumentów";
 
 /* Label for the workflow settings tab */
-"WORKFLOW_SETTINGS" = "Przepływ danych";
+"WORKFLOW_SETTINGS" = "Zachowanie";
 
 /* Yesterday */
 "YESTERDAY" = "Wczoraj";
-

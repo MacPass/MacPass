@@ -1,8 +1,3 @@
-/* Class = "NSMenuItem"; title = "after 5 Minutes"; ObjectID = "5gh-b6-cmG"; */
-"5gh-b6-cmG.title" = "po 5 minutach";
-
-/* Class = "NSButtonCell"; title = "Clear all stored locations"; ObjectID = "8Ri-2s-c39"; */
-"8Ri-2s-c39.title" = "Wczyść wszystkie zapamiętane miejsca";
 
 /* Class = "NSMenu"; title = "ClipboardClearInterval"; ObjectID = "421"; */
 "421.title" = "Szybkość czyszczenia schowka";
@@ -40,6 +35,9 @@
 /* Class = "NSMenuItem"; title = "for 5 Minutes"; ObjectID = "589"; */
 "589.title" = "na 5 minut";
 
+/* Class = "NSMenuItem"; title = "after 5 Minutes"; ObjectID = "5gh-b6-cmG"; */
+"5gh-b6-cmG.title" = "po 5 minutach";
+
 /* Class = "NSMenuItem"; title = "for 15 Minutes"; ObjectID = "603"; */
 "603.title" = "na 15 minut";
 
@@ -55,30 +53,41 @@
 /* Class = "NSBox"; title = "File Handling"; ObjectID = "888"; */
 "888.title" = "Obsługa plików";
 
+/* Class = "NSButtonCell"; title = "Clear all stored locations"; ObjectID = "8Ri-2s-c39"; */
+"8Ri-2s-c39.title" = "Wczyść wszystkie zapamiętane miejsca";
+
 /* Class = "NSTextFieldCell"; title = "Enabling this compromises security. If enabled, your preferences will contain mappings from database to keyfile. Key locations for databases without a password will not be saved."; ObjectID = "ACh-7H-42N"; */
 "ACh-7H-42N.title" = "Włączenie tej opcji narusza bezpieczeństwa. Kiedy opcja jest włączona twoje ustawienia zawierają powiązania pomiędzy bazą danych a plikiem z kluczem. Lokalizacja pliku z kluczem do bazy danych bez hasła nie zostanie zapisana.";
+
+/* Class = "NSTextFieldCell"; title = "By default web site icon is downloaded directly from entry's host URL. For some websites it doesn't work and you might prefer using 3rdparty APIs. In this case only host from the URL will be used to get the icon from selected service."; ObjectID = "DaG-1a-SET"; */
+"DaG-1a-SET.title" = "Domyślnie ikona strony www pobierana jest bezpośrednio z adresu hosta z URL danego wpisu. Niektóre strony mogą tego nie obsługiwać i wówczas możesz rozważyć użycie zewnętrznego serwisu. W takim przypadku tylko adres hosta z URL wpisu zostanie użyty do pobrania ikony z danego serwisu.";
 
 /* Class = "NSButtonCell"; title = "Lock after log out"; ObjectID = "Dzn-9R-JjE"; */
 "Dzn-9R-JjE.title" = "Zablokuj po wylogowaniu";
 
-/* Class = "NSButtonCell"; title = "Prevent Universal Clipboard support"; ObjectID = "fNy-mS-phi"; */
-"fNy-mS-phi.title" = "Zapobiegaj obsłudze uniwersalnego schowka";
-
 /* Class = "NSTextFieldCell"; title = "Disabling this compromises security. If enabled, anything copied to the Clipboard in MacPass will be available on your connected iOS devices. You should clear the clipboard on those devices manually."; ObjectID = "JGX-Tp-KJk"; */
 "JGX-Tp-KJk.title" = "Wyłączenie tego zagraża bezpieczeństwu. Po włączeniu wszystko skopiowane do Schowka w MacPass będzie dostępne na podłączonych urządzeniach iOS. Należy ręcznie wyczyścić schowek na tych urządzeniach.";
-
-/* Class = "NSButtonCell"; title = "Lock after screen sleep"; ObjectID = "l3t-og-mJd"; */
-"l3t-og-mJd.title" = "Zablokuj po uśpieniu ekranu";
 
 /* Class = "NSTextFieldCell"; title = "If file changes:"; ObjectID = "QrK-hM-Xt1"; */
 "QrK-hM-Xt1.title" = "Jeśli plik się zmieni:";
 
+/* Class = "NSTextFieldCell"; title = "Favicon download"; ObjectID = "YGj-dH-duz"; */
+"YGj-dH-duz.title" = "Pobieranie ikon";
+
+/* Class = "NSButtonCell"; title = "Prevent Universal Clipboard support"; ObjectID = "fNy-mS-phi"; */
+"fNy-mS-phi.title" = "Zapobiegaj obsłudze uniwersalnego schowka";
+
+/* Class = "NSButtonCell"; title = "Lock after screen sleep"; ObjectID = "l3t-og-mJd"; */
+"l3t-og-mJd.title" = "Zablokuj po uśpieniu ekranu";
+
 /* Class = "NSButtonCell"; title = "Remember Keyfile for Databases"; ObjectID = "r6q-He-nYU"; */
 "r6q-He-nYU.title" = "Zapamiętaj plik z kluczem dla bazy danych";
+
+/* Class = "NSBox"; title = "Network"; ObjectID = "wD1-ag-7V5"; */
+"wD1-ag-7V5.title" = "Sieć";
 
 /* Class = "NSButtonCell"; title = "Enable Autosave"; ObjectID = "wG7-bi-2fi"; */
 "wG7-bi-2fi.title" = "Włącz autozapis";
 
 /* Class = "NSTextFieldCell"; title = "Close and open all documents for changes to take effect"; ObjectID = "ya5-ps-c4W"; */
 "ya5-ps-c4W.title" = "Zamknij i otwórz wszystkie dokumenty, aby zmiany odniosły skutek";
-
