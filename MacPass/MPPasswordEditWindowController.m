@@ -22,17 +22,34 @@
 
 #import "MPPasswordEditWindowController.h"
 #import "MPDocument.h"
+#import "MPPathControl.h"
 
 #import "HNHUi/HNHUi.h"
 
 #import "KeePassKit/KeePassKit.h"
+
+typedef NS_ENUM(NSUInteger, MPPasswordEditPasswordError) {
+  MPPasswordEditPasswordErrorNone,
+  MPPasswordEditPasswordErrorNoPassword,
+  MPPasswordEditPasswordErrorRepeatMissmatch
+};
+
+typedef NS_ENUM(NSUInteger, MPPasswordEditKeyError) {
+  MPPasswordEditKeyErrorNone,
+  MPPasswordEditKeyErrorNoKey,
+  MPPasswordEditKeyErrorNotReachable,
+  MPPasswordEditKeyErrorIsCurrentDatabase,
+  MPPasswordEditKeyErrorIsKeePassDatabase,
+};
+
 
 @interface MPPasswordEditWindowController ()
 
 @property (nonatomic, assign) BOOL showPassword;
 @property (nonatomic, assign) BOOL enablePassword;
 @property (nonatomic, assign) BOOL hasValidPasswordOrKey;
-@property (nonatomic, weak) NSURL *keyURL;
+@property (weak) NSGridRow *passwordErrorGridRow;
+@property (weak) NSGridRow *keyErrorGridRow;
 
 @end
 
@@ -53,10 +70,14 @@
 
 - (void)windowDidLoad {
   [super windowDidLoad];
+  [NSNotificationCenter.defaultCenter addObserver:self selector:@selector(_didChangeKeyURL:) name:MPPathControlDidSetURLNotification object:self.keyfilePathControl];
   [self.togglePasswordButton bind:NSValueBinding toObject:self withKeyPath:NSStringFromSelector(@selector(showPassword)) options:nil];
   self.window.defaultButtonCell = self.changePasswordButton.cell;
   MPDocument *document = self.document;
   self.enablePassword = [document.compositeKey hasKeyOfClass:KPKPasswordKey.class];
+  
+  self.passwordErrorGridRow = [self.gridView cellForView:self.passwordErrorTextField].row;
+  self.keyErrorGridRow = [self.gridView cellForView:self.keyErrorTextField].row;
 }
 
 - (void)updateView {
@@ -77,9 +98,8 @@
   [self.togglePasswordButton bind:NSEnabledBinding toObject:self withKeyPath:enablePasswordKeyPath options:nil];
   [self.passwordRepeatTextField bind:NSEnabledBinding toObject:self withKeyPath:showPasswordKeyPath options:negateOption];
   [self.passwordRepeatTextField bind:NSEnabledBinding toObject:self withKeyPath:enablePasswordKeyPath options:nil];
-  [self.errorTextField bind:NSHiddenBinding toObject:self withKeyPath:hasValidPasswordOrKeyKeyPath options:nil];
+
   [self.changePasswordButton bind:NSEnabledBinding toObject:self withKeyPath:hasValidPasswordOrKeyKeyPath options:nil];
-  [self.keyfilePathControl bind:NSValueBinding toObject:self withKeyPath:NSStringFromSelector(@selector(keyURL)) options:nil];
   
   self.passwordRepeatTextField.delegate = self;
   self.passwordTextField.delegate = self;
@@ -98,10 +118,7 @@
     [self _verifyPasswordAndKey];
   }
 }
-- (void)setKeyURL:(NSURL *)keyURL {
-  _keyURL = keyURL;
-  [self _verifyPasswordAndKey];
-}
+
 - (void)setEnablePassword:(BOOL)enablePassword {
   if(_enablePassword != enablePassword) {
     _enablePassword = enablePassword;
@@ -110,6 +127,7 @@
   NSString *repeatPlaceHolder = _enablePassword ? NSLocalizedString(@"PASSWORD_INPUT_REPEAT_PASSWORD", "Placeholder for the repeat password field to aks for the repeated password") : NSLocalizedString(@"PASSWORD_INPUT_NO_PASSWORD", "Placeholder for the repeat password input if passwords are disabled");
   self.passwordTextField.placeholderString = passwordPlaceHolder;
   self.passwordRepeatTextField.placeholderString = repeatPlaceHolder;
+  [self _verifyPasswordAndKey];
 }
 
 #pragma mark Actions
@@ -126,7 +144,7 @@
 }
 
 - (IBAction)clearKey:(id)sender {
-  self.keyURL = nil;
+  self.keyfilePathControl.URL = nil;
 }
 
 - (IBAction)generateKey:(id)sender {
@@ -143,7 +161,7 @@
         NSError *error;
         BOOL saveOk = [data writeToURL:keyURL options:NSDataWritingAtomic error:&error];
         if(saveOk) {
-          self.keyURL = keyURL;
+          self.keyfilePathControl.URL = keyURL;
         }
       }
     }];
@@ -155,43 +173,125 @@
   [self _verifyPasswordAndKey];
 }
 
-- (void)_verifyPasswordAndKey {
-  NSString *password = self.passwordTextField.stringValue;
-  NSString *repeat = self.passwordRepeatTextField.stringValue;
-  BOOL hasKey = (self.keyURL != nil);
-  BOOL keyOk = YES;
-  if(hasKey) {
-    keyOk = [self.keyURL checkResourceIsReachableAndReturnError:nil];
+#pragma mark Notifications
+- (void)_didChangeKeyURL:(NSNotification *)notification {
+  if(notification.object != self.keyfilePathControl) {
+    return;
   }
-  BOOL hasPassword = password.kpk_isNotEmpty;
-  if(!self.showPassword) {
-    hasPassword |= repeat.kpk_isNotEmpty;
-  }
-  BOOL passwordOk = YES;
-  if(hasPassword ) {
-    passwordOk = [password isEqualToString:repeat] || self.showPassword;
-  }
-  BOOL hasPasswordOrKey = (hasKey || hasPassword);
-  keyOk = hasKey ? keyOk : YES;
-  passwordOk = hasPassword ? passwordOk : YES;
-  self.hasValidPasswordOrKey = hasPasswordOrKey && passwordOk && keyOk;
-  
-  if(!hasPasswordOrKey) {
-    self.errorTextField.textColor = NSColor.controlTextColor;
-    self.errorTextField.stringValue = NSLocalizedString(@"WARNING_NO_PASSWORD_OR_KEYFILE", "No Key or Password");
-    return; // all done
-  }
-  self.errorTextField.textColor = NSColor.redColor;
-  if(!passwordOk && !keyOk ) {
-    self.errorTextField.stringValue = NSLocalizedString(@"ERROR_PASSWORD_MISSMATCH_INVALID_KEYFILE", "Passwords do not match, keyfile is invalid");
-  }
-  else if(!passwordOk) {
-    self.errorTextField.stringValue = NSLocalizedString(@"ERROR_PASSWORD_MISSMATCH", "Passwords do not match");
-  }
-  else {
-    self.errorTextField.stringValue = NSLocalizedString(@"ERROR_INVALID_KEYFILE", "Keyfile not valid");
-  }
+  [self _verifyPasswordAndKey];
 }
 
+
+#pragma mark UI update
+- (void)_verifyPasswordAndKey {
+  self.passwordErrorGridRow.hidden = YES;
+  self.keyErrorGridRow.hidden = YES;
+
+  self.keyErrorTextField.stringValue = @"";
+  self.passwordErrorTextField.stringValue = @"";
+  
+  MPPasswordEditKeyError keyError = [self _verifyKey];
+  MPPasswordEditPasswordError passwordError = [self _verifyPassword];
+  
+  self.keyErrorTextField.textColor = NSColor.controlColor;
+  self.passwordErrorTextField.textColor = NSColor.controlColor;
+  
+  if(keyError == MPPasswordEditKeyErrorNoKey && passwordError == MPPasswordEditPasswordErrorNoPassword) {
+
+    self.passwordErrorTextField.stringValue = NSLocalizedString(@"WARNING_NO_PASSWORD", "No Key or Password");
+    self.passwordErrorGridRow.hidden = NO;
+    
+    self.keyErrorTextField.stringValue = NSLocalizedString(@"WARNING_NO_KEYFILE", "No key file is set");
+    self.keyErrorGridRow.hidden = NO;
+    
+    return;
+  }
+    
+  switch(keyError) {
+    case MPPasswordEditKeyErrorNotReachable:
+      self.keyErrorTextField.stringValue = NSLocalizedString(@"ERROR_KEYFILE_NOT_FOUND", "Keyfile was not found");
+      self.keyErrorGridRow.hidden = NO;
+      self.keyErrorTextField.textColor = NSColor.redColor;
+      break;
+    case MPPasswordEditKeyErrorIsCurrentDatabase:
+      self.keyErrorTextField.stringValue = NSLocalizedString(@"ERROR_KEYFILE_IS_CURRENT_DATABASE", "The new key file is the current database.");
+      self.keyErrorGridRow.hidden = NO;
+      self.keyErrorTextField.textColor = NSColor.redColor;
+      break;
+    case MPPasswordEditKeyErrorIsKeePassDatabase:
+      self.keyErrorTextField.stringValue = NSLocalizedString(@"ERROR_KEYFILE_IS_KEEPASS_FILE", "Keyfile is a KeePass database.");
+      self.keyErrorGridRow.hidden = NO;
+      self.keyErrorTextField.textColor = NSColor.redColor;
+      break;
+    case MPPasswordEditKeyErrorNoKey:
+      if(!self.enablePassword) {
+        self.keyErrorTextField.stringValue = NSLocalizedString(@"WARNING_NO_KEYFILE", "No key file is set");
+        self.keyErrorGridRow.hidden = NO;
+      }
+    case MPPasswordEditKeyErrorNone:
+      break;
+  }
+  
+  switch(passwordError) {
+    case MPPasswordEditPasswordErrorRepeatMissmatch:
+      self.passwordErrorTextField.stringValue = NSLocalizedString(@"ERROR_PASSWORD_MISSMATCH", "Passwords do not match");
+      self.passwordErrorGridRow.hidden = NO;
+      break;
+    case MPPasswordEditPasswordErrorNone:
+    case MPPasswordEditPasswordErrorNoPassword:
+      break;
+  }
+  
+  self.hasValidPasswordOrKey = (passwordError == MPPasswordEditPasswordErrorNone && keyError == MPPasswordEditKeyErrorNone);
+}
+
+- (MPPasswordEditKeyError)_verifyKey {
+  NSURL *keyURL = self.keyfilePathControl.URL;
+  if(!keyURL) {
+    return MPPasswordEditKeyErrorNoKey;
+  }
+  
+  if(![keyURL checkResourceIsReachableAndReturnError:nil]) {
+    return MPPasswordEditKeyErrorNotReachable;
+  }
+  /* TODO: exten KPKFileKey to do database checks internally */
+  NSDocument *document = (NSDocument *)self.document;
+  NSData *keyFileData = [NSData dataWithContentsOfURL:keyURL];
+  KPKFileVersion keyFileVersion = [KPKFormat.sharedFormat fileVersionForData:keyFileData];
+  if(keyFileVersion.format != KPKDatabaseFormatUnknown) {
+    if([document.fileURL isEqual:keyURL]) {
+      return MPPasswordEditKeyErrorIsCurrentDatabase;
+    }
+    return MPPasswordEditKeyErrorIsKeePassDatabase;
+  }
+  /* FIXME: check xml key */
+  return MPPasswordEditKeyErrorNone;
+}
+
+- (MPPasswordEditPasswordError)_verifyPassword {
+
+  if(!self.enablePassword) {
+    return MPPasswordEditPasswordErrorNone;
+  }
+  
+  NSString *password = self.passwordTextField.stringValue;
+  NSString *repeat = self.passwordRepeatTextField.stringValue;
+
+  if(self.showPassword) {
+    if(password.kpk_isNotEmpty) {
+      return MPPasswordEditPasswordErrorNone;
+    }
+    return MPPasswordEditPasswordErrorNoPassword;
+  }
+
+  if(!password.kpk_isNotEmpty && !repeat.kpk_isNotEmpty) {
+    return MPPasswordEditPasswordErrorNoPassword;
+  }
+  
+  if(![password isEqualToString:repeat]) {
+    return MPPasswordEditPasswordErrorRepeatMissmatch;
+  }
+  return MPPasswordEditPasswordErrorNone;
+}
 
 @end
