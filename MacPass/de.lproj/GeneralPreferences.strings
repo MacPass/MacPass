@@ -58,6 +58,9 @@
 /* Class = "NSTextFieldCell"; title = "Enabling this compromises security. If enabled, your preferences will contain mappings from database to keyfile. Key locations for databases without a password will not be saved."; ObjectID = "ACh-7H-42N"; */
 "ACh-7H-42N.title" = "Das Einschalten dieser Option beeinträchtigt die Sicherheit. Wird diese Option aktiviert, werden Pfadangaben von Datenbank und Schlüsseldatei in den persönlichen Einstellungen gespeichert. Zu Datenbanken ohne Passwort wird kein Schlüsseldatei-Pfad gespeichert.";
 
+/* Class = "NSTextFieldCell"; title = "By default web site icon is downloaded directly from entry's host URL. For some websites it doesn't work and you might prefer using 3rdparty APIs. In this case only host from the URL will be used to get the icon from selected service."; ObjectID = "DaG-1a-SET"; */
+"DaG-1a-SET.title" = "Icons für Webseiten werden im Normallfall direkt von der im Eintrag hinterlegten URL heruntergeladen. Bei einigen Seiten funktioniert diese Methode nicht zufriedenstellend und Sie könnten die Verwendung eines Dienstes eines Dritten bevorzugen. In diesem Fall wird nur der Host der URL an diesen Dienst übermittelt, um ein Icon herunterzuladen.";
+
 /* Class = "NSButtonCell"; title = "Lock after log out"; ObjectID = "Dzn-9R-JjE"; */
 "Dzn-9R-JjE.title" = "Nach Abmelden (logout) sperren";
 
@@ -76,9 +79,15 @@
 /* Class = "NSButtonCell"; title = "Remember Keyfile for Databases"; ObjectID = "r6q-He-nYU"; */
 "r6q-He-nYU.title" = "Schlüsseldatei merken";
 
+/* Class = "NSBox"; title = "Network"; ObjectID = "wD1-ag-7V5"; */
+"wD1-ag-7V5.title" = "Neztwerk";
+
 /* Class = "NSButtonCell"; title = "Enable Autosave"; ObjectID = "wG7-bi-2fi"; */
 "wG7-bi-2fi.title" = "Automatisches Speichern aktivieren";
 
 /* Class = "NSTextFieldCell"; title = "Close and open all documents for changes to take effect"; ObjectID = "ya5-ps-c4W"; */
 "ya5-ps-c4W.title" = "Die Änderungen werden erst für Dokumente wirksam, welche geschlossen und erneut geöffnet werden.";
+
+/* Class = "NSTextFieldCell"; title = "Favicon download"; ObjectID = "YGj-dH-duz"; */
+"YGj-dH-duz.title" = "Favicon herunterladen";
 

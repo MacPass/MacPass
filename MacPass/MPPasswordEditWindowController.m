@@ -215,12 +215,12 @@ typedef NS_ENUM(NSUInteger, MPPasswordEditKeyError) {
       self.keyErrorGridRow.hidden = NO;
       break;
     case MPPasswordEditKeyErrorIsCurrentDatabase:
-      self.keyErrorTextField.stringValue = NSLocalizedString(@"ERROR_KEYFILE_IS_CURRENT_DATABASE", "The new key file is the current database.");
+      self.keyErrorTextField.stringValue = NSLocalizedString(@"WARNING_CURRENT_DATABASE_FILE_SELECTED_AS_KEY_FILE", "Error message displayed when the current database file is also set as the key file");
       self.keyErrorTextField.textColor = NSColor.redColor;
       self.keyErrorGridRow.hidden = NO;
       break;
     case MPPasswordEditKeyErrorIsKeePassDatabase:
-      self.keyErrorTextField.stringValue = NSLocalizedString(@"ERROR_KEYFILE_IS_KEEPASS_FILE", "Keyfile is a KeePass database.");
+      self.keyErrorTextField.stringValue = NSLocalizedString(@"WARNING_DATABASE_FILE_SELECTED_AS_KEY_FILE", "Error message displayed when a keepass database file is set as the key file");
       self.keyErrorTextField.textColor = NSColor.redColor;
       self.keyErrorGridRow.hidden = NO;
       break;
