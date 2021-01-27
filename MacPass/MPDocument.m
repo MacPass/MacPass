@@ -527,7 +527,7 @@ NSString *const MPDocumentGroupKey                            = @"MPDocumentGrou
 
 - (BOOL)changePassword:(NSString *)password keyFileURL:(NSURL *)keyFileURL {
   /* sanity check? */
-  if([password length] == 0 && keyFileURL == nil) {
+  if(password.length == 0 && keyFileURL == nil) {
     return NO;
   }
   NSData *keyFileData = keyFileURL ? [NSData dataWithContentsOfURL:keyFileURL] : nil;

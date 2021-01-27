@@ -132,6 +132,7 @@ typedef NS_ENUM(NSUInteger, MPPasswordEditKeyError) {
 
 #pragma mark Actions
 - (IBAction)save:(id)sender {
+  /* TODO: Move to a more generalized aproach to initalize the composite key and set it via a MPDocument API */
   const BOOL hasPassword = HNHUIBoolForState(self.hasPasswordSwitchButton.state);
   NSString *password = hasPassword ? self.passwordTextField.stringValue : nil;
   MPDocument *document = self.document;
@@ -193,15 +194,15 @@ typedef NS_ENUM(NSUInteger, MPPasswordEditKeyError) {
   MPPasswordEditKeyError keyError = [self _verifyKey];
   MPPasswordEditPasswordError passwordError = [self _verifyPassword];
   
-  self.keyErrorTextField.textColor = NSColor.controlColor;
-  self.passwordErrorTextField.textColor = NSColor.controlColor;
+  self.keyErrorTextField.textColor = NSColor.controlTextColor;
+  self.passwordErrorTextField.textColor = NSColor.controlTextColor;
   
   if(keyError == MPPasswordEditKeyErrorNoKey && passwordError == MPPasswordEditPasswordErrorNoPassword) {
 
-    self.passwordErrorTextField.stringValue = NSLocalizedString(@"WARNING_NO_PASSWORD", "No Key or Password");
+    self.passwordErrorTextField.stringValue = NSLocalizedString(@"WARNING_NO_PASSWORD", "Warning if no password is set when chaning the password");
     self.passwordErrorGridRow.hidden = NO;
     
-    self.keyErrorTextField.stringValue = NSLocalizedString(@"WARNING_NO_KEYFILE", "No key file is set");
+    self.keyErrorTextField.stringValue = NSLocalizedString(@"WARNING_NO_KEYFILE", "Warning tha no key file is set when chaning the password");
     self.keyErrorGridRow.hidden = NO;
     
     return;
@@ -210,24 +211,26 @@ typedef NS_ENUM(NSUInteger, MPPasswordEditKeyError) {
   switch(keyError) {
     case MPPasswordEditKeyErrorNotReachable:
       self.keyErrorTextField.stringValue = NSLocalizedString(@"ERROR_KEYFILE_NOT_FOUND", "Keyfile was not found");
-      self.keyErrorGridRow.hidden = NO;
       self.keyErrorTextField.textColor = NSColor.redColor;
+      self.keyErrorGridRow.hidden = NO;
       break;
     case MPPasswordEditKeyErrorIsCurrentDatabase:
       self.keyErrorTextField.stringValue = NSLocalizedString(@"ERROR_KEYFILE_IS_CURRENT_DATABASE", "The new key file is the current database.");
-      self.keyErrorGridRow.hidden = NO;
       self.keyErrorTextField.textColor = NSColor.redColor;
+      self.keyErrorGridRow.hidden = NO;
       break;
     case MPPasswordEditKeyErrorIsKeePassDatabase:
       self.keyErrorTextField.stringValue = NSLocalizedString(@"ERROR_KEYFILE_IS_KEEPASS_FILE", "Keyfile is a KeePass database.");
-      self.keyErrorGridRow.hidden = NO;
       self.keyErrorTextField.textColor = NSColor.redColor;
+      self.keyErrorGridRow.hidden = NO;
       break;
     case MPPasswordEditKeyErrorNoKey:
       if(!self.enablePassword) {
         self.keyErrorTextField.stringValue = NSLocalizedString(@"WARNING_NO_KEYFILE", "No key file is set");
         self.keyErrorGridRow.hidden = NO;
       }
+      keyError = MPPasswordEditKeyErrorNone; // remove the error
+      break;
     case MPPasswordEditKeyErrorNone:
       break;
   }
@@ -235,6 +238,7 @@ typedef NS_ENUM(NSUInteger, MPPasswordEditKeyError) {
   switch(passwordError) {
     case MPPasswordEditPasswordErrorRepeatMissmatch:
       self.passwordErrorTextField.stringValue = NSLocalizedString(@"ERROR_PASSWORD_MISSMATCH", "Passwords do not match");
+      self.passwordErrorTextField.textColor = NSColor.redColor;
       self.passwordErrorGridRow.hidden = NO;
       break;
     case MPPasswordEditPasswordErrorNone:
