@@ -21,6 +21,7 @@
 //
 
 #import "MPIconHelper.h"
+#import "MPSettingsHelper.h"
 #import "KeePassKit/KeePassKit.h"
 
 @implementation MPIconHelper
@@ -28,9 +29,9 @@
 + (NSImage *)icon:(MPIconType)type {
   static NSDictionary *icons;
   if(!icons) {
-    icons = [MPIconHelper availableIconNames];
+    icons = MPIconHelper.availableIconNames;
   }
-  if([[icons allKeys] containsObject:@(type)]) {
+  if([icons.allKeys containsObject:@(type)]) {
     NSString *imageName = icons[@(type)];
     NSImage *image = [NSImage imageNamed:imageName];
     return image;
@@ -42,13 +43,13 @@
   static NSArray *icons;
   static dispatch_once_t onceToken;
   dispatch_once(&onceToken, ^{
-    NSDictionary *imageNames = [MPIconHelper availableIconNames];
+    NSDictionary *imageNames = MPIconHelper.availableIconNames;
     NSMutableArray *mutableIcons = [[NSMutableArray alloc] initWithCapacity:imageNames.count];
-    
+
     NSArray *sortedImageNames = [imageNames.allKeys sortedArrayUsingComparator:^NSComparisonResult(id obj1, id obj2) {
       return [imageNames[obj1] compare:imageNames[obj2]];
     }];
-    
+
     for(NSNumber *iconNumber in sortedImageNames) {
       if(iconNumber.integerValue > MPCustomIconTypeBegin) {
         continue; // Skip all non-db Keys
@@ -67,10 +68,10 @@
   static NSArray *iconTypes;
   static dispatch_once_t onceToken;
   dispatch_once(&onceToken, ^{
-    NSDictionary *imageNames = [MPIconHelper availableIconNames];
-    
-    NSArray *sortedImageNames = [[imageNames allKeys] sortedArrayUsingComparator:^NSComparisonResult(id obj1, id obj2) {
-      return [[imageNames objectForKey:obj1] compare:[imageNames objectForKey:obj2]];
+    NSDictionary *imageNames = MPIconHelper.availableIconNames;
+
+    NSArray *sortedImageNames = [imageNames.allKeys sortedArrayUsingComparator:^NSComparisonResult(id obj1, id obj2) {
+      return [imageNames[obj1] compare:imageNames[obj2]];
     }];
     iconTypes = [sortedImageNames filteredArrayUsingPredicate:[NSPredicate predicateWithBlock:^BOOL(id evaluatedObject, NSDictionary *bindings) {
       NSNumber *iconNumber = (NSNumber *)evaluatedObject;
@@ -163,7 +164,7 @@
                    @(MPIconAddEntry): @"addEntryTemplate",
                    @(MPIconContextTriangle): @"contextTriangleTemplate",
                    @(MPIconKeyboard): @"keyboardTemplate",
-                   
+
                    @(MPIconExpiredEntry): NSImageNameCaution,
                    @(MPIconExpiredGroup): NSImageNameCaution
                    };
@@ -177,14 +178,28 @@
     return; // no url, no handler so no need to do anything
   }
 
-  NSString *urlString = [NSString stringWithFormat:@"%@://%@/favicon.ico", url.scheme, url.host ? url.host : @""];
+  NSString *urlString;
+  MPFaviconDownloadMethod faviconDownloadMethod = (MPFaviconDownloadMethod)[NSUserDefaults.standardUserDefaults integerForKey:kMPSettingsKeyFaviconDownloadMethod];
+  switch(faviconDownloadMethod) {
+    case MPFaviconDownloadMethodGoogle:
+      urlString = [NSString stringWithFormat:@"https://www.google.com/s2/favicons?domain=%@", url.host ? url.host : @""];
+      break;
+    case MPFaviconDownloadMethodDuckDuckGo:
+      urlString = [NSString stringWithFormat:@"https://icons.duckduckgo.com/ip3/%@.ico", url.host ? url.host : @""];
+      break;
+    case MPFaviconDownloadMethodDirect:
+    default:
+      urlString = [NSString stringWithFormat:@"%@://%@/favicon.ico", url.scheme, url.host ? url.host : @""];
+      break;
+  }
+  
   NSURL *favIconURL = [NSURL URLWithString:urlString];
   if(!favIconURL) {
     /* call the handler with nil data */
     handler(nil);
     return;
   }
-  
+
   NSURLSessionTask *task = [NSURLSession.sharedSession dataTaskWithURL:favIconURL completionHandler:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
     if(error) {
         handler(nil);

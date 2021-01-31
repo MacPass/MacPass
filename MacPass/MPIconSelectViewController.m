@@ -239,7 +239,6 @@ typedef NS_ENUM(NSInteger, MPIconDownloadStatus) {
 }
 
 - (BOOL)collectionView:(NSCollectionView *)collectionView writeItemsAtIndexes:(NSIndexSet *)indexes toPasteboard:(NSPasteboard *)pasteboard {
-  NSLog(@"dragStart for indexes:%@", indexes);
   [pasteboard declareTypes:@[(NSString *)kUTTypeText] owner:nil];
   return YES;
 }

@@ -1,0 +1,23 @@
+/* Class = "NSButtonCell"; title = "Request Permissions…"; ObjectID = "1Nx-Cg-TCn"; */
+"1Nx-Cg-TCn.title" = "請求權限…";
+
+/* Class = "NSTextFieldCell"; title = "MacPass will send key press events to the system when Autotype or Global Autotype is executed. Since macOS 10.14 Mojave this is only possible, if Accessibility permissions are granted to the application."; ObjectID = "6GI-KJ-Xue"; */
+"6GI-KJ-Xue.title" = "當自動輸入執行時，MacPass 將會向系統發送按鍵事件。從 macOS 10.14 Mojave 開始，MacPass 需要有輔助功能的權限，才能進行此操作。";
+
+/* Class = "NSTextFieldCell"; title = "MacPass will read every window title when Global Autotype is executed to find a match. Since macOS 10.15 Catalina it is not possible to read any window title, if the user has not granted permissions to record the screen. If you are running macOS 10.15 or higher, MacPass will check if it can read every window title of currently visible windows. This test will not read the actual title. The titles aren't stored or processed in any way."; ObjectID = "7of-1z-Nfk"; */
+"7of-1z-Nfk.title" = "當自動輸入執行時，MacPass 會試圖讀取每個視窗的標題來找到匹配的視窗。從 macOS 10.15 Catalina 開始，用户需要賦予 MacPass 屏幕錄製權限才能讀取視窗標題。如果你正在使用 macOS 10.15 或以上，MacPass 將會檢查自己是否能夠讀取當前可見的視窗標題。MacPass 不會儲存或處理標題。";
+
+/* Class = "NSButtonCell"; title = "Open Accessibilty Preferences…"; ObjectID = "8m1-vs-pd5"; */
+"8m1-vs-pd5.title" = "打開輔助功能選項...";
+
+/* Class = "NSTextFieldCell"; title = "Screen Recording"; ObjectID = "9gr-mz-2I4"; */
+"9gr-mz-2I4.title" = "屏幕錄製";
+
+/* Class = "NSTextFieldCell"; title = "Accessibility"; ObjectID = "aIL-8W-63g"; */
+"aIL-8W-63g.title" = "輔助功能";
+
+/* Class = "NSButtonCell"; title = "Open Screen Recording Preferences…"; ObjectID = "lgB-Ys-L9R"; */
+"lgB-Ys-L9R.title" = "打開屏幕錄製選項...";
+
+/* Class = "NSTextFieldCell"; title = "To request Screen Recording permissions, MacPass will try to capture a 1 by 1 Pixel sized screenshot of the top left part of your screen. The data is not stored nor processed in any way."; ObjectID = "Mhg-rd-1hK"; */
+"Mhg-rd-1hK.title" = "打開屏幕錄製權限後，MacPass 將對屏幕的左上角進行截圖。MacPass 不會以任何形式儲存或處理該數據。";

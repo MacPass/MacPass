@@ -26,12 +26,13 @@
 
 typedef NS_ENUM(NSUInteger, MPPreferencesTab) {
   MPPreferencesTabGeneral,
+  MPPreferencesTabIntegration,
   MPPreferencesTabWorkflow,
   MPPreferencesTabUpdate,
   MPPreferencesTabPlugins
 };
 
-@interface MPPreferencesWindowController : NSWindowController <NSToolbarDelegate>
+@interface MPPreferencesWindowController : NSWindowController
 
 - (void)showPreferences;
 - (void)showPreferencesTab:(MPPreferencesTab)tab;

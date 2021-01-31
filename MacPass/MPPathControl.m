@@ -39,6 +39,7 @@ NSString *const MPPathControlDidSetURLNotification = @"MPPathControlDidSetURLNot
 }
 
 - (instancetype)initWithCoder:(NSCoder *)coder {
+  /* FIXME: this doesn't work well anymore. Need more work, see: https://www.mikeash.com/pyblog/custom-nscells-done-right.html */
   self = [super initWithCoder:coder];
     self.delegate = self;
   [self _setupCell];
@@ -72,23 +73,6 @@ NSString *const MPPathControlDidSetURLNotification = @"MPPathControlDidSetURLNot
       self.URL = panel.URLs.firstObject;
     }
   }];
-}
-
-- (void)pathControl:(NSPathControl *)pathControl willPopUpMenu:(NSMenu *)menu {
-  if(pathControl != self) {
-    return;
-  }
-  if(@available(macOS 10.11, *)) {
-    // skip
-  }
-  else {
-    if(!self.URL) {
-      dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(50 * NSEC_PER_MSEC)), dispatch_get_main_queue(), ^{
-        [menu cancelTracking];
-      });
-      [self showOpenPanel:self];
-    }
-  }
 }
 
 - (void)pathControl:(NSPathControl *)pathControl willDisplayOpenPanel:(NSOpenPanel *)openPanel {

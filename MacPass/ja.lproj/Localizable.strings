@@ -1,0 +1,848 @@
+/* Count of characters remaining in pickchars dialog */
+"%ld_CHARACTERS_TO_PICK_REMAINING" = "%ld characters to pick remaining";
+
+/* Display format for days. Should contain a long decimal placeholder! */
+"%ld_DAYS" = "%ld日";
+
+/* % days ago */
+"%ld_DAYS_AGO" = "%ld日前";
+
+/* % Hours ago */
+"%ld_HOURS_AGO" = "約%ld時間前";
+
+/* % Minutes ago */
+"%ld_MINUTES_AGO" = "%ld分前";
+
+/* % Weeks ago */
+"%ld_WEEKS_AGO" = "%ld週間前";
+
+/* preset to expire after 90 days from now */
+"90_DAYS" = "90日";
+
+/* Button label to abort a merge on a file with changed master key! */
+"ABORT_MERGE_KEEP_MINE" = "Abort Merge. Keep Mine.";
+
+/* Toolbar item with action menu */
+"ACTION" = "アクション";
+
+/* Menu item title for adding an hmacotp config attribute */
+"ADD_CUSTOM_ATTRIBUTE_HMACOTP_CONFIG" = "HMACOTP構成を追加";
+
+/* Menu item title for adding an hmacotp seed attribute */
+"ADD_CUSTOM_ATTRIBUTE_HMACOTP_SEED" = "HMACOTP種を追加";
+
+/* Menu displayed for adding special custom keys */
+"ADD_CUSTOM_FIELD_CONTEXT_MENU" = "カスタムフィールドメニューを追加";
+
+/* Action to add an entry via template */
+"ADD_TREMPLATE_ENTRY" = "項目のテンプレートを作成";
+
+/* Allow the download of the plugin repository file */
+"ALERT_ASK_FOR_PLUGIN_REPOSITORY_ALLOW_DOWNLOAD" = "Update definitions online";
+
+/* Informative text displayed on the alert that shows up when MacPass asks for permssion to download the plugin repository JSON file */
+"ALERT_ASK_FOR_PLUGIN_REPOSITORY_CONNECTION_PERMISSION_INFORMATIVE_TEXT" = "The plugin defintions are hosted online at https://macpassapp.org. MacPass would like to download those files to ensure the data is up to date.";
+
+/* Message displayed on the alert that asks for permission to download the plugin repository JSON file */
+"ALERT_ASK_FOR_PLUGIN_REPOSITORY_CONNECTION_PERMISSION_MESSAGE" = "MacPass would like to check for updates of plugin definitions online";
+
+/* Disallow the download of the plugin repository file */
+"ALERT_ASK_FOR_PLUGIN_REPOSITORY_DISALLOW_DOWNLOAD" = "Do not update defintions";
+
+/* Button in dialog to leave plugin ds disabled and continiue! */
+"ALERT_INCOMPATIBLE_PLUGINS_ENCOUNTERED_BUTTON_OK" = "OK";
+
+/* Button in dialog to open plugin preferences pane! */
+"ALERT_INCOMPATIBLE_PLUGINS_ENCOUNTERED_BUTTON_OPEN_PREFERENCES" = "プラグイン環境設定を表示…";
+
+/* Informative text of the alert displayed when plugins where disabled due to incompatibilty */
+"ALERT_INCOMPATIBLE_PLUGINS_ENCOUNTERED_INFORMATIVE_TEXT" = "このバージョンのMacPassに互換性がないため、いくつかのプラグインは無効になりました。 Open the plugin settings for details.";
+
+/* Message text of the alert displayed when plugins where disabled due to incompatibilty */
+"ALERT_INCOMPATIBLE_PLUGINS_ENCOUNTERED_MESSAGE" = "Incompatible Plugins detected.";
+
+/* Alert informative text when plugins or their settings change and require a restart */
+"ALERT_INFORMATIVE_TEXT_PLUGINS_CHANGED_SUGGEST_RESTART" = "Changes to plugins and global plugin settings take only effect after restart. Restart MacPass now?";
+
+/* Alert informative text to ask the user if he really want to uninstall the plugin */
+"ALERT_INFORMATIVE_TEXT_REALLY_UNINSTALL_PLUGIN" = "このプラブインはゴミ箱に移動します。";
+
+/* Button in dialog to cancel merge of KDB file changes! */
+"ALERT_MERGE_CANCEL" = "キャンセル";
+
+/* Button in dialog to merge KDB changes into file! */
+"ALERT_MERGE_CONTINUE" = "ファイルを結合!";
+
+/* Informative text displayed when merging KDB files */
+"ALERT_MERGE_KDB_FILE_INFO_TEXT" = "KDB databases do not contain enough information for a seamless merge. Entries will get merged and no data is lost. But due to groups only being matched by name unexpected changes might occur. Moved entries might get moved back to their old group, or renamed groups will not get merged. Also deleted entries might reappear due to no information regarding deleted objects being stored. Are you sure you want to proceed?";
+
+/* Alert message warning user about KDB file merge */
+"ALERT_MERGE_KDB_FILE_MESSAGE" = "KDBデータベースを結合しています";
+
+/* Alert message text when plugins or their settings change and require a restart */
+"ALERT_MESSAGE_PLUGINS_CHANGED_SUGGEST_RESTART" = "プラグインの設定を変更しました。再起動してください。";
+
+/* Alert message text to ask the user if he really want to uninstall the plugin. Include %@ placeholder for plugin name */
+"ALERT_MESSAGE_TEXT_REALLY_UNINSTALL_PLUGIN_%@" = "Should the Plugin %@ really be uninstalled?";
+
+/* Informative text of the disabled updates alert! */
+"ALERT_UPDATES_DISABLED_INFORMATIVE_TEXT_%@!" = "Updates for this build of %@ are disabled!";
+
+/* Message text for disabled updates alert! */
+"ALERT_UPDATES_DISABLED_MESSAGE_TEXT" = "アップデートは無効になっています!";
+
+/* Attachments column title (shows counts)
+   Menu item to toggle display of attachment count column in entry table */
+"ATTACHMENTS" = "添付";
+
+/* Sucessfully merged external changes */
+"AUTO_MERGE_NOTIFICATION_TEXT" = "自動結合が完了しました!";
+
+/* Menu item for automatic trash creation */
+"AUTOCREATE_TRASH_FOLDER" = "自動的に作成";
+
+/* Message text in the autotype selection window. Placeholder is %1 - windowTitle */
+"AUTOTYPE_CANDIDATE_SELECTION_WINDOW_MESSAGE_%@" = "There are multiple matches for the current window: %@. Please select which match should be used.";
+
+/* Window title for the stand-alone password creator window */
+"AUTOTYPE_DOCTOR_RESULTS_WINDOW_TITLE" = "自動入力の検査";
+
+/* Inherit autotype settings menu item */
+"AUTOTYPE_INHERIT" = "自動入力設定を継承";
+
+/* Message displayed to the user to unlock the database to perform global autotype */
+"AUTOTYPE_MESSAGE_UNLOCK_DATABASE" = "Please unlock the database to use Global Autotype";
+
+/* Disable autotype menu item */
+"AUTOTYPE_NO" = "自動入力を無効にする";
+
+/* Notification: Autotype failed, MacPass has not enough permissions to perform autotype */
+"AUTOTYPE_NOTIFICATION_MACPASS_IS_MISSING_PERMISSIONS" = "MacPassは自動入力を実行するのに必要なすべての権限がありません。";
+
+/* Notification: Title for autotype feedback */
+"AUTOTYPE_NOTIFICATION_MATCH_TITLE" = "自動入力";
+
+/* Notification: Autotype failed, no documents are open */
+"AUTOTYPE_NOTIFICATION_NO_DOCUMENTS_INFORMATIVE_TEXT" = "Please open a database file to use Global Autotype!";
+
+/* Notification: Title for autotype feedback */
+"AUTOTYPE_NOTIFICATION_NO_DOCUMENTS_TITLE" = "No database is open!";
+
+/* Noticiation: Autotype failed to find a match for %@ (string placeholder) */
+"AUTOTYPE_NOTIFICATION_NO_MATCH_FOR_%@" = "No Match for %@!";
+
+/* Title for autotype feedback on missing permissions */
+"AUTOTYPE_NOTIFICATION_PERMISSIONS_MISSING_TITLE" = "権限がありません";
+
+/* Notification: Autotype found a single match for %@ (string placeholder). */
+"AUTOTYPE_NOTIFICATION_SINGLE_MATCH_FOR_%@" = "Found Match for %@!";
+
+/* Title for the notification when the Autotype operation timed out */
+"AUTOTYPE_NOTIFICATION_TIMED_OUT_TITLE" = "自動入力がタイムアウトしました!";
+
+/* Status label when no issue were found in accessibilty */
+"AUTOTYPE_STATUS_ACCESSIBILTY_PERMISSIONS_OK" = "MacPassはコンピュータをコントロールする権限があります (アクセシビリティ)";
+
+/* Status MacPass has no accessibilty permissions */
+"AUTOTYPE_STATUS_NO_ACCESSIBILTY_PERMISSIONS" = "MacPassはコンピュータをコントロールする権限がありません (アクセシビリティ)";
+
+/* Status MacPass has no screen recording permissions */
+"AUTOTYPE_STATUS_NO_SCREEN_RECORDING_PERMISSIONS" = "MacPassは画面を収録する権限がありません";
+
+/* Status label when no issue were found in screen recording permissions */
+"AUTOTYPE_STATUS_SCREEN_RECORDING_PERMISSIONS_OK" = "MacPassは画面を収録する権限があります";
+
+/* Notficication: Autotype timed out */
+"AUTOTYPE_TIMED_OUT" = "You did start Autotype too long ago. MacPass did not perform it anymore to prevent any wrong input!";
+
+/* Enable autotype menu item */
+"AUTOTYPE_YES" = "自動入力を有効";
+
+/* Cancel */
+"CANCEL" = "キャンセル";
+
+/* Menu item in the database outline context menu to change the database name */
+"CHANGE_DATABASE_NAME" = "データベース名を変更";
+
+/* Button to postpone the password change */
+"CHANGE_LATER" = "あとで変更";
+
+/* Button to show the password change dialog
+   Single button to show the password change dialog */
+"CHANGE_PASSWORD_WITH_DOTS" = "パスワードを変更…";
+
+/* Menu item in the database outline context menu to change the trash group */
+"CHANGE_TRASH_GROUP" = "ゴミ箱のグループを変更";
+
+/* Button title in the key file selection dialog for selecting a key */
+"CHOOSE_FILE_BUTTON_TITLE" = "開く";
+
+/* Clear Autotype Button */
+"CLEAR_AUTOTYPE" = "自動入力をクリア";
+
+/* Menu to clear recent searches */
+"CLEAR_RECENT_SEARCHES" = "最近の検索をクリア";
+
+/* String displayed at dock badge when clipboard is about to be cleared */
+"CLEARING_PASTEBOARD" = "クリアしました";
+
+/* Field name that was copied to the pasteboard */
+"COPIED_FIELD_%@" = "%@をコピーしました";
+
+/* Context menu that copies reference to note */
+"COPIED_NOTES_REFERENCE" = "メモのレファレンスをコピーしました";
+
+/* Password was copied to the pasteboard */
+"COPIED_PASSWORD" = "パスワードをコピーしました!";
+
+/* Context menu that copies reference to password */
+"COPIED_PASSWORD_REFERENCE" = "パスワードのレファレンスをコピーしました";
+
+/* Context menu that copies reference to title */
+"COPIED_TITLE_REFERENCE" = "タイトルのレファレンスをコピーしました";
+
+/* URL was copied to the pasteboard */
+"COPIED_URL" = "URLをコピーしました!";
+
+/* Context menu that copies reference to URL */
+"COPIED_URL_REFERENCE" = "URLのレファレンスをコピーしました!";
+
+/* Username was copied to the pasteboard */
+"COPIED_USERNAME" = "ユーザ名をコピーしました!";
+
+/* Context menu that copies reference to username */
+"COPIED_USERNAME_REFERENCE" = "ユーザ名のレファレンスをコピーしました!";
+
+/* Submenu to copy attributes as reference */
+"COPY_AS_REFERENCE" = "レファレンスをコピー…";
+
+/* Context menu sub-menu to copy attributes as reference */
+"COPY_AS_REFERENCE_MENU" = "のレファレンスメニューとしてコピー";
+
+/* Submenu to Copy custom fields */
+"COPY_CUSTOM_FIELDS" = "カスタムフィールドをコピー";
+
+/* Context menu sub-menu to copy custom fields to clipboard */
+"COPY_CUSTOM_FIELDS_MENU" = "カスタムフィールドをコピー…";
+
+/* Action name when an entry was moved
+   Action title for copying an entry via drag and drop */
+"COPY_ENTRY" = "項目をコピー";
+
+/* Mask for title to copy field value */
+"COPY_FIELD_%@" = "%@をコピー";
+
+/* Action title for copying a group via drag and drop */
+"COPY_GROUP" = "グループをコピー";
+
+/* Context menu that copies reference to note */
+"COPY_NOTES_REFERENCE" = "メモ";
+
+/* Menu item to copy the password of an entry
+   Toolbar item copy password */
+"COPY_PASSWORD" = "パスワードをコピー";
+
+/* Context menu that copies reference to password */
+"COPY_PASSWORD_REFERENCE" = "パスワード";
+
+/* Context menu that copies reference to title */
+"COPY_TITLE_REFERENCE" = "タイトル";
+
+/* Menu item to copy the URL of an entry */
+"COPY_URL" = "URLをコピー";
+
+/* Context menu that copies reference to URL */
+"COPY_URL_REFERENCE" = "URL";
+
+/* Menu item to copy the username of an entry
+   Toolbar item copy username */
+"COPY_USERNAME" = "ユーザ名をコピー";
+
+/* Context menu that copies reference to username */
+"COPY_USERNAME_REFERENCE" = "ユーザ名";
+
+/* Custom attribute reference item */
+"CUSTOM_ATTRIBUTE" = "属性をカスタム";
+
+/* Title for menu for custom search filters */
+"CUSTOM_SEARCH_FILTER_MENU" = "検索フィルタをカスタム";
+
+/* Default display name for KDB databases */
+"DATABASE" = "データベース";
+
+/* Default Browser */
+"DEFAULT_BROWSER" = "デフォルトのブラウザ";
+
+/* Default Titel for new Custom-Fields */
+"DEFAULT_CUSTOM_FIELD_TITLE" = "カスタム";
+
+/* Default Value for new Custom-Fields */
+"DEFAULT_CUSTOM_FIELD_VALUE" = "値";
+
+/* Title for a newly created entry */
+"DEFAULT_ENTRY_TITLE" = "新規項目";
+
+/* Title for a newly created group */
+"DEFAULT_GROUP_NAME" = "新規グループ";
+
+/* Default window title for a new window association */
+"DEFAULT_WINDOW_TITLE" = "ウインドウのタイトル";
+
+/* Menu item in the database outline context menu to delete the node from the trash
+   Menu item to delete an entry
+   Menu item to delete the selected attached file
+   Menu item to delete the selected custom icon
+   Toolbar item delete item */
+"DELETE" = "削除";
+
+/* Delete Entry */
+"DELETE_ENTRY" = "項目を削除";
+
+/* Delete Group */
+"DELETE_GROUP" = "グループを削除";
+
+/* Empty Trash */
+"DELETE_TRASHED_ENTRY" = "ゴミ箱の項目を削除";
+
+/* Empty Trash */
+"DELETE_TRASHED_GROUP" = "ゴミ箱のグループを削除";
+
+/* Action title for copying an entry via drag and drop to another database
+   Action title for moving an entry via drag and drop */
+"DRAG_ENTRY" = "項目をドラッグ";
+
+/* Action title for moving a group via drag and drop
+   Actiontitle for copying groups via drag and drop to antother database */
+"DRAG_GROUP" = "グループをドラッグ";
+
+/* Action name for duplicating entries */
+"DUPLICATE_ENTRIES_ACTION_NAME" = "項目を複製";
+
+/* Menu item to directly diplicate an entry */
+"DUPLICATE_ENTRY" = "項目を複製";
+
+/* Menu item to duplicate an entry with options how to duplicate. Will present a dialog. */
+"DUPLICATE_ENTRY_WITH_OPTIONS" = "項目を複製…";
+
+/* Menu item to directly diplicate a group */
+"DUPLICATE_GROUP" = "グループを複製";
+
+/* Action name for duplicating groups */
+"DUPLICATE_GROUPS_ACTION_NAME" = "グループを複製";
+
+/* Menu item in the database outline context menu to change the template group
+   Menu item on the add entry context menu to edit template groups */
+"EDIT_TEMPLATE_GROUP" = "項目テンプレートグループを編集";
+
+/* Empty Trash
+   Menu item in the database outline context menu to empyt the trash
+   Menu item in the database outline to empty the trash
+   Menu item to empty the trash */
+"EMPTY_TRASH" = "ゴミ箱を空にする";
+
+/* Informative text for the enforce password change alert */
+"ENFORCE_PASSWORD_CHANGE_ALERT_DESCRIPTION" = "You will be unable to save until the password and/or keyfile has been changed.";
+
+/* Message text for the enforce password change alert */
+"ENFORCE_PASSWORD_CHANGE_ALERT_TITLE" = "データベースパスワードは期限切れです!";
+
+/* Group row for entry attributes */
+"ENTRY_CUSTOM_ATTRIBUTES" = "カスタム属性";
+
+/* Group row for entry attributes */
+"ENTRY_DEFAULT_ATTRIBUTES" = "デフォルト属性";
+
+/* Tooltip displayed on the index header cell */
+"ENTRY_INDEX_COLUMN_TOOLTIP" = "Column to sort by user defined order";
+
+/* Keyfile not valid */
+"ERROR_INVALID_KEYFILE" = "鍵ファイルが無効です!";
+
+/* Error description given when adding an invalid plugin */
+"ERROR_INVALID_PLUGIN" = "無効なプラブインです";
+
+/* Error description for missing accessibility permissions */
+"ERROR_NO_ACCESSIBILITY_PERMISSIONS" = "MacPassはコンピュータをコントロールする権限がありません (アクセシビリティ)";
+
+/* Error description for missing screen recording permissions */
+"ERROR_NO_PERMISSION_TO_RECORD_SCREEN" = "MacPassは画面収録する権限がありません";
+
+/* Passwords do not match */
+"ERROR_PASSWORD_MISSMATCH" = "パスワードが一致しません!";
+
+/* Passwords do not match, keyfile is invalid */
+"ERROR_PASSWORD_MISSMATCH_INVALID_KEYFILE" = "パスワードが一致しません! 鍵ファイルが無効です!";
+
+/* Recommend/Enforce key change intervall format */
+"EVERY_%ld_DAYS" = "%ld日ごと";
+
+/* Format to returen the date an item expires. Includes %@ placehoder for date */
+"EXPIRES_AT_DATE_%@" = "期限: %@";
+
+/* The master key was changed by an external program! */
+"EXTERN_CHANGE_OF_MASTERKEY" = "マスター鍵は他のプログラムによって変更されました";
+
+/* Direct download */
+"FAVICON_DOWNLOAD_METHOD_DIRECT" = "ダイレクトダウロード";
+
+/* DuckDuckGo */
+"FAVICON_DOWNLOAD_METHOD_DUCKDUCKGO" = "DuckDuckGo";
+
+/* Google */
+"FAVICON_DOWNLOAD_METHOD_GOOGLE" = "Google";
+
+/* External file change strategy option: ask what to do */
+"FILE_CHANGE_STRATEGY_ASK" = "尋ねる";
+
+/* External file change strategy option: Keep local file an ignore external changes */
+"FILE_CHANGE_STRATEGY_KEEP_MINE" = "自分のバージョンを維持し、他の変更を無視する";
+
+/* Button in dialog to merge changes into file!
+   External file change strategy option: Merge external changes into local file. */
+"FILE_CHANGE_STRATEGY_MERGE" = "変更を結合する";
+
+/* External file change strategy option: Use the changed file and discard local changes */
+"FILE_CHANGE_STRATEGY_USE_OTHER" = "変更されたバージョンを読み込み、自分のを破棄する";
+
+/* Informative text displayed when the file was change from another application */
+"FILE_CHANGED_BY_OTHERS_INFO_TEXT" = "The database loaded is not the same as the one on disk. How do you want to move on?";
+
+/* Message displayed when an open file was changed from another application */
+"FILE_CHANGED_BY_OTHERS_MESSAGE_TEXT" = "データベースファイルは変更されました!";
+
+/* Error while reopening last known documents */
+"FILE_OPEN_ERROR" = "ファイルを開くときにエラーが発生しました。";
+
+/* General Settings Label */
+"GENERAL_PREFERENCES" = "一般";
+
+/* Group column title */
+"GROUP" = "グループ";
+
+/* History count column title
+   Menu item to toggle display of history count column in entry table */
+"HISTORY" = "履歴";
+
+/* Imports a dragged URL for a new entry */
+"IMPORT_URL" = "URLをインポート";
+
+/* Toolbar item toggle inspector */
+"INSPECTOR" = "インスペクタ";
+
+/* Label for the integration settings tab */
+"INTEGRATION_SETTINGS" = "統合";
+
+/* Just now */
+"JUST_NOW" = "Just now";
+
+/* Feature only available in kdbx databases */
+"KDBX_ONLY_FEATURE" = "KDBデータベースの機能はサポートされていません";
+
+/* Button in dialog to ignore the changes to an open file! */
+"KEEP_MINE_DISCARD_OTHER" = "自分のを維持し他を破棄";
+
+/* Button in dialog to reopen the file! */
+"KEEP_OTHER_DISCARD_MINE" = "他を維持し自分のを破棄";
+
+/* Do not install the plugin */
+"KEEP_PLUGIN" = "プラグインを維持";
+
+/* Do not restart MacPass */
+"KEEP_RUNNING" = "Keep Running";
+
+/* last week */
+"LAST_WEEK" = "先週";
+
+/* Toolbar item to Lock the database */
+"LOCK" = "ロック";
+
+/* Message in the open panel to add attachments to an entry */
+"MESSAGE_ADD_ATTACHMENT_OPEN_PANEL" = "添付するファイルを選択";
+
+/* Message in the add plugin open panel */
+"MESSAGE_ADD_PLUGIN_OPEN_PANEL" = "インストールするプラグインを選択";
+
+/* Message in the open panel to import an XML file */
+"MESSAGE_XML_OPEN_PANEL" = "インポートするXMLファイルを選択";
+
+/* Menu item to toggle display of modified date column in entry table
+   Modification date column title */
+"MODIFIED" = "最終変更";
+
+/* Action name when an entry was moved */
+"MOVE_ENTRY" = "項目を移動";
+
+/* Menu displayed as popup selection for search options when multiple items are selected */
+"MULTIPLE_FILTERS_ACTIVE_WITH_DOTS" = "複数…";
+
+/* Name for a newly created Database */
+"NEW_DATABASE" = "データベース";
+
+/* Action name for a newly created entry
+   Menu item to create a new entry
+   Toolbar item new entry */
+"NEW_ENTRY" = "新規項目";
+
+/* Submenu to add an entry via template */
+"NEW_ENTRY_WITH_TEMPLATE_%@" = "%@から";
+
+/* Action name for a newly created group
+   Menu item to create a new group
+   Toolbar item new group */
+"NEW_GROUP" = "新規グループ";
+
+/* Expiration date format, when item does not expire */
+"NO_EXPIRE_DATE_SET" = "期限はありません。";
+
+/* Menu item to reset the template groups */
+"NO_TEMPLATE_GROUP" = "テンプレートなし";
+
+/* Menu item added to show that no templates are defined */
+"NO_TEMPLATES" = "テンプレートが見つかりませんでした";
+
+/* Null placeholder for item input field
+   Placeholder text for input fields if no entry or group is selected */
+"NONE" = "メモ";
+
+/* Displayed name when notes or part of notes was copied
+   Menu item to toggle display of notes column in entry table
+   Notes column title
+   Notes reference item */
+"NOTES" = "メモ";
+
+/* Ok Button to dismiss disabled updates alert */
+"OK" = "OK";
+
+/* preset to expire after one montch from now */
+"ONE_MONTH" = "1ヶ月";
+
+/* preset to expire after one week from now */
+"ONE_WEEK" = "1週間";
+
+/* one week ago */
+"ONE_WEEK_AGO" = "1週間後";
+
+/* preset to expire after one year from now */
+"ONE_YEAR" = "1年";
+
+/* Open button in the open panel to add attachments to an entry */
+"OPEN_BUTTON_ADD_ATTACHMENT_OPEN_PANEL" = "アタッチ";
+
+/* Open button in the add plugin open panel */
+"OPEN_BUTTON_ADD_PLUGIN_OPEN_PANEL" = "インストール";
+
+/* Open button in the open panel to import an XML file */
+"OPEN_BUTTON_IMPORT_XML_OPEN_PANEL" = "インポート";
+
+/* Action button in Notification to open a document */
+"OPEN_DOCUMENT" = "書類を開く";
+
+/* Menu item to open the URL with the default application */
+"OPEN_URL" = "URLを開く";
+
+/* Select Browser */
+"OTHER_BROWSER" = "ブラウザを選択…";
+
+/* Value field for reference lookup */
+"OUTPUT_VALUE" = "Output Value";
+
+/* Menu item to toggle display of password column in entry table
+   Password column title
+   Password reference item */
+"PASSWORD" = "パスワード";
+
+/* Window title for the stand-alone password creator window */
+"PASSWORD_CREATOR_WINDOW_TITLE" = "パスワードを生成";
+
+/* Button to reset the password defaults for a single entry */
+"PASSWORD_GENERATOR_RESET_ENTRY_DEFAULTS" = "リセット";
+
+/* Button to set the defaults of the password generator */
+"PASSWORD_GENERATOR_SET_DEFAULTS" = "デフォルトにセット";
+
+/* Placeholder for the password field to aks for password
+   Placeholder in the unlock-password input field if password is enabled */
+"PASSWORD_INPUT_ENTER_PASSWORD" = "パスワードを入力";
+
+/* Placeholder for the password input field if passwords are disabled
+   Placeholder for the repeat password input if passwords are disabled
+   Placeholder in the unlock-password input field if password is disabled */
+"PASSWORD_INPUT_NO_PASSWORD" = "パスワードなし";
+
+/* Placeholder for the repeat password field to aks for the repeated password */
+"PASSWORD_INPUT_REPEAT_PASSWORD" = "パスワードを再入力";
+
+/* Menu item to perform autotype with the selected entry */
+"PERFORM_AUTOTYPE_FOR_ENTRY" = "自動入力を実行";
+
+/* Info about how many character has to pick in pickchar dialog */
+"PICKCHAR_INFO_MESSAGE_PICK_CHARACTERS_%ld" = "Please pick %ld characters";
+
+/* Window displayed to the user to pick an amout of characters */
+"PICKCHAR_WINDOW_TITLE" = "文字ピッカー";
+
+/* Count of picked characters in pickchars dialog if no limit is set */
+"PICKED_%ld_CHARACTERS" = "Picked %ld characters";
+
+/* Window displayed to the user to pick an amout of characters */
+"PICKFIELD_WINDOW_TITLE" = "Field Picker";
+
+/* Label for the button when a download is in progress! */
+"PLUGIN_BROWSER_ACTION_DOWNLOAD_IN_PROGRESS" = "ダウンロード中…";
+
+/* Label for the button when a download did not succeed */
+"PLUGIN_BROWSER_ACTION_RETRY_FAILED_DOWNLOAD" = "Failed. Re-Download";
+
+/* Label for the button to show a downloaded file */
+"PLUGIN_BROWSER_ACTION_SHOW_DOWNLOADED_FILE" = "Finderで表示…";
+
+/* Button to download the Plugin */
+"PLUGIN_BROWSER_DOWNLOAD_PLUGIN_BUTTON" = "ダウンロード";
+
+/* Status for an up-to-date plugin in the plugin browser */
+"PLUGIN_BROWSER_LATEST_VERSION_INSTALLED" = "最新のバージョンがインストールされています";
+
+/* Status for an outdated plugin version in the plugin browser */
+"PLUGIN_BROWSER_NEWER_VERSION_%@_AVAILABLE" = "新しいバージョン(%@)が利用可能です。";
+
+/* Status for an uninstalled plugin in the plugin browser */
+"PLUGIN_BROWSER_PLUGIN_NOT_INSTALLED" = "インストールされていません";
+
+/* Status for an unkonw plugin version in the plugin browser */
+"PLUGIN_BROWSER_UNKNOWN_PLUGIN_VERSION_INSTALLED_%@" = "不明なバージョン %@ がインストールされました";
+
+/* Error for a plugin that is disabled. */
+"PLUGIN_ERROR_DISABLED_PLUGIN" = "ユーザによってプラグインは無効になりました";
+
+/* Plugin is not with this version of MacPass */
+"PLUGIN_ERROR_HOST_VERSION_NOT_SUPPORTED" = "The plugin is not compatible with this version of MacPass";
+
+/* The plugin could not be initalized */
+"PLUGIN_ERROR_INTILIZATION_FAILED" = "Plugin could not be initalized";
+
+/* Error for a plugin that was not signed properly */
+"PLUGIN_ERROR_UNSECURE_PLUGIN" = "プラグインは正しく署名されていません";
+
+/* Plugin specifies the wrong principal class! */
+"PLUGIN_ERROR_WRONG_PRINCIPAL_CLASS" = "Unexpected principal class in plugin";
+
+/* name for disabled unloaded plugin */
+"PLUGIN_NAME_DISABLED_%@" = "🚫 %@";
+
+/* Name for unloaded plugin with errors */
+"PLUGIN_NAME_ERROR_%@" = "⚠️ %@";
+
+/* Label for plugin settings tab */
+"PLUGIN_SETTINGS" = "プラグイン";
+
+/* Generic message displayed if no details are know why a plugin was not loaded. */
+"PLUGIN_SETTINGS_GENERIC_ERROR_MESSAGE" = "プラグインが読み込まれませんでした.";
+
+/* Plugin version. Include a %@ placeholder for version string */
+"PLUGIN_VERSION_%@" = "バージョン: %@";
+
+/* Menu item to preview the selected attached file. */
+"PREVIEW" = "プレビュー";
+
+/* Recent searches menu item */
+"RECENT_SEARCHES" = "最近使用した検索";
+
+/* Informative text for the recommend password change alert */
+"RECOMMEND_PASSWORD_CHANGE_ALERT_DESCRIPTION" = "パスワードを変更、鍵ファイルを変更することをおすすめします。";
+
+/* Message text for the recommend password change alert */
+"RECOMMEND_PASSWORD_CHANGE_ALERT_TITLE" = "データベースのパスワードを変更してください!";
+
+/* Updated at text when the local plugin defintino is used */
+"REPOSITORY_UPDATED_AT_LOCAL" = "Never (using bundled version)";
+
+/* Restart */
+"RESTART" = "再起動";
+
+/* Action to restore an Entry to a previous state of its history */
+"RESTORE_HISTORY_ENTRY" = "項目の履歴を戻す";
+
+/* Menu item to save the selected attached file.
+   Save file menu item title when save will just save the file */
+"SAVE" = "保存";
+
+/* Button title to save the generated key file */
+"SAVE_KEYFILE" = "鍵ファイルを保存";
+
+/* Save file menu item title when save will prompt for a location to save or ask for a password/key */
+"SAVE_WITH_DOTS" = "保存…";
+
+/* Search input in Toolbar */
+"SEARCH" = "検索";
+
+/* Search option: Find duplicate passwords */
+"SEARCH_DUPLICATE_PASSWORDS" = "Duplicate Passwords";
+
+/* Placeholder string displayed in the search field in the toolbar */
+"SEARCH_EVERYWHERE" = "どこでも検索";
+
+/* Search option: Find expired entries */
+"SEARCH_EXPIRED_ENTRIES" = "期限";
+
+/* Inherit search settings menu item */
+"SEARCH_INHERIT" = "検索設定を継承";
+
+/* Disable search menu item */
+"SEARCH_NO" = "検索から除外";
+
+/* Search field for references lookup */
+"SEARCH_VALUE" = "検索する値";
+
+/* Enable search menu item */
+"SEARCH_YES" = "every in Search";
+
+/* Menu item title for the expiry preset selection menu in the date picker */
+"SELECT_DATE_PRESET" = "プリセットを使用…";
+
+/* Message on the open panel for selecting which browser to use for opening URLs */
+"SELECT_DEFAULT_BROWSER_OPEN_PANEL_MESSAGE" = "URLを開くブラウザを選択します。";
+
+/* Label for the select browser button on the open panel for selecting which browser to use for opening URLs */
+"SELECT_DEFAULT_BROWSER_OPEN_PANEL_SELECT_BUTTON" = "選択";
+
+/* Message for the dialog to open a file for merge */
+"SELECT_FILE_TO_MERGE" = "結合するファイルを選択";
+
+/* Menu displayed as popup selection for search options if no filter is selected */
+"SELECT_FILTER_WITH_DOTS" = "選択…";
+
+/* Checkbox in dialog to set the selection as default file change strategy! */
+"SET_AS_DEFAULT_FILE_CHANGE_STRATEGY" = "Use this method as default. You can change this at any time in the preferences.";
+
+/* Action button in Notification to show the Autotype Doctor */
+"SHOW_AUTOTYPE_DOCTOR" = "自動入力の検査を開く";
+
+/* Menu item to show the entries group in the outline view */
+"SHOW_GROUP_IN_OUTLINE" = "Show Group in Outline";
+
+/* Menu item to show the history of the selected entry
+   Toolbar item to toggle history display */
+"SHOW_HISTORY" = "履歴を表示";
+
+/* Displayed name when title field was copied
+   Menu item to toggle display of title column in entry table
+   Title column title
+   Title reference item */
+"TITLE" = "タイトル";
+
+/* preset to expire tomorrow */
+"TOMORROW" = "明日";
+
+/* Toolbar item to perform autotype */
+"TOOLBAR_PERFORM_AUTOTYPE_FOR_ENTRY" = "自動入力";
+
+/* Touchbar button label for choosing the keyfile */
+"TOUCHBAR_CHOOSE_KEYFILE" = "鍵ファイルを選択";
+
+/* Touchbar button label for copying the password */
+"TOUCHBAR_COPY_PASSWORD" = "パスワードをコピー";
+
+/* Touchbar button label for copying the username */
+"TOUCHBAR_COPY_USERNAME" = "ユーザ名をコピー";
+
+/* Touchbar button label for deleting elements */
+"TOUCHBAR_DELETE" = "削除";
+
+/* Touchbar button label for opening the popover to edit */
+"TOUCHBAR_EDIT" = "編集";
+
+/* Touchbar button label for locking the database */
+"TOUCHBAR_LOCK_DATABASE" = "データベースをロック";
+
+/* Touchbar button label for creating a new item */
+"TOUCHBAR_NEW_ENTRY" = "新規項目";
+
+/* Touchbar button label for creating a new group */
+"TOUCHBAR_NEW_GROUP" = "新規グループ";
+
+/* Touchbar button label for performing autotype */
+"TOUCHBAR_PERFORM_AUTOTYPE" = "自動入力を実行";
+
+/* Touchbar button label for searching the database */
+"TOUCHBAR_SEARCH" = "データベースを検索";
+
+/* Touchbar button label for showing the password */
+"TOUCHBAR_SHOW_PASSWORD" = "パスワードを表示";
+
+/* Touchbar button label for unlocking the database */
+"TOUCHBAR_UNLOCK_DATABASE" = "データベースのロック解除";
+
+/* Move Entry to Trash */
+"TRASH_ENTRY" = "項目をゴミ箱に移動";
+
+/* Move Group to Trash */
+"TRASH_GROUP" = "グループをゴミ箱に移動";
+
+/* Uninstall plugin */
+"UNINSTALL" = "アンインストール";
+
+/* No comment provided by engineer. */
+"UNKNOWN_FILE_VERSION" = "不明なデータベースバージョン";
+
+/* Unknown database format. */
+"UNKNOWN_FORMAT" = "不明なファイルフォーマット";
+
+/* Database format is unknown since the file is not saved yet */
+"UNKNOWN_FORMAT_FILE_NOT_SAVED_YET" = "不明、データベースはまだ保存されていません";
+
+/* No comment provided by engineer. */
+"UNKNOWN_TOOLBAR_ITEM" = "不明なツールバーアイテム";
+
+/* Update Settings Label */
+"UPDATE_PREFERENCES" = "アップデート";
+
+/* Menu item to toggle display of url column in entry table
+   Submenu with options what to do with the URL of an entry
+   Url column title
+   URL reference item */
+"URL" = "URL";
+
+/* Menu item to toggle display of username column in entry table
+   Username column title
+   Username reference item */
+"USERNAME" = "ユーザ名";
+
+/* Displayed name when uuid field was copied
+   UUID reference item */
+"UUID" = "UUID";
+
+/* Error message displayed when the current database file is also set as the key file */
+"WARNING_CURRENT_DATABASE_FILE_SELECTED_AS_KEY_FILE" = "現在のデータベースファイルを鍵ファイルとして選択することはできません。";
+
+/* Error message displayed when a keepass database file is set as the key file */
+"WARNING_DATABASE_FILE_SELECTED_AS_KEY_FILE" = "You should not use another database file as a key file since it might change and prevent you from reopening the current file.";
+
+/* No Key or Password */
+"WARNING_NO_PASSWORD_OR_KEYFILE" = "パスワードまたは鍵ファイルが指定されていません!";
+
+/* Informative Text displayed when clearing the Trash */
+"WARNING_ON_DELETE_TRASHED_NODE_DESCRIPTION" = "ゴミ箱のアイテムは削除されます!";
+
+/* Message text for the alert displayed when deleting a node */
+"WARNING_ON_DELETE_TRASHED_NODE_TITLE" = "ゴミ箱のアイテムを削除しています";
+
+/* Informative Text displayed when clearing the Trash */
+"WARNING_ON_EMPTY_TRASH_DESCRIPTION" = "ゴミ箱を空にすると取り消しできません。";
+
+/* Message text for the alert displayed when clearing the Trash */
+"WARNING_ON_EMPTY_TRASH_TITLE" = "ゴミ箱を空にしますか?";
+
+/* No comment provided by engineer. */
+"WARNING_ON_SAVE_NO_PASSWORD_OR_KEY_SET" = "パスワードもしくは鍵ファイルがセットされていません。";
+
+/* No comment provided by engineer. */
+"WARNING_ON_SAVE_NO_PASSWORD_OR_KEY_SET_SUGGESTION" = "このデータベースにパスワード、鍵ファイルの一方もしくは両方をセットしてください。 Aborting this will undo all changes and lock the document";
+
+/* Text displayed when no recent documents can be displayed in */
+"WELCOME_WINDOW_NO_RECENT_DOCUMENTS" = "最近使用した書類がありません";
+
+/* Label for the workflow settings tab */
+"WORKFLOW_SETTINGS" = "ワークフロー";
+
+/* Yesterday */
+"YESTERDAY" = "昨日";

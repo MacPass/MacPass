@@ -22,6 +22,8 @@
 #import "MPAutotypeCandidateSelectionViewController.h"
 #import "MPAutotypeContext.h"
 #import "MPAutotypeDaemon.h"
+#import "MPAutotypeEnvironment.h"
+#import "MPExtendedTableCellView.h"
 
 #import "KPKNode+IconImage.h"
 
@@ -31,7 +33,7 @@
 @property (strong) IBOutlet NSButton *selectAutotypeContextButton;
 @property (strong) IBOutlet NSTableView *contextTableView;
 @property (strong) IBOutlet NSTextField *messageTextField;
-
+@property (strong) IBOutlet NSImageView *targetApplicationImageView;
 @end
 
 @implementation MPAutotypeCandidateSelectionViewController
@@ -42,9 +44,27 @@
 
 - (void)viewDidLoad {
   [super viewDidLoad];
-  NSString *template = NSLocalizedString(@"AUTOTYPE_CANDIDATE_SELECTION_WINDOW_MESSAGE_%@", "Message text in the autotype selection window. Placeholder is %1 - windowTitle");
-  self.messageTextField.stringValue = [NSString stringWithFormat:template, self.windowTitle];
+
   self.selectAutotypeContextButton.enabled = NO;
+
+  NSRunningApplication *targetApplication = [NSRunningApplication runningApplicationWithProcessIdentifier:self.environment.pid];
+  if(nil != targetApplication) {
+    self.targetApplicationImageView.image = [self _composeInfoImage];
+  }
+  
+  NSString *template = @"";
+  if(self.candidates.count > 1) {
+    template = NSLocalizedString(@"AUTOTYPE_CANDIDATE_SELECTION_WINDOW_MESSAGE_%@_%@", "Message text in the autotype selection window. Placeholder is %1 - applicationName, %2 windowTitle");
+    self.messageTextField.stringValue = [NSString stringWithFormat:template, targetApplication.localizedName, self.environment.windowTitle];
+    NSInteger rows = MIN(self.candidates.count, 5);
+    [self.contextTableView.enclosingScrollView.heightAnchor constraintGreaterThanOrEqualToConstant:39 * rows].active = YES;
+  }
+  else {
+    template = NSLocalizedString(@"AUTOTYPE_CANDIDATE_CONFIRMATION_WINDOW_MESSAGE_%@_%@", "Message text in the autotype confirmation window. Placeholder is %1 - applicationName, %2 windowTitle");
+    self.messageTextField.stringValue = [NSString stringWithFormat:template, targetApplication.localizedName, self.environment.windowTitle];
+    [self.contextTableView.enclosingScrollView.heightAnchor constraintEqualToConstant:39].active = YES;
+  }
+
   NSNotification *notification = [NSNotification notificationWithName:NSTableViewSelectionDidChangeNotification object:self.contextTableView];
   [self tableViewSelectionDidChange:notification];
 }
@@ -58,12 +78,10 @@
 #pragma mark NSTableViewDelegate
 
 - (NSView *)tableView:(NSTableView *)tableView viewForTableColumn:(NSTableColumn *)tableColumn row:(NSInteger)row {
-  NSTableCellView *view = [tableView makeViewWithIdentifier:tableColumn.identifier owner:self];
+  MPExtendedTableCellView *view = [tableView makeViewWithIdentifier:tableColumn.identifier owner:self];
   MPAutotypeContext *context = self.candidates[row];
-  NSString *maskedEvaluatedCommand = context.maskedEvaluatedCommand;
-  NSMutableAttributedString *string = [[NSMutableAttributedString alloc] initWithString:[NSString stringWithFormat:@"%@\n%@", context.entry.title, maskedEvaluatedCommand]];
-  [string setAttributes:@{NSForegroundColorAttributeName: NSColor.disabledControlTextColor} range:NSMakeRange((string.length - maskedEvaluatedCommand.length), maskedEvaluatedCommand.length)];
-  view.textField.attributedStringValue = string;
+  view.addionalTextField.stringValue = context.maskedEvaluatedCommand;
+  view.textField.stringValue = context.entry.title;
   view.imageView.image = context.entry.iconImage;
   return view;
 }
@@ -80,10 +98,7 @@
 - (void)selectAutotypeContext:(id)sender {
   NSInteger selectedRow = self.contextTableView.selectedRow;
   if(selectedRow >= 0 && selectedRow < self.candidates.count) {
-    if(self.completionHandler) {
-      self.completionHandler();
-    }
-    [MPAutotypeDaemon.defaultDaemon selectAutotypeCandiate:self.candidates[selectedRow]];
+    [MPAutotypeDaemon.defaultDaemon selectAutotypeContext:self.candidates[selectedRow] forEnvironment:self.environment];
   }
   else {
     [self cancelSelection:sender]; // cancel since the selection was invalid!
@@ -91,11 +106,44 @@
 }
 
 - (void)cancelSelection:(id)sender {
-  if(self.completionHandler) {
-    self.completionHandler();
-  }
-  [MPAutotypeDaemon.defaultDaemon cancelAutotypeCandidateSelection];
+  [MPAutotypeDaemon.defaultDaemon cancelAutotypeContextSelectionForEnvironment:self.environment];
 }
 
+- (NSImage *)_composeInfoImage {
+  static const uint32_t iconSize = 64;
+  uint32_t imageWidth = 256;
+  uint32_t imageHeight = 256;
+  
+  NSRunningApplication *targetApplication = [NSRunningApplication runningApplicationWithProcessIdentifier:self.environment.pid];
+  CGImageRef windowGrab = CGWindowListCreateImage(CGRectNull, kCGWindowListOptionIncludingWindow, self.environment.windowId, kCGWindowImageDefault | kCGWindowImageBestResolution);
+  NSImage *windowImage = [[NSImage alloc] initWithCGImage:windowGrab size:NSZeroSize];
+  CFRelease(windowGrab);
+  
+  if(windowImage.size.width > windowImage.size.height) {
+    imageHeight = imageWidth * (windowImage.size.height / windowImage.size.width);
+  }
+  else {
+    imageWidth = imageWidth * (windowImage.size.width / windowImage.size.height);
+  }
+  
+  if(!targetApplication.icon) {
+    return windowImage;
+  }
+  
+  NSImage *composite = [[NSImage alloc] initWithSize:NSMakeSize(MAX(imageWidth, iconSize), MAX(imageHeight, iconSize))];
+  [composite lockFocus];
+  /* draw the image at the top left */
+  [windowImage drawInRect:NSMakeRect(composite.size.width - imageWidth, composite.size.height - imageHeight, imageWidth, imageHeight)
+                 fromRect:NSZeroRect
+                operation:NSCompositingOperationSourceOver
+                 fraction:1];
+  /* draw the app icon at the bottom left */
+  [targetApplication.icon drawInRect:NSMakeRect(0, 0, iconSize, iconSize)
+                            fromRect:NSZeroRect
+                           operation:NSCompositingOperationSourceOver
+                            fraction:1];
+  [composite unlockFocus];
+  return composite;
+}
 
 @end

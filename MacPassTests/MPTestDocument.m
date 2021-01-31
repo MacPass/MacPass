@@ -31,7 +31,7 @@
   KPKFileVersion kdb = { KPKDatabaseFormatKdb, kKPKKdbFileVersion };
   XCTAssertEqual(NSOrderedSame, KPKFileVersionCompare(kdb, document.tree.minimumVersion), @"Tree should be Legacy Version in default case");
   XCTAssertFalse(document.encrypted, @"Document cannot be encrypted at creation");
-  XCTAssertFalse(document.compositeKey.hasPasswordOrKeyFile, @"Document has no Password/Keyfile and thus is not secured");
+  XCTAssertFalse(document.compositeKey.hasKeys, @"Document has no Password/Keyfile and thus is not secured");
 
 }
 

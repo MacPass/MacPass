@@ -382,8 +382,11 @@ NSString *const _MPTableSecurCellView = @"PasswordCell";
   if(tableView != self.entryTable) {
     return; // Not the right table view
   }
-  MPDocument *document = self.windowController.document;
-  document.selectedEntries = self.entryArrayController.selectedObjects;
+  /* do not update the current item if we are not in focus! */
+  if(tableView.window.firstResponder == self.entryTable) {
+      MPDocument *document = self.windowController.document;
+      document.selectedEntries = self.entryArrayController.selectedObjects;
+  }
 }
 
 - (BOOL)tableView:(NSTableView *)tableView shouldReorderColumn:(NSInteger)columnIndex toColumn:(NSInteger)newColumnIndex {
@@ -472,6 +475,10 @@ NSString *const _MPTableSecurCellView = @"PasswordCell";
   NSUInteger row = [self.entryArrayController.arrangedObjects indexOfObject:entry];
   [self.entryTable scrollRowToVisible:row];
   [self.entryTable selectRowIndexes:[NSIndexSet indexSetWithIndex:row] byExtendingSelection:NO];
+  // since we do not update the current selection when the table view is not first responder, do it here manually
+  if(self.entryTable.window.firstResponder != self.entryTable) {
+    document.selectedEntries = self.entryArrayController.selectedObjects;
+  }
 }
 
 - (void)_didUpdateSearchResults:(NSNotification *)notification {
@@ -647,7 +654,7 @@ NSString *const _MPTableSecurCellView = @"PasswordCell";
   KPKEntry *selectedEntry = nodes.count == 1 ? [nodes.firstObject asEntry] : nil;
   NSString *value = [selectedEntry.password kpk_finalValueForEntry:selectedEntry];
   if(value) {
-    [MPPasteBoardController.defaultController copyObjects:@[value] overlayInfo:MPPasteboardOverlayInfoPassword name:nil atView:self.view];
+    [MPPasteBoardController.defaultController copyObject:value overlayInfo:MPPasteboardOverlayInfoPassword name:nil atView:self.view];
   }
 }
 
@@ -656,7 +663,7 @@ NSString *const _MPTableSecurCellView = @"PasswordCell";
   KPKEntry *selectedEntry = nodes.count == 1 ? [nodes.firstObject asEntry] : nil;
   NSString *value = [selectedEntry.username kpk_finalValueForEntry:selectedEntry];
   if(value) {
-    [MPPasteBoardController.defaultController copyObjects:@[value] overlayInfo:MPPasteboardOverlayInfoUsername name:nil atView:self.view];
+    [MPPasteBoardController.defaultController copyObject:value overlayInfo:MPPasteboardOverlayInfoUsername name:nil atView:self.view];
   }
 }
 
@@ -669,7 +676,7 @@ NSString *const _MPTableSecurCellView = @"PasswordCell";
     KPKAttribute *attribute = selectedEntry.customAttributes[index];
     NSString *value = attribute.evaluatedValue;
     if(value) {
-      [MPPasteBoardController.defaultController copyObjects:@[value] overlayInfo:MPPasteboardOverlayInfoCustom name:attribute.key atView:self.view];
+      [MPPasteBoardController.defaultController copyObject:value overlayInfo:MPPasteboardOverlayInfoCustom name:attribute.key atView:self.view];
     }
   }
 }
@@ -679,7 +686,7 @@ NSString *const _MPTableSecurCellView = @"PasswordCell";
   KPKEntry *selectedEntry = nodes.count == 1 ? [nodes.firstObject asEntry] : nil;
   NSString *value = [selectedEntry.url kpk_finalValueForEntry:selectedEntry];
   if(value) {
-    [MPPasteBoardController.defaultController copyObjects:@[value] overlayInfo:MPPasteboardOverlayInfoURL name:nil atView:self.view];
+    [MPPasteBoardController.defaultController copyObject:value overlayInfo:MPPasteboardOverlayInfoURL name:nil atView:self.view];
   }
 }
 
@@ -727,7 +734,7 @@ NSString *const _MPTableSecurCellView = @"PasswordCell";
   KPKEntry *selectedEntry = nodes.count == 1 ? [nodes.firstObject asEntry] : nil;
   if(referencesField && selectedEntry) {
     NSString *value = [NSString stringWithFormat:@"{%@%@@%@:%@}", kKPKReferencePrefix, referencesField, kKPKReferenceUUIDKey, selectedEntry.uuid.UUIDString];
-    [MPPasteBoardController.defaultController copyObjects:@[value] overlayInfo:MPPasteboardOverlayInfoReference name:references[referencesField] atView:self.view];
+    [MPPasteBoardController.defaultController copyObject:value overlayInfo:MPPasteboardOverlayInfoReference name:references[referencesField] atView:self.view];
   }
 }
 

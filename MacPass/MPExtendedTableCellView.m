@@ -1,9 +1,9 @@
 //
-//  MPCustomFieldTableView.m
+//  MPPluginTabelCellView.m
 //  MacPass
 //
-//  Created by Michael Starke on 11.09.18.
-//  Copyright © 2018 HicknHack Software GmbH. All rights reserved.
+//  Created by Michael Starke on 17.11.17.
+//  Copyright © 2017 HicknHack Software GmbH. All rights reserved.
 //
 //  This program is free software: you can redistribute it and/or modify
 //  it under the terms of the GNU General Public License as published by
@@ -20,21 +20,22 @@
 //  along with this program.  If not, see <http://www.gnu.org/licenses/>.
 //
 
-#import "MPCustomFieldTableView.h"
+#import "MPExtendedTableCellView.h"
 
-@implementation MPCustomFieldTableView
+@implementation MPExtendedTableCellView
 
-/*
- on macOS 10.11 and lower, the height is not calculated correctly
- */
-- (NSSize)intrinsicContentSize {
-  if(@available(macOS 10.12, *)) {
-    return [super intrinsicContentSize];
+- (void)setBackgroundStyle:(NSBackgroundStyle)backgroundStyle {
+  super.backgroundStyle = backgroundStyle;
+  switch(backgroundStyle) {
+    case NSBackgroundStyleNormal:
+    case NSBackgroundStyleLowered:
+      self.addionalTextField.textColor = NSColor.disabledControlTextColor;
+      break;
+    case NSBackgroundStyleRaised:
+    case NSBackgroundStyleEmphasized:
+      self.addionalTextField.textColor = NSColor.selectedControlTextColor;
+      break;
   }
-  if(self.numberOfRows > 0) {
-    return NSMakeSize(-1, self.numberOfRows * self.rowHeight);
-  }
-  return NSMakeSize(-1, -1);
 }
 
 @end

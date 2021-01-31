@@ -76,10 +76,6 @@ typedef NS_ENUM(NSUInteger, MPContentTab) {
   return self;
 }
 
-- (void)dealloc {
-  [[NSNotificationCenter defaultCenter] removeObserver:self];
-}
-
 - (NSResponder *)reconmendedFirstResponder {
   return self.view;
 }
@@ -104,6 +100,7 @@ typedef NS_ENUM(NSUInteger, MPContentTab) {
   NSTabViewItem *groupTabItem = [self.tabView tabViewItemAtIndex:MPGroupTab];
   NSView *groupTabView = groupTabItem.view;
   [groupTabView addSubview:groupView];
+    
   [groupTabView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|[groupView]|" options:0 metrics:nil views:views]];
   [groupTabView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|[groupView]|" options:0 metrics:nil views:views]];
   groupTabItem.initialFirstResponder = groupView;
@@ -111,15 +108,15 @@ typedef NS_ENUM(NSUInteger, MPContentTab) {
   [self.view layout];}
 
 - (void)registerNotificationsForDocument:(MPDocument *)document {
-  [[NSNotificationCenter defaultCenter] addObserver:self
-                                           selector:@selector(_didChangeCurrentItem:)
-                                               name:MPDocumentCurrentItemChangedNotification
-                                             object:document];
+  [NSNotificationCenter.defaultCenter addObserver:self
+                                         selector:@selector(_didChangeCurrentItem:)
+                                             name:MPDocumentCurrentItemChangedNotification
+                                           object:document];
   
-  [[NSNotificationCenter defaultCenter] addObserver:self
-                                           selector:@selector(_willChangeModelProperty:)
-                                               name:MPDocumentWillChangeModelPropertyNotification
-                                             object:document];
+  [NSNotificationCenter.defaultCenter addObserver:self
+                                         selector:@selector(_willChangeModelProperty:)
+                                             name:MPDocumentWillChangeModelPropertyNotification
+                                           object:document];
   
   self.entryViewController.observer = document;
   self.itemImageView.modelChangeObserver = document;
@@ -154,7 +151,7 @@ typedef NS_ENUM(NSUInteger, MPContentTab) {
     if(textView == self.notesTextView) {
       name = NSLocalizedString(@"NOTES", "Displayed name when notes or part of notes was copied");
     }
-    [[MPPasteBoardController defaultController] copyObjects:@[selectedString] overlayInfo:info name:name atView:self.view];
+    [MPPasteBoardController.defaultController copyObject:selectedString overlayInfo:info name:name atView:self.view];
     return NO;
   }
   return YES;

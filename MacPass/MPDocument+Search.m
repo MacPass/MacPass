@@ -44,7 +44,9 @@ NSString *const kMPDocumentSearchResultsKey           = @"kMPDocumentSearchResul
   self.searchContext = context;
   [NSNotificationCenter.defaultCenter addObserver:self selector:@selector(updateSearch:) name:NSUndoManagerDidRedoChangeNotification object:self.undoManager];
   [NSNotificationCenter.defaultCenter addObserver:self selector:@selector(updateSearch:) name:NSUndoManagerDidUndoChangeNotification object:self.undoManager];
-  //[NSNotificationCenter.defaultCenter addObserver:self selector:@selector(updateSearch:) name:NSUndoManagerDidCloseUndoGroupNotification object:self.undoManager];
+  /* Do not do this since it seems to break the undo/redo grouping completly!
+  [NSNotificationCenter.defaultCenter addObserver:self selector:@selector(updateSearch:) name:NSUndoManagerDidCloseUndoGroupNotification object:self.undoManager];
+   */
   [NSNotificationCenter.defaultCenter postNotificationName:MPDocumentDidEnterSearchNotification object:self];
   [self updateSearch:self];
 }
@@ -64,7 +66,7 @@ NSString *const kMPDocumentSearchResultsKey           = @"kMPDocumentSearchResul
   MPDocument __weak *weakSelf = self;
   dispatch_queue_t backgroundQueue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
   dispatch_async(backgroundQueue, ^{
-    NSArray *results = [weakSelf _findEntriesMatchingCurrentSearch];
+    NSArray *results = [weakSelf _findEntriesMatchingSearch:weakSelf.searchContext];
     dispatch_sync(dispatch_get_main_queue(), ^{
       [NSNotificationCenter.defaultCenter postNotificationName:MPDocumentDidChangeSearchResults object:weakSelf userInfo:@{ kMPDocumentSearchResultsKey: results }];
     });
@@ -74,7 +76,9 @@ NSString *const kMPDocumentSearchResultsKey           = @"kMPDocumentSearchResul
 - (void)exitSearch:(id)sender {
   [NSNotificationCenter.defaultCenter removeObserver:self name:NSUndoManagerDidUndoChangeNotification object:self.undoManager];
   [NSNotificationCenter.defaultCenter removeObserver:self name:NSUndoManagerDidRedoChangeNotification object:self.undoManager];
-  //[NSNotificationCenter.defaultCenter removeObserver:self name:NSUndoManagerDidCloseUndoGroupNotification object:self.undoManager];
+  /* No need to do this since we did not register in the first place see [MPDocument enterSearchWithContext:]
+  [NSNotificationCenter.defaultCenter removeObserver:self name:NSUndoManagerDidCloseUndoGroupNotification object:self.undoManager];
+   */
   self.searchContext = nil;
   [NSNotificationCenter.defaultCenter postNotificationName:MPDocumentDidExitSearchNotification object:self];
 }
@@ -98,15 +102,15 @@ NSString *const kMPDocumentSearchResultsKey           = @"kMPDocumentSearchResul
     NSAssert([sender isKindOfClass:NSMenuItem.class], @"Internal inconsitency. Did expect NSMenuItem expected, but got %@", [sender class]);
     state = ((NSMenuItem *)sender).state;
     /* Manually toggle the state since the popupbuttoncell doesn't do it like we want it to */
-    state = state == NSOnState ? NSOffState : NSOnState;
+    state = state == NSControlStateValueOn ? NSControlStateValueOff : NSControlStateValueOn;
   }
  
   switch(state) {
-    case NSOffState:
+    case NSControlStateValueOff:
       toggleFlag ^= MPEntrySearchAllCombineableFlags;
       newFlags = isSingleFlag ? MPEntrySearchNone : (self.searchContext.searchFlags & toggleFlag);
       break;
-    case NSOnState:
+    case NSControlStateValueOn:
       if(isSingleFlag ) {
         newFlags = toggleFlag; // This has to be either expired or double passwords
       }
@@ -128,9 +132,9 @@ NSString *const kMPDocumentSearchResultsKey           = @"kMPDocumentSearchResul
 }
 
 #pragma mark Search
-- (NSArray *)_findEntriesMatchingCurrentSearch {
+- (NSArray *)_findEntriesMatchingSearch:(MPEntrySearchContext *)context {
   /* Filter double passwords */
-  if(MPIsFlagSetInOptions(MPEntrySearchDoublePasswords, self.searchContext.searchFlags)) {
+  if(MPIsFlagSetInOptions(MPEntrySearchDoublePasswords, context.searchFlags)) {
     NSMutableDictionary *passwordToEntryMap = [[NSMutableDictionary alloc] initWithCapacity:100];
     /* Build up a usage map */
     for(KPKEntry *entry in self.root.searchableChildEntries) {
@@ -155,7 +159,7 @@ NSString *const kMPDocumentSearchResultsKey           = @"kMPDocumentSearchResul
     }
     return doublePasswords;
   }
-  if(MPIsFlagSetInOptions(MPEntrySearchExpiredEntries, self.searchContext.searchFlags)) {
+  if(MPIsFlagSetInOptions(MPEntrySearchExpiredEntries, context.searchFlags)) {
     NSPredicate *expiredPredicate = [NSPredicate predicateWithBlock:^BOOL(id evaluatedObject, NSDictionary *bindings) {
       KPKNode *node = evaluatedObject;
       return node.timeInfo.isExpired;
@@ -163,7 +167,7 @@ NSString *const kMPDocumentSearchResultsKey           = @"kMPDocumentSearchResul
     return [[self.root searchableChildEntries] filteredArrayUsingPredicate:expiredPredicate];
   }
   /* Filter using predicates */
-  NSArray *predicates = [self _filterPredicatesWithString:self.searchContext.searchString];
+  NSArray *predicates = [self _filterPredicatesWithString:context.searchString];
   if(predicates) {
     NSPredicate *fullFilter = [NSCompoundPredicate orPredicateWithSubpredicates:predicates];
     return [[self.root searchableChildEntries] filteredArrayUsingPredicate:fullFilter];
@@ -194,7 +198,7 @@ NSString *const kMPDocumentSearchResultsKey           = @"kMPDocumentSearchResul
     [prediactes addObject:[NSPredicate predicateWithFormat:@"SELF.notes CONTAINS[cd] %@", string]];
   }
   if(searchInAllAttributes) {
-    [prediactes addObject:[NSPredicate predicateWithFormat:@"SELF.tags CONTAINS[cd] %@", string]];
+    [prediactes addObject:[NSPredicate predicateWithFormat:@"SELF.tagsString CONTAINS[cd] %@", string]];
     [prediactes addObject:[NSPredicate predicateWithFormat:@"SELF.uuid.UUIDString CONTAINS[cd] %@", string]];
 
     NSPredicate *allAttributesPredicate = [NSPredicate predicateWithBlock:^BOOL(id  _Nullable evaluatedObject, NSDictionary<NSString *,id> * _Nullable bindings) {

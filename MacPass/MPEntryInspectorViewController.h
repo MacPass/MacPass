@@ -47,9 +47,8 @@
 @property (weak) IBOutlet NSTokenField *tagsTokenField;
 @property (weak) IBOutlet NSTextField *uuidTextField;
 
-@property (weak) IBOutlet NSTextField *createdTextField;
-@property (weak) IBOutlet NSTextField *modifiedTextField;
 @property (weak) IBOutlet MPContextButton *addCustomFieldButton;
+@property (strong) IBOutlet NSStackView *fieldsStackView;
 
 /* Attachments */
 @property (weak) IBOutlet NSButtonCell *addAttachmentButton;
@@ -59,6 +58,11 @@
 /* Custom Fields */
 @property (strong) IBOutlet NSTableView *customFieldsTableView;
 @property (weak) IBOutlet NSButton *showCustomDataButton;
+
+/* TOTP */
+@property (strong) IBOutlet NSProgressIndicator *totpProgressIndicator;
+@property (strong) IBOutlet NSTextField *totpLabelTextField;
+@property (strong) IBOutlet NSTextField *totpCodeTextField;
 
 /* Autotype */
 @property (strong) IBOutlet NSView *autotypView;
@@ -80,6 +84,7 @@
 - (IBAction)showPasswordGenerator:(id)sender;
 - (IBAction)showReferenceBuilder:(id)sender;
 - (IBAction)showAutotypeBuilder:(id)sender;
+- (IBAction)showOTPSetup:(id)sender;
 
 - (IBAction)saveAttachment:(id)sender;
 - (IBAction)addAttachment:(id)sender;
@@ -93,4 +98,5 @@
 
 - (IBAction)toggleQuicklookPreview:(id)sender;
 - (IBAction)toggleExpire:(NSButton*)sender;
+
 @end

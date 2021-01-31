@@ -25,7 +25,7 @@
 @class DDHotKey;
 @class KPKEntry;
 @class MPAutotypeContext;
-@class MPAutotypeExecutionContext;
+@class MPAutotypeEnvironment;
 /**
  *  The autotype daemon is responsible for registering the global hotkey and to perform any autotype actions
  */
@@ -40,7 +40,7 @@
 
 - (void)performAutotypeForEntry:(KPKEntry *)entry;
 - (void)performAutotypeForEntry:(KPKEntry *)entry overrideSequence:(NSString *)sequence;
-- (void)selectAutotypeCandiate:(MPAutotypeContext *)context;
-- (void)cancelAutotypeCandidateSelection;
+- (void)selectAutotypeContext:(MPAutotypeContext *)context forEnvironment:(MPAutotypeEnvironment *)environment;
+- (void)cancelAutotypeContextSelectionForEnvironment:(MPAutotypeEnvironment *)environment;
 
 @end

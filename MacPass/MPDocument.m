@@ -45,7 +45,7 @@
 NSString *const MPDocumentDidAddGroupNotification             = @"com.hicknhack.macpass.MPDocumentDidAddGroupNotification";
 NSString *const MPDocumentDidAddEntryNotification             = @"com.hicknhack.macpass.MPDocumentDidAddEntryNotification";
 
-NSString *const MPDocumentDidRevertNotifiation                = @"com.hicknhack.macpass.MPDocumentDidRevertNotifiation";
+NSString *const MPDocumentDidRevertNotification               = @"com.hicknhack.macpass.MPDocumentDidRevertNotification";
 
 NSString *const MPDocumentDidLockDatabaseNotification         = @"com.hicknhack.macpass.MPDocumentDidLockDatabaseNotification";
 NSString *const MPDocumentDidUnlockDatabaseNotification       = @"com.hicknhack.macpass.MPDocumentDidUnlockDatabaseNotification";
@@ -147,6 +147,10 @@ NSString *const MPDocumentGroupKey                            = @"MPDocumentGrou
   [self addWindowController:windowController];
 }
 
+- (BOOL)canAsynchronouslyWriteToURL:(NSURL *)url ofType:(NSString *)typeName forSaveOperation:(NSSaveOperationType)saveOperation {
+  return YES;
+}
+
 - (BOOL)checkAutosavingSafetyAndReturnError:(NSError **)outError {
   if(![super checkAutosavingSafetyAndReturnError:outError]) {
     return NO; // default checking has found an error!
@@ -155,7 +159,7 @@ NSString *const MPDocumentGroupKey                            = @"MPDocumentGrou
   if(self.encryptedData) {
     return YES;
   }
-  if(self.compositeKey.hasPasswordOrKeyFile) {
+  if(self.compositeKey.hasKeys) {
     return YES; // key is set, so autosave should be save
   }
   
@@ -186,7 +190,7 @@ NSString *const MPDocumentGroupKey                            = @"MPDocumentGrou
     NSLog(@"%@ should not be called on locked databases!", NSStringFromSelector(_cmd));
     return self.encryptedData;
   }
-  if(!self.compositeKey.hasPasswordOrKeyFile) {
+  if(!self.compositeKey.hasKeys) {
     if(outError != NULL) {
       NSDictionary *userInfo = @{ NSLocalizedDescriptionKey: NSLocalizedString(@"WARNING_ON_SAVE_NO_PASSWORD_OR_KEY_SET", "") };
       *outError = [NSError errorWithDomain:MPDefaultErrorDomain code:0 userInfo:userInfo];
@@ -202,7 +206,15 @@ NSString *const MPDocumentGroupKey                            = @"MPDocumentGrou
     }
     return nil; // We do not know what version to save!
   }
-  return [self.tree encryptWithKey:self.compositeKey format:format error:outError];
+  // create a copy to allow for unblocking user interaction
+  NSLog(@"Copying tree to save…");
+  KPKTree *copy = [self.tree copy];
+  NSLog(@"Created copy…");
+  [self unblockUserInteraction];
+  NSLog(@"Starting encryption…");
+  NSData *data = [copy encryptWithKey:self.compositeKey format:format error:outError];
+  NSLog(@"Finished encryption…");
+  return data;
 }
 
 - (BOOL)readFromURL:(NSURL *)url ofType:(NSString *)typeName error:(NSError **)outError {
@@ -216,7 +228,7 @@ NSString *const MPDocumentGroupKey                            = @"MPDocumentGrou
 
 - (BOOL)revertToContentsOfURL:(NSURL *)absoluteURL ofType:(NSString *)typeName error:(NSError **)outError {
   if([super revertToContentsOfURL:absoluteURL ofType:typeName error:outError]) {
-    [[NSNotificationCenter defaultCenter] postNotificationName:MPDocumentDidRevertNotifiation object:self];
+    [[NSNotificationCenter defaultCenter] postNotificationName:MPDocumentDidRevertNotification object:self];
     return YES;
   }
   return NO;
@@ -295,7 +307,7 @@ NSString *const MPDocumentGroupKey                            = @"MPDocumentGrou
         return;
       }
       NSAlert *alert = [[NSAlert alloc] init];
-      alert.alertStyle = NSWarningAlertStyle;
+      alert.alertStyle = NSAlertStyleWarning;
       alert.messageText = NSLocalizedString(@"FILE_CHANGED_BY_OTHERS_MESSAGE_TEXT", @"Message displayed when an open file was changed from another application");
       alert.informativeText = NSLocalizedString(@"FILE_CHANGED_BY_OTHERS_INFO_TEXT", @"Informative text displayed when the file was change from another application");
       alert.showsSuppressionButton = YES;
@@ -369,7 +381,7 @@ NSString *const MPDocumentGroupKey                            = @"MPDocumentGrou
   
   if(mergeKDB) {
     NSAlert *alert = [[NSAlert alloc] init];
-    alert.alertStyle = NSWarningAlertStyle;
+    alert.alertStyle = NSAlertStyleWarning;
     alert.messageText = NSLocalizedString(@"ALERT_MERGE_KDB_FILE_MESSAGE", @"Alert message warning user about KDB file merge");
     alert.informativeText = NSLocalizedString(@"ALERT_MERGE_KDB_FILE_INFO_TEXT", @"Informative text displayed when merging KDB files");
     [alert addButtonWithTitle:NSLocalizedString(@"ALERT_MERGE_CONTINUE", @"Button in dialog to merge KDB changes into file!")];
@@ -421,7 +433,9 @@ NSString *const MPDocumentGroupKey                            = @"MPDocumentGrou
                                           [self.windowForSheet endSheet:sheet returnCode:(didCancel ? NSModalResponseCancel : NSModalResponseOK)];
                                           if(!didCancel) {
                                             NSData *keyFileData = keyURL ? [NSData dataWithContentsOfURL:keyURL] : nil;
-                                            KPKCompositeKey *compositeKey = [[KPKCompositeKey alloc] initWithPassword:password keyFileData:keyFileData];
+                                            KPKCompositeKey *compositeKey = [[KPKCompositeKey alloc] init];
+                                            [compositeKey addKey:[KPKKey keyWithPassword:password]];
+                                            [compositeKey addKey:[KPKKey keyWithKeyFileData:keyFileData]];
                                             [self _mergeWithContentsFromURL:url key:compositeKey options:options];
                                           }
                                           // just return yes regardless since we will display the sheet again if needed!
@@ -490,7 +504,10 @@ NSString *const MPDocumentGroupKey                            = @"MPDocumentGrou
 - (BOOL)unlockWithPassword:(NSString *)password keyFileURL:(NSURL *)keyFileURL error:(NSError *__autoreleasing*)error{
   // TODO: Make this API asynchronous
   NSData *keyFileData = keyFileURL ? [NSData dataWithContentsOfURL:keyFileURL] : nil;
-  self.compositeKey = [[KPKCompositeKey alloc] initWithPassword:password keyFileData:keyFileData];
+  
+  self.compositeKey = [[KPKCompositeKey alloc] init];
+  [self.compositeKey addKey:[KPKKey keyWithPassword:password]];
+  [self.compositeKey addKey:[KPKKey keyWithKeyFileData:keyFileData]];
   self.tree = [[KPKTree alloc] initWithData:self.encryptedData key:self.compositeKey error:error];
   
   BOOL isUnlocked = (nil != self.tree);
@@ -510,17 +527,15 @@ NSString *const MPDocumentGroupKey                            = @"MPDocumentGrou
 
 - (BOOL)changePassword:(NSString *)password keyFileURL:(NSURL *)keyFileURL {
   /* sanity check? */
-  if([password length] == 0 && keyFileURL == nil) {
+  if(password.length == 0 && keyFileURL == nil) {
     return NO;
   }
   NSData *keyFileData = keyFileURL ? [NSData dataWithContentsOfURL:keyFileURL] : nil;
-  if(!self.compositeKey) {
-    self.compositeKey = [[KPKCompositeKey alloc] initWithPassword:password keyFileData:keyFileData];
-  }
-  else {
-    [self.compositeKey setPassword:password andKeyFileData:keyFileData];
-  }
-  self.tree.metaData.masterKeyChanged = [NSDate date];
+  self.compositeKey = [[KPKCompositeKey alloc] init];
+  [self.compositeKey addKey:[KPKKey keyWithPassword:password]];
+  [self.compositeKey addKey:[KPKKey keyWithKeyFileData:keyFileData]];
+  
+  self.tree.metaData.masterKeyChanged = NSDate.date;
   /* Key change is not undoable so just recored the change as done */
   [self updateChangeCount:NSChangeDone];
   /*
@@ -751,7 +766,7 @@ NSString *const MPDocumentGroupKey                            = @"MPDocumentGrou
 #pragma mark Actions
 - (void)emptyTrash:(id)sender {
   NSAlert *alert = [[NSAlert alloc] init];
-  alert.alertStyle = NSWarningAlertStyle;
+  alert.alertStyle = NSAlertStyleWarning;
   alert.messageText = NSLocalizedString(@"WARNING_ON_EMPTY_TRASH_TITLE", "Message text for the alert displayed when clearing the Trash");
   alert.informativeText = NSLocalizedString(@"WARNING_ON_EMPTY_TRASH_DESCRIPTION", "Informative Text displayed when clearing the Trash");
   
@@ -770,7 +785,7 @@ NSString *const MPDocumentGroupKey                            = @"MPDocumentGrou
   KPKEntry *entry = node.asEntry;
   
   NSAlert *alert = [[NSAlert alloc] init];
-  alert.alertStyle = NSWarningAlertStyle;
+  alert.alertStyle = NSAlertStyleWarning;
   alert.messageText = NSLocalizedString(@"WARNING_ON_DELETE_TRASHED_NODE_TITLE", "Message text for the alert displayed when deleting a node");
   alert.informativeText = NSLocalizedString(@"WARNING_ON_DELETE_TRASHED_NODE_DESCRIPTION", "Informative Text displayed when clearing the Trash");
   
@@ -952,7 +967,7 @@ NSString *const MPDocumentGroupKey                            = @"MPDocumentGrou
     /* user has removed the keyfile or we should not safe it so remove it */
     [keysForFiles removeObjectForKey:self.fileURL.path.sha1HexDigest];
   }
-  else if(self.compositeKey.hasPassword && self.compositeKey.hasKeyFile) {
+  else if([self.compositeKey hasKeyOfClass:KPKPasswordKey.class] && [self.compositeKey hasKeyOfClass:KPKFileKey.class]) {
     if(nil == keysForFiles) {
       keysForFiles = [[NSMutableDictionary alloc] initWithCapacity:1];
     }

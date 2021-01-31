@@ -1,0 +1,825 @@
+/* Count of characters remaining in pickchars dialog */
+"%ld_CHARACTERS_TO_PICK_REMAINING" = "%ld characters to pick remaining";
+
+/* Display format for days. Should contain a long decimal placeholder! */
+"%ld_DAYS" = "%ld дні(в)";
+
+/* % days ago */
+"%ld_DAYS_AGO" = "%ld днів тому";
+
+/* % Hours ago */
+"%ld_HOURS_AGO" = "близько %ld годин тому";
+
+/* % Minutes ago */
+"%ld_MINUTES_AGO" = "%ld хвилин тому";
+
+/* % Weeks ago */
+"%ld_WEEKS_AGO" = "%ld тижні(в) тому";
+
+/* preset to expire after 90 days from now */
+"90_DAYS" = "через 90 днів";
+
+/* Button label to abort a merge on a file with changed master key! */
+"ABORT_MERGE_KEEP_MINE" = "Зупини злиття. Залишити моє.";
+
+/* Toolbar item with action menu */
+"ACTION" = "Дія";
+
+/* Menu item title for adding an hmacotp config attribute */
+"ADD_CUSTOM_ATTRIBUTE_HMACOTP_CONFIG" = "Додати конфігурацію HMACOTP";
+
+/* Menu item title for adding an hmacotp seed attribute */
+"ADD_CUSTOM_ATTRIBUTE_HMACOTP_SEED" = "Додати сід HMACOTP";
+
+/* Menu displayed for adding special custom keys */
+"ADD_CUSTOM_FIELD_CONTEXT_MENU" = "Меню додавання користувацьких полів";
+
+/* Action to add an entry via template */
+"ADD_TREMPLATE_ENTRY" = "Створити шаблонний запис";
+
+/* Allow the download of the plugin repository file */
+"ALERT_ASK_FOR_PLUGIN_REPOSITORY_ALLOW_DOWNLOAD" = "Дозволити оновлення списку";
+
+/* Informative text displayed on the alert that shows up when MacPass asks for permssion to download the plugin repository JSON file */
+"ALERT_ASK_FOR_PLUGIN_REPOSITORY_CONNECTION_PERMISSION_INFORMATIVE_TEXT" = "Інформація про плагіни знаходиться на сайті https://macpassapp.org. MacPass скачає файли для перевірки наявності оновлень.";
+
+/* Message displayed on the alert that askf for permission to download the plugin repository JSON file */
+"ALERT_ASK_FOR_PLUGIN_REPOSITORY_CONNECTION_PERMISSION_MESSAGE" = "MacPass хоче перевіряти наявність оновлень плагінів";
+
+/* Disallow the download of the plugin repository file */
+"ALERT_ASK_FOR_PLUGIN_REPOSITORY_DISALLOW_DOWNLOAD" = "Не оновлювати";
+
+/* Button in dialog to leave plugin ds disabled and continiue! */
+"ALERT_INCOMPATIBLE_PLUGINS_ENCOUNTERED_BUTTON_OK" = "Лишити відключеним";
+
+/* Button in dialog to open plugin preferences pane! */
+"ALERT_INCOMPATIBLE_PLUGINS_ENCOUNTERED_BUTTON_OPEN_PREFERENCES" = "Відкрити налаштування";
+
+/* Informative text of the alert displayed when plugins where disabled due to incompatibilty */
+"ALERT_INCOMPATIBLE_PLUGINS_ENCOUNTERED_INFORMATIVE_TEXT" = "Деякі плагіни було відключено, оскільки вони не сумісні з цією версією MacPass. Відкрийте налаштування плагіна для деталей.";
+
+/* Message text of the alert displayed when plugins where disabled due to incompatibilty */
+"ALERT_INCOMPATIBLE_PLUGINS_ENCOUNTERED_MESSAGE" = "Incompatible Plugins detected.";
+
+/* Alert informative text when plugins or their settings change and require a restart */
+"ALERT_INFORMATIVE_TEXT_PLUGINS_CHANGED_SUGGEST_RESTART" = "Changes to plugins and global plugin settings take only effect after restart. Restart MacPass now?";
+
+/* Alert informative text to ask the user if he really want to uninstall the plugin */
+"ALERT_INFORMATIVE_TEXT_REALLY_UNINSTALL_PLUGIN" = "Плагін буде переміщений до кошика.";
+
+/* Button in dialog to cancel merge of KDB file changes! */
+"ALERT_MERGE_CANCEL" = "Скасувати";
+
+/* Button in dialog to merge KDB changes into file! */
+"ALERT_MERGE_CONTINUE" = "Злити файли";
+
+/* Informative text displayed when merging KDB files */
+"ALERT_MERGE_KDB_FILE_INFO_TEXT" = "KDB бази не містять достатньо інформації для безшовного злиття. Записи будуть об’єднані і дані не будуть втрачені, проте оскільки групи порівнюються лише за назвами, можуть відбутися неочікувані зміни. Переміщені записи можна повернути назад до їх старої групи або ж переіменовані групи не будуть злиті. Також видалені записи можуть знову з’явитись через відсутність інформації про їх видалений стан. Ви впевнені, що хочете продовжити?";
+
+/* Alert message warning user about KDB file merge */
+"ALERT_MERGE_KDB_FILE_MESSAGE" = "Необхідне злиття KDB файлів";
+
+/* Alert message text when plugins or their settings change and require a restart */
+"ALERT_MESSAGE_PLUGINS_CHANGED_SUGGEST_RESTART" = "Змінились налаштування плагіна. Перезапустіть програму, будь ласка.";
+
+/* Alert message text to ask the user if he really want to uninstall the plugin. Include %@ placeholder for plugin name */
+"ALERT_MESSAGE_TEXT_REALLY_UNINSTALL_PLUGIN_%@" = "Плагін %@ справді треба видалити?";
+
+/* Informative text of the disabled updates alert! */
+"ALERT_UPDATES_DISABLED_INFORMATIVE_TEXT_%@!" = "Оновлення цієї збірки %@ відключені!";
+
+/* Message text for disabled updates alert! */
+"ALERT_UPDATES_DISABLED_MESSAGE_TEXT" = "Оновлення відключені";
+
+/* Attachments column title (shows counts)
+   Menu item to toggle display of attachment count column in entry table */
+"ATTACHMENTS" = "Прикріплені файли";
+
+/* Sucessfully merged external changes */
+"AUTO_MERGE_NOTIFICATION_TEXT" = "Автоматичне злиття завершилось успішно";
+
+/* Menu item for automatic trash creation */
+"AUTOCREATE_TRASH_FOLDER" = "Створити автоматично";
+
+/* Message text in the autotype selection window. Placeholder is %1 - windowTitle */
+"AUTOTYPE_CANDIDATE_SELECTION_WINDOW_MESSAGE_%@" = " Знайдено кілька співпадінь для поточного вікна: %@. Виберіть вікно, яке вікно задіяти.";
+
+/* Window title for the stand-alone password creator window */
+"AUTOTYPE_DOCTOR_RESULTS_WINDOW_TITLE" = "Помічник автоматичного введення";
+
+/* Inherit autotype settings menu item */
+"AUTOTYPE_INHERIT" = "Наслідувати налаштування автовведення";
+
+/* Message displayed to the user to unlock the database to perform global autotype */
+"AUTOTYPE_MESSAGE_UNLOCK_DATABASE" = "Будь ласка, розблокуйте базу для використання глобального автовведення";
+
+/* Disable autotype menu item */
+"AUTOTYPE_NO" = "Відключити автовведення";
+
+/* Notification: Autotype failed, MacPass has not enough permissions to perform autotype */
+"AUTOTYPE_NOTIFICATION_MACPASS_IS_MISSING_PERMISSIONS" = "У MacPass недостатньо дозволів для задіяння автовведення.";
+
+/* Notification: Autotype failed, no documents are open */
+"AUTOTYPE_OVERLAY_NO_DOCUMENTS" = "Будь ласка, відкрийте файл бази для задіяння глобального автовведення";
+
+/* Noticiation: Autotype failed to find a match for %@ (string placeholder) */
+"AUTOTYPE_OVERLAY_NO_MATCH_FOR_%@" = "Нема співпадінь %@!";
+
+/* Notification: Autotype found a single match for %@ (string placeholder). */
+"AUTOTYPE_OVERLAY_SINGLE_MATCH_FOR_%@" = "Знайдено співпадіння %@!";
+
+/* Status label when no issue were found in accessibilty */
+"AUTOTYPE_STATUS_ACCESSIBILTY_PERMISSIONS_OK" = "У MacPass є досвіл контролювати ваш комп’ютер";
+
+/* Status MacPass has no accessibilty permissions */
+"AUTOTYPE_STATUS_NO_ACCESSIBILTY_PERMISSIONS" = "У MacPass нема дозволу контролювати ваш комп’ютер";
+
+/* Status MacPass has no screen recording permissions */
+"AUTOTYPE_STATUS_NO_SCREEN_RECORDING_PERMISSIONS" = "У MacPass нема дозволу на запис екрана";
+
+/* Status lable when no issue were found in screen recording permissions */
+"AUTOTYPE_STATUS_SCREEN_RECORDING_PERMISSIONS_OK" = "У MacPass є дозвіл записувати екран";
+
+/* Notficication: Autotype timed out */
+"AUTOTYPE_TIMED_OUT" = "Вийшов час на автоматичне введення";
+
+/* Enable autotype menu item */
+"AUTOTYPE_YES" = "Включити автовведення";
+
+/* Cancel */
+"CANCEL" = "Скасувати";
+
+/* Menu item in the database outline context menu to change the database name */
+"CHANGE_DATABASE_NAME" = "Змінити ім’я бази";
+
+/* Button to postpone the password change */
+"CHANGE_LATER" = "Змінити пізніше";
+
+/* Button to show the password change dialog
+   Single button to show the password change dialog */
+"CHANGE_PASSWORD_WITH_DOTS" = "Змінити пароль…";
+
+/* Menu item in the database outline context menu to change the trash group */
+"CHANGE_TRASH_GROUP" = "Змінити групу кошика";
+
+/* Button title in the key file selection dialog for selecting a key */
+"CHOOSE_FILE_BUTTON_TITLE" = "Відкрити";
+
+/* Clear Autotype Button */
+"CLEAR_AUTOTYPE" = "Очистити автовведення";
+
+/* Menu to clear recent searches */
+"CLEAR_RECENT_SEARCHES" = "Очистити недавні запити пошуку";
+
+/* String displayed at dock badge when clipboard is about to be cleared */
+"CLEARING_PASTEBOARD" = "Очищено";
+
+/* Field name that was copied to the pasteboard */
+"COPIED_FIELD_%@" = "Скопійовано %@";
+
+/* Context menu that copies reference to note */
+"COPIED_NOTES_REFERENCE" = "Посилання на примітку скопійовано";
+
+/* Password was copied to the pasteboard */
+"COPIED_PASSWORD" = "Пароль скопійовано";
+
+/* Context menu that copies reference to password */
+"COPIED_PASSWORD_REFERENCE" = "Посилання на пароль скопійовано";
+
+/* Context menu that copies reference to title */
+"COPIED_TITLE_REFERENCE" = "Посиланна на назву скопійовано";
+
+/* URL was copied to the pasteboard */
+"COPIED_URL" = "URL скопійовано";
+
+/* Context menu that copies reference to URL */
+"COPIED_URL_REFERENCE" = "Посилання на URL скопійовано";
+
+/* Username was copied to the pasteboard */
+"COPIED_USERNAME" = "Ім’я користувача скопійовано";
+
+/* Context menu that copies reference to username */
+"COPIED_USERNAME_REFERENCE" = "Посилання на ім’я користувача скопійовано";
+
+/* Submenu to copy attributes as reference */
+"COPY_AS_REFERENCE" = "Копіювати посилання на…";
+
+/* Context menu sub-menu to copy attributes as reference */
+"COPY_AS_REFERENCE_MENU" = "Копіювати посилання на…";
+
+/* Submenu to Copy custom fields */
+"COPY_CUSTOM_FIELDS" = "Копіювати поля";
+
+/* Context menu sub-menu to copy custom fields to clipboard */
+"COPY_CUSTOM_FIELDS_MENU" = "Копіювати користувацьке поле…";
+
+/* Action name when an entry was moved
+   Action title for copying an entry via drag and drop */
+"COPY_ENTRY" = "Копіювати запис";
+
+/* Mask for title to copy field value */
+"COPY_FIELD_%@" = "Копіювати %@";
+
+/* Action title for copying a group via drag and drop */
+"COPY_GROUP" = "Копіювати групу";
+
+/* Context menu that copies reference to note */
+"COPY_NOTES_REFERENCE" = "Примітки";
+
+/* Menu item to copy the password of an entry
+   Toolbar item copy password */
+"COPY_PASSWORD" = "Копіювати пароль";
+
+/* Context menu that copies reference to password */
+"COPY_PASSWORD_REFERENCE" = "Пароль";
+
+/* Context menu that copies reference to title */
+"COPY_TITLE_REFERENCE" = "Назва";
+
+/* Menu item to copy the URL of an entry */
+"COPY_URL" = "Копіювати URL";
+
+/* Context menu that copies reference to URL */
+"COPY_URL_REFERENCE" = "URL";
+
+/* Menu item to copy the username of an entry
+   Toolbar item copy username */
+"COPY_USERNAME" = "Копіювати ім’я користувача";
+
+/* Context menu that copies reference to username */
+"COPY_USERNAME_REFERENCE" = "Ім’я користувача";
+
+/* Custom attribute reference item */
+"CUSTOM_ATTRIBUTE" = "Користувацький атрибут";
+
+/* Title for menu for custom search filters */
+"CUSTOM_SEARCH_FILTER_MENU" = "Користувацький пошуковий фільтр…";
+
+/* Default display name for KDB databases */
+"DATABASE" = "База даних";
+
+/* Default Browser */
+"DEFAULT_BROWSER" = "Стандарний браузер";
+
+/* Default Titel for new Custom-Fields */
+"DEFAULT_CUSTOM_FIELD_TITLE" = "Користувацьке поле";
+
+/* Default Value for new Custom-Fields */
+"DEFAULT_CUSTOM_FIELD_VALUE" = "Значення";
+
+/* Title for a newly created entry */
+"DEFAULT_ENTRY_TITLE" = "Новий запис";
+
+/* Title for a newly created group */
+"DEFAULT_GROUP_NAME" = "Нова група";
+
+/* Default window title for a new window association */
+"DEFAULT_WINDOW_TITLE" = "Заголовок вікна";
+
+/* Menu item in the database outline context menu to delete the node from the trash
+   Menu item to delete an entry
+   Menu item to delete the selected attached file
+   Menu item to delete the selected custom icon
+   Toolbar item delete item */
+"DELETE" = "Видалити";
+
+/* Delete Entry */
+"DELETE_ENTRY" = "Видалити запис";
+
+/* Delete Group */
+"DELETE_GROUP" = "Видалити групу";
+
+/* Empty Trash */
+"DELETE_TRASHED_ENTRY" = "Видалити запис з кошика";
+
+/* Empty Trash */
+"DELETE_TRASHED_GROUP" = "Видалити групу з кошика";
+
+/* Action title for copying an entry via drag and drop to another database
+   Action title for moving an entry via drag and drop */
+"DRAG_ENTRY" = "Перетягнути запис";
+
+/* Action title for moving a group via drag and drop
+   Actiontitle for copying groups via drag and drop to antother database */
+"DRAG_GROUP" = "Перетягнути групу";
+
+/* Action name for duplicating entries */
+"DUPLICATE_ENTRIES_ACTION_NAME" = "Дублювати записи";
+
+/* Menu item to directly diplicate an entry */
+"DUPLICATE_ENTRY" = "Дублювати запис";
+
+/* Menu item to duplicate an entry with options how to duplicate. Will present a dialog. */
+"DUPLICATE_ENTRY_WITH_OPTIONS" = "Дублювати запис вибірково…";
+
+/* Menu item to directly diplicate a group */
+"DUPLICATE_GROUP" = "Дублювати групу";
+
+/* Action name for duplicating groups */
+"DUPLICATE_GROUPS_ACTION_NAME" = "Дублювати групу";
+
+/* Menu item in the database outline context menu to change the template group
+   Menu item on the add entry context menu to edit template groups */
+"EDIT_TEMPLATE_GROUP" = "Змінити групу шаблона";
+
+/* Empty Trash
+   Menu item in the database outline context menu to empyt the trash
+   Menu item in the database outline to empty the trash
+   Menu item to empty the trash */
+"EMPTY_TRASH" = "Очистити кошик";
+
+/* Informative text for the enforce password change alert */
+"ENFORCE_PASSWORD_CHANGE_ALERT_DESCRIPTION" = "Ви не можете нічого зберегти, доки не зміните пароль бази або файл ключа";
+
+/* Message text for the enforce password change alert */
+"ENFORCE_PASSWORD_CHANGE_ALERT_TITLE" = "Час дії пароля бази минув";
+
+/* Group row for entry attributes */
+"ENTRY_CUSTOM_ATTRIBUTES" = "Користувацькі атрибути";
+
+/* Group row for entry attributes */
+"ENTRY_DEFAULT_ATTRIBUTES" = "Атрибути по замовчуванню";
+
+/* Tooltip displayed on the index header cell */
+"ENTRY_INDEX_COLUMN_TOOLTIP" = "Вибрана користувачем колонка для сортування";
+
+/* Keyfile not valid */
+"ERROR_INVALID_KEYFILE" = "Помилковий файл ключа!";
+
+/* Error description given when adding an invalid plugin */
+"ERROR_INVALID_PLUGIN" = "Недійсний плагін";
+
+/* Error description for missing accessibility permissions */
+"ERROR_NO_ACCESSIBILTY_PERMISSIONS" = "У MacPass нема дозволу контролювати цей комп’ютер";
+
+/* Error description for missing screen recording permissions */
+"ERROR_NO_PERMISSION_TO_RECORD_SCREEN" = "У MacPass нема дозволу запсиувати екран";
+
+/* Passwords do not match */
+"ERROR_PASSWORD_MISSMATCH" = "Паролі не співпадають";
+
+/* Passwords do not match, keyfile is invalid */
+"ERROR_PASSWORD_MISSMATCH_INVALID_KEYFILE" = "Паролі не співпадають і помилковий файл ключа";
+
+/* Recommend/Enforce key change intervall format */
+"EVERY_%ld_DAYS" = "Кожні %ld дні";
+
+/* Format to returen the date an item expires. Includes %@ placehoder for date */
+"EXPIRES_AT_DATE_%@" = "Спливає: %@";
+
+/* The master key was changed by an external program! */
+"EXTERN_CHANGE_OF_MASTERKEY" = "Майстер-ключ було мінено іншою програмою";
+
+/* Direct download */
+"FAVICON_DOWNLOAD_METHOD_DIRECT" = "Пряме завантаження";
+
+/* DuckDuckGo */
+"FAVICON_DOWNLOAD_METHOD_DUCKDUCKGO" = "DuckDuckGo";
+
+/* Google */
+"FAVICON_DOWNLOAD_METHOD_GOOGLE" = "Google";
+
+/* External file change strategy option: ask what to do */
+"FILE_CHANGE_STRATEGY_ASK" = "Запитати";
+
+/* External file change strategy option: Keep local file an ignore external changes */
+"FILE_CHANGE_STRATEGY_KEEP_MINE" = "Зберегти мою версію та ігнорувати інші зміни";
+
+/* Button in dialog to merge changes into file!
+   External file change strategy option: Merge external changes into local file. */
+"FILE_CHANGE_STRATEGY_MERGE" = "Злити зміни";
+
+/* External file change strategy option: Use the changed file and discard local changes */
+"FILE_CHANGE_STRATEGY_USE_OTHER" = "Перечитати змінену версію та забути мої зміни";
+
+/* Informative text displayed when the file was change from another application */
+"FILE_CHANGED_BY_OTHERS_INFO_TEXT" = "Поточна база відрізняється від тої, що на диску. Що будемо робити?";
+
+/* Message displayed when an open file was changed from another application */
+"FILE_CHANGED_BY_OTHERS_MESSAGE_TEXT" = "Файл бази змінений!";
+
+/* Error while reopening last known documents */
+"FILE_OPEN_ERROR" = "Помилка відкривання файла.";
+
+/* General Settings Label */
+"GENERAL_PREFERENCES" = "Загальні";
+
+/* Group column title */
+"GROUP" = "Група";
+
+/* History count column title
+   Menu item to toggle display of history count column in entry table */
+"HISTORY" = "Історія";
+
+/* Imports a dragged URL for a new entry */
+"IMPORT_URL" = "Імпортувати з URL";
+
+/* Toolbar item toggle inspector */
+"INSPECTOR" = "Інспектор";
+
+/* Label for the integration settings tab */
+"INTEGRATION_SETTINGS" = "Інтеграція";
+
+/* Just now */
+"JUST_NOW" = "Щойно";
+
+/* Feature only available in kdbx databases */
+"KDBX_ONLY_FEATURE" = "Функція не підтримується у базі KDB";
+
+/* Button in dialog to ignore the changes to an open file! */
+"KEEP_MINE_DISCARD_OTHER" = "Взяти мої, відкинути інші";
+
+/* Button in dialog to reopen the file! */
+"KEEP_OTHER_DISCARD_MINE" = "Взяти інші, відкинути мої";
+
+/* Do not install the plugin */
+"KEEP_PLUGIN" = "Лишити плагін";
+
+/* Do not restart MacPass */
+"KEEP_RUNNING" = "Лишити запущеним";
+
+/* last week */
+"LAST_WEEK" = "Минулого тижня";
+
+/* Toolbar item to Lock the database */
+"LOCK" = "Замкнути";
+
+/* Message in the open panel to add attachments to an entry */
+"MESSAGE_ADD_ATTACHMENT_OPEN_PANEL" = "Виберіть файл для прикріплення";
+
+/* Message in the add plugin open panel */
+"MESSAGE_ADD_PLUGIN_OPEN_PANEL" = "Виберіть плагін для встановлення";
+
+/* Message in the open panel to import an XML file */
+"MESSAGE_XML_OPEN_PANEL" = "Виберіть XML файл для імпорту";
+
+/* Menu item to toggle display of modified date column in entry table
+   Modification date column title */
+"MODIFIED" = "Дата зміни";
+
+/* Action name when an entry was moved */
+"MOVE_ENTRY" = "Перемістити запис";
+
+/* Menu displayed as popup selection for search options when multiple items are selected */
+"MULTIPLE_FILTERS_ACTIVE_WITH_DOTS" = "Кілька…";
+
+/* Name for a newly created Database */
+"NEW_DATABASE" = "Нова база";
+
+/* Action name for a newly created entry
+   Menu item to create a new entry
+   Toolbar item new entry */
+"NEW_ENTRY" = "Додати запис";
+
+/* Submenu to add an entry via template */
+"NEW_ENTRY_WITH_TEMPLATE_%@" = "Створити запис із шаблона %@";
+
+/* Action name for a newly created group
+   Menu item to create a new group
+   Toolbar item new group */
+"NEW_GROUP" = "Нова група";
+
+/* Expiration date format, when item does not expire */
+"NO_EXPIRE_DATE_SET" = "Не спливає ніколи.";
+
+/* Menu item to reset the template groups */
+"NO_TEMPLATE_GROUP" = "Нема шаблонів";
+
+/* Menu item added to show that no templates are defined */
+"NO_TEMPLATES" = "Шаблонів не знайдено";
+
+/* Null placeholder for item input field
+   Placeholder text for input fields if no entry or group is selected */
+"NONE" = "Нема";
+
+/* Displayed name when notes or part of notes was copied
+   Menu item to toggle display of notes column in entry table
+   Notes column title
+   Notes reference item */
+"NOTES" = "Примітки";
+
+/* Ok Button to dismiss disabled updates alert */
+"OK" = "OK";
+
+/* preset to expire after one montch from now */
+"ONE_MONTH" = "через один місяць";
+
+/* preset to expire after one week from now */
+"ONE_WEEK" = "через один тиждень";
+
+/* one week ago */
+"ONE_WEEK_AGO" = "Один тиждень тому";
+
+/* preset to expire after one year from now */
+"ONE_YEAR" = "через один рік";
+
+/* Open button in the open panel to add attachments to an entry */
+"OPEN_BUTTON_ADD_ATTACHMENT_OPEN_PANEL" = "Прикріпити";
+
+/* Open button in the add plugin open panel */
+"OPEN_BUTTON_ADD_PLUGIN_OPEN_PANEL" = "Встановити";
+
+/* Open button in the open panel to import an XML file */
+"OPEN_BUTTON_IMPORT_XML_OPEN_PANEL" = "Імпортувати";
+
+/* Action button in Notification to open a document */
+"OPEN_DOCUMENT" = "Відкрити документ";
+
+/* Menu item to open the URL with the default application */
+"OPEN_URL" = "Відкрити URL";
+
+/* Select Browser */
+"OTHER_BROWSER" = "Вибрати браузер…";
+
+/* No comment provided by engineer. */
+"OUTPUT_VALUE" = "Вихідне значення";
+
+/* Menu item to toggle display of password column in entry table
+   Password column title
+   Password reference item */
+"PASSWORD" = "Пароль";
+
+/* Window title for the stand-alone password creator window */
+"PASSWORD_CREATOR_WINDOW_TITLE" = "Генератор паролів";
+
+/* Button to reset the password defaults for a single entry */
+"PASSWORD_GENERATOR_RESET_ENTRY_DEFAULTS" = "Скинути";
+
+/* Button to set the defaults of the password generator */
+"PASSWORD_GENERATOR_SET_DEFAULTS" = "Задати по замовчуванню";
+
+/* Placeholder for the password field to aks for password
+   Placeholder in the unlock-password input field if password is enabled */
+"PASSWORD_INPUT_ENTER_PASSWORD" = "Введіть пароль";
+
+/* Placeholder for the password input field if passwords are disabled
+   Placeholder for the repeat password input if passwords are disabled
+   Placeholder in the unlock-password input field if password is disabled */
+"PASSWORD_INPUT_NO_PASSWORD" = "Нема пароля";
+
+/* Placeholder for the repeat password field to aks for the repeated password */
+"PASSWORD_INPUT_REPEAT_PASSWORD" = "Повторіть пароль";
+
+/* Menu item to perform autotype with the selected entry */
+"PERFORM_AUTOTYPE_FOR_ENTRY" = "Задіяти автовведення";
+
+/* Info about how many character has to pick in pickchar dialog */
+"PICKCHAR_INFO_MESSAGE_PICK_CHARACTERS_%ld" = "Виберіть %ld символів";
+
+/* Window displayed to the user to pick an amout of characters */
+"PICKCHAR_WINDOW_TITLE" = "Вибір символів";
+
+/* Count of picked characters in pickchars dialog if no limit is set */
+"PICKED_%ld_CHARACTERS" = "Вибрано %ld символів";
+
+/* Window displayed to the user to pick an amout of characters */
+"PICKFIELD_WINDOW_TITLE" = "Вибір полів";
+
+/* Label for the button when a download is in progress! */
+"PLUGIN_BROWSER_ACTION_DOWNLOAD_IN_PROGRESS" = "Завантажується…";
+
+/* Label for the button when a download did not succeed */
+"PLUGIN_BROWSER_ACTION_RETRY_FAILED_DOWNLOAD" = "Помилка. Повторити";
+
+/* Label for the button to show a downloaded file */
+"PLUGIN_BROWSER_ACTION_SHOW_DOWNLOADED_FILE" = "Показати у Finder…";
+
+/* Button to download the Plugin */
+"PLUGIN_BROWSER_DOWNLOAD_PLUGIN_BUTTON" = "Завантажити";
+
+/* Status for an up-to-date plugin in the plugin browser */
+"PLUGIN_BROWSER_LATEST_VERSION_INSTALLED" = "Встановлена найсвіжіша версія";
+
+/* Status for an outdated plugin version in the plugin browser */
+"PLUGIN_BROWSER_NEWER_VERSION_%@_AVAILABLE" = "Доступна новіша версія(%@).";
+
+/* Status for an uninstalled plugin in the plugin browser */
+"PLUGIN_BROWSER_PLUGIN_NOT_INSTALLED" = "Не втсановлено";
+
+/* Status for an unkonw plugin version in the plugin browser */
+"PLUGIN_BROWSER_UNKNOWN_PLUGIN_VERSION_INSTALLED_%@" = "Невідома версія %@ встановлена";
+
+/* Error for a plugin that is disabled. */
+"PLUGIN_ERROR_DISABLED_PLUGIN" = "Плагін відключений користувачем";
+
+/* Plugin is not with this version of MacPass */
+"PLUGIN_ERROR_HOST_VERSION_NOT_SUPPORTED" = "Плагін не сумісний з цією версією MacPass";
+
+/* The plugin could not be initalized */
+"PLUGIN_ERROR_INTILIZATION_FAILED" = "Не вдалось ініціювати плагін";
+
+/* Error for a plugin that was not signed properly */
+"PLUGIN_ERROR_UNSECURE_PLUGIN" = "Плагін не підписаний належним чином";
+
+/* Plugin specifies the wrong principal class! */
+"PLUGIN_ERROR_WRONG_PRINCIPAL_CLASS" = "Неочікуваний основний клас у плагіні";
+
+/* name for disabled unloaded plugin */
+"PLUGIN_NAME_DISABLED_%@" = "🚫 %@";
+
+/* Name for unloaded plugin with errors */
+"PLUGIN_NAME_ERROR_%@" = "⚠️ %@";
+
+/* Label for plugin settings tab */
+"PLUGIN_SETTINGS" = "Плагіни";
+
+/* Generic message displayed if no details are know why a plugin was not loaded. */
+"PLUGIN_SETTINGS_GENERIC_ERROR_MESSAGE" = "Не вдається завантажити плагін.";
+
+/* Plugin version. Include a %@ placeholder for version string */
+"PLUGIN_VERSION_%@" = "Версія: %@";
+
+/* Menu item to preview the selected attached file. */
+"PREVIEW" = "Перегляд";
+
+/* Recent searches menu item */
+"RECENT_SEARCHES" = "Недавні запити пошуку";
+
+/* Informative text for the recommend password change alert */
+"RECOMMEND_PASSWORD_CHANGE_ALERT_DESCRIPTION" = "Рекомендовано змінити пароль або файл ключа.";
+
+/* Message text for the recommend password change alert */
+"RECOMMEND_PASSWORD_CHANGE_ALERT_TITLE" = "Будь ласка, змініть пароль бази!";
+
+/* Restart */
+"RESTART" = "Перезапустити";
+
+/* Action to restore an Entry to a previous state of its history */
+"RESTORE_HISTORY_ENTRY" = "Відновити запис з історії";
+
+/* Menu item to save the selected attached file.
+   Save file menu item title when save will just save the file */
+"SAVE" = "Зберегти";
+
+/* Button title to save the generated key file */
+"SAVE_KEYFILE" = "Зберегти файл ключа";
+
+/* Save file menu item title when save will prompt for a location to save or ask for a password/key */
+"SAVE_WITH_DOTS" = "Зберегти…";
+
+/* Search input in Toolbar */
+"SEARCH" = "Знайти";
+
+/* Search option: Find duplicate passwords */
+"SEARCH_DUPLICATE_PASSWORDS" = "Дублікати паролів";
+
+/* Placeholder string displayed in the search field in the toolbar */
+"SEARCH_EVERYWHERE" = "Шукати всюди";
+
+/* Search option: Find expired entries */
+"SEARCH_EXPIRED_ENTRIES" = "Спливає";
+
+/* Inherit search settings menu item */
+"SEARCH_INHERIT" = "Успадкувати налаштування пошуку";
+
+/* Disable search menu item */
+"SEARCH_NO" = "Не включати в пошук";
+
+/* No comment provided by engineer. */
+"SEARCH_VALUE" = "Пошукове значення";
+
+/* Enable search menu item */
+"SEARCH_YES" = "Включати в пошук";
+
+/* Menu item title for the expiry preset selection menu in the date picker */
+"SELECT_DATE_PRESET" = "Використати дату…";
+
+/* Message on the open panel for selecting which browser to use for opening URLs */
+"SELECT_DEFAULT_BROWSER_OPEN_PANEL_MESSAGE" = "Виберіть браузер для відкриття URL.";
+
+/* Label for the select browser button on the open panel for selecting which browser to use for opening URLs */
+"SELECT_DEFAULT_BROWSER_OPEN_PANEL_SELECT_BUTTON" = "Вибрати";
+
+/* Message for the dialog to open a file for merge */
+"SELECT_FILE_TO_MERGE" = "Виберіть файл для злиття";
+
+/* Menu displayed as popup selection for search options if no filter is selected */
+"SELECT_FILTER_WITH_DOTS" = "Вибрати…";
+
+/* Checkbox in dialog to set the selection as default file change strategy! */
+"SET_AS_DEFAULT_FILE_CHANGE_STRATEGY" = "Використовувати цей спосіб по замовчуванню. Ви можете змінити його будь-коли в налаштуваннях.";
+
+/* Action button in Notification to show the Autotype Doctor */
+"SHOW_AUTOTYPE_DOCTOR" = "Показати помічника автоматичного введення";
+
+/* Menu item to show the entries group in the outline view */
+"SHOW_GROUP_IN_OUTLINE" = "Показати групу";
+
+/* Menu item to show the history of the selected entry
+   Toolbar item to toggle history display */
+"SHOW_HISTORY" = "Показати історію";
+
+/* Displayed name when title field was copied
+   Menu item to toggle display of title column in entry table
+   Title column title
+   Title reference item */
+"TITLE" = "Назва";
+
+/* preset to expire tomorrow */
+"TOMORROW" = "Завтра";
+
+/* Toolbar item to perform autotype */
+"TOOLBAR_PERFORM_AUTOTYPE_FOR_ENTRY" = "Автовведення";
+
+/* Touchbar button label for choosing the keyfile */
+"TOUCHBAR_CHOOSE_KEYFILE" = "Вибрати файл ключа";
+
+/* Touchbar button label for copying the password */
+"TOUCHBAR_COPY_PASSWORD" = "Копіювати пароль";
+
+/* Touchbar button label for copying the username */
+"TOUCHBAR_COPY_USERNAME" = "Копіювати ім’я користувача";
+
+/* Touchbar button label for deleting elements */
+"TOUCHBAR_DELETE" = "Видалити";
+
+/* Touchbar button label for opening the popover to edit */
+"TOUCHBAR_EDIT" = "Редагувати";
+
+/* Touchbar button label for locking the database */
+"TOUCHBAR_LOCK_DATABASE" = "Замкнути базу";
+
+/* Touchbar button label for creating a new item */
+"TOUCHBAR_NEW_ENTRY" = "Новий запис";
+
+/* Touchbar button label for creating a new group */
+"TOUCHBAR_NEW_GROUP" = "Нова група";
+
+/* Touchbar button label for performing autotype */
+"TOUCHBAR_PERFORM_AUTOTYPE" = "Виконати автовведення";
+
+/* Touchbar button label for searching the database */
+"TOUCHBAR_SEARCH" = "Шукати базу";
+
+/* Touchbar button label for showing the password */
+"TOUCHBAR_SHOW_PASSWORD" = "Показати пароль";
+
+/* Touchbar button label for unlocking the database */
+"TOUCHBAR_UNLOCK_DATABASE" = "Відімкнути базу";
+
+/* Move Entry to Trash */
+"TRASH_ENTRY" = "Видалити запис";
+
+/* Move Group to Trash */
+"TRASH_GROUP" = "Видалити групу";
+
+/* Uninstall plugin */
+"UNINSTALL" = "Видалити";
+
+/* No comment provided by engineer. */
+"UNKNOWN_FILE_VERSION" = "Невідома версія бази";
+
+/* Unknown database format. */
+"UNKNOWN_FORMAT" = "Невідомий формат файлу";
+
+/* Database format is unknown since the file is not saved yet */
+"UNKNOWN_FORMAT_FILE_NOT_SAVED_YET" = "Невідомо, база ще не зберігалась";
+
+/* No comment provided by engineer. */
+"UNKNOWN_TOOLBAR_ITEM" = "Невідовий елемент панелі";
+
+/* Update Settings Label */
+"UPDATE_PREFERENCES" = "Оновлення";
+
+/* Menu item to toggle display of url column in entry table
+   Submenu with options what to do with the URL of an entry
+   Url column title
+   URL reference item */
+"URL" = "URL";
+
+/* Menu item to toggle display of username column in entry table
+   Username column title
+   Username reference item */
+"USERNAME" = "Ім’я користувача";
+
+/* Displayed name when uuid field was copied
+   UUID reference item */
+"UUID" = "UUID";
+
+/* No Key or Password */
+"WARNING_NO_PASSWORD_OR_KEYFILE" = "Не було задіяно ні пароля, ні файлу ключа!";
+
+/* Informative Text displayed when clearing the Trash */
+"WARNING_ON_DELETE_TRASHED_NODE_DESCRIPTION" = "Елементи в кошику будуть видалені";
+
+/* Message text for the alert displayed when deleting a node */
+"WARNING_ON_DELETE_TRASHED_NODE_TITLE" = "Виладення елементів з кошика";
+
+/* Informative Text displayed when clearing the Trash */
+"WARNING_ON_EMPTY_TRASH_DESCRIPTION" = "Очищенний кошика не можна відновити";
+
+/* Message text for the alert displayed when clearing the Trash */
+"WARNING_ON_EMPTY_TRASH_TITLE" = "Очистити кошик?";
+
+/* No comment provided by engineer. */
+"WARNING_ON_SAVE_NO_PASSWORD_OR_KEY_SET" = "Не вказано пароля або файлу ключа";
+
+/* No comment provided by engineer. */
+"WARNING_ON_SAVE_NO_PASSWORD_OR_KEY_SET_SUGGESTION" = "Будь ласка, вкажіть пароль і/або файл ключа до цієї бази. Скасування цієї дії призведе до відкидання змін і замикання бази";
+
+/* Label for the workflow settings tab */
+"WORKFLOW_SETTINGS" = "Дії";
+
+/* Yesterday */
+"YESTERDAY" = "Вчора";
+

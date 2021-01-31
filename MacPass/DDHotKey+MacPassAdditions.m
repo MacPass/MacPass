@@ -29,12 +29,10 @@
 @implementation DDHotKey (MPKeydata)
 
 + (NSData *)hotKeyDataWithKeyCode:(unsigned short)keyCode modifierFlags:(NSUInteger)flags {
-  NSMutableData *data = [[NSMutableData alloc] init];
-  NSKeyedArchiver *archiver = [[NSKeyedArchiver alloc] initForWritingWithMutableData:data];
+  NSKeyedArchiver *archiver = [[NSKeyedArchiver alloc] initRequiringSecureCoding:YES];
   [archiver encodeInt:keyCode forKey:NSStringFromSelector(@selector(keyCode))];
   [archiver encodeInteger:flags forKey:NSStringFromSelector(@selector(modifierFlags))];
-  [archiver finishEncoding];
-  return [data copy];
+  return [archiver.encodedData copy];
 }
 
 + (NSData *)defaultHotKeyData {
@@ -73,7 +71,13 @@
   if(keyCode == NULL || modifierFlags == NULL || data == nil) {
     return NO;
   }
-  NSKeyedUnarchiver *unarchiver = [[NSKeyedUnarchiver alloc] initForReadingWithData:data];
+  
+  NSError *error;
+  NSKeyedUnarchiver *unarchiver = [[NSKeyedUnarchiver alloc] initForReadingFromData:data error:&error];
+  if(error) {
+    NSLog(@"Error while trying to decode DDHotKey %@", error.localizedDescription);
+    return NO;
+  }
   *keyCode = [unarchiver decodeIntForKey:NSStringFromSelector(@selector(keyCode))];
   *modifierFlags = [unarchiver decodeIntegerForKey:NSStringFromSelector(@selector(modifierFlags))];
   return YES;
@@ -86,19 +90,19 @@
   NSEventModifierFlags flags = 0;
   switch(self.keyCode) {
     case  kVK_Command:
-      flags = NSCommandKeyMask;
+      flags = NSEventModifierFlagCommand;
       break;
     case kVK_Shift:
     case kVK_RightShift:
-      flags = NSShiftKeyMask;
+      flags = NSEventModifierFlagShift;
       break;
     case kVK_Option:
     case kVK_RightOption:
-      flags = NSAlternateKeyMask;
+      flags = NSEventModifierFlagOption;
       break;
     case kVK_Control:
     case kVK_RightControl:
-      flags = NSControlKeyMask;
+      flags = NSEventModifierFlagControl;
       break;
   }
   BOOL missingModifier = self.modifierFlags == 0;

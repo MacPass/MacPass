@@ -32,16 +32,16 @@
 "531.title" = "Ouvrir la dernière base de données au lancement";
 
 /* Class = "NSMenu"; title = "LockTimes"; ObjectID = "586"; */
-"586.title" = "Verrouillage";
+"586.title" = "Temps de verrouillage";
 
 /* Class = "NSMenuItem"; title = "for 1 Minute"; ObjectID = "588"; */
-"588.title" = "pour 1 minute";
+"588.title" = "pendant 1 minute";
 
 /* Class = "NSMenuItem"; title = "for 5 Minutes"; ObjectID = "589"; */
-"589.title" = "pour 5 minutes";
+"589.title" = "pendant 5 minutes";
 
 /* Class = "NSMenuItem"; title = "for 15 Minutes"; ObjectID = "603"; */
-"603.title" = "pour 15 minutes";
+"603.title" = "pendant 15 minutes";
 
 /* Class = "NSButtonCell"; title = "Lock after sleep"; ObjectID = "631"; */
 "631.title" = "Verrouillage après sommeil";
@@ -56,16 +56,25 @@
 "888.title" = "Gestion des fichiers";
 
 /* Class = "NSTextFieldCell"; title = "Enabling this compromises security. If enabled, your preferences will contain mappings from database to keyfile. Key locations for databases without a password will not be saved."; ObjectID = "ACh-7H-42N"; */
-"ACh-7H-42N.title" = "Cocher cette case compromet la sécurité. Si activé, les associations base de données / fichiers clé seront enregistrées. La localisation des clés pour les bases de données sans mot de passe n'est pas sauvegardée.";
+"ACh-7H-42N.title" = "Cocher cette case compromet la sécurité. Si activé, vos préférences contiendront les associations base de données / fichier clé. L'emplacement des clés pour les bases de données sans mot de passe ne seront pas sauvegardés.";
 
 /* Class = "NSButtonCell"; title = "Lock after log out"; ObjectID = "Dzn-9R-JjE"; */
 "Dzn-9R-JjE.title" = "Verrouiller après déconnexion";
+
+/* Class = "NSButtonCell"; title = "Prevent Universal Clipboard support"; ObjectID = "fNy-mS-phi"; */
+"fNy-mS-phi.title" = "Désactiver le support de presse-papier universel";
+
+/* Class = "NSTextFieldCell"; title = "Disabling this compromises security. If enabled, anything copied to the Clipboard in MacPass will be available on your connected iOS devices. You should clear the clipboard on those devices manually."; ObjectID = "JGX-Tp-KJk"; */
+"JGX-Tp-KJk.title" = "Désactiver ceci compromet la sécurité. Si activé, tout ce qui est copié dans le presse-papiers depuis MacPass sera accessible depuis tout les appareils iOS connectés. Vous devrez effacer le presse-papiers sur ces appareils manuellement.";
+
+/* Class = "NSButtonCell"; title = "Lock after screen sleep"; ObjectID = "l3t-og-mJd"; */
+"l3t-og-mJd.title" = "Verrouiller après l'activation de l'économiseur d'écran";
 
 /* Class = "NSTextFieldCell"; title = "If file changes:"; ObjectID = "QrK-hM-Xt1"; */
 "QrK-hM-Xt1.title" = "Si modifications du fichier :";
 
 /* Class = "NSButtonCell"; title = "Remember Keyfile for Databases"; ObjectID = "r6q-He-nYU"; */
-"r6q-He-nYU.title" = "Enregistrer la localisation des fichiers clé";
+"r6q-He-nYU.title" = "Se souvenir des fichiers clé pour les bases de données";
 
 /* Class = "NSButtonCell"; title = "Enable Autosave"; ObjectID = "wG7-bi-2fi"; */
 "wG7-bi-2fi.title" = "Activer l'enregistrement automatique";

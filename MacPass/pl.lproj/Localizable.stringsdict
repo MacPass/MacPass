@@ -46,6 +46,26 @@
 			<string>Powielone wpisy</string>
 		</dict>
 	</dict>
+	<key>DUPLICATE_GROUPS_ACTION_NAME</key>
+	<dict>
+		<key>NSStringLocalizedFormatKey</key>
+		<string>%#@groups@</string>
+		<key>groups</key>
+		<dict>
+			<key>NSStringFormatSpecTypeKey</key>
+			<string>NSStringPluralRuleType</string>
+			<key>NSStringFormatValueTypeKey</key>
+			<string>ld</string>
+			<key>few</key>
+			<string>Duplikuj grupy</string>
+			<key>many</key>
+			<string>Duplikuj grupy</string>
+			<key>one</key>
+			<string>Duplikuj grupę</string>
+			<key>other</key>
+			<string>Duplikuj grupy</string>
+		</dict>
+	</dict>
 	<key>EVERY_%ld_DAYS</key>
 	<dict>
 		<key>NSStringLocalizedFormatKey</key>

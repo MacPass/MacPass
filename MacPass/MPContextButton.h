@@ -31,7 +31,6 @@ typedef NS_ENUM(NSUInteger, MPContextButtonSegment) {
 };
 
 @property (nonatomic, strong) NSMenu *contextMenu;
-
-- (void)setImage:(NSImage *)image;
+@property (nonatomic, strong) NSImage *image;
 
 @end

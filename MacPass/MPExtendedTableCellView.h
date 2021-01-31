@@ -1,5 +1,5 @@
 //
-//  MPPluginTabelCellView.m
+//  MPPluginTabelCellView.h
 //  MacPass
 //
 //  Created by Michael Starke on 17.11.17.
@@ -20,22 +20,10 @@
 //  along with this program.  If not, see <http://www.gnu.org/licenses/>.
 //
 
-#import "MPPluginTabelCellView.h"
+#import <Cocoa/Cocoa.h>
 
-@implementation MPPluginTabelCellView
+@interface MPExtendedTableCellView : NSTableCellView
 
-- (void)setBackgroundStyle:(NSBackgroundStyle)backgroundStyle {
-  super.backgroundStyle = backgroundStyle;
-  switch(backgroundStyle) {
-    case NSBackgroundStyleNormal:
-    case NSBackgroundStyleLowered:
-      self.addionalTextField.textColor = NSColor.disabledControlTextColor;
-      break;
-    case NSBackgroundStyleRaised:
-    case NSBackgroundStyleEmphasized:
-      self.addionalTextField.textColor = NSColor.selectedControlTextColor;
-      break;
-  }
-}
+@property (strong) IBOutlet NSTextField *addionalTextField;
 
 @end

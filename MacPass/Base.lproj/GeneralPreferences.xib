@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="15702" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="15705" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
     <dependencies>
         <deployment identifier="macosx"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="15702"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="15705"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
@@ -11,6 +11,7 @@
                 <outlet property="clearPasteboardOnQuitCheckButton" destination="447" id="520"/>
                 <outlet property="clearPasteboardTimeoutPopup" destination="419" id="521"/>
                 <outlet property="enableAutosaveCheckButton" destination="lz3-4U-UMI" id="L5y-58-IgH"/>
+                <outlet property="faviconDownloadMethodPopup" destination="OfU-6f-oTU" id="OfU-6f-oTU-outlet"/>
                 <outlet property="fileChangeStrategyPopup" destination="wIu-Sh-2a2" id="oJo-dA-lEE"/>
                 <outlet property="idleTimeOutPopup" destination="584" id="809"/>
                 <outlet property="lockOnLogoutCheckButton" destination="5SP-Vi-1sn" id="yaI-LH-R5A"/>
@@ -25,12 +26,12 @@
         <customObject id="-1" userLabel="First Responder" customClass="FirstResponder"/>
         <customObject id="-3" userLabel="Application" customClass="NSObject"/>
         <customView translatesAutoresizingMaskIntoConstraints="NO" id="1">
-            <rect key="frame" x="0.0" y="0.0" width="411" height="547"/>
+            <rect key="frame" x="0.0" y="0.0" width="406" height="679"/>
             <subviews>
                 <box autoresizesSubviews="NO" verticalHuggingPriority="500" borderType="line" title="Security" translatesAutoresizingMaskIntoConstraints="NO" id="465">
-                    <rect key="frame" x="17" y="16" width="377" height="381"/>
+                    <rect key="frame" x="17" y="146" width="372" height="381"/>
                     <view key="contentView" id="mNh-3L-Z6E">
-                        <rect key="frame" x="3" y="3" width="371" height="363"/>
+                        <rect key="frame" x="3" y="3" width="366" height="363"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <textField verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="431">
@@ -48,7 +49,7 @@
                                 <rect key="frame" x="138" y="332" width="143" height="21"/>
                                 <popUpButtonCell key="cell" type="push" title="Never" bezelStyle="rounded" alignment="left" lineBreakMode="truncatingTail" state="on" borderStyle="borderAndBezel" imageScaling="proportionallyDown" inset="2" selectedItem="429" id="420">
                                     <behavior key="behavior" lightByBackground="YES" lightByGray="YES"/>
-                                    <font key="font" metaFont="system"/>
+                                    <font key="font" metaFont="menu"/>
                                     <menu key="menu" title="ClipboardClearInterval" id="421">
                                         <items>
                                             <menuItem title="Never" state="on" id="429">
@@ -76,7 +77,7 @@
                                 <rect key="frame" x="111" y="192" width="125" height="25"/>
                                 <popUpButtonCell key="cell" type="push" bezelStyle="rounded" alignment="left" lineBreakMode="truncatingTail" borderStyle="borderAndBezel" imageScaling="proportionallyDown" inset="2" id="585">
                                     <behavior key="behavior" lightByBackground="YES" lightByGray="YES"/>
-                                    <font key="font" metaFont="system"/>
+                                    <font key="font" metaFont="menu"/>
                                     <menu key="menu" title="LockTimes" id="586">
                                         <items>
                                             <menuItem title="Never" id="804"/>
@@ -111,8 +112,8 @@
                                     <font key="font" metaFont="system"/>
                                 </buttonCell>
                             </button>
-                            <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" setsMaxLayoutWidthAtFirstLayout="YES" translatesAutoresizingMaskIntoConstraints="NO" id="5cV-xX-SUU">
-                                <rect key="frame" x="18" y="41" width="335" height="56"/>
+                            <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="5cV-xX-SUU">
+                                <rect key="frame" x="18" y="41" width="330" height="56"/>
                                 <textFieldCell key="cell" sendsActionOnEndEditing="YES" id="ACh-7H-42N">
                                     <font key="font" metaFont="smallSystem"/>
                                     <string key="title">Enabling this compromises security. If enabled, your preferences will contain mappings from database to keyfile. Key locations for databases without a password will not be saved.</string>
@@ -121,7 +122,7 @@
                                 </textFieldCell>
                             </textField>
                             <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="oQr-FC-HkN">
-                                <rect key="frame" x="171" y="5" width="190" height="32"/>
+                                <rect key="frame" x="166" y="5" width="190" height="32"/>
                                 <buttonCell key="cell" type="push" title="Clear all stored locations" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="8Ri-2s-c39">
                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                     <font key="font" metaFont="system"/>
@@ -144,8 +145,8 @@
                                     <font key="font" metaFont="system"/>
                                 </buttonCell>
                             </button>
-                            <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" setsMaxLayoutWidthAtFirstLayout="YES" translatesAutoresizingMaskIntoConstraints="NO" id="hy4-RL-dAa">
-                                <rect key="frame" x="18" y="224" width="335" height="56"/>
+                            <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="hy4-RL-dAa">
+                                <rect key="frame" x="18" y="224" width="330" height="56"/>
                                 <textFieldCell key="cell" sendsActionOnEndEditing="YES" id="JGX-Tp-KJk">
                                     <font key="font" metaFont="smallSystem"/>
                                     <string key="title">Disabling this compromises security. If enabled, anything copied to the Clipboard in MacPass will be available on your connected iOS devices. You should clear the clipboard on those devices manually.</string>
@@ -208,9 +209,9 @@
                     </constraints>
                 </box>
                 <box autoresizesSubviews="NO" verticalHuggingPriority="500" borderType="line" title="File Handling" translatesAutoresizingMaskIntoConstraints="NO" id="888">
-                    <rect key="frame" x="17" y="399" width="377" height="128"/>
+                    <rect key="frame" x="17" y="531" width="372" height="128"/>
                     <view key="contentView" id="cpg-tt-SHE">
-                        <rect key="frame" x="3" y="3" width="371" height="110"/>
+                        <rect key="frame" x="3" y="3" width="366" height="110"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <button verticalHuggingPriority="252" translatesAutoresizingMaskIntoConstraints="NO" id="530">
@@ -227,8 +228,8 @@
                                     <font key="font" metaFont="system"/>
                                 </buttonCell>
                             </button>
-                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" setsMaxLayoutWidthAtFirstLayout="YES" translatesAutoresizingMaskIntoConstraints="NO" id="3Bo-Ml-1KB">
-                                <rect key="frame" x="18" y="44" width="335" height="14"/>
+                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="3Bo-Ml-1KB">
+                                <rect key="frame" x="18" y="44" width="330" height="14"/>
                                 <textFieldCell key="cell" controlSize="small" title="Close and open all documents for changes to take effect" id="ya5-ps-c4W">
                                     <font key="font" metaFont="smallSystem"/>
                                     <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
@@ -247,7 +248,7 @@
                                 <rect key="frame" x="111" y="13" width="38" height="25"/>
                                 <popUpButtonCell key="cell" type="push" bezelStyle="rounded" alignment="left" lineBreakMode="truncatingTail" borderStyle="borderAndBezel" imageScaling="proportionallyDown" inset="2" id="1R2-5t-LWk">
                                     <behavior key="behavior" lightByBackground="YES" lightByGray="YES"/>
-                                    <font key="font" metaFont="system"/>
+                                    <font key="font" metaFont="menu"/>
                                     <menu key="menu" id="DQY-17-yKP"/>
                                 </popUpButtonCell>
                             </popUpButton>
@@ -273,18 +274,71 @@
                         <constraint firstItem="530" firstAttribute="top" secondItem="888" secondAttribute="top" constant="25" id="w7t-Jm-kXg"/>
                     </constraints>
                 </box>
+                <box autoresizesSubviews="NO" verticalHuggingPriority="500" borderType="line" title="Network" translatesAutoresizingMaskIntoConstraints="NO" id="wD1-ag-7V5">
+                    <rect key="frame" x="17" y="16" width="372" height="126"/>
+                    <view key="contentView" id="bQD-ZX-d0i">
+                        <rect key="frame" x="3" y="3" width="366" height="108"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="fl5-Xu-nZP">
+                                <rect key="frame" x="14" y="81" width="113" height="16"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="16" id="kK7-bB-zKY"/>
+                                </constraints>
+                                <textFieldCell key="cell" lineBreakMode="clipping" title="Favicon download" id="YGj-dH-duz">
+                                    <font key="font" metaFont="system"/>
+                                    <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
+                                    <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                                </textFieldCell>
+                            </textField>
+                            <textField autoresizesSubviews="NO" verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="MWj-9m-uGk">
+                                <rect key="frame" x="18" y="13" width="330" height="56"/>
+                                <textFieldCell key="cell" sendsActionOnEndEditing="YES" id="DaG-1a-SET">
+                                    <font key="font" metaFont="message" size="11"/>
+                                    <string key="title">By default web site icon is downloaded directly from entry's host URL. For some websites it doesn't work and you might prefer using 3rdparty APIs. In this case only host from the URL will be used to get the icon from selected service.</string>
+                                    <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
+                                    <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                                </textFieldCell>
+                            </textField>
+                            <popUpButton verticalHuggingPriority="750" horizontalCompressionResistancePriority="749" translatesAutoresizingMaskIntoConstraints="NO" id="OfU-6f-oTU">
+                                <rect key="frame" x="131" y="76" width="38" height="25"/>
+                                <popUpButtonCell key="cell" type="push" bezelStyle="rounded" alignment="left" lineBreakMode="truncatingTail" borderStyle="borderAndBezel" imageScaling="proportionallyDown" inset="2" id="mdi-Go-1bJ">
+                                    <behavior key="behavior" lightByBackground="YES" lightByGray="YES"/>
+                                    <font key="font" metaFont="menu"/>
+                                    <menu key="menu" id="Xnp-a8-ePw"/>
+                                </popUpButtonCell>
+                            </popUpButton>
+                        </subviews>
+                        <constraints>
+                            <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="OfU-6f-oTU" secondAttribute="trailing" constant="16" id="0Wl-LS-ePD"/>
+                            <constraint firstItem="OfU-6f-oTU" firstAttribute="centerY" secondItem="fl5-Xu-nZP" secondAttribute="centerY" id="R81-Ij-pdy"/>
+                            <constraint firstItem="OfU-6f-oTU" firstAttribute="leading" secondItem="fl5-Xu-nZP" secondAttribute="trailing" constant="8" id="XS0-fl-B2Z"/>
+                        </constraints>
+                    </view>
+                    <constraints>
+                        <constraint firstItem="MWj-9m-uGk" firstAttribute="leading" secondItem="bQD-ZX-d0i" secondAttribute="leading" constant="20" id="1AE-Eu-ceQ"/>
+                        <constraint firstItem="fl5-Xu-nZP" firstAttribute="top" secondItem="wD1-ag-7V5" secondAttribute="top" constant="26" id="OK9-PR-DfC"/>
+                        <constraint firstItem="MWj-9m-uGk" firstAttribute="top" secondItem="fl5-Xu-nZP" secondAttribute="bottom" constant="12" id="Udz-22-4O1"/>
+                        <constraint firstAttribute="trailing" secondItem="MWj-9m-uGk" secondAttribute="trailing" constant="20" id="hA0-ra-UeU"/>
+                        <constraint firstItem="fl5-Xu-nZP" firstAttribute="leading" secondItem="bQD-ZX-d0i" secondAttribute="leading" constant="16" id="hzo-40-wxR"/>
+                        <constraint firstAttribute="bottom" secondItem="MWj-9m-uGk" secondAttribute="bottom" constant="12" id="k80-DD-Y5l"/>
+                    </constraints>
+                </box>
             </subviews>
             <constraints>
                 <constraint firstItem="465" firstAttribute="leading" secondItem="1" secondAttribute="leading" constant="20" symbolic="YES" id="475"/>
                 <constraint firstAttribute="trailing" secondItem="465" secondAttribute="trailing" constant="20" symbolic="YES" id="525"/>
                 <constraint firstItem="888" firstAttribute="leading" secondItem="1" secondAttribute="leading" constant="20" symbolic="YES" id="891"/>
                 <constraint firstAttribute="trailing" secondItem="888" secondAttribute="trailing" constant="20" symbolic="YES" id="893"/>
-                <constraint firstItem="888" firstAttribute="top" secondItem="1" secondAttribute="top" constant="20" symbolic="YES" id="903"/>
                 <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="400" id="918"/>
-                <constraint firstAttribute="bottom" secondItem="465" secondAttribute="bottom" constant="20" symbolic="YES" id="uwq-az-XwJ"/>
-                <constraint firstItem="465" firstAttribute="top" secondItem="cpg-tt-SHE" secondAttribute="bottom" constant="5" id="wyH-HB-i2U"/>
+                <constraint firstItem="wD1-ag-7V5" firstAttribute="leading" secondItem="1" secondAttribute="leading" constant="20" id="3kp-Uf-fyC"/>
+                <constraint firstItem="wD1-ag-7V5" firstAttribute="bottom" secondItem="1" secondAttribute="bottom" constant="-20" id="EeW-K0-jec"/>
+                <constraint firstItem="wD1-ag-7V5" firstAttribute="top" secondItem="465" secondAttribute="bottom" constant="8" symbolic="YES" id="FsW-LX-Drs"/>
+                <constraint firstItem="888" firstAttribute="top" secondItem="1" secondAttribute="top" constant="20" symbolic="YES" id="ZMP-Lv-rQh"/>
+                <constraint firstAttribute="trailing" secondItem="wD1-ag-7V5" secondAttribute="trailing" constant="20" id="ccK-FL-7Wx"/>
+                <constraint firstItem="465" firstAttribute="top" secondItem="888" secondAttribute="bottom" constant="8" symbolic="YES" id="wyH-HB-i2U"/>
             </constraints>
-            <point key="canvasLocation" x="-458" y="-295"/>
+            <point key="canvasLocation" x="-535" y="-327.5"/>
         </customView>
     </objects>
 </document>

@@ -71,8 +71,6 @@
   
   [self.sendCommandForControlCheckBox bind:NSValueBinding toObject:defaultsController withKeyPath:[MPSettingsHelper defaultControllerPathForKey:kMPSettingsKeySendCommandForControlKey] options:nil];
   
-//  [self.launchOnLoginCheckBox bind:NSValueBinding toObject:defaultsController withKeyPath:[MPSettingsHelper defaultControllerPathForKey:kMPSettingsKeyLaunchOnLogin] options:nil];
-//  [self bind:NSStringFromSelector(@selector(setLaunchOnLoginCheckBox:)) toObject:defaultsController withKeyPath:[MPSettingsHelper defaultControllerPathForKey:kMPSettingsKeyLaunchOnLogin] options:nil];
   BOOL launchOnlogin = [NSUserDefaults.standardUserDefaults boolForKey:@"LaunchOnLogin"];
   NSLog(@"launch on login bool: %hhd", launchOnlogin);
   if(launchOnlogin){
@@ -83,6 +81,17 @@
   	[self performSelector:@selector(removeLaunchOnLogin)];
   
   }
+  [self.sendCommandForControlCheckBox bind:NSValueBinding
+                                  toObject:defaultsController
+                               withKeyPath:[MPSettingsHelper defaultControllerPathForKey:kMPSettingsKeySendCommandForControlKey]
+                                   options:nil];
+  
+  [self.alwaysShowConfirmationBeforeAutotypeCheckBox bind:NSValueBinding
+                                                 toObject:defaultsController
+                                              withKeyPath:[MPSettingsHelper defaultControllerPathForKey:kMPSettingsKeyGloablAutotypeAlwaysShowCandidateSelection]
+                                                  options:nil];
+  
+
   [self _showKeyCodeMissingKeyWarning:NO];
   [self _updateAccessabilityWarning];
 }
@@ -141,11 +150,7 @@
   } else {
     [self performSelector:@selector(addLaunchOnLogin)];
   }
-  //  if (!SMLoginItemSetEnabled((__bridge CFStringRef)@"com.hicknhacksoftware.MacPassHelper", [sender state])) {
-//    NSLog(@"Login Item Was Not Successful");
-//  }
-//  [NSUserDefaults.standardUserDefaults setBool:[sender state] forKey:kMPSettingsKeyLaunchOnLogin];
-//  [self.launchOnLoginCheckBox setState:[sender state]];
+
 }
 -(void)addLaunchOnLogin {
   if (!SMLoginItemSetEnabled((__bridge CFStringRef)@"com.hicknhacksoftware.MacPassHelper", YES)) {

@@ -29,14 +29,11 @@
 #import "MPWorkflowPreferencesController.h"
 #import "MPUpdatePreferencesController.h"
 #import "MPPluginPreferencesController.h"
+#import "MPTabViewController.h"
 
-@interface MPPreferencesWindowController () {
-  NSString *lastIdentifier;
-}
+@interface MPPreferencesWindowController ()
 
-@property (strong, nonatomic) NSMutableDictionary *preferencesController;
-@property (strong, nonatomic) NSMutableDictionary *toolbarItems;
-@property (strong) NSArray *defaultToolbarItems;
+@property (strong) MPTabViewController *tabViewController;
 
 @end
 
@@ -49,67 +46,60 @@
 -(id)init {
   self = [super initWithWindow:nil];
   if(self) {
-    NSToolbar *tb = [[NSToolbar alloc] initWithIdentifier:@"PreferencesToolBar"];
-    tb.allowsUserCustomization = NO;
-    tb.displayMode = NSToolbarDisplayModeIconAndLabel;
-    _preferencesController = [[NSMutableDictionary alloc] initWithCapacity:5];
-    _toolbarItems = [[NSMutableDictionary alloc] initWithCapacity:5];
-    lastIdentifier = nil;
+    _tabViewController = [[MPTabViewController alloc] init];
+    _tabViewController.tabStyle = NSTabViewControllerTabStyleToolbar;
+    _tabViewController.transitionOptions = NSViewControllerTransitionNone | NSViewControllerTransitionAllowUserInteraction;
+    
+    self.contentViewController  = self.tabViewController;
+    
+    _tabViewController.willSelectTabHandler = ^void(NSTabViewItem *item) {
+      if([item.viewController respondsToSelector:@selector(willShowTab)]) {
+        [(id<MPPreferencesTab>)item.viewController willShowTab];
+      }
+    };
+    
+    _tabViewController.didSelectTabHandler = ^void(NSTabViewItem *item) {
+      if([item.viewController respondsToSelector:@selector(didShowTab)]) {
+        [(id<MPPreferencesTab>)item.viewController didShowTab];
+      }
+    };
     
     [self _setupDefaultPreferencesTabs];
-    
-    tb.delegate = self;
-    self.window.toolbar = tb;
   }
   return self;
 }
 
 
 - (void)showPreferences {
-  if(self.defaultToolbarItems.count > 0) {
-    [self _showPreferencesTabWithIdentifier:self.defaultToolbarItems[0]];
-  }
+  [self showPreferencesTab:MPPreferencesTabGeneral];
 }
 
 - (void)_showPreferencesTabWithIdentifier:(NSString *)identifier {
   if(nil == identifier) {
     @throw [NSException exceptionWithName:NSInvalidArgumentException reason:@"Identifier cannot be nil" userInfo:nil];
   }
-  id<MPPreferencesTab> tab = self.preferencesController[identifier];
-  if(tab == nil){
-    NSLog(@"Warning. Unknown settingscontroller for identifier: %@. Did you miss to add the controller?", identifier);
-    return;
+  
+  NSInteger index = [self.tabViewController.tabView indexOfTabViewItemWithIdentifier:identifier];
+  /* fall back to first index if requested identifier is not know */
+  if(index == NSNotFound) {
+    index = 0;
   }
-  self.window.toolbar.selectedItemIdentifier = identifier;
-  if([tab respondsToSelector:@selector(label)]) {
-    self.window.title = [tab label];
+  
+  NSTabViewItem *item = self.tabViewController.tabViewItems[index];
+  
+  if(item.label.length > 0) {
+    self.window.title = item.label;
   }
   else {
-    self.window.title = [tab identifier];
+    self.window.title = item.identifier;
   }
-  /* Access the view before calling the willShoTab to make sure the view is fully loaded */
-  NSView *tabView = [(NSViewController *)tab view];
-  if([tab respondsToSelector:@selector(willShowTab)]) {
-    [tab willShowTab];
+  if([item.viewController respondsToSelector:@selector(willShowTab)]) {
+    [(id<MPPreferencesTab>)item.viewController willShowTab];
   }
-  NSView *contentView = self.window.contentView;
-  if( contentView.subviews.count == 1) {
-    [contentView.subviews.firstObject removeFromSuperview];
-  }
-  [contentView addSubview:tabView];
-  [contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-0-[tabView]-0-|"
-                                                                      options:0
-                                                                      metrics:nil
-                                                                        views:NSDictionaryOfVariableBindings(tabView)]];
-  [contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-0-[tabView]-0-|"
-                                                                      options:0
-                                                                      metrics:nil
-                                                                        views:NSDictionaryOfVariableBindings(tabView)]];
+  self.tabViewController.selectedTabViewItemIndex = index;
   
-  [contentView layout];
-  [contentView layoutSubtreeIfNeeded];
-  if([tab respondsToSelector:@selector(didShowTab)]) {
-    [tab didShowTab];
+  if([item.viewController respondsToSelector:@selector(didShowTab)]) {
+    [(id<MPPreferencesTab>)item.viewController didShowTab];
   }
   [self.window makeKeyAndOrderFront:nil];
 }
@@ -119,6 +109,9 @@
   switch(tab) {
     case MPPreferencesTabPlugins:
       tabClass = MPPluginPreferencesController.class;
+      break;
+    case MPPreferencesTabIntegration:
+      tabClass = MPIntegrationPreferencesController.class;
       break;
     case MPPreferencesTabUpdate:
       tabClass = MPUpdatePreferencesController.class;
@@ -132,98 +125,41 @@
       break;
   }
   NSString *identifier;
-  for(id<MPPreferencesTab> tab in self.preferencesController.allValues) {
-    if([tab isKindOfClass:tabClass]) {
-      identifier = tab.identifier;
+  for(NSTabViewItem *tabViewItem in self.tabViewController.tabViewItems) {
+    if([tabViewItem.viewController isKindOfClass:tabClass]) {
+      identifier = tabViewItem.identifier;
       break;
     }
   }
   [self _showPreferencesTabWithIdentifier:identifier];
 }
 
-- (void)_addSettingsTab:(id<MPPreferencesTab>)tabController {
-  if(NO == [tabController conformsToProtocol:@protocol(MPPreferencesTab)]) {
-    NSException *protocollException = [NSException exceptionWithName:NSInvalidArgumentException
-                                                              reason:@"Controller must conform to MPSettingsTabProtrocoll"
-                                                            userInfo:nil];
-    @throw protocollException;
-  }
-  if(NO == [tabController isKindOfClass:[NSViewController class]]) {
-    NSException *controllerException = [NSException exceptionWithName:NSInvalidArgumentException
-                                                               reason:@"Controller is no NSViewController"
-                                                             userInfo:nil];
-    @throw controllerException;
-  }
-  NSString *identifier = tabController.identifier;
-  if(nil != self.preferencesController[identifier]) {
-    NSLog(@"Warning: Settingscontroller with identifier %@ already present!", identifier);
-  }
-  else {
-    self.preferencesController[identifier] = tabController;
-  }
-}
-
 - (void)_setupDefaultPreferencesTabs {
-  NSArray *controllers = @[ [[MPGeneralPreferencesController alloc] init],
-                            [[MPIntegrationPreferencesController alloc] init],
-                            [[MPWorkflowPreferencesController alloc] init],
-                            [[MPUpdatePreferencesController alloc] init],
-                            [[MPPluginPreferencesController alloc] init] ];
-  NSMutableArray *identifier = [[NSMutableArray alloc] initWithCapacity:controllers.count];
-  for(id<MPPreferencesTab> controller in controllers) {
-    [self _addSettingsTab:controller];
-    [identifier addObject:controller.identifier];
+  NSArray<NSViewController<MPPreferencesTab>*> *controllers = @[ [[MPGeneralPreferencesController alloc] init],
+                                                                 [[MPIntegrationPreferencesController alloc] init],
+                                                                 [[MPWorkflowPreferencesController alloc] init],
+                                                                 [[MPUpdatePreferencesController alloc] init],
+                                                                 [[MPPluginPreferencesController alloc] init] ];
+  for(NSViewController<MPPreferencesTab> *controller in controllers) {
+    NSString *identifier = controller.identifier;
+    if([self.tabViewController tabViewItemForViewController:controller]) {
+      NSLog(@"Skipping adding tabViewController %@ since it's already been added before", controller);
+      continue;
+    }
+    if(NSNotFound != [self.tabViewController.tabView indexOfTabViewItemWithIdentifier:identifier]) {
+      NSLog(@"Warning: Duplicate identifiers %@ used for different tabs. Skipping adding %@ since the identifier is not unique", identifier, controller);
+    }
+    NSTabViewItem *item = [NSTabViewItem tabViewItemWithViewController:controller];
+    item.identifier = controller.identifier;
+    if([controller respondsToSelector:@selector(label)]) {
+      item.label = controller.label;
+    }
+    if([controller respondsToSelector:@selector(image)]) {
+      item.image = controller.image;
+    }
+    [self.tabViewController addTabViewItem:item];
   }
-  self.defaultToolbarItems = [identifier copy];
 }
 
-- (void)_showSettingsTab:(id)sender {
-  if([sender respondsToSelector:@selector(itemIdentifier)]) {
-    NSString *identfier = [sender itemIdentifier];
-    [self _showPreferencesTabWithIdentifier:identfier];
-  }
-}
-
-#pragma mark NSToolbarDelegate
-
-- (NSArray *)toolbarAllowedItemIdentifiers:(NSToolbar *)toolbar {
-  return self.preferencesController.allKeys;
-}
-
-- (NSArray *)toolbarDefaultItemIdentifiers:(NSToolbar *)toolbar {
-  return self.defaultToolbarItems;
-}
-
-- (NSArray *)toolbarSelectableItemIdentifiers:(NSToolbar *)toolbar {
-  return self.preferencesController.allKeys;
-}
-
-- (NSToolbarItem *)toolbar:(NSToolbar *)toolbar itemForItemIdentifier:(NSString *)itemIdentifier willBeInsertedIntoToolbar:(BOOL)flag {
-  NSToolbarItem *item = self.toolbarItems[itemIdentifier];
-  if(nil == item) {
-    item = [[NSToolbarItem alloc] initWithItemIdentifier:itemIdentifier];
-    /*
-     Setup the item to use the controllers label if one is present
-     and supports the appropriate @optional protocol messages
-     */
-    id<MPPreferencesTab> tab = self.preferencesController[itemIdentifier];
-    if([tab respondsToSelector:@selector(label)]) {
-      item.label = [tab label];
-    }
-    else {
-      item.label = itemIdentifier;
-    }
-    if([tab respondsToSelector:@selector(image)]) {
-      item.image = [tab image];
-    }
-    else {
-      item.image = [NSImage imageNamed:NSImageNameCaution];
-    }
-    
-    item.action = @selector(_showSettingsTab:);
-    self.toolbarItems[itemIdentifier] = item;
-  }
-  return item;
-}
 
 @end

@@ -100,13 +100,8 @@ typedef NS_OPTIONS(NSInteger, MPAppStartupState) {
                                              object:nil];
     
     /* We know that we do not use the variable after instantiation */
-#pragma clang diagnostic push
-#pragma clang diagnostic ignored "-Wunused-variable"
     MPDocumentController *documentController = [[MPDocumentController alloc] init];
-#pragma clang diagnostic pop
-    
-    
-    
+    NSAssert(documentController, @"Custom document controller cannot be nil");    
   }
   return self;
 }
@@ -224,11 +219,7 @@ typedef NS_OPTIONS(NSInteger, MPAppStartupState) {
 #endif
   self.startupState |= MPAppStartupStateFinishedLaunch;
   // Here we just opt-in for allowing our bar to be customized throughout the app.
-  if([NSApplication.sharedApplication respondsToSelector:@selector(isAutomaticCustomizeTouchBarMenuItemEnabled)]) {
-    if(@available(macOS 10.12.2, *)) {
-      NSApplication.sharedApplication.automaticCustomizeTouchBarMenuItemEnabled = YES;
-    }
-  }
+    NSApplication.sharedApplication.automaticCustomizeTouchBarMenuItemEnabled = YES;
 }
 
 #pragma mark -
@@ -236,12 +227,12 @@ typedef NS_OPTIONS(NSInteger, MPAppStartupState) {
 - (void)menuNeedsUpdate:(NSMenu *)menu {
   if(menu == self.saveMenuItem.menu) {
     MPDocument *document = NSDocumentController.sharedDocumentController.currentDocument;
-    BOOL displayDots = (document.fileURL == nil || !document.compositeKey.hasPasswordOrKeyFile);
+    BOOL displayDots = (document.fileURL == nil || !document.compositeKey.hasKeys);
     NSString *saveTitle =  displayDots ? NSLocalizedString(@"SAVE_WITH_DOTS", "Save file menu item title when save will prompt for a location to save or ask for a password/key") : NSLocalizedString(@"SAVE", "Save file menu item title when save will just save the file");
     self.saveMenuItem.title = saveTitle;
   }
   else if(menu == self.fixAutotypeMenuItem.menu) {
-    self.fixAutotypeMenuItem.hidden = !(NSEvent.modifierFlags & NSAlternateKeyMask);
+    self.fixAutotypeMenuItem.hidden = !(NSEvent.modifierFlags & NSEventModifierFlagOption);
   }
   else if(menu == self.importMenu) {
     NSMenuItem *exportXML = menu.itemArray.firstObject;

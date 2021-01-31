@@ -105,13 +105,13 @@
 "AUTOTYPE_NOTIFICATION_MACPASS_HAS_NO_ACCESSIBILTY_PERMISSIONS" = "Automatisch inloggen is niet beschikbaar, omdat MacPass geen toestemming heeft om je computer te besturen. Kies Apple-menu >'Systeemvoorkeuren', klik op 'Beveiliging en privacy', klik vervolgens op 'Privacy' en voeg MacPass toe aan de groep Toegankelijkheid om automatisch inloggen aan te zetten. Stop en open MacPass opnieuw om de wijziging door te voeren.";
 
 /* Notification: Autotype failed, no documents are open */
-"AUTOTYPE_OVERLAY_NO_DOCUMENTS" = "Open een wachtwoordenkluis om automatisch te kunnen inloggen.";
+"AUTOTYPE_NOTIFICATION_NO_DOCUMENTS_INFORMATIVE_TEXT" = "Open een wachtwoordenkluis om automatisch te kunnen inloggen.";
 
 /* Noticiation: Autotype failed to find a match for %@ (string placeholder) */
-"AUTOTYPE_OVERLAY_NO_MATCH_FOR_%@" = "Geen overeenkomst gevonden voor %@";
+"AUTOTYPE_NOTIFICATION_NO_MATCH_FOR_%@" = "Geen overeenkomst gevonden voor %@";
 
 /* Notification: Autotype found a single match for %@ (string placeholder). */
-"AUTOTYPE_OVERLAY_SINGLE_MATCH_FOR_%@" = "Automatisch ingelogd op %@.";
+"AUTOTYPE_NOTIFICATION_SINGLE_MATCH_FOR_%@" = "Automatisch ingelogd op %@.";
 
 /* Notficication: Autotype timed out */
 "AUTOTYPE_TIMED_OUT" = "Automatisch inloggen mislukt door te lang wachten.";

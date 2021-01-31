@@ -37,5 +37,6 @@
 @property (strong) IBOutlet NSButton *enableAutosaveCheckButton;
 @property (strong) IBOutlet NSButton *rememberKeyFileCheckButton;
 @property (strong) IBOutlet NSPopUpButton *fileChangeStrategyPopup;
+@property (strong) IBOutlet NSPopUpButton *faviconDownloadMethodPopup;
 
 @end

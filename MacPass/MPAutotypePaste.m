@@ -51,9 +51,9 @@
 }
 
 - (void)execute {
-  if([self.pasteData length] > 0) {
+  if(self.pasteData.length > 0) {
     [MPPasteBoardController.defaultController stashObjects];
-    [MPPasteBoardController.defaultController copyObjectsWithoutTimeout:@[self.pasteData]];
+    [MPPasteBoardController.defaultController copyObjectWithoutTimeout:self.pasteData];
     [MPKeyTyper sendPaste];
     usleep(0.2 * NSEC_PER_MSEC); // on 10.10 we need to wait a bit before restoring the pasteboard contents
     [MPPasteBoardController.defaultController restoreObjects];

@@ -209,9 +209,7 @@
 
 - (void)toggleShowPassword {
   self.showPassword = !self.showPassword;
-  if (@available(macOS 10.12.2, *)) {
-    _showPasswordButton.bezelColor = self.showPassword ? [NSColor selectedControlColor] : [NSColor controlColor];
-  }
+  self.showPasswordButton.bezelColor = self.showPassword ? [NSColor selectedControlColor] : [NSColor controlColor];
 }
 
 - (void)_didSetKeyURL:(NSNotification *)notification {

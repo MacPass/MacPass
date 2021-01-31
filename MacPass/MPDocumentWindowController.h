@@ -34,9 +34,6 @@
 @interface MPDocumentWindowController : NSWindowController <NSTouchBarDelegate>
 
 @property (readonly, strong) MPPasswordInputController *passwordInputController;
-@property (readonly, strong) MPEntryViewController *entryViewController;
-@property (readonly, strong) MPOutlineViewController *outlineViewController;
-@property (readonly, strong) MPInspectorViewController *inspectorViewController;
 @property (readonly, strong) MPToolbarDelegate *toolbarDelegate;
 
 @property (readonly, nonatomic, strong) NSSearchField *searchField;

@@ -40,7 +40,7 @@
 @property (strong) IBOutlet NSButton *matchTagsCheckBox;
 
 @property (strong) IBOutlet NSButton *sendCommandForControlCheckBox;
-
+@property (strong) IBOutlet NSButton *alwaysShowConfirmationBeforeAutotypeCheckBox;
 /* Preview */
 @property (strong) IBOutlet NSButton *enableQuicklookCheckBox;
 
