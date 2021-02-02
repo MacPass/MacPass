@@ -501,7 +501,7 @@ NSString *const MPDocumentGroupKey                            = @"MPDocumentGrou
 }
 
 
-- (BOOL)unlockWithPassword:(NSString *)password keyFileURL:(NSURL *)keyFileURL error:(NSError *__autoreleasing*)error{
+- (BOOL)unlockWithPassword:(NSString *)password keyFileURL:(NSURL *)keyFileURL error:(NSError *__autoreleasing*)error {
   // TODO: Make this API asynchronous
   NSData *keyFileData = keyFileURL ? [NSData dataWithContentsOfURL:keyFileURL] : nil;
   
