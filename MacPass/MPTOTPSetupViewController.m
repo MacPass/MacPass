@@ -31,7 +31,9 @@ typedef NS_ENUM(NSUInteger, MPOTPUpdateSource) {
   MPOTPUpdateSourceSecret,
   MPOTPUpdateSourceAlgorithm,
   MPOTPUpdateSourceTimeSlice,
+  MPOTPUpdateSourceType,
   MPOTPUpdateSourceEntry
+  
 };
 
 typedef NS_ENUM(NSUInteger, MPOTPType) {
@@ -92,6 +94,13 @@ typedef NS_ENUM(NSUInteger, MPOTPType) {
   }
 }
 
+- (IBAction)changeType:(id)sender {
+  if(sender != self.typePopUpButton) {
+    return; // wrong sender
+  }
+  [self _updateView:MPOTPUpdateSourceType];
+}
+
 - (IBAction)parseQRCode:(id)sender {
   if(sender != self.qrCodeImageView) {
     return; // wrong sender
@@ -106,6 +115,7 @@ typedef NS_ENUM(NSUInteger, MPOTPType) {
    MPOTPUpdateSourceSecret,
    MPOTPUpdateSourceAlgorithm,
    MPOTPUpdateSourceTimeSlice,
+   MPOTPUpdateSourceType,
    MPOTPUpdateSourceEntry
    
    */
