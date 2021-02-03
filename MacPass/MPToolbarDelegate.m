@@ -225,7 +225,7 @@ NSString *const MPToolbarItemIdentifierAutotype     = @"TOOLBAR_AUTOTYPE";
                                MPToolbarItemIdentifierCopyPassword : [MPIconHelper icon:MPIconPassword],
                                MPToolbarItemIdentifierDelete: [MPIconHelper icon:MPIconTrash],
                                MPToolbarItemIdentifierAction: [NSImage imageNamed:NSImageNameActionTemplate],
-                               MPToolbarItemIdentifierInspector: [MPIconHelper icon:MPIconInfo],
+                               MPToolbarItemIdentifierInspector: [MPIconHelper icon:MPIconSidebar],
                                MPToolbarItemIdentifierHistory: [MPIconHelper icon:MPIconHistory],
                                MPToolbarItemIdentifierAutotype : [MPIconHelper icon:MPIconKeyboard]
                                };

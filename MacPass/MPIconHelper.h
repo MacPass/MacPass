@@ -101,7 +101,7 @@ typedef NS_ENUM(NSUInteger, MPIconType) {
   MPIconPhone,
   /* Custom Icons not used in Database */
   MPCustomIconTypeBegin = 1000,
-  MPIconInfo,
+  MPIconSidebar,
   MPIconAddFolder,
   MPIconHardDisk,
   MPIconCreated,
