@@ -132,6 +132,8 @@ typedef NS_ENUM(NSUInteger, MPIconType) {
  */
 @property (class, nonatomic, strong, readonly) NSDictionary *availableIconNames;
 
+@property (class, nonatomic, strong, readonly) NSDictionary *availableSymbolNames;
+
 /**
  *	List of all available DatabaseIcons as an array of Images. Sorted by IconIndex.
  *	@return	Array of Icons as NSImage objects
