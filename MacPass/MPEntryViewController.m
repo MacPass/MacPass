@@ -62,6 +62,7 @@ NSString *const MPEntryTableParentColumnIdentifier = @"MPParentColumnIdentifier"
 NSString *const MPEntryTableURLColumnIdentifier = @"MPEntryTableURLColumnIdentifier";
 NSString *const MPEntryTableNotesColumnIdentifier = @"MPEntryTableNotesColumnIdentifier";
 NSString *const MPEntryTableAttachmentColumnIdentifier = @"MPEntryTableAttachmentColumnIdentifier";
+NSString *const MPEntryTableCreatedColumnIdentifier = @"MPEntryTableCreatedColumnIdentifier";
 NSString *const MPEntryTableModfiedColumnIdentifier = @"MPEntryTableModfiedColumnIdentifier";
 NSString *const MPEntryTableHistoryColumnIdentifier = @"MPEntryTableHistoryColumnIdentifier";
 
@@ -146,11 +147,13 @@ NSString *const _MPTableSecurCellView = @"PasswordCell";
   NSTableColumn *urlColumn = self.entryTable.tableColumns[4];
   NSTableColumn *attachmentsColumn = [[NSTableColumn alloc] initWithIdentifier:MPEntryTableAttachmentColumnIdentifier];
   NSTableColumn *notesColumn = [[NSTableColumn alloc] initWithIdentifier:MPEntryTableNotesColumnIdentifier];
+  NSTableColumn *createdColumn = [[NSTableColumn alloc] initWithIdentifier:MPEntryTableCreatedColumnIdentifier];
   NSTableColumn *modifiedColumn = [[NSTableColumn alloc] initWithIdentifier:MPEntryTableModfiedColumnIdentifier];
   NSTableColumn *historyColumn = [[NSTableColumn alloc] initWithIdentifier:MPEntryTableHistoryColumnIdentifier];
   NSTableColumn *indexColumn = [[NSTableColumn alloc] initWithIdentifier:MPEntryTableIndexColumnIdentifier];
   notesColumn.minWidth = 40.0;
   attachmentsColumn.minWidth = 40.0;
+  createdColumn.minWidth = 40.0;
   modifiedColumn.minWidth = 40.0;
   historyColumn.minWidth = 40.0;
   indexColumn.minWidth = 27.0;
@@ -158,6 +161,7 @@ NSString *const _MPTableSecurCellView = @"PasswordCell";
   [self.entryTable addTableColumn:notesColumn];
   [self.entryTable addTableColumn:attachmentsColumn];
   [self.entryTable addTableColumn:modifiedColumn];
+  [self.entryTable addTableColumn:createdColumn];
   [self.entryTable addTableColumn:historyColumn];
   [self.entryTable addTableColumn:indexColumn];
   
@@ -172,6 +176,7 @@ NSString *const _MPTableSecurCellView = @"PasswordCell";
   
   NSString *parentTitleKeyPath = [[NSString alloc] initWithFormat:@"%@.%@", NSStringFromSelector(@selector(parent)), NSStringFromSelector(@selector(title))];
   NSString *timeInfoModificationTimeKeyPath = [[NSString alloc] initWithFormat:@"%@.%@", NSStringFromSelector(@selector(timeInfo)), NSStringFromSelector(@selector(modificationDate))];
+  NSString *timeInfoCreationTimeKeyPath = [[NSString alloc] initWithFormat:@"%@.%@", NSStringFromSelector(@selector(timeInfo)), NSStringFromSelector(@selector(creationDate))];
   
   indexColumn.sortDescriptorPrototype = [NSSortDescriptor sortDescriptorWithKey:NSStringFromSelector(@selector(index)) ascending:YES selector:@selector(compare:)];
   titleColumn.sortDescriptorPrototype = [NSSortDescriptor sortDescriptorWithKey:NSStringFromSelector(@selector(title))ascending:YES selector:@selector(localizedCaseInsensitiveCompare:)];
@@ -179,6 +184,7 @@ NSString *const _MPTableSecurCellView = @"PasswordCell";
   urlColumn.sortDescriptorPrototype = [NSSortDescriptor sortDescriptorWithKey:NSStringFromSelector(@selector(url)) ascending:YES selector:@selector(localizedCaseInsensitiveCompare:)];
   parentColumn.sortDescriptorPrototype = [NSSortDescriptor sortDescriptorWithKey:parentTitleKeyPath ascending:YES selector:@selector(localizedCaseInsensitiveCompare:)];
   modifiedColumn.sortDescriptorPrototype = [NSSortDescriptor sortDescriptorWithKey:timeInfoModificationTimeKeyPath ascending:YES selector:@selector(compare:)];
+  createdColumn.sortDescriptorPrototype = [NSSortDescriptor sortDescriptorWithKey:timeInfoCreationTimeKeyPath ascending:YES selector:@selector(compare:)];
   
   indexColumn.headerCell.stringValue = @"";
   indexColumn.headerToolTip = NSLocalizedString(@"ENTRY_INDEX_COLUMN_TOOLTIP", "Tooltip displayed on the index header cell");
@@ -189,6 +195,7 @@ NSString *const _MPTableSecurCellView = @"PasswordCell";
   urlColumn.headerCell.stringValue = NSLocalizedString(@"URL", "Url column title");
   notesColumn.headerCell.stringValue = NSLocalizedString(@"NOTES", "Notes column title");
   attachmentsColumn.headerCell.stringValue = NSLocalizedString(@"ATTACHMENTS", "Attachments column title (shows counts)");
+  createdColumn.headerCell.stringValue = NSLocalizedString(@"CREATED", "Creating date column title");
   modifiedColumn.headerCell.stringValue = NSLocalizedString(@"MODIFIED", "Modification date column title");
   historyColumn.headerCell.stringValue = NSLocalizedString(@"HISTORY", "History count column title");
   
@@ -229,7 +236,7 @@ NSString *const _MPTableSecurCellView = @"PasswordCell";
   [NSNotificationCenter.defaultCenter addObserver:self selector:@selector(_didUpdateSearchResults:) name:MPDocumentDidChangeSearchResults object:document];
   [NSNotificationCenter.defaultCenter addObserver:self selector:@selector(_showEntryHistory:) name:MPDocumentShowEntryHistoryNotification object:document];
   [NSNotificationCenter.defaultCenter addObserver:self selector:@selector(_hideEntryHistory:) name:MPDocumentHideEntryHistoryNotification object:document];
-    
+  
   [self.contextBarViewController registerNotificationsForDocument:document];
 }
 
@@ -253,7 +260,6 @@ NSString *const _MPTableSecurCellView = @"PasswordCell";
     entry.parent.lastTopVisibleEntry = entry.uuid;
   }
 }
-
 - (NSView *)tableView:(NSTableView *)tableView viewForTableColumn:(NSTableColumn *)tableColumn row:(NSInteger)row {
   BOOL isTitleColumn = [tableColumn.identifier isEqualToString:MPEntryTableTitleColumnIdentifier];
   BOOL isGroupColumn = [tableColumn.identifier isEqualToString:MPEntryTableParentColumnIdentifier];
@@ -262,6 +268,7 @@ NSString *const _MPTableSecurCellView = @"PasswordCell";
   BOOL isURLColumn = [tableColumn.identifier isEqualToString:MPEntryTableURLColumnIdentifier];
   BOOL isAttachmentColumn = [tableColumn.identifier isEqualToString:MPEntryTableAttachmentColumnIdentifier];
   BOOL isNotesColumn = [tableColumn.identifier isEqualToString:MPEntryTableNotesColumnIdentifier];
+  BOOL isCreatedColumn = [tableColumn.identifier isEqualToString:MPEntryTableCreatedColumnIdentifier];
   BOOL isModifedColumn = [tableColumn.identifier isEqualToString:MPEntryTableModfiedColumnIdentifier];
   BOOL isHistoryColumn = [tableColumn.identifier isEqualToString:MPEntryTableHistoryColumnIdentifier];
   
@@ -308,12 +315,12 @@ NSString *const _MPTableSecurCellView = @"PasswordCell";
     view = [tableView makeViewWithIdentifier:_MPTableStringCellView owner:self];
     [view.textField unbind:NSValueBinding];
     view.textField.stringValue = @"";
-    if(!isModifedColumn) {
+    if(!isModifedColumn && !isCreatedColumn) {
       /* clean up old formatter that might be left */
       view.textField.formatter = nil;
     }
     
-    if(isModifedColumn) {
+    if(isModifedColumn || isCreatedColumn) {
       if(!view.textField.formatter) {
         /* Just use one formatter instance since it's expensive to create */
         static NSDateFormatter *formatter = nil;
@@ -325,12 +332,23 @@ NSString *const _MPTableSecurCellView = @"PasswordCell";
         });
         view.textField.formatter = formatter;
       }
-      NSString *modificationTimeKeyPath = [NSString stringWithFormat:@"%@.%@.%@",
-                                           NSStringFromSelector(@selector(objectValue)),
-                                           NSStringFromSelector(@selector(timeInfo)),
-                                           NSStringFromSelector(@selector(modificationDate))];
-      
-      [view.textField bind:NSValueBinding toObject:view withKeyPath:modificationTimeKeyPath options:nil];
+      if(isModifedColumn) {
+        NSString *modificationTimeKeyPath = [NSString stringWithFormat:@"%@.%@.%@",
+                                             NSStringFromSelector(@selector(objectValue)),
+                                             NSStringFromSelector(@selector(timeInfo)),
+                                             NSStringFromSelector(@selector(modificationDate))];
+        
+        [view.textField bind:NSValueBinding toObject:view withKeyPath:modificationTimeKeyPath options:nil];
+      }
+      else {
+        NSString * createdTimeKeyPath = [NSString stringWithFormat:@"%@.%@.%@",
+                                         NSStringFromSelector(@selector(objectValue)),
+                                         NSStringFromSelector(@selector(timeInfo)),
+                                         NSStringFromSelector(@selector(creationDate))];
+        
+        
+        [view.textField bind:NSValueBinding toObject:view withKeyPath:createdTimeKeyPath options:nil];
+      }
       return view;
     }
     else if(isURLColumn) {
@@ -384,8 +402,8 @@ NSString *const _MPTableSecurCellView = @"PasswordCell";
   }
   /* do not update the current item if we are not in focus! */
   if(tableView.window.firstResponder == self.entryTable) {
-      MPDocument *document = self.windowController.document;
-      document.selectedEntries = self.entryArrayController.selectedObjects;
+    MPDocument *document = self.windowController.document;
+    document.selectedEntries = self.entryArrayController.selectedObjects;
   }
 }
 
@@ -627,7 +645,9 @@ NSString *const _MPTableSecurCellView = @"PasswordCell";
   [headerMenu addItemWithTitle:NSLocalizedString(@"NOTES", "Menu item to toggle display of notes column in entry table") action:NULL keyEquivalent:@""];
   [headerMenu addItemWithTitle:NSLocalizedString(@"ATTACHMENTS", "Menu item to toggle display of attachment count column in entry table") action:NULL keyEquivalent:@""];
   [headerMenu addItemWithTitle:NSLocalizedString(@"MODIFIED", "Menu item to toggle display of modified date column in entry table") action:NULL keyEquivalent:@""];
+  [headerMenu addItemWithTitle:NSLocalizedString(@"CREATED", "Menu item to toggle display of created date column in entry table") action:NULL keyEquivalent:@""];
   [headerMenu addItemWithTitle:NSLocalizedString(@"HISTORY", "Menu item to toggle display of history count column in entry table") action:NULL keyEquivalent:@""];
+  
   
   NSArray *identifier = @[ MPEntryTableTitleColumnIdentifier,
                            MPEntryTableUserNameColumnIdentifier,
@@ -636,6 +656,7 @@ NSString *const _MPTableSecurCellView = @"PasswordCell";
                            MPEntryTableNotesColumnIdentifier,
                            MPEntryTableAttachmentColumnIdentifier,
                            MPEntryTableModfiedColumnIdentifier,
+                           MPEntryTableCreatedColumnIdentifier,
                            MPEntryTableHistoryColumnIdentifier ];
   
   NSDictionary *options = @{ NSValueTransformerNameBindingOption : NSNegateBooleanTransformerName };
@@ -725,7 +746,7 @@ NSString *const _MPTableSecurCellView = @"PasswordCell";
                                  kKPKReferenceTitleKey: NSLocalizedString(@"COPIED_TITLE_REFERENCE", "Context menu that copies reference to title"),
                                  kKPKReferencePasswordKey: NSLocalizedString(@"COPIED_PASSWORD_REFERENCE", "Context menu that copies reference to password"),
                                  kKPKReferenceUsernameKey: NSLocalizedString(@"COPIED_USERNAME_REFERENCE", "Context menu that copies reference to username"),
-                                 };
+  };
   if(![sender isKindOfClass:NSMenuItem.class]) {
     return;
   }
