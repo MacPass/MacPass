@@ -22,11 +22,11 @@
         </customObject>
         <customObject id="-1" userLabel="First Responder" customClass="FirstResponder"/>
         <customObject id="-3" userLabel="Application" customClass="NSObject"/>
-        <customView translatesAutoresizingMaskIntoConstraints="NO" id="Hz6-mo-xeY">
-            <rect key="frame" x="0.0" y="0.0" width="354" height="362"/>
+        <customView misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Hz6-mo-xeY">
+            <rect key="frame" x="0.0" y="0.0" width="324" height="362"/>
             <subviews>
                 <gridView horizontalHuggingPriority="251" xPlacement="leading" yPlacement="center" rowAlignment="firstBaseline" rowSpacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="4gl-4p-0WY">
-                    <rect key="frame" x="20" y="60" width="314" height="282"/>
+                    <rect key="frame" x="20" y="60" width="284" height="282"/>
                     <constraints>
                         <constraint firstItem="GJN-85-eYH" firstAttribute="trailing" secondItem="Bt8-9X-91R" secondAttribute="trailing" id="9fv-9s-YwU"/>
                         <constraint firstItem="AdN-zI-C65" firstAttribute="top" secondItem="caF-Au-ey8" secondAttribute="bottom" constant="8" symbolic="YES" id="GFv-3D-Ejx"/>
@@ -83,7 +83,7 @@
                                 </textFieldCell>
                             </textField>
                         </gridCell>
-                        <gridCell row="leK-j9-Cah" column="Ecc-pj-MX9" headOfMergedCell="q9e-Zx-LIY" yPlacement="center" id="q9e-Zx-LIY">
+                        <gridCell row="leK-j9-Cah" column="Ecc-pj-MX9" yPlacement="center" id="q9e-Zx-LIY">
                             <textField key="contentView" horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="Bt8-9X-91R">
                                 <rect key="frame" x="109" y="148" width="150" height="21"/>
                                 <constraints>
@@ -96,7 +96,7 @@
                                 </textFieldCell>
                             </textField>
                         </gridCell>
-                        <gridCell row="leK-j9-Cah" column="aZO-dP-SsW" headOfMergedCell="q9e-Zx-LIY" id="gOO-ed-C7I"/>
+                        <gridCell row="leK-j9-Cah" column="aZO-dP-SsW" id="gOO-ed-C7I"/>
                         <gridCell row="J7I-Uw-OQv" column="Ar1-qh-iHT" id="LYj-ea-Ou9">
                             <textField key="contentView" horizontalHuggingPriority="252" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="W8L-ah-Kdc">
                                 <rect key="frame" x="71" y="121" width="34" height="16"/>
@@ -115,6 +115,9 @@
                                     <font key="font" metaFont="menu"/>
                                     <menu key="menu" id="ger-Fr-8BF"/>
                                 </popUpButtonCell>
+                                <connections>
+                                    <action selector="changeType:" target="-2" id="0cg-oY-afM"/>
+                                </connections>
                             </popUpButton>
                         </gridCell>
                         <gridCell row="J7I-Uw-OQv" column="aZO-dP-SsW" id="mka-sc-dDD"/>
@@ -210,14 +213,17 @@
                     </gridCells>
                 </gridView>
                 <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="Ppm-aD-yti">
-                    <rect key="frame" x="223" y="13" width="118" height="32"/>
+                    <rect key="frame" x="193" y="13" width="118" height="32"/>
                     <buttonCell key="cell" type="push" title="Save Settings" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="YGn-qt-RrI">
                         <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                         <font key="font" metaFont="system"/>
                     </buttonCell>
+                    <connections>
+                        <action selector="save:" target="-2" id="k3D-gK-Tch"/>
+                    </connections>
                 </button>
                 <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="5a5-df-HAb">
-                    <rect key="frame" x="149" y="13" width="76" height="32"/>
+                    <rect key="frame" x="119" y="13" width="76" height="32"/>
                     <buttonCell key="cell" type="push" title="Cancel" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="Ynh-bE-30s">
                         <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                         <font key="font" metaFont="system"/>
@@ -225,6 +231,9 @@
 Gw
 </string>
                     </buttonCell>
+                    <connections>
+                        <action selector="cancel:" target="-2" id="Z99-2L-Le6"/>
+                    </connections>
                 </button>
             </subviews>
             <constraints>
@@ -238,7 +247,7 @@ Gw
                 <constraint firstItem="4gl-4p-0WY" firstAttribute="leading" secondItem="Hz6-mo-xeY" secondAttribute="leading" constant="20" symbolic="YES" id="g3C-GL-weQ"/>
                 <constraint firstAttribute="trailing" secondItem="Ppm-aD-yti" secondAttribute="trailing" constant="20" symbolic="YES" id="gxW-QO-gFu"/>
             </constraints>
-            <point key="canvasLocation" x="-1272" y="-930"/>
+            <point key="canvasLocation" x="-1402" y="-1030"/>
         </customView>
     </objects>
 </document>
