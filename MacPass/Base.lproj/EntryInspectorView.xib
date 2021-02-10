@@ -47,7 +47,7 @@
             <rect key="frame" x="0.0" y="0.0" width="293" height="493"/>
             <subviews>
                 <segmentedControl verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="82">
-                    <rect key="frame" x="62" y="469" width="170" height="19"/>
+                    <rect key="frame" x="76" y="470" width="142" height="19"/>
                     <segmentedCell key="cell" controlSize="small" borderStyle="border" alignment="left" style="capsule" trackingMode="selectOne" id="238">
                         <font key="font" metaFont="smallSystem"/>
                         <segments>
@@ -106,7 +106,7 @@
                                                     <color key="backgroundColor" name="alternateSelectedControlTextColor" catalog="System" colorSpace="catalog"/>
                                                     <color key="gridColor" name="gridColor" catalog="System" colorSpace="catalog"/>
                                                     <tableColumns>
-                                                        <tableColumn width="248" minWidth="40" maxWidth="1000" id="140">
+                                                        <tableColumn width="219" minWidth="40" maxWidth="1000" id="140">
                                                             <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border" alignment="left">
                                                                 <color key="textColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>
                                                                 <color key="backgroundColor" white="0.33333298560000002" alpha="1" colorSpace="calibratedWhite"/>
@@ -119,11 +119,11 @@
                                                             <tableColumnResizingMask key="resizingMask" resizeWithTable="YES" userResizable="YES"/>
                                                             <prototypeCellViews>
                                                                 <tableCellView identifier="NormalCell" id="143">
-                                                                    <rect key="frame" x="1" y="1" width="248" height="36"/>
+                                                                    <rect key="frame" x="11" y="1" width="228" height="36"/>
                                                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                                     <subviews>
                                                                         <imageView translatesAutoresizingMaskIntoConstraints="NO" id="144">
-                                                                            <rect key="frame" x="3" y="2" width="32" height="32"/>
+                                                                            <rect key="frame" x="3" y="-1" width="32" height="38"/>
                                                                             <constraints>
                                                                                 <constraint firstAttribute="width" constant="32" id="153"/>
                                                                                 <constraint firstAttribute="height" constant="32" id="154"/>
@@ -131,7 +131,7 @@
                                                                             <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyDown" image="NSActionTemplate" id="152"/>
                                                                         </imageView>
                                                                         <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" allowsCharacterPickerTouchBarItem="YES" translatesAutoresizingMaskIntoConstraints="NO" id="145">
-                                                                            <rect key="frame" x="41" y="10" width="206" height="16"/>
+                                                                            <rect key="frame" x="41" y="10" width="186" height="16"/>
                                                                             <textFieldCell key="cell" lineBreakMode="truncatingTail" sendsActionOnEndEditing="YES" title="Table View Cell" id="151">
                                                                                 <font key="font" metaFont="system"/>
                                                                                 <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
@@ -152,11 +152,11 @@
                                                                     </connections>
                                                                 </tableCellView>
                                                                 <tableCellView identifier="SelectedCell" id="141" customClass="MPSelectedAttachmentTableCellView">
-                                                                    <rect key="frame" x="1" y="39" width="248" height="36"/>
+                                                                    <rect key="frame" x="11" y="39" width="228" height="36"/>
                                                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                                     <subviews>
                                                                         <imageView translatesAutoresizingMaskIntoConstraints="NO" id="167">
-                                                                            <rect key="frame" x="3" y="2" width="32" height="32"/>
+                                                                            <rect key="frame" x="3" y="-1" width="32" height="38"/>
                                                                             <constraints>
                                                                                 <constraint firstAttribute="height" constant="32" id="168"/>
                                                                                 <constraint firstAttribute="width" constant="32" id="169"/>
@@ -164,7 +164,7 @@
                                                                             <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyDown" image="NSActionTemplate" id="170"/>
                                                                         </imageView>
                                                                         <textField horizontalHuggingPriority="249" verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" allowsCharacterPickerTouchBarItem="YES" translatesAutoresizingMaskIntoConstraints="NO" id="166">
-                                                                            <rect key="frame" x="41" y="10" width="158" height="16"/>
+                                                                            <rect key="frame" x="41" y="10" width="131" height="16"/>
                                                                             <textFieldCell key="cell" lineBreakMode="truncatingTail" sendsActionOnEndEditing="YES" title="Table View Cell" id="171">
                                                                                 <font key="font" metaFont="system"/>
                                                                                 <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
@@ -172,7 +172,7 @@
                                                                             </textFieldCell>
                                                                         </textField>
                                                                         <popUpButton verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="42g-QS-XtW">
-                                                                            <rect key="frame" x="205" y="6" width="40" height="23"/>
+                                                                            <rect key="frame" x="175" y="4" width="54" height="25"/>
                                                                             <popUpButtonCell key="cell" type="roundTextured" bezelStyle="texturedRounded" alignment="center" lineBreakMode="truncatingTail" borderStyle="border" imageScaling="proportionallyDown" inset="2" pullsDown="YES" altersStateOfSelectedItem="NO" id="nJc-UT-cas">
                                                                                 <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                                                                 <font key="font" metaFont="menu"/>
@@ -265,7 +265,7 @@
             <rect key="frame" x="0.0" y="0.0" width="291" height="484"/>
             <subviews>
                 <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" horizontalCompressionResistancePriority="249" allowsCharacterPickerTouchBarItem="YES" translatesAutoresizingMaskIntoConstraints="NO" id="0U8-TS-giU">
-                    <rect key="frame" x="18" y="79" width="32" height="14"/>
+                    <rect key="frame" x="18" y="77" width="32" height="14"/>
                     <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" allowsUndo="NO" sendsActionOnEndEditing="YES" title="UUID" id="vTq-N1-5oa">
                         <font key="font" metaFont="smallSystem"/>
                         <color key="textColor" name="disabledControlTextColor" catalog="System" colorSpace="catalog"/>
@@ -273,7 +273,7 @@
                     </textFieldCell>
                 </textField>
                 <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="249" allowsCharacterPickerTouchBarItem="YES" translatesAutoresizingMaskIntoConstraints="NO" id="IpW-b2-jWu" customClass="HNHUITextField">
-                    <rect key="frame" x="20" y="50" width="251" height="21"/>
+                    <rect key="frame" x="20" y="48" width="251" height="21"/>
                     <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" drawsBackground="YES" id="Hml-NR-AeS">
                         <font key="font" metaFont="system"/>
                         <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
@@ -284,7 +284,7 @@
                     </connections>
                 </textField>
                 <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="QSX-Xo-tcH">
-                    <rect key="frame" x="20" y="19" width="251" height="23"/>
+                    <rect key="frame" x="19" y="18" width="253" height="23"/>
                     <buttonCell key="cell" type="roundTextured" title="Show Plugin Data" bezelStyle="texturedRounded" alignment="center" lineBreakMode="truncatingTail" state="on" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="X9y-K7-lix">
                         <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                         <font key="font" metaFont="system"/>
@@ -295,7 +295,7 @@
                     </connections>
                 </button>
                 <segmentedControl verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="G9J-nn-2bu" customClass="MPContextButton">
-                    <rect key="frame" x="216" y="100" width="55" height="23"/>
+                    <rect key="frame" x="219" y="98" width="54" height="24"/>
                     <segmentedCell key="cell" borderStyle="border" alignment="left" style="texturedRounded" trackingMode="selectOne" id="POU-2t-8fl">
                         <font key="font" metaFont="system"/>
                         <segments>
@@ -309,10 +309,10 @@
                     </connections>
                 </segmentedControl>
                 <stackView distribution="fill" orientation="vertical" alignment="leading" horizontalStackHuggingPriority="250" verticalStackHuggingPriority="250" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="dx3-E2-FFt">
-                    <rect key="frame" x="20" y="132" width="251" height="332"/>
+                    <rect key="frame" x="20" y="135" width="251" height="329"/>
                     <subviews>
                         <textField horizontalHuggingPriority="249" verticalHuggingPriority="750" allowsCharacterPickerTouchBarItem="YES" translatesAutoresizingMaskIntoConstraints="NO" id="52">
-                            <rect key="frame" x="-2" y="318" width="255" height="14"/>
+                            <rect key="frame" x="-2" y="315" width="255" height="14"/>
                             <textFieldCell key="cell" controlSize="small" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Title" id="71">
                                 <font key="font" metaFont="smallSystem"/>
                                 <color key="textColor" name="disabledControlTextColor" catalog="System" colorSpace="catalog"/>
@@ -320,7 +320,7 @@
                             </textFieldCell>
                         </textField>
                         <textField horizontalHuggingPriority="249" verticalHuggingPriority="750" horizontalCompressionResistancePriority="249" allowsCharacterPickerTouchBarItem="YES" translatesAutoresizingMaskIntoConstraints="NO" id="53" customClass="HNHUITextField">
-                            <rect key="frame" x="0.0" y="289" width="251" height="21"/>
+                            <rect key="frame" x="0.0" y="286" width="251" height="21"/>
                             <textFieldCell key="cell" lineBreakMode="truncatingTail" truncatesLastVisibleLine="YES" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" drawsBackground="YES" usesSingleLineMode="YES" id="70">
                                 <font key="font" metaFont="system"/>
                                 <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
@@ -332,7 +332,7 @@
                             </connections>
                         </textField>
                         <textField horizontalHuggingPriority="249" verticalHuggingPriority="750" allowsCharacterPickerTouchBarItem="YES" translatesAutoresizingMaskIntoConstraints="NO" id="54">
-                            <rect key="frame" x="-2" y="267" width="255" height="14"/>
+                            <rect key="frame" x="-2" y="264" width="255" height="14"/>
                             <textFieldCell key="cell" controlSize="small" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Username" id="69">
                                 <font key="font" metaFont="smallSystem"/>
                                 <color key="textColor" name="disabledControlTextColor" catalog="System" colorSpace="catalog"/>
@@ -340,7 +340,7 @@
                             </textFieldCell>
                         </textField>
                         <textField horizontalHuggingPriority="249" verticalHuggingPriority="750" horizontalCompressionResistancePriority="249" allowsCharacterPickerTouchBarItem="YES" translatesAutoresizingMaskIntoConstraints="NO" id="55" customClass="HNHUITextField">
-                            <rect key="frame" x="0.0" y="239" width="251" height="20"/>
+                            <rect key="frame" x="0.0" y="236" width="251" height="20"/>
                             <textFieldCell key="cell" lineBreakMode="truncatingTail" truncatesLastVisibleLine="YES" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" drawsBackground="YES" usesSingleLineMode="YES" id="68">
                                 <font key="font" size="13" name="Menlo-Regular"/>
                                 <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
@@ -352,7 +352,7 @@
                             </connections>
                         </textField>
                         <textField horizontalHuggingPriority="249" verticalHuggingPriority="750" allowsCharacterPickerTouchBarItem="YES" translatesAutoresizingMaskIntoConstraints="NO" id="58">
-                            <rect key="frame" x="-2" y="217" width="255" height="14"/>
+                            <rect key="frame" x="-2" y="214" width="255" height="14"/>
                             <textFieldCell key="cell" controlSize="small" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Password" id="65">
                                 <font key="font" metaFont="smallSystem"/>
                                 <color key="textColor" name="disabledControlTextColor" catalog="System" colorSpace="catalog"/>
@@ -360,11 +360,11 @@
                             </textFieldCell>
                         </textField>
                         <stackView distribution="fill" orientation="horizontal" alignment="centerY" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" horizontalHuggingPriority="249" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="C4J-K4-QBG">
-                            <rect key="frame" x="0.0" y="187" width="251" height="22"/>
+                            <rect key="frame" x="0.0" y="186" width="251" height="20"/>
                             <subviews>
                                 <secureTextField horizontalHuggingPriority="249" verticalHuggingPriority="750" horizontalCompressionResistancePriority="249" allowsCharacterPickerTouchBarItem="YES" translatesAutoresizingMaskIntoConstraints="NO" id="60" customClass="HNHUISecureTextField">
-                                    <rect key="frame" x="0.0" y="1" width="136" height="20"/>
-                                    <secureTextFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" borderStyle="bezel" drawsBackground="YES" usesSingleLineMode="YES" id="63">
+                                    <rect key="frame" x="0.0" y="0.0" width="135" height="20"/>
+                                    <secureTextFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" borderStyle="bezel" drawsBackground="YES" usesSingleLineMode="YES" id="63" customClass="HNHUISecureTextFieldCell">
                                         <font key="font" size="13" name="Menlo-Regular"/>
                                         <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
                                         <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
@@ -378,7 +378,7 @@
                                     </connections>
                                 </secureTextField>
                                 <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="61">
-                                    <rect key="frame" x="144" y="-1" width="29" height="23"/>
+                                    <rect key="frame" x="142" y="-2" width="32" height="23"/>
                                     <buttonCell key="cell" type="roundTextured" bezelStyle="texturedRounded" image="NSQuickLookTemplate" imagePosition="only" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="62">
                                         <behavior key="behavior" pushIn="YES" changeContents="YES" lightByContents="YES"/>
                                         <font key="font" metaFont="system"/>
@@ -388,7 +388,7 @@
                                     </connections>
                                 </button>
                                 <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="59">
-                                    <rect key="frame" x="181" y="-1" width="70" height="23"/>
+                                    <rect key="frame" x="180" y="-2" width="72" height="23"/>
                                     <buttonCell key="cell" type="roundTextured" title="Generate" bezelStyle="texturedRounded" alignment="center" state="on" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="64">
                                         <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                         <font key="font" metaFont="system"/>
@@ -411,7 +411,7 @@
                             </customSpacing>
                         </stackView>
                         <textField horizontalHuggingPriority="249" verticalHuggingPriority="750" allowsCharacterPickerTouchBarItem="YES" translatesAutoresizingMaskIntoConstraints="NO" id="57">
-                            <rect key="frame" x="-2" y="165" width="255" height="14"/>
+                            <rect key="frame" x="-2" y="164" width="255" height="14"/>
                             <textFieldCell key="cell" controlSize="small" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="URL" id="66">
                                 <font key="font" metaFont="smallSystem"/>
                                 <color key="textColor" name="disabledControlTextColor" catalog="System" colorSpace="catalog"/>
@@ -419,7 +419,7 @@
                             </textFieldCell>
                         </textField>
                         <textField verticalHuggingPriority="750" allowsCharacterPickerTouchBarItem="YES" translatesAutoresizingMaskIntoConstraints="NO" id="56" customClass="HNHUITextField">
-                            <rect key="frame" x="0.0" y="136" width="251" height="21"/>
+                            <rect key="frame" x="0.0" y="135" width="251" height="21"/>
                             <textFieldCell key="cell" lineBreakMode="truncatingTail" truncatesLastVisibleLine="YES" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" drawsBackground="YES" usesSingleLineMode="YES" id="67">
                                 <font key="font" metaFont="system"/>
                                 <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
@@ -431,10 +431,10 @@
                             </connections>
                         </textField>
                         <stackView distribution="fill" orientation="horizontal" alignment="centerY" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" horizontalHuggingPriority="248" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="buA-UH-XId">
-                            <rect key="frame" x="0.0" y="107" width="251" height="21"/>
+                            <rect key="frame" x="0.0" y="107" width="251" height="20"/>
                             <subviews>
                                 <button horizontalHuggingPriority="249" horizontalCompressionResistancePriority="249" translatesAutoresizingMaskIntoConstraints="NO" id="7">
-                                    <rect key="frame" x="-2" y="2" width="209" height="18"/>
+                                    <rect key="frame" x="-2" y="1" width="214" height="18"/>
                                     <buttonCell key="cell" type="check" title="Expires" bezelStyle="regularSquare" imagePosition="left" lineBreakMode="truncatingMiddle" state="on" inset="2" id="78">
                                         <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                                         <font key="font" metaFont="system"/>
@@ -445,7 +445,7 @@
                                     </connections>
                                 </button>
                                 <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="8">
-                                    <rect key="frame" x="207" y="-7" width="50" height="32"/>
+                                    <rect key="frame" x="213" y="-7" width="45" height="32"/>
                                     <buttonCell key="cell" type="push" bezelStyle="rounded" image="NSActionTemplate" imagePosition="only" alignment="center" state="on" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="77">
                                         <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                         <font key="font" metaFont="system"/>
@@ -539,7 +539,7 @@
             <rect key="frame" x="0.0" y="0.0" width="301" height="424"/>
             <subviews>
                 <button translatesAutoresizingMaskIntoConstraints="NO" id="kdV-Xa-8p3">
-                    <rect key="frame" x="18" y="398" width="265" height="18"/>
+                    <rect key="frame" x="18" y="399" width="263" height="16"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="14" id="c9A-Ju-Cj9"/>
                     </constraints>
@@ -549,7 +549,7 @@
                     </buttonCell>
                 </button>
                 <button translatesAutoresizingMaskIntoConstraints="NO" id="I7L-Am-Qpa">
-                    <rect key="frame" x="18" y="378" width="265" height="18"/>
+                    <rect key="frame" x="18" y="379" width="263" height="16"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="14" id="KKP-xg-uUu"/>
                     </constraints>
@@ -567,7 +567,7 @@
                     </textFieldCell>
                 </textField>
                 <textField verticalHuggingPriority="750" allowsCharacterPickerTouchBarItem="YES" translatesAutoresizingMaskIntoConstraints="NO" id="cDK-DM-F5z" customClass="HNHUITextField">
-                    <rect key="frame" x="20" y="329" width="229" height="21"/>
+                    <rect key="frame" x="20" y="329" width="228" height="21"/>
                     <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" placeholderString="Custom Entry Sequence" drawsBackground="YES" id="R2X-Ex-c6q">
                         <font key="font" metaFont="system"/>
                         <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
@@ -598,7 +598,7 @@
                                 <color key="backgroundColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
                                 <color key="gridColor" name="gridColor" catalog="System" colorSpace="catalog"/>
                                 <tableColumns>
-                                    <tableColumn width="256" minWidth="40" maxWidth="1000" id="Wdn-k1-39b">
+                                    <tableColumn width="247" minWidth="40" maxWidth="1000" id="Wdn-k1-39b">
                                         <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border" alignment="left">
                                             <color key="textColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>
                                             <color key="backgroundColor" white="0.33333298560000002" alpha="1" colorSpace="calibratedWhite"/>
@@ -645,7 +645,7 @@
                     </scroller>
                 </scrollView>
                 <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="Iy9-9L-Aev">
-                    <rect key="frame" x="260" y="105" width="21" height="23"/>
+                    <rect key="frame" x="256" y="106" width="26" height="23"/>
                     <buttonCell key="cell" type="roundTextured" bezelStyle="texturedRounded" image="NSAddTemplate" imagePosition="only" alignment="center" state="on" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="5J6-uD-iK6">
                         <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                         <font key="font" metaFont="system"/>
@@ -655,7 +655,7 @@
                     </connections>
                 </button>
                 <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="AAj-Ak-z46">
-                    <rect key="frame" x="231" y="105" width="21" height="23"/>
+                    <rect key="frame" x="224" y="106" width="26" height="23"/>
                     <buttonCell key="cell" type="roundTextured" bezelStyle="texturedRounded" image="NSRemoveTemplate" imagePosition="only" alignment="center" state="on" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="86n-d4-lOW">
                         <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                         <font key="font" metaFont="system"/>
@@ -695,7 +695,7 @@
                     </textFieldCell>
                 </textField>
                 <textField verticalHuggingPriority="750" allowsCharacterPickerTouchBarItem="YES" translatesAutoresizingMaskIntoConstraints="NO" id="NjR-ea-Y7k" customClass="HNHUITextField">
-                    <rect key="frame" x="20" y="10" width="229" height="21"/>
+                    <rect key="frame" x="20" y="10" width="228" height="21"/>
                     <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" placeholderString="Custom Window Sequence" drawsBackground="YES" id="fW9-9p-wwR">
                         <font key="font" metaFont="system"/>
                         <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
@@ -703,7 +703,7 @@
                     </textFieldCell>
                 </textField>
                 <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="m1C-m8-BKR">
-                    <rect key="frame" x="257" y="9" width="24" height="23"/>
+                    <rect key="frame" x="255" y="9" width="27" height="23"/>
                     <buttonCell key="cell" type="roundTextured" bezelStyle="texturedRounded" image="NSActionTemplate" imagePosition="only" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="HIC-T9-j9G">
                         <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                         <font key="font" metaFont="system"/>
@@ -713,7 +713,7 @@
                     </connections>
                 </button>
                 <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="HDS-Bz-jrr">
-                    <rect key="frame" x="257" y="327" width="24" height="23"/>
+                    <rect key="frame" x="255" y="327" width="27" height="23"/>
                     <buttonCell key="cell" type="roundTextured" bezelStyle="texturedRounded" image="NSActionTemplate" imagePosition="only" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="V5Z-qf-FVH">
                         <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                         <font key="font" metaFont="system"/>
@@ -779,7 +779,7 @@
                         <color key="backgroundColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
                         <color key="gridColor" name="gridColor" catalog="System" colorSpace="catalog"/>
                         <tableColumns>
-                            <tableColumn width="256" minWidth="40" maxWidth="1000000" id="194">
+                            <tableColumn width="247" minWidth="40" maxWidth="1000000" id="194">
                                 <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border" alignment="left">
                                     <color key="textColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>
                                     <color key="backgroundColor" white="0.33333298560000002" alpha="1" colorSpace="calibratedWhite"/>
@@ -796,11 +796,11 @@
                                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                         <subviews>
                                             <textField verticalHuggingPriority="750" allowsCharacterPickerTouchBarItem="YES" translatesAutoresizingMaskIntoConstraints="NO" id="199" customClass="HNHUISecureTextField">
-                                                <rect key="frame" x="3" y="10" width="156" height="21"/>
+                                                <rect key="frame" x="3" y="10" width="153" height="21"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="50" id="213"/>
                                                 </constraints>
-                                                <textFieldCell key="cell" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" placeholderString="Value" drawsBackground="YES" id="214">
+                                                <textFieldCell key="cell" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" placeholderString="Value" drawsBackground="YES" id="214" customClass="HNHUISecureTextFieldCell">
                                                     <font key="font" metaFont="system"/>
                                                     <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
                                                     <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
@@ -818,14 +818,14 @@
                                                 </textFieldCell>
                                             </textField>
                                             <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="198">
-                                                <rect key="frame" x="201" y="8" width="21" height="23"/>
+                                                <rect key="frame" x="197" y="9" width="26" height="23"/>
                                                 <buttonCell key="cell" type="roundTextured" bezelStyle="texturedRounded" image="NSRemoveTemplate" imagePosition="overlaps" alignment="center" state="on" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="216">
                                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                                     <font key="font" metaFont="system"/>
                                                 </buttonCell>
                                             </button>
                                             <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="tDI-EL-JGB">
-                                                <rect key="frame" x="167" y="8" width="26" height="23"/>
+                                                <rect key="frame" x="163" y="9" width="28" height="23"/>
                                                 <buttonCell key="cell" type="roundTextured" bezelStyle="texturedRounded" image="52_EncryptedTemplate" imagePosition="overlaps" alignment="center" lineBreakMode="truncatingTail" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="fat-C5-dS2">
                                                     <behavior key="behavior" pushIn="YES" changeContents="YES" lightByContents="YES"/>
                                                     <font key="font" metaFont="system"/>
@@ -875,9 +875,9 @@
     </objects>
     <resources>
         <image name="52_EncryptedTemplate" width="16" height="16"/>
-        <image name="NSActionTemplate" width="14" height="14"/>
-        <image name="NSAddTemplate" width="11" height="11"/>
-        <image name="NSQuickLookTemplate" width="19" height="12"/>
-        <image name="NSRemoveTemplate" width="11" height="11"/>
+        <image name="NSActionTemplate" width="15" height="15"/>
+        <image name="NSAddTemplate" width="14" height="13"/>
+        <image name="NSQuickLookTemplate" width="21" height="13"/>
+        <image name="NSRemoveTemplate" width="14" height="4"/>
     </resources>
 </document>
