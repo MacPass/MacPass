@@ -81,6 +81,7 @@ APPKIT_EXTERN NSString *const kMPSettingsKeyEnableQuicklookPreview;
 APPKIT_EXTERN NSString *const kMPSettingsKeyDoubleClickURLAction;
 APPKIT_EXTERN NSString *const kMPSettingsKeyDoubleClickTitleAction;
 APPKIT_EXTERN NSString *const kMPSettingsKeyUpdatePasswordOnTemplateEntries;
+APPKIT_EXTERN NSString *const kMPSettingsKeyGeneratePasswordForNewEntires;
 APPKIT_EXTERN NSString *const kMPSettingsKeyHideAfterCopyToClipboard;
 
 /* Plugins */

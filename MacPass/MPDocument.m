@@ -687,9 +687,14 @@ NSString *const MPDocumentGroupKey                            = @"MPDocumentGrou
   if([self.tree.metaData.defaultUserName length] > 0) {
     newEntry.username = self.tree.metaData.defaultUserName;
   }
-  NSString *defaultPassword = [NSString passwordWithDefaultSettings];
-  if(defaultPassword) {
-    newEntry.password = defaultPassword;
+  
+  /* only generate passwords for new entries, if set */
+  BOOL generatePassword = [NSUserDefaults.standardUserDefaults boolForKey:kMPSettingsKeyGeneratePasswordForNewEntires];
+  if(generatePassword) {
+    NSString *defaultPassword = [NSString passwordWithDefaultSettings];
+    if(defaultPassword) {
+      newEntry.password = defaultPassword;
+    }
   }
   /* re-enable undo/redo if we did turn it off */
   if(wasUndoEnabeld) {

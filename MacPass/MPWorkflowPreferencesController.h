@@ -29,8 +29,7 @@
 @property (strong) IBOutlet NSPopUpButton *doubleClickURLPopup;
 @property (strong) IBOutlet NSPopUpButton *doubleClickTitlePopup;
 @property (strong) IBOutlet NSButton *updatePasswordOnTemplateEntriesCheckButton;
+@property (strong) IBOutlet NSButton *generatePasswordOnEntriesCheckButton;
 @property (strong) IBOutlet NSButton *hideAfterCopyToClipboardCheckButton;
-
-- (IBAction)_showCustomBrowserSelection:(id)sender;
 
 @end
