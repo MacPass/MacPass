@@ -28,6 +28,7 @@
 #import "MPPathControl.h"
 #import "MPTouchBarButtonCreator.h"
 #import "MPSettingsHelper.h"
+#import "MPConstants.h"
 
 #import "HNHUi/HNHUi.h"
 
@@ -175,8 +176,8 @@ static NSMutableDictionary* touchIDSecuredPasswords;
   CFErrorRef error = NULL;
   NSString* publicKeyLabel =  @"MacPass TouchID Feature Public Key";
   NSString* privateKeyLabel = @"MacPass TouchID Feature Private Key";
-  NSData* publicKeyTag =  [@"com.hicknhacksoftware.macpass.publickey"  dataUsingEncoding:NSUTF8StringEncoding];
-  NSData* privateKeyTag = [@"com.hicknhacksoftware.macpass.privatekey" dataUsingEncoding:NSUTF8StringEncoding];
+  NSData* publicKeyTag =  [TouchIdUnlockPublicKeyTag  dataUsingEncoding:NSUTF8StringEncoding];
+  NSData* privateKeyTag = [TouchIdUnlockPrivateKeyTag dataUsingEncoding:NSUTF8StringEncoding];
   SecAccessControlRef access = NULL;
   if (@available(macOS 10.13.4, *)) {
     SecAccessControlCreateFlags flags = kSecAccessControlBiometryCurrentSet;
@@ -228,7 +229,7 @@ static NSMutableDictionary* touchIDSecuredPasswords;
 - (NSData*) _touchIdEncryptCompositeKey: (KPKCompositeKey*) compositeKey {
   NSData* encryptedKey = nil;
   NSData* keyData = [NSKeyedArchiver archivedDataWithRootObject:compositeKey];
-  NSData* tag = [@"com.hicknhacksoftware.macpass.publickey" dataUsingEncoding:NSUTF8StringEncoding];
+  NSData* tag = [TouchIdUnlockPublicKeyTag dataUsingEncoding:NSUTF8StringEncoding];
   NSDictionary *getquery = @{
     (id)kSecClass: (id)kSecClassKey,
     (id)kSecAttrApplicationTag: tag,
@@ -265,7 +266,7 @@ static NSMutableDictionary* touchIDSecuredPasswords;
 - (KPKCompositeKey*) _touchIdDecryptCompositeKey: (NSData*) encryptedKey {
   KPKCompositeKey* result = nil;
   if(encryptedKey != nil) {
-    NSData* tag = [@"com.hicknhacksoftware.macpass.privatekey" dataUsingEncoding:NSUTF8StringEncoding];
+    NSData* tag = [TouchIdUnlockPrivateKeyTag dataUsingEncoding:NSUTF8StringEncoding];
     NSDictionary *queryPrivateKey = @{
       (id)kSecClass: (id)kSecClassKey,
       (id)kSecAttrApplicationTag: tag,
@@ -332,6 +333,9 @@ static NSMutableDictionary* touchIDSecuredPasswords;
     NSError* error;
     self.completionHandler(compositeKey, nil, false, &error);
     [self _showError:error];
+  }
+  else {
+    self.touchIdButton.hidden = true;
   }
 }
 
