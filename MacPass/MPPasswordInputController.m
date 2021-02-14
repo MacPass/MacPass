@@ -95,6 +95,7 @@ static NSMutableDictionary* touchIDSecuredPasswords;
   if (@available(macOS 10.13.4, *)) {
     self.touchIdEnabled.hidden = false;
     self.touchIdEnabled.state = [NSUserDefaults.standardUserDefaults integerForKey:kMPSettingsKeyEntryTouchIdEnabled];
+    [self _updateTouchIdTooltip];
   }
   [self _reset];
 }
@@ -341,6 +342,19 @@ static NSMutableDictionary* touchIDSecuredPasswords;
 
 - (IBAction)touchIdEnabledChanged:(id)sender {
     [NSUserDefaults.standardUserDefaults setInteger: self.touchIdEnabled.state forKey:kMPSettingsKeyEntryTouchIdEnabled];
+  [self _updateTouchIdTooltip];
+}
+
+- (void) _updateTouchIdTooltip {
+  if(self.touchIdEnabled.state == NSControlStateValueOn) {
+    self.touchIdEnabled.toolTip = @"Unlocking via TouchID is enabled";
+  }
+  else if(self.touchIdEnabled.state == NSControlStateValueOff) {
+    self.touchIdEnabled.toolTip = @"Unlocking via TouchID is disabled";
+  }
+  else {
+    self.touchIdEnabled.toolTip = @"Unlocking via TouchID is possible until MacPass is restarted";
+  }
 }
 
 - (IBAction)resetKeyFile:(id)sender {
