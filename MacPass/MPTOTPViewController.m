@@ -10,6 +10,7 @@
 
 #import <KeePassKit/KeePassKit.h>
 #import "MPEntryInspectorViewController.h"
+#import "MPPasteBoardController.h"
 
 @interface MPTOTPViewController ()
 
@@ -44,6 +45,25 @@
   }
   [self _didChangeAttribute:nil];
 }
+
+- (BOOL)textField:(NSTextField *)textField textView:(NSTextView *)textView performAction:(SEL)action {
+  if(action == @selector(copy:)) {
+    MPPasteboardOverlayInfoType info = MPPasteboardOverlayInfoCustom;
+    NSMutableString *selectedValue = [[NSMutableString alloc] init];
+    for(NSValue *rangeValue in textView.selectedRanges) {
+      [selectedValue appendString:[textView.string substringWithRange:rangeValue.rangeValue]];
+    }
+    NSString *name = NSLocalizedString(@"TOTP", "Field TOTP was copied to the pasteboard");
+    if(selectedValue.length == 0) {
+      return YES;
+    }
+    [MPPasteBoardController.defaultController copyObject:selectedValue overlayInfo:info name:name atView:self.view];
+    return NO;
+  }
+  return YES;
+  
+}
+
 
 - (void)_didChangeAttribute:(NSNotification *)notification {
   [self _updateDisplay];
