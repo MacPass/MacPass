@@ -852,16 +852,16 @@ NSString *const MPDocumentGroupKey                            = @"MPDocumentGrou
 }
 
 - (void)duplicateEntryWithOptions:(KPKCopyOptions)options { 
-  KPKEntry *duplicate;
+  KPKEntry *lastDuplicate;
   for(KPKEntry *entry in self.selectedEntries) {
-    duplicate = [entry copyWithTitle:nil options:options];
-    [duplicate addToGroup:entry.parent];
+    lastDuplicate = [entry copyWithTitle:nil options:options];
+    [lastDuplicate addToGroup:entry.parent];
   }
   [self.undoManager setActionName:[NSString stringWithFormat:NSLocalizedString(@"DUPLICATE_ENTRIES_ACTION_NAME", @"Action name for duplicating entries"), self.selectedEntries.count]];
-  if(duplicate) {
+  if(lastDuplicate) {
   [NSNotificationCenter.defaultCenter postNotificationName:MPDocumentDidAddEntryNotification
                                                     object:self
-                                                  userInfo:@{ MPDocumentEntryKey: duplicate }];
+                                                  userInfo:@{ MPDocumentEntryKey: lastDuplicate }];
   }
 }
   
