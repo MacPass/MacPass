@@ -49,7 +49,7 @@ static NSMutableDictionary* touchIDSecuredPasswords;
 @property (weak) IBOutlet NSButton *unlockButton;
 @property (weak) IBOutlet NSButton *cancelButton;
 @property (weak) IBOutlet NSButton *touchIdButton;
-@property (weak) IBOutlet NSButton *touchIdEnabled;
+@property (weak) IBOutlet NSButton *touchIdEnabledButton;
 
 @property (copy) NSString *message;
 @property (copy) NSString *cancelLabel;
@@ -90,10 +90,10 @@ static NSMutableDictionary* touchIDSecuredPasswords;
   [self.enablePasswordCheckBox bind:NSValueBinding toObject:self withKeyPath:NSStringFromSelector(@selector(enablePassword)) options:nil];
   [self.togglePasswordButton bind:NSEnabledBinding toObject:self withKeyPath:NSStringFromSelector(@selector(enablePassword)) options:nil];
   [self.passwordTextField bind:NSEnabledBinding toObject:self withKeyPath:NSStringFromSelector(@selector(enablePassword)) options:nil];
-  self.touchIdEnabled.hidden = true;
+  self.touchIdEnabledButton.hidden = true;
   if (@available(macOS 10.13.4, *)) {
-    self.touchIdEnabled.hidden = false;
-    self.touchIdEnabled.state = [NSUserDefaults.standardUserDefaults integerForKey:kMPSettingsKeyEntryTouchIdEnabled];
+    self.touchIdEnabledButton.hidden = false;
+    self.touchIdEnabledButton.state = [NSUserDefaults.standardUserDefaults integerForKey:kMPSettingsKeyEntryTouchIdEnabled];
     [self _touchIdUpdateToolTip];
   }
   [self _reset];
@@ -167,13 +167,13 @@ static NSMutableDictionary* touchIDSecuredPasswords;
 
 - (void) _touchIdUpdateKeyForCurrentDocument: (KPKCompositeKey*)compositeKey forDocumentKey: (NSString*) documentKey{
   NSData* encryptedKey = [self _touchIdEncryptCompositeKey:compositeKey];
-  if (self.touchIdEnabled.state == NSControlStateValueMixed) {
+  if (self.touchIdEnabledButton.state == NSControlStateValueMixed) {
     [NSUserDefaults.standardUserDefaults removeObjectForKey:documentKey];
     if(encryptedKey != NULL) {
       [touchIDSecuredPasswords setObject:encryptedKey forKey:documentKey];
     }
   }
-  else if(self.touchIdEnabled.state == NSControlStateValueOn) {
+  else if(self.touchIdEnabledButton.state == NSControlStateValueOn) {
     [touchIDSecuredPasswords removeObjectForKey:documentKey];
     if(encryptedKey != NULL) {
       [NSUserDefaults.standardUserDefaults setObject:encryptedKey forKey:documentKey];
@@ -222,16 +222,13 @@ static NSMutableDictionary* touchIDSecuredPasswords;
               (id)kSecAttrLabel: publicKeyLabel,
             },
     };
-    SecKeyRef privateKey = NULL;
-    SecKeyRef publicKey = NULL;
-    OSStatus result = SecKeyGeneratePair((__bridge CFDictionaryRef)attributes, &privateKey, &publicKey);
-    if(result == errSecSuccess) {
-      CFRelease(publicKey);
-      CFRelease(privateKey);
+    SecKeyRef result = SecKeyCreateRandomKey((__bridge CFDictionaryRef)attributes, &error);
+    if(result == NULL) {
+      NSError *err = CFBridgingRelease(error);
+      NSLog(@"Error while trying to create a RSA keypair for TouchID unlock feature: %@", [err description]);
     }
     else {
-      NSString* description = (__bridge NSString*)SecCopyErrorMessageString(result, NULL);
-      NSLog(@"Error while trying to create a RSA keypair for TouchID unlock feature: %@", description);
+      CFRelease(result);
     }
   }
   else {
@@ -350,7 +347,7 @@ static NSMutableDictionary* touchIDSecuredPasswords;
     *result = transientKey == NULL ? persistentKey : transientKey;
     return true;
   }
-  if(self.touchIdEnabled.state == NSControlStateValueOn) {
+  if(self.touchIdEnabledButton.state == NSControlStateValueOn) {
     *result = persistentKey;
     return true;
   }
@@ -370,24 +367,28 @@ static NSMutableDictionary* touchIDSecuredPasswords;
     return;
   }
   NSError* error;
-  self.completionHandler(compositeKey, NULL, false, &error);
+  bool success = self.completionHandler(compositeKey, NULL, false, &error);
+  if(success) {
+    return;
+  }
+  [self.touchIdEnabledButton setEnabled:false];
   [self _showError:error];
 }
 
 - (IBAction)touchIdEnabledChanged:(id)sender {
-  [NSUserDefaults.standardUserDefaults setInteger: self.touchIdEnabled.state forKey:kMPSettingsKeyEntryTouchIdEnabled];
+  [NSUserDefaults.standardUserDefaults setInteger: self.touchIdEnabledButton.state forKey:kMPSettingsKeyEntryTouchIdEnabled];
   [self _touchIdUpdateToolTip];
 }
 
 - (void) _touchIdUpdateToolTip {
-  if(self.touchIdEnabled.state == NSControlStateValueOn) {
-    self.touchIdEnabled.toolTip = @"Unlocking via TouchID is enabled";
+  if(self.touchIdEnabledButton.state == NSControlStateValueOn) {
+    self.touchIdEnabledButton.toolTip = @"Unlocking via TouchID is enabled";
   }
-  else if(self.touchIdEnabled.state == NSControlStateValueOff) {
-    self.touchIdEnabled.toolTip = @"Unlocking via TouchID is disabled";
+  else if(self.touchIdEnabledButton.state == NSControlStateValueOff) {
+    self.touchIdEnabledButton.toolTip = @"Unlocking via TouchID is disabled";
   }
   else {
-    self.touchIdEnabled.toolTip = @"Unlocking via TouchID is possible until MacPass is restarted";
+    self.touchIdEnabledButton.toolTip = @"Unlocking via TouchID is possible until MacPass is restarted";
   }
 }
 
