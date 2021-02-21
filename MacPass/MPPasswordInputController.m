@@ -29,6 +29,7 @@
 #import "MPTouchBarButtonCreator.h"
 #import "MPSettingsHelper.h"
 #import "MPConstants.h"
+#import "MPSettingsHelper.h"
 
 #import "HNHUi/HNHUi.h"
 
@@ -90,10 +91,11 @@ static NSMutableDictionary* touchIDSecuredPasswords;
   [self.enablePasswordCheckBox bind:NSValueBinding toObject:self withKeyPath:NSStringFromSelector(@selector(enablePassword)) options:nil];
   [self.togglePasswordButton bind:NSEnabledBinding toObject:self withKeyPath:NSStringFromSelector(@selector(enablePassword)) options:nil];
   [self.passwordTextField bind:NSEnabledBinding toObject:self withKeyPath:NSStringFromSelector(@selector(enablePassword)) options:nil];
+  NSUserDefaultsController *defaultsController = [NSUserDefaultsController sharedUserDefaultsController];
+  [self.touchIdEnabledButton bind:NSValueBinding toObject:defaultsController withKeyPath:[MPSettingsHelper defaultControllerPathForKey:kMPSettingsKeyEntryTouchIdEnabled] options:nil];
   self.touchIdEnabledButton.hidden = true;
   if (@available(macOS 10.13.4, *)) {
     self.touchIdEnabledButton.hidden = false;
-    self.touchIdEnabledButton.state = [NSUserDefaults.standardUserDefaults integerForKey:kMPSettingsKeyEntryTouchIdEnabled];
     [self _touchIdUpdateToolTip];
   }
   [self _reset];
@@ -371,12 +373,11 @@ static NSMutableDictionary* touchIDSecuredPasswords;
   if(success) {
     return;
   }
-  [self.touchIdEnabledButton setEnabled:false];
+  [self.touchIdButton setEnabled:false];
   [self _showError:error];
 }
 
 - (IBAction)touchIdEnabledChanged:(id)sender {
-  [NSUserDefaults.standardUserDefaults setInteger: self.touchIdEnabledButton.state forKey:kMPSettingsKeyEntryTouchIdEnabled];
   [self _touchIdUpdateToolTip];
 }
 
