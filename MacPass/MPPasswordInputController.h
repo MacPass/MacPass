@@ -29,7 +29,7 @@
 
 typedef BOOL (^passwordInputCompletionBlock)(KPKCompositeKey *key, NSURL* keyFileURL, BOOL didCancel, NSError *__autoreleasing*error);
 
-- (void)requestPasswordWithMessage:(NSString *)message cancelLabel:(NSString *)cancelLabel completionHandler:(passwordInputCompletionBlock)completionHandler forFile:(NSURL*) fileURL;
+- (void)requestPasswordWithMessage:(NSString *)message cancelLabel:(NSString *)cancelLabel completionHandler:(passwordInputCompletionBlock)completionHandler;
 
 
 @end

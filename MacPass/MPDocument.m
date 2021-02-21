@@ -436,7 +436,7 @@ NSString *const MPDocumentGroupKey                            = @"MPDocumentGrou
                                           }
                                           // just return yes regardless since we will display the sheet again if needed!
                                           return YES;
-                                        } forFile:nil];
+                                        }];
       sheet.contentViewController = passwordInputController;
       [self.windowForSheet beginSheet:sheet completionHandler:^(NSModalResponse returnCode) { /* nothing to do, rest is done in other handler! */ }];
     }
