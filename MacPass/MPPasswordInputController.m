@@ -29,13 +29,11 @@
 #import "MPTouchBarButtonCreator.h"
 #import "MPSettingsHelper.h"
 #import "MPConstants.h"
-#import "MPSettingsHelper.h"
+#import "MPTouchIdCompositeKeyStore.h"
 
 #import "HNHUi/HNHUi.h"
 
 #import "NSError+Messages.h"
-
-static NSMutableDictionary* touchIDSecuredPasswords;
 
 @interface MPPasswordInputController ()
 
@@ -71,9 +69,6 @@ static NSMutableDictionary* touchIDSecuredPasswords;
   self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
   if(self) {
     _enablePassword = YES;
-    if(touchIDSecuredPasswords == NULL) {
-      touchIDSecuredPasswords = [[NSMutableDictionary alloc]init];
-    }
     [NSNotificationCenter.defaultCenter addObserver:self selector:@selector(_selectKeyURL) name:MPDidChangeStoredKeyFilesSettings object:nil];
   }
   return self;
@@ -169,22 +164,7 @@ static NSMutableDictionary* touchIDSecuredPasswords;
 
 - (void) _touchIdUpdateKeyForCurrentDocument: (KPKCompositeKey*)compositeKey forDocumentKey: (NSString*) documentKey{
   NSData* encryptedKey = [self _touchIdEncryptCompositeKey:compositeKey];
-  if (self.touchIdEnabledButton.state == NSControlStateValueMixed) {
-    [NSUserDefaults.standardUserDefaults removeObjectForKey:documentKey];
-    if(encryptedKey != NULL) {
-      [touchIDSecuredPasswords setObject:encryptedKey forKey:documentKey];
-    }
-  }
-  else if(self.touchIdEnabledButton.state == NSControlStateValueOn) {
-    [touchIDSecuredPasswords removeObjectForKey:documentKey];
-    if(encryptedKey != NULL) {
-      [NSUserDefaults.standardUserDefaults setObject:encryptedKey forKey:documentKey];
-    }
-  }
-  else {
-    [NSUserDefaults.standardUserDefaults removeObjectForKey:documentKey];
-    [touchIDSecuredPasswords removeObjectForKey:documentKey];
-  }
+  [MPTouchIdCompositeKeyStore.defaultStore save:encryptedKey forDocumentKey:documentKey];
 }
 
 - (void) _touchIdCreateAndAddRSAKeyPair {
@@ -340,21 +320,7 @@ static NSMutableDictionary* touchIDSecuredPasswords;
   if(![self _touchIdGetKeyForCurrentDocument:&documentKey]) {
     return false;
   }
-  NSData* transientKey  = [touchIDSecuredPasswords valueForKey:documentKey];
-  NSData* persistentKey =[NSUserDefaults.standardUserDefaults dataForKey:documentKey];
-  if(transientKey == NULL && persistentKey == NULL) {
-    return false;
-  }
-  if(transientKey == NULL || persistentKey == NULL) {
-    *result = transientKey == NULL ? persistentKey : transientKey;
-    return true;
-  }
-  if(self.touchIdEnabledButton.state == NSControlStateValueOn) {
-    *result = persistentKey;
-    return true;
-  }
-  *result = transientKey;
-  return true;
+  return [MPTouchIdCompositeKeyStore.defaultStore load:result forDocumentKey:documentKey];
 }
 
 - (IBAction)unlockWithTouchID:(id)sender {
