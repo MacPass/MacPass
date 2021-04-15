@@ -364,7 +364,7 @@
                             <subviews>
                                 <secureTextField horizontalHuggingPriority="249" verticalHuggingPriority="750" horizontalCompressionResistancePriority="249" allowsCharacterPickerTouchBarItem="YES" contentType="oneTimeCode" translatesAutoresizingMaskIntoConstraints="NO" id="60" customClass="HNHUISecureTextField">
                                     <rect key="frame" x="0.0" y="0.0" width="123" height="20"/>
-                                    <secureTextFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" borderStyle="bezel" drawsBackground="YES" usesSingleLineMode="YES" id="63">
+                                    <secureTextFieldCell key="cell" lineBreakMode="truncatingTail" truncatesLastVisibleLine="YES" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" borderStyle="bezel" drawsBackground="YES" usesSingleLineMode="YES" id="63">
                                         <font key="font" size="13" name="Menlo-Regular"/>
                                         <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
                                         <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
