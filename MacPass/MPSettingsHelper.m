@@ -90,6 +90,8 @@ NSString *const kMPSettingsKeyAllowRemoteFetchOfPluginRepository          = @"Al
 
 NSString *const kMPSettingsKeyFaviconDownloadMethod                       = @"FaviconDownloadMethod";
 
+NSString *const kMPSettingsKeyUseUnifiedToolbar                            =@"UseUnifiedToolbar";
+
 /* Deprecated */
 NSString *const kMPDeprecatedSettingsKeyRememberKeyFilesForDatabases      = @"kMPSettingsKeyRememberKeyFilesForDatabases";
 NSString *const kMPDeprecatedSettingsKeyLastDatabasePath                  = @"MPLastDatabasePath";
@@ -170,7 +172,8 @@ NSString *const kMPDepricatedSettingsKeyAutotypeHideAccessibiltyWarning   = @"Au
                          kMPSettingsKeyEnableAutosave: @YES,
                          kMPSettingsKeyHideAfterCopyToClipboard: @NO,
                          kMPSettingsKeyFaviconDownloadMethod: @(MPFaviconDownloadMethodDirect), // Download directly from host
-                         kMPSettingsKeyGloablAutotypeAlwaysShowCandidateSelection: @NO
+                         kMPSettingsKeyGloablAutotypeAlwaysShowCandidateSelection: @NO,
+                         kMPSettingsKeyUseUnifiedToolbar: @NO // Do not use unified toolbar under Big Sur and above
                          };
   });
   return standardDefaults;

@@ -94,6 +94,9 @@ APPKIT_EXTERN NSString *const kMPSettingsKeyAllowRemoteFetchOfPluginRepository; 
 /* Network */
 APPKIT_EXTERN NSString *const kMPSettingsKeyFaviconDownloadMethod;
 
+/* UI */
+APPKIT_EXTERN NSString *const kMPSettingsKeyUseUnifiedToolbar;
+
 typedef NS_ENUM(NSUInteger, MPFileChangeStrategy) {
   MPFileChangeStrategyAsk,
   MPFileChangeStrategyKeepMine,

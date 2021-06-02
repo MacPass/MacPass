@@ -100,9 +100,17 @@ typedef void (^MPPasswordChangedBlock)(BOOL didChangePassword);
   [super windowDidLoad];
   
   self.window.delegate = self.documentWindowDelegate;
-  //self.window.styleMask |= NSWindowStyleMaskFullSizeContentView;
   if (@available(macOS 11.0, *)) {
-    self.window.toolbarStyle = NSWindowToolbarStyleExpanded;
+    /* let the user decide how to dipsplay the toolbar */
+    BOOL useUnifiedToolbar = [NSUserDefaults.standardUserDefaults boolForKey:kMPSettingsKeyUseUnifiedToolbar];
+    if(useUnifiedToolbar) {
+      self.window.toolbarStyle = NSWindowToolbarStyleAutomatic;
+      // Do not use full size since the sidebar takes too much room!
+      // self.window.styleMask |= NSWindowStyleMaskFullSizeContentView;
+    }
+    else {
+      self.window.toolbarStyle = NSWindowToolbarStyleExpanded;
+    }
   }
   [self.window registerForDraggedTypes:@[NSURLPboardType]];
   
