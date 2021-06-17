@@ -32,6 +32,7 @@
 #import "MPAutotypeBuilderViewController.h"
 #import "MPReferenceBuilderViewController.h"
 #import "MPTOTPViewController.h"
+#import "MPTOTPSetupViewController.h"
 
 #import "MPPrettyPasswordTransformer.h"
 #import "NSString+MPPasswordCreation.h"
@@ -134,8 +135,7 @@ typedef NS_ENUM(NSUInteger, MPEntryTab) {
   
   [self.infoTabControl bind:NSSelectedIndexBinding toObject:self withKeyPath:NSStringFromSelector(@selector(activeTab)) options:nil];
   [self.tabView bind:NSSelectedIndexBinding toObject:self withKeyPath:NSStringFromSelector(@selector(activeTab)) options:nil];
-  
-  
+
   self.attachmentTableView.backgroundColor = NSColor.clearColor;
   [self.attachmentTableView bind:NSContentBinding toObject:_attachmentsController withKeyPath:NSStringFromSelector(@selector(arrangedObjects)) options:nil];
   self.attachmentTableView.delegate = _attachmentTableDelegate;
@@ -165,6 +165,9 @@ typedef NS_ENUM(NSUInteger, MPEntryTab) {
   
   self.customFieldsTableView.backgroundColor = NSColor.clearColor;
   self.customFieldsTableView.usesAutomaticRowHeights = YES;
+  if (@available(macOS 11.0, *)) {
+    self.customFieldsTableView.additionalSafeAreaInsets = NSEdgeInsetsZero;
+  }
   [self.customFieldsTableView bind:NSContentBinding toObject:_customFieldsController withKeyPath:NSStringFromSelector(@selector(arrangedObjects)) options:nil];
   self.customFieldsTableView.delegate = _customFieldTableDelegate;
   
@@ -381,6 +384,22 @@ typedef NS_ENUM(NSUInteger, MPEntryTab) {
   [self _showPopopver:viewController atView:sender onEdge:NSMinYEdge];
 }
 
+- (IBAction)showOTPSetup:(id)sender {
+  NSView *location;
+  if([sender isKindOfClass:NSView.class]) {
+    location = sender;
+  }
+  if([sender isKindOfClass:NSMenuItem.class]) {
+    if([[sender representedObject] isKindOfClass:NSView.class]) {
+      location = [sender representedObject];
+    }
+  }
+  MPTOTPSetupViewController *vc = [[MPTOTPSetupViewController alloc] init];
+  vc.representedObject = self.representedObject;
+  
+  [self _showPopopver:vc atView:location onEdge:NSMinYEdge];
+}
+
 - (void)dismissViewController:(NSViewController *)viewController {
   if([viewController isKindOfClass:MPAutotypeBuilderViewController.class]) {
     self.showCustomAssociationSequenceAutotypeBuilderButton.enabled = YES;
@@ -584,6 +603,7 @@ typedef NS_ENUM(NSUInteger, MPEntryTab) {
   
   NSInteger urlindex = [self.fieldsStackView.arrangedSubviews indexOfObject:self.URLTextField];
   NSAssert(urlindex != NSNotFound, @"Missing reference view. This should not happen!");
+  [self addChildViewController:self.totpViewController];
   [self.fieldsStackView insertArrangedSubview:self.totpViewController.view atIndex:urlindex - 1];
 }
 

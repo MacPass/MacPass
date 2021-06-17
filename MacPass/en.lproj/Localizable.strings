@@ -35,7 +35,7 @@
 "ALERT_ASK_FOR_PLUGIN_REPOSITORY_ALLOW_DOWNLOAD" = "Update definitions online";
 
 /* Informative text displayed on the alert that shows up when MacPass asks for permssion to download the plugin repository JSON file */
-"ALERT_ASK_FOR_PLUGIN_REPOSITORY_CONNECTION_PERMISSION_INFORMATIVE_TEXT" = "The plugin defintions are hosted online at https://macpassapp.org. MacPass would like to download those files to ensure the data is up to date.";
+"ALERT_ASK_FOR_PLUGIN_REPOSITORY_CONNECTION_PERMISSION_INFORMATIVE_TEXT" = "The plugin definitions are hosted online at https://macpassapp.org. MacPass would like to download those files to ensure the data is up to date.";
 
 /* Message displayed on the alert that asks for permission to download the plugin repository JSON file */
 "ALERT_ASK_FOR_PLUGIN_REPOSITORY_CONNECTION_PERMISSION_MESSAGE" = "MacPass would like to check for updates of plugin definitions online";
@@ -258,6 +258,10 @@
 /* Context menu that copies reference to username */
 "COPY_USERNAME_REFERENCE" = "Username";
 
+/* Creating date column title
+   Menu item to toggle display of created date column in entry table */
+"CREATED" = "Created";
+
 /* Custom attribute reference item */
 "CUSTOM_ATTRIBUTE" = "Custom Attribute";
 
@@ -416,6 +420,15 @@
 /* Group column title */
 "GROUP" = "Group";
 
+/* SHA 1 hash algoritm menu item */
+"HASH_SHA1" = "Sha1";
+
+/* SHA 256 hash algoritm menu item */
+"HASH_SHA256" = "Sha256";
+
+/* SHA 512 hash algoritm menu item */
+"HASH_SHA512" = "Sha512";
+
 /* History count column title
    Menu item to toggle display of history count column in entry table */
 "HISTORY" = "History";
@@ -539,6 +552,15 @@
 
 /* Select Browser */
 "OTHER_BROWSER" = "Select Browser…";
+
+/* OTP custom type  */
+"OTP_CUSTOM" = "Custom settings";
+
+/* OTP type RFC  */
+"OTP_RFC" = "RFC 6238";
+
+/* OTP type Steam  */
+"OTP_STEAM" = "Steam";
 
 /* Value field for reference lookup */
 "OUTPUT_VALUE" = "Output Value";
@@ -820,8 +842,12 @@
 /* Error message displayed when a keepass database file is set as the key file */
 "WARNING_DATABASE_FILE_SELECTED_AS_KEY_FILE" = "You should not use another database file as a key file since it might change and prevent you from reopening the current file.";
 
-/* No Key or Password */
-"WARNING_NO_PASSWORD_OR_KEYFILE" = "No password or keyfile supplied!";
+/* No key file is set
+ Warning tha no key file is set when chaning the password */
+"WARNING_NO_KEYFILE" = "No key file is set";
+
+/* Warning if no password is set when chaning the password */
+"WARNING_NO_PASSWORD" = "No password is set";
 
 /* Informative Text displayed when clearing the Trash */
 "WARNING_ON_DELETE_TRASHED_NODE_DESCRIPTION" = "The Trashed item(s) will be deleted!";

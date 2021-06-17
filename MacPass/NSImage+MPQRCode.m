@@ -13,7 +13,11 @@
 
 - (NSString *)QRCodeString {
   NSRect rect = NSMakeRect(0, 0, self.size.width, self.size.height);
-  NSBitmapImageRep *bitmapRep = (NSBitmapImageRep *)[self bestRepresentationForRect:rect context:nil hints:nil];
+  id imageRep = [self bestRepresentationForRect:rect context:nil hints:nil];
+  if(![imageRep isKindOfClass:NSBitmapImageRep.class]) {
+    return @"";
+  }
+  NSBitmapImageRep *bitmapRep = (NSBitmapImageRep *)imageRep;
   CIImage *ciImage = [[CIImage alloc] initWithBitmapImageRep:bitmapRep];
   CIDetector *detector = [CIDetector detectorOfType:CIDetectorTypeQRCode context:nil options:nil];
   NSArray<CIFeature *> *features = [detector featuresInImage:ciImage];
@@ -24,6 +28,29 @@
     }
   }
   return @"";
+}
+
+
++ (instancetype)QRCodeImageWithString:(NSString *)string {
+  NSData *asciiData = [string dataUsingEncoding:NSISOLatin1StringEncoding];
+  if(!asciiData) {
+    return nil;
+  }
+  CIFilter *qrCodeFilter = [CIFilter filterWithName:@"CIQRCodeGenerator" withInputParameters:@{@"inputMessage": asciiData}];
+  NSAffineTransform *scale = [[NSAffineTransform alloc] init];
+  [scale scaleBy:5];
+  
+  CIFilter *scaleFilter = [CIFilter filterWithName:@"CIAffineTransform" withInputParameters:@{@"inputImage": qrCodeFilter.outputImage, @"inputTransform": scale}];
+  return [[NSImage alloc] initWithCIImage:scaleFilter.outputImage];
+}
+
+- (instancetype)initWithCIImage:(CIImage *)ciImage {
+  NSCIImageRep *imageRep = [NSCIImageRep imageRepWithCIImage:ciImage];
+  self = [self initWithSize:[imageRep size]];
+  if(self) {
+    [self addRepresentation:imageRep];
+  }
+  return self;
 }
 
 @end

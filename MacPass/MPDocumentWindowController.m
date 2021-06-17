@@ -100,11 +100,15 @@ typedef void (^MPPasswordChangedBlock)(BOOL didChangePassword);
   [super windowDidLoad];
   
   self.window.delegate = self.documentWindowDelegate;
-  self.window.styleMask |= NSWindowStyleMaskFullSizeContentView;
+  //self.window.styleMask |= NSWindowStyleMaskFullSizeContentView;
+  if (@available(macOS 11.0, *)) {
+    self.window.toolbarStyle = NSWindowToolbarStyleExpanded;
+  }
   [self.window registerForDraggedTypes:@[NSURLPboardType]];
   
   MPDocument *document = self.document;
   
+  [NSNotificationCenter.defaultCenter addObserver:self selector:@selector(_didRevertDocument:) name:MPDocumentDidRevertNotification object:document];
   [NSNotificationCenter.defaultCenter addObserver:self selector:@selector(_didUnlockDatabase:) name:MPDocumentDidUnlockDatabaseNotification object:document];
   [NSNotificationCenter.defaultCenter addObserver:self selector:@selector(_didAddEntry:) name:MPDocumentDidAddEntryNotification object:document];
   [NSNotificationCenter.defaultCenter addObserver:self selector:@selector(_didAddGroup:) name:MPDocumentDidAddGroupNotification object:document];

@@ -24,17 +24,6 @@
 #import "MPContextBarViewController.h"
 #import "MPTargetNodeResolving.h"
 
-APPKIT_EXTERN NSString *const MPEntryTableIndexColumnIdentifier;
-APPKIT_EXTERN NSString *const MPEntryTableUserNameColumnIdentifier;
-APPKIT_EXTERN NSString *const MPEntryTableTitleColumnIdentifier;
-APPKIT_EXTERN NSString *const MPEntryTablePasswordColumnIdentifier;
-APPKIT_EXTERN NSString *const MPEntryTableParentColumnIdentifier;
-APPKIT_EXTERN NSString *const MPEntryTableURLColumnIdentifier;
-APPKIT_EXTERN NSString *const MPEntryTableNotesColumnIdentifier;
-APPKIT_EXTERN NSString *const MPEntryTableAttachmentColumnIdentifier;
-APPKIT_EXTERN NSString *const MPEntryTableModfiedColumnIdentifier;
-APPKIT_EXTERN NSString *const MPEntryTableHistoryColumnIdentifier;
-
 typedef NS_ENUM(NSUInteger, MPDisplayMode) {
   MPDisplayModeEntries,
   MPDisplayModeSearchResults,

@@ -9,6 +9,7 @@
 #import "MPTOTPViewController.h"
 
 #import <KeePassKit/KeePassKit.h>
+#import "MPEntryInspectorViewController.h"
 
 @interface MPTOTPViewController ()
 
@@ -21,6 +22,12 @@
 - (void)viewDidLoad {
   self.remainingTimeButton.title = @"";
 }
+
+- (IBAction)showOTPSetup:(id)sender {
+  MPEntryInspectorViewController *vs = (MPEntryInspectorViewController*)self.parentViewController;
+  [vs showOTPSetup:sender];
+}
+
 
 - (void)setRepresentedObject:(id)representedObject {
   NSArray *notificationNames = @[KPKWillAddAttributeNotification, KPKDidAddAttributeNotification, KPKWillChangeAttributeNotification, KPKDidChangeAttributeNotification, KPKWillRemoveAttributeNotification, KPKDidRemoveAttributeNotification];
@@ -47,9 +54,10 @@
   BOOL showTOTP = entry.hasTimeOTP;
   self.view.hidden = !showTOTP;
   if(showTOTP) {
-    self.generator = [[KPKTimeOTPGenerator alloc] initWithEntry:entry];
+    self.generator = [[KPKTimeOTPGenerator alloc] initWithAttributes:entry.attributes];
     self.generator.time = NSDate.date.timeIntervalSince1970;
-    self.toptValueTextField.stringValue = self.generator.string;
+    NSString *stringValue = self.generator.string;
+    self.toptValueTextField.stringValue = stringValue ? stringValue : @"";
     
     NSString *template = NSLocalizedString(@"TOTP_REMAINING_TIME_%ld_SECONDS", @"Time in seconds remaining for a valid TOTP string, format should be %ld");
     

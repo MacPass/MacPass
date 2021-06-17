@@ -45,7 +45,7 @@
 NSString *const MPDocumentDidAddGroupNotification             = @"com.hicknhack.macpass.MPDocumentDidAddGroupNotification";
 NSString *const MPDocumentDidAddEntryNotification             = @"com.hicknhack.macpass.MPDocumentDidAddEntryNotification";
 
-NSString *const MPDocumentDidRevertNotifiation                = @"com.hicknhack.macpass.MPDocumentDidRevertNotifiation";
+NSString *const MPDocumentDidRevertNotification               = @"com.hicknhack.macpass.MPDocumentDidRevertNotification";
 
 NSString *const MPDocumentDidLockDatabaseNotification         = @"com.hicknhack.macpass.MPDocumentDidLockDatabaseNotification";
 NSString *const MPDocumentDidUnlockDatabaseNotification       = @"com.hicknhack.macpass.MPDocumentDidUnlockDatabaseNotification";
@@ -147,6 +147,10 @@ NSString *const MPDocumentGroupKey                            = @"MPDocumentGrou
   [self addWindowController:windowController];
 }
 
+- (BOOL)canAsynchronouslyWriteToURL:(NSURL *)url ofType:(NSString *)typeName forSaveOperation:(NSSaveOperationType)saveOperation {
+  return YES;
+}
+
 - (BOOL)checkAutosavingSafetyAndReturnError:(NSError **)outError {
   if(![super checkAutosavingSafetyAndReturnError:outError]) {
     return NO; // default checking has found an error!
@@ -202,7 +206,15 @@ NSString *const MPDocumentGroupKey                            = @"MPDocumentGrou
     }
     return nil; // We do not know what version to save!
   }
-  return [self.tree encryptWithKey:self.compositeKey format:format error:outError];
+  // create a copy to allow for unblocking user interaction
+  NSLog(@"Copying tree to save…");
+  KPKTree *copy = [self.tree copy];
+  NSLog(@"Created copy…");
+  [self unblockUserInteraction];
+  NSLog(@"Starting encryption…");
+  NSData *data = [copy encryptWithKey:self.compositeKey format:format error:outError];
+  NSLog(@"Finished encryption…");
+  return data;
 }
 
 - (BOOL)readFromURL:(NSURL *)url ofType:(NSString *)typeName error:(NSError **)outError {
@@ -216,7 +228,7 @@ NSString *const MPDocumentGroupKey                            = @"MPDocumentGrou
 
 - (BOOL)revertToContentsOfURL:(NSURL *)absoluteURL ofType:(NSString *)typeName error:(NSError **)outError {
   if([super revertToContentsOfURL:absoluteURL ofType:typeName error:outError]) {
-    [[NSNotificationCenter defaultCenter] postNotificationName:MPDocumentDidRevertNotifiation object:self];
+    [[NSNotificationCenter defaultCenter] postNotificationName:MPDocumentDidRevertNotification object:self];
     return YES;
   }
   return NO;
@@ -515,7 +527,7 @@ NSString *const MPDocumentGroupKey                            = @"MPDocumentGrou
 
 - (BOOL)changePassword:(NSString *)password keyFileURL:(NSURL *)keyFileURL {
   /* sanity check? */
-  if([password length] == 0 && keyFileURL == nil) {
+  if(password.length == 0 && keyFileURL == nil) {
     return NO;
   }
   NSData *keyFileData = keyFileURL ? [NSData dataWithContentsOfURL:keyFileURL] : nil;
@@ -675,9 +687,14 @@ NSString *const MPDocumentGroupKey                            = @"MPDocumentGrou
   if([self.tree.metaData.defaultUserName length] > 0) {
     newEntry.username = self.tree.metaData.defaultUserName;
   }
-  NSString *defaultPassword = [NSString passwordWithDefaultSettings];
-  if(defaultPassword) {
-    newEntry.password = defaultPassword;
+  
+  /* only generate passwords for new entries, if set */
+  BOOL generatePassword = [NSUserDefaults.standardUserDefaults boolForKey:kMPSettingsKeyGeneratePasswordForNewEntires];
+  if(generatePassword) {
+    NSString *defaultPassword = [NSString passwordWithDefaultSettings];
+    if(defaultPassword) {
+      newEntry.password = defaultPassword;
+    }
   }
   /* re-enable undo/redo if we did turn it off */
   if(wasUndoEnabeld) {
@@ -835,12 +852,19 @@ NSString *const MPDocumentGroupKey                            = @"MPDocumentGrou
 }
 
 - (void)duplicateEntryWithOptions:(KPKCopyOptions)options { 
+  KPKEntry *duplicate;
   for(KPKEntry *entry in self.selectedEntries) {
-    KPKEntry *duplicate = [entry copyWithTitle:nil options:options];
+    duplicate = [entry copyWithTitle:nil options:options];
     [duplicate addToGroup:entry.parent];
   }
   [self.undoManager setActionName:[NSString stringWithFormat:NSLocalizedString(@"DUPLICATE_ENTRIES_ACTION_NAME", @"Action name for duplicating entries"), self.selectedEntries.count]];
+  if(duplicate) {
+  [NSNotificationCenter.defaultCenter postNotificationName:MPDocumentDidAddEntryNotification
+                                                    object:self
+                                                  userInfo:@{ MPDocumentEntryKey: duplicate }];
+  }
 }
+  
 
 - (void)duplicateGroup:(id)sender {
   for(KPKGroup *group in self.selectedGroups) {

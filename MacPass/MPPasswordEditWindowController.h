@@ -39,13 +39,15 @@
 
 @interface MPPasswordEditWindowController : HNHUISheetWindowController <NSTextFieldDelegate>
 
-@property (weak) IBOutlet HNHUISecureTextField *passwordTextField;
-@property (weak) IBOutlet HNHUISecureTextField *passwordRepeatTextField;
-@property (weak) IBOutlet NSPathControl *keyfilePathControl;
-@property (weak) IBOutlet NSButton *togglePasswordButton;
-@property (weak) IBOutlet NSTextField *errorTextField;
-@property (weak) IBOutlet NSButton *changePasswordButton;
-@property (weak) IBOutlet NSButton *hasPasswordSwitchButton;
+@property (strong) IBOutlet HNHUISecureTextField *passwordTextField;
+@property (strong) IBOutlet HNHUISecureTextField *passwordRepeatTextField;
+@property (strong) IBOutlet NSPathControl *keyfilePathControl;
+@property (strong) IBOutlet NSButton *togglePasswordButton;
+@property (strong) IBOutlet NSTextField *passwordErrorTextField;
+@property (strong) IBOutlet NSTextField *keyErrorTextField;
+@property (strong) IBOutlet NSButton *changePasswordButton;
+@property (strong) IBOutlet NSButton *hasPasswordSwitchButton;
+@property (strong) IBOutlet NSGridView *gridView;
 
 - (IBAction)clearKey:(id)sender;
 - (IBAction)generateKey:(id)sender;

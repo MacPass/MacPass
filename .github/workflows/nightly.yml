@@ -1,0 +1,32 @@
+name: Nightly
+
+on:
+  #push:
+  #  branches: [ master ]
+  #pull_request:
+  #  branches: [ master ]
+  schedule:
+    - cron:  '0 23 * * *'
+
+  workflow_dispatch:
+
+jobs:
+  nightly:
+    runs-on: macos-10.15
+
+    steps:
+      - uses: actions/checkout@v2
+        with:
+          submodules: recursive
+
+      - name: Bootstrap Carthage
+        run: carthage bootstrap --platform macOS
+
+      - name: Install xcpretty
+        run: gem install xcpretty --no-document --quiet
+      
+      - name: Build
+        run: |
+          set -o pipefail
+          xcodebuild clean
+          xcodebuild build -configuration release -project MacPass.xcodeproj  -scheme MacPass CODE_SIGNING_REQUIRED=NO -derivedDataPath ./build | xcpretty -c

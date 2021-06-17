@@ -100,6 +100,7 @@ typedef NS_ENUM(NSUInteger, MPContentTab) {
   NSTabViewItem *groupTabItem = [self.tabView tabViewItemAtIndex:MPGroupTab];
   NSView *groupTabView = groupTabItem.view;
   [groupTabView addSubview:groupView];
+    
   [groupTabView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|[groupView]|" options:0 metrics:nil views:views]];
   [groupTabView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|[groupView]|" options:0 metrics:nil views:views]];
   groupTabItem.initialFirstResponder = groupView;

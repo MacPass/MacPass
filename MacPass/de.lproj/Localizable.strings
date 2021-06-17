@@ -25,12 +25,6 @@
 /* Toolbar item with action menu */
 "ACTION" = "Aktion";
 
-/* Menu item title for adding an hmacotp config attribute */
-"ADD_CUSTOM_ATTRIBUTE_HMACOTP_CONFIG" = "HMACOTP-Konfiguration hinzufügen";
-
-/* Menu item title for adding an hmacotp seed attribute */
-"ADD_CUSTOM_ATTRIBUTE_HMACOTP_SEED" = "HMACOTP-Startwert hinzufügen";
-
 /* Menu displayed for adding special custom keys */
 "ADD_CUSTOM_FIELD_CONTEXT_MENU" = "Menü für nutzerdefiniertes Feld hinzufügen";
 
@@ -101,8 +95,11 @@
 /* Menu item for automatic trash creation */
 "AUTOCREATE_TRASH_FOLDER" = "Automatisch erstellen";
 
-/* Message text in the autotype selection window. Placeholder is %1 - windowTitle */
-"AUTOTYPE_CANDIDATE_SELECTION_WINDOW_MESSAGE_%@" = "Es gibt mehrere Treffer für den aktuellen Fenstertitel: %@. Bitte wählen Sie denjenigen Eintrag aus der Liste aus, der verwendet werden soll.";
+/* Message text in the autotype confirmation window. Placeholder is %1 - applicationName, %2 windowTitle */
+"AUTOTYPE_CANDIDATE_CONFIRMATION_WINDOW_MESSAGE_%@_%@" = "Für das Fenster \"%2$@\" der Anwendung \"%1$@\" wurde ein Treffer gefunden. Bitte bestätigen Sie die Eingabe.";
+
+/* Message text in the autotype selection window. Placeholder is %1 - applicationName, %2 windowTitle */
+"AUTOTYPE_CANDIDATE_SELECTION_WINDOW_MESSAGE_%@_%@" = "Es wurden mehrere Treffer für das Fenster \"%2$@\" der Anwendung \"%1$@\" gefunden. Bitte wählen Sie eine Eingabe aus.";
 
 /* Window title for the stand-alone password creator window */
 "AUTOTYPE_DOCTOR_RESULTS_WINDOW_TITLE" = "Autotype-Doktor";
@@ -260,6 +257,10 @@
 
 /* Context menu that copies reference to username */
 "COPY_USERNAME_REFERENCE" = "Nutzername";
+
+/* Creating date column title
+   Menu item to toggle display of created date column in entry table */
+"CREATED" = "Erstellt";
 
 /* Custom attribute reference item */
 "CUSTOM_ATTRIBUTE" = "Spezielle Eigenschaften";
@@ -534,6 +535,15 @@
 /* Select Browser */
 "OTHER_BROWSER" = "Browser wählen …";
 
+/* OTP custom type */
+"OTP_CUSTOM" = "Eigenen Einstellungen";
+
+/* OTP type RFC */
+"OTP_RFC" = "RFC 6238";
+
+/* OTP type Steam */
+"OTP_STEAM" = "Steam";
+
 /* Value field for reference lookup */
 "OUTPUT_VALUE" = "Ausgabewert";
 
@@ -614,7 +624,7 @@
 /* Error for a plugin that was not signed properly */
 "PLUGIN_ERROR_UNSECURE_PLUGIN" = "Das Plugin ist nicht korrekt signiert";
 
-/* Plugin specifies the wrong principla class! */
+/* Plugin specifies the wrong principal class! */
 "PLUGIN_ERROR_WRONG_PRINCIPAL_CLASS" = "Die Hauptklasse des Plugins stimmt nicht mit der erwarteten überein";
 
 /* name for disabled unloaded plugin */
@@ -650,7 +660,7 @@
 /* Restart */
 "RESTART" = "Neustarten";
 
-/* Action to restore an Entry to its previous state of it's history */
+/* Action to restore an Entry to a previous state of its history */
 "RESTORE_HISTORY_ENTRY" = "Eintrag wiederherstellen";
 
 /* Menu item to save the selected attached file.
@@ -705,6 +715,9 @@
 /* Checkbox in dialog to set the selection as default file change strategy! */
 "SET_AS_DEFAULT_FILE_CHANGE_STRATEGY" = "Die gewählte Strategie immer verwenden. Sie können die Strategie jederzeit in den Einstellungen anpassen.";
 
+/* Menu item title editing TOTP settings */
+"SETUP_TOTP_SETTINGS" = "Einstellung für zeitgesteuertes Einmalpassword bearbeiten";
+
 /* Action button in Notification to show the Autotype Doctor */
 "SHOW_AUTOTYPE_DOCTOR" = "Autotype-Doktor anzeigen";
 
@@ -726,6 +739,9 @@
 
 /* Toolbar item to perform autotype */
 "TOOLBAR_PERFORM_AUTOTYPE_FOR_ENTRY" = "Autotype";
+
+/* Time in seconds remaining for a valid TOTP string, format should be %ld */
+"TOTP_REMAINING_TIME_%ld_SECONDS" = "%ld s";
 
 /* Touchbar button label for choosing the keyfile */
 "TOUCHBAR_CHOOSE_KEYFILE" = "Schlüsseldatei wählen";
@@ -808,8 +824,12 @@
 /* Error message displayed when a keepass database file is set as the key file */
 "WARNING_DATABASE_FILE_SELECTED_AS_KEY_FILE" = "Eine andere KeePass-Datenbank sollte nicht als Schlüsseldatei verwendet werden. Die Datei kann sich ändern, und damit kann die aktuelle Datenbank nicht mehr geöffnet werden.";
 
-/* No Key or Password */
-"WARNING_NO_PASSWORD_OR_KEYFILE" = "Weder Passwort noch Schlüsseldatei festgelegt!";
+/* No key file is set
+ Warning tha no key file is set when chaning the password */
+"WARNING_NO_KEYFILE" = "Keine Passwortdatei festgelegt.";
+
+/* Warning if no password is set when chaning the password */
+"WARNING_NO_PASSWORD" = "Kein Passwort festgelegt.";
 
 /* Informative Text displayed when clearing the Trash */
 "WARNING_ON_DELETE_TRASHED_NODE_DESCRIPTION" = "Die gewählten Elemente werden dauerhaft aus dem Papierkorb entfernt.";

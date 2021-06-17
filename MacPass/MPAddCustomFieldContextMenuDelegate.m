@@ -23,6 +23,7 @@
 #import "MPAddCustomFieldContextMenuDelegate.h"
 #import "KeePassKit/KeePassKit.h"
 
+#import "MPEntryInspectorViewController.h"
 
 /*
  HmacOtp-Secret (the UTF-8 representation of the value is the secret),
@@ -66,8 +67,8 @@
 
 /* Time OPT*/
 - (void)_setupTOTPMenuItemsToMenu:(NSMenu *)menu {
-  NSMenuItem *setupItem = [[NSMenuItem alloc] initWithTitle:NSLocalizedString(@"SETUP_TOTP_SETTINGS", @"Menu item title editing TOTP settings") action:@selector(_setupTOTPSettings:) keyEquivalent:@""];
-  setupItem.target = self;
+  NSMenuItem *setupItem = [[NSMenuItem alloc] initWithTitle:NSLocalizedString(@"SETUP_TOTP_SETTINGS", @"Menu item title editing TOTP settings") action:@selector(showOTPSetup:) keyEquivalent:@""];
+  setupItem.target = self.viewController;
   [menu addItem:setupItem];
 }
 
