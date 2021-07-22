@@ -348,14 +348,14 @@
 }
 
 - (void) _touchIdUpdateToolTip {
-  if(self.touchIdEnabledButton.state == NSControlStateValueOn) {
-    self.touchIdEnabledButton.toolTip = @"Unlocking via TouchID is enabled";
-  }
-  else if(self.touchIdEnabledButton.state == NSControlStateValueOff) {
-    self.touchIdEnabledButton.toolTip = @"Unlocking via TouchID is disabled";
-  }
-  else {
-    self.touchIdEnabledButton.toolTip = @"Unlocking via TouchID is possible until MacPass is restarted";
+  switch(self.touchIdEnabledButton.state) {
+    case NSControlStateValueOn:
+      self.touchIdEnabledButton.toolTip = NSLocalizedString(@"TOOLTIP_TOUCHID_ENABELD", @"Tooltip displayed when TouchID is is fully enabeld");
+    case NSControlStateValueOff:
+      self.touchIdEnabledButton.toolTip = NSLocalizedString(@"TOOLTIP_TOUCHID_DISABLED", @"Tooltip displayed when TouchID is disabled");
+    case NSControlStateValueMixed:
+    default:
+      self.touchIdEnabledButton.toolTip = NSLocalizedString(@"TOOLTIP_TOUCHID_TRANSIENT", @"Tooltip displayed when TouchID is in transient (inmemory) mode");
   }
 }
 
