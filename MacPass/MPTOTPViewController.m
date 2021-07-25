@@ -20,7 +20,9 @@
 @implementation MPTOTPViewController
 
 - (void)viewDidLoad {
+  [super viewDidLoad];
   self.remainingTimeButton.title = @"";
+  [self _setupTOPTView];
 }
 
 - (IBAction)showOTPSetup:(id)sender {
@@ -68,5 +70,15 @@
     self.remainingTimeButton.title = @"";
     self.toptValueTextField.stringValue = @"";
   }
+}
+
+- (void)_setupTOPTView {
+  __weak __typeof__(self) weakSelf = self;
+  self.toptValueTextField.copyActionBlock = ^(NSTextField *textField) {
+    __strong __typeof__(weakSelf) strongSelf = weakSelf;
+    if ([strongSelf.delegate respondsToSelector:@selector(didCopyTOTPString:)]) {
+      [strongSelf.delegate didCopyTOTPString:textField.stringValue];
+    }
+  };
 }
 @end

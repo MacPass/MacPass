@@ -63,7 +63,7 @@ typedef NS_ENUM(NSUInteger, MPEntryTab) {
 - (void)_searchWithGoogleFromMenu:(id)obj;
 @end
 
-@interface MPEntryInspectorViewController () {
+@interface MPEntryInspectorViewController () <MPTOTPViewControllerDelegate> {
 @private
   NSArrayController *_attachmentsController;
   NSArrayController *_customFieldsController;
@@ -600,7 +600,7 @@ typedef NS_ENUM(NSUInteger, MPEntryTab) {
 
 - (void)_setupTOPTView {
   self.totpViewController = [[MPTOTPViewController alloc] init];
-  
+  self.totpViewController.delegate = self;
   NSInteger urlindex = [self.fieldsStackView.arrangedSubviews indexOfObject:self.URLTextField];
   NSAssert(urlindex != NSNotFound, @"Missing reference view. This should not happen!");
   [self addChildViewController:self.totpViewController];
@@ -699,6 +699,13 @@ typedef NS_ENUM(NSUInteger, MPEntryTab) {
 #pragma mark KPKEntry Notifications
 
 - (void)_didChangeAttribute:(NSNotification *)notification {
+}
+
+#pragma mark -
+#pragma mark MPTOTPViewControllerDelegate
+
+- (void)didCopyTOTPString:(NSString *)string {
+  [MPPasteBoardController.defaultController copyObject:string overlayInfo:MPPasteboardOverlayInfoOTP name:@"" atView:self.view];
 }
 
 @end

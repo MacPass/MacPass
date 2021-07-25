@@ -139,6 +139,11 @@ NSString *const MPPasteBoardTypeSource          = @"org.nspasteboard.source";
       infoText = NSLocalizedString(@"COPIED_PASSWORD", @"Password was copied to the pasteboard");
       break;
       
+    case MPPasteboardOverlayInfoOTP:
+      infoImage = [NSBundle.mainBundle imageForResource:@"00_PasswordTemplate"];
+      infoText = NSLocalizedString(@"COPIED_OTP", @"OTP was copied to the pasteboard");
+      break;
+
     case MPPasteboardOverlayInfoURL:
       infoImage = [NSBundle.mainBundle imageForResource:@"01_PackageNetworkTemplate"];
       infoText = NSLocalizedString(@"COPIED_URL", @"URL was copied to the pasteboard");

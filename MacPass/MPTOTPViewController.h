@@ -11,10 +11,18 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
+@protocol MPTOTPViewControllerDelegate <NSObject>
+
+@optional
+- (void)didCopyTOTPString:(NSString *)string;
+
+@end
+
 @interface MPTOTPViewController : NSViewController
 @property (strong) IBOutlet HNHUITextField *toptValueTextField;
 @property (strong) IBOutlet NSButton *remainingTimeButton;
 @property (strong) IBOutlet NSButton *showSetupButton;
+@property (nullable, weak) id<MPTOTPViewControllerDelegate> delegate;
 
 @end
 
