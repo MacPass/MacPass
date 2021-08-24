@@ -52,13 +52,15 @@ jobs:
           zip -9ry MacPass-continuous.zip MacPass.app
       
       - name: Create MD5 Hash
-        run: shasum -a 256 MacPass-continuous.zip > MacPass-continuous.zip.sha256
-      
+        run: |
+          cd ./build/Build/Products/Release
+          shasum -a 256 MacPass-continuous.zip > MacPass-continuous.zip.sha256
      
       - name: Release
         uses: softprops/action-gh-release@v1
         #if: startsWith(github.ref, 'refs/tags/')
         with:
           files: |
+            Localisations.zip
             ./build/Build/Products/Release/MacPass-continuous.zip
             ./build/Build/Products/Release/MacPass-continuous.zip.sha256
