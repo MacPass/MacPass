@@ -58,8 +58,9 @@ jobs:
      
       - name: Release
         uses: softprops/action-gh-release@v1
-        if: startsWith(github.ref, 'refs/tags/')
+        #if: startsWith(github.ref, 'refs/tags/')
         with:
+          tag_name: Continuous
           files: |
             Localisations.zip
             ./build/Build/Products/Release/MacPass-continuous.zip
