@@ -60,7 +60,7 @@ jobs:
         uses: softprops/action-gh-release@v1
         #if: startsWith(github.ref, 'refs/tags/')
         with:
-          tag_name: Continuous
+          tag_name: continuous
           files: |
             Localisations.zip
             ./build/Build/Products/Release/MacPass-continuous.zip
