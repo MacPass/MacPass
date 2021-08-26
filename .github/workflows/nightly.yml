@@ -57,11 +57,21 @@ jobs:
           shasum -a 256 MacPass-continuous.zip > MacPass-continuous.zip.sha256
      
       - name: Release
-        uses: softprops/action-gh-release@v1
-        #if: startsWith(github.ref, 'refs/tags/')
+        uses: eine/tip@master
         with:
-          tag_name: continuous
+          token: ${{ secrets.GITHUB_TOKEN }}
+          tag: continuous
           files: |
             Localisations.zip
             ./build/Build/Products/Release/MacPass-continuous.zip
             ./build/Build/Products/Release/MacPass-continuous.zip.sha256
+      
+      #- name: Release
+      #  uses: softprops/action-gh-release@v1
+        #if: startsWith(github.ref, 'refs/tags/')
+      #  with:
+      #    tag_name: continuous
+      #    files: |
+      #      Localisations.zip
+      #      ./build/Build/Products/Release/MacPass-continuous.zip
+      #      ./build/Build/Products/Release/MacPass-continuous.zip.sha256
