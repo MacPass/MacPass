@@ -19,12 +19,6 @@
 /* Toolbar item with action menu */
 "ACTION" = "动作";
 
-/* Menu item title for adding an hmacotp config attribute */
-"ADD_CUSTOM_ATTRIBUTE_HMACOTP_CONFIG" = "添加 HMACOTP 配置";
-
-/* Menu item title for adding an hmacotp seed attribute */
-"ADD_CUSTOM_ATTRIBUTE_HMACOTP_SEED" = "新增 HMACOTP 种子";
-
 /* Action to add an entry via template */
 "ADD_TREMPLATE_ENTRY" = "创建模板项目";
 
@@ -68,8 +62,11 @@
 /* Menu item for automatic trash creation */
 "AUTOCREATE_TRASH_FOLDER" = "自动创建";
 
-/* Message text in the autotype selection window. Placeholder is %1 - windowTitle */
-"AUTOTYPE_CANDIDATE_SELECTION_WINDOW_MESSAGE_%@" = "在当前窗口 %@ 中发现了多个匹配，请选择要使用的匹配。";
+/* Message text in the autotype confirmation window. Placeholder is %1 - applicationName, %2 windowTitle */
+"AUTOTYPE_CANDIDATE_CONFIRMATION_WINDOW_MESSAGE_%@_%@" = "自动键入找到了一个来自 “%1$@\" 匹配 \"%2$@\" 的窗口。请确认以继续。";
+
+/* Message text in the autotype selection window. Placeholder is %1 - applicationName, %2 windowTitle */
+"AUTOTYPE_CANDIDATE_SELECTION_WINDOW_MESSAGE_%@_%@" = "找到了多个来自 “%1$@” 匹配 \"%2$@\" 的窗口。请选择要使用的目标。";
 
 /* Window title for the stand-alone password creator window */
 "AUTOTYPE_DOCTOR_RESULTS_WINDOW_TITLE" = "自动键入诊断";
@@ -86,6 +83,9 @@
 /* Notification: Autotype failed, MacPass has not enough permissions to perform autotype */
 "AUTOTYPE_NOTIFICATION_MACPASS_IS_MISSING_PERMISSIONS" = "MacPass 没有执行自动键入的权限。";
 
+/* Notification: Title for autotype feedback */
+"AUTOTYPE_NOTIFICATION_MATCH_TITLE" = "自动键入";
+
 /* Notification: Autotype failed, no documents are open */
 "AUTOTYPE_NOTIFICATION_NO_DOCUMENTS_INFORMATIVE_TEXT" = "请打开一个数据库文件以使用全局自动键入！";
 
@@ -96,7 +96,7 @@
 "AUTOTYPE_NOTIFICATION_NO_MATCH_FOR_%@" = "没有找到匹配 %@！";
 
 /* Title for autotype feedback on missing permissions */
-"AUTOTYPE_NOTIFICATION_PERMISSIONS_MISSING_TITLE" = "缺失权限";
+"AUTOTYPE_NOTIFICATION_PERMISSIONS_MISSING_TITLE" = "缺少权限";
 
 /* Notification: Autotype found a single match for %@ (string placeholder). */
 "AUTOTYPE_NOTIFICATION_SINGLE_MATCH_FOR_%@" = "找到匹配 %@！";
@@ -691,9 +691,6 @@
 
 /* Error message displayed when a keepass database file is set as the key file */
 "WARNING_DATABASE_FILE_SELECTED_AS_KEY_FILE" = "不应使用另一个数据库文件作为密钥文件，因为它可能会发生变更，导致你无法使用该文件解锁当前数据库";
-
-/* No Key or Password */
-"WARNING_NO_PASSWORD_OR_KEYFILE" = "未提供密码或密钥文件！";
 
 /* Informative Text displayed when clearing the Trash */
 "WARNING_ON_DELETE_TRASHED_NODE_DESCRIPTION" = "被移入废纸篓的项目将被彻底删除！";
