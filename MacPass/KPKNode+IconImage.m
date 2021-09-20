@@ -30,7 +30,7 @@
 @end
 @implementation NSImage (MPTintedImage)
 - (NSImage *)imageWithTintColor:(NSColor *)tintColor {
-  /* only tint tempated images! */
+  /* only tint templated images! */
   if(NO == self.template) {
     return self;
   }
