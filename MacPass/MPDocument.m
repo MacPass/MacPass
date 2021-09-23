@@ -717,14 +717,14 @@ NSString *const MPDocumentGroupKey                            = @"MPDocumentGrou
   }
   KPKGroup *newGroup = [self.tree createGroup:parent];
   /* setting properties on entries is undoable, but we do not want to record this so disable on creation */
-  BOOL wasUndoEnabeld = self.undoManager.isUndoRegistrationEnabled;
+  KPK_SCOPED_DISABLE_UNDO_BEGIN(self.undoManager);
+  
   [self.undoManager disableUndoRegistration];
   newGroup.title = NSLocalizedString(@"DEFAULT_GROUP_NAME", @"Title for a newly created group");
   newGroup.iconId = MPIconFolder;
-  /* re-enable undo/redo if we did turn it off */
-  if(wasUndoEnabeld) {
-    [self.undoManager enableUndoRegistration];
-  }
+
+  KPK_SCOPED_DISABLE_UNDO_END;
+
   [newGroup addToGroup:parent];
   [newGroup.undoManager setActionName:NSLocalizedString(@"NEW_GROUP", "Action name for a newly created group")];
   [NSNotificationCenter.defaultCenter postNotificationName:MPDocumentDidAddGroupNotification

@@ -49,7 +49,7 @@ NSString *const MPExpiryDateValueTransformerName = @"com.hicknhack.macpass.MPExp
                       static NSDateFormatter *formatter;
                       if(!formatter) {
                         formatter = [[NSDateFormatter alloc] init];
-                        formatter.dateStyle = kCFDateFormatterLongStyle;
+                        formatter.dateStyle = NSDateFormatterLongStyle;
                         formatter.timeStyle = NSDateFormatterNoStyle;
                       }
 
