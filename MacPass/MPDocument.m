@@ -681,8 +681,9 @@ NSString *const MPDocumentGroupKey                            = @"MPDocumentGrou
   
   KPKEntry *newEntry = [self.tree createEntry:parent];
   /* setting properties on entries is undoable, but we do not want to record this so disable on creation */
-  BOOL wasUndoEnabeld = self.undoManager.isUndoRegistrationEnabled;
-  [self.undoManager disableUndoRegistration];
+  
+  KPK_SCOPED_DISABLE_UNDO_BEGIN(self.undoManager)
+  
   newEntry.title = NSLocalizedString(@"DEFAULT_ENTRY_TITLE", @"Title for a newly created entry");
   if([self.tree.metaData.defaultUserName length] > 0) {
     newEntry.username = self.tree.metaData.defaultUserName;
@@ -696,10 +697,9 @@ NSString *const MPDocumentGroupKey                            = @"MPDocumentGrou
       newEntry.password = defaultPassword;
     }
   }
-  /* re-enable undo/redo if we did turn it off */
-  if(wasUndoEnabeld) {
-    [self.undoManager enableUndoRegistration];
-  }
+  
+  KPK_SCOPED_DISABLE_UNDO_END
+  
   [newEntry addToGroup:parent];
   [newEntry.undoManager setActionName:NSLocalizedString(@"NEW_ENTRY", "Action name for a newly created entry")];
   [NSNotificationCenter.defaultCenter postNotificationName:MPDocumentDidAddEntryNotification
