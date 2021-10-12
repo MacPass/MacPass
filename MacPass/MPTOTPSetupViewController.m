@@ -185,7 +185,7 @@ typedef NS_ENUM(NSUInteger, MPOTPType) {
   }
   
   /* secret */
-  NSString *secret = [generator.key base32EncodedString];
+  NSString *secret = [generator.key base32EncodedStringWithOptions:0];
   self.secretTextField.stringValue = secret ? secret : @"";
 
   [self.algorithmPopUpButton selectItemWithTag:generator.hashAlgorithm];
