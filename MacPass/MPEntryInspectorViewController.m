@@ -124,8 +124,17 @@ typedef NS_ENUM(NSUInteger, MPEntryTab) {
 }
 
 - (void)setRepresentedObject:(id)representedObject {
+  if(self.representedObject) {
+    [NSNotificationCenter.defaultCenter removeObserver:self name:KPKWillChangeEntryNotification object:self.representedEntry];
+    [NSNotificationCenter.defaultCenter removeObserver:self name:KPKDidChangeEntryNotification object:self.representedEntry];
+  }
   super.representedObject = representedObject;
   self.totpViewController.representedObject = self.representedObject;
+  /* only register for a single entry! */
+  if(self.representedEntry) {
+    [NSNotificationCenter.defaultCenter addObserver:self selector:@selector(_willChangeEntry:) name:KPKWillChangeEntryNotification object:self.representedEntry];
+    [NSNotificationCenter.defaultCenter addObserver:self selector:@selector(_didChangeEntry:) name:KPKDidChangeEntryNotification object:self.representedEntry];
+  }
 }
 
 - (void)viewDidLoad {
@@ -464,6 +473,10 @@ typedef NS_ENUM(NSUInteger, MPEntryTab) {
 
 #pragma mark -
 #pragma mark Entry Selection
+- (void)_updateEntryValues {
+  // TODO implement binding less model update
+}
+
 - (void)_setupViewBindings {
   /* Disable for history view */
   NSArray *inputs = @[self.titleTextField,
@@ -697,6 +710,15 @@ typedef NS_ENUM(NSUInteger, MPEntryTab) {
 
 #pragma mark -
 #pragma mark KPKEntry Notifications
+
+- (void)_willChangeEntry:(NSNotification *)notification {
+  NSLog(@"willChangeEntry");
+}
+
+- (void)_didChangeEntry:(NSNotification *)notification {
+  NSLog(@"didChangeEntry");
+  [self _updateEntryValues];
+}
 
 - (void)_didChangeAttribute:(NSNotification *)notification {
 }
