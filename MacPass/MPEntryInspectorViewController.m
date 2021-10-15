@@ -33,6 +33,7 @@
 #import "MPReferenceBuilderViewController.h"
 #import "MPTOTPViewController.h"
 #import "MPTOTPSetupViewController.h"
+#import "MPEntryAttributeViewController.h"
 
 #import "MPPrettyPasswordTransformer.h"
 #import "NSString+MPPasswordCreation.h"
@@ -75,6 +76,7 @@ typedef NS_ENUM(NSUInteger, MPEntryTab) {
   MPWindowTitleComboBoxDelegate *_windowTitleMenuDelegate;
   MPTagsTokenFieldDelegate *_tagTokenFieldDelegate;
   MPAddCustomFieldContextMenuDelegate *_addCustomFieldContextMenuDelegate;
+  NSMutableArray<MPEntryAttributeViewController *> *_attributeEditorViewControllers;
 }
 
 @property (nonatomic, assign) BOOL showPassword;
@@ -111,6 +113,7 @@ typedef NS_ENUM(NSUInteger, MPEntryTab) {
     _customFieldTableDelegate.viewController = self;
     _addCustomFieldContextMenuDelegate.viewController = self;
     
+    _attributeEditorViewControllers = [[NSMutableArray alloc] init];
     _activeTab = MPEntryTabGeneral;
   }
   return self;
@@ -130,6 +133,9 @@ typedef NS_ENUM(NSUInteger, MPEntryTab) {
   }
   super.representedObject = representedObject;
   self.totpViewController.representedObject = self.representedObject;
+  
+  //[self _updateAttributeEditors];
+  
   /* only register for a single entry! */
   if(self.representedEntry) {
     [NSNotificationCenter.defaultCenter addObserver:self selector:@selector(_willChangeEntry:) name:KPKWillChangeEntryNotification object:self.representedEntry];
@@ -195,9 +201,12 @@ typedef NS_ENUM(NSUInteger, MPEntryTab) {
   self.tagsTokenField.delegate = _tagTokenFieldDelegate;
   
   [self _setupTOPTView];
+  
+  //[self _setupAttributeEditors];
+  //[self _updateAttributeEditors];
+  
   [self _setupCustomFieldsButton];
   [self _setupViewBindings];
-  [self _updateFieldVisibilty];
 }
 
 - (void)registerNotificationsForDocument:(MPDocument *)document {
@@ -607,8 +616,20 @@ typedef NS_ENUM(NSUInteger, MPEntryTab) {
   //[self.addCustomFieldButton setEnabled:NO forSegment:MPContextButtonSegmentContextButton];
 }
 
-- (void)_updateFieldVisibilty {
-  
+- (void)_setupAttributeEditors {
+  for(NSUInteger index = 0; index < kKPKDefaultEntryKeysCount; index++) {
+    MPEntryAttributeViewController *vc = [[MPEntryAttributeViewController alloc] init];
+    vc.isEditor = NO;
+    [_attributeEditorViewControllers addObject:vc];
+    [self.fieldsStackView addArrangedSubview:vc.view];
+  }
+}
+
+- (void)_updateAttributeEditors {
+  _attributeEditorViewControllers[0].representedObject = [self.representedEntry attributeWithKey:kKPKTitleKey];
+  _attributeEditorViewControllers[1].representedObject = [self.representedEntry attributeWithKey:kKPKUsernameKey];
+  _attributeEditorViewControllers[2].representedObject = [self.representedEntry attributeWithKey:kKPKPasswordKey];
+  _attributeEditorViewControllers[3].representedObject = [self.representedEntry attributeWithKey:kKPKURLKey];
 }
 
 - (void)_setupTOPTView {
@@ -716,7 +737,11 @@ typedef NS_ENUM(NSUInteger, MPEntryTab) {
 }
 
 - (void)_didChangeEntry:(NSNotification *)notification {
-  NSLog(@"didChangeEntry");
+  if(notification.object != self.representedObject) {
+    NSLog(@"Skipping: didChangeEntry:%@, we do not need this change!", notification.object);
+    return;
+  }
+  NSLog(@"didChangeEntry:%@", notification.object);
   [self _updateEntryValues];
 }
 

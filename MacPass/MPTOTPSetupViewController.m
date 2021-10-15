@@ -21,6 +21,8 @@
 @property (strong) IBOutlet NSGridView *gridView;
 @property (strong) IBOutlet NSPopUpButton *typePopUpButton;
 
+@property (nonatomic, readonly) KPKEntry *representedEntry;
+
 @property NSInteger timeSlice;
 
 @end
@@ -43,19 +45,17 @@ typedef NS_ENUM(NSUInteger, MPOTPType) {
 
 @implementation MPTOTPSetupViewController
 
-- (void)viewDidLoad {
-  [super viewDidLoad];
-  NSAssert([self.representedObject isKindOfClass:KPKEntry.class], @"represented object needs to be a KPKEntry");
-
-  [self _setupView];
-  [self _updateView:MPOTPUpdateSourceEntry];
+- (KPKEntry *)representedEntry {
+  if([self.representedObject isKindOfClass:KPKEntry.class]) {
+    return (KPKEntry *)self.representedObject;
+  }
+  return nil;
 }
 
-- (IBAction)toggleDisclosure:(id)sender {
-  for(NSInteger row = 1; row < self.gridView.numberOfRows; row++) {
-    NSGridRow *gridRow = [self.gridView rowAtIndex:row];
-    gridRow.hidden = !gridRow.hidden;
-  }
+- (void)viewDidLoad {
+  [super viewDidLoad];
+  [self _setupView];
+  [self _updateView:MPOTPUpdateSourceEntry];
 }
 
 - (IBAction)changeType:(id)sender {
@@ -131,6 +131,14 @@ typedef NS_ENUM(NSUInteger, MPOTPType) {
   
   [self.timeStepTextField bind:NSValueBinding toObject:self withKeyPath:NSStringFromSelector(@selector(timeSlice)) options:nil];
   [self.timeStepStepper bind:NSValueBinding toObject:self withKeyPath:NSStringFromSelector(@selector(timeSlice)) options:nil];
+  
+  KPKEntry *entry = self.representedEntry;
+  if(entry.hasTimeOTP) {
+    KPKTimeOTPGenerator *generator = [[KPKTimeOTPGenerator alloc] initWithAttributes:self.representedEntry.attributes];
+    if(generator.isRFC6238) {
+      [self.typePopUpButton selectItemWithTag:MPOTPTypeRFC];
+    }
+  }
 }
 
 - (void)_updateView:(MPOTPUpdateSource)source {
@@ -151,12 +159,15 @@ typedef NS_ENUM(NSUInteger, MPOTPType) {
       NSString *qrCodeString = self.qrCodeImageView.image.QRCodeString;
       NSURL *otpURL = [NSURL URLWithString:qrCodeString];
       self.urlTextField.stringValue = otpURL.absoluteString;
-      // fallthroug
+      generator = [[KPKTimeOTPGenerator alloc] initWithURL:self.urlTextField.stringValue];
+      break;
     }
     case MPOTPUpdateSourceURL:
       generator = [[KPKTimeOTPGenerator alloc] initWithURL:self.urlTextField.stringValue];
       break;
+    
     case MPOTPUpdateSourceSecret:
+      generator.key = [NSData dataWithBase32EncodedString:self.secretTextField.stringValue];
       break;
     case MPOTPUpdateSourceAlgorithm:
       break;
