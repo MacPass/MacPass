@@ -19,6 +19,13 @@ NS_ASSUME_NONNULL_BEGIN
 /// The editor can be set to edit or view
 @interface MPEntryAttributeViewController : NSViewController <MPInspectorEditor, HNHUITextFieldDelegate>
 
+@property (strong) IBOutlet NSTextField *keyTextField;
+@property (strong) IBOutlet HNHUITextField *valueTextField;
+
+- (void)updateValues;
+- (void)updateEditing;
+
+
 @end
 
 NS_ASSUME_NONNULL_END

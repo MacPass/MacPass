@@ -22,6 +22,7 @@
 @property (strong) IBOutlet NSPopUpButton *typePopUpButton;
 
 @property (nonatomic, readonly) KPKEntry *representedEntry;
+@property (copy) KPKTimeOTPGenerator *generator;
 
 @property NSInteger timeSlice;
 
@@ -134,8 +135,8 @@ typedef NS_ENUM(NSUInteger, MPOTPType) {
   
   KPKEntry *entry = self.representedEntry;
   if(entry.hasTimeOTP) {
-    KPKTimeOTPGenerator *generator = [[KPKTimeOTPGenerator alloc] initWithAttributes:self.representedEntry.attributes];
-    if(generator.isRFC6238) {
+    self.generator = [[KPKTimeOTPGenerator alloc] initWithAttributes:self.representedEntry.attributes];
+    if(self.generator.isRFC6238) {
       [self.typePopUpButton selectItemWithTag:MPOTPTypeRFC];
     }
   }
@@ -152,26 +153,30 @@ typedef NS_ENUM(NSUInteger, MPOTPType) {
    MPOTPUpdateSourceEntry
    
    */
-  KPKTimeOTPGenerator *generator = [[KPKTimeOTPGenerator alloc] initWithAttributes:((KPKEntry *)self.representedObject).attributes];
+  if(!self.generator) {
+    self.generator = [[KPKTimeOTPGenerator alloc] initWithAttributes:((KPKEntry *)self.representedObject).attributes];
+  }
 
   switch(source) {
     case MPOTPUpdateSourceQRImage: {
       NSString *qrCodeString = self.qrCodeImageView.image.QRCodeString;
       NSURL *otpURL = [NSURL URLWithString:qrCodeString];
       self.urlTextField.stringValue = otpURL.absoluteString;
-      generator = [[KPKTimeOTPGenerator alloc] initWithURL:self.urlTextField.stringValue];
+      self.generator = [[KPKTimeOTPGenerator alloc] initWithURL:self.urlTextField.stringValue];
       break;
     }
     case MPOTPUpdateSourceURL:
-      generator = [[KPKTimeOTPGenerator alloc] initWithURL:self.urlTextField.stringValue];
+      self.generator = [[KPKTimeOTPGenerator alloc] initWithURL:self.urlTextField.stringValue];
       break;
     
     case MPOTPUpdateSourceSecret:
-      generator.key = [NSData dataWithBase32EncodedString:self.secretTextField.stringValue];
+      self.generator.key = [NSData dataWithBase32EncodedString:self.secretTextField.stringValue];
       break;
     case MPOTPUpdateSourceAlgorithm:
+      //self.generator.hashAlgorithm =
       break;
     case MPOTPUpdateSourceTimeSlice:
+      //self.generator.timeSlice =
       break;
     case MPOTPUpdateSourceEntry:
       break;
@@ -194,16 +199,16 @@ typedef NS_ENUM(NSUInteger, MPOTPType) {
       self.qrCodeImageView.image = [NSImage QRCodeImageWithString:authURL.absoluteString];
     }
   }
+  else {
+    // generate the URL
+  }
   
   /* secret */
-  NSString *secret = [generator.key base32EncodedStringWithOptions:0];
+  NSString *secret = [self.generator.key base32EncodedStringWithOptions:0];
   self.secretTextField.stringValue = secret ? secret : @"";
-
-  [self.algorithmPopUpButton selectItemWithTag:generator.hashAlgorithm];
-  
-  [self.digitCountPopUpButton selectItemWithTag:generator.numberOfDigits];
-    
-  self.timeSlice = generator.timeSlice;
+  [self.algorithmPopUpButton selectItemWithTag:self.generator.hashAlgorithm];
+  [self.digitCountPopUpButton selectItemWithTag:self.generator.numberOfDigits];
+  self.timeSlice = self.generator.timeSlice;
  
 }
 

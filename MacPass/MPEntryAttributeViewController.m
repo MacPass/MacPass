@@ -14,8 +14,6 @@
 @interface MPEntryAttributeViewController () {
   BOOL _isDefaultAttribute;
 }
-@property (strong) IBOutlet NSTextField *keyTextField;
-@property (strong) IBOutlet HNHUITextField *valueTextField;
 @property (readonly, nullable, strong) KPKAttribute *representedAttribute;
 
 @end
@@ -45,8 +43,8 @@
   self.valueTextField.placeholderString = placeHolder;
   
   [super viewDidLoad];
-  [self _updateValues];
-  [self _updateEditing];
+  [self updateValues];
+  [self updateEditing];
   
   __weak MPEntryAttributeViewController *welf = self;
   self.valueTextField.copyActionBlock =  ^void(NSTextField *tf) {
@@ -66,7 +64,7 @@
 
 - (void)setIsEditor:(BOOL)isEditor {
   _isEditor = isEditor;
-  [self _updateEditing];
+  [self updateEditing];
 }
 
 - (void)setRepresentedObject:(id)representedObject {
@@ -87,14 +85,13 @@
 
   }
   _isDefaultAttribute = self.representedAttribute.isDefault;
-  [self _updateValues];
+  [self updateValues];
 }
 
 - (BOOL)textField:(NSTextField *)textField textView:(NSTextView *)textView performAction:(SEL)action {
   if(action != @selector(copy:)) {
     return YES;
   }
-  
   
   // Only copy action
   MPPasteboardOverlayInfoType info = MPPasteboardOverlayInfoCustom;
@@ -109,9 +106,10 @@
   if([self.representedAttribute.key isEqual:kKPKUsernameKey]) {
     info = MPPasteboardOverlayInfoUsername;
   }
-  else if([self.representedAttribute.key isEqual:kKPKPasswordKey]) {
+  /*else if([self.representedAttribute.key isEqual:kKPKPasswordKey]) {
     info = MPPasteboardOverlayInfoPassword;
   }
+   */
   else if([self.representedAttribute.key isEqual:kKPKURLKey]) {
     info = MPPasteboardOverlayInfoURL;
   }
@@ -131,16 +129,16 @@
 }
 
 - (void)_didChangeAttribute:(NSNotification *)notification {
-  [self _updateValues];
+  [self updateValues];
 }
 
-- (void)_updateValues {
+- (void)updateValues {
   self.view.hidden = (!self.isEditor && self.representedAttribute.value.length == 0);
   self.keyTextField.stringValue = self.representedAttribute.key ? self.representedAttribute.key : @"";
   self.valueTextField.stringValue = self.representedAttribute.value ? self.representedAttribute.value : @"";
 }
 
-- (void)_updateEditing {
+- (void)updateEditing {
   self.keyTextField.editable = !_isDefaultAttribute && self.isEditor;
   self.valueTextField.editable = self.isEditor;
   self.keyTextField.selectable = YES;

@@ -286,6 +286,8 @@
 		4CE5B54B173AFBA700207B39 /* MPDocument.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CE5B549173AFBA700207B39 /* MPDocument.m */; };
 		4CE8246F16E2E93400573141 /* MPOverlayWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CE8246E16E2E93400573141 /* MPOverlayWindowController.m */; };
 		4CE8247516E2F2B900573141 /* MPOverlayView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CE8247416E2F2B900573141 /* MPOverlayView.m */; };
+		4CE84903271E10AC00EBAB0C /* MPEntryPasswordAttributeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CE84901271E10AC00EBAB0C /* MPEntryPasswordAttributeViewController.m */; };
+		4CE84904271E10AC00EBAB0C /* MPEntryPasswordAttributeViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4CE84902271E10AC00EBAB0C /* MPEntryPasswordAttributeViewController.xib */; };
 		4CE88B9717BA651C0042E078 /* contextTriangleTemplate.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 4CE88B9617BA651C0042E078 /* contextTriangleTemplate.pdf */; };
 		4CEE46DD181C301D006BF1E5 /* MPAutotypeDaemon.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CEE46DC181C301D006BF1E5 /* MPAutotypeDaemon.m */; };
 		4CEED1C617D7BD0E007180F1 /* NSError+Messages.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CEED1C517D7BD0E007180F1 /* NSError+Messages.m */; };
@@ -880,6 +882,9 @@
 		4CE8246E16E2E93400573141 /* MPOverlayWindowController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MPOverlayWindowController.m; sourceTree = "<group>"; };
 		4CE8247316E2F2B900573141 /* MPOverlayView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MPOverlayView.h; sourceTree = "<group>"; };
 		4CE8247416E2F2B900573141 /* MPOverlayView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MPOverlayView.m; sourceTree = "<group>"; };
+		4CE84900271E10AC00EBAB0C /* MPEntryPasswordAttributeViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MPEntryPasswordAttributeViewController.h; sourceTree = "<group>"; };
+		4CE84901271E10AC00EBAB0C /* MPEntryPasswordAttributeViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MPEntryPasswordAttributeViewController.m; sourceTree = "<group>"; };
+		4CE84902271E10AC00EBAB0C /* MPEntryPasswordAttributeViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MPEntryPasswordAttributeViewController.xib; sourceTree = "<group>"; };
 		4CE88B9617BA651C0042E078 /* contextTriangleTemplate.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = contextTriangleTemplate.pdf; sourceTree = "<group>"; };
 		4CE88C2417C163FE00BFD195 /* CoreFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreFoundation.framework; path = System/Library/Frameworks/CoreFoundation.framework; sourceTree = SDKROOT; };
 		4CE88C3317C1647400BFD195 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -1442,6 +1447,9 @@
 				4CC0192B271836CD00459789 /* MPEntryAttributeViewController.h */,
 				4CC0192C271836CD00459789 /* MPEntryAttributeViewController.m */,
 				4CC0192D271836CD00459789 /* MPEntryAttributeViewController.xib */,
+				4CE84900271E10AC00EBAB0C /* MPEntryPasswordAttributeViewController.h */,
+				4CE84901271E10AC00EBAB0C /* MPEntryPasswordAttributeViewController.m */,
+				4CE84902271E10AC00EBAB0C /* MPEntryPasswordAttributeViewController.xib */,
 			);
 			name = Inspector;
 			sourceTree = "<group>";
@@ -2073,6 +2081,7 @@
 				4C701CBC178618A000581B88 /* 12_RemoteTemplate.pdf in Resources */,
 				4CF29BF417879D0000851B60 /* 26_FileSaveTemplate.pdf in Resources */,
 				4C7BD07619FE94C900C7AA5C /* Assets.xcassets in Resources */,
+				4CE84904271E10AC00EBAB0C /* MPEntryPasswordAttributeViewController.xib in Resources */,
 				4CA182781F96523600DD4A4A /* DuplicateEntryOptionsWindow.xib in Resources */,
 				4C52A88E1788628B00868229 /* 06_BlockDeviceTemplate.pdf in Resources */,
 				4C52A88F1788628B00868229 /* 13_KeysTemplate.pdf in Resources */,
@@ -2270,6 +2279,7 @@
 				4CCEDE2A179F203B008402BE /* MPOutlineView.m in Sources */,
 				4CB33F861EAF54A000C9341E /* KPKNode+MPIsHistory.m in Sources */,
 				4CCEDE2E179F213B008402BE /* MPNotifications.m in Sources */,
+				4CE84903271E10AC00EBAB0C /* MPEntryPasswordAttributeViewController.m in Sources */,
 				4C17D8E517A1C780006C8C1E /* MPDocumentWindowDelegate.m in Sources */,
 				4C63B8FB17A3154D0091BD72 /* MPContextButton.m in Sources */,
 				4C1E9885185F71A800943563 /* MPContextBarViewController.m in Sources */,
