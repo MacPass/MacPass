@@ -35,6 +35,7 @@ typedef NS_ENUM(NSUInteger, MPOTPUpdateSource) {
   MPOTPUpdateSourceAlgorithm,
   MPOTPUpdateSourceTimeSlice,
   MPOTPUpdateSourceType,
+  MPOTPUpdateSourceDigits,
   MPOTPUpdateSourceEntry
 };
 
@@ -60,6 +61,7 @@ typedef NS_ENUM(NSUInteger, MPOTPType) {
 }
 
 - (IBAction)changeType:(id)sender {
+  /*
   if(sender != self.typePopUpButton) {
     return; // wrong sender
   }
@@ -77,6 +79,15 @@ typedef NS_ENUM(NSUInteger, MPOTPType) {
       self.timeStepStepper.enabled = YES;
   }
   [self _updateView:MPOTPUpdateSourceType];
+   */
+}
+
+- (IBAction)changeHashAlgorithm:(id)sender {
+  [self _updateView:MPOTPUpdateSourceAlgorithm];
+}
+
+- (IBAction)changeDigits:(id)sender {
+  [self _updateView:MPOTPUpdateSourceDigits];
 }
 
 - (IBAction)parseQRCode:(id)sender {
@@ -92,8 +103,19 @@ typedef NS_ENUM(NSUInteger, MPOTPType) {
 
 - (IBAction)save:(id)sender {
   // Update entry settings!
-  // adhere to change observation for history?
+  // FIXME: add model observing to ensure correct history recording
+  [self.generator saveToEntry:self.representedEntry];
   [self.presentingViewController dismissViewController:self];
+}
+
+- (void)controlTextDidEndEditing:(NSNotification *)notification {
+  NSControl *control = notification.object;
+  if(control == self.secretTextField) {
+    [self _updateView:MPOTPUpdateSourceSecret];
+  }
+  else if(control == self.urlTextField) {
+    [self _updateView:MPOTPUpdateSourceURL];
+  }
 }
 
 - (void)_setupView {
@@ -110,6 +132,9 @@ typedef NS_ENUM(NSUInteger, MPOTPType) {
   [self.algorithmPopUpButton.menu addItem:sha256Item];
   [self.algorithmPopUpButton.menu addItem:sha512Item];
   
+  self.algorithmPopUpButton.action = @selector(changeHashAlgorithm:);
+  self.algorithmPopUpButton.target = self;
+  
   /* digits */
   NSAssert(self.digitCountPopUpButton.menu.numberOfItems == 0, @"Digit menu needs to be empty");
   for(NSUInteger digit = 6; digit <= 8; digit++) {
@@ -117,6 +142,10 @@ typedef NS_ENUM(NSUInteger, MPOTPType) {
     item.tag = digit;
     [self.digitCountPopUpButton.menu addItem:item];
   }
+  
+  self.digitCountPopUpButton.action = @selector(changeDigits:);
+  self.digitCountPopUpButton.target = self;
+  
   
   NSAssert(self.typePopUpButton.menu.numberOfItems == 0, @"Type menu needs to be empty!");
   NSMenuItem *rfcItem = [[NSMenuItem alloc] initWithTitle:NSLocalizedString(@"OTP_RFC", @"OTP type RFC ") action:NULL keyEquivalent:@""];
@@ -130,8 +159,15 @@ typedef NS_ENUM(NSUInteger, MPOTPType) {
   [self.typePopUpButton.menu addItem:steamItem];
   [self.typePopUpButton.menu addItem:customItem];
   
+  self.typePopUpButton.action = @selector(changeType:);
+  self.typePopUpButton.target = self;
+   
+  
   [self.timeStepTextField bind:NSValueBinding toObject:self withKeyPath:NSStringFromSelector(@selector(timeSlice)) options:nil];
   [self.timeStepStepper bind:NSValueBinding toObject:self withKeyPath:NSStringFromSelector(@selector(timeSlice)) options:nil];
+  
+  self.secretTextField.delegate = self;
+  self.urlTextField.delegate = self;
   
   KPKEntry *entry = self.representedEntry;
   if(entry.hasTimeOTP) {
@@ -184,8 +220,11 @@ typedef NS_ENUM(NSUInteger, MPOTPType) {
     case MPOTPUpdateSourceTimeSlice:
       self.generator.timeSlice = self.timeStepTextField.integerValue;
       break;
+    case MPOTPUpdateSourceDigits:
+      self.generator.numberOfDigits = self.digitCountPopUpButton.selectedTag;
+      break;
     default:
-      return;
+      break;
   }
   
   /*
@@ -212,6 +251,13 @@ typedef NS_ENUM(NSUInteger, MPOTPType) {
   [self.algorithmPopUpButton selectItemWithTag:self.generator.hashAlgorithm];
   [self.digitCountPopUpButton selectItemWithTag:self.generator.numberOfDigits];
   self.timeSlice = self.generator.timeSlice;
+
+  if(self.generator.isRFC6238) {
+    [self.typePopUpButton selectItemWithTag:MPOTPTypeRFC];
+  }
+  else {
+    [self.typePopUpButton selectItemWithTag:MPOTPTypeCustom];
+  }
 }
 
 @end

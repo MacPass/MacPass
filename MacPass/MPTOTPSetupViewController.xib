@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="17701" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" customObjectInstantitationMethod="direct">
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="18122" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" customObjectInstantitationMethod="direct">
     <dependencies>
         <deployment version="101304" identifier="macosx"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="17701"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="18122"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
@@ -22,7 +22,7 @@
         </customObject>
         <customObject id="-1" userLabel="First Responder" customClass="FirstResponder"/>
         <customObject id="-3" userLabel="Application" customClass="NSObject"/>
-        <customView misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Hz6-mo-xeY">
+        <customView translatesAutoresizingMaskIntoConstraints="NO" id="Hz6-mo-xeY">
             <rect key="frame" x="0.0" y="0.0" width="324" height="362"/>
             <subviews>
                 <gridView horizontalHuggingPriority="251" xPlacement="leading" yPlacement="center" rowAlignment="firstBaseline" rowSpacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="4gl-4p-0WY">
@@ -98,7 +98,7 @@
                         </gridCell>
                         <gridCell row="leK-j9-Cah" column="aZO-dP-SsW" id="gOO-ed-C7I"/>
                         <gridCell row="J7I-Uw-OQv" column="Ar1-qh-iHT" id="LYj-ea-Ou9">
-                            <textField key="contentView" horizontalHuggingPriority="252" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="W8L-ah-Kdc">
+                            <textField key="contentView" hidden="YES" horizontalHuggingPriority="252" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="W8L-ah-Kdc">
                                 <rect key="frame" x="71" y="121" width="34" height="16"/>
                                 <textFieldCell key="cell" lineBreakMode="clipping" title="Type" id="fNC-fH-sYi">
                                     <font key="font" usesAppearanceFont="YES"/>
@@ -108,16 +108,13 @@
                             </textField>
                         </gridCell>
                         <gridCell row="J7I-Uw-OQv" column="Ecc-pj-MX9" id="fOz-RA-6LG">
-                            <popUpButton key="contentView" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="ku7-YD-kkV">
+                            <popUpButton key="contentView" hidden="YES" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="ku7-YD-kkV">
                                 <rect key="frame" x="106" y="114" width="157" height="25"/>
                                 <popUpButtonCell key="cell" type="push" bezelStyle="rounded" alignment="left" lineBreakMode="truncatingTail" borderStyle="borderAndBezel" imageScaling="proportionallyDown" inset="2" id="WbA-Ie-Txj">
                                     <behavior key="behavior" lightByBackground="YES" lightByGray="YES"/>
                                     <font key="font" metaFont="menu"/>
                                     <menu key="menu" id="ger-Fr-8BF"/>
                                 </popUpButtonCell>
-                                <connections>
-                                    <action selector="changeType:" target="-2" id="0cg-oY-afM"/>
-                                </connections>
                             </popUpButton>
                         </gridCell>
                         <gridCell row="J7I-Uw-OQv" column="aZO-dP-SsW" id="mka-sc-dDD"/>
