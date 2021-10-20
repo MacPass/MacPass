@@ -151,12 +151,10 @@ typedef NS_ENUM(NSUInteger, MPOTPType) {
    MPOTPUpdateSourceTimeSlice,
    MPOTPUpdateSourceType,
    MPOTPUpdateSourceEntry
-   
    */
-  if(!self.generator) {
-    self.generator = [[KPKTimeOTPGenerator alloc] initWithAttributes:((KPKEntry *)self.representedObject).attributes];
+  if(source != MPOTPUpdateSourceEntry) {
+    NSAssert(self.generator, @"OTP Generator needs to be set when change source is not entry");
   }
-
   switch(source) {
     case MPOTPUpdateSourceQRImage: {
       NSString *qrCodeString = self.qrCodeImageView.image.QRCodeString;
@@ -169,47 +167,51 @@ typedef NS_ENUM(NSUInteger, MPOTPType) {
       self.generator = [[KPKTimeOTPGenerator alloc] initWithURL:self.urlTextField.stringValue];
       break;
     
+    case MPOTPUpdateSourceEntry:
+      if(self.representedEntry.hasTimeOTP) {
+        self.generator = [[KPKTimeOTPGenerator alloc] initWithAttributes:self.representedEntry.attributes];
+      }
+      else {
+        self.generator = [[KPKTimeOTPGenerator alloc] init];
+      }
+      break;
     case MPOTPUpdateSourceSecret:
       self.generator.key = [NSData dataWithBase32EncodedString:self.secretTextField.stringValue];
       break;
     case MPOTPUpdateSourceAlgorithm:
-      //self.generator.hashAlgorithm =
+      self.generator.hashAlgorithm = (KPKOTPHashAlgorithm)self.algorithmPopUpButton.selectedTag;
       break;
     case MPOTPUpdateSourceTimeSlice:
-      //self.generator.timeSlice =
-      break;
-    case MPOTPUpdateSourceEntry:
+      self.generator.timeSlice = self.timeStepTextField.integerValue;
       break;
     default:
       return;
   }
   
-  /* FIXME: update correct values based on changes */
+  /*
+   The KPKTimeOTPGenerator is the sole data source. We do not need to query anything else
+   */
 
-  /* URL and QR code */
-  KPKEntry *entry = self.representedObject;
-  NSString *url = [entry attributeWithKey:kKPKAttributeKeyOTPOAuthURL].value;
-  
-  self.urlTextField.stringValue = @"";
-  
-  if(url) {
-    NSURL *authURL = [NSURL URLWithString:url];
-    if(authURL.isTimeOTPURL) {
-      self.urlTextField.stringValue = authURL.absoluteString;
-      self.qrCodeImageView.image = [NSImage QRCodeImageWithString:authURL.absoluteString];
-    }
+  if(!self.generator) {
+    // display issues!
+    return;
   }
-  else {
-    // generate the URL
+
+  NSURL *authURL = [NSURL URLWithTimeOTPKey:self.generator.data algorithm:self.generator.hashAlgorithm issuer:self.representedEntry.title period:self.generator.timeSlice digits:self.generator.numberOfDigits];
+  if(!authURL || !authURL.isTimeOTPURL) {
+    // display issues
+    return;
   }
   
+  self.urlTextField.stringValue = authURL.absoluteString;
+  self.qrCodeImageView.image = [NSImage QRCodeImageWithString:authURL.absoluteString];
+
   /* secret */
   NSString *secret = [self.generator.key base32EncodedStringWithOptions:0];
   self.secretTextField.stringValue = secret ? secret : @"";
   [self.algorithmPopUpButton selectItemWithTag:self.generator.hashAlgorithm];
   [self.digitCountPopUpButton selectItemWithTag:self.generator.numberOfDigits];
   self.timeSlice = self.generator.timeSlice;
- 
 }
 
 @end
