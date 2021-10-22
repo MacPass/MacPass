@@ -147,6 +147,8 @@
 		4C586FA216D07F6A00E7DB57 /* 02_MessageBoxWarningTemplate.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 4C586FA116D07F6A00E7DB57 /* 02_MessageBoxWarningTemplate.pdf */; };
 		4C58A4A32192EC1600B13370 /* NSIndexPath+MPAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C58A4A22192EC1600B13370 /* NSIndexPath+MPAdditions.m */; };
 		4C58A4A82192EEBE00B13370 /* MPTestIndexPathAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C58A4A72192EEBE00B13370 /* MPTestIndexPathAdditions.m */; };
+		4C59AC9D2722C12200F54B20 /* MPNodeExpirationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C59AC9B2722C12200F54B20 /* MPNodeExpirationViewController.m */; };
+		4C59AC9E2722C12200F54B20 /* MPNodeExpirationViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4C59AC9C2722C12200F54B20 /* MPNodeExpirationViewController.xib */; };
 		4C5A11FE1708DE8700223D8A /* MPPasswordCreatorViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C5A11FC1708DE8700223D8A /* MPPasswordCreatorViewController.m */; };
 		4C5EF816218CA03F0003C00E /* MPAutotypeParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C5EF815218CA03F0003C00E /* MPAutotypeParser.m */; };
 		4C5FE9AE17843CE20001D5A8 /* MPSelectedAttachmentTableCellView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C5FE9AD17843CE20001D5A8 /* MPSelectedAttachmentTableCellView.m */; };
@@ -598,6 +600,9 @@
 		4C58A4A12192EC1600B13370 /* NSIndexPath+MPAdditions.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSIndexPath+MPAdditions.h"; sourceTree = "<group>"; };
 		4C58A4A22192EC1600B13370 /* NSIndexPath+MPAdditions.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSIndexPath+MPAdditions.m"; sourceTree = "<group>"; };
 		4C58A4A72192EEBE00B13370 /* MPTestIndexPathAdditions.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MPTestIndexPathAdditions.m; sourceTree = "<group>"; };
+		4C59AC9A2722C12200F54B20 /* MPNodeExpirationViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MPNodeExpirationViewController.h; sourceTree = "<group>"; };
+		4C59AC9B2722C12200F54B20 /* MPNodeExpirationViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MPNodeExpirationViewController.m; sourceTree = "<group>"; };
+		4C59AC9C2722C12200F54B20 /* MPNodeExpirationViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MPNodeExpirationViewController.xib; sourceTree = "<group>"; };
 		4C5A11FB1708DE8700223D8A /* MPPasswordCreatorViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MPPasswordCreatorViewController.h; sourceTree = "<group>"; };
 		4C5A11FC1708DE8700223D8A /* MPPasswordCreatorViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MPPasswordCreatorViewController.m; sourceTree = "<group>"; };
 		4C5ADC3017830B09004E1E8D /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/InspectorView.strings; sourceTree = "<group>"; };
@@ -1450,6 +1455,9 @@
 				4CE84900271E10AC00EBAB0C /* MPEntryPasswordAttributeViewController.h */,
 				4CE84901271E10AC00EBAB0C /* MPEntryPasswordAttributeViewController.m */,
 				4CE84902271E10AC00EBAB0C /* MPEntryPasswordAttributeViewController.xib */,
+				4C59AC9A2722C12200F54B20 /* MPNodeExpirationViewController.h */,
+				4C59AC9B2722C12200F54B20 /* MPNodeExpirationViewController.m */,
+				4C59AC9C2722C12200F54B20 /* MPNodeExpirationViewController.xib */,
 			);
 			name = Inspector;
 			sourceTree = "<group>";
@@ -2008,6 +2016,7 @@
 				4C4BE0C9257E9B91000AEA8C /* MPNotificationPreferencesController.xib in Resources */,
 				4C3826CD1AD04D8E007D7D67 /* 66_MoneyTemplate.pdf in Resources */,
 				78E1F8B022E3A5D600E738AE /* AutotypeDoctorReportViewController.xib in Resources */,
+				4C59AC9E2722C12200F54B20 /* MPNodeExpirationViewController.xib in Resources */,
 				4CA0B2ED15BCADAC00654E32 /* PreferencesWindow.xib in Resources */,
 				4C76155C1764C04C0015A1A6 /* GeneralPreferences.xib in Resources */,
 				4CD884B715BD47080042BBF8 /* DocumentWindow.xib in Resources */,
@@ -2196,6 +2205,7 @@
 				4C370EFE215B76CB00703AAE /* MPOutlineTableCellView.m in Sources */,
 				4CE8246F16E2E93400573141 /* MPOverlayWindowController.m in Sources */,
 				4CE8247516E2F2B900573141 /* MPOverlayView.m in Sources */,
+				4C59AC9D2722C12200F54B20 /* MPNodeExpirationViewController.m in Sources */,
 				4C77547516E55FE800970E02 /* MPInspectorViewController.m in Sources */,
 				4C89F524182FB4740069C73C /* MPAutotypeCommand.m in Sources */,
 				4C6DCC611FA24C2100C8AD3F /* MPAutotypeCandidateSelectionViewController.m in Sources */,
