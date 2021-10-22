@@ -146,21 +146,20 @@ typedef NS_ENUM(NSUInteger, MPOTPType) {
   
   self.typePopUpButton.action = @selector(changeType:);
   self.typePopUpButton.target = self;
-   
   
-  [self.timeStepTextField bind:NSValueBinding toObject:self withKeyPath:NSStringFromSelector(@selector(timeSlice)) options:nil];
-  [self.timeStepStepper bind:NSValueBinding toObject:self withKeyPath:NSStringFromSelector(@selector(timeSlice)) options:nil];
+  
+  [self.timeStepTextField bind:NSValueBinding
+                      toObject:self
+                   withKeyPath:NSStringFromSelector(@selector(timeSlice))
+                       options:nil];
+  [self.timeStepStepper bind:NSValueBinding
+                    toObject:self
+                 withKeyPath:NSStringFromSelector(@selector(timeSlice))
+                     options:@{ NSConditionallySetsEnabledBindingOption:@(NO), NSConditionallySetsEditableBindingOption:@(NO)}];
   
   self.secretTextField.delegate = self;
   self.urlTextField.delegate = self;
   
-  KPKEntry *entry = self.representedEntry;
-  if(entry.hasTimeOTP) {
-    self.generator = [[KPKTimeOTPGenerator alloc] initWithAttributes:self.representedEntry.attributes];
-    if(self.generator.isRFC6238) {
-      [self.typePopUpButton selectItemWithTag:MPOTPTypeRFC];
-    }
-  }
 }
 
 - (void)_updateView:(MPOTPUpdateSource)source {
@@ -176,18 +175,45 @@ typedef NS_ENUM(NSUInteger, MPOTPType) {
   if(source != MPOTPUpdateSourceEntry) {
     NSAssert(self.generator, @"OTP Generator needs to be set when change source is not entry");
   }
+  
+  BOOL enableCustomSettings = NO;
   switch(source) {
+    case MPOTPUpdateSourceType: {
+      MPOTPType otpType = self.typePopUpButton.selectedTag;
+      NSData *oldKey = self.generator.key;
+      switch(otpType) {
+        case MPOTPTypeCustom:
+          enableCustomSettings = YES;
+        case MPOTPTypeRFC:
+          self.generator = [[KPKTimeOTPGenerator alloc] init]; // initialize a RFC otp generator for custom and rfc types
+          self.generator.key = oldKey;
+          break;
+        case MPOTPTypeSteam:
+          self.generator = [[KPKSteamOTPGenerator alloc] init]; // initialize a default Steam OTP generator
+          self.generator.key = oldKey;
+      }
+    }
+      break;
     case MPOTPUpdateSourceQRImage: {
       NSString *qrCodeString = self.qrCodeImageView.image.QRCodeString;
       NSURL *otpURL = [NSURL URLWithString:qrCodeString];
-      self.urlTextField.stringValue = otpURL.absoluteString;
-      self.generator = [[KPKTimeOTPGenerator alloc] initWithURL:self.urlTextField.stringValue];
+      self.generator = otpURL.isSteamOTPURL ? [[KPKSteamOTPGenerator alloc] initWithURL:self.urlTextField.stringValue] : [[KPKTimeOTPGenerator alloc] initWithURL:self.urlTextField.stringValue];
       break;
     }
-    case MPOTPUpdateSourceURL:
-      self.generator = [[KPKTimeOTPGenerator alloc] initWithURL:self.urlTextField.stringValue];
+    case MPOTPUpdateSourceURL:{
+      NSURL *otpURL = [NSURL URLWithString:self.urlTextField.stringValue];
+      if(otpURL.isSteamOTPURL) {
+        self.generator = [[KPKSteamOTPGenerator alloc] initWithURL:self.urlTextField.stringValue];
+      }
+      else if(otpURL.isTimeOTPURL) {
+        self.generator = [[KPKTimeOTPGenerator alloc] initWithURL:self.urlTextField.stringValue];
+      }
+      else {
+        // invalid URL
+      }
       break;
-    
+    }
+      
     case MPOTPUpdateSourceEntry:
       if(self.representedEntry.hasTimeOTP) {
         self.generator = [[KPKTimeOTPGenerator alloc] initWithAttributes:self.representedEntry.attributes];
@@ -215,34 +241,60 @@ typedef NS_ENUM(NSUInteger, MPOTPType) {
   /*
    The KPKTimeOTPGenerator is the sole data source. We do not need to query anything else
    */
-
+  
   if(!self.generator) {
     // display issues!
     return;
   }
-
-  NSURL *authURL = [NSURL URLWithTimeOTPKey:self.generator.data algorithm:self.generator.hashAlgorithm issuer:self.representedEntry.title period:self.generator.timeSlice digits:self.generator.numberOfDigits];
-  if(!authURL || !authURL.isTimeOTPURL) {
-    // display issues
+  
+  /* update display data with current generator */
+  BOOL isSteam = [self.generator isKindOfClass:KPKSteamOTPGenerator.class];
+  
+  if((self.generator.isRFC6238 && !enableCustomSettings) || isSteam) {
+    if(isSteam) {
+      [self.typePopUpButton selectItemWithTag:MPOTPTypeSteam];
+    }
+    else {
+      [self.typePopUpButton selectItemWithTag:MPOTPTypeRFC];
+    }
+    self.digitCountPopUpButton.enabled = NO;
+    self.algorithmPopUpButton.enabled = NO;
+    self.timeStepStepper.enabled = NO;
+    self.timeStepTextField.enabled = NO;
+  }
+  else {
+    [self.typePopUpButton selectItemWithTag:MPOTPTypeCustom];
+    self.digitCountPopUpButton.enabled = YES;
+    self.algorithmPopUpButton.enabled = YES;
+    self.timeStepStepper.enabled = YES;
+    self.timeStepTextField.enabled = YES;
+  }
+  
+  NSURL *authURL;
+  if(isSteam) {
+    authURL = [NSURL URLWIthSteamOTPKey:self.generator.key issuer:self.representedEntry.title];
+  }
+  else {
+    authURL = [NSURL URLWithTimeOTPKey:self.generator.key
+                             algorithm:self.generator.hashAlgorithm
+                                issuer:self.representedEntry.title
+                                period:self.generator.timeSlice
+                                digits:self.generator.numberOfDigits];
+  }
+   
+  if(!(authURL && authURL.isTimeOTPURL)) {
+    // display issue!
     return;
   }
   
   self.urlTextField.stringValue = authURL.absoluteString;
   self.qrCodeImageView.image = [NSImage QRCodeImageWithString:authURL.absoluteString];
-
-  /* secret */
+  
   NSString *secret = [self.generator.key base32EncodedStringWithOptions:0];
   self.secretTextField.stringValue = secret ? secret : @"";
   [self.algorithmPopUpButton selectItemWithTag:self.generator.hashAlgorithm];
   [self.digitCountPopUpButton selectItemWithTag:self.generator.numberOfDigits];
   self.timeSlice = self.generator.timeSlice;
-
-  if(self.generator.isRFC6238) {
-    [self.typePopUpButton selectItemWithTag:MPOTPTypeRFC];
-  }
-  else {
-    [self.typePopUpButton selectItemWithTag:MPOTPTypeCustom];
-  }
 }
 
 @end
