@@ -61,25 +61,10 @@ typedef NS_ENUM(NSUInteger, MPOTPType) {
 }
 
 - (IBAction)changeType:(id)sender {
-  /*
   if(sender != self.typePopUpButton) {
     return; // wrong sender
   }
-  MPOTPType type = self.typePopUpButton.selectedItem.tag;
-  switch(type) {
-    case MPOTPTypeRFC:
-    case MPOTPTypeSteam:
-      self.algorithmPopUpButton.enabled = NO;
-      self.digitCountPopUpButton.enabled = NO;
-      self.timeStepStepper.enabled = NO;
-      break;
-    case MPOTPTypeCustom:
-      self.algorithmPopUpButton.enabled = YES;
-      self.digitCountPopUpButton.enabled = YES;
-      self.timeStepStepper.enabled = YES;
-  }
   [self _updateView:MPOTPUpdateSourceType];
-   */
 }
 
 - (IBAction)changeHashAlgorithm:(id)sender {
