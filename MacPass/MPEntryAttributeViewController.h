@@ -20,7 +20,9 @@ NS_ASSUME_NONNULL_BEGIN
 @interface MPEntryAttributeViewController : NSViewController <MPInspectorEditor, HNHUITextFieldDelegate>
 
 @property (strong) IBOutlet NSTextField *keyTextField;
-@property (strong) IBOutlet HNHUITextField *valueTextField;
+@property (strong) IBOutlet HNHUISecureTextField *valueTextField;
+@property (strong) IBOutlet NSButton *toggleProtectedButton;
+@property (strong) IBOutlet NSButton *removeButton;
 
 - (void)updateValues;
 - (void)updateEditing;

@@ -38,11 +38,14 @@
 }
 
 - (void)viewDidLoad {
+  [super viewDidLoad];
   NSString *placeHolder = NSLocalizedString(@"NONE", "Placeholder text for input fields if no entry or group is selected");
   self.keyTextField.placeholderString = placeHolder;
   self.valueTextField.placeholderString = placeHolder;
   
-  [super viewDidLoad];
+  self.toggleProtectedButton.action = @selector(toggleDisplay:);
+  self.toggleProtectedButton.target = self.valueTextField;
+  
   [self updateValues];
   [self updateEditing];
   
@@ -136,6 +139,7 @@
   self.view.hidden = (!self.isEditor && self.representedAttribute.value.length == 0);
   self.keyTextField.stringValue = self.representedAttribute.key ? self.representedAttribute.key : @"";
   self.valueTextField.stringValue = self.representedAttribute.value ? self.representedAttribute.value : @"";
+  self.valueTextField.showPassword = !self.representedAttribute.protect;
 }
 
 - (void)updateEditing {
@@ -143,6 +147,8 @@
   self.valueTextField.editable = self.isEditor;
   self.keyTextField.selectable = YES;
   self.valueTextField.selectable = YES;
+  self.toggleProtectedButton.hidden = _isDefaultAttribute;
+  self.removeButton.hidden = !self.isEditor || (self.isEditor && !_isDefaultAttribute);
 }
 
 @end

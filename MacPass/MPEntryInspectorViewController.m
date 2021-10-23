@@ -34,6 +34,7 @@
 #import "MPTOTPViewController.h"
 #import "MPTOTPSetupViewController.h"
 #import "MPEntryAttributeViewController.h"
+#import "MPNodeExpirationViewController.h"
 
 #import "MPPrettyPasswordTransformer.h"
 #import "NSString+MPPasswordCreation.h"
@@ -60,6 +61,18 @@ typedef NS_ENUM(NSUInteger, MPEntryTab) {
   MPEntryTabAutotype
 };
 
+typedef NS_ENUM(NSUInteger, MPInpspectorEditorIndex) {
+  //MPInpspectorEditorIndexImageEditor,
+  //MPInpspectorEditorIndexTitle,
+  MPInpspectorEditorIndexUsername,
+  MPInpspectorEditorIndexPassword,
+  MPInpspectorEditorIndexURL,
+  MPInpspectorEditorIndexExpires,
+  MPInpspectorEditorIndexTags,
+  MPInpspectorEditorIndexDefaultCount
+};
+
+
 @interface NSObject (MPAppKitPrivateAPI)
 - (void)_searchWithGoogleFromMenu:(id)obj;
 @end
@@ -76,7 +89,7 @@ typedef NS_ENUM(NSUInteger, MPEntryTab) {
   MPWindowTitleComboBoxDelegate *_windowTitleMenuDelegate;
   MPTagsTokenFieldDelegate *_tagTokenFieldDelegate;
   MPAddCustomFieldContextMenuDelegate *_addCustomFieldContextMenuDelegate;
-  NSMutableArray<MPEntryAttributeViewController *> *_attributeEditorViewControllers;
+  NSMutableArray<NSViewController<MPInspectorEditor> *> *_attributeEditorViewControllers;
 }
 
 @property (nonatomic, assign) BOOL showPassword;
@@ -134,7 +147,7 @@ typedef NS_ENUM(NSUInteger, MPEntryTab) {
   super.representedObject = representedObject;
   self.totpViewController.representedObject = self.representedObject;
   
-  //[self _updateAttributeEditors];
+  [self _updateEditors];
   
   /* only register for a single entry! */
   if(self.representedEntry) {
@@ -202,8 +215,8 @@ typedef NS_ENUM(NSUInteger, MPEntryTab) {
   
   [self _setupTOPTView];
   
-  //[self _setupAttributeEditors];
-  //[self _updateAttributeEditors];
+  [self _setupAttributeEditors];
+  [self _updateEditors];
   
   [self _setupCustomFieldsButton];
   [self _setupViewBindings];
@@ -617,19 +630,30 @@ typedef NS_ENUM(NSUInteger, MPEntryTab) {
 }
 
 - (void)_setupAttributeEditors {
+  /*
+  MPNodeExpirationViewController *vc = [[MPNodeExpirationViewController alloc] init];
+  vc.isEditor = NO;
+  [_attributeEditorViewControllers addObject:vc];
+  [self.fieldsStackView addArrangedSubview:vc.view];
+  */
+
+  MPEntryAttributeViewController *vc = [[MPEntryAttributeViewController alloc] init];
+  vc.isEditor = NO;
+  [_attributeEditorViewControllers addObject:vc];
+  [self.fieldsStackView addArrangedSubview:vc.view];
+
+  /*
   for(NSUInteger index = 0; index < kKPKDefaultEntryKeysCount; index++) {
     MPEntryAttributeViewController *vc = [[MPEntryAttributeViewController alloc] init];
     vc.isEditor = NO;
     [_attributeEditorViewControllers addObject:vc];
     [self.fieldsStackView addArrangedSubview:vc.view];
   }
+   */
 }
 
-- (void)_updateAttributeEditors {
-  _attributeEditorViewControllers[0].representedObject = [self.representedEntry attributeWithKey:kKPKTitleKey];
-  _attributeEditorViewControllers[1].representedObject = [self.representedEntry attributeWithKey:kKPKUsernameKey];
-  _attributeEditorViewControllers[2].representedObject = [self.representedEntry attributeWithKey:kKPKPasswordKey];
-  _attributeEditorViewControllers[3].representedObject = [self.representedEntry attributeWithKey:kKPKURLKey];
+- (void)_updateEditors {
+  _attributeEditorViewControllers[MPInpspectorEditorIndexUsername].representedObject = [self.representedEntry attributeWithKey:kKPKUsernameKey];
 }
 
 - (void)_setupTOPTView {
