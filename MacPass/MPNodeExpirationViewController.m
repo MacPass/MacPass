@@ -7,24 +7,39 @@
 //
 
 #import "MPNodeExpirationViewController.h"
+#import "MPInspectorViewController.h"
+#import "MPValueTransformerHelper.h"
 #import <KeePassKit/KeePassKit.h>
 
 @interface MPNodeExpirationViewController ()
 
 @property (nonatomic, readonly, strong) KPKTimeInfo *representedTimeInfo;
+@property (strong) IBOutlet NSButton *expiredCheckButton;
+@property (strong) IBOutlet NSButton *pickExpireDateButton;
 
 @end
 
 @implementation MPNodeExpirationViewController
 
+@synthesize isEditor = _isEditor;
+
 - (void)viewDidLoad {
   [super viewDidLoad];
+  self.pickExpireDateButton.action = @selector(pickExpiryDate:);
+  [self _updateValues];
+}
+
+- (KPKTimeInfo *)representedTimeInfo {
+  if([self.representedObject isKindOfClass:KPKTimeInfo.class]) {
+    return self.representedObject;
+  }
+  return nil;
 }
 
 - (void)setRepresentedObject:(id)representedObject {
-  /*if(self.representedTimeInfo) {
-    [NSNotificationCenter.defaultCenter removeObserver:self name:KPKWillChangeTimeInfo object:self.representedTimeInfo];
-    [NSNotificationCenter.defaultCenter removeObserver:self name:KPKDidChangeTimeInfo object:self.representedTimeInfo];
+  if(self.representedTimeInfo) {
+    [NSNotificationCenter.defaultCenter removeObserver:self name:KPKWillChangeTimeInfoNotification object:self.representedTimeInfo];
+    [NSNotificationCenter.defaultCenter removeObserver:self name:KPKDidChangeTimeInfoNotification object:self.representedTimeInfo];
   }
   super.representedObject = representedObject;
   if(self.representedTimeInfo) {
@@ -38,20 +53,27 @@
                                              object:self.representedTimeInfo];
 
   }
-  _isDefaultAttribute = self.representedAttribute.isDefault;
-  [self _updateValues];*/
+  [self _updateValues];
 }
 
+- (void)setIsEditor:(BOOL)isEditor {
+  [self _updateValues];
+}
 
 - (void)_updateValues {
+  self.view.hidden = self.representedTimeInfo.expires;
+  self.expiredCheckButton.state = HNHUIStateForBool(self.representedTimeInfo.expires);
+  NSValueTransformer *dateTransformer = [NSValueTransformer valueTransformerForName:MPExpiryDateValueTransformerName];
+  self.expiredCheckButton.title = [dateTransformer transformedValue:self.representedTimeInfo.expirationDate];
   
+  self.expiredCheckButton.enabled = self.isEditor;
+  self.pickExpireDateButton.enabled = self.isEditor;
 }
 
-- (void)_willChangeTimeInfo:(NSNotification *)notification {
-  
-}
+- (void)_willChangeTimeInfo:(NSNotification *)notification {}
+
 - (void)_didChangeTimeInfo:(NSNotification *)notification {
-  
+  [self _updateValues];
 }
 
 @end

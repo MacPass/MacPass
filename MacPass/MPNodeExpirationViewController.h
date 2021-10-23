@@ -7,10 +7,11 @@
 //
 
 #import <Cocoa/Cocoa.h>
+#import "MPInspectorEditor.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface MPNodeExpirationViewController : NSViewController
+@interface MPNodeExpirationViewController : NSViewController <MPInspectorEditor>
 
 @end
 
