@@ -47,6 +47,7 @@ APPKIT_EXTERN NSString *const kMPSettingskeyLockOnScreenSleep;
 /* Autosaving states */
 APPKIT_EXTERN NSString *const kMPSettingsKeyShowInspector;
 APPKIT_EXTERN NSString *const kMPSettingsKeyEntryTableSortDescriptors;
+APPKIT_EXTERN NSString *const kMPDepricatedSettingsKeyEntryTableSortDescriptors;
 
 /* Kdb Hide/Show settings */
 APPKIT_EXTERN NSString *const kMPSettingsKeyLegacyHideTitle;

@@ -206,10 +206,18 @@ NSString *const _MPTableSecurCellView = @"PasswordCell";
   
   // bind NSArrayController sorting so that sort order gets auto-saved
   // see: http://simx.me/technonova/software_development/sort_descriptors_nstableview_bindings_a.html
-  [self.entryArrayController bind:NSSortDescriptorsBinding
-                         toObject:[NSUserDefaultsController sharedUserDefaultsController]
-                      withKeyPath:[MPSettingsHelper defaultControllerPathForKey:kMPSettingsKeyEntryTableSortDescriptors]
-                          options:@{ NSValueTransformerNameBindingOption: NSUnarchiveFromDataTransformerName }];
+  if(@available(macOS 10.14, *)) {
+    [self.entryArrayController bind:NSSortDescriptorsBinding
+                           toObject:[NSUserDefaultsController sharedUserDefaultsController]
+                        withKeyPath:[MPSettingsHelper defaultControllerPathForKey:kMPSettingsKeyEntryTableSortDescriptors]
+                            options:@{ NSValueTransformerNameBindingOption: NSSecureUnarchiveFromDataTransformerName }];
+  }
+  else {
+    [self.entryArrayController bind:NSSortDescriptorsBinding
+                           toObject:[NSUserDefaultsController sharedUserDefaultsController]
+                        withKeyPath:[MPSettingsHelper defaultControllerPathForKey:kMPDepricatedSettingsKeyEntryTableSortDescriptors]
+                            options:@{ NSValueTransformerNameBindingOption: NSUnarchiveFromDataTransformerName }];
+  }
   
   [self _setupHeaderMenu];
   /* Move index and parent column to dedicated places if it was moved by the user before */
