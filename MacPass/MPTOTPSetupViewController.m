@@ -244,7 +244,7 @@ typedef NS_ENUM(NSUInteger, MPOTPType) {
   }
   
   /*
-   The KPKTimeOTPGenerator is the sole data source. We do not need to query anything else
+   The KPKOTPGenerator is the sole data source. We do not need to query anything else
    */
   
   if(!self.generator) {
