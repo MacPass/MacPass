@@ -409,7 +409,7 @@ NSString *const _MPTableSecurCellView = @"PasswordCell";
     return; // Not the right table view
   }
   /* do not update the current item if we are not in focus! */
-  if(tableView.window.firstResponder == self.entryTable) {
+  if(self.displayMode == MPDisplayModeSearchResults || tableView.window.firstResponder == self.entryTable) {
     MPDocument *document = self.windowController.document;
     document.selectedEntries = self.entryArrayController.selectedObjects;
   }
@@ -509,7 +509,7 @@ NSString *const _MPTableSecurCellView = @"PasswordCell";
 
 - (void)_didUpdateSearchResults:(NSNotification *)notification {
   NSArray *result = notification.userInfo[kMPDocumentSearchResultsKey];
-  NSAssert(result != nil, @"Resutls should never be nil");
+  NSAssert(result != nil, @"Results should never be nil");
   self.filteredEntries = result;
   self.entryArrayController.content = self.filteredEntries;
   [self.entryTable tableColumnWithIdentifier:MPEntryTableParentColumnIdentifier].hidden = NO;
@@ -529,6 +529,7 @@ NSString *const _MPTableSecurCellView = @"PasswordCell";
 
 - (void)_didEnterSearch:(NSNotification *)notification {
   self.displayMode = MPDisplayModeSearchResults;
+  // FIXME: update selection?
   [self _updateContextBar];
 }
 
