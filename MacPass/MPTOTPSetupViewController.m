@@ -216,7 +216,12 @@ typedef NS_ENUM(NSUInteger, MPOTPType) {
       
     case MPOTPUpdateSourceEntry:
       if(self.representedEntry.hasTimeOTP) {
-        self.generator = [[KPKTimeOTPGenerator alloc] initWithAttributes:self.representedEntry.attributes];
+        if(self.representedEntry.hasSteamOTP) {
+          self.generator = [[KPKSteamOTPGenerator alloc] initWithAttributes:self.representedEntry.attributes];
+        }
+        else {
+          self.generator = [[KPKTimeOTPGenerator alloc] initWithAttributes:self.representedEntry.attributes];
+        }
       }
       else {
         self.generator = [[KPKTimeOTPGenerator alloc] init];
