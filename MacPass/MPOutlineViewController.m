@@ -136,7 +136,7 @@ NSString *const _MPOutlinveViewHeaderViewIdentifier = @"HeaderCell";
   NSInteger visibleRow = [self _rowForUUID:visibleUUID node:node];
   selectRow = selectRow > -1 ? selectRow : 1;
   [self.outlineView selectRowIndexes:[NSIndexSet indexSetWithIndex:selectRow] byExtendingSelection:NO];
-
+  
   if(visibleRow > -1) {
     NSRect rowRect = [self.outlineView rectOfRow:visibleRow];
     [self.outlineView scrollPoint:rowRect.origin];
@@ -225,7 +225,7 @@ NSString *const _MPOutlinveViewHeaderViewIdentifier = @"HeaderCell";
 #pragma mark Notifications
 - (void)registerNotificationsForDocument:(MPDocument *)document {
   [NSNotificationCenter.defaultCenter addObserver:self selector:@selector(_didAddGroup:) name:MPDocumentDidAddGroupNotification object:document];
-    [NSNotificationCenter.defaultCenter addObserver:self selector:@selector(_didRevertDocument:) name:MPDocumentDidRevertNotification object:document];
+  [NSNotificationCenter.defaultCenter addObserver:self selector:@selector(_didRevertDocument:) name:MPDocumentDidRevertNotification object:document];
 }
 
 - (void)clearSelection {
