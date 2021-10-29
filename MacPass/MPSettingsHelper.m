@@ -40,7 +40,7 @@ NSString *const kMPSettingskeyLockOnLogout                                = @"Lo
 NSString *const kMPSettingskeyLockOnScreenSleep                           = @"LockOnScreenSleep";
 NSString *const kMPSettingsKeyIdleLockTimeOut                             = @"IdleLockTimeOut";
 NSString *const kMPSettingsKeyShowInspector                               = @"ShowInspector";
-NSString *const kMPSettingsKeyEntryTableSortDescriptors                   = @"EntryTableSortDescriptors2";
+NSString *const kMPSettingsKeyEntryTableSortDescriptors                   = @"EntryTableSortDescriptors";
 
 NSString *const kMPSettingsKeyLegacyHideTitle                             = @"LegacyHideTitle";
 NSString *const kMPSettingsKeyLegacyHideUsername                          = @"LegacyHideUsername ";
@@ -104,7 +104,6 @@ NSString *const kMPDeprecatedSettingsKeyShowMenuItem                      = @"Sh
 NSString *const kMPDeprecatedSettingsKeyDefaultPasswordRounds             = @"KeyDefaultPasswordRounds";
 NSString *const kMPDepricatedSettingsKeyLoadUnsecurePlugins               = @"MPLoadUnsecurePlugins";
 NSString *const kMPDepricatedSettingsKeyAutotypeHideAccessibiltyWarning   = @"AutotypeHideAccessibiltyWarning";
-NSString *const kMPDepricatedSettingsKeyEntryTableSortDescriptors         = @"EntryTableSortDescriptors";
 
 @implementation MPSettingsHelper
 
@@ -197,14 +196,6 @@ NSString *const kMPDepricatedSettingsKeyEntryTableSortDescriptors         = @"En
                             kMPDepricatedSettingsKeyLoadUnsecurePlugins,
                             kMPDepricatedSettingsKeyAutotypeHideAccessibiltyWarning
     ];
-    /*
-     On 10.13 we have to use NSUnarchiveFromDataTransformerName as binding option
-     NSSecureUnarchiveFromDataTransformerName is only available since 10.14
-     Hence remove the depricated settings key since we use a newer on
-     */
-    if (@available(macOS 10.14, *)) {
-      deprecatedSettings = [deprecatedSettings arrayByAddingObject:kMPDepricatedSettingsKeyEntryTableSortDescriptors];
-    }
 });
 return deprecatedSettings;
 }
