@@ -24,8 +24,6 @@
 @property (nonatomic, readonly) KPKEntry *representedEntry;
 @property (copy) KPKTimeOTPGenerator *generator;
 
-@property NSInteger timeSlice;
-
 @end
 
 typedef NS_ENUM(NSUInteger, MPOTPUpdateSource) {
@@ -75,6 +73,10 @@ typedef NS_ENUM(NSUInteger, MPOTPType) {
   [self _updateView:MPOTPUpdateSourceDigits];
 }
 
+- (IBAction)changeTimeSlice:(id)sender {
+  [self _updateView:MPOTPUpdateSourceTimeSlice];
+}
+
 - (IBAction)parseQRCode:(id)sender {
   if(sender != self.qrCodeImageView) {
     return; // wrong sender
@@ -100,6 +102,9 @@ typedef NS_ENUM(NSUInteger, MPOTPType) {
   }
   else if(control == self.urlTextField) {
     [self _updateView:MPOTPUpdateSourceURL];
+  }
+  else if(control == self.timeStepTextField) {
+    [self _updateView:MPOTPUpdateSourceTimeSlice];
   }
 }
 
@@ -147,15 +152,18 @@ typedef NS_ENUM(NSUInteger, MPOTPType) {
   self.typePopUpButton.action = @selector(changeType:);
   self.typePopUpButton.target = self;
   
+  self.timeStepTextField.stringValue = @"";
+  self.timeStepStepper.integerValue = 0;
   
-  [self.timeStepTextField bind:NSValueBinding
+  self.timeStepStepper.action = @selector(changeTimeSlice:);
+  /*[self.timeStepTextField bind:NSValueBinding
                       toObject:self
                    withKeyPath:NSStringFromSelector(@selector(timeSlice))
                        options:nil];
   [self.timeStepStepper bind:NSValueBinding
                     toObject:self
                  withKeyPath:NSStringFromSelector(@selector(timeSlice))
-                     options:@{ NSConditionallySetsEnabledBindingOption:@(NO), NSConditionallySetsEditableBindingOption:@(NO)}];
+                     options:@{ NSConditionallySetsEnabledBindingOption:@(NO), NSConditionallySetsEditableBindingOption:@(NO)}];*/
   
   self.secretTextField.delegate = self;
   self.urlTextField.delegate = self;
@@ -234,7 +242,7 @@ typedef NS_ENUM(NSUInteger, MPOTPType) {
       self.generator.hashAlgorithm = (KPKOTPHashAlgorithm)self.algorithmPopUpButton.selectedTag;
       break;
     case MPOTPUpdateSourceTimeSlice:
-      self.generator.timeSlice = self.timeStepTextField.integerValue;
+      self.generator.timeSlice = self.timeStepStepper.integerValue;
       break;
     case MPOTPUpdateSourceDigits:
       self.generator.numberOfDigits = self.digitCountPopUpButton.selectedTag;
@@ -299,7 +307,8 @@ typedef NS_ENUM(NSUInteger, MPOTPType) {
   self.secretTextField.stringValue = secret ? secret : @"";
   [self.algorithmPopUpButton selectItemWithTag:self.generator.hashAlgorithm];
   [self.digitCountPopUpButton selectItemWithTag:self.generator.numberOfDigits];
-  self.timeSlice = self.generator.timeSlice;
+  self.timeStepStepper.integerValue = self.generator.timeSlice;
+  self.timeStepTextField.stringValue = self.timeStepStepper.stringValue;
 }
 
 @end
