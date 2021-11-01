@@ -62,8 +62,8 @@ typedef NS_ENUM(NSUInteger, MPEntryTab) {
 };
 
 typedef NS_ENUM(NSUInteger, MPInpspectorEditorIndex) {
-  //MPInpspectorEditorIndexImageEditor,
-  //MPInpspectorEditorIndexTitle,
+  MPInpspectorEditorIndexImageEditor,
+  MPInpspectorEditorIndexTitle,
   MPInpspectorEditorIndexUsername,
   MPInpspectorEditorIndexPassword,
   MPInpspectorEditorIndexURL,
@@ -145,7 +145,6 @@ typedef NS_ENUM(NSUInteger, MPInpspectorEditorIndex) {
     [NSNotificationCenter.defaultCenter removeObserver:self name:KPKDidChangeEntryNotification object:self.representedEntry];
   }
   super.representedObject = representedObject;
-  self.totpViewController.representedObject = self.representedObject;
   
   [self _updateEditors];
   
@@ -212,9 +211,7 @@ typedef NS_ENUM(NSUInteger, MPInpspectorEditorIndex) {
   [self.togglePassword bind:NSValueBinding toObject:self withKeyPath:NSStringFromSelector(@selector(showPassword)) options:nil];
   
   self.tagsTokenField.delegate = _tagTokenFieldDelegate;
-  
-  [self _setupTOPTView];
-  
+    
   [self _setupAttributeEditors];
   [self _updateEditors];
   
@@ -630,19 +627,24 @@ typedef NS_ENUM(NSUInteger, MPInpspectorEditorIndex) {
 }
 
 - (void)_setupAttributeEditors {
+  self.totpViewController = [[MPTOTPViewController alloc] init];
+  
+  NSInteger urlindex = [self.fieldsStackView.arrangedSubviews indexOfObject:self.URLTextField];
+  NSAssert(urlindex != NSNotFound, @"Missing reference view. This should not happen!");
+  [self addChildViewController:self.totpViewController];
+  [self.fieldsStackView insertArrangedSubview:self.totpViewController.view atIndex:urlindex - 1];
+
   /*
   MPNodeExpirationViewController *vc = [[MPNodeExpirationViewController alloc] init];
   vc.isEditor = NO;
   [_attributeEditorViewControllers addObject:vc];
   [self.fieldsStackView addArrangedSubview:vc.view];
-  */
 
-  MPEntryAttributeViewController *vc = [[MPEntryAttributeViewController alloc] init];
+   MPEntryAttributeViewController *vc = [[MPEntryAttributeViewController alloc] init];
   vc.isEditor = NO;
   [_attributeEditorViewControllers addObject:vc];
   [self.fieldsStackView addArrangedSubview:vc.view];
-
-  /*
+  
   for(NSUInteger index = 0; index < kKPKDefaultEntryKeysCount; index++) {
     MPEntryAttributeViewController *vc = [[MPEntryAttributeViewController alloc] init];
     vc.isEditor = NO;
@@ -653,16 +655,10 @@ typedef NS_ENUM(NSUInteger, MPInpspectorEditorIndex) {
 }
 
 - (void)_updateEditors {
+  self.totpViewController.representedObject = self.representedObject;
+  /* Update all the Attribute editors
   _attributeEditorViewControllers[MPInpspectorEditorIndexUsername].representedObject = [self.representedEntry attributeWithKey:kKPKUsernameKey];
-}
-
-- (void)_setupTOPTView {
-  self.totpViewController = [[MPTOTPViewController alloc] init];
-  
-  NSInteger urlindex = [self.fieldsStackView.arrangedSubviews indexOfObject:self.URLTextField];
-  NSAssert(urlindex != NSNotFound, @"Missing reference view. This should not happen!");
-  [self addChildViewController:self.totpViewController];
-  [self.fieldsStackView insertArrangedSubview:self.totpViewController.view atIndex:urlindex - 1];
+   */
 }
 
 #pragma mark -
