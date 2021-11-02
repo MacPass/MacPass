@@ -76,7 +76,6 @@ NSString *const _MPTableSecurCellView = @"PasswordCell";
 }
 
 @property (strong) MPContextBarViewController *contextBarViewController;
-@property (strong) NSArray *filteredEntries;
 
 @property (weak) IBOutlet NSTableView *entryTable;
 @property (assign) MPDisplayMode displayMode;
@@ -502,8 +501,7 @@ NSString *const _MPTableSecurCellView = @"PasswordCell";
 - (void)_didUpdateSearchResults:(NSNotification *)notification {
   NSArray *result = notification.userInfo[kMPDocumentSearchResultsKey];
   NSAssert(result != nil, @"Results should never be nil");
-  self.filteredEntries = result;
-  self.entryArrayController.content = self.filteredEntries;
+  self.entryArrayController.content = result;
   [self.entryTable tableColumnWithIdentifier:MPEntryTableParentColumnIdentifier].hidden = NO;
   [self _updateContextBar];
 }
@@ -512,7 +510,6 @@ NSString *const _MPTableSecurCellView = @"PasswordCell";
 - (void)_didExitSearch:(NSNotification *)notification {
   [self.entryTable tableColumnWithIdentifier:MPEntryTableParentColumnIdentifier].hidden = YES;
   self.entryArrayController.content = nil;
-  self.filteredEntries = nil;
   self.displayMode = MPDisplayModeEntries;
   [self _updateContextBar];
   MPDocument *document = notification.object;

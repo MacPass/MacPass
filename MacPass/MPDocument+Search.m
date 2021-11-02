@@ -42,11 +42,11 @@ NSString *const kMPDocumentSearchResultsKey           = @"kMPDocumentSearchResul
 - (void)enterSearchWithContext:(MPEntrySearchContext *)context {
   /* the search context is loaded via defaults */
   self.searchContext = context;
-  [NSNotificationCenter.defaultCenter addObserver:self selector:@selector(updateSearch:) name:NSUndoManagerDidRedoChangeNotification object:self.undoManager];
-  [NSNotificationCenter.defaultCenter addObserver:self selector:@selector(updateSearch:) name:NSUndoManagerDidUndoChangeNotification object:self.undoManager];
-  /* Do not do this since it seems to break the undo/redo grouping completly!
-  [NSNotificationCenter.defaultCenter addObserver:self selector:@selector(updateSearch:) name:NSUndoManagerDidCloseUndoGroupNotification object:self.undoManager];
-   */
+  [NSNotificationCenter.defaultCenter addObserver:self selector:@selector(updateSearch:) name:KPKTreeDidAddEntryNotification object:self.tree];
+  [NSNotificationCenter.defaultCenter addObserver:self selector:@selector(updateSearch:) name:KPKTreeDidAddGroupNotification object:self.tree];
+  [NSNotificationCenter.defaultCenter addObserver:self selector:@selector(updateSearch:) name:KPKTreeDidRemoveEntryNotification object:self.tree];
+  [NSNotificationCenter.defaultCenter addObserver:self selector:@selector(updateSearch:) name:KPKTreeDidRemoveGroupNotification object:self.tree];
+
   [NSNotificationCenter.defaultCenter postNotificationName:MPDocumentDidEnterSearchNotification object:self];
   [self updateSearch:self];
   /* clear selection */
@@ -77,11 +77,12 @@ NSString *const kMPDocumentSearchResultsKey           = @"kMPDocumentSearchResul
 }
 
 - (void)exitSearch:(id)sender {
-  [NSNotificationCenter.defaultCenter removeObserver:self name:NSUndoManagerDidUndoChangeNotification object:self.undoManager];
-  [NSNotificationCenter.defaultCenter removeObserver:self name:NSUndoManagerDidRedoChangeNotification object:self.undoManager];
-  /* No need to do this since we did not register in the first place see [MPDocument enterSearchWithContext:]
-  [NSNotificationCenter.defaultCenter removeObserver:self name:NSUndoManagerDidCloseUndoGroupNotification object:self.undoManager];
-   */
+  
+  [NSNotificationCenter.defaultCenter removeObserver:self name:KPKTreeDidAddEntryNotification object:self.tree];
+  [NSNotificationCenter.defaultCenter removeObserver:self name:KPKTreeDidAddGroupNotification object:self.tree];
+  [NSNotificationCenter.defaultCenter removeObserver:self name:KPKTreeDidRemoveEntryNotification object:self.tree];
+  [NSNotificationCenter.defaultCenter removeObserver:self name:KPKTreeDidRemoveGroupNotification object:self.tree];
+  
   self.searchContext = nil;
   [NSNotificationCenter.defaultCenter postNotificationName:MPDocumentDidExitSearchNotification object:self];
 }
