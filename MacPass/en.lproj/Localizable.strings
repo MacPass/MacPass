@@ -210,6 +210,10 @@
 /* Context menu that copies reference to username */
 "COPIED_USERNAME_REFERENCE" = "Reference to username copied!";
 
+/* Button to copy the value of an Attribute
+   Copy the TOTP value to the clipboard */
+"COPY" = "Copy";
+
 /* Submenu to copy attributes as reference */
 "COPY_AS_REFERENCE" = "Copy Reference To…";
 
@@ -757,6 +761,9 @@
 
 /* Toolbar item to perform autotype */
 "TOOLBAR_PERFORM_AUTOTYPE_FOR_ENTRY" = "Autotype";
+
+/* Field TOTP was copied to the pasteboard */
+"TOTP" = "TOTP";
 
 /* Time in seconds remaining for a valid TOTP string, format should be %ld */
 "TOTP_REMAINING_TIME_%ld_SECONDS" = "%ld s";

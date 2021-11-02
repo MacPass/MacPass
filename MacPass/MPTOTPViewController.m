@@ -22,6 +22,14 @@
 
 - (void)viewDidLoad {
   self.remainingTimeButton.title = @"";
+  self.toptValueTextField.buttonTitle = NSLocalizedString(@"COPY", @"Copy the TOTP value to the clipboard");
+  __weak MPTOTPViewController *welf = self;
+  self.toptValueTextField.buttonActionBlock = (^void(NSTextField *tf) {
+    NSText *text = [welf.view.window fieldEditor:NO forObject:welf.toptValueTextField];
+    if([text isKindOfClass:NSTextView.class]) {
+      [welf textField:welf.toptValueTextField textView:(NSTextView *)text performAction:@selector(copy:)];
+    }
+  });
 }
 
 - (IBAction)showOTPSetup:(id)sender {
@@ -53,10 +61,10 @@
     for(NSValue *rangeValue in textView.selectedRanges) {
       [selectedValue appendString:[textView.string substringWithRange:rangeValue.rangeValue]];
     }
-    NSString *name = NSLocalizedString(@"TOTP", "Field TOTP was copied to the pasteboard");
     if(selectedValue.length == 0) {
-      return YES;
+      [selectedValue setString:textField.stringValue];
     }
+    NSString *name = NSLocalizedString(@"TOTP", "Field TOTP was copied to the pasteboard");
     [MPPasteBoardController.defaultController copyObject:selectedValue overlayInfo:info name:name atView:self.view];
     return NO;
   }

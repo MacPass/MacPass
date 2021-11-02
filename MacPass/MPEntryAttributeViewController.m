@@ -50,7 +50,8 @@
   [self updateEditing];
   
   __weak MPEntryAttributeViewController *welf = self;
-  self.valueTextField.copyActionBlock =  ^void(NSTextField *tf) {
+  self.valueTextField.buttonTitle = NSLocalizedString(@"COPY", "Button to copy the value of an Attribute");
+  self.valueTextField.buttonActionBlock =  ^void(NSTextField *tf) {
     NSText *text = [welf.view.window fieldEditor:NO forObject:welf.valueTextField];
     if([text isKindOfClass:NSTextView.class]) {
       [welf textField:welf.valueTextField textView:(NSTextView *)text performAction:@selector(copy:)];
@@ -103,7 +104,7 @@
     [selectedValue appendString:[textView.string substringWithRange:rangeValue.rangeValue]];
   }
   if(selectedValue.length == 0) {
-    [selectedValue setString:textView.string];
+    [selectedValue setString:textField.stringValue];
   }
   NSString *name = @"";
   if([self.representedAttribute.key isEqual:kKPKUsernameKey]) {
