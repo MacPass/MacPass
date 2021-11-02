@@ -49,7 +49,7 @@ FOUNDATION_EXPORT NSString *const MPPluginDescriptionInfoDictionaryKey;
  @param host plugin host hosting the pluing - MacPass
  @return the plugin instance ready for use
  */
-- (instancetype)initWithPluginHost:(MPPluginHost *)host NS_DESIGNATED_INITIALIZER;
+- (instancetype)initWithPluginHost:(MPPluginHost *)host NS_DESIGNATED_INITIALIZER NS_REQUIRES_SUPER;
 - (instancetype)init NS_UNAVAILABLE;
 
 - (void)didLoadPlugin;
@@ -80,7 +80,6 @@ FOUNDATION_EXPORT NSString *const MPPluginDescriptionInfoDictionaryKey;
 - (BOOL)acceptsRunningApplication:(NSRunningApplication *)runningApplication;
 - (NSString *)windowTitleForRunningApplication:(NSRunningApplication *)runningApplication;
 @end
-
 
 #pragma mark Proposed Plugin Protocolls
 
