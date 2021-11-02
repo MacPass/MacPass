@@ -719,7 +719,6 @@ NSString *const MPDocumentGroupKey                            = @"MPDocumentGrou
   /* setting properties on entries is undoable, but we do not want to record this so disable on creation */
   KPK_SCOPED_DISABLE_UNDO_BEGIN(self.undoManager);
   
-  [self.undoManager disableUndoRegistration];
   newGroup.title = NSLocalizedString(@"DEFAULT_GROUP_NAME", @"Title for a newly created group");
   newGroup.iconId = MPIconFolder;
 
