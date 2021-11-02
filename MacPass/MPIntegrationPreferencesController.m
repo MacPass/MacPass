@@ -82,9 +82,13 @@
 }
 
 - (void)willShowTab {
-  _hotKey = [DDHotKey hotKeyWithKeyData:[NSUserDefaults.standardUserDefaults dataForKey:kMPSettingsKeyGlobalAutotypeKeyDataKey]];
-  /* Change any invalid hotkeys to valid ones? */
-  self.hotKeyTextField.hotKey = self.hotKey;
+  if(!_hotKey) {
+    _hotKey = [DDHotKey hotKeyWithKeyData:[NSUserDefaults.standardUserDefaults dataForKey:kMPSettingsKeyGlobalAutotypeKeyDataKey]];
+  }
+  /* Only call the setter if the hotkeys are different, otherwise the dealloc call will unregister them*/
+  if(![self.hotKeyTextField.hotKey isEqual:self.hotKey]) {
+    self.hotKeyTextField.hotKey = self.hotKey;
+  }
 }
 
 #pragma mark -
