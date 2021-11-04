@@ -36,7 +36,7 @@ APPKIT_EXTERN NSString *const MPToolbarItemIdentifierAutotype;
 
 @class MPDocument;
 
-@interface MPToolbarDelegate : NSObject <NSToolbarDelegate, NSTextFieldDelegate>
+@interface MPToolbarDelegate : NSObject <NSToolbarDelegate, NSSearchFieldDelegate>
 
 @property (weak, readonly) NSSearchField *searchField;
 @property (weak) NSToolbar *toolbar;

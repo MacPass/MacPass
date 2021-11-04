@@ -173,7 +173,7 @@ NSString *const kMPDepricatedSettingsKeyAutotypeHideAccessibiltyWarning   = @"Au
       kMPSettingsKeyHideAfterCopyToClipboard: @NO,
       kMPSettingsKeyFaviconDownloadMethod: @(MPFaviconDownloadMethodDirect), // Download directly from host
       kMPSettingsKeyGloablAutotypeAlwaysShowCandidateSelection: @NO,
-      kMPSettingsKeyUseUnifiedToolbar: @NO // Do not use unified toolbar under Big Sur and above
+      kMPSettingsKeyUseUnifiedToolbar: @YES // Do not use unified toolbar under Big Sur and above
     };
   });
   return standardDefaults;
