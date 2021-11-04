@@ -63,7 +63,7 @@
   
   if(self.timeInfo.isExpired) {
     const BOOL isGroup = [self isKindOfClass:[KPKGroup class]];
-    return [MPIconHelper icon:(isGroup ? MPIconExpiredGroup : MPIconExpiredEntry)];
+    return [[MPIconHelper icon:(isGroup ? MPIconExpiredGroup : MPIconExpiredEntry)] imageWithTintColor:NSColor.systemOrangeColor];
   }
   if(self.icon) {
     return self.icon.image;
