@@ -166,10 +166,10 @@ typedef NS_ENUM(NSUInteger, MPPasswordEditKeyError) {
       keyFileType = KPKKeyFileTypeXMLVersion1;
       fileTypes = @[@"key"];
     }
-    else if(fileVersion.version <=kKPKKdbxFileVersion4) {
-        keyFileType = KPKKeyFileTypeXMLVersion1;
-        fileTypes = @[@"key"];
-    }
+//    else if(fileVersion.version <=kKPKKdbxFileVersion4) {
+//        keyFileType = KPKKeyFileTypeXMLVersion1;
+//        fileTypes = @[@"key"];
+//    }
     else if(fileVersion.version <= kKPKKdbxFileVersion4_1) {
         keyFileType = KPKKeyFileTypeXMLVersion2;
         fileTypes = @[@"keyx"];
