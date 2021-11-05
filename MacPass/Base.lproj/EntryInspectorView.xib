@@ -794,7 +794,7 @@
                                     <tableCellView identifier="SelectedCell" translatesAutoresizingMaskIntoConstraints="NO" id="196" customClass="MPCustomFieldTableCellView">
                                         <rect key="frame" x="1" y="1" width="227" height="53"/>
                                         <subviews>
-                                            <textField verticalHuggingPriority="750" allowsCharacterPickerTouchBarItem="YES" translatesAutoresizingMaskIntoConstraints="NO" id="199" customClass="HNHUISecureTextField">
+                                            <textField verticalHuggingPriority="750" allowsCharacterPickerTouchBarItem="YES" contentType="oneTimeCode" translatesAutoresizingMaskIntoConstraints="NO" id="199" customClass="HNHUISecureTextField">
                                                 <rect key="frame" x="3" y="10" width="114" height="21"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="50" id="213"/>
