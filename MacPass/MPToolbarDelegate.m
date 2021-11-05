@@ -158,7 +158,6 @@ NSString *const MPToolbarItemIdentifierAutotype     = @"TOOLBAR_AUTOTYPE";
       menu.delegate = _addEntryMenuDelegate;
       button.contextMenu = menu;
       
-      
       NSRect fittingRect = button.frame;
       fittingRect.size.width = MAX( (CGFloat)32.0,fittingRect.size.width);
       button.frame = fittingRect;
