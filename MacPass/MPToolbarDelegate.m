@@ -345,6 +345,11 @@ NSString *const MPToolbarItemIdentifierAutotype     = @"TOOLBAR_AUTOTYPE";
   }
   /* only make the searchfield first responder if it's not already in an active search */
   if(![self.searchField currentEditor]) {
+
+    // force search to be enabled since we might end up being called when it's not (yet) enabled
+    if(!searchItem.enabled) {
+      searchItem.enabled = YES;
+    }
     [self.searchField.window makeFirstResponder:self.searchField];
     [self.searchField selectText:self];
   }

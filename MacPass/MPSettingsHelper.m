@@ -35,6 +35,8 @@ NSString *const kMPSettingsKeyReopenLastDatabaseOnLaunch                  = @"Re
 NSString *const kMPSettingsKeyQuitOnLastWindowClose                       = @"QuitOnLastWindowClose";
 NSString *const kMPSettingsKeyFileChangeStrategy                          = @"FileChangeStrategy";
 NSString *const kMPSettingsKeyEnableAutosave                              = @"EnableAutosave";
+NSString *const kMPSettingsKeyFocusSearchAfterUnlock                      = @"FocusSearchAfterUnlock";
+
 NSString *const kMPSettingsKeyLockOnSleep                                 = @"LockOnSleep";
 NSString *const kMPSettingskeyLockOnLogout                                = @"LockOnLogout";
 NSString *const kMPSettingskeyLockOnScreenSleep                           = @"LockOnScreenSleep";
@@ -173,7 +175,8 @@ NSString *const kMPDepricatedSettingsKeyAutotypeHideAccessibiltyWarning   = @"Au
       kMPSettingsKeyHideAfterCopyToClipboard: @NO,
       kMPSettingsKeyFaviconDownloadMethod: @(MPFaviconDownloadMethodDirect), // Download directly from host
       kMPSettingsKeyGloablAutotypeAlwaysShowCandidateSelection: @NO,
-      kMPSettingsKeyUseUnifiedToolbar: @YES // Do not use unified toolbar under Big Sur and above
+      kMPSettingsKeyUseUnifiedToolbar: @YES, // Do not use unified toolbar under Big Sur and above
+      kMPSettingsKeyFocusSearchAfterUnlock: @NO // Do not enter search directly after unlocking the database
     };
   });
   return standardDefaults;

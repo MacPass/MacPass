@@ -34,6 +34,7 @@ APPKIT_EXTERN NSString *const kMPSettingsKeyReopenLastDatabaseOnLaunch;
 APPKIT_EXTERN NSString *const kMPSettingsKeyQuitOnLastWindowClose;          // Quit MacPass when the user closes the last window
 APPKIT_EXTERN NSString *const kMPSettingsKeyFileChangeStrategy;
 APPKIT_EXTERN NSString *const kMPSettingsKeyEnableAutosave;                 // if set to YES MacPass support Autosaving for documents
+APPKIT_EXTERN NSString *const kMPSettingsKeyFocusSearchAfterUnlock;         // Enter search after unlocking the database
 
 /* URL handling */
 APPKIT_EXTERN NSString *const kMPSettingsKeyBrowserBundleId;

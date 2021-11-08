@@ -21,19 +21,19 @@
 //
 
 #import "MPToolbarItem.h"
-#import "MPActionHelper.h"
 
 @implementation MPToolbarItem
 
 - (void)validate {
   if(![self.view menu]) {
-    id target = [NSApp targetForAction:[self action] to:nil from:self];
+    id target = [NSApp targetForAction:self.action to:nil from:self];
     BOOL isValid = (nil != target);
     id validateTarget = [NSApp targetForAction:@selector(validateToolbarItem:) to:nil from:self];
     if(validateTarget) {
       isValid &= [validateTarget validateToolbarItem:self];
     }
     self.enabled = isValid;
+    NSLog(@"Validating ToolbarItem:%@ valid:%@", self, isValid ? @"YES" : @"NO");
   }
 }
 @end
