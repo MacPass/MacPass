@@ -26,6 +26,14 @@
 
 @interface MPWorkflowPreferencesController ()
 
+@property (strong) IBOutlet NSPopUpButton *browserPopup;
+@property (strong) IBOutlet NSPopUpButton *doubleClickURLPopup;
+@property (strong) IBOutlet NSPopUpButton *doubleClickTitlePopup;
+@property (strong) IBOutlet NSButton *updatePasswordOnTemplateEntriesCheckButton;
+@property (strong) IBOutlet NSButton *generatePasswordOnEntriesCheckButton;
+@property (strong) IBOutlet NSButton *hideAfterCopyToClipboardCheckButton;
+@property (strong) IBOutlet NSButton *focusSearchAfterUnlockCheckButton;
+
 - (IBAction)_showCustomBrowserSelection:(id)sender;
 
 @end
@@ -44,6 +52,7 @@
   [self.updatePasswordOnTemplateEntriesCheckButton bind:NSValueBinding toObject:defaultsController withKeyPath:[MPSettingsHelper defaultControllerPathForKey:kMPSettingsKeyUpdatePasswordOnTemplateEntries] options:nil];
   [self.generatePasswordOnEntriesCheckButton bind:NSValueBinding toObject:defaultsController withKeyPath:[MPSettingsHelper defaultControllerPathForKey:kMPSettingsKeyGeneratePasswordForNewEntires] options:nil];
   [self.hideAfterCopyToClipboardCheckButton bind:NSValueBinding toObject:defaultsController withKeyPath:[MPSettingsHelper defaultControllerPathForKey:kMPSettingsKeyHideAfterCopyToClipboard] options:nil];
+  [self.focusSearchAfterUnlockCheckButton bind:NSValueBinding toObject:defaultsController withKeyPath:[MPSettingsHelper defaultControllerPathForKey:kMPSettingsKeyFocusSearchAfterUnlock] options:nil];
   [self _updateBrowserSelection];
 }
 

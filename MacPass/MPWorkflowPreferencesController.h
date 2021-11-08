@@ -25,11 +25,6 @@
 
 @interface MPWorkflowPreferencesController : MPViewController <MPPreferencesTab>
 
-@property (strong) IBOutlet NSPopUpButton *browserPopup;
-@property (strong) IBOutlet NSPopUpButton *doubleClickURLPopup;
-@property (strong) IBOutlet NSPopUpButton *doubleClickTitlePopup;
-@property (strong) IBOutlet NSButton *updatePasswordOnTemplateEntriesCheckButton;
-@property (strong) IBOutlet NSButton *generatePasswordOnEntriesCheckButton;
-@property (strong) IBOutlet NSButton *hideAfterCopyToClipboardCheckButton;
+
 
 @end

@@ -33,7 +33,6 @@
       isValid &= [validateTarget validateToolbarItem:self];
     }
     self.enabled = isValid;
-    NSLog(@"Validating ToolbarItem:%@ valid:%@", self, isValid ? @"YES" : @"NO");
   }
 }
 @end
