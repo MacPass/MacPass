@@ -55,7 +55,7 @@ NSString *const kMPDocumentSearchResultsKey           = @"kMPDocumentSearchResul
 }
 
 #pragma mark Actions
-- (IBAction)perfromCustomSearch:(id)sender {
+- (IBAction)performCustomSearch:(id)sender {
   [self enterSearchWithContext:[MPEntrySearchContext userContext]];
 }
 
