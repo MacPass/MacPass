@@ -375,9 +375,6 @@
 /* Passwords do not match */
 "ERROR_PASSWORD_MISSMATCH" = "Passwords do not match!";
 
-/* Passwords do not match, keyfile is invalid */
-"ERROR_PASSWORD_MISSMATCH_INVALID_KEYFILE" = "Passwords do not match and keyfile is invalid!";
-
 /* Recommend/Enforce key change intervall format */
 "EVERY_%ld_DAYS" = "Every %ld days";
 
@@ -496,6 +493,9 @@
    Menu item to create a new entry
    Toolbar item new entry */
 "NEW_ENTRY" = "New Entry";
+
+/* Submen to create entries from tempaltes */
+"NEW_ENTRY_FROM_TEMPLATE" = "New Entry…";
 
 /* Submenu to add an entry via template */
 "NEW_ENTRY_WITH_TEMPLATE_%@" = "from %@";
@@ -743,6 +743,9 @@
 /* Action button in Notification to show the Autotype Doctor */
 "SHOW_AUTOTYPE_DOCTOR" = "Show Autotype Doctor";
 
+/* Menu item to toggle display type of passwords */
+"SHOW_CLEAR_TEXT_PASSWORDS" = "Show Passwords";
+
 /* Menu item to show the entries group in the outline view */
 "SHOW_GROUP_IN_OUTLINE" = "Show Group in Outline";
 
@@ -882,3 +885,4 @@
 
 /* Yesterday */
 "YESTERDAY" = "Yesterday";
+
