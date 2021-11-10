@@ -36,6 +36,9 @@ APPKIT_EXTERN NSString *const kMPSettingsKeyFileChangeStrategy;
 APPKIT_EXTERN NSString *const kMPSettingsKeyEnableAutosave;                 // if set to YES MacPass support Autosaving for documents
 APPKIT_EXTERN NSString *const kMPSettingsKeyFocusSearchAfterUnlock;         // Enter search after unlocking the database
 
+/* Entry Table Display */
+APPKIT_EXTERN NSString *const kMPSettingsKeyDisplayClearTextPasswordsInEntryList;
+
 /* URL handling */
 APPKIT_EXTERN NSString *const kMPSettingsKeyBrowserBundleId;
 APPKIT_EXTERN NSString *const kMPSettingsKeyUsePrivateBrowsingWhenOpeningURLs;

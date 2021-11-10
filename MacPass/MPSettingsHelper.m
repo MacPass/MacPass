@@ -38,6 +38,8 @@ NSString *const kMPSettingsKeyFileChangeStrategy                          = @"Fi
 NSString *const kMPSettingsKeyEnableAutosave                              = @"EnableAutosave";
 NSString *const kMPSettingsKeyFocusSearchAfterUnlock                      = @"FocusSearchAfterUnlock";
 
+NSString *const kMPSettingsKeyDisplayClearTextPasswordsInEntryList        = @"DisplayClearTextPasswordsInEntryList";
+
 NSString *const kMPSettingsKeyLockOnSleep                                 = @"LockOnSleep";
 NSString *const kMPSettingskeyLockOnLogout                                = @"LockOnLogout";
 NSString *const kMPSettingskeyLockOnScreenSleep                           = @"LockOnScreenSleep";
