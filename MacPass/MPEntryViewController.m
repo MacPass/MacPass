@@ -835,4 +835,22 @@ NSString *const _MPTableSecurCellView = @"PasswordCell";
   }
 }
 
+- (NSArray<NSString *>*)_launchArgumentsForBrowserBundleID:(NSString *)bundleId {
+  static NSDictionary *privateBrowsingArgs;
+  static dispatch_once_t onceToken;
+  dispatch_once(&onceToken, ^{
+    privateBrowsingArgs = @{ @"com.google.Chrome" : @[@"--incognito"] };
+  });
+  
+  BOOL usePrivateBrowsing = [NSUserDefaults.standardUserDefaults boolForKey:kMPSettingsKeyUsePrivateBrowsingWhenOpeningURLs];
+  NSMutableArray<NSString *> *args = [[NSMutableArray alloc] init];
+  if(usePrivateBrowsing) {
+    NSArray<NSString *>* privateArgs = privateBrowsingArgs[bundleId];
+    if(privateBrowsingArgs) {
+      [args addObjectsFromArray:privateArgs];
+    }
+  }
+  return [args copy];
+}
+
 @end

@@ -30,6 +30,7 @@ NSString *const kMPSettingsKeyPasteboardClearTimeout                      = @"Cl
 NSString *const kMPSettingsKeyClearPasteboardOnQuit                       = @"ClearClipboardOnQuit";
 NSString *const kMPSettingsKeyPreventUniversalClipboard                   = @"PreventUniversalClipboard";
 NSString *const kMPSettingsKeyBrowserBundleId                             = @"BrowserBundleId";
+NSString *const kMPSettingsKeyUsePrivateBrowsingWhenOpeningURLs           = @"UsePrivateBrowsingWhenOpeningURLs";
 NSString *const kMPSettingsKeyOpenEmptyDatabaseOnLaunch                   = @"OpenEmptyDatabaseOnLaunch";
 NSString *const kMPSettingsKeyReopenLastDatabaseOnLaunch                  = @"ReopenLastDatabaseOnLaunch";
 NSString *const kMPSettingsKeyQuitOnLastWindowClose                       = @"QuitOnLastWindowClose";
@@ -176,7 +177,8 @@ NSString *const kMPDepricatedSettingsKeyAutotypeHideAccessibiltyWarning   = @"Au
       kMPSettingsKeyFaviconDownloadMethod: @(MPFaviconDownloadMethodDirect), // Download directly from host
       kMPSettingsKeyGloablAutotypeAlwaysShowCandidateSelection: @NO,
       kMPSettingsKeyUseUnifiedToolbar: @YES, // Do not use unified toolbar under Big Sur and above
-      kMPSettingsKeyFocusSearchAfterUnlock: @NO // Do not enter search directly after unlocking the database
+      kMPSettingsKeyFocusSearchAfterUnlock: @NO, // Do not enter search directly after unlocking the database
+      kMPSettingsKeyUsePrivateBrowsingWhenOpeningURLs: @NO // No private mode when option URLs by default
     };
   });
   return standardDefaults;

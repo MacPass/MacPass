@@ -38,6 +38,7 @@ APPKIT_EXTERN NSString *const kMPSettingsKeyFocusSearchAfterUnlock;         // E
 
 /* URL handling */
 APPKIT_EXTERN NSString *const kMPSettingsKeyBrowserBundleId;
+APPKIT_EXTERN NSString *const kMPSettingsKeyUsePrivateBrowsingWhenOpeningURLs;
 
 /* Autolock */
 APPKIT_EXTERN NSString *const kMPSettingsKeyLockOnSleep;
