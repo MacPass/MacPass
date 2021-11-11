@@ -49,6 +49,8 @@
 
 #import "HNHUi/HNHUi.h"
 
+#import "MPOpenURLHandler.h"
+
 #import "MPNotifications.h"
 
 #define STATUS_BAR_ANIMATION_TIME 0.15
@@ -752,27 +754,7 @@ NSString *const _MPTableMonoSpacedStringCellView = @"MonospacedStringCell";
   KPKEntry *selectedEntry = nodes.count == 1 ? [nodes.firstObject asEntry] : nil;
   NSString *expandedURL = [selectedEntry.url kpk_finalValueForEntry:selectedEntry];
   if(expandedURL.length > 0) {
-    NSURL *webURL = [NSURL URLWithString:expandedURL];
-    NSString *scheme = webURL.scheme;
-    if(!scheme) {
-      webURL = [NSURL URLWithString:[NSString stringWithFormat:@"http://%@", expandedURL]];
-    }
-    
-    NSString *browserBundleID = [NSUserDefaults.standardUserDefaults stringForKey:kMPSettingsKeyBrowserBundleId];
-    NSURL *browserApplicationURL = browserBundleID ? [NSWorkspace.sharedWorkspace URLForApplicationWithBundleIdentifier:browserBundleID] : nil;
-    BOOL openedURL = NO;
-    
-    if(browserApplicationURL) {
-      NSRunningApplication *urlOpeningApplication = [NSWorkspace.sharedWorkspace openURLs:@[webURL] withApplicationAtURL:browserApplicationURL options:NSWorkspaceLaunchDefault configuration:@{} error:nil];
-      openedURL = nil != urlOpeningApplication;
-    }
-    
-    if(!openedURL) {
-      openedURL = [NSWorkspace.sharedWorkspace openURL:webURL];
-    }
-    if(!openedURL) {
-      NSLog(@"Unable to open URL %@", webURL);
-    }
+    [MPOpenURLHandler.sharedHandler openURL:expandedURL];
   }
 }
 
@@ -871,24 +853,6 @@ NSString *const _MPTableMonoSpacedStringCellView = @"MonospacedStringCell";
       NSLog(@"Unknown double click URL action");
       break;
   }
-}
-
-- (NSArray<NSString *>*)_launchArgumentsForBrowserBundleID:(NSString *)bundleId {
-  static NSDictionary *privateBrowsingArgs;
-  static dispatch_once_t onceToken;
-  dispatch_once(&onceToken, ^{
-    privateBrowsingArgs = @{ @"com.google.Chrome" : @[@"--incognito"] };
-  });
-  
-  BOOL usePrivateBrowsing = [NSUserDefaults.standardUserDefaults boolForKey:kMPSettingsKeyUsePrivateBrowsingWhenOpeningURLs];
-  NSMutableArray<NSString *> *args = [[NSMutableArray alloc] init];
-  if(usePrivateBrowsing) {
-    NSArray<NSString *>* privateArgs = privateBrowsingArgs[bundleId];
-    if(privateBrowsingArgs) {
-      [args addObjectsFromArray:privateArgs];
-    }
-  }
-  return [args copy];
 }
 
 @end

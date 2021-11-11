@@ -19,13 +19,13 @@
             <rect key="frame" x="0.0" y="0.0" width="691" height="331"/>
             <subviews>
                 <scrollView focusRingType="none" borderType="none" autohidesScrollers="YES" horizontalLineScroll="19" horizontalPageScroll="10" verticalLineScroll="19" verticalPageScroll="10" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="54">
-                    <rect key="frame" x="0.0" y="0.0" width="691" height="332"/>
+                    <rect key="frame" x="0.0" y="0.0" width="691" height="308"/>
                     <clipView key="contentView" id="4tt-2K-SPF">
-                        <rect key="frame" x="0.0" y="0.0" width="691" height="332"/>
+                        <rect key="frame" x="0.0" y="0.0" width="691" height="308"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView verticalHuggingPriority="750" allowsExpansionToolTips="YES" columnAutoresizingStyle="lastColumnOnly" alternatingRowBackgroundColors="YES" rowSizeStyle="automatic" headerView="676" viewBased="YES" id="55" customClass="MPTableView">
-                                <rect key="frame" x="0.0" y="0.0" width="691" height="309"/>
+                                <rect key="frame" x="0.0" y="0.0" width="691" height="285"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 <size key="intercellSpacing" width="3" height="2"/>
                                 <color key="backgroundColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
