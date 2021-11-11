@@ -101,7 +101,7 @@ typedef NS_ENUM(NSUInteger, MPIconType) {
   MPIconPhone,
   /* Custom Icons not used in Database */
   MPCustomIconTypeBegin = 1000,
-  MPIconInfo,
+  MPIconSidebar,
   MPIconAddFolder,
   MPIconHardDisk,
   MPIconCreated,
@@ -131,6 +131,8 @@ typedef NS_ENUM(NSUInteger, MPIconType) {
  *	@return	Dictionary with MPIconType keys and NSString values containing their names
  */
 @property (class, nonatomic, strong, readonly) NSDictionary *availableIconNames;
+
+@property (class, nonatomic, strong, readonly) NSDictionary *availableSymbolNames;
 
 /**
  *	List of all available DatabaseIcons as an array of Images. Sorted by IconIndex.

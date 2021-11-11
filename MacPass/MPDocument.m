@@ -501,7 +501,7 @@ NSString *const MPDocumentGroupKey                            = @"MPDocumentGrou
 }
 
 
-- (BOOL)unlockWithPassword:(NSString *)password keyFileURL:(NSURL *)keyFileURL error:(NSError *__autoreleasing*)error{
+- (BOOL)unlockWithPassword:(NSString *)password keyFileURL:(NSURL *)keyFileURL error:(NSError *__autoreleasing*)error {
   // TODO: Make this API asynchronous
   NSData *keyFileData = keyFileURL ? [NSData dataWithContentsOfURL:keyFileURL] : nil;
   
@@ -681,20 +681,25 @@ NSString *const MPDocumentGroupKey                            = @"MPDocumentGrou
   
   KPKEntry *newEntry = [self.tree createEntry:parent];
   /* setting properties on entries is undoable, but we do not want to record this so disable on creation */
-  BOOL wasUndoEnabeld = self.undoManager.isUndoRegistrationEnabled;
-  [self.undoManager disableUndoRegistration];
+  
+  KPK_SCOPED_DISABLE_UNDO_BEGIN(self.undoManager)
+  
   newEntry.title = NSLocalizedString(@"DEFAULT_ENTRY_TITLE", @"Title for a newly created entry");
   if([self.tree.metaData.defaultUserName length] > 0) {
     newEntry.username = self.tree.metaData.defaultUserName;
   }
-  NSString *defaultPassword = [NSString passwordWithDefaultSettings];
-  if(defaultPassword) {
-    newEntry.password = defaultPassword;
+  
+  /* only generate passwords for new entries, if set */
+  BOOL generatePassword = [NSUserDefaults.standardUserDefaults boolForKey:kMPSettingsKeyGeneratePasswordForNewEntires];
+  if(generatePassword) {
+    NSString *defaultPassword = [NSString passwordWithDefaultSettings];
+    if(defaultPassword) {
+      newEntry.password = defaultPassword;
+    }
   }
-  /* re-enable undo/redo if we did turn it off */
-  if(wasUndoEnabeld) {
-    [self.undoManager enableUndoRegistration];
-  }
+  
+  KPK_SCOPED_DISABLE_UNDO_END
+  
   [newEntry addToGroup:parent];
   [newEntry.undoManager setActionName:NSLocalizedString(@"NEW_ENTRY", "Action name for a newly created entry")];
   [NSNotificationCenter.defaultCenter postNotificationName:MPDocumentDidAddEntryNotification
@@ -712,14 +717,13 @@ NSString *const MPDocumentGroupKey                            = @"MPDocumentGrou
   }
   KPKGroup *newGroup = [self.tree createGroup:parent];
   /* setting properties on entries is undoable, but we do not want to record this so disable on creation */
-  BOOL wasUndoEnabeld = self.undoManager.isUndoRegistrationEnabled;
-  [self.undoManager disableUndoRegistration];
+  KPK_SCOPED_DISABLE_UNDO_BEGIN(self.undoManager);
+  
   newGroup.title = NSLocalizedString(@"DEFAULT_GROUP_NAME", @"Title for a newly created group");
   newGroup.iconId = MPIconFolder;
-  /* re-enable undo/redo if we did turn it off */
-  if(wasUndoEnabeld) {
-    [self.undoManager enableUndoRegistration];
-  }
+
+  KPK_SCOPED_DISABLE_UNDO_END;
+
   [newGroup addToGroup:parent];
   [newGroup.undoManager setActionName:NSLocalizedString(@"NEW_GROUP", "Action name for a newly created group")];
   [NSNotificationCenter.defaultCenter postNotificationName:MPDocumentDidAddGroupNotification
@@ -847,12 +851,19 @@ NSString *const MPDocumentGroupKey                            = @"MPDocumentGrou
 }
 
 - (void)duplicateEntryWithOptions:(KPKCopyOptions)options { 
+  KPKEntry *lastDuplicate;
   for(KPKEntry *entry in self.selectedEntries) {
-    KPKEntry *duplicate = [entry copyWithTitle:nil options:options];
-    [duplicate addToGroup:entry.parent];
+    lastDuplicate = [entry copyWithTitle:nil options:options];
+    [lastDuplicate addToGroup:entry.parent];
   }
   [self.undoManager setActionName:[NSString stringWithFormat:NSLocalizedString(@"DUPLICATE_ENTRIES_ACTION_NAME", @"Action name for duplicating entries"), self.selectedEntries.count]];
+  if(lastDuplicate) {
+  [NSNotificationCenter.defaultCenter postNotificationName:MPDocumentDidAddEntryNotification
+                                                    object:self
+                                                  userInfo:@{ MPDocumentEntryKey: lastDuplicate }];
+  }
 }
+  
 
 - (void)duplicateGroup:(id)sender {
   for(KPKGroup *group in self.selectedGroups) {

@@ -143,6 +143,7 @@ NSString *const MPToolbarItemIdentifierAutotype     = @"TOOLBAR_AUTOTYPE";
       menu.delegate = NSApp.mp_delegate.itemActionMenuDelegate;
       item.menuFormRepresentation = menuRepresentation;
       item.view = popupButton;
+      item.visibilityPriority = NSToolbarItemVisibilityPriorityHigh - 1;
     }
     else if( [itemIdentifier isEqualToString:MPToolbarItemIdentifierAddEntry]) {
       MPContextButton *button = [[MPContextButton alloc] initWithFrame:NSMakeRect(0, 0, 32, 32)];
@@ -157,7 +158,6 @@ NSString *const MPToolbarItemIdentifierAutotype     = @"TOOLBAR_AUTOTYPE";
       menu.delegate = _addEntryMenuDelegate;
       button.contextMenu = menu;
       
-      
       NSRect fittingRect = button.frame;
       fittingRect.size.width = MAX( (CGFloat)32.0,fittingRect.size.width);
       button.frame = fittingRect;
@@ -167,7 +167,6 @@ NSString *const MPToolbarItemIdentifierAutotype     = @"TOOLBAR_AUTOTYPE";
                                                                   action:[self _actionForToolbarItemIdentifier:itemIdentifier]
                                                            keyEquivalent:@""];
       item.menuFormRepresentation = menuRepresentation;
-      
     }
     else if( [itemIdentifier isEqualToString:MPToolbarItemIdentifierSearch]){
       NSSearchField *searchField = [[NSSearchField alloc] init];
@@ -177,14 +176,21 @@ NSString *const MPToolbarItemIdentifierAutotype     = @"TOOLBAR_AUTOTYPE";
       cell.cancelButtonCell.target = nil;
       searchField.recentsAutosaveName = @"RecentEntrySearches";
       item.view = searchField;
-      /* Use default size base on documentation */
-      item.minSize = NSMakeSize(140, 32);
-      item.maxSize = NSMakeSize(400, 32);
+      item.visibilityPriority = NSToolbarItemVisibilityPriorityHigh;
+      
+      if(@available(macOS 11, *)) {
+        // do not call any sizing API
+      }
+      else {
+        /* Use default size base on documentation */
+        item.minSize = NSMakeSize(140, 32);
+        item.maxSize = NSMakeSize(400, 32);
+      }
+      
       NSMenu *templateMenu = [self _allocateSearchMenuTemplate];
       searchField.searchMenuTemplate = templateMenu;
       searchField.placeholderString = NSLocalizedString(@"SEARCH_EVERYWHERE", @"Placeholder string displayed in the search field in the toolbar");
-      /* 10.10 does not support NSSearchFieldDelegate */
-      ((NSTextField *)searchField).delegate = self;
+      searchField.delegate = self;
       self.searchField = searchField;
     }
     else {
@@ -225,10 +231,10 @@ NSString *const MPToolbarItemIdentifierAutotype     = @"TOOLBAR_AUTOTYPE";
                                MPToolbarItemIdentifierCopyPassword : [MPIconHelper icon:MPIconPassword],
                                MPToolbarItemIdentifierDelete: [MPIconHelper icon:MPIconTrash],
                                MPToolbarItemIdentifierAction: [NSImage imageNamed:NSImageNameActionTemplate],
-                               MPToolbarItemIdentifierInspector: [MPIconHelper icon:MPIconInfo],
+                               MPToolbarItemIdentifierInspector: [MPIconHelper icon:MPIconSidebar],
                                MPToolbarItemIdentifierHistory: [MPIconHelper icon:MPIconHistory],
                                MPToolbarItemIdentifierAutotype : [MPIconHelper icon:MPIconKeyboard]
-                               };
+  };
   return imageDict;
 }
 
@@ -273,7 +279,7 @@ NSString *const MPToolbarItemIdentifierAutotype     = @"TOOLBAR_AUTOTYPE";
                    MPToolbarItemIdentifierSearch: NSLocalizedString(@"SEARCH", @"Search input in Toolbar "),
                    MPToolbarItemIdentifierHistory: NSLocalizedString(@"SHOW_HISTORY", @"Toolbar item to toggle history display"),
                    MPToolbarItemIdentifierAutotype: NSLocalizedString(@"TOOLBAR_PERFORM_AUTOTYPE_FOR_ENTRY", @"Toolbar item to perform autotype")
-                   };
+    };
   });
   return labelDict[identifier];
 }
@@ -291,7 +297,7 @@ NSString *const MPToolbarItemIdentifierAutotype     = @"TOOLBAR_AUTOTYPE";
                     MPToolbarItemIdentifierInspector: @(MPActionToggleInspector),
                     MPToolbarItemIdentifierHistory: @(MPActionShowEntryHistory),
                     MPToolbarItemIdentifierAutotype: @(MPActionPerformAutotypeForSelectedEntry)
-                    };
+    };
   });
   MPActionType actionType = (MPActionType)[actionDict[identifier] integerValue];
   return [MPActionHelper actionOfType:actionType];
@@ -339,6 +345,11 @@ NSString *const MPToolbarItemIdentifierAutotype     = @"TOOLBAR_AUTOTYPE";
   }
   /* only make the searchfield first responder if it's not already in an active search */
   if(![self.searchField currentEditor]) {
+
+    // force search to be enabled since we might end up being called when it's not (yet) enabled
+    if(!searchItem.enabled) {
+      searchItem.enabled = YES;
+    }
     [self.searchField.window makeFirstResponder:self.searchField];
     [self.searchField selectText:self];
   }

@@ -39,6 +39,19 @@ NSString *const MPUserNotificationTypeRunAutotypeDoctor = @"MPUserNotificationTy
   return self;
 }
 
+- (void)userNotificationCenter:(NSUserNotificationCenter *)center didDeliverNotification:(NSUserNotification *)notification {
+  /* we only clean autotype feedback. the rest piles up */
+  if(![notification.identifier isEqualToString:MPUserNotificationTypeAutotypeFeedback]) {
+    return;
+  }
+  for(NSUserNotification *deliveredNotification in center.deliveredNotifications) {
+    if(deliveredNotification == notification) {
+      continue;
+    }
+    [center removeDeliveredNotification:deliveredNotification];
+  }
+}
+
 - (void)userNotificationCenter:(NSUserNotificationCenter *)center didActivateNotification:(NSUserNotification *)notification {
   NSDictionary *userInfo = notification.userInfo;
   NSString *notificationType = userInfo[MPUserNotificationTypeKey];

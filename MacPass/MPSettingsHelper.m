@@ -30,18 +30,23 @@ NSString *const kMPSettingsKeyPasteboardClearTimeout                      = @"Cl
 NSString *const kMPSettingsKeyClearPasteboardOnQuit                       = @"ClearClipboardOnQuit";
 NSString *const kMPSettingsKeyPreventUniversalClipboard                   = @"PreventUniversalClipboard";
 NSString *const kMPSettingsKeyBrowserBundleId                             = @"BrowserBundleId";
+NSString *const kMPSettingsKeyUsePrivateBrowsingWhenOpeningURLs           = @"UsePrivateBrowsingWhenOpeningURLs";
 NSString *const kMPSettingsKeyOpenEmptyDatabaseOnLaunch                   = @"OpenEmptyDatabaseOnLaunch";
 NSString *const kMPSettingsKeyReopenLastDatabaseOnLaunch                  = @"ReopenLastDatabaseOnLaunch";
 NSString *const kMPSettingsKeyQuitOnLastWindowClose                       = @"QuitOnLastWindowClose";
 NSString *const kMPSettingsKeyFileChangeStrategy                          = @"FileChangeStrategy";
 NSString *const kMPSettingsKeyEnableAutosave                              = @"EnableAutosave";
+NSString *const kMPSettingsKeyFocusSearchAfterUnlock                      = @"FocusSearchAfterUnlock";
+
+NSString *const kMPSettingsKeyDisplayClearTextPasswordsInEntryList        = @"DisplayClearTextPasswordsInEntryList";
+
 NSString *const kMPSettingsKeyLockOnSleep                                 = @"LockOnSleep";
 NSString *const kMPSettingskeyLockOnLogout                                = @"LockOnLogout";
 NSString *const kMPSettingskeyLockOnScreenSleep                           = @"LockOnScreenSleep";
 NSString *const kMPSettingsKeyIdleLockTimeOut                             = @"IdleLockTimeOut";
 NSString *const kMPSettingsKeyShowInspector                               = @"ShowInspector";
 NSString *const kMPSettingsKeyEntryTableSortDescriptors                   = @"EntryTableSortDescriptors";
-  
+
 NSString *const kMPSettingsKeyLegacyHideTitle                             = @"LegacyHideTitle";
 NSString *const kMPSettingsKeyLegacyHideUsername                          = @"LegacyHideUsername ";
 NSString *const kMPSettingsKeyLegacyHidePassword                          = @"LegacyHidePassword";
@@ -83,6 +88,7 @@ NSString *const kMPSettingsKeyPasswordDefaultsForEntry                    = @"Pa
 NSString *const kMPSettingsKeyDoubleClickURLAction                        = @"DoubleClickURLAction";
 NSString *const kMPSettingsKeyDoubleClickTitleAction                      = @"DoubleClickTitleAction";
 NSString *const kMPSettingsKeyUpdatePasswordOnTemplateEntries             = @"UpdatePasswordOnTemplateEntries";
+NSString *const kMPSettingsKeyGeneratePasswordForNewEntires               = @"GeneratePasswordForNewEntires";
 NSString *const kMPSettingsKeyHideAfterCopyToClipboard                    = @"HideAfterCopyToClipboard";
 
 NSString *const kMPSettingsKeyLoadUnsecurePlugins                         = @"LoadUnsecurePlugins";
@@ -92,6 +98,8 @@ NSString *const kMPSettingsKeyHideIncopatiblePluginsWarning               = @"Hi
 NSString *const kMPSettingsKeyAllowRemoteFetchOfPluginRepository          = @"AllowRemoteFetchOfPluginRepository";
 
 NSString *const kMPSettingsKeyFaviconDownloadMethod                       = @"FaviconDownloadMethod";
+
+NSString *const kMPSettingsKeyUseUnifiedToolbar                            =@"UseUnifiedToolbar";
 
 /* Deprecated */
 NSString *const kMPDeprecatedSettingsKeyRememberKeyFilesForDatabases      = @"kMPSettingsKeyRememberKeyFilesForDatabases";
@@ -130,51 +138,56 @@ NSString *const kMPDepricatedSettingsKeyAutotypeHideAccessibiltyWarning   = @"Au
   static dispatch_once_t onceToken;
   dispatch_once(&onceToken, ^{
     standardDefaults = @{
-                         kMPSettingsKeyShowInspector: @YES, // Show the Inspector by default
-                         kMPSettingsKeyPasteboardClearTimeout: @30, // 30 seconds
-                         kMPSettingsKeyClearPasteboardOnQuit: @YES, // Clear Clipboard on quit
-                         kMPSettingsKeyPreventUniversalClipboard: @YES, // Disable Universal Clipboard by default
-                         kMPSettingsKeyOpenEmptyDatabaseOnLaunch: @NO,
-                         kMPSettingsKeyReopenLastDatabaseOnLaunch: @YES,
-                         kMPSettingsKeyFileChangeStrategy: @(MPFileChangeStrategyAsk), // Ask what to do on a file change!
-                         kMPSettingsKeyLockOnSleep: @YES,
-                         kMPSettingskeyLockOnLogout: @NO,
-                         kMPSettingskeyLockOnScreenSleep: @NO,
-                         kMPSettingsKeyIdleLockTimeOut: @0, // Do not lock while idle by default
-                         kMPSettingsKeyLegacyHideNotes: @NO,
-                         kMPSettingsKeyLegacyHidePassword: @YES,
-                         kMPSettingsKeyLegacyHideTitle: @NO,
-                         kMPSettingsKeyLegacyHideURL: @NO,
-                         kMPSettingsKeyLegacyHideUsername: @NO,
-                         kMPSettingsKeyRememberKeyFilesForDatabases: @NO,
-                         kMPSettingsKeySendCommandForControlKey: @YES, // translate Ctrl to Cmd by default
-                         kMPSettingsKeyEnableGlobalAutotype: @NO, // Keep global autotype disabled by default
-                         kMPSettingsKeyGlobalAutotypeKeyDataKey: DDHotKey.defaultHotKeyData, // Cmd + Alt + M
-                         kMPSettingsKeyDefaultGlobalAutotypeSequence: @"{USERNAME}{TAB}{PASSWORD}{ENTER}",
-                         kMPSettingsKeyAutotypeMatchTitle: @YES,
-                         kMPSettingsKeyAutotypeMatchURL: @NO,
-                         kMPSettingsKeyAutotypeMatchHost: @NO,
-                         kMPSettingsKeyAutotypeMatchTags: @NO,
-                         kMPSettingsKeyEnableQuicklookPreview: @NO,
-                         kMPSettingsKeyCopyGeneratedPasswordToClipboard: @NO,
-                         kMPSettingsKeyDefaultPasswordLength: @12,
-                         kMPSettingsKeyPasswordCharacterFlags: @(MPPasswordCharactersAll),
-                         kMPSettingsKeyPasswordUseCustomString: @NO,
-                         kMPSettingsKeyPasswordCustomString: @"",
-                         kMPSettingsKeyPasswordEnsureOccurance: @NO,
-                         kMPSettingsKeyDoubleClickURLAction: @(MPDoubleClickURLActionCopy),
-                         kMPSettingsKeyDoubleClickTitleAction: @(MPDoubleClickTitleActionInspect),
-                         kMPSettingsKeyLoadUnsecurePlugins: @NO,
-                         kMPSettingsKeyUpdatePasswordOnTemplateEntries: @YES,
-                         kMPSettingsKeyDisabledPlugins: @[],
-                         kMPSettingsKeyLoadIncompatiblePlugins: @NO,
-                         kMPSettingsKeyQuitOnLastWindowClose: @NO,
-                         kMPSettingsKeyEnableAutosave: @YES,
-                         kMPSettingsKeyHideAfterCopyToClipboard: @NO,
-                         kMPSettingsKeyLaunchOnLogin: @NO
-                         kMPSettingsKeyFaviconDownloadMethod: @(MPFaviconDownloadMethodDirect), // Download directly from host
-                         kMPSettingsKeyGloablAutotypeAlwaysShowCandidateSelection: @NO
-                         };
+      kMPSettingsKeyShowInspector: @YES, // Show the Inspector by default
+      kMPSettingsKeyPasteboardClearTimeout: @30, // 30 seconds
+      kMPSettingsKeyClearPasteboardOnQuit: @YES, // Clear Clipboard on quit
+      kMPSettingsKeyPreventUniversalClipboard: @YES, // Disable Universal Clipboard by default
+      kMPSettingsKeyOpenEmptyDatabaseOnLaunch: @NO,
+      kMPSettingsKeyReopenLastDatabaseOnLaunch: @YES,
+      kMPSettingsKeyFileChangeStrategy: @(MPFileChangeStrategyAsk), // Ask what to do on a file change!
+      kMPSettingsKeyLockOnSleep: @YES,
+      kMPSettingskeyLockOnLogout: @NO,
+      kMPSettingskeyLockOnScreenSleep: @NO,
+      kMPSettingsKeyIdleLockTimeOut: @0, // Do not lock while idle by default
+      kMPSettingsKeyLegacyHideNotes: @NO,
+      kMPSettingsKeyLegacyHidePassword: @YES,
+      kMPSettingsKeyLegacyHideTitle: @NO,
+      kMPSettingsKeyLegacyHideURL: @NO,
+      kMPSettingsKeyLegacyHideUsername: @NO,
+      kMPSettingsKeyRememberKeyFilesForDatabases: @NO,
+      kMPSettingsKeySendCommandForControlKey: @YES, // translate Ctrl to Cmd by default
+      kMPSettingsKeyEnableGlobalAutotype: @NO, // Keep global autotype disabled by default
+      kMPSettingsKeyGlobalAutotypeKeyDataKey: DDHotKey.defaultHotKeyData, // Cmd + Alt + M
+      kMPSettingsKeyDefaultGlobalAutotypeSequence: @"{USERNAME}{TAB}{PASSWORD}{ENTER}",
+      kMPSettingsKeyAutotypeMatchTitle: @YES,
+      kMPSettingsKeyAutotypeMatchURL: @NO,
+      kMPSettingsKeyAutotypeMatchHost: @NO,
+      kMPSettingsKeyAutotypeMatchTags: @NO,
+      kMPSettingsKeyEnableQuicklookPreview: @NO,
+      kMPSettingsKeyCopyGeneratedPasswordToClipboard: @NO,
+      kMPSettingsKeyDefaultPasswordLength: @12,
+      kMPSettingsKeyPasswordCharacterFlags: @(MPPasswordCharactersAll),
+      kMPSettingsKeyPasswordUseCustomString: @NO,
+      kMPSettingsKeyPasswordCustomString: @"",
+      kMPSettingsKeyPasswordEnsureOccurance: @NO,
+      kMPSettingsKeyDoubleClickURLAction: @(MPDoubleClickURLActionCopy),
+      kMPSettingsKeyDoubleClickTitleAction: @(MPDoubleClickTitleActionInspect),
+      kMPSettingsKeyLoadUnsecurePlugins: @NO,
+      kMPSettingsKeyUpdatePasswordOnTemplateEntries: @YES,
+      kMPSettingsKeyGeneratePasswordForNewEntires: @YES,
+      kMPSettingsKeyDisabledPlugins: @[],
+      kMPSettingsKeyLoadIncompatiblePlugins: @NO,
+      kMPSettingsKeyQuitOnLastWindowClose: @NO,
+      kMPSettingsKeyEnableAutosave: @YES,
+      kMPSettingsKeyHideAfterCopyToClipboard: @NO,
+      kMPSettingsKeyFaviconDownloadMethod: @(MPFaviconDownloadMethodDirect), // Download directly from host
+      kMPSettingsKeyGloablAutotypeAlwaysShowCandidateSelection: @NO,
+      kMPSettingsKeyUseUnifiedToolbar: @YES, // Do not use unified toolbar under Big Sur and above
+      kMPSettingsKeyFocusSearchAfterUnlock: @NO, // Do not enter search directly after unlocking the database
+      kMPSettingsKeyLaunchOnLogin: @NO, // Do not load helper without user choice for launch on login
+      kMPSettingsKeyUsePrivateBrowsingWhenOpeningURLs: @NO // No private mode when option URLs by default
+    };
+
   });
   return standardDefaults;
 }
@@ -195,9 +208,9 @@ NSString *const kMPDepricatedSettingsKeyAutotypeHideAccessibiltyWarning   = @"Au
                             kMPDeprecatedSettingsKeyShowMenuItem,
                             kMPDepricatedSettingsKeyLoadUnsecurePlugins,
                             kMPDepricatedSettingsKeyAutotypeHideAccessibiltyWarning
-                            ];
-  });
-  return deprecatedSettings;
+    ];
+});
+return deprecatedSettings;
 }
 
 
@@ -212,17 +225,17 @@ NSString *const kMPDepricatedSettingsKeyAutotypeHideAccessibiltyWarning   = @"Au
   /*
    MacPass < 0.4 did use compare: for the entry table view,
    this was changed in 0.4 to localizedCaseInsensitiveCompare:
-
+   
    MacPass < 0.5.2 did use parent.name for group names,
    this was changed in 0.6. to parent.title
-
+   
    */
   NSData *descriptorData = [NSUserDefaults.standardUserDefaults dataForKey:kMPSettingsKeyEntryTableSortDescriptors];
   if(!descriptorData) {
     return; // No user defaults
   }
   NSArray *sortDescriptors = [NSKeyedUnarchiver unarchiveObjectWithData:descriptorData];
-
+  
   for(NSSortDescriptor *descriptor in sortDescriptors) {
     /* Brute force, just kill the settings if they might cause trouble */
     if(descriptor.selector == @selector(compare:)
@@ -300,7 +313,7 @@ NSString *const kMPDepricatedSettingsKeyAutotypeHideAccessibiltyWarning   = @"Au
   if(oldValue != [[self _standardDefaults][kMPDepricatedSettingsKeyLoadUnsecurePlugins] boolValue]) {
     [NSUserDefaults.standardUserDefaults setBool:oldValue forKey:kMPSettingsKeyLoadUnsecurePlugins];
   }
-
+  
 }
 
 @end

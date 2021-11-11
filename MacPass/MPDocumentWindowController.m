@@ -100,9 +100,17 @@ typedef void (^MPPasswordChangedBlock)(BOOL didChangePassword);
   [super windowDidLoad];
   
   self.window.delegate = self.documentWindowDelegate;
-  //self.window.styleMask |= NSWindowStyleMaskFullSizeContentView;
   if (@available(macOS 11.0, *)) {
-    self.window.toolbarStyle = NSWindowToolbarStyleExpanded;
+    /* let the user decide how to dipsplay the toolbar */
+    BOOL useUnifiedToolbar = [NSUserDefaults.standardUserDefaults boolForKey:kMPSettingsKeyUseUnifiedToolbar];
+    if(useUnifiedToolbar) {
+      self.window.toolbarStyle = NSWindowToolbarStyleAutomatic;
+      // Do not use full size since the sidebar takes too much room!
+      // self.window.styleMask |= NSWindowStyleMaskFullSizeContentView;
+    }
+    else {
+      self.window.toolbarStyle = NSWindowToolbarStyleExpanded;
+    }
   }
   [self.window registerForDraggedTypes:@[NSURLPboardType]];
   
@@ -156,8 +164,8 @@ typedef void (^MPPasswordChangedBlock)(BOOL didChangePassword);
     /* enqueue async into main to catch some cases, where the UI would not set the responder correctly */
     MPDocumentWindowController * __weak welf = self;
     dispatch_async(dispatch_get_main_queue(), ^{
-        NSResponder *responder = ((MPViewController *)contentViewController).reconmendedFirstResponder;
-        [welf.window makeFirstResponder:responder];
+      NSResponder *responder = ((MPViewController *)contentViewController).reconmendedFirstResponder;
+      [welf.window makeFirstResponder:responder];
     });
   }
 }
@@ -181,6 +189,10 @@ typedef void (^MPPasswordChangedBlock)(BOOL didChangePassword);
 
 - (void)_didUnlockDatabase:(NSNotification *)notification {  
   [self showEntries];
+  BOOL focusSearchAfterUnlock = [NSUserDefaults.standardUserDefaults boolForKey:kMPSettingsKeyFocusSearchAfterUnlock];
+  if(focusSearchAfterUnlock) {
+    [self.document performCustomSearch:self];
+  }
   /* Show password reminders */
   [self _presentPasswordIntervalAlerts];
 }
@@ -431,7 +443,7 @@ typedef void (^MPPasswordChangedBlock)(BOOL didChangePassword);
 
 - (void)pickExpiryDate:(id)sender {
   // FIXME: use propert responder chain
-   [self.splitViewController.inspectorViewController pickExpiryDate:sender];
+  [self.splitViewController.inspectorViewController pickExpiryDate:sender];
 }
 
 - (void)showPluginData:(id)sender {
@@ -475,7 +487,6 @@ typedef void (^MPPasswordChangedBlock)(BOOL didChangePassword);
 - (void)showEntries {
   self.contentViewController = self.splitViewController;
   [self.splitViewController showOutline];
-
 }
 
 - (void)showGroupInOutline:(id)sender {
