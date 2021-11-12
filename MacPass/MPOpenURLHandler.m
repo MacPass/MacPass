@@ -83,5 +83,4 @@ static MPOpenURLHandler *_defaultInstance;
   return [args copy];
 }
 
-
 @end

@@ -49,7 +49,6 @@
 		4C25D58716CF0FAA00F6806C /* EntryView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4C25D58616CF0FAA00F6806C /* EntryView.xib */; };
 		4C26C33F18D8C92100CF1A1C /* MPTemporaryFileStorage.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C26C33E18D8C92100CF1A1C /* MPTemporaryFileStorage.m */; };
 		4C2892A8257103F9003C7732 /* MPTOTPViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C2892A6257103F9003C7732 /* MPTOTPViewController.m */; };
-		4C2892A9257103F9003C7732 /* MPTOTPViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4C2892A7257103F9003C7732 /* MPTOTPViewController.xib */; };
 		4C2E381D16D11FF900037A9D /* 03_ServerTemplate.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 4C2E381A16D11FF900037A9D /* 03_ServerTemplate.pdf */; };
 		4C2E381E16D11FF900037A9D /* 04_KlipperTemplate.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 4C2E381B16D11FF900037A9D /* 04_KlipperTemplate.pdf */; };
 		4C2E381F16D11FF900037A9D /* 05_LanguagesTemplate.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 4C2E381C16D11FF900037A9D /* 05_LanguagesTemplate.pdf */; };
@@ -60,7 +59,6 @@
 		4C349A00218852160055AF45 /* MPKeyTyper.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C3499FF218852160055AF45 /* MPKeyTyper.m */; };
 		4C35664025824C0A00CAB95B /* NSImage+MPQRCode.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C35663F25824C0A00CAB95B /* NSImage+MPQRCode.m */; };
 		4C356645258259AA00CAB95B /* MPTOTPSetupViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C356643258259AA00CAB95B /* MPTOTPSetupViewController.m */; };
-		4C356646258259AA00CAB95B /* MPTOTPSetupViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4C356644258259AA00CAB95B /* MPTOTPSetupViewController.xib */; };
 		4C3666411787327E00B249F1 /* MPDocument+Attachments.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C3666401787327E00B249F1 /* MPDocument+Attachments.m */; };
 		4C370EFE215B76CB00703AAE /* MPOutlineTableCellView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C370EFD215B76CB00703AAE /* MPOutlineTableCellView.m */; };
 		4C37A84015B8B474005EF8EE /* MPOutlineDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C37A83F15B8B474005EF8EE /* MPOutlineDataSource.m */; };
@@ -221,6 +219,8 @@
 		4C8F0C711FCEF91400BE157F /* MPPickcharsParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C8F0C701FCEF91400BE157F /* MPPickcharsParser.m */; };
 		4C8F0C731FCF1B7A00BE157F /* MPTestPickcharsParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C8F0C721FCF1B7A00BE157F /* MPTestPickcharsParser.m */; };
 		4C8F0C791FD05A6A00BE157F /* NSString+MPPrettyPasswordDisplay.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C8F0C781FD05A6A00BE157F /* NSString+MPPrettyPasswordDisplay.m */; };
+		4C9328C8273E6A38000DCBEE /* MPTOTPSetupViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4C9328CA273E6A38000DCBEE /* MPTOTPSetupViewController.xib */; };
+		4C9328D0273E6A83000DCBEE /* MPTOTPViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4C9328D2273E6A83000DCBEE /* MPTOTPViewController.xib */; };
 		4C978E0D19AE54AB003067DF /* MPFlagsHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C978E0C19AE54AB003067DF /* MPFlagsHelper.m */; };
 		4C9BFFFB1FD19B5400264B16 /* MPPrettyPasswordTransformer.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C9BFFFA1FD19B5400264B16 /* MPPrettyPasswordTransformer.m */; };
 		4CA08DA017A831B200A6544B /* MPAddEntryContextMenuDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CA08D9F17A831B200A6544B /* MPAddEntryContextMenuDelegate.m */; };
@@ -448,7 +448,6 @@
 		4C272A2B2224871900186EEC /* nl */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = nl; path = nl.lproj/PickfieldView.strings; sourceTree = "<group>"; };
 		4C2892A5257103F9003C7732 /* MPTOTPViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MPTOTPViewController.h; sourceTree = "<group>"; };
 		4C2892A6257103F9003C7732 /* MPTOTPViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MPTOTPViewController.m; sourceTree = "<group>"; };
-		4C2892A7257103F9003C7732 /* MPTOTPViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MPTOTPViewController.xib; sourceTree = "<group>"; };
 		4C2B0B7419F66F6400E48913 /* MPTargetNodeResolving.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MPTargetNodeResolving.h; sourceTree = "<group>"; };
 		4C2E381A16D11FF900037A9D /* 03_ServerTemplate.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = 03_ServerTemplate.pdf; sourceTree = "<group>"; };
 		4C2E381B16D11FF900037A9D /* 04_KlipperTemplate.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = 04_KlipperTemplate.pdf; sourceTree = "<group>"; };
@@ -467,7 +466,6 @@
 		4C35663F25824C0A00CAB95B /* NSImage+MPQRCode.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSImage+MPQRCode.m"; sourceTree = "<group>"; };
 		4C356642258259AA00CAB95B /* MPTOTPSetupViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MPTOTPSetupViewController.h; sourceTree = "<group>"; };
 		4C356643258259AA00CAB95B /* MPTOTPSetupViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MPTOTPSetupViewController.m; sourceTree = "<group>"; };
-		4C356644258259AA00CAB95B /* MPTOTPSetupViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MPTOTPSetupViewController.xib; sourceTree = "<group>"; };
 		4C3666401787327E00B249F1 /* MPDocument+Attachments.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "MPDocument+Attachments.m"; sourceTree = "<group>"; };
 		4C370EFC215B76CB00703AAE /* MPOutlineTableCellView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MPOutlineTableCellView.h; sourceTree = "<group>"; };
 		4C370EFD215B76CB00703AAE /* MPOutlineTableCellView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MPOutlineTableCellView.m; sourceTree = "<group>"; };
@@ -767,6 +765,12 @@
 		4C8F0C771FD05A6A00BE157F /* NSString+MPPrettyPasswordDisplay.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSString+MPPrettyPasswordDisplay.h"; sourceTree = "<group>"; };
 		4C8F0C781FD05A6A00BE157F /* NSString+MPPrettyPasswordDisplay.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSString+MPPrettyPasswordDisplay.m"; sourceTree = "<group>"; };
 		4C8FB9FA1FC2D0EF003691AA /* MPPlugin_Private.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MPPlugin_Private.h; sourceTree = "<group>"; };
+		4C9328C9273E6A38000DCBEE /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/MPTOTPSetupViewController.xib; sourceTree = "<group>"; };
+		4C9328CD273E6A5F000DCBEE /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/MPTOTPSetupViewController.strings"; sourceTree = "<group>"; };
+		4C9328CF273E6A63000DCBEE /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/MPTOTPSetupViewController.strings; sourceTree = "<group>"; };
+		4C9328D1273E6A83000DCBEE /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/MPTOTPViewController.xib; sourceTree = "<group>"; };
+		4C9328D4273E6A85000DCBEE /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/MPTOTPViewController.strings"; sourceTree = "<group>"; };
+		4C9328D6273E6A85000DCBEE /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/MPTOTPViewController.strings; sourceTree = "<group>"; };
 		4C978E0C19AE54AB003067DF /* MPFlagsHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MPFlagsHelper.m; sourceTree = "<group>"; };
 		4C97CCEF1FA727DC00E58F8C /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		4C9BFFF91FD19B5400264B16 /* MPPrettyPasswordTransformer.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MPPrettyPasswordTransformer.h; sourceTree = "<group>"; };
@@ -1453,7 +1457,7 @@
 				4C76156F1764C0E20015A1A6 /* InspectorView.xib */,
 				4C2892A5257103F9003C7732 /* MPTOTPViewController.h */,
 				4C2892A6257103F9003C7732 /* MPTOTPViewController.m */,
-				4C2892A7257103F9003C7732 /* MPTOTPViewController.xib */,
+				4C9328D2273E6A83000DCBEE /* MPTOTPViewController.xib */,
 				4CC0192B271836CD00459789 /* MPEntryAttributeViewController.h */,
 				4CC0192C271836CD00459789 /* MPEntryAttributeViewController.m */,
 				4CC0192D271836CD00459789 /* MPEntryAttributeViewController.xib */,
@@ -1800,7 +1804,7 @@
 			children = (
 				4C356642258259AA00CAB95B /* MPTOTPSetupViewController.h */,
 				4C356643258259AA00CAB95B /* MPTOTPSetupViewController.m */,
-				4C356644258259AA00CAB95B /* MPTOTPSetupViewController.xib */,
+				4C9328CA273E6A38000DCBEE /* MPTOTPSetupViewController.xib */,
 			);
 			name = OTP;
 			sourceTree = "<group>";
@@ -2115,7 +2119,7 @@
 				4C17D11E2250EFBC00C650C4 /* SavePanelAccessoryView.xib in Resources */,
 				4CE88B9717BA651C0042E078 /* contextTriangleTemplate.pdf in Resources */,
 				4C7ABA4817BAEC6700FF5799 /* 15_ScannerTemplate.pdf in Resources */,
-				4C356646258259AA00CAB95B /* MPTOTPSetupViewController.xib in Resources */,
+				4C9328C8273E6A38000DCBEE /* MPTOTPSetupViewController.xib in Resources */,
 				4C7ABA4917BAEC6700FF5799 /* 16_BrowserTemplate.pdf in Resources */,
 				4C7ABA4A17BAEC6700FF5799 /* 17_CDRomTemplate.pdf in Resources */,
 				4C7ABA4B17BAEC6700FF5799 /* 19_EmailTemplate.pdf in Resources */,
@@ -2130,7 +2134,7 @@
 				4C0DBEF51BF508DE00F9B287 /* PluginPreferences.xib in Resources */,
 				4CF6653820E67A140008A25C /* PluginDataView.xib in Resources */,
 				4C7F8B681A10B68400CCB83D /* WelcomeView.xib in Resources */,
-				4C2892A9257103F9003C7732 /* MPTOTPViewController.xib in Resources */,
+				4C9328D0273E6A83000DCBEE /* MPTOTPViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2614,6 +2618,26 @@
 				6FECA77724D51B0B00BBA9BB /* ja */,
 			);
 			name = Localizable.strings;
+			sourceTree = "<group>";
+		};
+		4C9328CA273E6A38000DCBEE /* MPTOTPSetupViewController.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				4C9328C9273E6A38000DCBEE /* Base */,
+				4C9328CD273E6A5F000DCBEE /* zh-Hans */,
+				4C9328CF273E6A63000DCBEE /* de */,
+			);
+			name = MPTOTPSetupViewController.xib;
+			sourceTree = "<group>";
+		};
+		4C9328D2273E6A83000DCBEE /* MPTOTPViewController.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				4C9328D1273E6A83000DCBEE /* Base */,
+				4C9328D4273E6A85000DCBEE /* zh-Hans */,
+				4C9328D6273E6A85000DCBEE /* de */,
+			);
+			name = MPTOTPViewController.xib;
 			sourceTree = "<group>";
 		};
 		4CA1827A1F96523600DD4A4A /* DuplicateEntryOptionsWindow.xib */ = {
