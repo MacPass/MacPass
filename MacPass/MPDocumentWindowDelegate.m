@@ -28,13 +28,12 @@
 @implementation MPDocumentWindowDelegate
 
 - (NSDragOperation)draggingEntered:(id<NSDraggingInfo>)sender {
-  
-  MPDocument *document = [[[sender draggingDestinationWindow] windowController] document];
+  MPDocument *document = sender.draggingDestinationWindow.windowController.document;
   if(document.encrypted) {
     return NSDragOperationNone;
   }
   
-  NSPasteboard *draggingPasteBoard = [sender draggingPasteboard];
+  NSPasteboard *draggingPasteBoard = sender.draggingPasteboard;
   
   NSArray *arrayOfURLs = [draggingPasteBoard readObjectsForClasses:@[NSURL.class] options:nil];
   BOOL ok = YES;
@@ -52,7 +51,7 @@
 }
 
 - (BOOL)performDragOperation:(id<NSDraggingInfo>)sender {
-  NSPasteboard *draggingPasteBoard = [sender draggingPasteboard];
+  NSPasteboard *draggingPasteBoard = sender.draggingPasteboard;
   NSArray *arrayOfURLs = [draggingPasteBoard readObjectsForClasses:@[NSURL.class] options:nil];
   
   NSURL *url = arrayOfURLs.lastObject;
@@ -60,7 +59,7 @@
     return NO;
   }
   /* Currently not working, as the underlying operations do not get the undomanager */
-  MPDocument *document = [sender draggingDestinationWindow].windowController.document;
+  MPDocument *document = sender.draggingDestinationWindow.windowController.document;
   KPKGroup *parentGroup = document.selectedGroups.count == 1 ? document.selectedGroups.firstObject : document.root;
   [document.undoManager beginUndoGrouping];
   KPKEntry *entry = [document createEntry:parentGroup];

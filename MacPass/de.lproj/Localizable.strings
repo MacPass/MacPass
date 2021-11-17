@@ -210,6 +210,10 @@
 /* Context menu that copies reference to username */
 "COPIED_USERNAME_REFERENCE" = "Nutzernamereferenz kopiert!";
 
+/* Button to copy the value of an Attribute
+   Copy the TOTP value to the clipboard */
+"COPY" = "Kopieren";
+
 /* Submenu to copy attributes as reference */
 "COPY_AS_REFERENCE" = "Kopiere Referenz auf …";
 
@@ -362,6 +366,9 @@
 /* Error description given when adding an invalid plugin */
 "ERROR_INVALID_PLUGIN" = "Kein MacPass-Plugin";
 
+/* Keyfile was not found */
+"ERROR_KEYFILE_NOT_FOUND" = "Schlüsseldatei konnte nicht gefunden werden";
+
 /* Error description for missing accessibility permissions */
 "ERROR_NO_ACCESSIBILITY_PERMISSIONS" = "MacPass hat keine Berechtigung, den Bildschirminhalt aufzuzeichnen.";
 
@@ -371,9 +378,6 @@
 /* Passwords do not match */
 "ERROR_PASSWORD_MISSMATCH" = "Passwörter stimmen nicht überein";
 
-/* Passwords do not match, keyfile is invalid */
-"ERROR_PASSWORD_MISSMATCH_INVALID_KEYFILE" = "Passwörter stimmen nicht überein, oder die Schlüsseldatei ist ungültig!";
-
 /* Recommend/Enforce key change intervall format */
 "EVERY_%ld_DAYS" = "Alle %ld Tage";
 
@@ -382,6 +386,15 @@
 
 /* The master key was changed by an external program! */
 "EXTERN_CHANGE_OF_MASTERKEY" = "Der Schlüssel wurde durch ein anderes Programm geändert!";
+
+/* Direct download */
+"FAVICON_DOWNLOAD_METHOD_DIRECT" = "Direkt herunterladen";
+
+/* DuckDuckGo */
+"FAVICON_DOWNLOAD_METHOD_DUCKDUCKGO" = "DuckDuckGo";
+
+/* Google */
+"FAVICON_DOWNLOAD_METHOD_GOOGLE" = "Google";
 
 /* External file change strategy option: ask what to do */
 "FILE_CHANGE_STRATEGY_ASK" = "Jedesmal fragen";
@@ -410,6 +423,15 @@
 
 /* Group column title */
 "GROUP" = "Gruppe";
+
+/* SHA 1 hash algoritm menu item */
+"HASH_SHA1" = "Sha1";
+
+/* SHA 256 hash algoritm menu item */
+"HASH_SHA256" = "Sha256";
+
+/* SHA 512 hash algoritm menu item */
+"HASH_SHA512" = "Sha512";
 
 /* History count column title
    Menu item to toggle display of history count column in entry table */
@@ -474,6 +496,9 @@
    Menu item to create a new entry
    Toolbar item new entry */
 "NEW_ENTRY" = "Neuer Eintrag";
+
+/* Submen to create entries from tempaltes */
+"NEW_ENTRY_FROM_TEMPLATE" = "Neuer Eintrag …";
 
 /* Submenu to add an entry via template */
 "NEW_ENTRY_WITH_TEMPLATE_%@" = "mit %@";
@@ -721,6 +746,9 @@
 /* Action button in Notification to show the Autotype Doctor */
 "SHOW_AUTOTYPE_DOCTOR" = "Autotype-Doktor anzeigen";
 
+/* Menu item to toggle display type of passwords */
+"SHOW_CLEAR_TEXT_PASSWORDS" = "Passwörter anzeigen";
+
 /* Menu item to show the entries group in the outline view */
 "SHOW_GROUP_IN_OUTLINE" = "Gruppe in Übersicht anzeigen";
 
@@ -739,6 +767,9 @@
 
 /* Toolbar item to perform autotype */
 "TOOLBAR_PERFORM_AUTOTYPE_FOR_ENTRY" = "Autotype";
+
+/* Field TOTP was copied to the pasteboard */
+"TOTP" = "TOTP";
 
 /* Time in seconds remaining for a valid TOTP string, format should be %ld */
 "TOTP_REMAINING_TIME_%ld_SECONDS" = "%ld s";

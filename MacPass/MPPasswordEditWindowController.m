@@ -150,10 +150,39 @@ typedef NS_ENUM(NSUInteger, MPPasswordEditKeyError) {
 
 - (IBAction)generateKey:(id)sender {
   MPDocument *document = self.document;
-  NSData *data = [NSData kpk_generateKeyfileDataForFormat:document.tree.minimumVersion.format];
+  KPKFileVersion fileVersion = document.tree.minimumVersion;
+  NSArray *fileTypes = @[];
+  KPKKeyFileType keyFileType;
+  
+  if(fileVersion.format == KPKDatabaseFormatUnknown) {
+    return;
+  }
+  else if(fileVersion.format == KPKDatabaseFormatKdb) {
+    fileTypes = @[@"key"];
+    keyFileType = KPKKeyFileTypeBinary;
+  }
+  else {
+    if(fileVersion.version <= kKPKKdbxFileVersion3) {
+      keyFileType = KPKKeyFileTypeXMLVersion1;
+      fileTypes = @[@"key"];
+    }
+//    else if(fileVersion.version <=kKPKKdbxFileVersion4) {
+//        keyFileType = KPKKeyFileTypeXMLVersion1;
+//        fileTypes = @[@"key"];
+//    }
+    else if(fileVersion.version <= kKPKKdbxFileVersion4_1) {
+        keyFileType = KPKKeyFileTypeXMLVersion2;
+        fileTypes = @[@"keyx"];
+    }
+    else {
+      return;
+    }
+  }
+  
+  NSData *data = [NSData kpk_generateKeyfileDataOfType:keyFileType];
   if(data) {
     NSSavePanel *savePanel = [NSSavePanel savePanel];
-    savePanel.allowedFileTypes = @[@"key", @"xml"];
+    savePanel.allowedFileTypes = fileTypes;
     savePanel.canCreateDirectories = YES;
     savePanel.title = NSLocalizedString(@"SAVE_KEYFILE", "Button title to save the generated key file");
     [savePanel beginWithCompletionHandler:^(NSInteger result) {

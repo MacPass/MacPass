@@ -10,7 +10,7 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface MPTOTPSetupViewController : NSViewController
+@interface MPTOTPSetupViewController : NSViewController <NSTextFieldDelegate>
 
 @end
 

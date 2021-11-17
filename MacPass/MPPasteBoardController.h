@@ -22,6 +22,8 @@
 
 #import <Foundation/Foundation.h>
 
+NS_ASSUME_NONNULL_BEGIN
+
 typedef NS_ENUM(NSUInteger, MPPasteboardOverlayInfoType) {
   MPPasteboardOverlayInfoPassword,
   MPPasteboardOverlayInfoUsername,
@@ -29,6 +31,22 @@ typedef NS_ENUM(NSUInteger, MPPasteboardOverlayInfoType) {
   MPPasteboardOverlayInfoCustom, // overlay info that a custom field was copied
   MPPasteboardOverlayInfoReference // overlay info that a reference that was copied
 };
+
+typedef MPPasteboardOverlayInfoType MPPasteboardContentInfoType;
+
+@interface MPPasteBoardContentInfo : NSObject
+
+@property (readonly, strong) NSImage *image;
+@property (readonly, strong) NSString *label;
+
++ (instancetype)contentInforForCustomField:(NSString *)name;
++ (instancetype)passwordContentInfo; // creates a content info approporate for passwords
++ (instancetype)urlContentInfo; // creates a content info apprpriate for urls
+
+- (instancetype)initWithImage:(NSImage * _Nullable)image label:(NSString * _Nullable)label NS_DESIGNATED_INITIALIZER;
+- (instancetype)initWithType:(MPPasteboardContentInfoType)type;
+
+@end
 
 @interface MPPasteBoardController : NSObject
 
@@ -70,6 +88,9 @@ FOUNDATION_EXPORT NSString *const MPPasteBoardControllerDidClearClipboard;
  @param name a custom name
  @param view the view that initiated the copy action
  */
-- (void)copyObject:(id<NSPasteboardWriting>)object overlayInfo:(MPPasteboardOverlayInfoType)overlayInfoType name:(NSString *)name atView:(NSView *)view;
+- (void)copyObject:(id<NSPasteboardWriting>)object overlayInfo:(MPPasteboardOverlayInfoType)overlayInfoType name:(NSString * _Nullable)name atView:(NSView *)view;
+- (void)copyObject:(id<NSPasteboardWriting>)object contentInfo:(MPPasteBoardContentInfo *)info atView:(NSView *)view;
 
 @end
+
+NS_ASSUME_NONNULL_END

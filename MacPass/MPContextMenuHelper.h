@@ -37,11 +37,11 @@ typedef NS_OPTIONS(NSUInteger, MPContextMenuItemsFlags) {
 };
 
 @interface MPContextMenuHelper : NSTableCellView
-
 /*
  Creates an array of menuitems to be used as a menu
  Automatically sets up actions, so you need to take care of the responder chain
  */
 + (NSArray <NSMenuItem *> *)contextMenuItemsWithItems:(MPContextMenuItemsFlags)flags;
++ (NSArray <NSMenuItem *> *)contextMenuItemsWithCreateFromTemplateEntriesItems;
 
 @end

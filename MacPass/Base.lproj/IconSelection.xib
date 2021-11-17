@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="14313.18" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="17701" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
     <dependencies>
         <deployment identifier="macosx"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="14313.18"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="17701"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
@@ -20,13 +20,13 @@
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
             <subviews>
                 <scrollView wantsLayer="YES" focusRingType="none" borderType="none" autohidesScrollers="YES" horizontalLineScroll="10" horizontalPageScroll="10" verticalLineScroll="10" verticalPageScroll="10" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="57" customClass="HNHUIScrollView">
-                    <rect key="frame" x="10" y="50" width="445" height="330"/>
+                    <rect key="frame" x="10" y="60" width="445" height="320"/>
                     <clipView key="contentView" drawsBackground="NO" copiesOnScroll="NO" id="Gwf-zs-lPT">
-                        <rect key="frame" x="0.0" y="0.0" width="445" height="330"/>
+                        <rect key="frame" x="0.0" y="0.0" width="445" height="320"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <collectionView focusRingType="none" selectable="YES" id="58" customClass="MPCollectionView">
-                                <rect key="frame" x="0.0" y="0.0" width="445" height="330"/>
+                                <rect key="frame" x="0.0" y="0.0" width="445" height="320"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 <color key="primaryBackgroundColor" name="windowBackgroundColor" catalog="System" colorSpace="catalog"/>
                                 <connections>
@@ -40,13 +40,13 @@
                         <autoresizingMask key="autoresizingMask"/>
                     </scroller>
                     <scroller key="verticalScroller" hidden="YES" wantsLayer="YES" verticalHuggingPriority="750" doubleValue="1" horizontal="NO" id="60">
-                        <rect key="frame" x="364" y="0.0" width="16" height="268"/>
+                        <rect key="frame" x="429" y="0.0" width="16" height="320"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </scroller>
                 </scrollView>
                 <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="101">
-                    <rect key="frame" x="330" y="19" width="115" height="23"/>
-                    <buttonCell key="cell" type="roundTextured" title="Use Default Icon" bezelStyle="texturedRounded" alignment="center" state="on" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="102">
+                    <rect key="frame" x="316" y="13" width="136" height="32"/>
+                    <buttonCell key="cell" type="push" title="Use Default Icon" bezelStyle="rounded" alignment="center" state="on" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="102">
                         <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                         <font key="font" metaFont="system"/>
                     </buttonCell>
@@ -55,8 +55,8 @@
                     </connections>
                 </button>
                 <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="8kv-BJ-IEk">
-                    <rect key="frame" x="214" y="19" width="108" height="23"/>
-                    <buttonCell key="cell" type="roundTextured" title="Download Icon" bezelStyle="texturedRounded" imagePosition="left" alignment="center" lineBreakMode="truncatingTail" state="on" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="iaf-XW-XUo">
+                    <rect key="frame" x="194" y="13" width="124" height="32"/>
+                    <buttonCell key="cell" type="push" title="Download Icon" bezelStyle="rounded" alignment="center" lineBreakMode="truncatingTail" state="on" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="iaf-XW-XUo">
                         <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                         <font key="font" metaFont="system"/>
                     </buttonCell>
@@ -65,8 +65,8 @@
                     </connections>
                 </button>
                 <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="His-4A-hcY">
-                    <rect key="frame" x="150" y="19" width="56" height="23"/>
-                    <buttonCell key="cell" type="roundTextured" title="Cancel" bezelStyle="texturedRounded" alignment="center" state="on" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="1kM-cI-P1o">
+                    <rect key="frame" x="120" y="13" width="76" height="32"/>
+                    <buttonCell key="cell" type="push" title="Cancel" bezelStyle="rounded" alignment="center" state="on" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="1kM-cI-P1o">
                         <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                         <font key="font" metaFont="system"/>
                     </buttonCell>
@@ -82,11 +82,11 @@
                 <constraint firstItem="57" firstAttribute="leading" secondItem="1" secondAttribute="leading" constant="10" id="111"/>
                 <constraint firstItem="His-4A-hcY" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="1" secondAttribute="leading" constant="20" symbolic="YES" id="69a-Sb-jSj"/>
                 <constraint firstItem="8kv-BJ-IEk" firstAttribute="baseline" secondItem="101" secondAttribute="baseline" id="Knp-g8-7FQ"/>
-                <constraint firstItem="8kv-BJ-IEk" firstAttribute="leading" secondItem="His-4A-hcY" secondAttribute="trailing" constant="8" symbolic="YES" id="MZ0-p6-6MH"/>
+                <constraint firstItem="8kv-BJ-IEk" firstAttribute="leading" secondItem="His-4A-hcY" secondAttribute="trailing" constant="12" symbolic="YES" id="MZ0-p6-6MH"/>
                 <constraint firstItem="57" firstAttribute="top" secondItem="1" secondAttribute="top" constant="20" symbolic="YES" id="N2b-Nx-SZC"/>
-                <constraint firstItem="101" firstAttribute="top" secondItem="57" secondAttribute="bottom" constant="8" symbolic="YES" id="WT3-Nh-FrW"/>
+                <constraint firstItem="101" firstAttribute="top" secondItem="57" secondAttribute="bottom" constant="20" symbolic="YES" id="WT3-Nh-FrW"/>
                 <constraint firstItem="His-4A-hcY" firstAttribute="baseline" secondItem="101" secondAttribute="baseline" id="fq3-rS-gvQ"/>
-                <constraint firstItem="101" firstAttribute="leading" secondItem="8kv-BJ-IEk" secondAttribute="trailing" constant="8" symbolic="YES" id="nvi-CZ-a6L"/>
+                <constraint firstItem="101" firstAttribute="leading" secondItem="8kv-BJ-IEk" secondAttribute="trailing" constant="12" symbolic="YES" id="nvi-CZ-a6L"/>
             </constraints>
             <point key="canvasLocation" x="-1175" y="-7"/>
         </customView>
@@ -101,7 +101,7 @@
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
             <subviews>
                 <button translatesAutoresizingMaskIntoConstraints="NO" id="MEC-x9-zrX">
-                    <rect key="frame" x="32" y="32" width="16" height="16"/>
+                    <rect key="frame" x="32" y="29" width="16" height="22"/>
                     <constraints>
                         <constraint firstAttribute="width" constant="16" id="cau-QV-8TQ"/>
                         <constraint firstAttribute="height" constant="16" id="yHZ-qj-Rcy"/>
@@ -126,7 +126,7 @@
                     </connections>
                 </button>
                 <button translatesAutoresizingMaskIntoConstraints="NO" id="114">
-                    <rect key="frame" x="8" y="8" width="32" height="32"/>
+                    <rect key="frame" x="8" y="6.5" width="32.5" height="36"/>
                     <constraints>
                         <constraint firstAttribute="width" constant="32" id="161"/>
                         <constraint firstAttribute="height" constant="32" id="162"/>
@@ -161,7 +161,7 @@
         </customView>
     </objects>
     <resources>
-        <image name="NSAddTemplate" width="11" height="11"/>
-        <image name="NSRefreshFreestandingTemplate" width="14" height="14"/>
+        <image name="NSAddTemplate" width="14" height="13"/>
+        <image name="NSRefreshFreestandingTemplate" width="15" height="15"/>
     </resources>
 </document>

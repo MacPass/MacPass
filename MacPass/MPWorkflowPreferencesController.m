@@ -26,6 +26,15 @@
 
 @interface MPWorkflowPreferencesController ()
 
+@property (strong) IBOutlet NSPopUpButton *browserPopup;
+@property (strong) IBOutlet NSPopUpButton *doubleClickURLPopup;
+@property (strong) IBOutlet NSPopUpButton *doubleClickTitlePopup;
+@property (strong) IBOutlet NSButton *updatePasswordOnTemplateEntriesCheckButton;
+@property (strong) IBOutlet NSButton *generatePasswordOnEntriesCheckButton;
+@property (strong) IBOutlet NSButton *hideAfterCopyToClipboardCheckButton;
+@property (strong) IBOutlet NSButton *focusSearchAfterUnlockCheckButton;
+//@property (strong) IBOutlet NSButton *privateBrowsingCheckButton;
+
 - (IBAction)_showCustomBrowserSelection:(id)sender;
 
 @end
@@ -39,11 +48,34 @@
 - (void)viewDidLoad {
   NSUserDefaultsController *defaultsController = NSUserDefaultsController.sharedUserDefaultsController;
   
-  [self.doubleClickURLPopup bind:NSSelectedIndexBinding toObject:defaultsController withKeyPath:[MPSettingsHelper defaultControllerPathForKey:kMPSettingsKeyDoubleClickURLAction] options:nil];
-  [self.doubleClickTitlePopup bind:NSSelectedIndexBinding toObject:defaultsController withKeyPath:[MPSettingsHelper defaultControllerPathForKey:kMPSettingsKeyDoubleClickTitleAction] options:nil];
-  [self.updatePasswordOnTemplateEntriesCheckButton bind:NSValueBinding toObject:defaultsController withKeyPath:[MPSettingsHelper defaultControllerPathForKey:kMPSettingsKeyUpdatePasswordOnTemplateEntries] options:nil];
-  [self.generatePasswordOnEntriesCheckButton bind:NSValueBinding toObject:defaultsController withKeyPath:[MPSettingsHelper defaultControllerPathForKey:kMPSettingsKeyGeneratePasswordForNewEntires] options:nil];
-  [self.hideAfterCopyToClipboardCheckButton bind:NSValueBinding toObject:defaultsController withKeyPath:[MPSettingsHelper defaultControllerPathForKey:kMPSettingsKeyHideAfterCopyToClipboard] options:nil];
+  [self.doubleClickURLPopup bind:NSSelectedIndexBinding
+                        toObject:defaultsController
+                     withKeyPath:[MPSettingsHelper defaultControllerPathForKey:kMPSettingsKeyDoubleClickURLAction]
+                         options:nil];
+  [self.doubleClickTitlePopup bind:NSSelectedIndexBinding
+                          toObject:defaultsController
+                       withKeyPath:[MPSettingsHelper defaultControllerPathForKey:kMPSettingsKeyDoubleClickTitleAction]
+                           options:nil];
+  [self.updatePasswordOnTemplateEntriesCheckButton bind:NSValueBinding
+                                               toObject:defaultsController
+                                            withKeyPath:[MPSettingsHelper defaultControllerPathForKey:kMPSettingsKeyUpdatePasswordOnTemplateEntries]
+                                                options:nil];
+  [self.generatePasswordOnEntriesCheckButton bind:NSValueBinding
+                                         toObject:defaultsController
+                                      withKeyPath:[MPSettingsHelper defaultControllerPathForKey:kMPSettingsKeyGeneratePasswordForNewEntires]
+                                          options:nil];
+  [self.hideAfterCopyToClipboardCheckButton bind:NSValueBinding
+                                        toObject:defaultsController
+                                     withKeyPath:[MPSettingsHelper defaultControllerPathForKey:kMPSettingsKeyHideAfterCopyToClipboard]
+                                         options:nil];
+  [self.focusSearchAfterUnlockCheckButton bind:NSValueBinding
+                                      toObject:defaultsController
+                                   withKeyPath:[MPSettingsHelper defaultControllerPathForKey:kMPSettingsKeyFocusSearchAfterUnlock]
+                                       options:nil];
+//  [self.privateBrowsingCheckButton bind:NSValueBinding
+//                               toObject:defaultsController
+//                            withKeyPath:[MPSettingsHelper defaultControllerPathForKey:kMPSettingsKeyUsePrivateBrowsingWhenOpeningURLs]
+//                                options:nil];
   [self _updateBrowserSelection];
 }
 

@@ -22,6 +22,7 @@
 
 #import "MPPasteBoardController.h"
 #import "MPSettingsHelper.h"
+#import "MPIconHelper.h"
 #import "MPOverlayWindowController.h"
 
 /* Notifications */
@@ -126,6 +127,10 @@ NSString *const MPPasteBoardTypeSource          = @"org.nspasteboard.source";
   self.isEmpty = NO;
 }
 
+- (void)copyObject:(id<NSPasteboardWriting>)object contentInfo:(MPPasteBoardContentInfo *)info atView:(nonnull NSView *)view{
+  [self copyObject:object overlayInfo:MPPasteboardOverlayInfoCustom name:info.label atView:view];
+}
+
 - (void)copyObject:(id<NSPasteboardWriting>)object overlayInfo:(MPPasteboardOverlayInfoType)overlayInfoType name:(NSString *)name atView:(NSView *)view{
   if(!object) {
     return;
@@ -135,27 +140,27 @@ NSString *const MPPasteBoardTypeSource          = @"org.nspasteboard.source";
   NSString *infoText = nil;
   switch(overlayInfoType) {
     case MPPasteboardOverlayInfoPassword:
-      infoImage = [NSBundle.mainBundle imageForResource:@"00_PasswordTemplate"];
+      infoImage = [MPIconHelper icon:MPIconPassword];
       infoText = NSLocalizedString(@"COPIED_PASSWORD", @"Password was copied to the pasteboard");
       break;
       
     case MPPasteboardOverlayInfoURL:
-      infoImage = [NSBundle.mainBundle imageForResource:@"01_PackageNetworkTemplate"];
+      infoImage = [MPIconHelper icon:MPIconPackageNetwork];
       infoText = NSLocalizedString(@"COPIED_URL", @"URL was copied to the pasteboard");
       break;
       
     case MPPasteboardOverlayInfoUsername:
-      infoImage = [NSBundle.mainBundle imageForResource:@"09_IdentityTemplate"];
+      infoImage = [MPIconHelper icon:MPIconIdentity];
       infoText = NSLocalizedString(@"COPIED_USERNAME", @"Username was copied to the pasteboard");
       break;
       
     case MPPasteboardOverlayInfoCustom:
-      infoImage = [NSBundle.mainBundle imageForResource:@"00_PasswordTemplate"];
+      infoImage = [MPIconHelper icon:MPIconPassword];
       infoText = [NSString stringWithFormat:NSLocalizedString(@"COPIED_FIELD_%@", "Field name that was copied to the pasteboard"), name];
       break;
       
     case MPPasteboardOverlayInfoReference:
-      infoImage = [NSBundle.mainBundle imageForResource:@"04_KlipperTemplate"];
+      infoImage = [MPIconHelper icon:MPIconKlipper];
       infoText = name;
       break;
       

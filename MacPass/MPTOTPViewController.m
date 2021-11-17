@@ -10,6 +10,7 @@
 
 #import <KeePassKit/KeePassKit.h>
 #import "MPEntryInspectorViewController.h"
+#import "MPPasteBoardController.h"
 
 @interface MPTOTPViewController ()
 
@@ -21,6 +22,14 @@
 
 - (void)viewDidLoad {
   self.remainingTimeButton.title = @"";
+  self.toptValueTextField.buttonTitle = NSLocalizedString(@"COPY", @"Copy the TOTP value to the clipboard");
+  __weak MPTOTPViewController *welf = self;
+  self.toptValueTextField.buttonActionBlock = (^void(NSTextField *tf) {
+    NSText *text = [welf.view.window fieldEditor:NO forObject:welf.toptValueTextField];
+    if([text isKindOfClass:NSTextView.class]) {
+      [welf textField:welf.toptValueTextField textView:(NSTextView *)text performAction:@selector(copy:)];
+    }
+  });
 }
 
 - (IBAction)showOTPSetup:(id)sender {
@@ -45,6 +54,24 @@
   [self _didChangeAttribute:nil];
 }
 
+- (BOOL)textField:(NSTextField *)textField textView:(NSTextView *)textView performAction:(SEL)action {
+  if(action == @selector(copy:)) {
+    MPPasteboardOverlayInfoType info = MPPasteboardOverlayInfoCustom;
+    NSMutableString *selectedValue = [[NSMutableString alloc] init];
+    for(NSValue *rangeValue in textView.selectedRanges) {
+      [selectedValue appendString:[textView.string substringWithRange:rangeValue.rangeValue]];
+    }
+    if(selectedValue.length == 0) {
+      [selectedValue setString:textField.stringValue];
+    }
+    NSString *name = NSLocalizedString(@"TOTP", "Field TOTP was copied to the pasteboard");
+    [MPPasteBoardController.defaultController copyObject:selectedValue overlayInfo:info name:name atView:self.view];
+    return NO;
+  }
+  return YES;
+}
+
+
 - (void)_didChangeAttribute:(NSNotification *)notification {
   [self _updateDisplay];
 }
@@ -54,7 +81,8 @@
   BOOL showTOTP = entry.hasTimeOTP;
   self.view.hidden = !showTOTP;
   if(showTOTP) {
-    self.generator = [[KPKTimeOTPGenerator alloc] initWithAttributes:entry.attributes];
+    
+    self.generator = entry.hasSteamOTP ? [[KPKSteamOTPGenerator alloc] initWithAttributes:entry.attributes] : [[KPKTimeOTPGenerator alloc] initWithAttributes:entry.attributes];
     self.generator.time = NSDate.date.timeIntervalSince1970;
     NSString *stringValue = self.generator.string;
     self.toptValueTextField.stringValue = stringValue ? stringValue : @"";

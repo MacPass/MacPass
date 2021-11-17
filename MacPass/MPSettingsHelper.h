@@ -34,9 +34,14 @@ APPKIT_EXTERN NSString *const kMPSettingsKeyReopenLastDatabaseOnLaunch;
 APPKIT_EXTERN NSString *const kMPSettingsKeyQuitOnLastWindowClose;          // Quit MacPass when the user closes the last window
 APPKIT_EXTERN NSString *const kMPSettingsKeyFileChangeStrategy;
 APPKIT_EXTERN NSString *const kMPSettingsKeyEnableAutosave;                 // if set to YES MacPass support Autosaving for documents
+APPKIT_EXTERN NSString *const kMPSettingsKeyFocusSearchAfterUnlock;         // Enter search after unlocking the database
+
+/* Entry Table Display */
+APPKIT_EXTERN NSString *const kMPSettingsKeyDisplayClearTextPasswordsInEntryList;
 
 /* URL handling */
 APPKIT_EXTERN NSString *const kMPSettingsKeyBrowserBundleId;
+APPKIT_EXTERN NSString *const kMPSettingsKeyUsePrivateBrowsingWhenOpeningURLs;
 
 /* Autolock */
 APPKIT_EXTERN NSString *const kMPSettingsKeyLockOnSleep;
@@ -93,6 +98,9 @@ APPKIT_EXTERN NSString *const kMPSettingsKeyAllowRemoteFetchOfPluginRepository; 
 
 /* Network */
 APPKIT_EXTERN NSString *const kMPSettingsKeyFaviconDownloadMethod;
+
+/* UI */
+APPKIT_EXTERN NSString *const kMPSettingsKeyUseUnifiedToolbar;
 
 typedef NS_ENUM(NSUInteger, MPFileChangeStrategy) {
   MPFileChangeStrategyAsk,
