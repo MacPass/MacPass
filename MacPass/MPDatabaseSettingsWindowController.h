@@ -51,11 +51,16 @@ typedef NS_ENUM(NSUInteger, MPDatabaseSettingsTab) {
 
 /* AES */
 @property (weak) IBOutlet NSTextField *aesEncryptionRoundsTextField;
-/* Argon2 */
-@property (weak) IBOutlet NSTextField *argon2ThreadsTextField;
-@property (weak) IBOutlet NSTextField *argon2IterationsTextField;
-@property (weak) IBOutlet NSTextField *argon2MemoryTextField;
-@property (weak) IBOutlet NSStepper *argon2MemoryStepper;
+/* Argon2d */
+@property (weak) IBOutlet NSTextField *argon2dThreadsTextField;
+@property (weak) IBOutlet NSTextField *argon2dIterationsTextField;
+@property (weak) IBOutlet NSTextField *argon2dMemoryTextField;
+@property (weak) IBOutlet NSStepper *argon2dMemoryStepper;
+/* Argon2id */
+@property (weak) IBOutlet NSTextField *argon2idThreadsTextField;
+@property (weak) IBOutlet NSTextField *argon2idIterationsTextField;
+@property (weak) IBOutlet NSTextField *argon2idMemoryTextField;
+@property (weak) IBOutlet NSStepper *argon2idMemoryStepper;
 
 /* Advanced Tab*/
 @property (weak) IBOutlet NSButton *enableHistoryCheckButton;

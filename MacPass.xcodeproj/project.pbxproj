@@ -285,6 +285,12 @@
 		4CE39ABF16ECE34A000FE29D /* MPIconSelectViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CE39ABE16ECE34A000FE29D /* MPIconSelectViewController.m */; };
 		4CE39AC416ECE4F7000FE29D /* MPIconImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CE39AC316ECE4F7000FE29D /* MPIconImageView.m */; };
 		4CE3E62617AB0D2D00D9E4B4 /* MPAttachmentTableDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CE3E62517AB0D2D00D9E4B4 /* MPAttachmentTableDataSource.m */; };
+		4CE4FFA22746953A00789F75 /* MPAdvancedDatabaseSettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CE4FFA02746953A00789F75 /* MPAdvancedDatabaseSettingsViewController.m */; };
+		4CE4FFA32746953A00789F75 /* MPAdvancedDatabaseSettingsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4CE4FFA12746953A00789F75 /* MPAdvancedDatabaseSettingsViewController.xib */; };
+		4CE4FFA72746955E00789F75 /* MPSecurityDatabaseSettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CE4FFA52746955E00789F75 /* MPSecurityDatabaseSettingsViewController.m */; };
+		4CE4FFA82746955E00789F75 /* MPSecurityDatabaseSettingsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4CE4FFA62746955E00789F75 /* MPSecurityDatabaseSettingsViewController.xib */; };
+		4CE4FFAC2746956F00789F75 /* MPGeneralDatabaseSettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CE4FFAA2746956F00789F75 /* MPGeneralDatabaseSettingsViewController.m */; };
+		4CE4FFAD2746956F00789F75 /* MPGeneralDatabaseSettingsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4CE4FFAB2746956F00789F75 /* MPGeneralDatabaseSettingsViewController.xib */; };
 		4CE501341BBC47F500FB819D /* MPTagsTokenFieldDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CE501331BBC47F500FB819D /* MPTagsTokenFieldDelegate.m */; };
 		4CE5B54B173AFBA700207B39 /* MPDocument.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CE5B549173AFBA700207B39 /* MPDocument.m */; };
 		4CE8246F16E2E93400573141 /* MPOverlayWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CE8246E16E2E93400573141 /* MPOverlayWindowController.m */; };
@@ -886,6 +892,15 @@
 		4CE39AC316ECE4F7000FE29D /* MPIconImageView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MPIconImageView.m; sourceTree = "<group>"; };
 		4CE3E62417AB0D2D00D9E4B4 /* MPAttachmentTableDataSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MPAttachmentTableDataSource.h; sourceTree = "<group>"; };
 		4CE3E62517AB0D2D00D9E4B4 /* MPAttachmentTableDataSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MPAttachmentTableDataSource.m; sourceTree = "<group>"; };
+		4CE4FF9F2746953A00789F75 /* MPAdvancedDatabaseSettingsViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MPAdvancedDatabaseSettingsViewController.h; sourceTree = "<group>"; };
+		4CE4FFA02746953A00789F75 /* MPAdvancedDatabaseSettingsViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MPAdvancedDatabaseSettingsViewController.m; sourceTree = "<group>"; };
+		4CE4FFA12746953A00789F75 /* MPAdvancedDatabaseSettingsViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MPAdvancedDatabaseSettingsViewController.xib; sourceTree = "<group>"; };
+		4CE4FFA42746955E00789F75 /* MPSecurityDatabaseSettingsViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MPSecurityDatabaseSettingsViewController.h; sourceTree = "<group>"; };
+		4CE4FFA52746955E00789F75 /* MPSecurityDatabaseSettingsViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MPSecurityDatabaseSettingsViewController.m; sourceTree = "<group>"; };
+		4CE4FFA62746955E00789F75 /* MPSecurityDatabaseSettingsViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MPSecurityDatabaseSettingsViewController.xib; sourceTree = "<group>"; };
+		4CE4FFA92746956F00789F75 /* MPGeneralDatabaseSettingsViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MPGeneralDatabaseSettingsViewController.h; sourceTree = "<group>"; };
+		4CE4FFAA2746956F00789F75 /* MPGeneralDatabaseSettingsViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MPGeneralDatabaseSettingsViewController.m; sourceTree = "<group>"; };
+		4CE4FFAB2746956F00789F75 /* MPGeneralDatabaseSettingsViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MPGeneralDatabaseSettingsViewController.xib; sourceTree = "<group>"; };
 		4CE501321BBC47F500FB819D /* MPTagsTokenFieldDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MPTagsTokenFieldDelegate.h; sourceTree = "<group>"; };
 		4CE501331BBC47F500FB819D /* MPTagsTokenFieldDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MPTagsTokenFieldDelegate.m; sourceTree = "<group>"; };
 		4CE5B548173AFBA700207B39 /* MPDocument.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MPDocument.h; sourceTree = "<group>"; };
@@ -1714,6 +1729,7 @@
 		4CA0B2F115BCAEE600654E32 /* View Controller */ = {
 			isa = PBXGroup;
 			children = (
+				4CE4FF9E2746943900789F75 /* Database Preferences */,
 				4C5133861FA0C32C00C94C73 /* Accessory */,
 				4C4B7EF517A46815000234C7 /* Inspector */,
 				4C47D77718B37911002755E4 /* Preferences */,
@@ -1827,6 +1843,22 @@
 				4C888C9216EB6F5E003D34A1 /* MPToolbarItem.m */,
 			);
 			name = Controls;
+			sourceTree = "<group>";
+		};
+		4CE4FF9E2746943900789F75 /* Database Preferences */ = {
+			isa = PBXGroup;
+			children = (
+				4CE4FF9F2746953A00789F75 /* MPAdvancedDatabaseSettingsViewController.h */,
+				4CE4FFA02746953A00789F75 /* MPAdvancedDatabaseSettingsViewController.m */,
+				4CE4FFA12746953A00789F75 /* MPAdvancedDatabaseSettingsViewController.xib */,
+				4CE4FFA42746955E00789F75 /* MPSecurityDatabaseSettingsViewController.h */,
+				4CE4FFA52746955E00789F75 /* MPSecurityDatabaseSettingsViewController.m */,
+				4CE4FFA62746955E00789F75 /* MPSecurityDatabaseSettingsViewController.xib */,
+				4CE4FFA92746956F00789F75 /* MPGeneralDatabaseSettingsViewController.h */,
+				4CE4FFAA2746956F00789F75 /* MPGeneralDatabaseSettingsViewController.m */,
+				4CE4FFAB2746956F00789F75 /* MPGeneralDatabaseSettingsViewController.xib */,
+			);
+			name = "Database Preferences";
 			sourceTree = "<group>";
 		};
 		4CE8247016E2E96500573141 /* Window Controller */ = {
@@ -2021,6 +2053,7 @@
 				4CA182751F963FF600DD4A4A /* TitlebarColorAccessoryViewController.xib in Resources */,
 				4C3826B71AD04D8E007D7D67 /* 42_MemoryTemplate.pdf in Resources */,
 				4C3826B41AD04D8E007D7D67 /* 39_HistoryTemplate.pdf in Resources */,
+				4CE4FFA32746953A00789F75 /* MPAdvancedDatabaseSettingsViewController.xib in Resources */,
 				4C77E37D15B84A240093A587 /* MainMenu.xib in Resources */,
 				4C4BE0C9257E9B91000AEA8C /* MPNotificationPreferencesController.xib in Resources */,
 				4C3826CD1AD04D8E007D7D67 /* 66_MoneyTemplate.pdf in Resources */,
@@ -2037,6 +2070,7 @@
 				4C586F9E16D07ABD00E7DB57 /* 00_PasswordTemplate.pdf in Resources */,
 				FA13910C1F9CD9EB0033D256 /* Localizable.stringsdict in Resources */,
 				4C586FA016D07D7200E7DB57 /* 01_PackageNetworkTemplate.pdf in Resources */,
+				4CE4FFAD2746956F00789F75 /* MPGeneralDatabaseSettingsViewController.xib in Resources */,
 				4C3826CB1AD04D8E007D7D67 /* 64_AppleTemplate.pdf in Resources */,
 				4C3826AA1AD04D8E007D7D67 /* 27_NFSUnmountTemplate.pdf in Resources */,
 				4C3826C31AD04D8E007D7D67 /* 56_AddressBookTemplate.pdf in Resources */,
@@ -2074,6 +2108,7 @@
 				4C0F04412147FB49000B8568 /* OpenPanelAccessoryView.xib in Resources */,
 				4C6DCC451FA2457900C8AD3F /* ContextBar.xib in Resources */,
 				4C431BCF16E2BAB000700A81 /* OverlayWindow.xib in Resources */,
+				4CE4FFA82746955E00789F75 /* MPSecurityDatabaseSettingsViewController.xib in Resources */,
 				4C3826B61AD04D8E007D7D67 /* 41_VectorTemplate.pdf in Resources */,
 				4C17F105184E630200E85625 /* 14_BatteryTemplate.pdf in Resources */,
 				4C0B5338205C1516003D277E /* PickcharsView.xib in Resources */,
@@ -2197,6 +2232,7 @@
 				4C4F72D118DF704400E8D378 /* DDHotKeyTextField.m in Sources */,
 				4C8F0C6E1FCEE9B900BE157F /* MPPluginConstants.m in Sources */,
 				4C83814215BF4677001AE468 /* MPDocumentWindowController.m in Sources */,
+				4CE4FFA22746953A00789F75 /* MPAdvancedDatabaseSettingsViewController.m in Sources */,
 				4C82046A1FCDC07800EB24A4 /* MPPickfieldViewController.m in Sources */,
 				4C2E382316D1421B00037A9D /* MPIconHelper.m in Sources */,
 				4C2E382616D1470200037A9D /* MPViewController.m in Sources */,
@@ -2302,6 +2338,7 @@
 				4C17D8E517A1C780006C8C1E /* MPDocumentWindowDelegate.m in Sources */,
 				4C63B8FB17A3154D0091BD72 /* MPContextButton.m in Sources */,
 				4C1E9885185F71A800943563 /* MPContextBarViewController.m in Sources */,
+				4CE4FFA72746955E00789F75 /* MPSecurityDatabaseSettingsViewController.m in Sources */,
 				4C1FA07B18231900003A3F8C /* MPDocument+Autotype.m in Sources */,
 				4C4B7EE917A45EC6000234C7 /* MPDatePickingViewController.m in Sources */,
 				4C4B7EEE17A467E1000234C7 /* MPGroupInspectorViewController.m in Sources */,
@@ -2324,6 +2361,7 @@
 				3C0CDECF21CFEDD200B2A10B /* NSTextView+MPTouchBarExtension.m in Sources */,
 				4C57AE1417BA422B00CA4F34 /* MPSegmentedContextCell.m in Sources */,
 				4CE2961518429AA5005F01CE /* MPAutotypeKeyPress.m in Sources */,
+				4CE4FFAC2746956F00789F75 /* MPGeneralDatabaseSettingsViewController.m in Sources */,
 				4C32B0E71A1D4436007E12F1 /* KPKFormat+MPUTIDetection.m in Sources */,
 				4C5807781C64F67000E7171F /* NSString+MPHash.m in Sources */,
 				4CAAA8271D787B8B00CDE977 /* MPAutotypeBuilderViewController.m in Sources */,
