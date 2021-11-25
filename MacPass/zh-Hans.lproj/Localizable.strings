@@ -320,6 +320,15 @@
 /* The master key was changed by an external program! */
 "EXTERN_CHANGE_OF_MASTERKEY" = "主密钥被其他程序修改";
 
+/* Direct download */
+"FAVICON_DOWNLOAD_METHOD_DIRECT" = "直接下载";
+
+/* DuckDuckGo */
+"FAVICON_DOWNLOAD_METHOD_DUCKDUCKGO" = "DuckDuckGo";
+
+/* Google */
+"FAVICON_DOWNLOAD_METHOD_GOOGLE" = "Google";
+
 /* External file change strategy option: ask what to do */
 "FILE_CHANGE_STRATEGY_ASK" = "询问";
 
@@ -347,6 +356,15 @@
 
 /* Group column title */
 "GROUP" = "组";
+
+/* SHA 1 hash algoritm menu item */
+"HASH_SHA1" = "Sha1";
+
+/* SHA 256 hash algoritm menu item */
+"HASH_SHA256" = "Sha256";
+
+/* SHA 512 hash algoritm menu item */
+"HASH_SHA512" = "Sha512";
 
 /* History count column title
    Menu item to toggle display of history count column in entry table */
@@ -405,6 +423,9 @@
    Menu item to create a new entry
    Toolbar item new entry */
 "NEW_ENTRY" = "添加项目";
+
+/* Submen to create entries from tempaltes */
+"NEW_ENTRY_FROM_TEMPLATE" = "添加项目";
 
 /* Submenu to add an entry via template */
 "NEW_ENTRY_WITH_TEMPLATE_%@" = "从模板 %@ 创建项目";
@@ -465,6 +486,15 @@
 
 /* Select Browser */
 "OTHER_BROWSER" = "选择浏览器…";
+
+/* OTP custom type */
+"OTP_CUSTOM" = "自定义";
+
+/* OTP type RFC */
+"OTP_RFC" = "RFC 6238";
+
+/* OTP type Steam */
+"OTP_STEAM" = "Steam";
 
 /* Menu item to toggle display of password column in entry table
    Password column title
@@ -592,8 +622,14 @@
 /* Checkbox in dialog to set the selection as default file change strategy! */
 "SET_AS_DEFAULT_FILE_CHANGE_STRATEGY" = "默认使用这个方法。您可以随时在设置中修改这个配置。";
 
+/* Menu item title editing TOTP settings */
+"SETUP_TOTP_SETTINGS" = "动态令牌设置";
+
 /* Action button in Notification to show the Autotype Doctor */
 "SHOW_AUTOTYPE_DOCTOR" = "打开自动键入诊断";
+
+/* Menu item to toggle display type of passwords */
+"SHOW_CLEAR_TEXT_PASSWORDS" = "显示密码";
 
 /* Menu item to show the entries group in the outline view */
 "SHOW_GROUP_IN_OUTLINE" = "在大纲视图中显示项目组";
@@ -613,6 +649,12 @@
 
 /* Toolbar item to perform autotype */
 "TOOLBAR_PERFORM_AUTOTYPE_FOR_ENTRY" = "自动键入";
+
+/* Field TOTP was copied to the pasteboard */
+"TOTP" = "动态令牌";
+
+/* Time in seconds remaining for a valid TOTP string, format should be %ld */
+"TOTP_REMAINING_TIME_%ld_SECONDS" = "%ld s";
 
 /* Touchbar button label for choosing the keyfile */
 "TOUCHBAR_CHOOSE_KEYFILE" = "选择密钥文件";
