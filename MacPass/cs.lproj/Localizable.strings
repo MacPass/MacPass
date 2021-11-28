@@ -1,0 +1,888 @@
+/* Count of characters remaining in pickchars dialog */
+"%ld_CHARACTERS_TO_PICK_REMAINING" = "Zbývá vybrat %ld znaků";
+
+/* Display format for days. Should contain a long decimal placeholder! */
+"%ld_DAYS" = "%ld dní";
+
+/* % days ago */
+"%ld_DAYS_AGO" = "Před %ld dny";
+
+/* % Hours ago */
+"%ld_HOURS_AGO" = "Před %ld hodinami";
+
+/* % Minutes ago */
+"%ld_MINUTES_AGO" = "Před %ld minutami";
+
+/* % Weeks ago */
+"%ld_WEEKS_AGO" = "Před %ld týdny";
+
+/* preset to expire after 90 days from now */
+"90_DAYS" = "Za 90 dní";
+
+/* Button label to abort a merge on a file with changed master key! */
+"ABORT_MERGE_KEEP_MINE" = "Přerušit sloučení. Zachovat můj.";
+
+/* Toolbar item with action menu */
+"ACTION" = "Akce";
+
+/* Menu displayed for adding special custom keys */
+"ADD_CUSTOM_FIELD_CONTEXT_MENU" = "Přidat vlastní pole nabídky";
+
+/* Action to add an entry via template */
+"ADD_TREMPLATE_ENTRY" = "Vytvořit šablonu záznamu";
+
+/* Allow the download of the plugin repository file */
+"ALERT_ASK_FOR_PLUGIN_REPOSITORY_ALLOW_DOWNLOAD" = "Aktualizovat definice online";
+
+/* Informative text displayed on the alert that shows up when MacPass asks for permssion to download the plugin repository JSON file */
+"ALERT_ASK_FOR_PLUGIN_REPOSITORY_CONNECTION_PERMISSION_INFORMATIVE_TEXT" = "Definice pluginů jsou hostovány online na https://macpassapp.org. MacPass by rád stáhl tyto soubory k ujištění, že jsou data aktuální.";
+
+/* Message displayed on the alert that asks for permission to download the plugin repository JSON file */
+"ALERT_ASK_FOR_PLUGIN_REPOSITORY_CONNECTION_PERMISSION_MESSAGE" = "MacPass by rád online zkontroloval aktualizace definic pluginů";
+
+/* Disallow the download of the plugin repository file */
+"ALERT_ASK_FOR_PLUGIN_REPOSITORY_DISALLOW_DOWNLOAD" = "Neaktualizovat definice";
+
+/* Button in dialog to leave plugin ds disabled and continiue! */
+"ALERT_INCOMPATIBLE_PLUGINS_ENCOUNTERED_BUTTON_OK" = "OK";
+
+/* Button in dialog to open plugin preferences pane! */
+"ALERT_INCOMPATIBLE_PLUGINS_ENCOUNTERED_BUTTON_OPEN_PREFERENCES" = "Ukázat předvolby pluginu…";
+
+/* Informative text of the alert displayed when plugins where disabled due to incompatibilty */
+"ALERT_INCOMPATIBLE_PLUGINS_ENCOUNTERED_INFORMATIVE_TEXT" = "Některé pluginy jsou zablokovány, protože nejsou kompatibilní s touto verzí aplikace MacPass. Pro detaily otevřete nastavení pluginů.";
+
+/* Message text of the alert displayed when plugins where disabled due to incompatibilty */
+"ALERT_INCOMPATIBLE_PLUGINS_ENCOUNTERED_MESSAGE" = "Detekován nekompatibilní plugin.";
+
+/* Alert informative text when plugins or their settings change and require a restart */
+"ALERT_INFORMATIVE_TEXT_PLUGINS_CHANGED_SUGGEST_RESTART" = "Změny pluginů a nastavení pluginů vejde v platnost po restartu. Restartovat MacPass nyní?";
+
+/* Alert informative text to ask the user if he really want to uninstall the plugin */
+"ALERT_INFORMATIVE_TEXT_REALLY_UNINSTALL_PLUGIN" = "Plugin bude přesunut do koše.";
+
+/* Button in dialog to cancel merge of KDB file changes! */
+"ALERT_MERGE_CANCEL" = "Zrušit";
+
+/* Button in dialog to merge KDB changes into file! */
+"ALERT_MERGE_CONTINUE" = "Sloučit soubory!";
+
+/* Informative text displayed when merging KDB files */
+"ALERT_MERGE_KDB_FILE_INFO_TEXT" = "KDB databáze nemá dostatek informací pro bezproblémové sloučení. Záznamy budou sloučeny a žádná data se neztratí, ale vzhledem k tomu, že ke shodě skupin dochází pouze podle názvu, může dojít k neočekávaným změnám. Přesunuté položky mohou být přesunuty do starých skupin, nebo přejmenované skupiny nebudou sloučeny. Také smazané záznamy se mohou znovu objevit, protože neexistují informace o smazaných objektech. Opravdu chcete pokračovat?";
+
+/* Alert message warning user about KDB file merge */
+"ALERT_MERGE_KDB_FILE_MESSAGE" = "Slučujete KDB databázi";
+
+/* Alert message text when plugins or their settings change and require a restart */
+"ALERT_MESSAGE_PLUGINS_CHANGED_SUGGEST_RESTART" = "Nastavení pluginu upraveno. Prosím, restartujte.";
+
+/* Alert message text to ask the user if he really want to uninstall the plugin. Include %@ placeholder for plugin name */
+"ALERT_MESSAGE_TEXT_REALLY_UNINSTALL_PLUGIN_%@" = "Opravdu chcete odinstalovat plugin %@?";
+
+/* Informative text of the disabled updates alert! */
+"ALERT_UPDATES_DISABLED_INFORMATIVE_TEXT_%@!" = "Aktualizace jsou pro toto sestavení aplikace %@ vypnuté!";
+
+/* Message text for disabled updates alert! */
+"ALERT_UPDATES_DISABLED_MESSAGE_TEXT" = "Aktualizace jsou vypnuté!";
+
+/* Attachments column title (shows counts)
+   Menu item to toggle display of attachment count column in entry table */
+"ATTACHMENTS" = "Přílohy";
+
+/* Sucessfully merged external changes */
+"AUTO_MERGE_NOTIFICATION_TEXT" = "Automatické sloučení úspěšné!";
+
+/* Menu item for automatic trash creation */
+"AUTOCREATE_TRASH_FOLDER" = "Vytvořit automaticky";
+
+/* Message text in the autotype confirmation window. Placeholder is %1 - applicationName, %2 windowTitle */
+"AUTOTYPE_CANDIDATE_CONFIRMATION_WINDOW_MESSAGE_%@_%@" = "Samodoplňování našlo shodu pro okno \"%2$@\" aplikace \"%1$@\". Potvrďte, prosím, že chcete pokračovat ve vykonávání.";
+
+/* Message text in the autotype selection window. Placeholder is %1 - applicationName, %2 windowTitle */
+"AUTOTYPE_CANDIDATE_SELECTION_WINDOW_MESSAGE_%@_%@" = "Nalezeno několik shod pro okno \"%2$@\" aplikace \"%1$@\". Zvolte, prosím, která shoda se má použít.";
+
+/* Window title for the stand-alone password creator window */
+"AUTOTYPE_DOCTOR_RESULTS_WINDOW_TITLE" = "Kontrola funkčnosti samodoplňování";
+
+/* Inherit autotype settings menu item */
+"AUTOTYPE_INHERIT" = "Zdědit nastavení samodoplňování";
+
+/* Message displayed to the user to unlock the database to perform global autotype */
+"AUTOTYPE_MESSAGE_UNLOCK_DATABASE" = "Odemkněte, prosím, databázi pro použití globálního samodoplňování";
+
+/* Disable autotype menu item */
+"AUTOTYPE_NO" = "Zakázat samodoplňování";
+
+/* Notification: Autotype failed, MacPass has not enough permissions to perform autotype */
+"AUTOTYPE_NOTIFICATION_MACPASS_IS_MISSING_PERMISSIONS" = "MacPass nemá všechna potřebná oprávnění pro vykonání samodoplňování.";
+
+/* Notification: Title for autotype feedback */
+"AUTOTYPE_NOTIFICATION_MATCH_TITLE" = "Samodoplňování";
+
+/* Notification: Autotype failed, no documents are open */
+"AUTOTYPE_NOTIFICATION_NO_DOCUMENTS_INFORMATIVE_TEXT" = "Otevřete, prosím, databázi pro použití globálního samodoplňování!";
+
+/* Notification: Title for autotype feedback */
+"AUTOTYPE_NOTIFICATION_NO_DOCUMENTS_TITLE" = "Není otevřena žádná databáze!";
+
+/* Noticiation: Autotype failed to find a match for %@ (string placeholder) */
+"AUTOTYPE_NOTIFICATION_NO_MATCH_FOR_%@" = "Žádná shoda pro %@!";
+
+/* Title for autotype feedback on missing permissions */
+"AUTOTYPE_NOTIFICATION_PERMISSIONS_MISSING_TITLE" = "Chybějící oprávnění";
+
+/* Notification: Autotype found a single match for %@ (string placeholder). */
+"AUTOTYPE_NOTIFICATION_SINGLE_MATCH_FOR_%@" = "Nalezena shoda pro %@!";
+
+/* Title for the notification when the Autotype operation timed out */
+"AUTOTYPE_NOTIFICATION_TIMED_OUT_TITLE" = "Vypršel časový limit samodoplňování!";
+
+/* Status label when no issue were found in accessibilty */
+"AUTOTYPE_STATUS_ACCESSIBILTY_PERMISSIONS_OK" = "MacPass má oprávnění pro ovládání vašeho počítače (Zpřístupnění)";
+
+/* Status MacPass has no accessibilty permissions */
+"AUTOTYPE_STATUS_NO_ACCESSIBILTY_PERMISSIONS" = "MacPass nemá oprávnění pro ovládání vašeho počítače (Zpřístupnění)";
+
+/* Status MacPass has no screen recording permissions */
+"AUTOTYPE_STATUS_NO_SCREEN_RECORDING_PERMISSIONS" = "MacPass nemá oprávnění pro záznam vaší obrazovky";
+
+/* Status label when no issue were found in screen recording permissions */
+"AUTOTYPE_STATUS_SCREEN_RECORDING_PERMISSIONS_OK" = "MacPass má oprávnění pro záznam vaší obrazovky";
+
+/* Notficication: Autotype timed out */
+"AUTOTYPE_TIMED_OUT" = "Zapnuli jste samodoplňování příliš dávno. MacPass nepokračuje, aby zabránil chybnému vstupu!";
+
+/* Enable autotype menu item */
+"AUTOTYPE_YES" = "Povolit samodoplňování";
+
+/* Cancel */
+"CANCEL" = "Zrušit";
+
+/* Menu item in the database outline context menu to change the database name */
+"CHANGE_DATABASE_NAME" = "Změnit název databáze";
+
+/* Button to postpone the password change */
+"CHANGE_LATER" = "Změnit později";
+
+/* Button to show the password change dialog
+   Single button to show the password change dialog */
+"CHANGE_PASSWORD_WITH_DOTS" = "Změnit heslo…";
+
+/* Menu item in the database outline context menu to change the trash group */
+"CHANGE_TRASH_GROUP" = "Změnit skupinu koše";
+
+/* Button title in the key file selection dialog for selecting a key */
+"CHOOSE_FILE_BUTTON_TITLE" = "Otevřít";
+
+/* Clear Autotype Button */
+"CLEAR_AUTOTYPE" = "Vyčistit samodoplňování";
+
+/* Menu to clear recent searches */
+"CLEAR_RECENT_SEARCHES" = "Vyčistit poslední hledání";
+
+/* String displayed at dock badge when clipboard is about to be cleared */
+"CLEARING_PASTEBOARD" = "Vyčištěno";
+
+/* Field name that was copied to the pasteboard */
+"COPIED_FIELD_%@" = "Zkopírováno %@";
+
+/* Context menu that copies reference to note */
+"COPIED_NOTES_REFERENCE" = "Reference na poznámky zkopírována!";
+
+/* Password was copied to the pasteboard */
+"COPIED_PASSWORD" = "Heslo zkopírováno!";
+
+/* Context menu that copies reference to password */
+"COPIED_PASSWORD_REFERENCE" = "Reference na heslo zkopírována!";
+
+/* Context menu that copies reference to title */
+"COPIED_TITLE_REFERENCE" = "Reference na název zkopírována!";
+
+/* URL was copied to the pasteboard */
+"COPIED_URL" = "Adresa URL zkopírována!";
+
+/* Context menu that copies reference to URL */
+"COPIED_URL_REFERENCE" = "Reference na adresu URL zkopírována!";
+
+/* Username was copied to the pasteboard */
+"COPIED_USERNAME" = "Uživatelské jméno zkopírováno!";
+
+/* Context menu that copies reference to username */
+"COPIED_USERNAME_REFERENCE" = "Reference na uživatelské jméno zkopírována!";
+
+/* Button to copy the value of an Attribute
+   Copy the TOTP value to the clipboard */
+"COPY" = "Kopírovat";
+
+/* Submenu to copy attributes as reference */
+"COPY_AS_REFERENCE" = "Kopírovat referenci do…";
+
+/* Context menu sub-menu to copy attributes as reference */
+"COPY_AS_REFERENCE_MENU" = "Nabídka kopírovat jako referenci";
+
+/* Submenu to Copy custom fields */
+"COPY_CUSTOM_FIELDS" = "Kopírovat vlastní pole";
+
+/* Context menu sub-menu to copy custom fields to clipboard */
+"COPY_CUSTOM_FIELDS_MENU" = "Kopírovat vlastní pole…";
+
+/* Action name when an entry was moved
+   Action title for copying an entry via drag and drop */
+"COPY_ENTRY" = "Kopírovat záznam";
+
+/* Mask for title to copy field value */
+"COPY_FIELD_%@" = "Kopírovat %@";
+
+/* Action title for copying a group via drag and drop */
+"COPY_GROUP" = "Kopírovat skupinu";
+
+/* Context menu that copies reference to note */
+"COPY_NOTES_REFERENCE" = "Poznámky";
+
+/* Menu item to copy the password of an entry
+   Toolbar item copy password */
+"COPY_PASSWORD" = "Kopírovat heslo";
+
+/* Context menu that copies reference to password */
+"COPY_PASSWORD_REFERENCE" = "Heslo";
+
+/* Context menu that copies reference to title */
+"COPY_TITLE_REFERENCE" = "Název";
+
+/* Menu item to copy the URL of an entry */
+"COPY_URL" = "Kopírovat adresu URL";
+
+/* Context menu that copies reference to URL */
+"COPY_URL_REFERENCE" = "Adresa URL";
+
+/* Menu item to copy the username of an entry
+   Toolbar item copy username */
+"COPY_USERNAME" = "Kopírovat uživatelské jméno";
+
+/* Context menu that copies reference to username */
+"COPY_USERNAME_REFERENCE" = "Uživatelské jméno";
+
+/* Creating date column title
+   Menu item to toggle display of created date column in entry table */
+"CREATED" = "Vytvořeno";
+
+/* Custom attribute reference item */
+"CUSTOM_ATTRIBUTE" = "Vlastní atribut";
+
+/* Title for menu for custom search filters */
+"CUSTOM_SEARCH_FILTER_MENU" = "Vlastní vyhledávací filtr…";
+
+/* Default display name for KDB databases */
+"DATABASE" = "Databáze";
+
+/* Default Browser */
+"DEFAULT_BROWSER" = "Výchozí prohlížeč";
+
+/* Default Titel for new Custom-Fields */
+"DEFAULT_CUSTOM_FIELD_TITLE" = "Vlastní";
+
+/* Default Value for new Custom-Fields */
+"DEFAULT_CUSTOM_FIELD_VALUE" = "Hodnota";
+
+/* Title for a newly created entry */
+"DEFAULT_ENTRY_TITLE" = "Nový záznam";
+
+/* Title for a newly created group */
+"DEFAULT_GROUP_NAME" = "Nová skupina";
+
+/* Default window title for a new window association */
+"DEFAULT_WINDOW_TITLE" = "Titulek okna";
+
+/* Menu item in the database outline context menu to delete the node from the trash
+   Menu item to delete an entry
+   Menu item to delete the selected attached file
+   Menu item to delete the selected custom icon
+   Toolbar item delete item */
+"DELETE" = "Smazat";
+
+/* Delete Entry */
+"DELETE_ENTRY" = "Smazat záznam";
+
+/* Delete Group */
+"DELETE_GROUP" = "Smazat skupinu";
+
+/* Empty Trash */
+"DELETE_TRASHED_ENTRY" = "Smazat odebraný záznam";
+
+/* Empty Trash */
+"DELETE_TRASHED_GROUP" = "Smazat odebranou skupinu";
+
+/* Action title for copying an entry via drag and drop to another database
+   Action title for moving an entry via drag and drop */
+"DRAG_ENTRY" = "Táhnout záznam";
+
+/* Action title for moving a group via drag and drop
+   Actiontitle for copying groups via drag and drop to antother database */
+"DRAG_GROUP" = "Táhnout skupinu";
+
+/* Action name for duplicating entries */
+"DUPLICATE_ENTRIES_ACTION_NAME" = "Duplikovat záznamy";
+
+/* Menu item to directly diplicate an entry */
+"DUPLICATE_ENTRY" = "Duplikovat záznam";
+
+/* Menu item to duplicate an entry with options how to duplicate. Will present a dialog. */
+"DUPLICATE_ENTRY_WITH_OPTIONS" = "Duplikovat záznam…";
+
+/* Menu item to directly diplicate a group */
+"DUPLICATE_GROUP" = "Duplikovat skupinu";
+
+/* Action name for duplicating groups */
+"DUPLICATE_GROUPS_ACTION_NAME" = "Duplikovat skupinu";
+
+/* Menu item in the database outline context menu to change the template group
+   Menu item on the add entry context menu to edit template groups */
+"EDIT_TEMPLATE_GROUP" = "Upravit skupinu šablon";
+
+/* Empty Trash
+   Menu item in the database outline context menu to empyt the trash
+   Menu item in the database outline to empty the trash
+   Menu item to empty the trash */
+"EMPTY_TRASH" = "Vysypat koš";
+
+/* Informative text for the enforce password change alert */
+"ENFORCE_PASSWORD_CHANGE_ALERT_DESCRIPTION" = "Nebudete moci uložit, dokud nebude změněno heslo a/nebo soubor klíče.";
+
+/* Message text for the enforce password change alert */
+"ENFORCE_PASSWORD_CHANGE_ALERT_TITLE" = "Heslo databáze expirovalo!";
+
+/* Group row for entry attributes */
+"ENTRY_CUSTOM_ATTRIBUTES" = "Vlastní atributy";
+
+/* Group row for entry attributes */
+"ENTRY_DEFAULT_ATTRIBUTES" = "Výchozí atributy";
+
+/* Tooltip displayed on the index header cell */
+"ENTRY_INDEX_COLUMN_TOOLTIP" = "Sloupec pro řazení dle uživatelem definovaného pořadí";
+
+/* Keyfile not valid */
+"ERROR_INVALID_KEYFILE" = "Neplatný soubor klíče!";
+
+/* Error description given when adding an invalid plugin */
+"ERROR_INVALID_PLUGIN" = "Neplatný plugin";
+
+/* Error description for missing accessibility permissions */
+"ERROR_NO_ACCESSIBILITY_PERMISSIONS" = "MacPass nemá oprávnění ovládat váš počítač (Zpřístupnění)";
+
+/* Error description for missing screen recording permissions */
+"ERROR_NO_PERMISSION_TO_RECORD_SCREEN" = "MacPass nemá oprávnění zaznamenávat obrazovku";
+
+/* Passwords do not match */
+"ERROR_PASSWORD_MISSMATCH" = "Hesla nesouhlasí!";
+
+/* Recommend/Enforce key change intervall format */
+"EVERY_%ld_DAYS" = "Každých %ld dní";
+
+/* Format to returen the date an item expires. Includes %@ placehoder for date */
+"EXPIRES_AT_DATE_%@" = "Expiruje: %@";
+
+/* The master key was changed by an external program! */
+"EXTERN_CHANGE_OF_MASTERKEY" = "Hlavní klíč změněn jiným programem";
+
+/* Direct download */
+"FAVICON_DOWNLOAD_METHOD_DIRECT" = "Přímo";
+
+/* DuckDuckGo */
+"FAVICON_DOWNLOAD_METHOD_DUCKDUCKGO" = "Přes DuckDuckGo";
+
+/* Google */
+"FAVICON_DOWNLOAD_METHOD_GOOGLE" = "Přes Google";
+
+/* External file change strategy option: ask what to do */
+"FILE_CHANGE_STRATEGY_ASK" = "Zeptat se";
+
+/* External file change strategy option: Keep local file an ignore external changes */
+"FILE_CHANGE_STRATEGY_KEEP_MINE" = "Zachovat mou verzi a ignorovat ostatní změny";
+
+/* Button in dialog to merge changes into file!
+   External file change strategy option: Merge external changes into local file. */
+"FILE_CHANGE_STRATEGY_MERGE" = "Sloučit změny";
+
+/* External file change strategy option: Use the changed file and discard local changes */
+"FILE_CHANGE_STRATEGY_USE_OTHER" = "Načíst změněnou verzi a zahodit mou";
+
+/* Informative text displayed when the file was change from another application */
+"FILE_CHANGED_BY_OTHERS_INFO_TEXT" = "Načtená databáze není ta stejná jako na disku. Jak chcete pokračovat?";
+
+/* Message displayed when an open file was changed from another application */
+"FILE_CHANGED_BY_OTHERS_MESSAGE_TEXT" = "Soubor databáze byl modifikován!";
+
+/* Error while reopening last known documents */
+"FILE_OPEN_ERROR" = "Chyba při otevírání souboru.";
+
+/* General Settings Label */
+"GENERAL_PREFERENCES" = "Obecné";
+
+/* Group column title */
+"GROUP" = "Skupina";
+
+/* SHA 1 hash algoritm menu item */
+"HASH_SHA1" = "Sha1";
+
+/* SHA 256 hash algoritm menu item */
+"HASH_SHA256" = "Sha256";
+
+/* SHA 512 hash algoritm menu item */
+"HASH_SHA512" = "Sha512";
+
+/* History count column title
+   Menu item to toggle display of history count column in entry table */
+"HISTORY" = "Historie";
+
+/* Imports a dragged URL for a new entry */
+"IMPORT_URL" = "Importovat URL";
+
+/* Toolbar item toggle inspector */
+"INSPECTOR" = "Náhled";
+
+/* Label for the integration settings tab */
+"INTEGRATION_SETTINGS" = "Integrace";
+
+/* Just now */
+"JUST_NOW" = "Právě teď";
+
+/* Feature only available in kdbx databases */
+"KDBX_ONLY_FEATURE" = "Funkce není podporována v KDB databázi";
+
+/* Button in dialog to ignore the changes to an open file! */
+"KEEP_MINE_DISCARD_OTHER" = "Zachovat mou, zahodit jinou";
+
+/* Button in dialog to reopen the file! */
+"KEEP_OTHER_DISCARD_MINE" = "Zachovat jinou, zahodit mou";
+
+/* Do not install the plugin */
+"KEEP_PLUGIN" = "Zachovat plugin";
+
+/* Do not restart MacPass */
+"KEEP_RUNNING" = "Nerestartovat";
+
+/* last week */
+"LAST_WEEK" = "Minulý týden";
+
+/* Toolbar item to Lock the database */
+"LOCK" = "Uzamknout";
+
+/* Message in the open panel to add attachments to an entry */
+"MESSAGE_ADD_ATTACHMENT_OPEN_PANEL" = "Zvolte soubor k přiložení";
+
+/* Message in the add plugin open panel */
+"MESSAGE_ADD_PLUGIN_OPEN_PANEL" = "Zvolte plugin k instalaci";
+
+/* Message in the open panel to import an XML file */
+"MESSAGE_XML_OPEN_PANEL" = "Vyberte XML soubor pro import";
+
+/* Menu item to toggle display of modified date column in entry table
+   Modification date column title */
+"MODIFIED" = "Modifikováno";
+
+/* Action name when an entry was moved */
+"MOVE_ENTRY" = "Přesunout záznam";
+
+/* Menu displayed as popup selection for search options when multiple items are selected */
+"MULTIPLE_FILTERS_ACTIVE_WITH_DOTS" = "Několik…";
+
+/* Name for a newly created Database */
+"NEW_DATABASE" = "Databáze";
+
+/* Action name for a newly created entry
+   Menu item to create a new entry
+   Toolbar item new entry */
+"NEW_ENTRY" = "Nový záznam";
+
+/* Submen to create entries from tempaltes */
+"NEW_ENTRY_FROM_TEMPLATE" = "Nový záznam…";
+
+/* Submenu to add an entry via template */
+"NEW_ENTRY_WITH_TEMPLATE_%@" = "z %@";
+
+/* Action name for a newly created group
+   Menu item to create a new group
+   Toolbar item new group */
+"NEW_GROUP" = "Nová skupina";
+
+/* Expiration date format, when item does not expire */
+"NO_EXPIRE_DATE_SET" = "Nikdy neexpiruje";
+
+/* Menu item to reset the template groups */
+"NO_TEMPLATE_GROUP" = "Žádné šablony";
+
+/* Menu item added to show that no templates are defined */
+"NO_TEMPLATES" = "Šablony nenalezeny";
+
+/* Null placeholder for item input field
+   Placeholder text for input fields if no entry or group is selected */
+"NONE" = "Nevyplněno";
+
+/* Displayed name when notes or part of notes was copied
+   Menu item to toggle display of notes column in entry table
+   Notes column title
+   Notes reference item */
+"NOTES" = "Poznámky";
+
+/* Ok Button to dismiss disabled updates alert */
+"OK" = "OK";
+
+/* preset to expire after one montch from now */
+"ONE_MONTH" = "Za měsíc";
+
+/* preset to expire after one week from now */
+"ONE_WEEK" = "Za týden";
+
+/* one week ago */
+"ONE_WEEK_AGO" = "Před týdnem";
+
+/* preset to expire after one year from now */
+"ONE_YEAR" = "Za rok";
+
+/* Open button in the open panel to add attachments to an entry */
+"OPEN_BUTTON_ADD_ATTACHMENT_OPEN_PANEL" = "Přiložit";
+
+/* Open button in the add plugin open panel */
+"OPEN_BUTTON_ADD_PLUGIN_OPEN_PANEL" = "Nainstalovat";
+
+/* Open button in the open panel to import an XML file */
+"OPEN_BUTTON_IMPORT_XML_OPEN_PANEL" = "Importovat";
+
+/* Action button in Notification to open a document */
+"OPEN_DOCUMENT" = "Otevřít dokument";
+
+/* Menu item to open the URL with the default application */
+"OPEN_URL" = "Otevřít adresu URL";
+
+/* Select Browser */
+"OTHER_BROWSER" = "Zvolit prohlížeč…";
+
+/* OTP custom type  */
+"OTP_CUSTOM" = "Vlastní nastavení";
+
+/* OTP type RFC  */
+"OTP_RFC" = "RFC 6238";
+
+/* OTP type Steam  */
+"OTP_STEAM" = "Steam";
+
+/* Value field for reference lookup */
+"OUTPUT_VALUE" = "Výstupní hodnota";
+
+/* Menu item to toggle display of password column in entry table
+   Password column title
+   Password reference item */
+"PASSWORD" = "Heslo";
+
+/* Window title for the stand-alone password creator window */
+"PASSWORD_CREATOR_WINDOW_TITLE" = "Generátor hesel";
+
+/* Button to reset the password defaults for a single entry */
+"PASSWORD_GENERATOR_RESET_ENTRY_DEFAULTS" = "Resetovat";
+
+/* Button to set the defaults of the password generator */
+"PASSWORD_GENERATOR_SET_DEFAULTS" = "Jako výchozí";
+
+/* Placeholder for the password field to aks for password
+   Placeholder in the unlock-password input field if password is enabled */
+"PASSWORD_INPUT_ENTER_PASSWORD" = "Zadejte heslo";
+
+/* Placeholder for the password input field if passwords are disabled
+   Placeholder for the repeat password input if passwords are disabled
+   Placeholder in the unlock-password input field if password is disabled */
+"PASSWORD_INPUT_NO_PASSWORD" = "Žádné heslo";
+
+/* Placeholder for the repeat password field to aks for the repeated password */
+"PASSWORD_INPUT_REPEAT_PASSWORD" = "Zopakujte heslo";
+
+/* Menu item to perform autotype with the selected entry */
+"PERFORM_AUTOTYPE_FOR_ENTRY" = "Provést samodoplnění";
+
+/* Info about how many character has to pick in pickchar dialog */
+"PICKCHAR_INFO_MESSAGE_PICK_CHARACTERS_%ld" = "Zvolte, prosím, %ld znaky";
+
+/* Window displayed to the user to pick an amout of characters */
+"PICKCHAR_WINDOW_TITLE" = "Výběr znaku";
+
+/* Count of picked characters in pickchars dialog if no limit is set */
+"PICKED_%ld_CHARACTERS" = "Zvoleno %ld znaky";
+
+/* Window displayed to the user to pick an amout of characters */
+"PICKFIELD_WINDOW_TITLE" = "Zvolte pole";
+
+/* Label for the button when a download is in progress! */
+"PLUGIN_BROWSER_ACTION_DOWNLOAD_IN_PROGRESS" = "Stahování…";
+
+/* Label for the button when a download did not succeed */
+"PLUGIN_BROWSER_ACTION_RETRY_FAILED_DOWNLOAD" = "Selhalo. Znovu stáhnout";
+
+/* Label for the button to show a downloaded file */
+"PLUGIN_BROWSER_ACTION_SHOW_DOWNLOADED_FILE" = "Zobrazit ve Finderu…";
+
+/* Button to download the Plugin */
+"PLUGIN_BROWSER_DOWNLOAD_PLUGIN_BUTTON" = "Stáhnout";
+
+/* Status for an up-to-date plugin in the plugin browser */
+"PLUGIN_BROWSER_LATEST_VERSION_INSTALLED" = "Nainstalována nejnovější verze";
+
+/* Status for an outdated plugin version in the plugin browser */
+"PLUGIN_BROWSER_NEWER_VERSION_%@_AVAILABLE" = "Novější verze (%@) je k dispozici.";
+
+/* Status for an uninstalled plugin in the plugin browser */
+"PLUGIN_BROWSER_PLUGIN_NOT_INSTALLED" = "Nenainstalováno";
+
+/* Status for an unkonw plugin version in the plugin browser */
+"PLUGIN_BROWSER_UNKNOWN_PLUGIN_VERSION_INSTALLED_%@" = "Je nainstalována neznámá verze %@";
+
+/* Error for a plugin that is disabled. */
+"PLUGIN_ERROR_DISABLED_PLUGIN" = "Plugin zakázán uživatelem";
+
+/* Plugin is not with this version of MacPass */
+"PLUGIN_ERROR_HOST_VERSION_NOT_SUPPORTED" = "Plugin není kompatibilní s touto verzí aplikace MacPass";
+
+/* The plugin could not be initalized */
+"PLUGIN_ERROR_INTILIZATION_FAILED" = "Plugin nemohl být nainstalován";
+
+/* Error for a plugin that was not signed properly */
+"PLUGIN_ERROR_UNSECURE_PLUGIN" = "Plugin není řádně podepsán";
+
+/* Plugin specifies the wrong principal class! */
+"PLUGIN_ERROR_WRONG_PRINCIPAL_CLASS" = "Neočekávaná hlavní třída pluginu";
+
+/* name for disabled unloaded plugin */
+"PLUGIN_NAME_DISABLED_%@" = "🚫 %@";
+
+/* Name for unloaded plugin with errors */
+"PLUGIN_NAME_ERROR_%@" = "⚠️ %@";
+
+/* Label for plugin settings tab */
+"PLUGIN_SETTINGS" = "Pluginy";
+
+/* Generic message displayed if no details are know why a plugin was not loaded. */
+"PLUGIN_SETTINGS_GENERIC_ERROR_MESSAGE" = "Plugin nemohl být načten.";
+
+/* Plugin version. Include a %@ placeholder for version string */
+"PLUGIN_VERSION_%@" = "Verze: %@";
+
+/* Menu item to preview the selected attached file. */
+"PREVIEW" = "Náhled";
+
+/* Recent searches menu item */
+"RECENT_SEARCHES" = "Minulá hledání";
+
+/* Informative text for the recommend password change alert */
+"RECOMMEND_PASSWORD_CHANGE_ALERT_DESCRIPTION" = "Je doporučeno změnit heslo a/nebo soubor klíče.";
+
+/* Message text for the recommend password change alert */
+"RECOMMEND_PASSWORD_CHANGE_ALERT_TITLE" = "Změňte, prosím, heslo databáze!";
+
+/* Updated at text when the local plugin defintino is used */
+"REPOSITORY_UPDATED_AT_LOCAL" = "Nikdy (použita verze ze sestavení)";
+
+/* Restart */
+"RESTART" = "Restartovat";
+
+/* Action to restore an Entry to a previous state of its history */
+"RESTORE_HISTORY_ENTRY" = "Obnovit záznam z historie";
+
+/* Menu item to save the selected attached file.
+   Save file menu item title when save will just save the file */
+"SAVE" = "Uložit";
+
+/* Button title to save the generated key file */
+"SAVE_KEYFILE" = "Uložit soubor klíče";
+
+/* Save file menu item title when save will prompt for a location to save or ask for a password/key */
+"SAVE_WITH_DOTS" = "Uložit…";
+
+/* Search input in Toolbar */
+"SEARCH" = "Hledání";
+
+/* Search option: Find duplicate passwords */
+"SEARCH_DUPLICATE_PASSWORDS" = "Duplicitní hesla";
+
+/* Placeholder string displayed in the search field in the toolbar */
+"SEARCH_EVERYWHERE" = "Hledat všude";
+
+/* Search option: Find expired entries */
+"SEARCH_EXPIRED_ENTRIES" = "Expirované";
+
+/* Inherit search settings menu item */
+"SEARCH_INHERIT" = "Zdědit nastavení hledání";
+
+/* Disable search menu item */
+"SEARCH_NO" = "Vyloučit z hledání";
+
+/* Search field for references lookup */
+"SEARCH_VALUE" = "Hledaná hodnota";
+
+/* Enable search menu item */
+"SEARCH_YES" = "Zahrnout do vyhledávání";
+
+/* Menu item title for the expiry preset selection menu in the date picker */
+"SELECT_DATE_PRESET" = "Použít předvolbu…";
+
+/* Message on the open panel for selecting which browser to use for opening URLs */
+"SELECT_DEFAULT_BROWSER_OPEN_PANEL_MESSAGE" = "Zvolte prohlížeč pro otevírání URL adres.";
+
+/* Label for the select browser button on the open panel for selecting which browser to use for opening URLs */
+"SELECT_DEFAULT_BROWSER_OPEN_PANEL_SELECT_BUTTON" = "Zvolit";
+
+/* Message for the dialog to open a file for merge */
+"SELECT_FILE_TO_MERGE" = "Zvolte soubor pro sloučení";
+
+/* Menu displayed as popup selection for search options if no filter is selected */
+"SELECT_FILTER_WITH_DOTS" = "Vybrat…";
+
+/* Checkbox in dialog to set the selection as default file change strategy! */
+"SET_AS_DEFAULT_FILE_CHANGE_STRATEGY" = "Použít tuto metodu jako výchozí. Metoda lze kdykoliv změnit v Předvolbách.";
+
+/* Menu item title editing TOTP settings */
+"SETUP_TOTP_SETTINGS" = "Upravit nastavení TOTP.";
+
+/* Action button in Notification to show the Autotype Doctor */
+"SHOW_AUTOTYPE_DOCTOR" = "Zobrzit kontrolu funkčnosti samodoplňování";
+
+/* Menu item to toggle display type of passwords */
+"SHOW_CLEAR_TEXT_PASSWORDS" = "Zobrazit hesla";
+
+/* Menu item to show the entries group in the outline view */
+"SHOW_GROUP_IN_OUTLINE" = "Zobrazit skupinu v přehledu";
+
+/* Menu item to show the history of the selected entry
+   Toolbar item to toggle history display */
+"SHOW_HISTORY" = "Zobrazit historii";
+
+/* Displayed name when title field was copied
+   Menu item to toggle display of title column in entry table
+   Title column title
+   Title reference item */
+"TITLE" = "Název";
+
+/* preset to expire tomorrow */
+"TOMORROW" = "Zítra";
+
+/* Toolbar item to perform autotype */
+"TOOLBAR_PERFORM_AUTOTYPE_FOR_ENTRY" = "Samodoplňování";
+
+/* Field TOTP was copied to the pasteboard */
+"TOTP" = "TOTP";
+
+/* Time in seconds remaining for a valid TOTP string, format should be %ld */
+"TOTP_REMAINING_TIME_%ld_SECONDS" = "%ld s";
+
+/* Touchbar button label for choosing the keyfile */
+"TOUCHBAR_CHOOSE_KEYFILE" = "Zvolte soubor klíče";
+
+/* Touchbar button label for copying the password */
+"TOUCHBAR_COPY_PASSWORD" = "Kopírovat heslo";
+
+/* Touchbar button label for copying the username */
+"TOUCHBAR_COPY_USERNAME" = "Kopírovat uživatelské jméno";
+
+/* Touchbar button label for deleting elements */
+"TOUCHBAR_DELETE" = "Smazat";
+
+/* Touchbar button label for opening the popover to edit */
+"TOUCHBAR_EDIT" = "Upravit";
+
+/* Touchbar button label for locking the database */
+"TOUCHBAR_LOCK_DATABASE" = "Uzamknout databázi";
+
+/* Touchbar button label for creating a new item */
+"TOUCHBAR_NEW_ENTRY" = "Nový záznam";
+
+/* Touchbar button label for creating a new group */
+"TOUCHBAR_NEW_GROUP" = "Nová skupina";
+
+/* Touchbar button label for performing autotype */
+"TOUCHBAR_PERFORM_AUTOTYPE" = "Provést samodoplnění";
+
+/* Touchbar button label for searching the database */
+"TOUCHBAR_SEARCH" = "Prohledat databázi";
+
+/* Touchbar button label for showing the password */
+"TOUCHBAR_SHOW_PASSWORD" = "Ukázat heslo";
+
+/* Touchbar button label for unlocking the database */
+"TOUCHBAR_UNLOCK_DATABASE" = "Odemknout databázi";
+
+/* Move Entry to Trash */
+"TRASH_ENTRY" = "Smazat záznam";
+
+/* Move Group to Trash */
+"TRASH_GROUP" = "Smazat skupinu";
+
+/* Uninstall plugin */
+"UNINSTALL" = "Odinstalovat";
+
+/* No comment provided by engineer. */
+"UNKNOWN_FILE_VERSION" = "Neznámá verze databáze";
+
+/* Unknown database format. */
+"UNKNOWN_FORMAT" = "Neznámý formát souboru";
+
+/* Database format is unknown since the file is not saved yet */
+"UNKNOWN_FORMAT_FILE_NOT_SAVED_YET" = "Neznámý, databáze zatím neuložena";
+
+/* No comment provided by engineer. */
+"UNKNOWN_TOOLBAR_ITEM" = "Neznámá položka panelu nástrojů";
+
+/* Update Settings Label */
+"UPDATE_PREFERENCES" = "Aktualizace";
+
+/* Menu item to toggle display of url column in entry table
+   Submenu with options what to do with the URL of an entry
+   Url column title
+   URL reference item */
+"URL" = "Adresa URL";
+
+/* Menu item to toggle display of username column in entry table
+   Username column title
+   Username reference item */
+"USERNAME" = "Uživatelské jméno";
+
+/* Displayed name when uuid field was copied
+   UUID reference item */
+"UUID" = "UUID";
+
+/* Error message displayed when the current database file is also set as the key file */
+"WARNING_CURRENT_DATABASE_FILE_SELECTED_AS_KEY_FILE" = "Nemůžete nastavit aktuální databázi jako soubor klíče.";
+
+/* Error message displayed when a keepass database file is set as the key file */
+"WARNING_DATABASE_FILE_SELECTED_AS_KEY_FILE" = "Nemůžete zvolit jinou databázi jako soubor klíče, protože se může změnit a nebudete moci otevřít aktuální databázi.";
+
+/* No key file is set
+ Warning tha no key file is set when chaning the password */
+"WARNING_NO_KEYFILE" = "Soubor klíče nevybrán";
+
+/* Warning if no password is set when chaning the password */
+"WARNING_NO_PASSWORD" = "Heslo nenastaveno";
+
+/* Informative Text displayed when clearing the Trash */
+"WARNING_ON_DELETE_TRASHED_NODE_DESCRIPTION" = "Soubory z koše budou smazány!";
+
+/* Message text for the alert displayed when deleting a node */
+"WARNING_ON_DELETE_TRASHED_NODE_TITLE" = "Mazání položky z koše";
+
+/* Informative Text displayed when clearing the Trash */
+"WARNING_ON_EMPTY_TRASH_DESCRIPTION" = "Vyprázdnění koše je nevratné.";
+
+/* Message text for the alert displayed when clearing the Trash */
+"WARNING_ON_EMPTY_TRASH_TITLE" = "Vyprázdnit koš?";
+
+/* No comment provided by engineer. */
+"WARNING_ON_SAVE_NO_PASSWORD_OR_KEY_SET" = "Nenastaveno heslo ani soubor klíče.";
+
+/* No comment provided by engineer. */
+"WARNING_ON_SAVE_NO_PASSWORD_OR_KEY_SET_SUGGESTION" = "Zvolte, prosím, heslo a/nebo soubor klíče pro tuto databázi. Zrušením se vrátí zpět všechny změny a dokument se uzamkne.";
+
+/* Text displayed when no recent documents can be displayed in */
+"WELCOME_WINDOW_NO_RECENT_DOCUMENTS" = "Žádné poslední dokumenty";
+
+/* Label for the workflow settings tab */
+"WORKFLOW_SETTINGS" = "Workflow";
+
+/* Yesterday */
+"YESTERDAY" = "Včera";
+

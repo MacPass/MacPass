@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>DUPLICATE_GROUPS_ACTION_NAME</key>
+	<dict>
+		<key>NSStringLocalizedFormatKey</key>
+		<string>%#@groups@</string>
+		<key>groups</key>
+		<dict>
+			<key>NSStringFormatValueTypeKey</key>
+			<string>ld</string>
+			<key>NSStringFormatSpecTypeKey</key>
+			<string>NSStringPluralRuleType</string>
+			<key>one</key>
+			<string>Duplikovat skupinu</string>
+			<key>other</key>
+			<string>Duplikovat skupiny</string>
+		</dict>
+	</dict>
+	<key>%ld_CHARACTERS_TO_PICK_REMAINING</key>
+	<dict>
+		<key>NSStringLocalizedFormatKey</key>
+		<string>%#@characters@</string>
+		<key>characters</key>
+		<dict>
+			<key>NSStringFormatSpecTypeKey</key>
+			<string>NSStringPluralRuleType</string>
+			<key>NSStringFormatValueTypeKey</key>
+			<string>ld</string>
+			<key>one</key>
+			<string>Zbývá jeden znak</string>
+			<key>two</key>
+			<string>Zbývají %ld znaky</string>
+			<key>three</key>
+			<string>Zbývají %ld znaky</string>
+			<key>four</key>
+			<string>Zbývají %ld znaky</string>
+			<key>other</key>
+			<string>Zbývá %ld znaků</string>
+			<key>zero</key>
+			<string>Všechny znaky vybrány</string>
+		</dict>
+	</dict>
+	<key>DUPLICATE_ENTRIES_ACTION_NAME</key>
+	<dict>
+		<key>NSStringLocalizedFormatKey</key>
+		<string>%#@entries@</string>
+		<key>entries</key>
+		<dict>
+			<key>NSStringFormatSpecTypeKey</key>
+			<string>NSStringPluralRuleType</string>
+			<key>NSStringFormatValueTypeKey</key>
+			<string>ld</string>
+			<key>one</key>
+			<string>Duplikovat záznam</string>
+			<key>other</key>
+			<string>Duplikovat záznamy</string>
+			<key>zero</key>
+			<string>Duplikovat záznamy</string>
+		</dict>
+	</dict>
+	<key>EVERY_%ld_DAYS</key>
+	<dict>
+		<key>NSStringLocalizedFormatKey</key>
+		<string>%#@days@</string>
+		<key>days</key>
+		<dict>
+			<key>NSStringFormatSpecTypeKey</key>
+			<string>NSStringPluralRuleType</string>
+			<key>NSStringFormatValueTypeKey</key>
+			<string>ld</string>
+			<key>one</key>
+			<string>každý den</string>
+			<key>two</key>
+			<string>každé %ld dny</string>
+			<key>three</key>
+			<string>každé %ld dny</string>
+			<key>four</key>
+			<string>každé %ld dny</string>
+			<key>other</key>
+			<string>každých %ld dní</string>
+			<key>zero</key>
+			<string>po každém odemknutí</string>
+		</dict>
+	</dict>
+	<key>PICKCHAR_INFO_MESSAGE_PICK_CHARACTERS_%ld</key>
+	<dict>
+		<key>NSStringLocalizedFormatKey</key>
+		<string>%#@characters@</string>
+		<key>characters</key>
+		<dict>
+			<key>NSStringFormatSpecTypeKey</key>
+			<string>NSStringPluralRuleType</string>
+			<key>NSStringFormatValueTypeKey</key>
+			<string>ld</string>
+			<key>one</key>
+			<string>Prosím vyberte jeden znak k použití</string>
+			<key>two</key>
+			<string>Prosím vyberte %ld znaky k použití</string>
+			<key>three</key>
+			<string>Prosím vyberte %ld znaky k použití</string>
+			<key>four</key>
+			<string>Prosím vyberte %ld znaky k použití</string>
+			<key>other</key>
+			<string>Prosím vyberte %ld znaků k použití</string>
+			<key>zero</key>
+			<string>Prosím vyberte znaky k použití</string>
+		</dict>
+	</dict>
+	<key>PICKED_%ld_CHARACTERS</key>
+	<dict>
+		<key>NSStringLocalizedFormatKey</key>
+		<string>%#@characters@</string>
+		<key>characters</key>
+		<dict>
+			<key>NSStringFormatSpecTypeKey</key>
+			<string>NSStringPluralRuleType</string>
+			<key>NSStringFormatValueTypeKey</key>
+			<string>ld</string>
+			<key>one</key>
+			<string>%ld znak vybrán</string>
+			<key>two</key>
+			<string>%ld znaky vybrány</string>
+			<key>three</key>
+			<string>%ld znaky vybrány</string>
+			<key>four</key>
+			<string>%ld znaky vybrány</string>
+			<key>other</key>
+			<string>%ld znaků vybráno</string>
+			<key>zero</key>
+			<string>Nevybrán žádný znak</string>
+		</dict>
+	</dict>
+</dict>
+</plist>
