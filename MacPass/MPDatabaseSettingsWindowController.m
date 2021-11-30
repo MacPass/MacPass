@@ -197,12 +197,21 @@
   [self dismissSheet:0];
 }
 
-- (IBAction)benchmarkRounds:(id)sender {
-  self.createKeyDerivationParametersButton.enabled = NO;
-  [KPKAESKeyDerivation parametersForDelay:1 completionHandler:^(NSDictionary * _Nonnull options) {
-    self.aesEncryptionRoundsTextField.integerValue = [options[KPKAESRoundsOption] unsignedInteger64Value];
-    self.createKeyDerivationParametersButton.enabled = YES;
-  }];
+- (IBAction)benchmarkParametersForDelay:(id)sender {
+  NSUUID *selectedKdfUUID = self.keyDerivationSettingsTabView.selectedTabViewItem.identifier;
+  if([selectedKdfUUID isEqual:[KPKAESKeyDerivation uuid]]) {
+    self.createKeyDerivationParametersButton.enabled = NO;
+    [KPKAESKeyDerivation parametersForDelay:1 completionHandler:^(NSDictionary * _Nonnull options) {
+      self.aesEncryptionRoundsTextField.integerValue = [options[KPKAESRoundsOption] unsignedInteger64Value];
+      self.createKeyDerivationParametersButton.enabled = YES;
+    }];
+  }
+  else if([selectedKdfUUID isEqual:[KPKArgon2DKeyDerivation uuid]]) {
+    // TODO: add benchmark
+  }
+  else if([selectedKdfUUID isEqual:[KPKArgon2IDKeyDerivation uuid]]) {
+    // TODO: add benchmark
+  }
 }
 
 - (void)updateView {
