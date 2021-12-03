@@ -62,17 +62,17 @@
   scrollView.showBottomShadow = NO;
   scrollView.hasVerticalRuler = YES;
   scrollView.drawsBackground = NO;
-  scrollView.translatesAutoresizingMaskIntoConstraints = NO;
+  /*scrollView.translatesAutoresizingMaskIntoConstraints = NO;
   NSView *clipView = scrollView.contentView;
   
-  scrollView.documentView = self.contentView;
+  //scrollView.documentView = self.contentView;
   
   NSDictionary *views = NSDictionaryOfVariableBindings(_contentView);
   [clipView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|[_contentView]|"
                                                                    options:0
                                                                    metrics:nil
                                                                      views:views]];
-  [self.view layoutSubtreeIfNeeded];
+  [self.view layoutSubtreeIfNeeded];*/
   
   NSMenu *autotypeMenu = self.autotypePopupButton.menu;
   NSMenuItem *inheritAutotype = [[NSMenuItem alloc] initWithTitle:NSLocalizedString(@"AUTOTYPE_INHERIT", "Inherit autotype settings menu item") action:NULL keyEquivalent:@""];

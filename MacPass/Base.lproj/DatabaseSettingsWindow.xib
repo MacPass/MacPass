@@ -84,7 +84,7 @@ Gw
                         </connections>
                     </button>
                     <tabView translatesAutoresizingMaskIntoConstraints="NO" id="357">
-                        <rect key="frame" x="13" y="40" width="474" height="310"/>
+                        <rect key="frame" x="13" y="40" width="474" height="334"/>
                         <font key="font" metaFont="system"/>
                         <tabViewItems>
                             <tabViewItem label="General" identifier="1" id="358">
@@ -421,7 +421,7 @@ Gw
                                                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                                     <subviews>
                                                                         <stepper horizontalHuggingPriority="750" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="qKz-Ir-3lf">
-                                                                            <rect key="frame" x="254" y="18" width="19" height="26"/>
+                                                                            <rect key="frame" x="254" y="17" width="19" height="28"/>
                                                                             <stepperCell key="cell" continuous="YES" alignment="left" maxValue="100" id="vGb-iO-lp5"/>
                                                                         </stepper>
                                                                         <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" horizontalCompressionResistancePriority="751" translatesAutoresizingMaskIntoConstraints="NO" id="vRx-5Q-dar">
