@@ -58,7 +58,7 @@
                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                 <subviews>
                     <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="288">
-                        <rect key="frame" x="433" y="13" width="54" height="32"/>
+                        <rect key="frame" x="492" y="13" width="54" height="32"/>
                         <buttonCell key="cell" type="push" title="OK" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="289">
                             <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                             <font key="font" metaFont="system"/>
@@ -71,7 +71,7 @@ DQ
                         </connections>
                     </button>
                     <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="956">
-                        <rect key="frame" x="359" y="13" width="76" height="32"/>
+                        <rect key="frame" x="418" y="13" width="76" height="32"/>
                         <buttonCell key="cell" type="push" title="Cancel" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="957">
                             <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                             <font key="font" metaFont="system"/>
@@ -84,7 +84,7 @@ Gw
                         </connections>
                     </button>
                     <tabView translatesAutoresizingMaskIntoConstraints="NO" id="357">
-                        <rect key="frame" x="13" y="40" width="474" height="334"/>
+                        <rect key="frame" x="13" y="40" width="533" height="439"/>
                         <font key="font" metaFont="system"/>
                         <tabViewItems>
                             <tabViewItem label="General" identifier="1" id="358">
