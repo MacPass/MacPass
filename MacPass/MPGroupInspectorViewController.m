@@ -127,6 +127,10 @@
                       toObject:self
                    withKeyPath:[NSString stringWithFormat:@"%@.%@", NSStringFromSelector(@selector(representedObject)), NSStringFromSelector(@selector(isSearchEnabled))]
                        options:nil];
+  [self.tagsTokenField bind:NSValueBinding
+                   toObject:self
+                withKeyPath:[NSString stringWithFormat:@"%@.%@", NSStringFromSelector(@selector(representedObject)), NSStringFromSelector(@selector(tags))]
+                    options:nullPlaceholderOptionsDict];
 }
 - (IBAction)toggleExpire:(NSButton*)sender {
   KPKGroup *group = self.representedObject;
