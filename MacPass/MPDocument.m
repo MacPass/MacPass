@@ -240,13 +240,6 @@ NSString *const MPDocumentGroupKey                            = @"MPDocumentGrou
 
 - (void)close {
   [self _cleanupLock];
-  /*
-   We store the last url. Restored windows are automatically handled.
-   If closeAllDocuments is set, all docs get this message
-   */
-  if(self.fileURL.isFileURL) {
-    [[NSUserDefaults standardUserDefaults] setObject:self.fileURL.absoluteString forKey:kMPSettingsKeyLastDatabasePath];
-  }
   self.tree = nil;
   [super close];
 }

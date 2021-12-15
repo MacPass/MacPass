@@ -92,6 +92,7 @@ typedef NS_OPTIONS(NSInteger, MPAppStartupState) {
     _userNotificationCenterDelegate = [[MPUserNotificationCenterDelegate alloc] init];
     self.itemActionMenuDelegate = [[MPEntryContextMenuDelegate alloc] init];
     _shouldOpenFile = NO;
+    _isTerminating = NO;
     self.startupState = MPAppStartupStateNone;
     
     [NSNotificationCenter.defaultCenter addObserver:self
@@ -185,6 +186,7 @@ typedef NS_OPTIONS(NSInteger, MPAppStartupState) {
 }
 
 - (NSApplicationTerminateReply)applicationShouldTerminate:(NSApplication *)sender {
+  _isTerminating = YES;
   [self hideWelcomeWindow];
   if(MPTemporaryFileStorageCenter.defaultCenter.hasPendingStorages) {
     dispatch_async(dispatch_get_main_queue(), ^{
