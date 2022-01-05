@@ -31,6 +31,8 @@
 #import "KeePassKit/KeePassKit.h"
 #import "KPKFormat+MPUTIDetection.h"
 
+#import "NSApplication+MPAdditions.h"
+
 @interface MPDocumentController ()
 
 @property (strong) IBOutlet NSView *accessoryView;
@@ -42,6 +44,14 @@
 @end
 
 @implementation MPDocumentController
+
+- (BOOL)hasEditedDocuments {
+  MPAppDelegate *delegate = NSApp.mp_delegate;
+  if(delegate.isTerminating) {
+    // store all open documents once?!
+  }
+  return [super hasEditedDocuments];
+}
 
 - (void)beginOpenPanel:(NSOpenPanel *)openPanel forTypes:(NSArray *)inTypes completionHandler:(void (^)(NSInteger))completionHandler {
   self.openPanel = openPanel;
