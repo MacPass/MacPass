@@ -43,6 +43,7 @@
 #import "MPPlugin.h"
 #import "MPEntryContextMenuDelegate.h"
 #import "MPAutotypeDoctor.h"
+#import "MPHotkey.h"
 
 #import "NSApplication+MPAdditions.h"
 #import "NSTextView+MPTouchBarExtension.h"
@@ -215,6 +216,7 @@ typedef NS_OPTIONS(NSInteger, MPAppStartupState) {
   /* Initalizes Global Daemons */
   [MPLockDaemon defaultDaemon];
   [MPAutotypeDaemon defaultDaemon];
+  [MPHotkeyDaemon hotkeyDaemon];
   [MPPluginHost sharedHost];
 #if !defined(DEBUG) && !defined(NO_SPARKLE)
   /* Disable updates if in debug or nosparkle  */
