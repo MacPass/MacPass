@@ -23,7 +23,7 @@
 
 @class DDHotKey;
 /**
- *  The hotkey  is responsible for registering the global hotkey and to perform any autotype actions
+ *  The hotkey  is responsible for registering the global hotkey and to to show/hide MacPass
  */
 @interface MPHotkeyDaemon : NSObject
 
