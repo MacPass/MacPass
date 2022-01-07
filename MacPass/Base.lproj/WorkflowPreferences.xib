@@ -14,6 +14,9 @@
                 <outlet property="focusSearchAfterUnlockCheckButton" destination="VIS-db-Y8n" id="xVr-wf-eJg"/>
                 <outlet property="generatePasswordOnEntriesCheckButton" destination="yxq-YK-61i" id="0SK-CT-Wdn"/>
                 <outlet property="hideAfterCopyToClipboardCheckButton" destination="vT4-wF-ned" id="d7e-vc-cAQ"/>
+                <outlet property="hotkeyTextField" destination="ndS-10-Cli" id="O3k-MO-6SJ"/>
+                <outlet property="hotkeyWarningTextField" destination="ao4-0o-oyc" id="2pl-bi-680"/>
+                <outlet property="showOrHideMacPassCheckButton" destination="z3J-5h-Kcn" id="sie-VB-LZr"/>
                 <outlet property="updatePasswordOnTemplateEntriesCheckButton" destination="LPY-sM-hjS" id="wav-op-uck"/>
                 <outlet property="view" destination="1" id="52"/>
             </connections>
@@ -21,10 +24,10 @@
         <customObject id="-1" userLabel="First Responder" customClass="FirstResponder"/>
         <customObject id="-3" userLabel="Application" customClass="NSObject"/>
         <customView translatesAutoresizingMaskIntoConstraints="NO" id="1">
-            <rect key="frame" x="0.0" y="0.0" width="449" height="478"/>
+            <rect key="frame" x="0.0" y="0.0" width="449" height="564"/>
             <subviews>
                 <box autoresizesSubviews="NO" horizontalHuggingPriority="249" verticalHuggingPriority="500" borderType="line" title="Entry Table" translatesAutoresizingMaskIntoConstraints="NO" id="2">
-                    <rect key="frame" x="17" y="272" width="415" height="104"/>
+                    <rect key="frame" x="17" y="358" width="415" height="104"/>
                     <view key="contentView" id="cfa-nq-Kzt">
                         <rect key="frame" x="3" y="3" width="409" height="86"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -92,7 +95,7 @@
                     </constraints>
                 </box>
                 <box horizontalHuggingPriority="249" borderType="line" title="New Entries" translatesAutoresizingMaskIntoConstraints="NO" id="Xvt-tP-TbR">
-                    <rect key="frame" x="17" y="172" width="415" height="96"/>
+                    <rect key="frame" x="17" y="258" width="415" height="96"/>
                     <view key="contentView" id="g0i-00-sng">
                         <rect key="frame" x="3" y="3" width="409" height="78"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -124,7 +127,7 @@
                     </view>
                 </box>
                 <box horizontalHuggingPriority="249" title="Clipboard" translatesAutoresizingMaskIntoConstraints="NO" id="Kff-Xp-hAT">
-                    <rect key="frame" x="17" y="94" width="415" height="74"/>
+                    <rect key="frame" x="17" y="180" width="415" height="74"/>
                     <view key="contentView" id="Ntf-zj-VZL">
                         <rect key="frame" x="3" y="3" width="409" height="56"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -146,7 +149,7 @@
                     </view>
                 </box>
                 <box title="Search" translatesAutoresizingMaskIntoConstraints="NO" id="CLc-Vg-aWg">
-                    <rect key="frame" x="17" y="16" width="415" height="74"/>
+                    <rect key="frame" x="17" y="102" width="415" height="74"/>
                     <view key="contentView" id="KWW-Ss-mhI">
                         <rect key="frame" x="3" y="3" width="409" height="56"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -168,7 +171,7 @@
                     </view>
                 </box>
                 <box title="URLs" translatesAutoresizingMaskIntoConstraints="NO" id="8Z8-mS-hfg">
-                    <rect key="frame" x="17" y="380" width="415" height="78"/>
+                    <rect key="frame" x="17" y="466" width="415" height="78"/>
                     <view key="contentView" id="LD4-oH-eGw">
                         <rect key="frame" x="3" y="3" width="409" height="60"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -206,15 +209,63 @@
                         </constraints>
                     </view>
                 </box>
+                <box title="Show/Hide" translatesAutoresizingMaskIntoConstraints="NO" id="mpG-iq-bhB">
+                    <rect key="frame" x="17" y="16" width="415" height="82"/>
+                    <view key="contentView" id="R3w-li-WA8">
+                        <rect key="frame" x="3" y="3" width="409" height="64"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button horizontalHuggingPriority="249" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="z3J-5h-Kcn">
+                                <rect key="frame" x="18" y="39" width="347" height="18"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                <buttonCell key="cell" type="check" title="Enable hotkey to Show or Hide" bezelStyle="regularSquare" imagePosition="left" state="on" inset="2" id="L0R-mC-Agn">
+                                    <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                                    <font key="font" metaFont="system"/>
+                                </buttonCell>
+                            </button>
+                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Srb-DZ-qGe">
+                                <rect key="frame" x="48" y="17" width="57" height="16"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Shortcut" id="fNT-m3-Gh9">
+                                    <font key="font" metaFont="system"/>
+                                    <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
+                                    <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                                </textFieldCell>
+                            </textField>
+                            <textField verticalHuggingPriority="750" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ndS-10-Cli" customClass="DDHotKeyTextField">
+                                <rect key="frame" x="111" y="14" width="89" height="21"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="89" id="7jX-CO-3jH"/>
+                                </constraints>
+                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" placeholderString="" drawsBackground="YES" id="Le3-HF-bvk" customClass="DDHotKeyTextFieldCell">
+                                    <font key="font" metaFont="system"/>
+                                    <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
+                                    <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                </textFieldCell>
+                            </textField>
+                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ao4-0o-oyc">
+                                <rect key="frame" x="206" y="18" width="127" height="14"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Shortcut is missing Key" id="Z1b-ek-Rtf">
+                                    <font key="font" metaFont="smallSystem"/>
+                                    <color key="textColor" name="disabledControlTextColor" catalog="System" colorSpace="catalog"/>
+                                    <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                                </textFieldCell>
+                            </textField>
+                        </subviews>
+                    </view>
+                </box>
             </subviews>
             <constraints>
                 <constraint firstItem="2" firstAttribute="leading" secondItem="1" secondAttribute="leading" constant="20" symbolic="YES" id="5"/>
                 <constraint firstAttribute="trailing" secondItem="2" secondAttribute="trailing" constant="20" symbolic="YES" id="8"/>
-                <constraint firstAttribute="bottom" secondItem="CLc-Vg-aWg" secondAttribute="bottom" constant="20" symbolic="YES" id="1VG-9p-VC6"/>
+                <constraint firstItem="mpG-iq-bhB" firstAttribute="bottom" secondItem="1" secondAttribute="bottom" constant="-20" id="1VG-9p-VC6"/>
                 <constraint firstItem="Kff-Xp-hAT" firstAttribute="top" secondItem="Xvt-tP-TbR" secondAttribute="bottom" constant="8" symbolic="YES" id="3RL-tm-4wu"/>
                 <constraint firstAttribute="trailing" secondItem="8Z8-mS-hfg" secondAttribute="trailing" constant="20" symbolic="YES" id="5Hg-na-QAc"/>
+                <constraint firstAttribute="height" secondItem="mpG-iq-bhB" secondAttribute="height" multiplier="7.23077" id="90F-ub-nN3"/>
                 <constraint firstItem="Xvt-tP-TbR" firstAttribute="leading" secondItem="1" secondAttribute="leading" constant="20" symbolic="YES" id="BH4-4y-uma"/>
                 <constraint firstItem="Xvt-tP-TbR" firstAttribute="top" secondItem="2" secondAttribute="bottom" constant="8" symbolic="YES" id="FVK-Uf-kLv"/>
+                <constraint firstAttribute="height" constant="564" id="KQg-ar-5iV"/>
                 <constraint firstItem="CLc-Vg-aWg" firstAttribute="top" secondItem="Kff-Xp-hAT" secondAttribute="bottom" constant="8" symbolic="YES" id="MZ9-vN-2za"/>
                 <constraint firstItem="8Z8-mS-hfg" firstAttribute="top" secondItem="1" secondAttribute="top" constant="20" symbolic="YES" id="ScX-YY-rgS"/>
                 <constraint firstAttribute="trailing" secondItem="Kff-Xp-hAT" secondAttribute="trailing" constant="20" symbolic="YES" id="VLC-2A-Vdd"/>
@@ -222,10 +273,13 @@
                 <constraint firstItem="2" firstAttribute="top" secondItem="8Z8-mS-hfg" secondAttribute="bottom" constant="8" symbolic="YES" id="Z6D-RB-aR5"/>
                 <constraint firstAttribute="trailing" secondItem="Xvt-tP-TbR" secondAttribute="trailing" constant="20" id="anU-nC-YAw"/>
                 <constraint firstAttribute="trailing" secondItem="CLc-Vg-aWg" secondAttribute="trailing" constant="20" symbolic="YES" id="fXu-pq-O8Q"/>
+                <constraint firstAttribute="trailing" secondItem="mpG-iq-bhB" secondAttribute="trailing" constant="20" symbolic="YES" id="gi4-jv-uIS"/>
+                <constraint firstItem="mpG-iq-bhB" firstAttribute="leading" secondItem="1" secondAttribute="leading" constant="20" symbolic="YES" id="p1V-P9-mcG"/>
+                <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="564" id="pZq-NN-J9o"/>
                 <constraint firstItem="CLc-Vg-aWg" firstAttribute="leading" secondItem="1" secondAttribute="leading" constant="20" symbolic="YES" id="wyw-aC-Vkj"/>
                 <constraint firstItem="8Z8-mS-hfg" firstAttribute="leading" secondItem="1" secondAttribute="leading" constant="20" symbolic="YES" id="xdM-IO-cz3"/>
             </constraints>
-            <point key="canvasLocation" x="-906.5" y="-199.5"/>
+            <point key="canvasLocation" x="-906.5" y="-157"/>
         </customView>
     </objects>
 </document>
