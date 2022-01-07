@@ -77,10 +77,6 @@ static MPHotkeyDaemon *_sharedInstance;
    withKeyPath:[MPSettingsHelper defaultControllerPathForKey:kMPSettingsKeyShowHideKeyDataKey]
        options:nil];
     
-//    [NSWorkspace.sharedWorkspace.notificationCenter addObserver:self
-//                                                       selector:@selector(_didDeactivateApplication:)
-//                                                           name:NSWorkspaceDidDeactivateApplicationNotification
-//                                                         object:nil];
   }
   return self;
 }
