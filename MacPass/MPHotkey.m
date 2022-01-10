@@ -25,6 +25,10 @@
 #import "MPPluginHost.h"
 #import "MPPlugin.h"
 
+#import "MPDocument.h"
+#import "MPDocumentWindowController.h"
+#import "MPDocumentController.h"
+
 #import "NSApplication+MPAdditions.h"
 #import "NSUserNotification+MPAdditions.h"
 
@@ -76,6 +80,9 @@ static MPHotkeyDaemon *_sharedInstance;
       toObject:NSUserDefaultsController.sharedUserDefaultsController
    withKeyPath:[MPSettingsHelper defaultControllerPathForKey:kMPSettingsKeyShowHideKeyDataKey]
        options:nil];
+
+
+    
     
   }
   return self;
@@ -134,13 +141,32 @@ static MPHotkeyDaemon *_sharedInstance;
 - (void)_didPressHotKey {
 
   bool mpActive = [NSApp isActive];
+  BOOL focusSearchAfterHotkey = [NSUserDefaults.standardUserDefaults boolForKey:kMPSettingsKeyFocusSearchAfterHotkey];
+  
   if(mpActive) {
-    [NSApplication.sharedApplication hide:nil];
-  }
+      [NSApplication.sharedApplication hide:nil];
+    }
   else {
-    [NSApplication.sharedApplication activateIgnoringOtherApps:YES];
-    
-  }
+      [NSApplication.sharedApplication activateIgnoringOtherApps:YES];
+      
 
+      
+      if(focusSearchAfterHotkey) {
+        [self _focusSearchAfterHotkey];
+    }
+      
+  }
+  
+}
+- (void)_focusSearchAfterHotkey {
+
+  NSArray *documents = [NSDocumentController sharedDocumentController].documents;
+  NSPredicate *filterPredicate = [NSPredicate predicateWithBlock:^BOOL(id  _Nonnull evaluatedObject, NSDictionary<NSString *,id> * _Nullable bindings) {
+    MPDocument *document = evaluatedObject;
+    return !document.encrypted;}];
+  NSArray *unlockedDocuments = [documents filteredArrayUsingPredicate:filterPredicate];
+  [unlockedDocuments makeObjectsPerformSelector:@selector(performCustomSearch:)];
+
+  
 }
 @end

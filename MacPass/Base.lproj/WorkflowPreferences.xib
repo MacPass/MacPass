@@ -23,8 +23,8 @@
         </customObject>
         <customObject id="-1" userLabel="First Responder" customClass="FirstResponder"/>
         <customObject id="-3" userLabel="Application" customClass="NSObject"/>
-        <customView translatesAutoresizingMaskIntoConstraints="NO" id="1">
-            <rect key="frame" x="0.0" y="0.0" width="449" height="564"/>
+        <customView misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="1">
+            <rect key="frame" x="0.0" y="0.0" width="449" height="586"/>
             <subviews>
                 <box autoresizesSubviews="NO" horizontalHuggingPriority="249" verticalHuggingPriority="500" borderType="line" title="Entry Table" translatesAutoresizingMaskIntoConstraints="NO" id="2">
                     <rect key="frame" x="17" y="358" width="415" height="104"/>
@@ -209,14 +209,14 @@
                         </constraints>
                     </view>
                 </box>
-                <box title="Show/Hide" translatesAutoresizingMaskIntoConstraints="NO" id="mpG-iq-bhB">
-                    <rect key="frame" x="17" y="16" width="415" height="82"/>
+                <box misplaced="YES" title="Show/Hide" translatesAutoresizingMaskIntoConstraints="NO" id="mpG-iq-bhB">
+                    <rect key="frame" x="17" y="16" width="415" height="104"/>
                     <view key="contentView" id="R3w-li-WA8">
-                        <rect key="frame" x="3" y="3" width="409" height="64"/>
+                        <rect key="frame" x="3" y="3" width="409" height="86"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <button horizontalHuggingPriority="249" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="z3J-5h-Kcn">
-                                <rect key="frame" x="18" y="39" width="347" height="18"/>
+                                <rect key="frame" x="18" y="61" width="347" height="18"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <buttonCell key="cell" type="check" title="Enable hotkey to Show or Hide" bezelStyle="regularSquare" imagePosition="left" state="on" inset="2" id="L0R-mC-Agn">
                                     <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
@@ -224,7 +224,7 @@
                                 </buttonCell>
                             </button>
                             <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Srb-DZ-qGe">
-                                <rect key="frame" x="48" y="17" width="57" height="16"/>
+                                <rect key="frame" x="48" y="39" width="57" height="16"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Shortcut" id="fNT-m3-Gh9">
                                     <font key="font" metaFont="system"/>
@@ -233,7 +233,7 @@
                                 </textFieldCell>
                             </textField>
                             <textField verticalHuggingPriority="750" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ndS-10-Cli" customClass="DDHotKeyTextField">
-                                <rect key="frame" x="111" y="14" width="89" height="21"/>
+                                <rect key="frame" x="111" y="36" width="89" height="21"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="89" id="7jX-CO-3jH"/>
                                 </constraints>
@@ -244,7 +244,7 @@
                                 </textFieldCell>
                             </textField>
                             <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ao4-0o-oyc">
-                                <rect key="frame" x="206" y="18" width="127" height="14"/>
+                                <rect key="frame" x="206" y="40" width="127" height="14"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Shortcut is missing Key" id="Z1b-ek-Rtf">
                                     <font key="font" metaFont="smallSystem"/>
@@ -252,6 +252,14 @@
                                     <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                 </textFieldCell>
                             </textField>
+                            <button horizontalHuggingPriority="249" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="0qq-3C-pMA">
+                                <rect key="frame" x="48" y="11" width="347" height="18"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                <buttonCell key="cell" type="check" title="Focus Search after hotkey trigger" bezelStyle="regularSquare" imagePosition="left" inset="2" id="Q4M-FK-EGO">
+                                    <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                                    <font key="font" metaFont="system"/>
+                                </buttonCell>
+                            </button>
                         </subviews>
                     </view>
                 </box>
@@ -279,7 +287,7 @@
                 <constraint firstItem="CLc-Vg-aWg" firstAttribute="leading" secondItem="1" secondAttribute="leading" constant="20" symbolic="YES" id="wyw-aC-Vkj"/>
                 <constraint firstItem="8Z8-mS-hfg" firstAttribute="leading" secondItem="1" secondAttribute="leading" constant="20" symbolic="YES" id="xdM-IO-cz3"/>
             </constraints>
-            <point key="canvasLocation" x="-906.5" y="-157"/>
+            <point key="canvasLocation" x="-906.5" y="-146"/>
         </customView>
     </objects>
 </document>
