@@ -44,6 +44,7 @@
 #import "MPEntryContextMenuDelegate.h"
 #import "MPAutotypeDoctor.h"
 #import "MPHotkey.h"
+#import "MPDisplayOptions.h"
 
 #import "NSApplication+MPAdditions.h"
 #import "NSTextView+MPTouchBarExtension.h"
@@ -224,6 +225,23 @@ typedef NS_OPTIONS(NSInteger, MPAppStartupState) {
   self.startupState |= MPAppStartupStateFinishedLaunch;
   // Here we just opt-in for allowing our bar to be customized throughout the app.
     NSApplication.sharedApplication.automaticCustomizeTouchBarMenuItemEnabled = YES;
+  BOOL menubarExtra = [NSUserDefaults.standardUserDefaults boolForKey:kMPRSettingsKeyShowMenuItem];
+  BOOL dockHide = [NSUserDefaults.standardUserDefaults boolForKey:kMPRSettingsKeyHideDockIcon];
+  if(dockHide) {
+    self.statusItem = [[MPDisplayOption alloc]init];
+    [NSApplication.sharedApplication setActivationPolicy:NSApplicationActivationPolicyAccessory];
+    
+    
+  }
+  else if(menubarExtra) {
+    self.statusItem = [[MPDisplayOption alloc]init];
+    [NSApplication.sharedApplication setActivationPolicy:NSApplicationActivationPolicyAccessory];
+    
+  } else {
+    [NSApplication.sharedApplication setActivationPolicy:NSApplicationActivationPolicyRegular];
+  }
+  
+  
 }
 
 #pragma mark -

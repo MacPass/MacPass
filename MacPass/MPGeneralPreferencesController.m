@@ -86,7 +86,22 @@
     [self.fileChangeStrategyPopup.menu addItem:item];
   }
   [self.fileChangeStrategyPopup bind:NSSelectedTagBinding toObject:defaultsController withKeyPath:[MPSettingsHelper defaultControllerPathForKey:kMPSettingsKeyFileChangeStrategy] options:nil];
-
+  
+  BOOL menubarExtra = [NSUserDefaults.standardUserDefaults boolForKey:kMPRSettingsKeyShowMenuItem];
+  BOOL dockHide = [NSUserDefaults.standardUserDefaults boolForKey:kMPRSettingsKeyHideDockIcon];
+  if(menubarExtra && dockHide) {
+    self.displayBoth.state = NSOnState;
+    self.menubarOnly.state = NSOffState;
+    self.dockOnly.state = NSOffState;
+  } else if (menubarExtra) {
+    self.displayBoth.state = NSOffState;
+    self.menubarOnly.state = NSOnState;
+    self.dockOnly.state = NSOffState;
+  } else if (dockHide && !menubarExtra) {
+    self.displayBoth.state = NSOffState;
+    self.menubarOnly.state = NSOffState;
+    self.dockOnly.state = NSOnState;
+  }
 }
 
 - (IBAction)toggleDisplayOption:(id)sender {
@@ -95,28 +110,30 @@
   BOOL menubarOnly = self.menubarOnly.state == NSOnState;
   
   if(displayBothOptions){
-    [NSUserDefaults.standardUserDefaults setBool:!displayBothOptions forKey:kMPRSettingsKeyHideDockIcon];
+    self.statusItem = [[MPDisplayOption alloc]init];
+    [NSUserDefaults.standardUserDefaults setBool:NO forKey:kMPRSettingsKeyHideDockIcon];
     [NSUserDefaults.standardUserDefaults setBool:displayBothOptions forKey:kMPRSettingsKeyShowMenuItem];
     [NSApplication.sharedApplication setActivationPolicy:NSApplicationActivationPolicyRegular];
-    self.statusItem = [[MPDisplayOption alloc]init];
+   
     
     
   }
   if(dockOnly) {
-    [NSUserDefaults.standardUserDefaults setBool:!dockOnly forKey:kMPRSettingsKeyShowMenuItem];
-    [NSUserDefaults.standardUserDefaults setBool:!dockOnly forKey:kMPRSettingsKeyHideDockIcon];
+    [NSUserDefaults.standardUserDefaults setBool:NO forKey:kMPRSettingsKeyShowMenuItem];
+    [NSUserDefaults.standardUserDefaults setBool:NO forKey:kMPRSettingsKeyHideDockIcon];
     [NSApplication.sharedApplication setActivationPolicy:NSApplicationActivationPolicyRegular];
     
-//    [NSStatusBar.systemStatusBar removeStatusItem:self.statusItem];
+
     
     self.statusItem = nil;
     
   }
   if(menubarOnly) {
+    self.statusItem = [[MPDisplayOption alloc]init];
     [NSUserDefaults.standardUserDefaults setBool:menubarOnly forKey:kMPRSettingsKeyShowMenuItem];
     [NSUserDefaults.standardUserDefaults setBool:menubarOnly forKey:kMPRSettingsKeyHideDockIcon];
     [NSApplication.sharedApplication setActivationPolicy:NSApplicationActivationPolicyAccessory];
-    self.statusItem = [[MPDisplayOption alloc]init];
+    
   }
 }
   
