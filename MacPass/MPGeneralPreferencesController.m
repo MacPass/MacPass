@@ -23,6 +23,9 @@
 #import "MPGeneralPreferencesController.h"
 #import "MPSettingsHelper.h"
 #import "MPIconHelper.h"
+#import "MPDisplayOptions.h"
+
+
 
 @implementation MPGeneralPreferencesController
 
@@ -56,6 +59,7 @@
   [self.enableAutosaveCheckButton bind:NSValueBinding toObject:defaultsController withKeyPath:[MPSettingsHelper defaultControllerPathForKey:kMPSettingsKeyEnableAutosave] options:nil];
   [self.rememberKeyFileCheckButton bind:NSValueBinding toObject:defaultsController withKeyPath:[MPSettingsHelper defaultControllerPathForKey:kMPSettingsKeyRememberKeyFilesForDatabases] options:nil];
 
+  
   /* Favicon download method menu */
   NSDictionary *faviconDownloadMethodDict = @{ @(MPFaviconDownloadMethodDirect) : NSLocalizedString(@"FAVICON_DOWNLOAD_METHOD_DIRECT", @"Favicon download method: directly download from the host"),
                                                @(MPFaviconDownloadMethodDuckDuckGo) : NSLocalizedString(@"FAVICON_DOWNLOAD_METHOD_DUCKDUCKGO", @"Favicon download method: use DuckDuckGo's favicon fetching service"),
@@ -84,4 +88,36 @@
   [self.fileChangeStrategyPopup bind:NSSelectedTagBinding toObject:defaultsController withKeyPath:[MPSettingsHelper defaultControllerPathForKey:kMPSettingsKeyFileChangeStrategy] options:nil];
 
 }
+
+- (IBAction)toggleDisplayOption:(id)sender {
+  BOOL displayBothOptions = self.displayBoth.state == NSOnState;
+  BOOL dockOnly = self.dockOnly.state == NSOnState;
+  BOOL menubarOnly = self.menubarOnly.state == NSOnState;
+  
+  if(displayBothOptions){
+    [NSUserDefaults.standardUserDefaults setBool:!displayBothOptions forKey:kMPRSettingsKeyHideDockIcon];
+    [NSUserDefaults.standardUserDefaults setBool:displayBothOptions forKey:kMPRSettingsKeyShowMenuItem];
+    [NSApplication.sharedApplication setActivationPolicy:NSApplicationActivationPolicyRegular];
+    self.statusItem = [[MPDisplayOption alloc]init];
+    
+    
+  }
+  if(dockOnly) {
+    [NSUserDefaults.standardUserDefaults setBool:!dockOnly forKey:kMPRSettingsKeyShowMenuItem];
+    [NSUserDefaults.standardUserDefaults setBool:!dockOnly forKey:kMPRSettingsKeyHideDockIcon];
+    [NSApplication.sharedApplication setActivationPolicy:NSApplicationActivationPolicyRegular];
+    
+//    [NSStatusBar.systemStatusBar removeStatusItem:self.statusItem];
+    
+    self.statusItem = nil;
+    
+  }
+  if(menubarOnly) {
+    [NSUserDefaults.standardUserDefaults setBool:menubarOnly forKey:kMPRSettingsKeyShowMenuItem];
+    [NSUserDefaults.standardUserDefaults setBool:menubarOnly forKey:kMPRSettingsKeyHideDockIcon];
+    [NSApplication.sharedApplication setActivationPolicy:NSApplicationActivationPolicyAccessory];
+    self.statusItem = [[MPDisplayOption alloc]init];
+  }
+}
+  
 @end

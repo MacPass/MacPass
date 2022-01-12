@@ -40,6 +40,8 @@ NSString *const kMPSettingsKeyEnableAutosave                              = @"En
 NSString *const kMPSettingsKeyFocusSearchAfterUnlock                      = @"FocusSearchAfterUnlock";
 NSString *const kMPSettingsKeyShowOrHideMacPass                           = @"ShowOrHideMacPass";
 NSString *const kMPSettingsKeyShowHideKeyDataKey                          = @"ShowHideKeyDataKey";
+NSString *const kMPRSettingsKeyShowMenuItem                               = @"ShowMenuItem";
+NSString *const kMPRSettingsKeyHideDockIcon                               = @"HideDockIcon";
 
 NSString *const kMPSettingsKeyPasteboardClearTimeout                            = @"ClipboardClearTimeout";
 NSString *const kMPSettingsKeyClearPasteboardOnQuit                             = @"ClearClipboardOnQuit";
@@ -202,6 +204,8 @@ NSString *const kMPDepricatedSettingsKeyEntryTouchIdDatabaseEncryptedKeyFormat  
       kMPSettingsKeyFocusSearchAfterUnlock: @NO, // Do not enter search directly after unlocking the database
       kMPSettingsKeyShowOrHideMacPass: @NO, // Do not enable hotkey by default
       kMPSettingsKeyShowHideKeyDataKey: DDHotKey.defaultHotKeyData, // Empty - No default hotkey
+      kMPRSettingsKeyShowMenuItem: @NO,
+      kMPRSettingsKeyHideDockIcon: @NO,
       kMPSettingsKeyUsePrivateBrowsingWhenOpeningURLs: @NO // No private mode when option URLs by default
     };
   });

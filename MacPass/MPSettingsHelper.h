@@ -41,7 +41,9 @@ APPKIT_EXTERN NSString *const kMPSettingsKeyEnableAutosave;                 // i
 APPKIT_EXTERN NSString *const kMPSettingsKeyFocusSearchAfterUnlock;         // Enter search after unlocking the database
 APPKIT_EXTERN NSString *const kMPSettingsKeyShowOrHideMacPass;
     // Enable hotkey for showing or hiding MacPass
-   
+APPKIT_EXTERN NSString *const kMPRSettingsKeyShowMenuItem;
+APPKIT_EXTERN NSString *const kMPRSettingsKeyHideDockIcon;
+
 
 /* Entry Table Display */
 APPKIT_EXTERN NSString *const kMPSettingsKeyDisplayClearTextPasswordsInEntryList;
