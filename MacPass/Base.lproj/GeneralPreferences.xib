@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="15705" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="19455" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
     <dependencies>
         <deployment identifier="macosx"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="15705"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="19455"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
@@ -10,6 +10,8 @@
             <connections>
                 <outlet property="clearPasteboardOnQuitCheckButton" destination="447" id="520"/>
                 <outlet property="clearPasteboardTimeoutPopup" destination="419" id="521"/>
+                <outlet property="displayBoth" destination="DmN-uw-MW3" id="xtB-R0-OwB"/>
+                <outlet property="dockOnly" destination="loI-8e-8E4" id="Wbd-QC-b71"/>
                 <outlet property="enableAutosaveCheckButton" destination="lz3-4U-UMI" id="L5y-58-IgH"/>
                 <outlet property="faviconDownloadMethodPopup" destination="OfU-6f-oTU" id="OfU-6f-oTU-outlet"/>
                 <outlet property="fileChangeStrategyPopup" destination="wIu-Sh-2a2" id="oJo-dA-lEE"/>
@@ -17,6 +19,7 @@
                 <outlet property="lockOnLogoutCheckButton" destination="5SP-Vi-1sn" id="yaI-LH-R5A"/>
                 <outlet property="lockOnScreenSleepCheckButton" destination="nRe-7S-HwK" id="0IB-5B-pfw"/>
                 <outlet property="lockOnSleepCheckButton" destination="630" id="810"/>
+                <outlet property="menubarOnly" destination="vVu-wJ-GcP" id="AH5-5y-UzD"/>
                 <outlet property="preventUniversalClipboardSupportCheckButton" destination="nqZ-rB-mFS" id="sbx-rl-reT"/>
                 <outlet property="rememberKeyFileCheckButton" destination="bSt-Wf-FNZ" id="aQm-EA-yAN"/>
                 <outlet property="reopenLastDatabase" destination="530" id="878"/>
@@ -26,16 +29,16 @@
         <customObject id="-1" userLabel="First Responder" customClass="FirstResponder"/>
         <customObject id="-3" userLabel="Application" customClass="NSObject"/>
         <customView translatesAutoresizingMaskIntoConstraints="NO" id="1">
-            <rect key="frame" x="0.0" y="0.0" width="406" height="679"/>
+            <rect key="frame" x="0.0" y="0.0" width="425" height="846"/>
             <subviews>
                 <box autoresizesSubviews="NO" verticalHuggingPriority="500" borderType="line" title="Security" translatesAutoresizingMaskIntoConstraints="NO" id="465">
-                    <rect key="frame" x="17" y="146" width="372" height="381"/>
+                    <rect key="frame" x="17" y="315" width="391" height="375"/>
                     <view key="contentView" id="mNh-3L-Z6E">
-                        <rect key="frame" x="3" y="3" width="366" height="363"/>
+                        <rect key="frame" x="3" y="3" width="385" height="357"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <textField verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="431">
-                                <rect key="frame" x="14" y="335" width="120" height="17"/>
+                                <rect key="frame" x="14" y="329" width="120" height="17"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="17" id="803"/>
                                 </constraints>
@@ -46,7 +49,7 @@
                                 </textFieldCell>
                             </textField>
                             <popUpButton verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="419">
-                                <rect key="frame" x="138" y="332" width="143" height="21"/>
+                                <rect key="frame" x="137" y="325" width="144" height="22"/>
                                 <popUpButtonCell key="cell" type="push" title="Never" bezelStyle="rounded" alignment="left" lineBreakMode="truncatingTail" state="on" borderStyle="borderAndBezel" imageScaling="proportionallyDown" inset="2" selectedItem="429" id="420">
                                     <behavior key="behavior" lightByBackground="YES" lightByGray="YES"/>
                                     <font key="font" metaFont="menu"/>
@@ -64,7 +67,7 @@
                                 </popUpButtonCell>
                             </popUpButton>
                             <button verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="447">
-                                <rect key="frame" x="29" y="311" width="164" height="18"/>
+                                <rect key="frame" x="29" y="306" width="168" height="16"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="14" id="773"/>
                                 </constraints>
@@ -74,7 +77,7 @@
                                 </buttonCell>
                             </button>
                             <popUpButton verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="584">
-                                <rect key="frame" x="111" y="192" width="125" height="25"/>
+                                <rect key="frame" x="110" y="184" width="125" height="25"/>
                                 <popUpButtonCell key="cell" type="push" bezelStyle="rounded" alignment="left" lineBreakMode="truncatingTail" borderStyle="borderAndBezel" imageScaling="proportionallyDown" inset="2" id="585">
                                     <behavior key="behavior" lightByBackground="YES" lightByGray="YES"/>
                                     <font key="font" metaFont="menu"/>
@@ -91,14 +94,14 @@
                                 </popUpButtonCell>
                             </popUpButton>
                             <button translatesAutoresizingMaskIntoConstraints="NO" id="630">
-                                <rect key="frame" x="29" y="173" width="119" height="18"/>
+                                <rect key="frame" x="29" y="165" width="123" height="18"/>
                                 <buttonCell key="cell" type="check" title="Lock after sleep" bezelStyle="regularSquare" imagePosition="left" state="on" inset="2" id="631">
                                     <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                                     <font key="font" metaFont="system"/>
                                 </buttonCell>
                             </button>
                             <textField verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="805">
-                                <rect key="frame" x="14" y="197" width="93" height="16"/>
+                                <rect key="frame" x="14" y="190" width="93" height="16"/>
                                 <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Lock while idle" id="806">
                                     <font key="font" metaFont="system"/>
                                     <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
@@ -106,14 +109,14 @@
                                 </textFieldCell>
                             </textField>
                             <button verticalHuggingPriority="249" translatesAutoresizingMaskIntoConstraints="NO" id="bSt-Wf-FNZ">
-                                <rect key="frame" x="14" y="104" width="220" height="18"/>
+                                <rect key="frame" x="14" y="90" width="224" height="18"/>
                                 <buttonCell key="cell" type="check" title="Remember Keyfile for Databases" bezelStyle="regularSquare" imagePosition="left" state="on" inset="2" id="r6q-He-nYU">
                                     <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                                     <font key="font" metaFont="system"/>
                                 </buttonCell>
                             </button>
                             <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="5cV-xX-SUU">
-                                <rect key="frame" x="18" y="41" width="330" height="56"/>
+                                <rect key="frame" x="18" y="40" width="349" height="42"/>
                                 <textFieldCell key="cell" sendsActionOnEndEditing="YES" id="ACh-7H-42N">
                                     <font key="font" metaFont="smallSystem"/>
                                     <string key="title">Enabling this compromises security. If enabled, your preferences will contain mappings from database to keyfile. Key locations for databases without a password will not be saved.</string>
@@ -122,7 +125,7 @@
                                 </textFieldCell>
                             </textField>
                             <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="oQr-FC-HkN">
-                                <rect key="frame" x="166" y="5" width="190" height="32"/>
+                                <rect key="frame" x="192" y="5" width="184" height="32"/>
                                 <buttonCell key="cell" type="push" title="Clear all stored locations" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="8Ri-2s-c39">
                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                     <font key="font" metaFont="system"/>
@@ -132,21 +135,21 @@
                                 </connections>
                             </button>
                             <button translatesAutoresizingMaskIntoConstraints="NO" id="5SP-Vi-1sn">
-                                <rect key="frame" x="29" y="151" width="129" height="18"/>
+                                <rect key="frame" x="29" y="141" width="133" height="18"/>
                                 <buttonCell key="cell" type="check" title="Lock after log out" bezelStyle="regularSquare" imagePosition="left" state="on" inset="2" id="Dzn-9R-JjE">
                                     <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                                     <font key="font" metaFont="system"/>
                                 </buttonCell>
                             </button>
                             <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="nqZ-rB-mFS">
-                                <rect key="frame" x="14" y="286" width="242" height="18"/>
+                                <rect key="frame" x="14" y="279" width="245" height="18"/>
                                 <buttonCell key="cell" type="check" title="Prevent Universal Clipboard support" bezelStyle="regularSquare" imagePosition="left" state="on" inset="2" id="fNy-mS-phi">
                                     <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                                     <font key="font" metaFont="system"/>
                                 </buttonCell>
                             </button>
                             <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="hy4-RL-dAa">
-                                <rect key="frame" x="18" y="224" width="330" height="56"/>
+                                <rect key="frame" x="18" y="216" width="349" height="56"/>
                                 <textFieldCell key="cell" sendsActionOnEndEditing="YES" id="JGX-Tp-KJk">
                                     <font key="font" metaFont="smallSystem"/>
                                     <string key="title">Disabling this compromises security. If enabled, anything copied to the Clipboard in MacPass will be available on your connected iOS devices. You should clear the clipboard on those devices manually.</string>
@@ -155,7 +158,7 @@
                                 </textFieldCell>
                             </textField>
                             <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="nRe-7S-HwK">
-                                <rect key="frame" x="29" y="129" width="164" height="18"/>
+                                <rect key="frame" x="29" y="117" width="168" height="18"/>
                                 <buttonCell key="cell" type="check" title="Lock after screen sleep" bezelStyle="regularSquare" imagePosition="left" state="on" inset="2" id="l3t-og-mJd">
                                     <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                                     <font key="font" metaFont="system"/>
@@ -209,27 +212,27 @@
                     </constraints>
                 </box>
                 <box autoresizesSubviews="NO" verticalHuggingPriority="500" borderType="line" title="File Handling" translatesAutoresizingMaskIntoConstraints="NO" id="888">
-                    <rect key="frame" x="17" y="531" width="372" height="128"/>
+                    <rect key="frame" x="17" y="694" width="391" height="132"/>
                     <view key="contentView" id="cpg-tt-SHE">
-                        <rect key="frame" x="3" y="3" width="366" height="110"/>
+                        <rect key="frame" x="3" y="3" width="385" height="114"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <button verticalHuggingPriority="252" translatesAutoresizingMaskIntoConstraints="NO" id="530">
-                                <rect key="frame" x="14" y="84" width="234" height="18"/>
+                                <rect key="frame" x="14" y="87" width="238" height="18"/>
                                 <buttonCell key="cell" type="check" title="Reopen last Database after Launch" bezelStyle="regularSquare" imagePosition="left" state="on" inset="2" id="531">
                                     <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                                     <font key="font" metaFont="system"/>
                                 </buttonCell>
                             </button>
                             <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="lz3-4U-UMI">
-                                <rect key="frame" x="14" y="64" width="123" height="18"/>
+                                <rect key="frame" x="14" y="65" width="126" height="18"/>
                                 <buttonCell key="cell" type="check" title="Enable Autosave" bezelStyle="regularSquare" imagePosition="left" state="on" inset="2" id="wG7-bi-2fi">
                                     <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                                     <font key="font" metaFont="system"/>
                                 </buttonCell>
                             </button>
                             <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="3Bo-Ml-1KB">
-                                <rect key="frame" x="18" y="44" width="330" height="14"/>
+                                <rect key="frame" x="18" y="44" width="349" height="14"/>
                                 <textFieldCell key="cell" controlSize="small" title="Close and open all documents for changes to take effect" id="ya5-ps-c4W">
                                     <font key="font" metaFont="smallSystem"/>
                                     <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
@@ -245,7 +248,7 @@
                                 </textFieldCell>
                             </textField>
                             <popUpButton verticalHuggingPriority="750" horizontalCompressionResistancePriority="749" translatesAutoresizingMaskIntoConstraints="NO" id="wIu-Sh-2a2">
-                                <rect key="frame" x="111" y="13" width="38" height="25"/>
+                                <rect key="frame" x="110" y="13" width="39" height="25"/>
                                 <popUpButtonCell key="cell" type="push" bezelStyle="rounded" alignment="left" lineBreakMode="truncatingTail" borderStyle="borderAndBezel" imageScaling="proportionallyDown" inset="2" id="1R2-5t-LWk">
                                     <behavior key="behavior" lightByBackground="YES" lightByGray="YES"/>
                                     <font key="font" metaFont="menu"/>
@@ -275,9 +278,9 @@
                     </constraints>
                 </box>
                 <box autoresizesSubviews="NO" verticalHuggingPriority="500" borderType="line" title="Network" translatesAutoresizingMaskIntoConstraints="NO" id="wD1-ag-7V5">
-                    <rect key="frame" x="17" y="16" width="372" height="126"/>
+                    <rect key="frame" x="17" y="185" width="391" height="126"/>
                     <view key="contentView" id="bQD-ZX-d0i">
-                        <rect key="frame" x="3" y="3" width="366" height="108"/>
+                        <rect key="frame" x="3" y="3" width="385" height="108"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="fl5-Xu-nZP">
@@ -292,7 +295,7 @@
                                 </textFieldCell>
                             </textField>
                             <textField autoresizesSubviews="NO" verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="MWj-9m-uGk">
-                                <rect key="frame" x="18" y="13" width="330" height="56"/>
+                                <rect key="frame" x="18" y="13" width="349" height="56"/>
                                 <textFieldCell key="cell" sendsActionOnEndEditing="YES" id="DaG-1a-SET">
                                     <font key="font" metaFont="message" size="11"/>
                                     <string key="title">By default web site icon is downloaded directly from entry's host URL. For some websites it doesn't work and you might prefer using 3rdparty APIs. In this case only host from the URL will be used to get the icon from selected service.</string>
@@ -301,7 +304,7 @@
                                 </textFieldCell>
                             </textField>
                             <popUpButton verticalHuggingPriority="750" horizontalCompressionResistancePriority="749" translatesAutoresizingMaskIntoConstraints="NO" id="OfU-6f-oTU">
-                                <rect key="frame" x="131" y="76" width="38" height="25"/>
+                                <rect key="frame" x="130" y="75" width="39" height="25"/>
                                 <popUpButtonCell key="cell" type="push" bezelStyle="rounded" alignment="left" lineBreakMode="truncatingTail" borderStyle="borderAndBezel" imageScaling="proportionallyDown" inset="2" id="mdi-Go-1bJ">
                                     <behavior key="behavior" lightByBackground="YES" lightByGray="YES"/>
                                     <font key="font" metaFont="menu"/>
@@ -324,6 +327,66 @@
                         <constraint firstAttribute="bottom" secondItem="MWj-9m-uGk" secondAttribute="bottom" constant="12" id="k80-DD-Y5l"/>
                     </constraints>
                 </box>
+                <box autoresizesSubviews="NO" verticalHuggingPriority="500" borderType="line" title="Display" translatesAutoresizingMaskIntoConstraints="NO" id="njB-Do-tcg">
+                    <rect key="frame" x="17" y="36" width="391" height="135"/>
+                    <view key="contentView" id="r1x-34-36b">
+                        <rect key="frame" x="3" y="3" width="385" height="117"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="vVu-wJ-GcP">
+                                <rect key="frame" x="18" y="55" width="111" height="18"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                <buttonCell key="cell" type="radio" title="Menubar Only" bezelStyle="regularSquare" imagePosition="left" alignment="left" inset="2" id="Icd-kw-28p">
+                                    <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                                    <font key="font" metaFont="system"/>
+                                </buttonCell>
+                                <connections>
+                                    <action selector="toggleDisplayOption:" target="-2" id="Pzy-Fx-1kP"/>
+                                </connections>
+                            </button>
+                            <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="loI-8e-8E4">
+                                <rect key="frame" x="18" y="92" width="87" height="18"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                <buttonCell key="cell" type="radio" title="Dock only" bezelStyle="regularSquare" imagePosition="left" alignment="left" state="on" inset="2" id="2CR-Gd-K1N">
+                                    <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                                    <font key="font" metaFont="system"/>
+                                </buttonCell>
+                                <connections>
+                                    <action selector="toggleDisplayOption:" target="-2" id="yYO-3e-BIm"/>
+                                </connections>
+                            </button>
+                            <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="DmN-uw-MW3">
+                                <rect key="frame" x="18" y="12" width="118" height="18"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                <buttonCell key="cell" type="radio" title="Both Displayed" bezelStyle="regularSquare" imagePosition="left" alignment="left" inset="2" id="M4D-94-uRM">
+                                    <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                                    <font key="font" metaFont="system"/>
+                                </buttonCell>
+                                <connections>
+                                    <action selector="toggleDisplayOption:" target="-2" id="irC-cC-39D"/>
+                                </connections>
+                            </button>
+                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="gQm-66-vLg">
+                                <rect key="frame" x="37" y="35" width="325" height="14"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                <textFieldCell key="cell" controlSize="small" lineBreakMode="clipping" title=" Dock icon is hidden and menubar extra is at display top right" id="xis-dP-1wO">
+                                    <font key="font" metaFont="smallSystem"/>
+                                    <color key="textColor" name="secondaryLabelColor" catalog="System" colorSpace="catalog"/>
+                                    <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                </textFieldCell>
+                            </textField>
+                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="nIS-B5-hgE">
+                                <rect key="frame" x="39" y="75" width="168" height="14"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                <textFieldCell key="cell" controlSize="small" lineBreakMode="clipping" title="Dock icon will always be visible" id="7Zi-VY-kg0">
+                                    <font key="font" metaFont="smallSystem"/>
+                                    <color key="textColor" name="secondaryLabelColor" catalog="System" colorSpace="catalog"/>
+                                    <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                </textFieldCell>
+                            </textField>
+                        </subviews>
+                    </view>
+                </box>
             </subviews>
             <constraints>
                 <constraint firstItem="465" firstAttribute="leading" secondItem="1" secondAttribute="leading" constant="20" symbolic="YES" id="475"/>
@@ -332,13 +395,17 @@
                 <constraint firstAttribute="trailing" secondItem="888" secondAttribute="trailing" constant="20" symbolic="YES" id="893"/>
                 <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="400" id="918"/>
                 <constraint firstItem="wD1-ag-7V5" firstAttribute="leading" secondItem="1" secondAttribute="leading" constant="20" id="3kp-Uf-fyC"/>
-                <constraint firstItem="wD1-ag-7V5" firstAttribute="bottom" secondItem="1" secondAttribute="bottom" constant="-20" id="EeW-K0-jec"/>
                 <constraint firstItem="wD1-ag-7V5" firstAttribute="top" secondItem="465" secondAttribute="bottom" constant="8" symbolic="YES" id="FsW-LX-Drs"/>
+                <constraint firstAttribute="bottom" secondItem="njB-Do-tcg" secondAttribute="bottom" constant="40" id="JL3-lh-uFy"/>
+                <constraint firstItem="njB-Do-tcg" firstAttribute="leading" secondItem="1" secondAttribute="leading" constant="20" id="PwI-Mh-NXr"/>
                 <constraint firstItem="888" firstAttribute="top" secondItem="1" secondAttribute="top" constant="20" symbolic="YES" id="ZMP-Lv-rQh"/>
                 <constraint firstAttribute="trailing" secondItem="wD1-ag-7V5" secondAttribute="trailing" constant="20" id="ccK-FL-7Wx"/>
+                <constraint firstAttribute="trailing" secondItem="njB-Do-tcg" secondAttribute="trailing" constant="20" id="dx2-hH-UdX"/>
+                <constraint firstItem="njB-Do-tcg" firstAttribute="height" secondItem="1" secondAttribute="height" multiplier="0.154846" id="fas-Jc-23U"/>
+                <constraint firstItem="njB-Do-tcg" firstAttribute="top" secondItem="wD1-ag-7V5" secondAttribute="bottom" constant="18" id="kCs-Rd-whe"/>
                 <constraint firstItem="465" firstAttribute="top" secondItem="888" secondAttribute="bottom" constant="8" symbolic="YES" id="wyH-HB-i2U"/>
             </constraints>
-            <point key="canvasLocation" x="-535" y="-327.5"/>
+            <point key="canvasLocation" x="-525.5" y="-192"/>
         </customView>
     </objects>
 </document>

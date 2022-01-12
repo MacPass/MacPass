@@ -320,6 +320,8 @@
 		7837112C225540D1009BD28D /* PluginRepositoryBrowserView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7837112E225540D1009BD28D /* PluginRepositoryBrowserView.xib */; };
 		78E1F8B022E3A5D600E738AE /* AutotypeDoctorReportViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 78E1F8B222E3A5D600E738AE /* AutotypeDoctorReportViewController.xib */; };
 		7E5D230927889AE400C0ECCF /* MPHotkey.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E5D230827889AE400C0ECCF /* MPHotkey.m */; };
+		7EFC4628278E70E1009A0B07 /* Lock.png in Resources */ = {isa = PBXBuildFile; fileRef = 7EFC4627278E70E1009A0B07 /* Lock.png */; };
+		7EFC462A278E7A9E009A0B07 /* MPDisplayOptions.m in Sources */ = {isa = PBXBuildFile; fileRef = 7EFC4629278E7A9E009A0B07 /* MPDisplayOptions.m */; };
 		FA13910C1F9CD9EB0033D256 /* Localizable.stringsdict in Resources */ = {isa = PBXBuildFile; fileRef = FA13910A1F9CD9EB0033D256 /* Localizable.stringsdict */; };
 		FA9FD3271FB5E8F4003CEDD6 /* AutotypeCandidateSelectionView.xib in Resources */ = {isa = PBXBuildFile; fileRef = FA9FD3291FB5E8F4003CEDD6 /* AutotypeCandidateSelectionView.xib */; };
 		FA9FD32C1FB5EDD3003CEDD6 /* AutotypeBuilderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = FA9FD32E1FB5EDD3003CEDD6 /* AutotypeBuilderView.xib */; };
@@ -1098,6 +1100,9 @@
 		78E1F8C122E3B32D00E738AE /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.stringsdict; name = ru; path = ru.lproj/Localizable.stringsdict; sourceTree = "<group>"; };
 		7E5D230727889ACE00C0ECCF /* MPHotkey.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MPHotkey.h; sourceTree = "<group>"; };
 		7E5D230827889AE400C0ECCF /* MPHotkey.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MPHotkey.m; sourceTree = "<group>"; };
+		7EFC4627278E70E1009A0B07 /* Lock.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Lock.png; path = MacPass/Lock.png; sourceTree = "<group>"; };
+		7EFC4629278E7A9E009A0B07 /* MPDisplayOptions.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MPDisplayOptions.m; sourceTree = "<group>"; };
+		7EFC462B278E7AB6009A0B07 /* MPDisplayOptions.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MPDisplayOptions.h; sourceTree = "<group>"; };
 		A019D80F22DC6B3C0085FD54 /* es */ = {isa = PBXFileReference; lastKnownFileType = text.plist.stringsdict; name = es; path = es.lproj/Localizable.stringsdict; sourceTree = "<group>"; };
 		A083E27922DF467B0020E0D5 /* es */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = es; path = es.lproj/PickcharsView.strings; sourceTree = "<group>"; };
 		A083E27A22DF467B0020E0D5 /* es */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = es; path = es.lproj/PluginDataView.strings; sourceTree = "<group>"; };
@@ -1376,6 +1381,8 @@
 				4C3C4EAE18D7039300153127 /* MPValueTransformerHelper.m */,
 				4C52197F273D192C00C719D3 /* MPOpenURLHandler.h */,
 				4C521980273D192C00C719D3 /* MPOpenURLHandler.m */,
+				7EFC462B278E7AB6009A0B07 /* MPDisplayOptions.h */,
+				7EFC4629278E7A9E009A0B07 /* MPDisplayOptions.m */,
 			);
 			name = Helper;
 			sourceTree = "<group>";
@@ -1634,6 +1641,7 @@
 		4C77E35715B84A240093A587 = {
 			isa = PBXGroup;
 			children = (
+				7EFC4627278E70E1009A0B07 /* Lock.png */,
 				4CBC5DDB23C61C8300D14B92 /* TransformerKit.framework */,
 				4CC281881C0F675B00B9174D /* HNHUi.framework */,
 				4C7B63791C0CB55600D7038C /* KeePassKit.framework */,
@@ -2182,6 +2190,7 @@
 				4C52A892178863B000868229 /* 68_PhoneTemplate.pdf in Resources */,
 				6021FE7718E15FF300C3BC51 /* DatePickingView.xib in Resources */,
 				4C3826A81AD04D8E007D7D67 /* 24_EstablishedConnectionTemplate.pdf in Resources */,
+				7EFC4628278E70E1009A0B07 /* Lock.png in Resources */,
 				6021FE4B18E13F1D00C3BC51 /* GroupInspectorView.xib in Resources */,
 				4C3826BF1AD04D8E007D7D67 /* 52_EncryptedTemplate.pdf in Resources */,
 				4C3826BD1AD04D8E007D7D67 /* 50_FolderTarTemplate.pdf in Resources */,
@@ -2374,6 +2383,7 @@
 				4CCEDE2A179F203B008402BE /* MPOutlineView.m in Sources */,
 				4CB33F861EAF54A000C9341E /* KPKNode+MPIsHistory.m in Sources */,
 				4CCEDE2E179F213B008402BE /* MPNotifications.m in Sources */,
+				7EFC462A278E7A9E009A0B07 /* MPDisplayOptions.m in Sources */,
 				4CE84903271E10AC00EBAB0C /* MPEntryPasswordAttributeViewController.m in Sources */,
 				4C17D8E517A1C780006C8C1E /* MPDocumentWindowDelegate.m in Sources */,
 				4C63B8FB17A3154D0091BD72 /* MPContextButton.m in Sources */,
