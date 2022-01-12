@@ -142,6 +142,9 @@ static MPHotkeyDaemon *_sharedInstance;
 
   bool mpActive = [NSApp isActive];
   BOOL focusSearchAfterHotkey = [NSUserDefaults.standardUserDefaults boolForKey:kMPSettingsKeyFocusSearchAfterHotkey];
+
+
+
   
   if(mpActive) {
       [NSApplication.sharedApplication hide:nil];

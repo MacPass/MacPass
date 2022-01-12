@@ -44,6 +44,8 @@
 //@property (strong) IBOutlet NSButton *privateBrowsingCheckButton;
 @property (strong) IBOutlet NSButton *showOrHideMacPassCheckButton;
 @property (nonatomic, strong) DDHotKey *hotKey;
+@property (strong) IBOutlet NSButtonCell *focusSearchAfterHotkey;
+
 
 - (IBAction)_showCustomBrowserSelection:(id)sender;
 
@@ -91,6 +93,12 @@
                                       toObject:defaultsController
                                    withKeyPath:[MPSettingsHelper defaultControllerPathForKey:kMPSettingsKeyShowOrHideMacPass]
                                        options:nil];
+  [self.focusSearchAfterHotkey bind:NSValueBinding
+                           toObject:defaultsController
+                        withKeyPath:[MPSettingsHelper defaultControllerPathForKey:kMPSettingsKeyFocusSearchAfterHotkey]
+                            options:nil];
+
+  
   self.hotkeyTextField.delegate = self;
   
   [self _updateBrowserSelection];
@@ -118,6 +126,7 @@
   if(![self.hotkeyTextField.hotKey isEqual:self.hotKey]) {
     self.hotkeyTextField.hotKey = self.hotKey;
   }
+
 }
 
 #pragma mark -
