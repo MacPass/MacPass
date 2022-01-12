@@ -119,50 +119,39 @@
   }
   else if (((([event modifierFlags] & NSEventModifierFlagControl)) && mouseEventType == 2) | (mouseEventType == 3)){
     NSLog(@"control click detected");
-//    self.statusItem.menu = [self updateStatusBarMenu];
+
     NSMenu *menu = [[NSMenu alloc] init];
-//    //  [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(menuDidClose:) name:NSMenuDidEndTrackingNotification object:self.statusItem.menu];
-//
+
     NSMenuItem *showHide = [[NSMenuItem alloc]initWithTitle:@"Show/Hide" action:@selector(activateMacPass) keyEquivalent:@""];
     NSMenuItem *lockDB = [[NSMenuItem alloc]initWithTitle:@"Lock" action:@selector(lockOpenDatabase:) keyEquivalent:@""];
     NSMenuItem *lockAllDB = [[NSMenuItem alloc]initWithTitle:@"Lock All" action:@selector(lockAllDatabases:) keyEquivalent:@""];
     NSMenuItem *quitMacPass = [[NSMenuItem alloc] initWithTitle:@"Quit MacPass" action:@selector(quitMacPass:) keyEquivalent:@""];
     
     
-    //new menu items
 
-//    Open menu causes strange behavior
     NSMenuItem *openDB = [[NSMenuItem alloc] initWithTitle:@"Open" action:@selector(openSelectFile) keyEquivalent:@""];
     openDB.target = self;
 //    [menu addItem:openDB];
 //
-//    NSMenuItem *prefMacPass = [[NSMenuItem alloc] initWithTitle:@"Preferences" action:@selector(showPluginPrefs) keyEquivalent:@""];
-//    prefMacPass.target = self;
-//    [menu addItem:prefMacPass];
+
     
     [showHide setTarget:self];
     [lockDB setTarget:self];
     [lockAllDB setTarget:self];
     [quitMacPass setTarget:self];
 
-//    [menu addItem:showHide];
+    [menu addItem:showHide];
     [menu addItem:lockDB];
     [menu addItem:lockAllDB];
     [menu addItem:quitMacPass];
     self.statusItem.menu = menu;
     
 
-//    set the delegate to allow for right click and replace popUpStatusItemMenu??
-//    [self.statusItem.menu setDelegate:self];
-    
-    
-    //Depecrated  in 10.14 - used for right click to display menu
-    //replaced when popover version is completed
     [self.statusItem popUpStatusItemMenu:menu];
     self.statusItem.menu = nil;
     [self.statusItem.button highlight:NO];
 
-    //    self.statusItem.button.menu = menu;
+
     
   }
   else if (mouseEventType == 2) {
@@ -170,10 +159,6 @@
     [self performSelector:@selector(activateMacPass)];
   }
 }
--(void)removeStatusItem:(id)sender {
-  [NSStatusBar.systemStatusBar removeStatusItem:self.statusItem];
-  self.statusItem = nil;
-  
-}
+
 
 @end
