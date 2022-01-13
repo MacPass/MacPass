@@ -91,6 +91,8 @@
                                       toObject:defaultsController
                                    withKeyPath:[MPSettingsHelper defaultControllerPathForKey:kMPSettingsKeyShowOrHideMacPass]
                                        options:nil];
+
+  [self.hotkeyTextField bind:NSEnabledBinding toObject:defaultsController withKeyPath:[MPSettingsHelper defaultControllerPathForKey:kMPSettingsKeyShowOrHideMacPass] options:nil];
   self.hotkeyTextField.delegate = self;
   
   [self _updateBrowserSelection];
@@ -131,6 +133,7 @@
   _hotKey = hotKey;
   
   [NSUserDefaults.standardUserDefaults setObject:self.hotKey.keyData forKey:kMPSettingsKeyShowHideKeyDataKey];
+
 }
 
 - (void)_showKeyCodeMissingKeyWarning:(BOOL)show {
