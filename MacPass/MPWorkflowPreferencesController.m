@@ -97,6 +97,7 @@
                            toObject:defaultsController
                         withKeyPath:[MPSettingsHelper defaultControllerPathForKey:kMPSettingsKeyFocusSearchAfterHotkey]
                             options:nil];
+  [self.focusSearchAfterHotkey bind:NSEnabledBinding toObject:defaultsController withKeyPath:[MPSettingsHelper defaultControllerPathForKey:kMPSettingsKeyShowOrHideMacPass] options:nil];
 
   
   self.hotkeyTextField.delegate = self;

@@ -80,7 +80,12 @@ static MPHotkeyDaemon *_sharedInstance;
       toObject:NSUserDefaultsController.sharedUserDefaultsController
    withKeyPath:[MPSettingsHelper defaultControllerPathForKey:kMPSettingsKeyShowHideKeyDataKey]
        options:nil];
+    
 
+    BOOL hotkeyStatus = [NSUserDefaults.standardUserDefaults boolForKey:kMPSettingsKeyShowOrHideMacPass];
+    if(!hotkeyStatus){
+      [NSUserDefaults.standardUserDefaults setBool:!hotkeyStatus forKey:kMPSettingsKeyFocusSearchAfterHotkey];
+    }
 
     
     
