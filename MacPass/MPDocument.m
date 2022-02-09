@@ -888,8 +888,12 @@ NSString *const MPDocumentGroupKey                            = @"MPDocumentGrou
   
   KPKEntry *targetEntry = targetEntries.count == 1 ? targetEntries.firstObject : nil;
   KPKGroup *targetGroup = targetGroups.count == 1 ? targetGroups.firstObject : nil;
-  
+      
   if(self.encrypted || self.isReadOnly) {
+    if(anItem.action == @selector(revertDocumentToSaved:) ||
+       anItem.action == @selector(browseDocumentVersions:)) {
+      return YES;
+    }
     return NO;
   }
   
