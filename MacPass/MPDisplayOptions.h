@@ -12,6 +12,7 @@
 
 @interface MPDisplayOption : NSObject;
 
+@property (nonatomic, assign) BOOL statusMenuOpen;
 
 
 @end
