@@ -31,22 +31,25 @@
   {
     self.statusItem = [NSStatusBar.systemStatusBar statusItemWithLength:NSVariableStatusItemLength];
     NSBundle *bundle = [NSBundle bundleForClass:self.class];
-    
-
-    
-    
-    // TODO: Use scalable graphic (e.g. PDF)
     self.statusItem.button.image = [bundle imageForResource:@"Lock"];
-    [self.statusItem.button sendActionOn:(NSEventMaskLeftMouseDown|NSEventMaskRightMouseDown|NSEventMaskLeftMouseUp|NSEventMaskRightMouseUp)];
-    self.statusItem.button.action = @selector(itemClicked:);
-    self.statusItem.button.target = self;
+
+    [NSEvent addLocalMonitorForEventsMatchingMask:(NSEventMaskLeftMouseDown|NSEventMaskLeftMouseUp|NSEventMaskRightMouseUp|NSEventModifierFlagOption) handler:^(NSEvent *event){
+
+      [self itemClickedEvent:event];
+//      self.statusItem.button.target = self;
+      return event;
+      
+    }];
+
     [self statusItem];
     
   }
   return self;
 }
 
+
 - (void)activateMacPass {
+  
   bool mpActive = [NSApp isActive];
   if(mpActive) {
     [NSApplication.sharedApplication hide:nil];
@@ -66,7 +69,9 @@
 }
 
 - (void)quitMacPass:(id)sender {
+  
   [[NSApplication sharedApplication] terminate:self];
+//  [NSApp terminate:self];
   return;
 }
 
@@ -99,26 +104,47 @@
     lastDocument = document;
   [lastDocument lockDatabase:nil];
   
-//  [_currentDoc lockDatabase:nil];
   NSLog(@"lock db %@", _currentDoc);
 
   NSLog(@"attempted lock");
   }
 }
-
-- (void)itemClicked:(id)sender {
-  //_statusItem.menu = nil;
-  NSEvent *event = [NSApp currentEvent];
+- (void)itemClickedEvent:(NSEvent *)sender {
+  NSLog(@"mouse event type %lu", (unsigned long)sender.type);
+  NSEvent *event = sender;
   NSLog(@"mouse event type %lu", (unsigned long)event.type);
   unsigned long mouseEventType = event.type;
+
   
-  
-  if (([event modifierFlags] & NSEventModifierFlagOption) && mouseEventType == 2) {
+  if (([event modifierFlags] & NSEventModifierFlagOption) && mouseEventType == 1) {
     NSLog(@"option click detected");
-    [self performSelector:@selector(quitMacPass:)];
+    [[NSApplication sharedApplication] terminate:self];
   }
-  else if (((([event modifierFlags] & NSEventModifierFlagControl)) && mouseEventType == 2) | (mouseEventType == 3)){
+  else if (mouseEventType == 4) {
+    NSLog(@"right click detected");
+    [self performSelector:@selector(showStatusMenu:) withObject:self];
+    [self performSelector:@selector(menuDidClose:) withObject:self afterDelay:0.01];
+  }
+  else if (((([event modifierFlags] & NSEventModifierFlagControl)) && mouseEventType == 1)){
     NSLog(@"control click detected");
+
+    [self performSelector:@selector(showStatusMenu:) withObject:self];
+//    [self.statusItem.button didCloseMenu:self.statusItem.menu withEvent: nil];
+//    [self.statusItem popUpStatusItemMenu:menu];
+    [self performSelector:@selector(menuDidClose:) withObject:self afterDelay:0.01];
+//    self.statusItem.menu = nil;
+    [self.statusItem.button highlight:NO];
+
+
+    
+  }
+  else if (mouseEventType == 1) {
+    NSLog(@"regularclick detected");
+    [self performSelector:@selector(activateMacPass)];
+  }
+}
+
+- (void) showStatusMenu: (id) sender {
 
     NSMenu *menu = [[NSMenu alloc] init];
 
@@ -131,10 +157,7 @@
 
     NSMenuItem *openDB = [[NSMenuItem alloc] initWithTitle:@"Open" action:@selector(openSelectFile) keyEquivalent:@""];
     openDB.target = self;
-//    [menu addItem:openDB];
-//
 
-    
     [showHide setTarget:self];
     [lockDB setTarget:self];
     [lockAllDB setTarget:self];
@@ -145,19 +168,22 @@
     [menu addItem:lockAllDB];
     [menu addItem:quitMacPass];
     self.statusItem.menu = menu;
+    [self.statusItem.button performClick:nil];
     
+}
 
-    [self.statusItem popUpStatusItemMenu:menu];
+- (void) menuWillOpen: (NSMenu *) menu
+{
+    self.statusMenuOpen = YES;
+}
+
+- (void) menuDidClose:(NSMenu *) menu
+{
+    
+    // Tear down the menu cause otherwise the left click won't work
     self.statusItem.menu = nil;
-    [self.statusItem.button highlight:NO];
-
-
-    
-  }
-  else if (mouseEventType == 2) {
-    NSLog(@"regularclick detected");
-    [self performSelector:@selector(activateMacPass)];
-  }
+    [self.statusItem.button setAction:@selector(itemClickedEvent:)];
+    self.statusMenuOpen = NO;
 }
 
 
