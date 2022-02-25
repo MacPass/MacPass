@@ -11,6 +11,19 @@
 #import <KeePassKit/KeePassKit.h>
 #import "MPPasteBoardController.h"
 
+NSString *nameForDefaultKey(NSString *key) {
+  static NSDictionary *mapping;
+  static dispatch_once_t onceToken;
+  dispatch_once(&onceToken, ^{
+    mapping = @{ kKPKTitleKey: NSLocalizedString(@"TITTLE_ATTRIBUTE_KEY", @"Localized name for title attribute"),
+                 kKPKUsernameKey: NSLocalizedString(@"USERNAME_ATTRIBUTE_KEY", @"Localized name for username attribute"),
+                 kKPKPasswordKey: NSLocalizedString(@"PASSEORD_ATTRIBUTE_KEY", @"Localized name for password attribute"),
+                 kKPKURLKey: NSLocalizedString(@"URL_ATTRIBUTE_KEY", @"Localized name for URL attribute") };
+  });
+  return mapping[key];
+}
+
+
 @interface MPEntryAttributeViewController () {
   BOOL _isDefaultAttribute;
 }
@@ -90,6 +103,18 @@
   }
   _isDefaultAttribute = self.representedAttribute.isDefault;
   [self updateValues];
+  [self updateEditing];
+}
+
+-(void)commitChanges {
+  if(!self.isEditor) {
+    // do not commit changes if we are no editor!
+  }
+  // FIXME: better handling of key uniqueness
+  if(!_isDefaultAttribute) {
+    self.representedAttribute.key = self.keyTextField.stringValue;
+  }
+  self.representedAttribute.value = self.valueTextField.stringValue;
 }
 
 - (BOOL)textField:(NSTextField *)textField textView:(NSTextView *)textView performAction:(SEL)action {
@@ -110,10 +135,9 @@
   if([self.representedAttribute.key isEqual:kKPKUsernameKey]) {
     info = MPPasteboardOverlayInfoUsername;
   }
-  /*else if([self.representedAttribute.key isEqual:kKPKPasswordKey]) {
+  else if([self.representedAttribute.key isEqual:kKPKPasswordKey]) {
     info = MPPasteboardOverlayInfoPassword;
   }
-   */
   else if([self.representedAttribute.key isEqual:kKPKURLKey]) {
     info = MPPasteboardOverlayInfoURL;
   }
@@ -138,7 +162,16 @@
 
 - (void)updateValues {
   self.view.hidden = (!self.isEditor && self.representedAttribute.value.length == 0);
+  
+  NSString *localizedKey = nameForDefaultKey(self.representedAttribute.key);
+  if(localizedKey) {
+    self.keyTextField.stringValue = localizedKey;
+  }
+  else {
+    self.keyTextField.stringValue = self.representedAttribute.key ? self.representedAttribute.key : @"";
+  }
   self.keyTextField.stringValue = self.representedAttribute.key ? self.representedAttribute.key : @"";
+  
   self.valueTextField.stringValue = self.representedAttribute.value ? self.representedAttribute.value : @"";
   self.valueTextField.showPassword = !self.representedAttribute.protect;
 }

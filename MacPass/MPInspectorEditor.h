@@ -18,6 +18,8 @@ NS_ASSUME_NONNULL_BEGIN
 @required
 @property (nonatomic) BOOL isEditor;
 
+- (void)commitChanges;
+
 @end
 
 NS_ASSUME_NONNULL_END

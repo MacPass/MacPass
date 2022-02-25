@@ -34,6 +34,7 @@
 #import "MPTOTPViewController.h"
 #import "MPTOTPSetupViewController.h"
 #import "MPEntryAttributeViewController.h"
+#import "MPEntryPasswordAttributeViewController.h"
 #import "MPNodeExpirationViewController.h"
 
 #import "MPPrettyPasswordTransformer.h"
@@ -61,18 +62,6 @@ typedef NS_ENUM(NSUInteger, MPEntryTab) {
   MPEntryTabAutotype
 };
 
-typedef NS_ENUM(NSUInteger, MPInpspectorEditorIndex) {
-  MPInpspectorEditorIndexImageEditor,
-  MPInpspectorEditorIndexTitle,
-  MPInpspectorEditorIndexUsername,
-  MPInpspectorEditorIndexPassword,
-  MPInpspectorEditorIndexURL,
-  MPInpspectorEditorIndexExpires,
-  MPInpspectorEditorIndexTags,
-  MPInpspectorEditorIndexDefaultCount
-};
-
-
 @interface NSObject (MPAppKitPrivateAPI)
 - (void)_searchWithGoogleFromMenu:(id)obj;
 @end
@@ -89,7 +78,14 @@ typedef NS_ENUM(NSUInteger, MPInpspectorEditorIndex) {
   MPWindowTitleComboBoxDelegate *_windowTitleMenuDelegate;
   MPTagsTokenFieldDelegate *_tagTokenFieldDelegate;
   MPAddCustomFieldContextMenuDelegate *_addCustomFieldContextMenuDelegate;
+  
   NSMutableArray<NSViewController<MPInspectorEditor> *> *_attributeEditorViewControllers;
+  
+  MPEntryAttributeViewController *_titleEditorViewController;
+  MPEntryAttributeViewController *_usernameEditorViewController;
+  MPEntryAttributeViewController *_urlEditorViewController;
+  MPNodeExpirationViewController *_expiresEditorViewController;
+  MPEntryPasswordAttributeViewController *_passwordEditorViewController;
 }
 
 @property (nonatomic, assign) BOOL showPassword;
@@ -634,31 +630,36 @@ typedef NS_ENUM(NSUInteger, MPInpspectorEditorIndex) {
   [self addChildViewController:self.totpViewController];
   [self.fieldsStackView insertArrangedSubview:self.totpViewController.view atIndex:urlindex - 1];
 
-  /*
-  MPNodeExpirationViewController *vc = [[MPNodeExpirationViewController alloc] init];
-  vc.isEditor = NO;
-  [_attributeEditorViewControllers addObject:vc];
-  [self.fieldsStackView addArrangedSubview:vc.view];
-
-   MPEntryAttributeViewController *vc = [[MPEntryAttributeViewController alloc] init];
-  vc.isEditor = NO;
-  [_attributeEditorViewControllers addObject:vc];
-  [self.fieldsStackView addArrangedSubview:vc.view];
+  _titleEditorViewController = [[MPEntryAttributeViewController alloc] init];
+  _titleEditorViewController.isEditor = NO;
+  [self.fieldsStackView addArrangedSubview:_titleEditorViewController.view];
   
-  for(NSUInteger index = 0; index < kKPKDefaultEntryKeysCount; index++) {
-    MPEntryAttributeViewController *vc = [[MPEntryAttributeViewController alloc] init];
-    vc.isEditor = NO;
-    [_attributeEditorViewControllers addObject:vc];
-    [self.fieldsStackView addArrangedSubview:vc.view];
-  }
-   */
+  _usernameEditorViewController = [[MPEntryAttributeViewController alloc] init];
+  _usernameEditorViewController.isEditor = NO;
+  [self.fieldsStackView addArrangedSubview:_usernameEditorViewController.view];
+
+  _passwordEditorViewController = [[MPEntryPasswordAttributeViewController alloc] init];
+  _passwordEditorViewController.isEditor = NO;
+  [self.fieldsStackView addArrangedSubview:_passwordEditorViewController.view];
+  
+  _urlEditorViewController = [[MPEntryAttributeViewController alloc] init];
+  _urlEditorViewController.isEditor = NO;
+  [self.fieldsStackView addArrangedSubview:_urlEditorViewController.view];
+  
+  _expiresEditorViewController = [[MPNodeExpirationViewController alloc] init];
+  _expiresEditorViewController.isEditor = NO;
+  [self.fieldsStackView addArrangedSubview:_expiresEditorViewController.view];
 }
 
 - (void)_updateEditors {
   self.totpViewController.representedObject = self.representedObject;
-  /* Update all the Attribute editors
-  _attributeEditorViewControllers[MPInpspectorEditorIndexUsername].representedObject = [self.representedEntry attributeWithKey:kKPKUsernameKey];
-   */
+  
+  _titleEditorViewController.representedObject = [self.representedEntry attributeWithKey:kKPKTitleKey];
+  _usernameEditorViewController.representedObject = [self.representedEntry attributeWithKey:kKPKUsernameKey];
+  _passwordEditorViewController.representedObject = [self.representedEntry attributeWithKey:kKPKPasswordKey];
+  _urlEditorViewController.representedObject = [self.representedEntry attributeWithKey:kKPKURLKey];
+  _expiresEditorViewController.representedObject = self.representedEntry.timeInfo;
+  
 }
 
 #pragma mark -
