@@ -101,8 +101,8 @@ NSString *nameForDefaultKey(NSString *key) {
 
   }
   _isDefaultAttribute = self.representedAttribute.isDefault;
-  [self updateValues];
   [self updateEditing];
+  [self updateValues];
 }
 
 -(void)commitChanges {
@@ -160,7 +160,7 @@ NSString *nameForDefaultKey(NSString *key) {
 }
 
 - (void)updateValues {
-  self.view.hidden = (!self.isEditor && self.representedAttribute.value.length == 0);
+  self.view.hidden = self.isEditor ? NO : self.representedAttribute.value.length == 0;
   
   NSString *localizedKey = nameForDefaultKey(self.representedAttribute.key);
   if(localizedKey) {
@@ -176,12 +176,13 @@ NSString *nameForDefaultKey(NSString *key) {
 }
 
 - (void)updateEditing {
+  self.view.hidden = self.isEditor ? NO : self.representedAttribute.value.length == 0;
   self.keyTextField.editable = !_isDefaultAttribute && self.isEditor;
   self.valueTextField.editable = self.isEditor;
   self.keyTextField.selectable = YES;
   self.valueTextField.selectable = YES;
   self.toggleProtectedButton.hidden = _isDefaultAttribute;
-  self.removeButton.hidden = !self.isEditor || (self.isEditor && !_isDefaultAttribute);
+  self.removeButton.hidden = !self.isEditor ? YES : _isDefaultAttribute;
 }
 
 @end

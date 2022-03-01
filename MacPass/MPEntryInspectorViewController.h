@@ -36,14 +36,7 @@
 @property (weak) IBOutlet NSTabView *tabView;
 @property (strong) IBOutlet NSView *generalView;
 
-@property (weak) IBOutlet NSTextField *titleTextField;
-@property (weak) IBOutlet NSTextField *usernameTextField;
-@property (weak) IBOutlet NSTextField *URLTextField;
-@property (weak) IBOutlet HNHUISecureTextField *passwordTextField;
-@property (weak) IBOutlet NSButton *generatePasswordButton;
-@property (weak) IBOutlet NSButton *togglePassword;
-@property (weak) IBOutlet NSButton *pickExpireDateButton;
-@property (weak) IBOutlet NSButton *expiresCheckButton;
+//@property (weak) IBOutlet NSTextField *titleTextField;
 @property (weak) IBOutlet NSTokenField *tagsTokenField;
 @property (weak) IBOutlet NSTextField *uuidTextField;
 
@@ -98,5 +91,7 @@
 
 - (IBAction)toggleQuicklookPreview:(id)sender;
 - (IBAction)toggleExpire:(NSButton*)sender;
+
+- (IBAction)toggleEdit:(id)sender;
 
 @end

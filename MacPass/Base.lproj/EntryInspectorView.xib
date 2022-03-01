@@ -8,7 +8,6 @@
     <objects>
         <customObject id="-2" userLabel="File's Owner" customClass="MPEntryInspectorViewController">
             <connections>
-                <outlet property="URLTextField" destination="56" id="262"/>
                 <outlet property="addAttachmentButton" destination="177" id="w3F-U0-Rpk"/>
                 <outlet property="addCustomFieldButton" destination="G9J-nn-2bu" id="vco-Lt-hkc"/>
                 <outlet property="addWindowAssociationButton" destination="Iy9-9L-Aev" id="kDA-Mm-lah"/>
@@ -18,23 +17,16 @@
                 <outlet property="customEntrySequenceTextField" destination="cDK-DM-F5z" id="CDU-Oq-AHP"/>
                 <outlet property="customFieldsTableView" destination="193" id="266"/>
                 <outlet property="enableAutotypeCheckButton" destination="kdV-Xa-8p3" id="vlC-HP-lBv"/>
-                <outlet property="expiresCheckButton" destination="7" id="286"/>
                 <outlet property="fieldsStackView" destination="dx3-E2-FFt" id="GbY-9q-iEy"/>
                 <outlet property="generalView" destination="4" id="270"/>
-                <outlet property="generatePasswordButton" destination="59" id="282"/>
                 <outlet property="infoTabControl" destination="82" id="264"/>
                 <outlet property="obfuscateAutotypeCheckButton" destination="I7L-Am-Qpa" id="hwa-zl-24W"/>
-                <outlet property="passwordTextField" destination="60" id="263"/>
-                <outlet property="pickExpireDateButton" destination="8" id="cJg-5V-AL6"/>
                 <outlet property="removeWindowAssociationButton" destination="AAj-Ak-z46" id="KJD-It-16t"/>
                 <outlet property="showCustomAssociationSequenceAutotypeBuilderButton" destination="m1C-m8-BKR" id="B3I-AG-TCJ"/>
                 <outlet property="showCustomDataButton" destination="QSX-Xo-tcH" id="bqq-Rh-GOb"/>
                 <outlet property="showCustomEntrySequenceAutotypeBuilderButton" destination="HDS-Bz-jrr" id="7u1-17-oMK"/>
                 <outlet property="tabView" destination="83" id="269"/>
                 <outlet property="tagsTokenField" destination="5" id="287"/>
-                <outlet property="titleTextField" destination="53" id="260"/>
-                <outlet property="togglePassword" destination="61" id="268"/>
-                <outlet property="usernameTextField" destination="55" id="261"/>
                 <outlet property="uuidTextField" destination="IpW-b2-jWu" id="dP6-qA-jJm"/>
                 <outlet property="view" destination="3" id="250"/>
                 <outlet property="windowAssociationsTableView" destination="caM-L6-UHC" id="n5M-f8-z24"/>
@@ -58,12 +50,12 @@
                     </segmentedCell>
                 </segmentedControl>
                 <tabView drawsBackground="NO" type="noTabsNoBorder" initialItem="110" translatesAutoresizingMaskIntoConstraints="NO" id="83">
-                    <rect key="frame" x="0.0" y="0.0" width="273" height="467"/>
+                    <rect key="frame" x="0.0" y="60" width="273" height="407"/>
                     <font key="font" metaFont="system"/>
                     <tabViewItems>
                         <tabViewItem label="General" identifier="1" id="110">
                             <view key="view" id="111">
-                                <rect key="frame" x="0.0" y="0.0" width="273" height="467"/>
+                                <rect key="frame" x="0.0" y="0.0" width="273" height="407"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                             </view>
                         </tabViewItem>
@@ -248,18 +240,30 @@
                         </tabViewItem>
                     </tabViewItems>
                 </tabView>
+                <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="ESJ-wu-D4P">
+                    <rect key="frame" x="108" y="13" width="58" height="32"/>
+                    <buttonCell key="cell" type="push" title="Edit" alternateTitle="Done" bezelStyle="rounded" alignment="center" borderStyle="border" inset="2" id="hJ8-Kw-czh">
+                        <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES" changeBackground="YES" changeGray="YES"/>
+                        <font key="font" metaFont="system"/>
+                    </buttonCell>
+                    <connections>
+                        <action selector="toggleEdit:" target="-2" id="Odr-gt-fBV"/>
+                    </connections>
+                </button>
             </subviews>
             <constraints>
                 <constraint firstItem="83" firstAttribute="leading" secondItem="3" secondAttribute="leading" id="85"/>
                 <constraint firstItem="83" firstAttribute="trailing" secondItem="3" secondAttribute="trailing" id="86"/>
                 <constraint firstItem="82" firstAttribute="top" secondItem="3" secondAttribute="top" constant="5" id="89"/>
                 <constraint firstAttribute="centerX" secondItem="82" secondAttribute="centerX" id="90"/>
-                <constraint firstItem="83" firstAttribute="bottom" secondItem="3" secondAttribute="bottom" id="254"/>
                 <constraint firstItem="83" firstAttribute="top" secondItem="3" secondAttribute="top" constant="26" id="279"/>
                 <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="82" secondAttribute="trailing" constant="20" symbolic="YES" id="4df-0Y-ggz"/>
+                <constraint firstAttribute="bottom" secondItem="ESJ-wu-D4P" secondAttribute="bottom" constant="20" symbolic="YES" id="OGC-4z-9MD"/>
+                <constraint firstItem="ESJ-wu-D4P" firstAttribute="centerX" secondItem="3" secondAttribute="centerX" id="bEP-z8-ndT"/>
+                <constraint firstItem="ESJ-wu-D4P" firstAttribute="top" secondItem="83" secondAttribute="bottom" constant="20" symbolic="YES" id="wQY-dE-8bJ"/>
                 <constraint firstItem="82" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="3" secondAttribute="leading" constant="20" symbolic="YES" id="zU6-5h-Swa"/>
             </constraints>
-            <point key="canvasLocation" x="-457" y="-1614"/>
+            <point key="canvasLocation" x="-457.5" y="-1614.5"/>
         </view>
         <customView translatesAutoresizingMaskIntoConstraints="NO" id="4" customClass="HNHUIScrollDocumentViewAdapter">
             <rect key="frame" x="0.0" y="0.0" width="291" height="840"/>
@@ -291,7 +295,6 @@
                     </buttonCell>
                     <connections>
                         <action selector="showPluginData:" target="-1" id="yGe-GL-mcW"/>
-                        <outlet property="nextKeyView" destination="53" id="HTB-dl-8aH"/>
                     </connections>
                 </button>
                 <segmentedControl verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="G9J-nn-2bu" customClass="MPContextButton">
@@ -309,162 +312,8 @@
                     </connections>
                 </segmentedControl>
                 <stackView distribution="fill" orientation="vertical" alignment="leading" horizontalStackHuggingPriority="250" verticalStackHuggingPriority="250" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="dx3-E2-FFt">
-                    <rect key="frame" x="20" y="491" width="251" height="329"/>
+                    <rect key="frame" x="20" y="721" width="251" height="99"/>
                     <subviews>
-                        <textField horizontalHuggingPriority="249" verticalHuggingPriority="750" allowsCharacterPickerTouchBarItem="YES" translatesAutoresizingMaskIntoConstraints="NO" id="52">
-                            <rect key="frame" x="-2" y="315" width="255" height="14"/>
-                            <textFieldCell key="cell" controlSize="small" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Title" id="71">
-                                <font key="font" metaFont="smallSystem"/>
-                                <color key="textColor" name="disabledControlTextColor" catalog="System" colorSpace="catalog"/>
-                                <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
-                            </textFieldCell>
-                        </textField>
-                        <textField horizontalHuggingPriority="249" verticalHuggingPriority="750" horizontalCompressionResistancePriority="249" allowsCharacterPickerTouchBarItem="YES" translatesAutoresizingMaskIntoConstraints="NO" id="53" customClass="HNHUITextField">
-                            <rect key="frame" x="0.0" y="286" width="251" height="21"/>
-                            <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" truncatesLastVisibleLine="YES" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" drawsBackground="YES" id="70">
-                                <font key="font" metaFont="system"/>
-                                <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
-                                <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
-                            </textFieldCell>
-                            <connections>
-                                <outlet property="delegate" destination="-2" id="pQH-Xf-3pz"/>
-                                <outlet property="nextKeyView" destination="55" id="FgE-cj-E5Z"/>
-                            </connections>
-                        </textField>
-                        <textField horizontalHuggingPriority="249" verticalHuggingPriority="750" allowsCharacterPickerTouchBarItem="YES" translatesAutoresizingMaskIntoConstraints="NO" id="54">
-                            <rect key="frame" x="-2" y="264" width="255" height="14"/>
-                            <textFieldCell key="cell" controlSize="small" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Username" id="69">
-                                <font key="font" metaFont="smallSystem"/>
-                                <color key="textColor" name="disabledControlTextColor" catalog="System" colorSpace="catalog"/>
-                                <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
-                            </textFieldCell>
-                        </textField>
-                        <textField horizontalHuggingPriority="249" verticalHuggingPriority="750" horizontalCompressionResistancePriority="249" allowsCharacterPickerTouchBarItem="YES" translatesAutoresizingMaskIntoConstraints="NO" id="55" customClass="HNHUITextField">
-                            <rect key="frame" x="0.0" y="236" width="251" height="20"/>
-                            <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" truncatesLastVisibleLine="YES" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" drawsBackground="YES" id="68">
-                                <font key="font" size="13" name="Menlo-Regular"/>
-                                <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
-                                <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
-                            </textFieldCell>
-                            <connections>
-                                <outlet property="delegate" destination="-2" id="22y-I8-aaG"/>
-                                <outlet property="nextKeyView" destination="60" id="ZPp-lg-TBS"/>
-                            </connections>
-                        </textField>
-                        <textField horizontalHuggingPriority="249" verticalHuggingPriority="750" allowsCharacterPickerTouchBarItem="YES" translatesAutoresizingMaskIntoConstraints="NO" id="58">
-                            <rect key="frame" x="-2" y="214" width="255" height="14"/>
-                            <textFieldCell key="cell" controlSize="small" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Password" id="65">
-                                <font key="font" metaFont="smallSystem"/>
-                                <color key="textColor" name="disabledControlTextColor" catalog="System" colorSpace="catalog"/>
-                                <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
-                            </textFieldCell>
-                        </textField>
-                        <stackView distribution="fill" orientation="horizontal" alignment="centerY" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" horizontalHuggingPriority="249" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="C4J-K4-QBG">
-                            <rect key="frame" x="0.0" y="186" width="251" height="20"/>
-                            <subviews>
-                                <secureTextField horizontalHuggingPriority="249" verticalHuggingPriority="750" horizontalCompressionResistancePriority="249" allowsCharacterPickerTouchBarItem="YES" contentType="oneTimeCode" translatesAutoresizingMaskIntoConstraints="NO" id="60" customClass="HNHUISecureTextField">
-                                    <rect key="frame" x="0.0" y="0.0" width="123" height="20"/>
-                                    <secureTextFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" truncatesLastVisibleLine="YES" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" borderStyle="bezel" drawsBackground="YES" id="63" customClass="HNHUISecureTextFieldCell">
-                                        <font key="font" size="13" name="Menlo-Regular"/>
-                                        <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
-                                        <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
-                                        <allowedInputSourceLocales>
-                                            <string>NSAllRomanInputSourcesLocaleIdentifier</string>
-                                        </allowedInputSourceLocales>
-                                    </secureTextFieldCell>
-                                    <connections>
-                                        <outlet property="delegate" destination="-2" id="RBf-26-U9y"/>
-                                        <outlet property="nextKeyView" destination="61" id="5yc-GS-oVG"/>
-                                    </connections>
-                                </secureTextField>
-                                <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="61">
-                                    <rect key="frame" x="124" y="-7" width="50" height="32"/>
-                                    <buttonCell key="cell" type="push" bezelStyle="rounded" image="NSQuickLookTemplate" imagePosition="only" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="62">
-                                        <behavior key="behavior" lightByBackground="YES" lightByGray="YES" changeBackground="YES" changeGray="YES"/>
-                                        <font key="font" metaFont="system"/>
-                                    </buttonCell>
-                                    <connections>
-                                        <outlet property="nextKeyView" destination="59" id="ZRe-l9-kNq"/>
-                                    </connections>
-                                </button>
-                                <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="59">
-                                    <rect key="frame" x="168" y="-7" width="90" height="32"/>
-                                    <buttonCell key="cell" type="push" title="Generate" bezelStyle="rounded" alignment="center" state="on" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="64">
-                                        <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
-                                        <font key="font" metaFont="system"/>
-                                    </buttonCell>
-                                    <connections>
-                                        <action selector="showPasswordGenerator:" target="-2" id="xxV-lD-L1K"/>
-                                        <outlet property="nextKeyView" destination="56" id="rY0-PH-WBT"/>
-                                    </connections>
-                                </button>
-                            </subviews>
-                            <visibilityPriorities>
-                                <integer value="1000"/>
-                                <integer value="1000"/>
-                                <integer value="1000"/>
-                            </visibilityPriorities>
-                            <customSpacing>
-                                <real value="3.4028234663852886e+38"/>
-                                <real value="3.4028234663852886e+38"/>
-                                <real value="3.4028234663852886e+38"/>
-                            </customSpacing>
-                        </stackView>
-                        <textField horizontalHuggingPriority="249" verticalHuggingPriority="750" allowsCharacterPickerTouchBarItem="YES" translatesAutoresizingMaskIntoConstraints="NO" id="57">
-                            <rect key="frame" x="-2" y="164" width="255" height="14"/>
-                            <textFieldCell key="cell" controlSize="small" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="URL" id="66">
-                                <font key="font" metaFont="smallSystem"/>
-                                <color key="textColor" name="disabledControlTextColor" catalog="System" colorSpace="catalog"/>
-                                <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
-                            </textFieldCell>
-                        </textField>
-                        <textField verticalHuggingPriority="750" allowsCharacterPickerTouchBarItem="YES" translatesAutoresizingMaskIntoConstraints="NO" id="56" customClass="HNHUITextField">
-                            <rect key="frame" x="0.0" y="135" width="251" height="21"/>
-                            <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" truncatesLastVisibleLine="YES" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" drawsBackground="YES" id="67">
-                                <font key="font" metaFont="system"/>
-                                <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
-                                <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
-                            </textFieldCell>
-                            <connections>
-                                <outlet property="delegate" destination="-2" id="LzV-u6-mkP"/>
-                                <outlet property="nextKeyView" destination="7" id="8Vo-ZR-aWE"/>
-                            </connections>
-                        </textField>
-                        <stackView distribution="fill" orientation="horizontal" alignment="centerY" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" horizontalHuggingPriority="248" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="buA-UH-XId">
-                            <rect key="frame" x="0.0" y="107" width="251" height="20"/>
-                            <subviews>
-                                <button horizontalHuggingPriority="249" horizontalCompressionResistancePriority="249" translatesAutoresizingMaskIntoConstraints="NO" id="7">
-                                    <rect key="frame" x="-2" y="1" width="214" height="18"/>
-                                    <buttonCell key="cell" type="check" title="Expires" bezelStyle="regularSquare" imagePosition="left" lineBreakMode="truncatingMiddle" state="on" inset="2" id="78">
-                                        <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
-                                        <font key="font" metaFont="system"/>
-                                    </buttonCell>
-                                    <connections>
-                                        <action selector="toggleExpire:" target="-2" id="EBe-2q-ASh"/>
-                                        <outlet property="nextKeyView" destination="8" id="SbJ-ZA-mXZ"/>
-                                    </connections>
-                                </button>
-                                <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="8">
-                                    <rect key="frame" x="213" y="-7" width="45" height="32"/>
-                                    <buttonCell key="cell" type="push" bezelStyle="rounded" image="NSActionTemplate" imagePosition="only" alignment="center" state="on" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="77">
-                                        <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
-                                        <font key="font" metaFont="system"/>
-                                    </buttonCell>
-                                    <connections>
-                                        <action selector="pickExpiryDate:" target="-1" id="DQK-sp-SIL"/>
-                                        <outlet property="nextKeyView" destination="5" id="cVg-qt-OBX"/>
-                                    </connections>
-                                </button>
-                            </subviews>
-                            <visibilityPriorities>
-                                <integer value="1000"/>
-                                <integer value="1000"/>
-                            </visibilityPriorities>
-                            <customSpacing>
-                                <real value="3.4028234663852886e+38"/>
-                                <real value="3.4028234663852886e+38"/>
-                            </customSpacing>
-                        </stackView>
                         <textField horizontalHuggingPriority="249" verticalHuggingPriority="750" allowsCharacterPickerTouchBarItem="YES" translatesAutoresizingMaskIntoConstraints="NO" id="6">
                             <rect key="frame" x="-2" y="85" width="255" height="14"/>
                             <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Tags" id="79">
@@ -491,26 +340,8 @@
                     <visibilityPriorities>
                         <integer value="1000"/>
                         <integer value="1000"/>
-                        <integer value="1000"/>
-                        <integer value="1000"/>
-                        <integer value="1000"/>
-                        <integer value="1000"/>
-                        <integer value="1000"/>
-                        <integer value="1000"/>
-                        <integer value="1000"/>
-                        <integer value="1000"/>
-                        <integer value="1000"/>
                     </visibilityPriorities>
                     <customSpacing>
-                        <real value="3.4028234663852886e+38"/>
-                        <real value="3.4028234663852886e+38"/>
-                        <real value="3.4028234663852886e+38"/>
-                        <real value="3.4028234663852886e+38"/>
-                        <real value="3.4028234663852886e+38"/>
-                        <real value="3.4028234663852886e+38"/>
-                        <real value="3.4028234663852886e+38"/>
-                        <real value="3.4028234663852886e+38"/>
-                        <real value="3.4028234663852886e+38"/>
                         <real value="3.4028234663852886e+38"/>
                         <real value="3.4028234663852886e+38"/>
                     </customSpacing>
@@ -878,7 +709,6 @@
         <image name="NSActionTemplate" width="15" height="15"/>
         <image name="NSAddTemplate" width="14" height="13"/>
         <image name="NSLockLockedTemplate" width="14" height="15"/>
-        <image name="NSQuickLookTemplate" width="21" height="13"/>
         <image name="NSRemoveTemplate" width="14" height="4"/>
     </resources>
 </document>

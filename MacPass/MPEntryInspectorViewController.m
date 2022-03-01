@@ -79,19 +79,19 @@ typedef NS_ENUM(NSUInteger, MPEntryTab) {
   MPTagsTokenFieldDelegate *_tagTokenFieldDelegate;
   MPAddCustomFieldContextMenuDelegate *_addCustomFieldContextMenuDelegate;
   
-  NSMutableArray<NSViewController<MPInspectorEditor> *> *_customAttributeEditorViewControllers;
-  
-  MPEntryAttributeViewController *_titleEditorViewController;
-  MPEntryAttributeViewController *_usernameEditorViewController;
-  MPEntryAttributeViewController *_urlEditorViewController;
-  MPNodeExpirationViewController *_expiresEditorViewController;
-  MPEntryPasswordAttributeViewController *_passwordEditorViewController;
+  NSMutableArray<NSViewController<MPAttributeInspectorEditor> *> *_customAttributeEditorViewControllers;
 }
 
 @property (nonatomic, assign) BOOL showPassword;
 @property (nonatomic, assign) MPEntryTab activeTab;
 @property (nonatomic, readonly) KPKEntry *representedEntry;
 @property (strong) MPTOTPViewController *totpViewController;
+@property (strong) MPEntryAttributeViewController *titleEditorViewController;
+@property (strong) MPEntryAttributeViewController *usernameEditorViewController;
+@property (strong) MPEntryAttributeViewController *urlEditorViewController;
+@property (strong) MPNodeExpirationViewController *expiresEditorViewController;
+@property (strong) MPEntryPasswordAttributeViewController *passwordEditorViewController;
+
 
 @property (strong) MPTemporaryFileStorage *quicklookStorage;
 
@@ -139,6 +139,8 @@ typedef NS_ENUM(NSUInteger, MPEntryTab) {
   if(self.representedObject) {
     [NSNotificationCenter.defaultCenter removeObserver:self name:KPKWillChangeEntryNotification object:self.representedEntry];
     [NSNotificationCenter.defaultCenter removeObserver:self name:KPKDidChangeEntryNotification object:self.representedEntry];
+    [NSNotificationCenter.defaultCenter removeObserver:self name:KPKWillAddAttributeNotification object:self.representedEntry];
+    [NSNotificationCenter.defaultCenter removeObserver:self name:KPKDidAddAttributeNotification object:self.representedEntry];
   }
   super.representedObject = representedObject;
   
@@ -148,6 +150,8 @@ typedef NS_ENUM(NSUInteger, MPEntryTab) {
   if(self.representedEntry) {
     [NSNotificationCenter.defaultCenter addObserver:self selector:@selector(_willChangeEntry:) name:KPKWillChangeEntryNotification object:self.representedEntry];
     [NSNotificationCenter.defaultCenter addObserver:self selector:@selector(_didChangeEntry:) name:KPKDidChangeEntryNotification object:self.representedEntry];
+    [NSNotificationCenter.defaultCenter addObserver:self selector:@selector(_willAddAttribute:) name:KPKWillAddAttributeNotification object:self.representedEntry];
+    [NSNotificationCenter.defaultCenter addObserver:self selector:@selector(_didAddAttribute:) name:KPKDidAddAttributeNotification object:self.representedEntry];
   }
 }
 
@@ -203,8 +207,8 @@ typedef NS_ENUM(NSUInteger, MPEntryTab) {
   
   self.windowTitleComboBox.delegate = _windowTitleMenuDelegate;
   
-  [self.passwordTextField bind:NSStringFromSelector(@selector(showPassword)) toObject:self withKeyPath:NSStringFromSelector(@selector(showPassword)) options:nil];
-  [self.togglePassword bind:NSValueBinding toObject:self withKeyPath:NSStringFromSelector(@selector(showPassword)) options:nil];
+  //[self.passwordTextField bind:NSStringFromSelector(@selector(showPassword)) toObject:self withKeyPath:NSStringFromSelector(@selector(showPassword)) options:nil];
+  //[self.togglePassword bind:NSValueBinding toObject:self withKeyPath:NSStringFromSelector(@selector(showPassword)) options:nil];
   
   self.tagsTokenField.delegate = _tagTokenFieldDelegate;
     
@@ -330,6 +334,16 @@ typedef NS_ENUM(NSUInteger, MPEntryTab) {
   }
 }
 
+- (void)toggleEdit:(id)sender {
+  // commit changes in editors!
+  self.titleEditorViewController.isEditor = !self.titleEditorViewController.isEditor;
+  self.usernameEditorViewController.isEditor = !self.usernameEditorViewController.isEditor;
+  self.passwordEditorViewController.isEditor = !self.passwordEditorViewController.isEditor;
+  self.urlEditorViewController.isEditor = !self.urlEditorViewController.isEditor;
+  self.expiresEditorViewController.isEditor = !self.expiresEditorViewController.isEditor;
+  //self.totpViewController.isEditor = !self.totpViewController.isEditor;
+}
+
 - (BOOL)validateMenuItem:(NSMenuItem *)menuItem {
   switch([MPActionHelper typeForAction:menuItem.action]) {
     case MPActionToggleQuicklook: {
@@ -400,7 +414,7 @@ typedef NS_ENUM(NSUInteger, MPEntryTab) {
 }
 
 - (IBAction)showPasswordGenerator:(id)sender {
-  self.generatePasswordButton.enabled = NO;
+  //self.generatePasswordButton.enabled = NO;
   MPPasswordCreatorViewController *viewController = [[MPPasswordCreatorViewController alloc] init];
   viewController.allowsEntryDefaults = YES;
   viewController.representedObject = self.representedObject;
@@ -430,7 +444,7 @@ typedef NS_ENUM(NSUInteger, MPEntryTab) {
     self.showCustomEntrySequenceAutotypeBuilderButton.enabled = YES;
   }
   else if([viewController isKindOfClass:MPPasswordCreatorViewController.class]) {
-    self.generatePasswordButton.enabled = YES;
+    //self.generatePasswordButton.enabled = YES;
   }
   [super dismissViewController:viewController];
 }
@@ -494,13 +508,8 @@ typedef NS_ENUM(NSUInteger, MPEntryTab) {
 
 - (void)_setupViewBindings {
   /* Disable for history view */
-  NSArray *inputs = @[self.titleTextField,
-                      self.passwordTextField,
-                      self.usernameTextField,
-                      self.URLTextField,
-                      self.expiresCheckButton,
+  NSArray *inputs = @[
                       self.tagsTokenField,
-                      self.generatePasswordButton,
                       self.addAttachmentButton,
                       self.addCustomFieldButton,
                       self.addWindowAssociationButton,
@@ -521,35 +530,6 @@ typedef NS_ENUM(NSUInteger, MPEntryTab) {
   /* general */
   NSDictionary *nullPlaceholderBindingOptionsDict = @{ NSNullPlaceholderBindingOption: NSLocalizedString(@"NONE", "Placeholder text for input fields if no entry or group is selected")};
   NSDictionary *prettyPasswordBindingOptionsDict = @{ NSNullPlaceholderBindingOption: nullPlaceholderBindingOptionsDict[NSNullPlaceholderBindingOption], NSValueTransformerNameBindingOption : MPPrettyPasswordTransformerName };
-  
-  [self.titleTextField bind:NSValueBinding
-                   toObject:self
-                withKeyPath:[NSString stringWithFormat:@"%@.%@", NSStringFromSelector(@selector(representedObject)), NSStringFromSelector(@selector(title))]
-                    options:nullPlaceholderBindingOptionsDict];
-  [self.passwordTextField bind:NSValueBinding
-                      toObject:self
-                   withKeyPath:[NSString stringWithFormat:@"%@.%@", NSStringFromSelector(@selector(representedObject)), NSStringFromSelector(@selector(password))]
-                       options:prettyPasswordBindingOptionsDict];
-  
-  [self.usernameTextField bind:NSValueBinding
-                      toObject:self
-                   withKeyPath:[NSString stringWithFormat:@"%@.%@", NSStringFromSelector(@selector(representedObject)), NSStringFromSelector(@selector(username))]
-                       options:nullPlaceholderBindingOptionsDict];
-  
-  [self.URLTextField bind:NSValueBinding
-                 toObject:self
-              withKeyPath:[NSString stringWithFormat:@"%@.%@", NSStringFromSelector(@selector(representedObject)), NSStringFromSelector(@selector(url))]
-                  options:nullPlaceholderBindingOptionsDict];
-
-  [self.expiresCheckButton bind:NSTitleBinding
-                       toObject:self
-                    withKeyPath:[NSString stringWithFormat:@"%@.%@.%@", NSStringFromSelector(@selector(representedObject)), NSStringFromSelector(@selector(timeInfo)), NSStringFromSelector(@selector(expirationDate))]
-                        options:@{ NSValueTransformerNameBindingOption:MPExpiryDateValueTransformerName }];
-
-  [self.expiresCheckButton bind:NSValueBinding
-                       toObject:self
-                    withKeyPath:[NSString stringWithFormat:@"%@.%@.%@", NSStringFromSelector(@selector(representedObject)), NSStringFromSelector(@selector(timeInfo)), NSStringFromSelector(@selector(expires))]
-                        options:nil];
   
   [self.tagsTokenField bind:NSValueBinding
                    toObject:self
@@ -623,52 +603,61 @@ typedef NS_ENUM(NSUInteger, MPEntryTab) {
 }
 
 - (void)_setupAttributeEditors {
+  self.titleEditorViewController = [[MPEntryAttributeViewController alloc] init];
+  self.titleEditorViewController.isEditor = NO;
+  [self.fieldsStackView addArrangedSubview:self.titleEditorViewController.view];
+  
+  self.usernameEditorViewController = [[MPEntryAttributeViewController alloc] init];
+  self.usernameEditorViewController.isEditor = NO;
+  [self.fieldsStackView addArrangedSubview:self.usernameEditorViewController.view];
+
+  self.passwordEditorViewController = [[MPEntryPasswordAttributeViewController alloc] init];
+  self.passwordEditorViewController.isEditor = NO;
+  [self.fieldsStackView addArrangedSubview:self.passwordEditorViewController.view];
+  
+  self.urlEditorViewController = [[MPEntryAttributeViewController alloc] init];
+  self.urlEditorViewController.isEditor = NO;
+  [self.fieldsStackView addArrangedSubview:self.urlEditorViewController.view];
+  
   self.totpViewController = [[MPTOTPViewController alloc] init];
-  
-  NSInteger urlindex = [self.fieldsStackView.arrangedSubviews indexOfObject:self.URLTextField];
-  NSAssert(urlindex != NSNotFound, @"Missing reference view. This should not happen!");
   [self addChildViewController:self.totpViewController];
-  [self.fieldsStackView insertArrangedSubview:self.totpViewController.view atIndex:urlindex - 1];
-
-  _titleEditorViewController = [[MPEntryAttributeViewController alloc] init];
-  _titleEditorViewController.isEditor = NO;
-  [self.fieldsStackView addArrangedSubview:_titleEditorViewController.view];
+  //self.totpViewController.isEditor = NO;
+  [self.fieldsStackView addArrangedSubview:self.totpViewController.view];
   
-  _usernameEditorViewController = [[MPEntryAttributeViewController alloc] init];
-  _usernameEditorViewController.isEditor = NO;
-  [self.fieldsStackView addArrangedSubview:_usernameEditorViewController.view];
-
-  _passwordEditorViewController = [[MPEntryPasswordAttributeViewController alloc] init];
-  _passwordEditorViewController.isEditor = NO;
-  [self.fieldsStackView addArrangedSubview:_passwordEditorViewController.view];
-  
-  _urlEditorViewController = [[MPEntryAttributeViewController alloc] init];
-  _urlEditorViewController.isEditor = NO;
-  [self.fieldsStackView addArrangedSubview:_urlEditorViewController.view];
-  
-  _expiresEditorViewController = [[MPNodeExpirationViewController alloc] init];
-  _expiresEditorViewController.isEditor = NO;
-  [self.fieldsStackView addArrangedSubview:_expiresEditorViewController.view];
+  self.expiresEditorViewController = [[MPNodeExpirationViewController alloc] init];
+  self.expiresEditorViewController.isEditor = NO;
+  [self.fieldsStackView addArrangedSubview:self.expiresEditorViewController.view];
 }
 
 - (void)_updateEditors {
   self.totpViewController.representedObject = self.representedObject;
+  self.expiresEditorViewController.representedObject = self.representedEntry.timeInfo;
   
-  _titleEditorViewController.representedObject = [self.representedEntry attributeWithKey:kKPKTitleKey];
-  _usernameEditorViewController.representedObject = [self.representedEntry attributeWithKey:kKPKUsernameKey];
-  _passwordEditorViewController.representedObject = [self.representedEntry attributeWithKey:kKPKPasswordKey];
-  _urlEditorViewController.representedObject = [self.representedEntry attributeWithKey:kKPKURLKey];
-  _expiresEditorViewController.representedObject = self.representedEntry.timeInfo;
+  self.titleEditorViewController.representedObject = [self.representedEntry attributeWithKey:kKPKTitleKey];
+  self.usernameEditorViewController.representedObject = [self.representedEntry attributeWithKey:kKPKUsernameKey];
+  self.passwordEditorViewController.representedObject = [self.representedEntry attributeWithKey:kKPKPasswordKey];
+  self.urlEditorViewController.representedObject = [self.representedEntry attributeWithKey:kKPKURLKey];
   
+  // update custom field editors
+  if(!self.representedEntry.hasCustomAttributes) {
+    // clear all custom attribute editors
+  }
+  else {
+    
+  }
 }
 
 #pragma mark -
 #pragma mark HNHUITextFieldDelegate
 - (BOOL)textField:(NSTextField *)textField allowServicesForTextView:(NSTextView *)textView {
   /* disallow servies for password fields */
-  if(textField == self.passwordTextField) {
+  
+  /*
+   FIXME: Add to MPEntryPasswordViewController
+   if(textField == self.passwordTextField) {
     return NO;
   }
+  */
   NSInteger index = MPCustomFieldIndexFromTag(textField.tag);
   if(index > -1) {
     KPKAttribute *attribute = _customFieldsController.arrangedObjects[index];
@@ -705,6 +694,7 @@ typedef NS_ENUM(NSUInteger, MPEntryTab) {
     if(selectedValue.length == 0) {
       return YES;
     }
+    /* FIXME: Add to AttributeViewController
     if(textField == self.usernameTextField) {
       info = MPPasteboardOverlayInfoUsername;
     }
@@ -714,11 +704,8 @@ typedef NS_ENUM(NSUInteger, MPEntryTab) {
     else if(textField == self.URLTextField) {
       info = MPPasteboardOverlayInfoURL;
     }
-    else if(textField == self.uuidTextField) {
+    else*/ if(textField == self.uuidTextField) {
       name = NSLocalizedString(@"UUID", "Displayed name when uuid field was copied");
-    }
-    else if(textField == self.titleTextField) {
-      name = NSLocalizedString(@"TITLE", "Displayed name when title field was copied");
     }
     else {
       NSInteger index = MPCustomFieldIndexFromTag(textField.tag);
@@ -733,9 +720,13 @@ typedef NS_ENUM(NSUInteger, MPEntryTab) {
 }
 
 - (IBAction)toggleExpire:(NSButton*)sender {
-  if([sender state] == NSOnState && [self.representedEntry.timeInfo.expirationDate isEqualToDate:NSDate.distantFuture]) {
+  
+  /*
+   FIXME: Add to expiredViewController
+   if([sender state] == NSOnState && [self.representedEntry.timeInfo.expirationDate isEqualToDate:NSDate.distantFuture]) {
     [NSApp sendAction:self.pickExpireDateButton.action to:nil from:self.pickExpireDateButton];
   }
+   */
 }
 
 #pragma mark -
@@ -743,7 +734,6 @@ typedef NS_ENUM(NSUInteger, MPEntryTab) {
 
 - (void)_didAddEntry:(NSNotification *)notification {
   [self.tabView selectTabViewItemAtIndex:MPEntryTabGeneral];
-  [self.titleTextField becomeFirstResponder];
 }
 
 - (void)_didChangeCurrentItem:(NSNotification *)notificiation {
@@ -767,6 +757,21 @@ typedef NS_ENUM(NSUInteger, MPEntryTab) {
 }
 
 - (void)_didChangeAttribute:(NSNotification *)notification {
+}
+
+- (void)_willAddAttribute:(NSNotification *)notification {
+
+}
+
+- (void)_didAddAttribute:(NSNotification *)notification {
+  // TODO: add attribute editor to stackview
+}
+
+- (void)_willRemoveAttribute:(NSNotification *)notification {
+  // TODO: remove attribute editor form stackview
+}
+
+- (void)_didRemoveAttribute:(NSNotification *)notification {
 }
 
 @end
