@@ -27,7 +27,6 @@ NSString *nameForDefaultKey(NSString *key) {
 @interface MPEntryAttributeViewController () {
   BOOL _isDefaultAttribute;
 }
-@property (readonly, nullable, strong) KPKAttribute *representedAttribute;
 
 @end
 

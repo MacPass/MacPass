@@ -17,7 +17,7 @@ NS_ASSUME_NONNULL_BEGIN
 /// View controller to show and edit KPKAttributes of KPKEntries.
 /// Set the represented object to the KPKAttribute the editor shoudl show/edit
 /// The editor can be set to edit or view
-@interface MPEntryAttributeViewController : NSViewController <MPInspectorEditor, HNHUITextFieldDelegate>
+@interface MPEntryAttributeViewController : NSViewController <MPAttributeInspectorEditor, HNHUITextFieldDelegate>
 
 @property (strong) IBOutlet NSTextField *keyTextField;
 @property (strong) IBOutlet HNHUISecureTextField *valueTextField;

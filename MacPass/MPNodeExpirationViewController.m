@@ -13,7 +13,6 @@
 
 @interface MPNodeExpirationViewController ()
 
-@property (nonatomic, readonly, strong) KPKTimeInfo *representedTimeInfo;
 @property (strong) IBOutlet NSButton *expiredCheckButton;
 @property (strong) IBOutlet NSButton *pickExpireDateButton;
 

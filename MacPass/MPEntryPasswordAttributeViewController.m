@@ -16,8 +16,6 @@
 @property (strong) IBOutlet NSButton *togglePasswordButton;
 @property (strong) IBOutlet NSButton *generatePasswordButton;
 
-@property (strong, nullable, readonly) KPKAttribute *representedAttribute;
-
 @end
 
 @implementation MPEntryPasswordAttributeViewController

@@ -11,7 +11,7 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface MPNodeExpirationViewController : NSViewController <MPInspectorEditor>
+@interface MPNodeExpirationViewController : NSViewController <MPTimeInfoInpspectorEditor>
 
 @end
 

@@ -79,7 +79,7 @@ typedef NS_ENUM(NSUInteger, MPEntryTab) {
   MPTagsTokenFieldDelegate *_tagTokenFieldDelegate;
   MPAddCustomFieldContextMenuDelegate *_addCustomFieldContextMenuDelegate;
   
-  NSMutableArray<NSViewController<MPInspectorEditor> *> *_attributeEditorViewControllers;
+  NSMutableArray<NSViewController<MPInspectorEditor> *> *_customAttributeEditorViewControllers;
   
   MPEntryAttributeViewController *_titleEditorViewController;
   MPEntryAttributeViewController *_usernameEditorViewController;
@@ -122,7 +122,7 @@ typedef NS_ENUM(NSUInteger, MPEntryTab) {
     _customFieldTableDelegate.viewController = self;
     _addCustomFieldContextMenuDelegate.viewController = self;
     
-    _attributeEditorViewControllers = [[NSMutableArray alloc] init];
+    _customAttributeEditorViewControllers = [[NSMutableArray alloc] init];
     _activeTab = MPEntryTabGeneral;
   }
   return self;

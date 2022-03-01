@@ -11,6 +11,7 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
+/// View controller to edit password attributes of entries.
 @interface MPEntryPasswordAttributeViewController : MPEntryAttributeViewController
 
 @end
