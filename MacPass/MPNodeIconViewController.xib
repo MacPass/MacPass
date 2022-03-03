@@ -8,33 +8,43 @@
     <objects>
         <customObject id="-2" userLabel="File's Owner" customClass="MPNodeIconViewController">
             <connections>
+                <outlet property="imageView" destination="7kO-Kv-UI5" id="rTv-Pp-R1I"/>
+                <outlet property="textField" destination="xou-fD-adZ" id="n93-XV-5dq"/>
                 <outlet property="view" destination="Hz6-mo-xeY" id="0bl-1N-x8E"/>
             </connections>
         </customObject>
         <customObject id="-1" userLabel="First Responder" customClass="FirstResponder"/>
         <customObject id="-3" userLabel="Application" customClass="NSObject"/>
         <customView id="Hz6-mo-xeY">
-            <rect key="frame" x="0.0" y="0.0" width="246" height="88"/>
+            <rect key="frame" x="0.0" y="0.0" width="495" height="32"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
             <subviews>
-                <imageView horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="7kO-Kv-UI5" customClass="MPIconImageView">
-                    <rect key="frame" x="99" y="17" width="48" height="54"/>
+                <imageView horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="7kO-Kv-UI5">
+                    <rect key="frame" x="0.0" y="0.0" width="32" height="32"/>
                     <constraints>
-                        <constraint firstAttribute="width" constant="48" id="VD7-b8-cKP"/>
-                        <constraint firstAttribute="height" constant="48" id="g13-f2-0hR"/>
+                        <constraint firstAttribute="width" constant="32" id="VD7-b8-cKP"/>
+                        <constraint firstAttribute="height" constant="32" id="g13-f2-0hR"/>
                     </constraints>
-                    <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyUpOrDown" image="NSActionTemplate" id="09t-w3-euN"/>
+                    <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyUpOrDown" id="09t-w3-euN"/>
                 </imageView>
+                <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="xou-fD-adZ">
+                    <rect key="frame" x="38" y="8" width="439" height="16"/>
+                    <textFieldCell key="cell" lineBreakMode="clipping" title="Label" id="aKF-2z-5ob">
+                        <font key="font" metaFont="system"/>
+                        <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                        <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                    </textFieldCell>
+                </textField>
             </subviews>
             <constraints>
-                <constraint firstAttribute="bottom" secondItem="7kO-Kv-UI5" secondAttribute="bottom" constant="20" symbolic="YES" id="DhE-aA-Ovp"/>
-                <constraint firstItem="7kO-Kv-UI5" firstAttribute="top" secondItem="Hz6-mo-xeY" secondAttribute="top" constant="20" symbolic="YES" id="nCQ-tS-CIv"/>
-                <constraint firstItem="7kO-Kv-UI5" firstAttribute="centerX" secondItem="Hz6-mo-xeY" secondAttribute="centerX" id="v1c-QL-UBe"/>
+                <constraint firstItem="xou-fD-adZ" firstAttribute="centerY" secondItem="7kO-Kv-UI5" secondAttribute="centerY" id="0C4-8O-cQb"/>
+                <constraint firstAttribute="bottom" secondItem="7kO-Kv-UI5" secondAttribute="bottom" id="DhE-aA-Ovp"/>
+                <constraint firstItem="xou-fD-adZ" firstAttribute="leading" secondItem="7kO-Kv-UI5" secondAttribute="trailing" constant="8" symbolic="YES" id="Elf-Iw-tmF"/>
+                <constraint firstItem="7kO-Kv-UI5" firstAttribute="leading" secondItem="Hz6-mo-xeY" secondAttribute="leading" id="axe-Q2-16O"/>
+                <constraint firstItem="7kO-Kv-UI5" firstAttribute="top" secondItem="Hz6-mo-xeY" secondAttribute="top" id="nCQ-tS-CIv"/>
+                <constraint firstAttribute="trailing" secondItem="xou-fD-adZ" secondAttribute="trailing" constant="20" symbolic="YES" id="qYf-Ov-k32"/>
             </constraints>
-            <point key="canvasLocation" x="24" y="40.5"/>
+            <point key="canvasLocation" x="231.5" y="-13.5"/>
         </customView>
     </objects>
-    <resources>
-        <image name="NSActionTemplate" width="15" height="15"/>
-    </resources>
 </document>

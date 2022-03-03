@@ -36,6 +36,7 @@
 #import "MPEntryAttributeViewController.h"
 #import "MPEntryPasswordAttributeViewController.h"
 #import "MPNodeExpirationViewController.h"
+#import "MPNodeIconViewController.h"
 
 #import "MPPrettyPasswordTransformer.h"
 #import "NSString+MPPasswordCreation.h"
@@ -91,6 +92,7 @@ typedef NS_ENUM(NSUInteger, MPEntryTab) {
 @property (strong) MPEntryAttributeViewController *urlEditorViewController;
 @property (strong) MPNodeExpirationViewController *expiresEditorViewController;
 @property (strong) MPEntryPasswordAttributeViewController *passwordEditorViewController;
+@property (strong) MPNodeIconViewController *iconViewController;
 
 
 @property (strong) MPTemporaryFileStorage *quicklookStorage;
@@ -603,6 +605,10 @@ typedef NS_ENUM(NSUInteger, MPEntryTab) {
 }
 
 - (void)_setupAttributeEditors {
+  self.iconViewController = [[MPNodeIconViewController alloc] init];
+  self.iconViewController.isEditor = NO;
+  [self.fieldsStackView addArrangedSubview:self.iconViewController.view];
+  
   self.titleEditorViewController = [[MPEntryAttributeViewController alloc] init];
   self.titleEditorViewController.isEditor = NO;
   [self.fieldsStackView addArrangedSubview:self.titleEditorViewController.view];
@@ -630,6 +636,7 @@ typedef NS_ENUM(NSUInteger, MPEntryTab) {
 }
 
 - (void)_updateEditors {
+  self.iconViewController.representedObject = self.representedObject;
   self.totpViewController.representedObject = self.representedObject;
   self.expiresEditorViewController.representedObject = self.representedEntry.timeInfo;
   
