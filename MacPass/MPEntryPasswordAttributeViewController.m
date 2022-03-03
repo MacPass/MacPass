@@ -35,7 +35,6 @@
       [welf textField:welf.passwordTextField textView:(NSTextView *)text performAction:@selector(copy:)];
     }
   };
-
 }
 
 - (void)updateValues {

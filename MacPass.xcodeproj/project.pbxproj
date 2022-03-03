@@ -222,6 +222,8 @@
 		4C9328C8273E6A38000DCBEE /* MPTOTPSetupViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4C9328CA273E6A38000DCBEE /* MPTOTPSetupViewController.xib */; };
 		4C9328D0273E6A83000DCBEE /* MPTOTPViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4C9328D2273E6A83000DCBEE /* MPTOTPViewController.xib */; };
 		4C978E0D19AE54AB003067DF /* MPFlagsHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C978E0C19AE54AB003067DF /* MPFlagsHelper.m */; };
+		4C98A6CC27CFAB1900CD912F /* MPNodeIconViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C98A6CA27CFAB1900CD912F /* MPNodeIconViewController.m */; };
+		4C98A6CD27CFAB1900CD912F /* MPNodeIconViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4C98A6CB27CFAB1900CD912F /* MPNodeIconViewController.xib */; };
 		4C9BFFFB1FD19B5400264B16 /* MPPrettyPasswordTransformer.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C9BFFFA1FD19B5400264B16 /* MPPrettyPasswordTransformer.m */; };
 		4CA08DA017A831B200A6544B /* MPAddEntryContextMenuDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CA08D9F17A831B200A6544B /* MPAddEntryContextMenuDelegate.m */; };
 		4CA0B2ED15BCADAC00654E32 /* PreferencesWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4CA0B2EC15BCADAC00654E32 /* PreferencesWindow.xib */; };
@@ -779,6 +781,9 @@
 		4C9328D6273E6A85000DCBEE /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/MPTOTPViewController.strings; sourceTree = "<group>"; };
 		4C978E0C19AE54AB003067DF /* MPFlagsHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MPFlagsHelper.m; sourceTree = "<group>"; };
 		4C97CCEF1FA727DC00E58F8C /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
+		4C98A6C927CFAB1800CD912F /* MPNodeIconViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MPNodeIconViewController.h; sourceTree = "<group>"; };
+		4C98A6CA27CFAB1900CD912F /* MPNodeIconViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MPNodeIconViewController.m; sourceTree = "<group>"; };
+		4C98A6CB27CFAB1900CD912F /* MPNodeIconViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MPNodeIconViewController.xib; sourceTree = "<group>"; };
 		4C9BFFF91FD19B5400264B16 /* MPPrettyPasswordTransformer.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MPPrettyPasswordTransformer.h; sourceTree = "<group>"; };
 		4C9BFFFA1FD19B5400264B16 /* MPPrettyPasswordTransformer.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MPPrettyPasswordTransformer.m; sourceTree = "<group>"; };
 		4C9FE47423703DA50096A5EA /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
@@ -1515,6 +1520,9 @@
 				4C59AC9A2722C12200F54B20 /* MPNodeExpirationViewController.h */,
 				4C59AC9B2722C12200F54B20 /* MPNodeExpirationViewController.m */,
 				4C59AC9C2722C12200F54B20 /* MPNodeExpirationViewController.xib */,
+				4C98A6C927CFAB1800CD912F /* MPNodeIconViewController.h */,
+				4C98A6CA27CFAB1900CD912F /* MPNodeIconViewController.m */,
+				4C98A6CB27CFAB1900CD912F /* MPNodeIconViewController.xib */,
 			);
 			name = Inspector;
 			sourceTree = "<group>";
@@ -2104,6 +2112,7 @@
 				4C586F9E16D07ABD00E7DB57 /* 00_PasswordTemplate.pdf in Resources */,
 				FA13910C1F9CD9EB0033D256 /* Localizable.stringsdict in Resources */,
 				4C586FA016D07D7200E7DB57 /* 01_PackageNetworkTemplate.pdf in Resources */,
+				4C98A6CD27CFAB1900CD912F /* MPNodeIconViewController.xib in Resources */,
 				4CE4FFAD2746956F00789F75 /* MPGeneralDatabaseSettingsViewController.xib in Resources */,
 				4C3826CB1AD04D8E007D7D67 /* 64_AppleTemplate.pdf in Resources */,
 				4C3826AA1AD04D8E007D7D67 /* 27_NFSUnmountTemplate.pdf in Resources */,
@@ -2396,6 +2405,7 @@
 				4C57AE1417BA422B00CA4F34 /* MPSegmentedContextCell.m in Sources */,
 				4CE2961518429AA5005F01CE /* MPAutotypeKeyPress.m in Sources */,
 				4CE4FFAC2746956F00789F75 /* MPGeneralDatabaseSettingsViewController.m in Sources */,
+				4C98A6CC27CFAB1900CD912F /* MPNodeIconViewController.m in Sources */,
 				4C32B0E71A1D4436007E12F1 /* KPKFormat+MPUTIDetection.m in Sources */,
 				4C5807781C64F67000E7171F /* NSString+MPHash.m in Sources */,
 				4CAAA8271D787B8B00CDE977 /* MPAutotypeBuilderViewController.m in Sources */,

@@ -147,6 +147,11 @@ NSString *const MPDocumentGroupKey                            = @"MPDocumentGrou
   [self addWindowController:windowController];
 }
 
+- (void)canCloseDocumentWithDelegate:(id)delegate shouldCloseSelector:(nullable SEL)shouldCloseSelector contextInfo:(nullable void *)contextInfo {
+  
+  [super canCloseDocumentWithDelegate:delegate shouldCloseSelector:shouldCloseSelector contextInfo:contextInfo];
+}
+
 - (BOOL)canAsynchronouslyWriteToURL:(NSURL *)url ofType:(NSString *)typeName forSaveOperation:(NSSaveOperationType)saveOperation {
   return YES;
 }

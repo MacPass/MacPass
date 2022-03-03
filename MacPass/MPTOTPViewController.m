@@ -97,4 +97,11 @@
     self.toptValueTextField.stringValue = @"";
   }
 }
+
+
+- (BOOL)commitEditing {
+  NSLog(@"%@: %@", NSStringFromClass(self.class), NSStringFromSelector(_cmd));
+  return [super commitEditing];
+}
+
 @end

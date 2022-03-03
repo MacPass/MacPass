@@ -105,17 +105,6 @@ NSString *nameForDefaultKey(NSString *key) {
   [self updateValues];
 }
 
--(void)commitChanges {
-  if(!self.isEditor) {
-    // do not commit changes if we are no editor!
-  }
-  // FIXME: better handling of key uniqueness
-  if(!_isDefaultAttribute) {
-    self.representedAttribute.key = self.keyTextField.stringValue;
-  }
-  self.representedAttribute.value = self.valueTextField.stringValue;
-}
-
 - (BOOL)textField:(NSTextField *)textField textView:(NSTextView *)textView performAction:(SEL)action {
   if(action != @selector(copy:)) {
     return YES;
@@ -183,6 +172,47 @@ NSString *nameForDefaultKey(NSString *key) {
   self.valueTextField.selectable = YES;
   self.toggleProtectedButton.hidden = _isDefaultAttribute;
   self.removeButton.hidden = !self.isEditor ? YES : _isDefaultAttribute;
+
+  // set draws background first, since bezeld might have side effects
+  self.valueTextField.drawsBackground = self.isEditor;
+  self.valueTextField.bordered = self.isEditor;
+  self.valueTextField.bezeled = self.isEditor;
+}
+
+-(void)commitChanges {
+  if(!self.isEditor) {
+    // do not commit changes if we are no editor!
+  }
+  // FIXME: better handling of key uniqueness
+  if(!_isDefaultAttribute) {
+    self.representedAttribute.key = self.keyTextField.stringValue;
+  }
+  self.representedAttribute.value = self.valueTextField.stringValue;
+}
+
+- (void)objectDidBeginEditing:(id<NSEditor>)editor {
+  NSLog(@"%@: %@", NSStringFromClass(self.class), NSStringFromSelector(_cmd));
+  [super objectDidBeginEditing:editor];
+}
+
+- (void)objectDidEndEditing:(id<NSEditor>)editor {
+  NSLog(@"%@: %@", NSStringFromClass(self.class), NSStringFromSelector(_cmd));
+  [super objectDidEndEditing:editor];
+}
+
+- (BOOL)commitEditing {
+  NSLog(@"%@: %@", NSStringFromClass(self.class), NSStringFromSelector(_cmd));
+  return [super commitEditing];
+}
+
+- (BOOL)commitEditingAndReturnError:(NSError *__autoreleasing  _Nullable *)error {
+  NSLog(@"%@: %@", NSStringFromClass(self.class), NSStringFromSelector(_cmd));
+  return [super commitEditingAndReturnError:error];
+}
+
+- (void)commitEditingWithDelegate:(id)delegate didCommitSelector:(SEL)didCommitSelector contextInfo:(void *)contextInfo {
+  NSLog(@"%@: %@", NSStringFromClass(self.class), NSStringFromSelector(_cmd));
+  [super commitEditingWithDelegate:delegate didCommitSelector:didCommitSelector contextInfo:contextInfo];
 }
 
 @end

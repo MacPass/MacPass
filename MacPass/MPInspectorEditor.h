@@ -24,7 +24,7 @@ NS_ASSUME_NONNULL_BEGIN
 @end
 
 /// NodeInspectorEditors require the represented object to be a KPKNode
-@protocol KPKNodeInspectorEditor <MPInspectorEditor>
+@protocol MPNodeInspectorEditor <MPInspectorEditor>
 @required
 @property (nonatomic, nullable, readonly, strong) KPKNode *representedNode;
 @end
