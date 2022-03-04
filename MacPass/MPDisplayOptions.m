@@ -32,15 +32,11 @@
     self.statusItem = [NSStatusBar.systemStatusBar statusItemWithLength:NSVariableStatusItemLength];
     NSBundle *bundle = [NSBundle bundleForClass:self.class];
     self.statusItem.button.image = [bundle imageForResource:@"Lock"];
-
-    [NSEvent addLocalMonitorForEventsMatchingMask:(NSEventMaskLeftMouseDown|NSEventMaskLeftMouseUp|NSEventMaskRightMouseUp|NSEventModifierFlagOption) handler:^(NSEvent *event){
-
-      [self itemClickedEvent:event];
-//      self.statusItem.button.target = self;
-      return event;
-      
-    }];
-
+    
+    
+    [self.statusItem.button sendActionOn:(NSEventMaskLeftMouseDown|NSEventMaskLeftMouseUp|NSEventMaskRightMouseUp|NSEventModifierFlagOption)];
+    [self.statusItem.button setAction:@selector(itemClickedEvent:)];
+    self.statusItem.button.target = self;
     [self statusItem];
     
   }
@@ -61,8 +57,15 @@
   
 }
 
--(void)openSelectFile {
+-(void)showPref {
+  [NSApplication.sharedApplication activateIgnoringOtherApps:YES];
+  [(MPAppDelegate *)NSApp.delegate showPreferences:nil];
   
+  
+}
+
+-(void)openSelectFile {
+  [NSApplication.sharedApplication activateIgnoringOtherApps:YES];
   [(MPAppDelegate *)NSApp.delegate showWelcomeWindow];
   
   
@@ -70,8 +73,8 @@
 
 - (void)quitMacPass:(id)sender {
   
-  [[NSApplication sharedApplication] terminate:self];
-//  [NSApp terminate:self];
+//  [[NSApplication sharedApplication] terminate:self];
+  [NSApp terminate:self];
   return;
 }
 
@@ -109,30 +112,26 @@
   NSLog(@"attempted lock");
   }
 }
-- (void)itemClickedEvent:(NSEvent *)sender {
-  NSLog(@"mouse event type %lu", (unsigned long)sender.type);
-  NSEvent *event = sender;
-  NSLog(@"mouse event type %lu", (unsigned long)event.type);
+- (void)itemClickedEvent:(id)sender {
+//  NSLog(@"mouse event type %lu", (unsigned long)sender.type);
+//  NSEvent *event = sender;
+  NSEvent *event = [NSApp currentEvent];
+//  NSLog(@"mouse event type %lu", (unsigned long)event.type);
   unsigned long mouseEventType = event.type;
-
   
   if (([event modifierFlags] & NSEventModifierFlagOption) && mouseEventType == 1) {
-    NSLog(@"option click detected");
+//    NSLog(@"option click detected");
     [[NSApplication sharedApplication] terminate:self];
   }
   else if (mouseEventType == 4) {
-    NSLog(@"right click detected");
+//    NSLog(@"right click detected");
     [self performSelector:@selector(showStatusMenu:) withObject:self];
     [self performSelector:@selector(menuDidClose:) withObject:self afterDelay:0.01];
   }
   else if (((([event modifierFlags] & NSEventModifierFlagControl)) && mouseEventType == 1)){
-    NSLog(@"control click detected");
-
+//    NSLog(@"control click detected");
     [self performSelector:@selector(showStatusMenu:) withObject:self];
-//    [self.statusItem.button didCloseMenu:self.statusItem.menu withEvent: nil];
-//    [self.statusItem popUpStatusItemMenu:menu];
     [self performSelector:@selector(menuDidClose:) withObject:self afterDelay:0.01];
-//    self.statusItem.menu = nil;
     [self.statusItem.button highlight:NO];
 
 
@@ -149,6 +148,7 @@
     NSMenu *menu = [[NSMenu alloc] init];
 
     NSMenuItem *showHide = [[NSMenuItem alloc]initWithTitle:@"Show/Hide" action:@selector(activateMacPass) keyEquivalent:@""];
+    NSMenuItem *preferences = [[NSMenuItem alloc]initWithTitle:@"Preferences" action:@selector(showPref) keyEquivalent:@""];
     NSMenuItem *lockDB = [[NSMenuItem alloc]initWithTitle:@"Lock" action:@selector(lockOpenDatabase:) keyEquivalent:@""];
     NSMenuItem *lockAllDB = [[NSMenuItem alloc]initWithTitle:@"Lock All" action:@selector(lockAllDatabases:) keyEquivalent:@""];
     NSMenuItem *quitMacPass = [[NSMenuItem alloc] initWithTitle:@"Quit MacPass" action:@selector(quitMacPass:) keyEquivalent:@""];
@@ -157,13 +157,16 @@
 
     NSMenuItem *openDB = [[NSMenuItem alloc] initWithTitle:@"Open" action:@selector(openSelectFile) keyEquivalent:@""];
     openDB.target = self;
-
+    
+  
     [showHide setTarget:self];
+    [preferences setTarget:self];
     [lockDB setTarget:self];
     [lockAllDB setTarget:self];
     [quitMacPass setTarget:self];
 
     [menu addItem:showHide];
+    [menu addItem:preferences];
     [menu addItem:lockDB];
     [menu addItem:lockAllDB];
     [menu addItem:quitMacPass];
@@ -172,13 +175,14 @@
     
 }
 
-- (void) menuWillOpen: (NSMenu *) menu
-{
+
+
+- (void) menuWillOpen: (NSMenu *) menu {
+    // This allows for future use of a custom menu
     self.statusMenuOpen = YES;
 }
 
-- (void) menuDidClose:(NSMenu *) menu
-{
+- (void) menuDidClose:(NSMenu *) menu {
     
     // Tear down the menu cause otherwise the left click won't work
     self.statusItem.menu = nil;

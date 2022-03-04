@@ -235,10 +235,12 @@ typedef NS_OPTIONS(NSInteger, MPAppStartupState) {
   }
   else if(menubarExtra) {
     self.statusItem = [[MPDisplayOption alloc]init];
-    [NSApplication.sharedApplication setActivationPolicy:NSApplicationActivationPolicyAccessory];
-    
-  } else {
     [NSApplication.sharedApplication setActivationPolicy:NSApplicationActivationPolicyRegular];
+    
+  }
+  else {
+    [NSApplication.sharedApplication setActivationPolicy:NSApplicationActivationPolicyRegular];
+    
   }
   
   

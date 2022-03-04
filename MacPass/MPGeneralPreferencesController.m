@@ -26,7 +26,6 @@
 #import "MPDisplayOptions.h"
 
 
-
 @implementation MPGeneralPreferencesController
 
 - (NSString *)nibName {
@@ -110,22 +109,23 @@
   BOOL menubarOnly = self.menubarOnly.state == NSOnState;
   
   if(displayBothOptions){
+    self.statusItem = nil;
     self.statusItem = [[MPDisplayOption alloc]init];
     [NSUserDefaults.standardUserDefaults setBool:NO forKey:kMPRSettingsKeyHideDockIcon];
     [NSUserDefaults.standardUserDefaults setBool:displayBothOptions forKey:kMPRSettingsKeyShowMenuItem];
     [NSApplication.sharedApplication setActivationPolicy:NSApplicationActivationPolicyRegular];
-   
-    
+    // When modifying policy state if app is not deactivated the menu bar is not usable
+    [NSApplication.sharedApplication deactivate];
     
   }
   if(dockOnly) {
     [NSUserDefaults.standardUserDefaults setBool:NO forKey:kMPRSettingsKeyShowMenuItem];
     [NSUserDefaults.standardUserDefaults setBool:NO forKey:kMPRSettingsKeyHideDockIcon];
     [NSApplication.sharedApplication setActivationPolicy:NSApplicationActivationPolicyRegular];
-    
+    [NSApplication.sharedApplication deactivate];
 
-    
     self.statusItem = nil;
+    
     
   }
   if(menubarOnly) {
@@ -136,5 +136,7 @@
     
   }
 }
-  
+
+
+
 @end
