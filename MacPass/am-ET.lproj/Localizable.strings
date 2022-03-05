@@ -1,29 +1,29 @@
 /* Count of characters remaining in pickchars dialog */
-"%ld_CHARACTERS_TO_PICK_REMAINING" = "%ld characters to pick remaining";
+"%ld_CHARACTERS_TO_PICK_REMAINING" = "%ld ቀሪዎችን ለመምረጥ ቁምፊዎች";
 
 /* Display format for days. Should contain a long decimal placeholder! */
-"%ld_DAYS" = "%ld days";
+"%ld_DAYS" = "%ld ቀናቶች";
 
 /* % days ago */
-"%ld_DAYS_AGO" = "%ld days ago";
+"%ld_DAYS_AGO" = "%ld ቀናት በፊት";
 
 /* % Hours ago */
-"%ld_HOURS_AGO" = "about %ld hours ago";
+"%ld_HOURS_AGO" = "ከ %ld ገደማ በፊት";
 
 /* % Minutes ago */
-"%ld_MINUTES_AGO" = "%ld minutes ago";
+"%ld_MINUTES_AGO" = "%ld ደቂቃ በፊት";
 
 /* % Weeks ago */
-"%ld_WEEKS_AGO" = "%ld weeks ago";
+"%ld_WEEKS_AGO" = "%ld ሳምንታት በፊት";
 
 /* preset to expire after 90 days from now */
-"90_DAYS" = "in 90 days";
+"90_DAYS" = "በ 90 ቅን ";
 
 /* Button label to abort a merge on a file with changed master key! */
-"ABORT_MERGE_KEEP_MINE" = "Abort Merge. Keep Mine.";
+"ABORT_MERGE_KEEP_MINE" = "ውህደቱን አቋርጥ። የእኔን ጠብቅ።";
 
 /* Toolbar item with action menu */
-"ACTION" = "Action";
+"ACTION" = "እርምጃ";
 
 /* Menu displayed for adding special custom keys */
 "ADD_CUSTOM_FIELD_CONTEXT_MENU" = "Add Custom Field Menu";
@@ -44,7 +44,7 @@
 "ALERT_ASK_FOR_PLUGIN_REPOSITORY_DISALLOW_DOWNLOAD" = "Do not update definitions";
 
 /* Button in dialog to leave plugin ds disabled and continiue! */
-"ALERT_INCOMPATIBLE_PLUGINS_ENCOUNTERED_BUTTON_OK" = "OK";
+"ALERT_INCOMPATIBLE_PLUGINS_ENCOUNTERED_BUTTON_OK" = "እሺ";
 
 /* Button in dialog to open plugin preferences pane! */
 "ALERT_INCOMPATIBLE_PLUGINS_ENCOUNTERED_BUTTON_OPEN_PREFERENCES" = "Show Plugin Preferences…";
@@ -62,10 +62,10 @@
 "ALERT_INFORMATIVE_TEXT_REALLY_UNINSTALL_PLUGIN" = "The Plugin will be moved to the Trash.";
 
 /* Button in dialog to cancel merge of KDB file changes! */
-"ALERT_MERGE_CANCEL" = "Cancel";
+"ALERT_MERGE_CANCEL" = "ተው";
 
 /* Button in dialog to merge KDB changes into file! */
-"ALERT_MERGE_CONTINUE" = "Merge files!";
+"ALERT_MERGE_CONTINUE" = "ፋይሎችን አዋህድ!";
 
 /* Informative text displayed when merging KDB files */
 "ALERT_MERGE_KDB_FILE_INFO_TEXT" = "KDB databases do not contain enough information for a seamless merge. Entries will get merged and no data is lost. But due to groups only being matched by name unexpected changes might occur. Moved entries might get moved back to their old group, or renamed groups will not get merged. Also deleted entries might reappear due to no information regarding deleted objects being stored. Are you sure you want to proceed?";
@@ -87,13 +87,13 @@
 
 /* Attachments column title (shows counts)
    Menu item to toggle display of attachment count column in entry table */
-"ATTACHMENTS" = "Attachments";
+"ATTACHMENTS" = "አባሪዎች";
 
 /* Sucessfully merged external changes */
-"AUTO_MERGE_NOTIFICATION_TEXT" = "Auto merge successfull!";
+"AUTO_MERGE_NOTIFICATION_TEXT" = "በራስ ውህደት የተሳካ ነው!";
 
 /* Menu item for automatic trash creation */
-"AUTOCREATE_TRASH_FOLDER" = "Create Automatically";
+"AUTOCREATE_TRASH_FOLDER" = "በራስ ሰር ይፍጠሩ ";
 
 /* Message text in the autotype confirmation window. Placeholder is %1 - applicationName, %2 windowTitle */
 "AUTOTYPE_CANDIDATE_CONFIRMATION_WINDOW_MESSAGE_%@_%@" = "Autotype has found a match for window \"%2$@\" of application \"%1$@\". Please confirm to continue the execution.";
@@ -102,7 +102,7 @@
 "AUTOTYPE_CANDIDATE_SELECTION_WINDOW_MESSAGE_%@_%@" = "There are multiple matches for the window \"%2$@\" of application \"%1$@\". Please select which match should be used.";
 
 /* Window title for the stand-alone password creator window */
-"AUTOTYPE_DOCTOR_RESULTS_WINDOW_TITLE" = "Autotype Doctor";
+"AUTOTYPE_DOCTOR_RESULTS_WINDOW_TITLE" = "ራስተይብ ዶክተር";
 
 /* Inherit autotype settings menu item */
 "AUTOTYPE_INHERIT" = "Inherit Autotype Settings";
@@ -111,221 +111,221 @@
 "AUTOTYPE_MESSAGE_UNLOCK_DATABASE" = "Please unlock the database to use Global Autotype";
 
 /* Disable autotype menu item */
-"AUTOTYPE_NO" = "Disable Autotype";
+"AUTOTYPE_NO" = "ራስተይብ አታንቃ";
 
 /* Notification: Autotype failed, MacPass has not enough permissions to perform autotype */
 "AUTOTYPE_NOTIFICATION_MACPASS_IS_MISSING_PERMISSIONS" = "MacPass does not have all necessary permissions to perform Autotype.";
 
 /* Notification: Title for autotype feedback */
-"AUTOTYPE_NOTIFICATION_MATCH_TITLE" = "Autotype";
+"AUTOTYPE_NOTIFICATION_MATCH_TITLE" = "ራስተይብ";
 
 /* Notification: Autotype failed, no documents are open */
-"AUTOTYPE_NOTIFICATION_NO_DOCUMENTS_INFORMATIVE_TEXT" = "Please open a database file to use Global Autotype!";
+"AUTOTYPE_NOTIFICATION_NO_DOCUMENTS_INFORMATIVE_TEXT" = "ዓለም አቀፍ ራስተይብ ለመጠቅም እባክዎን የውሂብ ጎታ ፋይል ይክፈቱ!";
 
 /* Notification: Title for autotype feedback */
-"AUTOTYPE_NOTIFICATION_NO_DOCUMENTS_TITLE" = "No database is open!";
+"AUTOTYPE_NOTIFICATION_NO_DOCUMENTS_TITLE" = "ምንም የውሂብ ጎታ አልተከፈተም!";
 
 /* Noticiation: Autotype failed to find a match for %@ (string placeholder) */
-"AUTOTYPE_NOTIFICATION_NO_MATCH_FOR_%@" = "No Match for %@!";
+"AUTOTYPE_NOTIFICATION_NO_MATCH_FOR_%@" = "የሚዛመድ የለም %@!";
 
 /* Title for autotype feedback on missing permissions */
-"AUTOTYPE_NOTIFICATION_PERMISSIONS_MISSING_TITLE" = "Missing permissions";
+"AUTOTYPE_NOTIFICATION_PERMISSIONS_MISSING_TITLE" = "የጎደሉ ፈቃዶች";
 
 /* Notification: Autotype found a single match for %@ (string placeholder). */
-"AUTOTYPE_NOTIFICATION_SINGLE_MATCH_FOR_%@" = "Found Match for %@!";
+"AUTOTYPE_NOTIFICATION_SINGLE_MATCH_FOR_%@" = "ተዛማጅ ተገኝቷል ለ %@!";
 
 /* Title for the notification when the Autotype operation timed out */
-"AUTOTYPE_NOTIFICATION_TIMED_OUT_TITLE" = "Autotype timed out!";
+"AUTOTYPE_NOTIFICATION_TIMED_OUT_TITLE" = "ራስተየ ጊዜ አብቅቷል!";
 
 /* Status label when no issue were found in accessibilty */
-"AUTOTYPE_STATUS_ACCESSIBILTY_PERMISSIONS_OK" = "MacPass has permission to control your computer (Accessibility)";
+"AUTOTYPE_STATUS_ACCESSIBILTY_PERMISSIONS_OK" = "MacPass ኮምፒተርዎን ለመቆጣጠር ፈቃድ አለው(ተደራሽነት)";
 
 /* Status MacPass has no accessibilty permissions */
-"AUTOTYPE_STATUS_NO_ACCESSIBILTY_PERMISSIONS" = "MacPass has no permission to control your computer (Accessibility)";
+"AUTOTYPE_STATUS_NO_ACCESSIBILTY_PERMISSIONS" = "MacPass ኮምፒተርዎን ለመቆጣጠር ፈቃድ አለው(ተደራሽነት)";
 
 /* Status MacPass has no screen recording permissions */
-"AUTOTYPE_STATUS_NO_SCREEN_RECORDING_PERMISSIONS" = "MacPass has no permission to record your screen";
+"AUTOTYPE_STATUS_NO_SCREEN_RECORDING_PERMISSIONS" = "MacPass ስክሪኑ ለመቅዳት ፈቃድ የለውም";
 
 /* Status label when no issue were found in screen recording permissions */
-"AUTOTYPE_STATUS_SCREEN_RECORDING_PERMISSIONS_OK" = "MacPass has permission to record your screen";
+"AUTOTYPE_STATUS_SCREEN_RECORDING_PERMISSIONS_OK" = "MacPass ስክሪኑ ለመቅዳት ፈቃድ አለው";
 
 /* Notficication: Autotype timed out */
 "AUTOTYPE_TIMED_OUT" = "You did start Autotype too long ago. MacPass did not perform it anymore to prevent any wrong input!";
 
 /* Enable autotype menu item */
-"AUTOTYPE_YES" = "Enable Autotype";
+"AUTOTYPE_YES" = "ራስተይብ አንቃ";
 
 /* Cancel */
-"CANCEL" = "Cancel";
+"CANCEL" = "ተው";
 
 /* Menu item in the database outline context menu to change the database name */
-"CHANGE_DATABASE_NAME" = "Change Database Name";
+"CHANGE_DATABASE_NAME" = "የውሂብ ጎታ ስም ለውጥ";
 
 /* Button to postpone the password change */
-"CHANGE_LATER" = "Change Later";
+"CHANGE_LATER" = "በኋላ ለውጥ";
 
 /* Button to show the password change dialog
    Single button to show the password change dialog */
-"CHANGE_PASSWORD_WITH_DOTS" = "Change Password…";
+"CHANGE_PASSWORD_WITH_DOTS" = "የሚስጥር ቁልፍ ቀይር…";
 
 /* Menu item in the database outline context menu to change the trash group */
-"CHANGE_TRASH_GROUP" = "Change Trash Group";
+"CHANGE_TRASH_GROUP" = "የመጣያ ቡድን ቀይር";
 
 /* Button title in the key file selection dialog for selecting a key */
-"CHOOSE_FILE_BUTTON_TITLE" = "Open";
+"CHOOSE_FILE_BUTTON_TITLE" = "ክፈት";
 
 /* Clear Autotype Button */
-"CLEAR_AUTOTYPE" = "Clear Autotype";
+"CLEAR_AUTOTYPE" = "ራስተይብ አፅዳ";
 
 /* Menu to clear recent searches */
-"CLEAR_RECENT_SEARCHES" = "Clear recent searches";
+"CLEAR_RECENT_SEARCHES" = "የቅርብ ጊዜ ፍለጋዎችን አፅዳ";
 
 /* String displayed at dock badge when clipboard is about to be cleared */
-"CLEARING_PASTEBOARD" = "Cleared";
+"CLEARING_PASTEBOARD" = "አፅዳ";
 
 /* Field name that was copied to the pasteboard */
-"COPIED_FIELD_%@" = "Copied %@";
+"COPIED_FIELD_%@" = "ተገልብጧ %@";
 
 /* Context menu that copies reference to note */
-"COPIED_NOTES_REFERENCE" = "Reference to notes copied!";
+"COPIED_NOTES_REFERENCE" = "ማጣቀሻው ወድ ማስታወሻዎችን ተቀድቷል!";
 
 /* Password was copied to the pasteboard */
-"COPIED_PASSWORD" = "Password copied!";
+"COPIED_PASSWORD" = "የይለፍ ቃል ተቀድቷል!";
 
 /* Context menu that copies reference to password */
-"COPIED_PASSWORD_REFERENCE" = "Reference to password copied!";
+"COPIED_PASSWORD_REFERENCE" = "ማጣቀሻው በይለፍ ቃል ተቀድቷል!";
 
 /* Context menu that copies reference to title */
-"COPIED_TITLE_REFERENCE" = "Reference to title copied!";
+"COPIED_TITLE_REFERENCE" = "ማጣቀሻው በርዕስ ተቀድቷል!";
 
 /* URL was copied to the pasteboard */
-"COPIED_URL" = "URL copied!";
+"COPIED_URL" = "ዩአርኤል ተቀድቷል!";
 
 /* Context menu that copies reference to URL */
-"COPIED_URL_REFERENCE" = "Reference to URL copied!";
+"COPIED_URL_REFERENCE" = "ማጣቀሻው ዩአርኤል ተቀድቷል!";
 
 /* Username was copied to the pasteboard */
-"COPIED_USERNAME" = "Username copied!";
+"COPIED_USERNAME" = "የተጠቃሚ ስም ተቀድቷል!";
 
 /* Context menu that copies reference to username */
-"COPIED_USERNAME_REFERENCE" = "Reference to username copied!";
+"COPIED_USERNAME_REFERENCE" = "ማጣቀሻው የተጠቃሚ ስም ተቀድቷል!";
 
 /* Submenu to copy attributes as reference */
-"COPY_AS_REFERENCE" = "Copy Reference To…";
+"COPY_AS_REFERENCE" = "ማጣቀሻው ወደ ቅዳ…";
 
 /* Context menu sub-menu to copy attributes as reference */
-"COPY_AS_REFERENCE_MENU" = "Copy as Reference menu";
+"COPY_AS_REFERENCE_MENU" = "እንደ ማጣቀሻ ምናሌ ቅዳ";
 
 /* Submenu to Copy custom fields */
-"COPY_CUSTOM_FIELDS" = "Copy Custom Fields";
+"COPY_CUSTOM_FIELDS" = "ብጁ ቦትዎችን ቅዳ";
 
 /* Context menu sub-menu to copy custom fields to clipboard */
-"COPY_CUSTOM_FIELDS_MENU" = "Copy Custom Field…";
+"COPY_CUSTOM_FIELDS_MENU" = "ብጁ ቦትዎችን ቅዳ…";
 
 /* Action name when an entry was moved
    Action title for copying an entry via drag and drop */
-"COPY_ENTRY" = "Copy Entry";
+"COPY_ENTRY" = "የገባው ቅዳ";
 
 /* Mask for title to copy field value */
-"COPY_FIELD_%@" = "Copy %@";
+"COPY_FIELD_%@" = "ቅዳ %@";
 
 /* Action title for copying a group via drag and drop */
-"COPY_GROUP" = "Copy Group";
+"COPY_GROUP" = "ቡድን ቅዳ";
 
 /* Context menu that copies reference to note */
-"COPY_NOTES_REFERENCE" = "Notes";
+"COPY_NOTES_REFERENCE" = "ማስታወሻ";
 
 /* Menu item to copy the password of an entry
    Toolbar item copy password */
-"COPY_PASSWORD" = "Copy Password";
+"COPY_PASSWORD" = "የይለፍ ቃል ቅዳ";
 
 /* Context menu that copies reference to password */
-"COPY_PASSWORD_REFERENCE" = "Password";
+"COPY_PASSWORD_REFERENCE" = "የይለፍ ቃል";
 
 /* Context menu that copies reference to title */
-"COPY_TITLE_REFERENCE" = "Title";
+"COPY_TITLE_REFERENCE" = "ርዕስ";
 
 /* Menu item to copy the URL of an entry */
-"COPY_URL" = "Copy URL";
+"COPY_URL" = "ዩአርኤል ቅዳ";
 
 /* Context menu that copies reference to URL */
-"COPY_URL_REFERENCE" = "URL";
+"COPY_URL_REFERENCE" = "ዩአርኤል";
 
 /* Menu item to copy the username of an entry
    Toolbar item copy username */
-"COPY_USERNAME" = "Copy Username";
+"COPY_USERNAME" = "የተጠቃሚ ስም ቅዳ";
 
 /* Context menu that copies reference to username */
-"COPY_USERNAME_REFERENCE" = "Username";
+"COPY_USERNAME_REFERENCE" = "የተጠቃሚ ስም";
 
 /* Custom attribute reference item */
-"CUSTOM_ATTRIBUTE" = "Custom Attribute";
+"CUSTOM_ATTRIBUTE" = "ብጁ መለያ ጠባያት";
 
 /* Title for menu for custom search filters */
-"CUSTOM_SEARCH_FILTER_MENU" = "Custom Search Filter…";
+"CUSTOM_SEARCH_FILTER_MENU" = "ብጁ ፍለጋ ማጣሪያ…";
 
 /* Default display name for KDB databases */
-"DATABASE" = "Database";
+"DATABASE" = "ውሂብ ጎታ";
 
 /* Default Browser */
-"DEFAULT_BROWSER" = "Default Browser";
+"DEFAULT_BROWSER" = "መደበኛ መጎብኛዎ";
 
 /* Default Titel for new Custom-Fields */
-"DEFAULT_CUSTOM_FIELD_TITLE" = "Custom";
+"DEFAULT_CUSTOM_FIELD_TITLE" = "በጅ";
 
 /* Default Value for new Custom-Fields */
-"DEFAULT_CUSTOM_FIELD_VALUE" = "Value";
+"DEFAULT_CUSTOM_FIELD_VALUE" = "እሴት";
 
 /* Title for a newly created entry */
-"DEFAULT_ENTRY_TITLE" = "New Entry";
+"DEFAULT_ENTRY_TITLE" = "አዲስ ገቢ";
 
 /* Title for a newly created group */
-"DEFAULT_GROUP_NAME" = "New Group";
+"DEFAULT_GROUP_NAME" = "አዲስ ቡድን";
 
 /* Default window title for a new window association */
-"DEFAULT_WINDOW_TITLE" = "Window Title";
+"DEFAULT_WINDOW_TITLE" = "የመስኮት ርዕስ";
 
 /* Menu item in the database outline context menu to delete the node from the trash
    Menu item to delete an entry
    Menu item to delete the selected attached file
    Menu item to delete the selected custom icon
    Toolbar item delete item */
-"DELETE" = "Delete";
+"DELETE" = "ሰርዝ";
 
 /* Delete Entry */
-"DELETE_ENTRY" = "Delete Entry";
+"DELETE_ENTRY" = "ገቢ ሰርዝ";
 
 /* Delete Group */
-"DELETE_GROUP" = "Delete Group";
+"DELETE_GROUP" = "ቡድን ሰርዝ";
 
 /* Empty Trash */
-"DELETE_TRASHED_ENTRY" = "Delete Trashed Entry";
+"DELETE_TRASHED_ENTRY" = "የተጣለውን ውስጥ ሰርዝ";
 
 /* Empty Trash */
-"DELETE_TRASHED_GROUP" = "Delete Trashed Group";
+"DELETE_TRASHED_GROUP" = "የተጣለውን ብድን ሰርዝ";
 
 /* Action title for copying an entry via drag and drop to another database
    Action title for moving an entry via drag and drop */
-"DRAG_ENTRY" = "Drag Entry";
+"DRAG_ENTRY" = "ገቢ ጎትት";
 
 /* Action title for moving a group via drag and drop
    Actiontitle for copying groups via drag and drop to antother database */
-"DRAG_GROUP" = "Drag Group";
+"DRAG_GROUP" = "ቡድን ጎትት";
 
 /* Action name for duplicating entries */
-"DUPLICATE_ENTRIES_ACTION_NAME" = "Duplicate Entries";
+"DUPLICATE_ENTRIES_ACTION_NAME" = "ይተደጋገመ  ገቢዎች";
 
 /* Menu item to directly diplicate an entry */
-"DUPLICATE_ENTRY" = "Duplicate Entry";
+"DUPLICATE_ENTRY" = "ይተደጋገመ  ገቢ";
 
 /* Menu item to duplicate an entry with options how to duplicate. Will present a dialog. */
-"DUPLICATE_ENTRY_WITH_OPTIONS" = "Duplicate Entry…";
+"DUPLICATE_ENTRY_WITH_OPTIONS" = "ይተደጋገመ  ገቢ…";
 
 /* Menu item to directly diplicate a group */
-"DUPLICATE_GROUP" = "Duplicate Group";
+"DUPLICATE_GROUP" = "ይተደጋገመ  ቡድን";
 
 /* Action name for duplicating groups */
-"DUPLICATE_GROUPS_ACTION_NAME" = "Duplicate Group";
+"DUPLICATE_GROUPS_ACTION_NAME" = "ይተደጋገመ  ቡድን";
 
 /* Menu item in the database outline context menu to change the template group
    Menu item on the add entry context menu to edit template groups */
@@ -335,7 +335,7 @@
    Menu item in the database outline context menu to empyt the trash
    Menu item in the database outline to empty the trash
    Menu item to empty the trash */
-"EMPTY_TRASH" = "Empty Trash";
+"EMPTY_TRASH" = "ባዶ መጣያ";
 
 /* Informative text for the enforce password change alert */
 "ENFORCE_PASSWORD_CHANGE_ALERT_DESCRIPTION" = "You will be unable to save until the password and/or keyfile has been changed.";
@@ -344,43 +344,43 @@
 "ENFORCE_PASSWORD_CHANGE_ALERT_TITLE" = "The database password expired!";
 
 /* Group row for entry attributes */
-"ENTRY_CUSTOM_ATTRIBUTES" = "Custom Attributes";
+"ENTRY_CUSTOM_ATTRIBUTES" = "ብጁ መለያ ጠባያት";
 
 /* Group row for entry attributes */
-"ENTRY_DEFAULT_ATTRIBUTES" = "Default Attributes";
+"ENTRY_DEFAULT_ATTRIBUTES" = "መደበኛ መለያ ጠባያት";
 
 /* Tooltip displayed on the index header cell */
 "ENTRY_INDEX_COLUMN_TOOLTIP" = "Column to sort by user defined order";
 
 /* Keyfile not valid */
-"ERROR_INVALID_KEYFILE" = "Keyfile is invalid!";
+"ERROR_INVALID_KEYFILE" = "የተሻረ የፋይል ቁልፍ!";
 
 /* Error description given when adding an invalid plugin */
-"ERROR_INVALID_PLUGIN" = "Invalid plugin";
+"ERROR_INVALID_PLUGIN" = "የተሻረ ተሰኪ!";
 
 /* Error description for missing accessibility permissions */
-"ERROR_NO_ACCESSIBILITY_PERMISSIONS" = "MacPass has no permission to control your computer (Accessibility)";
+"ERROR_NO_ACCESSIBILITY_PERMISSIONS" = "MacPass ኮምፒተርዎን ለመቆጣጠር ፈቃድ አለው(ተደራሽነት)";
 
 /* Error description for missing screen recording permissions */
-"ERROR_NO_PERMISSION_TO_RECORD_SCREEN" = "MacPass has no permission to record your screen";
+"ERROR_NO_PERMISSION_TO_RECORD_SCREEN" = "MacPass ስክሪኑ ለመቅዳት ፈቃድ የለውም";
 
 /* Passwords do not match */
-"ERROR_PASSWORD_MISSMATCH" = "Passwords do not match!";
+"ERROR_PASSWORD_MISSMATCH" = "የይለፍ ቃሎች ተመሳሳይ አይደሉም!";
 
 /* Passwords do not match, keyfile is invalid */
-"ERROR_PASSWORD_MISSMATCH_INVALID_KEYFILE" = "Passwords do not match and keyfile is invalid!";
+"ERROR_PASSWORD_MISSMATCH_INVALID_KEYFILE" = "የይለፍ ቃሎች ተመሳሳይ አይደሉም እናም የተሻረ የፋይል ቁልፍ!";
 
 /* Recommend/Enforce key change intervall format */
-"EVERY_%ld_DAYS" = "Every %ld days";
+"EVERY_%ld_DAYS" = "ሁሌ %ld ቀኖች";
 
 /* Format to returen the date an item expires. Includes %@ placehoder for date */
-"EXPIRES_AT_DATE_%@" = "Expires: %@";
+"EXPIRES_AT_DATE_%@" = "ጊዜው ያልፍበታል፥ %@";
 
 /* The master key was changed by an external program! */
 "EXTERN_CHANGE_OF_MASTERKEY" = "Master key was changed by another program";
 
 /* Direct download */
-"FAVICON_DOWNLOAD_METHOD_DIRECT" = "Direct download";
+"FAVICON_DOWNLOAD_METHOD_DIRECT" = "በቀጥታ አውርድ ";
 
 /* DuckDuckGo */
 "FAVICON_DOWNLOAD_METHOD_DUCKDUCKGO" = "DuckDuckGo";
@@ -389,14 +389,14 @@
 "FAVICON_DOWNLOAD_METHOD_GOOGLE" = "Google";
 
 /* External file change strategy option: ask what to do */
-"FILE_CHANGE_STRATEGY_ASK" = "Ask";
+"FILE_CHANGE_STRATEGY_ASK" = "ጠይቅ";
 
 /* External file change strategy option: Keep local file an ignore external changes */
 "FILE_CHANGE_STRATEGY_KEEP_MINE" = "Keep My Version and Ignore Other Changes";
 
 /* Button in dialog to merge changes into file!
    External file change strategy option: Merge external changes into local file. */
-"FILE_CHANGE_STRATEGY_MERGE" = "Merge Changes";
+"FILE_CHANGE_STRATEGY_MERGE" = "ለውጦችን አዋህድ";
 
 /* External file change strategy option: Use the changed file and discard local changes */
 "FILE_CHANGE_STRATEGY_USE_OTHER" = "Load Changed Version and Discard Mine";
@@ -408,13 +408,13 @@
 "FILE_CHANGED_BY_OTHERS_MESSAGE_TEXT" = "The database file was modified!";
 
 /* Error while reopening last known documents */
-"FILE_OPEN_ERROR" = "Error opening file.";
+"FILE_OPEN_ERROR" = "ፋይልን መክፈት ላይ ስህተት።";
 
 /* General Settings Label */
-"GENERAL_PREFERENCES" = "General";
+"GENERAL_PREFERENCES" = "ጠቅላላ";
 
 /* Group column title */
-"GROUP" = "Group";
+"GROUP" = "ቡድን";
 
 /* SHA 1 hash algoritm menu item */
 "HASH_SHA1" = "Sha1";
@@ -427,204 +427,204 @@
 
 /* History count column title
    Menu item to toggle display of history count column in entry table */
-"HISTORY" = "History";
+"HISTORY" = "ታሪክ";
 
 /* Imports a dragged URL for a new entry */
-"IMPORT_URL" = "Import URL";
+"IMPORT_URL" = "ዩአርኤል አምጣ";
 
 /* Toolbar item toggle inspector */
-"INSPECTOR" = "Inspector";
+"INSPECTOR" = "ተቆጣጣሪ";
 
 /* Label for the integration settings tab */
-"INTEGRATION_SETTINGS" = "Integration";
+"INTEGRATION_SETTINGS" = "ውህደት";
 
 /* Just now */
-"JUST_NOW" = "Just now";
+"JUST_NOW" = "ልክ አሁን";
 
 /* Feature only available in kdbx databases */
-"KDBX_ONLY_FEATURE" = "Feature not supported in KDB database";
+"KDBX_ONLY_FEATURE" = "ይህ ዋና ባህሪ በKDB የውሂብ ጎታ ውስጥ አይደገፍም";
 
 /* Button in dialog to ignore the changes to an open file! */
-"KEEP_MINE_DISCARD_OTHER" = "Keep Mine, Discard Other";
+"KEEP_MINE_DISCARD_OTHER" = "የእኔን ጠብቅ፣ ሌላውን ግን አስወግድ";
 
 /* Button in dialog to reopen the file! */
-"KEEP_OTHER_DISCARD_MINE" = "Keep Other, Discard Mine";
+"KEEP_OTHER_DISCARD_MINE" = "የሌሎችን ጠብቅ፣ የእኔን ግን አስወግድ";
 
 /* Do not install the plugin */
-"KEEP_PLUGIN" = "Keep Plugin";
+"KEEP_PLUGIN" = "ተሰኪውን ያዝ";
 
 /* Do not restart MacPass */
-"KEEP_RUNNING" = "Keep Running";
+"KEEP_RUNNING" = "መሮጥን ይቀጥል";
 
 /* last week */
-"LAST_WEEK" = "Last week";
+"LAST_WEEK" = "ያለፈው ሳምንት";
 
 /* Toolbar item to Lock the database */
-"LOCK" = "Lock";
+"LOCK" = "ቆልፍ";
 
 /* Message in the open panel to add attachments to an entry */
-"MESSAGE_ADD_ATTACHMENT_OPEN_PANEL" = "Select the file to attach";
+"MESSAGE_ADD_ATTACHMENT_OPEN_PANEL" = "አባሪ ፋይል ምረጥ";
 
 /* Message in the add plugin open panel */
-"MESSAGE_ADD_PLUGIN_OPEN_PANEL" = "Select the plugin to install";
+"MESSAGE_ADD_PLUGIN_OPEN_PANEL" = "ለመጫን ተሰኪን ምረጥ";
 
 /* Message in the open panel to import an XML file */
-"MESSAGE_XML_OPEN_PANEL" = "Select the XML file to import";
+"MESSAGE_XML_OPEN_PANEL" = "ለማሰመጣት XML ፋይል ምረጥ";
 
 /* Menu item to toggle display of modified date column in entry table
    Modification date column title */
-"MODIFIED" = "Modified";
+"MODIFIED" = "ተቀይሯል";
 
 /* Action name when an entry was moved */
-"MOVE_ENTRY" = "Move Entry";
+"MOVE_ENTRY" = "የገባዎ አንቀሳቃ";
 
 /* Menu displayed as popup selection for search options when multiple items are selected */
-"MULTIPLE_FILTERS_ACTIVE_WITH_DOTS" = "Multiple…";
+"MULTIPLE_FILTERS_ACTIVE_WITH_DOTS" = "ብዙ…";
 
 /* Name for a newly created Database */
-"NEW_DATABASE" = "Database";
+"NEW_DATABASE" = "ውሂብ ጎታ";
 
 /* Action name for a newly created entry
    Menu item to create a new entry
    Toolbar item new entry */
-"NEW_ENTRY" = "New Entry";
+"NEW_ENTRY" = "አዲስ ገቢ";
 
 /* Submenu to add an entry via template */
-"NEW_ENTRY_WITH_TEMPLATE_%@" = "from %@";
+"NEW_ENTRY_WITH_TEMPLATE_%@" = "ከ %@";
 
 /* Action name for a newly created group
    Menu item to create a new group
    Toolbar item new group */
-"NEW_GROUP" = "New Group";
+"NEW_GROUP" = "አዲስ ቡድን";
 
 /* Expiration date format, when item does not expire */
-"NO_EXPIRE_DATE_SET" = "Never expires.";
+"NO_EXPIRE_DATE_SET" = "ለዘላለም።";
 
 /* Menu item to reset the template groups */
-"NO_TEMPLATE_GROUP" = "No Templates";
+"NO_TEMPLATE_GROUP" = "መልኮች የሉም";
 
 /* Menu item added to show that no templates are defined */
-"NO_TEMPLATES" = "No Templates found";
+"NO_TEMPLATES" = "ምንም መልኮች አልተገኙም";
 
 /* Null placeholder for item input field
    Placeholder text for input fields if no entry or group is selected */
-"NONE" = "None";
+"NONE" = "ምንም";
 
 /* Displayed name when notes or part of notes was copied
    Menu item to toggle display of notes column in entry table
    Notes column title
    Notes reference item */
-"NOTES" = "Notes";
+"NOTES" = "ማስታወሻ";
 
 /* Ok Button to dismiss disabled updates alert */
-"OK" = "OK";
+"OK" = "እሺ";
 
 /* preset to expire after one montch from now */
-"ONE_MONTH" = "in one month";
+"ONE_MONTH" = "በአንድ ወር ውስጥ";
 
 /* preset to expire after one week from now */
-"ONE_WEEK" = "in one week";
+"ONE_WEEK" = "በአንድ ስምንት ውስጥ";
 
 /* one week ago */
-"ONE_WEEK_AGO" = "One week ago";
+"ONE_WEEK_AGO" = "ከአንድ ሳምንት በፊት";
 
 /* preset to expire after one year from now */
-"ONE_YEAR" = "in one year";
+"ONE_YEAR" = "በአንድ ዓመት ውስጥ";
 
 /* Open button in the open panel to add attachments to an entry */
-"OPEN_BUTTON_ADD_ATTACHMENT_OPEN_PANEL" = "Attach";
+"OPEN_BUTTON_ADD_ATTACHMENT_OPEN_PANEL" = "አባሪ";
 
 /* Open button in the add plugin open panel */
-"OPEN_BUTTON_ADD_PLUGIN_OPEN_PANEL" = "Install";
+"OPEN_BUTTON_ADD_PLUGIN_OPEN_PANEL" = "ጫን";
 
 /* Open button in the open panel to import an XML file */
-"OPEN_BUTTON_IMPORT_XML_OPEN_PANEL" = "Import";
+"OPEN_BUTTON_IMPORT_XML_OPEN_PANEL" = "አስመጣ";
 
 /* Action button in Notification to open a document */
-"OPEN_DOCUMENT" = "Open Document";
+"OPEN_DOCUMENT" = "ሰነድ ክፈት";
 
 /* Menu item to open the URL with the default application */
-"OPEN_URL" = "Open URL";
+"OPEN_URL" = "ዩአርኤል ክፈት";
 
 /* Select Browser */
-"OTHER_BROWSER" = "Select Browser…";
+"OTHER_BROWSER" = "መጎብኛዎ  ምረጥ…";
 
-/* OTP custom type  */
-"OTP_CUSTOM" = "Custom settings";
+/* OTP custom type */
+"OTP_CUSTOM" = "ብጁ ቅንብሮች";
 
-/* OTP type RFC  */
+/* OTP type RFC */
 "OTP_RFC" = "RFC 6238";
 
-/* OTP type Steam  */
-"OTP_STEAM" = "Steam";
+/* OTP type Steam */
+"OTP_STEAM" = "ጢስ";
 
 /* Value field for reference lookup */
-"OUTPUT_VALUE" = "Output Value";
+"OUTPUT_VALUE" = "የእሴት ውጤት";
 
 /* Menu item to toggle display of password column in entry table
    Password column title
    Password reference item */
-"PASSWORD" = "Password";
+"PASSWORD" = "የይለፍ ቃል";
 
 /* Window title for the stand-alone password creator window */
-"PASSWORD_CREATOR_WINDOW_TITLE" = "Password Generator";
+"PASSWORD_CREATOR_WINDOW_TITLE" = "የይለፍ ቃል አፍላቂ";
 
 /* Button to reset the password defaults for a single entry */
-"PASSWORD_GENERATOR_RESET_ENTRY_DEFAULTS" = "Reset";
+"PASSWORD_GENERATOR_RESET_ENTRY_DEFAULTS" = "ዳግም አስጀምር";
 
 /* Button to set the defaults of the password generator */
-"PASSWORD_GENERATOR_SET_DEFAULTS" = "Set Defaults";
+"PASSWORD_GENERATOR_SET_DEFAULTS" = "መደበኛ ይሁን";
 
 /* Placeholder for the password field to aks for password
    Placeholder in the unlock-password input field if password is enabled */
-"PASSWORD_INPUT_ENTER_PASSWORD" = "Enter Password";
+"PASSWORD_INPUT_ENTER_PASSWORD" = "የይለፍ ቃል አስገባ";
 
 /* Placeholder for the password input field if passwords are disabled
    Placeholder for the repeat password input if passwords are disabled
    Placeholder in the unlock-password input field if password is disabled */
-"PASSWORD_INPUT_NO_PASSWORD" = "No Password";
+"PASSWORD_INPUT_NO_PASSWORD" = "የይለፍ ቃል የለም";
 
 /* Placeholder for the repeat password field to aks for the repeated password */
-"PASSWORD_INPUT_REPEAT_PASSWORD" = "Repeat Password";
+"PASSWORD_INPUT_REPEAT_PASSWORD" = "የይለፍ ቃል ድገም";
 
 /* Menu item to perform autotype with the selected entry */
-"PERFORM_AUTOTYPE_FOR_ENTRY" = "Perform Autotype";
+"PERFORM_AUTOTYPE_FOR_ENTRY" = "ራስተይብ አከናውን";
 
 /* Info about how many character has to pick in pickchar dialog */
-"PICKCHAR_INFO_MESSAGE_PICK_CHARACTERS_%ld" = "Please pick %ld characters";
+"PICKCHAR_INFO_MESSAGE_PICK_CHARACTERS_%ld" = "እባክህ %ld ቁምፊዎች ምረጥ";
 
 /* Window displayed to the user to pick an amout of characters */
-"PICKCHAR_WINDOW_TITLE" = "Character Picker";
+"PICKCHAR_WINDOW_TITLE" = "ቁምፊ መራጭ";
 
 /* Count of picked characters in pickchars dialog if no limit is set */
-"PICKED_%ld_CHARACTERS" = "Picked %ld characters";
+"PICKED_%ld_CHARACTERS" = "%ld ቁምፊዎች ምረጥ";
 
 /* Window displayed to the user to pick an amout of characters */
-"PICKFIELD_WINDOW_TITLE" = "Field Picker";
+"PICKFIELD_WINDOW_TITLE" = "የመምረጫ ቦታ";
 
 /* Label for the button when a download is in progress! */
-"PLUGIN_BROWSER_ACTION_DOWNLOAD_IN_PROGRESS" = "Downloading…";
+"PLUGIN_BROWSER_ACTION_DOWNLOAD_IN_PROGRESS" = "እያ አውርድ ነው…";
 
 /* Label for the button when a download did not succeed */
-"PLUGIN_BROWSER_ACTION_RETRY_FAILED_DOWNLOAD" = "Failed. Re-Download";
+"PLUGIN_BROWSER_ACTION_RETRY_FAILED_DOWNLOAD" = "አልተሳካም እንደገና አውርድ";
 
 /* Label for the button to show a downloaded file */
-"PLUGIN_BROWSER_ACTION_SHOW_DOWNLOADED_FILE" = "Show in Finder…";
+"PLUGIN_BROWSER_ACTION_SHOW_DOWNLOADED_FILE" = "በፈላጊ ውስጥ አሳይ…";
 
 /* Button to download the Plugin */
-"PLUGIN_BROWSER_DOWNLOAD_PLUGIN_BUTTON" = "Download";
+"PLUGIN_BROWSER_DOWNLOAD_PLUGIN_BUTTON" = "አውርድ";
 
 /* Status for an up-to-date plugin in the plugin browser */
-"PLUGIN_BROWSER_LATEST_VERSION_INSTALLED" = "Latest version installed";
+"PLUGIN_BROWSER_LATEST_VERSION_INSTALLED" = "አዲስ ስሪት ተጭኗል";
 
 /* Status for an outdated plugin version in the plugin browser */
-"PLUGIN_BROWSER_NEWER_VERSION_%@_AVAILABLE" = "Newer version(%@) available.";
+"PLUGIN_BROWSER_NEWER_VERSION_%@_AVAILABLE" = "አዲስ ስሪት(%@) ይገኛል።";
 
 /* Status for an uninstalled plugin in the plugin browser */
-"PLUGIN_BROWSER_PLUGIN_NOT_INSTALLED" = "Not installed";
+"PLUGIN_BROWSER_PLUGIN_NOT_INSTALLED" = "አልተጫነም";
 
 /* Status for an unkonw plugin version in the plugin browser */
-"PLUGIN_BROWSER_UNKNOWN_PLUGIN_VERSION_INSTALLED_%@" = "Unknown version %@ installed";
+"PLUGIN_BROWSER_UNKNOWN_PLUGIN_VERSION_INSTALLED_%@" = "የማይታወቅ ስሪት %@ ተጭኗል";
 
 /* Error for a plugin that is disabled. */
 "PLUGIN_ERROR_DISABLED_PLUGIN" = "The plugin is disabled by the user";
@@ -648,19 +648,19 @@
 "PLUGIN_NAME_ERROR_%@" = "⚠️ %@";
 
 /* Label for plugin settings tab */
-"PLUGIN_SETTINGS" = "Plugins";
+"PLUGIN_SETTINGS" = "ተሰኪዎች";
 
 /* Generic message displayed if no details are know why a plugin was not loaded. */
-"PLUGIN_SETTINGS_GENERIC_ERROR_MESSAGE" = "Plugin could not be loaded.";
+"PLUGIN_SETTINGS_GENERIC_ERROR_MESSAGE" = "ተሰኪ መጫን አልተቻለም";
 
 /* Plugin version. Include a %@ placeholder for version string */
-"PLUGIN_VERSION_%@" = "Version: %@";
+"PLUGIN_VERSION_%@" = "ስሪት፥ %@";
 
 /* Menu item to preview the selected attached file. */
-"PREVIEW" = "Preview";
+"PREVIEW" = "ቅድመ እይታ";
 
 /* Recent searches menu item */
-"RECENT_SEARCHES" = "Recent searches";
+"RECENT_SEARCHES" = "የቅርብ ቅን ፍለጋ";
 
 /* Informative text for the recommend password change alert */
 "RECOMMEND_PASSWORD_CHANGE_ALERT_DESCRIPTION" = "It is recommended to change the password and/or keyfile.";
@@ -672,29 +672,29 @@
 "REPOSITORY_UPDATED_AT_LOCAL" = "Never (using bundled version)";
 
 /* Restart */
-"RESTART" = "Restart";
+"RESTART" = "እንደግና አስነሳ";
 
 /* Action to restore an Entry to a previous state of its history */
 "RESTORE_HISTORY_ENTRY" = "Restore History Entry";
 
 /* Menu item to save the selected attached file.
    Save file menu item title when save will just save the file */
-"SAVE" = "Save";
+"SAVE" = "አስቀምጥ";
 
 /* Button title to save the generated key file */
-"SAVE_KEYFILE" = "Save Keyfile";
+"SAVE_KEYFILE" = "ቁልፍ ፋይል አስቅምጥ";
 
 /* Save file menu item title when save will prompt for a location to save or ask for a password/key */
-"SAVE_WITH_DOTS" = "Save…";
+"SAVE_WITH_DOTS" = "አስቅምጥ…";
 
 /* Search input in Toolbar */
-"SEARCH" = "Search";
+"SEARCH" = "ፈልግ";
 
 /* Search option: Find duplicate passwords */
-"SEARCH_DUPLICATE_PASSWORDS" = "Duplicate Passwords";
+"SEARCH_DUPLICATE_PASSWORDS" = "የተደጋገመ የይለፍ ቃል";
 
 /* Placeholder string displayed in the search field in the toolbar */
-"SEARCH_EVERYWHERE" = "Search Everywhere";
+"SEARCH_EVERYWHERE" = "ሁሉም ቦታ ላይ ፈልግ";
 
 /* Search option: Find expired entries */
 "SEARCH_EXPIRED_ENTRIES" = "Expired";
@@ -706,7 +706,7 @@
 "SEARCH_NO" = "Exclude from Search";
 
 /* Search field for references lookup */
-"SEARCH_VALUE" = "Search Value";
+"SEARCH_VALUE" = "እሴት ፈልግ";
 
 /* Enable search menu item */
 "SEARCH_YES" = "Include in Search";
@@ -718,13 +718,13 @@
 "SELECT_DEFAULT_BROWSER_OPEN_PANEL_MESSAGE" = "Select the Browser to open URL with.";
 
 /* Label for the select browser button on the open panel for selecting which browser to use for opening URLs */
-"SELECT_DEFAULT_BROWSER_OPEN_PANEL_SELECT_BUTTON" = "Choose";
+"SELECT_DEFAULT_BROWSER_OPEN_PANEL_SELECT_BUTTON" = "ምረጥ";
 
 /* Message for the dialog to open a file for merge */
 "SELECT_FILE_TO_MERGE" = "Select file to merge";
 
 /* Menu displayed as popup selection for search options if no filter is selected */
-"SELECT_FILTER_WITH_DOTS" = "Select…";
+"SELECT_FILTER_WITH_DOTS" = "ምረጥ…";
 
 /* Checkbox in dialog to set the selection as default file change strategy! */
 "SET_AS_DEFAULT_FILE_CHANGE_STRATEGY" = "Use this method as default. You can change this at any time in the preferences.";
@@ -740,58 +740,58 @@
 
 /* Menu item to show the history of the selected entry
    Toolbar item to toggle history display */
-"SHOW_HISTORY" = "Show History";
+"SHOW_HISTORY" = "ታሪክ አሳይ";
 
 /* Displayed name when title field was copied
    Menu item to toggle display of title column in entry table
    Title column title
    Title reference item */
-"TITLE" = "Title";
+"TITLE" = "ርዕስ";
 
 /* preset to expire tomorrow */
-"TOMORROW" = "Tomorrow";
+"TOMORROW" = "ነገ";
 
 /* Toolbar item to perform autotype */
-"TOOLBAR_PERFORM_AUTOTYPE_FOR_ENTRY" = "Autotype";
+"TOOLBAR_PERFORM_AUTOTYPE_FOR_ENTRY" = "ራስተይብ";
 
 /* Time in seconds remaining for a valid TOTP string, format should be %ld */
 "TOTP_REMAINING_TIME_%ld_SECONDS" = "%ld s";
 
 /* Touchbar button label for choosing the keyfile */
-"TOUCHBAR_CHOOSE_KEYFILE" = "Choose Keyfile";
+"TOUCHBAR_CHOOSE_KEYFILE" = "ቁልፍ ፋይል ምረጥ";
 
 /* Touchbar button label for copying the password */
-"TOUCHBAR_COPY_PASSWORD" = "Copy Password";
+"TOUCHBAR_COPY_PASSWORD" = "የይለፍ ቃል ቅዳ";
 
 /* Touchbar button label for copying the username */
-"TOUCHBAR_COPY_USERNAME" = "Copy Username";
+"TOUCHBAR_COPY_USERNAME" = "የተጠቃሚ ስም ቅዳ";
 
 /* Touchbar button label for deleting elements */
-"TOUCHBAR_DELETE" = "Delete";
+"TOUCHBAR_DELETE" = "ሰርዝ";
 
 /* Touchbar button label for opening the popover to edit */
-"TOUCHBAR_EDIT" = "Edit";
+"TOUCHBAR_EDIT" = "አርትዕ";
 
 /* Touchbar button label for locking the database */
-"TOUCHBAR_LOCK_DATABASE" = "Lock Database";
+"TOUCHBAR_LOCK_DATABASE" = "ውሂብ ጎታ ቆልፍ";
 
 /* Touchbar button label for creating a new item */
-"TOUCHBAR_NEW_ENTRY" = "New Entry";
+"TOUCHBAR_NEW_ENTRY" = "አዲስ ገቢ";
 
 /* Touchbar button label for creating a new group */
-"TOUCHBAR_NEW_GROUP" = "New Group";
+"TOUCHBAR_NEW_GROUP" = "አዲስ ቡድን";
 
 /* Touchbar button label for performing autotype */
-"TOUCHBAR_PERFORM_AUTOTYPE" = "Perform Autotype";
+"TOUCHBAR_PERFORM_AUTOTYPE" = "ራስተይብ አከናውን";
 
 /* Touchbar button label for searching the database */
-"TOUCHBAR_SEARCH" = "Search Database";
+"TOUCHBAR_SEARCH" = "ውሂብ ጎታ ፈልግ";
 
 /* Touchbar button label for showing the password */
-"TOUCHBAR_SHOW_PASSWORD" = "Show Password";
+"TOUCHBAR_SHOW_PASSWORD" = "የይለፍ ቃል ፈልግ";
 
 /* Touchbar button label for unlocking the database */
-"TOUCHBAR_UNLOCK_DATABASE" = "Unlock Database";
+"TOUCHBAR_UNLOCK_DATABASE" = "ውሂብ ጎታ ክፈት";
 
 /* Move Entry to Trash */
 "TRASH_ENTRY" = "Trash Entry";
@@ -821,12 +821,12 @@
    Submenu with options what to do with the URL of an entry
    Url column title
    URL reference item */
-"URL" = "URL";
+"URL" = "ዩአርኤል";
 
 /* Menu item to toggle display of username column in entry table
    Username column title
    Username reference item */
-"USERNAME" = "Username";
+"USERNAME" = "የተጠቃሚ ስም";
 
 /* Displayed name when uuid field was copied
    UUID reference item */
@@ -867,3 +867,4 @@
 
 /* Yesterday */
 "YESTERDAY" = "Yesterday";
+
