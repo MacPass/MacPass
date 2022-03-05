@@ -31,6 +31,8 @@
 #import "KeePassKit/KeePassKit.h"
 #import "KPKFormat+MPUTIDetection.h"
 
+#import "NSApplication+MPAdditions.h"
+
 @interface MPDocumentController ()
 
 @property (strong) IBOutlet NSView *accessoryView;
@@ -42,6 +44,14 @@
 @end
 
 @implementation MPDocumentController
+
+- (BOOL)hasEditedDocuments {
+  MPAppDelegate *delegate = NSApp.mp_delegate;
+  if(delegate.isTerminating) {
+    // store all open documents once?!
+  }
+  return [super hasEditedDocuments];
+}
 
 - (void)beginOpenPanel:(NSOpenPanel *)openPanel forTypes:(NSArray *)inTypes completionHandler:(void (^)(NSInteger))completionHandler {
   self.openPanel = openPanel;
@@ -83,6 +93,16 @@
   [super addDocument:document];
 }
 
+- (void)removeDocument:(NSDocument *)document {
+  MPAppDelegate *appDelegate = (MPAppDelegate *)NSApp.delegate;
+  if(appDelegate.isTerminating) {
+    if(document.fileURL.isFileURL) {
+      [[NSUserDefaults standardUserDefaults] setObject:document.fileURL.absoluteString forKey:kMPSettingsKeyLastDatabasePath];
+    }
+  }
+  [super removeDocument:document];
+}
+
 - (BOOL)reopenLastDocument {
   if(self.documents.count > 0) {
     return YES; // The document is already open
@@ -93,7 +113,12 @@
   }
   else {
     NSString *lastPath = [NSUserDefaults.standardUserDefaults stringForKey:kMPSettingsKeyLastDatabasePath];
-    documentUrl =[NSURL URLWithString:lastPath];
+    documentUrl = [NSURL URLWithString:lastPath];
+    NSError *error;
+    if(![documentUrl checkResourceIsReachableAndReturnError:&error]) {
+      [NSUserDefaults.standardUserDefaults removeObjectForKey:kMPSettingsKeyLastDatabasePath];
+      documentUrl = nil;
+    }
   }
   BOOL isFileURL = documentUrl.fileURL;
   if(isFileURL) {

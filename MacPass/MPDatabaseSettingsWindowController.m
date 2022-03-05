@@ -39,7 +39,8 @@
   NSString *_missingFeature;
 }
 
-@property (assign) NSInteger argon2Memory;
+@property (assign) NSInteger argon2dMemory;
+@property (assign) NSInteger argon2idMemory;
 
 @property (assign) BOOL enableHistory;
 @property (assign) NSInteger maxiumHistoryItems;
@@ -107,7 +108,6 @@
   /* General */
   KPKMetaData *metaData = ((MPDocument *)self.document).tree.metaData;
   /* TODO move settingsChanged updates to KeePassKit as it's the models responsibility */
-  metaData.settingsChanged = NSDate.date;
   metaData.databaseDescription = self.databaseDescriptionTextView.string;
   metaData.databaseName = self.databaseNameTextField.stringValue;
   
@@ -164,21 +164,28 @@
   /* Security */
   metaData.cipherUUID = self.cipherPopupButton.selectedItem.representedObject;
   
-  KPKAESKeyDerivation *aesKdf = [[KPKAESKeyDerivation alloc] initWithParameters:[KPKAESKeyDerivation defaultParameters]];
-  KPKArgon2DKeyDerivation *argon2Kdf = [[KPKArgon2DKeyDerivation alloc] initWithParameters:[KPKArgon2DKeyDerivation defaultParameters]];
-  // FIXME: add Argon2id support!
-  
   NSUUID *selectedKdfUUID = self.keyDerivationSettingsTabView.selectedTabViewItem.identifier;
+  KPKAESKeyDerivation *aesKdf = [[KPKAESKeyDerivation alloc] initWithParameters:[KPKAESKeyDerivation defaultParameters]];
+  KPKArgon2DKeyDerivation *argon2dKdf = [[KPKArgon2DKeyDerivation alloc] initWithParameters:[KPKArgon2DKeyDerivation defaultParameters]];
+  KPKArgon2IDKeyDerivation *argon2idKdf = [[KPKArgon2IDKeyDerivation alloc] initWithParameters:[KPKArgon2IDKeyDerivation defaultParameters]];
   
   if([selectedKdfUUID isEqual:aesKdf.uuid]) {
+    
     aesKdf.rounds = self.aesEncryptionRoundsTextField.integerValue;
     metaData.keyDerivationParameters = aesKdf.parameters;
   }
-  else if([selectedKdfUUID isEqual:argon2Kdf.uuid]) {
-    argon2Kdf.iterations = self.argon2IterationsTextField.integerValue;
-    argon2Kdf.memory = self.argon2Memory;
-    argon2Kdf.threads = self.argon2ThreadsTextField.intValue;
-    metaData.keyDerivationParameters = argon2Kdf.parameters;
+  else if([selectedKdfUUID isEqual:argon2dKdf.uuid]) {
+    
+    argon2dKdf.iterations = self.argon2dIterationsTextField.integerValue;
+    argon2dKdf.memory = self.argon2dMemory;
+    argon2dKdf.threads = self.argon2dThreadsTextField.intValue;
+    metaData.keyDerivationParameters = argon2dKdf.parameters;
+  }
+  else if([selectedKdfUUID isEqual:argon2idKdf.uuid]) {
+    argon2idKdf.iterations = self.argon2idIterationsTextField.integerValue;
+    argon2idKdf.memory = self.argon2idMemory;
+    argon2idKdf.threads = self.argon2idThreadsTextField.intValue;
+    metaData.keyDerivationParameters = argon2idKdf.parameters;
   }
   
   /* Changes to metadata aren't backed by undomanager, thus we need to manually set the document dirty */
@@ -190,12 +197,21 @@
   [self dismissSheet:0];
 }
 
-- (IBAction)benchmarkRounds:(id)sender {
-  self.createKeyDerivationParametersButton.enabled = NO;
-  [KPKAESKeyDerivation parametersForDelay:1 completionHandler:^(NSDictionary * _Nonnull options) {
-    self.aesEncryptionRoundsTextField.integerValue = [options[KPKAESRoundsOption] unsignedInteger64Value];
-    self.createKeyDerivationParametersButton.enabled = YES;
-  }];
+- (IBAction)benchmarkParametersForDelay:(id)sender {
+  NSUUID *selectedKdfUUID = self.keyDerivationSettingsTabView.selectedTabViewItem.identifier;
+  if([selectedKdfUUID isEqual:[KPKAESKeyDerivation uuid]]) {
+    self.createKeyDerivationParametersButton.enabled = NO;
+    [KPKAESKeyDerivation parametersForDelay:1 completionHandler:^(NSDictionary * _Nonnull options) {
+      self.aesEncryptionRoundsTextField.integerValue = [options[KPKAESRoundsOption] unsignedInteger64Value];
+      self.createKeyDerivationParametersButton.enabled = YES;
+    }];
+  }
+  else if([selectedKdfUUID isEqual:[KPKArgon2DKeyDerivation uuid]]) {
+    // TODO: add benchmark
+  }
+  else if([selectedKdfUUID isEqual:[KPKArgon2IDKeyDerivation uuid]]) {
+    // TODO: add benchmark
+  }
 }
 
 - (void)updateView {
@@ -275,42 +291,57 @@
   [self.keyDerivationPopupButton selectItemAtIndex:kdfIndex];
   [self.keyDerivationSettingsTabView selectTabViewItemWithIdentifier:keyDerivation.uuid];
   
+  /* fill defaults for AES */
+  KPKAESKeyDerivation *aesKdf = [[KPKAESKeyDerivation alloc] initWithParameters:[KPKAESKeyDerivation defaultParameters]];
+  self.aesEncryptionRoundsTextField.integerValue = aesKdf.rounds;
+  
+  /* fill defaults for Argon2d */
+  KPKArgon2DKeyDerivation *argon2dKdf = [[KPKArgon2DKeyDerivation alloc] initWithParameters:[KPKArgon2DKeyDerivation defaultParameters]];
+  self.argon2dIterationsTextField.integerValue = argon2dKdf.iterations;
+  self.argon2dMemory = argon2dKdf.memory;
+  self.argon2dThreadsTextField.integerValue = argon2dKdf.threads;
+  
+  /* fill defaults for Argon2id */
+  KPKArgon2IDKeyDerivation *argon2idKdf = [[KPKArgon2IDKeyDerivation alloc] initWithParameters:[KPKArgon2IDKeyDerivation defaultParameters]];
+  self.argon2idIterationsTextField.integerValue = argon2idKdf.iterations;
+  self.argon2idMemory = argon2idKdf.memory;
+  self.argon2idThreadsTextField.integerValue = argon2idKdf.threads;
+  
   if([keyDerivation isMemberOfClass:KPKAESKeyDerivation.class]) {
     /* set to database values */
     KPKAESKeyDerivation *aesKdf = (KPKAESKeyDerivation *)keyDerivation;
     self.aesEncryptionRoundsTextField.integerValue = aesKdf.rounds;
     self.createKeyDerivationParametersButton.enabled = YES;
-    
-    /* fill defaults for Argon2 */
-    KPKArgon2DKeyDerivation *argon2Kdf = [[KPKArgon2DKeyDerivation alloc] initWithParameters:[KPKArgon2DKeyDerivation defaultParameters]];
-    self.argon2IterationsTextField.integerValue = argon2Kdf.iterations;
-    self.argon2Memory = argon2Kdf.memory;
-    self.argon2ThreadsTextField.integerValue = argon2Kdf.threads;
   }
   else if([keyDerivation isMemberOfClass:KPKArgon2DKeyDerivation.class]) {
     /* set to database value */
-    KPKArgon2DKeyDerivation *argon2Kdf = (KPKArgon2DKeyDerivation *)keyDerivation;
-    self.argon2Memory = argon2Kdf.memory;
-    self.argon2ThreadsTextField.integerValue = argon2Kdf.threads;
-    self.argon2IterationsTextField.integerValue = argon2Kdf.iterations;
-    
-    /* fill defaults for AES */
-    KPKAESKeyDerivation *aesKdf = [[KPKAESKeyDerivation alloc] initWithParameters:[KPKAESKeyDerivation defaultParameters]];
-    self.aesEncryptionRoundsTextField.integerValue = aesKdf.rounds;
+    KPKArgon2DKeyDerivation *argon2dKdf = (KPKArgon2DKeyDerivation *)keyDerivation;
+    self.argon2dMemory = argon2dKdf.memory;
+    self.argon2dThreadsTextField.integerValue = argon2dKdf.threads;
+    self.argon2dIterationsTextField.integerValue = argon2dKdf.iterations;
   }
   else if([keyDerivation isMemberOfClass:KPKArgon2IDKeyDerivation.class]) {
-    // TODO: implement setup!
+    /* set to database value */
+    KPKArgon2IDKeyDerivation *argon2idKdf = (KPKArgon2IDKeyDerivation *)keyDerivation;
+    self.argon2idMemory = argon2idKdf.memory;
+    self.argon2idThreadsTextField.integerValue = argon2idKdf.threads;
+    self.argon2idIterationsTextField.integerValue = argon2idKdf.iterations;
   }
   else {
     NSAssert(NO, @"Unkown key derivation");
   }
   
-  self.argon2MemoryStepper.minValue = 8*1024; // 8KB minimum
-  self.argon2MemoryStepper.maxValue = NSIntegerMax;
-  self.argon2MemoryStepper.increment = 1024*1024; // 1 megabytes steps
-  [self.argon2MemoryTextField bind:NSValueBinding toObject:self withKeyPath:NSStringFromSelector(@selector(argon2Memory)) options:nil];
-  [self.argon2MemoryStepper bind:NSValueBinding toObject:self withKeyPath:NSStringFromSelector(@selector(argon2Memory)) options:nil];
-  
+  self.argon2dMemoryStepper.minValue = 8*1024; // 8KB minimum
+  self.argon2dMemoryStepper.maxValue = NSIntegerMax;
+  self.argon2dMemoryStepper.increment = 1024*1024; // 1 megabytes steps
+  [self.argon2dMemoryTextField bind:NSValueBinding toObject:self withKeyPath:NSStringFromSelector(@selector(argon2dMemory)) options:nil];
+  [self.argon2dMemoryStepper bind:NSValueBinding toObject:self withKeyPath:NSStringFromSelector(@selector(argon2dMemory)) options:nil];
+
+  self.argon2idMemoryStepper.minValue = 8*1024; // 8KB minimum
+  self.argon2idMemoryStepper.maxValue = NSIntegerMax;
+  self.argon2idMemoryStepper.increment = 1024*1024; // 1 megabytes steps
+  [self.argon2idMemoryTextField bind:NSValueBinding toObject:self withKeyPath:NSStringFromSelector(@selector(argon2idMemory)) options:nil];
+  [self.argon2idMemoryStepper bind:NSValueBinding toObject:self withKeyPath:NSStringFromSelector(@selector(argon2idMemory)) options:nil];
   
   NSUInteger cipherIndex = [self.cipherPopupButton.menu indexOfItemWithRepresentedObject:metaData.cipherUUID];
   [self.cipherPopupButton selectItemAtIndex:cipherIndex];

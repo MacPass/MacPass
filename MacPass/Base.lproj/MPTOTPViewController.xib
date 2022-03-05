@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="17701" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" customObjectInstantitationMethod="direct">
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="19455" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" customObjectInstantitationMethod="direct">
     <dependencies>
         <deployment identifier="macosx"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="17701"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="19455"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
@@ -31,26 +31,29 @@
                                 <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                             </textFieldCell>
                         </textField>
-                        <stackView distribution="fill" orientation="horizontal" alignment="firstBaseline" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="avD-My-tnu">
-                            <rect key="frame" x="0.0" y="0.0" width="480" height="21"/>
+                        <stackView distribution="fill" orientation="horizontal" alignment="centerY" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="avD-My-tnu">
+                            <rect key="frame" x="0.0" y="0.0" width="479" height="21"/>
                             <subviews>
                                 <textField horizontalHuggingPriority="249" verticalHuggingPriority="750" allowsCharacterPickerTouchBarItem="YES" translatesAutoresizingMaskIntoConstraints="NO" id="xBL-Jz-VQO" customClass="HNHUITextField">
-                                    <rect key="frame" x="0.0" y="0.0" width="399" height="21"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="406" height="21"/>
                                     <textFieldCell key="cell" lineBreakMode="truncatingTail" truncatesLastVisibleLine="YES" selectable="YES" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" drawsBackground="YES" usesSingleLineMode="YES" id="Vuy-HC-UhI">
                                         <font key="font" metaFont="system"/>
                                         <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
                                         <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                     </textFieldCell>
+                                    <connections>
+                                        <outlet property="delegate" destination="-2" id="pfM-gT-aXU"/>
+                                    </connections>
                                 </textField>
                                 <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="Hxg-bd-l1O">
-                                    <rect key="frame" x="407" y="1" width="27" height="17"/>
+                                    <rect key="frame" x="414" y="2" width="26" height="18"/>
                                     <buttonCell key="cell" type="inline" title="30" bezelStyle="inline" alignment="center" enabled="NO" borderStyle="border" inset="2" id="roW-Uk-ff9">
                                         <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                         <font key="font" metaFont="smallSystemBold"/>
                                     </buttonCell>
                                 </button>
                                 <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="xge-Jc-QnB">
-                                    <rect key="frame" x="436" y="-7" width="50" height="32"/>
+                                    <rect key="frame" x="441" y="-6" width="45" height="32"/>
                                     <buttonCell key="cell" type="push" bezelStyle="rounded" image="NSActionTemplate" imagePosition="only" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="64a-Tn-vdd">
                                         <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                         <font key="font" metaFont="system"/>
@@ -72,6 +75,9 @@
                             </customSpacing>
                         </stackView>
                     </subviews>
+                    <constraints>
+                        <constraint firstAttribute="trailing" secondItem="avD-My-tnu" secondAttribute="trailing" constant="1" id="nhf-Ld-Bh4"/>
+                    </constraints>
                     <visibilityPriorities>
                         <integer value="1000"/>
                         <integer value="1000"/>
@@ -88,10 +94,10 @@
                 <constraint firstItem="Lz5-aM-o4b" firstAttribute="top" secondItem="Hz6-mo-xeY" secondAttribute="top" id="y4i-uB-HlK"/>
                 <constraint firstItem="Lz5-aM-o4b" firstAttribute="leading" secondItem="Hz6-mo-xeY" secondAttribute="leading" id="zFP-JZ-Qtu"/>
             </constraints>
-            <point key="canvasLocation" x="-180" y="74"/>
+            <point key="canvasLocation" x="-629" y="-23"/>
         </customView>
     </objects>
     <resources>
-        <image name="NSActionTemplate" width="14" height="14"/>
+        <image name="NSActionTemplate" width="15" height="15"/>
     </resources>
 </document>

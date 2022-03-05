@@ -22,8 +22,12 @@
 
 #import "MPContextMenuHelper.h"
 #import "MPActionHelper.h"
-
+#import "MPDocument.h"
 #import "MPFlagsHelper.h"
+
+#import "KPKNode+IconImage.h"
+
+#import <KeePassKit/KeePassKit.h>
 
 static void MPContextmenuHelperBeginSection(NSMutableArray *items) {
   if(items.count > 0) {
@@ -32,6 +36,38 @@ static void MPContextmenuHelperBeginSection(NSMutableArray *items) {
 }
 
 @implementation MPContextMenuHelper
+
++ (NSArray<NSMenuItem *> *)contextMenuItemsWithCreateFromTemplateEntriesItems {
+  /*
+   The Method is rather brute force
+   It's possible nicer to cache the entries and just update
+   the menu entries, that actually need updating
+   */
+  
+  NSMutableArray *items = [[NSMutableArray alloc] init];
+  NSMenuItem *editItem = [[NSMenuItem alloc] initWithTitle:NSLocalizedString(@"EDIT_TEMPLATE_GROUP", "Menu item on the add entry context menu to edit template groups") action:[MPActionHelper actionOfType:MPActionEditTemplateGroup] keyEquivalent:@""];
+  
+  [items addObject:editItem];
+  MPContextmenuHelperBeginSection(items);
+  
+  MPDocument *document = NSDocumentController.sharedDocumentController.currentDocument;
+  for(KPKEntry *entry in document.templates.childEntries) {
+    NSString *templateMask = NSLocalizedString(@"NEW_ENTRY_WITH_TEMPLATE_%@", "Submenu to add an entry via template");
+    NSMenuItem *templateItem = [[NSMenuItem alloc] initWithTitle:[NSString stringWithFormat:templateMask, entry.title]
+                                                                                    action:@selector(createEntryFromTemplate:)
+                                                                             keyEquivalent:@""];
+    templateItem.image = [entry.iconImage copy];
+    templateItem.image.size = NSMakeSize(14, 14);
+    templateItem.representedObject = entry.uuid;
+    [items addObject:templateItem];
+  }
+  /* If there are no entries, add a note as disabled menu item */
+  if(items.count == 2) {
+    NSMenuItem *noItemsItem = [[NSMenuItem alloc] initWithTitle:NSLocalizedString(@"NO_TEMPLATES", "Menu item added to show that no templates are defined") action:NULL keyEquivalent:@""];
+    [items addObject:noItemsItem];
+  }
+  return [items copy];
+}
 
 + (NSArray<NSMenuItem *> *)contextMenuItemsWithItems:(MPContextMenuItemsFlags)flags {
   
@@ -44,7 +80,7 @@ static void MPContextmenuHelperBeginSection(NSMutableArray *items) {
   BOOL const insertHistory = MPIsFlagSetInOptions(MPContextMenuHistory, flags);
   BOOL const insertShowGroupInOutline = MPIsFlagSetInOptions(MPContextMenuShowGroupInOutline, flags);
   
-  NSMutableArray *items = [NSMutableArray arrayWithCapacity:10];
+  NSMutableArray *items = [NSMutableArray arrayWithCapacity:15];
   if(insertCreate) {
     
     NSMenuItem *newGroup = [[NSMenuItem alloc] initWithTitle:NSLocalizedString(@"NEW_GROUP", @"Menu item to create a new group")
@@ -54,7 +90,20 @@ static void MPContextmenuHelperBeginSection(NSMutableArray *items) {
                                                       action:[MPActionHelper actionOfType:MPActionAddEntry]
                                                keyEquivalent:@"n"];
     
+    
     [items addObjectsFromArray:@[ newGroup, newEntry ]];
+    /*
+    NSMenuItem *newEntryFromTemplate = [[NSMenuItem alloc] initWithTitle:NSLocalizedString(@"NEW_ENTRY_FROM_TEMPLATE", @"Submen to create entries from tempaltes")
+                                                                  action:NULL
+                                                           keyEquivalent:@""];
+    newEntryFromTemplate.submenu = [[NSMenu alloc] init];
+    NSArray *templateItems = [self contextMenuItemsWithCreateFromTemplateEntriesItems];
+    for(NSMenuItem *item in templateItems) {
+      [newEntryFromTemplate.submenu addItem:item];
+    }
+    [items addObjectsFromArray:@[ newGroup, newEntry, newEntryFromTemplate ]];
+     */
+    
   }
   if(insertDuplicate) {
     MPContextmenuHelperBeginSection(items);

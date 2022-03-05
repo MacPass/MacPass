@@ -27,14 +27,15 @@
 @interface MPGroupInspectorViewController : MPViewController
 
 @property (strong) IBOutlet NSView *contentView;
-@property (weak) IBOutlet HNHUITextField *titleTextField;
+@property (strong) IBOutlet HNHUITextField *titleTextField;
 
-@property (weak) IBOutlet NSButton *expiresCheckButton;
-@property (weak) IBOutlet NSButton *expireDateSelectButton;
+@property (strong) IBOutlet NSButton *expiresCheckButton;
+@property (strong) IBOutlet NSButton *expireDateSelectButton;
 
-@property (weak) IBOutlet NSPopUpButton *searchPopupButton;
-@property (weak) IBOutlet NSPopUpButton *autotypePopupButton;
-@property (weak) IBOutlet HNHUITextField *autotypeSequenceTextField;
+@property (strong) IBOutlet NSPopUpButton *searchPopupButton;
+@property (strong) IBOutlet NSPopUpButton *autotypePopupButton;
+@property (strong) IBOutlet HNHUITextField *autotypeSequenceTextField;
+@property (strong) IBOutlet NSTokenField *tagsTokenField;
 
 - (void)registerNotificationsForDocument:(MPDocument *)document;
 @end

@@ -36,8 +36,9 @@ APPKIT_EXTERN NSString *const MPDidChangeStoredKeyFilesSettings;
 @property (strong) IBOutlet NSMenu *exportMenu;
 
 @property (strong, readonly) MPEntryContextMenuDelegate *itemActionMenuDelegate;
+@property (readonly) BOOL isTerminating;
 
-@property (nonatomic, assign) BOOL isAllowedToStoreKeyFile;
+@property (nonatomic) BOOL isAllowedToStoreKeyFile;
 
 - (IBAction)checkForUpdates:(id)sender;
 - (IBAction)showPreferences:(id)sender;

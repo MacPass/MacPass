@@ -210,6 +210,10 @@
 /* Context menu that copies reference to username */
 "COPIED_USERNAME_REFERENCE" = "Reference to username copied!";
 
+/* Button to copy the value of an Attribute
+   Copy the TOTP value to the clipboard */
+"COPY" = "Copy";
+
 /* Submenu to copy attributes as reference */
 "COPY_AS_REFERENCE" = "Copy Reference To…";
 
@@ -257,6 +261,10 @@
 
 /* Context menu that copies reference to username */
 "COPY_USERNAME_REFERENCE" = "Username";
+
+/* Creating date column title
+   Menu item to toggle display of created date column in entry table */
+"CREATED" = "Created";
 
 /* Custom attribute reference item */
 "CUSTOM_ATTRIBUTE" = "Custom Attribute";
@@ -366,9 +374,6 @@
 
 /* Passwords do not match */
 "ERROR_PASSWORD_MISSMATCH" = "Passwords do not match!";
-
-/* Passwords do not match, keyfile is invalid */
-"ERROR_PASSWORD_MISSMATCH_INVALID_KEYFILE" = "Passwords do not match and keyfile is invalid!";
 
 /* Recommend/Enforce key change intervall format */
 "EVERY_%ld_DAYS" = "Every %ld days";
@@ -488,6 +493,9 @@
    Menu item to create a new entry
    Toolbar item new entry */
 "NEW_ENTRY" = "New Entry";
+
+/* Submen to create entries from tempaltes */
+"NEW_ENTRY_FROM_TEMPLATE" = "New Entry…";
 
 /* Submenu to add an entry via template */
 "NEW_ENTRY_WITH_TEMPLATE_%@" = "from %@";
@@ -735,6 +743,9 @@
 /* Action button in Notification to show the Autotype Doctor */
 "SHOW_AUTOTYPE_DOCTOR" = "Show Autotype Doctor";
 
+/* Menu item to toggle display type of passwords */
+"SHOW_CLEAR_TEXT_PASSWORDS" = "Show Passwords";
+
 /* Menu item to show the entries group in the outline view */
 "SHOW_GROUP_IN_OUTLINE" = "Show Group in Outline";
 
@@ -753,6 +764,9 @@
 
 /* Toolbar item to perform autotype */
 "TOOLBAR_PERFORM_AUTOTYPE_FOR_ENTRY" = "Autotype";
+
+/* Field TOTP was copied to the pasteboard */
+"TOTP" = "TOTP";
 
 /* Time in seconds remaining for a valid TOTP string, format should be %ld */
 "TOTP_REMAINING_TIME_%ld_SECONDS" = "%ld s";
@@ -838,8 +852,12 @@
 /* Error message displayed when a keepass database file is set as the key file */
 "WARNING_DATABASE_FILE_SELECTED_AS_KEY_FILE" = "You should not use another database file as a key file since it might change and prevent you from reopening the current file.";
 
-/* No Key or Password */
-"WARNING_NO_PASSWORD_OR_KEYFILE" = "No password or keyfile supplied!";
+/* No key file is set
+ Warning tha no key file is set when chaning the password */
+"WARNING_NO_KEYFILE" = "No key file is set";
+
+/* Warning if no password is set when chaning the password */
+"WARNING_NO_PASSWORD" = "No password is set";
 
 /* Informative Text displayed when clearing the Trash */
 "WARNING_ON_DELETE_TRASHED_NODE_DESCRIPTION" = "The Trashed item(s) will be deleted!";
@@ -867,3 +885,4 @@
 
 /* Yesterday */
 "YESTERDAY" = "Yesterday";
+

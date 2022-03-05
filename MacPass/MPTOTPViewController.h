@@ -11,7 +11,7 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface MPTOTPViewController : NSViewController
+@interface MPTOTPViewController : NSViewController <HNHUITextFieldDelegate>
 @property (strong) IBOutlet HNHUITextField *toptValueTextField;
 @property (strong) IBOutlet NSButton *remainingTimeButton;
 @property (strong) IBOutlet NSButton *showSetupButton;

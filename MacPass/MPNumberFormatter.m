@@ -34,7 +34,7 @@
 }
 
 - (BOOL)getObjectValue:(out id __nullable * __nullable)obj forString:(NSString *)string errorDescription:(out NSString * __nullable * __nullable)error {
-  /* If super can pase without an error, all is fine */
+  /* If super can parse without an error, all is fine */
   if([super getObjectValue:obj forString:string errorDescription:error]) {
     return YES;
   }
