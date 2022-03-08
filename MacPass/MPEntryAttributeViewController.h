@@ -23,9 +23,9 @@ NS_ASSUME_NONNULL_BEGIN
 @property (strong) IBOutlet HNHUISecureTextField *valueTextField;
 @property (strong) IBOutlet NSButton *toggleProtectedButton;
 @property (strong) IBOutlet NSButton *removeButton;
+@property (strong) IBOutlet NSButton *actionButton;
 
-- (void)updateValues;
-- (void)updateEditing;
+- (void)updateValuesAndEditing;
 
 
 @end

@@ -343,6 +343,7 @@ typedef NS_ENUM(NSUInteger, MPEntryTab) {
   self.passwordEditorViewController.isEditor = !self.passwordEditorViewController.isEditor;
   self.urlEditorViewController.isEditor = !self.urlEditorViewController.isEditor;
   self.expiresEditorViewController.isEditor = !self.expiresEditorViewController.isEditor;
+  self.iconViewController.isEditor = !self.iconViewController.isEditor;
   //self.totpViewController.isEditor = !self.totpViewController.isEditor;
 }
 

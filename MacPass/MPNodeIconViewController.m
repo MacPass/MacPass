@@ -14,6 +14,8 @@
 @interface MPNodeIconViewController ()
 @property (strong) IBOutlet NSImageView *imageView;
 @property (strong) IBOutlet NSTextField *textField;
+@property (copy) NSUUID *iconUUID;
+@property NSUInteger iconId;
 @end
 
 @implementation MPNodeIconViewController
@@ -27,7 +29,6 @@
 }
 
 - (void)setRepresentedObject:(id)representedObject {
-  // FIXME: register for correct notifications
   if(self.representedNode) {
     KPKNode *node = self.representedNode;
     if(node.asEntry) {
@@ -57,7 +58,7 @@
       NSLog(@"Inconsitant state for notification handling");
     }
   }
-  [self _updateValues];
+  [self _updateValueAndEditing];
 }
 
 - (KPKNode *)representedNode {
@@ -67,31 +68,30 @@
   return nil;
 }
 
-- (void)_updateValues {
+- (void)setIsEditor:(BOOL)isEditor {
+  _isEditor = isEditor;
+  [self _updateValueAndEditing];
+}
+
+- (void)_updateValueAndEditing {
+  self.imageView.enabled = self.isEditor;
+  self.iconUUID = self.representedNode.iconUUID;
+  self.iconId = self.representedNode.iconId;
   self.imageView.image = self.representedNode.iconImage;
   self.textField.stringValue = self.representedNode.title.length > 0 ? self.representedNode.title : @"";
 }
 
 - (void)commitChanges {
-  // fixme
+  self.representedNode.iconUUID = self.iconUUID;
+  self.representedNode.iconId = self.iconId;
 }
-
 
 - (void)_willChangeNode:(NSNotification *)notification {
   
 }
 
 - (void)_didChangeNode:(NSNotification *)notification {
-  [self _updateValues];
+  [self _updateValueAndEditing];
 }
-/*
-- (BOOL)commitEditingAndReturnError:(NSError *__autoreleasing  _Nullable * _Nullable)error {
-  <#code#>
-}
-
-- (void)encodeWithCoder:(nonnull NSCoder *)coder {
-  <#code#>
-}
-*/
 
 @end

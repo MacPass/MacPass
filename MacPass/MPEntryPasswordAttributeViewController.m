@@ -37,16 +37,13 @@
   };
 }
 
-- (void)updateValues {
+- (void)updateValuesAndEditing {
   self.view.hidden = (!self.isEditor && self.representedAttribute.value.length == 0);
   self.passwordTextField.stringValue = self.representedAttribute.value ? self.representedAttribute.value : @"";
-}
-
-- (void)updateEditing {
+  /* editor */
   self.generatePasswordButton.hidden = !self.isEditor;
   self.passwordTextField.editable = self.isEditor;
   self.passwordTextField.selectable = YES;
 }
-
 
 @end

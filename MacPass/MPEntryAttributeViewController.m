@@ -10,6 +10,7 @@
 #import <HNHUi/HNHUi.h>
 #import <KeePassKit/KeePassKit.h>
 #import "MPPasteBoardController.h"
+#import "MPInspectorEditorView.h"
 
 NSString *nameForDefaultKey(NSString *key) {
   static NSDictionary *mapping;
@@ -51,6 +52,10 @@ NSString *nameForDefaultKey(NSString *key) {
 
 - (void)viewDidLoad {
   [super viewDidLoad];
+  
+  [NSNotificationCenter.defaultCenter addObserver:self selector:@selector(_didEnterMouse:) name:MPInspectorEditorViewMouseEnteredNotification object:self.view];
+  [NSNotificationCenter.defaultCenter addObserver:self selector:@selector(_didExitMouse:) name:MPInspectorEditorViewMouseExitedNotification object:self.view];
+  
   NSString *placeHolder = NSLocalizedString(@"NONE", "Placeholder text for input fields if no entry or group is selected");
   self.keyTextField.placeholderString = placeHolder;
   self.valueTextField.placeholderString = placeHolder;
@@ -58,17 +63,11 @@ NSString *nameForDefaultKey(NSString *key) {
   self.toggleProtectedButton.action = @selector(toggleDisplay:);
   self.toggleProtectedButton.target = self.valueTextField;
   
-  [self updateValues];
-  [self updateEditing];
+  self.actionButton.action = @selector(_copyText:);
+  self.actionButton.target = self;
+  self.actionButton.hidden = YES;
   
-  __weak MPEntryAttributeViewController *welf = self;
-  self.valueTextField.buttonTitle = NSLocalizedString(@"COPY", "Button to copy the value of an Attribute");
-  self.valueTextField.buttonActionBlock =  ^void(NSTextField *tf) {
-    NSText *text = [welf.view.window fieldEditor:NO forObject:welf.valueTextField];
-    if([text isKindOfClass:NSTextView.class]) {
-      [welf textField:welf.valueTextField textView:(NSTextView *)text performAction:@selector(copy:)];
-    }
-  };
+  [self updateValuesAndEditing];
 }
 
 - (KPKAttribute *)representedAttribute {
@@ -80,7 +79,7 @@ NSString *nameForDefaultKey(NSString *key) {
 
 - (void)setIsEditor:(BOOL)isEditor {
   _isEditor = isEditor;
-  [self updateEditing];
+  [self updateValuesAndEditing];
 }
 
 - (void)setRepresentedObject:(id)representedObject {
@@ -101,8 +100,14 @@ NSString *nameForDefaultKey(NSString *key) {
 
   }
   _isDefaultAttribute = self.representedAttribute.isDefault;
-  [self updateEditing];
-  [self updateValues];
+  [self updateValuesAndEditing];
+}
+
+- (void)_copyText:(id)sender {
+  NSText *text = [self.view.window fieldEditor:NO forObject:self.valueTextField];
+  if([text isKindOfClass:NSTextView.class]) {
+    [self textField:self.valueTextField textView:(NSTextView *)text performAction:@selector(copy:)];
+  }
 }
 
 - (BOOL)textField:(NSTextField *)textField textView:(NSTextView *)textView performAction:(SEL)action {
@@ -145,10 +150,11 @@ NSString *nameForDefaultKey(NSString *key) {
 }
 
 - (void)_didChangeAttribute:(NSNotification *)notification {
-  [self updateValues];
+  [self updateValuesAndEditing];
 }
 
-- (void)updateValues {
+- (void)updateValuesAndEditing {
+  /* values */
   self.view.hidden = self.isEditor ? NO : self.representedAttribute.value.length == 0;
   
   NSString *localizedKey = nameForDefaultKey(self.representedAttribute.key);
@@ -162,21 +168,28 @@ NSString *nameForDefaultKey(NSString *key) {
   
   self.valueTextField.stringValue = self.representedAttribute.value ? self.representedAttribute.value : @"";
   self.valueTextField.showPassword = !self.representedAttribute.protect;
-}
-
-- (void)updateEditing {
-  self.view.hidden = self.isEditor ? NO : self.representedAttribute.value.length == 0;
+  
+  /* editor */
   self.keyTextField.editable = !_isDefaultAttribute && self.isEditor;
   self.valueTextField.editable = self.isEditor;
   self.keyTextField.selectable = YES;
   self.valueTextField.selectable = YES;
   self.toggleProtectedButton.hidden = _isDefaultAttribute;
+  
   self.removeButton.hidden = !self.isEditor ? YES : _isDefaultAttribute;
 
   // set draws background first, since bezeld might have side effects
   self.valueTextField.drawsBackground = self.isEditor;
   self.valueTextField.bordered = self.isEditor;
   self.valueTextField.bezeled = self.isEditor;
+}
+
+- (void)_didEnterMouse:(NSNotification *)notification {
+  self.actionButton.hidden = self.isEditor;
+}
+
+- (void)_didExitMouse:(NSNotification *)notification {
+  self.actionButton.hidden = YES;
 }
 
 -(void)commitChanges {

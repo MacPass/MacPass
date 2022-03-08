@@ -257,6 +257,7 @@
 		4CC59C2721AF0893005E8D6B /* MPPathControl.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CC59C2621AF0893005E8D6B /* MPPathControl.m */; };
 		4CC663E7216F7A7100E33965 /* MPPluginRepositoryBrowserViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CC663E5216F7A7100E33965 /* MPPluginRepositoryBrowserViewController.m */; };
 		4CC6DB7A17D23719002C6091 /* KPKNode+IconImage.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CC6DB7917D23719002C6091 /* KPKNode+IconImage.m */; };
+		4CC91B6B27D7E7E6001E9517 /* MPInspectorEditorView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CC91B6A27D7E7E6001E9517 /* MPInspectorEditorView.m */; };
 		4CCA8E9B18D91ED9001A6754 /* Quartz.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4CCA8E9A18D91ED9001A6754 /* Quartz.framework */; };
 		4CCCE8011D75CA48006AA951 /* MPArrayController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CCCE8001D75CA48006AA951 /* MPArrayController.m */; };
 		4CCEDE2A179F203B008402BE /* MPOutlineView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CCEDE29179F203B008402BE /* MPOutlineView.m */; };
@@ -848,6 +849,8 @@
 		4CC663E5216F7A7100E33965 /* MPPluginRepositoryBrowserViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MPPluginRepositoryBrowserViewController.m; sourceTree = "<group>"; };
 		4CC6DB7817D23719002C6091 /* KPKNode+IconImage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "KPKNode+IconImage.h"; sourceTree = "<group>"; };
 		4CC6DB7917D23719002C6091 /* KPKNode+IconImage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "KPKNode+IconImage.m"; sourceTree = "<group>"; };
+		4CC91B6927D7E7E6001E9517 /* MPInspectorEditorView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MPInspectorEditorView.h; sourceTree = "<group>"; };
+		4CC91B6A27D7E7E6001E9517 /* MPInspectorEditorView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MPInspectorEditorView.m; sourceTree = "<group>"; };
 		4CCA7EEC1797866F00B0B55E /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/GeneralPreferences.strings; sourceTree = "<group>"; };
 		4CCA8E9A18D91ED9001A6754 /* Quartz.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Quartz.framework; path = System/Library/Frameworks/Quartz.framework; sourceTree = SDKROOT; };
 		4CCCE7FF1D75CA48006AA951 /* MPArrayController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MPArrayController.h; sourceTree = "<group>"; };
@@ -1275,6 +1278,8 @@
 				4CFC53BE16E94729007396BE /* MPShadowBox.m */,
 				4C4A100D176286FD00BBF2CA /* MPTableView.h */,
 				4C4A100E176286FD00BBF2CA /* MPTableView.m */,
+				4CC91B6927D7E7E6001E9517 /* MPInspectorEditorView.h */,
+				4CC91B6A27D7E7E6001E9517 /* MPInspectorEditorView.m */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -2266,6 +2271,7 @@
 				4CBA2ABA17074C07006D8139 /* MPSettingsHelper.m in Sources */,
 				4C77E37A15B84A240093A587 /* MPAppDelegate.m in Sources */,
 				3C0CDED821D28BF700B2A10B /* MPTouchBarButtonCreator.m in Sources */,
+				4CC91B6B27D7E7E6001E9517 /* MPInspectorEditorView.m in Sources */,
 				4C37A84015B8B474005EF8EE /* MPOutlineDataSource.m in Sources */,
 				4CA0B2F915BCAF6700654E32 /* MPGeneralPreferencesController.m in Sources */,
 				4C8F0C791FD05A6A00BE157F /* NSString+MPPrettyPasswordDisplay.m in Sources */,
