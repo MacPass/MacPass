@@ -46,7 +46,7 @@ NSString *nameForDefaultKey(NSString *key) {
 
 - (instancetype)initWithCoder:(NSCoder *)coder {
   self = [super initWithCoder:coder];
-  // set editor to false?
+  _isEditor = NO;
   return self;
 }
 
@@ -66,6 +66,7 @@ NSString *nameForDefaultKey(NSString *key) {
   self.actionButton.action = @selector(_copyText:);
   self.actionButton.target = self;
   self.actionButton.hidden = YES;
+  self.actionButton.title = NSLocalizedString(@"COPY", "Button title for copying an attribute value");
   
   [self updateValuesAndEditing];
 }
@@ -84,15 +85,10 @@ NSString *nameForDefaultKey(NSString *key) {
 
 - (void)setRepresentedObject:(id)representedObject {
   if(self.representedAttribute) {
-    [NSNotificationCenter.defaultCenter removeObserver:self name:KPKWillChangeAttributeNotification object:self.representedObject];
     [NSNotificationCenter.defaultCenter removeObserver:self name:KPKDidChangeAttributeNotification object:self.representedObject];
   }
   super.representedObject = representedObject;
   if(self.representedAttribute) {
-    [NSNotificationCenter.defaultCenter addObserver:self
-                                           selector:(@selector(_willChangeAttribute:))
-                                               name:KPKWillChangeAttributeNotification
-                                             object:self.representedAttribute];
     [NSNotificationCenter.defaultCenter addObserver:self
                                            selector:(@selector(_didChangeAttribute:))
                                                name:KPKDidChangeAttributeNotification
@@ -104,10 +100,7 @@ NSString *nameForDefaultKey(NSString *key) {
 }
 
 - (void)_copyText:(id)sender {
-  NSText *text = [self.view.window fieldEditor:NO forObject:self.valueTextField];
-  if([text isKindOfClass:NSTextView.class]) {
-    [self textField:self.valueTextField textView:(NSTextView *)text performAction:@selector(copy:)];
-  }
+  [self performCopyForText:self.valueTextField.stringValue];
 }
 
 - (BOOL)textField:(NSTextField *)textField textView:(NSTextView *)textView performAction:(SEL)action {
@@ -116,7 +109,7 @@ NSString *nameForDefaultKey(NSString *key) {
   }
   
   // Only copy action
-  MPPasteboardOverlayInfoType info = MPPasteboardOverlayInfoCustom;
+  
   NSMutableString *selectedValue = [[NSMutableString alloc] init];
   for(NSValue *rangeValue in textView.selectedRanges) {
     [selectedValue appendString:[textView.string substringWithRange:rangeValue.rangeValue]];
@@ -124,7 +117,15 @@ NSString *nameForDefaultKey(NSString *key) {
   if(selectedValue.length == 0) {
     [selectedValue setString:textField.stringValue];
   }
+  [self performCopyForText:selectedValue];
+  return NO;
+}
+
+- (void)performCopyForText:(NSString *)text {
+  
+  MPPasteboardOverlayInfoType info = MPPasteboardOverlayInfoCustom;
   NSString *name = @"";
+  
   if([self.representedAttribute.key isEqual:kKPKUsernameKey]) {
     info = MPPasteboardOverlayInfoUsername;
   }
@@ -140,13 +141,7 @@ NSString *nameForDefaultKey(NSString *key) {
   else {
     name = self.representedAttribute.key;
   }
-  [MPPasteBoardController.defaultController copyObject:selectedValue overlayInfo:info name:name atView:self.view];
-  return NO;
-}
-
-
-- (void)_willChangeAttribute:(NSNotification *)notification {
-  // nothing to d
+  [MPPasteBoardController.defaultController copyObject:text overlayInfo:info name:name atView:self.view];
 }
 
 - (void)_didChangeAttribute:(NSNotification *)notification {
@@ -201,31 +196,6 @@ NSString *nameForDefaultKey(NSString *key) {
     self.representedAttribute.key = self.keyTextField.stringValue;
   }
   self.representedAttribute.value = self.valueTextField.stringValue;
-}
-
-- (void)objectDidBeginEditing:(id<NSEditor>)editor {
-  NSLog(@"%@: %@", NSStringFromClass(self.class), NSStringFromSelector(_cmd));
-  [super objectDidBeginEditing:editor];
-}
-
-- (void)objectDidEndEditing:(id<NSEditor>)editor {
-  NSLog(@"%@: %@", NSStringFromClass(self.class), NSStringFromSelector(_cmd));
-  [super objectDidEndEditing:editor];
-}
-
-- (BOOL)commitEditing {
-  NSLog(@"%@: %@", NSStringFromClass(self.class), NSStringFromSelector(_cmd));
-  return [super commitEditing];
-}
-
-- (BOOL)commitEditingAndReturnError:(NSError *__autoreleasing  _Nullable *)error {
-  NSLog(@"%@: %@", NSStringFromClass(self.class), NSStringFromSelector(_cmd));
-  return [super commitEditingAndReturnError:error];
-}
-
-- (void)commitEditingWithDelegate:(id)delegate didCommitSelector:(SEL)didCommitSelector contextInfo:(void *)contextInfo {
-  NSLog(@"%@: %@", NSStringFromClass(self.class), NSStringFromSelector(_cmd));
-  [super commitEditingWithDelegate:delegate didCommitSelector:didCommitSelector contextInfo:contextInfo];
 }
 
 @end

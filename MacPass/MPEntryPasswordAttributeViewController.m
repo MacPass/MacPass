@@ -27,14 +27,6 @@
   self.togglePasswordButton.action = @selector(toggleDisplay:);
   self.togglePasswordButton.target = self.passwordTextField;
   
-  __weak MPEntryPasswordAttributeViewController *welf = self;
-  self.passwordTextField.buttonTitle = NSLocalizedString(@"COPY", "Button to copy the value of an Attribute");
-  self.passwordTextField.buttonActionBlock =  ^void(NSTextField *tf) {
-    NSText *text = [welf.view.window fieldEditor:NO forObject:welf.passwordTextField];
-    if([text isKindOfClass:NSTextView.class]) {
-      [welf textField:welf.passwordTextField textView:(NSTextView *)text performAction:@selector(copy:)];
-    }
-  };
 }
 
 - (void)updateValuesAndEditing {

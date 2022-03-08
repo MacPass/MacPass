@@ -26,7 +26,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (strong) IBOutlet NSButton *actionButton;
 
 - (void)updateValuesAndEditing;
-
+- (void)performCopyForText:(NSString *)text;
 
 @end
 
