@@ -201,10 +201,12 @@ NSString *nameForDefaultKey(NSString *key) {
 
 - (void)objectDidBeginEditing:(id<NSEditor>)editor {
   [self.view.window.windowController.document objectDidBeginEditing:editor];
+  [super objectDidBeginEditing:editor];
 }
 
 - (void)objectDidEndEditing:(id<NSEditor>)editor {
   [self.view.window.windowController.document objectDidEndEditing:editor];
+  [super objectDidEndEditing:editor];
 }
 
 @end
