@@ -129,6 +129,10 @@
 		4C4BE0C8257E9B91000AEA8C /* MPNotificationPreferencesController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C4BE0C6257E9B91000AEA8C /* MPNotificationPreferencesController.m */; };
 		4C4BE0C9257E9B91000AEA8C /* MPNotificationPreferencesController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4C4BE0C7257E9B91000AEA8C /* MPNotificationPreferencesController.xib */; };
 		4C4DC0A61C3AD17500DE9DCF /* KeePassKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4C7B63791C0CB55600D7038C /* KeePassKit.framework */; };
+		4C4F120027D9055300ED5495 /* AOAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C4F11FF27D9055300ED5495 /* AOAppDelegate.m */; };
+		4C4F120227D9055600ED5495 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4C4F120127D9055600ED5495 /* Assets.xcassets */; };
+		4C4F120527D9055600ED5495 /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4C4F120327D9055600ED5495 /* MainMenu.xib */; };
+		4C4F120727D9055600ED5495 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C4F120627D9055600ED5495 /* main.m */; };
 		4C4F72D118DF704400E8D378 /* DDHotKeyTextField.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C4F72CF18DF704400E8D378 /* DDHotKeyTextField.m */; };
 		4C4FCE15177CFE6B00BBF7AE /* MPCustomFieldTableCellView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C4FCE14177CFE6B00BBF7AE /* MPCustomFieldTableCellView.m */; };
 		4C50CC041F6C18830095629D /* MPCollectionViewItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C50CC031F6C18830095629D /* MPCollectionViewItem.m */; };
@@ -584,6 +588,14 @@
 		4C4BE0C5257E9B91000AEA8C /* MPNotificationPreferencesController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MPNotificationPreferencesController.h; sourceTree = "<group>"; };
 		4C4BE0C6257E9B91000AEA8C /* MPNotificationPreferencesController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MPNotificationPreferencesController.m; sourceTree = "<group>"; };
 		4C4BE0C7257E9B91000AEA8C /* MPNotificationPreferencesController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MPNotificationPreferencesController.xib; sourceTree = "<group>"; };
+		4C4F11FC27D9055300ED5495 /* AutotypeOverlay.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AutotypeOverlay.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		4C4F11FE27D9055300ED5495 /* AOAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AOAppDelegate.h; sourceTree = "<group>"; };
+		4C4F11FF27D9055300ED5495 /* AOAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AOAppDelegate.m; sourceTree = "<group>"; };
+		4C4F120127D9055600ED5495 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		4C4F120427D9055600ED5495 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/MainMenu.xib; sourceTree = "<group>"; };
+		4C4F120627D9055600ED5495 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		4C4F120827D9055600ED5495 /* AutotypeOverlay.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = AutotypeOverlay.entitlements; sourceTree = "<group>"; };
+		4C4F120C27D905CE00ED5495 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		4C4F72CF18DF704400E8D378 /* DDHotKeyTextField.m */ = {isa = PBXFileReference; fileEncoding = 4; indentWidth = 4; lastKnownFileType = sourcecode.c.objc; name = DDHotKeyTextField.m; path = DDHotKey/DDHotKeyTextField.m; sourceTree = "<group>"; tabWidth = 4; };
 		4C4F72D018DF704400E8D378 /* DDHotKeyTextField.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DDHotKeyTextField.h; path = DDHotKey/DDHotKeyTextField.h; sourceTree = "<group>"; };
 		4C4FCE13177CFE6B00BBF7AE /* MPCustomFieldTableCellView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MPCustomFieldTableCellView.h; sourceTree = "<group>"; };
@@ -1218,6 +1230,13 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		4C4F11F927D9055300ED5495 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		4C77E35F15B84A240093A587 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -1532,6 +1551,20 @@
 			name = Inspector;
 			sourceTree = "<group>";
 		};
+		4C4F11FD27D9055300ED5495 /* AutotypeOverlay */ = {
+			isa = PBXGroup;
+			children = (
+				4C4F120C27D905CE00ED5495 /* Info.plist */,
+				4C4F11FE27D9055300ED5495 /* AOAppDelegate.h */,
+				4C4F11FF27D9055300ED5495 /* AOAppDelegate.m */,
+				4C4F120127D9055600ED5495 /* Assets.xcassets */,
+				4C4F120327D9055600ED5495 /* MainMenu.xib */,
+				4C4F120627D9055600ED5495 /* main.m */,
+				4C4F120827D9055600ED5495 /* AutotypeOverlay.entitlements */,
+			);
+			path = AutotypeOverlay;
+			sourceTree = "<group>";
+		};
 		4C5133861FA0C32C00C94C73 /* Accessory */ = {
 			isa = PBXGroup;
 			children = (
@@ -1650,6 +1683,7 @@
 				4C00E33917D8FA3B00F37192 /* DDHotKey */,
 				4C77E36C15B84A240093A587 /* MacPass */,
 				4C45FB1E178E09ED0010007D /* MacPassTests */,
+				4C4F11FD27D9055300ED5495 /* AutotypeOverlay */,
 				4C77E36515B84A240093A587 /* Frameworks */,
 				4C77E36315B84A240093A587 /* Products */,
 			);
@@ -1662,6 +1696,7 @@
 			children = (
 				4C77E36215B84A240093A587 /* MacPass.app */,
 				4C45FB1A178E09ED0010007D /* MacPassTests.xctest */,
+				4C4F11FC27D9055300ED5495 /* AutotypeOverlay.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -2009,6 +2044,23 @@
 			productReference = 4C45FB1A178E09ED0010007D /* MacPassTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
+		4C4F11FB27D9055300ED5495 /* AutotypeOverlay */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 4C4F120B27D9055600ED5495 /* Build configuration list for PBXNativeTarget "AutotypeOverlay" */;
+			buildPhases = (
+				4C4F11F827D9055300ED5495 /* Sources */,
+				4C4F11F927D9055300ED5495 /* Frameworks */,
+				4C4F11FA27D9055300ED5495 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = AutotypeOverlay;
+			productName = AutotypeOverlay;
+			productReference = 4C4F11FC27D9055300ED5495 /* AutotypeOverlay.app */;
+			productType = "com.apple.product-type.application";
+		};
 		4C77E36115B84A240093A587 /* MacPass */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 4C77E38015B84A240093A587 /* Build configuration list for PBXNativeTarget "MacPass" */;
@@ -2038,6 +2090,10 @@
 				LastUpgradeCheck = 1250;
 				ORGANIZATIONNAME = "HicknHack Software GmbH";
 				TargetAttributes = {
+					4C4F11FB27D9055300ED5495 = {
+						CreatedOnToolsVersion = 13.2.1;
+						ProvisioningStyle = Automatic;
+					};
 					4C77E36115B84A240093A587 = {
 						DevelopmentTeam = 55SM4L4Z97;
 					};
@@ -2070,6 +2126,7 @@
 			targets = (
 				4C77E36115B84A240093A587 /* MacPass */,
 				4C45FB19178E09ED0010007D /* MacPassTests */,
+				4C4F11FB27D9055300ED5495 /* AutotypeOverlay */,
 			);
 		};
 /* End PBXProject section */
@@ -2082,6 +2139,15 @@
 				4C45FB23178E09ED0010007D /* InfoPlist.strings in Resources */,
 				4CCFA13E1BF0CC7A0078E0A1 /* Test_Password_1234.kdbx in Resources */,
 				4CCFA13D1BF0CC7A0078E0A1 /* Test_Password_1234.kdb in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		4C4F11FA27D9055300ED5495 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				4C4F120227D9055600ED5495 /* Assets.xcassets in Resources */,
+				4C4F120527D9055600ED5495 /* MainMenu.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2258,6 +2324,15 @@
 				4C6BC6601A36717E00BDDF3D /* MPDatabaseSearch.m in Sources */,
 				4C10207F1B750E2F00BFCD59 /* MPTestAutotype.m in Sources */,
 				4C80304A1E2FBAA300133E4C /* MPTestKeyMapper.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		4C4F11F827D9055300ED5495 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				4C4F120727D9055600ED5495 /* main.m in Sources */,
+				4C4F120027D9055300ED5495 /* AOAppDelegate.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2541,6 +2616,14 @@
 				69385E51274ACFE1001AB1E9 /* cs */,
 			);
 			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+		4C4F120327D9055600ED5495 /* MainMenu.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				4C4F120427D9055600ED5495 /* Base */,
+			);
+			name = MainMenu.xib;
 			sourceTree = "<group>";
 		};
 		4C6DCC471FA2457900C8AD3F /* ContextBar.xib */ = {
@@ -3138,6 +3221,97 @@
 			};
 			name = Release;
 		};
+		4C4F120927D9055600ED5495 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++17";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CODE_SIGN_ENTITLEMENTS = AutotypeOverlay/AutotypeOverlay.entitlements;
+				CODE_SIGN_IDENTITY = "-";
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				DEVELOPMENT_TEAM = "";
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = AutotypeOverlay/Info.plist;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "Copyright © 2022 HicknHack Software GmbH. All rights reserved.";
+				INFOPLIST_KEY_NSMainNibFile = MainMenu;
+				INFOPLIST_KEY_NSPrincipalClass = NSApplication;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
+				MACOSX_DEPLOYMENT_TARGET = 11.6;
+				MARKETING_VERSION = 1.0;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				PRODUCT_BUNDLE_IDENTIFIER = com.hicknhacksoftware.AutotypeOverlay;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+			};
+			name = Debug;
+		};
+		4C4F120A27D9055600ED5495 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++17";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CODE_SIGN_ENTITLEMENTS = AutotypeOverlay/AutotypeOverlay.entitlements;
+				CODE_SIGN_IDENTITY = "-";
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				COPY_PHASE_STRIP = NO;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = "";
+				ENABLE_NS_ASSERTIONS = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = AutotypeOverlay/Info.plist;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "Copyright © 2022 HicknHack Software GmbH. All rights reserved.";
+				INFOPLIST_KEY_NSMainNibFile = MainMenu;
+				INFOPLIST_KEY_NSPrincipalClass = NSApplication;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
+				MACOSX_DEPLOYMENT_TARGET = 11.6;
+				MARKETING_VERSION = 1.0;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				PRODUCT_BUNDLE_IDENTIFIER = com.hicknhacksoftware.AutotypeOverlay;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+			};
+			name = Release;
+		};
 		4C77E37E15B84A240093A587 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -3311,6 +3485,15 @@
 			buildConfigurations = (
 				4C45FB28178E09ED0010007D /* Debug */,
 				4C45FB29178E09ED0010007D /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		4C4F120B27D9055600ED5495 /* Build configuration list for PBXNativeTarget "AutotypeOverlay" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				4C4F120927D9055600ED5495 /* Debug */,
+				4C4F120A27D9055600ED5495 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
