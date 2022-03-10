@@ -56,10 +56,6 @@ NSString *nameForDefaultKey(NSString *key) {
   [NSNotificationCenter.defaultCenter addObserver:self selector:@selector(_didEnterMouse:) name:MPInspectorEditorViewMouseEnteredNotification object:self.view];
   [NSNotificationCenter.defaultCenter addObserver:self selector:@selector(_didExitMouse:) name:MPInspectorEditorViewMouseExitedNotification object:self.view];
   
-  NSString *placeHolder = NSLocalizedString(@"NONE", "Placeholder text for input fields if no entry or group is selected");
-  self.keyTextField.placeholderString = placeHolder;
-  self.valueTextField.placeholderString = placeHolder;
-  
   self.toggleProtectedButton.action = @selector(toggleDisplay:);
   self.toggleProtectedButton.target = self.valueTextField;
   
@@ -84,6 +80,9 @@ NSString *nameForDefaultKey(NSString *key) {
 }
 
 - (void)setRepresentedObject:(id)representedObject {
+  [self.valueTextField unbind:NSValueBinding];
+  [self.keyTextField unbind:NSValueBinding];
+  
   if(self.representedAttribute) {
     [NSNotificationCenter.defaultCenter removeObserver:self name:KPKDidChangeAttributeNotification object:self.representedObject];
   }
@@ -93,9 +92,28 @@ NSString *nameForDefaultKey(NSString *key) {
                                            selector:(@selector(_didChangeAttribute:))
                                                name:KPKDidChangeAttributeNotification
                                              object:self.representedAttribute];
-
+    
   }
   _isDefaultAttribute = self.representedAttribute.isDefault;
+  
+  NSDictionary *bindingOptions = @{ NSNullPlaceholderBindingOption :  NSLocalizedString(@"NONE", "Placeholder text for input fields if no entry or group is selected") };
+  NSString *valueKeyPath = [NSString stringWithFormat:@"%@.%@", NSStringFromSelector(@selector(representedObject)), NSStringFromSelector(@selector(value))];
+  [self.valueTextField bind:NSValueBinding toObject:self withKeyPath:valueKeyPath options:bindingOptions];
+  
+  if(!_isDefaultAttribute) {
+    NSString *keyKeyPath = [NSString stringWithFormat:@"%@.%@", NSStringFromSelector(@selector(representedObject)), NSStringFromSelector(@selector(key))];
+    [self.keyTextField bind:NSValueBinding toObject:self withKeyPath:keyKeyPath options:bindingOptions];
+  }
+  else {
+    NSString *localizedKey = nameForDefaultKey(self.representedAttribute.key);
+    if(localizedKey) {
+      self.keyTextField.stringValue = localizedKey;
+    }
+    else {
+      self.keyTextField.stringValue = self.representedAttribute.key ? self.representedAttribute.key : @"";
+    }
+  }
+  
   [self updateValuesAndEditing];
 }
 
@@ -152,16 +170,6 @@ NSString *nameForDefaultKey(NSString *key) {
   /* values */
   self.view.hidden = self.isEditor ? NO : self.representedAttribute.value.length == 0;
   
-  NSString *localizedKey = nameForDefaultKey(self.representedAttribute.key);
-  if(localizedKey) {
-    self.keyTextField.stringValue = localizedKey;
-  }
-  else {
-    self.keyTextField.stringValue = self.representedAttribute.key ? self.representedAttribute.key : @"";
-  }
-  self.keyTextField.stringValue = self.representedAttribute.key ? self.representedAttribute.key : @"";
-  
-  self.valueTextField.stringValue = self.representedAttribute.value ? self.representedAttribute.value : @"";
   self.valueTextField.showPassword = !self.representedAttribute.protect;
   
   /* editor */
@@ -172,7 +180,7 @@ NSString *nameForDefaultKey(NSString *key) {
   self.toggleProtectedButton.hidden = _isDefaultAttribute;
   
   self.removeButton.hidden = !self.isEditor ? YES : _isDefaultAttribute;
-
+  
   // set draws background first, since bezeld might have side effects
   self.valueTextField.drawsBackground = self.isEditor;
   self.valueTextField.bordered = self.isEditor;
@@ -187,15 +195,16 @@ NSString *nameForDefaultKey(NSString *key) {
   self.actionButton.hidden = YES;
 }
 
--(void)commitChanges {
-  if(!self.isEditor) {
-    // do not commit changes if we are no editor!
-  }
-  // FIXME: better handling of key uniqueness
-  if(!_isDefaultAttribute) {
-    self.representedAttribute.key = self.keyTextField.stringValue;
-  }
-  self.representedAttribute.value = self.valueTextField.stringValue;
+- (void)commitChanges {
+  // to nothing
+}
+
+- (void)objectDidBeginEditing:(id<NSEditor>)editor {
+  [self.view.window.windowController.document objectDidBeginEditing:editor];
+}
+
+- (void)objectDidEndEditing:(id<NSEditor>)editor {
+  [self.view.window.windowController.document objectDidEndEditing:editor];
 }
 
 @end
