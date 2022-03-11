@@ -25,9 +25,8 @@ NSString *nameForDefaultKey(NSString *key) {
 }
 
 
-@interface MPEntryAttributeViewController () {
-  BOOL _isDefaultAttribute;
-}
+@interface MPEntryAttributeViewController ()
+@property (nonatomic, readonly, getter=isDefaultAttributeEditor) BOOL defaultAttributeEditor;
 
 @end
 
@@ -39,15 +38,26 @@ NSString *nameForDefaultKey(NSString *key) {
   self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
   if(self) {
     _isEditor = NO;
-    _isDefaultAttribute = NO;
   }
   return self;
 }
 
 - (instancetype)initWithCoder:(NSCoder *)coder {
   self = [super initWithCoder:coder];
-  _isEditor = NO;
+  if(self) {
+    _isEditor = NO;
+    NSString *selectorString = [coder decodeObjectOfClass:NSString.class forKey:NSStringFromSelector(@selector(attributeSelector))];
+    if(selectorString) {
+      self.attributeSelector = NSSelectorFromString(selectorString);
+    }
+  }
   return self;
+}
+
+- (void)encodeWithCoder:(NSCoder *)coder {
+  [super encodeWithCoder:coder];
+  // editor state will be set to NO after decoding
+  [coder encodeObject:NSStringFromSelector(self.attributeSelector) forKey:NSStringFromSelector(@selector(attributeSelector))];
 }
 
 - (void)viewDidLoad {
@@ -64,6 +74,27 @@ NSString *nameForDefaultKey(NSString *key) {
   self.actionButton.hidden = YES;
   self.actionButton.title = NSLocalizedString(@"COPY", "Button title for copying an attribute value");
   
+  NSDictionary *bindingOptions = @{ NSNullPlaceholderBindingOption :  NSLocalizedString(@"NONE", "Placeholder text for input fields if no entry or group is selected"),
+                                    NSConditionallySetsHiddenBindingOption : @(NO),
+                                    NSConditionallySetsEnabledBindingOption : @(NO),
+                                    NSConditionallySetsEditableBindingOption : @(NO) };
+  NSString *valueKeyPath = [NSString stringWithFormat:@"%@.%@", NSStringFromSelector(@selector(representedObject)), NSStringFromSelector(@selector(value))];
+  if(self.isDefaultAttributeEditor) {
+    valueKeyPath = [NSString stringWithFormat:@"%@.%@.%@", NSStringFromSelector(@selector(representedObject)),NSStringFromSelector(@selector(entry)), NSStringFromSelector(self.attributeSelector)];
+  }
+  [self.valueTextField bind:NSValueBinding
+                   toObject:self
+                withKeyPath:valueKeyPath
+                    options:bindingOptions];
+  
+  if(!self.isDefaultAttributeEditor) {
+    NSString *keyKeyPath = [NSString stringWithFormat:@"%@.%@", NSStringFromSelector(@selector(representedObject)), NSStringFromSelector(@selector(key))];
+    [self.keyTextField bind:NSValueBinding
+                   toObject:self
+                withKeyPath:keyKeyPath
+                    options:bindingOptions];
+  }
+  
   [self updateValuesAndEditing];
 }
 
@@ -74,17 +105,20 @@ NSString *nameForDefaultKey(NSString *key) {
   return nil;
 }
 
+- (BOOL)isDefaultAttributeEditor {
+  return (self.attributeSelector != NULL);
+}
+
 - (void)setIsEditor:(BOOL)isEditor {
   _isEditor = isEditor;
   [self updateValuesAndEditing];
 }
 
 - (void)setRepresentedObject:(id)representedObject {
-  [self.valueTextField unbind:NSValueBinding];
-  [self.keyTextField unbind:NSValueBinding];
-  
   if(self.representedAttribute) {
-    [NSNotificationCenter.defaultCenter removeObserver:self name:KPKDidChangeAttributeNotification object:self.representedObject];
+    [NSNotificationCenter.defaultCenter removeObserver:self
+                                                  name:KPKDidChangeAttributeNotification
+                                                object:self.representedObject];
   }
   super.representedObject = representedObject;
   if(self.representedAttribute) {
@@ -93,18 +127,10 @@ NSString *nameForDefaultKey(NSString *key) {
                                                name:KPKDidChangeAttributeNotification
                                              object:self.representedAttribute];
     
-  }
-  _isDefaultAttribute = self.representedAttribute.isDefault;
-  
-  NSDictionary *bindingOptions = @{ NSNullPlaceholderBindingOption :  NSLocalizedString(@"NONE", "Placeholder text for input fields if no entry or group is selected") };
-  NSString *valueKeyPath = [NSString stringWithFormat:@"%@.%@", NSStringFromSelector(@selector(representedObject)), NSStringFromSelector(@selector(value))];
-  [self.valueTextField bind:NSValueBinding toObject:self withKeyPath:valueKeyPath options:bindingOptions];
-  
-  if(!_isDefaultAttribute) {
-    NSString *keyKeyPath = [NSString stringWithFormat:@"%@.%@", NSStringFromSelector(@selector(representedObject)), NSStringFromSelector(@selector(key))];
-    [self.keyTextField bind:NSValueBinding toObject:self withKeyPath:keyKeyPath options:bindingOptions];
-  }
-  else {
+  }  
+  // bind with read-only setup and value transformer for names?
+  if(self.isDefaultAttributeEditor) {
+    [self.keyTextField unbind:NSValueBinding];
     NSString *localizedKey = nameForDefaultKey(self.representedAttribute.key);
     if(localizedKey) {
       self.keyTextField.stringValue = localizedKey;
@@ -167,19 +193,19 @@ NSString *nameForDefaultKey(NSString *key) {
 }
 
 - (void)updateValuesAndEditing {
-  /* values */
+  // values
   self.view.hidden = self.isEditor ? NO : self.representedAttribute.value.length == 0;
   
   self.valueTextField.showPassword = !self.representedAttribute.protect;
   
-  /* editor */
-  self.keyTextField.editable = !_isDefaultAttribute && self.isEditor;
+  // editor
+  self.keyTextField.editable = !self.isDefaultAttributeEditor && self.isEditor;
   self.valueTextField.editable = self.isEditor;
   self.keyTextField.selectable = YES;
   self.valueTextField.selectable = YES;
-  self.toggleProtectedButton.hidden = _isDefaultAttribute;
+  self.toggleProtectedButton.hidden = self.isDefaultAttributeEditor;
   
-  self.removeButton.hidden = !self.isEditor ? YES : _isDefaultAttribute;
+  self.removeButton.hidden = !self.isEditor ? YES : self.isDefaultAttributeEditor;
   
   // set draws background first, since bezeld might have side effects
   self.valueTextField.drawsBackground = self.isEditor;

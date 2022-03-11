@@ -24,6 +24,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (strong) IBOutlet NSButton *toggleProtectedButton;
 @property (strong) IBOutlet NSButton *removeButton;
 @property (strong) IBOutlet NSButton *actionButton;
+@property SEL attributeSelector; // set this if the editor is bound to a default attributes
 
 - (void)updateValuesAndEditing;
 - (void)performCopyForText:(NSString *)text;

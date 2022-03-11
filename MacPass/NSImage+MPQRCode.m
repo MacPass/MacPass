@@ -34,7 +34,7 @@
 + (instancetype)QRCodeImageWithString:(NSString *)string {
   NSData *asciiData = [string dataUsingEncoding:NSISOLatin1StringEncoding];
   if(!asciiData) {
-    return nil;
+    return [[NSImage alloc] init];
   }
   CIFilter *qrCodeFilter = [CIFilter filterWithName:@"CIQRCodeGenerator" withInputParameters:@{@"inputMessage": asciiData}];
   NSAffineTransform *scale = [[NSAffineTransform alloc] init];

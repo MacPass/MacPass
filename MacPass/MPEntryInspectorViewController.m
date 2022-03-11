@@ -608,27 +608,26 @@ typedef NS_ENUM(NSUInteger, MPEntryTab) {
 - (void)_setupAttributeEditors {
   self.iconViewController = [[MPNodeIconViewController alloc] init];
   [self addChildViewController:self.iconViewController];
-  self.iconViewController.isEditor = NO;
   [self.fieldsStackView addArrangedSubview:self.iconViewController.view];
   
   self.titleEditorViewController = [[MPEntryAttributeViewController alloc] init];
   [self addChildViewController:self.titleEditorViewController];
-  self.titleEditorViewController.isEditor = NO;
+  self.titleEditorViewController.attributeSelector = @selector(title);
   [self.fieldsStackView addArrangedSubview:self.titleEditorViewController.view];
   
   self.usernameEditorViewController = [[MPEntryAttributeViewController alloc] init];
   [self addChildViewController:self.usernameEditorViewController];
-  self.usernameEditorViewController.isEditor = NO;
+  self.usernameEditorViewController.attributeSelector = @selector(username);
   [self.fieldsStackView addArrangedSubview:self.usernameEditorViewController.view];
 
   self.passwordEditorViewController = [[MPEntryPasswordAttributeViewController alloc] init];
   [self addChildViewController:self.passwordEditorViewController];
-  self.passwordEditorViewController.isEditor = NO;
+  self.passwordEditorViewController.attributeSelector = @selector(password);
   [self.fieldsStackView addArrangedSubview:self.passwordEditorViewController.view];
   
   self.urlEditorViewController = [[MPEntryAttributeViewController alloc] init];
   [self addChildViewController:self.urlEditorViewController];
-  self.urlEditorViewController.isEditor = NO;
+  self.urlEditorViewController.attributeSelector = @selector(url);
   [self.fieldsStackView addArrangedSubview:self.urlEditorViewController.view];
   
   self.totpViewController = [[MPTOTPViewController alloc] init];
