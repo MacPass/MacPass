@@ -64,18 +64,9 @@
 - (IBAction)delete:(id)sender;
 
 - (IBAction)duplicateEntryWithOptions:(id)sender;
-- (IBAction)pickExpiryDate:(id)sender;
 - (IBAction)performAutotypeForEntry:(id)sender;
 
 - (IBAction)showGroupInOutline:(id)sender;
-
-/* actions relayed to MPEntryViewController */
-- (IBAction)copyUsername:(id)sender;
-- (IBAction)copyPassword:(id)sender;
-- (IBAction)copyCustomAttribute:(id)sender;
-- (IBAction)copyAsReference:(id)sender;
-- (IBAction)copyURL:(id)sender;
-- (IBAction)openURL:(id)sender;
 
 #pragma mark Helper
 - (IBAction)fixAutotype:(id)sender;
