@@ -34,7 +34,6 @@
 #import "MPTOTPViewController.h"
 #import "MPTOTPSetupViewController.h"
 #import "MPEntryAttributeViewController.h"
-#import "MPEntryPasswordAttributeViewController.h"
 #import "MPNodeExpirationViewController.h"
 #import "MPNodeIconViewController.h"
 
@@ -89,9 +88,9 @@ typedef NS_ENUM(NSUInteger, MPEntryTab) {
 @property (strong) MPTOTPViewController *totpViewController;
 @property (strong) MPEntryAttributeViewController *titleEditorViewController;
 @property (strong) MPEntryAttributeViewController *usernameEditorViewController;
+@property (strong) MPEntryAttributeViewController *passwordEditorViewController;
 @property (strong) MPEntryAttributeViewController *urlEditorViewController;
 @property (strong) MPNodeExpirationViewController *expiresEditorViewController;
-@property (strong) MPEntryPasswordAttributeViewController *passwordEditorViewController;
 @property (strong) MPNodeIconViewController *iconViewController;
 
 
@@ -164,7 +163,7 @@ typedef NS_ENUM(NSUInteger, MPEntryTab) {
   
   [self.infoTabControl bind:NSSelectedIndexBinding toObject:self withKeyPath:NSStringFromSelector(@selector(activeTab)) options:nil];
   [self.tabView bind:NSSelectedIndexBinding toObject:self withKeyPath:NSStringFromSelector(@selector(activeTab)) options:nil];
-
+  
   self.attachmentTableView.backgroundColor = NSColor.clearColor;
   [self.attachmentTableView bind:NSContentBinding toObject:_attachmentsController withKeyPath:NSStringFromSelector(@selector(arrangedObjects)) options:nil];
   self.attachmentTableView.delegate = _attachmentTableDelegate;
@@ -213,7 +212,7 @@ typedef NS_ENUM(NSUInteger, MPEntryTab) {
   //[self.togglePassword bind:NSValueBinding toObject:self withKeyPath:NSStringFromSelector(@selector(showPassword)) options:nil];
   
   self.tagsTokenField.delegate = _tagTokenFieldDelegate;
-    
+  
   [self _setupAttributeEditors];
   [self _updateEditors];
   
@@ -512,16 +511,16 @@ typedef NS_ENUM(NSUInteger, MPEntryTab) {
 - (void)_setupViewBindings {
   /* Disable for history view */
   NSArray *inputs = @[
-                      self.tagsTokenField,
-                      self.addAttachmentButton,
-                      self.addCustomFieldButton,
-                      self.addWindowAssociationButton,
-                      self.removeWindowAssociationButton,
-                      self.enableAutotypeCheckButton,
-                      self.obfuscateAutotypeCheckButton,
-                      self.customEntrySequenceTextField,
-                      self.windowTitleComboBox,
-                      self.associationSequenceTextField];
+    self.tagsTokenField,
+    self.addAttachmentButton,
+    self.addCustomFieldButton,
+    self.addWindowAssociationButton,
+    self.removeWindowAssociationButton,
+    self.enableAutotypeCheckButton,
+    self.obfuscateAutotypeCheckButton,
+    self.customEntrySequenceTextField,
+    self.windowTitleComboBox,
+    self.associationSequenceTextField];
   
   for(NSControl *control in inputs) {
     [control bind:NSEnabledBinding
@@ -545,7 +544,7 @@ typedef NS_ENUM(NSUInteger, MPEntryTab) {
                withKeyPath:[NSString stringWithFormat:@"%@.%@.%@", NSStringFromSelector(@selector(representedObject)), NSStringFromSelector(@selector(uuid)), NSStringFromSelector(@selector(UUIDString))]
                    options:@{ NSConditionallySetsEditableBindingOption: @NO }];
   self.uuidTextField.editable = NO;
-    
+  
   /* Attachments */
   [_attachmentsController bind:NSContentArrayBinding
                       toObject:self
@@ -619,8 +618,8 @@ typedef NS_ENUM(NSUInteger, MPEntryTab) {
   [self addChildViewController:self.usernameEditorViewController];
   self.usernameEditorViewController.attributeSelector = @selector(username);
   [self.fieldsStackView addArrangedSubview:self.usernameEditorViewController.view];
-
-  self.passwordEditorViewController = [[MPEntryPasswordAttributeViewController alloc] init];
+  
+  self.passwordEditorViewController = [[MPEntryAttributeViewController alloc] init];
   [self addChildViewController:self.passwordEditorViewController];
   self.passwordEditorViewController.attributeSelector = @selector(password);
   [self.fieldsStackView addArrangedSubview:self.passwordEditorViewController.view];
@@ -652,11 +651,19 @@ typedef NS_ENUM(NSUInteger, MPEntryTab) {
   self.urlEditorViewController.representedObject = [self.representedEntry attributeWithKey:kKPKURLKey];
   
   // update custom field editors
-  if(!self.representedEntry.hasCustomAttributes) {
-    // clear all custom attribute editors
+  for(NSViewController *vc in _customAttributeEditorViewControllers) {
+    [self.fieldsStackView removeView:vc.view];
+    [vc removeFromParentViewController];
   }
-  else {
-    
+  [_customAttributeEditorViewControllers removeAllObjects];
+  for(KPKAttribute *attribute in self.representedEntry.customAttributes) {
+    MPEntryAttributeViewController *vc = [[MPEntryAttributeViewController alloc] init];
+    // FIXME: Correcly set editor starte based on current state
+    vc.isEditor = NO;
+    vc.representedObject = attribute;
+    [self.fieldsStackView addArrangedSubview:vc.view];
+    [self addChildViewController:vc];
+    [_customAttributeEditorViewControllers addObject:vc];
   }
 }
 
@@ -668,9 +675,9 @@ typedef NS_ENUM(NSUInteger, MPEntryTab) {
   /*
    FIXME: Add to MPEntryPasswordViewController
    if(textField == self.passwordTextField) {
-    return NO;
-  }
-  */
+   return NO;
+   }
+   */
   NSInteger index = MPCustomFieldIndexFromTag(textField.tag);
   if(index > -1) {
     KPKAttribute *attribute = _customFieldsController.arrangedObjects[index];
@@ -692,9 +699,9 @@ typedef NS_ENUM(NSUInteger, MPEntryTab) {
 }
 
 /*- (NSArray<NSString *> *)control:(NSControl *)control textView:(NSTextView *)textView completions:(NSArray<NSString *> *)words forPartialWordRange:(NSRange)charRange indexOfSelectedItem:(NSInteger *)index {
-  return @[ @"{USERNAME}", @"{PASSWORD}", @"{URL}", @"{TITLE}" ];
-}
-*/
+ return @[ @"{USERNAME}", @"{PASSWORD}", @"{URL}", @"{TITLE}" ];
+ }
+ */
 
 - (BOOL)textField:(NSTextField *)textField textView:(NSTextView *)textView performAction:(SEL)action {
   if(action == @selector(copy:)) {
@@ -708,24 +715,24 @@ typedef NS_ENUM(NSUInteger, MPEntryTab) {
       return YES;
     }
     /* FIXME: Add to AttributeViewController
-    if(textField == self.usernameTextField) {
-      info = MPPasteboardOverlayInfoUsername;
-    }
-    else if(textField == self.passwordTextField) {
-      info = MPPasteboardOverlayInfoPassword;
-    }
-    else if(textField == self.URLTextField) {
-      info = MPPasteboardOverlayInfoURL;
-    }
-    else*/ if(textField == self.uuidTextField) {
-      name = NSLocalizedString(@"UUID", "Displayed name when uuid field was copied");
-    }
-    else {
-      NSInteger index = MPCustomFieldIndexFromTag(textField.tag);
-      if(index > -1) {
-        name = [_customFieldsController.arrangedObjects[index] key];
-      }
-    }
+     if(textField == self.usernameTextField) {
+     info = MPPasteboardOverlayInfoUsername;
+     }
+     else if(textField == self.passwordTextField) {
+     info = MPPasteboardOverlayInfoPassword;
+     }
+     else if(textField == self.URLTextField) {
+     info = MPPasteboardOverlayInfoURL;
+     }
+     else*/ if(textField == self.uuidTextField) {
+       name = NSLocalizedString(@"UUID", "Displayed name when uuid field was copied");
+     }
+     else {
+       NSInteger index = MPCustomFieldIndexFromTag(textField.tag);
+       if(index > -1) {
+         name = [_customFieldsController.arrangedObjects[index] key];
+       }
+     }
     [MPPasteBoardController.defaultController copyObject:selectedValue overlayInfo:info name:name atView:self.view];
     return NO;
   }
@@ -737,8 +744,8 @@ typedef NS_ENUM(NSUInteger, MPEntryTab) {
   /*
    FIXME: Add to expiredViewController
    if([sender state] == NSOnState && [self.representedEntry.timeInfo.expirationDate isEqualToDate:NSDate.distantFuture]) {
-    [NSApp sendAction:self.pickExpireDateButton.action to:nil from:self.pickExpireDateButton];
-  }
+   [NSApp sendAction:self.pickExpireDateButton.action to:nil from:self.pickExpireDateButton];
+   }
    */
 }
 
@@ -773,7 +780,7 @@ typedef NS_ENUM(NSUInteger, MPEntryTab) {
 }
 
 - (void)_willAddAttribute:(NSNotification *)notification {
-
+  
 }
 
 - (void)_didAddAttribute:(NSNotification *)notification {

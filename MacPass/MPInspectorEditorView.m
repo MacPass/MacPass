@@ -27,11 +27,24 @@ NSString *const MPInspectorEditorViewMouseExitedNotification = @"com.hicknhackso
   [NSNotificationCenter.defaultCenter postNotificationName:MPInspectorEditorViewMouseExitedNotification object:self];
 }
 
-- (void)updateTrackingAreas {
-  [super updateTrackingAreas];
-  [self removeTrackingArea:self.trackingArea];
+- (void)createTrackingArea {
   self.trackingArea = [[NSTrackingArea alloc] initWithRect:self.bounds options:NSTrackingActiveAlways|NSTrackingMouseEnteredAndExited owner:self userInfo:nil];
   [self addTrackingArea:self.trackingArea];
+
+  NSPoint mouseLocation = self.window.mouseLocationOutsideOfEventStream;
+  mouseLocation = [self convertPoint:mouseLocation fromView:nil];
+  if(NSPointInRect(mouseLocation, self.bounds)) {
+    [self mouseEntered:NSApp.currentEvent];
+  }
+  else {
+    [self mouseExited:NSApp.currentEvent];
+  }
+}
+
+- (void)updateTrackingAreas {
+  [self removeTrackingArea:self.trackingArea];
+  [self createTrackingArea];
+  [super updateTrackingAreas];
 }
 
 @end

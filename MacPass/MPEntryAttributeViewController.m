@@ -18,7 +18,7 @@ NSString *nameForDefaultKey(NSString *key) {
   dispatch_once(&onceToken, ^{
     mapping = @{ kKPKTitleKey: NSLocalizedString(@"TITTLE_ATTRIBUTE_KEY", @"Localized name for title attribute"),
                  kKPKUsernameKey: NSLocalizedString(@"USERNAME_ATTRIBUTE_KEY", @"Localized name for username attribute"),
-                 kKPKPasswordKey: NSLocalizedString(@"PASSEORD_ATTRIBUTE_KEY", @"Localized name for password attribute"),
+                 kKPKPasswordKey: NSLocalizedString(@"PASSWORD_ATTRIBUTE_KEY", @"Localized name for password attribute"),
                  kKPKURLKey: NSLocalizedString(@"URL_ATTRIBUTE_KEY", @"Localized name for URL attribute") };
   });
   return mapping[key];
@@ -26,7 +26,9 @@ NSString *nameForDefaultKey(NSString *key) {
 
 
 @interface MPEntryAttributeViewController ()
+
 @property (nonatomic, readonly, getter=isDefaultAttributeEditor) BOOL defaultAttributeEditor;
+@property (nonatomic, readonly, getter=isPasswordAttributeEditor) BOOL passwordAttributeEditor;
 
 @end
 
@@ -94,7 +96,11 @@ NSString *nameForDefaultKey(NSString *key) {
                 withKeyPath:keyKeyPath
                     options:bindingOptions];
   }
-  
+  if(self.isPasswordAttributeEditor) {
+    self.toggleProtectedButton.image = [NSImage imageNamed:NSImageNameQuickLookTemplate];
+    // TODO: setup pretty password value transformer
+    // TODO: setup Monospaced Font
+  }
   [self updateValuesAndEditing];
 }
 
@@ -107,6 +113,10 @@ NSString *nameForDefaultKey(NSString *key) {
 
 - (BOOL)isDefaultAttributeEditor {
   return (self.attributeSelector != NULL);
+}
+
+- (BOOL)isPasswordAttributeEditor {
+  return self.attributeSelector == @selector(password);
 }
 
 - (void)setIsEditor:(BOOL)isEditor {
@@ -195,7 +205,7 @@ NSString *nameForDefaultKey(NSString *key) {
 - (void)updateValuesAndEditing {
   // values
   self.view.hidden = self.isEditor ? NO : self.representedAttribute.value.length == 0;
-  
+    
   self.valueTextField.showPassword = !self.representedAttribute.protect;
   
   // editor
@@ -203,7 +213,8 @@ NSString *nameForDefaultKey(NSString *key) {
   self.valueTextField.editable = self.isEditor;
   self.keyTextField.selectable = YES;
   self.valueTextField.selectable = YES;
-  self.toggleProtectedButton.hidden = self.isDefaultAttributeEditor;
+  self.toggleProtectedButton.hidden = self.isDefaultAttributeEditor ? !self.isPasswordAttributeEditor : NO;
+  self.generatePasswordButton.hidden = self.isEditor ? !self.isPasswordAttributeEditor : YES;
   
   self.removeButton.hidden = !self.isEditor ? YES : self.isDefaultAttributeEditor;
   

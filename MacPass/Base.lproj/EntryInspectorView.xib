@@ -89,7 +89,7 @@
                                         <rect key="frame" x="20" y="26" width="233" height="396"/>
                                         <clipView key="contentView" drawsBackground="NO" copiesOnScroll="NO" id="F3N-QI-Di5">
                                             <rect key="frame" x="1" y="1" width="231" height="394"/>
-                                            <autoresizingMask key="autoresizingMask"/>
+                                            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                             <subviews>
                                                 <tableView verticalHuggingPriority="750" allowsExpansionToolTips="YES" columnAutoresizingStyle="lastColumnOnly" multipleSelection="NO" autosaveColumns="NO" rowHeight="36" rowSizeStyle="automatic" viewBased="YES" id="137">
                                                     <rect key="frame" x="0.0" y="0.0" width="231" height="394"/>
@@ -251,7 +251,7 @@
                 <constraint firstAttribute="bottom" secondItem="83" secondAttribute="bottom" id="Lc3-ap-AJQ"/>
                 <constraint firstItem="82" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="3" secondAttribute="leading" constant="20" symbolic="YES" id="zU6-5h-Swa"/>
             </constraints>
-            <point key="canvasLocation" x="-457.5" y="-1614.5"/>
+            <point key="canvasLocation" x="-239" y="-1954"/>
         </view>
         <customView translatesAutoresizingMaskIntoConstraints="NO" id="4" customClass="HNHUIScrollDocumentViewAdapter">
             <rect key="frame" x="0.0" y="0.0" width="291" height="840"/>
@@ -352,7 +352,7 @@
                 <constraint firstItem="dx3-E2-FFt" firstAttribute="leading" secondItem="4" secondAttribute="leading" constant="20" symbolic="YES" id="sjr-Xo-zxh"/>
                 <constraint firstItem="G9J-nn-2bu" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="4" secondAttribute="leading" constant="20" symbolic="YES" id="z4K-PB-Qfb"/>
             </constraints>
-            <point key="canvasLocation" x="-104.5" y="-1440"/>
+            <point key="canvasLocation" x="91" y="-1780"/>
         </customView>
         <view translatesAutoresizingMaskIntoConstraints="NO" id="zv7-wE-Bmg" customClass="HNHUIScrollDocumentViewAdapter">
             <rect key="frame" x="0.0" y="0.0" width="301" height="424"/>
@@ -583,13 +583,13 @@
                 <constraint firstAttribute="trailing" secondItem="45R-v4-ywl" secondAttribute="trailing" constant="20" symbolic="YES" id="uUm-S5-cxM"/>
                 <constraint firstAttribute="trailing" secondItem="z03-zW-GN3" secondAttribute="trailing" constant="20" symbolic="YES" id="wiq-pY-TG8"/>
             </constraints>
-            <point key="canvasLocation" x="244" y="-1648"/>
+            <point key="canvasLocation" x="418" y="-1988"/>
         </view>
         <scrollView borderType="line" autohidesScrollers="YES" horizontalLineScroll="56" horizontalPageScroll="10" verticalLineScroll="56" verticalPageScroll="10" usesPredominantAxisScrolling="NO" horizontalScrollElasticity="none" translatesAutoresizingMaskIntoConstraints="NO" id="180" customClass="HNHUIScrollView">
             <rect key="frame" x="0.0" y="0.0" width="290" height="268"/>
             <clipView key="contentView" drawsBackground="NO" copiesOnScroll="NO" id="k8G-zp-BXZ">
                 <rect key="frame" x="1" y="1" width="288" height="266"/>
-                <autoresizingMask key="autoresizingMask"/>
+                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                 <subviews>
                     <tableView focusRingType="none" verticalHuggingPriority="750" allowsExpansionToolTips="YES" columnAutoresizingStyle="lastColumnOnly" tableStyle="fullWidth" selectionHighlightStyle="none" columnSelection="YES" columnResizing="NO" multipleSelection="NO" autosaveColumns="NO" rowHeight="54" viewBased="YES" id="193">
                         <rect key="frame" x="0.0" y="0.0" width="288" height="266"/>
@@ -611,7 +611,7 @@
                                 <tableColumnResizingMask key="resizingMask" resizeWithTable="YES"/>
                                 <prototypeCellViews>
                                     <tableCellView identifier="SelectedCell" translatesAutoresizingMaskIntoConstraints="NO" id="196" customClass="MPCustomFieldTableCellView">
-                                        <rect key="frame" x="0.0" y="0.0" width="227" height="53"/>
+                                        <rect key="frame" x="1" y="1" width="227" height="53"/>
                                         <subviews>
                                             <textField verticalHuggingPriority="750" allowsCharacterPickerTouchBarItem="YES" contentType="oneTimeCode" translatesAutoresizingMaskIntoConstraints="NO" id="199" customClass="HNHUISecureTextField">
                                                 <rect key="frame" x="3" y="10" width="114" height="21"/>

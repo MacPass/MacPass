@@ -28,7 +28,7 @@
                     </constraints>
                     <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyUpOrDown" id="09t-w3-euN"/>
                 </imageView>
-                <textField horizontalHuggingPriority="249" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="xou-fD-adZ">
+                <textField horizontalHuggingPriority="249" verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="xou-fD-adZ">
                     <rect key="frame" x="38" y="8" width="407" height="16"/>
                     <textFieldCell key="cell" lineBreakMode="clipping" title="Label" id="aKF-2z-5ob">
                         <font key="font" metaFont="system"/>
