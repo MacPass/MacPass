@@ -50,12 +50,12 @@
                     </segmentedCell>
                 </segmentedControl>
                 <tabView drawsBackground="NO" type="noTabsNoBorder" initialItem="110" translatesAutoresizingMaskIntoConstraints="NO" id="83">
-                    <rect key="frame" x="0.0" y="60" width="273" height="407"/>
+                    <rect key="frame" x="0.0" y="0.0" width="273" height="467"/>
                     <font key="font" metaFont="system"/>
                     <tabViewItems>
                         <tabViewItem label="General" identifier="1" id="110">
                             <view key="view" id="111">
-                                <rect key="frame" x="0.0" y="0.0" width="273" height="407"/>
+                                <rect key="frame" x="0.0" y="0.0" width="273" height="467"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                             </view>
                         </tabViewItem>
@@ -240,16 +240,6 @@
                         </tabViewItem>
                     </tabViewItems>
                 </tabView>
-                <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="ESJ-wu-D4P">
-                    <rect key="frame" x="108" y="13" width="58" height="32"/>
-                    <buttonCell key="cell" type="push" title="Edit" alternateTitle="Done" bezelStyle="rounded" alignment="center" borderStyle="border" inset="2" id="hJ8-Kw-czh">
-                        <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES" changeBackground="YES" changeGray="YES"/>
-                        <font key="font" metaFont="system"/>
-                    </buttonCell>
-                    <connections>
-                        <action selector="toggleEdit:" target="-2" id="Odr-gt-fBV"/>
-                    </connections>
-                </button>
             </subviews>
             <constraints>
                 <constraint firstItem="83" firstAttribute="leading" secondItem="3" secondAttribute="leading" id="85"/>
@@ -258,9 +248,7 @@
                 <constraint firstAttribute="centerX" secondItem="82" secondAttribute="centerX" id="90"/>
                 <constraint firstItem="83" firstAttribute="top" secondItem="3" secondAttribute="top" constant="26" id="279"/>
                 <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="82" secondAttribute="trailing" constant="20" symbolic="YES" id="4df-0Y-ggz"/>
-                <constraint firstAttribute="bottom" secondItem="ESJ-wu-D4P" secondAttribute="bottom" constant="20" symbolic="YES" id="OGC-4z-9MD"/>
-                <constraint firstItem="ESJ-wu-D4P" firstAttribute="centerX" secondItem="3" secondAttribute="centerX" id="bEP-z8-ndT"/>
-                <constraint firstItem="ESJ-wu-D4P" firstAttribute="top" secondItem="83" secondAttribute="bottom" constant="20" symbolic="YES" id="wQY-dE-8bJ"/>
+                <constraint firstAttribute="bottom" secondItem="83" secondAttribute="bottom" id="Lc3-ap-AJQ"/>
                 <constraint firstItem="82" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="3" secondAttribute="leading" constant="20" symbolic="YES" id="zU6-5h-Swa"/>
             </constraints>
             <point key="canvasLocation" x="-457.5" y="-1614.5"/>
@@ -277,7 +265,7 @@
                     </textFieldCell>
                 </textField>
                 <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="249" allowsCharacterPickerTouchBarItem="YES" translatesAutoresizingMaskIntoConstraints="NO" id="IpW-b2-jWu" customClass="HNHUITextField">
-                    <rect key="frame" x="22" y="48" width="247" height="21"/>
+                    <rect key="frame" x="20" y="48" width="251" height="21"/>
                     <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" drawsBackground="YES" id="Hml-NR-AeS">
                         <font key="font" metaFont="system"/>
                         <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>

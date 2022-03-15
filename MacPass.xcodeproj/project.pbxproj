@@ -307,6 +307,8 @@
 		4CE88B9717BA651C0042E078 /* contextTriangleTemplate.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 4CE88B9617BA651C0042E078 /* contextTriangleTemplate.pdf */; };
 		4CEE46DD181C301D006BF1E5 /* MPAutotypeDaemon.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CEE46DC181C301D006BF1E5 /* MPAutotypeDaemon.m */; };
 		4CEED1C617D7BD0E007180F1 /* NSError+Messages.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CEED1C517D7BD0E007180F1 /* NSError+Messages.m */; };
+		4CF13A9727E0D5D800E3297A /* MPNodeTagViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CF13A9527E0D5D800E3297A /* MPNodeTagViewController.m */; };
+		4CF13A9827E0D5D800E3297A /* MPNodeTagViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4CF13A9627E0D5D800E3297A /* MPNodeTagViewController.xib */; };
 		4CF29BF417879D0000851B60 /* 26_FileSaveTemplate.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 4CF29BF317879D0000851B60 /* 26_FileSaveTemplate.pdf */; };
 		4CF5BE6D1BF33E3000048505 /* NSApplication+MPAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CF5BE6C1BF33E3000048505 /* NSApplication+MPAdditions.m */; };
 		4CF6653820E67A140008A25C /* PluginDataView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4CF6653A20E67A140008A25C /* PluginDataView.xib */; };
@@ -939,6 +941,9 @@
 		4CEE46DC181C301D006BF1E5 /* MPAutotypeDaemon.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MPAutotypeDaemon.m; sourceTree = "<group>"; };
 		4CEED1C417D7BD0E007180F1 /* NSError+Messages.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSError+Messages.h"; sourceTree = "<group>"; };
 		4CEED1C517D7BD0E007180F1 /* NSError+Messages.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSError+Messages.m"; sourceTree = "<group>"; };
+		4CF13A9427E0D5D800E3297A /* MPNodeTagViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MPNodeTagViewController.h; sourceTree = "<group>"; };
+		4CF13A9527E0D5D800E3297A /* MPNodeTagViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MPNodeTagViewController.m; sourceTree = "<group>"; };
+		4CF13A9627E0D5D800E3297A /* MPNodeTagViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MPNodeTagViewController.xib; sourceTree = "<group>"; };
 		4CF14962224B623700D1CE1C /* Base */ = {isa = PBXFileReference; lastKnownFileType = text.rtf; name = Base; path = Base.lproj/Credits.rtf; sourceTree = "<group>"; };
 		4CF29BF317879D0000851B60 /* 26_FileSaveTemplate.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = 26_FileSaveTemplate.pdf; sourceTree = "<group>"; };
 		4CF5BE6B1BF33E3000048505 /* NSApplication+MPAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSApplication+MPAdditions.h"; sourceTree = "<group>"; };
@@ -1547,6 +1552,9 @@
 				4C98A6C927CFAB1800CD912F /* MPNodeIconViewController.h */,
 				4C98A6CA27CFAB1900CD912F /* MPNodeIconViewController.m */,
 				4C98A6CB27CFAB1900CD912F /* MPNodeIconViewController.xib */,
+				4CF13A9427E0D5D800E3297A /* MPNodeTagViewController.h */,
+				4CF13A9527E0D5D800E3297A /* MPNodeTagViewController.m */,
+				4CF13A9627E0D5D800E3297A /* MPNodeTagViewController.xib */,
 			);
 			name = Inspector;
 			sourceTree = "<group>";
@@ -2253,6 +2261,7 @@
 				4C52A88E1788628B00868229 /* 06_BlockDeviceTemplate.pdf in Resources */,
 				4C52A88F1788628B00868229 /* 13_KeysTemplate.pdf in Resources */,
 				4C3826C61AD04D8E007D7D67 /* 59_DevelopmentTemplate.pdf in Resources */,
+				4CF13A9827E0D5D800E3297A /* MPNodeTagViewController.xib in Resources */,
 				4C52A8901788628B00868229 /* 18_DisplayTemplate.pdf in Resources */,
 				4C52A892178863B000868229 /* 68_PhoneTemplate.pdf in Resources */,
 				6021FE7718E15FF300C3BC51 /* DatePickingView.xib in Resources */,
@@ -2403,6 +2412,7 @@
 				4C569DA117652BFE00595B62 /* MPEntryTableDataSource.m in Sources */,
 				4CD034AA1BFE113B003C002C /* MPPlugin.m in Sources */,
 				4CA2335A176DBFE100F0B6AC /* MPLockDaemon.m in Sources */,
+				4CF13A9727E0D5D800E3297A /* MPNodeTagViewController.m in Sources */,
 				4C77C84118E240E000D1C42B /* DDHotKey+MacPassAdditions.m in Sources */,
 				4C89B71019B4B4A300DC0A6A /* MPTreeDelegate.m in Sources */,
 				4C88C66918D9F8D600F43852 /* MPTemporaryFileStorageCenter.m in Sources */,

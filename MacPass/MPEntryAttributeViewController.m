@@ -235,5 +235,9 @@ NSString *nameForDefaultKey(NSString *key) {
   [super objectDidEndEditing:editor];
 }
 
+- (void)commitEditingWithDelegate:(nullable id)delegate didCommitSelector:(nullable SEL)didCommitSelector contextInfo:(nullable void *)contextInfo {
+  [super commitEditingWithDelegate:delegate didCommitSelector:didCommitSelector contextInfo:contextInfo];
+}
+
 @end
 

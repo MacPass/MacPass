@@ -441,16 +441,6 @@ typedef void (^MPPasswordChangedBlock)(BOOL didChangePassword);
   }];
 }
 
-- (void)pickExpiryDate:(id)sender {
-  // FIXME: use propert responder chain
-  [self.splitViewController.inspectorViewController pickExpiryDate:sender];
-}
-
-- (void)showPluginData:(id)sender {
-  // FIXME: use propert responder chain
-  [self.splitViewController.inspectorViewController showPluginData:sender];
-}
-
 - (void)toggleInspector:(id)sender {
   [self.splitViewController toggleInspector:sender];
 }
@@ -495,32 +485,6 @@ typedef void (^MPPasswordChangedBlock)(BOOL didChangePassword);
     return;
   }
   [self.splitViewController.outlineViewController selectGroup:targetEntries.lastObject.parent];
-}
-
-#pragma mark -
-#pragma mark Actions forwarded to MPEntryViewController
-- (void)copyUsername:(id)sender {
-  [self.splitViewController.entryViewController copyUsername:sender];
-}
-
-- (void)copyPassword:(id)sender {
-  [self.splitViewController.entryViewController copyPassword:sender];
-}
-
-- (void)copyCustomAttribute:(id)sender {
-  [self.splitViewController.entryViewController copyCustomAttribute:sender];
-}
-
-- (void)copyAsReference:(id)sender {
-  [self.splitViewController.entryViewController copyAsReference:sender];
-}
-
-- (void)copyURL:(id)sender {
-  [self.splitViewController.entryViewController copyURL:sender];
-}
-
-- (void)openURL:(id)sender {
-  [self.splitViewController.entryViewController openURL:sender];
 }
 
 #pragma mark Validation

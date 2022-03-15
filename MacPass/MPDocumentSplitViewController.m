@@ -106,4 +106,25 @@
   [NSUserDefaults.standardUserDefaults setBool:!inspector.collapsed forKey:kMPSettingsKeyShowInspector];
 }
 
+- (id)supplementalTargetForAction:(SEL)action sender:(id)sender {
+  NSLog(@"First Responder:%@",self.view.window.firstResponder);
+  NSLog(@"Looking for target for action:%@", NSStringFromSelector(action));
+  for(NSViewController *childViewController in self.childViewControllers) {
+    if([childViewController respondsToSelector:action]) {
+      NSLog(@"Found target:%@ for action:%@", childViewController, NSStringFromSelector(action));
+      return childViewController;
+    }
+    else {
+      id target = [childViewController supplementalTargetForAction:action sender:sender];
+      if(!target) {
+        NSLog(@"No target for action:%@", NSStringFromSelector(action));
+        continue;
+      }
+      NSLog(@"Found supplemental target:%@ for action:%@", target, NSStringFromSelector(action));
+      return target;
+    }
+  }
+  return [super supplementalTargetForAction:action sender:sender];
+}
+
 @end

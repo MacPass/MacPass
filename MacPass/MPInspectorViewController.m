@@ -81,6 +81,7 @@ typedef NS_ENUM(NSUInteger, MPContentTab) {
 }
 
 - (void)awakeFromNib {
+  // TODO: Convert to NSTabViewController?
   self.noSelectionInfo.cell.backgroundStyle = NSBackgroundStyleRaised;
   self.itemImageView.cell.backgroundStyle = NSBackgroundStyleRaised;
   [self.tabView bind:NSSelectedIndexBinding toObject:self withKeyPath:NSStringFromSelector(@selector(activeTab)) options:nil];
@@ -104,6 +105,10 @@ typedef NS_ENUM(NSUInteger, MPContentTab) {
   [groupTabView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|[groupView]|" options:0 metrics:nil views:views]];
   [groupTabView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|[groupView]|" options:0 metrics:nil views:views]];
   groupTabItem.initialFirstResponder = groupView;
+  
+  
+  [self addChildViewController:self.entryViewController];
+  [self addChildViewController:self.groupViewController];
   
   [self.view layout];}
 
@@ -215,6 +220,22 @@ typedef NS_ENUM(NSUInteger, MPContentTab) {
   self.entryViewController.representedObject = node.asEntry;
   self.groupViewController.representedObject = node.asGroup;
   
+}
+
+- (id)supplementalTargetForAction:(SEL)action sender:(id)sender {
+  for(NSViewController *childViewController in self.childViewControllers) {
+    if([childViewController respondsToSelector:action]) {
+      return childViewController;
+    }
+    else {
+      id target = [childViewController supplementalTargetForAction:action sender:sender];
+      if(!target) {
+        continue;
+      }
+      return target;
+    }
+  }
+  return [super supplementalTargetForAction:action sender:sender];
 }
 
 @end

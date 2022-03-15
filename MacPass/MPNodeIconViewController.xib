@@ -10,6 +10,7 @@
             <connections>
                 <outlet property="imageView" destination="7kO-Kv-UI5" id="rTv-Pp-R1I"/>
                 <outlet property="textField" destination="xou-fD-adZ" id="n93-XV-5dq"/>
+                <outlet property="toggleEditButton" destination="0HE-hi-9Hm" id="ufa-av-vtf"/>
                 <outlet property="view" destination="Hz6-mo-xeY" id="0bl-1N-x8E"/>
             </connections>
         </customObject>
@@ -27,22 +28,34 @@
                     </constraints>
                     <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyUpOrDown" id="09t-w3-euN"/>
                 </imageView>
-                <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="xou-fD-adZ">
-                    <rect key="frame" x="38" y="8" width="439" height="16"/>
+                <textField horizontalHuggingPriority="249" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="xou-fD-adZ">
+                    <rect key="frame" x="38" y="8" width="407" height="16"/>
                     <textFieldCell key="cell" lineBreakMode="clipping" title="Label" id="aKF-2z-5ob">
                         <font key="font" metaFont="system"/>
                         <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
                         <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                     </textFieldCell>
                 </textField>
+                <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="0HE-hi-9Hm">
+                    <rect key="frame" x="444" y="-1" width="58" height="32"/>
+                    <buttonCell key="cell" type="push" title="Edit" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="ueF-MQ-zDV">
+                        <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES" changeBackground="YES" changeGray="YES"/>
+                        <font key="font" metaFont="system"/>
+                    </buttonCell>
+                    <connections>
+                        <action selector="toggleEdit:" target="-1" id="cBO-qZ-fN3"/>
+                    </connections>
+                </button>
             </subviews>
             <constraints>
                 <constraint firstItem="xou-fD-adZ" firstAttribute="centerY" secondItem="7kO-Kv-UI5" secondAttribute="centerY" id="0C4-8O-cQb"/>
+                <constraint firstItem="0HE-hi-9Hm" firstAttribute="centerY" secondItem="Hz6-mo-xeY" secondAttribute="centerY" id="4rk-Ut-1ch"/>
                 <constraint firstAttribute="bottom" secondItem="7kO-Kv-UI5" secondAttribute="bottom" id="DhE-aA-Ovp"/>
                 <constraint firstItem="xou-fD-adZ" firstAttribute="leading" secondItem="7kO-Kv-UI5" secondAttribute="trailing" constant="8" symbolic="YES" id="Elf-Iw-tmF"/>
+                <constraint firstItem="0HE-hi-9Hm" firstAttribute="leading" secondItem="xou-fD-adZ" secondAttribute="trailing" constant="8" symbolic="YES" id="J5A-t9-uim"/>
+                <constraint firstAttribute="trailing" secondItem="0HE-hi-9Hm" secondAttribute="trailing" id="QL9-uh-tCj"/>
                 <constraint firstItem="7kO-Kv-UI5" firstAttribute="leading" secondItem="Hz6-mo-xeY" secondAttribute="leading" id="axe-Q2-16O"/>
                 <constraint firstItem="7kO-Kv-UI5" firstAttribute="top" secondItem="Hz6-mo-xeY" secondAttribute="top" id="nCQ-tS-CIv"/>
-                <constraint firstAttribute="trailing" secondItem="xou-fD-adZ" secondAttribute="trailing" constant="20" symbolic="YES" id="qYf-Ov-k32"/>
             </constraints>
             <point key="canvasLocation" x="231.5" y="-13.5"/>
         </customView>

@@ -8,6 +8,7 @@
 
 #import "MPNodeIconViewController.h"
 #import <KeePassKit/KeePassKit.h>
+#import "MPEntryInspectorViewController.h"
 
 #import "KPKNode+IconImage.h"
 
