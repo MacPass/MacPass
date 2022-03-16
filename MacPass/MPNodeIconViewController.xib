@@ -29,7 +29,7 @@
                     <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyUpOrDown" id="09t-w3-euN"/>
                 </imageView>
                 <textField horizontalHuggingPriority="249" verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="xou-fD-adZ">
-                    <rect key="frame" x="38" y="8" width="407" height="16"/>
+                    <rect key="frame" x="38" y="8" width="406" height="16"/>
                     <textFieldCell key="cell" lineBreakMode="clipping" title="Label" id="aKF-2z-5ob">
                         <font key="font" metaFont="system"/>
                         <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
@@ -37,7 +37,7 @@
                     </textFieldCell>
                 </textField>
                 <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="0HE-hi-9Hm">
-                    <rect key="frame" x="444" y="-1" width="58" height="32"/>
+                    <rect key="frame" x="443" y="-1" width="58" height="32"/>
                     <buttonCell key="cell" type="push" title="Edit" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="ueF-MQ-zDV">
                         <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES" changeBackground="YES" changeGray="YES"/>
                         <font key="font" metaFont="system"/>
@@ -53,7 +53,7 @@
                 <constraint firstAttribute="bottom" secondItem="7kO-Kv-UI5" secondAttribute="bottom" id="DhE-aA-Ovp"/>
                 <constraint firstItem="xou-fD-adZ" firstAttribute="leading" secondItem="7kO-Kv-UI5" secondAttribute="trailing" constant="8" symbolic="YES" id="Elf-Iw-tmF"/>
                 <constraint firstItem="0HE-hi-9Hm" firstAttribute="leading" secondItem="xou-fD-adZ" secondAttribute="trailing" constant="8" symbolic="YES" id="J5A-t9-uim"/>
-                <constraint firstAttribute="trailing" secondItem="0HE-hi-9Hm" secondAttribute="trailing" id="QL9-uh-tCj"/>
+                <constraint firstAttribute="trailing" secondItem="0HE-hi-9Hm" secondAttribute="trailing" constant="1" id="QL9-uh-tCj"/>
                 <constraint firstItem="7kO-Kv-UI5" firstAttribute="leading" secondItem="Hz6-mo-xeY" secondAttribute="leading" id="axe-Q2-16O"/>
                 <constraint firstItem="7kO-Kv-UI5" firstAttribute="top" secondItem="Hz6-mo-xeY" secondAttribute="top" id="nCQ-tS-CIv"/>
             </constraints>

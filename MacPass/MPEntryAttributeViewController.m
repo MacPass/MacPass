@@ -80,6 +80,8 @@ NSString *nameForDefaultKey(NSString *key) {
                                     NSConditionallySetsHiddenBindingOption : @(NO),
                                     NSConditionallySetsEnabledBindingOption : @(NO),
                                     NSConditionallySetsEditableBindingOption : @(NO) };
+  
+  
   NSString *valueKeyPath = [NSString stringWithFormat:@"%@.%@", NSStringFromSelector(@selector(representedObject)), NSStringFromSelector(@selector(value))];
   if(self.isDefaultAttributeEditor) {
     valueKeyPath = [NSString stringWithFormat:@"%@.%@.%@", NSStringFromSelector(@selector(representedObject)),NSStringFromSelector(@selector(entry)), NSStringFromSelector(self.attributeSelector)];
@@ -98,8 +100,9 @@ NSString *nameForDefaultKey(NSString *key) {
   }
   if(self.isPasswordAttributeEditor) {
     self.toggleProtectedButton.image = [NSImage imageNamed:NSImageNameQuickLookTemplate];
+    NSFont *font = [NSFont fontWithName:@"Menlo-Regular" size:13.0];
+    self.valueTextField.font = font;
     // TODO: setup pretty password value transformer
-    // TODO: setup Monospaced Font
   }
   [self updateValuesAndEditing];
 }

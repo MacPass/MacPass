@@ -23,7 +23,7 @@
             <rect key="frame" x="0.0" y="0.0" width="436" height="50"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
             <subviews>
-                <stackView distribution="fill" orientation="vertical" alignment="leading" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="No7-P9-4cl">
+                <stackView distribution="fill" orientation="vertical" alignment="leading" spacing="2" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="No7-P9-4cl">
                     <rect key="frame" x="0.0" y="0.0" width="436" height="50"/>
                     <subviews>
                         <textField horizontalHuggingPriority="249" verticalHuggingPriority="750" allowsCharacterPickerTouchBarItem="YES" translatesAutoresizingMaskIntoConstraints="NO" id="m8q-FN-S8D">
@@ -35,10 +35,10 @@
                             </textFieldCell>
                         </textField>
                         <stackView distribution="fill" orientation="horizontal" alignment="centerY" spacing="5" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="LBt-0e-cUK">
-                            <rect key="frame" x="0.0" y="0.0" width="436" height="28"/>
+                            <rect key="frame" x="0.0" y="0.0" width="436" height="34"/>
                             <subviews>
                                 <textField horizontalHuggingPriority="249" verticalHuggingPriority="750" horizontalCompressionResistancePriority="249" allowsCharacterPickerTouchBarItem="YES" translatesAutoresizingMaskIntoConstraints="NO" id="HZM-H4-dB4" customClass="HNHUISecureTextField">
-                                    <rect key="frame" x="0.0" y="4" width="236" height="21"/>
+                                    <rect key="frame" x="0.0" y="7" width="236" height="21"/>
                                     <textFieldCell key="cell" lineBreakMode="truncatingTail" truncatesLastVisibleLine="YES" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" drawsBackground="YES" usesSingleLineMode="YES" id="sO3-xr-VwO" customClass="HNHUISecureTextFieldCell">
                                         <font key="font" metaFont="system"/>
                                         <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
@@ -49,21 +49,21 @@
                                     </connections>
                                 </textField>
                                 <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="hAk-oD-dCj">
-                                    <rect key="frame" x="234" y="-3" width="44" height="32"/>
+                                    <rect key="frame" x="234" y="0.0" width="44" height="32"/>
                                     <buttonCell key="cell" type="push" bezelStyle="rounded" image="NSLockLockedTemplate" imagePosition="only" alignment="center" alternateImage="NSLockUnlockedTemplate" lineBreakMode="truncatingTail" borderStyle="border" inset="2" id="f80-K9-DO7">
                                         <behavior key="behavior" lightByBackground="YES" lightByGray="YES" changeBackground="YES" changeGray="YES"/>
                                         <font key="font" metaFont="system"/>
                                     </buttonCell>
                                 </button>
                                 <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="Nmx-gC-8rG">
-                                    <rect key="frame" x="269" y="-3" width="44" height="32"/>
+                                    <rect key="frame" x="269" y="0.0" width="44" height="32"/>
                                     <buttonCell key="cell" type="push" bezelStyle="rounded" image="NSRemoveTemplate" imagePosition="only" alignment="center" state="on" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="179-uk-89S">
                                         <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                         <font key="font" metaFont="system"/>
                                     </buttonCell>
                                 </button>
                                 <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="5gR-99-IVJ">
-                                    <rect key="frame" x="304" y="-3" width="90" height="32"/>
+                                    <rect key="frame" x="304" y="0.0" width="90" height="32"/>
                                     <buttonCell key="cell" type="push" title="Generate" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="IwJ-ml-b4v">
                                         <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                         <font key="font" metaFont="system"/>
@@ -73,7 +73,7 @@
                                     </connections>
                                 </button>
                                 <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="gab-tS-gBb">
-                                    <rect key="frame" x="386" y="-1" width="56" height="27"/>
+                                    <rect key="frame" x="386" y="2" width="56" height="27"/>
                                     <buttonCell key="cell" type="push" title="Copy" bezelStyle="rounded" alignment="center" controlSize="small" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="0GH-rx-Fg4">
                                         <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                         <font key="font" metaFont="smallSystem"/>
