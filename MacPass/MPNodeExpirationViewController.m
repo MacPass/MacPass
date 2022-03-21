@@ -59,10 +59,6 @@
   [self _updateValues];
 }
 
-- (void)commitChanges {
-  // write back expiration changes
-}
-
 - (void)_updateValues {
   self.view.hidden = !self.representedTimeInfo.expires;
   self.expiredCheckButton.state = HNHUIStateForBool(self.representedTimeInfo.expires);

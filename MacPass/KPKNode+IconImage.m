@@ -27,8 +27,11 @@
 #import "MPIconHelper.h"
 
 @interface NSImage (MPTintedImage)
+
 @end
+
 @implementation NSImage (MPTintedImage)
+
 - (NSImage *)imageWithTintColor:(NSColor *)tintColor {
   /* only tint templated images! */
   if(NO == self.template) {
@@ -42,6 +45,7 @@
   image.template = NO;
   return image;
 }
+
 @end
 
 @implementation KPKNode (IconImage)

@@ -235,10 +235,6 @@ NSString *nameForDefaultKey(NSString *key) {
   self.actionButton.hidden = YES;
 }
 
-- (void)commitChanges {
-  // to nothing
-}
-
 - (void)objectDidBeginEditing:(id<NSEditor>)editor {
   [self.view.window.windowController.document objectDidBeginEditing:editor];
   [super objectDidBeginEditing:editor];

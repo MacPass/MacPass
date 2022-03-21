@@ -20,7 +20,6 @@ NS_ASSUME_NONNULL_BEGIN
 @protocol MPInspectorEditor <NSObject>
 @required
 @property (nonatomic) BOOL isEditor;
-- (void)commitChanges;
 @end
 
 /// NodeInspectorEditors require the represented object to be a KPKNode

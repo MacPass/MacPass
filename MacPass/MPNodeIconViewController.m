@@ -13,7 +13,7 @@
 #import "KPKNode+IconImage.h"
 
 @interface MPNodeIconViewController ()
-@property (strong) IBOutlet NSImageView *imageView;
+@property (strong) IBOutlet NSButton *imageButton;
 @property (strong) IBOutlet NSTextField *textField;
 @property (copy) NSUUID *iconUUID;
 @property NSUInteger iconId;
@@ -25,40 +25,15 @@
 
 - (void)viewDidLoad {
   [super viewDidLoad];
-  self.imageView.cell.backgroundStyle = NSBackgroundStyleRaised;
-  self.textField.placeholderString = NSLocalizedString(@"NO_TITLE", @"Fallback to items with no title");
-}
-
-- (void)setRepresentedObject:(id)representedObject {
-  if(self.representedNode) {
-    KPKNode *node = self.representedNode;
-    if(node.asEntry) {
-      [NSNotificationCenter.defaultCenter removeObserver:self name:KPKWillChangeEntryNotification object:self.representedObject];
-      [NSNotificationCenter.defaultCenter removeObserver:self name:KPKDidChangeEntryNotification object:self.representedObject];
-    }
-    else if(node.asGroup) {
-      [NSNotificationCenter.defaultCenter removeObserver:self name:KPKWillChangeGroupNotification object:self.representedObject];
-      [NSNotificationCenter.defaultCenter removeObserver:self name:KPKDidChangeGroupNotification object:self.representedObject];
-    }
-    else {
-      NSLog(@"Inconsitant state for notification handling");
-    }
-  }
-  super.representedObject = representedObject;
-  if(self.representedNode) {
-    KPKNode *node = self.representedNode;
-    if(node.asEntry) {
-      [NSNotificationCenter.defaultCenter addObserver:self selector:@selector(_willChangeNode:) name:KPKWillChangeEntryNotification object:self.representedObject];
-      [NSNotificationCenter.defaultCenter addObserver:self selector:@selector(_didChangeNode:) name:KPKDidChangeEntryNotification object:self.representedObject];
-    }
-    else if(node.asGroup) {
-      [NSNotificationCenter.defaultCenter addObserver:self selector:@selector(_willChangeNode:) name:KPKWillChangeGroupNotification object:self.representedObject];
-      [NSNotificationCenter.defaultCenter addObserver:self selector:@selector(_didChangeNode:) name:KPKDidChangeGroupNotification object:self.representedObject];
-    }
-    else {
-      NSLog(@"Inconsitant state for notification handling");
-    }
-  }
+  //self.imageView.cell.backgroundStyle = NSBackgroundStyleRaised;
+  [self.imageButton bind:NSImageBinding
+              toObject:self
+           withKeyPath:[NSString stringWithFormat:@"%@.%@", NSStringFromSelector(@selector(representedObject)), NSStringFromSelector(@selector(iconImage))]
+                 options:@{NSConditionallySetsEnabledBindingOption: @NO}];
+  [self.textField bind:NSValueBinding
+              toObject:self
+           withKeyPath:[NSString stringWithFormat:@"%@.%@", NSStringFromSelector(@selector(representedObject)), NSStringFromSelector(@selector(title))]
+               options:@{NSNullPlaceholderBindingOption:NSLocalizedString(@"NO_TITLE", @"Fallback to items with no title")}];
   [self _updateValueAndEditing];
 }
 
@@ -75,24 +50,7 @@
 }
 
 - (void)_updateValueAndEditing {
-  self.imageView.enabled = self.isEditor;
-  self.iconUUID = self.representedNode.iconUUID;
-  self.iconId = self.representedNode.iconId;
-  self.imageView.image = self.representedNode.iconImage;
-  self.textField.stringValue = self.representedNode.title.length > 0 ? self.representedNode.title : @"";
-}
-
-- (void)commitChanges {
-  self.representedNode.iconUUID = self.iconUUID;
-  self.representedNode.iconId = self.iconId;
-}
-
-- (void)_willChangeNode:(NSNotification *)notification {
-  
-}
-
-- (void)_didChangeNode:(NSNotification *)notification {
-  [self _updateValueAndEditing];
+  self.imageButton.enabled = self.isEditor;
 }
 
 @end

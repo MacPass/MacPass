@@ -8,9 +8,8 @@
     <objects>
         <customObject id="-2" userLabel="File's Owner" customClass="MPNodeIconViewController">
             <connections>
-                <outlet property="imageView" destination="7kO-Kv-UI5" id="rTv-Pp-R1I"/>
+                <outlet property="imageButton" destination="EO8-71-AW8" id="kgk-Bm-Hwv"/>
                 <outlet property="textField" destination="xou-fD-adZ" id="n93-XV-5dq"/>
-                <outlet property="toggleEditButton" destination="0HE-hi-9Hm" id="ufa-av-vtf"/>
                 <outlet property="view" destination="Hz6-mo-xeY" id="0bl-1N-x8E"/>
             </connections>
         </customObject>
@@ -20,14 +19,6 @@
             <rect key="frame" x="0.0" y="0.0" width="495" height="32"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
             <subviews>
-                <imageView horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="7kO-Kv-UI5">
-                    <rect key="frame" x="0.0" y="0.0" width="32" height="32"/>
-                    <constraints>
-                        <constraint firstAttribute="width" constant="32" id="VD7-b8-cKP"/>
-                        <constraint firstAttribute="height" constant="32" id="g13-f2-0hR"/>
-                    </constraints>
-                    <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyUpOrDown" id="09t-w3-euN"/>
-                </imageView>
                 <textField horizontalHuggingPriority="249" verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="xou-fD-adZ">
                     <rect key="frame" x="38" y="8" width="406" height="16"/>
                     <textFieldCell key="cell" lineBreakMode="clipping" title="Label" id="aKF-2z-5ob">
@@ -38,24 +29,38 @@
                 </textField>
                 <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="0HE-hi-9Hm">
                     <rect key="frame" x="443" y="-1" width="58" height="32"/>
-                    <buttonCell key="cell" type="push" title="Edit" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="ueF-MQ-zDV">
-                        <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES" changeBackground="YES" changeGray="YES"/>
+                    <buttonCell key="cell" type="push" title="Edit" alternateTitle="Done" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="ueF-MQ-zDV">
+                        <behavior key="behavior" lightByBackground="YES" lightByGray="YES" changeBackground="YES" changeGray="YES"/>
                         <font key="font" metaFont="system"/>
                     </buttonCell>
                     <connections>
                         <action selector="toggleEdit:" target="-1" id="cBO-qZ-fN3"/>
                     </connections>
                 </button>
+                <button translatesAutoresizingMaskIntoConstraints="NO" id="EO8-71-AW8">
+                    <rect key="frame" x="0.0" y="0.0" width="32" height="32"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="32" id="TEp-1p-b6O"/>
+                        <constraint firstAttribute="width" constant="32" id="vue-ta-TCV"/>
+                    </constraints>
+                    <buttonCell key="cell" type="square" bezelStyle="shadowlessSquare" imagePosition="only" alignment="center" imageScaling="proportionallyUpOrDown" inset="2" id="hbo-qV-oVP">
+                        <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                        <font key="font" metaFont="system"/>
+                    </buttonCell>
+                    <connections>
+                        <action selector="pickIcon:" target="-1" id="8Ad-dS-w36"/>
+                    </connections>
+                </button>
             </subviews>
             <constraints>
-                <constraint firstItem="xou-fD-adZ" firstAttribute="centerY" secondItem="7kO-Kv-UI5" secondAttribute="centerY" id="0C4-8O-cQb"/>
                 <constraint firstItem="0HE-hi-9Hm" firstAttribute="centerY" secondItem="Hz6-mo-xeY" secondAttribute="centerY" id="4rk-Ut-1ch"/>
-                <constraint firstAttribute="bottom" secondItem="7kO-Kv-UI5" secondAttribute="bottom" id="DhE-aA-Ovp"/>
-                <constraint firstItem="xou-fD-adZ" firstAttribute="leading" secondItem="7kO-Kv-UI5" secondAttribute="trailing" constant="8" symbolic="YES" id="Elf-Iw-tmF"/>
+                <constraint firstItem="EO8-71-AW8" firstAttribute="top" secondItem="Hz6-mo-xeY" secondAttribute="top" id="AxG-ML-ibN"/>
+                <constraint firstItem="xou-fD-adZ" firstAttribute="centerY" secondItem="Hz6-mo-xeY" secondAttribute="centerY" id="EYw-Zm-iiO"/>
                 <constraint firstItem="0HE-hi-9Hm" firstAttribute="leading" secondItem="xou-fD-adZ" secondAttribute="trailing" constant="8" symbolic="YES" id="J5A-t9-uim"/>
                 <constraint firstAttribute="trailing" secondItem="0HE-hi-9Hm" secondAttribute="trailing" constant="1" id="QL9-uh-tCj"/>
-                <constraint firstItem="7kO-Kv-UI5" firstAttribute="leading" secondItem="Hz6-mo-xeY" secondAttribute="leading" id="axe-Q2-16O"/>
-                <constraint firstItem="7kO-Kv-UI5" firstAttribute="top" secondItem="Hz6-mo-xeY" secondAttribute="top" id="nCQ-tS-CIv"/>
+                <constraint firstItem="xou-fD-adZ" firstAttribute="leading" secondItem="EO8-71-AW8" secondAttribute="trailing" constant="8" symbolic="YES" id="TFI-Xr-6JG"/>
+                <constraint firstItem="EO8-71-AW8" firstAttribute="leading" secondItem="Hz6-mo-xeY" secondAttribute="leading" id="bYm-Dz-12l"/>
+                <constraint firstAttribute="bottom" secondItem="EO8-71-AW8" secondAttribute="bottom" id="uhZ-Es-YcW"/>
             </constraints>
             <point key="canvasLocation" x="231.5" y="-13.5"/>
         </customView>
