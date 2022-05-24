@@ -969,11 +969,17 @@ NSString *const MPDocumentGroupKey                            = @"MPDocumentGrou
 }
 
 - (void)_storeKeyURL:(NSURL *)keyURL {
+  if(self.isDraft) {
+    // we cannot store key files for draft documents
+    return;
+  }
   NSMutableDictionary *keysForFiles = [[NSUserDefaults.standardUserDefaults dictionaryForKey:kMPSettingsKeyRememeberdKeysForDatabases] mutableCopy];
   MPAppDelegate *delegate = (MPAppDelegate *)[NSApp delegate];
   if(!delegate.isAllowedToStoreKeyFile || nil == keyURL) {
     /* user has removed the keyfile or we should not safe it so remove it */
-    [keysForFiles removeObjectForKey:self.fileURL.path.sha1HexDigest];
+    if(self.fileURL) {
+      [keysForFiles removeObjectForKey:self.fileURL.path.sha1HexDigest];
+    }
   }
   else if([self.compositeKey hasKeyOfClass:KPKPasswordKey.class] && [self.compositeKey hasKeyOfClass:KPKFileKey.class]) {
     if(nil == keysForFiles) {
