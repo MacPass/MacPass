@@ -91,6 +91,7 @@ typedef NS_ENUM(NSUInteger, MPOTPType) {
 - (IBAction)save:(id)sender {
   // Update entry settings!
   // FIXME: add model observing to ensure correct history recording
+  [self.view.window makeFirstResponder:nil];
   [self.generator saveToEntry:self.representedEntry];
   [self.presentingViewController dismissViewController:self];
 }
