@@ -37,6 +37,10 @@ NSString *const kMPSettingsKeyQuitOnLastWindowClose                       = @"Qu
 NSString *const kMPSettingsKeyFileChangeStrategy                          = @"FileChangeStrategy";
 NSString *const kMPSettingsKeyEnableAutosave                              = @"EnableAutosave";
 NSString *const kMPSettingsKeyFocusSearchAfterUnlock                      = @"FocusSearchAfterUnlock";
+NSString *const kMPSettingsKeyShowOrHideMacPass                           = @"ShowOrHideMacPass";
+NSString *const kMPSettingsKeyShowHideKeyDataKey                          = @"ShowHideKeyDataKey";
+NSString *const kMPRSettingsKeyShowMenuItem                               = @"ShowMenuItem";
+NSString *const kMPRSettingsKeyHideDockIcon                               = @"HideDockIcon";
 
 NSString *const kMPSettingsKeyDisplayClearTextPasswordsInEntryList        = @"DisplayClearTextPasswordsInEntryList";
 
@@ -180,6 +184,10 @@ NSString *const kMPDepricatedSettingsKeyAutotypeHideAccessibiltyWarning   = @"Au
       kMPSettingsKeyGloablAutotypeAlwaysShowCandidateSelection: @NO,
       kMPSettingsKeyUseUnifiedToolbar: @YES, // Do not use unified toolbar under Big Sur and above
       kMPSettingsKeyFocusSearchAfterUnlock: @NO, // Do not enter search directly after unlocking the database
+      kMPSettingsKeyShowOrHideMacPass: @NO, // Do not enable hotkey by default
+      kMPSettingsKeyShowHideKeyDataKey: DDHotKey.defaultHotKeyData, // Empty - No default hotkey
+      kMPRSettingsKeyShowMenuItem: @NO,
+      kMPRSettingsKeyHideDockIcon: @NO,
       kMPSettingsKeyUsePrivateBrowsingWhenOpeningURLs: @NO // No private mode when option URLs by default
     };
   });

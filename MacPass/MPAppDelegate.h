@@ -21,6 +21,7 @@
 //
 
 #import <Cocoa/Cocoa.h>
+#import "MPDisplayOptions.h"
 
 APPKIT_EXTERN NSString *const MPDidChangeStoredKeyFilesSettings;
 
@@ -39,6 +40,8 @@ APPKIT_EXTERN NSString *const MPDidChangeStoredKeyFilesSettings;
 @property (readonly) BOOL isTerminating;
 
 @property (nonatomic) BOOL isAllowedToStoreKeyFile;
+
+@property (strong) MPDisplayOption *statusItem;
 
 - (IBAction)checkForUpdates:(id)sender;
 - (IBAction)showPreferences:(id)sender;
