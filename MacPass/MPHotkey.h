@@ -1,9 +1,8 @@
 //
-//  MPWorkflowSettingsController.h
+//  MPHotkey.h
 //  MacPass
 //
-//  Created by Michael Starke on 30.07.13.
-//  Copyright (c) 2013 HicknHack Software GmbH. All rights reserved.
+//  Created by George Snow on 7.1.2022.
 //
 //  This program is free software: you can redistribute it and/or modify
 //  it under the terms of the GNU General Public License as published by
@@ -20,16 +19,18 @@
 //  along with this program.  If not, see <http://www.gnu.org/licenses/>.
 //
 
-#import "MPViewController.h"
-#import "MPPreferencesTab.h"
+#import <Foundation/Foundation.h>
 
-@class DDHotKeyTextField;
+@class DDHotKey;
+/**
+ *  The hotkey  is responsible for registering the global hotkey and to to show/hide MacPass
+ */
+@interface MPHotkeyDaemon : NSObject
 
-@interface MPWorkflowPreferencesController : MPViewController <MPPreferencesTab>
-
-@property (strong) IBOutlet DDHotKeyTextField *hotkeyTextField;
-@property (strong) IBOutlet NSTextField *hotkeyWarningTextField;
-
+@property (strong) IBOutlet NSWindow *matchSelectionWindow;
+@property (weak) IBOutlet NSPopUpButton *matchSelectionButton;
+@property (readonly, strong) DDHotKey *registredHotKey;
+@property (readonly, strong, class) MPHotkeyDaemon *hotkeyDaemon;
 
 
 @end

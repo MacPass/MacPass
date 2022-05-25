@@ -24,7 +24,14 @@
 
 #import "MPSettingsHelper.h"
 
+#import "DDHotKeyCenter.h"
+#import "DDHotKey+MacPassAdditions.h"
+#import "DDHotKeyTextField.h"
+
+
 @interface MPWorkflowPreferencesController ()
+
+
 
 @property (strong) IBOutlet NSPopUpButton *browserPopup;
 @property (strong) IBOutlet NSPopUpButton *doubleClickURLPopup;
@@ -33,7 +40,12 @@
 @property (strong) IBOutlet NSButton *generatePasswordOnEntriesCheckButton;
 @property (strong) IBOutlet NSButton *hideAfterCopyToClipboardCheckButton;
 @property (strong) IBOutlet NSButton *focusSearchAfterUnlockCheckButton;
+
 //@property (strong) IBOutlet NSButton *privateBrowsingCheckButton;
+@property (strong) IBOutlet NSButton *showOrHideMacPassCheckButton;
+@property (nonatomic, strong) DDHotKey *hotKey;
+@property (strong) IBOutlet NSButtonCell *focusSearchAfterHotkey;
+
 
 - (IBAction)_showCustomBrowserSelection:(id)sender;
 
@@ -76,6 +88,20 @@
 //                               toObject:defaultsController
 //                            withKeyPath:[MPSettingsHelper defaultControllerPathForKey:kMPSettingsKeyUsePrivateBrowsingWhenOpeningURLs]
 //                                options:nil];
+  
+  [self.showOrHideMacPassCheckButton bind:NSValueBinding
+                                      toObject:defaultsController
+                                   withKeyPath:[MPSettingsHelper defaultControllerPathForKey:kMPSettingsKeyShowOrHideMacPass]
+                                       options:nil];
+  [self.focusSearchAfterHotkey bind:NSValueBinding
+                           toObject:defaultsController
+                        withKeyPath:[MPSettingsHelper defaultControllerPathForKey:kMPSettingsKeyFocusSearchAfterHotkey]
+                            options:nil];
+  [self.focusSearchAfterHotkey bind:NSEnabledBinding toObject:defaultsController withKeyPath:[MPSettingsHelper defaultControllerPathForKey:kMPSettingsKeyShowOrHideMacPass] options:nil];
+
+  
+  self.hotkeyTextField.delegate = self;
+  
   [self _updateBrowserSelection];
 }
 
@@ -94,7 +120,33 @@
 
 - (void)willShowTab {
   [self _updateBrowserSelection];
+  if(!_hotKey) {
+    _hotKey = [DDHotKey hotKeyWithKeyData:[NSUserDefaults.standardUserDefaults dataForKey:kMPSettingsKeyShowHideKeyDataKey]];
+  }
+  /* Only call the setter if the hotkeys are different, otherwise the dealloc call will unregister them*/
+  if(![self.hotkeyTextField.hotKey isEqual:self.hotKey]) {
+    self.hotkeyTextField.hotKey = self.hotKey;
+  }
+
 }
+
+#pragma mark -
+#pragma mark Properties
+- (void)setHotKey:(DDHotKey *)hotKey {
+  if([self.hotKey isEqual:hotKey]) {
+    NSLog(@"hotkey IS already set");
+    return; // Nothing of interest has changed;
+  }
+  NSLog(@"hotkey set");
+  _hotKey = hotKey;
+  
+  [NSUserDefaults.standardUserDefaults setObject:self.hotKey.keyData forKey:kMPSettingsKeyShowHideKeyDataKey];
+}
+
+- (void)_showKeyCodeMissingKeyWarning:(BOOL)show {
+  self.hotkeyWarningTextField.hidden = !show;
+}
+
 
 #pragma mark Actions
 - (void)_selectBrowser:(id)sender {
@@ -199,5 +251,16 @@
   NSArray *browserBundles = CFBridgingRelease(LSCopyAllHandlersForURLScheme(CFSTR("https")));
   return browserBundles;
 }
+
+- (void)controlTextDidChange:(NSNotification *)obj {
+  BOOL validHotKey = self.hotkeyTextField.hotKey.valid;
+  [self _showKeyCodeMissingKeyWarning:!validHotKey];
+  if(validHotKey) {
+    self.hotKey = self.hotkeyTextField.hotKey;
+  }
+}
+
+
+
 
 @end
