@@ -326,12 +326,12 @@
 - (IBAction)unlockWithTouchID:(id)sender {
   NSData* encryptedKey = NULL;
   if(![self _touchIdGetEncrypedKeyMaterial:&encryptedKey]) {
-    [self.touchIdButton setEnabled:false];
+    self.touchIdButton.enabled = NO;
     return;
   }
   KPKCompositeKey* compositeKey = [self _touchIdDecryptCompositeKey:encryptedKey];
   if(compositeKey == NULL) {
-    [self.touchIdButton setEnabled:false];
+    self.touchIdButton.enabled = NO;
     return;
   }
   NSError* error;
