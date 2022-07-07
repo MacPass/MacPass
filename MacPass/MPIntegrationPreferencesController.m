@@ -24,6 +24,7 @@
 #import "MPSettingsHelper.h"
 #import "MPIconHelper.h"
 #import "MPAutotypeDoctor.h"
+#import "MPConstants.h"
 
 #import "DDHotKeyCenter.h"
 #import "DDHotKey+MacPassAdditions.h"
@@ -132,5 +133,33 @@
 
 - (void)runAutotypeDoctor:(id)sender {
   [MPAutotypeDoctor.defaultDoctor runChecksAndPresentResults];
+}
+
+#pragma mark -
+#pragma mark Keychain Actions
+- (IBAction)RenewTouchIdKey:(id)sender {
+    NSData* publicKeyTag = [TouchIdUnlockPublicKeyTag dataUsingEncoding:NSUTF8StringEncoding];
+    NSDictionary *publicKeyQuery = @{
+      (id)kSecClass: (id)kSecClassKey,
+      (id)kSecAttrApplicationTag: publicKeyTag,
+      (id)kSecReturnRef: @YES,
+    };
+    OSStatus status = SecItemDelete((__bridge CFDictionaryRef)publicKeyQuery);
+    if (status != errSecSuccess) {
+        NSString* description = (__bridge NSString*)SecCopyErrorMessageString(status, NULL);
+        NSLog(@"Error while trying to delete public key from Keychain: %@", description);
+    }
+    
+    NSData* privateKeyTag = [TouchIdUnlockPrivateKeyTag dataUsingEncoding:NSUTF8StringEncoding];
+    NSDictionary *privateKeyQuery = @{
+      (id)kSecClass: (id)kSecClassKey,
+      (id)kSecAttrApplicationTag: privateKeyTag,
+      (id)kSecReturnRef: @YES,
+    };
+    status = SecItemDelete((__bridge CFDictionaryRef)privateKeyQuery);
+    if (status != errSecSuccess) {
+        NSString* description = (__bridge NSString*)SecCopyErrorMessageString(status, NULL);
+        NSLog(@"Error while trying to delete private key from Keychain: %@", description);
+    }
 }
 @end

@@ -21,14 +21,14 @@
 //
 
 #import "MPViewController.h"
+#import "KeePassKit/KeePassKit.h"
 
 @class KPKCompositeKey;
 
 @interface MPPasswordInputController : MPViewController <NSTouchBarDelegate>
 
-typedef BOOL (^passwordInputCompletionBlock)(NSString *password, NSURL *keyURL, BOOL didCancel, NSError *__autoreleasing*error);
+typedef BOOL (^passwordInputCompletionBlock)(KPKCompositeKey *key, NSURL* keyFileURL, BOOL didCancel, NSError *__autoreleasing*error);
 
-- (void)requestPasswordWithCompletionHandler:(passwordInputCompletionBlock)completionHandler;
 - (void)requestPasswordWithMessage:(NSString *)message cancelLabel:(NSString *)cancelLabel completionHandler:(passwordInputCompletionBlock)completionHandler;
 
 

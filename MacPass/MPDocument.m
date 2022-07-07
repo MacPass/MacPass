@@ -422,13 +422,9 @@ NSString *const MPDocumentGroupKey                            = @"MPDocumentGrou
       MPPasswordInputController *passwordInputController = [[MPPasswordInputController alloc] init];
       [passwordInputController requestPasswordWithMessage:NSLocalizedString(@"EXTERN_CHANGE_OF_MASTERKEY", @"The master key was changed by an external program!")
                                               cancelLabel:NSLocalizedString(@"ABORT_MERGE_KEEP_MINE", @"Button label to abort a merge on a file with changed master key!")
-                                        completionHandler:^BOOL(NSString *password, NSURL *keyURL, BOOL didCancel, NSError *__autoreleasing *error) {
-        [self.windowForSheet endSheet:sheet returnCode:(didCancel ? NSModalResponseCancel : NSModalResponseOK)];
-        if(!didCancel) {
-          NSData *keyFileData = keyURL ? [NSData dataWithContentsOfURL:keyURL] : nil;
-          KPKCompositeKey *compositeKey = [[KPKCompositeKey alloc] init];
-          [compositeKey addKey:[KPKKey keyWithPassword:password]];
-          [compositeKey addKey:[KPKKey keyWithKeyFileData:keyFileData]];
+                                        completionHandler:^BOOL(KPKCompositeKey *compositeKey, NSURL* keyURL, BOOL didCancel, NSError *__autoreleasing *error) {
+                                          [self.windowForSheet endSheet:sheet returnCode:(didCancel ? NSModalResponseCancel : NSModalResponseOK)];
+                                          if(!didCancel) {
           [self _mergeWithContentsFromURL:url key:compositeKey options:options];
         }
         // just return yes regardless since we will display the sheet again if needed!
@@ -494,13 +490,9 @@ NSString *const MPDocumentGroupKey                            = @"MPDocumentGrou
 }
 
 
-- (BOOL)unlockWithPassword:(NSString *)password keyFileURL:(NSURL *)keyFileURL error:(NSError *__autoreleasing*)error {
+- (BOOL)unlockWithPassword:(KPKCompositeKey *)compositeKey keyFileURL:(NSURL *)keyFileURL error:(NSError *__autoreleasing*)error{
   // TODO: Make this API asynchronous
-  NSData *keyFileData = keyFileURL ? [NSData dataWithContentsOfURL:keyFileURL] : nil;
-  
-  self.compositeKey = [[KPKCompositeKey alloc] init];
-  [self.compositeKey addKey:[KPKKey keyWithPassword:password]];
-  [self.compositeKey addKey:[KPKKey keyWithKeyFileData:keyFileData]];
+  self.compositeKey = compositeKey;
   self.tree = [[KPKTree alloc] initWithData:self.encryptedData key:self.compositeKey error:error];
   
   BOOL isUnlocked = (nil != self.tree);
@@ -856,7 +848,7 @@ NSString *const MPDocumentGroupKey                            = @"MPDocumentGrou
                                                     userInfo:@{ MPDocumentEntryKey: lastDuplicate }];
   }
 }
-
+  
 
 - (void)duplicateGroup:(id)sender {
   for(KPKGroup *group in self.selectedGroups) {

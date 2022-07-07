@@ -337,12 +337,11 @@ typedef void (^MPPasswordChangedBlock)(BOOL didChangePassword);
     self.passwordInputController = [[MPPasswordInputController alloc] init];
   }
   self.contentViewController = self.passwordInputController;
-  [self.passwordInputController requestPasswordWithMessage:message cancelLabel:nil completionHandler:^BOOL(NSString *password, NSURL *keyURL, BOOL didCancel, NSError *__autoreleasing *error) {
+  [self.passwordInputController requestPasswordWithMessage:message cancelLabel:nil completionHandler:^BOOL(KPKCompositeKey* compositeKey, NSURL* keyURL, BOOL didCancel, NSError *__autoreleasing *error) {
     if(didCancel) {
       return NO;
     }
-    return [((MPDocument *)self.document) unlockWithPassword:password keyFileURL:keyURL error:error];
-    
+    return [((MPDocument *)self.document) unlockWithPassword:compositeKey keyFileURL:keyURL error:error ];
   }];
 }
 
