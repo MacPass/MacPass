@@ -44,6 +44,9 @@
 /* Preview */
 @property (strong) IBOutlet NSButton *enableQuicklookCheckBox;
 
+/* Interface */
+@property (weak) IBOutlet NSButton *launchOnLoginCheckBox;
+
 - (IBAction)runAutotypeDoctor:(id)sender;
 
 @end

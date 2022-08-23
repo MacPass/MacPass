@@ -69,6 +69,10 @@ NSString *const kMPSettingsKeyGloablAutotypeAlwaysShowCandidateSelection  = @"Gl
 
 NSString *const kMPSettingsKeyEntrySearchFilterContext                    = @"EntrySearchFilterContext";
 
+
+NSString *const kMPSettingsKeyLaunchOnLogin                               = @"LaunchOnLogin";
+
+NSString *const kMPSettingsKeyEntrySearchFilterContext                    = @"EntrySearchFilterContext";
 NSString *const kMPSettingsKeyEnableQuicklookPreview                      = @"EnableQuicklookPreview";
 
 NSString *const kMPSettingsKeyCopyGeneratedPasswordToClipboard            = @"CopyGeneratedPasswordToClipboard";
@@ -180,8 +184,10 @@ NSString *const kMPDepricatedSettingsKeyAutotypeHideAccessibiltyWarning   = @"Au
       kMPSettingsKeyGloablAutotypeAlwaysShowCandidateSelection: @NO,
       kMPSettingsKeyUseUnifiedToolbar: @YES, // Do not use unified toolbar under Big Sur and above
       kMPSettingsKeyFocusSearchAfterUnlock: @NO, // Do not enter search directly after unlocking the database
+      kMPSettingsKeyLaunchOnLogin: @NO, // Do not load helper without user choice for launch on login
       kMPSettingsKeyUsePrivateBrowsingWhenOpeningURLs: @NO // No private mode when option URLs by default
     };
+
   });
   return standardDefaults;
 }

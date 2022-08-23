@@ -29,6 +29,8 @@
 #import "DDHotKey+MacPassAdditions.h"
 #import "DDHotKeyTextField.h"
 
+#import <ServiceManagement/ServiceManagement.h>
+
 @interface MPIntegrationPreferencesController ()
 
 @property (nonatomic, strong) DDHotKey *hotKey;
@@ -67,6 +69,18 @@
   [self.matchHostCheckBox bind:NSValueBinding toObject:defaultsController withKeyPath:[MPSettingsHelper defaultControllerPathForKey:kMPSettingsKeyAutotypeMatchHost] options:nil];
   [self.matchTagsCheckBox bind:NSValueBinding toObject:defaultsController withKeyPath:[MPSettingsHelper defaultControllerPathForKey:kMPSettingsKeyAutotypeMatchTags] options:nil];
   
+  [self.sendCommandForControlCheckBox bind:NSValueBinding toObject:defaultsController withKeyPath:[MPSettingsHelper defaultControllerPathForKey:kMPSettingsKeySendCommandForControlKey] options:nil];
+  
+  BOOL launchOnlogin = [NSUserDefaults.standardUserDefaults boolForKey:@"LaunchOnLogin"];
+  NSLog(@"launch on login bool: %hhd", launchOnlogin);
+  if(launchOnlogin){
+    
+    [self performSelector:@selector(addLaunchOnLogin)];
+  }
+  else {
+  	[self performSelector:@selector(removeLaunchOnLogin)];
+  
+  }
   [self.sendCommandForControlCheckBox bind:NSValueBinding
                                   toObject:defaultsController
                                withKeyPath:[MPSettingsHelper defaultControllerPathForKey:kMPSettingsKeySendCommandForControlKey]
@@ -77,6 +91,7 @@
                                               withKeyPath:[MPSettingsHelper defaultControllerPathForKey:kMPSettingsKeyGloablAutotypeAlwaysShowCandidateSelection]
                                                   options:nil];
   
+
   [self _showKeyCodeMissingKeyWarning:NO];
   [self _updateAccessabilityWarning];
 }
@@ -133,4 +148,30 @@
 - (void)runAutotypeDoctor:(id)sender {
   [MPAutotypeDoctor.defaultDoctor runChecksAndPresentResults];
 }
+- (IBAction)loginButtonCheckBox:(id)sender {
+  if (![sender state]) {
+    [self performSelector:@selector(removeLaunchOnLogin)];
+  } else {
+    [self performSelector:@selector(addLaunchOnLogin)];
+  }
+
+}
+-(void)addLaunchOnLogin {
+  if (!SMLoginItemSetEnabled((__bridge CFStringRef)@"com.hicknhacksoftware.MacPassHelper", YES)) {
+    NSLog(@"Login Item Was Not Successful");
+  }
+  [NSUserDefaults.standardUserDefaults setBool:YES forKey:kMPSettingsKeyLaunchOnLogin];
+  [self.launchOnLoginCheckBox setState:YES];
+  
+}
+
+-(void)removeLaunchOnLogin {
+  if (!SMLoginItemSetEnabled((__bridge CFStringRef)@"com.hicknhacksoftware.MacPassHelper", NO)) {
+    NSLog(@"Login Item Was Not Successful");
+	}
+  [NSUserDefaults.standardUserDefaults setBool:NO forKey:kMPSettingsKeyLaunchOnLogin];
+  [self.launchOnLoginCheckBox setState:NO];
+  
+}
+
 @end

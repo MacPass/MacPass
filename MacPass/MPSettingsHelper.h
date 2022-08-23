@@ -76,6 +76,9 @@ APPKIT_EXTERN NSString *const kMPSettingsKeyAutotypeMatchHost;                  
 APPKIT_EXTERN NSString *const kMPSettingsKeyAutotypeMatchTags;                          // Autotype lookup includes tags for entries
 APPKIT_EXTERN NSString *const kMPSettingsKeyGloablAutotypeAlwaysShowCandidateSelection; // If YES, will always display then candidate selection window befor perfoming an Autotype
 
+/* Interface */
+APPKIT_EXTERN NSString *const kMPSettingsKeyLaunchOnLogin;
+
 /* Search */
 APPKIT_EXTERN NSString *const kMPSettingsKeyEntrySearchFilterContext;
 

@@ -15,6 +15,8 @@
                 <outlet property="enableQuicklookCheckBox" destination="LNw-5t-TS4" id="YiZ-Kk-0dF"/>
                 <outlet property="hotKeyTextField" destination="Kvg-he-3c8" id="c7p-1F-zth"/>
                 <outlet property="hotkeyWarningTextField" destination="f5q-EW-RHf" id="Z2Q-Sb-HCS"/>
+                <outlet property="launchOnLoginCheckBox" destination="xiR-Ic-N26" id="8Li-h7-VYu"/>
+                <outlet property="launchOnLoginCheckBoxValue" destination="xiR-Ic-N26" id="R2V-H5-1Wk"/>
                 <outlet property="matchHostCheckBox" destination="TiO-ah-BlR" id="MWr-Uh-TRB"/>
                 <outlet property="matchTagsCheckBox" destination="9MH-jx-GpG" id="j1Y-BT-J81"/>
                 <outlet property="matchTitleCheckBox" destination="DAX-V8-Say" id="rbc-nA-1bQ"/>
@@ -41,7 +43,7 @@
                                     <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="hMJ-Mo-xOM">
                                         <rect key="frame" x="-2" y="298" width="343" height="42"/>
                                         <textFieldCell key="cell" controlSize="small" id="H37-ku-aTc">
-                                            <font key="font" metaFont="smallSystem"/>
+                                            <font key="font" metaFont="message" size="11"/>
                                             <string key="title">Autotype might not work properly. Some issues where found that prevent Autotype or Global Autotype to work. Please run the Autotype Doctor to fix those issues.</string>
                                             <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
                                             <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
@@ -89,7 +91,7 @@
                                             <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="f5q-EW-RHf">
                                                 <rect key="frame" x="156" y="4" width="127" height="14"/>
                                                 <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Shortcut is missing Key" id="Lxp-wI-yQy">
-                                                    <font key="font" metaFont="smallSystem"/>
+                                                    <font key="font" metaFont="message" size="11"/>
                                                     <color key="textColor" name="disabledControlTextColor" catalog="System" colorSpace="catalog"/>
                                                     <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                                 </textFieldCell>
@@ -160,7 +162,7 @@
                                     <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="wbP-A9-jpw">
                                         <rect key="frame" x="-2" y="0.0" width="343" height="28"/>
                                         <textFieldCell key="cell" sendsActionOnEndEditing="YES" title="If enabled, every {CONTROL} command will be sent as ⌘. Only disable this if you are sure you need to." id="QRy-CY-ENC">
-                                            <font key="font" metaFont="smallSystem"/>
+                                            <font key="font" metaFont="message" size="11"/>
                                             <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
                                             <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                         </textFieldCell>
@@ -220,7 +222,7 @@
                             <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="V6l-R9-hIj">
                                 <rect key="frame" x="14" y="17" width="343" height="28"/>
                                 <textFieldCell key="cell" controlSize="small" sendsActionOnEndEditing="YES" title="If enabled attached files will be copied to a temporary location for preview and deleted after the preview is closed." id="WmI-IB-Aso">
-                                    <font key="font" metaFont="smallSystem"/>
+                                    <font key="font" metaFont="message" size="11"/>
                                     <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
                                     <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                 </textFieldCell>
@@ -239,6 +241,42 @@
                         <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="V6l-R9-hIj" secondAttribute="trailing" constant="16" id="ivY-UD-QFJ"/>
                     </constraints>
                 </box>
+                <box title="Interface" translatesAutoresizingMaskIntoConstraints="NO" id="kgy-Rv-Id3">
+                    <rect key="frame" x="17" y="4" width="366" height="86"/>
+                    <view key="contentView" id="PWz-aF-hcC">
+                        <rect key="frame" x="3" y="3" width="360" height="68"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button translatesAutoresizingMaskIntoConstraints="NO" id="xiR-Ic-N26">
+                                <rect key="frame" x="16" y="44" width="176" height="18"/>
+                                <buttonCell key="cell" type="check" title="Launch MacPass on login" bezelStyle="regularSquare" imagePosition="left" inset="2" id="8ZY-0N-2jE">
+                                    <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                                    <font key="font" metaFont="system"/>
+                                </buttonCell>
+                                <connections>
+                                    <action selector="loginButtonCheckBox:" target="-2" id="ApM-wz-3Ue"/>
+                                </connections>
+                            </button>
+                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="0bf-Rm-JGU">
+                                <rect key="frame" x="14" y="24" width="292" height="14"/>
+                                <textFieldCell key="cell" controlSize="small" lineBreakMode="clipping" title="Allows MacPassHelper app to launch MacPass on login" id="rOu-GI-OL3">
+                                    <font key="font" metaFont="message" size="11"/>
+                                    <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                    <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                </textFieldCell>
+                            </textField>
+                        </subviews>
+                        <constraints>
+                            <constraint firstAttribute="bottom" secondItem="0bf-Rm-JGU" secondAttribute="bottom" constant="24" id="Dgu-Gg-fAT"/>
+                            <constraint firstItem="0bf-Rm-JGU" firstAttribute="top" secondItem="xiR-Ic-N26" secondAttribute="bottom" constant="8" id="GG7-Jh-T5u"/>
+                            <constraint firstItem="xiR-Ic-N26" firstAttribute="top" secondItem="PWz-aF-hcC" secondAttribute="top" constant="8" id="LVZ-GQ-2p7"/>
+                            <constraint firstItem="xiR-Ic-N26" firstAttribute="leading" secondItem="PWz-aF-hcC" secondAttribute="leading" constant="18" id="MwY-tY-jyk"/>
+                            <constraint firstItem="0bf-Rm-JGU" firstAttribute="leading" secondItem="PWz-aF-hcC" secondAttribute="leading" constant="16" id="YXY-7O-U7k"/>
+                            <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="xiR-Ic-N26" secondAttribute="trailing" constant="20" symbolic="YES" id="kML-nH-Lc8"/>
+                            <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="0bf-Rm-JGU" secondAttribute="trailing" constant="8" id="uIv-67-BYP"/>
+                        </constraints>
+                    </view>
+                </box>
             </subviews>
             <constraints>
                 <constraint firstItem="P9N-HM-wER" firstAttribute="top" secondItem="1" secondAttribute="top" constant="20" symbolic="YES" id="8fy-q5-VJy"/>
@@ -246,7 +284,9 @@
                 <constraint firstItem="VVs-b5-cX9" firstAttribute="top" secondItem="P9N-HM-wER" secondAttribute="bottom" constant="8" symbolic="YES" id="VCX-JW-cBe"/>
                 <constraint firstItem="VVs-b5-cX9" firstAttribute="trailing" secondItem="P9N-HM-wER" secondAttribute="trailing" id="k9i-4T-WY0"/>
                 <constraint firstAttribute="trailing" secondItem="P9N-HM-wER" secondAttribute="trailing" constant="20" id="n5w-Cw-Bbt"/>
+                <constraint firstAttribute="bottom" secondItem="kgy-Rv-Id3" secondAttribute="bottom" constant="8" id="tWa-4Q-6mW"/>
                 <constraint firstItem="P9N-HM-wER" firstAttribute="leading" secondItem="1" secondAttribute="leading" constant="20" id="ulV-xL-ldJ"/>
+                <constraint firstItem="VVs-b5-cX9" firstAttribute="trailing" secondItem="kgy-Rv-Id3" secondAttribute="trailing" id="wdU-uC-LTD"/>
                 <constraint firstItem="VVs-b5-cX9" firstAttribute="leading" secondItem="P9N-HM-wER" secondAttribute="leading" id="z4a-9C-78h"/>
             </constraints>
             <point key="canvasLocation" x="-1204" y="-1287"/>
