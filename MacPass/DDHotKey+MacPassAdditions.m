@@ -37,7 +37,9 @@
 
 + (NSData *)defaultHotKeyData {
   return [self hotKeyDataWithKeyCode:kVK_ANSI_M modifierFlags:kCGEventFlagMaskControl|kCGEventFlagMaskAlternate];
+
 }
+
 
 + (instancetype)defaultHotKey {
   return [DDHotKey defaultHotKeyWithTask:nil];
