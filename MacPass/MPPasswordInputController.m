@@ -24,6 +24,7 @@
 #import "MPAppDelegate.h"
 #import "MPDocumentWindowController.h"
 #import "MPDocument.h"
+#import "MPDocument+BiometricEncryptionSupport.h"
 #import "MPSettingsHelper.h"
 #import "MPPathControl.h"
 #import "MPTouchBarButtonCreator.h"
@@ -88,9 +89,9 @@
   [self.passwordTextField bind:NSEnabledBinding toObject:self withKeyPath:NSStringFromSelector(@selector(enablePassword)) options:nil];
   NSUserDefaultsController *defaultsController = [NSUserDefaultsController sharedUserDefaultsController];
   [self.touchIdEnabledButton bind:NSValueBinding toObject:defaultsController withKeyPath:[MPSettingsHelper defaultControllerPathForKey:kMPSettingsKeyEntryTouchIdEnabled] options:nil];
-  self.touchIdEnabledButton.hidden = true;
+  self.touchIdEnabledButton.hidden = YES;
   if (@available(macOS 10.13.4, *)) {
-    self.touchIdEnabledButton.hidden = false;
+    self.touchIdEnabledButton.hidden = NO;
     [self _touchIdUpdateToolTip];
   }
   [self _reset];
@@ -143,12 +144,11 @@
   [compositeKey addKey:passwordKey];
   [compositeKey addKey:fileKey];
   /* After the completion handler finished we no longer have a windowController set */
-  NSString* documentKey = NULL;
-  bool documentKeyValid = [self _touchIdGetKeyForCurrentDocument:&documentKey];
+  NSString* documentKey = [self biometricKeyForCurrentDocument];
   BOOL result = self.completionHandler(compositeKey, keyURL, cancel, &error);
   if(result) {
-    if(documentKeyValid) {
-      [self _touchIdUpdateKeyForCurrentDocument:compositeKey forDocumentKey:documentKey];
+    if(nil != documentKey) {
+      [MPTouchIdCompositeKeyStore.defaultStore saveCompositeKey:compositeKey forDocumentKey:documentKey];
     }
     return;
   }
@@ -161,185 +161,47 @@
     [self.view.window shakeWindow:nil];
   }
 }
+/*
+- (KPKCompositeKey*)_touchIdDecryptCompositeKey:(NSData*)encryptedKey {
+  NSError *error;
+  return [MPTouchIdCompositeKeyStore.defaultStore compositeKeyForEncryptedKeyData:encryptedKey error:&error];
+}*/
 
-- (void) _touchIdUpdateKeyForCurrentDocument: (KPKCompositeKey*)compositeKey forDocumentKey: (NSString*) documentKey{
-  NSData* encryptedKey = [self _touchIdEncryptCompositeKey:compositeKey];
-  [MPTouchIdCompositeKeyStore.defaultStore save:encryptedKey forDocumentKey:documentKey];
-}
-
-- (void) _touchIdCreateAndAddRSAKeyPair {
-  CFErrorRef error = NULL;
-  NSString* publicKeyLabel =  @"MacPass TouchID Feature Public Key";
-  NSString* privateKeyLabel = @"MacPass TouchID Feature Private Key";
-  NSData* publicKeyTag =  [TouchIdUnlockPublicKeyTag  dataUsingEncoding:NSUTF8StringEncoding];
-  NSData* privateKeyTag = [TouchIdUnlockPrivateKeyTag dataUsingEncoding:NSUTF8StringEncoding];
-  SecAccessControlRef access = NULL;
-  if (@available(macOS 10.13.4, *)) {
-    SecAccessControlCreateFlags flags = kSecAccessControlBiometryCurrentSet;
-    if (@available(macOS 10.15, *)) {
-      flags |= kSecAccessControlWatch | kSecAccessControlOr;
-    }
-    access = SecAccessControlCreateWithFlags(kCFAllocatorDefault,
-                                             kSecAttrAccessibleWhenUnlockedThisDeviceOnly,
-                                             flags,
-                                             &error);
-    if(access == NULL) {
-      NSError *err = CFBridgingRelease(error);
-      NSLog(@"Error while trying to create AccessControl for TouchID unlock feature: %@", [err description]);
-      return;
-    }
-    NSDictionary* attributes = @{
-      (id)kSecAttrKeyType:        (id)kSecAttrKeyTypeRSA,
-      (id)kSecAttrKeySizeInBits:  @2048,
-      (id)kSecAttrSynchronizable: @NO,
-      (id)kSecPrivateKeyAttrs:
-           @{ (id)kSecAttrIsPermanent:    @YES,
-              (id)kSecAttrApplicationTag: privateKeyTag,
-              (id)kSecAttrLabel: privateKeyLabel,
-              (id)kSecAttrAccessControl:  (__bridge id)access
-            },
-      (id)kSecPublicKeyAttrs:
-           @{ (id)kSecAttrIsPermanent:    @YES,
-              (id)kSecAttrApplicationTag: publicKeyTag,
-              (id)kSecAttrLabel: publicKeyLabel,
-            },
-    };
-    SecKeyRef result = SecKeyCreateRandomKey((__bridge CFDictionaryRef)attributes, &error);
-    if(result == NULL) {
-      NSError *err = CFBridgingRelease(error);
-      NSLog(@"Error while trying to create a RSA keypair for TouchID unlock feature: %@", [err description]);
-    }
-    else {
-      CFRelease(result);
-    }
-  }
-  else {
-    return;
-  }
-}
-
-- (NSData*) _touchIdEncryptCompositeKey: (KPKCompositeKey*) compositeKey {
-  NSData* encryptedKey = nil;
-  NSData* keyData = [NSKeyedArchiver archivedDataWithRootObject:compositeKey];
-  NSData* tag = [TouchIdUnlockPublicKeyTag dataUsingEncoding:NSUTF8StringEncoding];
-  NSDictionary *getquery = @{
-    (id)kSecClass: (id)kSecClassKey,
-    (id)kSecAttrApplicationTag: tag,
-    (id)kSecReturnRef: @YES,
-  };
-  SecKeyRef publicKey = NULL;
-  OSStatus status = SecItemCopyMatching((__bridge CFDictionaryRef)getquery, (CFTypeRef *)&publicKey);
-  if (status != errSecSuccess) {
-    [self _touchIdCreateAndAddRSAKeyPair];
-    OSStatus status = SecItemCopyMatching((__bridge CFDictionaryRef)getquery, (CFTypeRef *)&publicKey);
-    if (status != errSecSuccess) {
-      NSString* description = (__bridge NSString*)SecCopyErrorMessageString(status, NULL);
-      NSLog(@"Error while trying to query public key from Keychain: %@", description);
-      return nil;
-    }
-  }
-  SecKeyAlgorithm algorithm = kSecKeyAlgorithmRSAEncryptionOAEPSHA256AESGCM;
-  BOOL canEncrypt = SecKeyIsAlgorithmSupported(publicKey, kSecKeyOperationTypeEncrypt, algorithm);
-  if(canEncrypt) {
-    CFErrorRef error = NULL;
-    encryptedKey = (NSData*)CFBridgingRelease(SecKeyCreateEncryptedData(publicKey, algorithm, (__bridge CFDataRef)keyData, &error));
-    if (!encryptedKey) {
-      NSError *err = CFBridgingRelease(error);
-      NSLog(@"Error while trying to decrypt the CompositeKey for TouchID unlock: %@", [err description]);
-    }
-  }
-  else {
-      NSLog(@"The key retreived from the Keychain is unable to encrypt data");
-  }
-  if (publicKey)  {
-    CFRelease(publicKey);
-  }
-  return encryptedKey;
-}
-
-- (KPKCompositeKey*) _touchIdDecryptCompositeKey: (NSData*) encryptedKey {
-  KPKCompositeKey* result = nil;
-  if(encryptedKey != nil) {
-    NSData* tag = [TouchIdUnlockPrivateKeyTag dataUsingEncoding:NSUTF8StringEncoding];
-    NSDictionary *queryPrivateKey = @{
-      (id)kSecClass: (id)kSecClassKey,
-      (id)kSecAttrApplicationTag: tag,
-      (id)kSecAttrKeyType: (id)kSecAttrKeyTypeRSA,
-      (id)kSecReturnRef: @YES,
-    };
-    SecKeyRef privateKey = NULL;
-    OSStatus status = SecItemCopyMatching((__bridge CFDictionaryRef)queryPrivateKey, (CFTypeRef *)&privateKey);
-    if (status == errSecSuccess) {
-      SecKeyAlgorithm algorithm = kSecKeyAlgorithmRSAEncryptionOAEPSHA256AESGCM;
-      BOOL canDecrypt = SecKeyIsAlgorithmSupported(privateKey, kSecKeyOperationTypeDecrypt, algorithm);
-      if(canDecrypt) {
-        CFErrorRef error = NULL;
-        NSData* clearText = (NSData*)CFBridgingRelease(SecKeyCreateDecryptedData(privateKey, algorithm, (__bridge CFDataRef)encryptedKey, &error));
-        if (clearText) {
-          result = [NSKeyedUnarchiver unarchiveObjectWithData:clearText];
-        }
-        else {
-          NSError *err = CFBridgingRelease(error);
-          NSLog(@"Error while trying to decrypt password for TouchID unlock: %@", [err description]);
-        }
-      }
-      else {
-        NSLog(@"Key does not support decryption");
-      }
-    }
-    else {
-      NSString* description = (__bridge NSString*)SecCopyErrorMessageString(status, NULL);
-      NSLog(@"Error while trying to retrive private key for decryption: %@", description);
-    }
-    if (privateKey) {
-      CFRelease(privateKey);
-    }
-  }
-  return result;
-}
-
-- (bool) _touchIdGetKeyForCurrentDocument: (NSString**) result {
-  *result = NULL;
-  NSDocument* currentDocument = self.windowController.document;
-  if(currentDocument != NULL && currentDocument.fileURL != NULL && currentDocument.fileURL.lastPathComponent != NULL) {
-    *result = [NSString stringWithFormat:kMPSettingsKeyEntryTouchIdDatabaseEncryptedKeyFormat, currentDocument.fileURL.lastPathComponent];
-    return true;
-  }
-  return false;
+- (NSString *)biometricKeyForCurrentDocument {
+  MPDocument* currentDocument = (MPDocument *)self.windowController.document;
+  return currentDocument.biometricKey;
 }
 
 - (bool) _touchIdIsUnlockAvailable {
-  NSData* unused = NULL;
-  bool encryptedKeyAvailableForDocument = [self _touchIdGetEncrypedKeyMaterial:&unused];
-  return encryptedKeyAvailableForDocument;
+  MPDocument *currentDocument = (MPDocument *)self.windowController.document;
+  return (nil != currentDocument.encryptedKeyData);
 }
 
-- (bool) _touchIdGetEncrypedKeyMaterial: (NSData**) result {
-  NSString* documentKey = NULL;
-  *result = NULL;
-  if(![self _touchIdGetKeyForCurrentDocument:&documentKey]) {
-    return false;
+- (NSData * _Nullable)_touchIdEncryptedCompositeKeyForCurrentDocutmen {
+  NSString* documentKey = [self biometricKeyForCurrentDocument];
+  if(nil == documentKey) {
+    return nil;
   }
-  return [MPTouchIdCompositeKeyStore.defaultStore load:result forDocumentKey:documentKey];
+  return [MPTouchIdCompositeKeyStore.defaultStore loadEncryptedCompositeKeyForDocumentKey:documentKey];
 }
 
 - (IBAction)unlockWithTouchID:(id)sender {
-  NSData* encryptedKey = NULL;
-  if(![self _touchIdGetEncrypedKeyMaterial:&encryptedKey]) {
+  NSData* encryptedKey = [self _touchIdEncryptedCompositeKeyForCurrentDocutmen];
+  if(!encryptedKey) {
     self.touchIdButton.enabled = NO;
     return;
   }
-  KPKCompositeKey* compositeKey = [self _touchIdDecryptCompositeKey:encryptedKey];
-  if(compositeKey == NULL) {
+  NSError *error;
+  KPKCompositeKey* compositeKey = [MPTouchIdCompositeKeyStore.defaultStore compositeKeyForEncryptedKeyData:encryptedKey error:&error];
+  if(!compositeKey) {
     self.touchIdButton.enabled = NO;
     return;
   }
-  NSError* error;
   bool success = self.completionHandler(compositeKey, NULL, false, &error);
   if(success) {
     return;
   }
-  [self.touchIdButton setEnabled:false];
+  self.touchIdButton.enabled = NO;
   [self _showError:error];
 }
 
@@ -375,7 +237,7 @@
   self.passwordTextField.stringValue = @"";
   self.messageInfoTextField.hidden = (nil == self.message);
   self.touchIdButton.hidden = ![self _touchIdIsUnlockAvailable];
-  [self.touchIdButton setEnabled:true];
+  self.touchIdButton.enabled = YES;
 
   if(self.message) {
     self.messageInfoTextField.stringValue = self.message;

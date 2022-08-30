@@ -346,7 +346,6 @@ typedef NS_ENUM(NSUInteger, MPInpspectorEditorIndex) {
       return YES;
   }
 }
-
 #pragma mark -
 #pragma mark QLPreviewPanelDelegate
 

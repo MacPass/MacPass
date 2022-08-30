@@ -40,6 +40,10 @@ NS_INLINE BOOL MPIsValidModifiedKey(MPModifiedKey k) {
   return (k.keyCode == kMPUnknownKeyCode);
 }
 
+NS_INLINE NSString *MPStringFromModifiedKey(MPModifiedKey key) {
+  return [NSString stringWithFormat:@"keyCode:%hu %llud", key.keyCode, key.modifier];
+}
+
 @interface NSValue(NSValueMPModifiedKeyExtensions)
 @property (nonatomic, readonly, assign) MPModifiedKey modifiedKeyValue;
 + (instancetype)valueWithModifiedKey:(MPModifiedKey)key;

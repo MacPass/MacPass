@@ -6,16 +6,27 @@
 //  Copyright © 2021 HicknHack Software GmbH. All rights reserved.
 //
 
-#ifndef MPTouchIdCompositeKeyStore_h
-#define MPTouchIdCompositeKeyStore_h
+NS_ASSUME_NONNULL_BEGIN
 
-static NSMutableDictionary* touchIDSecuredPasswords;
+@class KPKCompositeKey;
 
 @interface MPTouchIdCompositeKeyStore : NSObject
-  @property (class, strong, readonly) MPTouchIdCompositeKeyStore *defaultStore;
 
-  - (void) save:(NSData*) encryptedCompositeKey forDocumentKey:(NSString*) documentKey;
-  - (bool) load:(NSData**) encryptedCompositeKey forDocumentKey:(NSString*) documentKey;
+@property (class, strong, readonly) MPTouchIdCompositeKeyStore *defaultStore;
+
+/// Securely stores the provided compoiste key in the key store.
+/// The key is encrypted and then stored to the corresponding location (transient or permanent)
+/// @param compositeKey the composite key to store
+/// @param documentKey the document key to store the composite key for
+- (void)saveCompositeKey:(KPKCompositeKey *)compositeKey forDocumentKey:(NSString*)documentKey;
+
+/// Load the encrypted composite key for the given key if anyone is found
+/// @param documentKey the key to identify the document. Normally you should use the file name
+- (NSData  * _Nullable)loadEncryptedCompositeKeyForDocumentKey:(NSString *)documentKey;
+
+- (KPKCompositeKey * _Nullable)compositeKeyForEncryptedKeyData:(NSData *)data error:(NSError **)error;
+- (NSData * _Nullable)encryptedDataForCompositeKey:(KPKCompositeKey *)compositeKey error:(NSError **)error;
+
 @end
 
-#endif /* MPTouchIdCompositeKeyStore_h */
+NS_ASSUME_NONNULL_END

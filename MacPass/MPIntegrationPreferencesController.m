@@ -138,7 +138,7 @@
 #pragma mark -
 #pragma mark Keychain Actions
 - (IBAction)RenewTouchIdKey:(id)sender {
-    NSData* publicKeyTag = [TouchIdUnlockPublicKeyTag dataUsingEncoding:NSUTF8StringEncoding];
+    NSData* publicKeyTag = [MPTouchIdUnlockPublicKeyTag dataUsingEncoding:NSUTF8StringEncoding];
     NSDictionary *publicKeyQuery = @{
       (id)kSecClass: (id)kSecClassKey,
       (id)kSecAttrApplicationTag: publicKeyTag,
@@ -146,11 +146,11 @@
     };
     OSStatus status = SecItemDelete((__bridge CFDictionaryRef)publicKeyQuery);
     if (status != errSecSuccess) {
-        NSString* description = (__bridge NSString*)SecCopyErrorMessageString(status, NULL);
+      NSString* description = CFBridgingRelease(SecCopyErrorMessageString(status, NULL));
         NSLog(@"Error while trying to delete public key from Keychain: %@", description);
     }
     
-    NSData* privateKeyTag = [TouchIdUnlockPrivateKeyTag dataUsingEncoding:NSUTF8StringEncoding];
+    NSData* privateKeyTag = [MPTouchIdUnlockPrivateKeyTag dataUsingEncoding:NSUTF8StringEncoding];
     NSDictionary *privateKeyQuery = @{
       (id)kSecClass: (id)kSecClassKey,
       (id)kSecAttrApplicationTag: privateKeyTag,
@@ -158,7 +158,7 @@
     };
     status = SecItemDelete((__bridge CFDictionaryRef)privateKeyQuery);
     if (status != errSecSuccess) {
-        NSString* description = (__bridge NSString*)SecCopyErrorMessageString(status, NULL);
+        NSString* description = CFBridgingRelease(SecCopyErrorMessageString(status, NULL));
         NSLog(@"Error while trying to delete private key from Keychain: %@", description);
     }
 }

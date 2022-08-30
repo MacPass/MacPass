@@ -28,6 +28,7 @@
 		4C0F647B17B6BC9C00D9522A /* MPSavePanelAccessoryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C0F647A17B6BC9C00D9522A /* MPSavePanelAccessoryViewController.m */; };
 		4C10207F1B750E2F00BFCD59 /* MPTestAutotype.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C10207E1B750E2F00BFCD59 /* MPTestAutotype.m */; };
 		4C10412C178CDD44001B5239 /* NSDate+Humanized.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C10412B178CDD44001B5239 /* NSDate+Humanized.m */; };
+		4C11BE6928B3B54900E2DAEA /* MPDocument+BiometricEncryptionSupport.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C11BE6828B3B54900E2DAEA /* MPDocument+BiometricEncryptionSupport.m */; };
 		4C15B74618BCA3B1003F8008 /* MPDocument+Search.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C15B74518BCA3B1003F8008 /* MPDocument+Search.m */; };
 		4C17D11E2250EFBC00C650C4 /* SavePanelAccessoryView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4C17D1202250EFBC00C650C4 /* SavePanelAccessoryView.xib */; };
 		4C17D8E517A1C780006C8C1E /* MPDocumentWindowDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C17D8E417A1C780006C8C1E /* MPDocumentWindowDelegate.m */; };
@@ -401,6 +402,8 @@
 		4C10207E1B750E2F00BFCD59 /* MPTestAutotype.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MPTestAutotype.m; sourceTree = "<group>"; };
 		4C10412A178CDD44001B5239 /* NSDate+Humanized.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDate+Humanized.h"; sourceTree = "<group>"; };
 		4C10412B178CDD44001B5239 /* NSDate+Humanized.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDate+Humanized.m"; sourceTree = "<group>"; };
+		4C11BE6728B3B54900E2DAEA /* MPDocument+BiometricEncryptionSupport.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "MPDocument+BiometricEncryptionSupport.h"; sourceTree = "<group>"; };
+		4C11BE6828B3B54900E2DAEA /* MPDocument+BiometricEncryptionSupport.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "MPDocument+BiometricEncryptionSupport.m"; sourceTree = "<group>"; };
 		4C15B74518BCA3B1003F8008 /* MPDocument+Search.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "MPDocument+Search.m"; sourceTree = "<group>"; };
 		4C17D11F2250EFBC00C650C4 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/SavePanelAccessoryView.xib; sourceTree = "<group>"; };
 		4C17D1222250EFBF00C650C4 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/SavePanelAccessoryView.strings; sourceTree = "<group>"; };
@@ -1423,6 +1426,8 @@
 				6E719715172058BA00E4C5FC /* MPDatabaseVersion.h */,
 				4CE5B548173AFBA700207B39 /* MPDocument.h */,
 				4CE5B549173AFBA700207B39 /* MPDocument.m */,
+				4C11BE6728B3B54900E2DAEA /* MPDocument+BiometricEncryptionSupport.h */,
+				4C11BE6828B3B54900E2DAEA /* MPDocument+BiometricEncryptionSupport.m */,
 				4C3666401787327E00B249F1 /* MPDocument+Attachments.m */,
 				4C1FA07A18231900003A3F8C /* MPDocument+Autotype.m */,
 				4C6B7C7C18BE7EB0001D5D77 /* MPDocument+History.m */,
@@ -2027,7 +2032,7 @@
 			isa = PBXProject;
 			attributes = {
 				CLASSPREFIX = MP;
-				LastUpgradeCheck = 1250;
+				LastUpgradeCheck = 1340;
 				ORGANIZATIONNAME = "HicknHack Software GmbH";
 				TargetAttributes = {
 					4C77E36115B84A240093A587 = {
@@ -2384,6 +2389,7 @@
 				4C4B7EE917A45EC6000234C7 /* MPDatePickingViewController.m in Sources */,
 				4C4B7EEE17A467E1000234C7 /* MPGroupInspectorViewController.m in Sources */,
 				4C71BCB72167B79C00B4CBDA /* MPPluginVersionComparator.m in Sources */,
+				4C11BE6928B3B54900E2DAEA /* MPDocument+BiometricEncryptionSupport.m in Sources */,
 				4C4B7EF317A467FC000234C7 /* MPEntryInspectorViewController.m in Sources */,
 				4C1BDF2B1E4392640012A3F0 /* MPPluginDataViewController.m in Sources */,
 				4C4B7EF817A4B335000234C7 /* MPUniqueCharactersFormatter.m in Sources */,

@@ -44,7 +44,7 @@ FOUNDATION_EXPORT NSString *const MPPluginCompatibilityURLKey;
 /**
  Keychain Keys
  */
-extern NSString *const TouchIdUnlockPublicKeyTag;
-extern NSString *const TouchIdUnlockPrivateKeyTag;
+extern NSString *const MPTouchIdUnlockPublicKeyTag;
+extern NSString *const MPTouchIdUnlockPrivateKeyTag;
 
 #endif

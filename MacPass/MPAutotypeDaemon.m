@@ -219,7 +219,8 @@ static MPAutotypeDaemon *_sharedInstance;
     NSNotificationCenter * __weak nc = [NSNotificationCenter defaultCenter];
     MPAutotypeDaemon * __weak welf = self;
     NSTimeInterval requestTime = NSDate.date.timeIntervalSinceReferenceDate;
-    id __block unlockToken = [nc addObserverForName:MPDocumentDidUnlockDatabaseNotification
+    id __block unlockToken; // silence init value never read analyzer warning
+    unlockToken = [nc addObserverForName:MPDocumentDidUnlockDatabaseNotification
                                              object:nil
                                               queue:NSOperationQueue.mainQueue
                                          usingBlock:^(NSNotification *notification) {
@@ -247,7 +248,8 @@ static MPAutotypeDaemon *_sharedInstance;
     NSNotificationCenter * __weak nc = [NSNotificationCenter defaultCenter];
     MPAutotypeDaemon * __weak welf = self;
     NSTimeInterval requestTime = NSDate.date.timeIntervalSinceReferenceDate;
-    id __block unlockToken = [nc addObserverForName:MPDocumentDidUnlockDatabaseNotification
+    id __block unlockToken; // silence init value never read analyzer warning
+    unlockToken = [nc addObserverForName:MPDocumentDidUnlockDatabaseNotification
                                              object:nil
                                               queue:NSOperationQueue.mainQueue
                                          usingBlock:^(NSNotification *notification) {
@@ -408,7 +410,8 @@ static MPAutotypeDaemon *_sharedInstance;
   }
 
   NSNotificationCenter * __weak nc = NSWorkspace.sharedWorkspace.notificationCenter;
-  id __block didActivateToken = [nc addObserverForName:NSWorkspaceDidActivateApplicationNotification
+  id __block didActivateToken; // silence init value never read analyzer warning
+  didActivateToken = [nc addObserverForName:NSWorkspaceDidActivateApplicationNotification
                                            object:nil
                                             queue:NSOperationQueue.mainQueue
                                        usingBlock:^(NSNotification *notification) {

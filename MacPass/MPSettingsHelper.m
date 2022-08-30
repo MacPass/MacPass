@@ -67,8 +67,8 @@ NSString *const kMPSettingsKeyAutotypeMatchHost                           = @"Au
 NSString *const kMPSettingsKeyAutotypeMatchTags                           = @"AutotypeMatchTags";
 NSString *const kMPSettingsKeyGloablAutotypeAlwaysShowCandidateSelection  = @"GloablAutotypeAlwaysShowCandidateSelection";
 
-NSString *const kMPSettingsKeyEntryTouchIdEnabled                     = @"EnableSubsequentUnlocksWithTouchID";
-NSString *const kMPSettingsKeyEntryTouchIdDatabaseEncryptedKeyFormat  = @"EncryptedDatabaseKeyForTouchID-%@";
+NSString *const kMPSettingsKeyEntryTouchIdEnabled                         = @"EnableSubsequentUnlocksWithTouchID";
+NSString *const kMPSettingsKeyEntryTouchIdDatabaseEncryptedKeyFormat      = @"EncryptedDatabaseKeyForTouchID-%@";
 
 NSString *const kMPSettingsKeyEntrySearchFilterContext                    = @"EntrySearchFilterContext";
 
