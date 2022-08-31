@@ -49,11 +49,13 @@
       if(nil != encryptedCompositeKey) {
         self.keys[documentKey] = encryptedCompositeKey;
       }
+      break;
     case NSControlStateValueOn:
       self.keys[documentKey] = nil;
       if(nil != encryptedCompositeKey) {
         [NSUserDefaults.standardUserDefaults setObject:encryptedCompositeKey forKey:documentKey];
       }
+      break;
     default:
       [NSUserDefaults.standardUserDefaults removeObjectForKey:documentKey];
       self.keys[documentKey] = nil;

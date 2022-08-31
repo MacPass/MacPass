@@ -129,6 +129,14 @@ typedef NS_ENUM(NSUInteger, MPFaviconDownloadMethod) {
   MPFaviconDownloadMethodGoogle,
 };
 
+// the values are mapped to NSControlStateValue for backwards compatibilty
+// older implementations did use a checkbox to store this setting
+typedef NS_ENUM(NSInteger, MPTouchIDKeyStorage) {
+  MPTouchIDKeyStorageTransient = NSControlStateValueMixed,
+  MPTouchIDKeyStorageDisabled = NSControlStateValueOff,
+  MPTouchIDKeyStoragePersistent = NSControlStateValueOn
+};
+
 /* Password Generation */
 APPKIT_EXTERN NSString *const kMPSettingsKeyCopyGeneratedPasswordToClipboard;
 APPKIT_EXTERN NSString *const kMPSettingsKeyDefaultPasswordLength;

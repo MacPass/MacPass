@@ -50,6 +50,7 @@
 @property (weak) IBOutlet NSButton *cancelButton;
 @property (weak) IBOutlet NSButton *touchIdButton;
 @property (weak) IBOutlet NSButton *touchIdEnabledButton;
+@property (strong) IBOutlet NSPopUpButton *touchIdModeButton;
 
 @property (copy) NSString *message;
 @property (copy) NSString *cancelLabel;
@@ -87,8 +88,32 @@
   [self.enablePasswordCheckBox bind:NSValueBinding toObject:self withKeyPath:NSStringFromSelector(@selector(enablePassword)) options:nil];
   [self.togglePasswordButton bind:NSEnabledBinding toObject:self withKeyPath:NSStringFromSelector(@selector(enablePassword)) options:nil];
   [self.passwordTextField bind:NSEnabledBinding toObject:self withKeyPath:NSStringFromSelector(@selector(enablePassword)) options:nil];
-  NSUserDefaultsController *defaultsController = [NSUserDefaultsController sharedUserDefaultsController];
-  [self.touchIdEnabledButton bind:NSValueBinding toObject:defaultsController withKeyPath:[MPSettingsHelper defaultControllerPathForKey:kMPSettingsKeyEntryTouchIdEnabled] options:nil];
+  
+  NSMenu* touchIDMenu = [[NSMenu alloc] init];
+  NSMenuItem *disabledItem = [[NSMenuItem alloc] initWithTitle:NSLocalizedString(@"TOUCHID_DISABLED", @"menu item to disable touchid key storage")
+                             action:NULL
+                      keyEquivalent:@""];
+  NSMenuItem *transitentItem = [[NSMenuItem alloc] initWithTitle:NSLocalizedString(@"TOUCHID_TRANSIENT_KEY_STORAGE", @"menu item to enable transient touchid key storage")
+                             action:NULL
+                      keyEquivalent:@""];
+  NSMenuItem *persistentItem = [[NSMenuItem alloc] initWithTitle:NSLocalizedString(@"TOUCHID_PERSISTENT_KEY_STORAGE", @"menu item to enable persisntent touchid key storage")
+                             action:NULL
+                      keyEquivalent:@""];
+  
+  disabledItem.tag = MPTouchIDKeyStorageDisabled;
+  transitentItem.tag = MPTouchIDKeyStorageTransient;
+  persistentItem.tag = MPTouchIDKeyStoragePersistent;
+  
+  touchIDMenu.itemArray = @[disabledItem, transitentItem, persistentItem];
+  self.touchIdModeButton.menu = touchIDMenu;
+  [self.touchIdModeButton bind:NSSelectedTagBinding
+                         toObject:NSUserDefaultsController.sharedUserDefaultsController
+                      withKeyPath:[MPSettingsHelper defaultControllerPathForKey:kMPSettingsKeyEntryTouchIdEnabled]
+                          options:nil];
+  [self.touchIdEnabledButton bind:NSValueBinding
+                         toObject:NSUserDefaultsController.sharedUserDefaultsController
+                      withKeyPath:[MPSettingsHelper defaultControllerPathForKey:kMPSettingsKeyEntryTouchIdEnabled]
+                          options:nil];
   self.touchIdEnabledButton.hidden = YES;
   if (@available(macOS 10.13.4, *)) {
     self.touchIdEnabledButton.hidden = NO;
