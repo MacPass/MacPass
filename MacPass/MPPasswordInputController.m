@@ -108,11 +108,11 @@
   self.touchIdModeButton.menu = touchIDMenu;
   [self.touchIdModeButton bind:NSSelectedTagBinding
                          toObject:NSUserDefaultsController.sharedUserDefaultsController
-                      withKeyPath:[MPSettingsHelper defaultControllerPathForKey:kMPSettingsKeyEntryTouchIdEnabled]
+                      withKeyPath:[MPSettingsHelper defaultControllerPathForKey:kMPSettingsKeyTouchIdEnabled]
                           options:nil];
   [self.touchIdEnabledButton bind:NSValueBinding
                          toObject:NSUserDefaultsController.sharedUserDefaultsController
-                      withKeyPath:[MPSettingsHelper defaultControllerPathForKey:kMPSettingsKeyEntryTouchIdEnabled]
+                      withKeyPath:[MPSettingsHelper defaultControllerPathForKey:kMPSettingsKeyTouchIdEnabled]
                           options:nil];
   self.touchIdEnabledButton.hidden = YES;
   if (@available(macOS 10.13.4, *)) {

@@ -23,7 +23,8 @@
 #import <Cocoa/Cocoa.h>
 
 /* TouchID */
-APPKIT_EXTERN NSString *const kMPSettingsKeyEntryTouchIdEnabled;
+APPKIT_EXTERN NSString *const kMPSettingsKeyTouchIdEnabled;
+APPKIT_EXTERN NSString *const kMPSettingsKeyTouchIdEncryptedKeyStore;       // NSDictionary with hased file names mapped to keys
 APPKIT_EXTERN NSString *const kMPSettingsKeyEntryTouchIdDatabaseEncryptedKeyFormat;
 
 /* Clipboard */
