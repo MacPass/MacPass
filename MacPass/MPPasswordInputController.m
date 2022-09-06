@@ -226,6 +226,7 @@
   if(success) {
     return;
   }
+  // TODO: clear encryptedKey if password was wrong? Show user feedback? 
   self.touchIdButton.enabled = NO;
   [self _showError:error];
 }

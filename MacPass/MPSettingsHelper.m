@@ -126,6 +126,7 @@ NSString *const kMPDepricatedSettingsKeyAutotypeHideAccessibiltyWarning   = @"Au
   [self _migrateEntrySearchFlags];
   [self _migrateRememberedKeyFiles];
   [self _migrateLoadUnsecurePlugins];
+  [self _migrateTouchIdKeyStore];
   [self _removeDeprecatedValues];
 }
 
@@ -311,7 +312,27 @@ return deprecatedSettings;
   if(oldValue != [[self _standardDefaults][kMPDepricatedSettingsKeyLoadUnsecurePlugins] boolValue]) {
     [NSUserDefaults.standardUserDefaults setBool:oldValue forKey:kMPSettingsKeyLoadUnsecurePlugins];
   }
-  
+}
+
++ (void)_migrateTouchIdKeyStore {
+  // Read keys stored in new format
+  NSMutableDictionary *storedKeys = [[NSUserDefaults.standardUserDefaults dictionaryForKey:kMPSettingsKeyTouchIdEncryptedKeyStore] mutableCopy];
+  NSArray *defaultKeys = [NSUserDefaults.standardUserDefaults dictionaryRepresentation].allKeys;
+  // find all keys in old format
+  for(NSString *key in defaultKeys) {
+    NSString *prefix = [NSString stringWithFormat:kMPSettingsKeyEntryTouchIdDatabaseEncryptedKeyFormat, @""];
+    if([key hasPrefix:prefix]) {
+      // database name was adde
+      NSString *databaseName = [key substringFromIndex:prefix.length];
+      NSData *encryptedKey = [NSUserDefaults.standardUserDefaults dataForKey:key];
+      if(!storedKeys[databaseName] && encryptedKey) {
+        storedKeys[databaseName] = encryptedKey;
+      }
+      [NSUserDefaults.standardUserDefaults removeObjectForKey:key];
+    }
+  }
+  // Put it all back in
+  [NSUserDefaults.standardUserDefaults setObject:storedKeys forKey:kMPSettingsKeyTouchIdEncryptedKeyStore];
 }
 
 @end
