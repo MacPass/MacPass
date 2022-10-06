@@ -398,7 +398,6 @@ NSString *const MPDocumentGroupKey                            = @"MPDocumentGrou
   NSError *error;
   KPKTree *otherTree;
   
-  
   if(key) {
     otherTree = [[KPKTree alloc] initWithContentsOfUrl:url key:key error:&error];
   }
