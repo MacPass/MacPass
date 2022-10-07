@@ -77,7 +77,7 @@ static MPLockDaemon *_sharedInstance;
   if(_lockOnLogout != lockOnLogout) {
     _lockOnLogout = lockOnLogout;
     if(_lockOnLogout) {
-      [NSWorkspace.sharedWorkspace.notificationCenter addObserver:self selector:@selector(_willLogOutNotification:) name:NSWorkspaceSessionDidResignActiveNotification object:nil];
+      [NSWorkspace.sharedWorkspace.notificationCenter addObserver:self selector:@selector(_lockDocumentsForNotification:) name:NSWorkspaceSessionDidResignActiveNotification object:nil];
     }
     else {
       [NSWorkspace.sharedWorkspace.notificationCenter removeObserver:self name:@"" object:nil];
@@ -89,7 +89,7 @@ static MPLockDaemon *_sharedInstance;
   if(_lockOnSleep != lockOnSleep) {
     _lockOnSleep = lockOnSleep;
     if(_lockOnSleep) {
-      [NSWorkspace.sharedWorkspace.notificationCenter addObserver:self selector:@selector(_willSleepNotification:) name:NSWorkspaceWillSleepNotification object:nil];
+      [NSWorkspace.sharedWorkspace.notificationCenter addObserver:self selector:@selector(_lockDocumentsForNotification:) name:NSWorkspaceWillSleepNotification object:nil];
     }
     else {
       [NSWorkspace.sharedWorkspace.notificationCenter removeObserver:self name:NSWorkspaceWillSleepNotification object:nil];
@@ -101,7 +101,7 @@ static MPLockDaemon *_sharedInstance;
   if(_lockOnScreenSleep != lockOnScreenSleep) {
     _lockOnScreenSleep = lockOnScreenSleep;
     if(_lockOnScreenSleep) {
-      [NSWorkspace.sharedWorkspace.notificationCenter addObserver:self selector:@selector(_willScreenSleepNotification:) name:NSWorkspaceScreensDidSleepNotification object:nil];
+      [NSWorkspace.sharedWorkspace.notificationCenter addObserver:self selector:@selector(_lockDocumentsForNotification:) name:NSWorkspaceScreensDidSleepNotification object:nil];
     }
     else {
       [NSWorkspace.sharedWorkspace.notificationCenter removeObserver:self name:NSWorkspaceScreensDidSleepNotification object:nil];
@@ -120,14 +120,7 @@ static MPLockDaemon *_sharedInstance;
     }
   }
 }
-
-- (void)_willLogOutNotification:(NSNotification *)notification {
-  [((MPAppDelegate *)NSApp.delegate) lockAllDocuments];
-}
-- (void)_willSleepNotification:(NSNotification *)notification {
-  [((MPAppDelegate *)NSApp.delegate) lockAllDocuments];
-}
-- (void)_willScreenSleepNotification:(NSNotification *)notification {
+- (void)_lockDocumentsForNotification:(NSNotification *)notification {
   [((MPAppDelegate *)NSApp.delegate) lockAllDocuments];
 }
 
