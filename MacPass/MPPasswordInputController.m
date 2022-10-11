@@ -202,16 +202,12 @@
   return (nil != currentDocument.encryptedKeyData);
 }
 
-- (NSData * _Nullable)_touchIdEncryptedCompositeKeyForCurrentDocutmen {
+- (IBAction)unlockWithTouchID:(id)sender {
   NSString* documentKey = [self biometricKeyForCurrentDocument];
   if(nil == documentKey) {
-    return nil;
+    return;
   }
-  return [MPTouchIdCompositeKeyStore.defaultStore loadEncryptedCompositeKeyForDocumentKey:documentKey];
-}
-
-- (IBAction)unlockWithTouchID:(id)sender {
-  NSData* encryptedKey = [self _touchIdEncryptedCompositeKeyForCurrentDocutmen];
+  NSData* encryptedKey = [MPTouchIdCompositeKeyStore.defaultStore loadEncryptedCompositeKeyForDocumentKey:documentKey];
   if(!encryptedKey) {
     self.touchIdButton.enabled = NO;
     return;

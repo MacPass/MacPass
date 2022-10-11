@@ -8,12 +8,13 @@
 #import "MPSettingsHelper.h"
 #import "MPTouchIdCompositeKeyStore.h"
 #import "MPConstants.h"
+#import "MPSettingsHelper.h"
 
 #import "NSError+Messages.h"
 
 @interface MPTouchIdCompositeKeyStore ()
 @property (readonly, strong) NSMutableDictionary* keys;
-@property (nonatomic) NSInteger touchIdEnabledState;
+@property (nonatomic) MPTouchIDKeyStorage touchIdEnabledState;
 @end
 
 @implementation MPTouchIdCompositeKeyStore
@@ -39,13 +40,13 @@
   return self;
 }
 
-- (void)setTouchIdEnabledState:(NSInteger)touchIdEnabledState {
+- (void)setTouchIdEnabledState:(MPTouchIDKeyStorage)touchIdEnabledState {
   switch(touchIdEnabledState) {
-    case NSControlStateValueMixed:
+    case MPTouchIDKeyStorageTransient:
       // clear persistent store
       [NSUserDefaults.standardUserDefaults removeObjectForKey:kMPSettingsKeyTouchIdEncryptedKeyStore];
       break;
-    case NSControlStateValueOn:
+    case MPTouchIDKeyStoragePersistent:
       // clear transient store
       [self.keys removeAllObjects];
       break;
@@ -66,29 +67,33 @@
   
   /* FIXME this behavour is wrong. Old keys do not get cleared so this leaves a lot of data behind that should be cleaned up*/
   
-  NSInteger touchIdMode = [NSUserDefaults.standardUserDefaults integerForKey:kMPSettingsKeyTouchIdEnabled];
+  MPTouchIDKeyStorage touchIdMode = [NSUserDefaults.standardUserDefaults integerForKey:kMPSettingsKeyTouchIdEnabled];
   switch(touchIdMode) {
-    case NSControlStateValueMixed:
+    case MPTouchIDKeyStorageTransient:
       [NSUserDefaults.standardUserDefaults removeObjectForKey:documentKey];
       if(nil != encryptedCompositeKey) {
         self.keys[documentKey] = encryptedCompositeKey;
       }
       break;
-    case NSControlStateValueOn:
+    case MPTouchIDKeyStoragePersistent:
       self.keys[documentKey] = nil;
       if(nil != encryptedCompositeKey) {
         [NSUserDefaults.standardUserDefaults setObject:encryptedCompositeKey forKey:documentKey];
       }
       break;
-    default:
+    case MPTouchIDKeyStorageDisabled:
       [NSUserDefaults.standardUserDefaults removeObjectForKey:documentKey];
       self.keys[documentKey] = nil;
+      break;
+    default:
+      NSAssert(NO,@"Unsupported internal touchID preferences value.");
+      break;
   }
 }
 - (NSData *)loadEncryptedCompositeKeyForDocumentKey:(NSString *)documentKey {
   NSInteger touchIdMode = [NSUserDefaults.standardUserDefaults integerForKey:kMPSettingsKeyTouchIdEnabled];
   NSData* transientKey  = self.keys[documentKey];
-  NSData* persistentKey =[NSUserDefaults.standardUserDefaults dataForKey:documentKey];
+  NSData* persistentKey = [NSUserDefaults.standardUserDefaults dataForKey:documentKey];
   if(nil == transientKey && nil == persistentKey) {
     return nil;
   }
