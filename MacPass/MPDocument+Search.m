@@ -50,7 +50,6 @@ NSString *const kMPDocumentSearchResultsKey           = @"kMPDocumentSearchResul
   [NSNotificationCenter.defaultCenter postNotificationName:MPDocumentDidEnterSearchNotification object:self];
   [self updateSearch:self];
   /* clear selection */
-  self.selectedGroups = nil;
   self.selectedEntries = nil;
 }
 

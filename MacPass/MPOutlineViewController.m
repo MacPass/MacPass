@@ -46,6 +46,7 @@ NSString *const _MPOutlinveViewHeaderViewIdentifier = @"HeaderCell";
 
 @interface MPOutlineViewController () {
   BOOL _bindingEstablished;
+  NSIndexSet *_storedSelectionIndexSet;
   MPOutlineContextMenuDelegate *_menuDelegate;
   
 }
@@ -99,7 +100,6 @@ NSString *const _MPOutlinveViewHeaderViewIdentifier = @"HeaderCell";
                                          selector:@selector(_didBecomeFirstResponder:)
                                              name:MPDidActivateViewNotification
                                            object:self.outlineView];
-  
   
   NSView *clipView = self.outlineView.enclosingScrollView.contentView;
   [NSNotificationCenter.defaultCenter addObserver:self
@@ -226,6 +226,8 @@ NSString *const _MPOutlinveViewHeaderViewIdentifier = @"HeaderCell";
 - (void)registerNotificationsForDocument:(MPDocument *)document {
   [NSNotificationCenter.defaultCenter addObserver:self selector:@selector(_didAddGroup:) name:MPDocumentDidAddGroupNotification object:document];
   [NSNotificationCenter.defaultCenter addObserver:self selector:@selector(_didRevertDocument:) name:MPDocumentDidRevertNotification object:document];
+  [NSNotificationCenter.defaultCenter addObserver:self selector:@selector(_didEnterSearch:) name:MPDocumentDidEnterSearchNotification object:document];
+  [NSNotificationCenter.defaultCenter addObserver:self selector:@selector(_didExitSearch:) name:MPDocumentDidExitSearchNotification object:document];
 }
 
 - (void)clearSelection {
@@ -271,6 +273,16 @@ NSString *const _MPOutlinveViewHeaderViewIdentifier = @"HeaderCell";
 }
 - (void)_didRevertDocument:(NSNotification *)notification {
   [self clearSelection];
+}
+
+- (void)_didEnterSearch:(NSNotification *)notification {
+  // store seelection
+  _storedSelectionIndexSet = self.outlineView.selectedRowIndexes;
+  [self clearSelection];
+}
+
+- (void)_didExitSearch:(NSNotification *)notification {
+  [self.outlineView selectRowIndexes:_storedSelectionIndexSet byExtendingSelection:NO];
 }
 
 - (id)itemUnderMouse {
