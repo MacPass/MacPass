@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="15702" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="21225" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
     <dependencies>
         <deployment identifier="macosx"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="15702"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="21225"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
@@ -16,10 +16,10 @@
         <customObject id="-1" userLabel="First Responder" customClass="FirstResponder"/>
         <customObject id="-3" userLabel="Application" customClass="NSObject"/>
         <customView translatesAutoresizingMaskIntoConstraints="NO" id="1">
-            <rect key="frame" x="0.0" y="0.0" width="400" height="95"/>
+            <rect key="frame" x="0.0" y="0.0" width="400" height="94"/>
             <subviews>
                 <button verticalHuggingPriority="500" translatesAutoresizingMaskIntoConstraints="NO" id="Z6x-oU-NC5">
-                    <rect key="frame" x="22" y="59" width="221" height="18"/>
+                    <rect key="frame" x="22" y="59" width="225" height="16"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="14" id="ppB-Ka-SVN"/>
                     </constraints>
@@ -29,10 +29,10 @@
                     </buttonCell>
                 </button>
                 <popUpButton verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="pWJ-eJ-MBf">
-                    <rect key="frame" x="144" y="17" width="114" height="25"/>
+                    <rect key="frame" x="143" y="16" width="115" height="25"/>
                     <popUpButtonCell key="cell" type="push" bezelStyle="rounded" alignment="left" lineBreakMode="truncatingTail" borderStyle="borderAndBezel" imageScaling="proportionallyDown" inset="2" id="Hl5-gO-B1c">
                         <behavior key="behavior" lightByBackground="YES" lightByGray="YES"/>
-                        <font key="font" metaFont="system"/>
+                        <font key="font" metaFont="menu"/>
                         <menu key="menu" title="OtherViews" id="RKd-H8-eCF">
                             <items>
                                 <menuItem title="every Hour" tag="3600" id="DjF-1I-6Nq"/>

@@ -21,6 +21,10 @@
 //
 
 #import "MPUpdatePreferencesController.h"
+#import "MPAppDelegate.h"
+
+#import "NSApplication+MPAdditions.h"
+
 #import <Sparkle/Sparkle.h>
 
 @interface MPUpdatePreferencesController ()
@@ -53,9 +57,10 @@
   self.checkIntervallPopupButton.enabled = NO;
   self.automaticallyCheckForUpdatesCheckButton.enabled = NO;
 #else
-  [self.checkIntervallPopupButton bind:NSSelectedTagBinding toObject:[SUUpdater sharedUpdater] withKeyPath:NSStringFromSelector(@selector(updateCheckInterval)) options:nil];
-  [self.checkIntervallPopupButton bind:NSEnabledBinding toObject:[SUUpdater sharedUpdater] withKeyPath:NSStringFromSelector(@selector(automaticallyChecksForUpdates)) options:nil];
-  [self.automaticallyCheckForUpdatesCheckButton bind:NSValueBinding toObject:[SUUpdater sharedUpdater] withKeyPath:NSStringFromSelector(@selector(automaticallyChecksForUpdates)) options:nil];
+  SPUUpdater *updater = NSApplication.sharedApplication.mp_delegate.updater;
+  [self.checkIntervallPopupButton bind:NSSelectedTagBinding toObject:updater withKeyPath:NSStringFromSelector(@selector(updateCheckInterval)) options:nil];
+  [self.checkIntervallPopupButton bind:NSEnabledBinding toObject:updater withKeyPath:NSStringFromSelector(@selector(automaticallyChecksForUpdates)) options:nil];
+  [self.automaticallyCheckForUpdatesCheckButton bind:NSValueBinding toObject:updater withKeyPath:NSStringFromSelector(@selector(automaticallyChecksForUpdates)) options:nil];
 #endif
   
 }
