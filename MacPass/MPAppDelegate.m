@@ -67,6 +67,7 @@ typedef NS_OPTIONS(NSInteger, MPAppStartupState) {
 }
 
 @property (strong) NSWindow *welcomeWindow;
+@property (strong) SPUUpdater *updater;
 @property (strong) IBOutlet NSWindow *passwordCreatorWindow;
 @property (strong, nonatomic) MPPreferencesWindowController *preferencesController;
 @property (strong, nonatomic) MPPasswordCreatorViewController *passwordCreatorController;
@@ -217,11 +218,13 @@ typedef NS_OPTIONS(NSInteger, MPAppStartupState) {
   [MPPluginHost sharedHost];
 #if !defined(DEBUG) && !defined(NO_SPARKLE)
   /* Disable updates if in debug or nosparkle  */
-  [SUUpdater sharedUpdater];
+  SPUStandardUserDriver *userDriver = [[SPUStandardUserDriver alloc] initWithHostBundle:NSBundle.mainBundle delegate:nil];
+  self.updater = [[SPUUpdater alloc] initWithHostBundle:NSBundle.mainBundle applicationBundle:NSBundle.mainBundle userDriver:userDriver delegate:nil];
+  [self.updater startUpdater:nil];
 #endif
   self.startupState |= MPAppStartupStateFinishedLaunch;
   // Here we just opt-in for allowing our bar to be customized throughout the app.
-    NSApplication.sharedApplication.automaticCustomizeTouchBarMenuItemEnabled = YES;
+  NSApplication.sharedApplication.automaticCustomizeTouchBarMenuItemEnabled = YES;
 }
 
 #pragma mark -
@@ -364,7 +367,7 @@ typedef NS_OPTIONS(NSInteger, MPAppStartupState) {
   [alert addButtonWithTitle:NSLocalizedString(@"OK", @"Ok Button to dismiss disabled updates alert")];
   [alert runModal];
 #else
-  [[SUUpdater sharedUpdater] checkForUpdates:sender];
+  [self.updater checkForUpdates];
 #endif
 }
 
