@@ -739,7 +739,6 @@ NSString *const _MPTableMonoSpacedStringCellView = @"MonospacedStringCell";
   }
   __weak MPEntryViewController *welf = self;
   self.totpUpdateTimer = [NSTimer scheduledTimerWithTimeInterval:1.0 repeats:YES block:^(NSTimer * _Nonnull timer) {
-    NSLog(@"Update TOTP Column Content");
     NSIndexSet *columnIndex = [NSIndexSet indexSetWithIndex:[welf.entryTable columnWithIdentifier:MPEntryTableTOTPColumnIdentifier]];
     NSIndexSet *rowIndexes = [NSIndexSet indexSetWithIndexesInRange:NSMakeRange(0,welf.entryTable.numberOfRows)];
     [welf.entryTable reloadDataForRowIndexes:rowIndexes columnIndexes:columnIndex];
@@ -751,7 +750,7 @@ NSString *const _MPTableMonoSpacedStringCellView = @"MonospacedStringCell";
   NSArray *nodes = self.currentTargetNodes;
   KPKEntry *selectedEntry = nodes.count == 1 ? [nodes.firstObject asEntry] : nil;
   NSString *value = [selectedEntry.password kpk_finalValueForEntry:selectedEntry];
-  if(value) {
+  if(value.length > 0) {
     [MPPasteBoardController.defaultController copyObject:value overlayInfo:MPPasteboardOverlayInfoPassword name:nil atView:self.view];
   }
 }
@@ -760,8 +759,17 @@ NSString *const _MPTableMonoSpacedStringCellView = @"MonospacedStringCell";
   NSArray *nodes = self.currentTargetNodes;
   KPKEntry *selectedEntry = nodes.count == 1 ? [nodes.firstObject asEntry] : nil;
   NSString *value = [selectedEntry.username kpk_finalValueForEntry:selectedEntry];
-  if(value) {
+  if(value.length > 0) {
     [MPPasteBoardController.defaultController copyObject:value overlayInfo:MPPasteboardOverlayInfoUsername name:nil atView:self.view];
+  }
+}
+
+- (void)copyTOTP:(id)sender {
+  NSArray *nodes = self.currentTargetNodes;
+  KPKEntry *selectedEntry = nodes.count == 1 ? [nodes.firstObject asEntry] : nil;
+  NSString *value = selectedEntry.timeOTP;
+  if(value.length > 0) {
+    [MPPasteBoardController.defaultController copyObject:value overlayInfo:MPPasteboardOverlayInfoTOTP name:nil atView:self.view];
   }
 }
 
@@ -773,7 +781,7 @@ NSString *const _MPTableMonoSpacedStringCellView = @"MonospacedStringCell";
     NSAssert((index >= 0)  && (index < selectedEntry.customAttributes.count), @"Index for custom field needs to be valid");
     KPKAttribute *attribute = selectedEntry.customAttributes[index];
     NSString *value = attribute.evaluatedValue;
-    if(value) {
+    if(value.length > 0) {
       [MPPasteBoardController.defaultController copyObject:value overlayInfo:MPPasteboardOverlayInfoCustom name:attribute.key atView:self.view];
     }
   }
@@ -783,7 +791,7 @@ NSString *const _MPTableMonoSpacedStringCellView = @"MonospacedStringCell";
   NSArray *nodes = self.currentTargetNodes;
   KPKEntry *selectedEntry = nodes.count == 1 ? [nodes.firstObject asEntry] : nil;
   NSString *value = [selectedEntry.url kpk_finalValueForEntry:selectedEntry];
-  if(value) {
+  if(value.length > 0) {
     [MPPasteBoardController.defaultController copyObject:value overlayInfo:MPPasteboardOverlayInfoURL name:nil atView:self.view];
   }
 }
@@ -851,6 +859,9 @@ NSString *const _MPTableMonoSpacedStringCellView = @"MonospacedStringCell";
   }
   else if([identifier isEqualToString:MPEntryTableUserNameColumnIdentifier]) {
     [self copyUsername:nil];
+  }
+  else if([identifier isEqualToString:MPEntryTableTOTPColumnIdentifier]) {
+    [self copyTOTP:nil];
   }
   else if([identifier isEqualToString:MPEntryTableURLColumnIdentifier]) {
     [self _executeURLColumnDoubleClick];

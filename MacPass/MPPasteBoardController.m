@@ -154,6 +154,11 @@ NSString *const MPPasteBoardTypeSource          = @"org.nspasteboard.source";
       infoText = NSLocalizedString(@"COPIED_USERNAME", @"Username was copied to the pasteboard");
       break;
       
+    case MPPasteboardOverlayInfoTOTP:
+      infoImage = [MPIconHelper icon:MPIconPassword];
+      infoText = NSLocalizedString(@"COPIED_TOTP", "TOTP was copied to the pasteboard");
+      break;
+      
     case MPPasteboardOverlayInfoCustom:
       infoImage = [MPIconHelper icon:MPIconPassword];
       infoText = [NSString stringWithFormat:NSLocalizedString(@"COPIED_FIELD_%@", "Field name that was copied to the pasteboard"), name];
