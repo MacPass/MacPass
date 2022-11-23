@@ -67,6 +67,7 @@ NSString *const MPEntryTableAttachmentColumnIdentifier = @"MPEntryTableAttachmen
 NSString *const MPEntryTableCreatedColumnIdentifier = @"MPEntryTableCreatedColumnIdentifier";
 NSString *const MPEntryTableModfiedColumnIdentifier = @"MPEntryTableModfiedColumnIdentifier";
 NSString *const MPEntryTableHistoryColumnIdentifier = @"MPEntryTableHistoryColumnIdentifier";
+NSString *const MPEntryTableTOTPColumnIdentifier = @"MPEntryTableTOTPColumnIdentifier";
 
 NSString *const _MPTableImageCellView = @"ImageCell";
 NSString *const _MPTableStringCellView = @"StringCell";
@@ -82,6 +83,8 @@ NSString *const _MPTableMonoSpacedStringCellView = @"MonospacedStringCell";
 
 @property (weak) IBOutlet NSTableView *entryTable;
 @property (assign) MPDisplayMode displayMode;
+@property (nonatomic, assign) BOOL totpColumnHidden;
+@property (strong) NSTimer *totpUpdateTimer;
 
 
 /* Constraints */
@@ -103,13 +106,14 @@ NSString *const _MPTableMonoSpacedStringCellView = @"MonospacedStringCell";
   self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
   if(self) {
     _isDisplayingContextBar = NO;
+    _totpColumnHidden = NO;
     _displayMode = MPDisplayModeEntries;
     _entryArrayController = [[NSArrayController alloc] init];
     _dataSource = [[MPEntryTableDataSource alloc] init];
     _dataSource.viewController = self;
     _contextBarViewController = [[MPContextBarViewController alloc] init];
     _displayClearTextPasswords = [NSUserDefaults.standardUserDefaults boolForKey:kMPSettingsKeyDisplayClearTextPasswordsInEntryList];
-
+    
     [self bind:NSStringFromSelector(@selector(displayClearTextPasswords))
       toObject:NSUserDefaultsController.sharedUserDefaultsController
    withKeyPath:[MPSettingsHelper defaultControllerPathForKey:kMPSettingsKeyDisplayClearTextPasswordsInEntryList]
@@ -161,6 +165,8 @@ NSString *const _MPTableMonoSpacedStringCellView = @"MonospacedStringCell";
   NSTableColumn *modifiedColumn = [[NSTableColumn alloc] initWithIdentifier:MPEntryTableModfiedColumnIdentifier];
   NSTableColumn *historyColumn = [[NSTableColumn alloc] initWithIdentifier:MPEntryTableHistoryColumnIdentifier];
   NSTableColumn *indexColumn = [[NSTableColumn alloc] initWithIdentifier:MPEntryTableIndexColumnIdentifier];
+  NSTableColumn *totpTableColumn = [[NSTableColumn alloc] initWithIdentifier:MPEntryTableTOTPColumnIdentifier];
+  
   notesColumn.minWidth = 40.0;
   attachmentsColumn.minWidth = 40.0;
   createdColumn.minWidth = 40.0;
@@ -173,6 +179,7 @@ NSString *const _MPTableMonoSpacedStringCellView = @"MonospacedStringCell";
   [self.entryTable addTableColumn:modifiedColumn];
   [self.entryTable addTableColumn:createdColumn];
   [self.entryTable addTableColumn:historyColumn];
+  [self.entryTable addTableColumn:totpTableColumn];
   [self.entryTable addTableColumn:indexColumn];
   
   parentColumn.identifier = MPEntryTableParentColumnIdentifier;
@@ -195,6 +202,7 @@ NSString *const _MPTableMonoSpacedStringCellView = @"MonospacedStringCell";
   parentColumn.sortDescriptorPrototype = [NSSortDescriptor sortDescriptorWithKey:parentTitleKeyPath ascending:YES selector:@selector(localizedCaseInsensitiveCompare:)];
   modifiedColumn.sortDescriptorPrototype = [NSSortDescriptor sortDescriptorWithKey:timeInfoModificationTimeKeyPath ascending:YES selector:@selector(compare:)];
   createdColumn.sortDescriptorPrototype = [NSSortDescriptor sortDescriptorWithKey:timeInfoCreationTimeKeyPath ascending:YES selector:@selector(compare:)];
+  totpTableColumn.sortDescriptorPrototype = [NSSortDescriptor sortDescriptorWithKey:NSStringFromSelector(@selector(timeOTP)) ascending:YES selector:@selector(compare:)];
   
   indexColumn.headerCell.stringValue = @"";
   indexColumn.headerToolTip = NSLocalizedString(@"ENTRY_INDEX_COLUMN_TOOLTIP", "Tooltip displayed on the index header cell");
@@ -208,6 +216,7 @@ NSString *const _MPTableMonoSpacedStringCellView = @"MonospacedStringCell";
   createdColumn.headerCell.stringValue = NSLocalizedString(@"CREATED", "Creating date column title");
   modifiedColumn.headerCell.stringValue = NSLocalizedString(@"MODIFIED", "Modification date column title");
   historyColumn.headerCell.stringValue = NSLocalizedString(@"HISTORY", "History count column title");
+  totpTableColumn.headerCell.stringValue = NSLocalizedString(@"TOPT", "TOTP column title");
   
   [self.entryTable bind:NSContentBinding toObject:self.entryArrayController withKeyPath:NSStringFromSelector(@selector(arrangedObjects)) options:nil];
   [self.entryTable bind:NSSortDescriptorsBinding toObject:self.entryArrayController withKeyPath:NSStringFromSelector(@selector(sortDescriptors)) options:nil];
@@ -232,6 +241,7 @@ NSString *const _MPTableMonoSpacedStringCellView = @"MonospacedStringCell";
   if(parentIndex != 1) {
     [self.entryTable moveColumn:parentIndex toColumn:1];
   }
+  [self _updateTOTPTimer];
 }
 
 - (void)setDisplayClearTextPasswords:(BOOL)displayClearTextPasswords {
@@ -259,6 +269,11 @@ NSString *const _MPTableMonoSpacedStringCellView = @"MonospacedStringCell";
   [NSNotificationCenter.defaultCenter addObserver:self selector:@selector(_hideEntryHistory:) name:MPDocumentHideEntryHistoryNotification object:document];
   
   [self.contextBarViewController registerNotificationsForDocument:document];
+}
+
+- (void)setTotpColumnHidden:(BOOL)toptColumnVisible {
+  _totpColumnHidden = toptColumnVisible;
+  [self _updateTOTPTimer];
 }
 
 #pragma mark NSTableViewDelgate
@@ -292,6 +307,7 @@ NSString *const _MPTableMonoSpacedStringCellView = @"MonospacedStringCell";
   BOOL isCreatedColumn = [tableColumn.identifier isEqualToString:MPEntryTableCreatedColumnIdentifier];
   BOOL isModifedColumn = [tableColumn.identifier isEqualToString:MPEntryTableModfiedColumnIdentifier];
   BOOL isHistoryColumn = [tableColumn.identifier isEqualToString:MPEntryTableHistoryColumnIdentifier];
+  BOOL isTOPTColumn = [tableColumn.identifier isEqualToString:MPEntryTableTOTPColumnIdentifier];
   
   NSTableCellView *view = nil;
   BOOL displayClearTextPasswords = [NSUserDefaults.standardUserDefaults boolForKey:kMPSettingsKeyDisplayClearTextPasswordsInEntryList];
@@ -414,6 +430,10 @@ NSString *const _MPTableMonoSpacedStringCellView = @"MonospacedStringCell";
                                    NSStringFromSelector(@selector(objectValue)),
                                    NSStringFromSelector(@selector(password))];
       [view.textField bind:NSValueBinding toObject:view withKeyPath:passwordKeyPath options:nil];
+    }
+    else if(isTOPTColumn) {
+      NSString *TOTPKeyPath = [NSString stringWithFormat:@"%@.%@", NSStringFromSelector(@selector(objectValue)), NSStringFromSelector(@selector(timeOTP))];
+      [view.textField bind:NSValueBinding toObject:view withKeyPath:TOTPKeyPath options:nil];
     }
   }
   return view;
@@ -678,6 +698,7 @@ NSString *const _MPTableMonoSpacedStringCellView = @"MonospacedStringCell";
   [headerMenu addItemWithTitle:NSLocalizedString(@"MODIFIED", "Menu item to toggle display of modified date column in entry table") action:NULL keyEquivalent:@""];
   [headerMenu addItemWithTitle:NSLocalizedString(@"CREATED", "Menu item to toggle display of created date column in entry table") action:NULL keyEquivalent:@""];
   [headerMenu addItemWithTitle:NSLocalizedString(@"HISTORY", "Menu item to toggle display of history count column in entry table") action:NULL keyEquivalent:@""];
+  [headerMenu addItemWithTitle:NSLocalizedString(@"TOTP", "Menu item to toggle display of TOTP count column in entry table") action:NULL keyEquivalent:@""];
   
   NSArray *identifier = @[ MPEntryTableTitleColumnIdentifier,
                            MPEntryTableUserNameColumnIdentifier,
@@ -687,7 +708,8 @@ NSString *const _MPTableMonoSpacedStringCellView = @"MonospacedStringCell";
                            MPEntryTableAttachmentColumnIdentifier,
                            MPEntryTableModfiedColumnIdentifier,
                            MPEntryTableCreatedColumnIdentifier,
-                           MPEntryTableHistoryColumnIdentifier ];
+                           MPEntryTableHistoryColumnIdentifier,
+                           MPEntryTableTOTPColumnIdentifier];
   
   NSDictionary *options = @{ NSValueTransformerNameBindingOption : NSNegateBooleanTransformerName };
   for(NSMenuItem *item in headerMenu.itemArray) {
@@ -696,6 +718,8 @@ NSString *const _MPTableMonoSpacedStringCellView = @"MonospacedStringCell";
     [item bind:NSValueBinding toObject:column withKeyPath:NSHiddenBinding options:options];
   }
   
+  NSTableColumn *totpColumn = [self.entryTable tableColumnWithIdentifier:MPEntryTableTOTPColumnIdentifier];
+  [self bind:NSStringFromSelector(@selector(totpColumnHidden)) toObject:totpColumn withKeyPath:NSHiddenBinding options:nil]; // double binding works?
   
   [headerMenu addItem:[NSMenuItem separatorItem]];
   NSMenuItem *showPasswordsItem = [[NSMenuItem alloc] initWithTitle:NSLocalizedString(@"SHOW_CLEAR_TEXT_PASSWORDS", "Menu item to toggle display type of passwords") action:NULL keyEquivalent:@""];
@@ -705,6 +729,21 @@ NSString *const _MPTableMonoSpacedStringCellView = @"MonospacedStringCell";
                   options:nil];
   [headerMenu addItem:showPasswordsItem];
   self.entryTable.headerView.menu = headerMenu;
+}
+
+- (void)_updateTOTPTimer {
+  if(self.totpColumnHidden) {
+    [self.totpUpdateTimer invalidate];
+    self.totpUpdateTimer = nil;
+    return;
+  }
+  __weak MPEntryViewController *welf = self;
+  self.totpUpdateTimer = [NSTimer scheduledTimerWithTimeInterval:1.0 repeats:YES block:^(NSTimer * _Nonnull timer) {
+    NSLog(@"Update TOTP Column Content");
+    NSIndexSet *columnIndex = [NSIndexSet indexSetWithIndex:[welf.entryTable columnWithIdentifier:MPEntryTableTOTPColumnIdentifier]];
+    NSIndexSet *rowIndexes = [NSIndexSet indexSetWithIndexesInRange:NSMakeRange(0,welf.entryTable.numberOfRows)];
+    [welf.entryTable reloadDataForRowIndexes:rowIndexes columnIndexes:columnIndex];
+  }];
 }
 
 #pragma mark Actions
