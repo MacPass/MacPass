@@ -16,10 +16,6 @@
 @dynamic biometricKey;
 
 - (NSString *)biometricKey {
-  if(nil == self.fileURL || nil == self.fileURL.lastPathComponent) {
-    return nil;
-  }
-  
   return [self.fileURL.lastPathComponent sha1HexDigest];
 }
 
