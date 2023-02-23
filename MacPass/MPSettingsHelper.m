@@ -26,93 +26,95 @@
 #import "MPEntrySearchContext.h"
 #import "DDHotKey+MacPassAdditions.h" // Default hotkey;
 
-NSString *const kMPSettingsKeyPasteboardClearTimeout                      = @"ClipboardClearTimeout";
-NSString *const kMPSettingsKeyClearPasteboardOnQuit                       = @"ClearClipboardOnQuit";
-NSString *const kMPSettingsKeyPreventUniversalClipboard                   = @"PreventUniversalClipboard";
-NSString *const kMPSettingsKeyBrowserBundleId                             = @"BrowserBundleId";
-NSString *const kMPSettingsKeyUsePrivateBrowsingWhenOpeningURLs           = @"UsePrivateBrowsingWhenOpeningURLs";
-NSString *const kMPSettingsKeyOpenEmptyDatabaseOnLaunch                   = @"OpenEmptyDatabaseOnLaunch";
-NSString *const kMPSettingsKeyReopenLastDatabaseOnLaunch                  = @"ReopenLastDatabaseOnLaunch";
-NSString *const kMPSettingsKeyQuitOnLastWindowClose                       = @"QuitOnLastWindowClose";
-NSString *const kMPSettingsKeyFileChangeStrategy                          = @"FileChangeStrategy";
-NSString *const kMPSettingsKeyEnableAutosave                              = @"EnableAutosave";
-NSString *const kMPSettingsKeyFocusSearchAfterUnlock                      = @"FocusSearchAfterUnlock";
+#import "NSString+MPHash.h"
 
-NSString *const kMPSettingsKeyDisplayClearTextPasswordsInEntryList        = @"DisplayClearTextPasswordsInEntryList";
+NSString *const kMPSettingsKeyPasteboardClearTimeout                            = @"ClipboardClearTimeout";
+NSString *const kMPSettingsKeyClearPasteboardOnQuit                             = @"ClearClipboardOnQuit";
+NSString *const kMPSettingsKeyPreventUniversalClipboard                         = @"PreventUniversalClipboard";
+NSString *const kMPSettingsKeyBrowserBundleId                                   = @"BrowserBundleId";
+NSString *const kMPSettingsKeyUsePrivateBrowsingWhenOpeningURLs                 = @"UsePrivateBrowsingWhenOpeningURLs";
+NSString *const kMPSettingsKeyOpenEmptyDatabaseOnLaunch                         = @"OpenEmptyDatabaseOnLaunch";
+NSString *const kMPSettingsKeyReopenLastDatabaseOnLaunch                        = @"ReopenLastDatabaseOnLaunch";
+NSString *const kMPSettingsKeyQuitOnLastWindowClose                             = @"QuitOnLastWindowClose";
+NSString *const kMPSettingsKeyFileChangeStrategy                                = @"FileChangeStrategy";
+NSString *const kMPSettingsKeyEnableAutosave                                    = @"EnableAutosave";
+NSString *const kMPSettingsKeyFocusSearchAfterUnlock                            = @"FocusSearchAfterUnlock";
 
-NSString *const kMPSettingsKeyLockOnSleep                                 = @"LockOnSleep";
-NSString *const kMPSettingskeyLockOnLogout                                = @"LockOnLogout";
-NSString *const kMPSettingskeyLockOnScreenSleep                           = @"LockOnScreenSleep";
-NSString *const kMPSettingsKeyIdleLockTimeOut                             = @"IdleLockTimeOut";
-NSString *const kMPSettingsKeyShowInspector                               = @"ShowInspector";
-NSString *const kMPSettingsKeyEntryTableSortDescriptors                   = @"EntryTableSortDescriptors";
+NSString *const kMPSettingsKeyDisplayClearTextPasswordsInEntryList              = @"DisplayClearTextPasswordsInEntryList";
 
-NSString *const kMPSettingsKeyLegacyHideTitle                             = @"LegacyHideTitle";
-NSString *const kMPSettingsKeyLegacyHideUsername                          = @"LegacyHideUsername ";
-NSString *const kMPSettingsKeyLegacyHidePassword                          = @"LegacyHidePassword";
-NSString *const kMPSettingsKeyLegacyHideNotes                             = @"LegacyHideNotes";
-NSString *const kMPSettingsKeyLegacyHideURL                               = @"LegacyHideURL";
+NSString *const kMPSettingsKeyLockOnSleep                                       = @"LockOnSleep";
+NSString *const kMPSettingskeyLockOnLogout                                      = @"LockOnLogout";
+NSString *const kMPSettingskeyLockOnScreenSleep                                 = @"LockOnScreenSleep";
+NSString *const kMPSettingsKeyIdleLockTimeOut                                   = @"IdleLockTimeOut";
+NSString *const kMPSettingsKeyShowInspector                                     = @"ShowInspector";
+NSString *const kMPSettingsKeyEntryTableSortDescriptors                         = @"EntryTableSortDescriptors";
 
-NSString *const kMPSettingsKeyLastDatabasePath                            = @"LastDatabasePath";
-NSString *const kMPSettingsKeyRememberKeyFilesForDatabases                = @"RememberKeyFilesForDatabases";
-NSString *const kMPSettingsKeyRememeberdKeysForDatabases                  = @"RememeberdKeysForDatabases";
+NSString *const kMPSettingsKeyLegacyHideTitle                                   = @"LegacyHideTitle";
+NSString *const kMPSettingsKeyLegacyHideUsername                                = @"LegacyHideUsername ";
+NSString *const kMPSettingsKeyLegacyHidePassword                                = @"LegacyHidePassword";
+NSString *const kMPSettingsKeyLegacyHideNotes                                   = @"LegacyHideNotes";
+NSString *const kMPSettingsKeyLegacyHideURL                                     = @"LegacyHideURL";
 
-NSString *const kMPSettingsKeySendCommandForControlKey                    = @"SendCommandKeyForControlKey";
-NSString *const kMPSettingsKeyEnableGlobalAutotype                        = @"EnableGlobalAutotype";
-NSString *const kMPSettingsKeyGlobalAutotypeKeyDataKey                    = @"GlobalAutotypeKeyDataKey";
-NSString *const kMPSettingsKeyDefaultGlobalAutotypeSequence               = @"DefaultGlobalAutotypeSequence";
-NSString *const kMPSettingsKeyAutotypeMatchTitle                          = @"AutotypeMatchTitle";
-NSString *const kMPSettingsKeyAutotypeMatchURL                            = @"AutotypeMatchURL";
-NSString *const kMPSettingsKeyAutotypeMatchHost                           = @"AutotypeMatchHost";
-NSString *const kMPSettingsKeyAutotypeMatchTags                           = @"AutotypeMatchTags";
-NSString *const kMPSettingsKeyGloablAutotypeAlwaysShowCandidateSelection  = @"GloablAutotypeAlwaysShowCandidateSelection";
+NSString *const kMPSettingsKeyLastDatabasePath                                  = @"LastDatabasePath";
+NSString *const kMPSettingsKeyRememberKeyFilesForDatabases                      = @"RememberKeyFilesForDatabases";
+NSString *const kMPSettingsKeyRememeberdKeysForDatabases                        = @"RememeberdKeysForDatabases";
 
-NSString *const kMPSettingsKeyTouchIdEnabled                              = @"EnableSubsequentUnlocksWithTouchID";
-NSString *const kMPSettingsKeyTouchIdEncryptedKeyStore                    = @"TouchIdEncryptedKeyStore";
-NSString *const kMPSettingsKeyEntryTouchIdDatabaseEncryptedKeyFormat      = @"EncryptedDatabaseKeyForTouchID-%@";
+NSString *const kMPSettingsKeySendCommandForControlKey                          = @"SendCommandKeyForControlKey";
+NSString *const kMPSettingsKeyEnableGlobalAutotype                              = @"EnableGlobalAutotype";
+NSString *const kMPSettingsKeyGlobalAutotypeKeyDataKey                          = @"GlobalAutotypeKeyDataKey";
+NSString *const kMPSettingsKeyDefaultGlobalAutotypeSequence                     = @"DefaultGlobalAutotypeSequence";
+NSString *const kMPSettingsKeyAutotypeMatchTitle                                = @"AutotypeMatchTitle";
+NSString *const kMPSettingsKeyAutotypeMatchURL                                  = @"AutotypeMatchURL";
+NSString *const kMPSettingsKeyAutotypeMatchHost                                 = @"AutotypeMatchHost";
+NSString *const kMPSettingsKeyAutotypeMatchTags                                 = @"AutotypeMatchTags";
+NSString *const kMPSettingsKeyGloablAutotypeAlwaysShowCandidateSelection        = @"GloablAutotypeAlwaysShowCandidateSelection";
 
-NSString *const kMPSettingsKeyEntrySearchFilterContext                    = @"EntrySearchFilterContext";
+NSString *const kMPSettingsKeyTouchIdEnabled                                    = @"EnableSubsequentUnlocksWithTouchID";
+NSString *const kMPSettingsKeyTouchIdEncryptedKeyStore                          = @"TouchIdEncryptedKeyStore";
 
-NSString *const kMPSettingsKeyEnableQuicklookPreview                      = @"EnableQuicklookPreview";
+NSString *const kMPSettingsKeyEntrySearchFilterContext                          = @"EntrySearchFilterContext";
 
-NSString *const kMPSettingsKeyCopyGeneratedPasswordToClipboard            = @"CopyGeneratedPasswordToClipboard";
+NSString *const kMPSettingsKeyEnableQuicklookPreview                            = @"EnableQuicklookPreview";
 
-NSString *const kMPSettingsKeyDefaultPasswordLength                       = @"DefaultPasswordLength";
-NSString *const kMPSettingsKeyPasswordCharacterFlags                      = @"PasswordCharacterFlags";
-NSString *const kMPSettingsKeyPasswordEnsureOccurance                     = @"PasswordEnsureOccurance";
-NSString *const kMPSettingsKeyPasswordUseCustomString                     = @"PasswordUseCustomString";
-NSString *const kMPSettingsKeyPasswordCustomString                        = @"PasswordCustomString";
+NSString *const kMPSettingsKeyCopyGeneratedPasswordToClipboard                  = @"CopyGeneratedPasswordToClipboard";
 
-NSString *const kMPSettingsKeyPasswordDefaultsForEntry                    = @"PasswordDefaultsForEntry";
+NSString *const kMPSettingsKeyDefaultPasswordLength                             = @"DefaultPasswordLength";
+NSString *const kMPSettingsKeyPasswordCharacterFlags                            = @"PasswordCharacterFlags";
+NSString *const kMPSettingsKeyPasswordEnsureOccurance                           = @"PasswordEnsureOccurance";
+NSString *const kMPSettingsKeyPasswordUseCustomString                           = @"PasswordUseCustomString";
+NSString *const kMPSettingsKeyPasswordCustomString                              = @"PasswordCustomString";
 
-NSString *const kMPSettingsKeyDoubleClickURLAction                        = @"DoubleClickURLAction";
-NSString *const kMPSettingsKeyDoubleClickTitleAction                      = @"DoubleClickTitleAction";
-NSString *const kMPSettingsKeyUpdatePasswordOnTemplateEntries             = @"UpdatePasswordOnTemplateEntries";
-NSString *const kMPSettingsKeyGeneratePasswordForNewEntires               = @"GeneratePasswordForNewEntires";
-NSString *const kMPSettingsKeyHideAfterCopyToClipboard                    = @"HideAfterCopyToClipboard";
+NSString *const kMPSettingsKeyPasswordDefaultsForEntry                          = @"PasswordDefaultsForEntry";
 
-NSString *const kMPSettingsKeyLoadUnsecurePlugins                         = @"LoadUnsecurePlugins";
-NSString *const kMPSettingsKeyLoadIncompatiblePlugins                     = @"LoadIncompatiblePlugins";
-NSString *const kMPSettingsKeyDisabledPlugins                             = @"DisabledPlugins";
-NSString *const kMPSettingsKeyHideIncopatiblePluginsWarning               = @"HideIncopatiblePluginsWarning";
-NSString *const kMPSettingsKeyAllowRemoteFetchOfPluginRepository          = @"AllowRemoteFetchOfPluginRepository";
+NSString *const kMPSettingsKeyDoubleClickURLAction                              = @"DoubleClickURLAction";
+NSString *const kMPSettingsKeyDoubleClickTitleAction                            = @"DoubleClickTitleAction";
+NSString *const kMPSettingsKeyUpdatePasswordOnTemplateEntries                   = @"UpdatePasswordOnTemplateEntries";
+NSString *const kMPSettingsKeyGeneratePasswordForNewEntires                     = @"GeneratePasswordForNewEntires";
+NSString *const kMPSettingsKeyHideAfterCopyToClipboard                          = @"HideAfterCopyToClipboard";
 
-NSString *const kMPSettingsKeyFaviconDownloadMethod                       = @"FaviconDownloadMethod";
+NSString *const kMPSettingsKeyLoadUnsecurePlugins                               = @"LoadUnsecurePlugins";
+NSString *const kMPSettingsKeyLoadIncompatiblePlugins                           = @"LoadIncompatiblePlugins";
+NSString *const kMPSettingsKeyDisabledPlugins                                   = @"DisabledPlugins";
+NSString *const kMPSettingsKeyHideIncopatiblePluginsWarning                     = @"HideIncopatiblePluginsWarning";
+NSString *const kMPSettingsKeyAllowRemoteFetchOfPluginRepository                = @"AllowRemoteFetchOfPluginRepository";
 
-NSString *const kMPSettingsKeyUseUnifiedToolbar                            =@"UseUnifiedToolbar";
+NSString *const kMPSettingsKeyFaviconDownloadMethod                             = @"FaviconDownloadMethod";
+
+NSString *const kMPSettingsKeyUseUnifiedToolbar                                 = @"UseUnifiedToolbar";
 
 /* Deprecated */
-NSString *const kMPDeprecatedSettingsKeyRememberKeyFilesForDatabases      = @"kMPSettingsKeyRememberKeyFilesForDatabases";
-NSString *const kMPDeprecatedSettingsKeyLastDatabasePath                  = @"MPLastDatabasePath";
-NSString *const kMPDeprecatedSettingsKeyDocumentsAutotypeFixNoteWasShown  = @"DocumentsAutotypeFixNoteWasShown";
-NSString *const kMPDeprecatedSettingsKeyDoubleClickURLToLaunch            = @"DoubleClickURLToLaunch";
-NSString *const kMPDeprecatedSettingsKeyEntrySearchFilterMode             = @"EntrySearchFilterMode";
-NSString *const kMPDeprecatedSettingsKeyHttpPort                          = @"HttpPort";
-NSString *const kMPDeprecatedSettingsKeyEnableHttpServer                  = @"EnableHttpServer";
-NSString *const kMPDeprecatedSettingsKeyShowMenuItem                      = @"ShowMenuItem";
-NSString *const kMPDeprecatedSettingsKeyDefaultPasswordRounds             = @"KeyDefaultPasswordRounds";
-NSString *const kMPDepricatedSettingsKeyLoadUnsecurePlugins               = @"MPLoadUnsecurePlugins";
-NSString *const kMPDepricatedSettingsKeyAutotypeHideAccessibiltyWarning   = @"AutotypeHideAccessibiltyWarning";
+NSString *const kMPDeprecatedSettingsKeyRememberKeyFilesForDatabases            = @"kMPSettingsKeyRememberKeyFilesForDatabases";
+NSString *const kMPDeprecatedSettingsKeyLastDatabasePath                        = @"MPLastDatabasePath";
+NSString *const kMPDeprecatedSettingsKeyDocumentsAutotypeFixNoteWasShown        = @"DocumentsAutotypeFixNoteWasShown";
+NSString *const kMPDeprecatedSettingsKeyDoubleClickURLToLaunch                  = @"DoubleClickURLToLaunch";
+NSString *const kMPDeprecatedSettingsKeyEntrySearchFilterMode                   = @"EntrySearchFilterMode";
+NSString *const kMPDeprecatedSettingsKeyHttpPort                                = @"HttpPort";
+NSString *const kMPDeprecatedSettingsKeyEnableHttpServer                        = @"EnableHttpServer";
+NSString *const kMPDeprecatedSettingsKeyShowMenuItem                            = @"ShowMenuItem";
+NSString *const kMPDeprecatedSettingsKeyDefaultPasswordRounds                   = @"KeyDefaultPasswordRounds";
+NSString *const kMPDepricatedSettingsKeyLoadUnsecurePlugins                     = @"MPLoadUnsecurePlugins";
+NSString *const kMPDepricatedSettingsKeyAutotypeHideAccessibiltyWarning         = @"AutotypeHideAccessibiltyWarning";
+NSString *const kMPDepricatedSettingsKeyEntryTouchIdDatabaseEncryptedKeyFormat  = @"EncryptedDatabaseKeyForTouchID-%@";
 
 @implementation MPSettingsHelper
 
@@ -320,13 +322,13 @@ return deprecatedSettings;
   NSArray *defaultKeys = [NSUserDefaults.standardUserDefaults dictionaryRepresentation].allKeys;
   // find all keys in old format
   for(NSString *key in defaultKeys) {
-    NSString *prefix = [NSString stringWithFormat:kMPSettingsKeyEntryTouchIdDatabaseEncryptedKeyFormat, @""];
+    NSString *prefix = [NSString stringWithFormat:kMPDepricatedSettingsKeyEntryTouchIdDatabaseEncryptedKeyFormat, @""];
     if([key hasPrefix:prefix]) {
-      // database name was adde
-      NSString *databaseName = [key substringFromIndex:prefix.length];
+      // database name was added
+      NSString *databaseNameHash = [key substringFromIndex:prefix.length].sha1HexDigest;
       NSData *encryptedKey = [NSUserDefaults.standardUserDefaults dataForKey:key];
-      if(!storedKeys[databaseName] && encryptedKey) {
-        storedKeys[databaseName] = encryptedKey;
+      if(!storedKeys[databaseNameHash] && encryptedKey) {
+        storedKeys[databaseNameHash] = encryptedKey;
       }
       [NSUserDefaults.standardUserDefaults removeObjectForKey:key];
     }

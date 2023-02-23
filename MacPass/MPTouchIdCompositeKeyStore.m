@@ -66,9 +66,7 @@
   }
   
   /* FIXME this behavour is wrong. Old keys do not get cleared so this leaves a lot of data behind that should be cleaned up*/
-  
-  MPTouchIDKeyStorage touchIdMode = [NSUserDefaults.standardUserDefaults integerForKey:kMPSettingsKeyTouchIdEnabled];
-  switch(touchIdMode) {
+  switch(self.touchIdEnabledState) {
     case MPTouchIDKeyStorageTransient:
       [NSUserDefaults.standardUserDefaults removeObjectForKey:documentKey];
       if(nil != encryptedCompositeKey) {

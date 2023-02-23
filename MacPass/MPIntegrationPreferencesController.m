@@ -137,7 +137,7 @@
 
 #pragma mark -
 #pragma mark Keychain Actions
-- (IBAction)RenewTouchIdKey:(id)sender {
+- (IBAction)renewTouchIdKey:(id)sender {
     NSData* publicKeyTag = [MPTouchIdUnlockPublicKeyTag dataUsingEncoding:NSUTF8StringEncoding];
     NSDictionary *publicKeyQuery = @{
       (id)kSecClass: (id)kSecClassKey,

@@ -25,7 +25,6 @@
 /* TouchID */
 APPKIT_EXTERN NSString *const kMPSettingsKeyTouchIdEnabled;
 APPKIT_EXTERN NSString *const kMPSettingsKeyTouchIdEncryptedKeyStore;       // NSDictionary with hased file names mapped to keys
-APPKIT_EXTERN NSString *const kMPSettingsKeyEntryTouchIdDatabaseEncryptedKeyFormat;
 
 /* Clipboard */
 APPKIT_EXTERN NSString *const kMPSettingsKeyPasteboardClearTimeout;

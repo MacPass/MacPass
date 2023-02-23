@@ -7,8 +7,9 @@
 //
 
 #import "MPDocument+BiometricEncryptionSupport.h"
-#import "MPSettingsHelper.h"
 #import "MPTouchIdCompositeKeyStore.h"
+#import "NSString+MPHash.h"
+
 
 @implementation MPDocument (BiometricEncryptionSupport)
 
@@ -18,7 +19,8 @@
   if(nil == self.fileURL || nil == self.fileURL.lastPathComponent) {
     return nil;
   }
-  return [NSString stringWithFormat:kMPSettingsKeyEntryTouchIdDatabaseEncryptedKeyFormat, self.fileURL.lastPathComponent];
+  
+  return [self.fileURL.lastPathComponent sha1HexDigest];
 }
 
 - (NSData *)encryptedKeyData {
