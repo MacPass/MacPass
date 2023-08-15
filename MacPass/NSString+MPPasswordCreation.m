@@ -26,7 +26,7 @@
 #import "NSString+MPComposedCharacterAdditions.h"
 #import "MPSettingsHelper.h"
 
-static NSDictionary<NSNumber *, NSString *> *characterClassMap () {
+static NSDictionary<NSNumber *, NSString *> *characterClassMap (void) {
   static dispatch_once_t onceToken;
   static NSDictionary *characterClassMap;
   dispatch_once(&onceToken, ^{
