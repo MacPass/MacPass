@@ -83,6 +83,7 @@ typedef NS_ENUM(NSUInteger, MPDatabaseSettingsTab) {
 @property (weak) IBOutlet NSStepper *recommendKeyChangeIntervalStepper;
 @property (weak) IBOutlet NSTextField *enforceKeyChangeIntervalTextField;
 @property (weak) IBOutlet NSStepper *enforceKeyChangeIntervalStepper;
+@property (strong) IBOutlet NSTextField *lastKeyChangeTextField;
 
 - (void)showSettingsTab:(MPDatabaseSettingsTab)tab;
 
