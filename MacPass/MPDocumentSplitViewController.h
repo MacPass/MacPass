@@ -22,7 +22,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (readonly, strong) MPInspectorViewController *inspectorViewController;
 
 - (void)registerNotificationsForDocument:(MPDocument *)document;
-- (IBAction)toggleInspector:(id)sender;
+- (IBAction)toggleInspector:(nullable id)sender;
 - (void)showOutline;
 
 @end
