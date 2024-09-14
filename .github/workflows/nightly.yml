@@ -53,6 +53,7 @@ jobs:
       
       - name: Create MD5 Hash
         run: |
+          echo "BUILD_TIME=$(date +'%Y%m%d%H%M')" >> $GITHUB_ENV
           cd ./build/Build/Products/Release
           shasum -a 256 MacPass-continuous.zip > MacPass-continuous.zip.sha256
      
@@ -67,10 +68,14 @@ jobs:
       #      ./build/Build/Products/Release/MacPass-continuous.zip.sha256
       
       - name: Release
-        uses: softprops/action-gh-release@v1
+        uses: softprops/action-gh-release@v2
         #if: startsWith(github.ref, 'refs/tags/')
         with:
-          tag_name: continuous
+          #tag_name: "${{ github.ref_name }}${{ env.BUILD_TIME }}"
+          tag_name: "continuous"
+          release_name: "Release ${{ github.event.repository.updated_at}} ${{ github.ref_name }}-${{ github.sha }}"
+          name: "Release ${{ github.event.repository.updated_at}} ${{ github.ref_name }}-${{ github.sha }}"
+          generate_release_notes: true
           files: |
             Localisations.zip
             ./build/Build/Products/Release/MacPass-continuous.zip
