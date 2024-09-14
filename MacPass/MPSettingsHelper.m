@@ -101,6 +101,7 @@ NSString *const kMPSettingsKeyAllowRemoteFetchOfPluginRepository                
 NSString *const kMPSettingsKeyFaviconDownloadMethod                             = @"FaviconDownloadMethod";
 
 NSString *const kMPSettingsKeyUseUnifiedToolbar                                 = @"UseUnifiedToolbar";
+NSString *const kMPSettingsKeyAllowScreenshots                                  = @"AllowScreenshots";
 
 /* Deprecated */
 NSString *const kMPDeprecatedSettingsKeyRememberKeyFilesForDatabases            = @"kMPSettingsKeyRememberKeyFilesForDatabases";
@@ -186,6 +187,7 @@ NSString *const kMPDepricatedSettingsKeyEntryTouchIdDatabaseEncryptedKeyFormat  
       kMPSettingsKeyFaviconDownloadMethod: @(MPFaviconDownloadMethodDirect), // Download directly from host
       kMPSettingsKeyGloablAutotypeAlwaysShowCandidateSelection: @NO,
       kMPSettingsKeyUseUnifiedToolbar: @YES, // Do not use unified toolbar under Big Sur and above
+      kMPSettingsKeyAllowScreenshots: @NO, // Do not allow screenshots or screen recordings of MacPass
       kMPSettingsKeyFocusSearchAfterUnlock: @NO, // Do not enter search directly after unlocking the database
       kMPSettingsKeyUsePrivateBrowsingWhenOpeningURLs: @NO // No private mode when option URLs by default
     };
