@@ -105,6 +105,7 @@ APPKIT_EXTERN NSString *const kMPSettingsKeyFaviconDownloadMethod;
 
 /* UI */
 APPKIT_EXTERN NSString *const kMPSettingsKeyUseUnifiedToolbar;
+APPKIT_EXTERN NSString *const kMPSettingsKeyAllowScreenshots;
 
 typedef NS_ENUM(NSUInteger, MPFileChangeStrategy) {
   MPFileChangeStrategyAsk,

@@ -100,6 +100,14 @@ typedef void (^MPPasswordChangedBlock)(BOOL didChangePassword);
   [super windowDidLoad];
   
   self.window.delegate = self.documentWindowDelegate;
+  BOOL allowScreenshots = [NSUserDefaults.standardUserDefaults boolForKey:kMPSettingsKeyAllowScreenshots];
+  if(!allowScreenshots) {
+    self.window.sharingType = NSWindowSharingNone;
+  }
+  else {
+    self.window.sharingType = NSWindowSharingReadOnly;
+  }
+
   if (@available(macOS 11.0, *)) {
     /* let the user decide how to dipsplay the toolbar */
     BOOL useUnifiedToolbar = [NSUserDefaults.standardUserDefaults boolForKey:kMPSettingsKeyUseUnifiedToolbar];
