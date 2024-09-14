@@ -23,6 +23,7 @@
 #import <Cocoa/Cocoa.h>
 #import "MPViewController.h"
 #import "MPPreferencesTab.h"
+#import "MPDisplayOptions.h"
 
 @interface MPGeneralPreferencesController : MPViewController <MPPreferencesTab>
 
@@ -39,4 +40,12 @@
 @property (strong) IBOutlet NSPopUpButton *fileChangeStrategyPopup;
 @property (strong) IBOutlet NSPopUpButton *faviconDownloadMethodPopup;
 
+@property (strong) IBOutlet NSButton *dockOnly;
+@property (strong) IBOutlet NSButton *menubarOnly;
+@property (strong) IBOutlet NSButton *displayBoth;
+- (IBAction)toggleDisplayOption:(id)sender;
+
+@property (strong) MPDisplayOption *statusItem;
+
 @end
+

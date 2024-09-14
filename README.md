@@ -1,4 +1,13 @@
-[![Build Status](https://travis-ci.org/MacPass/MacPass.svg?branch=continuous)](https://travis-ci.org/MacPass/MacPass)
+[![Build Status](https://travis-ci.org/xlight/MacPass.svg?branch=master)](https://travis-ci.org/xlight/MacPass)
+
+# autobuild release base on georgesnow's work
+
+```
+adding funtionality for toggling dock and menubar icons via gui - icons are bound to settings yet
+add hotkey for showing and hiding macpass
+```
+
+new version v0.8.2 can be downloaded at [Release](https://github.com/xlight/MacPass/releases).
 
 # MacPass
 
@@ -9,9 +18,9 @@ MacPass is an attempt to create a native macOS port of KeePass on a solid open s
 
 ## Download
 
-All pre-built releases can be found at [Github](https://github.com/MacPass/MacPass/releases).
+All pre-built releases can be found at [Github](https://github.com/xlight/MacPass/releases).
 
-An unsigned build of the current continuous tag can be found here: [Continuous Build](https://github.com/MacPass/MacPass/releases/tag/continuous)
+An unsigned build of the current continuous tag can be found here: [Continuous Build](https://github.com/xlight/MacPass/releases/tag/Continuous)
 
 Due to the nature of the build it might be unstable, however this version contains all the latest changes and bug fixes!
 

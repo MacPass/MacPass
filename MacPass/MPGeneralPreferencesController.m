@@ -23,6 +23,8 @@
 #import "MPGeneralPreferencesController.h"
 #import "MPSettingsHelper.h"
 #import "MPIconHelper.h"
+#import "MPDisplayOptions.h"
+
 
 @implementation MPGeneralPreferencesController
 
@@ -56,6 +58,7 @@
   [self.enableAutosaveCheckButton bind:NSValueBinding toObject:defaultsController withKeyPath:[MPSettingsHelper defaultControllerPathForKey:kMPSettingsKeyEnableAutosave] options:nil];
   [self.rememberKeyFileCheckButton bind:NSValueBinding toObject:defaultsController withKeyPath:[MPSettingsHelper defaultControllerPathForKey:kMPSettingsKeyRememberKeyFilesForDatabases] options:nil];
 
+  
   /* Favicon download method menu */
   NSDictionary *faviconDownloadMethodDict = @{ @(MPFaviconDownloadMethodDirect) : NSLocalizedString(@"FAVICON_DOWNLOAD_METHOD_DIRECT", @"Favicon download method: directly download from the host"),
                                                @(MPFaviconDownloadMethodDuckDuckGo) : NSLocalizedString(@"FAVICON_DOWNLOAD_METHOD_DUCKDUCKGO", @"Favicon download method: use DuckDuckGo's favicon fetching service"),
@@ -82,6 +85,58 @@
     [self.fileChangeStrategyPopup.menu addItem:item];
   }
   [self.fileChangeStrategyPopup bind:NSSelectedTagBinding toObject:defaultsController withKeyPath:[MPSettingsHelper defaultControllerPathForKey:kMPSettingsKeyFileChangeStrategy] options:nil];
-
+  
+  BOOL menubarExtra = [NSUserDefaults.standardUserDefaults boolForKey:kMPRSettingsKeyShowMenuItem];
+  BOOL dockHide = [NSUserDefaults.standardUserDefaults boolForKey:kMPRSettingsKeyHideDockIcon];
+  if(menubarExtra && dockHide) {
+    self.displayBoth.state = NSOnState;
+    self.menubarOnly.state = NSOffState;
+    self.dockOnly.state = NSOffState;
+  } else if (menubarExtra) {
+    self.displayBoth.state = NSOffState;
+    self.menubarOnly.state = NSOnState;
+    self.dockOnly.state = NSOffState;
+  } else if (dockHide && !menubarExtra) {
+    self.displayBoth.state = NSOffState;
+    self.menubarOnly.state = NSOffState;
+    self.dockOnly.state = NSOnState;
+  }
 }
+
+- (IBAction)toggleDisplayOption:(id)sender {
+  BOOL displayBothOptions = self.displayBoth.state == NSOnState;
+  BOOL dockOnly = self.dockOnly.state == NSOnState;
+  BOOL menubarOnly = self.menubarOnly.state == NSOnState;
+  
+  if(displayBothOptions){
+    self.statusItem = nil;
+    self.statusItem = [[MPDisplayOption alloc]init];
+    [NSUserDefaults.standardUserDefaults setBool:NO forKey:kMPRSettingsKeyHideDockIcon];
+    [NSUserDefaults.standardUserDefaults setBool:displayBothOptions forKey:kMPRSettingsKeyShowMenuItem];
+    [NSApplication.sharedApplication setActivationPolicy:NSApplicationActivationPolicyRegular];
+    // When modifying policy state if app is not deactivated the menu bar is not usable
+    [NSApplication.sharedApplication deactivate];
+    
+  }
+  if(dockOnly) {
+    [NSUserDefaults.standardUserDefaults setBool:NO forKey:kMPRSettingsKeyShowMenuItem];
+    [NSUserDefaults.standardUserDefaults setBool:NO forKey:kMPRSettingsKeyHideDockIcon];
+    [NSApplication.sharedApplication setActivationPolicy:NSApplicationActivationPolicyRegular];
+    [NSApplication.sharedApplication deactivate];
+
+    self.statusItem = nil;
+    
+    
+  }
+  if(menubarOnly) {
+    self.statusItem = [[MPDisplayOption alloc]init];
+    [NSUserDefaults.standardUserDefaults setBool:menubarOnly forKey:kMPRSettingsKeyShowMenuItem];
+    [NSUserDefaults.standardUserDefaults setBool:menubarOnly forKey:kMPRSettingsKeyHideDockIcon];
+    [NSApplication.sharedApplication setActivationPolicy:NSApplicationActivationPolicyAccessory];
+    
+  }
+}
+
+
+
 @end

@@ -10,6 +10,8 @@
             <connections>
                 <outlet property="clearPasteboardOnQuitCheckButton" destination="447" id="520"/>
                 <outlet property="clearPasteboardTimeoutPopup" destination="419" id="521"/>
+                <outlet property="displayBoth" destination="DmN-uw-MW3" id="xtB-R0-OwB"/>
+                <outlet property="dockOnly" destination="loI-8e-8E4" id="Wbd-QC-b71"/>
                 <outlet property="enableAutosaveCheckButton" destination="lz3-4U-UMI" id="L5y-58-IgH"/>
                 <outlet property="faviconDownloadMethodPopup" destination="OfU-6f-oTU" id="OfU-6f-oTU-outlet"/>
                 <outlet property="fileChangeStrategyPopup" destination="wIu-Sh-2a2" id="oJo-dA-lEE"/>
@@ -17,6 +19,7 @@
                 <outlet property="lockOnLogoutCheckButton" destination="5SP-Vi-1sn" id="yaI-LH-R5A"/>
                 <outlet property="lockOnScreenSleepCheckButton" destination="nRe-7S-HwK" id="0IB-5B-pfw"/>
                 <outlet property="lockOnSleepCheckButton" destination="630" id="810"/>
+                <outlet property="menubarOnly" destination="vVu-wJ-GcP" id="AH5-5y-UzD"/>
                 <outlet property="preventUniversalClipboardSupportCheckButton" destination="nqZ-rB-mFS" id="sbx-rl-reT"/>
                 <outlet property="rememberKeyFileCheckButton" destination="bSt-Wf-FNZ" id="aQm-EA-yAN"/>
                 <outlet property="reopenLastDatabase" destination="530" id="878"/>
@@ -275,7 +278,7 @@
                     </constraints>
                 </box>
                 <box autoresizesSubviews="NO" verticalHuggingPriority="500" borderType="line" title="Network" translatesAutoresizingMaskIntoConstraints="NO" id="wD1-ag-7V5">
-                    <rect key="frame" x="17" y="16" width="372" height="126"/>
+                    <rect key="frame" x="17" y="185" width="391" height="126"/>
                     <view key="contentView" id="bQD-ZX-d0i">
                         <rect key="frame" x="4" y="5" width="364" height="106"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -324,6 +327,66 @@
                         <constraint firstAttribute="bottom" secondItem="MWj-9m-uGk" secondAttribute="bottom" constant="12" id="k80-DD-Y5l"/>
                     </constraints>
                 </box>
+                <box autoresizesSubviews="NO" verticalHuggingPriority="500" borderType="line" title="Display" translatesAutoresizingMaskIntoConstraints="NO" id="njB-Do-tcg">
+                    <rect key="frame" x="17" y="36" width="391" height="135"/>
+                    <view key="contentView" id="r1x-34-36b">
+                        <rect key="frame" x="3" y="3" width="385" height="117"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="vVu-wJ-GcP">
+                                <rect key="frame" x="18" y="55" width="111" height="18"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                <buttonCell key="cell" type="radio" title="Menubar Only" bezelStyle="regularSquare" imagePosition="left" alignment="left" inset="2" id="Icd-kw-28p">
+                                    <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                                    <font key="font" metaFont="system"/>
+                                </buttonCell>
+                                <connections>
+                                    <action selector="toggleDisplayOption:" target="-2" id="Pzy-Fx-1kP"/>
+                                </connections>
+                            </button>
+                            <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="loI-8e-8E4">
+                                <rect key="frame" x="18" y="92" width="87" height="18"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                <buttonCell key="cell" type="radio" title="Dock only" bezelStyle="regularSquare" imagePosition="left" alignment="left" state="on" inset="2" id="2CR-Gd-K1N">
+                                    <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                                    <font key="font" metaFont="system"/>
+                                </buttonCell>
+                                <connections>
+                                    <action selector="toggleDisplayOption:" target="-2" id="yYO-3e-BIm"/>
+                                </connections>
+                            </button>
+                            <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="DmN-uw-MW3">
+                                <rect key="frame" x="18" y="12" width="118" height="18"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                <buttonCell key="cell" type="radio" title="Both Displayed" bezelStyle="regularSquare" imagePosition="left" alignment="left" inset="2" id="M4D-94-uRM">
+                                    <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                                    <font key="font" metaFont="system"/>
+                                </buttonCell>
+                                <connections>
+                                    <action selector="toggleDisplayOption:" target="-2" id="irC-cC-39D"/>
+                                </connections>
+                            </button>
+                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="gQm-66-vLg">
+                                <rect key="frame" x="37" y="35" width="325" height="14"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                <textFieldCell key="cell" controlSize="small" lineBreakMode="clipping" title=" Dock icon is hidden and menubar extra is at display top right" id="xis-dP-1wO">
+                                    <font key="font" metaFont="smallSystem"/>
+                                    <color key="textColor" name="secondaryLabelColor" catalog="System" colorSpace="catalog"/>
+                                    <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                </textFieldCell>
+                            </textField>
+                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="nIS-B5-hgE">
+                                <rect key="frame" x="39" y="75" width="168" height="14"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                <textFieldCell key="cell" controlSize="small" lineBreakMode="clipping" title="Dock icon will always be visible" id="7Zi-VY-kg0">
+                                    <font key="font" metaFont="smallSystem"/>
+                                    <color key="textColor" name="secondaryLabelColor" catalog="System" colorSpace="catalog"/>
+                                    <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                </textFieldCell>
+                            </textField>
+                        </subviews>
+                    </view>
+                </box>
             </subviews>
             <constraints>
                 <constraint firstItem="465" firstAttribute="leading" secondItem="1" secondAttribute="leading" constant="20" symbolic="YES" id="475"/>
@@ -332,13 +395,17 @@
                 <constraint firstAttribute="trailing" secondItem="888" secondAttribute="trailing" constant="20" symbolic="YES" id="893"/>
                 <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="400" id="918"/>
                 <constraint firstItem="wD1-ag-7V5" firstAttribute="leading" secondItem="1" secondAttribute="leading" constant="20" id="3kp-Uf-fyC"/>
-                <constraint firstItem="wD1-ag-7V5" firstAttribute="bottom" secondItem="1" secondAttribute="bottom" constant="-20" id="EeW-K0-jec"/>
                 <constraint firstItem="wD1-ag-7V5" firstAttribute="top" secondItem="465" secondAttribute="bottom" constant="8" symbolic="YES" id="FsW-LX-Drs"/>
+                <constraint firstAttribute="bottom" secondItem="njB-Do-tcg" secondAttribute="bottom" constant="40" id="JL3-lh-uFy"/>
+                <constraint firstItem="njB-Do-tcg" firstAttribute="leading" secondItem="1" secondAttribute="leading" constant="20" id="PwI-Mh-NXr"/>
                 <constraint firstItem="888" firstAttribute="top" secondItem="1" secondAttribute="top" constant="20" symbolic="YES" id="ZMP-Lv-rQh"/>
                 <constraint firstAttribute="trailing" secondItem="wD1-ag-7V5" secondAttribute="trailing" constant="20" id="ccK-FL-7Wx"/>
+                <constraint firstAttribute="trailing" secondItem="njB-Do-tcg" secondAttribute="trailing" constant="20" id="dx2-hH-UdX"/>
+                <constraint firstItem="njB-Do-tcg" firstAttribute="height" secondItem="1" secondAttribute="height" multiplier="0.154846" id="fas-Jc-23U"/>
+                <constraint firstItem="njB-Do-tcg" firstAttribute="top" secondItem="wD1-ag-7V5" secondAttribute="bottom" constant="18" id="kCs-Rd-whe"/>
                 <constraint firstItem="465" firstAttribute="top" secondItem="888" secondAttribute="bottom" constant="8" symbolic="YES" id="wyH-HB-i2U"/>
             </constraints>
-            <point key="canvasLocation" x="-535" y="-327.5"/>
+            <point key="canvasLocation" x="-525.5" y="-192"/>
         </customView>
     </objects>
 </document>

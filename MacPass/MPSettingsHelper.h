@@ -39,6 +39,11 @@ APPKIT_EXTERN NSString *const kMPSettingsKeyQuitOnLastWindowClose;          // Q
 APPKIT_EXTERN NSString *const kMPSettingsKeyFileChangeStrategy;
 APPKIT_EXTERN NSString *const kMPSettingsKeyEnableAutosave;                 // if set to YES MacPass support Autosaving for documents
 APPKIT_EXTERN NSString *const kMPSettingsKeyFocusSearchAfterUnlock;         // Enter search after unlocking the database
+APPKIT_EXTERN NSString *const kMPSettingsKeyShowOrHideMacPass;
+    // Enable hotkey for showing or hiding MacPass
+APPKIT_EXTERN NSString *const kMPRSettingsKeyShowMenuItem;
+APPKIT_EXTERN NSString *const kMPRSettingsKeyHideDockIcon;
+
 
 /* Entry Table Display */
 APPKIT_EXTERN NSString *const kMPSettingsKeyDisplayClearTextPasswordsInEntryList;
@@ -98,6 +103,7 @@ APPKIT_EXTERN NSString *const kMPSettingsKeyLoadUnsecurePlugins;            // I
 APPKIT_EXTERN NSString *const kMPSettingsKeyDisabledPlugins;                // NSArray of bundle identifiers of disabled plugins
 APPKIT_EXTERN NSString *const kMPSettingsKeyLoadIncompatiblePlugins;        // If set to YES incompatible plugins (no version info, marked as incompatible, etc) will be loaded regardless
 APPKIT_EXTERN NSString *const kMPSettingsKeyHideIncopatiblePluginsWarning;  // Do not show an alert, when MacPass encounteres incompatible plugins
+APPKIT_EXTERN NSString *const kMPSettingsKeyShowHideKeyDataKey;                   // The stored Data for the user defined show/hide key for MacPass
 APPKIT_EXTERN NSString *const kMPSettingsKeyAllowRemoteFetchOfPluginRepository; // Allow the download of the plugin repository file
 
 /* Network */
