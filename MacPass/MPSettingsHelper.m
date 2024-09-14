@@ -43,17 +43,6 @@ NSString *const kMPSettingsKeyShowHideKeyDataKey                          = @"Sh
 NSString *const kMPRSettingsKeyShowMenuItem                               = @"ShowMenuItem";
 NSString *const kMPRSettingsKeyHideDockIcon                               = @"HideDockIcon";
 
-NSString *const kMPSettingsKeyPasteboardClearTimeout                            = @"ClipboardClearTimeout";
-NSString *const kMPSettingsKeyClearPasteboardOnQuit                             = @"ClearClipboardOnQuit";
-NSString *const kMPSettingsKeyPreventUniversalClipboard                         = @"PreventUniversalClipboard";
-NSString *const kMPSettingsKeyBrowserBundleId                                   = @"BrowserBundleId";
-NSString *const kMPSettingsKeyUsePrivateBrowsingWhenOpeningURLs                 = @"UsePrivateBrowsingWhenOpeningURLs";
-NSString *const kMPSettingsKeyOpenEmptyDatabaseOnLaunch                         = @"OpenEmptyDatabaseOnLaunch";
-NSString *const kMPSettingsKeyReopenLastDatabaseOnLaunch                        = @"ReopenLastDatabaseOnLaunch";
-NSString *const kMPSettingsKeyQuitOnLastWindowClose                             = @"QuitOnLastWindowClose";
-NSString *const kMPSettingsKeyFileChangeStrategy                                = @"FileChangeStrategy";
-NSString *const kMPSettingsKeyEnableAutosave                                    = @"EnableAutosave";
-NSString *const kMPSettingsKeyFocusSearchAfterUnlock                            = @"FocusSearchAfterUnlock";
 
 NSString *const kMPSettingsKeyDisplayClearTextPasswordsInEntryList              = @"DisplayClearTextPasswordsInEntryList";
 
