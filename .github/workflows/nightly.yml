@@ -1,12 +1,12 @@
 name: Nightly
 
 on:
-  #push:
-  #  branches: [ master ]
+  push:
+    branches: [ master ]
   #pull_request:
   #  branches: [ master ]
-  schedule:
-    - cron:  '0 23 * * *'
+  #schedule:
+  #  - cron:  '0 23 * * *'
 
   workflow_dispatch:
 
@@ -68,7 +68,7 @@ jobs:
       
       - name: Release
         uses: softprops/action-gh-release@v1
-        if: startsWith(github.ref, 'refs/tags/')
+        #if: startsWith(github.ref, 'refs/tags/')
         with:
           tag_name: continuous
           files: |
